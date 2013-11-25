@@ -7,7 +7,7 @@
 //
 
 #import "GroupManager.h"
-
+#import "BBSPostCommand.h"
 
 static GroupManager *_staticGroupManager = nil;
 
@@ -20,6 +20,7 @@ static GroupManager *_staticGroupManager = nil;
 - (void)dealloc
 {
     PPRelease(_followedGroupIds);
+//    PPRelease(_tempPostList);
     [super dealloc];
 }
 
@@ -71,9 +72,9 @@ static GroupManager *_staticGroupManager = nil;
 {
     NSMutableArray *array = [NSMutableArray array];
     if ([GroupPermissionManager canCreateGroup]) {
-        [array addObject:@(CreateGroup)];
+        [array addObject:@(GroupCreateGroup)];
     }
-    [array addObjectsFromArray:@[@(SearchGroup), @(GroupChat), @(AtMe)]];
+    [array addObjectsFromArray:@[@(GroupSearchGroup), @(GroupChat), @(GroupAtMe)]];
     return array;
 }
 
@@ -81,7 +82,34 @@ static GroupManager *_staticGroupManager = nil;
 + (NSArray *)defaultTypesInGroupTopicFooter:(PBGroup *)group
 {
     //TODO add quit type
-    return @[@(CreateTopic), @(SearchGroup), @(GroupChat)];
+    return @[@(GroupCreateTopic), @(GroupSearchGroup), @(GroupChat)];
+}
+
++ (NSMutableArray *)getTopicCMDList:(PBBBSPost *)post inGroup:(PBGroup *)group
+{
+    GroupPermissionManager *pm = [GroupPermissionManager myManagerWithGroup:group];
+    NSMutableArray *list = [NSMutableArray array];
+    if ([pm canCreateTopic]) {
+        BBSPostReplyCommand *rc = [[[BBSPostReplyCommand alloc] initWithPost:post controller:nil] autorelease];
+        [list addObject:rc];
+        BBSPostSupportCommand *sc = [[[BBSPostSupportCommand alloc] initWithPost:post controller:nil] autorelease];
+        [list addObject:sc];
+    }
+    if ([pm canDeleteTopic:post]) {
+        BBSPostDeleteCommand *dc = [[[BBSPostDeleteCommand alloc] initWithPost:post controller:nil] autorelease];
+        [list addObject:dc];
+    }
+    if ([pm canTopTopic]) {
+        BBSPostTopCommand *tc = [[[BBSPostTopCommand alloc] initWithPost:post controller:nil] autorelease];
+        [list addObject:tc];
+    }
+    
+    if ([pm canMarkTopic]) {
+        BBSPostMarkCommand *tc = [[[BBSPostMarkCommand alloc] initWithPost:post controller:nil] autorelease];
+        [list addObject:tc];
+    }
+
+    return list;
 }
 
 @end

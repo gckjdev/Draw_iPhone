@@ -50,18 +50,18 @@ if (ColorStyleYellow==style) {\
 + (UIImage *)imageForFooterActionType:(GroupFooterActionType)type
 {
     switch(type){
-        case CreateGroup:
-        case CreateTopic:
+        case GroupCreateGroup:
+        case GroupCreateTopic:
             return IMAGE_NAME(@"group_footer_create@2x.png");
-        case SearchGroup:
+        case GroupSearchGroup:
             return IMAGE_NAME(@"group_footer_search@2x.png");
-        case SearchTopic:
+        case GroupSearchTopic:
             return IMAGE_NAME(@"group_footer_search@2x.png");
         case GroupChat:
             return IMAGE_NAME(@"group_footer_chat@2x.png");
-        case AtMe:
+        case GroupAtMe:
             return IMAGE_NAME(@"group_footer_at@2x.png");
-        case Contest:
+        case GroupContest:
             return IMAGE_NAME(@"group_footer_contest@2x.png");
         default:
             return nil;

@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 
 typedef enum{
+    GroupRoleNone = 0,
     GroupRoleAdmin = 1,
     GroupRoleUser = 2,
     GroupRoleGuest = 3,
@@ -23,6 +24,7 @@ typedef enum {
     ACCESS_GROUP   =    (0x1 << 1),     //进入家族
     JOIN_GROUP     =    (0x1 << 2),     //申请加入家族
     QUIT_GROUP     =    (0x1 << 3),     //退出家族
+    CHAT_GROUP     =    (0x1 << 4),     //群聊
     
     //TOPIC
     READ_TOPIC     =    (0x1 << 10),     //读贴
@@ -41,6 +43,10 @@ typedef enum {
     ARRANGE_ADMIN  =    (0x1 << 25),     //管理管理员
     ARRANGE_PERMISSION = (0x1 << 26),     //分配权限
     UPGRADE_GROUP  =    (0x1 << 27),     //升级群
+    DISMISSAL_GROUP =   (0x1 << 28),     //解散群
+    
+    GROUP_DEFAULT_PERMISSION = JOIN_GROUP|ACCESS_GROUP|READ_TOPIC,
+    
     
 }GroupPermission;
 
@@ -61,8 +67,8 @@ typedef enum{
 
 
 typedef enum{
-    GroupNoticeTypeBulletin = 0,
-    GroupNoticeTypeRequest = 1,
+    GroupNoticeTypeNotice = 1,
+    GroupNoticeTypeRequest = 2,
 }GroupNoticeType;
 
 

@@ -14,6 +14,7 @@
 
 @interface GroupManager : NSObject
 @property(nonatomic, retain)NSMutableArray *followedGroupIds;
+//@property(atomic, retain) NSMutableArray *tempPostList;
 
 + (id)defaultManager;
 
@@ -25,6 +26,6 @@
 
 - (BOOL)followedGroup:(NSString *)groupId;
 
-
++ (NSMutableArray *)getTopicCMDList:(PBBBSPost *)post inGroup:(PBGroup *)group;
 
 @end

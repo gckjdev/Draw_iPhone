@@ -19,7 +19,7 @@
 }
 - (BOOL)hasPermission:(GroupPermission)permission
 {
-    return _group.relation.permission & permission;    
+    return (_group.relation.permission & permission) != 0;
 }
 
 #define PERMIT(x) [self hasPermission:x]
@@ -45,6 +45,11 @@
 - (BOOL)canAccessGroup
 {
     return PERMIT(ACCESS_GROUP);
+}
+
+- (BOOL)canGroupChat
+{
+    return PERMIT(CHAT_GROUP);
 }
 
 //Topic
@@ -106,6 +111,10 @@
     return PERMIT(UPGRADE_GROUP);
 }
 
+- (BOOL)canDismissalGroup
+{
+    return PERMIT(DISMISSAL_GROUP);
+}
 
 + (BOOL)canCreateGroup
 {

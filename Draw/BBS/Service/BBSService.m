@@ -42,6 +42,7 @@ BBSService *_staticGroupTopicService;
 {
     NSString *host = [PPConfigManager getBBSServerURL];
     if (_isGroupTopicService) {
+        host = [PPConfigManager getGroupServerURL];
         return [NSString stringWithFormat:@"%@%@=%d",host,PARA_TOPIC_MODE,CONST_GROUP_MODE];
     }
     return host;

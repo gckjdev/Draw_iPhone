@@ -13,6 +13,7 @@
 #import "CreatePostController.h"
 #import "BBSPostActionHeaderView.h"
 
+@class PBGroup;
 @interface BBSPostDetailController : BBSController<BBSPostActionCellDelegate, BBSPostActionHeaderViewDelegate, CreatePostControllerDelegate>
 {
     
@@ -21,9 +22,16 @@
 @property (nonatomic, retain)PBBBSPost *post;
 @property (nonatomic, retain) UIView* adView;
 
+@property (nonatomic, retain) PBGroup *group;
+
 - (void)updateViewWithPost:(PBBBSPost *)post;
 
 + (BBSPostDetailController *)enterPostDetailControllerWithPost:(PBBBSPost *)post
+                                                fromController:(UIViewController *)fromController
+                                                      animated:(BOOL)animated;
+
++ (BBSPostDetailController *)enterPostDetailControllerWithPost:(PBBBSPost *)post
+                                                         group:(PBGroup *)group
                                                 fromController:(UIViewController *)fromController
                                                       animated:(BOOL)animated;
 

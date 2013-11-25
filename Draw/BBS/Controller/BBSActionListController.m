@@ -110,7 +110,7 @@
 {
     NSString *userID = [[UserManager defaultManager] userId];
     TableTab *tab = [_tabManager tabForID:tabID];
-    [[BBSService defaultService] getBBSActionListWithTargetUid:userID
+    [[self bbsService] getBBSActionListWithTargetUid:userID
                                                         offset:tab.offset
                                                          limit:tab.limit
                                                       delegate:self];
@@ -291,7 +291,7 @@ enum{
             break;
         case IndexDetail:
         {
-            [[BBSService defaultService] getBBSPostWithPostId:postId delegate:self];
+            [[self bbsService] getBBSPostWithPostId:postId delegate:self];
         }
             break;
         default:

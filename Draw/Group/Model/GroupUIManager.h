@@ -9,13 +9,13 @@
 #import <Foundation/Foundation.h>
 
 typedef enum{
-    CreateGroup = 1,
-    CreateTopic,
-    SearchGroup,
-    SearchTopic,
+    GroupCreateGroup = 1,
+    GroupCreateTopic,
+    GroupSearchGroup,
+    GroupSearchTopic,
     GroupChat,
-    AtMe,
-    Contest,
+    GroupAtMe,
+    GroupContest,
     
 }GroupFooterActionType;
 

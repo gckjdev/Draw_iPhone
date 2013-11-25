@@ -11,5 +11,8 @@
 #import "BBSPostActionCell.h"
 
 @interface BBSController : CommonTabController<BBSServiceDelegate>
+@property (nonatomic, assign) BOOL forGroup;
+
+- (BBSService *)bbsService;
 
 @end

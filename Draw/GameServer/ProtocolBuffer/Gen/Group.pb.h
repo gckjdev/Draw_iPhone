@@ -84,6 +84,8 @@
 @class PBSNSUser_Builder;
 @class PBSize;
 @class PBSize_Builder;
+@class PBTask;
+@class PBTask_Builder;
 @class PBUserAward;
 @class PBUserAward_Builder;
 @class PBUserBasicInfo;
@@ -688,32 +690,36 @@ BOOL PBDefaultGroupTitleIsValidValue(PBDefaultGroupTitle value);
   BOOL hasType_:1;
   BOOL hasStatus_:1;
   BOOL hasNoticeId_:1;
-  BOOL hasMessage_:1;
   BOOL hasGroupId_:1;
-  BOOL hasReporter_:1;
-  BOOL hasReceiver_:1;
+  BOOL hasGroupName_:1;
+  BOOL hasMessage_:1;
+  BOOL hasPublisher_:1;
+  BOOL hasTarget_:1;
   int32_t type;
   int32_t status;
   NSString* noticeId;
-  NSString* message;
   NSString* groupId;
-  PBGameUser* reporter;
-  PBGameUser* receiver;
+  NSString* groupName;
+  NSString* message;
+  PBGameUser* publisher;
+  PBGameUser* target;
 }
 - (BOOL) hasNoticeId;
-- (BOOL) hasMessage;
-- (BOOL) hasGroupId;
 - (BOOL) hasType;
 - (BOOL) hasStatus;
-- (BOOL) hasReporter;
-- (BOOL) hasReceiver;
+- (BOOL) hasGroupId;
+- (BOOL) hasGroupName;
+- (BOOL) hasMessage;
+- (BOOL) hasPublisher;
+- (BOOL) hasTarget;
 @property (readonly, retain) NSString* noticeId;
-@property (readonly, retain) NSString* message;
-@property (readonly, retain) NSString* groupId;
 @property (readonly) int32_t type;
 @property (readonly) int32_t status;
-@property (readonly, retain) PBGameUser* reporter;
-@property (readonly, retain) PBGameUser* receiver;
+@property (readonly, retain) NSString* groupId;
+@property (readonly, retain) NSString* groupName;
+@property (readonly, retain) NSString* message;
+@property (readonly, retain) PBGameUser* publisher;
+@property (readonly, retain) PBGameUser* target;
 
 + (PBGroupNotice*) defaultInstance;
 - (PBGroupNotice*) defaultInstance;
@@ -754,16 +760,6 @@ BOOL PBDefaultGroupTitleIsValidValue(PBDefaultGroupTitle value);
 - (PBGroupNotice_Builder*) setNoticeId:(NSString*) value;
 - (PBGroupNotice_Builder*) clearNoticeId;
 
-- (BOOL) hasMessage;
-- (NSString*) message;
-- (PBGroupNotice_Builder*) setMessage:(NSString*) value;
-- (PBGroupNotice_Builder*) clearMessage;
-
-- (BOOL) hasGroupId;
-- (NSString*) groupId;
-- (PBGroupNotice_Builder*) setGroupId:(NSString*) value;
-- (PBGroupNotice_Builder*) clearGroupId;
-
 - (BOOL) hasType;
 - (int32_t) type;
 - (PBGroupNotice_Builder*) setType:(int32_t) value;
@@ -774,18 +770,33 @@ BOOL PBDefaultGroupTitleIsValidValue(PBDefaultGroupTitle value);
 - (PBGroupNotice_Builder*) setStatus:(int32_t) value;
 - (PBGroupNotice_Builder*) clearStatus;
 
-- (BOOL) hasReporter;
-- (PBGameUser*) reporter;
-- (PBGroupNotice_Builder*) setReporter:(PBGameUser*) value;
-- (PBGroupNotice_Builder*) setReporterBuilder:(PBGameUser_Builder*) builderForValue;
-- (PBGroupNotice_Builder*) mergeReporter:(PBGameUser*) value;
-- (PBGroupNotice_Builder*) clearReporter;
+- (BOOL) hasGroupId;
+- (NSString*) groupId;
+- (PBGroupNotice_Builder*) setGroupId:(NSString*) value;
+- (PBGroupNotice_Builder*) clearGroupId;
 
-- (BOOL) hasReceiver;
-- (PBGameUser*) receiver;
-- (PBGroupNotice_Builder*) setReceiver:(PBGameUser*) value;
-- (PBGroupNotice_Builder*) setReceiverBuilder:(PBGameUser_Builder*) builderForValue;
-- (PBGroupNotice_Builder*) mergeReceiver:(PBGameUser*) value;
-- (PBGroupNotice_Builder*) clearReceiver;
+- (BOOL) hasGroupName;
+- (NSString*) groupName;
+- (PBGroupNotice_Builder*) setGroupName:(NSString*) value;
+- (PBGroupNotice_Builder*) clearGroupName;
+
+- (BOOL) hasMessage;
+- (NSString*) message;
+- (PBGroupNotice_Builder*) setMessage:(NSString*) value;
+- (PBGroupNotice_Builder*) clearMessage;
+
+- (BOOL) hasPublisher;
+- (PBGameUser*) publisher;
+- (PBGroupNotice_Builder*) setPublisher:(PBGameUser*) value;
+- (PBGroupNotice_Builder*) setPublisherBuilder:(PBGameUser_Builder*) builderForValue;
+- (PBGroupNotice_Builder*) mergePublisher:(PBGameUser*) value;
+- (PBGroupNotice_Builder*) clearPublisher;
+
+- (BOOL) hasTarget;
+- (PBGameUser*) target;
+- (PBGroupNotice_Builder*) setTarget:(PBGameUser*) value;
+- (PBGroupNotice_Builder*) setTargetBuilder:(PBGameUser_Builder*) builderForValue;
+- (PBGroupNotice_Builder*) mergeTarget:(PBGameUser*) value;
+- (PBGroupNotice_Builder*) clearTarget;
 @end
 

@@ -17704,6 +17704,7 @@ static GameMessage* defaultGameMessageInstance = nil;
 @property (retain) NSMutableArray* mutableGroupListList;
 @property (retain) NSMutableArray* mutableGroupMemberListList;
 @property (retain) NSMutableArray* mutableNoticeListList;
+@property (retain) PBUserRelationWithGroup* groupRelation;
 @end
 
 @implementation DataQueryResponse
@@ -17819,6 +17820,13 @@ static GameMessage* defaultGameMessageInstance = nil;
 @synthesize mutableGroupListList;
 @synthesize mutableGroupMemberListList;
 @synthesize mutableNoticeListList;
+- (BOOL) hasGroupRelation {
+  return !!hasGroupRelation_;
+}
+- (void) setHasGroupRelation:(BOOL) value {
+  hasGroupRelation_ = !!value;
+}
+@synthesize groupRelation;
 - (void) dealloc {
   self.mutableDrawDataList = nil;
   self.mutableMessageList = nil;
@@ -17849,6 +17857,7 @@ static GameMessage* defaultGameMessageInstance = nil;
   self.mutableGroupListList = nil;
   self.mutableGroupMemberListList = nil;
   self.mutableNoticeListList = nil;
+  self.groupRelation = nil;
   [super dealloc];
 }
 - (id) init {
@@ -17866,6 +17875,7 @@ static GameMessage* defaultGameMessageInstance = nil;
     self.guessRank = [PBGuessRank defaultInstance];
     self.guessContest = [PBGuessContest defaultInstance];
     self.group = [PBGroup defaultInstance];
+    self.groupRelation = [PBUserRelationWithGroup defaultInstance];
   }
   return self;
 }
@@ -18267,6 +18277,9 @@ static DataQueryResponse* defaultDataQueryResponseInstance = nil;
   for (PBGroupNotice* element in self.noticeListList) {
     [output writeMessage:153 value:element];
   }
+  if (self.hasGroupRelation) {
+    [output writeMessage:154 value:self.groupRelation];
+  }
   [self.unknownFields writeToCodedOutputStream:output];
 }
 - (int32_t) serializedSize {
@@ -18379,6 +18392,9 @@ static DataQueryResponse* defaultDataQueryResponseInstance = nil;
   }
   for (PBGroupNotice* element in self.noticeListList) {
     size += computeMessageSize(153, element);
+  }
+  if (self.hasGroupRelation) {
+    size += computeMessageSize(154, self.groupRelation);
   }
   size += self.unknownFields.serializedSize;
   memoizedSerializedSize = size;
@@ -18614,6 +18630,9 @@ static DataQueryResponse* defaultDataQueryResponseInstance = nil;
     }
     [result.mutableNoticeListList addObjectsFromArray:other.mutableNoticeListList];
   }
+  if (other.hasGroupRelation) {
+    [self mergeGroupRelation:other.groupRelation];
+  }
   [self mergeUnknownFields:other.unknownFields];
   return self;
 }
@@ -18848,6 +18867,15 @@ static DataQueryResponse* defaultDataQueryResponseInstance = nil;
         PBGroupNotice_Builder* subBuilder = [PBGroupNotice builder];
         [input readMessage:subBuilder extensionRegistry:extensionRegistry];
         [self addNoticeList:[subBuilder buildPartial]];
+        break;
+      }
+      case 1234: {
+        PBUserRelationWithGroup_Builder* subBuilder = [PBUserRelationWithGroup builder];
+        if (self.hasGroupRelation) {
+          [subBuilder mergeFrom:self.groupRelation];
+        }
+        [input readMessage:subBuilder extensionRegistry:extensionRegistry];
+        [self setGroupRelation:[subBuilder buildPartial]];
         break;
       }
     }
@@ -19767,6 +19795,36 @@ static DataQueryResponse* defaultDataQueryResponseInstance = nil;
     result.mutableNoticeListList = [NSMutableArray array];
   }
   [result.mutableNoticeListList addObject:value];
+  return self;
+}
+- (BOOL) hasGroupRelation {
+  return result.hasGroupRelation;
+}
+- (PBUserRelationWithGroup*) groupRelation {
+  return result.groupRelation;
+}
+- (DataQueryResponse_Builder*) setGroupRelation:(PBUserRelationWithGroup*) value {
+  result.hasGroupRelation = YES;
+  result.groupRelation = value;
+  return self;
+}
+- (DataQueryResponse_Builder*) setGroupRelationBuilder:(PBUserRelationWithGroup_Builder*) builderForValue {
+  return [self setGroupRelation:[builderForValue build]];
+}
+- (DataQueryResponse_Builder*) mergeGroupRelation:(PBUserRelationWithGroup*) value {
+  if (result.hasGroupRelation &&
+      result.groupRelation != [PBUserRelationWithGroup defaultInstance]) {
+    result.groupRelation =
+      [[[PBUserRelationWithGroup builderWithPrototype:result.groupRelation] mergeFrom:value] buildPartial];
+  } else {
+    result.groupRelation = value;
+  }
+  result.hasGroupRelation = YES;
+  return self;
+}
+- (DataQueryResponse_Builder*) clearGroupRelation {
+  result.hasGroupRelation = NO;
+  result.groupRelation = [PBUserRelationWithGroup defaultInstance];
   return self;
 }
 @end

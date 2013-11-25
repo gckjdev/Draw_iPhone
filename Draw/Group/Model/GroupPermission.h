@@ -26,6 +26,7 @@
 - (BOOL)canJoinGroup;
 - (BOOL)canAccessGroup;
 - (BOOL)canQuitGroup;
+- (BOOL)canGroupChat;
 
 //Topic
 - (BOOL)canCreateTopic;
@@ -45,6 +46,7 @@
 - (BOOL)canArrangeAdmin;
 - (BOOL)canArrangePermission;
 - (BOOL)canUpgradeGroup;
+- (BOOL)canDismissalGroup;
 
 //global permission
 + (BOOL)canCreateGroup;

@@ -13,6 +13,8 @@
 #import "BBSModelExt.h"
 #import "Group.pb.h"
 #import "GroupService.h"
+#import "BBSPostDetailController.h"
+#import "BBSManager.h"
 
 typedef enum{
     NewestTopic = 1,
@@ -29,6 +31,7 @@ typedef enum {
 {
     BBSService *topicService;
     GroupPermissionManager *permissonManager;
+    GroupService *groupService;
 }
 @property(nonatomic, retain)BBSPostActionHeaderView *topicHeader;
 @property(nonatomic, retain)UITableViewCell *infoCell;
@@ -52,6 +55,7 @@ typedef enum {
     self = [super init];
     if (self) {
         topicService = [BBSService groupTopicService];
+        groupService = [GroupService defaultService];
     }
     return self;
 }
@@ -63,12 +67,34 @@ typedef enum {
     PPRelease(_group);
     PPRelease(permissonManager);
     [_footerView release];
+    [[BBSManager defaultManager] setTempPostList:nil];
     [super dealloc];
 }
 
-- (void)clickJoin:(id)sender
+- (void)clickJoinOrQuit:(id)sender
 {
-    
+    UIButton *button = sender;
+    if ([permissonManager canJoinGroup]) {
+        //TODO join it
+        [self showActivityWithText:NSLS(@"kJoining")];
+        [groupService joinGroup:_group.groupId message:@"let me in!!" callback:^(NSError *error) {
+            [self hideActivity];
+            if (!error) {
+                POSTMSG(NSLS(@"kSentRequest"));
+                button.hidden = YES;
+            }
+        }];
+    }else if ([permissonManager canQuitGroup]) {
+        [self showActivityWithText:NSLS(@"kQuiting")];
+        [groupService quitGroup:_group.groupId callback:^(NSError *error) {
+            [self hideActivity];
+            if (!error) {
+                POSTMSG(NSLS(@"kQuitedGroup"));
+                PBGroup *group = [groupService buildGroupWithDefaultRelation:self.group];
+                [self updateGroup:group];
+            }
+        }];
+    }
 }
 
 - (void)updateFooterView
@@ -87,14 +113,25 @@ typedef enum {
 {
     PPDebug(@"click type  = %d", type);
     switch (type) {
-        case CreateTopic:
-            
+        case GroupCreateTopic:
+        {
+            if (![permissonManager canCreateTopic]) {
+                POSTMSG(NSLS(@"kCanotCreateTopic"));
+                return;
+            }
+            CreatePostController* cpc = [CreatePostController enterControllerWithGroup:_group fromController:self];
+            cpc.delegate = self;
             break;
+        }
         case GroupChat:
+            if (![permissonManager canGroupChat]) {
+                POSTMSG(NSLS(@"kCanotGroupChat"));
+                return;
+            }
             
             break;
             
-        case SearchTopic:
+        case GroupSearchTopic:
             
             break;
             
@@ -107,12 +144,35 @@ typedef enum {
 {
     [self.titleView setTransparentStyle];
     [self.titleView setTitle:_group.name];
+    [self.titleView setRightButtonSelector:@selector(clickJoinOrQuit:)];
+}
+
+- (void)updateGroup:(PBGroup *)group
+{
+    permissonManager.group = group;
+    self.group = group;
+    
+    [self.titleView.rightButton setHidden:NO];
     if ([permissonManager canJoinGroup]) {
         [self.titleView setRightButtonTitle:NSLS(@"kJoin")];
     }else if([permissonManager canQuitGroup]){
-        [self.titleView setRightButtonTitle:NSLS(@"kQuit")];
+        [self.titleView setRightButtonTitle:NSLS(@"kExit")];
+    }else if([permissonManager canDismissalGroup]){
+        [self.titleView setRightButtonTitle:NSLS(@"kDismissal")];
+    }else{
+        [self.titleView.rightButton setHidden:YES];
     }
-    [self.titleView setRightButtonSelector:@selector(clickJoin:)];
+}
+
+- (void)loadGroupRelation
+{
+    [self showActivityWithText:NSLS(@"kLoading")];
+    [groupService getRelationWithGroup:_group.groupId callback:^(PBUserRelationWithGroup *relation, NSError *error) {
+        if (!error) {
+            PBGroup *group = [groupService buildGroup:self.group withRelation:relation];
+            [self updateGroup:group];
+        }
+    }];
 }
 
 - (void)viewDidLoad
@@ -123,6 +183,9 @@ typedef enum {
     [self updateTitleView];
     [self updateFooterView];
     [self clickTab:NewestTopic];
+    [self loadGroupRelation];
+    self.unReloadDataWhenViewDidAppear = NO;
+
 }
 
 - (void)didReceiveMemoryWarning
@@ -138,6 +201,9 @@ typedef enum {
 {
     NSInteger row = indexPath.row - BasicRowCount;
     PBBBSPost *post = self.tabDataList[row];
+    if (![post isKindOfClass:[PBBBSPost class]]) {
+        PPDebug(@"<postInIndexPath> error happened.");
+    }
     return post;
 }
 
@@ -209,6 +275,15 @@ typedef enum {
     return number + BasicRowCount;
 }
 
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (indexPath.row >= BasicRowCount) {
+        [[BBSManager defaultManager] setTempPostList:[self tabDataList]];
+        PBBBSPost *post = [self postInIndexPath:indexPath];
+        [BBSPostDetailController enterPostDetailControllerWithPost:post group:_group fromController:self animated:YES];
+    }
+}
 
 #pragma mark-- Common Tab Controller delegate
 
@@ -291,6 +366,19 @@ typedef enum {
         [self finishLoadDataForTabID:NewestTopic resultList:postList];
     }else{
         [self failLoadDataForTabID:NewestTopic];
+    }
+}
+
+- (void)didController:(CreatePostController *)controller
+        CreateNewPost:(PBBBSPost *)post
+{
+    if (post) {
+        TableTab *tab = [_tabManager tabForID:NewestTopic];
+        [tab.dataList insertObject:post atIndex:0];
+        if ([self currentTab] == tab) {
+            NSArray *paths = [NSArray arrayWithObject:[NSIndexPath indexPathForRow:BasicRowCount inSection:0]];
+            [self.dataTableView insertRowsAtIndexPaths:paths withRowAnimation:UITableViewRowAnimationFade];
+        }
     }
 }
 

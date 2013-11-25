@@ -164,7 +164,7 @@
     [self showActivityWithText:[NSString stringWithFormat:NSLS(@"kSearching")]];
     [self.searchTextField resignFirstResponder];
     [[self maskView] setHidden:YES];
-    [[BBSService defaultService] searchPostListByKeyWord:text limit:50 hanlder:^(NSInteger resultCode, NSArray *postList, NSInteger tag) {
+    [[self bbsService] searchPostListByKeyWord:text limit:50 hanlder:^(NSInteger resultCode, NSArray *postList, NSInteger tag) {
          [self hideActivity];
          if (resultCode == 0) {
              [self finishLoadDataForTabID:tabID resultList:postList];
