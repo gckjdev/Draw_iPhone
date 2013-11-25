@@ -55,6 +55,7 @@
 #import "FeedManager.h"
 
 #import "MyPaintManager.h"
+#import "AppTaskManager.h"
 
 //#import "PPSNSIntegerationService.h"
 //#import "PPSinaWeiboService.h"
@@ -464,6 +465,8 @@ NSString* GlobalGetBoardServerURL()
     
     // load config data
     [[GameConfigDataManager defaultManager] syncData];
+    
+//    [[AppTaskManager defaultManager] autoUpdate];
     
     // load item data
     [[GameItemService defaultService] syncData:NULL];

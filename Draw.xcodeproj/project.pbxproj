@@ -5454,18 +5454,34 @@
 		CA9C3FD118432AB60041F332 /* AppTaskManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CA9C3FCF18432AB50041F332 /* AppTaskManager.m */; };
 		CA9C3FD218432AB60041F332 /* AppTaskManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CA9C3FCF18432AB50041F332 /* AppTaskManager.m */; };
 		CA9C3FD318432AB60041F332 /* AppTaskManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CA9C3FCF18432AB50041F332 /* AppTaskManager.m */; };
-		CA9C3FD91843329D0041F332 /* CHANGELOG.md in Resources */ = {isa = PBXBuildFile; fileRef = CA9C3FD51843329D0041F332 /* CHANGELOG.md */; };
-		CA9C3FDA1843329D0041F332 /* CHANGELOG.md in Resources */ = {isa = PBXBuildFile; fileRef = CA9C3FD51843329D0041F332 /* CHANGELOG.md */; };
-		CA9C3FDB1843329D0041F332 /* CHANGELOG.md in Resources */ = {isa = PBXBuildFile; fileRef = CA9C3FD51843329D0041F332 /* CHANGELOG.md */; };
-		CA9C3FDC1843329D0041F332 /* CHANGELOG.md in Resources */ = {isa = PBXBuildFile; fileRef = CA9C3FD51843329D0041F332 /* CHANGELOG.md */; };
-		CA9C3FDD1843329D0041F332 /* JSONKit.m in Sources */ = {isa = PBXBuildFile; fileRef = CA9C3FD71843329D0041F332 /* JSONKit.m */; };
-		CA9C3FDE1843329D0041F332 /* JSONKit.m in Sources */ = {isa = PBXBuildFile; fileRef = CA9C3FD71843329D0041F332 /* JSONKit.m */; };
-		CA9C3FDF1843329D0041F332 /* JSONKit.m in Sources */ = {isa = PBXBuildFile; fileRef = CA9C3FD71843329D0041F332 /* JSONKit.m */; };
-		CA9C3FE01843329D0041F332 /* JSONKit.m in Sources */ = {isa = PBXBuildFile; fileRef = CA9C3FD71843329D0041F332 /* JSONKit.m */; };
-		CA9C3FE11843329D0041F332 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = CA9C3FD81843329D0041F332 /* README.md */; };
-		CA9C3FE21843329D0041F332 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = CA9C3FD81843329D0041F332 /* README.md */; };
-		CA9C3FE31843329D0041F332 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = CA9C3FD81843329D0041F332 /* README.md */; };
-		CA9C3FE41843329D0041F332 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = CA9C3FD81843329D0041F332 /* README.md */; };
+		CA9C3FE718433E4C0041F332 /* 513819630_app_task_version.txt in Resources */ = {isa = PBXBuildFile; fileRef = CA9C3FE518433E4C0041F332 /* 513819630_app_task_version.txt */; };
+		CA9C3FE818433E4C0041F332 /* 513819630_app_task_version.txt in Resources */ = {isa = PBXBuildFile; fileRef = CA9C3FE518433E4C0041F332 /* 513819630_app_task_version.txt */; };
+		CA9C3FE918433E4C0041F332 /* 513819630_app_task_version.txt in Resources */ = {isa = PBXBuildFile; fileRef = CA9C3FE518433E4C0041F332 /* 513819630_app_task_version.txt */; };
+		CA9C3FEA18433E4C0041F332 /* 513819630_app_task_version.txt in Resources */ = {isa = PBXBuildFile; fileRef = CA9C3FE518433E4C0041F332 /* 513819630_app_task_version.txt */; };
+		CA9C3FEB18433E4C0041F332 /* 513819630_app_task.json in Resources */ = {isa = PBXBuildFile; fileRef = CA9C3FE618433E4C0041F332 /* 513819630_app_task.json */; };
+		CA9C3FEC18433E4C0041F332 /* 513819630_app_task.json in Resources */ = {isa = PBXBuildFile; fileRef = CA9C3FE618433E4C0041F332 /* 513819630_app_task.json */; };
+		CA9C3FED18433E4C0041F332 /* 513819630_app_task.json in Resources */ = {isa = PBXBuildFile; fileRef = CA9C3FE618433E4C0041F332 /* 513819630_app_task.json */; };
+		CA9C3FEE18433E4C0041F332 /* 513819630_app_task.json in Resources */ = {isa = PBXBuildFile; fileRef = CA9C3FE618433E4C0041F332 /* 513819630_app_task.json */; };
+		CA9C3FF3184341B50041F332 /* 645475970_app_task_version.txt in Resources */ = {isa = PBXBuildFile; fileRef = CA9C3FEF184341B40041F332 /* 645475970_app_task_version.txt */; };
+		CA9C3FF4184341B50041F332 /* 645475970_app_task_version.txt in Resources */ = {isa = PBXBuildFile; fileRef = CA9C3FEF184341B40041F332 /* 645475970_app_task_version.txt */; };
+		CA9C3FF5184341B50041F332 /* 645475970_app_task_version.txt in Resources */ = {isa = PBXBuildFile; fileRef = CA9C3FEF184341B40041F332 /* 645475970_app_task_version.txt */; };
+		CA9C3FF6184341B50041F332 /* 645475970_app_task_version.txt in Resources */ = {isa = PBXBuildFile; fileRef = CA9C3FEF184341B40041F332 /* 645475970_app_task_version.txt */; };
+		CA9C3FF7184341B50041F332 /* 645475970_app_task.json in Resources */ = {isa = PBXBuildFile; fileRef = CA9C3FF0184341B40041F332 /* 645475970_app_task.json */; };
+		CA9C3FF8184341B50041F332 /* 645475970_app_task.json in Resources */ = {isa = PBXBuildFile; fileRef = CA9C3FF0184341B40041F332 /* 645475970_app_task.json */; };
+		CA9C3FF9184341B50041F332 /* 645475970_app_task.json in Resources */ = {isa = PBXBuildFile; fileRef = CA9C3FF0184341B40041F332 /* 645475970_app_task.json */; };
+		CA9C3FFA184341B50041F332 /* 645475970_app_task.json in Resources */ = {isa = PBXBuildFile; fileRef = CA9C3FF0184341B40041F332 /* 645475970_app_task.json */; };
+		CA9C3FFB184341B50041F332 /* 660557448_app_task_version.txt in Resources */ = {isa = PBXBuildFile; fileRef = CA9C3FF1184341B40041F332 /* 660557448_app_task_version.txt */; };
+		CA9C3FFC184341B50041F332 /* 660557448_app_task_version.txt in Resources */ = {isa = PBXBuildFile; fileRef = CA9C3FF1184341B40041F332 /* 660557448_app_task_version.txt */; };
+		CA9C3FFD184341B50041F332 /* 660557448_app_task_version.txt in Resources */ = {isa = PBXBuildFile; fileRef = CA9C3FF1184341B40041F332 /* 660557448_app_task_version.txt */; };
+		CA9C3FFE184341B50041F332 /* 660557448_app_task_version.txt in Resources */ = {isa = PBXBuildFile; fileRef = CA9C3FF1184341B40041F332 /* 660557448_app_task_version.txt */; };
+		CA9C3FFF184341B50041F332 /* 660557448_app_task.json in Resources */ = {isa = PBXBuildFile; fileRef = CA9C3FF2184341B50041F332 /* 660557448_app_task.json */; };
+		CA9C4000184341B50041F332 /* 660557448_app_task.json in Resources */ = {isa = PBXBuildFile; fileRef = CA9C3FF2184341B50041F332 /* 660557448_app_task.json */; };
+		CA9C4001184341B50041F332 /* 660557448_app_task.json in Resources */ = {isa = PBXBuildFile; fileRef = CA9C3FF2184341B50041F332 /* 660557448_app_task.json */; };
+		CA9C4002184341B50041F332 /* 660557448_app_task.json in Resources */ = {isa = PBXBuildFile; fileRef = CA9C3FF2184341B50041F332 /* 660557448_app_task.json */; };
+		CA9C4006184343AF0041F332 /* JSONKit.m in Sources */ = {isa = PBXBuildFile; fileRef = CA9C4005184343AF0041F332 /* JSONKit.m */; };
+		CA9C4007184343AF0041F332 /* JSONKit.m in Sources */ = {isa = PBXBuildFile; fileRef = CA9C4005184343AF0041F332 /* JSONKit.m */; };
+		CA9C4008184343AF0041F332 /* JSONKit.m in Sources */ = {isa = PBXBuildFile; fileRef = CA9C4005184343AF0041F332 /* JSONKit.m */; };
+		CA9C4009184343AF0041F332 /* JSONKit.m in Sources */ = {isa = PBXBuildFile; fileRef = CA9C4005184343AF0041F332 /* JSONKit.m */; };
 		CA9C8CBD15E0D94A006E447B /* XQueryComponents.m in Sources */ = {isa = PBXBuildFile; fileRef = CA9C8CBC15E0D94A006E447B /* XQueryComponents.m */; };
 		CA9D5F4A1616F2040082E258 /* HotController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA9D5F491616F2040082E258 /* HotController~ipad.xib */; };
 		CA9D5F4D161700A70082E258 /* ContestFeed.m in Sources */ = {isa = PBXBuildFile; fileRef = CA9D5F4C161700A50082E258 /* ContestFeed.m */; };
@@ -9512,10 +9528,14 @@
 		CA9C3FC918432AA60041F332 /* AppTask.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppTask.m; sourceTree = "<group>"; };
 		CA9C3FCE18432AB50041F332 /* AppTaskManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppTaskManager.h; sourceTree = "<group>"; };
 		CA9C3FCF18432AB50041F332 /* AppTaskManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppTaskManager.m; sourceTree = "<group>"; };
-		CA9C3FD51843329D0041F332 /* CHANGELOG.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = CHANGELOG.md; sourceTree = "<group>"; };
-		CA9C3FD61843329D0041F332 /* JSONKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSONKit.h; sourceTree = "<group>"; };
-		CA9C3FD71843329D0041F332 /* JSONKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSONKit.m; sourceTree = "<group>"; };
-		CA9C3FD81843329D0041F332 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
+		CA9C3FE518433E4C0041F332 /* 513819630_app_task_version.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = 513819630_app_task_version.txt; sourceTree = "<group>"; };
+		CA9C3FE618433E4C0041F332 /* 513819630_app_task.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = 513819630_app_task.json; sourceTree = "<group>"; };
+		CA9C3FEF184341B40041F332 /* 645475970_app_task_version.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = 645475970_app_task_version.txt; sourceTree = "<group>"; };
+		CA9C3FF0184341B40041F332 /* 645475970_app_task.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = 645475970_app_task.json; sourceTree = "<group>"; };
+		CA9C3FF1184341B40041F332 /* 660557448_app_task_version.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = 660557448_app_task_version.txt; sourceTree = "<group>"; };
+		CA9C3FF2184341B50041F332 /* 660557448_app_task.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = 660557448_app_task.json; sourceTree = "<group>"; };
+		CA9C4004184343AF0041F332 /* JSONKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSONKit.h; sourceTree = "<group>"; };
+		CA9C4005184343AF0041F332 /* JSONKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSONKit.m; sourceTree = "<group>"; };
 		CA9C8CBB15E0D94A006E447B /* XQueryComponents.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XQueryComponents.h; sourceTree = "<group>"; };
 		CA9C8CBC15E0D94A006E447B /* XQueryComponents.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XQueryComponents.m; sourceTree = "<group>"; };
 		CA9D5F491616F2040082E258 /* HotController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "HotController~ipad.xib"; sourceTree = "<group>"; };
@@ -14098,6 +14118,12 @@
 		CA1250EB1669EDD800AFCC04 /* Config */ = {
 			isa = PBXGroup;
 			children = (
+				CA9C3FEF184341B40041F332 /* 645475970_app_task_version.txt */,
+				CA9C3FF0184341B40041F332 /* 645475970_app_task.json */,
+				CA9C3FF1184341B40041F332 /* 660557448_app_task_version.txt */,
+				CA9C3FF2184341B50041F332 /* 660557448_app_task.json */,
+				CA9C3FE518433E4C0041F332 /* 513819630_app_task_version.txt */,
+				CA9C3FE618433E4C0041F332 /* 513819630_app_task.json */,
 				CA2488E51753562800848A5F /* default_config_513819630_version.txt */,
 				CA2488E61753562800848A5F /* default_config_513819630.pb */,
 				CA2488D61753450B00848A5F /* default_config_645475970_version.txt */,
@@ -15720,15 +15746,13 @@
 			path = HGQuadCurveMenu;
 			sourceTree = "<group>";
 		};
-		CA9C3FD41843329D0041F332 /* JSONKit */ = {
+		CA9C4003184343AF0041F332 /* JSON */ = {
 			isa = PBXGroup;
 			children = (
-				CA9C3FD51843329D0041F332 /* CHANGELOG.md */,
-				CA9C3FD61843329D0041F332 /* JSONKit.h */,
-				CA9C3FD71843329D0041F332 /* JSONKit.m */,
-				CA9C3FD81843329D0041F332 /* README.md */,
+				CA9C4004184343AF0041F332 /* JSONKit.h */,
+				CA9C4005184343AF0041F332 /* JSONKit.m */,
 			);
-			path = JSONKit;
+			path = JSON;
 			sourceTree = "<group>";
 		};
 		CA9C8CBA15E0D94A006E447B /* URL */ = {
@@ -16785,7 +16809,7 @@
 		CAFEFDB216606FC100441D77 /* Component-Utils */ = {
 			isa = PBXGroup;
 			children = (
-				CA9C3FD41843329D0041F332 /* JSONKit */,
+				CA9C4003184343AF0041F332 /* JSON */,
 			);
 			path = "Component-Utils";
 			sourceTree = "<group>";
@@ -18220,8 +18244,12 @@
 				A4088BF3183F3B790037861A /* sing_icon_72.png in Resources */,
 				A4088BF7183F3B790037861A /* sing_icon_76.png in Resources */,
 				A4088C0018408E220037861A /* iap_product_660557448.pb in Resources */,
-				CA9C3FDB1843329D0041F332 /* CHANGELOG.md in Resources */,
-				CA9C3FE31843329D0041F332 /* README.md in Resources */,
+				CA9C3FE918433E4C0041F332 /* 513819630_app_task_version.txt in Resources */,
+				CA9C3FED18433E4C0041F332 /* 513819630_app_task.json in Resources */,
+				CA9C3FF5184341B50041F332 /* 645475970_app_task_version.txt in Resources */,
+				CA9C3FF9184341B50041F332 /* 645475970_app_task.json in Resources */,
+				CA9C3FFD184341B50041F332 /* 660557448_app_task_version.txt in Resources */,
+				CA9C4001184341B50041F332 /* 660557448_app_task.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -19185,8 +19213,12 @@
 				CA92301D183DC40600669DE3 /* sing_home_task@2x.png in Resources */,
 				A4088B5D183F32DC0037861A /* user_detail_sing_to_bg@2x.png in Resources */,
 				A4088B61183F32DC0037861A /* user_detail_sing_to@2x.png in Resources */,
-				CA9C3FDA1843329D0041F332 /* CHANGELOG.md in Resources */,
-				CA9C3FE21843329D0041F332 /* README.md in Resources */,
+				CA9C3FE818433E4C0041F332 /* 513819630_app_task_version.txt in Resources */,
+				CA9C3FEC18433E4C0041F332 /* 513819630_app_task.json in Resources */,
+				CA9C3FF4184341B50041F332 /* 645475970_app_task_version.txt in Resources */,
+				CA9C3FF8184341B50041F332 /* 645475970_app_task.json in Resources */,
+				CA9C3FFC184341B50041F332 /* 660557448_app_task_version.txt in Resources */,
+				CA9C4000184341B50041F332 /* 660557448_app_task.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -20133,8 +20165,12 @@
 				CA92301C183DC40600669DE3 /* sing_home_task@2x.png in Resources */,
 				A4088B5C183F32DC0037861A /* user_detail_sing_to_bg@2x.png in Resources */,
 				A4088B60183F32DC0037861A /* user_detail_sing_to@2x.png in Resources */,
-				CA9C3FD91843329D0041F332 /* CHANGELOG.md in Resources */,
-				CA9C3FE11843329D0041F332 /* README.md in Resources */,
+				CA9C3FE718433E4C0041F332 /* 513819630_app_task_version.txt in Resources */,
+				CA9C3FEB18433E4C0041F332 /* 513819630_app_task.json in Resources */,
+				CA9C3FF3184341B50041F332 /* 645475970_app_task_version.txt in Resources */,
+				CA9C3FF7184341B50041F332 /* 645475970_app_task.json in Resources */,
+				CA9C3FFB184341B50041F332 /* 660557448_app_task_version.txt in Resources */,
+				CA9C3FFF184341B50041F332 /* 660557448_app_task.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -21036,8 +21072,12 @@
 				A4088B5F183F32DC0037861A /* user_detail_sing_to_bg@2x.png in Resources */,
 				A4088B63183F32DC0037861A /* user_detail_sing_to@2x.png in Resources */,
 				CA4CD8CE1840759A00BF70D9 /* LittleGeeDraw-Info.plist in Resources */,
-				CA9C3FDC1843329D0041F332 /* CHANGELOG.md in Resources */,
-				CA9C3FE41843329D0041F332 /* README.md in Resources */,
+				CA9C3FEA18433E4C0041F332 /* 513819630_app_task_version.txt in Resources */,
+				CA9C3FEE18433E4C0041F332 /* 513819630_app_task.json in Resources */,
+				CA9C3FF6184341B50041F332 /* 645475970_app_task_version.txt in Resources */,
+				CA9C3FFA184341B50041F332 /* 645475970_app_task.json in Resources */,
+				CA9C3FFE184341B50041F332 /* 660557448_app_task_version.txt in Resources */,
+				CA9C4002184341B50041F332 /* 660557448_app_task.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -21844,7 +21884,7 @@
 				CA5D9D97183E3C0200BD820C /* NSData+DOUMappedFile.m in Sources */,
 				CA9C3FCC18432AA60041F332 /* AppTask.m in Sources */,
 				CA9C3FD218432AB60041F332 /* AppTaskManager.m in Sources */,
-				CA9C3FDF1843329D0041F332 /* JSONKit.m in Sources */,
+				CA9C4008184343AF0041F332 /* JSONKit.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -22645,7 +22685,7 @@
 				CA5D9D96183E3C0200BD820C /* NSData+DOUMappedFile.m in Sources */,
 				CA9C3FCB18432AA60041F332 /* AppTask.m in Sources */,
 				CA9C3FD118432AB60041F332 /* AppTaskManager.m in Sources */,
-				CA9C3FDE1843329D0041F332 /* JSONKit.m in Sources */,
+				CA9C4007184343AF0041F332 /* JSONKit.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -23445,7 +23485,7 @@
 				CA5D9D95183E3C0200BD820C /* NSData+DOUMappedFile.m in Sources */,
 				CA9C3FCA18432AA60041F332 /* AppTask.m in Sources */,
 				CA9C3FD018432AB60041F332 /* AppTaskManager.m in Sources */,
-				CA9C3FDD1843329D0041F332 /* JSONKit.m in Sources */,
+				CA9C4006184343AF0041F332 /* JSONKit.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -24201,7 +24241,7 @@
 				CA5D9D98183E3C0200BD820C /* NSData+DOUMappedFile.m in Sources */,
 				CA9C3FCD18432AA60041F332 /* AppTask.m in Sources */,
 				CA9C3FD318432AB60041F332 /* AppTaskManager.m in Sources */,
-				CA9C3FE01843329D0041F332 /* JSONKit.m in Sources */,
+				CA9C4009184343AF0041F332 /* JSONKit.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
