@@ -173,17 +173,8 @@
 		A4326D5F180BEB3D00D50F0A /* unhappy_logo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4326D5A180BEB3D00D50F0A /* unhappy_logo@2x.png */; };
 		A4326D60180BEB3D00D50F0A /* unhappy_logo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4326D5A180BEB3D00D50F0A /* unhappy_logo@2x.png */; };
 		A4326D8E180D239600D50F0A /* DrawDefault-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4326D93180D239600D50F0A /* DrawDefault-568h@2x.png */; };
-		A4326D8F180D239600D50F0A /* DrawDefault-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4326D93180D239600D50F0A /* DrawDefault-568h@2x.png */; };
-		A4326D90180D239600D50F0A /* DrawDefault-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4326D93180D239600D50F0A /* DrawDefault-568h@2x.png */; };
-		A4326D91180D239600D50F0A /* DrawDefault-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4326D93180D239600D50F0A /* DrawDefault-568h@2x.png */; };
 		A4326D96180D23D400D50F0A /* DrawDefault@2x~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = A4326D9B180D23D400D50F0A /* DrawDefault@2x~ipad.png */; };
-		A4326D97180D23D400D50F0A /* DrawDefault@2x~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = A4326D9B180D23D400D50F0A /* DrawDefault@2x~ipad.png */; };
-		A4326D98180D23D400D50F0A /* DrawDefault@2x~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = A4326D9B180D23D400D50F0A /* DrawDefault@2x~ipad.png */; };
-		A4326D99180D23D400D50F0A /* DrawDefault@2x~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = A4326D9B180D23D400D50F0A /* DrawDefault@2x~ipad.png */; };
 		A4326D9E180D23F500D50F0A /* DrawDefault@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4326DA3180D23F500D50F0A /* DrawDefault@2x.png */; };
-		A4326D9F180D23F500D50F0A /* DrawDefault@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4326DA3180D23F500D50F0A /* DrawDefault@2x.png */; };
-		A4326DA0180D23F500D50F0A /* DrawDefault@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4326DA3180D23F500D50F0A /* DrawDefault@2x.png */; };
-		A4326DA1180D23F500D50F0A /* DrawDefault@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4326DA3180D23F500D50F0A /* DrawDefault@2x.png */; };
 		A4348C5C1717C0FA004AFB26 /* AlixPayOrderManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A4348C591717C0FA004AFB26 /* AlixPayOrderManager.m */; };
 		A4348C611717C0FA004AFB26 /* NotificationCenterManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A4348C5B1717C0FA004AFB26 /* NotificationCenterManager.m */; };
 		A4364368176706A4006B6946 /* Opus.proto in Resources */ = {isa = PBXBuildFile; fileRef = A4364367176706A4006B6946 /* Opus.proto */; };
@@ -18045,9 +18036,6 @@
 				EA5FE1C717E827EF0099754C /* common_home_join_line@2x.png in Resources */,
 				EA5FE1CC17E843F60099754C /* common_home_bullitin@2x.png in Resources */,
 				EA5FE1D117E949C10099754C /* draw_home_avatar_bg@2x.png in Resources */,
-				A4326D90180D239600D50F0A /* DrawDefault-568h@2x.png in Resources */,
-				A4326D98180D23D400D50F0A /* DrawDefault@2x~ipad.png in Resources */,
-				A4326DA0180D23F500D50F0A /* DrawDefault@2x.png in Resources */,
 				EA2A7CE417F676AB00ED508D /* AccountManageController.xib in Resources */,
 				EA2A7CEE17F6958600ED508D /* AccountCell.xib in Resources */,
 				A42151841803EA2B007F2EFD /* README.mdown in Resources */,
@@ -19018,9 +19006,6 @@
 				EA5FE1C617E827EF0099754C /* common_home_join_line@2x.png in Resources */,
 				EA5FE1CB17E843F60099754C /* common_home_bullitin@2x.png in Resources */,
 				EA5FE1D017E949C10099754C /* draw_home_avatar_bg@2x.png in Resources */,
-				A4326D8F180D239600D50F0A /* DrawDefault-568h@2x.png in Resources */,
-				A4326D97180D23D400D50F0A /* DrawDefault@2x~ipad.png in Resources */,
-				A4326D9F180D23F500D50F0A /* DrawDefault@2x.png in Resources */,
 				CADB1EF417EDDACA0048698F /* little_gee_icon_76.png in Resources */,
 				CADB1EF517EDDACA0048698F /* little_gee_icon_120.png in Resources */,
 				CADB1EF617EDDACA0048698F /* little_gee_icon_152.png in Resources */,
@@ -20881,9 +20866,6 @@
 				EA5FE1C817E827EF0099754C /* common_home_join_line@2x.png in Resources */,
 				EA5FE1CD17E843F60099754C /* common_home_bullitin@2x.png in Resources */,
 				EA5FE1D217E949C10099754C /* draw_home_avatar_bg@2x.png in Resources */,
-				A4326D91180D239600D50F0A /* DrawDefault-568h@2x.png in Resources */,
-				A4326D99180D23D400D50F0A /* DrawDefault@2x~ipad.png in Resources */,
-				A4326DA1180D23F500D50F0A /* DrawDefault@2x.png in Resources */,
 				EA2A7CE517F676AB00ED508D /* AccountManageController.xib in Resources */,
 				EA2A7CEF17F6958600ED508D /* AccountCell.xib in Resources */,
 				CA1FF8941804F986003CEAD6 /* NSDate+TKCategory.strings in Resources */,
