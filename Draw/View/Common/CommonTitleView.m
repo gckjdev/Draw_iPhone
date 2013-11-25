@@ -10,6 +10,7 @@
 #import "HPThemeManager.h"
 #import "ShareImageManager.h"
 #import "UIImageExt.h"
+#import "UIViewUtils.h"
 
 #define COMMON_TITLE_VIEW_TAG   2013081218
 
@@ -119,6 +120,8 @@
     _titleLabel.textColor = [UIColor whiteColor];
     _titleLabel.shadowOffset = CGSizeMake(0, 1);
     _titleLabel.shadowColor = OPAQUE_COLOR(92, 158, 140);
+    
+    [_titleLabel addTapGuestureWithTarget:self selector:@selector(clickTitleLabel:)];
     
     [self addSubview:_bgImageView];
     [self addSubview:_titleLabel];
@@ -247,6 +250,13 @@
     
     if ([_target respondsToSelector:_rightButtonSelector] ) {
         [_target performSelector:_rightButtonSelector withObject:button];
+    }
+}
+
+- (void)clickTitleLabel:(UILabel *)label{
+    
+    if ([_target respondsToSelector:_titleLabelSelector]) {
+        [_target performSelector:_titleLabelSelector withObject:nil];
     }
 }
 

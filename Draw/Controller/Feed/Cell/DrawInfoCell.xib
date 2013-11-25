@@ -145,7 +145,6 @@
 								<int key="NSvFlags">292</int>
 								<string key="NSFrame">{{50, 250}, {220, 38}}</string>
 								<reference key="NSSuperview" ref="765286161"/>
-								<reference key="NSNextKeyView"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<reference key="IBUIBackgroundColor" ref="817818288"/>
 								<bool key="IBUIOpaque">NO</bool>
@@ -242,7 +241,6 @@
 								<int key="NSvFlags">292</int>
 								<string key="NSFrame">{{140, 254}, {128, 15}}</string>
 								<reference key="NSSuperview" ref="189988452"/>
-								<reference key="NSNextKeyView"/>
 								<bool key="IBUIOpaque">NO</bool>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 								<int key="IBUIContentHorizontalAlignment">2</int>
@@ -323,6 +321,7 @@
 								<int key="NSvFlags">292</int>
 								<string key="NSFrame">{{0, 1}, {320, 320}}</string>
 								<reference key="NSSuperview" ref="1029943244"/>
+								<reference key="NSNextKeyView" ref="1026572686"/>
 								<int key="IBUIContentMode">1</int>
 								<bool key="IBUIUserInteractionEnabled">NO</bool>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -730,10 +729,10 @@
 		<bool key="IBDocument.PluginDeclaredDependenciesTrackSystemTargetVersion">YES</bool>
 		<int key="IBDocument.defaultPropertyAccessControl">3</int>
 		<dictionary class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
-			<string key="draw_player_pause@2x.png">{46, 47}</string>
-			<string key="draw_player_play@2x.png">{46, 47}</string>
-			<string key="full_screen@2x.png">{73, 73}</string>
-			<string key="unloadbg@2x.png">{175, 175}</string>
+			<string key="draw_player_pause@2x.png">{16, 16}</string>
+			<string key="draw_player_play@2x.png">{16, 16}</string>
+			<string key="full_screen@2x.png">{16, 16}</string>
+			<string key="unloadbg@2x.png">{16, 16}</string>
 		</dictionary>
 		<string key="IBCocoaTouchPluginVersion">2083</string>
 	</data>
