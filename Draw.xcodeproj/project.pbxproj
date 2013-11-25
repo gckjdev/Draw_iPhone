@@ -5446,6 +5446,14 @@
 		CA9C11CD178135E0004372B6 /* GradientAction.m in Sources */ = {isa = PBXBuildFile; fileRef = CA9C11BF178135E0004372B6 /* GradientAction.m */; };
 		CA9C11D0178135E0004372B6 /* GradientAction.m in Sources */ = {isa = PBXBuildFile; fileRef = CA9C11BF178135E0004372B6 /* GradientAction.m */; };
 		CA9C11D1178135E0004372B6 /* GradientAction.m in Sources */ = {isa = PBXBuildFile; fileRef = CA9C11BF178135E0004372B6 /* GradientAction.m */; };
+		CA9C3FCA18432AA60041F332 /* AppTask.m in Sources */ = {isa = PBXBuildFile; fileRef = CA9C3FC918432AA60041F332 /* AppTask.m */; };
+		CA9C3FCB18432AA60041F332 /* AppTask.m in Sources */ = {isa = PBXBuildFile; fileRef = CA9C3FC918432AA60041F332 /* AppTask.m */; };
+		CA9C3FCC18432AA60041F332 /* AppTask.m in Sources */ = {isa = PBXBuildFile; fileRef = CA9C3FC918432AA60041F332 /* AppTask.m */; };
+		CA9C3FCD18432AA60041F332 /* AppTask.m in Sources */ = {isa = PBXBuildFile; fileRef = CA9C3FC918432AA60041F332 /* AppTask.m */; };
+		CA9C3FD018432AB60041F332 /* AppTaskManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CA9C3FCF18432AB50041F332 /* AppTaskManager.m */; };
+		CA9C3FD118432AB60041F332 /* AppTaskManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CA9C3FCF18432AB50041F332 /* AppTaskManager.m */; };
+		CA9C3FD218432AB60041F332 /* AppTaskManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CA9C3FCF18432AB50041F332 /* AppTaskManager.m */; };
+		CA9C3FD318432AB60041F332 /* AppTaskManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CA9C3FCF18432AB50041F332 /* AppTaskManager.m */; };
 		CA9C8CBD15E0D94A006E447B /* XQueryComponents.m in Sources */ = {isa = PBXBuildFile; fileRef = CA9C8CBC15E0D94A006E447B /* XQueryComponents.m */; };
 		CA9D5F4A1616F2040082E258 /* HotController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA9D5F491616F2040082E258 /* HotController~ipad.xib */; };
 		CA9D5F4D161700A70082E258 /* ContestFeed.m in Sources */ = {isa = PBXBuildFile; fileRef = CA9D5F4C161700A50082E258 /* ContestFeed.m */; };
@@ -9488,6 +9496,10 @@
 		CA9B4EBF16103726008C6A97 /* TopPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TopPlayer.m; sourceTree = "<group>"; };
 		CA9C11BE178135DF004372B6 /* GradientAction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GradientAction.h; sourceTree = "<group>"; };
 		CA9C11BF178135E0004372B6 /* GradientAction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GradientAction.m; sourceTree = "<group>"; };
+		CA9C3FC818432AA60041F332 /* AppTask.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppTask.h; sourceTree = "<group>"; };
+		CA9C3FC918432AA60041F332 /* AppTask.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppTask.m; sourceTree = "<group>"; };
+		CA9C3FCE18432AB50041F332 /* AppTaskManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppTaskManager.h; sourceTree = "<group>"; };
+		CA9C3FCF18432AB50041F332 /* AppTaskManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppTaskManager.m; sourceTree = "<group>"; };
 		CA9C8CBB15E0D94A006E447B /* XQueryComponents.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XQueryComponents.h; sourceTree = "<group>"; };
 		CA9C8CBC15E0D94A006E447B /* XQueryComponents.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XQueryComponents.m; sourceTree = "<group>"; };
 		CA9D5F491616F2040082E258 /* HotController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "HotController~ipad.xib"; sourceTree = "<group>"; };
@@ -14016,6 +14028,10 @@
 				CA1162641834A8BA00FDD3A9 /* TaskManager.m */,
 				CA11627A1834AE7900FDD3A9 /* GameTask.h */,
 				CA11627B1834AE7900FDD3A9 /* GameTask.m */,
+				CA9C3FC818432AA60041F332 /* AppTask.h */,
+				CA9C3FC918432AA60041F332 /* AppTask.m */,
+				CA9C3FCE18432AB50041F332 /* AppTaskManager.h */,
+				CA9C3FCF18432AB50041F332 /* AppTaskManager.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -21788,6 +21804,8 @@
 				CA5D9D8F183E3C0200BD820C /* DOUEAGLView.m in Sources */,
 				CA5D9D93183E3C0200BD820C /* DOUSimpleHTTPRequest.m in Sources */,
 				CA5D9D97183E3C0200BD820C /* NSData+DOUMappedFile.m in Sources */,
+				CA9C3FCC18432AA60041F332 /* AppTask.m in Sources */,
+				CA9C3FD218432AB60041F332 /* AppTaskManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -22586,6 +22604,8 @@
 				CA5D9D8E183E3C0200BD820C /* DOUEAGLView.m in Sources */,
 				CA5D9D92183E3C0200BD820C /* DOUSimpleHTTPRequest.m in Sources */,
 				CA5D9D96183E3C0200BD820C /* NSData+DOUMappedFile.m in Sources */,
+				CA9C3FCB18432AA60041F332 /* AppTask.m in Sources */,
+				CA9C3FD118432AB60041F332 /* AppTaskManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -23383,6 +23403,8 @@
 				CA5D9D8D183E3C0200BD820C /* DOUEAGLView.m in Sources */,
 				CA5D9D91183E3C0200BD820C /* DOUSimpleHTTPRequest.m in Sources */,
 				CA5D9D95183E3C0200BD820C /* NSData+DOUMappedFile.m in Sources */,
+				CA9C3FCA18432AA60041F332 /* AppTask.m in Sources */,
+				CA9C3FD018432AB60041F332 /* AppTaskManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -24136,6 +24158,8 @@
 				CA5D9D90183E3C0200BD820C /* DOUEAGLView.m in Sources */,
 				CA5D9D94183E3C0200BD820C /* DOUSimpleHTTPRequest.m in Sources */,
 				CA5D9D98183E3C0200BD820C /* NSData+DOUMappedFile.m in Sources */,
+				CA9C3FCD18432AA60041F332 /* AppTask.m in Sources */,
+				CA9C3FD318432AB60041F332 /* AppTaskManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
