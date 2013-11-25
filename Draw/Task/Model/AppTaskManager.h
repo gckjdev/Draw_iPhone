@@ -16,4 +16,7 @@
 @property (nonatomic, retain) PPSmartUpdateData* smartData;
 @property (nonatomic, retain) NSMutableArray* taskList;
 
++ (AppTaskManager*)defaultManager;
+- (void)autoUpdate;
+
 @end
