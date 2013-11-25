@@ -45,15 +45,16 @@
 
 #define LOAD_PAINT_LIMIT 20
 
-typedef enum{
-    
-    OPUS_ACTION_EDIT = 0,
-    OPUS_ACTION_DELETE,
-    OPUS_ACTION_SHARE_SINA_WEIBO,
-    OPUS_ACTION_SHARE_WEIXIN_SESSION,
-    OPUS_ACTION_SHARE_WEIXIN_TIMELINE,
-    OPUS_ACTION_SHARE_QQ_SPACE,
-} OpusActionMenuType;
+//typedef enum{
+//    
+//    OPUS_ACTION_EDIT = 0,
+//    OPUS_ACTION_DELETE,
+//    OPUS_ACTION_SHARE_SINA_WEIBO,
+//    OPUS_ACTION_SHARE_WEIXIN_SESSION,
+//    OPUS_ACTION_SHARE_WEIXIN_TIMELINE,
+//    OPUS_ACTION_SHARE_QQ_SPACE,
+//    OPUS_ACTION_SHARE_QQ_WEIBO,
+//} OpusActionMenuType;
 
 
 typedef enum{
@@ -71,6 +72,18 @@ typedef enum {
 
 @interface OpusManageController () <OpusViewDelegate, UIActionSheetDelegate, FeedServiceDelegate>{
     BOOL isLoading;
+    
+    int OPUS_ACTION_EDIT;
+    int OPUS_ACTION_DELETE_DRAFT;
+    int OPUS_ACTION_DELETE_FEED;
+    int OPUS_ACTION_SHARE_SINA_WEIBO;
+    int OPUS_ACTION_SHARE_WEIXIN_SESSION;
+    int OPUS_ACTION_SHARE_WEIXIN_TIMELINE;
+    int OPUS_ACTION_SHARE_QQ_SPACE;
+    int OPUS_ACTION_SHARE_QQ_WEIBO;
+    
+    int OPUS_ACTION_VIEW;
+    int OPUS_ACTION_REMOVE_FAVORITE;
 }
 
 @property (assign, nonatomic) OpusManager* selfOpusManager;
@@ -365,6 +378,65 @@ typedef enum {
 
 #pragma mark - OpusViewDelegate
 
+- (void)handleActionIndex:(NSInteger)buttonIndex opus:(Opus*)opus feed:(DrawFeed*)feed
+{
+    if (buttonIndex == OPUS_ACTION_EDIT){
+        [self editDraft:opus];
+    }
+    else if (buttonIndex == OPUS_ACTION_DELETE_DRAFT){
+        [self deleteDraft:opus];
+    }
+    else if (buttonIndex ==  OPUS_ACTION_VIEW){
+        [self enterOpusDetail:feed];
+    }
+    else if (buttonIndex == OPUS_ACTION_DELETE_FEED){
+        [self deleteFeed:feed];
+    }
+    else if (buttonIndex == OPUS_ACTION_REMOVE_FAVORITE){
+        [self unFavoriteOpus:feed];
+    }
+    else if (buttonIndex == OPUS_ACTION_SHARE_SINA_WEIBO){
+        if (opus){
+            [self shareSNS:TYPE_SINA opus:opus];
+        }
+        else{
+            [self shareSNS:TYPE_SINA feed:feed];
+        }
+    }
+    else if (buttonIndex == OPUS_ACTION_SHARE_WEIXIN_SESSION){
+        if (opus){
+            [self shareSNS:TYPE_WEIXIN_SESSION opus:opus];
+        }
+        else{
+            [self shareSNS:TYPE_WEIXIN_SESSION feed:feed];
+        }
+    }
+    else if (buttonIndex == OPUS_ACTION_SHARE_WEIXIN_TIMELINE){
+        if (opus){
+            [self shareSNS:TYPE_WEIXIN_TIMELINE opus:opus];
+        }
+        else{
+            [self shareSNS:TYPE_WEIXIN_TIMELINE feed:feed];
+        }
+    }
+    else if (buttonIndex == OPUS_ACTION_SHARE_QQ_SPACE){
+        if (opus){
+            [self shareSNS:TYPE_QQSPACE opus:opus];
+        }
+        else{
+            [self shareSNS:TYPE_QQSPACE feed:feed];
+        }
+    }
+    else if (buttonIndex == OPUS_ACTION_SHARE_QQ_WEIBO){
+        if (opus){
+            [self shareSNS:TYPE_QQ opus:opus];
+        }
+        else{
+            [self shareSNS:TYPE_QQ feed:feed];
+        }
+    }
+}
+
 - (void)didClickOpus:(Opus*)opus{
     
     PPDebug(@"<test>did click opus %@", opus.pbOpus.name);
@@ -378,41 +450,26 @@ typedef enum {
                                             delegate:nil
                                    cancelButtonTitle:NSLS(@"kCancel")
                               destructiveButtonTitle:nil
-                                   otherButtonTitles:editString, NSLS(@"kDelete"), NSLS(@"kShareSinaWeibo"), NSLS(@"kShareWeixinSession"),
-                                        NSLS(@"kShareWeixinTimeline"),NSLS(@"kShareQQSpace"),nil];
+                                   otherButtonTitles:editString, NSLS(@"kDelete"), NSLS(@"kShareSinaWeibo"),    NSLS(@"kShareWeixinSession"),
+                                        NSLS(@"kShareWeixinTimeline"),NSLS(@"kShareQQSpace"),
+                                        NSLS(@"kShareQQWeibo"),nil];
+    
+    int index = 0;
+    OPUS_ACTION_EDIT = index++;
+    OPUS_ACTION_DELETE_DRAFT = index++;
+    OPUS_ACTION_SHARE_SINA_WEIBO = index++;
+    OPUS_ACTION_SHARE_WEIXIN_SESSION = index++;
+    OPUS_ACTION_SHARE_WEIXIN_TIMELINE = index++;
+    OPUS_ACTION_SHARE_QQ_SPACE = index++;
+    OPUS_ACTION_SHARE_QQ_WEIBO = index++;
+    
+    OPUS_ACTION_DELETE_FEED = -1;
+    OPUS_ACTION_VIEW = -1;
+    OPUS_ACTION_REMOVE_FAVORITE = -1;
+    
     
     tips.actionBlock = ^(NSInteger buttonIndex){
-        
-        switch (buttonIndex) {
-                
-            case OPUS_ACTION_EDIT:
-                [self editDraft:opus];
-                break;
-                
-            case OPUS_ACTION_DELETE:
-                [self deleteDraft:opus];
-                break;
-                
-            case OPUS_ACTION_SHARE_SINA_WEIBO:
-                [self shareSNS:TYPE_SINA opus:opus];
-                break;
-                
-            case OPUS_ACTION_SHARE_WEIXIN_SESSION:
-                [self shareSNS:TYPE_WEIXIN_SESSION opus:opus];
-                break;
-                
-            case OPUS_ACTION_SHARE_WEIXIN_TIMELINE:
-                [self shareSNS:TYPE_WEIXIN_TIMELINE opus:opus];
-                break;
-                
-            case OPUS_ACTION_SHARE_QQ_SPACE:
-                [self shareSNS:TYPE_QQSPACE opus:opus];
-                break;
-                
-                
-            default:
-                break;
-        }
+        [self handleActionIndex:buttonIndex opus:opus feed:nil];
     };
     
     [tips showInView:self.view];
@@ -490,39 +547,58 @@ typedef enum {
                                        cancelButtonTitle:NSLS(@"kCancel")
                                   destructiveButtonTitle:nil
                                        otherButtonTitles:/*shareString,*/ NSLS(@"kLook"), NSLS(@"kDelete"), NSLS(@"kShareSinaWeibo"), NSLS(@"kShareWeixinSession"),
-                                            NSLS(@"kShareWeixinTimeline"),NSLS(@"kShareQQSpace"),nil];
+                                            NSLS(@"kShareWeixinTimeline"),NSLS(@"kShareQQSpace"),
+                                            NSLS(@"kShareQQWeibo"),nil];
+        
+        int index = 0;
+        OPUS_ACTION_EDIT = -1;
+        OPUS_ACTION_VIEW = index++;
+        OPUS_ACTION_DELETE_FEED = index++;
+        OPUS_ACTION_REMOVE_FAVORITE = -1;
+        OPUS_ACTION_DELETE_DRAFT = -1;
+        OPUS_ACTION_SHARE_SINA_WEIBO = index++;
+        OPUS_ACTION_SHARE_WEIXIN_SESSION = index++;
+        OPUS_ACTION_SHARE_WEIXIN_TIMELINE = index++;
+        OPUS_ACTION_SHARE_QQ_SPACE = index++;
+        OPUS_ACTION_SHARE_QQ_WEIBO = index++;
         
         tips.actionBlock = ^(NSInteger buttonIndex){
             
-            switch (buttonIndex) {
-                    
-                case OPUS_ACTION_EDIT:
-                    [self enterOpusDetail:feed];
-                    break;
-                    
-                case OPUS_ACTION_DELETE:
-                    [self deleteFeed:feed];
-                    break;
-
-                case OPUS_ACTION_SHARE_SINA_WEIBO:
-                    [self shareSNS:TYPE_SINA feed:feed];
-                    break;
-
-                case OPUS_ACTION_SHARE_WEIXIN_SESSION:
-                    [self shareSNS:TYPE_WEIXIN_SESSION feed:feed];
-                    break;
-
-                case OPUS_ACTION_SHARE_WEIXIN_TIMELINE:
-                    [self shareSNS:TYPE_WEIXIN_TIMELINE feed:feed];
-                    break;
-
-                case OPUS_ACTION_SHARE_QQ_SPACE:
-                    [self shareSNS:TYPE_QQSPACE feed:feed];
-                    break;
-                    
-                default:
-                    break;
-            }
+            [self handleActionIndex:buttonIndex opus:nil feed:feed];
+            
+//            switch (buttonIndex) {
+//                    
+//                case OPUS_ACTION_EDIT:
+//                    [self enterOpusDetail:feed];
+//                    break;
+//                    
+//                case OPUS_ACTION_DELETE:
+//                    [self deleteFeed:feed];
+//                    break;
+//
+//                case OPUS_ACTION_SHARE_SINA_WEIBO:
+//                    [self shareSNS:TYPE_SINA feed:feed];
+//                    break;
+//
+//                case OPUS_ACTION_SHARE_WEIXIN_SESSION:
+//                    [self shareSNS:TYPE_WEIXIN_SESSION feed:feed];
+//                    break;
+//
+//                case OPUS_ACTION_SHARE_WEIXIN_TIMELINE:
+//                    [self shareSNS:TYPE_WEIXIN_TIMELINE feed:feed];
+//                    break;
+//
+//                case OPUS_ACTION_SHARE_QQ_SPACE:
+//                    [self shareSNS:TYPE_QQSPACE feed:feed];
+//                    break;
+//                    
+//                case OPUS_ACTION_SHARE_QQ_WEIBO:
+//                    [self shareSNS:TYPE_QQ feed:feed];
+//                    break;
+//
+//                default:
+//                    break;
+//            }
         };
     }else{
         
@@ -531,40 +607,54 @@ typedef enum {
                                        cancelButtonTitle:NSLS(@"kCancel")
                                   destructiveButtonTitle:nil
                                        otherButtonTitles:NSLS(@"kLook"), NSLS(@"kUnFavorite"), NSLS(@"kShareSinaWeibo"), NSLS(@"kShareWeixinSession"),
-                                            NSLS(@"kShareWeixinTimeline"),NSLS(@"kShareQQSpace"),nil];
+                                            NSLS(@"kShareWeixinTimeline"),NSLS(@"kShareQQSpace"),
+                                            NSLS(@"kShareQQWeibo"),nil];
    
+        int index = 0;
+        OPUS_ACTION_EDIT = -1;
+        OPUS_ACTION_VIEW = index++;
+        OPUS_ACTION_DELETE_FEED = -1;
+        OPUS_ACTION_REMOVE_FAVORITE = index++;
+        OPUS_ACTION_DELETE_DRAFT = -1;
+        OPUS_ACTION_SHARE_SINA_WEIBO = index++;
+        OPUS_ACTION_SHARE_WEIXIN_SESSION = index++;
+        OPUS_ACTION_SHARE_WEIXIN_TIMELINE = index++;
+        OPUS_ACTION_SHARE_QQ_SPACE = index++;
+        OPUS_ACTION_SHARE_QQ_WEIBO = index++;
         
         tips.actionBlock = ^(NSInteger buttonIndex){
             
-            switch (buttonIndex) {
-                    
-                case 0:
-                    [self enterOpusDetail:feed];
-                    break;
-                    
-                case 1:
-                    [self unFavoriteOpus:feed];
-                    break;
-                    
-                case OPUS_ACTION_SHARE_SINA_WEIBO:
-                    [self shareSNS:TYPE_SINA feed:feed];
-                    break;
-                    
-                case OPUS_ACTION_SHARE_WEIXIN_SESSION:
-                    [self shareSNS:TYPE_WEIXIN_SESSION feed:feed];
-                    break;
-                    
-                case OPUS_ACTION_SHARE_WEIXIN_TIMELINE:
-                    [self shareSNS:TYPE_WEIXIN_TIMELINE feed:feed];
-                    break;
-                    
-                case OPUS_ACTION_SHARE_QQ_SPACE:
-                    [self shareSNS:TYPE_QQSPACE feed:feed];
-                    break;
-                    
-                default:
-                    break;
-            }
+            [self handleActionIndex:buttonIndex opus:nil feed:feed];
+            
+//            switch (buttonIndex) {
+//                    
+//                case 0:
+//                    [self enterOpusDetail:feed];
+//                    break;
+//                    
+//                case 1:
+//                    [self unFavoriteOpus:feed];
+//                    break;
+//                    
+//                case OPUS_ACTION_SHARE_SINA_WEIBO:
+//                    [self shareSNS:TYPE_SINA feed:feed];
+//                    break;
+//                    
+//                case OPUS_ACTION_SHARE_WEIXIN_SESSION:
+//                    [self shareSNS:TYPE_WEIXIN_SESSION feed:feed];
+//                    break;
+//                    
+//                case OPUS_ACTION_SHARE_WEIXIN_TIMELINE:
+//                    [self shareSNS:TYPE_WEIXIN_TIMELINE feed:feed];
+//                    break;
+//                    
+//                case OPUS_ACTION_SHARE_QQ_SPACE:
+//                    [self shareSNS:TYPE_QQSPACE feed:feed];
+//                    break;
+//                    
+//                default:
+//                    break;
+//            }
         };
     }
 
