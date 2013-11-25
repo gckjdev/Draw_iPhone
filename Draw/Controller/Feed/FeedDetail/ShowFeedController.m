@@ -1194,7 +1194,7 @@ typedef enum{
                                         cancelButtonTitle:NSLS(@"kCancel")
                                    destructiveButtonTitle:NSLS(@"kGuess")
                                         otherButtonTitles:NSLS(@"kPlay"), NSLS(@"kLargeImage"), NSLS(@"分数处理"), NSLS(@"kRecommend"), NSLS(@"kUnfeature"), NSLS(@"删除作品"),
-                 NSLS(@"kShareSinaWeibo"), NSLS(@"kShareWeixinSession"), NSLS(@"kShareWeixinTimeline"), NSLS(@"kShareQQSpace"), nil];
+                 NSLS(@"kShareSinaWeibo"), NSLS(@"kShareWeixinSession"), NSLS(@"kShareWeixinTimeline"), NSLS(@"kShareQQWeibo"), NSLS(@"kShareQQSpace"), nil];
         indexOfGuess = index++;
         indexOfPlay = index++;
         indexOfPhoto = index++;
@@ -1210,7 +1210,7 @@ typedef enum{
                                             cancelButtonTitle:NSLS(@"kCancel")
                                        destructiveButtonTitle:NSLS(@"kGuess")
                                             otherButtonTitles:NSLS(@"kPlay"), NSLS(@"kLargeImage"), NSLS(@"kRecommend"), NSLS(@"kUnfeature"),
-                     NSLS(@"kShareSinaWeibo"), NSLS(@"kShareWeixinSession"), NSLS(@"kShareWeixinTimeline"), NSLS(@"kShareQQSpace"), nil];
+                     NSLS(@"kShareSinaWeibo"), NSLS(@"kShareWeixinSession"), NSLS(@"kShareWeixinTimeline"), NSLS(@"kShareQQWeibo"), NSLS(@"kShareQQSpace"), nil];
             indexOfGuess = index++;
             indexOfPlay = index++;
             indexOfPhoto = index++;
@@ -1223,7 +1223,7 @@ typedef enum{
                                             cancelButtonTitle:NSLS(@"kCancel")
                                        destructiveButtonTitle:NSLS(@"kGuess")
                                             otherButtonTitles:NSLS(@"kPlay"), NSLS(@"kLargeImage"),
-                     NSLS(@"kShareSinaWeibo"), NSLS(@"kShareWeixinSession"), NSLS(@"kShareWeixinTimeline"), NSLS(@"kShareQQSpace"), nil];
+                     NSLS(@"kShareSinaWeibo"), NSLS(@"kShareWeixinSession"), NSLS(@"kShareWeixinTimeline"), NSLS(@"kShareQQWeibo"), NSLS(@"kShareQQSpace"), nil];
             indexOfGuess = index++;
             indexOfPlay = index++;
             indexOfPhoto = index++;
@@ -1238,7 +1238,7 @@ typedef enum{
                                                      delegate:nil
                                             cancelButtonTitle:NSLS(@"kCancel")
                                        destructiveButtonTitle:NSLS(@"kPlay") otherButtonTitles:NSLS(@"kLargeImage"),
-                     NSLS(@"kShareSinaWeibo"), NSLS(@"kShareWeixinSession"), NSLS(@"kShareWeixinTimeline"), NSLS(@"kShareQQSpace"),
+                     NSLS(@"kShareSinaWeibo"), NSLS(@"kShareWeixinSession"), NSLS(@"kShareWeixinTimeline"), NSLS(@"kShareQQWeibo"), NSLS(@"kShareQQSpace"),
                      NSLS(@"kRecommend"), NSLS(@"kUnfeature"), nil];
         
             indexOfFeature = index++;
@@ -1249,7 +1249,7 @@ typedef enum{
                                                      delegate:nil
                                             cancelButtonTitle:NSLS(@"kCancel")
                                        destructiveButtonTitle:NSLS(@"kPlay") otherButtonTitles:NSLS(@"kLargeImage"),
-                     NSLS(@"kShareSinaWeibo"), NSLS(@"kShareWeixinSession"), NSLS(@"kShareWeixinTimeline"), NSLS(@"kShareQQSpace"), nil];
+                     NSLS(@"kShareSinaWeibo"), NSLS(@"kShareWeixinSession"), NSLS(@"kShareWeixinTimeline"), NSLS(@"kShareQQWeibo"), NSLS(@"kShareQQSpace"), nil];
         }
     }
     
@@ -1257,6 +1257,7 @@ typedef enum{
     int indexOfShareSinaWeibo = index++;
     int indexOfShareWeixinSession = index++;
     int indexOfShareWeixinTimeline = index++;
+    int indexOfShareQQWeibo = index++;
     int indexOfShareQQSpace = index++;
     
     [sheet setActionBlock:^(NSInteger buttonIndex){
@@ -1307,6 +1308,10 @@ typedef enum{
         else if (buttonIndex == indexOfShareQQSpace){
             [self share:TYPE_QQSPACE];
         }
+        else if (buttonIndex == indexOfShareQQWeibo){
+            [self share:TYPE_QQ];
+        }
+
         
         [sheet setActionBlock:NULL];
     }];

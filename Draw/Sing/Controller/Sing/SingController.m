@@ -115,6 +115,11 @@ enum{
     return [_singOpus localDataURL];
 }
 
+- (void)loadOpusDesignTime
+{
+    [self.singOpus loadOpusDesignTime];
+}
+
 - (id)init{
     
     if (self = [super init]) {
@@ -171,6 +176,8 @@ enum{
      
     _recordLimitTime = [PPConfigManager getRecordLimitTime];
 
+    [self loadOpusDesignTime];
+    
     if ([self.singOpus hasFileForPlay]) {
         [self prepareToPlay];
         [self setState:StateReadyPlay];
@@ -537,12 +544,18 @@ enum{
     
     PPDebug(@"record url = %@", _recorder.recordURL.absoluteString);
     [_recorder startToRecordForDutaion:_recordLimitTime];
+    
+    // accumulate design time
+    [_singOpus.designTime start];
 }
 
 - (void)stopRecord{
     // stop record
     _hasEdited = YES;
     [_recorder stopRecording];
+    
+    // pause design time
+    [_singOpus.designTime pause];
 }
 
 - (void)prepareToPlay{
@@ -886,6 +899,8 @@ enum{
 }
 
 - (IBAction)clickSaveButton:(id)sender {
+        
+    [_singOpus pauseAndSaveDesignTime];
     
     if ([[UserService defaultService] checkAndAskLogin:self.view] == YES){
         return;
@@ -906,6 +921,8 @@ enum{
 }
 
 - (IBAction)clickSubmitButton:(id)sender {
+    
+    [_singOpus pauseAndSaveDesignTime];
     
     if ([[UserService defaultService] checkAndAskLogin:self.view] == YES){
         return;
