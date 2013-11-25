@@ -8,6 +8,12 @@
 
 #import <Foundation/Foundation.h>
 
+@class PPSmartUpdateData;
+@class AppTask;
+
 @interface AppTaskManager : NSObject
+
+@property (nonatomic, retain) PPSmartUpdateData* smartData;
+@property (nonatomic, retain) NSMutableArray* taskList;
 
 @end
