@@ -214,6 +214,7 @@ enum{
     [titleView setTitle:self.singOpus.name];
     [titleView setTarget:self];
     [titleView setBackButtonSelector:@selector(clickBackButton:)];
+    [titleView setTitleLabelSelector:@selector(clickDescButton:)];
     titleView.tag = TAG_TITLE_VIEW;
     [self.view sendSubviewToBack:titleView];
 }
@@ -303,9 +304,16 @@ enum{
 
 - (UIImageView *)addHolderView{
     
-    CGFloat width = ISIPAD ? 146*2.18 : 146;
-    UIImageView *iv = [[[UIImageView alloc] initWithFrame:CGRectMake(0, 0, width, width)] autorelease];
-    iv.image = [UIImage imageNamed:@"sing_image@2x.png"];
+//    CGFloat width = ISIPAD ? 146*2.18 : 146;
+//    UIImageView *iv = [[[UIImageView alloc] initWithFrame:CGRectMake(0, 0, width, width)] autorelease];
+//    iv.image = [UIImage imageNamed:@"sing_image@2x.png"];
+    
+    CGRect rect = CGRectInset(self.opusImageView.bounds, self.opusImageView.layer.borderWidth, self.opusImageView.layer.borderWidth);
+    UIImageView *iv = [[[UIImageView alloc] initWithFrame:rect] autorelease];
+    iv.image = [UIImage imageNamed:@"unloadbg@2x.png"];
+    [iv.layer setCornerRadius:(ISIPAD ? 75 : 35)];
+    [iv.layer setMasksToBounds:YES];
+    
     iv.tag = TAG_IMAGE_HOLDER_VIEW;
     
     [self.opusImageView addSubview:iv];

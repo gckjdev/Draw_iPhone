@@ -10,13 +10,12 @@
 #import <UIKit/UIKit.h>
 #import "CommonViewConstants.h"
 
-//typedef void (^NavigationButtonActionBlock)(UIButton *button);
-
 @interface CommonTitleView : UIView
 
 @property (assign, nonatomic) id target;
 @property (assign, nonatomic) SEL rightButtonSelector;
 @property (assign, nonatomic) SEL backButtonSelector;
+@property (assign, nonatomic) SEL titleLabelSelector;
 @property (retain, nonatomic) UIButton *rightButton;
 
 - (void)setTitle:(NSString *)title;
