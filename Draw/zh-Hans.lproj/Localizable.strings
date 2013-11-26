@@ -1037,6 +1037,7 @@
 "kSummaryOfContestComment" = "回复%@的点评: %@";
 
 "kMe" = "我";
+"kI" = "我";
 "kSendMeFlower" = "给我赠送了一朵鲜花！";
 "kThrowMeTomato" = "给我丢了个番茄！";
 "kCommentMyOpus" = "评论我的画。";
@@ -2095,6 +2096,7 @@
 "kLevelTips" = "可容纳 %d 族员\n每月需花费 %d 金币\n(首月费用在创建时扣除)";
 
 
+
 "kDuplicateGroupName" = "家族名字已经被注册了，请换一个名字。";                                                     
 "kGroupIDEmpty" = "家族ID为空。";
 "kGroupMultiGroupsJoined" = "一个玩家只允许加入了一个家族。";
@@ -2110,6 +2112,19 @@
 "kGroupUpgradeSmall" = "家族只能升级不能降级。";
 "kGroupNameIsEmpty" = "家族名字不能为空。";
 "kGroupNameTooLong" = "家族名字不能长于16个字符。";
+
+
+"kGroup" = "家族";
+"kGroupBulletinDesc" = "%@ 在 %@ 中发布了公告。";
+"kGroupJoinDesc" = "%@ 申请加入 %@";
+"kGroupExpelDesc" = "%@ 将 %@ 踢出了 %@";
+"kGroupQuitDesc" = "%@ 退出了 %@";
+"kGroupAcceptDesc" = "%@ 同意 %@ 加入 %@";
+"kGroupRejectDesc" = "%@ 拒绝 %@ 加入 %@";
+"kContentDesc" = "内容：%@";
+"kPostscriptDesc" = "附言：%@";
+
+
 /*********************小吉画画国际化字符串开始 ************************/
 "kLittleGeeRecommend" = "推荐";
 "kLittleGeeDrawTo" = "送画";

@@ -24,7 +24,9 @@
 
 + (id)createCell:(id)delegate;
 + (NSString*)getCellIdentifier;
-+ (CGFloat)getCellHeightWithBBSAction:(PBBBSAction *)post;
-- (void)updateCellWithBBSAction:(PBBBSAction *)post;
++ (CGFloat)getCellHeightWithBBSAction:(PBBBSAction *)action;
+- (void)updateCellWithBBSAction:(PBBBSAction *)action;
 
+//the same with updateCellWithBBSAction
+- (void)setCellInfo:(PBBBSAction *)action;
 @end

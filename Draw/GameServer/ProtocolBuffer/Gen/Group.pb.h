@@ -689,6 +689,7 @@ BOOL PBDefaultGroupTitleIsValidValue(PBDefaultGroupTitle value);
 @private
   BOOL hasType_:1;
   BOOL hasStatus_:1;
+  BOOL hasCreateDate_:1;
   BOOL hasNoticeId_:1;
   BOOL hasGroupId_:1;
   BOOL hasGroupName_:1;
@@ -697,6 +698,7 @@ BOOL PBDefaultGroupTitleIsValidValue(PBDefaultGroupTitle value);
   BOOL hasTarget_:1;
   int32_t type;
   int32_t status;
+  int32_t createDate;
   NSString* noticeId;
   NSString* groupId;
   NSString* groupName;
@@ -710,6 +712,7 @@ BOOL PBDefaultGroupTitleIsValidValue(PBDefaultGroupTitle value);
 - (BOOL) hasGroupId;
 - (BOOL) hasGroupName;
 - (BOOL) hasMessage;
+- (BOOL) hasCreateDate;
 - (BOOL) hasPublisher;
 - (BOOL) hasTarget;
 @property (readonly, retain) NSString* noticeId;
@@ -718,6 +721,7 @@ BOOL PBDefaultGroupTitleIsValidValue(PBDefaultGroupTitle value);
 @property (readonly, retain) NSString* groupId;
 @property (readonly, retain) NSString* groupName;
 @property (readonly, retain) NSString* message;
+@property (readonly) int32_t createDate;
 @property (readonly, retain) PBGameUser* publisher;
 @property (readonly, retain) PBGameUser* target;
 
@@ -784,6 +788,11 @@ BOOL PBDefaultGroupTitleIsValidValue(PBDefaultGroupTitle value);
 - (NSString*) message;
 - (PBGroupNotice_Builder*) setMessage:(NSString*) value;
 - (PBGroupNotice_Builder*) clearMessage;
+
+- (BOOL) hasCreateDate;
+- (int32_t) createDate;
+- (PBGroupNotice_Builder*) setCreateDate:(int32_t) value;
+- (PBGroupNotice_Builder*) clearCreateDate;
 
 - (BOOL) hasPublisher;
 - (PBGameUser*) publisher;

@@ -2492,6 +2492,7 @@ static PBGroup* defaultPBGroupInstance = nil;
 @property (retain) NSString* groupId;
 @property (retain) NSString* groupName;
 @property (retain) NSString* message;
+@property int32_t createDate;
 @property (retain) PBGameUser* publisher;
 @property (retain) PBGameUser* target;
 @end
@@ -2540,6 +2541,13 @@ static PBGroup* defaultPBGroupInstance = nil;
   hasMessage_ = !!value;
 }
 @synthesize message;
+- (BOOL) hasCreateDate {
+  return !!hasCreateDate_;
+}
+- (void) setHasCreateDate:(BOOL) value {
+  hasCreateDate_ = !!value;
+}
+@synthesize createDate;
 - (BOOL) hasPublisher {
   return !!hasPublisher_;
 }
@@ -2571,6 +2579,7 @@ static PBGroup* defaultPBGroupInstance = nil;
     self.groupId = @"";
     self.groupName = @"";
     self.message = @"";
+    self.createDate = 0;
     self.publisher = [PBGameUser defaultInstance];
     self.target = [PBGameUser defaultInstance];
   }
@@ -2623,6 +2632,9 @@ static PBGroupNotice* defaultPBGroupNoticeInstance = nil;
   if (self.hasMessage) {
     [output writeString:6 value:self.message];
   }
+  if (self.hasCreateDate) {
+    [output writeInt32:7 value:self.createDate];
+  }
   if (self.hasPublisher) {
     [output writeMessage:10 value:self.publisher];
   }
@@ -2655,6 +2667,9 @@ static PBGroupNotice* defaultPBGroupNoticeInstance = nil;
   }
   if (self.hasMessage) {
     size += computeStringSize(6, self.message);
+  }
+  if (self.hasCreateDate) {
+    size += computeInt32Size(7, self.createDate);
   }
   if (self.hasPublisher) {
     size += computeMessageSize(10, self.publisher);
@@ -2755,6 +2770,9 @@ static PBGroupNotice* defaultPBGroupNoticeInstance = nil;
   if (other.hasMessage) {
     [self setMessage:other.message];
   }
+  if (other.hasCreateDate) {
+    [self setCreateDate:other.createDate];
+  }
   if (other.hasPublisher) {
     [self mergePublisher:other.publisher];
   }
@@ -2804,6 +2822,10 @@ static PBGroupNotice* defaultPBGroupNoticeInstance = nil;
       }
       case 50: {
         [self setMessage:[input readString]];
+        break;
+      }
+      case 56: {
+        [self setCreateDate:[input readInt32]];
         break;
       }
       case 82: {
@@ -2921,6 +2943,22 @@ static PBGroupNotice* defaultPBGroupNoticeInstance = nil;
 - (PBGroupNotice_Builder*) clearMessage {
   result.hasMessage = NO;
   result.message = @"";
+  return self;
+}
+- (BOOL) hasCreateDate {
+  return result.hasCreateDate;
+}
+- (int32_t) createDate {
+  return result.createDate;
+}
+- (PBGroupNotice_Builder*) setCreateDate:(int32_t) value {
+  result.hasCreateDate = YES;
+  result.createDate = value;
+  return self;
+}
+- (PBGroupNotice_Builder*) clearCreateDate {
+  result.hasCreateDate = NO;
+  result.createDate = 0;
   return self;
 }
 - (BOOL) hasPublisher {

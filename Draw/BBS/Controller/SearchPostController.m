@@ -53,7 +53,7 @@
 
 - (BBSService *)bbsService
 {
-    return [BBSService defaultService];
+    return (self.forGroup ? [BBSService groupTopicService] : [BBSService defaultService]);
 }
 
 - (void)loadDataWithKey:(NSString *)key tabID:(NSInteger)tabID

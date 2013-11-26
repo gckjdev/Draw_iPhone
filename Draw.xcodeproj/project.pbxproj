@@ -7117,7 +7117,27 @@
 		EA8EF67817E6AB9F003F1AF8 /* draw_home_bottom_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EA8EF67617E6AB9E003F1AF8 /* draw_home_bottom_bg@2x.png */; };
 		EA8EF67917E6AB9F003F1AF8 /* draw_home_bottom_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EA8EF67617E6AB9E003F1AF8 /* draw_home_bottom_bg@2x.png */; };
 		EA8EF67A17E6AB9F003F1AF8 /* draw_home_bottom_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EA8EF67617E6AB9E003F1AF8 /* draw_home_bottom_bg@2x.png */; };
+		EA9154C91844962E003901ED /* GroupModelExt.m in Sources */ = {isa = PBXBuildFile; fileRef = EA9154C81844962E003901ED /* GroupModelExt.m */; };
+		EA9154CA1844962E003901ED /* GroupModelExt.m in Sources */ = {isa = PBXBuildFile; fileRef = EA9154C81844962E003901ED /* GroupModelExt.m */; };
+		EA9154CB1844962E003901ED /* GroupModelExt.m in Sources */ = {isa = PBXBuildFile; fileRef = EA9154C81844962E003901ED /* GroupModelExt.m */; };
+		EA9154CC1844962E003901ED /* GroupModelExt.m in Sources */ = {isa = PBXBuildFile; fileRef = EA9154C81844962E003901ED /* GroupModelExt.m */; };
 		EA92B895174E124500F273B5 /* Sing.pb.m in Sources */ = {isa = PBXBuildFile; fileRef = A461B06D174CADF10088B061 /* Sing.pb.m */; };
+		EA95519D1844759B002F2CC1 /* GroupNoticeController.m in Sources */ = {isa = PBXBuildFile; fileRef = EA95519B1844759B002F2CC1 /* GroupNoticeController.m */; };
+		EA95519E1844759B002F2CC1 /* GroupNoticeController.m in Sources */ = {isa = PBXBuildFile; fileRef = EA95519B1844759B002F2CC1 /* GroupNoticeController.m */; };
+		EA95519F1844759B002F2CC1 /* GroupNoticeController.m in Sources */ = {isa = PBXBuildFile; fileRef = EA95519B1844759B002F2CC1 /* GroupNoticeController.m */; };
+		EA9551A01844759B002F2CC1 /* GroupNoticeController.m in Sources */ = {isa = PBXBuildFile; fileRef = EA95519B1844759B002F2CC1 /* GroupNoticeController.m */; };
+		EA9551A11844759B002F2CC1 /* GroupNoticeController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA95519C1844759B002F2CC1 /* GroupNoticeController.xib */; };
+		EA9551A21844759B002F2CC1 /* GroupNoticeController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA95519C1844759B002F2CC1 /* GroupNoticeController.xib */; };
+		EA9551A31844759B002F2CC1 /* GroupNoticeController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA95519C1844759B002F2CC1 /* GroupNoticeController.xib */; };
+		EA9551A41844759B002F2CC1 /* GroupNoticeController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA95519C1844759B002F2CC1 /* GroupNoticeController.xib */; };
+		EA9551A7184478B3002F2CC1 /* GroupNoticeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EA9551A6184478B3002F2CC1 /* GroupNoticeCell.m */; };
+		EA9551A8184478B3002F2CC1 /* GroupNoticeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EA9551A6184478B3002F2CC1 /* GroupNoticeCell.m */; };
+		EA9551A9184478B3002F2CC1 /* GroupNoticeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EA9551A6184478B3002F2CC1 /* GroupNoticeCell.m */; };
+		EA9551AA184478B3002F2CC1 /* GroupNoticeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EA9551A6184478B3002F2CC1 /* GroupNoticeCell.m */; };
+		EA9551AC184478CC002F2CC1 /* GroupNoticeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA9551AB184478CC002F2CC1 /* GroupNoticeCell.xib */; };
+		EA9551AD184478CC002F2CC1 /* GroupNoticeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA9551AB184478CC002F2CC1 /* GroupNoticeCell.xib */; };
+		EA9551AE184478CC002F2CC1 /* GroupNoticeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA9551AB184478CC002F2CC1 /* GroupNoticeCell.xib */; };
+		EA9551AF184478CC002F2CC1 /* GroupNoticeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA9551AB184478CC002F2CC1 /* GroupNoticeCell.xib */; };
 		EAA4ADC1181A195100B3A5DD /* bbs_board_search@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EAA4ADC0181A195100B3A5DD /* bbs_board_search@2x.png */; };
 		EAA4ADC2181A195100B3A5DD /* bbs_board_search@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EAA4ADC0181A195100B3A5DD /* bbs_board_search@2x.png */; };
 		EAA4ADC3181A195100B3A5DD /* bbs_board_search@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EAA4ADC0181A195100B3A5DD /* bbs_board_search@2x.png */; };
@@ -10123,6 +10143,14 @@
 		EA8EF66B17E593CA003F1AF8 /* DrawMainMenuPanel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DrawMainMenuPanel.h; sourceTree = "<group>"; };
 		EA8EF66C17E593CA003F1AF8 /* DrawMainMenuPanel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DrawMainMenuPanel.m; sourceTree = "<group>"; };
 		EA8EF67617E6AB9E003F1AF8 /* draw_home_bottom_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "draw_home_bottom_bg@2x.png"; sourceTree = "<group>"; };
+		EA9154C71844962E003901ED /* GroupModelExt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GroupModelExt.h; sourceTree = "<group>"; };
+		EA9154C81844962E003901ED /* GroupModelExt.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GroupModelExt.m; sourceTree = "<group>"; };
+		EA95519A1844759B002F2CC1 /* GroupNoticeController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GroupNoticeController.h; sourceTree = "<group>"; };
+		EA95519B1844759B002F2CC1 /* GroupNoticeController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GroupNoticeController.m; sourceTree = "<group>"; };
+		EA95519C1844759B002F2CC1 /* GroupNoticeController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GroupNoticeController.xib; sourceTree = "<group>"; };
+		EA9551A5184478B3002F2CC1 /* GroupNoticeCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GroupNoticeCell.h; sourceTree = "<group>"; };
+		EA9551A6184478B3002F2CC1 /* GroupNoticeCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GroupNoticeCell.m; sourceTree = "<group>"; };
+		EA9551AB184478CC002F2CC1 /* GroupNoticeCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GroupNoticeCell.xib; sourceTree = "<group>"; };
 		EA97E92D16E735A600817647 /* CustomInfoView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CustomInfoView.xib; sourceTree = "<group>"; };
 		EAA4ADC0181A195100B3A5DD /* bbs_board_search@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bbs_board_search@2x.png"; sourceTree = "<group>"; };
 		EAA4ADC9181A197A00B3A5DD /* bbs_post_search@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bbs_post_search@2x.png"; sourceTree = "<group>"; };
@@ -17044,6 +17072,9 @@
 				EA038972183B06D300516952 /* GroupTopicController.h */,
 				EA038973183B06D300516952 /* GroupTopicController.m */,
 				EA038974183B06D300516952 /* GroupTopicController.xib */,
+				EA95519A1844759B002F2CC1 /* GroupNoticeController.h */,
+				EA95519B1844759B002F2CC1 /* GroupNoticeController.m */,
+				EA95519C1844759B002F2CC1 /* GroupNoticeController.xib */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -17058,6 +17089,8 @@
 				EA11A43D1839FAA100F73D64 /* GroupUIManager.h */,
 				EA11A43E1839FAA100F73D64 /* GroupUIManager.m */,
 				EAD94A44183F0DD40020AB09 /* GroupConstants.h */,
+				EA9154C71844962E003901ED /* GroupModelExt.h */,
+				EA9154C81844962E003901ED /* GroupModelExt.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -17099,6 +17132,9 @@
 				EA03897D183B122900516952 /* GroupDetailCell.h */,
 				EA03897E183B122900516952 /* GroupDetailCell.m */,
 				EA03897F183B122900516952 /* GroupDetailCell.xib */,
+				EA9551A5184478B3002F2CC1 /* GroupNoticeCell.h */,
+				EA9551A6184478B3002F2CC1 /* GroupNoticeCell.m */,
+				EA9551AB184478CC002F2CC1 /* GroupNoticeCell.xib */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -18264,6 +18300,8 @@
 				A4BD463F1843513F0016E62C /* button_click.wav in Resources */,
 				EAA8D11C18443CE200B3720B /* SearchController.xib in Resources */,
 				EAA8D12018443CE200B3720B /* SearchController~ipad.xib in Resources */,
+				EA9551A31844759B002F2CC1 /* GroupNoticeController.xib in Resources */,
+				EA9551AE184478CC002F2CC1 /* GroupNoticeCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -19234,6 +19272,8 @@
 				A4BD463E1843513F0016E62C /* button_click.wav in Resources */,
 				EAA8D11B18443CE200B3720B /* SearchController.xib in Resources */,
 				EAA8D11F18443CE200B3720B /* SearchController~ipad.xib in Resources */,
+				EA9551A21844759B002F2CC1 /* GroupNoticeController.xib in Resources */,
+				EA9551AD184478CC002F2CC1 /* GroupNoticeCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -20187,6 +20227,8 @@
 				A4BD463D1843513F0016E62C /* button_click.wav in Resources */,
 				EAA8D11A18443CE200B3720B /* SearchController.xib in Resources */,
 				EAA8D11E18443CE200B3720B /* SearchController~ipad.xib in Resources */,
+				EA9551A11844759B002F2CC1 /* GroupNoticeController.xib in Resources */,
+				EA9551AC184478CC002F2CC1 /* GroupNoticeCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -21094,6 +21136,8 @@
 				CA9C4002184341B50041F332 /* 660557448_app_task.json in Resources */,
 				EAA8D11D18443CE200B3720B /* SearchController.xib in Resources */,
 				EAA8D12118443CE200B3720B /* SearchController~ipad.xib in Resources */,
+				EA9551A41844759B002F2CC1 /* GroupNoticeController.xib in Resources */,
+				EA9551AF184478CC002F2CC1 /* GroupNoticeCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -21902,6 +21946,9 @@
 				CA9C3FD218432AB60041F332 /* AppTaskManager.m in Sources */,
 				CA9C4008184343AF0041F332 /* JSONKit.m in Sources */,
 				EAA8D11818443CE200B3720B /* SearchController.m in Sources */,
+				EA95519F1844759B002F2CC1 /* GroupNoticeController.m in Sources */,
+				EA9551A9184478B3002F2CC1 /* GroupNoticeCell.m in Sources */,
+				EA9154CB1844962E003901ED /* GroupModelExt.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -22704,6 +22751,9 @@
 				CA9C3FD118432AB60041F332 /* AppTaskManager.m in Sources */,
 				CA9C4007184343AF0041F332 /* JSONKit.m in Sources */,
 				EAA8D11718443CE200B3720B /* SearchController.m in Sources */,
+				EA95519E1844759B002F2CC1 /* GroupNoticeController.m in Sources */,
+				EA9551A8184478B3002F2CC1 /* GroupNoticeCell.m in Sources */,
+				EA9154CA1844962E003901ED /* GroupModelExt.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -23505,6 +23555,9 @@
 				CA9C3FD018432AB60041F332 /* AppTaskManager.m in Sources */,
 				CA9C4006184343AF0041F332 /* JSONKit.m in Sources */,
 				EAA8D11618443CE200B3720B /* SearchController.m in Sources */,
+				EA95519D1844759B002F2CC1 /* GroupNoticeController.m in Sources */,
+				EA9551A7184478B3002F2CC1 /* GroupNoticeCell.m in Sources */,
+				EA9154C91844962E003901ED /* GroupModelExt.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -24262,6 +24315,9 @@
 				CA9C3FD318432AB60041F332 /* AppTaskManager.m in Sources */,
 				CA9C4009184343AF0041F332 /* JSONKit.m in Sources */,
 				EAA8D11918443CE200B3720B /* SearchController.m in Sources */,
+				EA9551A01844759B002F2CC1 /* GroupNoticeController.m in Sources */,
+				EA9551AA184478B3002F2CC1 /* GroupNoticeCell.m in Sources */,
+				EA9154CC1844962E003901ED /* GroupModelExt.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
