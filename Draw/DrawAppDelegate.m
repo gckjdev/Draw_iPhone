@@ -466,7 +466,7 @@ NSString* GlobalGetBoardServerURL()
     // load config data
     [[GameConfigDataManager defaultManager] syncData];
     
-//    [[AppTaskManager defaultManager] autoUpdate];
+    [[AppTaskManager defaultManager] autoUpdate];
     
     // load item data
     [[GameItemService defaultService] syncData:NULL];
@@ -523,7 +523,7 @@ NSString* GlobalGetBoardServerURL()
     
     [[ContestService defaultService] syncOngoingContestList];
     
-    [GameApp HandleWithDidBecomeActive];
+    [GameApp HandleWithDidBecomeActive];    
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application
