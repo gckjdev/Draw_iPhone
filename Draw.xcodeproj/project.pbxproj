@@ -7130,6 +7130,18 @@
 		EAA4ADCB181A197A00B3A5DD /* bbs_post_search@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EAA4ADC9181A197A00B3A5DD /* bbs_post_search@2x.png */; };
 		EAA4ADCC181A197A00B3A5DD /* bbs_post_search@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EAA4ADC9181A197A00B3A5DD /* bbs_post_search@2x.png */; };
 		EAA4ADCD181A197A00B3A5DD /* bbs_post_search@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EAA4ADC9181A197A00B3A5DD /* bbs_post_search@2x.png */; };
+		EAA8D11618443CE200B3720B /* SearchController.m in Sources */ = {isa = PBXBuildFile; fileRef = EAA8D11318443CE200B3720B /* SearchController.m */; };
+		EAA8D11718443CE200B3720B /* SearchController.m in Sources */ = {isa = PBXBuildFile; fileRef = EAA8D11318443CE200B3720B /* SearchController.m */; };
+		EAA8D11818443CE200B3720B /* SearchController.m in Sources */ = {isa = PBXBuildFile; fileRef = EAA8D11318443CE200B3720B /* SearchController.m */; };
+		EAA8D11918443CE200B3720B /* SearchController.m in Sources */ = {isa = PBXBuildFile; fileRef = EAA8D11318443CE200B3720B /* SearchController.m */; };
+		EAA8D11A18443CE200B3720B /* SearchController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAA8D11418443CE200B3720B /* SearchController.xib */; };
+		EAA8D11B18443CE200B3720B /* SearchController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAA8D11418443CE200B3720B /* SearchController.xib */; };
+		EAA8D11C18443CE200B3720B /* SearchController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAA8D11418443CE200B3720B /* SearchController.xib */; };
+		EAA8D11D18443CE200B3720B /* SearchController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAA8D11418443CE200B3720B /* SearchController.xib */; };
+		EAA8D11E18443CE200B3720B /* SearchController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAA8D11518443CE200B3720B /* SearchController~ipad.xib */; };
+		EAA8D11F18443CE200B3720B /* SearchController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAA8D11518443CE200B3720B /* SearchController~ipad.xib */; };
+		EAA8D12018443CE200B3720B /* SearchController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAA8D11518443CE200B3720B /* SearchController~ipad.xib */; };
+		EAA8D12118443CE200B3720B /* SearchController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAA8D11518443CE200B3720B /* SearchController~ipad.xib */; };
 		EAA9E1681622B2A000E8DF1A /* UserLocationController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAA9E1671622B2A000E8DF1A /* UserLocationController~ipad.xib */; };
 		EAAFC5471615A4AB00C72BAB /* StatisticManager.m in Sources */ = {isa = PBXBuildFile; fileRef = EAAFC5461615A4AB00C72BAB /* StatisticManager.m */; };
 		EAB19CE4174E2A44001126FA /* DrawGameApp.m in Sources */ = {isa = PBXBuildFile; fileRef = CA67B87015E89B09002050DB /* DrawGameApp.m */; };
@@ -10123,6 +10135,10 @@
 		EA97E92D16E735A600817647 /* CustomInfoView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CustomInfoView.xib; sourceTree = "<group>"; };
 		EAA4ADC0181A195100B3A5DD /* bbs_board_search@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bbs_board_search@2x.png"; sourceTree = "<group>"; };
 		EAA4ADC9181A197A00B3A5DD /* bbs_post_search@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bbs_post_search@2x.png"; sourceTree = "<group>"; };
+		EAA8D11218443CE200B3720B /* SearchController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchController.h; sourceTree = "<group>"; };
+		EAA8D11318443CE200B3720B /* SearchController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchController.m; sourceTree = "<group>"; };
+		EAA8D11418443CE200B3720B /* SearchController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SearchController.xib; sourceTree = "<group>"; };
+		EAA8D11518443CE200B3720B /* SearchController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "SearchController~ipad.xib"; sourceTree = "<group>"; };
 		EAA9E1671622B2A000E8DF1A /* UserLocationController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "UserLocationController~ipad.xib"; sourceTree = "<group>"; };
 		EAAFC5451615A4AB00C72BAB /* StatisticManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StatisticManager.h; sourceTree = "<group>"; };
 		EAAFC5461615A4AB00C72BAB /* StatisticManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StatisticManager.m; sourceTree = "<group>"; };
@@ -13754,6 +13770,10 @@
 				C206FFAB178032D20033CF63 /* CommonWaterFlowController.m */,
 				EA8500DA1807A0420000DE3E /* ShareUIManager.h */,
 				EA8500DB1807A0430000DE3E /* ShareUIManager.m */,
+				EAA8D11218443CE200B3720B /* SearchController.h */,
+				EAA8D11318443CE200B3720B /* SearchController.m */,
+				EAA8D11418443CE200B3720B /* SearchController.xib */,
+				EAA8D11518443CE200B3720B /* SearchController~ipad.xib */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -18256,6 +18276,8 @@
 				CA9C3FFD184341B50041F332 /* 660557448_app_task_version.txt in Resources */,
 				CA9C4001184341B50041F332 /* 660557448_app_task.json in Resources */,
 				A4BD463F1843513F0016E62C /* button_click.wav in Resources */,
+				EAA8D11C18443CE200B3720B /* SearchController.xib in Resources */,
+				EAA8D12018443CE200B3720B /* SearchController~ipad.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -19226,6 +19248,8 @@
 				CA9C3FFC184341B50041F332 /* 660557448_app_task_version.txt in Resources */,
 				CA9C4000184341B50041F332 /* 660557448_app_task.json in Resources */,
 				A4BD463E1843513F0016E62C /* button_click.wav in Resources */,
+				EAA8D11B18443CE200B3720B /* SearchController.xib in Resources */,
+				EAA8D11F18443CE200B3720B /* SearchController~ipad.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -20179,6 +20203,8 @@
 				CA9C3FFB184341B50041F332 /* 660557448_app_task_version.txt in Resources */,
 				CA9C3FFF184341B50041F332 /* 660557448_app_task.json in Resources */,
 				A4BD463D1843513F0016E62C /* button_click.wav in Resources */,
+				EAA8D11A18443CE200B3720B /* SearchController.xib in Resources */,
+				EAA8D11E18443CE200B3720B /* SearchController~ipad.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -21086,6 +21112,8 @@
 				CA9C3FFA184341B50041F332 /* 645475970_app_task.json in Resources */,
 				CA9C3FFE184341B50041F332 /* 660557448_app_task_version.txt in Resources */,
 				CA9C4002184341B50041F332 /* 660557448_app_task.json in Resources */,
+				EAA8D11D18443CE200B3720B /* SearchController.xib in Resources */,
+				EAA8D12118443CE200B3720B /* SearchController~ipad.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -21893,6 +21921,7 @@
 				CA9C3FCC18432AA60041F332 /* AppTask.m in Sources */,
 				CA9C3FD218432AB60041F332 /* AppTaskManager.m in Sources */,
 				CA9C4008184343AF0041F332 /* JSONKit.m in Sources */,
+				EAA8D11818443CE200B3720B /* SearchController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -22694,6 +22723,7 @@
 				CA9C3FCB18432AA60041F332 /* AppTask.m in Sources */,
 				CA9C3FD118432AB60041F332 /* AppTaskManager.m in Sources */,
 				CA9C4007184343AF0041F332 /* JSONKit.m in Sources */,
+				EAA8D11718443CE200B3720B /* SearchController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -23494,6 +23524,7 @@
 				CA9C3FCA18432AA60041F332 /* AppTask.m in Sources */,
 				CA9C3FD018432AB60041F332 /* AppTaskManager.m in Sources */,
 				CA9C4006184343AF0041F332 /* JSONKit.m in Sources */,
+				EAA8D11618443CE200B3720B /* SearchController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -24250,6 +24281,7 @@
 				CA9C3FCD18432AA60041F332 /* AppTask.m in Sources */,
 				CA9C3FD318432AB60041F332 /* AppTaskManager.m in Sources */,
 				CA9C4009184343AF0041F332 /* JSONKit.m in Sources */,
+				EAA8D11918443CE200B3720B /* SearchController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
