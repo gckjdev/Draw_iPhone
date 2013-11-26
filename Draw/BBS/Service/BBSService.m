@@ -637,8 +637,9 @@ BBSService *_staticGroupTopicService;
 
 
 - (void)searchPostListByKeyWord:(NSString *)keyWord
-                            limit:(NSInteger)limit
-                          hanlder:(BBSGetPostResultHandler)handler
+                         offset:(NSInteger)offset
+                          limit:(NSInteger)limit
+                        hanlder:(BBSGetPostResultHandler)handler
 {
     if ([keyWord length] == 0) {
         return;
@@ -652,6 +653,7 @@ BBSService *_staticGroupTopicService;
                                 PARA_APPID : appId,
                                 PARA_USERID : userId,
                                 PARA_KEYWORD : keyWord,
+                                PARA_OFFSET : @(offset),
                                 PARA_LIMIT : @(limit),
                                 };
 

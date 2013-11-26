@@ -15,7 +15,9 @@ typedef enum{
 }SearchStatus;
 
 @interface SearchController ()
-
+{
+    CGFloat originWidth;
+}
 @property (retain, nonatomic) IBOutlet UITextField *searchTextField;
 @property (nonatomic, assign) SearchStatus status;
 @property (nonatomic, retain) NSMutableArray *history;
@@ -48,7 +50,7 @@ typedef enum{
     [super viewDidLoad];
     [self.titleView setTitle:[self headerTitle]];
     [self.titleView setTransparentStyle];
-    
+    originWidth = CGRectGetWidth(self.dataTableView.bounds);
     SET_INPUT_VIEW_STYLE(self.searchTextField);
     [self.searchTextField becomeFirstResponder];
     self.searchTextField.text = nil;
@@ -73,9 +75,14 @@ typedef enum{
     [self.dataTableView reloadData];
     if (self.status == ShowHistory) {
         [self.dataTableView setSeparatorStyle:UITableViewCellSeparatorStyleSingleLine];
+        self.noMoreData = YES;
+        [self.dataTableView updateWidth:CGRectGetWidth(self.searchTextField.bounds)];
     }else{
         [self.dataTableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
+        self.noMoreData = ![self currentTab].hasMoreData;
+        [self.dataTableView updateWidth:originWidth];
     }
+    [self.dataTableView updateCenterX:CGRectGetMidX(self.view.bounds)];
 }
 
 - (void)viewDidUnload {
@@ -85,9 +92,10 @@ typedef enum{
 - (IBAction)clickSearchButton:(id)sender {
     NSString *text = self.searchTextField.text;
     if ([text length] != 0) {
-        if (![self.history containsObject:text]) {
-            [self.history addObject:text];
+        if ([self.history containsObject:text]) {
+            [self.history removeObject:text];
         }
+        [self.history insertObject:text atIndex:0];
         [self setStatus:ShowResult];
         [self reloadView];
         [self reloadTableViewDataSource];
@@ -103,8 +111,6 @@ typedef enum{
     [self clickSearchButton:nil];
     return YES;
 }
-
-
 
 
 - (void)textFieldDidBeginEditing:(UITextField *)textFiel
@@ -125,11 +131,12 @@ typedef enum{
     return data;
 }
 
-- (NSInteger)numberOfRowsInSection:(NSInteger)section
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     if (self.status == ShowResult) {
-        return [super numberOfSectionsInTableView:section];
+        return [super tableView:tableView numberOfRowsInSection:section];
     }else{
+        PPDebug(@"history count = %d", [self.history count]);
         return [self.history count];
     }
 }
@@ -137,7 +144,7 @@ typedef enum{
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (self.status == ShowResult) {
-        return [self heightForRow:indexPath.row];
+        return [self heightForData:[self dataForIndexPath:indexPath]];
     }
     return (ISIPAD ? 66 :44);
 }
@@ -146,26 +153,34 @@ typedef enum{
 - (UITableViewCell *)tableView:(UITableView *)theTableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
     if (ShowResult == self.status) {
-        return [self cellForRow:indexPath.row];
+        return [self cellForData:[self dataForIndexPath:indexPath]];
     }else{
         NSString *identifier = @"history";
         UITableViewCell *cell = [theTableView dequeueReusableCellWithIdentifier:identifier];
         if (cell == nil) {
             cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
         }
-        NSString *text = self.history[indexPath.row];
+        
+        NSString *text = @"unknow";
+        if ([self.history count] > indexPath.row) {
+            text = self.history[indexPath.row];
+        }
         [cell.textLabel setText:text];
+        return cell;
     }
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (self.status == ShowResult) {
-        [self didSelectedCellInRow:indexPath.row];
+        [self didSelectedCellWithData:[self dataForIndexPath:indexPath]];
     }else{
         NSString *text = self.history[indexPath.row];
-        [self setStatus:ShowHistory];
+        [self setStatus:ShowResult];
+        [self.searchTextField setText:text];
+        [self.searchTextField resignFirstResponder];
         [self reloadView];
+        [[self currentTab] setOffset:0];
         [self loadDataWithKey:text tabID:TAB_ID];
     }
 }
@@ -196,15 +211,15 @@ typedef enum{
 {
     
 }
-- (UITableViewCell *)cellForRow:(NSInteger)row
+- (UITableViewCell *)cellForData:(id)data
 {
     return nil;
 }
-- (CGFloat)heightForRow:(NSInteger)row
+- (CGFloat)heightForData:(id)data
 {
     return 44;
 }
-- (void)didSelectedCellInRow:(NSInteger)row
+- (void)didSelectedCellWithData:(id)data
 {
     
 }

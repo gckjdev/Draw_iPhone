@@ -5989,10 +5989,6 @@
 		EA1F283616F093F700066E37 /* ChargeController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA1F283516F093F700066E37 /* ChargeController~ipad.xib */; };
 		EA1F283816F0940900066E37 /* ChargeCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA1F283716F0940900066E37 /* ChargeCell~ipad.xib */; };
 		EA1F283A16F0941E00066E37 /* PriceView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA1F283916F0941E00066E37 /* PriceView~ipad.xib */; };
-		EA28356E1818D81D00897765 /* SearchPostController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA28356D1818D81D00897765 /* SearchPostController~ipad.xib */; };
-		EA28356F1818D81D00897765 /* SearchPostController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA28356D1818D81D00897765 /* SearchPostController~ipad.xib */; };
-		EA2835701818D81D00897765 /* SearchPostController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA28356D1818D81D00897765 /* SearchPostController~ipad.xib */; };
-		EA2835711818D81D00897765 /* SearchPostController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA28356D1818D81D00897765 /* SearchPostController~ipad.xib */; };
 		EA2A7CDE17F676AB00ED508D /* AccountManageController.m in Sources */ = {isa = PBXBuildFile; fileRef = EA2A7CDC17F676AB00ED508D /* AccountManageController.m */; };
 		EA2A7CDF17F676AB00ED508D /* AccountManageController.m in Sources */ = {isa = PBXBuildFile; fileRef = EA2A7CDC17F676AB00ED508D /* AccountManageController.m */; };
 		EA2A7CE017F676AB00ED508D /* AccountManageController.m in Sources */ = {isa = PBXBuildFile; fileRef = EA2A7CDC17F676AB00ED508D /* AccountManageController.m */; };
@@ -7175,10 +7171,6 @@
 		EADC02561817CF8C0038B6A8 /* SearchPostController.m in Sources */ = {isa = PBXBuildFile; fileRef = EADC02531817CF8B0038B6A8 /* SearchPostController.m */; };
 		EADC02571817CF8C0038B6A8 /* SearchPostController.m in Sources */ = {isa = PBXBuildFile; fileRef = EADC02531817CF8B0038B6A8 /* SearchPostController.m */; };
 		EADC02581817CF8C0038B6A8 /* SearchPostController.m in Sources */ = {isa = PBXBuildFile; fileRef = EADC02531817CF8B0038B6A8 /* SearchPostController.m */; };
-		EADC02591817CF8C0038B6A8 /* SearchPostController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EADC02541817CF8B0038B6A8 /* SearchPostController.xib */; };
-		EADC025A1817CF8C0038B6A8 /* SearchPostController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EADC02541817CF8B0038B6A8 /* SearchPostController.xib */; };
-		EADC025B1817CF8C0038B6A8 /* SearchPostController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EADC02541817CF8B0038B6A8 /* SearchPostController.xib */; };
-		EADC025C1817CF8C0038B6A8 /* SearchPostController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EADC02541817CF8B0038B6A8 /* SearchPostController.xib */; };
 		EAE5718D16FC6ACB000AFADA /* CacheManager.m in Sources */ = {isa = PBXBuildFile; fileRef = EAE5718C16FC6ACB000AFADA /* CacheManager.m */; };
 /* End PBXBuildFile section */
 
@@ -10030,7 +10022,6 @@
 		EA23F5FA16E878070018786B /* ChargeCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChargeCell.h; sourceTree = "<group>"; };
 		EA23F5FB16E878070018786B /* ChargeCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChargeCell.m; sourceTree = "<group>"; };
 		EA23F5FC16E878070018786B /* ChargeCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ChargeCell.xib; sourceTree = "<group>"; };
-		EA28356D1818D81D00897765 /* SearchPostController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "SearchPostController~ipad.xib"; sourceTree = "<group>"; };
 		EA2A7CDB17F676AB00ED508D /* AccountManageController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AccountManageController.h; sourceTree = "<group>"; };
 		EA2A7CDC17F676AB00ED508D /* AccountManageController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AccountManageController.m; sourceTree = "<group>"; };
 		EA2A7CDD17F676AB00ED508D /* AccountManageController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AccountManageController.xib; sourceTree = "<group>"; };
@@ -10164,7 +10155,6 @@
 		EAD94A44183F0DD40020AB09 /* GroupConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GroupConstants.h; sourceTree = "<group>"; };
 		EADC02521817CF8B0038B6A8 /* SearchPostController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchPostController.h; sourceTree = "<group>"; };
 		EADC02531817CF8B0038B6A8 /* SearchPostController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchPostController.m; sourceTree = "<group>"; };
-		EADC02541817CF8B0038B6A8 /* SearchPostController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SearchPostController.xib; sourceTree = "<group>"; };
 		EAE5718B16FC6ACB000AFADA /* CacheManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CacheManager.h; sourceTree = "<group>"; };
 		EAE5718C16FC6ACB000AFADA /* CacheManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CacheManager.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -15894,8 +15884,6 @@
 				CA65978D166C7C3500A239E1 /* CreatePostController~ipad.xib */,
 				EADC02521817CF8B0038B6A8 /* SearchPostController.h */,
 				EADC02531817CF8B0038B6A8 /* SearchPostController.m */,
-				EADC02541817CF8B0038B6A8 /* SearchPostController.xib */,
-				EA28356D1818D81D00897765 /* SearchPostController~ipad.xib */,
 			);
 			name = Post;
 			sourceTree = "<group>";
@@ -18151,8 +18139,6 @@
 				EA690BE418167F7300DCACCB /* bbs_post_mark@2x.png in Resources */,
 				EA690BED18167F8300DCACCB /* bbs_post_detail_unmark@2x.png in Resources */,
 				EA690BF2181680D000DCACCB /* bbs_post_detail_mark@2x.png in Resources */,
-				EADC025B1817CF8C0038B6A8 /* SearchPostController.xib in Resources */,
-				EA2835701818D81D00897765 /* SearchPostController~ipad.xib in Resources */,
 				EAA4ADC3181A195100B3A5DD /* bbs_board_search@2x.png in Resources */,
 				EAA4ADCC181A197A00B3A5DD /* bbs_post_search@2x.png in Resources */,
 				CA52ADAA1828CE4D0066B0A0 /* ShareSDKLocalizable.strings in Resources */,
@@ -19133,8 +19119,6 @@
 				EA690BE318167F7300DCACCB /* bbs_post_mark@2x.png in Resources */,
 				EA690BEC18167F8300DCACCB /* bbs_post_detail_unmark@2x.png in Resources */,
 				EA690BF1181680D000DCACCB /* bbs_post_detail_mark@2x.png in Resources */,
-				EADC025A1817CF8C0038B6A8 /* SearchPostController.xib in Resources */,
-				EA28356F1818D81D00897765 /* SearchPostController~ipad.xib in Resources */,
 				EAA4ADC2181A195100B3A5DD /* bbs_board_search@2x.png in Resources */,
 				EAA4ADCB181A197A00B3A5DD /* bbs_post_search@2x.png in Resources */,
 				CA52ADA91828CE4D0066B0A0 /* ShareSDKLocalizable.strings in Resources */,
@@ -20090,8 +20074,6 @@
 				EA690BE218167F7300DCACCB /* bbs_post_mark@2x.png in Resources */,
 				EA690BEB18167F8300DCACCB /* bbs_post_detail_unmark@2x.png in Resources */,
 				EA690BF0181680D000DCACCB /* bbs_post_detail_mark@2x.png in Resources */,
-				EADC02591817CF8C0038B6A8 /* SearchPostController.xib in Resources */,
-				EA28356E1818D81D00897765 /* SearchPostController~ipad.xib in Resources */,
 				EAA4ADC1181A195100B3A5DD /* bbs_board_search@2x.png in Resources */,
 				EAA4ADCA181A197A00B3A5DD /* bbs_post_search@2x.png in Resources */,
 				CA52ADA81828CE4D0066B0A0 /* ShareSDKLocalizable.strings in Resources */,
@@ -21000,8 +20982,6 @@
 				EA690BE518167F7300DCACCB /* bbs_post_mark@2x.png in Resources */,
 				EA690BEE18167F8300DCACCB /* bbs_post_detail_unmark@2x.png in Resources */,
 				EA690BF3181680D000DCACCB /* bbs_post_detail_mark@2x.png in Resources */,
-				EADC025C1817CF8C0038B6A8 /* SearchPostController.xib in Resources */,
-				EA2835711818D81D00897765 /* SearchPostController~ipad.xib in Resources */,
 				EAA4ADC4181A195100B3A5DD /* bbs_board_search@2x.png in Resources */,
 				EAA4ADCD181A197A00B3A5DD /* bbs_post_search@2x.png in Resources */,
 				CA52ADAB1828CE4D0066B0A0 /* ShareSDKLocalizable.strings in Resources */,

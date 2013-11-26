@@ -15,7 +15,6 @@
 
 @end
 
-#define TAB_ID 100
 
 @implementation SearchPostController
 
@@ -30,13 +29,7 @@
 
 - (void)viewDidLoad
 {
-    [self setPullRefreshType:PullRefreshTypeFooter];
     [super viewDidLoad];
-    [BBSViewManager updateDefaultTitleLabel:self.titleLabel text:NSLS(@"kSearch")];
-    SET_INPUT_VIEW_STYLE(self.searchTextField);
-    [self.searchTextField becomeFirstResponder];
-    self.searchTextField.text = nil;
-    [self.searchTextField setPlaceholder:NSLS(@"kBBSSearchPlaceholder")];
 }
 
 - (void)didReceiveMemoryWarning
@@ -46,132 +39,76 @@
 }
 
 - (void)dealloc {
-    [_searchTextField release];
     [super dealloc];
 }
 - (void)viewDidUnload {
-    [self setSearchTextField:nil];
     [super viewDidUnload];
 }
-- (IBAction)clickSearchButton:(id)sender {
-    if ([self.searchTextField.text length] != 0) {
-        [self reloadTableViewDataSource];
-    }
-}
 
-- (IBAction)didKeyWordChanged:(id)sender {
-    PPDebug(@"<didKeyWordChanged>, text = %@", self.searchTextField.text);
-}
-
-- (BOOL)textFieldShouldReturn:(UITextField *)textField
+- (BBSService *)bbsService
 {
-    [self clickSearchButton:nil];
-    return YES;
+    return [BBSService defaultService];
 }
 
-- (UIControl *)maskView
+- (void)loadDataWithKey:(NSString *)key tabID:(NSInteger)tabID
 {
-#define MASK_VIEW_TAG 112233
-    
-    UIControl *mask = (id)[self.view viewWithTag:MASK_VIEW_TAG];
-    if (mask == nil) {
-        mask = [[[UIControl alloc] initWithFrame:self.view.bounds] autorelease];
-        [mask updateOriginY:CGRectGetMaxY(self.searchTextField.frame)];
-        mask.backgroundColor = [UIColor clearColor];
-        mask.tag = MASK_VIEW_TAG;
-        [mask addTarget:self action:@selector(clickMaskView:) forControlEvents:UIControlEventTouchUpInside];
-        [self.view insertSubview:mask belowSubview:self.searchTextField];
-    }
-    return mask;
+    [self showActivityWithText:NSLS(@"kSearching")];
+    TableTab *tab = [_tabManager tabForID:tabID];
+    [[self bbsService] searchPostListByKeyWord:key
+                                        offset:tab.offset
+                                         limit:tab.limit
+                                       hanlder:^(NSInteger resultCode, NSArray *postList, NSInteger tag) {
+        [self hideActivity];
+        if (resultCode == 0) {
+            [self finishLoadDataForTabID:tabID resultList:postList];
+        }else{
+            [self failLoadDataForTabID:tabID];
+        }
+    }];
+
 }
 
-- (void)clickMaskView:(UIControl *)maskView
+
+- (CGFloat)heightForData:(id)data
 {
-    [self.searchTextField resignFirstResponder];
-    [[self maskView] setHidden:YES];
-}
-
-- (void)textFieldDidBeginEditing:(UITextField *)textField{
-    [[self maskView] setHidden:NO];
-}
-- (void)textFieldDidEndEditing:(UITextField *)textField
-{
-    [[self maskView] setHidden:YES];
-}
-
-
-#pragma mark - table view delegate
-- (PBBBSPost *)postForIndexPath:(NSIndexPath *)indexPath
-{
-    NSArray *dList = self.tabDataList;
-    if (indexPath.row >= [dList count]) {
-        return nil;
-    }
-    PBBBSPost *post = [self.tabDataList objectAtIndex:indexPath.row];
-    return post;
-}
-
-- (NSInteger)numberOfRowsInSection:(NSInteger)section
-{
-    return [self.tabDataList count];
-}
-
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    PBBBSPost *post = [self.tabDataList objectAtIndex:indexPath.row];
+    PBBBSPost *post = data;
 	return [BBSPostCell getCellHeightWithBBSPost:post];
+
 }
-
-
-- (UITableViewCell *)tableView:(UITableView *)theTableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    
-    NSString *CellIdentifier = [BBSPostCell getCellIdentifier];
-	BBSPostCell *cell = [theTableView dequeueReusableCellWithIdentifier:CellIdentifier];
-	if (cell == nil) {
-		cell = [BBSPostCell createCell:self];
-	}
-    PBBBSPost *post = [self postForIndexPath:indexPath];
-    [cell updateCellWithBBSPost:post];
-    cell.backgroundColor = [UIColor clearColor];
-	return cell;
-	
-}
-
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+- (void)didSelectedCellWithData:(id)data
 {
-    PBBBSPost *post = [self postForIndexPath:indexPath];
+    PBBBSPost *post = data;
     [BBSPostDetailController enterPostDetailControllerWithPost:post
                                                 fromController:self
                                                       animated:YES];
+
+}
+- (UITableViewCell *)cellForData:(id)data
+{
+    NSString *CellIdentifier = [BBSPostCell getCellIdentifier];
+	BBSPostCell *cell = [self.dataTableView
+                         dequeueReusableCellWithIdentifier:CellIdentifier];
+	if (cell == nil) {
+		cell = [BBSPostCell createCell:self];
+	}
+    PBBBSPost *post = data;
+    [cell updateCellWithBBSPost:post];
+    cell.backgroundColor = [UIColor clearColor];
+	return cell;
 }
 
+- (NSString *)headerTitle
+{
+    return NSLS(@"kSearch");
+}
+- (NSString *)searchTips
+{
+    return NSLS(@"kBBSSearchPlaceholder");
+}
+- (NSString *)historyStoreKey
+{
+    return @"BBSSearchHistory";
+}
 
-- (NSInteger)tabCount
-{
-    return 1;
-}
-- (NSInteger)fetchDataLimitForTabIndex:(NSInteger)index
-{
-    return 15;
-}
-- (NSInteger)tabIDforIndex:(NSInteger)index
-{
-    return TAB_ID;
-}
-- (void)serviceLoadDataForTabID:(NSInteger)tabID
-{
-    NSString *text = self.searchTextField.text;
-    [self showActivityWithText:[NSString stringWithFormat:NSLS(@"kSearching")]];
-    [self.searchTextField resignFirstResponder];
-    [[self maskView] setHidden:YES];
-    [[self bbsService] searchPostListByKeyWord:text limit:50 hanlder:^(NSInteger resultCode, NSArray *postList, NSInteger tag) {
-         [self hideActivity];
-         if (resultCode == 0) {
-             [self finishLoadDataForTabID:tabID resultList:postList];
-         }else{
-             [self failLoadDataForTabID:tabID];
-         }        
-    }];
-}
 
 @end

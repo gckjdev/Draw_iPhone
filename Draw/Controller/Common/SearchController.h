@@ -15,9 +15,9 @@
 
 - (void)loadDataWithKey:(NSString *)key tabID:(NSInteger)tabID;
 
-- (UITableViewCell *)cellForRow:(NSInteger)row;
-- (CGFloat)heightForRow:(NSInteger)row;
-- (void)didSelectedCellInRow:(NSInteger)row;
+- (UITableViewCell *)cellForData:(id)data;
+- (CGFloat)heightForData:(id)data;
+- (void)didSelectedCellWithData:(id)data;
 - (NSString *)headerTitle;
 - (NSString *)searchTips; //used as placeholder.
 - (NSString *)historyStoreKey; //default is the class name.

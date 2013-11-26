@@ -124,6 +124,7 @@ typedef void (^BBSOperatePostHandler) (NSInteger resultCode, PBBBSPost *editedPo
                          delegate:(id<BBSServiceDelegate>)delegate;
 
 - (void)searchPostListByKeyWord:(NSString *)keyWord
+                         offset:(NSInteger)offset
                           limit:(NSInteger)limit
                         hanlder:(BBSGetPostResultHandler)handler;
 

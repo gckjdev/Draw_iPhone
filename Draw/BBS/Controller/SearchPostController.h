@@ -6,11 +6,9 @@
 //
 //
 
-#import "BBSController.h"
+//#import "BBSController.h"
+#import "SearchController.h"
 
-@interface SearchPostController : BBSController<UITextFieldDelegate>
-@property (retain, nonatomic) IBOutlet UITextField *searchTextField;
-- (IBAction)clickSearchButton:(id)sender;
-- (IBAction)didKeyWordChanged:(id)sender;
+@interface SearchPostController : SearchController
 
 @end
