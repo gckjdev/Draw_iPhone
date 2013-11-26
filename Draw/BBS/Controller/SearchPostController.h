@@ -6,9 +6,9 @@
 //
 //
 
-//#import "BBSController.h"
+#import "BBSService.h"
 #import "SearchController.h"
 
-@interface SearchPostController : SearchController
+@interface SearchPostController : SearchController<BBSServiceDelegate>
 
 @end

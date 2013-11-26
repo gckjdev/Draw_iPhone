@@ -70,6 +70,10 @@ typedef enum{
     [super dealloc];
 }
 
+#define TABLE_HEIGHT_HISTORY (ISIPAD? 400 : 130)
+#define TABLE_HEIGHT_RESULT (CGRectGetHeight(self.view.bounds)-CGRectGetMinY(self.dataTableView.bounds))
+
+
 - (void)reloadView
 {
     [self.dataTableView reloadData];
@@ -77,10 +81,12 @@ typedef enum{
         [self.dataTableView setSeparatorStyle:UITableViewCellSeparatorStyleSingleLine];
         self.noMoreData = YES;
         [self.dataTableView updateWidth:CGRectGetWidth(self.searchTextField.bounds)];
+        [self.dataTableView updateHeight:TABLE_HEIGHT_HISTORY];
     }else{
         [self.dataTableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
         self.noMoreData = ![self currentTab].hasMoreData;
         [self.dataTableView updateWidth:originWidth];
+        [self.dataTableView updateHeight:TABLE_HEIGHT_RESULT];
     }
     [self.dataTableView updateCenterX:CGRectGetMidX(self.view.bounds)];
 }
@@ -146,8 +152,9 @@ typedef enum{
     if (self.status == ShowResult) {
         return [self heightForData:[self dataForIndexPath:indexPath]];
     }
-    return (ISIPAD ? 66 :44);
+    return (ISIPAD ? 60 :35);
 }
+
 
 
 - (UITableViewCell *)tableView:(UITableView *)theTableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -159,6 +166,8 @@ typedef enum{
         UITableViewCell *cell = [theTableView dequeueReusableCellWithIdentifier:identifier];
         if (cell == nil) {
             cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
+            cell.textLabel.font = CELL_NICK_FONT;
+            cell.textLabel.textColor = COLOR_BROWN;
         }
         
         NSString *text = @"unknow";
@@ -178,11 +187,30 @@ typedef enum{
         NSString *text = self.history[indexPath.row];
         [self setStatus:ShowResult];
         [self.searchTextField setText:text];
-        [self.searchTextField resignFirstResponder];
-        [self reloadView];
-        [[self currentTab] setOffset:0];
-        [self loadDataWithKey:text tabID:TAB_ID];
+        [self clickSearchButton:nil];
     }
+}
+
+//delete history.
+- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return self.status == ShowHistory;
+}
+
+
+- (UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return UITableViewCellEditingStyleDelete;
+}
+- (NSString *)tableView:(UITableView *)tableView titleForDeleteConfirmationButtonForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return NSLS(@"kDelete");
+}
+
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [self.history removeObjectAtIndex:indexPath.row];
+    [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
 }
 
 
