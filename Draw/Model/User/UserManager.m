@@ -1741,4 +1741,14 @@ qqAccessTokenSecret:(NSString*)accessTokenSecret
         
 }
 
+- (BOOL)hasJoinedAGroup
+{
+    return [_pbUser.joinedGroupListList count] > 0;
+}
+
+- (NSArray *)joinedGroupList
+{
+    return _pbUser.joinedGroupListList;
+}
+
 @end

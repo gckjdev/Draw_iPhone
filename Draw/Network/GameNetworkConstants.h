@@ -358,6 +358,7 @@
 #define PARA_ITEMIDARRAY @"iia"
 #define PARA_REQUIRE_MATCH @"rm"
 #define PARA_TYPE @"tp"
+#define PARA_NOTICEID @"nid"
 #define PARA_CREDENTIAL @"credential"
 #define PARA_SELL_CONTENT_TYPE @"sct"
 #define PARA_OPUS_ID_LIST @"opusIdList"
@@ -662,7 +663,8 @@
 #define PARA_SOURCE_ACTION_TYPE @"sat"
 
 #define PARA_TOPIC_MODE @"mode"
-#define CONST_GROUP_MODE @"group"
+#define CONST_GROUP_MODE 1
+#define CONST_BBS_MODE 0
 
 
 //group
@@ -692,6 +694,7 @@
 #define METHOD_INVITE_GROUPMEMBERS @"inviteGroupUser"
 #define METHOD_GET_GROUP_MEMBERS @"getGroupMembers"
 #define METHOD_EXPEL_GROUPUSER @"expelGroupUser"
+#define METHOD_QUIT_GROUP @"quitGroup"
 #define METHOD_UPDATE_GROUPUSER_ROLE @"updateUserRole"
 #define METHOD_INVITE_GROUPGUESTS @"inviteGroupGuest"
 
@@ -704,6 +707,11 @@
 
 //new
 #define METHOD_SYNC_FOLLOWED_GROUPIDS @"syncFollowedGroupIds"
+#define METHOD_IGNORE_NOTICE @"ignoreNotice"
+#define METHOD_FOLLOW_TOPIC @"followTopic"
+#define METHOD_GET_TOPIC_TIMELINE @"getTopicTimeline"
+#define METHOD_GET_FOLLOWED_TOPIC @"getFollowTopics"
+#define METHOD_GET_GROUPRELATION @"getRelationWithGroup"
 
 
 #define METHOD_UPDATE_USER_CREDENTIAL @"updateUserCredential"

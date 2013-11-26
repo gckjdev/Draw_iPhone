@@ -8,6 +8,19 @@
 
 #import <Foundation/Foundation.h>
 
+typedef enum{
+    GroupCreateGroup = 1,
+    GroupCreateTopic,
+    GroupSearchGroup,
+    GroupSearchTopic,
+    GroupChat,
+    GroupAtMe,
+    GroupContest,
+    
+}GroupFooterActionType;
+
+
+
 typedef enum {
     ColorStyleRed = 1,
     ColorStyleYellow = 2,
@@ -24,6 +37,11 @@ typedef enum {
 
 + (UIImage *)followedGroupImage;
 + (UIImage *)unfollowingGroupImage;
+
+
++ (UIImage *)imageForFooterActionType:(GroupFooterActionType)type;
+
++ (NSArray *)imagesForFooterActionTypes:(NSArray *)types;
 
 
 @end

@@ -7,19 +7,25 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "GroupUIManager.h"
+#import "GroupPermission.h"
 
 
 
 @interface GroupManager : NSObject
 @property(nonatomic, retain)NSMutableArray *followedGroupIds;
+//@property(atomic, retain) NSMutableArray *tempPostList;
 
 + (id)defaultManager;
 
 + (NSInteger)capacityForLevel:(NSInteger)level;
 + (NSInteger)monthlyFeeForLevel:(NSInteger)level;
 
++ (NSArray *)defaultTypesInGroupHomeFooterForTab:(GroupTab)tab;
++ (NSArray *)defaultTypesInGroupTopicFooter:(PBGroup *)group;
 
 - (BOOL)followedGroup:(NSString *)groupId;
 
-@end
++ (NSMutableArray *)getTopicCMDList:(PBBBSPost *)post inGroup:(PBGroup *)group;
 
+@end

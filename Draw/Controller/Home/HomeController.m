@@ -638,7 +638,8 @@ static NSDictionary* DRAW_MENU_IMAGE_DICT = nil;
         }
             break;
         case HomeMenuTypeDrawGuess:
-        {/*
+        {
+            /*
 #ifdef DEBUG
             CreateGroupController *cg = [[CreateGroupController alloc] init];
             [self.navigationController pushViewController:cg animated:YES];
@@ -668,7 +669,7 @@ static NSDictionary* DRAW_MENU_IMAGE_DICT = nil;
         }
             break;
         case HomeMenuTypeDrawContest:
-            /*
+           /*
 #ifdef DEBUG
         {
             GroupHomeController *gc = [[GroupHomeController alloc] init];

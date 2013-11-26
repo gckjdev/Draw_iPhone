@@ -69,7 +69,7 @@
 - (void)didClickDrawImageWithPost:(PBBBSPost *)post
 {
     [self showActivityWithText:NSLS(@"kLoading")];
-    [[BBSService defaultService] getBBSDrawDataWithPostId:post.postId
+    [[self bbsService] getBBSDrawDataWithPostId:post.postId
                                                  actionId:nil
                                                  delegate:self];
 }
@@ -77,7 +77,7 @@
 - (void)didClickDrawImageWithAction:(PBBBSAction *)action
 {
     [self showActivityWithText:NSLS(@"kLoading")];
-    [[BBSService defaultService] getBBSDrawDataWithPostId:nil
+    [[self bbsService] getBBSDrawDataWithPostId:nil
                                                  actionId:action.actionId
                                                  delegate:self];
 
@@ -107,6 +107,14 @@
     }else{
         PPDebug(@"<didGetBBSDrawActionList> fail!, resultCode = %d",resultCode);
     }
+}
+
+- (BBSService *)bbsService
+{
+    if (self.forGroup) {
+        return [BBSService groupTopicService];
+    }
+    return [BBSService defaultService];
 }
 
 @end

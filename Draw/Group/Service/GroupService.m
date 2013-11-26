@@ -11,13 +11,11 @@
 #import "PPNetworkConstants.h"
 #import "CommonOpusDetailController.h"
 #import "DrawError.h"
-#import "GroupManager.h"
+#import "PPConfigManager.h"
 
-#ifdef DEBUG
-    #define GROUP_HOST     @"http://localhost:8100/api?"
-#else
-    #define GROUP_HOST     GlobalGetTrafficServerURL()
-#endif
+
+#define GROUP_HOST     [PPConfigManager getGroupServerURL]
+
 
 
 typedef void (^ PBResponseResultBlock) (DataQueryResponse *response, NSError* error);
@@ -59,6 +57,9 @@ static GroupService *_staticGroupService = nil;
                                      returnPB:YES
                                      returnJSONArray:NO];
         NSError *error = DRAW_ERROR(output.pbResponse.resultCode);
+        if (error) {
+            [DrawError postError:error];
+        }
         EXECUTE_BLOCK(callback, output.pbResponse, error);
     }else{
         dispatch_async(workingQueue, ^{
@@ -72,6 +73,7 @@ static GroupService *_staticGroupService = nil;
                 NSError *error = DRAW_ERROR(output.pbResponse.resultCode);
                 if (error) {
                     PPDebug(@"<GroupService> load data error = %@", error);
+                    [DrawError postError:error];
                 }
 
                 EXECUTE_BLOCK(callback, output.pbResponse, error);
@@ -255,6 +257,18 @@ static GroupService *_staticGroupService = nil;
      }];
 }
 
+- (void)quitGroup:(NSString *)groupId
+         callback:(SimpleResultBlock)callback
+{
+    NSDictionary *paras = @{PARA_GROUPID:groupId};
+    [self loadPBData:METHOD_QUIT_GROUP
+          parameters:paras
+            callback:^(DataQueryResponse *response, NSError *error )
+     {
+         EXECUTE_BLOCK(callback, error);
+     }];
+}
+
 - (void)updateUser:(NSString *)userId
               role:(GroupRole)role
              title:(NSString *)title
@@ -332,14 +346,32 @@ static GroupService *_staticGroupService = nil;
      }];
 }
 
+
+
+- (void)syncFollowGroupIds
+{
+    PPDebug(@"<syncFollowGroupIds>");
+    [self loadPBData:METHOD_SYNC_FOLLOWED_GROUPIDS
+          parameters:@{}
+            callback:^(DataQueryResponse *response, NSError *error)
+     {
+         if (!error) {
+             PPDebug(@"<syncFollowGroupIds> Done! follow group size = %d", [response.idListList count]);
+             _groupManager.followedGroupIds = [NSMutableArray arrayWithArray:response.idListList];
+         }
+     }];    
+}
+
+
+//notice
 - (void)getGroupNoticeByType:(GroupNoticeType)type
                       offset:(NSInteger)offset
                        limit:(NSInteger)limit
                     callback:(ListResultBlock)callback
 {
     NSDictionary *paras = @{PARA_TYPE:@(type), PARA_OFFSET:@(offset), PARA_LIMIT:@(limit)};
-
-    [self loadPBData:METHOD_UPGRADE_GROUP
+    
+    [self loadPBData:METHOD_GET_GROUP_NOTICES
           parameters:paras
             callback:^(DataQueryResponse *response, NSError *error)
      {
@@ -347,16 +379,92 @@ static GroupService *_staticGroupService = nil;
      }];
 }
 
-- (void)syncFollowGroupIds
+- (void)ignoreNotice:(NSString *)noticeId
+          noticeType:(NSInteger)type
+            callback:(SimpleResultBlock)callback
 {
-    [self loadPBData:METHOD_SYNC_FOLLOWED_GROUPIDS
-          parameters:@{}
+    NSDictionary *paras = @{PARA_TYPE:@(type), PARA_NOTICEID:noticeId};
+    
+    [self loadPBData:METHOD_IGNORE_NOTICE
+          parameters:paras
             callback:^(DataQueryResponse *response, NSError *error)
      {
-         if (!error) {
-             _groupManager.followedGroupIds = [NSMutableArray arrayWithArray:response.idListList];
-         }
-     }];    
+         EXECUTE_BLOCK(callback, error);
+     }];
 }
 
+- (void)followTopic:(NSString *)topicId
+           callback:(SimpleResultBlock)callback
+{
+    NSDictionary *paras = @{PARA_POSTID:topicId};
+    
+    [self loadPBData:METHOD_FOLLOW_TOPIC
+          parameters:paras
+            callback:^(DataQueryResponse *response, NSError *error)
+     {
+         EXECUTE_BLOCK(callback, error);
+     }];
+}
+
+- (void)getFollowedTopicList:(NSInteger)offset
+                       limit:(NSInteger)limit
+                    callback:(ListResultBlock)callback
+{
+    NSDictionary *paras = @{PARA_OFFSET:@(offset), PARA_LIMIT:@(limit)};
+    
+    [self loadPBData:METHOD_GET_FOLLOWED_TOPIC
+          parameters:paras
+            callback:^(DataQueryResponse *response, NSError *error)
+     {
+         EXECUTE_BLOCK(callback, response.bbsPostList, error);
+     }];
+}
+
+- (void)getTopicTimelineList:(NSInteger)offset
+                       limit:(NSInteger)limit
+                    callback:(ListResultBlock)callback
+{
+    NSDictionary *paras = @{PARA_OFFSET:@(offset), PARA_LIMIT:@(limit)};
+    
+    [self loadPBData:METHOD_GET_TOPIC_TIMELINE
+          parameters:paras
+            callback:^(DataQueryResponse *response, NSError *error)
+     {
+         EXECUTE_BLOCK(callback, response.bbsPostList, error);
+     }];
+
+}
+
+- (void)getRelationWithGroup:(NSString *)groupId
+                    callback:(RelationResultBlock)callback
+{    
+    NSDictionary *paras = @{PARA_GROUPID:groupId};
+    [self loadPBData:METHOD_GET_GROUPRELATION
+          parameters:paras
+            callback:^(DataQueryResponse *response, NSError *error)
+     {
+         PPDebug(@"<loadRelation>: title = %@, permission = %d", response.groupRelation.title, response.groupRelation.permission);
+         EXECUTE_BLOCK(callback, response.groupRelation, error);
+     }];
+}
+
+- (PBGroup *)buildGroup:(PBGroup *)group
+           withRelation:(PBUserRelationWithGroup *)relation
+{
+    PBGroup_Builder *builder = [PBGroup builderWithPrototype:group];
+    [builder setRelation:relation];
+    return [builder build];
+}
+
+- (PBGroup *)buildGroupWithDefaultRelation:(PBGroup *)group
+{
+    PBUserRelationWithGroup_Builder *builder = [[PBUserRelationWithGroup_Builder alloc] init];
+    [builder setRole:GroupRoleNone];
+    [builder setPermission:GROUP_DEFAULT_PERMISSION];
+    [builder setStatus:0];
+    PBUserRelationWithGroup *relation = [builder build];
+    [builder release];
+    return [self buildGroup:group withRelation:relation];
+    
+}
 @end

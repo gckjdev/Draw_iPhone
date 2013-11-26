@@ -332,6 +332,8 @@
     [self.bgImageView setHidden:YES];
     [self setBackgroundColor:[UIColor clearColor]];
     [self.titleLabel setTextColor:COLOR_BROWN];
+    [self.titleLabel setShadowOffset:CGSizeZero];
+    
     //TODO set icon
     [self.backButton setBackgroundImage:UIThemeImageNamed(@"navigation_back_green@2x.png")
                                forState:UIControlStateNormal];

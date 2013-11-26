@@ -7,32 +7,15 @@
 //
 
 #import "CommonService.h"
-#import "GroupPermission.h"
 #import "Group.pb.h"
+#import "GroupManager.h"
 
+typedef void (^ RelationResultBlock) (PBUserRelationWithGroup *relation, NSError *error);
 typedef void (^ GroupResultBlock) (PBGroup *group, NSError *error);
 typedef void (^ ListResultBlock) (NSArray *list, NSError *error);
 typedef void (^ SimpleResultBlock) (NSError *error);
 
-typedef enum{
-    InviteUserTypeMember = 1,
-    InviteUserTypeGuest = 2,    
-}InviteUserType;
 
-
-typedef enum{
-    GetGroupListTypeFollow = 1,
-    GetGroupListTypeNew = 2,
-    GetGroupListTypeBalance = 3,
-    GetGroupListTypeActive = 4,
-    GetGroupListTypeFame = 5,
-}GetGroupListType;
-
-
-typedef enum{
-    GroupNoticeTypeBulletin = 0,
-    GroupNoticeTypeRequest = 1,
-}GroupNoticeType;
 
 @interface GroupService : CommonService
 
@@ -85,6 +68,9 @@ typedef enum{
             reason:(NSString *)reason
            callback:(SimpleResultBlock)callback;
 
+- (void)quitGroup:(NSString *)groupId
+         callback:(SimpleResultBlock)callback;
+
 - (void)updateUser:(NSString *)userId
               role:(GroupRole)role
              title:(NSString *)title
@@ -109,12 +95,41 @@ typedef enum{
                level:(NSInteger)level
             callback:(SimpleResultBlock)callback;
 
+
+
+//new method
+- (void)syncFollowGroupIds;
+
+
+//notice service
 - (void)getGroupNoticeByType:(GroupNoticeType)type
                       offset:(NSInteger)offset
                        limit:(NSInteger)limit
                     callback:(ListResultBlock)callback;
 
+- (void)ignoreNotice:(NSString *)noticeId
+          noticeType:(NSInteger)type
+            callback:(SimpleResultBlock)callback;
 
-//new method
-- (void)syncFollowGroupIds;
+- (void)followTopic:(NSString *)topicId
+           callback:(SimpleResultBlock)callback;
+
+- (void)getFollowedTopicList:(NSInteger)offset
+                       limit:(NSInteger)limit
+                    callback:(ListResultBlock)callback;
+
+- (void)getTopicTimelineList:(NSInteger)offset
+                       limit:(NSInteger)limit
+                    callback:(ListResultBlock)callback;
+
+- (void)getRelationWithGroup:(NSString *)groupId
+                    callback:(RelationResultBlock)callback;
+
+- (PBGroup *)buildGroup:(PBGroup *)group
+           withRelation:(PBUserRelationWithGroup *)relation;
+
+
+- (PBGroup *)buildGroupWithDefaultRelation:(PBGroup *)group;
+
+
 @end

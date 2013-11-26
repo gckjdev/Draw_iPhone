@@ -226,6 +226,10 @@
     }
 }
 
+- (void)setCellInfo:(PBBBSPost *)post
+{
+    [self updateCellWithBBSPost:post];
+}
 
 
 - (void)dealloc {

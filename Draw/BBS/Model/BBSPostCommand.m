@@ -44,12 +44,20 @@
     [super dealloc];
 }
 
+- (BBSService *)bbsService
+{
+    if (self.forGroup) {
+        return [BBSService groupTopicService];
+    }
+    return [BBSService defaultService];
+}
+
 @end
 
 @implementation BBSPostSupportCommand
 -(void)excute{
     CHECK_AND_LOGIN(self.controller.view);
-    [[BBSService defaultService] createActionWithPostId:self.post.postId
+    [[self bbsService] createActionWithPostId:self.post.postId
                                                 PostUid:self.post.postUid
                                                postText:self.post.postText
                                            sourceAction:nil
@@ -81,13 +89,17 @@
 -(void)excute{
     CHECK_AND_LOGIN(self.controller.view);
 #ifdef DEBUG
-    [BBSActionListController showReplyActions:self.controller postId:self.post.postId postUserId:self.post.postUid sourceAction:nil];
-    return;
+    if (!self.forGroup) {
+        [BBSActionListController showReplyActions:self.controller postId:self.post.postId postUserId:self.post.postUid sourceAction:nil];
+        return;        
+    }
 #endif
 
-    [CreatePostController enterControllerWithSourecePost:self.post
+    CreatePostController *cpc = [CreatePostController enterControllerWithSourecePost:self.post
                                             sourceAction:nil
-                                          fromController:self.controller].delegate = self.controller;
+                                                                      fromController:self.controller];
+    cpc.delegate = self.controller;
+    cpc.forGroup = self.forGroup;
     
 }
 - (NSString *)name{
@@ -117,7 +129,7 @@
 {
     PBBBSBoard *board = [self.optionBoardList objectAtIndex:index];
     PPDebug(@"click At index = %d, board id = %@, board name = %@",index, board.boardId, board.name);
-    [[BBSService defaultService] editPost:self.post
+    [[self bbsService] editPost:self.post
                                   boardId:board.boardId
                                    status:self.post.status
                                      info:nil
@@ -186,7 +198,7 @@
     }
 
     
-    [[BBSService defaultService] editPost:self.post
+    [[self bbsService] editPost:self.post
                                   boardId:nil
                                    status:status
                                      info:nil
@@ -223,7 +235,7 @@
     if (self.post.marked) {
         [self.controller showActivityWithText:NSLS(@"kToUnmarking")];
         
-        [[BBSService defaultService] unmarkPost:self.post handler:^(NSInteger resultCode, PBBBSPost *editedPost) {
+        [[self bbsService] unmarkPost:self.post handler:^(NSInteger resultCode, PBBBSPost *editedPost) {
             [self.controller hideActivity];
             if (resultCode == 0) {
                 POSTMSG(NSLS(@"kUnmarkSuccess"));
@@ -236,7 +248,7 @@
     }else{
         
         [self.controller showActivityWithText:NSLS(@"kToMarking")];
-        [[BBSService defaultService] markPost:self.post handler:^(NSInteger resultCode, PBBBSPost *editedPost) {
+        [[self bbsService] markPost:self.post handler:^(NSInteger resultCode, PBBBSPost *editedPost) {
             [self.controller hideActivity];
             if (resultCode == 0) {
                 POSTMSG(NSLS(@"kMarkSuccess"));
@@ -275,7 +287,7 @@
 {
     if (buttonIndex == 1) {
         [self.controller showActivityWithText:NSLS(@"kDeleting")];
-        [[BBSService defaultService] deletePost:self.post delegate:self.controller];
+        [[self bbsService] deletePost:self.post delegate:self.controller];
     }
 }
 

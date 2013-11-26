@@ -76,7 +76,7 @@
 {
     
     if (self.delegate) {
-        if (button.isSelected) {
+        if (!button.isSelected) {
             //UNFollow
             if ([self.delegate respondsToSelector:@selector(groupCell:goFollowGroup:)]) {
                 [self.delegate groupCell:self goFollowGroup:_group];

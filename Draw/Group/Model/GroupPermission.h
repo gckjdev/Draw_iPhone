@@ -6,15 +6,49 @@
 //
 //
 
-#import "CommonService.h"
+#import "GroupConstants.h"
 
-typedef enum{
-    GroupRoleAdmin = 1,
-    GroupRoleUser = 2,
-    GroupRoleGuest = 3,
-    GroupRoleCreator = 4,
-}GroupRole;
+@class PBGroup;
+@class PBBBSPost;
+@class PBGroupUser;
 
-@interface GroupPermission : CommonService
+@interface GroupPermissionManager : NSObject
+
+@property(nonatomic, retain)PBGroup *group;
+//@property(nonatomic, copy) NSString *userId;
+
+//+ (id)managerWithUserId:(NSString *)userId group:(PBGroup *)group;
++ (id)myManagerWithGroup:(PBGroup *)group;
+
+- (BOOL)hasPermission:(GroupPermission)permission;
+
+//Group
+- (BOOL)canJoinGroup;
+- (BOOL)canAccessGroup;
+- (BOOL)canQuitGroup;
+- (BOOL)canGroupChat;
+
+//Topic
+- (BOOL)canCreateTopic;
+- (BOOL)canReplyTopic;
+- (BOOL)canDeleteTopic:(PBBBSPost *)post;
+
+//admin permission
+- (BOOL)canMarkTopic;
+- (BOOL)canTopTopic;
+- (BOOL)canHandleRequest;
+- (BOOL)canExpelUser:(PBGroupUser*)user;
+- (BOOL)canInviteUser;
+- (BOOL)canInviteGuest;
+- (BOOL)canCustomTitle;
+
+//Creator permission
+- (BOOL)canArrangeAdmin;
+- (BOOL)canArrangePermission;
+- (BOOL)canUpgradeGroup;
+- (BOOL)canDismissalGroup;
+
+//global permission
++ (BOOL)canCreateGroup;
 
 @end

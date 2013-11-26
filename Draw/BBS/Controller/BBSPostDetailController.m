@@ -15,6 +15,7 @@
 #import "BBSPermissionManager.h"
 #import "BBSBoardController.h"
 #import "BBSActionListController.h"
+#import "GroupManager.h"
 
 @interface BBSPostDetailController ()
 {
@@ -69,6 +70,20 @@ typedef enum{
     return [pd autorelease];
 }
 
++ (BBSPostDetailController *)enterPostDetailControllerWithPost:(PBBBSPost *)post
+                                                         group:(PBGroup *)group
+                                                fromController:(UIViewController *)fromController
+                                                      animated:(BOOL)animated
+{
+    BBSPostDetailController *pd = [[BBSPostDetailController alloc] init];
+    pd.post = post;
+    pd.postID = post.postId;
+    pd.group = group;
+    pd.forGroup = YES;
+    [fromController.navigationController pushViewController:pd animated:animated];
+    return [pd autorelease];
+}
+
 
 + (BBSPostDetailController *)enterPostDetailControllerWithPostID:(NSString *)postID
                                                   fromController:(UIViewController *)fromController
@@ -79,7 +94,6 @@ typedef enum{
     [fromController.navigationController pushViewController:pd animated:animated];
     return [pd autorelease];
 }
-
 
 
 - (void)dealloc
@@ -93,6 +107,7 @@ typedef enum{
     PPRelease(_toolBarBG);
     PPRelease(_header);
     PPRelease(_refreshButton);
+    PPRelease(_group);
     [super dealloc];
 }
 
@@ -123,31 +138,37 @@ typedef enum{
     NSMutableArray *list = [NSMutableArray array];
     BBSPermissionManager *pm = [BBSPermissionManager defaultManager];
     PBBBSPost *post = self.post;
-    if ([pm canWriteOnBBBoard:post.boardId]) {
-        BBSPostReplyCommand *rc = [[[BBSPostReplyCommand alloc] initWithPost:post controller:self] autorelease];
-        [list addObject:rc];
-        BBSPostSupportCommand *sc = [[[BBSPostSupportCommand alloc] initWithPost:post controller:self] autorelease];
-        [list addObject:sc];
+    if (!self.forGroup) {            
+        if ([pm canWriteOnBBBoard:post.boardId]) {
+            BBSPostReplyCommand *rc = [[[BBSPostReplyCommand alloc] initWithPost:post controller:self] autorelease];
+            [list addObject:rc];
+            BBSPostSupportCommand *sc = [[[BBSPostSupportCommand alloc] initWithPost:post controller:self] autorelease];
+            [list addObject:sc];
+        }
+        if ([pm canDeletePost:post onBBBoard:post.boardId]) {
+            BBSPostDeleteCommand *dc = [[[BBSPostDeleteCommand alloc] initWithPost:post controller:self] autorelease];
+            [list addObject:dc];
+        }
+        if ([pm canTransferPost:post fromBBBoard:post.boardId]) {
+            BBSPostTransferCommand *tc = [[[BBSPostTransferCommand alloc] initWithPost:post controller:self] autorelease];
+            [list addObject:tc];
+        }
+        if ([pm canTopPost:post onBBBoard:post.boardId]) {
+            BBSPostTopCommand *tc = [[[BBSPostTopCommand alloc] initWithPost:post controller:self] autorelease];
+            [list addObject:tc];
+        }
+        
+        if ([pm canMarkPost:post onBBBoard:post.boardId]) {
+            BBSPostMarkCommand *tc = [[[BBSPostMarkCommand alloc] initWithPost:post controller:self] autorelease];
+            [list addObject:tc];
+        }
+    }else{
+        list = [GroupManager getTopicCMDList:post inGroup:_group];
+        for (BBSPostCommand *cmd in list) {
+            cmd.controller = self;
+            cmd.forGroup = YES;
+        }
     }
-    if ([pm canDeletePost:post onBBBoard:post.boardId]) {
-        BBSPostDeleteCommand *dc = [[[BBSPostDeleteCommand alloc] initWithPost:post controller:self] autorelease];
-        [list addObject:dc];
-    }
-    if ([pm canTransferPost:post fromBBBoard:post.boardId]) {
-        BBSPostTransferCommand *tc = [[[BBSPostTransferCommand alloc] initWithPost:post controller:self] autorelease];
-        [list addObject:tc];
-    }
-    if ([pm canTopPost:post onBBBoard:post.boardId]) {
-        BBSPostTopCommand *tc = [[[BBSPostTopCommand alloc] initWithPost:post controller:self] autorelease];
-        [list addObject:tc];
-    }
-    
-    if ([pm canMarkPost:post onBBBoard:post.boardId]) {
-        BBSPostMarkCommand *tc = [[[BBSPostMarkCommand alloc] initWithPost:post controller:self] autorelease];
-        [list addObject:tc];
-    }
-
-    
     return list;
 }
 
@@ -196,7 +217,7 @@ typedef enum{
 {
     if (self.post == nil) {
         [self showActivityWithText:NSLS(@"kLoading")];
-        [[BBSService defaultService] getBBSPostWithPostId:self.postID delegate:self];
+        [[self bbsService] getBBSPostWithPostId:self.postID delegate:self];
     }
 }
 
@@ -276,7 +297,7 @@ typedef enum{
     
     TableTab *tab = [_tabManager tabForID:tabID];
     
-    [[BBSService defaultService] getBBSActionListWithPostId:self.postID
+    [[self bbsService] getBBSActionListWithPostId:self.postID
                                                  actionType:type
                                                      offset:tab.offset
                                                       limit:tab.limit
@@ -463,7 +484,7 @@ typedef enum{
     PBBBSAction *action = [self actionForIndexPath:indexPath];
     if ([self actionCanDelete:action]) {
         [self showActivityWithText:NSLS(@"kDeleting")];
-        [[BBSService defaultService] deleteActionWithActionId:action.actionId delegate:self];
+        [[self bbsService] deleteActionWithActionId:action.actionId delegate:self];
     }
 }
 
@@ -486,20 +507,24 @@ typedef enum{
 {
     CHECK_AND_LOGIN(self.view);
 #ifdef DEBUG
-    [BBSActionListController showReplyActions:self postId:self.post.postId postUserId:self.post.postUid sourceAction:action];
-    return;
+    if (!self.forGroup) {
+        [BBSActionListController showReplyActions:self postId:self.post.postId postUserId:self.post.postUid sourceAction:action];
+        return;        
+    }
 #endif
     
-    [CreatePostController enterControllerWithSourecePost:self.post
-                                            sourceAction:action
-                                          fromController:self].delegate = self;
+    CreatePostController *cpc = [CreatePostController enterControllerWithSourecePost:self.post
+                        sourceAction:action
+                    fromController:self];
+    cpc.delegate = self;
+    cpc.forGroup = self.forGroup;
     _selectedAction = nil;
 }
 - (void)didClickPayButtonWithAction:(PBBBSAction *)action
 {
     PPDebug(@"<didClickPayButtonWithAction>");
     _selectedAction = nil;
-    [[BBSService defaultService] payRewardWithPost:self.post
+    [[self bbsService] payRewardWithPost:self.post
                                             action:action
                                           delegate:self];
 }
@@ -598,11 +623,11 @@ typedef enum{
 - (void)updateViewWithPost:(PBBBSPost *)post
 {
     if (post) {
-        if ([[BBSManager defaultManager] replacePost:self.post withPost:post]) {
+        if([[BBSManager defaultManager] replacePost:self.post withPost:post]){
             self.post = post;
             [self.dataTableView reloadData];
             [self updateFooterView];
-        }        
+        }
     }
 }
 
