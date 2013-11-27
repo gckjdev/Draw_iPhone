@@ -23,7 +23,6 @@
 #import "UIImageView+WebCache.h"
 #import "UIViewUtils.h"
 #import "UIImageUtil.h"
-//#import "NameAndDescEditView.h"
 #import "UILabel+Extend.h"
 #import "VoiceTypeSelectView.h"
 #import "ImagePlayer.h"
@@ -40,6 +39,7 @@
 #import "TaskManager.h"
 #import "AccountManager.h"
 #import "UIImageUtil.h"
+#import "PECropViewController.h"
 
 #define GREEN_COLOR [UIColor colorWithRed:99/255.0 green:186/255.0 blue:152/255.0 alpha:1]
 #define WHITE_COLOR [UIColor whiteColor]
@@ -836,13 +836,29 @@ enum{
     if (_picker == nil) {
         self.picker = [[[ChangeAvatar alloc] init] autorelease];
         _picker.autoRoundRect = NO;
-//        _picker.userOriginalImage = YES;
+        _picker.userOriginalImage = YES;
     }
     
     [_picker showSelectionView:self];
 }
 
 - (void)didImageSelected:(UIImage*)image{
+    
+    [self performSelector:@selector(showImageEditor:) withObject:image afterDelay:0.5];
+}
+
+- (void)showImageEditor:(UIImage *)image{
+    
+    PECropViewController *vc = [[[PECropViewController alloc] init] autorelease];
+    vc.delegate = self;
+    vc.image = image;
+    
+    [self presentViewController:vc animated:YES completion:NULL];
+}
+
+- (void)cropViewController:(PECropViewController *)controller didFinishCroppingImage:(UIImage *)image{
+    
+    [controller dismissViewControllerAnimated:YES completion:NULL];
     
     if (image != nil) {
         PPDebug(@"image selected, image size = %@", NSStringFromCGSize(image.size));
@@ -861,6 +877,10 @@ enum{
         
         [pool drain];
     }
+}
+
+- (void)cropViewControllerDidCancel:(PECropViewController *)controller{
+    [controller dismissViewControllerAnimated:YES completion:NULL];
 }
 
 - (IBAction)clickBackButton:(id)sender {

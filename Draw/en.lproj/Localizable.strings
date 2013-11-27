@@ -1511,7 +1511,7 @@
 "kJailBrokenUserIAPTips" = "Your device is Jail-Broken. Please don't use any IAP cracker. Click OK to continue.";
 
 "kNoSaveList" = "Favorite information is not open to others.";
-
+"kEditImage" = "Edit Image";
 "kLearnDrawSortTypeOption" = "Sort By";
 "kSortedByTime" = "Newest";
 "kSortedByBoughtTimes" = "Sold";

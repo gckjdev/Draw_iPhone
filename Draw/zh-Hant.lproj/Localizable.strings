@@ -1495,6 +1495,8 @@
 "kDreamLockscreenSlider" = "滑動來解鎖";
 "kSetContactAvatarSucc" = "已經成功保存為通訊錄聯繫人頭像";
 
+"kEditImage" = "編輯圖片";
+
 //secure sms
 "kRegister" = "註冊";
 "kSecureSmsChat" = "聊天";

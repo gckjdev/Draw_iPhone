@@ -1502,6 +1502,8 @@
 "kPureDrawOpus" = "作品";
 "kPureDrawFeedback" = "反馈";
 
+"kEditImage" = "编辑图片";
+
 //photo draw
 "kPhotoDrawDraw" = "照片涂鸦";
 "kPhotoDrawShop" = "商店";
