@@ -150,19 +150,24 @@ static GroupService *_staticGroupService = nil;
 }
 
 
-#define HANDLE_TYPE_ACCEPT @(1)
-#define HANDLE_TYPE_REJECT @(2)
+#define HANDLE_TYPE_ACCEPT 1
+#define HANDLE_TYPE_REJECT 2
 
-- (void)acceptUser:(NSString *)uid
-             group:(NSString *)groupId
-          noticeId:(NSString *)noticeId
-          callback:(SimpleResultBlock)callback
+
+- (void)handleUserRequestNotice:(PBGroupNotice *)notice
+                         accept:(BOOL)accept
+                         reason:(NSString *)reason
+                       callback:(SimpleResultBlock)callback
 {
-    NSDictionary *paras = @{PARA_GROUPID:groupId,
-                            PARA_TARGETUSERID:uid,
-                            PARA_NOTICEID:noticeId,
-                            PARA_TYPE:HANDLE_TYPE_ACCEPT
-                            };
+    NSInteger type = accept?HANDLE_TYPE_ACCEPT:HANDLE_TYPE_REJECT;
+    NSMutableDictionary *paras = [NSMutableDictionary dictionary];
+    [paras setObject:notice.noticeId forKey:PARA_NOTICEID];
+    [paras setObject:@(type) forKey:PARA_TYPE];
+    
+
+    if (reason) {
+        [paras setObject:reason forKey:PARA_MESSAGETEXT];
+    }
     
     [self loadPBData:METHOD_HANDLE_JOIN_REQUEST
           parameters:paras
@@ -172,28 +177,6 @@ static GroupService *_staticGroupService = nil;
      }];
 }
 
-
-
-- (void)rejectUser:(NSString *)uid
-             group:(NSString *)groupId
-          noticeId:(NSString *)noticeId
-            reason:(NSString *)reason
-          callback:(SimpleResultBlock)callback
-{
-    NSDictionary *paras = @{PARA_GROUPID:groupId,
-                            PARA_TARGETUSERID:uid,
-                            PARA_NOTICEID:noticeId,
-                            PARA_DESC:reason,
-                            PARA_TYPE:HANDLE_TYPE_REJECT
-                            };
-    
-    [self loadPBData:METHOD_HANDLE_JOIN_REQUEST
-          parameters:paras
-            callback:^(DataQueryResponse *response, NSError *error )
-     {
-         EXECUTE_BLOCK(callback, error);
-     }];
-}
 
 - (void)inviteMembers:(NSArray *)uids
               groupId:(NSString *)groupId

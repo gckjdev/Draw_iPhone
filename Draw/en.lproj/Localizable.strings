@@ -984,6 +984,7 @@
 "kStatement" = "Statement";
 "kDecline" = "Decline";
 "kAccept" = "Accept";
+"kIgnore" = "Ignore";
 
 "kCoinsForFollowUs" = "+%d coins";
 "kFollowSinaWeibo" = "Follow us with Sina";
@@ -2100,6 +2101,10 @@
 "kContentDesc" = "Content: %@";
 "kPostscriptDesc" = "Postscript: %@";
 
+"kGroupComment" = "Comment";
+"kGroupRequest" = "Request";
+"kGroupNotice" = "Notice";
+"kAtMe" = "@Me";
 
 /*********************小吉画画国际化字符串开始 ************************/
 "kLittleGeeRecommend" = "Featured";

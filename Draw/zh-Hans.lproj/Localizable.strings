@@ -1010,6 +1010,7 @@
 "kStatement" = "比赛声明";
 "kDecline" = "拒绝";
 "kAccept" = "接受";
+"kIgnore" = "忽略";
 
 "kCoinsForFollowUs" = "+%d金币";
 "kFollowSinaWeibo" = "关注新浪官方微博";
@@ -2124,6 +2125,10 @@
 "kContentDesc" = "内容：%@";
 "kPostscriptDesc" = "附言：%@";
 
+"kGroupComment" = "评论";
+"kGroupRequest" = "请求";
+"kGroupNotice" = "通知";
+"kAtMe" = "@Me";
 
 /*********************小吉画画国际化字符串开始 ************************/
 "kLittleGeeRecommend" = "推荐";

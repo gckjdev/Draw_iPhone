@@ -21,6 +21,8 @@
     [self.timestamp setTextColor:COLOR_BROWN];
     [self.notice setNumberOfLines:0];
     [self.message setNumberOfLines:0];
+    [self.notice setLineBreakMode:NSLineBreakByCharWrapping];
+    [self.message setLineBreakMode:NSLineBreakByCharWrapping];
 }
 
 + (id)createCell:(id)delegate
@@ -45,7 +47,7 @@
     [self.notice setText:notice.desc];
     [self.message setText:notice.msg];
     [self.timestamp setText:notice.createDateString];
-    
+    [self.avatar setUser:notice.publisher];
     [self setNeedsLayout];
 }
 

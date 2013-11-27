@@ -10,6 +10,7 @@
 #import "GroupService.h"
 #import "GroupNoticeCell.h"
 #import "BBSUserActionCell.h"
+#import "BBSActionSheet.h"
 
 typedef enum{
     GroupComment = 100,
@@ -18,7 +19,10 @@ typedef enum{
 }TabID;
 
 @interface GroupNoticeController ()
-
+{
+    PBGroupNotice *_selectedNotice;
+    PBBBSAction *_selectedAction;
+}
 @end
 
 @implementation GroupNoticeController
@@ -36,7 +40,9 @@ typedef enum{
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
+    [self.titleView setTitle:NSLS(@"kAtMe")];
+    [self.titleView setTransparentStyle];
+    [self initTabButtons];
 }
 
 - (void)didReceiveMemoryWarning
@@ -77,9 +83,103 @@ typedef enum{
     return cell;
 }
 
+
+typedef enum{
+    NOTICE_OPTION_ACCEPT = 0,
+    NOTICE_OPTION_REJECT = 1,
+    NOTICE_OPTION_IGNORE = 2,
+    NOTICE_OPTION_CANCEL = 3,
+
+    COMMENT_OPTION_REPLY = 0,
+    COMMENT_OPTION_DETAIL = 1,
+    COMMENT_OPTION_CANCEL = 2,
+
+}OptionIndex;
+
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    TabID tabId = [self currentTabID];
     PPDebug(@"did select at row = %d", indexPath.row);
+    if (tabId == GroupRequest) {
+        _selectedNotice = [self tabDataList][indexPath.row];
+        NSArray *titles = @[NSLS(@"kAccept"),NSLS(@"kDecline"),NSLS(@"kIgnore"),NSLS(@"kCancel")];
+        
+        BBSActionSheet *sheet = [[BBSActionSheet alloc] initWithTitles:titles delegate:self];
+        [sheet showInView:self.view
+              showAtPoint:self.view.center
+                 animated:YES];
+        [sheet release];
+    }else if(tabId == GroupComment){
+        _selectedAction = [self tabDataList][indexPath.row];
+        //TODO show action option
+    }
+}
+
+- (void)removeNoticeFromTable:(PBGroupNotice *)notice
+{
+    if(notice == nil){
+        PPDebug(@"<removeNoticeFromTable> but notice is null");
+        return;
+    }
+    
+    NSInteger row = [self.tabDataList indexOfObject:notice];
+    if (row == NSNotFound) {
+        PPDebug(@"tab is changed.");
+        return;
+    }
+    [self.tabDataList removeObject:notice];
+
+    PPDebug(@"<removeNoticeFromTable> notice id = %@, row = %d", notice.noticeId, row);
+    NSIndexPath *path = [NSIndexPath indexPathForRow:row inSection:0];
+    [self.dataTableView deleteRowsAtIndexPaths:@[path] withRowAnimation:UITableViewRowAnimationFade];
+    
+}
+
+- (void)ignoreNotice:(PBGroupNotice *)notice
+{
+    [self showActivityWithText:NSLS(@"kIgnoring")];
+    [[GroupService defaultService] ignoreNotice:notice.noticeId noticeType:notice.type callback:^(NSError *error) {
+        [self hideActivity];
+        if (!error) {
+            [self removeNoticeFromTable:notice];
+        }
+    }];
+}
+
+- (void)handleRequestNotice:(PBGroupNotice *)notice accept:(BOOL)accpet
+{
+    if (notice == nil) {
+        PPDebug(@"<handleRequestNotice> error!! notice is nil");
+        return;
+    }
+    NSString *showTitle = (accpet ? NSLS(@"kAccepting") : NSLS(@"kRejecting"));    
+    [self showActivityWithText:showTitle];
+    [[GroupService defaultService] handleUserRequestNotice:notice accept:accpet reason:nil callback:^(NSError *error) {
+        [self hideActivity];
+        if (!error) {
+            [self removeNoticeFromTable:notice];
+        }
+    }];
+}
+
+- (void)optionView:(BBSOptionView *)optionView didSelectedButtonIndex:(NSInteger)index
+{
+    TabID tabId = [self currentTabID];
+    if (tabId == GroupRequest) {
+        if (index == NOTICE_OPTION_ACCEPT || index == NOTICE_OPTION_REJECT) {
+            BOOL accept = (index == NOTICE_OPTION_ACCEPT);
+            [self handleRequestNotice:_selectedNotice accept:accept];
+        }else if (index == NOTICE_OPTION_IGNORE) {
+            [self ignoreNotice:_selectedNotice];
+        }else{
+            //do nothing
+        }
+        _selectedNotice = nil;
+
+    }else if(tabId == GroupComment){
+        
+        _selectedAction = nil;
+    }
 }
 
 - (NSInteger)tabCount
@@ -101,7 +201,7 @@ typedef enum{
 }
 - (NSString *)tabTitleforIndex:(NSInteger)index
 {
-    NSArray *titles = @[NSLS(@"kGroupComment"),NSLS(@"GroupRequest"),NSLS(@"GroupNotice")];
+    NSArray *titles = @[NSLS(@"kGroupComment"),NSLS(@"kGroupRequest"),NSLS(@"kGroupNotice")];
     return titles[index];
 }
 - (void)serviceLoadDataForTabID:(NSInteger)tabID

@@ -77,6 +77,7 @@ typedef enum{
 //used by the sub class.
 - (NSMutableArray *)tabDataList;
 - (TableTab *)currentTab;
+- (NSInteger)currentTabID;
 - (UIButton *)currentTabButton;
 - (UIButton *)tabButtonWithTabID:(NSInteger)tabID;
 - (void)startToLoadDataForTabID:(NSInteger)tabID;

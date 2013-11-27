@@ -77,7 +77,7 @@ typedef enum {
     if ([permissonManager canJoinGroup]) {
         //TODO join it
         [self showActivityWithText:NSLS(@"kJoining")];
-        [groupService joinGroup:_group.groupId message:@"let me in!!" callback:^(NSError *error) {
+        [groupService joinGroup:_group.groupId message:nil callback:^(NSError *error) {
             [self hideActivity];
             if (!error) {
                 POSTMSG(NSLS(@"kSentRequest"));

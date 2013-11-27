@@ -7,7 +7,8 @@
 //
 
 #import "BBSController.h"
+#import "BBSOptionView.h"
 
-@interface GroupNoticeController : BBSController
+@interface GroupNoticeController : BBSController<BBSOptionViewDelegate>
 
 @end

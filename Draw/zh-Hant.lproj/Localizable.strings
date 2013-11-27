@@ -1001,6 +1001,7 @@
 "kStatement" = "比賽聲明";
 "kDecline" = "拒絕";
 "kAccept" = "接受";
+"kIgnore" = "忽略";
 
 "kCoinsForFollowUs" = "+%d金幣";
 "kFollowSinaWeibo" = "關注新浪​​官方微博";
@@ -2116,6 +2117,11 @@
 "kShareByEmailSuccess" = "郵件分享成功";
 
 "kJoinGameError" = "無法加入房間，可能房間已滿或正在遊戲，可點擊右下角的［​​快速加入］按鈕加入某個空閒的房間";
+
+"kGroupComment" = "評論";
+"kGroupRequest" = "請求";
+"kGroupNotice" = "通知";
+"kAtMe" = "@Me";
 
 /*********************小吉画画国际化字符串开始 ************************/
 "kLittleGeeRecommend" = "推薦";

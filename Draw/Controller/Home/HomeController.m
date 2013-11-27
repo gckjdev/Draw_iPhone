@@ -669,7 +669,6 @@ static NSDictionary* DRAW_MENU_IMAGE_DICT = nil;
         }
             break;
         case HomeMenuTypeDrawContest:
-           /*
 #ifdef DEBUG
         {
             GroupHomeController *gc = [[GroupHomeController alloc] init];
@@ -678,7 +677,7 @@ static NSDictionary* DRAW_MENU_IMAGE_DICT = nil;
             break;
         }
 #endif
-            */
+            
         {
             [[AnalyticsManager sharedAnalyticsManager] reportClickHomeMenu:HOME_ACTION_CONTEST];
             

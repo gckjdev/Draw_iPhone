@@ -37,21 +37,15 @@ typedef void (^ SimpleResultBlock) (NSError *error);
                  callback:(ListResultBlock)callback;
 
 
-
 - (void)joinGroup:(NSString *)groupId
           message:(NSString *)message
          callback:(SimpleResultBlock)callback;
 
-- (void)acceptUser:(NSString *)uid
-             group:(NSString *)groupId
-          noticeId:(NSString *)noticeId
-          callback:(SimpleResultBlock)callback;
 
-- (void)rejectUser:(NSString *)uid
-             group:(NSString *)groupId
-          noticeId:(NSString *)noticeId
-             reason:(NSString *)reason
-          callback:(SimpleResultBlock)callback;
+- (void)handleUserRequestNotice:(PBGroupNotice *)notice
+                         accept:(BOOL)accept
+                         reason:(NSString *)reason
+                       callback:(SimpleResultBlock)callback;
 
 - (void)inviteMembers:(NSArray *)uids
               groupId:(NSString *)groupId
