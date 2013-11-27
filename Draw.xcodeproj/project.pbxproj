@@ -3010,6 +3010,10 @@
 		A4F04B9A18068467007274BE /* beep-timber.aif in Resources */ = {isa = PBXBuildFile; fileRef = A4F04B9618068466007274BE /* beep-timber.aif */; };
 		A4F04B9B18068467007274BE /* beep-timber.aif in Resources */ = {isa = PBXBuildFile; fileRef = A4F04B9618068466007274BE /* beep-timber.aif */; };
 		A4F04B9C18068467007274BE /* beep-timber.aif in Resources */ = {isa = PBXBuildFile; fileRef = A4F04B9618068466007274BE /* beep-timber.aif */; };
+		A4FEE3B41845BC3A009EC583 /* PEPhotoCropEditor.bundle in Resources */ = {isa = PBXBuildFile; fileRef = A4FEE3B31845BC3A009EC583 /* PEPhotoCropEditor.bundle */; };
+		A4FEE3B51845BC3A009EC583 /* PEPhotoCropEditor.bundle in Resources */ = {isa = PBXBuildFile; fileRef = A4FEE3B31845BC3A009EC583 /* PEPhotoCropEditor.bundle */; };
+		A4FEE3B61845BC3A009EC583 /* PEPhotoCropEditor.bundle in Resources */ = {isa = PBXBuildFile; fileRef = A4FEE3B31845BC3A009EC583 /* PEPhotoCropEditor.bundle */; };
+		A4FEE3B71845BC3A009EC583 /* PEPhotoCropEditor.bundle in Resources */ = {isa = PBXBuildFile; fileRef = A4FEE3B31845BC3A009EC583 /* PEPhotoCropEditor.bundle */; };
 		C2002CD9172CE4F200FD6AE1 /* libYouMi.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C2002C62172CE4F000FD6AE1 /* libYouMi.a */; };
 		C203C47716F309A50028A065 /* RoundPercentageView.m in Sources */ = {isa = PBXBuildFile; fileRef = C203C47616F309A50028A065 /* RoundPercentageView.m */; };
 		C2051B561739E15E00403DBD /* LittleGeeHomeController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2051B471739E15E00403DBD /* LittleGeeHomeController.xib */; };
@@ -8221,6 +8225,7 @@
 		A4F04B8E180680D1007274BE /* tap-warm.aif */ = {isa = PBXFileReference; lastKnownFileType = file; path = "tap-warm.aif"; sourceTree = "<group>"; };
 		A4F04B9518068465007274BE /* beep-shinymetal.aif */ = {isa = PBXFileReference; lastKnownFileType = file; path = "beep-shinymetal.aif"; sourceTree = "<group>"; };
 		A4F04B9618068466007274BE /* beep-timber.aif */ = {isa = PBXFileReference; lastKnownFileType = file; path = "beep-timber.aif"; sourceTree = "<group>"; };
+		A4FEE3B31845BC3A009EC583 /* PEPhotoCropEditor.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = PEPhotoCropEditor.bundle; sourceTree = "<group>"; };
 		C2002C5A172CE4F000FD6AE1 /* YouMiConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YouMiConfig.h; sourceTree = "<group>"; };
 		C2002C5B172CE4F000FD6AE1 /* YouMiDelegateProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YouMiDelegateProtocol.h; sourceTree = "<group>"; };
 		C2002C5C172CE4F000FD6AE1 /* YouMiSpot.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YouMiSpot.h; sourceTree = "<group>"; };
@@ -11124,6 +11129,7 @@
 		A48EF0F31844A3F7008687DB /* PEPhotoCropEditor */ = {
 			isa = PBXGroup;
 			children = (
+				A4FEE3B21845BC3A009EC583 /* Resources */,
 				A48EF0F71844A3F7008687DB /* PECropRectView.h */,
 				A48EF0F81844A3F7008687DB /* PECropRectView.m */,
 				A48EF0F91844A3F7008687DB /* PECropView.h */,
@@ -12247,6 +12253,14 @@
 				A4B78A8517A0464C0008E21B /* PageScrollViewFactory.m */,
 			);
 			path = PageScrollView;
+			sourceTree = "<group>";
+		};
+		A4FEE3B21845BC3A009EC583 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				A4FEE3B31845BC3A009EC583 /* PEPhotoCropEditor.bundle */,
+			);
+			path = Resources;
 			sourceTree = "<group>";
 		};
 		C2002C4C172CE4F000FD6AE1 /* YoumiSDK */ = {
@@ -18350,6 +18364,7 @@
 				EAA8D12018443CE200B3720B /* SearchController~ipad.xib in Resources */,
 				EA7EFC6618458D270004793C /* GroupNoticeCell.xib in Resources */,
 				EA7EFC7418458D370004793C /* GroupNoticeController.xib in Resources */,
+				A4FEE3B61845BC3A009EC583 /* PEPhotoCropEditor.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -19322,6 +19337,7 @@
 				EAA8D11F18443CE200B3720B /* SearchController~ipad.xib in Resources */,
 				EA7EFC6518458D270004793C /* GroupNoticeCell.xib in Resources */,
 				EA7EFC7318458D370004793C /* GroupNoticeController.xib in Resources */,
+				A4FEE3B51845BC3A009EC583 /* PEPhotoCropEditor.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -20277,6 +20293,7 @@
 				EAA8D11E18443CE200B3720B /* SearchController~ipad.xib in Resources */,
 				EA7EFC6418458D270004793C /* GroupNoticeCell.xib in Resources */,
 				EA7EFC7218458D370004793C /* GroupNoticeController.xib in Resources */,
+				A4FEE3B41845BC3A009EC583 /* PEPhotoCropEditor.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -21186,6 +21203,7 @@
 				EAA8D12118443CE200B3720B /* SearchController~ipad.xib in Resources */,
 				EA7EFC6718458D270004793C /* GroupNoticeCell.xib in Resources */,
 				EA7EFC7518458D370004793C /* GroupNoticeController.xib in Resources */,
+				A4FEE3B71845BC3A009EC583 /* PEPhotoCropEditor.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
