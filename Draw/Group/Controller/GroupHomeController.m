@@ -14,7 +14,8 @@
 #import "GroupTopicController.h"
 #import "CreateGroupController.h"
 #import "BBSPostCell.h"
-
+#import "GroupNoticeController.h"
+#import "SearchPostController.h"
 
 @interface GroupHomeController ()
 {
@@ -266,14 +267,22 @@
         }
 
          case GroupSearchGroup:
-            
+        {
+            SearchPostController *spc = [[SearchPostController alloc] init];
+            spc.forGroup = YES;
+            [self.navigationController pushViewController:spc animated:YES];
+            [spc release];
             break;
-            
+        }
          case GroupChat:
             
             break;
          case GroupAtMe:
-            
+        {
+            GroupNoticeController *gnc = [[GroupNoticeController alloc] init];
+            [self.navigationController pushViewController:gnc animated:YES];
+            [gnc release];
+        }
             break;
         default:
             break;

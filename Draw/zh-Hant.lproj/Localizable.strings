@@ -1028,6 +1028,7 @@
 "kSummaryOfContestComment" = "回复%@的評論: %@";
 
 "kMe" = "我";
+"kI" = "我";
 "kSendMeFlower" = "给我赠送了一朵鲜花！";
 "kThrowMeTomato" = "给我丢了个番茄！";
 
@@ -2103,6 +2104,16 @@
 "kGroupUpgradeSmall" = "家族只能升級不能降級。";
 "kGroupNameIsEmpty" = "家族名字不能為空。";
 "kGroupNameTooLong" = "家族名字不能長於16個字符。";
+
+"kGroup" = "家族";
+"kGroupBulletinDesc" = "%@ 在 %@ 中發布了公告。";
+"kGroupJoinDesc" = "%@ 申請加入 %@";
+"kGroupExpelDesc" = "%@ 將 %@ 踢出了 %@";
+"kGroupQuitDesc" = "%@ 退出了 %@";
+"kGroupAcceptDesc" = "%@ 同意 %@ 加入 %@";
+"kGroupRejectDesc" = "%@ 拒絕 %@ 加入 %@";
+"kContentDesc" = "內容：%@";
+"kPostscriptDesc" = "附言：%@";
 
 "kShareByEmailSuccess" = "郵件分享成功";
 

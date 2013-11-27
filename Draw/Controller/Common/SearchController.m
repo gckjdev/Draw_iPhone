@@ -70,7 +70,7 @@ typedef enum{
     [super dealloc];
 }
 
-#define TABLE_HEIGHT_HISTORY (ISIPAD? 400 : 130)
+#define TABLE_HEIGHT_HISTORY (ISIPAD? 450 : 130)
 #define TABLE_HEIGHT_RESULT (CGRectGetHeight(self.view.bounds)-CGRectGetMinY(self.dataTableView.bounds))
 
 

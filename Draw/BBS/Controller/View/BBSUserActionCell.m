@@ -223,6 +223,10 @@
     [self updateContentWithAction:action];
     [[self timestamp] setText:action.createDateString];
 }
+- (void)setCellInfo:(PBBBSAction *)action
+{
+    [self updateCellWithBBSAction:action];
+}
 
 
 #pragma mark - action delegate

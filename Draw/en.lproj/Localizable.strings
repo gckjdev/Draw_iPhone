@@ -1946,6 +1946,7 @@
 "kSearchEmpty" = "No matched room";
 "kNoFriendRoom" = "No friend online";
 "kMe" = "Me";
+"kI" = "I";
 "kSendMeFlower" = "Send me a flower";
 "kThrowMeTomato" = "Throw me a tomato";
 "kCommentMyOpus" = "Comment my opus.";
@@ -2088,6 +2089,17 @@
 "kGroupUpgradeSmall" = "The level should be larger than the original level.";
 "kGroupNameIsEmpty" = "The group name is empty.";
 "kGroupNameTooLong" = "The group name length should be less than 16";
+
+"kGroup" = "Group";
+"kGroupBulletinDesc" = "%@ posted a notice in %@ .";
+"kGroupJoinDesc" = "%@ applied to join %@";
+"kGroupExpelDesc" = "%@ drived %@ out of %@";
+"kGroupQuitDesc" = "%@ quit %@";
+"kGroupAcceptDesc" = "%@ accepted %@ into %@";
+"kGroupRejectDesc" = "%@ rejected %@ to join %@";
+"kContentDesc" = "Content: %@";
+"kPostscriptDesc" = "Postscript: %@";
+
 
 /*********************小吉画画国际化字符串开始 ************************/
 "kLittleGeeRecommend" = "Featured";
