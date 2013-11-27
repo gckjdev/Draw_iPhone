@@ -8,18 +8,23 @@
 
 #import "GroupManager.h"
 #import "BBSPostCommand.h"
+#import "Group.pb.h"
 
 static GroupManager *_staticGroupManager = nil;
 
 @interface GroupManager()
+@property (nonatomic, retain)NSMutableDictionary *collectionDict;
 
 @end
+
+
 
 @implementation GroupManager
 
 - (void)dealloc
 {
     PPRelease(_followedGroupIds);
+    PPRelease(_collectionDict);
 //    PPRelease(_tempPostList);
     [super dealloc];
 }
@@ -29,6 +34,7 @@ static GroupManager *_staticGroupManager = nil;
     self = [super init];
     if (self) {
         self.followedGroupIds = [NSMutableArray array];
+        self.collectionDict = [NSMutableDictionary dictionary];
     }
     return self;
 }
@@ -110,6 +116,27 @@ static GroupManager *_staticGroupManager = nil;
     }
 
     return list;
+}
+
+- (void)collectGroup:(PBGroup *)group
+{
+    //only collect the group having relation with current user.
+    if (group.hasRelation) {
+        [self.collectionDict setObject:group forKey:group.groupId];
+        PPDebug(@"<collectGroup> group id = %@, name = %@", group.groupId, group.name);
+    }
+}
+
+- (PBGroup *)findGroupById:(NSString *)groupId
+{
+    return [self.collectionDict objectForKey:groupId];
+}
+
+- (void)collectGroups:(NSArray *)groups
+{
+    for (PBGroup *group in groups) {
+        [self collectGroup:group];
+    }
 }
 
 @end

@@ -76,6 +76,13 @@ static GroupService *_staticGroupService = nil;
                     [DrawError postError:error];
                 }
 
+                if ([output.pbResponse hasGroup]) {
+                    [[GroupManager defaultManager] collectGroup:output.pbResponse.group];
+                }
+                if ([output.pbResponse.groupListList count] != 0) {
+                    [[GroupManager defaultManager] collectGroups:output.pbResponse.groupListList];
+                }
+                
                 EXECUTE_BLOCK(callback, output.pbResponse, error);
             });
         });
@@ -442,7 +449,9 @@ static GroupService *_staticGroupService = nil;
 {
     PBGroup_Builder *builder = [PBGroup builderWithPrototype:group];
     [builder setRelation:relation];
-    return [builder build];
+    PBGroup *retGroup = [builder build];
+    [[GroupManager defaultManager] collectGroup:retGroup];
+    return retGroup;
 }
 
 - (PBGroup *)buildGroupWithDefaultRelation:(PBGroup *)group

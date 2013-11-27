@@ -35,7 +35,7 @@
 @property (retain, nonatomic) IBOutlet UIButton *refreshButton;
 
 @property (retain, nonatomic) NSString *postID;
-
+@property (retain, nonatomic) GroupPermissionManager *grpPermissionManager;
 @end
 
 typedef enum{
@@ -108,6 +108,7 @@ typedef enum{
     PPRelease(_header);
     PPRelease(_refreshButton);
     PPRelease(_group);
+    PPRelease(_grpPermissionManager);
     [super dealloc];
 }
 
@@ -238,6 +239,16 @@ typedef enum{
     }
 }
 
+- (void)initGroupData
+{
+    if (self.forGroup) {
+        if (self.group == nil) {
+            self.group = [[GroupManager defaultManager] findGroupById:self.post.boardId];
+        }
+        self.grpPermissionManager = [GroupPermissionManager myManagerWithGroup:_group];
+    }
+}
+
 - (void)viewDidLoad
 {
     [self setPullRefreshType:PullRefreshTypeFooter];
@@ -247,7 +258,8 @@ typedef enum{
     }
     [self initViews];
     [self loadPost];
-    
+
+    [self initGroupData];
 //    self.adView = [[AdService defaultService] createAdInView:self
 //                                                       frame:CGRectMake(0, self.view.bounds.size.height-50, 320, 50)
 //                                                   iPadFrame:CGRectMake((self.view.bounds.size.width-320)/2, self.view.bounds.size.height-100, 320, 50)
@@ -459,6 +471,10 @@ typedef enum{
 
 - (BOOL)actionCanDelete:(PBBBSAction *)action
 {
+    if (self.forGroup) {
+        return [self.grpPermissionManager canDeleteAction:action];
+        return NO;
+    }
     return  action && (action.canDelete || [[BBSPermissionManager defaultManager] canDeletePost:self.post onBBBoard:self.post.boardId]);
 }
 

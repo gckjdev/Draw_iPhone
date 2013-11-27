@@ -66,6 +66,11 @@
     return PERMIT(DELETE_TOPIC) || [post isMyPost];
 }
 
+- (BOOL)canDeleteAction:(PBBBSAction *)action
+{
+    return PERMIT(DELETE_TOPIC) || [action isMyAction];
+}
+
 //admin permission
 - (BOOL)canMarkTopic
 {

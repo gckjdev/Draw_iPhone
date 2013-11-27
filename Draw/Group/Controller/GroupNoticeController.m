@@ -11,6 +11,8 @@
 #import "GroupNoticeCell.h"
 #import "BBSUserActionCell.h"
 #import "BBSActionSheet.h"
+#import "CreatePostController.h"
+#import "BBSPostDetailController.h"
 
 typedef enum{
     GroupComment = 100,
@@ -111,7 +113,9 @@ typedef enum{
         [sheet release];
     }else if(tabId == GroupComment){
         _selectedAction = [self tabDataList][indexPath.row];
-        //TODO show action option
+        NSArray *titles = [NSArray arrayWithObjects:NSLS(@"kReply"),NSLS(@"kPostDetail"),NSLS(@"kCancel"), nil];
+        BBSActionSheet *actionSheet = [[BBSActionSheet alloc] initWithTitles:titles delegate:self];
+        [actionSheet showInView:self.view showAtPoint:self.view.center animated:YES];
     }
 }
 
@@ -178,9 +182,71 @@ typedef enum{
 
     }else if(tabId == GroupComment){
         
+        switch (index) {
+            case COMMENT_OPTION_REPLY:
+            {                
+                NSString *postId = _selectedAction.source.postId;
+                NSString *postUid = _selectedAction.source.postUid;
+                CreatePostController*cpc = [CreatePostController
+                                            enterControllerWithSourecePostId:postId
+                                                                     postUid:postUid
+                                                                    postText:nil
+                                                                sourceAction:_selectedAction
+                                                              fromController:self];
+                cpc.forGroup = YES;
+                break;
+            }
+            case COMMENT_OPTION_DETAIL:
+            {
+                [self showActivityWithText:NSLS(@"kLoading")];
+                NSString *postId = _selectedAction.source.postId;
+                [[self bbsService] getBBSPostWithPostId:postId delegate:self];
+            }
+                break;
+            default:
+                break;
+        }
+        
         _selectedAction = nil;
     }
 }
+
+- (void)didGetBBSPost:(PBBBSPost *)post
+               postId:(NSString *)postId
+           resultCode:(NSInteger)resultCode
+{
+    [self hideActivity];
+    if (resultCode == 0) {
+        //TODO get the correct group
+        PBGroup *group = [[GroupManager defaultManager] findGroupById:post.boardId];
+        [BBSPostDetailController enterPostDetailControllerWithPost:post group:group fromController:self animated:YES];
+    }else{
+        
+    }
+}
+
+
+- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return self.currentTabID == GroupNotice;
+}
+
+- (UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return UITableViewCellEditingStyleDelete;
+}
+- (NSString *)tableView:(UITableView *)tableView titleForDeleteConfirmationButtonForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return NSLS(@"kIgnore");
+}
+
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    PBGroupNotice *notice = self.tabDataList[indexPath.row];
+    [self ignoreNotice:notice];
+}
+
+
 
 - (NSInteger)tabCount
 {
@@ -255,5 +321,6 @@ typedef enum{
         [self failLoadDataForTabID:GroupComment];
     }
 }
+
 
 @end

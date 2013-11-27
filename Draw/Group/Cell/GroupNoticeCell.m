@@ -72,6 +72,7 @@
 
 - (void)layoutSubviews
 {
+    [super layoutSubviews];
     CGSize noticeSize = [self sizeForLabel:self.notice];
     CGSize messageSize = [self sizeForLabel:self.message];
 

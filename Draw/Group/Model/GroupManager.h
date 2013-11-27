@@ -28,4 +28,7 @@
 
 + (NSMutableArray *)getTopicCMDList:(PBBBSPost *)post inGroup:(PBGroup *)group;
 
+- (void)collectGroup:(PBGroup *)group;
+- (void)collectGroups:(NSArray *)groups;
+- (PBGroup *)findGroupById:(NSString *)groupId;
 @end
