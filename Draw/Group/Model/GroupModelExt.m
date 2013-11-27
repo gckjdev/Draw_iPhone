@@ -7,6 +7,8 @@
 //
 
 #import "GroupModelExt.h"
+#import "TimeUtils.h"
+
 
 typedef enum{
     TypeBulletin = 0,

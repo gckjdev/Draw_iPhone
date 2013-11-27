@@ -44,10 +44,12 @@ typedef void (^ SimpleResultBlock) (NSError *error);
 
 - (void)acceptUser:(NSString *)uid
              group:(NSString *)groupId
+          noticeId:(NSString *)noticeId
           callback:(SimpleResultBlock)callback;
 
 - (void)rejectUser:(NSString *)uid
              group:(NSString *)groupId
+          noticeId:(NSString *)noticeId
              reason:(NSString *)reason
           callback:(SimpleResultBlock)callback;
 

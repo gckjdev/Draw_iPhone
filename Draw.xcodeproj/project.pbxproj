@@ -7021,6 +7021,26 @@
 		EA7203B9180E9ABD00F0F1C2 /* draw_home_painter@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EA7203B5180E9ABD00F0F1C2 /* draw_home_painter@2x.png */; };
 		EA72B4C1162026480022D82D /* UserAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = EA72B4C0162026480022D82D /* UserAnnotation.m */; };
 		EA72B4C3162028260022D82D /* UserLocationController.m in Sources */ = {isa = PBXBuildFile; fileRef = EA72B4C2162028260022D82D /* UserLocationController.m */; };
+		EA7EFC6018458D270004793C /* GroupNoticeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EA7EFC5E18458D270004793C /* GroupNoticeCell.m */; };
+		EA7EFC6118458D270004793C /* GroupNoticeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EA7EFC5E18458D270004793C /* GroupNoticeCell.m */; };
+		EA7EFC6218458D270004793C /* GroupNoticeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EA7EFC5E18458D270004793C /* GroupNoticeCell.m */; };
+		EA7EFC6318458D270004793C /* GroupNoticeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EA7EFC5E18458D270004793C /* GroupNoticeCell.m */; };
+		EA7EFC6418458D270004793C /* GroupNoticeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA7EFC5F18458D270004793C /* GroupNoticeCell.xib */; };
+		EA7EFC6518458D270004793C /* GroupNoticeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA7EFC5F18458D270004793C /* GroupNoticeCell.xib */; };
+		EA7EFC6618458D270004793C /* GroupNoticeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA7EFC5F18458D270004793C /* GroupNoticeCell.xib */; };
+		EA7EFC6718458D270004793C /* GroupNoticeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA7EFC5F18458D270004793C /* GroupNoticeCell.xib */; };
+		EA7EFC6E18458D370004793C /* GroupNoticeController.m in Sources */ = {isa = PBXBuildFile; fileRef = EA7EFC6C18458D370004793C /* GroupNoticeController.m */; };
+		EA7EFC6F18458D370004793C /* GroupNoticeController.m in Sources */ = {isa = PBXBuildFile; fileRef = EA7EFC6C18458D370004793C /* GroupNoticeController.m */; };
+		EA7EFC7018458D370004793C /* GroupNoticeController.m in Sources */ = {isa = PBXBuildFile; fileRef = EA7EFC6C18458D370004793C /* GroupNoticeController.m */; };
+		EA7EFC7118458D370004793C /* GroupNoticeController.m in Sources */ = {isa = PBXBuildFile; fileRef = EA7EFC6C18458D370004793C /* GroupNoticeController.m */; };
+		EA7EFC7218458D370004793C /* GroupNoticeController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA7EFC6D18458D370004793C /* GroupNoticeController.xib */; };
+		EA7EFC7318458D370004793C /* GroupNoticeController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA7EFC6D18458D370004793C /* GroupNoticeController.xib */; };
+		EA7EFC7418458D370004793C /* GroupNoticeController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA7EFC6D18458D370004793C /* GroupNoticeController.xib */; };
+		EA7EFC7518458D370004793C /* GroupNoticeController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA7EFC6D18458D370004793C /* GroupNoticeController.xib */; };
+		EA7EFC7818458D430004793C /* GroupModelExt.m in Sources */ = {isa = PBXBuildFile; fileRef = EA7EFC7718458D430004793C /* GroupModelExt.m */; };
+		EA7EFC7918458D430004793C /* GroupModelExt.m in Sources */ = {isa = PBXBuildFile; fileRef = EA7EFC7718458D430004793C /* GroupModelExt.m */; };
+		EA7EFC7A18458D430004793C /* GroupModelExt.m in Sources */ = {isa = PBXBuildFile; fileRef = EA7EFC7718458D430004793C /* GroupModelExt.m */; };
+		EA7EFC7B18458D430004793C /* GroupModelExt.m in Sources */ = {isa = PBXBuildFile; fileRef = EA7EFC7718458D430004793C /* GroupModelExt.m */; };
 		EA8500DC1807A0430000DE3E /* ShareUIManager.m in Sources */ = {isa = PBXBuildFile; fileRef = EA8500DB1807A0430000DE3E /* ShareUIManager.m */; };
 		EA8500DD1807A0430000DE3E /* ShareUIManager.m in Sources */ = {isa = PBXBuildFile; fileRef = EA8500DB1807A0430000DE3E /* ShareUIManager.m */; };
 		EA8500DE1807A0430000DE3E /* ShareUIManager.m in Sources */ = {isa = PBXBuildFile; fileRef = EA8500DB1807A0430000DE3E /* ShareUIManager.m */; };
@@ -10115,6 +10135,14 @@
 		EA72B4BF162026480022D82D /* UserAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserAnnotation.h; sourceTree = "<group>"; };
 		EA72B4C0162026480022D82D /* UserAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserAnnotation.m; sourceTree = "<group>"; };
 		EA72B4C2162028260022D82D /* UserLocationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserLocationController.m; sourceTree = "<group>"; };
+		EA7EFC5D18458D270004793C /* GroupNoticeCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GroupNoticeCell.h; sourceTree = "<group>"; };
+		EA7EFC5E18458D270004793C /* GroupNoticeCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GroupNoticeCell.m; sourceTree = "<group>"; };
+		EA7EFC5F18458D270004793C /* GroupNoticeCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GroupNoticeCell.xib; sourceTree = "<group>"; };
+		EA7EFC6B18458D370004793C /* GroupNoticeController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GroupNoticeController.h; sourceTree = "<group>"; };
+		EA7EFC6C18458D370004793C /* GroupNoticeController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GroupNoticeController.m; sourceTree = "<group>"; };
+		EA7EFC6D18458D370004793C /* GroupNoticeController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GroupNoticeController.xib; sourceTree = "<group>"; };
+		EA7EFC7618458D430004793C /* GroupModelExt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GroupModelExt.h; sourceTree = "<group>"; };
+		EA7EFC7718458D430004793C /* GroupModelExt.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GroupModelExt.m; sourceTree = "<group>"; };
 		EA8500DA1807A0420000DE3E /* ShareUIManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShareUIManager.h; sourceTree = "<group>"; };
 		EA8500DB1807A0430000DE3E /* ShareUIManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShareUIManager.m; sourceTree = "<group>"; };
 		EA8CADDF18288CAF003149FE /* GroupService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GroupService.h; sourceTree = "<group>"; };
@@ -17080,6 +17108,9 @@
 		EA8CADDB18288C6E003149FE /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				EA7EFC6B18458D370004793C /* GroupNoticeController.h */,
+				EA7EFC6C18458D370004793C /* GroupNoticeController.m */,
+				EA7EFC6D18458D370004793C /* GroupNoticeController.xib */,
 				EA1BD62B182DDCB1000E5364 /* GroupHomeController.h */,
 				EA1BD62C182DDCB1000E5364 /* GroupHomeController.m */,
 				EA1BD62D182DDCB1000E5364 /* GroupHomeController.xib */,
@@ -17099,6 +17130,8 @@
 		EA8CADDC18288C6E003149FE /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				EA7EFC7618458D430004793C /* GroupModelExt.h */,
+				EA7EFC7718458D430004793C /* GroupModelExt.m */,
 				EA8CADEC1828A646003149FE /* GroupPermission.h */,
 				EA8CADED1828A646003149FE /* GroupPermission.m */,
 				EA1BD644182DEB0B000E5364 /* GroupManager.h */,
@@ -17141,6 +17174,9 @@
 		EA8D93A61833626900780B63 /* Cell */ = {
 			isa = PBXGroup;
 			children = (
+				EA7EFC5D18458D270004793C /* GroupNoticeCell.h */,
+				EA7EFC5E18458D270004793C /* GroupNoticeCell.m */,
+				EA7EFC5F18458D270004793C /* GroupNoticeCell.xib */,
 				EA8D93AA183362A200780B63 /* GroupCell.h */,
 				EA8D93AB183362A200780B63 /* GroupCell.m */,
 				EA8D93C61833632800780B63 /* GroupCell.xib */,
@@ -18312,6 +18348,8 @@
 				A4BD463F1843513F0016E62C /* button_click.wav in Resources */,
 				EAA8D11C18443CE200B3720B /* SearchController.xib in Resources */,
 				EAA8D12018443CE200B3720B /* SearchController~ipad.xib in Resources */,
+				EA7EFC6618458D270004793C /* GroupNoticeCell.xib in Resources */,
+				EA7EFC7418458D370004793C /* GroupNoticeController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -19282,6 +19320,8 @@
 				A4BD463E1843513F0016E62C /* button_click.wav in Resources */,
 				EAA8D11B18443CE200B3720B /* SearchController.xib in Resources */,
 				EAA8D11F18443CE200B3720B /* SearchController~ipad.xib in Resources */,
+				EA7EFC6518458D270004793C /* GroupNoticeCell.xib in Resources */,
+				EA7EFC7318458D370004793C /* GroupNoticeController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -20235,6 +20275,8 @@
 				A4BD463D1843513F0016E62C /* button_click.wav in Resources */,
 				EAA8D11A18443CE200B3720B /* SearchController.xib in Resources */,
 				EAA8D11E18443CE200B3720B /* SearchController~ipad.xib in Resources */,
+				EA7EFC6418458D270004793C /* GroupNoticeCell.xib in Resources */,
+				EA7EFC7218458D370004793C /* GroupNoticeController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -21142,6 +21184,8 @@
 				CA9C4002184341B50041F332 /* 660557448_app_task.json in Resources */,
 				EAA8D11D18443CE200B3720B /* SearchController.xib in Resources */,
 				EAA8D12118443CE200B3720B /* SearchController~ipad.xib in Resources */,
+				EA7EFC6718458D270004793C /* GroupNoticeCell.xib in Resources */,
+				EA7EFC7518458D370004793C /* GroupNoticeController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -21955,6 +21999,9 @@
 				A48EF1171844A3F7008687DB /* PECropViewController.m in Sources */,
 				A48EF11B1844A3F7008687DB /* PEResizeControl.m in Sources */,
 				A48EF11F1844A3F7008687DB /* UIImage+PECrop.m in Sources */,
+				EA7EFC6218458D270004793C /* GroupNoticeCell.m in Sources */,
+				EA7EFC7018458D370004793C /* GroupNoticeController.m in Sources */,
+				EA7EFC7A18458D430004793C /* GroupModelExt.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -22762,6 +22809,9 @@
 				A48EF1161844A3F7008687DB /* PECropViewController.m in Sources */,
 				A48EF11A1844A3F7008687DB /* PEResizeControl.m in Sources */,
 				A48EF11E1844A3F7008687DB /* UIImage+PECrop.m in Sources */,
+				EA7EFC6118458D270004793C /* GroupNoticeCell.m in Sources */,
+				EA7EFC6F18458D370004793C /* GroupNoticeController.m in Sources */,
+				EA7EFC7918458D430004793C /* GroupModelExt.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -23568,6 +23618,9 @@
 				A48EF1151844A3F7008687DB /* PECropViewController.m in Sources */,
 				A48EF1191844A3F7008687DB /* PEResizeControl.m in Sources */,
 				A48EF11D1844A3F7008687DB /* UIImage+PECrop.m in Sources */,
+				EA7EFC6018458D270004793C /* GroupNoticeCell.m in Sources */,
+				EA7EFC6E18458D370004793C /* GroupNoticeController.m in Sources */,
+				EA7EFC7818458D430004793C /* GroupModelExt.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -24330,6 +24383,9 @@
 				A48EF1181844A3F7008687DB /* PECropViewController.m in Sources */,
 				A48EF11C1844A3F7008687DB /* PEResizeControl.m in Sources */,
 				A48EF1201844A3F7008687DB /* UIImage+PECrop.m in Sources */,
+				EA7EFC6318458D270004793C /* GroupNoticeCell.m in Sources */,
+				EA7EFC7118458D370004793C /* GroupNoticeController.m in Sources */,
+				EA7EFC7B18458D430004793C /* GroupModelExt.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

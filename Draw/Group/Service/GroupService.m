@@ -155,10 +155,12 @@ static GroupService *_staticGroupService = nil;
 
 - (void)acceptUser:(NSString *)uid
              group:(NSString *)groupId
+          noticeId:(NSString *)noticeId
           callback:(SimpleResultBlock)callback
 {
     NSDictionary *paras = @{PARA_GROUPID:groupId,
                             PARA_TARGETUSERID:uid,
+                            PARA_NOTICEID:noticeId,
                             PARA_TYPE:HANDLE_TYPE_ACCEPT
                             };
     
@@ -170,13 +172,17 @@ static GroupService *_staticGroupService = nil;
      }];
 }
 
+
+
 - (void)rejectUser:(NSString *)uid
              group:(NSString *)groupId
+          noticeId:(NSString *)noticeId
             reason:(NSString *)reason
           callback:(SimpleResultBlock)callback
 {
     NSDictionary *paras = @{PARA_GROUPID:groupId,
                             PARA_TARGETUSERID:uid,
+                            PARA_NOTICEID:noticeId,
                             PARA_DESC:reason,
                             PARA_TYPE:HANDLE_TYPE_REJECT
                             };
