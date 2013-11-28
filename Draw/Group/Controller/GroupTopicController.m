@@ -76,8 +76,7 @@ typedef enum {
 {
     UIButton *button = sender;
     if ([permissonManager canJoinGroup]) {
-        //TODO join it
-        [self showActivityWithText:NSLS(@"kJoining")];
+        [self showActivityWithText:NSLS(@"kJoiningGroup")];
         [groupService joinGroup:_group.groupId message:nil callback:^(NSError *error) {
             [self hideActivity];
             if (!error) {
@@ -86,7 +85,8 @@ typedef enum {
             }
         }];
     }else if ([permissonManager canQuitGroup]) {
-        [self showActivityWithText:NSLS(@"kQuiting")];
+        [self showActivityWithText:NSLS(@"kQuitingGroup")];
+        //TODO to comfirm
         [groupService quitGroup:_group.groupId callback:^(NSError *error) {
             [self hideActivity];
             if (!error) {
@@ -95,6 +95,8 @@ typedef enum {
                 [self updateGroup:group];
             }
         }];
+    }else if([permissonManager canDismissalGroup]){
+        //TODO dissmissal
     }
 }
 
@@ -161,11 +163,11 @@ typedef enum {
     
     [self.titleView.rightButton setHidden:NO];
     if ([permissonManager canJoinGroup]) {
-        [self.titleView setRightButtonTitle:NSLS(@"kJoin")];
+        [self.titleView setRightButtonTitle:NSLS(@"kJoinGroup")];
     }else if([permissonManager canQuitGroup]){
-        [self.titleView setRightButtonTitle:NSLS(@"kExit")];
+        [self.titleView setRightButtonTitle:NSLS(@"kQuitGroup")];
     }else if([permissonManager canDismissalGroup]){
-        [self.titleView setRightButtonTitle:NSLS(@"kDismissal")];
+        [self.titleView setRightButtonTitle:NSLS(@"kDissolveGroup")];
     }else{
         [self.titleView.rightButton setHidden:YES];
     }
