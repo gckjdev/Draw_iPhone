@@ -712,7 +712,7 @@
 #define METHOD_GET_TOPIC_TIMELINE @"getTopicTimeline"
 #define METHOD_GET_FOLLOWED_TOPIC @"getFollowTopics"
 #define METHOD_GET_GROUPRELATION @"getRelationWithGroup"
-
+#define METHOD_SEARCH_GROUP @"searchGroup"
 
 #define METHOD_UPDATE_USER_CREDENTIAL @"updateUserCredential"
 

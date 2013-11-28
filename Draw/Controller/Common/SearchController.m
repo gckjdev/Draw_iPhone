@@ -35,19 +35,25 @@ typedef enum{
 {
     self = [super initWithNibName:@"SearchController" bundle:nibBundleOrNil];
     if (self) {
-        self.history = [SearchHistoryManager getHistoryText:[self historyStoreKey]];
-        if (self.history == nil) {
-            self.history = [NSMutableArray array];
-        }
-        PPDebug(@"get history for key: %@, size = %d",[self historyStoreKey], [self.history count]);
     }
     return self;
+}
+
+
+- (void)loadHistory
+{
+    self.history = [SearchHistoryManager getHistoryText:[self historyStoreKey]];
+    if (self.history == nil) {
+        self.history = [NSMutableArray array];
+    }
+    PPDebug(@"get history for key: %@, size = %d",[self historyStoreKey], [self.history count]);    
 }
 
 - (void)viewDidLoad
 {
     [self setPullRefreshType:PullRefreshTypeFooter];
     [super viewDidLoad];
+    [self loadHistory];
     [self.titleView setTitle:[self headerTitle]];
     [self.titleView setTransparentStyle];
     originWidth = CGRectGetWidth(self.dataTableView.bounds);
@@ -55,6 +61,7 @@ typedef enum{
     [self.searchTextField becomeFirstResponder];
     self.searchTextField.text = nil;
     [self.searchTextField setPlaceholder:[self searchTips]];
+
 }
 
 - (void)didReceiveMemoryWarning
@@ -103,6 +110,7 @@ typedef enum{
         }
         [self.history insertObject:text atIndex:0];
         [self setStatus:ShowResult];
+        [self.tabDataList removeAllObjects];
         [self reloadView];
         [self reloadTableViewDataSource];
     }

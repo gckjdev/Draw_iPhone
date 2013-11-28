@@ -13,6 +13,8 @@
 static GroupManager *_staticGroupManager = nil;
 
 @interface GroupManager()
+
+//uid : dict
 @property (nonatomic, retain)NSMutableDictionary *collectionDict;
 
 @end
@@ -88,7 +90,7 @@ static GroupManager *_staticGroupManager = nil;
 + (NSArray *)defaultTypesInGroupTopicFooter:(PBGroup *)group
 {
     //TODO add quit type
-    return @[@(GroupCreateTopic), @(GroupSearchGroup), @(GroupChat)];
+    return @[@(GroupCreateTopic), @(GroupSearchTopic), @(GroupChat)];
 }
 
 + (NSMutableArray *)getTopicCMDList:(PBBBSPost *)post inGroup:(PBGroup *)group
@@ -122,14 +124,26 @@ static GroupManager *_staticGroupManager = nil;
 {
     //only collect the group having relation with current user.
     if (group.hasRelation) {
-        [self.collectionDict setObject:group forKey:group.groupId];
+        NSString *userId = [[UserManager defaultManager] userId];
+
+        NSMutableDictionary *cd = [self.collectionDict objectForKey:userId];
+        if (cd == nil) {
+            cd = [NSMutableDictionary dictionary];
+            [self.collectionDict setObject:cd forKey:userId];
+        }
+
+        [cd setObject:group forKey:group.groupId];
         PPDebug(@"<collectGroup> group id = %@, name = %@", group.groupId, group.name);
     }
 }
 
 - (PBGroup *)findGroupById:(NSString *)groupId
 {
-    return [self.collectionDict objectForKey:groupId];
+    PBGroup *group = [self.collectionDict objectForKey:groupId];
+    if (!group) {
+        PPDebug(@"<findGroupById> can't find group, id = %@", groupId);
+    }
+    return group;
 }
 
 - (void)collectGroups:(NSArray *)groups

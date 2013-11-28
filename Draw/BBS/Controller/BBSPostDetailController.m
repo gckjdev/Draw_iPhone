@@ -256,10 +256,11 @@ typedef enum{
     if (self.postID == nil){
         self.postID = self.post.postId;
     }
+    [self initGroupData];
     [self initViews];
     [self loadPost];
 
-    [self initGroupData];
+
 //    self.adView = [[AdService defaultService] createAdInView:self
 //                                                       frame:CGRectMake(0, self.view.bounds.size.height-50, 320, 50)
 //                                                   iPadFrame:CGRectMake((self.view.bounds.size.width-320)/2, self.view.bounds.size.height-100, 320, 50)

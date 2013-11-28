@@ -156,6 +156,21 @@ static GroupService *_staticGroupService = nil;
 
 }
 
+- (void)searchGroupsByKeyword:(NSString *)keyword
+                       offset:(NSInteger)offset
+                        limit:(NSInteger)limit
+                     callback:(ListResultBlock)callback
+{
+    NSDictionary *paras = @{PARA_OFFSET:@(offset), PARA_LIMIT:@(limit), PARA_KEYWORD:keyword};
+    
+    
+    [self loadPBData:METHOD_SEARCH_GROUP
+          parameters:paras
+            callback:^(DataQueryResponse *response, NSError *error) {
+                EXECUTE_BLOCK(callback, response.groupListList, error);
+            }];
+}
+
 
 #define HANDLE_TYPE_ACCEPT 1
 #define HANDLE_TYPE_REJECT 2

@@ -36,6 +36,10 @@ typedef void (^ SimpleResultBlock) (NSError *error);
                     limit:(NSInteger)limit
                  callback:(ListResultBlock)callback;
 
+- (void)searchGroupsByKeyword:(NSString *)keyword
+                       offset:(NSInteger)offset
+                        limit:(NSInteger)limit
+                     callback:(ListResultBlock)callback;
 
 - (void)joinGroup:(NSString *)groupId
           message:(NSString *)message

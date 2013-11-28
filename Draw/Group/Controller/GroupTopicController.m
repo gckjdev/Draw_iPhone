@@ -15,6 +15,7 @@
 #import "GroupService.h"
 #import "BBSPostDetailController.h"
 #import "BBSManager.h"
+#import "SearchPostController.h"
 
 typedef enum{
     NewestTopic = 1,
@@ -132,7 +133,13 @@ typedef enum {
             break;
             
         case GroupSearchTopic:
-            
+        {
+            SearchPostController *spc = [[SearchPostController alloc] init];
+            spc.forGroup = YES;
+            spc.group = self.group;
+            [self.navigationController pushViewController:spc animated:YES];
+            [spc release];
+        }
             break;
             
         default:

@@ -68,6 +68,7 @@
 
 - (void)layoutSubviews
 {
+    [super layoutSubviews];
     self.infoView.frame = self.bounds;
     _infoView.customButton.selected = [[GroupManager defaultManager] followedGroup:_group.groupId];
 }

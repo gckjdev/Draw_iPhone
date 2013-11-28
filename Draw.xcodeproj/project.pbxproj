@@ -6025,6 +6025,14 @@
 		EA2A7CED17F6958600ED508D /* AccountCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA2A7CEB17F6958600ED508D /* AccountCell.xib */; };
 		EA2A7CEE17F6958600ED508D /* AccountCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA2A7CEB17F6958600ED508D /* AccountCell.xib */; };
 		EA2A7CEF17F6958600ED508D /* AccountCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA2A7CEB17F6958600ED508D /* AccountCell.xib */; };
+		EA2D573D1847243B00499ED4 /* SearchGroupController.m in Sources */ = {isa = PBXBuildFile; fileRef = EA2D573B1847243B00499ED4 /* SearchGroupController.m */; };
+		EA2D573E1847243B00499ED4 /* SearchGroupController.m in Sources */ = {isa = PBXBuildFile; fileRef = EA2D573B1847243B00499ED4 /* SearchGroupController.m */; };
+		EA2D573F1847243B00499ED4 /* SearchGroupController.m in Sources */ = {isa = PBXBuildFile; fileRef = EA2D573B1847243B00499ED4 /* SearchGroupController.m */; };
+		EA2D57401847243B00499ED4 /* SearchGroupController.m in Sources */ = {isa = PBXBuildFile; fileRef = EA2D573B1847243B00499ED4 /* SearchGroupController.m */; };
+		EA2D57411847243B00499ED4 /* SearchGroupController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA2D573C1847243B00499ED4 /* SearchGroupController.xib */; };
+		EA2D57421847243B00499ED4 /* SearchGroupController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA2D573C1847243B00499ED4 /* SearchGroupController.xib */; };
+		EA2D57431847243B00499ED4 /* SearchGroupController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA2D573C1847243B00499ED4 /* SearchGroupController.xib */; };
+		EA2D57441847243B00499ED4 /* SearchGroupController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA2D573C1847243B00499ED4 /* SearchGroupController.xib */; };
 		EA372344162018DA00FC6F3E /* UserLocationController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA372342162018DA00FC6F3E /* UserLocationController.xib */; };
 		EA3F4D4D16EF298900E9A2FD /* StoreController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA3F4D4C16EF298900E9A2FD /* StoreController~ipad.xib */; };
 		EA3F4D5416EF299600E9A2FD /* StoreCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA3F4D5316EF299600E9A2FD /* StoreCell~ipad.xib */; };
@@ -10081,6 +10089,9 @@
 		EA2A7CDC17F676AB00ED508D /* AccountManageController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AccountManageController.m; sourceTree = "<group>"; };
 		EA2A7CDD17F676AB00ED508D /* AccountManageController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AccountManageController.xib; sourceTree = "<group>"; };
 		EA2A7CEB17F6958600ED508D /* AccountCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AccountCell.xib; sourceTree = "<group>"; };
+		EA2D573A1847243B00499ED4 /* SearchGroupController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchGroupController.h; sourceTree = "<group>"; };
+		EA2D573B1847243B00499ED4 /* SearchGroupController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchGroupController.m; sourceTree = "<group>"; };
+		EA2D573C1847243B00499ED4 /* SearchGroupController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SearchGroupController.xib; sourceTree = "<group>"; };
 		EA372340162018D900FC6F3E /* UserLocationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserLocationController.h; sourceTree = "<group>"; };
 		EA372342162018DA00FC6F3E /* UserLocationController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserLocationController.xib; sourceTree = "<group>"; };
 		EA3F4D4C16EF298900E9A2FD /* StoreController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "StoreController~ipad.xib"; sourceTree = "<group>"; };
@@ -17137,6 +17148,9 @@
 				EA038972183B06D300516952 /* GroupTopicController.h */,
 				EA038973183B06D300516952 /* GroupTopicController.m */,
 				EA038974183B06D300516952 /* GroupTopicController.xib */,
+				EA2D573A1847243B00499ED4 /* SearchGroupController.h */,
+				EA2D573B1847243B00499ED4 /* SearchGroupController.m */,
+				EA2D573C1847243B00499ED4 /* SearchGroupController.xib */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -18365,6 +18379,7 @@
 				EA7EFC6618458D270004793C /* GroupNoticeCell.xib in Resources */,
 				EA7EFC7418458D370004793C /* GroupNoticeController.xib in Resources */,
 				A4FEE3B61845BC3A009EC583 /* PEPhotoCropEditor.bundle in Resources */,
+				EA2D57431847243B00499ED4 /* SearchGroupController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -19338,6 +19353,7 @@
 				EA7EFC6518458D270004793C /* GroupNoticeCell.xib in Resources */,
 				EA7EFC7318458D370004793C /* GroupNoticeController.xib in Resources */,
 				A4FEE3B51845BC3A009EC583 /* PEPhotoCropEditor.bundle in Resources */,
+				EA2D57421847243B00499ED4 /* SearchGroupController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -20294,6 +20310,7 @@
 				EA7EFC6418458D270004793C /* GroupNoticeCell.xib in Resources */,
 				EA7EFC7218458D370004793C /* GroupNoticeController.xib in Resources */,
 				A4FEE3B41845BC3A009EC583 /* PEPhotoCropEditor.bundle in Resources */,
+				EA2D57411847243B00499ED4 /* SearchGroupController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -21204,6 +21221,7 @@
 				EA7EFC6718458D270004793C /* GroupNoticeCell.xib in Resources */,
 				EA7EFC7518458D370004793C /* GroupNoticeController.xib in Resources */,
 				A4FEE3B71845BC3A009EC583 /* PEPhotoCropEditor.bundle in Resources */,
+				EA2D57441847243B00499ED4 /* SearchGroupController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -22020,6 +22038,7 @@
 				EA7EFC6218458D270004793C /* GroupNoticeCell.m in Sources */,
 				EA7EFC7018458D370004793C /* GroupNoticeController.m in Sources */,
 				EA7EFC7A18458D430004793C /* GroupModelExt.m in Sources */,
+				EA2D573F1847243B00499ED4 /* SearchGroupController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -22830,6 +22849,7 @@
 				EA7EFC6118458D270004793C /* GroupNoticeCell.m in Sources */,
 				EA7EFC6F18458D370004793C /* GroupNoticeController.m in Sources */,
 				EA7EFC7918458D430004793C /* GroupModelExt.m in Sources */,
+				EA2D573E1847243B00499ED4 /* SearchGroupController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -23639,6 +23659,7 @@
 				EA7EFC6018458D270004793C /* GroupNoticeCell.m in Sources */,
 				EA7EFC6E18458D370004793C /* GroupNoticeController.m in Sources */,
 				EA7EFC7818458D430004793C /* GroupModelExt.m in Sources */,
+				EA2D573D1847243B00499ED4 /* SearchGroupController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -24404,6 +24425,7 @@
 				EA7EFC6318458D270004793C /* GroupNoticeCell.m in Sources */,
 				EA7EFC7118458D370004793C /* GroupNoticeController.m in Sources */,
 				EA7EFC7B18458D430004793C /* GroupModelExt.m in Sources */,
+				EA2D57401847243B00499ED4 /* SearchGroupController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
