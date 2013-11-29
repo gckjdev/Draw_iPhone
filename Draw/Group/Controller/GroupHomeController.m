@@ -12,24 +12,18 @@
 #import "GroupManager.h"
 #import "GroupCell.h"
 #import "GroupTopicController.h"
-
-typedef enum{
-    GroupTabGroup = 100,
-    GroupTabTopic = 101,
-    GroupTabFollow = 102,    
-
-    GroupTabGroupFollow = GetGroupListTypeFollow,
-    GroupTabGroupNew = GetGroupListTypeNew,
-    GroupTabGroupBalance = GetGroupListTypeBalance,
-    GroupTabGroupActive = GetGroupListTypeActive,
-    GroupTabGroupFame = GetGroupListTypeFame,
-    
-}GroupTab;
+#import "CreateGroupController.h"
+#import "BBSPostCell.h"
+#import "GroupNoticeController.h"
+#import "SearchPostController.h"
+#import "BBSPostDetailController.h"
+#import "SearchGroupController.h"
 
 @interface GroupHomeController ()
 {
     UIButton *currentTabButton;
     UIButton *currentGroupSubButton;
+    GroupService *groupService;
 }
 @end
 
@@ -41,7 +35,8 @@ typedef enum{
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        // Custom initialization
+        groupService = [GroupService defaultService];
+        [groupService syncFollowGroupIds];
     }
     return self;
 }
@@ -68,15 +63,29 @@ typedef enum{
     return (id)[self.tabsHolderView viewWithTag:GroupTabGroup];
 }
 
+- (void)updateFooterView
+{
+    [self.footerView removeFromSuperview];
+    NSArray *types = [GroupManager defaultTypesInGroupHomeFooterForTab:self.currentTab.tabID];
+    NSArray *images = [GroupUIManager imagesForFooterActionTypes:types];
+    
+    self.footerView = [DetailFooterView footerViewWithDelegate:self];
+    [self.footerView setButtonsWithCustomTypes:types images:images];
+    [self.view addSubview:self.footerView];
+    PPDebug(@"update footer view, types = %@", types);
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     [self.titleView setTitle:NSLS(@"kGroup")];
     [self.titleView setTarget:self];
     [self.titleView setBackButtonSelector:@selector(clickBack:)];
-//    [self.titleView setTransparentStyle];
+
     [self initTabButtons];
     [self clickTabButton:[self defaultTabButton]];
+    [self updateFooterView];
+
 }
 
 - (void)didReceiveMemoryWarning
@@ -200,9 +209,13 @@ typedef enum{
     //test
     TableTab *tab = [_tabManager tabForID:tabID];
 
-//    PPDebug(@"click tab id = %d, title = %@", tab.tabID, tab.title);
-//    [self finishLoadDataForTabID:tabID resultList:nil];
-//    return;
+    ListResultBlock callback = ^(NSArray *list, NSError *error){
+        if (error) {
+            [self failLoadDataForTabID:tabID];
+        }else{
+            [self finishLoadDataForTabID:tabID resultList:list];
+        }
+    };
     
     switch (tabID) {
         case GroupTabGroupFollow:
@@ -210,28 +223,32 @@ typedef enum{
         case GroupTabGroupBalance:
         case GroupTabGroupActive:
         case GroupTabGroupFame:
+        {
             [[GroupService defaultService] getGroupsWithType:tabID
                                                       offset:tab.offset
                                                        limit:tab.limit
-                                                    callback:^(NSArray *list, NSError *error) {
-                if (error) {
-                    [self failLoadDataForTabID:tabID];
-                    [DrawError postError:error];
-                }else{
-                    PPDebug(@"loaded groups, tab = %d, list count = %d", tabID, [list count]);
-                    [self finishLoadDataForTabID:tabID resultList:list];
-                }
-            }];
+                                                    callback:callback];
             break;
+        }
         case GroupTabGroup:
+        {
             [self finishLoadDataForTabID:tabID resultList:nil];
-//            break;
+            break;
+        }
         case GroupTabFollow:
-            //TODO get follow topic
-//            break;
+        {
+            [[GroupService defaultService] getFollowedTopicList:tab.offset
+                                                          limit:tab.limit
+                                                       callback:callback];
+            break;
+        }
         case GroupTabTopic:
-            //TODO get new topic.
-//            break;
+        {
+            [[GroupService defaultService] getTopicTimelineList:tab.offset
+                                                          limit:tab.limit
+                                                       callback:callback];
+            break;
+        }
         default:
             [self finishLoadDataForTabID:tabID resultList:nil];
             break;
@@ -240,14 +257,61 @@ typedef enum{
 
 - (void)detailFooterView:(DetailFooterView *)footer
         didClickAtButton:(UIButton *)button
-                    type:(FooterType)type
+                    type:(NSInteger)type
 {
-    
+    switch (type) {
+        case GroupCreateGroup:
+        {
+            CreateGroupController *cgc =  [[CreateGroupController alloc] init];
+            [self.navigationController pushViewController:cgc animated:YES];
+            [cgc release];
+            break;
+        }
+
+         case GroupSearchGroup:
+        {
+            if ([self currentTabISGroupTab]) {
+                SearchGroupController *sgc = [[SearchGroupController alloc] init];
+                [self.navigationController pushViewController:sgc animated:YES];
+                [sgc release];
+            }else{
+                SearchPostController *spc = [[SearchPostController alloc] init];
+                spc.forGroup = YES;
+                [self.navigationController pushViewController:spc animated:YES];
+                [spc release];
+                
+            }
+            break;
+        }
+         case GroupChat:
+            
+            break;
+         case GroupAtMe:
+        {
+            GroupNoticeController *gnc = [[GroupNoticeController alloc] init];
+            [self.navigationController pushViewController:gnc animated:YES];
+            [gnc release];
+        }
+            break;
+        default:
+            break;
+    }
+    PPDebug(@"click type = %d", type);
+}
+
+- (BOOL)currentTabISGroupTab
+{
+    return [self isGroupTab:self.currentTab.tabID];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return [GroupCell getCellHeight];
+    if ([self currentTabISGroupTab]) {
+        return [GroupCell getCellHeight];
+    }else{
+        PBBBSPost *post = [self.tabDataList objectAtIndex:indexPath.row];
+        return [BBSPostCell getCellHeightWithBBSPost:post];
+    }
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -257,24 +321,26 @@ typedef enum{
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSString *identifier = [GroupCell getCellIdentifier];
-    GroupCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
+    Class cellClass = [self currentTabISGroupTab] ? [GroupCell class] : [BBSPostCell class];
+    NSString *identifier = [cellClass getCellIdentifier];
+    PPTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
     if (cell == nil) {
-        cell = [GroupCell createCell:self];
+        cell = [cellClass createCell:self];
     }
-    PBGroup *group = [self.tabDataList objectAtIndex:indexPath.row];
-    [cell setCellInfo:group];
+    id data = [self.tabDataList objectAtIndex:indexPath.row];
+    [(id)cell setCellInfo:data];
     cell.indexPath = indexPath;
     return cell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    PBGroup *group = [self.tabDataList objectAtIndex:indexPath.row];
-    if (group) {        
-        [GroupTopicController enterWithGroup:group fromController:self];
+    id data = [self.tabDataList objectAtIndex:indexPath.row];
+    if ([data isKindOfClass:[PBGroup class]]) {
+        [GroupTopicController enterWithGroup:data fromController:self];
+    }else if([data isKindOfClass:[PBBBSPost class]]){
+        [BBSPostDetailController enterPostDetailControllerWithPost:data group:nil fromController:self animated:YES];
     }
-
 }
 
 SET_CELL_BG_IN_CONTROLLER

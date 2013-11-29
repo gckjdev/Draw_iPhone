@@ -56,6 +56,8 @@
 #import "GameSNSService.h"
 #import "ShareAction.h"
 #import <MediaPlayer/MediaPlayer.h>
+#import "SoundPlayer.h"
+#import "AudioManager.h"
 
 @interface ShowFeedController ()<OpusImageBrowerDelegate> {
     BOOL _didLoadDrawPicture;
@@ -1414,6 +1416,7 @@ typedef enum{
 
 - (void)playAudio:(AudioButton *)button
 {
+    [[AudioManager defaultManager] playSoundByName:SOUND_EFFECT_BUTTON_CLICK];
     [_audioPlayer pauseOrResume];
 }
 
@@ -1436,6 +1439,8 @@ typedef enum{
                       forControlEvents:UIControlEventValueChanged];
     }
     
+    [[AudioManager defaultManager] playSoundByName:SOUND_EFFECT_BUTTON_CLICK];
+
     [_audioPlayer play];
 }
 

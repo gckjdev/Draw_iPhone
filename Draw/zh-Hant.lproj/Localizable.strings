@@ -1001,6 +1001,7 @@
 "kStatement" = "比賽聲明";
 "kDecline" = "拒絕";
 "kAccept" = "接受";
+"kIgnore" = "忽略";
 
 "kCoinsForFollowUs" = "+%d金幣";
 "kFollowSinaWeibo" = "關注新浪​​官方微博";
@@ -1028,6 +1029,7 @@
 "kSummaryOfContestComment" = "回复%@的評論: %@";
 
 "kMe" = "我";
+"kI" = "我";
 "kSendMeFlower" = "给我赠送了一朵鲜花！";
 "kThrowMeTomato" = "给我丢了个番茄！";
 
@@ -1494,6 +1496,8 @@
 "kDreamLockscreenBuy" = "購買 & 保存";
 "kDreamLockscreenSlider" = "滑動來解鎖";
 "kSetContactAvatarSucc" = "已經成功保存為通訊錄聯繫人頭像";
+
+"kEditImage" = "編輯圖片";
 
 //secure sms
 "kRegister" = "註冊";
@@ -2088,7 +2092,7 @@
 
 "kDuplicateGroupName" = "家族名字已經被註冊了，請換一個名字。";                                                     
 "kGroupIDEmpty" = "家族ID為空。";
-"kGroupMultiGroupsJoined" = "一個玩家只允許加入了一個家族。";
+"kGroupMultiGroupsJoined" = "一個玩家只允許加入一個家族。";
 "kGroupMultiGroupRequests" = "你已經發送了申請，請不要重復申請。";
 "kGroupPermissionDenied" = "你的權限不足。";
 "kGroupMembersFull" = "此家族已經滿員了。";
@@ -2102,9 +2106,40 @@
 "kGroupNameIsEmpty" = "家族名字不能為空。";
 "kGroupNameTooLong" = "家族名字不能長於16個字符。";
 
+"kGroup" = "家族";
+"kGroupBulletinDesc" = "%@ 在 %@ 中發布了公告。";
+"kGroupJoinDesc" = "%@ 申請加入 %@";
+"kGroupExpelDesc" = "%@ 將 %@ 踢出了 %@";
+"kGroupQuitDesc" = "%@ 退出了 %@";
+"kGroupAcceptDesc" = "%@ 同意 %@ 加入 %@";
+"kGroupRejectDesc" = "%@ 拒絕 %@ 加入 %@";
+"kContentDesc" = "內容：%@";
+"kPostscriptDesc" = "附言：%@";
+
 "kShareByEmailSuccess" = "郵件分享成功";
 
 "kJoinGameError" = "無法加入房間，可能房間已滿或正在遊戲，可點擊右下角的［​​快速加入］按鈕加入某個空閒的房間";
+
+"kGroupComment" = "評論";
+"kGroupRequest" = "請求";
+"kGroupNotice" = "通知";
+
+"kAtMe" = "@我";
+"kSearchGroup" = "搜索家族";
+"kSearchPost" = "搜索帖子";
+"kSearchTopic" = "搜索話題";
+"kSearchGroupTips" = "家族名稱/說明/簽名";
+"kJoinGroup" = "加入";
+"kQuitGroup" = "退出";
+"kDissolveGroup" = "解散";
+
+"kJoiningGroup" = "發送加入申請中...";
+"kSentRequest" = "申請已經發送，請等待審核通過。";
+"kQuitingGroup" = "退出家族中...";
+"kQuitedGroup" = "你已經退出了家族。";
+
+"kCanotCreateTopic" = "對不起，不是家族成員或嘉賓不能創建話題。";
+"kCanotGroupChat" = "對不起，不是家族成員或嘉賓不能進行群聊。";
 
 /*********************小吉画画国际化字符串开始 ************************/
 "kLittleGeeRecommend" = "推薦";

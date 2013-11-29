@@ -104,11 +104,12 @@ message PBGroup
 
 message PBGroupNotice{
     required string noticeId = 1;
-    optional string message = 2;
-    optional string groupId = 3;
-    optional int32 type = 4;
-    optional int32 status = 5;
-
-    optional PBGameUser reporter = 10; //only for request to join group
-    optional PBGameUser receiver = 11; //only for request to join group
+    optional int32 type = 2;
+    optional int32 status = 3;
+    optional string groupId = 4;
+    optional string groupName = 5;
+    optional string message = 6;
+    optional int32 createDate = 7;
+    optional PBGameUser publisher = 10; 
+    optional PBGameUser target = 11; //expel, accept
 }

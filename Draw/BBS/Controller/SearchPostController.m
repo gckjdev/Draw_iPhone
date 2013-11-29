@@ -10,12 +10,18 @@
 #import "BBSViewManager.h"
 #import "BBSPostDetailController.h"
 #import "BBSPostCell.h"
+#import "CommonUserInfoView.h"
+#import "PPConfigManager.h"
+#import "DrawPlayer.h"
+#import "ImagePlayer.h"
+#import "GroupModelExt.h"
+
+
 
 @interface SearchPostController ()
 
 @end
 
-#define TAB_ID 100
 
 @implementation SearchPostController
 
@@ -30,13 +36,7 @@
 
 - (void)viewDidLoad
 {
-    [self setPullRefreshType:PullRefreshTypeFooter];
     [super viewDidLoad];
-    [BBSViewManager updateDefaultTitleLabel:self.titleLabel text:NSLS(@"kSearch")];
-    SET_INPUT_VIEW_STYLE(self.searchTextField);
-    [self.searchTextField becomeFirstResponder];
-    self.searchTextField.text = nil;
-    [self.searchTextField setPlaceholder:NSLS(@"kBBSSearchPlaceholder")];
 }
 
 - (void)didReceiveMemoryWarning
@@ -46,132 +46,145 @@
 }
 
 - (void)dealloc {
-    [_searchTextField release];
     [super dealloc];
 }
 - (void)viewDidUnload {
-    [self setSearchTextField:nil];
     [super viewDidUnload];
 }
-- (IBAction)clickSearchButton:(id)sender {
-    if ([self.searchTextField.text length] != 0) {
-        [self reloadTableViewDataSource];
-    }
-}
 
-- (IBAction)didKeyWordChanged:(id)sender {
-    PPDebug(@"<didKeyWordChanged>, text = %@", self.searchTextField.text);
-}
-
-- (BOOL)textFieldShouldReturn:(UITextField *)textField
+- (BBSService *)bbsService
 {
-    [self clickSearchButton:nil];
-    return YES;
+    return (self.forGroup ? [BBSService groupTopicService] : [BBSService defaultService]);
 }
 
-- (UIControl *)maskView
+- (void)loadDataWithKey:(NSString *)key tabID:(NSInteger)tabID
 {
-#define MASK_VIEW_TAG 112233
-    
-    UIControl *mask = (id)[self.view viewWithTag:MASK_VIEW_TAG];
-    if (mask == nil) {
-        mask = [[[UIControl alloc] initWithFrame:self.view.bounds] autorelease];
-        [mask updateOriginY:CGRectGetMaxY(self.searchTextField.frame)];
-        mask.backgroundColor = [UIColor clearColor];
-        mask.tag = MASK_VIEW_TAG;
-        [mask addTarget:self action:@selector(clickMaskView:) forControlEvents:UIControlEventTouchUpInside];
-        [self.view insertSubview:mask belowSubview:self.searchTextField];
-    }
-    return mask;
+    [self showActivityWithText:NSLS(@"kSearching")];
+    TableTab *tab = [_tabManager tabForID:tabID];
+    [[self bbsService] searchPostListByKeyWord:key
+                                       inGroup:self.group.groupId
+                                        offset:tab.offset
+                                         limit:tab.limit
+                                       hanlder:^(NSInteger resultCode, NSArray *postList, NSInteger tag) {
+        [self hideActivity];
+        if (resultCode == 0) {
+            [self finishLoadDataForTabID:tabID resultList:postList];
+        }else{
+            [self failLoadDataForTabID:tabID];
+        }
+    }];
+
 }
 
-- (void)clickMaskView:(UIControl *)maskView
+
+- (CGFloat)heightForData:(id)data
 {
-    [self.searchTextField resignFirstResponder];
-    [[self maskView] setHidden:YES];
-}
-
-- (void)textFieldDidBeginEditing:(UITextField *)textField{
-    [[self maskView] setHidden:NO];
-}
-- (void)textFieldDidEndEditing:(UITextField *)textField
-{
-    [[self maskView] setHidden:YES];
-}
-
-
-#pragma mark - table view delegate
-- (PBBBSPost *)postForIndexPath:(NSIndexPath *)indexPath
-{
-    NSArray *dList = self.tabDataList;
-    if (indexPath.row >= [dList count]) {
-        return nil;
-    }
-    PBBBSPost *post = [self.tabDataList objectAtIndex:indexPath.row];
-    return post;
-}
-
-- (NSInteger)numberOfRowsInSection:(NSInteger)section
-{
-    return [self.tabDataList count];
-}
-
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    PBBBSPost *post = [self.tabDataList objectAtIndex:indexPath.row];
+    PBBBSPost *post = data;
 	return [BBSPostCell getCellHeightWithBBSPost:post];
 }
-
-
-- (UITableViewCell *)tableView:(UITableView *)theTableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+- (void)didSelectedCellWithData:(id)data
+{
+    PBBBSPost *post = data;
     
+    if (self.forGroup) {
+        [BBSPostDetailController enterPostDetailControllerWithPost:post group:self.group fromController:self animated:YES];
+    }else{
+        [BBSPostDetailController enterPostDetailControllerWithPost:post
+                                                    fromController:self
+                                                          animated:YES];
+    }
+}
+- (UITableViewCell *)cellForData:(id)data
+{
     NSString *CellIdentifier = [BBSPostCell getCellIdentifier];
-	BBSPostCell *cell = [theTableView dequeueReusableCellWithIdentifier:CellIdentifier];
+	BBSPostCell *cell = [self.dataTableView
+                         dequeueReusableCellWithIdentifier:CellIdentifier];
 	if (cell == nil) {
 		cell = [BBSPostCell createCell:self];
 	}
-    PBBBSPost *post = [self postForIndexPath:indexPath];
+    PBBBSPost *post = data;
     [cell updateCellWithBBSPost:post];
     cell.backgroundColor = [UIColor clearColor];
 	return cell;
-	
 }
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+- (NSString *)headerTitle
 {
-    PBBBSPost *post = [self postForIndexPath:indexPath];
-    [BBSPostDetailController enterPostDetailControllerWithPost:post
-                                                fromController:self
-                                                      animated:YES];
+    return self.forGroup ? NSLS(@"kSearchTopic") : NSLS(@"kSearchPost");
+}
+- (NSString *)searchTips
+{
+    return NSLS(@"kBBSSearchPlaceholder");
+}
+- (NSString *)historyStoreKey
+{
+    return self.forGroup ? @"TopicSearchHistory" : @"BBSSearchHistory";
 }
 
 
-- (NSInteger)tabCount
+//delegate
+
+
+- (void)didClickUserAvatar:(PBBBSUser *)user
 {
-    return 1;
+    PPDebug(@"<didClickUserAvatar>, userId = %@",user.userId);
+    [CommonUserInfoView showPBBBSUser:user
+                         inController:self
+                           needUpdate:YES
+                              canChat:YES];
+    
 }
-- (NSInteger)fetchDataLimitForTabIndex:(NSInteger)index
+
+
+
+- (void)didClickImageWithURL:(NSURL *)url
 {
-    return 15;
+//    self.tempURL = url;
+    [[ImagePlayer defaultPlayer] playWithUrl:url displayActionButton:YES onViewController:self];
 }
-- (NSInteger)tabIDforIndex:(NSInteger)index
+
+- (void)didClickDrawImageWithPost:(PBBBSPost *)post
 {
-    return TAB_ID;
+    [self showActivityWithText:NSLS(@"kLoading")];
+    [[self bbsService] getBBSDrawDataWithPostId:post.postId
+                                       actionId:nil
+                                       delegate:self];
 }
-- (void)serviceLoadDataForTabID:(NSInteger)tabID
+
+- (void)didClickDrawImageWithAction:(PBBBSAction *)action
 {
-    NSString *text = self.searchTextField.text;
-    [self showActivityWithText:[NSString stringWithFormat:NSLS(@"kSearching")]];
-    [self.searchTextField resignFirstResponder];
-    [[self maskView] setHidden:YES];
-    [[BBSService defaultService] searchPostListByKeyWord:text limit:50 hanlder:^(NSInteger resultCode, NSArray *postList, NSInteger tag) {
-         [self hideActivity];
-         if (resultCode == 0) {
-             [self finishLoadDataForTabID:tabID resultList:postList];
-         }else{
-             [self failLoadDataForTabID:tabID];
-         }        
-    }];
+    [self showActivityWithText:NSLS(@"kLoading")];
+    [[self bbsService] getBBSDrawDataWithPostId:nil
+                                       actionId:action.actionId
+                                       delegate:self];
+    
 }
+
+#pragma mark-- BBS Service Delegate
+
+- (void)didGetBBSDrawActionList:(NSMutableArray *)drawActionList
+                drawDataVersion:(NSInteger)version
+                     canvasSize:(CGSize)canvasSize
+                         postId:(NSString *)postId
+                       actionId:(NSString *)actionId
+                     fromRemote:(BOOL)fromRemote
+                     resultCode:(NSInteger)resultCode
+{
+    [self hideActivity];
+    if (resultCode == 0) {
+        BOOL isNewVersion = [PPConfigManager currentDrawDataVersion] < version;
+        ReplayObject *obj = [ReplayObject obj];
+        obj.actionList = drawActionList;
+        obj.isNewVersion = isNewVersion;
+        obj.canvasSize = canvasSize;
+        obj.layers = [DrawLayer defaultOldLayersWithFrame:CGRectFromCGSize(canvasSize)];
+        DrawPlayer *player =[DrawPlayer playerWithReplayObj:obj];
+        [player showInController:self];
+        
+    }else{
+        PPDebug(@"<didGetBBSDrawActionList> fail!, resultCode = %d",resultCode);
+    }
+}
+
 
 @end

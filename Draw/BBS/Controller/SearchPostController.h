@@ -6,11 +6,15 @@
 //
 //
 
-#import "BBSController.h"
+#import "BBSService.h"
+#import "SearchController.h"
 
-@interface SearchPostController : BBSController<UITextFieldDelegate>
-@property (retain, nonatomic) IBOutlet UITextField *searchTextField;
-- (IBAction)clickSearchButton:(id)sender;
-- (IBAction)didKeyWordChanged:(id)sender;
+
+@class PBGroup;
+@interface SearchPostController : SearchController<BBSServiceDelegate>
+
+
+@property(nonatomic, retain)PBGroup *group;
+@property(nonatomic, assign)BOOL forGroup;
 
 @end

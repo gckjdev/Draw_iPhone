@@ -14,7 +14,8 @@
 #import "BalanceNotEnoughAlertView.h"
 #import "AccountManager.h"
 #import "Group.pb.h"
-#import "GroupDetailController.h"
+#import "GroupTopicController.h"
+//#import "GroupDetailController.h"
 
 @interface CreateGroupController ()
 @property (retain, nonatomic) IBOutlet CommonTitleView *titleView;
@@ -66,12 +67,19 @@
         [BalanceNotEnoughAlertView showInController:self];
     }
     
+    [self showActivityWithText:NSLS(@"kCreatingGroup")];
     [[GroupService defaultService] createGroup:name level:level callback:^(PBGroup *group, NSError *error) {
+        [self hideActivity];
         if (error) {
             [DrawError postError:error];
         }else{
             //Enter Group Detail Controller
-            [GroupDetailController enterWithGroup:group fromController:self];
+            [[[GroupManager defaultManager] followedGroupIds] addObject:group.groupId];
+            NSArray *controllers = [self.navigationController viewControllers];
+            NSInteger length = [controllers count];
+            PPViewController *superController = (id)controllers[length-2];
+            [self.navigationController popViewControllerAnimated:NO];
+            [GroupTopicController enterWithGroup:group fromController:superController];
         }
     }];
 }

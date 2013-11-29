@@ -40,4 +40,6 @@
 + (CGFloat)getCellHeightWithBBSPost:(PBBBSPost *)post;
 - (void)updateCellWithBBSPost:(PBBBSPost *)post;
 
+//the same with updateCellWithBBSPost
+- (void)setCellInfo:(PBBBSPost *)post;
 @end

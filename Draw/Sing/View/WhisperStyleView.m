@@ -15,6 +15,7 @@
 #import "DrawColor.h"
 #import "StrokeLabel.h"
 #import "UIViewUtils.h"
+#import "SDImageCache.h"
 
 @interface WhisperStyleView ()
 
@@ -116,7 +117,15 @@ AUTO_CREATE_VIEW_BY_XIB(WhisperStyleView);
         [self updateOriginX:frame.origin.x];
         [self updateOriginY:frame.origin.y];
         
-        [iv setImageWithURL:[NSURL URLWithString:feed.pbFeed.opusImage] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType) {
+        UIImage *placeHolder = [UIImage imageNamed:@"unloadbg@2x.png"];
+        [iv setImageWithURL:[NSURL URLWithString:feed.pbFeed.opusThumbImage] placeholderImage:placeHolder] ;
+        placeHolder = [[SDImageCache sharedImageCache] imageFromMemoryCacheForKey:feed.pbFeed.opusThumbImage];
+        if (placeHolder == nil) {
+            placeHolder = [UIImage imageNamed:@"unloadbg@2x.png"];
+        }
+        [iv setImageWithURL:[NSURL URLWithString:feed.pbFeed.opusImage]
+           placeholderImage:placeHolder
+                  completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType) {
             [indicator stopAnimating];
             [indicator removeFromSuperview];
 

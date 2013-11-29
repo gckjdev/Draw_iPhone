@@ -22,7 +22,6 @@
 #import "UILabel+Extend.h"
 #import "WhisperStyleView.h"
 
-
 #define DESC_FONT_SIZE (ISIPAD ? 20 : 11)
 #define DESC_WIDTH (ISIPAD ? 481 : 220)
 #define CELL_HEIGHT_BASE (ISIPAD ? 563 : 252)

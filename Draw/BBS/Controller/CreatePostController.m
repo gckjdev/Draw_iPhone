@@ -18,6 +18,7 @@
 #import <QuartzCore/QuartzCore.h>
 #import "PPConfigManager.h"
 #import "WordFilterService.h"
+#import "Group.pb.h"
 
 @interface CreatePostController ()
 {
@@ -43,6 +44,7 @@
     
     BOOL canCommit;
 }
+@property(nonatomic, retain)PBGroup *group;
 @property(nonatomic, retain)PBBBSBoard *bbsBoard;
 @property(nonatomic, retain)ChangeAvatar *imagePicker;
 @property(nonatomic, retain)UIImage *image;
@@ -66,6 +68,7 @@
 
 @implementation CreatePostController
 @synthesize bbsBoard = _bbsBoard;
+
 @synthesize image = _image;
 @synthesize drawImage = _drawImage;
 @synthesize drawActionList = _drawActionList;
@@ -82,6 +85,7 @@
 
 - (void)dealloc
 {
+    PPRelease(_group);
     PPRelease(_image);
     PPRelease(_drawImage);
     PPRelease(_drawActionList);
@@ -112,9 +116,37 @@
     if (self) {
         self.bbsBoard = board;
         self.bonus = 0;
+        self.forGroup = NO;
     }
     return self;
 }
+- (id)initWithGroup:(PBGroup *)group
+{
+    self = [super init];
+    if (self) {
+        self.group = group;
+        self.bonus = 0;
+        self.forGroup = YES;
+    }
+    return self;
+}
+
+- (BBSService *)service
+{
+    if (self.forGroup) {
+        return [BBSService groupTopicService];
+    }
+    return [BBSService defaultService];
+}
+
+- (NSString *)boardId
+{
+    if (self.forGroup) {
+        return _group.groupId;
+    }
+    return _bbsBoard.boardId;
+}
+
 + (CreatePostController *)enterControllerWithBoard:(PBBBSBoard *)board
                                     fromController:(UIViewController *)fromController
 {
@@ -122,6 +154,16 @@
     [fromController presentModalViewController:cp animated:YES];
     return cp;
 }
+
++ (CreatePostController *)enterControllerWithGroup:(PBGroup *)group
+                                    fromController:(UIViewController *)fromController
+{
+    CreatePostController *cp = [[CreatePostController alloc] initWithGroup:group];
+    [fromController presentModalViewController:cp animated:YES];
+    return [cp autorelease];
+
+}
+
 
 + (CreatePostController *)enterControllerWithSourecePost:(PBBBSPost *)post
                                             sourceAction:(PBBBSAction *)action
@@ -352,27 +394,27 @@
     [self showActivityWithText:NSLS(@"kSending") center:self.textView.center];
     if ([self.postId length] != 0) {
         
-        [[BBSService defaultService] createActionWithPostId:self.postId
-                                                    PostUid:self.postUid
-                                                   postText:self.postText
-                                               sourceAction:self.sourceAction
-                                                 actionType:ActionTypeComment
-                                                       text:self.text
-                                                      image:self.image
-                                             drawActionList:self.drawActionList
-                                                  drawImage:self.drawImage
-                                                   delegate:self
-                                                 canvasSize:self.canvasSize];
+        [[self service] createActionWithPostId:self.postId
+                                    PostUid:self.postUid
+                                   postText:self.postText
+                               sourceAction:self.sourceAction
+                                 actionType:ActionTypeComment
+                                       text:self.text
+                                      image:self.image
+                             drawActionList:self.drawActionList
+                                  drawImage:self.drawImage
+                                   delegate:self
+                                 canvasSize:self.canvasSize];
         
     }else{
-        [[BBSService defaultService] createPostWithBoardId:_bbsBoard.boardId
-                                                      text:self.text
-                                                     image:self.image
-                                            drawActionList:self.drawActionList
-                                                 drawImage:self.drawImage
-                                                     bonus:self.bonus
-                                                  delegate:self
-                                                canvasSize:self.canvasSize];
+        [[self service] createPostWithBoardId:[self boardId]
+                                      text:self.text
+                                     image:self.image
+                            drawActionList:self.drawActionList
+                                 drawImage:self.drawImage
+                                     bonus:self.bonus
+                                  delegate:self
+                                canvasSize:self.canvasSize];
     }
 
 }

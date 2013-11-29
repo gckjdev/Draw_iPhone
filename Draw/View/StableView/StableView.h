@@ -73,7 +73,7 @@ typedef enum {
 - (id)initWithUrlString:(NSString *)urlString frame:(CGRect)frame gender:(BOOL)gender level:(int)level;
 
 - (void)setUrlString:(NSString *)urlString;
-
+- (void)setUser:(PBGameUser *)user;
 - (void)setImage:(UIImage *)image;
 - (void)setAvatarFrame:(CGRect)frame;
 - (void)setAvatarUrl:(NSString *)url gender:(BOOL)gender;

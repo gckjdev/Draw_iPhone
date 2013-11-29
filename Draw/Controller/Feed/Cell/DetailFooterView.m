@@ -29,6 +29,15 @@
     return footer;
 }
 
+- (id)initWithCoder:(NSCoder *)aDecoder
+{
+    self = [super initWithCoder:aDecoder];
+    if (self) {
+        
+    }
+    return self;
+}
+
 - (UIButton *)buttonWithType:(FooterType)type
 {
     if (type != FooterTypeNo) {

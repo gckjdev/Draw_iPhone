@@ -262,9 +262,15 @@
 {
     return [[self currentTab] dataList];
 }
+
 - (TableTab *)currentTab
 {
     return [_tabManager currentTab];
+}
+
+- (NSInteger)currentTabID
+{
+    return [_tabManager currentTab].tabID;
 }
 
 - (UIButton *)tabButtonWithTabID:(NSInteger)tabID

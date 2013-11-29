@@ -2487,12 +2487,14 @@ static PBGroup* defaultPBGroupInstance = nil;
 
 @interface PBGroupNotice ()
 @property (retain) NSString* noticeId;
-@property (retain) NSString* message;
-@property (retain) NSString* groupId;
 @property int32_t type;
 @property int32_t status;
-@property (retain) PBGameUser* reporter;
-@property (retain) PBGameUser* receiver;
+@property (retain) NSString* groupId;
+@property (retain) NSString* groupName;
+@property (retain) NSString* message;
+@property int32_t createDate;
+@property (retain) PBGameUser* publisher;
+@property (retain) PBGameUser* target;
 @end
 
 @implementation PBGroupNotice
@@ -2504,20 +2506,6 @@ static PBGroup* defaultPBGroupInstance = nil;
   hasNoticeId_ = !!value;
 }
 @synthesize noticeId;
-- (BOOL) hasMessage {
-  return !!hasMessage_;
-}
-- (void) setHasMessage:(BOOL) value {
-  hasMessage_ = !!value;
-}
-@synthesize message;
-- (BOOL) hasGroupId {
-  return !!hasGroupId_;
-}
-- (void) setHasGroupId:(BOOL) value {
-  hasGroupId_ = !!value;
-}
-@synthesize groupId;
 - (BOOL) hasType {
   return !!hasType_;
 }
@@ -2532,37 +2520,68 @@ static PBGroup* defaultPBGroupInstance = nil;
   hasStatus_ = !!value;
 }
 @synthesize status;
-- (BOOL) hasReporter {
-  return !!hasReporter_;
+- (BOOL) hasGroupId {
+  return !!hasGroupId_;
 }
-- (void) setHasReporter:(BOOL) value {
-  hasReporter_ = !!value;
+- (void) setHasGroupId:(BOOL) value {
+  hasGroupId_ = !!value;
 }
-@synthesize reporter;
-- (BOOL) hasReceiver {
-  return !!hasReceiver_;
+@synthesize groupId;
+- (BOOL) hasGroupName {
+  return !!hasGroupName_;
 }
-- (void) setHasReceiver:(BOOL) value {
-  hasReceiver_ = !!value;
+- (void) setHasGroupName:(BOOL) value {
+  hasGroupName_ = !!value;
 }
-@synthesize receiver;
+@synthesize groupName;
+- (BOOL) hasMessage {
+  return !!hasMessage_;
+}
+- (void) setHasMessage:(BOOL) value {
+  hasMessage_ = !!value;
+}
+@synthesize message;
+- (BOOL) hasCreateDate {
+  return !!hasCreateDate_;
+}
+- (void) setHasCreateDate:(BOOL) value {
+  hasCreateDate_ = !!value;
+}
+@synthesize createDate;
+- (BOOL) hasPublisher {
+  return !!hasPublisher_;
+}
+- (void) setHasPublisher:(BOOL) value {
+  hasPublisher_ = !!value;
+}
+@synthesize publisher;
+- (BOOL) hasTarget {
+  return !!hasTarget_;
+}
+- (void) setHasTarget:(BOOL) value {
+  hasTarget_ = !!value;
+}
+@synthesize target;
 - (void) dealloc {
   self.noticeId = nil;
-  self.message = nil;
   self.groupId = nil;
-  self.reporter = nil;
-  self.receiver = nil;
+  self.groupName = nil;
+  self.message = nil;
+  self.publisher = nil;
+  self.target = nil;
   [super dealloc];
 }
 - (id) init {
   if ((self = [super init])) {
     self.noticeId = @"";
-    self.message = @"";
-    self.groupId = @"";
     self.type = 0;
     self.status = 0;
-    self.reporter = [PBGameUser defaultInstance];
-    self.receiver = [PBGameUser defaultInstance];
+    self.groupId = @"";
+    self.groupName = @"";
+    self.message = @"";
+    self.createDate = 0;
+    self.publisher = [PBGameUser defaultInstance];
+    self.target = [PBGameUser defaultInstance];
   }
   return self;
 }
@@ -2582,13 +2601,13 @@ static PBGroupNotice* defaultPBGroupNoticeInstance = nil;
   if (!self.hasNoticeId) {
     return NO;
   }
-  if (self.hasReporter) {
-    if (!self.reporter.isInitialized) {
+  if (self.hasPublisher) {
+    if (!self.publisher.isInitialized) {
       return NO;
     }
   }
-  if (self.hasReceiver) {
-    if (!self.receiver.isInitialized) {
+  if (self.hasTarget) {
+    if (!self.target.isInitialized) {
       return NO;
     }
   }
@@ -2598,23 +2617,29 @@ static PBGroupNotice* defaultPBGroupNoticeInstance = nil;
   if (self.hasNoticeId) {
     [output writeString:1 value:self.noticeId];
   }
-  if (self.hasMessage) {
-    [output writeString:2 value:self.message];
-  }
-  if (self.hasGroupId) {
-    [output writeString:3 value:self.groupId];
-  }
   if (self.hasType) {
-    [output writeInt32:4 value:self.type];
+    [output writeInt32:2 value:self.type];
   }
   if (self.hasStatus) {
-    [output writeInt32:5 value:self.status];
+    [output writeInt32:3 value:self.status];
   }
-  if (self.hasReporter) {
-    [output writeMessage:10 value:self.reporter];
+  if (self.hasGroupId) {
+    [output writeString:4 value:self.groupId];
   }
-  if (self.hasReceiver) {
-    [output writeMessage:11 value:self.receiver];
+  if (self.hasGroupName) {
+    [output writeString:5 value:self.groupName];
+  }
+  if (self.hasMessage) {
+    [output writeString:6 value:self.message];
+  }
+  if (self.hasCreateDate) {
+    [output writeInt32:7 value:self.createDate];
+  }
+  if (self.hasPublisher) {
+    [output writeMessage:10 value:self.publisher];
+  }
+  if (self.hasTarget) {
+    [output writeMessage:11 value:self.target];
   }
   [self.unknownFields writeToCodedOutputStream:output];
 }
@@ -2628,23 +2653,29 @@ static PBGroupNotice* defaultPBGroupNoticeInstance = nil;
   if (self.hasNoticeId) {
     size += computeStringSize(1, self.noticeId);
   }
-  if (self.hasMessage) {
-    size += computeStringSize(2, self.message);
-  }
-  if (self.hasGroupId) {
-    size += computeStringSize(3, self.groupId);
-  }
   if (self.hasType) {
-    size += computeInt32Size(4, self.type);
+    size += computeInt32Size(2, self.type);
   }
   if (self.hasStatus) {
-    size += computeInt32Size(5, self.status);
+    size += computeInt32Size(3, self.status);
   }
-  if (self.hasReporter) {
-    size += computeMessageSize(10, self.reporter);
+  if (self.hasGroupId) {
+    size += computeStringSize(4, self.groupId);
   }
-  if (self.hasReceiver) {
-    size += computeMessageSize(11, self.receiver);
+  if (self.hasGroupName) {
+    size += computeStringSize(5, self.groupName);
+  }
+  if (self.hasMessage) {
+    size += computeStringSize(6, self.message);
+  }
+  if (self.hasCreateDate) {
+    size += computeInt32Size(7, self.createDate);
+  }
+  if (self.hasPublisher) {
+    size += computeMessageSize(10, self.publisher);
+  }
+  if (self.hasTarget) {
+    size += computeMessageSize(11, self.target);
   }
   size += self.unknownFields.serializedSize;
   memoizedSerializedSize = size;
@@ -2724,23 +2755,29 @@ static PBGroupNotice* defaultPBGroupNoticeInstance = nil;
   if (other.hasNoticeId) {
     [self setNoticeId:other.noticeId];
   }
-  if (other.hasMessage) {
-    [self setMessage:other.message];
-  }
-  if (other.hasGroupId) {
-    [self setGroupId:other.groupId];
-  }
   if (other.hasType) {
     [self setType:other.type];
   }
   if (other.hasStatus) {
     [self setStatus:other.status];
   }
-  if (other.hasReporter) {
-    [self mergeReporter:other.reporter];
+  if (other.hasGroupId) {
+    [self setGroupId:other.groupId];
   }
-  if (other.hasReceiver) {
-    [self mergeReceiver:other.receiver];
+  if (other.hasGroupName) {
+    [self setGroupName:other.groupName];
+  }
+  if (other.hasMessage) {
+    [self setMessage:other.message];
+  }
+  if (other.hasCreateDate) {
+    [self setCreateDate:other.createDate];
+  }
+  if (other.hasPublisher) {
+    [self mergePublisher:other.publisher];
+  }
+  if (other.hasTarget) {
+    [self mergeTarget:other.target];
   }
   [self mergeUnknownFields:other.unknownFields];
   return self;
@@ -2767,38 +2804,46 @@ static PBGroupNotice* defaultPBGroupNoticeInstance = nil;
         [self setNoticeId:[input readString]];
         break;
       }
-      case 18: {
-        [self setMessage:[input readString]];
-        break;
-      }
-      case 26: {
-        [self setGroupId:[input readString]];
-        break;
-      }
-      case 32: {
+      case 16: {
         [self setType:[input readInt32]];
         break;
       }
-      case 40: {
+      case 24: {
         [self setStatus:[input readInt32]];
+        break;
+      }
+      case 34: {
+        [self setGroupId:[input readString]];
+        break;
+      }
+      case 42: {
+        [self setGroupName:[input readString]];
+        break;
+      }
+      case 50: {
+        [self setMessage:[input readString]];
+        break;
+      }
+      case 56: {
+        [self setCreateDate:[input readInt32]];
         break;
       }
       case 82: {
         PBGameUser_Builder* subBuilder = [PBGameUser builder];
-        if (self.hasReporter) {
-          [subBuilder mergeFrom:self.reporter];
+        if (self.hasPublisher) {
+          [subBuilder mergeFrom:self.publisher];
         }
         [input readMessage:subBuilder extensionRegistry:extensionRegistry];
-        [self setReporter:[subBuilder buildPartial]];
+        [self setPublisher:[subBuilder buildPartial]];
         break;
       }
       case 90: {
         PBGameUser_Builder* subBuilder = [PBGameUser builder];
-        if (self.hasReceiver) {
-          [subBuilder mergeFrom:self.receiver];
+        if (self.hasTarget) {
+          [subBuilder mergeFrom:self.target];
         }
         [input readMessage:subBuilder extensionRegistry:extensionRegistry];
-        [self setReceiver:[subBuilder buildPartial]];
+        [self setTarget:[subBuilder buildPartial]];
         break;
       }
     }
@@ -2818,38 +2863,6 @@ static PBGroupNotice* defaultPBGroupNoticeInstance = nil;
 - (PBGroupNotice_Builder*) clearNoticeId {
   result.hasNoticeId = NO;
   result.noticeId = @"";
-  return self;
-}
-- (BOOL) hasMessage {
-  return result.hasMessage;
-}
-- (NSString*) message {
-  return result.message;
-}
-- (PBGroupNotice_Builder*) setMessage:(NSString*) value {
-  result.hasMessage = YES;
-  result.message = value;
-  return self;
-}
-- (PBGroupNotice_Builder*) clearMessage {
-  result.hasMessage = NO;
-  result.message = @"";
-  return self;
-}
-- (BOOL) hasGroupId {
-  return result.hasGroupId;
-}
-- (NSString*) groupId {
-  return result.groupId;
-}
-- (PBGroupNotice_Builder*) setGroupId:(NSString*) value {
-  result.hasGroupId = YES;
-  result.groupId = value;
-  return self;
-}
-- (PBGroupNotice_Builder*) clearGroupId {
-  result.hasGroupId = NO;
-  result.groupId = @"";
   return self;
 }
 - (BOOL) hasType {
@@ -2884,64 +2897,128 @@ static PBGroupNotice* defaultPBGroupNoticeInstance = nil;
   result.status = 0;
   return self;
 }
-- (BOOL) hasReporter {
-  return result.hasReporter;
+- (BOOL) hasGroupId {
+  return result.hasGroupId;
 }
-- (PBGameUser*) reporter {
-  return result.reporter;
+- (NSString*) groupId {
+  return result.groupId;
 }
-- (PBGroupNotice_Builder*) setReporter:(PBGameUser*) value {
-  result.hasReporter = YES;
-  result.reporter = value;
+- (PBGroupNotice_Builder*) setGroupId:(NSString*) value {
+  result.hasGroupId = YES;
+  result.groupId = value;
   return self;
 }
-- (PBGroupNotice_Builder*) setReporterBuilder:(PBGameUser_Builder*) builderForValue {
-  return [self setReporter:[builderForValue build]];
+- (PBGroupNotice_Builder*) clearGroupId {
+  result.hasGroupId = NO;
+  result.groupId = @"";
+  return self;
 }
-- (PBGroupNotice_Builder*) mergeReporter:(PBGameUser*) value {
-  if (result.hasReporter &&
-      result.reporter != [PBGameUser defaultInstance]) {
-    result.reporter =
-      [[[PBGameUser builderWithPrototype:result.reporter] mergeFrom:value] buildPartial];
+- (BOOL) hasGroupName {
+  return result.hasGroupName;
+}
+- (NSString*) groupName {
+  return result.groupName;
+}
+- (PBGroupNotice_Builder*) setGroupName:(NSString*) value {
+  result.hasGroupName = YES;
+  result.groupName = value;
+  return self;
+}
+- (PBGroupNotice_Builder*) clearGroupName {
+  result.hasGroupName = NO;
+  result.groupName = @"";
+  return self;
+}
+- (BOOL) hasMessage {
+  return result.hasMessage;
+}
+- (NSString*) message {
+  return result.message;
+}
+- (PBGroupNotice_Builder*) setMessage:(NSString*) value {
+  result.hasMessage = YES;
+  result.message = value;
+  return self;
+}
+- (PBGroupNotice_Builder*) clearMessage {
+  result.hasMessage = NO;
+  result.message = @"";
+  return self;
+}
+- (BOOL) hasCreateDate {
+  return result.hasCreateDate;
+}
+- (int32_t) createDate {
+  return result.createDate;
+}
+- (PBGroupNotice_Builder*) setCreateDate:(int32_t) value {
+  result.hasCreateDate = YES;
+  result.createDate = value;
+  return self;
+}
+- (PBGroupNotice_Builder*) clearCreateDate {
+  result.hasCreateDate = NO;
+  result.createDate = 0;
+  return self;
+}
+- (BOOL) hasPublisher {
+  return result.hasPublisher;
+}
+- (PBGameUser*) publisher {
+  return result.publisher;
+}
+- (PBGroupNotice_Builder*) setPublisher:(PBGameUser*) value {
+  result.hasPublisher = YES;
+  result.publisher = value;
+  return self;
+}
+- (PBGroupNotice_Builder*) setPublisherBuilder:(PBGameUser_Builder*) builderForValue {
+  return [self setPublisher:[builderForValue build]];
+}
+- (PBGroupNotice_Builder*) mergePublisher:(PBGameUser*) value {
+  if (result.hasPublisher &&
+      result.publisher != [PBGameUser defaultInstance]) {
+    result.publisher =
+      [[[PBGameUser builderWithPrototype:result.publisher] mergeFrom:value] buildPartial];
   } else {
-    result.reporter = value;
+    result.publisher = value;
   }
-  result.hasReporter = YES;
+  result.hasPublisher = YES;
   return self;
 }
-- (PBGroupNotice_Builder*) clearReporter {
-  result.hasReporter = NO;
-  result.reporter = [PBGameUser defaultInstance];
+- (PBGroupNotice_Builder*) clearPublisher {
+  result.hasPublisher = NO;
+  result.publisher = [PBGameUser defaultInstance];
   return self;
 }
-- (BOOL) hasReceiver {
-  return result.hasReceiver;
+- (BOOL) hasTarget {
+  return result.hasTarget;
 }
-- (PBGameUser*) receiver {
-  return result.receiver;
+- (PBGameUser*) target {
+  return result.target;
 }
-- (PBGroupNotice_Builder*) setReceiver:(PBGameUser*) value {
-  result.hasReceiver = YES;
-  result.receiver = value;
+- (PBGroupNotice_Builder*) setTarget:(PBGameUser*) value {
+  result.hasTarget = YES;
+  result.target = value;
   return self;
 }
-- (PBGroupNotice_Builder*) setReceiverBuilder:(PBGameUser_Builder*) builderForValue {
-  return [self setReceiver:[builderForValue build]];
+- (PBGroupNotice_Builder*) setTargetBuilder:(PBGameUser_Builder*) builderForValue {
+  return [self setTarget:[builderForValue build]];
 }
-- (PBGroupNotice_Builder*) mergeReceiver:(PBGameUser*) value {
-  if (result.hasReceiver &&
-      result.receiver != [PBGameUser defaultInstance]) {
-    result.receiver =
-      [[[PBGameUser builderWithPrototype:result.receiver] mergeFrom:value] buildPartial];
+- (PBGroupNotice_Builder*) mergeTarget:(PBGameUser*) value {
+  if (result.hasTarget &&
+      result.target != [PBGameUser defaultInstance]) {
+    result.target =
+      [[[PBGameUser builderWithPrototype:result.target] mergeFrom:value] buildPartial];
   } else {
-    result.receiver = value;
+    result.target = value;
   }
-  result.hasReceiver = YES;
+  result.hasTarget = YES;
   return self;
 }
-- (PBGroupNotice_Builder*) clearReceiver {
-  result.hasReceiver = NO;
-  result.receiver = [PBGameUser defaultInstance];
+- (PBGroupNotice_Builder*) clearTarget {
+  result.hasTarget = NO;
+  result.target = [PBGameUser defaultInstance];
   return self;
 }
 @end

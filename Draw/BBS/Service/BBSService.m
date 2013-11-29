@@ -41,8 +41,9 @@ BBSService *_staticGroupTopicService;
 - (NSString *)hostURL
 {
     NSString *host = [PPConfigManager getBBSServerURL];
-    if (_isGroupTopicService || YES) {
-        return [NSString stringWithFormat:@"%@%@=%@",host,PARA_TOPIC_MODE,CONST_GROUP_MODE];
+    if (_isGroupTopicService) {
+        host = [PPConfigManager getGroupServerURL];
+        return [NSString stringWithFormat:@"%@%@=%d",host,PARA_TOPIC_MODE,CONST_GROUP_MODE];
     }
     return host;
 }
@@ -636,8 +637,10 @@ BBSService *_staticGroupTopicService;
 
 
 - (void)searchPostListByKeyWord:(NSString *)keyWord
-                            limit:(NSInteger)limit
-                          hanlder:(BBSGetPostResultHandler)handler
+                        inGroup:(NSString *)groupId
+                         offset:(NSInteger)offset
+                          limit:(NSInteger)limit
+                        hanlder:(BBSGetPostResultHandler)handler;
 {
     if ([keyWord length] == 0) {
         return;
@@ -651,9 +654,17 @@ BBSService *_staticGroupTopicService;
                                 PARA_APPID : appId,
                                 PARA_USERID : userId,
                                 PARA_KEYWORD : keyWord,
+                                PARA_OFFSET : @(offset),
                                 PARA_LIMIT : @(limit),
                                 };
 
+        if ([groupId length] != 0) {
+            NSMutableDictionary *dict = [NSMutableDictionary dictionary];
+            [dict setDictionary:paras];
+            //the parameter here is right here. by gamy
+            [dict setObject:groupId forKey:PARA_BOARDID];
+            paras = dict;
+        }
         
         GameNetworkOutput *output = [BBSNetwork sendGetRequestWithBaseURL:[self hostURL]
                                        method:METHOD_SEARCH_BBSPOST_LIST

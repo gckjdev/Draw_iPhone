@@ -984,6 +984,7 @@
 "kStatement" = "Statement";
 "kDecline" = "Decline";
 "kAccept" = "Accept";
+"kIgnore" = "Ignore";
 
 "kCoinsForFollowUs" = "+%d coins";
 "kFollowSinaWeibo" = "Follow us with Sina";
@@ -1511,7 +1512,7 @@
 "kJailBrokenUserIAPTips" = "Your device is Jail-Broken. Please don't use any IAP cracker. Click OK to continue.";
 
 "kNoSaveList" = "Favorite information is not open to others.";
-
+"kEditImage" = "Edit Image";
 "kLearnDrawSortTypeOption" = "Sort By";
 "kSortedByTime" = "Newest";
 "kSortedByBoughtTimes" = "Sold";
@@ -1946,6 +1947,7 @@
 "kSearchEmpty" = "No matched room";
 "kNoFriendRoom" = "No friend online";
 "kMe" = "Me";
+"kI" = "I";
 "kSendMeFlower" = "Send me a flower";
 "kThrowMeTomato" = "Throw me a tomato";
 "kCommentMyOpus" = "Comment my opus.";
@@ -2088,6 +2090,37 @@
 "kGroupUpgradeSmall" = "The level should be larger than the original level.";
 "kGroupNameIsEmpty" = "The group name is empty.";
 "kGroupNameTooLong" = "The group name length should be less than 16";
+
+"kGroup" = "Group";
+"kGroupBulletinDesc" = "%@ posted a notice in %@ .";
+"kGroupJoinDesc" = "%@ applied to join %@";
+"kGroupExpelDesc" = "%@ drived %@ out of %@";
+"kGroupQuitDesc" = "%@ quit %@";
+"kGroupAcceptDesc" = "%@ accepted %@ into %@";
+"kGroupRejectDesc" = "%@ rejected %@ to join %@";
+"kContentDesc" = "Content: %@";
+"kPostscriptDesc" = "Postscript: %@";
+
+"kGroupComment" = "Comment";
+"kGroupRequest" = "Request";
+"kGroupNotice" = "Notice";
+"kAtMe" = "@Me";
+
+"kSearchGroup" = "Search Group";
+"kSearchPost" = "Search Post";
+"kSearchTopic" = "Search Topic";
+"kSearchGroupTips" = "Name/Descripiton/Signature";
+"kJoinGroup" = "Join";
+"kQuitGroup" = "Quit";
+"kDissolveGroup" = "Dissolve";
+
+"kJoiningGroup" = "Sending join group request...";
+"kSentRequest" = "Request was sent.";
+"kQuitingGroup" = "Quiting group...";
+"kQuitedGroup" = "Quited group.";
+
+"kCanotCreateTopic" = "No premission to create a topic.";
+"kCanotGroupChat" = "No premission to start group chat.";
 
 /*********************小吉画画国际化字符串开始 ************************/
 "kLittleGeeRecommend" = "Featured";

@@ -16,6 +16,7 @@
 @class PBBBSAction;
 @class PBBBSPost;
 @class CreatePostController;
+@class PBGroup;
 
 @protocol CreatePostControllerDelegate <NSObject>
 
@@ -43,6 +44,7 @@
 @property (retain, nonatomic) IBOutlet UIButton *backButton;
 @property (retain, nonatomic) IBOutlet UIButton *submitButton;
 @property (retain, nonatomic) IBOutlet UIImageView *inputBG;
+@property (assign, nonatomic, getter = isForGroup) BOOL forGroup;
 
 @property (assign, nonatomic) id<CreatePostControllerDelegate>delegate;
 
@@ -50,9 +52,14 @@
 + (CreatePostController *)enterControllerWithBoard:(PBBBSBoard *)board
                                     fromController:(UIViewController *)fromController;
 
++ (CreatePostController *)enterControllerWithGroup:(PBGroup *)group
+                                    fromController:(UIViewController *)fromController;
+
+
 + (CreatePostController *)enterControllerWithSourecePost:(PBBBSPost *)post
                                             sourceAction:(PBBBSAction *)action
                                           fromController:(UIViewController *)fromController;
+
 + (CreatePostController *)enterControllerWithSourecePostId:(NSString *)postId
                                                    postUid:(NSString *)postUid
                                                   postText:(NSString *)postText

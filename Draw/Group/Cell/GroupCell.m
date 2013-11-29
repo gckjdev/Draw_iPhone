@@ -68,6 +68,7 @@
 
 - (void)layoutSubviews
 {
+    [super layoutSubviews];
     self.infoView.frame = self.bounds;
     _infoView.customButton.selected = [[GroupManager defaultManager] followedGroup:_group.groupId];
 }
@@ -76,7 +77,7 @@
 {
     
     if (self.delegate) {
-        if (button.isSelected) {
+        if (!button.isSelected) {
             //UNFollow
             if ([self.delegate respondsToSelector:@selector(groupCell:goFollowGroup:)]) {
                 [self.delegate groupCell:self goFollowGroup:_group];

@@ -45,4 +45,37 @@ if (ColorStyleYellow==style) {\
     return [UIImage imageNamed:@"group_footer_unfollowing@2x.png"];
 }
 
+#define IMAGE_NAME(x) [UIImage imageNamed:x]
+
++ (UIImage *)imageForFooterActionType:(GroupFooterActionType)type
+{
+    switch(type){
+        case GroupCreateGroup:
+        case GroupCreateTopic:
+            return IMAGE_NAME(@"group_footer_create@2x.png");
+        case GroupSearchGroup:
+            return IMAGE_NAME(@"group_footer_search@2x.png");
+        case GroupSearchTopic:
+            return IMAGE_NAME(@"group_footer_search@2x.png");
+        case GroupChat:
+            return IMAGE_NAME(@"group_footer_chat@2x.png");
+        case GroupAtMe:
+            return IMAGE_NAME(@"group_footer_at@2x.png");
+        case GroupContest:
+            return IMAGE_NAME(@"group_footer_contest@2x.png");
+        default:
+            return nil;
+    }
+}
+
++ (NSArray *)imagesForFooterActionTypes:(NSArray *)types
+{
+    NSMutableArray *images = [NSMutableArray arrayWithCapacity:types.count];
+    for (NSNumber *type in types) {
+        UIImage *image = [self imageForFooterActionType:type.integerValue];
+        [images addObject:image];
+    }
+    return images;
+}
+
 @end

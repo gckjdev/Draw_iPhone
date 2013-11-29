@@ -284,7 +284,7 @@
     [self showActivityWithText:NSLS(@"kLoading")];
     if (self.showMarkedPosts) {
 
-        [[BBSService defaultService] getMarkedPostList:self.bbsBoard.boardId offset:tab.offset limit:tab.limit hanlder:^(NSInteger resultCode, NSArray *postList, NSInteger tag) {
+        [[self bbsService] getMarkedPostList:self.bbsBoard.boardId offset:tab.offset limit:tab.limit hanlder:^(NSInteger resultCode, NSArray *postList, NSInteger tag) {
             [self hideActivity];
             if (resultCode == 0) {
                 [self finishLoadDataForTabID:tabID resultList:postList];
@@ -297,7 +297,7 @@
         return;
     }
     NSInteger rangeType = [self tabIDToRangeType:tabID];
-    [[BBSService defaultService] getBBSPostListWithBoardId:_bbsBoard.boardId
+    [[self bbsService] getBBSPostListWithBoardId:_bbsBoard.boardId
                                                  targetUid:_bbsUser.userId
                                                  rangeType:rangeType
                                                     offset:tab.offset
@@ -424,7 +424,7 @@
     PBBBSPost *post = [self postForIndexPath:indexPath];
     if (post && post.canDelete) {
         [self showActivityWithText:NSLS(@"kDeleting")];
-        [[BBSService defaultService] deletePost:post delegate:self];
+        [[self bbsService] deletePost:post delegate:self];
     }
 }
 

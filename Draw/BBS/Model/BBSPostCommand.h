@@ -24,6 +24,7 @@
 
 @property(nonatomic, retain)PBBBSPost *post;
 @property(nonatomic, assign)BBSPostDetailController *controller;
+@property(nonatomic, assign)BOOL forGroup;
 
 - (id)initWithPost:(PBBBSPost *)post controller:(BBSPostDetailController *)controller;
 
