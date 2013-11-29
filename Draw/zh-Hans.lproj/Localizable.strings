@@ -2149,6 +2149,10 @@
 "kCanotCreateTopic" = "对不起，不是家族成员或嘉宾不能创建话题。";
 "kCanotGroupChat" = "对不起，不是家族成员或嘉宾不能进行群聊。";
 
+"kSeeAllPost" = "全部帖子";
+"kSeeLZOnly" = "只看楼主";
+"kSeeMeOnly" = "只看用户";
+
 
 /*********************小吉画画国际化字符串开始 ************************/
 "kLittleGeeRecommend" = "推荐";

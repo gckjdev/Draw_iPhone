@@ -16,6 +16,7 @@
 @optional
 - (void)didClickReplyButtonWithAction:(PBBBSAction *)action;
 - (void)didClickPayButtonWithAction:(PBBBSAction *)action;
+- (void)didClickOnlySeeMe:(NSString *)targetUid;
 
 @end
 
@@ -32,6 +33,10 @@
 @property (retain, nonatomic) PBBBSAction *action;
 @property (retain, nonatomic) PBBBSPost *post;
 
+//只看用户
+@property (retain, nonatomic) NSString *currentUserId;
+@property (retain, nonatomic) IBOutlet UIButton *seeMeOnly;
+- (IBAction)clickSeeMeOnly:(id)sender;
 
 - (IBAction)clickRepyButton:(id)sender;
 + (id)createCell:(id)delegate;

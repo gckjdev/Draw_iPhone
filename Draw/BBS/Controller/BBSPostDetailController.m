@@ -34,6 +34,9 @@
 @property (retain, nonatomic) IBOutlet UIImageView *toolBarBG;
 @property (retain, nonatomic) IBOutlet UIButton *refreshButton;
 
+//只看此用户
+@property (retain, nonatomic) NSString *currentUserId;
+
 @property (retain, nonatomic) NSString *postID;
 @property (retain, nonatomic) GroupPermissionManager *grpPermissionManager;
 @end
@@ -101,6 +104,7 @@ typedef enum{
     [[AdService defaultService] clearAdView:self.adView];
     self.adView = nil;
     
+    PPRelease(_currentUserId);
     PPRelease(_post);
     PPRelease(_backButton);
     PPRelease(_bgImageView);
@@ -299,23 +303,42 @@ typedef enum{
     NSString *titles[] = {NSLS(@"kSupport"),NSLS(@"kComment")};
     return titles[index];
 }
+
+- (void)loadActionByUser
+{
+    TableTab *tab = [self currentTab];
+    [[self bbsService] getPostActionByUser:_currentUserId postId:self.postID offset:tab.offset limit:tab.limit hanlder:^(NSInteger resultCode, NSArray *postList, NSInteger tag) {
+        [self hideActivity];
+        if (resultCode == 0) {
+            [self finishLoadDataForTabID:tab.tabID resultList:postList];
+        }else{
+            [self failLoadDataForTabID:tab.tabID];
+        }
+    }];
+}
+
 - (void)serviceLoadDataForTabID:(NSInteger)tabID
 {
+    [self showActivityWithText:NSLS(@"kLoading")];
+    TableTab *tab = [_tabManager tabForID:tabID];
     BBSActionType type = ActionTypeNO;
     if (tabID == Support) {
         type = ActionTypeSupport;
     }else if(tabID == Comment){
         type = ActionTypeComment;
+        if ([self.currentUserId length] != 0) {
+            [self loadActionByUser];
+            return;
+        }
     }
     
-    TableTab *tab = [_tabManager tabForID:tabID];
     
     [[self bbsService] getBBSActionListWithPostId:self.postID
                                                  actionType:type
                                                      offset:tab.offset
                                                       limit:tab.limit
                                                    delegate:self];
-    [self showActivityWithText:NSLS(@"kLoading")];
+
 }
 
 
@@ -426,6 +449,7 @@ typedef enum{
             {
                 NSString *CellIdentifier = [BBSPostDetailCell getCellIdentifier];
                 BBSPostDetailCell *cell = [self getTableViewCell:theTableView cellIdentifier:CellIdentifier cellClass:[BBSPostDetailCell class]];
+                [cell setCurrentUserId:self.currentUserId];
                 [cell updateCellWithBBSPost:self.post];
                 cell.delegate = self;
                 cell.backgroundColor = [UIColor clearColor];
@@ -439,6 +463,7 @@ typedef enum{
                     cell = [BBSPostActionCell createCell:self];
                 }
                 PBBBSAction *action = [self actionForIndexPath:indexPath];
+                [cell setCurrentUserId:self.currentUserId];
                 [cell updateCellWithBBSAction:action post:self.post];
                 if ([self.post canPay] && action == _selectedAction && ![action isMyAction]) {
                     [cell showOption:YES];
@@ -544,6 +569,12 @@ typedef enum{
     [[self bbsService] payRewardWithPost:self.post
                                             action:action
                                           delegate:self];
+}
+
+- (void)didClickOnlySeeMe:(NSString *)targetUid
+{
+    self.currentUserId = targetUid;
+    [self clickRefreshButton:nil];
 }
 
 #pragma mark - CreatePostController delegate
