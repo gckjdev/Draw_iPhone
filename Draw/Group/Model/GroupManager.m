@@ -10,6 +10,7 @@
 #import "BBSPostCommand.h"
 #import "Group.pb.h"
 
+
 static GroupManager *_staticGroupManager = nil;
 
 @interface GroupManager()
@@ -153,4 +154,34 @@ static GroupManager *_staticGroupManager = nil;
     }
 }
 
+enum{
+    BADGE_COMMENT = 1,
+    BADGE_REQUEST = 2,
+    BADGE_NOTICE = 3,
+};
+
+- (NSInteger)totalBadge
+{
+    return _noticeBadge + _commentBadge + _requestBadge;
+}
+
+- (void)updateBadges:(NSArray *)badges
+{
+    self.noticeBadge = self.commentBadge = self.requestBadge = 0;
+    for (PBIntKeyIntValue *kv in badges) {
+        switch (kv.key) {
+            case BADGE_COMMENT:
+                self.commentBadge = kv.value;
+                break;
+            case BADGE_REQUEST:
+                self.requestBadge = kv.value;
+                break;
+            case BADGE_NOTICE:
+                self.noticeBadge = kv.value;
+                break;
+            default:
+                break;
+        }
+    }
+}
 @end

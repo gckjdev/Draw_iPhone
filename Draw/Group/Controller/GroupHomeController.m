@@ -75,6 +75,22 @@
     PPDebug(@"update footer view, types = %@", types);
 }
 
+- (void)updateAtMeBadge
+{
+    NSInteger badge = [[GroupManager defaultManager] totalBadge];
+    [self.footerView setButton:GroupAtMe badge:badge];
+}
+
+- (void)loadBadge
+{
+    [[GroupService defaultService] getGroupBadgeWithCallback:^(NSArray *badges, NSError *error) {
+        if (!error) {
+            [[GroupManager defaultManager] updateBadges:badges];
+            [self updateAtMeBadge];
+        }
+    }];
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -85,7 +101,13 @@
     [self initTabButtons];
     [self clickTabButton:[self defaultTabButton]];
     [self updateFooterView];
+    [self loadBadge];
+}
 
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    [self updateAtMeBadge];
 }
 
 - (void)didReceiveMemoryWarning
@@ -278,8 +300,7 @@
                 SearchPostController *spc = [[SearchPostController alloc] init];
                 spc.forGroup = YES;
                 [self.navigationController pushViewController:spc animated:YES];
-                [spc release];
-                
+                [spc release];                
             }
             break;
         }

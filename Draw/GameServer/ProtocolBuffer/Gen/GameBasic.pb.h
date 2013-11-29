@@ -32,6 +32,8 @@
 @class PBIAPProductPrice;
 @class PBIAPProductPrice_Builder;
 @class PBIAPProduct_Builder;
+@class PBIntKeyIntValue;
+@class PBIntKeyIntValue_Builder;
 @class PBIntKeyValue;
 @class PBIntKeyValue_Builder;
 @class PBItemPriceInfo;
@@ -269,6 +271,63 @@ BOOL PBTaskIdTypeIsValidValue(PBTaskIdType value);
 - (NSString*) value;
 - (PBIntKeyValue_Builder*) setValue:(NSString*) value;
 - (PBIntKeyValue_Builder*) clearValue;
+@end
+
+@interface PBIntKeyIntValue : PBGeneratedMessage {
+@private
+  BOOL hasKey_:1;
+  BOOL hasValue_:1;
+  int32_t key;
+  int32_t value;
+}
+- (BOOL) hasKey;
+- (BOOL) hasValue;
+@property (readonly) int32_t key;
+@property (readonly) int32_t value;
+
++ (PBIntKeyIntValue*) defaultInstance;
+- (PBIntKeyIntValue*) defaultInstance;
+
+- (BOOL) isInitialized;
+- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
+- (PBIntKeyIntValue_Builder*) builder;
++ (PBIntKeyIntValue_Builder*) builder;
++ (PBIntKeyIntValue_Builder*) builderWithPrototype:(PBIntKeyIntValue*) prototype;
+
++ (PBIntKeyIntValue*) parseFromData:(NSData*) data;
++ (PBIntKeyIntValue*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
++ (PBIntKeyIntValue*) parseFromInputStream:(NSInputStream*) input;
++ (PBIntKeyIntValue*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
++ (PBIntKeyIntValue*) parseFromCodedInputStream:(PBCodedInputStream*) input;
++ (PBIntKeyIntValue*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+@end
+
+@interface PBIntKeyIntValue_Builder : PBGeneratedMessage_Builder {
+@private
+  PBIntKeyIntValue* result;
+}
+
+- (PBIntKeyIntValue*) defaultInstance;
+
+- (PBIntKeyIntValue_Builder*) clear;
+- (PBIntKeyIntValue_Builder*) clone;
+
+- (PBIntKeyIntValue*) build;
+- (PBIntKeyIntValue*) buildPartial;
+
+- (PBIntKeyIntValue_Builder*) mergeFrom:(PBIntKeyIntValue*) other;
+- (PBIntKeyIntValue_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
+- (PBIntKeyIntValue_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+
+- (BOOL) hasKey;
+- (int32_t) key;
+- (PBIntKeyIntValue_Builder*) setKey:(int32_t) value;
+- (PBIntKeyIntValue_Builder*) clearKey;
+
+- (BOOL) hasValue;
+- (int32_t) value;
+- (PBIntKeyIntValue_Builder*) setValue:(int32_t) value;
+- (PBIntKeyIntValue_Builder*) clearValue;
 @end
 
 @interface PBSNSUser : PBGeneratedMessage {

@@ -58,16 +58,16 @@
 -(void)excute{
     CHECK_AND_LOGIN(self.controller.view);
     [[self bbsService] createActionWithPostId:self.post.postId
-                                                PostUid:self.post.postUid
-                                               postText:self.post.postText
-                                           sourceAction:nil
-                                             actionType:ActionTypeSupport
-                                                   text:nil
-                                                  image:nil
-                                         drawActionList:nil
-                                              drawImage:nil
-                                               delegate:self.controller
-                                             canvasSize:CGSizeZero];
+                                      PostUid:self.post.postUid
+                                     postText:self.post.postText
+                                 sourceAction:nil
+                                   actionType:ActionTypeSupport
+                                         text:nil
+                                        image:nil
+                               drawActionList:nil
+                                    drawImage:nil
+                                     delegate:self.controller
+                                   canvasSize:CGSizeZero];
 
 }
 

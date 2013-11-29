@@ -39,12 +39,22 @@ typedef enum{
     return self;
 }
 
+- (void)updateBadge
+{
+//     [self tabButtonWithTabID:GroupComment];
+    GroupManager *gm = [GroupManager defaultManager];
+    [self setBadge:gm.commentBadge onTab:GroupComment];
+    [self setBadge:gm.noticeBadge onTab:GroupNotice];
+    [self setBadge:gm.requestBadge onTab:GroupRequest];
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     [self.titleView setTitle:NSLS(@"kAtMe")];
     [self.titleView setTransparentStyle];
     [self initTabButtons];
+    [self updateBadge];
 }
 
 - (void)didReceiveMemoryWarning
@@ -297,6 +307,14 @@ typedef enum{
                if (error) {
                    [self failLoadDataForTabID:tabID];
                }else{
+                   if (tab.offset == 0) {
+                       [self setBadge:0 onTab:tabID];
+                       if (tabID == GroupRequest) {
+                           [[GroupManager defaultManager] setRequestBadge:0];
+                       }else{
+                           [[GroupManager defaultManager] setNoticeBadge:0];
+                       }
+                   }
                    [self finishLoadDataForTabID:tabID resultList:list];
                }
             }];
@@ -315,6 +333,8 @@ typedef enum{
     [self hideActivity];
     if (resultCode == 0) {
         PPDebug(@"<didGetActionList> count = %d",[actionList count]);
+        [self setBadge:0 onTab:GroupComment];
+        [[GroupManager defaultManager] setCommentBadge:0];
         [self finishLoadDataForTabID:GroupComment resultList:actionList];
     }else{
         PPDebug(@"<didGetActionList> fail!");

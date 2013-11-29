@@ -681,6 +681,42 @@ BBSService *_staticGroupTopicService;
     });
 }
 
+- (void)getPostActionByUser:(NSString *)targetUid
+                     postId:(NSString *)postId
+                     offset:(NSInteger)offset
+                      limit:(NSInteger)limit
+                    hanlder:(BBSGetPostResultHandler)handler
+{
+    dispatch_async(workingQueue, ^{
+        NSInteger deviceType = [DeviceDetection deviceType];
+        NSString *appId = [PPConfigManager appId];
+        NSString *userId = [[UserManager defaultManager] userId];
+        
+        NSDictionary *paras = @{PARA_DEVICETYPE : @(deviceType),
+                                PARA_APPID : appId,
+                                PARA_USERID : userId,
+                                PARA_POSTID : postId,
+                                PARA_TARGETUSERID : targetUid,
+                                PARA_OFFSET : @(offset),
+                                PARA_LIMIT : @(limit),
+                                };
+        
+        GameNetworkOutput *output = [BBSNetwork sendGetRequestWithBaseURL:[self hostURL]
+                                                                   method:METHOD_GET_POST_ACTION_BY_USER
+                                                               parameters:paras
+                                                                 returnPB:YES
+                                                          returnJSONArray:NO];
+        
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            NSInteger resultCode = [output resultCode];
+            NSArray *list = output.pbResponse.bbsActionList;
+            EXECUTE_BLOCK(handler, resultCode, list, 0);
+        });
+    });
+}
+
+
 #pragma mark- mark methods 精华帖
 
 - (void)markPost:(PBBBSPost *)post

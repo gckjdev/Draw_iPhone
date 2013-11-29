@@ -459,6 +459,16 @@ static GroupService *_staticGroupService = nil;
      }];
 }
 
+- (void)getGroupBadgeWithCallback:(BadgeResultBlock)callback
+{
+    [self loadPBData:METHOD_GET_GROUP_BADGES
+          parameters:nil
+            callback:^(DataQueryResponse *response, NSError *error)
+     {
+         EXECUTE_BLOCK(callback, response.badgesList, error);
+     }];
+}
+
 - (PBGroup *)buildGroup:(PBGroup *)group
            withRelation:(PBUserRelationWithGroup *)relation
 {

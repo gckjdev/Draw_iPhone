@@ -12,6 +12,7 @@
 
 typedef void (^ RelationResultBlock) (PBUserRelationWithGroup *relation, NSError *error);
 typedef void (^ GroupResultBlock) (PBGroup *group, NSError *error);
+typedef void (^ BadgeResultBlock) (NSArray *badges, NSError *error);
 typedef void (^ ListResultBlock) (NSArray *list, NSError *error);
 typedef void (^ SimpleResultBlock) (NSError *error);
 
@@ -124,6 +125,9 @@ typedef void (^ SimpleResultBlock) (NSError *error);
 
 - (void)getRelationWithGroup:(NSString *)groupId
                     callback:(RelationResultBlock)callback;
+
+- (void)getGroupBadgeWithCallback:(BadgeResultBlock)callback;
+
 
 - (PBGroup *)buildGroup:(PBGroup *)group
            withRelation:(PBUserRelationWithGroup *)relation;

@@ -7,6 +7,7 @@
 //
 
 #import "DetailFooterView.h"
+#import "StableView.h"
 
 @implementation DetailFooterView
 
@@ -105,6 +106,24 @@
 - (void)setButton:(FooterType)type enabled:(BOOL)enabled
 {
     [[self buttonWithType:type] setEnabled:enabled];
+}
+- (void)setButton:(FooterType)type badge:(NSInteger)badge
+{
+#define BUTTON_BADGE_TAG 20131129
+#define BADGE_OFFSET (ISIPAD?10:3)    
+    UIButton *button = [self buttonWithType:type];
+    if (button) {
+        BadgeView *bgView = (id)[button viewWithTag:BUTTON_BADGE_TAG];
+        if (bgView == nil) {
+            bgView = [BadgeView badgeViewWithNumber:badge];
+            bgView.tag = BUTTON_BADGE_TAG;
+            [button addSubview:bgView];
+            CGRect frame = bgView.frame;
+            CGFloat dx = CGRectGetWidth(button.frame) - CGRectGetWidth(frame);
+            bgView.frame = CGRectOffset(frame, dx+BADGE_OFFSET, -BADGE_OFFSET);
+        }
+        bgView.number = badge;
+    }
 }
 
 - (void)clickButton:(UIButton *)button

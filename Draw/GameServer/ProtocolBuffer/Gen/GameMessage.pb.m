@@ -17705,6 +17705,7 @@ static GameMessage* defaultGameMessageInstance = nil;
 @property (retain) NSMutableArray* mutableGroupMemberListList;
 @property (retain) NSMutableArray* mutableNoticeListList;
 @property (retain) PBUserRelationWithGroup* groupRelation;
+@property (retain) NSMutableArray* mutableBadgesList;
 @end
 
 @implementation DataQueryResponse
@@ -17827,6 +17828,7 @@ static GameMessage* defaultGameMessageInstance = nil;
   hasGroupRelation_ = !!value;
 }
 @synthesize groupRelation;
+@synthesize mutableBadgesList;
 - (void) dealloc {
   self.mutableDrawDataList = nil;
   self.mutableMessageList = nil;
@@ -17858,6 +17860,7 @@ static GameMessage* defaultGameMessageInstance = nil;
   self.mutableGroupMemberListList = nil;
   self.mutableNoticeListList = nil;
   self.groupRelation = nil;
+  self.mutableBadgesList = nil;
   [super dealloc];
 }
 - (id) init {
@@ -18031,6 +18034,13 @@ static DataQueryResponse* defaultDataQueryResponseInstance = nil;
   id value = [mutableNoticeListList objectAtIndex:index];
   return value;
 }
+- (NSArray*) badgesList {
+  return mutableBadgesList;
+}
+- (PBIntKeyIntValue*) badgesAtIndex:(int32_t) index {
+  id value = [mutableBadgesList objectAtIndex:index];
+  return value;
+}
 - (BOOL) isInitialized {
   if (!self.hasResultCode) {
     return NO;
@@ -18175,6 +18185,11 @@ static DataQueryResponse* defaultDataQueryResponseInstance = nil;
       return NO;
     }
   }
+  for (PBIntKeyIntValue* element in self.badgesList) {
+    if (!element.isInitialized) {
+      return NO;
+    }
+  }
   return YES;
 }
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
@@ -18279,6 +18294,9 @@ static DataQueryResponse* defaultDataQueryResponseInstance = nil;
   }
   if (self.hasGroupRelation) {
     [output writeMessage:154 value:self.groupRelation];
+  }
+  for (PBIntKeyIntValue* element in self.badgesList) {
+    [output writeMessage:155 value:element];
   }
   [self.unknownFields writeToCodedOutputStream:output];
 }
@@ -18395,6 +18413,9 @@ static DataQueryResponse* defaultDataQueryResponseInstance = nil;
   }
   if (self.hasGroupRelation) {
     size += computeMessageSize(154, self.groupRelation);
+  }
+  for (PBIntKeyIntValue* element in self.badgesList) {
+    size += computeMessageSize(155, element);
   }
   size += self.unknownFields.serializedSize;
   memoizedSerializedSize = size;
@@ -18632,6 +18653,12 @@ static DataQueryResponse* defaultDataQueryResponseInstance = nil;
   }
   if (other.hasGroupRelation) {
     [self mergeGroupRelation:other.groupRelation];
+  }
+  if (other.mutableBadgesList.count > 0) {
+    if (result.mutableBadgesList == nil) {
+      result.mutableBadgesList = [NSMutableArray array];
+    }
+    [result.mutableBadgesList addObjectsFromArray:other.mutableBadgesList];
   }
   [self mergeUnknownFields:other.unknownFields];
   return self;
@@ -18876,6 +18903,12 @@ static DataQueryResponse* defaultDataQueryResponseInstance = nil;
         }
         [input readMessage:subBuilder extensionRegistry:extensionRegistry];
         [self setGroupRelation:[subBuilder buildPartial]];
+        break;
+      }
+      case 1242: {
+        PBIntKeyIntValue_Builder* subBuilder = [PBIntKeyIntValue builder];
+        [input readMessage:subBuilder extensionRegistry:extensionRegistry];
+        [self addBadges:[subBuilder buildPartial]];
         break;
       }
     }
@@ -19825,6 +19858,35 @@ static DataQueryResponse* defaultDataQueryResponseInstance = nil;
 - (DataQueryResponse_Builder*) clearGroupRelation {
   result.hasGroupRelation = NO;
   result.groupRelation = [PBUserRelationWithGroup defaultInstance];
+  return self;
+}
+- (NSArray*) badgesList {
+  if (result.mutableBadgesList == nil) { return [NSArray array]; }
+  return result.mutableBadgesList;
+}
+- (PBIntKeyIntValue*) badgesAtIndex:(int32_t) index {
+  return [result badgesAtIndex:index];
+}
+- (DataQueryResponse_Builder*) replaceBadgesAtIndex:(int32_t) index with:(PBIntKeyIntValue*) value {
+  [result.mutableBadgesList replaceObjectAtIndex:index withObject:value];
+  return self;
+}
+- (DataQueryResponse_Builder*) addAllBadges:(NSArray*) values {
+  if (result.mutableBadgesList == nil) {
+    result.mutableBadgesList = [NSMutableArray array];
+  }
+  [result.mutableBadgesList addObjectsFromArray:values];
+  return self;
+}
+- (DataQueryResponse_Builder*) clearBadgesList {
+  result.mutableBadgesList = nil;
+  return self;
+}
+- (DataQueryResponse_Builder*) addBadges:(PBIntKeyIntValue*) value {
+  if (result.mutableBadgesList == nil) {
+    result.mutableBadgesList = [NSMutableArray array];
+  }
+  [result.mutableBadgesList addObject:value];
   return self;
 }
 @end

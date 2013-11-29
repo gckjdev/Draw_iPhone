@@ -130,6 +130,13 @@ typedef void (^BBSOperatePostHandler) (NSInteger resultCode, PBBBSPost *editedPo
                         hanlder:(BBSGetPostResultHandler)handler;
 
 
+- (void)getPostActionByUser:(NSString *)targetUid
+                     postId:(NSString *)postId
+                     offset:(NSInteger)offset
+                      limit:(NSInteger)limit
+                    hanlder:(BBSGetPostResultHandler)handler;
+
+
 #pragma mark- mark methods 精华帖
 
 - (void)markPost:(PBBBSPost *)post

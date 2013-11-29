@@ -523,4 +523,5 @@ message DataQueryResponse {
   repeated PBGroupUsersByTitle groupMemberList = 152; 
   repeated PBGroupNotice noticeList = 153;
   optional PBUserRelationWithGroup groupRelation = 154;
+  repeated PBIntKeyIntValue badges = 155;
 }
