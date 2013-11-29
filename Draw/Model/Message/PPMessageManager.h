@@ -12,10 +12,13 @@
 #define MESSAGE_STAT_MAX_COUNT ([PPConfigManager getMessageStatMaxCount])
 
 @class PPMessage;
+@class APLevelDB;
 
 @interface PPMessageManager : NSObject
 
 @property (nonatomic, retain) NSMutableDictionary* friendMessageDict;
+
+//@property (nonatomic, retain) APLevelDB* db;
 
 + (NSArray *)parseMessageList:(NSArray *)pbMessageList;
 + (NSArray *)parseMessageListAndReverse:(NSArray *)pbMessageList;

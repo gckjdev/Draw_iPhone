@@ -1192,7 +1192,8 @@ typedef enum{
                                         cancelButtonTitle:NSLS(@"kCancel")
                                    destructiveButtonTitle:NSLS(@"kGuess")
                                         otherButtonTitles:NSLS(@"kPlay"), NSLS(@"kLargeImage"), NSLS(@"分数处理"), NSLS(@"kRecommend"), NSLS(@"kUnfeature"), NSLS(@"删除作品"),
-                 NSLS(@"kShareSinaWeibo"), NSLS(@"kShareWeixinSession"), NSLS(@"kShareWeixinTimeline"), NSLS(@"kShareQQWeibo"), NSLS(@"kShareQQSpace"), nil];
+                 NSLS(@"kShareSinaWeibo"), NSLS(@"kShareWeixinSession"), NSLS(@"kShareWeixinTimeline"), NSLS(@"kShareQQWeibo"), // NSLS(@"kShareQQSpace"),                 
+                 nil];
         indexOfGuess = index++;
         indexOfPlay = index++;
         indexOfPhoto = index++;
@@ -1208,7 +1209,8 @@ typedef enum{
                                             cancelButtonTitle:NSLS(@"kCancel")
                                        destructiveButtonTitle:NSLS(@"kGuess")
                                             otherButtonTitles:NSLS(@"kPlay"), NSLS(@"kLargeImage"), NSLS(@"kRecommend"), NSLS(@"kUnfeature"),
-                     NSLS(@"kShareSinaWeibo"), NSLS(@"kShareWeixinSession"), NSLS(@"kShareWeixinTimeline"), NSLS(@"kShareQQWeibo"), NSLS(@"kShareQQSpace"), nil];
+                     NSLS(@"kShareSinaWeibo"), NSLS(@"kShareWeixinSession"), NSLS(@"kShareWeixinTimeline"), NSLS(@"kShareQQWeibo"), // NSLS(@"kShareQQSpace"),
+                     nil];
             indexOfGuess = index++;
             indexOfPlay = index++;
             indexOfPhoto = index++;
@@ -1220,8 +1222,10 @@ typedef enum{
                                                      delegate:nil
                                             cancelButtonTitle:NSLS(@"kCancel")
                                        destructiveButtonTitle:NSLS(@"kGuess")
-                                            otherButtonTitles:NSLS(@"kPlay"), NSLS(@"kLargeImage"),
-                     NSLS(@"kShareSinaWeibo"), NSLS(@"kShareWeixinSession"), NSLS(@"kShareWeixinTimeline"), NSLS(@"kShareQQWeibo"), NSLS(@"kShareQQSpace"), nil];
+                                            otherButtonTitles:NSLS(@"kPlay"),
+                     NSLS(@"kLargeImage"),
+                     NSLS(@"kShareSinaWeibo"), NSLS(@"kShareWeixinSession"), NSLS(@"kShareWeixinTimeline"), NSLS(@"kShareQQWeibo"), // NSLS(@"kShareQQSpace")
+                     nil];
             indexOfGuess = index++;
             indexOfPlay = index++;
             indexOfPhoto = index++;
@@ -1236,7 +1240,8 @@ typedef enum{
                                                      delegate:nil
                                             cancelButtonTitle:NSLS(@"kCancel")
                                        destructiveButtonTitle:NSLS(@"kPlay") otherButtonTitles:NSLS(@"kLargeImage"),
-                     NSLS(@"kShareSinaWeibo"), NSLS(@"kShareWeixinSession"), NSLS(@"kShareWeixinTimeline"), NSLS(@"kShareQQWeibo"), NSLS(@"kShareQQSpace"),
+                     NSLS(@"kShareSinaWeibo"), NSLS(@"kShareWeixinSession"),
+                     NSLS(@"kShareWeixinTimeline"), NSLS(@"kShareQQWeibo"), // NSLS(@"kShareQQSpace"),                     
                      NSLS(@"kRecommend"), NSLS(@"kUnfeature"), nil];
         
             indexOfFeature = index++;
@@ -1247,7 +1252,9 @@ typedef enum{
                                                      delegate:nil
                                             cancelButtonTitle:NSLS(@"kCancel")
                                        destructiveButtonTitle:NSLS(@"kPlay") otherButtonTitles:NSLS(@"kLargeImage"),
-                     NSLS(@"kShareSinaWeibo"), NSLS(@"kShareWeixinSession"), NSLS(@"kShareWeixinTimeline"), NSLS(@"kShareQQWeibo"), NSLS(@"kShareQQSpace"), nil];
+                     NSLS(@"kShareSinaWeibo"), NSLS(@"kShareWeixinSession"),
+                     NSLS(@"kShareWeixinTimeline"), NSLS(@"kShareQQWeibo"),  //NSLS(@"kShareQQSpace"),
+                     nil];
         }
     }
     

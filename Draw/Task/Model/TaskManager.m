@@ -84,13 +84,15 @@ static TaskManager* _defaultTaskManager;
                                              award:[PPConfigManager getShareAppWeiboReward]                       
                                           selector:@selector(shareWeixinTimeline:)] autorelease];
     
-    GameTask* task6 = [[[GameTask alloc] initWithId:PBTaskIdTypeTaskShareQqSpace
+    /*
+    GameTask* shareQQSpace = [[[GameTask alloc] initWithId:PBTaskIdTypeTaskShareQqSpace
                                               name:NSLS(@"kTaskShareQQSpace")
                                               desc:[NSString stringWithFormat:NSLS(@"kTaskShareQQSpaceDesc"), [PPConfigManager getShareAppWeiboReward]]
                                             status:PBTaskStatusTaskStatusCanTake
                                              badge:1
                                              award:[PPConfigManager getShareAppWeiboReward]                       
                                           selector:@selector(shareQQSpace:)] autorelease];
+    */
     
     GameTask* task61 = [[[GameTask alloc] initWithId:PBTaskIdTypeTaskShareQqWeibo
                                               name:NSLS(@"kTaskShareQQWeibo")
@@ -166,7 +168,7 @@ static TaskManager* _defaultTaskManager;
     [retList addObject:task4];
     [retList addObject:task5];
     [retList addObject:task61];
-    [retList addObject:task6];
+//    [retList addObject:task6];
     [retList addObject:task9];
         
     if ([PPConfigManager isInReviewVersion] == NO){
