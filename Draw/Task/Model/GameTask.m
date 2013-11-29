@@ -7,6 +7,7 @@
 //
 
 #import "GameTask.h"
+#import "AppTask.h"
 
 @implementation GameTask
 
@@ -14,6 +15,7 @@
 {
     PPRelease(_taskBuilder);
     _selector = nil;
+    PPRelease(_appTask);
     [super dealloc];
 }
 
@@ -32,6 +34,18 @@
            award:(int)award
         selector:(SEL)selector
 {
+    return [self initWithId:taskId name:name desc:desc status:status badge:badge award:award selector:selector appTask:nil];
+}
+
+- (id)initWithId:(int)taskId
+            name:(NSString*)name
+            desc:(NSString*)desc
+          status:(PBTaskStatus)status
+           badge:(int)badge
+           award:(int)award
+        selector:(SEL)selector
+         appTask:(AppTask*)appTask
+{
     self = [super init];
     self.taskBuilder = [PBTask builder];
 
@@ -43,6 +57,7 @@
     [_taskBuilder setAward:award];
     
     self.selector = selector;
+    self.appTask = appTask;
     
     return self;    
 }

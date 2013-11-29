@@ -56,6 +56,8 @@ static AppTaskManager* _defaultAppTaskManager;
                                               bundlePath:bundleName
                                          initDataVersion:version];
     
+    _taskList = [[NSMutableArray alloc] init];
+    
     // read data from file
     [self readConfigData];
     return;
@@ -75,15 +77,17 @@ static AppTaskManager* _defaultAppTaskManager;
         NSError* error = nil;
         NSString* data = [NSString stringWithContentsOfFile:dataPath encoding:NSUTF8StringEncoding error:&error];
         if (error != nil){
-            self.taskList = nil;
+            PPDebug(@"<readConfigData> but error=%@", [error description]);
         }
         else{
-            PPDebug(@"<readConfigData> but error=%@", [error description]);
+            [self.taskList removeAllObjects];
         }
         
         if (data != nil){
             
-            self.taskList = [NSMutableArray array];
+            data = [data stringByReplacingOccurrencesOfString:@"\t" withString:@""];
+            data = [data stringByReplacingOccurrencesOfString:@"\n" withString:@""];
+//            data = [data stringByReplacingOccurrencesOfString:@" " withString:@""];
             
             NSArray* jsonArray = [data JSONValue];
             for (NSDictionary* dict in jsonArray){

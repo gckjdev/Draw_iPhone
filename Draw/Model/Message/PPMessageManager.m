@@ -14,6 +14,8 @@
 //#import "FileUtil.h"
 #import "StorageManager.h"
 #import "StringUtil.h"
+#import "APLevelDB.h"
+#import "LevelDBManager.h"
 
 static PPMessageManager* globalDefaultMessageManager;
 
@@ -241,11 +243,30 @@ static PPMessageManager* globalDefaultMessageManager;
     }
 }
 
+- (NSString*)getMessageDBName:(NSString*)friendUserId
+{
+    return [NSString stringWithFormat:@"db_message_%@", friendUserId];
+}
+
+- (APLevelDB*)getDB:(NSString*)friendUserId
+{
+    APLevelDB* db = [[LevelDBManager defaultManager] db:[self getMessageDBName:friendUserId]];    
+    return db;    
+}
+
 - (NSMutableArray*)getMessageList:(NSString*)friendUserId
 {
+    /*
+
     if (friendUserId == nil)
         return nil;
-    
+        
+    APLevelDB* db = [self getDB:friendUserId];
+    NSArray* list = [db allObjects];
+    PPDebug(@"<getMessageList> load %d message for user %@", [list count], friendUserId);
+    return list;
+    */
+     
     NSMutableArray* list = [_friendMessageDict objectForKey:friendUserId];
     if (list == nil){
         PPDebug(@"<getMessageList> try to load local message for user %@", friendUserId);

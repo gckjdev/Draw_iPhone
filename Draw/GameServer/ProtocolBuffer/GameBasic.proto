@@ -513,6 +513,10 @@ enum PBTaskIdType
     TASK_SHARE_OPUS = 10;
     TASK_SHARE_QQ_WEIBO = 11;
     TASK_APP_UPGRADE = 12;
+    
+    TASK_APP_WALL = 100;
+    TASK_APP_DOWNLOAD = 200;
+    
 }
 
 message PBTask

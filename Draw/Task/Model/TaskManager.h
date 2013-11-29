@@ -29,5 +29,6 @@
 - (void)completeTask:(PBTaskIdType)taskId isAward:(BOOL)isAward clearBadge:(BOOL)clearBadge;
 - (void)completeBindWeiboTask:(ShareType)shareType isAward:(BOOL)isAward clearBadge:(BOOL)clearBadge;
 - (int)totalBadge;
+- (void)loadTask;
 
 @end

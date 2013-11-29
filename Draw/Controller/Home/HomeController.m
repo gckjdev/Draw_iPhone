@@ -1011,7 +1011,7 @@ int *getDrawMainMenuTypeListHasNewContest()
         HomeMenuTypeTask,
         HomeMenuTypeDrawMore,
         HomeMenuTypeDrawPainter,
-        HomeMenuTypeDrawFreeCoins,
+//        HomeMenuTypeDrawFreeCoins,
         HomeMenuTypeDrawPhoto,
         
         HomeMenuTypeEnd

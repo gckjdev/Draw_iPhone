@@ -286,7 +286,7 @@ typedef enum{
                                       cancelButtonTitle:NSLS(@"kCancel") 
                                  destructiveButtonTitle:editString 
                                       otherButtonTitles:NSLS(@"kReplay"), NSLS(@"kDelete"),
-                    NSLS(@"kSaveAsPhoto"), NSLS(@"kShareSinaWeibo"), NSLS(@"kShareQQSpace"),
+                    NSLS(@"kSaveAsPhoto"), NSLS(@"kShareSinaWeibo"),  // NSLS(@"kShareQQSpace"),
                     NSLS(@"kShareWeixinSession"), NSLS(@"kShareWeixinTimeline"),
                     NSLS(@"kShareQQWeibo"), NSLS(@"kShareFacebook"),
                     nil];
@@ -298,7 +298,7 @@ typedef enum{
                                  destructiveButtonTitle:NSLS(@"kReplay")
                                       otherButtonTitles:
                      NSLS(@"kDelete"), NSLS(@"kEdit"),
-                    NSLS(@"kSaveAsPhoto"), NSLS(@"kShareSinaWeibo"), NSLS(@"kShareQQSpace"),
+                    NSLS(@"kSaveAsPhoto"), NSLS(@"kShareSinaWeibo"),  // NSLS(@"kShareQQSpace"),
                     NSLS(@"kShareWeixinSession"), NSLS(@"kShareWeixinTimeline"),
                     NSLS(@"kShareQQWeibo"), NSLS(@"kShareFacebook"),
 
@@ -311,7 +311,7 @@ typedef enum{
                                             destructiveButtonTitle:NSLS(@"kReplay") 
                                                  otherButtonTitles:
                                                          NSLS(@"kDelete"),
-                    NSLS(@"kSaveAsPhoto"), NSLS(@"kShareSinaWeibo"), NSLS(@"kShareQQSpace"),
+                    NSLS(@"kSaveAsPhoto"), NSLS(@"kShareSinaWeibo"),  // NSLS(@"kShareQQSpace"),
                     NSLS(@"kShareWeixinSession"), NSLS(@"kShareWeixinTimeline"),
                     NSLS(@"kShareQQWeibo"), NSLS(@"kShareFacebook"),
 
@@ -882,7 +882,7 @@ typedef enum{
     
     SAVE_INTO_PHOTO = index++;
     SHARE_SINA_WEIBO = index++;
-    SHARE_QQ_ZONE = index++;
+//    SHARE_QQ_ZONE = index++;
     SHARE_WEIXIN_SESSION = index++;
     SHARE_WEIXIN_TIMELINE = index++;
     SHARE_QQ_WEIBO = index++;
