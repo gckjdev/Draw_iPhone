@@ -873,7 +873,7 @@ typedef enum{
 
 - (void)detailFooterView:(DetailFooterView *)footer
         didClickAtButton:(UIButton *)button
-                    type:(FooterType)type
+                    type:(NSInteger)type
 {
     switch (type) {
         case FooterTypeGuess:            
