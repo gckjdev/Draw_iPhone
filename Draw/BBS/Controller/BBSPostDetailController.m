@@ -451,6 +451,10 @@ typedef enum{
                 BBSPostDetailCell *cell = [self getTableViewCell:theTableView cellIdentifier:CellIdentifier cellClass:[BBSPostDetailCell class]];
                 [cell setCurrentUserId:self.currentUserId];
                 [cell updateCellWithBBSPost:self.post];
+                
+                BOOL hideSeeMe = (self.currentTabID == Support);
+                [cell.seeMeOnly setHidden:hideSeeMe];
+                
                 cell.delegate = self;
                 cell.backgroundColor = [UIColor clearColor];
                 return cell;
@@ -506,6 +510,9 @@ typedef enum{
 
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    if (indexPath.section != SectionActionList) {
+        return NO;
+    }
     PBBBSAction *action = [self actionForIndexPath:indexPath];
     BOOL flag = [self actionCanDelete:action];
 //    [self setCanDragBack:!flag];

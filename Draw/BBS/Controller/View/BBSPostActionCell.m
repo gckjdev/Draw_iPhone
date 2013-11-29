@@ -261,6 +261,8 @@
         [self.bgImageView setImage:[_bbsImageManager bbsPostContentBGImage]];
     }
     
+    [self.seeMeOnly setHidden:[_action isSupport]];
+    
     NSString *text = ([self isSeeingMe] ? NSLS(@"kSeeAllPost") : NSLS(@"kSeeMeOnly"));
     [self.seeMeOnly setTitle:text forState:UIControlStateNormal];
 
