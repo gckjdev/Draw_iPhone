@@ -3,7 +3,21 @@
    version = "1.0">
    <ContextStates>
       <ContextState
-         contextName = "-[OpusWallController addWallView]:OpusWallController.m">
+         contextName = "+[FeedManager parsePbFeed:]:FeedManager.m">
+      </ContextState>
+      <ContextState
+         contextName = "-[MyFeedController tableView:didSelectRowAtIndexPath:]:MyFeedController.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "-[Feed initWithPBFeed:]:Feed.m">
+      </ContextState>
+      <ContextState
+         contextName = "-[ShowFeedController initWithFeed:scene:feedScene:]:ShowFeedController.m">
       </ContextState>
       <ContextState
          contextName = "-[SelectCustomWordView tableView:cellForRowAtIndexPath:]:SelectCustomWordView.m">
@@ -12,6 +26,18 @@
                value = "">
             </PersistentString>
          </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "-[ShowFeedController didGetFeed:resultCode:fromCache:]:ShowFeedController.m">
+      </ContextState>
+      <ContextState
+         contextName = "+[DrawUtils decompressColor8:red:green:blue:alpha:]:DrawUtils.m">
+      </ContextState>
+      <ContextState
+         contextName = "+[DrawUtils compressColor8:]:DrawUtils.m">
+      </ContextState>
+      <ContextState
+         contextName = "-[OpusWallController addWallView]:OpusWallController.m">
       </ContextState>
    </ContextStates>
 </VariablesViewState>
