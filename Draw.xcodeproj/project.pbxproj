@@ -183,14 +183,14 @@
 		A4364368176706A4006B6946 /* Opus.proto in Resources */ = {isa = PBXBuildFile; fileRef = A4364367176706A4006B6946 /* Opus.proto */; };
 		A4364369176706A4006B6946 /* Opus.proto in Resources */ = {isa = PBXBuildFile; fileRef = A4364367176706A4006B6946 /* Opus.proto */; };
 		A436436A176706A4006B6946 /* Opus.proto in Resources */ = {isa = PBXBuildFile; fileRef = A4364367176706A4006B6946 /* Opus.proto */; };
-		A439D2BE184A4F8800F47BEF /* CropAndFilterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A439D2BD184A4F8800F47BEF /* CropAndFilterViewController.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
-		A439D2BF184A4F8800F47BEF /* CropAndFilterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A439D2BD184A4F8800F47BEF /* CropAndFilterViewController.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
-		A439D2C0184A4F8800F47BEF /* CropAndFilterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A439D2BD184A4F8800F47BEF /* CropAndFilterViewController.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
-		A439D2C1184A4F8800F47BEF /* CropAndFilterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A439D2BD184A4F8800F47BEF /* CropAndFilterViewController.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
 		A439D2C4184A521800F47BEF /* UIImage+GPUImageFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = A439D2C3184A521800F47BEF /* UIImage+GPUImageFilter.m */; };
 		A439D2C5184A521800F47BEF /* UIImage+GPUImageFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = A439D2C3184A521800F47BEF /* UIImage+GPUImageFilter.m */; };
 		A439D2C6184A521800F47BEF /* UIImage+GPUImageFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = A439D2C3184A521800F47BEF /* UIImage+GPUImageFilter.m */; };
 		A439D2C7184A521800F47BEF /* UIImage+GPUImageFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = A439D2C3184A521800F47BEF /* UIImage+GPUImageFilter.m */; };
+		A439D2D4184A5BD500F47BEF /* CropAndFilterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A439D2D3184A5BD500F47BEF /* CropAndFilterViewController.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
+		A439D2D5184A5BD500F47BEF /* CropAndFilterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A439D2D3184A5BD500F47BEF /* CropAndFilterViewController.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
+		A439D2D6184A5BD500F47BEF /* CropAndFilterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A439D2D3184A5BD500F47BEF /* CropAndFilterViewController.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
+		A439D2D7184A5BD500F47BEF /* CropAndFilterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A439D2D3184A5BD500F47BEF /* CropAndFilterViewController.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
 		A440354D17C5A9C900301EDD /* LocalNotificationUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = A440354C17C5A9C900301EDD /* LocalNotificationUtil.m */; };
 		A440354E17C5A9C900301EDD /* LocalNotificationUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = A440354C17C5A9C900301EDD /* LocalNotificationUtil.m */; };
 		A440354F17C5A9C900301EDD /* LocalNotificationUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = A440354C17C5A9C900301EDD /* LocalNotificationUtil.m */; };
@@ -7425,10 +7425,10 @@
 		A4348C5A1717C0FA004AFB26 /* NotificationCenterManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NotificationCenterManager.h; sourceTree = "<group>"; };
 		A4348C5B1717C0FA004AFB26 /* NotificationCenterManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NotificationCenterManager.m; sourceTree = "<group>"; };
 		A4364367176706A4006B6946 /* Opus.proto */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Opus.proto; sourceTree = "<group>"; };
-		A439D2BC184A4F8800F47BEF /* CropAndFilterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CropAndFilterViewController.h; sourceTree = "<group>"; };
-		A439D2BD184A4F8800F47BEF /* CropAndFilterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CropAndFilterViewController.m; sourceTree = "<group>"; };
 		A439D2C2184A521800F47BEF /* UIImage+GPUImageFilter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+GPUImageFilter.h"; sourceTree = "<group>"; };
 		A439D2C3184A521800F47BEF /* UIImage+GPUImageFilter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+GPUImageFilter.m"; sourceTree = "<group>"; };
+		A439D2D2184A5BD500F47BEF /* CropAndFilterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CropAndFilterViewController.h; sourceTree = "<group>"; };
+		A439D2D3184A5BD500F47BEF /* CropAndFilterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CropAndFilterViewController.m; sourceTree = "<group>"; };
 		A440354B17C5A9C900301EDD /* LocalNotificationUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocalNotificationUtil.h; sourceTree = "<group>"; };
 		A440354C17C5A9C900301EDD /* LocalNotificationUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocalNotificationUtil.m; sourceTree = "<group>"; };
 		A440355617C5C6CF00301EDD /* GuessModesController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "GuessModesController~ipad.xib"; sourceTree = "<group>"; };
@@ -10750,8 +10750,8 @@
 		A439D2BB184A4F8800F47BEF /* CropAndFilterViewController */ = {
 			isa = PBXGroup;
 			children = (
-				A439D2BC184A4F8800F47BEF /* CropAndFilterViewController.h */,
-				A439D2BD184A4F8800F47BEF /* CropAndFilterViewController.m */,
+				A439D2D2184A5BD500F47BEF /* CropAndFilterViewController.h */,
+				A439D2D3184A5BD500F47BEF /* CropAndFilterViewController.m */,
 			);
 			path = CropAndFilterViewController;
 			sourceTree = "<group>";
@@ -22077,8 +22077,8 @@
 				EA7EFC7018458D370004793C /* GroupNoticeController.m in Sources */,
 				EA7EFC7A18458D430004793C /* GroupModelExt.m in Sources */,
 				EA2D573F1847243B00499ED4 /* SearchGroupController.m in Sources */,
-				A439D2C0184A4F8800F47BEF /* CropAndFilterViewController.m in Sources */,
 				A439D2C6184A521800F47BEF /* UIImage+GPUImageFilter.m in Sources */,
+				A439D2D6184A5BD500F47BEF /* CropAndFilterViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -22885,8 +22885,8 @@
 				EA7EFC6F18458D370004793C /* GroupNoticeController.m in Sources */,
 				EA7EFC7918458D430004793C /* GroupModelExt.m in Sources */,
 				EA2D573E1847243B00499ED4 /* SearchGroupController.m in Sources */,
-				A439D2BF184A4F8800F47BEF /* CropAndFilterViewController.m in Sources */,
 				A439D2C5184A521800F47BEF /* UIImage+GPUImageFilter.m in Sources */,
+				A439D2D5184A5BD500F47BEF /* CropAndFilterViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -23692,8 +23692,8 @@
 				EA7EFC6E18458D370004793C /* GroupNoticeController.m in Sources */,
 				EA7EFC7818458D430004793C /* GroupModelExt.m in Sources */,
 				EA2D573D1847243B00499ED4 /* SearchGroupController.m in Sources */,
-				A439D2BE184A4F8800F47BEF /* CropAndFilterViewController.m in Sources */,
 				A439D2C4184A521800F47BEF /* UIImage+GPUImageFilter.m in Sources */,
+				A439D2D4184A5BD500F47BEF /* CropAndFilterViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -24455,8 +24455,8 @@
 				EA7EFC7118458D370004793C /* GroupNoticeController.m in Sources */,
 				EA7EFC7B18458D430004793C /* GroupModelExt.m in Sources */,
 				EA2D57401847243B00499ED4 /* SearchGroupController.m in Sources */,
-				A439D2C1184A4F8800F47BEF /* CropAndFilterViewController.m in Sources */,
 				A439D2C7184A521800F47BEF /* UIImage+GPUImageFilter.m in Sources */,
+				A439D2D7184A5BD500F47BEF /* CropAndFilterViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
