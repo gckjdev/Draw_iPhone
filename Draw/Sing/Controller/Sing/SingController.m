@@ -39,7 +39,7 @@
 #import "TaskManager.h"
 #import "AccountManager.h"
 #import "UIImageUtil.h"
-#import "PECropViewController.h"
+#import "CropAndFilterViewController.h"
 
 #define GREEN_COLOR [UIColor colorWithRed:99/255.0 green:186/255.0 blue:152/255.0 alpha:1]
 #define WHITE_COLOR [UIColor whiteColor]
@@ -315,9 +315,8 @@ enum{
 //    UIImageView *iv = [[[UIImageView alloc] initWithFrame:CGRectMake(0, 0, width, width)] autorelease];
 //    iv.image = [UIImage imageNamed:@"sing_image@2x.png"];
     
-    CGRect rect = CGRectInset(self.opusImageView.bounds, self.opusImageView.layer.borderWidth, self.opusImageView.layer.borderWidth);
-    UIImageView *iv = [[[UIImageView alloc] initWithFrame:rect] autorelease];
-    iv.image = [UIImage imageNamed:@"unloadbg@2x.png"];
+    CGRect rect = CGRectMake(0, 0, (ISIPAD ? 360:170), (ISIPAD ? 360:170));    UIImageView *iv = [[[UIImageView alloc] initWithFrame:rect] autorelease];
+    iv.image = [UIImage imageNamed:@"unloadbg2@2x.png"];
     [iv.layer setCornerRadius:(ISIPAD ? 75 : 35)];
     [iv.layer setMasksToBounds:YES];
     
@@ -849,14 +848,14 @@ enum{
 
 - (void)showImageEditor:(UIImage *)image{
     
-    PECropViewController *vc = [[[PECropViewController alloc] init] autorelease];
+    CropAndFilterViewController *vc = [[[CropAndFilterViewController alloc] init] autorelease];
     vc.delegate = self;
     vc.image = image;
     
     [self presentViewController:vc animated:YES completion:NULL];
 }
 
-- (void)cropViewController:(PECropViewController *)controller didFinishCroppingImage:(UIImage *)image{
+- (void)cropViewController:(CropAndFilterViewController *)controller didFinishCroppingImage:(UIImage *)image{
     
     [controller dismissViewControllerAnimated:YES completion:NULL];
     
@@ -879,7 +878,7 @@ enum{
     }
 }
 
-- (void)cropViewControllerDidCancel:(PECropViewController *)controller{
+- (void)cropViewControllerDidCancel:(CropAndFilterViewController *)controller{
     [controller dismissViewControllerAnimated:YES completion:NULL];
 }
 

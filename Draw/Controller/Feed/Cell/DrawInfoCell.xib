@@ -187,7 +187,7 @@
 				<real value="241" key="IBUIRowHeight"/>
 			</object>
 			<object class="IBUITableViewCell" id="516371242">
-				<reference key="NSNextResponder"/>
+				<nil key="NSNextResponder"/>
 				<int key="NSvFlags">292</int>
 				<array class="NSMutableArray" key="NSSubviews">
 					<object class="IBUIView" id="189988452">
@@ -301,7 +301,6 @@
 					</object>
 				</array>
 				<string key="NSFrameSize">{320, 278}</string>
-				<reference key="NSSuperview"/>
 				<reference key="NSNextKeyView" ref="189988452"/>
 				<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 				<reference key="IBUIContentView" ref="189988452"/>
@@ -309,7 +308,7 @@
 				<real value="226" key="IBUIRowHeight"/>
 			</object>
 			<object class="IBUITableViewCell" id="72393097">
-				<reference key="NSNextResponder"/>
+				<nil key="NSNextResponder"/>
 				<int key="NSvFlags">292</int>
 				<array class="NSMutableArray" key="NSSubviews">
 					<object class="IBUIView" id="1029943244">
@@ -405,7 +404,6 @@
 					</object>
 				</array>
 				<string key="NSFrameSize">{320, 366}</string>
-				<reference key="NSSuperview"/>
 				<reference key="NSNextKeyView" ref="1029943244"/>
 				<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 				<reference key="IBUIContentView" ref="1029943244"/>
@@ -729,10 +727,10 @@
 		<bool key="IBDocument.PluginDeclaredDependenciesTrackSystemTargetVersion">YES</bool>
 		<int key="IBDocument.defaultPropertyAccessControl">3</int>
 		<dictionary class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
-			<string key="draw_player_pause@2x.png">{16, 16}</string>
-			<string key="draw_player_play@2x.png">{16, 16}</string>
-			<string key="full_screen@2x.png">{16, 16}</string>
-			<string key="unloadbg@2x.png">{16, 16}</string>
+			<string key="draw_player_pause@2x.png">{46, 47}</string>
+			<string key="draw_player_play@2x.png">{46, 47}</string>
+			<string key="full_screen@2x.png">{73, 73}</string>
+			<string key="unloadbg@2x.png">{175, 175}</string>
 		</dictionary>
 		<string key="IBCocoaTouchPluginVersion">2083</string>
 	</data>

@@ -126,7 +126,7 @@
         // Set sound.
         self.clickSound = SOUND_EFFECT_CADIDATE_DOWN;
         self.wrongSound = SOUND_EFFECT_OO;
-        self.correctSound = SOUND_EFFECT_YY;
+        self.correctSound = isSingApp() ? @"" : SOUND_EFFECT_YY;
         _guessWords = [[NSMutableArray alloc] init];
         
     }

@@ -180,7 +180,6 @@
 
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
 {
-//    [picker dismissModalViewControllerAnimated:YES];
     UIImage *image = [info objectForKey:self.userOriginalImage?UIImagePickerControllerOriginalImage:UIImagePickerControllerEditedImage];
 
     PPDebug(@"select image size = %@", NSStringFromCGSize(image.size));

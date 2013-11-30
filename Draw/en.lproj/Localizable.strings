@@ -657,6 +657,7 @@
 "kSending" = "Sending...";
 "kHandlingDataProgress" = "Handling... (%3.f%%)";
 "kSendingProgress" = "Sending... (%3.f%%)";
+"kHandling" = "Handling...";
 
 "kNoCommentTips" = "No Comments";
 "kFeedDetail" = "Opus Detail";

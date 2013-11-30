@@ -7,12 +7,12 @@
 		<key>AskPs.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>11</integer>
+			<integer>10</integer>
 		</dict>
 		<key>CallTrack.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>9</integer>
+			<integer>8</integer>
 		</dict>
 		<key>CallTrack.xcscheme_^#shared#^_</key>
 		<dict>
@@ -37,7 +37,7 @@
 		<key>Draw copy.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>10</integer>
+			<integer>9</integer>
 		</dict>
 		<key>Draw.xcscheme</key>
 		<dict>
@@ -47,12 +47,12 @@
 		<key>Draw.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>5</integer>
+			<integer>4</integer>
 		</dict>
 		<key>DrawPro.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>6</integer>
+			<integer>5</integer>
 		</dict>
 		<key>DreamAvatar.xcscheme_^#shared#^_</key>
 		<dict>
@@ -77,7 +77,7 @@
 		<key>LearnDraw.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>7</integer>
+			<integer>6</integer>
 		</dict>
 		<key>LearnDraw.xcscheme_^#shared#^_</key>
 		<dict>
@@ -87,7 +87,7 @@
 		<key>LittleGreeDraw.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>8</integer>
+			<integer>7</integer>
 		</dict>
 		<key>PhotoDraw.xcscheme_^#shared#^_</key>
 		<dict>
@@ -117,7 +117,7 @@
 		<key>Sing.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>4</integer>
+			<integer>3</integer>
 		</dict>
 		<key>Zhajinhua.xcscheme_^#shared#^_</key>
 		<dict>

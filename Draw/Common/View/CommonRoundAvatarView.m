@@ -14,7 +14,7 @@
 #import "DeviceDetection.h"
 #import "ShareImageManager.h"
 #import "AnimationManager.h"
-#import "UIImage+FiltrrCompositions.h"
+//#import "UIImage+FiltrrCompositions.h"
 #import "UIImageView+WebCache.h"
 #import "UIImageView+Extend.h"
 
