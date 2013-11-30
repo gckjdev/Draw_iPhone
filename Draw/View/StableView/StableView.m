@@ -351,6 +351,13 @@
     return [self initWithUrlString:user.avatar frame:frame gender:user.gender level:user.level];
 }
 
+- (void)setUser:(PBGameUser *)user
+{
+    [self setUserId:user.userId];
+    [self setUrlString:user.avatar];
+    [self setGender:user.gender];
+}
+
 - (void)clear
 {
     

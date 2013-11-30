@@ -71,6 +71,8 @@
 @class PBImageShapeGroupMeta;
 @class PBImageShapeGroupMeta_Builder;
 @class PBImageShapeGroup_Builder;
+@class PBIntKeyIntValue;
+@class PBIntKeyIntValue_Builder;
 @class PBIntKeyValue;
 @class PBIntKeyValue_Builder;
 @class PBItemPriceInfo;

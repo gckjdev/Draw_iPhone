@@ -62,6 +62,8 @@
 @class PBIAPProductPrice;
 @class PBIAPProductPrice_Builder;
 @class PBIAPProduct_Builder;
+@class PBIntKeyIntValue;
+@class PBIntKeyIntValue_Builder;
 @class PBIntKeyValue;
 @class PBIntKeyValue_Builder;
 @class PBItemPriceInfo;

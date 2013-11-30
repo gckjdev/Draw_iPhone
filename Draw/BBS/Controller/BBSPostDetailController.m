@@ -34,8 +34,11 @@
 @property (retain, nonatomic) IBOutlet UIImageView *toolBarBG;
 @property (retain, nonatomic) IBOutlet UIButton *refreshButton;
 
-@property (retain, nonatomic) NSString *postID;
+//只看此用户
+@property (retain, nonatomic) NSString *currentUserId;
 
+@property (retain, nonatomic) NSString *postID;
+@property (retain, nonatomic) GroupPermissionManager *grpPermissionManager;
 @end
 
 typedef enum{
@@ -101,6 +104,7 @@ typedef enum{
     [[AdService defaultService] clearAdView:self.adView];
     self.adView = nil;
     
+    PPRelease(_currentUserId);
     PPRelease(_post);
     PPRelease(_backButton);
     PPRelease(_bgImageView);
@@ -108,6 +112,7 @@ typedef enum{
     PPRelease(_header);
     PPRelease(_refreshButton);
     PPRelease(_group);
+    PPRelease(_grpPermissionManager);
     [super dealloc];
 }
 
@@ -238,6 +243,16 @@ typedef enum{
     }
 }
 
+- (void)initGroupData
+{
+    if (self.forGroup) {
+        if (self.group == nil) {
+            self.group = [[GroupManager defaultManager] findGroupById:self.post.boardId];
+        }
+        self.grpPermissionManager = [GroupPermissionManager myManagerWithGroup:_group];
+    }
+}
+
 - (void)viewDidLoad
 {
     [self setPullRefreshType:PullRefreshTypeFooter];
@@ -245,9 +260,11 @@ typedef enum{
     if (self.postID == nil){
         self.postID = self.post.postId;
     }
+    [self initGroupData];
     [self initViews];
     [self loadPost];
-    
+
+
 //    self.adView = [[AdService defaultService] createAdInView:self
 //                                                       frame:CGRectMake(0, self.view.bounds.size.height-50, 320, 50)
 //                                                   iPadFrame:CGRectMake((self.view.bounds.size.width-320)/2, self.view.bounds.size.height-100, 320, 50)
@@ -286,23 +303,42 @@ typedef enum{
     NSString *titles[] = {NSLS(@"kSupport"),NSLS(@"kComment")};
     return titles[index];
 }
+
+- (void)loadActionByUser
+{
+    TableTab *tab = [self currentTab];
+    [[self bbsService] getPostActionByUser:_currentUserId postId:self.postID offset:tab.offset limit:tab.limit hanlder:^(NSInteger resultCode, NSArray *postList, NSInteger tag) {
+        [self hideActivity];
+        if (resultCode == 0) {
+            [self finishLoadDataForTabID:tab.tabID resultList:postList];
+        }else{
+            [self failLoadDataForTabID:tab.tabID];
+        }
+    }];
+}
+
 - (void)serviceLoadDataForTabID:(NSInteger)tabID
 {
+    [self showActivityWithText:NSLS(@"kLoading")];
+    TableTab *tab = [_tabManager tabForID:tabID];
     BBSActionType type = ActionTypeNO;
     if (tabID == Support) {
         type = ActionTypeSupport;
     }else if(tabID == Comment){
         type = ActionTypeComment;
+        if ([self.currentUserId length] != 0) {
+            [self loadActionByUser];
+            return;
+        }
     }
     
-    TableTab *tab = [_tabManager tabForID:tabID];
     
     [[self bbsService] getBBSActionListWithPostId:self.postID
                                                  actionType:type
                                                      offset:tab.offset
                                                       limit:tab.limit
                                                    delegate:self];
-    [self showActivityWithText:NSLS(@"kLoading")];
+
 }
 
 
@@ -413,7 +449,12 @@ typedef enum{
             {
                 NSString *CellIdentifier = [BBSPostDetailCell getCellIdentifier];
                 BBSPostDetailCell *cell = [self getTableViewCell:theTableView cellIdentifier:CellIdentifier cellClass:[BBSPostDetailCell class]];
+                [cell setCurrentUserId:self.currentUserId];
                 [cell updateCellWithBBSPost:self.post];
+                
+                BOOL hideSeeMe = (self.currentTabID == Support);
+                [cell.seeMeOnly setHidden:hideSeeMe];
+                
                 cell.delegate = self;
                 cell.backgroundColor = [UIColor clearColor];
                 return cell;
@@ -426,6 +467,7 @@ typedef enum{
                     cell = [BBSPostActionCell createCell:self];
                 }
                 PBBBSAction *action = [self actionForIndexPath:indexPath];
+                [cell setCurrentUserId:self.currentUserId];
                 [cell updateCellWithBBSAction:action post:self.post];
                 if ([self.post canPay] && action == _selectedAction && ![action isMyAction]) {
                     [cell showOption:YES];
@@ -459,11 +501,18 @@ typedef enum{
 
 - (BOOL)actionCanDelete:(PBBBSAction *)action
 {
+    if (self.forGroup) {
+        return [self.grpPermissionManager canDeleteAction:action];
+        return NO;
+    }
     return  action && (action.canDelete || [[BBSPermissionManager defaultManager] canDeletePost:self.post onBBBoard:self.post.boardId]);
 }
 
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    if (indexPath.section != SectionActionList) {
+        return NO;
+    }
     PBBBSAction *action = [self actionForIndexPath:indexPath];
     BOOL flag = [self actionCanDelete:action];
 //    [self setCanDragBack:!flag];
@@ -527,6 +576,12 @@ typedef enum{
     [[self bbsService] payRewardWithPost:self.post
                                             action:action
                                           delegate:self];
+}
+
+- (void)didClickOnlySeeMe:(NSString *)targetUid
+{
+    self.currentUserId = targetUid;
+    [self clickRefreshButton:nil];
 }
 
 #pragma mark - CreatePostController delegate

@@ -451,7 +451,7 @@ typedef enum {
                                    cancelButtonTitle:NSLS(@"kCancel")
                               destructiveButtonTitle:nil
                                    otherButtonTitles:editString, NSLS(@"kDelete"), NSLS(@"kShareSinaWeibo"),    NSLS(@"kShareWeixinSession"),
-                                        NSLS(@"kShareWeixinTimeline"),NSLS(@"kShareQQSpace"),
+                                        NSLS(@"kShareWeixinTimeline"),  //NSLS(@"kShareQQSpace"),
                                         NSLS(@"kShareQQWeibo"),nil];
     
     int index = 0;
@@ -460,7 +460,7 @@ typedef enum {
     OPUS_ACTION_SHARE_SINA_WEIBO = index++;
     OPUS_ACTION_SHARE_WEIXIN_SESSION = index++;
     OPUS_ACTION_SHARE_WEIXIN_TIMELINE = index++;
-    OPUS_ACTION_SHARE_QQ_SPACE = index++;
+//    OPUS_ACTION_SHARE_QQ_SPACE = index++;
     OPUS_ACTION_SHARE_QQ_WEIBO = index++;
     
     OPUS_ACTION_DELETE_FEED = -1;
@@ -547,7 +547,7 @@ typedef enum {
                                        cancelButtonTitle:NSLS(@"kCancel")
                                   destructiveButtonTitle:nil
                                        otherButtonTitles:/*shareString,*/ NSLS(@"kLook"), NSLS(@"kDelete"), NSLS(@"kShareSinaWeibo"), NSLS(@"kShareWeixinSession"),
-                                            NSLS(@"kShareWeixinTimeline"),NSLS(@"kShareQQSpace"),
+                                            NSLS(@"kShareWeixinTimeline"), // NSLS(@"kShareQQSpace"),
                                             NSLS(@"kShareQQWeibo"),nil];
         
         int index = 0;
@@ -559,7 +559,7 @@ typedef enum {
         OPUS_ACTION_SHARE_SINA_WEIBO = index++;
         OPUS_ACTION_SHARE_WEIXIN_SESSION = index++;
         OPUS_ACTION_SHARE_WEIXIN_TIMELINE = index++;
-        OPUS_ACTION_SHARE_QQ_SPACE = index++;
+//        OPUS_ACTION_SHARE_QQ_SPACE = index++;
         OPUS_ACTION_SHARE_QQ_WEIBO = index++;
         
         tips.actionBlock = ^(NSInteger buttonIndex){
@@ -607,7 +607,7 @@ typedef enum {
                                        cancelButtonTitle:NSLS(@"kCancel")
                                   destructiveButtonTitle:nil
                                        otherButtonTitles:NSLS(@"kLook"), NSLS(@"kUnFavorite"), NSLS(@"kShareSinaWeibo"), NSLS(@"kShareWeixinSession"),
-                                            NSLS(@"kShareWeixinTimeline"),NSLS(@"kShareQQSpace"),
+                                            NSLS(@"kShareWeixinTimeline"), // NSLS(@"kShareQQSpace"),
                                             NSLS(@"kShareQQWeibo"),nil];
    
         int index = 0;
@@ -619,7 +619,7 @@ typedef enum {
         OPUS_ACTION_SHARE_SINA_WEIBO = index++;
         OPUS_ACTION_SHARE_WEIXIN_SESSION = index++;
         OPUS_ACTION_SHARE_WEIXIN_TIMELINE = index++;
-        OPUS_ACTION_SHARE_QQ_SPACE = index++;
+//        OPUS_ACTION_SHARE_QQ_SPACE = index++;
         OPUS_ACTION_SHARE_QQ_WEIBO = index++;
         
         tips.actionBlock = ^(NSInteger buttonIndex){

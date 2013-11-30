@@ -8,31 +8,34 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "JSONKit.h"
 
-
+typedef enum {
+    
+    AppTaskTypeDownload = 1,
+    AppTaskTypeWall = 2
+    
+} AppTaskType;
 
 @interface AppTask : NSObject
 {
-    NSString * Appid;
-    NSString * Name;
-    NSString * Url;
-    NSString * Desc;
-    NSString * Award;
-    NSString * Schema;
-    NSNumber * Show;
 }
 
-@property(nonatomic,retain) NSString * Appid;
-@property(nonatomic,retain) NSString * Name;
-@property(nonatomic,retain) NSString * Url;
-@property(nonatomic,retain) NSString * Desc;
-@property(nonatomic,retain) NSString * Award;
-@property(nonatomic,retain) NSString * Schema;
-@property(nonatomic,retain) NSNumber * Show;
+@property(nonatomic,assign) int index;
+@property(nonatomic,copy) NSString * appid;
+@property(nonatomic,copy) NSString * name;
+@property(nonatomic,copy) NSString * url;
+@property(nonatomic,copy) NSString * desc;
+@property(nonatomic,assign) int award;
+@property(nonatomic,copy) NSString * schema;
+@property(nonatomic,assign) int show;
+@property(nonatomic,assign) int type;
+@property(nonatomic,assign) int wallType;
 
 + (id) objectWithDictionary:(NSDictionary*)dictionary;
 - (id) initWithDictionary:(NSDictionary*)dictionary;
+
+- (BOOL)isAppAward;
+- (void)setAppAward;
 
 @end
 

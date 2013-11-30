@@ -1011,6 +1011,7 @@
 "kStatement" = "比赛声明";
 "kDecline" = "拒绝";
 "kAccept" = "接受";
+"kIgnore" = "忽略";
 
 "kCoinsForFollowUs" = "+%d金币";
 "kFollowSinaWeibo" = "关注新浪官方微博";
@@ -2102,7 +2103,7 @@
 
 "kDuplicateGroupName" = "家族名字已经被注册了，请换一个名字。";                                                     
 "kGroupIDEmpty" = "家族ID为空。";
-"kGroupMultiGroupsJoined" = "一个玩家只允许加入了一个家族。";
+"kGroupMultiGroupsJoined" = "一个玩家只允许加入一个家族。";
 "kGroupMultiGroupRequests" = "你已经发送了申请，请不要重复申请。";
 "kGroupPermissionDenied" = "你的权限不足。";
 "kGroupMembersFull" = "此家族已经满员了。";
@@ -2126,6 +2127,32 @@
 "kGroupRejectDesc" = "%@ 拒绝 %@ 加入 %@";
 "kContentDesc" = "内容：%@";
 "kPostscriptDesc" = "附言：%@";
+
+"kGroupComment" = "评论";
+"kGroupRequest" = "请求";
+"kGroupNotice" = "通知";
+
+"kAtMe" = "@我";
+"kSearchGroup" = "搜索家族";
+"kSearchPost" = "搜索帖子";
+"kSearchTopic" = "搜索话题";
+"kSearchGroupTips" = "家族名称/说明/签名";
+"kJoinGroup" = "加入";
+"kQuitGroup" = "退出";
+"kDissolveGroup" = "解散";
+
+"kJoiningGroup" = "发送加入申请中...";
+"kSentRequest" = "申请已经发送，请等待审核通过。";
+"kQuitingGroup" = "退出家族中...";
+"kQuitedGroup" = "你已经退出了家族。";
+
+
+"kCanotCreateTopic" = "对不起，不是家族成员或嘉宾不能创建话题。";
+"kCanotGroupChat" = "对不起，不是家族成员或嘉宾不能进行群聊。";
+
+"kSeeAllPost" = "全部帖子";
+"kSeeLZOnly" = "只看楼主";
+"kSeeMeOnly" = "只看用户";
 
 
 /*********************小吉画画国际化字符串开始 ************************/

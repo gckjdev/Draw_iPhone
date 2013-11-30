@@ -16,6 +16,10 @@ message PBIntKeyValue{
   optional string value = 2;
 }
 
+message PBIntKeyIntValue{
+  required int32  key = 1;
+  required int32  value = 2;
+}
 
 enum PBOpenInfoType{
   OPEN_TO_FRIEND = 0;       // 仅对互相关注的人公开
@@ -509,6 +513,10 @@ enum PBTaskIdType
     TASK_SHARE_OPUS = 10;
     TASK_SHARE_QQ_WEIBO = 11;
     TASK_APP_UPGRADE = 12;
+    
+    TASK_APP_WALL = 100;
+    TASK_APP_DOWNLOAD = 200;
+    
 }
 
 message PBTask

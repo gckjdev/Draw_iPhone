@@ -42,4 +42,5 @@ typedef enum{
 - (UIButton *)buttonWithType:(FooterType)type;
 + (DetailFooterView *)footerViewWithDelegate:(id<DetailFooterViewDelegate>)delegate;
 
+- (void)setButton:(FooterType)type badge:(NSInteger)badge;
 @end

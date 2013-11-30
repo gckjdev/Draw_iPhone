@@ -14,6 +14,7 @@
 #import "PPConfigManager.h"
 #import "DrawPlayer.h"
 #import "ImagePlayer.h"
+#import "GroupModelExt.h"
 
 
 
@@ -61,6 +62,7 @@
     [self showActivityWithText:NSLS(@"kSearching")];
     TableTab *tab = [_tabManager tabForID:tabID];
     [[self bbsService] searchPostListByKeyWord:key
+                                       inGroup:self.group.groupId
                                         offset:tab.offset
                                          limit:tab.limit
                                        hanlder:^(NSInteger resultCode, NSArray *postList, NSInteger tag) {
@@ -79,15 +81,18 @@
 {
     PBBBSPost *post = data;
 	return [BBSPostCell getCellHeightWithBBSPost:post];
-
 }
 - (void)didSelectedCellWithData:(id)data
 {
     PBBBSPost *post = data;
-    [BBSPostDetailController enterPostDetailControllerWithPost:post
-                                                fromController:self
-                                                      animated:YES];
-
+    
+    if (self.forGroup) {
+        [BBSPostDetailController enterPostDetailControllerWithPost:post group:self.group fromController:self animated:YES];
+    }else{
+        [BBSPostDetailController enterPostDetailControllerWithPost:post
+                                                    fromController:self
+                                                          animated:YES];
+    }
 }
 - (UITableViewCell *)cellForData:(id)data
 {
@@ -105,7 +110,7 @@
 
 - (NSString *)headerTitle
 {
-    return NSLS(@"kSearch");
+    return self.forGroup ? NSLS(@"kSearchTopic") : NSLS(@"kSearchPost");
 }
 - (NSString *)searchTips
 {
@@ -113,7 +118,7 @@
 }
 - (NSString *)historyStoreKey
 {
-    return @"BBSSearchHistory";
+    return self.forGroup ? @"TopicSearchHistory" : @"BBSSearchHistory";
 }
 
 

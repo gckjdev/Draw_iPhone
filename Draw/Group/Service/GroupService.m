@@ -76,6 +76,13 @@ static GroupService *_staticGroupService = nil;
                     [DrawError postError:error];
                 }
 
+                if ([output.pbResponse hasGroup]) {
+                    [[GroupManager defaultManager] collectGroup:output.pbResponse.group];
+                }
+                if ([output.pbResponse.groupListList count] != 0) {
+                    [[GroupManager defaultManager] collectGroups:output.pbResponse.groupListList];
+                }
+                
                 EXECUTE_BLOCK(callback, output.pbResponse, error);
             });
         });
@@ -149,20 +156,40 @@ static GroupService *_staticGroupService = nil;
 
 }
 
-
-#define HANDLE_TYPE_ACCEPT @(1)
-#define HANDLE_TYPE_REJECT @(2)
-
-- (void)acceptUser:(NSString *)uid
-             group:(NSString *)groupId
-          noticeId:(NSString *)noticeId
-          callback:(SimpleResultBlock)callback
+- (void)searchGroupsByKeyword:(NSString *)keyword
+                       offset:(NSInteger)offset
+                        limit:(NSInteger)limit
+                     callback:(ListResultBlock)callback
 {
-    NSDictionary *paras = @{PARA_GROUPID:groupId,
-                            PARA_TARGETUSERID:uid,
-                            PARA_NOTICEID:noticeId,
-                            PARA_TYPE:HANDLE_TYPE_ACCEPT
-                            };
+    NSDictionary *paras = @{PARA_OFFSET:@(offset), PARA_LIMIT:@(limit), PARA_KEYWORD:keyword};
+    
+    
+    [self loadPBData:METHOD_SEARCH_GROUP
+          parameters:paras
+            callback:^(DataQueryResponse *response, NSError *error) {
+                EXECUTE_BLOCK(callback, response.groupListList, error);
+            }];
+}
+
+
+#define HANDLE_TYPE_ACCEPT 1
+#define HANDLE_TYPE_REJECT 2
+
+
+- (void)handleUserRequestNotice:(PBGroupNotice *)notice
+                         accept:(BOOL)accept
+                         reason:(NSString *)reason
+                       callback:(SimpleResultBlock)callback
+{
+    NSInteger type = accept?HANDLE_TYPE_ACCEPT:HANDLE_TYPE_REJECT;
+    NSMutableDictionary *paras = [NSMutableDictionary dictionary];
+    [paras setObject:notice.noticeId forKey:PARA_NOTICEID];
+    [paras setObject:@(type) forKey:PARA_TYPE];
+    
+
+    if (reason) {
+        [paras setObject:reason forKey:PARA_MESSAGETEXT];
+    }
     
     [self loadPBData:METHOD_HANDLE_JOIN_REQUEST
           parameters:paras
@@ -172,28 +199,6 @@ static GroupService *_staticGroupService = nil;
      }];
 }
 
-
-
-- (void)rejectUser:(NSString *)uid
-             group:(NSString *)groupId
-          noticeId:(NSString *)noticeId
-            reason:(NSString *)reason
-          callback:(SimpleResultBlock)callback
-{
-    NSDictionary *paras = @{PARA_GROUPID:groupId,
-                            PARA_TARGETUSERID:uid,
-                            PARA_NOTICEID:noticeId,
-                            PARA_DESC:reason,
-                            PARA_TYPE:HANDLE_TYPE_REJECT
-                            };
-    
-    [self loadPBData:METHOD_HANDLE_JOIN_REQUEST
-          parameters:paras
-            callback:^(DataQueryResponse *response, NSError *error )
-     {
-         EXECUTE_BLOCK(callback, error);
-     }];
-}
 
 - (void)inviteMembers:(NSArray *)uids
               groupId:(NSString *)groupId
@@ -454,12 +459,24 @@ static GroupService *_staticGroupService = nil;
      }];
 }
 
+- (void)getGroupBadgeWithCallback:(BadgeResultBlock)callback
+{
+    [self loadPBData:METHOD_GET_GROUP_BADGES
+          parameters:nil
+            callback:^(DataQueryResponse *response, NSError *error)
+     {
+         EXECUTE_BLOCK(callback, response.badgesList, error);
+     }];
+}
+
 - (PBGroup *)buildGroup:(PBGroup *)group
            withRelation:(PBUserRelationWithGroup *)relation
 {
     PBGroup_Builder *builder = [PBGroup builderWithPrototype:group];
     [builder setRelation:relation];
-    return [builder build];
+    PBGroup *retGroup = [builder build];
+    [[GroupManager defaultManager] collectGroup:retGroup];
+    return retGroup;
 }
 
 - (PBGroup *)buildGroupWithDefaultRelation:(PBGroup *)group

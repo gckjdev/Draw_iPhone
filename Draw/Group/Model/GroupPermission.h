@@ -11,6 +11,7 @@
 @class PBGroup;
 @class PBBBSPost;
 @class PBGroupUser;
+@class PBBBSAction;
 
 @interface GroupPermissionManager : NSObject
 
@@ -32,6 +33,7 @@
 - (BOOL)canCreateTopic;
 - (BOOL)canReplyTopic;
 - (BOOL)canDeleteTopic:(PBBBSPost *)post;
+- (BOOL)canDeleteAction:(PBBBSAction *)action;
 
 //admin permission
 - (BOOL)canMarkTopic;

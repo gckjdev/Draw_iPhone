@@ -8,18 +8,26 @@
 
 #import "GroupManager.h"
 #import "BBSPostCommand.h"
+#import "Group.pb.h"
+
 
 static GroupManager *_staticGroupManager = nil;
 
 @interface GroupManager()
 
+//uid : dict
+@property (nonatomic, retain)NSMutableDictionary *collectionDict;
+
 @end
+
+
 
 @implementation GroupManager
 
 - (void)dealloc
 {
     PPRelease(_followedGroupIds);
+    PPRelease(_collectionDict);
 //    PPRelease(_tempPostList);
     [super dealloc];
 }
@@ -29,6 +37,7 @@ static GroupManager *_staticGroupManager = nil;
     self = [super init];
     if (self) {
         self.followedGroupIds = [NSMutableArray array];
+        self.collectionDict = [NSMutableDictionary dictionary];
     }
     return self;
 }
@@ -82,7 +91,7 @@ static GroupManager *_staticGroupManager = nil;
 + (NSArray *)defaultTypesInGroupTopicFooter:(PBGroup *)group
 {
     //TODO add quit type
-    return @[@(GroupCreateTopic), @(GroupSearchGroup), @(GroupChat)];
+    return @[@(GroupCreateTopic), @(GroupSearchTopic), @(GroupChat)];
 }
 
 + (NSMutableArray *)getTopicCMDList:(PBBBSPost *)post inGroup:(PBGroup *)group
@@ -112,4 +121,67 @@ static GroupManager *_staticGroupManager = nil;
     return list;
 }
 
+- (void)collectGroup:(PBGroup *)group
+{
+    //only collect the group having relation with current user.
+    if (group.hasRelation) {
+        NSString *userId = [[UserManager defaultManager] userId];
+
+        NSMutableDictionary *cd = [self.collectionDict objectForKey:userId];
+        if (cd == nil) {
+            cd = [NSMutableDictionary dictionary];
+            [self.collectionDict setObject:cd forKey:userId];
+        }
+
+        [cd setObject:group forKey:group.groupId];
+        PPDebug(@"<collectGroup> group id = %@, name = %@", group.groupId, group.name);
+    }
+}
+
+- (PBGroup *)findGroupById:(NSString *)groupId
+{
+    PBGroup *group = [self.collectionDict objectForKey:groupId];
+    if (!group) {
+        PPDebug(@"<findGroupById> can't find group, id = %@", groupId);
+    }
+    return group;
+}
+
+- (void)collectGroups:(NSArray *)groups
+{
+    for (PBGroup *group in groups) {
+        [self collectGroup:group];
+    }
+}
+
+enum{
+    BADGE_COMMENT = 1,
+    BADGE_REQUEST = 2,
+    BADGE_NOTICE = 3,
+};
+
+- (NSInteger)totalBadge
+{
+    return _noticeBadge + _commentBadge + _requestBadge;
+}
+
+- (void)updateBadges:(NSArray *)badges
+{
+    self.noticeBadge = self.commentBadge = self.requestBadge = 0;
+    for (PBIntKeyIntValue *kv in badges) {
+        switch (kv.key) {
+            case BADGE_COMMENT:
+                self.commentBadge = kv.value;
+                break;
+            case BADGE_REQUEST:
+                self.requestBadge = kv.value;
+                break;
+            case BADGE_NOTICE:
+                self.noticeBadge = kv.value;
+                break;
+            default:
+                break;
+        }
+    }
+}
 @end

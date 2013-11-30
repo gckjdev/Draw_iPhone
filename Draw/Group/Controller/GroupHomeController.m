@@ -16,6 +16,8 @@
 #import "BBSPostCell.h"
 #import "GroupNoticeController.h"
 #import "SearchPostController.h"
+#import "BBSPostDetailController.h"
+#import "SearchGroupController.h"
 
 @interface GroupHomeController ()
 {
@@ -73,6 +75,22 @@
     PPDebug(@"update footer view, types = %@", types);
 }
 
+- (void)updateAtMeBadge
+{
+    NSInteger badge = [[GroupManager defaultManager] totalBadge];
+    [self.footerView setButton:GroupAtMe badge:badge];
+}
+
+- (void)loadBadge
+{
+    [[GroupService defaultService] getGroupBadgeWithCallback:^(NSArray *badges, NSError *error) {
+        if (!error) {
+            [[GroupManager defaultManager] updateBadges:badges];
+            [self updateAtMeBadge];
+        }
+    }];
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -83,7 +101,13 @@
     [self initTabButtons];
     [self clickTabButton:[self defaultTabButton]];
     [self updateFooterView];
+    [self loadBadge];
+}
 
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    [self updateAtMeBadge];
 }
 
 - (void)didReceiveMemoryWarning
@@ -268,10 +292,16 @@
 
          case GroupSearchGroup:
         {
-            SearchPostController *spc = [[SearchPostController alloc] init];
-            spc.forGroup = YES;
-            [self.navigationController pushViewController:spc animated:YES];
-            [spc release];
+            if ([self currentTabISGroupTab]) {
+                SearchGroupController *sgc = [[SearchGroupController alloc] init];
+                [self.navigationController pushViewController:sgc animated:YES];
+                [sgc release];
+            }else{
+                SearchPostController *spc = [[SearchPostController alloc] init];
+                spc.forGroup = YES;
+                [self.navigationController pushViewController:spc animated:YES];
+                [spc release];                
+            }
             break;
         }
          case GroupChat:
@@ -326,11 +356,12 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    PBGroup *group = [self.tabDataList objectAtIndex:indexPath.row];
-    if (group) {
-        [GroupTopicController enterWithGroup:group fromController:self];
+    id data = [self.tabDataList objectAtIndex:indexPath.row];
+    if ([data isKindOfClass:[PBGroup class]]) {
+        [GroupTopicController enterWithGroup:data fromController:self];
+    }else if([data isKindOfClass:[PBBBSPost class]]){
+        [BBSPostDetailController enterPostDetailControllerWithPost:data group:nil fromController:self animated:YES];
     }
-
 }
 
 SET_CELL_BG_IN_CONTROLLER

@@ -27,17 +27,21 @@
 
 #define HEIGHT_SUPPORT (ISIPAD ? 80 * 2.33: 80)
 
+#define SEEME_FONT (ISIPAD ? 9 * 2: 9)
+
 @implementation BBSPostActionCell
 @synthesize reply = _reply;
 @synthesize action = _action;
 
 - (void)dealloc
 {
+    PPRelease(_currentUserId);
     PPRelease(_reply);
     PPRelease(_action);
     PPRelease(_post);
     PPRelease(_option);
     [_supportImage release];
+    [_seeMeOnly release];
     [super dealloc];
 }
 
@@ -59,6 +63,9 @@
     self.useContentLabel = NO;
     self.content.hidden = YES;
     [self.content removeFromSuperview];
+    SET_BUTTON_ROUND_STYLE_YELLOW(self.seeMeOnly);
+    UIFont *font = [UIFont systemFontOfSize:SEEME_FONT];
+    [self.seeMeOnly.titleLabel setFont:font];
 }
 
 + (id)createCell:(id)delegate
@@ -229,19 +236,14 @@
 //    [self.contentTextView setBackgroundColor:[UIColor redColor]];
 }
 
-
-
-- (void)updateCellWithBBSAction:(PBBBSAction *)action post:(PBBBSPost *)post
+- (void)layoutSubviews
 {
-    self.action = action;
-    self.post = post;
-    
-    
-    [self updateUserInfo:action.createUser];
-    [self.timestamp setText:action.createDateString];
+    [super layoutSubviews];
+    [self updateUserInfo:self.action.createUser];
+    [self.timestamp setText:self.action.createDateString];
     [self updateReplyAction];
     
-    if ([action isSupport]) {
+    if ([self.action isSupport]) {
         [self.supportImage setHidden:NO];
         self.content.hidden = YES;
         self.contentTextView.hidden = YES;
@@ -250,16 +252,44 @@
         [self.supportImage setHidden:YES];
         self.contentTextView.hidden = NO;
         self.content.hidden = NO;
-        [self updateContentWithAction:action];        
+        [self updateContentWithAction:self.action];
     }
-    if([post.reward.actionId isEqualToString:action.actionId]){
+    if([self.post.reward.actionId isEqualToString:self.action.actionId]){
         //if winner change the action bg.
         [self.bgImageView setImage:[_bbsImageManager bbsRewardActionBGImage]];
     }else{
         [self.bgImageView setImage:[_bbsImageManager bbsPostContentBGImage]];
     }
+    
+    [self.seeMeOnly setHidden:[_action isSupport]];
+    
+    NSString *text = ([self isSeeingMe] ? NSLS(@"kSeeAllPost") : NSLS(@"kSeeMeOnly"));
+    [self.seeMeOnly setTitle:text forState:UIControlStateNormal];
+
 }
 
+
+- (void)updateCellWithBBSAction:(PBBBSAction *)action post:(PBBBSPost *)post
+{
+    self.action = action;
+    self.post = post;
+    [self setNeedsLayout];
+}
+
+- (BOOL)isSeeingMe
+{
+    if ([self.currentUserId length] != 0 && [self.currentUserId isEqualToString:_action.createUser.userId]) {
+        return YES;
+    }
+    return NO;
+}
+
+- (IBAction)clickSeeMeOnly:(id)sender {
+    NSString *uid = [self isSeeingMe] ? nil : _action.createUser.userId;
+    if ([self.delegate respondsToSelector:@selector(didClickOnlySeeMe:)]) {
+        [self.delegate didClickOnlySeeMe:uid];
+    }
+}
 
 - (IBAction)clickRepyButton:(id)sender {
     if (delegate && [delegate respondsToSelector:@selector(didClickReplyButtonWithAction:)]) {

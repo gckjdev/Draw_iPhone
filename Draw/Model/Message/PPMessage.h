@@ -8,10 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-
-
 @class PBMessage;
-//the super message of all the message
 
 typedef enum {
     MessageTypeText = 0,
@@ -38,13 +35,6 @@ typedef enum {
 
 @interface PPMessage : NSObject
 {
-//    NSString * _messageId;
-//    NSDate * _createDate;
-//    NSString * _friendId;
-//    NSString *_text;
-//    MessageStatus _status;
-//    MessageType _messageType;
-//    SourceType _sourceType;
 }
 + (id)messageWithPBMessage:(PBMessage *)pbMessage;
 - (id)initWithPBMessage:(PBMessage *)pbMessage;
@@ -52,7 +42,6 @@ typedef enum {
 - (BOOL)isReceiveMessage;
 - (BOOL)isMessageSentOrReceived;
 - (PBMessage *)toPBMessage;
-//- (void)updatePBMessageBuilder:(PBMessage_Builder *)builder;
 
 @property (nonatomic, retain) PBMessage_Builder *messageBuilder;
 
@@ -102,81 +91,3 @@ typedef enum {
 - (BOOL)isGroup;
 
 @end
-
-//@interface TextMessage : PPMessage {
-//
-//}
-//- (id)initWithPBMessage:(PBMessage *)pbMessage;
-//
-//@end
-//
-//@interface DrawMessage : PPMessage {
-//    NSMutableArray *_drawActionList;
-//    UIImage *_thumbImage; //create from the drawActionList
-//    NSString *_thumbFilePath;
-//}
-//
-//- (id)initWithPBMessage:(PBMessage *)pbMessage;
-//
-//@property (nonatomic, retain) NSMutableArray * drawActionList;
-//@property (nonatomic, retain) UIImage *thumbImage;
-//@property (nonatomic, retain) NSString *thumbFilePath;
-//@property (nonatomic, assign) NSInteger drawDataVersion;
-//@property (nonatomic, assign) CGSize canvasSize;
-//@end
-//
-//
-//@interface ImageMessage : PPMessage {
-//    UIImage *_image; //create from the drawActionList
-//    NSString *_imageUrl;
-//}
-//
-//- (id)initWithPBMessage:(PBMessage *)pbMessage;
-//
-//@property (nonatomic, retain) UIImage *image;
-//@property (nonatomic, retain) NSString *imageUrl;
-//@property (nonatomic, retain) UIImage *thumbImage;
-//@property (nonatomic, retain) NSString *thumbImageUrl;
-//@property (nonatomic, assign) CGSize thumbImageSize;
-//@property (nonatomic, assign) BOOL hasCalSize;
-//
-//@end
-//
-//
-//@interface VoiceMessage : PPMessage {
-//
-//}
-//
-//- (id)initWithPBMessage:(PBMessage *)pbMessage;
-//
-////use in the future.
-//@end
-//
-//
-//@interface LocationAskMessage : PPMessage {
-//    double _latitude;
-//    double _longitude;
-//
-//}
-//- (id)initWithPBMessage:(PBMessage *)pbMessage;
-//@property (nonatomic, assign) double latitude;
-//@property (nonatomic, assign) double longitude;
-//
-//@end
-//
-//@interface LocationReplyMessage : PPMessage {
-//    double _latitude;
-//    double _longitude;
-//    NSInteger _replyResult;
-//    NSString *_reqMessageId;
-//}
-//- (id)initWithPBMessage:(PBMessage *)pbMessage;
-//
-//@property (nonatomic, retain) NSString *reqMessageId;
-//
-//@property (nonatomic, assign) double latitude;
-//@property (nonatomic, assign) double longitude;
-//@property (nonatomic, assign) NSInteger replyResult;
-
-//@end
-

@@ -115,6 +115,8 @@ BOOL PBTaskIdTypeIsValidValue(PBTaskIdType value) {
     case PBTaskIdTypeTaskShareOpus:
     case PBTaskIdTypeTaskShareQqWeibo:
     case PBTaskIdTypeTaskAppUpgrade:
+    case PBTaskIdTypeTaskAppWall:
+    case PBTaskIdTypeTaskAppDownload:
       return YES;
     default:
       return NO;
@@ -555,6 +557,227 @@ static PBIntKeyValue* defaultPBIntKeyValueInstance = nil;
 - (PBIntKeyValue_Builder*) clearValue {
   result.hasValue = NO;
   result.value = @"";
+  return self;
+}
+@end
+
+@interface PBIntKeyIntValue ()
+@property int32_t key;
+@property int32_t value;
+@end
+
+@implementation PBIntKeyIntValue
+
+- (BOOL) hasKey {
+  return !!hasKey_;
+}
+- (void) setHasKey:(BOOL) value {
+  hasKey_ = !!value;
+}
+@synthesize key;
+- (BOOL) hasValue {
+  return !!hasValue_;
+}
+- (void) setHasValue:(BOOL) value {
+  hasValue_ = !!value;
+}
+@synthesize value;
+- (void) dealloc {
+  [super dealloc];
+}
+- (id) init {
+  if ((self = [super init])) {
+    self.key = 0;
+    self.value = 0;
+  }
+  return self;
+}
+static PBIntKeyIntValue* defaultPBIntKeyIntValueInstance = nil;
++ (void) initialize {
+  if (self == [PBIntKeyIntValue class]) {
+    defaultPBIntKeyIntValueInstance = [[PBIntKeyIntValue alloc] init];
+  }
+}
++ (PBIntKeyIntValue*) defaultInstance {
+  return defaultPBIntKeyIntValueInstance;
+}
+- (PBIntKeyIntValue*) defaultInstance {
+  return defaultPBIntKeyIntValueInstance;
+}
+- (BOOL) isInitialized {
+  if (!self.hasKey) {
+    return NO;
+  }
+  if (!self.hasValue) {
+    return NO;
+  }
+  return YES;
+}
+- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
+  if (self.hasKey) {
+    [output writeInt32:1 value:self.key];
+  }
+  if (self.hasValue) {
+    [output writeInt32:2 value:self.value];
+  }
+  [self.unknownFields writeToCodedOutputStream:output];
+}
+- (int32_t) serializedSize {
+  int32_t size = memoizedSerializedSize;
+  if (size != -1) {
+    return size;
+  }
+
+  size = 0;
+  if (self.hasKey) {
+    size += computeInt32Size(1, self.key);
+  }
+  if (self.hasValue) {
+    size += computeInt32Size(2, self.value);
+  }
+  size += self.unknownFields.serializedSize;
+  memoizedSerializedSize = size;
+  return size;
+}
++ (PBIntKeyIntValue*) parseFromData:(NSData*) data {
+  return (PBIntKeyIntValue*)[[[PBIntKeyIntValue builder] mergeFromData:data] build];
+}
++ (PBIntKeyIntValue*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (PBIntKeyIntValue*)[[[PBIntKeyIntValue builder] mergeFromData:data extensionRegistry:extensionRegistry] build];
+}
++ (PBIntKeyIntValue*) parseFromInputStream:(NSInputStream*) input {
+  return (PBIntKeyIntValue*)[[[PBIntKeyIntValue builder] mergeFromInputStream:input] build];
+}
++ (PBIntKeyIntValue*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (PBIntKeyIntValue*)[[[PBIntKeyIntValue builder] mergeFromInputStream:input extensionRegistry:extensionRegistry] build];
+}
++ (PBIntKeyIntValue*) parseFromCodedInputStream:(PBCodedInputStream*) input {
+  return (PBIntKeyIntValue*)[[[PBIntKeyIntValue builder] mergeFromCodedInputStream:input] build];
+}
++ (PBIntKeyIntValue*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (PBIntKeyIntValue*)[[[PBIntKeyIntValue builder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] build];
+}
++ (PBIntKeyIntValue_Builder*) builder {
+  return [[[PBIntKeyIntValue_Builder alloc] init] autorelease];
+}
++ (PBIntKeyIntValue_Builder*) builderWithPrototype:(PBIntKeyIntValue*) prototype {
+  return [[PBIntKeyIntValue builder] mergeFrom:prototype];
+}
+- (PBIntKeyIntValue_Builder*) builder {
+  return [PBIntKeyIntValue builder];
+}
+@end
+
+@interface PBIntKeyIntValue_Builder()
+@property (retain) PBIntKeyIntValue* result;
+@end
+
+@implementation PBIntKeyIntValue_Builder
+@synthesize result;
+- (void) dealloc {
+  self.result = nil;
+  [super dealloc];
+}
+- (id) init {
+  if ((self = [super init])) {
+    self.result = [[[PBIntKeyIntValue alloc] init] autorelease];
+  }
+  return self;
+}
+- (PBGeneratedMessage*) internalGetResult {
+  return result;
+}
+- (PBIntKeyIntValue_Builder*) clear {
+  self.result = [[[PBIntKeyIntValue alloc] init] autorelease];
+  return self;
+}
+- (PBIntKeyIntValue_Builder*) clone {
+  return [PBIntKeyIntValue builderWithPrototype:result];
+}
+- (PBIntKeyIntValue*) defaultInstance {
+  return [PBIntKeyIntValue defaultInstance];
+}
+- (PBIntKeyIntValue*) build {
+  [self checkInitialized];
+  return [self buildPartial];
+}
+- (PBIntKeyIntValue*) buildPartial {
+  PBIntKeyIntValue* returnMe = [[result retain] autorelease];
+  self.result = nil;
+  return returnMe;
+}
+- (PBIntKeyIntValue_Builder*) mergeFrom:(PBIntKeyIntValue*) other {
+  if (other == [PBIntKeyIntValue defaultInstance]) {
+    return self;
+  }
+  if (other.hasKey) {
+    [self setKey:other.key];
+  }
+  if (other.hasValue) {
+    [self setValue:other.value];
+  }
+  [self mergeUnknownFields:other.unknownFields];
+  return self;
+}
+- (PBIntKeyIntValue_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input {
+  return [self mergeFromCodedInputStream:input extensionRegistry:[PBExtensionRegistry emptyRegistry]];
+}
+- (PBIntKeyIntValue_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  PBUnknownFieldSet_Builder* unknownFields = [PBUnknownFieldSet builderWithUnknownFields:self.unknownFields];
+  while (YES) {
+    int32_t tag = [input readTag];
+    switch (tag) {
+      case 0:
+        [self setUnknownFields:[unknownFields build]];
+        return self;
+      default: {
+        if (![self parseUnknownField:input unknownFields:unknownFields extensionRegistry:extensionRegistry tag:tag]) {
+          [self setUnknownFields:[unknownFields build]];
+          return self;
+        }
+        break;
+      }
+      case 8: {
+        [self setKey:[input readInt32]];
+        break;
+      }
+      case 16: {
+        [self setValue:[input readInt32]];
+        break;
+      }
+    }
+  }
+}
+- (BOOL) hasKey {
+  return result.hasKey;
+}
+- (int32_t) key {
+  return result.key;
+}
+- (PBIntKeyIntValue_Builder*) setKey:(int32_t) value {
+  result.hasKey = YES;
+  result.key = value;
+  return self;
+}
+- (PBIntKeyIntValue_Builder*) clearKey {
+  result.hasKey = NO;
+  result.key = 0;
+  return self;
+}
+- (BOOL) hasValue {
+  return result.hasValue;
+}
+- (int32_t) value {
+  return result.value;
+}
+- (PBIntKeyIntValue_Builder*) setValue:(int32_t) value {
+  result.hasValue = YES;
+  result.value = value;
+  return self;
+}
+- (PBIntKeyIntValue_Builder*) clearValue {
+  result.hasValue = NO;
+  result.value = 0;
   return self;
 }
 @end

@@ -13,6 +13,7 @@
 @protocol BBSPostDetailCellDelegate <BBSTableViewCellDelegate>
 
 @optional
+- (void)didClickOnlySeeMe:(NSString *)targetUid;
 - (void)didClickSupportButtonWithPost:(PBBBSPost *)post;
 - (void)didClickReplyButtonWithPost:(PBBBSPost *)post;
 
@@ -30,6 +31,10 @@
 @property (retain, nonatomic) IBOutlet UIButton *topFlag;
 @property (retain, nonatomic) IBOutlet UIButton *markedFlag;
 
+//只看LZ
+@property (retain, nonatomic) NSString *currentUserId;
+@property (retain, nonatomic) IBOutlet UIButton *seeMeOnly;
+- (IBAction)clickSeeMeOnly:(id)sender;
 
 + (id)createCell:(id)delegate;
 + (NSString*)getCellIdentifier;

@@ -14,6 +14,10 @@
 
 @interface GroupManager : NSObject
 @property(nonatomic, retain)NSMutableArray *followedGroupIds;
+@property(nonatomic, assign) NSInteger commentBadge;
+@property(nonatomic, assign) NSInteger requestBadge;
+@property(nonatomic, assign) NSInteger noticeBadge;
+@property(nonatomic, assign, readonly) NSInteger totalBadge;
 //@property(atomic, retain) NSMutableArray *tempPostList;
 
 + (id)defaultManager;
@@ -27,5 +31,11 @@
 - (BOOL)followedGroup:(NSString *)groupId;
 
 + (NSMutableArray *)getTopicCMDList:(PBBBSPost *)post inGroup:(PBGroup *)group;
+
+- (void)collectGroup:(PBGroup *)group;
+- (void)collectGroups:(NSArray *)groups;
+- (PBGroup *)findGroupById:(NSString *)groupId;
+
+- (void)updateBadges:(NSArray *)badges;
 
 @end

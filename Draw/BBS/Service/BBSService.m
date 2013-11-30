@@ -637,9 +637,10 @@ BBSService *_staticGroupTopicService;
 
 
 - (void)searchPostListByKeyWord:(NSString *)keyWord
+                        inGroup:(NSString *)groupId
                          offset:(NSInteger)offset
                           limit:(NSInteger)limit
-                        hanlder:(BBSGetPostResultHandler)handler
+                        hanlder:(BBSGetPostResultHandler)handler;
 {
     if ([keyWord length] == 0) {
         return;
@@ -657,6 +658,13 @@ BBSService *_staticGroupTopicService;
                                 PARA_LIMIT : @(limit),
                                 };
 
+        if ([groupId length] != 0) {
+            NSMutableDictionary *dict = [NSMutableDictionary dictionary];
+            [dict setDictionary:paras];
+            //the parameter here is right here. by gamy
+            [dict setObject:groupId forKey:PARA_BOARDID];
+            paras = dict;
+        }
         
         GameNetworkOutput *output = [BBSNetwork sendGetRequestWithBaseURL:[self hostURL]
                                        method:METHOD_SEARCH_BBSPOST_LIST
@@ -672,6 +680,42 @@ BBSService *_staticGroupTopicService;
         });
     });
 }
+
+- (void)getPostActionByUser:(NSString *)targetUid
+                     postId:(NSString *)postId
+                     offset:(NSInteger)offset
+                      limit:(NSInteger)limit
+                    hanlder:(BBSGetPostResultHandler)handler
+{
+    dispatch_async(workingQueue, ^{
+        NSInteger deviceType = [DeviceDetection deviceType];
+        NSString *appId = [PPConfigManager appId];
+        NSString *userId = [[UserManager defaultManager] userId];
+        
+        NSDictionary *paras = @{PARA_DEVICETYPE : @(deviceType),
+                                PARA_APPID : appId,
+                                PARA_USERID : userId,
+                                PARA_POSTID : postId,
+                                PARA_TARGETUSERID : targetUid,
+                                PARA_OFFSET : @(offset),
+                                PARA_LIMIT : @(limit),
+                                };
+        
+        GameNetworkOutput *output = [BBSNetwork sendGetRequestWithBaseURL:[self hostURL]
+                                                                   method:METHOD_GET_POST_ACTION_BY_USER
+                                                               parameters:paras
+                                                                 returnPB:YES
+                                                          returnJSONArray:NO];
+        
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            NSInteger resultCode = [output resultCode];
+            NSArray *list = output.pbResponse.bbsActionList;
+            EXECUTE_BLOCK(handler, resultCode, list, 0);
+        });
+    });
+}
+
 
 #pragma mark- mark methods 精华帖
 

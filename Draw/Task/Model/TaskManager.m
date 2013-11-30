@@ -16,6 +16,9 @@
 #import "OfflineDrawViewController.h"
 #import "HotController.h"
 #import "AccountService.h"
+#import "AppTaskManager.h"
+#import "AppTask.h"
+#import "GameAdWallService.h"
 
 #define USER_TASK_LIST_KEY @"USER_TASK_LIST_KEY_5"
 
@@ -38,129 +41,169 @@ static TaskManager* _defaultTaskManager;
 
 - (NSArray*)createInitTaskList
 {
+    
     NSMutableArray* retList = [NSMutableArray array];
     
-    GameTask* task1 = [[GameTask alloc] initWithId:PBTaskIdTypeTaskCheckIn
-                                             name:NSLS(@"kTaskCheckIn")
-                                             desc:NSLS(@"kTaskCheckInDesc")
-                                           status:PBTaskStatusTaskStatusAlwaysOpen
-                                            badge:0
-                                             award:0
-                                          selector:@selector(checkIn:)];
+//    GameTask* task1 = [[GameTask alloc] initWithId:PBTaskIdTypeTaskCheckIn
+//                                             name:NSLS(@"kTaskCheckIn")
+//                                             desc:NSLS(@"kTaskCheckInDesc")
+//                                           status:PBTaskStatusTaskStatusAlwaysOpen
+//                                            badge:0
+//                                             award:0
+//                                          selector:@selector(checkIn:)];
     
-    GameTask* task2 = [[GameTask alloc] initWithId:PBTaskIdTypeTaskBindSina
+    GameTask* task2 = [[[GameTask alloc] initWithId:PBTaskIdTypeTaskBindSina
                                              name:NSLS(@"kTaskBindSinaWeibo")
                                               desc:[NSString stringWithFormat:NSLS(@"kTaskBindSinaWeiboDesc"), [PPConfigManager getFollowWeiboReward]]
                                            status:PBTaskStatusTaskStatusCanTake
                                             badge:1
                                              award:[PPConfigManager getFollowWeiboReward]
-                                          selector:@selector(bindSinaWeibo:)];
+                                          selector:@selector(bindSinaWeibo:)] autorelease];
     
-    GameTask* task3 = [[GameTask alloc] initWithId:PBTaskIdTypeTaskBindQq
+    GameTask* task3 = [[[GameTask alloc] initWithId:PBTaskIdTypeTaskBindQq
                                               name:NSLS(@"kTaskBindQQWeibo")
                                               desc:[NSString stringWithFormat:NSLS(@"kTaskBindQQWeiboDesc"), [PPConfigManager getFollowWeiboReward]]
                                             status:PBTaskStatusTaskStatusCanTake
                                              badge:1
                                              award:[PPConfigManager getFollowWeiboReward]
-                                          selector:@selector(bindQQWeibo:)];
+                                          selector:@selector(bindQQWeibo:)] autorelease];
 
-    GameTask* task4 = [[GameTask alloc] initWithId:PBTaskIdTypeTaskShareSina
+    GameTask* task4 = [[[GameTask alloc] initWithId:PBTaskIdTypeTaskShareSina
                                               name:NSLS(@"kTaskShareSinaWeibo")
                                               desc:[NSString stringWithFormat:NSLS(@"kTaskShareSinaWeiboDesc"), [PPConfigManager getShareAppWeiboReward]]
                                             status:PBTaskStatusTaskStatusCanTake
                                              badge:1
                                              award:[PPConfigManager getShareAppWeiboReward]
-                                          selector:@selector(shareSinaWeibo:)];
+                                          selector:@selector(shareSinaWeibo:)] autorelease];
     
-    GameTask* task5 = [[GameTask alloc] initWithId:PBTaskIdTypeTaskShareWeixinTimeline
+    GameTask* task5 = [[[GameTask alloc] initWithId:PBTaskIdTypeTaskShareWeixinTimeline
                                               name:NSLS(@"kTaskShareWeixinTimeline")
                                               desc:[NSString stringWithFormat:NSLS(@"kTaskShareWeixinTimelineDesc"), [PPConfigManager getShareAppWeiboReward]]
                                             status:PBTaskStatusTaskStatusCanTake
                                              badge:1
                                              award:[PPConfigManager getShareAppWeiboReward]                       
-                                          selector:@selector(shareWeixinTimeline:)];
+                                          selector:@selector(shareWeixinTimeline:)] autorelease];
     
-    GameTask* task6 = [[GameTask alloc] initWithId:PBTaskIdTypeTaskShareQqSpace
+    /*
+    GameTask* shareQQSpace = [[[GameTask alloc] initWithId:PBTaskIdTypeTaskShareQqSpace
                                               name:NSLS(@"kTaskShareQQSpace")
                                               desc:[NSString stringWithFormat:NSLS(@"kTaskShareQQSpaceDesc"), [PPConfigManager getShareAppWeiboReward]]
                                             status:PBTaskStatusTaskStatusCanTake
                                              badge:1
                                              award:[PPConfigManager getShareAppWeiboReward]                       
-                                          selector:@selector(shareQQSpace:)];
+                                          selector:@selector(shareQQSpace:)] autorelease];
+    */
     
-    GameTask* task61 = [[GameTask alloc] initWithId:PBTaskIdTypeTaskShareQqWeibo
+    GameTask* task61 = [[[GameTask alloc] initWithId:PBTaskIdTypeTaskShareQqWeibo
                                               name:NSLS(@"kTaskShareQQWeibo")
                                               desc:[NSString stringWithFormat:NSLS(@"kTaskShareQQWeiboDesc"), [PPConfigManager getShareAppWeiboReward]]
                                             status:PBTaskStatusTaskStatusCanTake
                                              badge:1
                                               award:[PPConfigManager getShareAppWeiboReward]                        
-                                           selector:@selector(shareQQWeibo:)];
+                                           selector:@selector(shareQQWeibo:)] autorelease];
 
     
-    GameTask* task7 = [[GameTask alloc] initWithId:PBTaskIdTypeTaskCreateOpus
+    GameTask* createOpusTask = [[[GameTask alloc] initWithId:PBTaskIdTypeTaskCreateOpus
                                               name:NSLS(@"kTaskCreateOpus")
                                               desc:[NSString stringWithFormat:NSLS(@"kTaskCreateOpusDesc"), [PPConfigManager getFirstCreateOpusWeiboReward]]
                                             status:PBTaskStatusTaskStatusCanTake
                                              badge:1
                                              award:[PPConfigManager getFirstCreateOpusWeiboReward]                       
-                                          selector:@selector(createOpus:)];
+                                          selector:@selector(createOpus:)] autorelease];
 
-    GameTask* task8 = [[GameTask alloc] initWithId:PBTaskIdTypeTaskGuessOpus
+    GameTask* guessOpusTask = [[[GameTask alloc] initWithId:PBTaskIdTypeTaskGuessOpus
                                               name:NSLS(@"kTaskGuessOpus")
                                               desc:[NSString stringWithFormat:NSLS(@"kTaskGuessOpusDesc"), [PPConfigManager getFirstGuessOpusReward]]
                                             status:PBTaskStatusTaskStatusCanTake
                                              badge:1
                                              award:[PPConfigManager getFirstGuessOpusReward]                       
-                                          selector:@selector(guessOpus:)];
+                                          selector:@selector(guessOpus:)] autorelease];
 
-    GameTask* task9 = [[GameTask alloc] initWithId:PBTaskIdTypeTaskShareOpus
+    GameTask* task9 = [[[GameTask alloc] initWithId:PBTaskIdTypeTaskShareOpus
                                               name:NSLS(@"kTaskShareOpus")
                                               desc:[NSString stringWithFormat:NSLS(@"kTaskShareOpusDesc"), [PPConfigManager getShareWeiboReward]]
                                             status:PBTaskStatusTaskStatusAlwaysOpen
                                              badge:1
                                              award:[PPConfigManager getShareWeiboReward]                       
-                                          selector:@selector(shareOpus:)];
+                                          selector:@selector(shareOpus:)] autorelease];
 
-    GameTask* task10 = [[GameTask alloc] initWithId:PBTaskIdTypeTaskAppReview
+    GameTask* reviewTask = [[[GameTask alloc] initWithId:PBTaskIdTypeTaskAppReview
                                               name:NSLS(@"kTaskAppReview")
                                               desc:NSLS(@"kTaskAppReviewDesc")
                                             status:PBTaskStatusTaskStatusAlwaysOpen
                                              badge:1
                                               award:0
-                                           selector:@selector(gotoAppReview:)];
+                                           selector:@selector(gotoAppReview:)] autorelease];
     
     
     
-    GameTask* task11 = [[GameTask alloc] initWithId:PBTaskIdTypeTaskAppUpgrade
+    GameTask* task11 = [[[GameTask alloc] initWithId:PBTaskIdTypeTaskAppUpgrade
                                                name:NSLS(@"kTaskAppUpgrade")
                                                desc:[NSString stringWithFormat:NSLS(@"kTaskAppUpgradeDesc"),
                                                      [PPConfigManager getLastAppVersion]]
                                              status:PBTaskStatusTaskStatusAlwaysOpen
                                               badge:1
                                               award:0
-                                           selector:@selector(upgradeApp:)];
+                                           selector:@selector(upgradeApp:)] autorelease];
 
     
 //    [retList addObject:task1];
-    [retList addObject:task2];
-    [retList addObject:task3];
-    [retList addObject:task4];
-    [retList addObject:task5];
-    [retList addObject:task61];
-    [retList addObject:task6];
-    [retList addObject:task7];
-    [retList addObject:task8];
-    [retList addObject:task9];
+    [retList addObject:createOpusTask];
+    [retList addObject:guessOpusTask];
     
-    if ([PPConfigManager isInReviewVersion] == NO){
-        [retList addObject:task10];
-    }
+
+    
+    
     
     if ([UIUtils checkAppHasUpdateVersion]){
         [retList addObject:task11];
     }
     else{
         // clean local app upgrade task status
+        
+    }
+    
+    [retList addObject:task2];
+    [retList addObject:task3];
+    [retList addObject:task4];
+    [retList addObject:task5];
+    [retList addObject:task61];
+//    [retList addObject:task6];
+    [retList addObject:task9];
+        
+    if ([PPConfigManager isInReviewVersion] == NO){
+        [retList addObject:reviewTask];
+        
+        // add app task
+        
+        NSArray* appTaskList = [[AppTaskManager defaultManager] taskList];
+        for (AppTask* appTask in appTaskList){
+            if ([appTask show]){
+                
+                int taskStartId = ([appTask type] == AppTaskTypeWall) ? PBTaskIdTypeTaskAppWall : PBTaskIdTypeTaskAppDownload;
+                SEL selector = ([appTask type] == AppTaskTypeWall) ? @selector(gotoAppWall:) : @selector(downloadApp:);
+                int status = ([appTask type] == AppTaskTypeWall) ? PBTaskStatusTaskStatusAlwaysOpen : PBTaskStatusTaskStatusCanTake;
+                
+                GameTask* t = [[[GameTask alloc] initWithId:taskStartId+[appTask index]
+                                                      name:[appTask name]
+                                                      desc:[appTask desc]
+                                                    status:status
+                                                     badge:1
+                                                     award:[appTask award]
+                                                  selector:selector
+                                                   appTask:appTask] autorelease];
+                
+                if (appTask.type == AppTaskTypeWall && [PPConfigManager wallEnabled] == NO){
+                    continue;
+                }
+                else if (appTask.type == AppTaskTypeDownload && [appTask isAppAward] == YES){
+                    continue;
+                }
+
+                [retList addObject:t];
+
+            }
+        }
         
     }
     
@@ -185,13 +228,33 @@ static TaskManager* _defaultTaskManager;
         for (NSData* data in pbList){
             GameTask* task = [GameTask taskFromData:data];
             if (task != nil){
+                GameTask* foundTask = nil;
                 for (GameTask* t in self.taskList){
                     if (t.taskId == task.taskId){
+                        
+                        // check download app real time status since it's not detect anyelse where
+                        if (t.appTask != nil
+                            && t.appTask.type == AppTaskTypeDownload
+                            && task.status == PBTaskStatusTaskStatusCanTake
+                            && [UIUtils canOpenURL:t.appTask.schema]
+                            && [t.appTask isAppAward] == NO){
+                            
+                            task.status = PBTaskStatusTaskStatusDone;
+                        }
+                        
                         // TODO set other user status here
                         [t setStatus:task.status];
                         [t setBadge:task.badge];
+                        
+                        foundTask = t;                        
                         break;
                     }
+                }
+                
+                if (foundTask && task.status == PBTaskStatusTaskStatusAward){
+                    // task is completed, move it to the end of list
+                    [self.taskList removeObject:foundTask];
+                    [self.taskList addObject:foundTask];
                 }
             }
         }
@@ -403,6 +466,28 @@ static TaskManager* _defaultTaskManager;
     }
 }
 
+- (void)downloadApp:(GameTask*)task
+{
+    AppTask* appTask = task.appTask;
+    
+    if ([UIUtils canOpenURL:appTask.schema]){
+        // already complete
+        if (task.status == PBTaskStatusTaskStatusCanTake){
+            task.status = PBTaskStatusTaskStatusDone;
+        }
+    }
+    else{
+        // goto download app
+        [UIUtils openURL:[appTask url]];
+    }
+}
+
+- (void)gotoAppWall:(GameTask*)task
+{
+    AppTask* appTask = task.appTask;
+    [[GameAdWallService defaultService] showWall:self.viewController wallType:appTask.wallType forceShowWall:YES];
+}
+
 - (GameTask*)getTask:(PBTaskIdType)taskId
 {
     for (GameTask* task in _taskList){
@@ -458,7 +543,12 @@ static TaskManager* _defaultTaskManager;
         task.status = PBTaskStatusTaskStatusAward;
         [self save];
     }
-        
+    
+    if (task.appTask && task.appTask.type == AppTaskTypeDownload){
+        // app award only can be taken once
+        [task.appTask setAppAward];
+    }
+    
     NSString* msg = [NSString stringWithFormat:NSLS(@"kAwardTaskSucc"), amount];
     POSTMSG2(msg, 2);
     
@@ -508,5 +598,7 @@ static TaskManager* _defaultTaskManager;
     
     return count;
 }
+
+
 
 @end

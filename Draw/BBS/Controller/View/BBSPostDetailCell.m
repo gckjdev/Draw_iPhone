@@ -28,7 +28,7 @@
 #define FLAG_RADIUS (ISIPAD ? 6 : 3)
 
 #define CONTENT_FONT [[BBSFontManager defaultManager] postContentFont]
-
+#define SEEME_FONT (ISIPAD ? 9 * 2: 9)
 
 @implementation BBSPostDetailCell
 @synthesize post = _post;
@@ -76,6 +76,18 @@
 
     SET_VIEW_ROUND_CORNER_RADIUS(self.topFlag, FLAG_RADIUS);
     SET_VIEW_ROUND_CORNER_RADIUS(self.markedFlag, FLAG_RADIUS);
+    
+    SET_BUTTON_ROUND_STYLE_ORANGE(self.seeMeOnly);
+
+    UIFont *font = [UIFont systemFontOfSize:SEEME_FONT];
+    [self.seeMeOnly.titleLabel setFont:font];
+}
+
+- (IBAction)clickSeeMeOnly:(id)sender {
+    NSString *uid = [self isSeeingMe] ? nil : _post.createUser.userId;
+    if ([self.delegate respondsToSelector:@selector(didClickOnlySeeMe:)]) {
+        [self.delegate didClickOnlySeeMe:uid];
+    }
 }
 
 + (id)createCell:(id)delegate
@@ -242,32 +254,52 @@
     }
 }
 
+- (BOOL)isSeeingMe
+{
+    if ([self.currentUserId length] != 0 && [self.currentUserId isEqualToString:_post.createUser.userId]) {
+        return YES;
+    }
+    return NO;
+}
+
 #define TOP_MARK_SPACE (ISIPAD ? 70 : 33)
 
-- (void)updateCellWithBBSPost:(PBBBSPost *)post
+- (void)layoutSubviews
 {
-    self.post = post;
-    [self updateUserInfo:post.createUser];
-    [self updateContent:post.content];
-    [self updateTimeStamp:post];
-    [self updateReward:post];
-    [self.topFlag setHidden:![post isTopPost]];
-    [self.markedFlag setHidden:![post marked]];
+    [super layoutSubviews];
+    [self updateUserInfo:_post.createUser];
+    [self updateContent:_post.content];
+    [self updateTimeStamp:_post];
+    [self updateReward:_post];
+    [self.topFlag setHidden:![_post isTopPost]];
+    [self.markedFlag setHidden:![_post marked]];
     if (![self.topFlag isHidden]) {
         [self.markedFlag updateCenterX:self.topFlag.center.x + TOP_MARK_SPACE];
     }else {
         self.markedFlag.center = self.topFlag.center;
     }
+    NSString *text = ([self isSeeingMe] ? NSLS(@"kSeeAllPost") : NSLS(@"kSeeLZOnly"));
+    [self.seeMeOnly setTitle:text forState:UIControlStateNormal];
 
 }
 
 
 
+- (void)updateCellWithBBSPost:(PBBBSPost *)post
+{
+    self.post = post;
+    [self setNeedsLayout];
+}
+
+
+
 - (void)dealloc {
+    PPRelease(_currentUserId);
     PPRelease(_post);
     PPRelease(_reward);
     [_topFlag release];
     [_markedFlag release];
+    [_seeMeOnly release];
     [super dealloc];
 }
 - (IBAction)clickSupportButton:(id)sender {

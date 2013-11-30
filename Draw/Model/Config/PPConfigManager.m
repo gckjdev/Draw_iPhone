@@ -363,11 +363,8 @@
 //    return YES;
 //#endif
     
-    if ([PPConfigManager isInReviewVersion] == NO && 
-        ([LocaleUtils isChina] == YES || 
-         [LocaleUtils isOtherChina] == YES)){   
-            
-        if ([MobClickUtils getIntValueByKey:@"ENABLE_WALL" defaultValue:1] == 1){            
+    if ([PPConfigManager isInReviewVersion] == NO){               
+        if ([MobClickUtils getIntValueByKey:@"ENABLE_WALL" defaultValue:1] == 1){
             return YES;
         }            
         else{

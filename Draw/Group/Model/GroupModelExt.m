@@ -37,7 +37,7 @@ typedef enum{
             return [NSString stringWithFormat:NSLS(@"kGroupQuitDesc"), [self publisherName], self.groupName];
             
         case TypeAccept:
-            return [NSString stringWithFormat:NSLS(@"kGroupAcceptDesc"), [self publisherName], self.groupName];
+            return [NSString stringWithFormat:NSLS(@"kGroupAcceptDesc"), [self publisherName], [self targetName], self.groupName];
         case TypeReject:
             return [NSString stringWithFormat:NSLS(@"kGroupRejectDesc"), [self publisherName], [self targetName], self.groupName];
             

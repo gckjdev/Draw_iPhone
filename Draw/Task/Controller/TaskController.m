@@ -20,6 +20,7 @@
 
 - (void)viewDidLoad
 {
+    [[TaskManager defaultManager] loadTask];
     self.dataList = [[TaskManager defaultManager] taskList];
     
     [super viewDidLoad];

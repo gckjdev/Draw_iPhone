@@ -9,23 +9,13 @@
 
 @implementation AppTask
 
-@synthesize Appid;
-@synthesize Name;
-@synthesize Url;
-@synthesize Desc;
-@synthesize Award;
-@synthesize Schema;
-@synthesize Show;
-
 - (void) dealloc
 {
-    [Appid release];
-    [Name release];
-    [Url release];
-    [Desc release];
-    [Award release];
-    [Schema release];
-    [Show release];
+    [_appid release];
+    [_name release];
+    [_url release];
+    [_desc release];
+    [_schema release];
     [super dealloc];
 }
 
@@ -40,16 +30,46 @@
     self=[super init];
     if(self)
     {
-        Appid = [dictionary objectForKey:@"Appid"];
-        Name = [dictionary objectForKey:@"Name"];
-        Url = [dictionary objectForKey:@"Url"];
-        Desc = [dictionary objectForKey:@"Desc"];
-        Award = [dictionary objectForKey:@"Award"];
-        Schema = [dictionary objectForKey:@"Schema"];
-        Show = [dictionary objectForKey:@"Show"];
+        @try {
+            self.index = [[dictionary objectForKey:@"index"] intValue];
+            self.appid = [dictionary objectForKey:@"appid"];
+            self.name = [dictionary objectForKey:@"name"];
+            self.url = [dictionary objectForKey:@"url"];
+            self.desc = [dictionary objectForKey:@"desc"];
+            self.award = [[dictionary objectForKey:@"award"] intValue];
+            self.schema = [dictionary objectForKey:@"schema"];
+            self.show = [[dictionary objectForKey:@"show"] intValue];
+            self.type = [[dictionary objectForKey:@"type"] intValue];
+            self.wallType = [[dictionary objectForKey:@"wall_type"] intValue];
+        }
+        @catch (NSException *exception) {
+            PPDebug(@"<initWithDictionary> catch exception=%@", [exception description]);
+        }
+        @finally {
+        }
+
     }
     return self;
 }
+
+- (NSString*)appAwardKey
+{
+    return [NSString stringWithFormat:@"KEY_APP_TASK_AWARD_%@", self.appid];
+}
+
+- (BOOL)isAppAward
+{
+    NSUserDefaults* ud = [NSUserDefaults standardUserDefaults];
+    return [ud boolForKey:[self appAwardKey]];
+}
+
+- (void)setAppAward
+{
+    NSUserDefaults* ud = [NSUserDefaults standardUserDefaults];
+    [ud setBool:YES forKey:[self appAwardKey]];
+    [ud synchronize];
+}
+
 
 
 @end

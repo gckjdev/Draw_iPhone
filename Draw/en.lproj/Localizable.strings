@@ -985,6 +985,7 @@
 "kStatement" = "Statement";
 "kDecline" = "Decline";
 "kAccept" = "Accept";
+"kIgnore" = "Ignore";
 
 "kCoinsForFollowUs" = "+%d coins";
 "kFollowSinaWeibo" = "Follow us with Sina";
@@ -2101,6 +2102,30 @@
 "kContentDesc" = "Content: %@";
 "kPostscriptDesc" = "Postscript: %@";
 
+"kGroupComment" = "Comment";
+"kGroupRequest" = "Request";
+"kGroupNotice" = "Notice";
+"kAtMe" = "@Me";
+
+"kSearchGroup" = "Search Group";
+"kSearchPost" = "Search Post";
+"kSearchTopic" = "Search Topic";
+"kSearchGroupTips" = "Name/Descripiton/Signature";
+"kJoinGroup" = "Join";
+"kQuitGroup" = "Quit";
+"kDissolveGroup" = "Dissolve";
+
+"kJoiningGroup" = "Sending join group request...";
+"kSentRequest" = "Request was sent.";
+"kQuitingGroup" = "Quiting group...";
+"kQuitedGroup" = "Quited group.";
+
+"kCanotCreateTopic" = "No premission to create a topic.";
+"kCanotGroupChat" = "No premission to start group chat.";
+
+"kSeeAllPost" = "All";
+"kSeeLZOnly" = "Mine";
+"kSeeMeOnly" = "Mine";
 
 /*********************小吉画画国际化字符串开始 ************************/
 "kLittleGeeRecommend" = "Featured";
