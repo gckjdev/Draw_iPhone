@@ -101,7 +101,7 @@
 "kQuitGameAlertTitle" = "Quit";
 "kQuitGameAlertMessage" = "Are you sure to quit?";
 
-"kQuitDrawAlertMessage" = "Are you going to save the drawing?";
+"kQuitDrawAlertMessage" = "Are you going to save the opus?";
 "kQuitDrawAlertTitle" = "Quit";
 
 
@@ -276,7 +276,7 @@
 "kSavePercent" = "SAVE %02d%%";
 
 "kShareTitle" = "My Drawings";
-"kOpusSet" = "Opus set";
+"kOpusSet" = "Opus Box";
 "kUnknownWord" = "Myth";
 
 "kNickNameEmpty" = "Nick name cannot be empty.";
@@ -655,9 +655,9 @@
 "kReply" = "Reply";
 "kCorrect" = "Correct!";
 "kSending" = "Sending...";
-"kHandlingDataProgress" = "Handling... (%3.f%%)";
+"kHandlingDataProgress" = "Processing... (%3.f%%)";
 "kSendingProgress" = "Sending... (%3.f%%)";
-"kHandling" = "Handling...";
+"kHandling" = "Processing...";
 
 "kNoCommentTips" = "No Comments";
 "kFeedDetail" = "Opus Detail";
@@ -1430,7 +1430,7 @@
 "kInvisable" = "(Invisable)";
 "kEditOpusDesc" = "Opus Description";
 "kEditOpusInfo" = "Opus Info";
-"kCloseKeyboard" = "Close Keyboard";
+"kCloseKeyboard" = "KB OFF";
 "kTaoBaoCharge" = "Taobao Store";
 "kTaoBaoChargeTitle" = "Taobao Store";
 "kQuitTaoBaoTips" = "Are you sure to quit?";
@@ -1562,7 +1562,7 @@
 "kEnterCorrectPassword" = "Enter correct password";
 "kSecureSmsLocateTitle" = "Locate";
 
-"kQuitGameWithPaidForAnswer" = "Do you want to buy the answer for %d coins?";
+"kQuitGameWithPaidForAnswer" = "Do you want to get the answer by using %d coins?";
 "kQuitDirectly" = "NO";
 "kGuessResult" = "Result";
 "kGoOnGuess" = "Go On";
@@ -2179,7 +2179,7 @@
 "kSubjectPlaceCannotBlank" = "Subject cannot be blank";
 
 "kVoiceTypeOrigin" = "Origin";
-"kVoiceTypeTomCat" = "TomCat";
+"kVoiceTypeTomCat" = "Cat";
 "kVoiceTypeMale" = "Male";
 "kVoiceTypeFemale" = "Female";
 "kUnkown" = "Unkown";
