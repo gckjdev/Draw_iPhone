@@ -33,7 +33,7 @@ typedef enum{
 @property (nonatomic, retain) UIImage *largeImage;
 @property (nonatomic, retain) NSString *wordText;
 @property (nonatomic, retain) Draw *drawData;
-@property (nonatomic, retain) NSString *drawImageUrl;
+@property (nonatomic, retain) NSString *drawImageUrl __attribute__((deprecated));
 @property (nonatomic, retain) NSSet *timesSet;
 @property (nonatomic, retain) NSData *pbDrawData;
 @property (nonatomic, assign) DeviceType deviceType;

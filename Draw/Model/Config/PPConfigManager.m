@@ -1243,7 +1243,12 @@
 
 + (NSString *)getSingTagList{
     
-    return [MobClickUtils getStringValueByKey:@"SING_TAG_LIST" defaultValue:@"唱歌$搞笑$故事$模仿$方言$段子"];
+    if ([LocaleUtils isEnglish]) {
+     
+        return [MobClickUtils getStringValueByKey:@"SING_TAG_LIST" defaultValue:@"Sing$Funny$Story$Imitation$Dialect$Joke"];
+    }else{
+        return [MobClickUtils getStringValueByKey:@"SING_TAG_LIST" defaultValue:@"唱歌$搞笑$故事$模仿$方言$段子"];
+    }
 }
 
 + (int)getRecordLimitTime{

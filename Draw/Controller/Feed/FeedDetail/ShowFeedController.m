@@ -1467,6 +1467,7 @@ typedef enum{
     }
     
     [[MPNowPlayingInfoCenter defaultCenter] setNowPlayingInfo:dict];
+    [dict release];
 }
 
 

@@ -73,6 +73,8 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(OpusService);
 {
     __block OpusManager *myOpusManager = _myOpusManager;
     __block OpusManager *draftOpusManager = _draftOpusManager;
+    
+
         
     dispatch_async(workingQueue, ^{
         
@@ -83,6 +85,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(OpusService);
 
         
         NSDictionary *imageDataDict = nil;
+        PPDebug(@"submit opus with image size: %@", NSStringFromCGSize(image.size));
         if (image != nil){
             imageDataDict = @{PARA_OPUS_IMAGE_DATA : [image data]};
         }
