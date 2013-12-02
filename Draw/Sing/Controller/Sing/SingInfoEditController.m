@@ -55,7 +55,9 @@
     [v setRightButtonTitle:NSLS(@"kCloseKeyboard")];
     [v setRightButtonSelector:@selector(clickCloseKeyBoard:)];
     [v hideRightButton];
+    
 //    [v hideBackButton];
+    [self.comfirmButton setTitle:NSLS(@"kConfirm") forState:UIControlStateNormal];
     
     self.nameLabel.text = NSLS(@"kSubject");
     self.descLabel.text = NSLS(@"kDesc");
