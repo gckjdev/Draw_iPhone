@@ -1265,7 +1265,7 @@ typedef enum{
     int indexOfShareWeixinSession = index++;
     int indexOfShareWeixinTimeline = index++;
     int indexOfShareQQWeibo = index++;
-    int indexOfShareQQSpace = index++;
+    int indexOfShareQQSpace = -1;
     
     [sheet setActionBlock:^(NSInteger buttonIndex){
         if (buttonIndex == indexOfGuess) {
