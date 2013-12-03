@@ -123,7 +123,7 @@ AUTO_CREATE_VIEW_BY_XIB(WhisperStyleView);
         if (placeHolder == nil) {
             placeHolder = [UIImage imageNamed:@"unloadbg@2x.png"];
         }
-        [iv setImageWithURL:[NSURL URLWithString:feed.pbFeed.opusImage]
+        [iv setImageWithURL:feed.largeImageURL
            placeholderImage:placeHolder
                   completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType) {
             [indicator stopAnimating];

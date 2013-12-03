@@ -173,7 +173,7 @@ typedef enum{
         NSString *identifier = @"history";
         UITableViewCell *cell = [theTableView dequeueReusableCellWithIdentifier:identifier];
         if (cell == nil) {
-            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
+            cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier] autorelease];
             cell.textLabel.font = CELL_NICK_FONT;
             cell.textLabel.textColor = COLOR_BROWN;
         }
