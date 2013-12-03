@@ -27,7 +27,9 @@
     if (isSingApp()) {
         
         [[self viewWithTag:WHISPER_VIEW_TAG] removeFromSuperview];
-        WhisperStyleView *v = [WhisperStyleView createWithFrame:self.bounds feed:self.opus];
+        WhisperStyleView *v = [WhisperStyleView createWithFrame:self.bounds
+                                                           feed:self.opus
+                                                    useBigImage:NO];
         [v setHomeRankViewStyle];
         v.userInteractionEnabled = NO;
         v.alpha = 0;
@@ -444,7 +446,9 @@
                 [button setImageWithURL:opus.thumbURL];
             }else if (isSingApp()){
                 [[button viewWithTag:WHISPER_VIEW_TAG] removeFromSuperview];
-                WhisperStyleView *v = [WhisperStyleView createWithFrame:button.bounds feed:opus];
+                WhisperStyleView *v = [WhisperStyleView createWithFrame:button.bounds
+                                                                   feed:opus
+                                                            useBigImage:NO];
                 [v setHomeRankViewStyle];
                 v.userInteractionEnabled = NO;
                 [button addSubview:v];

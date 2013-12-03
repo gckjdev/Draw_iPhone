@@ -33,9 +33,10 @@ AUTO_CREATE_VIEW_BY_XIB(WhisperStyleView);
 }
 
 + (id)createWithFrame:(CGRect)frame
-                 feed:(DrawFeed *)feed{
+                 feed:(DrawFeed *)feed
+          useBigImage:(BOOL)useBigImage{
     
-    WhisperStyleView *v = [[[self alloc] initWithFrame:frame feed:feed] autorelease];
+    WhisperStyleView *v = [[[self alloc] initWithFrame:frame feed:feed useBigImage:useBigImage] autorelease];
     return v;
 }
 
@@ -43,8 +44,9 @@ AUTO_CREATE_VIEW_BY_XIB(WhisperStyleView);
 #define TAG_IMAGE_VIEW 201311131347
 
 - (id)initWithFrame:(CGRect)frame
-               feed:(DrawFeed *)feed{
-    
+               feed:(DrawFeed *)feed
+        useBigImage:(BOOL)useBigImage{
+
     CGRect originFrame = CGRectMake(0, 0, feed.pbFeed.canvasSize.width, feed.pbFeed.canvasSize.height);
 
     if (self = [super initWithFrame:originFrame]) {
@@ -118,18 +120,27 @@ AUTO_CREATE_VIEW_BY_XIB(WhisperStyleView);
         [self updateOriginY:frame.origin.y];
         
         UIImage *placeHolder = [UIImage imageNamed:@"unloadbg@2x.png"];
-        [iv setImageWithURL:[NSURL URLWithString:feed.pbFeed.opusThumbImage] placeholderImage:placeHolder] ;
-        placeHolder = [[SDImageCache sharedImageCache] imageFromMemoryCacheForKey:feed.pbFeed.opusThumbImage];
-        if (placeHolder == nil) {
-            placeHolder = [UIImage imageNamed:@"unloadbg@2x.png"];
+        
+        if (useBigImage) {
+            [iv setImageWithURL:[NSURL URLWithString:feed.pbFeed.opusThumbImage] placeholderImage:placeHolder] ;
+            placeHolder = [[SDImageCache sharedImageCache] imageFromMemoryCacheForKey:feed.pbFeed.opusThumbImage];
+            if (placeHolder == nil) {
+                placeHolder = [UIImage imageNamed:@"unloadbg@2x.png"];
+            }
+            [iv setImageWithURL:feed.largeImageURL
+               placeholderImage:placeHolder
+                      completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType) {
+                          [indicator stopAnimating];
+                          [indicator removeFromSuperview];
+                          
+            }];
+        }else{
+            [iv setImageWithURL:feed.thumbURL placeholderImage:placeHolder completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType) {
+                [indicator stopAnimating];
+                [indicator removeFromSuperview];
+            }];
         }
-        [iv setImageWithURL:feed.largeImageURL
-           placeholderImage:placeHolder
-                  completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType) {
-            [indicator stopAnimating];
-            [indicator removeFromSuperview];
 
-        }];
         
         [self setClipsToBounds:YES];
     }

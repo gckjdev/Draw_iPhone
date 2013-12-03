@@ -391,7 +391,9 @@
         rect = CGRectMake(21, 48, 280, 280);
     }
     
-    WhisperStyleView *v = [WhisperStyleView createWithFrame:rect feed:self.feed];
+    WhisperStyleView *v = [WhisperStyleView createWithFrame:rect
+                                                       feed:self.feed
+                                                useBigImage:YES];
     [v setFeedDetailStyle];
     [self.view addSubview:v];
 }

@@ -146,7 +146,9 @@
 
     if ([self.feed isSingCategory]) {
         [[self.drawImage viewWithTag:201139481] removeFromSuperview];
-        WhisperStyleView *v = [WhisperStyleView createWithFrame:self.drawImage.bounds feed:self.feed];
+        WhisperStyleView *v = [WhisperStyleView createWithFrame:self.drawImage.bounds
+                                                           feed:self.feed
+                                                    useBigImage:NO];
         [v setHotRankViewStyle];
         [self.drawImage addSubview:v];
         v.tag = 201139481;

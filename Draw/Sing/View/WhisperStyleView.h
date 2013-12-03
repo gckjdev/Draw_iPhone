@@ -13,7 +13,8 @@
 @interface WhisperStyleView : UIView
 
 + (id)createWithFrame:(CGRect)frame
-                 feed:(DrawFeed *)feed;
+                 feed:(DrawFeed *)feed
+          useBigImage:(BOOL)useBigImage;
 
 - (void)setHotRankViewStyle;
 - (void)setHomeRankViewStyle;

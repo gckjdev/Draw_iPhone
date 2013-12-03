@@ -306,7 +306,9 @@
 - (void)updateWhisperStyleView{
     
     [[self.drawImage viewWithTag:8808723459] removeFromSuperview];
-    WhisperStyleView *v = [WhisperStyleView createWithFrame:self.drawImage.bounds feed:self.feed];
+    WhisperStyleView *v = [WhisperStyleView createWithFrame:self.drawImage.bounds
+                                                       feed:self.feed
+                                                useBigImage:YES];
     v.tag = 8808723459;
     [v setFeedDetailStyle];
     [self.drawImage addSubview:v];

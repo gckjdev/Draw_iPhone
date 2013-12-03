@@ -252,7 +252,7 @@
     CGFloat gapX = (self.descTextView.frame.size.width - 3 * width) / 2;
     CGFloat gapY = ISIPAD ? 48*2.18 : 48;
     
-    CGFloat originX = self.descTextView.frame.origin.x + (tag % 3) * (width + gapX);
+    CGFloat originX = self.descTextView.frame.origin.x + (ISIPAD ? 10 : 0) + (tag % 3) * (width + gapX);
     CGFloat originY = self.tagLabel.frame.origin.y + (tag / 3) * gapY;
     
     CGRect frame = CGRectMake(originX, originY, width, height);
