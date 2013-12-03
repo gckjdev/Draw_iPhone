@@ -349,11 +349,16 @@ typedef enum{
             self.noMoreData = YES;            
         }
     }
-    switch (type) {
-        case RankTypeHot:
-        case RankTypeHistory:
-            
-            if (isDrawApp() || isLittleGeeAPP()) {
+    
+    if (isSingApp()){
+        return count/WHISPER_CELL_VIEW_NUMBER;
+    }
+    
+    if (isDrawApp()) {
+        switch (type) {
+            case RankTypeHot:
+            case RankTypeHistory:
+                
                 if (count <= 1) {
                     return count;
                 }else if(count <= 3){
@@ -366,25 +371,21 @@ typedef enum{
                         return count / 3 + 2;
                     }
                 }
-            }else if (isSingApp()){
-                return count/WHISPER_CELL_VIEW_NUMBER;
-            }else{
                 
-                return 0;
-            }
-            
-            break;
-
-        default:
-            if (count > 3) {
-                count = count - (count %3);
-            }
-            if (count %3 == 0) {
-                return count/3;
-            }else{
-                return count/3 + 1;
-            }
+                break;
+                
+            default:
+                if (count > 3) {
+                    count = count - (count %3);
+                }
+                if (count %3 == 0) {
+                    return count/3;
+                }else{
+                    return count/3 + 1;
+                }
+        }
     }
+ 
 }
 
 
