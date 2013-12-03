@@ -2066,7 +2066,7 @@
 "kMarkSuccess" = "Mark success";
 "kMarkFailed" = "Mark failed";
 "kBBSToMark" = "Mark";
-"kMarked" = "Marked";
+"kMarked" = "M";
 "kMarkedPosts" = "Marked Posts";
 "kBBSSearchPlaceholder" = "Input keyword";
 /*********************** BBS国际化字符串结束 *************************/

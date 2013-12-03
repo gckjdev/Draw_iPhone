@@ -159,9 +159,10 @@
 + (NSString*)getGroupServerURL
 {
 #ifdef DEBUG
-    return @"http://localhost:8100/api/i?";
+    //    return @"http://58.215.184.18:8699/api/i?";
+    //    return @"http://localhost:8100/api/i?";
 #endif
-    return [MobClickUtils getStringValueByKey:@"BBS_SERVER_URL" defaultValue:@"http://www.place100.com:8100/api/i?"];
+    return [MobClickUtils getStringValueByKey:@"GROUP_SERVER_URL" defaultValue:@"http://www.place100.com:8100/api/i?"];
     
 }
 
