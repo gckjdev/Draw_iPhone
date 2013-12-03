@@ -334,7 +334,7 @@
 
 - (NSString*)getBackgroundMusicName
 {
-    return @"cannon.mp3";
+    return @"";
 }
 
 - (PBGameCurrency)wallRewardCurrencyType

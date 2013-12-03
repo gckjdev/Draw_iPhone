@@ -132,6 +132,10 @@ typedef enum{
 {
     NSInteger type = self.currentTab.tabID;
     
+    if (isSingApp()){
+        return [RankView heightForRankViewType:RankViewTypeWhisper]+1;
+    }
+    
     if (type == RankTypeHot || type == RankTypeHistory) {
         
         if (isDrawApp() || isLittleGeeAPP()) {
@@ -140,10 +144,9 @@ typedef enum{
             }else if(indexPath.row == 1){
                 return [RankView heightForRankViewType:RankViewTypeSecond]+1;
             }
-        }else if (isSingApp()){
-            return [RankView heightForRankViewType:RankViewTypeWhisper]+1;
         }
     }
+        
     if (type == RankTypePlayer) {
         return [TopPlayerView getHeight] + 1;
     }

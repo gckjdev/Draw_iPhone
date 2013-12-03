@@ -1114,7 +1114,7 @@
 
 + (double)getBGMVolume
 {
-    return [MobClickUtils getDoubleValueByKey:@"BGM_VOLUME" defaultValue:0.2];
+    return [MobClickUtils getDoubleValueByKey:@"BGM_VOLUME" defaultValue:0.0];
 }
 
 + (BOOL)showRestoreButton

@@ -143,7 +143,6 @@ static NSDictionary* DEFAULT_MENU_IMAGE_DICT = nil;
     // pull statistic timer
     [NSTimer scheduledTimerWithTimeInterval:300 target:self selector:@selector(handleStaticTimer:) userInfo:nil repeats:YES];
     
-    // play background music
     [[AudioManager defaultManager] setBackGroundMusicWithName:[GameApp getBackgroundMusicName]];
     [[AudioManager defaultManager] setVolume:[PPConfigManager getBGMVolume]];
     if ([[AudioManager defaultManager] isMusicOn]) {
