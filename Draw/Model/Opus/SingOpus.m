@@ -77,6 +77,32 @@
     [self.pbOpusBuilder setSing:[builder build]];
 }
 
+- (NSString *)getCurrentVoiceTypeName{
+    
+    PBVoiceType voiceType = self.pbOpus.sing.voiceType;
+    switch (voiceType) {
+        case PBVoiceTypeVoiceTypeOrigin:
+            return NSLS(@"kVoiceTypeOrigin");
+            break;
+            
+        case PBVoiceTypeVoiceTypeTomCat:
+            return NSLS(@"kVoiceTypeTomCat");
+            break;
+                        
+        case PBVoiceTypeVoiceTypeMale:
+            return NSLS(@"kVoiceTypeMale");
+            break;
+            
+        case PBVoiceTypeVoiceTypeFemale:
+            return NSLS(@"kVoiceTypeFemale");
+            break;
+            
+        default:
+            return NSLS(@"kUnkown");
+            break;
+    }
+}
+
 #pragma data & native data URL handling
 
 - (NSURL*)localNativeDataURL

@@ -1028,13 +1028,18 @@ enum{
     PPDebug(@"path is %@", path);
     
     NSData *singData = [NSData dataWithContentsOfFile:path];
+    if ([singData length] <= 0) {
+        NSString *msg = [NSString stringWithFormat:NSLS(@"kChangeVoiceTypeFail"), [_singOpus getCurrentVoiceTypeName]];
+        POSTMSG2(msg, 2.5);
+        return;
+    }
     [self uploadSingOpus:singData];
 }
 
 - (void)uploadSingOpus:(NSData *)singData{
     
-    if (singData == nil) {
-        POSTMSG(@"没有录音数据，上传失败");
+    if ([singData length] <= 0) {
+        POSTMSG(@"kNoRecordDataForSubmit");
         return;
     }
     

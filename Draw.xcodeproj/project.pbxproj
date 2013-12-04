@@ -25078,6 +25078,7 @@
 					"\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/ShareSDK/Extend/SDKExport\"",
 					"\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/ShareSDK/Extend/TencentWeiboSSO\"",
 				);
+				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "8D3E3C65-E145-47C7-BB9A-53FA7CEA0E6F";
@@ -25152,6 +25153,7 @@
 					"\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/ShareSDK/Extend/SDKExport\"",
 					"\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/ShareSDK/Extend/TencentWeiboSSO\"",
 				);
+				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "8D3E3C65-E145-47C7-BB9A-53FA7CEA0E6F";

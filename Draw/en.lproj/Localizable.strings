@@ -151,6 +151,8 @@
 "kLookOverDraw" = "View Drawing";
 "kPainted" = " drew ";
 
+"kChangeVoiceTypeFail" = "Change voice type to [%@] fail, please type another voice type";
+"kNoRecordDataForSubmit" = "No record data for submit, please record some data first.";
 "kRegisteringUser" = "Sending Request...";
 "kSystemFailure" = "Fail to send request, please check your network availability";
 "kUnknownRegisterFailure" = "Sorry, your registration fails. Please contact our technical support.";

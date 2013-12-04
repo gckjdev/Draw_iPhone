@@ -150,6 +150,7 @@
                                                            feed:self.feed
                                                     useBigImage:NO];
         [v setHotRankViewStyle];
+        [self.drawImage setImage:nil];
         [self.drawImage addSubview:v];
         v.tag = 201139481;
     }else if ([self.feed isDrawCategory]){

@@ -220,6 +220,7 @@ enum{
                                                             cancelButtonTitle:NSLS(@"取消")
                                                        destructiveButtonTitle:NSLS(@"普通回复")
                                                             otherButtonTitles:
+                                     NSLS(@"需要升级到小吉画画7.6版本才能看到这个任务，如果已经是7.6版本，请先退到后台再重新进入应用即可"),
                                      NSLS(@"金币已经增加，请重启应用查看"),
                                      NSLS(@"非常感谢反馈"),
                                      NSLS(@"投诉已经收到，会进行处理"),

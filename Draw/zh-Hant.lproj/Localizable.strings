@@ -734,6 +734,8 @@
 "kRebindFacebook" = "你已經綁定了Facebook了，是否要重新嘗試綁​​定？"; 
 
 
+"kChangeVoiceTypeFail" = "轉換成[%@]聲音過程出錯，請嘗試使用其他的聲音類型。";
+"kNoRecordDataForSubmit" = "沒有錄音數據，請重新錄制後再上傳";
 
 
 "kDrawToUserDesc" = "畫了一幅 [%@] 給%@。";

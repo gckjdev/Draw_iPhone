@@ -26,6 +26,9 @@
 "kNTGD" = "%@ 尝试去猜了你的 [%@]。你也去猜猜TA的？";
 "kPDUM" = "%@ 送了一幅作品给你，赶紧去猜猜看";
 
+"kChangeVoiceTypeFail" = "转换成[%@]声音过程出错，请尝试使用其他的声音类型。";
+"kNoRecordDataForSubmit" = "没有录音数据，请重新录制后再上传";
+
 //add after 4.5
 "kPCM" = "%@ 评论你的作品 [%@]: %@";
 "kPRCM" = "%@ 回复你说:%@";
