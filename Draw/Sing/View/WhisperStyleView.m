@@ -171,6 +171,18 @@ AUTO_CREATE_VIEW_BY_XIB(WhisperStyleView);
 - (void)setFeedDetailStyle{
     UIImageView *iv = (UIImageView *)[self viewWithTag:TAG_IMAGE_VIEW];
     [iv setContentMode:UIViewContentModeScaleAspectFit];
+    
+    // 有时候上传的照片，用户明明有编辑描述，但是上传后frame就是0，所以这里做一下保护。
+    // 如果上述的bug解决了，这里的代码就可以不要了。
+    
+    UILabel *label = (UILabel *)[self viewWithTag:TAG_LABEL];
+    if (label.text.length != 0 && (CGRectGetWidth(label.frame) == 0 || CGRectGetHeight(label.frame))) {
+        label.font = [UIFont systemFontOfSize:ISIPAD ? 25/_sx : 15/_sx];
+        label.numberOfLines = 99;
+        [label updateWidth:self.bounds.size.width];
+        [label updateHeight:self.bounds.size.height];
+        label.center = CGPointMake(self.bounds.size.width/2, self.bounds.size.height/2);
+    }
 }
 
 @end

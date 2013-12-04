@@ -1260,7 +1260,6 @@ typedef enum{
         }
     }
     
-    
     int indexOfShareSinaWeibo = index++;
     int indexOfShareWeixinSession = index++;
     int indexOfShareWeixinTimeline = index++;
