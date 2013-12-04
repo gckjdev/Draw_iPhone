@@ -630,20 +630,20 @@
 "kGuessUserDraw" = "正在猜%@的画";
 
 "kGuessRightDescNoWord" = "猜对了%@的画";
-"kGuessedSomeOneOpusNoWord" = "猜对了%@的作品";
+"kGuessedSomeOneOpusNoWord" = "猜对了%@录制的声音作品";
 "kTryGuessDescNoWord" = "尝试去猜了%@的画";
-"kTryToGuessSomeoneOpusNoWord" = "尝试去猜了%@的作品";
+"kTryToGuessSomeoneOpusNoWord" = "尝试去猜了%@录制的声音作品";
 
 "kDrawDesc" = "画了一幅 [%@]";
-"kCreateDesc" = "创作了一个作品 [%@]";
+"kCreateDesc" = "录制了一个声音作品 [%@]";
 
 "kDrawDescNoWord" = "画了一幅画";
-"kCreateDescNoName" = "创作了一个作品";
+"kCreateDescNoName" = "录制了一个声音作品";
 
 "kGuessRightDesc" = "猜对了%@画的 [%@]";
-"kGuessedSomeOneOpus" = "猜对了%@创作的 [%@]";
+"kGuessedSomeOneOpus" = "猜对了%@录制的声音作品 [%@]";
 "kTryGuessDesc" = "尝试去猜了%@画的 [%@]";
-"kTryToGuessSomeoneOpus" = "尝试去猜了%@创作的作品 [%@]";
+"kTryToGuessSomeoneOpus" = "尝试去猜了%@录制的声音作品 [%@]";
 
 
 

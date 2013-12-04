@@ -624,24 +624,42 @@
 "kOneMore" = "再來一幅";
 "kGuessUserDraw" = "正在猜%@的畫";
 
-"kDrawDescNoWord" = "畫了一幅畫。";
-"kCreateDescNoName" = "創作了一個作品。";
+"kGuessRightDescNoWord" = "猜對了​​%@的畫";
+"kGuessedSomeOneOpusNoWord" = "猜對了​​%@錄製的聲音作品";
 
-"kDrawDesc" = "畫了一幅 [%@]。";
-"kCreateDesc" = "創作了一個作品 [%@]。";
+"kTryGuessDescNoWord" = "嘗試去猜了%@的畫";
+"kTryToGuessSomeoneOpusNoWord" = "嘗試去猜了%@錄製的聲音作品";
+
+"kDrawDesc" = "畫了一幅 [%@]";
+"kCreateDesc" = "錄製了一個聲音作品[%@]";
+
+"kDrawDescNoWord" = "畫了一幅畫";
+"kCreateDescNoName" = "錄製了一個聲音作品";
+
+"kGuessRightDesc" = "猜對了​​%@畫的 [%@]";
+"kGuessedSomeOneOpus" = "猜對了​​%@錄製的聲音作品[%@]";
+"kTryGuessDesc" = "嘗試去猜了%@畫的 [%@]";
+"kTryToGuessSomeoneOpus" = "嘗試去猜了%@錄製的聲音作品[%@]";
 
 
-"kGuessRightDescNoWord" = "猜對了%@的畫。";
-"kGuessedSomeOneOpusNoWord" = "猜對了%@的作品。";
-
-"kTryGuessDescNoWord" = "嘗試去猜了%@的畫。";
-"kTryToGuessSomeoneOpusNoWord" = "嘗試去猜了%@的作品。";
-
-"kGuessRightDesc" = "猜對了%@畫的 [%@]。";
-"kGuessedSomeOneOpus" = "猜對了%@的作品 : [%@]。";
-
-"kTryGuessDesc" = "嘗試去猜了%@畫的 [%@]。";
-"kTryToGuessSomeoneOpus" = "嘗試去猜了%@創作的作品 [%@]。";
+//"kDrawDescNoWord" = "畫了一幅畫。";
+//"kCreateDescNoName" = "創作了一個作品。";
+//
+//"kDrawDesc" = "畫了一幅 [%@]。";
+//"kCreateDesc" = "創作了一個作品 [%@]。";
+//
+//
+//"kGuessRightDescNoWord" = "猜對了%@的畫。";
+//"kGuessedSomeOneOpusNoWord" = "猜對了%@的作品。";
+//
+//"kTryGuessDescNoWord" = "嘗試去猜了%@的畫。";
+//"kTryToGuessSomeoneOpusNoWord" = "嘗試去猜了%@的作品。";
+//
+//"kGuessRightDesc" = "猜對了%@畫的 [%@]。";
+//"kGuessedSomeOneOpus" = "猜對了%@的作品 : [%@]。";
+//
+//"kTryGuessDesc" = "嘗試去猜了%@畫的 [%@]。";
+//"kTryToGuessSomeoneOpus" = "嘗試去猜了%@創作的作品 [%@]。";
 
 "kNoGuess" = "猜0";
 "kGuessStat" = "猜過:%d 猜中:%d";
