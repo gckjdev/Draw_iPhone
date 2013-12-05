@@ -699,6 +699,7 @@
 						<int key="objectID">108</int>
 						<reference key="object" ref="103647823"/>
 						<reference key="parent" ref="191373211"/>
+						<string key="objectName">Button</string>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">232</int>

@@ -804,6 +804,11 @@ enum{
 
 - (IBAction)clickChangeVoiceButton:(UIButton *)button {
     
+    if (ISIOS7) {
+        POSTMSG2(@"你的iOS版本暂不支持变声", 2.5);
+        return;
+    }
+    
     if (self.popTipView == nil) {
         VoiceTypeSelectView *v = [VoiceTypeSelectView createWithVoiceType:_singOpus.pbOpus.sing.voiceType];
         v.delegate = self;
@@ -843,7 +848,7 @@ enum{
 
 - (void)didImageSelected:(UIImage*)image{
     
-    [self performSelector:@selector(showImageEditor:) withObject:image afterDelay:0.5];
+    [self performSelector:@selector(showImageEditor:) withObject:image afterDelay:0.7];
 }
 
 - (void)showImageEditor:(UIImage *)image{
@@ -1009,6 +1014,8 @@ enum{
             _processor.delegate = self;
         }
         
+        outUrl = [FileUtil fileURLInAppDocument:[NSString GetUUID]];
+        
         [_processor processVoice:inUrl outURL:outUrl duration:_singOpus.pbOpus.sing.duration pitch:_singOpus.pbOpus.sing.pitch formant:_singOpus.pbOpus.sing.formant];
         
         [self showProgressViewWithMessage:NSLS(@"kSending")];
@@ -1028,8 +1035,10 @@ enum{
     PPDebug(@"path is %@", path);
     
     NSData *singData = [NSData dataWithContentsOfFile:path];
-    if ([singData length] <= 0) {
+    PPDebug(@"sing data length = %d", [singData length]);
+    if ([singData length] <= 28) {
         NSString *msg = [NSString stringWithFormat:NSLS(@"kChangeVoiceTypeFail"), [_singOpus getCurrentVoiceTypeName]];
+        [self hideProgressView];
         POSTMSG2(msg, 2.5);
         return;
     }
