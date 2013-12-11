@@ -171,7 +171,8 @@ enum{
     
     self.descTextView.placeholder = NSLS(@"kDescPlaceholder");
     
-    self.mp3FilePath =[NSTemporaryDirectory() stringByAppendingString:@"temp.mp3"];
+//    self.mp3FilePath =[NSTemporaryDirectory() stringByAppendingFormat:@"%@.mp3", [NSString GetUUID]];
+    self.mp3FilePath =[NSTemporaryDirectory() stringByAppendingFormat:@"%@.mp3", @"temp"];
     
     // init title view
     [self initTitleView];
