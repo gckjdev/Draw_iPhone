@@ -18,6 +18,7 @@
 #import "VoiceChanger.h"
 #import "VoiceProcessor.h"
 #import "StrokeLabel.h"
+#import "UIPlaceholderTextView.h"
 
 @interface SingController : PPViewController <ChangeAvatarDelegate, OpusServiceDelegate, VoiceRecorderDelegate, VoiceChangerDelegate, VoiceProcessorDelegate>
 
@@ -41,6 +42,7 @@
 @property (retain, nonatomic) IBOutlet UIButton *searchSongButton;
 @property (retain, nonatomic) IBOutlet UIButton *descButton;
 @property (retain, nonatomic) IBOutlet UIButton *reviewButton;
+@property (retain, nonatomic) IBOutlet UIPlaceholderTextView *descTextView;
 
 //// if select a song, load with this.
 //- (id)initWithSong:(PBSong *)song;
