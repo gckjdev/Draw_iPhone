@@ -12,17 +12,11 @@ option java_outer_classname = "GroupProtos";
 enum PBGroupUserType{
     GROUP_USER_ADMIN = 1;     // 管理员
     GROUP_USER_MEMBER = 2;    // 成员
-    GROUP_USER_GUEST = 3;     // 嘉宾
-}
-
-// 家族缺省的职位类型
-enum PBDefaultGroupTitle
-{
-    GROUP_TITLE_ADMIN = 1;    // 管理员
-    GROUP_TITLE_MEMBER = 2;   // 成员
-    GROUP_TITLE_GUEST = 3;    // 嘉宾
-
-    GROUP_TITLE_CUSTOM = 10;  // 自定义职位起点
+    GROUP_USER_GUEST= 3;     // 嘉宾
+    GROUP_USER_CREATOR = 4;     //创建者 
+    GROUP_USER_REQUESTER= 5;     // 申请者
+    GROUP_USER_INVITEE= 6;     // 被邀请者
+    GROUP_GUEST_INVITEE= 7;     // 被邀请成为嘉宾者
 }
 
 // 家族用户信息
@@ -37,16 +31,16 @@ message PBGroupUser
 // 家族职位定义
 message PBGroupTitle
 {
-    required int32  titleId = 1;        // 职位ID，缺省职位取值参见PBDefaultGroupTitle，用户也可以添加自己的
+    required int32  titleId = 1;        // 职位ID，缺省职位取值参见PBGroupUserType，用户也可以添加自己的
     optional string title = 2;          // 职位
-    optional int32  permission = 3;     // 职位权限（如允许加用户、允许删帖等）
+    //optional int32  permission = 3;     // 职位权限（如允许加用户、允许删帖等）
 }
 
 // 家族职位用户
 message PBGroupUsersByTitle
 {
     optional PBGroupTitle title = 1;    // 职位
-    repeated PBGroupUser users = 2;     // 该职位下的用户列表
+    repeated PBGameUser users = 2;     // 该职位下的用户列表
 }
 
 

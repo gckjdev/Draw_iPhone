@@ -186,7 +186,12 @@ typedef enum{
     
     switch (self.currentTab.tabID) {
         case MyTypeDrawToMe:
-        return [RankView heightForRankViewType:RankViewTypeNormal]+1;
+            if (isDrawApp() || isLittleGeeAPP()) {
+                return [RankView heightForRankViewType:RankViewTypeNormal]+1;
+            }else if (isSingApp()){
+                return [RankView heightForRankViewType:RankViewTypeWhisper];
+            }
+        
         case MyTypeTimelineOpus:
         case MyTypeTimelineGuess:
             return [FeedCell getCellHeight];

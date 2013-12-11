@@ -123,11 +123,12 @@
         else{
             rowOfGiveReview = -1;
         }
+        
+        rowOfCleanCache = count++;
         rowOfAbout = count++;
         numberOfRows = count;
         
         rowOfAddWords = -1;
-        rowOfCleanCache = -1;
         dataTableView.frame = CGRectMake(dataTableView.frame.origin.x, dataTableView.frame.origin.y, dataTableView.frame.size.width, DICE_TABLE_HEIGHT);
     }
 }

@@ -253,6 +253,22 @@
 		A455F8CB1585D21400CA5743 /* grayArrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A455F8C01585D21400CA5743 /* grayArrow@2x.png */; };
 		A455F8CC1585D21400CA5743 /* whiteArrow.png in Resources */ = {isa = PBXBuildFile; fileRef = A455F8C11585D21400CA5743 /* whiteArrow.png */; };
 		A455F8CD1585D21400CA5743 /* whiteArrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A455F8C21585D21400CA5743 /* whiteArrow@2x.png */; };
+		A4572D6B1856FAEF0076ADF7 /* PPTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = A4572D6A1856FAED0076ADF7 /* PPTextView.m */; };
+		A4572D6C1856FAEF0076ADF7 /* PPTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = A4572D6A1856FAED0076ADF7 /* PPTextView.m */; };
+		A4572D6D1856FAEF0076ADF7 /* PPTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = A4572D6A1856FAED0076ADF7 /* PPTextView.m */; };
+		A4572D6E1856FAEF0076ADF7 /* PPTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = A4572D6A1856FAED0076ADF7 /* PPTextView.m */; };
+		A4572D7418570B0F0076ADF7 /* UIView+Pan.m in Sources */ = {isa = PBXBuildFile; fileRef = A4572D7318570B0F0076ADF7 /* UIView+Pan.m */; };
+		A4572D7518570B0F0076ADF7 /* UIView+Pan.m in Sources */ = {isa = PBXBuildFile; fileRef = A4572D7318570B0F0076ADF7 /* UIView+Pan.m */; };
+		A4572D7618570B0F0076ADF7 /* UIView+Pan.m in Sources */ = {isa = PBXBuildFile; fileRef = A4572D7318570B0F0076ADF7 /* UIView+Pan.m */; };
+		A4572D7718570B0F0076ADF7 /* UIView+Pan.m in Sources */ = {isa = PBXBuildFile; fileRef = A4572D7318570B0F0076ADF7 /* UIView+Pan.m */; };
+		A4572D961858059C0076ADF7 /* AudioFormatConverter.m in Sources */ = {isa = PBXBuildFile; fileRef = A4572D951858059C0076ADF7 /* AudioFormatConverter.m */; };
+		A4572D971858059C0076ADF7 /* AudioFormatConverter.m in Sources */ = {isa = PBXBuildFile; fileRef = A4572D951858059C0076ADF7 /* AudioFormatConverter.m */; };
+		A4572D981858059C0076ADF7 /* AudioFormatConverter.m in Sources */ = {isa = PBXBuildFile; fileRef = A4572D951858059C0076ADF7 /* AudioFormatConverter.m */; };
+		A4572D991858059C0076ADF7 /* AudioFormatConverter.m in Sources */ = {isa = PBXBuildFile; fileRef = A4572D951858059C0076ADF7 /* AudioFormatConverter.m */; };
+		A4572D9C185814CA0076ADF7 /* libmp3lame.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A4572D9B185814C90076ADF7 /* libmp3lame.a */; };
+		A4572D9D185814CA0076ADF7 /* libmp3lame.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A4572D9B185814C90076ADF7 /* libmp3lame.a */; };
+		A4572D9E185814CA0076ADF7 /* libmp3lame.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A4572D9B185814C90076ADF7 /* libmp3lame.a */; };
+		A4572D9F185814CA0076ADF7 /* libmp3lame.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A4572D9B185814C90076ADF7 /* libmp3lame.a */; };
 		A457BAE517DECA5A00964088 /* self_detail_balance_btn_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A457BAE017DECA4E00964088 /* self_detail_balance_btn_bg@2x.png */; };
 		A457BAE617DECA5A00964088 /* self_detail_balance_btn_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A457BAE017DECA4E00964088 /* self_detail_balance_btn_bg@2x.png */; };
 		A457BAE717DECA5A00964088 /* self_detail_balance_btn_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A457BAE017DECA4E00964088 /* self_detail_balance_btn_bg@2x.png */; };
@@ -7474,6 +7490,14 @@
 		A455F8C01585D21400CA5743 /* grayArrow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "grayArrow@2x.png"; sourceTree = "<group>"; };
 		A455F8C11585D21400CA5743 /* whiteArrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = whiteArrow.png; sourceTree = "<group>"; };
 		A455F8C21585D21400CA5743 /* whiteArrow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "whiteArrow@2x.png"; sourceTree = "<group>"; };
+		A4572D691856FAEC0076ADF7 /* PPTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PPTextView.h; sourceTree = "<group>"; };
+		A4572D6A1856FAED0076ADF7 /* PPTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PPTextView.m; sourceTree = "<group>"; };
+		A4572D7218570B0F0076ADF7 /* UIView+Pan.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Pan.h"; sourceTree = "<group>"; };
+		A4572D7318570B0F0076ADF7 /* UIView+Pan.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Pan.m"; sourceTree = "<group>"; };
+		A4572D941858059C0076ADF7 /* AudioFormatConverter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioFormatConverter.h; sourceTree = "<group>"; };
+		A4572D951858059C0076ADF7 /* AudioFormatConverter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AudioFormatConverter.m; sourceTree = "<group>"; };
+		A4572D9A185814C90076ADF7 /* lame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = lame.h; sourceTree = "<group>"; };
+		A4572D9B185814C90076ADF7 /* libmp3lame.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libmp3lame.a; sourceTree = "<group>"; };
 		A457BAE017DECA4E00964088 /* self_detail_balance_btn_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "self_detail_balance_btn_bg@2x.png"; sourceTree = "<group>"; };
 		A457BAE117DECA5000964088 /* self_detail_exp_btn_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "self_detail_exp_btn_bg@2x.png"; sourceTree = "<group>"; };
 		A457BAE217DECA5200964088 /* self_detail_ingot_btn_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "self_detail_ingot_btn_bg@2x.png"; sourceTree = "<group>"; };
@@ -10281,6 +10305,7 @@
 				CA9AB0B9183217B3002DBAA5 /* libDIRAC_iOS-fat.a in Frameworks */,
 				CA9AB0BD183217B3002DBAA5 /* libDIRAC_iOS4-fat.a in Frameworks */,
 				83E17DC016AB4A05BBF66F5E /* libPods.a in Frameworks */,
+				A4572D9E185814CA0076ADF7 /* libmp3lame.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -10360,6 +10385,7 @@
 				CA9AB0B8183217B3002DBAA5 /* libDIRAC_iOS-fat.a in Frameworks */,
 				CA9AB0BC183217B3002DBAA5 /* libDIRAC_iOS4-fat.a in Frameworks */,
 				8F5E9AD0400940DDB239EAC1 /* libPods.a in Frameworks */,
+				A4572D9D185814CA0076ADF7 /* libmp3lame.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -10440,6 +10466,7 @@
 				CA9AB0B7183217B3002DBAA5 /* libDIRAC_iOS-fat.a in Frameworks */,
 				CA9AB0BB183217B3002DBAA5 /* libDIRAC_iOS4-fat.a in Frameworks */,
 				965990C8906A4D42B3A1D745 /* libPods.a in Frameworks */,
+				A4572D9C185814CA0076ADF7 /* libmp3lame.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -10517,6 +10544,7 @@
 				CA29E715182C738E002D59BB /* TencentOpenAPI.framework in Frameworks */,
 				CA9AB0BA183217B3002DBAA5 /* libDIRAC_iOS-fat.a in Frameworks */,
 				CA9AB0BE183217B3002DBAA5 /* libDIRAC_iOS4-fat.a in Frameworks */,
+				A4572D9F185814CA0076ADF7 /* libmp3lame.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -10861,11 +10889,24 @@
 			path = Resources;
 			sourceTree = "<group>";
 		};
+		A4572D931858056B0076ADF7 /* Core-Utils-Audio-Convert */ = {
+			isa = PBXGroup;
+			children = (
+				A4572D9A185814C90076ADF7 /* lame.h */,
+				A4572D9B185814C90076ADF7 /* libmp3lame.a */,
+				A4572D941858059C0076ADF7 /* AudioFormatConverter.h */,
+				A4572D951858059C0076ADF7 /* AudioFormatConverter.m */,
+			);
+			path = "Core-Utils-Audio-Convert";
+			sourceTree = "<group>";
+		};
 		A45AA836162FC0140030D668 /* UIPlaceholderTextView */ = {
 			isa = PBXGroup;
 			children = (
 				A45AA837162FC0150030D668 /* UIPlaceholderTextView.h */,
 				A45AA838162FC0150030D668 /* UIPlaceholderTextView.m */,
+				A4572D691856FAEC0076ADF7 /* PPTextView.h */,
+				A4572D6A1856FAED0076ADF7 /* PPTextView.m */,
 			);
 			path = UIPlaceholderTextView;
 			sourceTree = "<group>";
@@ -13051,6 +13092,7 @@
 		CA103B391509A56000F60C03 /* Core */ = {
 			isa = PBXGroup;
 			children = (
+				A4572D931858056B0076ADF7 /* Core-Utils-Audio-Convert */,
 				A484D31817C49AB9008185F8 /* Core-Utils-Notification */,
 				CADD263F168841ED00BDCDCF /* Core-Utils-DataStructure */,
 				C28A23B9166C90E2007C9EA5 /* Core-Utils-OpenGL */,
@@ -13668,6 +13710,8 @@
 			children = (
 				CA103DBE1509A56100F60C03 /* UIViewUtils.h */,
 				CA103DBF1509A56100F60C03 /* UIViewUtils.m */,
+				A4572D7218570B0F0076ADF7 /* UIView+Pan.h */,
+				A4572D7318570B0F0076ADF7 /* UIView+Pan.m */,
 			);
 			path = ViewUtils;
 			sourceTree = "<group>";
@@ -22079,6 +22123,9 @@
 				EA2D573F1847243B00499ED4 /* SearchGroupController.m in Sources */,
 				A439D2C6184A521800F47BEF /* UIImage+GPUImageFilter.m in Sources */,
 				A439D2D6184A5BD500F47BEF /* CropAndFilterViewController.m in Sources */,
+				A4572D6D1856FAEF0076ADF7 /* PPTextView.m in Sources */,
+				A4572D7618570B0F0076ADF7 /* UIView+Pan.m in Sources */,
+				A4572D981858059C0076ADF7 /* AudioFormatConverter.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -22887,6 +22934,9 @@
 				EA2D573E1847243B00499ED4 /* SearchGroupController.m in Sources */,
 				A439D2C5184A521800F47BEF /* UIImage+GPUImageFilter.m in Sources */,
 				A439D2D5184A5BD500F47BEF /* CropAndFilterViewController.m in Sources */,
+				A4572D6C1856FAEF0076ADF7 /* PPTextView.m in Sources */,
+				A4572D7518570B0F0076ADF7 /* UIView+Pan.m in Sources */,
+				A4572D971858059C0076ADF7 /* AudioFormatConverter.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -23694,6 +23744,9 @@
 				EA2D573D1847243B00499ED4 /* SearchGroupController.m in Sources */,
 				A439D2C4184A521800F47BEF /* UIImage+GPUImageFilter.m in Sources */,
 				A439D2D4184A5BD500F47BEF /* CropAndFilterViewController.m in Sources */,
+				A4572D6B1856FAEF0076ADF7 /* PPTextView.m in Sources */,
+				A4572D7418570B0F0076ADF7 /* UIView+Pan.m in Sources */,
+				A4572D961858059C0076ADF7 /* AudioFormatConverter.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -24457,6 +24510,9 @@
 				EA2D57401847243B00499ED4 /* SearchGroupController.m in Sources */,
 				A439D2C7184A521800F47BEF /* UIImage+GPUImageFilter.m in Sources */,
 				A439D2D7184A5BD500F47BEF /* CropAndFilterViewController.m in Sources */,
+				A4572D6E1856FAEF0076ADF7 /* PPTextView.m in Sources */,
+				A4572D7718570B0F0076ADF7 /* UIView+Pan.m in Sources */,
+				A4572D991858059C0076ADF7 /* AudioFormatConverter.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -24717,6 +24773,7 @@
 					"\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/ShareSDK/Extend/libWeiboSDK\"",
 					"\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/ShareSDK/Extend/SDKExport\"",
 					"\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/ShareSDK/Extend/TencentWeiboSSO\"",
+					"\"$(SRCROOT)/../Common_iPhone_20/Core/Core-Utils-Audio-Convert\"",
 				);
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = Sing;
@@ -24793,6 +24850,7 @@
 					"\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/ShareSDK/Extend/libWeiboSDK\"",
 					"\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/ShareSDK/Extend/SDKExport\"",
 					"\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/ShareSDK/Extend/TencentWeiboSSO\"",
+					"\"$(SRCROOT)/../Common_iPhone_20/Core/Core-Utils-Audio-Convert\"",
 				);
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = Sing;
@@ -24867,6 +24925,7 @@
 					"\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/ShareSDK/Extend/libWeiboSDK\"",
 					"\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/ShareSDK/Extend/SDKExport\"",
 					"\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/ShareSDK/Extend/TencentWeiboSSO\"",
+					"\"$(SRCROOT)/../Common_iPhone_20/Core/Core-Utils-Audio-Convert\"",
 				);
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = LittleGeeDraw;
@@ -24939,6 +24998,7 @@
 					"\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/ShareSDK/Extend/libWeiboSDK\"",
 					"\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/ShareSDK/Extend/SDKExport\"",
 					"\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/ShareSDK/Extend/TencentWeiboSSO\"",
+					"\"$(SRCROOT)/../Common_iPhone_20/Core/Core-Utils-Audio-Convert\"",
 				);
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = LittleGeeDraw;
@@ -25077,6 +25137,7 @@
 					"\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/ShareSDK/Extend/libWeiboSDK\"",
 					"\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/ShareSDK/Extend/SDKExport\"",
 					"\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/ShareSDK/Extend/TencentWeiboSSO\"",
+					"\"$(SRCROOT)/../Common_iPhone_20/Core/Core-Utils-Audio-Convert\"",
 				);
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = "-ObjC";
@@ -25152,6 +25213,7 @@
 					"\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/ShareSDK/Extend/libWeiboSDK\"",
 					"\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/ShareSDK/Extend/SDKExport\"",
 					"\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/ShareSDK/Extend/TencentWeiboSSO\"",
+					"\"$(SRCROOT)/../Common_iPhone_20/Core/Core-Utils-Audio-Convert\"",
 				);
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = "-ObjC";
@@ -25228,6 +25290,7 @@
 					"\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/ShareSDK/Extend/libWeiboSDK\"",
 					"\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/ShareSDK/Extend/SDKExport\"",
 					"\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/ShareSDK/Extend/TencentWeiboSSO\"",
+					"\"$(SRCROOT)/../Common_iPhone_20/Core/Core-Utils-Audio-Convert\"",
 				);
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = AskPs;
@@ -25301,6 +25364,7 @@
 					"\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/ShareSDK/Extend/libWeiboSDK\"",
 					"\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/ShareSDK/Extend/SDKExport\"",
 					"\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/ShareSDK/Extend/TencentWeiboSSO\"",
+					"\"$(SRCROOT)/../Common_iPhone_20/Core/Core-Utils-Audio-Convert\"",
 				);
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = AskPs;

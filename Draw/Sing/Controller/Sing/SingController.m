@@ -40,6 +40,8 @@
 #import "AccountManager.h"
 #import "UIImageUtil.h"
 #import "CropAndFilterViewController.h"
+#import "UIView+Pan.h"
+#import "AudioFormatConverter.h"
 
 #define GREEN_COLOR [UIColor colorWithRed:99/255.0 green:186/255.0 blue:152/255.0 alpha:1]
 #define WHITE_COLOR [UIColor whiteColor]
@@ -66,12 +68,15 @@ enum{
 @property (retain, nonatomic) ChangeAvatar *picker;
 @property (retain, nonatomic) CMPopTipView *popTipView;
 @property (assign, nonatomic) BOOL hasEdited;
+@property (copy, nonatomic) NSString *mp3FilePath;
+
 
 @end
 
 @implementation SingController
 
 - (void)dealloc{
+    [_mp3FilePath release];
     [_picker release];
     [_image release];
     [_singOpus release];
@@ -97,6 +102,7 @@ enum{
     [_imageButton release];
     [_reviewButton release];
     [_lyricBgImageView release];
+    [_descTextView release];
     [super dealloc];
 }
 
@@ -162,6 +168,10 @@ enum{
     [super viewDidLoad];
     
     [self setCanDragBack:NO];
+    
+    self.descTextView.placeholder = NSLS(@"kDescPlaceholder");
+    
+    self.mp3FilePath =[NSTemporaryDirectory() stringByAppendingString:@"temp.mp3"];
     
     // init title view
     [self initTitleView];
@@ -271,12 +281,13 @@ enum{
     self.opusImageView.userInteractionEnabled = YES;
     self.opusDescLabel.userInteractionEnabled = YES;
     
-    // add pan guesture
+//    // add pan guesture
     UIPanGestureRecognizer *panGestureRecognizer = [[[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(handlePanGestures:)] autorelease];
     panGestureRecognizer.delegate = self;
     [self.opusDescLabel addGestureRecognizer:panGestureRecognizer];
+//    [self.opusDescLabel addPanToMoveFeature];
     
-    // add tap guesture
+//    // add tap guesture
     UITapGestureRecognizer *tapGestureRecognizer = [[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTapGestures:)] autorelease];
     tapGestureRecognizer.delegate = self;
     [self.opusDescLabel addGestureRecognizer:tapGestureRecognizer];
@@ -371,37 +382,46 @@ enum{
 // 拖拽手势处理事件
 - (void) handlePanGestures:(UIPanGestureRecognizer*)paramSender{
     
-    UIView *view = paramSender.view;
-    
-    if (paramSender.state != UIGestureRecognizerStateEnded
-        && paramSender.state != UIGestureRecognizerStateFailed){
-        
-        // 获取手指在屏幕中的坐标
 
-        [view.layer setBorderWidth:(ISIPAD ? 4 : 2)];
-        [view.layer setBorderColor:[COLOR_GRAY CGColor]];
-        
-        CGPoint location = [paramSender locationInView:view.superview];
-        
-        if (location.x < 0 || location.x > view.superview.bounds.size.width) {
-            return;
-        }
-        
-        if (location.y < 0 || location.y > view.superview.bounds.size.height) {
-            return;
-        }
-        
-        view.center = location;// 重新设置视图的位置
-        
-    }else if (paramSender.state == UIGestureRecognizerStateEnded){
+    CGPoint translatePoint = [paramSender translationInView:paramSender.view.superview];
+    CGPoint center = paramSender.view.center;
+    center.x += translatePoint.x;
+    center.y += translatePoint.y;
+    paramSender.view.center = center;
     
-        [view.layer setBorderWidth:0];
-        [view.layer setBorderColor:[[UIColor clearColor] CGColor]];
-        [self saveDescLabelInfo];
-    }else{
-        [view.layer setBorderWidth:0];
-        [view.layer setBorderColor:[[UIColor clearColor] CGColor]];
-    }
+    [paramSender setTranslation:CGPointMake(0, 0) inView:paramSender.view.superview];
+    
+//    UIView *view = paramSender.view;
+//    
+//    if (paramSender.state != UIGestureRecognizerStateEnded
+//        && paramSender.state != UIGestureRecognizerStateFailed){
+//        
+//        // 获取手指在屏幕中的坐标
+//
+//        [view.layer setBorderWidth:(ISIPAD ? 4 : 2)];
+//        [view.layer setBorderColor:[COLOR_GRAY CGColor]];
+//        
+//        CGPoint location = [paramSender locationInView:view.superview];
+//        
+//        if (location.x < 0 || location.x > view.superview.bounds.size.width) {
+//            return;
+//        }
+//        
+//        if (location.y < 0 || location.y > view.superview.bounds.size.height) {
+//            return;
+//        }
+//        
+//        view.center = location;// 重新设置视图的位置
+//        
+//    }else if (paramSender.state == UIGestureRecognizerStateEnded){
+//    
+//        [view.layer setBorderWidth:0];
+//        [view.layer setBorderColor:[[UIColor clearColor] CGColor]];
+//        [self saveDescLabelInfo];
+//    }else{
+//        [view.layer setBorderWidth:0];
+//        [view.layer setBorderColor:[[UIColor clearColor] CGColor]];
+//    }
 }
 
 - (void) handleTapGestures:(UIPanGestureRecognizer*)paramSender{
@@ -486,6 +506,7 @@ enum{
     [self setImageButton:nil];
     [self setReviewButton:nil];
     [self setLyricBgImageView:nil];
+    [self setDescTextView:nil];
     [super viewDidUnload];
 }
 
@@ -499,6 +520,7 @@ enum{
     
     // prepare to play
     if (recordState == VoiceRecorderStateStopped) {
+        
         [self prepareToPlay];
         [self setState:StateReadyPlay];
     }
@@ -804,6 +826,11 @@ enum{
 
 - (IBAction)clickChangeVoiceButton:(UIButton *)button {
     
+    if (ISIOS7) {
+        POSTMSG2(@"你的iOS版本暂不支持变声", 2.5);
+        return;
+    }
+    
     if (self.popTipView == nil) {
         VoiceTypeSelectView *v = [VoiceTypeSelectView createWithVoiceType:_singOpus.pbOpus.sing.voiceType];
         v.delegate = self;
@@ -843,7 +870,7 @@ enum{
 
 - (void)didImageSelected:(UIImage*)image{
     
-    [self performSelector:@selector(showImageEditor:) withObject:image afterDelay:0.5];
+    [self performSelector:@selector(showImageEditor:) withObject:image afterDelay:0.7];
 }
 
 - (void)showImageEditor:(UIImage *)image{
@@ -993,12 +1020,9 @@ enum{
     // 用户如果选择原声，则不需要经过声音处理步骤，直接上传。
     if (_singOpus.pbOpus.sing.voiceType == PBVoiceTypeVoiceTypeOrigin) {
         
-        NSString *path = [self recordURL].path;
-        PPDebug(@"path is %@", path);
-        
-        NSData *singData = [NSData dataWithContentsOfFile:path];
-        
-        [self uploadSingOpus:singData];
+        [self convertWavFile:[[self recordURL] path]
+                   toMp3File:self.mp3FilePath];
+
     }else{
         
         NSURL *inUrl = [self recordURL];
@@ -1008,6 +1032,8 @@ enum{
             self.processor = [[[VoiceProcessor alloc] init] autorelease];
             _processor.delegate = self;
         }
+        
+        outUrl = [FileUtil fileURLInAppDocument:[NSString GetUUID]];
         
         [_processor processVoice:inUrl outURL:outUrl duration:_singOpus.pbOpus.sing.duration pitch:_singOpus.pbOpus.sing.pitch formant:_singOpus.pbOpus.sing.formant];
         
@@ -1024,15 +1050,36 @@ enum{
 
 - (void)processor:(VoiceProcessor *)processor doneWithOutURL:(NSURL*)outURL{
     
-    NSString *path = outURL.path;
-    PPDebug(@"path is %@", path);
+    [self convertWavFile:outURL.path toMp3File:self.mp3FilePath];
+}
+
+- (void)convertWavFile:(NSString *)inputFilePath
+             toMp3File:(NSString *)outputFilePath{
     
-    NSData *singData = [NSData dataWithContentsOfFile:path];
-    if ([singData length] <= 0) {
-        NSString *msg = [NSString stringWithFormat:NSLS(@"kChangeVoiceTypeFail"), [_singOpus getCurrentVoiceTypeName]];
-        POSTMSG2(msg, 2.5);
-        return;
-    }
+    [self showActivityWithText:NSLS(@"kHandling")];
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        
+        [AudioFormatConverter convertWavToMp3WithInputFile:inputFilePath
+                                                outputFile:outputFilePath];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self hideActivity];
+            [self convertWavFileToMp3FileDone];
+        });
+    });
+}
+
+- (void)convertWavFileToMp3FileDone{
+    
+    NSData *singData = [NSData dataWithContentsOfFile:self.mp3FilePath];
+    PPDebug(@"mp3 file path is %@", self.mp3FilePath);
+    PPDebug(@"mp3 file data length = %d", [singData length]);
+//    if ([singData length] <= 28) {
+//        NSString *msg = [NSString stringWithFormat:NSLS(@"kChangeVoiceTypeFail"), [_singOpus getCurrentVoiceTypeName]];
+//        [self hideProgressView];
+//        POSTMSG2(msg, 2.5);
+//        return;
+//    }
+    
     [self uploadSingOpus:singData];
 }
 

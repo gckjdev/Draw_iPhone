@@ -714,6 +714,8 @@
 
 "kDrawToUserDesc" = "Drew a picture: [%@] to %@.";
 "kDrawToUserNoWordDesc" = "Drew a picture to %@.";
+"kRecordToUserDesc" = "Send an opus: [%@] to %@.";
+"kRecordToUserNoWordDesc" = "Send an opus to %@.";
 
 "kHisFriend" = "his(her) friend";
 
@@ -1953,6 +1955,7 @@
 "kI" = "I";
 "kSendMeFlower" = "Send me a flower";
 "kThrowMeTomato" = "Throw me a tomato";
+"kCommentMyDraw" = "Comment my opus.";
 "kCommentMyOpus" = "Comment my opus.";
 
 "kCanotSendItemToOpus" = "You can't send the same item more than %d times on the same opus.";
@@ -2095,12 +2098,19 @@
 "kGroupNameTooLong" = "The group name length should be less than 16";
 
 "kGroup" = "Group";
-"kGroupBulletinDesc" = "%@ posted a notice in %@ .";
-"kGroupJoinDesc" = "%@ applied to join %@";
-"kGroupExpelDesc" = "%@ drived %@ out of %@";
-"kGroupQuitDesc" = "%@ quit %@";
-"kGroupAcceptDesc" = "%@ accepted %@ into %@";
-"kGroupRejectDesc" = "%@ rejected %@ to join %@";
+"kGroupBulletinDesc" = "%@ posted a notice in %@.";
+"kGroupJoinDesc" = "%@ applied to join %@.";
+"kGroupExpelDesc" = "%@ drived %@ out of %@.";
+"kGroupQuitDesc" = "%@ quit %@.";
+"kGroupAcceptDesc" = "%@ accepted %@ into %@.";
+"kGroupRejectDesc" = "%@ rejected %@ to join %@.";
+"kGroupInviteMemberDesc" = "%@ invited %@ to join %@.";
+"kGroupInviteGuestDesc" = "%@ invited %@ to be the guest of %@.";
+"kGroupRejectMemberInvitationDesc" = "%@ rejectd to join %@.";
+"kGroupRejectGuestInvitationDesc" = "%@ rejectd to be the guest of %@.";
+"TypeAcceptMemberInvitation" = "%@ agreed to join %@.";
+"TypeAcceptGuestInvitation" = "%@ agreed to be the guest of %@.";
+
 "kContentDesc" = "Content: %@";
 "kPostscriptDesc" = "Postscript: %@";
 

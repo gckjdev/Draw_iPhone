@@ -154,13 +154,11 @@
             break;
         }
         case DetailCellStyleSingleAvatar:{
-            //TODO show title
             [self.infoLabel setText:self.group.creator.user.nickName];
             break;
         }
         case DetailCellStyleMultipleAvatars:{
             [self.infoLabel updateOriginY:0];
-            //TODO show size.
             [self.infoLabel setText:self.members.title.title];
             break;
         }

@@ -81,8 +81,13 @@
     }
 
     if (desc == nil) {
-        desc = NSLS(@"kCommentMyOpus");
+        if ([self isDrawCategory]) {
+            desc = NSLS(@"kCommentMyDraw");
+        }else if (isSingApp()){
+            desc = NSLS(@"kCommentMyOpus");
+        }
     }
+    
     return desc;
 }
 

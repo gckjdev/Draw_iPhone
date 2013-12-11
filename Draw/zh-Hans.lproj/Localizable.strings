@@ -745,6 +745,9 @@
 
 "kDrawToUserDesc" = "画了一幅 [%@] 给%@。";
 "kDrawToUserNoWordDesc" = "画了一幅画给%@。";
+"kRecordToUserDesc" = "录制了一首声音作品 [%@] 给%@。";
+"kRecordToUserNoWordDesc" = "录制了一首声音作品给%@。";
+
 "kHisFriend" = "TA好友";
 
 "kRemoveAd" = "广告拦截器";
@@ -1045,7 +1048,9 @@
 "kI" = "我";
 "kSendMeFlower" = "给我赠送了一朵鲜花！";
 "kThrowMeTomato" = "给我丢了个番茄！";
-"kCommentMyOpus" = "评论我的画。";
+"kCommentMyDraw" = "评论我的画。";
+"kCommentMyOpus" = "评论我的作品。";
+
 "kCanotSendItemToOpus" = "不能在同一个作品上使用超过%d次同样的道具";
 "kCanotSendItemToContestOpus" = "不能在同一个比赛作品上使用超过%d次同样的道具";
 "kOpusMy" = "我的";
@@ -2123,13 +2128,24 @@
 
 "kGroup" = "家族";
 "kGroupBulletinDesc" = "%@ 在 %@ 中发布了公告。";
-"kGroupJoinDesc" = "%@ 申请加入 %@";
-"kGroupExpelDesc" = "%@ 将 %@ 踢出了 %@";
-"kGroupQuitDesc" = "%@ 退出了 %@";
-"kGroupAcceptDesc" = "%@ 同意 %@ 加入 %@";
-"kGroupRejectDesc" = "%@ 拒绝 %@ 加入 %@";
+"kGroupJoinDesc" = "%@ 申请加入 %@。";
+"kGroupExpelDesc" = "%@ 将 %@ 踢出了 %@。";
+"kGroupQuitDesc" = "%@ 退出了 %@。";
+"kGroupAcceptDesc" = "%@ 同意 %@ 加入 %@。";
+"kGroupRejectDesc" = "%@ 拒绝 %@ 加入 %@。";
+
+"kGroupInviteMemberDesc" = "%@ 邀请 %@ 加入 %@。";
+"kGroupInviteGuestDesc" = "%@ 邀请 %@ 成为 %@ 的嘉宾。";
+"kGroupRejectMemberInvitationDesc" = "%@ 拒绝加入 %@。";
+"kGroupRejectGuestInvitationDesc" = "%@ 拒绝成为 %@ 嘉宾。";
+"TypeAcceptMemberInvitation" = "%@ 同意加入 %@。";
+"TypeAcceptGuestInvitation" = "%@ 同意成为 %@ 的嘉宾。";
+
+
 "kContentDesc" = "内容：%@";
 "kPostscriptDesc" = "附言：%@";
+
+
 
 "kGroupComment" = "评论";
 "kGroupRequest" = "请求";

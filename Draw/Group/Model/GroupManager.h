@@ -18,7 +18,8 @@
 @property(nonatomic, assign) NSInteger requestBadge;
 @property(nonatomic, assign) NSInteger noticeBadge;
 @property(nonatomic, assign, readonly) NSInteger totalBadge;
-//@property(atomic, retain) NSMutableArray *tempPostList;
+
+@property(atomic, retain) NSMutableArray *tempMemberList;
 
 + (id)defaultManager;
 
