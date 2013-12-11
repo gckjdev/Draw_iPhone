@@ -670,6 +670,10 @@
 //group
 
 #define PARA_GROUPID @"gid"
+#define PARA_TITLE_ID @"titleId"
+#define PARA_SOURCE_TITLEID @"soruceTitleId"
+#define PARA_FEE @"fee"
+
 
 // learn draw
 #define METHOD_GET_LEARNDRAW_LIST @"gldl"
@@ -716,7 +720,18 @@
 #define METHOD_GET_GROUP_BADGES @"getGroupBadge"
 #define METHOD_GET_POST_ACTION_BY_USER @"getPostActionByUser"
 
+
+
+#define METHOD_CHANGE_USER_TITLE @"changeUserTitle"
+#define METHOD_DELETE_GROUP_TITLE @"deleteGroupTitle"
+#define METHOD_GET_USERS_BYTITLE @"getUsersByTitle"
+#define METHOD_CREATE_GROUP_TITLE @"createGroupTitle"
+#define METHOD_ACCEPT_INVITATION @"acceptInvitation"
+#define METHOD_REJECT_INVITATION @"rejectInvitation"
+
+
 #define METHOD_UPDATE_USER_CREDENTIAL @"updateUserCredential"
+
 
 #define REGISTER_TYPE_EMAIL     1
 #define REGISTER_TYPE_SINA      2

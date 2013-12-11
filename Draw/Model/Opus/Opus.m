@@ -226,11 +226,79 @@
 }
 
 
+
+- (NSString*)localURLString:(NSString*)urlString
+{
+    NSString* path = urlString;
+    if ([path hasPrefix:@"/var/"]){
+        path = [path lastPathComponent];
+    }
+    
+    path = [NSString stringWithFormat:@"%@/%@", [[self class] localDataDir], path];
+    NSString* finalPath = [FileUtil filePathInAppDocument:path];
+    return finalPath;
+}
+
+- (NSString*)localDataURLString
+{
+    return [self localURLString:[_pbOpusBuilder localDataUrl]];
+}
+
 - (NSURL*)localDataURL
 {
-    return [NSURL fileURLWithPath:[_pbOpusBuilder localDataUrl]];
+//    NSString* path = [_pbOpusBuilder localDataUrl];
+//    if ([path hasPrefix:@"/var/"]){
+//        path = [path lastPathComponent];
+//    }
+//    
+//    path = [NSString stringWithFormat:@"%@/%@", [[self class] localDataDir], path];
+//    NSString* finalPath = [FileUtil filePathInAppDocument:path];    
+    return [NSURL fileURLWithPath:[self localURLString:[_pbOpusBuilder localDataUrl]]];
 }
-            
+
+- (NSString*)localImageURLString
+{
+    return [self localURLString:[_pbOpusBuilder localImageUrl]];
+}
+
+
+- (NSURL*)localImageURL
+{
+//    NSString* path = [_pbOpusBuilder localImageUrl];
+//    if ([path hasPrefix:@"/var/"]){
+//        path = [path lastPathComponent];
+//    }
+//    
+//    path = [NSString stringWithFormat:@"%@/%@", [[self class] localDataDir], path];
+//    NSString* finalPath = [FileUtil filePathInAppDocument:path];
+//    return [NSURL fileURLWithPath:finalPath];
+
+    return [NSURL fileURLWithPath:[self localURLString:[_pbOpusBuilder localImageUrl]]];
+
+}
+
+- (NSString*)localThumbImageURLString
+{
+    return [self localURLString:[_pbOpusBuilder localThumbImageUrl]];
+}
+
+- (NSURL*)localThumbImageURL
+{
+//    NSString* path = [_pbOpusBuilder localThumbImageUrl];
+//    if ([path hasPrefix:@"/var/"]){
+//        path = [path lastPathComponent];
+//    }
+//    
+//    path = [NSString stringWithFormat:@"%@/%@", [[self class] localDataDir], path];
+//    NSString* finalPath = [FileUtil filePathInAppDocument:path];
+//    return [NSURL fileURLWithPath:finalPath];
+
+    return [NSURL fileURLWithPath:[self localURLString:[_pbOpusBuilder localThumbImageUrl]]];
+
+}
+
+
+
 + (NSString*)localDataDir
 {
     PPDebug(@"******************************* localDataDir MUST BE IMPLEMENTED BY SUB CLASS *******************************");

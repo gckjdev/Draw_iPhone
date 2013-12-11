@@ -305,7 +305,7 @@ enum{
     [self.opusImageView updateHeight:self.singOpus.pbOpus.canvasSize.height];
     PPDebug(@"size = %@", NSStringFromCGSize(self.opusImageView.frame.size));
     
-    self.image = [UIImage imageWithContentsOfFile:_singOpus.pbOpus.localImageUrl];
+    self.image = [UIImage imageWithContentsOfFile:[_singOpus localImageURLString]];
     if (self.image !=nil ) {
         [self.opusImageView setImage:self.image];
     }else{
@@ -898,7 +898,7 @@ enum{
         NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
         
         NSData *data = [self.image data];
-        NSString *path = self.singOpus.pbOpus.localImageUrl;
+        NSString *path = self.singOpus.localImageURLString;
         [data writeToFile:path atomically:YES];
         
         [pool drain];
@@ -956,7 +956,7 @@ enum{
     
     // generate thumb image.
     UIImage *thumbImage = [self.opusImageView createSnapShotWithScale:0.5];
-    [thumbImage saveImageToFile:self.singOpus.pbOpus.localThumbImageUrl];
+    [thumbImage saveImageToFile:[self.singOpus localThumbImageURLString]];
 //    [[thumbImage data] writeToFile:self.singOpus.pbOpus.localThumbImageUrl atomically:YES];
     
     // save opus.

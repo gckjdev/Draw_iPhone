@@ -16,7 +16,16 @@ typedef enum{
     TypeExpel = 2,
     TypeAccept = 3,
     TypeReject = 4,
-    TypeQuit = 5
+    TypeQuit = 5, 
+
+    TypeInviteMember = 6,
+    TypeInviteGuest = 7,
+
+    TypeRejectMemberInvitation = 8,
+    TypeRejectGuestInvitation = 9,
+    
+    TypeAcceptMemberInvitation = 10,
+    TypeAcceptGuestInvitation = 11,
     
 }GroupNoticeType;
 
@@ -40,7 +49,23 @@ typedef enum{
             return [NSString stringWithFormat:NSLS(@"kGroupAcceptDesc"), [self publisherName], [self targetName], self.groupName];
         case TypeReject:
             return [NSString stringWithFormat:NSLS(@"kGroupRejectDesc"), [self publisherName], [self targetName], self.groupName];
+
+        case TypeInviteMember:
+            return [NSString stringWithFormat:NSLS(@"kGroupInviteMemberDesc"), [self publisherName], [self targetName], self.groupName];
             
+        case TypeInviteGuest:
+            return [NSString stringWithFormat:NSLS(@"kGroupInviteGuestDesc"), [self publisherName], [self targetName], self.groupName];
+            
+        case TypeRejectMemberInvitation:
+            return [NSString stringWithFormat:NSLS(@"kGroupRejectMemberInvitationDesc"), [self publisherName], [self targetName], self.groupName];
+        case TypeRejectGuestInvitation:
+            return [NSString stringWithFormat:NSLS(@"kGroupRejectGuestInvitationDesc"), [self publisherName], [self targetName], self.groupName];
+            
+        case TypeAcceptMemberInvitation:
+            return [NSString stringWithFormat:NSLS(@"TypeAcceptMemberInvitation"), [self publisherName], self.groupName];
+        case TypeAcceptGuestInvitation:
+            return [NSString stringWithFormat:NSLS(@"TypeAcceptGuestInvitation"), [self publisherName], self.groupName];
+
         default:
             return nil;
     }

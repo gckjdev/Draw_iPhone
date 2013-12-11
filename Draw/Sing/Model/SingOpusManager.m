@@ -63,7 +63,9 @@
 - (void)deleteOpus:(Opus *)opus{
     
     [super deleteOpus:opus];
-    [FileUtil removeFile:opus.pbOpus.sing.localNativeDataUrl];
+    if ([opus isKindOfClass:[SingOpus class]]){
+        [FileUtil removeFile:[(SingOpus*)opus localNativeDataURL]];
+    }
 }
 
 @end

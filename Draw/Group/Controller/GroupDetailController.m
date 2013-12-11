@@ -11,10 +11,15 @@
 #import "IconView.h"
 #import "GroupDetailCell.h"
 #import "TimeUtils.h"
+#import "GroupService.h"
+#import "GameNetworkConstants.h"
 
-#define SECTION_NUMBER 2
-#define SECTION_BASE_INDEX 0
-#define SECTION_MEMBER_INDEX 1
+enum{
+    SECTION_BASE_INDEX = 0,
+    SECTION_MEMBER_INDEX = 1,
+    SECTION_NUMBER
+};
+
 
 
 typedef enum{
@@ -32,8 +37,13 @@ typedef enum{
 
 
 @interface GroupDetailController ()
-
+{
+    GroupService *groupService;
+    GroupManager *groupManager;
+}
 @property(nonatomic, retain) PBGroup *group;
+@property(nonatomic, retain) NSMutableArray *members;
+
 @property (retain, nonatomic) IBOutlet CommonTitleView *titleView;
 @property (retain, nonatomic) IBOutlet GroupIconView *groupIconView;
 @property (retain, nonatomic) IBOutlet UILabel *groupName;
@@ -67,9 +77,20 @@ typedef enum{
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        // Custom initialization
+        groupService = [GroupService defaultService];
+        groupManager = [GroupManager defaultManager];
     }
     return self;
+}
+
+- (void)loadGroupMembers
+{
+    [groupService getAllUsersByTitle:_group.groupId callback:^(NSArray *list, NSError *error) {
+        if (!error) {
+            [groupManager setTempMemberList:[NSMutableArray arrayWithArray:list]];
+            [self.dataTableView reloadData];
+        }
+    }];
 }
 
 - (void)viewDidLoad
@@ -87,6 +108,8 @@ typedef enum{
     [self.groupIconView setImageURLString:_group.medalImage];
     [self.groupName setText:_group.name];
     [self.groupDesc setText:_group.signature];
+    [self loadGroupMembers];
+
 }
 
 - (void)didReceiveMemoryWarning
@@ -102,9 +125,6 @@ typedef enum{
     [self setGroupDesc:nil];
     [super viewDidUnload];
 }
-
-
-
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
@@ -180,10 +200,56 @@ typedef enum{
             if (row == [_group.titlesList count] - 1) {
                 position = CellRowPositionLast;
             }
-            [cell setCellForMembers:_group.titlesList[indexPath.row] position:position InGroup:_group];
+            PBGroupUsersByTitle *usersByTitle = groupManager.tempMemberList[indexPath.row];
+            [cell setCellForMembers:usersByTitle position:position InGroup:_group];
         }
     }
+    [cell setNeedsLayout];
     return cell;
 }
+
+- (void)updateRemoteInfo:(NSDictionary *)info
+{
+    [self showActivityWithText:NSLS(@"kUpdating")];
+    [groupService editGroup:_group.groupId info:info callback:^(NSError *error) {
+        [self hideActivity];
+        if (!error) {
+            PBGroup_Builder *builder = [PBGroup builderWithPrototype:self.group];
+            if (info[PARA_NAME]) {
+                [builder setName:info[PARA_NAME]];
+            }
+            if (info[PARA_DESC]) {
+                [builder setDesc:info[PARA_DESC]];
+            }
+            if (info[PARA_SIGNATURE]) {
+                [builder setSignature:info[PARA_SIGNATURE]];
+            }
+            if (info[PARA_FEE]) {
+                [builder setMemberFee:[info[PARA_FEE] integerValue]];
+            }
+            self.group = [builder build];
+            NSIndexSet *set = [NSIndexSet indexSetWithIndex:SECTION_BASE_INDEX];
+            [self.dataTableView reloadSections:set
+                              withRowAnimation:UITableViewRowAnimationFade];
+        }
+    }];
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (indexPath.section == SECTION_BASE_INDEX) {
+        NSDictionary *info = nil;
+                    //TODO alert to edit.
+        if (indexPath.row == RowDescription) {
+
+        }else if(indexPath.row == RowFee){
+            
+        }else{
+            
+        }
+        
+    }
+}
+
 
 @end
