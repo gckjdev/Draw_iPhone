@@ -745,6 +745,9 @@
 
 "kDrawToUserDesc" = "画了一幅 [%@] 给%@。";
 "kDrawToUserNoWordDesc" = "画了一幅画给%@。";
+"kRecordToUserDesc" = "录制了一首声音作品 [%@] 给%@。";
+"kRecordToUserNoWordDesc" = "录制了一首声音作品给%@。";
+
 "kHisFriend" = "TA好友";
 
 "kRemoveAd" = "广告拦截器";
@@ -1045,7 +1048,9 @@
 "kI" = "我";
 "kSendMeFlower" = "给我赠送了一朵鲜花！";
 "kThrowMeTomato" = "给我丢了个番茄！";
-"kCommentMyOpus" = "评论我的画。";
+"kCommentMyDraw" = "评论我的画。";
+"kCommentMyOpus" = "评论我的作品。";
+
 "kCanotSendItemToOpus" = "不能在同一个作品上使用超过%d次同样的道具";
 "kCanotSendItemToContestOpus" = "不能在同一个比赛作品上使用超过%d次同样的道具";
 "kOpusMy" = "我的";

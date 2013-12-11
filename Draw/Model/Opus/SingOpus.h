@@ -8,8 +8,9 @@
 
 #import "Opus.h"
 
-#define SING_FILE_EXTENSION         @"m4a"
+//#define SING_FILE_EXTENSION         @"m4a"
 //#define SING_FILE_EXTENSION         @"wav"
+#define SING_FILE_EXTENSION         @"mp3"
 
 
 

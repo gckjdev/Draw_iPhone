@@ -48,11 +48,18 @@
 - (void)updateDesc
 {
     if ([self hasGuessed] || [self isMyOpus]) {
-        self.desc = [NSString stringWithFormat:NSLS(@"kDrawToUserDesc"), self.wordText,self.targetUser.nickName];      
+        if([self isDrawCategory]){
+            self.desc = [NSString stringWithFormat:NSLS(@"kDrawToUserDesc"), self.wordText,self.targetUser.nickName];
+        }else if ([self isSingCategory]){
+            self.desc = [NSString stringWithFormat:NSLS(@"kRecordToUserDesc"), self.wordText,self.targetUser.nickName];
+        }
     }else{
-        self.desc = [NSString stringWithFormat:NSLS(@"kDrawToUserNoWordDesc"), self.targetUser.nickName];      
+        if([self isDrawCategory]){
+            self.desc = [NSString stringWithFormat:NSLS(@"kDrawToUserNoWordDesc"), self.targetUser.nickName];
+        }else if ([self isSingCategory]){
+            self.desc = [NSString stringWithFormat:NSLS(@"kRecordToUserNoWordDesc"), self.targetUser.nickName];
+        }
     }
-
 }
 
 - (void)dealloc

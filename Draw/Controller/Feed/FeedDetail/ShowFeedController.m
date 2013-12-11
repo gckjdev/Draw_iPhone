@@ -1415,7 +1415,7 @@ typedef enum{
 
 - (void)playAudio:(AudioButton *)button
 {
-    [[AudioManager defaultManager] playSoundByName:SOUND_EFFECT_BUTTON_CLICK];
+//    [[AudioManager defaultManager] playSoundByName:SOUND_EFFECT_BUTTON_CLICK];
     [_audioPlayer pauseOrResume];
 }
 
@@ -1438,7 +1438,7 @@ typedef enum{
                       forControlEvents:UIControlEventValueChanged];
     }
     
-    [[AudioManager defaultManager] playSoundByName:SOUND_EFFECT_BUTTON_CLICK];
+//    [[AudioManager defaultManager] playSoundByName:SOUND_EFFECT_BUTTON_CLICK];
 
     [_audioPlayer play];
 }
