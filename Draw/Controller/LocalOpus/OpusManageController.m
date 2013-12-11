@@ -520,7 +520,7 @@ typedef enum {
                       userGender:[[UserManager defaultManager] isUserMale]
                          snsType:type];
 
-    NSString* imagePath = opus.pbOpus.localImageUrl;
+    NSString* imagePath = [opus localImageURLString]; // .pbOpus.localImageUrl;
     
     [[GameSNSService defaultService] publishWeibo:type
                                              text:text

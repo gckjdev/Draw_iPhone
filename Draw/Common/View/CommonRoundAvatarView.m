@@ -382,20 +382,20 @@
 
 }
 
-- (void)setGrayAvatar:(BOOL)isGray
-{
-    if (isGray != _isBlackAndWhite) {
-        if (isGray) {
-            _originAvatar = imageView.image;
-            [self  setImage:[imageView.image blackAndWhite]];
-        } else {
-            if (_originAvatar) {
-                [self setImage:_originAvatar];
-            }
-        }
-    }
-    _isBlackAndWhite = isGray;
-}
+//- (void)setGrayAvatar:(BOOL)isGray
+//{
+//    if (isGray != _isBlackAndWhite) {
+//        if (isGray) {
+//            _originAvatar = imageView.image;
+//            [self setImage:[imageView.image blackAndWhite]];
+//        } else {
+//            if (_originAvatar) {
+//                [self setImage:_originAvatar];
+//            }
+//        }
+//    }
+//    _isBlackAndWhite = isGray;
+//}
 
 - (void)setGestureRecognizerEnable:(BOOL)enable
 {
