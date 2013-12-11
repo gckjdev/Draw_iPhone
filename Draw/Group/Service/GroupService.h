@@ -52,8 +52,15 @@ typedef void (^ SimpleResultBlock) (NSError *error);
                          reason:(NSString *)reason
                        callback:(SimpleResultBlock)callback;
 
+- (void)acceptInvitation:(NSString *)noticeId
+                callback:(SimpleResultBlock)callback;
+
+- (void)rejectInvitation:(NSString *)noticeId
+                callback:(SimpleResultBlock)callback;
+
 - (void)inviteMembers:(NSArray *)uids
               groupId:(NSString *)groupId
+              titleId:(NSInteger)titleId
              callback:(SimpleResultBlock)callback;
 
 - (void)inviteGuests:(NSArray *)uids
@@ -134,6 +141,34 @@ typedef void (^ SimpleResultBlock) (NSError *error);
 
 
 - (PBGroup *)buildGroupWithDefaultRelation:(PBGroup *)group;
+
+///
+
+
+//group title
+- (void)createGroupTitle:(NSString *)title
+                 titleId:(NSInteger)titleId
+                 groupId:(NSString *)groupId
+                callback:(SimpleResultBlock)callback;
+
+- (void)deleteGroupTitleId:(NSInteger)titleId
+                   groupId:(NSString *)groupId
+                  callback:(SimpleResultBlock)callback;
+
+- (void)changeUser:(NSString *)userId
+           inGroup:(NSString *)groupId
+     sourceTitleId:(NSInteger)sourceTitleId
+             title:(NSInteger)titleId
+          callback:(SimpleResultBlock)callback;
+
+- (void)getAllUsersByTitle:(NSString *)groupId
+                  callback:(ListResultBlock)callback;
+
+
+//edit
+- (void)editGroup:(NSString *)groupId
+             info:(NSDictionary *)info
+         callback:(SimpleResultBlock)callback;
 
 
 @end

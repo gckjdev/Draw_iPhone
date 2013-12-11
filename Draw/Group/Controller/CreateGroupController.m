@@ -15,7 +15,7 @@
 #import "AccountManager.h"
 #import "Group.pb.h"
 #import "GroupTopicController.h"
-//#import "GroupDetailController.h"
+#import "GroupDetailController.h"
 
 @interface CreateGroupController ()
 @property (retain, nonatomic) IBOutlet CommonTitleView *titleView;
@@ -79,7 +79,10 @@
             NSInteger length = [controllers count];
             PPViewController *superController = (id)controllers[length-2];
             [self.navigationController popViewControllerAnimated:NO];
-            [GroupTopicController enterWithGroup:group fromController:superController];
+            
+            [GroupDetailController enterWithGroup:group fromController:superController];
+            
+//            [GroupTopicController enterWithGroup:group fromController:superController];
         }
     }];
 }

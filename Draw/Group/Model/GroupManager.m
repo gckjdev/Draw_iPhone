@@ -28,7 +28,7 @@ static GroupManager *_staticGroupManager = nil;
 {
     PPRelease(_followedGroupIds);
     PPRelease(_collectionDict);
-//    PPRelease(_tempPostList);
+    PPRelease(_tempMemberList);
     [super dealloc];
 }
 

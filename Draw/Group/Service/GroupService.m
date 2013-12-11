@@ -202,11 +202,13 @@ static GroupService *_staticGroupService = nil;
 
 - (void)inviteMembers:(NSArray *)uids
               groupId:(NSString *)groupId
+              titleId:(NSInteger)titleId
              callback:(SimpleResultBlock)callback
 {
     NSString *uidsString = [uids componentsJoinedByString:ID_SEPERATOR];
     
     NSDictionary *paras = @{PARA_GROUPID:groupId,
+                            PARA_TITLE_ID:@(titleId),
                             PARA_USERID_LIST:uidsString,
                             };
     
@@ -479,6 +481,7 @@ static GroupService *_staticGroupService = nil;
     return retGroup;
 }
 
+
 - (PBGroup *)buildGroupWithDefaultRelation:(PBGroup *)group
 {
     PBUserRelationWithGroup_Builder *builder = [[PBUserRelationWithGroup_Builder alloc] init];
@@ -490,4 +493,97 @@ static GroupService *_staticGroupService = nil;
     return [self buildGroup:group withRelation:relation];
     
 }
+
+- (void)acceptInvitation:(NSString *)noticeId callback:(SimpleResultBlock)callback
+{
+    [self loadPBData:METHOD_ACCEPT_INVITATION
+          parameters:@{PARA_NOTICEID:noticeId}
+            callback:^(DataQueryResponse *response, NSError *error) {
+        EXECUTE_BLOCK(callback, error);
+    }];
+}
+
+- (void)rejectInvitation:(NSString *)noticeId callback:(SimpleResultBlock)callback
+{
+    [self loadPBData:METHOD_REJECT_INVITATION
+          parameters:@{PARA_NOTICEID:noticeId}
+            callback:^(DataQueryResponse *response, NSError *error) {
+                EXECUTE_BLOCK(callback, error);
+    }];
+}
+
+
+- (void)createGroupTitle:(NSString *)title
+                 titleId:(NSInteger)titleId
+                 groupId:(NSString *)groupId
+                callback:(SimpleResultBlock)callback
+{
+    NSDictionary *info = @{PARA_TITLE_ID: @(titleId),
+                           PARA_TITLE:title,
+                           PARA_GROUPID:groupId};
+    
+    [self loadPBData:METHOD_CREATE_GROUP_TITLE
+          parameters:info
+            callback:^(DataQueryResponse *response, NSError *error) {
+                EXECUTE_BLOCK(callback, error);
+    }];
+
+}
+
+- (void)deleteGroupTitleId:(NSInteger)titleId
+                   groupId:(NSString *)groupId
+                  callback:(SimpleResultBlock)callback
+{
+    NSDictionary *info = @{PARA_TITLE_ID:@(titleId),
+                            PARA_GROUPID:groupId};
+    
+    [self loadPBData:METHOD_DELETE_GROUP_TITLE
+          parameters:info
+            callback:^(DataQueryResponse *response, NSError *error) {
+                EXECUTE_BLOCK(callback, error);
+    }];
+}
+
+- (void)changeUser:(NSString *)userId
+           inGroup:(NSString *)groupId
+     sourceTitleId:(NSInteger)sourceTitleId
+             title:(NSInteger)titleId
+          callback:(SimpleResultBlock)callback
+{
+    NSDictionary *info = @{PARA_TITLE_ID : @(titleId),
+                           PARA_SOURCE_TITLEID : @(sourceTitleId),
+                           PARA_GROUPID : groupId,
+                           PARA_TARGETUSERID : userId
+                           };
+    
+    [self loadPBData:METHOD_CHANGE_USER_TITLE
+          parameters:info
+            callback:^(DataQueryResponse *response, NSError *error) {
+                EXECUTE_BLOCK(callback, error);
+    }];
+}
+
+- (void)getAllUsersByTitle:(NSString *)groupId
+                  callback:(ListResultBlock)callback
+{
+    NSDictionary *info = @{PARA_GROUPID:groupId};
+    
+    [self loadPBData:METHOD_GET_USERS_BYTITLE
+          parameters:info
+            callback:^(DataQueryResponse *response, NSError *error) {
+                EXECUTE_BLOCK(callback, response.groupMemberListList, error);
+    }];
+}
+
+- (void)editGroup:(NSString *)groupId
+             info:(NSDictionary *)info
+         callback:(SimpleResultBlock)callback
+{
+    [self loadPBData:METHOD_EDIT_GROUP
+          parameters:info
+            callback:^(DataQueryResponse *response, NSError *error) {
+                EXECUTE_BLOCK(callback, error);
+    }];
+}
+
 @end
