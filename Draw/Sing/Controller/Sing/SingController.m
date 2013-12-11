@@ -565,7 +565,7 @@ enum{
 
 - (void)record {
     
-    PPDebug(@"record url = %@", _recorder.recordURL.absoluteString);
+    PPDebug(@"record url = %@", _recorder.recordURL.path);
     [_recorder startToRecordForDutaion:_recordLimitTime];
     
     // accumulate design time
@@ -852,6 +852,9 @@ enum{
     if (self.singOpus.pbOpus.sing.voiceType != voiceType) {
         _hasEdited = YES;
         [self changeVoiceType:voiceType];
+        
+        // play directly
+        [self play];
     }
 }
 
@@ -1034,9 +1037,7 @@ enum{
             self.processor = [[[VoiceProcessor alloc] init] autorelease];
             _processor.delegate = self;
         }
-        
-        outUrl = [FileUtil fileURLInAppDocument:[NSString GetUUID]];
-        
+                
         [_processor processVoice:inUrl outURL:outUrl duration:_singOpus.pbOpus.sing.duration pitch:_singOpus.pbOpus.sing.pitch formant:_singOpus.pbOpus.sing.formant];
         
         [self showProgressViewWithMessage:NSLS(@"kSending")];
