@@ -27,17 +27,10 @@ BOOL PBGroupUserTypeIsValidValue(PBGroupUserType value) {
     case PBGroupUserTypeGroupUserAdmin:
     case PBGroupUserTypeGroupUserMember:
     case PBGroupUserTypeGroupUserGuest:
-      return YES;
-    default:
-      return NO;
-  }
-}
-BOOL PBDefaultGroupTitleIsValidValue(PBDefaultGroupTitle value) {
-  switch (value) {
-    case PBDefaultGroupTitleGroupTitleAdmin:
-    case PBDefaultGroupTitleGroupTitleMember:
-    case PBDefaultGroupTitleGroupTitleGuest:
-    case PBDefaultGroupTitleGroupTitleCustom:
+    case PBGroupUserTypeGroupUserCreator:
+    case PBGroupUserTypeGroupUserRequester:
+    case PBGroupUserTypeGroupUserInvitee:
+    case PBGroupUserTypeGroupGuestInvitee:
       return YES;
     default:
       return NO;
@@ -369,7 +362,6 @@ static PBGroupUser* defaultPBGroupUserInstance = nil;
 @interface PBGroupTitle ()
 @property int32_t titleId;
 @property (retain) NSString* title;
-@property int32_t permission;
 @end
 
 @implementation PBGroupTitle
@@ -388,13 +380,6 @@ static PBGroupUser* defaultPBGroupUserInstance = nil;
   hasTitle_ = !!value;
 }
 @synthesize title;
-- (BOOL) hasPermission {
-  return !!hasPermission_;
-}
-- (void) setHasPermission:(BOOL) value {
-  hasPermission_ = !!value;
-}
-@synthesize permission;
 - (void) dealloc {
   self.title = nil;
   [super dealloc];
@@ -403,7 +388,6 @@ static PBGroupUser* defaultPBGroupUserInstance = nil;
   if ((self = [super init])) {
     self.titleId = 0;
     self.title = @"";
-    self.permission = 0;
   }
   return self;
 }
@@ -432,9 +416,6 @@ static PBGroupTitle* defaultPBGroupTitleInstance = nil;
   if (self.hasTitle) {
     [output writeString:2 value:self.title];
   }
-  if (self.hasPermission) {
-    [output writeInt32:3 value:self.permission];
-  }
   [self.unknownFields writeToCodedOutputStream:output];
 }
 - (int32_t) serializedSize {
@@ -449,9 +430,6 @@ static PBGroupTitle* defaultPBGroupTitleInstance = nil;
   }
   if (self.hasTitle) {
     size += computeStringSize(2, self.title);
-  }
-  if (self.hasPermission) {
-    size += computeInt32Size(3, self.permission);
   }
   size += self.unknownFields.serializedSize;
   memoizedSerializedSize = size;
@@ -534,9 +512,6 @@ static PBGroupTitle* defaultPBGroupTitleInstance = nil;
   if (other.hasTitle) {
     [self setTitle:other.title];
   }
-  if (other.hasPermission) {
-    [self setPermission:other.permission];
-  }
   [self mergeUnknownFields:other.unknownFields];
   return self;
 }
@@ -564,10 +539,6 @@ static PBGroupTitle* defaultPBGroupTitleInstance = nil;
       }
       case 18: {
         [self setTitle:[input readString]];
-        break;
-      }
-      case 24: {
-        [self setPermission:[input readInt32]];
         break;
       }
     }
@@ -603,22 +574,6 @@ static PBGroupTitle* defaultPBGroupTitleInstance = nil;
 - (PBGroupTitle_Builder*) clearTitle {
   result.hasTitle = NO;
   result.title = @"";
-  return self;
-}
-- (BOOL) hasPermission {
-  return result.hasPermission;
-}
-- (int32_t) permission {
-  return result.permission;
-}
-- (PBGroupTitle_Builder*) setPermission:(int32_t) value {
-  result.hasPermission = YES;
-  result.permission = value;
-  return self;
-}
-- (PBGroupTitle_Builder*) clearPermission {
-  result.hasPermission = NO;
-  result.permission = 0;
   return self;
 }
 @end
@@ -664,7 +619,7 @@ static PBGroupUsersByTitle* defaultPBGroupUsersByTitleInstance = nil;
 - (NSArray*) usersList {
   return mutableUsersList;
 }
-- (PBGroupUser*) usersAtIndex:(int32_t) index {
+- (PBGameUser*) usersAtIndex:(int32_t) index {
   id value = [mutableUsersList objectAtIndex:index];
   return value;
 }
@@ -674,7 +629,7 @@ static PBGroupUsersByTitle* defaultPBGroupUsersByTitleInstance = nil;
       return NO;
     }
   }
-  for (PBGroupUser* element in self.usersList) {
+  for (PBGameUser* element in self.usersList) {
     if (!element.isInitialized) {
       return NO;
     }
@@ -685,7 +640,7 @@ static PBGroupUsersByTitle* defaultPBGroupUsersByTitleInstance = nil;
   if (self.hasTitle) {
     [output writeMessage:1 value:self.title];
   }
-  for (PBGroupUser* element in self.usersList) {
+  for (PBGameUser* element in self.usersList) {
     [output writeMessage:2 value:element];
   }
   [self.unknownFields writeToCodedOutputStream:output];
@@ -700,7 +655,7 @@ static PBGroupUsersByTitle* defaultPBGroupUsersByTitleInstance = nil;
   if (self.hasTitle) {
     size += computeMessageSize(1, self.title);
   }
-  for (PBGroupUser* element in self.usersList) {
+  for (PBGameUser* element in self.usersList) {
     size += computeMessageSize(2, element);
   }
   size += self.unknownFields.serializedSize;
@@ -818,7 +773,7 @@ static PBGroupUsersByTitle* defaultPBGroupUsersByTitleInstance = nil;
         break;
       }
       case 18: {
-        PBGroupUser_Builder* subBuilder = [PBGroupUser builder];
+        PBGameUser_Builder* subBuilder = [PBGameUser builder];
         [input readMessage:subBuilder extensionRegistry:extensionRegistry];
         [self addUsers:[subBuilder buildPartial]];
         break;
@@ -860,10 +815,10 @@ static PBGroupUsersByTitle* defaultPBGroupUsersByTitleInstance = nil;
   if (result.mutableUsersList == nil) { return [NSArray array]; }
   return result.mutableUsersList;
 }
-- (PBGroupUser*) usersAtIndex:(int32_t) index {
+- (PBGameUser*) usersAtIndex:(int32_t) index {
   return [result usersAtIndex:index];
 }
-- (PBGroupUsersByTitle_Builder*) replaceUsersAtIndex:(int32_t) index with:(PBGroupUser*) value {
+- (PBGroupUsersByTitle_Builder*) replaceUsersAtIndex:(int32_t) index with:(PBGameUser*) value {
   [result.mutableUsersList replaceObjectAtIndex:index withObject:value];
   return self;
 }
@@ -878,7 +833,7 @@ static PBGroupUsersByTitle* defaultPBGroupUsersByTitleInstance = nil;
   result.mutableUsersList = nil;
   return self;
 }
-- (PBGroupUsersByTitle_Builder*) addUsers:(PBGroupUser*) value {
+- (PBGroupUsersByTitle_Builder*) addUsers:(PBGameUser*) value {
   if (result.mutableUsersList == nil) {
     result.mutableUsersList = [NSMutableArray array];
   }
