@@ -102,7 +102,7 @@ typedef enum{
 {
     CommonDialog *dialog = [CommonDialog createInputViewDialogWith:info];
     dialog.inputTextView.text = info;
-    if (key == PARA_FEE) {
+    if ([key isEqualToString:PARA_FEE]) {
         dialog.inputTextView.keyboardType = UIKeyboardTypeNumberPad;
     }
     [dialog setClickOkBlock:^(id infoView){
