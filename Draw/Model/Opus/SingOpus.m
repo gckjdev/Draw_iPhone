@@ -145,7 +145,7 @@
 
 - (NSString*)dataType
 {
-    return SING_FILE_EXTENSION;
+    return SING_UPLOAD_FILE_EXTENSION;
 }
 
 - (NSData *)uploadData{
