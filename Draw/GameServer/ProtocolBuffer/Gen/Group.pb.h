@@ -106,18 +106,13 @@ typedef enum {
   PBGroupUserTypeGroupUserAdmin = 1,
   PBGroupUserTypeGroupUserMember = 2,
   PBGroupUserTypeGroupUserGuest = 3,
+  PBGroupUserTypeGroupUserCreator = 4,
+  PBGroupUserTypeGroupUserRequester = 5,
+  PBGroupUserTypeGroupUserInvitee = 6,
+  PBGroupUserTypeGroupGuestInvitee = 7,
 } PBGroupUserType;
 
 BOOL PBGroupUserTypeIsValidValue(PBGroupUserType value);
-
-typedef enum {
-  PBDefaultGroupTitleGroupTitleAdmin = 1,
-  PBDefaultGroupTitleGroupTitleMember = 2,
-  PBDefaultGroupTitleGroupTitleGuest = 3,
-  PBDefaultGroupTitleGroupTitleCustom = 10,
-} PBDefaultGroupTitle;
-
-BOOL PBDefaultGroupTitleIsValidValue(PBDefaultGroupTitle value);
 
 
 @interface GroupRoot : NSObject {
@@ -206,18 +201,14 @@ BOOL PBDefaultGroupTitleIsValidValue(PBDefaultGroupTitle value);
 @interface PBGroupTitle : PBGeneratedMessage {
 @private
   BOOL hasTitleId_:1;
-  BOOL hasPermission_:1;
   BOOL hasTitle_:1;
   int32_t titleId;
-  int32_t permission;
   NSString* title;
 }
 - (BOOL) hasTitleId;
 - (BOOL) hasTitle;
-- (BOOL) hasPermission;
 @property (readonly) int32_t titleId;
 @property (readonly, retain) NSString* title;
-@property (readonly) int32_t permission;
 
 + (PBGroupTitle*) defaultInstance;
 - (PBGroupTitle*) defaultInstance;
@@ -262,11 +253,6 @@ BOOL PBDefaultGroupTitleIsValidValue(PBDefaultGroupTitle value);
 - (NSString*) title;
 - (PBGroupTitle_Builder*) setTitle:(NSString*) value;
 - (PBGroupTitle_Builder*) clearTitle;
-
-- (BOOL) hasPermission;
-- (int32_t) permission;
-- (PBGroupTitle_Builder*) setPermission:(int32_t) value;
-- (PBGroupTitle_Builder*) clearPermission;
 @end
 
 @interface PBGroupUsersByTitle : PBGeneratedMessage {
@@ -278,7 +264,7 @@ BOOL PBDefaultGroupTitleIsValidValue(PBDefaultGroupTitle value);
 - (BOOL) hasTitle;
 @property (readonly, retain) PBGroupTitle* title;
 - (NSArray*) usersList;
-- (PBGroupUser*) usersAtIndex:(int32_t) index;
+- (PBGameUser*) usersAtIndex:(int32_t) index;
 
 + (PBGroupUsersByTitle*) defaultInstance;
 - (PBGroupUsersByTitle*) defaultInstance;
@@ -322,9 +308,9 @@ BOOL PBDefaultGroupTitleIsValidValue(PBDefaultGroupTitle value);
 - (PBGroupUsersByTitle_Builder*) clearTitle;
 
 - (NSArray*) usersList;
-- (PBGroupUser*) usersAtIndex:(int32_t) index;
-- (PBGroupUsersByTitle_Builder*) replaceUsersAtIndex:(int32_t) index with:(PBGroupUser*) value;
-- (PBGroupUsersByTitle_Builder*) addUsers:(PBGroupUser*) value;
+- (PBGameUser*) usersAtIndex:(int32_t) index;
+- (PBGroupUsersByTitle_Builder*) replaceUsersAtIndex:(int32_t) index with:(PBGameUser*) value;
+- (PBGroupUsersByTitle_Builder*) addUsers:(PBGameUser*) value;
 - (PBGroupUsersByTitle_Builder*) addAllUsers:(NSArray*) values;
 - (PBGroupUsersByTitle_Builder*) clearUsersList;
 @end
