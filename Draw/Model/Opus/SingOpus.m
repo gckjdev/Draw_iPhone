@@ -105,9 +105,17 @@
 
 #pragma data & native data URL handling
 
+- (NSString*)localNativeDataURLString
+{
+    return [self localURLString:[self.pbOpusBuilder.sing localNativeDataUrl]];
+}
+
+
 - (NSURL*)localNativeDataURL
 {
-    return  [NSURL fileURLWithPath:[self.pbOpusBuilder.sing localNativeDataUrl]];
+    return [NSURL fileURLWithPath:[self localURLString:[self.pbOpusBuilder.sing localNativeDataUrl]]];
+    
+//    return  [NSURL fileURLWithPath:[self.pbOpusBuilder.sing localNativeDataUrl]];
 }
 
 + (NSString*)localDataDir
@@ -117,35 +125,38 @@
 
 - (void)setLocalNativeDataUrl:(NSString*)extension
 {
-    NSString* path = [NSString stringWithFormat:@"%@/%@_native.%@", [[self class] localDataDir], [self opusKey], extension];
-    NSString* finalPath = [FileUtil filePathInAppDocument:path];
+    NSString* path = [NSString stringWithFormat:@"%@_native.%@", [self opusKey], extension];
+//    NSString* path = [NSString stringWithFormat:@"%@/%@_native.%@", [[self class] localDataDir], [self opusKey], extension];
+//    NSString* finalPath = [FileUtil filePathInAppDocument:path];
     
     PBSingOpus_Builder *builder = [PBSingOpus builderWithPrototype:self.pbOpusBuilder.sing];
-    [builder setLocalNativeDataUrl:finalPath];
+    [builder setLocalNativeDataUrl:path];
     [self.pbOpusBuilder setSing:[builder build]];
 }
 
 - (void)setLocalImageDataUrl:(NSString*)extension
 {
-    NSString* path = [NSString stringWithFormat:@"%@/%@.%@", [[self class] localDataDir], [self opusKey], extension];
-    NSString* finalPath = [FileUtil filePathInAppDocument:path];
+//    NSString* path = [NSString stringWithFormat:@"%@/%@.%@", [[self class] localDataDir], [self opusKey], extension];
+    NSString* path = [NSString stringWithFormat:@"%@.%@", [self opusKey], extension];
+//    NSString* finalPath = [FileUtil filePathInAppDocument:path];
     
-    [self setLocalImageUrl:finalPath];
+    [self setLocalImageUrl:path];
 }
 
 
 
 - (void)setLocalThumbImageDataUrl:(NSString*)extension
 {
-    NSString* path = [NSString stringWithFormat:@"%@/%@_thumb.%@", [[self class] localDataDir], [self opusKey], extension];
-    NSString* finalPath = [FileUtil filePathInAppDocument:path];
+//    NSString* path = [NSString stringWithFormat:@"%@/%@_thumb.%@", [[self class] localDataDir], [self opusKey], extension];
+    NSString* path = [NSString stringWithFormat:@"%@_thumb.%@", [self opusKey], extension];
+//    NSString* finalPath = [FileUtil filePathInAppDocument:path];
     
-    [self setLocalThumbImageUrl:finalPath];
+    [self setLocalThumbImageUrl:path];
 }
 
 - (NSString*)dataType
 {
-    return SING_FILE_EXTENSION;
+    return SING_UPLOAD_FILE_EXTENSION;
 }
 
 - (NSData *)uploadData{
@@ -287,7 +298,7 @@ enum {
 
 - (BOOL)hasFileForPlay
 {
-    if ([FileUtil fileSizeAtPath:self.pbOpus.sing.localNativeDataUrl] > 0){
+    if ([FileUtil fileSizeAtPath:[self localNativeDataURLString]] > 0){
         return YES;
     }
     else{

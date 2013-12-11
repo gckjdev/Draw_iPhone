@@ -68,9 +68,9 @@
 - (void)deleteOpus:(Opus *)opus
 {
     // remove local file
-    [FileUtil removeFile:opus.pbOpus.localDataUrl];
-    [FileUtil removeFile:opus.pbOpus.localImageUrl];
-    [FileUtil removeFile:opus.pbOpus.localThumbImageUrl];
+    [FileUtil removeFile:opus.localDataURLString];
+    [FileUtil removeFile:opus.localImageURLString];
+    [FileUtil removeFile:opus.localThumbImageURLString];
     
     PPDebug(@"DELETE LOCAL OPUS KEY=%@", opus.pbOpus.opusId);
     [_db removeKey:opus.pbOpus.opusId];

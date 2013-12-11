@@ -64,7 +64,14 @@
 - (void)setAsSubmit;
 - (void)setAsSaved;
 
+- (NSString*)localURLString:(NSString*)urlString;
+- (NSString*)localDataURLString;
+- (NSString*)localImageURLString;
+- (NSString*)localThumbImageURLString;
+
 - (NSURL*)localDataURL;
+- (NSURL*)localThumbImageURL;
+- (NSURL*)localImageURL;
 + (NSString*)localDataDir;
 - (void)setLocalDataUrl:(NSString*)extension;
 

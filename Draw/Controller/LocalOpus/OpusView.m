@@ -66,7 +66,7 @@ AUTO_CREATE_VIEW_BY_XIB(OpusView)
     }else{
         
         [self.opusTitle setText:title];
-        UIImage *image = [UIImage imageWithContentsOfFile:opus.pbOpus.localThumbImageUrl];
+        UIImage *image = [UIImage imageWithContentsOfFile:[opus localThumbImageURLString]];
         [self.opusImage setImage:image];
     }
 
