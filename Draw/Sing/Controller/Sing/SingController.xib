@@ -86,7 +86,6 @@
 						<double key="IBUIContentEdgeInsets.bottom">2</double>
 						<double key="IBUIContentEdgeInsets.left">2</double>
 						<double key="IBUIContentEdgeInsets.right">2</double>
-						<string key="IBUINormalTitle">保存</string>
 						<object class="NSColor" key="IBUIHighlightedTitleColor" id="379028007">
 							<int key="NSColorSpace">3</int>
 							<bytes key="NSWhite">MQA</bytes>
