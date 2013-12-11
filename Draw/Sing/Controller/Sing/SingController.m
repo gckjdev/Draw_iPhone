@@ -327,7 +327,8 @@ enum{
 //    UIImageView *iv = [[[UIImageView alloc] initWithFrame:CGRectMake(0, 0, width, width)] autorelease];
 //    iv.image = [UIImage imageNamed:@"sing_image@2x.png"];
     
-    CGRect rect = CGRectMake(0, 0, (ISIPAD ? 360:170), (ISIPAD ? 360:170));    UIImageView *iv = [[[UIImageView alloc] initWithFrame:rect] autorelease];
+    CGRect rect = CGRectMake(0, 0, (ISIPAD ? 360:170), (ISIPAD ? 360:170));
+    UIImageView *iv = [[[UIImageView alloc] initWithFrame:rect] autorelease];
     iv.image = [UIImage imageNamed:@"unloadbg2@2x.png"];
     [iv.layer setCornerRadius:(ISIPAD ? 75 : 35)];
     [iv.layer setMasksToBounds:YES];
@@ -827,10 +828,10 @@ enum{
 
 - (IBAction)clickChangeVoiceButton:(UIButton *)button {
     
-    if (ISIOS7) {
-        POSTMSG2(@"你的iOS版本暂不支持变声", 2.5);
-        return;
-    }
+//    if (ISIOS7) {
+//        POSTMSG2(@"你的iOS版本暂不支持变声", 2.5);
+//        return;
+//    }
     
     if (self.popTipView == nil) {
         VoiceTypeSelectView *v = [VoiceTypeSelectView createWithVoiceType:_singOpus.pbOpus.sing.voiceType];
