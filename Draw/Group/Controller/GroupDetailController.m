@@ -13,6 +13,9 @@
 #import "TimeUtils.h"
 #import "GroupService.h"
 #import "GameNetworkConstants.h"
+#import "UILabel+Touchable.h"
+#import "CommonDialog.h"
+
 
 enum{
     SECTION_BASE_INDEX = 0,
@@ -47,7 +50,7 @@ typedef enum{
 @property (retain, nonatomic) IBOutlet CommonTitleView *titleView;
 @property (retain, nonatomic) IBOutlet GroupIconView *groupIconView;
 @property (retain, nonatomic) IBOutlet UILabel *groupName;
-@property (retain, nonatomic) IBOutlet UILabel *groupDesc;
+@property (retain, nonatomic) IBOutlet UILabel *groupSignature;
 
 @end
 
@@ -69,7 +72,7 @@ typedef enum{
     [_titleView release];
     [_groupIconView release];
     [_groupName release];
-    [_groupDesc release];
+    [_groupSignature release];
     [super dealloc];
 }
 
@@ -93,6 +96,44 @@ typedef enum{
     }];
 }
 
+- (void)alertToEditInfo:(NSString *)title
+                   info:(NSString *)info
+                    key:(NSString*)key
+{
+    CommonDialog *dialog = [CommonDialog createInputViewDialogWith:info];
+    dialog.inputTextView.text = info;
+    if (key == PARA_FEE) {
+        dialog.inputTextView.keyboardType = UIKeyboardTypeNumberPad;
+    }
+    [dialog setClickOkBlock:^(id infoView){
+        NSString *text = dialog.inputTextView.text;
+        if (text == nil) {
+            //TODO pop up
+        }
+        if (text && ![text isEqualToString:info]) {
+            //changed.
+            [self updateRemoteInfo:@{key: text}];
+        }
+    }];
+    [dialog showInView:self.view];    
+}
+
+- (void)onTap:(UITapGestureRecognizer *)tap
+{
+    if (tap.view == self.groupName) {
+        [self alertToEditInfo:NSLS(@"kEditGroupName") info:self.groupName.text key:PARA_NAME];
+    }else if(tap.view == self.groupSignature){
+        [self alertToEditInfo:NSLS(@"kEditGroupSignature") info:self.groupName.text key:PARA_DESC];
+    }
+
+}
+
+- (void)initTapableLabels
+{
+    [self.groupName enableTapTouch:self selector:@selector(onTap:)];
+    [self.groupSignature enableTapTouch:self selector:@selector(onTap:)];
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -107,7 +148,8 @@ typedef enum{
     [self.groupIconView setGroupId:_group.groupId];
     [self.groupIconView setImageURLString:_group.medalImage];
     [self.groupName setText:_group.name];
-    [self.groupDesc setText:_group.signature];
+    [self.groupSignature setText:_group.signature];
+    [self initTapableLabels];
     [self loadGroupMembers];
 
 }
@@ -122,7 +164,7 @@ typedef enum{
     [self setTitleView:nil];
     [self setGroupIconView:nil];
     [self setGroupName:nil];
-    [self setGroupDesc:nil];
+    [self setgroupSignature:nil];
     [super viewDidUnload];
 }
 
@@ -237,13 +279,13 @@ typedef enum{
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    GroupDetailCell *cell = [tableView cellForRowAtIndexPath:indexPath];
     if (indexPath.section == SECTION_BASE_INDEX) {
         NSDictionary *info = nil;
-                    //TODO alert to edit.
         if (indexPath.row == RowDescription) {
-
+            [self alertToEditInfo:NSLS(@"kEditGroupDesc") info:cell.text key:PARA_DESC];
         }else if(indexPath.row == RowFee){
-            
+            [self alertToEditInfo:NSLS(@"kEditGroupFee") info:cell.text key:PARA_FEE];
         }else{
             
         }

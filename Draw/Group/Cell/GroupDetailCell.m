@@ -23,7 +23,7 @@
 @property(nonatomic, assign) ColorStyle colorStyle;
 @property(nonatomic, assign) DetailCellStyle cellStyle;
 @property(nonatomic, assign) PBGroupUsersByTitle *members;
-@property(nonatomic, copy) NSString *text;
+//@property(nonatomic, copy) NSString *text;
 @property (retain, nonatomic) IBOutlet UILabel *infoLabel;
 @property (retain, nonatomic) IBOutlet UIView *splitLine;
 @property (retain, nonatomic) IBOutlet UIImageView *boundImage;
@@ -75,6 +75,7 @@
 {
     return @"GroupDetailCell";
 }
+
 
 - (void)setCellText:(NSString *)text
            position:(CellRowPosition)position

@@ -37,6 +37,8 @@ typedef enum {
 
 @interface GroupDetailCell : PPTableViewCell<AvatarViewDelegate>
 
+@property(nonatomic, copy) NSString *text;
+
 + (id)createCell:(id<GroupDetailCellDelegate>)delegate;
 
 + (CGFloat)getCellHeightForSimpleText;
@@ -48,6 +50,8 @@ typedef enum {
 - (void)setCellText:(NSString *)text
            position:(CellRowPosition)position
               group:(PBGroup *)group;
+
+
 
 - (void)setCellForCreatorInGroup:(PBGroup *)group;
 
