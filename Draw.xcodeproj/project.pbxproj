@@ -6967,6 +6967,10 @@
 		EA49C86517093CD300843B6B /* TaoBaoController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA49C86217093CD200843B6B /* TaoBaoController.xib */; };
 		EA49C86617093CD300843B6B /* TaoBaoController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA49C86317093CD200843B6B /* TaoBaoController~ipad.xib */; };
 		EA59DF6D174DFF3E0039B441 /* DrawGameApp.m in Sources */ = {isa = PBXBuildFile; fileRef = CA67B87015E89B09002050DB /* DrawGameApp.m */; };
+		EA5A2EA718584D6E00CABC71 /* UILabel+Touchable.m in Sources */ = {isa = PBXBuildFile; fileRef = EA5A2EA618584D6E00CABC71 /* UILabel+Touchable.m */; };
+		EA5A2EA818584D6E00CABC71 /* UILabel+Touchable.m in Sources */ = {isa = PBXBuildFile; fileRef = EA5A2EA618584D6E00CABC71 /* UILabel+Touchable.m */; };
+		EA5A2EA918584D6E00CABC71 /* UILabel+Touchable.m in Sources */ = {isa = PBXBuildFile; fileRef = EA5A2EA618584D6E00CABC71 /* UILabel+Touchable.m */; };
+		EA5A2EAA18584D6E00CABC71 /* UILabel+Touchable.m in Sources */ = {isa = PBXBuildFile; fileRef = EA5A2EA618584D6E00CABC71 /* UILabel+Touchable.m */; };
 		EA5FE1BB17E7F5050099754C /* RopeView.m in Sources */ = {isa = PBXBuildFile; fileRef = EA5FE1BA17E7F5050099754C /* RopeView.m */; };
 		EA5FE1BC17E7F5050099754C /* RopeView.m in Sources */ = {isa = PBXBuildFile; fileRef = EA5FE1BA17E7F5050099754C /* RopeView.m */; };
 		EA5FE1BD17E7F5050099754C /* RopeView.m in Sources */ = {isa = PBXBuildFile; fileRef = EA5FE1BA17E7F5050099754C /* RopeView.m */; };
@@ -10116,6 +10120,8 @@
 		EA49C86117093CD200843B6B /* TaoBaoController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TaoBaoController.m; sourceTree = "<group>"; };
 		EA49C86217093CD200843B6B /* TaoBaoController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TaoBaoController.xib; sourceTree = "<group>"; };
 		EA49C86317093CD200843B6B /* TaoBaoController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "TaoBaoController~ipad.xib"; sourceTree = "<group>"; };
+		EA5A2EA518584D6E00CABC71 /* UILabel+Touchable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UILabel+Touchable.h"; sourceTree = "<group>"; };
+		EA5A2EA618584D6E00CABC71 /* UILabel+Touchable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UILabel+Touchable.m"; sourceTree = "<group>"; };
 		EA5FE1B917E7F5040099754C /* RopeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RopeView.h; sourceTree = "<group>"; };
 		EA5FE1BA17E7F5050099754C /* RopeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RopeView.m; sourceTree = "<group>"; };
 		EA5FE1C417E827EF0099754C /* common_home_join_line@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "common_home_join_line@2x.png"; sourceTree = "<group>"; };
@@ -13597,6 +13603,7 @@
 		CA103D9F1509A56100F60C03 /* Core-Utils-View */ = {
 			isa = PBXGroup;
 			children = (
+				EA5A2EA118584D2900CABC71 /* Label */,
 				EAD13B7817DECFB700764FFB /* OrangeLoadingView */,
 				A4C9E04217A61B6500DE982F /* KxMenu */,
 				A4EC5ABD178FFE820085031F /* ImageView */,
@@ -17085,6 +17092,15 @@
 				EA433E2817CDE500006E6FA7 /* DJQStartView.m */,
 			);
 			path = RateView;
+			sourceTree = "<group>";
+		};
+		EA5A2EA118584D2900CABC71 /* Label */ = {
+			isa = PBXGroup;
+			children = (
+				EA5A2EA518584D6E00CABC71 /* UILabel+Touchable.h */,
+				EA5A2EA618584D6E00CABC71 /* UILabel+Touchable.m */,
+			);
+			path = Label;
 			sourceTree = "<group>";
 		};
 		EA6FE5D7176B334500AB4E56 /* Service */ = {
@@ -22126,6 +22142,7 @@
 				A4572D6D1856FAEF0076ADF7 /* PPTextView.m in Sources */,
 				A4572D7618570B0F0076ADF7 /* UIView+Pan.m in Sources */,
 				A4572D981858059C0076ADF7 /* AudioFormatConverter.m in Sources */,
+				EA5A2EA918584D6E00CABC71 /* UILabel+Touchable.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -22937,6 +22954,7 @@
 				A4572D6C1856FAEF0076ADF7 /* PPTextView.m in Sources */,
 				A4572D7518570B0F0076ADF7 /* UIView+Pan.m in Sources */,
 				A4572D971858059C0076ADF7 /* AudioFormatConverter.m in Sources */,
+				EA5A2EA818584D6E00CABC71 /* UILabel+Touchable.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -23747,6 +23765,7 @@
 				A4572D6B1856FAEF0076ADF7 /* PPTextView.m in Sources */,
 				A4572D7418570B0F0076ADF7 /* UIView+Pan.m in Sources */,
 				A4572D961858059C0076ADF7 /* AudioFormatConverter.m in Sources */,
+				EA5A2EA718584D6E00CABC71 /* UILabel+Touchable.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -24513,6 +24532,7 @@
 				A4572D6E1856FAEF0076ADF7 /* PPTextView.m in Sources */,
 				A4572D7718570B0F0076ADF7 /* UIView+Pan.m in Sources */,
 				A4572D991858059C0076ADF7 /* AudioFormatConverter.m in Sources */,
+				EA5A2EAA18584D6E00CABC71 /* UILabel+Touchable.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
