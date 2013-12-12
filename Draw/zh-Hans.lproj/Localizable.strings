@@ -684,7 +684,7 @@
 "kSending" = "正在发送中...";
 "kHandlingDataProgress" = "正在处理数据... (%3.f%%)";
 "kSendingProgress" = "正在发送中 (%3.f%%)";
-"kHandling" = "处理中";
+"kHandling" = "处理中...";
 
 
 "kNoCommentTips" = "还没有人评论";

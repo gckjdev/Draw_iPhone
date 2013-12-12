@@ -854,6 +854,8 @@ enum{
         [self changeVoiceType:voiceType];
         
         // play directly
+        [self prepareToPlay];
+        [self setState:StatePlaying];
         [self play];
     }
 }
