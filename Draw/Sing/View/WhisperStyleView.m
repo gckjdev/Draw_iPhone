@@ -122,25 +122,22 @@ AUTO_CREATE_VIEW_BY_XIB(WhisperStyleView);
         UIImage *placeHolder = [UIImage imageNamed:@"unloadbg@2x.png"];
         
         if (useBigImage) {
-            [iv setImageWithURL:[NSURL URLWithString:feed.pbFeed.opusThumbImage] placeholderImage:placeHolder] ;
-            placeHolder = [[SDImageCache sharedImageCache] imageFromMemoryCacheForKey:feed.pbFeed.opusThumbImage];
-            if (placeHolder == nil) {
-                placeHolder = [UIImage imageNamed:@"unloadbg@2x.png"];
-            }
-            [iv setImageWithURL:feed.largeImageURL
+            
+            [iv setImageWithURL:[feed thumbURL]
                placeholderImage:placeHolder
                       completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType) {
-                          [indicator stopAnimating];
-                          [indicator removeFromSuperview];
-                          
+                [iv setImageWithURL:[feed largeImageURL] placeholderImage:image completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType) {
+                    [indicator stopAnimating];
+                    [indicator removeFromSuperview];
+                }];
             }];
         }else{
+            
             [iv setImageWithURL:feed.thumbURL placeholderImage:placeHolder completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType) {
                 [indicator stopAnimating];
                 [indicator removeFromSuperview];
             }];
         }
-
         
         [self setClipsToBounds:YES];
     }
