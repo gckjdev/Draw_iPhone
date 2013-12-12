@@ -1013,6 +1013,16 @@ enum{
 
 - (void)handleAndSubmitOpus{
     
+    BOOL isM4A = [[[self recordURL] pathExtension] isEqualToString:@"m4a"];
+    if (isM4A){
+        // 支持1.0/1.1的m4a文件
+        PPDebug(@"record file is M4A file, submit native file directly");
+        [_singOpus setVoiceType:PBVoiceTypeVoiceTypeOrigin]; // for origin
+        [self uploadSingFile:[[self recordURL] path]];
+        return;
+    }
+    
+    
     // 用户如果选择原声，则不需要经过声音处理步骤，直接上传。
     if (_singOpus.pbOpus.sing.voiceType == PBVoiceTypeVoiceTypeOrigin) {
         
@@ -1062,22 +1072,30 @@ enum{
     });
 }
 
-- (void)convertWavFileToMp3FileDone{
-    
-    NSData *singData = [NSData dataWithContentsOfFile:self.mp3FilePath];
-    PPDebug(@"mp3 file path is %@", self.mp3FilePath);
-    PPDebug(@"mp3 file data length = %d", [singData length]);
-//    if ([singData length] <= 28) {
-//        NSString *msg = [NSString stringWithFormat:NSLS(@"kChangeVoiceTypeFail"), [_singOpus getCurrentVoiceTypeName]];
-//        [self hideProgressView];
-//        POSTMSG2(msg, 2.5);
-//        return;
-//    }
-    
-    [self uploadSingOpus:singData];
+- (void)convertWavFileToMp3FileDone
+{
+    [self uploadSingFile:self.mp3FilePath];
 }
 
-- (void)uploadSingOpus:(NSData *)singData{
+- (void)uploadSingFile:(NSString*)filePath
+{
+    
+    NSData *singData = [NSData dataWithContentsOfFile:filePath];
+    PPDebug(@"record file path is %@", filePath);
+    PPDebug(@"record file data length = %d", [singData length]);
+    
+    if ([singData length] <= 28) {
+        NSString *msg = [NSString stringWithFormat:NSLS(@"kChangeVoiceTypeFail"), [_singOpus getCurrentVoiceTypeName]];
+        [self hideProgressView];
+        POSTMSG2(msg, 2.5);
+        return;
+    }
+    
+    [self uploadSingOpus:singData dataType:[filePath pathExtension]];
+}
+
+- (void)uploadSingOpus:(NSData *)singData dataType:(NSString*)dataType
+{
     
     if ([singData length] <= 0) {
         POSTMSG(@"kNoRecordDataForSubmit");
@@ -1088,6 +1106,7 @@ enum{
     [[OpusService defaultService] submitOpus:_singOpus
                                        image:_image
                                     opusData:singData
+                                    dataType:dataType
                             progressDelegate:self
                                     delegate:self];
 }
