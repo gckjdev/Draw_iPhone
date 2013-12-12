@@ -68,6 +68,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(OpusService);
 - (void)submitOpus:(Opus*)draftOpus
              image:(UIImage *)image
           opusData:(NSData *)opusData
+          dataType:(NSString *)dataType
   progressDelegate:(id)progressDelegate
           delegate:(id<OpusServiceDelegate>)delegate
 {
