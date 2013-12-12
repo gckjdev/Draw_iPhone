@@ -62,6 +62,7 @@
     int index = [actionSheet addButtonWithTitle:NSLS(@"kCancel")];
     [actionSheet setCancelButtonIndex:index];
     [actionSheet showInView:[superViewController view]];
+//    [actionSheet showFromTabBar:superViewController.tabBarController.tabBar];
     [actionSheet release];
     
     
@@ -196,19 +197,25 @@
                     }
                 }
             }
-        if (_delegate && [_delegate respondsToSelector:@selector(didImageSelected:)]) {
-            [_delegate didImageSelected:image];
-        }
+
+        
     }
+
+    if (_popoverController != nil) {
+        [_popoverController dismissPopoverAnimated:NO];
+    }else{
+        [picker dismissModalViewControllerAnimated:NO];
+    }
+    
+    if (image && _delegate && [_delegate respondsToSelector:@selector(didImageSelected:)]) {
+        [_delegate didImageSelected:image];
+    }
+    
     if (_selectImageBlock != NULL) {
         EXECUTE_BLOCK(_selectImageBlock, image);
         self.selectImageBlock = nil;
     }
-    if (_popoverController != nil) {
-        [_popoverController dismissPopoverAnimated:YES];
-    }else{
-        [picker dismissModalViewControllerAnimated:YES];
-    }
+
 
 }
 

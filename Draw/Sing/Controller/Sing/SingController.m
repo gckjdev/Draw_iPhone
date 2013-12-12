@@ -865,17 +865,19 @@ enum{
 }
 
 - (void)didImageSelected:(UIImage*)image{
-    
-    [self performSelector:@selector(showImageEditor:) withObject:image afterDelay:0.7];
+
+    [self showImageEditor:image];
+//    [self performSelector:@selector(showImageEditor:) withObject:image afterDelay:0.7];
 }
 
 - (void)showImageEditor:(UIImage *)image{
     
-    CropAndFilterViewController *vc = [[[CropAndFilterViewController alloc] init] autorelease];
+    CropAndFilterViewController *vc = [[CropAndFilterViewController alloc] init];
     vc.delegate = self;
     vc.image = image;
     
     [self presentViewController:vc animated:YES completion:NULL];
+    [vc release];
 }
 
 - (void)cropViewController:(CropAndFilterViewController *)controller didFinishCroppingImage:(UIImage *)image{
@@ -1052,11 +1054,12 @@ enum{
 - (void)processor:(VoiceProcessor *)processor progress:(float)progress{
     PPDebug(@"progress = %f", progress);
     
-    NSString* progressText = [NSString stringWithFormat:NSLS(@"kHandlingDataProgress"), progress*100];
+    NSString* progressText = [NSString stringWithFormat:NSLS(@"kChangeVoiceDataProgress"), progress*100];
     [self showProgressViewWithMessage:progressText progress:progress];
 }
 
 - (void)processor:(VoiceProcessor *)processor doneWithOutURL:(NSURL*)outURL resultCode:(int)resultCode{
+    
     if (resultCode == 0){
         // 变声转换成功，再转成MP3文件
         [self convertWavFile:outURL.path toMp3File:self.mp3FilePath];
@@ -1072,7 +1075,7 @@ enum{
 - (void)convertWavFile:(NSString *)inputFilePath
              toMp3File:(NSString *)outputFilePath{
     
-    [self showActivityWithText:NSLS(@"kHandling")];
+    [self showActivityWithText:NSLS(@"kCompressingData")];
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         
         [AudioFormatConverter convertWavToMp3WithInputFile:inputFilePath
