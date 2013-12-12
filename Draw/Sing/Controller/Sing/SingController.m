@@ -384,46 +384,35 @@ enum{
 // 拖拽手势处理事件
 - (void) handlePanGestures:(UIPanGestureRecognizer*)paramSender{
     
+    if (paramSender.state == UIGestureRecognizerStateChanged) {
+        
+        [paramSender.view.layer setBorderWidth:(ISIPAD ? 4 : 2)];
+        [paramSender.view.layer setBorderColor:[COLOR_GRAY CGColor]];
+        
+        CGPoint translatePoint = [paramSender translationInView:paramSender.view.superview];
+        CGPoint center = paramSender.view.center;
+        center.x += translatePoint.x;
+        center.y += translatePoint.y;
+        
+        if (center.x < 0
+            || center.y < 0
+            || center.x > CGRectGetWidth(paramSender.view.superview.frame)
+            || center.y > CGRectGetHeight(paramSender.view.superview.frame)) {
+            return;
+        }
+        
+        paramSender.view.center = center;
+        [paramSender setTranslation:CGPointMake(0, 0) inView:paramSender.view.superview];
+        
 
-    CGPoint translatePoint = [paramSender translationInView:paramSender.view.superview];
-    CGPoint center = paramSender.view.center;
-    center.x += translatePoint.x;
-    center.y += translatePoint.y;
-    paramSender.view.center = center;
+    }
     
-    [paramSender setTranslation:CGPointMake(0, 0) inView:paramSender.view.superview];
     
-//    UIView *view = paramSender.view;
-//    
-//    if (paramSender.state != UIGestureRecognizerStateEnded
-//        && paramSender.state != UIGestureRecognizerStateFailed){
-//        
-//        // 获取手指在屏幕中的坐标
-//
-//        [view.layer setBorderWidth:(ISIPAD ? 4 : 2)];
-//        [view.layer setBorderColor:[COLOR_GRAY CGColor]];
-//        
-//        CGPoint location = [paramSender locationInView:view.superview];
-//        
-//        if (location.x < 0 || location.x > view.superview.bounds.size.width) {
-//            return;
-//        }
-//        
-//        if (location.y < 0 || location.y > view.superview.bounds.size.height) {
-//            return;
-//        }
-//        
-//        view.center = location;// 重新设置视图的位置
-//        
-//    }else if (paramSender.state == UIGestureRecognizerStateEnded){
-//    
-//        [view.layer setBorderWidth:0];
-//        [view.layer setBorderColor:[[UIColor clearColor] CGColor]];
-//        [self saveDescLabelInfo];
-//    }else{
-//        [view.layer setBorderWidth:0];
-//        [view.layer setBorderColor:[[UIColor clearColor] CGColor]];
-//    }
+    if (paramSender.state == UIGestureRecognizerStateEnded) {
+        [paramSender.view.layer setBorderWidth:0];
+        [paramSender.view.layer setBorderColor:[[UIColor clearColor] CGColor]];
+        [self saveDescLabelInfo];
+    }
 }
 
 - (void) handleTapGestures:(UIPanGestureRecognizer*)paramSender{
@@ -478,7 +467,8 @@ enum{
     [self.opusDescLabel wrapTextWithConstrainedSize:size];
     [self.opusDescLabel updateWidth:self.opusImageView.frame.size.width * 0.8];
     [self.opusDescLabel updateHeight:MAX((ISIPAD ? 60 : 30) ,self.opusDescLabel.frame.size.height)];
-    
+    self.opusDescLabel.text = desc;
+
 //    // center desc label
 //    [self.opusDescLabel updateCenterX:self.opusImageView.frame.size.width/2];
 //    [self.opusDescLabel updateCenterY:self.opusImageView.frame.size.height/2];
