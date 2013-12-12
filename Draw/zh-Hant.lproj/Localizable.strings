@@ -690,9 +690,10 @@
 "kReply" = "回複";
 "kCorrect" = "猜對了！";
 "kSending" = "正在發送中...";
-"kHandlingDataProgress" = "正在處理數據... (%3.f%%)";
+"kChangeVoiceDataProgress" = "處理變聲數據中...  (%3.f%%)";
 "kSendingProgress" = "正在發送中 (%3.f%%)";
 "kHandling" = "處理中...";
+"kCompressingData" = "數據壓縮中...";
 
 "kNoCommentTips" = "還沒有人評論";
 "kFeedDetail" = "作品詳情";
