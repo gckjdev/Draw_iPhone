@@ -213,11 +213,9 @@
 
 - (void)setLocalDataUrl:(NSString*)extension
 {
-    NSString* path = [NSString stringWithFormat:@"%@/%@.%@", [[self class] localDataDir], [self opusKey], extension];
-    NSString* finalPath = [FileUtil filePathInAppDocument:path];
-    [_pbOpusBuilder setLocalDataUrl:finalPath];
+    NSString* path = [NSString stringWithFormat:@"%@.%@", [self opusKey], extension];
+    [_pbOpusBuilder setLocalDataUrl:path];
 }
-
 
 - (void)setTags:(NSArray *)tags{
     
@@ -231,6 +229,11 @@
 {
     NSString* path = urlString;
     if ([path hasPrefix:@"/var/"]){
+        PPDebug(@"try to get local URL string but path is full path with /var/ prefix, path=%@", path);
+        path = [path lastPathComponent];
+    }
+    else if ([path hasPrefix:@"/Users/"]){
+        PPDebug(@"try to get local URL string but path is full path with /Users/ prefix, path=%@", path);
         path = [path lastPathComponent];
     }
     

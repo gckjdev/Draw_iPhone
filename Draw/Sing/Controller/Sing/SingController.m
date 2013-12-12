@@ -1039,7 +1039,11 @@ enum{
             _processor.delegate = self;
         }
                 
-        [_processor processVoice:inUrl outURL:outUrl duration:_singOpus.pbOpus.sing.duration pitch:_singOpus.pbOpus.sing.pitch formant:_singOpus.pbOpus.sing.formant];
+        [_processor processVoice:inUrl
+                          outURL:outUrl
+                        duration:_singOpus.pbOpus.sing.duration
+                           pitch:_singOpus.pbOpus.sing.pitch
+                         formant:_singOpus.pbOpus.sing.formant];
         
         [self showProgressViewWithMessage:NSLS(@"kSending")];
     }
@@ -1052,9 +1056,17 @@ enum{
     [self showProgressViewWithMessage:progressText progress:progress];
 }
 
-- (void)processor:(VoiceProcessor *)processor doneWithOutURL:(NSURL*)outURL{
-    
-    [self convertWavFile:outURL.path toMp3File:self.mp3FilePath];
+- (void)processor:(VoiceProcessor *)processor doneWithOutURL:(NSURL*)outURL resultCode:(int)resultCode{
+    if (resultCode == 0){
+        // 变声转换成功，再转成MP3文件
+        [self convertWavFile:outURL.path toMp3File:self.mp3FilePath];
+    }
+    else{
+        [self hideActivity];
+        [self hideProgressView];
+        NSString *msg = [NSString stringWithFormat:NSLS(@"kChangeVoiceTypeFail"), [_singOpus getCurrentVoiceTypeName]];
+        POSTMSG2(msg, 2.5);
+    }
 }
 
 - (void)convertWavFile:(NSString *)inputFilePath
