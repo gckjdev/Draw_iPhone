@@ -466,8 +466,7 @@ enum{
     self.opusDescLabel.text = desc;
     [self.opusDescLabel wrapTextWithConstrainedSize:size];
     [self.opusDescLabel updateWidth:self.opusImageView.frame.size.width * 0.8];
-    [self.opusDescLabel updateHeight:MAX((ISIPAD ? 60 : 30) ,self.opusDescLabel.frame.size.height)];
-    self.opusDescLabel.text = desc;
+//    [self.opusDescLabel updateHeight:MAX((ISIPAD ? 60 : 30) ,self.opusDescLabel.frame.size.height)];
 
 //    // center desc label
 //    [self.opusDescLabel updateCenterX:self.opusImageView.frame.size.width/2];

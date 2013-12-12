@@ -176,7 +176,8 @@ AUTO_CREATE_VIEW_BY_XIB(WhisperStyleView);
     // 如果上述的bug解决了，这里的代码就可以不要了。
     
     UILabel *label = (UILabel *)[self viewWithTag:TAG_LABEL];
-    if (label.text.length != 0 && (CGRectGetWidth(label.frame) == 0 || CGRectGetHeight(label.frame))) {
+    if (label.text.length != 0
+        && (CGRectGetWidth(label.frame) == 0 || CGRectGetHeight(label.frame) == 0)) {
         label.font = [UIFont systemFontOfSize:ISIPAD ? 25/_sx : 15/_sx];
         label.numberOfLines = 99;
         [label updateWidth:self.bounds.size.width];
