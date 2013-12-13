@@ -33,12 +33,12 @@ typedef enum{
     RowFee,
     BaseSectionRowCount,
 }BaseSectionRow;
-
+/*
 typedef enum{
     RowCreator = 0,
     RowAdmins,
 }MemberSectionRow;
-
+*/
 
 #define SIGN_LABEL_HEIGHT 238
 #define MIN_SIGN_HEIGHT 21
@@ -232,18 +232,14 @@ typedef enum{
 {
     NSInteger row = indexPath.row;
     if (SECTION_BASE_INDEX == indexPath.section) {
-        
         if (row == RowDescription) {
             return [GroupDetailCell getCellHeightForText:[self descCellText]];
         }
         return [GroupDetailCell getCellHeightForSingleLineText];
         
     }else{
-        if (row == RowCreator) {
-            return [GroupDetailCell getCellHeightForSingleAvatar];
-        }
-        PBGroupUsersByTitle *usersByTitle = _group.titlesList[indexPath.row];
-        return [GroupDetailCell getCellHeightForMultipleAvatar:usersByTitle.usersList.count];
+        PBGroupUsersByTitle *usersByTitle = groupManager.tempMemberList[indexPath.row];
+        return [GroupDetailCell getCellHeightForUsersByTitle:usersByTitle];
     }
 }
 
@@ -292,19 +288,21 @@ typedef enum{
         [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
     }
     NSInteger row = indexPath.row;
+    
     if (indexPath.section == SECTION_BASE_INDEX) {
         [self updateBaseSectionCell:cell inRow:row];
     }else{
-        if (RowCreator == row) {
-            [cell setCellForCreatorInGroup:_group];
+        CellRowPosition position = CellRowPositionMid;
+        if (row == 0) {
+            position = CellRowPositionFirst;
+        }else if (row == [_group.titlesList count] - 1) {
+            position = CellRowPositionLast;
         }else{
-            CellRowPosition position = CellRowPositionMid;
-            if (row == [_group.titlesList count] - 1) {
-                position = CellRowPositionLast;
-            }
-            PBGroupUsersByTitle *usersByTitle = groupManager.tempMemberList[indexPath.row];
-            [cell setCellForMembers:usersByTitle position:position InGroup:_group];
+            position = CellRowPositionMid;
         }
+        PBGroupUsersByTitle *usersByTitle = groupManager.tempMemberList[indexPath.row];
+        [cell setCellForUsersByTitle:usersByTitle position:position inGroup:_group];
+        
     }
     [cell setNeedsLayout];
     return cell;

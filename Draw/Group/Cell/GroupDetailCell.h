@@ -43,8 +43,7 @@ typedef enum {
 
 + (CGFloat)getCellHeightForSingleLineText;
 + (CGFloat)getCellHeightForText:(NSString *)text;
-+ (CGFloat)getCellHeightForSingleAvatar;
-+ (CGFloat)getCellHeightForMultipleAvatar:(NSInteger)avatarCount;
++ (CGFloat)getCellHeightForUsersByTitle:(PBGroupUsersByTitle *)usersByTitle;
 
 + (NSString *)getCellIdentifier;
 
@@ -52,12 +51,8 @@ typedef enum {
            position:(CellRowPosition)position
               group:(PBGroup *)group;
 
-
-
-- (void)setCellForCreatorInGroup:(PBGroup *)group;
-
-- (void)setCellForMembers:(PBGroupUsersByTitle *)members
-                 position:(CellRowPosition)position
-                  InGroup:(PBGroup *)group;
+- (void)setCellForUsersByTitle:(PBGroupUsersByTitle *)usersByTitle
+                      position:(CellRowPosition)position
+                       inGroup:(PBGroup *)group;
 
 @end

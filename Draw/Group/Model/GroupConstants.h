@@ -21,6 +21,8 @@ typedef enum{
     
 }GroupRole;
 
+#define CUSTOM_TITLE_START 10
+
 typedef enum {
     
     NONE                    = (0),      //无权限

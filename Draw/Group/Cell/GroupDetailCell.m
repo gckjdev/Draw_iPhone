@@ -10,6 +10,8 @@
 #import "GroupDetailCell.h"
 #import "GroupUIManager.h"
 #import "StableView.h"
+#import "GroupConstants.h"
+#import "GroupModelExt.h"
 
 #define MEMBER_NUMBER_PERROW 5
 #define TITLE_INFO_HEIGHT 25
@@ -64,10 +66,6 @@
 {
     return 50.0f;
 }
-+ (CGFloat)getCellHeightForSingleAvatar
-{
-    return 70.0f;
-}
 
 + (CGFloat)getCellHeightForText:(NSString *)text
 {
@@ -89,10 +87,17 @@
     return row;
 }
 
-+ (CGFloat)getCellHeightForMultipleAvatar:(NSInteger)avatarCount
+#define CREATOR_CELL_HEIGHT 70
+
++ (CGFloat)getCellHeightForUsersByTitle:(PBGroupUsersByTitle *)usersByTitle
 {
-    NSInteger row = [self rowForMemberCount:avatarCount];
-    return TITLE_INFO_HEIGHT+(row * (MEMBER_AVATAR_HEIGHT + MEMBER_AVATAR_SPACE));
+    if ([usersByTitle isCreator]) {
+        return CREATOR_CELL_HEIGHT;
+    }else{
+        NSInteger avatarCount = [usersByTitle.usersList count];
+        NSInteger row = [self rowForMemberCount:avatarCount];
+        return TITLE_INFO_HEIGHT+(row * (MEMBER_AVATAR_HEIGHT + MEMBER_AVATAR_SPACE));
+    }
 }
 
 + (NSString *)getCellIdentifier
@@ -120,17 +125,19 @@
             cellStyle:DetailCellStyleSingleAvatar];
 }
 
-- (void)setCellForMembers:(PBGroupUsersByTitle *)members
-                 position:(CellRowPosition)position
-                  InGroup:(PBGroup *)group
+- (void)setCellForUsersByTitle:(PBGroupUsersByTitle *)usersByTitle
+                      position:(CellRowPosition)position
+                       inGroup:(PBGroup *)group
 {
-    [self setCellInfo:group
-             position:position
+    
+    DetailCellStyle style = [usersByTitle isCreator] ? DetailCellStyleSingleAvatar :
+    DetailCellStyleMultipleAvatars;
+    
+    [self setCellInfo:group position:position
            colorStyle:ColorStyleYellow
-            cellStyle:DetailCellStyleMultipleAvatars];
-    self.members = members;
+            cellStyle:style];
+    self.members = usersByTitle;
 }
-
 
 
 - (void)setCellInfo:(PBGroup *)group
@@ -179,12 +186,12 @@
             break;
         }
         case DetailCellStyleSingleAvatar:{
-            [self.infoLabel setText:self.group.creator.user.nickName];
+            [self.infoLabel setText:[self.group creatorNickName]];
             break;
         }
         case DetailCellStyleMultipleAvatars:{
             [self.infoLabel updateOriginY:0];
-            [self.infoLabel setText:self.members.title.title];
+            [self.infoLabel setText:[self.members titleName]];
             break;
         }
         default:

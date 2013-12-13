@@ -2152,7 +2152,7 @@
 "kContentDesc" = "内容：%@";
 "kPostscriptDesc" = "附言：%@";
 
-
+"kGroupTitleDesc" = "%@  %d人";
 
 "kGroupComment" = "评论";
 "kGroupRequest" = "请求";

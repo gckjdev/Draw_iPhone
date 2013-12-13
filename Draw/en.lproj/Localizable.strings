@@ -2126,6 +2126,8 @@
 "kGroupNotice" = "Notice";
 "kAtMe" = "@Me";
 
+"kGroupTitleDesc" = "%@ (%d)";
+
 "kSearchGroup" = "Search Group";
 "kSearchPost" = "Search Post";
 "kSearchTopic" = "Search Topic";
