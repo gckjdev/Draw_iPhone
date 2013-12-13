@@ -41,7 +41,8 @@ typedef enum {
 
 + (id)createCell:(id<GroupDetailCellDelegate>)delegate;
 
-+ (CGFloat)getCellHeightForSimpleText;
++ (CGFloat)getCellHeightForSingleLineText;
++ (CGFloat)getCellHeightForText:(NSString *)text;
 + (CGFloat)getCellHeightForSingleAvatar;
 + (CGFloat)getCellHeightForMultipleAvatar:(NSInteger)avatarCount;
 

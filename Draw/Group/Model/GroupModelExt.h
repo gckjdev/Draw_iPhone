@@ -14,5 +14,11 @@
 - (NSString *)desc;
 - (NSString *)msg;
 - (NSString *)createDateString;
+@end
+
+@interface PBGroup(Ext)
+
+- (NSURL *)medalImageURL;
+- (NSURL *)bgImageURL;
 
 @end

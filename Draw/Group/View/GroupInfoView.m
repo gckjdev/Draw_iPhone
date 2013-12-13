@@ -13,6 +13,9 @@
 
 #define SPACE_NICK_SIZE (ISIPAD?8:5)
 #define SIZE_BASE_WIDTH (ISIPAD?20:12)
+#define DEFAULT_LABEL_HEIGHT 19
+#define DEFAULT_HEIGHT (ISIPAD?100:60)
+#define DESC_LABEL_WIDTH 200
 
 @interface GroupInfoView(){
     UIButton *_customButton;
@@ -34,6 +37,8 @@
     
     [_descLabel setTextColor:COLOR_BROWN];
     [_descLabel setFont:CELL_CONTENT_FONT];
+    [_descLabel setNumberOfLines:0];
+    [_descLabel setLineBreakMode:NSLineBreakByCharWrapping];
     
     [_sizeLabel setTextColor:COLOR_BROWN];
     [_sizeLabel setFont:CELL_SMALLTEXT_FONT];
@@ -53,9 +58,31 @@
     return infoView;
 }
 
+- (void)updateWithGroup:(PBGroup *)group
+{
+    self.group = group;
+    [self setNeedsLayout];
+}
+
+
++ (CGFloat)recommandHeightForGroup:(PBGroup *)group
+{
+    CGSize size = CGSizeMake(DESC_LABEL_WIDTH, 99999999);
+    CGSize textSize = [group.signature sizeWithFont:CELL_CONTENT_FONT
+                              constrainedToSize:size
+                                  lineBreakMode:NSLineBreakByCharWrapping];
+    CGFloat delta = textSize.height - DEFAULT_LABEL_HEIGHT;
+        
+    if (delta > 0) {
+        return DEFAULT_HEIGHT + delta;
+    }
+    return DEFAULT_HEIGHT;
+}
+
 - (void)layoutSubviews
 {
-    [self.iconView setImageURL:[NSURL URLWithString:@"http://tp2.sinaimg.cn/1843913657/180/5663565806/1"]];
+    [super layoutSubviews];
+    [self.iconView setImageURL:[_group medalImageURL] placeholderImage:[[ShareImageManager defaultManager] unloadBg]];
     
     [self.nameLabel setText:_group.name];
     [self.descLabel setText:_group.signature];
@@ -76,7 +103,7 @@
 
 + (CGFloat)getViewHeight
 {
-    return ISIPAD?100:60;
+    return DEFAULT_HEIGHT;
 }
 
 #define CUSTOM_BUTTON_SIZE (ISIPAD?45:25)

@@ -2111,6 +2111,12 @@
 "TypeAcceptMemberInvitation" = "%@ agreed to join %@.";
 "TypeAcceptGuestInvitation" = "%@ agreed to be the guest of %@.";
 
+"kGroupDetailRowWeath" = "Fame: %d  Balance: %d  Level: %d";
+"kGroupDetailRowCreateDate" = "Create date %@";
+"kGroupDetailRowDesc" = "Description: %@";
+"kGroupDetailRowFee" = "Fee: %d coins/month";
+"kDefaultGroupSignature" = "None";
+
 "kContentDesc" = "Content: %@";
 "kPostscriptDesc" = "Postscript: %@";
 

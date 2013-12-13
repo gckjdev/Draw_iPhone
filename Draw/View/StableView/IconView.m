@@ -83,6 +83,11 @@
     [_imageView setImageWithURL:imageURL];
 }
 
+- (void)setImageURL:(NSURL *)imageURL placeholderImage:(UIImage *)image
+{
+    [_imageView setImageWithURL:imageURL placeholderImage:image];
+}
+
 - (void)setImageURLString:(NSString *)urlString
 {
     [_imageView setImageWithURL:[NSURL URLWithString:urlString]];

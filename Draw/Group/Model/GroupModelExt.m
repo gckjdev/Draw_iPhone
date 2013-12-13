@@ -122,4 +122,30 @@ typedef enum{
     return dateToTimeLineString(self.cDate);
 }
 
+
+@end
+
+
+@implementation PBGroup(Ext)
+
+- (NSURL *)medalImageURL
+{
+    return [NSURL URLWithString:self.medalImage];
+}
+- (NSURL *)bgImageURL
+{
+    return [NSURL URLWithString:self.bgImage];
+}
+
+- (NSUInteger)hash
+{
+    return [groupId hash];
+}
+
+- (BOOL)isEqual:(id)object
+{
+    PBGroup *other = object;
+    return [self.groupId isEqualToString:other.groupId];
+}
+
 @end

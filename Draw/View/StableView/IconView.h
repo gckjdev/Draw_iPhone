@@ -19,6 +19,7 @@ typedef void (^ClickHandler)(IconView *iconView);
 
 - (void)setImage:(UIImage *)image;
 - (void)setImageURL:(NSURL *)imageURL;
+- (void)setImageURL:(NSURL *)imageURL placeholderImage:(UIImage *)image;
 - (void)setImageURLString:(NSString *)urlString;
 
 @end

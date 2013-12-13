@@ -16,6 +16,9 @@
 #define CREATOR_AVATAR_HEIGHT 50
 #define MEMBER_AVATAR_HEIGHT 40
 #define MEMBER_AVATAR_SPACE 10
+#define INFO_LABEL_WIDTH 306
+
+#define MULTIPLE_LINE_TEXT_Y_SPACE 10
 
 @interface GroupDetailCell()
 @property(nonatomic, assign) PBGroup *group;
@@ -41,20 +44,41 @@
     [super dealloc];
 }
 
+- (void)updateView
+{
+    [self.infoLabel setLineBreakMode:NSLineBreakByCharWrapping];
+    [self.infoLabel setFont:CELL_NICK_FONT];
+    [self.infoLabel setTextColor:COLOR_BROWN];
+    [self.infoLabel setNumberOfLines:0];
+}
+
 + (id)createCell:(id<GroupDetailCellDelegate>)delegate
 {
     GroupDetailCell *cell = [self createViewWithXibIdentifier:[self getCellIdentifier]];
     cell.delegate = delegate;
+    [cell updateView];
     return cell;
 }
 
-+ (CGFloat)getCellHeightForSimpleText
++ (CGFloat)getCellHeightForSingleLineText
 {
     return 50.0f;
 }
 + (CGFloat)getCellHeightForSingleAvatar
 {
     return 70.0f;
+}
+
++ (CGFloat)getCellHeightForText:(NSString *)text
+{
+    CGFloat minHeight = [self getCellHeightForSingleLineText];
+    CGSize textSize = [text sizeWithFont:CELL_NICK_FONT constrainedToSize:CGSizeMake(INFO_LABEL_WIDTH, 9999999) lineBreakMode:NSLineBreakByCharWrapping];
+    CGFloat height = MAX(textSize.height +MULTIPLE_LINE_TEXT_Y_SPACE, minHeight);
+
+    PPDebug(@"<getCellHeightForText> text = %@, height = %f",text, height);
+    
+    return height;
+    
 }
 
 + (NSInteger)rowForMemberCount:(NSInteger)memberCount
@@ -188,7 +212,7 @@
                 CGFloat avWidth = CREATOR_AVATAR_HEIGHT;
                 CGRect frame = CGRectMake(0, 0, avWidth, avWidth);
                 CGFloat x = CGRectGetWidth(self.bounds)/5;
-                CGFloat y = CGRectGetMinY(self.bounds);
+                CGFloat y = CGRectGetMidY(self.bounds);
                 PBGameUser *user = [self createUser];
                 AvatarView *av = [[AvatarView alloc] initWithFrame:frame user:user];
                 av.center = CGPointMake(x, y);
@@ -236,6 +260,7 @@
 
 - (void)layoutSubviews
 {
+    [super layoutSubviews];
     [self cleanOldViews];
     [self updateColorStyle];
     [self updateCellTextContent];

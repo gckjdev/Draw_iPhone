@@ -571,7 +571,18 @@ static GroupService *_staticGroupService = nil;
     [self loadPBData:METHOD_GET_USERS_BYTITLE
           parameters:info
             callback:^(DataQueryResponse *response, NSError *error) {
-                EXECUTE_BLOCK(callback, response.groupMemberListList, error);
+                NSArray *list = response.groupMemberListList;
+                if ([list count] > 1) {
+                    list = [response.groupMemberListList sortedArrayUsingComparator:^NSComparisonResult(id obj1, id obj2) {
+                        PBGroupUsersByTitle *t1 = obj1;
+                        PBGroupUsersByTitle *t2 = obj2;
+                        if (t1.title.titleId < t2.title.titleId) {
+                            return NSOrderedAscending;
+                        }
+                        return NSOrderedDescending;
+                    }];
+                }
+                EXECUTE_BLOCK(callback, list, error);
     }];
 }
 
@@ -579,8 +590,11 @@ static GroupService *_staticGroupService = nil;
              info:(NSDictionary *)info
          callback:(SimpleResultBlock)callback
 {
+    NSMutableDictionary *params = [NSMutableDictionary dictionaryWithDictionary:info];
+    [params setObject:groupId forKey:PARA_GROUPID];
+    
     [self loadPBData:METHOD_EDIT_GROUP
-          parameters:info
+          parameters:params
             callback:^(DataQueryResponse *response, NSError *error) {
                 EXECUTE_BLOCK(callback, error);
     }];
