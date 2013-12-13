@@ -176,6 +176,20 @@
     [userBuilder release];
 }
 
+- (void)setAuthorInfo:(Opus*)opus
+{
+    // set author information
+    PBGameUser_Builder* userBuilder = [[PBGameUser_Builder alloc] init];
+    [userBuilder setUserId:[_userManager userId]];
+    [userBuilder setNickName:[_userManager nickName]];
+    [userBuilder setAvatar:[_userManager avatarURL]];
+    [userBuilder setSignature:[_userManager signature]];
+    [userBuilder setGender:[_userManager gender]];
+    
+    [opus setAuthor:[userBuilder build]];
+    [userBuilder release];    
+}
+
 - (NSArray*)reverseSubArray:(NSArray*)array offset:(int)offset limit:(int)limit
 {
     if (array == nil || [array count] == 0){
