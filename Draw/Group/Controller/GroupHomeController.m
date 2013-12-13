@@ -106,8 +106,39 @@
 
 - (void)viewDidAppear:(BOOL)animated
 {
-    [super viewDidAppear:animated];
     [self updateAtMeBadge];
+    //update edited group
+    [self updateGroupsWithSharedGroup];
+    [super viewDidAppear:animated];
+    [self.dataTableView reloadData];
+}
+
+- (void)updateGroupsWithSharedGroup
+{
+    NSInteger groupTabs[] = {
+        GroupTabGroupFollow,
+        GroupTabGroupNew,
+        GroupTabGroupBalance,
+        GroupTabGroupActive,
+        GroupTabGroupFame,
+        -1
+    };
+
+    NSInteger i = 0;
+    PBGroup *sharedGroup = [[GroupManager defaultManager] sharedGroup];
+    while (sharedGroup != nil) {
+        NSInteger tabID = groupTabs[i];
+        if (tabID == -1) {
+            break;
+        }
+        NSMutableArray *list = [_tabManager dataListForTabID:tabID];
+        NSUInteger index = [list indexOfObject:sharedGroup];
+        if (index != NSNotFound) {
+            [list replaceObjectAtIndex:index withObject:sharedGroup];
+        }
+        ++ i;        
+    }
+    
 }
 
 - (void)didReceiveMemoryWarning

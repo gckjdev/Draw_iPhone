@@ -8,7 +8,7 @@
 
 #import "GroupModelExt.h"
 #import "TimeUtils.h"
-
+#import "GroupConstants.h"
 
 typedef enum{
     TypeBulletin = 0,
@@ -27,7 +27,7 @@ typedef enum{
     TypeAcceptMemberInvitation = 10,
     TypeAcceptGuestInvitation = 11,
     
-}GroupNoticeType;
+}NoticeType;
 
 
 @implementation PBGroupNotice(Ext)
@@ -122,4 +122,83 @@ typedef enum{
     return dateToTimeLineString(self.cDate);
 }
 
+
+@end
+
+
+@implementation PBGroup(Ext)
+
+- (NSURL *)medalImageURL
+{
+    return [NSURL URLWithString:self.medalImage];
+}
+- (NSURL *)bgImageURL
+{
+    return [NSURL URLWithString:self.bgImage];
+}
+
+- (NSUInteger)hash
+{
+    return [groupId hash];
+}
+
+- (BOOL)isEqual:(id)object
+{
+    PBGroup *other = object;
+    return [self.groupId isEqualToString:other.groupId];
+}
+
+- (NSString *)creatorNickName
+{
+    if ([self creatorIsMe]) {
+        return NSLS(@"kMe");
+    }else{
+        return self.creator.user.nickName;
+    }
+}
+- (BOOL)creatorIsMe
+{
+   return [[UserManager defaultManager] isMe:self.creator.user.userId];
+}
+
+
+@end
+
+@implementation PBGroupUsersByTitle (Ext)
+
+- (BOOL)isCreator
+{
+    return GroupRoleCreator == self.title.titleId;
+}
+- (BOOL)isCustomTitle
+{
+    if (self.title.titleId > CUSTOM_TITLE_START) {
+        return YES;
+    }
+    return NO;
+}
+
+- (NSString *)titleName
+{
+    return self.title.title;
+}
+
+- (NSString *)firstMemberNickName
+{
+    NSArray *list = self.usersList;
+    if ([list count] > 0) {
+        PBGameUser *user = list[0];
+        return user.nickName;
+    }
+    return @"";
+}
+
+- (NSString *)desc
+{
+    if ([self isCreator]) {
+        return [NSString stringWithFormat:@"%@  %@", [self titleName], [self firstMemberNickName]];
+    }else{
+        return [NSString stringWithFormat:NSLS(@"kGroupTitleDesc"), [self titleName], [[self usersList] count]];        
+    }
+}
 @end

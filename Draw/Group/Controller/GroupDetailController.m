@@ -15,7 +15,8 @@
 #import "GameNetworkConstants.h"
 #import "UILabel+Touchable.h"
 #import "CommonDialog.h"
-
+#import "GroupModelExt.h"
+#import "UILabel+Extend.h"
 
 enum{
     SECTION_BASE_INDEX = 0,
@@ -32,12 +33,15 @@ typedef enum{
     RowFee,
     BaseSectionRowCount,
 }BaseSectionRow;
-
+/*
 typedef enum{
     RowCreator = 0,
     RowAdmins,
 }MemberSectionRow;
+*/
 
+#define SIGN_LABEL_HEIGHT 238
+#define MIN_SIGN_HEIGHT 21
 
 @interface GroupDetailController ()
 {
@@ -76,6 +80,51 @@ typedef enum{
     [super dealloc];
 }
 
+
+- (void)initViews
+{
+    //update title view
+    [self.titleView setTarget:self];
+    [self.titleView setBackButtonSelector:@selector(clickBack:)];
+    [self.titleView setRightButtonTitle:NSLS(@"kEdit")];
+    [self.titleView setTransparentStyle];
+
+    //update header.
+    [self.groupName setTextColor:COLOR_ORANGE];
+    [self.groupSignature setTextColor:COLOR_BROWN];
+    [self.groupName setFont:CELL_NICK_FONT];
+    [self.groupSignature setFont:CELL_CONTENT_FONT];
+    [self.groupSignature setLineBreakMode:NSLineBreakByCharWrapping];
+    [self.groupSignature setNumberOfLines:0];
+    
+    [self.dataTableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
+
+}
+
+#define TABLE_SIGN_SPACE 6
+
+- (void)reloadView
+{
+    //update group info
+    [self.groupIconView setGroupId:_group.groupId];
+    [self.groupIconView setImageURL:[_group medalImageURL]
+                   placeholderImage:[[ShareImageManager defaultManager] unloadBg]];
+
+    [self.groupName setText:_group.name];
+    if ([_group.signature length] == 0) {
+        [self.groupSignature setText:NSLS(@"kDefaultGroupSignature")];
+    }else{
+        [self.groupSignature setText:_group.signature];
+    }
+    CGRect frame = [self.groupSignature autoFitFrame];
+    CGFloat labelHeight = MAX(CGRectGetHeight(frame), MIN_SIGN_HEIGHT);
+    
+    CGFloat originY = CGRectGetMinY(frame) + labelHeight + TABLE_SIGN_SPACE;
+    
+    [self.dataTableView updateOriginY:originY];
+    [self.dataTableView reloadData];
+}
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -100,7 +149,7 @@ typedef enum{
                    info:(NSString *)info
                     key:(NSString*)key
 {
-    CommonDialog *dialog = [CommonDialog createInputViewDialogWith:info];
+    CommonDialog *dialog = [CommonDialog createInputViewDialogWith:title];
     dialog.inputTextView.text = info;
     if ([key isEqualToString:PARA_FEE]) {
         dialog.inputTextView.keyboardType = UIKeyboardTypeNumberPad;
@@ -121,9 +170,9 @@ typedef enum{
 - (void)onTap:(UITapGestureRecognizer *)tap
 {
     if (tap.view == self.groupName) {
-        [self alertToEditInfo:NSLS(@"kEditGroupName") info:self.groupName.text key:PARA_NAME];
+        [self alertToEditInfo:NSLS(@"kEditGroupName") info:_group.name key:PARA_NAME];
     }else if(tap.view == self.groupSignature){
-        [self alertToEditInfo:NSLS(@"kEditGroupSignature") info:self.groupName.text key:PARA_DESC];
+        [self alertToEditInfo:NSLS(@"kEditGroupSignature") info:_group.signature key:PARA_SIGNATURE];
     }
 
 }
@@ -136,20 +185,11 @@ typedef enum{
 
 - (void)viewDidLoad
 {
+    [groupManager setSharedGroup:self.group];
     [super viewDidLoad];
-
-    //update title view
-    [self.titleView setTarget:self];
-    [self.titleView setBackButtonSelector:@selector(clickBack:)];
-    [self.titleView setRightButtonTitle:NSLS(@"kEdit")];
-    [self.titleView setTransparentStyle];
-    
-    //update group info
-    [self.groupIconView setGroupId:_group.groupId];
-    [self.groupIconView setImageURLString:_group.medalImage];
-    [self.groupName setText:_group.name];
-    [self.groupSignature setText:_group.signature];
+    [self initViews];
     [self initTapableLabels];
+    [self reloadView];
     [self loadGroupMembers];
 
 }
@@ -164,7 +204,7 @@ typedef enum{
     [self setTitleView:nil];
     [self setGroupIconView:nil];
     [self setGroupName:nil];
-    [self setgroupSignature:nil];
+    [self setGroupSignature:nil];
     [super viewDidUnload];
 }
 
@@ -177,20 +217,35 @@ typedef enum{
     if (SECTION_BASE_INDEX == section){
         return BaseSectionRowCount;
     }
-    return [_group.titlesList count];
+    return [[groupManager tempMemberList] count];
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
+    if(section == SECTION_MEMBER_INDEX){
+        return 20;
+    }
+    return 0;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    NSInteger row = indexPath.row;
     if (SECTION_BASE_INDEX == indexPath.section) {
-        return [GroupDetailCell getCellHeightForSimpleText];
-    }else{
-        if (indexPath.row == RowCreator) {
-            return [GroupDetailCell getCellHeightForSingleAvatar];
+        if (row == RowDescription) {
+            return [GroupDetailCell getCellHeightForText:[self descCellText]];
         }
-        PBGroupUsersByTitle *usersByTitle = _group.titlesList[indexPath.row];
-        return [GroupDetailCell getCellHeightForMultipleAvatar:usersByTitle.usersList.count];
+        return [GroupDetailCell getCellHeightForSingleLineText];
+        
+    }else{
+        PBGroupUsersByTitle *usersByTitle = groupManager.tempMemberList[indexPath.row];
+        return [GroupDetailCell getCellHeightForUsersByTitle:usersByTitle];
     }
+}
+
+- (NSString *)descCellText
+{
+   return [NSString stringWithFormat:NSLS(@"kGroupDetailRowDesc"), _group.desc];
 }
 
 - (void)updateBaseSectionCell:(GroupDetailCell *)cell inRow:(NSInteger)row
@@ -210,7 +265,7 @@ typedef enum{
             break;
         }
         case RowDescription:{
-            text = [NSString stringWithFormat:NSLS(@"kGroupDetailRowDesc"), _group.desc];
+            text = [self descCellText];
             break;
         }
         case RowFee:{
@@ -230,21 +285,24 @@ typedef enum{
     GroupDetailCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
     if (cell == nil) {
         cell = [GroupDetailCell createCell:self];
+        [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
     }
     NSInteger row = indexPath.row;
+    
     if (indexPath.section == SECTION_BASE_INDEX) {
         [self updateBaseSectionCell:cell inRow:row];
     }else{
-        if (RowCreator == row) {
-            [cell setCellForCreatorInGroup:_group];
+        CellRowPosition position = CellRowPositionMid;
+        if (row == 0) {
+            position = CellRowPositionFirst;
+        }else if (row == [_group.titlesList count] - 1) {
+            position = CellRowPositionLast;
         }else{
-            CellRowPosition position = CellRowPositionMid;
-            if (row == [_group.titlesList count] - 1) {
-                position = CellRowPositionLast;
-            }
-            PBGroupUsersByTitle *usersByTitle = groupManager.tempMemberList[indexPath.row];
-            [cell setCellForMembers:usersByTitle position:position InGroup:_group];
+            position = CellRowPositionMid;
         }
+        PBGroupUsersByTitle *usersByTitle = groupManager.tempMemberList[indexPath.row];
+        [cell setCellForUsersByTitle:usersByTitle position:position inGroup:_group];
+        
     }
     [cell setNeedsLayout];
     return cell;
@@ -270,22 +328,22 @@ typedef enum{
                 [builder setMemberFee:[info[PARA_FEE] integerValue]];
             }
             self.group = [builder build];
-            NSIndexSet *set = [NSIndexSet indexSetWithIndex:SECTION_BASE_INDEX];
-            [self.dataTableView reloadSections:set
-                              withRowAnimation:UITableViewRowAnimationFade];
+            [groupManager setSharedGroup:_group];
+            [self reloadView];
         }
     }];
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    GroupDetailCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+//    GroupDetailCell *cell = (id)[tableView cellForRowAtIndexPath:indexPath];
     if (indexPath.section == SECTION_BASE_INDEX) {
-        NSDictionary *info = nil;
+
         if (indexPath.row == RowDescription) {
-            [self alertToEditInfo:NSLS(@"kEditGroupDesc") info:cell.text key:PARA_DESC];
+            [self alertToEditInfo:NSLS(@"kEditGroupDesc") info:_group.desc key:PARA_DESC];
         }else if(indexPath.row == RowFee){
-            [self alertToEditInfo:NSLS(@"kEditGroupFee") info:cell.text key:PARA_FEE];
+            NSString *feeString = [@(_group.memberFee) stringValue];
+            [self alertToEditInfo:NSLS(@"kEditGroupFee") info:feeString key:PARA_FEE];
         }else{
             
         }

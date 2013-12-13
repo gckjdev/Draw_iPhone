@@ -2142,11 +2142,17 @@
 "TypeAcceptMemberInvitation" = "%@ 同意加入 %@。";
 "TypeAcceptGuestInvitation" = "%@ 同意成为 %@ 的嘉宾。";
 
+"kGroupDetailRowWeath" = "声望%d  财富%d  等级%d";
+"kGroupDetailRowCreateDate" = "创建时间 %@";
+"kGroupDetailRowDesc" = "说明 %@";
+"kGroupDetailRowFee" = "会费 %d金币/月";
+"kDefaultGroupSignature" = "暂无签名";
+
 
 "kContentDesc" = "内容：%@";
 "kPostscriptDesc" = "附言：%@";
 
-
+"kGroupTitleDesc" = "%@  %d人";
 
 "kGroupComment" = "评论";
 "kGroupRequest" = "请求";

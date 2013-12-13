@@ -9942,11 +9942,10 @@ AAEAAQABA</bytes>
 					</object>
 					<object class="IBUILabel" id="420190953">
 						<reference key="NSNextResponder" ref="315143836"/>
-						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{54, 33}, {199, 19}}</string>
+						<int key="NSvFlags">276</int>
+						<string key="NSFrame">{{54, 33}, {200, 19}}</string>
 						<reference key="NSSuperview" ref="315143836"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIClipsSubviews">YES</bool>
@@ -9965,7 +9964,6 @@ AAEAAQABA</bytes>
 				<string key="NSFrameSize">{320, 60}</string>
 				<reference key="NSSuperview"/>
 				<reference key="NSWindow"/>
-				<reference key="NSNextKeyView"/>
 				<string key="NSReuseIdentifierKey">_NS:9</string>
 				<object class="NSColor" key="IBUIBackgroundColor">
 					<int key="NSColorSpace">3</int>
