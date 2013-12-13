@@ -171,7 +171,8 @@ enum{
     
     self.descTextView.placeholder = NSLS(@"kDescPlaceholder");
     
-    self.mp3FilePath =[NSTemporaryDirectory() stringByAppendingString:@"temp.mp3"];
+//    self.mp3FilePath =[NSTemporaryDirectory() stringByAppendingFormat:@"%@.mp3", [NSString GetUUID]];
+    self.mp3FilePath =[NSTemporaryDirectory() stringByAppendingFormat:@"%@.mp3", @"temp"];
     
     // init title view
     [self initTitleView];
@@ -326,7 +327,8 @@ enum{
 //    UIImageView *iv = [[[UIImageView alloc] initWithFrame:CGRectMake(0, 0, width, width)] autorelease];
 //    iv.image = [UIImage imageNamed:@"sing_image@2x.png"];
     
-    CGRect rect = CGRectMake(0, 0, (ISIPAD ? 360:170), (ISIPAD ? 360:170));    UIImageView *iv = [[[UIImageView alloc] initWithFrame:rect] autorelease];
+    CGRect rect = CGRectMake(0, 0, (ISIPAD ? 360:170), (ISIPAD ? 360:170));
+    UIImageView *iv = [[[UIImageView alloc] initWithFrame:rect] autorelease];
     iv.image = [UIImage imageNamed:@"unloadbg2@2x.png"];
     [iv.layer setCornerRadius:(ISIPAD ? 75 : 35)];
     [iv.layer setMasksToBounds:YES];
@@ -382,46 +384,35 @@ enum{
 // 拖拽手势处理事件
 - (void) handlePanGestures:(UIPanGestureRecognizer*)paramSender{
     
+    if (paramSender.state == UIGestureRecognizerStateChanged) {
+        
+        [paramSender.view.layer setBorderWidth:(ISIPAD ? 4 : 2)];
+        [paramSender.view.layer setBorderColor:[COLOR_GRAY CGColor]];
+        
+        CGPoint translatePoint = [paramSender translationInView:paramSender.view.superview];
+        CGPoint center = paramSender.view.center;
+        center.x += translatePoint.x;
+        center.y += translatePoint.y;
+        
+        if (center.x < 0
+            || center.y < 0
+            || center.x > CGRectGetWidth(paramSender.view.superview.frame)
+            || center.y > CGRectGetHeight(paramSender.view.superview.frame)) {
+            return;
+        }
+        
+        paramSender.view.center = center;
+        [paramSender setTranslation:CGPointMake(0, 0) inView:paramSender.view.superview];
+        
 
-    CGPoint translatePoint = [paramSender translationInView:paramSender.view.superview];
-    CGPoint center = paramSender.view.center;
-    center.x += translatePoint.x;
-    center.y += translatePoint.y;
-    paramSender.view.center = center;
+    }
     
-    [paramSender setTranslation:CGPointMake(0, 0) inView:paramSender.view.superview];
     
-//    UIView *view = paramSender.view;
-//    
-//    if (paramSender.state != UIGestureRecognizerStateEnded
-//        && paramSender.state != UIGestureRecognizerStateFailed){
-//        
-//        // 获取手指在屏幕中的坐标
-//
-//        [view.layer setBorderWidth:(ISIPAD ? 4 : 2)];
-//        [view.layer setBorderColor:[COLOR_GRAY CGColor]];
-//        
-//        CGPoint location = [paramSender locationInView:view.superview];
-//        
-//        if (location.x < 0 || location.x > view.superview.bounds.size.width) {
-//            return;
-//        }
-//        
-//        if (location.y < 0 || location.y > view.superview.bounds.size.height) {
-//            return;
-//        }
-//        
-//        view.center = location;// 重新设置视图的位置
-//        
-//    }else if (paramSender.state == UIGestureRecognizerStateEnded){
-//    
-//        [view.layer setBorderWidth:0];
-//        [view.layer setBorderColor:[[UIColor clearColor] CGColor]];
-//        [self saveDescLabelInfo];
-//    }else{
-//        [view.layer setBorderWidth:0];
-//        [view.layer setBorderColor:[[UIColor clearColor] CGColor]];
-//    }
+    if (paramSender.state == UIGestureRecognizerStateEnded) {
+        [paramSender.view.layer setBorderWidth:0];
+        [paramSender.view.layer setBorderColor:[[UIColor clearColor] CGColor]];
+        [self saveDescLabelInfo];
+    }
 }
 
 - (void) handleTapGestures:(UIPanGestureRecognizer*)paramSender{
@@ -475,8 +466,8 @@ enum{
     self.opusDescLabel.text = desc;
     [self.opusDescLabel wrapTextWithConstrainedSize:size];
     [self.opusDescLabel updateWidth:self.opusImageView.frame.size.width * 0.8];
-    [self.opusDescLabel updateHeight:MAX((ISIPAD ? 60 : 30) ,self.opusDescLabel.frame.size.height)];
-    
+//    [self.opusDescLabel updateHeight:MAX((ISIPAD ? 60 : 30) ,self.opusDescLabel.frame.size.height)];
+
 //    // center desc label
 //    [self.opusDescLabel updateCenterX:self.opusImageView.frame.size.width/2];
 //    [self.opusDescLabel updateCenterY:self.opusImageView.frame.size.height/2];
@@ -563,7 +554,7 @@ enum{
 
 - (void)record {
     
-    PPDebug(@"record url = %@", _recorder.recordURL.absoluteString);
+    PPDebug(@"record url = %@", _recorder.recordURL.path);
     [_recorder startToRecordForDutaion:_recordLimitTime];
     
     // accumulate design time
@@ -826,10 +817,10 @@ enum{
 
 - (IBAction)clickChangeVoiceButton:(UIButton *)button {
     
-    if (ISIOS7) {
-        POSTMSG2(@"你的iOS版本暂不支持变声", 2.5);
-        return;
-    }
+//    if (ISIOS7) {
+//        POSTMSG2(@"你的iOS版本暂不支持变声", 2.5);
+//        return;
+//    }
     
     if (self.popTipView == nil) {
         VoiceTypeSelectView *v = [VoiceTypeSelectView createWithVoiceType:_singOpus.pbOpus.sing.voiceType];
@@ -850,6 +841,11 @@ enum{
     if (self.singOpus.pbOpus.sing.voiceType != voiceType) {
         _hasEdited = YES;
         [self changeVoiceType:voiceType];
+        
+        // play directly
+        [self prepareToPlay];
+        [self setState:StatePlaying];
+        [self play];
     }
 }
 
@@ -869,17 +865,19 @@ enum{
 }
 
 - (void)didImageSelected:(UIImage*)image{
-    
-    [self performSelector:@selector(showImageEditor:) withObject:image afterDelay:0.7];
+
+    [self showImageEditor:image];
+//    [self performSelector:@selector(showImageEditor:) withObject:image afterDelay:0.7];
 }
 
 - (void)showImageEditor:(UIImage *)image{
     
-    CropAndFilterViewController *vc = [[[CropAndFilterViewController alloc] init] autorelease];
+    CropAndFilterViewController *vc = [[CropAndFilterViewController alloc] init];
     vc.delegate = self;
     vc.image = image;
     
     [self presentViewController:vc animated:YES completion:NULL];
+    [vc release];
 }
 
 - (void)cropViewController:(CropAndFilterViewController *)controller didFinishCroppingImage:(UIImage *)image{
@@ -1017,6 +1015,16 @@ enum{
 
 - (void)handleAndSubmitOpus{
     
+    BOOL isM4A = [[[self recordURL] pathExtension] isEqualToString:@"m4a"];
+    if (isM4A){
+        // 支持1.0/1.1的m4a文件
+        PPDebug(@"record file is M4A file, submit native file directly");
+        [_singOpus setVoiceType:PBVoiceTypeVoiceTypeOrigin]; // for origin
+        [self uploadSingFile:[[self recordURL] path]];
+        return;
+    }
+    
+    
     // 用户如果选择原声，则不需要经过声音处理步骤，直接上传。
     if (_singOpus.pbOpus.sing.voiceType == PBVoiceTypeVoiceTypeOrigin) {
         
@@ -1032,10 +1040,12 @@ enum{
             self.processor = [[[VoiceProcessor alloc] init] autorelease];
             _processor.delegate = self;
         }
-        
-        outUrl = [FileUtil fileURLInAppDocument:[NSString GetUUID]];
-        
-        [_processor processVoice:inUrl outURL:outUrl duration:_singOpus.pbOpus.sing.duration pitch:_singOpus.pbOpus.sing.pitch formant:_singOpus.pbOpus.sing.formant];
+                
+        [_processor processVoice:inUrl
+                          outURL:outUrl
+                        duration:_singOpus.pbOpus.sing.duration
+                           pitch:_singOpus.pbOpus.sing.pitch
+                         formant:_singOpus.pbOpus.sing.formant];
         
         [self showProgressViewWithMessage:NSLS(@"kSending")];
     }
@@ -1044,19 +1054,28 @@ enum{
 - (void)processor:(VoiceProcessor *)processor progress:(float)progress{
     PPDebug(@"progress = %f", progress);
     
-    NSString* progressText = [NSString stringWithFormat:NSLS(@"kHandlingDataProgress"), progress*100];
+    NSString* progressText = [NSString stringWithFormat:NSLS(@"kChangeVoiceDataProgress"), progress*100];
     [self showProgressViewWithMessage:progressText progress:progress];
 }
 
-- (void)processor:(VoiceProcessor *)processor doneWithOutURL:(NSURL*)outURL{
+- (void)processor:(VoiceProcessor *)processor doneWithOutURL:(NSURL*)outURL resultCode:(int)resultCode{
     
-    [self convertWavFile:outURL.path toMp3File:self.mp3FilePath];
+    if (resultCode == 0){
+        // 变声转换成功，再转成MP3文件
+        [self convertWavFile:outURL.path toMp3File:self.mp3FilePath];
+    }
+    else{
+        [self hideActivity];
+        [self hideProgressView];
+        NSString *msg = [NSString stringWithFormat:NSLS(@"kChangeVoiceTypeFail"), [_singOpus getCurrentVoiceTypeName]];
+        POSTMSG2(msg, 2.5);
+    }
 }
 
 - (void)convertWavFile:(NSString *)inputFilePath
              toMp3File:(NSString *)outputFilePath{
     
-    [self showActivityWithText:NSLS(@"kHandling")];
+    [self showActivityWithText:NSLS(@"kCompressingData")];
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         
         [AudioFormatConverter convertWavToMp3WithInputFile:inputFilePath
@@ -1068,22 +1087,30 @@ enum{
     });
 }
 
-- (void)convertWavFileToMp3FileDone{
-    
-    NSData *singData = [NSData dataWithContentsOfFile:self.mp3FilePath];
-    PPDebug(@"mp3 file path is %@", self.mp3FilePath);
-    PPDebug(@"mp3 file data length = %d", [singData length]);
-//    if ([singData length] <= 28) {
-//        NSString *msg = [NSString stringWithFormat:NSLS(@"kChangeVoiceTypeFail"), [_singOpus getCurrentVoiceTypeName]];
-//        [self hideProgressView];
-//        POSTMSG2(msg, 2.5);
-//        return;
-//    }
-    
-    [self uploadSingOpus:singData];
+- (void)convertWavFileToMp3FileDone
+{
+    [self uploadSingFile:self.mp3FilePath];
 }
 
-- (void)uploadSingOpus:(NSData *)singData{
+- (void)uploadSingFile:(NSString*)filePath
+{
+    
+    NSData *singData = [NSData dataWithContentsOfFile:filePath];
+    PPDebug(@"record file path is %@", filePath);
+    PPDebug(@"record file data length = %d", [singData length]);
+    
+    if ([singData length] <= 28) {
+        NSString *msg = [NSString stringWithFormat:NSLS(@"kChangeVoiceTypeFail"), [_singOpus getCurrentVoiceTypeName]];
+        [self hideProgressView];
+        POSTMSG2(msg, 2.5);
+        return;
+    }
+    
+    [self uploadSingOpus:singData dataType:[filePath pathExtension]];
+}
+
+- (void)uploadSingOpus:(NSData *)singData dataType:(NSString*)dataType
+{
     
     if ([singData length] <= 0) {
         POSTMSG(@"kNoRecordDataForSubmit");
@@ -1094,6 +1121,7 @@ enum{
     [[OpusService defaultService] submitOpus:_singOpus
                                        image:_image
                                     opusData:singData
+                                    dataType:dataType
                             progressDelegate:self
                                     delegate:self];
 }

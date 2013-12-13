@@ -2937,6 +2937,10 @@
 		A4DDD58617CDFD7B0029E562 /* wrong.wav in Resources */ = {isa = PBXBuildFile; fileRef = A4DDD12F17CDFD7B0029E562 /* wrong.wav */; };
 		A4DDD58717CDFD7B0029E562 /* wrong.wav in Resources */ = {isa = PBXBuildFile; fileRef = A4DDD12F17CDFD7B0029E562 /* wrong.wav */; };
 		A4DDD58817CDFD7B0029E562 /* wrong.wav in Resources */ = {isa = PBXBuildFile; fileRef = A4DDD12F17CDFD7B0029E562 /* wrong.wav */; };
+		A4DE087718595DD700A87924 /* unloadbg2@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4DE087618595DD700A87924 /* unloadbg2@2x.png */; };
+		A4DE087818595DD700A87924 /* unloadbg2@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4DE087618595DD700A87924 /* unloadbg2@2x.png */; };
+		A4DE087918595DD700A87924 /* unloadbg2@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4DE087618595DD700A87924 /* unloadbg2@2x.png */; };
+		A4DE087A18595DD700A87924 /* unloadbg2@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4DE087618595DD700A87924 /* unloadbg2@2x.png */; };
 		A4DE142C1697DBC000841940 /* SelectHotWordController.m in Sources */ = {isa = PBXBuildFile; fileRef = A4DE14261697DBC000841940 /* SelectHotWordController.m */; };
 		A4DE142D1697DBC000841940 /* SelectHotWordController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4DE14271697DBC000841940 /* SelectHotWordController.xib */; };
 		A4DE142E1697DBC000841940 /* SelectHotWordController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4DE14281697DBC000841940 /* SelectHotWordController~ipad.xib */; };
@@ -8185,6 +8189,7 @@
 		A4DDD12D17CDFD7B0029E562 /* oowrong.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = oowrong.mp3; sourceTree = "<group>"; };
 		A4DDD12E17CDFD7B0029E562 /* pushMessage.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = pushMessage.mp3; sourceTree = "<group>"; };
 		A4DDD12F17CDFD7B0029E562 /* wrong.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = wrong.wav; sourceTree = "<group>"; };
+		A4DE087618595DD700A87924 /* unloadbg2@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "unloadbg2@2x.png"; sourceTree = "<group>"; };
 		A4DE14251697DBC000841940 /* SelectHotWordController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectHotWordController.h; sourceTree = "<group>"; };
 		A4DE14261697DBC000841940 /* SelectHotWordController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectHotWordController.m; sourceTree = "<group>"; };
 		A4DE14271697DBC000841940 /* SelectHotWordController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SelectHotWordController.xib; sourceTree = "<group>"; };
@@ -11467,6 +11472,7 @@
 		A4D8F8FE17DB08150085061F /* background */ = {
 			isa = PBXGroup;
 			children = (
+				A4DE087618595DD700A87924 /* unloadbg2@2x.png */,
 				A4D8F8FF17DB08150085061F /* easy@2x.png */,
 				A4D8F90017DB08150085061F /* guessword_pallets@2x.png */,
 				A4D8F90117DB08150085061F /* hard@2x.png */,
@@ -18399,6 +18405,7 @@
 				EA7EFC6618458D270004793C /* GroupNoticeCell.xib in Resources */,
 				EA7EFC7418458D370004793C /* GroupNoticeController.xib in Resources */,
 				EA2D57431847243B00499ED4 /* SearchGroupController.xib in Resources */,
+				A4DE087918595DD700A87924 /* unloadbg2@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -19372,6 +19379,7 @@
 				EA7EFC6518458D270004793C /* GroupNoticeCell.xib in Resources */,
 				EA7EFC7318458D370004793C /* GroupNoticeController.xib in Resources */,
 				EA2D57421847243B00499ED4 /* SearchGroupController.xib in Resources */,
+				A4DE087818595DD700A87924 /* unloadbg2@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -20328,6 +20336,7 @@
 				EA7EFC6418458D270004793C /* GroupNoticeCell.xib in Resources */,
 				EA7EFC7218458D370004793C /* GroupNoticeController.xib in Resources */,
 				EA2D57411847243B00499ED4 /* SearchGroupController.xib in Resources */,
+				A4DE087718595DD700A87924 /* unloadbg2@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -21238,6 +21247,7 @@
 				EA7EFC6718458D270004793C /* GroupNoticeCell.xib in Resources */,
 				EA7EFC7518458D370004793C /* GroupNoticeController.xib in Resources */,
 				EA2D57441847243B00499ED4 /* SearchGroupController.xib in Resources */,
+				A4DE087A18595DD700A87924 /* unloadbg2@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

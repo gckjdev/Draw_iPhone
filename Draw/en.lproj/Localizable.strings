@@ -657,9 +657,10 @@
 "kReply" = "Reply";
 "kCorrect" = "Correct!";
 "kSending" = "Sending...";
-"kHandlingDataProgress" = "Processing... (%3.f%%)";
+"kChangeVoiceDataProgress" = "Processing... (%3.f%%)";
 "kSendingProgress" = "Sending... (%3.f%%)";
 "kHandling" = "Processing...";
+"kCompressingData" = "Compressing Data...";
 
 "kNoCommentTips" = "No Comments";
 "kFeedDetail" = "Opus Detail";

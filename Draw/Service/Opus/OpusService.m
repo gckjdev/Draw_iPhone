@@ -22,6 +22,7 @@
 #import "DrawDataService.h"
 #import "Opus.h"
 #import "OpusManagerFactory.h"
+#import "UIImageUtil.h"
 
 #define MY_OPUS_DB     @"my_opus.db"
 #define FAVORITE_DB    @"favorite.db"
@@ -65,16 +66,19 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(OpusService);
     return nil;
 }
 
+#define MAX_PIXCEL 1024.0
+
 - (void)submitOpus:(Opus*)draftOpus
              image:(UIImage *)image
           opusData:(NSData *)opusData
+          dataType:(NSString *)dataType
   progressDelegate:(id)progressDelegate
           delegate:(id<OpusServiceDelegate>)delegate
 {
     __block OpusManager *myOpusManager = _myOpusManager;
     __block OpusManager *draftOpusManager = _draftOpusManager;
     
-
+    
         
     dispatch_async(workingQueue, ^{
         
@@ -85,9 +89,31 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(OpusService);
 
         
         NSDictionary *imageDataDict = nil;
-        PPDebug(@"submit opus with image size: %@", NSStringFromCGSize(image.size));
+
         if (image != nil){
-            imageDataDict = @{PARA_OPUS_IMAGE_DATA : [image data]};
+            
+            PPDebug(@"submit opus with origin image size: %@", NSStringFromCGSize(image.size));
+            CGSize size = image.size;
+            
+            CGFloat max = MAX(size.width, size.height);
+            UIImage *uploadImage = nil;
+            
+            if (max > MAX_PIXCEL) {
+                
+                CGFloat ratio = max / MAX_PIXCEL;
+                CGFloat width = size.width / ratio;
+                CGFloat height = size.height / ratio;
+                size = CGSizeMake(width, height);
+                
+                uploadImage = [image imageByScalingAndCroppingForSize:size];
+                
+            }else{
+                
+                uploadImage = image;
+            }
+            
+            PPDebug(@"submit opus with final image size = %@", NSStringFromCGSize(uploadImage.size));
+            imageDataDict = @{PARA_OPUS_IMAGE_DATA : [uploadImage data]};
         }
         
         NSMutableDictionary *postDataDict = [NSMutableDictionary dictionary];

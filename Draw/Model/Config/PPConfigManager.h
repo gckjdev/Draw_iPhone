@@ -37,7 +37,6 @@ typedef enum{
 
 + (NSArray *)getLearnDrawFeedbackEmailList;
 
-//+ (int)getGuessRewardNormal;
 
 + (NSInteger)historyRankNumber;
 + (NSInteger)drawAutoSavePaintInterval;//DRAFT_PAINT_COUNT

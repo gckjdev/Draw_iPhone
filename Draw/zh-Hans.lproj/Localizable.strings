@@ -682,9 +682,10 @@
 "kReply" = "回复";
 "kCorrect" = "猜对了！";
 "kSending" = "正在发送中...";
-"kHandlingDataProgress" = "正在处理数据... (%3.f%%)";
+"kChangeVoiceDataProgress" = "处理变声数据中... (%3.f%%)";
 "kSendingProgress" = "正在发送中 (%3.f%%)";
-"kHandling" = "处理中";
+"kHandling" = "处理中...";
+"kCompressingData" = "数据压缩中...";
 
 
 "kNoCommentTips" = "还没有人评论";

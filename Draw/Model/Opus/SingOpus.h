@@ -27,6 +27,7 @@
                         style:(int)style
               textStrokeColor:(NSUInteger)textStrokeColor;
 
+- (NSString*)localNativeDataURLString;
 - (NSURL*)localNativeDataURL;
 - (void)setLocalNativeDataUrl:(NSString*)extension;
 - (void)setLocalImageDataUrl:(NSString*)extension;

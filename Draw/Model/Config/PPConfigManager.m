@@ -1252,7 +1252,7 @@
 }
 
 + (int)getRecordLimitTime{
-    return [MobClickUtils getIntValueByKey:@"RECORD_LIMIT_TIME" defaultValue:240];
+    return [MobClickUtils getIntValueByKey:@"RECORD_LIMIT_TIME" defaultValue:360];
 }
 
 + (int)getRecordLimitMinTime{

@@ -122,25 +122,22 @@ AUTO_CREATE_VIEW_BY_XIB(WhisperStyleView);
         UIImage *placeHolder = [UIImage imageNamed:@"unloadbg@2x.png"];
         
         if (useBigImage) {
-            [iv setImageWithURL:[NSURL URLWithString:feed.pbFeed.opusThumbImage] placeholderImage:placeHolder] ;
-            placeHolder = [[SDImageCache sharedImageCache] imageFromMemoryCacheForKey:feed.pbFeed.opusThumbImage];
-            if (placeHolder == nil) {
-                placeHolder = [UIImage imageNamed:@"unloadbg@2x.png"];
-            }
-            [iv setImageWithURL:feed.largeImageURL
+            
+            [iv setImageWithURL:[feed thumbURL]
                placeholderImage:placeHolder
                       completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType) {
-                          [indicator stopAnimating];
-                          [indicator removeFromSuperview];
-                          
+                [iv setImageWithURL:[feed largeImageURL] placeholderImage:image completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType) {
+                    [indicator stopAnimating];
+                    [indicator removeFromSuperview];
+                }];
             }];
         }else{
+            
             [iv setImageWithURL:feed.thumbURL placeholderImage:placeHolder completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType) {
                 [indicator stopAnimating];
                 [indicator removeFromSuperview];
             }];
         }
-
         
         [self setClipsToBounds:YES];
     }
@@ -176,7 +173,8 @@ AUTO_CREATE_VIEW_BY_XIB(WhisperStyleView);
     // 如果上述的bug解决了，这里的代码就可以不要了。
     
     UILabel *label = (UILabel *)[self viewWithTag:TAG_LABEL];
-    if (label.text.length != 0 && (CGRectGetWidth(label.frame) == 0 || CGRectGetHeight(label.frame))) {
+    if (label.text.length != 0
+        && (CGRectGetWidth(label.frame) == 0 || CGRectGetHeight(label.frame) == 0)) {
         label.font = [UIFont systemFontOfSize:ISIPAD ? 25/_sx : 15/_sx];
         label.numberOfLines = 99;
         [label updateWidth:self.bounds.size.width];
