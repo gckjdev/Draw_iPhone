@@ -279,7 +279,7 @@ int getPopOptionCount()
 
 - (void)showCachedFeedList:(int)tabID
 {
-    PPDebug(@"<showCachedFeedList> tab id = %d", tabID);
+//    PPDebug(@"<showCachedFeedList> tab id = %d", tabID);
     FeedListType type = [self feedListTypeForTabID:tabID];
     NSArray *feedList = [[FeedService defaultService] getCachedFeedList:type];
     if ([feedList count] != 0) {

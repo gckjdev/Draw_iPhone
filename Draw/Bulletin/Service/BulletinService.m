@@ -31,7 +31,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(BulletinService)
      object:self
      userInfo:nil];
     
-    PPDebug(@"<%@> post notification %@", [self description], name);
+//    PPDebug(@"<%@> post notification %@", [self description], name);
 }
 
 - (void)syncBulletins:(BulletinServiceCallbackBlock)block

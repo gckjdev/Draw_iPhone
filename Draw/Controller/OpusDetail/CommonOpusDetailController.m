@@ -335,7 +335,7 @@ enum{
 
 - (void)serviceLoadDataForTabID:(NSInteger)tabID
 {    
-    PPDebug(@"<ShowFeedController> load data with tab ID = %d", tabID);
+//    PPDebug(@"<ShowFeedController> load data with tab ID = %d", tabID);
     
     TableTab *tab = [_tabManager tabForID:tabID];
     [[FeedService defaultService] getOpusCommentList:_opus.pbOpus.opusId

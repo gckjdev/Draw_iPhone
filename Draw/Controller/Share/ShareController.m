@@ -803,7 +803,7 @@ typedef enum{
         TableTab *tab = self.currentTab;
         if (!isLoading && tab.hasMoreData && tab.status != TableTabStatusLoading) {
             [self serviceLoadDataForTabID:tab.tabID];
-            PPDebug(@"service load opus, tab id = %d", tab.tabID);
+//            PPDebug(@"service load opus, tab id = %d", tab.tabID);
         }
     }
 }

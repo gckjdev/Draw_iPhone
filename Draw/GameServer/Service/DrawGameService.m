@@ -561,7 +561,7 @@ static DrawGameService* _defaultService;
      object:self
      userInfo:[CommonGameNetworkService messageToUserInfo:message]];
     
-    PPDebug(@"<%@> post notification %@", [self description], name);
+//    PPDebug(@"<%@> post notification %@", [self description], name);
 }
 
 - (void)handleMoreOnRoomNotificationRequest:(GameMessage*)message
@@ -706,7 +706,7 @@ static DrawGameService* _defaultService;
      object:self
      userInfo:[CommonGameNetworkService errorToUserInfo:error]];
     
-    PPDebug(@"<%@> post notification %@ with error", [self description], name);
+//    PPDebug(@"<%@> post notification %@ with error", [self description], name);
 }
 
 - (void)didBroken:(NSError *)error

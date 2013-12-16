@@ -139,7 +139,7 @@ static AccountService* _defaultAccountService;
      object:self
      userInfo:nil];
     
-    PPDebug(@"post notification %@", name);
+//    PPDebug(@"post notification %@", name);
 }
 
 

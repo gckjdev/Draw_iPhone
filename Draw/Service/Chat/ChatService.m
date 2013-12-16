@@ -144,7 +144,7 @@ static ChatService *_chatService = nil;
      object:self
      userInfo:dict];
     
-    PPDebug(@"post notification %@", name);
+//    PPDebug(@"post notification %@", name);
 }
 
 

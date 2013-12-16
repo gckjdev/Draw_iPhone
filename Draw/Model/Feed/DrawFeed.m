@@ -56,7 +56,7 @@
             self.learnDraw = pbFeed.learnDraw;    
         }
         
-        PPDebug(@"<DrawFeed> id(%@) user(%@, %@) text(%@)", pbFeed.feedId, pbFeed.userId, pbFeed.nickName, self.wordText);
+//        PPDebug(@"<DrawFeed> id(%@) user(%@, %@) text(%@)", pbFeed.feedId, pbFeed.userId, pbFeed.nickName, self.wordText);
         
     }
     return self;
@@ -155,7 +155,7 @@
         [self initTimeList:timesArray];
         self.drawImageUrl = drawImageUrl;
         
-        PPDebug(@"<DrawFeed> id(%@) user(%@, %@) text(%@)", feedId, userId, nickName, wordText);
+//        PPDebug(@"<DrawFeed> id(%@) user(%@, %@) text(%@)", feedId, userId, nickName, wordText);
     }
     return self;
 }
