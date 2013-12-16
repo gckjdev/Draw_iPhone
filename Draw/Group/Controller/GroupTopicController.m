@@ -16,6 +16,7 @@
 #import "BBSPostDetailController.h"
 #import "BBSManager.h"
 #import "SearchPostController.h"
+#import "GroupDetailController.h"
 
 typedef enum{
     NewestTopic = 1,
@@ -160,6 +161,7 @@ typedef enum {
 {
     permissonManager.group = group;
     self.group = group;
+    [[GroupManager defaultManager] setSharedGroup:group];
     
     [self.titleView.rightButton setHidden:NO];
     if ([permissonManager canJoinGroup]) {
@@ -184,10 +186,19 @@ typedef enum {
     }];
 }
 
+- (void)reloadViews
+{
+    [self.titleView setTitle:_group.name];
+    [self updateFooterView];
+    [self.dataTableView reloadData];
+}
+
 - (void)viewDidLoad
 {
     permissonManager = [GroupPermissionManager myManagerWithGroup:_group];
+    [[GroupManager defaultManager] setSharedGroup:_group];
     [permissonManager retain];
+    
     [super viewDidLoad];
     [self updateTitleView];
     [self updateFooterView];
@@ -195,6 +206,17 @@ typedef enum {
     [self loadGroupRelation];
     self.unReloadDataWhenViewDidAppear = NO;
 
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    //reload group;
+    PBGroup *sharedGroup = [[GroupManager defaultManager] sharedGroup];
+    if ([_group.groupId isEqualToString:sharedGroup.groupId]) {
+        self.group = sharedGroup;
+        [self reloadViews];
+    }
 }
 
 - (void)didReceiveMemoryWarning
@@ -221,6 +243,7 @@ typedef enum {
     switch (indexPath.row) {
         case RowGroupInfo:
             return [GroupInfoView getViewHeight];
+//            return [GroupInfoView recommandHeightForGroup:self.group];
         case RowTopicHeader:
             return [BBSPostActionHeaderView getViewHeight];
         default:
@@ -245,9 +268,19 @@ typedef enum {
     if (self.infoCell == nil) {
         self.infoCell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"GroupInfoCell"];
         GroupInfoView *infoView = [GroupInfoView infoViewWithGroup:_group];
+        infoView.autoresizingMask |= (UIViewAutoresizingFlexibleTopMargin|UIViewAutoresizingFlexibleHeight|UIViewAutoresizingFlexibleBottomMargin);
+        [infoView updateHeight:CGRectGetHeight(self.infoCell.contentView.frame)];
         infoView.delegate = self;
         [self.infoCell.contentView addSubview:infoView];
+        [self.infoCell setSelectionStyle:UITableViewCellSelectionStyleNone];
+        
+    }else{
+        [self.infoCell.contentView enumSubviewsWithClass:[GroupInfoView class] handler:^(id view) {
+            GroupInfoView *infoView = view;
+            [infoView updateWithGroup:self.group];
+        }];
     }
+
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -287,10 +320,15 @@ typedef enum {
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (indexPath.row >= BasicRowCount) {
+    NSInteger row = indexPath.row;
+    if (row >= BasicRowCount) {
         [[BBSManager defaultManager] setTempPostList:[self tabDataList]];
         PBBBSPost *post = [self postInIndexPath:indexPath];
         [BBSPostDetailController enterPostDetailControllerWithPost:post group:_group fromController:self animated:YES];
+    }else if (row == RowGroupInfo){
+        [GroupDetailController enterWithGroup:self.group fromController:self];
+    }else{
+        
     }
 }
 

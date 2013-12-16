@@ -20,6 +20,7 @@
 @property(nonatomic, assign, readonly) NSInteger totalBadge;
 
 @property(atomic, retain) NSMutableArray *tempMemberList;
+@property(nonatomic, retain) PBGroup *sharedGroup;
 
 + (id)defaultManager;
 

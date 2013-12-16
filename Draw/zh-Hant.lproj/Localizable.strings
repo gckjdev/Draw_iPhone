@@ -2148,8 +2148,16 @@
 "TypeAcceptMemberInvitation" = "%@ 同意加入 %@。";
 "TypeAcceptGuestInvitation" = "%@ 同意成為 %@ 的嘉賓。";
 
+"kGroupDetailRowWeath" = "聲望%d  財富%d  等級%d";
+"kGroupDetailRowCreateDate" = "創建時間 %@";
+"kGroupDetailRowDesc" = "說明 %@";
+"kGroupDetailRowFee" = "會費 %d金幣/月";
+"kDefaultGroupSignature" = "暫無簽名";
+
 "kContentDesc" = "內容：%@";
 "kPostscriptDesc" = "附言：%@";
+
+"kGroupTitleDesc" = "%@  %d人";
 
 "kShareByEmailSuccess" = "郵件分享成功";
 

@@ -949,7 +949,6 @@ enum{
     // generate thumb image.
     UIImage *thumbImage = [self.opusImageView createSnapShotWithScale:0.5];
     [thumbImage saveImageToFile:[self.singOpus localThumbImageURLString]];
-//    [[thumbImage data] writeToFile:self.singOpus.pbOpus.localThumbImageUrl atomically:YES];
     
     // save opus.
     [[[OpusService defaultService] draftOpusManager] saveOpus:_singOpus];
@@ -965,7 +964,7 @@ enum{
     if ([[UserService defaultService] checkAndAskLogin:self.view] == YES){
         return;
     }
-    
+        
     if (_fileDuration < [PPConfigManager getRecordLimitMinTime]) {
         NSString *msg = [NSString stringWithFormat:NSLS(@"kRecordTimeTooShort"), [PPConfigManager getRecordLimitMinTime]];
         POSTMSG2(msg, 3);

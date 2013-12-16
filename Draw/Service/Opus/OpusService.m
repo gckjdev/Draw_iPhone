@@ -78,15 +78,15 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(OpusService);
     __block OpusManager *myOpusManager = _myOpusManager;
     __block OpusManager *draftOpusManager = _draftOpusManager;
     
+    // set opus user info here due to the user info may not exist before user registration
+    [[[OpusService defaultService] draftOpusManager] setAuthorInfo:draftOpus];
     
-        
     dispatch_async(workingQueue, ^{
         
         NSDictionary *para = @{PARA_USERID : [[UserManager defaultManager] userId],
                                PARA_APPID : [PPConfigManager appId],
                                PARA_UPLOAD_DATA_TYPE : [draftOpus dataType],
                                    };
-
         
         NSDictionary *imageDataDict = nil;
 

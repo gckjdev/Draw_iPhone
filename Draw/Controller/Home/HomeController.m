@@ -669,14 +669,14 @@ static NSDictionary* DRAW_MENU_IMAGE_DICT = nil;
         }
             break;
         case HomeMenuTypeDrawContest:
-//#ifdef DEBUG
-//        {
-//            GroupHomeController *gc = [[GroupHomeController alloc] init];
-//            [self.navigationController pushViewController:gc animated:YES];
-//            [gc release];
-//            break;
-//        }
-//#endif
+#ifdef DEBUG
+        {
+            GroupHomeController *gc = [[GroupHomeController alloc] init];
+            [self.navigationController pushViewController:gc animated:YES];
+            [gc release];
+            break;
+        }
+#endif
             
         {
             [[AnalyticsManager sharedAnalyticsManager] reportClickHomeMenu:HOME_ACTION_CONTEST];

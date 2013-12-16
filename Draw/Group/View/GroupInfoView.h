@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "GroupModelExt.h"
 
 @class GroupInfoView;
 @protocol GroupInfoViewDelegate <NSObject>
@@ -25,5 +26,8 @@
 + (CGFloat)getViewHeight;
 - (void)setCustomButton:(UIButton *)button;
 - (UIButton *)customButton;
+- (void)updateWithGroup:(PBGroup *)group;
+
++ (CGFloat)recommandHeightForGroup:(PBGroup *)group;
 
 @end

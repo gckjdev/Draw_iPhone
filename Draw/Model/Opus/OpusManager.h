@@ -54,5 +54,6 @@
 // Call these methods in sub-class
 - (void)setDraftOpusId:(Opus*)opus extension:(NSString*)fileNameExtension;
 - (void)setCommonOpusInfo:(Opus*)opus;
+- (void)setAuthorInfo:(Opus*)opus;
 
 @end

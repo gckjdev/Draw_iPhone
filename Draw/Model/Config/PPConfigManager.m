@@ -1260,7 +1260,7 @@
 }
 
 + (int)getRecordDeductCoinsPer30Sec{
-    return [MobClickUtils getIntValueByKey:@"RECORD_DEDUCT_COINS_PER_30SEC" defaultValue:5];
+    return [MobClickUtils getIntValueByKey:@"RECORD_DEDUCT_COINS_PER_30SEC" defaultValue:1];
 }
 
 + (NSString*)getShareSDKAppId
