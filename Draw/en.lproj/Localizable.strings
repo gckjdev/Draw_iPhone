@@ -2377,3 +2377,9 @@
 
 "kShareAppWeiboDefault" = "%@ AppStore Download Link : %@";
 "kAwardTaskSucc" = "Take %d coins for award successfully";
+
+"kHotOption" = "Default Option";
+"kSetHotOption" = "Set Top As Default";
+"kSetLatestOption" = "Set Newest As Default";
+"kSetSuccess" = "Settings set successfully";
+

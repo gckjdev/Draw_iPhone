@@ -459,6 +459,7 @@
 - (IBAction)clickBack:(id)sender 
 {
     [self unregisterAllNotifications];
+	[self deregsiterKeyboardNotification];
     
     NSArray *viewControllers = self.navigationController.viewControllers;
 //    PPDebug(@"<clickBack>viewControllers = %@",viewControllers);

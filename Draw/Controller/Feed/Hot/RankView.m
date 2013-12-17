@@ -145,14 +145,19 @@
     }
 
     if ([self.feed isSingCategory]) {
-        [[self.drawImage viewWithTag:201139481] removeFromSuperview];
-        WhisperStyleView *v = [WhisperStyleView createWithFrame:self.drawImage.bounds
-                                                           feed:self.feed
-                                                    useBigImage:NO];
-        [v setHotRankViewStyle];
+
         [self.drawImage setImage:nil];
-        [self.drawImage addSubview:v];
-        v.tag = 201139481;
+
+        WhisperStyleView *v = (id)[self.drawImage viewWithTag:201139481];
+        if (v == nil) {
+            v = [WhisperStyleView createWithFrame:self.drawImage.bounds];
+            [v setHotRankViewStyle];
+            v.tag = 201139481;
+            [self.drawImage addSubview:v];
+        }
+
+        [v setViewInfo:self.feed useBigImage:NO];
+        
     }else if ([self.feed isDrawCategory]){
         
         if ([feed.drawImageUrl length] != 0) {

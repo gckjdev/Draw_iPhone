@@ -20,6 +20,7 @@
 #import "MKBlockActionSheet.h"
 #import "BBSPermissionManager.h"
 #import "UINavigationController+UINavigationControllerAdditions.h"
+#import "SingHotCell.h"
 
 typedef enum{
 
@@ -47,9 +48,57 @@ typedef enum{
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        _defaultTabIndex = 1;
+        HotIndexType index = [[UserManager defaultManager] hotControllerIndex];
+        if (index == HotLatestIndex){
+            _defaultTabIndex = 3;
+        }
+        else if (index == HotTopIndex){
+            _defaultTabIndex = 1;
+        }
+        else{
+            _defaultTabIndex = 1;            
+        }
+        
     }
     return self;
+}
+
+
+- (IBAction)clickSetHot:(id)sender
+{
+    MKBlockActionSheet *sheet = nil;
+    sheet = [[MKBlockActionSheet alloc] initWithTitle:NSLS(@"kHotOption")
+                                             delegate:nil
+                                    cancelButtonTitle:NSLS(@"kCancel")
+                               destructiveButtonTitle:NSLS(@"kSetHotOption")
+                                    otherButtonTitles:NSLS(@"kSetLatestOption"), nil];
+
+    HotIndexType index = [[UserManager defaultManager] hotControllerIndex];
+    if (index == HotLatestIndex){
+        [sheet setDestructiveButtonIndex:1];
+    }
+    else if (index == HotLatestIndex){
+        [sheet setDestructiveButtonIndex:0];
+    }
+    
+    [sheet setActionBlock:^(NSInteger buttonIndex){
+        switch (buttonIndex){
+            case 0:
+                [[UserManager defaultManager] setHotControllerIndex:HotTopIndex];
+                POSTMSG(NSLS(@"kSetSuccess"));
+                break;
+            case 1:
+                [[UserManager defaultManager] setHotControllerIndex:HotLatestIndex];
+                POSTMSG(NSLS(@"kSetSuccess"));
+                break;
+            default:
+                break;
+        }
+    }];
+
+    [sheet showInView:self.view];
+    [sheet release];
+    
 }
 
 - (void)didReceiveMemoryWarning
@@ -67,7 +116,7 @@ typedef enum{
 
 - (void)showCachedFeedList:(int)tabID
 {
-    PPDebug(@"<showCachedFeedList> tab id = %d", tabID);
+//    PPDebug(@"<showCachedFeedList> tab id = %d", tabID);
     FeedListType type = [self feedListTypeForTabID:tabID];
     if (type != FeedListTypeUnknow) {
         NSArray *feedList = [[FeedService defaultService] getCachedFeedList:type];
@@ -103,12 +152,23 @@ typedef enum{
 
 #pragma mark - View lifecycle
 
+- (void)viewDidAppear:(BOOL)animated{
+    
+    [super viewDidAppear:animated];
+    PPDebug(@"HotController viewDidAppear done");
+}
+
 - (void)viewDidLoad
 {
-    [super viewDidLoad];    
+    [super viewDidLoad];
+    PPDebug(@"HotController viewDidLoad");
+    
+    PPDebug(@"initTabButtons");
     [self initTabButtons];
-
+    PPDebug(@"initTabButtons done!");
+    
     NSString* title = isDrawApp() ? NSLS(@"kRank") : NSLS(@"kSingTop");
+    self.titleView = [CommonTitleView createTitleView:self.view];
     
     [self.titleView setTitle:title];
     [self.titleView setRightButtonAsRefresh];
@@ -117,6 +177,9 @@ typedef enum{
     [self.titleView setRightButtonSelector:@selector(clickRefreshButton:)];
     
     SET_COMMON_TAB_TABLE_VIEW_Y(self.dataTableView);
+    
+    PPDebug(@"HotController viewDidLoad done!");
+ 
 }
 
 - (void)viewDidUnload
@@ -206,21 +269,21 @@ typedef enum{
     }
 }
 
-- (void)setWhisperRankCell:(UITableViewCell *)cell
-                 WithFeeds:(NSArray *)feeds
-{
-    CGFloat width = [RankView widthForRankViewType:RankViewTypeWhisper];
-    CGFloat height = [RankView heightForRankViewType:RankViewTypeWhisper];
-    CGFloat x = ISIPAD ? 1.5 : 1;
-    CGFloat y = 0;
-    for (DrawFeed *feed in feeds) {
-        RankView *rankView = [RankView createRankView:self type:RankViewTypeWhisper];
-        [rankView setViewInfo:feed];
-        [cell.contentView addSubview:rankView];
-        rankView.frame = CGRectMake(x, y, width, height);
-        x += width;
-    }
-}
+//- (void)setWhisperRankCell:(UITableViewCell *)cell
+//                 WithFeeds:(NSArray *)feeds
+//{
+//    CGFloat width = [RankView widthForRankViewType:RankViewTypeWhisper];
+//    CGFloat height = [RankView heightForRankViewType:RankViewTypeWhisper];
+//    CGFloat x = ISIPAD ? 1.5 : 1;
+//    CGFloat y = 0;
+//    for (DrawFeed *feed in feeds) {
+//        RankView *rankView = [RankView createRankView:self type:RankViewTypeWhisper];
+//        [rankView setViewInfo:feed];
+//        [cell.contentView addSubview:rankView];
+//        rankView.frame = CGRectMake(x, y, width, height);
+//        x += width;
+//    }
+//}
 
 #define WIDTH_SPACE 1
 - (void)setTopPlayerCell:(UITableViewCell *)cell 
@@ -252,6 +315,26 @@ typedef enum{
 
 - (UITableViewCell *)tableView:(UITableView *)theTableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
+    
+    if (isSingApp()) {
+        
+        NSString *indentifier = [SingHotCell getCellIdentifier];
+        SingHotCell *cell = [theTableView dequeueReusableCellWithIdentifier:indentifier];
+        
+        if (cell == nil) {
+            cell = [SingHotCell createCell:self];
+        }
+        
+        
+        NSMutableArray *feeds = [NSMutableArray array];
+        int baseIndex = indexPath.row*WHISPER_CELL_VIEW_NUMBER;
+        [feeds addObject:[self saveGetObjectForIndex:baseIndex]];
+        [feeds addObject:[self saveGetObjectForIndex:baseIndex+1]];
+
+        [cell setCellInfo:feeds];
+        
+        return cell;
+    }
     
     NSString *CellIdentifier = @"RankCell";//[RankFirstCell getCellIdentifier];
     UITableViewCell *cell = [theTableView dequeueReusableCellWithIdentifier:CellIdentifier];
@@ -323,19 +406,21 @@ typedef enum{
             
         }
         
-    } else if (isSingApp()){
-        
-        NSInteger startIndex = indexPath.row * WHISPER_CELL_VIEW_NUMBER;
-        NSMutableArray *list = [NSMutableArray array];
-        for (NSInteger i = startIndex; i < startIndex+WHISPER_CELL_VIEW_NUMBER; ++ i) {
-            NSObject *object = [self saveGetObjectForIndex:i];
-            if (object) {
-                [list addObject:object];
-            }
-        }
-        [self setWhisperRankCell:cell WithFeeds:list];
     }
-        
+    
+//    else if (isSingApp()){
+//        
+//        NSInteger startIndex = indexPath.row * WHISPER_CELL_VIEW_NUMBER;
+//        NSMutableArray *list = [NSMutableArray array];
+//        for (NSInteger i = startIndex; i < startIndex+WHISPER_CELL_VIEW_NUMBER; ++ i) {
+//            NSObject *object = [self saveGetObjectForIndex:i];
+//            if (object) {
+//                [list addObject:object];
+//            }
+//        }
+//        [self setWhisperRankCell:cell WithFeeds:list];
+//    }
+    
     return cell;
 }
 

@@ -202,8 +202,8 @@
         buttonIndexSinaWeibo = 0;
         buttonIndexQQWeibo = 1;
         buttonIndexFacebook = 2;
-        buttonIndexWeixinFriend = 3;
-        buttonIndexWeixinTimeline = 4;
+        buttonIndexWeixinTimeline = 3;
+        buttonIndexWeixinFriend = 4;
         buttonIndexEmail = 5;
         buttonIndexAlbum = 6;
         buttonIndexFavorite = 7;

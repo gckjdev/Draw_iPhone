@@ -644,7 +644,6 @@
 
 
 #define NO_COIN_TAG 201204271
-#define SUBJECT_MAX_LENGTH 7
 
 
 #pragma mark - Common Dialog Delegate
@@ -1267,9 +1266,9 @@
                       )){
           POSTMSG(NSLS(@"kOnlyChineseOrEnglishTitleAllowed"));
             
-          }else if([v.titleInputField.text length] > SUBJECT_MAX_LENGTH){
+          }else if([v.titleInputField.text length] > [PPConfigManager getOpusNameMaxLength]){
               NSString *msg = [NSString stringWithFormat:NSLS(@"kSubjectLengthLimited"),
-                               SUBJECT_MAX_LENGTH];
+                               [PPConfigManager getOpusNameMaxLength]];
               POSTMSG(msg);
           }
         else{

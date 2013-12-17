@@ -84,6 +84,33 @@ static UserManager* _defaultManager;
     [super dealloc];
 }
 
+#define KEY_HOT_CONTROLLER_DEFAULT_TYPE @"KEY_HOT_CONTROLLER_DEFAULT_TYPE"
+
+- (HotIndexType)hotControllerIndex{
+    
+    NSUserDefaults* ud = [NSUserDefaults standardUserDefaults];
+    int defaultType = [ud integerForKey:KEY_HOT_CONTROLLER_DEFAULT_TYPE];
+    if (defaultType == HotUnknownIndex){
+        
+        if (self.pbUser.level > 1){
+            return HotTopIndex;
+        }
+        else{
+            return [PPConfigManager defaultHotControllerIndex];
+        }
+    }
+    else{
+        return defaultType;
+    }
+}
+
+- (void)setHotControllerIndex:(HotIndexType)index
+{
+    NSUserDefaults* ud = [NSUserDefaults standardUserDefaults];
+    [ud setInteger:index forKey:KEY_HOT_CONTROLLER_DEFAULT_TYPE];
+    [ud synchronize];
+}
+
 - (void)loadUserDataFromOldStorage
 {
     if ([[self userIdFromOldStorage] length] == 0)

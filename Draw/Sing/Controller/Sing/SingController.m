@@ -42,6 +42,8 @@
 #import "CropAndFilterViewController.h"
 #import "UIView+Pan.h"
 #import "AudioFormatConverter.h"
+#import "InputAlertView.h"
+#import "PPConfigManager.h"
 
 #define GREEN_COLOR [UIColor colorWithRed:99/255.0 green:186/255.0 blue:152/255.0 alpha:1]
 #define WHITE_COLOR [UIColor whiteColor]
@@ -171,7 +173,6 @@ enum{
     
     self.descTextView.placeholder = NSLS(@"kDescPlaceholder");
     
-//    self.mp3FilePath =[NSTemporaryDirectory() stringByAppendingFormat:@"%@.mp3", [NSString GetUUID]];
     self.mp3FilePath =[NSTemporaryDirectory() stringByAppendingFormat:@"%@.mp3", @"temp"];
     
     // init title view
@@ -817,11 +818,6 @@ enum{
 
 - (IBAction)clickChangeVoiceButton:(UIButton *)button {
     
-//    if (ISIOS7) {
-//        POSTMSG2(@"你的iOS版本暂不支持变声", 2.5);
-//        return;
-//    }
-    
     if (self.popTipView == nil) {
         VoiceTypeSelectView *v = [VoiceTypeSelectView createWithVoiceType:_singOpus.pbOpus.sing.voiceType];
         v.delegate = self;
@@ -963,6 +959,58 @@ enum{
     _hasEdited = NO;
 }
 
+- (void)showOpusNameAndDescEditView
+{
+    InputAlertView *v = [InputAlertView createWithType:ComposeInputDialogTypeTitleAndContent];
+    [v.titleInputField becomeFirstResponder];
+    [v.titleInputField setText:self.singOpus.pbOpus.name];
+    [v.contentInputView setText:self.singOpus.pbOpus.desc];
+    v.titleInputField.placeholder = NSLS(@"kSubjectPlaceholder");
+
+    CommonDialog *dialog = [CommonDialog createDialogWithTitle:NSLS(@"kAddOpusDesc") customView:v style:CommonDialogStyleDoubleButton];
+    dialog.manualClose = YES;
+    [dialog showInView:self.view];
+    
+    [dialog setClickOkBlock:^(id infoView){
+                
+        if ([v.titleInputField.text length] <= 0) {
+
+            POSTMSG(NSLS(@"kSubjectPlaceCannotBlank"));
+            return;
+        }
+
+        if (!NSStringIsValidChinese(v.titleInputField.text)
+            && !NSStringISValidEnglish(v.titleInputField.text)){
+
+            POSTMSG(NSLS(@"kOnlyChineseOrEnglishTitleAllowed"));
+            return;
+        }
+
+
+        if([v.titleInputField.text length] > [PPConfigManager getOpusNameMaxLength]){
+
+            NSString *msg = [NSString stringWithFormat:NSLS(@"kSubjectLengthLimited"),
+                             [PPConfigManager getOpusNameMaxLength]];
+            POSTMSG(msg);
+            return;
+        }
+        
+        [self.singOpus setName:v.titleInputField.text];
+        [self.singOpus setDesc:v.contentInputView.text];
+        [[NSNotificationCenter defaultCenter] postNotificationName:KEY_NOTIFICATION_SING_INFO_CHANGE object:nil];
+
+        dialog.manualClose = NO;
+        
+        [self deductCoinsAndSubmitOpus];
+    }];
+    
+    [dialog setClickCancelBlock:^(id infoView){
+        dialog.manualClose = NO;
+    }];
+}
+
+
+
 - (IBAction)clickSubmitButton:(id)sender {
     
     [_singOpus pauseAndSaveDesignTime];
@@ -989,24 +1037,39 @@ enum{
         return;
     }
     
+    if ([self.singOpus.pbOpus.desc length] <= 0) {
+        [self showOpusNameAndDescEditView];
+    }else{
+        [self deductCoinsAndSubmitOpus];
+    }
+}
+
+- (void)deductCoinsAndSubmitOpus{
+    
     if (_fileDuration > 30) {
         int count = _fileDuration / 30;
         int coins = count * [PPConfigManager getRecordDeductCoinsPer30Sec];
         int balance = [[AccountManager defaultManager] getBalanceWithCurrency:PBGameCurrencyCoin];
-        if ( balance < coins) {
-            NSString *msg = [NSString stringWithFormat:NSLS(@"kCoinsNotEnoughForSubmit"), coins, balance];
-            POSTMSG2(msg, 3);
-            return;
+        
+        if (coins > 0){
+            if (balance < coins) {
+                NSString *msg = [NSString stringWithFormat:NSLS(@"kCoinsNotEnoughForSubmit"), coins, balance];
+                POSTMSG2(msg, 3);
+                return;
+            }
+
+            NSString *msg = [NSString stringWithFormat:NSLS(@"kRecordSubmitHint"), (int)_fileDuration, coins, balance];
+            CommonDialog *dialog = [CommonDialog createDialogWithTitle:NSLS(@"kHint") message:msg style:CommonDialogStyleDoubleButton];
+            [dialog setClickOkBlock:^(id infoView){
+                [self deductCoins:coins];
+                [self handleAndSubmitOpus];
+            }];
+            [dialog showInView:self.view];
+        }
+        else{
+            [self handleAndSubmitOpus];
         }
         
-        NSString *msg = [NSString stringWithFormat:NSLS(@"kRecordSubmitHint"), (int)_fileDuration, coins, balance];
-        
-        CommonDialog *dialog = [CommonDialog createDialogWithTitle:NSLS(@"kHint") message:msg style:CommonDialogStyleDoubleButton];
-        [dialog setClickOkBlock:^(id infoView){
-            [self deductCoins:coins];
-            [self handleAndSubmitOpus];
-        }];
-        [dialog showInView:self.view];
     }else{
         [self handleAndSubmitOpus];
     }

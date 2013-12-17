@@ -22,6 +22,9 @@
 @property (assign, nonatomic) float sx;
 @property (assign, nonatomic) float sy;
 
+@property (retain, nonatomic) UIImageView *imageView;
+@property (retain, nonatomic) StrokeLabel *label;
+
 @end
 
 @implementation WhisperStyleView
@@ -29,6 +32,8 @@
 AUTO_CREATE_VIEW_BY_XIB(WhisperStyleView);
 
 - (void)dealloc {
+    [_imageView release];
+    [_label release];
     [super dealloc];
 }
 
@@ -40,146 +45,148 @@ AUTO_CREATE_VIEW_BY_XIB(WhisperStyleView);
     return v;
 }
 
-#define TAG_LABEL 201311131346
-#define TAG_IMAGE_VIEW 201311131347
++ (id)createWithFrame:(CGRect)frame{
+    
+    WhisperStyleView *v = [[[self alloc] initWithFrame:frame feed:nil useBigImage:NO] autorelease];
+    return v;
+}
+
+
 
 - (id)initWithFrame:(CGRect)frame
                feed:(DrawFeed *)feed
         useBigImage:(BOOL)useBigImage{
 
-    CGRect originFrame = CGRectMake(0, 0, feed.pbFeed.canvasSize.width, feed.pbFeed.canvasSize.height);
 
-    if (self = [super initWithFrame:originFrame]) {
-        
-//        self.backgroundColor = [UIColor redColor];
-        UIImageView *iv = [[[UIImageView alloc] initWithFrame:self.bounds] autorelease];
-        [iv setContentMode:UIViewContentModeScaleAspectFill];
-//        [iv setContentMode:UIViewContentModeScaleAspectFit];
-
-
-        [iv setClipsToBounds:YES];
-        
-        UIActivityIndicatorView *indicator = [[[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite] autorelease];
-        [indicator updateCenterX:iv.frame.size.width/2];
-        [indicator updateCenterY:iv.frame.size.height/2];
-        [indicator startAnimating];
-        [iv addSubview:indicator];
-        iv.tag = TAG_IMAGE_VIEW;
-        [self addSubview:iv];
-        
-        StrokeLabel *l = [[[StrokeLabel alloc] initWithFrame:CGRectZero] autorelease];
-        l.text = feed.opusDesc;
-        l.textAlignment = NSTextAlignmentCenter;
-        l.tag = TAG_LABEL;
-        l.backgroundColor = [UIColor clearColor];
-        [self addSubview:l];
-
-        
-        // update lable info
-        PBLabelInfo *labelInfo = feed.pbFeed.descLabelInfo;
-        if (labelInfo != nil) {
-            
-            // set frame
-            [l updateOriginX:labelInfo.frame.x];
-            [l updateOriginY:labelInfo.frame.y];
-            [l updateWidth:labelInfo.frame.width];
-            [l updateHeight:labelInfo.frame.height];
-            
-            PPDebug(@"stroke label frame = %@", NSStringFromCGRect(l.frame));
-            
-            // set number of line
-            l.numberOfLines = 0;
-
-            // set text color
-            l.textColor = [[DrawColor colorWithBetterCompressColor:labelInfo.textColor] color];
-            
-            // set font
-            l.font = [UIFont systemFontOfSize:labelInfo.textFont];
-            
-            // set text stroke color
-            l.textOutlineColor = [[DrawColor colorWithBetterCompressColor:labelInfo.textStrokeColor] color];
-            
-            // set text stroke widht
-            l.textOutlineWidth = (ISIPAD ? 2 : 1); // change by Benson
-                        
-        }else{
-            
-            PPDebug(@"<updateDescriptionLabel>, but lableInfo is nil");
-        }
-        
+    if (self = [super initWithFrame:frame]) {
+    
+        self.imageView = [[[UIImageView alloc] initWithFrame:self.bounds] autorelease];
+        [self.imageView setContentMode:UIViewContentModeScaleAspectFill];
+        [self.imageView setClipsToBounds:YES];
+        [self addSubview:self.imageView];
                 
-        // transform from originFrame to frame
-        self.sx = frame.size.width / self.frame.size.width;
-        self.sy = frame.size.height / self.frame.size.height;
+        self.label = [[[StrokeLabel alloc] initWithFrame:CGRectZero] autorelease];
+        self.label.textAlignment = NSTextAlignmentCenter;
+        self.label.backgroundColor = [UIColor clearColor];
         
-        CGAffineTransform transform = CGAffineTransformMakeScale(_sx, _sy);
-        self.transform = transform;
+        // set number of line
+        self.label.numberOfLines = 0;
         
-        // update origin
-        [self updateOriginX:frame.origin.x];
-        [self updateOriginY:frame.origin.y];
+        // set text stroke widht
+        self.label.textOutlineWidth = (ISIPAD ? 2 : 1); // change by Benson
         
-        UIImage *placeHolder = [UIImage imageNamed:@"unloadbg@2x.png"];
-        
-        if (useBigImage) {
-            
-            [iv setImageWithURL:[feed thumbURL]
-               placeholderImage:placeHolder
-                      completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType) {
-                [iv setImageWithURL:[feed largeImageURL] placeholderImage:image completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType) {
-                    [indicator stopAnimating];
-                    [indicator removeFromSuperview];
-                }];
-            }];
-        }else{
-            
-            [iv setImageWithURL:feed.thumbURL placeholderImage:placeHolder completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType) {
-                [indicator stopAnimating];
-                [indicator removeFromSuperview];
-            }];
-        }
-        
+        [self addSubview:self.label];
+
         [self setClipsToBounds:YES];
+        
+        if (feed != nil) {
+            [self setViewInfo:feed useBigImage:useBigImage];
+        }
     }
     
     return self;
 }
 
+- (void)setViewInfo:(DrawFeed *)feed
+        useBigImage:(BOOL)useBigImage{
+        
+    CGRect originFrame = CGRectMake(0, 0, feed.pbFeed.canvasSize.width, feed.pbFeed.canvasSize.height);
+
+    // transform from originFrame to frame
+    self.sx = originFrame.size.width / self.frame.size.width;
+    self.sy = originFrame.size.height / self.frame.size.height;
+    
+    self.label.text = [feed opusDesc];
+    // update lable info
+    PBLabelInfo *labelInfo = feed.pbFeed.descLabelInfo;
+    if (labelInfo != nil) {
+        
+        // set frame
+        [self.label updateOriginX:labelInfo.frame.x / _sx];
+        [self.label updateOriginY:labelInfo.frame.y / _sy];
+        [self.label updateWidth:labelInfo.frame.width / _sx];
+        [self.label updateHeight:labelInfo.frame.height / _sy];
+        
+        // set text color
+        self.label.textColor = [[DrawColor colorWithBetterCompressColor:labelInfo.textColor] color];
+        
+        // set font
+        self.label.font = [UIFont systemFontOfSize:ISIPAD ? 25 : 15];
+        
+        // set text stroke color
+        self.label.textOutlineColor = [[DrawColor colorWithBetterCompressColor:labelInfo.textStrokeColor] color];
+    }else{
+        
+        PPDebug(@"<updateDescriptionLabel>, but lableInfo is nil");
+    }
+    
+    
+    
+    UIImage *placeHolder = [UIImage imageNamed:@"unloadbg@2x.png"];
+    
+    if (useBigImage) {
+        
+        UIActivityIndicatorView *indicator = [[[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite] autorelease];
+        [indicator updateCenterX:self.imageView.frame.size.width/2];
+        [indicator updateCenterY:self.imageView.frame.size.height/2];
+        [indicator startAnimating];
+        [self.imageView addSubview:indicator];
+        
+        [self.imageView setImageWithURL:[feed thumbURL]
+                       placeholderImage:placeHolder
+                              completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType) {
+                                  [self.imageView setImageWithURL:[feed largeImageURL] placeholderImage:image completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType) {
+                                      [indicator stopAnimating];
+                                      [indicator removeFromSuperview];
+                                  }];
+                              }];
+    }else{
+        
+        [self.imageView setImageWithURL:feed.thumbURL placeholderImage:placeHolder completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType) {
+            
+        }];
+    }
+}
+
 - (void)setHotRankViewStyle{
     
-    UILabel *label = (UILabel *)[self viewWithTag:TAG_LABEL];
-    label.font = [UIFont systemFontOfSize:ISIPAD ? 25/_sx : 15/_sx];
-    label.numberOfLines = 3;
-    [label updateWidth:self.bounds.size.width];
-    [label updateHeight:self.bounds.size.height];
-    label.center = CGPointMake(self.bounds.size.width/2, self.bounds.size.height/2);
+    self.label.font = [UIFont systemFontOfSize:ISIPAD ? 25 : 15];
+    self.label.numberOfLines = 3;
+    
+    [self.label wrapTextWithConstrainedSize:CGSizeMake(self.bounds.size.width * 0.8, self.bounds.size.height)];
+    [self.label updateWidth:self.bounds.size.width];
+    [self.label updateHeight:self.bounds.size.height];
+    self.label.center = CGPointMake(self.bounds.size.width/2, self.bounds.size.height/2);
 }
 
 - (void)setHomeRankViewStyle{
     
-    UILabel *label = (UILabel *)[self viewWithTag:TAG_LABEL];
-    label.font = [UIFont systemFontOfSize:ISIPAD ? 20/_sx : 11/_sx];
-    label.numberOfLines = 3;
-    [label updateWidth:self.bounds.size.width];
-    [label updateHeight:self.bounds.size.height];
-    label.center = CGPointMake(self.bounds.size.width/2, self.bounds.size.height/2);
+    self.label.font = [UIFont systemFontOfSize:ISIPAD ? 20 : 11];
+    self.label.numberOfLines = 3;
+    
+//    [self.label wrapTextWithConstrainedSize:CGSizeMake(self.bounds.size.width * 0.8, self.bounds.size.height)];
+
+    [self.label updateWidth:self.bounds.size.width];
+    [self.label updateHeight:self.bounds.size.height];
+    self.label.center = CGPointMake(self.bounds.size.width/2, self.bounds.size.height/2);
 }
 
 - (void)setFeedDetailStyle{
-    UIImageView *iv = (UIImageView *)[self viewWithTag:TAG_IMAGE_VIEW];
-    [iv setContentMode:UIViewContentModeScaleAspectFit];
     
+    [self.imageView setContentMode:UIViewContentModeScaleAspectFit];
+    self.label.font = [UIFont systemFontOfSize:ISIPAD ? 25 : 15];
+
     // 有时候上传的照片，用户明明有编辑描述，但是上传后frame就是0，所以这里做一下保护。
     // 如果上述的bug解决了，这里的代码就可以不要了。
     
-    UILabel *label = (UILabel *)[self viewWithTag:TAG_LABEL];
-    if (label.text.length != 0
-        && (CGRectGetWidth(label.frame) == 0 || CGRectGetHeight(label.frame) == 0)) {
-        label.font = [UIFont systemFontOfSize:ISIPAD ? 25/_sx : 15/_sx];
-        label.numberOfLines = 99;
-        [label updateWidth:self.bounds.size.width];
-        [label updateHeight:self.bounds.size.height];
-        label.center = CGPointMake(self.bounds.size.width/2, self.bounds.size.height/2);
+    if (self.label.text.length != 0
+        && (CGRectGetWidth(self.label.frame) == 0 || CGRectGetHeight(self.label.frame) == 0)) {
+        self.label.numberOfLines = 99;
+        [self.label updateHeight:self.bounds.size.height];
+
+        [self.label updateWidth:self.bounds.size.width];
+
+        self.label.center = CGPointMake(self.bounds.size.width/2, self.bounds.size.height/2);
     }
 }
 

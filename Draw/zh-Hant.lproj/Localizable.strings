@@ -1211,7 +1211,7 @@
 
 "kHomeMenuTypeDrawDraw" = "畫畫";
 "kHomeMenuTypeDrawGuess" = "猜畫";
-"kHomeMenuTypeDrawGame" = "多人";
+"kHomeMenuTypeDrawGame" = "游戏";
 "kHomeMenuTypeDrawTimeline" = "動態";
 "kHomeMenuTypeDrawRank" = "畫榜";
 "kHomeMenuTypeDrawContest" = "比賽";
@@ -2407,3 +2407,7 @@
 "kShareAppWeiboDefault" = "%@ AppStore下載鏈接： %@";
 "kAwardTaskSucc" = "成功領取%d金幣獎勵";
 
+"kHotOption" = "默認畫榜";
+"kSetHotOption" = "默認查看周榜";
+"kSetLatestOption" = "默認查看最新";
+"kSetSuccess" = "設置成功";
