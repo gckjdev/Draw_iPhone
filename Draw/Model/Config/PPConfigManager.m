@@ -22,12 +22,12 @@
 
 + (int)defaultHomeControllerFeedType
 {
-    return [MobClickUtils getIntValueByKey:@"DEFAULT_HOME_CONTROLLER_FEED_TYPE" defaultValue:FeedListTypeLatest];
+    return [MobClickUtils getIntValueByKey:@"DEFAULT_HOME_CONTROLLER_FEED_TYPE" defaultValue:HotLatestIndex];
 }
 
 + (int)defaultHotControllerIndex
 {
-    return [MobClickUtils getIntValueByKey:@"DEFAULT_HOT_CONTROLLER_INDEX" defaultValue:3];
+    return [MobClickUtils getIntValueByKey:@"DEFAULT_HOT_CONTROLLER_INDEX" defaultValue:HotLatestIndex];
 }
 
 + (int)maxWeiboShareLength

@@ -91,7 +91,13 @@ static UserManager* _defaultManager;
     NSUserDefaults* ud = [NSUserDefaults standardUserDefaults];
     int defaultType = [ud integerForKey:KEY_HOT_CONTROLLER_DEFAULT_TYPE];
     if (defaultType == HotUnknownIndex){
-        return [PPConfigManager defaultHotControllerIndex];
+        
+        if (self.pbUser.level > 1){
+            return HotTopIndex;
+        }
+        else{
+            return [PPConfigManager defaultHotControllerIndex];
+        }
     }
     else{
         return defaultType;
