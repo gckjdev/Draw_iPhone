@@ -85,7 +85,13 @@
 {
     PPDebug(@"updateDisplayView");
     
-    [[FeedService defaultService] getFeedList:FeedListTypeHot
+    int feedListType = FeedListTypeHot;
+    HotIndexType indexType = [[UserManager defaultManager] hotControllerIndex];
+    if (indexType == HotLatestIndex){
+        feedListType = FeedListTypeLatest;
+    }
+    
+    [[FeedService defaultService] getFeedList:feedListType
                                        offset:0
                                         limit:[PPConfigManager getHotOpusCountOnce]
                                      delegate:self];        

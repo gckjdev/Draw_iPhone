@@ -243,7 +243,14 @@
     [self updateFrameForClose];
     
     [self reloadLocalCache];
-    [[FeedService defaultService] getFeedList:FeedListTypeHot offset:0 limit:HEADER_OPUS_COUNT delegate:self];
+    
+    int feedListType = FeedListTypeHot;
+    HotIndexType indexType = [[UserManager defaultManager] hotControllerIndex];
+    if (indexType == HotLatestIndex){
+        feedListType = FeedListTypeLatest;
+    }
+    
+    [[FeedService defaultService] getFeedList:feedListType offset:0 limit:HEADER_OPUS_COUNT delegate:self];
     [self updateBG];
     [self startSwitchOpus];
     
@@ -289,7 +296,13 @@
 
 - (void)updateView
 {
-    [[FeedService defaultService] getFeedList:FeedListTypeHot
+    int feedListType = FeedListTypeHot;
+    HotIndexType indexType = [[UserManager defaultManager] hotControllerIndex];
+    if (indexType == HotLatestIndex){
+        feedListType = FeedListTypeLatest;
+    }
+    
+    [[FeedService defaultService] getFeedList:feedListType
                                        offset:0
                                         limit:HEADER_OPUS_COUNT
                                      delegate:self];

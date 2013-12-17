@@ -11,7 +11,7 @@
 #import "FileUtil.h"
 #import "PPResourceService.h"
 #import "FXLabel.h"
-
+#import "DrawUtils.h"
 
 
 @interface ShareImageManager () {
@@ -1276,7 +1276,8 @@ static NSMutableDictionary *colorImageDict;
     if (!colorImageDict) {
         colorImageDict = [[NSMutableDictionary alloc] init];
     }
-    UIImage *image = [colorImageDict objectForKey:color];
+    NSString* key = [DrawUtils keyForColor:color];
+    UIImage *image = [colorImageDict objectForKey:key];
     if (!image) {
         CGSize size = CGSizeMake(2, 2);
         UIGraphicsBeginImageContext(size);
@@ -1285,7 +1286,8 @@ static NSMutableDictionary *colorImageDict;
         image = UIGraphicsGetImageFromCurrentImageContext();
         UIGraphicsEndImageContext();
         image = [image stretchableImageWithLeftCapWidth:size.width/2 topCapHeight:size.height/2];
-        [colorImageDict setObject:image forKey:color];
+        
+        [colorImageDict setObject:image forKey:key];
     }
     return image;
 }

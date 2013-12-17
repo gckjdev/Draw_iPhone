@@ -284,6 +284,26 @@ CGPoint midPoint1(CGPoint p1, CGPoint p2)
     return [DrawUtils compressColor8WithRed:color.red green:color.green blue:color.blue alpha:color.alpha];
 }
 
++ (NSString *)keyForColor:(UIColor *)color
+{
+    if (color == nil){
+        PPDebug(@"<keyForColor> color is nil!");
+        return @"";
+    }
+    
+    CGFloat *cpn = CGColorGetComponents(color.CGColor);
+    NSInteger count = CGColorGetNumberOfComponents(color.CGColor);
+    NSMutableString *ret = [[NSMutableString alloc] init];
+    for (int i = 0; i < count; i ++) {
+        int value = cpn[i] * 255;
+        [ret appendFormat:@"%03d", value];
+    }
+//    CGFloat alpha = CGColorGetAlpha(color.CGColor);
+//    [ret appendFormat:@"%f", alpha];
+    PPDebug(@"<keyForColor> key = %@", ret);
+    return ret;
+}
+
 //+ (NSUInteger)compressColor8:(UIColor *)color{
 //    
 //    DrawColor *drawColor = [[[DrawColor alloc] initWithColor:color] autorelease];
