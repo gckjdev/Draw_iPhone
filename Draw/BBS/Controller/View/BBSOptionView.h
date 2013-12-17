@@ -17,6 +17,8 @@
 @end
 
 
+typedef void (^ BBSOptionViewCallback) (NSInteger index);
+
 @interface BBSOptionView : UIView
 
 
@@ -25,10 +27,15 @@
 @property(nonatomic, assign)id<BBSOptionViewDelegate>delegate;
 @property(nonatomic, retain)UIButton *mask;
 @property(nonatomic, retain)UIImageView *bgImageView;
-
+@property(nonatomic, copy)BBSOptionViewCallback callback;
 
 - (id)initWithTitles:(NSArray *)titles
             delegate:(id<BBSOptionViewDelegate>)delegate;
+
+- (id)initWithTitles:(NSArray *)titles
+            callback:(BBSOptionViewCallback)callback;
+
+
 - (void)setMaskViewColor:(UIColor *)color;
 - (void)dismiss:(BOOL)animated;
 

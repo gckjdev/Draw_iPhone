@@ -17,6 +17,9 @@
 #import "CommonDialog.h"
 #import "GroupModelExt.h"
 #import "UILabel+Extend.h"
+#import "UserDetailViewController.h"
+#import "ViewUserDetail.h"
+#import "GroupPermission.h"
 
 enum{
     SECTION_BASE_INDEX = 0,
@@ -33,12 +36,13 @@ typedef enum{
     RowFee,
     BaseSectionRowCount,
 }BaseSectionRow;
-/*
+
 typedef enum{
     RowCreator = 0,
     RowAdmins,
+    RowMemberStart
 }MemberSectionRow;
-*/
+
 
 #define SIGN_LABEL_HEIGHT 238
 #define MIN_SIGN_HEIGHT 21
@@ -47,9 +51,18 @@ typedef enum{
 {
     GroupService *groupService;
     GroupManager *groupManager;
+    
+    NSInteger IndexDetail;
+    NSInteger IndexRemove;
+    NSInteger IndexChangeTitle;
+    NSInteger IndexMakeAdmin;
+    NSInteger IndexRemoveFromAdmin;
+
+    
 }
 @property(nonatomic, retain) PBGroup *group;
 @property(nonatomic, retain) NSMutableArray *members;
+@property(nonatomic, retain) GroupPermissionManager *groupPermission;
 
 @property (retain, nonatomic) IBOutlet CommonTitleView *titleView;
 @property (retain, nonatomic) IBOutlet GroupIconView *groupIconView;
@@ -59,7 +72,6 @@ typedef enum{
 @end
 
 @implementation GroupDetailController
-
 
 + (GroupDetailController *)enterWithGroup:(PBGroup *)group
                            fromController:(PPViewController *)controller
@@ -77,16 +89,43 @@ typedef enum{
     [_groupIconView release];
     [_groupName release];
     [_groupSignature release];
+    PPRelease(_groupPermission);
+    
     [super dealloc];
 }
 
 
+- (void)clickEdit:(id)sender
+{
+    CommonDialog *dialog = [CommonDialog createInputViewDialogWith:NSLS(@"kCreateTitle")];
+    dialog.inputTextView.text = @"";
+    NSString *groupId = _group.groupId;
+    [dialog setClickOkBlock:^(id infoView){
+        NSString *text = dialog.inputTextView.text;
+        if (text == nil) {
+            //TODO pop up
+        }else{
+            NSInteger titleId = [GroupManager genTitleId];
+            [self showActivityWithText:NSLS(@"kCreatingTitle")];
+            [groupService createGroupTitle:text titleId:titleId groupId:groupId callback:^(NSError *error) {
+                [self hideActivity];
+                if (!error) {
+                    [self.dataTableView reloadData];
+                }
+            }];
+        }
+    }];
+    [dialog showInView:self.view];
+}
 - (void)initViews
 {
     //update title view
     [self.titleView setTarget:self];
     [self.titleView setBackButtonSelector:@selector(clickBack:)];
-    [self.titleView setRightButtonTitle:NSLS(@"kEdit")];
+    if ([GroupManager isMeAdminOrCreatorInSharedGroup]) {
+        [self.titleView setRightButtonTitle:NSLS(@"kEdit")];
+        [self.titleView setRightButtonSelector:@selector(clickEdit:)];        
+    }
     [self.titleView setTransparentStyle];
 
     //update header.
@@ -135,6 +174,24 @@ typedef enum{
     return self;
 }
 
+- (void)loadGroupDetail
+{
+    [self showActivityWithText:NSLS(@"kLoading")];
+    [groupService getGroup:_group.groupId callback:^(PBGroup *group, NSError *error) {
+        [self hideActivity];
+        if (!error) {            
+            [self updateGroup:group];
+            
+            if ([GroupManager isMeAdminOrCreatorInSharedGroup]) {
+                [self.titleView setRightButtonTitle:NSLS(@"kEdit")];
+                [self.titleView setRightButtonSelector:@selector(clickEdit:)];
+            }
+
+            [self.dataTableView reloadData];
+        }
+    }];
+}
+
 - (void)loadGroupMembers
 {
     [groupService getAllUsersByTitle:_group.groupId callback:^(NSArray *list, NSError *error) {
@@ -169,6 +226,10 @@ typedef enum{
 
 - (void)onTap:(UITapGestureRecognizer *)tap
 {
+    if (![GroupManager isMeAdminOrCreatorInSharedGroup]) {
+        return;
+    }
+
     if (tap.view == self.groupName) {
         [self alertToEditInfo:NSLS(@"kEditGroupName") info:_group.name key:PARA_NAME];
     }else if(tap.view == self.groupSignature){
@@ -183,13 +244,30 @@ typedef enum{
     [self.groupSignature enableTapTouch:self selector:@selector(onTap:)];
 }
 
+- (void)updateGroup:(PBGroup *)group
+{
+    if (![group hasRelation]) {
+        group = [groupService buildGroup:group withRelation:_group.relation];
+    }
+    self.group = group;
+    [[GroupManager defaultManager] setSharedGroup:group];
+    [self updatePermissionManager];
+}
+
+- (void)updatePermissionManager
+{
+    self.groupPermission = [GroupPermissionManager myManagerWithGroup:self.group];    
+}
+
 - (void)viewDidLoad
 {
     [groupManager setSharedGroup:self.group];
+    [self updatePermissionManager];
     [super viewDidLoad];
     [self initViews];
     [self initTapableLabels];
     [self reloadView];
+    [self loadGroupDetail];
     [self loadGroupMembers];
 
 }
@@ -217,15 +295,18 @@ typedef enum{
     if (SECTION_BASE_INDEX == section){
         return BaseSectionRowCount;
     }
-    return [[groupManager tempMemberList] count];
+    NSInteger count = [[groupManager tempMemberList] count]+RowMemberStart + 1;
+    return count;
 }
 
-- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
 {
-    if(section == SECTION_MEMBER_INDEX){
-        return 20;
-    }
-    return 0;
+    return 20;
+}
+
+- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
+{
+    return [[[UIView alloc] init] autorelease];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -237,8 +318,20 @@ typedef enum{
         }
         return [GroupDetailCell getCellHeightForSingleLineText];
         
-    }else{
-        PBGroupUsersByTitle *usersByTitle = groupManager.tempMemberList[indexPath.row];
+    }else {
+        PBGroupUsersByTitle *usersByTitle = nil;
+        if (row == RowCreator) {
+            return [GroupDetailCell getCellHeightForSingleAvatar];
+        }else if(row == RowAdmins){
+            usersByTitle = _group.adminsByTitle;
+        }else{
+            NSInteger index  = row - RowMemberStart;
+            if (index == [groupManager.tempMemberList count]) {
+                usersByTitle = [_group guestsByTitle];
+            }else{
+                usersByTitle = groupManager.tempMemberList[index];
+            }
+        }
         return [GroupDetailCell getCellHeightForUsersByTitle:usersByTitle];
     }
 }
@@ -293,15 +386,21 @@ typedef enum{
         [self updateBaseSectionCell:cell inRow:row];
     }else{
         CellRowPosition position = CellRowPositionMid;
-        if (row == 0) {
-            position = CellRowPositionFirst;
-        }else if (row == [_group.titlesList count] - 1) {
-            position = CellRowPositionLast;
+        if (row == RowCreator) {
+            [cell setCellForCreatorInGroup:_group position:CellRowPositionFirst];
+        }else if(row == RowAdmins){
+            [cell setCellForAdminsInGroup:_group position:CellRowPositionMid];
         }else{
-            position = CellRowPositionMid;
+            NSInteger index = row - RowMemberStart;
+            PBGroupUsersByTitle *usersByTitle;
+            if (index == [groupManager.tempMemberList count]) {
+                position = CellRowPositionLast;
+                usersByTitle = [_group guestsByTitle];
+            }else{
+                usersByTitle = groupManager.tempMemberList[index];
+            }
+            [cell setCellForUsersByTitle:usersByTitle position:position inGroup:_group];
         }
-        PBGroupUsersByTitle *usersByTitle = groupManager.tempMemberList[indexPath.row];
-        [cell setCellForUsersByTitle:usersByTitle position:position inGroup:_group];
         
     }
     [cell setNeedsLayout];
@@ -336,7 +435,9 @@ typedef enum{
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-//    GroupDetailCell *cell = (id)[tableView cellForRowAtIndexPath:indexPath];
+    if (![GroupManager isMeAdminOrCreatorInSharedGroup]) {
+        return;
+    }
     if (indexPath.section == SECTION_BASE_INDEX) {
 
         if (indexPath.row == RowDescription) {
@@ -349,6 +450,155 @@ typedef enum{
         }
         
     }
+}
+
+
+- (void)enterUserDetail:(PBGameUser *)user
+{
+    ViewUserDetail *detail = [ViewUserDetail viewUserDetailWithUser:user];
+    [UserDetailViewController presentUserDetail:detail inViewController:self];
+}
+
+#pragma mark-- group detail cell delegate.
+
+- (void)updateIndexForAdminCell
+{
+    NSInteger index = 0;
+    IndexDetail = index++;
+    IndexRemoveFromAdmin = index++;
+    
+    IndexRemove = -1;
+    IndexChangeTitle = -1;
+    IndexMakeAdmin = -1;
+}
+
+
+- (void)groupDetailCell:(GroupDetailCell *)cell
+        didClickCreator:(PBGameUser *)user
+{
+    PPDebug(@"<didClickCreator> uid = %@", user.userId);
+    [self enterUserDetail:user];
+}
+
+
+#define TITLE_USER_DETAIL NSLS(@"kUserDetail")
+#define TITLE_RM_ADMIN NSLS(@"kRemoveAdmin")
+#define TITLE_CHANGE_TITLE NSLS(@"kChangeTitle")
+#define TITLE_RM_MEMBER NSLS(@"kRemoveMember")
+#define TITLE_SET_ADMIN NSLS(@"kSetAsAdmin")
+
+- (void)handleTitle:(NSString *)title user:(PBGameUser *)user groupTitle:(PBGroupTitle *)groupTitle
+{
+    
+    NSInteger titleId = groupTitle.titleId;
+    if ([title isEqualToString:TITLE_USER_DETAIL]) {
+        [self enterUserDetail:user];
+        return;
+    }
+    else if ([title isEqualToString:TITLE_RM_ADMIN]) {
+        //TODO remove admin
+        [self showActivityWithText:NSLS(@"kRemovingAdmin")];
+        [groupService removeUserFromAdmin:user inGroup:_group.groupId callback:^(NSError *error) {
+            [self hideActivity];
+            if (!error) {
+                PBGroup *nGroup = [GroupManager didRemoveUser:user fromAdminInGroup:_group];
+                [self updateGroup:nGroup];
+                [self.dataTableView reloadData];
+            }
+        }];
+    }
+    else if ([title isEqualToString:TITLE_CHANGE_TITLE]) {
+        NSArray *ts = [GroupManager candidateTitlesForChangingTitle:groupTitle];
+        NSMutableArray *titleNames = [NSMutableArray array];
+        for (PBGroupTitle *t in ts) {
+            [titleNames addObject:t.title];
+        }
+        BBSActionSheet *sheet = [[BBSActionSheet alloc] initWithTitles:titleNames callback:^(NSInteger index) {
+            PBGroupTitle *t = ts[index];
+            [self showActivityWithText:NSLS(@"kChangingTitle")];
+            [groupService changeUser:user inGroup:_group.groupId sourceTitleId:groupTitle.titleId title:t.titleId callback:^(NSError *error) {
+                [self hideActivity];
+                if (!error) {
+                    [self.dataTableView reloadData];
+                }
+            }];
+        }];
+        [sheet showInView:self.view showAtPoint:self.view.center animated:YES];
+    }
+    else if ([title isEqualToString:TITLE_RM_MEMBER]) {
+        [self showActivityWithText:NSLS(@"kExpeling")];
+        [groupService expelUser:user group:_group.groupId titleId:titleId reason:@"" callback:^(NSError *error) {
+            [self hideActivity];
+            if (!error) {
+                [GroupManager didRemoveUser:user fromTitleId:titleId];                
+                [self.dataTableView reloadData];
+            }
+        }];
+    }
+    else if ([title isEqualToString:TITLE_SET_ADMIN]) {
+        [self showActivityWithText:NSLS(@"kSettingAsAdmin")];
+        [groupService setUserAsAdmin:user inGroup:_group.groupId callback:^(NSError *error) {
+            [self hideActivity];
+            if (!error) {
+                PBGroup *nGroup = [GroupManager didSetUser:user asAdminInGroup:_group];
+                [self updateGroup:nGroup];
+                [self.dataTableView reloadData];
+            }
+        }];
+    }
+}
+
+- (NSMutableArray *)titlesForUser:(PBGameUser *)user title:(PBGroupTitle *)title
+{
+    NSMutableArray *titles = [NSMutableArray arrayWithObject:TITLE_USER_DETAIL];
+    if (title.titleId == GroupRoleAdmin) {
+        if ([self.groupPermission canArrangeAdmin] && ![user isEqual:_group.creator]) {
+            [titles addObject:TITLE_RM_ADMIN];
+        }
+    }else{
+        if ([self.groupPermission canArrangeAdmin]) {
+            if ([_group.adminsList containsObject:user]) {
+                [titles addObject:TITLE_RM_ADMIN];
+            }else{
+                [titles addObject:TITLE_SET_ADMIN];
+            }
+        }
+        if ([self.groupPermission canCustomTitle]) {
+            [titles addObject:TITLE_CHANGE_TITLE];
+        }
+        if ([self.groupPermission canExpelUser:user] && ![GroupManager isUser:user adminOrCreatorInGroup:_group]) {
+            [titles addObject:TITLE_RM_MEMBER];
+        }
+    }
+    return titles;
+}
+
+- (void)groupDetailCell:(GroupDetailCell *)cell
+           didClickUser:(PBGameUser *)user
+                  title:(PBGroupTitle *)title
+{
+    PPDebug(@"<didClickUser>title = %@, titleId = %d", title.title, title.titleId);
+    
+    
+    NSMutableArray *titles = [self titlesForUser:user title:title];
+    if ([titles count] <= 1) {
+        [self enterUserDetail:user];
+    }else{
+        [titles addObject:NSLS(@"kCancel")];
+        BBSActionSheet *sheet = [[BBSActionSheet alloc] initWithTitles:titles callback:^(NSInteger index) {
+            NSString *t = titles[index];
+            [self handleTitle:t user:user groupTitle:title];
+        }];
+        [sheet showInView:self.view showAtPoint:self.view.center animated:YES];
+        [sheet release];
+    }
+}
+
+- (void)groupDetailCell:(GroupDetailCell *)cell
+didClickAddButtonAtTitle:(PBGroupTitle *)title
+{
+    PPDebug(@"<didClickAddButtonAtTitle> title = %@, titleId = %d", title.title, title.titleId);
+
 }
 
 

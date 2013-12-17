@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "GroupUIManager.h"
 #import "GroupPermission.h"
-
+#import "GroupModelExt.h"
 
 
 @interface GroupManager : NSObject
@@ -39,5 +39,35 @@
 - (PBGroup *)findGroupById:(NSString *)groupId;
 
 - (void)updateBadges:(NSArray *)badges;
+
+//change group admin list, return new group.
+
+
++ (PBGroup *)didSetUser:(PBGameUser *)user
+         asAdminInGroup:(PBGroup *)group;
+
++ (void)didUpdateUser:(PBGameUser *)user
+          fromTitleId:(NSInteger)fromTitleId
+            toTitleId:(NSInteger)toTitleId;
+
++ (PBGroup *)didRemoveUser:(PBGameUser *)user
+          fromAdminInGroup:(PBGroup *)group;
+
++ (void)didRemoveUser:(PBGameUser *)user
+          fromTitleId:(NSInteger)titleId;
+
++ (void)didAddedGroupTitle:(NSString *)groupId
+                     title:(NSString *)title
+                   titleId:(NSInteger)titleId;
+
++ (void)didDeletedGroupTitle:(NSString *)groupId
+                     titleId:(NSInteger)titleId;
+
+
++ (BOOL)isUser:(PBGameUser *)user adminOrCreatorInGroup:(PBGroup *)group;
++ (BOOL)isMeAdminOrCreatorInSharedGroup;
++ (NSInteger)genTitleId;
+
++ (NSArray *)candidateTitlesForChangingTitle:(PBGroupTitle *)title;
 
 @end

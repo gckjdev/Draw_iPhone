@@ -2180,6 +2180,7 @@
 "kSentRequest" = "申請已經發送，請等待審核通過。";
 "kQuitingGroup" = "退出家族中...";
 "kQuitedGroup" = "你已經退出了家族。";
+"kGroupCreator" = "創建者 %@";
 
 "kCanotCreateTopic" = "對不起，不是家族成員或嘉賓不能創建話題。";
 "kCanotGroupChat" = "對不起，不是家族成員或嘉賓不能進行群聊。";

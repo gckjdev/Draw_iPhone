@@ -23,14 +23,23 @@
 - (NSString *)creatorNickName;
 - (BOOL)creatorIsMe;
 
+- (PBGroupUsersByTitle *)adminsByTitle;
+- (PBGroupUsersByTitle *)guestsByTitle;
+
 @end
 
 
 @interface PBGroupUsersByTitle(Ext)
 
-- (BOOL)isCreator;
+//- (BOOL)isCreator;
 - (BOOL)isCustomTitle;
+- (BOOL)isAdminTitle;
 - (NSString *)titleName;
 - (NSString *)desc;
+
+@end
+
+
+@interface PBGameUser(Ext)
 
 @end

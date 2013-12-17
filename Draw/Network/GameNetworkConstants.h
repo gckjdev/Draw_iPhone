@@ -702,6 +702,9 @@
 #define METHOD_UPDATE_GROUPUSER_ROLE @"updateUserRole"
 #define METHOD_INVITE_GROUPGUESTS @"inviteGroupGuest"
 
+#define METHOD_SET_USER_AS_ADMIN @"setUserAsAdmin"
+#define METHOD_REMOVE_USER_FROM_ADMIN @"removeUserFromAdmin"
+
 #define METHOD_FOLLOW_GROUP @"followGroup"
 #define METHOD_UNFOLLOW_GROUP @"unfollowGroup"
 #define METHOD_GET_GROUP_FANS @"getGroupFans"

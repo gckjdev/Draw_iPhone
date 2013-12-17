@@ -11,11 +11,20 @@
 #import "Group.pb.h"
 #import "StableView.h"
 
-//@class PBGroup;
-
+@class GroupDetailCell;
 @protocol GroupDetailCellDelegate <NSObject>
 
-//- (void)didClickAvatar
+- (void)groupDetailCell:(GroupDetailCell *)cell
+        didClickCreator:(PBGameUser *)user;
+
+
+- (void)groupDetailCell:(GroupDetailCell *)cell
+           didClickUser:(PBGameUser *)user
+                  title:(PBGroupTitle *)title;
+
+- (void)groupDetailCell:(GroupDetailCell *)cell
+didClickAddButtonAtTitle:(PBGroupTitle *)title;
+
 
 @end
 
@@ -43,6 +52,8 @@ typedef enum {
 
 + (CGFloat)getCellHeightForSingleLineText;
 + (CGFloat)getCellHeightForText:(NSString *)text;
+
++ (CGFloat)getCellHeightForSingleAvatar;
 + (CGFloat)getCellHeightForUsersByTitle:(PBGroupUsersByTitle *)usersByTitle;
 
 + (NSString *)getCellIdentifier;
@@ -50,6 +61,13 @@ typedef enum {
 - (void)setCellText:(NSString *)text
            position:(CellRowPosition)position
               group:(PBGroup *)group;
+
+- (void)setCellForCreatorInGroup:(PBGroup *)group
+                        position:(CellRowPosition)position;
+
+- (void)setCellForAdminsInGroup:(PBGroup *)group
+                        position:(CellRowPosition)position;
+
 
 - (void)setCellForUsersByTitle:(PBGroupUsersByTitle *)usersByTitle
                       position:(CellRowPosition)position

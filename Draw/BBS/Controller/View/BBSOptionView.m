@@ -47,6 +47,13 @@
     self.contentView = [[[UIView alloc] init] autorelease];
     [self addSubview:self.contentView];
 }
+- (void)baseInit
+{
+    [self initMaskView];
+    [self initContentView];
+    [self initBGView];
+}
+
 - (id)initWithTitles:(NSArray *)titles
             delegate:(id<BBSOptionViewDelegate>)delegate
 {
@@ -54,12 +61,23 @@
     if (self) {
         self.titles = titles;
         self.delegate = delegate;
-        [self initMaskView];
-        [self initContentView];
-        [self initBGView];
+        [self baseInit];
     }
     return self;
 }
+
+- (id)initWithTitles:(NSArray *)titles
+            callback:(BBSOptionViewCallback)callback
+{
+    self = [super init];
+    if (self) {
+        self.titles = titles;
+        self.callback = callback;
+        [self baseInit];
+    }
+    return self;
+}
+
 - (void)setMaskViewColor:(UIColor *)color
 {
     if (color) {
@@ -102,6 +120,8 @@
     if (self.delegate && [self.delegate respondsToSelector:@selector(optionView:didSelectedButtonIndex:)]) {
         [self.delegate optionView:self didSelectedButtonIndex:button.tag];
     }
+    EXECUTE_BLOCK(self.callback, button.tag);
+    self.callback = NULL;
     [self dismiss:YES];
 }
 

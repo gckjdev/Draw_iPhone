@@ -1155,7 +1155,7 @@ static PBUserRelationWithGroup* defaultPBUserRelationWithGroupInstance = nil;
 @property (retain) NSString* bgImage;
 @property (retain) NSString* medalImage;
 @property (retain) NSMutableArray* mutableTitlesList;
-@property (retain) PBGroupUser* creator;
+@property (retain) PBGameUser* creator;
 @property (retain) NSMutableArray* mutableAdminsList;
 @property (retain) NSMutableArray* mutableUsersList;
 @property (retain) NSMutableArray* mutableGuestsList;
@@ -1361,7 +1361,7 @@ static PBUserRelationWithGroup* defaultPBUserRelationWithGroupInstance = nil;
     self.statusDesc = @"";
     self.bgImage = @"";
     self.medalImage = @"";
-    self.creator = [PBGroupUser defaultInstance];
+    self.creator = [PBGameUser defaultInstance];
     self.relation = [PBUserRelationWithGroup defaultInstance];
     self.topic = [PBBBSPost defaultInstance];
   }
@@ -1389,7 +1389,7 @@ static PBGroup* defaultPBGroupInstance = nil;
 - (NSArray*) adminsList {
   return mutableAdminsList;
 }
-- (PBGroupUser*) adminsAtIndex:(int32_t) index {
+- (PBGameUser*) adminsAtIndex:(int32_t) index {
   id value = [mutableAdminsList objectAtIndex:index];
   return value;
 }
@@ -1403,7 +1403,7 @@ static PBGroup* defaultPBGroupInstance = nil;
 - (NSArray*) guestsList {
   return mutableGuestsList;
 }
-- (PBGroupUser*) guestsAtIndex:(int32_t) index {
+- (PBGameUser*) guestsAtIndex:(int32_t) index {
   id value = [mutableGuestsList objectAtIndex:index];
   return value;
 }
@@ -1424,7 +1424,7 @@ static PBGroup* defaultPBGroupInstance = nil;
       return NO;
     }
   }
-  for (PBGroupUser* element in self.adminsList) {
+  for (PBGameUser* element in self.adminsList) {
     if (!element.isInitialized) {
       return NO;
     }
@@ -1434,7 +1434,7 @@ static PBGroup* defaultPBGroupInstance = nil;
       return NO;
     }
   }
-  for (PBGroupUser* element in self.guestsList) {
+  for (PBGameUser* element in self.guestsList) {
     if (!element.isInitialized) {
       return NO;
     }
@@ -1510,13 +1510,13 @@ static PBGroup* defaultPBGroupInstance = nil;
   if (self.hasCreator) {
     [output writeMessage:40 value:self.creator];
   }
-  for (PBGroupUser* element in self.adminsList) {
+  for (PBGameUser* element in self.adminsList) {
     [output writeMessage:41 value:element];
   }
   for (PBGroupUsersByTitle* element in self.usersList) {
     [output writeMessage:42 value:element];
   }
-  for (PBGroupUser* element in self.guestsList) {
+  for (PBGameUser* element in self.guestsList) {
     [output writeMessage:43 value:element];
   }
   if (self.hasRelation) {
@@ -1597,13 +1597,13 @@ static PBGroup* defaultPBGroupInstance = nil;
   if (self.hasCreator) {
     size += computeMessageSize(40, self.creator);
   }
-  for (PBGroupUser* element in self.adminsList) {
+  for (PBGameUser* element in self.adminsList) {
     size += computeMessageSize(41, element);
   }
   for (PBGroupUsersByTitle* element in self.usersList) {
     size += computeMessageSize(42, element);
   }
-  for (PBGroupUser* element in self.guestsList) {
+  for (PBGameUser* element in self.guestsList) {
     size += computeMessageSize(43, element);
   }
   if (self.hasRelation) {
@@ -1881,7 +1881,7 @@ static PBGroup* defaultPBGroupInstance = nil;
         break;
       }
       case 322: {
-        PBGroupUser_Builder* subBuilder = [PBGroupUser builder];
+        PBGameUser_Builder* subBuilder = [PBGameUser builder];
         if (self.hasCreator) {
           [subBuilder mergeFrom:self.creator];
         }
@@ -1890,7 +1890,7 @@ static PBGroup* defaultPBGroupInstance = nil;
         break;
       }
       case 330: {
-        PBGroupUser_Builder* subBuilder = [PBGroupUser builder];
+        PBGameUser_Builder* subBuilder = [PBGameUser builder];
         [input readMessage:subBuilder extensionRegistry:extensionRegistry];
         [self addAdmins:[subBuilder buildPartial]];
         break;
@@ -1902,7 +1902,7 @@ static PBGroup* defaultPBGroupInstance = nil;
         break;
       }
       case 346: {
-        PBGroupUser_Builder* subBuilder = [PBGroupUser builder];
+        PBGameUser_Builder* subBuilder = [PBGameUser builder];
         [input readMessage:subBuilder extensionRegistry:extensionRegistry];
         [self addGuests:[subBuilder buildPartial]];
         break;
@@ -2264,22 +2264,22 @@ static PBGroup* defaultPBGroupInstance = nil;
 - (BOOL) hasCreator {
   return result.hasCreator;
 }
-- (PBGroupUser*) creator {
+- (PBGameUser*) creator {
   return result.creator;
 }
-- (PBGroup_Builder*) setCreator:(PBGroupUser*) value {
+- (PBGroup_Builder*) setCreator:(PBGameUser*) value {
   result.hasCreator = YES;
   result.creator = value;
   return self;
 }
-- (PBGroup_Builder*) setCreatorBuilder:(PBGroupUser_Builder*) builderForValue {
+- (PBGroup_Builder*) setCreatorBuilder:(PBGameUser_Builder*) builderForValue {
   return [self setCreator:[builderForValue build]];
 }
-- (PBGroup_Builder*) mergeCreator:(PBGroupUser*) value {
+- (PBGroup_Builder*) mergeCreator:(PBGameUser*) value {
   if (result.hasCreator &&
-      result.creator != [PBGroupUser defaultInstance]) {
+      result.creator != [PBGameUser defaultInstance]) {
     result.creator =
-      [[[PBGroupUser builderWithPrototype:result.creator] mergeFrom:value] buildPartial];
+      [[[PBGameUser builderWithPrototype:result.creator] mergeFrom:value] buildPartial];
   } else {
     result.creator = value;
   }
@@ -2288,17 +2288,17 @@ static PBGroup* defaultPBGroupInstance = nil;
 }
 - (PBGroup_Builder*) clearCreator {
   result.hasCreator = NO;
-  result.creator = [PBGroupUser defaultInstance];
+  result.creator = [PBGameUser defaultInstance];
   return self;
 }
 - (NSArray*) adminsList {
   if (result.mutableAdminsList == nil) { return [NSArray array]; }
   return result.mutableAdminsList;
 }
-- (PBGroupUser*) adminsAtIndex:(int32_t) index {
+- (PBGameUser*) adminsAtIndex:(int32_t) index {
   return [result adminsAtIndex:index];
 }
-- (PBGroup_Builder*) replaceAdminsAtIndex:(int32_t) index with:(PBGroupUser*) value {
+- (PBGroup_Builder*) replaceAdminsAtIndex:(int32_t) index with:(PBGameUser*) value {
   [result.mutableAdminsList replaceObjectAtIndex:index withObject:value];
   return self;
 }
@@ -2313,7 +2313,7 @@ static PBGroup* defaultPBGroupInstance = nil;
   result.mutableAdminsList = nil;
   return self;
 }
-- (PBGroup_Builder*) addAdmins:(PBGroupUser*) value {
+- (PBGroup_Builder*) addAdmins:(PBGameUser*) value {
   if (result.mutableAdminsList == nil) {
     result.mutableAdminsList = [NSMutableArray array];
   }
@@ -2353,10 +2353,10 @@ static PBGroup* defaultPBGroupInstance = nil;
   if (result.mutableGuestsList == nil) { return [NSArray array]; }
   return result.mutableGuestsList;
 }
-- (PBGroupUser*) guestsAtIndex:(int32_t) index {
+- (PBGameUser*) guestsAtIndex:(int32_t) index {
   return [result guestsAtIndex:index];
 }
-- (PBGroup_Builder*) replaceGuestsAtIndex:(int32_t) index with:(PBGroupUser*) value {
+- (PBGroup_Builder*) replaceGuestsAtIndex:(int32_t) index with:(PBGameUser*) value {
   [result.mutableGuestsList replaceObjectAtIndex:index withObject:value];
   return self;
 }
@@ -2371,7 +2371,7 @@ static PBGroup* defaultPBGroupInstance = nil;
   result.mutableGuestsList = nil;
   return self;
 }
-- (PBGroup_Builder*) addGuests:(PBGroupUser*) value {
+- (PBGroup_Builder*) addGuests:(PBGameUser*) value {
   if (result.mutableGuestsList == nil) {
     result.mutableGuestsList = [NSMutableArray array];
   }
