@@ -320,4 +320,7 @@ typedef enum{
 + (NSString *)getSingOpusDefaultName;
 + (int)getOffLineGuessAward;
 
++ (int)defaultHotControllerIndex;
++ (int)defaultHomeControllerFeedType;
+
 @end

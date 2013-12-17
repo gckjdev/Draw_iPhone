@@ -11,6 +11,7 @@
 #import "PPApplication.h"
 #import "UserManager.h"
 #import "UIUtils.h"
+#import "FeedManager.h"
 
 #define KEY_GUESS_DIFF_LEVEL    @"KEY_GUESS_DIFF_LEVEL"
 #define KEY_CHAT_VOICE_ENABLE   @"KEY_CHAT_VOICE_ENABLE"
@@ -18,6 +19,16 @@
 #define ZJH_TIME_INTERVAL 15
 
 @implementation PPConfigManager
+
++ (int)defaultHomeControllerFeedType
+{
+    return [MobClickUtils getIntValueByKey:@"DEFAULT_HOME_CONTROLLER_FEED_TYPE" defaultValue:FeedListTypeLatest];
+}
+
++ (int)defaultHotControllerIndex
+{
+    return [MobClickUtils getIntValueByKey:@"DEFAULT_HOT_CONTROLLER_INDEX" defaultValue:3];
+}
 
 + (int)maxWeiboShareLength
 {
@@ -75,7 +86,7 @@
 
 + (BOOL)isEnableAd
 {
-    return [MobClickUtils getBoolValueByKey:@"ENABLE_AD" defaultValue:YES];
+    return [MobClickUtils getBoolValueByKey:@"ENABLE_AD" defaultValue:NO];
 }
 
 + (BOOL)useSpeedLevel

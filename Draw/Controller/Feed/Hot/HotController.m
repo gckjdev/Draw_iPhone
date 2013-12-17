@@ -47,9 +47,57 @@ typedef enum{
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        _defaultTabIndex = 1;
+        HotIndexType index = [[UserManager defaultManager] hotControllerIndex];
+        if (index == HotLatestIndex){
+            _defaultTabIndex = 3;
+        }
+        else if (index == HotTopIndex){
+            _defaultTabIndex = 1;
+        }
+        else{
+            _defaultTabIndex = 1;            
+        }
+        
     }
     return self;
+}
+
+
+- (IBAction)clickSetHot:(id)sender
+{
+    MKBlockActionSheet *sheet = nil;
+    sheet = [[MKBlockActionSheet alloc] initWithTitle:NSLS(@"kHotOption")
+                                             delegate:nil
+                                    cancelButtonTitle:NSLS(@"kCancel")
+                               destructiveButtonTitle:NSLS(@"kSetHotOption")
+                                    otherButtonTitles:NSLS(@"kSetLatestOption"), nil];
+
+    HotIndexType index = [[UserManager defaultManager] hotControllerIndex];
+    if (index == HotLatestIndex){
+        [sheet setDestructiveButtonIndex:1];
+    }
+    else if (index == HotLatestIndex){
+        [sheet setDestructiveButtonIndex:0];
+    }
+    
+    [sheet setActionBlock:^(NSInteger buttonIndex){
+        switch (buttonIndex){
+            case 0:
+                [[UserManager defaultManager] setHotControllerIndex:HotTopIndex];
+                POSTMSG(NSLS(@"kSetSuccess"));
+                break;
+            case 1:
+                [[UserManager defaultManager] setHotControllerIndex:HotLatestIndex];
+                POSTMSG(NSLS(@"kSetSuccess"));
+                break;
+            default:
+                break;
+        }
+    }];
+
+    [sheet showInView:self.view];
+    [sheet release];
+    
 }
 
 - (void)didReceiveMemoryWarning

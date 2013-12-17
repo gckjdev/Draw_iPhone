@@ -993,20 +993,26 @@ enum{
         int count = _fileDuration / 30;
         int coins = count * [PPConfigManager getRecordDeductCoinsPer30Sec];
         int balance = [[AccountManager defaultManager] getBalanceWithCurrency:PBGameCurrencyCoin];
-        if ( balance < coins) {
-            NSString *msg = [NSString stringWithFormat:NSLS(@"kCoinsNotEnoughForSubmit"), coins, balance];
-            POSTMSG2(msg, 3);
-            return;
+        
+        if (coins > 0){
+            if (balance < coins) {
+                NSString *msg = [NSString stringWithFormat:NSLS(@"kCoinsNotEnoughForSubmit"), coins, balance];
+                POSTMSG2(msg, 3);
+                return;
+            }
+
+            NSString *msg = [NSString stringWithFormat:NSLS(@"kRecordSubmitHint"), (int)_fileDuration, coins, balance];
+            CommonDialog *dialog = [CommonDialog createDialogWithTitle:NSLS(@"kHint") message:msg style:CommonDialogStyleDoubleButton];
+            [dialog setClickOkBlock:^(id infoView){
+                [self deductCoins:coins];
+                [self handleAndSubmitOpus];
+            }];
+            [dialog showInView:self.view];
+        }
+        else{
+            [self handleAndSubmitOpus];
         }
         
-        NSString *msg = [NSString stringWithFormat:NSLS(@"kRecordSubmitHint"), (int)_fileDuration, coins, balance];
-        
-        CommonDialog *dialog = [CommonDialog createDialogWithTitle:NSLS(@"kHint") message:msg style:CommonDialogStyleDoubleButton];
-        [dialog setClickOkBlock:^(id infoView){
-            [self deductCoins:coins];
-            [self handleAndSubmitOpus];
-        }];
-        [dialog showInView:self.view];
     }else{
         [self handleAndSubmitOpus];
     }
