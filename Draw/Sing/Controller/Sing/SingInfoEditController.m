@@ -156,8 +156,6 @@
     
 }
 
-#define SUBJECT_MAX_LENGTH 7
-
 - (void)textFieldDidChange:(UITextField *)textField{
     
     
@@ -175,10 +173,10 @@
 //    }
 //    
 //    
-//    if([self.nameTextField.text length] > SUBJECT_MAX_LENGTH){
+//    if([self.nameTextField.text length] > [PPConfigManager getOpusNameMaxLength]){
 //        
 //        NSString *msg = [NSString stringWithFormat:NSLS(@"kSubjectLengthLimited"),
-//                         SUBJECT_MAX_LENGTH];
+//                         [PPConfigManager getOpusNameMaxLength]];
 //        POSTMSG(msg);
 //        return;
 //    }
@@ -212,10 +210,10 @@
     }
     
     
-    if([self.nameTextField.text length] > SUBJECT_MAX_LENGTH){
+    if([self.nameTextField.text length] > [PPConfigManager getOpusNameMaxLength]){
         
         NSString *msg = [NSString stringWithFormat:NSLS(@"kSubjectLengthLimited"),
-                                   SUBJECT_MAX_LENGTH];
+                                   [PPConfigManager getOpusNameMaxLength]];
         POSTMSG(msg);
         return;
     }

@@ -325,6 +325,7 @@ typedef enum{
             cell = [SingHotCell createCell:self];
         }
         
+        
         NSMutableArray *feeds = [NSMutableArray array];
         int baseIndex = indexPath.row*WHISPER_CELL_VIEW_NUMBER;
         [feeds addObject:[self saveGetObjectForIndex:baseIndex]];

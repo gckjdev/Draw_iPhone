@@ -593,6 +593,11 @@
     return [MobClickUtils getIntValueByKey:@"OFFLINE_GUESS_AWARD" defaultValue:3];
 }
 
++ (int)getOpusNameMaxLength{
+    
+    return [MobClickUtils getIntValueByKey:@"OPUS_NAME_MAX_LENGTH" defaultValue:7];
+}
+
 
 + (int)getLiarDiceExp
 {
