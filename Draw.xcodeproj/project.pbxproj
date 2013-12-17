@@ -253,10 +253,6 @@
 		A455F8CB1585D21400CA5743 /* grayArrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A455F8C01585D21400CA5743 /* grayArrow@2x.png */; };
 		A455F8CC1585D21400CA5743 /* whiteArrow.png in Resources */ = {isa = PBXBuildFile; fileRef = A455F8C11585D21400CA5743 /* whiteArrow.png */; };
 		A455F8CD1585D21400CA5743 /* whiteArrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A455F8C21585D21400CA5743 /* whiteArrow@2x.png */; };
-		A4572D6B1856FAEF0076ADF7 /* PPTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = A4572D6A1856FAED0076ADF7 /* PPTextView.m */; };
-		A4572D6C1856FAEF0076ADF7 /* PPTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = A4572D6A1856FAED0076ADF7 /* PPTextView.m */; };
-		A4572D6D1856FAEF0076ADF7 /* PPTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = A4572D6A1856FAED0076ADF7 /* PPTextView.m */; };
-		A4572D6E1856FAEF0076ADF7 /* PPTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = A4572D6A1856FAED0076ADF7 /* PPTextView.m */; };
 		A4572D7418570B0F0076ADF7 /* UIView+Pan.m in Sources */ = {isa = PBXBuildFile; fileRef = A4572D7318570B0F0076ADF7 /* UIView+Pan.m */; };
 		A4572D7518570B0F0076ADF7 /* UIView+Pan.m in Sources */ = {isa = PBXBuildFile; fileRef = A4572D7318570B0F0076ADF7 /* UIView+Pan.m */; };
 		A4572D7618570B0F0076ADF7 /* UIView+Pan.m in Sources */ = {isa = PBXBuildFile; fileRef = A4572D7318570B0F0076ADF7 /* UIView+Pan.m */; };
@@ -2977,6 +2973,14 @@
 		A4E649201784288E0063F393 /* CommonCommentController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4E6491D1784288E0063F393 /* CommonCommentController.xib */; };
 		A4E649211784288E0063F393 /* CommonCommentController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4E6491D1784288E0063F393 /* CommonCommentController.xib */; };
 		A4E7876A16366FF8003557AD /* ZhaJinHua.proto in Resources */ = {isa = PBXBuildFile; fileRef = A4E7876916366FF8003557AD /* ZhaJinHua.proto */; };
+		A4EA9356185B0144004BB69D /* SingHotCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A4EA9355185B0143004BB69D /* SingHotCell.m */; };
+		A4EA9357185B0144004BB69D /* SingHotCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A4EA9355185B0143004BB69D /* SingHotCell.m */; };
+		A4EA9358185B0144004BB69D /* SingHotCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A4EA9355185B0143004BB69D /* SingHotCell.m */; };
+		A4EA9359185B0144004BB69D /* SingHotCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A4EA9355185B0143004BB69D /* SingHotCell.m */; };
+		A4EA935B185B0173004BB69D /* SingHotCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4EA935A185B0173004BB69D /* SingHotCell.xib */; };
+		A4EA935C185B0173004BB69D /* SingHotCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4EA935A185B0173004BB69D /* SingHotCell.xib */; };
+		A4EA935D185B0173004BB69D /* SingHotCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4EA935A185B0173004BB69D /* SingHotCell.xib */; };
+		A4EA935E185B0173004BB69D /* SingHotCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4EA935A185B0173004BB69D /* SingHotCell.xib */; };
 		A4EC5A90178FB24C0085031F /* CommonShareAction.m in Sources */ = {isa = PBXBuildFile; fileRef = A4EC5A8F178FB24C0085031F /* CommonShareAction.m */; };
 		A4EC5A91178FB24C0085031F /* CommonShareAction.m in Sources */ = {isa = PBXBuildFile; fileRef = A4EC5A8F178FB24C0085031F /* CommonShareAction.m */; };
 		A4EC5A95178FB3E40085031F /* CommonCommentHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = A4EC5A93178FB3E40085031F /* CommonCommentHeader.m */; };
@@ -7498,8 +7502,6 @@
 		A455F8C01585D21400CA5743 /* grayArrow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "grayArrow@2x.png"; sourceTree = "<group>"; };
 		A455F8C11585D21400CA5743 /* whiteArrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = whiteArrow.png; sourceTree = "<group>"; };
 		A455F8C21585D21400CA5743 /* whiteArrow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "whiteArrow@2x.png"; sourceTree = "<group>"; };
-		A4572D691856FAEC0076ADF7 /* PPTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PPTextView.h; sourceTree = "<group>"; };
-		A4572D6A1856FAED0076ADF7 /* PPTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PPTextView.m; sourceTree = "<group>"; };
 		A4572D7218570B0F0076ADF7 /* UIView+Pan.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Pan.h"; sourceTree = "<group>"; };
 		A4572D7318570B0F0076ADF7 /* UIView+Pan.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Pan.m"; sourceTree = "<group>"; };
 		A4572D941858059C0076ADF7 /* AudioFormatConverter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioFormatConverter.h; sourceTree = "<group>"; };
@@ -8217,6 +8219,9 @@
 		A4E6491C1784288E0063F393 /* CommonCommentController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommonCommentController.m; sourceTree = "<group>"; };
 		A4E6491D1784288E0063F393 /* CommonCommentController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CommonCommentController.xib; sourceTree = "<group>"; };
 		A4E7876916366FF8003557AD /* ZhaJinHua.proto */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ZhaJinHua.proto; sourceTree = "<group>"; };
+		A4EA9354185B0143004BB69D /* SingHotCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SingHotCell.h; sourceTree = "<group>"; };
+		A4EA9355185B0143004BB69D /* SingHotCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SingHotCell.m; sourceTree = "<group>"; };
+		A4EA935A185B0173004BB69D /* SingHotCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SingHotCell.xib; sourceTree = "<group>"; };
 		A4EC5A8E178FB24C0085031F /* CommonShareAction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommonShareAction.h; sourceTree = "<group>"; };
 		A4EC5A8F178FB24C0085031F /* CommonShareAction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommonShareAction.m; sourceTree = "<group>"; };
 		A4EC5A92178FB3E30085031F /* CommonCommentHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommonCommentHeader.h; sourceTree = "<group>"; };
@@ -10916,8 +10921,6 @@
 			children = (
 				A45AA837162FC0150030D668 /* UIPlaceholderTextView.h */,
 				A45AA838162FC0150030D668 /* UIPlaceholderTextView.m */,
-				A4572D691856FAEC0076ADF7 /* PPTextView.h */,
-				A4572D6A1856FAED0076ADF7 /* PPTextView.m */,
 			);
 			path = UIPlaceholderTextView;
 			sourceTree = "<group>";
@@ -15289,6 +15292,9 @@
 				EA46AD5517D5E6CD0066E914 /* ReportFeedCell.h */,
 				EA46AD5617D5E6CD0066E914 /* ReportFeedCell.m */,
 				EA46AD6017D5E6E60066E914 /* ReportFeedCell.xib */,
+				A4EA9354185B0143004BB69D /* SingHotCell.h */,
+				A4EA9355185B0143004BB69D /* SingHotCell.m */,
+				A4EA935A185B0173004BB69D /* SingHotCell.xib */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -18406,6 +18412,7 @@
 				EA7EFC7418458D370004793C /* GroupNoticeController.xib in Resources */,
 				EA2D57431847243B00499ED4 /* SearchGroupController.xib in Resources */,
 				A4DE087918595DD700A87924 /* unloadbg2@2x.png in Resources */,
+				A4EA935D185B0173004BB69D /* SingHotCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -19380,6 +19387,7 @@
 				EA7EFC7318458D370004793C /* GroupNoticeController.xib in Resources */,
 				EA2D57421847243B00499ED4 /* SearchGroupController.xib in Resources */,
 				A4DE087818595DD700A87924 /* unloadbg2@2x.png in Resources */,
+				A4EA935C185B0173004BB69D /* SingHotCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -20337,6 +20345,7 @@
 				EA7EFC7218458D370004793C /* GroupNoticeController.xib in Resources */,
 				EA2D57411847243B00499ED4 /* SearchGroupController.xib in Resources */,
 				A4DE087718595DD700A87924 /* unloadbg2@2x.png in Resources */,
+				A4EA935B185B0173004BB69D /* SingHotCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -21248,6 +21257,7 @@
 				EA7EFC7518458D370004793C /* GroupNoticeController.xib in Resources */,
 				EA2D57441847243B00499ED4 /* SearchGroupController.xib in Resources */,
 				A4DE087A18595DD700A87924 /* unloadbg2@2x.png in Resources */,
+				A4EA935E185B0173004BB69D /* SingHotCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -22149,10 +22159,10 @@
 				EA2D573F1847243B00499ED4 /* SearchGroupController.m in Sources */,
 				A439D2C6184A521800F47BEF /* UIImage+GPUImageFilter.m in Sources */,
 				A439D2D6184A5BD500F47BEF /* CropAndFilterViewController.m in Sources */,
-				A4572D6D1856FAEF0076ADF7 /* PPTextView.m in Sources */,
 				A4572D7618570B0F0076ADF7 /* UIView+Pan.m in Sources */,
 				A4572D981858059C0076ADF7 /* AudioFormatConverter.m in Sources */,
 				EA5A2EA918584D6E00CABC71 /* UILabel+Touchable.m in Sources */,
+				A4EA9358185B0144004BB69D /* SingHotCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -22961,10 +22971,10 @@
 				EA2D573E1847243B00499ED4 /* SearchGroupController.m in Sources */,
 				A439D2C5184A521800F47BEF /* UIImage+GPUImageFilter.m in Sources */,
 				A439D2D5184A5BD500F47BEF /* CropAndFilterViewController.m in Sources */,
-				A4572D6C1856FAEF0076ADF7 /* PPTextView.m in Sources */,
 				A4572D7518570B0F0076ADF7 /* UIView+Pan.m in Sources */,
 				A4572D971858059C0076ADF7 /* AudioFormatConverter.m in Sources */,
 				EA5A2EA818584D6E00CABC71 /* UILabel+Touchable.m in Sources */,
+				A4EA9357185B0144004BB69D /* SingHotCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -23772,10 +23782,10 @@
 				EA2D573D1847243B00499ED4 /* SearchGroupController.m in Sources */,
 				A439D2C4184A521800F47BEF /* UIImage+GPUImageFilter.m in Sources */,
 				A439D2D4184A5BD500F47BEF /* CropAndFilterViewController.m in Sources */,
-				A4572D6B1856FAEF0076ADF7 /* PPTextView.m in Sources */,
 				A4572D7418570B0F0076ADF7 /* UIView+Pan.m in Sources */,
 				A4572D961858059C0076ADF7 /* AudioFormatConverter.m in Sources */,
 				EA5A2EA718584D6E00CABC71 /* UILabel+Touchable.m in Sources */,
+				A4EA9356185B0144004BB69D /* SingHotCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -24539,10 +24549,10 @@
 				EA2D57401847243B00499ED4 /* SearchGroupController.m in Sources */,
 				A439D2C7184A521800F47BEF /* UIImage+GPUImageFilter.m in Sources */,
 				A439D2D7184A5BD500F47BEF /* CropAndFilterViewController.m in Sources */,
-				A4572D6E1856FAEF0076ADF7 /* PPTextView.m in Sources */,
 				A4572D7718570B0F0076ADF7 /* UIView+Pan.m in Sources */,
 				A4572D991858059C0076ADF7 /* AudioFormatConverter.m in Sources */,
 				EA5A2EAA18584D6E00CABC71 /* UILabel+Touchable.m in Sources */,
+				A4EA9359185B0144004BB69D /* SingHotCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -88,7 +88,7 @@
 #pragma mark init tabs
 - (void)initTabs
 {
-    PPDebug(@"init tabs");
+//    PPDebug(@"init tabs");
     NSInteger count = [self tabCount];
     NSInteger currentTabIndex = [self currentTabIndex];
     for (int i = 0; i < count; ++i) {
@@ -129,6 +129,10 @@
     CGFloat step = btnWidth + split;
     
     NSInteger i = 0;
+    
+    UIColor *selectedTitleColor = COLOR_COFFEE;
+    UIColor *defaultTitleColor = COLOR_WHITE;
+    
     for(TableTab *tab in tabList){
         UIButton *button = (UIButton *)[self.view viewWithTag:tab.tabID];
 
@@ -159,17 +163,18 @@
             
         }
         
-        [button setBackgroundImage:IMAGE_FROM_COLOR(COLOR_ORANGE) forState:UIControlStateNormal];        
+        [button setBackgroundImage:IMAGE_FROM_COLOR(COLOR_ORANGE) forState:UIControlStateNormal];
         [button setBackgroundImage:IMAGE_FROM_COLOR(COLOR_YELLOW) forState:UIControlStateSelected];
+
+        [button setTitleColor:defaultTitleColor forState:UIControlStateNormal];
+        [button setTitleColor:defaultTitleColor forState:UIControlStateHighlighted];
         
-        [button setTitleColor:COLOR_WHITE forState:UIControlStateNormal];
-        [button setTitleColor:COLOR_WHITE forState:UIControlStateHighlighted];
+        [button setTitleColor:selectedTitleColor forState:UIControlStateSelected];
         
-        [button setTitleColor:COLOR_COFFEE forState:UIControlStateSelected];
         
         //shadow offset
-        [button setShadowOffset:CGSizeMake(0,0) blur:0 shadowColor:[UIColor clearColor]];
-        [button.titleLabel setShadowOffset:CGSizeMake(0, 0)];
+        [button setShadowOffset:CGSizeZero blur:0 shadowColor:[UIColor clearColor]];
+        [button.titleLabel setShadowOffset:CGSizeZero];
         index++;
     }
     [self clickTabButton:self.currentTabButton];
@@ -180,6 +185,13 @@
 
 - (void)viewDidLoad
 {
+    /*
+    PPDebug(@"CommonTabController viewDidLoad");
+    [super viewDidLoad];
+    PPDebug(@"CommonTabController viewDidLoad done");
+    return;
+    */
+    PPDebug(@"CommonTabController viewDidLoad");
     if ((self.pullRefreshType & PullRefreshTypeFooter) != 0) {
         [self setSupportRefreshFooter:YES];
     }
@@ -193,6 +205,8 @@
     [self.noDataTipLabl removeFromSuperview];
     [self.titleView setTarget:self];
     [self.titleView setBackButtonSelector:@selector(clickBack:)];
+    
+    PPDebug(@"CommonTabController viewDidLoad done");
 }
 
 
@@ -281,7 +295,7 @@
 - (UIButton *)currentTabButton
 {
     TableTab *tab = [self currentTab];
-    PPDebug(@"current tabID = %d",tab.tabID);
+//    PPDebug(@"current tabID = %d",tab.tabID);
     if (tab) {
         return [self tabButtonWithTabID:tab.tabID];
     }

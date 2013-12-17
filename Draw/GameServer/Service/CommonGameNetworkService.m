@@ -511,7 +511,7 @@
      object:self
      userInfo:[CommonGameNetworkService errorToUserInfo:error]];
     
-    PPDebug(@"<%@> post notification %@ with error", [self description], name);    
+//    PPDebug(@"<%@> post notification %@ with error", [self description], name);    
 }
 
 - (void)postNotification:(NSString*)name message:(GameMessage*)message
@@ -521,7 +521,7 @@
      object:self
      userInfo:[CommonGameNetworkService messageToUserInfo:message]];    
 
-    PPDebug(@"<%@> post notification %@", [self description], name);    
+//    PPDebug(@"<%@> post notification %@", [self description], name);    
 }
 
 #pragma mark - room management

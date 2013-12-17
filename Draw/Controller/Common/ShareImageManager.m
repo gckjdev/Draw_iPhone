@@ -12,6 +12,8 @@
 #import "PPResourceService.h"
 #import "FXLabel.h"
 
+
+
 @interface ShareImageManager () {
     PPResourceService *_resService;
 }
@@ -30,10 +32,14 @@ static UIImage *_buyButtonImage;
 static UIImage* _showcaseBackgroundImage;
 static UIImage* _whitePaperImage;
 
+static NSMutableDictionary *colorImageDict;
+
+
 + (ShareImageManager*)defaultManager
 {
     if (_defaultManager == nil){
         _defaultManager = [[ShareImageManager alloc] init];
+
     }
     
     return _defaultManager;
@@ -1267,14 +1273,21 @@ static UIImage* _whitePaperImage;
 
 + (UIImage *)imageWithColor:(UIColor *)color
 {
-    CGSize size = CGSizeMake(2, 2);
-    UIImage *image;
-    UIGraphicsBeginImageContext(size);
-    [color setFill];
-    CGContextFillRect(UIGraphicsGetCurrentContext(), CGRectMake(0, 0, size.width, size.height));
-    image = UIGraphicsGetImageFromCurrentImageContext();
-    UIGraphicsEndImageContext();
-    return [image stretchableImageWithLeftCapWidth:size.width/2 topCapHeight:size.height/2];
+    if (!colorImageDict) {
+        colorImageDict = [[NSMutableDictionary alloc] init];
+    }
+    UIImage *image = [colorImageDict objectForKey:color];
+    if (!image) {
+        CGSize size = CGSizeMake(2, 2);
+        UIGraphicsBeginImageContext(size);
+        [color setFill];
+        CGContextFillRect(UIGraphicsGetCurrentContext(), CGRectMake(0, 0, size.width, size.height));
+        image = UIGraphicsGetImageFromCurrentImageContext();
+        UIGraphicsEndImageContext();
+        image = [image stretchableImageWithLeftCapWidth:size.width/2 topCapHeight:size.height/2];
+        [colorImageDict setObject:image forKey:color];
+    }
+    return image;
 }
 
 + (UIImage *)happyLogo{

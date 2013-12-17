@@ -171,7 +171,6 @@ enum{
     
     self.descTextView.placeholder = NSLS(@"kDescPlaceholder");
     
-//    self.mp3FilePath =[NSTemporaryDirectory() stringByAppendingFormat:@"%@.mp3", [NSString GetUUID]];
     self.mp3FilePath =[NSTemporaryDirectory() stringByAppendingFormat:@"%@.mp3", @"temp"];
     
     // init title view
@@ -816,11 +815,6 @@ enum{
 }
 
 - (IBAction)clickChangeVoiceButton:(UIButton *)button {
-    
-//    if (ISIOS7) {
-//        POSTMSG2(@"你的iOS版本暂不支持变声", 2.5);
-//        return;
-//    }
     
     if (self.popTipView == nil) {
         VoiceTypeSelectView *v = [VoiceTypeSelectView createWithVoiceType:_singOpus.pbOpus.sing.voiceType];

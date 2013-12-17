@@ -16,6 +16,11 @@
                  feed:(DrawFeed *)feed
           useBigImage:(BOOL)useBigImage;
 
++ (id)createWithFrame:(CGRect)frame;
+- (void)setViewInfo:(DrawFeed *)feed
+        useBigImage:(BOOL)useBigImage;
+
+
 - (void)setHotRankViewStyle;
 - (void)setHomeRankViewStyle;
 - (void)setFeedDetailStyle;
