@@ -78,7 +78,6 @@
     [dialog showInView:oc.view];
 }
 
-#define SUBJECT_MAX_LENGTH 7
 
 - (void)didClickCancel:(CommonDialog *)dialog
 {
@@ -100,9 +99,9 @@
                    !NSStringISValidEnglish(v.titleInputField.text)
                    )){
                     POSTMSG(NSLS(@"kOnlyChineseOrEnglishTitleAllowed"));
-        }else if([v.titleInputField.text length] > SUBJECT_MAX_LENGTH){
+        }else if([v.titleInputField.text length] > [PPConfigManager getOpusNameMaxLength]){
             NSString *msg = [NSString stringWithFormat:NSLS(@"kSubjectLengthLimited"),
-                             SUBJECT_MAX_LENGTH];
+                             [PPConfigManager getOpusNameMaxLength]];
             POSTMSG(msg);
         }else{
             [self changeDrawWord:v.titleInputField.text];

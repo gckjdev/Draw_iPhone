@@ -42,6 +42,8 @@
 #import "CropAndFilterViewController.h"
 #import "UIView+Pan.h"
 #import "AudioFormatConverter.h"
+#import "InputAlertView.h"
+#import "PPConfigManager.h"
 
 #define GREEN_COLOR [UIColor colorWithRed:99/255.0 green:186/255.0 blue:152/255.0 alpha:1]
 #define WHITE_COLOR [UIColor whiteColor]
@@ -957,6 +959,58 @@ enum{
     _hasEdited = NO;
 }
 
+- (void)showOpusNameAndDescEditView
+{
+    InputAlertView *v = [InputAlertView createWithType:ComposeInputDialogTypeTitleAndContent];
+    [v.titleInputField becomeFirstResponder];
+    [v.titleInputField setText:self.singOpus.pbOpus.name];
+    [v.contentInputView setText:self.singOpus.pbOpus.desc];
+    v.titleInputField.placeholder = NSLS(@"kSubjectPlaceholder");
+
+    CommonDialog *dialog = [CommonDialog createDialogWithTitle:NSLS(@"kAddOpusDesc") customView:v style:CommonDialogStyleDoubleButton];
+    dialog.manualClose = YES;
+    [dialog showInView:self.view];
+    
+    [dialog setClickOkBlock:^(id infoView){
+                
+        if ([v.titleInputField.text length] <= 0) {
+
+            POSTMSG(NSLS(@"kSubjectPlaceCannotBlank"));
+            return;
+        }
+
+        if (!NSStringIsValidChinese(v.titleInputField.text)
+            && !NSStringISValidEnglish(v.titleInputField.text)){
+
+            POSTMSG(NSLS(@"kOnlyChineseOrEnglishTitleAllowed"));
+            return;
+        }
+
+
+        if([v.titleInputField.text length] > [PPConfigManager getOpusNameMaxLength]){
+
+            NSString *msg = [NSString stringWithFormat:NSLS(@"kSubjectLengthLimited"),
+                             [PPConfigManager getOpusNameMaxLength]];
+            POSTMSG(msg);
+            return;
+        }
+        
+        [self.singOpus setName:v.titleInputField.text];
+        [self.singOpus setDesc:v.contentInputView.text];
+        [[NSNotificationCenter defaultCenter] postNotificationName:KEY_NOTIFICATION_SING_INFO_CHANGE object:nil];
+
+        dialog.manualClose = NO;
+        
+        [self deductCoinsAndSubmitOpus];
+    }];
+    
+    [dialog setClickCancelBlock:^(id infoView){
+        dialog.manualClose = NO;
+    }];
+}
+
+
+
 - (IBAction)clickSubmitButton:(id)sender {
     
     [_singOpus pauseAndSaveDesignTime];
@@ -982,6 +1036,15 @@ enum{
         
         return;
     }
+    
+    if ([self.singOpus.pbOpus.desc length] <= 0) {
+        [self showOpusNameAndDescEditView];
+    }else{
+        [self deductCoinsAndSubmitOpus];
+    }
+}
+
+- (void)deductCoinsAndSubmitOpus{
     
     if (_fileDuration > 30) {
         int count = _fileDuration / 30;
