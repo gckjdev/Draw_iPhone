@@ -35,6 +35,7 @@
 #import "FriendController.h"
 #import "TaskController.h"
 #import "DrawImageManager.h"
+#import "ContestController.h"
 
 static NSDictionary* DEFAULT_MENU_TITLE_DICT = nil;
 static NSDictionary* DEFAULT_MENU_IMAGE_DICT = nil;
@@ -541,6 +542,15 @@ static NSDictionary* DEFAULT_MENU_IMAGE_DICT = nil;
     [hc release];
 }
 
+- (void)enterContest{
+    
+    [[AnalyticsManager sharedAnalyticsManager] reportClickHomeMenu:HOME_ACTION_CONTEST];
+    
+    ContestController *cc = [[ContestController alloc] init];
+    [self.navigationController pushViewController:cc animated:YES];
+    [cc release];
+}
+
 
 - (void)enterChat
 {
@@ -635,6 +645,12 @@ static NSDictionary* DEFAULT_MENU_IMAGE_DICT = nil;
                 [self enterTopOpus];
                 break;
             }
+                
+            case HomeMenuTypeDrawContest:
+            {
+                [self enterContest];
+            }
+                break;
                 
             default:
                 break;

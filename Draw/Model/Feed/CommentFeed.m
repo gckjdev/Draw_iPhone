@@ -76,14 +76,14 @@
     NSString *desc = nil;
     if ([self isDrawCategory]) {
         desc = self.commentInfo.summaryDesc;
-    }else if (isSingApp()){
+    }else if ([self isSingCategory]){
         desc = self.commentInfo.summarySingDesc;
     }
 
     if (desc == nil) {
         if ([self isDrawCategory]) {
             desc = NSLS(@"kCommentMyDraw");
-        }else if (isSingApp()){
+        }else if ([self isSingCategory]){
             desc = NSLS(@"kCommentMyOpus");
         }
     }
