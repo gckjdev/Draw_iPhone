@@ -19,4 +19,6 @@
 }
 
 
+- (IBAction)clickSetHot:(id)sender;
+
 @end

@@ -31,6 +31,12 @@ typedef enum {
     StatusVerifying = 2
 } UserVerifyStatus;
 
+typedef enum {
+    HotUnknownIndex = 0,
+    HotTopIndex = 1,
+    HotLatestIndex = 2,
+} HotIndexType;
+
 
 #define MALE @"m"
 #define FEMALE @"f"
@@ -262,4 +268,8 @@ qqAccessTokenSecret:(NSString*)accessTokenSecret
 
 - (BOOL)hasJoinedAGroup;
 - (NSArray *)joinedGroupList;
+
+- (HotIndexType)hotControllerIndex;
+- (void)setHotControllerIndex:(HotIndexType)index;
+
 @end
