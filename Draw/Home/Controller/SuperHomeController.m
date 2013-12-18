@@ -132,11 +132,13 @@ static NSDictionary* DEFAULT_MENU_IMAGE_DICT = nil;
     [self registerNotificationWithName:NOTIFCATION_USER_DATA_CHANGE usingBlock:^(NSNotification *note) {
         PPDebug(@"recv NOTIFCATION_USER_DATA_CHANGE, update header view panel");
         [self.homeMainMenuPanel updateView];
+        [self updateAllBadge];
     }];
     
     // update background view
     [self registerNotificationWithName:UPDATE_HOME_BG_NOTIFICATION_KEY usingBlock:^(NSNotification *note) {
         [self updateBGImageView];
+        [self.homeMainMenuPanel updateView];
     }];
     [self updateBGImageView];
 

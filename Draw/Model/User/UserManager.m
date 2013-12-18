@@ -1542,7 +1542,7 @@ qqAccessTokenSecret:(NSString*)accessTokenSecret
     }
 }
 
-- (int)getUserBadgeCount
+- (int)getUserBadgeCountWithoutHomeBg
 {
     if (_pbUser == nil){
         return 0;
@@ -1554,15 +1554,26 @@ qqAccessTokenSecret:(NSString*)accessTokenSecret
     
     int count = 0;
     
-//    if ([_pbUser.xiaojiNumber length] == 0 && [_pbUser canShakeNumber]){
-//        count ++;
-//    }
+    //    if ([_pbUser.xiaojiNumber length] == 0 && [_pbUser canShakeNumber]){
+    //        count ++;
+    //    }
     
     if ([_pbUser.password length] == 0){
         count ++;
     }
     
     if ([_pbUser.email length] == 0){ // || [_pbUser emailVerifyStatus] == StatusNotVerified){
+        count ++;
+    }
+    
+    return count;
+}
+
+- (int)getUserBadgeCount
+{
+    int count = [self getUserBadgeCountWithoutHomeBg];
+    
+    if ([self hasTrySetHomeBg] == NO){
         count ++;
     }
         
@@ -1776,6 +1787,22 @@ qqAccessTokenSecret:(NSString*)accessTokenSecret
 - (NSArray *)joinedGroupList
 {
     return _pbUser.joinedGroupListList;
+}
+
+#define TRY_SET_HOME_BG @"TRY_SET_HOME_BG"
+
+- (BOOL)hasTrySetHomeBg
+{
+    NSUserDefaults* ud = [NSUserDefaults standardUserDefaults];
+    return [ud boolForKey:TRY_SET_HOME_BG];
+}
+
+- (BOOL)setTrySetHomeBg
+{
+    NSUserDefaults* ud = [NSUserDefaults standardUserDefaults];
+    [ud setBool:YES forKey:TRY_SET_HOME_BG];
+    [ud synchronize];
+    return YES;
 }
 
 @end
