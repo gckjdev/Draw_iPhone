@@ -193,11 +193,11 @@ typedef enum{
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSInteger type = self.currentTab.tabID;
-    
     if (isSingApp()){
-        return [RankView heightForRankViewType:RankViewTypeWhisper]+1;
+        return [SingHotCell getCellHeight];
     }
+    
+    NSInteger type = self.currentTab.tabID;
     
     if (type == RankTypeHot || type == RankTypeHistory) {
         
@@ -328,9 +328,11 @@ typedef enum{
         
         NSMutableArray *feeds = [NSMutableArray array];
         int baseIndex = indexPath.row*WHISPER_CELL_VIEW_NUMBER;
-        [feeds addObject:[self saveGetObjectForIndex:baseIndex]];
-        [feeds addObject:[self saveGetObjectForIndex:baseIndex+1]];
-
+        
+        for (int index = baseIndex; index < baseIndex + WHISPER_CELL_VIEW_NUMBER; index ++) {
+            [feeds addObject:[self saveGetObjectForIndex:index]];
+        }
+        
         [cell setCellInfo:feeds];
         
         return cell;

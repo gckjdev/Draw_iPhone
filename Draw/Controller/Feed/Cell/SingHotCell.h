@@ -12,6 +12,7 @@
 
 @property (retain, nonatomic) IBOutlet UIView *holderView1;
 @property (retain, nonatomic) IBOutlet UIView *holderView2;
+@property (retain, nonatomic) IBOutlet UIView *holderView3;
 
 - (void)setCellInfo:(NSArray *)feeds;
 

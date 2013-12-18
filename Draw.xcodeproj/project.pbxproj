@@ -77,6 +77,10 @@
 		A4158674182DF6D1007FCB16 /* StrokeLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = A4158673182DF6D1007FCB16 /* StrokeLabel.m */; };
 		A4158675182DF6D1007FCB16 /* StrokeLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = A4158673182DF6D1007FCB16 /* StrokeLabel.m */; };
 		A4158676182DF6D1007FCB16 /* StrokeLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = A4158673182DF6D1007FCB16 /* StrokeLabel.m */; };
+		A4170C1718613E48007DF362 /* SingHotCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4170C1618613E48007DF362 /* SingHotCell~ipad.xib */; };
+		A4170C1B18613E85007DF362 /* SingHotCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4170C1618613E48007DF362 /* SingHotCell~ipad.xib */; };
+		A4170C1C18613E85007DF362 /* SingHotCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4170C1618613E48007DF362 /* SingHotCell~ipad.xib */; };
+		A4170C1D18613E87007DF362 /* SingHotCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4170C1618613E48007DF362 /* SingHotCell~ipad.xib */; };
 		A41CF58B165790380011AE45 /* RRSGlowLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = A41CF58A165790380011AE45 /* RRSGlowLabel.m */; };
 		A41D2B5616B910E30094BA7C /* WallService.m in Sources */ = {isa = PBXBuildFile; fileRef = A41D2B5516B910E30094BA7C /* WallService.m */; };
 		A41ECB7B16F1D2C100248AEA /* VersionUpdateView.m in Sources */ = {isa = PBXBuildFile; fileRef = A41ECB7A16F1D2C100248AEA /* VersionUpdateView.m */; };
@@ -7349,6 +7353,7 @@
 		A4117540177D986400D3FE23 /* UITextView+WebCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITextView+WebCache.m"; sourceTree = "<group>"; };
 		A4158672182DF6D1007FCB16 /* StrokeLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StrokeLabel.h; sourceTree = "<group>"; };
 		A4158673182DF6D1007FCB16 /* StrokeLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StrokeLabel.m; sourceTree = "<group>"; };
+		A4170C1618613E48007DF362 /* SingHotCell~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "SingHotCell~ipad.xib"; sourceTree = "<group>"; };
 		A41CF589165790380011AE45 /* RRSGlowLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RRSGlowLabel.h; sourceTree = "<group>"; };
 		A41CF58A165790380011AE45 /* RRSGlowLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RRSGlowLabel.m; sourceTree = "<group>"; };
 		A41D2B4616B910D10094BA7C /* FrameCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FrameCell.h; sourceTree = "<group>"; };
@@ -15293,6 +15298,7 @@
 				EA46AD5617D5E6CD0066E914 /* ReportFeedCell.m */,
 				EA46AD6017D5E6E60066E914 /* ReportFeedCell.xib */,
 				A4EA9354185B0143004BB69D /* SingHotCell.h */,
+				A4170C1618613E48007DF362 /* SingHotCell~ipad.xib */,
 				A4EA9355185B0143004BB69D /* SingHotCell.m */,
 				A4EA935A185B0173004BB69D /* SingHotCell.xib */,
 			);
@@ -18413,6 +18419,7 @@
 				EA2D57431847243B00499ED4 /* SearchGroupController.xib in Resources */,
 				A4DE087918595DD700A87924 /* unloadbg2@2x.png in Resources */,
 				A4EA935D185B0173004BB69D /* SingHotCell.xib in Resources */,
+				A4170C1C18613E85007DF362 /* SingHotCell~ipad.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -19388,6 +19395,7 @@
 				EA2D57421847243B00499ED4 /* SearchGroupController.xib in Resources */,
 				A4DE087818595DD700A87924 /* unloadbg2@2x.png in Resources */,
 				A4EA935C185B0173004BB69D /* SingHotCell.xib in Resources */,
+				A4170C1B18613E85007DF362 /* SingHotCell~ipad.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -20346,6 +20354,7 @@
 				EA2D57411847243B00499ED4 /* SearchGroupController.xib in Resources */,
 				A4DE087718595DD700A87924 /* unloadbg2@2x.png in Resources */,
 				A4EA935B185B0173004BB69D /* SingHotCell.xib in Resources */,
+				A4170C1718613E48007DF362 /* SingHotCell~ipad.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -21258,6 +21267,7 @@
 				EA2D57441847243B00499ED4 /* SearchGroupController.xib in Resources */,
 				A4DE087A18595DD700A87924 /* unloadbg2@2x.png in Resources */,
 				A4EA935E185B0173004BB69D /* SingHotCell.xib in Resources */,
+				A4170C1D18613E87007DF362 /* SingHotCell~ipad.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
