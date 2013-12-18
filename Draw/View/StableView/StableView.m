@@ -348,7 +348,10 @@
 
 - (id)initWithFrame:(CGRect)frame user:(PBGameUser *)user
 {
-    return [self initWithUrlString:user.avatar frame:frame gender:user.gender level:user.level];
+    AvatarView *av = [self initWithUrlString:user.avatar frame:frame gender:user.gender level:user.level];
+    av.user = user;
+//    PPDebug(@"<AvatarView> initWithFrame, addr = %@", av);
+    return av;
 }
 
 - (void)setUser:(PBGameUser *)user
@@ -356,6 +359,7 @@
     [self setUserId:user.userId];
     [self setUrlString:user.avatar];
     [self setGender:user.gender];
+    _user = user;
 }
 
 - (void)clear
@@ -366,6 +370,7 @@
 
 - (void)dealloc
 {
+//    PPDebug(@"%@ dealloc", self);
     [imageView release];
     [markButton release];
     [_userId release];

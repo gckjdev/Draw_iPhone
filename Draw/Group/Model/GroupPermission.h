@@ -39,7 +39,7 @@
 - (BOOL)canMarkTopic;
 - (BOOL)canTopTopic;
 - (BOOL)canHandleRequest;
-- (BOOL)canExpelUser:(PBGroupUser*)user;
+- (BOOL)canExpelUser:(PBGameUser*)user;
 - (BOOL)canInviteUser;
 - (BOOL)canInviteGuest;
 - (BOOL)canCustomTitle;

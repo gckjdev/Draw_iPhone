@@ -2171,7 +2171,7 @@
 "kSentRequest" = "申请已经发送，请等待审核通过。";
 "kQuitingGroup" = "退出家族中...";
 "kQuitedGroup" = "你已经退出了家族。";
-
+"kGroupCreator" = "创建者 %@";
 
 "kCanotCreateTopic" = "对不起，不是家族成员或嘉宾不能创建话题。";
 "kCanotGroupChat" = "对不起，不是家族成员或嘉宾不能进行群聊。";

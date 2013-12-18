@@ -9,7 +9,7 @@
 #import "PPTableViewController.h"
 #import "Group.pb.h"
 #import "GroupDetailCell.h"
-
+#import "BBSActionSheet.h"
 
 @interface GroupDetailController : PPTableViewController<GroupDetailCellDelegate>
 
