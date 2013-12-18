@@ -91,6 +91,7 @@ typedef enum {
 @property(nonatomic, assign) id<AvatarViewDelegate> delegate;
 @property(nonatomic, assign) BOOL hasPen;
 @property(nonatomic, assign) CGSize contentInset;
+@property(nonatomic, assign) PBGameUser *user;
 
 - (void)setBadge:(NSInteger)number;
 - (BadgeView *)badgeView;

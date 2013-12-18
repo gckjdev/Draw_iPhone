@@ -9,6 +9,7 @@
 #import "GroupPermission.h"
 #import "Group.pb.h"
 #import "BBSModelExt.h"
+#import "GroupModelExt.h"
 
 @implementation GroupPermissionManager
 
@@ -35,7 +36,7 @@
 //Group
 - (BOOL)canJoinGroup
 {
-    return PERMIT(JOIN_GROUP) && ![[UserManager defaultManager] hasJoinedAGroup];
+    return PERMIT(JOIN_GROUP) && ![[UserManager defaultManager] hasJoinedAGroup] && ![_group creatorIsMe];
 }
 
 - (BOOL)canQuitGroup
@@ -84,9 +85,9 @@
 {
     return PERMIT(HANDLE_REQUEST);
 }
-- (BOOL)canExpelUser:(PBGroupUser*)user
+- (BOOL)canExpelUser:(PBGameUser*)user
 {
-    return PERMIT(EXPEL_USER) && user.type != GroupRoleCreator;
+    return PERMIT(EXPEL_USER);
 }
 - (BOOL)canInviteUser
 {

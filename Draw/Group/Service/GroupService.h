@@ -71,21 +71,24 @@ typedef void (^ SimpleResultBlock) (NSError *error);
 - (void)getMembersInGroup:(NSString *)groupId
                  callback:(ListResultBlock)callback;
 
-- (void)expelUser:(NSString *)uid
+- (void)expelUser:(PBGameUser *)user
             group:(NSString *)groupId
+          titleId:(NSInteger)titleId
             reason:(NSString *)reason
            callback:(SimpleResultBlock)callback;
 
 - (void)quitGroup:(NSString *)groupId
          callback:(SimpleResultBlock)callback;
 
-- (void)updateUser:(NSString *)userId
-              role:(GroupRole)role
-             title:(NSString *)title
-           inGroup:(NSString *)groupId
-          callback:(SimpleResultBlock)callback;
 
 
+- (void)setUserAsAdmin:(PBGameUser *)user
+               inGroup:(NSString *)groupId
+              callback:(SimpleResultBlock)callback;
+
+- (void)removeUserFromAdmin:(PBGameUser *)user
+                    inGroup:(NSString *)groupId
+                   callback:(SimpleResultBlock)callback;
 
 //follow && fan
 - (void)followGroup:(NSString *)groupId
@@ -155,11 +158,13 @@ typedef void (^ SimpleResultBlock) (NSError *error);
                    groupId:(NSString *)groupId
                   callback:(SimpleResultBlock)callback;
 
-- (void)changeUser:(NSString *)userId
+- (void)changeUser:(PBGameUser *)user
            inGroup:(NSString *)groupId
      sourceTitleId:(NSInteger)sourceTitleId
              title:(NSInteger)titleId
           callback:(SimpleResultBlock)callback;
+
+//- (void)remove
 
 - (void)getAllUsersByTitle:(NSString *)groupId
                   callback:(ListResultBlock)callback;

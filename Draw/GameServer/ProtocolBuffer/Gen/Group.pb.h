@@ -433,7 +433,7 @@ BOOL PBGroupUserTypeIsValidValue(PBGroupUserType value);
   NSString* desc;
   NSString* name;
   NSString* groupId;
-  PBGroupUser* creator;
+  PBGameUser* creator;
   PBUserRelationWithGroup* relation;
   PBBBSPost* topic;
   NSMutableArray* mutableTitlesList;
@@ -482,17 +482,17 @@ BOOL PBGroupUserTypeIsValidValue(PBGroupUserType value);
 @property (readonly, retain) NSString* statusDesc;
 @property (readonly, retain) NSString* bgImage;
 @property (readonly, retain) NSString* medalImage;
-@property (readonly, retain) PBGroupUser* creator;
+@property (readonly, retain) PBGameUser* creator;
 @property (readonly, retain) PBUserRelationWithGroup* relation;
 @property (readonly, retain) PBBBSPost* topic;
 - (NSArray*) titlesList;
 - (PBGroupTitle*) titlesAtIndex:(int32_t) index;
 - (NSArray*) adminsList;
-- (PBGroupUser*) adminsAtIndex:(int32_t) index;
+- (PBGameUser*) adminsAtIndex:(int32_t) index;
 - (NSArray*) usersList;
 - (PBGroupUsersByTitle*) usersAtIndex:(int32_t) index;
 - (NSArray*) guestsList;
-- (PBGroupUser*) guestsAtIndex:(int32_t) index;
+- (PBGameUser*) guestsAtIndex:(int32_t) index;
 
 + (PBGroup*) defaultInstance;
 - (PBGroup*) defaultInstance;
@@ -631,16 +631,16 @@ BOOL PBGroupUserTypeIsValidValue(PBGroupUserType value);
 - (PBGroup_Builder*) clearTitlesList;
 
 - (BOOL) hasCreator;
-- (PBGroupUser*) creator;
-- (PBGroup_Builder*) setCreator:(PBGroupUser*) value;
-- (PBGroup_Builder*) setCreatorBuilder:(PBGroupUser_Builder*) builderForValue;
-- (PBGroup_Builder*) mergeCreator:(PBGroupUser*) value;
+- (PBGameUser*) creator;
+- (PBGroup_Builder*) setCreator:(PBGameUser*) value;
+- (PBGroup_Builder*) setCreatorBuilder:(PBGameUser_Builder*) builderForValue;
+- (PBGroup_Builder*) mergeCreator:(PBGameUser*) value;
 - (PBGroup_Builder*) clearCreator;
 
 - (NSArray*) adminsList;
-- (PBGroupUser*) adminsAtIndex:(int32_t) index;
-- (PBGroup_Builder*) replaceAdminsAtIndex:(int32_t) index with:(PBGroupUser*) value;
-- (PBGroup_Builder*) addAdmins:(PBGroupUser*) value;
+- (PBGameUser*) adminsAtIndex:(int32_t) index;
+- (PBGroup_Builder*) replaceAdminsAtIndex:(int32_t) index with:(PBGameUser*) value;
+- (PBGroup_Builder*) addAdmins:(PBGameUser*) value;
 - (PBGroup_Builder*) addAllAdmins:(NSArray*) values;
 - (PBGroup_Builder*) clearAdminsList;
 
@@ -652,9 +652,9 @@ BOOL PBGroupUserTypeIsValidValue(PBGroupUserType value);
 - (PBGroup_Builder*) clearUsersList;
 
 - (NSArray*) guestsList;
-- (PBGroupUser*) guestsAtIndex:(int32_t) index;
-- (PBGroup_Builder*) replaceGuestsAtIndex:(int32_t) index with:(PBGroupUser*) value;
-- (PBGroup_Builder*) addGuests:(PBGroupUser*) value;
+- (PBGameUser*) guestsAtIndex:(int32_t) index;
+- (PBGroup_Builder*) replaceGuestsAtIndex:(int32_t) index with:(PBGameUser*) value;
+- (PBGroup_Builder*) addGuests:(PBGameUser*) value;
 - (PBGroup_Builder*) addAllGuests:(NSArray*) values;
 - (PBGroup_Builder*) clearGuestsList;
 

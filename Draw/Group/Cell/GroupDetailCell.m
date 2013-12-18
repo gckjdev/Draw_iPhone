@@ -12,6 +12,7 @@
 #import "StableView.h"
 #import "GroupConstants.h"
 #import "GroupModelExt.h"
+#import "GroupManager.h"
 
 #define MEMBER_NUMBER_PERROW 5
 #define TITLE_INFO_HEIGHT 25
@@ -27,7 +28,8 @@
 @property(nonatomic, assign) CellRowPosition position;
 @property(nonatomic, assign) ColorStyle colorStyle;
 @property(nonatomic, assign) DetailCellStyle cellStyle;
-@property(nonatomic, assign) PBGroupUsersByTitle *members;
+@property(nonatomic, retain) PBGroupUsersByTitle *members;
+//@property(nonatomic, assign) NSArray *userList;
 //@property(nonatomic, copy) NSString *text;
 @property (retain, nonatomic) IBOutlet UILabel *infoLabel;
 @property (retain, nonatomic) IBOutlet UIView *splitLine;
@@ -43,6 +45,7 @@
     [_infoLabel release];
     [_splitLine release];
     [_boundImage release];
+    PPRelease(_members);
     [super dealloc];
 }
 
@@ -79,8 +82,13 @@
     
 }
 
-+ (NSInteger)rowForMemberCount:(NSInteger)memberCount
++ (NSInteger)rowForUsersByTitle:(PBGroupUsersByTitle *)usersByTitle
 {
+    NSInteger memberCount = [usersByTitle.usersList count]; //add button
+    if (![usersByTitle isAdminTitle] && [GroupManager isMeAdminOrCreatorInSharedGroup]) {
+        memberCount += 1;
+    }
+    
     NSInteger remainder = memberCount%MEMBER_NUMBER_PERROW;
     NSInteger flag = (remainder == 0) ? 0 : 1;
     NSInteger row = (memberCount/MEMBER_NUMBER_PERROW) + flag;
@@ -89,15 +97,15 @@
 
 #define CREATOR_CELL_HEIGHT 70
 
++ (CGFloat)getCellHeightForSingleAvatar
+{
+    return CREATOR_CELL_HEIGHT;
+}
+
 + (CGFloat)getCellHeightForUsersByTitle:(PBGroupUsersByTitle *)usersByTitle
 {
-    if ([usersByTitle isCreator]) {
-        return CREATOR_CELL_HEIGHT;
-    }else{
-        NSInteger avatarCount = [usersByTitle.usersList count];
-        NSInteger row = [self rowForMemberCount:avatarCount];
-        return TITLE_INFO_HEIGHT+(row * (MEMBER_AVATAR_HEIGHT + MEMBER_AVATAR_SPACE));
-    }
+    NSInteger row = [self rowForUsersByTitle:usersByTitle];
+    return TITLE_INFO_HEIGHT+(row * (MEMBER_AVATAR_HEIGHT + MEMBER_AVATAR_SPACE));
 }
 
 + (NSString *)getCellIdentifier
@@ -125,17 +133,31 @@
             cellStyle:DetailCellStyleSingleAvatar];
 }
 
+- (void)setCellForCreatorInGroup:(PBGroup *)group
+                        position:(CellRowPosition)position
+{
+    [self setCellInfo:group position:position
+           colorStyle:ColorStyleYellow
+            cellStyle:DetailCellStyleSingleAvatar];
+}
+
+- (void)setCellForAdminsInGroup:(PBGroup *)group
+                       position:(CellRowPosition)position
+{
+    [self setCellInfo:group position:position
+           colorStyle:ColorStyleYellow
+            cellStyle:DetailCellStyleMultipleAvatars];
+    self.members = [group adminsByTitle];
+}
+
+
 - (void)setCellForUsersByTitle:(PBGroupUsersByTitle *)usersByTitle
                       position:(CellRowPosition)position
                        inGroup:(PBGroup *)group
 {
-    
-    DetailCellStyle style = [usersByTitle isCreator] ? DetailCellStyleSingleAvatar :
-    DetailCellStyleMultipleAvatars;
-    
     [self setCellInfo:group position:position
            colorStyle:ColorStyleYellow
-            cellStyle:style];
+            cellStyle:DetailCellStyleMultipleAvatars];
     self.members = usersByTitle;
 }
 
@@ -177,8 +199,10 @@
 
 - (void)updateCellTextContent
 {
-    self.infoLabel.center = CGRectGetCenter(self.bounds);
+//    self.infoLabel.center = CGRectGetCenter(self.bounds);
     [self.infoLabel setHidden:NO];
+    [self.infoLabel updateOriginY:0];
+    [self.infoLabel updateHeight:CGRectGetMinY(self.splitLine.frame)];
     
     switch (self.cellStyle) {
         case DetailCellStyleSimpleText:{
@@ -186,12 +210,13 @@
             break;
         }
         case DetailCellStyleSingleAvatar:{
-            [self.infoLabel setText:[self.group creatorNickName]];
+            NSString *desc = [NSString stringWithFormat:NSLS(@"kGroupCreator"),self.group.creatorNickName];
+            [self.infoLabel setText:desc];
             break;
         }
         case DetailCellStyleMultipleAvatars:{
-            [self.infoLabel updateOriginY:0];
-            [self.infoLabel setText:[self.members titleName]];
+            [self.infoLabel updateHeight:TITLE_INFO_HEIGHT];
+            [self.infoLabel setText:[self.members desc]];
             break;
         }
         default:
@@ -206,11 +231,6 @@
     [self.contentView removeSubviewsWithClass:[UIScrollView class]];
 }
 
-- (PBGameUser *)createUser
-{
-    return _group.creator.user;
-}
-
 - (void)updateCellImageContent
 {
     switch (self.cellStyle) {
@@ -220,37 +240,58 @@
                 CGRect frame = CGRectMake(0, 0, avWidth, avWidth);
                 CGFloat x = CGRectGetWidth(self.bounds)/5;
                 CGFloat y = CGRectGetMidY(self.bounds);
-                PBGameUser *user = [self createUser];
+                PBGameUser *user = _group.creator;
                 AvatarView *av = [[AvatarView alloc] initWithFrame:frame user:user];
                 av.center = CGPointMake(x, y);
-                [self.contentView addSubview:av];
                 av.delegate = self;
+                [self.contentView addSubview:av];
+                [av release];
+
             }
             break;
         }
         case DetailCellStyleMultipleAvatars:{
-            CGFloat row = [GroupDetailCell rowForMemberCount:_members.usersList.count];
+            CGFloat row = [GroupDetailCell rowForUsersByTitle:self.members];
             CGFloat height = (MEMBER_AVATAR_HEIGHT+MEMBER_AVATAR_SPACE) * row;
 
             CGFloat width = MEMBER_NUMBER_PERROW * MEMBER_AVATAR_HEIGHT;
             width += (MEMBER_NUMBER_PERROW - 1) * MEMBER_AVATAR_SPACE;
-            CGFloat x = CGRectGetWidth(self.bounds)/2 - width;
+            CGFloat x = (CGRectGetWidth(self.bounds) - width)/2;
             CGFloat y = TITLE_INFO_HEIGHT;
             CGRect frame = CGRectMake(x, y, width, height);
             UIScrollView *scrollView = [[UIScrollView alloc] initWithFrame:frame];
+            scrollView.contentSize = frame.size;
             [self.contentView addSubview:scrollView];
+//            scrollView.backgroundColor = COLOR_GRAY;
             [scrollView release];
             
             x = y = 0;
             NSInteger index = 0;
-            NSInteger count = [[_members usersList] count];
-            for (PBGroupUser *user in _members.usersList) {
-                y = (index / count) * (MEMBER_AVATAR_SPACE + MEMBER_AVATAR_HEIGHT);
-                x = (index % count) * (MEMBER_AVATAR_HEIGHT + MEMBER_AVATAR_SPACE);                
+            BOOL hasAddButton = ![self.members isAdminTitle] && [GroupManager isMeAdminOrCreatorInSharedGroup];
+
+            NSInteger count = [[_members usersList] count] + hasAddButton;
+            
+            while (index < count) {
+                y = (index / MEMBER_NUMBER_PERROW) * (MEMBER_AVATAR_SPACE + MEMBER_AVATAR_HEIGHT);
+                x = (index % MEMBER_NUMBER_PERROW) * (MEMBER_AVATAR_HEIGHT + MEMBER_AVATAR_SPACE);
+                
                 CGRect frame = CGRectMake(x, y, MEMBER_AVATAR_HEIGHT, MEMBER_AVATAR_HEIGHT);
-                AvatarView *av = [[AvatarView alloc] initWithFrame:frame user:user.user];
-                [scrollView addSubview:av];
-                av.delegate = self;
+                if (index == count-1 && hasAddButton) {
+                    UIButton *addButton = [UIButton buttonWithType:UIButtonTypeCustom];
+                    [addButton setFrame:frame];
+                    [addButton setTintColor:COLOR_BROWN];
+                    [addButton setTitle:@"+" forState:UIControlStateNormal];
+                    addButton.backgroundColor = COLOR_ORANGE;
+                    [addButton addTarget:self action:@selector(clickAddButton:) forControlEvents:UIControlEventTouchUpInside];
+                    [scrollView addSubview:addButton];
+                }else{
+                    PBGameUser *user = self.members.usersList[index];
+                    AvatarView *av = [[AvatarView alloc] initWithFrame:frame user:user];
+                    [av setDelegate:self];
+                    [scrollView addSubview:av];
+                    av.delegate = self;
+                    [av release];
+                }
                 index ++;
             }
             break;
@@ -260,9 +301,26 @@
     }
 }
 
+- (void)clickAddButton:(id)sender
+{
+    if ([self.delegate respondsToSelector:@selector(groupDetailCell:didClickAddButtonAtTitle:)]) {
+        [self.delegate groupDetailCell:self didClickAddButtonAtTitle:self.members.title];
+    }
+}
+
 - (void)didClickOnAvatarView:(AvatarView *)avatarView
 {
-    //TODO handle the click action.
+    if (self.cellStyle == DetailCellStyleSingleAvatar) {
+        if ([self.delegate respondsToSelector:@selector(groupDetailCell:didClickCreator:)]) {
+            [self.delegate groupDetailCell:self didClickCreator:avatarView.user];
+        }
+    }else{
+        if (self.delegate && [self.delegate respondsToSelector:@selector(groupDetailCell:didClickUser:title:)]) {
+            [self.delegate groupDetailCell:self
+                              didClickUser:avatarView.user
+                                     title:self.members.title];
+        }
+    }
 }
 
 - (void)layoutSubviews

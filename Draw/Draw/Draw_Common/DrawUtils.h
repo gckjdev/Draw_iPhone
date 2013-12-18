@@ -89,6 +89,8 @@
 
 + (NSUInteger)compressDrawColor8:(DrawColor *)color;
 
++ (NSString *)keyForColor:(UIColor *)color;
+
 //+ (NSUInteger)compressColor8:(UIColor *)color;
 //+ (UIColor *)decompressColor8:(NSUInteger)intColor;
 

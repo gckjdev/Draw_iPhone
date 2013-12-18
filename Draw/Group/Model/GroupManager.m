@@ -185,4 +185,148 @@ enum{
         }
     }
 }
+
++ (PBGroupUsersByTitle *)usersByTitleForTitleId:(NSInteger)titleId
+{
+    NSMutableArray *members = [[GroupManager defaultManager] tempMemberList];
+    for (PBGroupUsersByTitle *usersByTitle in members) {
+        if (usersByTitle.title.titleId == titleId) {
+            return usersByTitle;
+        }
+    }
+    return nil;
+}
+
++ (void)updateMember:(PBGameUser *)member titleId:(NSInteger)titleId isRemove:(BOOL)isRemove
+{
+    PBGroupUsersByTitle *title = [self usersByTitleForTitleId:titleId];
+    if (title) {
+        PBGroupUsersByTitle_Builder *builder = [PBGroupUsersByTitle builderWithPrototype:title];
+        NSMutableArray *userList = [NSMutableArray arrayWithArray:title.usersList];
+        [builder clearUsersList];
+        if (isRemove) {
+            [userList removeObject:member];
+        }else{
+            [userList addObject:member];
+        }
+        [builder addAllUsers:userList];
+        PBGroupUsersByTitle *nt = [builder build];
+        
+        NSMutableArray *members = [[GroupManager defaultManager] tempMemberList];
+        NSInteger index = [members indexOfObject:title];
+        [members replaceObjectAtIndex:index withObject:nt];
+    }
+}
+
+
++ (PBGroup *)didSetUser:(PBGameUser *)user
+         asAdminInGroup:(PBGroup *)group
+{
+    PBGroup_Builder *builder = [PBGroup builderWithPrototype:group];
+    [builder addAdmins:user];    
+    group = [builder build];
+    return group;
+}
+
++ (PBGroup *)didRemoveUser:(PBGameUser *)user
+          fromAdminInGroup:(PBGroup *)group;
+{
+    PBGroup_Builder *builder = [PBGroup builderWithPrototype:group];
+    
+    
+    NSMutableArray *admins = [NSMutableArray arrayWithArray:group.adminsList];
+    [builder clearAdminsList];
+    [admins removeObject:user];
+    [builder addAllAdmins:admins];
+    
+    group = [builder build];
+    return group;
+    
+}
+
++ (void)didUpdateUser:(PBGameUser *)user
+          fromTitleId:(NSInteger)fromTitleId
+            toTitleId:(NSInteger)toTitleId
+{
+    if (fromTitleId == toTitleId) {
+        return;
+    }
+    [self updateMember:user titleId:fromTitleId isRemove:YES];
+    [self updateMember:user titleId:toTitleId isRemove:NO];
+    
+}
+
++ (void)didRemoveUser:(PBGameUser *)user
+          fromTitleId:(NSInteger)titleId
+{
+    if (titleId != GroupRoleAdmin) {
+        [self updateMember:user titleId:titleId isRemove:YES];
+    }
+}
+
++ (void)didAddedGroupTitle:(NSString *)groupId
+                     title:(NSString *)title
+                   titleId:(NSInteger)titleId
+{
+    PBGroupUsersByTitle_Builder *builder = [[PBGroupUsersByTitle_Builder alloc] init];
+
+    PBGroupTitle_Builder *titleBuilder = [[PBGroupTitle_Builder alloc] init];
+    [titleBuilder setTitle:title];
+    [titleBuilder setTitleId:titleId];
+    [builder setTitle:[titleBuilder build]];
+    [titleBuilder release];
+    
+    PBGroupUsersByTitle *ut = [builder build];
+    [builder release];
+    
+    [[[GroupManager defaultManager] tempMemberList] addObject:ut];
+}
+
++ (void)didDeletedGroupTitle:(NSString *)groupId
+                     titleId:(NSInteger)titleId
+{
+    NSMutableArray *members = [[GroupManager defaultManager] tempMemberList];
+    PBGroupUsersByTitle *gt = [self usersByTitleForTitleId:titleId];
+    [members removeObject:gt];
+}
+
++ (BOOL)isUser:(PBGameUser *)user adminOrCreatorInGroup:(PBGroup *)group
+{
+    if ([group.creator isEqual:user]) {
+        return YES;
+    }
+    if ([group.adminsList containsObject:user]){
+        return YES;
+    }
+    return NO;        
+}
+
++ (BOOL)isMeAdminOrCreatorInSharedGroup
+{
+    PBGroup *group = [[self defaultManager] sharedGroup];
+    return [self isUser:[[UserManager defaultManager] pbUser] adminOrCreatorInGroup:group];
+}
+
++ (NSInteger)genTitleId
+{
+    NSArray *members = [[self defaultManager] tempMemberList];
+    NSInteger titleId = CUSTOM_TITLE_START;
+    for (PBGroupUsersByTitle *ut in members) {
+        titleId = MAX(titleId, ut.title.titleId);
+    }
+    return titleId;
+}
+
++ (NSArray *)candidateTitlesForChangingTitle:(PBGroupTitle *)title
+{
+    NSInteger titleId = title.titleId;
+    NSArray *members = [[self defaultManager] tempMemberList];
+    NSMutableArray *ret = [NSMutableArray array];
+    for (PBGroupUsersByTitle *ut in members) {
+        if (titleId != ut.title.titleId) {
+            [ret addObject:ut.title];
+        }
+    }
+    return ret;
+}
 @end

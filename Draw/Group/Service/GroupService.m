@@ -253,19 +253,27 @@ static GroupService *_staticGroupService = nil;
      }];
 }
 
-- (void)expelUser:(NSString *)uid
+- (void)expelUser:(PBGameUser *)user
             group:(NSString *)groupId
-           reason:(NSString *)reason   
+          titleId:(NSInteger)titleId
+           reason:(NSString *)reason
          callback:(SimpleResultBlock)callback
 {
+    if (!reason) {
+        reason = @"";
+    }
     NSDictionary *paras = @{PARA_GROUPID:groupId,
-                            PARA_TARGETUSERID:uid,
+                            PARA_TARGETUSERID:user.userId,
                             PARA_DESC:reason,
+                            PARA_TITLE_ID:@(titleId)
                             };
     [self loadPBData:METHOD_EXPEL_GROUPUSER
           parameters:paras
             callback:^(DataQueryResponse *response, NSError *error )
      {
+         if (!error) {
+             [GroupManager didRemoveUser:user fromTitleId:titleId];
+         }
          EXECUTE_BLOCK(callback, error);
      }];
 }
@@ -282,24 +290,37 @@ static GroupService *_staticGroupService = nil;
      }];
 }
 
-- (void)updateUser:(NSString *)userId
-              role:(GroupRole)role
-             title:(NSString *)title
-           inGroup:(NSString *)groupId
-          callback:(SimpleResultBlock)callback
+- (void)setUserAsAdmin:(PBGameUser *)user
+               inGroup:(NSString *)groupId
+              callback:(SimpleResultBlock)callback
 {
     NSDictionary *paras = @{PARA_GROUPID:groupId,
-                            PARA_TARGETUSERID:userId,
-                            PARA_ROLE: @(role),
-                            PARA_TITLE:(title ? title : @""),
+                            PARA_TARGETUSERID:user.userId,
                             };
-    [self loadPBData:METHOD_UPDATE_GROUPUSER_ROLE
+    [self loadPBData:METHOD_SET_USER_AS_ADMIN
           parameters:paras
             callback:^(DataQueryResponse *response, NSError *error )
      {
          EXECUTE_BLOCK(callback, error);
      }];
 }
+
+- (void)removeUserFromAdmin:(PBGameUser *)user
+                    inGroup:(NSString *)groupId
+                   callback:(SimpleResultBlock)callback
+{
+    NSDictionary *paras = @{PARA_GROUPID:groupId,
+                            PARA_TARGETUSERID:user.userId,
+                            };
+    
+    [self loadPBData:METHOD_REMOVE_USER_FROM_ADMIN
+          parameters:paras
+            callback:^(DataQueryResponse *response, NSError *error )
+     {
+         EXECUTE_BLOCK(callback, error);
+     }];
+}
+
 
 
 - (void)followGroup:(NSString *)groupId
@@ -525,6 +546,9 @@ static GroupService *_staticGroupService = nil;
     [self loadPBData:METHOD_CREATE_GROUP_TITLE
           parameters:info
             callback:^(DataQueryResponse *response, NSError *error) {
+                if (!error) {
+                    [GroupManager didAddedGroupTitle:groupId title:title titleId:titleId];
+                }
                 EXECUTE_BLOCK(callback, error);
     }];
 
@@ -540,11 +564,14 @@ static GroupService *_staticGroupService = nil;
     [self loadPBData:METHOD_DELETE_GROUP_TITLE
           parameters:info
             callback:^(DataQueryResponse *response, NSError *error) {
+                if (!error) {
+                    [GroupManager didDeletedGroupTitle:groupId titleId:titleId];
+                }
                 EXECUTE_BLOCK(callback, error);
     }];
 }
 
-- (void)changeUser:(NSString *)userId
+- (void)changeUser:(PBGameUser *)user
            inGroup:(NSString *)groupId
      sourceTitleId:(NSInteger)sourceTitleId
              title:(NSInteger)titleId
@@ -553,12 +580,15 @@ static GroupService *_staticGroupService = nil;
     NSDictionary *info = @{PARA_TITLE_ID : @(titleId),
                            PARA_SOURCE_TITLEID : @(sourceTitleId),
                            PARA_GROUPID : groupId,
-                           PARA_TARGETUSERID : userId
+                           PARA_TARGETUSERID : user.userId
                            };
     
     [self loadPBData:METHOD_CHANGE_USER_TITLE
           parameters:info
             callback:^(DataQueryResponse *response, NSError *error) {
+                if (!error) {
+                    [GroupManager didUpdateUser:user fromTitleId:sourceTitleId toTitleId:titleId];
+                }
                 EXECUTE_BLOCK(callback, error);
     }];
 }

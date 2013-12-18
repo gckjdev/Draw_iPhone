@@ -28,5 +28,7 @@ typedef enum {
                                      avatar:(NSString*)avatar
                                    nickName:(NSString*)nickName;
 
++ (ViewUserDetail*)viewUserDetailWithUser:(PBGameUser *)user;
+
 
 @end

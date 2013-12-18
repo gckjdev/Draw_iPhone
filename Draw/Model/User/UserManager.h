@@ -241,6 +241,7 @@ qqAccessTokenSecret:(NSString*)accessTokenSecret
 
 
 // user badge handling
+- (int)getUserBadgeCountWithoutHomeBg;
 - (int)getUserBadgeCount;
 - (BOOL)isOldUserWithoutXiaoji;
 
@@ -271,5 +272,8 @@ qqAccessTokenSecret:(NSString*)accessTokenSecret
 
 - (HotIndexType)hotControllerIndex;
 - (void)setHotControllerIndex:(HotIndexType)index;
+
+- (BOOL)hasTrySetHomeBg;
+- (BOOL)setTrySetHomeBg;
 
 @end

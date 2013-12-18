@@ -124,6 +124,13 @@
     return [[[ViewUserDetail alloc] initWithUserId:userId avatar:avatar nickName:nickName] autorelease];
 }
 
++ (ViewUserDetail*)viewUserDetailWithUser:(PBGameUser *)user
+{
+    ViewUserDetail *vud = [[ViewUserDetail alloc] init];
+    [vud setPbGameUser:user];
+    return [vud autorelease];    
+}
+
 - (void)setPbGameUser:(PBGameUser *)pbUser
 {
     self.pbUser = pbUser;

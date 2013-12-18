@@ -153,29 +153,62 @@ typedef enum{
     if ([self creatorIsMe]) {
         return NSLS(@"kMe");
     }else{
-        return self.creator.user.nickName;
+        return self.creator.nickName;
     }
 }
 - (BOOL)creatorIsMe
 {
-   return [[UserManager defaultManager] isMe:self.creator.user.userId];
+   return [[UserManager defaultManager] isMe:self.creator.userId];
 }
 
+- (PBGroupUsersByTitle *)adminsByTitle
+{
+    PBGroupUsersByTitle_Builder *builder = [[PBGroupUsersByTitle_Builder alloc] init];
+    PBGroupTitle_Builder *titleBuilder = [[PBGroupTitle_Builder alloc] init];
+    [titleBuilder setTitle:NSLS(@"kAdmin")];
+    [titleBuilder setTitleId:GroupRoleAdmin];
+    [builder setTitle:[titleBuilder build]];
+    if ([self.adminsList count] > 0) {
+        [builder addAllUsers:self.adminsList];
+    }
+    PBGroupUsersByTitle *adminTitles = [builder build];
+    [titleBuilder release];
+    [builder release];
+    return adminTitles;
+}
+
+- (PBGroupUsersByTitle *)guestsByTitle
+{
+    PBGroupUsersByTitle_Builder *builder = [[PBGroupUsersByTitle_Builder alloc] init];
+    PBGroupTitle_Builder *titleBuilder = [[PBGroupTitle_Builder alloc] init];
+    [titleBuilder setTitle:NSLS(@"kGuest")];
+    [titleBuilder setTitleId:GroupRoleGuest];
+    [builder setTitle:[titleBuilder build]];
+    if ([self.guestsList count] > 0) {
+        [builder addAllUsers:self.guestsList];
+    }
+    PBGroupUsersByTitle *adminTitles = [builder build];
+    [titleBuilder release];
+    [builder release];
+    return adminTitles;
+}
 
 @end
 
 @implementation PBGroupUsersByTitle (Ext)
 
-- (BOOL)isCreator
-{
-    return GroupRoleCreator == self.title.titleId;
-}
 - (BOOL)isCustomTitle
 {
     if (self.title.titleId > CUSTOM_TITLE_START) {
         return YES;
     }
     return NO;
+}
+
+- (BOOL)isAdminTitle
+{
+    return self.title.titleId == GroupRoleAdmin ||
+    self.title.titleId == GroupRoleCreator;
 }
 
 - (NSString *)titleName
@@ -195,10 +228,21 @@ typedef enum{
 
 - (NSString *)desc
 {
-    if ([self isCreator]) {
-        return [NSString stringWithFormat:@"%@  %@", [self titleName], [self firstMemberNickName]];
-    }else{
-        return [NSString stringWithFormat:NSLS(@"kGroupTitleDesc"), [self titleName], [[self usersList] count]];        
-    }
+    return [NSString stringWithFormat:NSLS(@"kGroupTitleDesc"), [self titleName], [[self usersList] count]];
 }
+@end
+
+@implementation PBGameUser(Ext)
+
+- (NSUInteger)hash
+{
+    return self.userId.hash;
+}
+
+- (BOOL)isEqual:(id)object
+{
+    return [self hash] == [object hash];
+}
+
+
 @end

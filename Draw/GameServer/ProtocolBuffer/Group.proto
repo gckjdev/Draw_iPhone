@@ -82,12 +82,12 @@ message PBGroup
 
     repeated PBGroupTitle titles = 31;          // 职位列表
     
-    optional PBGroupUser creator = 40;          // 家族创建者
-    repeated PBGroupUser admins = 41;           // 管理员列表
+    optional PBGameUser creator = 40;          // 家族创建者
+    repeated PBGameUser admins = 41;           // 管理员列表
 
     repeated PBGroupUsersByTitle users = 42;    // 成员列表
 
-    repeated PBGroupUser guests = 43;           // 嘉宾列表
+    repeated PBGameUser guests = 43;           // 嘉宾列表
 
     optional PBUserRelationWithGroup relation = 50; // 用来记录当前用户与此group的关系
 
