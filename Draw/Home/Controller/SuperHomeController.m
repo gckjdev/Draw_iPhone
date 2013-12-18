@@ -35,6 +35,7 @@
 #import "FriendController.h"
 #import "TaskController.h"
 #import "DrawImageManager.h"
+#import "ContestController.h"
 
 static NSDictionary* DEFAULT_MENU_TITLE_DICT = nil;
 static NSDictionary* DEFAULT_MENU_IMAGE_DICT = nil;
@@ -132,11 +133,13 @@ static NSDictionary* DEFAULT_MENU_IMAGE_DICT = nil;
     [self registerNotificationWithName:NOTIFCATION_USER_DATA_CHANGE usingBlock:^(NSNotification *note) {
         PPDebug(@"recv NOTIFCATION_USER_DATA_CHANGE, update header view panel");
         [self.homeMainMenuPanel updateView];
+        [self updateAllBadge];
     }];
     
     // update background view
     [self registerNotificationWithName:UPDATE_HOME_BG_NOTIFICATION_KEY usingBlock:^(NSNotification *note) {
         [self updateBGImageView];
+        [self.homeMainMenuPanel updateView];
     }];
     [self updateBGImageView];
 
@@ -541,6 +544,15 @@ static NSDictionary* DEFAULT_MENU_IMAGE_DICT = nil;
     [hc release];
 }
 
+- (void)enterContest{
+    
+    [[AnalyticsManager sharedAnalyticsManager] reportClickHomeMenu:HOME_ACTION_CONTEST];
+    
+    ContestController *cc = [[ContestController alloc] init];
+    [self.navigationController pushViewController:cc animated:YES];
+    [cc release];
+}
+
 
 - (void)enterChat
 {
@@ -635,6 +647,12 @@ static NSDictionary* DEFAULT_MENU_IMAGE_DICT = nil;
                 [self enterTopOpus];
                 break;
             }
+                
+            case HomeMenuTypeDrawContest:
+            {
+                [self enterContest];
+            }
+                break;
                 
             default:
                 break;

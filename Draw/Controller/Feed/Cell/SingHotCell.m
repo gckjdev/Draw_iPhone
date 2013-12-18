@@ -13,6 +13,7 @@
 
 @property (retain, nonatomic) RankView *view1;
 @property (retain, nonatomic) RankView *view2;
+@property (retain, nonatomic) RankView *view3;
 
 @end
 
@@ -23,6 +24,7 @@
     [_view2 release];
     [_holderView1 release];
     [_holderView2 release];
+    [_holderView3 release];
     [super dealloc];
 }
 
@@ -35,10 +37,12 @@
     
     cell.view1 = [RankView createRankView:delegate type:RankViewTypeWhisper];
     cell.view2 = [RankView createRankView:delegate type:RankViewTypeWhisper];
-    
+    cell.view3 = [RankView createRankView:delegate type:RankViewTypeWhisper];
+
     [cell.holderView1 addSubview:cell.view1];
     [cell.holderView2 addSubview:cell.view2];
-    
+    [cell.holderView3 addSubview:cell.view3];
+
     return cell;
 }
 
@@ -47,17 +51,32 @@
     return @"SingHotCell";
 }
 
++ (CGFloat)getCellHeight{
+    
+    return ISIPAD ? 256 : 159;
+}
+
 - (void)setCellInfo:(NSArray *)feeds{
     
     if ([feeds count] < 2) {
         return;
+    }else if ([feeds count] == 2) {
+        DrawFeed *feed1 = [feeds objectAtIndex:0];
+        DrawFeed *feed2 = [feeds objectAtIndex:1];
+        
+        [self.view1 setViewInfo:feed1];
+        [self.view2 setViewInfo:feed2];
+    }else{
+        DrawFeed *feed1 = [feeds objectAtIndex:0];
+        DrawFeed *feed2 = [feeds objectAtIndex:1];
+        DrawFeed *feed3 = [feeds objectAtIndex:2];
+
+        [self.view1 setViewInfo:feed1];
+        [self.view2 setViewInfo:feed2];
+        [self.view3 setViewInfo:feed3];
     }
     
-    DrawFeed *feed1 = [feeds objectAtIndex:0];
-    DrawFeed *feed2 = [feeds objectAtIndex:1];
-    
-    [self.view1 setViewInfo:feed1];
-    [self.view2 setViewInfo:feed2];
+
 }
 
 @end

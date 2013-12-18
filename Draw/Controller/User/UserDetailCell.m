@@ -28,7 +28,7 @@
 #import "UIImageView+Extend.h"
 #import "CommonDialog.h"
 #import "UILabel+Extend.h"
-
+#import "SuperHomeController.h"
 
 #define BG_COLOR  OPAQUE_COLOR(56, 208, 186)
 
@@ -185,11 +185,20 @@
     
     if ([[UserManager defaultManager] isMe:detail.getUserId]
         ) {
-        [self.badgeView setNumber:[[UserManager defaultManager] getUserBadgeCount]];
+        self.badgeView.hidden = NO;
+        [self.badgeView setNumber:[[UserManager defaultManager] getUserBadgeCountWithoutHomeBg]];
 
+        self.bgBadgeView.hidden = NO;
+        self.bgButton.hidden = NO;
+        BOOL hasTrySetHomeBg = [[UserManager defaultManager] hasTrySetHomeBg];
+        [self.bgBadgeView setNumber:(hasTrySetHomeBg ? 0 : 1)];
     }else{
         self.badgeView.hidden = YES;
+        
+        self.bgBadgeView.hidden = YES;
+        self.bgButton.hidden = YES;
     }
+    
 }
 
 
@@ -283,6 +292,10 @@
 
 
 - (void)dealloc {
+    
+    PPRelease(imageUploader);
+    PPRelease(_bgBadgeView);
+    PPRelease(_bgButton);
     
     [_carousel release];
     [_nickNameLabel release];
@@ -453,6 +466,50 @@
     if (_detailDelegate && [_detailDelegate respondsToSelector:@selector(didClickBBSPost)]) {
         [_detailDelegate didClickBBSPost];
     }
+}
+
+- (ChangeAvatar*)backgroundPicker
+{
+    if (imageUploader == nil) {
+        imageUploader = [[ChangeAvatar alloc] init];
+        imageUploader.autoRoundRect = NO;
+        imageUploader.isCompressImage = NO;
+    }
+    return imageUploader;
+}
+
+- (IBAction)clickSetHomeBg:(id)sender
+{
+    [[UserManager defaultManager] setTrySetHomeBg];
+    [self.bgBadgeView setNumber:0];    
+    [[NSNotificationCenter defaultCenter] postNotificationName:UPDATE_HOME_BG_NOTIFICATION_KEY
+                                                        object:nil];    
+    
+    // set home bg
+    [[self backgroundPicker] showSelectionView:self.delegate
+                                      delegate:nil
+                            selectedImageBlock:^(UIImage *image)
+     {
+        if ([[UserManager defaultManager] setPageBg:image
+                                             forKey:HOME_BG_KEY]) {
+            [[NSNotificationCenter defaultCenter] postNotificationName:UPDATE_HOME_BG_NOTIFICATION_KEY
+                                                                object:nil];
+            POSTMSG(NSLS(@"kCustomHomeBgSucc"));
+        }    
+     }
+                            didSetDefaultBlock:^
+    {
+        if ([[UserManager defaultManager] resetPageBgforKey:HOME_BG_KEY]) {
+            [[NSNotificationCenter defaultCenter] postNotificationName:UPDATE_HOME_BG_NOTIFICATION_KEY
+                                                                object:nil];
+            POSTMSG(NSLS(@"kResetCustomHomeBgSucc"));
+        }
+    }
+                                         title:NSLS(@"kCustomHomeBg")
+                               hasRemoveOption:YES
+                                  canTakePhoto:YES
+                             userOriginalImage:YES];
+    
 }
 
 - (void)setDrawFeedList:(NSArray*)feedList tipText:(NSString *)tipText

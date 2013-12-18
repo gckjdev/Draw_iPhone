@@ -63,15 +63,10 @@
 #import "SelectHotWordController.h"
 #import "NotificationName.h"
 #import "CommonGameNetworkService.h"
-//#import "UFPController.h"
-//#import "UMGridViewController.h"
+
 #import "DrawRoomListController.h"
 #import "UserManager.h"
 #import "ContestService.h"
-
-//#import "OpusSelectController.h"
-//#import "Wall.h"
-//#import "OpusWallController.h"
 
 #import "StoreController.h"
 
@@ -670,12 +665,12 @@ static NSDictionary* DRAW_MENU_IMAGE_DICT = nil;
             break;
         case HomeMenuTypeDrawContest:
 #ifdef DEBUG
-        {
-            GroupHomeController *gc = [[GroupHomeController alloc] init];
-            [self.navigationController pushViewController:gc animated:YES];
-            [gc release];
-            break;
-        }
+//        {
+//            GroupHomeController *gc = [[GroupHomeController alloc] init];
+//            [self.navigationController pushViewController:gc animated:YES];
+//            [gc release];
+//            break;
+//        }
 #endif
             
         {

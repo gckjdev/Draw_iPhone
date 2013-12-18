@@ -13,6 +13,7 @@
 #import "CustomSegmentedControl.h"
 #import "FeedCarousel.h"
 #import "LocalizableLabel.h"
+#import "ChangeAvatar.h"
 
 @class PBGameUser;
 @class AvatarView;
@@ -46,6 +47,10 @@
 @end
 
 @interface UserDetailCell : PPTableViewCell <AvatarViewDelegate, CustomSegmentedControlDelegate, FeedCarouselProtocol>
+
+{
+    ChangeAvatar *imageUploader;
+}
 @property (retain, nonatomic) IBOutlet UIControl *customBackgroundControl;
 
 @property (retain, nonatomic) IBOutlet UIView *feedTabHolder;
@@ -88,11 +93,15 @@
 @property (retain, nonatomic) IBOutlet UIButton *signButton;
 @property (retain, nonatomic) IBOutlet BadgeView *badgeView;
 
+@property (retain, nonatomic) IBOutlet UIButton *bgButton;
+@property (retain, nonatomic) IBOutlet BadgeView *bgBadgeView;
+
 - (void)setCellWithUserDetail:(NSObject<UserDetailProtocol> *)detail;
 - (void)setDrawFeedList:(NSArray*)feedList tipText:(NSString *)tipText;
 - (void)clearDrawFeedList;
 
 - (void)setIsLoadingFeed:(BOOL)isLoading;
 - (IBAction)clickBBSPost:(id)sender;
+- (IBAction)clickSetHomeBg:(id)sender;
 
 @end
