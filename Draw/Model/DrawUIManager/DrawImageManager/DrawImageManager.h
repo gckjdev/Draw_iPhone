@@ -19,6 +19,7 @@
 - (UIImage *)drawHomeGuess;
 - (UIImage *)drawHomeOnlineGuess;
 - (UIImage *)drawHomeShop;
+- (UIImage *)homeBottomTask;
 - (UIImage*)drawHomeBigShop;
 - (UIImage *)drawHomeTimeline;
 - (UIImage *)drawHomeTop;

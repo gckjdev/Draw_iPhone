@@ -451,5 +451,7 @@
 + (void)setButtonCommonTabStyle:(UIButton *)button;
 + (void)setButtonOrangeRoundStyle:(UIButton *)button;
 
+- (UIImage *)changeBgImage;
+- (UIImage *)changeHotTopImage;
 
 @end

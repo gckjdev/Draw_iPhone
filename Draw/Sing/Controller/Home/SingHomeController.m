@@ -87,6 +87,7 @@ static NSDictionary* SING_MENU_IMAGE_DICT = nil;
                                 @(HomeMenuTypeGuessSing),
                                 @(HomeMenuTypeDrawMore),
                                 @(HomeMenuTypeTask),
+                                @(HomeMenuTypeBottomTask),
                                 ];
     
     return noCheckedTypes;

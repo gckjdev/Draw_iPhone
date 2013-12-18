@@ -111,6 +111,7 @@ typedef enum{
 
 - (void)dealloc
 {
+    PPRelease(_hotRankSettingButton);
     [super dealloc];
 }
 
@@ -177,6 +178,11 @@ typedef enum{
     [self.titleView setRightButtonSelector:@selector(clickRefreshButton:)];
     
     SET_COMMON_TAB_TABLE_VIEW_Y(self.dataTableView);
+    
+    CGRect rect = [self.titleView rectFromButtonBeforeRightButton];
+    [_hotRankSettingButton setFrame:rect];
+    [_hotRankSettingButton setBackgroundImage:[[ShareImageManager defaultManager] changeHotTopImage]
+                                     forState:UIControlStateNormal];
     
     PPDebug(@"HotController viewDidLoad done!");
  

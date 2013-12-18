@@ -101,10 +101,18 @@ static DrawImageManager * _staticDrawImageManager;
     NSString *imageName = [self fixImageName:@"common_home_friend"];
     return [UIImage imageNamed:imageName];
 }
+
 - (UIImage *)drawHomeShop{
     NSString *imageName = [self fixImageName:@"draw_home_shop"];
     return [UIImage imageNamed:imageName];
 }
+
+- (UIImage *)homeBottomTask{
+    NSString *imageName = [self fixImageName:@"bottom_home_task"];
+    return [UIImage imageNamed:imageName];
+}
+
+
 - (UIImage*)drawHomeBigShop
 {
     NSString *imageName = [self fixImageName:@"common_home_shop"];

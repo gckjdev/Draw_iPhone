@@ -750,7 +750,9 @@ static NSDictionary* DRAW_MENU_IMAGE_DICT = nil;
             break;
         }
         
-        case HomeMenuTypeTask:{
+        case HomeMenuTypeTask:
+        case HomeMenuTypeBottomTask:
+        {
             [self enterTask];
             break;
         }
@@ -825,6 +827,13 @@ static NSDictionary* DRAW_MENU_IMAGE_DICT = nil;
             
         }
             break;
+            
+        case HomeMenuTypeBottomTask:
+        {
+            [self enterTask];
+        }
+            break;
+
         case HomeMenuTypeDrawMore:
         {
             [[AnalyticsManager sharedAnalyticsManager] reportClickHomeElements:HOME_BOTTOM_MORE];
@@ -1053,7 +1062,8 @@ int *getDrawBottomMenuTypeList()
         HomeMenuTypeDrawOpus,
         HomeMenuTypeDrawFriend,
         HomeMenuTypeDrawMessage,
-        HomeMenuTypeDrawShop,
+//        HomeMenuTypeDrawShop,
+        HomeMenuTypeBottomTask,
         HomeMenuTypeEnd
     };
     return list;

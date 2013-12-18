@@ -397,11 +397,13 @@
         _changeAvatar = [[ChangeAvatar alloc] init];
         _changeAvatar.autoRoundRect = NO;
     }
-    [_changeAvatar showSelectionView:viewController selectedImageBlock:^(UIImage *image) {
+    [_changeAvatar showSelectionView:viewController selectedImageBlock:^(UIImage *image)
+    {
         EXECUTE_BLOCK(aBlock, image);
-    } didSetDefaultBlock:^{
-        //
-    } title:nil hasRemoveOption:NO];
+    }
+                  didSetDefaultBlock:^{}
+                               title:NSLS(@"kSetUserAvatar")
+                     hasRemoveOption:NO];
 }
 
 - (BOOL)shouldShow

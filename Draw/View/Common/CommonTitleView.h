@@ -46,4 +46,6 @@
 //变成透明底, 蓝色图标
 - (void)setTransparentStyle;
 
+- (CGRect)rectFromButtonBeforeRightButton;
+
 @end
