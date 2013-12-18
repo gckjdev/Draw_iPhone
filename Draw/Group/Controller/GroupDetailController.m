@@ -95,7 +95,7 @@ typedef enum{
 }
 
 
-- (void)clickEdit:(id)sender
+- (void)clickManage:(id)sender
 {
     CommonDialog *dialog = [CommonDialog createInputViewDialogWith:NSLS(@"kCreateTitle")];
     dialog.inputTextView.text = @"";
@@ -123,8 +123,8 @@ typedef enum{
     [self.titleView setTarget:self];
     [self.titleView setBackButtonSelector:@selector(clickBack:)];
     if ([GroupManager isMeAdminOrCreatorInSharedGroup]) {
-        [self.titleView setRightButtonTitle:NSLS(@"kEdit")];
-        [self.titleView setRightButtonSelector:@selector(clickEdit:)];        
+        [self.titleView setRightButtonTitle:NSLS(@"kManage")];
+        [self.titleView setRightButtonSelector:@selector(clickManage:)];        
     }
     [self.titleView setTransparentStyle];
 
@@ -183,8 +183,8 @@ typedef enum{
             [self updateGroup:group];
             
             if ([GroupManager isMeAdminOrCreatorInSharedGroup]) {
-                [self.titleView setRightButtonTitle:NSLS(@"kEdit")];
-                [self.titleView setRightButtonSelector:@selector(clickEdit:)];
+                [self.titleView setRightButtonTitle:NSLS(@"kManage")];
+                [self.titleView setRightButtonSelector:@selector(clickManage:)];
             }
 
             [self.dataTableView reloadData];

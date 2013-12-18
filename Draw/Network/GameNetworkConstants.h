@@ -712,7 +712,6 @@
 #define METHOD_UPGRADE_GROUP @"upgradeGroup"
 #define METHOD_GET_GROUP_NOTICES @"getGroupNotices"
 
-//new
 #define METHOD_SYNC_FOLLOWED_GROUPIDS @"syncFollowedGroupIds"
 #define METHOD_IGNORE_NOTICE @"ignoreNotice"
 #define METHOD_FOLLOW_TOPIC @"followTopic"
@@ -731,6 +730,9 @@
 #define METHOD_CREATE_GROUP_TITLE @"createGroupTitle"
 #define METHOD_ACCEPT_INVITATION @"acceptInvitation"
 #define METHOD_REJECT_INVITATION @"rejectInvitation"
+
+#define METHOD_UPDATE_GROUP_ICON @"updateGroupIcon"
+#define METHOD_UPDATE_GROUP_BG @"updateGroupBG"
 
 
 #define METHOD_UPDATE_USER_CREDENTIAL @"updateUserCredential"

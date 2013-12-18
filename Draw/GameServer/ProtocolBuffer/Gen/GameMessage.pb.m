@@ -17706,6 +17706,7 @@ static GameMessage* defaultGameMessageInstance = nil;
 @property (retain) NSMutableArray* mutableNoticeListList;
 @property (retain) PBUserRelationWithGroup* groupRelation;
 @property (retain) NSMutableArray* mutableBadgesList;
+@property (retain) NSString* url;
 @end
 
 @implementation DataQueryResponse
@@ -17829,6 +17830,13 @@ static GameMessage* defaultGameMessageInstance = nil;
 }
 @synthesize groupRelation;
 @synthesize mutableBadgesList;
+- (BOOL) hasUrl {
+  return !!hasUrl_;
+}
+- (void) setHasUrl:(BOOL) value {
+  hasUrl_ = !!value;
+}
+@synthesize url;
 - (void) dealloc {
   self.mutableDrawDataList = nil;
   self.mutableMessageList = nil;
@@ -17861,6 +17869,7 @@ static GameMessage* defaultGameMessageInstance = nil;
   self.mutableNoticeListList = nil;
   self.groupRelation = nil;
   self.mutableBadgesList = nil;
+  self.url = nil;
   [super dealloc];
 }
 - (id) init {
@@ -17879,6 +17888,7 @@ static GameMessage* defaultGameMessageInstance = nil;
     self.guessContest = [PBGuessContest defaultInstance];
     self.group = [PBGroup defaultInstance];
     self.groupRelation = [PBUserRelationWithGroup defaultInstance];
+    self.url = @"";
   }
   return self;
 }
@@ -18298,6 +18308,9 @@ static DataQueryResponse* defaultDataQueryResponseInstance = nil;
   for (PBIntKeyIntValue* element in self.badgesList) {
     [output writeMessage:155 value:element];
   }
+  if (self.hasUrl) {
+    [output writeString:156 value:self.url];
+  }
   [self.unknownFields writeToCodedOutputStream:output];
 }
 - (int32_t) serializedSize {
@@ -18416,6 +18429,9 @@ static DataQueryResponse* defaultDataQueryResponseInstance = nil;
   }
   for (PBIntKeyIntValue* element in self.badgesList) {
     size += computeMessageSize(155, element);
+  }
+  if (self.hasUrl) {
+    size += computeStringSize(156, self.url);
   }
   size += self.unknownFields.serializedSize;
   memoizedSerializedSize = size;
@@ -18659,6 +18675,9 @@ static DataQueryResponse* defaultDataQueryResponseInstance = nil;
       result.mutableBadgesList = [NSMutableArray array];
     }
     [result.mutableBadgesList addObjectsFromArray:other.mutableBadgesList];
+  }
+  if (other.hasUrl) {
+    [self setUrl:other.url];
   }
   [self mergeUnknownFields:other.unknownFields];
   return self;
@@ -18909,6 +18928,10 @@ static DataQueryResponse* defaultDataQueryResponseInstance = nil;
         PBIntKeyIntValue_Builder* subBuilder = [PBIntKeyIntValue builder];
         [input readMessage:subBuilder extensionRegistry:extensionRegistry];
         [self addBadges:[subBuilder buildPartial]];
+        break;
+      }
+      case 1250: {
+        [self setUrl:[input readString]];
         break;
       }
     }
@@ -19887,6 +19910,22 @@ static DataQueryResponse* defaultDataQueryResponseInstance = nil;
     result.mutableBadgesList = [NSMutableArray array];
   }
   [result.mutableBadgesList addObject:value];
+  return self;
+}
+- (BOOL) hasUrl {
+  return result.hasUrl;
+}
+- (NSString*) url {
+  return result.url;
+}
+- (DataQueryResponse_Builder*) setUrl:(NSString*) value {
+  result.hasUrl = YES;
+  result.url = value;
+  return self;
+}
+- (DataQueryResponse_Builder*) clearUrl {
+  result.hasUrl = NO;
+  result.url = @"";
   return self;
 }
 @end

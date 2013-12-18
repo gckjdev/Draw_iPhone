@@ -15,7 +15,7 @@ typedef void (^ GroupResultBlock) (PBGroup *group, NSError *error);
 typedef void (^ BadgeResultBlock) (NSArray *badges, NSError *error);
 typedef void (^ ListResultBlock) (NSArray *list, NSError *error);
 typedef void (^ SimpleResultBlock) (NSError *error);
-
+typedef void (^ URLResultBlock) (NSURL *url, NSError *error);
 
 
 @interface GroupService : CommonService
@@ -175,5 +175,13 @@ typedef void (^ SimpleResultBlock) (NSError *error);
              info:(NSDictionary *)info
          callback:(SimpleResultBlock)callback;
 
+
+- (void)updateGroup:(NSString *)groupId
+            BGImage:(UIImage *)image
+           callback:(URLResultBlock)callback;
+
+- (void)updateGroup:(NSString *)groupId
+               icon:(UIImage *)icon
+           callback:(URLResultBlock)callback;
 
 @end
