@@ -12,6 +12,7 @@
 #import "CommonOpusDetailController.h"
 #import "DrawError.h"
 #import "PPConfigManager.h"
+#import "UIImageExt.h"
 
 
 #define GROUP_HOST     [PPConfigManager getGroupServerURL]
@@ -630,4 +631,52 @@ static GroupService *_staticGroupService = nil;
     }];
 }
 
+- (void)updateGroup:(NSString *)groupId
+             method:(NSString *)method
+                key:(NSString *)key
+               image:(UIImage *)image
+           callback:(URLResultBlock)callback
+{
+    dispatch_async(workingQueue, ^{
+        
+        NSDictionary *params = @{PARA_GROUPID:groupId};
+        NSDictionary *datas = @{key:[image data]};
+        
+        GameNetworkOutput *output = [PPGameNetworkRequest trafficApiServerUploadAndResponsePB:method parameters:params imageDataDict:datas postDataDict:nil progressDelegate:nil];
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            NSError *error = DRAW_ERROR(output.pbResponse.resultCode);
+            NSURL *url = nil;
+            if (error) {
+                [DrawError postError:error];
+            }else{
+                url = [NSURL URLWithString:output.pbResponse.url];
+            }
+            EXECUTE_BLOCK(callback, url, error);
+        });
+    });
+}
+
+- (void)updateGroup:(NSString *)groupId
+               icon:(UIImage *)icon
+           callback:(URLResultBlock)callback
+{
+    [self updateGroup:groupId
+               method:METHOD_UPDATE_GROUP_ICON
+                  key:PARA_ICON
+                image:icon
+             callback:callback];
+}
+
+
+- (void)updateGroup:(NSString *)groupId
+            BGImage:(UIImage *)image
+           callback:(URLResultBlock)callback
+{
+    [self updateGroup:groupId
+               method:METHOD_UPDATE_GROUP_BG
+                  key:PARA_BACKGROUND
+                image:image
+             callback:callback];
+}
 @end
