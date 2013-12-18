@@ -157,10 +157,14 @@
         [viewController.navigationController pushViewController:uc animated:YES];
     }
     else{
-        [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kCannotShowYourself") delayTime:2];
+        
+        UserDetailViewController* us = [[UserDetailViewController alloc] initWithUserDetail:[SelfUserDetail createDetail]];
+        [viewController.navigationController pushViewController:us animated:YES];
+        [us release];
+        
+//        [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kCannotShowYourself") delayTime:2];
     }
 }
-
 
 #pragma mark - user detail cell delegate
 - (void)didClickEdit
