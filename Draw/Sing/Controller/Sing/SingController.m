@@ -485,11 +485,6 @@ enum{
     self.opusDescLabel.text = desc;
     [self.opusDescLabel wrapTextWithConstrainedSize:size];
     [self.opusDescLabel updateWidth:self.opusImageView.frame.size.width * 0.8];
-//    [self.opusDescLabel updateHeight:MAX((ISIPAD ? 60 : 30) ,self.opusDescLabel.frame.size.height)];
-
-//    // center desc label
-//    [self.opusDescLabel updateCenterX:self.opusImageView.frame.size.width/2];
-//    [self.opusDescLabel updateCenterY:self.opusImageView.frame.size.height/2];
     
     // save label info
     [self saveDescLabelInfo];
@@ -977,20 +972,24 @@ enum{
     _hasEdited = NO;
 }
 
-- (void)showOpusNameAndDescEditView
+- (void)showInputAlertView
 {
+
     NSString *subject = self.singOpus.pbOpus.name;
     NSString *content = self.singOpus.pbOpus.desc;
+    
+    __block typeof(self) bself = self;
+
     [InputAlert showWithSubjectWithoutSNS:subject
                                   content:content
                                    inView:self.view
                                     block:^(BOOL confirm, NSString *subject, NSString *content, NSSet *shareSet) {
         
         if (confirm) {
-            [self.singOpus setName:subject];
-            [self.singOpus setDesc:content];
+            [bself.singOpus setName:subject];
+            [bself.singOpus setDesc:content];
             [[NSNotificationCenter defaultCenter] postNotificationName:KEY_NOTIFICATION_SING_INFO_CHANGE object:nil];
-            [self deductCoinsAndSubmitOpus];
+            [bself deductCoinsAndSubmitOpus];
         }
     }];
 }
@@ -1021,12 +1020,52 @@ enum{
         return;
     }
     
-    if ([self.singOpus.pbOpus.desc length] <= 0) {
-        [self showOpusNameAndDescEditView];
+    if (self.contest != nil) {
+        [self commitContestOpus];
     }else{
-        [self deductCoinsAndSubmitOpus];
+        [self showInputAlertView]; 
     }
 }
+
+- (void)commitContestOpus{
+    
+    if ([self.contest commitCountEnough]) {
+        NSString *title = [NSString stringWithFormat:NSLS(@"kContestCommitEnoughCommitAsNormal"),_contest.canSubmitCount];
+        [self alertCommitContestOpusAsNormalOpus:title];
+        return;
+    }
+    else if([self.contest canSubmit] == NO){
+        [self alertCommitContestOpusAsNormalOpus:NSLS(@"kContestSubmitEndSubmitNormal")];
+        return;
+    }
+    else if (![self.contest canUserJoined:[[UserManager defaultManager] userId]]) {
+        [self alertCommitContestOpusAsNormalOpus:NSLS(@"kContestNotForUserSubmitNormal")];
+        return;
+    }
+    else if([self.contest isPassed]){
+        [self alertCommitContestOpusAsNormalOpus:NSLS(@"kContestEnd")];
+        return;
+    }
+    [self showInputAlertView];
+}
+
+- (void)alertCommitContestOpusAsNormalOpus:(NSString *)message
+{
+    //TODO alert: Submit as the normal opus
+    
+    [self.singOpus setAsNormalOpus];
+    
+    
+    __block typeof(self) bself = self;
+    CommonDialog *dialog = [CommonDialog createDialogWithTitle:NSLS(@"kTips")
+                                                       message:message
+                                                         style:CommonDialogStyleDoubleButton];
+    [dialog showInView:self.view];
+    [dialog setClickOkBlock:^(id infoView){
+        [bself showInputAlertView];
+    }];
+}
+
 
 - (void)deductCoinsAndSubmitOpus{
     
@@ -1181,7 +1220,7 @@ enum{
 - (void)didSubmitOpus:(int)resultCode opus:(Opus *)opus{
     
     [self hideProgressView];
-
+    
     if (resultCode == ERROR_SUCCESS) {
         POSTMSG(NSLS(@"kSubmitSuccTitle"));
         [self.navigationController popViewControllerAnimated:YES];
@@ -1190,6 +1229,9 @@ enum{
                                            isAward:NO
                                         clearBadge:YES];
         
+        if ([self.singOpus.pbOpus.contestId length] > 0) {
+            [self.contest incCommitCount];
+        }    
     }else{
         POSTMSG(NSLS(@"kSubmitFailure"));
     }
