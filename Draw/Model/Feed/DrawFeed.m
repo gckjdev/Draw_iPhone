@@ -330,6 +330,7 @@
     [self updateTimesWithType:FeedTimesTypeFlower key:PARA_FLOWER_TIMES inDict:dict];
     [self updateTimesWithType:FeedTimesTypeTomato key:PARA_TOMATO_TIMES inDict:dict];
     [self updateTimesWithType:FeedTimesTypeSave key:PARA_SAVE_TIMES inDict:dict];
+    [self updateTimesWithType:FeedTimesTypePlay key:PARA_PLAY_TIMES inDict:dict];
 }
 
 

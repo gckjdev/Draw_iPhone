@@ -18,7 +18,7 @@
 
 #define BACK_BUTTON_WIDTH (ISIPAD ? 60 : 30)
 #define BACK_BUTTON_HEIGHT BACK_BUTTON_WIDTH
-#define RIGHT_BUTTON_WIDTH (ISIPAD ? 50 : 25)
+#define RIGHT_BUTTON_WIDTH (ISIPAD ? 60 : 30)
 #define RIGHT_BUTTON_HEIGHT RIGHT_BUTTON_WIDTH
 #define RIGHT_BUTTON_INSET_X (ISIPAD ? -20 : -10)
 #define RIGHT_BUTTON_INSET_Y (ISIPAD ? -10 : -5)
@@ -194,6 +194,14 @@
     
     self.rightButton = [self rightButtonWithImage:image];
     [self addSubview:_rightButton];
+}
+
+- (CGRect)rectFromButtonBeforeRightButton
+{
+    CGRect rect = self.rightButton.frame;
+    int INDENT = ISIPAD ? 10 : 5;
+    rect.origin.x = self.rightButton.frame.origin.x - self.rightButton.frame.size.width - INDENT;
+    return rect;
 }
 
 

@@ -111,6 +111,7 @@
     [self unregisterAllNotifications];
     
     PPDebug(@"%@ dealloc",self);
+    PPRelease(_changeBgButton);
     PPRelease(_loadingActivityView);
     PPRelease(titleLabel);
     PPRelease(inputTextView);
@@ -194,6 +195,11 @@
     [titleView setTarget:self];
     [titleView setRightButtonSelector:@selector(clickRefresh:)];
     [self.view sendSubviewToBack:titleView];
+
+    CGRect rect = [titleView rectFromButtonBeforeRightButton];
+    [self.changeBgButton setFrame:rect];
+    [self.changeBgButton setBackgroundImage:[[ShareImageManager defaultManager] changeBgImage]
+                                   forState:UIControlStateNormal];
 
 }
 

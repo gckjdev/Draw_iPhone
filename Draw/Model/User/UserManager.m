@@ -92,7 +92,7 @@ static UserManager* _defaultManager;
     int defaultType = [ud integerForKey:KEY_HOT_CONTROLLER_DEFAULT_TYPE];
     if (defaultType == HotUnknownIndex){
         
-        if (self.pbUser.level > 1){
+        if (self.pbUser.level > 1 || isDrawApp() == NO){
             return HotTopIndex;
         }
         else{
@@ -412,7 +412,11 @@ static UserManager* _defaultManager;
 - (NSString*)gender
 {
     return [_pbUser gender] ? @"m" : @"f";
+}
 
+- (BOOL)boolGender
+{
+    return [_pbUser gender];    
 }
 
 - (NSString*)genderFromOldStorage

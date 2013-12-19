@@ -225,6 +225,7 @@ static NSDictionary* DEFAULT_MENU_IMAGE_DICT = nil;
     [self updateBadgeWithType:HomeMenuTypeDrawFriend badge:manager.fanCount];
     [self updateBadgeWithType:HomeMenuTypeDrawBBS badge:manager.bbsActionCount];
     [self updateBadgeWithType:HomeMenuTypeTask badge:manager.taskCount];
+    [self updateBadgeWithType:HomeMenuTypeBottomTask badge:manager.taskCount];
     [self updateBadgeWithType:HomeMenuTypeDrawGuess badge:manager.guessContestNotif];
     
     long timelineCount = manager.timelineOpusCount + manager.timelineGuessCount + manager.commentCount + manager.drawToMeCount;
@@ -631,6 +632,7 @@ static NSDictionary* DEFAULT_MENU_IMAGE_DICT = nil;
             }
                 
             case HomeMenuTypeTask:
+            case HomeMenuTypeBottomTask:
             {
                 [self enterTask];
                 break;
@@ -718,6 +720,13 @@ static NSDictionary* DEFAULT_MENU_IMAGE_DICT = nil;
             case HomeMenuTypeDrawShop:
             {
                 [self enterShop];
+                break;
+            }
+
+            case HomeMenuTypeTask:
+            case HomeMenuTypeBottomTask:
+            {
+                [self enterTask];
                 break;
             }
                 
@@ -814,6 +823,7 @@ static NSDictionary* DEFAULT_MENU_IMAGE_DICT = nil;
                                  @(HomeMenuTypeDrawMe) : [imageManager drawHomeMe],
                                  @(HomeMenuTypeDrawSetting) : [imageManager drawHomeSetting],
                                  @(HomeMenuTypeDrawShop) : [imageManager drawHomeShop],
+                                 @(HomeMenuTypeBottomTask) : [imageManager homeBottomTask],
                                  
                                  };
         

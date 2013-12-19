@@ -170,6 +170,16 @@ static NSMutableDictionary *colorImageDict;
     return [UIImage strectchableImageName:@"gold_user_picbg.png"];
 }
 
+- (UIImage *)changeBgImage
+{
+    return [UIImage imageNamed:@"chat_change_bg.png"];
+}
+
+- (UIImage *)changeHotTopImage
+{
+    return [UIImage imageNamed:@"button_rank.png"];
+}
+
 - (UIImage *)greenAvatarImage
 {
     return [UIImage strectchableImageName:@"green_user_picbg.png"];

@@ -11,6 +11,7 @@
 #import "ItemType.h"
 #import "PPViewController.h"
 
+#define DB_FIELD_ACTION_PLAY_TIMES      @"play_times"
 #define DB_FIELD_ACTION_SAVE_TIMES      @"save_times"
 #define DB_FIELD_ACTION_SHARE_SINA      @"share_sina"
 #define DB_FIELD_ACTION_SHARE_QQ        @"share_qq"
@@ -191,6 +192,11 @@ typedef void (^ GetFeedListCompleteBlock)(int resultCode, NSArray* feedList);
 - (void)addOpusIntoFavorite:(NSString *)opusId contestId:(NSString *)contestId resultBlock:(FeedActionResultBlock)resultBlock;
 - (void)removeOpusFromFavorite:(NSString *)opusId resultBlock:(FeedActionResultBlock)resultBlock;
 - (void)recommendOpus:(NSString *)opusId contestId:(NSString *)contestId resultBlock:(FeedActionResultBlock)resultBlock;
+
+- (void)playOpus:(NSString *)opusId
+       contestId:(NSString *)contestId
+     resultBlock:(FeedActionResultBlock)resultBlock;
+
 
 - (void)throwItem:(ItemType)itemType
            toOpus:(NSString *)opusId

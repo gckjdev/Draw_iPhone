@@ -307,7 +307,7 @@
     
     UserManager *userManager = [UserManager defaultManager];
     
-    [self.avatar setAvatarUrl:[userManager avatarURL] gender:[userManager gender]];
+    [self.avatar setAvatarUrl:[userManager avatarURL] gender:[userManager boolGender]];
     self.avatar.delegate = self;
     
     

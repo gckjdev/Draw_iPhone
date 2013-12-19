@@ -2412,3 +2412,5 @@
 "kSetHotOption" = "默認查看周榜";
 "kSetLatestOption" = "默認查看最新";
 "kSetSuccess" = "設置成功";
+
+"kSetUserAvatar" = "設置我的頭像";

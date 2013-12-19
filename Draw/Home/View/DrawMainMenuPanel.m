@@ -374,7 +374,7 @@
             av.layer.borderColor = [COLOR_BROWN CGColor];
             av.layer.borderWidth = 0;
             av.frame = CGRectMake(0, 0, AVATAR_SIZE.width, AVATAR_SIZE.height);
-            [av setAvatarUrl:me.avatarURL gender:me.gender];
+            [av setAvatarUrl:me.avatarURL gender:me.boolGender];
             [av setBackgroundImage:[SIM homeDefaultAvatarBG]];
             [av setContentInset:AVATAR_INSET];
         }else{

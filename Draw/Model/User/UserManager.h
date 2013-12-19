@@ -67,6 +67,7 @@ typedef enum {
 - (NSString*)password;
 - (NSString*)deviceToken;
 - (NSString*)gender;
+- (BOOL)boolGender;
 - (NSString*)location;
 - (NSArray*)snsUserData;
 //- (NSString*)sinaId;

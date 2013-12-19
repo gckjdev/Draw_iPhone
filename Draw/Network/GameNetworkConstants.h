@@ -189,6 +189,7 @@
 #define PARA_FLOWER_TIMES @"ft"
 #define PARA_TOMATO_TIMES @"tt"
 #define PARA_SAVE_TIMES @"st"
+#define PARA_PLAY_TIMES @"pt"
 
 //for gallery
 #define METHOD_ADD_USER_PHOTO    @"addUserPhoto"
@@ -200,8 +201,8 @@
 #define PARA_USER_PHOTO_ID               @"userPhotoId"
 #define PARA_USAGE                       @"usage"
 
-#define ACTION_TYPE_GUESS    2
-#define ACTION_TYPE_COMMENT  3
+#define ACTION_TYPE_GUESS                   2
+#define ACTION_TYPE_COMMENT                 3
 #define ACTION_TYPE_SAVE                    100
 #define ACTION_TYPE_ADD_FAVORITE            (ACTION_TYPE_SAVE)
 #define ACTION_TYPE_REMOVE_FAVORITE         101
@@ -209,6 +210,8 @@
 #define ACTION_TYPE_UNRECOMMEND_OPUS        103
 #define ACTION_TYPE_REJECT_DRAW_TO_ME_OPUS  104
 #define ACTION_TYPE_CONTEST_COMMENT         105
+#define ACTION_TYPE_PLAY_OPUS               106
+
 // for item
 #define METHOD_BUY_ITEM @"buyItem"
 #define METHOD_CONSUME_ITEM @"consumeItem"
@@ -712,7 +715,6 @@
 #define METHOD_UPGRADE_GROUP @"upgradeGroup"
 #define METHOD_GET_GROUP_NOTICES @"getGroupNotices"
 
-//new
 #define METHOD_SYNC_FOLLOWED_GROUPIDS @"syncFollowedGroupIds"
 #define METHOD_IGNORE_NOTICE @"ignoreNotice"
 #define METHOD_FOLLOW_TOPIC @"followTopic"
@@ -731,6 +733,9 @@
 #define METHOD_CREATE_GROUP_TITLE @"createGroupTitle"
 #define METHOD_ACCEPT_INVITATION @"acceptInvitation"
 #define METHOD_REJECT_INVITATION @"rejectInvitation"
+
+#define METHOD_UPDATE_GROUP_ICON @"updateGroupIcon"
+#define METHOD_UPDATE_GROUP_BG @"updateGroupBG"
 
 
 #define METHOD_UPDATE_USER_CREDENTIAL @"updateUserCredential"

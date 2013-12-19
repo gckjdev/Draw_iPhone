@@ -18,6 +18,7 @@
     
 }
 
+@property (nonatomic, retain) IBOutlet UIButton *hotRankSettingButton;
 
 - (IBAction)clickSetHot:(id)sender;
 
