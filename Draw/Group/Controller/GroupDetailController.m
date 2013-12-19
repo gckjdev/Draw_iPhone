@@ -20,6 +20,8 @@
 #import "UserDetailViewController.h"
 #import "ViewUserDetail.h"
 #import "GroupPermission.h"
+#import "ChangeAvatar.h"
+#import "UIImageView+WebCache.h"
 
 enum{
     SECTION_BASE_INDEX = 0,
@@ -57,6 +59,8 @@ typedef enum{
     NSInteger IndexChangeTitle;
     NSInteger IndexMakeAdmin;
     NSInteger IndexRemoveFromAdmin;
+    
+    PBGroupTitle *invitingTitle;
 
     
 }
@@ -68,6 +72,8 @@ typedef enum{
 @property (retain, nonatomic) IBOutlet GroupIconView *groupIconView;
 @property (retain, nonatomic) IBOutlet UILabel *groupName;
 @property (retain, nonatomic) IBOutlet UILabel *groupSignature;
+@property (retain, nonatomic) ChangeAvatar *changeImage;
+@property (assign, nonatomic) UIImageView *bgImageView;
 
 @end
 
@@ -90,13 +96,22 @@ typedef enum{
     [_groupName release];
     [_groupSignature release];
     PPRelease(_groupPermission);
-    
+    PPRelease(_changeImage);
+        
     [super dealloc];
 }
 
 
 - (void)clickManage:(id)sender
 {
+    if (![GroupManager isMeAdminOrCreatorInSharedGroup]) {
+        return;
+    }
+
+    [self showChangeBGView];
+    
+    return;
+    
     CommonDialog *dialog = [CommonDialog createInputViewDialogWith:NSLS(@"kCreateTitle")];
     dialog.inputTextView.text = @"";
     NSString *groupId = _group.groupId;
@@ -117,6 +132,50 @@ typedef enum{
     }];
     [dialog showInView:self.view];
 }
+
+- (void)showChangeIconView
+{
+    if (![GroupManager isMeAdminOrCreatorInSharedGroup]) {
+        return;
+    }
+
+    __block GroupDetailController *cp = self;
+    
+    [self.changeImage showSelectionView:(id)self selectedImageBlock:^(UIImage *image) {
+        [cp showActivityWithText:NSLS(@"kUpdating")];
+        [groupService updateGroup:cp.group.groupId icon:image callback:^(NSURL *url, NSError *error) {
+            [cp hideActivity];
+            if (!error) {
+                [cp.groupIconView setImageURL:url];
+                PBGroup *group = [GroupManager updateGroup:cp.group medalImageURL:[url absoluteString]];
+                [cp updateGroup:group];
+            }
+        }];
+    } didSetDefaultBlock:NULL title:NSLS(@"kChangeGroupIcon") hasRemoveOption:NO];
+
+}
+
+- (void)showChangeBGView
+{
+    if (![GroupManager isMeAdminOrCreatorInSharedGroup]) {
+        return;
+    }
+
+    __block GroupDetailController *cp = self;
+    [self.changeImage showSelectionView:(id)self selectedImageBlock:^(UIImage *image) {
+        [self showActivityWithText:NSLS(@"kUpdating")];
+        [groupService updateGroup:cp.group.groupId BGImage:image callback:^(NSURL *url, NSError *error) {
+            [cp hideActivity];
+            if (!error) {
+                [cp.bgImageView setImageWithURL:url];
+                PBGroup *group = [GroupManager updateGroup:cp.group BGImageURL:[url absoluteString]];
+                [cp updateGroup:group];
+            }
+        }];
+        
+    } didSetDefaultBlock:NULL title:NSLS(@"kChangeGroupBG") hasRemoveOption:NO];
+}
+
 - (void)initViews
 {
     //update title view
@@ -138,6 +197,23 @@ typedef enum{
     
     [self.dataTableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
 
+    self.changeImage = [[[ChangeAvatar alloc] init] autorelease];
+    self.changeImage.autoRoundRect = NO;
+    
+    //update bg image view.
+    self.bgImageView = [[UIImageView alloc] initWithFrame:self.view.bounds];
+    self.bgImageView.autoresizingMask = (0x1 << 6) -1;
+    [self.view insertSubview:self.bgImageView atIndex:0];
+    [self.bgImageView release];
+    [self.bgImageView setImageWithURL:_group.bgImageURL];
+    
+    
+    __block GroupDetailController *cp = self;
+    [self.groupIconView setClickHandler:^(IconView *iconView){
+        [cp showChangeIconView];
+    }];
+
+    
 }
 
 #define TABLE_SIGN_SPACE 6
@@ -149,6 +225,7 @@ typedef enum{
     [self.groupIconView setImageURL:[_group medalImageURL]
                    placeholderImage:[[ShareImageManager defaultManager] unloadBg]];
 
+    
     [self.groupName setText:_group.name];
     if ([_group.signature length] == 0) {
         [self.groupSignature setText:NSLS(@"kDefaultGroupSignature")];
@@ -594,10 +671,36 @@ typedef enum{
     }
 }
 
+
+- (void)friendController:(FriendController *)controller
+         didSelectFriend:(MyFriend *)aFriend
+{
+    if (invitingTitle == nil || aFriend.friendUserId == nil) {
+        return;
+    }
+    SimpleResultBlock callback = ^(NSError *error){
+        [self hideActivity];
+        POSTMSG(NSLS(@"kGroupUserInvited"));
+    };
+    
+    [self showActivityWithText:NSLS(@"kInviting")];
+    if (invitingTitle.titleId == GroupRoleGuest) {
+        [groupService inviteGuests:@[aFriend.friendUserId] groupId:_group.groupId callback:callback];
+    }else{
+        [groupService inviteMembers:@[aFriend.friendUserId] groupId:_group.groupId titleId:invitingTitle.titleId callback:callback];
+    }
+    invitingTitle = nil;
+}
+
+
 - (void)groupDetailCell:(GroupDetailCell *)cell
 didClickAddButtonAtTitle:(PBGroupTitle *)title
 {
     PPDebug(@"<didClickAddButtonAtTitle> title = %@, titleId = %d", title.title, title.titleId);
+    invitingTitle = title;
+    FriendController *fc = [[FriendController alloc] initWithDelegate:self];
+    [[self navigationController] pushViewController:fc animated:YES];
+    [fc release];
 
 }
 

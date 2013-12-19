@@ -22,11 +22,12 @@
 - (void)baseInit
 {
     _imageView = [[UIImageView alloc] initWithFrame:self.bounds];
-    _imageView.userInteractionEnabled = YES;
+    _imageView.userInteractionEnabled = NO;
+    _imageView.contentMode = UIViewContentModeScaleAspectFit;
     [self addSubview:_imageView];
-    self.backgroundColor = COLOR_WHITE;
-    SET_VIEW_ROUND(self);
+    SET_VIEW_ROUND(_imageView);
     [self addTarget:self action:@selector(clickView:) forControlEvents:UIControlEventTouchUpInside];
+    [self setBackgroundColor:[UIColor clearColor]];
 }
 
 - (void)clickView:(id)sender

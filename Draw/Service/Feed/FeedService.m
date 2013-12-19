@@ -163,9 +163,6 @@ static FeedService *_staticFeedService = nil;
             resultCode = [response resultCode];
             NSArray *pbFeedList = [response feedList];
             list = [FeedManager parsePbFeedList:pbFeedList];
-//            if ([list count] > 0) {
-//                [[FeedManager defaultManager] cacheFeedDataQueryResponse:response forKey:[self cachedKeyForFeedListType:feedListType]];
-//            }
         }
         
         dispatch_async(dispatch_get_main_queue(), ^{

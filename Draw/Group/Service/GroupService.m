@@ -75,16 +75,19 @@ static GroupService *_staticGroupService = nil;
                 if (error) {
                     PPDebug(@"<GroupService> load data error = %@", error);
                     [DrawError postError:error];
+                    
+                }else{                    
+                    if ([output.pbResponse hasGroup]) {
+                        [[GroupManager defaultManager] collectGroup:output.pbResponse.group];
+                    }
+                    if ([output.pbResponse.groupListList count] != 0) {
+                        [[GroupManager defaultManager] collectGroups:output.pbResponse.groupListList];
+                    }
+                    EXECUTE_BLOCK(callback, output.pbResponse, error);
                 }
 
-                if ([output.pbResponse hasGroup]) {
-                    [[GroupManager defaultManager] collectGroup:output.pbResponse.group];
-                }
-                if ([output.pbResponse.groupListList count] != 0) {
-                    [[GroupManager defaultManager] collectGroups:output.pbResponse.groupListList];
-                }
                 
-                EXECUTE_BLOCK(callback, output.pbResponse, error);
+
             });
         });
     }
@@ -651,6 +654,7 @@ static GroupService *_staticGroupService = nil;
                 [DrawError postError:error];
             }else{
                 url = [NSURL URLWithString:output.pbResponse.url];
+                PPDebug(@"<updateGroupImage> url = %@", url);
             }
             EXECUTE_BLOCK(callback, url, error);
         });
@@ -663,7 +667,7 @@ static GroupService *_staticGroupService = nil;
 {
     [self updateGroup:groupId
                method:METHOD_UPDATE_GROUP_ICON
-                  key:PARA_ICON
+                  key:PARA_IMAGE
                 image:icon
              callback:callback];
 }
@@ -675,7 +679,7 @@ static GroupService *_staticGroupService = nil;
 {
     [self updateGroup:groupId
                method:METHOD_UPDATE_GROUP_BG
-                  key:PARA_BACKGROUND
+                  key:PARA_IMAGE
                 image:image
              callback:callback];
 }

@@ -374,7 +374,13 @@
                                              postDataDict:(NSDictionary *)dataDict
                                          progressDelegate:(id)progressDelegate
 {
-    return [self uploadDataRequestWithBaseURL:TRAFFIC_SERVER_URL
+    NSString *URL = TRAFFIC_SERVER_URL;
+    
+#ifdef DEBUG
+    URL = @"http://localhost:8100/api/i?";
+#endif
+    
+    return [self uploadDataRequestWithBaseURL:URL
                                        method:method
                                    parameters:parameters
                                 imageDataDict:imageDict
