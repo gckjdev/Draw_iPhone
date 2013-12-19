@@ -57,6 +57,8 @@ message PBSingOpus {
   optional float pitch = 4[default = 1];
   optional float formant = 5[default = 1];
   
+  optional float voiceDuration = 20;                // 声音数据长度
+
   // 本地数据
   optional string localNativeDataURL = 100;         // 本地原声数据（未做处理）
 }
