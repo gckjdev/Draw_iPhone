@@ -188,8 +188,8 @@ int *getSingMainMenuTypeListWithFreeCoins()
         HomeMenuTypeSing,
         HomeMenuTypeDrawBBS,
         HomeMenuTypeDrawPainter,
-        HomeMenuTypeDrawRank,
         HomeMenuTypeDrawContest,
+        HomeMenuTypeDrawRank,
         HomeMenuTypeGuessSing,
         HomeMenuTypeDrawBigShop,
         HomeMenuTypeTask,
@@ -249,6 +249,7 @@ int *getSingBottomMenuTypeList()
                                  @(HomeMenuTypeSing) : NSLS(@"kSing"),
                                  @(HomeMenuTypeGuessSing) : NSLS(@"kGuessSing"),
                                  @(HomeMenuTypeDrawRank) : NSLS(@"kSingTop"),
+                                 @(HomeMenuTypeDrawPainter) : NSLS(@"kUserRankTitle"),
                                  };
         
         [SING_MENU_TITLE_DICT retain];  // make sure you retain the dictionary here for futher usage
