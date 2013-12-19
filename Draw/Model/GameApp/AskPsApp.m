@@ -591,4 +591,9 @@
     return nil;
 }
 
+- (NSString *)painterName{
+    return NSLS(@"kUserRankTitle");
+}
+
+
 @end

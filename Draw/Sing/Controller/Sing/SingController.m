@@ -1212,7 +1212,16 @@ enum{
 }
 
 - (void)voiceChanger:(VoiceChanger *)voiceChanger didGetFileDuration:(double)fileDuration{
-    _fileDuration = fileDuration + 0.5;
+    
+    PPDebug(@"<didGetFileDuration> file duration=%f, recorder duration=%f", fileDuration, _recorder.recordDuration);
+    
+    if (_fileDuration <= 0.0001f){
+        _fileDuration = _recorder.recordDuration;
+    }
+    else{
+        _fileDuration = fileDuration + 0.5;
+    }
+    
     [self updateUITime:@(_fileDuration)];
 }
 

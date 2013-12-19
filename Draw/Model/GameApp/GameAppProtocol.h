@@ -191,6 +191,9 @@
 - (NSString *)createOpusDescNoName;
 
 - (UIImage *)getGiftToSbImage;
+
+- (NSString *)painterName;
+
 @end
 
 @protocol ContentGameAppProtocol <GameAppProtocol>
