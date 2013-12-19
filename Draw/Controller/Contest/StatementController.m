@@ -11,6 +11,7 @@
 #import "Contest.h"
 #import "OfflineDrawViewController.h"
 #import "ContestService.h"
+#import "SingController.h"
 
 @implementation StatementController
 @synthesize contentView = _contentView;
@@ -98,9 +99,19 @@
 
 - (IBAction)acceptButton:(id)sender {
     
+    
     [[ContestService defaultService] acceptContest:self.contest.contestId];
     
-    [OfflineDrawViewController startDrawWithContest:self.contest
-                                     fromController:self startController:self.superController animated:YES];
+    if (isSingApp()) {
+        
+        SingController *vc = [[[SingController alloc] initWithContest:self.contest] autorelease];
+        [self.navigationController pushViewController:vc animated:YES];
+        
+    }else if (isDrawApp() || isLittleGeeAPP()){
+        
+        [OfflineDrawViewController startDrawWithContest:self.contest
+                                         fromController:self startController:self.superController animated:YES];
+    }
+
 }
 @end

@@ -73,6 +73,7 @@ FeedManager *_staticFeedManager = nil;
                 feed = [[[DrawToUserFeed alloc] initWithPBFeed:pbFeed] autorelease];
                 break;
             case FeedTypeDrawToContest:
+            case FeedTypeSingContest:
                 feed = [[[ContestFeed alloc] initWithPBFeed:pbFeed] autorelease];
                 break;
             case FeedTypeContestComment:

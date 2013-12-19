@@ -19,6 +19,7 @@
 #import "VoiceProcessor.h"
 #import "StrokeLabel.h"
 #import "UIPlaceholderTextView.h"
+#import "Contest.h"
 
 @interface SingController : PPViewController <ChangeAvatarDelegate, OpusServiceDelegate, VoiceRecorderDelegate, VoiceChangerDelegate, VoiceProcessorDelegate>
 
@@ -54,10 +55,12 @@
 - (id)init;
 
 // if you want to create opus for some one. call this method.
-
 - (id)initWithTargetUser:(PBGameUser *)targetUser;
 
 // if load form draft, use this method.
 - (id)initWithOpus:(SingOpus *)opus;
+
+// if load from contest, use this method.
+- (id)initWithContest:(Contest *)contest;
 
 @end

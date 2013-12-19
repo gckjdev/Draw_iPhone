@@ -19,7 +19,6 @@
 #import "DrawToolPanel.h"
 #import "MyFriend.h"
 #import "UserService.h"
-#import "InputAlertView.h"
 #import "CMPopTipView.h"
 #import "DrawToolPanel.h"
 

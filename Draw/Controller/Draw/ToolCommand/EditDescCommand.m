@@ -10,6 +10,7 @@
 #import "OfflineDrawViewController.h"
 #import "CommonDialog.h"
 #import "StringUtil.h"
+#import "InputAlertView.h"
 
 #define KEYBOARD_RECT (CGRectMake(0, 228, 328, 252))
 
@@ -28,7 +29,6 @@
 - (void)dealloc
 {
     
-//    PPRelease(_inputAlertView);
     [super dealloc];
 }
 
@@ -122,8 +122,7 @@
 
 - (void)hidePopTipView
 {
-//    self.showing = NO;
-//    self.inputAlertView = nil;
+
 }
 
 //TODO when close the alertView, call changeDesc method

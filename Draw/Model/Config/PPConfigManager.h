@@ -321,6 +321,8 @@ typedef enum{
 + (int)getOffLineGuessAward;
 
 + (int)getOpusNameMaxLength;
++ (int)getOpusDescMaxLength;
+
 + (int)defaultHotControllerIndex;
 + (int)defaultHomeControllerFeedType;
 

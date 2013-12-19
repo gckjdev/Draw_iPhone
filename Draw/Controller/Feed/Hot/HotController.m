@@ -330,7 +330,11 @@ typedef enum{
         int baseIndex = indexPath.row*WHISPER_CELL_VIEW_NUMBER;
         
         for (int index = baseIndex; index < baseIndex + WHISPER_CELL_VIEW_NUMBER; index ++) {
-            [feeds addObject:[self saveGetObjectForIndex:index]];
+            NSObject *object = [self saveGetObjectForIndex:index];
+            if (object==nil) {
+                break;
+            }
+            [feeds addObject:object];
         }
         
         [cell setCellInfo:feeds];
@@ -410,19 +414,6 @@ typedef enum{
         
     }
     
-//    else if (isSingApp()){
-//        
-//        NSInteger startIndex = indexPath.row * WHISPER_CELL_VIEW_NUMBER;
-//        NSMutableArray *list = [NSMutableArray array];
-//        for (NSInteger i = startIndex; i < startIndex+WHISPER_CELL_VIEW_NUMBER; ++ i) {
-//            NSObject *object = [self saveGetObjectForIndex:i];
-//            if (object) {
-//                [list addObject:object];
-//            }
-//        }
-//        [self setWhisperRankCell:cell WithFeeds:list];
-//    }
-    
     return cell;
 }
 
@@ -438,7 +429,7 @@ typedef enum{
     }
     
     if (isSingApp()){
-        return count/WHISPER_CELL_VIEW_NUMBER;
+        return count/WHISPER_CELL_VIEW_NUMBER + ((count%WHISPER_CELL_VIEW_NUMBER==0)?0:1);
     }
     
     if (isDrawApp()) {

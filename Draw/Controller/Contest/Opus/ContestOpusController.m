@@ -19,6 +19,7 @@
 #import "ReportFeedCell.h"
 #import "ContestPrizeCell.h"
 #import "PPConfigManager.h"
+#import "SingHotCell.h"
 
 typedef enum{
     OpusTypeMy = 1,
@@ -29,6 +30,7 @@ typedef enum{
 }OpusType;
 
 #define  HISTORY_RANK_NUMBER [PPConfigManager historyRankNumber]
+#define WHISPER_CELL_VIEW_NUMBER (ISIPAD? 3 : 2)
 
 @implementation ContestOpusController
 @synthesize contest = _contest;
@@ -97,17 +99,28 @@ typedef enum{
     
     if (type == OpusTypeReport){
         return [ReportFeedCell getCellHeightWithFeed:[self.tabDataList objectAtIndex:indexPath.row]];
-    }else if(type == OpusTypePrize){
+    }
+    
+    if(type == OpusTypePrize){
         return [ContestPrizeCell getCellHeight];
     }
-    else if (type == OpusTypeRank) {
-        if (indexPath.row == 0) {
-            return [RankView heightForRankViewType:RankViewTypeFirst]+1;
-        }else if(indexPath.row == 1){
-            return [RankView heightForRankViewType:RankViewTypeSecond]+1;
-        }        
+    
+    if (isSingApp()) {
+        return [SingHotCell getCellHeight];
     }
-    return [RankView heightForRankViewType:RankViewTypeNormal]+1;
+    
+    if (isDrawApp()) {
+        if (type == OpusTypeRank) {
+            if (indexPath.row == 0) {
+                return [RankView heightForRankViewType:RankViewTypeFirst]+1;
+            }else if(indexPath.row == 1){
+                return [RankView heightForRankViewType:RankViewTypeSecond]+1;
+            }
+        }
+        return [RankView heightForRankViewType:RankViewTypeNormal]+1;
+    }
+    
+    return 0;
 }
 
 - (void)clearCellSubViews:(UITableViewCell *)cell{
@@ -253,6 +266,31 @@ typedef enum{
         
     }
     
+    
+    if (isSingApp()) {
+        
+        SingHotCell *cell = [theTableView dequeueReusableCellWithIdentifier:[SingHotCell getCellIdentifier]];
+        if (cell == nil) {
+            cell = [SingHotCell createCell:self];
+        }
+        
+        NSMutableArray *feeds = [NSMutableArray array];
+        int baseIndex = indexPath.row * WHISPER_CELL_VIEW_NUMBER;
+        
+        for (int index = baseIndex; index < baseIndex + WHISPER_CELL_VIEW_NUMBER; index ++) {
+            NSObject *object = [self saveGetObjectForIndex:index];
+            if (object==nil) {
+                break;
+            }
+            [feeds addObject:object];
+        }
+        
+        [cell setCellInfo:feeds];
+                
+        return cell;
+    }
+    
+    
     NSString *CellIdentifier = @"RankCell";//[RankFirstCell getCellIdentifier];
     UITableViewCell *cell = [theTableView dequeueReusableCellWithIdentifier:CellIdentifier];
     
@@ -262,7 +300,6 @@ typedef enum{
         [self clearCellSubViews:cell];
     }
 
-//    cell.selectionStyle = UITableViewCellSelectionStyleNone;
     cell.accessoryType = UITableViewCellAccessoryNone;
 
     if (tab.tabID == OpusTypeRank) {
@@ -336,6 +373,7 @@ typedef enum{
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     NSInteger count = [super tableView:tableView numberOfRowsInSection:section];
+    
     NSInteger type = self.currentTab.tabID;
     if (type == OpusTypeReport || type == OpusTypePrize) {
         return count;
@@ -345,26 +383,35 @@ typedef enum{
             self.noMoreData = YES;            
         }
     }
-    switch (type) {
-        case OpusTypeRank:
-            if (count <= 1) {
-                return count;
-            }else if(count <= 3){
-                return 2;
-            }else{
-                if (count %3 == 0) {
-                    return count/3 + 1;
-                }else{
-                    return count / 3 + 2;
-                }
-            }
-        default:
-            if (count %3 == 0) {
-                return count/3;
-            }else{
-                return count/3 + 1;
-            }
+    
+    if (isSingApp()) {
+        return count/WHISPER_CELL_VIEW_NUMBER + ((count%WHISPER_CELL_VIEW_NUMBER==0)?0:1);
     }
+    
+    if (isDrawApp() || isLittleGeeAPP()) {
+        switch (type) {
+            case OpusTypeRank:
+                if (count <= 1) {
+                    return count;
+                }else if(count <= 3){
+                    return 2;
+                }else{
+                    if (count %3 == 0) {
+                        return count/3 + 1;
+                    }else{
+                        return count / 3 + 2;
+                    }
+                }
+            default:
+                if (count %3 == 0) {
+                    return count/3;
+                }else{
+                    return count/3 + 1;
+                }
+        }
+    }
+    
+    return 0;
 }
 
 

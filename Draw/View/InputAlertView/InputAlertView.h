@@ -28,3 +28,21 @@ typedef enum {
 - (void)setMaxContentLength:(int)maxContentLen;
 
 @end
+
+
+typedef void (^InputAlertBlock)(BOOL confirm, NSString *subject, NSString *content, NSSet *shareSet);
+
+@interface InputAlert : NSObject
+
+// by default, show SNS if has.
++ (void)showWithSubject:(NSString *)subject
+                content:(NSString *)contest
+                 inView:(UIView *)view
+                  block:(InputAlertBlock)block;
+
+// if you don't want to show SNS, use this method.
++ (void)showWithSubjectWithoutSNS:(NSString *)subject
+                          content:(NSString *)contest
+                           inView:(UIView *)view
+                            block:(InputAlertBlock)block;
+@end

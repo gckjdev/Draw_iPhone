@@ -24,6 +24,141 @@
 #import "AutoCreateViewByXib.h"
 
 
+@implementation InputAlert
+
++ (void)showWithSubject:(NSString *)subject
+                content:(NSString *)contest
+                 inView:(UIView *)view
+                  block:(InputAlertBlock)block{
+    
+    [self showWithSubject:subject
+                  content:contest
+                  showSNS:YES
+                   inView:view
+                    block:block];
+}
+
++ (void)showWithSubjectWithoutSNS:(NSString *)subject
+                          content:(NSString *)contest
+                           inView:(UIView *)view
+                            block:(InputAlertBlock)block{
+    
+    [self showWithSubject:subject
+                  content:contest
+                  showSNS:NO
+                   inView:view
+                    block:block];
+}
+
++ (void)showWithSubject:(NSString *)subject
+                content:(NSString *)contest
+                showSNS:(NSString *)showSNS
+                 inView:(UIView *)view
+                  block:(InputAlertBlock)block
+{
+    InputAlertView *v = nil;
+    BOOL hasSubject = [subject length] > 0;
+
+    if ([GameApp forceChineseOpus]) {
+    
+        BOOL hasSNS = NO;
+        if (showSNS) {
+            hasSNS = ([LocaleUtils isChina]
+                      || [[UserManager defaultManager] hasBindQQWeibo]
+                      || [[UserManager defaultManager] hasBindSinaWeibo]);
+        }else{
+            hasSNS = NO;
+        }
+        
+        ComposeInputDialogType type = 0;
+        if (hasSubject == YES && hasSNS == YES) {
+            type = ComposeInputDialogTypeTitleAndContentWithSNS;
+            v = [InputAlertView createWithType:type];
+            [v.titleInputField becomeFirstResponder];
+        }else if (hasSubject == YES && hasSNS == NO){
+            type = ComposeInputDialogTypeTitleAndContent;
+            v = [InputAlertView createWithType:type];
+            [v.titleInputField becomeFirstResponder];
+        }else if (hasSubject == NO && hasSNS == YES){
+            type = ComposeInputDialogTypeContentWithSNS;
+            v = [InputAlertView createWithType:type];
+            [v.contentInputView becomeFirstResponder];
+        }else{
+            type = ComposeInputDialogTypeContent;
+            v = [InputAlertView createWithType:type];
+            [v.contentInputView becomeFirstResponder];
+        }
+        
+    } else {
+        v = [InputAlertView createWithType:ComposeInputDialogTypeContentWithSNS];
+        [v.contentInputView becomeFirstResponder];
+    }
+    
+    [v.titleInputField setText:subject];
+    [v.contentInputView setText:contest];
+    v.titleInputField.placeholder = NSLS(@"kSubjectPlaceholder");
+    
+    [v setMaxTitleLength:[PPConfigManager getOpusNameMaxLength]];    
+    [v setMaxContentLength:[PPConfigManager getOpusDescMaxLength]];
+    
+    
+    CommonDialog *dialog = [CommonDialog createDialogWithTitle:NSLS(@"kAddOpusDesc") customView:v style:CommonDialogStyleDoubleButton];
+    dialog.manualClose = YES;
+    [dialog showInView:view];
+    
+    
+    [dialog setClickOkBlock:^(id infoView){
+        
+        NSString *newSubject = nil;
+
+        if (hasSubject) {
+            
+            newSubject = v.titleInputField.text;
+            
+            if ([newSubject length] <= 0) {
+                POSTMSG(NSLS(@"kOpusNameInvaild"));
+                return;
+            }
+            
+            if (!NSStringIsValidChinese(newSubject)
+                 && !NSStringISValidEnglish(newSubject)) {
+                POSTMSG(NSLS(@"kOnlyChineseOrEnglishTitleAllowed"));
+                return;
+            }
+            
+            if([newSubject length] > [PPConfigManager getOpusNameMaxLength]){
+                NSString *msg = [NSString stringWithFormat:NSLS(@"kSubjectLengthLimited"),
+                                 [PPConfigManager getOpusNameMaxLength]];
+                POSTMSG(msg);
+                return;
+            }
+        }
+        
+        NSString *newContent = v.contentInputView.text;
+        if ([newContent length] > [PPConfigManager getOpusDescMaxLength]) {
+            NSString *msg = [NSString stringWithFormat:NSLS(@"kOpusDescLengthLimited"),
+                             [PPConfigManager getOpusNameMaxLength]];
+            POSTMSG(msg);
+            return;
+        }
+    
+        dialog.manualClose = NO;
+        EXECUTE_BLOCK(block, YES, newSubject, newContent, v.shareSet);
+    }];
+    
+    [dialog setClickCancelBlock:^(id infoView){
+        
+        dialog.manualClose = NO;
+        
+        NSString *newSubject = hasSubject ? v.titleInputField.text : nil;
+        NSString *newContent = v.contentInputView.text;
+        EXECUTE_BLOCK(block, NO, newSubject, newContent, v.shareSet);
+    }];
+}
+
+@end
+
+
 
 #define GAP (ISIPAD ? 15 : 8)
 
@@ -149,24 +284,11 @@ AUTO_CREATE_VIEW_BY_XIB(InputAlertView);
 - (BOOL)canShareViaSina
 {
     return [[GameSNSService defaultService] isExpired:TYPE_SINA] == NO;
-    
-    
-//    if ([[UserManager defaultManager] hasBindSinaWeibo] == NO ||
-//        [[[PPSNSIntegerationService defaultService] snsServiceByType:TYPE_SINA] isAuthorizeExpired]){
-//        return NO;
-//    }
-//    return YES;
 }
 
 - (BOOL)canShareViaQQ
 {
     return [[GameSNSService defaultService] isExpired:TYPE_QQ] == NO;
-
-//    if ([[UserManager defaultManager] hasBindQQWeibo] == NO ||
-//        [[[PPSNSIntegerationService defaultService] snsServiceByType:TYPE_QQ] isAuthorizeExpired]){
-//        return NO;
-//    }
-//    return YES;
 }
 
 
@@ -197,144 +319,6 @@ AUTO_CREATE_VIEW_BY_XIB(InputAlertView);
 }
 
 
-//+ (id)inputAlertViewWith:(NSString *)title
-//                 content:(NSString *)content
-//                  target:(id)target
-//           commitSeletor:(SEL)commitSeletor
-//           cancelSeletor:(SEL)cancelSeletor
-//{
-//    InputAlertView *view = [self createView];
-//    [view.title setText:title];
-//    [view.content setText:content];
-//    view.target = target;
-//    view.commitSeletor = commitSeletor;
-//    view.cancelSeletor = cancelSeletor;
-//    return view;
-//}
-
-//+ (id)inputAlertViewWith:(NSString *)title
-//                 content:(NSString *)content
-//                  target:(id)target
-//           commitSeletor:(SEL)commitSeletor
-//           cancelSeletor:(SEL)cancelSeletor
-//                  hasSNS:(BOOL)hasSNS
-//{
-//    return [self inputAlertViewWith:title content:content target:target commitSeletor:commitSeletor cancelSeletor:cancelSeletor hasSNS:hasSNS hasSubject:NO];
-//}
-
-//+ (id)inputAlertViewWith:(NSString *)title
-//                 content:(NSString *)content
-//                  target:(id)target
-//           commitSeletor:(SEL)commitSeletor
-//           cancelSeletor:(SEL)cancelSeletor
-//                  hasSNS:(BOOL)hasSNS
-//              hasSubject:(BOOL)hasSubject
-//{
-//    InputAlertView *view = [self createView];
-////    [view.title setText:title];
-////    [view.content setText:content];
-////    view.target = target;
-////    view.commitSeletor = commitSeletor;
-////    view.cancelSeletor = cancelSeletor;
-//    
-//    if (!hasSNS) {
-//        CGRect inputRect = view.content.frame;
-//        [view.contentBg setFrame:CGRectMake(inputRect.origin.x, inputRect.origin.y, inputRect.size.width, view.qqCheckBox.center.y - inputRect.origin.y)];
-//        //        [view.contentBg setFrame:view.content.frame];
-//        [view.content setCenter:view.contentBg.center];
-//        [view.qqCheckBox setHidden:YES];
-//        [view.sinaCheckBox setHidden:YES];
-//        [view.shareToQQ setHidden:YES];
-//        [view.shareToSina setHidden:YES];
-//    }
-//    
-//    if (hasSubject) {
-//        [view.subject setBackground:[[ShareImageManager defaultManager] inputDialogInputBgImage]];
-//        view.subject.delegate = view;
-//        [view.subject setPlaceholder:NSLS(@"kLittleGeeDrawTitle")];
-//        [view.subject setHidden:NO];
-//        CGRect inputRect = view.content.frame;
-//        [view.contentBg setFrame:CGRectMake(inputRect.origin.x, inputRect.origin.y + view.subject.frame.size.height, inputRect.size.width, view.contentBg.frame.size.height - view.subject.frame.size.height)];
-//        [view.content setFrame:view.contentBg.frame];
-//    }
-//    return view;
-//}
-
-
-//- (NSString *)contentText
-//{
-//    return self.content.text;
-//}
-
-//- (NSString *)setContentText:(NSString *)text
-//{
-//    [self.content setText:text];
-//    return self.content.text;
-//}
-
-//- (NSString*)subjectText
-//{
-//    return self.subject.text;
-//}
-//- (NSString*)setSubjectText:(NSString*)text
-//{
-//    [self.subject setText:text];
-//    return self.content.text;
-//}
-
-
-
-
-#define DismissTimeInterval 0.5
-
-//- (CGPoint)hideCenter
-//{
-//    return CGPointMake(CGRectGetMidX(self.bounds), -CGRectGetMidY(self.bounds));
-//}
-
-//- (void)showInView:(UIView *)view animated:(BOOL)animated
-//{
-//    if (_maxInputLen > 0 && [self.content.text length] >= _maxInputLen) {
-//        NSString* text = [self.content.text substringToIndex:_maxInputLen];
-//        [self.content setText:text];
-//    }
-//    [view addSubview:self];
-//    if(animated){
-//        self.center = [self hideCenter];
-//        [UIView animateWithDuration:DismissTimeInterval animations:^{
-//            self.center = view.center;
-//            
-//        } completion:^(BOOL finished) {
-//            [(self.subject.hidden?self.content:self.subject) becomeFirstResponder];
-//        }];
-//    }else{
-//        self.center = view.center;
-//        [(self.subject.hidden?self.content:self.subject) becomeFirstResponder];
-//    }
-//}
-
-//- (void)dismiss:(BOOL)animated
-//{
-//    if (animated) {
-//        [UIView animateWithDuration:DismissTimeInterval animations:^{
-//            self.center = [self hideCenter];
-//        } completion:^(BOOL finished) {
-//            [self removeFromSuperview];
-//            [self.content resignFirstResponder];
-//        }];
-//    }else{
-//        [self removeFromSuperview];
-//        [self.content resignFirstResponder];
-//    }
-//}
-
-//- (IBAction)clickCancel:(id)sender {
-//    if (self.cancelSeletor != NULL && [self.target respondsToSelector:self.cancelSeletor]){
-//         [self.target performSelector:self.cancelSeletor];
-//    }
-//    [self dismiss:YES];
-//}
-
 - (NSSet *)shareSet
 {
     NSMutableSet *set = [NSMutableSet setWithCapacity:2];
@@ -346,40 +330,6 @@ AUTO_CREATE_VIEW_BY_XIB(InputAlertView);
     }
     return set;
 }
-
-//- (BOOL)isTitlelegal
-//{
-//    if (_delegate && [_delegate respondsToSelector:@selector(isSubjectValid:)] && [self canEditSubject]) {
-//        return [_delegate isSubjectValid:self.subjectText];
-//    }
-//    return YES;
-//    
-//}
-
-//- (IBAction)clickConfirm:(id)sender {
-//    if (!_subject.hidden && [_subject.text length] == 0) {
-//        [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kMustHaveTitle") delayTime:1.5 atHorizon:(ISIPAD?0:(-60))];
-//        return;
-//    }
-//    if (![self isTitlelegal]) {
-//
-//        return;
-//    }
-//    
-//    if ([[WordFilterService defaultService] checkForbiddenWord:[self contentText]]){
-//        return;
-//    }
-//    
-//    if ([self hasSubjectText] && [[WordFilterService defaultService] checkForbiddenWord:[self subjectText]]){
-//        return;
-//    }
-//    
-//    if (self.commitSeletor != NULL && [self.target respondsToSelector:self.commitSeletor]) {
-//        NSSet *shareSet = [self setForShareType];
-//        [self.target performSelector:self.commitSeletor withObject:shareSet];
-//    }
-//    [self dismiss:YES];
-//}
 
 
 - (IBAction)clickSinaCheckBox:(UIButton *)sender {
@@ -405,34 +355,6 @@ AUTO_CREATE_VIEW_BY_XIB(InputAlertView);
         }
     }
 }
-//
-//- (IBAction)clickClose:(id)sender {
-//    [self dismiss:YES];
-//}
-//
-//- (IBAction)clickMask:(id)sender {
-//    [self dismiss:YES];
-//}
-
-//- (void)adjustWithKeyBoardRect:(CGRect)rect
-//{
-//    [UIView animateWithDuration:0.3 animations:^{
-//        CGFloat height = CGRectGetHeight(self.superview.bounds) - CGRectGetHeight(rect);
-//        CGFloat widht = CGRectGetWidth(self.bounds);
-//        self.frame = CGRectMake(0, 0, widht, height);
-//    }];
-//}
-
-//- (void)setCanClickCommitButton:(BOOL)can
-//{
-//    self.confirm.userInteractionEnabled = can;
-//    self.confirm.enabled = can;
-//}
-
-//- (void)clickConfirm
-//{
-//    [self clickConfirm:self.confirm];
-//}
 
 #pragma mark - UITextView Delegate
 
@@ -449,79 +371,6 @@ AUTO_CREATE_VIEW_BY_XIB(InputAlertView);
 - (void)bindSNS:(int)snsType sender:(UIControl*)sender
 {
     [[GameSNSService defaultService] autheticate:snsType];
-    
-//    PPSNSCommonService* service = [[PPSNSIntegerationService defaultService] snsServiceByType:snsType];
-//    NSString* name = [service snsName];
-//    
-//    [service logout];    
-//    [service login:^(NSDictionary *userInfo) {
-//        PPDebug(@"%@ Login Success", name);
-//        
-//        [MBProgressHUD showHUDAddedTo:self animated:YES];
-//        
-//        [service readMyUserInfo:^(NSDictionary *userInfo) {
-//
-//            [MBProgressHUD hideHUDForView:self animated:YES];
-//            
-//            PPDebug(@"%@ readMyUserInfo Success, userInfo=%@", name, [userInfo description]);
-//            UserManager* userManager = [UserManager defaultManager];
-//            [[UserService defaultService] updateUserWithSNSUserInfo:[userManager userId]
-//                                                           userInfo:userInfo
-//                                                     viewController:nil];
-//            
-//            
-//            
-//            
-//        } failureBlock:^(NSError *error) {
-//
-//            [MBProgressHUD hideHUDForView:self animated:YES];            
-//            PPDebug(@"%@ readMyUserInfo Failure", name);
-//        }];
-//        
-//        [sender setSelected:YES];
-//        
-//        // follow weibo if NOT followed
-//        if ([GameSNSService hasFollowOfficialWeibo:service] == NO){
-//            [service followUser:[service officialWeiboId]
-//                         userId:[service officialWeiboId]
-//                   successBlock:^(NSDictionary *userInfo) {
-//                       [GameSNSService updateFollowOfficialWeibo:service];
-//                   } failureBlock:^(NSError *error) {
-//                       PPDebug(@"follow weibo but error=%@", [error description]);
-//                   }];
-//        }
-//        
-//    } failureBlock:^(NSError *error) {
-//        PPDebug(@"%@ Login Failure", name);
-//        [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kUserBindFail") delayTime:2];
-//    }];
 }
-
-//- (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text
-//{
-//    if (self.maxInputLen > 0 && range.location >= self.maxInputLen)
-//        return NO; // return NO to not change text
-//    return YES;
-//}
-//
-//- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
-//{
-//    if (_delegate && [_delegate respondsToSelector:@selector(maxSubjectLen)]) {
-//        int maxTitleLen = [_delegate maxSubjectLen];
-//        if (range.location >= maxTitleLen)
-//            return NO; // return NO to not change text
-//    }
-//    return YES;
-//}
-
-//- (BOOL)hasSubjectText
-//{
-//    return [self canEditSubject] && (self.subjectText != nil) && self.subjectText.length > 0;
-//}
-
-//- (BOOL)canEditSubject
-//{
-//    return !self.subject.hidden;
-//}
 
 @end

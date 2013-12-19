@@ -2207,6 +2207,7 @@
 "kOnlyEnglishTitleAllowed" = "作品标题只允许英文单词！";
 "kOnlyChineseOrEnglishTitleAllowed" = "作品标题只允许中文字符或者英文单词！";
 "kSubjectLengthLimited" = "主题的长度不能超过%d";
+"kOpusDescLengthLimited" = "作品描述的长度不能超过%d";
 "kViewPost" = "查看帖子";
 
 "kRecent" = "最近";

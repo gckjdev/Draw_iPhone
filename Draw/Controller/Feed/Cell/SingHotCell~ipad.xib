@@ -42,8 +42,9 @@
 							<object class="IBUIView" id="1051907482">
 								<reference key="NSNextResponder" ref="832614883"/>
 								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{0.5, 6}, {256, 256}}</string>
+								<string key="NSFrameSize">{256, 256}</string>
 								<reference key="NSSuperview" ref="832614883"/>
+								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="815387502"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<object class="NSColor" key="IBUIBackgroundColor">
@@ -58,8 +59,10 @@
 							<object class="IBUIView" id="815387502">
 								<reference key="NSNextResponder" ref="832614883"/>
 								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{256, 6}, {256, 256}}</string>
+								<string key="NSFrame">{{256, 0}, {256, 256}}</string>
 								<reference key="NSSuperview" ref="832614883"/>
+								<reference key="NSWindow"/>
+								<reference key="NSNextKeyView" ref="605002784"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<object class="NSColor" key="IBUIBackgroundColor">
 									<int key="NSColorSpace">3</int>
@@ -71,8 +74,9 @@
 							<object class="IBUIView" id="605002784">
 								<reference key="NSNextResponder" ref="832614883"/>
 								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{512, 6}, {256, 256}}</string>
+								<string key="NSFrame">{{512, 0}, {256, 256}}</string>
 								<reference key="NSSuperview" ref="832614883"/>
+								<reference key="NSWindow"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<object class="NSColor" key="IBUIBackgroundColor">
 									<int key="NSColorSpace">3</int>
@@ -82,8 +86,9 @@
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 							</object>
 						</array>
-						<string key="NSFrameSize">{768, 268}</string>
+						<string key="NSFrameSize">{768, 256}</string>
 						<reference key="NSSuperview" ref="1041548312"/>
+						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="1051907482"/>
 						<string key="NSReuseIdentifierKey">_NS:11</string>
 						<object class="NSColor" key="IBUIBackgroundColor">
@@ -97,13 +102,15 @@
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 					</object>
 				</array>
-				<string key="NSFrameSize">{768, 269}</string>
+				<string key="NSFrameSize">{768, 257}</string>
 				<reference key="NSSuperview"/>
+				<reference key="NSWindow"/>
 				<reference key="NSNextKeyView" ref="832614883"/>
 				<string key="NSReuseIdentifierKey">_NS:9</string>
 				<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 				<reference key="IBUIContentView" ref="832614883"/>
 				<string key="IBUIReuseIdentifier">SingHotCell</string>
+				<real value="257" key="IBUIRowHeight"/>
 			</object>
 		</array>
 		<object class="IBObjectContainer" key="IBDocument.Objects">
@@ -195,7 +202,45 @@
 			<nil key="sourceID"/>
 			<int key="maxID">15</int>
 		</object>
-		<object class="IBClassDescriber" key="IBDocument.Classes"/>
+		<object class="IBClassDescriber" key="IBDocument.Classes">
+			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
+				<object class="IBPartialClassDescription">
+					<string key="className">PPTableViewCell</string>
+					<string key="superclassName">UITableViewCell</string>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBProjectSource</string>
+						<string key="minorKey">./Classes/PPTableViewCell.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">SingHotCell</string>
+					<string key="superclassName">PPTableViewCell</string>
+					<dictionary class="NSMutableDictionary" key="outlets">
+						<string key="holderView1">UIView</string>
+						<string key="holderView2">UIView</string>
+						<string key="holderView3">UIView</string>
+					</dictionary>
+					<dictionary class="NSMutableDictionary" key="toOneOutletInfosByName">
+						<object class="IBToOneOutletInfo" key="holderView1">
+							<string key="name">holderView1</string>
+							<string key="candidateClassName">UIView</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="holderView2">
+							<string key="name">holderView2</string>
+							<string key="candidateClassName">UIView</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="holderView3">
+							<string key="name">holderView3</string>
+							<string key="candidateClassName">UIView</string>
+						</object>
+					</dictionary>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBProjectSource</string>
+						<string key="minorKey">./Classes/SingHotCell.h</string>
+					</object>
+				</object>
+			</array>
+		</object>
 		<int key="IBDocument.localizationMode">0</int>
 		<string key="IBDocument.TargetRuntimeIdentifier">IBCocoaTouchFramework</string>
 		<bool key="IBDocument.PluginDeclaredDependenciesTrackSystemTargetVersion">YES</bool>

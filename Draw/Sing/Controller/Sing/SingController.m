@@ -44,6 +44,7 @@
 #import "AudioFormatConverter.h"
 #import "InputAlertView.h"
 #import "PPConfigManager.h"
+#import "ContestManager.h"
 
 #define GREEN_COLOR [UIColor colorWithRed:99/255.0 green:186/255.0 blue:152/255.0 alpha:1]
 #define WHITE_COLOR [UIColor whiteColor]
@@ -71,6 +72,7 @@ enum{
 @property (retain, nonatomic) CMPopTipView *popTipView;
 @property (assign, nonatomic) BOOL hasEdited;
 @property (copy, nonatomic) NSString *mp3FilePath;
+@property (retain, nonatomic) Contest *contest;
 
 
 @end
@@ -78,6 +80,7 @@ enum{
 @implementation SingController
 
 - (void)dealloc{
+    [_contest release];
     [_mp3FilePath release];
     [_picker release];
     [_image release];
@@ -152,6 +155,21 @@ enum{
     if (self = [super init]) {
         self.singOpus = opus;
         _isDraft = YES;
+        
+        if ([opus.pbOpus.contestId length] != 0) {
+            self.contest = [[ContestManager defaultManager] ongoingContestById:opus.pbOpus.contestId];
+        }
+    }
+    
+    return self;
+}
+
+- (id)initWithContest:(Contest *)contest{
+
+    if (self = [super init]) {
+        self.singOpus = (SingOpus *)[[[OpusService defaultService] draftOpusManager] createDraftWithName:[PPConfigManager getSingOpusDefaultName]];
+        [self.singOpus setAsContestOpus:contest.contestId];
+        self.contest = contest;
     }
     
     return self;
@@ -961,52 +979,68 @@ enum{
 
 - (void)showOpusNameAndDescEditView
 {
-    InputAlertView *v = [InputAlertView createWithType:ComposeInputDialogTypeTitleAndContent];
-    [v.titleInputField becomeFirstResponder];
-    [v.titleInputField setText:self.singOpus.pbOpus.name];
-    [v.contentInputView setText:self.singOpus.pbOpus.desc];
-    v.titleInputField.placeholder = NSLS(@"kSubjectPlaceholder");
-
-    CommonDialog *dialog = [CommonDialog createDialogWithTitle:NSLS(@"kAddOpusDesc") customView:v style:CommonDialogStyleDoubleButton];
-    dialog.manualClose = YES;
-    [dialog showInView:self.view];
-    
-    [dialog setClickOkBlock:^(id infoView){
-                
-        if ([v.titleInputField.text length] <= 0) {
-
-            POSTMSG(NSLS(@"kSubjectPlaceCannotBlank"));
-            return;
-        }
-
-        if (!NSStringIsValidChinese(v.titleInputField.text)
-            && !NSStringISValidEnglish(v.titleInputField.text)){
-
-            POSTMSG(NSLS(@"kOnlyChineseOrEnglishTitleAllowed"));
-            return;
-        }
-
-
-        if([v.titleInputField.text length] > [PPConfigManager getOpusNameMaxLength]){
-
-            NSString *msg = [NSString stringWithFormat:NSLS(@"kSubjectLengthLimited"),
-                             [PPConfigManager getOpusNameMaxLength]];
-            POSTMSG(msg);
-            return;
-        }
+    NSString *subject = self.singOpus.pbOpus.name;
+    NSString *content = self.singOpus.pbOpus.desc;
+    [InputAlert showWithSubjectWithoutSNS:subject
+                                  content:content
+                                   inView:self.view
+                                    block:^(BOOL confirm, NSString *subject, NSString *content, NSSet *shareSet) {
         
-        [self.singOpus setName:v.titleInputField.text];
-        [self.singOpus setDesc:v.contentInputView.text];
-        [[NSNotificationCenter defaultCenter] postNotificationName:KEY_NOTIFICATION_SING_INFO_CHANGE object:nil];
-
-        dialog.manualClose = NO;
-        
-        [self deductCoinsAndSubmitOpus];
+        if (confirm) {
+            [self.singOpus setName:subject];
+            [self.singOpus setDesc:content];
+            [[NSNotificationCenter defaultCenter] postNotificationName:KEY_NOTIFICATION_SING_INFO_CHANGE object:nil];
+            [self deductCoinsAndSubmitOpus];
+        }
     }];
     
-    [dialog setClickCancelBlock:^(id infoView){
-        dialog.manualClose = NO;
-    }];
+    
+//    InputAlertView *v = [InputAlertView createWithType:ComposeInputDialogTypeTitleAndContent];
+//    [v.titleInputField becomeFirstResponder];
+//    [v.titleInputField setText:self.singOpus.pbOpus.name];
+//    [v.contentInputView setText:self.singOpus.pbOpus.desc];
+//    v.titleInputField.placeholder = NSLS(@"kSubjectPlaceholder");
+//
+//    CommonDialog *dialog = [CommonDialog createDialogWithTitle:NSLS(@"kAddOpusDesc") customView:v style:CommonDialogStyleDoubleButton];
+//    dialog.manualClose = YES;
+//    [dialog showInView:self.view];
+//    
+//    [dialog setClickOkBlock:^(id infoView){
+//                
+//        if ([v.titleInputField.text length] <= 0) {
+//
+//            POSTMSG(NSLS(@"kSubjectPlaceCannotBlank"));
+//            return;
+//        }
+//
+//        if (!NSStringIsValidChinese(v.titleInputField.text)
+//            && !NSStringISValidEnglish(v.titleInputField.text)){
+//
+//            POSTMSG(NSLS(@"kOnlyChineseOrEnglishTitleAllowed"));
+//            return;
+//        }
+//
+//
+//        if([v.titleInputField.text length] > [PPConfigManager getOpusNameMaxLength]){
+//
+//            NSString *msg = [NSString stringWithFormat:NSLS(@"kSubjectLengthLimited"),
+//                             [PPConfigManager getOpusNameMaxLength]];
+//            POSTMSG(msg);
+//            return;
+//        }
+//        
+//        [self.singOpus setName:v.titleInputField.text];
+//        [self.singOpus setDesc:v.contentInputView.text];
+//        [[NSNotificationCenter defaultCenter] postNotificationName:KEY_NOTIFICATION_SING_INFO_CHANGE object:nil];
+//
+//        dialog.manualClose = NO;
+//        
+//        [self deductCoinsAndSubmitOpus];
+//    }];
+//    
+//    [dialog setClickCancelBlock:^(id infoView){
+//        dialog.manualClose = NO;
+//    }];
 }
 
 

@@ -598,6 +598,9 @@
     return [MobClickUtils getIntValueByKey:@"OPUS_NAME_MAX_LENGTH" defaultValue:7];
 }
 
++ (int)getOpusDescMaxLength{
+    return [MobClickUtils getIntValueByKey:@"OPUS_DESC_MAX_LENGTH" defaultValue:4096];
+}
 
 + (int)getLiarDiceExp
 {

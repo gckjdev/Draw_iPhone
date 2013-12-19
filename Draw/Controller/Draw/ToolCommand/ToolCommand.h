@@ -11,7 +11,6 @@
 #import "AnalyticsManager.h"
 #import "CMPopTipView.h"
 #import "UIViewUtils.h"
-#import "InputAlertView.h"
 #import "DrawInfo.h"
 #import "DrawToolPanel.h"
 #import "DrawView.h"
@@ -81,9 +80,5 @@
 - (void)bindController:(PPViewController *)controller;
 - (BOOL)isPaletteShowing;
 
-
-
-
-//- (InputAlertView *)inputAlertView;
 @end
 

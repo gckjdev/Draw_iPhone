@@ -211,6 +211,12 @@
     }
 }
 
+- (void)setAsContestOpus:(NSString *)contestId{
+    
+    [_pbOpusBuilder setContestId:contestId];
+    [_pbOpusBuilder setType:PBOpusTypeSingContest];
+}
+
 - (void)setLocalDataUrl:(NSString*)extension
 {
     NSString* path = [NSString stringWithFormat:@"%@.%@", [self opusKey], extension];
