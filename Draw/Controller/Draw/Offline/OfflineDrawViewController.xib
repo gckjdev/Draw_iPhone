@@ -49,7 +49,6 @@
 								<int key="NSvFlags">292</int>
 								<string key="NSFrame">{{275, 2}, {40, 40}}</string>
 								<reference key="NSSuperview" ref="604127123"/>
-								<reference key="NSNextKeyView"/>
 								<bool key="IBUIOpaque">NO</bool>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 								<int key="IBUIContentHorizontalAlignment">0</int>
@@ -303,10 +302,10 @@
 						<reference key="object" ref="604127123"/>
 						<object class="NSMutableArray" key="children">
 							<bool key="EncodedWithXMLCoder">YES</bool>
+							<reference ref="864590208"/>
 							<reference ref="567240881"/>
 							<reference ref="172150538"/>
 							<reference ref="362739228"/>
-							<reference ref="864590208"/>
 						</object>
 						<reference key="parent" ref="774585933"/>
 					</object>
