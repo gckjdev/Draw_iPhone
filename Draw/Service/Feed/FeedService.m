@@ -1051,6 +1051,19 @@ static FeedService *_staticFeedService = nil;
              resultBlock:resultBlock];
 }
 
+- (void)playOpus:(NSString *)opusId
+       contestId:(NSString *)contestId
+     resultBlock:(FeedActionResultBlock)resultBlock
+{
+    [self actionSaveOpus:opusId
+               contestId:contestId
+              actionType:ACTION_TYPE_PLAY_OPUS
+              actionName:DB_FIELD_ACTION_PLAY_TIMES
+                category:PBOpusCategoryTypeDrawCategory     // useless at all
+             resultBlock:resultBlock];    
+}
+
+
 - (void)unRecommendOpus:(NSString *)opusId
           resultBlock:(FeedActionResultBlock)resultBlock
 {
