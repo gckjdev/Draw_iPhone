@@ -217,6 +217,12 @@
     [_pbOpusBuilder setType:PBOpusTypeSingContest];
 }
 
+- (void)setAsNormalOpus{
+
+    [_pbOpusBuilder setType:PBOpusTypeSing];
+    [_pbOpusBuilder setContestId:nil];
+}
+
 - (void)setLocalDataUrl:(NSString*)extension
 {
     NSString* path = [NSString stringWithFormat:@"%@.%@", [self opusKey], extension];

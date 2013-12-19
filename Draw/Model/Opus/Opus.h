@@ -42,6 +42,7 @@
 - (void)setDesc:(NSString *)desc;
 - (void)setTargetUser:(PBGameUser *)user;
 - (void)setAsContestOpus:(NSString *)contestId;
+- (void)setAsNormalOpus;
 
 - (void)setIsRecovery:(BOOL)value;
 - (void)setCanvasSize:(CGSize)size;
