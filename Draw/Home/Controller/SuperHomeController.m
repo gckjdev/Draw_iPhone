@@ -36,6 +36,7 @@
 #import "TaskController.h"
 #import "DrawImageManager.h"
 #import "ContestController.h"
+#import "PainterController.h"
 
 static NSDictionary* DEFAULT_MENU_TITLE_DICT = nil;
 static NSDictionary* DEFAULT_MENU_IMAGE_DICT = nil;
@@ -582,6 +583,13 @@ static NSDictionary* DEFAULT_MENU_IMAGE_DICT = nil;
     [settings release];
 }
 
+- (void)enterPainter
+{
+    PainterController *pc = [[PainterController alloc] init];
+    [self.navigationController pushViewController:pc animated:YES];
+    [pc release];
+}
+
 #pragma mark - menu methods
 
 - (BOOL)handleClickMenu:(HomeMainMenuPanel *)mainMenuPanel
@@ -653,8 +661,14 @@ static NSDictionary* DEFAULT_MENU_IMAGE_DICT = nil;
             case HomeMenuTypeDrawContest:
             {
                 [self enterContest];
-            }
                 break;
+            }
+                
+            case HomeMenuTypeDrawPainter:
+            {
+                [self enterPainter];
+                break;
+            }
                 
             default:
                 break;
