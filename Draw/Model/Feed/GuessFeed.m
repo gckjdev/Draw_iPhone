@@ -96,7 +96,13 @@
         
         self.drawFeed.categoryType = pbFeed.category;
         self.drawFeed.pbFeed = pbFeed;
-        [self.drawFeed setFeedType:FeedTypeDraw];
+        
+        if (pbFeed.category == PBOpusCategoryTypeSingCategory) {
+            [self.drawFeed setFeedType:FeedTypeSing];
+        }else {
+            [self.drawFeed setFeedType:FeedTypeDraw];
+        }
+        
         [self.drawFeed setFeedId:pbFeed.opusId];
         [self updateDesc];
     }

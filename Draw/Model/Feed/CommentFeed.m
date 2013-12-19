@@ -188,9 +188,15 @@
                           contestId:pbFeed.contestId
                           timesArray:pbFeed.feedTimesList] autorelease];
         
-        [self.drawFeed setFeedType:FeedTypeDraw];
         [self.drawFeed setFeedId:pbFeed.opusId];
+        self.drawFeed.categoryType = pbFeed.category;
         
+        if (pbFeed.category == PBOpusCategoryTypeSingCategory) {
+            [self.drawFeed setFeedType:FeedTypeSing];
+        }else {
+            [self.drawFeed setFeedType:FeedTypeDraw];
+        }
+
         [self initComment:pbFeed];
     }
     return self;

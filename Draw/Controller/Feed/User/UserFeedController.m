@@ -17,6 +17,7 @@
 #import "UserManager.h"
 #import "MKBlockActionSheet.h"
 #import "UINavigationController+UINavigationControllerAdditions.h"
+#import "SingHotCell.h"
 
 typedef enum{
     UserTypeFeed = FeedListTypeUserFeed,
@@ -224,20 +225,19 @@ typedef enum{
         
     }else if(tab.tabID == UserTypeOpus || tab.tabID == UserTypeFavorite){
         
-        NSString *CellIdentifier = @"RankCell";//[RankFirstCell getCellIdentifier];
-        UITableViewCell *cell = [theTableView dequeueReusableCellWithIdentifier:CellIdentifier];
-        
-        if (cell == nil) {
-            cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
-        }else{
-            [self clearCellSubViews:cell];
-        }
-        
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        cell.accessoryType = UITableViewCellAccessoryNone;
-        
-
         if (isDrawApp()) {
+            NSString *CellIdentifier = @"RankCell";
+            UITableViewCell *cell = [theTableView dequeueReusableCellWithIdentifier:CellIdentifier];
+            
+            if (cell == nil) {
+                cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
+            }else{
+                [self clearCellSubViews:cell];
+            }
+            
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
+            cell.accessoryType = UITableViewCellAccessoryNone;
+            
             NSInteger startIndex = (indexPath.row * NORMAL_CELL_VIEW_NUMBER);
             NSMutableArray *list = [NSMutableArray array];
             for (NSInteger i = startIndex; i < startIndex+NORMAL_CELL_VIEW_NUMBER; ++ i) {
@@ -248,18 +248,29 @@ typedef enum{
             }
             [self setNormalRankCell:cell WithFeeds:list];
         }else if (isSingApp()){
-            NSInteger startIndex = (indexPath.row * WHISPER_CELL_VIEW_NUMBER);
-            NSMutableArray *list = [NSMutableArray array];
-            for (NSInteger i = startIndex; i < startIndex+WHISPER_CELL_VIEW_NUMBER; ++ i) {
-                NSObject *object = [self saveGetObjectForIndex:i];
-                if (object) {
-                    [list addObject:object];
-                }
+            
+            NSString *indentifier = [SingHotCell getCellIdentifier];
+            SingHotCell *cell = [theTableView dequeueReusableCellWithIdentifier:indentifier];
+            
+            if (cell == nil) {
+                cell = [SingHotCell createCell:self];
             }
-            [self setWhisperRankCell:cell WithFeeds:list];
-        }
-        
-        return cell;
+            
+            NSMutableArray *feeds = [NSMutableArray array];
+            int baseIndex = indexPath.row*WHISPER_CELL_VIEW_NUMBER;
+            
+            for (int index = baseIndex; index < baseIndex + WHISPER_CELL_VIEW_NUMBER; index ++) {
+                NSObject *object = [self saveGetObjectForIndex:index];
+                if (object==nil) {
+                    break;
+                }
+                [feeds addObject:object];
+            }
+            
+            [cell setCellInfo:feeds];
+            
+            return cell;
+        }        
     }else{
         return nil;
     }
@@ -295,11 +306,7 @@ typedef enum{
                     return count/NORMAL_CELL_VIEW_NUMBER + 1;
                 }
             }else if (isSingApp()){
-                if (count % WHISPER_CELL_VIEW_NUMBER == 0) {
-                    return count/WHISPER_CELL_VIEW_NUMBER;
-                }else{
-                    return count/WHISPER_CELL_VIEW_NUMBER + 1;
-                }
+                return count/WHISPER_CELL_VIEW_NUMBER + ((count%WHISPER_CELL_VIEW_NUMBER==0)?0:1);
             }
 
         default:

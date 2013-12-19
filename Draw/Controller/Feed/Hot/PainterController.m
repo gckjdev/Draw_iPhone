@@ -43,7 +43,7 @@ typedef enum{
 
 - (void)updateTitleView
 {
-    [self.titleView setTitle:NSLS(@"kPainter")];
+    [self.titleView setTitle:[GameApp painterName]]; //NSLS(@"kPainter")];
     [self.titleView setTarget:self];
     [self.titleView setBackButtonSelector:@selector(clickBackButton:)];
     [self.titleView setRightButtonAsRefresh];

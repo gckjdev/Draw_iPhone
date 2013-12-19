@@ -283,10 +283,6 @@
         if ([draft.contestId length] != 0) {
             
             self.contest = [[ContestManager defaultManager] ongoingContestById:draft.contestId];
-            
-//            self.contest = [[[Contest alloc] init] autorelease];
-//            [self.contest setContestId:draft.contestId];
-//            [self.contest setCanSubmitCount:1];
         }
         self.opusDesc = draft.opusDesc;
         
@@ -630,8 +626,6 @@
 #define DIALOG_TAG_SUBMIT 201206071
 #define DIALOG_TAG_CHANGE_BACK 201207281
 #define DIALOG_TAG_COMMIT_OPUS 201208111
-#define DIALOG_TAG_COMMIT_AS_NORMAL_OPUS 201302231
-//#define DIALOG_TAG_COMPOSE_DIALOG 201302250
 
 
 #define NO_COIN_TAG 201204271
@@ -669,10 +663,6 @@
     {
         [self saveDraft:NO];
         [self quit];
-    }
-    else if(dialog.tag == DIALOG_TAG_COMMIT_AS_NORMAL_OPUS)
-    {
-        [self showInputAlertViewWithSubject:YES];
     }
     else if(dialog.tag == DIALOG_TAG_SUBMIT){
 
@@ -743,9 +733,7 @@
 {
     [self.layerPanelPopView dismissAnimated:YES];
     [self.upPanelPopView dismissAnimated:YES];
-//    if ([[ToolCommandManager defaultManager] isPaletteShowing]) {
-//        [self.drawToolPanel updateRecentColorViewWithColor:aDrawView.drawInfo.penColor updateModel:YES];
-//    }
+
     [[ToolCommandManager defaultManager] hideAllPopTipViews];
     [self.layerPanelPopView dismissAnimated:YES];
     [self.upPanelPopView dismissAnimated:YES];    
@@ -770,12 +758,13 @@
     //TODO alert: Submit as the normal opus
     CommonDialog *dialog = [CommonDialog createDialogWithTitle:NSLS(@"kTips")
                                          message:message
-                                           style:CommonDialogStyleDoubleButton
-                                        delegate:self];
-    dialog.tag =  DIALOG_TAG_COMMIT_AS_NORMAL_OPUS;
+                                           style:CommonDialogStyleDoubleButton];
     [dialog showInView:self.view];
     _commitAsNormal = YES;
     
+    [dialog setClickOkBlock:^(id infoView){
+        [self showInputAlertView];
+    }];
 }
 
 - (void)didCreateDraw:(int)resultCode
@@ -791,9 +780,9 @@
         [self stopRecovery];
 
         // save as normal opus in draft box
-        BOOL result = [[DrawDataService defaultService] savePaintWithPBDrawData:self.submitOpusDrawData     //[self createPBDraw]         // TODO optimized
-                                                                          image:self.submitOpusFinalImage   // [drawView createImage]      // TODO optimized
-                                                                           word:self.word.text];
+        BOOL result = [[DrawDataService defaultService]
+                       savePaintWithPBDrawData:self.submitOpusDrawData                                                                          image:self.submitOpusFinalImage
+                       word:self.word.text];
         
         if (result) {
             POSTMSG(NSLS(@"kSaveOpusOK"));
@@ -816,12 +805,6 @@
         CommonDialog *dialog = nil;
         if (self.contest) {
             if (!_commitAsNormal) {
-                // TODO contest rem by Benson for contest changed, total contest info
-//                self.contest.opusCount ++;
-                if (![self.contest joined]) {
-                    // TODO contest rem by Benson for contest changed, total contest info
-//                    self.contest.participantCount ++;
-                }
                 [self.contest incCommitCount];
             }
             
@@ -1196,9 +1179,9 @@
 
 
 
-- (void)showInputAlertViewWithSubject:(BOOL)hasSubject
+- (void)showInputAlertView
 {
-    NSString *subject = hasSubject ? self.word.text : nil;
+    NSString *subject = self.word.text;
     NSString *content = self.opusDesc;
     [InputAlert showWithSubject:subject
                         content:content
@@ -1211,81 +1194,6 @@
             [self setOpusDesc:content];
         }
     }];
-    
-//    InputAlertView *v = nil;
-//    if ([GameApp forceChineseOpus]) {
-//        BOOL hasSNS = ([LocaleUtils isChina] || [[UserManager defaultManager] hasBindQQWeibo] || [[UserManager defaultManager] hasBindSinaWeibo]);
-//        
-//        ComposeInputDialogType type = 0;
-//        if (hasSubject == YES && hasSNS == YES) {
-//            type = ComposeInputDialogTypeTitleAndContentWithSNS;
-//            [v.titleInputField becomeFirstResponder];
-//            v = [InputAlertView createWithType:type];
-//
-//        }else if (hasSubject == YES && hasSNS == NO){
-//            type = ComposeInputDialogTypeTitleAndContent;
-//            [v.titleInputField becomeFirstResponder];
-//            v = [InputAlertView createWithType:type];
-//
-//        }else if (hasSubject == NO && hasSNS == YES){
-//            type = ComposeInputDialogTypeContentWithSNS;
-//            [v.contentInputView becomeFirstResponder];
-//            v = [InputAlertView createWithType:type];
-//
-//        }else{
-//            type = ComposeInputDialogTypeContent;
-//            [v.contentInputView becomeFirstResponder];
-//            v = [InputAlertView createWithType:type];
-//        }
-//        
-//    } else {
-//        v = [InputAlertView createWithType:ComposeInputDialogTypeContentWithSNS];
-//        [v.contentInputView becomeFirstResponder];
-//    }
-//    
-//    [v.titleInputField setText:self.word.text];
-//    [v.contentInputView setText:self.opusDesc];
-//    v.titleInputField.placeholder = NSLS(@"kSubjectPlaceholder");
-//
-//    
-//    if ([[UserManager defaultManager] getLanguageType] == EnglishType) {
-//        [v setMaxTitleLength:[PPConfigManager maxDrawEnglishTitleLen]];
-//    }else{
-//        [v setMaxTitleLength:[PPConfigManager maxDrawChineseTitleLen]];
-//    }
-//    
-//    [v setMaxContentLength:[PPConfigManager getMaxLengthOfDrawDesc]];
-//
-//    
-//    CommonDialog *dialog = [CommonDialog createDialogWithTitle:NSLS(@"kAddOpusDesc") customView:v style:CommonDialogStyleDoubleButton];
-//    dialog.manualClose = YES;
-//    [dialog showInView:self.view];
-//    
-//    [dialog setClickOkBlock:^(id infoView){
-//        
-//        if (hasSubject && [v.titleInputField.text length] <= 0) {
-//            POSTMSG(NSLS(@"kOpusNameInvaild"));
-//        }else if (hasSubject
-//                  && (!NSStringIsValidChinese(v.titleInputField.text)&&
-//                      !NSStringISValidEnglish(v.titleInputField.text)
-//                      )){
-//          POSTMSG(NSLS(@"kOnlyChineseOrEnglishTitleAllowed"));
-//            
-//          }else if([v.titleInputField.text length] > [PPConfigManager getOpusNameMaxLength]){
-//              NSString *msg = [NSString stringWithFormat:NSLS(@"kSubjectLengthLimited"),
-//                               [PPConfigManager getOpusNameMaxLength]];
-//              POSTMSG(msg);
-//          }
-//        else{
-//            [self commitOpus:v.titleInputField.text desc:v.contentInputView.text share:v.shareSet];
-//            dialog.manualClose = NO;
-//        }
-//
-//    }];
-//    [dialog setClickCancelBlock:^(id infoView){
-//        [self setOpusDesc:v.contentInputView.text];
-//        dialog.manualClose = NO;
-//    }];
 }
 
 - (IBAction)clickSubmitButton:(id)sender {
@@ -1318,28 +1226,33 @@
         }
     }else {
         if(self.contest){
-            if ([self.contest commitCountEnough]) {
-                NSString *title = [NSString stringWithFormat:NSLS(@"kContestCommitEnoughCommitAsNormal"),_contest.canSubmitCount];
-                [self alertCommitContestOpusAsNormalOpus:title];
-                return;
-            }
-            else if([self.contest canSubmit] == NO){
-                [self alertCommitContestOpusAsNormalOpus:NSLS(@"kContestSubmitEndSubmitNormal")];
-                return;
-            }
-            else if (![self.contest canUserJoined:[[UserManager defaultManager] userId]]) {
-                [self alertCommitContestOpusAsNormalOpus:NSLS(@"kContestNotForUserSubmitNormal")];
-                return;
-            }                
-            else if([self.contest isPassed]){
-                [self alertCommitContestOpusAsNormalOpus:NSLS(@"kContestEnd")];
-                return;
-            }
-            [self showInputAlertViewWithSubject:NO];
+            [self commitContestOpus];
         } else {
-            [self showInputAlertViewWithSubject:YES];
+            [self showInputAlertView];
         }
     }
+}
+
+- (void)commitContestOpus{
+    
+    if ([self.contest commitCountEnough]) {
+        NSString *title = [NSString stringWithFormat:NSLS(@"kContestCommitEnoughCommitAsNormal"),_contest.canSubmitCount];
+        [self alertCommitContestOpusAsNormalOpus:title];
+        return;
+    }
+    else if([self.contest canSubmit] == NO){
+        [self alertCommitContestOpusAsNormalOpus:NSLS(@"kContestSubmitEndSubmitNormal")];
+        return;
+    }
+    else if (![self.contest canUserJoined:[[UserManager defaultManager] userId]]) {
+        [self alertCommitContestOpusAsNormalOpus:NSLS(@"kContestNotForUserSubmitNormal")];
+        return;
+    }
+    else if([self.contest isPassed]){
+        [self alertCommitContestOpusAsNormalOpus:NSLS(@"kContestEnd")];
+        return;
+    }
+    [self showInputAlertView];
 }
 
 

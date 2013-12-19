@@ -565,40 +565,6 @@ typedef enum {
         tips.actionBlock = ^(NSInteger buttonIndex){
             
             [self handleActionIndex:buttonIndex opus:nil feed:feed];
-            
-//            switch (buttonIndex) {
-//                    
-//                case OPUS_ACTION_EDIT:
-//                    [self enterOpusDetail:feed];
-//                    break;
-//                    
-//                case OPUS_ACTION_DELETE:
-//                    [self deleteFeed:feed];
-//                    break;
-//
-//                case OPUS_ACTION_SHARE_SINA_WEIBO:
-//                    [self shareSNS:TYPE_SINA feed:feed];
-//                    break;
-//
-//                case OPUS_ACTION_SHARE_WEIXIN_SESSION:
-//                    [self shareSNS:TYPE_WEIXIN_SESSION feed:feed];
-//                    break;
-//
-//                case OPUS_ACTION_SHARE_WEIXIN_TIMELINE:
-//                    [self shareSNS:TYPE_WEIXIN_TIMELINE feed:feed];
-//                    break;
-//
-//                case OPUS_ACTION_SHARE_QQ_SPACE:
-//                    [self shareSNS:TYPE_QQSPACE feed:feed];
-//                    break;
-//                    
-//                case OPUS_ACTION_SHARE_QQ_WEIBO:
-//                    [self shareSNS:TYPE_QQ feed:feed];
-//                    break;
-//
-//                default:
-//                    break;
-//            }
         };
     }else{
         
@@ -625,36 +591,6 @@ typedef enum {
         tips.actionBlock = ^(NSInteger buttonIndex){
             
             [self handleActionIndex:buttonIndex opus:nil feed:feed];
-            
-//            switch (buttonIndex) {
-//                    
-//                case 0:
-//                    [self enterOpusDetail:feed];
-//                    break;
-//                    
-//                case 1:
-//                    [self unFavoriteOpus:feed];
-//                    break;
-//                    
-//                case OPUS_ACTION_SHARE_SINA_WEIBO:
-//                    [self shareSNS:TYPE_SINA feed:feed];
-//                    break;
-//                    
-//                case OPUS_ACTION_SHARE_WEIXIN_SESSION:
-//                    [self shareSNS:TYPE_WEIXIN_SESSION feed:feed];
-//                    break;
-//                    
-//                case OPUS_ACTION_SHARE_WEIXIN_TIMELINE:
-//                    [self shareSNS:TYPE_WEIXIN_TIMELINE feed:feed];
-//                    break;
-//                    
-//                case OPUS_ACTION_SHARE_QQ_SPACE:
-//                    [self shareSNS:TYPE_QQSPACE feed:feed];
-//                    break;
-//                    
-//                default:
-//                    break;
-//            }
         };
     }
 

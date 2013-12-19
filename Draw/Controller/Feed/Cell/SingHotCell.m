@@ -22,6 +22,7 @@
 - (void)dealloc {
     [_view1 release];
     [_view2 release];
+    [_view3 release];
     [_holderView1 release];
     [_holderView2 release];
     [_holderView3 release];
@@ -34,7 +35,8 @@
     
     cell.holderView1.backgroundColor = [UIColor clearColor];
     cell.holderView2.backgroundColor = [UIColor clearColor];
-    
+    cell.holderView3.backgroundColor = [UIColor clearColor];
+
     cell.view1 = [RankView createRankView:delegate type:RankViewTypeWhisper];
     cell.view2 = [RankView createRankView:delegate type:RankViewTypeWhisper];
     cell.view3 = [RankView createRankView:delegate type:RankViewTypeWhisper];
@@ -78,7 +80,7 @@
         self.holderView1.hidden = NO;
         self.holderView2.hidden = NO;
         self.holderView3.hidden = YES;
-    }else if ([feeds count] == 2){
+    }else if ([feeds count] == 3){
         
         DrawFeed *feed1 = [feeds objectAtIndex:0];
         DrawFeed *feed2 = [feeds objectAtIndex:1];

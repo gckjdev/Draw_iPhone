@@ -2160,6 +2160,7 @@
 "kDefaultDrawWord" = "MyPaint";
 "kNoRunningContest" = "No contest is running!";
 "kPainter" = "Painters";
+"kUserRankTitle" = "Users";
 
 "kFamousPlayer" = "Famous";
 "kLevelPlayer" = "Level";

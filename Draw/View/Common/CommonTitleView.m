@@ -123,10 +123,14 @@
     
     [_titleLabel addTapGuestureWithTarget:self selector:@selector(clickTitleLabel:)];
     
-    [self addSubview:_bgImageView];
-    [self addSubview:_titleLabel];
-    [self addSubview:_backButton];
+//    [self addSubview:_bgImageView];
+//    [self addSubview:_titleLabel];
+//    [self addSubview:_backButton];
     
+    [self insertSubview:_backButton atIndex:0];
+    [self insertSubview:_titleLabel atIndex:0];
+    [self insertSubview:_bgImageView atIndex:0];
+
     self.backButtonSelector = @selector(clickBack:);
     self.tag = COMMON_TITLE_VIEW_TAG;
     

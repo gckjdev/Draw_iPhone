@@ -186,11 +186,13 @@ int *getSingMainMenuTypeListWithFreeCoins()
 {
     int static list[] = {
         HomeMenuTypeSing,
-        HomeMenuTypeTask,
         HomeMenuTypeDrawBBS,
-        HomeMenuTypeDrawRank,
+        HomeMenuTypeDrawPainter,
         HomeMenuTypeDrawContest,
+        HomeMenuTypeDrawRank,
         HomeMenuTypeGuessSing,
+        HomeMenuTypeDrawBigShop,
+        HomeMenuTypeTask,
         HomeMenuTypeDrawMore,
         HomeMenuTypeEnd,
     };
@@ -206,6 +208,8 @@ int *getSingMainMenuTypeListWithoutFreeCoins()
         HomeMenuTypeDrawRank,
         HomeMenuTypeDrawContest,
         HomeMenuTypeGuessSing,
+        HomeMenuTypeDrawPainter,
+        HomeMenuTypeDrawBigShop,
         HomeMenuTypeDrawMore,
         HomeMenuTypeEnd,
     };
@@ -219,7 +223,7 @@ int *getSingBottomMenuTypeList()
         HomeMenuTypeSingDraft,
         HomeMenuTypeDrawFriend,
         HomeMenuTypeDrawMessage,
-        HomeMenuTypeDrawShop,
+        HomeMenuTypeBottomTask,
         HomeMenuTypeEnd
     };
     return list;
@@ -245,6 +249,7 @@ int *getSingBottomMenuTypeList()
                                  @(HomeMenuTypeSing) : NSLS(@"kSing"),
                                  @(HomeMenuTypeGuessSing) : NSLS(@"kGuessSing"),
                                  @(HomeMenuTypeDrawRank) : NSLS(@"kSingTop"),
+                                 @(HomeMenuTypeDrawPainter) : NSLS(@"kUserRankTitle"),
                                  };
         
         [SING_MENU_TITLE_DICT retain];  // make sure you retain the dictionary here for futher usage

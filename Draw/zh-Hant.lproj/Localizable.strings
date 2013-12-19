@@ -2197,6 +2197,8 @@
 "kDefaultDrawWord" = "畫";
 "kNoRunningContest" = "沒有正在進行的比賽!";
 "kPainter" = "畫家";
+"kUserRankTitle" = "玩家";
+
 "kFamousPlayer" = "聲望";
 "kLevelPlayer" = "等級";
 "kPopPlayer" = "活躍";

@@ -859,6 +859,8 @@ typedef enum{
 
 - (void)updateActionSheetIndexs
 {
+    SHARE_QQ_ZONE = -1;
+    
     int index = 0;
 //    SHARE_AS_GIF = -1;
     if (self.isDraftTab) {
