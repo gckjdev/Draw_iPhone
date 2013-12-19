@@ -156,32 +156,6 @@
     
 }
 
-- (void)textFieldDidChange:(UITextField *)textField{
-    
-    
-//    if ([self.nameTextField.text length] <= 0) {
-//        
-//        [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kSubjectPlaceCannotBlank") delayTime:1.5];
-//        return;
-//    }
-//    
-//    if (!NSStringIsValidChinese(self.nameTextField.text)
-//        && !NSStringISValidEnglish(self.nameTextField.text)){
-//        
-//        POSTMSG(NSLS(@"kOnlyChineseOrEnglishTitleAllowed"));
-//        return;
-//    }
-//    
-//    
-//    if([self.nameTextField.text length] > [PPConfigManager getOpusNameMaxLength]){
-//        
-//        NSString *msg = [NSString stringWithFormat:NSLS(@"kSubjectLengthLimited"),
-//                         [PPConfigManager getOpusNameMaxLength]];
-//        POSTMSG(msg);
-//        return;
-//    }
-}
-
 - (void)clickCloseKeyBoard:(id)sender{
     
     [self.nameTextField resignFirstResponder];
