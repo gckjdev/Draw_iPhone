@@ -256,6 +256,7 @@ enum{
     
 }
 
+
 + (void)didRemoveUser:(PBGameUser *)user
           fromTitleId:(NSInteger)titleId
 {
@@ -281,6 +282,18 @@ enum{
     
     [[[GroupManager defaultManager] tempMemberList] addObject:ut];
 }
++ (PBGroup *)updateGroup:(PBGroup *)group medalImageURL:(NSString *)url{
+    PBGroup_Builder *builder = [PBGroup builderWithPrototype:group];
+    [builder setMedalImage:url];
+    return [builder build];
+}
++ (PBGroup *)updateGroup:(PBGroup *)group BGImageURL:(NSString *)url
+{
+    PBGroup_Builder *builder = [PBGroup builderWithPrototype:group];
+    [builder setBgImage:url];
+    return [builder build];
+}
+
 
 + (void)didDeletedGroupTitle:(NSString *)groupId
                      titleId:(NSInteger)titleId

@@ -36,6 +36,20 @@
 @synthesize coins = _coins;
 
 
+- (PBGameUser *)toPBUser
+{
+    PBGameUser_Builder *builder = [[PBGameUser_Builder alloc] init];
+    
+    [builder setUserId:_friendUserId];
+    [builder setGender:[self isMale]];
+    [builder setNickName:_nickName];
+    [builder setLevel:_level];
+    [builder setAvatar:_avatar];
+    
+    PBGameUser *user = [builder build];
+    [builder release];
+    return user;
+}
 
 
 - (id)initWithDict:(NSDictionary *)dict

@@ -30,7 +30,19 @@ typedef enum{
 }NoticeType;
 
 
+
+
+
 @implementation PBGroupNotice(Ext)
+
+- (BOOL)isInvitation
+{
+    return TypeInviteMember == self.type || TypeInviteGuest == self.type;
+}
+- (BOOL)isJoinRequest
+{
+    return TypeRequest == self.type;
+}
 
 - (NSString *)desc
 {
