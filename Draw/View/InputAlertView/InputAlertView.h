@@ -8,26 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
-typedef enum {
-    ComposeInputDialogTypeContent,
-    ComposeInputDialogTypeTitleAndContent,
-    ComposeInputDialogTypeTitleAndContentWithSNS,
-    ComposeInputDialogTypeContentWithSNS,
-    
-} ComposeInputDialogType;
+@class InputAlertView;
 
-@interface InputAlertView : UIView
-
-@property (retain, nonatomic) IBOutlet UITextView *contentInputView;
-@property (retain, nonatomic) IBOutlet UITextField *titleInputField;
-
-+ (id)createWithType:(ComposeInputDialogType)type;
-- (NSSet *)shareSet;
-
-- (void)setMaxTitleLength:(int)maxTitleLeng;
-- (void)setMaxContentLength:(int)maxContentLen;
-
-@end
 
 
 typedef void (^InputAlertBlock)(BOOL confirm, NSString *subject, NSString *content, NSSet *shareSet);
