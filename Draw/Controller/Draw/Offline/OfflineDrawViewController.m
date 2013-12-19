@@ -672,7 +672,7 @@
     }
     else if(dialog.tag == DIALOG_TAG_COMMIT_AS_NORMAL_OPUS)
     {
-        [self showInputAlertViewWithSubject:YES];
+        [self showInputAlertView];
     }
     else if(dialog.tag == DIALOG_TAG_SUBMIT){
 
@@ -1196,9 +1196,9 @@
 
 
 
-- (void)showInputAlertViewWithSubject:(BOOL)hasSubject
+- (void)showInputAlertView
 {
-    NSString *subject = hasSubject ? self.word.text : nil;
+    NSString *subject = self.word.text;
     NSString *content = self.opusDesc;
     [InputAlert showWithSubject:subject
                         content:content
@@ -1211,81 +1211,6 @@
             [self setOpusDesc:content];
         }
     }];
-    
-//    InputAlertView *v = nil;
-//    if ([GameApp forceChineseOpus]) {
-//        BOOL hasSNS = ([LocaleUtils isChina] || [[UserManager defaultManager] hasBindQQWeibo] || [[UserManager defaultManager] hasBindSinaWeibo]);
-//        
-//        ComposeInputDialogType type = 0;
-//        if (hasSubject == YES && hasSNS == YES) {
-//            type = ComposeInputDialogTypeTitleAndContentWithSNS;
-//            [v.titleInputField becomeFirstResponder];
-//            v = [InputAlertView createWithType:type];
-//
-//        }else if (hasSubject == YES && hasSNS == NO){
-//            type = ComposeInputDialogTypeTitleAndContent;
-//            [v.titleInputField becomeFirstResponder];
-//            v = [InputAlertView createWithType:type];
-//
-//        }else if (hasSubject == NO && hasSNS == YES){
-//            type = ComposeInputDialogTypeContentWithSNS;
-//            [v.contentInputView becomeFirstResponder];
-//            v = [InputAlertView createWithType:type];
-//
-//        }else{
-//            type = ComposeInputDialogTypeContent;
-//            [v.contentInputView becomeFirstResponder];
-//            v = [InputAlertView createWithType:type];
-//        }
-//        
-//    } else {
-//        v = [InputAlertView createWithType:ComposeInputDialogTypeContentWithSNS];
-//        [v.contentInputView becomeFirstResponder];
-//    }
-//    
-//    [v.titleInputField setText:self.word.text];
-//    [v.contentInputView setText:self.opusDesc];
-//    v.titleInputField.placeholder = NSLS(@"kSubjectPlaceholder");
-//
-//    
-//    if ([[UserManager defaultManager] getLanguageType] == EnglishType) {
-//        [v setMaxTitleLength:[PPConfigManager maxDrawEnglishTitleLen]];
-//    }else{
-//        [v setMaxTitleLength:[PPConfigManager maxDrawChineseTitleLen]];
-//    }
-//    
-//    [v setMaxContentLength:[PPConfigManager getMaxLengthOfDrawDesc]];
-//
-//    
-//    CommonDialog *dialog = [CommonDialog createDialogWithTitle:NSLS(@"kAddOpusDesc") customView:v style:CommonDialogStyleDoubleButton];
-//    dialog.manualClose = YES;
-//    [dialog showInView:self.view];
-//    
-//    [dialog setClickOkBlock:^(id infoView){
-//        
-//        if (hasSubject && [v.titleInputField.text length] <= 0) {
-//            POSTMSG(NSLS(@"kOpusNameInvaild"));
-//        }else if (hasSubject
-//                  && (!NSStringIsValidChinese(v.titleInputField.text)&&
-//                      !NSStringISValidEnglish(v.titleInputField.text)
-//                      )){
-//          POSTMSG(NSLS(@"kOnlyChineseOrEnglishTitleAllowed"));
-//            
-//          }else if([v.titleInputField.text length] > [PPConfigManager getOpusNameMaxLength]){
-//              NSString *msg = [NSString stringWithFormat:NSLS(@"kSubjectLengthLimited"),
-//                               [PPConfigManager getOpusNameMaxLength]];
-//              POSTMSG(msg);
-//          }
-//        else{
-//            [self commitOpus:v.titleInputField.text desc:v.contentInputView.text share:v.shareSet];
-//            dialog.manualClose = NO;
-//        }
-//
-//    }];
-//    [dialog setClickCancelBlock:^(id infoView){
-//        [self setOpusDesc:v.contentInputView.text];
-//        dialog.manualClose = NO;
-//    }];
 }
 
 - (IBAction)clickSubmitButton:(id)sender {
@@ -1335,9 +1260,9 @@
                 [self alertCommitContestOpusAsNormalOpus:NSLS(@"kContestEnd")];
                 return;
             }
-            [self showInputAlertViewWithSubject:NO];
+            [self showInputAlertView];
         } else {
-            [self showInputAlertViewWithSubject:YES];
+            [self showInputAlertView];
         }
     }
 }

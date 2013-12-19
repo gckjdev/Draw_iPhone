@@ -11,7 +11,6 @@
 #import <QuartzCore/QuartzCore.h>
 #import "PPConfigManager.h"
 #import "UserManager.h"
-//#import "PPSNSIntegerationService.h"
 #import "PPSNSConstants.h"
 #import "PPViewController.h"
 #import "MBProgressHUD.h"
@@ -22,6 +21,28 @@
 #import "StringUtil.h"
 #import "WordFilterService.h"
 #import "AutoCreateViewByXib.h"
+
+typedef enum {
+    ComposeInputDialogTypeContent,
+    ComposeInputDialogTypeTitleAndContent,
+    ComposeInputDialogTypeTitleAndContentWithSNS,
+    ComposeInputDialogTypeContentWithSNS,
+    
+} ComposeInputDialogType;
+
+@interface InputAlertView : UIView
+
+@property (retain, nonatomic) IBOutlet UITextView *contentInputView;
+@property (retain, nonatomic) IBOutlet UITextField *titleInputField;
+
++ (id)createWithType:(ComposeInputDialogType)type;
+- (NSSet *)shareSet;
+
+- (void)setMaxTitleLength:(int)maxTitleLeng;
+- (void)setMaxContentLength:(int)maxContentLen;
+
+@end
+
 
 
 @implementation InputAlert
@@ -57,41 +78,26 @@
                   block:(InputAlertBlock)block
 {
     InputAlertView *v = nil;
-    BOOL hasSubject = [subject length] > 0;
-
-    if ([GameApp forceChineseOpus]) {
     
-        BOOL hasSNS = NO;
-        if (showSNS) {
-            hasSNS = ([LocaleUtils isChina]
-                      || [[UserManager defaultManager] hasBindQQWeibo]
-                      || [[UserManager defaultManager] hasBindSinaWeibo]);
-        }else{
-            hasSNS = NO;
-        }
-        
-        ComposeInputDialogType type = 0;
-        if (hasSubject == YES && hasSNS == YES) {
-            type = ComposeInputDialogTypeTitleAndContentWithSNS;
-            v = [InputAlertView createWithType:type];
-            [v.titleInputField becomeFirstResponder];
-        }else if (hasSubject == YES && hasSNS == NO){
-            type = ComposeInputDialogTypeTitleAndContent;
-            v = [InputAlertView createWithType:type];
-            [v.titleInputField becomeFirstResponder];
-        }else if (hasSubject == NO && hasSNS == YES){
-            type = ComposeInputDialogTypeContentWithSNS;
-            v = [InputAlertView createWithType:type];
-            [v.contentInputView becomeFirstResponder];
-        }else{
-            type = ComposeInputDialogTypeContent;
-            v = [InputAlertView createWithType:type];
-            [v.contentInputView becomeFirstResponder];
-        }
-        
-    } else {
-        v = [InputAlertView createWithType:ComposeInputDialogTypeContentWithSNS];
-        [v.contentInputView becomeFirstResponder];
+    BOOL hasSNS = NO;
+    if (showSNS) {
+        hasSNS = ([LocaleUtils isChina]
+                  || [[UserManager defaultManager] hasBindQQWeibo]
+                  || [[UserManager defaultManager] hasBindSinaWeibo]);
+    }else{
+        hasSNS = NO;
+    }
+    
+    ComposeInputDialogType type = 0;
+    
+    if (hasSNS == YES) {
+        type = ComposeInputDialogTypeTitleAndContentWithSNS;
+        v = [InputAlertView createWithType:type];
+        [v.titleInputField becomeFirstResponder];
+    }else{
+        type = ComposeInputDialogTypeTitleAndContent;
+        v = [InputAlertView createWithType:type];
+        [v.titleInputField becomeFirstResponder];
     }
     
     [v.titleInputField setText:subject];
@@ -109,29 +115,26 @@
     
     [dialog setClickOkBlock:^(id infoView){
         
-        NSString *newSubject = nil;
+        NSString *newSubject = subject;
 
-        if (hasSubject) {
-            
-            newSubject = v.titleInputField.text;
-            
-            if ([newSubject length] <= 0) {
-                POSTMSG(NSLS(@"kOpusNameInvaild"));
-                return;
-            }
-            
-            if (!NSStringIsValidChinese(newSubject)
-                 && !NSStringISValidEnglish(newSubject)) {
-                POSTMSG(NSLS(@"kOnlyChineseOrEnglishTitleAllowed"));
-                return;
-            }
-            
-            if([newSubject length] > [PPConfigManager getOpusNameMaxLength]){
-                NSString *msg = [NSString stringWithFormat:NSLS(@"kSubjectLengthLimited"),
-                                 [PPConfigManager getOpusNameMaxLength]];
-                POSTMSG(msg);
-                return;
-            }
+        newSubject = v.titleInputField.text;
+        
+        if ([newSubject length] <= 0) {
+            POSTMSG(NSLS(@"kOpusNameInvaild"));
+            return;
+        }
+        
+        if (!NSStringIsValidChinese(newSubject)
+             && !NSStringISValidEnglish(newSubject)) {
+            POSTMSG(NSLS(@"kOnlyChineseOrEnglishTitleAllowed"));
+            return;
+        }
+        
+        if([newSubject length] > [PPConfigManager getOpusNameMaxLength]){
+            NSString *msg = [NSString stringWithFormat:NSLS(@"kSubjectLengthLimited"),
+                             [PPConfigManager getOpusNameMaxLength]];
+            POSTMSG(msg);
+            return;
         }
         
         NSString *newContent = v.contentInputView.text;
@@ -150,7 +153,7 @@
         
         dialog.manualClose = NO;
         
-        NSString *newSubject = hasSubject ? v.titleInputField.text : nil;
+        NSString *newSubject = v.titleInputField.text;
         NSString *newContent = v.contentInputView.text;
         EXECUTE_BLOCK(block, NO, newSubject, newContent, v.shareSet);
     }];
@@ -161,6 +164,8 @@
 
 
 #define GAP (ISIPAD ? 15 : 8)
+
+
 
 @interface InputAlertView ()<UITextFieldDelegate, UITextViewDelegate>{
     int _maxTitleLength;

@@ -56,26 +56,28 @@
 - (void)showPopTipView
 {
     OfflineDrawViewController *oc = (OfflineDrawViewController *)[self controller];
-    CommonDialog *dialog = nil;
+
     if (isDrawApp()) {
         
-        InputAlertView *v = [InputAlertView createWithType:ComposeInputDialogTypeTitleAndContent];
-        v.titleInputField.text = oc.word.text;
-        v.titleInputField.placeholder = NSLS(@"kSubjectPlaceholder");
-        v.contentInputView.text = oc.opusDesc;
-        dialog = [CommonDialog createDialogWithTitle:NSLS(@"kEditOpusDesc") customView:v style:CommonDialogStyleDoubleButton];
-        dialog.delegate = self;
-        dialog.tag = DIALOG_TAG_OPUS_NAME_AND_OPUS_DESC;
-        dialog.manualClose = YES;
-        
+        NSString *subject = oc.word.text;
+        NSString *content = oc.opusDesc;
+        [InputAlert showWithSubjectWithoutSNS:subject
+                                      content:content
+                                       inView:oc.view
+                                        block:^(BOOL confirm, NSString *subject, NSString *content, NSSet *shareSet) {
+                                            
+                                            if (confirm) {
+                                                [self changeDrawWord:subject];
+                                                [self changeDesc:content];
+                                            }
+                                        }];
     } else {
-        dialog = [CommonDialog createInputViewDialogWith:NSLS(@"kEditOpusDesc")];
+        CommonDialog *dialog = [CommonDialog createInputViewDialogWith:NSLS(@"kEditOpusDesc")];
         dialog.inputTextView.text = oc.opusDesc;
         dialog.delegate = self;
         dialog.tag = DIALOG_TAG_OPUS_DESC;
+        [dialog showInView:oc.view];
     }
-    
-    [dialog showInView:oc.view];
 }
 
 
@@ -91,23 +93,6 @@
         UITextView *tv = (UITextView *)infoView;
         [self changeDesc:tv.text];
         
-    }else if(dialog.tag == DIALOG_TAG_OPUS_NAME_AND_OPUS_DESC){
-        InputAlertView *v = (InputAlertView *)infoView;
-        if ([v.titleInputField.text length] <= 0) {
-            POSTMSG(NSLS(@"kOpusNameInvaild"));
-        }else if ((!NSStringIsValidChinese(v.titleInputField.text)&&
-                   !NSStringISValidEnglish(v.titleInputField.text)
-                   )){
-                    POSTMSG(NSLS(@"kOnlyChineseOrEnglishTitleAllowed"));
-        }else if([v.titleInputField.text length] > [PPConfigManager getOpusNameMaxLength]){
-            NSString *msg = [NSString stringWithFormat:NSLS(@"kSubjectLengthLimited"),
-                             [PPConfigManager getOpusNameMaxLength]];
-            POSTMSG(msg);
-        }else{
-            [self changeDrawWord:v.titleInputField.text];
-            [self changeDesc:v.contentInputView.text];
-            dialog.manualClose = NO;
-        }
     }
 }
 

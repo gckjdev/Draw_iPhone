@@ -993,57 +993,7 @@ enum{
             [self deductCoinsAndSubmitOpus];
         }
     }];
-    
-    
-//    InputAlertView *v = [InputAlertView createWithType:ComposeInputDialogTypeTitleAndContent];
-//    [v.titleInputField becomeFirstResponder];
-//    [v.titleInputField setText:self.singOpus.pbOpus.name];
-//    [v.contentInputView setText:self.singOpus.pbOpus.desc];
-//    v.titleInputField.placeholder = NSLS(@"kSubjectPlaceholder");
-//
-//    CommonDialog *dialog = [CommonDialog createDialogWithTitle:NSLS(@"kAddOpusDesc") customView:v style:CommonDialogStyleDoubleButton];
-//    dialog.manualClose = YES;
-//    [dialog showInView:self.view];
-//    
-//    [dialog setClickOkBlock:^(id infoView){
-//                
-//        if ([v.titleInputField.text length] <= 0) {
-//
-//            POSTMSG(NSLS(@"kSubjectPlaceCannotBlank"));
-//            return;
-//        }
-//
-//        if (!NSStringIsValidChinese(v.titleInputField.text)
-//            && !NSStringISValidEnglish(v.titleInputField.text)){
-//
-//            POSTMSG(NSLS(@"kOnlyChineseOrEnglishTitleAllowed"));
-//            return;
-//        }
-//
-//
-//        if([v.titleInputField.text length] > [PPConfigManager getOpusNameMaxLength]){
-//
-//            NSString *msg = [NSString stringWithFormat:NSLS(@"kSubjectLengthLimited"),
-//                             [PPConfigManager getOpusNameMaxLength]];
-//            POSTMSG(msg);
-//            return;
-//        }
-//        
-//        [self.singOpus setName:v.titleInputField.text];
-//        [self.singOpus setDesc:v.contentInputView.text];
-//        [[NSNotificationCenter defaultCenter] postNotificationName:KEY_NOTIFICATION_SING_INFO_CHANGE object:nil];
-//
-//        dialog.manualClose = NO;
-//        
-//        [self deductCoinsAndSubmitOpus];
-//    }];
-//    
-//    [dialog setClickCancelBlock:^(id infoView){
-//        dialog.manualClose = NO;
-//    }];
 }
-
-
 
 - (IBAction)clickSubmitButton:(id)sender {
     
