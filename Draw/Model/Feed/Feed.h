@@ -79,8 +79,8 @@ typedef enum {
     NSString *_desc;
 }
 
-@property (nonatomic, retain) NSString *feedId;
-@property (nonatomic, retain) NSString *desc;
+@property (nonatomic, copy) NSString *feedId;
+@property (nonatomic, copy) NSString *desc;
 @property (nonatomic, assign) FeedType feedType;
 @property (nonatomic, assign) OpusStatus opusStatus;
 @property (nonatomic, retain) NSDate *createDate;
