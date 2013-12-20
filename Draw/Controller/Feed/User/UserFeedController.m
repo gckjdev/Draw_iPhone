@@ -247,6 +247,9 @@ typedef enum{
                 }
             }
             [self setNormalRankCell:cell WithFeeds:list];
+            
+            return cell;
+            
         }else if (isSingApp()){
             
             NSString *indentifier = [SingHotCell getCellIdentifier];
