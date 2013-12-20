@@ -131,21 +131,7 @@ typedef enum{
 
 - (void)removeNoticeFromTable:(PBGroupNotice *)notice
 {
-    if(notice == nil){
-        PPDebug(@"<removeNoticeFromTable> but notice is null");
-        return;
-    }
-    
-    NSInteger row = [self.tabDataList indexOfObject:notice];
-    if (row == NSNotFound) {
-        PPDebug(@"tab is changed.");
-        return;
-    }
-    [self.tabDataList removeObject:notice];
-
-    PPDebug(@"<removeNoticeFromTable> notice id = %@, row = %d", notice.noticeId, row);
-    NSIndexPath *path = [NSIndexPath indexPathForRow:row inSection:0];
-    [self.dataTableView deleteRowsAtIndexPaths:@[path] withRowAnimation:UITableViewRowAnimationFade];
+    [self removeModelData:notice];
     
 }
 
@@ -158,6 +144,18 @@ typedef enum{
             [self removeNoticeFromTable:notice];
         }
     }];
+}
+
+- (void)removeModelData:(id)data
+{
+    if (data) {
+        NSUInteger index = [self.tabDataList objectAtIndex:data];
+        if (index != NSNotFound) {
+            [self.tabDataList removeObject:data];
+            NSIndexPath *indexPath = [NSIndexPath indexPathForRow:index inSection:0];
+            [self.dataTableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+        }        
+    }
 }
 
 - (void)handleRequestNotice:(PBGroupNotice *)notice accept:(BOOL)accpet
@@ -196,6 +194,7 @@ typedef enum{
                     [self hideActivity];
                     if (!error) {
                         POSTMSG(NSLS(@"kDone"));
+                        [self removeNoticeFromTable:_selectedNotice];
                     }
                 }];
             }
