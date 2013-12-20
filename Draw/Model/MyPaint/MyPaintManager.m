@@ -429,6 +429,7 @@ static MyPaintManager* _defaultManager;
     [newMyPaint setDrawByMe:[NSNumber numberWithBool:drawByMe]];
     [newMyPaint setDrawUserId:feed.feedUser.userId];
     [newMyPaint setDrawUserNickName:feed.feedUser.nickName];
+    [newMyPaint setDrawWord:feed.wordText];
     [newMyPaint setCreateDate:[NSDate date]];
     /*
     if (isSimpleDrawApp()) {

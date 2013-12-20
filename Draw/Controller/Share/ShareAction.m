@@ -118,6 +118,7 @@
         self.isDrawByMe = ([[UserManager defaultManager] isMe:feed.author.userId]);
         self.isGIF = NO;
         self.drawUserId = feed.author.userId;
+        self.drawWord = feed.wordText;
         
         NSString* path = [NSString stringWithFormat:@"%@/%@.jpg", NSTemporaryDirectory(), feed.feedId];
         BOOL result=[[image data] writeToFile:path atomically:YES];
