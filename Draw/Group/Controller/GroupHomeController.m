@@ -18,6 +18,7 @@
 #import "SearchPostController.h"
 #import "BBSPostDetailController.h"
 #import "SearchGroupController.h"
+#import "UIViewController+BGImage.h"
 
 @interface GroupHomeController ()
 {
@@ -46,15 +47,20 @@
     NSInteger count = [self tabCount];
     for (int i = 0; i < count; ++ i) {
         GroupTab tab = [self tabIDforIndex:i];
+        UIButton *button;
         if ([self isSubGroupTab:tab]) {
-            UIButton *button = (id)[self.subTabsHolder viewWithTag:tab];
+            button = (id)[self.subTabsHolder viewWithTag:tab];
             SET_BUTTON_SQUARE_STYLE_YELLOW(button);
             [button setTitleColor:COLOR_WHITE forState:UIControlStateNormal];
             [button setBackgroundImage:IMAGE_FROM_COLOR(COLOR_YELLOW) forState:UIControlStateSelected];
         }else{
-            UIButton *button = (id)[self.tabsHolderView viewWithTag:tab];
+            button = (id)[self.tabsHolderView viewWithTag:tab];
             SET_BUTTON_AS_COMMON_TAB_STYLE(button);
         }
+        NSString *title = [self tabTitleforIndex:i];
+        [button setTitle:title forState:UIControlStateNormal];
+        [button setTitle:title forState:UIControlStateSelected];
+        [button setTitle:title forState:UIControlStateHighlighted];
     }
 }
 
@@ -97,7 +103,8 @@
     [self.titleView setTitle:NSLS(@"kGroup")];
     [self.titleView setTarget:self];
     [self.titleView setBackButtonSelector:@selector(clickBack:)];
-
+    [self setDefaultBGImage];
+    
     [self initTabButtons];
     [self clickTabButton:[self defaultTabButton]];
     [self updateFooterView];
@@ -411,7 +418,7 @@ SET_CELL_BG_IN_CONTROLLER
 
 - (void)groupCell:(GroupCell *)cell goUnfollowGroup:(PBGroup *)group
 {
-    [self showActivityWithText:NSLS(@"kUNFollowing")];
+    [self showActivityWithText:NSLS(@"kUnfollowing")];
     [[GroupService defaultService] unfollowGroup:group.groupId
                                         callback:^(NSError *error) {
         [self hideActivity];

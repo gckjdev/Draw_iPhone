@@ -82,10 +82,8 @@ static GroupService *_staticGroupService = nil;
                     if ([output.pbResponse.groupListList count] != 0) {
                         [[GroupManager defaultManager] collectGroups:output.pbResponse.groupListList];
                     }
-                    EXECUTE_BLOCK(callback, output.pbResponse, error);
                 }
-
-                
+                EXECUTE_BLOCK(callback, output.pbResponse, error);
 
             });
         });

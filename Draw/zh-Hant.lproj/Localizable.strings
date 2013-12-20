@@ -2136,6 +2136,15 @@
 "kGroupNameIsEmpty" = "家族名字不能為空。";
 "kGroupNameTooLong" = "家族名字不能長於16個字符。";
 
+"kGroupNoticeIDEmpty" = "通知已被刪除或不存在。";
+"kInvalidHandleType" = "操作不合法，請檢查。";
+"kGroupNoticeNotFound" = "通知已被刪除或不存在，不能完成操作。";
+"kTitleIDExits" = "職位已經存在，請不要重復創建。";
+"kNotGroupMember" = "用戶不是家族普通成員，不能完成本操作。";
+"kNotGroupAdmin" = "用戶不是家族管理員，不能完成本操作。";
+"kNotInvitee" = "你沒有被邀請，或者邀請已經失效，不能完成本操作。";
+"kUnknowError" = "未知錯誤。";
+
 "kGroup" = "家族";
 "kGroupBulletinDesc" = "%@ 在 %@ 中發布了公告。";
 "kGroupJoinDesc" = "%@ 申請加入 %@";
@@ -2158,6 +2167,11 @@
 
 "kContentDesc" = "內容：%@";
 "kPostscriptDesc" = "附言：%@";
+
+"kGuest" = "嘉賓";
+"kAdmin" = "管理員";
+
+"kGroupMemberNumber" = "%d 人";
 
 "kGroupTitleDesc" = "%@  %d人";
 
@@ -2186,6 +2200,41 @@
 
 "kCanotCreateTopic" = "對不起，不是家族成員或嘉賓不能創建話題。";
 "kCanotGroupChat" = "對不起，不是家族成員或嘉賓不能進行群聊。";
+
+/////
+"kCreatingGroup" = "創建家族中...";
+"kCreateTitle" = "添加職位";
+"kCreatingTitle" = "添加職位中...";
+"kChangeGroupIcon" = "更新家族圖標";
+"kChangeGroupBG" = "更新家族背景";
+"kManage" = "管理";
+"kEditGroupName" = "修改家族名稱";
+"kEditGroupSignature" = "更新家族簽名";
+
+"kEditGroupDesc" = "修改家族介紹";
+"kEditGroupFee" = "修改家族成員會費";
+
+"kUserDetail" = "用戶詳情";
+"kRemoveAdmin" = "移除管理員";
+"kChangeTitle" = "修改職位";
+"kRemoveMember" = "移除成員";
+"kSetAsAdmin" = "設為管理員";
+"kRemovingAdmin" = "移除管理員中...";
+"kChangingTitle" = "修改職位中...";
+"kExpeling" = "移除成員中...";
+"kSettingAsAdmin" = "設置管理員中...";
+"kGroupUserInvited" = "已經發送邀請，請等候回復。";
+"kInviting" = "發送邀請中...";
+"kGroupTabGroup" = "家族";
+"kGroupTabTopic" = "話題";
+"kGroupTabFollow" = "關註";
+"kGroupTabGroupFollow" = "關註";
+"kGroupTabGroupNew" = "最新";
+"kGroupTabGroupBalance" = "財富";
+"kGroupTabGroupActive" = "活躍";
+"kGroupTabGroupFame" = "聲望";
+"kIgnoring" = "發送忽略請求中...";
+"kRejecting" = "發送拒絕請求中...";
 
 /*********************小吉画画国际化字符串开始 ************************/
 "kLittleGeeRecommend" = "推薦";

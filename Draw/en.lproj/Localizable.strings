@@ -2102,6 +2102,15 @@
 "kGroupNameIsEmpty" = "The group name is empty.";
 "kGroupNameTooLong" = "The group name length should be less than 16";
 
+"kGroupNoticeIDEmpty" = "Group notice id is empty or null.";
+"kInvalidHandleType" = "Invalid hanle type.";
+"kGroupNoticeNotFound" = "Group notice not found.";
+"kTitleIDExits" = "Title is exist.";
+"kNotGroupMember" = "The user is not a member of the group, can't be changed into an admin.";
+"kNotGroupAdmin" = "The user is not an admin of the group, can't be changed into a member.";
+"kNotInvitee" = "You're without invitation from the group, operation canceled.";
+"kUnknowError" = "Error of remote server.";
+
 "kGroup" = "Group";
 "kGroupBulletinDesc" = "%@ posted a notice in %@.";
 "kGroupJoinDesc" = "%@ applied to join %@.";
@@ -2129,6 +2138,11 @@
 "kGroupRequest" = "Request";
 "kGroupNotice" = "Notice";
 "kAtMe" = "@Me";
+"kGuest" = "Guest";
+"kAdmin" = "Admin";
+
+"kGroupMemberNumber" = "(%d)";
+
 
 "kGroupTitleDesc" = "%@ (%d)";
 "kGroupCreator" = "Creator %@";
@@ -2147,6 +2161,42 @@
 
 "kCanotCreateTopic" = "No premission to create a topic.";
 "kCanotGroupChat" = "No premission to start group chat.";
+
+
+"kCreatingGroup" = "Adding group...";
+"kCreateTitle" = "Add title";
+"kCreatingTitle" = "Adding title...";
+"kChangeGroupIcon" = "Edit icon";
+"kChangeGroupBG" = "Edit BG";
+"kManage" = "Manage";
+"kEditGroupName" = "Edit group name";
+"kEditGroupSignature" = "Edit group signature";
+
+"kEditGroupDesc" = "Edit group description";
+"kEditGroupFee" = "Edit group fee";
+
+"kUserDetail" = "Profile";
+"kRemoveAdmin" = "Remove admin";
+"kChangeTitle" = "Change title";
+"kRemoveMember" = "Remove member";
+"kSetAsAdmin" = "Set admin";
+"kRemovingAdmin" = "Removing admin...";
+"kChangingTitle" = "Changing title...";
+"kExpeling" = "Removing member...";
+"kSettingAsAdmin" = "To be admin...";
+"kGroupUserInvited" = "Invitation was sent";
+"kInviting" = "Sending invitation...";
+"kGroupTabGroup" = "Group";
+"kGroupTabTopic" = "Post";
+"kGroupTabFollow" = "Focus";
+"kGroupTabGroupFollow" = "Focus";
+"kGroupTabGroupNew" = "New";
+"kGroupTabGroupBalance" = "Balance";
+"kGroupTabGroupActive" = "Active";
+"kGroupTabGroupFame" = "Fame";
+"kIgnoring" = "Sending ignore request...";
+"kRejecting" = "Sending rejection request...";
+
 
 "kSeeAllPost" = "All";
 "kSeeLZOnly" = "Mine";

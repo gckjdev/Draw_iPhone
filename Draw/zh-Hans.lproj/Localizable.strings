@@ -2127,6 +2127,16 @@
 "kGroupNameIsEmpty" = "家族名字不能为空。";
 "kGroupNameTooLong" = "家族名字不能长于16个字符。";
 
+"kGroupNoticeIDEmpty" = "通知已被删除或不存在。";
+"kInvalidHandleType" = "操作不合法，请检查。";
+"kGroupNoticeNotFound" = "通知已被删除或不存在，不能完成操作。";
+"kTitleIDExits" = "职位已经存在，请不要重复创建。";
+"kNotGroupMember" = "用户不是家族普通成员，不能完成本操作。";
+"kNotGroupAdmin" = "用户不是家族管理员，不能完成本操作。";
+"kNotInvitee" = "你没有被邀请，或者邀请已经失效，不能完成本操作。";
+"kUnknowError" = "未知错误。";
+
+
 
 "kGroup" = "家族";
 "kGroupBulletinDesc" = "%@ 在 %@ 中发布了公告。";
@@ -2152,6 +2162,10 @@
 
 "kContentDesc" = "内容：%@";
 "kPostscriptDesc" = "附言：%@";
+"kGuest" = "嘉宾";
+"kAdmin" = "管理员";
+
+"kGroupMemberNumber" = "%d 人";
 
 "kGroupTitleDesc" = "%@  %d人";
 
@@ -2181,6 +2195,40 @@
 "kSeeLZOnly" = "只看楼主";
 "kSeeMeOnly" = "只看用户";
 
+
+"kCreatingGroup" = "创建家族中...";
+"kCreateTitle" = "添加职位";
+"kCreatingTitle" = "添加职位中...";
+"kChangeGroupIcon" = "更新家族图标";
+"kChangeGroupBG" = "更新家族背景";
+"kManage" = "管理";
+"kEditGroupName" = "修改家族名称";
+"kEditGroupSignature" = "更新家族签名";
+
+"kEditGroupDesc" = "修改家族介绍";
+"kEditGroupFee" = "修改家族成员会费";
+
+"kUserDetail" = "用户详情";
+"kRemoveAdmin" = "移除管理员";
+"kChangeTitle" = "修改职位";
+"kRemoveMember" = "移除成员";
+"kSetAsAdmin" = "设为管理员";
+"kRemovingAdmin" = "移除管理员中...";
+"kChangingTitle" = "修改职位中...";
+"kExpeling" = "移除成员中...";
+"kSettingAsAdmin" = "设置管理员中...";
+"kGroupUserInvited" = "已经发送邀请，请等候回复。";
+"kInviting" = "发送邀请中...";
+"kGroupTabGroup" = "家族";
+"kGroupTabTopic" = "话题";
+"kGroupTabFollow" = "关注";
+"kGroupTabGroupFollow" = "关注";
+"kGroupTabGroupNew" = "最新";
+"kGroupTabGroupBalance" = "财富";
+"kGroupTabGroupActive" = "活跃";
+"kGroupTabGroupFame" = "声望";
+"kIgnoring" = "发送忽略请求中...";
+"kRejecting" = "发送拒绝请求中...";
 
 /*********************小吉画画国际化字符串开始 ************************/
 "kLittleGeeRecommend" = "推荐";
