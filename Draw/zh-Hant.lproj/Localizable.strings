@@ -1591,6 +1591,9 @@
 "kRestart" = "重玩";
 "kSelectGuessMode" = "選擇猜畫模式";
 
+"kDetectRecordPermissionDeny" = "訪問權限";
+"kPleaseEnableRecordPermission" = "請依次打開你的iPhone/iPad裏的“設置－隱私－麥克風”，在出現的列表裏允許%@訪問你的手機麥克風。";
+
 "kHappGuessMode" = "歡樂模式";
 "kGeniusGuessMode" = "天才模式";
 "kContestGuessMode" = "猜畫比賽";

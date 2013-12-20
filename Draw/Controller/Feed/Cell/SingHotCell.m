@@ -66,6 +66,7 @@
         
         DrawFeed *feed1 = [feeds objectAtIndex:0];
         [self.view1 setViewInfo:feed1];
+        [self.view1 updateViewInfoForContestOpus:feed1];
 
         self.holderView1.hidden = NO;
         self.holderView2.hidden = YES;
@@ -76,6 +77,10 @@
         DrawFeed *feed2 = [feeds objectAtIndex:1];
         [self.view1 setViewInfo:feed1];
         [self.view2 setViewInfo:feed2];
+        
+        [self.view1 updateViewInfoForContestOpus:feed1];
+        [self.view2 updateViewInfoForContestOpus:feed2];
+
 
         self.holderView1.hidden = NO;
         self.holderView2.hidden = NO;
@@ -89,6 +94,10 @@
         [self.view2 setViewInfo:feed2];
         [self.view3 setViewInfo:feed3];
         
+        [self.view1 updateViewInfoForContestOpus:feed1];
+        [self.view2 updateViewInfoForContestOpus:feed2];
+        [self.view3 updateViewInfoForContestOpus:feed3];
+
         self.holderView1.hidden = NO;
         self.holderView2.hidden = NO;
         self.holderView3.hidden = NO;

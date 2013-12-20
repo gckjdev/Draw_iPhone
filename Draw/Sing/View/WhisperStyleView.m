@@ -153,9 +153,11 @@ AUTO_CREATE_VIEW_BY_XIB(WhisperStyleView);
     self.label.font = [UIFont systemFontOfSize:ISIPAD ? 25 : 15];
     self.label.numberOfLines = 3;
     
-    [self.label wrapTextWithConstrainedSize:CGSizeMake(self.bounds.size.width * 0.8, self.bounds.size.height)];
+//    [self.label wrapTextWithConstrainedSize:CGSizeMake(self.bounds.size.width * 0.8, self.bounds.size.height)];
+    
     [self.label updateWidth:self.bounds.size.width];
     [self.label updateHeight:self.bounds.size.height];
+    
     self.label.center = CGPointMake(self.bounds.size.width/2, self.bounds.size.height/2);
 }
 
