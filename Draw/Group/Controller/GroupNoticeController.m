@@ -131,21 +131,7 @@ typedef enum{
 
 - (void)removeNoticeFromTable:(PBGroupNotice *)notice
 {
-    if(notice == nil){
-        PPDebug(@"<removeNoticeFromTable> but notice is null");
-        return;
-    }
-    
-    NSInteger row = [self.tabDataList indexOfObject:notice];
-    if (row == NSNotFound) {
-        PPDebug(@"tab is changed.");
-        return;
-    }
-    [self.tabDataList removeObject:notice];
-
-    PPDebug(@"<removeNoticeFromTable> notice id = %@, row = %d", notice.noticeId, row);
-    NSIndexPath *path = [NSIndexPath indexPathForRow:row inSection:0];
-    [self.dataTableView deleteRowsAtIndexPaths:@[path] withRowAnimation:UITableViewRowAnimationFade];
+    [self removeModelData:notice];
     
 }
 
@@ -158,6 +144,18 @@ typedef enum{
             [self removeNoticeFromTable:notice];
         }
     }];
+}
+
+- (void)removeModelData:(id)data
+{
+    if (data) {
+        NSUInteger index = [self.tabDataList objectAtIndex:data];
+        if (index != NSNotFound) {
+            [self.tabDataList removeObject:data];
+            NSIndexPath *indexPath = [NSIndexPath indexPathForRow:index inSection:0];
+            [self.dataTableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+        }        
+    }
 }
 
 - (void)handleRequestNotice:(PBGroupNotice *)notice accept:(BOOL)accpet
@@ -177,6 +175,34 @@ typedef enum{
     }];
 }
 
+- (void)handleInvitationNotice:(PBGroupNotice *)notice accept:(BOOL)accpet
+{
+    if (notice == nil) {
+        [self hideActivity];
+        PPDebug(@"<handleInvitationNotice> error!! notice is nil");
+        return;
+    }
+    NSString *showTitle = (accpet ? NSLS(@"kAccepting") : NSLS(@"kRejecting"));
+    [self showActivityWithText:showTitle];
+    if (accpet) {        
+        [[GroupService defaultService] acceptInvitation:_selectedNotice.noticeId callback:^(NSError *error) {
+            [self hideActivity];
+            if (!error) {
+                [self removeNoticeFromTable:_selectedNotice];
+                [[[GroupManager defaultManager] followedGroupIds] addObject:_selectedNotice.groupId];
+            }
+        }];
+    }else{
+        [[GroupService defaultService] rejectInvitation:_selectedNotice.noticeId callback:^(NSError *error) {
+            [self hideActivity];
+            if (!error) {
+                [self removeNoticeFromTable:_selectedNotice];
+            }
+        }];
+    }
+    
+}
+
 - (void)optionView:(BBSOptionView *)optionView didSelectedButtonIndex:(NSInteger)index
 {
 
@@ -192,12 +218,7 @@ typedef enum{
             if ([_selectedNotice isJoinRequest]) {
                 [self handleRequestNotice:_selectedNotice accept:accept];
             }else if([_selectedNotice isInvitation]){
-                [[GroupService defaultService] acceptInvitation:_selectedNotice.noticeId callback:^(NSError *error) {
-                    [self hideActivity];
-                    if (!error) {
-                        POSTMSG(NSLS(@"kDone"));
-                    }
-                }];
+                [self handleInvitationNotice:_selectedNotice accept:accept];
             }
         }else if (index == NOTICE_OPTION_IGNORE) {
             [self ignoreNotice:_selectedNotice];
