@@ -862,7 +862,6 @@ typedef enum{
     SHARE_QQ_ZONE = -1;
     
     int index = 0;
-//    SHARE_AS_GIF = -1;
     if (self.isDraftTab) {
         EDIT  = index++;
     }else{
@@ -870,7 +869,6 @@ typedef enum{
     }
     
     SHARE_AS_PHOTO = -1;
-//        SHARE_AS_PHOTO = index++;
     
     REPLAY = index++;
     DELETE = index++;
@@ -893,20 +891,7 @@ typedef enum{
     DELETE_ALL = index++;
     DELETE_ALL_MINE = index++;
     DELETE_ALL_DRAFT = index++;
-    CANCEL = index++;
-
-//        if (self.isDraftTab) {
-//            EDIT  = index++;
-//        }else{
-//            EDIT = -1;
-//        }
-//        SHARE_AS_PHOTO = index++;
-//        REPLAY = index++;
-//        DELETE = index++;
-//        DELETE_ALL = index++;
-//        DELETE_ALL_MINE = index++;
-//        DELETE_ALL_DRAFT = index++;
-//        CANCEL = index++;            
+    CANCEL = index++;        
     
 }
 

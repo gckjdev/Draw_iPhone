@@ -29,6 +29,13 @@
     [self.pbOpusBuilder setSing:[builder build]];
 }
 
+- (void)setVoiceDuration:(int)fileDuration
+{
+    PBSingOpus_Builder *builder = [PBSingOpus builderWithPrototype:self.pbOpusBuilder.sing];
+    [builder setVoiceDuration:fileDuration];
+    [self.pbOpusBuilder setSing:[builder build]];    
+}
+
 - (void)setVoiceType:(PBVoiceType)voiceType{
     PBSingOpus_Builder *builder = [PBSingOpus builderWithPrototype:self.pbOpusBuilder.sing];
     [builder setVoiceType:voiceType];
