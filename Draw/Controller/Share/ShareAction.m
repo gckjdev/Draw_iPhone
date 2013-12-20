@@ -680,7 +680,7 @@
                                                  text:_drawWord
                                         imageFilePath:_imageFilePath
                                              audioURL:audioURL
-                                                title:self.feed.desc
+                                                title:self.feed.pbFeed.opusDesc
                                                inView:self.superViewController.view
                                            awardCoins:[PPConfigManager getShareWeiboReward]
                                        successMessage:NSLS(@"kShareWeiboSucc")
