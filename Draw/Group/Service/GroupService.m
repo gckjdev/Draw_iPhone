@@ -75,6 +75,7 @@ static GroupService *_staticGroupService = nil;
                     PPDebug(@"<GroupService> load data error = %@", error);
                     [DrawError postError:error];
                     
+                    
                 }else{                    
                     if ([output.pbResponse hasGroup]) {
                         [[GroupManager defaultManager] collectGroup:output.pbResponse.group];
@@ -83,7 +84,8 @@ static GroupService *_staticGroupService = nil;
                         [[GroupManager defaultManager] collectGroups:output.pbResponse.groupListList];
                     }
                 }
-                EXECUTE_BLOCK(callback, output.pbResponse, error);
+
+                EXECUTE_BLOCK(callback, output.pbResponse, error);                
 
             });
         });

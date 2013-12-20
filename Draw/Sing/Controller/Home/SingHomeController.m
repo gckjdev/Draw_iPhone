@@ -186,10 +186,10 @@ int *getSingMainMenuTypeListWithFreeCoins()
 {
     int static list[] = {
         HomeMenuTypeSing,
-        HomeMenuTypeDrawBBS,
         HomeMenuTypeDrawPainter,
-        HomeMenuTypeDrawContest,
+        HomeMenuTypeDrawBBS,
         HomeMenuTypeDrawRank,
+        HomeMenuTypeDrawContest,
         HomeMenuTypeGuessSing,
         HomeMenuTypeDrawBigShop,
         HomeMenuTypeTask,

@@ -305,29 +305,8 @@ typedef enum{
         
     }else if(tab.tabID == MyTypeDrawToMe){
 
-        if (isDrawApp()) {
-            NSString *CellIdentifier = @"RankCell";//[RankFirstCell getCellIdentifier];
-            UITableViewCell *cell = [theTableView dequeueReusableCellWithIdentifier:CellIdentifier];
-            
-            if (cell == nil) {
-                cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
-            }else{
-                [self clearCellSubViews:cell];
-            }
-            
-            cell.selectionStyle = UITableViewCellSelectionStyleNone;
-            cell.accessoryType = UITableViewCellAccessoryNone;
-            
-            NSInteger startIndex = (indexPath.row * NORMAL_CELL_VIEW_NUMBER);
-            NSMutableArray *list = [NSMutableArray array];
-            for (NSInteger i = startIndex; i < startIndex+NORMAL_CELL_VIEW_NUMBER; ++ i) {
-                NSObject *object = [self saveGetObjectForIndex:i];
-                if (object) {
-                    [list addObject:object];
-                }
-            }
-            [self setNormalRankCell:cell WithFeeds:list];
-        }else if (isSingApp()){
+
+        if (isSingApp()){
             
             NSString *indentifier = [SingHotCell getCellIdentifier];
             SingHotCell *cell = [theTableView dequeueReusableCellWithIdentifier:indentifier];
@@ -349,6 +328,30 @@ typedef enum{
             
             [cell setCellInfo:feeds];
             
+            return cell;
+        }
+        else {
+            NSString *CellIdentifier = @"RankCell";//[RankFirstCell getCellIdentifier];
+            UITableViewCell *cell = [theTableView dequeueReusableCellWithIdentifier:CellIdentifier];
+            
+            if (cell == nil) {
+                cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
+            }else{
+                [self clearCellSubViews:cell];
+            }
+            
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
+            cell.accessoryType = UITableViewCellAccessoryNone;
+            
+            NSInteger startIndex = (indexPath.row * NORMAL_CELL_VIEW_NUMBER);
+            NSMutableArray *list = [NSMutableArray array];
+            for (NSInteger i = startIndex; i < startIndex+NORMAL_CELL_VIEW_NUMBER; ++ i) {
+                NSObject *object = [self saveGetObjectForIndex:i];
+                if (object) {
+                    [list addObject:object];
+                }
+            }
+            [self setNormalRankCell:cell WithFeeds:list];
             return cell;
         }
         

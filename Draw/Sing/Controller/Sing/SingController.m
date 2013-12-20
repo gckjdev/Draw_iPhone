@@ -1258,7 +1258,10 @@ enum{
     PPDebug(@"<didGetFileDuration> file duration=%f, recorder duration=%f", fileDuration, _recorder.recordDuration);
     
     if (fileDuration <= 0.0001f){
-        _fileDuration = _recorder.recordDuration;
+        if (_recorder.recordDuration > 0.00001f){
+            // maybe because user disable microphone in iOS7
+            [VoiceRecorder detectRecordPermission];
+        }
     }
     else{
         _fileDuration = fileDuration + 0.5;

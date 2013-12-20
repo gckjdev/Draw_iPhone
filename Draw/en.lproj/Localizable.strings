@@ -1617,6 +1617,9 @@
 "kRestart" = "Restart";
 "kSelectGuessMode" = "Select Guess Mode";
 
+"kPleaseEnableRecordPermission" = "Record permission is deny, please enable it for this app.";
+"kDetectRecordPermissionDeny" = "Permission deny";
+
 "kHappGuessMode" = "HAPPY MODE";
 "kGeniusGuessMode" = "GENIUS MODE";
 "kContestGuessMode" = "Contest";

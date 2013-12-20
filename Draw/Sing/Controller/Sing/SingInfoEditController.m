@@ -83,7 +83,7 @@
     self.descTextView.delegate = self;
     [self.descTextView becomeFirstResponder];
     
-    [self.nameTextField addTarget:self action:@selector(textFieldDidChange:) forControlEvents:UIControlEventEditingChanged];
+//    [self.nameTextField addTarget:self action:@selector(textFieldDidChange:) forControlEvents:UIControlEventEditingChanged];
     
     NSString *tagString = [PPConfigManager getSingTagList];
     NSArray *tagList = [tagString componentsSeparatedByString:@"$"];

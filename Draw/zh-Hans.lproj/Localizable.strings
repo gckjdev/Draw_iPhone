@@ -1591,9 +1591,12 @@
 "kCostDay:%d, hour:%d, minus:%d" = "耗时: %d天%d小时%d分钟";
 "kAwardIs:%d" = "奖励: %d金币";
 
-"kIGotIt" = "确定";
+"kIGotIt" = "我知道了";
 "kRestart" = "重玩";
 "kSelectGuessMode" = "选择猜画模式";
+
+"kDetectRecordPermissionDeny" = "访问权限";
+"kPleaseEnableRecordPermission" = "请依次打开你的iPhone/iPad里的“设置－隐私－麦克风”，在出现的列表里允许%@访问你的手机麦克风。";
 
 "kHappGuessMode" = "欢乐模式";
 "kGeniusGuessMode" = "天才模式";

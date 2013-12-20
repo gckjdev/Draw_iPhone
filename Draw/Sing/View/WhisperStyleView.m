@@ -153,9 +153,11 @@ AUTO_CREATE_VIEW_BY_XIB(WhisperStyleView);
     self.label.font = [UIFont systemFontOfSize:ISIPAD ? 25 : 15];
     self.label.numberOfLines = 3;
     
-    [self.label wrapTextWithConstrainedSize:CGSizeMake(self.bounds.size.width * 0.8, self.bounds.size.height)];
+//    [self.label wrapTextWithConstrainedSize:CGSizeMake(self.bounds.size.width * 0.8, self.bounds.size.height)];
+    
     [self.label updateWidth:self.bounds.size.width];
     [self.label updateHeight:self.bounds.size.height];
+    
     self.label.center = CGPointMake(self.bounds.size.width/2, self.bounds.size.height/2);
 }
 
@@ -175,6 +177,7 @@ AUTO_CREATE_VIEW_BY_XIB(WhisperStyleView);
     
     [self.imageView setContentMode:UIViewContentModeScaleAspectFit];
     self.label.font = [UIFont systemFontOfSize:ISIPAD ? 25 : 15];
+    [self.label updateHeight:self.bounds.size.height];
 
     // 有时候上传的照片，用户明明有编辑描述，但是上传后frame就是0，所以这里做一下保护。
     // 如果上述的bug解决了，这里的代码就可以不要了。
@@ -182,8 +185,7 @@ AUTO_CREATE_VIEW_BY_XIB(WhisperStyleView);
     if (self.label.text.length != 0
         && (CGRectGetWidth(self.label.frame) == 0 || CGRectGetHeight(self.label.frame) == 0)) {
         self.label.numberOfLines = 99;
-        [self.label updateHeight:self.bounds.size.height];
-
+        
         [self.label updateWidth:self.bounds.size.width];
 
         self.label.center = CGPointMake(self.bounds.size.width/2, self.bounds.size.height/2);

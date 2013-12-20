@@ -151,12 +151,12 @@
         WhisperStyleView *v = (id)[self.drawImage viewWithTag:201139481];
         if (v == nil) {
             v = [WhisperStyleView createWithFrame:self.drawImage.bounds];
-            [v setHotRankViewStyle];
             v.tag = 201139481;
             [self.drawImage addSubview:v];
         }
 
         [v setViewInfo:self.feed useBigImage:NO];
+        [v setHotRankViewStyle];
         
     }else if ([self.feed isDrawCategory]){
         
