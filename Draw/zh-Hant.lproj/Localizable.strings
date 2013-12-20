@@ -976,6 +976,8 @@
 "kTomatoTimes" = "番茄 (%d)";
 "kCollectTimes" = "收藏 (%d)";
 "kReportTimes" = "點評 (%d)";
+"kListenTimes" = "收聽 (%d)";
+"kWatchTimes" = "觀看 (%d)";
 
 "kNoComments" = "咦！還沒人評論，趕緊搶沙發！";
 "kNoGuesses" = "咦！還沒人猜，趕緊搶沙發！";

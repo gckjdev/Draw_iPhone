@@ -1221,12 +1221,6 @@
 		A49971F3177831B800B01EBE /* PPTableViewHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = A49971F1177831B800B01EBE /* PPTableViewHeader.m */; };
 		A4997206177831E100B01EBE /* CommonGuessController.m in Sources */ = {isa = PBXBuildFile; fileRef = A49971FB177831E100B01EBE /* CommonGuessController.m */; };
 		A4997207177831E100B01EBE /* CommonGuessController.m in Sources */ = {isa = PBXBuildFile; fileRef = A49971FB177831E100B01EBE /* CommonGuessController.m */; };
-		A499720C177831E200B01EBE /* CommonOpusDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = A4997201177831E100B01EBE /* CommonOpusDetailController.m */; };
-		A499720D177831E200B01EBE /* CommonOpusDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = A4997201177831E100B01EBE /* CommonOpusDetailController.m */; };
-		A499720E177831E200B01EBE /* CommonOpusInfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A4997203177831E100B01EBE /* CommonOpusInfoCell.m */; };
-		A499720F177831E200B01EBE /* CommonOpusInfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A4997203177831E100B01EBE /* CommonOpusInfoCell.m */; };
-		A4997210177831E200B01EBE /* CommonUserInfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A4997205177831E100B01EBE /* CommonUserInfoCell.m */; };
-		A4997211177831E200B01EBE /* CommonUserInfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A4997205177831E100B01EBE /* CommonUserInfoCell.m */; };
 		A4997217177832EA00B01EBE /* OpusManageController.m in Sources */ = {isa = PBXBuildFile; fileRef = C21455261778279E007D44C7 /* OpusManageController.m */; };
 		A4997218177832EA00B01EBE /* OpusManageController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C21455271778279E007D44C7 /* OpusManageController.xib */; };
 		A4997219177832EA00B01EBE /* OpusManageController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C21455281778279E007D44C7 /* OpusManageController~ipad.xib */; };
@@ -2972,10 +2966,6 @@
 		A4E59C951832208D003578CA /* WhisperStyleView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4E59C901832208D003578CA /* WhisperStyleView.xib */; };
 		A4E59C961832208D003578CA /* WhisperStyleView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4E59C901832208D003578CA /* WhisperStyleView.xib */; };
 		A4E64919178426310063F393 /* PBOpus+Extend.m in Sources */ = {isa = PBXBuildFile; fileRef = A4E64918178426310063F393 /* PBOpus+Extend.m */; };
-		A4E6491E1784288E0063F393 /* CommonCommentController.m in Sources */ = {isa = PBXBuildFile; fileRef = A4E6491C1784288E0063F393 /* CommonCommentController.m */; };
-		A4E6491F1784288E0063F393 /* CommonCommentController.m in Sources */ = {isa = PBXBuildFile; fileRef = A4E6491C1784288E0063F393 /* CommonCommentController.m */; };
-		A4E649201784288E0063F393 /* CommonCommentController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4E6491D1784288E0063F393 /* CommonCommentController.xib */; };
-		A4E649211784288E0063F393 /* CommonCommentController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4E6491D1784288E0063F393 /* CommonCommentController.xib */; };
 		A4E7876A16366FF8003557AD /* ZhaJinHua.proto in Resources */ = {isa = PBXBuildFile; fileRef = A4E7876916366FF8003557AD /* ZhaJinHua.proto */; };
 		A4EA9356185B0144004BB69D /* SingHotCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A4EA9355185B0143004BB69D /* SingHotCell.m */; };
 		A4EA9357185B0144004BB69D /* SingHotCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A4EA9355185B0143004BB69D /* SingHotCell.m */; };
@@ -2987,10 +2977,6 @@
 		A4EA935E185B0173004BB69D /* SingHotCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4EA935A185B0173004BB69D /* SingHotCell.xib */; };
 		A4EC5A90178FB24C0085031F /* CommonShareAction.m in Sources */ = {isa = PBXBuildFile; fileRef = A4EC5A8F178FB24C0085031F /* CommonShareAction.m */; };
 		A4EC5A91178FB24C0085031F /* CommonShareAction.m in Sources */ = {isa = PBXBuildFile; fileRef = A4EC5A8F178FB24C0085031F /* CommonShareAction.m */; };
-		A4EC5A95178FB3E40085031F /* CommonCommentHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = A4EC5A93178FB3E40085031F /* CommonCommentHeader.m */; };
-		A4EC5A96178FB3E40085031F /* CommonCommentHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = A4EC5A93178FB3E40085031F /* CommonCommentHeader.m */; };
-		A4EC5A97178FB3E40085031F /* CommonCommentHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4EC5A94178FB3E40085031F /* CommonCommentHeader.xib */; };
-		A4EC5A98178FB3E50085031F /* CommonCommentHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4EC5A94178FB3E40085031F /* CommonCommentHeader.xib */; };
 		A4EC5A9B178FDF6D0085031F /* OpusImageBrower.m in Sources */ = {isa = PBXBuildFile; fileRef = A4EC5A9A178FDF6D0085031F /* OpusImageBrower.m */; };
 		A4EC5A9C178FDF6D0085031F /* OpusImageBrower.m in Sources */ = {isa = PBXBuildFile; fileRef = A4EC5A9A178FDF6D0085031F /* OpusImageBrower.m */; };
 		A4EC5A9D178FDF6D0085031F /* OpusImageBrower.m in Sources */ = {isa = PBXBuildFile; fileRef = A4EC5A9A178FDF6D0085031F /* OpusImageBrower.m */; };
@@ -4383,20 +4369,6 @@
 		CA11627D1834AE7900FDD3A9 /* GameTask.m in Sources */ = {isa = PBXBuildFile; fileRef = CA11627B1834AE7900FDD3A9 /* GameTask.m */; };
 		CA11627E1834AE7900FDD3A9 /* GameTask.m in Sources */ = {isa = PBXBuildFile; fileRef = CA11627B1834AE7900FDD3A9 /* GameTask.m */; };
 		CA11627F1834AE7900FDD3A9 /* GameTask.m in Sources */ = {isa = PBXBuildFile; fileRef = CA11627B1834AE7900FDD3A9 /* GameTask.m */; };
-		CA1162801835FDF000FDD3A9 /* CommonOpusDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = A4997201177831E100B01EBE /* CommonOpusDetailController.m */; };
-		CA1162811835FDF100FDD3A9 /* CommonOpusDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = A4997201177831E100B01EBE /* CommonOpusDetailController.m */; };
-		CA1162821835FE0D00FDD3A9 /* CommonOpusInfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A4997203177831E100B01EBE /* CommonOpusInfoCell.m */; };
-		CA1162831835FE0E00FDD3A9 /* CommonOpusInfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A4997203177831E100B01EBE /* CommonOpusInfoCell.m */; };
-		CA1162841835FE1700FDD3A9 /* CommonUserInfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A4997205177831E100B01EBE /* CommonUserInfoCell.m */; };
-		CA1162851835FE1800FDD3A9 /* CommonUserInfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A4997205177831E100B01EBE /* CommonUserInfoCell.m */; };
-		CA1162861835FE9E00FDD3A9 /* CommonCommentHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = A4EC5A93178FB3E40085031F /* CommonCommentHeader.m */; };
-		CA1162871835FE9E00FDD3A9 /* CommonCommentHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4EC5A94178FB3E40085031F /* CommonCommentHeader.xib */; };
-		CA1162881835FE9E00FDD3A9 /* CommonCommentController.m in Sources */ = {isa = PBXBuildFile; fileRef = A4E6491C1784288E0063F393 /* CommonCommentController.m */; };
-		CA1162891835FE9E00FDD3A9 /* CommonCommentController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4E6491D1784288E0063F393 /* CommonCommentController.xib */; };
-		CA11628A1835FEA000FDD3A9 /* CommonCommentHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = A4EC5A93178FB3E40085031F /* CommonCommentHeader.m */; };
-		CA11628B1835FEA000FDD3A9 /* CommonCommentHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4EC5A94178FB3E40085031F /* CommonCommentHeader.xib */; };
-		CA11628C1835FEA000FDD3A9 /* CommonCommentController.m in Sources */ = {isa = PBXBuildFile; fileRef = A4E6491C1784288E0063F393 /* CommonCommentController.m */; };
-		CA11628D1835FEA000FDD3A9 /* CommonCommentController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4E6491D1784288E0063F393 /* CommonCommentController.xib */; };
 		CA11628E1835FEC800FDD3A9 /* PPTableViewHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = A49971F1177831B800B01EBE /* PPTableViewHeader.m */; };
 		CA11628F1835FEC800FDD3A9 /* PPTableViewHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = A49971F1177831B800B01EBE /* PPTableViewHeader.m */; };
 		CA1162901836098800FDD3A9 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A499076F174DBC61005AF334 /* Accelerate.framework */; };
@@ -5065,30 +5037,6 @@
 		CA9A7ECD16DC57D40089BD51 /* ShapeBox.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA9A7ECC16DC57D40089BD51 /* ShapeBox.xib */; };
 		CA9A7ED216DC57F70089BD51 /* ShapeBox~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA9A7ED116DC57F70089BD51 /* ShapeBox~ipad.xib */; };
 		CA9AAE6E1832054B002DBAA5 /* OpusDesignTime.m in Sources */ = {isa = PBXBuildFile; fileRef = CA9AAE6D1832054B002DBAA5 /* OpusDesignTime.m */; };
-		CA9AAEF818321621002DBAA5 /* SingOpusDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA9AAE7918321620002DBAA5 /* SingOpusDetailController.m */; };
-		CA9AAEF918321621002DBAA5 /* SingOpusDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA9AAE7918321620002DBAA5 /* SingOpusDetailController.m */; };
-		CA9AAEFA18321621002DBAA5 /* SingOpusDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA9AAE7918321620002DBAA5 /* SingOpusDetailController.m */; };
-		CA9AAEFB18321621002DBAA5 /* SingOpusDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA9AAE7918321620002DBAA5 /* SingOpusDetailController.m */; };
-		CA9AAEFC18321621002DBAA5 /* SingOpusDetailController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA9AAE7A18321620002DBAA5 /* SingOpusDetailController.xib */; };
-		CA9AAEFD18321621002DBAA5 /* SingOpusDetailController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA9AAE7A18321620002DBAA5 /* SingOpusDetailController.xib */; };
-		CA9AAEFE18321621002DBAA5 /* SingOpusDetailController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA9AAE7A18321620002DBAA5 /* SingOpusDetailController.xib */; };
-		CA9AAEFF18321621002DBAA5 /* SingOpusDetailController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA9AAE7A18321620002DBAA5 /* SingOpusDetailController.xib */; };
-		CA9AAF0018321621002DBAA5 /* SingOpusInfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CA9AAE7C18321620002DBAA5 /* SingOpusInfoCell.m */; };
-		CA9AAF0118321621002DBAA5 /* SingOpusInfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CA9AAE7C18321620002DBAA5 /* SingOpusInfoCell.m */; };
-		CA9AAF0218321621002DBAA5 /* SingOpusInfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CA9AAE7C18321620002DBAA5 /* SingOpusInfoCell.m */; };
-		CA9AAF0318321621002DBAA5 /* SingOpusInfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CA9AAE7C18321620002DBAA5 /* SingOpusInfoCell.m */; };
-		CA9AAF0418321621002DBAA5 /* SingOpusInfoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA9AAE7D18321620002DBAA5 /* SingOpusInfoCell.xib */; };
-		CA9AAF0518321621002DBAA5 /* SingOpusInfoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA9AAE7D18321620002DBAA5 /* SingOpusInfoCell.xib */; };
-		CA9AAF0618321621002DBAA5 /* SingOpusInfoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA9AAE7D18321620002DBAA5 /* SingOpusInfoCell.xib */; };
-		CA9AAF0718321621002DBAA5 /* SingOpusInfoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA9AAE7D18321620002DBAA5 /* SingOpusInfoCell.xib */; };
-		CA9AAF0818321621002DBAA5 /* SingUserInfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CA9AAE7F18321620002DBAA5 /* SingUserInfoCell.m */; };
-		CA9AAF0918321621002DBAA5 /* SingUserInfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CA9AAE7F18321620002DBAA5 /* SingUserInfoCell.m */; };
-		CA9AAF0A18321621002DBAA5 /* SingUserInfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CA9AAE7F18321620002DBAA5 /* SingUserInfoCell.m */; };
-		CA9AAF0B18321621002DBAA5 /* SingUserInfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CA9AAE7F18321620002DBAA5 /* SingUserInfoCell.m */; };
-		CA9AAF0C18321621002DBAA5 /* SingUserInfoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA9AAE8018321620002DBAA5 /* SingUserInfoCell.xib */; };
-		CA9AAF0D18321621002DBAA5 /* SingUserInfoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA9AAE8018321620002DBAA5 /* SingUserInfoCell.xib */; };
-		CA9AAF0E18321621002DBAA5 /* SingUserInfoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA9AAE8018321620002DBAA5 /* SingUserInfoCell.xib */; };
-		CA9AAF0F18321621002DBAA5 /* SingUserInfoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA9AAE8018321620002DBAA5 /* SingUserInfoCell.xib */; };
 		CA9AAF1018321621002DBAA5 /* SingGuessController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA9AAE8318321620002DBAA5 /* SingGuessController.m */; };
 		CA9AAF1118321621002DBAA5 /* SingGuessController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA9AAE8318321620002DBAA5 /* SingGuessController.m */; };
 		CA9AAF1218321621002DBAA5 /* SingGuessController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA9AAE8318321620002DBAA5 /* SingGuessController.m */; };
@@ -7705,12 +7653,6 @@
 		A49971F1177831B800B01EBE /* PPTableViewHeader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PPTableViewHeader.m; sourceTree = "<group>"; };
 		A49971FA177831E100B01EBE /* CommonGuessController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommonGuessController.h; sourceTree = "<group>"; };
 		A49971FB177831E100B01EBE /* CommonGuessController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommonGuessController.m; sourceTree = "<group>"; };
-		A4997200177831E100B01EBE /* CommonOpusDetailController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommonOpusDetailController.h; sourceTree = "<group>"; };
-		A4997201177831E100B01EBE /* CommonOpusDetailController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommonOpusDetailController.m; sourceTree = "<group>"; };
-		A4997202177831E100B01EBE /* CommonOpusInfoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommonOpusInfoCell.h; sourceTree = "<group>"; };
-		A4997203177831E100B01EBE /* CommonOpusInfoCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommonOpusInfoCell.m; sourceTree = "<group>"; };
-		A4997204177831E100B01EBE /* CommonUserInfoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommonUserInfoCell.h; sourceTree = "<group>"; };
-		A4997205177831E100B01EBE /* CommonUserInfoCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommonUserInfoCell.m; sourceTree = "<group>"; };
 		A49C9CB517DB2D0700C9F39F /* gallary_filter@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "gallary_filter@2x.png"; sourceTree = "<group>"; };
 		A49C9CB617DB2D0700C9F39F /* gallary_search@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "gallary_search@2x.png"; sourceTree = "<group>"; };
 		A49C9CC417DB2F4600C9F39F /* gallary_filter2@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "gallary_filter2@2x.png"; sourceTree = "<group>"; };
@@ -8232,18 +8174,12 @@
 		A4E59C901832208D003578CA /* WhisperStyleView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WhisperStyleView.xib; sourceTree = "<group>"; };
 		A4E64917178426310063F393 /* PBOpus+Extend.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "PBOpus+Extend.h"; sourceTree = "<group>"; };
 		A4E64918178426310063F393 /* PBOpus+Extend.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "PBOpus+Extend.m"; sourceTree = "<group>"; };
-		A4E6491B1784288E0063F393 /* CommonCommentController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommonCommentController.h; sourceTree = "<group>"; };
-		A4E6491C1784288E0063F393 /* CommonCommentController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommonCommentController.m; sourceTree = "<group>"; };
-		A4E6491D1784288E0063F393 /* CommonCommentController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CommonCommentController.xib; sourceTree = "<group>"; };
 		A4E7876916366FF8003557AD /* ZhaJinHua.proto */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ZhaJinHua.proto; sourceTree = "<group>"; };
 		A4EA9354185B0143004BB69D /* SingHotCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SingHotCell.h; sourceTree = "<group>"; };
 		A4EA9355185B0143004BB69D /* SingHotCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SingHotCell.m; sourceTree = "<group>"; };
 		A4EA935A185B0173004BB69D /* SingHotCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SingHotCell.xib; sourceTree = "<group>"; };
 		A4EC5A8E178FB24C0085031F /* CommonShareAction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommonShareAction.h; sourceTree = "<group>"; };
 		A4EC5A8F178FB24C0085031F /* CommonShareAction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommonShareAction.m; sourceTree = "<group>"; };
-		A4EC5A92178FB3E30085031F /* CommonCommentHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommonCommentHeader.h; sourceTree = "<group>"; };
-		A4EC5A93178FB3E40085031F /* CommonCommentHeader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommonCommentHeader.m; sourceTree = "<group>"; };
-		A4EC5A94178FB3E40085031F /* CommonCommentHeader.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CommonCommentHeader.xib; sourceTree = "<group>"; };
 		A4EC5A99178FDF6D0085031F /* OpusImageBrower.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OpusImageBrower.h; sourceTree = "<group>"; };
 		A4EC5A9A178FDF6D0085031F /* OpusImageBrower.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OpusImageBrower.m; sourceTree = "<group>"; };
 		A4EC5ABE178FFE820085031F /* UIImageView+Extend.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImageView+Extend.h"; sourceTree = "<group>"; };
@@ -9488,15 +9424,6 @@
 		CA9A7ED116DC57F70089BD51 /* ShapeBox~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "ShapeBox~ipad.xib"; sourceTree = "<group>"; };
 		CA9AAE6C1832054B002DBAA5 /* OpusDesignTime.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OpusDesignTime.h; sourceTree = "<group>"; };
 		CA9AAE6D1832054B002DBAA5 /* OpusDesignTime.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OpusDesignTime.m; sourceTree = "<group>"; };
-		CA9AAE7818321620002DBAA5 /* SingOpusDetailController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SingOpusDetailController.h; sourceTree = "<group>"; };
-		CA9AAE7918321620002DBAA5 /* SingOpusDetailController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SingOpusDetailController.m; sourceTree = "<group>"; };
-		CA9AAE7A18321620002DBAA5 /* SingOpusDetailController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SingOpusDetailController.xib; sourceTree = "<group>"; };
-		CA9AAE7B18321620002DBAA5 /* SingOpusInfoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SingOpusInfoCell.h; sourceTree = "<group>"; };
-		CA9AAE7C18321620002DBAA5 /* SingOpusInfoCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SingOpusInfoCell.m; sourceTree = "<group>"; };
-		CA9AAE7D18321620002DBAA5 /* SingOpusInfoCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SingOpusInfoCell.xib; sourceTree = "<group>"; };
-		CA9AAE7E18321620002DBAA5 /* SingUserInfoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SingUserInfoCell.h; sourceTree = "<group>"; };
-		CA9AAE7F18321620002DBAA5 /* SingUserInfoCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SingUserInfoCell.m; sourceTree = "<group>"; };
-		CA9AAE8018321620002DBAA5 /* SingUserInfoCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SingUserInfoCell.xib; sourceTree = "<group>"; };
 		CA9AAE8218321620002DBAA5 /* SingGuessController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SingGuessController.h; sourceTree = "<group>"; };
 		CA9AAE8318321620002DBAA5 /* SingGuessController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SingGuessController.m; sourceTree = "<group>"; };
 		CA9AAE8418321620002DBAA5 /* SingGuessController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SingGuessController.xib; sourceTree = "<group>"; };
@@ -11228,20 +11155,8 @@
 		A49971FD177831E100B01EBE /* OpusDetail */ = {
 			isa = PBXGroup;
 			children = (
-				A4EC5A92178FB3E30085031F /* CommonCommentHeader.h */,
-				A4EC5A93178FB3E40085031F /* CommonCommentHeader.m */,
-				A4EC5A94178FB3E40085031F /* CommonCommentHeader.xib */,
 				A4EC5A8E178FB24C0085031F /* CommonShareAction.h */,
 				A4EC5A8F178FB24C0085031F /* CommonShareAction.m */,
-				A4E6491B1784288E0063F393 /* CommonCommentController.h */,
-				A4E6491C1784288E0063F393 /* CommonCommentController.m */,
-				A4E6491D1784288E0063F393 /* CommonCommentController.xib */,
-				A4997200177831E100B01EBE /* CommonOpusDetailController.h */,
-				A4997201177831E100B01EBE /* CommonOpusDetailController.m */,
-				A4997202177831E100B01EBE /* CommonOpusInfoCell.h */,
-				A4997203177831E100B01EBE /* CommonOpusInfoCell.m */,
-				A4997204177831E100B01EBE /* CommonUserInfoCell.h */,
-				A4997205177831E100B01EBE /* CommonUserInfoCell.m */,
 			);
 			path = OpusDetail;
 			sourceTree = "<group>";
@@ -15598,28 +15513,11 @@
 		CA9AAE7618321620002DBAA5 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				CA9AAE7718321620002DBAA5 /* Detail */,
 				CA9AAE8118321620002DBAA5 /* Guess */,
 				CA9AAE8618321620002DBAA5 /* Home */,
 				CA9AAE8B18321620002DBAA5 /* Sing */,
 			);
 			path = Controller;
-			sourceTree = "<group>";
-		};
-		CA9AAE7718321620002DBAA5 /* Detail */ = {
-			isa = PBXGroup;
-			children = (
-				CA9AAE7818321620002DBAA5 /* SingOpusDetailController.h */,
-				CA9AAE7918321620002DBAA5 /* SingOpusDetailController.m */,
-				CA9AAE7A18321620002DBAA5 /* SingOpusDetailController.xib */,
-				CA9AAE7B18321620002DBAA5 /* SingOpusInfoCell.h */,
-				CA9AAE7C18321620002DBAA5 /* SingOpusInfoCell.m */,
-				CA9AAE7D18321620002DBAA5 /* SingOpusInfoCell.xib */,
-				CA9AAE7E18321620002DBAA5 /* SingUserInfoCell.h */,
-				CA9AAE7F18321620002DBAA5 /* SingUserInfoCell.m */,
-				CA9AAE8018321620002DBAA5 /* SingUserInfoCell.xib */,
-			);
-			path = Detail;
 			sourceTree = "<group>";
 		};
 		CA9AAE8118321620002DBAA5 /* Guess */ = {
@@ -17837,11 +17735,9 @@
 				A467BBCA17798DC900455E3A /* ToolUpPanel.xib in Resources */,
 				C2C09E94177BD8C8009408EB /* gallery_search_btn@2x.png in Resources */,
 				C2EAA87F178270D8007E2BA4 /* CommonSearchImageFilterView~ipad.xib in Resources */,
-				A4E649211784288E0063F393 /* CommonCommentController.xib in Resources */,
 				CA02CB8E1785581A00B6910D /* GradientSettingView.xib in Resources */,
 				CA02CBA01785581A00B6910D /* GradientSettingView~ipad.xib in Resources */,
 				CACEC2E4178BA7D300D88643 /* SelectorBox.xib in Resources */,
-				A4EC5A98178FB3E50085031F /* CommonCommentHeader.xib in Resources */,
 				CA2614D31793ACD1007D5462 /* filter.txt in Resources */,
 				CABEC6BC17968F0B006F89BB /* CommonSearchView.xib in Resources */,
 				CABEC6C117968F0B006F89BB /* CommonSearchView~ipad.xib in Resources */,
@@ -18321,9 +18217,6 @@
 				A4E4AA19182C9CAD0001AFFE /* WhisperView~ipad.xib in Resources */,
 				EA1BD634182DDCB1000E5364 /* GroupHomeController.xib in Resources */,
 				EA1BD642182DE6DD000E5364 /* CreateGroupController.xib in Resources */,
-				CA9AAEFE18321621002DBAA5 /* SingOpusDetailController.xib in Resources */,
-				CA9AAF0618321621002DBAA5 /* SingOpusInfoCell.xib in Resources */,
-				CA9AAF0E18321621002DBAA5 /* SingUserInfoCell.xib in Resources */,
 				CA9AAF1618321621002DBAA5 /* SingGuessController.xib in Resources */,
 				CA9AAF1A18321621002DBAA5 /* SingGuessController~ipad.xib in Resources */,
 				CA9AAF2218321621002DBAA5 /* SingHomeController.xib in Resources */,
@@ -19310,9 +19203,6 @@
 				A4E4AA18182C9CAD0001AFFE /* WhisperView~ipad.xib in Resources */,
 				EA1BD633182DDCB1000E5364 /* GroupHomeController.xib in Resources */,
 				EA1BD641182DE6DD000E5364 /* CreateGroupController.xib in Resources */,
-				CA9AAEFD18321621002DBAA5 /* SingOpusDetailController.xib in Resources */,
-				CA9AAF0518321621002DBAA5 /* SingOpusInfoCell.xib in Resources */,
-				CA9AAF0D18321621002DBAA5 /* SingUserInfoCell.xib in Resources */,
 				CA9AAF1518321621002DBAA5 /* SingGuessController.xib in Resources */,
 				CA9AAF1918321621002DBAA5 /* SingGuessController~ipad.xib in Resources */,
 				CA9AAF2118321621002DBAA5 /* SingHomeController.xib in Resources */,
@@ -19379,8 +19269,6 @@
 				EA8D93C81833632800780B63 /* GroupCell.xib in Resources */,
 				CA1162601834A88F00FDD3A9 /* TaskController.xib in Resources */,
 				CA1162771834A91100FDD3A9 /* TaskCell.xib in Resources */,
-				CA1162871835FE9E00FDD3A9 /* CommonCommentHeader.xib in Resources */,
-				CA1162891835FE9E00FDD3A9 /* CommonCommentController.xib in Resources */,
 				EA11A4001839EA1200F73D64 /* cell_red_bound_footer@2x.png in Resources */,
 				EA11A4041839EA1200F73D64 /* cell_red_bound_header@2x.png in Resources */,
 				EA11A4081839EA1200F73D64 /* cell_red_bound_mid@2x.png in Resources */,
@@ -19782,11 +19670,9 @@
 				C2C09DDC17797EF3009408EB /* ToolUpPanel.xib in Resources */,
 				C2C09E92177BD8C8009408EB /* gallery_search_btn@2x.png in Resources */,
 				C2EAA878178270D8007E2BA4 /* CommonSearchImageFilterView~ipad.xib in Resources */,
-				A4E649201784288E0063F393 /* CommonCommentController.xib in Resources */,
 				CA02CB7E1785581A00B6910D /* GradientSettingView.xib in Resources */,
 				CA02CB901785581A00B6910D /* GradientSettingView~ipad.xib in Resources */,
 				CACEC2D4178BA7D200D88643 /* SelectorBox.xib in Resources */,
-				A4EC5A97178FB3E40085031F /* CommonCommentHeader.xib in Resources */,
 				CA2614C41793ACD0007D5462 /* filter.txt in Resources */,
 				CABEC6B917968F0B006F89BB /* CommonSearchView.xib in Resources */,
 				CABEC6BE17968F0B006F89BB /* CommonSearchView~ipad.xib in Resources */,
@@ -20274,9 +20160,6 @@
 				A4E4AA17182C9CAD0001AFFE /* WhisperView~ipad.xib in Resources */,
 				EA1BD632182DDCB1000E5364 /* GroupHomeController.xib in Resources */,
 				EA1BD640182DE6DD000E5364 /* CreateGroupController.xib in Resources */,
-				CA9AAEFC18321621002DBAA5 /* SingOpusDetailController.xib in Resources */,
-				CA9AAF0418321621002DBAA5 /* SingOpusInfoCell.xib in Resources */,
-				CA9AAF0C18321621002DBAA5 /* SingUserInfoCell.xib in Resources */,
 				CA9AAF1418321621002DBAA5 /* SingGuessController.xib in Resources */,
 				CA9AAF1818321621002DBAA5 /* SingGuessController~ipad.xib in Resources */,
 				CA9AAF2018321621002DBAA5 /* SingHomeController.xib in Resources */,
@@ -21189,9 +21072,6 @@
 				CA29E711182C738E002D59BB /* TencentOpenApi_IOS_Bundle.bundle in Resources */,
 				EA1BD635182DDCB1000E5364 /* GroupHomeController.xib in Resources */,
 				EA1BD643182DE6DD000E5364 /* CreateGroupController.xib in Resources */,
-				CA9AAEFF18321621002DBAA5 /* SingOpusDetailController.xib in Resources */,
-				CA9AAF0718321621002DBAA5 /* SingOpusInfoCell.xib in Resources */,
-				CA9AAF0F18321621002DBAA5 /* SingUserInfoCell.xib in Resources */,
 				CA9AAF1718321621002DBAA5 /* SingGuessController.xib in Resources */,
 				CA9AAF1B18321621002DBAA5 /* SingGuessController~ipad.xib in Resources */,
 				CA9AAF2318321621002DBAA5 /* SingHomeController.xib in Resources */,
@@ -21257,8 +21137,6 @@
 				EA8D93CA1833632800780B63 /* GroupCell.xib in Resources */,
 				CA1162621834A88F00FDD3A9 /* TaskController.xib in Resources */,
 				CA1162791834A91100FDD3A9 /* TaskCell.xib in Resources */,
-				CA11628B1835FEA000FDD3A9 /* CommonCommentHeader.xib in Resources */,
-				CA11628D1835FEA000FDD3A9 /* CommonCommentController.xib in Resources */,
 				EA11A4021839EA1200F73D64 /* cell_red_bound_footer@2x.png in Resources */,
 				EA11A4061839EA1200F73D64 /* cell_red_bound_header@2x.png in Resources */,
 				EA11A40A1839EA1200F73D64 /* cell_red_bound_mid@2x.png in Resources */,
@@ -21951,9 +21829,6 @@
 				C2CA7E5117782BC30086D0FD /* CommonRoomListController.m in Sources */,
 				A49971F3177831B800B01EBE /* PPTableViewHeader.m in Sources */,
 				A4997207177831E100B01EBE /* CommonGuessController.m in Sources */,
-				A499720D177831E200B01EBE /* CommonOpusDetailController.m in Sources */,
-				A499720F177831E200B01EBE /* CommonOpusInfoCell.m in Sources */,
-				A4997211177831E200B01EBE /* CommonUserInfoCell.m in Sources */,
 				A4997217177832EA00B01EBE /* OpusManageController.m in Sources */,
 				A499721A177832EA00B01EBE /* OpusView.m in Sources */,
 				A49972CA1778365000B01EBE /* OfflineGuessDrawController.m in Sources */,
@@ -21994,7 +21869,6 @@
 				C206FFD6178034450033CF63 /* PSCollectionView.m in Sources */,
 				C206FFE8178034450033CF63 /* PSCollectionViewCell.m in Sources */,
 				CA9C11D0178135E0004372B6 /* GradientAction.m in Sources */,
-				A4E6491F1784288E0063F393 /* CommonCommentController.m in Sources */,
 				CA02CB7C1785581A00B6910D /* GradientSettingView.m in Sources */,
 				CA02CBB41785619300B6910D /* GradientCommand.m in Sources */,
 				CAA75C92178A57EE0041C019 /* ShapeClipTouchHandler.m in Sources */,
@@ -22004,7 +21878,6 @@
 				CACEC36D178BCD1600D88643 /* SelectorCommand.m in Sources */,
 				CA0FC08B178EA13E00A72B79 /* JumpHandler.m in Sources */,
 				A4EC5A91178FB24C0085031F /* CommonShareAction.m in Sources */,
-				A4EC5A96178FB3E40085031F /* CommonCommentHeader.m in Sources */,
 				A4EC5A9D178FDF6D0085031F /* OpusImageBrower.m in Sources */,
 				CAC85C061791179100827C20 /* TextCommand.m in Sources */,
 				CAC85C1F179117B100827C20 /* FXCommand.m in Sources */,
@@ -22119,9 +21992,6 @@
 				EA1BD648182DEB0B000E5364 /* GroupManager.m in Sources */,
 				A4158676182DF6D1007FCB16 /* StrokeLabel.m in Sources */,
 				EA1BD64F182E26A6000E5364 /* Group.pb.m in Sources */,
-				CA9AAEFA18321621002DBAA5 /* SingOpusDetailController.m in Sources */,
-				CA9AAF0218321621002DBAA5 /* SingOpusInfoCell.m in Sources */,
-				CA9AAF0A18321621002DBAA5 /* SingUserInfoCell.m in Sources */,
 				CA9AAF1218321621002DBAA5 /* SingGuessController.m in Sources */,
 				CA9AAF1E18321621002DBAA5 /* SingHomeController.m in Sources */,
 				CA9AAF2A18321621002DBAA5 /* SingController.m in Sources */,
@@ -22922,9 +22792,6 @@
 				EA1BD647182DEB0B000E5364 /* GroupManager.m in Sources */,
 				A4158675182DF6D1007FCB16 /* StrokeLabel.m in Sources */,
 				EA1BD64E182E26A6000E5364 /* Group.pb.m in Sources */,
-				CA9AAEF918321621002DBAA5 /* SingOpusDetailController.m in Sources */,
-				CA9AAF0118321621002DBAA5 /* SingOpusInfoCell.m in Sources */,
-				CA9AAF0918321621002DBAA5 /* SingUserInfoCell.m in Sources */,
 				CA9AAF1118321621002DBAA5 /* SingGuessController.m in Sources */,
 				CA9AAF1D18321621002DBAA5 /* SingHomeController.m in Sources */,
 				CA9AAF2918321621002DBAA5 /* SingController.m in Sources */,
@@ -22973,11 +22840,6 @@
 				CA11626C1834A8CA00FDD3A9 /* TaskService.m in Sources */,
 				CA1162731834A91100FDD3A9 /* TaskCell.m in Sources */,
 				CA11627D1834AE7900FDD3A9 /* GameTask.m in Sources */,
-				CA1162801835FDF000FDD3A9 /* CommonOpusDetailController.m in Sources */,
-				CA1162821835FE0D00FDD3A9 /* CommonOpusInfoCell.m in Sources */,
-				CA1162841835FE1700FDD3A9 /* CommonUserInfoCell.m in Sources */,
-				CA1162861835FE9E00FDD3A9 /* CommonCommentHeader.m in Sources */,
-				CA1162881835FE9E00FDD3A9 /* CommonCommentController.m in Sources */,
 				CA11628E1835FEC800FDD3A9 /* PPTableViewHeader.m in Sources */,
 				EA11A4401839FAA100F73D64 /* GroupUIManager.m in Sources */,
 				EA038976183B06D300516952 /* GroupTopicController.m in Sources */,
@@ -23603,9 +23465,6 @@
 				C2CA7E4C17782BC30086D0FD /* CommonRoomListController.m in Sources */,
 				A49971F2177831B800B01EBE /* PPTableViewHeader.m in Sources */,
 				A4997206177831E100B01EBE /* CommonGuessController.m in Sources */,
-				A499720C177831E200B01EBE /* CommonOpusDetailController.m in Sources */,
-				A499720E177831E200B01EBE /* CommonOpusInfoCell.m in Sources */,
-				A4997210177831E200B01EBE /* CommonUserInfoCell.m in Sources */,
 				CA3D4AE317794748000A8FC7 /* ShadowBox.m in Sources */,
 				C2C09DE417797EF3009408EB /* DrawToolUpPanel.m in Sources */,
 				A467BBCC17798E0500455E3A /* OpusDownloadService.m in Sources */,
@@ -23618,7 +23477,6 @@
 				C206FFD8178034450033CF63 /* PSCollectionViewCell.m in Sources */,
 				CA9C11C0178135E0004372B6 /* GradientAction.m in Sources */,
 				A4E64919178426310063F393 /* PBOpus+Extend.m in Sources */,
-				A4E6491E1784288E0063F393 /* CommonCommentController.m in Sources */,
 				CA02CB6C1785581A00B6910D /* GradientSettingView.m in Sources */,
 				CA02CBA41785619300B6910D /* GradientCommand.m in Sources */,
 				CAA75C83178A57EE0041C019 /* ShapeClipTouchHandler.m in Sources */,
@@ -23628,7 +23486,6 @@
 				CACEC35D178BCD1600D88643 /* SelectorCommand.m in Sources */,
 				CA0FC07C178EA13E00A72B79 /* JumpHandler.m in Sources */,
 				A4EC5A90178FB24C0085031F /* CommonShareAction.m in Sources */,
-				A4EC5A95178FB3E40085031F /* CommonCommentHeader.m in Sources */,
 				A4EC5A9B178FDF6D0085031F /* OpusImageBrower.m in Sources */,
 				CA0FC098178FFA6700A72B79 /* UserDeviceService.m in Sources */,
 				A4EC5AC0178FFE820085031F /* UIImageView+Extend.m in Sources */,
@@ -23746,9 +23603,6 @@
 				A4158674182DF6D1007FCB16 /* StrokeLabel.m in Sources */,
 				EA1BD64D182E26A6000E5364 /* Group.pb.m in Sources */,
 				CA9AAE6E1832054B002DBAA5 /* OpusDesignTime.m in Sources */,
-				CA9AAEF818321621002DBAA5 /* SingOpusDetailController.m in Sources */,
-				CA9AAF0018321621002DBAA5 /* SingOpusInfoCell.m in Sources */,
-				CA9AAF0818321621002DBAA5 /* SingUserInfoCell.m in Sources */,
 				CA9AAF1018321621002DBAA5 /* SingGuessController.m in Sources */,
 				CA9AAF1C18321621002DBAA5 /* SingHomeController.m in Sources */,
 				CA9AAF2818321621002DBAA5 /* SingController.m in Sources */,
@@ -24501,9 +24355,6 @@
 				EA1BD63F182DE6DD000E5364 /* CreateGroupController.m in Sources */,
 				EA1BD649182DEB0B000E5364 /* GroupManager.m in Sources */,
 				EA1BD650182E26A6000E5364 /* Group.pb.m in Sources */,
-				CA9AAEFB18321621002DBAA5 /* SingOpusDetailController.m in Sources */,
-				CA9AAF0318321621002DBAA5 /* SingOpusInfoCell.m in Sources */,
-				CA9AAF0B18321621002DBAA5 /* SingUserInfoCell.m in Sources */,
 				CA9AAF1318321621002DBAA5 /* SingGuessController.m in Sources */,
 				CA9AAF1F18321621002DBAA5 /* SingHomeController.m in Sources */,
 				CA9AAF2B18321621002DBAA5 /* SingController.m in Sources */,
@@ -24551,11 +24402,6 @@
 				CA11626E1834A8CA00FDD3A9 /* TaskService.m in Sources */,
 				CA1162751834A91100FDD3A9 /* TaskCell.m in Sources */,
 				CA11627F1834AE7900FDD3A9 /* GameTask.m in Sources */,
-				CA1162811835FDF100FDD3A9 /* CommonOpusDetailController.m in Sources */,
-				CA1162831835FE0E00FDD3A9 /* CommonOpusInfoCell.m in Sources */,
-				CA1162851835FE1800FDD3A9 /* CommonUserInfoCell.m in Sources */,
-				CA11628A1835FEA000FDD3A9 /* CommonCommentHeader.m in Sources */,
-				CA11628C1835FEA000FDD3A9 /* CommonCommentController.m in Sources */,
 				CA11628F1835FEC800FDD3A9 /* PPTableViewHeader.m in Sources */,
 				EA11A4421839FAA100F73D64 /* GroupUIManager.m in Sources */,
 				EA038978183B06D300516952 /* GroupTopicController.m in Sources */,

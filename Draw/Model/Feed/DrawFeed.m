@@ -247,6 +247,11 @@
     [self incTimesForType:FeedTimesTypeCorrect];    
 }
 
+- (void)incPlayTimes
+{
+    [self incTimesForType:FeedTimesTypePlay];
+}
+
 - (NSInteger)guessTimes
 {
     return [self timesForType:FeedTimesTypeGuess];
@@ -283,6 +288,11 @@
         return [self timesForType:FeedTimesTypeContestComment];
     }
     return 0;
+}
+
+- (NSInteger)playTimes
+{
+    return [self timesForType:FeedTimesTypePlay];
 }
 
 
@@ -399,6 +409,7 @@
 {
     [self increaseActionTimes:self.saveKey];
 }
+
 - (NSInteger)localFlowerTimes
 {
     int value = [self actionTimesForKey:self.flowerKey];
