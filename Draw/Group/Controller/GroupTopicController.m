@@ -250,11 +250,19 @@ typedef enum {
             return [BBSPostActionHeaderView getViewHeight];
         default:
         {
+            if (![self hasPostData]) {
+                return 44;
+            }
             PBBBSPost *post = [self postInIndexPath:indexPath];
             return [BBSPostCell getCellHeightWithBBSPost:post];
         }
     }
     return 0;
+}
+
+- (BOOL)hasPostData
+{
+    return [self.tabDataList count] != 0;
 }
 
 - (void)updateTopicHeader
@@ -301,13 +309,17 @@ typedef enum {
         }
         default:
         {
-            BBSPostCell *cell = [tableView dequeueReusableCellWithIdentifier:[BBSPostCell getCellIdentifier]];
-            if (cell == nil) {
-                cell = [BBSPostCell createCell:self];
+            if (![self hasPostData]) {
+                return [self noDataCell];
+            }else{
+                BBSPostCell *cell = [tableView dequeueReusableCellWithIdentifier:[BBSPostCell getCellIdentifier]];
+                if (cell == nil) {
+                    cell = [BBSPostCell createCell:self];
+                }
+                PBBBSPost *post = [self postInIndexPath:indexPath];
+                [cell updateCellWithBBSPost:post];
+                return cell;
             }
-            PBBBSPost *post = [self postInIndexPath:indexPath];
-            [cell updateCellWithBBSPost:post];
-            return cell;
         }
     }
 }
@@ -316,6 +328,9 @@ typedef enum {
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     NSInteger number = [super tableView:tableView numberOfRowsInSection:section];
+    if (number == 0) {
+        number = 1;
+    }
     return number + BasicRowCount;
 }
 
@@ -324,6 +339,9 @@ typedef enum {
 {
     NSInteger row = indexPath.row;
     if (row >= BasicRowCount) {
+        if (![self hasPostData]) {
+            return;
+        }
         [[BBSManager defaultManager] setTempPostList:[self tabDataList]];
         PBBBSPost *post = [self postInIndexPath:indexPath];
         [BBSPostDetailController enterPostDetailControllerWithPost:post group:_group fromController:self animated:YES];
