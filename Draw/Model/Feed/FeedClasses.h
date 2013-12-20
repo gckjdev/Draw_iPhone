@@ -16,11 +16,11 @@
     BOOL _gender;
 }
 
-@property(nonatomic, retain)NSString *userId;
-@property(nonatomic, retain)NSString *nickName;
-@property(nonatomic, retain)NSString *avatar;
+@property(nonatomic, copy)NSString *userId;
+@property(nonatomic, copy)NSString *nickName;
+@property(nonatomic, copy)NSString *avatar;
 @property(nonatomic, assign)BOOL gender;
-@property(nonatomic, retain)NSString *signature;
+@property(nonatomic, copy)NSString *signature;
 
 - (id)initWithUserId:(NSString *)userId 
             nickName:(NSString *)nickName 

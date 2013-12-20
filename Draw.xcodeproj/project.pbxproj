@@ -187,9 +187,9 @@
 		A4364368176706A4006B6946 /* Opus.proto in Resources */ = {isa = PBXBuildFile; fileRef = A4364367176706A4006B6946 /* Opus.proto */; };
 		A4364369176706A4006B6946 /* Opus.proto in Resources */ = {isa = PBXBuildFile; fileRef = A4364367176706A4006B6946 /* Opus.proto */; };
 		A436436A176706A4006B6946 /* Opus.proto in Resources */ = {isa = PBXBuildFile; fileRef = A4364367176706A4006B6946 /* Opus.proto */; };
-		A439D2C4184A521800F47BEF /* UIImage+GPUImageFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = A439D2C3184A521800F47BEF /* UIImage+GPUImageFilter.m */; };
-		A439D2C5184A521800F47BEF /* UIImage+GPUImageFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = A439D2C3184A521800F47BEF /* UIImage+GPUImageFilter.m */; };
-		A439D2C6184A521800F47BEF /* UIImage+GPUImageFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = A439D2C3184A521800F47BEF /* UIImage+GPUImageFilter.m */; };
+		A439D2C4184A521800F47BEF /* UIImage+GPUImageFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = A439D2C3184A521800F47BEF /* UIImage+GPUImageFilter.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
+		A439D2C5184A521800F47BEF /* UIImage+GPUImageFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = A439D2C3184A521800F47BEF /* UIImage+GPUImageFilter.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
+		A439D2C6184A521800F47BEF /* UIImage+GPUImageFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = A439D2C3184A521800F47BEF /* UIImage+GPUImageFilter.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
 		A439D2C7184A521800F47BEF /* UIImage+GPUImageFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = A439D2C3184A521800F47BEF /* UIImage+GPUImageFilter.m */; };
 		A439D2D4184A5BD500F47BEF /* CropAndFilterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A439D2D3184A5BD500F47BEF /* CropAndFilterViewController.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
 		A439D2D5184A5BD500F47BEF /* CropAndFilterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A439D2D3184A5BD500F47BEF /* CropAndFilterViewController.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };

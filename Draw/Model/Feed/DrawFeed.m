@@ -18,15 +18,16 @@
 
 @implementation DrawFeed
 
-- (void)initTimeList:(NSArray *)feedTimesList
+- (void)setTimeList:(NSArray *)feedTimesList
 {
     if ([feedTimesList count] !=0 ) {
-        NSMutableSet *set = [NSMutableSet set];
+        NSMutableSet *set = [[NSMutableSet alloc] init];
         for (PBFeedTimes *pbFeedTimes in feedTimesList) {
             FeedTimes *feedTimes = [FeedTimes feedTimesWithPbFeedTimes:pbFeedTimes];
             [set addObject:feedTimes];
         }            
         self.timesSet = set;
+        [set release];
     }    
 }
 
@@ -37,7 +38,7 @@
     self = [super initWithPBFeed:pbFeed];
     if (self) {
         //set times info
-        [self initTimeList:pbFeed.feedTimesList];
+        [self setTimeList:pbFeed.feedTimesList];
 
         if ([pbFeed hasDrawData]) {
             self.pbDrawData = [pbFeed.drawData data];
@@ -152,7 +153,7 @@
                                            signature:signature];
         self.wordText = wordText;
         self.contestId = contestId;
-        [self initTimeList:timesArray];
+        [self setTimeList:timesArray];
         self.drawImageUrl = drawImageUrl;
         
 //        PPDebug(@"<DrawFeed> id(%@) user(%@, %@) text(%@)", feedId, userId, nickName, wordText);

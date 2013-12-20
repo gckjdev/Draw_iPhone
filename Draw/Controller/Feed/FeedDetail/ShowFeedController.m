@@ -1469,6 +1469,7 @@ typedef enum{
     if (image != nil) {
         MPMediaItemArtwork *artwork = [[MPMediaItemArtwork alloc] initWithImage:image];
         [dict setObject:artwork forKey:MPMediaItemPropertyArtwork];
+        [artwork release];
     }
     
     [[MPNowPlayingInfoCenter defaultCenter] setNowPlayingInfo:dict];
