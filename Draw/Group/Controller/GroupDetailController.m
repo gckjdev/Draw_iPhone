@@ -22,6 +22,7 @@
 #import "GroupPermission.h"
 #import "ChangeAvatar.h"
 #import "UIImageView+WebCache.h"
+#import "UIViewController+BGImage.h"
 
 enum{
     SECTION_BASE_INDEX = 0,
@@ -178,6 +179,7 @@ typedef enum{
 
 - (void)initViews
 {
+    [self setDefaultBGImage];
     //update title view
     [self.titleView setTarget:self];
     [self.titleView setBackButtonSelector:@selector(clickBack:)];

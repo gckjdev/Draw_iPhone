@@ -13,6 +13,7 @@
 #import "BBSActionSheet.h"
 #import "CreatePostController.h"
 #import "BBSPostDetailController.h"
+#import "UIViewController+BGImage.h"
 
 typedef enum{
     GroupComment = 100,
@@ -51,6 +52,7 @@ typedef enum{
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [self setDefaultBGImage];
     [self.titleView setTitle:NSLS(@"kAtMe")];
     [self.titleView setTransparentStyle];
     [self initTabButtons];
@@ -75,6 +77,7 @@ typedef enum{
     }
 }
 
+SET_CELL_BG_IN_CONTROLLER
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {

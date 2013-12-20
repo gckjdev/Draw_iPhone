@@ -17,6 +17,7 @@
 #import "BBSManager.h"
 #import "SearchPostController.h"
 #import "GroupDetailController.h"
+#import "UIViewController+BGImage.h"
 
 typedef enum{
     NewestTopic = 1,
@@ -200,6 +201,7 @@ typedef enum {
     [permissonManager retain];
     
     [super viewDidLoad];
+    [self setDefaultBGImage];
     [self updateTitleView];
     [self updateFooterView];
     [self clickTab:NewestTopic];

@@ -9922,7 +9922,7 @@ AAEAAQABA</bytes>
 					<object class="IBUILabel" id="866511934">
 						<reference key="NSNextResponder" ref="315143836"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{114, 8}, {41, 15}}</string>
+						<string key="NSFrame">{{114, 10}, {41, 15}}</string>
 						<reference key="NSSuperview" ref="315143836"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="420190953"/>

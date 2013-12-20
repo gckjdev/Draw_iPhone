@@ -16,6 +16,7 @@
 #import "Group.pb.h"
 #import "GroupTopicController.h"
 #import "GroupDetailController.h"
+#import "UIViewController+BGImage.h"
 
 @interface CreateGroupController ()
 @property (retain, nonatomic) IBOutlet CommonTitleView *titleView;
@@ -92,6 +93,7 @@
 
 - (void)initViews
 {
+    [self setDefaultBGImage];
     //title
     [self.titleView setTitle:NSLS(@"kCreateGroup")];
     [self.titleView setTarget:self];

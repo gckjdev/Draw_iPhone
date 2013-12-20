@@ -79,18 +79,21 @@
     return DEFAULT_HEIGHT;
 }
 
+#define DEFAULT_NAME_Y (7)
+#define DEFAULT_SIZE_Y (10)
+
 - (void)layoutSubviews
 {
     [super layoutSubviews];
+
     [self.iconView setImageURL:[_group medalImageURL] placeholderImage:[[ShareImageManager defaultManager] unloadBg]];
     
     [self.nameLabel setText:_group.name];
     [self.descLabel setText:_group.signature];
     
     //    [self.sizeLabel setText:[@(_group.size) stringValue]];
-    NSString *sizeText = [NSString stringWithFormat:@"%d人",_group.size];
+    NSString *sizeText = [NSString stringWithFormat:NSLS(@"kGroupMemberNumber"),_group.size];
     [self.sizeLabel setText:sizeText];
-    
     [self.nameLabel sizeToFit];
     [self.sizeLabel sizeToFit];
     
@@ -98,6 +101,14 @@
     [self.sizeLabel updateOriginX:x];
     CGFloat width = SIZE_BASE_WIDTH + CGRectGetWidth(_sizeLabel.frame);
     [self.sizeLabel updateWidth:width];
+    
+    if([_group.signature length] == 0){
+        [self.nameLabel updateCenterY:CGRectGetMidY(self.bounds)];
+        [self.sizeLabel updateCenterY:CGRectGetMidY(self.bounds)];
+    }else{
+        [self.nameLabel updateOriginY:DEFAULT_NAME_Y];
+        [self.sizeLabel updateOriginY:DEFAULT_SIZE_Y];
+    }
     
 }
 

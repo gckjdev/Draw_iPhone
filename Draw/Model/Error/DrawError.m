@@ -8,13 +8,6 @@ extern NSString* GlobalGetTrafficServerURL();
 
 
 
-#define ERROR_GROUP_USER_NOT_REQUESTSTATUS  200011
-#define ERROR_GROUP_INVALIDATE_ROLE  200012
-#define ERROR_GROUP_MEMBER_UNFOLLOW  200013
-#define ERROR_GROUP_REPEAT_FOLLOW  200014
-#define ERROR_GROUP_NOTEXIST  200015
-#define ERROR_GROUP_LEVEL_SMALL  200016
-
 
 + (NSString *)errorMessageForCode:(NSInteger)code
 {
@@ -40,7 +33,15 @@ extern NSString* GlobalGetTrafficServerURL();
       KEY(ERROR_GROUP_NAME_EMPTY) : NSLS(@"kGroupNameIsEmpty"),
       KEY(ERROR_GROUP_NAME_TOO_LONG) : NSLS(@"kGroupNameTooLong"),
       
-//      ERROR_BALANCE_NOT_ENOUGH
+      KEY(ERROR_PARAMETER_NOTICEID_EMPTY): NSLS(@"kGroupNoticeIDEmpty"),
+      KEY(ERROR_PARAMETER_NOTICEID_NULL): NSLS(@"kGroupNoticeIDEmpty"),
+      KEY(ERROR_GROUP_REQUEST_HANDLE_TYPE_INVALID): NSLS(@"kInvalidHandleType"),
+      KEY(ERROR_GROUP_NOTICE_NOTFOUND): NSLS(@"kGroupNoticeNotFound"),
+      KEY(ERROR_GROUP_TITLEID_EXISTED)   : NSLS(@"kTitleIDExits"),
+      KEY(ERROR_GROUP_NOT_MEMBER): NSLS(@"kNotGroupMember"),
+      KEY(ERROR_GROUP_NOT_ADMIN): NSLS(@"kNotGroupAdmin"),
+      KEY(ERROR_GROUP_NOT_INVITEE): NSLS(@"kNotInvitee"),
+      
       };
     NSString *errorMessage = errorMSGDict[KEY(code)];    
     return [errorMessage length] == 0 ? NSLS(@"kUnknowError") : errorMessage;
