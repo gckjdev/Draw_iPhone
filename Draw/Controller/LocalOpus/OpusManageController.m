@@ -501,13 +501,20 @@ typedef enum {
     NSString* text = [ShareAction shareTextByDrawFeed:feed snsType:type];
     NSString* imagePath = [ShareAction createFeedImagePath:feed];
     
+    NSString* audioURL = nil;
+    if ([feed isSingCategory]){
+        audioURL = feed.drawDataUrl;
+    }    
+    
     [[GameSNSService defaultService] publishWeibo:type
                                              text:text
                                     imageFilePath:imagePath
+                                         audioURL:audioURL
                                            inView:self.view
                                        awardCoins:[PPConfigManager getShareWeiboReward]
                                    successMessage:NSLS(@"kShareWeiboSucc")
-                                   failureMessage:NSLS(@"kShareWeiboFailure")];
+                                   failureMessage:NSLS(@"kShareWeiboFailure")
+                                           taskId:0];
     
 }
 
@@ -521,6 +528,11 @@ typedef enum {
                          snsType:type];
 
     NSString* imagePath = [opus localImageURLString]; // .pbOpus.localImageUrl;
+    
+//    NSString* audioURL = nil;
+//    if (opus.pbOpus.category == PBOpusCategoryTypeSingCategory){
+//        audioURL = opus.pbOpus.drawDataUrl;
+//    }
     
     [[GameSNSService defaultService] publishWeibo:type
                                              text:text

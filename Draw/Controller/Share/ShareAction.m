@@ -650,13 +650,20 @@
 
 //        [self shareViaWeixin:WXSceneTimeline];
         
+        NSString* audioURL = nil;
+        if ([self.feed isSingCategory]){
+            audioURL = self.feed.drawDataUrl;
+        }
+        
         [[GameSNSService defaultService] publishWeibo:TYPE_WEIXIN_TIMELINE
                                                  text:_drawWord
                                         imageFilePath:_imageFilePath
+                                             audioURL:audioURL
                                                inView:self.superViewController.view
                                            awardCoins:[PPConfigManager getShareWeiboReward]
                                        successMessage:NSLS(@"kShareWeiboSucc")
-                                       failureMessage:NSLS(@"kShareWeiboFailure")];
+                                       failureMessage:NSLS(@"kShareWeiboFailure")
+                                               taskId:0];
 
     }
     else if (buttonIndex == buttonIndexWeixinFriend){
@@ -664,9 +671,15 @@
         
 //        [self shareViaWeixin:WXSceneSession];
 
+        NSString* audioURL = nil;
+        if ([self.feed isSingCategory]){
+            audioURL = self.feed.drawDataUrl;
+        }        
+        
         [[GameSNSService defaultService] publishWeibo:TYPE_WEIXIN_SESSION
                                                  text:_drawWord
                                         imageFilePath:_imageFilePath
+                                             audioURL:audioURL         
                                                inView:self.superViewController.view
                                            awardCoins:[PPConfigManager getShareWeiboReward]
                                        successMessage:NSLS(@"kShareWeiboSucc")

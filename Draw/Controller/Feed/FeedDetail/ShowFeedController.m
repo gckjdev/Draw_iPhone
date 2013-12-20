@@ -1160,13 +1160,20 @@ typedef enum{
     NSString* text = [ShareAction shareTextByDrawFeed:self.feed snsType:type];
     NSString* imagePath = [ShareAction createFeedImagePath:self.feed];
     
+    NSString* audioURL = nil;
+    if ([self.feed isSingCategory]){
+        audioURL = self.feed.drawDataUrl;
+    }
+    
     [[GameSNSService defaultService] publishWeibo:type
                                              text:text
                                     imageFilePath:imagePath
+                                         audioURL:audioURL
                                            inView:self.view
                                        awardCoins:[PPConfigManager getShareWeiboReward]
                                    successMessage:NSLS(@"kShareWeiboSucc")
-                                   failureMessage:NSLS(@"kShareWeiboFailure")];
+                                   failureMessage:NSLS(@"kShareWeiboFailure")
+                                           taskId:0];
     
 }
 

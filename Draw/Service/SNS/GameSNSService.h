@@ -58,12 +58,31 @@ typedef void(^ShareSNSResultBlock) (int resultCode);
 
 - (void)publishWeibo:(PPSNSType)snsType
                 text:(NSString*)text
+       imageFilePath:(NSString*)imagePath
+            audioURL:(NSString*)audioURL
+              inView:(UIView*)view
+          awardCoins:(int)awardCoins
+      successMessage:(NSString*)successMessage
+      failureMessage:(NSString*)failureMessage;
+
+- (void)publishWeibo:(PPSNSType)snsType
+                text:(NSString*)text
               inView:(UIView*)view
           awardCoins:(int)awardCoins
       successMessage:(NSString*)successMessage
       failureMessage:(NSString*)failureMessage;
 //- (void)publishWeiboToAll:(NSString*)text;
 //- (void)saveSNSInfo:(PPSNSType)snsType credentialString:(NSString*)credentialString;
+
+- (void)publishWeibo:(PPSNSType)snsType
+                text:(NSString*)text
+       imageFilePath:(NSString*)imagePath
+            audioURL:(NSString*)audioURL
+              inView:(UIView*)view
+          awardCoins:(int)awardCoins
+      successMessage:(NSString*)successMessage
+      failureMessage:(NSString*)failureMessage
+              taskId:(int)taskId;
 
 - (void)saveSNSInfo:(NSArray*)snsCredentials;
 - (void)cleanSNSInfo:(NSArray*)snsCredentials;

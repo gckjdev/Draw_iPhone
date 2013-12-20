@@ -487,6 +487,48 @@ GameSNSService* _defaultSNSService;
       successMessage:(NSString*)successMessage
       failureMessage:(NSString*)failureMessage
               taskId:(int)taskId
+{
+    [self publishWeibo:snsType
+                  text:text
+         imageFilePath:imagePath
+              audioURL:nil
+                inView:view
+            awardCoins:awardCoins
+        successMessage:successMessage
+        failureMessage:failureMessage
+                taskId:taskId];
+}
+
+- (void)publishWeibo:(PPSNSType)snsType
+                text:(NSString*)text
+       imageFilePath:(NSString*)imagePath
+            audioURL:(NSString*)audioURL
+              inView:(UIView*)view
+          awardCoins:(int)awardCoins
+      successMessage:(NSString*)successMessage
+      failureMessage:(NSString*)failureMessage
+{
+    [self publishWeibo:snsType
+                  text:text
+         imageFilePath:imagePath
+              audioURL:audioURL
+                inView:view
+            awardCoins:awardCoins
+        successMessage:successMessage
+        failureMessage:failureMessage
+                taskId:0];
+
+}
+
+- (void)publishWeibo:(PPSNSType)snsType
+                text:(NSString*)text
+       imageFilePath:(NSString*)imagePath
+            audioURL:(NSString*)audioURL
+              inView:(UIView*)view
+          awardCoins:(int)awardCoins
+      successMessage:(NSString*)successMessage
+      failureMessage:(NSString*)failureMessage
+              taskId:(int)taskId
 
 {
     ShareType shareType = [GameSNSService shareSDKType:snsType];
@@ -494,16 +536,23 @@ GameSNSService* _defaultSNSService;
         return;
     }
     
-    PPDebug(@"<publishWeibo> sns(%d) text(%@) image(%@)", snsType, text, imagePath);
+    PPDebug(@"<publishWeibo> sns(%d) text(%@) image(%@) audio(%@)", snsType, text, imagePath, audioURL);
     
-    SSPublishContentMediaType mediaType = ([imagePath length] > 0) ? SSPublishContentMediaTypeImage : SSPublishContentMediaTypeText;
+    SSPublishContentMediaType mediaType = SSPublishContentMediaTypeText;
+    
+    if ([audioURL length] > 0){
+        mediaType = SSPublishContentMediaTypeMusic;
+    }
+    else{
+        mediaType = ([imagePath length] > 0) ? SSPublishContentMediaTypeImage : SSPublishContentMediaTypeText;
+    }
     
     //创建分享内容
     id<ISSContent> publishContent = [ShareSDK content:text
                                        defaultContent:@""
                                                 image:[ShareSDK imageWithPath:imagePath]
                                                 title:nil
-                                                  url:nil
+                                                  url:audioURL
                                           description:nil
                                             mediaType:mediaType];
     
