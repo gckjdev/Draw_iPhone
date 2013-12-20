@@ -634,14 +634,14 @@ static NSDictionary* DRAW_MENU_IMAGE_DICT = nil;
             break;
         case HomeMenuTypeDrawGuess:
         {
-            /*
+            
 #ifdef DEBUG
-            CreateGroupController *cg = [[CreateGroupController alloc] init];
-            [self.navigationController pushViewController:cg animated:YES];
-            [cg release];
-            break;
+//            CreateGroupController *cg = [[CreateGroupController alloc] init];
+//            [self.navigationController pushViewController:cg animated:YES];
+//            [cg release];
+//            break;
 #endif
-          */
+          
             GuessModesController *vc =[[[GuessModesController alloc] init] autorelease];
             [self.navigationController pushViewController:vc animated:YES];
         }
@@ -665,12 +665,12 @@ static NSDictionary* DRAW_MENU_IMAGE_DICT = nil;
             break;
         case HomeMenuTypeDrawContest:
 #ifdef DEBUG
-//        {
-//            GroupHomeController *gc = [[GroupHomeController alloc] init];
-//            [self.navigationController pushViewController:gc animated:YES];
-//            [gc release];
-//            break;
-//        }
+        {
+            GroupHomeController *gc = [[GroupHomeController alloc] init];
+            [self.navigationController pushViewController:gc animated:YES];
+            [gc release];
+            break;
+        }
 #endif
             
         {

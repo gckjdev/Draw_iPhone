@@ -64,6 +64,9 @@
                      titleId:(NSInteger)titleId;
 
 
++ (PBGroup *)updateGroup:(PBGroup *)group medalImageURL:(NSString *)url;
++ (PBGroup *)updateGroup:(PBGroup *)group BGImageURL:(NSString *)url;
+
 + (BOOL)isUser:(PBGameUser *)user adminOrCreatorInGroup:(PBGroup *)group;
 + (BOOL)isMeAdminOrCreatorInSharedGroup;
 + (NSInteger)genTitleId;

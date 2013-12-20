@@ -68,6 +68,8 @@ typedef enum{
 @property (nonatomic, retain) NSString * memo;
 @property (nonatomic, retain) NSString * xiaoji;
 
+- (PBGameUser *)toPBUser;
+
 - (id)initWithDict:(NSDictionary *)dict;
 + (id)friendWithDict:(NSDictionary *)dict;
 

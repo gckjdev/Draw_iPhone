@@ -34,5 +34,6 @@
 - (void)setLocalThumbImageDataUrl:(NSString*)extension;
 - (BOOL)hasFileForPlay;
 - (NSString *)getCurrentVoiceTypeName;
+- (void)setVoiceDuration:(int)fileDuration;
 
 @end

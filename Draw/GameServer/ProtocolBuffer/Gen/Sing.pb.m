@@ -1085,6 +1085,7 @@ static PBSongList* defaultPBSongListInstance = nil;
 @property Float32 duration;
 @property Float32 pitch;
 @property Float32 formant;
+@property Float32 voiceDuration;
 @property (retain) NSString* localNativeDataUrl;
 @end
 
@@ -1125,6 +1126,13 @@ static PBSongList* defaultPBSongListInstance = nil;
   hasFormant_ = !!value;
 }
 @synthesize formant;
+- (BOOL) hasVoiceDuration {
+  return !!hasVoiceDuration_;
+}
+- (void) setHasVoiceDuration:(BOOL) value {
+  hasVoiceDuration_ = !!value;
+}
+@synthesize voiceDuration;
 - (BOOL) hasLocalNativeDataUrl {
   return !!hasLocalNativeDataUrl_;
 }
@@ -1144,6 +1152,7 @@ static PBSongList* defaultPBSongListInstance = nil;
     self.duration = 1;
     self.pitch = 1;
     self.formant = 1;
+    self.voiceDuration = 0;
     self.localNativeDataUrl = @"";
   }
   return self;
@@ -1184,6 +1193,9 @@ static PBSingOpus* defaultPBSingOpusInstance = nil;
   if (self.hasFormant) {
     [output writeFloat:5 value:self.formant];
   }
+  if (self.hasVoiceDuration) {
+    [output writeFloat:20 value:self.voiceDuration];
+  }
   if (self.hasLocalNativeDataUrl) {
     [output writeString:100 value:self.localNativeDataUrl];
   }
@@ -1210,6 +1222,9 @@ static PBSingOpus* defaultPBSingOpusInstance = nil;
   }
   if (self.hasFormant) {
     size += computeFloatSize(5, self.formant);
+  }
+  if (self.hasVoiceDuration) {
+    size += computeFloatSize(20, self.voiceDuration);
   }
   if (self.hasLocalNativeDataUrl) {
     size += computeStringSize(100, self.localNativeDataUrl);
@@ -1304,6 +1319,9 @@ static PBSingOpus* defaultPBSingOpusInstance = nil;
   if (other.hasFormant) {
     [self setFormant:other.formant];
   }
+  if (other.hasVoiceDuration) {
+    [self setVoiceDuration:other.voiceDuration];
+  }
   if (other.hasLocalNativeDataUrl) {
     [self setLocalNativeDataUrl:other.localNativeDataUrl];
   }
@@ -1356,6 +1374,10 @@ static PBSingOpus* defaultPBSingOpusInstance = nil;
       }
       case 45: {
         [self setFormant:[input readFloat]];
+        break;
+      }
+      case 165: {
+        [self setVoiceDuration:[input readFloat]];
         break;
       }
       case 802: {
@@ -1457,6 +1479,22 @@ static PBSingOpus* defaultPBSingOpusInstance = nil;
 - (PBSingOpus_Builder*) clearFormant {
   result.hasFormant = NO;
   result.formant = 1;
+  return self;
+}
+- (BOOL) hasVoiceDuration {
+  return result.hasVoiceDuration;
+}
+- (Float32) voiceDuration {
+  return result.voiceDuration;
+}
+- (PBSingOpus_Builder*) setVoiceDuration:(Float32) value {
+  result.hasVoiceDuration = YES;
+  result.voiceDuration = value;
+  return self;
+}
+- (PBSingOpus_Builder*) clearVoiceDuration {
+  result.hasVoiceDuration = NO;
+  result.voiceDuration = 0;
   return self;
 }
 - (BOOL) hasLocalNativeDataUrl {

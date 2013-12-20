@@ -163,6 +163,7 @@ typedef enum{
 - (void)handleRequestNotice:(PBGroupNotice *)notice accept:(BOOL)accpet
 {
     if (notice == nil) {
+        [self hideActivity];
         PPDebug(@"<handleRequestNotice> error!! notice is nil");
         return;
     }
@@ -178,11 +179,26 @@ typedef enum{
 
 - (void)optionView:(BBSOptionView *)optionView didSelectedButtonIndex:(NSInteger)index
 {
+
     TabID tabId = [self currentTabID];
     if (tabId == GroupRequest) {
+        if(_selectedNotice == nil) return;
         if (index == NOTICE_OPTION_ACCEPT || index == NOTICE_OPTION_REJECT) {
             BOOL accept = (index == NOTICE_OPTION_ACCEPT);
-            [self handleRequestNotice:_selectedNotice accept:accept];
+            
+            NSString *showTitle = (accept ? NSLS(@"kAccepting") : NSLS(@"kRejecting"));
+            
+            [self showActivityWithText:showTitle];
+            if ([_selectedNotice isJoinRequest]) {
+                [self handleRequestNotice:_selectedNotice accept:accept];
+            }else if([_selectedNotice isInvitation]){
+                [[GroupService defaultService] acceptInvitation:_selectedNotice.noticeId callback:^(NSError *error) {
+                    [self hideActivity];
+                    if (!error) {
+                        POSTMSG(NSLS(@"kDone"));
+                    }
+                }];
+            }
         }else if (index == NOTICE_OPTION_IGNORE) {
             [self ignoreNotice:_selectedNotice];
         }else{

@@ -14,6 +14,9 @@
 - (NSString *)desc;
 - (NSString *)msg;
 - (NSString *)createDateString;
+
+- (BOOL)isInvitation;
+- (BOOL)isJoinRequest;
 @end
 
 @interface PBGroup(Ext)

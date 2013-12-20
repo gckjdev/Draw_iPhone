@@ -1257,12 +1257,14 @@ enum{
     
     PPDebug(@"<didGetFileDuration> file duration=%f, recorder duration=%f", fileDuration, _recorder.recordDuration);
     
-    if (_fileDuration <= 0.0001f){
+    if (fileDuration <= 0.0001f){
         _fileDuration = _recorder.recordDuration;
     }
     else{
         _fileDuration = fileDuration + 0.5;
     }
+    
+    [_singOpus setVoiceDuration:_fileDuration];
     
     [self updateUITime:@(_fileDuration)];
 }

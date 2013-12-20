@@ -149,6 +149,8 @@ message PBFeed {
 
   optional PBLabelInfo descLabelInfo = 200;
   optional PBSize canvasSize = 201;
+  
+
 }
 
 message PBPoint

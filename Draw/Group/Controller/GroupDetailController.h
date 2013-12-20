@@ -10,8 +10,9 @@
 #import "Group.pb.h"
 #import "GroupDetailCell.h"
 #import "BBSActionSheet.h"
+#import "FriendController.h"
 
-@interface GroupDetailController : PPTableViewController<GroupDetailCellDelegate>
+@interface GroupDetailController : PPTableViewController<GroupDetailCellDelegate, FriendControllerDelegate>
 
 + (GroupDetailController *)enterWithGroup:(PBGroup *)group
                            fromController:(PPViewController *)controller;
