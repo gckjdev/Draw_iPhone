@@ -60,6 +60,7 @@ typedef void(^ShareSNSResultBlock) (int resultCode);
                 text:(NSString*)text
        imageFilePath:(NSString*)imagePath
             audioURL:(NSString*)audioURL
+               title:(NSString*)title
               inView:(UIView*)view
           awardCoins:(int)awardCoins
       successMessage:(NSString*)successMessage
@@ -78,6 +79,7 @@ typedef void(^ShareSNSResultBlock) (int resultCode);
                 text:(NSString*)text
        imageFilePath:(NSString*)imagePath
             audioURL:(NSString*)audioURL
+               title:(NSString*)title
               inView:(UIView*)view
           awardCoins:(int)awardCoins
       successMessage:(NSString*)successMessage

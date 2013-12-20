@@ -1169,11 +1169,11 @@ typedef enum{
                                              text:text
                                     imageFilePath:imagePath
                                          audioURL:audioURL
+                                            title:self.feed.pbFeed.opusDesc
                                            inView:self.view
                                        awardCoins:[PPConfigManager getShareWeiboReward]
                                    successMessage:NSLS(@"kShareWeiboSucc")
-                                   failureMessage:NSLS(@"kShareWeiboFailure")
-                                           taskId:0];
+                                   failureMessage:NSLS(@"kShareWeiboFailure")];
     
 }
 

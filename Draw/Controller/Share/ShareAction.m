@@ -659,11 +659,11 @@
                                                  text:_drawWord
                                         imageFilePath:_imageFilePath
                                              audioURL:audioURL
+                                                title:self.feed.pbFeed.opusDesc
                                                inView:self.superViewController.view
                                            awardCoins:[PPConfigManager getShareWeiboReward]
                                        successMessage:NSLS(@"kShareWeiboSucc")
-                                       failureMessage:NSLS(@"kShareWeiboFailure")
-                                               taskId:0];
+                                       failureMessage:NSLS(@"kShareWeiboFailure")];
 
     }
     else if (buttonIndex == buttonIndexWeixinFriend){
@@ -679,7 +679,8 @@
         [[GameSNSService defaultService] publishWeibo:TYPE_WEIXIN_SESSION
                                                  text:_drawWord
                                         imageFilePath:_imageFilePath
-                                             audioURL:audioURL         
+                                             audioURL:audioURL
+                                                title:self.feed.desc
                                                inView:self.superViewController.view
                                            awardCoins:[PPConfigManager getShareWeiboReward]
                                        successMessage:NSLS(@"kShareWeiboSucc")

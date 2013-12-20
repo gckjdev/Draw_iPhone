@@ -492,6 +492,7 @@ GameSNSService* _defaultSNSService;
                   text:text
          imageFilePath:imagePath
               audioURL:nil
+                 title:@""
                 inView:view
             awardCoins:awardCoins
         successMessage:successMessage
@@ -503,6 +504,7 @@ GameSNSService* _defaultSNSService;
                 text:(NSString*)text
        imageFilePath:(NSString*)imagePath
             audioURL:(NSString*)audioURL
+               title:(NSString*)title
               inView:(UIView*)view
           awardCoins:(int)awardCoins
       successMessage:(NSString*)successMessage
@@ -512,6 +514,7 @@ GameSNSService* _defaultSNSService;
                   text:text
          imageFilePath:imagePath
               audioURL:audioURL
+                 title:title
                 inView:view
             awardCoins:awardCoins
         successMessage:successMessage
@@ -524,6 +527,7 @@ GameSNSService* _defaultSNSService;
                 text:(NSString*)text
        imageFilePath:(NSString*)imagePath
             audioURL:(NSString*)audioURL
+               title:(NSString*)title
               inView:(UIView*)view
           awardCoins:(int)awardCoins
       successMessage:(NSString*)successMessage
@@ -538,10 +542,12 @@ GameSNSService* _defaultSNSService;
     
     PPDebug(@"<publishWeibo> sns(%d) text(%@) image(%@) audio(%@)", snsType, text, imagePath, audioURL);
     
-    SSPublishContentMediaType mediaType = SSPublishContentMediaTypeText;
-    
+    SSPublishContentMediaType mediaType = SSPublishContentMediaTypeText;    
     if ([audioURL length] > 0){
-        mediaType = SSPublishContentMediaTypeMusic;
+        mediaType = SSPublishContentMediaTypeMusic;        
+        if ([title length] == 0){
+            title = text;
+        }
     }
     else{
         mediaType = ([imagePath length] > 0) ? SSPublishContentMediaTypeImage : SSPublishContentMediaTypeText;
@@ -551,7 +557,7 @@ GameSNSService* _defaultSNSService;
     id<ISSContent> publishContent = [ShareSDK content:text
                                        defaultContent:@""
                                                 image:[ShareSDK imageWithPath:imagePath]
-                                                title:nil
+                                                title:title
                                                   url:audioURL
                                           description:nil
                                             mediaType:mediaType];
