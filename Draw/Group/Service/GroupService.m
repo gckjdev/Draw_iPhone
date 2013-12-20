@@ -9,7 +9,6 @@
 #import "GroupService.h"
 #import "PPGameNetworkRequest.h"
 #import "PPNetworkConstants.h"
-#import "CommonOpusDetailController.h"
 #import "DrawError.h"
 #import "PPConfigManager.h"
 #import "UIImageExt.h"

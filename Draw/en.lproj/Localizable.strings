@@ -939,6 +939,10 @@
 "kFlowerTimes" = "Flower(%d)";
 "kTomatoTimes" = "Tomato(%d)";
 "kReportTimes" = "Report(%d)";
+"kCollectTimes" = "Favor(%d)";
+"kListenTimes" = "Play(%d)";
+"kWatchTimes" = "Play(%d)";
+
 
 "kNoComments" = "No comment yet, be the first one?";
 "kNoGuesses" = "No one has guessed it yet, be the first one?";
@@ -2166,6 +2170,7 @@
 "kLevelPlayer" = "Level";
 "kPopPlayer" = "Pop";
 "kNewStarPlayer" = "Star";
+
 
 
 "kLittleGeeFeedbackTips" = "Welcome to join QQ group: 228119679, and follow the official Weibo @小吉画画";

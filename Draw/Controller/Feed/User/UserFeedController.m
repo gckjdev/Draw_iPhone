@@ -271,9 +271,9 @@ typedef enum{
             
             return cell;
         }        
-    }else{
-        return nil;
     }
+    
+    return nil;
 }
 
 - (void)updateSeparator:(NSInteger)dataCount
