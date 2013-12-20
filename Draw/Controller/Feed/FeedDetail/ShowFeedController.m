@@ -643,7 +643,6 @@ typedef enum{
                 }];
                 [bself.commentHeader setSelectedType:CommentTypeFlower];
                 [bself.feed incTimesForType:FeedTimesTypeFlower];
-                [bself.commentHeader updateTimes:bself.feed];
             }else if (resultCode == ERROR_BALANCE_NOT_ENOUGH){
                 [BalanceNotEnoughAlertView showInController:bself];
                 [bself.feed decreaseLocalFlowerTimes];
@@ -1393,6 +1392,13 @@ typedef enum{
         [self.dataTableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionTop animated:YES];
         
         [self play];
+        [[FeedService defaultService] playOpus:self.feed.feedId contestId:self.feed.contestId resultBlock:^(int resultCode) {
+            [self.feed incPlayTimes];
+            [self.commentHeader updateTimes:self.feed];
+        }];
+        
+        
+        
     }
 }
 

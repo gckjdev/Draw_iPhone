@@ -364,9 +364,9 @@ typedef enum{
         }
         [cell setCellInfo:commentFeed];
         return cell;
-    }else{
-        return nil;
     }
+    
+   return nil;    
 }
 
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath{

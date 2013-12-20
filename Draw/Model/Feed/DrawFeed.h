@@ -63,6 +63,7 @@ typedef enum{
 - (BOOL)hasGuessed;
 - (void)incGuessTimes;
 - (void)incCorrectTimes;
+- (void)incPlayTimes;
 
 - (void)updateFeedTimesFromDict:(NSDictionary *)dict;
 - (void)setTimes:(NSInteger)times forType:(FeedTimesType)type;
@@ -77,9 +78,11 @@ typedef enum{
 - (NSInteger)correctTimes;
 - (NSInteger)flowerTimes;
 - (NSInteger)tomatoTimes;
+- (NSInteger)playTimes;
 
 - (NSInteger)contestCommentTimes;
 - (ActionType)actionType;
+
 
 - (BOOL)isContestFeed;
 
@@ -88,6 +91,7 @@ typedef enum{
 - (void)increaseLocalFlowerTimes;
 - (void)increaseLocalTomatoTimes;
 - (void)increaseSaveTimes;
+
 
 - (NSInteger)itemLimit;
 - (NSInteger)saveLimit;

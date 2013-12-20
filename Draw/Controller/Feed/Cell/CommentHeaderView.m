@@ -34,10 +34,10 @@
 
 + (CommentType *)getTypeListByFeed:(DrawFeed *)feed {
     if([feed isContestFeed]){
-        static CommentType contestFeedTypes[] = {CommentTypeComment, CommentTypeFlower, CommentTypeContestComment,CommentTypeSave,CommentTypeNO};
+        static CommentType contestFeedTypes[] = {CommentTypeComment, CommentTypeFlower, CommentTypeContestComment,CommentTypePlay, CommentTypeSave,CommentTypeNO};
         return contestFeedTypes;
     }else{
-        static CommentType normalFeedTypes[] = {CommentTypeComment, CommentTypeGuess, CommentTypeFlower, CommentTypeSave, CommentTypeNO};
+        static CommentType normalFeedTypes[] = {CommentTypeComment, CommentTypeGuess, CommentTypeFlower, CommentTypePlay,CommentTypeSave, CommentTypeNO};
         return normalFeedTypes;        
     }
 }
@@ -53,7 +53,9 @@
           KEY(CommentTypeGuess) : NSLS(@"kGuessTimes"),
           KEY(CommentTypeFlower) : NSLS(@"kFlowerTimes"),
           KEY(CommentTypeSave) : NSLS(@"kCollectTimes"),
+          KEY(CommentTypePlay) : NSLS(@"kWatchTimes"),
           KEY(CommentTypeContestComment) : NSLS(@"kReportTimes")};
+          
     }else if ([self.feed isSingCategory]){
         
         dict =
@@ -62,6 +64,7 @@
           KEY(CommentTypeGuess) : NSLS(@"kOpusGuessTimes"),
           KEY(CommentTypeFlower) : NSLS(@"kFlowerTimes"),
           KEY(CommentTypeSave) : NSLS(@"kCollectTimes"),
+          KEY(CommentTypePlay) : NSLS(@"kListenTimes"),
           KEY(CommentTypeContestComment) : NSLS(@"kReportTimes")};
     }
 
@@ -77,7 +80,9 @@
       KEY(CommentTypeGuess) : @(self.feed.guessTimes),
       KEY(CommentTypeFlower) : @(self.feed.flowerTimes),
       KEY(CommentTypeSave) : @(self.feed.saveTimes),
+      KEY(CommentTypePlay) : @(self.feed.playTimes),
       KEY(CommentTypeContestComment) : @(self.feed.contestCommentTimes)};
+    
     NSInteger v = [[dict objectForKey:KEY(type)] integerValue];
     return MAX(v, 0);
 }
@@ -119,7 +124,6 @@
 
 #define SPLIT_TAG_PLUS 10000
 #define TAB_HEIGHT (ISIPAD ? 75 : 37)
-//#define TAB_WIDTH (ISIPAD ? 713 : 299)
 #define TAB_WIDTH (ISIPAD ? 768 : 320)
 
 #define BUTTON_HEIGHT (ISIPAD ? 50 : 25)
@@ -185,6 +189,9 @@
     
     if (type == CommentTypeSave) {
         POSTMSG(NSLS(@"kNoSaveList"));
+        return;
+    }
+    if (type == CommentTypePlay) {
         return;
     }
     UIButton *button = [self buttonWithType:type];

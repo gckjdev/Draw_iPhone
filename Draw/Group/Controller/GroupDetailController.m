@@ -681,6 +681,7 @@ typedef enum{
     SimpleResultBlock callback = ^(NSError *error){
         [self hideActivity];
         POSTMSG(NSLS(@"kGroupUserInvited"));
+        [controller.navigationController popToViewController:self animated:YES];
     };
     
     [self showActivityWithText:NSLS(@"kInviting")];

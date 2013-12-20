@@ -9,7 +9,6 @@
 #import <Foundation/Foundation.h>
 #import <MessageUI/MessageUI.h>
 #import "CustomActionSheet.h"
-//#import "ShareEditController.h"
 #import "DrawDataService.h"
 #import "MyPaintManager.h"
 
