@@ -311,8 +311,8 @@
                                                        feed:self.feed
                                                 useBigImage:YES];
     v.tag = 8808723459;
-    [v setFeedDetailStyle];
     [self.drawImage addSubview:v];
+    [v setFeedDetailStyle];
 }
 
 - (void)updateDrawWithScene:(id<ShowFeedSceneProtocol>)scene
