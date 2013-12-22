@@ -9,11 +9,11 @@
 #import "CommonTabController.h"
 #import "FeedService.h"
 #import "RankView.h"
-#import "TopPlayerView.h"
+//#import "TopPlayerView.h"
 #import "UserService.h"
 #import "OpusImageBrower.h"
 
-@interface HotController : CommonTabController<FeedServiceDelegate,RankViewDelegate,TopPlayerViewDelegate,UserServiceDelegate, UIActionSheetDelegate, OpusImageBrowerDelegate>
+@interface HotController : CommonTabController<FeedServiceDelegate,RankViewDelegate,UserServiceDelegate, UIActionSheetDelegate, OpusImageBrowerDelegate>
 {
     
 }
