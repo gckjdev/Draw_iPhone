@@ -19,6 +19,7 @@
 #import "BBSPostDetailController.h"
 #import "SearchGroupController.h"
 #import "UIViewController+BGImage.h"
+#import "ChatDetailController.h"
 
 @interface GroupHomeController ()
 {
@@ -343,6 +344,14 @@
             break;
         }
          case GroupChat:
+        {
+            PBGroup_Builder* builder = [PBGroup builder];
+            [builder setGroupId:@"888800000000001234567890"];
+            [builder setName:@"Test Group"];
+            
+            PBGroup* group = [builder build];
+            [ChatDetailController enterFromGroup:group superController:self];            
+        }
             
             break;
          case GroupAtMe:

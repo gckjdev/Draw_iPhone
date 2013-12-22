@@ -18,6 +18,8 @@
 #import "SearchPostController.h"
 #import "GroupDetailController.h"
 #import "UIViewController+BGImage.h"
+#import "ChatDetailController.h"
+#import "MessageStat.h"
 
 typedef enum{
     NewestTopic = 1,
@@ -112,6 +114,7 @@ typedef enum {
     [self.view addSubview:self.footerView];
 }
 
+
 - (void)detailFooterView:(DetailFooterView *)footer
         didClickAtButton:(UIButton *)button
                     type:(NSInteger)type
@@ -129,11 +132,14 @@ typedef enum {
             break;
         }
         case GroupChat:
+        {
             if (![permissonManager canGroupChat]) {
                 POSTMSG(NSLS(@"kCanotGroupChat"));
                 return;
             }
             
+            [ChatDetailController enterFromGroup:self.group superController:self];
+        }
             break;
             
         case GroupSearchTopic:
