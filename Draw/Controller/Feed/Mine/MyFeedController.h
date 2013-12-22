@@ -12,9 +12,10 @@
 #import "RankView.h"
 #import "FeedCell.h"
 #import "CommonDialog.h"
-#import "CommentFeed.h"
+//#import "CommentFeed.h"
 
 @class Feed;
+
 @interface MyFeedController : CommonTabController<FeedServiceDelegate,RankViewDelegate,
 FeedCellDelegate, UIActionSheetDelegate, CommonDialogDelegate>
 {

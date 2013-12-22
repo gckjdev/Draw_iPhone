@@ -255,31 +255,29 @@
             return [DeviceDetection isIPAD] ? 268 : 123;
         case RankViewTypeSecond:
             return [DeviceDetection isIPAD] ? 300 : 130;
-//        case RankViewTypeNormal:
-//            return [DeviceDetection isIPAD] ? 244 : 110;
-//        case RankViewTypeDrawOnCell:
-//            return [DeviceDetection isIPAD] ? 220 : 99;
-        default:
-            return [RankView widthForRankViewType:type];
-    }
-}
-
-+ (CGFloat)widthForRankViewType:(RankViewType)type
-{
-    switch (type) {
-        case RankViewTypeFirst:
-            return [DeviceDetection isIPAD] ? 768 : 320;
-        case RankViewTypeSecond:
-            return [DeviceDetection isIPAD] ? 384 : 159;
         case RankViewTypeNormal:
             return [DeviceDetection isIPAD] ? 256 : 106;
-        case RankViewTypeDrawOnCell:            
-            return [DeviceDetection isIPAD] ? 245 : 99;
-        case RankViewTypeWhisper:
-            return ISIPAD ? 384/1.5 : 159;
         default:
             return 0;
     }
 }
+
+//+ (CGFloat)widthForRankViewType:(RankViewType)type
+//{
+//    switch (type) {
+//        case RankViewTypeFirst:
+//            return [DeviceDetection isIPAD] ? 768 : 320;
+//        case RankViewTypeSecond:
+//            return [DeviceDetection isIPAD] ? 384 : 159;
+//        case RankViewTypeNormal:
+//            return [DeviceDetection isIPAD] ? 256 : 106;
+//        case RankViewTypeDrawOnCell:            
+//            return [DeviceDetection isIPAD] ? 245 : 99;
+//        case RankViewTypeWhisper:
+//            return ISIPAD ? 384/1.5 : 159;
+//        default:
+//            return 0;
+//    }
+//}
 
 @end

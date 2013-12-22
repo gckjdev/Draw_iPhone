@@ -10,14 +10,15 @@
 #import "TableTabManager.h"
 #import "ShareImageManager.h"
 #import "ShowFeedController.h"
-#import "FeedCell.h"
+//#import "FeedCell.h"
 #import "CommonMessageCenter.h"
 #import "UseItemScene.h"
 #import "PPConfigManager.h"
 #import "UserManager.h"
 #import "MKBlockActionSheet.h"
 #import "UINavigationController+UINavigationControllerAdditions.h"
-#import "SingHotCell.h"
+//#import "SingHotCell.h"
+#import "CellManager.h"
 
 typedef enum{
     UserTypeFeed = FeedListTypeUserFeed,
@@ -132,14 +133,16 @@ typedef enum{
     switch (self.currentTab.tabID) {
         case UserTypeOpus:
         case UserTypeFavorite:
-            if (isDrawApp()) {
-                return [RankView heightForRankViewType:RankViewTypeNormal]+1;
-            }else if(isSingApp()){
-                return [RankView heightForRankViewType:RankViewTypeWhisper]+1;
-            }
+//            if (isDrawApp()) {
+//                return [RankView heightForRankViewType:RankViewTypeNormal]+1;
+//            }else if(isSingApp()){
+//                return [RankView heightForRankViewType:RankViewTypeWhisper]+1;
+//            }
+            return [CellManager getLastStyleCellHeightWithIndexPath:indexPath];
             
         case UserTypeFeed:
-            return [FeedCell getCellHeight];
+//            return [FeedCell getCellHeight];
+            return [CellManager getTimelineStyleCellHeight];
 
         default:
             return 0;
@@ -155,128 +158,138 @@ typedef enum{
 }
 
 
-#define NORMAL_CELL_VIEW_NUMBER 3
-#define WHISPER_CELL_VIEW_NUMBER (ISIPAD ? 3 : 2)
+//#define NORMAL_CELL_VIEW_NUMBER 3
 
-#define WIDTH_SPACE 1
-- (void)setNormalRankCell:(UITableViewCell *)cell
-                WithFeeds:(NSArray *)feeds
-{
-    CGFloat width = [RankView widthForRankViewType:RankViewTypeNormal];
-    CGFloat height = [RankView heightForRankViewType:RankViewTypeNormal];
-    CGFloat space = WIDTH_SPACE;
-    CGFloat x = 0;
-    CGFloat y = 0;
-    for (DrawFeed *feed in feeds) {
-        RankView *rankView = [RankView createRankView:self type:RankViewTypeNormal];
-        [rankView setViewInfo:feed];
-        [cell.contentView addSubview:rankView];
-        rankView.frame = CGRectMake(x, y, width, height);
-        x += width + space;
-        [rankView updateViewInfoForUserOpus];
-    }
-}
-
-
-- (void)setWhisperRankCell:(UITableViewCell *)cell
-                WithFeeds:(NSArray *)feeds
-{
-    CGFloat width = [RankView widthForRankViewType:RankViewTypeWhisper];
-    CGFloat height = [RankView heightForRankViewType:RankViewTypeWhisper];
-    CGFloat x = 0;
-    CGFloat y = 0;
-    for (DrawFeed *feed in feeds) {
-        RankView *rankView = [RankView createRankView:self type:RankViewTypeWhisper];
-        [rankView setViewInfo:feed];
-        [cell.contentView addSubview:rankView];
-        rankView.frame = CGRectMake(x, y, width, height);
-        x += width;
-        [rankView updateViewInfoForUserOpus];
-    }
-}
+//#define WIDTH_SPACE 1
+//- (void)setNormalRankCell:(UITableViewCell *)cell
+//                WithFeeds:(NSArray *)feeds
+//{
+//    CGFloat width = [RankView widthForRankViewType:RankViewTypeNormal];
+//    CGFloat height = [RankView heightForRankViewType:RankViewTypeNormal];
+//    CGFloat space = WIDTH_SPACE;
+//    CGFloat x = 0;
+//    CGFloat y = 0;
+//    for (DrawFeed *feed in feeds) {
+//        RankView *rankView = [RankView createRankView:self type:RankViewTypeNormal];
+//        [rankView setViewInfo:feed];
+//        [cell.contentView addSubview:rankView];
+//        rankView.frame = CGRectMake(x, y, width, height);
+//        x += width + space;
+//        [rankView updateViewInfoForUserOpus];
+//    }
+//}
 
 
-- (NSObject *)saveGetObjectForIndex:(NSInteger)index
-{
-    NSArray *list = [self tabDataList];
-    if (index < 0 || index >= [list count]) {
-        return nil;
-    }
-    return [list objectAtIndex:index];
-}
+//- (void)setWhisperRankCell:(UITableViewCell *)cell
+//                WithFeeds:(NSArray *)feeds
+//{
+//    CGFloat width = [RankView widthForRankViewType:RankViewTypeWhisper];
+//    CGFloat height = [RankView heightForRankViewType:RankViewTypeWhisper];
+//    CGFloat x = 0;
+//    CGFloat y = 0;
+//    for (DrawFeed *feed in feeds) {
+//        RankView *rankView = [RankView createRankView:self type:RankViewTypeWhisper];
+//        [rankView setViewInfo:feed];
+//        [cell.contentView addSubview:rankView];
+//        rankView.frame = CGRectMake(x, y, width, height);
+//        x += width;
+//        [rankView updateViewInfoForUserOpus];
+//    }
+//}
+
+
+//- (NSObject *)saveGetObjectForIndex:(NSInteger)index
+//{
+//    NSArray *list = [self tabDataList];
+//    if (index < 0 || index >= [list count]) {
+//        return nil;
+//    }
+//    return [list objectAtIndex:index];
+//}
 
 - (UITableViewCell *)tableView:(UITableView *)theTableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    TableTab *tab = [self currentTab];
     
-    if (tab.tabID == UserTypeFeed) {
-        
-        NSString *CellIdentifier = [FeedCell getCellIdentifier];
-        FeedCell *cell = [theTableView dequeueReusableCellWithIdentifier:CellIdentifier];
-        if (cell == nil) {
-            cell = [FeedCell createCell:self];
-        }
-        cell.indexPath = indexPath;
-        cell.accessoryType = UITableViewCellAccessoryNone;
-        Feed *feed = [self.tabDataList objectAtIndex:indexPath.row];
-        [feed updateDesc];
-        [cell setCellInfo:feed];
-        return cell;
-        
-    }else if(tab.tabID == UserTypeOpus || tab.tabID == UserTypeFavorite){
-        
-        if (isDrawApp()) {
-            NSString *CellIdentifier = @"RankCell";
-            UITableViewCell *cell = [theTableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    switch ([[self currentTab] tabID]) {
+        case UserTypeOpus:
+        case UserTypeFavorite:
             
-            if (cell == nil) {
-                cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
-            }else{
-                [self clearCellSubViews:cell];
-            }
+            return [CellManager getLastStyleCell:theTableView
+                                       indexPath:indexPath
+                                        delegate:self
+                                        dataList:[self tabDataList]];
+            break;
             
-            cell.selectionStyle = UITableViewCellSelectionStyleNone;
-            cell.accessoryType = UITableViewCellAccessoryNone;
+        case UserTypeFeed:
             
-            NSInteger startIndex = (indexPath.row * NORMAL_CELL_VIEW_NUMBER);
-            NSMutableArray *list = [NSMutableArray array];
-            for (NSInteger i = startIndex; i < startIndex+NORMAL_CELL_VIEW_NUMBER; ++ i) {
-                NSObject *object = [self saveGetObjectForIndex:i];
-                if (object) {
-                    [list addObject:object];
-                }
-            }
-            [self setNormalRankCell:cell WithFeeds:list];
+           return [CellManager getTimelineStyleCell:theTableView
+                                          indexPath:indexPath
+                                           delegate:self
+                                           dataList:self.tabDataList];
             
-            return cell;
+            break;
             
-        }else if (isSingApp()){
-            
-            NSString *indentifier = [SingHotCell getCellIdentifier];
-            SingHotCell *cell = [theTableView dequeueReusableCellWithIdentifier:indentifier];
-            
-            if (cell == nil) {
-                cell = [SingHotCell createCell:self];
-            }
-            
-            NSMutableArray *feeds = [NSMutableArray array];
-            int baseIndex = indexPath.row*WHISPER_CELL_VIEW_NUMBER;
-            
-            for (int index = baseIndex; index < baseIndex + WHISPER_CELL_VIEW_NUMBER; index ++) {
-                NSObject *object = [self saveGetObjectForIndex:index];
-                if (object==nil) {
-                    break;
-                }
-                [feeds addObject:object];
-            }
-            
-            [cell setCellInfo:feeds];
-            
-            return cell;
-        }        
+        default:
+            return nil;
+            break;
     }
     
-    return nil;
+    
+    
+//    
+//    TableTab *tab = [self currentTab];
+//    
+//    if (tab.tabID == UserTypeFeed) {
+//        
+//        NSString *CellIdentifier = [FeedCell getCellIdentifier];
+//        FeedCell *cell = [theTableView dequeueReusableCellWithIdentifier:CellIdentifier];
+//        if (cell == nil) {
+//            cell = [FeedCell createCell:self];
+//        }
+//        cell.indexPath = indexPath;
+//        cell.accessoryType = UITableViewCellAccessoryNone;
+//        Feed *feed = [self.tabDataList objectAtIndex:indexPath.row];
+//        [feed updateDesc];
+//        [cell setCellInfo:feed];
+//        return cell;
+//        
+//    }else if(tab.tabID == UserTypeOpus || tab.tabID == UserTypeFavorite){
+//        
+//        if (isDrawApp()) {
+//            NSString *CellIdentifier = @"RankCell";
+//            UITableViewCell *cell = [theTableView dequeueReusableCellWithIdentifier:CellIdentifier];
+//            
+//            if (cell == nil) {
+//                cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
+//            }else{
+//                [self clearCellSubViews:cell];
+//            }
+//            
+//            cell.selectionStyle = UITableViewCellSelectionStyleNone;
+//            cell.accessoryType = UITableViewCellAccessoryNone;
+//            
+//            NSInteger startIndex = (indexPath.row * NORMAL_CELL_VIEW_NUMBER);
+//            NSMutableArray *list = [NSMutableArray array];
+//            for (NSInteger i = startIndex; i < startIndex+NORMAL_CELL_VIEW_NUMBER; ++ i) {
+//                NSObject *object = [self saveGetObjectForIndex:i];
+//                if (object) {
+//                    [list addObject:object];
+//                }
+//            }
+//            [self setNormalRankCell:cell WithFeeds:list];
+//            
+//            return cell;
+//            
+//        }else if (isSingApp()){
+//            
+//            return [CellManager getLastStyleCell:theTableView
+//                                       indexPath:indexPath
+//                                        delegate:self
+//                                        dataList:[self tabDataList]];
+//        }
+//    }
+//    
+//    return nil;
 }
 
 - (void)updateSeparator:(NSInteger)dataCount
@@ -295,22 +308,16 @@ typedef enum{
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     NSInteger count = [super tableView:tableView numberOfRowsInSection:section];
-    
     [self updateSeparator:count];
+    
     switch (self.currentTab.tabID) {
-        case UserTypeFeed:
-            return count;
+            
         case UserTypeOpus:
         case UserTypeFavorite:
-            if (isDrawApp()) {
-                if (count % NORMAL_CELL_VIEW_NUMBER == 0) {
-                    return count/NORMAL_CELL_VIEW_NUMBER;
-                }else{
-                    return count/NORMAL_CELL_VIEW_NUMBER + 1;
-                }
-            }else if (isSingApp()){
-                return count/WHISPER_CELL_VIEW_NUMBER + ((count%WHISPER_CELL_VIEW_NUMBER==0)?0:1);
-            }
+            return [CellManager getLastStyleCellCountWithDataCount:count roundingUp:YES];
+            
+        case UserTypeFeed:
+            return [CellManager getTimelineStyleCellCountWithDataCount:count];
 
         default:
             return 0;

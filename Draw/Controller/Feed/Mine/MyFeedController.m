@@ -10,22 +10,23 @@
 #import "TableTabManager.h"
 #import "ShareImageManager.h"
 #import "ShowFeedController.h"
-#import "FeedCell.h"
+//#import "FeedCell.h"
 //#import "DrawUserInfoView.h"
 #import "ViewUserDetail.h"
 #import "UserDetailViewController.h"
 #import "CommonMessageCenter.h"
 #import "CommonDialog.h"
 #import "StatisticManager.h"
-#import "CommentCell.h"
-#import "MyCommentCell.h"
-#import "DrawFeed.h"
+//#import "CommentCell.h"
+//#import "MyCommentCell.h"
+//#import "DrawFeed.h"
 #import "CommentController.h"
 #import "UseItemScene.h"
 #import "MyFriend.h"
 #import "PPConfigManager.h"
 #import "CommonMessageCenter.h"
-#import "SingHotCell.h"
+//#import "SingHotCell.h"
+#import "CellManager.h"
 
 typedef enum{
     MyTypeTimelineOpus = FeedListTypeTimelineOpus,
@@ -184,23 +185,26 @@ typedef enum{
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    
     switch (self.currentTab.tabID) {
         case MyTypeDrawToMe:
-            if (isDrawApp() || isLittleGeeAPP()) {
-                return [RankView heightForRankViewType:RankViewTypeNormal]+1;
-            }else if (isSingApp()){
-                return [RankView heightForRankViewType:RankViewTypeWhisper];
-            }
+//            if (isDrawApp() || isLittleGeeAPP()) {
+//                return [RankView heightForRankViewType:RankViewTypeNormal]+1;
+//            }else if (isSingApp()){
+//                return [RankView heightForRankViewType:RankViewTypeWhisper];
+//            }
+            
+            return [CellManager getLastStyleCellHeightWithIndexPath:indexPath];
         
         case MyTypeTimelineOpus:
         case MyTypeTimelineGuess:
-            return [FeedCell getCellHeight];
+//            return [FeedCell getCellHeight];
+            return [CellManager getTimelineStyleCellHeight];
         case MyTypeComment:
-        {
-            CommentFeed * commentFeed = [self.tabDataList objectAtIndex:indexPath.row];
-            return [MyCommentCell  getCellHeight:commentFeed];
-        }
+            return [CellManager getCommentStyleCellHeightWithDataList:self.tabDataList indexPath:indexPath];
+//        {
+//            CommentFeed * commentFeed = [self.tabDataList objectAtIndex:indexPath.row];
+//            return [MyCommentCell  getCellHeight:commentFeed];
+//        }
         default:
             return 44.0f;
     }
@@ -214,65 +218,64 @@ typedef enum{
     }    
 }
 
-- (void)setFirstRankCell:(UITableViewCell *)cell WithFeed:(DrawFeed *)feed
-{
-    RankView *view = [RankView createRankView:self type:RankViewTypeFirst];
-    [view setViewInfo:feed];
-    [cell.contentView addSubview:view];
-}
+//- (void)setFirstRankCell:(UITableViewCell *)cell WithFeed:(DrawFeed *)feed
+//{
+//    RankView *view = [RankView createRankView:self type:RankViewTypeFirst];
+//    [view setViewInfo:feed];
+//    [cell.contentView addSubview:view];
+//}
 
-- (void)setSencodRankCell:(UITableViewCell *)cell 
-                WithFeed1:(DrawFeed *)feed1 
-                    feed2:(DrawFeed *)feed2
-{
-    RankView *view1 = [RankView createRankView:self type:RankViewTypeSecond];
-    [view1 setViewInfo:feed1];
-    RankView *view2 = [RankView createRankView:self type:RankViewTypeSecond];
-    [view2 setViewInfo:feed2];
-    [cell.contentView addSubview:view1];
-    [cell.contentView addSubview:view2];
-    
-    CGFloat x2 = (CGRectGetWidth(cell.frame) -  [RankView widthForRankViewType:RankViewTypeSecond]);
-    view2.frame = CGRectMake(x2, 0, view2.frame.size.width, view2.frame.size.height);
-}
+//- (void)setSencodRankCell:(UITableViewCell *)cell 
+//                WithFeed1:(DrawFeed *)feed1 
+//                    feed2:(DrawFeed *)feed2
+//{
+//    RankView *view1 = [RankView createRankView:self type:RankViewTypeSecond];
+//    [view1 setViewInfo:feed1];
+//    RankView *view2 = [RankView createRankView:self type:RankViewTypeSecond];
+//    [view2 setViewInfo:feed2];
+//    [cell.contentView addSubview:view1];
+//    [cell.contentView addSubview:view2];
+//    
+//    CGFloat x2 = (CGRectGetWidth(cell.frame) -  [RankView widthForRankViewType:RankViewTypeSecond]);
+//    view2.frame = CGRectMake(x2, 0, view2.frame.size.width, view2.frame.size.height);
+//}
 
 
-#define NORMAL_CELL_VIEW_NUMBER 3
-#define WHISPER_CELL_VIEW_NUMBER (ISIPAD ? 3 : 2)
+//#define NORMAL_CELL_VIEW_NUMBER 3
 
-#define WIDTH_SPACE 1
-- (void)setNormalRankCell:(UITableViewCell *)cell 
-                WithFeeds:(NSArray *)feeds
-{
-    CGFloat width = [RankView widthForRankViewType:RankViewTypeNormal];
-    CGFloat height = [RankView heightForRankViewType:RankViewTypeNormal];
-    CGFloat space =  WIDTH_SPACE;
-    CGFloat x = 0;
-    CGFloat y = 0;
-    for (DrawFeed *feed in feeds) {
-        RankView *rankView = [RankView createRankView:self type:RankViewTypeNormal];
-        [rankView setViewInfo:feed];
-        [cell.contentView addSubview:rankView];
-        rankView.frame = CGRectMake(x, y, width, height);
-        x += width + space;
-    }
-}
+//#define WIDTH_SPACE 1
+//- (void)setNormalRankCell:(UITableViewCell *)cell
+//                WithFeeds:(NSArray *)feeds
+//{
+//    CGFloat width = [RankView widthForRankViewType:RankViewTypeNormal];
+//    CGFloat height = [RankView heightForRankViewType:RankViewTypeNormal];
+//    CGFloat space =  WIDTH_SPACE;
+//    CGFloat x = 0;
+//    CGFloat y = 0;
+//    for (DrawFeed *feed in feeds) {
+//        RankView *rankView = [RankView createRankView:self type:RankViewTypeNormal];
+//        [rankView setViewInfo:feed];
+//        [cell.contentView addSubview:rankView];
+//        rankView.frame = CGRectMake(x, y, width, height);
+//        x += width + space;
+//    }
+//}
 
-- (void)setWhisperRankCell:(UITableViewCell *)cell
-                 WithFeeds:(NSArray *)feeds
-{
-    CGFloat width = [RankView widthForRankViewType:RankViewTypeWhisper];
-    CGFloat height = [RankView heightForRankViewType:RankViewTypeWhisper];
-    CGFloat x = 0;
-    CGFloat y = 0;
-    for (DrawFeed *feed in feeds) {
-        RankView *rankView = [RankView createRankView:self type:RankViewTypeWhisper];
-        [rankView setViewInfo:feed];
-        [cell.contentView addSubview:rankView];
-        rankView.frame = CGRectMake(x, y, width, height);
-        x += width;
-    }
-}
+//- (void)setWhisperRankCell:(UITableViewCell *)cell
+//                 WithFeeds:(NSArray *)feeds
+//{
+//    CGFloat width = [RankView widthForRankViewType:RankViewTypeWhisper];
+//    CGFloat height = [RankView heightForRankViewType:RankViewTypeWhisper];
+//    CGFloat x = 0;
+//    CGFloat y = 0;
+//    for (DrawFeed *feed in feeds) {
+//        RankView *rankView = [RankView createRankView:self type:RankViewTypeWhisper];
+//        [rankView setViewInfo:feed];
+//        [cell.contentView addSubview:rankView];
+//        rankView.frame = CGRectMake(x, y, width, height);
+//        x += width;
+//    }
+//}
 
 
 - (NSObject *)saveGetObjectForIndex:(NSInteger)index
@@ -286,87 +289,83 @@ typedef enum{
 
 - (UITableViewCell *)tableView:(UITableView *)theTableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    TableTab *tab = [self currentTab];
     
-    if (tab.tabID == MyTypeTimelineOpus || tab.tabID == MyTypeTimelineGuess ) {
-        
-        NSString *CellIdentifier = [FeedCell getCellIdentifier];
-        FeedCell *cell = [theTableView dequeueReusableCellWithIdentifier:CellIdentifier];
-        if (cell == nil) {
-            cell = [FeedCell createCell:self];
-        }
-        cell.indexPath = indexPath;
-        cell.accessoryType = UITableViewCellAccessoryNone;
-        Feed *feed = [self.tabDataList objectAtIndex:indexPath.row];
-        [feed updateDesc];
-        [cell setCellInfo:feed];
-        cell.backgroundColor = [UIColor clearColor];        
-        return cell;
-        
-    }else if(tab.tabID == MyTypeDrawToMe){
-
-
-        if (isSingApp()){
+    switch ([[self currentTab] tabID]) {
+        case MyTypeTimelineOpus:
+        case MyTypeTimelineGuess:
+            return [CellManager getTimelineStyleCell:theTableView indexPath:indexPath delegate:self dataList:self.tabDataList];
+            break;
             
-            NSString *indentifier = [SingHotCell getCellIdentifier];
-            SingHotCell *cell = [theTableView dequeueReusableCellWithIdentifier:indentifier];
+        case MyTypeComment:
+            return [CellManager getCommentStyleCell:theTableView
+                                          indexPath:indexPath
+                                           delegate:self
+                                           dataList:self.tabDataList];
+            break;
             
-            if (cell == nil) {
-                cell = [SingHotCell createCell:self];
-            }
+        case MyTypeDrawToMe:
+            return [CellManager getLastStyleCell:theTableView
+                                       indexPath:indexPath
+                                        delegate:self
+                                        dataList:self.tabDataList];
+            break;
             
-            NSMutableArray *feeds = [NSMutableArray array];
-            int baseIndex = indexPath.row*WHISPER_CELL_VIEW_NUMBER;
-            
-            for (int index = baseIndex; index < baseIndex + WHISPER_CELL_VIEW_NUMBER; index ++) {
-                NSObject *object = [self saveGetObjectForIndex:index];
-                if (object==nil) {
-                    break;
-                }
-                [feeds addObject:object];
-            }
-            
-            [cell setCellInfo:feeds];
-            
-            return cell;
-        }
-        else {
-            NSString *CellIdentifier = @"RankCell";//[RankFirstCell getCellIdentifier];
-            UITableViewCell *cell = [theTableView dequeueReusableCellWithIdentifier:CellIdentifier];
-            
-            if (cell == nil) {
-                cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
-            }else{
-                [self clearCellSubViews:cell];
-            }
-            
-            cell.selectionStyle = UITableViewCellSelectionStyleNone;
-            cell.accessoryType = UITableViewCellAccessoryNone;
-            
-            NSInteger startIndex = (indexPath.row * NORMAL_CELL_VIEW_NUMBER);
-            NSMutableArray *list = [NSMutableArray array];
-            for (NSInteger i = startIndex; i < startIndex+NORMAL_CELL_VIEW_NUMBER; ++ i) {
-                NSObject *object = [self saveGetObjectForIndex:i];
-                if (object) {
-                    [list addObject:object];
-                }
-            }
-            [self setNormalRankCell:cell WithFeeds:list];
-            return cell;
-        }
-        
-    }else if(tab.tabID == MyTypeComment){
-        CommentFeed * commentFeed = [self.tabDataList objectAtIndex:indexPath.row];
-        MyCommentCell *cell = [theTableView dequeueReusableCellWithIdentifier:[MyCommentCell getCellIdentifier]];
-        if (cell == nil) {
-            cell = [MyCommentCell createCell:self];
-            cell.superViewController = self;
-        }
-        [cell setCellInfo:commentFeed];
-        return cell;
+        default:
+            return nil;
+            break;
     }
     
-   return nil;    
+    
+//    TableTab *tab = [self currentTab];
+//
+//    if (tab.tabID == MyTypeTimelineOpus || tab.tabID == MyTypeTimelineGuess ) {
+//
+//        return [CellManager getTimelineStyleCell:theTableView indexPath:indexPath delegate:self dataList:self.tabDataList];
+//        
+//    }else if(tab.tabID == MyTypeDrawToMe){
+//
+//
+//        if (isSingApp()){
+//            
+//            return [CellManager getLastStyleCell:theTableView
+//                                       indexPath:indexPath
+//                                        delegate:self
+//                                        dataList:self.tabDataList];
+//        }
+//        else {
+//            NSString *CellIdentifier = @"RankCell";//[RankFirstCell getCellIdentifier];
+//            UITableViewCell *cell = [theTableView dequeueReusableCellWithIdentifier:CellIdentifier];
+//            
+//            if (cell == nil) {
+//                cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
+//            }else{
+//                [self clearCellSubViews:cell];
+//            }
+//            
+//            cell.selectionStyle = UITableViewCellSelectionStyleNone;
+//            cell.accessoryType = UITableViewCellAccessoryNone;
+//            
+//            NSInteger startIndex = (indexPath.row * NORMAL_CELL_VIEW_NUMBER);
+//            NSMutableArray *list = [NSMutableArray array];
+//            for (NSInteger i = startIndex; i < startIndex+NORMAL_CELL_VIEW_NUMBER; ++ i) {
+//                NSObject *object = [self saveGetObjectForIndex:i];
+//                if (object) {
+//                    [list addObject:object];
+//                }
+//            }
+//            [self setNormalRankCell:cell WithFeeds:list];
+//            return cell;
+//        }
+//        
+//    }else if(tab.tabID == MyTypeComment){
+//        
+//        return [CellManager getCommentStyleCell:theTableView
+//                                      indexPath:indexPath
+//                                       delegate:self
+//                                       dataList:self.tabDataList];
+//    }
+//    
+//   return nil;    
 }
 
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -400,21 +399,18 @@ typedef enum{
 {
     NSInteger count = [super tableView:tableView numberOfRowsInSection:section];
     [self updateSeparator:count];
+    
     switch (self.currentTab.tabID) {
+            
         case MyTypeTimelineOpus:
         case MyTypeTimelineGuess:
+            return [CellManager getTimelineStyleCellCountWithDataCount:count];
+            
         case MyTypeComment:
-            return count;
+            return [CellManager getCommentStyleCellCountWithDataCount:count];;
+            
         case MyTypeDrawToMe:
-            if (isDrawApp()) {
-                if (count % NORMAL_CELL_VIEW_NUMBER == 0) {
-                    return count/NORMAL_CELL_VIEW_NUMBER;
-                }else{
-                    return count/NORMAL_CELL_VIEW_NUMBER + 1;
-                }
-            }else if (isSingApp()){
-                return count/WHISPER_CELL_VIEW_NUMBER + ((count%WHISPER_CELL_VIEW_NUMBER==0)?0:1);
-            }
+            return [CellManager getLastStyleCellCountWithDataCount:count roundingUp:YES];
 
         default:
             return 0;

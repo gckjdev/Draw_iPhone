@@ -108,7 +108,6 @@ typedef enum{
 #define NORMAL_CELL_VIEW_NUMBER 3
 - (UITableViewCell *)tableView:(UITableView *)theTableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    
     NSString *CellIdentifier = @"RankCell";//[RankFirstCell getCellIdentifier];
     UITableViewCell *cell = [theTableView dequeueReusableCellWithIdentifier:CellIdentifier];
     

@@ -61,7 +61,10 @@
 - (void)setCellInfo:(NSArray *)feeds{
     
     if ([feeds count] <= 0) {
-        return;
+        
+        self.holderView1.hidden = YES;
+        self.holderView2.hidden = YES;
+        self.holderView3.hidden = YES;
     }else if ([feeds count] == 1){
         
         DrawFeed *feed1 = [feeds objectAtIndex:0];
