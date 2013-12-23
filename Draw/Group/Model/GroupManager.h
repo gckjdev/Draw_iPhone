@@ -32,11 +32,11 @@
 
 - (BOOL)followedGroup:(NSString *)groupId;
 
-+ (NSMutableArray *)getTopicCMDList:(PBBBSPost *)post inGroup:(PBGroup *)group;
++ (NSMutableArray *)getTopicCMDList:(PBBBSPost *)post inGroup:(NSString *)groupId;
 
-- (void)collectGroup:(PBGroup *)group;
-- (void)collectGroups:(NSArray *)groups;
-- (PBGroup *)findGroupById:(NSString *)groupId;
+//- (void)collectGroup:(PBGroup *)group;
+//- (void)collectGroups:(NSArray *)groups;
+//- (PBGroup *)findGroupById:(NSString *)groupId;
 
 - (void)updateBadges:(NSArray *)badges;
 

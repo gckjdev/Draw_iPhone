@@ -267,9 +267,7 @@ typedef enum{
 {
     [self hideActivity];
     if (resultCode == 0) {
-        //TODO get the correct group
-        PBGroup *group = [[GroupManager defaultManager] findGroupById:post.boardId];
-        [BBSPostDetailController enterPostDetailControllerWithPost:post group:group fromController:self animated:YES];
+        [BBSPostDetailController enterGroupPostDetailController:post fromController:self animated:YES];
     }else{
         
     }

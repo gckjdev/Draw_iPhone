@@ -2440,6 +2440,269 @@ static PBGroup* defaultPBGroupInstance = nil;
 }
 @end
 
+@interface PBGroupUserRole ()
+@property (retain) NSString* groupId;
+@property int32_t role;
+@property int32_t permission;
+@end
+
+@implementation PBGroupUserRole
+
+- (BOOL) hasGroupId {
+  return !!hasGroupId_;
+}
+- (void) setHasGroupId:(BOOL) value {
+  hasGroupId_ = !!value;
+}
+@synthesize groupId;
+- (BOOL) hasRole {
+  return !!hasRole_;
+}
+- (void) setHasRole:(BOOL) value {
+  hasRole_ = !!value;
+}
+@synthesize role;
+- (BOOL) hasPermission {
+  return !!hasPermission_;
+}
+- (void) setHasPermission:(BOOL) value {
+  hasPermission_ = !!value;
+}
+@synthesize permission;
+- (void) dealloc {
+  self.groupId = nil;
+  [super dealloc];
+}
+- (id) init {
+  if ((self = [super init])) {
+    self.groupId = @"";
+    self.role = 0;
+    self.permission = 0;
+  }
+  return self;
+}
+static PBGroupUserRole* defaultPBGroupUserRoleInstance = nil;
++ (void) initialize {
+  if (self == [PBGroupUserRole class]) {
+    defaultPBGroupUserRoleInstance = [[PBGroupUserRole alloc] init];
+  }
+}
++ (PBGroupUserRole*) defaultInstance {
+  return defaultPBGroupUserRoleInstance;
+}
+- (PBGroupUserRole*) defaultInstance {
+  return defaultPBGroupUserRoleInstance;
+}
+- (BOOL) isInitialized {
+  if (!self.hasGroupId) {
+    return NO;
+  }
+  if (!self.hasRole) {
+    return NO;
+  }
+  if (!self.hasPermission) {
+    return NO;
+  }
+  return YES;
+}
+- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
+  if (self.hasGroupId) {
+    [output writeString:1 value:self.groupId];
+  }
+  if (self.hasRole) {
+    [output writeInt32:2 value:self.role];
+  }
+  if (self.hasPermission) {
+    [output writeInt32:3 value:self.permission];
+  }
+  [self.unknownFields writeToCodedOutputStream:output];
+}
+- (int32_t) serializedSize {
+  int32_t size = memoizedSerializedSize;
+  if (size != -1) {
+    return size;
+  }
+
+  size = 0;
+  if (self.hasGroupId) {
+    size += computeStringSize(1, self.groupId);
+  }
+  if (self.hasRole) {
+    size += computeInt32Size(2, self.role);
+  }
+  if (self.hasPermission) {
+    size += computeInt32Size(3, self.permission);
+  }
+  size += self.unknownFields.serializedSize;
+  memoizedSerializedSize = size;
+  return size;
+}
++ (PBGroupUserRole*) parseFromData:(NSData*) data {
+  return (PBGroupUserRole*)[[[PBGroupUserRole builder] mergeFromData:data] build];
+}
++ (PBGroupUserRole*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (PBGroupUserRole*)[[[PBGroupUserRole builder] mergeFromData:data extensionRegistry:extensionRegistry] build];
+}
++ (PBGroupUserRole*) parseFromInputStream:(NSInputStream*) input {
+  return (PBGroupUserRole*)[[[PBGroupUserRole builder] mergeFromInputStream:input] build];
+}
++ (PBGroupUserRole*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (PBGroupUserRole*)[[[PBGroupUserRole builder] mergeFromInputStream:input extensionRegistry:extensionRegistry] build];
+}
++ (PBGroupUserRole*) parseFromCodedInputStream:(PBCodedInputStream*) input {
+  return (PBGroupUserRole*)[[[PBGroupUserRole builder] mergeFromCodedInputStream:input] build];
+}
++ (PBGroupUserRole*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (PBGroupUserRole*)[[[PBGroupUserRole builder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] build];
+}
++ (PBGroupUserRole_Builder*) builder {
+  return [[[PBGroupUserRole_Builder alloc] init] autorelease];
+}
++ (PBGroupUserRole_Builder*) builderWithPrototype:(PBGroupUserRole*) prototype {
+  return [[PBGroupUserRole builder] mergeFrom:prototype];
+}
+- (PBGroupUserRole_Builder*) builder {
+  return [PBGroupUserRole builder];
+}
+@end
+
+@interface PBGroupUserRole_Builder()
+@property (retain) PBGroupUserRole* result;
+@end
+
+@implementation PBGroupUserRole_Builder
+@synthesize result;
+- (void) dealloc {
+  self.result = nil;
+  [super dealloc];
+}
+- (id) init {
+  if ((self = [super init])) {
+    self.result = [[[PBGroupUserRole alloc] init] autorelease];
+  }
+  return self;
+}
+- (PBGeneratedMessage*) internalGetResult {
+  return result;
+}
+- (PBGroupUserRole_Builder*) clear {
+  self.result = [[[PBGroupUserRole alloc] init] autorelease];
+  return self;
+}
+- (PBGroupUserRole_Builder*) clone {
+  return [PBGroupUserRole builderWithPrototype:result];
+}
+- (PBGroupUserRole*) defaultInstance {
+  return [PBGroupUserRole defaultInstance];
+}
+- (PBGroupUserRole*) build {
+  [self checkInitialized];
+  return [self buildPartial];
+}
+- (PBGroupUserRole*) buildPartial {
+  PBGroupUserRole* returnMe = [[result retain] autorelease];
+  self.result = nil;
+  return returnMe;
+}
+- (PBGroupUserRole_Builder*) mergeFrom:(PBGroupUserRole*) other {
+  if (other == [PBGroupUserRole defaultInstance]) {
+    return self;
+  }
+  if (other.hasGroupId) {
+    [self setGroupId:other.groupId];
+  }
+  if (other.hasRole) {
+    [self setRole:other.role];
+  }
+  if (other.hasPermission) {
+    [self setPermission:other.permission];
+  }
+  [self mergeUnknownFields:other.unknownFields];
+  return self;
+}
+- (PBGroupUserRole_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input {
+  return [self mergeFromCodedInputStream:input extensionRegistry:[PBExtensionRegistry emptyRegistry]];
+}
+- (PBGroupUserRole_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  PBUnknownFieldSet_Builder* unknownFields = [PBUnknownFieldSet builderWithUnknownFields:self.unknownFields];
+  while (YES) {
+    int32_t tag = [input readTag];
+    switch (tag) {
+      case 0:
+        [self setUnknownFields:[unknownFields build]];
+        return self;
+      default: {
+        if (![self parseUnknownField:input unknownFields:unknownFields extensionRegistry:extensionRegistry tag:tag]) {
+          [self setUnknownFields:[unknownFields build]];
+          return self;
+        }
+        break;
+      }
+      case 10: {
+        [self setGroupId:[input readString]];
+        break;
+      }
+      case 16: {
+        [self setRole:[input readInt32]];
+        break;
+      }
+      case 24: {
+        [self setPermission:[input readInt32]];
+        break;
+      }
+    }
+  }
+}
+- (BOOL) hasGroupId {
+  return result.hasGroupId;
+}
+- (NSString*) groupId {
+  return result.groupId;
+}
+- (PBGroupUserRole_Builder*) setGroupId:(NSString*) value {
+  result.hasGroupId = YES;
+  result.groupId = value;
+  return self;
+}
+- (PBGroupUserRole_Builder*) clearGroupId {
+  result.hasGroupId = NO;
+  result.groupId = @"";
+  return self;
+}
+- (BOOL) hasRole {
+  return result.hasRole;
+}
+- (int32_t) role {
+  return result.role;
+}
+- (PBGroupUserRole_Builder*) setRole:(int32_t) value {
+  result.hasRole = YES;
+  result.role = value;
+  return self;
+}
+- (PBGroupUserRole_Builder*) clearRole {
+  result.hasRole = NO;
+  result.role = 0;
+  return self;
+}
+- (BOOL) hasPermission {
+  return result.hasPermission;
+}
+- (int32_t) permission {
+  return result.permission;
+}
+- (PBGroupUserRole_Builder*) setPermission:(int32_t) value {
+  result.hasPermission = YES;
+  result.permission = value;
+  return self;
+}
+- (PBGroupUserRole_Builder*) clearPermission {
+  result.hasPermission = NO;
+  result.permission = 0;
+  return self;
+}
+@end
+
 @interface PBGroupNotice ()
 @property (retain) NSString* noticeId;
 @property int32_t type;

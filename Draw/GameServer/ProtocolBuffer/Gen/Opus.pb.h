@@ -198,7 +198,6 @@ typedef enum {
   PBFeedTimesTypeFeedTimesTypeFlower = 5,
   PBFeedTimesTypeFeedTimesTypeTomato = 6,
   PBFeedTimesTypeFeedTimesTypeSave = 7,
-  PBFeedTimesTypeFeedTimesTypePlay = 8,
 } PBFeedTimesType;
 
 BOOL PBFeedTimesTypeIsValidValue(PBFeedTimesType value);

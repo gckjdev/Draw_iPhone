@@ -258,3 +258,10 @@ typedef enum{
 
 
 @end
+
+
+@implementation PBGroupUserRole(Ext)
+
+
+@end
+

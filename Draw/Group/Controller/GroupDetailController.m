@@ -23,6 +23,8 @@
 #import "ChangeAvatar.h"
 #import "UIImageView+WebCache.h"
 #import "UIViewController+BGImage.h"
+#import "GroupConstants.h"
+
 
 enum{
     SECTION_BASE_INDEX = 0,
@@ -45,6 +47,19 @@ typedef enum{
     RowAdmins,
     RowMemberStart
 }MemberSectionRow;
+
+#define TITLE_USER_DETAIL NSLS(@"kUserDetail")
+#define TITLE_RM_ADMIN NSLS(@"kRemoveAdmin")
+#define TITLE_CHANGE_TITLE NSLS(@"kChangeTitle")
+#define TITLE_RM_MEMBER NSLS(@"kRemoveMember")
+#define TITLE_SET_ADMIN NSLS(@"kSetAsAdmin")
+
+
+#define TITLE_ADD_TITLE NSLS(@"kAddTitle")
+#define TITLE_CHANGE_BG NSLS(@"kChangeBG")
+#define TITLE_UPGRADE NSLS(@"kUpgradeGroup")
+#define TITLE_QUIT_GROUP NSLS(@"kQuitGroup")
+#define TITLE_DISMISSAL NSLS(@"kDismissal")
 
 
 #define SIGN_LABEL_HEIGHT 238
@@ -76,6 +91,7 @@ typedef enum{
 @property (retain, nonatomic) ChangeAvatar *changeImage;
 @property (assign, nonatomic) UIImageView *bgImageView;
 
+
 @end
 
 @implementation GroupDetailController
@@ -103,16 +119,35 @@ typedef enum{
 }
 
 
-- (void)clickManage:(id)sender
+- (void)clickJoin:(id)sender
 {
-    if (![GroupManager isMeAdminOrCreatorInSharedGroup]) {
-        return;
-    }
+    [self showActivityWithText:NSLS(@"kJoiningGroup")];
+    [groupService joinGroup:_group.groupId message:nil callback:^(NSError *error) {
+        [self hideActivity];
+        if (!error) {
+            POSTMSG(NSLS(@"kSentRequest"));
+            _titleView.rightButton.hidden = YES;
+        }
+    }];
+}
 
-    [self showChangeBGView];
+- (void)clickQuit:(id)sender
+{
+    //TODO alert to confirm;
     
-    return;
-    
+    [self showActivityWithText:NSLS(@"kQuitingGroup")];
+    [groupService quitGroup:_group.groupId callback:^(NSError *error) {
+        [self hideActivity];
+        if (!error) {
+            POSTMSG(NSLS(@"kQuitedGroup"));
+            PBGroup *group = [groupService buildGroupWithDefaultRelation:self.group];
+            [self updateGroup:group];
+        }
+    }];
+}
+
+
+- (void)showAddTitleView{
     CommonDialog *dialog = [CommonDialog createInputViewDialogWith:NSLS(@"kCreateTitle")];
     dialog.inputTextView.text = @"";
     NSString *groupId = _group.groupId;
@@ -132,6 +167,53 @@ typedef enum{
         }
     }];
     [dialog showInView:self.view];
+
+}
+
+
+- (void)showUpgradeGroupView
+{
+
+    [groupService upgradeGroup:_group.groupId level:1 callback:^(NSError *error) {
+        if (!error) {
+            //TODO update group.
+        }
+    }];
+}
+
+- (void)clickManage:(id)sender
+{
+    NSMutableArray *titles = [NSMutableArray array];
+    [titles addObject:TITLE_ADD_TITLE];
+    [titles addObject:TITLE_CHANGE_BG];
+    
+    if ([_groupPermission canUpgradeGroup]) {
+        [titles addObject:TITLE_UPGRADE];
+    }
+    if ([_groupPermission canQuitGroup]) {
+        [titles addObject:TITLE_QUIT_GROUP];
+    }
+    if ([_groupPermission canDismissalGroup]) {
+        [titles addObject:TITLE_DISMISSAL];
+    }
+
+    BBSActionSheet* sheet = [[BBSActionSheet alloc] initWithTitles:titles callback:^(NSInteger index) {
+        NSString *title = titles[index];
+        if ([title isEqualToString:TITLE_CHANGE_BG]) {
+            [self showChangeBGView];            
+        }else if([title isEqualToString:TITLE_ADD_TITLE]){
+            [self showAddTitleView];
+        }else if([title isEqualToString:TITLE_QUIT_GROUP]){
+            [self clickQuit:self.titleView.rightButton];
+        }else if([title isEqualToString:TITLE_DISMISSAL]){
+            //TODO dismissal            
+        }else if ([title isEqualToString:TITLE_UPGRADE]){
+        }
+    }];
+    [sheet showInView:self.view showAtPoint:self.view.center animated:YES];
+    
+    return;
+    
 }
 
 - (void)showChangeIconView
@@ -182,11 +264,21 @@ typedef enum{
     [self setDefaultBGImage];
     //update title view
     [self.titleView setTarget:self];
-    [self.titleView setBackButtonSelector:@selector(clickBack:)];
-    if ([GroupManager isMeAdminOrCreatorInSharedGroup]) {
+    
+    if ([_groupPermission canManageGroup]) {
         [self.titleView setRightButtonTitle:NSLS(@"kManage")];
-        [self.titleView setRightButtonSelector:@selector(clickManage:)];        
+        [self.titleView setRightButtonSelector:@selector(clickManage:)];
+    }else if ([_groupPermission canJoinGroup]){
+        [self.titleView setRightButtonTitle:NSLS(@"kJoinGroup")];
+        [self.titleView setRightButtonSelector:@selector(clickJoin:)];
+    }else if([_groupPermission canQuitGroup]){
+        [self.titleView setRightButtonTitle:NSLS(@"kQuitGroup")];
+        [self.titleView setRightButtonSelector:@selector(clickQuit:)];
+    }else{
+        
     }
+    
+    [self.titleView setBackButtonSelector:@selector(clickBack:)];
     [self.titleView setTransparentStyle];
 
     //update header.
@@ -260,12 +352,6 @@ typedef enum{
         [self hideActivity];
         if (!error) {            
             [self updateGroup:group];
-            
-            if ([GroupManager isMeAdminOrCreatorInSharedGroup]) {
-                [self.titleView setRightButtonTitle:NSLS(@"kManage")];
-                [self.titleView setRightButtonSelector:@selector(clickManage:)];
-            }
-
             [self.dataTableView reloadData];
         }
     }];
@@ -281,6 +367,23 @@ typedef enum{
     }];
 }
 
+
+- (BOOL)checkText:(NSString *)text
+           length:(NSInteger)maxLength
+       allowEmpty:(BOOL)allowEmpty
+{
+    if ([text length] > maxLength) {
+        NSString *alertString = [NSString stringWithFormat:NSLS(@"kOutOfMaxLength"), maxLength];
+        POSTMSG(alertString);
+        return NO;
+    }
+    if (!allowEmpty && [text length] == 0) {
+        POSTMSG(NSLS(@"kTextCanotBeNil"));
+        return NO;
+    }
+    return YES;
+}
+
 - (void)alertToEditInfo:(NSString *)title
                    info:(NSString *)info
                     key:(NSString*)key
@@ -290,14 +393,30 @@ typedef enum{
     if ([key isEqualToString:PARA_FEE]) {
         dialog.inputTextView.keyboardType = UIKeyboardTypeNumberPad;
     }
+    NSDictionary *lenDict = @{PARA_NAME: @(MAX_LENGTH_NAME),
+                              PARA_SIGNATURE: @(MAX_LENGTH_SIGNATURE),
+                              PARA_DESC: @(MAX_LENGTH_DESCRIPTION),
+                              };
+    NSNumber *len = lenDict[key];
+    if (len == nil) {
+        return;
+    }
+    NSInteger length = [len intValue];
+    BOOL allowEmpty = YES;
+    if ([key isEqualToString:PARA_NAME]||[key isEqualToString:PARA_FEE]) {
+        allowEmpty = NO;
+    }
+    
+    [dialog setAllowInputEmpty:allowEmpty];
+    dialog.manualClose = YES;
     [dialog setClickOkBlock:^(id infoView){
         NSString *text = dialog.inputTextView.text;
-        if (text == nil) {
-            //TODO pop up
-        }
-        if (text && ![text isEqualToString:info]) {
-            //changed.
-            [self updateRemoteInfo:@{key: text}];
+        if (![self checkText:text length:length allowEmpty:YES]) {
+            if (![text isEqualToString:info]) {
+                //changed.
+                [dialog setManualClose:NO];
+                [self updateRemoteInfo:@{key: text}];                
+            }
         }
     }];
     [dialog showInView:self.view];    
@@ -325,17 +444,13 @@ typedef enum{
 
 - (void)updateGroup:(PBGroup *)group
 {
-    if (![group hasRelation]) {
-        group = [groupService buildGroup:group withRelation:_group.relation];
-    }
     self.group = group;
     [[GroupManager defaultManager] setSharedGroup:group];
-    [self updatePermissionManager];
 }
 
 - (void)updatePermissionManager
 {
-    self.groupPermission = [GroupPermissionManager myManagerWithGroup:self.group];    
+    self.groupPermission = [GroupPermissionManager myManagerWithGroupId:_group.groupId];
 }
 
 - (void)viewDidLoad
@@ -560,11 +675,6 @@ typedef enum{
 }
 
 
-#define TITLE_USER_DETAIL NSLS(@"kUserDetail")
-#define TITLE_RM_ADMIN NSLS(@"kRemoveAdmin")
-#define TITLE_CHANGE_TITLE NSLS(@"kChangeTitle")
-#define TITLE_RM_MEMBER NSLS(@"kRemoveMember")
-#define TITLE_SET_ADMIN NSLS(@"kSetAsAdmin")
 
 - (void)handleTitle:(NSString *)title user:(PBGameUser *)user groupTitle:(PBGroupTitle *)groupTitle
 {

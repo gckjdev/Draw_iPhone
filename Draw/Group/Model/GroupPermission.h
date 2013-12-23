@@ -15,11 +15,16 @@
 
 @interface GroupPermissionManager : NSObject
 
-@property(nonatomic, retain)PBGroup *group;
-//@property(nonatomic, copy) NSString *userId;
+@property(nonatomic, retain)NSString *groupId;
 
-//+ (id)managerWithUserId:(NSString *)userId group:(PBGroup *)group;
-+ (id)myManagerWithGroup:(PBGroup *)group;
++ (id)myManagerWithGroupId:(NSString *)groupId;
+
++ (NSArray *)groupRoles;
++ (void)syncGroupRoles:(NSArray *)array;
++ (void)clearGroupRoles;
++ (void)removeRole:(NSString *)groupId;
+
+
 
 - (BOOL)hasPermission:(GroupPermission)permission;
 
@@ -43,6 +48,9 @@
 - (BOOL)canInviteUser;
 - (BOOL)canInviteGuest;
 - (BOOL)canCustomTitle;
+
+//manager permission
+- (BOOL)canManageGroup;
 
 //Creator permission
 - (BOOL)canArrangeAdmin;

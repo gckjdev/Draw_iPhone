@@ -95,9 +95,9 @@ static GroupManager *_staticGroupManager = nil;
     return @[@(GroupCreateTopic), @(GroupSearchTopic), @(GroupChat)];
 }
 
-+ (NSMutableArray *)getTopicCMDList:(PBBBSPost *)post inGroup:(PBGroup *)group
++ (NSMutableArray *)getTopicCMDList:(PBBBSPost *)post inGroup:(NSString *)groupId
 {
-    GroupPermissionManager *pm = [GroupPermissionManager myManagerWithGroup:group];
+    GroupPermissionManager *pm = [GroupPermissionManager myManagerWithGroupId:groupId];
     NSMutableArray *list = [NSMutableArray array];
     if ([pm canCreateTopic]) {
         BBSPostReplyCommand *rc = [[[BBSPostReplyCommand alloc] initWithPost:post controller:nil] autorelease];
@@ -122,6 +122,7 @@ static GroupManager *_staticGroupManager = nil;
     return list;
 }
 
+/*
 - (void)collectGroup:(PBGroup *)group
 {
     //only collect the group having relation with current user.
@@ -154,6 +155,7 @@ static GroupManager *_staticGroupManager = nil;
         [self collectGroup:group];
     }
 }
+ */
 
 enum{
     BADGE_COMMENT = 1,

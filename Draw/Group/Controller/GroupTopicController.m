@@ -74,7 +74,8 @@ typedef enum {
     [super dealloc];
 }
 
-- (void)clickJoinOrQuit:(id)sender
+//TODO move to group detail controller.
+- (void)clickJoin:(id)sender
 {
     UIButton *button = sender;
     if ([permissonManager canJoinGroup]) {
@@ -86,19 +87,6 @@ typedef enum {
                 button.hidden = YES;
             }
         }];
-    }else if ([permissonManager canQuitGroup]) {
-        [self showActivityWithText:NSLS(@"kQuitingGroup")];
-        //TODO to comfirm
-        [groupService quitGroup:_group.groupId callback:^(NSError *error) {
-            [self hideActivity];
-            if (!error) {
-                POSTMSG(NSLS(@"kQuitedGroup"));
-                PBGroup *group = [groupService buildGroupWithDefaultRelation:self.group];
-                [self updateGroup:group];
-            }
-        }];
-    }else if([permissonManager canDismissalGroup]){
-        //TODO dissmissal
     }
 }
 
@@ -155,37 +143,22 @@ typedef enum {
 {
     [self.titleView setTransparentStyle];
     [self.titleView setTitle:_group.name];
-    [self.titleView setRightButtonSelector:@selector(clickJoinOrQuit:)];
+    if ([permissonManager canJoinGroup]) {
+        [self.titleView.rightButton setHidden:NO];
+        [self.titleView setRightButtonTitle:NSLS(@"kJoinGroup")];
+        [self.titleView setRightButtonSelector:@selector(clickJoin:)];
+    }else{
+        [self.titleView.rightButton setHidden:YES];
+    }
+
 }
 
 - (void)updateGroup:(PBGroup *)group
 {
-    permissonManager.group = group;
     self.group = group;
-    [[GroupManager defaultManager] setSharedGroup:group];
-    
-    [self.titleView.rightButton setHidden:NO];
-    if ([permissonManager canJoinGroup]) {
-        [self.titleView setRightButtonTitle:NSLS(@"kJoinGroup")];
-    }else if([permissonManager canQuitGroup]){
-        [self.titleView setRightButtonTitle:NSLS(@"kQuitGroup")];
-    }else if([permissonManager canDismissalGroup]){
-        [self.titleView setRightButtonTitle:NSLS(@"kDissolveGroup")];
-    }else{
-        [self.titleView.rightButton setHidden:YES];
-    }
+    [[GroupManager defaultManager] setSharedGroup:group];    
 }
 
-- (void)loadGroupRelation
-{
-    [self showActivityWithText:NSLS(@"kLoading")];
-    [groupService getRelationWithGroup:_group.groupId callback:^(PBUserRelationWithGroup *relation, NSError *error) {
-        if (!error) {
-            PBGroup *group = [groupService buildGroup:self.group withRelation:relation];
-            [self updateGroup:group];
-        }
-    }];
-}
 
 - (void)reloadViews
 {
@@ -196,7 +169,7 @@ typedef enum {
 
 - (void)viewDidLoad
 {
-    permissonManager = [GroupPermissionManager myManagerWithGroup:_group];
+    permissonManager = [GroupPermissionManager myManagerWithGroupId:_group.groupId];
     [[GroupManager defaultManager] setSharedGroup:_group];
     [permissonManager retain];
     
@@ -205,8 +178,8 @@ typedef enum {
     [self updateTitleView];
     [self updateFooterView];
     [self clickTab:NewestTopic];
-    [self loadGroupRelation];
     self.unReloadDataWhenViewDidAppear = NO;
+    
 
 }
 
@@ -344,7 +317,7 @@ typedef enum {
         }
         [[BBSManager defaultManager] setTempPostList:[self tabDataList]];
         PBBBSPost *post = [self postInIndexPath:indexPath];
-        [BBSPostDetailController enterPostDetailControllerWithPost:post group:_group fromController:self animated:YES];
+        [BBSPostDetailController enterGroupPostDetailController:post fromController:self animated:YES];
     }else if (row == RowGroupInfo){
         [GroupDetailController enterWithGroup:self.group fromController:self];
     }else{

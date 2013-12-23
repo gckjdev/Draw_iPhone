@@ -95,6 +95,11 @@ message PBGroup
 }
 
 
+message PBGroupUserRole{
+    required string groupId = 1;
+    required int32 role = 2;
+    required int32 permission = 3;
+}
 
 message PBGroupNotice{
     required string noticeId = 1;

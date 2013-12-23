@@ -84,10 +84,10 @@
 }
 - (void)didSelectedCellWithData:(id)data
 {
-    PBBBSPost *post = data;
-    
+    PBBBSPost *post = data;    
     if (self.forGroup) {
-        [BBSPostDetailController enterPostDetailControllerWithPost:post group:self.group fromController:self animated:YES];
+        [BBSPostDetailController enterGroupPostDetailController:post
+                                                 fromController:self animated:YES];
     }else{
         [BBSPostDetailController enterPostDetailControllerWithPost:post
                                                     fromController:self

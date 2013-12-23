@@ -133,8 +133,8 @@ typedef void (^ URLResultBlock) (NSURL *url, NSError *error);
                        limit:(NSInteger)limit
                     callback:(ListResultBlock)callback;
 
-- (void)getRelationWithGroup:(NSString *)groupId
-                    callback:(RelationResultBlock)callback;
+//- (void)getRelationWithGroup:(NSString *)groupId
+//                    callback:(RelationResultBlock)callback;
 
 - (void)getGroupBadgeWithCallback:(BadgeResultBlock)callback;
 
@@ -183,5 +183,8 @@ typedef void (^ URLResultBlock) (NSURL *url, NSError *error);
 - (void)updateGroup:(NSString *)groupId
                icon:(UIImage *)icon
            callback:(URLResultBlock)callback;
+
+
+- (void)syncGroupRoles;
 
 @end

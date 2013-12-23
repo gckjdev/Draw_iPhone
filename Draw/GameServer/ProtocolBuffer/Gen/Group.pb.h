@@ -52,6 +52,8 @@
 @class PBGroupTitle;
 @class PBGroupTitle_Builder;
 @class PBGroupUser;
+@class PBGroupUserRole;
+@class PBGroupUserRole_Builder;
 @class PBGroupUser_Builder;
 @class PBGroupUsersByTitle;
 @class PBGroupUsersByTitle_Builder;
@@ -671,6 +673,72 @@ BOOL PBGroupUserTypeIsValidValue(PBGroupUserType value);
 - (PBGroup_Builder*) setTopicBuilder:(PBBBSPost_Builder*) builderForValue;
 - (PBGroup_Builder*) mergeTopic:(PBBBSPost*) value;
 - (PBGroup_Builder*) clearTopic;
+@end
+
+@interface PBGroupUserRole : PBGeneratedMessage {
+@private
+  BOOL hasRole_:1;
+  BOOL hasPermission_:1;
+  BOOL hasGroupId_:1;
+  int32_t role;
+  int32_t permission;
+  NSString* groupId;
+}
+- (BOOL) hasGroupId;
+- (BOOL) hasRole;
+- (BOOL) hasPermission;
+@property (readonly, retain) NSString* groupId;
+@property (readonly) int32_t role;
+@property (readonly) int32_t permission;
+
++ (PBGroupUserRole*) defaultInstance;
+- (PBGroupUserRole*) defaultInstance;
+
+- (BOOL) isInitialized;
+- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
+- (PBGroupUserRole_Builder*) builder;
++ (PBGroupUserRole_Builder*) builder;
++ (PBGroupUserRole_Builder*) builderWithPrototype:(PBGroupUserRole*) prototype;
+
++ (PBGroupUserRole*) parseFromData:(NSData*) data;
++ (PBGroupUserRole*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
++ (PBGroupUserRole*) parseFromInputStream:(NSInputStream*) input;
++ (PBGroupUserRole*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
++ (PBGroupUserRole*) parseFromCodedInputStream:(PBCodedInputStream*) input;
++ (PBGroupUserRole*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+@end
+
+@interface PBGroupUserRole_Builder : PBGeneratedMessage_Builder {
+@private
+  PBGroupUserRole* result;
+}
+
+- (PBGroupUserRole*) defaultInstance;
+
+- (PBGroupUserRole_Builder*) clear;
+- (PBGroupUserRole_Builder*) clone;
+
+- (PBGroupUserRole*) build;
+- (PBGroupUserRole*) buildPartial;
+
+- (PBGroupUserRole_Builder*) mergeFrom:(PBGroupUserRole*) other;
+- (PBGroupUserRole_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
+- (PBGroupUserRole_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+
+- (BOOL) hasGroupId;
+- (NSString*) groupId;
+- (PBGroupUserRole_Builder*) setGroupId:(NSString*) value;
+- (PBGroupUserRole_Builder*) clearGroupId;
+
+- (BOOL) hasRole;
+- (int32_t) role;
+- (PBGroupUserRole_Builder*) setRole:(int32_t) value;
+- (PBGroupUserRole_Builder*) clearRole;
+
+- (BOOL) hasPermission;
+- (int32_t) permission;
+- (PBGroupUserRole_Builder*) setPermission:(int32_t) value;
+- (PBGroupUserRole_Builder*) clearPermission;
 @end
 
 @interface PBGroupNotice : PBGeneratedMessage {

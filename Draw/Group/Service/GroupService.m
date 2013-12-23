@@ -12,6 +12,7 @@
 #import "DrawError.h"
 #import "PPConfigManager.h"
 #import "UIImageExt.h"
+#import "GroupPermission.h"
 
 
 #define GROUP_HOST     [PPConfigManager getGroupServerURL]
@@ -74,17 +75,7 @@ static GroupService *_staticGroupService = nil;
                 if (error) {
                     PPDebug(@"<GroupService> load data error = %@", error);
                     [DrawError postError:error];
-                    
-                    
-                }else{                    
-                    if ([output.pbResponse hasGroup]) {
-                        [[GroupManager defaultManager] collectGroup:output.pbResponse.group];
-                    }
-                    if ([output.pbResponse.groupListList count] != 0) {
-                        [[GroupManager defaultManager] collectGroups:output.pbResponse.groupListList];
-                    }
                 }
-
                 EXECUTE_BLOCK(callback, output.pbResponse, error);                
 
             });
@@ -199,6 +190,9 @@ static GroupService *_staticGroupService = nil;
             callback:^(DataQueryResponse *response, NSError *error )
      {
          EXECUTE_BLOCK(callback, error);
+         if (!error) {
+             [[GroupService defaultService] syncGroupRoles];
+         }
      }];
 }
 
@@ -290,6 +284,9 @@ static GroupService *_staticGroupService = nil;
             callback:^(DataQueryResponse *response, NSError *error )
      {
          EXECUTE_BLOCK(callback, error);
+         if (!error) {
+             [[GroupService defaultService] syncGroupRoles];
+         }
      }];
 }
 
@@ -501,7 +498,6 @@ static GroupService *_staticGroupService = nil;
     PBGroup_Builder *builder = [PBGroup builderWithPrototype:group];
     [builder setRelation:relation];
     PBGroup *retGroup = [builder build];
-    [[GroupManager defaultManager] collectGroup:retGroup];
     return retGroup;
 }
 
@@ -524,6 +520,9 @@ static GroupService *_staticGroupService = nil;
           parameters:@{PARA_NOTICEID:noticeId}
             callback:^(DataQueryResponse *response, NSError *error) {
         EXECUTE_BLOCK(callback, error);
+        if (!error) {
+            [[GroupService defaultService] syncGroupRoles];
+        }
     }];
 }
 
@@ -671,6 +670,19 @@ static GroupService *_staticGroupService = nil;
              callback:callback];
 }
 
+
+- (void)syncGroupRoles
+{
+    
+    [self loadPBData:METHOD_GET_GROUP
+          parameters:nil
+            callback:^(DataQueryResponse *response, NSError *error )
+     {
+         if (!error) {
+             [GroupPermissionManager syncGroupRoles:response.groupRoleList];
+         }
+     }];
+}
 
 - (void)updateGroup:(NSString *)groupId
             BGImage:(UIImage *)image

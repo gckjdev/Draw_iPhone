@@ -737,6 +737,7 @@
 #define METHOD_UPDATE_GROUP_ICON @"updateGroupIcon"
 #define METHOD_UPDATE_GROUP_BG @"updateGroupBG"
 
+#define METHOD_SYNC_GROUP_ROLES @"syncGroupRoles"
 
 #define METHOD_UPDATE_USER_CREDENTIAL @"updateUserCredential"
 

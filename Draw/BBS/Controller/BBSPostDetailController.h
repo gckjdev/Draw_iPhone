@@ -22,7 +22,7 @@
 @property (nonatomic, retain)PBBBSPost *post;
 @property (nonatomic, retain) UIView* adView;
 
-@property (nonatomic, retain) PBGroup *group;
+//@property (nonatomic, retain) PBGroup *group;
 
 - (void)updateViewWithPost:(PBBBSPost *)post;
 
@@ -30,10 +30,9 @@
                                                 fromController:(UIViewController *)fromController
                                                       animated:(BOOL)animated;
 
-+ (BBSPostDetailController *)enterPostDetailControllerWithPost:(PBBBSPost *)post
-                                                         group:(PBGroup *)group
-                                                fromController:(UIViewController *)fromController
-                                                      animated:(BOOL)animated;
++ (BBSPostDetailController *)enterGroupPostDetailController:(PBBBSPost *)post
+                                             fromController:(UIViewController *)fromController
+                                                   animated:(BOOL)animated;
 
 
 + (BBSPostDetailController *)enterPostDetailControllerWithPostID:(NSString *)postID

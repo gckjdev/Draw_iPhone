@@ -46,3 +46,8 @@
 @interface PBGameUser(Ext)
 
 @end
+
+
+@interface PBGroupUserRole(Ext) 
+
+@end

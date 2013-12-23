@@ -38,6 +38,7 @@
     if (self) {
         groupService = [GroupService defaultService];
         [groupService syncFollowGroupIds];
+        [groupService syncGroupRoles];        
     }
     return self;
 }
@@ -433,6 +434,7 @@ SET_CELL_BG_IN_CONTROLLER
     [_subTabsHolder release];
     [_footerView release];
     [_tabsHolderView release];
+    [GroupPermissionManager clearGroupRoles];
     [super dealloc];
 }
 - (void)viewDidUnload {
