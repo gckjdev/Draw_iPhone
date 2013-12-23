@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "PPTableViewController.h"
-#import "FeedCell.h"
+//#import "FeedCell.h"
 #import "FeedService.h"
 #import "CommonTabController.h"
 #import "RankView.h"

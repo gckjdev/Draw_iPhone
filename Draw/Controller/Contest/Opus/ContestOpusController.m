@@ -16,10 +16,11 @@
 #import "Contest.h"
 #import "UseItemScene.h"
 #import "MyFriend.h"
-#import "ReportFeedCell.h"
-#import "ContestPrizeCell.h"
+//#import "ReportFeedCell.h"
+//#import "ContestPrizeCell.h"
 #import "PPConfigManager.h"
-#import "SingHotCell.h"
+//#import "SingHotCell.h"
+#import "CellManager.h"
 
 typedef enum{
     OpusTypeMy = 1,
@@ -30,7 +31,6 @@ typedef enum{
 }OpusType;
 
 #define  HISTORY_RANK_NUMBER [PPConfigManager historyRankNumber]
-#define WHISPER_CELL_VIEW_NUMBER (ISIPAD? 3 : 2)
 
 @implementation ContestOpusController
 @synthesize contest = _contest;
@@ -95,247 +95,304 @@ typedef enum{
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSInteger type = self.currentTab.tabID;
-    
-    if (type == OpusTypeReport){
-        return [ReportFeedCell getCellHeightWithFeed:[self.tabDataList objectAtIndex:indexPath.row]];
+    switch ([[self currentTab] tabID]) {
+        case OpusTypeReport:
+            return [CellManager getReportStyleCellheightWithDataList:self.tabDataList
+                                                           indexPath:indexPath];
+            break;
+            
+        case OpusTypePrize:
+            return [CellManager getPrizeStyleCellHeight];
+            break;
+            
+        case OpusTypeRank:
+            return [CellManager getHotStyleCellHeightWithIndexPath:indexPath];
+            break;
+            
+        case OpusTypeNew:
+        case OpusTypeMy:
+            return [CellManager getLastStyleCellHeightWithIndexPath:indexPath];
+            break;
+            
+        default:
+            return 0;
+            break;
     }
+
     
-    if(type == OpusTypePrize){
-        return [ContestPrizeCell getCellHeight];
-    }
     
-    if (isSingApp()) {
-        return [SingHotCell getCellHeight];
-    }
     
-    if (isDrawApp()) {
-        if (type == OpusTypeRank) {
-            if (indexPath.row == 0) {
-                return [RankView heightForRankViewType:RankViewTypeFirst]+1;
-            }else if(indexPath.row == 1){
-                return [RankView heightForRankViewType:RankViewTypeSecond]+1;
-            }
-        }
-        return [RankView heightForRankViewType:RankViewTypeNormal]+1;
-    }
     
-    return 0;
-}
-
-- (void)clearCellSubViews:(UITableViewCell *)cell{
-    for (UIView *view in cell.contentView.subviews) {
-        if ([view isKindOfClass:[RankView class]] || [view isKindOfClass:[TopPlayerView class]]) {
-            [view removeFromSuperview];
-        }
-    }    
-}
-
-- (void)setFirstRankCell:(UITableViewCell *)cell WithFeed:(DrawFeed *)feed
-{
-    RankView *view = [RankView createRankView:self type:RankViewTypeFirst];
-    [view setViewInfo:feed];
-    [view.cupFlag setImage:[ShareImageManager defaultManager].goldenCupImage];
-    view.cupFlag.hidden = NO;
-    [cell.contentView addSubview:view];
-    [view updateViewInfoForContestOpus:feed];
-    [view.title setHidden:YES];
-}
-
-#define NORMAL_CELL_VIEW_NUMBER 3
-#define WIDTH_SPACE 1
-
-- (void)setSencodRankCell:(UITableViewCell *)cell 
-                WithFeed1:(DrawFeed *)feed1 
-                    feed2:(DrawFeed *)feed2
-{
-    RankView *view1 = [RankView createRankView:self type:RankViewTypeSecond];
-    [view1 setViewInfo:feed1];
-    [view1.cupFlag setImage:[ShareImageManager defaultManager].silverCupImage];
-    view1.cupFlag.hidden = NO;
-    RankView *view2 = [RankView createRankView:self type:RankViewTypeSecond];
-    [view2 setViewInfo:feed2];
-    [view2.cupFlag setImage:[ShareImageManager defaultManager].copperCupImage];
-    view2.cupFlag.hidden = NO;
-    [view1 updateViewInfoForContestOpus:feed1];
-    [view2 updateViewInfoForContestOpus:feed2];
-    [cell.contentView addSubview:view1];
-    [cell.contentView addSubview:view2];
-    
-    CGFloat x2 = WIDTH_SPACE + [RankView widthForRankViewType:RankViewTypeSecond];
-    view2.frame = CGRectMake(x2, 0, view2.frame.size.width, view2.frame.size.height);
-    [view1.title setHidden:YES];
-    [view2.title setHidden:YES];
-}
-
-
-- (void)setNormalRankCell:(UITableViewCell *)cell 
-                WithFeeds:(NSArray *)feeds
-{
-    CGFloat width = [RankView widthForRankViewType:RankViewTypeNormal];
-    CGFloat height = [RankView heightForRankViewType:RankViewTypeNormal];
-    CGFloat space = WIDTH_SPACE;
-    CGFloat x = 0;
-    CGFloat y = 0;
-    for (DrawFeed *feed in feeds) {
-        RankView *rankView = [RankView createRankView:self type:RankViewTypeNormal];
-        [rankView setViewInfo:feed];
-        [cell.contentView addSubview:rankView];
-        rankView.frame = CGRectMake(x, y, width, height);
-        x += width + space;
-        [rankView updateViewInfoForContestOpus:feed];
-        [rankView.title setHidden:YES];
-    }
-}
-
-#define WIDTH_SPACE 1
-- (void)setTopPlayerCell:(UITableViewCell *)cell 
-             WithPlayers:(NSArray *)players isFirstRow:(BOOL)isFirstRow
-{
-    CGFloat width = [TopPlayerView getHeight];
-    CGFloat height = [TopPlayerView getHeight];//[RankView heightForRankViewType:RankViewTypeNormal];
-    CGFloat space = WIDTH_SPACE;;
-    CGFloat x = 0;
-    CGFloat y = 0;
-//    NSInteger i = 0;
-    for (TopPlayer *player in players) {
-        TopPlayerView *playerView = [TopPlayerView createTopPlayerView:self];
-        [playerView setViewInfo:player];
-//        if (isFirstRow) {
-//            [playerView setRankFlag:i++];
+//    NSInteger type = self.currentTab.tabID;
+//    
+//    if (type == OpusTypeReport){
+//        return [ReportFeedCell getCellHeightWithFeed:[self.tabDataList objectAtIndex:indexPath.row]];
+//    }
+//    
+//    if(type == OpusTypePrize){
+//        return [ContestPrizeCell getCellHeight];
+//    }
+//    
+//    if (isSingApp()) {
+//        return [SingHotCell getCellHeight];
+//    }
+//    
+//    if (isDrawApp()) {
+//        if (type == OpusTypeRank) {
+//            if (indexPath.row == 0) {
+//                return [RankView heightForRankViewType:RankViewTypeFirst]+1;
+//            }else if(indexPath.row == 1){
+//                return [RankView heightForRankViewType:RankViewTypeSecond]+1;
+//            }
 //        }
-        [cell.contentView addSubview:playerView];
-        playerView.frame = CGRectMake(x, y, width, height);
-        x += width + space;
-    }
+//        return [RankView heightForRankViewType:RankViewTypeNormal]+1;
+//    }
+//    
+//    return 0;
 }
 
-- (NSObject *)saveGetObjectForIndex:(NSInteger)index
-{
-    NSArray *list = [self tabDataList];
-    if (index < 0 || index >= [list count]) {
-        return nil;
-    }
-    return [list objectAtIndex:index];
-}
+//- (void)clearCellSubViews:(UITableViewCell *)cell{
+//    for (UIView *view in cell.contentView.subviews) {
+//        if ([view isKindOfClass:[RankView class]] || [view isKindOfClass:[TopPlayerView class]]) {
+//            [view removeFromSuperview];
+//        }
+//    }    
+//}
 
-- (ContestPrize)prizeFromAward:(PBUserAward *)award
-{
-    PPDebug(@"prize From Award: key = %d, value = %@", award.awardType.key, award.awardType.value);
-    if (award.awardType.key == 1) {
-        return award.rank;
-    }else {
-        return ContestPrizeSpecial;
-    }
-}
+//- (void)setFirstRankCell:(UITableViewCell *)cell WithFeed:(DrawFeed *)feed
+//{
+//    RankView *view = [RankView createRankView:self type:RankViewTypeFirst];
+//    [view setViewInfo:feed];
+//    [view.cupFlag setImage:[ShareImageManager defaultManager].goldenCupImage];
+//    view.cupFlag.hidden = NO;
+//    [cell.contentView addSubview:view];
+//    [view updateViewInfoForContestOpus:feed];
+//    [view.title setHidden:YES];
+//}
+//
+//#define NORMAL_CELL_VIEW_NUMBER 3
+//#define WIDTH_SPACE 1
+
+//- (void)setSencodRankCell:(UITableViewCell *)cell 
+//                WithFeed1:(DrawFeed *)feed1 
+//                    feed2:(DrawFeed *)feed2
+//{
+//    RankView *view1 = [RankView createRankView:self type:RankViewTypeSecond];
+//    [view1 setViewInfo:feed1];
+//    [view1.cupFlag setImage:[ShareImageManager defaultManager].silverCupImage];
+//    view1.cupFlag.hidden = NO;
+//    RankView *view2 = [RankView createRankView:self type:RankViewTypeSecond];
+//    [view2 setViewInfo:feed2];
+//    [view2.cupFlag setImage:[ShareImageManager defaultManager].copperCupImage];
+//    view2.cupFlag.hidden = NO;
+//    [view1 updateViewInfoForContestOpus:feed1];
+//    [view2 updateViewInfoForContestOpus:feed2];
+//    [cell.contentView addSubview:view1];
+//    [cell.contentView addSubview:view2];
+//    
+//    CGFloat x2 = WIDTH_SPACE + [RankView widthForRankViewType:RankViewTypeSecond];
+//    view2.frame = CGRectMake(x2, 0, view2.frame.size.width, view2.frame.size.height);
+//    [view1.title setHidden:YES];
+//    [view2.title setHidden:YES];
+//}
+
+//
+//- (void)setNormalRankCell:(UITableViewCell *)cell 
+//                WithFeeds:(NSArray *)feeds
+//{
+//    CGFloat width = [RankView widthForRankViewType:RankViewTypeNormal];
+//    CGFloat height = [RankView heightForRankViewType:RankViewTypeNormal];
+//    CGFloat space = WIDTH_SPACE;
+//    CGFloat x = 0;
+//    CGFloat y = 0;
+//    for (DrawFeed *feed in feeds) {
+//        RankView *rankView = [RankView createRankView:self type:RankViewTypeNormal];
+//        [rankView setViewInfo:feed];
+//        [cell.contentView addSubview:rankView];
+//        rankView.frame = CGRectMake(x, y, width, height);
+//        x += width + space;
+//        [rankView updateViewInfoForContestOpus:feed];
+//        [rankView.title setHidden:YES];
+//    }
+//}
+
+//#define WIDTH_SPACE 1
+//- (void)setTopPlayerCell:(UITableViewCell *)cell
+//             WithPlayers:(NSArray *)players isFirstRow:(BOOL)isFirstRow
+//{
+//    CGFloat width = [TopPlayerView getHeight];
+//    CGFloat height = [TopPlayerView getHeight];//[RankView heightForRankViewType:RankViewTypeNormal];
+//    CGFloat space = WIDTH_SPACE;;
+//    CGFloat x = 0;
+//    CGFloat y = 0;
+////    NSInteger i = 0;
+//    for (TopPlayer *player in players) {
+//        TopPlayerView *playerView = [TopPlayerView createTopPlayerView:self];
+//        [playerView setViewInfo:player];
+////        if (isFirstRow) {
+////            [playerView setRankFlag:i++];
+////        }
+//        [cell.contentView addSubview:playerView];
+//        playerView.frame = CGRectMake(x, y, width, height);
+//        x += width + space;
+//    }
+//}
+
+//- (NSObject *)saveGetObjectForIndex:(NSInteger)index
+//{
+//    NSArray *list = [self tabDataList];
+//    if (index < 0 || index >= [list count]) {
+//        return nil;
+//    }
+//    return [list objectAtIndex:index];
+//}
+//
+//- (ContestPrize)prizeFromAward:(PBUserAward *)award
+//{
+//    PPDebug(@"prize From Award: key = %d, value = %@", award.awardType.key, award.awardType.value);
+//    if (award.awardType.key == 1) {
+//        return award.rank;
+//    }else {
+//        return ContestPrizeSpecial;
+//    }
+//}
 
 - (UITableViewCell *)tableView:(UITableView *)theTableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    TableTab *tab = [self currentTab];
+//    OpusTypeMy = 1,
+//    OpusTypeRank = 2,
+//    OpusTypeNew = 3,
+//    OpusTypeReport = CommentTypeContestComment,
+//    OpusTypePrize = 21,//FeedListTypeIdList
 
-    if (tab.tabID == OpusTypeReport) {
-        NSString *CellIdentifier = [ReportFeedCell getCellIdentifier];
-        ReportFeedCell *cell = [theTableView dequeueReusableCellWithIdentifier:CellIdentifier];
-        if (cell == nil) {
-            cell = [ReportFeedCell createCell:self];
-        }
-        cell.indexPath = indexPath;
-        cell.accessoryType = UITableViewCellAccessoryNone;
-        CommentFeed *feed = [self.tabDataList objectAtIndex:indexPath.row];
-        [feed updateDesc];
-        cell.contestId = self.contest.contestId;
-        [cell setCellInfo:feed];
-        return cell;
-    }else if(tab.tabID == OpusTypePrize){
-        NSString *CellIdentifier = [ContestPrizeCell getCellIdentifier];
-        ContestPrizeCell *cell = [theTableView dequeueReusableCellWithIdentifier:CellIdentifier];
-        if (cell == nil) {
-            cell = [ContestPrizeCell createCell:self];
-        }
-        cell.indexPath = indexPath;
+    switch ([[self currentTab] tabID]) {
+        case OpusTypeReport:
+            return [CellManager getReportStyleCell:theTableView
+                                         indexPath:indexPath
+                                          delegate:self
+                                          dataList:self.tabDataList
+                                           contest:self.contest];
+            break;
+            
+        case OpusTypePrize:
+            return [CellManager getPrizeStyleCell:theTableView
+                                        indexPath:indexPath
+                                         delegate:self
+                                         dataList:self.tabDataList
+                                          contest:self.contest];
+            break;
+            
+        case OpusTypeRank:
+            return [CellManager getHotStyleCell:theTableView
+                                      indexPath:indexPath
+                                       delegate:self
+                                       dataList:self.tabDataList];
+            break;
+        
+        case OpusTypeNew:
+        case OpusTypeMy:
+            return [CellManager getLastStyleCell:theTableView
+                                       indexPath:indexPath
+                                        delegate:self
+                                        dataList:self.tabDataList];
+            break;
+            
+        default:
+            return nil;
+            break;
+    }
+    
+    
+//    TableTab *tab = [self currentTab];
+//
+//    if (tab.tabID == OpusTypeReport) {
+//        NSString *CellIdentifier = [ReportFeedCell getCellIdentifier];
+//        ReportFeedCell *cell = [theTableView dequeueReusableCellWithIdentifier:CellIdentifier];
+//        if (cell == nil) {
+//            cell = [ReportFeedCell createCell:self];
+//        }
+//        cell.indexPath = indexPath;
 //        cell.accessoryType = UITableViewCellAccessoryNone;
-        if (indexPath.row < [tab.dataList count]) {
-            PBUserAward *aw = [tab.dataList objectAtIndex:indexPath.row];
-            ContestFeed *opus = [_contest getOpusWithAwardType:aw.awardType.key rank:aw.rank];
-            [cell setPrize:[self prizeFromAward:aw] title:aw.awardType.value opus:opus];
-        }else{
-            cell.opus = nil;
-        }
-        [cell setShowBg:!(indexPath.row & 0x1)];
-        return cell;
-        
-    }
-    
-    
-    if (isSingApp()) {
-        
-        SingHotCell *cell = [theTableView dequeueReusableCellWithIdentifier:[SingHotCell getCellIdentifier]];
-        if (cell == nil) {
-            cell = [SingHotCell createCell:self];
-        }
-        
-        NSMutableArray *feeds = [NSMutableArray array];
-        int baseIndex = indexPath.row * WHISPER_CELL_VIEW_NUMBER;
-        
-        for (int index = baseIndex; index < baseIndex + WHISPER_CELL_VIEW_NUMBER; index ++) {
-            NSObject *object = [self saveGetObjectForIndex:index];
-            if (object==nil) {
-                break;
-            }
-            [feeds addObject:object];
-        }
-        
-        [cell setCellInfo:feeds];
-                
-        return cell;
-    }
-    
-    
-    NSString *CellIdentifier = @"RankCell";//[RankFirstCell getCellIdentifier];
-    UITableViewCell *cell = [theTableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    
-    if (cell == nil) {
-        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
-    }else{
-        [self clearCellSubViews:cell];
-    }
-
-    cell.accessoryType = UITableViewCellAccessoryNone;
-
-    if (tab.tabID == OpusTypeRank) {
-        if (indexPath.row == 0) {
-            DrawFeed *feed = (DrawFeed *)[self saveGetObjectForIndex:0];
-            [self setFirstRankCell:cell WithFeed:feed];
-        }else if(indexPath.row == 1){
-            DrawFeed *feed1 = (DrawFeed *)[self saveGetObjectForIndex:1];  
-            DrawFeed *feed2 = (DrawFeed *)[self saveGetObjectForIndex:2];            
-            [self setSencodRankCell:cell WithFeed1:feed1 feed2:feed2];
-        }else{
-            NSInteger startIndex = ((indexPath.row - 1) * NORMAL_CELL_VIEW_NUMBER);
-            NSMutableArray *list = [NSMutableArray array];
-            for (NSInteger i = startIndex; i < startIndex+NORMAL_CELL_VIEW_NUMBER; ++ i) {
-                NSObject *object = [self saveGetObjectForIndex:i];
-                if (object) {
-                    [list addObject:object];
-                }
-            }
-//            PPDebug(@"startIndex = %d,list count = %d",startIndex,[list count]);
-            [self setNormalRankCell:cell WithFeeds:list];
-        }        
-    }else {
-        NSInteger startIndex = (indexPath.row * NORMAL_CELL_VIEW_NUMBER);
-        NSMutableArray *list = [NSMutableArray array];
-        for (NSInteger i = startIndex; i < startIndex+NORMAL_CELL_VIEW_NUMBER; ++ i) {
-            NSObject *object = [self saveGetObjectForIndex:i];
-            if (object) {
-                [list addObject:object];
-            }
-        }
-        [self setNormalRankCell:cell WithFeeds:list];
-        
-    }
-
-    return cell;
+//        CommentFeed *feed = [self.tabDataList objectAtIndex:indexPath.row];
+//        [feed updateDesc];
+//        cell.contestId = self.contest.contestId;
+//        [cell setCellInfo:feed];
+//        return cell;
+//    }else if(tab.tabID == OpusTypePrize){
+//        NSString *CellIdentifier = [ContestPrizeCell getCellIdentifier];
+//        ContestPrizeCell *cell = [theTableView dequeueReusableCellWithIdentifier:CellIdentifier];
+//        if (cell == nil) {
+//            cell = [ContestPrizeCell createCell:self];
+//        }
+//        cell.indexPath = indexPath;
+////        cell.accessoryType = UITableViewCellAccessoryNone;
+//        if (indexPath.row < [tab.dataList count]) {
+//            PBUserAward *aw = [tab.dataList objectAtIndex:indexPath.row];
+//            ContestFeed *opus = [_contest getOpusWithAwardType:aw.awardType.key rank:aw.rank];
+//            [cell setPrize:[self prizeFromAward:aw] title:aw.awardType.value opus:opus];
+//        }else{
+//            cell.opus = nil;
+//        }
+//        [cell setShowBg:!(indexPath.row & 0x1)];
+//        return cell;
+//        
+//    }
+//    
+//    
+//    if (isSingApp()) {
+//        
+//        return [CellManager getHotStyleCell:dataTableView
+//                                  indexPath:indexPath
+//                                   delegate:self
+//                                   dataList:self.tabDataList];
+//    }
+//    
+//    
+//    NSString *CellIdentifier = @"RankCell";//[RankFirstCell getCellIdentifier];
+//    UITableViewCell *cell = [theTableView dequeueReusableCellWithIdentifier:CellIdentifier];
+//    
+//    if (cell == nil) {
+//        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
+//    }else{
+//        [self clearCellSubViews:cell];
+//    }
+//
+//    cell.accessoryType = UITableViewCellAccessoryNone;
+//
+//    if (tab.tabID == OpusTypeRank) {
+//        if (indexPath.row == 0) {
+//            DrawFeed *feed = (DrawFeed *)[self saveGetObjectForIndex:0];
+//            [self setFirstRankCell:cell WithFeed:feed];
+//        }else if(indexPath.row == 1){
+//            DrawFeed *feed1 = (DrawFeed *)[self saveGetObjectForIndex:1];  
+//            DrawFeed *feed2 = (DrawFeed *)[self saveGetObjectForIndex:2];            
+//            [self setSencodRankCell:cell WithFeed1:feed1 feed2:feed2];
+//        }else{
+//            NSInteger startIndex = ((indexPath.row - 1) * NORMAL_CELL_VIEW_NUMBER);
+//            NSMutableArray *list = [NSMutableArray array];
+//            for (NSInteger i = startIndex; i < startIndex+NORMAL_CELL_VIEW_NUMBER; ++ i) {
+//                NSObject *object = [self saveGetObjectForIndex:i];
+//                if (object) {
+//                    [list addObject:object];
+//                }
+//            }
+////            PPDebug(@"startIndex = %d,list count = %d",startIndex,[list count]);
+//            [self setNormalRankCell:cell WithFeeds:list];
+//        }        
+//    }else {
+//        NSInteger startIndex = (indexPath.row * NORMAL_CELL_VIEW_NUMBER);
+//        NSMutableArray *list = [NSMutableArray array];
+//        for (NSInteger i = startIndex; i < startIndex+NORMAL_CELL_VIEW_NUMBER; ++ i) {
+//            NSObject *object = [self saveGetObjectForIndex:i];
+//            if (object) {
+//                [list addObject:object];
+//            }
+//        }
+//        [self setNormalRankCell:cell WithFeeds:list];
+//        
+//    }
+//
+//    return cell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
@@ -373,45 +430,51 @@ typedef enum{
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     NSInteger count = [super tableView:tableView numberOfRowsInSection:section];
-    
-    NSInteger type = self.currentTab.tabID;
-    if (type == OpusTypeReport || type == OpusTypePrize) {
-        return count;
+
+    switch ([[self currentTab] tabID]) {
+        case OpusTypeReport:
+            return [CellManager getReportStyleCellCountWithDataCount:count];
+            break;
+            
+        case OpusTypePrize:
+            return [CellManager getPrizeStyleCellCountWithDataCount:count];
+            break;
+            
+        case OpusTypeRank:
+            return [CellManager getHotStyleCellCountWithDataCount:count
+                                                       roundingUp:YES];
+            break;
+            
+        case OpusTypeNew:
+        case OpusTypeMy:
+            return [CellManager getLastStyleCellCountWithDataCount:count
+                                                        roundingUp:YES];
+            break;
+            
+        default:
+            return 0;
+            break;
     }
-    if (type == OpusTypeRank) {
-        if (HISTORY_RANK_NUMBER <= count) {
-            self.noMoreData = YES;            
-        }
-    }
+
     
-    if (isSingApp()) {
-        return count/WHISPER_CELL_VIEW_NUMBER + ((count%WHISPER_CELL_VIEW_NUMBER==0)?0:1);
-    }
-    
-    if (isDrawApp() || isLittleGeeAPP()) {
-        switch (type) {
-            case OpusTypeRank:
-                if (count <= 1) {
-                    return count;
-                }else if(count <= 3){
-                    return 2;
-                }else{
-                    if (count %3 == 0) {
-                        return count/3 + 1;
-                    }else{
-                        return count / 3 + 2;
-                    }
-                }
-            default:
-                if (count %3 == 0) {
-                    return count/3;
-                }else{
-                    return count/3 + 1;
-                }
-        }
-    }
-    
-    return 0;
+//    
+//    NSInteger type = self.currentTab.tabID;
+//    NSInteger count = [super tableView:tableView numberOfRowsInSection:section];
+//    
+//    if (type == OpusTypeReport || type == OpusTypePrize) {
+//        
+//        return count;
+//    }else if (type == OpusTypeRank) {
+//        
+//        return [CellManager getHotStyleCellCountWithDataCount:count
+//                                                   roundingUp:YES];
+//    }else if(type == OpusTypeNew || type == OpusTypeMy){
+//        
+//        return [CellManager getLastStyleCellCountWithDataCount:count
+//                                                    roundingUp:YES];
+//    }else{
+//        return 0;
+//    }
 }
 
 
@@ -451,7 +514,6 @@ typedef enum{
 
 }
 
-//- ()
 
 - (void)serviceLoadDataForTabID:(NSInteger)tabID
 {
@@ -465,15 +527,10 @@ typedef enum{
             NSArray *list = [_contest awardOpusIdList];
             [[FeedService defaultService] getFeedListByIds:list delegate:self];
         }else if (tabID == OpusTypeReport) {
-            //TODO get contest report
-//#if DEBUG
-//            [[FeedService defaultService] getOpusCommentList:@"51d312c2e4b0240d146a72d1" type:CommentTypeComment offset:0 limit:12 delegate:self];
-//#elif
             [[FeedService defaultService] getContestCommentFeedList:self.contest.contestId
                                                              offset:tab.offset
                                                               limit:tab.limit
                                                            delegate:self];
-//#endif
             
         }else{
             [[FeedService defaultService] getContestOpusList:tabID

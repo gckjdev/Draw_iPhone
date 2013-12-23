@@ -451,6 +451,7 @@
 
 #define PARA_REQUEST_MESSAGE_ID @"rmid"
 #define PARA_REPLY_RESULT @"rre"
+#define PARA_IS_GROUP @"isg"
 
 #define PARA_VERSION @"v"
 

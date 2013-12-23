@@ -392,7 +392,8 @@
                           friendUserId:(NSString*)friendUserId
                        offsetMessageId:(NSString *)messageId
                               maxCount:(int)maxCount
-                               forward:(BOOL)forward;
+                               forward:(BOOL)forward
+                               isGroup:(BOOL)isGroup;
 
 + (CommonNetworkOutput*)getMessageStatList:(NSString*)baseURL
                                      appId:(NSString*)appId
@@ -411,7 +412,8 @@
                           longitude:(double)longitude
                            latitude:(double)latitude
                        reqMessageId:(NSString*)reqMessageId
-                        replyResult:(int)replyResult;
+                        replyResult:(int)replyResult
+                            isGroup:(BOOL)isGroup;
 
 + (CommonNetworkOutput*)userHasReadMessage:(NSString*)baseURL
                                      appId:(NSString*)appId

@@ -16,6 +16,7 @@
 
 @class MessageStat;
 @class PPMessage;
+@class PBGroup;
 
 @protocol ChatDetailControllerDelegate <NSObject>
 
@@ -42,7 +43,10 @@
 - (IBAction)clickGraffitiButton:(id)sender; 
 - (IBAction)clickLocateButton:(id)sender;
 - (void)loadNewMessage:(BOOL)showActivity;
+
 - (id)initWithMessageStat:(MessageStat *)messageStat;
++ (void)enterFromGroup:(PBGroup*)group superController:(UIViewController*)superController;
+
 - (IBAction)clickChangeBGButton:(id)sender;
 - (NSString *)fid;
 @end

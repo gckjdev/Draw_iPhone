@@ -2118,6 +2118,8 @@
                             offsetMessageId:(NSString *)messageId
                               maxCount:(int)maxCount
                                forward:(BOOL)forward
+                               isGroup:(BOOL)isGroup
+
 {
     CommonNetworkOutput* output = [[[CommonNetworkOutput alloc] init] autorelease];
     
@@ -2138,7 +2140,7 @@
         str = [str stringByAddQueryParameter:PARA_FORMAT value:FINDDRAW_FORMAT_PROTOCOLBUFFER];
 
         str = [str stringByAddQueryParameter:PARA_VERSION intValue:1];
-        
+        str = [str stringByAddQueryParameter:PARA_IS_GROUP intValue:isGroup];
         
         // TOOD add other parameters
         
@@ -2210,6 +2212,7 @@
                            latitude:(double)latitude
                        reqMessageId:(NSString*)reqMessageId
                         replyResult:(int)replyResult
+                            isGroup:(BOOL)isGroup
 
 {
     CommonNetworkOutput* output = [[[CommonNetworkOutput alloc] init] autorelease];
@@ -2237,7 +2240,8 @@
         }
         
         // TOOD add other parameters
-        str = [str stringByAddQueryParameter:PARA_VERSION intValue:1];        
+        str = [str stringByAddQueryParameter:PARA_VERSION intValue:1];
+        str = [str stringByAddQueryParameter:PARA_IS_GROUP intValue:isGroup];
         
         return str;
     };

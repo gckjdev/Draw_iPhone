@@ -57,11 +57,11 @@
     }
 
     if ([self needShowShadow] && self.paint.penType != Eraser && self.paint.penType != DeprecatedEraser) {
-//        CGContextBeginTransparencyLayer(context, NULL);
+        CGContextBeginTransparencyLayer(context, NULL);
 
-        CGRect transparentLayerRect = [self.paint redrawRectInRect:rect];
-        [self.shadow spanRect:&transparentLayerRect];
-        CGContextBeginTransparencyLayerWithRect(context, transparentLayerRect, NULL);
+//        CGRect transparentLayerRect = [self.paint redrawRectInRect:rect];
+//        [self.shadow spanRect:&transparentLayerRect];
+//        CGContextBeginTransparencyLayerWithRect(context, transparentLayerRect, NULL);
         
         [self.shadow updateContext:context];
         rect1 = [self.paint drawInContext:context inRect:rect];

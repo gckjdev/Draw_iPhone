@@ -42,7 +42,7 @@ typedef enum{
 
 + (id)createRankView:(id)delegate type:(RankViewType)type;
 + (CGFloat)heightForRankViewType:(RankViewType)type;
-+ (CGFloat)widthForRankViewType:(RankViewType)type;
+//+ (CGFloat)widthForRankViewType:(RankViewType)type;
 
 - (void)setViewInfo:(DrawFeed *)feed;
 

@@ -1147,8 +1147,6 @@
 		A461B7BE174CBAA70088B061 /* DrawOnCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAE5AD631717EAE8009BFDC1 /* DrawOnCell.xib */; };
 		A461B7BF174CBAA70088B061 /* DrawOnCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAE5AD671717EB0E009BFDC1 /* DrawOnCell~ipad.xib */; };
 		A461B7D4174CBAA70088B061 /* README.txt in Resources */ = {isa = PBXBuildFile; fileRef = C282E5A3172BC53200F8C610 /* README.txt */; };
-		A461B7D7174CBAA70088B061 /* LittleGeeHomeController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2051B471739E15E00403DBD /* LittleGeeHomeController.xib */; };
-		A461B7D8174CBAA70088B061 /* LittleGeeHomeController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2051B641739EAEA00403DBD /* LittleGeeHomeController~ipad.xib */; };
 		A461B7F8174CBAA70088B061 /* Sing.proto in Resources */ = {isa = PBXBuildFile; fileRef = A461B074174CAE050088B061 /* Sing.proto */; };
 		A461B7FE174CBB240088B061 /* Sing-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A461B079174CBA490088B061 /* Sing-Info.plist */; };
 		A461C9281565E3700076FD9C /* ChatMessageView.m in Sources */ = {isa = PBXBuildFile; fileRef = A461C9271565E3700076FD9C /* ChatMessageView.m */; };
@@ -1402,6 +1400,22 @@
 		A4BD463D1843513F0016E62C /* button_click.wav in Resources */ = {isa = PBXBuildFile; fileRef = A4BD463C1843513F0016E62C /* button_click.wav */; };
 		A4BD463E1843513F0016E62C /* button_click.wav in Resources */ = {isa = PBXBuildFile; fileRef = A4BD463C1843513F0016E62C /* button_click.wav */; };
 		A4BD463F1843513F0016E62C /* button_click.wav in Resources */ = {isa = PBXBuildFile; fileRef = A4BD463C1843513F0016E62C /* button_click.wav */; };
+		A4BE2263186550D000FE2997 /* CellManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A4BE2262186550CF00FE2997 /* CellManager.m */; };
+		A4BE2264186550D000FE2997 /* CellManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A4BE2262186550CF00FE2997 /* CellManager.m */; };
+		A4BE2265186550D000FE2997 /* CellManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A4BE2262186550CF00FE2997 /* CellManager.m */; };
+		A4BE2266186550D000FE2997 /* CellManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A4BE2262186550CF00FE2997 /* CellManager.m */; };
+		A4BE226C18657D9700FE2997 /* NormalHotCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A4BE226B18657D9700FE2997 /* NormalHotCell.m */; };
+		A4BE226D18657D9700FE2997 /* NormalHotCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A4BE226B18657D9700FE2997 /* NormalHotCell.m */; };
+		A4BE226E18657D9700FE2997 /* NormalHotCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A4BE226B18657D9700FE2997 /* NormalHotCell.m */; };
+		A4BE226F18657D9700FE2997 /* NormalHotCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A4BE226B18657D9700FE2997 /* NormalHotCell.m */; };
+		A4BE227118657DEA00FE2997 /* NormalHotCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4BE227018657DE800FE2997 /* NormalHotCell.xib */; };
+		A4BE227218657DEA00FE2997 /* NormalHotCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4BE227018657DE800FE2997 /* NormalHotCell.xib */; };
+		A4BE227318657DEA00FE2997 /* NormalHotCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4BE227018657DE800FE2997 /* NormalHotCell.xib */; };
+		A4BE227418657DEA00FE2997 /* NormalHotCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4BE227018657DE800FE2997 /* NormalHotCell.xib */; };
+		A4BE227618670D8800FE2997 /* NormalHotCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4BE227518670D8700FE2997 /* NormalHotCell~ipad.xib */; };
+		A4BE227718670D8800FE2997 /* NormalHotCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4BE227518670D8700FE2997 /* NormalHotCell~ipad.xib */; };
+		A4BE227818670D8800FE2997 /* NormalHotCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4BE227518670D8700FE2997 /* NormalHotCell~ipad.xib */; };
+		A4BE227918670D8800FE2997 /* NormalHotCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4BE227518670D8700FE2997 /* NormalHotCell~ipad.xib */; };
 		A4C1E919169BE85E00644682 /* DraftCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A4C1E912169BE85E00644682 /* DraftCell.m */; };
 		A4C1E91A169BE85E00644682 /* DraftCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4C1E913169BE85E00644682 /* DraftCell.xib */; };
 		A4C1E91B169BE85E00644682 /* DraftCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4C1E914169BE85E00644682 /* DraftCell~ipad.xib */; };
@@ -3011,10 +3025,6 @@
 		A4F04B9C18068467007274BE /* beep-timber.aif in Resources */ = {isa = PBXBuildFile; fileRef = A4F04B9618068466007274BE /* beep-timber.aif */; };
 		C2002CD9172CE4F200FD6AE1 /* libYouMi.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C2002C62172CE4F000FD6AE1 /* libYouMi.a */; };
 		C203C47716F309A50028A065 /* RoundPercentageView.m in Sources */ = {isa = PBXBuildFile; fileRef = C203C47616F309A50028A065 /* RoundPercentageView.m */; };
-		C2051B561739E15E00403DBD /* LittleGeeHomeController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2051B471739E15E00403DBD /* LittleGeeHomeController.xib */; };
-		C2051B631739E15E00403DBD /* LittleGeeHomeController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2051B471739E15E00403DBD /* LittleGeeHomeController.xib */; };
-		C2051B651739EAEA00403DBD /* LittleGeeHomeController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2051B641739EAEA00403DBD /* LittleGeeHomeController~ipad.xib */; };
-		C2051B721739EAEA00403DBD /* LittleGeeHomeController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2051B641739EAEA00403DBD /* LittleGeeHomeController~ipad.xib */; };
 		C206FFAC178032D30033CF63 /* CommonWaterFlowController.m in Sources */ = {isa = PBXBuildFile; fileRef = C206FFAB178032D20033CF63 /* CommonWaterFlowController.m */; };
 		C206FFAD178032D30033CF63 /* CommonWaterFlowController.m in Sources */ = {isa = PBXBuildFile; fileRef = C206FFAB178032D20033CF63 /* CommonWaterFlowController.m */; };
 		C206FFB4178032F20033CF63 /* CommonWaterFlowController.m in Sources */ = {isa = PBXBuildFile; fileRef = C206FFAB178032D20033CF63 /* CommonWaterFlowController.m */; };
@@ -6885,8 +6895,6 @@
 		EA411EE5176066F500DA72D0 /* DrawOnCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAE5AD631717EAE8009BFDC1 /* DrawOnCell.xib */; };
 		EA411EE6176066F500DA72D0 /* DrawOnCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAE5AD671717EB0E009BFDC1 /* DrawOnCell~ipad.xib */; };
 		EA411EFB176066F500DA72D0 /* README.txt in Resources */ = {isa = PBXBuildFile; fileRef = C282E5A3172BC53200F8C610 /* README.txt */; };
-		EA411EFE176066F500DA72D0 /* LittleGeeHomeController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2051B471739E15E00403DBD /* LittleGeeHomeController.xib */; };
-		EA411EFF176066F500DA72D0 /* LittleGeeHomeController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2051B641739EAEA00403DBD /* LittleGeeHomeController~ipad.xib */; };
 		EA411F1C176066F500DA72D0 /* Sing.proto in Resources */ = {isa = PBXBuildFile; fileRef = A461B074174CAE050088B061 /* Sing.proto */; };
 		EA411F21176066F500DA72D0 /* default_config_513819630_version.txt in Resources */ = {isa = PBXBuildFile; fileRef = CA2488E51753562800848A5F /* default_config_513819630_version.txt */; };
 		EA411F22176066F500DA72D0 /* default_config_513819630.pb in Resources */ = {isa = PBXBuildFile; fileRef = CA2488E61753562800848A5F /* default_config_513819630.pb */; };
@@ -7195,7 +7203,6 @@
 		EAD13B8B17DECFE300764FFB /* OrangeLoadingView.m in Sources */ = {isa = PBXBuildFile; fileRef = EAD13B8917DECFE300764FFB /* OrangeLoadingView.m */; };
 		EAD13B8C17DECFE300764FFB /* OrangeLoadingView.m in Sources */ = {isa = PBXBuildFile; fileRef = EAD13B8917DECFE300764FFB /* OrangeLoadingView.m */; };
 		EAD13B8D17DECFE300764FFB /* OrangeLoadingView.m in Sources */ = {isa = PBXBuildFile; fileRef = EAD13B8917DECFE300764FFB /* OrangeLoadingView.m */; };
-		EAD67187174E04E200221248 /* LittleGeeHomeController.m in Sources */ = {isa = PBXBuildFile; fileRef = C2051B461739E15E00403DBD /* LittleGeeHomeController.m */; };
 		EADC02551817CF8C0038B6A8 /* SearchPostController.m in Sources */ = {isa = PBXBuildFile; fileRef = EADC02531817CF8B0038B6A8 /* SearchPostController.m */; };
 		EADC02561817CF8C0038B6A8 /* SearchPostController.m in Sources */ = {isa = PBXBuildFile; fileRef = EADC02531817CF8B0038B6A8 /* SearchPostController.m */; };
 		EADC02571817CF8C0038B6A8 /* SearchPostController.m in Sources */ = {isa = PBXBuildFile; fileRef = EADC02531817CF8B0038B6A8 /* SearchPostController.m */; };
@@ -7721,6 +7728,12 @@
 		A4B78A8417A046480008E21B /* PageScrollViewFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PageScrollViewFactory.h; sourceTree = "<group>"; };
 		A4B78A8517A0464C0008E21B /* PageScrollViewFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PageScrollViewFactory.m; sourceTree = "<group>"; };
 		A4BD463C1843513F0016E62C /* button_click.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = button_click.wav; sourceTree = "<group>"; };
+		A4BE2261186550CE00FE2997 /* CellManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CellManager.h; sourceTree = "<group>"; };
+		A4BE2262186550CF00FE2997 /* CellManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CellManager.m; sourceTree = "<group>"; };
+		A4BE226A18657D9600FE2997 /* NormalHotCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NormalHotCell.h; sourceTree = "<group>"; };
+		A4BE226B18657D9700FE2997 /* NormalHotCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NormalHotCell.m; sourceTree = "<group>"; };
+		A4BE227018657DE800FE2997 /* NormalHotCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NormalHotCell.xib; sourceTree = "<group>"; };
+		A4BE227518670D8700FE2997 /* NormalHotCell~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "NormalHotCell~ipad.xib"; sourceTree = "<group>"; };
 		A4C1E911169BE85E00644682 /* DraftCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DraftCell.h; sourceTree = "<group>"; };
 		A4C1E912169BE85E00644682 /* DraftCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DraftCell.m; sourceTree = "<group>"; };
 		A4C1E913169BE85E00644682 /* DraftCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DraftCell.xib; sourceTree = "<group>"; };
@@ -8218,10 +8231,6 @@
 		C20030B7172F9E1D00FD6AE1 /* ZhaJinHua.pb-c.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ZhaJinHua.pb-c.h"; sourceTree = "<group>"; };
 		C203C47516F309A50028A065 /* RoundPercentageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RoundPercentageView.h; sourceTree = "<group>"; };
 		C203C47616F309A50028A065 /* RoundPercentageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RoundPercentageView.m; sourceTree = "<group>"; };
-		C2051B451739E15E00403DBD /* LittleGeeHomeController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LittleGeeHomeController.h; sourceTree = "<group>"; };
-		C2051B461739E15E00403DBD /* LittleGeeHomeController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LittleGeeHomeController.m; sourceTree = "<group>"; };
-		C2051B471739E15E00403DBD /* LittleGeeHomeController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LittleGeeHomeController.xib; sourceTree = "<group>"; };
-		C2051B641739EAEA00403DBD /* LittleGeeHomeController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "LittleGeeHomeController~ipad.xib"; sourceTree = "<group>"; };
 		C206FFAA178032D10033CF63 /* CommonWaterFlowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommonWaterFlowController.h; sourceTree = "<group>"; };
 		C206FFAB178032D20033CF63 /* CommonWaterFlowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommonWaterFlowController.m; sourceTree = "<group>"; };
 		C206FFC2178034450033CF63 /* PSCollectionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSCollectionView.h; sourceTree = "<group>"; };
@@ -12300,10 +12309,6 @@
 				C21CD774173B914500C699C2 /* Model */,
 				C21CD775173B914500C699C2 /* Service */,
 				C21CD776173B914500C699C2 /* View */,
-				C2051B451739E15E00403DBD /* LittleGeeHomeController.h */,
-				C2051B461739E15E00403DBD /* LittleGeeHomeController.m */,
-				C2051B471739E15E00403DBD /* LittleGeeHomeController.xib */,
-				C2051B641739EAEA00403DBD /* LittleGeeHomeController~ipad.xib */,
 			);
 			path = LittleGeeDraw;
 			sourceTree = "<group>";
@@ -15239,9 +15244,13 @@
 				EA46AD5617D5E6CD0066E914 /* ReportFeedCell.m */,
 				EA46AD6017D5E6E60066E914 /* ReportFeedCell.xib */,
 				A4EA9354185B0143004BB69D /* SingHotCell.h */,
-				A4170C1618613E48007DF362 /* SingHotCell~ipad.xib */,
 				A4EA9355185B0143004BB69D /* SingHotCell.m */,
 				A4EA935A185B0173004BB69D /* SingHotCell.xib */,
+				A4170C1618613E48007DF362 /* SingHotCell~ipad.xib */,
+				A4BE226A18657D9600FE2997 /* NormalHotCell.h */,
+				A4BE226B18657D9700FE2997 /* NormalHotCell.m */,
+				A4BE227018657DE800FE2997 /* NormalHotCell.xib */,
+				A4BE227518670D8700FE2997 /* NormalHotCell~ipad.xib */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -15296,6 +15305,8 @@
 				EA0C5543180BECEB008069C1 /* PainterController.h */,
 				EA0C5544180BECEB008069C1 /* PainterController.m */,
 				EA0C5545180BECEB008069C1 /* PainterController.xib */,
+				A4BE2261186550CE00FE2997 /* CellManager.h */,
+				A4BE2262186550CF00FE2997 /* CellManager.m */,
 			);
 			path = Hot;
 			sourceTree = "<group>";
@@ -17699,8 +17710,6 @@
 				A461B7BE174CBAA70088B061 /* DrawOnCell.xib in Resources */,
 				A461B7BF174CBAA70088B061 /* DrawOnCell~ipad.xib in Resources */,
 				A461B7D4174CBAA70088B061 /* README.txt in Resources */,
-				A461B7D7174CBAA70088B061 /* LittleGeeHomeController.xib in Resources */,
-				A461B7D8174CBAA70088B061 /* LittleGeeHomeController~ipad.xib in Resources */,
 				A461B7F8174CBAA70088B061 /* Sing.proto in Resources */,
 				A461B7FE174CBB240088B061 /* Sing-Info.plist in Resources */,
 				A4364369176706A4006B6946 /* Opus.proto in Resources */,
@@ -18342,6 +18351,8 @@
 				CA346CC318618B280098DE00 /* user_detail_set_homebg@2x.png in Resources */,
 				CA346CCB18618DC70098DE00 /* button_rank@2x.png in Resources */,
 				CA346CD01861A96D0098DE00 /* bottom_home_task@2x.png in Resources */,
+				A4BE227318657DEA00FE2997 /* NormalHotCell.xib in Resources */,
+				A4BE227818670D8800FE2997 /* NormalHotCell~ipad.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -18655,8 +18666,6 @@
 				C28AA0A11738F04B007A819F /* DrawOnCell~ipad.xib in Resources */,
 				C28AA0B61738F04B007A819F /* README.txt in Resources */,
 				C28AA0D01738F0ED007A819F /* LittleGeeDraw-Info.plist in Resources */,
-				C2051B631739E15E00403DBD /* LittleGeeHomeController.xib in Resources */,
-				C2051B721739EAEA00403DBD /* LittleGeeHomeController~ipad.xib in Resources */,
 				C2F564BB173DED2800C8E313 /* little_gee_home_big_pen@2x.png in Resources */,
 				C2F564C9173DED2800C8E313 /* little_gee_home_draw_btn_bg@2x.png in Resources */,
 				C2F564D7173DED2800C8E313 /* little_gee_home_options@2x.png in Resources */,
@@ -19316,6 +19325,8 @@
 				CA346CC218618B280098DE00 /* user_detail_set_homebg@2x.png in Resources */,
 				CA346CCA18618DC70098DE00 /* button_rank@2x.png in Resources */,
 				CA346CCF1861A96D0098DE00 /* bottom_home_task@2x.png in Resources */,
+				A4BE227218657DEA00FE2997 /* NormalHotCell.xib in Resources */,
+				A4BE227718670D8800FE2997 /* NormalHotCell~ipad.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -19633,8 +19644,6 @@
 				CAE5AD641717EAE9009BFDC1 /* DrawOnCell.xib in Resources */,
 				CAE5AD681717EB0F009BFDC1 /* DrawOnCell~ipad.xib in Resources */,
 				C282E754172BC53300F8C610 /* README.txt in Resources */,
-				C2051B561739E15E00403DBD /* LittleGeeHomeController.xib in Resources */,
-				C2051B651739EAEA00403DBD /* LittleGeeHomeController~ipad.xib in Resources */,
 				A461B075174CAE050088B061 /* Sing.proto in Resources */,
 				CA2488E71753562800848A5F /* default_config_513819630_version.txt in Resources */,
 				CA2488E81753562800848A5F /* default_config_513819630.pb in Resources */,
@@ -20273,6 +20282,8 @@
 				CA346CC118618B280098DE00 /* user_detail_set_homebg@2x.png in Resources */,
 				CA346CC918618DC70098DE00 /* button_rank@2x.png in Resources */,
 				CA346CCE1861A96D0098DE00 /* bottom_home_task@2x.png in Resources */,
+				A4BE227118657DEA00FE2997 /* NormalHotCell.xib in Resources */,
+				A4BE227618670D8800FE2997 /* NormalHotCell~ipad.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -20575,8 +20586,6 @@
 				EA411EE5176066F500DA72D0 /* DrawOnCell.xib in Resources */,
 				EA411EE6176066F500DA72D0 /* DrawOnCell~ipad.xib in Resources */,
 				EA411EFB176066F500DA72D0 /* README.txt in Resources */,
-				EA411EFE176066F500DA72D0 /* LittleGeeHomeController.xib in Resources */,
-				EA411EFF176066F500DA72D0 /* LittleGeeHomeController~ipad.xib in Resources */,
 				EA411F1C176066F500DA72D0 /* Sing.proto in Resources */,
 				EA411F21176066F500DA72D0 /* default_config_513819630_version.txt in Resources */,
 				EA411F22176066F500DA72D0 /* default_config_513819630.pb in Resources */,
@@ -21184,6 +21193,8 @@
 				CA346CC418618B280098DE00 /* user_detail_set_homebg@2x.png in Resources */,
 				CA346CCC18618DC70098DE00 /* button_rank@2x.png in Resources */,
 				CA346CD11861A96D0098DE00 /* bottom_home_task@2x.png in Resources */,
+				A4BE227418657DEA00FE2997 /* NormalHotCell.xib in Resources */,
+				A4BE227918670D8800FE2997 /* NormalHotCell~ipad.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -22082,6 +22093,8 @@
 				EA5A2EA918584D6E00CABC71 /* UILabel+Touchable.m in Sources */,
 				A4EA9358185B0144004BB69D /* SingHotCell.m in Sources */,
 				EA9289B71864360F0064A1AC /* UIViewController+BGImage.m in Sources */,
+				A4BE2265186550D000FE2997 /* CellManager.m in Sources */,
+				A4BE226E18657D9700FE2997 /* NormalHotCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -22613,7 +22626,6 @@
 				C28A9CA01738F04B007A819F /* PhotoDrawSheet.m in Sources */,
 				C28AA0E01738F406007A819F /* LittleGeeDrawApp.m in Sources */,
 				C21CD7D4173CAFA100C699C2 /* LittleGeeImageManager.m in Sources */,
-				EAD67187174E04E200221248 /* LittleGeeHomeController.m in Sources */,
 				EA92B895174E124500F273B5 /* Sing.pb.m in Sources */,
 				EAB19CE4174E2A44001126FA /* DrawGameApp.m in Sources */,
 				CA62C7651756FBB900C9EF56 /* BBS.pb-c.c in Sources */,
@@ -22887,6 +22899,8 @@
 				EA5A2EA818584D6E00CABC71 /* UILabel+Touchable.m in Sources */,
 				A4EA9357185B0144004BB69D /* SingHotCell.m in Sources */,
 				EA9289B61864360F0064A1AC /* UIViewController+BGImage.m in Sources */,
+				A4BE2264186550D000FE2997 /* CellManager.m in Sources */,
+				A4BE226D18657D9700FE2997 /* NormalHotCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -23691,6 +23705,8 @@
 				EA5A2EA718584D6E00CABC71 /* UILabel+Touchable.m in Sources */,
 				A4EA9356185B0144004BB69D /* SingHotCell.m in Sources */,
 				EA9289B51864360F0064A1AC /* UIViewController+BGImage.m in Sources */,
+				A4BE2263186550D000FE2997 /* CellManager.m in Sources */,
+				A4BE226C18657D9700FE2997 /* NormalHotCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -24451,6 +24467,8 @@
 				EA5A2EAA18584D6E00CABC71 /* UILabel+Touchable.m in Sources */,
 				A4EA9359185B0144004BB69D /* SingHotCell.m in Sources */,
 				EA9289B81864360F0064A1AC /* UIViewController+BGImage.m in Sources */,
+				A4BE2266186550D000FE2997 /* CellManager.m in Sources */,
+				A4BE226F18657D9700FE2997 /* NormalHotCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

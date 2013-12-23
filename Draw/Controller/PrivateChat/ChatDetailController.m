@@ -33,6 +33,7 @@
 #import "GameApp.h"
 #import "WordFilterService.h"
 #import "ImagePlayer.h"
+#import "Group.pb.h"
 
 @interface ChatDetailController ()
 {
@@ -138,6 +139,25 @@
     }
     return self;
 }
+
++ (void)enterFromGroup:(PBGroup*)pbGroup superController:(UIViewController*)superController
+{
+    MessageStat* messageStat = [[MessageStat alloc] init];
+    
+    messageStat.friendId = pbGroup.groupId;
+    messageStat.friendNickName = pbGroup.name;
+    messageStat.friendAvatar = pbGroup.medalImage;
+    messageStat.isGroup = YES;
+    
+    ChatDetailController *controller = [[ChatDetailController alloc] initWithMessageStat:messageStat];
+    controller.delegate = nil;
+    [superController.navigationController pushViewController:controller animated:YES];
+    [controller release];
+    
+    [messageStat release];
+    
+}
+
 
 - (BOOL)isGroup
 {
@@ -1025,7 +1045,8 @@
     [[ChatService defaultService] loadMessageList:self.fid
                                   offsetMessageId:self.lastMessageId
                                           forward:YES
-                                            limit:[self loadNewDataCount]];
+                                            limit:[self loadNewDataCount]
+                                          isGroup:[self isGroup]];
     
  
 }
@@ -1036,7 +1057,8 @@
     [[ChatService defaultService] loadMessageList:self.fid
                                   offsetMessageId:self.firstMessageId
                                           forward:NO
-                                            limit:[self loadMoreDataCount]];
+                                            limit:[self loadMoreDataCount]
+                                          isGroup:[self isGroup]];
     
 }
 
