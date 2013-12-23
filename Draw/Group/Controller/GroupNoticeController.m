@@ -152,9 +152,9 @@ typedef enum{
 - (void)removeModelData:(id)data
 {
     if (data) {
-        NSUInteger index = [self.tabDataList objectAtIndex:data];
+        NSUInteger index = [self.tabDataList indexOfObject:data];
         if (index != NSNotFound) {
-            [self.tabDataList removeObject:data];
+            [self.tabDataList removeObjectAtIndex:index];
             NSIndexPath *indexPath = [NSIndexPath indexPathForRow:index inSection:0];
             [self.dataTableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
         }        

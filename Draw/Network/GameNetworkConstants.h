@@ -721,7 +721,7 @@
 #define METHOD_FOLLOW_TOPIC @"followTopic"
 #define METHOD_GET_TOPIC_TIMELINE @"getTopicTimeline"
 #define METHOD_GET_FOLLOWED_TOPIC @"getFollowTopics"
-#define METHOD_GET_GROUPRELATION @"getRelationWithGroup"
+//#define METHOD_GET_GROUPRELATION @"getRelationWithGroup"
 #define METHOD_SEARCH_GROUP @"searchGroup"
 #define METHOD_GET_GROUP_BADGES @"getGroupBadge"
 #define METHOD_GET_POST_ACTION_BY_USER @"getPostActionByUser"

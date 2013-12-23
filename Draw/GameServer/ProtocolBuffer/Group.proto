@@ -89,8 +89,6 @@ message PBGroup
 
     repeated PBGameUser guests = 43;           // 嘉宾列表
 
-    optional PBUserRelationWithGroup relation = 50; // 用来记录当前用户与此group的关系
-
     optional PBBBSPost topic = 60; //最新的话题
 }
 

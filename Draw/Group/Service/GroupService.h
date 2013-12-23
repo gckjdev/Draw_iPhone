@@ -10,7 +10,6 @@
 #import "Group.pb.h"
 #import "GroupManager.h"
 
-typedef void (^ RelationResultBlock) (PBUserRelationWithGroup *relation, NSError *error);
 typedef void (^ GroupResultBlock) (PBGroup *group, NSError *error);
 typedef void (^ BadgeResultBlock) (NSArray *badges, NSError *error);
 typedef void (^ ListResultBlock) (NSArray *list, NSError *error);
@@ -133,17 +132,10 @@ typedef void (^ URLResultBlock) (NSURL *url, NSError *error);
                        limit:(NSInteger)limit
                     callback:(ListResultBlock)callback;
 
-//- (void)getRelationWithGroup:(NSString *)groupId
-//                    callback:(RelationResultBlock)callback;
 
 - (void)getGroupBadgeWithCallback:(BadgeResultBlock)callback;
 
 
-- (PBGroup *)buildGroup:(PBGroup *)group
-           withRelation:(PBUserRelationWithGroup *)relation;
-
-
-- (PBGroup *)buildGroupWithDefaultRelation:(PBGroup *)group;
 
 ///
 

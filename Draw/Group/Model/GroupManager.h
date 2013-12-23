@@ -56,6 +56,9 @@
 + (void)didRemoveUser:(PBGameUser *)user
           fromTitleId:(NSInteger)titleId;
 
++ (void)didUserQuited:(PBGameUser *)user;
+
+
 + (void)didAddedGroupTitle:(NSString *)groupId
                      title:(NSString *)title
                    titleId:(NSInteger)titleId;
@@ -72,5 +75,8 @@
 + (NSInteger)genTitleId;
 
 + (NSArray *)candidateTitlesForChangingTitle:(PBGroupTitle *)title;
+
+
+- (NSMutableArray *)membersForShow;
 
 @end

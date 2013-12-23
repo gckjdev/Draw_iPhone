@@ -267,6 +267,34 @@ enum{
     }
 }
 
++ (PBGroupTitle *)titleForUser:(PBGameUser *)user
+{
+    for (PBGroupUsersByTitle *usersByTitle in [[self defaultManager] tempMemberList]) {
+        if ([usersByTitle.usersList containsObject:user]) {
+            return usersByTitle.title;
+        }
+    }
+    return nil;
+}
+
+
++ (void)didUserQuited:(PBGameUser *)user
+{
+    PBGroup *group = [[self defaultManager] sharedGroup];
+    if ([[group guestsList] containsObject:user]) {
+        [self didRemoveUser:user fromTitleId:GroupRoleGuest];
+        return;
+    }
+    if ([[group adminsList] containsObject:user]) {
+        [self didRemoveUser:user fromAdminInGroup:group];
+    }else{
+        PBGroupTitle *title = [self titleForUser:user];
+        if (title) {
+            [self didRemoveUser:user fromTitleId:title.titleId];
+        }
+    }
+}
+
 + (void)didAddedGroupTitle:(NSString *)groupId
                      title:(NSString *)title
                    titleId:(NSInteger)titleId
@@ -344,4 +372,16 @@ enum{
     }
     return ret;
 }
+
+- (NSMutableArray *)membersForShow
+{
+    NSMutableArray *list = [NSMutableArray array];
+    for (PBGroupUsersByTitle *title in self.tempMemberList) {
+        if ([title.usersList count] > 0) {
+            [list addObject:title];
+        }
+    }
+    return list;
+}
+
 @end

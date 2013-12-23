@@ -71,7 +71,7 @@ static NSMutableArray *_roles;
         [_roles retain];
     }
     
-    [[[UserManager defaultManager] userDefaults] setArray:dataList forKey:GROUP_ROLES_KEY];
+    [[[UserManager defaultManager] userDefaults] setObject:dataList forKey:GROUP_ROLES_KEY];
     [[[UserManager defaultManager] userDefaults] synchronize];
 }
 
@@ -91,7 +91,7 @@ static NSMutableArray *_roles;
         [builder setGroupId:@"NONE"];
         [builder setRole:GroupRoleNone];
         [builder setPermission:GROUP_DEFAULT_PERMISSION];
-        _defaultRole = [builder build];
+        _defaultRole = [[builder build] retain];
         [builder release];
     });
     return _defaultRole;

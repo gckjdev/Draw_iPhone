@@ -469,6 +469,7 @@ typedef enum{
                 }
                 PBBBSAction *action = [self actionForIndexPath:indexPath];
                 [cell setCurrentUserId:self.currentUserId];
+                cell.hideReply = ![_grpPermissionManager canReplyTopic];
                 [cell updateCellWithBBSAction:action post:self.post];
                 if ([self.post canPay] && action == _selectedAction && ![action isMyAction]) {
                     [cell showOption:YES];

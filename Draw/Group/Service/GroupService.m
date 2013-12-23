@@ -98,6 +98,9 @@ static GroupService *_staticGroupService = nil;
             callback:^(DataQueryResponse *response, NSError *error )
     {
         EXECUTE_BLOCK(callback, error?nil:response.group, error);
+        if (!error) {
+            [self syncGroupRoles];
+        }
     }];
 }
 
@@ -129,7 +132,11 @@ static GroupService *_staticGroupService = nil;
           parameters:paras
             callback:^(DataQueryResponse *response, NSError *error )
      {
+         if (!error) {
+             [self syncGroupRoles];
+         }
          EXECUTE_BLOCK(callback, error);
+         
      }];
 }
 
@@ -390,7 +397,7 @@ static GroupService *_staticGroupService = nil;
             callback:^(DataQueryResponse *response, NSError *error)
      {
          if (!error) {
-             PPDebug(@"<syncFollowGroupIds> Done! follow group size = %d", [response.idListList count]);
+             PPDebug(@"<syncFollowGroupIds> Done! follow group count = %d", [response.idListList count]);
              _groupManager.followedGroupIds = [NSMutableArray arrayWithArray:response.idListList];
          }
      }];    
@@ -469,18 +476,7 @@ static GroupService *_staticGroupService = nil;
 
 }
 
-- (void)getRelationWithGroup:(NSString *)groupId
-                    callback:(RelationResultBlock)callback
-{    
-    NSDictionary *paras = @{PARA_GROUPID:groupId};
-    [self loadPBData:METHOD_GET_GROUPRELATION
-          parameters:paras
-            callback:^(DataQueryResponse *response, NSError *error)
-     {
-         PPDebug(@"<loadRelation>: title = %@, permission = %d", response.groupRelation.title, response.groupRelation.permission);
-         EXECUTE_BLOCK(callback, response.groupRelation, error);
-     }];
-}
+
 
 - (void)getGroupBadgeWithCallback:(BadgeResultBlock)callback
 {
@@ -492,27 +488,7 @@ static GroupService *_staticGroupService = nil;
      }];
 }
 
-- (PBGroup *)buildGroup:(PBGroup *)group
-           withRelation:(PBUserRelationWithGroup *)relation
-{
-    PBGroup_Builder *builder = [PBGroup builderWithPrototype:group];
-    [builder setRelation:relation];
-    PBGroup *retGroup = [builder build];
-    return retGroup;
-}
 
-
-- (PBGroup *)buildGroupWithDefaultRelation:(PBGroup *)group
-{
-    PBUserRelationWithGroup_Builder *builder = [[PBUserRelationWithGroup_Builder alloc] init];
-    [builder setRole:GroupRoleNone];
-    [builder setPermission:GROUP_DEFAULT_PERMISSION];
-    [builder setStatus:0];
-    PBUserRelationWithGroup *relation = [builder build];
-    [builder release];
-    return [self buildGroup:group withRelation:relation];
-    
-}
 
 - (void)acceptInvitation:(NSString *)noticeId callback:(SimpleResultBlock)callback
 {
@@ -674,11 +650,12 @@ static GroupService *_staticGroupService = nil;
 - (void)syncGroupRoles
 {
     
-    [self loadPBData:METHOD_GET_GROUP
+    [self loadPBData:METHOD_SYNC_GROUP_ROLES
           parameters:nil
             callback:^(DataQueryResponse *response, NSError *error )
      {
          if (!error) {
+             PPDebug(@"<syncGroupRoles> roles list count = %d", [response.groupRoleList count]);
              [GroupPermissionManager syncGroupRoles:response.groupRoleList];
          }
      }];

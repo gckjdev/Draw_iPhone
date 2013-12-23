@@ -408,7 +408,7 @@
     if ([data isKindOfClass:[PBGroup class]]) {
         [GroupTopicController enterWithGroup:data fromController:self];
     }else if([data isKindOfClass:[PBBBSPost class]]){
-        [BBSPostDetailController enterPostDetailControllerWithPost:data group:nil fromController:self animated:YES];
+        [BBSPostDetailController enterGroupPostDetailController:data fromController:self animated:YES];
     }
 }
 
