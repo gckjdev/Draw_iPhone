@@ -669,16 +669,20 @@ BOOL PBGroupUserTypeIsValidValue(PBGroupUserType value);
   BOOL hasRole_:1;
   BOOL hasPermission_:1;
   BOOL hasGroupId_:1;
+  BOOL hasGroupName_:1;
   int32_t role;
   int32_t permission;
   NSString* groupId;
+  NSString* groupName;
 }
 - (BOOL) hasGroupId;
 - (BOOL) hasRole;
 - (BOOL) hasPermission;
+- (BOOL) hasGroupName;
 @property (readonly, retain) NSString* groupId;
 @property (readonly) int32_t role;
 @property (readonly) int32_t permission;
+@property (readonly, retain) NSString* groupName;
 
 + (PBGroupUserRole*) defaultInstance;
 - (PBGroupUserRole*) defaultInstance;
@@ -728,6 +732,11 @@ BOOL PBGroupUserTypeIsValidValue(PBGroupUserType value);
 - (int32_t) permission;
 - (PBGroupUserRole_Builder*) setPermission:(int32_t) value;
 - (PBGroupUserRole_Builder*) clearPermission;
+
+- (BOOL) hasGroupName;
+- (NSString*) groupName;
+- (PBGroupUserRole_Builder*) setGroupName:(NSString*) value;
+- (PBGroupUserRole_Builder*) clearGroupName;
 @end
 
 @interface PBGroupNotice : PBGeneratedMessage {

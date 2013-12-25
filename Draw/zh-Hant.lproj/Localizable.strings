@@ -2178,6 +2178,19 @@
 
 "kGroupTitleDesc" = "%@  %d人";
 
+"kAddTitle" = "添加職位";
+"kChangeBG" = "修改背景";
+"kUpgradeGroup" = "升級家族";
+"kTextCanotBeNil" = "輸入不能為空！";
+"kOutOfMaxLength" = "文字長度不能超過%d。";
+
+"kUpgradeGroupTitle" = "請輸入等級";
+"kDegradeGroup" = "對不起，輸入不能低於當前等級。";
+"kUpgradingGroup" = "升級家族中...";
+"kQuitGroupTitle" = "退出家族";
+"kQuitGroupMessage" = "確定要退出家族嗎？";
+"kGroupTitleEmpty" = "家族的職位不能為空。";
+
 "kShareByEmailSuccess" = "郵件分享成功";
 
 "kJoinGameError" = "無法加入房間，可能房間已滿或正在遊戲，可點擊右下角的［​​快速加入］按鈕加入某個空閒的房間";

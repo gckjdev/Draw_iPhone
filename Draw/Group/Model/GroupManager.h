@@ -79,4 +79,7 @@
 
 - (NSMutableArray *)membersForShow;
 
+- (NSString *)joindeGroupIdForName:(NSString *)name;
+- (NSArray *)joinedGroupNames;
+
 @end

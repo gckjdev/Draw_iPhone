@@ -59,7 +59,7 @@ typedef enum{
 #define TITLE_CHANGE_BG NSLS(@"kChangeBG")
 #define TITLE_UPGRADE NSLS(@"kUpgradeGroup")
 #define TITLE_QUIT_GROUP NSLS(@"kQuitGroup")
-#define TITLE_DISMISSAL NSLS(@"kDismissal")
+#define TITLE_DISMISSAL NSLS(@"kDissolveGroup")
 
 
 #define SIGN_LABEL_HEIGHT (ISIPAD? 490 : 238)
@@ -126,9 +126,8 @@ typedef enum{
     }];
 }
 
-- (void)clickQuit:(id)sender
+- (void)quit
 {
-    //TODO alert to confirm;
     
     [self showActivityWithText:NSLS(@"kQuitingGroup")];
     [groupService quitGroup:_group.groupId callback:^(NSError *error) {
@@ -142,6 +141,16 @@ typedef enum{
     }];
 }
 
+- (void)clickQuit:(id)sender
+{
+    CommonDialog *dialog = [CommonDialog createDialogWithTitle:NSLS(@"kQuitGroupTitle") message:NSLS(@"kQuitGroupMessage") style:CommonDialogStyleSingleButton];
+    [dialog setClickOkBlock:^(id infoView){
+        [self quit];
+        [dialog setClickOkBlock:NULL];
+    }];
+    [dialog showInView:self];
+}
+
 
 - (void)showAddTitleView{
     CommonDialog *dialog = [CommonDialog createInputViewDialogWith:NSLS(@"kCreateTitle")];
@@ -149,8 +158,8 @@ typedef enum{
     NSString *groupId = _group.groupId;
     [dialog setClickOkBlock:^(id infoView){
         NSString *text = dialog.inputTextView.text;
-        if (text == nil) {
-            //TODO pop up
+        if ([text length] == 0) {
+            POSTMSG(NSLS(@"kGroupTitleEmpty"));
         }else{
             NSInteger titleId = [GroupManager genTitleId];
             [self showActivityWithText:NSLS(@"kCreatingTitle")];
@@ -166,15 +175,38 @@ typedef enum{
 
 }
 
+- (void)upgradeGroup:(NSInteger)level
+{    
+    //TODO check the balance.
+    
+    [self showActivityWithText:NSLS(@"kUpgradingGroup")];
+    [groupService upgradeGroup:_group.groupId level:level callback:^(NSError *error) {
+        [self hideActivity];
+        if (!error) {
+            [self reloadView];
+        }
+    }];
+
+}
 
 - (void)showUpgradeGroupView
 {
-
-    [groupService upgradeGroup:_group.groupId level:1 callback:^(NSError *error) {
-        if (!error) {
-            //TODO update group.
+    
+    CommonDialog *dialog = [CommonDialog createInputFieldDialogWith:NSLS(@"kUpgradeGroupTitle")];
+    dialog.inputTextField.textColor = COLOR_BROWN;
+    dialog.allowInputEmpty = NO;
+    dialog.inputTextField.keyboardType = UIKeyboardTypeNumberPad;
+    [dialog setClickOkBlock:^(id view) {
+        NSString *text = [dialog.inputTextField text];
+        NSInteger level = [text integerValue];
+        if (level <= [_group level]) {
+            POSTMSG(NSLS(@"kDegradeGroup"));
+        }else{
+            [self upgradeGroup:level];
         }
     }];
+    [dialog showInView:self.view];
+    
 }
 
 - (void)clickManage:(id)sender
@@ -204,6 +236,7 @@ typedef enum{
         }else if([title isEqualToString:TITLE_DISMISSAL]){
             //TODO dismissal            
         }else if ([title isEqualToString:TITLE_UPGRADE]){
+            [self showUpgradeGroupView];
         }
     }];
     [sheet showInView:self.view showAtPoint:self.view.center animated:YES];
@@ -589,6 +622,7 @@ typedef enum{
     switch (row) {
         case RowWealth:{
             text = [NSString stringWithFormat:NSLS(@"kGroupDetailRowWeath"), _group.fame, _group.balance, _group.level];
+            
             position = CellRowPositionFirst;
             break;
         }

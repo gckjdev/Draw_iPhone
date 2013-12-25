@@ -2386,6 +2386,7 @@ static PBGroup* defaultPBGroupInstance = nil;
 @property (retain) NSString* groupId;
 @property int32_t role;
 @property int32_t permission;
+@property (retain) NSString* groupName;
 @end
 
 @implementation PBGroupUserRole
@@ -2411,8 +2412,16 @@ static PBGroup* defaultPBGroupInstance = nil;
   hasPermission_ = !!value;
 }
 @synthesize permission;
+- (BOOL) hasGroupName {
+  return !!hasGroupName_;
+}
+- (void) setHasGroupName:(BOOL) value {
+  hasGroupName_ = !!value;
+}
+@synthesize groupName;
 - (void) dealloc {
   self.groupId = nil;
+  self.groupName = nil;
   [super dealloc];
 }
 - (id) init {
@@ -2420,6 +2429,7 @@ static PBGroup* defaultPBGroupInstance = nil;
     self.groupId = @"";
     self.role = 0;
     self.permission = 0;
+    self.groupName = @"";
   }
   return self;
 }
@@ -2457,6 +2467,9 @@ static PBGroupUserRole* defaultPBGroupUserRoleInstance = nil;
   if (self.hasPermission) {
     [output writeInt32:3 value:self.permission];
   }
+  if (self.hasGroupName) {
+    [output writeString:4 value:self.groupName];
+  }
   [self.unknownFields writeToCodedOutputStream:output];
 }
 - (int32_t) serializedSize {
@@ -2474,6 +2487,9 @@ static PBGroupUserRole* defaultPBGroupUserRoleInstance = nil;
   }
   if (self.hasPermission) {
     size += computeInt32Size(3, self.permission);
+  }
+  if (self.hasGroupName) {
+    size += computeStringSize(4, self.groupName);
   }
   size += self.unknownFields.serializedSize;
   memoizedSerializedSize = size;
@@ -2559,6 +2575,9 @@ static PBGroupUserRole* defaultPBGroupUserRoleInstance = nil;
   if (other.hasPermission) {
     [self setPermission:other.permission];
   }
+  if (other.hasGroupName) {
+    [self setGroupName:other.groupName];
+  }
   [self mergeUnknownFields:other.unknownFields];
   return self;
 }
@@ -2590,6 +2609,10 @@ static PBGroupUserRole* defaultPBGroupUserRoleInstance = nil;
       }
       case 24: {
         [self setPermission:[input readInt32]];
+        break;
+      }
+      case 34: {
+        [self setGroupName:[input readString]];
         break;
       }
     }
@@ -2641,6 +2664,22 @@ static PBGroupUserRole* defaultPBGroupUserRoleInstance = nil;
 - (PBGroupUserRole_Builder*) clearPermission {
   result.hasPermission = NO;
   result.permission = 0;
+  return self;
+}
+- (BOOL) hasGroupName {
+  return result.hasGroupName;
+}
+- (NSString*) groupName {
+  return result.groupName;
+}
+- (PBGroupUserRole_Builder*) setGroupName:(NSString*) value {
+  result.hasGroupName = YES;
+  result.groupName = value;
+  return self;
+}
+- (PBGroupUserRole_Builder*) clearGroupName {
+  result.hasGroupName = NO;
+  result.groupName = @"";
   return self;
 }
 @end

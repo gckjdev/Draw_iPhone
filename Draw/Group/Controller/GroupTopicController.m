@@ -229,8 +229,8 @@ typedef enum {
             return [BBSPostActionHeaderView getViewHeight];
         default:
         {
-            if (![self hasPostData]) {
-                return 44;
+            if ([self noData]) {
+                return [self noDataCellHeight];
             }
             PBBBSPost *post = [self postInIndexPath:indexPath];
             return [BBSPostCell getCellHeightWithBBSPost:post];
@@ -288,7 +288,7 @@ typedef enum {
         }
         default:
         {
-            if (![self hasPostData]) {
+            if ([self noData]) {
                 return [self noDataCell];
             }else{
                 BBSPostCell *cell = [tableView dequeueReusableCellWithIdentifier:[BBSPostCell getCellIdentifier]];
@@ -307,7 +307,7 @@ typedef enum {
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     NSInteger number = [super tableView:tableView numberOfRowsInSection:section];
-    if (number == 0) {
+    if (number == 0 && [self noData]) {
         number = 1;
     }
     return number + BasicRowCount;
@@ -318,7 +318,7 @@ typedef enum {
 {
     NSInteger row = indexPath.row;
     if (row >= BasicRowCount) {
-        if (![self hasPostData]) {
+        if ([self noData]) {
             return;
         }
         [[BBSManager defaultManager] setTempPostList:[self tabDataList]];

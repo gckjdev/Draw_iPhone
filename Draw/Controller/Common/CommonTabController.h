@@ -90,5 +90,7 @@ typedef enum{
 
 - (void)setTab:(NSInteger)tabID titleNumber:(NSInteger)number;
 
+- (BOOL)noData;
+
 //- (void)startToLoadNewDataForTabID:(NSInteger)tabID;
 @end

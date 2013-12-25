@@ -384,4 +384,32 @@ enum{
     return list;
 }
 
+- (NSString *)joindeGroupIdForName:(NSString *)name
+{
+    NSArray * list = [GroupPermissionManager groupRoles];
+    for (PBGroupUserRole *role in list) {
+        if([role.groupName isEqualToString:name]){
+            return role.groupId;
+        }
+    }
+    return nil;
+}
+
+- (NSArray *)joinedGroupNames
+{
+    NSArray * list = [GroupPermissionManager groupRoles];
+    NSMutableArray *names = [NSMutableArray array];
+    NSArray *intRoles = @[@(GroupRoleAdmin), @(GroupRoleCreator),
+                          @(GroupRoleGuest), @(GroupRoleMember)
+                          ];
+    for (PBGroupUserRole *role in list) {
+        if ([intRoles containsObject:@(role.role)]) {
+            if([role.groupName length] != 0){
+                [names addObject:role.groupName];
+            }
+        }
+    }
+    return names;
+}
+
 @end

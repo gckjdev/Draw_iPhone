@@ -66,8 +66,25 @@ typedef enum{
 }
 
 
+- (BOOL)noData
+{
+    return [self.tabDataList count] == 0 && [self.currentTab status] == TableTabStatusLoaded;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    NSInteger count = [super tableView:tableView numberOfRowsInSection:section];
+    if (count == 0 && [self noData]) {
+        return 1;
+    }
+    return count;
+}
+
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    if ([self noData]) {
+        return [self noDataCellHeight];
+    }
     id data = self.tabDataList[indexPath.row];
     
     if (self.currentTab.tabID == GroupComment) {
@@ -81,6 +98,11 @@ typedef enum{
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    
+    if ([self noData]) {
+        return [self noDataCell];
+    }
+    
     Class cellClass = nil;
 
     if (self.currentTab.tabID == GroupComment) {
@@ -113,6 +135,9 @@ typedef enum{
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    if ([self noData]) {
+        return;
+    }
     TabID tabId = [self currentTabID];
     PPDebug(@"did select at row = %d", indexPath.row);
     if (tabId == GroupRequest) {
@@ -276,6 +301,9 @@ typedef enum{
 
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    if ([self.tabDataList count] == 0) {
+        return NO;
+    }
     return self.currentTabID == GroupNotice;
 }
 

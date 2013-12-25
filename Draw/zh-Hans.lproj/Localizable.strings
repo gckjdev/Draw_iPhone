@@ -2149,18 +2149,31 @@
 "kGroupAcceptDesc" = "%@ 同意 %@ 加入 %@。";
 "kGroupRejectDesc" = "%@ 拒绝 %@ 加入 %@。";
 
-"kGroupInviteMemberDesc" = "%@ 邀请 %@ 加入 %@。";
-"kGroupInviteGuestDesc" = "%@ 邀请 %@ 成为 %@ 的嘉宾。";
-"kGroupRejectMemberInvitationDesc" = "%@ 拒绝加入 %@。";
-"kGroupRejectGuestInvitationDesc" = "%@ 拒绝成为 %@ 嘉宾。";
-"TypeAcceptMemberInvitation" = "%@ 同意加入 %@。";
-"TypeAcceptGuestInvitation" = "%@ 同意成为 %@ 的嘉宾。";
+"kGroupInviteMemberDesc" = "%@邀请%@加入%@。";
+"kGroupInviteGuestDesc" = "%@邀请%@成为%@的嘉宾。";
+"kGroupRejectMemberInvitationDesc" = "%@拒绝加入%@";
+"kGroupRejectGuestInvitationDesc" = "%@拒绝成为%@嘉宾。";
+"TypeAcceptMemberInvitation" = "%@同意加入%@。";
+"TypeAcceptGuestInvitation" = "%@同意成为%@的嘉宾。";
 
 "kGroupDetailRowWeath" = "声望%d  财富%d  等级%d";
 "kGroupDetailRowCreateDate" = "创建时间 %@";
 "kGroupDetailRowDesc" = "说明 %@";
 "kGroupDetailRowFee" = "会费 %d金币/月";
 "kDefaultGroupSignature" = "暂无签名";
+
+"kAddTitle" = "添加职位";
+"kChangeBG" = "修改背景";
+"kUpgradeGroup" = "升级家族";
+"kTextCanotBeNil" = "输入不能为空！";
+"kOutOfMaxLength" = "文字长度不能超过%d。";
+
+"kUpgradeGroupTitle" = "请输入等级";
+"kDegradeGroup" = "对不起，输入不能低于当前等级。";
+"kUpgradingGroup" = "升级家族中...";
+"kQuitGroupTitle" = "退出家族";
+"kQuitGroupMessage" = "确定要退出家族吗？";
+"kGroupTitleEmpty" = "家族的职位不能为空。";
 
 
 "kContentDesc" = "内容：%@";
@@ -2183,7 +2196,7 @@
 "kSearchGroupTips" = "家族名称/说明/签名";
 "kJoinGroup" = "加入";
 "kQuitGroup" = "退出";
-"kDissolveGroup" = "解散";
+"kDissolveGroup" = "解散家族";
 
 "kJoiningGroup" = "发送加入申请中...";
 "kSentRequest" = "申请已经发送，请等待审核通过。";
