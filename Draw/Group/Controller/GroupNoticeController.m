@@ -77,7 +77,7 @@ typedef enum{
     }
 }
 
-SET_CELL_BG_IN_CONTROLLER
+//SET_CELL_BG_IN_CONTROLLER
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {

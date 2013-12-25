@@ -422,8 +422,7 @@ typedef enum {
         TableTab *tab = [_tabManager tabForID:NewestTopic];
         [tab.dataList insertObject:post atIndex:0];
         if ([self currentTab] == tab) {
-            NSArray *paths = [NSArray arrayWithObject:[NSIndexPath indexPathForRow:BasicRowCount inSection:0]];
-            [self.dataTableView insertRowsAtIndexPaths:paths withRowAnimation:UITableViewRowAnimationFade];
+            [self.dataTableView reloadData];
         }
     }
 }

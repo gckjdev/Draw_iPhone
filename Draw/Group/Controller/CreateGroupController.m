@@ -30,6 +30,13 @@
 
 @end
 
+#define NAME_MAX_LENGTH 14
+#define DEFAULT_LEVEL 10
+#define MAX_LEVEL 15
+#define BIG_FONT AD_FONT(32,18)
+#define SMALL_FONT AD_FONT(18,12)
+
+
 @implementation CreateGroupController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -41,7 +48,6 @@
     return self;
 }
 
-#define NAME_MAX_LENGTH 16
 
 - (void)clickDone:(id)sender
 {
@@ -88,8 +94,6 @@
     }];
 }
 
-#define BIG_FONT AD_FONT(32,18)
-#define SMALL_FONT AD_FONT(18,12)
 
 - (void)initViews
 {
@@ -120,7 +124,7 @@
 }
 
 
-#define DEFAULT_LEVEL 10
+
 
 - (void)initDefaultValues
 {
@@ -177,7 +181,7 @@
 
 #pragma mark- Picker Deleage
 
-#define MAX_LEVEL 15
+
 
 - (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView
 {

@@ -14,14 +14,18 @@
 #import "GroupModelExt.h"
 #import "GroupManager.h"
 
-#define MEMBER_NUMBER_PERROW 5
-#define TITLE_INFO_HEIGHT 25
-#define CREATOR_AVATAR_HEIGHT 50
-#define MEMBER_AVATAR_HEIGHT 40
-#define MEMBER_AVATAR_SPACE 10
-#define INFO_LABEL_WIDTH 306
+#define MEMBER_NUMBER_PERROW (ISIPAD?7:5)
+#define TITLE_INFO_HEIGHT (ISIPAD?40:25)
+#define CREATOR_AVATAR_HEIGHT (ISIPAD?70:40)
+#define MEMBER_AVATAR_HEIGHT (ISIPAD?70:40)
+#define MEMBER_AVATAR_SPACE (ISIPAD?30:12)
+#define INFO_LABEL_WIDTH (ISIPAD?720:306)
 
-#define MULTIPLE_LINE_TEXT_Y_SPACE 10
+#define CREATOR_CELL_HEIGHT (ISIPAD?140:70)
+
+#define MULTIPLE_LINE_TEXT_Y_SPACE (ISIPAD?20:10)
+
+
 
 @interface GroupDetailCell()
 @property(nonatomic, assign) PBGroup *group;
@@ -59,7 +63,7 @@
 
 + (id)createCell:(id<GroupDetailCellDelegate>)delegate
 {
-    GroupDetailCell *cell = [self createViewWithXibIdentifier:[self getCellIdentifier]];
+    GroupDetailCell *cell = [self createViewWithXibIdentifier:[self getCellIdentifier] ofViewIndex:ISIPAD];
     cell.delegate = delegate;
     [cell updateView];
     return cell;
@@ -67,7 +71,7 @@
 
 + (CGFloat)getCellHeightForSingleLineText
 {
-    return 50.0f;
+    return ISIPAD?100.0f:50.0f;
 }
 
 + (CGFloat)getCellHeightForText:(NSString *)text
@@ -94,8 +98,6 @@
     NSInteger row = (memberCount/MEMBER_NUMBER_PERROW) + flag;
     return row;
 }
-
-#define CREATOR_CELL_HEIGHT 70
 
 + (CGFloat)getCellHeightForSingleAvatar
 {

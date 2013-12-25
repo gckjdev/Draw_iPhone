@@ -13,9 +13,9 @@
 
 #define SPACE_NICK_SIZE (ISIPAD?8:5)
 #define SIZE_BASE_WIDTH (ISIPAD?20:12)
-#define DEFAULT_LABEL_HEIGHT 19
-#define DEFAULT_HEIGHT (ISIPAD?100:60)
-#define DESC_LABEL_WIDTH 200
+#define DEFAULT_LABEL_HEIGHT (ISIPAD?32:19)
+#define DEFAULT_HEIGHT (ISIPAD?120:60)
+#define DESC_LABEL_WIDTH (ISIPAD?480:200)
 
 @interface GroupInfoView(){
     UIButton *_customButton;
@@ -79,8 +79,7 @@
     return DEFAULT_HEIGHT;
 }
 
-#define DEFAULT_NAME_Y (7)
-#define DEFAULT_SIZE_Y (10)
+#define DEFAULT_NAME_Y (ISIPAD?15:7)
 
 - (void)layoutSubviews
 {
@@ -104,11 +103,10 @@
     
     if([_group.signature length] == 0){
         [self.nameLabel updateCenterY:CGRectGetMidY(self.bounds)];
-        [self.sizeLabel updateCenterY:CGRectGetMidY(self.bounds)];
     }else{
         [self.nameLabel updateOriginY:DEFAULT_NAME_Y];
-        [self.sizeLabel updateOriginY:DEFAULT_SIZE_Y];
     }
+    [self.sizeLabel updateCenterY:_nameLabel.center.y];
     
 }
 

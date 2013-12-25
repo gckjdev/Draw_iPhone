@@ -6008,10 +6008,6 @@
 		EA2D573E1847243B00499ED4 /* SearchGroupController.m in Sources */ = {isa = PBXBuildFile; fileRef = EA2D573B1847243B00499ED4 /* SearchGroupController.m */; };
 		EA2D573F1847243B00499ED4 /* SearchGroupController.m in Sources */ = {isa = PBXBuildFile; fileRef = EA2D573B1847243B00499ED4 /* SearchGroupController.m */; };
 		EA2D57401847243B00499ED4 /* SearchGroupController.m in Sources */ = {isa = PBXBuildFile; fileRef = EA2D573B1847243B00499ED4 /* SearchGroupController.m */; };
-		EA2D57411847243B00499ED4 /* SearchGroupController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA2D573C1847243B00499ED4 /* SearchGroupController.xib */; };
-		EA2D57421847243B00499ED4 /* SearchGroupController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA2D573C1847243B00499ED4 /* SearchGroupController.xib */; };
-		EA2D57431847243B00499ED4 /* SearchGroupController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA2D573C1847243B00499ED4 /* SearchGroupController.xib */; };
-		EA2D57441847243B00499ED4 /* SearchGroupController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA2D573C1847243B00499ED4 /* SearchGroupController.xib */; };
 		EA372344162018DA00FC6F3E /* UserLocationController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA372342162018DA00FC6F3E /* UserLocationController.xib */; };
 		EA3F4D4D16EF298900E9A2FD /* StoreController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA3F4D4C16EF298900E9A2FD /* StoreController~ipad.xib */; };
 		EA3F4D5416EF299600E9A2FD /* StoreCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA3F4D5316EF299600E9A2FD /* StoreCell~ipad.xib */; };
@@ -7014,6 +7010,26 @@
 		EA7203B9180E9ABD00F0F1C2 /* draw_home_painter@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EA7203B5180E9ABD00F0F1C2 /* draw_home_painter@2x.png */; };
 		EA72B4C1162026480022D82D /* UserAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = EA72B4C0162026480022D82D /* UserAnnotation.m */; };
 		EA72B4C3162028260022D82D /* UserLocationController.m in Sources */ = {isa = PBXBuildFile; fileRef = EA72B4C2162028260022D82D /* UserLocationController.m */; };
+		EA7E4F71186ADE8F00E0B20F /* CreateGroupController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA7E4F6C186ADE8F00E0B20F /* CreateGroupController~ipad.xib */; };
+		EA7E4F72186ADE8F00E0B20F /* CreateGroupController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA7E4F6C186ADE8F00E0B20F /* CreateGroupController~ipad.xib */; };
+		EA7E4F73186ADE8F00E0B20F /* CreateGroupController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA7E4F6C186ADE8F00E0B20F /* CreateGroupController~ipad.xib */; };
+		EA7E4F74186ADE8F00E0B20F /* CreateGroupController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA7E4F6C186ADE8F00E0B20F /* CreateGroupController~ipad.xib */; };
+		EA7E4F75186ADE8F00E0B20F /* GroupDetailController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA7E4F6D186ADE8F00E0B20F /* GroupDetailController~ipad.xib */; };
+		EA7E4F76186ADE8F00E0B20F /* GroupDetailController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA7E4F6D186ADE8F00E0B20F /* GroupDetailController~ipad.xib */; };
+		EA7E4F77186ADE8F00E0B20F /* GroupDetailController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA7E4F6D186ADE8F00E0B20F /* GroupDetailController~ipad.xib */; };
+		EA7E4F78186ADE8F00E0B20F /* GroupDetailController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA7E4F6D186ADE8F00E0B20F /* GroupDetailController~ipad.xib */; };
+		EA7E4F79186ADE8F00E0B20F /* GroupHomeController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA7E4F6E186ADE8F00E0B20F /* GroupHomeController~ipad.xib */; };
+		EA7E4F7A186ADE8F00E0B20F /* GroupHomeController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA7E4F6E186ADE8F00E0B20F /* GroupHomeController~ipad.xib */; };
+		EA7E4F7B186ADE8F00E0B20F /* GroupHomeController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA7E4F6E186ADE8F00E0B20F /* GroupHomeController~ipad.xib */; };
+		EA7E4F7C186ADE8F00E0B20F /* GroupHomeController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA7E4F6E186ADE8F00E0B20F /* GroupHomeController~ipad.xib */; };
+		EA7E4F7D186ADE8F00E0B20F /* GroupNoticeController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA7E4F6F186ADE8F00E0B20F /* GroupNoticeController~ipad.xib */; };
+		EA7E4F7E186ADE8F00E0B20F /* GroupNoticeController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA7E4F6F186ADE8F00E0B20F /* GroupNoticeController~ipad.xib */; };
+		EA7E4F7F186ADE8F00E0B20F /* GroupNoticeController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA7E4F6F186ADE8F00E0B20F /* GroupNoticeController~ipad.xib */; };
+		EA7E4F80186ADE8F00E0B20F /* GroupNoticeController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA7E4F6F186ADE8F00E0B20F /* GroupNoticeController~ipad.xib */; };
+		EA7E4F81186ADE8F00E0B20F /* GroupTopicController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA7E4F70186ADE8F00E0B20F /* GroupTopicController~ipad.xib */; };
+		EA7E4F82186ADE8F00E0B20F /* GroupTopicController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA7E4F70186ADE8F00E0B20F /* GroupTopicController~ipad.xib */; };
+		EA7E4F83186ADE8F00E0B20F /* GroupTopicController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA7E4F70186ADE8F00E0B20F /* GroupTopicController~ipad.xib */; };
+		EA7E4F84186ADE8F00E0B20F /* GroupTopicController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA7E4F70186ADE8F00E0B20F /* GroupTopicController~ipad.xib */; };
 		EA7EFC6018458D270004793C /* GroupNoticeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EA7EFC5E18458D270004793C /* GroupNoticeCell.m */; };
 		EA7EFC6118458D270004793C /* GroupNoticeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EA7EFC5E18458D270004793C /* GroupNoticeCell.m */; };
 		EA7EFC6218458D270004793C /* GroupNoticeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EA7EFC5E18458D270004793C /* GroupNoticeCell.m */; };
@@ -10059,7 +10075,6 @@
 		EA2A7CEB17F6958600ED508D /* AccountCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AccountCell.xib; sourceTree = "<group>"; };
 		EA2D573A1847243B00499ED4 /* SearchGroupController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchGroupController.h; sourceTree = "<group>"; };
 		EA2D573B1847243B00499ED4 /* SearchGroupController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchGroupController.m; sourceTree = "<group>"; };
-		EA2D573C1847243B00499ED4 /* SearchGroupController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SearchGroupController.xib; sourceTree = "<group>"; };
 		EA372340162018D900FC6F3E /* UserLocationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserLocationController.h; sourceTree = "<group>"; };
 		EA372342162018DA00FC6F3E /* UserLocationController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserLocationController.xib; sourceTree = "<group>"; };
 		EA3F4D4C16EF298900E9A2FD /* StoreController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "StoreController~ipad.xib"; sourceTree = "<group>"; };
@@ -10121,6 +10136,11 @@
 		EA72B4BF162026480022D82D /* UserAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserAnnotation.h; sourceTree = "<group>"; };
 		EA72B4C0162026480022D82D /* UserAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserAnnotation.m; sourceTree = "<group>"; };
 		EA72B4C2162028260022D82D /* UserLocationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserLocationController.m; sourceTree = "<group>"; };
+		EA7E4F6C186ADE8F00E0B20F /* CreateGroupController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "CreateGroupController~ipad.xib"; sourceTree = "<group>"; };
+		EA7E4F6D186ADE8F00E0B20F /* GroupDetailController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "GroupDetailController~ipad.xib"; sourceTree = "<group>"; };
+		EA7E4F6E186ADE8F00E0B20F /* GroupHomeController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "GroupHomeController~ipad.xib"; sourceTree = "<group>"; };
+		EA7E4F6F186ADE8F00E0B20F /* GroupNoticeController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "GroupNoticeController~ipad.xib"; sourceTree = "<group>"; };
+		EA7E4F70186ADE8F00E0B20F /* GroupTopicController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "GroupTopicController~ipad.xib"; sourceTree = "<group>"; };
 		EA7EFC5D18458D270004793C /* GroupNoticeCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GroupNoticeCell.h; sourceTree = "<group>"; };
 		EA7EFC5E18458D270004793C /* GroupNoticeCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GroupNoticeCell.m; sourceTree = "<group>"; };
 		EA7EFC5F18458D270004793C /* GroupNoticeCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GroupNoticeCell.xib; sourceTree = "<group>"; };
@@ -17100,6 +17120,11 @@
 		EA8CADDB18288C6E003149FE /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				EA7E4F6C186ADE8F00E0B20F /* CreateGroupController~ipad.xib */,
+				EA7E4F6D186ADE8F00E0B20F /* GroupDetailController~ipad.xib */,
+				EA7E4F6E186ADE8F00E0B20F /* GroupHomeController~ipad.xib */,
+				EA7E4F6F186ADE8F00E0B20F /* GroupNoticeController~ipad.xib */,
+				EA7E4F70186ADE8F00E0B20F /* GroupTopicController~ipad.xib */,
 				EA7EFC6B18458D370004793C /* GroupNoticeController.h */,
 				EA7EFC6C18458D370004793C /* GroupNoticeController.m */,
 				EA7EFC6D18458D370004793C /* GroupNoticeController.xib */,
@@ -17117,7 +17142,6 @@
 				EA038974183B06D300516952 /* GroupTopicController.xib */,
 				EA2D573A1847243B00499ED4 /* SearchGroupController.h */,
 				EA2D573B1847243B00499ED4 /* SearchGroupController.m */,
-				EA2D573C1847243B00499ED4 /* SearchGroupController.xib */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -18344,7 +18368,6 @@
 				EAA8D12018443CE200B3720B /* SearchController~ipad.xib in Resources */,
 				EA7EFC6618458D270004793C /* GroupNoticeCell.xib in Resources */,
 				EA7EFC7418458D370004793C /* GroupNoticeController.xib in Resources */,
-				EA2D57431847243B00499ED4 /* SearchGroupController.xib in Resources */,
 				A4DE087918595DD700A87924 /* unloadbg2@2x.png in Resources */,
 				A4EA935D185B0173004BB69D /* SingHotCell.xib in Resources */,
 				A4170C1C18613E85007DF362 /* SingHotCell~ipad.xib in Resources */,
@@ -18353,6 +18376,11 @@
 				CA346CD01861A96D0098DE00 /* bottom_home_task@2x.png in Resources */,
 				A4BE227318657DEA00FE2997 /* NormalHotCell.xib in Resources */,
 				A4BE227818670D8800FE2997 /* NormalHotCell~ipad.xib in Resources */,
+				EA7E4F73186ADE8F00E0B20F /* CreateGroupController~ipad.xib in Resources */,
+				EA7E4F77186ADE8F00E0B20F /* GroupDetailController~ipad.xib in Resources */,
+				EA7E4F7B186ADE8F00E0B20F /* GroupHomeController~ipad.xib in Resources */,
+				EA7E4F7F186ADE8F00E0B20F /* GroupNoticeController~ipad.xib in Resources */,
+				EA7E4F83186ADE8F00E0B20F /* GroupTopicController~ipad.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -19318,7 +19346,6 @@
 				EAA8D11F18443CE200B3720B /* SearchController~ipad.xib in Resources */,
 				EA7EFC6518458D270004793C /* GroupNoticeCell.xib in Resources */,
 				EA7EFC7318458D370004793C /* GroupNoticeController.xib in Resources */,
-				EA2D57421847243B00499ED4 /* SearchGroupController.xib in Resources */,
 				A4DE087818595DD700A87924 /* unloadbg2@2x.png in Resources */,
 				A4EA935C185B0173004BB69D /* SingHotCell.xib in Resources */,
 				A4170C1B18613E85007DF362 /* SingHotCell~ipad.xib in Resources */,
@@ -19327,6 +19354,11 @@
 				CA346CCF1861A96D0098DE00 /* bottom_home_task@2x.png in Resources */,
 				A4BE227218657DEA00FE2997 /* NormalHotCell.xib in Resources */,
 				A4BE227718670D8800FE2997 /* NormalHotCell~ipad.xib in Resources */,
+				EA7E4F72186ADE8F00E0B20F /* CreateGroupController~ipad.xib in Resources */,
+				EA7E4F76186ADE8F00E0B20F /* GroupDetailController~ipad.xib in Resources */,
+				EA7E4F7A186ADE8F00E0B20F /* GroupHomeController~ipad.xib in Resources */,
+				EA7E4F7E186ADE8F00E0B20F /* GroupNoticeController~ipad.xib in Resources */,
+				EA7E4F82186ADE8F00E0B20F /* GroupTopicController~ipad.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -20275,7 +20307,6 @@
 				EAA8D11E18443CE200B3720B /* SearchController~ipad.xib in Resources */,
 				EA7EFC6418458D270004793C /* GroupNoticeCell.xib in Resources */,
 				EA7EFC7218458D370004793C /* GroupNoticeController.xib in Resources */,
-				EA2D57411847243B00499ED4 /* SearchGroupController.xib in Resources */,
 				A4DE087718595DD700A87924 /* unloadbg2@2x.png in Resources */,
 				A4EA935B185B0173004BB69D /* SingHotCell.xib in Resources */,
 				A4170C1718613E48007DF362 /* SingHotCell~ipad.xib in Resources */,
@@ -20284,6 +20315,11 @@
 				CA346CCE1861A96D0098DE00 /* bottom_home_task@2x.png in Resources */,
 				A4BE227118657DEA00FE2997 /* NormalHotCell.xib in Resources */,
 				A4BE227618670D8800FE2997 /* NormalHotCell~ipad.xib in Resources */,
+				EA7E4F71186ADE8F00E0B20F /* CreateGroupController~ipad.xib in Resources */,
+				EA7E4F75186ADE8F00E0B20F /* GroupDetailController~ipad.xib in Resources */,
+				EA7E4F79186ADE8F00E0B20F /* GroupHomeController~ipad.xib in Resources */,
+				EA7E4F7D186ADE8F00E0B20F /* GroupNoticeController~ipad.xib in Resources */,
+				EA7E4F81186ADE8F00E0B20F /* GroupTopicController~ipad.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -21186,7 +21222,6 @@
 				EAA8D12118443CE200B3720B /* SearchController~ipad.xib in Resources */,
 				EA7EFC6718458D270004793C /* GroupNoticeCell.xib in Resources */,
 				EA7EFC7518458D370004793C /* GroupNoticeController.xib in Resources */,
-				EA2D57441847243B00499ED4 /* SearchGroupController.xib in Resources */,
 				A4DE087A18595DD700A87924 /* unloadbg2@2x.png in Resources */,
 				A4EA935E185B0173004BB69D /* SingHotCell.xib in Resources */,
 				A4170C1D18613E87007DF362 /* SingHotCell~ipad.xib in Resources */,
@@ -21195,6 +21230,11 @@
 				CA346CD11861A96D0098DE00 /* bottom_home_task@2x.png in Resources */,
 				A4BE227418657DEA00FE2997 /* NormalHotCell.xib in Resources */,
 				A4BE227918670D8800FE2997 /* NormalHotCell~ipad.xib in Resources */,
+				EA7E4F74186ADE8F00E0B20F /* CreateGroupController~ipad.xib in Resources */,
+				EA7E4F78186ADE8F00E0B20F /* GroupDetailController~ipad.xib in Resources */,
+				EA7E4F7C186ADE8F00E0B20F /* GroupHomeController~ipad.xib in Resources */,
+				EA7E4F80186ADE8F00E0B20F /* GroupNoticeController~ipad.xib in Resources */,
+				EA7E4F84186ADE8F00E0B20F /* GroupTopicController~ipad.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

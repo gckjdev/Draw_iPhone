@@ -62,8 +62,9 @@ typedef enum{
 #define TITLE_DISMISSAL NSLS(@"kDismissal")
 
 
-#define SIGN_LABEL_HEIGHT 238
-#define MIN_SIGN_HEIGHT 21
+#define SIGN_LABEL_HEIGHT (ISIPAD? 490 : 238)
+#define MIN_SIGN_HEIGHT (ISIPAD?35:21)
+#define TABLE_SIGN_SPACE (ISIPAD? 15 : 6)
 
 @interface GroupDetailController ()
 {
@@ -275,7 +276,7 @@ typedef enum{
     [self setDefaultBGImage];
     //update title view
     [self.titleView setTarget:self];
-    
+    [self.titleView setTitle:_group.name];
     [self updateRightButton];
     
     [self.titleView setBackButtonSelector:@selector(clickBack:)];
@@ -310,7 +311,7 @@ typedef enum{
     
 }
 
-#define TABLE_SIGN_SPACE 6
+
 
 - (void)reloadView
 {
@@ -334,6 +335,8 @@ typedef enum{
     CGFloat originY = CGRectGetMinY(frame) + labelHeight + TABLE_SIGN_SPACE;
     
     [self.dataTableView updateOriginY:originY];
+    CGFloat height = CGRectGetHeight(self.view.bounds) - originY;    
+    [self.dataTableView updateHeight:height];
     [self updateDataList];
     [self.dataTableView reloadData];
 }
@@ -422,14 +425,19 @@ typedef enum{
     
     [dialog setAllowInputEmpty:allowEmpty];
     dialog.manualClose = YES;
+    [dialog setClickCancelBlock:^(id infoView){
+        [dialog setManualClose:NO];
+    }];
     [dialog setClickOkBlock:^(id infoView){
         NSString *text = dialog.inputTextView.text;
-        if (![self checkText:text length:length allowEmpty:YES]) {
+        if ([self checkText:text length:length allowEmpty:YES]) {
             if (![text isEqualToString:info]) {
                 //changed.
-                [dialog setManualClose:NO];
-                [self updateRemoteInfo:@{key: text}];                
+                [self updateRemoteInfo:@{key: text}];
             }
+            [dialog setManualClose:NO];
+        }else{
+            
         }
     }];
     [dialog showInView:self.view];    

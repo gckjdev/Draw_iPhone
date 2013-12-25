@@ -1159,7 +1159,6 @@ static PBUserRelationWithGroup* defaultPBUserRelationWithGroupInstance = nil;
 @property (retain) NSMutableArray* mutableAdminsList;
 @property (retain) NSMutableArray* mutableUsersList;
 @property (retain) NSMutableArray* mutableGuestsList;
-@property (retain) PBUserRelationWithGroup* relation;
 @property (retain) PBBBSPost* topic;
 @end
 
@@ -1309,13 +1308,6 @@ static PBUserRelationWithGroup* defaultPBUserRelationWithGroupInstance = nil;
 @synthesize mutableAdminsList;
 @synthesize mutableUsersList;
 @synthesize mutableGuestsList;
-- (BOOL) hasRelation {
-  return !!hasRelation_;
-}
-- (void) setHasRelation:(BOOL) value {
-  hasRelation_ = !!value;
-}
-@synthesize relation;
 - (BOOL) hasTopic {
   return !!hasTopic_;
 }
@@ -1336,7 +1328,6 @@ static PBUserRelationWithGroup* defaultPBUserRelationWithGroupInstance = nil;
   self.mutableAdminsList = nil;
   self.mutableUsersList = nil;
   self.mutableGuestsList = nil;
-  self.relation = nil;
   self.topic = nil;
   [super dealloc];
 }
@@ -1362,7 +1353,6 @@ static PBUserRelationWithGroup* defaultPBUserRelationWithGroupInstance = nil;
     self.bgImage = @"";
     self.medalImage = @"";
     self.creator = [PBGameUser defaultInstance];
-    self.relation = [PBUserRelationWithGroup defaultInstance];
     self.topic = [PBBBSPost defaultInstance];
   }
   return self;
@@ -1519,9 +1509,6 @@ static PBGroup* defaultPBGroupInstance = nil;
   for (PBGameUser* element in self.guestsList) {
     [output writeMessage:43 value:element];
   }
-  if (self.hasRelation) {
-    [output writeMessage:50 value:self.relation];
-  }
   if (self.hasTopic) {
     [output writeMessage:60 value:self.topic];
   }
@@ -1605,9 +1592,6 @@ static PBGroup* defaultPBGroupInstance = nil;
   }
   for (PBGameUser* element in self.guestsList) {
     size += computeMessageSize(43, element);
-  }
-  if (self.hasRelation) {
-    size += computeMessageSize(50, self.relation);
   }
   if (self.hasTopic) {
     size += computeMessageSize(60, self.topic);
@@ -1771,9 +1755,6 @@ static PBGroup* defaultPBGroupInstance = nil;
     }
     [result.mutableGuestsList addObjectsFromArray:other.mutableGuestsList];
   }
-  if (other.hasRelation) {
-    [self mergeRelation:other.relation];
-  }
   if (other.hasTopic) {
     [self mergeTopic:other.topic];
   }
@@ -1905,15 +1886,6 @@ static PBGroup* defaultPBGroupInstance = nil;
         PBGameUser_Builder* subBuilder = [PBGameUser builder];
         [input readMessage:subBuilder extensionRegistry:extensionRegistry];
         [self addGuests:[subBuilder buildPartial]];
-        break;
-      }
-      case 402: {
-        PBUserRelationWithGroup_Builder* subBuilder = [PBUserRelationWithGroup builder];
-        if (self.hasRelation) {
-          [subBuilder mergeFrom:self.relation];
-        }
-        [input readMessage:subBuilder extensionRegistry:extensionRegistry];
-        [self setRelation:[subBuilder buildPartial]];
         break;
       }
       case 482: {
@@ -2376,36 +2348,6 @@ static PBGroup* defaultPBGroupInstance = nil;
     result.mutableGuestsList = [NSMutableArray array];
   }
   [result.mutableGuestsList addObject:value];
-  return self;
-}
-- (BOOL) hasRelation {
-  return result.hasRelation;
-}
-- (PBUserRelationWithGroup*) relation {
-  return result.relation;
-}
-- (PBGroup_Builder*) setRelation:(PBUserRelationWithGroup*) value {
-  result.hasRelation = YES;
-  result.relation = value;
-  return self;
-}
-- (PBGroup_Builder*) setRelationBuilder:(PBUserRelationWithGroup_Builder*) builderForValue {
-  return [self setRelation:[builderForValue build]];
-}
-- (PBGroup_Builder*) mergeRelation:(PBUserRelationWithGroup*) value {
-  if (result.hasRelation &&
-      result.relation != [PBUserRelationWithGroup defaultInstance]) {
-    result.relation =
-      [[[PBUserRelationWithGroup builderWithPrototype:result.relation] mergeFrom:value] buildPartial];
-  } else {
-    result.relation = value;
-  }
-  result.hasRelation = YES;
-  return self;
-}
-- (PBGroup_Builder*) clearRelation {
-  result.hasRelation = NO;
-  result.relation = [PBUserRelationWithGroup defaultInstance];
   return self;
 }
 - (BOOL) hasTopic {
