@@ -245,6 +245,14 @@
     [self.contentView removeSubviewsWithClass:[UIScrollView class]];
 }
 
+- (UIButton *)getAddButton
+{
+    UIButton *addButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    [addButton setImage:[UIImage imageNamed:@"group_add@2x.png"] forState:UIControlStateNormal];
+    [addButton addTarget:self action:@selector(clickAddButton:) forControlEvents:UIControlEventTouchUpInside];
+    return addButton;
+}
+
 - (void)updateCellImageContent
 {
     switch (self.cellStyle) {
@@ -291,12 +299,8 @@
                 
                 CGRect frame = CGRectMake(x, y, MEMBER_AVATAR_HEIGHT, MEMBER_AVATAR_HEIGHT);
                 if (index == count-1 && hasAddButton) {
-                    UIButton *addButton = [UIButton buttonWithType:UIButtonTypeCustom];
+                    UIButton *addButton = [self getAddButton];
                     [addButton setFrame:frame];
-                    [addButton setTintColor:COLOR_BROWN];
-                    [addButton setTitle:@"+" forState:UIControlStateNormal];
-                    addButton.backgroundColor = COLOR_ORANGE;
-                    [addButton addTarget:self action:@selector(clickAddButton:) forControlEvents:UIControlEventTouchUpInside];
                     [scrollView addSubview:addButton];
                 }else{
                     PBGameUser *user = self.members.usersList[index];

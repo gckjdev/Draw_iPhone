@@ -7004,6 +7004,10 @@
 		EA7100D117D197DA00451A38 /* MLNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = EA7100CB17D197DA00451A38 /* MLNavigationController.m */; };
 		EA7100D217D197DA00451A38 /* MLNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = EA7100CB17D197DA00451A38 /* MLNavigationController.m */; };
 		EA7100D317D197DA00451A38 /* MLNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = EA7100CB17D197DA00451A38 /* MLNavigationController.m */; };
+		EA716B95186C373F005CC0F0 /* group_add@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EA716B94186C373F005CC0F0 /* group_add@2x.png */; };
+		EA716B96186C373F005CC0F0 /* group_add@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EA716B94186C373F005CC0F0 /* group_add@2x.png */; };
+		EA716B97186C373F005CC0F0 /* group_add@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EA716B94186C373F005CC0F0 /* group_add@2x.png */; };
+		EA716B98186C373F005CC0F0 /* group_add@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EA716B94186C373F005CC0F0 /* group_add@2x.png */; };
 		EA7203B6180E9ABD00F0F1C2 /* draw_home_painter@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EA7203B5180E9ABD00F0F1C2 /* draw_home_painter@2x.png */; };
 		EA7203B7180E9ABD00F0F1C2 /* draw_home_painter@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EA7203B5180E9ABD00F0F1C2 /* draw_home_painter@2x.png */; };
 		EA7203B8180E9ABD00F0F1C2 /* draw_home_painter@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EA7203B5180E9ABD00F0F1C2 /* draw_home_painter@2x.png */; };
@@ -10132,6 +10136,7 @@
 		EA7100C917D197DA00451A38 /* leftside_shadow_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "leftside_shadow_bg@2x.png"; sourceTree = "<group>"; };
 		EA7100CA17D197DA00451A38 /* MLNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MLNavigationController.h; sourceTree = "<group>"; };
 		EA7100CB17D197DA00451A38 /* MLNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MLNavigationController.m; sourceTree = "<group>"; };
+		EA716B94186C373F005CC0F0 /* group_add@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "group_add@2x.png"; sourceTree = "<group>"; };
 		EA7203B5180E9ABD00F0F1C2 /* draw_home_painter@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "draw_home_painter@2x.png"; sourceTree = "<group>"; };
 		EA72B4BF162026480022D82D /* UserAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserAnnotation.h; sourceTree = "<group>"; };
 		EA72B4C0162026480022D82D /* UserAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserAnnotation.m; sourceTree = "<group>"; };
@@ -16995,6 +17000,7 @@
 		EA11A3F11839EA1200F73D64 /* detail */ = {
 			isa = PBXGroup;
 			children = (
+				EA716B94186C373F005CC0F0 /* group_add@2x.png */,
 				EA11A3F21839EA1200F73D64 /* cell_red_bound_footer@2x.png */,
 				EA11A3F31839EA1200F73D64 /* cell_red_bound_header@2x.png */,
 				EA11A3F41839EA1200F73D64 /* cell_red_bound_mid@2x.png */,
@@ -18381,6 +18387,7 @@
 				EA7E4F7B186ADE8F00E0B20F /* GroupHomeController~ipad.xib in Resources */,
 				EA7E4F7F186ADE8F00E0B20F /* GroupNoticeController~ipad.xib in Resources */,
 				EA7E4F83186ADE8F00E0B20F /* GroupTopicController~ipad.xib in Resources */,
+				EA716B97186C373F005CC0F0 /* group_add@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -19359,6 +19366,7 @@
 				EA7E4F7A186ADE8F00E0B20F /* GroupHomeController~ipad.xib in Resources */,
 				EA7E4F7E186ADE8F00E0B20F /* GroupNoticeController~ipad.xib in Resources */,
 				EA7E4F82186ADE8F00E0B20F /* GroupTopicController~ipad.xib in Resources */,
+				EA716B96186C373F005CC0F0 /* group_add@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -20320,6 +20328,7 @@
 				EA7E4F79186ADE8F00E0B20F /* GroupHomeController~ipad.xib in Resources */,
 				EA7E4F7D186ADE8F00E0B20F /* GroupNoticeController~ipad.xib in Resources */,
 				EA7E4F81186ADE8F00E0B20F /* GroupTopicController~ipad.xib in Resources */,
+				EA716B95186C373F005CC0F0 /* group_add@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -21235,6 +21244,7 @@
 				EA7E4F7C186ADE8F00E0B20F /* GroupHomeController~ipad.xib in Resources */,
 				EA7E4F80186ADE8F00E0B20F /* GroupNoticeController~ipad.xib in Resources */,
 				EA7E4F84186ADE8F00E0B20F /* GroupTopicController~ipad.xib in Resources */,
+				EA716B98186C373F005CC0F0 /* group_add@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

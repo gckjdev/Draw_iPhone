@@ -251,6 +251,8 @@ typedef enum {
     }
 }
 
+#define TABLEVIEW_WIDTH (ISIPAD?700:300)
+
 - (void)updateGroupInfo
 {
     if (self.infoCell == nil) {
@@ -262,10 +264,13 @@ typedef enum {
         UIButton *info = [UIButton buttonWithType:UIButtonTypeCustom];
         [info setImage:[UIImage imageNamed:@"user_detail_more@2x.png"] forState:UIControlStateNormal];
         info.userInteractionEnabled = NO;
-
-        [infoView setCustomButton:info];        
+        info.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin;
+        [infoView setCustomButton:info];
         
         [self.infoCell.contentView addSubview:infoView];
+        [infoView updateWidth:TABLEVIEW_WIDTH];
+
+        
         [self.infoCell setSelectionStyle:UITableViewCellSelectionStyleNone];
         
     }else{
