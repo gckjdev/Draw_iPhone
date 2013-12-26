@@ -97,6 +97,7 @@ typedef enum{
 
 typedef enum{
     MAX_LENGTH_NAME = 14,
+    MAX_LENGTH_TITLE = 14,
     MAX_LENGTH_SIGNATURE = 140,
     MAX_LENGTH_DESCRIPTION = 300,
 }GroupAttibuteMaxLength;

@@ -295,6 +295,18 @@ enum{
     }
 }
 
++ (PBGroupTitle *)createGroupTitle:(NSString *)title
+                           titleId:(NSInteger)titleId
+{
+    PBGroupTitle_Builder *titleBuilder = [[PBGroupTitle_Builder alloc] init];
+    [titleBuilder setTitle:title];
+    [titleBuilder setTitleId:titleId];
+    PBGroupTitle *t = [titleBuilder build];
+    [titleBuilder release];
+    return t;
+
+}
+
 + (void)didAddedGroupTitle:(NSString *)groupId
                      title:(NSString *)title
                    titleId:(NSInteger)titleId
@@ -302,10 +314,8 @@ enum{
     PBGroupUsersByTitle_Builder *builder = [[PBGroupUsersByTitle_Builder alloc] init];
 
     PBGroupTitle_Builder *titleBuilder = [[PBGroupTitle_Builder alloc] init];
-    [titleBuilder setTitle:title];
-    [titleBuilder setTitleId:titleId];
-    [builder setTitle:[titleBuilder build]];
-    [titleBuilder release];
+    PBGroupTitle *t = [self createGroupTitle:title titleId:titleId];
+    [builder setTitle:t];
     
     PBGroupUsersByTitle *ut = [builder build];
     [builder release];
@@ -333,6 +343,25 @@ enum{
     [members removeObject:gt];
 }
 
++ (void)didUpdatedGroupTitle:(NSString *)groupId
+                       title:(NSString *)title
+                     titleId:(NSInteger)titleId
+{
+    NSMutableArray *members = [[GroupManager defaultManager] tempMemberList];
+    PBGroupUsersByTitle *gt = [self usersByTitleForTitleId:titleId];
+    if (gt) {
+        PBGroupUsersByTitle_Builder *builder = [PBGroupUsersByTitle builderWithPrototype:gt];
+        PBGroupTitle *t = [self createGroupTitle:title titleId:titleId];
+        [builder setTitle:t];
+        PBGroupUsersByTitle *ngt = [builder build];
+        NSUInteger index = [members indexOfObject:gt];
+        if (index != NSNotFound && !!ngt) {
+            [members replaceObjectAtIndex:index withObject:ngt];
+        }
+    }
+}
+
+
 + (BOOL)isUser:(PBGameUser *)user adminOrCreatorInGroup:(PBGroup *)group
 {
     if ([group.creator isEqual:user]) {
@@ -357,6 +386,7 @@ enum{
     for (PBGroupUsersByTitle *ut in members) {
         titleId = MAX(titleId, ut.title.titleId);
     }
+    titleId += 1;
     return titleId;
 }
 

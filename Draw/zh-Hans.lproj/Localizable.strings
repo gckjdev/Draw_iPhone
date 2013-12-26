@@ -2138,8 +2138,8 @@
 "kNotGroupAdmin" = "用户不是家族管理员，不能完成本操作。";
 "kNotInvitee" = "你没有被邀请，或者邀请已经失效，不能完成本操作。";
 "kUnknowError" = "未知错误。";
-
-
+"kUpdateTitle" = "修改职位名称";
+"kTitleIDNotFound" = "职位不存在。";
 
 "kGroup" = "家族";
 "kGroupBulletinDesc" = "%@ 在 %@ 中发布了公告。";

@@ -150,6 +150,11 @@ typedef void (^ URLResultBlock) (NSURL *url, NSError *error);
                    groupId:(NSString *)groupId
                   callback:(SimpleResultBlock)callback;
 
+- (void)updateGroupTitle:(NSString *)groupId
+                 titleId:(NSInteger) titleId
+                   title:(NSString *)title
+                callback:(SimpleResultBlock)callback;
+
 - (void)changeUser:(PBGameUser *)user
            inGroup:(NSString *)groupId
      sourceTitleId:(NSInteger)sourceTitleId

@@ -107,7 +107,7 @@
         [self.nameLabel updateOriginY:DEFAULT_NAME_Y];
     }
     [self.sizeLabel updateCenterY:_nameLabel.center.y];
-    
+    [self.customButton updateCenterY:self.center.y];   
 }
 
 + (CGFloat)getViewHeight

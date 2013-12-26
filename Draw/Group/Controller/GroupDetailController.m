@@ -148,19 +148,19 @@ typedef enum{
         [self quit];
         [dialog setClickOkBlock:NULL];
     }];
-    [dialog showInView:self];
+    [dialog showInView:self.view];
 }
 
 
 - (void)showAddTitleView{
-    CommonDialog *dialog = [CommonDialog createInputViewDialogWith:NSLS(@"kCreateTitle")];
-    dialog.inputTextView.text = @"";
+    CommonDialog *dialog = [CommonDialog createInputFieldDialogWith:NSLS(@"kCreateTitle")];
+    dialog.inputTextField.text = @"";
     NSString *groupId = _group.groupId;
     [dialog setClickOkBlock:^(id infoView){
         NSString *text = dialog.inputTextView.text;
-        if ([text length] == 0) {
-            POSTMSG(NSLS(@"kGroupTitleEmpty"));
-        }else{
+        BOOL flag = [self checkText:text length:MAX_LENGTH_TITLE allowEmpty:NO];
+        [dialog setManualClose:!flag];
+        if (flag) {
             NSInteger titleId = [GroupManager genTitleId];
             [self showActivityWithText:NSLS(@"kCreatingTitle")];
             [groupService createGroupTitle:text titleId:titleId groupId:groupId callback:^(NSError *error) {
@@ -191,18 +191,20 @@ typedef enum{
 
 - (void)showUpgradeGroupView
 {
-    
     CommonDialog *dialog = [CommonDialog createInputFieldDialogWith:NSLS(@"kUpgradeGroupTitle")];
     dialog.inputTextField.textColor = COLOR_BROWN;
     dialog.allowInputEmpty = NO;
     dialog.inputTextField.keyboardType = UIKeyboardTypeNumberPad;
+    dialog.inputTextField.text = [@(_group.level+1) stringValue];
     [dialog setClickOkBlock:^(id view) {
         NSString *text = [dialog.inputTextField text];
         NSInteger level = [text integerValue];
         if (level <= [_group level]) {
             POSTMSG(NSLS(@"kDegradeGroup"));
+            [dialog setManualClose:YES];
         }else{
             [self upgradeGroup:level];
+            [dialog setManualClose:NO];
         }
     }];
     [dialog showInView:self.view];
@@ -240,7 +242,7 @@ typedef enum{
         }
     }];
     [sheet showInView:self.view showAtPoint:self.view.center animated:YES];
-    
+    [sheet release];
     return;
     
 }
@@ -437,40 +439,49 @@ typedef enum{
                    info:(NSString *)info
                     key:(NSString*)key
 {
-    CommonDialog *dialog = [CommonDialog createInputViewDialogWith:title];
-    dialog.inputTextView.text = info;
-    if ([key isEqualToString:PARA_FEE]) {
-        dialog.inputTextView.keyboardType = UIKeyboardTypeNumberPad;
-    }
-    NSDictionary *lenDict = @{PARA_NAME: @(MAX_LENGTH_NAME),
-                              PARA_SIGNATURE: @(MAX_LENGTH_SIGNATURE),
-                              PARA_DESC: @(MAX_LENGTH_DESCRIPTION),
-                              };
-    NSNumber *len = lenDict[key];
-    if (len == nil) {
-        return;
-    }
-    NSInteger length = [len intValue];
-    BOOL allowEmpty = YES;
-    if ([key isEqualToString:PARA_NAME]||[key isEqualToString:PARA_FEE]) {
-        allowEmpty = NO;
+    CommonDialog *dialog = nil;
+    BOOL useInputField  = YES;
+    NSArray *longInputFields = @[PARA_DESC, PARA_SIGNATURE];
+    if ([longInputFields containsObject:key]) {
+        dialog = [CommonDialog createInputViewDialogWith:title];
+        dialog.inputTextView.text = info;
+        useInputField = NO;
+    }else{
+        dialog = [CommonDialog createInputFieldDialogWith:title];
+        dialog.inputTextField.text = info;
     }
     
+    NSArray *allowEmptyKeys = @[PARA_SIGNATURE, PARA_DESC];
+    BOOL allowEmpty = [allowEmptyKeys containsObject:key];
     [dialog setAllowInputEmpty:allowEmpty];
-    dialog.manualClose = YES;
-    [dialog setClickCancelBlock:^(id infoView){
-        [dialog setManualClose:NO];
-    }];
+    NSInteger length = 10;
+    if ([key isEqualToString:PARA_FEE]) {
+        dialog.inputTextField.keyboardType = UIKeyboardTypeNumberPad;
+    }else{
+        NSDictionary *lenDict = @{PARA_NAME: @(MAX_LENGTH_NAME),
+                                  PARA_SIGNATURE: @(MAX_LENGTH_SIGNATURE),
+                                  PARA_DESC: @(MAX_LENGTH_DESCRIPTION),
+                                  };        
+        NSNumber *len = lenDict[key];
+        if (len == nil && ![PARA_FEE isEqualToString:key]) {
+            return;
+        }
+        length = [len intValue];
+    }
+
     [dialog setClickOkBlock:^(id infoView){
         NSString *text = dialog.inputTextView.text;
-        if ([self checkText:text length:length allowEmpty:YES]) {
-            if (![text isEqualToString:info]) {
+        if (useInputField) {
+            text = dialog.inputTextField.text;
+        }
+        BOOL flag = [self checkText:text length:length allowEmpty:allowEmpty];
+        [dialog setManualClose:!flag];
+        if (flag) {
+            if (text && ![text isEqualToString:info]) {
                 //changed.
                 [self updateRemoteInfo:@{key: text}];
             }
             [dialog setManualClose:NO];
-        }else{
-            
         }
     }];
     [dialog showInView:self.view];    
@@ -886,6 +897,31 @@ didClickAddButtonAtTitle:(PBGroupTitle *)title
     [[self navigationController] pushViewController:fc animated:YES];
     [fc release];
 
+}
+
+- (void)groupDetailCell:(GroupDetailCell *)cell didClickAtTitle:(PBGroupTitle *)title
+{
+    //check permission
+    if ([title titleId] != GroupRoleGuest && [_groupPermission canCustomTitle]) {
+        CommonDialog *dialog = [CommonDialog createInputFieldDialogWith:NSLS(@"kUpdateTitle")];
+        dialog.inputTextField.text = title.title;
+        [dialog setClickOkBlock:^(id view){
+            NSString *text = [dialog.inputTextField text];
+            NSInteger len = MAX_LENGTH_TITLE;
+            BOOL flag = [self checkText:text length:len allowEmpty:NO];
+           [dialog setManualClose:!flag];
+            if(flag){
+                [groupService updateGroupTitle:_group.groupId titleId:title.titleId title:text callback:^(NSError *error) {
+                    if (!error) {
+                        [self.dataTableView reloadData];
+                    }
+                }];
+            }
+        }];
+        [dialog showInView:self.view];
+    }else{
+        PPDebug(@"<didClickAtTitle> can't custom title.");
+    }
 }
 
 

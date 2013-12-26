@@ -63,6 +63,11 @@
                      title:(NSString *)title
                    titleId:(NSInteger)titleId;
 
+
++ (void)didUpdatedGroupTitle:(NSString *)groupId
+                       title:(NSString *)title
+                     titleId:(NSInteger)titleId;
+
 + (void)didDeletedGroupTitle:(NSString *)groupId
                      titleId:(NSInteger)titleId;
 

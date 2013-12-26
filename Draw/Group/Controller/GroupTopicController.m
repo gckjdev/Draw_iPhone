@@ -224,7 +224,6 @@ typedef enum {
     switch (indexPath.row) {
         case RowGroupInfo:
             return [GroupInfoView getViewHeight];
-//            return [GroupInfoView recommandHeightForGroup:self.group];
         case RowTopicHeader:
             return [BBSPostActionHeaderView getViewHeight];
         default:
@@ -260,6 +259,12 @@ typedef enum {
         infoView.autoresizingMask |= (UIViewAutoresizingFlexibleTopMargin|UIViewAutoresizingFlexibleHeight|UIViewAutoresizingFlexibleBottomMargin);
         [infoView updateHeight:CGRectGetHeight(self.infoCell.contentView.frame)];
         infoView.delegate = self;
+        UIButton *info = [UIButton buttonWithType:UIButtonTypeCustom];
+        [info setImage:[UIImage imageNamed:@"user_detail_more@2x.png"] forState:UIControlStateNormal];
+        info.userInteractionEnabled = NO;
+
+        [infoView setCustomButton:info];        
+        
         [self.infoCell.contentView addSubview:infoView];
         [self.infoCell setSelectionStyle:UITableViewCellSelectionStyleNone];
         

@@ -2159,6 +2159,9 @@
 "kQuitGroupMessage" = "Are you sure to quit the group?";
 "kGroupTitleEmpty" = "Group title should not be empty.";
 
+"kUpdateTitle" = "Update Title";
+"kTitleIDNotFound" = "Title not found.";
+
 "kGroupTitleDesc" = "%@ (%d)";
 "kGroupCreator" = "Creator %@";
 "kSearchGroup" = "Search Group";

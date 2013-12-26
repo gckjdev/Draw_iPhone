@@ -25,6 +25,9 @@
 - (void)groupDetailCell:(GroupDetailCell *)cell
 didClickAddButtonAtTitle:(PBGroupTitle *)title;
 
+- (void)groupDetailCell:(GroupDetailCell *)cell
+        didClickAtTitle:(PBGroupTitle *)title;
+
 
 @end
 

@@ -13,6 +13,7 @@
 #import "GroupConstants.h"
 #import "GroupModelExt.h"
 #import "GroupManager.h"
+#import "UILabel+Touchable.h"
 
 #define MEMBER_NUMBER_PERROW (ISIPAD?7:5)
 #define TITLE_INFO_HEIGHT (ISIPAD?40:25)
@@ -201,10 +202,11 @@
 
 - (void)updateCellTextContent
 {
-//    self.infoLabel.center = CGRectGetCenter(self.bounds);
+
     [self.infoLabel setHidden:NO];
     [self.infoLabel updateOriginY:0];
     [self.infoLabel updateHeight:CGRectGetMinY(self.splitLine.frame)];
+    [self.infoLabel disableTapTouch];
     
     switch (self.cellStyle) {
         case DetailCellStyleSimpleText:{
@@ -219,11 +221,21 @@
         case DetailCellStyleMultipleAvatars:{
             [self.infoLabel updateHeight:TITLE_INFO_HEIGHT];
             [self.infoLabel setText:[self.members desc]];
+            [self.infoLabel enableTapTouch:self selector:@selector(clickOnTitle:)];
             break;
         }
         default:
             [self.infoLabel setHidden:YES];
             break;
+    }
+}
+
+- (void)clickOnTitle:(UITapGestureRecognizer *)tap
+{
+    if (tap.state == UIGestureRecognizerStateRecognized) {
+        if ([self.delegate respondsToSelector:@selector(groupDetailCell:didClickAtTitle:)]) {
+            [self.delegate groupDetailCell:self didClickAtTitle:self.members.title];
+        }
     }
 }
 

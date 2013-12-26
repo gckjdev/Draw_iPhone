@@ -2148,6 +2148,10 @@
 "kNotInvitee" = "你沒有被邀請，或者邀請已經失效，不能完成本操作。";
 "kUnknowError" = "未知錯誤。";
 
+"kUpdateTitle" = "修改職位名稱";
+"kTitleIDNotFound" = "職位不存在。";
+
+
 "kGroup" = "家族";
 "kGroupBulletinDesc" = "%@ 在 %@ 中發布了公告。";
 "kGroupJoinDesc" = "%@ 申請加入 %@";

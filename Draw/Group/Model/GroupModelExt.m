@@ -207,11 +207,11 @@ typedef enum{
 
 @end
 
-@implementation PBGroupUsersByTitle (Ext)
+@implementation PBGroupTitle(Ext)
 
 - (BOOL)isCustomTitle
 {
-    if (self.title.titleId > CUSTOM_TITLE_START) {
+    if (self.titleId >= CUSTOM_TITLE_START) {
         return YES;
     }
     return NO;
@@ -219,8 +219,22 @@ typedef enum{
 
 - (BOOL)isAdminTitle
 {
-    return self.title.titleId == GroupRoleAdmin ||
-    self.title.titleId == GroupRoleCreator;
+    return self.titleId == GroupRoleAdmin ||
+    self.titleId == GroupRoleCreator;
+}
+
+@end
+
+@implementation PBGroupUsersByTitle (Ext)
+
+- (BOOL)isCustomTitle
+{
+    return [self.title isCustomTitle];
+}
+
+- (BOOL)isAdminTitle
+{
+    return [self.title isAdminTitle];
 }
 
 - (NSString *)titleName

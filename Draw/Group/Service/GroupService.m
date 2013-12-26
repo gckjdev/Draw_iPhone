@@ -532,6 +532,25 @@ static GroupService *_staticGroupService = nil;
 
 }
 
+- (void)updateGroupTitle:(NSString *)groupId
+                 titleId:(NSInteger) titleId
+                   title:(NSString *)title
+                callback:(SimpleResultBlock)callback
+{
+    NSDictionary *info = @{PARA_TITLE_ID: @(titleId),
+                           PARA_TITLE:title,
+                           PARA_GROUPID:groupId};
+    
+    [self loadPBData:METHOD_UPDATE_GROUP_TITLE
+          parameters:info
+            callback:^(DataQueryResponse *response, NSError *error) {
+                if (!error) {
+                    [GroupManager didUpdatedGroupTitle:groupId title:title titleId:titleId];
+                }
+                EXECUTE_BLOCK(callback, error);
+    }];
+}
+
 - (void)deleteGroupTitleId:(NSInteger)titleId
                    groupId:(NSString *)groupId
                   callback:(SimpleResultBlock)callback

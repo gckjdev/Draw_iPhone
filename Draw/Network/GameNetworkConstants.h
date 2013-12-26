@@ -671,6 +671,7 @@
 #define CONST_BBS_MODE 0
 
 
+
 //group
 
 #define PARA_GROUPID @"gid"
@@ -737,8 +738,8 @@
 
 #define METHOD_UPDATE_GROUP_ICON @"updateGroupIcon"
 #define METHOD_UPDATE_GROUP_BG @"updateGroupBG"
-
 #define METHOD_SYNC_GROUP_ROLES @"syncGroupRoles"
+#define METHOD_UPDATE_GROUP_TITLE @"updateTitleName"
 
 #define METHOD_UPDATE_USER_CREDENTIAL @"updateUserCredential"
 
@@ -846,6 +847,7 @@
 #define ERROR_GROUP_NOT_MEMBER  200022  
 #define ERROR_GROUP_NOT_ADMIN  200023  
 #define ERROR_GROUP_NOT_INVITEE  200024  
+#define ERROR_GROUP_TITLEID_NOTEXISTED     200025
 #define ERROR_GROUP_NAME_EMPTY  200050
 #define ERROR_GROUP_NAME_TOO_LONG  200051
 

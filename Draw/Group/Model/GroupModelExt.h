@@ -31,6 +31,13 @@
 
 @end
 
+@interface PBGroupTitle(Ext)
+
+- (BOOL)isCustomTitle;
+- (BOOL)isAdminTitle;
+
+@end
+
 
 @interface PBGroupUsersByTitle(Ext)
 
@@ -41,6 +48,8 @@
 - (NSString *)desc;
 
 @end
+
+
 
 
 @interface PBGameUser(Ext)

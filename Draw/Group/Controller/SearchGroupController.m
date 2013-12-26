@@ -29,11 +29,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-//    if (self.titleView == nil) {
-//        self.titleView = [CommonTitleView createTitleView:self.view];
-//        self.titleView
-//    }
-    // Do any additional setup after loading the view from its nib.
 }
 
 - (void)didReceiveMemoryWarning
