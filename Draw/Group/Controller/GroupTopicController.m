@@ -264,11 +264,13 @@ typedef enum {
         UIButton *info = [UIButton buttonWithType:UIButtonTypeCustom];
         [info setImage:[UIImage imageNamed:@"user_detail_more@2x.png"] forState:UIControlStateNormal];
         info.userInteractionEnabled = NO;
-        info.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin;
+//        info.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin;
         [infoView setCustomButton:info];
         
         [self.infoCell.contentView addSubview:infoView];
-        [infoView updateWidth:TABLEVIEW_WIDTH];
+        [self.infoCell.contentView setClipsToBounds:NO];
+        [self.infoCell setClipsToBounds:NO];
+//        [infoView updateWidth:TABLEVIEW_WIDTH];
 
         
         [self.infoCell setSelectionStyle:UITableViewCellSelectionStyleNone];

@@ -291,7 +291,7 @@ CGPoint midPoint1(CGPoint p1, CGPoint p2)
         return @"";
     }
     
-    CGFloat *cpn = CGColorGetComponents(color.CGColor);
+    const CGFloat *cpn = CGColorGetComponents(color.CGColor);
     NSInteger count = CGColorGetNumberOfComponents(color.CGColor);
     NSMutableString *ret = [[[NSMutableString alloc] init] autorelease];
     for (int i = 0; i < count; i ++) {
@@ -300,7 +300,7 @@ CGPoint midPoint1(CGPoint p1, CGPoint p2)
     }
 //    CGFloat alpha = CGColorGetAlpha(color.CGColor);
 //    [ret appendFormat:@"%f", alpha];
-    PPDebug(@"<keyForColor> key = %@", ret);
+//    PPDebug(@"<keyForColor> key = %@", ret);
     return ret;
 }
 

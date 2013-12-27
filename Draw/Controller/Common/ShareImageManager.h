@@ -173,6 +173,19 @@ cell.backgroundColor = COLOR_WHITE;             \
 #define WORD_NORMAL_CELL_BACKGROUND @"normal.png"
 #define WORD_HARD_CELL_BACKGROUND @"hard.png"
 
+
+typedef enum{
+    
+    BoundImageTypeLeft = 1,
+    BoundImageTypeRight,
+    BoundImageTypeTop,
+    BoundImageTypeBottom,
+    BoundImageTypeVertical,
+    BoundImageTypeHorizontal,
+    
+}BoundImageType;
+
+
 @interface ShareImageManager : NSObject <ImageManagerProtocol>
 
 + (ShareImageManager*)defaultManager;
@@ -455,5 +468,10 @@ cell.backgroundColor = COLOR_WHITE;             \
 
 - (UIImage *)changeBgImage;
 - (UIImage *)changeHotTopImage;
+
++ (UIImage *)boundImageWithType:(BoundImageType)type
+                         border:(CGFloat)border
+                   cornerRadius:(CGFloat)cornerRadius
+                          color:(UIColor *)color;
 
 @end

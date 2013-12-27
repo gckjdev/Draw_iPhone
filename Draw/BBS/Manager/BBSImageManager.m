@@ -94,16 +94,19 @@ static BBSImageManager* _staticBBSImageManager;
      return [_resService stretchableImageWithImageName:@"bbs_badge"
                    inResourcePackage:RESOURCE_PACKAGE_BBS];
 }
+#define BBS_BOARD_BORDER (ISIPAD?4:2)
+#define BBS_BOARD_RADIUS (ISIPAD?15:8)
+
+#define BOARD_BOUND_COLOR OPAQUE_COLOR(249, 116, 104)
+
 - (UIImage *)bbsBoardBgImage
 {
-    return [_resService stretchableImageWithImageName:@"bbs_board_bg"
-                   inResourcePackage:RESOURCE_PACKAGE_BBS];
+
+    return [ShareImageManager boundImageWithType:BoundImageTypeVertical border:BBS_BOARD_BORDER cornerRadius:BBS_BOARD_RADIUS color:BOARD_BOUND_COLOR];
 }
 - (UIImage *)bbsBoardLastBgImage
 {
-     return [_resService stretchableImageWithImageName:@"bbs_board_last_bg"
-                   inResourcePackage:RESOURCE_PACKAGE_BBS];
-    
+    return [ShareImageManager boundImageWithType:BoundImageTypeBottom border:BBS_BOARD_BORDER cornerRadius:BBS_BOARD_RADIUS color:BOARD_BOUND_COLOR];
 }
 - (UIImage *)bbsBoardLineImage
 {

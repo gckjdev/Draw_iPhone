@@ -248,7 +248,7 @@
 - (UIButton *)getAddButton
 {
     UIButton *addButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    [addButton setImage:[UIImage imageNamed:@"group_add@2x.png"] forState:UIControlStateNormal];
+    [addButton setImage:[GroupUIManager addButtonImage] forState:UIControlStateNormal];
     [addButton addTarget:self action:@selector(clickAddButton:) forControlEvents:UIControlEventTouchUpInside];
     return addButton;
 }

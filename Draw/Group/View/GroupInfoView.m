@@ -116,7 +116,7 @@
 }
 
 #define CUSTOM_BUTTON_SIZE (ISIPAD?45:25)
-#define CUSTOM_BUTTON_CENTERX (ISIPAD?670:290)
+#define CUSTOM_BUTTON_CENTERX (ISIPAD?670:280)
 
 - (void)setCustomButton:(UIButton *)button
 {

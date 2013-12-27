@@ -1486,6 +1486,73 @@ static NSMutableDictionary *colorImageDict;
     }
 }
 
+
+static NSMutableDictionary *boundImageDict = nil;
+
++ (UIImage *)boundImageWithType:(BoundImageType)type
+                         border:(CGFloat)border
+                   cornerRadius:(CGFloat)cornerRadius
+                          color:(UIColor *)color
+{ 
+    if (boundImageDict == nil) {
+        boundImageDict = [[NSMutableDictionary alloc] init];
+    }
+    
+    NSString *key = [NSString stringWithFormat:@"%d-%.1f-%.1f-%@",type, border, cornerRadius, [DrawUtils keyForColor:color]];
+    if ([boundImageDict objectForKey:key]) {
+        return boundImageDict[key];
+    }
+    
+    CGFloat width = (cornerRadius + border) * 2 + 4;
+    CGSize size = CGSizeMake(width, width);
+    UIGraphicsBeginImageContext(size);
+    
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    [color setStroke];
+    CGContextSetLineWidth(context, border);
+    CGContextSetLineCap(context, kCGLineCapSquare);
+    if (BoundImageTypeHorizontal == type){
+        CGContextMoveToPoint(context, 0, border);
+        CGContextAddLineToPoint(context, size.width, border);
+        CGContextMoveToPoint(context, 0, size.height-2*border);
+        CGContextAddLineToPoint(context, size.width, size.height-2*border);
+        CGContextStrokePath(context);
+    }else if(BoundImageTypeVertical == type){
+        CGContextMoveToPoint(context, border, 0);
+        CGContextAddLineToPoint(context, border, size.height);
+        CGContextMoveToPoint(context, size.width-border, 0);
+        CGContextAddLineToPoint(context, size.width-border, size.height);
+        CGContextStrokePath(context);
+    }
+    else{
+        CGRect rect = CGRectMake(0, 0, size.width*2, size.height);
+        rect = CGRectInset(rect, border, border);
+        if (type == BoundImageTypeRight) {
+            CGContextTranslateCTM(context, -size.width, 0);
+        }else if(type == BoundImageTypeTop){
+            rect = CGRectMake(0, 0, size.width, size.height*2);
+            rect = CGRectInset(rect, border, border);
+        }else if(type == BoundImageTypeBottom){
+            rect = CGRectMake(0, 0, size.width, size.height*2);
+            rect = CGRectInset(rect, border, border);
+            CGContextTranslateCTM(context, 0, -size.height);
+        }
+        
+        UIBezierPath *path = [UIBezierPath bezierPathWithRoundedRect:rect cornerRadius:cornerRadius];
+//        [path setFlatness:0];
+        [path setLineWidth:border];
+        [path setLineCapStyle:kCGLineCapSquare];
+        [path stroke];
+    }
+    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();    
+    image = [image stretchableImageWithLeftCapWidth:size.width/2 topCapHeight:size.height/2];
+    [boundImageDict setObject:image forKey:key];
+
+    return image;
+}
+
+
 //+ (void)setFXLabelStyle:(FXLabel *)label{
 //    label.textColor = [UIColor whiteColor];
 //    label.backgroundColor = [UIColor clearColor];
