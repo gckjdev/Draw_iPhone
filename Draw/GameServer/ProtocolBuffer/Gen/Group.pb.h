@@ -100,8 +100,6 @@
 @class PBUserItem_Builder;
 @class PBUserLevel;
 @class PBUserLevel_Builder;
-@class PBUserRelationWithGroup;
-@class PBUserRelationWithGroup_Builder;
 @class PBUserResult;
 @class PBUserResult_Builder;
 typedef enum {
@@ -315,81 +313,6 @@ BOOL PBGroupUserTypeIsValidValue(PBGroupUserType value);
 - (PBGroupUsersByTitle_Builder*) addUsers:(PBGameUser*) value;
 - (PBGroupUsersByTitle_Builder*) addAllUsers:(NSArray*) values;
 - (PBGroupUsersByTitle_Builder*) clearUsersList;
-@end
-
-@interface PBUserRelationWithGroup : PBGeneratedMessage {
-@private
-  BOOL hasRole_:1;
-  BOOL hasPermission_:1;
-  BOOL hasStatus_:1;
-  BOOL hasTitle_:1;
-  int32_t role;
-  int32_t permission;
-  int32_t status;
-  NSString* title;
-}
-- (BOOL) hasRole;
-- (BOOL) hasPermission;
-- (BOOL) hasStatus;
-- (BOOL) hasTitle;
-@property (readonly) int32_t role;
-@property (readonly) int32_t permission;
-@property (readonly) int32_t status;
-@property (readonly, retain) NSString* title;
-
-+ (PBUserRelationWithGroup*) defaultInstance;
-- (PBUserRelationWithGroup*) defaultInstance;
-
-- (BOOL) isInitialized;
-- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
-- (PBUserRelationWithGroup_Builder*) builder;
-+ (PBUserRelationWithGroup_Builder*) builder;
-+ (PBUserRelationWithGroup_Builder*) builderWithPrototype:(PBUserRelationWithGroup*) prototype;
-
-+ (PBUserRelationWithGroup*) parseFromData:(NSData*) data;
-+ (PBUserRelationWithGroup*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
-+ (PBUserRelationWithGroup*) parseFromInputStream:(NSInputStream*) input;
-+ (PBUserRelationWithGroup*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
-+ (PBUserRelationWithGroup*) parseFromCodedInputStream:(PBCodedInputStream*) input;
-+ (PBUserRelationWithGroup*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
-@end
-
-@interface PBUserRelationWithGroup_Builder : PBGeneratedMessage_Builder {
-@private
-  PBUserRelationWithGroup* result;
-}
-
-- (PBUserRelationWithGroup*) defaultInstance;
-
-- (PBUserRelationWithGroup_Builder*) clear;
-- (PBUserRelationWithGroup_Builder*) clone;
-
-- (PBUserRelationWithGroup*) build;
-- (PBUserRelationWithGroup*) buildPartial;
-
-- (PBUserRelationWithGroup_Builder*) mergeFrom:(PBUserRelationWithGroup*) other;
-- (PBUserRelationWithGroup_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
-- (PBUserRelationWithGroup_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
-
-- (BOOL) hasRole;
-- (int32_t) role;
-- (PBUserRelationWithGroup_Builder*) setRole:(int32_t) value;
-- (PBUserRelationWithGroup_Builder*) clearRole;
-
-- (BOOL) hasPermission;
-- (int32_t) permission;
-- (PBUserRelationWithGroup_Builder*) setPermission:(int32_t) value;
-- (PBUserRelationWithGroup_Builder*) clearPermission;
-
-- (BOOL) hasStatus;
-- (int32_t) status;
-- (PBUserRelationWithGroup_Builder*) setStatus:(int32_t) value;
-- (PBUserRelationWithGroup_Builder*) clearStatus;
-
-- (BOOL) hasTitle;
-- (NSString*) title;
-- (PBUserRelationWithGroup_Builder*) setTitle:(NSString*) value;
-- (PBUserRelationWithGroup_Builder*) clearTitle;
 @end
 
 @interface PBGroup : PBGeneratedMessage {

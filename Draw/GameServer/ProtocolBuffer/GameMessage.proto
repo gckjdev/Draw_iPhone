@@ -522,7 +522,6 @@ message DataQueryResponse {
   repeated PBGroup groupList = 151;
   repeated PBGroupUsersByTitle groupMemberList = 152; 
   repeated PBGroupNotice noticeList = 153;
-  optional PBUserRelationWithGroup groupRelation = 154;
   repeated PBIntKeyIntValue badges = 155;
   optional string url = 156;
   repeated PBGroupUserRole groupRole = 157;

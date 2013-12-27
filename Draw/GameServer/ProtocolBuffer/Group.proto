@@ -44,14 +44,6 @@ message PBGroupUsersByTitle
 }
 
 
-message PBUserRelationWithGroup
-{
-    optional int32 role = 1;
-    optional int32 permission = 2;
-    optional int32 status = 3;
-    optional string title = 4;
-}
-
 // 家族
 message PBGroup
 {

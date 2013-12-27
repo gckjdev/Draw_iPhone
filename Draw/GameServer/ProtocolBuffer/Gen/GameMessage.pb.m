@@ -17704,7 +17704,6 @@ static GameMessage* defaultGameMessageInstance = nil;
 @property (retain) NSMutableArray* mutableGroupListList;
 @property (retain) NSMutableArray* mutableGroupMemberListList;
 @property (retain) NSMutableArray* mutableNoticeListList;
-@property (retain) PBUserRelationWithGroup* groupRelation;
 @property (retain) NSMutableArray* mutableBadgesList;
 @property (retain) NSString* url;
 @property (retain) NSMutableArray* mutableGroupRoleList;
@@ -17823,13 +17822,6 @@ static GameMessage* defaultGameMessageInstance = nil;
 @synthesize mutableGroupListList;
 @synthesize mutableGroupMemberListList;
 @synthesize mutableNoticeListList;
-- (BOOL) hasGroupRelation {
-  return !!hasGroupRelation_;
-}
-- (void) setHasGroupRelation:(BOOL) value {
-  hasGroupRelation_ = !!value;
-}
-@synthesize groupRelation;
 @synthesize mutableBadgesList;
 - (BOOL) hasUrl {
   return !!hasUrl_;
@@ -17869,7 +17861,6 @@ static GameMessage* defaultGameMessageInstance = nil;
   self.mutableGroupListList = nil;
   self.mutableGroupMemberListList = nil;
   self.mutableNoticeListList = nil;
-  self.groupRelation = nil;
   self.mutableBadgesList = nil;
   self.url = nil;
   self.mutableGroupRoleList = nil;
@@ -17890,7 +17881,6 @@ static GameMessage* defaultGameMessageInstance = nil;
     self.guessRank = [PBGuessRank defaultInstance];
     self.guessContest = [PBGuessContest defaultInstance];
     self.group = [PBGroup defaultInstance];
-    self.groupRelation = [PBUserRelationWithGroup defaultInstance];
     self.url = @"";
   }
   return self;
@@ -18317,9 +18307,6 @@ static DataQueryResponse* defaultDataQueryResponseInstance = nil;
   for (PBGroupNotice* element in self.noticeListList) {
     [output writeMessage:153 value:element];
   }
-  if (self.hasGroupRelation) {
-    [output writeMessage:154 value:self.groupRelation];
-  }
   for (PBIntKeyIntValue* element in self.badgesList) {
     [output writeMessage:155 value:element];
   }
@@ -18441,9 +18428,6 @@ static DataQueryResponse* defaultDataQueryResponseInstance = nil;
   }
   for (PBGroupNotice* element in self.noticeListList) {
     size += computeMessageSize(153, element);
-  }
-  if (self.hasGroupRelation) {
-    size += computeMessageSize(154, self.groupRelation);
   }
   for (PBIntKeyIntValue* element in self.badgesList) {
     size += computeMessageSize(155, element);
@@ -18687,9 +18671,6 @@ static DataQueryResponse* defaultDataQueryResponseInstance = nil;
       result.mutableNoticeListList = [NSMutableArray array];
     }
     [result.mutableNoticeListList addObjectsFromArray:other.mutableNoticeListList];
-  }
-  if (other.hasGroupRelation) {
-    [self mergeGroupRelation:other.groupRelation];
   }
   if (other.mutableBadgesList.count > 0) {
     if (result.mutableBadgesList == nil) {
@@ -18940,15 +18921,6 @@ static DataQueryResponse* defaultDataQueryResponseInstance = nil;
         PBGroupNotice_Builder* subBuilder = [PBGroupNotice builder];
         [input readMessage:subBuilder extensionRegistry:extensionRegistry];
         [self addNoticeList:[subBuilder buildPartial]];
-        break;
-      }
-      case 1234: {
-        PBUserRelationWithGroup_Builder* subBuilder = [PBUserRelationWithGroup builder];
-        if (self.hasGroupRelation) {
-          [subBuilder mergeFrom:self.groupRelation];
-        }
-        [input readMessage:subBuilder extensionRegistry:extensionRegistry];
-        [self setGroupRelation:[subBuilder buildPartial]];
         break;
       }
       case 1242: {
@@ -19884,36 +19856,6 @@ static DataQueryResponse* defaultDataQueryResponseInstance = nil;
     result.mutableNoticeListList = [NSMutableArray array];
   }
   [result.mutableNoticeListList addObject:value];
-  return self;
-}
-- (BOOL) hasGroupRelation {
-  return result.hasGroupRelation;
-}
-- (PBUserRelationWithGroup*) groupRelation {
-  return result.groupRelation;
-}
-- (DataQueryResponse_Builder*) setGroupRelation:(PBUserRelationWithGroup*) value {
-  result.hasGroupRelation = YES;
-  result.groupRelation = value;
-  return self;
-}
-- (DataQueryResponse_Builder*) setGroupRelationBuilder:(PBUserRelationWithGroup_Builder*) builderForValue {
-  return [self setGroupRelation:[builderForValue build]];
-}
-- (DataQueryResponse_Builder*) mergeGroupRelation:(PBUserRelationWithGroup*) value {
-  if (result.hasGroupRelation &&
-      result.groupRelation != [PBUserRelationWithGroup defaultInstance]) {
-    result.groupRelation =
-      [[[PBUserRelationWithGroup builderWithPrototype:result.groupRelation] mergeFrom:value] buildPartial];
-  } else {
-    result.groupRelation = value;
-  }
-  result.hasGroupRelation = YES;
-  return self;
-}
-- (DataQueryResponse_Builder*) clearGroupRelation {
-  result.hasGroupRelation = NO;
-  result.groupRelation = [PBUserRelationWithGroup defaultInstance];
   return self;
 }
 - (NSArray*) badgesList {
