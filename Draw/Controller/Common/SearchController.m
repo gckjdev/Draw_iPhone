@@ -54,6 +54,7 @@ typedef enum{
     [self setPullRefreshType:PullRefreshTypeFooter];
     [super viewDidLoad];
     [self loadHistory];
+    
     [self.titleView setTitle:[self headerTitle]];
     [self.titleView setTransparentStyle];
     originWidth = CGRectGetWidth(self.dataTableView.bounds);

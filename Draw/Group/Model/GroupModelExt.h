@@ -31,6 +31,13 @@
 
 @end
 
+@interface PBGroupTitle(Ext)
+
+- (BOOL)isCustomTitle;
+- (BOOL)isAdminTitle;
+
+@end
+
 
 @interface PBGroupUsersByTitle(Ext)
 
@@ -43,6 +50,13 @@
 @end
 
 
+
+
 @interface PBGameUser(Ext)
+
+@end
+
+
+@interface PBGroupUserRole(Ext) 
 
 @end

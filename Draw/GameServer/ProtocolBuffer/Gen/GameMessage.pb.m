@@ -17704,9 +17704,9 @@ static GameMessage* defaultGameMessageInstance = nil;
 @property (retain) NSMutableArray* mutableGroupListList;
 @property (retain) NSMutableArray* mutableGroupMemberListList;
 @property (retain) NSMutableArray* mutableNoticeListList;
-@property (retain) PBUserRelationWithGroup* groupRelation;
 @property (retain) NSMutableArray* mutableBadgesList;
 @property (retain) NSString* url;
+@property (retain) NSMutableArray* mutableGroupRoleList;
 @end
 
 @implementation DataQueryResponse
@@ -17822,13 +17822,6 @@ static GameMessage* defaultGameMessageInstance = nil;
 @synthesize mutableGroupListList;
 @synthesize mutableGroupMemberListList;
 @synthesize mutableNoticeListList;
-- (BOOL) hasGroupRelation {
-  return !!hasGroupRelation_;
-}
-- (void) setHasGroupRelation:(BOOL) value {
-  hasGroupRelation_ = !!value;
-}
-@synthesize groupRelation;
 @synthesize mutableBadgesList;
 - (BOOL) hasUrl {
   return !!hasUrl_;
@@ -17837,6 +17830,7 @@ static GameMessage* defaultGameMessageInstance = nil;
   hasUrl_ = !!value;
 }
 @synthesize url;
+@synthesize mutableGroupRoleList;
 - (void) dealloc {
   self.mutableDrawDataList = nil;
   self.mutableMessageList = nil;
@@ -17867,9 +17861,9 @@ static GameMessage* defaultGameMessageInstance = nil;
   self.mutableGroupListList = nil;
   self.mutableGroupMemberListList = nil;
   self.mutableNoticeListList = nil;
-  self.groupRelation = nil;
   self.mutableBadgesList = nil;
   self.url = nil;
+  self.mutableGroupRoleList = nil;
   [super dealloc];
 }
 - (id) init {
@@ -17887,7 +17881,6 @@ static GameMessage* defaultGameMessageInstance = nil;
     self.guessRank = [PBGuessRank defaultInstance];
     self.guessContest = [PBGuessContest defaultInstance];
     self.group = [PBGroup defaultInstance];
-    self.groupRelation = [PBUserRelationWithGroup defaultInstance];
     self.url = @"";
   }
   return self;
@@ -18051,6 +18044,13 @@ static DataQueryResponse* defaultDataQueryResponseInstance = nil;
   id value = [mutableBadgesList objectAtIndex:index];
   return value;
 }
+- (NSArray*) groupRoleList {
+  return mutableGroupRoleList;
+}
+- (PBGroupUserRole*) groupRoleAtIndex:(int32_t) index {
+  id value = [mutableGroupRoleList objectAtIndex:index];
+  return value;
+}
 - (BOOL) isInitialized {
   if (!self.hasResultCode) {
     return NO;
@@ -18200,6 +18200,11 @@ static DataQueryResponse* defaultDataQueryResponseInstance = nil;
       return NO;
     }
   }
+  for (PBGroupUserRole* element in self.groupRoleList) {
+    if (!element.isInitialized) {
+      return NO;
+    }
+  }
   return YES;
 }
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
@@ -18302,14 +18307,14 @@ static DataQueryResponse* defaultDataQueryResponseInstance = nil;
   for (PBGroupNotice* element in self.noticeListList) {
     [output writeMessage:153 value:element];
   }
-  if (self.hasGroupRelation) {
-    [output writeMessage:154 value:self.groupRelation];
-  }
   for (PBIntKeyIntValue* element in self.badgesList) {
     [output writeMessage:155 value:element];
   }
   if (self.hasUrl) {
     [output writeString:156 value:self.url];
+  }
+  for (PBGroupUserRole* element in self.groupRoleList) {
+    [output writeMessage:157 value:element];
   }
   [self.unknownFields writeToCodedOutputStream:output];
 }
@@ -18424,14 +18429,14 @@ static DataQueryResponse* defaultDataQueryResponseInstance = nil;
   for (PBGroupNotice* element in self.noticeListList) {
     size += computeMessageSize(153, element);
   }
-  if (self.hasGroupRelation) {
-    size += computeMessageSize(154, self.groupRelation);
-  }
   for (PBIntKeyIntValue* element in self.badgesList) {
     size += computeMessageSize(155, element);
   }
   if (self.hasUrl) {
     size += computeStringSize(156, self.url);
+  }
+  for (PBGroupUserRole* element in self.groupRoleList) {
+    size += computeMessageSize(157, element);
   }
   size += self.unknownFields.serializedSize;
   memoizedSerializedSize = size;
@@ -18667,9 +18672,6 @@ static DataQueryResponse* defaultDataQueryResponseInstance = nil;
     }
     [result.mutableNoticeListList addObjectsFromArray:other.mutableNoticeListList];
   }
-  if (other.hasGroupRelation) {
-    [self mergeGroupRelation:other.groupRelation];
-  }
   if (other.mutableBadgesList.count > 0) {
     if (result.mutableBadgesList == nil) {
       result.mutableBadgesList = [NSMutableArray array];
@@ -18678,6 +18680,12 @@ static DataQueryResponse* defaultDataQueryResponseInstance = nil;
   }
   if (other.hasUrl) {
     [self setUrl:other.url];
+  }
+  if (other.mutableGroupRoleList.count > 0) {
+    if (result.mutableGroupRoleList == nil) {
+      result.mutableGroupRoleList = [NSMutableArray array];
+    }
+    [result.mutableGroupRoleList addObjectsFromArray:other.mutableGroupRoleList];
   }
   [self mergeUnknownFields:other.unknownFields];
   return self;
@@ -18915,15 +18923,6 @@ static DataQueryResponse* defaultDataQueryResponseInstance = nil;
         [self addNoticeList:[subBuilder buildPartial]];
         break;
       }
-      case 1234: {
-        PBUserRelationWithGroup_Builder* subBuilder = [PBUserRelationWithGroup builder];
-        if (self.hasGroupRelation) {
-          [subBuilder mergeFrom:self.groupRelation];
-        }
-        [input readMessage:subBuilder extensionRegistry:extensionRegistry];
-        [self setGroupRelation:[subBuilder buildPartial]];
-        break;
-      }
       case 1242: {
         PBIntKeyIntValue_Builder* subBuilder = [PBIntKeyIntValue builder];
         [input readMessage:subBuilder extensionRegistry:extensionRegistry];
@@ -18932,6 +18931,12 @@ static DataQueryResponse* defaultDataQueryResponseInstance = nil;
       }
       case 1250: {
         [self setUrl:[input readString]];
+        break;
+      }
+      case 1258: {
+        PBGroupUserRole_Builder* subBuilder = [PBGroupUserRole builder];
+        [input readMessage:subBuilder extensionRegistry:extensionRegistry];
+        [self addGroupRole:[subBuilder buildPartial]];
         break;
       }
     }
@@ -19853,36 +19858,6 @@ static DataQueryResponse* defaultDataQueryResponseInstance = nil;
   [result.mutableNoticeListList addObject:value];
   return self;
 }
-- (BOOL) hasGroupRelation {
-  return result.hasGroupRelation;
-}
-- (PBUserRelationWithGroup*) groupRelation {
-  return result.groupRelation;
-}
-- (DataQueryResponse_Builder*) setGroupRelation:(PBUserRelationWithGroup*) value {
-  result.hasGroupRelation = YES;
-  result.groupRelation = value;
-  return self;
-}
-- (DataQueryResponse_Builder*) setGroupRelationBuilder:(PBUserRelationWithGroup_Builder*) builderForValue {
-  return [self setGroupRelation:[builderForValue build]];
-}
-- (DataQueryResponse_Builder*) mergeGroupRelation:(PBUserRelationWithGroup*) value {
-  if (result.hasGroupRelation &&
-      result.groupRelation != [PBUserRelationWithGroup defaultInstance]) {
-    result.groupRelation =
-      [[[PBUserRelationWithGroup builderWithPrototype:result.groupRelation] mergeFrom:value] buildPartial];
-  } else {
-    result.groupRelation = value;
-  }
-  result.hasGroupRelation = YES;
-  return self;
-}
-- (DataQueryResponse_Builder*) clearGroupRelation {
-  result.hasGroupRelation = NO;
-  result.groupRelation = [PBUserRelationWithGroup defaultInstance];
-  return self;
-}
 - (NSArray*) badgesList {
   if (result.mutableBadgesList == nil) { return [NSArray array]; }
   return result.mutableBadgesList;
@@ -19926,6 +19901,35 @@ static DataQueryResponse* defaultDataQueryResponseInstance = nil;
 - (DataQueryResponse_Builder*) clearUrl {
   result.hasUrl = NO;
   result.url = @"";
+  return self;
+}
+- (NSArray*) groupRoleList {
+  if (result.mutableGroupRoleList == nil) { return [NSArray array]; }
+  return result.mutableGroupRoleList;
+}
+- (PBGroupUserRole*) groupRoleAtIndex:(int32_t) index {
+  return [result groupRoleAtIndex:index];
+}
+- (DataQueryResponse_Builder*) replaceGroupRoleAtIndex:(int32_t) index with:(PBGroupUserRole*) value {
+  [result.mutableGroupRoleList replaceObjectAtIndex:index withObject:value];
+  return self;
+}
+- (DataQueryResponse_Builder*) addAllGroupRole:(NSArray*) values {
+  if (result.mutableGroupRoleList == nil) {
+    result.mutableGroupRoleList = [NSMutableArray array];
+  }
+  [result.mutableGroupRoleList addObjectsFromArray:values];
+  return self;
+}
+- (DataQueryResponse_Builder*) clearGroupRoleList {
+  result.mutableGroupRoleList = nil;
+  return self;
+}
+- (DataQueryResponse_Builder*) addGroupRole:(PBGroupUserRole*) value {
+  if (result.mutableGroupRoleList == nil) {
+    result.mutableGroupRoleList = [NSMutableArray array];
+  }
+  [result.mutableGroupRoleList addObject:value];
   return self;
 }
 @end

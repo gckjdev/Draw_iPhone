@@ -44,14 +44,6 @@ message PBGroupUsersByTitle
 }
 
 
-message PBUserRelationWithGroup
-{
-    optional int32 role = 1;
-    optional int32 permission = 2;
-    optional int32 status = 3;
-    optional string title = 4;
-}
-
 // 家族
 message PBGroup
 {
@@ -89,12 +81,16 @@ message PBGroup
 
     repeated PBGameUser guests = 43;           // 嘉宾列表
 
-    optional PBUserRelationWithGroup relation = 50; // 用来记录当前用户与此group的关系
-
     optional PBBBSPost topic = 60; //最新的话题
 }
 
 
+message PBGroupUserRole{
+    required string groupId = 1;
+    required int32 role = 2;
+    required int32 permission = 3;
+    optional string groupName = 4;
+}
 
 message PBGroupNotice{
     required string noticeId = 1;

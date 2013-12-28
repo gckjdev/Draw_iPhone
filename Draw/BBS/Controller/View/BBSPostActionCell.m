@@ -243,6 +243,11 @@
     [self.timestamp setText:self.action.createDateString];
     [self updateReplyAction];
     
+    if (self.hideReply) {
+        self.reply.hidden = YES;
+        self.option.hidden = YES;
+    }
+        
     if ([self.action isSupport]) {
         [self.supportImage setHidden:NO];
         self.content.hidden = YES;

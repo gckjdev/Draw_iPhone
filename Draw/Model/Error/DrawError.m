@@ -41,6 +41,7 @@ extern NSString* GlobalGetTrafficServerURL();
       KEY(ERROR_GROUP_NOT_MEMBER): NSLS(@"kNotGroupMember"),
       KEY(ERROR_GROUP_NOT_ADMIN): NSLS(@"kNotGroupAdmin"),
       KEY(ERROR_GROUP_NOT_INVITEE): NSLS(@"kNotInvitee"),
+      KEY(ERROR_GROUP_TITLEID_NOTEXISTED)   : NSLS(@"kTitleIDNotFound"),
       
       };
     NSString *errorMessage = errorMSGDict[KEY(code)];    

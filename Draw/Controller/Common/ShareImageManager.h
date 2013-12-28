@@ -139,15 +139,17 @@
 [view.layer setMasksToBounds:YES];    \
 }
 
-#define SET_CELL_BG_IN_CONTROLLER                     \
+#define SET_CELL_BG_IN_CONTROLLER_EVEN(even)                     \
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:       (NSIndexPath *)indexPath {                          \
-    if (indexPath.row % 2 == 0) {                       \
-        cell.backgroundColor = COLOR_GRAY;              \
-    }else{                                              \
-        cell.backgroundColor = COLOR_WHITE;             \
-    }                                                   \
-    [super tableView:tableView willDisplayCell:cell forRowAtIndexPath:indexPath]; \
+if (indexPath.row % 2 == even) {                       \
+cell.backgroundColor = COLOR_GRAY;              \
+}else{                                              \
+cell.backgroundColor = COLOR_WHITE;             \
+}                                                   \
+[super tableView:tableView willDisplayCell:cell forRowAtIndexPath:indexPath]; \
 }
+
+#define SET_CELL_BG_IN_CONTROLLER SET_CELL_BG_IN_CONTROLLER_EVEN(NO)
 
 #define SET_CELL_BG_IN_VIEW                     \
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:       (NSIndexPath *)indexPath {                          \
@@ -170,6 +172,19 @@
 #define WORD_EASY_CELL_BACKGROUND @"easy.png"
 #define WORD_NORMAL_CELL_BACKGROUND @"normal.png"
 #define WORD_HARD_CELL_BACKGROUND @"hard.png"
+
+
+typedef enum{
+    
+    BoundImageTypeLeft = 1,
+    BoundImageTypeRight,
+    BoundImageTypeTop,
+    BoundImageTypeBottom,
+    BoundImageTypeVertical,
+    BoundImageTypeHorizontal,
+    
+}BoundImageType;
+
 
 @interface ShareImageManager : NSObject <ImageManagerProtocol>
 
@@ -453,5 +468,10 @@
 
 - (UIImage *)changeBgImage;
 - (UIImage *)changeHotTopImage;
+
++ (UIImage *)boundImageWithType:(BoundImageType)type
+                         border:(CGFloat)border
+                   cornerRadius:(CGFloat)cornerRadius
+                          color:(UIColor *)color;
 
 @end

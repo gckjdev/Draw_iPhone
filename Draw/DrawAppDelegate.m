@@ -89,6 +89,7 @@
 #import "GuessManager.h"
 
 #import "GameSNSService.h"
+#import "GroupService.h"
 
 
 NSString* GlobalGetServerURL()
@@ -381,6 +382,9 @@ NSString* GlobalGetBoardServerURL()
     if ([PPConfigManager getGuessContestLocalNotificationEnabled]) {
 
     }
+    
+    [[GroupService defaultService] syncGroupRoles];
+    [[GroupService defaultService] syncFollowGroupIds];
     
     if (ISIOS7) {
 //        [application setStatusBarStyle:UIStatusBarStyleLightContent];

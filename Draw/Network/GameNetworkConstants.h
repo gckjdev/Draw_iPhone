@@ -671,6 +671,7 @@
 #define CONST_BBS_MODE 0
 
 
+
 //group
 
 #define PARA_GROUPID @"gid"
@@ -721,7 +722,7 @@
 #define METHOD_FOLLOW_TOPIC @"followTopic"
 #define METHOD_GET_TOPIC_TIMELINE @"getTopicTimeline"
 #define METHOD_GET_FOLLOWED_TOPIC @"getFollowTopics"
-#define METHOD_GET_GROUPRELATION @"getRelationWithGroup"
+//#define METHOD_GET_GROUPRELATION @"getRelationWithGroup"
 #define METHOD_SEARCH_GROUP @"searchGroup"
 #define METHOD_GET_GROUP_BADGES @"getGroupBadge"
 #define METHOD_GET_POST_ACTION_BY_USER @"getPostActionByUser"
@@ -737,7 +738,8 @@
 
 #define METHOD_UPDATE_GROUP_ICON @"updateGroupIcon"
 #define METHOD_UPDATE_GROUP_BG @"updateGroupBG"
-
+#define METHOD_SYNC_GROUP_ROLES @"syncGroupRoles"
+#define METHOD_UPDATE_GROUP_TITLE @"updateTitleName"
 
 #define METHOD_UPDATE_USER_CREDENTIAL @"updateUserCredential"
 
@@ -845,6 +847,7 @@
 #define ERROR_GROUP_NOT_MEMBER  200022  
 #define ERROR_GROUP_NOT_ADMIN  200023  
 #define ERROR_GROUP_NOT_INVITEE  200024  
+#define ERROR_GROUP_TITLEID_NOTEXISTED     200025
 #define ERROR_GROUP_NAME_EMPTY  200050
 #define ERROR_GROUP_NAME_TOO_LONG  200051
 

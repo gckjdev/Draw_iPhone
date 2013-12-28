@@ -12,6 +12,7 @@
 #import "DrawError.h"
 #import "PPConfigManager.h"
 #import "UIImageExt.h"
+#import "GroupPermission.h"
 
 
 #define GROUP_HOST     [PPConfigManager getGroupServerURL]
@@ -74,17 +75,7 @@ static GroupService *_staticGroupService = nil;
                 if (error) {
                     PPDebug(@"<GroupService> load data error = %@", error);
                     [DrawError postError:error];
-                    
-                    
-                }else{                    
-                    if ([output.pbResponse hasGroup]) {
-                        [[GroupManager defaultManager] collectGroup:output.pbResponse.group];
-                    }
-                    if ([output.pbResponse.groupListList count] != 0) {
-                        [[GroupManager defaultManager] collectGroups:output.pbResponse.groupListList];
-                    }
                 }
-
                 EXECUTE_BLOCK(callback, output.pbResponse, error);                
 
             });
@@ -107,6 +98,9 @@ static GroupService *_staticGroupService = nil;
             callback:^(DataQueryResponse *response, NSError *error )
     {
         EXECUTE_BLOCK(callback, error?nil:response.group, error);
+        if (!error) {
+            [self syncGroupRoles];
+        }
     }];
 }
 
@@ -138,7 +132,11 @@ static GroupService *_staticGroupService = nil;
           parameters:paras
             callback:^(DataQueryResponse *response, NSError *error )
      {
+         if (!error) {
+             [self syncGroupRoles];
+         }
          EXECUTE_BLOCK(callback, error);
+         
      }];
 }
 
@@ -199,6 +197,9 @@ static GroupService *_staticGroupService = nil;
             callback:^(DataQueryResponse *response, NSError *error )
      {
          EXECUTE_BLOCK(callback, error);
+         if (!error) {
+             [[GroupService defaultService] syncGroupRoles];
+         }
      }];
 }
 
@@ -290,6 +291,9 @@ static GroupService *_staticGroupService = nil;
             callback:^(DataQueryResponse *response, NSError *error )
      {
          EXECUTE_BLOCK(callback, error);
+         if (!error) {
+             [[GroupService defaultService] syncGroupRoles];
+         }
      }];
 }
 
@@ -393,7 +397,7 @@ static GroupService *_staticGroupService = nil;
             callback:^(DataQueryResponse *response, NSError *error)
      {
          if (!error) {
-             PPDebug(@"<syncFollowGroupIds> Done! follow group size = %d", [response.idListList count]);
+             PPDebug(@"<syncFollowGroupIds> Done! follow group count = %d", [response.idListList count]);
              _groupManager.followedGroupIds = [NSMutableArray arrayWithArray:response.idListList];
          }
      }];    
@@ -472,18 +476,7 @@ static GroupService *_staticGroupService = nil;
 
 }
 
-- (void)getRelationWithGroup:(NSString *)groupId
-                    callback:(RelationResultBlock)callback
-{    
-    NSDictionary *paras = @{PARA_GROUPID:groupId};
-    [self loadPBData:METHOD_GET_GROUPRELATION
-          parameters:paras
-            callback:^(DataQueryResponse *response, NSError *error)
-     {
-         PPDebug(@"<loadRelation>: title = %@, permission = %d", response.groupRelation.title, response.groupRelation.permission);
-         EXECUTE_BLOCK(callback, response.groupRelation, error);
-     }];
-}
+
 
 - (void)getGroupBadgeWithCallback:(BadgeResultBlock)callback
 {
@@ -495,28 +488,7 @@ static GroupService *_staticGroupService = nil;
      }];
 }
 
-- (PBGroup *)buildGroup:(PBGroup *)group
-           withRelation:(PBUserRelationWithGroup *)relation
-{
-    PBGroup_Builder *builder = [PBGroup builderWithPrototype:group];
-    [builder setRelation:relation];
-    PBGroup *retGroup = [builder build];
-    [[GroupManager defaultManager] collectGroup:retGroup];
-    return retGroup;
-}
 
-
-- (PBGroup *)buildGroupWithDefaultRelation:(PBGroup *)group
-{
-    PBUserRelationWithGroup_Builder *builder = [[PBUserRelationWithGroup_Builder alloc] init];
-    [builder setRole:GroupRoleNone];
-    [builder setPermission:GROUP_DEFAULT_PERMISSION];
-    [builder setStatus:0];
-    PBUserRelationWithGroup *relation = [builder build];
-    [builder release];
-    return [self buildGroup:group withRelation:relation];
-    
-}
 
 - (void)acceptInvitation:(NSString *)noticeId callback:(SimpleResultBlock)callback
 {
@@ -524,6 +496,9 @@ static GroupService *_staticGroupService = nil;
           parameters:@{PARA_NOTICEID:noticeId}
             callback:^(DataQueryResponse *response, NSError *error) {
         EXECUTE_BLOCK(callback, error);
+        if (!error) {
+            [[GroupService defaultService] syncGroupRoles];
+        }
     }];
 }
 
@@ -555,6 +530,25 @@ static GroupService *_staticGroupService = nil;
                 EXECUTE_BLOCK(callback, error);
     }];
 
+}
+
+- (void)updateGroupTitle:(NSString *)groupId
+                 titleId:(NSInteger) titleId
+                   title:(NSString *)title
+                callback:(SimpleResultBlock)callback
+{
+    NSDictionary *info = @{PARA_TITLE_ID: @(titleId),
+                           PARA_TITLE:title,
+                           PARA_GROUPID:groupId};
+    
+    [self loadPBData:METHOD_UPDATE_GROUP_TITLE
+          parameters:info
+            callback:^(DataQueryResponse *response, NSError *error) {
+                if (!error) {
+                    [GroupManager didUpdatedGroupTitle:groupId title:title titleId:titleId];
+                }
+                EXECUTE_BLOCK(callback, error);
+    }];
 }
 
 - (void)deleteGroupTitleId:(NSInteger)titleId
@@ -671,6 +665,20 @@ static GroupService *_staticGroupService = nil;
              callback:callback];
 }
 
+
+- (void)syncGroupRoles
+{
+    
+    [self loadPBData:METHOD_SYNC_GROUP_ROLES
+          parameters:nil
+            callback:^(DataQueryResponse *response, NSError *error )
+     {
+         if (!error) {
+             PPDebug(@"<syncGroupRoles> roles list count = %d", [response.groupRoleList count]);
+             [GroupPermissionManager syncGroupRoles:response.groupRoleList];
+         }
+     }];
+}
 
 - (void)updateGroup:(NSString *)groupId
             BGImage:(UIImage *)image

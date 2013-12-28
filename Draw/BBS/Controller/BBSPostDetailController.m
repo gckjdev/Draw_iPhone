@@ -73,15 +73,14 @@ typedef enum{
     return [pd autorelease];
 }
 
-+ (BBSPostDetailController *)enterPostDetailControllerWithPost:(PBBBSPost *)post
-                                                         group:(PBGroup *)group
-                                                fromController:(UIViewController *)fromController
-                                                      animated:(BOOL)animated
++ (BBSPostDetailController *)enterGroupPostDetailController:(PBBBSPost *)post
+                                             fromController:(UIViewController *)fromController
+                                                   animated:(BOOL)animated;
+
 {
     BBSPostDetailController *pd = [[BBSPostDetailController alloc] init];
     pd.post = post;
     pd.postID = post.postId;
-    pd.group = group;
     pd.forGroup = YES;
     [fromController.navigationController pushViewController:pd animated:animated];
     return [pd autorelease];
@@ -111,7 +110,6 @@ typedef enum{
     PPRelease(_toolBarBG);
     PPRelease(_header);
     PPRelease(_refreshButton);
-    PPRelease(_group);
     PPRelease(_grpPermissionManager);
     [super dealloc];
 }
@@ -123,6 +121,11 @@ typedef enum{
         _defaultTabIndex = 1;
     }
     return self;
+}
+
+- (NSString *)groupId
+{
+    return _post.boardId;
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -168,7 +171,7 @@ typedef enum{
             [list addObject:tc];
         }
     }else{
-        list = [GroupManager getTopicCMDList:post inGroup:_group];
+        list = [GroupManager getTopicCMDList:post inGroup:[self groupId]];
         for (BBSPostCommand *cmd in list) {
             cmd.controller = self;
             cmd.forGroup = YES;
@@ -246,10 +249,8 @@ typedef enum{
 - (void)initGroupData
 {
     if (self.forGroup) {
-        if (self.group == nil) {
-            self.group = [[GroupManager defaultManager] findGroupById:self.post.boardId];
-        }
-        self.grpPermissionManager = [GroupPermissionManager myManagerWithGroup:_group];
+        NSString *groupId = self.post.boardId;
+        self.grpPermissionManager = [GroupPermissionManager myManagerWithGroupId:groupId];
     }
 }
 
@@ -468,6 +469,7 @@ typedef enum{
                 }
                 PBBBSAction *action = [self actionForIndexPath:indexPath];
                 [cell setCurrentUserId:self.currentUserId];
+                cell.hideReply = ![_grpPermissionManager canReplyTopic];
                 [cell updateCellWithBBSAction:action post:self.post];
                 if ([self.post canPay] && action == _selectedAction && ![action isMyAction]) {
                     [cell showOption:YES];

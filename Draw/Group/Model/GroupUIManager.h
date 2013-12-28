@@ -43,5 +43,5 @@ typedef enum {
 
 + (NSArray *)imagesForFooterActionTypes:(NSArray *)types;
 
-
++ (UIImage *)addButtonImage;
 @end

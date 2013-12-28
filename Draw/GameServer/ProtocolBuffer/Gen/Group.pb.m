@@ -842,298 +842,6 @@ static PBGroupUsersByTitle* defaultPBGroupUsersByTitleInstance = nil;
 }
 @end
 
-@interface PBUserRelationWithGroup ()
-@property int32_t role;
-@property int32_t permission;
-@property int32_t status;
-@property (retain) NSString* title;
-@end
-
-@implementation PBUserRelationWithGroup
-
-- (BOOL) hasRole {
-  return !!hasRole_;
-}
-- (void) setHasRole:(BOOL) value {
-  hasRole_ = !!value;
-}
-@synthesize role;
-- (BOOL) hasPermission {
-  return !!hasPermission_;
-}
-- (void) setHasPermission:(BOOL) value {
-  hasPermission_ = !!value;
-}
-@synthesize permission;
-- (BOOL) hasStatus {
-  return !!hasStatus_;
-}
-- (void) setHasStatus:(BOOL) value {
-  hasStatus_ = !!value;
-}
-@synthesize status;
-- (BOOL) hasTitle {
-  return !!hasTitle_;
-}
-- (void) setHasTitle:(BOOL) value {
-  hasTitle_ = !!value;
-}
-@synthesize title;
-- (void) dealloc {
-  self.title = nil;
-  [super dealloc];
-}
-- (id) init {
-  if ((self = [super init])) {
-    self.role = 0;
-    self.permission = 0;
-    self.status = 0;
-    self.title = @"";
-  }
-  return self;
-}
-static PBUserRelationWithGroup* defaultPBUserRelationWithGroupInstance = nil;
-+ (void) initialize {
-  if (self == [PBUserRelationWithGroup class]) {
-    defaultPBUserRelationWithGroupInstance = [[PBUserRelationWithGroup alloc] init];
-  }
-}
-+ (PBUserRelationWithGroup*) defaultInstance {
-  return defaultPBUserRelationWithGroupInstance;
-}
-- (PBUserRelationWithGroup*) defaultInstance {
-  return defaultPBUserRelationWithGroupInstance;
-}
-- (BOOL) isInitialized {
-  return YES;
-}
-- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
-  if (self.hasRole) {
-    [output writeInt32:1 value:self.role];
-  }
-  if (self.hasPermission) {
-    [output writeInt32:2 value:self.permission];
-  }
-  if (self.hasStatus) {
-    [output writeInt32:3 value:self.status];
-  }
-  if (self.hasTitle) {
-    [output writeString:4 value:self.title];
-  }
-  [self.unknownFields writeToCodedOutputStream:output];
-}
-- (int32_t) serializedSize {
-  int32_t size = memoizedSerializedSize;
-  if (size != -1) {
-    return size;
-  }
-
-  size = 0;
-  if (self.hasRole) {
-    size += computeInt32Size(1, self.role);
-  }
-  if (self.hasPermission) {
-    size += computeInt32Size(2, self.permission);
-  }
-  if (self.hasStatus) {
-    size += computeInt32Size(3, self.status);
-  }
-  if (self.hasTitle) {
-    size += computeStringSize(4, self.title);
-  }
-  size += self.unknownFields.serializedSize;
-  memoizedSerializedSize = size;
-  return size;
-}
-+ (PBUserRelationWithGroup*) parseFromData:(NSData*) data {
-  return (PBUserRelationWithGroup*)[[[PBUserRelationWithGroup builder] mergeFromData:data] build];
-}
-+ (PBUserRelationWithGroup*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  return (PBUserRelationWithGroup*)[[[PBUserRelationWithGroup builder] mergeFromData:data extensionRegistry:extensionRegistry] build];
-}
-+ (PBUserRelationWithGroup*) parseFromInputStream:(NSInputStream*) input {
-  return (PBUserRelationWithGroup*)[[[PBUserRelationWithGroup builder] mergeFromInputStream:input] build];
-}
-+ (PBUserRelationWithGroup*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  return (PBUserRelationWithGroup*)[[[PBUserRelationWithGroup builder] mergeFromInputStream:input extensionRegistry:extensionRegistry] build];
-}
-+ (PBUserRelationWithGroup*) parseFromCodedInputStream:(PBCodedInputStream*) input {
-  return (PBUserRelationWithGroup*)[[[PBUserRelationWithGroup builder] mergeFromCodedInputStream:input] build];
-}
-+ (PBUserRelationWithGroup*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  return (PBUserRelationWithGroup*)[[[PBUserRelationWithGroup builder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] build];
-}
-+ (PBUserRelationWithGroup_Builder*) builder {
-  return [[[PBUserRelationWithGroup_Builder alloc] init] autorelease];
-}
-+ (PBUserRelationWithGroup_Builder*) builderWithPrototype:(PBUserRelationWithGroup*) prototype {
-  return [[PBUserRelationWithGroup builder] mergeFrom:prototype];
-}
-- (PBUserRelationWithGroup_Builder*) builder {
-  return [PBUserRelationWithGroup builder];
-}
-@end
-
-@interface PBUserRelationWithGroup_Builder()
-@property (retain) PBUserRelationWithGroup* result;
-@end
-
-@implementation PBUserRelationWithGroup_Builder
-@synthesize result;
-- (void) dealloc {
-  self.result = nil;
-  [super dealloc];
-}
-- (id) init {
-  if ((self = [super init])) {
-    self.result = [[[PBUserRelationWithGroup alloc] init] autorelease];
-  }
-  return self;
-}
-- (PBGeneratedMessage*) internalGetResult {
-  return result;
-}
-- (PBUserRelationWithGroup_Builder*) clear {
-  self.result = [[[PBUserRelationWithGroup alloc] init] autorelease];
-  return self;
-}
-- (PBUserRelationWithGroup_Builder*) clone {
-  return [PBUserRelationWithGroup builderWithPrototype:result];
-}
-- (PBUserRelationWithGroup*) defaultInstance {
-  return [PBUserRelationWithGroup defaultInstance];
-}
-- (PBUserRelationWithGroup*) build {
-  [self checkInitialized];
-  return [self buildPartial];
-}
-- (PBUserRelationWithGroup*) buildPartial {
-  PBUserRelationWithGroup* returnMe = [[result retain] autorelease];
-  self.result = nil;
-  return returnMe;
-}
-- (PBUserRelationWithGroup_Builder*) mergeFrom:(PBUserRelationWithGroup*) other {
-  if (other == [PBUserRelationWithGroup defaultInstance]) {
-    return self;
-  }
-  if (other.hasRole) {
-    [self setRole:other.role];
-  }
-  if (other.hasPermission) {
-    [self setPermission:other.permission];
-  }
-  if (other.hasStatus) {
-    [self setStatus:other.status];
-  }
-  if (other.hasTitle) {
-    [self setTitle:other.title];
-  }
-  [self mergeUnknownFields:other.unknownFields];
-  return self;
-}
-- (PBUserRelationWithGroup_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input {
-  return [self mergeFromCodedInputStream:input extensionRegistry:[PBExtensionRegistry emptyRegistry]];
-}
-- (PBUserRelationWithGroup_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  PBUnknownFieldSet_Builder* unknownFields = [PBUnknownFieldSet builderWithUnknownFields:self.unknownFields];
-  while (YES) {
-    int32_t tag = [input readTag];
-    switch (tag) {
-      case 0:
-        [self setUnknownFields:[unknownFields build]];
-        return self;
-      default: {
-        if (![self parseUnknownField:input unknownFields:unknownFields extensionRegistry:extensionRegistry tag:tag]) {
-          [self setUnknownFields:[unknownFields build]];
-          return self;
-        }
-        break;
-      }
-      case 8: {
-        [self setRole:[input readInt32]];
-        break;
-      }
-      case 16: {
-        [self setPermission:[input readInt32]];
-        break;
-      }
-      case 24: {
-        [self setStatus:[input readInt32]];
-        break;
-      }
-      case 34: {
-        [self setTitle:[input readString]];
-        break;
-      }
-    }
-  }
-}
-- (BOOL) hasRole {
-  return result.hasRole;
-}
-- (int32_t) role {
-  return result.role;
-}
-- (PBUserRelationWithGroup_Builder*) setRole:(int32_t) value {
-  result.hasRole = YES;
-  result.role = value;
-  return self;
-}
-- (PBUserRelationWithGroup_Builder*) clearRole {
-  result.hasRole = NO;
-  result.role = 0;
-  return self;
-}
-- (BOOL) hasPermission {
-  return result.hasPermission;
-}
-- (int32_t) permission {
-  return result.permission;
-}
-- (PBUserRelationWithGroup_Builder*) setPermission:(int32_t) value {
-  result.hasPermission = YES;
-  result.permission = value;
-  return self;
-}
-- (PBUserRelationWithGroup_Builder*) clearPermission {
-  result.hasPermission = NO;
-  result.permission = 0;
-  return self;
-}
-- (BOOL) hasStatus {
-  return result.hasStatus;
-}
-- (int32_t) status {
-  return result.status;
-}
-- (PBUserRelationWithGroup_Builder*) setStatus:(int32_t) value {
-  result.hasStatus = YES;
-  result.status = value;
-  return self;
-}
-- (PBUserRelationWithGroup_Builder*) clearStatus {
-  result.hasStatus = NO;
-  result.status = 0;
-  return self;
-}
-- (BOOL) hasTitle {
-  return result.hasTitle;
-}
-- (NSString*) title {
-  return result.title;
-}
-- (PBUserRelationWithGroup_Builder*) setTitle:(NSString*) value {
-  result.hasTitle = YES;
-  result.title = value;
-  return self;
-}
-- (PBUserRelationWithGroup_Builder*) clearTitle {
-  result.hasTitle = NO;
-  result.title = @"";
-  return self;
-}
-@end
-
 @interface PBGroup ()
 @property (retain) NSString* groupId;
 @property (retain) NSString* name;
@@ -1159,7 +867,6 @@ static PBUserRelationWithGroup* defaultPBUserRelationWithGroupInstance = nil;
 @property (retain) NSMutableArray* mutableAdminsList;
 @property (retain) NSMutableArray* mutableUsersList;
 @property (retain) NSMutableArray* mutableGuestsList;
-@property (retain) PBUserRelationWithGroup* relation;
 @property (retain) PBBBSPost* topic;
 @end
 
@@ -1309,13 +1016,6 @@ static PBUserRelationWithGroup* defaultPBUserRelationWithGroupInstance = nil;
 @synthesize mutableAdminsList;
 @synthesize mutableUsersList;
 @synthesize mutableGuestsList;
-- (BOOL) hasRelation {
-  return !!hasRelation_;
-}
-- (void) setHasRelation:(BOOL) value {
-  hasRelation_ = !!value;
-}
-@synthesize relation;
 - (BOOL) hasTopic {
   return !!hasTopic_;
 }
@@ -1336,7 +1036,6 @@ static PBUserRelationWithGroup* defaultPBUserRelationWithGroupInstance = nil;
   self.mutableAdminsList = nil;
   self.mutableUsersList = nil;
   self.mutableGuestsList = nil;
-  self.relation = nil;
   self.topic = nil;
   [super dealloc];
 }
@@ -1362,7 +1061,6 @@ static PBUserRelationWithGroup* defaultPBUserRelationWithGroupInstance = nil;
     self.bgImage = @"";
     self.medalImage = @"";
     self.creator = [PBGameUser defaultInstance];
-    self.relation = [PBUserRelationWithGroup defaultInstance];
     self.topic = [PBBBSPost defaultInstance];
   }
   return self;
@@ -1519,9 +1217,6 @@ static PBGroup* defaultPBGroupInstance = nil;
   for (PBGameUser* element in self.guestsList) {
     [output writeMessage:43 value:element];
   }
-  if (self.hasRelation) {
-    [output writeMessage:50 value:self.relation];
-  }
   if (self.hasTopic) {
     [output writeMessage:60 value:self.topic];
   }
@@ -1605,9 +1300,6 @@ static PBGroup* defaultPBGroupInstance = nil;
   }
   for (PBGameUser* element in self.guestsList) {
     size += computeMessageSize(43, element);
-  }
-  if (self.hasRelation) {
-    size += computeMessageSize(50, self.relation);
   }
   if (self.hasTopic) {
     size += computeMessageSize(60, self.topic);
@@ -1771,9 +1463,6 @@ static PBGroup* defaultPBGroupInstance = nil;
     }
     [result.mutableGuestsList addObjectsFromArray:other.mutableGuestsList];
   }
-  if (other.hasRelation) {
-    [self mergeRelation:other.relation];
-  }
   if (other.hasTopic) {
     [self mergeTopic:other.topic];
   }
@@ -1905,15 +1594,6 @@ static PBGroup* defaultPBGroupInstance = nil;
         PBGameUser_Builder* subBuilder = [PBGameUser builder];
         [input readMessage:subBuilder extensionRegistry:extensionRegistry];
         [self addGuests:[subBuilder buildPartial]];
-        break;
-      }
-      case 402: {
-        PBUserRelationWithGroup_Builder* subBuilder = [PBUserRelationWithGroup builder];
-        if (self.hasRelation) {
-          [subBuilder mergeFrom:self.relation];
-        }
-        [input readMessage:subBuilder extensionRegistry:extensionRegistry];
-        [self setRelation:[subBuilder buildPartial]];
         break;
       }
       case 482: {
@@ -2378,36 +2058,6 @@ static PBGroup* defaultPBGroupInstance = nil;
   [result.mutableGuestsList addObject:value];
   return self;
 }
-- (BOOL) hasRelation {
-  return result.hasRelation;
-}
-- (PBUserRelationWithGroup*) relation {
-  return result.relation;
-}
-- (PBGroup_Builder*) setRelation:(PBUserRelationWithGroup*) value {
-  result.hasRelation = YES;
-  result.relation = value;
-  return self;
-}
-- (PBGroup_Builder*) setRelationBuilder:(PBUserRelationWithGroup_Builder*) builderForValue {
-  return [self setRelation:[builderForValue build]];
-}
-- (PBGroup_Builder*) mergeRelation:(PBUserRelationWithGroup*) value {
-  if (result.hasRelation &&
-      result.relation != [PBUserRelationWithGroup defaultInstance]) {
-    result.relation =
-      [[[PBUserRelationWithGroup builderWithPrototype:result.relation] mergeFrom:value] buildPartial];
-  } else {
-    result.relation = value;
-  }
-  result.hasRelation = YES;
-  return self;
-}
-- (PBGroup_Builder*) clearRelation {
-  result.hasRelation = NO;
-  result.relation = [PBUserRelationWithGroup defaultInstance];
-  return self;
-}
 - (BOOL) hasTopic {
   return result.hasTopic;
 }
@@ -2436,6 +2086,308 @@ static PBGroup* defaultPBGroupInstance = nil;
 - (PBGroup_Builder*) clearTopic {
   result.hasTopic = NO;
   result.topic = [PBBBSPost defaultInstance];
+  return self;
+}
+@end
+
+@interface PBGroupUserRole ()
+@property (retain) NSString* groupId;
+@property int32_t role;
+@property int32_t permission;
+@property (retain) NSString* groupName;
+@end
+
+@implementation PBGroupUserRole
+
+- (BOOL) hasGroupId {
+  return !!hasGroupId_;
+}
+- (void) setHasGroupId:(BOOL) value {
+  hasGroupId_ = !!value;
+}
+@synthesize groupId;
+- (BOOL) hasRole {
+  return !!hasRole_;
+}
+- (void) setHasRole:(BOOL) value {
+  hasRole_ = !!value;
+}
+@synthesize role;
+- (BOOL) hasPermission {
+  return !!hasPermission_;
+}
+- (void) setHasPermission:(BOOL) value {
+  hasPermission_ = !!value;
+}
+@synthesize permission;
+- (BOOL) hasGroupName {
+  return !!hasGroupName_;
+}
+- (void) setHasGroupName:(BOOL) value {
+  hasGroupName_ = !!value;
+}
+@synthesize groupName;
+- (void) dealloc {
+  self.groupId = nil;
+  self.groupName = nil;
+  [super dealloc];
+}
+- (id) init {
+  if ((self = [super init])) {
+    self.groupId = @"";
+    self.role = 0;
+    self.permission = 0;
+    self.groupName = @"";
+  }
+  return self;
+}
+static PBGroupUserRole* defaultPBGroupUserRoleInstance = nil;
++ (void) initialize {
+  if (self == [PBGroupUserRole class]) {
+    defaultPBGroupUserRoleInstance = [[PBGroupUserRole alloc] init];
+  }
+}
++ (PBGroupUserRole*) defaultInstance {
+  return defaultPBGroupUserRoleInstance;
+}
+- (PBGroupUserRole*) defaultInstance {
+  return defaultPBGroupUserRoleInstance;
+}
+- (BOOL) isInitialized {
+  if (!self.hasGroupId) {
+    return NO;
+  }
+  if (!self.hasRole) {
+    return NO;
+  }
+  if (!self.hasPermission) {
+    return NO;
+  }
+  return YES;
+}
+- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
+  if (self.hasGroupId) {
+    [output writeString:1 value:self.groupId];
+  }
+  if (self.hasRole) {
+    [output writeInt32:2 value:self.role];
+  }
+  if (self.hasPermission) {
+    [output writeInt32:3 value:self.permission];
+  }
+  if (self.hasGroupName) {
+    [output writeString:4 value:self.groupName];
+  }
+  [self.unknownFields writeToCodedOutputStream:output];
+}
+- (int32_t) serializedSize {
+  int32_t size = memoizedSerializedSize;
+  if (size != -1) {
+    return size;
+  }
+
+  size = 0;
+  if (self.hasGroupId) {
+    size += computeStringSize(1, self.groupId);
+  }
+  if (self.hasRole) {
+    size += computeInt32Size(2, self.role);
+  }
+  if (self.hasPermission) {
+    size += computeInt32Size(3, self.permission);
+  }
+  if (self.hasGroupName) {
+    size += computeStringSize(4, self.groupName);
+  }
+  size += self.unknownFields.serializedSize;
+  memoizedSerializedSize = size;
+  return size;
+}
++ (PBGroupUserRole*) parseFromData:(NSData*) data {
+  return (PBGroupUserRole*)[[[PBGroupUserRole builder] mergeFromData:data] build];
+}
++ (PBGroupUserRole*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (PBGroupUserRole*)[[[PBGroupUserRole builder] mergeFromData:data extensionRegistry:extensionRegistry] build];
+}
++ (PBGroupUserRole*) parseFromInputStream:(NSInputStream*) input {
+  return (PBGroupUserRole*)[[[PBGroupUserRole builder] mergeFromInputStream:input] build];
+}
++ (PBGroupUserRole*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (PBGroupUserRole*)[[[PBGroupUserRole builder] mergeFromInputStream:input extensionRegistry:extensionRegistry] build];
+}
++ (PBGroupUserRole*) parseFromCodedInputStream:(PBCodedInputStream*) input {
+  return (PBGroupUserRole*)[[[PBGroupUserRole builder] mergeFromCodedInputStream:input] build];
+}
++ (PBGroupUserRole*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (PBGroupUserRole*)[[[PBGroupUserRole builder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] build];
+}
++ (PBGroupUserRole_Builder*) builder {
+  return [[[PBGroupUserRole_Builder alloc] init] autorelease];
+}
++ (PBGroupUserRole_Builder*) builderWithPrototype:(PBGroupUserRole*) prototype {
+  return [[PBGroupUserRole builder] mergeFrom:prototype];
+}
+- (PBGroupUserRole_Builder*) builder {
+  return [PBGroupUserRole builder];
+}
+@end
+
+@interface PBGroupUserRole_Builder()
+@property (retain) PBGroupUserRole* result;
+@end
+
+@implementation PBGroupUserRole_Builder
+@synthesize result;
+- (void) dealloc {
+  self.result = nil;
+  [super dealloc];
+}
+- (id) init {
+  if ((self = [super init])) {
+    self.result = [[[PBGroupUserRole alloc] init] autorelease];
+  }
+  return self;
+}
+- (PBGeneratedMessage*) internalGetResult {
+  return result;
+}
+- (PBGroupUserRole_Builder*) clear {
+  self.result = [[[PBGroupUserRole alloc] init] autorelease];
+  return self;
+}
+- (PBGroupUserRole_Builder*) clone {
+  return [PBGroupUserRole builderWithPrototype:result];
+}
+- (PBGroupUserRole*) defaultInstance {
+  return [PBGroupUserRole defaultInstance];
+}
+- (PBGroupUserRole*) build {
+  [self checkInitialized];
+  return [self buildPartial];
+}
+- (PBGroupUserRole*) buildPartial {
+  PBGroupUserRole* returnMe = [[result retain] autorelease];
+  self.result = nil;
+  return returnMe;
+}
+- (PBGroupUserRole_Builder*) mergeFrom:(PBGroupUserRole*) other {
+  if (other == [PBGroupUserRole defaultInstance]) {
+    return self;
+  }
+  if (other.hasGroupId) {
+    [self setGroupId:other.groupId];
+  }
+  if (other.hasRole) {
+    [self setRole:other.role];
+  }
+  if (other.hasPermission) {
+    [self setPermission:other.permission];
+  }
+  if (other.hasGroupName) {
+    [self setGroupName:other.groupName];
+  }
+  [self mergeUnknownFields:other.unknownFields];
+  return self;
+}
+- (PBGroupUserRole_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input {
+  return [self mergeFromCodedInputStream:input extensionRegistry:[PBExtensionRegistry emptyRegistry]];
+}
+- (PBGroupUserRole_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  PBUnknownFieldSet_Builder* unknownFields = [PBUnknownFieldSet builderWithUnknownFields:self.unknownFields];
+  while (YES) {
+    int32_t tag = [input readTag];
+    switch (tag) {
+      case 0:
+        [self setUnknownFields:[unknownFields build]];
+        return self;
+      default: {
+        if (![self parseUnknownField:input unknownFields:unknownFields extensionRegistry:extensionRegistry tag:tag]) {
+          [self setUnknownFields:[unknownFields build]];
+          return self;
+        }
+        break;
+      }
+      case 10: {
+        [self setGroupId:[input readString]];
+        break;
+      }
+      case 16: {
+        [self setRole:[input readInt32]];
+        break;
+      }
+      case 24: {
+        [self setPermission:[input readInt32]];
+        break;
+      }
+      case 34: {
+        [self setGroupName:[input readString]];
+        break;
+      }
+    }
+  }
+}
+- (BOOL) hasGroupId {
+  return result.hasGroupId;
+}
+- (NSString*) groupId {
+  return result.groupId;
+}
+- (PBGroupUserRole_Builder*) setGroupId:(NSString*) value {
+  result.hasGroupId = YES;
+  result.groupId = value;
+  return self;
+}
+- (PBGroupUserRole_Builder*) clearGroupId {
+  result.hasGroupId = NO;
+  result.groupId = @"";
+  return self;
+}
+- (BOOL) hasRole {
+  return result.hasRole;
+}
+- (int32_t) role {
+  return result.role;
+}
+- (PBGroupUserRole_Builder*) setRole:(int32_t) value {
+  result.hasRole = YES;
+  result.role = value;
+  return self;
+}
+- (PBGroupUserRole_Builder*) clearRole {
+  result.hasRole = NO;
+  result.role = 0;
+  return self;
+}
+- (BOOL) hasPermission {
+  return result.hasPermission;
+}
+- (int32_t) permission {
+  return result.permission;
+}
+- (PBGroupUserRole_Builder*) setPermission:(int32_t) value {
+  result.hasPermission = YES;
+  result.permission = value;
+  return self;
+}
+- (PBGroupUserRole_Builder*) clearPermission {
+  result.hasPermission = NO;
+  result.permission = 0;
+  return self;
+}
+- (BOOL) hasGroupName {
+  return result.hasGroupName;
+}
+- (NSString*) groupName {
+  return result.groupName;
+}
+- (PBGroupUserRole_Builder*) setGroupName:(NSString*) value {
+  result.hasGroupName = YES;
+  result.groupName = value;
+  return self;
+}
+- (PBGroupUserRole_Builder*) clearGroupName {
+  result.hasGroupName = NO;
+  result.groupName = @"";
   return self;
 }
 @end

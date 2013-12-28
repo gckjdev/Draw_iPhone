@@ -36,6 +36,7 @@
 //只看用户
 @property (retain, nonatomic) NSString *currentUserId;
 @property (retain, nonatomic) IBOutlet UIButton *seeMeOnly;
+@property (assign, nonatomic) BOOL hideReply;
 - (IBAction)clickSeeMeOnly:(id)sender;
 
 - (IBAction)clickRepyButton:(id)sender;
