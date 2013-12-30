@@ -83,6 +83,11 @@ typedef void (^ GetFeedListCompleteBlock)(int resultCode, NSArray* feedList);
          opusCount:(NSInteger)count
         resultCode:(NSInteger)resultCode;
 
+
+
+- (void)didGetWonderfulContestOpusList:(NSArray *)feedList
+                            resultCode:(NSInteger)resultCode;
+
 @end
 
 @interface FeedService : CommonService
@@ -240,5 +245,13 @@ typedef void (^ GetFeedListCompleteBlock)(int resultCode, NSArray* feedList);
         resultBlock:(FeedActionResultBlock)resultBlock;
 
 - (void)askSetHotScore:(NSString*)opusId viewController:(UIViewController*)viewController;
+
+
+
+- (void)getWonderfulContestOpusListWithOffset:(NSInteger)offset
+                                        limit:(NSInteger)limit
+                                     delegate:(id<FeedServiceDelegate>)delegate;
+
+
 
 @end

@@ -178,7 +178,7 @@
 {
 #ifdef DEBUG
     //    return @"http://58.215.184.18:8699/api/i?";
-    return @"http://localhost:8100/api/i?";
+    return @"http://192.168.100.192:8100/api/i?";
 //    return @"http://192.168.1.11:8100/api/i?";
 #endif
     return [MobClickUtils getStringValueByKey:@"GROUP_SERVER_URL" defaultValue:@"http://www.place100.com:8100/api/i?"];

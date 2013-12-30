@@ -6,10 +6,6 @@
 
 @class PBApp;
 @class PBApp_Builder;
-@class PBContest;
-@class PBContestList;
-@class PBContestList_Builder;
-@class PBContest_Builder;
 @class PBDice;
 @class PBDiceAction;
 @class PBDiceAction_Builder;

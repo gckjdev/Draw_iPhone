@@ -1,5 +1,6 @@
 
 import "GameConstants.proto";
+//import "Group.proto";
 
 package game;
 
@@ -445,47 +446,6 @@ message PBUserAward
     optional string contestId = 20;                 
 }
 
-
-message PBContest
-{
-    required string contestId = 1;
-    optional int32  startDate = 2;
-    optional int32  endDate = 3;
-    optional int32  type = 4;
-    optional int32  status = 5;                         // 参见PBContestStatus 
-    optional int32  participantCount = 6;
-    optional int32  opusCount = 7;
-    optional string title = 8;
-    optional string contestUrl = 9;
-    optional string statementUrl = 10;
-    optional int32  voteStartDate = 11;
-    optional int32  voteEndDate = 12;
-    optional bool   isAnounymous = 13;
-
-
-    optional int32  canSubmitCount = 31 [default=1];
-    optional int32  maxFlowerPerContest = 32 [default=20];
-    optional int32  maxFlowerPerOpus = 33 [default=3];
-    optional int32  judgeRankWeight = 34;                   // 评委评分的权重
-
-    optional bool   canSubmit = 41;                         // 是否可以提交作品
-    optional bool   canVote = 42;                           // 是否可以投票
-
-    optional bool   contestantsOnly = 49 [default=false];   // 是否只有在contestants列表里的用户才可以参赛，默认对所有选手开放
-    repeated PBGameUser contestants = 50;                   // 指定的参赛选手列表
-    repeated PBGameUser judges = 51;
-    repeated PBGameUser reporters = 52;
-    repeated PBUserAward winnerUsers = 53;
-    repeated PBUserAward awardUsers = 54;
-    repeated PBIntKeyValue rankTypes = 55;         // 奖励类型，key为类型整数值，value为类型名字，如最佳创意奖
-    
-
-}
-
-message PBContestList
-{
-    repeated PBContest contests = 1;
-}
 
 enum PBTaskStatus
 {

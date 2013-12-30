@@ -7,6 +7,10 @@
 //
 
 #import "CommonService.h"
+#import "Contest.h"
+
+typedef void (^ CreateContestBlock) (int resultCode, Contest *contest);
+
 
 #define NOTIFCATION_CONTEST_DATA_CHANGE     @"NOTIFCATION_CONTEST_DATA_CHANGE"
 
@@ -27,6 +31,9 @@ typedef enum{
 - (void)didGetMyContestList:(NSArray *)contestList 
                resultCode:(NSInteger)code;
 
+- (void)didGetContestOpusList:(NSArray *)opusList
+                   resultCode:(NSInteger)code;
+
 @end
 
 @interface ContestService : CommonService
@@ -39,6 +46,11 @@ typedef enum{
                          limit:(NSInteger)limit
                       delegate:(id<ContestServiceDelegate>)delegate;
 
+- (void)getGroupContestListWithType:(ContestListType)type
+                             offset:(NSInteger)offset
+                              limit:(NSInteger)limit
+                           delegate:(id<ContestServiceDelegate>)delegate;
+
 - (void)getMyContestListWithOffset:(NSInteger)offset
                          limit:(NSInteger)limit
                       delegate:(id<ContestServiceDelegate>)delegate;
@@ -49,6 +61,14 @@ typedef enum{
 
 - (void)acceptContest:(NSString*)contestId;
 - (long)newContestCount;
+
+
+
+// 家族比赛
+- (void)createContest:(Contest *)contest
+            completed:(CreateContestBlock)completed;
+
+
 
 
 @end

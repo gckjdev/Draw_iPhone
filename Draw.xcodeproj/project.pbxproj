@@ -182,6 +182,14 @@
 		A4326D8E180D239600D50F0A /* DrawDefault-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4326D93180D239600D50F0A /* DrawDefault-568h@2x.png */; };
 		A4326D96180D23D400D50F0A /* DrawDefault@2x~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = A4326D9B180D23D400D50F0A /* DrawDefault@2x~ipad.png */; };
 		A4326D9E180D23F500D50F0A /* DrawDefault@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4326DA3180D23F500D50F0A /* DrawDefault@2x.png */; };
+		A434171E18711AFB008D0A2B /* ContestCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A434171B18711AFB008D0A2B /* ContestCell.m */; };
+		A434171F18711AFB008D0A2B /* ContestCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A434171B18711AFB008D0A2B /* ContestCell.m */; };
+		A434172018711AFB008D0A2B /* ContestCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A434171B18711AFB008D0A2B /* ContestCell.m */; };
+		A434172118711AFB008D0A2B /* ContestCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A434171B18711AFB008D0A2B /* ContestCell.m */; };
+		A434172218711AFB008D0A2B /* ContestCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A434171C18711AFB008D0A2B /* ContestCell.xib */; };
+		A434172318711AFB008D0A2B /* ContestCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A434171C18711AFB008D0A2B /* ContestCell.xib */; };
+		A434172418711AFB008D0A2B /* ContestCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A434171C18711AFB008D0A2B /* ContestCell.xib */; };
+		A434172518711AFB008D0A2B /* ContestCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A434171C18711AFB008D0A2B /* ContestCell.xib */; };
 		A4348C5C1717C0FA004AFB26 /* AlixPayOrderManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A4348C591717C0FA004AFB26 /* AlixPayOrderManager.m */; };
 		A4348C611717C0FA004AFB26 /* NotificationCenterManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A4348C5B1717C0FA004AFB26 /* NotificationCenterManager.m */; };
 		A4364368176706A4006B6946 /* Opus.proto in Resources */ = {isa = PBXBuildFile; fileRef = A4364367176706A4006B6946 /* Opus.proto */; };
@@ -7412,6 +7420,9 @@
 		A4326DA2180D23F500D50F0A /* en */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = en; path = "en.lproj/DrawDefault@2x.png"; sourceTree = "<group>"; };
 		A4326DA4180D23FB00D50F0A /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "zh-Hans"; path = "zh-Hans.lproj/DrawDefault@2x.png"; sourceTree = "<group>"; };
 		A4326DA5180D23FD00D50F0A /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "zh-Hant"; path = "zh-Hant.lproj/DrawDefault@2x.png"; sourceTree = "<group>"; };
+		A434171B18711AFB008D0A2B /* ContestCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContestCell.m; sourceTree = "<group>"; };
+		A434171C18711AFB008D0A2B /* ContestCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ContestCell.xib; sourceTree = "<group>"; };
+		A434171D18711AFB008D0A2B /* ContestCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContestCell.h; sourceTree = "<group>"; };
 		A4348C581717C0FA004AFB26 /* AlixPayOrderManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlixPayOrderManager.h; sourceTree = "<group>"; };
 		A4348C591717C0FA004AFB26 /* AlixPayOrderManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AlixPayOrderManager.m; sourceTree = "<group>"; };
 		A4348C5A1717C0FA004AFB26 /* NotificationCenterManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NotificationCenterManager.h; sourceTree = "<group>"; };
@@ -15330,6 +15341,9 @@
 		CA89747F16087BBD003A95F7 /* Contest */ = {
 			isa = PBXGroup;
 			children = (
+				A434171B18711AFB008D0A2B /* ContestCell.m */,
+				A434171C18711AFB008D0A2B /* ContestCell.xib */,
+				A434171D18711AFB008D0A2B /* ContestCell.h */,
 				CA51419D17CB41F100883CAA /* ContestPrizeCell.xib */,
 				CAC3714E1611E86A002CB837 /* StatementController~ipad.xib */,
 				CAC3714C1611E869002CB837 /* ContestController~ipad.xib */,
@@ -18332,6 +18346,7 @@
 				EA7E4F7F186ADE8F00E0B20F /* GroupNoticeController~ipad.xib in Resources */,
 				EA7E4F83186ADE8F00E0B20F /* GroupTopicController~ipad.xib in Resources */,
 				EA716B97186C373F005CC0F0 /* group_add@2x.png in Resources */,
+				A434172418711AFB008D0A2B /* ContestCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -19303,6 +19318,7 @@
 				EA7E4F7E186ADE8F00E0B20F /* GroupNoticeController~ipad.xib in Resources */,
 				EA7E4F82186ADE8F00E0B20F /* GroupTopicController~ipad.xib in Resources */,
 				EA716B96186C373F005CC0F0 /* group_add@2x.png in Resources */,
+				A434172318711AFB008D0A2B /* ContestCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -20257,6 +20273,7 @@
 				EA7E4F7D186ADE8F00E0B20F /* GroupNoticeController~ipad.xib in Resources */,
 				EA7E4F81186ADE8F00E0B20F /* GroupTopicController~ipad.xib in Resources */,
 				EA716B95186C373F005CC0F0 /* group_add@2x.png in Resources */,
+				A434172218711AFB008D0A2B /* ContestCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -21165,6 +21182,7 @@
 				EA7E4F80186ADE8F00E0B20F /* GroupNoticeController~ipad.xib in Resources */,
 				EA7E4F84186ADE8F00E0B20F /* GroupTopicController~ipad.xib in Resources */,
 				EA716B98186C373F005CC0F0 /* group_add@2x.png in Resources */,
+				A434172518711AFB008D0A2B /* ContestCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -22065,6 +22083,7 @@
 				EA9289B71864360F0064A1AC /* UIViewController+BGImage.m in Sources */,
 				A4BE2265186550D000FE2997 /* CellManager.m in Sources */,
 				A4BE226E18657D9700FE2997 /* NormalHotCell.m in Sources */,
+				A434172018711AFB008D0A2B /* ContestCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -22871,6 +22890,7 @@
 				EA9289B61864360F0064A1AC /* UIViewController+BGImage.m in Sources */,
 				A4BE2264186550D000FE2997 /* CellManager.m in Sources */,
 				A4BE226D18657D9700FE2997 /* NormalHotCell.m in Sources */,
+				A434171F18711AFB008D0A2B /* ContestCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -23677,6 +23697,7 @@
 				EA9289B51864360F0064A1AC /* UIViewController+BGImage.m in Sources */,
 				A4BE2263186550D000FE2997 /* CellManager.m in Sources */,
 				A4BE226C18657D9700FE2997 /* NormalHotCell.m in Sources */,
+				A434171E18711AFB008D0A2B /* ContestCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -24439,6 +24460,7 @@
 				EA9289B81864360F0064A1AC /* UIViewController+BGImage.m in Sources */,
 				A4BE2266186550D000FE2997 /* CellManager.m in Sources */,
 				A4BE226F18657D9700FE2997 /* NormalHotCell.m in Sources */,
+				A434172118711AFB008D0A2B /* ContestCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

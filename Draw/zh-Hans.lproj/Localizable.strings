@@ -2471,3 +2471,7 @@
 "kSetSuccess" = "设置成功";
 
 "kSetUserAvatar" = "设置我的头像";
+
+"kOfficialContest" = "官方比赛";
+"kGroupContest" = "家族比赛";
+"kGoodOpus" = "精彩作品";
