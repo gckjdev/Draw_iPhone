@@ -9,6 +9,7 @@
 #import "GroupInfoView.h"
 #import "Group.pb.h"
 #import "IconView.h"
+#import "GroupUIManager.h"
 
 
 #define SPACE_NICK_SIZE (ISIPAD?8:5)
@@ -85,7 +86,7 @@
 {
     [super layoutSubviews];
 
-    [self.iconView setImageURL:[_group medalImageURL] placeholderImage:[[ShareImageManager defaultManager] unloadBg]];
+    [self.iconView setImageURL:[_group medalImageURL] placeholderImage:[GroupUIManager defaultGroupMedal]];
     
     [self.nameLabel setText:_group.name];
     [self.descLabel setText:_group.signature];

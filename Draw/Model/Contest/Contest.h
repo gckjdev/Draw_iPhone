@@ -65,9 +65,6 @@ typedef enum{
 @property(nonatomic, readonly) BOOL canSubmit;
 @property(nonatomic, readonly) BOOL canVote;
 
-//- (id)initWithDict:(NSDictionary *)dict;
-//+ (Contest *)contestWithDict:(NSDictionary *)dict;
-
 - (id)initWithPBContest:(PBContest*)pbContest;
 
 - (void)incCommitCount;
@@ -82,4 +79,9 @@ typedef enum{
 - (NSArray *)awardOpusIdList;
 - (void)setAwardOpusList:(NSArray *)opusList;
 - (ContestFeed *)getOpusWithAwardType:(NSInteger)type rank:(NSInteger)rank;
+
+- (NSData *)data;
+
+- (NSString *)leftTime;
+
 @end

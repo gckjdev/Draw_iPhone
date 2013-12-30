@@ -6,12 +6,13 @@
 //  Copyright (c) 2012年 __MyCompanyName__. All rights reserved.
 //
 
-#import "PPViewController.h"
+#import "CommonTabController.h"
 #import "ContestService.h"
 #import "ContestView.h"
 
+
 @class UICustomPageControl;
-@interface ContestController : PPViewController<ContestServiceDelegate, UIScrollViewDelegate>
+@interface ContestController : CommonTabController<ContestServiceDelegate, UIScrollViewDelegate>
 {
     ContestService *_contestService;
     NSMutableArray *_contestViewList;
@@ -27,4 +28,6 @@
 @property (retain, nonatomic) IBOutlet UIScrollView *scrollView;
 @property (retain, nonatomic) IBOutlet UICustomPageControl *pageControl;
 @property (retain, nonatomic) IBOutlet UILabel *titleLabel;
+@property (retain, nonatomic) IBOutlet UIView *scrollerViewHolder;
+@property (retain, nonatomic) IBOutlet UIView *tableViewHolder;
 @end

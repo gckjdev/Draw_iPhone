@@ -460,4 +460,42 @@
     return [awardDict objectForKey:KEY(type, rank)];
 }
 
+- (NSData *)data{
+    
+    return [_pbContest data];
+}
+
+- (NSString *)leftTime{
+ 
+    NSTimeInterval now = [[NSDate date] timeIntervalSince1970];
+    if (_pbContest.startDate < now) {
+        return NSLS(@"kContestNotStart");
+    }else if (now >= _pbContest.startDate
+              && now < _pbContest.endDate){
+        
+        NSTimeInterval left = _pbContest.endDate - now;
+        return [self leftTimeStringWithLeftTime:left];
+    }else{
+        return NSLS(@"kContestIsOver");
+    }
+}
+
+- (NSString *)leftTimeStringWithLeftTime:(NSTimeInterval)leftTime{
+    
+    if (leftTime >= 3600 * 24) {
+        
+        int days = leftTime / (3600 *24);
+        return [NSString stringWithFormat:NSLS(@"kLeftDays"), days];
+    }else if (leftTime >= 3600){
+        
+        int hours = leftTime / 3600;
+        return [NSString stringWithFormat:NSLS(@"kLeftHours"), hours];
+    }else{
+        
+        int mins = MAX(1, leftTime/60);
+        return [NSString stringWithFormat:NSLS(@"kLeftMins"), mins];
+    }
+}
+
+
 @end

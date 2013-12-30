@@ -15,6 +15,8 @@
 #import "Contest.h"
 #import "ReportFeedCell.h"
 #import "ContestPrizeCell.h"
+#import "ContestCell.h"
+#import "ContestManager.h"
 
 #define NORMAL_CELL_VIEW_NUMBER 3
 #define WHISPER_CELL_VIEW_NUMBER (ISIPAD? 3 : 2)
@@ -446,6 +448,33 @@
 + (float)getPrizeStyleCellHeight{
     
     return [ContestPrizeCell getCellHeight];
+}
+
+
++ (UITableViewCell *)getContestStyleCell:(UITableView *)tableView
+                               indexPath:(NSIndexPath *)indexPath
+                                delegate:(id)delegate
+                                dataList:(NSArray *)dataList{
+    
+    ContestCell *cell = [tableView dequeueReusableCellWithIdentifier:[ContestCell getCellIdentifier]];
+    if (cell == nil) {
+        cell = [ContestCell createCell:self];
+    }
+    
+    PBContest *pbContest = [[[ContestManager defaultManager] allContestList] objectAtIndex:indexPath.row];
+    Contest *contest = [[[Contest alloc] initWithPBContest:pbContest] autorelease];
+    [cell setCellInfo:contest];
+    return cell;
+}
+
++ (int)getContestStyleCellCountWithDataCount:(int)count{
+    
+    return count;
+}
+
++ (float)getContestStyleCellHeight{
+    
+    return [ContestCell getCellHeight];
 }
 
 @end

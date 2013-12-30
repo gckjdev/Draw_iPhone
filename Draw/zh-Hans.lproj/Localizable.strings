@@ -2142,12 +2142,12 @@
 "kTitleIDNotFound" = "职位不存在。";
 
 "kGroup" = "家族";
-"kGroupBulletinDesc" = "%@ 在 %@ 中发布了公告。";
-"kGroupJoinDesc" = "%@ 申请加入 %@。";
-"kGroupExpelDesc" = "%@ 将 %@ 踢出了 %@。";
-"kGroupQuitDesc" = "%@ 退出了 %@。";
-"kGroupAcceptDesc" = "%@ 同意 %@ 加入 %@。";
-"kGroupRejectDesc" = "%@ 拒绝 %@ 加入 %@。";
+"kGroupBulletinDesc" = "%@在%@中发布了公告。";
+"kGroupJoinDesc" = "%@申请加入%@。";
+"kGroupExpelDesc" = "%@将%@移除出了%@。";
+"kGroupQuitDesc" = "%@退出了%@";
+"kGroupAcceptDesc" = "%@同意%@加入%@。";
+"kGroupRejectDesc" = "%@拒绝%@加入%@。";
 
 "kGroupInviteMemberDesc" = "%@邀请%@加入%@。";
 "kGroupInviteGuestDesc" = "%@邀请%@成为%@的嘉宾。";
@@ -2156,11 +2156,20 @@
 "TypeAcceptMemberInvitation" = "%@同意加入%@。";
 "TypeAcceptGuestInvitation" = "%@同意成为%@的嘉宾。";
 
-"kGroupDetailRowWeath" = "声望%d  财富%d  等级%d";
+"kGroupDetailRowWeath" = "声望 %d  财富 %d  等级 %d";
 "kGroupDetailRowCreateDate" = "创建时间 %@";
 "kGroupDetailRowDesc" = "说明 %@";
 "kGroupDetailRowFee" = "会费 %d金币/月";
+
 "kDefaultGroupSignature" = "暂无签名";
+"kDefaultGroupDesc" = "暂无说明";
+
+"kEditGroupSignature" = "编辑签名";
+"kEditGroupIntroduce" = "编辑说明";
+
+"kExpelGroupUserTitle" = "移除用户";
+"kExpelGroupUserMessage" = "确定要移除该用户吗？";
+
 
 "kAddTitle" = "添加职位";
 "kChangeBG" = "修改背景";
@@ -2219,7 +2228,6 @@
 "kChangeGroupBG" = "更新家族背景";
 "kManage" = "管理";
 "kEditGroupName" = "修改家族名称";
-"kEditGroupSignature" = "更新家族签名";
 
 "kEditGroupDesc" = "修改家族介绍";
 "kEditGroupFee" = "修改家族成员会费";
@@ -2466,3 +2474,7 @@
 "kSetSuccess" = "设置成功";
 
 "kSetUserAvatar" = "设置我的头像";
+
+"kOfficialContest" = "官方比赛";
+"kGroupContest" = "家族比赛";
+"kGoodOpus" = "精彩作品";

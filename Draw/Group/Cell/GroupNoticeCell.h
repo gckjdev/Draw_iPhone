@@ -11,7 +11,7 @@
 
 @class PBGroupNotice;
 
-@interface GroupNoticeCell : PPTableViewCell
+@interface GroupNoticeCell : PPTableViewCell<AvatarViewDelegate>
 
 @property (retain, nonatomic) IBOutlet AvatarView *avatar;
 @property (retain, nonatomic) IBOutlet UILabel *notice;

@@ -2134,6 +2134,11 @@
 "kGroupDetailRowFee" = "Fee: %d coins/month";
 "kDefaultGroupSignature" = "None";
 
+"kDefaultGroupDesc" = "None";
+
+"kEditGroupSignature" = "Edit signature";
+"kEditGroupIntroduce" = "Edit introduce";
+
 "kContentDesc" = "Content: %@";
 "kPostscriptDesc" = "Postscript: %@";
 
@@ -2188,7 +2193,6 @@
 "kChangeGroupBG" = "Edit BG";
 "kManage" = "Manage";
 "kEditGroupName" = "Edit group name";
-"kEditGroupSignature" = "Edit group signature";
 
 "kEditGroupDesc" = "Edit group description";
 "kEditGroupFee" = "Edit group fee";
@@ -2215,6 +2219,9 @@
 "kIgnoring" = "Sending ignore request...";
 "kRejecting" = "Sending rejection request...";
 
+
+"kExpelGroupUserTitle" = "Warning";
+"kExpelGroupUserMessage" = "Are you really want to expel the user?";
 
 "kSeeAllPost" = "All";
 "kSeeLZOnly" = "Mine";
@@ -2459,3 +2466,8 @@
 "kSetSuccess" = "Settings set successfully";
 
 "kSetUserAvatar" = "Set user avatar";
+
+"kOfficialContest" = "Official";
+"kGroupContest" = "Group";
+"kGoodOpus" = "Opus";
+

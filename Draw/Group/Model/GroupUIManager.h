@@ -44,4 +44,6 @@ typedef enum {
 + (NSArray *)imagesForFooterActionTypes:(NSArray *)types;
 
 + (UIImage *)addButtonImage;
+
++ (UIImage *)defaultGroupMedal;
 @end

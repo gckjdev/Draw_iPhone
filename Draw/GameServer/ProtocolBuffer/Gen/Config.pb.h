@@ -11,10 +11,6 @@
 @class PBApp_Builder;
 @class PBConfig;
 @class PBConfig_Builder;
-@class PBContest;
-@class PBContestList;
-@class PBContestList_Builder;
-@class PBContest_Builder;
 @class PBDiceConfig;
 @class PBDiceConfig_Builder;
 @class PBDrawAction;

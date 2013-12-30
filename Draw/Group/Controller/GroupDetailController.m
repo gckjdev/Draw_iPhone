@@ -24,7 +24,7 @@
 #import "UIImageView+WebCache.h"
 #import "UIViewController+BGImage.h"
 #import "GroupConstants.h"
-
+#import "GroupUIManager.h"
 
 enum{
     SECTION_BASE_INDEX = 0,
@@ -39,7 +39,7 @@ typedef enum{
     RowCreateDate,
     RowDescription,
     RowFee,
-    BaseSectionRowCount,
+    BaseSectionRowCount = RowFee,
 }BaseSectionRow;
 
 typedef enum{
@@ -143,7 +143,7 @@ typedef enum{
 
 - (void)clickQuit:(id)sender
 {
-    CommonDialog *dialog = [CommonDialog createDialogWithTitle:NSLS(@"kQuitGroupTitle") message:NSLS(@"kQuitGroupMessage") style:CommonDialogStyleSingleButton];
+    CommonDialog *dialog = [CommonDialog createDialogWithTitle:NSLS(@"kQuitGroupTitle") message:NSLS(@"kQuitGroupMessage") style:CommonDialogStyleDoubleButton];
     [dialog setClickOkBlock:^(id infoView){
         [self quit];
         [dialog setClickOkBlock:NULL];
@@ -355,12 +355,19 @@ typedef enum{
     
     [self.groupIconView setGroupId:_group.groupId];
     [self.groupIconView setImageURL:[_group medalImageURL]
-                   placeholderImage:[[ShareImageManager defaultManager] unloadBg]];
+                   placeholderImage:[GroupUIManager defaultGroupMedal]];
 
     
     [self.groupName setText:_group.name];
+    [self.groupSignature setTextColor:COLOR_BROWN];
     if ([_group.signature length] == 0) {
-        [self.groupSignature setText:NSLS(@"kDefaultGroupSignature")];
+        if ([_groupPermission canManageGroup]) {
+            [self.groupSignature setTextColor:COLOR_GRAY_TEXT];
+            [self.groupSignature setText:NSLS(@"kEditGroupSignature")];
+//            [self.groupSignature setText:@"测试签名。"];
+        }else{
+            [self.groupSignature setText:NSLS(@"kDefaultGroupSignature")];
+        }
     }else{
         [self.groupSignature setText:_group.signature];
     }
@@ -623,6 +630,11 @@ typedef enum{
 
 - (NSString *)descCellText
 {
+    if ([_group.desc length] == 0) {
+        return [_groupPermission canManageGroup]?NSLS(@"kEditGroupIntroduce"):NSLS(@"kDefaultGroupDesc");
+    }else{
+        return _group.desc;
+    }
    return [NSString stringWithFormat:NSLS(@"kGroupDetailRowDesc"), _group.desc];
 }
 
@@ -644,16 +656,19 @@ typedef enum{
             break;
         }
         case RowDescription:{
-            text = [self descCellText];
+            text = [self descCellText];            
             break;
         }
         case RowFee:{
             text = [NSString stringWithFormat:NSLS(@"kGroupDetailRowFee"), _group.memberFee];
-            position = CellRowPositionLast;
+//            position = CellRowPositionLast;
             break;
         }
         default:
             break;
+    }
+    if (BaseSectionRowCount-1 == row) {
+        position = CellRowPositionLast;
     }
     [cell setCellText:text position:position group:_group];
 }
@@ -797,14 +812,21 @@ typedef enum{
         [sheet showInView:self.view showAtPoint:self.view.center animated:YES];
     }
     else if ([title isEqualToString:TITLE_RM_MEMBER]) {
-        [self showActivityWithText:NSLS(@"kExpeling")];
-        [groupService expelUser:user group:_group.groupId titleId:titleId reason:@"" callback:^(NSError *error) {
-            [self hideActivity];
-            if (!error) {
-                [GroupManager didRemoveUser:user fromTitleId:titleId];                
-                [self.dataTableView reloadData];
-            }
+        
+       CommonDialog *cd = [CommonDialog createDialogWithTitle:NSLS(@"kExpelGroupUserTitle") message:NSLS(@"kExpelGroupUserMessage")  style:CommonDialogStyleDoubleButton];
+        
+        [cd setClickOkBlock:^(id infoView){
+            [self showActivityWithText:NSLS(@"kExpeling")];
+            [groupService expelUser:user group:_group.groupId titleId:titleId reason:@"" callback:^(NSError *error) {
+                [self hideActivity];
+                if (!error) {
+                    [GroupManager didRemoveUser:user fromTitleId:titleId];
+                    [self.dataTableView reloadData];
+                }
+            }];            
         }];
+        [cd showInView:self.view];
+        
     }
     else if ([title isEqualToString:TITLE_SET_ADMIN]) {
         [self showActivityWithText:NSLS(@"kSettingAsAdmin")];

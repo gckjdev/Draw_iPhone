@@ -2153,24 +2153,31 @@
 
 
 "kGroup" = "家族";
-"kGroupBulletinDesc" = "%@ 在 %@ 中發布了公告。";
-"kGroupJoinDesc" = "%@ 申請加入 %@";
-"kGroupExpelDesc" = "%@ 將 %@ 踢出了 %@";
-"kGroupQuitDesc" = "%@ 退出了 %@";
-"kGroupAcceptDesc" = "%@ 同意 %@ 加入 %@";
-"kGroupRejectDesc" = "%@ 拒絕 %@ 加入 %@";
-"kGroupInviteMemberDesc" = "%@ 邀請 %@ 加入 %@。";
-"kGroupInviteGuestDesc" = "%@ 邀請 %@ 成為 %@ 的嘉賓。";
-"kGroupRejectMemberInvitationDesc" = "%@ 拒絕加入 %@。";
-"kGroupRejectGuestInvitationDesc" = "%@ 拒絕成為 %@ 嘉賓。";
-"TypeAcceptMemberInvitation" = "%@ 同意加入 %@。";
-"TypeAcceptGuestInvitation" = "%@ 同意成為 %@ 的嘉賓。";
+"kGroupBulletinDesc" = "%@在%@中發布了公告。";
+"kGroupJoinDesc" = "%@申請加入%@。";
+"kGroupExpelDesc" = "%@將%@移除出了%@。";
+"kGroupQuitDesc" = "%@退出了%@";
+"kGroupAcceptDesc" = "%@同意%@加入%@。";
+"kGroupRejectDesc" = "%@拒絕%@加入%@。";
 
-"kGroupDetailRowWeath" = "聲望%d  財富%d  等級%d";
+"kGroupInviteMemberDesc" = "%@邀請%@加入%@。";
+"kGroupInviteGuestDesc" = "%@邀請%@成為%@的嘉賓。";
+"kGroupRejectMemberInvitationDesc" = "%@拒絕加入%@";
+"kGroupRejectGuestInvitationDesc" = "%@拒絕成為%@嘉賓。";
+"TypeAcceptMemberInvitation" = "%@同意加入%@。";
+"TypeAcceptGuestInvitation" = "%@同意成為%@的嘉賓。";
+
+"kGroupDetailRowWeath" = "聲望 %d  財富 %d  等級 %d";
 "kGroupDetailRowCreateDate" = "創建時間 %@";
 "kGroupDetailRowDesc" = "說明 %@";
 "kGroupDetailRowFee" = "會費 %d金幣/月";
+
 "kDefaultGroupSignature" = "暫無簽名";
+"kDefaultGroupDesc" = "暫無說明";
+
+"kEditGroupSignature" = "編輯簽名";
+"kEditGroupIntroduce" = "編輯說明";
+
 
 "kContentDesc" = "內容：%@";
 "kPostscriptDesc" = "附言：%@";
@@ -2229,7 +2236,6 @@
 "kChangeGroupBG" = "更新家族背景";
 "kManage" = "管理";
 "kEditGroupName" = "修改家族名稱";
-"kEditGroupSignature" = "更新家族簽名";
 
 "kEditGroupDesc" = "修改家族介紹";
 "kEditGroupFee" = "修改家族成員會費";
@@ -2255,6 +2261,9 @@
 "kGroupTabGroupFame" = "聲望";
 "kIgnoring" = "發送忽略請求中...";
 "kRejecting" = "發送拒絕請求中...";
+
+"kExpelGroupUserTitle" = "移除用戶";
+"kExpelGroupUserMessage" = "確定要移除該用戶嗎？";
 
 /*********************小吉画画国际化字符串开始 ************************/
 "kLittleGeeRecommend" = "推薦";
@@ -2487,3 +2496,7 @@
 "kSetSuccess" = "設置成功";
 
 "kSetUserAvatar" = "設置我的頭像";
+
+"kOfficialContest" = "官方比賽";
+"kGroupContest" = "家族比賽";
+"kGoodOpus" = "精彩作品";
