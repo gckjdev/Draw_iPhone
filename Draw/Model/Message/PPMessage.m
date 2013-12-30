@@ -352,5 +352,11 @@
     return self.status == MessageStatusRead || self.status == MessageStatusSent || self.status == MessageStatusUnread;
 }
 
+- (PBGameUser*)fromUserToGroup
+{
+    return self.messageBuilder.fromUser;
+}
+
+
 @end
 

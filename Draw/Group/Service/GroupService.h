@@ -10,7 +10,6 @@
 #import "Group.pb.h"
 #import "GroupManager.h"
 
-typedef void (^ RelationResultBlock) (PBUserRelationWithGroup *relation, NSError *error);
 typedef void (^ GroupResultBlock) (PBGroup *group, NSError *error);
 typedef void (^ BadgeResultBlock) (NSArray *badges, NSError *error);
 typedef void (^ ListResultBlock) (NSArray *list, NSError *error);
@@ -133,17 +132,10 @@ typedef void (^ URLResultBlock) (NSURL *url, NSError *error);
                        limit:(NSInteger)limit
                     callback:(ListResultBlock)callback;
 
-- (void)getRelationWithGroup:(NSString *)groupId
-                    callback:(RelationResultBlock)callback;
 
 - (void)getGroupBadgeWithCallback:(BadgeResultBlock)callback;
 
 
-- (PBGroup *)buildGroup:(PBGroup *)group
-           withRelation:(PBUserRelationWithGroup *)relation;
-
-
-- (PBGroup *)buildGroupWithDefaultRelation:(PBGroup *)group;
 
 ///
 
@@ -157,6 +149,11 @@ typedef void (^ URLResultBlock) (NSURL *url, NSError *error);
 - (void)deleteGroupTitleId:(NSInteger)titleId
                    groupId:(NSString *)groupId
                   callback:(SimpleResultBlock)callback;
+
+- (void)updateGroupTitle:(NSString *)groupId
+                 titleId:(NSInteger) titleId
+                   title:(NSString *)title
+                callback:(SimpleResultBlock)callback;
 
 - (void)changeUser:(PBGameUser *)user
            inGroup:(NSString *)groupId
@@ -183,5 +180,8 @@ typedef void (^ URLResultBlock) (NSURL *url, NSError *error);
 - (void)updateGroup:(NSString *)groupId
                icon:(UIImage *)icon
            callback:(URLResultBlock)callback;
+
+
+- (void)syncGroupRoles;
 
 @end

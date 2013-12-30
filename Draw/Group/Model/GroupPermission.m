@@ -11,24 +11,109 @@
 #import "BBSModelExt.h"
 #import "GroupModelExt.h"
 
+static NSMutableArray *_roles;
+
 @implementation GroupPermissionManager
+
+
+#define GROUP_ROLES_KEY @"GROUP_ROLES"
+
++ (NSMutableArray *)groupRoles
+{
+    if (!_roles) {
+        _roles = [[NSMutableArray array] retain];
+        NSArray *array = [[[UserManager defaultManager] userDefaults] arrayForKey:GROUP_ROLES_KEY];
+        if ([array count] > 0) {
+            [_roles addObjectsFromArray:array];
+        }
+    }
+    return _roles;
+}
+
++ (void)clearGroupRoles
+{
+    [_roles release];
+    _roles = nil;
+}
+
++ (PBGroupUserRole *)roleForGroupId:(NSString *)groupId
+{
+    NSArray *roles = [self groupRoles];
+    for (PBGroupUserRole *role in roles) {
+        if ([role.groupId isEqualToString:groupId]) {
+            return role;
+        }
+    }
+    return nil;
+}
+
++ (void)removeRole:(NSString *)groupId
+{
+    PBGroupUserRole *role = [self roleForGroupId:groupId];
+    if (role) {
+        [_roles removeObject:role];
+        [self syncGroupRoles:_roles];
+    }
+}
+
++ (void)syncGroupRoles:(NSArray *)roles
+{
+    NSMutableArray *dataList = [NSMutableArray array];
+    for (PBGroupUserRole *role in roles) {
+        NSData *data = [role data];
+        if (data) {
+            [dataList addObject:data];
+        }
+    }
+    if (_roles != roles) {
+        [_roles release];
+        _roles = [NSMutableArray arrayWithArray:roles];
+        [_roles retain];
+    }
+    
+    [[[UserManager defaultManager] userDefaults] setObject:dataList forKey:GROUP_ROLES_KEY];
+    [[[UserManager defaultManager] userDefaults] synchronize];
+}
+
 
 - (void)dealloc
 {
-    PPRelease(_group);
+    PPRelease(_groupId);
     [super dealloc];
 }
+
++ (PBGroupUserRole *)defaultGroupRole
+{
+    static dispatch_once_t onceToken;
+    static PBGroupUserRole * _defaultRole;
+    dispatch_once(&onceToken, ^{
+        PBGroupUserRole_Builder *builder = [[PBGroupUserRole_Builder alloc] init];
+        [builder setGroupId:@"NONE"];
+        [builder setRole:GroupRoleNone];
+        [builder setPermission:GROUP_DEFAULT_PERMISSION];
+        _defaultRole = [[builder build] retain];
+        [builder release];
+    });
+    return _defaultRole;
+}
+
 - (BOOL)hasPermission:(GroupPermission)permission
 {
-    return (_group.relation.permission & permission) != 0;
+    PBGroupUserRole *role = [GroupPermissionManager roleForGroupId:self.groupId];
+    if (role == nil) {
+        role = [GroupPermissionManager defaultGroupRole];
+    }
+    return (role.permission & permission) != 0;
 }
 
 #define PERMIT(x) [self hasPermission:x]
 
-+ (id)myManagerWithGroup:(PBGroup *)group
+
+
++ (id)myManagerWithGroupId:(NSString *)groupId
 {
     GroupPermissionManager *manager = [[GroupPermissionManager alloc] init];
-    manager.group = group;
+    manager.groupId = groupId;
     return [manager autorelease];
 }
 
@@ -36,7 +121,7 @@
 //Group
 - (BOOL)canJoinGroup
 {
-    return PERMIT(JOIN_GROUP) && ![[UserManager defaultManager] hasJoinedAGroup] && ![_group creatorIsMe];
+    return PERMIT(JOIN_GROUP) && ![[UserManager defaultManager] hasJoinedAGroup];
 }
 
 - (BOOL)canQuitGroup
@@ -103,6 +188,11 @@
     return PERMIT(CUSTOM_TITLE);
 }
 
+
+- (BOOL)canManageGroup
+{
+    return PERMIT(EDIT_GROUP);
+}
 //Creator permission
 - (BOOL)canArrangeAdmin
 {

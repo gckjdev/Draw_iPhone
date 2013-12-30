@@ -23,6 +23,8 @@
 #import "ChangeAvatar.h"
 #import "UIImageView+WebCache.h"
 #import "UIViewController+BGImage.h"
+#import "GroupConstants.h"
+
 
 enum{
     SECTION_BASE_INDEX = 0,
@@ -46,23 +48,31 @@ typedef enum{
     RowMemberStart
 }MemberSectionRow;
 
+#define TITLE_USER_DETAIL NSLS(@"kUserDetail")
+#define TITLE_RM_ADMIN NSLS(@"kRemoveAdmin")
+#define TITLE_CHANGE_TITLE NSLS(@"kChangeTitle")
+#define TITLE_RM_MEMBER NSLS(@"kRemoveMember")
+#define TITLE_SET_ADMIN NSLS(@"kSetAsAdmin")
 
-#define SIGN_LABEL_HEIGHT 238
-#define MIN_SIGN_HEIGHT 21
+
+#define TITLE_ADD_TITLE NSLS(@"kAddTitle")
+#define TITLE_CHANGE_BG NSLS(@"kChangeBG")
+#define TITLE_UPGRADE NSLS(@"kUpgradeGroup")
+#define TITLE_QUIT_GROUP NSLS(@"kQuitGroup")
+#define TITLE_DISMISSAL NSLS(@"kDissolveGroup")
+
+
+#define SIGN_LABEL_HEIGHT (ISIPAD? 490 : 238)
+#define MIN_SIGN_HEIGHT (ISIPAD?35:21)
+#define TABLE_SIGN_SPACE (ISIPAD? 15 : 6)
 
 @interface GroupDetailController ()
 {
     GroupService *groupService;
     GroupManager *groupManager;
     
-    NSInteger IndexDetail;
-    NSInteger IndexRemove;
-    NSInteger IndexChangeTitle;
-    NSInteger IndexMakeAdmin;
-    NSInteger IndexRemoveFromAdmin;
     
     PBGroupTitle *invitingTitle;
-
     
 }
 @property(nonatomic, retain) PBGroup *group;
@@ -75,6 +85,7 @@ typedef enum{
 @property (retain, nonatomic) IBOutlet UILabel *groupSignature;
 @property (retain, nonatomic) ChangeAvatar *changeImage;
 @property (assign, nonatomic) UIImageView *bgImageView;
+
 
 @end
 
@@ -103,24 +114,53 @@ typedef enum{
 }
 
 
-- (void)clickManage:(id)sender
+- (void)clickJoin:(id)sender
 {
-    if (![GroupManager isMeAdminOrCreatorInSharedGroup]) {
-        return;
-    }
+    [self showActivityWithText:NSLS(@"kJoiningGroup")];
+    [groupService joinGroup:_group.groupId message:nil callback:^(NSError *error) {
+        [self hideActivity];
+        if (!error) {
+            POSTMSG(NSLS(@"kSentRequest"));
+            _titleView.rightButton.hidden = YES;
+        }
+    }];
+}
 
-    [self showChangeBGView];
+- (void)quit
+{
     
-    return;
-    
-    CommonDialog *dialog = [CommonDialog createInputViewDialogWith:NSLS(@"kCreateTitle")];
-    dialog.inputTextView.text = @"";
+    [self showActivityWithText:NSLS(@"kQuitingGroup")];
+    [groupService quitGroup:_group.groupId callback:^(NSError *error) {
+        [self hideActivity];
+        if (!error) {
+            POSTMSG(NSLS(@"kQuitedGroup"));
+            [GroupManager didUserQuited:[[UserManager defaultManager] pbUser]];
+            [GroupPermissionManager removeRole:_group.groupId];
+            [self reloadView];
+        }
+    }];
+}
+
+- (void)clickQuit:(id)sender
+{
+    CommonDialog *dialog = [CommonDialog createDialogWithTitle:NSLS(@"kQuitGroupTitle") message:NSLS(@"kQuitGroupMessage") style:CommonDialogStyleSingleButton];
+    [dialog setClickOkBlock:^(id infoView){
+        [self quit];
+        [dialog setClickOkBlock:NULL];
+    }];
+    [dialog showInView:self.view];
+}
+
+
+- (void)showAddTitleView{
+    CommonDialog *dialog = [CommonDialog createInputFieldDialogWith:NSLS(@"kCreateTitle")];
+    dialog.inputTextField.text = @"";
     NSString *groupId = _group.groupId;
     [dialog setClickOkBlock:^(id infoView){
         NSString *text = dialog.inputTextView.text;
-        if (text == nil) {
-            //TODO pop up
-        }else{
+        BOOL flag = [self checkText:text length:MAX_LENGTH_TITLE allowEmpty:NO];
+        [dialog setManualClose:!flag];
+        if (flag) {
             NSInteger titleId = [GroupManager genTitleId];
             [self showActivityWithText:NSLS(@"kCreatingTitle")];
             [groupService createGroupTitle:text titleId:titleId groupId:groupId callback:^(NSError *error) {
@@ -132,6 +172,79 @@ typedef enum{
         }
     }];
     [dialog showInView:self.view];
+
+}
+
+- (void)upgradeGroup:(NSInteger)level
+{    
+    //TODO check the balance.
+    
+    [self showActivityWithText:NSLS(@"kUpgradingGroup")];
+    [groupService upgradeGroup:_group.groupId level:level callback:^(NSError *error) {
+        [self hideActivity];
+        if (!error) {
+            [self reloadView];
+        }
+    }];
+
+}
+
+- (void)showUpgradeGroupView
+{
+    CommonDialog *dialog = [CommonDialog createInputFieldDialogWith:NSLS(@"kUpgradeGroupTitle")];
+    dialog.inputTextField.textColor = COLOR_BROWN;
+    dialog.allowInputEmpty = NO;
+    dialog.inputTextField.keyboardType = UIKeyboardTypeNumberPad;
+    dialog.inputTextField.text = [@(_group.level+1) stringValue];
+    [dialog setClickOkBlock:^(id view) {
+        NSString *text = [dialog.inputTextField text];
+        NSInteger level = [text integerValue];
+        if (level <= [_group level]) {
+            POSTMSG(NSLS(@"kDegradeGroup"));
+            [dialog setManualClose:YES];
+        }else{
+            [self upgradeGroup:level];
+            [dialog setManualClose:NO];
+        }
+    }];
+    [dialog showInView:self.view];
+    
+}
+
+- (void)clickManage:(id)sender
+{
+    NSMutableArray *titles = [NSMutableArray array];
+    [titles addObject:TITLE_ADD_TITLE];
+    [titles addObject:TITLE_CHANGE_BG];
+    
+    if ([_groupPermission canUpgradeGroup]) {
+        [titles addObject:TITLE_UPGRADE];
+    }
+    if ([_groupPermission canQuitGroup]) {
+        [titles addObject:TITLE_QUIT_GROUP];
+    }
+//    if ([_groupPermission canDismissalGroup]) {
+//        [titles addObject:TITLE_DISMISSAL];
+//    }
+
+    BBSActionSheet* sheet = [[BBSActionSheet alloc] initWithTitles:titles callback:^(NSInteger index) {
+        NSString *title = titles[index];
+        if ([title isEqualToString:TITLE_CHANGE_BG]) {
+            [self showChangeBGView];            
+        }else if([title isEqualToString:TITLE_ADD_TITLE]){
+            [self showAddTitleView];
+        }else if([title isEqualToString:TITLE_QUIT_GROUP]){
+            [self clickQuit:self.titleView.rightButton];
+        }else if([title isEqualToString:TITLE_DISMISSAL]){
+            //TODO dismissal            
+        }else if ([title isEqualToString:TITLE_UPGRADE]){
+            [self showUpgradeGroupView];
+        }
+    }];
+    [sheet showInView:self.view showAtPoint:self.view.center animated:YES];
+    [sheet release];
+    return;
+    
 }
 
 - (void)showChangeIconView
@@ -177,16 +290,31 @@ typedef enum{
     } didSetDefaultBlock:NULL title:NSLS(@"kChangeGroupBG") hasRemoveOption:NO];
 }
 
+- (void)updateRightButton
+{
+    if ([_groupPermission canManageGroup]) {
+        [self.titleView setRightButtonTitle:NSLS(@"kManage")];
+        [self.titleView setRightButtonSelector:@selector(clickManage:)];
+    }else if ([_groupPermission canJoinGroup]){
+        [self.titleView setRightButtonTitle:NSLS(@"kJoinGroup")];
+        [self.titleView setRightButtonSelector:@selector(clickJoin:)];
+    }else if([_groupPermission canQuitGroup]){
+        [self.titleView setRightButtonTitle:NSLS(@"kQuitGroup")];
+        [self.titleView setRightButtonSelector:@selector(clickQuit:)];
+    }else{
+        
+    }
+}
+
 - (void)initViews
 {
     [self setDefaultBGImage];
     //update title view
     [self.titleView setTarget:self];
+    [self.titleView setTitle:_group.name];
+    [self updateRightButton];
+    
     [self.titleView setBackButtonSelector:@selector(clickBack:)];
-    if ([GroupManager isMeAdminOrCreatorInSharedGroup]) {
-        [self.titleView setRightButtonTitle:NSLS(@"kManage")];
-        [self.titleView setRightButtonSelector:@selector(clickManage:)];        
-    }
     [self.titleView setTransparentStyle];
 
     //update header.
@@ -218,11 +346,13 @@ typedef enum{
     
 }
 
-#define TABLE_SIGN_SPACE 6
+
 
 - (void)reloadView
 {
     //update group info
+    [self updateRightButton];
+    
     [self.groupIconView setGroupId:_group.groupId];
     [self.groupIconView setImageURL:[_group medalImageURL]
                    placeholderImage:[[ShareImageManager defaultManager] unloadBg]];
@@ -240,6 +370,9 @@ typedef enum{
     CGFloat originY = CGRectGetMinY(frame) + labelHeight + TABLE_SIGN_SPACE;
     
     [self.dataTableView updateOriginY:originY];
+    CGFloat height = CGRectGetHeight(self.view.bounds) - originY;    
+    [self.dataTableView updateHeight:height];
+    [self updateDataList];
     [self.dataTableView reloadData];
 }
 
@@ -260,15 +393,18 @@ typedef enum{
         [self hideActivity];
         if (!error) {            
             [self updateGroup:group];
-            
-            if ([GroupManager isMeAdminOrCreatorInSharedGroup]) {
-                [self.titleView setRightButtonTitle:NSLS(@"kManage")];
-                [self.titleView setRightButtonSelector:@selector(clickManage:)];
-            }
-
             [self.dataTableView reloadData];
         }
     }];
+}
+
+- (void)updateDataList
+{
+    if ([self.groupPermission canManageGroup]) {
+        self.dataList = [groupManager tempMemberList];
+    }else{
+        self.dataList = [groupManager membersForShow];
+    }
 }
 
 - (void)loadGroupMembers
@@ -276,28 +412,76 @@ typedef enum{
     [groupService getAllUsersByTitle:_group.groupId callback:^(NSArray *list, NSError *error) {
         if (!error) {
             [groupManager setTempMemberList:[NSMutableArray arrayWithArray:list]];
+            [self updateDataList];
             [self.dataTableView reloadData];
         }
     }];
+}
+
+
+- (BOOL)checkText:(NSString *)text
+           length:(NSInteger)maxLength
+       allowEmpty:(BOOL)allowEmpty
+{
+    if ([text length] > maxLength) {
+        NSString *alertString = [NSString stringWithFormat:NSLS(@"kOutOfMaxLength"), maxLength];
+        POSTMSG(alertString);
+        return NO;
+    }
+    if (!allowEmpty && [text length] == 0) {
+        POSTMSG(NSLS(@"kTextCanotBeNil"));
+        return NO;
+    }
+    return YES;
 }
 
 - (void)alertToEditInfo:(NSString *)title
                    info:(NSString *)info
                     key:(NSString*)key
 {
-    CommonDialog *dialog = [CommonDialog createInputViewDialogWith:title];
-    dialog.inputTextView.text = info;
-    if ([key isEqualToString:PARA_FEE]) {
-        dialog.inputTextView.keyboardType = UIKeyboardTypeNumberPad;
+    CommonDialog *dialog = nil;
+    BOOL useInputField  = YES;
+    NSArray *longInputFields = @[PARA_DESC, PARA_SIGNATURE];
+    if ([longInputFields containsObject:key]) {
+        dialog = [CommonDialog createInputViewDialogWith:title];
+        dialog.inputTextView.text = info;
+        useInputField = NO;
+    }else{
+        dialog = [CommonDialog createInputFieldDialogWith:title];
+        dialog.inputTextField.text = info;
     }
+    
+    NSArray *allowEmptyKeys = @[PARA_SIGNATURE, PARA_DESC];
+    BOOL allowEmpty = [allowEmptyKeys containsObject:key];
+    [dialog setAllowInputEmpty:allowEmpty];
+    NSInteger length = 10;
+    if ([key isEqualToString:PARA_FEE]) {
+        dialog.inputTextField.keyboardType = UIKeyboardTypeNumberPad;
+    }else{
+        NSDictionary *lenDict = @{PARA_NAME: @(MAX_LENGTH_NAME),
+                                  PARA_SIGNATURE: @(MAX_LENGTH_SIGNATURE),
+                                  PARA_DESC: @(MAX_LENGTH_DESCRIPTION),
+                                  };        
+        NSNumber *len = lenDict[key];
+        if (len == nil && ![PARA_FEE isEqualToString:key]) {
+            return;
+        }
+        length = [len intValue];
+    }
+
     [dialog setClickOkBlock:^(id infoView){
         NSString *text = dialog.inputTextView.text;
-        if (text == nil) {
-            //TODO pop up
+        if (useInputField) {
+            text = dialog.inputTextField.text;
         }
-        if (text && ![text isEqualToString:info]) {
-            //changed.
-            [self updateRemoteInfo:@{key: text}];
+        BOOL flag = [self checkText:text length:length allowEmpty:allowEmpty];
+        [dialog setManualClose:!flag];
+        if (flag) {
+            if (text && ![text isEqualToString:info]) {
+                //changed.
+                [self updateRemoteInfo:@{key: text}];
+            }
+            [dialog setManualClose:NO];
         }
     }];
     [dialog showInView:self.view];    
@@ -325,17 +509,13 @@ typedef enum{
 
 - (void)updateGroup:(PBGroup *)group
 {
-    if (![group hasRelation]) {
-        group = [groupService buildGroup:group withRelation:_group.relation];
-    }
     self.group = group;
     [[GroupManager defaultManager] setSharedGroup:group];
-    [self updatePermissionManager];
 }
 
 - (void)updatePermissionManager
 {
-    self.groupPermission = [GroupPermissionManager myManagerWithGroup:self.group];    
+    self.groupPermission = [GroupPermissionManager myManagerWithGroupId:_group.groupId];
 }
 
 - (void)viewDidLoad
@@ -374,8 +554,34 @@ typedef enum{
     if (SECTION_BASE_INDEX == section){
         return BaseSectionRowCount;
     }
-    NSInteger count = [[groupManager tempMemberList] count]+RowMemberStart + 1;
+    NSInteger count = [self.dataList count] + RowMemberStart;
+    if ([[_group guestsList] count] != 0 || [_groupPermission canManageGroup]) {
+        count ++;
+    }
     return count;
+}
+
+- (BOOL)isFirstRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return (indexPath.row == 0);
+}
+
+- (BOOL)isLastRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    NSInteger count = [self.dataTableView numberOfRowsInSection:indexPath.section];
+    return (indexPath.row == count - 1);
+}
+
+- (CellRowPosition)positionForIndexPath:(NSIndexPath *)indexPath
+{
+    if ([self isFirstRowAtIndexPath:indexPath]) {
+        return CellRowPositionFirst;
+    }
+    if ([self isLastRowAtIndexPath:indexPath]) {
+        return CellRowPositionLast;
+    }
+    return CellRowPositionMid;
+    
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
@@ -405,10 +611,10 @@ typedef enum{
             usersByTitle = _group.adminsByTitle;
         }else{
             NSInteger index  = row - RowMemberStart;
-            if (index == [groupManager.tempMemberList count]) {
+            if (index == [self.dataList count]) {
                 usersByTitle = [_group guestsByTitle];
             }else{
-                usersByTitle = groupManager.tempMemberList[index];
+                usersByTitle = self.dataList[index];
             }
         }
         return [GroupDetailCell getCellHeightForUsersByTitle:usersByTitle];
@@ -427,6 +633,7 @@ typedef enum{
     switch (row) {
         case RowWealth:{
             text = [NSString stringWithFormat:NSLS(@"kGroupDetailRowWeath"), _group.fame, _group.balance, _group.level];
+            
             position = CellRowPositionFirst;
             break;
         }
@@ -464,23 +671,24 @@ typedef enum{
     if (indexPath.section == SECTION_BASE_INDEX) {
         [self updateBaseSectionCell:cell inRow:row];
     }else{
-        CellRowPosition position = CellRowPositionMid;
+        CellRowPosition position = [self positionForIndexPath:indexPath];
+        
         if (row == RowCreator) {
-            [cell setCellForCreatorInGroup:_group position:CellRowPositionFirst];
+            [cell setCellForCreatorInGroup:_group position:position];
         }else if(row == RowAdmins){
-            [cell setCellForAdminsInGroup:_group position:CellRowPositionMid];
+            [cell setCellForAdminsInGroup:_group position:position];
         }else{
             NSInteger index = row - RowMemberStart;
             PBGroupUsersByTitle *usersByTitle;
-            if (index == [groupManager.tempMemberList count]) {
-                position = CellRowPositionLast;
+            
+            if (index < [self.dataList count]) {
+                usersByTitle = self.dataList[index];
+            }else if ([self isLastRowAtIndexPath:indexPath]) {
                 usersByTitle = [_group guestsByTitle];
-            }else{
-                usersByTitle = groupManager.tempMemberList[index];
             }
+            
             [cell setCellForUsersByTitle:usersByTitle position:position inGroup:_group];
         }
-        
     }
     [cell setNeedsLayout];
     return cell;
@@ -540,16 +748,6 @@ typedef enum{
 
 #pragma mark-- group detail cell delegate.
 
-- (void)updateIndexForAdminCell
-{
-    NSInteger index = 0;
-    IndexDetail = index++;
-    IndexRemoveFromAdmin = index++;
-    
-    IndexRemove = -1;
-    IndexChangeTitle = -1;
-    IndexMakeAdmin = -1;
-}
 
 
 - (void)groupDetailCell:(GroupDetailCell *)cell
@@ -560,11 +758,6 @@ typedef enum{
 }
 
 
-#define TITLE_USER_DETAIL NSLS(@"kUserDetail")
-#define TITLE_RM_ADMIN NSLS(@"kRemoveAdmin")
-#define TITLE_CHANGE_TITLE NSLS(@"kChangeTitle")
-#define TITLE_RM_MEMBER NSLS(@"kRemoveMember")
-#define TITLE_SET_ADMIN NSLS(@"kSetAsAdmin")
 
 - (void)handleTitle:(NSString *)title user:(PBGameUser *)user groupTitle:(PBGroupTitle *)groupTitle
 {
@@ -575,7 +768,6 @@ typedef enum{
         return;
     }
     else if ([title isEqualToString:TITLE_RM_ADMIN]) {
-        //TODO remove admin
         [self showActivityWithText:NSLS(@"kRemovingAdmin")];
         [groupService removeUserFromAdmin:user inGroup:_group.groupId callback:^(NSError *error) {
             [self hideActivity];
@@ -705,6 +897,31 @@ didClickAddButtonAtTitle:(PBGroupTitle *)title
     [[self navigationController] pushViewController:fc animated:YES];
     [fc release];
 
+}
+
+- (void)groupDetailCell:(GroupDetailCell *)cell didClickAtTitle:(PBGroupTitle *)title
+{
+    //check permission
+    if ([title titleId] != GroupRoleGuest && [_groupPermission canCustomTitle]) {
+        CommonDialog *dialog = [CommonDialog createInputFieldDialogWith:NSLS(@"kUpdateTitle")];
+        dialog.inputTextField.text = title.title;
+        [dialog setClickOkBlock:^(id view){
+            NSString *text = [dialog.inputTextField text];
+            NSInteger len = MAX_LENGTH_TITLE;
+            BOOL flag = [self checkText:text length:len allowEmpty:NO];
+           [dialog setManualClose:!flag];
+            if(flag){
+                [groupService updateGroupTitle:_group.groupId titleId:title.titleId title:text callback:^(NSError *error) {
+                    if (!error) {
+                        [self.dataTableView reloadData];
+                    }
+                }];
+            }
+        }];
+        [dialog showInView:self.view];
+    }else{
+        PPDebug(@"<didClickAtTitle> can't custom title.");
+    }
 }
 
 

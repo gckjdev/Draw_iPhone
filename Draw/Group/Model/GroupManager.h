@@ -32,11 +32,11 @@
 
 - (BOOL)followedGroup:(NSString *)groupId;
 
-+ (NSMutableArray *)getTopicCMDList:(PBBBSPost *)post inGroup:(PBGroup *)group;
++ (NSMutableArray *)getTopicCMDList:(PBBBSPost *)post inGroup:(NSString *)groupId;
 
-- (void)collectGroup:(PBGroup *)group;
-- (void)collectGroups:(NSArray *)groups;
-- (PBGroup *)findGroupById:(NSString *)groupId;
+//- (void)collectGroup:(PBGroup *)group;
+//- (void)collectGroups:(NSArray *)groups;
+//- (PBGroup *)findGroupById:(NSString *)groupId;
 
 - (void)updateBadges:(NSArray *)badges;
 
@@ -56,9 +56,17 @@
 + (void)didRemoveUser:(PBGameUser *)user
           fromTitleId:(NSInteger)titleId;
 
++ (void)didUserQuited:(PBGameUser *)user;
+
+
 + (void)didAddedGroupTitle:(NSString *)groupId
                      title:(NSString *)title
                    titleId:(NSInteger)titleId;
+
+
++ (void)didUpdatedGroupTitle:(NSString *)groupId
+                       title:(NSString *)title
+                     titleId:(NSInteger)titleId;
 
 + (void)didDeletedGroupTitle:(NSString *)groupId
                      titleId:(NSInteger)titleId;
@@ -72,5 +80,11 @@
 + (NSInteger)genTitleId;
 
 + (NSArray *)candidateTitlesForChangingTitle:(PBGroupTitle *)title;
+
+
+- (NSMutableArray *)membersForShow;
+
+- (NSString *)joindeGroupIdForName:(NSString *)name;
+- (NSArray *)joinedGroupNames;
 
 @end

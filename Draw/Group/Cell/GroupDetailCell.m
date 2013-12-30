@@ -13,15 +13,20 @@
 #import "GroupConstants.h"
 #import "GroupModelExt.h"
 #import "GroupManager.h"
+#import "UILabel+Touchable.h"
 
-#define MEMBER_NUMBER_PERROW 5
-#define TITLE_INFO_HEIGHT 25
-#define CREATOR_AVATAR_HEIGHT 50
-#define MEMBER_AVATAR_HEIGHT 40
-#define MEMBER_AVATAR_SPACE 10
-#define INFO_LABEL_WIDTH 306
+#define MEMBER_NUMBER_PERROW (ISIPAD?7:5)
+#define TITLE_INFO_HEIGHT (ISIPAD?40:25)
+#define CREATOR_AVATAR_HEIGHT (ISIPAD?70:40)
+#define MEMBER_AVATAR_HEIGHT (ISIPAD?70:40)
+#define MEMBER_AVATAR_SPACE (ISIPAD?30:12)
+#define INFO_LABEL_WIDTH (ISIPAD?720:306)
 
-#define MULTIPLE_LINE_TEXT_Y_SPACE 10
+#define CREATOR_CELL_HEIGHT (ISIPAD?140:70)
+
+#define MULTIPLE_LINE_TEXT_Y_SPACE (ISIPAD?20:10)
+
+
 
 @interface GroupDetailCell()
 @property(nonatomic, assign) PBGroup *group;
@@ -59,7 +64,7 @@
 
 + (id)createCell:(id<GroupDetailCellDelegate>)delegate
 {
-    GroupDetailCell *cell = [self createViewWithXibIdentifier:[self getCellIdentifier]];
+    GroupDetailCell *cell = [self createViewWithXibIdentifier:[self getCellIdentifier] ofViewIndex:ISIPAD];
     cell.delegate = delegate;
     [cell updateView];
     return cell;
@@ -67,7 +72,7 @@
 
 + (CGFloat)getCellHeightForSingleLineText
 {
-    return 50.0f;
+    return ISIPAD?100.0f:50.0f;
 }
 
 + (CGFloat)getCellHeightForText:(NSString *)text
@@ -94,8 +99,6 @@
     NSInteger row = (memberCount/MEMBER_NUMBER_PERROW) + flag;
     return row;
 }
-
-#define CREATOR_CELL_HEIGHT 70
 
 + (CGFloat)getCellHeightForSingleAvatar
 {
@@ -199,10 +202,11 @@
 
 - (void)updateCellTextContent
 {
-//    self.infoLabel.center = CGRectGetCenter(self.bounds);
+
     [self.infoLabel setHidden:NO];
     [self.infoLabel updateOriginY:0];
     [self.infoLabel updateHeight:CGRectGetMinY(self.splitLine.frame)];
+    [self.infoLabel disableTapTouch];
     
     switch (self.cellStyle) {
         case DetailCellStyleSimpleText:{
@@ -217,6 +221,7 @@
         case DetailCellStyleMultipleAvatars:{
             [self.infoLabel updateHeight:TITLE_INFO_HEIGHT];
             [self.infoLabel setText:[self.members desc]];
+            [self.infoLabel enableTapTouch:self selector:@selector(clickOnTitle:)];
             break;
         }
         default:
@@ -225,10 +230,27 @@
     }
 }
 
+- (void)clickOnTitle:(UITapGestureRecognizer *)tap
+{
+    if (tap.state == UIGestureRecognizerStateRecognized) {
+        if ([self.delegate respondsToSelector:@selector(groupDetailCell:didClickAtTitle:)]) {
+            [self.delegate groupDetailCell:self didClickAtTitle:self.members.title];
+        }
+    }
+}
+
 - (void)cleanOldViews
 {
     [self.contentView removeSubviewsWithClass:[AvatarView class]];
     [self.contentView removeSubviewsWithClass:[UIScrollView class]];
+}
+
+- (UIButton *)getAddButton
+{
+    UIButton *addButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    [addButton setImage:[GroupUIManager addButtonImage] forState:UIControlStateNormal];
+    [addButton addTarget:self action:@selector(clickAddButton:) forControlEvents:UIControlEventTouchUpInside];
+    return addButton;
 }
 
 - (void)updateCellImageContent
@@ -277,12 +299,8 @@
                 
                 CGRect frame = CGRectMake(x, y, MEMBER_AVATAR_HEIGHT, MEMBER_AVATAR_HEIGHT);
                 if (index == count-1 && hasAddButton) {
-                    UIButton *addButton = [UIButton buttonWithType:UIButtonTypeCustom];
+                    UIButton *addButton = [self getAddButton];
                     [addButton setFrame:frame];
-                    [addButton setTintColor:COLOR_BROWN];
-                    [addButton setTitle:@"+" forState:UIControlStateNormal];
-                    addButton.backgroundColor = COLOR_ORANGE;
-                    [addButton addTarget:self action:@selector(clickAddButton:) forControlEvents:UIControlEventTouchUpInside];
                     [scrollView addSubview:addButton];
                 }else{
                     PBGameUser *user = self.members.usersList[index];

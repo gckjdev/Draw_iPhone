@@ -25,6 +25,7 @@
     PPRelease(_mask);
     PPRelease(_bgImageView);
     PPRelease(_contentView);
+    RELEASE_BLOCK(_callback);
     [super dealloc];
 }
 

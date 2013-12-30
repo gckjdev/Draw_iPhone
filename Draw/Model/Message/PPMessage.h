@@ -50,6 +50,8 @@ typedef enum {
 @property (nonatomic, assign) NSDate * createDate;
 @property (nonatomic, assign) NSString * text;
 
+
+
 // for all, non PB
 @property (nonatomic, retain) NSString * friendId;
 @property (nonatomic, assign) MessageStatus status;         //read or unread //use in the future
@@ -89,5 +91,7 @@ typedef enum {
 
 - (void)setIsGroup:(BOOL)isGroup;
 - (BOOL)isGroup;
+
+- (PBGameUser*)fromUserToGroup;
 
 @end

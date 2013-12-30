@@ -30,6 +30,13 @@
 
 @end
 
+#define NAME_MAX_LENGTH 14
+#define DEFAULT_LEVEL 10
+#define MAX_LEVEL 15
+//#define BIG_FONT AD_FONT(32,18)
+//#define SMALL_FONT AD_FONT(18,12)
+
+
 @implementation CreateGroupController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -41,7 +48,6 @@
     return self;
 }
 
-#define NAME_MAX_LENGTH 16
 
 - (void)clickDone:(id)sender
 {
@@ -88,8 +94,8 @@
     }];
 }
 
-#define BIG_FONT AD_FONT(32,18)
-#define SMALL_FONT AD_FONT(18,12)
+#define TIPS_FONT AD_FONT(24,12)
+#define KEY_FONT AD_FONT(36,18)
 
 - (void)initViews
 {
@@ -102,9 +108,10 @@
     [self.titleView setRightButtonSelector:@selector(clickDone:)];
     
     //name
+
     [self.nameLabel setTextColor:COLOR_BROWN];
     [self.nameTextField setTextColor:COLOR_BROWN];
-    [self.nameLabel setFont:BIG_FONT];
+    [self.nameLabel setFont:KEY_FONT];
     SET_INPUT_VIEW_STYLE(self.nameTextField);
     [self.nameLabel setText:NSLS(@"kName")];
     [self.nameTextField setPlaceholder:nil];
@@ -113,14 +120,15 @@
     [self.levelTips setTextColor:COLOR_BROWN];
     SET_BUTTON_ROUND_STYLE_ORANGE(self.levelButton);
     [self.levelPicker setHidden:YES];
-    [self.levelLabel setFont:BIG_FONT];
-    [self.levelTips setFont:SMALL_FONT];
+    [self.levelLabel setFont:KEY_FONT];
+    [self.levelTips setFont:TIPS_FONT];
     [self.levelLabel setText:NSLS(@"kLevel")];
     [self.nameTextField becomeFirstResponder];
+    
 }
 
 
-#define DEFAULT_LEVEL 10
+
 
 - (void)initDefaultValues
 {
@@ -177,7 +185,7 @@
 
 #pragma mark- Picker Deleage
 
-#define MAX_LEVEL 15
+
 
 - (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView
 {

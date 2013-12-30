@@ -272,8 +272,9 @@
 
 - (void)updateAvatarImage:(MessageStat *)messageStat
 {
-    NSString *avatar = self.messageStat.friendAvatar;
-    BOOL isMale = self.messageStat.friendGender;
+    NSString *avatar = messageStat.isGroup ? self.message.fromUserToGroup.avatar : self.messageStat.friendAvatar;
+    BOOL isMale = messageStat.isGroup ? self.message.fromUserToGroup.gender : self.messageStat.friendGender;
+    
     if (!_isReceive) {
         avatar = [[UserManager defaultManager] avatarURL];
         isMale = [[[UserManager defaultManager] gender] isEqualToString:@"m"];
@@ -319,7 +320,20 @@
     self.message = message;
     self.showTime = showTime;
     self.indexPath = theIndexPath;
-    self.isReceive = [message sourceType] == SourceTypeReceive;
+    self.isReceive = NO;
+    
+    if (message.isGroup){
+        if ([[UserManager defaultManager] isMe:message.fromUserToGroup.userId]){
+            self.isReceive = YES;
+        }
+        else{
+            self.isReceive = NO;
+        }
+    }
+    else{
+       self.isReceive = ([message sourceType] == SourceTypeReceive);
+    }
+    
     [self updateViewsWithShowTime:showTime];
     [self updateAvatarImage:messageStat];
     [self updateTime:message.createDate];

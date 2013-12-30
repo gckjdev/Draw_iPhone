@@ -53,9 +53,9 @@
 
 
 
-#define LABLE_Y_INSET (ISIPAD?15:8)
+#define LABEL_Y_INSET (ISIPAD?12:8)
 #define TIMELABEL_HEIGHT (ISIPAD?30:16)
-#define MIN_HEIGHT (ISIPAD?130:73)
+#define MIN_HEIGHT (ISIPAD?140:73)
 #define LABEL_WIDTH (ISIPAD?550:225)
 
 
@@ -65,7 +65,7 @@
     CGFloat width = CGRectGetWidth(label.bounds);
     CGSize size = [label.text sizeWithFont:label.font constrainedToSize:CGSizeMake(width, 9999999) lineBreakMode:NSLineBreakByCharWrapping];
     if (!CGSizeEqualToSize(size, CGSizeZero)) {
-        size.height += LABLE_Y_INSET;
+        size.height += LABEL_Y_INSET;
     }
     return size;
 }
@@ -92,11 +92,11 @@
 {
     CGSize noticeSize = [groupNotice.desc sizeWithFont:CELL_NICK_FONT constrainedToSize:CGSizeMake(LABEL_WIDTH, 999999) lineBreakMode:NSLineBreakByCharWrapping];
     
-    noticeSize.height += LABLE_Y_INSET;
+    noticeSize.height += LABEL_Y_INSET;
     
     CGSize messageSize = [groupNotice.msg sizeWithFont:CELL_CONTENT_FONT constrainedToSize:CGSizeMake(LABEL_WIDTH, 999999) lineBreakMode:NSLineBreakByCharWrapping];
     if (messageSize.height != 0) {
-        messageSize.height += LABLE_Y_INSET;
+        messageSize.height += LABEL_Y_INSET;
     }
 
     CGFloat height = noticeSize.height + messageSize.height;

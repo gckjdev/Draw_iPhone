@@ -19,6 +19,7 @@
 #import "BBSPostDetailController.h"
 #import "SearchGroupController.h"
 #import "UIViewController+BGImage.h"
+#import "ChatDetailController.h"
 
 @interface GroupHomeController ()
 {
@@ -38,6 +39,7 @@
     if (self) {
         groupService = [GroupService defaultService];
         [groupService syncFollowGroupIds];
+        [groupService syncGroupRoles];        
     }
     return self;
 }
@@ -343,6 +345,14 @@
             break;
         }
          case GroupChat:
+        {
+            PBGroup_Builder* builder = [PBGroup builder];
+            [builder setGroupId:@"888800000000001234567890"];
+            [builder setName:@"Test Group"];
+            
+            PBGroup* group = [builder build];
+            [ChatDetailController enterFromGroup:group superController:self];            
+        }
             
             break;
          case GroupAtMe:
@@ -365,6 +375,9 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    if ([self noData]) {
+        return [self noDataCellHeight];
+    }
     if ([self currentTabISGroupTab]) {
         return [GroupCell getCellHeight];
     }else{
@@ -375,11 +388,24 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return [super tableView:tableView numberOfRowsInSection:section];
+    NSInteger count = [super tableView:tableView numberOfRowsInSection:section];
+    if (count == 0 && [self noData]) {
+        return 1;
+    }
+    return count;
+}
+
+
+- (BOOL)noData
+{
+    return [self.tabDataList count] == 0 && [self.currentTab status] == TableTabStatusLoaded;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    if ([self noData]) {
+        return [self noDataCell];
+    }
     Class cellClass = [self currentTabISGroupTab] ? [GroupCell class] : [BBSPostCell class];
     NSString *identifier = [cellClass getCellIdentifier];
     PPTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
@@ -394,15 +420,19 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    if ([self noData]) {
+        return;
+    }
+
     id data = [self.tabDataList objectAtIndex:indexPath.row];
     if ([data isKindOfClass:[PBGroup class]]) {
         [GroupTopicController enterWithGroup:data fromController:self];
     }else if([data isKindOfClass:[PBBBSPost class]]){
-        [BBSPostDetailController enterPostDetailControllerWithPost:data group:nil fromController:self animated:YES];
+        [BBSPostDetailController enterGroupPostDetailController:data fromController:self animated:YES];
     }
 }
 
-SET_CELL_BG_IN_CONTROLLER
+SET_CELL_BG_IN_CONTROLLER_EVEN(1)
 
 - (void)groupCell:(GroupCell *)cell goFollowGroup:(PBGroup *)group
 {
@@ -433,6 +463,7 @@ SET_CELL_BG_IN_CONTROLLER
     [_subTabsHolder release];
     [_footerView release];
     [_tabsHolderView release];
+    [GroupPermissionManager clearGroupRoles];
     [super dealloc];
 }
 - (void)viewDidUnload {

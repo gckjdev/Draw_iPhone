@@ -513,4 +513,10 @@
         [button setTitle:title forState:UIControlStateSelected];
     }
 }
+
+- (BOOL)noData
+{
+    return [self.tabDataList count] == 0 && [self.currentTab status] == TableTabStatusLoaded;
+}
+
 @end

@@ -2146,6 +2146,21 @@
 
 "kGroupMemberNumber" = "(%d)";
 
+"kAddTitle" = "Add title";
+"kChangeBG" = "Change BG";
+"kUpgradeGroup" = "Upgrade";
+"kTextCanotBeNil" = "Input can't be empty.";
+"kOutOfMaxLength" = "Text length should be less than %d.";
+
+"kUpgradeGroupTitle" = "Input expect level.";
+"kDegradeGroup" = "Can't degrade group.";
+"kUpgradingGroup" = "Upgrading Group...";
+"kQuitGroupTitle" = "Quit Group";
+"kQuitGroupMessage" = "Are you sure to quit the group?";
+"kGroupTitleEmpty" = "Group title should not be empty.";
+
+"kUpdateTitle" = "Update Title";
+"kTitleIDNotFound" = "Title not found.";
 
 "kGroupTitleDesc" = "%@ (%d)";
 "kGroupCreator" = "Creator %@";

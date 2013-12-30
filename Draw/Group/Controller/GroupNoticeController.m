@@ -66,8 +66,25 @@ typedef enum{
 }
 
 
+- (BOOL)noData
+{
+    return [self.tabDataList count] == 0 && [self.currentTab status] == TableTabStatusLoaded;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    NSInteger count = [super tableView:tableView numberOfRowsInSection:section];
+    if (count == 0 && [self noData]) {
+        return 1;
+    }
+    return count;
+}
+
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    if ([self noData]) {
+        return [self noDataCellHeight];
+    }
     id data = self.tabDataList[indexPath.row];
     
     if (self.currentTab.tabID == GroupComment) {
@@ -77,10 +94,15 @@ typedef enum{
     }
 }
 
-SET_CELL_BG_IN_CONTROLLER
+//SET_CELL_BG_IN_CONTROLLER
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    
+    if ([self noData]) {
+        return [self noDataCell];
+    }
+    
     Class cellClass = nil;
 
     if (self.currentTab.tabID == GroupComment) {
@@ -113,6 +135,9 @@ typedef enum{
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    if ([self noData]) {
+        return;
+    }
     TabID tabId = [self currentTabID];
     PPDebug(@"did select at row = %d", indexPath.row);
     if (tabId == GroupRequest) {
@@ -152,9 +177,9 @@ typedef enum{
 - (void)removeModelData:(id)data
 {
     if (data) {
-        NSUInteger index = [self.tabDataList objectAtIndex:data];
+        NSUInteger index = [self.tabDataList indexOfObject:data];
         if (index != NSNotFound) {
-            [self.tabDataList removeObject:data];
+            [self.tabDataList removeObjectAtIndex:index];
             NSIndexPath *indexPath = [NSIndexPath indexPathForRow:index inSection:0];
             [self.dataTableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
         }        
@@ -267,9 +292,7 @@ typedef enum{
 {
     [self hideActivity];
     if (resultCode == 0) {
-        //TODO get the correct group
-        PBGroup *group = [[GroupManager defaultManager] findGroupById:post.boardId];
-        [BBSPostDetailController enterPostDetailControllerWithPost:post group:group fromController:self animated:YES];
+        [BBSPostDetailController enterGroupPostDetailController:post fromController:self animated:YES];
     }else{
         
     }
@@ -278,6 +301,9 @@ typedef enum{
 
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    if ([self.tabDataList count] == 0) {
+        return NO;
+    }
     return self.currentTabID == GroupNotice;
 }
 

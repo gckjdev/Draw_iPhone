@@ -76,7 +76,8 @@
 - (void)loadMessageList:(NSString *)friendUserId
         offsetMessageId:(NSString *)offsetMessageId
                 forward:(BOOL)forward
-                  limit:(int)limit;
+                  limit:(int)limit
+                isGroup:(BOOL)isGroup;
 
 - (void)sendTextMessage:(NSString *)text
            friendUserId:(NSString*)friendUserId

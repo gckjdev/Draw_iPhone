@@ -84,6 +84,7 @@ static ChatService *_chatService = nil;
        offsetMessageId:(NSString *)offsetMessageId
                forward:(BOOL)forward
                  limit:(int)limit
+               isGroup:(BOOL)isGroup
 {
     NSString *userId = [[UserManager defaultManager] userId];
     
@@ -100,7 +101,8 @@ static ChatService *_chatService = nil;
                                                                    appId:[PPConfigManager appId] 
                                                                   userId:userId 
                                                             friendUserId:friendUserId offsetMessageId:offsetMessageId maxCount:limit
-                                                                 forward:forward];
+                                                                 forward:forward
+                                                                 isGroup:isGroup];
         NSArray *messageList = nil;
         if (output.resultCode == ERROR_SUCCESS){
             
@@ -391,8 +393,14 @@ static ChatService *_chatService = nil;
         offsetMessageId:(NSString *)offsetMessageId
                 forward:(BOOL)forward
                   limit:(int)limit
+                isGroup:(BOOL)isGroup
 {
-    [self loadMessageList:friendUserId offsetMessageId:offsetMessageId forward:forward insertMiddle:NO limit:limit];
+    [self loadMessageList:friendUserId
+          offsetMessageId:offsetMessageId
+                  forward:forward
+             insertMiddle:NO
+                    limit:limit
+                  isGroup:isGroup];
 }
 
 - (void)loadMessageList:(NSString *)friendUserId
@@ -400,6 +408,8 @@ static ChatService *_chatService = nil;
                 forward:(BOOL)forward
            insertMiddle:(BOOL)insertMiddle
                   limit:(int)limit
+                isGroup:(BOOL)isGroup
+
 {
     PPDebug(@"<loadMessageList> offsetMessgeId=%@, forward=%d, limit=%d", offsetMessageId, forward, limit);
     
@@ -420,7 +430,8 @@ static ChatService *_chatService = nil;
                                                             friendUserId:friendUserId
                                                          offsetMessageId:offsetMessageId
                                                                 maxCount:limit
-                                                                 forward:forward];
+                                                                 forward:forward
+                                                                 isGroup:isGroup];
         
         dispatch_async(dispatch_get_main_queue(), ^{
             NSArray *messageList = nil;
@@ -694,7 +705,8 @@ static ChatService *_chatService = nil;
                                                             longitude:longitude
                                                              latitude:latitude
                                                          reqMessageId:reqMessageId
-                                                          replyResult:replyResult];
+                                                          replyResult:replyResult
+                                                              isGroup:message.isGroup];
         
         dispatch_async(dispatch_get_main_queue(), ^{
             if (output.resultCode == ERROR_SUCCESS){
@@ -732,7 +744,12 @@ static ChatService *_chatService = nil;
                 [[PPMessageManager defaultManager] saveMessageList:message.friendId];
                 
                 // load message after sending completed
-                [self loadMessageList:message.friendId offsetMessageId:message.messageId forward:NO insertMiddle:YES limit:20];
+                [self loadMessageList:message.friendId
+                      offsetMessageId:message.messageId
+                              forward:NO
+                         insertMiddle:YES
+                                limit:20
+                              isGroup:message.isGroup];
 
             }else {                
                 message.status = MessageStatusFail;

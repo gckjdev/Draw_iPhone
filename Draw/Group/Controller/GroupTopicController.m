@@ -18,6 +18,8 @@
 #import "SearchPostController.h"
 #import "GroupDetailController.h"
 #import "UIViewController+BGImage.h"
+#import "ChatDetailController.h"
+#import "MessageStat.h"
 
 typedef enum{
     NewestTopic = 1,
@@ -74,7 +76,8 @@ typedef enum {
     [super dealloc];
 }
 
-- (void)clickJoinOrQuit:(id)sender
+//TODO move to group detail controller.
+- (void)clickJoin:(id)sender
 {
     UIButton *button = sender;
     if ([permissonManager canJoinGroup]) {
@@ -86,19 +89,6 @@ typedef enum {
                 button.hidden = YES;
             }
         }];
-    }else if ([permissonManager canQuitGroup]) {
-        [self showActivityWithText:NSLS(@"kQuitingGroup")];
-        //TODO to comfirm
-        [groupService quitGroup:_group.groupId callback:^(NSError *error) {
-            [self hideActivity];
-            if (!error) {
-                POSTMSG(NSLS(@"kQuitedGroup"));
-                PBGroup *group = [groupService buildGroupWithDefaultRelation:self.group];
-                [self updateGroup:group];
-            }
-        }];
-    }else if([permissonManager canDismissalGroup]){
-        //TODO dissmissal
     }
 }
 
@@ -111,6 +101,7 @@ typedef enum {
     [self.footerView setButtonsWithCustomTypes:types images:images];
     [self.view addSubview:self.footerView];
 }
+
 
 - (void)detailFooterView:(DetailFooterView *)footer
         didClickAtButton:(UIButton *)button
@@ -129,11 +120,14 @@ typedef enum {
             break;
         }
         case GroupChat:
+        {
             if (![permissonManager canGroupChat]) {
                 POSTMSG(NSLS(@"kCanotGroupChat"));
                 return;
             }
             
+            [ChatDetailController enterFromGroup:self.group superController:self];
+        }
             break;
             
         case GroupSearchTopic:
@@ -155,37 +149,22 @@ typedef enum {
 {
     [self.titleView setTransparentStyle];
     [self.titleView setTitle:_group.name];
-    [self.titleView setRightButtonSelector:@selector(clickJoinOrQuit:)];
+    if ([permissonManager canJoinGroup]) {
+        [self.titleView.rightButton setHidden:NO];
+        [self.titleView setRightButtonTitle:NSLS(@"kJoinGroup")];
+        [self.titleView setRightButtonSelector:@selector(clickJoin:)];
+    }else{
+        [self.titleView.rightButton setHidden:YES];
+    }
+
 }
 
 - (void)updateGroup:(PBGroup *)group
 {
-    permissonManager.group = group;
     self.group = group;
-    [[GroupManager defaultManager] setSharedGroup:group];
-    
-    [self.titleView.rightButton setHidden:NO];
-    if ([permissonManager canJoinGroup]) {
-        [self.titleView setRightButtonTitle:NSLS(@"kJoinGroup")];
-    }else if([permissonManager canQuitGroup]){
-        [self.titleView setRightButtonTitle:NSLS(@"kQuitGroup")];
-    }else if([permissonManager canDismissalGroup]){
-        [self.titleView setRightButtonTitle:NSLS(@"kDissolveGroup")];
-    }else{
-        [self.titleView.rightButton setHidden:YES];
-    }
+    [[GroupManager defaultManager] setSharedGroup:group];    
 }
 
-- (void)loadGroupRelation
-{
-    [self showActivityWithText:NSLS(@"kLoading")];
-    [groupService getRelationWithGroup:_group.groupId callback:^(PBUserRelationWithGroup *relation, NSError *error) {
-        if (!error) {
-            PBGroup *group = [groupService buildGroup:self.group withRelation:relation];
-            [self updateGroup:group];
-        }
-    }];
-}
 
 - (void)reloadViews
 {
@@ -196,7 +175,7 @@ typedef enum {
 
 - (void)viewDidLoad
 {
-    permissonManager = [GroupPermissionManager myManagerWithGroup:_group];
+    permissonManager = [GroupPermissionManager myManagerWithGroupId:_group.groupId];
     [[GroupManager defaultManager] setSharedGroup:_group];
     [permissonManager retain];
     
@@ -205,8 +184,8 @@ typedef enum {
     [self updateTitleView];
     [self updateFooterView];
     [self clickTab:NewestTopic];
-    [self loadGroupRelation];
     self.unReloadDataWhenViewDidAppear = NO;
+    
 
 }
 
@@ -245,13 +224,12 @@ typedef enum {
     switch (indexPath.row) {
         case RowGroupInfo:
             return [GroupInfoView getViewHeight];
-//            return [GroupInfoView recommandHeightForGroup:self.group];
         case RowTopicHeader:
             return [BBSPostActionHeaderView getViewHeight];
         default:
         {
-            if (![self hasPostData]) {
-                return 44;
+            if ([self noData]) {
+                return [self noDataCellHeight];
             }
             PBBBSPost *post = [self postInIndexPath:indexPath];
             return [BBSPostCell getCellHeightWithBBSPost:post];
@@ -273,6 +251,8 @@ typedef enum {
     }
 }
 
+#define TABLEVIEW_WIDTH (ISIPAD?700:300)
+
 - (void)updateGroupInfo
 {
     if (self.infoCell == nil) {
@@ -281,7 +261,18 @@ typedef enum {
         infoView.autoresizingMask |= (UIViewAutoresizingFlexibleTopMargin|UIViewAutoresizingFlexibleHeight|UIViewAutoresizingFlexibleBottomMargin);
         [infoView updateHeight:CGRectGetHeight(self.infoCell.contentView.frame)];
         infoView.delegate = self;
+        UIButton *info = [UIButton buttonWithType:UIButtonTypeCustom];
+        [info setImage:[UIImage imageNamed:@"user_detail_more@2x.png"] forState:UIControlStateNormal];
+        info.userInteractionEnabled = NO;
+//        info.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin;
+        [infoView setCustomButton:info];
+        
         [self.infoCell.contentView addSubview:infoView];
+        [self.infoCell.contentView setClipsToBounds:NO];
+        [self.infoCell setClipsToBounds:NO];
+//        [infoView updateWidth:TABLEVIEW_WIDTH];
+
+        
         [self.infoCell setSelectionStyle:UITableViewCellSelectionStyleNone];
         
     }else{
@@ -309,7 +300,7 @@ typedef enum {
         }
         default:
         {
-            if (![self hasPostData]) {
+            if ([self noData]) {
                 return [self noDataCell];
             }else{
                 BBSPostCell *cell = [tableView dequeueReusableCellWithIdentifier:[BBSPostCell getCellIdentifier]];
@@ -328,7 +319,7 @@ typedef enum {
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     NSInteger number = [super tableView:tableView numberOfRowsInSection:section];
-    if (number == 0) {
+    if (number == 0 && [self noData]) {
         number = 1;
     }
     return number + BasicRowCount;
@@ -339,12 +330,12 @@ typedef enum {
 {
     NSInteger row = indexPath.row;
     if (row >= BasicRowCount) {
-        if (![self hasPostData]) {
+        if ([self noData]) {
             return;
         }
         [[BBSManager defaultManager] setTempPostList:[self tabDataList]];
         PBBBSPost *post = [self postInIndexPath:indexPath];
-        [BBSPostDetailController enterPostDetailControllerWithPost:post group:_group fromController:self animated:YES];
+        [BBSPostDetailController enterGroupPostDetailController:post fromController:self animated:YES];
     }else if (row == RowGroupInfo){
         [GroupDetailController enterWithGroup:self.group fromController:self];
     }else{
@@ -443,8 +434,7 @@ typedef enum {
         TableTab *tab = [_tabManager tabForID:NewestTopic];
         [tab.dataList insertObject:post atIndex:0];
         if ([self currentTab] == tab) {
-            NSArray *paths = [NSArray arrayWithObject:[NSIndexPath indexPathForRow:BasicRowCount inSection:0]];
-            [self.dataTableView insertRowsAtIndexPaths:paths withRowAnimation:UITableViewRowAnimationFade];
+            [self.dataTableView reloadData];
         }
     }
 }
