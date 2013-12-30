@@ -62,4 +62,12 @@
 + (int)getPrizeStyleCellCountWithDataCount:(int)count;
 + (float)getPrizeStyleCellHeight;
 
+
++ (UITableViewCell *)getContestStyleCell:(UITableView *)tableView
+                               indexPath:(NSIndexPath *)indexPath
+                                delegate:(id)delegate
+                                dataList:(NSArray *)dataList;
++ (int)getContestStyleCellCountWithDataCount:(int)count;
++ (float)getContestStyleCellHeight;
+
 @end

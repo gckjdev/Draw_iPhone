@@ -44,7 +44,6 @@ typedef enum{
 
 //basic info
 @property(nonatomic, retain) PBContest *pbContest;
-@property(nonatomic, retain) PBGroup *pbGroup;
 
 @property(nonatomic, readonly) NSString *contestId;
 @property(nonatomic, readonly) NSDate *startDate;
@@ -66,11 +65,7 @@ typedef enum{
 @property(nonatomic, readonly) BOOL canSubmit;
 @property(nonatomic, readonly) BOOL canVote;
 
-//- (id)initWithDict:(NSDictionary *)dict;
-//+ (Contest *)contestWithDict:(NSDictionary *)dict;
-
 - (id)initWithPBContest:(PBContest*)pbContest;
-- (id)initWithPBGroupContest:(PBGroupContest*)pbGroupContest;
 
 - (void)incCommitCount;
 - (BOOL)commitCountEnough;

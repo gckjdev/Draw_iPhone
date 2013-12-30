@@ -94,10 +94,39 @@ static ContestService *_staticContestService;
 
 }
 
-
-
-
-
+- (void)getGroupContestListWithType:(ContestListType)type
+                             offset:(NSInteger)offset
+                              limit:(NSInteger)limit
+                           delegate:(id<ContestServiceDelegate>)delegate{
+    
+    dispatch_async(workingQueue, ^{
+        
+        NSDictionary* para = @{ PARA_LANGUAGE : @(ChineseType),
+                                PARA_TYPE : @(type),
+                                PARA_OFFSET : @(offset),
+                                PARA_COUNT : @(limit)
+                                };
+        
+        GameNetworkOutput* output = [PPGameNetworkRequest trafficApiServerGetAndResponsePB:METHOD_GET_GROUP_CONTEST_LIST
+                                                                                parameters:para];
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            
+            NSArray *contestList = nil;
+            if (output.resultCode == 0 && output.pbResponse.contestListList){
+                contestList = [[ContestManager defaultManager] parseContestList:output.pbResponse.contestListList];
+                if (type == ContestListTypeAll) {
+                    [[ContestManager defaultManager] setAllContestList:output.pbResponse.contestListList];
+                }
+            }
+            
+            if (delegate && [delegate respondsToSelector:@selector(didGetContestList:type:resultCode:)]) {
+                [delegate didGetContestList:contestList type:type resultCode:output.resultCode];
+            }
+            
+        });
+    });
+}
 
 - (void)getMyContestListWithOffset:(NSInteger)offset
                              limit:(NSInteger)limit
@@ -213,7 +242,7 @@ static ContestService *_staticContestService;
         
         GameNetworkOutput* output = [PPGameNetworkRequest trafficApiServerGetAndResponsePB:METHOD_CREATE_CONTEST_LIST
                                                                                 parameters:para];
-        Contest *contest = [[[Contest alloc] initWithPBGroupContest:output.pbResponse.groupContest] autorelease];
+        Contest *contest = [[[Contest alloc] initWithPBContest:output.pbResponse.contest] autorelease];
         
         dispatch_async(dispatch_get_main_queue(), ^{
             
@@ -221,5 +250,8 @@ static ContestService *_staticContestService;
         });
     });
 }
+
+
+
 
 @end

@@ -483,7 +483,8 @@ message DataQueryResponse {
   // for user feed
   repeated PBFeed feed = 41;
   repeated PBContest contestList = 42;
-  
+  optional PBContest contest = 43;
+
   //for bbs
   repeated PBBBSBoard bbsBoard = 51;
   repeated PBBBSPost bbsPost = 52;
@@ -525,9 +526,7 @@ message DataQueryResponse {
   optional PBUserRelationWithGroup groupRelation = 154;
   repeated PBIntKeyIntValue badges = 155;
   optional string url = 156;
-  
-  
-  // for group contest
-  optional PBGroupContest groupContest = 160;
+
+
 }
 

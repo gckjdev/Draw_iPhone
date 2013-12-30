@@ -10,6 +10,7 @@
 #import "ContestService.h"
 #import "ContestView.h"
 
+
 @class UICustomPageControl;
 @interface ContestController : CommonTabController<ContestServiceDelegate, UIScrollViewDelegate>
 {

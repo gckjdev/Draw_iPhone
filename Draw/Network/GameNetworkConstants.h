@@ -600,6 +600,11 @@
 #define METHOD_CREATE_CONTEST_LIST @"createContest"
 
 
+// for group contest
+#define METHOD_GET_GROUP_CONTEST_LIST @"ggcl"
+
+#define METHOD_GET_WONDERFUL_CONTEST_LIST @"gwcl"
+
 //for draw contest
 #define METHOD_GET_CONTEST_LIST @"gcl"
 #define PARA_CONTESTID @"cid"

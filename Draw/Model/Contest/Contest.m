@@ -205,7 +205,6 @@
 {
     PPRelease(_pbContest);
     PPRelease(awardDict);
-    PPRelease(_pbGroup);
 //    PPRelease(_contestId);
 //    PPRelease(_startDate);
 //    PPRelease(_endDate);
@@ -229,14 +228,6 @@
 {
     self = [super init];
     self.pbContest = pbContest;
-    return self;
-}
-
-- (id)initWithPBGroupContest:(PBGroupContest*)pbGroupContest{
-
-    self = [super init];
-    self.pbContest = pbGroupContest.contest;
-    self.pbGroup = pbGroupContest.group;
     return self;
 }
 
@@ -471,11 +462,7 @@
 
 - (NSData *)data{
     
-    PBGroupContest_Builder *builder = [[[PBGroupContest_Builder alloc] init] autorelease];
-    [builder setContest:_pbContest];
-    [builder setGroup:_pbGroup];
-    
-    return [[builder build] data];
+    return [_pbContest data];
 }
 
 - (NSString *)leftTime{

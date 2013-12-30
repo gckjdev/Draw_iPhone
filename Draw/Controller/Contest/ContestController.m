@@ -20,13 +20,18 @@
 #import "StatisticManager.h"
 #import "CustomInfoView.h"
 #import "PPConfigManager.h"
-#import "ContestCell.h"
+#import "FeedService.h"
+#import "CellManager.h"
 
 typedef enum{
     TabTypeOfficial = 1,
     TabTypeGroup = 2,
     TabTypeOpus = 3,
 }TabType;
+
+@interface ContestController()<FeedServiceDelegate>
+
+@end
 
 
 @implementation ContestController
@@ -105,7 +110,6 @@ typedef enum{
     SET_VIEW_BG(self.view);
     [self initCustomPageControl];
     [self getContestList];
-    [self.noContestTipLabel setHidden:YES];
     
     CommonTitleView *titleView = [CommonTitleView createTitleView:self.view];
     [titleView setTarget:self];
@@ -385,11 +389,14 @@ typedef enum{
             break;
             
         case TabTypeGroup:
-            
+            [[ContestService defaultService] getGroupContestListWithType:ContestListTypeAll
+                                                                  offset:self.currentTab.offset
+                                                                   limit:self.currentTab.limit
+                                                                delegate:self];
             break;
             
         case TabTypeOpus:
-            
+            [[FeedService defaultService] getWonderfulContestOpusListWithOffset:self.currentTab.offset limit:self.currentTab.limit delegate:self];
             break;
             
         default:
@@ -403,18 +410,21 @@ typedef enum{
     
     switch (tabID) {
         case TabTypeOfficial:
+            self.view.backgroundColor = COLOR_GRAY_BG;
             self.scrollerViewHolder.hidden = NO;
             self.tableViewHolder.hidden = YES;
 
             break;
             
         case TabTypeGroup:
+            self.view.backgroundColor = COLOR_WHITE;
             self.scrollerViewHolder.hidden = YES;
             self.tableViewHolder.hidden = NO;
 
             break;
             
         case TabTypeOpus:
+            self.view.backgroundColor = COLOR_WHITE;
             self.scrollerViewHolder.hidden = YES;
             self.tableViewHolder.hidden = NO;
             break;
@@ -427,15 +437,26 @@ typedef enum{
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    ContestCell *cell = [tableView dequeueReusableCellWithIdentifier:[ContestCell getCellIdentifier]];
-    if (cell == nil) {
-        cell = [ContestCell createCell:self];
+    switch ([[self currentTab] tabID]) {
+        case TabTypeGroup:
+        case TabTypeOfficial:
+            return [CellManager getContestStyleCell:tableView
+                                          indexPath:indexPath
+                                           delegate:self
+                                           dataList:self.currentTab.dataList];
+            break;
+            
+        case TabTypeOpus:
+            return [CellManager getLastStyleCell:tableView
+                                       indexPath:indexPath
+                                        delegate:self
+                                        dataList:self.currentTab.dataList];
+            break;
+            
+        default:
+            return nil;
+            break;
     }
-    
-    PBContest *pbContest = [[[ContestManager defaultManager] allContestList] objectAtIndex:indexPath.row];
-    Contest *contest = [[[Contest alloc] initWithPBContest:pbContest] autorelease];
-    [cell setCellInfo:contest];
-    return cell;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
@@ -446,9 +467,36 @@ typedef enum{
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    return [ContestCell getCellHeight];
+    switch ([[self currentTab] tabID]) {
+        case TabTypeGroup:
+            return [CellManager getContestStyleCellHeight];
+            break;
+            
+        case TabTypeOpus:
+            return [CellManager getLastStyleCellHeightWithIndexPath:indexPath];
+            break;
+            
+        default:
+            return 0;
+            break;
+    }
 }
 
 
+- (void)didGetWonderfulContestOpusList:(NSArray *)feedList resultCode:(NSInteger)resultCode{
+    
+    [self hideActivity];
+    
+    if (resultCode == 0) {
+        if ([feedList count] != 0) {
+            [self finishLoadDataForTabID:self.currentTab.tabID resultList:feedList];
+            [self hideTips];
+        }else{
+            [self showTips:NSLS(@"kNoContestTips")];
+        }
+    }else{
+        [self showTips:NSLS(@"kFailLoad")];
+    }
+}
 
 @end

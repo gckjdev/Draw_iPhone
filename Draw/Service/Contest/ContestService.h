@@ -31,6 +31,9 @@ typedef enum{
 - (void)didGetMyContestList:(NSArray *)contestList 
                resultCode:(NSInteger)code;
 
+- (void)didGetContestOpusList:(NSArray *)opusList
+                   resultCode:(NSInteger)code;
+
 @end
 
 @interface ContestService : CommonService
@@ -42,6 +45,11 @@ typedef enum{
                         offset:(NSInteger)offset
                          limit:(NSInteger)limit
                       delegate:(id<ContestServiceDelegate>)delegate;
+
+- (void)getGroupContestListWithType:(ContestListType)type
+                             offset:(NSInteger)offset
+                              limit:(NSInteger)limit
+                           delegate:(id<ContestServiceDelegate>)delegate;
 
 - (void)getMyContestListWithOffset:(NSInteger)offset
                          limit:(NSInteger)limit
@@ -59,6 +67,8 @@ typedef enum{
 // 家族比赛
 - (void)createContest:(Contest *)contest
             completed:(CreateContestBlock)completed;
+
+
 
 
 @end

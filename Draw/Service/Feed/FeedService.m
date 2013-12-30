@@ -1288,4 +1288,40 @@ static FeedService *_staticFeedService = nil;
     [dialog showInView:viewController.view];
 }
 
+- (void)getWonderfulContestOpusListWithOffset:(NSInteger)offset
+                                        limit:(NSInteger)limit
+                                     delegate:(id<FeedServiceDelegate>)delegate;
+{
+    
+    dispatch_async(workingQueue, ^{
+        
+        NSAutoreleasePool *subPool = [[NSAutoreleasePool alloc] init];
+        
+        NSDictionary* para = @{ PARA_LANGUAGE : @(ChineseType),
+                                PARA_OFFSET : @(offset),
+                                PARA_COUNT : @(limit)
+                                };
+        
+        GameNetworkOutput* output = [PPGameNetworkRequest trafficApiServerGetAndResponsePB:METHOD_GET_WONDERFUL_CONTEST_LIST
+                                                                                parameters:para];
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            
+            
+            NSInteger resultCode = output.resultCode;
+            NSArray *pbFeedList = output.pbResponse.feedList;
+            NSArray *list = [FeedManager parsePbFeedList:pbFeedList];
+                        
+            dispatch_async(dispatch_get_main_queue(), ^{
+                if (delegate && [delegate respondsToSelector:@selector(didGetWonderfulContestOpusList:resultCode:)]) {
+                    [delegate didGetWonderfulContestOpusList:list resultCode:resultCode];
+                }
+            });
+        });
+        
+        [subPool drain];
+    });
+}
+
+
 @end

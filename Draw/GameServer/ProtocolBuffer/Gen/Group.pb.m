@@ -2978,20 +2978,204 @@ static PBGroupNotice* defaultPBGroupNoticeInstance = nil;
 }
 @end
 
-@interface PBGroupContest ()
-@property (retain) PBContest* contest;
+@interface PBContest ()
+@property (retain) NSString* contestId;
+@property int32_t startDate;
+@property int32_t endDate;
+@property int32_t type;
+@property int32_t status;
+@property int32_t participantCount;
+@property int32_t opusCount;
+@property (retain) NSString* title;
+@property (retain) NSString* contestUrl;
+@property (retain) NSString* statementUrl;
+@property int32_t voteStartDate;
+@property int32_t voteEndDate;
+@property BOOL isAnounymous;
+@property int32_t canSubmitCount;
+@property int32_t maxFlowerPerContest;
+@property int32_t maxFlowerPerOpus;
+@property int32_t judgeRankWeight;
+@property BOOL canSubmit;
+@property BOOL canVote;
+@property BOOL contestantsOnly;
+@property (retain) NSMutableArray* mutableContestantsList;
+@property (retain) NSMutableArray* mutableJudgesList;
+@property (retain) NSMutableArray* mutableReportersList;
+@property (retain) NSMutableArray* mutableWinnerUsersList;
+@property (retain) NSMutableArray* mutableAwardUsersList;
+@property (retain) NSMutableArray* mutableRankTypesList;
 @property (retain) PBGroup* group;
 @end
 
-@implementation PBGroupContest
+@implementation PBContest
 
-- (BOOL) hasContest {
-  return !!hasContest_;
+- (BOOL) hasContestId {
+  return !!hasContestId_;
 }
-- (void) setHasContest:(BOOL) value {
-  hasContest_ = !!value;
+- (void) setHasContestId:(BOOL) value {
+  hasContestId_ = !!value;
 }
-@synthesize contest;
+@synthesize contestId;
+- (BOOL) hasStartDate {
+  return !!hasStartDate_;
+}
+- (void) setHasStartDate:(BOOL) value {
+  hasStartDate_ = !!value;
+}
+@synthesize startDate;
+- (BOOL) hasEndDate {
+  return !!hasEndDate_;
+}
+- (void) setHasEndDate:(BOOL) value {
+  hasEndDate_ = !!value;
+}
+@synthesize endDate;
+- (BOOL) hasType {
+  return !!hasType_;
+}
+- (void) setHasType:(BOOL) value {
+  hasType_ = !!value;
+}
+@synthesize type;
+- (BOOL) hasStatus {
+  return !!hasStatus_;
+}
+- (void) setHasStatus:(BOOL) value {
+  hasStatus_ = !!value;
+}
+@synthesize status;
+- (BOOL) hasParticipantCount {
+  return !!hasParticipantCount_;
+}
+- (void) setHasParticipantCount:(BOOL) value {
+  hasParticipantCount_ = !!value;
+}
+@synthesize participantCount;
+- (BOOL) hasOpusCount {
+  return !!hasOpusCount_;
+}
+- (void) setHasOpusCount:(BOOL) value {
+  hasOpusCount_ = !!value;
+}
+@synthesize opusCount;
+- (BOOL) hasTitle {
+  return !!hasTitle_;
+}
+- (void) setHasTitle:(BOOL) value {
+  hasTitle_ = !!value;
+}
+@synthesize title;
+- (BOOL) hasContestUrl {
+  return !!hasContestUrl_;
+}
+- (void) setHasContestUrl:(BOOL) value {
+  hasContestUrl_ = !!value;
+}
+@synthesize contestUrl;
+- (BOOL) hasStatementUrl {
+  return !!hasStatementUrl_;
+}
+- (void) setHasStatementUrl:(BOOL) value {
+  hasStatementUrl_ = !!value;
+}
+@synthesize statementUrl;
+- (BOOL) hasVoteStartDate {
+  return !!hasVoteStartDate_;
+}
+- (void) setHasVoteStartDate:(BOOL) value {
+  hasVoteStartDate_ = !!value;
+}
+@synthesize voteStartDate;
+- (BOOL) hasVoteEndDate {
+  return !!hasVoteEndDate_;
+}
+- (void) setHasVoteEndDate:(BOOL) value {
+  hasVoteEndDate_ = !!value;
+}
+@synthesize voteEndDate;
+- (BOOL) hasIsAnounymous {
+  return !!hasIsAnounymous_;
+}
+- (void) setHasIsAnounymous:(BOOL) value {
+  hasIsAnounymous_ = !!value;
+}
+- (BOOL) isAnounymous {
+  return !!isAnounymous_;
+}
+- (void) setIsAnounymous:(BOOL) value {
+  isAnounymous_ = !!value;
+}
+- (BOOL) hasCanSubmitCount {
+  return !!hasCanSubmitCount_;
+}
+- (void) setHasCanSubmitCount:(BOOL) value {
+  hasCanSubmitCount_ = !!value;
+}
+@synthesize canSubmitCount;
+- (BOOL) hasMaxFlowerPerContest {
+  return !!hasMaxFlowerPerContest_;
+}
+- (void) setHasMaxFlowerPerContest:(BOOL) value {
+  hasMaxFlowerPerContest_ = !!value;
+}
+@synthesize maxFlowerPerContest;
+- (BOOL) hasMaxFlowerPerOpus {
+  return !!hasMaxFlowerPerOpus_;
+}
+- (void) setHasMaxFlowerPerOpus:(BOOL) value {
+  hasMaxFlowerPerOpus_ = !!value;
+}
+@synthesize maxFlowerPerOpus;
+- (BOOL) hasJudgeRankWeight {
+  return !!hasJudgeRankWeight_;
+}
+- (void) setHasJudgeRankWeight:(BOOL) value {
+  hasJudgeRankWeight_ = !!value;
+}
+@synthesize judgeRankWeight;
+- (BOOL) hasCanSubmit {
+  return !!hasCanSubmit_;
+}
+- (void) setHasCanSubmit:(BOOL) value {
+  hasCanSubmit_ = !!value;
+}
+- (BOOL) canSubmit {
+  return !!canSubmit_;
+}
+- (void) setCanSubmit:(BOOL) value {
+  canSubmit_ = !!value;
+}
+- (BOOL) hasCanVote {
+  return !!hasCanVote_;
+}
+- (void) setHasCanVote:(BOOL) value {
+  hasCanVote_ = !!value;
+}
+- (BOOL) canVote {
+  return !!canVote_;
+}
+- (void) setCanVote:(BOOL) value {
+  canVote_ = !!value;
+}
+- (BOOL) hasContestantsOnly {
+  return !!hasContestantsOnly_;
+}
+- (void) setHasContestantsOnly:(BOOL) value {
+  hasContestantsOnly_ = !!value;
+}
+- (BOOL) contestantsOnly {
+  return !!contestantsOnly_;
+}
+- (void) setContestantsOnly:(BOOL) value {
+  contestantsOnly_ = !!value;
+}
+@synthesize mutableContestantsList;
+@synthesize mutableJudgesList;
+@synthesize mutableReportersList;
+@synthesize mutableWinnerUsersList;
+@synthesize mutableAwardUsersList;
+@synthesize mutableRankTypesList;
 - (BOOL) hasGroup {
   return !!hasGroup_;
 }
@@ -3000,50 +3184,221 @@ static PBGroupNotice* defaultPBGroupNoticeInstance = nil;
 }
 @synthesize group;
 - (void) dealloc {
-  self.contest = nil;
+  self.contestId = nil;
+  self.title = nil;
+  self.contestUrl = nil;
+  self.statementUrl = nil;
+  self.mutableContestantsList = nil;
+  self.mutableJudgesList = nil;
+  self.mutableReportersList = nil;
+  self.mutableWinnerUsersList = nil;
+  self.mutableAwardUsersList = nil;
+  self.mutableRankTypesList = nil;
   self.group = nil;
   [super dealloc];
 }
 - (id) init {
   if ((self = [super init])) {
-    self.contest = [PBContest defaultInstance];
+    self.contestId = @"";
+    self.startDate = 0;
+    self.endDate = 0;
+    self.type = 0;
+    self.status = 0;
+    self.participantCount = 0;
+    self.opusCount = 0;
+    self.title = @"";
+    self.contestUrl = @"";
+    self.statementUrl = @"";
+    self.voteStartDate = 0;
+    self.voteEndDate = 0;
+    self.isAnounymous = NO;
+    self.canSubmitCount = 1;
+    self.maxFlowerPerContest = 20;
+    self.maxFlowerPerOpus = 3;
+    self.judgeRankWeight = 0;
+    self.canSubmit = NO;
+    self.canVote = NO;
+    self.contestantsOnly = NO;
     self.group = [PBGroup defaultInstance];
   }
   return self;
 }
-static PBGroupContest* defaultPBGroupContestInstance = nil;
+static PBContest* defaultPBContestInstance = nil;
 + (void) initialize {
-  if (self == [PBGroupContest class]) {
-    defaultPBGroupContestInstance = [[PBGroupContest alloc] init];
+  if (self == [PBContest class]) {
+    defaultPBContestInstance = [[PBContest alloc] init];
   }
 }
-+ (PBGroupContest*) defaultInstance {
-  return defaultPBGroupContestInstance;
++ (PBContest*) defaultInstance {
+  return defaultPBContestInstance;
 }
-- (PBGroupContest*) defaultInstance {
-  return defaultPBGroupContestInstance;
+- (PBContest*) defaultInstance {
+  return defaultPBContestInstance;
+}
+- (NSArray*) contestantsList {
+  return mutableContestantsList;
+}
+- (PBGameUser*) contestantsAtIndex:(int32_t) index {
+  id value = [mutableContestantsList objectAtIndex:index];
+  return value;
+}
+- (NSArray*) judgesList {
+  return mutableJudgesList;
+}
+- (PBGameUser*) judgesAtIndex:(int32_t) index {
+  id value = [mutableJudgesList objectAtIndex:index];
+  return value;
+}
+- (NSArray*) reportersList {
+  return mutableReportersList;
+}
+- (PBGameUser*) reportersAtIndex:(int32_t) index {
+  id value = [mutableReportersList objectAtIndex:index];
+  return value;
+}
+- (NSArray*) winnerUsersList {
+  return mutableWinnerUsersList;
+}
+- (PBUserAward*) winnerUsersAtIndex:(int32_t) index {
+  id value = [mutableWinnerUsersList objectAtIndex:index];
+  return value;
+}
+- (NSArray*) awardUsersList {
+  return mutableAwardUsersList;
+}
+- (PBUserAward*) awardUsersAtIndex:(int32_t) index {
+  id value = [mutableAwardUsersList objectAtIndex:index];
+  return value;
+}
+- (NSArray*) rankTypesList {
+  return mutableRankTypesList;
+}
+- (PBIntKeyValue*) rankTypesAtIndex:(int32_t) index {
+  id value = [mutableRankTypesList objectAtIndex:index];
+  return value;
 }
 - (BOOL) isInitialized {
-  if (!self.hasContest) {
+  if (!self.hasContestId) {
     return NO;
   }
-  if (!self.hasGroup) {
-    return NO;
+  for (PBGameUser* element in self.contestantsList) {
+    if (!element.isInitialized) {
+      return NO;
+    }
   }
-  if (!self.contest.isInitialized) {
-    return NO;
+  for (PBGameUser* element in self.judgesList) {
+    if (!element.isInitialized) {
+      return NO;
+    }
   }
-  if (!self.group.isInitialized) {
-    return NO;
+  for (PBGameUser* element in self.reportersList) {
+    if (!element.isInitialized) {
+      return NO;
+    }
+  }
+  for (PBUserAward* element in self.winnerUsersList) {
+    if (!element.isInitialized) {
+      return NO;
+    }
+  }
+  for (PBUserAward* element in self.awardUsersList) {
+    if (!element.isInitialized) {
+      return NO;
+    }
+  }
+  for (PBIntKeyValue* element in self.rankTypesList) {
+    if (!element.isInitialized) {
+      return NO;
+    }
+  }
+  if (self.hasGroup) {
+    if (!self.group.isInitialized) {
+      return NO;
+    }
   }
   return YES;
 }
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
-  if (self.hasContest) {
-    [output writeMessage:1 value:self.contest];
+  if (self.hasContestId) {
+    [output writeString:1 value:self.contestId];
+  }
+  if (self.hasStartDate) {
+    [output writeInt32:2 value:self.startDate];
+  }
+  if (self.hasEndDate) {
+    [output writeInt32:3 value:self.endDate];
+  }
+  if (self.hasType) {
+    [output writeInt32:4 value:self.type];
+  }
+  if (self.hasStatus) {
+    [output writeInt32:5 value:self.status];
+  }
+  if (self.hasParticipantCount) {
+    [output writeInt32:6 value:self.participantCount];
+  }
+  if (self.hasOpusCount) {
+    [output writeInt32:7 value:self.opusCount];
+  }
+  if (self.hasTitle) {
+    [output writeString:8 value:self.title];
+  }
+  if (self.hasContestUrl) {
+    [output writeString:9 value:self.contestUrl];
+  }
+  if (self.hasStatementUrl) {
+    [output writeString:10 value:self.statementUrl];
+  }
+  if (self.hasVoteStartDate) {
+    [output writeInt32:11 value:self.voteStartDate];
+  }
+  if (self.hasVoteEndDate) {
+    [output writeInt32:12 value:self.voteEndDate];
+  }
+  if (self.hasIsAnounymous) {
+    [output writeBool:13 value:self.isAnounymous];
+  }
+  if (self.hasCanSubmitCount) {
+    [output writeInt32:31 value:self.canSubmitCount];
+  }
+  if (self.hasMaxFlowerPerContest) {
+    [output writeInt32:32 value:self.maxFlowerPerContest];
+  }
+  if (self.hasMaxFlowerPerOpus) {
+    [output writeInt32:33 value:self.maxFlowerPerOpus];
+  }
+  if (self.hasJudgeRankWeight) {
+    [output writeInt32:34 value:self.judgeRankWeight];
+  }
+  if (self.hasCanSubmit) {
+    [output writeBool:41 value:self.canSubmit];
+  }
+  if (self.hasCanVote) {
+    [output writeBool:42 value:self.canVote];
+  }
+  if (self.hasContestantsOnly) {
+    [output writeBool:49 value:self.contestantsOnly];
+  }
+  for (PBGameUser* element in self.contestantsList) {
+    [output writeMessage:50 value:element];
+  }
+  for (PBGameUser* element in self.judgesList) {
+    [output writeMessage:51 value:element];
+  }
+  for (PBGameUser* element in self.reportersList) {
+    [output writeMessage:52 value:element];
+  }
+  for (PBUserAward* element in self.winnerUsersList) {
+    [output writeMessage:53 value:element];
+  }
+  for (PBUserAward* element in self.awardUsersList) {
+    [output writeMessage:54 value:element];
+  }
+  for (PBIntKeyValue* element in self.rankTypesList) {
+    [output writeMessage:55 value:element];
   }
   if (self.hasGroup) {
-    [output writeMessage:2 value:self.group];
+    [output writeMessage:60 value:self.group];
   }
   [self.unknownFields writeToCodedOutputStream:output];
 }
@@ -3054,50 +3409,125 @@ static PBGroupContest* defaultPBGroupContestInstance = nil;
   }
 
   size = 0;
-  if (self.hasContest) {
-    size += computeMessageSize(1, self.contest);
+  if (self.hasContestId) {
+    size += computeStringSize(1, self.contestId);
+  }
+  if (self.hasStartDate) {
+    size += computeInt32Size(2, self.startDate);
+  }
+  if (self.hasEndDate) {
+    size += computeInt32Size(3, self.endDate);
+  }
+  if (self.hasType) {
+    size += computeInt32Size(4, self.type);
+  }
+  if (self.hasStatus) {
+    size += computeInt32Size(5, self.status);
+  }
+  if (self.hasParticipantCount) {
+    size += computeInt32Size(6, self.participantCount);
+  }
+  if (self.hasOpusCount) {
+    size += computeInt32Size(7, self.opusCount);
+  }
+  if (self.hasTitle) {
+    size += computeStringSize(8, self.title);
+  }
+  if (self.hasContestUrl) {
+    size += computeStringSize(9, self.contestUrl);
+  }
+  if (self.hasStatementUrl) {
+    size += computeStringSize(10, self.statementUrl);
+  }
+  if (self.hasVoteStartDate) {
+    size += computeInt32Size(11, self.voteStartDate);
+  }
+  if (self.hasVoteEndDate) {
+    size += computeInt32Size(12, self.voteEndDate);
+  }
+  if (self.hasIsAnounymous) {
+    size += computeBoolSize(13, self.isAnounymous);
+  }
+  if (self.hasCanSubmitCount) {
+    size += computeInt32Size(31, self.canSubmitCount);
+  }
+  if (self.hasMaxFlowerPerContest) {
+    size += computeInt32Size(32, self.maxFlowerPerContest);
+  }
+  if (self.hasMaxFlowerPerOpus) {
+    size += computeInt32Size(33, self.maxFlowerPerOpus);
+  }
+  if (self.hasJudgeRankWeight) {
+    size += computeInt32Size(34, self.judgeRankWeight);
+  }
+  if (self.hasCanSubmit) {
+    size += computeBoolSize(41, self.canSubmit);
+  }
+  if (self.hasCanVote) {
+    size += computeBoolSize(42, self.canVote);
+  }
+  if (self.hasContestantsOnly) {
+    size += computeBoolSize(49, self.contestantsOnly);
+  }
+  for (PBGameUser* element in self.contestantsList) {
+    size += computeMessageSize(50, element);
+  }
+  for (PBGameUser* element in self.judgesList) {
+    size += computeMessageSize(51, element);
+  }
+  for (PBGameUser* element in self.reportersList) {
+    size += computeMessageSize(52, element);
+  }
+  for (PBUserAward* element in self.winnerUsersList) {
+    size += computeMessageSize(53, element);
+  }
+  for (PBUserAward* element in self.awardUsersList) {
+    size += computeMessageSize(54, element);
+  }
+  for (PBIntKeyValue* element in self.rankTypesList) {
+    size += computeMessageSize(55, element);
   }
   if (self.hasGroup) {
-    size += computeMessageSize(2, self.group);
+    size += computeMessageSize(60, self.group);
   }
   size += self.unknownFields.serializedSize;
   memoizedSerializedSize = size;
   return size;
 }
-+ (PBGroupContest*) parseFromData:(NSData*) data {
-  return (PBGroupContest*)[[[PBGroupContest builder] mergeFromData:data] build];
++ (PBContest*) parseFromData:(NSData*) data {
+  return (PBContest*)[[[PBContest builder] mergeFromData:data] build];
 }
-+ (PBGroupContest*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  return (PBGroupContest*)[[[PBGroupContest builder] mergeFromData:data extensionRegistry:extensionRegistry] build];
++ (PBContest*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (PBContest*)[[[PBContest builder] mergeFromData:data extensionRegistry:extensionRegistry] build];
 }
-+ (PBGroupContest*) parseFromInputStream:(NSInputStream*) input {
-  return (PBGroupContest*)[[[PBGroupContest builder] mergeFromInputStream:input] build];
++ (PBContest*) parseFromInputStream:(NSInputStream*) input {
+  return (PBContest*)[[[PBContest builder] mergeFromInputStream:input] build];
 }
-+ (PBGroupContest*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  return (PBGroupContest*)[[[PBGroupContest builder] mergeFromInputStream:input extensionRegistry:extensionRegistry] build];
++ (PBContest*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (PBContest*)[[[PBContest builder] mergeFromInputStream:input extensionRegistry:extensionRegistry] build];
 }
-+ (PBGroupContest*) parseFromCodedInputStream:(PBCodedInputStream*) input {
-  return (PBGroupContest*)[[[PBGroupContest builder] mergeFromCodedInputStream:input] build];
++ (PBContest*) parseFromCodedInputStream:(PBCodedInputStream*) input {
+  return (PBContest*)[[[PBContest builder] mergeFromCodedInputStream:input] build];
 }
-+ (PBGroupContest*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  return (PBGroupContest*)[[[PBGroupContest builder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] build];
++ (PBContest*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (PBContest*)[[[PBContest builder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] build];
 }
-+ (PBGroupContest_Builder*) builder {
-  return [[[PBGroupContest_Builder alloc] init] autorelease];
++ (PBContest_Builder*) builder {
+  return [[[PBContest_Builder alloc] init] autorelease];
 }
-+ (PBGroupContest_Builder*) builderWithPrototype:(PBGroupContest*) prototype {
-  return [[PBGroupContest builder] mergeFrom:prototype];
++ (PBContest_Builder*) builderWithPrototype:(PBContest*) prototype {
+  return [[PBContest builder] mergeFrom:prototype];
 }
-- (PBGroupContest_Builder*) builder {
-  return [PBGroupContest builder];
+- (PBContest_Builder*) builder {
+  return [PBContest builder];
 }
 @end
 
-@interface PBGroupContest_Builder()
-@property (retain) PBGroupContest* result;
+@interface PBContest_Builder()
+@property (retain) PBContest* result;
 @end
 
-@implementation PBGroupContest_Builder
+@implementation PBContest_Builder
 @synthesize result;
 - (void) dealloc {
   self.result = nil;
@@ -3105,38 +3535,131 @@ static PBGroupContest* defaultPBGroupContestInstance = nil;
 }
 - (id) init {
   if ((self = [super init])) {
-    self.result = [[[PBGroupContest alloc] init] autorelease];
+    self.result = [[[PBContest alloc] init] autorelease];
   }
   return self;
 }
 - (PBGeneratedMessage*) internalGetResult {
   return result;
 }
-- (PBGroupContest_Builder*) clear {
-  self.result = [[[PBGroupContest alloc] init] autorelease];
+- (PBContest_Builder*) clear {
+  self.result = [[[PBContest alloc] init] autorelease];
   return self;
 }
-- (PBGroupContest_Builder*) clone {
-  return [PBGroupContest builderWithPrototype:result];
+- (PBContest_Builder*) clone {
+  return [PBContest builderWithPrototype:result];
 }
-- (PBGroupContest*) defaultInstance {
-  return [PBGroupContest defaultInstance];
+- (PBContest*) defaultInstance {
+  return [PBContest defaultInstance];
 }
-- (PBGroupContest*) build {
+- (PBContest*) build {
   [self checkInitialized];
   return [self buildPartial];
 }
-- (PBGroupContest*) buildPartial {
-  PBGroupContest* returnMe = [[result retain] autorelease];
+- (PBContest*) buildPartial {
+  PBContest* returnMe = [[result retain] autorelease];
   self.result = nil;
   return returnMe;
 }
-- (PBGroupContest_Builder*) mergeFrom:(PBGroupContest*) other {
-  if (other == [PBGroupContest defaultInstance]) {
+- (PBContest_Builder*) mergeFrom:(PBContest*) other {
+  if (other == [PBContest defaultInstance]) {
     return self;
   }
-  if (other.hasContest) {
-    [self mergeContest:other.contest];
+  if (other.hasContestId) {
+    [self setContestId:other.contestId];
+  }
+  if (other.hasStartDate) {
+    [self setStartDate:other.startDate];
+  }
+  if (other.hasEndDate) {
+    [self setEndDate:other.endDate];
+  }
+  if (other.hasType) {
+    [self setType:other.type];
+  }
+  if (other.hasStatus) {
+    [self setStatus:other.status];
+  }
+  if (other.hasParticipantCount) {
+    [self setParticipantCount:other.participantCount];
+  }
+  if (other.hasOpusCount) {
+    [self setOpusCount:other.opusCount];
+  }
+  if (other.hasTitle) {
+    [self setTitle:other.title];
+  }
+  if (other.hasContestUrl) {
+    [self setContestUrl:other.contestUrl];
+  }
+  if (other.hasStatementUrl) {
+    [self setStatementUrl:other.statementUrl];
+  }
+  if (other.hasVoteStartDate) {
+    [self setVoteStartDate:other.voteStartDate];
+  }
+  if (other.hasVoteEndDate) {
+    [self setVoteEndDate:other.voteEndDate];
+  }
+  if (other.hasIsAnounymous) {
+    [self setIsAnounymous:other.isAnounymous];
+  }
+  if (other.hasCanSubmitCount) {
+    [self setCanSubmitCount:other.canSubmitCount];
+  }
+  if (other.hasMaxFlowerPerContest) {
+    [self setMaxFlowerPerContest:other.maxFlowerPerContest];
+  }
+  if (other.hasMaxFlowerPerOpus) {
+    [self setMaxFlowerPerOpus:other.maxFlowerPerOpus];
+  }
+  if (other.hasJudgeRankWeight) {
+    [self setJudgeRankWeight:other.judgeRankWeight];
+  }
+  if (other.hasCanSubmit) {
+    [self setCanSubmit:other.canSubmit];
+  }
+  if (other.hasCanVote) {
+    [self setCanVote:other.canVote];
+  }
+  if (other.hasContestantsOnly) {
+    [self setContestantsOnly:other.contestantsOnly];
+  }
+  if (other.mutableContestantsList.count > 0) {
+    if (result.mutableContestantsList == nil) {
+      result.mutableContestantsList = [NSMutableArray array];
+    }
+    [result.mutableContestantsList addObjectsFromArray:other.mutableContestantsList];
+  }
+  if (other.mutableJudgesList.count > 0) {
+    if (result.mutableJudgesList == nil) {
+      result.mutableJudgesList = [NSMutableArray array];
+    }
+    [result.mutableJudgesList addObjectsFromArray:other.mutableJudgesList];
+  }
+  if (other.mutableReportersList.count > 0) {
+    if (result.mutableReportersList == nil) {
+      result.mutableReportersList = [NSMutableArray array];
+    }
+    [result.mutableReportersList addObjectsFromArray:other.mutableReportersList];
+  }
+  if (other.mutableWinnerUsersList.count > 0) {
+    if (result.mutableWinnerUsersList == nil) {
+      result.mutableWinnerUsersList = [NSMutableArray array];
+    }
+    [result.mutableWinnerUsersList addObjectsFromArray:other.mutableWinnerUsersList];
+  }
+  if (other.mutableAwardUsersList.count > 0) {
+    if (result.mutableAwardUsersList == nil) {
+      result.mutableAwardUsersList = [NSMutableArray array];
+    }
+    [result.mutableAwardUsersList addObjectsFromArray:other.mutableAwardUsersList];
+  }
+  if (other.mutableRankTypesList.count > 0) {
+    if (result.mutableRankTypesList == nil) {
+      result.mutableRankTypesList = [NSMutableArray array];
+    }
+    [result.mutableRankTypesList addObjectsFromArray:other.mutableRankTypesList];
   }
   if (other.hasGroup) {
     [self mergeGroup:other.group];
@@ -3144,10 +3667,825 @@ static PBGroupContest* defaultPBGroupContestInstance = nil;
   [self mergeUnknownFields:other.unknownFields];
   return self;
 }
-- (PBGroupContest_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input {
+- (PBContest_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input {
   return [self mergeFromCodedInputStream:input extensionRegistry:[PBExtensionRegistry emptyRegistry]];
 }
-- (PBGroupContest_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+- (PBContest_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  PBUnknownFieldSet_Builder* unknownFields = [PBUnknownFieldSet builderWithUnknownFields:self.unknownFields];
+  while (YES) {
+    int32_t tag = [input readTag];
+    switch (tag) {
+      case 0:
+        [self setUnknownFields:[unknownFields build]];
+        return self;
+      default: {
+        if (![self parseUnknownField:input unknownFields:unknownFields extensionRegistry:extensionRegistry tag:tag]) {
+          [self setUnknownFields:[unknownFields build]];
+          return self;
+        }
+        break;
+      }
+      case 10: {
+        [self setContestId:[input readString]];
+        break;
+      }
+      case 16: {
+        [self setStartDate:[input readInt32]];
+        break;
+      }
+      case 24: {
+        [self setEndDate:[input readInt32]];
+        break;
+      }
+      case 32: {
+        [self setType:[input readInt32]];
+        break;
+      }
+      case 40: {
+        [self setStatus:[input readInt32]];
+        break;
+      }
+      case 48: {
+        [self setParticipantCount:[input readInt32]];
+        break;
+      }
+      case 56: {
+        [self setOpusCount:[input readInt32]];
+        break;
+      }
+      case 66: {
+        [self setTitle:[input readString]];
+        break;
+      }
+      case 74: {
+        [self setContestUrl:[input readString]];
+        break;
+      }
+      case 82: {
+        [self setStatementUrl:[input readString]];
+        break;
+      }
+      case 88: {
+        [self setVoteStartDate:[input readInt32]];
+        break;
+      }
+      case 96: {
+        [self setVoteEndDate:[input readInt32]];
+        break;
+      }
+      case 104: {
+        [self setIsAnounymous:[input readBool]];
+        break;
+      }
+      case 248: {
+        [self setCanSubmitCount:[input readInt32]];
+        break;
+      }
+      case 256: {
+        [self setMaxFlowerPerContest:[input readInt32]];
+        break;
+      }
+      case 264: {
+        [self setMaxFlowerPerOpus:[input readInt32]];
+        break;
+      }
+      case 272: {
+        [self setJudgeRankWeight:[input readInt32]];
+        break;
+      }
+      case 328: {
+        [self setCanSubmit:[input readBool]];
+        break;
+      }
+      case 336: {
+        [self setCanVote:[input readBool]];
+        break;
+      }
+      case 392: {
+        [self setContestantsOnly:[input readBool]];
+        break;
+      }
+      case 402: {
+        PBGameUser_Builder* subBuilder = [PBGameUser builder];
+        [input readMessage:subBuilder extensionRegistry:extensionRegistry];
+        [self addContestants:[subBuilder buildPartial]];
+        break;
+      }
+      case 410: {
+        PBGameUser_Builder* subBuilder = [PBGameUser builder];
+        [input readMessage:subBuilder extensionRegistry:extensionRegistry];
+        [self addJudges:[subBuilder buildPartial]];
+        break;
+      }
+      case 418: {
+        PBGameUser_Builder* subBuilder = [PBGameUser builder];
+        [input readMessage:subBuilder extensionRegistry:extensionRegistry];
+        [self addReporters:[subBuilder buildPartial]];
+        break;
+      }
+      case 426: {
+        PBUserAward_Builder* subBuilder = [PBUserAward builder];
+        [input readMessage:subBuilder extensionRegistry:extensionRegistry];
+        [self addWinnerUsers:[subBuilder buildPartial]];
+        break;
+      }
+      case 434: {
+        PBUserAward_Builder* subBuilder = [PBUserAward builder];
+        [input readMessage:subBuilder extensionRegistry:extensionRegistry];
+        [self addAwardUsers:[subBuilder buildPartial]];
+        break;
+      }
+      case 442: {
+        PBIntKeyValue_Builder* subBuilder = [PBIntKeyValue builder];
+        [input readMessage:subBuilder extensionRegistry:extensionRegistry];
+        [self addRankTypes:[subBuilder buildPartial]];
+        break;
+      }
+      case 482: {
+        PBGroup_Builder* subBuilder = [PBGroup builder];
+        if (self.hasGroup) {
+          [subBuilder mergeFrom:self.group];
+        }
+        [input readMessage:subBuilder extensionRegistry:extensionRegistry];
+        [self setGroup:[subBuilder buildPartial]];
+        break;
+      }
+    }
+  }
+}
+- (BOOL) hasContestId {
+  return result.hasContestId;
+}
+- (NSString*) contestId {
+  return result.contestId;
+}
+- (PBContest_Builder*) setContestId:(NSString*) value {
+  result.hasContestId = YES;
+  result.contestId = value;
+  return self;
+}
+- (PBContest_Builder*) clearContestId {
+  result.hasContestId = NO;
+  result.contestId = @"";
+  return self;
+}
+- (BOOL) hasStartDate {
+  return result.hasStartDate;
+}
+- (int32_t) startDate {
+  return result.startDate;
+}
+- (PBContest_Builder*) setStartDate:(int32_t) value {
+  result.hasStartDate = YES;
+  result.startDate = value;
+  return self;
+}
+- (PBContest_Builder*) clearStartDate {
+  result.hasStartDate = NO;
+  result.startDate = 0;
+  return self;
+}
+- (BOOL) hasEndDate {
+  return result.hasEndDate;
+}
+- (int32_t) endDate {
+  return result.endDate;
+}
+- (PBContest_Builder*) setEndDate:(int32_t) value {
+  result.hasEndDate = YES;
+  result.endDate = value;
+  return self;
+}
+- (PBContest_Builder*) clearEndDate {
+  result.hasEndDate = NO;
+  result.endDate = 0;
+  return self;
+}
+- (BOOL) hasType {
+  return result.hasType;
+}
+- (int32_t) type {
+  return result.type;
+}
+- (PBContest_Builder*) setType:(int32_t) value {
+  result.hasType = YES;
+  result.type = value;
+  return self;
+}
+- (PBContest_Builder*) clearType {
+  result.hasType = NO;
+  result.type = 0;
+  return self;
+}
+- (BOOL) hasStatus {
+  return result.hasStatus;
+}
+- (int32_t) status {
+  return result.status;
+}
+- (PBContest_Builder*) setStatus:(int32_t) value {
+  result.hasStatus = YES;
+  result.status = value;
+  return self;
+}
+- (PBContest_Builder*) clearStatus {
+  result.hasStatus = NO;
+  result.status = 0;
+  return self;
+}
+- (BOOL) hasParticipantCount {
+  return result.hasParticipantCount;
+}
+- (int32_t) participantCount {
+  return result.participantCount;
+}
+- (PBContest_Builder*) setParticipantCount:(int32_t) value {
+  result.hasParticipantCount = YES;
+  result.participantCount = value;
+  return self;
+}
+- (PBContest_Builder*) clearParticipantCount {
+  result.hasParticipantCount = NO;
+  result.participantCount = 0;
+  return self;
+}
+- (BOOL) hasOpusCount {
+  return result.hasOpusCount;
+}
+- (int32_t) opusCount {
+  return result.opusCount;
+}
+- (PBContest_Builder*) setOpusCount:(int32_t) value {
+  result.hasOpusCount = YES;
+  result.opusCount = value;
+  return self;
+}
+- (PBContest_Builder*) clearOpusCount {
+  result.hasOpusCount = NO;
+  result.opusCount = 0;
+  return self;
+}
+- (BOOL) hasTitle {
+  return result.hasTitle;
+}
+- (NSString*) title {
+  return result.title;
+}
+- (PBContest_Builder*) setTitle:(NSString*) value {
+  result.hasTitle = YES;
+  result.title = value;
+  return self;
+}
+- (PBContest_Builder*) clearTitle {
+  result.hasTitle = NO;
+  result.title = @"";
+  return self;
+}
+- (BOOL) hasContestUrl {
+  return result.hasContestUrl;
+}
+- (NSString*) contestUrl {
+  return result.contestUrl;
+}
+- (PBContest_Builder*) setContestUrl:(NSString*) value {
+  result.hasContestUrl = YES;
+  result.contestUrl = value;
+  return self;
+}
+- (PBContest_Builder*) clearContestUrl {
+  result.hasContestUrl = NO;
+  result.contestUrl = @"";
+  return self;
+}
+- (BOOL) hasStatementUrl {
+  return result.hasStatementUrl;
+}
+- (NSString*) statementUrl {
+  return result.statementUrl;
+}
+- (PBContest_Builder*) setStatementUrl:(NSString*) value {
+  result.hasStatementUrl = YES;
+  result.statementUrl = value;
+  return self;
+}
+- (PBContest_Builder*) clearStatementUrl {
+  result.hasStatementUrl = NO;
+  result.statementUrl = @"";
+  return self;
+}
+- (BOOL) hasVoteStartDate {
+  return result.hasVoteStartDate;
+}
+- (int32_t) voteStartDate {
+  return result.voteStartDate;
+}
+- (PBContest_Builder*) setVoteStartDate:(int32_t) value {
+  result.hasVoteStartDate = YES;
+  result.voteStartDate = value;
+  return self;
+}
+- (PBContest_Builder*) clearVoteStartDate {
+  result.hasVoteStartDate = NO;
+  result.voteStartDate = 0;
+  return self;
+}
+- (BOOL) hasVoteEndDate {
+  return result.hasVoteEndDate;
+}
+- (int32_t) voteEndDate {
+  return result.voteEndDate;
+}
+- (PBContest_Builder*) setVoteEndDate:(int32_t) value {
+  result.hasVoteEndDate = YES;
+  result.voteEndDate = value;
+  return self;
+}
+- (PBContest_Builder*) clearVoteEndDate {
+  result.hasVoteEndDate = NO;
+  result.voteEndDate = 0;
+  return self;
+}
+- (BOOL) hasIsAnounymous {
+  return result.hasIsAnounymous;
+}
+- (BOOL) isAnounymous {
+  return result.isAnounymous;
+}
+- (PBContest_Builder*) setIsAnounymous:(BOOL) value {
+  result.hasIsAnounymous = YES;
+  result.isAnounymous = value;
+  return self;
+}
+- (PBContest_Builder*) clearIsAnounymous {
+  result.hasIsAnounymous = NO;
+  result.isAnounymous = NO;
+  return self;
+}
+- (BOOL) hasCanSubmitCount {
+  return result.hasCanSubmitCount;
+}
+- (int32_t) canSubmitCount {
+  return result.canSubmitCount;
+}
+- (PBContest_Builder*) setCanSubmitCount:(int32_t) value {
+  result.hasCanSubmitCount = YES;
+  result.canSubmitCount = value;
+  return self;
+}
+- (PBContest_Builder*) clearCanSubmitCount {
+  result.hasCanSubmitCount = NO;
+  result.canSubmitCount = 1;
+  return self;
+}
+- (BOOL) hasMaxFlowerPerContest {
+  return result.hasMaxFlowerPerContest;
+}
+- (int32_t) maxFlowerPerContest {
+  return result.maxFlowerPerContest;
+}
+- (PBContest_Builder*) setMaxFlowerPerContest:(int32_t) value {
+  result.hasMaxFlowerPerContest = YES;
+  result.maxFlowerPerContest = value;
+  return self;
+}
+- (PBContest_Builder*) clearMaxFlowerPerContest {
+  result.hasMaxFlowerPerContest = NO;
+  result.maxFlowerPerContest = 20;
+  return self;
+}
+- (BOOL) hasMaxFlowerPerOpus {
+  return result.hasMaxFlowerPerOpus;
+}
+- (int32_t) maxFlowerPerOpus {
+  return result.maxFlowerPerOpus;
+}
+- (PBContest_Builder*) setMaxFlowerPerOpus:(int32_t) value {
+  result.hasMaxFlowerPerOpus = YES;
+  result.maxFlowerPerOpus = value;
+  return self;
+}
+- (PBContest_Builder*) clearMaxFlowerPerOpus {
+  result.hasMaxFlowerPerOpus = NO;
+  result.maxFlowerPerOpus = 3;
+  return self;
+}
+- (BOOL) hasJudgeRankWeight {
+  return result.hasJudgeRankWeight;
+}
+- (int32_t) judgeRankWeight {
+  return result.judgeRankWeight;
+}
+- (PBContest_Builder*) setJudgeRankWeight:(int32_t) value {
+  result.hasJudgeRankWeight = YES;
+  result.judgeRankWeight = value;
+  return self;
+}
+- (PBContest_Builder*) clearJudgeRankWeight {
+  result.hasJudgeRankWeight = NO;
+  result.judgeRankWeight = 0;
+  return self;
+}
+- (BOOL) hasCanSubmit {
+  return result.hasCanSubmit;
+}
+- (BOOL) canSubmit {
+  return result.canSubmit;
+}
+- (PBContest_Builder*) setCanSubmit:(BOOL) value {
+  result.hasCanSubmit = YES;
+  result.canSubmit = value;
+  return self;
+}
+- (PBContest_Builder*) clearCanSubmit {
+  result.hasCanSubmit = NO;
+  result.canSubmit = NO;
+  return self;
+}
+- (BOOL) hasCanVote {
+  return result.hasCanVote;
+}
+- (BOOL) canVote {
+  return result.canVote;
+}
+- (PBContest_Builder*) setCanVote:(BOOL) value {
+  result.hasCanVote = YES;
+  result.canVote = value;
+  return self;
+}
+- (PBContest_Builder*) clearCanVote {
+  result.hasCanVote = NO;
+  result.canVote = NO;
+  return self;
+}
+- (BOOL) hasContestantsOnly {
+  return result.hasContestantsOnly;
+}
+- (BOOL) contestantsOnly {
+  return result.contestantsOnly;
+}
+- (PBContest_Builder*) setContestantsOnly:(BOOL) value {
+  result.hasContestantsOnly = YES;
+  result.contestantsOnly = value;
+  return self;
+}
+- (PBContest_Builder*) clearContestantsOnly {
+  result.hasContestantsOnly = NO;
+  result.contestantsOnly = NO;
+  return self;
+}
+- (NSArray*) contestantsList {
+  if (result.mutableContestantsList == nil) { return [NSArray array]; }
+  return result.mutableContestantsList;
+}
+- (PBGameUser*) contestantsAtIndex:(int32_t) index {
+  return [result contestantsAtIndex:index];
+}
+- (PBContest_Builder*) replaceContestantsAtIndex:(int32_t) index with:(PBGameUser*) value {
+  [result.mutableContestantsList replaceObjectAtIndex:index withObject:value];
+  return self;
+}
+- (PBContest_Builder*) addAllContestants:(NSArray*) values {
+  if (result.mutableContestantsList == nil) {
+    result.mutableContestantsList = [NSMutableArray array];
+  }
+  [result.mutableContestantsList addObjectsFromArray:values];
+  return self;
+}
+- (PBContest_Builder*) clearContestantsList {
+  result.mutableContestantsList = nil;
+  return self;
+}
+- (PBContest_Builder*) addContestants:(PBGameUser*) value {
+  if (result.mutableContestantsList == nil) {
+    result.mutableContestantsList = [NSMutableArray array];
+  }
+  [result.mutableContestantsList addObject:value];
+  return self;
+}
+- (NSArray*) judgesList {
+  if (result.mutableJudgesList == nil) { return [NSArray array]; }
+  return result.mutableJudgesList;
+}
+- (PBGameUser*) judgesAtIndex:(int32_t) index {
+  return [result judgesAtIndex:index];
+}
+- (PBContest_Builder*) replaceJudgesAtIndex:(int32_t) index with:(PBGameUser*) value {
+  [result.mutableJudgesList replaceObjectAtIndex:index withObject:value];
+  return self;
+}
+- (PBContest_Builder*) addAllJudges:(NSArray*) values {
+  if (result.mutableJudgesList == nil) {
+    result.mutableJudgesList = [NSMutableArray array];
+  }
+  [result.mutableJudgesList addObjectsFromArray:values];
+  return self;
+}
+- (PBContest_Builder*) clearJudgesList {
+  result.mutableJudgesList = nil;
+  return self;
+}
+- (PBContest_Builder*) addJudges:(PBGameUser*) value {
+  if (result.mutableJudgesList == nil) {
+    result.mutableJudgesList = [NSMutableArray array];
+  }
+  [result.mutableJudgesList addObject:value];
+  return self;
+}
+- (NSArray*) reportersList {
+  if (result.mutableReportersList == nil) { return [NSArray array]; }
+  return result.mutableReportersList;
+}
+- (PBGameUser*) reportersAtIndex:(int32_t) index {
+  return [result reportersAtIndex:index];
+}
+- (PBContest_Builder*) replaceReportersAtIndex:(int32_t) index with:(PBGameUser*) value {
+  [result.mutableReportersList replaceObjectAtIndex:index withObject:value];
+  return self;
+}
+- (PBContest_Builder*) addAllReporters:(NSArray*) values {
+  if (result.mutableReportersList == nil) {
+    result.mutableReportersList = [NSMutableArray array];
+  }
+  [result.mutableReportersList addObjectsFromArray:values];
+  return self;
+}
+- (PBContest_Builder*) clearReportersList {
+  result.mutableReportersList = nil;
+  return self;
+}
+- (PBContest_Builder*) addReporters:(PBGameUser*) value {
+  if (result.mutableReportersList == nil) {
+    result.mutableReportersList = [NSMutableArray array];
+  }
+  [result.mutableReportersList addObject:value];
+  return self;
+}
+- (NSArray*) winnerUsersList {
+  if (result.mutableWinnerUsersList == nil) { return [NSArray array]; }
+  return result.mutableWinnerUsersList;
+}
+- (PBUserAward*) winnerUsersAtIndex:(int32_t) index {
+  return [result winnerUsersAtIndex:index];
+}
+- (PBContest_Builder*) replaceWinnerUsersAtIndex:(int32_t) index with:(PBUserAward*) value {
+  [result.mutableWinnerUsersList replaceObjectAtIndex:index withObject:value];
+  return self;
+}
+- (PBContest_Builder*) addAllWinnerUsers:(NSArray*) values {
+  if (result.mutableWinnerUsersList == nil) {
+    result.mutableWinnerUsersList = [NSMutableArray array];
+  }
+  [result.mutableWinnerUsersList addObjectsFromArray:values];
+  return self;
+}
+- (PBContest_Builder*) clearWinnerUsersList {
+  result.mutableWinnerUsersList = nil;
+  return self;
+}
+- (PBContest_Builder*) addWinnerUsers:(PBUserAward*) value {
+  if (result.mutableWinnerUsersList == nil) {
+    result.mutableWinnerUsersList = [NSMutableArray array];
+  }
+  [result.mutableWinnerUsersList addObject:value];
+  return self;
+}
+- (NSArray*) awardUsersList {
+  if (result.mutableAwardUsersList == nil) { return [NSArray array]; }
+  return result.mutableAwardUsersList;
+}
+- (PBUserAward*) awardUsersAtIndex:(int32_t) index {
+  return [result awardUsersAtIndex:index];
+}
+- (PBContest_Builder*) replaceAwardUsersAtIndex:(int32_t) index with:(PBUserAward*) value {
+  [result.mutableAwardUsersList replaceObjectAtIndex:index withObject:value];
+  return self;
+}
+- (PBContest_Builder*) addAllAwardUsers:(NSArray*) values {
+  if (result.mutableAwardUsersList == nil) {
+    result.mutableAwardUsersList = [NSMutableArray array];
+  }
+  [result.mutableAwardUsersList addObjectsFromArray:values];
+  return self;
+}
+- (PBContest_Builder*) clearAwardUsersList {
+  result.mutableAwardUsersList = nil;
+  return self;
+}
+- (PBContest_Builder*) addAwardUsers:(PBUserAward*) value {
+  if (result.mutableAwardUsersList == nil) {
+    result.mutableAwardUsersList = [NSMutableArray array];
+  }
+  [result.mutableAwardUsersList addObject:value];
+  return self;
+}
+- (NSArray*) rankTypesList {
+  if (result.mutableRankTypesList == nil) { return [NSArray array]; }
+  return result.mutableRankTypesList;
+}
+- (PBIntKeyValue*) rankTypesAtIndex:(int32_t) index {
+  return [result rankTypesAtIndex:index];
+}
+- (PBContest_Builder*) replaceRankTypesAtIndex:(int32_t) index with:(PBIntKeyValue*) value {
+  [result.mutableRankTypesList replaceObjectAtIndex:index withObject:value];
+  return self;
+}
+- (PBContest_Builder*) addAllRankTypes:(NSArray*) values {
+  if (result.mutableRankTypesList == nil) {
+    result.mutableRankTypesList = [NSMutableArray array];
+  }
+  [result.mutableRankTypesList addObjectsFromArray:values];
+  return self;
+}
+- (PBContest_Builder*) clearRankTypesList {
+  result.mutableRankTypesList = nil;
+  return self;
+}
+- (PBContest_Builder*) addRankTypes:(PBIntKeyValue*) value {
+  if (result.mutableRankTypesList == nil) {
+    result.mutableRankTypesList = [NSMutableArray array];
+  }
+  [result.mutableRankTypesList addObject:value];
+  return self;
+}
+- (BOOL) hasGroup {
+  return result.hasGroup;
+}
+- (PBGroup*) group {
+  return result.group;
+}
+- (PBContest_Builder*) setGroup:(PBGroup*) value {
+  result.hasGroup = YES;
+  result.group = value;
+  return self;
+}
+- (PBContest_Builder*) setGroupBuilder:(PBGroup_Builder*) builderForValue {
+  return [self setGroup:[builderForValue build]];
+}
+- (PBContest_Builder*) mergeGroup:(PBGroup*) value {
+  if (result.hasGroup &&
+      result.group != [PBGroup defaultInstance]) {
+    result.group =
+      [[[PBGroup builderWithPrototype:result.group] mergeFrom:value] buildPartial];
+  } else {
+    result.group = value;
+  }
+  result.hasGroup = YES;
+  return self;
+}
+- (PBContest_Builder*) clearGroup {
+  result.hasGroup = NO;
+  result.group = [PBGroup defaultInstance];
+  return self;
+}
+@end
+
+@interface PBContestList ()
+@property (retain) NSMutableArray* mutableContestsList;
+@end
+
+@implementation PBContestList
+
+@synthesize mutableContestsList;
+- (void) dealloc {
+  self.mutableContestsList = nil;
+  [super dealloc];
+}
+- (id) init {
+  if ((self = [super init])) {
+  }
+  return self;
+}
+static PBContestList* defaultPBContestListInstance = nil;
++ (void) initialize {
+  if (self == [PBContestList class]) {
+    defaultPBContestListInstance = [[PBContestList alloc] init];
+  }
+}
++ (PBContestList*) defaultInstance {
+  return defaultPBContestListInstance;
+}
+- (PBContestList*) defaultInstance {
+  return defaultPBContestListInstance;
+}
+- (NSArray*) contestsList {
+  return mutableContestsList;
+}
+- (PBContest*) contestsAtIndex:(int32_t) index {
+  id value = [mutableContestsList objectAtIndex:index];
+  return value;
+}
+- (BOOL) isInitialized {
+  for (PBContest* element in self.contestsList) {
+    if (!element.isInitialized) {
+      return NO;
+    }
+  }
+  return YES;
+}
+- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
+  for (PBContest* element in self.contestsList) {
+    [output writeMessage:1 value:element];
+  }
+  [self.unknownFields writeToCodedOutputStream:output];
+}
+- (int32_t) serializedSize {
+  int32_t size = memoizedSerializedSize;
+  if (size != -1) {
+    return size;
+  }
+
+  size = 0;
+  for (PBContest* element in self.contestsList) {
+    size += computeMessageSize(1, element);
+  }
+  size += self.unknownFields.serializedSize;
+  memoizedSerializedSize = size;
+  return size;
+}
++ (PBContestList*) parseFromData:(NSData*) data {
+  return (PBContestList*)[[[PBContestList builder] mergeFromData:data] build];
+}
++ (PBContestList*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (PBContestList*)[[[PBContestList builder] mergeFromData:data extensionRegistry:extensionRegistry] build];
+}
++ (PBContestList*) parseFromInputStream:(NSInputStream*) input {
+  return (PBContestList*)[[[PBContestList builder] mergeFromInputStream:input] build];
+}
++ (PBContestList*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (PBContestList*)[[[PBContestList builder] mergeFromInputStream:input extensionRegistry:extensionRegistry] build];
+}
++ (PBContestList*) parseFromCodedInputStream:(PBCodedInputStream*) input {
+  return (PBContestList*)[[[PBContestList builder] mergeFromCodedInputStream:input] build];
+}
++ (PBContestList*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (PBContestList*)[[[PBContestList builder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] build];
+}
++ (PBContestList_Builder*) builder {
+  return [[[PBContestList_Builder alloc] init] autorelease];
+}
++ (PBContestList_Builder*) builderWithPrototype:(PBContestList*) prototype {
+  return [[PBContestList builder] mergeFrom:prototype];
+}
+- (PBContestList_Builder*) builder {
+  return [PBContestList builder];
+}
+@end
+
+@interface PBContestList_Builder()
+@property (retain) PBContestList* result;
+@end
+
+@implementation PBContestList_Builder
+@synthesize result;
+- (void) dealloc {
+  self.result = nil;
+  [super dealloc];
+}
+- (id) init {
+  if ((self = [super init])) {
+    self.result = [[[PBContestList alloc] init] autorelease];
+  }
+  return self;
+}
+- (PBGeneratedMessage*) internalGetResult {
+  return result;
+}
+- (PBContestList_Builder*) clear {
+  self.result = [[[PBContestList alloc] init] autorelease];
+  return self;
+}
+- (PBContestList_Builder*) clone {
+  return [PBContestList builderWithPrototype:result];
+}
+- (PBContestList*) defaultInstance {
+  return [PBContestList defaultInstance];
+}
+- (PBContestList*) build {
+  [self checkInitialized];
+  return [self buildPartial];
+}
+- (PBContestList*) buildPartial {
+  PBContestList* returnMe = [[result retain] autorelease];
+  self.result = nil;
+  return returnMe;
+}
+- (PBContestList_Builder*) mergeFrom:(PBContestList*) other {
+  if (other == [PBContestList defaultInstance]) {
+    return self;
+  }
+  if (other.mutableContestsList.count > 0) {
+    if (result.mutableContestsList == nil) {
+      result.mutableContestsList = [NSMutableArray array];
+    }
+    [result.mutableContestsList addObjectsFromArray:other.mutableContestsList];
+  }
+  [self mergeUnknownFields:other.unknownFields];
+  return self;
+}
+- (PBContestList_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input {
+  return [self mergeFromCodedInputStream:input extensionRegistry:[PBExtensionRegistry emptyRegistry]];
+}
+- (PBContestList_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
   PBUnknownFieldSet_Builder* unknownFields = [PBUnknownFieldSet builderWithUnknownFields:self.unknownFields];
   while (YES) {
     int32_t tag = [input readTag];
@@ -3164,83 +4502,40 @@ static PBGroupContest* defaultPBGroupContestInstance = nil;
       }
       case 10: {
         PBContest_Builder* subBuilder = [PBContest builder];
-        if (self.hasContest) {
-          [subBuilder mergeFrom:self.contest];
-        }
         [input readMessage:subBuilder extensionRegistry:extensionRegistry];
-        [self setContest:[subBuilder buildPartial]];
-        break;
-      }
-      case 18: {
-        PBGroup_Builder* subBuilder = [PBGroup builder];
-        if (self.hasGroup) {
-          [subBuilder mergeFrom:self.group];
-        }
-        [input readMessage:subBuilder extensionRegistry:extensionRegistry];
-        [self setGroup:[subBuilder buildPartial]];
+        [self addContests:[subBuilder buildPartial]];
         break;
       }
     }
   }
 }
-- (BOOL) hasContest {
-  return result.hasContest;
+- (NSArray*) contestsList {
+  if (result.mutableContestsList == nil) { return [NSArray array]; }
+  return result.mutableContestsList;
 }
-- (PBContest*) contest {
-  return result.contest;
+- (PBContest*) contestsAtIndex:(int32_t) index {
+  return [result contestsAtIndex:index];
 }
-- (PBGroupContest_Builder*) setContest:(PBContest*) value {
-  result.hasContest = YES;
-  result.contest = value;
+- (PBContestList_Builder*) replaceContestsAtIndex:(int32_t) index with:(PBContest*) value {
+  [result.mutableContestsList replaceObjectAtIndex:index withObject:value];
   return self;
 }
-- (PBGroupContest_Builder*) setContestBuilder:(PBContest_Builder*) builderForValue {
-  return [self setContest:[builderForValue build]];
-}
-- (PBGroupContest_Builder*) mergeContest:(PBContest*) value {
-  if (result.hasContest &&
-      result.contest != [PBContest defaultInstance]) {
-    result.contest =
-      [[[PBContest builderWithPrototype:result.contest] mergeFrom:value] buildPartial];
-  } else {
-    result.contest = value;
+- (PBContestList_Builder*) addAllContests:(NSArray*) values {
+  if (result.mutableContestsList == nil) {
+    result.mutableContestsList = [NSMutableArray array];
   }
-  result.hasContest = YES;
+  [result.mutableContestsList addObjectsFromArray:values];
   return self;
 }
-- (PBGroupContest_Builder*) clearContest {
-  result.hasContest = NO;
-  result.contest = [PBContest defaultInstance];
+- (PBContestList_Builder*) clearContestsList {
+  result.mutableContestsList = nil;
   return self;
 }
-- (BOOL) hasGroup {
-  return result.hasGroup;
-}
-- (PBGroup*) group {
-  return result.group;
-}
-- (PBGroupContest_Builder*) setGroup:(PBGroup*) value {
-  result.hasGroup = YES;
-  result.group = value;
-  return self;
-}
-- (PBGroupContest_Builder*) setGroupBuilder:(PBGroup_Builder*) builderForValue {
-  return [self setGroup:[builderForValue build]];
-}
-- (PBGroupContest_Builder*) mergeGroup:(PBGroup*) value {
-  if (result.hasGroup &&
-      result.group != [PBGroup defaultInstance]) {
-    result.group =
-      [[[PBGroup builderWithPrototype:result.group] mergeFrom:value] buildPartial];
-  } else {
-    result.group = value;
+- (PBContestList_Builder*) addContests:(PBContest*) value {
+  if (result.mutableContestsList == nil) {
+    result.mutableContestsList = [NSMutableArray array];
   }
-  result.hasGroup = YES;
-  return self;
-}
-- (PBGroupContest_Builder*) clearGroup {
-  result.hasGroup = NO;
-  result.group = [PBGroup defaultInstance];
+  [result.mutableContestsList addObject:value];
   return self;
 }
 @end

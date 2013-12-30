@@ -12,10 +12,6 @@
 @class PBColor_Builder;
 @class PBCommentInfo;
 @class PBCommentInfo_Builder;
-@class PBContest;
-@class PBContestList;
-@class PBContestList_Builder;
-@class PBContest_Builder;
 @class PBDraw;
 @class PBDrawAction;
 @class PBDrawAction_Builder;

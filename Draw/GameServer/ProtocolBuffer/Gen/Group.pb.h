@@ -47,8 +47,6 @@
 @class PBGradient;
 @class PBGradient_Builder;
 @class PBGroup;
-@class PBGroupContest;
-@class PBGroupContest_Builder;
 @class PBGroupNotice;
 @class PBGroupNotice_Builder;
 @class PBGroupTitle;
@@ -799,64 +797,342 @@ BOOL PBGroupUserTypeIsValidValue(PBGroupUserType value);
 - (PBGroupNotice_Builder*) clearTarget;
 @end
 
-@interface PBGroupContest : PBGeneratedMessage {
+@interface PBContest : PBGeneratedMessage {
 @private
-  BOOL hasContest_:1;
+  BOOL hasContestantsOnly_:1;
+  BOOL hasCanVote_:1;
+  BOOL hasCanSubmit_:1;
+  BOOL hasIsAnounymous_:1;
+  BOOL hasStartDate_:1;
+  BOOL hasEndDate_:1;
+  BOOL hasType_:1;
+  BOOL hasStatus_:1;
+  BOOL hasParticipantCount_:1;
+  BOOL hasOpusCount_:1;
+  BOOL hasJudgeRankWeight_:1;
+  BOOL hasVoteStartDate_:1;
+  BOOL hasVoteEndDate_:1;
+  BOOL hasCanSubmitCount_:1;
+  BOOL hasMaxFlowerPerContest_:1;
+  BOOL hasMaxFlowerPerOpus_:1;
+  BOOL hasStatementUrl_:1;
+  BOOL hasContestUrl_:1;
+  BOOL hasTitle_:1;
+  BOOL hasContestId_:1;
   BOOL hasGroup_:1;
-  PBContest* contest;
+  BOOL contestantsOnly_:1;
+  BOOL canVote_:1;
+  BOOL canSubmit_:1;
+  BOOL isAnounymous_:1;
+  int32_t startDate;
+  int32_t endDate;
+  int32_t type;
+  int32_t status;
+  int32_t participantCount;
+  int32_t opusCount;
+  int32_t judgeRankWeight;
+  int32_t voteStartDate;
+  int32_t voteEndDate;
+  int32_t canSubmitCount;
+  int32_t maxFlowerPerContest;
+  int32_t maxFlowerPerOpus;
+  NSString* statementUrl;
+  NSString* contestUrl;
+  NSString* title;
+  NSString* contestId;
   PBGroup* group;
+  NSMutableArray* mutableContestantsList;
+  NSMutableArray* mutableJudgesList;
+  NSMutableArray* mutableReportersList;
+  NSMutableArray* mutableWinnerUsersList;
+  NSMutableArray* mutableAwardUsersList;
+  NSMutableArray* mutableRankTypesList;
 }
-- (BOOL) hasContest;
+- (BOOL) hasContestId;
+- (BOOL) hasStartDate;
+- (BOOL) hasEndDate;
+- (BOOL) hasType;
+- (BOOL) hasStatus;
+- (BOOL) hasParticipantCount;
+- (BOOL) hasOpusCount;
+- (BOOL) hasTitle;
+- (BOOL) hasContestUrl;
+- (BOOL) hasStatementUrl;
+- (BOOL) hasVoteStartDate;
+- (BOOL) hasVoteEndDate;
+- (BOOL) hasIsAnounymous;
+- (BOOL) hasCanSubmitCount;
+- (BOOL) hasMaxFlowerPerContest;
+- (BOOL) hasMaxFlowerPerOpus;
+- (BOOL) hasJudgeRankWeight;
+- (BOOL) hasCanSubmit;
+- (BOOL) hasCanVote;
+- (BOOL) hasContestantsOnly;
 - (BOOL) hasGroup;
-@property (readonly, retain) PBContest* contest;
+@property (readonly, retain) NSString* contestId;
+@property (readonly) int32_t startDate;
+@property (readonly) int32_t endDate;
+@property (readonly) int32_t type;
+@property (readonly) int32_t status;
+@property (readonly) int32_t participantCount;
+@property (readonly) int32_t opusCount;
+@property (readonly, retain) NSString* title;
+@property (readonly, retain) NSString* contestUrl;
+@property (readonly, retain) NSString* statementUrl;
+@property (readonly) int32_t voteStartDate;
+@property (readonly) int32_t voteEndDate;
+- (BOOL) isAnounymous;
+@property (readonly) int32_t canSubmitCount;
+@property (readonly) int32_t maxFlowerPerContest;
+@property (readonly) int32_t maxFlowerPerOpus;
+@property (readonly) int32_t judgeRankWeight;
+- (BOOL) canSubmit;
+- (BOOL) canVote;
+- (BOOL) contestantsOnly;
 @property (readonly, retain) PBGroup* group;
+- (NSArray*) contestantsList;
+- (PBGameUser*) contestantsAtIndex:(int32_t) index;
+- (NSArray*) judgesList;
+- (PBGameUser*) judgesAtIndex:(int32_t) index;
+- (NSArray*) reportersList;
+- (PBGameUser*) reportersAtIndex:(int32_t) index;
+- (NSArray*) winnerUsersList;
+- (PBUserAward*) winnerUsersAtIndex:(int32_t) index;
+- (NSArray*) awardUsersList;
+- (PBUserAward*) awardUsersAtIndex:(int32_t) index;
+- (NSArray*) rankTypesList;
+- (PBIntKeyValue*) rankTypesAtIndex:(int32_t) index;
 
-+ (PBGroupContest*) defaultInstance;
-- (PBGroupContest*) defaultInstance;
++ (PBContest*) defaultInstance;
+- (PBContest*) defaultInstance;
 
 - (BOOL) isInitialized;
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
-- (PBGroupContest_Builder*) builder;
-+ (PBGroupContest_Builder*) builder;
-+ (PBGroupContest_Builder*) builderWithPrototype:(PBGroupContest*) prototype;
+- (PBContest_Builder*) builder;
++ (PBContest_Builder*) builder;
++ (PBContest_Builder*) builderWithPrototype:(PBContest*) prototype;
 
-+ (PBGroupContest*) parseFromData:(NSData*) data;
-+ (PBGroupContest*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
-+ (PBGroupContest*) parseFromInputStream:(NSInputStream*) input;
-+ (PBGroupContest*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
-+ (PBGroupContest*) parseFromCodedInputStream:(PBCodedInputStream*) input;
-+ (PBGroupContest*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
++ (PBContest*) parseFromData:(NSData*) data;
++ (PBContest*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
++ (PBContest*) parseFromInputStream:(NSInputStream*) input;
++ (PBContest*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
++ (PBContest*) parseFromCodedInputStream:(PBCodedInputStream*) input;
++ (PBContest*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 @end
 
-@interface PBGroupContest_Builder : PBGeneratedMessage_Builder {
+@interface PBContest_Builder : PBGeneratedMessage_Builder {
 @private
-  PBGroupContest* result;
+  PBContest* result;
 }
 
-- (PBGroupContest*) defaultInstance;
+- (PBContest*) defaultInstance;
 
-- (PBGroupContest_Builder*) clear;
-- (PBGroupContest_Builder*) clone;
+- (PBContest_Builder*) clear;
+- (PBContest_Builder*) clone;
 
-- (PBGroupContest*) build;
-- (PBGroupContest*) buildPartial;
+- (PBContest*) build;
+- (PBContest*) buildPartial;
 
-- (PBGroupContest_Builder*) mergeFrom:(PBGroupContest*) other;
-- (PBGroupContest_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
-- (PBGroupContest_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+- (PBContest_Builder*) mergeFrom:(PBContest*) other;
+- (PBContest_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
+- (PBContest_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 
-- (BOOL) hasContest;
-- (PBContest*) contest;
-- (PBGroupContest_Builder*) setContest:(PBContest*) value;
-- (PBGroupContest_Builder*) setContestBuilder:(PBContest_Builder*) builderForValue;
-- (PBGroupContest_Builder*) mergeContest:(PBContest*) value;
-- (PBGroupContest_Builder*) clearContest;
+- (BOOL) hasContestId;
+- (NSString*) contestId;
+- (PBContest_Builder*) setContestId:(NSString*) value;
+- (PBContest_Builder*) clearContestId;
+
+- (BOOL) hasStartDate;
+- (int32_t) startDate;
+- (PBContest_Builder*) setStartDate:(int32_t) value;
+- (PBContest_Builder*) clearStartDate;
+
+- (BOOL) hasEndDate;
+- (int32_t) endDate;
+- (PBContest_Builder*) setEndDate:(int32_t) value;
+- (PBContest_Builder*) clearEndDate;
+
+- (BOOL) hasType;
+- (int32_t) type;
+- (PBContest_Builder*) setType:(int32_t) value;
+- (PBContest_Builder*) clearType;
+
+- (BOOL) hasStatus;
+- (int32_t) status;
+- (PBContest_Builder*) setStatus:(int32_t) value;
+- (PBContest_Builder*) clearStatus;
+
+- (BOOL) hasParticipantCount;
+- (int32_t) participantCount;
+- (PBContest_Builder*) setParticipantCount:(int32_t) value;
+- (PBContest_Builder*) clearParticipantCount;
+
+- (BOOL) hasOpusCount;
+- (int32_t) opusCount;
+- (PBContest_Builder*) setOpusCount:(int32_t) value;
+- (PBContest_Builder*) clearOpusCount;
+
+- (BOOL) hasTitle;
+- (NSString*) title;
+- (PBContest_Builder*) setTitle:(NSString*) value;
+- (PBContest_Builder*) clearTitle;
+
+- (BOOL) hasContestUrl;
+- (NSString*) contestUrl;
+- (PBContest_Builder*) setContestUrl:(NSString*) value;
+- (PBContest_Builder*) clearContestUrl;
+
+- (BOOL) hasStatementUrl;
+- (NSString*) statementUrl;
+- (PBContest_Builder*) setStatementUrl:(NSString*) value;
+- (PBContest_Builder*) clearStatementUrl;
+
+- (BOOL) hasVoteStartDate;
+- (int32_t) voteStartDate;
+- (PBContest_Builder*) setVoteStartDate:(int32_t) value;
+- (PBContest_Builder*) clearVoteStartDate;
+
+- (BOOL) hasVoteEndDate;
+- (int32_t) voteEndDate;
+- (PBContest_Builder*) setVoteEndDate:(int32_t) value;
+- (PBContest_Builder*) clearVoteEndDate;
+
+- (BOOL) hasIsAnounymous;
+- (BOOL) isAnounymous;
+- (PBContest_Builder*) setIsAnounymous:(BOOL) value;
+- (PBContest_Builder*) clearIsAnounymous;
+
+- (BOOL) hasCanSubmitCount;
+- (int32_t) canSubmitCount;
+- (PBContest_Builder*) setCanSubmitCount:(int32_t) value;
+- (PBContest_Builder*) clearCanSubmitCount;
+
+- (BOOL) hasMaxFlowerPerContest;
+- (int32_t) maxFlowerPerContest;
+- (PBContest_Builder*) setMaxFlowerPerContest:(int32_t) value;
+- (PBContest_Builder*) clearMaxFlowerPerContest;
+
+- (BOOL) hasMaxFlowerPerOpus;
+- (int32_t) maxFlowerPerOpus;
+- (PBContest_Builder*) setMaxFlowerPerOpus:(int32_t) value;
+- (PBContest_Builder*) clearMaxFlowerPerOpus;
+
+- (BOOL) hasJudgeRankWeight;
+- (int32_t) judgeRankWeight;
+- (PBContest_Builder*) setJudgeRankWeight:(int32_t) value;
+- (PBContest_Builder*) clearJudgeRankWeight;
+
+- (BOOL) hasCanSubmit;
+- (BOOL) canSubmit;
+- (PBContest_Builder*) setCanSubmit:(BOOL) value;
+- (PBContest_Builder*) clearCanSubmit;
+
+- (BOOL) hasCanVote;
+- (BOOL) canVote;
+- (PBContest_Builder*) setCanVote:(BOOL) value;
+- (PBContest_Builder*) clearCanVote;
+
+- (BOOL) hasContestantsOnly;
+- (BOOL) contestantsOnly;
+- (PBContest_Builder*) setContestantsOnly:(BOOL) value;
+- (PBContest_Builder*) clearContestantsOnly;
+
+- (NSArray*) contestantsList;
+- (PBGameUser*) contestantsAtIndex:(int32_t) index;
+- (PBContest_Builder*) replaceContestantsAtIndex:(int32_t) index with:(PBGameUser*) value;
+- (PBContest_Builder*) addContestants:(PBGameUser*) value;
+- (PBContest_Builder*) addAllContestants:(NSArray*) values;
+- (PBContest_Builder*) clearContestantsList;
+
+- (NSArray*) judgesList;
+- (PBGameUser*) judgesAtIndex:(int32_t) index;
+- (PBContest_Builder*) replaceJudgesAtIndex:(int32_t) index with:(PBGameUser*) value;
+- (PBContest_Builder*) addJudges:(PBGameUser*) value;
+- (PBContest_Builder*) addAllJudges:(NSArray*) values;
+- (PBContest_Builder*) clearJudgesList;
+
+- (NSArray*) reportersList;
+- (PBGameUser*) reportersAtIndex:(int32_t) index;
+- (PBContest_Builder*) replaceReportersAtIndex:(int32_t) index with:(PBGameUser*) value;
+- (PBContest_Builder*) addReporters:(PBGameUser*) value;
+- (PBContest_Builder*) addAllReporters:(NSArray*) values;
+- (PBContest_Builder*) clearReportersList;
+
+- (NSArray*) winnerUsersList;
+- (PBUserAward*) winnerUsersAtIndex:(int32_t) index;
+- (PBContest_Builder*) replaceWinnerUsersAtIndex:(int32_t) index with:(PBUserAward*) value;
+- (PBContest_Builder*) addWinnerUsers:(PBUserAward*) value;
+- (PBContest_Builder*) addAllWinnerUsers:(NSArray*) values;
+- (PBContest_Builder*) clearWinnerUsersList;
+
+- (NSArray*) awardUsersList;
+- (PBUserAward*) awardUsersAtIndex:(int32_t) index;
+- (PBContest_Builder*) replaceAwardUsersAtIndex:(int32_t) index with:(PBUserAward*) value;
+- (PBContest_Builder*) addAwardUsers:(PBUserAward*) value;
+- (PBContest_Builder*) addAllAwardUsers:(NSArray*) values;
+- (PBContest_Builder*) clearAwardUsersList;
+
+- (NSArray*) rankTypesList;
+- (PBIntKeyValue*) rankTypesAtIndex:(int32_t) index;
+- (PBContest_Builder*) replaceRankTypesAtIndex:(int32_t) index with:(PBIntKeyValue*) value;
+- (PBContest_Builder*) addRankTypes:(PBIntKeyValue*) value;
+- (PBContest_Builder*) addAllRankTypes:(NSArray*) values;
+- (PBContest_Builder*) clearRankTypesList;
 
 - (BOOL) hasGroup;
 - (PBGroup*) group;
-- (PBGroupContest_Builder*) setGroup:(PBGroup*) value;
-- (PBGroupContest_Builder*) setGroupBuilder:(PBGroup_Builder*) builderForValue;
-- (PBGroupContest_Builder*) mergeGroup:(PBGroup*) value;
-- (PBGroupContest_Builder*) clearGroup;
+- (PBContest_Builder*) setGroup:(PBGroup*) value;
+- (PBContest_Builder*) setGroupBuilder:(PBGroup_Builder*) builderForValue;
+- (PBContest_Builder*) mergeGroup:(PBGroup*) value;
+- (PBContest_Builder*) clearGroup;
+@end
+
+@interface PBContestList : PBGeneratedMessage {
+@private
+  NSMutableArray* mutableContestsList;
+}
+- (NSArray*) contestsList;
+- (PBContest*) contestsAtIndex:(int32_t) index;
+
++ (PBContestList*) defaultInstance;
+- (PBContestList*) defaultInstance;
+
+- (BOOL) isInitialized;
+- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
+- (PBContestList_Builder*) builder;
++ (PBContestList_Builder*) builder;
++ (PBContestList_Builder*) builderWithPrototype:(PBContestList*) prototype;
+
++ (PBContestList*) parseFromData:(NSData*) data;
++ (PBContestList*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
++ (PBContestList*) parseFromInputStream:(NSInputStream*) input;
++ (PBContestList*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
++ (PBContestList*) parseFromCodedInputStream:(PBCodedInputStream*) input;
++ (PBContestList*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+@end
+
+@interface PBContestList_Builder : PBGeneratedMessage_Builder {
+@private
+  PBContestList* result;
+}
+
+- (PBContestList*) defaultInstance;
+
+- (PBContestList_Builder*) clear;
+- (PBContestList_Builder*) clone;
+
+- (PBContestList*) build;
+- (PBContestList*) buildPartial;
+
+- (PBContestList_Builder*) mergeFrom:(PBContestList*) other;
+- (PBContestList_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
+- (PBContestList_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+
+- (NSArray*) contestsList;
+- (PBContest*) contestsAtIndex:(int32_t) index;
+- (PBContestList_Builder*) replaceContestsAtIndex:(int32_t) index with:(PBContest*) value;
+- (PBContestList_Builder*) addContests:(PBContest*) value;
+- (PBContestList_Builder*) addAllContests:(NSArray*) values;
+- (PBContestList_Builder*) clearContestsList;
 @end
 

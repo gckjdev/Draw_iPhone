@@ -17679,6 +17679,7 @@ static GameMessage* defaultGameMessageInstance = nil;
 @property (retain) NSMutableArray* mutableMessageStatList;
 @property (retain) NSMutableArray* mutableFeedList;
 @property (retain) NSMutableArray* mutableContestListList;
+@property (retain) PBContest* contest;
 @property (retain) NSMutableArray* mutableBbsBoardList;
 @property (retain) NSMutableArray* mutableBbsPostList;
 @property (retain) NSMutableArray* mutableBbsActionList;
@@ -17707,7 +17708,6 @@ static GameMessage* defaultGameMessageInstance = nil;
 @property (retain) PBUserRelationWithGroup* groupRelation;
 @property (retain) NSMutableArray* mutableBadgesList;
 @property (retain) NSString* url;
-@property (retain) PBGroupContest* groupContest;
 @end
 
 @implementation DataQueryResponse
@@ -17738,6 +17738,13 @@ static GameMessage* defaultGameMessageInstance = nil;
 @synthesize mutableMessageStatList;
 @synthesize mutableFeedList;
 @synthesize mutableContestListList;
+- (BOOL) hasContest {
+  return !!hasContest_;
+}
+- (void) setHasContest:(BOOL) value {
+  hasContest_ = !!value;
+}
+@synthesize contest;
 @synthesize mutableBbsBoardList;
 @synthesize mutableBbsPostList;
 @synthesize mutableBbsActionList;
@@ -17838,19 +17845,13 @@ static GameMessage* defaultGameMessageInstance = nil;
   hasUrl_ = !!value;
 }
 @synthesize url;
-- (BOOL) hasGroupContest {
-  return !!hasGroupContest_;
-}
-- (void) setHasGroupContest:(BOOL) value {
-  hasGroupContest_ = !!value;
-}
-@synthesize groupContest;
 - (void) dealloc {
   self.mutableDrawDataList = nil;
   self.mutableMessageList = nil;
   self.mutableMessageStatList = nil;
   self.mutableFeedList = nil;
   self.mutableContestListList = nil;
+  self.contest = nil;
   self.mutableBbsBoardList = nil;
   self.mutableBbsPostList = nil;
   self.mutableBbsActionList = nil;
@@ -17878,7 +17879,6 @@ static GameMessage* defaultGameMessageInstance = nil;
   self.groupRelation = nil;
   self.mutableBadgesList = nil;
   self.url = nil;
-  self.groupContest = nil;
   [super dealloc];
 }
 - (id) init {
@@ -17886,6 +17886,7 @@ static GameMessage* defaultGameMessageInstance = nil;
     self.resultCode = 0;
     self.totalCount = 0;
     self.version = 0;
+    self.contest = [PBContest defaultInstance];
     self.bbsDrawData = [PBBBSDraw defaultInstance];
     self.wall = [PBWall defaultInstance];
     self.userPhoto = [PBUserPhoto defaultInstance];
@@ -17898,7 +17899,6 @@ static GameMessage* defaultGameMessageInstance = nil;
     self.group = [PBGroup defaultInstance];
     self.groupRelation = [PBUserRelationWithGroup defaultInstance];
     self.url = @"";
-    self.groupContest = [PBGroupContest defaultInstance];
   }
   return self;
 }
@@ -18090,6 +18090,11 @@ static DataQueryResponse* defaultDataQueryResponseInstance = nil;
       return NO;
     }
   }
+  if (self.hasContest) {
+    if (!self.contest.isInitialized) {
+      return NO;
+    }
+  }
   for (PBBBSBoard* element in self.bbsBoardList) {
     if (!element.isInitialized) {
       return NO;
@@ -18210,11 +18215,6 @@ static DataQueryResponse* defaultDataQueryResponseInstance = nil;
       return NO;
     }
   }
-  if (self.hasGroupContest) {
-    if (!self.groupContest.isInitialized) {
-      return NO;
-    }
-  }
   return YES;
 }
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
@@ -18241,6 +18241,9 @@ static DataQueryResponse* defaultDataQueryResponseInstance = nil;
   }
   for (PBContest* element in self.contestListList) {
     [output writeMessage:42 value:element];
+  }
+  if (self.hasContest) {
+    [output writeMessage:43 value:self.contest];
   }
   for (PBBBSBoard* element in self.bbsBoardList) {
     [output writeMessage:51 value:element];
@@ -18326,9 +18329,6 @@ static DataQueryResponse* defaultDataQueryResponseInstance = nil;
   if (self.hasUrl) {
     [output writeString:156 value:self.url];
   }
-  if (self.hasGroupContest) {
-    [output writeMessage:160 value:self.groupContest];
-  }
   [self.unknownFields writeToCodedOutputStream:output];
 }
 - (int32_t) serializedSize {
@@ -18361,6 +18361,9 @@ static DataQueryResponse* defaultDataQueryResponseInstance = nil;
   }
   for (PBContest* element in self.contestListList) {
     size += computeMessageSize(42, element);
+  }
+  if (self.hasContest) {
+    size += computeMessageSize(43, self.contest);
   }
   for (PBBBSBoard* element in self.bbsBoardList) {
     size += computeMessageSize(51, element);
@@ -18450,9 +18453,6 @@ static DataQueryResponse* defaultDataQueryResponseInstance = nil;
   }
   if (self.hasUrl) {
     size += computeStringSize(156, self.url);
-  }
-  if (self.hasGroupContest) {
-    size += computeMessageSize(160, self.groupContest);
   }
   size += self.unknownFields.serializedSize;
   memoizedSerializedSize = size;
@@ -18567,6 +18567,9 @@ static DataQueryResponse* defaultDataQueryResponseInstance = nil;
       result.mutableContestListList = [NSMutableArray array];
     }
     [result.mutableContestListList addObjectsFromArray:other.mutableContestListList];
+  }
+  if (other.hasContest) {
+    [self mergeContest:other.contest];
   }
   if (other.mutableBbsBoardList.count > 0) {
     if (result.mutableBbsBoardList == nil) {
@@ -18700,9 +18703,6 @@ static DataQueryResponse* defaultDataQueryResponseInstance = nil;
   if (other.hasUrl) {
     [self setUrl:other.url];
   }
-  if (other.hasGroupContest) {
-    [self mergeGroupContest:other.groupContest];
-  }
   [self mergeUnknownFields:other.unknownFields];
   return self;
 }
@@ -18764,6 +18764,15 @@ static DataQueryResponse* defaultDataQueryResponseInstance = nil;
         PBContest_Builder* subBuilder = [PBContest builder];
         [input readMessage:subBuilder extensionRegistry:extensionRegistry];
         [self addContestList:[subBuilder buildPartial]];
+        break;
+      }
+      case 346: {
+        PBContest_Builder* subBuilder = [PBContest builder];
+        if (self.hasContest) {
+          [subBuilder mergeFrom:self.contest];
+        }
+        [input readMessage:subBuilder extensionRegistry:extensionRegistry];
+        [self setContest:[subBuilder buildPartial]];
         break;
       }
       case 410: {
@@ -18956,15 +18965,6 @@ static DataQueryResponse* defaultDataQueryResponseInstance = nil;
       }
       case 1250: {
         [self setUrl:[input readString]];
-        break;
-      }
-      case 1282: {
-        PBGroupContest_Builder* subBuilder = [PBGroupContest builder];
-        if (self.hasGroupContest) {
-          [subBuilder mergeFrom:self.groupContest];
-        }
-        [input readMessage:subBuilder extensionRegistry:extensionRegistry];
-        [self setGroupContest:[subBuilder buildPartial]];
         break;
       }
     }
@@ -19161,6 +19161,36 @@ static DataQueryResponse* defaultDataQueryResponseInstance = nil;
     result.mutableContestListList = [NSMutableArray array];
   }
   [result.mutableContestListList addObject:value];
+  return self;
+}
+- (BOOL) hasContest {
+  return result.hasContest;
+}
+- (PBContest*) contest {
+  return result.contest;
+}
+- (DataQueryResponse_Builder*) setContest:(PBContest*) value {
+  result.hasContest = YES;
+  result.contest = value;
+  return self;
+}
+- (DataQueryResponse_Builder*) setContestBuilder:(PBContest_Builder*) builderForValue {
+  return [self setContest:[builderForValue build]];
+}
+- (DataQueryResponse_Builder*) mergeContest:(PBContest*) value {
+  if (result.hasContest &&
+      result.contest != [PBContest defaultInstance]) {
+    result.contest =
+      [[[PBContest builderWithPrototype:result.contest] mergeFrom:value] buildPartial];
+  } else {
+    result.contest = value;
+  }
+  result.hasContest = YES;
+  return self;
+}
+- (DataQueryResponse_Builder*) clearContest {
+  result.hasContest = NO;
+  result.contest = [PBContest defaultInstance];
   return self;
 }
 - (NSArray*) bbsBoardList {
@@ -19959,36 +19989,6 @@ static DataQueryResponse* defaultDataQueryResponseInstance = nil;
 - (DataQueryResponse_Builder*) clearUrl {
   result.hasUrl = NO;
   result.url = @"";
-  return self;
-}
-- (BOOL) hasGroupContest {
-  return result.hasGroupContest;
-}
-- (PBGroupContest*) groupContest {
-  return result.groupContest;
-}
-- (DataQueryResponse_Builder*) setGroupContest:(PBGroupContest*) value {
-  result.hasGroupContest = YES;
-  result.groupContest = value;
-  return self;
-}
-- (DataQueryResponse_Builder*) setGroupContestBuilder:(PBGroupContest_Builder*) builderForValue {
-  return [self setGroupContest:[builderForValue build]];
-}
-- (DataQueryResponse_Builder*) mergeGroupContest:(PBGroupContest*) value {
-  if (result.hasGroupContest &&
-      result.groupContest != [PBGroupContest defaultInstance]) {
-    result.groupContest =
-      [[[PBGroupContest builderWithPrototype:result.groupContest] mergeFrom:value] buildPartial];
-  } else {
-    result.groupContest = value;
-  }
-  result.hasGroupContest = YES;
-  return self;
-}
-- (DataQueryResponse_Builder*) clearGroupContest {
-  result.hasGroupContest = NO;
-  result.groupContest = [PBGroupContest defaultInstance];
   return self;
 }
 @end
