@@ -6915,6 +6915,10 @@
 		EA46F3A51778587800D8D349 /* PhotoTagManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C23C3354176AB0ED004BE236 /* PhotoTagManager.m */; };
 		EA46F3A61778588800D8D349 /* SearchResultView.m in Sources */ = {isa = PBXBuildFile; fileRef = C2C18A821760A7B400DE933B /* SearchResultView.m */; };
 		EA46F3A7177859F000D8D349 /* TagPackage.m in Sources */ = {isa = PBXBuildFile; fileRef = C2C18A761760A7B400DE933B /* TagPackage.m */; };
+		EA481CC2187162E000177423 /* default_group_medal@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EA481CC1187162E000177423 /* default_group_medal@2x.png */; };
+		EA481CC3187162E000177423 /* default_group_medal@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EA481CC1187162E000177423 /* default_group_medal@2x.png */; };
+		EA481CC4187162E000177423 /* default_group_medal@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EA481CC1187162E000177423 /* default_group_medal@2x.png */; };
+		EA481CC5187162E000177423 /* default_group_medal@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EA481CC1187162E000177423 /* default_group_medal@2x.png */; };
 		EA49C86417093CD300843B6B /* TaoBaoController.m in Sources */ = {isa = PBXBuildFile; fileRef = EA49C86117093CD200843B6B /* TaoBaoController.m */; };
 		EA49C86517093CD300843B6B /* TaoBaoController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA49C86217093CD200843B6B /* TaoBaoController.xib */; };
 		EA49C86617093CD300843B6B /* TaoBaoController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA49C86317093CD200843B6B /* TaoBaoController~ipad.xib */; };
@@ -10076,6 +10080,7 @@
 		EA46AD5517D5E6CD0066E914 /* ReportFeedCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReportFeedCell.h; sourceTree = "<group>"; };
 		EA46AD5617D5E6CD0066E914 /* ReportFeedCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReportFeedCell.m; sourceTree = "<group>"; };
 		EA46AD6017D5E6E60066E914 /* ReportFeedCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ReportFeedCell.xib; sourceTree = "<group>"; };
+		EA481CC1187162E000177423 /* default_group_medal@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "default_group_medal@2x.png"; sourceTree = "<group>"; };
 		EA49C86017093CD200843B6B /* TaoBaoController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TaoBaoController.h; sourceTree = "<group>"; };
 		EA49C86117093CD200843B6B /* TaoBaoController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TaoBaoController.m; sourceTree = "<group>"; };
 		EA49C86217093CD200843B6B /* TaoBaoController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TaoBaoController.xib; sourceTree = "<group>"; };
@@ -16972,6 +16977,7 @@
 		EA11A3F11839EA1200F73D64 /* detail */ = {
 			isa = PBXGroup;
 			children = (
+				EA481CC1187162E000177423 /* default_group_medal@2x.png */,
 				EA716B94186C373F005CC0F0 /* group_add@2x.png */,
 			);
 			path = detail;
@@ -18347,6 +18353,7 @@
 				EA7E4F83186ADE8F00E0B20F /* GroupTopicController~ipad.xib in Resources */,
 				EA716B97186C373F005CC0F0 /* group_add@2x.png in Resources */,
 				A434172418711AFB008D0A2B /* ContestCell.xib in Resources */,
+				EA481CC4187162E000177423 /* default_group_medal@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -19319,6 +19326,7 @@
 				EA7E4F82186ADE8F00E0B20F /* GroupTopicController~ipad.xib in Resources */,
 				EA716B96186C373F005CC0F0 /* group_add@2x.png in Resources */,
 				A434172318711AFB008D0A2B /* ContestCell.xib in Resources */,
+				EA481CC3187162E000177423 /* default_group_medal@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -20274,6 +20282,7 @@
 				EA7E4F81186ADE8F00E0B20F /* GroupTopicController~ipad.xib in Resources */,
 				EA716B95186C373F005CC0F0 /* group_add@2x.png in Resources */,
 				A434172218711AFB008D0A2B /* ContestCell.xib in Resources */,
+				EA481CC2187162E000177423 /* default_group_medal@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -21183,6 +21192,7 @@
 				EA7E4F84186ADE8F00E0B20F /* GroupTopicController~ipad.xib in Resources */,
 				EA716B98186C373F005CC0F0 /* group_add@2x.png in Resources */,
 				A434172518711AFB008D0A2B /* ContestCell.xib in Resources */,
+				EA481CC5187162E000177423 /* default_group_medal@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -2142,12 +2142,12 @@
 "kTitleIDNotFound" = "职位不存在。";
 
 "kGroup" = "家族";
-"kGroupBulletinDesc" = "%@ 在 %@ 中发布了公告。";
-"kGroupJoinDesc" = "%@ 申请加入 %@。";
-"kGroupExpelDesc" = "%@ 将 %@ 踢出了 %@。";
-"kGroupQuitDesc" = "%@ 退出了 %@。";
-"kGroupAcceptDesc" = "%@ 同意 %@ 加入 %@。";
-"kGroupRejectDesc" = "%@ 拒绝 %@ 加入 %@。";
+"kGroupBulletinDesc" = "%@在%@中发布了公告。";
+"kGroupJoinDesc" = "%@申请加入%@。";
+"kGroupExpelDesc" = "%@将%@移除出了%@。";
+"kGroupQuitDesc" = "%@退出了%@";
+"kGroupAcceptDesc" = "%@同意%@加入%@。";
+"kGroupRejectDesc" = "%@拒绝%@加入%@。";
 
 "kGroupInviteMemberDesc" = "%@邀请%@加入%@。";
 "kGroupInviteGuestDesc" = "%@邀请%@成为%@的嘉宾。";
@@ -2166,6 +2166,9 @@
 
 "kEditGroupSignature" = "编辑签名";
 "kEditGroupIntroduce" = "编辑说明";
+
+"kExpelGroupUserTitle" = "移除用户";
+"kExpelGroupUserMessage" = "确定要移除该用户吗？";
 
 
 "kAddTitle" = "添加职位";

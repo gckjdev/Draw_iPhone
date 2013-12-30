@@ -96,4 +96,9 @@
     return [UIImage imageNamed:@"group_add@2x.png"];
 }
 
++ (UIImage *)defaultGroupMedal
+{
+    return [UIImage imageNamed:@"default_group_medal@2x.png"];
+}
+
 @end

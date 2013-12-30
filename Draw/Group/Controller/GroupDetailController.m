@@ -24,7 +24,7 @@
 #import "UIImageView+WebCache.h"
 #import "UIViewController+BGImage.h"
 #import "GroupConstants.h"
-
+#import "GroupUIManager.h"
 
 enum{
     SECTION_BASE_INDEX = 0,
@@ -143,7 +143,7 @@ typedef enum{
 
 - (void)clickQuit:(id)sender
 {
-    CommonDialog *dialog = [CommonDialog createDialogWithTitle:NSLS(@"kQuitGroupTitle") message:NSLS(@"kQuitGroupMessage") style:CommonDialogStyleSingleButton];
+    CommonDialog *dialog = [CommonDialog createDialogWithTitle:NSLS(@"kQuitGroupTitle") message:NSLS(@"kQuitGroupMessage") style:CommonDialogStyleDoubleButton];
     [dialog setClickOkBlock:^(id infoView){
         [self quit];
         [dialog setClickOkBlock:NULL];
@@ -355,7 +355,7 @@ typedef enum{
     
     [self.groupIconView setGroupId:_group.groupId];
     [self.groupIconView setImageURL:[_group medalImageURL]
-                   placeholderImage:[[ShareImageManager defaultManager] unloadBg]];
+                   placeholderImage:[GroupUIManager defaultGroupMedal]];
 
     
     [self.groupName setText:_group.name];
@@ -812,14 +812,21 @@ typedef enum{
         [sheet showInView:self.view showAtPoint:self.view.center animated:YES];
     }
     else if ([title isEqualToString:TITLE_RM_MEMBER]) {
-        [self showActivityWithText:NSLS(@"kExpeling")];
-        [groupService expelUser:user group:_group.groupId titleId:titleId reason:@"" callback:^(NSError *error) {
-            [self hideActivity];
-            if (!error) {
-                [GroupManager didRemoveUser:user fromTitleId:titleId];                
-                [self.dataTableView reloadData];
-            }
+        
+       CommonDialog *cd = [CommonDialog createDialogWithTitle:NSLS(@"kExpelGroupUserTitle") message:NSLS(@"kExpelGroupUserMessage")  style:CommonDialogStyleDoubleButton];
+        
+        [cd setClickOkBlock:^(id infoView){
+            [self showActivityWithText:NSLS(@"kExpeling")];
+            [groupService expelUser:user group:_group.groupId titleId:titleId reason:@"" callback:^(NSError *error) {
+                [self hideActivity];
+                if (!error) {
+                    [GroupManager didRemoveUser:user fromTitleId:titleId];
+                    [self.dataTableView reloadData];
+                }
+            }];            
         }];
+        [cd showInView:self.view];
+        
     }
     else if ([title isEqualToString:TITLE_SET_ADMIN]) {
         [self showActivityWithText:NSLS(@"kSettingAsAdmin")];

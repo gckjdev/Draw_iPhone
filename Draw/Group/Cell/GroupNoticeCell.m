@@ -8,6 +8,8 @@
 
 #import "GroupNoticeCell.h"
 #import "GroupModelExt.h"
+#import "UserDetailViewController.h"
+#import "ViewUserDetail.h"
 
 @implementation GroupNoticeCell
 
@@ -23,6 +25,14 @@
     [self.message setNumberOfLines:0];
     [self.notice setLineBreakMode:NSLineBreakByCharWrapping];
     [self.message setLineBreakMode:NSLineBreakByCharWrapping];
+    [self.avatar setDelegate:self];
+}
+
+- (void)didClickOnAvatarView:(AvatarView *)avatarView
+{
+    PPViewController *controller = (id)[self theViewController];
+    ViewUserDetail *detail = [ViewUserDetail viewUserDetailWithUser:self.groupNotice.publisher];
+    [UserDetailViewController presentUserDetail:detail inViewController:controller];
 }
 
 + (id)createCell:(id)delegate

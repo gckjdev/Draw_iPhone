@@ -2220,6 +2220,9 @@
 "kRejecting" = "Sending rejection request...";
 
 
+"kExpelGroupUserTitle" = "Warning";
+"kExpelGroupUserMessage" = "Are you really want to expel the user?";
+
 "kSeeAllPost" = "All";
 "kSeeLZOnly" = "Mine";
 "kSeeMeOnly" = "Mine";

@@ -2153,18 +2153,19 @@
 
 
 "kGroup" = "家族";
-"kGroupBulletinDesc" = "%@ 在 %@ 中發布了公告。";
-"kGroupJoinDesc" = "%@ 申請加入 %@";
-"kGroupExpelDesc" = "%@ 將 %@ 踢出了 %@";
-"kGroupQuitDesc" = "%@ 退出了 %@";
-"kGroupAcceptDesc" = "%@ 同意 %@ 加入 %@";
-"kGroupRejectDesc" = "%@ 拒絕 %@ 加入 %@";
-"kGroupInviteMemberDesc" = "%@ 邀請 %@ 加入 %@。";
-"kGroupInviteGuestDesc" = "%@ 邀請 %@ 成為 %@ 的嘉賓。";
-"kGroupRejectMemberInvitationDesc" = "%@ 拒絕加入 %@。";
-"kGroupRejectGuestInvitationDesc" = "%@ 拒絕成為 %@ 嘉賓。";
-"TypeAcceptMemberInvitation" = "%@ 同意加入 %@。";
-"TypeAcceptGuestInvitation" = "%@ 同意成為 %@ 的嘉賓。";
+"kGroupBulletinDesc" = "%@在%@中發布了公告。";
+"kGroupJoinDesc" = "%@申請加入%@。";
+"kGroupExpelDesc" = "%@將%@移除出了%@。";
+"kGroupQuitDesc" = "%@退出了%@";
+"kGroupAcceptDesc" = "%@同意%@加入%@。";
+"kGroupRejectDesc" = "%@拒絕%@加入%@。";
+
+"kGroupInviteMemberDesc" = "%@邀請%@加入%@。";
+"kGroupInviteGuestDesc" = "%@邀請%@成為%@的嘉賓。";
+"kGroupRejectMemberInvitationDesc" = "%@拒絕加入%@";
+"kGroupRejectGuestInvitationDesc" = "%@拒絕成為%@嘉賓。";
+"TypeAcceptMemberInvitation" = "%@同意加入%@。";
+"TypeAcceptGuestInvitation" = "%@同意成為%@的嘉賓。";
 
 "kGroupDetailRowWeath" = "聲望 %d  財富 %d  等級 %d";
 "kGroupDetailRowCreateDate" = "創建時間 %@";
@@ -2260,6 +2261,9 @@
 "kGroupTabGroupFame" = "聲望";
 "kIgnoring" = "發送忽略請求中...";
 "kRejecting" = "發送拒絕請求中...";
+
+"kExpelGroupUserTitle" = "移除用戶";
+"kExpelGroupUserMessage" = "確定要移除該用戶嗎？";
 
 /*********************小吉画画国际化字符串开始 ************************/
 "kLittleGeeRecommend" = "推薦";
