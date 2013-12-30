@@ -205,6 +205,7 @@
 {
     PPRelease(_pbContest);
     PPRelease(awardDict);
+    PPRelease(_pbGroup);
 //    PPRelease(_contestId);
 //    PPRelease(_startDate);
 //    PPRelease(_endDate);
@@ -228,6 +229,14 @@
 {
     self = [super init];
     self.pbContest = pbContest;
+    return self;
+}
+
+- (id)initWithPBGroupContest:(PBGroupContest*)pbGroupContest{
+
+    self = [super init];
+    self.pbContest = pbGroupContest.contest;
+    self.pbGroup = pbGroupContest.group;
     return self;
 }
 
@@ -459,5 +468,47 @@
 {
     return [awardDict objectForKey:KEY(type, rank)];
 }
+
+- (NSData *)data{
+    
+    PBGroupContest_Builder *builder = [[[PBGroupContest_Builder alloc] init] autorelease];
+    [builder setContest:_pbContest];
+    [builder setGroup:_pbGroup];
+    
+    return [[builder build] data];
+}
+
+- (NSString *)leftTime{
+ 
+    NSTimeInterval now = [[NSDate date] timeIntervalSince1970];
+    if (_pbContest.startDate < now) {
+        return NSLS(@"kContestNotStart");
+    }else if (now >= _pbContest.startDate
+              && now < _pbContest.endDate){
+        
+        NSTimeInterval left = _pbContest.endDate - now;
+        return [self leftTimeStringWithLeftTime:left];
+    }else{
+        return NSLS(@"kContestIsOver");
+    }
+}
+
+- (NSString *)leftTimeStringWithLeftTime:(NSTimeInterval)leftTime{
+    
+    if (leftTime >= 3600 * 24) {
+        
+        int days = leftTime / (3600 *24);
+        return [NSString stringWithFormat:NSLS(@"kLeftDays"), days];
+    }else if (leftTime >= 3600){
+        
+        int hours = leftTime / 3600;
+        return [NSString stringWithFormat:NSLS(@"kLeftHours"), hours];
+    }else{
+        
+        int mins = MAX(1, leftTime/60);
+        return [NSString stringWithFormat:NSLS(@"kLeftMins"), mins];
+    }
+}
+
 
 @end

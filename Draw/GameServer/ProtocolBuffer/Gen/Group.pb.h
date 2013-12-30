@@ -47,6 +47,8 @@
 @class PBGradient;
 @class PBGradient_Builder;
 @class PBGroup;
+@class PBGroupContest;
+@class PBGroupContest_Builder;
 @class PBGroupNotice;
 @class PBGroupNotice_Builder;
 @class PBGroupTitle;
@@ -795,5 +797,66 @@ BOOL PBGroupUserTypeIsValidValue(PBGroupUserType value);
 - (PBGroupNotice_Builder*) setTargetBuilder:(PBGameUser_Builder*) builderForValue;
 - (PBGroupNotice_Builder*) mergeTarget:(PBGameUser*) value;
 - (PBGroupNotice_Builder*) clearTarget;
+@end
+
+@interface PBGroupContest : PBGeneratedMessage {
+@private
+  BOOL hasContest_:1;
+  BOOL hasGroup_:1;
+  PBContest* contest;
+  PBGroup* group;
+}
+- (BOOL) hasContest;
+- (BOOL) hasGroup;
+@property (readonly, retain) PBContest* contest;
+@property (readonly, retain) PBGroup* group;
+
++ (PBGroupContest*) defaultInstance;
+- (PBGroupContest*) defaultInstance;
+
+- (BOOL) isInitialized;
+- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
+- (PBGroupContest_Builder*) builder;
++ (PBGroupContest_Builder*) builder;
++ (PBGroupContest_Builder*) builderWithPrototype:(PBGroupContest*) prototype;
+
++ (PBGroupContest*) parseFromData:(NSData*) data;
++ (PBGroupContest*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
++ (PBGroupContest*) parseFromInputStream:(NSInputStream*) input;
++ (PBGroupContest*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
++ (PBGroupContest*) parseFromCodedInputStream:(PBCodedInputStream*) input;
++ (PBGroupContest*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+@end
+
+@interface PBGroupContest_Builder : PBGeneratedMessage_Builder {
+@private
+  PBGroupContest* result;
+}
+
+- (PBGroupContest*) defaultInstance;
+
+- (PBGroupContest_Builder*) clear;
+- (PBGroupContest_Builder*) clone;
+
+- (PBGroupContest*) build;
+- (PBGroupContest*) buildPartial;
+
+- (PBGroupContest_Builder*) mergeFrom:(PBGroupContest*) other;
+- (PBGroupContest_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
+- (PBGroupContest_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+
+- (BOOL) hasContest;
+- (PBContest*) contest;
+- (PBGroupContest_Builder*) setContest:(PBContest*) value;
+- (PBGroupContest_Builder*) setContestBuilder:(PBContest_Builder*) builderForValue;
+- (PBGroupContest_Builder*) mergeContest:(PBContest*) value;
+- (PBGroupContest_Builder*) clearContest;
+
+- (BOOL) hasGroup;
+- (PBGroup*) group;
+- (PBGroupContest_Builder*) setGroup:(PBGroup*) value;
+- (PBGroupContest_Builder*) setGroupBuilder:(PBGroup_Builder*) builderForValue;
+- (PBGroupContest_Builder*) mergeGroup:(PBGroup*) value;
+- (PBGroupContest_Builder*) clearGroup;
 @end
 

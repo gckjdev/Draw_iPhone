@@ -2470,3 +2470,7 @@
 "kSetSuccess" = "設置成功";
 
 "kSetUserAvatar" = "設置我的頭像";
+
+"kOfficialContest" = "官方比賽";
+"kGroupContest" = "家族比賽";
+"kGoodOpus" = "精彩作品";

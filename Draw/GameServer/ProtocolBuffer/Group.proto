@@ -107,3 +107,10 @@ message PBGroupNotice{
     optional PBGameUser publisher = 10; 
     optional PBGameUser target = 11; //expel, accept
 }
+
+
+message PBGroupContest
+{
+    required PBContest contest = 1;
+    required PBGroup group = 2;
+}

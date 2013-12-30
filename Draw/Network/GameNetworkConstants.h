@@ -335,6 +335,8 @@
 #define PARA_MATCHITEMCOUNT @"mic"
 
 #define PARA_LANGUAGE @"lang"
+#define PARA_CONTEST @"contest"
+
 #define PARA_APPID @"app"
 #define PARA_GAME_ID @"gid"
 #define PARA_DRAW_DATA @"dd"
@@ -593,6 +595,9 @@
 #define PARA_APP_DESCRIPTION    @"description"
 #define PARA_APP_ICON_URL   @"icon_url"
 #define PARA_APP_ULR        @"url"
+
+// create contest
+#define METHOD_CREATE_CONTEST_LIST @"createContest"
 
 
 //for draw contest

@@ -1,5 +1,6 @@
 
 import "GameConstants.proto";
+//import "Group.proto";
 
 package game;
 
@@ -479,7 +480,7 @@ message PBContest
     repeated PBUserAward awardUsers = 54;
     repeated PBIntKeyValue rankTypes = 55;         // 奖励类型，key为类型整数值，value为类型名字，如最佳创意奖
     
-
+//    optional PBGroup group = 60;               // 哪个家族发起的比赛。
 }
 
 message PBContestList

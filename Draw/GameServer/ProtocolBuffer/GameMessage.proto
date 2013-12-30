@@ -525,5 +525,9 @@ message DataQueryResponse {
   optional PBUserRelationWithGroup groupRelation = 154;
   repeated PBIntKeyIntValue badges = 155;
   optional string url = 156;
+  
+  
+  // for group contest
+  optional PBGroupContest groupContest = 160;
 }
 

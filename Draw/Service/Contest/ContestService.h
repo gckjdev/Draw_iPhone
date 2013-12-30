@@ -7,6 +7,10 @@
 //
 
 #import "CommonService.h"
+#import "Contest.h"
+
+typedef void (^ CreateContestBlock) (int resultCode, Contest *contest);
+
 
 #define NOTIFCATION_CONTEST_DATA_CHANGE     @"NOTIFCATION_CONTEST_DATA_CHANGE"
 
@@ -49,6 +53,12 @@ typedef enum{
 
 - (void)acceptContest:(NSString*)contestId;
 - (long)newContestCount;
+
+
+
+// 家族比赛
+- (void)createContest:(Contest *)contest
+            completed:(CreateContestBlock)completed;
 
 
 @end

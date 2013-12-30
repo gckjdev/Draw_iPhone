@@ -2978,3 +2978,270 @@ static PBGroupNotice* defaultPBGroupNoticeInstance = nil;
 }
 @end
 
+@interface PBGroupContest ()
+@property (retain) PBContest* contest;
+@property (retain) PBGroup* group;
+@end
+
+@implementation PBGroupContest
+
+- (BOOL) hasContest {
+  return !!hasContest_;
+}
+- (void) setHasContest:(BOOL) value {
+  hasContest_ = !!value;
+}
+@synthesize contest;
+- (BOOL) hasGroup {
+  return !!hasGroup_;
+}
+- (void) setHasGroup:(BOOL) value {
+  hasGroup_ = !!value;
+}
+@synthesize group;
+- (void) dealloc {
+  self.contest = nil;
+  self.group = nil;
+  [super dealloc];
+}
+- (id) init {
+  if ((self = [super init])) {
+    self.contest = [PBContest defaultInstance];
+    self.group = [PBGroup defaultInstance];
+  }
+  return self;
+}
+static PBGroupContest* defaultPBGroupContestInstance = nil;
++ (void) initialize {
+  if (self == [PBGroupContest class]) {
+    defaultPBGroupContestInstance = [[PBGroupContest alloc] init];
+  }
+}
++ (PBGroupContest*) defaultInstance {
+  return defaultPBGroupContestInstance;
+}
+- (PBGroupContest*) defaultInstance {
+  return defaultPBGroupContestInstance;
+}
+- (BOOL) isInitialized {
+  if (!self.hasContest) {
+    return NO;
+  }
+  if (!self.hasGroup) {
+    return NO;
+  }
+  if (!self.contest.isInitialized) {
+    return NO;
+  }
+  if (!self.group.isInitialized) {
+    return NO;
+  }
+  return YES;
+}
+- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
+  if (self.hasContest) {
+    [output writeMessage:1 value:self.contest];
+  }
+  if (self.hasGroup) {
+    [output writeMessage:2 value:self.group];
+  }
+  [self.unknownFields writeToCodedOutputStream:output];
+}
+- (int32_t) serializedSize {
+  int32_t size = memoizedSerializedSize;
+  if (size != -1) {
+    return size;
+  }
+
+  size = 0;
+  if (self.hasContest) {
+    size += computeMessageSize(1, self.contest);
+  }
+  if (self.hasGroup) {
+    size += computeMessageSize(2, self.group);
+  }
+  size += self.unknownFields.serializedSize;
+  memoizedSerializedSize = size;
+  return size;
+}
++ (PBGroupContest*) parseFromData:(NSData*) data {
+  return (PBGroupContest*)[[[PBGroupContest builder] mergeFromData:data] build];
+}
++ (PBGroupContest*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (PBGroupContest*)[[[PBGroupContest builder] mergeFromData:data extensionRegistry:extensionRegistry] build];
+}
++ (PBGroupContest*) parseFromInputStream:(NSInputStream*) input {
+  return (PBGroupContest*)[[[PBGroupContest builder] mergeFromInputStream:input] build];
+}
++ (PBGroupContest*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (PBGroupContest*)[[[PBGroupContest builder] mergeFromInputStream:input extensionRegistry:extensionRegistry] build];
+}
++ (PBGroupContest*) parseFromCodedInputStream:(PBCodedInputStream*) input {
+  return (PBGroupContest*)[[[PBGroupContest builder] mergeFromCodedInputStream:input] build];
+}
++ (PBGroupContest*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (PBGroupContest*)[[[PBGroupContest builder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] build];
+}
++ (PBGroupContest_Builder*) builder {
+  return [[[PBGroupContest_Builder alloc] init] autorelease];
+}
++ (PBGroupContest_Builder*) builderWithPrototype:(PBGroupContest*) prototype {
+  return [[PBGroupContest builder] mergeFrom:prototype];
+}
+- (PBGroupContest_Builder*) builder {
+  return [PBGroupContest builder];
+}
+@end
+
+@interface PBGroupContest_Builder()
+@property (retain) PBGroupContest* result;
+@end
+
+@implementation PBGroupContest_Builder
+@synthesize result;
+- (void) dealloc {
+  self.result = nil;
+  [super dealloc];
+}
+- (id) init {
+  if ((self = [super init])) {
+    self.result = [[[PBGroupContest alloc] init] autorelease];
+  }
+  return self;
+}
+- (PBGeneratedMessage*) internalGetResult {
+  return result;
+}
+- (PBGroupContest_Builder*) clear {
+  self.result = [[[PBGroupContest alloc] init] autorelease];
+  return self;
+}
+- (PBGroupContest_Builder*) clone {
+  return [PBGroupContest builderWithPrototype:result];
+}
+- (PBGroupContest*) defaultInstance {
+  return [PBGroupContest defaultInstance];
+}
+- (PBGroupContest*) build {
+  [self checkInitialized];
+  return [self buildPartial];
+}
+- (PBGroupContest*) buildPartial {
+  PBGroupContest* returnMe = [[result retain] autorelease];
+  self.result = nil;
+  return returnMe;
+}
+- (PBGroupContest_Builder*) mergeFrom:(PBGroupContest*) other {
+  if (other == [PBGroupContest defaultInstance]) {
+    return self;
+  }
+  if (other.hasContest) {
+    [self mergeContest:other.contest];
+  }
+  if (other.hasGroup) {
+    [self mergeGroup:other.group];
+  }
+  [self mergeUnknownFields:other.unknownFields];
+  return self;
+}
+- (PBGroupContest_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input {
+  return [self mergeFromCodedInputStream:input extensionRegistry:[PBExtensionRegistry emptyRegistry]];
+}
+- (PBGroupContest_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  PBUnknownFieldSet_Builder* unknownFields = [PBUnknownFieldSet builderWithUnknownFields:self.unknownFields];
+  while (YES) {
+    int32_t tag = [input readTag];
+    switch (tag) {
+      case 0:
+        [self setUnknownFields:[unknownFields build]];
+        return self;
+      default: {
+        if (![self parseUnknownField:input unknownFields:unknownFields extensionRegistry:extensionRegistry tag:tag]) {
+          [self setUnknownFields:[unknownFields build]];
+          return self;
+        }
+        break;
+      }
+      case 10: {
+        PBContest_Builder* subBuilder = [PBContest builder];
+        if (self.hasContest) {
+          [subBuilder mergeFrom:self.contest];
+        }
+        [input readMessage:subBuilder extensionRegistry:extensionRegistry];
+        [self setContest:[subBuilder buildPartial]];
+        break;
+      }
+      case 18: {
+        PBGroup_Builder* subBuilder = [PBGroup builder];
+        if (self.hasGroup) {
+          [subBuilder mergeFrom:self.group];
+        }
+        [input readMessage:subBuilder extensionRegistry:extensionRegistry];
+        [self setGroup:[subBuilder buildPartial]];
+        break;
+      }
+    }
+  }
+}
+- (BOOL) hasContest {
+  return result.hasContest;
+}
+- (PBContest*) contest {
+  return result.contest;
+}
+- (PBGroupContest_Builder*) setContest:(PBContest*) value {
+  result.hasContest = YES;
+  result.contest = value;
+  return self;
+}
+- (PBGroupContest_Builder*) setContestBuilder:(PBContest_Builder*) builderForValue {
+  return [self setContest:[builderForValue build]];
+}
+- (PBGroupContest_Builder*) mergeContest:(PBContest*) value {
+  if (result.hasContest &&
+      result.contest != [PBContest defaultInstance]) {
+    result.contest =
+      [[[PBContest builderWithPrototype:result.contest] mergeFrom:value] buildPartial];
+  } else {
+    result.contest = value;
+  }
+  result.hasContest = YES;
+  return self;
+}
+- (PBGroupContest_Builder*) clearContest {
+  result.hasContest = NO;
+  result.contest = [PBContest defaultInstance];
+  return self;
+}
+- (BOOL) hasGroup {
+  return result.hasGroup;
+}
+- (PBGroup*) group {
+  return result.group;
+}
+- (PBGroupContest_Builder*) setGroup:(PBGroup*) value {
+  result.hasGroup = YES;
+  result.group = value;
+  return self;
+}
+- (PBGroupContest_Builder*) setGroupBuilder:(PBGroup_Builder*) builderForValue {
+  return [self setGroup:[builderForValue build]];
+}
+- (PBGroupContest_Builder*) mergeGroup:(PBGroup*) value {
+  if (result.hasGroup &&
+      result.group != [PBGroup defaultInstance]) {
+    result.group =
+      [[[PBGroup builderWithPrototype:result.group] mergeFrom:value] buildPartial];
+  } else {
+    result.group = value;
+  }
+  result.hasGroup = YES;
+  return self;
+}
+- (PBGroupContest_Builder*) clearGroup {
+  result.hasGroup = NO;
+  result.group = [PBGroup defaultInstance];
+  return self;
+}
+@end
+

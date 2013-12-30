@@ -20,6 +20,13 @@
 #import "StatisticManager.h"
 #import "CustomInfoView.h"
 #import "PPConfigManager.h"
+#import "ContestCell.h"
+
+typedef enum{
+    TabTypeOfficial = 1,
+    TabTypeGroup = 2,
+    TabTypeOpus = 3,
+}TabType;
 
 
 @implementation ContestController
@@ -92,6 +99,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [self initTabButtons];
+    
     [self.titleLabel setText:NSLS(@"kContest")];
     SET_VIEW_BG(self.view);
     [self initCustomPageControl];
@@ -104,10 +113,7 @@
     [titleView setRightButtonAsRefresh];
     [titleView setRightButtonSelector:@selector(clickRefreshButton:)];
     [titleView setBackButtonSelector:@selector(clickBackButton:)];
-    [[ContestService defaultService] syncOngoingContestList];
     [self hideTips];
-    
-    
 }
 
 - (void)viewDidUnload
@@ -116,6 +122,8 @@
     [self setPageControl:nil];
     [self setTitleLabel:nil];
     [self setNoContestTipLabel:nil];
+    [self setScrollerViewHolder:nil];
+    [self setTableViewHolder:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
@@ -322,6 +330,8 @@
     PPRelease(_titleLabel);
     PPRelease(_noContestTipLabel);
     [[ContestManager defaultManager] setAllContestList:nil];
+    [_scrollerViewHolder release];
+    [_tableViewHolder release];
     [super dealloc];
 }
 - (IBAction)clickRefreshButton:(id)sender {
@@ -337,4 +347,108 @@
                                            animated:animated];
 
 }
+
+
+
+- (NSInteger)tabCount{
+    
+    return 3;
+};
+
+- (NSInteger)currentTabIndex{
+    
+    return 0;
+}
+
+- (NSInteger)fetchDataLimitForTabIndex:(NSInteger)index{
+    
+    return 20;
+}
+
+- (NSInteger)tabIDforIndex:(NSInteger)index{
+    
+    int indexs[] = {TabTypeOfficial,TabTypeGroup,TabTypeOpus};
+    return indexs[index];
+}
+
+- (NSString *)tabTitleforIndex:(NSInteger)index{
+    NSString *titles[] = {NSLS(@"kOfficialContest"),NSLS(@"kGroupContest"),NSLS(@"kGoodOpus")};
+    return titles[index];
+}
+
+- (void)serviceLoadDataForTabID:(NSInteger)tabID{
+    
+    
+    switch (tabID) {
+        case TabTypeOfficial:
+            [[ContestService defaultService] syncOngoingContestList];
+            break;
+            
+        case TabTypeGroup:
+            
+            break;
+            
+        case TabTypeOpus:
+            
+            break;
+            
+        default:
+            break;
+    }
+}
+
+- (void)clickTab:(NSInteger)tabID{
+    
+    [super clickTab:tabID];
+    
+    switch (tabID) {
+        case TabTypeOfficial:
+            self.scrollerViewHolder.hidden = NO;
+            self.tableViewHolder.hidden = YES;
+
+            break;
+            
+        case TabTypeGroup:
+            self.scrollerViewHolder.hidden = YES;
+            self.tableViewHolder.hidden = NO;
+
+            break;
+            
+        case TabTypeOpus:
+            self.scrollerViewHolder.hidden = YES;
+            self.tableViewHolder.hidden = NO;
+            break;
+            
+        default:
+            break;
+    }
+}
+
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    ContestCell *cell = [tableView dequeueReusableCellWithIdentifier:[ContestCell getCellIdentifier]];
+    if (cell == nil) {
+        cell = [ContestCell createCell:self];
+    }
+    
+    PBContest *pbContest = [[[ContestManager defaultManager] allContestList] objectAtIndex:indexPath.row];
+    Contest *contest = [[[Contest alloc] initWithPBContest:pbContest] autorelease];
+    [cell setCellInfo:contest];
+    return cell;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    
+    int count = [[[ContestManager defaultManager] allContestList] count];
+    return count;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    return [ContestCell getCellHeight];
+}
+
+
+
 @end

@@ -2444,3 +2444,8 @@
 "kSetSuccess" = "Settings set successfully";
 
 "kSetUserAvatar" = "Set user avatar";
+
+"kOfficialContest" = "Official";
+"kGroupContest" = "Group";
+"kGoodOpus" = "Opus";
+

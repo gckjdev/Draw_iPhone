@@ -44,6 +44,7 @@ typedef enum{
 
 //basic info
 @property(nonatomic, retain) PBContest *pbContest;
+@property(nonatomic, retain) PBGroup *pbGroup;
 
 @property(nonatomic, readonly) NSString *contestId;
 @property(nonatomic, readonly) NSDate *startDate;
@@ -69,6 +70,7 @@ typedef enum{
 //+ (Contest *)contestWithDict:(NSDictionary *)dict;
 
 - (id)initWithPBContest:(PBContest*)pbContest;
+- (id)initWithPBGroupContest:(PBGroupContest*)pbGroupContest;
 
 - (void)incCommitCount;
 - (BOOL)commitCountEnough;
@@ -82,4 +84,9 @@ typedef enum{
 - (NSArray *)awardOpusIdList;
 - (void)setAwardOpusList:(NSArray *)opusList;
 - (ContestFeed *)getOpusWithAwardType:(NSInteger)type rank:(NSInteger)rank;
+
+- (NSData *)data;
+
+- (NSString *)leftTime;
+
 @end

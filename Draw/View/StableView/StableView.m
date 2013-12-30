@@ -420,6 +420,7 @@
 
 - (void)setUrlString:(NSString *)urlString
 {
+    
     UIImage *defaultImage = [[ShareImageManager defaultManager] avatarImageByGender:self.gender];
     [imageView setImageWithUrl:[NSURL URLWithString:urlString] placeholderImage:defaultImage showLoading:YES animated:YES];
 }

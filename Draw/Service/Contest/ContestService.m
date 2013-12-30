@@ -94,6 +94,11 @@ static ContestService *_staticContestService;
 
 }
 
+
+
+
+
+
 - (void)getMyContestListWithOffset:(NSInteger)offset
                              limit:(NSInteger)limit
                           delegate:(id<ContestServiceDelegate>)delegate
@@ -193,5 +198,28 @@ static ContestService *_staticContestService;
     return count;
 }
 
+- (void)createContest:(Contest *)contest
+            completed:(CreateContestBlock)completed{
+    
+    NSData *data = [contest data];
+    if ([data length] <= 0) {
+        return;
+    }
+    
+    dispatch_async(workingQueue, ^{
+        
+        NSDictionary* para = @{PARA_CONTEST : data
+                                };
+        
+        GameNetworkOutput* output = [PPGameNetworkRequest trafficApiServerGetAndResponsePB:METHOD_CREATE_CONTEST_LIST
+                                                                                parameters:para];
+        Contest *contest = [[[Contest alloc] initWithPBGroupContest:output.pbResponse.groupContest] autorelease];
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            
+            EXECUTE_BLOCK(completed, output.resultCode, contest);
+        });
+    });
+}
 
 @end

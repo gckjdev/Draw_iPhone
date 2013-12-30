@@ -17707,6 +17707,7 @@ static GameMessage* defaultGameMessageInstance = nil;
 @property (retain) PBUserRelationWithGroup* groupRelation;
 @property (retain) NSMutableArray* mutableBadgesList;
 @property (retain) NSString* url;
+@property (retain) PBGroupContest* groupContest;
 @end
 
 @implementation DataQueryResponse
@@ -17837,6 +17838,13 @@ static GameMessage* defaultGameMessageInstance = nil;
   hasUrl_ = !!value;
 }
 @synthesize url;
+- (BOOL) hasGroupContest {
+  return !!hasGroupContest_;
+}
+- (void) setHasGroupContest:(BOOL) value {
+  hasGroupContest_ = !!value;
+}
+@synthesize groupContest;
 - (void) dealloc {
   self.mutableDrawDataList = nil;
   self.mutableMessageList = nil;
@@ -17870,6 +17878,7 @@ static GameMessage* defaultGameMessageInstance = nil;
   self.groupRelation = nil;
   self.mutableBadgesList = nil;
   self.url = nil;
+  self.groupContest = nil;
   [super dealloc];
 }
 - (id) init {
@@ -17889,6 +17898,7 @@ static GameMessage* defaultGameMessageInstance = nil;
     self.group = [PBGroup defaultInstance];
     self.groupRelation = [PBUserRelationWithGroup defaultInstance];
     self.url = @"";
+    self.groupContest = [PBGroupContest defaultInstance];
   }
   return self;
 }
@@ -18200,6 +18210,11 @@ static DataQueryResponse* defaultDataQueryResponseInstance = nil;
       return NO;
     }
   }
+  if (self.hasGroupContest) {
+    if (!self.groupContest.isInitialized) {
+      return NO;
+    }
+  }
   return YES;
 }
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
@@ -18310,6 +18325,9 @@ static DataQueryResponse* defaultDataQueryResponseInstance = nil;
   }
   if (self.hasUrl) {
     [output writeString:156 value:self.url];
+  }
+  if (self.hasGroupContest) {
+    [output writeMessage:160 value:self.groupContest];
   }
   [self.unknownFields writeToCodedOutputStream:output];
 }
@@ -18432,6 +18450,9 @@ static DataQueryResponse* defaultDataQueryResponseInstance = nil;
   }
   if (self.hasUrl) {
     size += computeStringSize(156, self.url);
+  }
+  if (self.hasGroupContest) {
+    size += computeMessageSize(160, self.groupContest);
   }
   size += self.unknownFields.serializedSize;
   memoizedSerializedSize = size;
@@ -18678,6 +18699,9 @@ static DataQueryResponse* defaultDataQueryResponseInstance = nil;
   }
   if (other.hasUrl) {
     [self setUrl:other.url];
+  }
+  if (other.hasGroupContest) {
+    [self mergeGroupContest:other.groupContest];
   }
   [self mergeUnknownFields:other.unknownFields];
   return self;
@@ -18932,6 +18956,15 @@ static DataQueryResponse* defaultDataQueryResponseInstance = nil;
       }
       case 1250: {
         [self setUrl:[input readString]];
+        break;
+      }
+      case 1282: {
+        PBGroupContest_Builder* subBuilder = [PBGroupContest builder];
+        if (self.hasGroupContest) {
+          [subBuilder mergeFrom:self.groupContest];
+        }
+        [input readMessage:subBuilder extensionRegistry:extensionRegistry];
+        [self setGroupContest:[subBuilder buildPartial]];
         break;
       }
     }
@@ -19926,6 +19959,36 @@ static DataQueryResponse* defaultDataQueryResponseInstance = nil;
 - (DataQueryResponse_Builder*) clearUrl {
   result.hasUrl = NO;
   result.url = @"";
+  return self;
+}
+- (BOOL) hasGroupContest {
+  return result.hasGroupContest;
+}
+- (PBGroupContest*) groupContest {
+  return result.groupContest;
+}
+- (DataQueryResponse_Builder*) setGroupContest:(PBGroupContest*) value {
+  result.hasGroupContest = YES;
+  result.groupContest = value;
+  return self;
+}
+- (DataQueryResponse_Builder*) setGroupContestBuilder:(PBGroupContest_Builder*) builderForValue {
+  return [self setGroupContest:[builderForValue build]];
+}
+- (DataQueryResponse_Builder*) mergeGroupContest:(PBGroupContest*) value {
+  if (result.hasGroupContest &&
+      result.groupContest != [PBGroupContest defaultInstance]) {
+    result.groupContest =
+      [[[PBGroupContest builderWithPrototype:result.groupContest] mergeFrom:value] buildPartial];
+  } else {
+    result.groupContest = value;
+  }
+  result.hasGroupContest = YES;
+  return self;
+}
+- (DataQueryResponse_Builder*) clearGroupContest {
+  result.hasGroupContest = NO;
+  result.groupContest = [PBGroupContest defaultInstance];
   return self;
 }
 @end
