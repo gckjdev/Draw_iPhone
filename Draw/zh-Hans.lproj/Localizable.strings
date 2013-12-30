@@ -2156,11 +2156,17 @@
 "TypeAcceptMemberInvitation" = "%@同意加入%@。";
 "TypeAcceptGuestInvitation" = "%@同意成为%@的嘉宾。";
 
-"kGroupDetailRowWeath" = "声望%d  财富%d  等级%d";
+"kGroupDetailRowWeath" = "声望 %d  财富 %d  等级 %d";
 "kGroupDetailRowCreateDate" = "创建时间 %@";
 "kGroupDetailRowDesc" = "说明 %@";
 "kGroupDetailRowFee" = "会费 %d金币/月";
+
 "kDefaultGroupSignature" = "暂无签名";
+"kDefaultGroupDesc" = "暂无说明";
+
+"kEditGroupSignature" = "编辑签名";
+"kEditGroupIntroduce" = "编辑说明";
+
 
 "kAddTitle" = "添加职位";
 "kChangeBG" = "修改背景";
@@ -2219,7 +2225,6 @@
 "kChangeGroupBG" = "更新家族背景";
 "kManage" = "管理";
 "kEditGroupName" = "修改家族名称";
-"kEditGroupSignature" = "更新家族签名";
 
 "kEditGroupDesc" = "修改家族介绍";
 "kEditGroupFee" = "修改家族成员会费";
