@@ -92,6 +92,8 @@ typedef enum {
 - (void)setIsGroup:(BOOL)isGroup;
 - (BOOL)isGroup;
 
+- (void)setFriendId:(NSString *)friendId nickName:(NSString*)nickName;
+
 - (PBGameUser*)fromUserToGroup;
 
 @end

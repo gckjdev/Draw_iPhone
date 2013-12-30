@@ -377,6 +377,8 @@
     NSString *URL = TRAFFIC_SERVER_URL;
     
 #ifdef DEBUG
+//    URL = @"http://192.168.1.8:8100/api/i?";
+    
 //    URL = @"http://localhost:8100/api/i?";
 //    URL = @"http://192.168.1.11:8100/api/i?";
 #endif

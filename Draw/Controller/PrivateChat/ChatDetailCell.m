@@ -289,9 +289,16 @@
 
 - (void)didClickOnAvatar:(NSString*)userId
 {
-    MessageStat *stat = self.messageStat;
-    ViewUserDetail *detail = [ViewUserDetail viewUserDetailWithUserId:stat.friendId avatar:stat.friendAvatar nickName:stat.friendNickName];
-    [UserDetailViewController presentUserDetail:detail inViewController:(id)[self theViewController]];
+    if ([self.messageStat isGroup]){
+        // TODO avatar click
+//        ViewUserDetail *detail = [ViewUserDetail viewUserDetailWithUserId:stat.friendId avatar:stat.friendAvatar nickName:stat.friendNickName];
+//        [UserDetailViewController presentUserDetail:detail inViewController:(id)[self theViewController]];
+    }
+    else{
+        MessageStat *stat = self.messageStat;
+        ViewUserDetail *detail = [ViewUserDetail viewUserDetailWithUserId:stat.friendId avatar:stat.friendAvatar nickName:stat.friendNickName];
+        [UserDetailViewController presentUserDetail:detail inViewController:(id)[self theViewController]];
+    }
 }
 
 - (void)updateViewsWithShowTime:(BOOL)showTime
@@ -324,10 +331,10 @@
     
     if (message.isGroup){
         if ([[UserManager defaultManager] isMe:message.fromUserToGroup.userId]){
-            self.isReceive = YES;
+            self.isReceive = NO;
         }
         else{
-            self.isReceive = NO;
+            self.isReceive = YES;
         }
     }
     else{
