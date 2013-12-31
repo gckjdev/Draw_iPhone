@@ -88,4 +88,10 @@
 - (NSString *)joindeGroupIdForName:(NSString *)name;
 - (NSArray *)joinedGroupNames;
 
+- (NSString *)groupNameById:(NSString*)groupId;
+
+- (NSString *)userCurrentGroupId;
+- (NSString *)userCurrentGroupName;
+- (PBGroup *)userCurrentGroup;
+
 @end
