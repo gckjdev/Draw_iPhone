@@ -353,11 +353,11 @@
         }
          case GroupChat:
         {
-            PBGroup_Builder* builder = [PBGroup builder];
-            [builder setGroupId:@"888800000000001234567890"];
-            [builder setName:@"Test Group"];
+//            PBGroup_Builder* builder = [PBGroup builder];
+//            [builder setGroupId:@"888800000000001234567890"];
+//            [builder setName:@"Test Group"];
             
-            PBGroup* group = [builder build];
+            PBGroup* group = [[GroupManager defaultManager] userCurrentGroup];
             [ChatDetailController enterFromGroup:group superController:self];            
         }
             

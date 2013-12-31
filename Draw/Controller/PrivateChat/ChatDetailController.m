@@ -691,7 +691,11 @@
     _asIndexShowLocation = -1;
     _asIndexResend = -1;
     NSInteger start = 0;
-    _asIndexDelete = start++;
+    
+    if ([self.messageStat isGroup] == NO){
+        _asIndexDelete = start++;
+    }
+    
     if (message.messageType == MessageTypeDraw) {
         _asIndexReplay = start++;
     }else if(message.messageType == MessageTypeText){
@@ -860,6 +864,12 @@
     }else{
         _showingActionSheet = YES;
     }
+    
+    NSString *delete = NSLS(@"kDelete");
+    if ([self.messageStat isGroup]){
+        delete = nil;
+    }    
+    
     NSString *otherOperation = nil;
     NSInteger tag = 0;
     switch (message.messageType) {
@@ -902,14 +912,14 @@
                            initWithTitle:NSLS(@"kOpusOperation")
                            delegate:self
                            cancelButtonTitle:NSLS(@"kCancel")
-                           destructiveButtonTitle:NSLS(@"kDelete")
+                           destructiveButtonTitle:delete //NSLS(@"kDelete")
                            otherButtonTitles:otherOperation, NSLS(@"kResend"), nil];
         } else {
             actionSheet=  [[UIActionSheet alloc]
                            initWithTitle:NSLS(@"kOpusOperation")
                            delegate:self
                            cancelButtonTitle:NSLS(@"kCancel")
-                           destructiveButtonTitle:NSLS(@"kDelete")
+                           destructiveButtonTitle:delete //NSLS(@"kDelete")
                            otherButtonTitles:NSLS(@"kResend"), nil];
         }
         [actionSheet setDestructiveButtonIndex:_asIndexResend];
@@ -920,14 +930,14 @@
                            initWithTitle:NSLS(@"kOpusOperation")
                            delegate:self
                            cancelButtonTitle:NSLS(@"kCancel")
-                           destructiveButtonTitle:NSLS(@"kDelete")
+                           destructiveButtonTitle:delete // NSLS(@"kDelete")
                            otherButtonTitles:otherOperation, nil];
         } else {
             actionSheet=  [[UIActionSheet alloc]
                            initWithTitle:NSLS(@"kOpusOperation")
                            delegate:self
                            cancelButtonTitle:NSLS(@"kCancel")
-                           destructiveButtonTitle:NSLS(@"kDelete")
+                           destructiveButtonTitle:delete // NSLS(@"kDelete")
                            otherButtonTitles:nil];
         }
     }

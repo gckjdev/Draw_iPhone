@@ -442,4 +442,57 @@ enum{
     return names;
 }
 
+- (NSString *)groupNameById:(NSString*)groupId
+{
+    if (groupId == nil){
+        return @"";
+    }
+    
+    NSArray * list = [GroupPermissionManager groupRoles];
+    for (PBGroupUserRole *role in list) {
+        if([role.groupId isEqualToString:groupId]){
+            return role.groupName;
+        }
+    }
+    return @"";
+}
+
+- (NSString *)userCurrentGroupName
+{
+    return [self groupNameById:[self userCurrentGroupId]];
+}
+
+- (NSString *)userCurrentGroupId
+{
+    NSArray * list = [GroupPermissionManager groupRoles];
+    
+    NSArray *intRoles = @[@(GroupRoleAdmin), @(GroupRoleCreator),
+                          @(GroupRoleMember)
+                          ];
+    for (PBGroupUserRole *role in list) {
+        if ([intRoles containsObject:@(role.role)]) {
+            PPDebug(@"current user groupId is %@ name %@", role.groupId, role.groupName);
+            return role.groupId;
+        }
+    }
+
+    PPDebug(@"current user groupId not found");
+    return nil;
+}
+
+- (PBGroup*)userCurrentGroup
+{
+    NSString* groupId = [self userCurrentGroupId];
+    NSString* groupName = [self userCurrentGroupName];
+    
+    if (groupId == nil || groupName == nil)
+        return nil;
+
+    PBGroup_Builder* builder = [PBGroup builder];
+    [builder setGroupId:groupId];
+    [builder setName:groupName];
+    PBGroup* group = [builder build];
+    return group;
+}
+
 @end
