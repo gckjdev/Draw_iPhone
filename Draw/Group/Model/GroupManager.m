@@ -466,13 +466,18 @@ enum{
 {
     NSArray * list = [GroupPermissionManager groupRoles];
     
-    NSArray *intRoles = @[@(GroupRoleAdmin), @(GroupRoleCreator),
+    NSArray *intRoles = @[@(GroupRoleCreator),
+                          @(GroupRoleAdmin),
                           @(GroupRoleMember)
                           ];
-    for (PBGroupUserRole *role in list) {
-        if ([intRoles containsObject:@(role.role)]) {
-            PPDebug(@"current user groupId is %@ name %@", role.groupId, role.groupName);
-            return role.groupId;
+    
+    for (NSNumber* roleType in intRoles){
+        // 按照顺序，优先匹配权限
+        for (PBGroupUserRole *role in list) {
+            if (role.role == [roleType intValue]) {
+                PPDebug(@"current user groupId is %@ name %@", role.groupId, role.groupName);
+                return role.groupId;
+            }
         }
     }
 
