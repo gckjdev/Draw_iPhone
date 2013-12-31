@@ -113,6 +113,13 @@
     [self loadBadge];
 }
 
+- (void)setNeedRefreshFollowGroupTab
+{
+    TableTab *tab = [_tabManager tabForID:GroupTabGroupFollow];
+    tab.status = TableTabStatusUnload;
+    tab.offset = 0;
+}
+
 - (void)viewDidAppear:(BOOL)animated
 {
     [self updateAtMeBadge];
@@ -331,6 +338,8 @@
     switch (type) {
         case GroupCreateGroup:
         {
+            //TODO check if use has join a group?
+            
             CreateGroupController *cgc =  [[CreateGroupController alloc] init];
             [self.navigationController pushViewController:cgc animated:YES];
             [cgc release];
@@ -437,7 +446,7 @@
     if ([self isGroupTab:self.currentTabID]) {
         return 0;
     }
-    return ISIPAD?10:5;
+    return ISIPAD?20:8;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
@@ -470,6 +479,7 @@
                                       callback:^(NSError *error) {
        [self hideActivity];
        if (!error) {
+           [self setNeedRefreshFollowGroupTab];
            [self.dataTableView reloadRowsAtIndexPaths:@[cell.indexPath] withRowAnimation:UITableViewRowAnimationFade];
        }                                          
     }];
@@ -482,8 +492,15 @@
                                         callback:^(NSError *error) {
         [self hideActivity];
         if (!error) {
-            [self.dataTableView reloadRowsAtIndexPaths:@[cell.indexPath] withRowAnimation:UITableViewRowAnimationFade];
-        }                                          
+            
+            if (self.currentTabID == GroupTabGroupFollow) {
+                [self.tabDataList removeObjectAtIndex:cell.indexPath.row];
+                [self.dataTableView deleteRowsAtIndexPaths:@[cell.indexPath] withRowAnimation:UITableViewRowAnimationFade];
+            }else{
+                [self setNeedRefreshFollowGroupTab];
+                [self.dataTableView reloadRowsAtIndexPaths:@[cell.indexPath] withRowAnimation:UITableViewRowAnimationFade];
+            }
+        }
                                             
     }];
 }

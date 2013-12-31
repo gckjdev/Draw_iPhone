@@ -193,6 +193,12 @@ static NSMutableArray *_roles;
 {
     return PERMIT(EDIT_GROUP);
 }
+
+- (BOOL)canHoldContest
+{
+    return PERMIT(HOLD_CONTEST);
+}
+
 //Creator permission
 - (BOOL)canArrangeAdmin
 {

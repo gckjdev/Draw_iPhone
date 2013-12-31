@@ -171,6 +171,11 @@ typedef enum {
     [self.titleView setTitle:_group.name];
     [self updateFooterView];
     [self.dataTableView reloadData];
+    if (_group.bgImageURL) {
+        [self setBGImageURL:_group.bgImageURL];
+    }else{
+        [self setDefaultBGImage];
+    }
 }
 
 - (void)viewDidLoad

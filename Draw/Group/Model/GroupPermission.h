@@ -51,6 +51,7 @@
 
 //manager permission
 - (BOOL)canManageGroup;
+- (BOOL)canHoldContest;
 
 //Creator permission
 - (BOOL)canArrangeAdmin;
@@ -58,7 +59,12 @@
 - (BOOL)canUpgradeGroup;
 - (BOOL)canDismissalGroup;
 
+
+
+
 //global permission
 + (BOOL)canCreateGroup;
+
+
 
 @end

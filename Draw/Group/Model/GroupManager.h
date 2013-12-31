@@ -83,6 +83,7 @@
 
 
 - (NSMutableArray *)membersForShow;
+- (NSInteger)customTitleCount;
 
 - (NSString *)joindeGroupIdForName:(NSString *)name;
 - (NSArray *)joinedGroupNames;

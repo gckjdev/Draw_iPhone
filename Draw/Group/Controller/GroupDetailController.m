@@ -84,7 +84,7 @@ typedef enum{
 @property (retain, nonatomic) IBOutlet UILabel *groupName;
 @property (retain, nonatomic) IBOutlet UILabel *groupSignature;
 @property (retain, nonatomic) ChangeAvatar *changeImage;
-@property (assign, nonatomic) UIImageView *bgImageView;
+//@property (assign, nonatomic) UIImageView *bgImageView;
 
 
 @end
@@ -153,11 +153,19 @@ typedef enum{
 
 
 - (void)showAddTitleView{
+    //check title capacity
+    
+    if (_group.titleCapacity <= [groupManager customTitleCount]) {
+        NSString *message = [NSString stringWithFormat:NSLS(@"kTitleCountLimited"), _group.titleCapacity];
+        POSTMSG(message);
+        return;
+    }
+    
     CommonDialog *dialog = [CommonDialog createInputFieldDialogWith:NSLS(@"kCreateTitle")];
     dialog.inputTextField.text = @"";
     NSString *groupId = _group.groupId;
     [dialog setClickOkBlock:^(id infoView){
-        NSString *text = dialog.inputTextView.text;
+        NSString *text = dialog.inputTextField.text;
         BOOL flag = [self checkText:text length:MAX_LENGTH_TITLE allowEmpty:NO];
         [dialog setManualClose:!flag];
         if (flag) {
@@ -331,12 +339,11 @@ typedef enum{
     self.changeImage.autoRoundRect = NO;
     
     //update bg image view.
-    self.bgImageView = [[UIImageView alloc] initWithFrame:self.view.bounds];
-    self.bgImageView.autoresizingMask = (0x1 << 6) -1;
-    [self.view insertSubview:self.bgImageView atIndex:0];
-    [self.bgImageView release];
-    [self.bgImageView setImageWithURL:_group.bgImageURL];
-    
+    if (_group.bgImageURL) {
+        [[self bgImageView] setImageWithURL:_group.bgImageURL];
+    }else{
+        [self setDefaultBGImage];
+    }
     
     __block GroupDetailController *cp = self;
     [self.groupIconView setClickHandler:^(IconView *iconView){
@@ -364,7 +371,6 @@ typedef enum{
         if ([_groupPermission canManageGroup]) {
             [self.groupSignature setTextColor:COLOR_GRAY_TEXT];
             [self.groupSignature setText:NSLS(@"kEditGroupSignature")];
-//            [self.groupSignature setText:@"测试签名。"];
         }else{
             [self.groupSignature setText:NSLS(@"kDefaultGroupSignature")];
         }
@@ -673,6 +679,21 @@ typedef enum{
     [cell setCellText:text position:position group:_group];
 }
 
+- (PBGroupUsersByTitle *)customTitleAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (indexPath.section != SECTION_BASE_INDEX) {
+        NSInteger row = indexPath.row;
+        NSInteger index = row - RowMemberStart;
+        if (index >= 0 && index < [self.dataList count]) {
+            PBGroupUsersByTitle *usersByTitle = self.dataList[index];
+            if ([usersByTitle isCustomTitle]) {
+                return usersByTitle;
+            }
+        }
+    }
+    return nil;
+}
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     NSString *identifier = [GroupDetailCell getCellIdentifier];
@@ -946,5 +967,39 @@ didClickAddButtonAtTitle:(PBGroupTitle *)title
     }
 }
 
+
+//DELETE TITLE
+
+- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if ([_groupPermission canManageGroup]) {
+        PBGroupUsersByTitle *usersByTitle = [self customTitleAtIndexPath:indexPath];
+        return !!usersByTitle;
+    }
+    return NO;
+}
+
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    PBGroupUsersByTitle *usersByTitle = [self customTitleAtIndexPath:indexPath];
+    if ([[usersByTitle usersList] count] == 0) {
+        NSInteger titleId = usersByTitle.title.titleId;
+        [groupService deleteGroupTitleId:titleId groupId:_group.groupId callback:^(NSError *error) {
+            if (!error) {
+                //remove from local model
+                [GroupManager didDeletedGroupTitle:_group.groupId titleId:titleId];
+                [self updateDataList];
+                [self.dataTableView reloadData];
+            }
+        }];
+    }else{
+        POSTMSG(NSLS(@"kDeleteNotEmptyTitleError"));
+    }
+}
+
+- (NSString *)tableView:(UITableView *)tableView titleForDeleteConfirmationButtonForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return NSLS(@"kDelete");
+}
 
 @end

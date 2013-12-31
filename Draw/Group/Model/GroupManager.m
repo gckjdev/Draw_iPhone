@@ -403,6 +403,17 @@ enum{
     return ret;
 }
 
+- (NSInteger)customTitleCount
+{
+    NSInteger count = 0;
+    for (PBGroupUsersByTitle *title in self.tempMemberList) {
+        if ([title.title isCustomTitle]) {
+            count ++;
+        }
+    }
+    return count;
+}
+
 - (NSMutableArray *)membersForShow
 {
     NSMutableArray *list = [NSMutableArray array];

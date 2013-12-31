@@ -52,7 +52,7 @@ typedef enum {
     UPGRADE_GROUP           =    (0x1 << 27),     //升级群
     DISMISSAL_GROUP         =    (0x1 << 28),     //解散群
     EDIT_GROUP              =    (0x1 << 30),     //编辑群
-    
+    HOLD_CONTEST            =    (0x1 << 31),     //举办比赛
     
     GROUP_DEFAULT_PERMISSION = JOIN_GROUP|ACCESS_GROUP|READ_TOPIC,
     
@@ -99,6 +99,6 @@ typedef enum{
     MAX_LENGTH_NAME = 14,
     MAX_LENGTH_TITLE = 14,
     MAX_LENGTH_SIGNATURE = 140,
-    MAX_LENGTH_DESCRIPTION = 300,
+    MAX_LENGTH_DESCRIPTION = 500,
 }GroupAttibuteMaxLength;
 
