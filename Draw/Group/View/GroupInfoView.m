@@ -45,7 +45,7 @@
     [_sizeLabel setFont:CELL_SMALLTEXT_FONT];
     [_sizeLabel setBackgroundColor:COLOR_YELLOW];
     [_sizeLabel setTextAlignment:NSTextAlignmentCenter];
-    CGFloat radius = (CGRectGetHeight(_sizeLabel.bounds)/2.0);
+    CGFloat radius = (CGRectGetHeight(_sizeLabel.bounds)/3.0);
     SET_VIEW_ROUND_CORNER_RADIUS(self.sizeLabel, radius);
     self.backgroundColor = [UIColor clearColor];
 }

@@ -2223,6 +2223,10 @@
 "kExpelGroupUserTitle" = "Warning";
 "kExpelGroupUserMessage" = "Are you really want to expel the user?";
 
+"kDeleteNotEmptyTitleError" = "Can't delete title while not empty.";
+
+"kTitleCountLimited" = "Title count reached %d, group must be upgraded before adding a new title.";
+
 "kSeeAllPost" = "All";
 "kSeeLZOnly" = "Mine";
 "kSeeMeOnly" = "Mine";

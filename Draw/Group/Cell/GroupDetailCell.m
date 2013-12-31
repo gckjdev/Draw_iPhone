@@ -289,6 +289,9 @@
             CGFloat y = TITLE_INFO_HEIGHT;
             CGRect frame = CGRectMake(x, y, width, height);
             UIScrollView *scrollView = [[UIScrollView alloc] initWithFrame:frame];
+            
+            scrollView.autoresizingMask = self.boundImage.autoresizingMask;
+            
             scrollView.contentSize = frame.size;
             [self.contentView addSubview:scrollView];
             [scrollView release];

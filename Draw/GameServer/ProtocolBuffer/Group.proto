@@ -63,6 +63,7 @@ message PBGroup
 
     optional int32  topicCount = 12;         //话题数目
     optional int32 fanCount = 13;               //粉丝数据
+    optional int32 titleCapacity = 14;      //职位容量
     
     optional string desc = 15;                  // 家族说明
     optional string signature = 16;             // 动态签名

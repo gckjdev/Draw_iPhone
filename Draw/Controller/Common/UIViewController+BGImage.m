@@ -16,16 +16,12 @@
 
 - (UIImageView *)bgImageView
 {
-    UIImageView *imageView = (id)[self.view viewWithTag:BGIMAGEVIEW_TAG];
-    if ([imageView isKindOfClass:[UIImageView class]]) {
-        return imageView;
-    }
-    return nil;
+    return [self getBGView];
 }
 
 - (UIImageView *)getBGView
 {
-    UIImageView *bgView = [self bgImageView];
+    UIImageView *bgView = (id)[self.view viewWithTag:BGIMAGEVIEW_TAG];
     if (bgView == nil) {
         bgView = [[UIImageView alloc] initWithFrame:self.view.bounds];
         bgView.tag = BGIMAGEVIEW_TAG;

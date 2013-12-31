@@ -146,6 +146,9 @@ typedef enum{
 }
 - (NSURL *)bgImageURL
 {
+    if ([self.bgImage length] == 0) {
+        return nil;
+    }
     return [NSURL URLWithString:self.bgImage];
 }
 
