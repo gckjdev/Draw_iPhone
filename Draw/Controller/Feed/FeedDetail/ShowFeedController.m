@@ -781,6 +781,11 @@ typedef enum{
 
 - (void)performReplay
 {
+    [[FeedService defaultService] playOpus:self.feed.feedId contestId:self.feed.contestId resultBlock:^(int resultCode) {
+        [self.feed incPlayTimes];
+        [self.commentHeader updateTimes:self.feed];
+    }];
+    
     if ([self.feed isDrawCategory]) {
         [self performReplayDraw];
     }else if ([self.feed isSingCategory]){
@@ -1399,10 +1404,7 @@ typedef enum{
         [self.dataTableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionTop animated:YES];
         
         [self play];
-        [[FeedService defaultService] playOpus:self.feed.feedId contestId:self.feed.contestId resultBlock:^(int resultCode) {
-            [self.feed incPlayTimes];
-            [self.commentHeader updateTimes:self.feed];
-        }];
+
         
         
         
