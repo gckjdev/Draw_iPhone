@@ -101,6 +101,7 @@ message PBGroupNotice{
     optional string groupName = 5;
     optional string message = 6;
     optional int32 createDate = 7;
+    optional int32 amount = 8;
     optional PBGameUser publisher = 10; 
     optional PBGameUser target = 11; //expel, accept
 }

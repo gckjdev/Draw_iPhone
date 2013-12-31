@@ -121,6 +121,12 @@ typedef void (^ URLResultBlock) (NSURL *url, NSError *error);
           noticeType:(NSInteger)type
             callback:(SimpleResultBlock)callback;
 
+
+- (void)syncFollowTopicIds;
+
+- (void)unfollowTopic:(NSString *)topicId
+           callback:(SimpleResultBlock)callback;
+
 - (void)followTopic:(NSString *)topicId
            callback:(SimpleResultBlock)callback;
 
@@ -135,6 +141,15 @@ typedef void (^ URLResultBlock) (NSURL *url, NSError *error);
 
 - (void)getGroupBadgeWithCallback:(BadgeResultBlock)callback;
 
+
+- (void)chargeGroup:(NSString *)groupId
+             amount:(NSInteger)amount
+           callback:(SimpleResultBlock)callback;
+
+- (void)transferGroupBalance:(NSString *)groupId
+                      amount:(NSInteger)amount
+                   targetUid:(NSString *)targetUid
+                    callback:(SimpleResultBlock)callback;
 
 
 ///

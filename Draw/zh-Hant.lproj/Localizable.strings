@@ -2263,9 +2263,12 @@
 "kGroupTabGroupFame" = "聲望";
 "kIgnoring" = "發送忽略請求中...";
 "kRejecting" = "發送拒絕請求中...";
+"kAccepting" = "發送同意請求中...";
 
 "kExpelGroupUserTitle" = "移除用戶";
 "kExpelGroupUserMessage" = "確定要移除該用戶嗎？";
+"kBalanceNotEnough" = "不好意思，您的余額不足，不能完成本操作。";
+"kGroupBalanceNotEnough" = "不好意思，家族的余額不足，不能完成本操作。";
 
 /*********************小吉画画国际化字符串开始 ************************/
 "kLittleGeeRecommend" = "推薦";

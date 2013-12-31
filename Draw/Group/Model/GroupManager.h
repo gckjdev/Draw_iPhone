@@ -14,6 +14,9 @@
 
 @interface GroupManager : NSObject
 @property(nonatomic, retain)NSMutableArray *followedGroupIds;
+
+@property(nonatomic, retain)NSMutableArray *followedTopicIds;
+
 @property(nonatomic, assign) NSInteger commentBadge;
 @property(nonatomic, assign) NSInteger requestBadge;
 @property(nonatomic, assign) NSInteger noticeBadge;
@@ -93,5 +96,20 @@
 - (NSString *)userCurrentGroupId;
 - (NSString *)userCurrentGroupName;
 - (PBGroup *)userCurrentGroup;
+
+
+- (void)syncFollowedGroupIds:(NSArray *)groupIds;
+
+- (void)syncFollowedTopicIds:(NSArray *)topictIds;
+
+- (void)didFollowTopic:(NSString *)topicId;
+
+- (void)didUnfollowTopic:(NSString *)topicId;
+
+
+- (void)saveTempDataToDisk;
+
+- (void)loadDataFromDisk;
+
 
 @end

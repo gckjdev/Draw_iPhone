@@ -2256,6 +2256,10 @@
 "kGroupTabGroupFame" = "声望";
 "kIgnoring" = "发送忽略请求中...";
 "kRejecting" = "发送拒绝请求中...";
+"kAccepting" = "发送同意请求中...";
+
+"kBalanceNotEnough" = "不好意思，您的余额不足，不能完成本操作。";
+"kGroupBalanceNotEnough" = "不好意思，家族的余额不足，不能完成本操作";
 
 /*********************小吉画画国际化字符串开始 ************************/
 "kLittleGeeRecommend" = "推荐";

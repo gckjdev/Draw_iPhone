@@ -10,6 +10,8 @@
 #import "BBSPermissionManager.h"
 #import "BBSImageManager.h"
 #import "BBSActionListController.h"
+#import "GroupService.h"
+#import "GroupUIManager.h"
 
 @implementation BBSPostCommand
 - (id)initWithPost:(PBBBSPost *)post controller:(BBSPostDetailController *)controller
@@ -314,3 +316,39 @@
 @end
 
 
+
+@implementation BBSPostFollowCommand
+
+- (BOOL)hasFollowed
+{
+    return [[[GroupManager defaultManager] followedTopicIds] containsObject:self.post.postId];
+}
+
+- (void)excute
+{    
+    SimpleResultBlock callback = ^(NSError *error){
+        [self.controller hideActivity];
+        [self.controller updateViewWithPost:self.post];        
+    };
+    if ([self hasFollowed]) {
+        [self.controller showActivityWithText:NSLS(@"kUnfollowing")];        
+        [[GroupService defaultService] unfollowTopic:self.post.postId callback:callback];
+    }else{
+        [self.controller showActivityWithText:NSLS(@"kFollowing")];        
+        [[GroupService defaultService] followTopic:self.post.postId callback:callback];
+    }
+}
+- (NSString *)name
+{
+    return [self hasFollowed]?NSLS(@"kUnfollowPost"):NSLS(@"kFollowPost");
+}
+- (UIImage *)icon
+{
+    //TODO should replace the images.
+    if ([self hasFollowed]) {
+        return [GroupUIManager unfollowingGroupImage];
+    }
+    return [GroupUIManager followedGroupImage];
+}
+
+@end

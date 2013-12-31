@@ -57,10 +57,10 @@
 					<object class="IBUIImageView" id="541136629">
 						<reference key="NSNextResponder" ref="137148075"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrameSize">{105, 105}</string>
+						<string key="NSFrame">{{12.5, 8.5}, {80, 80}}</string>
 						<reference key="NSSuperview" ref="137148075"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView" ref="849593661"/>
+						<reference key="NSNextKeyView" ref="880025269"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="IBUIUserInteractionEnabled">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -173,6 +173,7 @@
 						<string key="NSFrame">{{583, 362}, {93, 35}}</string>
 						<reference key="NSSuperview" ref="137148075"/>
 						<reference key="NSWindow"/>
+						<reference key="NSNextKeyView"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIUserInteractionEnabled">NO</bool>
@@ -267,12 +268,13 @@
 						<reference key="IBUIFontDescription" ref="330164621"/>
 						<reference key="IBUIFont" ref="824910380"/>
 					</object>
-					<object class="IBUIButton" id="810633920">
+					<object class="IBUIButton" id="880025269">
 						<reference key="NSNextResponder" ref="137148075"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{2, 113}, {101, 29}}</string>
+						<string key="NSFrame">{{7.5, 92.5}, {90, 27}}</string>
 						<reference key="NSSuperview" ref="137148075"/>
 						<reference key="NSWindow"/>
+						<reference key="NSNextKeyView" ref="849593661"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="IBUIOpaque">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -390,14 +392,14 @@
 					<object class="IBCocoaTouchOutletConnection" key="connection">
 						<string key="label">seeMeOnly</string>
 						<reference key="source" ref="137148075"/>
-						<reference key="destination" ref="810633920"/>
+						<reference key="destination" ref="880025269"/>
 					</object>
 					<int key="connectionID">49</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchEventConnection" key="connection">
 						<string key="label">clickSeeMeOnly:</string>
-						<reference key="source" ref="810633920"/>
+						<reference key="source" ref="880025269"/>
 						<reference key="destination" ref="137148075"/>
 						<int key="IBEventType">7</int>
 					</object>
@@ -436,7 +438,7 @@
 							<reference ref="798032874"/>
 							<reference ref="206072864"/>
 							<reference ref="251079340"/>
-							<reference ref="810633920"/>
+							<reference ref="880025269"/>
 						</array>
 						<reference key="parent" ref="0"/>
 					</object>
@@ -487,7 +489,7 @@
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">47</int>
-						<reference key="object" ref="810633920"/>
+						<reference key="object" ref="880025269"/>
 						<reference key="parent" ref="137148075"/>
 					</object>
 				</array>

@@ -2438,6 +2438,7 @@ static PBGroupUserRole* defaultPBGroupUserRoleInstance = nil;
 @property (retain) NSString* groupName;
 @property (retain) NSString* message;
 @property int32_t createDate;
+@property int32_t amount;
 @property (retain) PBGameUser* publisher;
 @property (retain) PBGameUser* target;
 @end
@@ -2493,6 +2494,13 @@ static PBGroupUserRole* defaultPBGroupUserRoleInstance = nil;
   hasCreateDate_ = !!value;
 }
 @synthesize createDate;
+- (BOOL) hasAmount {
+  return !!hasAmount_;
+}
+- (void) setHasAmount:(BOOL) value {
+  hasAmount_ = !!value;
+}
+@synthesize amount;
 - (BOOL) hasPublisher {
   return !!hasPublisher_;
 }
@@ -2525,6 +2533,7 @@ static PBGroupUserRole* defaultPBGroupUserRoleInstance = nil;
     self.groupName = @"";
     self.message = @"";
     self.createDate = 0;
+    self.amount = 0;
     self.publisher = [PBGameUser defaultInstance];
     self.target = [PBGameUser defaultInstance];
   }
@@ -2580,6 +2589,9 @@ static PBGroupNotice* defaultPBGroupNoticeInstance = nil;
   if (self.hasCreateDate) {
     [output writeInt32:7 value:self.createDate];
   }
+  if (self.hasAmount) {
+    [output writeInt32:8 value:self.amount];
+  }
   if (self.hasPublisher) {
     [output writeMessage:10 value:self.publisher];
   }
@@ -2615,6 +2627,9 @@ static PBGroupNotice* defaultPBGroupNoticeInstance = nil;
   }
   if (self.hasCreateDate) {
     size += computeInt32Size(7, self.createDate);
+  }
+  if (self.hasAmount) {
+    size += computeInt32Size(8, self.amount);
   }
   if (self.hasPublisher) {
     size += computeMessageSize(10, self.publisher);
@@ -2718,6 +2733,9 @@ static PBGroupNotice* defaultPBGroupNoticeInstance = nil;
   if (other.hasCreateDate) {
     [self setCreateDate:other.createDate];
   }
+  if (other.hasAmount) {
+    [self setAmount:other.amount];
+  }
   if (other.hasPublisher) {
     [self mergePublisher:other.publisher];
   }
@@ -2771,6 +2789,10 @@ static PBGroupNotice* defaultPBGroupNoticeInstance = nil;
       }
       case 56: {
         [self setCreateDate:[input readInt32]];
+        break;
+      }
+      case 64: {
+        [self setAmount:[input readInt32]];
         break;
       }
       case 82: {
@@ -2904,6 +2926,22 @@ static PBGroupNotice* defaultPBGroupNoticeInstance = nil;
 - (PBGroupNotice_Builder*) clearCreateDate {
   result.hasCreateDate = NO;
   result.createDate = 0;
+  return self;
+}
+- (BOOL) hasAmount {
+  return result.hasAmount;
+}
+- (int32_t) amount {
+  return result.amount;
+}
+- (PBGroupNotice_Builder*) setAmount:(int32_t) value {
+  result.hasAmount = YES;
+  result.amount = value;
+  return self;
+}
+- (PBGroupNotice_Builder*) clearAmount {
+  result.hasAmount = NO;
+  result.amount = 0;
   return self;
 }
 - (BOOL) hasPublisher {

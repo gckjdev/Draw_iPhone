@@ -60,8 +60,12 @@ typedef enum  {
 
     DeductRecrod = 481,
     
+    DeductForChargeGroup = 1000,
+    
     TaskAward = 5000,
     TaskAwardEnd = 6000
+    
+
     
 }BalanceSourceType;
 

@@ -545,6 +545,7 @@ NSString* GlobalGetBoardServerURL()
     
     [[MyPaintManager defaultManager] removeAlldeletedPaints];
     [[FeedManager defaultManager] removeOldCache];
+    [[GroupManager defaultManager] saveTempDataToDisk];
 
 }
 

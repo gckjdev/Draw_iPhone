@@ -2217,8 +2217,8 @@
 "kGroupTabGroupActive" = "Active";
 "kGroupTabGroupFame" = "Fame";
 "kIgnoring" = "Sending ignore request...";
-"kRejecting" = "Sending rejection request...";
-
+"kRejecting" = "Sending rejection response...";
+"kAccepting" = "Sending accept response...";
 
 "kExpelGroupUserTitle" = "Warning";
 "kExpelGroupUserMessage" = "Are you really want to expel the user?";
@@ -2230,6 +2230,9 @@
 "kSeeAllPost" = "All";
 "kSeeLZOnly" = "Mine";
 "kSeeMeOnly" = "Mine";
+
+"kBalanceNotEnough" = "Sorry, your balance is not enough.";
+"kGroupBalanceNotEnough" = "Sorry, the balance of group is not enough.";
 
 /*********************小吉画画国际化字符串开始 ************************/
 "kLittleGeeRecommend" = "Featured";
