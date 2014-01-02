@@ -247,6 +247,10 @@
 		A44AC4891875528D00927649 /* CreateContestController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A44AC4831875528D00927649 /* CreateContestController.xib */; };
 		A44AC48A1875528D00927649 /* CreateContestController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A44AC4831875528D00927649 /* CreateContestController.xib */; };
 		A44AC48B1875528D00927649 /* CreateContestController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A44AC4831875528D00927649 /* CreateContestController.xib */; };
+		A44AC48D187561F200927649 /* Group.proto in Resources */ = {isa = PBXBuildFile; fileRef = A44AC48C187561F200927649 /* Group.proto */; };
+		A44AC48E187561F200927649 /* Group.proto in Resources */ = {isa = PBXBuildFile; fileRef = A44AC48C187561F200927649 /* Group.proto */; };
+		A44AC48F187561F200927649 /* Group.proto in Resources */ = {isa = PBXBuildFile; fileRef = A44AC48C187561F200927649 /* Group.proto */; };
+		A44AC490187561F200927649 /* Group.proto in Resources */ = {isa = PBXBuildFile; fileRef = A44AC48C187561F200927649 /* Group.proto */; };
 		A44B38A5171CFE13001968E2 /* libMobClickLibrary.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A44B38A3171CFE13001968E2 /* libMobClickLibrary.a */; };
 		A44D658D18043E9C00DD6B48 /* UIImageView+ProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = A44D658C18043E9C00DD6B48 /* UIImageView+ProgressView.m */; };
 		A44D658E18043E9C00DD6B48 /* UIImageView+ProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = A44D658C18043E9C00DD6B48 /* UIImageView+ProgressView.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
@@ -7462,6 +7466,7 @@
 		A44AC4811875528D00927649 /* CreateContestController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreateContestController.m; sourceTree = "<group>"; };
 		A44AC4821875528D00927649 /* CreateContestController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreateContestController.h; sourceTree = "<group>"; };
 		A44AC4831875528D00927649 /* CreateContestController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CreateContestController.xib; sourceTree = "<group>"; };
+		A44AC48C187561F200927649 /* Group.proto */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Group.proto; sourceTree = "<group>"; };
 		A44B38A3171CFE13001968E2 /* libMobClickLibrary.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libMobClickLibrary.a; sourceTree = "<group>"; };
 		A44B38A4171CFE13001968E2 /* MobClick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MobClick.h; sourceTree = "<group>"; };
 		A44B4A2B1715457B00404D73 /* default_config_Zhajinhua_version.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = default_config_Zhajinhua_version.txt; sourceTree = "<group>"; };
@@ -15475,6 +15480,7 @@
 		CA96E273150DE87A00292335 /* ProtocolBuffer */ = {
 			isa = PBXGroup;
 			children = (
+				A44AC48C187561F200927649 /* Group.proto */,
 				CAA62CC01744C54F00C376BA /* google */,
 				C20030A7172F9E1D00FD6AE1 /* Gen-c */,
 				CA96E274150DE87A00292335 /* Gen */,
@@ -18385,6 +18391,7 @@
 				A434172418711AFB008D0A2B /* ContestCell.xib in Resources */,
 				EA481CC4187162E000177423 /* default_group_medal@2x.png in Resources */,
 				A44AC48A1875528D00927649 /* CreateContestController.xib in Resources */,
+				A44AC48F187561F200927649 /* Group.proto in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -19359,6 +19366,7 @@
 				A434172318711AFB008D0A2B /* ContestCell.xib in Resources */,
 				EA481CC3187162E000177423 /* default_group_medal@2x.png in Resources */,
 				A44AC4891875528D00927649 /* CreateContestController.xib in Resources */,
+				A44AC48E187561F200927649 /* Group.proto in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -20316,6 +20324,7 @@
 				A434172218711AFB008D0A2B /* ContestCell.xib in Resources */,
 				EA481CC2187162E000177423 /* default_group_medal@2x.png in Resources */,
 				A44AC4881875528D00927649 /* CreateContestController.xib in Resources */,
+				A44AC48D187561F200927649 /* Group.proto in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -21227,6 +21236,7 @@
 				A434172518711AFB008D0A2B /* ContestCell.xib in Resources */,
 				EA481CC5187162E000177423 /* default_group_medal@2x.png in Resources */,
 				A44AC48B1875528D00927649 /* CreateContestController.xib in Resources */,
+				A44AC490187561F200927649 /* Group.proto in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

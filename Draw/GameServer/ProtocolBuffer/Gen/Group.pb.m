@@ -3020,6 +3020,7 @@ static PBGroupNotice* defaultPBGroupNoticeInstance = nil;
 @property int32_t voteStartDate;
 @property int32_t voteEndDate;
 @property BOOL isAnounymous;
+@property PBOpusCategoryType category;
 @property int32_t canSubmitCount;
 @property int32_t maxFlowerPerContest;
 @property int32_t maxFlowerPerOpus;
@@ -3135,6 +3136,13 @@ static PBGroupNotice* defaultPBGroupNoticeInstance = nil;
 - (void) setIsAnounymous:(BOOL) value {
   isAnounymous_ = !!value;
 }
+- (BOOL) hasCategory {
+  return !!hasCategory_;
+}
+- (void) setHasCategory:(BOOL) value {
+  hasCategory_ = !!value;
+}
+@synthesize category;
 - (BOOL) hasCanSubmitCount {
   return !!hasCanSubmitCount_;
 }
@@ -3248,6 +3256,7 @@ static PBGroupNotice* defaultPBGroupNoticeInstance = nil;
     self.voteStartDate = 0;
     self.voteEndDate = 0;
     self.isAnounymous = NO;
+    self.category = PBOpusCategoryTypeDrawCategory;
     self.canSubmitCount = 1;
     self.maxFlowerPerContest = 20;
     self.maxFlowerPerOpus = 3;
@@ -3395,6 +3404,9 @@ static PBContest* defaultPBContestInstance = nil;
   if (self.hasIsAnounymous) {
     [output writeBool:13 value:self.isAnounymous];
   }
+  if (self.hasCategory) {
+    [output writeEnum:15 value:self.category];
+  }
   if (self.hasCanSubmitCount) {
     [output writeInt32:31 value:self.canSubmitCount];
   }
@@ -3487,6 +3499,9 @@ static PBContest* defaultPBContestInstance = nil;
   }
   if (self.hasIsAnounymous) {
     size += computeBoolSize(13, self.isAnounymous);
+  }
+  if (self.hasCategory) {
+    size += computeEnumSize(15, self.category);
   }
   if (self.hasCanSubmitCount) {
     size += computeInt32Size(31, self.canSubmitCount);
@@ -3647,6 +3662,9 @@ static PBContest* defaultPBContestInstance = nil;
   if (other.hasIsAnounymous) {
     [self setIsAnounymous:other.isAnounymous];
   }
+  if (other.hasCategory) {
+    [self setCategory:other.category];
+  }
   if (other.hasCanSubmitCount) {
     [self setCanSubmitCount:other.canSubmitCount];
   }
@@ -3781,6 +3799,15 @@ static PBContest* defaultPBContestInstance = nil;
       }
       case 104: {
         [self setIsAnounymous:[input readBool]];
+        break;
+      }
+      case 120: {
+        int32_t value = [input readEnum];
+        if (PBOpusCategoryTypeIsValidValue(value)) {
+          [self setCategory:value];
+        } else {
+          [unknownFields mergeVarintField:15 value:value];
+        }
         break;
       }
       case 248: {
@@ -4069,6 +4096,22 @@ static PBContest* defaultPBContestInstance = nil;
 - (PBContest_Builder*) clearIsAnounymous {
   result.hasIsAnounymous = NO;
   result.isAnounymous = NO;
+  return self;
+}
+- (BOOL) hasCategory {
+  return result.hasCategory;
+}
+- (PBOpusCategoryType) category {
+  return result.category;
+}
+- (PBContest_Builder*) setCategory:(PBOpusCategoryType) value {
+  result.hasCategory = YES;
+  result.category = value;
+  return self;
+}
+- (PBContest_Builder*) clearCategory {
+  result.hasCategory = NO;
+  result.category = PBOpusCategoryTypeDrawCategory;
   return self;
 }
 - (BOOL) hasCanSubmitCount {
