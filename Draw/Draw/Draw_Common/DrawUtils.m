@@ -456,7 +456,7 @@ CGPoint midPoint1(CGPoint p1, CGPoint p2)
     if (action->has_rgbcolor){
         drawColor = [DrawColor colorWithBetterCompressColor:action->rgbcolor];
     }
-    if (action->color != NULL) {
+    else if (action->color != NULL) {
         drawColor = [[[DrawColor alloc] initWithPBColorC:action->color] autorelease];
     }
     else{

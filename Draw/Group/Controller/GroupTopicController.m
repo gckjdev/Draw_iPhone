@@ -261,7 +261,7 @@ typedef enum {
 - (void)updateGroupInfo
 {
     if (self.infoCell == nil) {
-        self.infoCell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"GroupInfoCell"];
+        _infoCell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"GroupInfoCell"];
         GroupInfoView *infoView = [GroupInfoView infoViewWithGroup:_group];
         infoView.autoresizingMask |= (UIViewAutoresizingFlexibleTopMargin|UIViewAutoresizingFlexibleHeight|UIViewAutoresizingFlexibleBottomMargin);
         [infoView updateHeight:CGRectGetHeight(self.infoCell.contentView.frame)];

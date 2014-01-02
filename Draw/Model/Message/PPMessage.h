@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
+#define DEFAULT_MESSAGE_IMAGE_SIZE (ISIPAD ? CGSizeMake(300,300) : CGSizeMake(120,120))
+
 @class PBMessage;
 
 typedef enum {
@@ -33,7 +35,7 @@ typedef enum {
     MessageStatusFail = 4,
 } MessageStatus;
 
-@interface PPMessage : NSObject
+@interface PPMessage : NSObject<NSCoding>
 {
 }
 + (id)messageWithPBMessage:(PBMessage *)pbMessage;
@@ -49,8 +51,6 @@ typedef enum {
 @property (nonatomic, assign) NSString * messageId;
 @property (nonatomic, assign) NSDate * createDate;
 @property (nonatomic, assign) NSString * text;
-
-
 
 // for all, non PB
 @property (nonatomic, retain) NSString * friendId;
@@ -75,7 +75,6 @@ typedef enum {
 // for draw, non-PB
 @property (nonatomic, retain) NSMutableArray * drawActionList;
 @property (nonatomic, retain) NSString *thumbFilePath;
-
 
 // for location ask & reply, PB
 @property (nonatomic, assign) double latitude;

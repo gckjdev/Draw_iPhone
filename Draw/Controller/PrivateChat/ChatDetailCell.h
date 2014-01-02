@@ -21,11 +21,15 @@
 @optional
 
 
-- (void)clickMessage:(PPMessage *)message;
+//- (void)clickMessage:(PPMessage *)message;
+//- (void)didLongClickMessage:(PPMessage *)message;
+//- (void)didMessage:(PPMessage *)message loadImage:(UIImage *)image;
 
-- (void)didLongClickMessage:(PPMessage *)message;
+- (void)clickMessage:(NSIndexPath*)indexPath;
+- (void)didLongClickMessage:(NSIndexPath*)indexPath;
+- (void)didMessage:(NSIndexPath*)indexPath loadImage:(UIImage *)image;
+- (void)didClickMessageUserAvatar:(NSIndexPath*)indexPath;
 
-- (void)didMessage:(PPMessage *)message loadImage:(UIImage *)image;
 
 @end
 

@@ -254,19 +254,18 @@ static PPMessageManager* globalDefaultMessageManager;
     return db;    
 }
 
-- (NSMutableArray*)getMessageList:(NSString*)friendUserId
+- (NSArray*)getMessageList:(NSString*)friendUserId
 {
-    /*
-
     if (friendUserId == nil)
         return nil;
         
     APLevelDB* db = [self getDB:friendUserId];
     NSArray* list = [db allObjects];
     PPDebug(@"<getMessageList> load %d message for user %@", [list count], friendUserId);
+    [self printAllMessage:list];
     return list;
-    */
-     
+
+    /*
     NSMutableArray* list = [_friendMessageDict objectForKey:friendUserId];
     if (list == nil){
         PPDebug(@"<getMessageList> try to load local message for user %@", friendUserId);
@@ -295,6 +294,18 @@ static PPMessageManager* globalDefaultMessageManager;
     PPDebug(@"<getMessageList> total %d message for user %@", [list count], friendUserId);
     [self printAllMessage:list];
     return list;
+     */
+}
+
+- (void)deleteMessage:(NSString*)messageId friendId:(NSString*)friendId
+{
+    if (friendId == nil)
+        return;
+    
+    APLevelDB* db = [self getDB:friendId];
+    [db removeKey:messageId];
+    PPDebug(@"<deleteMessage> delete message(%@)", messageId);
+    return;    
 }
 
 - (void)deleteMessage:(PPMessage*)message
@@ -303,83 +314,98 @@ static PPMessageManager* globalDefaultMessageManager;
     if (friendId == nil)
         return;
     
-    NSMutableArray* list = [self getMessageList:friendId];
-    if (list == nil){
-        return;
-    }
+    APLevelDB* db = [self getDB:friendId];
+    [db removeKey:message.messageId];
+    PPDebug(@"<deleteMessage> delete message(%@)", message.messageId);
+    return;
     
-//    NSMutableArray* list = [NSMutableArray arrayWithArray:oldList];
-    PPMessage* foundMessage = nil;
-    for (PPMessage* m in list){
-        if ([[m messageId] isEqualToString:[message messageId]]){
-            foundMessage = message;
-            break;
-        }
-    }
     
-    if (foundMessage){
-        [list removeObject:foundMessage];
-    }
-    
-    [self save:list friendUserId:[message friendId]];
+//    NSMutableArray* list = [self getMessageList:friendId];
+//    if (list == nil){
+//        return;
+//    }
+//    
+//    PPMessage* foundMessage = nil;
+//    for (PPMessage* m in list){
+//        if ([[m messageId] isEqualToString:[message messageId]]){
+//            foundMessage = message;
+//            break;
+//        }
+//    }
+//    
+//    if (foundMessage){
+//        [list removeObject:foundMessage];
+//    }
+//    
+//    [self save:list friendUserId:[message friendId]];
 }
 
 - (void)addMessage:(PPMessage*)message
 {
     NSString* friendId = [message friendId];
-    if (friendId == nil)
+    if (friendId == nil || message == nil)
         return;
     
-    NSMutableArray* list = [self getMessageList:friendId];    
-    [list addObject:message];
-    [self save:list friendUserId:friendId];
+    APLevelDB* db = [self getDB:friendId];
+    [db setObject:message forKey:message.messageId];
+    PPDebug(@"<addMessage> add message(%@)", message.messageId);
+    return;
+    
+//    NSMutableArray* list = [self getMessageList:friendId];    
+//    [list addObject:message];
+//    [self save:list friendUserId:friendId];
 }
 
 - (void)addOrUpdateMessage:(PPMessage*)message
 {
     NSString* friendId = [message friendId];
-    if (friendId == nil)
+    if (friendId == nil || message == nil)
         return;
     
-    NSMutableArray* list = [self getMessageList:friendId];
-    if (list == nil){
-        return;
-    }
+    APLevelDB* db = [self getDB:friendId];
+    [db setObject:message forKey:message.messageId];
+    PPDebug(@"<addOrUpdateMessage> add message(%@)", message.messageId);
+    return;
     
-    BOOL foundMessage = NO;
-    int foundIndex = 0;
-    for (PPMessage* m in list){
-        if ([[m messageId] isEqualToString:[message messageId]]){
-            foundMessage = YES;
-            break;
-        }
-        
-        foundIndex ++;
-    }
-    
-    if (foundMessage){
-        // update
-        PPDebug(@"<addOrUpdateMessage> message(%@) updated", [message description]);
-        [list replaceObjectAtIndex:foundIndex withObject:message];
-    }
-    else{
-        // add
-        PPDebug(@"<addOrUpdateMessage> message(%@) added", [message description]);
-        [list addObject:message];
-    }
-    
-    [self save:list friendUserId:[message friendId]];
+//    NSMutableArray* list = [self getMessageList:friendId];
+//    if (list == nil){
+//        return;
+//    }
+//    
+//    BOOL foundMessage = NO;
+//    int foundIndex = 0;
+//    for (PPMessage* m in list){
+//        if ([[m messageId] isEqualToString:[message messageId]]){
+//            foundMessage = YES;
+//            break;
+//        }
+//        
+//        foundIndex ++;
+//    }
+//    
+//    if (foundMessage){
+//        // update
+//        PPDebug(@"<addOrUpdateMessage> message(%@) updated", [message description]);
+//        [list replaceObjectAtIndex:foundIndex withObject:message];
+//    }
+//    else{
+//        // add
+//        PPDebug(@"<addOrUpdateMessage> message(%@) added", [message description]);
+//        [list addObject:message];
+//    }
+//    
+//    [self save:list friendUserId:[message friendId]];
 }
 
 - (void)saveMessageList:(NSString*)friendId
 {
-    NSMutableArray* list = [self getMessageList:friendId];
-    if (list == nil || [friendId length] == 0){
-        PPDebug(@"<saveMessageList> but list or friendUserId(%@) is null", friendId);
-        return;
-    }
-    
-    [self save:list friendUserId:friendId];
+//    NSMutableArray* list = [self getMessageList:friendId];
+//    if (list == nil || [friendId length] == 0){
+//        PPDebug(@"<saveMessageList> but list or friendUserId(%@) is null", friendId);
+//        return;
+//    }
+//    
+//    [self save:list friendUserId:friendId];
 }
 
 //- (void)updateMessage:(PPMessage*)message friendUserId:(NSString*)friendUserId
@@ -412,6 +438,7 @@ static PPMessageManager* globalDefaultMessageManager;
 //    [self save:list friendUserId:[message friendId]];
 //}
 
+// used internally
 - (BOOL)isMessageInList:(PPMessage*)message list:(NSArray*)list
 {
     for (PPMessage* m in list){
@@ -444,21 +471,23 @@ static PPMessageManager* globalDefaultMessageManager;
     if (messageList == nil || friendUserId == nil)
         return;
     
-    NSMutableArray* list = [self getMessageList:friendUserId];
-    if (list == nil)
-        return;
+    for (PPMessage* messsage in messageList){
+        [self addOrUpdateMessage:messsage];
+    }
+    return;
     
-    NSArray* filterList = [self listWithoutDuplicateMessage:messageList oldList:list];
-    NSArray* oldList = [NSArray arrayWithArray:list];
-    
-    [list removeAllObjects];
-    [list addObjectsFromArray:filterList];
-    [list addObjectsFromArray:oldList];
-    
-//    list = [NSMutableArray arrayWithArray:filterList];
+//    NSMutableArray* list = [self getMessageList:friendUserId];
+//    if (list == nil)
+//        return;
+//    
+//    NSArray* filterList = [self listWithoutDuplicateMessage:messageList oldList:list];
+//    NSArray* oldList = [NSArray arrayWithArray:list];
+//    
+//    [list removeAllObjects];
+//    [list addObjectsFromArray:filterList];
 //    [list addObjectsFromArray:oldList];
-    
-    [self save:list friendUserId:friendUserId];
+//    
+//    [self save:list friendUserId:friendUserId];
 }
 
 - (void)addMessageListTail:(NSArray*)messageList friendUserId:(NSString*)friendUserId
@@ -466,13 +495,18 @@ static PPMessageManager* globalDefaultMessageManager;
     if (messageList == nil || friendUserId == nil)
         return;
     
-    NSMutableArray* list = [self getMessageList:friendUserId];
-    if (list == nil)
-        return;
+    for (PPMessage* messsage in messageList){
+        [self addOrUpdateMessage:messsage];
+    }
+    return;
     
-    NSArray* filterList = [self listWithoutDuplicateMessage:messageList oldList:list];
-    [list addObjectsFromArray:filterList];
-    [self save:list friendUserId:friendUserId];
+//    NSMutableArray* list = [self getMessageList:friendUserId];
+//    if (list == nil)
+//        return;
+//    
+//    NSArray* filterList = [self listWithoutDuplicateMessage:messageList oldList:list];
+//    [list addObjectsFromArray:filterList];
+//    [self save:list friendUserId:friendUserId];
 }
 
 - (void)addMessageList:(NSArray*)messageList friendUserId:(NSString*)friendUserId offsetMessageId:(NSString*)offsetMessageId
@@ -480,34 +514,39 @@ static PPMessageManager* globalDefaultMessageManager;
     if (messageList == nil || friendUserId == nil)
         return;
     
-    NSMutableArray* list = [self getMessageList:friendUserId];
-    if (list == nil)
-        return;
-    
-    NSArray* filterList = [self listWithoutDuplicateMessage:messageList oldList:list];
-    
-    int offsetIndex = -1;
-    for (int i=list.count-1; i>=0; i--){
-        PPMessage* indexMessage = [list objectAtIndex:i];
-        if ([[indexMessage messageId] isEqualToString:offsetMessageId]){
-            offsetIndex = i;
-            break;
-        }
+    for (PPMessage* messsage in messageList){
+        [self addOrUpdateMessage:messsage];
     }
+    return;
     
-    if (offsetIndex == -1){
-        // add into tail directly
-        [list addObjectsFromArray:filterList];
-    }
-    else{
-        NSRange range;
-        range.location = offsetIndex;
-        range.length = [filterList count];
-        
-        [list insertObjects:filterList atIndexes:[NSIndexSet indexSetWithIndexesInRange:range]];
-    }
-    
-    [self save:list friendUserId:friendUserId];
+//    NSMutableArray* list = [self getMessageList:friendUserId];
+//    if (list == nil)
+//        return;
+//    
+//    NSArray* filterList = [self listWithoutDuplicateMessage:messageList oldList:list];
+//    
+//    int offsetIndex = -1;
+//    for (int i=list.count-1; i>=0; i--){
+//        PPMessage* indexMessage = [list objectAtIndex:i];
+//        if ([[indexMessage messageId] isEqualToString:offsetMessageId]){
+//            offsetIndex = i;
+//            break;
+//        }
+//    }
+//    
+//    if (offsetIndex == -1){
+//        // add into tail directly
+//        [list addObjectsFromArray:filterList];
+//    }
+//    else{
+//        NSRange range;
+//        range.location = offsetIndex;
+//        range.length = [filterList count];
+//        
+//        [list insertObjects:filterList atIndexes:[NSIndexSet indexSetWithIndexesInRange:range]];
+//    }
+//    
+//    [self save:list friendUserId:friendUserId];
 }
 
 - (void)removeAllMessages:(NSString*)friendUserId

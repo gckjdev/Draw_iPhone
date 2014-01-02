@@ -714,6 +714,7 @@ static ChatService *_chatService = nil;
                 PPDebug(@"<ChatService> sendMessage success");
 
                 NSString *messageId = [output.jsonDataDict objectForKey:PARA_MESSAGE_ID];
+                NSString *oldMessageId = message.messageId;
                 
                 // update message ID
                 message.messageId = messageId;
@@ -741,6 +742,11 @@ static ChatService *_chatService = nil;
                 
                 // update status and save locally
                 message.status = MessageStatusSent;
+
+                // remove old message and insert new message with new message Id
+                [[PPMessageManager defaultManager] deleteMessage:oldMessageId friendId:message.friendId];
+                [[PPMessageManager defaultManager] addMessage:message];
+                
                 [[PPMessageManager defaultManager] saveMessageList:message.friendId];
                 
                 // load message after sending completed

@@ -715,7 +715,7 @@ typedef enum{
             [cell setCellForAdminsInGroup:_group position:position];
         }else{
             NSInteger index = row - RowMemberStart;
-            PBGroupUsersByTitle *usersByTitle;
+            PBGroupUsersByTitle *usersByTitle = @"";
             
             if (index < [self.dataList count]) {
                 usersByTitle = self.dataList[index];

@@ -14,6 +14,7 @@
 #import "CanvasRect.h"
 #import "GameBasic.pb-c.h"
 
+#define KEY_MESSAGE_PB_DATA @"KEY_MESSAGE_PB_DATA"
 #define KEY_MESSAGEID @"KEY_MESSAGEID"
 #define KEY_CREATE_DATE @"KEY_CREATE_DATE"
 #define KEY_FRIEND_ID @"KEY_FRIEND_ID"
@@ -30,8 +31,6 @@
 #define KEY_REPLY_RESULT @"KEY_REPLY_RESULT"
 #define KEY_REQ_MESSAGEID @"KEY_REQ_MESSAGEID"
 
-#define DEFAULT_IMAGE_SIZE (ISIPAD ?  CGSizeMake(180, 180) : CGSizeMake(80, 80))
-
 #pragma mark ======================= PPMessage =======================
 
 @implementation PPMessage
@@ -41,6 +40,46 @@
     return [NSString stringWithFormat:@"id=%@, friendId=%@, status=%d, type=%d, source=%d, text=%@, date=%@",
             self.messageId, self.friendId, self.status, self.messageType, self.sourceType, self.text, [self.createDate description]];
 }
+
+- (void)encodeWithCoder:(NSCoder *)aCoder
+{    
+    PBMessage* message = [self.messageBuilder build];
+
+    if (message){
+        self.messageBuilder = [PBMessage builderWithPrototype:message];
+        [aCoder encodeObject:[message data] forKey:KEY_MESSAGE_PB_DATA];
+    }
+    
+    [aCoder encodeObject:self.messageId forKey:KEY_MESSAGEID];
+//    [aCoder encodeInt:self.status forKey:KEY_STATUS];
+}
+
+
+- (id)initWithCoder:(NSCoder *)aDecoder
+{
+    
+    //    PPDebug(@"PPMessage<initWithCoder> starts");
+    self = [super init];
+    if (self) {
+//        self.status = [aDecoder decodeIntForKey:KEY_STATUS];
+        NSData* data = [aDecoder decodeObjectForKey:KEY_MESSAGE_PB_DATA];
+        if (data){
+            @try {
+                PBMessage* pbMessage = [PBMessage parseFromData:data];
+                [self setDataWithPBMessage:pbMessage];
+            }
+            @catch (NSException *exception) {
+                PPDebug(@"<PBMessage> initWithCoder error catch exception(%@)", [exception description]);
+            }
+            @finally {
+            }
+        }
+        
+    }
+
+    return self;
+}
+
 
 + (id)oldMessageWithPBMessage:(PBMessage *)pbMessage
 {
@@ -89,40 +128,45 @@
     return self;
 }
 
+- (void)setDataWithPBMessage:(PBMessage *)pbMessage
+{
+    self.messageBuilder = [PBMessage builderWithPrototype:pbMessage];
+    
+    if ([[UserManager defaultManager] isMe:pbMessage.from]) {
+        self.friendId = pbMessage.to;
+        self.sourceType = SourceTypeSend;
+    }else{
+        self.friendId = pbMessage.from;
+        self.sourceType = SourceTypeReceive;
+        self.status = MessageStatusRead;
+    }
+    
+    // for draw
+    if ([pbMessage.drawDataList count] > 0){
+        self.drawActionList = [DrawAction drawActionListFromPBMessage:pbMessage];
+    }
+    
+    // for image
+    if (self.messageType == MessageTypeImage){
+        self.thumbImageSize = DEFAULT_MESSAGE_IMAGE_SIZE;
+        if (pbMessage.status == MessageStatusFail ||
+            pbMessage.status == MessageStatusSending) {
+            // TODO performance is so so here if load all images???
+            _image = [[UIImage alloc] initWithContentsOfFile:self.imageUrl];    // thumb image
+            if (_image) {
+                self.thumbImageSize = _image.size;
+            }
+        }
+    }
+    
+//    PPDebug(@"init message %@", [self description]);
+}
+
 - (id)initWithPBMessage:(PBMessage *)pbMessage
 {
     self = [super init];
     if (self) {
-        self.messageBuilder = [PBMessage builderWithPrototype:pbMessage];
-        
-        if ([[UserManager defaultManager] isMe:pbMessage.from]) {
-            self.friendId = pbMessage.to;
-            self.sourceType = SourceTypeSend;
-        }else{
-            self.friendId = pbMessage.from;
-            self.sourceType = SourceTypeReceive;
-            self.status = MessageStatusRead;
-        }
-        
-        // for draw
-        if ([pbMessage.drawDataList count] > 0){
-            self.drawActionList = [DrawAction drawActionListFromPBMessage:pbMessage];
-        }
-        
-        // for image
-        if (self.messageType == MessageTypeImage){
-            self.thumbImageSize = DEFAULT_IMAGE_SIZE;
-            if (pbMessage.status == MessageStatusFail ||
-                pbMessage.status == MessageStatusSending) {
-                // TODO performance is so so here if load all images???
-                _image = [[UIImage alloc] initWithContentsOfFile:self.imageUrl];    // thumb image
-                if (_image) {
-                    self.thumbImageSize = _image.size;
-                }
-            }
-        }
-        
-        PPDebug(@"init message %@", [self description]);
+        [self setDataWithPBMessage:pbMessage];
     }
     return self;
 }
@@ -150,6 +194,16 @@
 - (void)setMessageType:(MessageType)messageType
 {
     [_messageBuilder setType:messageType];
+}
+
+- (MessageStatus)status
+{
+    return [_messageBuilder status];
+}
+
+- (void)setStatus:(MessageStatus)status
+{
+    [_messageBuilder setStatus:status];
 }
 
 - (void)setIsGroup:(BOOL)isGroup
@@ -318,7 +372,7 @@
             self.thumbImageSize = _image.size;
         }
         else{
-            self.thumbImageSize = DEFAULT_IMAGE_SIZE;
+            self.thumbImageSize = DEFAULT_MESSAGE_IMAGE_SIZE;
         }
     }
 }
