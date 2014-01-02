@@ -2,9 +2,47 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>SchemeUserState</key>
+	<dict>
+		<key>Pods-CKCalendar.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>9</integer>
+		</dict>
+		<key>Pods-GPUImage.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>7</integer>
+		</dict>
+		<key>Pods-PEPhotoCropEditor.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>8</integer>
+		</dict>
+		<key>Pods.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>6</integer>
+		</dict>
+	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
+		<key>1AD26D2214AB4F5982F472E8</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>3485FDFDA56646ADAEB441AA</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>73B3BAFFA13243B98EE4A8CE</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>B13291BD648548218734F4B6</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -15,6 +53,11 @@
 			<true/>
 		</dict>
 		<key>B9ABFE83302848089FD491F1</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>D39B4067A1464E9DA0BB303D</key>
 		<dict>
 			<key>primary</key>
 			<true/>
