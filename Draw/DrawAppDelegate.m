@@ -90,7 +90,7 @@
 
 #import "GameSNSService.h"
 #import "GroupService.h"
-
+#import "IQKeyBoardManager.h"
 
 NSString* GlobalGetServerURL()
 {
@@ -267,6 +267,9 @@ NSString* GlobalGetBoardServerURL()
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    //Enabling keyboard manager(Use this line to enable managing distance between keyboard & textField/textView).
+    [IQKeyBoardManager installKeyboardManager];
+    
     // TODO check benson
     [LocalNotificationUtil cancelAllLocalNotifications];
         

@@ -66,6 +66,7 @@ typedef enum{
 
 // 家族比赛
 - (void)createContest:(Contest *)contest
+                image:(UIImage *)image
             completed:(CreateContestBlock)completed;
 
 

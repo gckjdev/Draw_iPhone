@@ -2470,3 +2470,20 @@
 "kOfficialContest" = "官方比赛";
 "kGroupContest" = "家族比赛";
 "kGoodOpus" = "精彩作品";
+
+"kCreateContest" = "创建比赛";
+"kContestName" = "比赛名称";
+"kStartTime" = "开始时间";
+"kEndTime" = "结束时间";
+"kContestRules" = "比赛规则";
+"kContestJoiners" = "参赛成员";
+"kContestImage" = "比赛海报";
+"kInputContestName" = "请输入比赛名称";
+
+"kEveryone" = "所有人";
+"kGroupMember" = "家族成员";
+"kGroupMemberAndGuest" = "家族成员和嘉宾";
+
+"kContestNameCannotBeBlank" = "比赛名称不能为空";
+"kPleaseSelectContestImage" = "请选择一副图片作为比赛海报";
+

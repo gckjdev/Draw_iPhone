@@ -190,6 +190,18 @@
 		A434172318711AFB008D0A2B /* ContestCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A434171C18711AFB008D0A2B /* ContestCell.xib */; };
 		A434172418711AFB008D0A2B /* ContestCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A434171C18711AFB008D0A2B /* ContestCell.xib */; };
 		A434172518711AFB008D0A2B /* ContestCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A434171C18711AFB008D0A2B /* ContestCell.xib */; };
+		A434172C18714D52008D0A2B /* CreateContestController.m in Sources */ = {isa = PBXBuildFile; fileRef = A434172A18714D52008D0A2B /* CreateContestController.m */; };
+		A434172D18714D52008D0A2B /* CreateContestController.m in Sources */ = {isa = PBXBuildFile; fileRef = A434172A18714D52008D0A2B /* CreateContestController.m */; };
+		A434172E18714D52008D0A2B /* CreateContestController.m in Sources */ = {isa = PBXBuildFile; fileRef = A434172A18714D52008D0A2B /* CreateContestController.m */; };
+		A434172F18714D52008D0A2B /* CreateContestController.m in Sources */ = {isa = PBXBuildFile; fileRef = A434172A18714D52008D0A2B /* CreateContestController.m */; };
+		A434173018714D52008D0A2B /* CreateContestController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A434172B18714D52008D0A2B /* CreateContestController.xib */; };
+		A434173118714D52008D0A2B /* CreateContestController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A434172B18714D52008D0A2B /* CreateContestController.xib */; };
+		A434173218714D52008D0A2B /* CreateContestController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A434172B18714D52008D0A2B /* CreateContestController.xib */; };
+		A434173318714D52008D0A2B /* CreateContestController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A434172B18714D52008D0A2B /* CreateContestController.xib */; };
+		A434174018716FEB008D0A2B /* Group.proto in Resources */ = {isa = PBXBuildFile; fileRef = A434173F18716FEA008D0A2B /* Group.proto */; };
+		A434174118716FEB008D0A2B /* Group.proto in Resources */ = {isa = PBXBuildFile; fileRef = A434173F18716FEA008D0A2B /* Group.proto */; };
+		A434174218716FEB008D0A2B /* Group.proto in Resources */ = {isa = PBXBuildFile; fileRef = A434173F18716FEA008D0A2B /* Group.proto */; };
+		A434174318716FEB008D0A2B /* Group.proto in Resources */ = {isa = PBXBuildFile; fileRef = A434173F18716FEA008D0A2B /* Group.proto */; };
 		A4348C5C1717C0FA004AFB26 /* AlixPayOrderManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A4348C591717C0FA004AFB26 /* AlixPayOrderManager.m */; };
 		A4348C611717C0FA004AFB26 /* NotificationCenterManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A4348C5B1717C0FA004AFB26 /* NotificationCenterManager.m */; };
 		A4364368176706A4006B6946 /* Opus.proto in Resources */ = {isa = PBXBuildFile; fileRef = A4364367176706A4006B6946 /* Opus.proto */; };
@@ -235,6 +247,10 @@
 		A440357617C5FD3000301EDD /* WordSelectCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A440357417C5FD3000301EDD /* WordSelectCell~ipad.xib */; };
 		A440357717C5FD3000301EDD /* WordSelectCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A440357417C5FD3000301EDD /* WordSelectCell~ipad.xib */; };
 		A440357817C5FD3000301EDD /* WordSelectCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A440357417C5FD3000301EDD /* WordSelectCell~ipad.xib */; };
+		A4478A941872CB1E00BA8153 /* IQKeyBoardManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A4478A931872CB1E00BA8153 /* IQKeyBoardManager.m */; };
+		A4478A951872CB1E00BA8153 /* IQKeyBoardManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A4478A931872CB1E00BA8153 /* IQKeyBoardManager.m */; };
+		A4478A961872CB1E00BA8153 /* IQKeyBoardManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A4478A931872CB1E00BA8153 /* IQKeyBoardManager.m */; };
+		A4478A971872CB1E00BA8153 /* IQKeyBoardManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A4478A931872CB1E00BA8153 /* IQKeyBoardManager.m */; };
 		A44B38A5171CFE13001968E2 /* libMobClickLibrary.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A44B38A3171CFE13001968E2 /* libMobClickLibrary.a */; };
 		A44D658D18043E9C00DD6B48 /* UIImageView+ProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = A44D658C18043E9C00DD6B48 /* UIImageView+ProgressView.m */; };
 		A44D658E18043E9C00DD6B48 /* UIImageView+ProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = A44D658C18043E9C00DD6B48 /* UIImageView+ProgressView.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
@@ -7423,6 +7439,10 @@
 		A434171B18711AFB008D0A2B /* ContestCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContestCell.m; sourceTree = "<group>"; };
 		A434171C18711AFB008D0A2B /* ContestCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ContestCell.xib; sourceTree = "<group>"; };
 		A434171D18711AFB008D0A2B /* ContestCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContestCell.h; sourceTree = "<group>"; };
+		A434172918714D52008D0A2B /* CreateContestController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreateContestController.h; sourceTree = "<group>"; };
+		A434172A18714D52008D0A2B /* CreateContestController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreateContestController.m; sourceTree = "<group>"; };
+		A434172B18714D52008D0A2B /* CreateContestController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CreateContestController.xib; sourceTree = "<group>"; };
+		A434173F18716FEA008D0A2B /* Group.proto */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Group.proto; sourceTree = "<group>"; };
 		A4348C581717C0FA004AFB26 /* AlixPayOrderManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlixPayOrderManager.h; sourceTree = "<group>"; };
 		A4348C591717C0FA004AFB26 /* AlixPayOrderManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AlixPayOrderManager.m; sourceTree = "<group>"; };
 		A4348C5A1717C0FA004AFB26 /* NotificationCenterManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NotificationCenterManager.h; sourceTree = "<group>"; };
@@ -7441,6 +7461,8 @@
 		A440356617C5CC9700301EDD /* GuessRankCell~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "GuessRankCell~ipad.xib"; sourceTree = "<group>"; };
 		A440356717C5CC9700301EDD /* GuessRankListController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "GuessRankListController~ipad.xib"; sourceTree = "<group>"; };
 		A440357417C5FD3000301EDD /* WordSelectCell~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "WordSelectCell~ipad.xib"; sourceTree = "<group>"; };
+		A4478A921872CB1E00BA8153 /* IQKeyBoardManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IQKeyBoardManager.h; sourceTree = "<group>"; };
+		A4478A931872CB1E00BA8153 /* IQKeyBoardManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IQKeyBoardManager.m; sourceTree = "<group>"; };
 		A44B38A3171CFE13001968E2 /* libMobClickLibrary.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libMobClickLibrary.a; sourceTree = "<group>"; };
 		A44B38A4171CFE13001968E2 /* MobClick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MobClick.h; sourceTree = "<group>"; };
 		A44B4A2B1715457B00404D73 /* default_config_Zhajinhua_version.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = default_config_Zhajinhua_version.txt; sourceTree = "<group>"; };
@@ -10794,6 +10816,15 @@
 			path = SDWebImage;
 			sourceTree = "<group>";
 		};
+		A4478A911872CB1E00BA8153 /* IQKeyBoardManager */ = {
+			isa = PBXGroup;
+			children = (
+				A4478A921872CB1E00BA8153 /* IQKeyBoardManager.h */,
+				A4478A931872CB1E00BA8153 /* IQKeyBoardManager.m */,
+			);
+			path = IQKeyBoardManager;
+			sourceTree = "<group>";
+		};
 		A44D658A18043E9C00DD6B48 /* UIImageView+ProgressView */ = {
 			isa = PBXGroup;
 			children = (
@@ -13557,6 +13588,7 @@
 		CA103D9F1509A56100F60C03 /* Core-Utils-View */ = {
 			isa = PBXGroup;
 			children = (
+				A4478A911872CB1E00BA8153 /* IQKeyBoardManager */,
 				EA5A2EA118584D2900CABC71 /* Label */,
 				EAD13B7817DECFB700764FFB /* OrangeLoadingView */,
 				A4C9E04217A61B6500DE982F /* KxMenu */,
@@ -15360,6 +15392,9 @@
 				CA3F2ED01609B3350059667B /* StatementController.m */,
 				EA433E1417CDDA2E006E6FA7 /* JudgerScoreView.h */,
 				EA433E1517CDDA2E006E6FA7 /* JudgerScoreView.m */,
+				A434172918714D52008D0A2B /* CreateContestController.h */,
+				A434172A18714D52008D0A2B /* CreateContestController.m */,
+				A434172B18714D52008D0A2B /* CreateContestController.xib */,
 			);
 			path = Contest;
 			sourceTree = "<group>";
@@ -15440,6 +15475,7 @@
 		CA96E273150DE87A00292335 /* ProtocolBuffer */ = {
 			isa = PBXGroup;
 			children = (
+				A434173F18716FEA008D0A2B /* Group.proto */,
 				CAA62CC01744C54F00C376BA /* google */,
 				C20030A7172F9E1D00FD6AE1 /* Gen-c */,
 				CA96E274150DE87A00292335 /* Gen */,
@@ -18347,6 +18383,8 @@
 				EA7E4F83186ADE8F00E0B20F /* GroupTopicController~ipad.xib in Resources */,
 				EA716B97186C373F005CC0F0 /* group_add@2x.png in Resources */,
 				A434172418711AFB008D0A2B /* ContestCell.xib in Resources */,
+				A434173218714D52008D0A2B /* CreateContestController.xib in Resources */,
+				A434174218716FEB008D0A2B /* Group.proto in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -19319,6 +19357,8 @@
 				EA7E4F82186ADE8F00E0B20F /* GroupTopicController~ipad.xib in Resources */,
 				EA716B96186C373F005CC0F0 /* group_add@2x.png in Resources */,
 				A434172318711AFB008D0A2B /* ContestCell.xib in Resources */,
+				A434173118714D52008D0A2B /* CreateContestController.xib in Resources */,
+				A434174118716FEB008D0A2B /* Group.proto in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -20274,6 +20314,8 @@
 				EA7E4F81186ADE8F00E0B20F /* GroupTopicController~ipad.xib in Resources */,
 				EA716B95186C373F005CC0F0 /* group_add@2x.png in Resources */,
 				A434172218711AFB008D0A2B /* ContestCell.xib in Resources */,
+				A434173018714D52008D0A2B /* CreateContestController.xib in Resources */,
+				A434174018716FEB008D0A2B /* Group.proto in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -21183,6 +21225,8 @@
 				EA7E4F84186ADE8F00E0B20F /* GroupTopicController~ipad.xib in Resources */,
 				EA716B98186C373F005CC0F0 /* group_add@2x.png in Resources */,
 				A434172518711AFB008D0A2B /* ContestCell.xib in Resources */,
+				A434173318714D52008D0A2B /* CreateContestController.xib in Resources */,
+				A434174318716FEB008D0A2B /* Group.proto in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -22084,6 +22128,8 @@
 				A4BE2265186550D000FE2997 /* CellManager.m in Sources */,
 				A4BE226E18657D9700FE2997 /* NormalHotCell.m in Sources */,
 				A434172018711AFB008D0A2B /* ContestCell.m in Sources */,
+				A434172E18714D52008D0A2B /* CreateContestController.m in Sources */,
+				A4478A961872CB1E00BA8153 /* IQKeyBoardManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -22891,6 +22937,8 @@
 				A4BE2264186550D000FE2997 /* CellManager.m in Sources */,
 				A4BE226D18657D9700FE2997 /* NormalHotCell.m in Sources */,
 				A434171F18711AFB008D0A2B /* ContestCell.m in Sources */,
+				A434172D18714D52008D0A2B /* CreateContestController.m in Sources */,
+				A4478A951872CB1E00BA8153 /* IQKeyBoardManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -23698,6 +23746,8 @@
 				A4BE2263186550D000FE2997 /* CellManager.m in Sources */,
 				A4BE226C18657D9700FE2997 /* NormalHotCell.m in Sources */,
 				A434171E18711AFB008D0A2B /* ContestCell.m in Sources */,
+				A434172C18714D52008D0A2B /* CreateContestController.m in Sources */,
+				A4478A941872CB1E00BA8153 /* IQKeyBoardManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -24461,6 +24511,8 @@
 				A4BE2266186550D000FE2997 /* CellManager.m in Sources */,
 				A4BE226F18657D9700FE2997 /* NormalHotCell.m in Sources */,
 				A434172118711AFB008D0A2B /* ContestCell.m in Sources */,
+				A434172F18714D52008D0A2B /* CreateContestController.m in Sources */,
+				A4478A971872CB1E00BA8153 /* IQKeyBoardManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

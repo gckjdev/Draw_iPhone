@@ -2464,3 +2464,19 @@
 "kGroupContest" = "Group";
 "kGoodOpus" = "Opus";
 
+
+"kCreateContest" = "Create Contest";
+"kContestName" = "Name";
+"kStartTime" = "Start";
+"kEndTime" = "End";
+"kContestRules" = "Rules";
+"kContestJoiners" = "Joiners";
+"kContestImage" = "Image";
+"kInputContestName" = "Input Contest Name";
+
+"kEveryone" = "For every one";
+"kGroupMember" = "Only for group member";
+"kGroupMemberAndGuest" = "Only for group member and guest";
+
+"kContestNameCannotBeBlank" = "Contest name can not be blank";
+"kPleaseSelectContestImage" = "Please select an image for contest";

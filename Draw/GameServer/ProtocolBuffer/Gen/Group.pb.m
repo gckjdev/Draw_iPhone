@@ -2958,6 +2958,7 @@ static PBGroupNotice* defaultPBGroupNoticeInstance = nil;
 @property (retain) NSMutableArray* mutableAwardUsersList;
 @property (retain) NSMutableArray* mutableRankTypesList;
 @property (retain) PBGroup* group;
+@property int32_t joinersType;
 @end
 
 @implementation PBContest
@@ -3135,6 +3136,13 @@ static PBGroupNotice* defaultPBGroupNoticeInstance = nil;
   hasGroup_ = !!value;
 }
 @synthesize group;
+- (BOOL) hasJoinersType {
+  return !!hasJoinersType_;
+}
+- (void) setHasJoinersType:(BOOL) value {
+  hasJoinersType_ = !!value;
+}
+@synthesize joinersType;
 - (void) dealloc {
   self.contestId = nil;
   self.title = nil;
@@ -3172,6 +3180,7 @@ static PBGroupNotice* defaultPBGroupNoticeInstance = nil;
     self.canVote = NO;
     self.contestantsOnly = NO;
     self.group = [PBGroup defaultInstance];
+    self.joinersType = 0;
   }
   return self;
 }
@@ -3352,6 +3361,9 @@ static PBContest* defaultPBContestInstance = nil;
   if (self.hasGroup) {
     [output writeMessage:60 value:self.group];
   }
+  if (self.hasJoinersType) {
+    [output writeInt32:61 value:self.joinersType];
+  }
   [self.unknownFields writeToCodedOutputStream:output];
 }
 - (int32_t) serializedSize {
@@ -3441,6 +3453,9 @@ static PBContest* defaultPBContestInstance = nil;
   }
   if (self.hasGroup) {
     size += computeMessageSize(60, self.group);
+  }
+  if (self.hasJoinersType) {
+    size += computeInt32Size(61, self.joinersType);
   }
   size += self.unknownFields.serializedSize;
   memoizedSerializedSize = size;
@@ -3616,6 +3631,9 @@ static PBContest* defaultPBContestInstance = nil;
   if (other.hasGroup) {
     [self mergeGroup:other.group];
   }
+  if (other.hasJoinersType) {
+    [self setJoinersType:other.joinersType];
+  }
   [self mergeUnknownFields:other.unknownFields];
   return self;
 }
@@ -3760,6 +3778,10 @@ static PBContest* defaultPBContestInstance = nil;
         }
         [input readMessage:subBuilder extensionRegistry:extensionRegistry];
         [self setGroup:[subBuilder buildPartial]];
+        break;
+      }
+      case 488: {
+        [self setJoinersType:[input readInt32]];
         break;
       }
     }
@@ -4287,6 +4309,22 @@ static PBContest* defaultPBContestInstance = nil;
 - (PBContest_Builder*) clearGroup {
   result.hasGroup = NO;
   result.group = [PBGroup defaultInstance];
+  return self;
+}
+- (BOOL) hasJoinersType {
+  return result.hasJoinersType;
+}
+- (int32_t) joinersType {
+  return result.joinersType;
+}
+- (PBContest_Builder*) setJoinersType:(int32_t) value {
+  result.hasJoinersType = YES;
+  result.joinersType = value;
+  return self;
+}
+- (PBContest_Builder*) clearJoinersType {
+  result.hasJoinersType = NO;
+  result.joinersType = 0;
   return self;
 }
 @end
