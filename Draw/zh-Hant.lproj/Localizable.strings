@@ -2263,9 +2263,12 @@
 "kGroupTabGroupFame" = "聲望";
 "kIgnoring" = "發送忽略請求中...";
 "kRejecting" = "發送拒絕請求中...";
+"kAccepting" = "發送同意請求中...";
 
 "kExpelGroupUserTitle" = "移除用戶";
 "kExpelGroupUserMessage" = "確定要移除該用戶嗎？";
+"kBalanceNotEnough" = "不好意思，您的余額不足，不能完成本操作。";
+"kGroupBalanceNotEnough" = "不好意思，家族的余額不足，不能完成本操作。";
 
 /*********************小吉画画国际化字符串开始 ************************/
 "kLittleGeeRecommend" = "推薦";
@@ -2502,3 +2505,19 @@
 "kOfficialContest" = "官方比賽";
 "kGroupContest" = "家族比賽";
 "kGoodOpus" = "精彩作品";
+
+"kCreateContest" = "創建比賽";
+"kContestName" = "比賽名稱";
+"kStartTime" = "開始時間";
+"kEndTime" = "結束時間";
+"kContestRules" = "比賽規則";
+"kContestJoiners" = "參賽成員";
+"kContestImage" = "比賽海報";
+"kInputContestName" = "請輸入比賽名稱";
+
+"kEveryone" = "所有人";
+"kGroupMember" = "家族成員";
+"kGroupMemberAndGuest" = "家族成員和嘉賓";
+
+"kContestNameCannotBeBlank" = "比賽名稱不能為空";
+"kPleaseSelectContestImage" = "請選擇一副圖片作為比賽海報";

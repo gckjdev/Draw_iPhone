@@ -2217,8 +2217,8 @@
 "kGroupTabGroupActive" = "Active";
 "kGroupTabGroupFame" = "Fame";
 "kIgnoring" = "Sending ignore request...";
-"kRejecting" = "Sending rejection request...";
-
+"kRejecting" = "Sending rejection response...";
+"kAccepting" = "Sending accept response...";
 
 "kExpelGroupUserTitle" = "Warning";
 "kExpelGroupUserMessage" = "Are you really want to expel the user?";
@@ -2230,6 +2230,9 @@
 "kSeeAllPost" = "All";
 "kSeeLZOnly" = "Mine";
 "kSeeMeOnly" = "Mine";
+
+"kBalanceNotEnough" = "Sorry, your balance is not enough.";
+"kGroupBalanceNotEnough" = "Sorry, the balance of group is not enough.";
 
 /*********************小吉画画国际化字符串开始 ************************/
 "kLittleGeeRecommend" = "Featured";
@@ -2475,3 +2478,19 @@
 "kGroupContest" = "Group";
 "kGoodOpus" = "Opus";
 
+
+"kCreateContest" = "Create Contest";
+"kContestName" = "Name";
+"kStartTime" = "Start";
+"kEndTime" = "End";
+"kContestRules" = "Rules";
+"kContestJoiners" = "Joiners";
+"kContestImage" = "Image";
+"kInputContestName" = "Input Contest Name";
+
+"kEveryone" = "For every one";
+"kGroupMember" = "Only for group member";
+"kGroupMemberAndGuest" = "Only for group member and guest";
+
+"kContestNameCannotBeBlank" = "Contest name can not be blank";
+"kPleaseSelectContestImage" = "Please select an image for contest";

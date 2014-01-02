@@ -13,6 +13,7 @@
 #import "PPConfigManager.h"
 #import "UIImageExt.h"
 #import "GroupPermission.h"
+#import "AccountService.h"
 
 
 #define GROUP_HOST     [PPConfigManager getGroupServerURL]
@@ -398,7 +399,7 @@ static GroupService *_staticGroupService = nil;
      {
          if (!error) {
              PPDebug(@"<syncFollowGroupIds> Done! follow group count = %d", [response.idListList count]);
-             _groupManager.followedGroupIds = [NSMutableArray arrayWithArray:response.idListList];
+             [_groupManager syncFollowedGroupIds:response.idListList];
          }
      }];    
 }
@@ -432,6 +433,27 @@ static GroupService *_staticGroupService = nil;
      {
          EXECUTE_BLOCK(callback, error);
      }];
+}
+
+- (void)syncFollowTopicIds
+{
+    [self loadPBData:METHOD_SYNC_FOLLOWED_TOPICIDS parameters:nil callback:^(DataQueryResponse *response, NSError *error) {
+        [_groupManager syncFollowedTopicIds:response.idListList];
+    }];
+}
+
+- (void)unfollowTopic:(NSString *)topicId
+             callback:(SimpleResultBlock)callback
+{
+    NSDictionary *paras = @{PARA_POSTID:topicId};
+    
+    [self loadPBData:METHOD_UNFOLLOW_TOPIC
+          parameters:paras
+            callback:^(DataQueryResponse *response, NSError *error)
+     {
+         EXECUTE_BLOCK(callback, error);
+     }];
+
 }
 
 - (void)followTopic:(NSString *)topicId
@@ -486,6 +508,49 @@ static GroupService *_staticGroupService = nil;
      {
          EXECUTE_BLOCK(callback, response.badgesList, error);
      }];
+}
+
+//充值
+- (void)chargeGroup:(NSString *)groupId
+             amount:(NSInteger)amount
+           callback:(SimpleResultBlock)callback
+{
+    if (![[AccountService defaultService] hasEnoughBalance:amount currency:PBGameCurrencyCoin]) {
+        [DrawError postErrorWithCode:ERROR_BALANCE_NOT_ENOUGH];
+        return;
+    }
+    NSDictionary *params = @{PARA_GROUPID:groupId, PARA_AMOUNT:@(amount)};
+    [self loadPBData:METHOD_CHARGE_GROUP
+          parameters:params
+            callback:^(DataQueryResponse *response, NSError *error) {
+                EXECUTE_BLOCK(callback, error);
+                if (!error) {
+                    [[AccountService defaultService] deductCoin:amount source:DeductForChargeGroup];
+                }
+                EXECUTE_BLOCK(callback, error);                
+    }];
+}
+
+//转给成员
+- (void)transferGroupBalance:(NSString *)groupId
+                      amount:(NSInteger)amount
+                   targetUid:(NSString *)targetUid
+                    callback:(SimpleResultBlock)callback
+{
+    
+    
+    NSDictionary *params = @{PARA_GROUPID:groupId,
+                             PARA_AMOUNT:@(-amount),
+                             PARA_TARGETUSERID: targetUid};
+    
+    [self loadPBData:METHOD_CHARGE_GROUP
+          parameters:params
+            callback:^(DataQueryResponse *response, NSError *error) {
+                if (!error) {
+
+                }
+            EXECUTE_BLOCK(callback, error);                
+    }];
 }
 
 

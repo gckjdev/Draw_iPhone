@@ -15,8 +15,6 @@ static GroupManager *_staticGroupManager = nil;
 
 @interface GroupManager()
 
-//uid : dict
-@property (nonatomic, retain)NSMutableDictionary *collectionDict;
 
 @end
 
@@ -27,9 +25,9 @@ static GroupManager *_staticGroupManager = nil;
 - (void)dealloc
 {
     PPRelease(_followedGroupIds);
-    PPRelease(_collectionDict);
     PPRelease(_tempMemberList);
     PPRelease(_sharedGroup);
+    PPRelease(_followedTopicIds);
     [super dealloc];
 }
 
@@ -37,8 +35,7 @@ static GroupManager *_staticGroupManager = nil;
 {
     self = [super init];
     if (self) {
-        self.followedGroupIds = [NSMutableArray array];
-        self.collectionDict = [NSMutableDictionary dictionary];
+        [self loadDataFromDisk];
     }
     return self;
 }
@@ -91,7 +88,6 @@ static GroupManager *_staticGroupManager = nil;
 
 + (NSArray *)defaultTypesInGroupTopicFooter:(PBGroup *)group
 {
-    //TODO add quit type
     return @[@(GroupCreateTopic), @(GroupSearchTopic), @(GroupChat)];
 }
 
@@ -119,43 +115,10 @@ static GroupManager *_staticGroupManager = nil;
         [list addObject:tc];
     }
 
+    BBSPostFollowCommand *fc = [[[BBSPostFollowCommand alloc] initWithPost:post controller:nil] autorelease];
+    [list addObject:fc];
     return list;
 }
-
-/*
-- (void)collectGroup:(PBGroup *)group
-{
-    //only collect the group having relation with current user.
-    if (group.hasRelation) {
-        NSString *userId = [[UserManager defaultManager] userId];
-
-        NSMutableDictionary *cd = [self.collectionDict objectForKey:userId];
-        if (cd == nil) {
-            cd = [NSMutableDictionary dictionary];
-            [self.collectionDict setObject:cd forKey:userId];
-        }
-
-        [cd setObject:group forKey:group.groupId];
-        PPDebug(@"<collectGroup> group id = %@, name = %@", group.groupId, group.name);
-    }
-}
-
-- (PBGroup *)findGroupById:(NSString *)groupId
-{
-    PBGroup *group = [self.collectionDict objectForKey:groupId];
-    if (!group) {
-        PPDebug(@"<findGroupById> can't find group, id = %@", groupId);
-    }
-    return group;
-}
-
-- (void)collectGroups:(NSArray *)groups
-{
-    for (PBGroup *group in groups) {
-        [self collectGroup:group];
-    }
-}
- */
 
 enum{
     BADGE_COMMENT = 1,
@@ -313,7 +276,6 @@ enum{
 {
     PBGroupUsersByTitle_Builder *builder = [[PBGroupUsersByTitle_Builder alloc] init];
 
-    PBGroupTitle_Builder *titleBuilder = [[PBGroupTitle_Builder alloc] init];
     PBGroupTitle *t = [self createGroupTitle:title titleId:titleId];
     [builder setTitle:t];
     
@@ -510,5 +472,54 @@ enum{
     PBGroup* group = [builder build];
     return group;
 }
+
+
+- (void)syncFollowedGroupIds:(NSArray *)groupIds
+{
+    self.followedGroupIds = [NSMutableArray arrayWithArray:groupIds];
+
+}
+- (void)syncFollowedTopicIds:(NSArray *)topictIds
+{
+    self.followedTopicIds = [NSMutableArray arrayWithArray:topictIds];
+
+}
+- (void)didFollowTopic:(NSString *)topicId
+{
+    [self.followedTopicIds addObject:topicId];
+}
+- (void)didUnfollowTopic:(NSString *)topicId
+{
+    [self.followedTopicIds removeObject:topicId];
+}
+
+
+#define FOLLOWED_TOPIC_KEY @"FOLLOWED_TOPICS"
+#define FOLLOWED_GROUP_KEY @"FOLLOWED_GROUPS"
+- (void)saveTempDataToDisk
+{
+    //save followed group id
+    [[[UserManager defaultManager] userDefaults] setObject:self.followedTopicIds forKey:FOLLOWED_TOPIC_KEY];
+    
+    //save followed topic id
+    [[[UserManager defaultManager] userDefaults] setObject:self.followedGroupIds forKey:FOLLOWED_GROUP_KEY];
+    
+    [[[UserManager defaultManager] userDefaults] synchronize];
+}
+- (void)loadDataFromDisk
+{
+    self.followedGroupIds = [[[UserManager defaultManager]userDefaults] arrayForKey:FOLLOWED_GROUP_KEY];
+    
+    if (self.followedGroupIds == nil) {
+        self.followedGroupIds = [NSMutableArray array];
+    }
+    
+    self.followedTopicIds = [[[UserManager defaultManager]userDefaults] arrayForKey:FOLLOWED_TOPIC_KEY];
+    
+    if (self.followedTopicIds == nil) {
+        self.followedTopicIds = [NSMutableArray array];
+    }
+}
+
 
 @end

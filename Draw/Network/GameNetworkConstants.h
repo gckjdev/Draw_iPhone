@@ -728,15 +728,18 @@
 #define METHOD_GET_GROUP_NOTICES @"getGroupNotices"
 
 #define METHOD_SYNC_FOLLOWED_GROUPIDS @"syncFollowedGroupIds"
+#define METHOD_SYNC_FOLLOWED_TOPICIDS @"syncFollowedTopicIds"
+
 #define METHOD_IGNORE_NOTICE @"ignoreNotice"
 #define METHOD_FOLLOW_TOPIC @"followTopic"
+#define METHOD_UNFOLLOW_TOPIC @"unfollowTopic"
 #define METHOD_GET_TOPIC_TIMELINE @"getTopicTimeline"
 #define METHOD_GET_FOLLOWED_TOPIC @"getFollowTopics"
 //#define METHOD_GET_GROUPRELATION @"getRelationWithGroup"
 #define METHOD_SEARCH_GROUP @"searchGroup"
 #define METHOD_GET_GROUP_BADGES @"getGroupBadge"
 #define METHOD_GET_POST_ACTION_BY_USER @"getPostActionByUser"
-
+#define METHOD_CHARGE_GROUP @"chargeGroup"
 
 
 #define METHOD_CHANGE_USER_TITLE @"changeUserTitle"
@@ -863,6 +866,10 @@
 #define ERROR_GROUP_NAME_EMPTY  200050
 #define ERROR_GROUP_NAME_TOO_LONG  200051
 
+
+#define ERROR_GROUP_BALANCE_NOT_ENOUGH 200052
+
+#define ERROR_BALANCE_NOT_ENOUGH 70005
 /////
 
 

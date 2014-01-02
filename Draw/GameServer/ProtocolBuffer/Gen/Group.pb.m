@@ -2438,6 +2438,7 @@ static PBGroupUserRole* defaultPBGroupUserRoleInstance = nil;
 @property (retain) NSString* groupName;
 @property (retain) NSString* message;
 @property int32_t createDate;
+@property int32_t amount;
 @property (retain) PBGameUser* publisher;
 @property (retain) PBGameUser* target;
 @end
@@ -2493,6 +2494,13 @@ static PBGroupUserRole* defaultPBGroupUserRoleInstance = nil;
   hasCreateDate_ = !!value;
 }
 @synthesize createDate;
+- (BOOL) hasAmount {
+  return !!hasAmount_;
+}
+- (void) setHasAmount:(BOOL) value {
+  hasAmount_ = !!value;
+}
+@synthesize amount;
 - (BOOL) hasPublisher {
   return !!hasPublisher_;
 }
@@ -2525,6 +2533,7 @@ static PBGroupUserRole* defaultPBGroupUserRoleInstance = nil;
     self.groupName = @"";
     self.message = @"";
     self.createDate = 0;
+    self.amount = 0;
     self.publisher = [PBGameUser defaultInstance];
     self.target = [PBGameUser defaultInstance];
   }
@@ -2580,6 +2589,9 @@ static PBGroupNotice* defaultPBGroupNoticeInstance = nil;
   if (self.hasCreateDate) {
     [output writeInt32:7 value:self.createDate];
   }
+  if (self.hasAmount) {
+    [output writeInt32:8 value:self.amount];
+  }
   if (self.hasPublisher) {
     [output writeMessage:10 value:self.publisher];
   }
@@ -2615,6 +2627,9 @@ static PBGroupNotice* defaultPBGroupNoticeInstance = nil;
   }
   if (self.hasCreateDate) {
     size += computeInt32Size(7, self.createDate);
+  }
+  if (self.hasAmount) {
+    size += computeInt32Size(8, self.amount);
   }
   if (self.hasPublisher) {
     size += computeMessageSize(10, self.publisher);
@@ -2718,6 +2733,9 @@ static PBGroupNotice* defaultPBGroupNoticeInstance = nil;
   if (other.hasCreateDate) {
     [self setCreateDate:other.createDate];
   }
+  if (other.hasAmount) {
+    [self setAmount:other.amount];
+  }
   if (other.hasPublisher) {
     [self mergePublisher:other.publisher];
   }
@@ -2771,6 +2789,10 @@ static PBGroupNotice* defaultPBGroupNoticeInstance = nil;
       }
       case 56: {
         [self setCreateDate:[input readInt32]];
+        break;
+      }
+      case 64: {
+        [self setAmount:[input readInt32]];
         break;
       }
       case 82: {
@@ -2906,6 +2928,22 @@ static PBGroupNotice* defaultPBGroupNoticeInstance = nil;
   result.createDate = 0;
   return self;
 }
+- (BOOL) hasAmount {
+  return result.hasAmount;
+}
+- (int32_t) amount {
+  return result.amount;
+}
+- (PBGroupNotice_Builder*) setAmount:(int32_t) value {
+  result.hasAmount = YES;
+  result.amount = value;
+  return self;
+}
+- (PBGroupNotice_Builder*) clearAmount {
+  result.hasAmount = NO;
+  result.amount = 0;
+  return self;
+}
 - (BOOL) hasPublisher {
   return result.hasPublisher;
 }
@@ -2982,6 +3020,7 @@ static PBGroupNotice* defaultPBGroupNoticeInstance = nil;
 @property int32_t voteStartDate;
 @property int32_t voteEndDate;
 @property BOOL isAnounymous;
+@property PBOpusCategoryType category;
 @property int32_t canSubmitCount;
 @property int32_t maxFlowerPerContest;
 @property int32_t maxFlowerPerOpus;
@@ -2996,6 +3035,7 @@ static PBGroupNotice* defaultPBGroupNoticeInstance = nil;
 @property (retain) NSMutableArray* mutableAwardUsersList;
 @property (retain) NSMutableArray* mutableRankTypesList;
 @property (retain) PBGroup* group;
+@property int32_t joinersType;
 @end
 
 @implementation PBContest
@@ -3096,6 +3136,13 @@ static PBGroupNotice* defaultPBGroupNoticeInstance = nil;
 - (void) setIsAnounymous:(BOOL) value {
   isAnounymous_ = !!value;
 }
+- (BOOL) hasCategory {
+  return !!hasCategory_;
+}
+- (void) setHasCategory:(BOOL) value {
+  hasCategory_ = !!value;
+}
+@synthesize category;
 - (BOOL) hasCanSubmitCount {
   return !!hasCanSubmitCount_;
 }
@@ -3173,6 +3220,13 @@ static PBGroupNotice* defaultPBGroupNoticeInstance = nil;
   hasGroup_ = !!value;
 }
 @synthesize group;
+- (BOOL) hasJoinersType {
+  return !!hasJoinersType_;
+}
+- (void) setHasJoinersType:(BOOL) value {
+  hasJoinersType_ = !!value;
+}
+@synthesize joinersType;
 - (void) dealloc {
   self.contestId = nil;
   self.title = nil;
@@ -3202,6 +3256,7 @@ static PBGroupNotice* defaultPBGroupNoticeInstance = nil;
     self.voteStartDate = 0;
     self.voteEndDate = 0;
     self.isAnounymous = NO;
+    self.category = PBOpusCategoryTypeDrawCategory;
     self.canSubmitCount = 1;
     self.maxFlowerPerContest = 20;
     self.maxFlowerPerOpus = 3;
@@ -3210,6 +3265,7 @@ static PBGroupNotice* defaultPBGroupNoticeInstance = nil;
     self.canVote = NO;
     self.contestantsOnly = NO;
     self.group = [PBGroup defaultInstance];
+    self.joinersType = 0;
   }
   return self;
 }
@@ -3348,6 +3404,9 @@ static PBContest* defaultPBContestInstance = nil;
   if (self.hasIsAnounymous) {
     [output writeBool:13 value:self.isAnounymous];
   }
+  if (self.hasCategory) {
+    [output writeEnum:15 value:self.category];
+  }
   if (self.hasCanSubmitCount) {
     [output writeInt32:31 value:self.canSubmitCount];
   }
@@ -3389,6 +3448,9 @@ static PBContest* defaultPBContestInstance = nil;
   }
   if (self.hasGroup) {
     [output writeMessage:60 value:self.group];
+  }
+  if (self.hasJoinersType) {
+    [output writeInt32:61 value:self.joinersType];
   }
   [self.unknownFields writeToCodedOutputStream:output];
 }
@@ -3438,6 +3500,9 @@ static PBContest* defaultPBContestInstance = nil;
   if (self.hasIsAnounymous) {
     size += computeBoolSize(13, self.isAnounymous);
   }
+  if (self.hasCategory) {
+    size += computeEnumSize(15, self.category);
+  }
   if (self.hasCanSubmitCount) {
     size += computeInt32Size(31, self.canSubmitCount);
   }
@@ -3479,6 +3544,9 @@ static PBContest* defaultPBContestInstance = nil;
   }
   if (self.hasGroup) {
     size += computeMessageSize(60, self.group);
+  }
+  if (self.hasJoinersType) {
+    size += computeInt32Size(61, self.joinersType);
   }
   size += self.unknownFields.serializedSize;
   memoizedSerializedSize = size;
@@ -3594,6 +3662,9 @@ static PBContest* defaultPBContestInstance = nil;
   if (other.hasIsAnounymous) {
     [self setIsAnounymous:other.isAnounymous];
   }
+  if (other.hasCategory) {
+    [self setCategory:other.category];
+  }
   if (other.hasCanSubmitCount) {
     [self setCanSubmitCount:other.canSubmitCount];
   }
@@ -3653,6 +3724,9 @@ static PBContest* defaultPBContestInstance = nil;
   }
   if (other.hasGroup) {
     [self mergeGroup:other.group];
+  }
+  if (other.hasJoinersType) {
+    [self setJoinersType:other.joinersType];
   }
   [self mergeUnknownFields:other.unknownFields];
   return self;
@@ -3727,6 +3801,15 @@ static PBContest* defaultPBContestInstance = nil;
         [self setIsAnounymous:[input readBool]];
         break;
       }
+      case 120: {
+        int32_t value = [input readEnum];
+        if (PBOpusCategoryTypeIsValidValue(value)) {
+          [self setCategory:value];
+        } else {
+          [unknownFields mergeVarintField:15 value:value];
+        }
+        break;
+      }
       case 248: {
         [self setCanSubmitCount:[input readInt32]];
         break;
@@ -3798,6 +3881,10 @@ static PBContest* defaultPBContestInstance = nil;
         }
         [input readMessage:subBuilder extensionRegistry:extensionRegistry];
         [self setGroup:[subBuilder buildPartial]];
+        break;
+      }
+      case 488: {
+        [self setJoinersType:[input readInt32]];
         break;
       }
     }
@@ -4009,6 +4096,22 @@ static PBContest* defaultPBContestInstance = nil;
 - (PBContest_Builder*) clearIsAnounymous {
   result.hasIsAnounymous = NO;
   result.isAnounymous = NO;
+  return self;
+}
+- (BOOL) hasCategory {
+  return result.hasCategory;
+}
+- (PBOpusCategoryType) category {
+  return result.category;
+}
+- (PBContest_Builder*) setCategory:(PBOpusCategoryType) value {
+  result.hasCategory = YES;
+  result.category = value;
+  return self;
+}
+- (PBContest_Builder*) clearCategory {
+  result.hasCategory = NO;
+  result.category = PBOpusCategoryTypeDrawCategory;
   return self;
 }
 - (BOOL) hasCanSubmitCount {
@@ -4325,6 +4428,22 @@ static PBContest* defaultPBContestInstance = nil;
 - (PBContest_Builder*) clearGroup {
   result.hasGroup = NO;
   result.group = [PBGroup defaultInstance];
+  return self;
+}
+- (BOOL) hasJoinersType {
+  return result.hasJoinersType;
+}
+- (int32_t) joinersType {
+  return result.joinersType;
+}
+- (PBContest_Builder*) setJoinersType:(int32_t) value {
+  result.hasJoinersType = YES;
+  result.joinersType = value;
+  return self;
+}
+- (PBContest_Builder*) clearJoinersType {
+  result.hasJoinersType = NO;
+  result.joinersType = 0;
   return self;
 }
 @end
