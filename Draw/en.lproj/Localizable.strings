@@ -2134,6 +2134,11 @@
 "kGroupDetailRowFee" = "Fee: %d coins/month";
 "kDefaultGroupSignature" = "None";
 
+"kDefaultGroupDesc" = "None";
+
+"kEditGroupSignature" = "Edit signature";
+"kEditGroupIntroduce" = "Edit introduce";
+
 "kContentDesc" = "Content: %@";
 "kPostscriptDesc" = "Postscript: %@";
 
@@ -2188,7 +2193,6 @@
 "kChangeGroupBG" = "Edit BG";
 "kManage" = "Manage";
 "kEditGroupName" = "Edit group name";
-"kEditGroupSignature" = "Edit group signature";
 
 "kEditGroupDesc" = "Edit group description";
 "kEditGroupFee" = "Edit group fee";
@@ -2213,12 +2217,22 @@
 "kGroupTabGroupActive" = "Active";
 "kGroupTabGroupFame" = "Fame";
 "kIgnoring" = "Sending ignore request...";
-"kRejecting" = "Sending rejection request...";
+"kRejecting" = "Sending rejection response...";
+"kAccepting" = "Sending accept response...";
 
+"kExpelGroupUserTitle" = "Warning";
+"kExpelGroupUserMessage" = "Are you really want to expel the user?";
+
+"kDeleteNotEmptyTitleError" = "Can't delete title while not empty.";
+
+"kTitleCountLimited" = "Title count reached %d, group must be upgraded before adding a new title.";
 
 "kSeeAllPost" = "All";
 "kSeeLZOnly" = "Mine";
 "kSeeMeOnly" = "Mine";
+
+"kBalanceNotEnough" = "Sorry, your balance is not enough.";
+"kGroupBalanceNotEnough" = "Sorry, the balance of group is not enough.";
 
 /*********************小吉画画国际化字符串开始 ************************/
 "kLittleGeeRecommend" = "Featured";

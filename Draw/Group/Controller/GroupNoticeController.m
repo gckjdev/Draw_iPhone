@@ -49,6 +49,14 @@ typedef enum{
     [self setBadge:gm.requestBadge onTab:GroupRequest];
 }
 
+- (void)updateTableView
+{
+    CGFloat y = CGRectGetMaxY([self tabButtonWithTabID:GroupComment].frame);
+    CGFloat height = CGRectGetHeight(self.view.bounds) - y;
+    [self.dataTableView updateOriginY:y];
+    [self.dataTableView updateHeight:height];
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -57,12 +65,27 @@ typedef enum{
     [self.titleView setTransparentStyle];
     [self initTabButtons];
     [self updateBadge];
+    [self updateTableView];
 }
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+#define COMMENT_TAB_WIDTH (ISIPAD?700:300)
+#define NOTICE_TAB_WIDTH (ISIPAD?768:320)
+
+- (void)clickTab:(NSInteger)tabID
+{
+    if (tabID == GroupComment) {
+        [self.dataTableView updateWidth:COMMENT_TAB_WIDTH];
+    }else{
+        [self.dataTableView updateWidth:NOTICE_TAB_WIDTH];
+    }
+    [self.dataTableView updateCenterX:CGRectGetMidX(self.view.bounds)];
+    [super clickTab:tabID];
 }
 
 
@@ -80,6 +103,18 @@ typedef enum{
     return count;
 }
 
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+{
+    UIView *view = [[UIView alloc] init];
+    view.backgroundColor = [UIColor whiteColor];
+    return [view autorelease];
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
+    return ISIPAD?8:4;
+}
+
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if ([self noData]) {
@@ -94,7 +129,14 @@ typedef enum{
     }
 }
 
-//SET_CELL_BG_IN_CONTROLLER
+- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
+    if([self isNoDataCell:cell] || self.currentTabID == GroupComment){
+        cell.backgroundColor = [UIColor clearColor];
+        return;
+    }
+    cell.backgroundColor = (indexPath.row & 0x1)? COLOR_GRAY : COLOR_WHITE;
+    [super tableView:tableView willDisplayCell:cell forRowAtIndexPath:indexPath];
+}
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -176,13 +218,9 @@ typedef enum{
 
 - (void)removeModelData:(id)data
 {
-    if (data) {
-        NSUInteger index = [self.tabDataList indexOfObject:data];
-        if (index != NSNotFound) {
-            [self.tabDataList removeObjectAtIndex:index];
-            NSIndexPath *indexPath = [NSIndexPath indexPathForRow:index inSection:0];
-            [self.dataTableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-        }        
+    if (data && [self.tabDataList containsObject:data]) {
+        [self.tabDataList removeObject:data];
+        [self.dataTableView reloadData];
     }
 }
 

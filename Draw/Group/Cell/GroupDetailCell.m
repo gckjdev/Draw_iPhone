@@ -16,7 +16,7 @@
 #import "UILabel+Touchable.h"
 
 #define MEMBER_NUMBER_PERROW (ISIPAD?7:5)
-#define TITLE_INFO_HEIGHT (ISIPAD?40:25)
+#define TITLE_INFO_HEIGHT (ISIPAD?55:30)
 #define CREATOR_AVATAR_HEIGHT (ISIPAD?70:40)
 #define MEMBER_AVATAR_HEIGHT (ISIPAD?70:40)
 #define MEMBER_AVATAR_SPACE (ISIPAD?30:12)
@@ -253,18 +253,25 @@
     return addButton;
 }
 
+
+- (CGFloat)avatarBaseX
+{
+    CGFloat width = MEMBER_NUMBER_PERROW * MEMBER_AVATAR_HEIGHT;
+    width += (MEMBER_NUMBER_PERROW - 1) * MEMBER_AVATAR_SPACE;
+    CGFloat x = (CGRectGetWidth(self.bounds) - width)/2;
+    return x;
+}
+
 - (void)updateCellImageContent
 {
     switch (self.cellStyle) {
         case DetailCellStyleSingleAvatar:{
             {
                 CGFloat avWidth = CREATOR_AVATAR_HEIGHT;
-                CGRect frame = CGRectMake(0, 0, avWidth, avWidth);
-                CGFloat x = CGRectGetWidth(self.bounds)/5;
-                CGFloat y = CGRectGetMidY(self.bounds);
+                CGRect frame = CGRectMake([self avatarBaseX], CGRectGetMidY(self.bounds), avWidth, avWidth);
                 PBGameUser *user = _group.creator;
                 AvatarView *av = [[AvatarView alloc] initWithFrame:frame user:user];
-                av.center = CGPointMake(x, y);
+                [av updateCenterY:CGRectGetMidY(self.bounds)];
                 av.delegate = self;
                 [self.contentView addSubview:av];
                 [av release];
@@ -278,13 +285,15 @@
 
             CGFloat width = MEMBER_NUMBER_PERROW * MEMBER_AVATAR_HEIGHT;
             width += (MEMBER_NUMBER_PERROW - 1) * MEMBER_AVATAR_SPACE;
-            CGFloat x = (CGRectGetWidth(self.bounds) - width)/2;
+            CGFloat x = [self avatarBaseX];
             CGFloat y = TITLE_INFO_HEIGHT;
             CGRect frame = CGRectMake(x, y, width, height);
             UIScrollView *scrollView = [[UIScrollView alloc] initWithFrame:frame];
+            
+            scrollView.autoresizingMask = self.boundImage.autoresizingMask;
+            
             scrollView.contentSize = frame.size;
             [self.contentView addSubview:scrollView];
-//            scrollView.backgroundColor = COLOR_GRAY;
             [scrollView release];
             
             x = y = 0;

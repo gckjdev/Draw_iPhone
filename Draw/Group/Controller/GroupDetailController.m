@@ -24,7 +24,7 @@
 #import "UIImageView+WebCache.h"
 #import "UIViewController+BGImage.h"
 #import "GroupConstants.h"
-
+#import "GroupUIManager.h"
 
 enum{
     SECTION_BASE_INDEX = 0,
@@ -39,7 +39,7 @@ typedef enum{
     RowCreateDate,
     RowDescription,
     RowFee,
-    BaseSectionRowCount,
+    BaseSectionRowCount = RowFee,
 }BaseSectionRow;
 
 typedef enum{
@@ -84,7 +84,7 @@ typedef enum{
 @property (retain, nonatomic) IBOutlet UILabel *groupName;
 @property (retain, nonatomic) IBOutlet UILabel *groupSignature;
 @property (retain, nonatomic) ChangeAvatar *changeImage;
-@property (assign, nonatomic) UIImageView *bgImageView;
+//@property (assign, nonatomic) UIImageView *bgImageView;
 
 
 @end
@@ -143,7 +143,7 @@ typedef enum{
 
 - (void)clickQuit:(id)sender
 {
-    CommonDialog *dialog = [CommonDialog createDialogWithTitle:NSLS(@"kQuitGroupTitle") message:NSLS(@"kQuitGroupMessage") style:CommonDialogStyleSingleButton];
+    CommonDialog *dialog = [CommonDialog createDialogWithTitle:NSLS(@"kQuitGroupTitle") message:NSLS(@"kQuitGroupMessage") style:CommonDialogStyleDoubleButton];
     [dialog setClickOkBlock:^(id infoView){
         [self quit];
         [dialog setClickOkBlock:NULL];
@@ -153,11 +153,19 @@ typedef enum{
 
 
 - (void)showAddTitleView{
+    //check title capacity
+    
+    if (_group.titleCapacity <= [groupManager customTitleCount]) {
+        NSString *message = [NSString stringWithFormat:NSLS(@"kTitleCountLimited"), _group.titleCapacity];
+        POSTMSG(message);
+        return;
+    }
+    
     CommonDialog *dialog = [CommonDialog createInputFieldDialogWith:NSLS(@"kCreateTitle")];
     dialog.inputTextField.text = @"";
     NSString *groupId = _group.groupId;
     [dialog setClickOkBlock:^(id infoView){
-        NSString *text = dialog.inputTextView.text;
+        NSString *text = dialog.inputTextField.text;
         BOOL flag = [self checkText:text length:MAX_LENGTH_TITLE allowEmpty:NO];
         [dialog setManualClose:!flag];
         if (flag) {
@@ -331,12 +339,11 @@ typedef enum{
     self.changeImage.autoRoundRect = NO;
     
     //update bg image view.
-    self.bgImageView = [[UIImageView alloc] initWithFrame:self.view.bounds];
-    self.bgImageView.autoresizingMask = (0x1 << 6) -1;
-    [self.view insertSubview:self.bgImageView atIndex:0];
-    [self.bgImageView release];
-    [self.bgImageView setImageWithURL:_group.bgImageURL];
-    
+    if (_group.bgImageURL) {
+        [[self bgImageView] setImageWithURL:_group.bgImageURL];
+    }else{
+        [self setDefaultBGImage];
+    }
     
     __block GroupDetailController *cp = self;
     [self.groupIconView setClickHandler:^(IconView *iconView){
@@ -355,12 +362,18 @@ typedef enum{
     
     [self.groupIconView setGroupId:_group.groupId];
     [self.groupIconView setImageURL:[_group medalImageURL]
-                   placeholderImage:[[ShareImageManager defaultManager] unloadBg]];
+                   placeholderImage:[GroupUIManager defaultGroupMedal]];
 
     
     [self.groupName setText:_group.name];
+    [self.groupSignature setTextColor:COLOR_BROWN];
     if ([_group.signature length] == 0) {
-        [self.groupSignature setText:NSLS(@"kDefaultGroupSignature")];
+        if ([_groupPermission canManageGroup]) {
+            [self.groupSignature setTextColor:COLOR_GRAY_TEXT];
+            [self.groupSignature setText:NSLS(@"kEditGroupSignature")];
+        }else{
+            [self.groupSignature setText:NSLS(@"kDefaultGroupSignature")];
+        }
     }else{
         [self.groupSignature setText:_group.signature];
     }
@@ -623,6 +636,11 @@ typedef enum{
 
 - (NSString *)descCellText
 {
+    if ([_group.desc length] == 0) {
+        return [_groupPermission canManageGroup]?NSLS(@"kEditGroupIntroduce"):NSLS(@"kDefaultGroupDesc");
+    }else{
+        return _group.desc;
+    }
    return [NSString stringWithFormat:NSLS(@"kGroupDetailRowDesc"), _group.desc];
 }
 
@@ -644,18 +662,36 @@ typedef enum{
             break;
         }
         case RowDescription:{
-            text = [self descCellText];
+            text = [self descCellText];            
             break;
         }
         case RowFee:{
             text = [NSString stringWithFormat:NSLS(@"kGroupDetailRowFee"), _group.memberFee];
-            position = CellRowPositionLast;
+//            position = CellRowPositionLast;
             break;
         }
         default:
             break;
     }
+    if (BaseSectionRowCount-1 == row) {
+        position = CellRowPositionLast;
+    }
     [cell setCellText:text position:position group:_group];
+}
+
+- (PBGroupUsersByTitle *)customTitleAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (indexPath.section != SECTION_BASE_INDEX) {
+        NSInteger row = indexPath.row;
+        NSInteger index = row - RowMemberStart;
+        if (index >= 0 && index < [self.dataList count]) {
+            PBGroupUsersByTitle *usersByTitle = self.dataList[index];
+            if ([usersByTitle isCustomTitle]) {
+                return usersByTitle;
+            }
+        }
+    }
+    return nil;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -797,14 +833,21 @@ typedef enum{
         [sheet showInView:self.view showAtPoint:self.view.center animated:YES];
     }
     else if ([title isEqualToString:TITLE_RM_MEMBER]) {
-        [self showActivityWithText:NSLS(@"kExpeling")];
-        [groupService expelUser:user group:_group.groupId titleId:titleId reason:@"" callback:^(NSError *error) {
-            [self hideActivity];
-            if (!error) {
-                [GroupManager didRemoveUser:user fromTitleId:titleId];                
-                [self.dataTableView reloadData];
-            }
+        
+       CommonDialog *cd = [CommonDialog createDialogWithTitle:NSLS(@"kExpelGroupUserTitle") message:NSLS(@"kExpelGroupUserMessage")  style:CommonDialogStyleDoubleButton];
+        
+        [cd setClickOkBlock:^(id infoView){
+            [self showActivityWithText:NSLS(@"kExpeling")];
+            [groupService expelUser:user group:_group.groupId titleId:titleId reason:@"" callback:^(NSError *error) {
+                [self hideActivity];
+                if (!error) {
+                    [GroupManager didRemoveUser:user fromTitleId:titleId];
+                    [self.dataTableView reloadData];
+                }
+            }];            
         }];
+        [cd showInView:self.view];
+        
     }
     else if ([title isEqualToString:TITLE_SET_ADMIN]) {
         [self showActivityWithText:NSLS(@"kSettingAsAdmin")];
@@ -924,5 +967,39 @@ didClickAddButtonAtTitle:(PBGroupTitle *)title
     }
 }
 
+
+//DELETE TITLE
+
+- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if ([_groupPermission canManageGroup]) {
+        PBGroupUsersByTitle *usersByTitle = [self customTitleAtIndexPath:indexPath];
+        return !!usersByTitle;
+    }
+    return NO;
+}
+
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    PBGroupUsersByTitle *usersByTitle = [self customTitleAtIndexPath:indexPath];
+    if ([[usersByTitle usersList] count] == 0) {
+        NSInteger titleId = usersByTitle.title.titleId;
+        [groupService deleteGroupTitleId:titleId groupId:_group.groupId callback:^(NSError *error) {
+            if (!error) {
+                //remove from local model
+                [GroupManager didDeletedGroupTitle:_group.groupId titleId:titleId];
+                [self updateDataList];
+                [self.dataTableView reloadData];
+            }
+        }];
+    }else{
+        POSTMSG(NSLS(@"kDeleteNotEmptyTitleError"));
+    }
+}
+
+- (NSString *)tableView:(UITableView *)tableView titleForDeleteConfirmationButtonForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return NSLS(@"kDelete");
+}
 
 @end

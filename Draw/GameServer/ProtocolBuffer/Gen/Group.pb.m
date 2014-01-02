@@ -856,6 +856,7 @@ static PBGroupUsersByTitle* defaultPBGroupUsersByTitleInstance = nil;
 @property int32_t guestCapacity;
 @property int32_t topicCount;
 @property int32_t fanCount;
+@property int32_t titleCapacity;
 @property (retain) NSString* desc;
 @property (retain) NSString* signature;
 @property int32_t status;
@@ -963,6 +964,13 @@ static PBGroupUsersByTitle* defaultPBGroupUsersByTitleInstance = nil;
   hasFanCount_ = !!value;
 }
 @synthesize fanCount;
+- (BOOL) hasTitleCapacity {
+  return !!hasTitleCapacity_;
+}
+- (void) setHasTitleCapacity:(BOOL) value {
+  hasTitleCapacity_ = !!value;
+}
+@synthesize titleCapacity;
 - (BOOL) hasDesc {
   return !!hasDesc_;
 }
@@ -1054,6 +1062,7 @@ static PBGroupUsersByTitle* defaultPBGroupUsersByTitleInstance = nil;
     self.guestCapacity = 0;
     self.topicCount = 0;
     self.fanCount = 0;
+    self.titleCapacity = 0;
     self.desc = @"";
     self.signature = @"";
     self.status = 0;
@@ -1184,6 +1193,9 @@ static PBGroup* defaultPBGroupInstance = nil;
   if (self.hasFanCount) {
     [output writeInt32:13 value:self.fanCount];
   }
+  if (self.hasTitleCapacity) {
+    [output writeInt32:14 value:self.titleCapacity];
+  }
   if (self.hasDesc) {
     [output writeString:15 value:self.desc];
   }
@@ -1267,6 +1279,9 @@ static PBGroup* defaultPBGroupInstance = nil;
   }
   if (self.hasFanCount) {
     size += computeInt32Size(13, self.fanCount);
+  }
+  if (self.hasTitleCapacity) {
+    size += computeInt32Size(14, self.titleCapacity);
   }
   if (self.hasDesc) {
     size += computeStringSize(15, self.desc);
@@ -1418,6 +1433,9 @@ static PBGroup* defaultPBGroupInstance = nil;
   if (other.hasFanCount) {
     [self setFanCount:other.fanCount];
   }
+  if (other.hasTitleCapacity) {
+    [self setTitleCapacity:other.titleCapacity];
+  }
   if (other.hasDesc) {
     [self setDesc:other.desc];
   }
@@ -1537,6 +1555,10 @@ static PBGroup* defaultPBGroupInstance = nil;
       }
       case 104: {
         [self setFanCount:[input readInt32]];
+        break;
+      }
+      case 112: {
+        [self setTitleCapacity:[input readInt32]];
         break;
       }
       case 122: {
@@ -1814,6 +1836,22 @@ static PBGroup* defaultPBGroupInstance = nil;
 - (PBGroup_Builder*) clearFanCount {
   result.hasFanCount = NO;
   result.fanCount = 0;
+  return self;
+}
+- (BOOL) hasTitleCapacity {
+  return result.hasTitleCapacity;
+}
+- (int32_t) titleCapacity {
+  return result.titleCapacity;
+}
+- (PBGroup_Builder*) setTitleCapacity:(int32_t) value {
+  result.hasTitleCapacity = YES;
+  result.titleCapacity = value;
+  return self;
+}
+- (PBGroup_Builder*) clearTitleCapacity {
+  result.hasTitleCapacity = NO;
+  result.titleCapacity = 0;
   return self;
 }
 - (BOOL) hasDesc {
@@ -2400,6 +2438,7 @@ static PBGroupUserRole* defaultPBGroupUserRoleInstance = nil;
 @property (retain) NSString* groupName;
 @property (retain) NSString* message;
 @property int32_t createDate;
+@property int32_t amount;
 @property (retain) PBGameUser* publisher;
 @property (retain) PBGameUser* target;
 @end
@@ -2455,6 +2494,13 @@ static PBGroupUserRole* defaultPBGroupUserRoleInstance = nil;
   hasCreateDate_ = !!value;
 }
 @synthesize createDate;
+- (BOOL) hasAmount {
+  return !!hasAmount_;
+}
+- (void) setHasAmount:(BOOL) value {
+  hasAmount_ = !!value;
+}
+@synthesize amount;
 - (BOOL) hasPublisher {
   return !!hasPublisher_;
 }
@@ -2487,6 +2533,7 @@ static PBGroupUserRole* defaultPBGroupUserRoleInstance = nil;
     self.groupName = @"";
     self.message = @"";
     self.createDate = 0;
+    self.amount = 0;
     self.publisher = [PBGameUser defaultInstance];
     self.target = [PBGameUser defaultInstance];
   }
@@ -2542,6 +2589,9 @@ static PBGroupNotice* defaultPBGroupNoticeInstance = nil;
   if (self.hasCreateDate) {
     [output writeInt32:7 value:self.createDate];
   }
+  if (self.hasAmount) {
+    [output writeInt32:8 value:self.amount];
+  }
   if (self.hasPublisher) {
     [output writeMessage:10 value:self.publisher];
   }
@@ -2577,6 +2627,9 @@ static PBGroupNotice* defaultPBGroupNoticeInstance = nil;
   }
   if (self.hasCreateDate) {
     size += computeInt32Size(7, self.createDate);
+  }
+  if (self.hasAmount) {
+    size += computeInt32Size(8, self.amount);
   }
   if (self.hasPublisher) {
     size += computeMessageSize(10, self.publisher);
@@ -2680,6 +2733,9 @@ static PBGroupNotice* defaultPBGroupNoticeInstance = nil;
   if (other.hasCreateDate) {
     [self setCreateDate:other.createDate];
   }
+  if (other.hasAmount) {
+    [self setAmount:other.amount];
+  }
   if (other.hasPublisher) {
     [self mergePublisher:other.publisher];
   }
@@ -2733,6 +2789,10 @@ static PBGroupNotice* defaultPBGroupNoticeInstance = nil;
       }
       case 56: {
         [self setCreateDate:[input readInt32]];
+        break;
+      }
+      case 64: {
+        [self setAmount:[input readInt32]];
         break;
       }
       case 82: {
@@ -2866,6 +2926,22 @@ static PBGroupNotice* defaultPBGroupNoticeInstance = nil;
 - (PBGroupNotice_Builder*) clearCreateDate {
   result.hasCreateDate = NO;
   result.createDate = 0;
+  return self;
+}
+- (BOOL) hasAmount {
+  return result.hasAmount;
+}
+- (int32_t) amount {
+  return result.amount;
+}
+- (PBGroupNotice_Builder*) setAmount:(int32_t) value {
+  result.hasAmount = YES;
+  result.amount = value;
+  return self;
+}
+- (PBGroupNotice_Builder*) clearAmount {
+  result.hasAmount = NO;
+  result.amount = 0;
   return self;
 }
 - (BOOL) hasPublisher {

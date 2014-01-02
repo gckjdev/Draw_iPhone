@@ -15,7 +15,7 @@
 #import "BBSController.h"
 
 @class PBGroup;
-@interface GroupTopicController : BBSController<BBSPostActionHeaderViewDelegate, GroupInfoViewDelegate, BBSServiceDelegate, DetailFooterViewDelegate, CreatePostControllerDelegate>
+@interface GroupTopicController : BBSController<BBSPostActionHeaderViewDelegate, BBSServiceDelegate, DetailFooterViewDelegate, CreatePostControllerDelegate>
 
 + (GroupTopicController *)enterWithGroup:(PBGroup *)group
                           fromController:(PPViewController *)controller;

@@ -486,7 +486,7 @@ static ChatService *_chatService = nil;
 - (void)constructMessage:(PPMessage *)message
             friendUserId:(NSString*)friendUserId
 {
-    [message setFriendId:friendUserId];
+    [message setFriendId:friendUserId nickName:@""];    // TODO change to real nick name
     [message setMessageId:[NSString GetUUID]];  // create a temp message ID
     [message setStatus:MessageStatusSending];
     [message setSourceType:SourceTypeSend];

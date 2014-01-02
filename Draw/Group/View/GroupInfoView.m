@@ -9,6 +9,7 @@
 #import "GroupInfoView.h"
 #import "Group.pb.h"
 #import "IconView.h"
+#import "GroupUIManager.h"
 
 
 #define SPACE_NICK_SIZE (ISIPAD?8:5)
@@ -44,7 +45,7 @@
     [_sizeLabel setFont:CELL_SMALLTEXT_FONT];
     [_sizeLabel setBackgroundColor:COLOR_YELLOW];
     [_sizeLabel setTextAlignment:NSTextAlignmentCenter];
-    CGFloat radius = (CGRectGetHeight(_sizeLabel.bounds)/2.0);
+    CGFloat radius = (CGRectGetHeight(_sizeLabel.bounds)/3.0);
     SET_VIEW_ROUND_CORNER_RADIUS(self.sizeLabel, radius);
     self.backgroundColor = [UIColor clearColor];
 }
@@ -85,7 +86,7 @@
 {
     [super layoutSubviews];
 
-    [self.iconView setImageURL:[_group medalImageURL] placeholderImage:[[ShareImageManager defaultManager] unloadBg]];
+    [self.iconView setImageURL:[_group medalImageURL] placeholderImage:[GroupUIManager defaultGroupMedal]];
     
     [self.nameLabel setText:_group.name];
     [self.descLabel setText:_group.signature];

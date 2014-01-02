@@ -148,7 +148,7 @@
         [self pause];
     }
     [self.playButton setSelected:(status == Playing)];
-    [self.showView performSelector:@selector(setDelegate:) withObject:self afterDelay:0.2];
+//    [self.showView performSelector:@selector(setDelegate:) withObject:self afterDelay:0.2];
 }
 
 - (IBAction)changeProcess:(CustomSlider *)sender {
@@ -234,7 +234,7 @@
     if (![self.playSlider isOnTouch]) {
         [self.playSlider setValue:actionIndex];
     }else{
-        showDrawView.delegate = nil;
+//        showDrawView.delegate = nil;
     }
     
 }

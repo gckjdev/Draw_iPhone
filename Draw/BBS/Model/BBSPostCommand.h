@@ -54,3 +54,10 @@
 @interface BBSPostDeleteCommand : BBSPostCommand<UIAlertViewDelegate>
 
 @end
+
+
+@interface BBSPostFollowCommand : BBSPostCommand
+
+@end
+
+

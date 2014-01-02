@@ -282,16 +282,34 @@
         self.avatarView.userId = nil;        
     }else{
         self.avatarView.delegate = self;
-        self.avatarView.userId = [messageStat friendId];
+        
+        if ([messageStat isGroup]){
+            self.avatarView.userId = self.message.fromUserToGroup.userId;
+        }
+        else{
+            self.avatarView.userId = [messageStat friendId];
+        }
     }
     [self.avatarView setAvatarUrl:avatar gender:isMale];
 }
 
 - (void)didClickOnAvatar:(NSString*)userId
 {
-    MessageStat *stat = self.messageStat;
-    ViewUserDetail *detail = [ViewUserDetail viewUserDetailWithUserId:stat.friendId avatar:stat.friendAvatar nickName:stat.friendNickName];
-    [UserDetailViewController presentUserDetail:detail inViewController:(id)[self theViewController]];
+    if ([self.messageStat isGroup]){
+        
+        ViewUserDetail *detail = [ViewUserDetail viewUserDetailWithUserId:self.message.fromUserToGroup.userId
+                                                                   avatar:self.message.fromUserToGroup.avatar
+                                                                 nickName:self.message.fromUserToGroup.nickName];
+        
+        [UserDetailViewController presentUserDetail:detail inViewController:(id)[self theViewController]];
+    }
+    else{
+        MessageStat *stat = self.messageStat;
+        ViewUserDetail *detail = [ViewUserDetail viewUserDetailWithUserId:stat.friendId
+                                                                   avatar:stat.friendAvatar
+                                                                 nickName:stat.friendNickName];
+        [UserDetailViewController presentUserDetail:detail inViewController:(id)[self theViewController]];
+    }
 }
 
 - (void)updateViewsWithShowTime:(BOOL)showTime
@@ -324,10 +342,10 @@
     
     if (message.isGroup){
         if ([[UserManager defaultManager] isMe:message.fromUserToGroup.userId]){
-            self.isReceive = YES;
+            self.isReceive = NO;
         }
         else{
-            self.isReceive = NO;
+            self.isReceive = YES;
         }
     }
     else{

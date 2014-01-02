@@ -141,6 +141,7 @@
 
 #define SET_CELL_BG_IN_CONTROLLER_EVEN(even)                     \
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:       (NSIndexPath *)indexPath {                          \
+if([self isNoDataCell:cell]){cell.backgroundColor=[UIColor clearColor];return;}\
 if (indexPath.row % 2 == even) {                       \
 cell.backgroundColor = COLOR_GRAY;              \
 }else{                                              \

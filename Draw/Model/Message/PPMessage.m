@@ -214,6 +214,26 @@
     return [_messageBuilder thumbImageUrl];
 }
 
+- (void)setFriendId:(NSString *)friendId nickName:(NSString*)nickName
+{
+    [self setFriendId:friendId];
+    
+    // set from user info
+    [_messageBuilder setFromUser:[UserManager defaultManager].pbUser];
+    [_messageBuilder setFrom:[UserManager defaultManager].userId];
+    [_messageBuilder setTo:friendId];
+    
+    if (friendId == nil || nickName == nil){
+        return;
+    }
+    
+    // set TO user info
+    PBGameUser_Builder* toUserBuilder = [PBGameUser builder];
+    [toUserBuilder setUserId:friendId];
+    [toUserBuilder setNickName:nickName];
+    [_messageBuilder setToUser:[toUserBuilder build]];
+}
+
 - (void)setThumbImageUrl:(NSString *)thumbImageUrl
 {
     if (thumbImageUrl == nil)

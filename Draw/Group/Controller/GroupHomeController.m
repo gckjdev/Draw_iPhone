@@ -113,6 +113,13 @@
     [self loadBadge];
 }
 
+- (void)setNeedRefreshFollowGroupTab
+{
+    TableTab *tab = [_tabManager tabForID:GroupTabGroupFollow];
+    tab.status = TableTabStatusUnload;
+    tab.offset = 0;
+}
+
 - (void)viewDidAppear:(BOOL)animated
 {
     [self updateAtMeBadge];
@@ -179,6 +186,10 @@
     return GroupTabGroupBalance;
 }
 
+#define TOPIC_TABLE_DELTA (ISIPAD?10:5)
+#define TOPIC_TABLE_WIDTH (ISIPAD?700:300)
+#define GROUP_TABLE_WIDTH (ISIPAD?768:320)
+
 - (void)clickTabButton:(id)sender
 {
     UIButton *button = (UIButton *)sender;
@@ -199,7 +210,7 @@
         //don't load data. just show the sub tab buttons.
         self.subTabsHolder.hidden = NO;
         [self.dataTableView updateOriginY:CGRectGetMaxY(self.subTabsHolder.frame)];
-        newHeight = (CGRectGetMinY(self.footerView.frame) - CGRectGetMaxY(self.subTabsHolder.frame));
+        newHeight = (CGRectGetMinY(self.footerView.frame) - CGRectGetMinY(self.dataTableView.frame));
         [self.dataTableView updateHeight:newHeight];
         if ([self isSubGroupTab:tag]) {
             [currentGroupSubButton setSelected:NO];
@@ -214,13 +225,16 @@
             }
         }
         currentGroupSubButton.selected = YES;
+        [self.dataTableView updateWidth:GROUP_TABLE_WIDTH];
     }else{
         self.subTabsHolder.hidden = YES;
-        [self.dataTableView updateOriginY:CGRectGetMinY(self.subTabsHolder.frame)];
-        newHeight = (CGRectGetMinY(self.footerView.frame) -CGRectGetMinY(self.subTabsHolder.frame));
+        [self.dataTableView updateOriginY:CGRectGetMaxY(self.tabsHolderView.frame)];
+        newHeight = (CGRectGetMinY(self.footerView.frame) -CGRectGetMinY(self.dataTableView.frame));
         [self.dataTableView updateHeight:newHeight];
         [self clickTab:button.tag];
+        [self.dataTableView updateWidth:TOPIC_TABLE_WIDTH];
     }
+    [self.dataTableView updateCenterX:CGRectGetMidX(self.view.bounds)];
 }
 
 - (NSInteger)tabCount
@@ -324,6 +338,8 @@
     switch (type) {
         case GroupCreateGroup:
         {
+            //TODO check if use has join a group?
+            
             CreateGroupController *cgc =  [[CreateGroupController alloc] init];
             [self.navigationController pushViewController:cgc animated:YES];
             [cgc release];
@@ -346,11 +362,11 @@
         }
          case GroupChat:
         {
-            PBGroup_Builder* builder = [PBGroup builder];
-            [builder setGroupId:@"888800000000001234567890"];
-            [builder setName:@"Test Group"];
+//            PBGroup_Builder* builder = [PBGroup builder];
+//            [builder setGroupId:@"888800000000001234567890"];
+//            [builder setName:@"Test Group"];
             
-            PBGroup* group = [builder build];
+            PBGroup* group = [[GroupManager defaultManager] userCurrentGroup];
             [ChatDetailController enterFromGroup:group superController:self];            
         }
             
@@ -418,6 +434,21 @@
     return cell;
 }
 
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+{
+    UIView *view = [[UIView alloc] init];
+    view.backgroundColor = [UIColor clearColor];
+    return [view autorelease];
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
+    if ([self isGroupTab:self.currentTabID]) {
+        return 0;
+    }
+    return ISIPAD?20:8;
+}
+
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if ([self noData]) {
@@ -432,7 +463,14 @@
     }
 }
 
-SET_CELL_BG_IN_CONTROLLER_EVEN(1)
+- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {                          
+    if([self isNoDataCell:cell] || ![self isGroupTab:self.currentTabID]){
+        cell.backgroundColor = [UIColor clearColor];
+        return;
+    }
+    cell.backgroundColor = (indexPath.row & 0x1)? COLOR_GRAY : COLOR_WHITE;
+    [super tableView:tableView willDisplayCell:cell forRowAtIndexPath:indexPath];
+}
 
 - (void)groupCell:(GroupCell *)cell goFollowGroup:(PBGroup *)group
 {
@@ -441,6 +479,7 @@ SET_CELL_BG_IN_CONTROLLER_EVEN(1)
                                       callback:^(NSError *error) {
        [self hideActivity];
        if (!error) {
+           [self setNeedRefreshFollowGroupTab];
            [self.dataTableView reloadRowsAtIndexPaths:@[cell.indexPath] withRowAnimation:UITableViewRowAnimationFade];
        }                                          
     }];
@@ -453,8 +492,15 @@ SET_CELL_BG_IN_CONTROLLER_EVEN(1)
                                         callback:^(NSError *error) {
         [self hideActivity];
         if (!error) {
-            [self.dataTableView reloadRowsAtIndexPaths:@[cell.indexPath] withRowAnimation:UITableViewRowAnimationFade];
-        }                                          
+            
+            if (self.currentTabID == GroupTabGroupFollow) {
+                [self.tabDataList removeObjectAtIndex:cell.indexPath.row];
+                [self.dataTableView deleteRowsAtIndexPaths:@[cell.indexPath] withRowAnimation:UITableViewRowAnimationFade];
+            }else{
+                [self setNeedRefreshFollowGroupTab];
+                [self.dataTableView reloadRowsAtIndexPaths:@[cell.indexPath] withRowAnimation:UITableViewRowAnimationFade];
+            }
+        }
                                             
     }];
 }

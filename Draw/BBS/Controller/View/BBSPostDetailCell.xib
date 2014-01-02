@@ -57,7 +57,7 @@
 					<object class="IBUIImageView" id="541136629">
 						<reference key="NSNextResponder" ref="137148075"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrameSize">{45, 45}</string>
+						<string key="NSFrame">{{3.5, 3.5}, {38, 38}}</string>
 						<reference key="NSSuperview" ref="137148075"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="369548783"/>
@@ -173,6 +173,7 @@
 						<string key="NSFrame">{{250, 155}, {40, 15}}</string>
 						<reference key="NSSuperview" ref="137148075"/>
 						<reference key="NSWindow"/>
+						<reference key="NSNextKeyView"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIUserInteractionEnabled">NO</bool>
@@ -270,7 +271,7 @@
 					<object class="IBUIButton" id="369548783">
 						<reference key="NSNextResponder" ref="137148075"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{-2, 47}, {45, 18}}</string>
+						<string key="NSFrame">{{0, 44}, {45, 18}}</string>
 						<reference key="NSSuperview" ref="137148075"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="849593661"/>
@@ -524,25 +525,17 @@
 				<object class="IBPartialClassDescription">
 					<string key="className">BBSPostDetailCell</string>
 					<string key="superclassName">BBSTableViewCell</string>
-					<dictionary class="NSMutableDictionary" key="actions">
-						<string key="clickCommentButton:">id</string>
-						<string key="clickSeeMeOnly:">id</string>
-						<string key="clickSupportButton:">id</string>
-					</dictionary>
-					<dictionary class="NSMutableDictionary" key="actionInfosByName">
-						<object class="IBActionInfo" key="clickCommentButton:">
-							<string key="name">clickCommentButton:</string>
-							<string key="candidateClassName">id</string>
-						</object>
-						<object class="IBActionInfo" key="clickSeeMeOnly:">
+					<object class="NSMutableDictionary" key="actions">
+						<string key="NS.key.0">clickSeeMeOnly:</string>
+						<string key="NS.object.0">id</string>
+					</object>
+					<object class="NSMutableDictionary" key="actionInfosByName">
+						<string key="NS.key.0">clickSeeMeOnly:</string>
+						<object class="IBActionInfo" key="NS.object.0">
 							<string key="name">clickSeeMeOnly:</string>
 							<string key="candidateClassName">id</string>
 						</object>
-						<object class="IBActionInfo" key="clickSupportButton:">
-							<string key="name">clickSupportButton:</string>
-							<string key="candidateClassName">id</string>
-						</object>
-					</dictionary>
+					</object>
 					<dictionary class="NSMutableDictionary" key="outlets">
 						<string key="markedFlag">UIButton</string>
 						<string key="reward">UIButton</string>

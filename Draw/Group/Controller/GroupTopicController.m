@@ -171,6 +171,11 @@ typedef enum {
     [self.titleView setTitle:_group.name];
     [self updateFooterView];
     [self.dataTableView reloadData];
+    if (_group.bgImageURL) {
+        [self setBGImageURL:_group.bgImageURL];
+    }else{
+        [self setDefaultBGImage];
+    }
 }
 
 - (void)viewDidLoad
@@ -258,19 +263,14 @@ typedef enum {
     if (self.infoCell == nil) {
         self.infoCell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"GroupInfoCell"];
         GroupInfoView *infoView = [GroupInfoView infoViewWithGroup:_group];
-        infoView.autoresizingMask |= (UIViewAutoresizingFlexibleTopMargin|UIViewAutoresizingFlexibleHeight|UIViewAutoresizingFlexibleBottomMargin);
-        [infoView updateHeight:CGRectGetHeight(self.infoCell.contentView.frame)];
-        infoView.delegate = self;
         UIButton *info = [UIButton buttonWithType:UIButtonTypeCustom];
         [info setImage:[UIImage imageNamed:@"user_detail_more@2x.png"] forState:UIControlStateNormal];
         info.userInteractionEnabled = NO;
-//        info.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin;
         [infoView setCustomButton:info];
         
         [self.infoCell.contentView addSubview:infoView];
         [self.infoCell.contentView setClipsToBounds:NO];
         [self.infoCell setClipsToBounds:NO];
-//        [infoView updateWidth:TABLEVIEW_WIDTH];
 
         
         [self.infoCell setSelectionStyle:UITableViewCellSelectionStyleNone];
@@ -408,11 +408,6 @@ typedef enum {
     [self clickTab:NewestTopic];
 }
 
-- (void)groupInfoView:(GroupInfoView *)infoView didClickCustomButton:(UIButton *)button
-{
-    //TODO enter detail controller.
-    PPDebug(@"enter detail controller.");
-}
 
 - (void)didGetBBSBoard:(NSString *)boardId
               postList:(NSArray *)postList
