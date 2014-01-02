@@ -1,13 +1,16 @@
 PODS:
-  - GPUImage (0.1.1)
+  - CKCalendar (1.0.0)
+  - GPUImage (0.1.2)
   - PEPhotoCropEditor (1.2.2)
 
 DEPENDENCIES:
+  - CKCalendar
   - GPUImage
   - PEPhotoCropEditor
 
 SPEC CHECKSUMS:
-  GPUImage: b9840114a0ad0323801c2e0aa2752679057f808d
+  CKCalendar: c8a377cc0ddd24cef51bd45aa0c25abbcaa3d92b
+  GPUImage: 007145faa0e27f1ddbcab93e07f026c9776e2fa2
   PEPhotoCropEditor: 526c0e14b34568dba372f2ee36066fc5a45ad120
 
 COCOAPODS: 0.28.0

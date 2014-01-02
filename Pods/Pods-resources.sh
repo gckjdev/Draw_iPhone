@@ -41,6 +41,10 @@ install_resource()
       ;;
   esac
 }
+install_resource "CKCalendar/Source/resources/left_arrow.png"
+install_resource "CKCalendar/Source/resources/left_arrow@2x.png"
+install_resource "CKCalendar/Source/resources/right_arrow.png"
+install_resource "CKCalendar/Source/resources/right_arrow@2x.png"
 install_resource "GPUImage/framework/Resources/lookup.png"
 install_resource "GPUImage/framework/Resources/lookup_amatorka.png"
 install_resource "GPUImage/framework/Resources/lookup_miss_etikate.png"
