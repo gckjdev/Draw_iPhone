@@ -389,8 +389,7 @@
     if (resultCode == 0) {
 //        messageList = [[PPMessageManager defaultManager] getMessageList:self.fid];
         NSArray* messageList = [self getMessageList];
-        list = messageList;
-        int newMessageCount = [list count];
+        int newMessageCount = [messageList count];
 
         if (!forward && newMessageCount < [self loadMoreDataCount]) {
             [self.refreshHeaderView setHidden:YES];
@@ -398,9 +397,9 @@
         }
 
         [self reloadTableView];
-        if (newMessageCount == 0) {
-            return;
-        }
+//        if (newMessageCount == 0) {
+//            return;
+//        }
 
         if (forward || insertMiddle) {
             [self tableViewScrollToBottom:YES];
