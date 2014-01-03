@@ -139,7 +139,12 @@ typedef enum {
             [spc release];
         }
             break;
-            
+        case GroupContest:
+        {
+            //TODO contest
+        }
+            break;
+
         default:
             break;
     }

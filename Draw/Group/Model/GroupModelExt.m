@@ -27,6 +27,9 @@ typedef enum{
     TypeAcceptMemberInvitation = 10,
     TypeAcceptGuestInvitation = 11,
     
+    TypeChargeGroup = 12,
+    TypeTransferGroupBalance = 13,
+    
 }NoticeType;
 
 
@@ -74,9 +77,14 @@ typedef enum{
             return [NSString stringWithFormat:NSLS(@"kGroupRejectGuestInvitationDesc"), [self publisherName], [self targetName], self.groupName];
             
         case TypeAcceptMemberInvitation:
-            return [NSString stringWithFormat:NSLS(@"TypeAcceptMemberInvitation"), [self publisherName], self.groupName];
+            return [NSString stringWithFormat:NSLS(@"kTypeAcceptMemberInvitationDesc"), [self publisherName], self.groupName];
         case TypeAcceptGuestInvitation:
-            return [NSString stringWithFormat:NSLS(@"TypeAcceptGuestInvitation"), [self publisherName], self.groupName];
+            return [NSString stringWithFormat:NSLS(@"kTypeAcceptGuestInvitationDesc"), [self publisherName], self.groupName];
+        case TypeChargeGroup:
+            return [NSString stringWithFormat:NSLS(@"kTypeChargeGroupDesc"), [self publisherName], self.groupName, self.amount];
+        case TypeTransferGroupBalance:
+            return [NSString stringWithFormat:NSLS(@"kTypeTransferGroupBalanceDesc"), [self publisherName], self.groupName, self.amount, [self targetName]];
+            
 
         default:
             return nil;

@@ -18,6 +18,9 @@
 
 #define ZJH_TIME_INTERVAL 15
 
+#define GET_UMENG_INTVAL(key, intValue) [MobClickUtils getIntValueByKey:key defaultValue:intValue]
+
+
 @implementation PPConfigManager
 
 + (int)defaultHomeControllerFeedType
@@ -1301,5 +1304,54 @@
     
     return [MobClickUtils getStringValueByKey:@"SING_OPUS_DEFAULT_NAME" defaultValue:NSLS(@"kDefaultSingOpusName")];
 }
+
+
+
+
+
+/////GROUP CONSTANT
+
+
++ (NSInteger)getGroupCapacityRatio{
+    return GET_UMENG_INTVAL(@"GROUP_CAPACITY_RATIO", 10);
+}
+
++ (NSInteger)getGroupGuestCapacityRatio{
+    return GET_UMENG_INTVAL(@"GROUP_GUEST_CAPACITY_RATIO", 5);
+}
+
++ (NSInteger)getGroupCreationFeeRatio{
+    return GET_UMENG_INTVAL(@"GROUP_CREATION_FEE_RATIO", 100);
+}
+
++ (NSInteger)getGroupNameMaxLength{
+    return GET_UMENG_INTVAL(@"GROUP_NAME_MAX_LENGTH", 14);
+}
+
++ (NSInteger)getGroupTitleNameMaxLength{
+    return GET_UMENG_INTVAL(@"GROUP_TITLE_NAME_MAX_LENGTH", 14);
+}
+
++ (NSInteger)getGroupIntroduceMaxLength{
+    return GET_UMENG_INTVAL(@"GROUP_INTRODUCE_MAX_LENGTH", 500);
+}
+
++ (NSInteger)getGroupSignatureMaxLength{
+    return GET_UMENG_INTVAL(@"GROUP_SIGNATURE_MAX_LENGTH", 140);
+}
+
++ (NSInteger)getGroupMaxLevel{
+    return GET_UMENG_INTVAL(@"GROUP_MAX_LEVEL", 20);
+}
+
++ (NSInteger)getUpgradeGroupFeePerLevel{
+    return GET_UMENG_INTVAL(@"UPGRADE_FEE_PER_LEVEL", 100);
+}
+
++ (NSInteger)getQuitGroupFee{
+    return GET_UMENG_INTVAL(@"FEE_FOR_QUIT_GROUP", 188);
+}
+
+
 
 @end

@@ -283,6 +283,18 @@ static BBSImageManager* _staticBBSImageManager;
     return [_resService imageByName:imageName inResourcePackage:RESOURCE_PACKAGE_BBS];
 }
 
+- (UIImage *)bbsPostDetailFavor
+{
+    NSString *imageName = [UIImage fixImageName:@"bbs_post_detail_favor"];
+    return [_resService imageByName:imageName inResourcePackage:RESOURCE_PACKAGE_BBS];
+    
+}
+- (UIImage *)bbsPostDetailUnfavor
+{
+    NSString *imageName = [UIImage fixImageName:@"bbs_post_detail_unfavor"];
+    return [_resService imageByName:imageName inResourcePackage:RESOURCE_PACKAGE_BBS];    
+}
+
 - (UIImage *)bbsPostDetailMark
 {
     NSString *imageName = [UIImage fixImageName:@"bbs_post_detail_mark"];

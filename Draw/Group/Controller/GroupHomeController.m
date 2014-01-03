@@ -39,7 +39,8 @@
     if (self) {
         groupService = [GroupService defaultService];
         [groupService syncFollowGroupIds];
-        [groupService syncGroupRoles];        
+        [groupService syncGroupRoles];
+        [groupService syncFollowTopicIds];        
     }
     return self;
 }
@@ -378,6 +379,12 @@
             [gnc release];
         }
             break;
+         case GroupContest:
+        {
+            //TODO contest
+        }
+            break;
+            
         default:
             break;
     }
