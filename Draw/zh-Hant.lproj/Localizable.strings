@@ -2212,15 +2212,19 @@
 "kOutOfMaxLength" = "文字長度不能超過%d。";
 
 "kCanInputIntRange" = "輸入數字:(%d - %d)";
-"kCan'tUpgradeMaxLevel" = "家族已經等級已經是頂級(%d級)了";
+"kCan'tUpgradeMaxLevel" = "家族已經等級已經是頂級(%d級)了。";
 "kUpgradeGroupTitle" = "將花費家族%d金幣";
 "kDegradeGroup" = "對不起，輸入不能低於當前等級。";
 "kUpgradingGroup" = "升級家族中...";
 "kQuitGroupTitle" = "退出家族";
 "kQuitGroupMessage" = "退出家族將會扣除%d金幣，確定退出嗎？";
+"kGuestQuitGroupMessage" = "確定要退出家族嗎？";
 "kGroupTitleEmpty" = "家族的職位不能為空。";
 "kTitleCountLimited" = "自定義職位不能超過%d，想增加職位限額請先升級群。";
 "kDeleteNotEmptyTitleError" = "刪除職位之前請保證職位裏沒有成員了。";
+
+"kCan'tCreateGroup" = "你已經是%@的成員了，不能再創建家族了。";
+
 
 "kShareByEmailSuccess" = "郵件分享成功";
 

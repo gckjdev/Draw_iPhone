@@ -72,7 +72,7 @@
 
 - (CGSize)sizeForLabel:(UILabel *)label
 {
-    CGFloat width = CGRectGetWidth(label.bounds);
+    CGFloat width = LABEL_WIDTH;//CGRectGetWidth(label.bounds);
     CGSize size = [label.text sizeWithFont:label.font constrainedToSize:CGSizeMake(width, 9999999) lineBreakMode:NSLineBreakByCharWrapping];
     if (!CGSizeEqualToSize(size, CGSizeZero)) {
         size.height += LABEL_Y_INSET;
