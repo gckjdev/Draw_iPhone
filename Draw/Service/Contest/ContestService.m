@@ -128,13 +128,10 @@ static ContestService *_staticContestService;
             NSArray *contestList = nil;
             if (output.resultCode == 0 && output.pbResponse.contestListList){
                 contestList = [[ContestManager defaultManager] parseContestList:output.pbResponse.contestListList];
-                if (type == ContestListTypeAll) {
-                    [[ContestManager defaultManager] setAllContestList:output.pbResponse.contestListList];
-                }
             }
             
             if (delegate && [delegate respondsToSelector:@selector(didGetContestList:type:resultCode:)]) {
-                [delegate didGetContestList:contestList type:type resultCode:output.resultCode];
+                [delegate didGetContestList:contestList type:ContestListTypeAll resultCode:output.resultCode];
             }
             
         });
@@ -163,13 +160,10 @@ static ContestService *_staticContestService;
             NSArray *contestList = nil;
             if (output.resultCode == 0 && output.pbResponse.contestListList){
                 contestList = [[ContestManager defaultManager] parseContestList:output.pbResponse.contestListList];
-                if (type == ContestListTypeAll) {
-                    [[ContestManager defaultManager] setAllContestList:output.pbResponse.contestListList];
-                }
             }
             
             if (delegate && [delegate respondsToSelector:@selector(didGetContestList:type:resultCode:)]) {
-                [delegate didGetContestList:contestList type:type resultCode:output.resultCode];
+                [delegate didGetContestList:contestList type:ContestListTypeAll resultCode:output.resultCode];
             }
             
         });
