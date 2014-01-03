@@ -16,6 +16,8 @@
 
 @property (nonatomic) BOOL keepingAspectRatio;
 
+@property (nonatomic) BOOL allowEdit;
+
 @end
 
 @protocol PECropRectViewDelegate <NSObject>
