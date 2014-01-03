@@ -860,6 +860,7 @@ BOOL PBGroupUserTypeIsValidValue(PBGroupUserType value);
   NSMutableArray* mutableWinnerUsersList;
   NSMutableArray* mutableAwardUsersList;
   NSMutableArray* mutableRankTypesList;
+  NSMutableArray* mutableAwardRulesList;
 }
 - (BOOL) hasContestId;
 - (BOOL) hasStartDate;
@@ -921,6 +922,8 @@ BOOL PBGroupUserTypeIsValidValue(PBGroupUserType value);
 - (PBUserAward*) awardUsersAtIndex:(int32_t) index;
 - (NSArray*) rankTypesList;
 - (PBIntKeyValue*) rankTypesAtIndex:(int32_t) index;
+- (NSArray*) awardRulesList;
+- (PBIntKeyIntValue*) awardRulesAtIndex:(int32_t) index;
 
 + (PBContest*) defaultInstance;
 - (PBContest*) defaultInstance;
@@ -1119,6 +1122,13 @@ BOOL PBGroupUserTypeIsValidValue(PBGroupUserType value);
 - (NSString*) rule;
 - (PBContest_Builder*) setRule:(NSString*) value;
 - (PBContest_Builder*) clearRule;
+
+- (NSArray*) awardRulesList;
+- (PBIntKeyIntValue*) awardRulesAtIndex:(int32_t) index;
+- (PBContest_Builder*) replaceAwardRulesAtIndex:(int32_t) index with:(PBIntKeyIntValue*) value;
+- (PBContest_Builder*) addAwardRules:(PBIntKeyIntValue*) value;
+- (PBContest_Builder*) addAllAwardRules:(NSArray*) values;
+- (PBContest_Builder*) clearAwardRulesList;
 @end
 
 @interface PBContestList : PBGeneratedMessage {

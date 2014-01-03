@@ -34,7 +34,7 @@
 - (void)setStartDate:(NSDate *)startDate{
     
     NSTimeInterval interval = [startDate timeIntervalSince1970];
-    [_pbContestBuilder setStartDate:interval];
+    [_pbContestBuilder setStartDate:interval];    
 }
 
 - (NSDate *)endDate
@@ -45,7 +45,7 @@
 - (void)setEndDate:(NSDate *)endDate{
     
     NSTimeInterval interval = [endDate timeIntervalSince1970];
-    [_pbContestBuilder setEndDate:interval];
+    [_pbContestBuilder setEndDate:interval];    
 }
 
 - (NSDate *)voteStartDate
@@ -58,6 +58,12 @@
     }
 }
 
+- (void)setVoteStartDate:(NSDate *)voteStartDate{
+    
+    NSTimeInterval interval = [voteStartDate timeIntervalSince1970];
+    [_pbContestBuilder setVoteStartDate:interval];
+}
+
 - (NSDate *)voteEndDate
 {
     if (_pbContestBuilder.voteEndDate > 0){
@@ -66,6 +72,12 @@
     else{
         return self.endDate;
     }
+}
+
+- (void)setVoteEndDate:(NSDate *)voteEndDate{
+    
+    NSTimeInterval interval = [voteEndDate timeIntervalSince1970];
+    [_pbContestBuilder setVoteEndDate:interval];
 }
 
 - (ContestStatus)status
@@ -391,7 +403,7 @@
     Contest *contest = [[[Contest alloc] init] autorelease];
     contest.pbContestBuilder = [[[PBContest_Builder alloc] init] autorelease];
     [contest.pbContestBuilder setContestId:@""];
-    [contest.pbContestBuilder setJoinersType:0];
+    [contest.pbContestBuilder setStatementUrl:@""];
     [contest.pbContestBuilder setCategory:[GameApp getCategory]];
     [contest.pbContestBuilder setCanSubmitCount:1];         // by default
     [contest.pbContestBuilder setMaxFlowerPerOpus:3];       // by default
@@ -404,18 +416,27 @@
 
     [contest.pbContestBuilder setGroup:[pbGroupBuilder build]];
     
+    
+    [contest setJoinersType:0];
+    
     NSDate *startDate = nextDate([NSDate date]);
-    [contest.pbContestBuilder setStartDate:[startDate timeIntervalSince1970]];
+    [contest setStartDate:startDate];
     
     NSDate *endDate = [[[NSDate alloc] initWithTimeInterval:24*3600*7 sinceDate:startDate] autorelease];
-    [contest.pbContestBuilder setEndDate:[endDate timeIntervalSince1970]];
+    [contest setEndDate:endDate];
     
-    [contest.pbContestBuilder setVoteStartDate:startDate];          // by default
-    [contest.pbContestBuilder setVoteEndDate:nextDate(endDate)];    // by default
+    [contest setVoteStartDate:startDate];          // by default
+    [contest setVoteEndDate:nextDate(endDate)];    // by default
+    
     [contest.pbContestBuilder setIsAnounymous:YES];
     [contest.pbContestBuilder setContestantsOnly:NO];
 
     contest.pbContestBuilder = [PBContest builderWithPrototype:contest.pbContest];
+    
+    [contest setAwardRules:@[@"5000", @"2000", @"1000", @"300", @"300",
+                            @"300",  @"300",  @"300",  @"300", @"300",
+                            @"300",  @"300",  @"300",  @"300", @"300",
+                            @"300",  @"300",  @"300",  @"300", @"300"]];
     
     return contest;
 }
@@ -444,6 +465,42 @@
 - (NSArray *)joinersTypeStringArray{
     
     return @[NSLS(@"kEveryone"), NSLS(@"kGroupMember"), NSLS(@"kGroupMemberAndGuest")];
+}
+
+- (void)setAwardRules:(NSArray *)awards{
+    
+    NSMutableArray *awardRules = [NSMutableArray array];
+    for (int i = 0; i < [awards count]; i ++) {
+        
+        PBIntKeyIntValue_Builder *builder = [[PBIntKeyIntValue_Builder alloc] init];
+        [builder setKey:(i+1)];
+        NSNumber *award = awards[i];
+        [builder setValue:award.intValue];
+        
+        [awardRules addObject:[builder build]];
+        [builder release];
+    }
+    
+    [_pbContestBuilder clearAwardRulesList];
+    [_pbContestBuilder addAllAwardRules:awardRules];
+}
+
+- (NSString *)awardRulesDesc{
+    
+    NSString *desc = @"";
+    NSArray *awardRules = _pbContestBuilder.awardRulesList;
+    for (int i = 0; i < [awardRules count]; i ++) {
+        
+        PBIntKeyIntValue *award = [awardRules objectAtIndex:i];
+        desc = [desc stringByAppendingString:[self descForAward:award]];
+    }
+    
+    return desc;
+}
+
+- (NSString *)descForAward:(PBIntKeyIntValue *)award{
+
+    return [NSString stringWithFormat:NSLS(@"kNumberXGetAwardX"), award.key, award.value];
 }
 
 @end

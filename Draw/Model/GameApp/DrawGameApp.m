@@ -19,6 +19,11 @@
 
 @implementation DrawGameApp
 
+- (int)getCategory{
+    
+    return PBOpusCategoryTypeDrawCategory;
+}
+
 - (NSString*)appId
 {
     return DRAW_APP_ID;

@@ -19,6 +19,7 @@
 
 @protocol GameAppProtocol <NSObject>
 
+- (int)getCategory;
 - (NSString*)appId;
 - (NSString*)gameId;
 - (NSString*)umengId;

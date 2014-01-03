@@ -2516,6 +2516,7 @@
 "kContestRules" = "比賽規則";
 "kContestJoiners" = "參賽成員";
 "kContestImage" = "比賽海報";
+"kContestAward" = "比賽獎勵";
 "kInputContestName" = "請輸入比賽名稱";
 
 "kEveryone" = "所有人";
@@ -2524,3 +2525,5 @@
 
 "kContestNameCannotBeBlank" = "比賽名稱不能為空";
 "kPleaseSelectContestImage" = "請選擇一副圖片作為比賽海報";
+"kCreateContestSuccess" = "成功創建比賽";
+"kNumberXGetAwardX" = "第%d名 %d金幣\n";
