@@ -142,7 +142,7 @@
     
     self.contestNameInputField.placeholder = NSLS(@"kInputContestName");
     [self.joinerButton setTitle:[self.contest joinersTypeString] forState:UIControlStateNormal];
-    [self.contestAwardButton setTitle:[self.contest awardRulesDesc] forState:UIControlStateNormal];
+    [self.contestAwardButton setTitle:[self.contest awardRulesShortDesc] forState:UIControlStateNormal];
     
     NSString *startDateString = dateToStringByFormat(self.contest.startDate, DATE_FORMAT);
     [self.startTimeButton setTitle:startDateString forState:UIControlStateNormal];

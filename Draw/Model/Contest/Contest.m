@@ -485,17 +485,15 @@
     [_pbContestBuilder addAllAwardRules:awardRules];
 }
 
-- (NSString *)awardRulesDesc{
+- (NSString *)awardRulesShortDesc{
     
-    NSString *desc = @"";
     NSArray *awardRules = _pbContestBuilder.awardRulesList;
-    for (int i = 0; i < [awardRules count]; i ++) {
-        
-        PBIntKeyIntValue *award = [awardRules objectAtIndex:i];
-        desc = [desc stringByAppendingString:[self descForAward:award]];
+    if ([awardRules count] > 0) {
+        PBIntKeyIntValue *award = [awardRules objectAtIndex:0];
+        return [self descForAward:award];
+    }else{
+        return nil;
     }
-    
-    return desc;
 }
 
 - (NSString *)descForAward:(PBIntKeyIntValue *)award{
