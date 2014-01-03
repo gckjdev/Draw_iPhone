@@ -77,7 +77,7 @@ static const CGFloat MarginRight = MarginLeft;
     UIRotationGestureRecognizer *rotationGestureRecognizer = [[UIRotationGestureRecognizer alloc] initWithTarget:self action:@selector(handleRotation:)];
     rotationGestureRecognizer.delegate = self;
     [self.scrollView addGestureRecognizer:rotationGestureRecognizer];
-    
+        
     self.cropRectView = [[PECropRectView alloc] init];
     self.cropRectView.delegate = self;
     [self addSubview:self.cropRectView];
@@ -97,6 +97,9 @@ static const CGFloat MarginRight = MarginLeft;
     self.bottomOverlayView = [[UIView alloc] init];
     self.bottomOverlayView.backgroundColor = [UIColor colorWithWhite:0.0f alpha:0.4f];
     [self addSubview:self.bottomOverlayView];
+    
+    self.allowRotateImage = YES;
+    self.allowResizeCropRect = YES;
 }
 
 #pragma mark -
@@ -202,17 +205,26 @@ static const CGFloat MarginRight = MarginLeft;
 
 #pragma mark -
 
-- (void)setImage:(UIImage *)image
+- (void)setImage:(UIImage *)image{
+    
+    [self setImage:image needsLayout:YES];
+}
+
+- (void)setImage:(UIImage *)image needsLayout:(BOOL)needsLayout
 {
     _image = image;
-    
-    [self.imageView removeFromSuperview];
-    self.imageView = nil;
-    
-    [self.zoomingView removeFromSuperview];
-    self.zoomingView = nil;
-    
-    [self setNeedsLayout];
+
+    if (needsLayout) {
+        [self.imageView removeFromSuperview];
+        self.imageView = nil;
+        
+        [self.zoomingView removeFromSuperview];
+        self.zoomingView = nil;
+        
+        [self setNeedsLayout];
+    }else{
+        self.imageView.image = self.image;
+    }
 }
 
 - (void)setKeepingCropAspectRatio:(BOOL)keepingCropAspectRatio
@@ -263,6 +275,12 @@ static const CGFloat MarginRight = MarginLeft;
 
 - (UIImage *)croppedImage
 {
+
+    if ([self.image respondsToSelector:@selector(rotatedImageWithtransform:croppedToRect:)]) {
+        NSLog(@"<rotatedImageWithtransform> is responed.");
+    }else{
+        NSLog(@"<rotatedImageWithtransform> is not responed.");
+    }
     return [self.image rotatedImageWithtransform:self.rotation croppedToRect:self.zoomedCropRect];
 }
 
@@ -380,7 +398,6 @@ static const CGFloat MarginRight = MarginLeft;
     CGRect cropRect = [self cappedCropRectInImageRectWithCropRectView:cropRectView];
     
     [self layoutCropRectViewWithCropRect:cropRect];
-    
     [self automaticZoomIfEdgeTouched:cropRect];
 }
 
@@ -429,6 +446,10 @@ static const CGFloat MarginRight = MarginLeft;
 
 - (void)handleRotation:(UIRotationGestureRecognizer *)gestureRecognizer
 {
+    if (_allowRotateImage == NO) {
+        return;
+    }
+    
     CGFloat rotation = gestureRecognizer.rotation;
     
     CGAffineTransform transform = CGAffineTransformRotate(self.imageView.transform, rotation);
@@ -458,6 +479,11 @@ static const CGFloat MarginRight = MarginLeft;
 {
     CGPoint contentOffset = scrollView.contentOffset;
     *targetContentOffset = contentOffset;
+}
+
+- (void)setAllowResizeCropRect:(BOOL)allowResizeCropRect{
+    
+    self.cropRectView.allowEdit = allowResizeCropRect;
 }
 
 @end
