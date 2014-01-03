@@ -2141,7 +2141,7 @@
 "kTypeTransferGroupBalanceDesc" = "%@, from %@, transfered %d coins to %@";
 
 
-"kGroupDetailRowWeath" = "Fame: %d  Balance: %d  Level: %d";
+"kGroupDetailRowWeath" = "Fame: %d  Level: %d  Balance: %ld";
 "kGroupDetailRowCreateDate" = "Create date %@";
 "kGroupDetailRowDesc" = "Description: %@";
 "kGroupDetailRowFee" = "Fee: %d coins/month";

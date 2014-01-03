@@ -2176,7 +2176,7 @@
 "kTitleCountLimited" = "自定义职位不能超过%d，想增加职位限额请先升级群。";
 "kDeleteNotEmptyTitleError" = "删除职位之前请保证职位里没有成员了。";
 
-"kGroupDetailRowWeath" = "声望 %d  财富 %d  等级 %d";
+"kGroupDetailRowWeath" = "声望 %d  等级 %d  财富 %ld";
 "kGroupDetailRowCreateDate" = "创建时间 %@";
 "kGroupDetailRowDesc" = "说明 %@";
 "kGroupDetailRowFee" = "会费 %d金币/月";
