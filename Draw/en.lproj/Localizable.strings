@@ -2504,6 +2504,7 @@
 "kContestRules" = "Rules";
 "kContestJoiners" = "Joiners";
 "kContestImage" = "Image";
+"kContestAward" = "Award";
 "kInputContestName" = "Input Contest Name";
 
 "kEveryone" = "For every one";
@@ -2512,3 +2513,5 @@
 
 "kContestNameCannotBeBlank" = "Contest name can not be blank";
 "kPleaseSelectContestImage" = "Please select an image for contest";
+"kCreateContestSuccess" = "Create contest success";
+"kNumberXGetAwardX" = "Number %d get award %d coins\n";

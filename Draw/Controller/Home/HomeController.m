@@ -675,9 +675,9 @@ static NSDictionary* DRAW_MENU_IMAGE_DICT = nil;
 //                break;
 //            }
 //        }
-            
+//            
         {
-            CreateContestController *vc = [[[CreateContestController alloc] initWithGroupId:@""] autorelease];
+            CreateContestController *vc = [[[CreateContestController alloc] init] autorelease];
             [self.navigationController pushViewController:vc animated:YES];
         }
 

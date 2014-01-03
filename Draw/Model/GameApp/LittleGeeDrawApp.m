@@ -12,6 +12,11 @@
 
 @implementation LittleGeeDrawApp
 
+- (int)getCategory{
+    
+    return PBOpusCategoryTypeDrawCategory;
+}
+
 - (PPViewController*)homeController
 {
         return [[[HomeController alloc] init] autorelease];

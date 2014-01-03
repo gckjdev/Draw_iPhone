@@ -3037,6 +3037,7 @@ static PBGroupNotice* defaultPBGroupNoticeInstance = nil;
 @property (retain) PBGroup* group;
 @property int32_t joinersType;
 @property (retain) NSString* rule;
+@property (retain) NSMutableArray* mutableAwardRulesList;
 @end
 
 @implementation PBContest
@@ -3235,6 +3236,7 @@ static PBGroupNotice* defaultPBGroupNoticeInstance = nil;
   hasRule_ = !!value;
 }
 @synthesize rule;
+@synthesize mutableAwardRulesList;
 - (void) dealloc {
   self.contestId = nil;
   self.title = nil;
@@ -3248,6 +3250,7 @@ static PBGroupNotice* defaultPBGroupNoticeInstance = nil;
   self.mutableRankTypesList = nil;
   self.group = nil;
   self.rule = nil;
+  self.mutableAwardRulesList = nil;
   [super dealloc];
 }
 - (id) init {
@@ -3333,6 +3336,13 @@ static PBContest* defaultPBContestInstance = nil;
   id value = [mutableRankTypesList objectAtIndex:index];
   return value;
 }
+- (NSArray*) awardRulesList {
+  return mutableAwardRulesList;
+}
+- (PBIntKeyIntValue*) awardRulesAtIndex:(int32_t) index {
+  id value = [mutableAwardRulesList objectAtIndex:index];
+  return value;
+}
 - (BOOL) isInitialized {
   if (!self.hasContestId) {
     return NO;
@@ -3369,6 +3379,11 @@ static PBContest* defaultPBContestInstance = nil;
   }
   if (self.hasGroup) {
     if (!self.group.isInitialized) {
+      return NO;
+    }
+  }
+  for (PBIntKeyIntValue* element in self.awardRulesList) {
+    if (!element.isInitialized) {
       return NO;
     }
   }
@@ -3464,6 +3479,9 @@ static PBContest* defaultPBContestInstance = nil;
   }
   if (self.hasRule) {
     [output writeString:62 value:self.rule];
+  }
+  for (PBIntKeyIntValue* element in self.awardRulesList) {
+    [output writeMessage:63 value:element];
   }
   [self.unknownFields writeToCodedOutputStream:output];
 }
@@ -3563,6 +3581,9 @@ static PBContest* defaultPBContestInstance = nil;
   }
   if (self.hasRule) {
     size += computeStringSize(62, self.rule);
+  }
+  for (PBIntKeyIntValue* element in self.awardRulesList) {
+    size += computeMessageSize(63, element);
   }
   size += self.unknownFields.serializedSize;
   memoizedSerializedSize = size;
@@ -3747,6 +3768,12 @@ static PBContest* defaultPBContestInstance = nil;
   if (other.hasRule) {
     [self setRule:other.rule];
   }
+  if (other.mutableAwardRulesList.count > 0) {
+    if (result.mutableAwardRulesList == nil) {
+      result.mutableAwardRulesList = [NSMutableArray array];
+    }
+    [result.mutableAwardRulesList addObjectsFromArray:other.mutableAwardRulesList];
+  }
   [self mergeUnknownFields:other.unknownFields];
   return self;
 }
@@ -3908,6 +3935,12 @@ static PBContest* defaultPBContestInstance = nil;
       }
       case 498: {
         [self setRule:[input readString]];
+        break;
+      }
+      case 506: {
+        PBIntKeyIntValue_Builder* subBuilder = [PBIntKeyIntValue builder];
+        [input readMessage:subBuilder extensionRegistry:extensionRegistry];
+        [self addAwardRules:[subBuilder buildPartial]];
         break;
       }
     }
@@ -4483,6 +4516,35 @@ static PBContest* defaultPBContestInstance = nil;
 - (PBContest_Builder*) clearRule {
   result.hasRule = NO;
   result.rule = @"";
+  return self;
+}
+- (NSArray*) awardRulesList {
+  if (result.mutableAwardRulesList == nil) { return [NSArray array]; }
+  return result.mutableAwardRulesList;
+}
+- (PBIntKeyIntValue*) awardRulesAtIndex:(int32_t) index {
+  return [result awardRulesAtIndex:index];
+}
+- (PBContest_Builder*) replaceAwardRulesAtIndex:(int32_t) index with:(PBIntKeyIntValue*) value {
+  [result.mutableAwardRulesList replaceObjectAtIndex:index withObject:value];
+  return self;
+}
+- (PBContest_Builder*) addAllAwardRules:(NSArray*) values {
+  if (result.mutableAwardRulesList == nil) {
+    result.mutableAwardRulesList = [NSMutableArray array];
+  }
+  [result.mutableAwardRulesList addObjectsFromArray:values];
+  return self;
+}
+- (PBContest_Builder*) clearAwardRulesList {
+  result.mutableAwardRulesList = nil;
+  return self;
+}
+- (PBContest_Builder*) addAwardRules:(PBIntKeyIntValue*) value {
+  if (result.mutableAwardRulesList == nil) {
+    result.mutableAwardRulesList = [NSMutableArray array];
+  }
+  [result.mutableAwardRulesList addObject:value];
   return self;
 }
 @end

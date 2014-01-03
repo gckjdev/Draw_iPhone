@@ -17,6 +17,11 @@
 
 @implementation SingApp
 
+- (int)getCategory{
+    
+    return PBOpusCategoryTypeSingCategory;
+}
+
 - (PPViewController *)homeController{
     return [[[SingHomeController alloc] init] autorelease];
 }

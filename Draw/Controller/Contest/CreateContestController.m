@@ -16,6 +16,7 @@
 #import "ChangeAvatar.h"
 #import "StringUtil.h"
 #import "ContestService.h"
+#import "GroupManager.h"
 
 @interface CreateContestController ()<CKCalendarDelegate, UITextFieldDelegate>
 @property (retain, nonatomic) IBOutlet UILabel *contestNameLabel;
@@ -30,6 +31,8 @@
 @property (retain, nonatomic) IBOutlet UIButton *joinerButton;
 @property (retain, nonatomic) IBOutlet UILabel *contestImageLabel;
 @property (retain, nonatomic) IBOutlet UIButton *contestImageButton;
+@property (retain, nonatomic) IBOutlet UILabel *contestAwardLabel;
+@property (retain, nonatomic) IBOutlet UIButton *contestAwardButton;
 
 @property (retain, nonatomic) Contest* contest;
 @property (retain, nonatomic) CKCalendarView *calendar;
@@ -40,9 +43,10 @@
 
 @implementation CreateContestController
 
-- (id)initWithGroupId:(NSString *)groupId{
+- (id)init{
     
     if (self = [super init]) {
+        NSString *groupId = [[GroupManager defaultManager] userCurrentGroupId];
         self.contest = [Contest createGroupContestWithGroupId:groupId];
     }
     
@@ -67,6 +71,7 @@
     self.contestRuleLabel.text = NSLS(@"kContestRules");
     self.joinersLabel.text = NSLS(@"kContestJoiners");
     self.contestImageLabel.text = NSLS(@"kContestImage");
+    self.contestAwardLabel.text = NSLS(@"kContestAward");
     
     UIView *accessory = [[UIView alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(self.view.bounds), 30)];
     accessory.backgroundColor = [UIColor colorWithWhite:0 alpha:0.7];
@@ -89,6 +94,7 @@
     self.contestRuleLabel.textColor = COLOR_BROWN;
     self.joinersLabel.textColor = COLOR_BROWN;
     self.contestImageLabel.textColor = COLOR_BROWN;
+    self.contestAwardLabel.textColor = COLOR_BROWN;
 
     [self.startTimeButton setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
     [self.startTimeButton setTitleColor:[UIColor grayColor] forState:UIControlStateHighlighted];
@@ -96,6 +102,8 @@
     [self.endTimeButton setTitleColor:[UIColor grayColor] forState:UIControlStateHighlighted];
     [self.joinerButton setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
     [self.joinerButton setTitleColor:[UIColor grayColor] forState:UIControlStateHighlighted];
+    [self.contestAwardButton setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
+    [self.contestAwardButton setTitleColor:[UIColor grayColor] forState:UIControlStateHighlighted];
     
     [self.contestNameInputField.layer setCornerRadius:TEXT_VIEW_CORNER_RADIUS];
     [self.contestNameInputField.layer setMasksToBounds:YES];
@@ -127,8 +135,14 @@
     self.contestImageButton.layer.borderWidth = TEXT_VIEW_BORDER_WIDTH;
     self.contestImageButton.layer.borderColor = [COLOR_YELLOW CGColor];
     
+    [self.contestAwardButton.layer setCornerRadius:TEXT_VIEW_CORNER_RADIUS];
+    [self.contestAwardButton.layer setMasksToBounds:YES];
+    self.contestAwardButton.layer.borderWidth = TEXT_VIEW_BORDER_WIDTH;
+    self.contestAwardButton.layer.borderColor = [COLOR_YELLOW CGColor];
+    
     self.contestNameInputField.placeholder = NSLS(@"kInputContestName");
     [self.joinerButton setTitle:[self.contest joinersTypeString] forState:UIControlStateNormal];
+    [self.contestAwardButton setTitle:[self.contest awardRulesDesc] forState:UIControlStateNormal];
     
     NSString *startDateString = dateToStringByFormat(self.contest.startDate, DATE_FORMAT);
     [self.startTimeButton setTitle:startDateString forState:UIControlStateNormal];
@@ -181,7 +195,7 @@
     }
     
     [self.contest setTitle:self.contestNameInputField.text];
-    self.contest set
+    [self.contest setRule:self.contestRuleTextView.text];
     
     [[ContestService defaultService] createContest:self.contest
                                              image:self.image
@@ -189,8 +203,9 @@
         
         if (resultCode != 0) {
             POSTMSG2(NSLS(@"kLoadFail"), 2);
-            return;
-        }                                     
+        }else{
+            POSTMSG2(NSLS(@"kCreateContestSuccess"), 2);
+        }
     }];
 }
 
@@ -224,6 +239,7 @@
     if (calendar.tag == CALENDAR_TAG_START_TIME) {
         
         [self.contest setStartDate:date];
+        [self.contest setVoteStartDate:date];
         
         NSString *startDateString = dateToStringByFormat(self.contest.startDate, DATE_FORMAT);
         [self.startTimeButton setTitle:startDateString forState:UIControlStateNormal];
@@ -231,6 +247,7 @@
     }else if (calendar.tag == CALENDAR_TAG_END_TIME){
         
         [self.contest setEndDate:date];
+        [self.contest setVoteEndDate:nextDate(date)];
         
         NSString *endDateString = dateToStringByFormat(self.contest.endDate, DATE_FORMAT);
         [self.endTimeButton setTitle:endDateString forState:UIControlStateNormal];
@@ -273,6 +290,9 @@
     
 }
 
+- (IBAction)clickContestAwardButton:(id)sender {
+}
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
@@ -298,6 +318,8 @@
     [_calendarDismissButton release];
     [_picker release];
     [_image release];
+    [_contestAwardLabel release];
+    [_contestAwardButton release];
     [super dealloc];
 }
 
@@ -315,6 +337,8 @@
     [self setContestImageLabel:nil];
     [self setContestImageButton:nil];
     [self setContestNameInputField:nil];
+    [self setContestAwardLabel:nil];
+    [self setContestAwardButton:nil];
     [super viewDidUnload];
 }
 

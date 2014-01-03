@@ -32,8 +32,8 @@ typedef enum{
 @property(nonatomic, readonly) NSString *contestId;
 @property(nonatomic, assign) NSDate *startDate;
 @property(nonatomic, assign) NSDate *endDate;
-@property(nonatomic, readonly) NSDate *voteStartDate;
-@property(nonatomic, readonly) NSDate *voteEndDate;
+@property(nonatomic, assign) NSDate *voteStartDate;
+@property(nonatomic, assign) NSDate *voteEndDate;
 @property(nonatomic, readonly) ContestStatus status;
 @property(nonatomic, readonly) NSInteger participantCount;
 @property(nonatomic, readonly) NSInteger opusCount;
@@ -74,4 +74,6 @@ typedef enum{
 - (NSString *)joinersTypeString;
 - (NSArray *)joinersTypeStringArray;
 
+- (void)setAwardRules:(NSArray *)awardRules;
+- (NSString *)awardRulesDesc;
 @end

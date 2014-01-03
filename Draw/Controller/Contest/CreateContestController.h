@@ -10,6 +10,5 @@
 
 @interface CreateContestController : PPTableViewController
 
-- (id)initWithGroupId:(NSString *)groupId;
 
 @end

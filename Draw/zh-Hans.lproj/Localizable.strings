@@ -2512,6 +2512,7 @@
 "kContestRules" = "比赛规则";
 "kContestJoiners" = "参赛成员";
 "kContestImage" = "比赛海报";
+"kContestAward" = "比赛奖励";
 "kInputContestName" = "请输入比赛名称";
 
 "kEveryone" = "所有人";
@@ -2520,4 +2521,5 @@
 
 "kContestNameCannotBeBlank" = "比赛名称不能为空";
 "kPleaseSelectContestImage" = "请选择一副图片作为比赛海报";
-
+"kCreateContestSuccess" = "成功创建比赛";
+"kNumberXGetAwardX" = "第%d名 %d金币\n";
