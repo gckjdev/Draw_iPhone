@@ -378,9 +378,7 @@
     
 #ifdef DEBUG
     URL = @"http://192.168.1.12:8100/api/i?";
-    
 //    URL = @"http://localhost:8100/api/i?";
-    URL = @"http://192.168.1.12:8100/api/i?";
 #endif
     
     return [self uploadDataRequestWithBaseURL:URL

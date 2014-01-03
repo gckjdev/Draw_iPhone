@@ -134,6 +134,14 @@
 "kChargIngotSuccess" = "Charge succeed!";
 "kChargIngotFailure" = "Charge failed!";
 
+"kChargeIconSuccess" = "Charge succeed!";
+"kChargeIconFailure" = "Charge failed!";
+
+"kTransferBalance" = "Transfer accounts";
+"kTransferingBalance" = "Transfering";
+"kTransferBalanceSuccess" = "Transfer succeed!";
+"kNegativeInput" = "Input must be a positive number";
+
 "kCoinsNotEnoughTitle" = "Message";
 "kCoinsNotEnough" = "Sorry, you don't have enough coins. Do you want to purchase coins now?";
 "kCoinsNotEnoughTips" = "Sorry, you coins are less than %d. You can purchase coins after the game";
@@ -2125,8 +2133,11 @@
 "kGroupInviteGuestDesc" = "%@ invited %@ to be the guest of %@.";
 "kGroupRejectMemberInvitationDesc" = "%@ rejectd to join %@.";
 "kGroupRejectGuestInvitationDesc" = "%@ rejectd to be the guest of %@.";
-"TypeAcceptMemberInvitation" = "%@ agreed to join %@.";
-"TypeAcceptGuestInvitation" = "%@ agreed to be the guest of %@.";
+"kTypeAcceptMemberInvitationDesc" = "%@ agreed to join %@.";
+"kTypeAcceptGuestInvitationDesc" = "%@ agreed to be the guest of %@.";
+"kTypeChargeGroupDesc" = "%@ charged %@ %d coins";
+"kTypeTransferGroupBalanceDesc" = "%@, from %@, transfered %d coins to %@";
+
 
 "kGroupDetailRowWeath" = "Fame: %d  Balance: %d  Level: %d";
 "kGroupDetailRowCreateDate" = "Create date %@";
@@ -2157,11 +2168,16 @@
 "kTextCanotBeNil" = "Input can't be empty.";
 "kOutOfMaxLength" = "Text length should be less than %d.";
 
-"kUpgradeGroupTitle" = "Input expect level.";
+"kCan'tUpgradeMaxLevel" = "Can't upgrade, reach max level(%d).";
+"kInputInvalid" = "Input invalid!";
+
+
+"kCanInputIntRange" = "Input:(%d - %d)";
+"kUpgradeGroupTitle" = "Spend %d coins of goups.";
 "kDegradeGroup" = "Can't degrade group.";
 "kUpgradingGroup" = "Upgrading Group...";
 "kQuitGroupTitle" = "Quit Group";
-"kQuitGroupMessage" = "Are you sure to quit the group?";
+"kQuitGroupMessage" = "Quit a group will spend you %d coins. Continue?";
 "kGroupTitleEmpty" = "Group title should not be empty.";
 
 "kUpdateTitle" = "Update Title";

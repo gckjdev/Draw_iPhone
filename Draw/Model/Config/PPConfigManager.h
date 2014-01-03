@@ -326,4 +326,15 @@ typedef enum{
 + (int)defaultHotControllerIndex;
 + (int)defaultHomeControllerFeedType;
 
++ (NSInteger)getGroupCapacityRatio;
++ (NSInteger)getGroupGuestCapacityRatio;
++ (NSInteger)getGroupCreationFeeRatio;
++ (NSInteger)getGroupNameMaxLength;
++ (NSInteger)getGroupTitleNameMaxLength;
++ (NSInteger)getGroupIntroduceMaxLength;
++ (NSInteger)getGroupSignatureMaxLength;
++ (NSInteger)getGroupMaxLevel;
++ (NSInteger)getUpgradeGroupFeePerLevel;
++ (NSInteger)getQuitGroupFee;
+
 @end

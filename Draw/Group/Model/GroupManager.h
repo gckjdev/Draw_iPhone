@@ -28,7 +28,9 @@
 + (id)defaultManager;
 
 + (NSInteger)capacityForLevel:(NSInteger)level;
-+ (NSInteger)monthlyFeeForLevel:(NSInteger)level;
++ (NSInteger)creationFeeForLevel:(NSInteger)level;
+
++ (NSInteger)upgradeFeeFromLevel:(NSInteger)from toLevel:(NSInteger)to;
 
 + (NSArray *)defaultTypesInGroupHomeFooterForTab:(GroupTab)tab;
 + (NSArray *)defaultTypesInGroupTopicFooter:(PBGroup *)group;
@@ -78,6 +80,8 @@
 + (PBGroup *)updateGroup:(PBGroup *)group medalImageURL:(NSString *)url;
 + (PBGroup *)updateGroup:(PBGroup *)group BGImageURL:(NSString *)url;
 
++ (PBGroup *)incGroupBalance:(PBGroup *)group amount:(NSInteger)amount;
+
 + (BOOL)isUser:(PBGameUser *)user adminOrCreatorInGroup:(PBGroup *)group;
 + (BOOL)isMeAdminOrCreatorInSharedGroup;
 + (NSInteger)genTitleId;
@@ -110,6 +114,7 @@
 - (void)saveTempDataToDisk;
 
 - (void)loadDataFromDisk;
+
 
 
 @end

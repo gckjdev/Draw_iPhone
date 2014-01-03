@@ -25,6 +25,7 @@
 //@property (nonatomic, retain) PBGroup *group;
 
 - (void)updateViewWithPost:(PBBBSPost *)post;
+- (void)updateFooterView;
 
 + (BBSPostDetailController *)enterPostDetailControllerWithPost:(PBBBSPost *)post
                                                 fromController:(UIViewController *)fromController

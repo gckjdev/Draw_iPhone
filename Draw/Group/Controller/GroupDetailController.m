@@ -25,10 +25,13 @@
 #import "UIViewController+BGImage.h"
 #import "GroupConstants.h"
 #import "GroupUIManager.h"
+#import "AccountService.h"
+#import "DrawError.h"
 
 enum{
     SECTION_BASE_INDEX = 0,
     SECTION_MEMBER_INDEX = 1,
+    SECTION_CHARGE = 2,
     SECTION_NUMBER
 };
 
@@ -53,7 +56,7 @@ typedef enum{
 #define TITLE_CHANGE_TITLE NSLS(@"kChangeTitle")
 #define TITLE_RM_MEMBER NSLS(@"kRemoveMember")
 #define TITLE_SET_ADMIN NSLS(@"kSetAsAdmin")
-
+#define TITLE_TRANSFER_BALANCE NSLS(@"kTransferBalance")
 
 #define TITLE_ADD_TITLE NSLS(@"kAddTitle")
 #define TITLE_CHANGE_BG NSLS(@"kChangeBG")
@@ -128,12 +131,13 @@ typedef enum{
 
 - (void)quit
 {
-    
+    NSInteger fee = [PPConfigManager getQuitGroupFee];
     [self showActivityWithText:NSLS(@"kQuitingGroup")];
     [groupService quitGroup:_group.groupId callback:^(NSError *error) {
         [self hideActivity];
         if (!error) {
             POSTMSG(NSLS(@"kQuitedGroup"));
+            [groupService chargeGroup:_group.groupId amount:fee callback:NULL];            
             [GroupManager didUserQuited:[[UserManager defaultManager] pbUser]];
             [GroupPermissionManager removeRole:_group.groupId];
             [self reloadView];
@@ -143,10 +147,14 @@ typedef enum{
 
 - (void)clickQuit:(id)sender
 {
-    CommonDialog *dialog = [CommonDialog createDialogWithTitle:NSLS(@"kQuitGroupTitle") message:NSLS(@"kQuitGroupMessage") style:CommonDialogStyleDoubleButton];
+    NSInteger fee = [PPConfigManager getQuitGroupFee];
+    NSString *quitMessage = [NSString stringWithFormat:NSLS(@"kQuitGroupMessage"), fee];
+    CommonDialog *dialog = [CommonDialog createDialogWithTitle:NSLS(@"kQuitGroupTitle") message:quitMessage style:CommonDialogStyleDoubleButton];
     [dialog setClickOkBlock:^(id infoView){
-        [self quit];
-        [dialog setClickOkBlock:NULL];
+        if ([self checkMyBalance:fee]) {
+            [self quit];
+            [dialog setClickOkBlock:NULL];
+        }
     }];
     [dialog showInView:self.view];
 }
@@ -185,25 +193,67 @@ typedef enum{
 
 - (void)upgradeGroup:(NSInteger)level
 {    
-    //TODO check the balance.
-    
+    NSInteger fee = [GroupManager upgradeFeeFromLevel:_group.level toLevel:level];
+    if (![self checkGroupBalance:fee]) {
+        return;
+    }
     [self showActivityWithText:NSLS(@"kUpgradingGroup")];
     [groupService upgradeGroup:_group.groupId level:level callback:^(NSError *error) {
         [self hideActivity];
         if (!error) {
+            PBGroup *grp = [GroupManager incGroupBalance:_group amount:-fee];
+            [self updateGroup:grp];
             [self reloadView];
         }
     }];
+}
 
+
+- (NSString *)upgradeTitleForLevel:(NSInteger)level
+{
+    NSInteger fee = [GroupManager upgradeFeeFromLevel:_group.level toLevel:level];
+    if(_group.balance >= fee){
+        return [NSString stringWithFormat:NSLS(@"kUpgradeGroupTitle"), fee];
+    }
+    
+    return NSLS(@"kGroupBalanceNotEnough");
 }
 
 - (void)showUpgradeGroupView
 {
-    CommonDialog *dialog = [CommonDialog createInputFieldDialogWith:NSLS(@"kUpgradeGroupTitle")];
+    NSInteger maxLevel = [PPConfigManager getGroupMaxLevel];
+    if (_group.level >= maxLevel) {
+        NSString *msg = [NSString stringWithFormat:NSLS(@"kCan'tUpgradeMaxLevel"), maxLevel];
+        POSTMSG(msg);
+        return;
+    }
+    NSInteger defaultLevel = _group.level + 1;
+    
+    CommonDialog *dialog = [CommonDialog createInputFieldDialogWith:[self upgradeTitleForLevel:defaultLevel]];
+    
+    dialog.inputTextField.placeholder = [NSString stringWithFormat:NSLS(@"kCanInputIntRange"),defaultLevel,maxLevel];
+    
     dialog.inputTextField.textColor = COLOR_BROWN;
     dialog.allowInputEmpty = NO;
     dialog.inputTextField.keyboardType = UIKeyboardTypeNumberPad;
-    dialog.inputTextField.text = [@(_group.level+1) stringValue];
+    dialog.inputTextField.text = [@(defaultLevel) stringValue];
+
+    DialogTextChangedCallback textChangedBlock = ^(NSString *text){
+        NSInteger level = [text integerValue];
+        BOOL isValid = level >= defaultLevel && level <= maxLevel;
+        [dialog.oKButton setEnabled:isValid];
+        if (isValid) {
+            NSString *title = [self upgradeTitleForLevel:level];
+            [dialog setTitle:title];
+        }else{
+            [dialog setTitle:NSLS(@"kInputInvalid")];
+        }
+    };
+    
+    textChangedBlock([@(defaultLevel) stringValue]);
+    
+    dialog.textChangedCallback = textChangedBlock;
+    
     [dialog setClickOkBlock:^(id view) {
         NSString *text = [dialog.inputTextField text];
         NSInteger level = [text integerValue];
@@ -564,8 +614,12 @@ typedef enum{
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
+    
     if (SECTION_BASE_INDEX == section){
         return BaseSectionRowCount;
+    }
+    if (SECTION_CHARGE == section) {
+        return 1;
     }
     NSInteger count = [self.dataList count] + RowMemberStart;
     if ([[_group guestsList] count] != 0 || [_groupPermission canManageGroup]) {
@@ -607,8 +661,14 @@ typedef enum{
     return [[[UIView alloc] init] autorelease];
 }
 
+#define CHARGE_SECTION_HEIGHT (ISIPAD?88:44)
+
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    if (indexPath.section == SECTION_CHARGE) {
+        return CHARGE_SECTION_HEIGHT;
+    }
+    
     NSInteger row = indexPath.row;
     if (SECTION_BASE_INDEX == indexPath.section) {
         if (row == RowDescription) {
@@ -694,19 +754,52 @@ typedef enum{
     return nil;
 }
 
+#define CHARGE_BUTTON_TAG 20130102
+#define CHARGE_BUTTON_WIDTH (ISIPAD?400:160)
+#define CHARGE_BUTTON_HEIGHT (ISIPAD?70:35)
+#define CHARGE_CELL_IDENTIFIER @"ChargeCell"
+
+- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (indexPath.section == SECTION_CHARGE) {
+        UIButton *button = (id)[cell.contentView viewWithTag:CHARGE_BUTTON_TAG];
+        button.center = CGRectGetCenter(cell.contentView.bounds);
+    }
+}
+
+- (UITableViewCell *)createChargeCell
+{
+    UITableViewCell *cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CHARGE_CELL_IDENTIFIER] autorelease];
+    [cell.textLabel setTextAlignment:NSTextAlignmentCenter];
+    UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
+    button.frame = CGRectMake(0, 0, CHARGE_BUTTON_WIDTH, CHARGE_BUTTON_HEIGHT);
+    SET_BUTTON_ROUND_STYLE_YELLOW(button);
+    [button setTitle:NSLS(@"kChargeTitle") forState:UIControlStateNormal];
+    [button addTarget:self action:@selector(charge) forControlEvents:UIControlEventTouchUpInside];
+    button.tag = CHARGE_BUTTON_TAG;
+    [cell.contentView addSubview:button];
+    
+    return cell;
+}
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSString *identifier = [GroupDetailCell getCellIdentifier];
+    BOOL isChargeSection = (SECTION_CHARGE == indexPath.section);
+    NSString *identifier = isChargeSection ? CHARGE_CELL_IDENTIFIER : [GroupDetailCell getCellIdentifier];
     GroupDetailCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
     if (cell == nil) {
-        cell = [GroupDetailCell createCell:self];
+        if (isChargeSection) {
+            cell = (id)[self createChargeCell];
+        }else{
+            cell = [GroupDetailCell createCell:self];
+        }
         [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
     }
     NSInteger row = indexPath.row;
     
     if (indexPath.section == SECTION_BASE_INDEX) {
         [self updateBaseSectionCell:cell inRow:row];
-    }else{
+    }else if(indexPath.section == SECTION_MEMBER_INDEX){
         CellRowPosition position = [self positionForIndexPath:indexPath];
         
         if (row == RowCreator) {
@@ -725,6 +818,8 @@ typedef enum{
             
             [cell setCellForUsersByTitle:usersByTitle position:position inGroup:_group];
         }
+    }else if(isChargeSection){
+        return cell;
     }
     [cell setNeedsLayout];
     return cell;
@@ -756,8 +851,90 @@ typedef enum{
     }];
 }
 
+- (BOOL)checkMyBalance:(NSInteger)amount
+{
+    if (![[AccountService defaultService] hasEnoughBalance:amount currency:PBGameCurrencyCoin]) {
+        [DrawError postErrorWithCode:ERROR_BALANCE_NOT_ENOUGH];
+        return NO;
+    }
+    return YES;
+}
+
+- (BOOL)checkGroupBalance:(NSInteger)amount
+{
+    if (_group.balance < amount) {
+        [DrawError postErrorWithCode:ERROR_GROUP_BALANCE_NOT_ENOUGH];
+        return NO;
+    }
+    return YES;
+}
+
+- (void)charge
+{
+    CommonDialog *dialog = [CommonDialog createInputFieldDialogWith:NSLS(@"kChargeTitle")];
+    dialog.inputTextField.keyboardType = UIKeyboardTypeNumberPad;
+    [dialog setAllowInputEmpty:NO];
+    dialog.inputTextField.text = @"100";
+    [dialog setClickOkBlock:^(id view){
+        NSString *text = dialog.inputTextField.text;
+        NSInteger amount = [text integerValue];
+        if (amount <= 0) {
+            POSTMSG(NSLS(@"kNegativeInput"));
+            return;
+        }        
+        if ([self checkMyBalance:amount]) {
+            [self showActivityWithText:NSLS(@"kCharging")];
+            [groupService chargeGroup:_group.groupId amount:amount callback:^(NSError *error) {
+                [self hideActivity];
+                if (!error) {
+                    POSTMSG(NSLS(@"kChargeIconSuccess"));
+                    PBGroup *grp = [GroupManager incGroupBalance:_group amount:amount];
+                    [self updateGroup:grp];
+                    [self reloadView];
+                }
+            }];
+        }
+    }];
+    
+    [dialog showInView:self.view];
+}
+
+- (void)transferBalanceToUser:(NSString *)userId
+{
+    CommonDialog *dialog = [CommonDialog createInputFieldDialogWith:TITLE_TRANSFER_BALANCE];
+    dialog.inputTextField.keyboardType = UIKeyboardTypeNumberPad;
+    [dialog setAllowInputEmpty:NO];
+    dialog.inputTextField.text = @"100";    
+    [dialog setClickOkBlock:^(id view){
+        NSString *text = dialog.inputTextField.text;
+        NSInteger amount = [text integerValue];
+        if (amount <= 0) {
+            POSTMSG(NSLS(@"kNegativeInput"));
+            return;
+        }
+        if ([self checkGroupBalance:amount]) {
+            [self showActivityWithText:NSLS(@"kTransferingBalance")];
+            [groupService transferGroupBalance:_group.groupId amount:amount targetUid:userId callback:^(NSError *error) {
+                [self hideActivity];
+                if (!error) {
+                    POSTMSG(NSLS(@"kTransferBalanceSuccess"));
+                    PBGroup *grp = [GroupManager incGroupBalance:_group amount:-amount];
+                    [self updateGroup:grp];
+                    [self reloadView];
+                }                
+            }];
+        }
+    }];
+    
+    [dialog showInView:self.view];
+}
+
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    if (indexPath.section == SECTION_CHARGE) {
+        return;
+    }
+    
     if (![GroupManager isMeAdminOrCreatorInSharedGroup]) {
         return;
     }
@@ -859,6 +1036,8 @@ typedef enum{
                 [self.dataTableView reloadData];
             }
         }];
+    }else if([title isEqualToString:TITLE_TRANSFER_BALANCE]){
+        [self transferBalanceToUser:user.userId];
     }
 }
 
@@ -883,6 +1062,10 @@ typedef enum{
         if ([self.groupPermission canExpelUser:user] && ![GroupManager isUser:user adminOrCreatorInGroup:_group]) {
             [titles addObject:TITLE_RM_MEMBER];
         }
+        if ([self.groupPermission canManageGroup]) {
+            [titles addObject:TITLE_TRANSFER_BALANCE];
+        }
+        
     }
     return titles;
 }

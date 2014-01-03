@@ -145,8 +145,17 @@
 "kCongratulations" = "恭喜猜對了!";
 "kPity" = "請再接再厲!";
 "kCharging" = "充值中...";
+
+"kTransferBalance" = "轉賬";
+"kTransferingBalance" = "轉賬中...";
+"kTransferBalanceSuccess" = "轉賬成功!";
+"kNegativeInput" = "輸入必須為正整數";
+
 "kChargIngotSuccess" = "充值成功!";
 "kChargIngotFailure" = "充值失敗!";
+
+"kChargeIconSuccess" = "充值成功!";
+"kChargeIconFailure" = "充值失敗!";
 
 
 "kStartingGame" = "請求開始遊戲中...";
@@ -2164,8 +2173,12 @@
 "kGroupInviteGuestDesc" = "%@邀請%@成為%@的嘉賓。";
 "kGroupRejectMemberInvitationDesc" = "%@拒絕加入%@";
 "kGroupRejectGuestInvitationDesc" = "%@拒絕成為%@嘉賓。";
-"TypeAcceptMemberInvitation" = "%@同意加入%@。";
-"TypeAcceptGuestInvitation" = "%@同意成為%@的嘉賓。";
+"kTypeAcceptMemberInvitationDesc" = "%@同意加入%@。";
+"kTypeAcceptGuestInvitationDesc" = "%@同意成為%@的嘉賓。";
+"kTypeChargeGroupDesc" = "%@給%@充了%d金幣。";
+"kTypeTransferGroupBalanceDesc" = "%@從%@轉了%d金幣給%@。";
+
+"kInputInvalid" = "輸入不合法";
 
 "kGroupDetailRowWeath" = "聲望 %d  財富 %d  等級 %d";
 "kGroupDetailRowCreateDate" = "創建時間 %@";
@@ -2195,11 +2208,13 @@
 "kTextCanotBeNil" = "輸入不能為空！";
 "kOutOfMaxLength" = "文字長度不能超過%d。";
 
-"kUpgradeGroupTitle" = "請輸入等級";
+"kCanInputIntRange" = "輸入數字:(%d - %d)";
+"kCan'tUpgradeMaxLevel" = "家族已經等級已經是頂級(%d級)了";
+"kUpgradeGroupTitle" = "將花費家族%d金幣";
 "kDegradeGroup" = "對不起，輸入不能低於當前等級。";
 "kUpgradingGroup" = "升級家族中...";
 "kQuitGroupTitle" = "退出家族";
-"kQuitGroupMessage" = "確定要退出家族嗎？";
+"kQuitGroupMessage" = "退出家族將會扣除%d金幣，確定退出嗎？";
 "kGroupTitleEmpty" = "家族的職位不能為空。";
 "kTitleCountLimited" = "自定義職位不能超過%d，想增加職位限額請先升級群。";
 "kDeleteNotEmptyTitleError" = "刪除職位之前請保證職位裏沒有成員了。";

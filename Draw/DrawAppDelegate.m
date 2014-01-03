@@ -388,6 +388,7 @@ NSString* GlobalGetBoardServerURL()
     
     [[GroupService defaultService] syncGroupRoles];
     [[GroupService defaultService] syncFollowGroupIds];
+    [[GroupService defaultService] syncFollowTopicIds];
     
     if (ISIOS7) {
 //        [application setStatusBarStyle:UIStatusBarStyleLightContent];

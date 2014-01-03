@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "PPConfigManager.h"
 
 typedef enum{
     GroupRoleNone           = 0,
@@ -95,10 +96,11 @@ typedef enum{
 }GroupTab;
 
 
-typedef enum{
-    MAX_LENGTH_NAME = 14,
-    MAX_LENGTH_TITLE = 14,
-    MAX_LENGTH_SIGNATURE = 140,
-    MAX_LENGTH_DESCRIPTION = 500,
-}GroupAttibuteMaxLength;
+
+#define  MAX_LENGTH_NAME [PPConfigManager getGroupNameMaxLength]
+#define  MAX_LENGTH_TITLE [PPConfigManager getGroupTitleNameMaxLength]
+#define  MAX_LENGTH_SIGNATURE [PPConfigManager getGroupSignatureMaxLength]
+#define  MAX_LENGTH_DESCRIPTION [PPConfigManager getGroupIntroduceMaxLength]
+
+
 
