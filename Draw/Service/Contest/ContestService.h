@@ -51,6 +51,11 @@ typedef enum{
                               limit:(NSInteger)limit
                            delegate:(id<ContestServiceDelegate>)delegate;
 
+- (void)getContestListWithGroupId:(NSString*)groupId
+                           offset:(NSInteger)offset
+                            limit:(NSInteger)limit
+                         delegate:(id<ContestServiceDelegate>)delegate;
+
 - (void)getMyContestListWithOffset:(NSInteger)offset
                          limit:(NSInteger)limit
                       delegate:(id<ContestServiceDelegate>)delegate;

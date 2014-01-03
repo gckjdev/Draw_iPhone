@@ -12,7 +12,6 @@
 @interface PECropViewController () <UIActionSheetDelegate>
 
 @property (nonatomic) PECropView *cropView;
-@property (nonatomic) UIScrollView *scrollView;
 @property (nonatomic) UIActionSheet *actionSheet;
 
 @end
@@ -44,16 +43,30 @@ static inline NSString *PELocalizedString(NSString *key, NSString *comment)
     self.view = contentView;
     
     self.cropView = [[PECropView alloc] initWithFrame:contentView.bounds];
-    self.cropView.allowRotateImage = NO;
-    self.cropView.allowResizeCropRect = NO;
-    
     [contentView addSubview:self.cropView];
 }
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-
+    
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel
+                                                                                          target:self
+                                                                                          action:@selector(cancel:)];
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone
+                                                                                           target:self
+                                                                                           action:@selector(done:)];
+    
+    UIBarButtonItem *flexibleSpace = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace
+                                                                                   target:nil
+                                                                                   action:nil];
+    UIBarButtonItem *constrainButton = [[UIBarButtonItem alloc] initWithTitle:PELocalizedString(@"Constrain", nil)
+                                                                        style:UIBarButtonItemStyleBordered
+                                                                       target:self
+                                                                       action:@selector(constrain:)];
+    self.toolbarItems = @[flexibleSpace, constrainButton, flexibleSpace];
+    self.navigationController.toolbarHidden = NO;
+    
     self.cropView.image = self.image;
 }
 
@@ -80,11 +93,6 @@ static inline NSString *PELocalizedString(NSString *key, NSString *comment)
 {
     _image = image;
     self.cropView.image = image;
-    [self performSelector:@selector(setCropRatio) withObject:nil afterDelay:0.3];
-}
-
-- (void)setCropRatio{
-        self.cropView.cropAspectRatio = 1;
 }
 
 - (void)cancel:(id)sender

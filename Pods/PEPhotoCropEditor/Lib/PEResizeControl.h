@@ -13,7 +13,7 @@
 
 @property (nonatomic, weak) id delegate;
 @property (nonatomic, readonly) CGPoint translation;
-@property (nonatomic) BOOL allowReceiveGesture;
+
 @end
 
 @protocol PEResizeConrolViewDelegate <NSObject>
