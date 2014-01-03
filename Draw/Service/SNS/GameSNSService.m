@@ -900,4 +900,108 @@ GameSNSService* _defaultSNSService;
                         wxDelegate:self];
 }
 
+- (void)readUserInfo:(ShareType)shareType
+         resultBlock:(ShareSNSResultBlock)resultBlock
+    PPViewController:(PPViewController*)viewController
+{
+    id<ISSCredential> credential = [ShareSDK getCredentialWithType:shareType];      //传入获取授权信息的类型
+    if (credential == nil){
+        EXECUTE_BLOCK(resultBlock, ERROR_SNS_NO_CREDENTIAL);
+        return;
+    }
+    
+    id<ISSOAuth2Credential> cred = (id<ISSOAuth2Credential>)credential;             //转换为OAuth2授权凭证
+    
+    PPDebug(@"<readUserInfoAndUpdateToServer> user access token(%@), expire(%@)", [cred accessToken], [cred expiresIn]);
+    PPDebug(@"<readUserInfoAndUpdateToServer> credential(%@), oauth2(%@)", [credential description], [cred description]);
+    
+//    [self uploadUserSNSCredential:shareType];
+    
+    // complete task
+    [[TaskManager defaultManager] completeBindWeiboTask:shareType isAward:NO clearBadge:YES];
+    
+    [viewController showActivityWithText:NSLS(@"kRegisteringUser")];
+    
+    // read user information and upload to server
+    [ShareSDK getUserInfoWithType:shareType                                     //平台类型
+                      authOptions:nil                                           //授权选项
+                           result:^(BOOL result, id<ISSUserInfo> userInfo, id<ICMErrorInfo> error) {             //返回回调
+                               
+                               [viewController hideActivity];
+                               
+                               if (result){
+                                   PPDebug(@"<getUserInfo> success, userInfo(%@)", [userInfo.sourceData description]);
+                                   
+                                   // Login User By SNS Info
+                                   
+                                   
+                                   /*
+                                   [[UserService defaultService] updateUserWithSNSUserInfo:[[UserManager defaultManager] userId]
+                                                                                 shareType:shareType
+                                                                                  userInfo:userInfo
+                                                                                accessInfo:cred
+                                                                            viewController:nil];
+                                   
+                                   // upload again here
+                                   [self uploadUserSNSCredential:shareType];
+                                    */
+                                   
+                                   
+                               }
+                               else{
+                                   PPDebug(@"<getUserInfo> error(%d) desc(%@)", error.errorCode, error.errorDescription);
+                               }
+                           }];
+    
+    
+}
+
+- (void)loginBySNS:(PPSNSType)snsType
+       resultBlock:(ShareSNSResultBlock)resultBlock
+  PPViewController:(PPViewController*)viewController
+{
+
+    ShareType shareType = [GameSNSService shareSDKType:snsType];
+    if (shareType == ShareTypeAny){
+        return;
+    }
+    
+    id<ISSAuthOptions> authOptions = [ShareSDK authOptionsWithAutoAuth:YES
+                                                         allowCallback:YES
+                                                         authViewStyle:SSAuthViewStyleFullScreenPopup
+                                                          viewDelegate:nil
+                                               authManagerViewDelegate:nil];  // _appDelegate.viewDelegate]; TODO check
+    //在授权页面中添加关注官方微博
+    [authOptions setFollowAccounts:[NSDictionary dictionaryWithObjectsAndKeys:
+                                    [ShareSDK userFieldWithType:SSUserFieldTypeName value:[GameSNSService snsOfficialNick:snsType]],
+                                    SHARE_TYPE_NUMBER(shareType),
+                                    nil]];
+    
+    [ShareSDK authWithType:shareType                                            //需要授权的平台类型
+                   options:authOptions                                          //授权选项，包括视图定制，自动授权
+                    result:^(SSAuthState state, id<ICMErrorInfo> error) {       //授权返回后的回调方法
+                        if (state == SSAuthStateSuccess)
+                        {
+                            // TODO save user weibo bind info, get user infomation here and upload user information to server
+                            [self readUserInfo:shareType
+                                   resultBlock:resultBlock
+                              PPViewController:viewController];
+                            
+                            POSTMSG(NSLS(@"kAuthorizeSuccess"));
+                            PPDebug(@"autheticate shareType(%d) success", shareType);
+                            
+                            
+                        }
+                        else if (state == SSAuthStateFail)
+                        {
+                            POSTMSG(NSLS(@"kAuthorizeFailure"));
+                            PPDebug(@"autheticate shareType(%d) failure, error=%@", shareType, [error errorDescription]);
+                        }
+                        else{
+                            PPDebug(@"autheticate shareType(%d) unknown state, error=%@", shareType, [error errorDescription]);
+                        }
+                    }];
+
+}
+
 @end

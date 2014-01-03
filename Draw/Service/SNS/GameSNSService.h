@@ -101,4 +101,8 @@ typedef void(^ShareSNSResultBlock) (int resultCode);
            annotation:(id)annotation;
 
 
+- (void)loginBySNS:(PPSNSType)snsType
+       resultBlock:(ShareSNSResultBlock)resultBlock
+  PPViewController:(PPViewController*)viewController;
+
 @end

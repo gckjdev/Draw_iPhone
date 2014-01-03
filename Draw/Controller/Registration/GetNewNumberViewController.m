@@ -62,11 +62,19 @@
     self.getNumberMainView.center = self.bottomView.center;
     SET_BUTTON_ROUND_STYLE_LOGIN_BUTTON(self.takeNumberButton);
     SET_BUTTON_ROUND_STYLE_LOGIN_BUTTON(self.loginButton);
+    SET_BUTTON_ROUND_STYLE_LOGIN_BUTTON(self.qqLoginButton);
+    SET_BUTTON_ROUND_STYLE_LOGIN_BUTTON(self.sinaLoginButton);
     self.getNumberTipsLabel.textColor = OPAQUE_COLOR(52, 136, 112);
     
     self.getNumberTipsLabel.text = NSLS(@"kGetNumberTipsLabelText");
     [self.takeNumberButton setTitle:NSLS(@"kTakeNumberButtonTitle") forState:UIControlStateNormal];
     [self.loginButton setTitle:NSLS(@"kLoginButtonTitle") forState:UIControlStateNormal];
+
+    self.takeNumberButton.hidden = YES; // hidden by Benson 2014-1-2
+    
+    [self.qqLoginButton setTitle:NSLS(@"kQQLoginButtonTitle") forState:UIControlStateNormal];
+    [self.sinaLoginButton setTitle:NSLS(@"kSinaLoginButtonTitle") forState:UIControlStateNormal];
+    
     
     [self.view addSubview:self.getNumberMainView];
     
@@ -85,6 +93,9 @@
     PPRelease(_closeButton);
     PPRelease(_xiaojiNumber);
     PPRelease(_password);
+    
+    PPRelease(_qqLoginButton);
+    PPRelease(_sinaLoginButton);
     
     [_takeNumberButton release];
     [_loginButton release];
@@ -207,6 +218,17 @@
 {
     [self showLoginView];
 }
+
+- (IBAction)clickLoginByQQ:(id)sender
+{
+    
+}
+
+- (IBAction)clickLoginBySina:(id)sender
+{
+    
+}
+
 
 - (IBAction)clickTakeNumber:(id)sender
 {

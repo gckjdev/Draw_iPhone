@@ -1080,9 +1080,11 @@
 "kAccountManage" = "Account";
 "kAddAccount" = "New";
 
-"kGetNumberTipsLabelText" = "Take one littlegee number\nor login with number.";
+"kGetNumberTipsLabelText" = "Login";
 "kTakeNumberButtonTitle" = "Take Number";
 "kLoginButtonTitle" = "Login";
+"kQQLoginButtonTitle" = "QQ Login";
+"kSinaLoginButtonTitle" = "Weibo Login";
 "kShowNumberTipsLabelText" = "Your Littlegee Number is";
 "kOkButtonTitle" = "OK";
 "kGiveupNumber" = "You have shake one number. Do you want to give up this number?";
