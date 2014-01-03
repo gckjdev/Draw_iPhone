@@ -23,11 +23,7 @@
 
 @property (nonatomic) CGRect cropRect;
 
-@property (nonatomic) BOOL allowRotateImage;
-@property (nonatomic) BOOL allowResizeCropRect;
-
 @property (nonatomic) CGFloat rotationAngle;
 - (void)setRotationAngle:(CGFloat)rotationAngle snap:(BOOL)snap;
-- (void)setImage:(UIImage *)image needsLayout:(BOOL)needsLayout;
 
 @end

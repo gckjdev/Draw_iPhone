@@ -8,16 +8,16 @@
       <BuildActionEntries>
          <BuildActionEntry
             buildForTesting = "YES"
+            buildForArchiving = "YES"
             buildForAnalyzing = "YES"
             buildForProfiling = "YES"
-            buildForArchiving = "YES"
             buildForRunning = "YES">
             <BuildableReference
+               BuildableName = "libPods-PEPhotoCropEditor.a"
                BuildableIdentifier = "primary"
-               BlueprintName = "Pods-PEPhotoCropEditor"
-               BlueprintIdentifier = "D39B4067A1464E9DA0BB303D"
                ReferencedContainer = "container:Pods.xcodeproj"
-               BuildableName = "libPods-PEPhotoCropEditor.a">
+               BlueprintName = "Pods-PEPhotoCropEditor"
+               BlueprintIdentifier = "B2978F45420D4DAEB4CA1F3F">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -25,26 +25,26 @@
    <TestAction
       shouldUseLaunchSchemeArgsEnv = "YES"
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
-      selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
-      buildConfiguration = "Debug">
+      buildConfiguration = "Debug"
+      selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB">
       <Testables>
       </Testables>
    </TestAction>
    <LaunchAction
-      debugDocumentVersioning = "YES"
       launchStyle = "0"
-      selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
+      debugDocumentVersioning = "YES"
       useCustomWorkingDirectory = "NO"
-      selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       allowLocationSimulation = "YES"
       ignoresPersistentStateOnLaunch = "NO"
-      buildConfiguration = "Debug">
+      selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
+      buildConfiguration = "Debug"
+      selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB">
       <AdditionalOptions>
       </AdditionalOptions>
    </LaunchAction>
    <ProfileAction
-      debugDocumentVersioning = "YES"
       shouldUseLaunchSchemeArgsEnv = "YES"
+      debugDocumentVersioning = "YES"
       useCustomWorkingDirectory = "NO"
       savedToolIdentifier = ""
       buildConfiguration = "Release">

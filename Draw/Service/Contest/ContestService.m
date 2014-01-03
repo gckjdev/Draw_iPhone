@@ -95,6 +95,52 @@ static ContestService *_staticContestService;
 
 }
 
+- (void)getContestListWithGroupId:(NSString*)groupId
+                           offset:(NSInteger)offset
+                            limit:(NSInteger)limit
+                         delegate:(id<ContestServiceDelegate>)delegate
+{
+    
+    PPDebug(@"<getContestListWithGroupId> groupId=%@", groupId);
+
+    if (groupId == nil){
+        
+        if (delegate && [delegate respondsToSelector:@selector(didGetContestList:type:resultCode:)]) {
+            [delegate didGetContestList:nil type:ContestListTypeAll resultCode:0];
+        }
+        
+        return;
+    }
+    
+    dispatch_async(workingQueue, ^{
+        
+        NSDictionary* para = @{ PARA_LANGUAGE : @(ChineseType),
+                                PARA_GROUPID : groupId,
+                                PARA_OFFSET : @(offset),
+                                PARA_COUNT : @(limit),
+                                };
+        
+        GameNetworkOutput* output = [PPGameNetworkRequest trafficApiServerGetAndResponsePB:METHOD_GET_CONTEST_LIST
+                                                                                parameters:para];
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            
+            NSArray *contestList = nil;
+            if (output.resultCode == 0 && output.pbResponse.contestListList){
+                contestList = [[ContestManager defaultManager] parseContestList:output.pbResponse.contestListList];
+                if (type == ContestListTypeAll) {
+                    [[ContestManager defaultManager] setAllContestList:output.pbResponse.contestListList];
+                }
+            }
+            
+            if (delegate && [delegate respondsToSelector:@selector(didGetContestList:type:resultCode:)]) {
+                [delegate didGetContestList:contestList type:type resultCode:output.resultCode];
+            }
+            
+        });
+    });
+}
+
 - (void)getGroupContestListWithType:(ContestListType)type
                              offset:(NSInteger)offset
                               limit:(NSInteger)limit
@@ -105,10 +151,11 @@ static ContestService *_staticContestService;
         NSDictionary* para = @{ PARA_LANGUAGE : @(ChineseType),
                                 PARA_TYPE : @(type),
                                 PARA_OFFSET : @(offset),
-                                PARA_COUNT : @(limit)
+                                PARA_COUNT : @(limit),
+                                PARA_IS_GROUP : @(YES)
                                 };
         
-        GameNetworkOutput* output = [PPGameNetworkRequest trafficApiServerGetAndResponsePB:METHOD_GET_GROUP_CONTEST_LIST
+        GameNetworkOutput* output = [PPGameNetworkRequest trafficApiServerGetAndResponsePB:METHOD_GET_CONTEST_LIST
                                                                                 parameters:para];
         
         dispatch_async(dispatch_get_main_queue(), ^{

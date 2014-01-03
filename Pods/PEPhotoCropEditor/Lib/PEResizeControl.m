@@ -26,8 +26,6 @@
         
         UIPanGestureRecognizer *gestureRecognizer = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(handlePan:)];
         [self addGestureRecognizer:gestureRecognizer];
-        
-        self.allowReceiveGesture = YES;
     }
     
     return self;
@@ -35,10 +33,6 @@
 
 - (void)handlePan:(UIPanGestureRecognizer *)gestureRecognizer
 {
-    if (self.allowReceiveGesture == NO) {
-        return;
-    }
-    
     if (gestureRecognizer.state == UIGestureRecognizerStateBegan) {
         CGPoint translationInView = [gestureRecognizer translationInView:self.superview];
         self.startPoint = CGPointMake(roundf(translationInView.x), translationInView.y);

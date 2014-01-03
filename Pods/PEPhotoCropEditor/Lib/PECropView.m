@@ -77,33 +77,26 @@ static const CGFloat MarginRight = MarginLeft;
     UIRotationGestureRecognizer *rotationGestureRecognizer = [[UIRotationGestureRecognizer alloc] initWithTarget:self action:@selector(handleRotation:)];
     rotationGestureRecognizer.delegate = self;
     [self.scrollView addGestureRecognizer:rotationGestureRecognizer];
-        
+    
     self.cropRectView = [[PECropRectView alloc] init];
     self.cropRectView.delegate = self;
     [self addSubview:self.cropRectView];
     
     self.topOverlayView = [[UIView alloc] init];
-//    self.topOverlayView.backgroundColor = [UIColor colorWithWhite:0.0f alpha:0.4f];
-    self.topOverlayView.backgroundColor = [UIColor colorWithWhite:0.0f alpha:0.0f];
+    self.topOverlayView.backgroundColor = [UIColor colorWithWhite:0.0f alpha:0.4f];
     [self addSubview:self.topOverlayView];
     
     self.leftOverlayView = [[UIView alloc] init];
-//    self.leftOverlayView.backgroundColor = [UIColor colorWithWhite:0.0f alpha:0.4f];
-    self.topOverlayView.backgroundColor = [UIColor colorWithWhite:0.0f alpha:0.0f];
+    self.leftOverlayView.backgroundColor = [UIColor colorWithWhite:0.0f alpha:0.4f];
     [self addSubview:self.leftOverlayView];
     
     self.rightOverlayView = [[UIView alloc] init];
-//    self.rightOverlayView.backgroundColor = [UIColor colorWithWhite:0.0f alpha:0.4f];
-    self.topOverlayView.backgroundColor = [UIColor colorWithWhite:0.0f alpha:0.0f];
+    self.rightOverlayView.backgroundColor = [UIColor colorWithWhite:0.0f alpha:0.4f];
     [self addSubview:self.rightOverlayView];
     
     self.bottomOverlayView = [[UIView alloc] init];
-//    self.bottomOverlayView.backgroundColor = [UIColor colorWithWhite:0.0f alpha:0.4f];
-    self.topOverlayView.backgroundColor = [UIColor colorWithWhite:0.0f alpha:0.0f];
+    self.bottomOverlayView.backgroundColor = [UIColor colorWithWhite:0.0f alpha:0.4f];
     [self addSubview:self.bottomOverlayView];
-    
-    self.allowRotateImage = YES;
-    self.allowResizeCropRect = YES;
 }
 
 #pragma mark -
@@ -209,26 +202,17 @@ static const CGFloat MarginRight = MarginLeft;
 
 #pragma mark -
 
-- (void)setImage:(UIImage *)image{
-    
-    [self setImage:image needsLayout:YES];
-}
-
-- (void)setImage:(UIImage *)image needsLayout:(BOOL)needsLayout
+- (void)setImage:(UIImage *)image
 {
     _image = image;
-
-    if (needsLayout) {
-        [self.imageView removeFromSuperview];
-        self.imageView = nil;
-        
-        [self.zoomingView removeFromSuperview];
-        self.zoomingView = nil;
-        
-        [self setNeedsLayout];
-    }else{
-        self.imageView.image = self.image;
-    }
+    
+    [self.imageView removeFromSuperview];
+    self.imageView = nil;
+    
+    [self.zoomingView removeFromSuperview];
+    self.zoomingView = nil;
+    
+    [self setNeedsLayout];
 }
 
 - (void)setKeepingCropAspectRatio:(BOOL)keepingCropAspectRatio
@@ -279,12 +263,6 @@ static const CGFloat MarginRight = MarginLeft;
 
 - (UIImage *)croppedImage
 {
-
-    if ([self.image respondsToSelector:@selector(rotatedImageWithtransform:croppedToRect:)]) {
-        NSLog(@"<rotatedImageWithtransform> is responed.");
-    }else{
-        NSLog(@"<rotatedImageWithtransform> is not responed.");
-    }
     return [self.image rotatedImageWithtransform:self.rotation croppedToRect:self.zoomedCropRect];
 }
 
@@ -402,6 +380,7 @@ static const CGFloat MarginRight = MarginLeft;
     CGRect cropRect = [self cappedCropRectInImageRectWithCropRectView:cropRectView];
     
     [self layoutCropRectViewWithCropRect:cropRect];
+    
     [self automaticZoomIfEdgeTouched:cropRect];
 }
 
@@ -450,10 +429,6 @@ static const CGFloat MarginRight = MarginLeft;
 
 - (void)handleRotation:(UIRotationGestureRecognizer *)gestureRecognizer
 {
-    if (_allowRotateImage == NO) {
-        return;
-    }
-    
     CGFloat rotation = gestureRecognizer.rotation;
     
     CGAffineTransform transform = CGAffineTransformRotate(self.imageView.transform, rotation);
@@ -483,11 +458,6 @@ static const CGFloat MarginRight = MarginLeft;
 {
     CGPoint contentOffset = scrollView.contentOffset;
     *targetContentOffset = contentOffset;
-}
-
-- (void)setAllowResizeCropRect:(BOOL)allowResizeCropRect{
-    
-    self.cropRectView.allowEdit = allowResizeCropRect;
 }
 
 @end
