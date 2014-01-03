@@ -50,12 +50,17 @@ static GroupManager *_staticGroupManager = nil;
 
 + (NSInteger)capacityForLevel:(NSInteger)level
 {
-    return level * 10;
+    return level * [PPConfigManager getGroupCapacityRatio];
 }
 
-+ (NSInteger)monthlyFeeForLevel:(NSInteger)level
++ (NSInteger)creationFeeForLevel:(NSInteger)level
 {
-    return level * 100;
+    return level * [PPConfigManager getGroupCreationFeeRatio];
+}
+
++ (NSInteger)upgradeFeeFromLevel:(NSInteger)from toLevel:(NSInteger)to
+{
+    return MAX((to-from),0) * [PPConfigManager getUpgradeGroupFeePerLevel];
 }
 
 - (BOOL)followedGroup:(NSString *)groupId
@@ -81,14 +86,15 @@ static GroupManager *_staticGroupManager = nil;
     if ([GroupPermissionManager canCreateGroup]) {
         [array addObject:@(GroupCreateGroup)];
     }
-    [array addObjectsFromArray:@[@(GroupSearchGroup), @(GroupChat), @(GroupAtMe)]];
+    [array addObjectsFromArray:@[@(GroupSearchGroup), @(GroupChat), @(GroupContest),
+     @(GroupAtMe)]];
     return array;
 }
 
 
 + (NSArray *)defaultTypesInGroupTopicFooter:(PBGroup *)group
 {
-    return @[@(GroupCreateTopic), @(GroupSearchTopic), @(GroupChat)];
+    return @[@(GroupCreateTopic), @(GroupSearchTopic), @(GroupContest), @(GroupChat)];
 }
 
 + (NSMutableArray *)getTopicCMDList:(PBBBSPost *)post inGroup:(NSString *)groupId
@@ -296,6 +302,13 @@ enum{
     return [builder build];
 }
 
++ (PBGroup *)incGroupBalance:(PBGroup *)group amount:(NSInteger)amount
+{
+    NSInteger balance = MAX(0, (group.balance + amount));
+    PBGroup_Builder *builder = [PBGroup builderWithPrototype:group];
+    [builder setBalance:balance];
+    return [builder build];
+}
 
 + (void)didDeletedGroupTitle:(NSString *)groupId
                      titleId:(NSInteger)titleId

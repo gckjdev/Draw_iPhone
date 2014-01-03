@@ -819,7 +819,8 @@
 #define ERROR_CONTEST_EXCEED_THROW_FLOWER_DATE  110007
 
 
-#define ERROR_BALANCE_NOT_ENOUGH        200002
+#define ERROR_BALANCE_NOT_ENOUGH        70005 //change from 200002 to 70005, by Gamy, 2014.1.2. the code is just used at the client.
+
 #define ERROR_BAD_PARAMETER             200003
 #define ERROR_ITEM_NOT_ENOUGH           200004
 
@@ -869,7 +870,6 @@
 
 #define ERROR_GROUP_BALANCE_NOT_ENOUGH 200052
 
-#define ERROR_BALANCE_NOT_ENOUGH 70005
 /////
 
 

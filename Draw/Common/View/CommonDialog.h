@@ -26,6 +26,7 @@ typedef enum {
 }CommonDialogType;
 
 typedef void (^DialogSelectionBlock)(id infoView);
+typedef void (^DialogTextChangedCallback)(NSString* currentText);
 
 @protocol CommonDialogDelegate <NSObject>
  @optional
@@ -61,6 +62,7 @@ typedef void (^DialogSelectionBlock)(id infoView);
 @property (copy, nonatomic) DialogSelectionBlock clickOkBlock;
 @property (copy, nonatomic) DialogSelectionBlock clickCancelBlock;
 @property (copy, nonatomic) DialogSelectionBlock clickCloseBlock;
+@property (copy, nonatomic) DialogTextChangedCallback textChangedCallback;
 @property (assign, nonatomic) BOOL manualClose;
 
 - (void)setTitle:(NSString *)title;

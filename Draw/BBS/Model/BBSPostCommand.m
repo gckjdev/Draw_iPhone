@@ -328,7 +328,9 @@
 {    
     SimpleResultBlock callback = ^(NSError *error){
         [self.controller hideActivity];
-        [self.controller updateViewWithPost:self.post];        
+        if (!error) {
+            [self.controller updateFooterView];
+        }
     };
     if ([self hasFollowed]) {
         [self.controller showActivityWithText:NSLS(@"kUnfollowing")];        
@@ -344,11 +346,10 @@
 }
 - (UIImage *)icon
 {
-    //TODO should replace the images.
     if ([self hasFollowed]) {
-        return [GroupUIManager unfollowingGroupImage];
+        return [[BBSImageManager defaultManager] bbsPostDetailUnfavor];
     }
-    return [GroupUIManager followedGroupImage];
+    return [[BBSImageManager defaultManager] bbsPostDetailFavor];
 }
 
 @end

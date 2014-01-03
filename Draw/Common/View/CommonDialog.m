@@ -40,6 +40,7 @@
 
     self.clickCancelBlock = nil;
     self.clickOkBlock = nil;
+    self.textChangedCallback = nil;
     self.delegate = nil;
     
     [_titleLabel release];
@@ -363,6 +364,8 @@
     }else{
         [self enableOkButton:YES];
     }
+    
+    EXECUTE_BLOCK(_textChangedCallback, [sender text]);
 }
 
 - (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text{

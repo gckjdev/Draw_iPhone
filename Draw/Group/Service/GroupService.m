@@ -74,7 +74,7 @@ static GroupService *_staticGroupService = nil;
             dispatch_async(dispatch_get_main_queue(), ^{
                 NSError *error = DRAW_ERROR(output.pbResponse.resultCode);
                 if (error) {
-                    PPDebug(@"<GroupService> load data error = %@", error);
+                    PPDebug(@"<GroupService> load data error = %@, method = %@", error, method);
                     [DrawError postError:error];
                 }
                 EXECUTE_BLOCK(callback, output.pbResponse, error);                
@@ -438,7 +438,9 @@ static GroupService *_staticGroupService = nil;
 - (void)syncFollowTopicIds
 {
     [self loadPBData:METHOD_SYNC_FOLLOWED_TOPICIDS parameters:nil callback:^(DataQueryResponse *response, NSError *error) {
-        [_groupManager syncFollowedTopicIds:response.idListList];
+        if (!error) {
+            [_groupManager syncFollowedTopicIds:response.idListList];
+        }
     }];
 }
 
@@ -451,6 +453,9 @@ static GroupService *_staticGroupService = nil;
           parameters:paras
             callback:^(DataQueryResponse *response, NSError *error)
      {
+         if (!error) {
+             [_groupManager didUnfollowTopic:topicId];
+         }
          EXECUTE_BLOCK(callback, error);
      }];
 
@@ -465,6 +470,9 @@ static GroupService *_staticGroupService = nil;
           parameters:paras
             callback:^(DataQueryResponse *response, NSError *error)
      {
+         if (!error) {
+             [_groupManager didFollowTopic:topicId];
+         }
          EXECUTE_BLOCK(callback, error);
      }];
 }

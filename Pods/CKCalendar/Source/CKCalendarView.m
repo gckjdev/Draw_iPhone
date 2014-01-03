@@ -111,7 +111,6 @@
 @property(nonatomic, strong) NSDateFormatter *dateFormatter;
 
 @property (nonatomic, strong) NSDate *monthShowing;
-@property (nonatomic, strong) NSDate *selectedDate;
 @property (nonatomic, strong) NSCalendar *calendar;
 @property(nonatomic, assign) CGFloat cellWidth;
 
@@ -151,6 +150,7 @@
 }
 
 - (void)_init:(CKCalendarStartDay)firstDay {
+    
     self.calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
     [self.calendar setLocale:[NSLocale currentLocale]];
 
@@ -315,15 +315,25 @@
 
         dateButton.date = date;
         CKDateItem *item = [[CKDateItem alloc] init];
+            
         if ([self _dateIsToday:dateButton.date]) {
             item.textColor = UIColorFromRGB(0xF2F2F2);
-            item.backgroundColor = [UIColor lightGrayColor];
-        } else if (!self.onlyShowCurrentMonth && [self _compareByMonth:date toDate:self.monthShowing] != NSOrderedSame) {
+            item.backgroundColor = UIColorFromRGB(0x00BEB1);
+        }else if (!self.onlyShowCurrentMonth && [self _compareByMonth:date toDate:self.monthShowing] != NSOrderedSame) {
             item.textColor = [UIColor lightGrayColor];
         }
 
-        if (self.delegate && [self.delegate respondsToSelector:@selector(calendar:configureDateItem:forDate:)]) {
-            [self.delegate calendar:self configureDateItem:item forDate:date];
+//        if (self.delegate && [self.delegate respondsToSelector:@selector(calendar:configureDateItem:forDate:)]) {
+//            [self.delegate calendar:self configureDateItem:item forDate:date];
+//        }
+        
+
+        if (self.minDate != nil && [self date:date isBeforeDate:self.minDate]) {
+            item.textColor = [UIColor lightGrayColor];
+        }
+        
+        if (self.maxDate != nil && [self date:date isAfterDate:self.maxDate]) {
+            item.textColor = [UIColor lightGrayColor];
         }
 
         if (self.selectedDate && [self date:self.selectedDate isSameDayAsDate:date]) {
@@ -333,13 +343,31 @@
             [dateButton setTitleColor:item.textColor forState:UIControlStateNormal];
             dateButton.backgroundColor = item.backgroundColor;
         }
-
+        
         dateButton.frame = [self _calculateDayCellFrame:date];
 
         [self.calendarContainer addSubview:dateButton];
 
         date = [self _nextDay:date];
         dateButtonPosition++;
+    }
+    
+    if (self.minDate != nil) {
+        if ([self _compareByMonth:self.minDate toDate:self.monthShowing] != NSOrderedAscending
+            ) {
+            self.prevButton.enabled = NO;
+        }else{
+            self.prevButton.enabled = YES;
+        }
+    }
+
+    if (self.maxDate != nil) {
+        if ([self _compareByMonth:self.maxDate toDate:self.monthShowing] != NSOrderedDescending
+            ) {
+            self.nextButton.enabled = NO;
+        }else{
+            self.nextButton.enabled = YES;
+        }
     }
 }
 
@@ -391,6 +419,12 @@
     [self setNeedsLayout];
 }
 
+- (void)setSelectedDate:(NSDate *)selectedDate{
+    
+    _selectedDate = selectedDate;
+    [self selectDate:selectedDate makeVisible:YES];
+}
+
 - (void)selectDate:(NSDate *)date makeVisible:(BOOL)visible {
     NSMutableArray *datesToReload = [NSMutableArray array];
     if (self.selectedDate) {
@@ -399,7 +433,6 @@
     if (date) {
         [datesToReload addObject:date];
     }
-    self.selectedDate = date;
     [self reloadDates:datesToReload];
     if (visible && date) {
         self.monthShowing = date;
@@ -443,13 +476,10 @@
     NSDateComponents* comps = [[NSDateComponents alloc] init];
     [comps setMonth:1];
     NSDate *newMonth = [self.calendar dateByAddingComponents:comps toDate:self.monthShowing options:0];
-    if ([self.delegate respondsToSelector:@selector(calendar:willChangeToMonth:)] && ![self.delegate calendar:self willChangeToMonth:newMonth]) {
-        return;
-    } else {
-        self.monthShowing = newMonth;
-        if ([self.delegate respondsToSelector:@selector(calendar:didChangeToMonth:)] ) {
-            [self.delegate calendar:self didChangeToMonth:self.monthShowing];
-        }
+    
+    self.monthShowing = newMonth;
+    if ([self.delegate respondsToSelector:@selector(calendar:didChangeToMonth:)] ) {
+        [self.delegate calendar:self didChangeToMonth:self.monthShowing];
     }
 }
 
@@ -457,32 +487,69 @@
     NSDateComponents* comps = [[NSDateComponents alloc] init];
     [comps setMonth:-1];
     NSDate *newMonth = [self.calendar dateByAddingComponents:comps toDate:self.monthShowing options:0];
-    if ([self.delegate respondsToSelector:@selector(calendar:willChangeToMonth:)] && ![self.delegate calendar:self willChangeToMonth:newMonth]) {
-        return;
-    } else {
-        self.monthShowing = newMonth;
-        if ([self.delegate respondsToSelector:@selector(calendar:didChangeToMonth:)] ) {
-            [self.delegate calendar:self didChangeToMonth:self.monthShowing];
-        }
+    
+    self.monthShowing = newMonth;
+    
+    if ([self.delegate respondsToSelector:@selector(calendar:didChangeToMonth:)] ) {
+        [self.delegate calendar:self didChangeToMonth:self.monthShowing];
     }
 }
 
 - (void)_dateButtonPressed:(id)sender {
     DateButton *dateButton = sender;
     NSDate *date = dateButton.date;
-    if ([date isEqualToDate:self.selectedDate]) {
-        // deselection..
-        if ([self.delegate respondsToSelector:@selector(calendar:willDeselectDate:)] && ![self.delegate calendar:self willDeselectDate:date]) {
-            return;
-        }
-        date = nil;
-    } else if ([self.delegate respondsToSelector:@selector(calendar:willSelectDate:)] && ![self.delegate calendar:self willSelectDate:date]) {
+    
+    if (self.minDate != nil && [self date:date isBeforeDate:self.minDate]) {
         return;
     }
-
-    [self selectDate:date makeVisible:YES];
-    [self.delegate calendar:self didSelectDate:date];
-    [self setNeedsLayout];
+    
+    if (self.maxDate != nil && [self date:date isAfterDate:self.maxDate]) {
+        return;
+    }
+    
+//    if ([self date:date isSameDayAsDate:self.selectedDate]) {
+//        // deselection..
+//        if (![self.delegate respondsToSelector:@selector(calendar:canDeselectDate:)]
+//            || ![self.delegate calendar:self canDeselectDate:date]) {
+//            return;
+//        }
+//        
+//        if ([self.delegate respondsToSelector:@selector(calendar:didDeselectDate:)]) {
+//            [self.delegate calendar:self didDeselectDate:date];
+//        }
+//        [self setSelectedDate:nil];
+//        [self setNeedsLayout];
+//        
+//    }
+    
+    if ([self.delegate respondsToSelector:@selector(calendar:canDeselectDate:)]
+        && [self date:date isSameDayAsDate:self.selectedDate]) {
+        // deselection..
+        if (![self.delegate calendar:self canDeselectDate:date]) {
+            return;
+        }
+        
+        if ([self.delegate respondsToSelector:@selector(calendar:didDeselectDate:)]) {
+            [self.delegate calendar:self didDeselectDate:date];
+        }
+        [self setSelectedDate:nil];
+        [self setNeedsLayout];
+        
+    }
+    else{
+        // selection..
+        if ([self.delegate respondsToSelector:@selector(calendar:canSelectDate:)]
+            && ![self.delegate calendar:self canSelectDate:date]) {
+            return;
+        }
+        
+        [self setSelectedDate:date];
+        if ([self.delegate respondsToSelector:@selector(calendar:didSelectDate:)]) {
+            [self.delegate calendar:self didSelectDate:date];
+        }
+        
+        [self setNeedsLayout];
+    }
 }
 
 #pragma mark - Theming getters/setters
@@ -537,6 +604,31 @@
         dateButton.titleLabel.font = font;
     }
 }
+
+- (void)setMinDate:(NSDate *)minDate{
+    
+    _minDate = minDate;
+    
+    if ([self _compareByMonth:self.minDate toDate:self.monthShowing] != NSOrderedAscending
+        ) {
+        self.monthShowing = minDate;
+    }
+    
+    [self setNeedsDisplay];
+}
+
+- (void)setMaxDate:(NSDate *)maxDate{
+    
+    _maxDate = maxDate;
+    
+    if ([self _compareByMonth:self.maxDate toDate:self.monthShowing] != NSOrderedDescending
+        ) {
+        self.monthShowing = maxDate;
+    }
+    
+    [self setNeedsDisplay];
+}
+
 - (UIFont *)dateFont {
     return (self.dateButtons.count > 0) ? ((DateButton *)[self.dateButtons lastObject]).titleLabel.font : nil;
 }
@@ -605,6 +697,38 @@
             [day2 month] == [day month] &&
             [day2 year] == [day year] &&
             [day2 era] == [day era]);
+}
+
+- (BOOL)date:(NSDate *)date1 isBeforeDate:(NSDate *)date2 {
+
+    NSCalendar* calendar = [NSCalendar currentCalendar];
+	NSDateComponents* components1 = [calendar components:(NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit) fromDate:date1];
+	NSDateComponents* components2 = [calendar components:(NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit) fromDate:date2];
+    
+    if ([components1 year] < [components2 year]) {
+        return YES;
+    }
+    
+    if ([components1 year] == [components2 year] && [components1 month] < [components2 month])
+    {
+        return YES;
+    }
+    
+    if ([components1 year] == [components2 year] && [components1 month] == [components2 month] && [components1 day] < [components2 day])
+    {
+        return YES;
+    }
+    
+	return NO;
+}
+
+- (BOOL)date:(NSDate *)date1 isAfterDate:(NSDate *)date2 {
+
+    if ([self date:date1 isBeforeDate:date2] == NO
+        && [self date:date1 isSameDayAsDate:date2] == NO) {
+        return YES;
+    }
+    return NO;
 }
 
 - (NSInteger)_numberOfWeeksInMonthContainingDate:(NSDate *)date {

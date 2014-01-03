@@ -71,6 +71,8 @@
 - (UIImage *)bbsPostDetailSupport;
 - (UIImage *)bbsPostDetailToTop;
 - (UIImage *)bbsPostDetailUnTop;
+- (UIImage *)bbsPostDetailFavor;
+- (UIImage *)bbsPostDetailUnfavor;
 
 - (UIImage *)bbsPostDetailMark;
 - (UIImage *)bbsPostDetailUnmark;

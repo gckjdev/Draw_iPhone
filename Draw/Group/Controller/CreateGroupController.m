@@ -17,6 +17,7 @@
 #import "GroupTopicController.h"
 #import "GroupDetailController.h"
 #import "UIViewController+BGImage.h"
+#import "AccountService.h"
 
 @interface CreateGroupController ()
 @property (retain, nonatomic) IBOutlet CommonTitleView *titleView;
@@ -30,11 +31,10 @@
 
 @end
 
-#define NAME_MAX_LENGTH 14
-#define DEFAULT_LEVEL 10
-#define MAX_LEVEL 15
-//#define BIG_FONT AD_FONT(32,18)
-//#define SMALL_FONT AD_FONT(18,12)
+#define NAME_MAX_LENGTH [PPConfigManager getGroupNameMaxLength]
+
+#define MAX_LEVEL [PPConfigManager getGroupMaxLevel]
+#define DEFAULT_LEVEL MIN(10, MAX_LEVEL)
 
 
 @implementation CreateGroupController
@@ -56,7 +56,7 @@
     
     NSString *name = _nameTextField.text;
     NSInteger level = [_levelPicker selectedRowInComponent:0]+1;
-    NSInteger fee = [GroupManager monthlyFeeForLevel:level];
+    NSInteger fee = [GroupManager creationFeeForLevel:level];
 
     PPDebug(@"start to create group. name = %@, level = %d, fee = %d", name, level, fee);
 
@@ -72,6 +72,7 @@
     
     if(![[AccountManager defaultManager] hasEnoughBalance:fee currency:PBGameCurrencyCoin]){
         [BalanceNotEnoughAlertView showInController:self];
+        return;
     }
     
     [self showActivityWithText:NSLS(@"kCreatingGroup")];
@@ -80,16 +81,18 @@
         if (error) {
             [DrawError postError:error];
         }else{
+            //deduct for creation.
+            [[AccountService defaultService] deductCoin:fee source:DeductForCreateGroup];
+
             //Enter Group Detail Controller
             [[[GroupManager defaultManager] followedGroupIds] addObject:group.groupId];
+            
             NSArray *controllers = [self.navigationController viewControllers];
             NSInteger length = [controllers count];
             PPViewController *superController = (id)controllers[length-2];
             [self.navigationController popViewControllerAnimated:NO];
             
             [GroupDetailController enterWithGroup:group fromController:superController];
-            
-//            [GroupTopicController enterWithGroup:group fromController:superController];
         }
     }];
 }
@@ -176,7 +179,7 @@
 {
     [self.levelButton setTitle:[@(level) stringValue] forState:UIControlStateNormal];
 
-    NSInteger monthlyFee = [GroupManager monthlyFeeForLevel:level];
+    NSInteger monthlyFee = [GroupManager creationFeeForLevel:level];
     NSInteger capacity = [GroupManager capacityForLevel:level];
     NSString *tips = [NSString stringWithFormat:NSLS(@"kLevelTips"), capacity, monthlyFee];
     [self.levelTips setText:tips];
