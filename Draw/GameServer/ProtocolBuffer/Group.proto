@@ -106,8 +106,6 @@ message PBGroupNotice{
     optional PBGameUser target = 11; //expel, accept
 }
 
-
-
 message PBContest
 {
     required string contestId = 1;
@@ -124,6 +122,7 @@ message PBContest
     optional int32  voteEndDate = 12;
     optional bool   isAnounymous = 13;
 
+    optional PBOpusCategoryType category = 15;
 
     optional int32  canSubmitCount = 31 [default=1];
     optional int32  maxFlowerPerContest = 32 [default=20];
@@ -141,7 +140,9 @@ message PBContest
     repeated PBUserAward awardUsers = 54;
     repeated PBIntKeyValue rankTypes = 55;         // 奖励类型，key为类型整数值，value为类型名字，如最佳创意奖
     
-    optional PBGroup group = 60;               // 哪个家族发起的比赛。
+    optional PBGroup group = 60;                // 哪个家族发起的比赛。
+    optional int32 joinersType = 61;            // 参赛者类型：0所有人都可以参赛；1家族人员可以参赛；2家族成员和嘉宾可以参赛
+    optional string rule = 62;
 }
 
 

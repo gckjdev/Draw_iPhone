@@ -1088,9 +1088,11 @@
 "kAccountManage" = "Account";
 "kAddAccount" = "New";
 
-"kGetNumberTipsLabelText" = "Take one littlegee number\nor login with number.";
+"kGetNumberTipsLabelText" = "Login";
 "kTakeNumberButtonTitle" = "Take Number";
 "kLoginButtonTitle" = "Login";
+"kQQLoginButtonTitle" = "QQ Login";
+"kSinaLoginButtonTitle" = "Weibo Login";
 "kShowNumberTipsLabelText" = "Your Littlegee Number is";
 "kOkButtonTitle" = "OK";
 "kGiveupNumber" = "You have shake one number. Do you want to give up this number?";
@@ -2494,3 +2496,19 @@
 "kGroupContest" = "Group";
 "kGoodOpus" = "Opus";
 
+
+"kCreateContest" = "Create Contest";
+"kContestName" = "Name";
+"kStartTime" = "Start";
+"kEndTime" = "End";
+"kContestRules" = "Rules";
+"kContestJoiners" = "Joiners";
+"kContestImage" = "Image";
+"kInputContestName" = "Input Contest Name";
+
+"kEveryone" = "For every one";
+"kGroupMember" = "Only for group member";
+"kGroupMemberAndGuest" = "Only for group member and guest";
+
+"kContestNameCannotBeBlank" = "Contest name can not be blank";
+"kPleaseSelectContestImage" = "Please select an image for contest";

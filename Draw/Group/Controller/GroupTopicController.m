@@ -266,7 +266,7 @@ typedef enum {
 - (void)updateGroupInfo
 {
     if (self.infoCell == nil) {
-        self.infoCell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"GroupInfoCell"];
+        _infoCell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"GroupInfoCell"];
         GroupInfoView *infoView = [GroupInfoView infoViewWithGroup:_group];
         UIButton *info = [UIButton buttonWithType:UIButtonTypeCustom];
         [info setImage:[UIImage imageNamed:@"user_detail_more@2x.png"] forState:UIControlStateNormal];

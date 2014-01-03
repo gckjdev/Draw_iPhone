@@ -13,6 +13,7 @@
 #import "PPConfigManager.h"
 #import "GameNetworkRequest.h"
 #import "UserManager.h"
+#import "UIImageExt.h"
 
 static ContestService *_staticContestService;
 
@@ -228,20 +229,24 @@ static ContestService *_staticContestService;
 }
 
 - (void)createContest:(Contest *)contest
+                image:(UIImage *)image
             completed:(CreateContestBlock)completed{
     
     NSData *data = [contest data];
     if ([data length] <= 0) {
+        PPDebug(@"<createContest> data length can not less than zero");
+        return;
+    }
+    
+    if (image == nil) {
+        PPDebug(@"<createContest> image can not be nil");
         return;
     }
     
     dispatch_async(workingQueue, ^{
         
-        NSDictionary* para = @{PARA_CONTEST : data
-                                };
+        GameNetworkOutput* output = [PPGameNetworkRequest trafficApiServerUploadAndResponsePB:METHOD_CREATE_CONTEST parameters:nil imageDataDict:@{PARA_IMAGE:[image data]} postDataDict:@{PARA_META_DATA : data} progressDelegate:nil];
         
-        GameNetworkOutput* output = [PPGameNetworkRequest trafficApiServerGetAndResponsePB:METHOD_CREATE_CONTEST_LIST
-                                                                                parameters:para];
         Contest *contest = [[[Contest alloc] initWithPBContest:output.pbResponse.contest] autorelease];
         
         dispatch_async(dispatch_get_main_queue(), ^{
@@ -250,8 +255,5 @@ static ContestService *_staticContestService;
         });
     });
 }
-
-
-
 
 @end

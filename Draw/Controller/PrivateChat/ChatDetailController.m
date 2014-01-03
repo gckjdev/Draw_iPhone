@@ -34,11 +34,11 @@
 #import "WordFilterService.h"
 #import "ImagePlayer.h"
 #import "Group.pb.h"
+#import "UserDetailViewController.h"
+#import "ViewUserDetail.h"
 
 @interface ChatDetailController ()
 {
-//    MessageStat *_messageStat;
-//    NSMutableArray *_messageList;
     CGFloat _panelHeight;
     
     NSInteger _asIndexDelete;
@@ -47,13 +47,11 @@
     NSInteger _asIndexShowLocation;
     NSInteger _asIndexCopy;
     NSInteger _asIndexResend;
-//    BOOL _noData;
     BOOL _showingActionSheet;
 }
 
 @property (retain, nonatomic) PPMessage *selectedMessage;
 @property (retain, nonatomic) MessageStat *messageStat;
-@property (retain, nonatomic) NSArray *messageList;
 @property (retain, nonatomic) PhotoDrawSheet *photoDrawSheet;
 - (IBAction)clickBack:(id)sender;
 - (NSInteger)loadNewDataCount;
@@ -76,13 +74,13 @@
 @synthesize refreshButton;
 @synthesize selectedMessage = _selectedMessage;
 @synthesize messageStat = _messageStat;
-//@synthesize messageList = _messageList;
+//@synthesize messageList = messageList;
 @synthesize delegate = _delegate;
 
 - (void)reloadTableView
 {
-    PPDebug(@"realod chat detail message table view");
-    self.messageList = [[PPMessageManager defaultManager] getMessageList:self.fid];
+    PPDebug(@"reload chat detail message table view");
+    [self reloadDataList];
     [[self dataTableView] reloadData];
 }
 
@@ -91,14 +89,32 @@
     return self.messageStat.friendId;
 }
 
+- (void)reloadDataList
+{
+    PPDebug(@"invoke reloadDataList");
+    self.dataList = [[PPMessageManager defaultManager] getMessageList:self.messageStat.friendId];
+}
+
+- (NSArray*)getMessageList
+{
+    PPDebug(@"invoke getMessageList");
+    if (self.dataList == nil){
+        [self reloadDataList];
+    }
+    
+    return self.dataList;
+}
+
 #define GROUP_INTERVAL 60 * 5
 - (BOOL)messageShowTime:(PPMessage *)message row:(int)row
 {
-    if (row == 0 || (row-1) < ([_messageList count] -1) ){
+    NSArray* messageList = [self getMessageList];
+    
+    if (row == 0 || (row-1) < ([messageList count] -1) ){
         return YES;
     }
     
-    PPMessage *lastMessage = [_messageList objectAtIndex:(row - 1)];
+    PPMessage *lastMessage = [messageList objectAtIndex:(row - 1)];
     
     NSInteger timeValue = [[message createDate] timeIntervalSince1970];
     NSInteger lastTime = [[lastMessage createDate] timeIntervalSince1970];
@@ -110,6 +126,9 @@
 - (void)dealloc {
     
     [self unregisterAllNotifications];
+
+    self.dataTableView = nil;
+    self.dataList = nil;
     
     PPDebug(@"%@ dealloc",self);
     PPRelease(_changeBgButton);
@@ -121,7 +140,7 @@
     PPRelease(refreshButton);
     PPRelease(_selectedMessage);
     PPRelease(_messageStat);
-    PPRelease(_messageList);
+//    PPRelease(messageList);
     PPRelease(_photoDrawSheet);
     PPRelease(_locateButton);
     PPRelease(imageUploader);
@@ -134,8 +153,7 @@
     self = [super init];
     if (self) {
         self.messageStat = messageStat;
-        self.messageList = [[PPMessageManager defaultManager] getMessageList:messageStat.friendId];
-//        _messageList = [[NSMutableArray alloc] init];
+//        messageList = [[PPMessageManager defaultManager] getMessageList:messageStat.friendId];
     }
     return self;
 }
@@ -302,7 +320,7 @@
 
 - (void)viewDidLoad
 {
-    self.messageList = [[PPMessageManager defaultManager] getMessageList:self.fid];
+//    messageList = [[PPMessageManager defaultManager] getMessageList:self.fid];
     
     [self setSupportRefreshHeader:YES];
     [super viewDidLoad];
@@ -334,7 +352,7 @@
     [self setInputTextView:nil];
     [self setInputTextBackgroundImage:nil];
     [self setRefreshButton:nil];
-    [self setMessageList:nil];
+//    [self setMessageList:nil];
     [self setLocateButton:nil];
     [super viewDidUnload];
 }   
@@ -369,18 +387,20 @@
     [self hideActivity];
     [self dataSourceDidFinishLoadingNewData];
     if (resultCode == 0) {
-        self.messageList = [[PPMessageManager defaultManager] getMessageList:self.fid];
-        list = self.messageList;
+//        messageList = [[PPMessageManager defaultManager] getMessageList:self.fid];
+        NSArray* messageList = [self getMessageList];
+        int newMessageCount = [messageList count];
 
-        if (!forward && [list count] < [self loadMoreDataCount]) {
+        if (!forward && newMessageCount < [self loadMoreDataCount]) {
             [self.refreshHeaderView setHidden:YES];
             self.dataTableView.tableHeaderView.hidden = YES;
         }
-        if ([list count] == 0) {
-            return;
-        }
 
         [self reloadTableView];
+//        if (newMessageCount == 0) {
+//            return;
+//        }
+
         if (forward || insertMiddle) {
             [self tableViewScrollToBottom:YES];
         }else{
@@ -418,13 +438,12 @@
 #pragma mark - custom methods
 - (void)scrollToBottom:(BOOL)animated
 {
-    if ([_messageList count]>0) {
-        NSIndexPath *indPath = [NSIndexPath indexPathForRow:[_messageList count]-1 inSection:0];
+    NSArray* messageList = [self getMessageList];
+    if ([messageList count]>0) {
+        NSIndexPath *indPath = [NSIndexPath indexPathForRow:[messageList count]-1 inSection:0];
         [dataTableView scrollToRowAtIndexPath:indPath atScrollPosition:UITableViewScrollPositionBottom animated:animated];
     }
 }
-
-
 
 - (void)showGraffitiView
 {
@@ -439,16 +458,19 @@
 
 - (PPMessage *)messageOfIndex:(NSInteger)index
 {
-    if (index >= 0 && index < [_messageList count]) {
-        return [_messageList objectAtIndex:index];
+    NSArray* messageList = [self getMessageList];
+
+    if (index >= 0 && index < [messageList count]) {
+        return [messageList objectAtIndex:index];
     }
     return nil;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-//    PPDebug(@"<numberOfRowsInSection> = %d", [_messageList count]);
-    return [_messageList count];
+//    PPDebug(@"<numberOfRowsInSection> = %d", [messageList count]);
+    NSArray* messageList = [self getMessageList];
+    return [messageList count];
 }
 
 
@@ -495,9 +517,7 @@
             return;
         }
     }
-    [self.navigationController popViewControllerAnimated:YES];
-    
-    self.messageList = nil;    
+    [self.navigationController popViewControllerAnimated:YES];    
 }
 
 - (IBAction)clickRefresh:(id)sender {
@@ -542,7 +562,7 @@
     CGRect frame = tableView.frame;
     frame.size.height = yLine - CGRectGetMinY(frame);
     tableView.frame = frame;
-    [tableView reloadData];
+    [self reloadTableView];
     [self tableViewScrollToBottom:YES];
 //    [self performSelector:@selector(tableViewScrollToBottom:YES) withObject:nil afterDelay:0.2];
 }
@@ -742,7 +762,7 @@
 
 - (void)enterLargeImage:(PPMessage *)message
 {
-    _selectedMessage = message;
+    self.selectedMessage = message;
     
     NSURL *url = nil;
     if (_selectedMessage.messageType == MessageTypeImage)
@@ -760,8 +780,15 @@
 
 #pragma mark - 
 
-- (void)clickMessage:(PPMessage *)message
+- (void)clickMessage:(NSIndexPath *)indexPath
 {
+    NSArray* messageList = [self getMessageList];
+    
+    if (indexPath.row >= [messageList count]){
+        return;
+    }
+    
+    PPMessage* message = [messageList objectAtIndex:indexPath.row];
     switch (message.messageType) {
         case MessageTypeImage:
             [self enterLargeImage:message];
@@ -945,29 +972,67 @@
     [actionSheet showInView:self.view];
     actionSheet.tag = tag;
     [actionSheet release];
-    _selectedMessage = message;
+    self.selectedMessage = message;
 }
 
 #pragma mark options action.
-- (void)didLongClickMessage:(PPMessage *)message
+
+- (void)didClickMessageUserAvatar:(NSIndexPath *)indexPath
 {
-    if (message.messageType != MessageTypeText) {
-        [self showActionOptionsForMessage:message];
-    }else{
-        [self clickMessage:message];
+    NSArray* messageList = [self getMessageList];
+    
+    if (indexPath.row >= [messageList count]){
+        return;
+    }
+    PPMessage* message = [messageList objectAtIndex:indexPath.row];
+    
+    if ([self.messageStat isGroup]){
+        
+        ViewUserDetail *detail = [ViewUserDetail viewUserDetailWithUserId:message.fromUserToGroup.userId
+                                                                   avatar:message.fromUserToGroup.avatar
+                                                                 nickName:message.fromUserToGroup.nickName];
+        
+        [UserDetailViewController presentUserDetail:detail inViewController:self];
+    }
+    else{
+        MessageStat *stat = self.messageStat;
+        ViewUserDetail *detail = [ViewUserDetail viewUserDetailWithUserId:stat.friendId
+                                                                   avatar:stat.friendAvatar
+                                                                 nickName:stat.friendNickName];
+        [UserDetailViewController presentUserDetail:detail inViewController:self];
     }
 }
 
-- (void)didMessage:(PPMessage *)message loadImage:(UIImage *)image
+
+- (void)didLongClickMessage:(NSIndexPath *)indexPath
 {
-//    [self.dataTableView reloadData];
-    NSUInteger index = [_messageList indexOfObject:message];
-    if (index < [_messageList count]) {
-        NSIndexPath *indexPath = [NSIndexPath indexPathForRow:index inSection:0
-                                  ];
-        NSArray *indexPaths = [NSArray arrayWithObject:indexPath];
-        [self.dataTableView reloadRowsAtIndexPaths:indexPaths withRowAnimation:UITableViewRowAnimationNone];
+    NSArray* messageList = [self getMessageList];
+
+    if (indexPath.row >= [messageList count]){
+        return;
     }
+    PPMessage* message = [messageList objectAtIndex:indexPath.row];
+    
+    if (message.messageType != MessageTypeText) {
+        [self showActionOptionsForMessage:message];
+    }else{
+        [self clickMessage:indexPath];
+    }
+}
+
+- (void)didMessage:(NSIndexPath *)indexPath loadImage:(UIImage *)image
+{
+//    NSArray *indexPaths = [NSArray arrayWithObject:indexPath];
+//    [self.dataTableView reloadRowsAtIndexPaths:indexPaths withRowAnimation:UITableViewRowAnimationNone];
+    return;
+    
+//    NSUInteger index = [messageList indexOfObject:message];
+//    if (index < [messageList count]) {
+//        NSIndexPath *indexPath = [NSIndexPath indexPathForRow:index inSection:0
+//                                  ];
+//        NSArray *indexPaths = [NSArray arrayWithObject:indexPath];
+//        [self.dataTableView reloadRowsAtIndexPaths:indexPaths withRowAnimation:UITableViewRowAnimationNone];
+//    }
 }
 
 
@@ -997,7 +1062,7 @@
         [self reloadTableView];
         [self tableViewScrollToBottom:YES];
     }
-    _selectedMessage = nil;
+    self.selectedMessage = nil;
 }
 
 
@@ -1015,9 +1080,10 @@
 
 - (NSString *)lastMessageId
 {
-    NSInteger count = [_messageList count] - 1;
+    NSArray* messageList = [self getMessageList];
+    NSInteger count = [messageList count] - 1;
     for (int i = count; i >= 0; --i) {
-        PPMessage *message = [_messageList objectAtIndex:i];
+        PPMessage *message = [messageList objectAtIndex:i];
         if (message.isMessageSentOrReceived) {
             PPDebug(@"Last message Id is %@ from %@, text=%@", message.messageId, message.friendId, message.text);
             return message.messageId;
@@ -1028,7 +1094,8 @@
 
 - (NSString *)firstMessageId
 {
-    for (PPMessage *message in _messageList) {
+    NSArray* messageList = [self getMessageList];
+    for (PPMessage *message in messageList) {
         if (message.isMessageSentOrReceived) {
             PPDebug(@"First message Id is %@ from %@, text=%@", message.messageId, message.friendId, message.text);
             return message.messageId;
@@ -1074,7 +1141,8 @@
 
 - (void)tableViewScrollToTop
 {
-    if ([self.messageList count] > 0) {
+    NSArray* messageList = [self getMessageList];
+    if ([messageList count] > 0) {
         NSInteger row = 0;
         NSIndexPath *indexPath = [NSIndexPath indexPathForRow:row inSection:0];
         [self.dataTableView scrollToRowAtIndexPath:indexPath 
@@ -1084,8 +1152,10 @@
 }
 - (void)tableViewScrollToBottom:(BOOL)animated
 {
-    if ([self.messageList count] > 0) {
-        NSInteger row = [self.messageList count] - 1;
+    NSArray* messageList = [self getMessageList];
+
+    if ([messageList count] > 0) {
+        NSInteger row = [messageList count] - 1;
         NSIndexPath *indexPath = [NSIndexPath indexPathForRow:row inSection:0];
         [self.dataTableView scrollToRowAtIndexPath:indexPath 
                                   atScrollPosition:UITableViewScrollPositionBottom 

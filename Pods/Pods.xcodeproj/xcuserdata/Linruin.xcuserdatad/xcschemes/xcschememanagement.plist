@@ -4,160 +4,45 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
+		<key>Pods-CKCalendar.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Pods-GPUImage.xcscheme</key>
 		<dict>
-			<key>orderHint</key>
-			<integer>12</integer>
+			<key>isShown</key>
+			<false/>
 		</dict>
 		<key>Pods-PEPhotoCropEditor.xcscheme</key>
 		<dict>
-			<key>orderHint</key>
-			<integer>14</integer>
-		</dict>
-		<key>Pods-RDGPUImage.xcscheme</key>
-		<dict>
-			<key>orderHint</key>
-			<integer>13</integer>
+			<key>isShown</key>
+			<false/>
 		</dict>
 		<key>Pods.xcscheme</key>
 		<dict>
-			<key>orderHint</key>
-			<integer>11</integer>
+			<key>isShown</key>
+			<false/>
 		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>0397316C8B6D47EF869F0A89</key>
+		<key>3EC771EEEB514BC5B739E50A</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>10F710B891BE4D9E9586C342</key>
+		<key>40C4376250A74BB48DD8F9E1</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>15F42E37DEF44EB7B496E8F1</key>
+		<key>737234DD303E4FA0AFC0E40C</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>23F37BEC45BD43DE86762607</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>2799D8484B8649DDA421B272</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>32780EF858C9455086ED735C</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>367E0240A57B4D759AD49F7A</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>3C4BD00519AC4A7F9B2957AA</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>4BB00855FBF94F21956E3322</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>6F20DE720F77444BA23D4CB0</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>73B3BAFFA13243B98EE4A8CE</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>766291DE80E04E6E80ECE62E</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>7A6B5CC4578345EDAC30A160</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>7EE2D5B1C64A426482A10F2A</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>9C14A86F766840B8ACA5BA40</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>B2D00082CBB94C0890F453C2</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>B80656B1B30542D3BA0AF4E4</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>B9ABFE83302848089FD491F1</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>C136DAF2E2AE453B8FD01786</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>C69944DDAA2049EA8717E83A</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>C85BC2E7C78E47DFA7BE375B</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>C87610BDD9874129AD8189EC</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>CDC0CCA378AE49DE94BF9027</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>DB6AA675180C437A83D3B4EA</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>DC807630AEF24D2B929D0582</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>E01392ACC15B4B7491C66A59</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>EAF8B5ABF51B49458A3C74A2</key>
+		<key>94464D18EAD04189A897578A</key>
 		<dict>
 			<key>primary</key>
 			<true/>

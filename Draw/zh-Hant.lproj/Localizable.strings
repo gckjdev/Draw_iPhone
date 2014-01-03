@@ -1111,9 +1111,12 @@
 "kAccountManage" = "賬號管理";
 "kAddAccount" = "新賬號";
 
-"kGetNumberTipsLabelText" = "首次使用，請領取小吉號碼\n或使用已有號碼登錄";
+//"kGetNumberTipsLabelText" = "首次使用，請領取小吉號碼\n或使用已有號碼登錄";
+"kGetNumberTipsLabelText" = "首次使用，請先登錄";
 "kTakeNumberButtonTitle" = "領 取";
-"kLoginButtonTitle" = "登 錄";
+"kLoginButtonTitle" = "小吉號碼登錄";
+"kQQLoginButtonTitle" = "QQ號碼登錄";
+"kSinaLoginButtonTitle" = "新浪微博登錄";
 "kShowNumberTipsLabelText" = "你的小吉號碼是";
 "kOkButtonTitle" = "確 定";
 
@@ -2520,3 +2523,19 @@
 "kOfficialContest" = "官方比賽";
 "kGroupContest" = "家族比賽";
 "kGoodOpus" = "精彩作品";
+
+"kCreateContest" = "創建比賽";
+"kContestName" = "比賽名稱";
+"kStartTime" = "開始時間";
+"kEndTime" = "結束時間";
+"kContestRules" = "比賽規則";
+"kContestJoiners" = "參賽成員";
+"kContestImage" = "比賽海報";
+"kInputContestName" = "請輸入比賽名稱";
+
+"kEveryone" = "所有人";
+"kGroupMember" = "家族成員";
+"kGroupMemberAndGuest" = "家族成員和嘉賓";
+
+"kContestNameCannotBeBlank" = "比賽名稱不能為空";
+"kPleaseSelectContestImage" = "請選擇一副圖片作為比賽海報";

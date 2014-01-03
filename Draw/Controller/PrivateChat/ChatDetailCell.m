@@ -24,17 +24,17 @@
 #import "DrawHolderView.h"
 #import "UIImageExt.h"
 #import "UIImageView+Extend.h"
-#import "UserDetailViewController.h"
-#import "ViewUserDetail.h"
+
 
 @interface ChatDetailCell()
 {
     time_t _lastClickDown;
 }
-@property(nonatomic, assign)BOOL showTime;
-@property(nonatomic, retain)PPMessage *message;
-@property(nonatomic, retain)MessageStat *messageStat;
-@property(nonatomic, assign)BOOL isReceive;
+
+//@property(nonatomic, assign) BOOL showTime;
+//@property(nonatomic, retain) PPMessage *message;
+//@property(nonatomic, retain) MessageStat *messageStat;
+//@property(nonatomic, assign) BOOL isReceive;
 
 - (void)updateTextMessageView:(PPMessage *)message;
 - (void)updateDrawMessageView:(PPMessage *)message;
@@ -56,7 +56,7 @@
 #define TEXT_FONT [UIFont systemFontOfSize:VALUE(14)]
 #define LINE_BREAK_MODE NSLineBreakByWordWrapping
 
-#define IMAGE_DEFAULT_SIZE (ISIPAD ? CGSizeMake(300,300) : CGSizeMake(120,120))
+//#define DEFAULT_MESSAGE_IMAGE_SIZE (ISIPAD ? CGSizeMake(300,300) : CGSizeMake(120,120))
 #define IMAGE_MAX_SIZE CGSizeMake(VALUE(160), VALUE(200))
 
 #define HORIZONTAL_SPACE VALUE(10)
@@ -72,7 +72,7 @@
     ChatDetailCell *cell = [ChatDetailCell createViewWithXibIdentifier:@"ChatDetailCell" ofViewIndex:ISIPAD];
     SET_VIEW_ROUND_CORNER(cell.holderView);
     cell.delegate = delegate;
-    cell.isReceive = NO;
+//    cell.isReceive = NO;
     [cell.msgLabel setFont:TEXT_FONT];
     [cell.msgLabel setLineBreakMode:LINE_BREAK_MODE];
     cell.holderView.backgroundColor = [UIColor clearColor];
@@ -80,6 +80,10 @@
     [cell.holderView addTarget:cell action:@selector(clickUp:) forControlEvents:UIControlEventTouchUpInside];
     [cell.holderView addTarget:cell action:@selector(clickUp:) forControlEvents:UIControlEventTouchUpOutside];
 
+//    CGSize imageSize = DEFAULT_MESSAGE_IMAGE_SIZE;
+//    CGRect frame = CGRectFromCGSize(imageSize);
+//    self.imgView.frame = frame;
+    
     return cell;
 }
 
@@ -93,9 +97,9 @@
     
     if (minus >= 1) {
         //long click
-        [self.delegate didLongClickMessage:self.message];
+        [self.delegate didLongClickMessage:self.indexPath];
     }else{
-        [self.delegate clickMessage:self.message];
+        [self.delegate clickMessage:self.indexPath];
     }
 }
 
@@ -127,11 +131,13 @@
 
 - (void)updateCellWithImage:(UIImage *)image
 {
+    [self.imgView setContentMode:UIViewContentModeScaleAspectFill]; // UIViewContentModeScaleAspectFit];
     [self.imgView setImage:image];
-    CGSize size = [ChatDetailCell adjustImageSize:image.size];
+    CGSize size = DEFAULT_MESSAGE_IMAGE_SIZE; // [ChatDetailCell adjustImageSize:image.size];
     [self updateHolderViewSize:size hasEdge:NO];
     CGRect frame = CGRectFromCGSize(size);
     self.imgView.frame = frame;
+    
 }
 
 + (CGSize)sizeWithSize:(CGSize)size maxSize:(CGSize)maxSize
@@ -156,7 +162,7 @@
         if (image) {
             return [self adjustImageSize:image.size];
         }
-        return IMAGE_DEFAULT_SIZE;
+        return DEFAULT_MESSAGE_IMAGE_SIZE;
     }else if([message isDrawMessage]){
         PPMessage *drawMessage = message;
         if (drawMessage.thumbImage == nil) {
@@ -165,10 +171,10 @@
             drawMessage.thumbImage = [show createImageWithSize:[ChatDetailCell adjustImageSize:drawMessage.canvasSize]];
         }
         image = [drawMessage thumbImage];
-        if (image) {
-            return [self adjustImageSize:image.size];
-        }
-        return IMAGE_DEFAULT_SIZE;
+//        if (image) {
+//            return [self adjustImageSize:image.size];
+//        }
+        return DEFAULT_MESSAGE_IMAGE_SIZE;
     }else{
         CGSize size = [message.text sizeWithFont:TEXT_FONT constrainedToSize:CGSizeMake(TEXT_WIDTH_MAX, TEXT_HEIGHT_MAX) lineBreakMode:LINE_BREAK_MODE];
         return size;
@@ -187,6 +193,11 @@
     NSURL *url = nil;
     if ((message.status == MessageStatusFail || message.status == MessageStatusSending)&& message.imageUrl) {
         url = [NSURL fileURLWithPath:message.imageUrl];
+        if (message.image == nil){
+            UIImage* image = [[UIImage alloc] initWithContentsOfFile:message.imageUrl];
+            message.image = image;
+            [image release];
+        }
     } else {
         url = [NSURL URLWithString:message.thumbImageUrl];
     }
@@ -194,19 +205,16 @@
         [self updateCellWithImage:message.image];
     }else{
         id<ChatDetailCellDelegate> cellDelegate = self.delegate;
-        [cellDelegate retain];
-        [message retain];
+        NSIndexPath* ip = [NSIndexPath indexPathForRow:self.indexPath.row inSection:self.indexPath.section];
         [self.imgView setImageWithURL:url placeholderImage:[[ShareImageManager defaultManager] unloadBg] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType) {
             if (error == nil) {
                 message.image = image;
                 [self updateCellWithImage:message.image];
-                [cellDelegate didMessage:message loadImage:image];
+                [cellDelegate didMessage:ip loadImage:image];
             }else{
                 [self updateCellWithImage:[[ShareImageManager defaultManager] splitPhoto]];
             }
             
-            [cellDelegate release];
-            [message release];
         }];
     }
 }
@@ -217,9 +225,27 @@
     [self.timeButton setTitle:dateString forState:UIControlStateNormal];
 }
 
-- (void)updateSendingFlag
+- (BOOL)isReceive:(PPMessage*)message
 {
-    MessageStatus status = self.message.status;
+    BOOL value = NO;
+    if (message.isGroup){
+        if ([[UserManager defaultManager] isMe:message.fromUserToGroup.userId]){
+            value = NO;
+        }
+        else{
+            value = YES;
+        }
+    }
+    else{
+        value = ([message sourceType] == SourceTypeReceive);
+    }
+    
+    return value;
+}
+
+- (void)updateSendingFlag:(PPMessage*)message
+{
+    MessageStatus status = message.status;
     [self.loadingView setHidden:YES];
     [self.failureView setHidden:YES];
     UIView *view = nil;
@@ -232,7 +258,7 @@
         [view setHidden:NO];
         CGFloat y = self.holderView.center.y;
         CGFloat x = CGRectGetMinX(self.holderView.frame) - HORIZONTAL_SPACE - CGRectGetWidth(view.bounds)/2;
-        if (_isReceive) {
+        if ([self isReceive:message]) {
             x = CGRectGetMaxX(self.holderView.frame) + HORIZONTAL_SPACE + CGRectGetWidth(view.bounds)/2;
         }
         [view setCenter:CGPointMake(x, y)];
@@ -240,8 +266,8 @@
 }
 
 - (void)dealloc {
-    PPRelease(_message);
-    PPRelease(_messageStat);
+//    PPRelease(_message);
+//    PPRelease(_messageStat);
     PPRelease(_loadingView);
     PPRelease(_failureView);
     PPRelease(_avatarView);
@@ -270,12 +296,12 @@
     return height;
 }
 
-- (void)updateAvatarImage:(MessageStat *)messageStat
+- (void)updateAvatarImage:(MessageStat *)messageStat message:(PPMessage*)message
 {
-    NSString *avatar = messageStat.isGroup ? self.message.fromUserToGroup.avatar : self.messageStat.friendAvatar;
-    BOOL isMale = messageStat.isGroup ? self.message.fromUserToGroup.gender : self.messageStat.friendGender;
+    NSString *avatar = messageStat.isGroup ? message.fromUserToGroup.avatar : messageStat.friendAvatar;
+    BOOL isMale = messageStat.isGroup ? message.fromUserToGroup.gender : messageStat.friendGender;
     
-    if (!_isReceive) {
+    if (![self isReceive:message]) {
         avatar = [[UserManager defaultManager] avatarURL];
         isMale = [[[UserManager defaultManager] gender] isEqualToString:@"m"];
         self.avatarView.delegate = nil;
@@ -284,7 +310,7 @@
         self.avatarView.delegate = self;
         
         if ([messageStat isGroup]){
-            self.avatarView.userId = self.message.fromUserToGroup.userId;
+            self.avatarView.userId = message.fromUserToGroup.userId;
         }
         else{
             self.avatarView.userId = [messageStat friendId];
@@ -295,21 +321,7 @@
 
 - (void)didClickOnAvatar:(NSString*)userId
 {
-    if ([self.messageStat isGroup]){
-        
-        ViewUserDetail *detail = [ViewUserDetail viewUserDetailWithUserId:self.message.fromUserToGroup.userId
-                                                                   avatar:self.message.fromUserToGroup.avatar
-                                                                 nickName:self.message.fromUserToGroup.nickName];
-        
-        [UserDetailViewController presentUserDetail:detail inViewController:(id)[self theViewController]];
-    }
-    else{
-        MessageStat *stat = self.messageStat;
-        ViewUserDetail *detail = [ViewUserDetail viewUserDetailWithUserId:stat.friendId
-                                                                   avatar:stat.friendAvatar
-                                                                 nickName:stat.friendNickName];
-        [UserDetailViewController presentUserDetail:detail inViewController:(id)[self theViewController]];
-    }
+    [self.delegate didClickMessageUserAvatar:self.indexPath];
 }
 
 - (void)updateViewsWithShowTime:(BOOL)showTime
@@ -317,7 +329,7 @@
     //update vertically
     self.timeButton.hidden = !showTime;
     CGFloat y = CGRectGetMinY(self.timeButton.frame);
-    if (!self.showTime) {
+    if (!showTime) {
         [self.avatarView updateOriginY:y];
         [self.holderView updateOriginY:y];
     }else{
@@ -334,26 +346,27 @@
                      indexPath:(NSIndexPath *)theIndexPath
                       showTime:(BOOL)showTime
 {    
-    self.messageStat = messageStat;
-    self.message = message;
-    self.showTime = showTime;
+//    self.messageStat = messageStat;
+//    self.message = message;
+//    self.showTime = showTime;
     self.indexPath = theIndexPath;
-    self.isReceive = NO;
     
-    if (message.isGroup){
-        if ([[UserManager defaultManager] isMe:message.fromUserToGroup.userId]){
-            self.isReceive = NO;
-        }
-        else{
-            self.isReceive = YES;
-        }
-    }
-    else{
-       self.isReceive = ([message sourceType] == SourceTypeReceive);
-    }
+    BOOL isReceive = [self isReceive:message];
+    
+//    if (message.isGroup){
+//        if ([[UserManager defaultManager] isMe:message.fromUserToGroup.userId]){
+//            self.isReceive = NO;
+//        }
+//        else{
+//            self.isReceive = YES;
+//        }
+//    }
+//    else{
+//       self.isReceive = ([message sourceType] == SourceTypeReceive);
+//    }
     
     [self updateViewsWithShowTime:showTime];
-    [self updateAvatarImage:messageStat];
+    [self updateAvatarImage:messageStat message:message];
     [self updateTime:message.createDate];
     self.imgView.hidden = self.msgLabel.hidden = YES;
     if(message.messageType == MessageTypeDraw){
@@ -365,7 +378,7 @@
     }else{
         [self updateTextMessageView:message];
         self.imgView.hidden = YES;        
-        if (!self.isReceive) {
+        if (!isReceive) {
             SET_BUTTON_ROUND_STYLE_ORANGE(self.holderView);
             [self.msgLabel setTextColor:COLOR_WHITE];
         }else{
@@ -373,12 +386,16 @@
             [self.msgLabel setTextColor:COLOR_COFFEE];
         }
     }
+
     //如果是发送的消息就靠右
-    if (!self.isReceive) {
+    if (!isReceive) {
         [self.holderView.superview reverseViewHorizontalContent];
     }
+    else{
+        
+    }
 
-    [self updateSendingFlag];
+    [self updateSendingFlag:message];
 }
 
 

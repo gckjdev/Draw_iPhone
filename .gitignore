@@ -9,3 +9,4 @@ OffScreen_new/
 clean.sh
 tags
 dump.rdb
+build_game_protocol.sh

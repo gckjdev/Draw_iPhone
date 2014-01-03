@@ -93,6 +93,8 @@
 #import "GroupHomeController.h"
 #import "DrawImageManager.h"
 
+#import "CreateContestController.h"
+
 static NSDictionary* DRAW_MENU_TITLE_DICT = nil;
 static NSDictionary* DRAW_MENU_IMAGE_DICT = nil;
 
@@ -665,14 +667,21 @@ static NSDictionary* DRAW_MENU_IMAGE_DICT = nil;
             break;
         case HomeMenuTypeDrawContest:
 #ifdef DEBUG
-        {
+//        {
 //            if (ISIPAD == NO){
-                GroupHomeController *gc = [[GroupHomeController alloc] init];
-                [self.navigationController pushViewController:gc animated:YES];
-                [gc release];
-                break;
+//                GroupHomeController *gc = [[GroupHomeController alloc] init];
+//                [self.navigationController pushViewController:gc animated:YES];
+//                [gc release];
+//                break;
 //            }
+//        }
+            
+        {
+            CreateContestController *vc = [[[CreateContestController alloc] initWithGroupId:@""] autorelease];
+            [self.navigationController pushViewController:vc animated:YES];
         }
+
+            break;
 #endif
             
         {

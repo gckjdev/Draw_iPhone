@@ -47,6 +47,10 @@
 
 @property (retain, nonatomic) IBOutlet UIView *bottomView;
 
+@property (retain, nonatomic) IBOutlet UIButton *qqLoginButton;
+@property (retain, nonatomic) IBOutlet UIButton *sinaLoginButton;
+
+
 - (IBAction)clickClose:(id)sender;
 
 - (IBAction)clickForgot:(id)sender;
@@ -54,6 +58,9 @@
 
 - (IBAction)clickLogin:(id)sender;
 - (IBAction)clickTakeNumber:(id)sender;
+
+- (IBAction)clickLoginByQQ:(id)sender;
+- (IBAction)clickLoginBySina:(id)sender;
 
 - (IBAction)dismiss:(id)sender;
 
