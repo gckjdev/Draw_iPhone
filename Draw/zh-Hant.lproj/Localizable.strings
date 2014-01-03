@@ -1102,9 +1102,12 @@
 "kAccountManage" = "賬號管理";
 "kAddAccount" = "新賬號";
 
-"kGetNumberTipsLabelText" = "首次使用，請領取小吉號碼\n或使用已有號碼登錄";
+//"kGetNumberTipsLabelText" = "首次使用，請領取小吉號碼\n或使用已有號碼登錄";
+"kGetNumberTipsLabelText" = "首次使用，請先登錄";
 "kTakeNumberButtonTitle" = "領 取";
-"kLoginButtonTitle" = "登 錄";
+"kLoginButtonTitle" = "小吉號碼登錄";
+"kQQLoginButtonTitle" = "QQ號碼登錄";
+"kSinaLoginButtonTitle" = "新浪微博登錄";
 "kShowNumberTipsLabelText" = "你的小吉號碼是";
 "kOkButtonTitle" = "確 定";
 

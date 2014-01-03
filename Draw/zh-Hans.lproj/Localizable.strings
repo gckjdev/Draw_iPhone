@@ -1116,9 +1116,12 @@
 "kAccountManage" = "账号管理";
 "kAddAccount" = "新账号";
 
-"kGetNumberTipsLabelText" = "首次使用，请领取小吉号码\n或使用已有号码登录";
+"kGetNumberTipsLabelText" = "首次使用，请先登录";
 "kTakeNumberButtonTitle" = "领            取";
-"kLoginButtonTitle" = "登            录";
+"kLoginButtonTitle" = "小吉号码登录";
+"kQQLoginButtonTitle" = "QQ号码登录";
+"kSinaLoginButtonTitle" = "新浪微博登录";
+
 "kShowNumberTipsLabelText" = "你的小吉号码是";
 "kOkButtonTitle" = "确            定";
 
