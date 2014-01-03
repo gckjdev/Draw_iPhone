@@ -3036,6 +3036,7 @@ static PBGroupNotice* defaultPBGroupNoticeInstance = nil;
 @property (retain) NSMutableArray* mutableRankTypesList;
 @property (retain) PBGroup* group;
 @property int32_t joinersType;
+@property (retain) NSString* rule;
 @end
 
 @implementation PBContest
@@ -3227,6 +3228,13 @@ static PBGroupNotice* defaultPBGroupNoticeInstance = nil;
   hasJoinersType_ = !!value;
 }
 @synthesize joinersType;
+- (BOOL) hasRule {
+  return !!hasRule_;
+}
+- (void) setHasRule:(BOOL) value {
+  hasRule_ = !!value;
+}
+@synthesize rule;
 - (void) dealloc {
   self.contestId = nil;
   self.title = nil;
@@ -3239,6 +3247,7 @@ static PBGroupNotice* defaultPBGroupNoticeInstance = nil;
   self.mutableAwardUsersList = nil;
   self.mutableRankTypesList = nil;
   self.group = nil;
+  self.rule = nil;
   [super dealloc];
 }
 - (id) init {
@@ -3266,6 +3275,7 @@ static PBGroupNotice* defaultPBGroupNoticeInstance = nil;
     self.contestantsOnly = NO;
     self.group = [PBGroup defaultInstance];
     self.joinersType = 0;
+    self.rule = @"";
   }
   return self;
 }
@@ -3452,6 +3462,9 @@ static PBContest* defaultPBContestInstance = nil;
   if (self.hasJoinersType) {
     [output writeInt32:61 value:self.joinersType];
   }
+  if (self.hasRule) {
+    [output writeString:62 value:self.rule];
+  }
   [self.unknownFields writeToCodedOutputStream:output];
 }
 - (int32_t) serializedSize {
@@ -3547,6 +3560,9 @@ static PBContest* defaultPBContestInstance = nil;
   }
   if (self.hasJoinersType) {
     size += computeInt32Size(61, self.joinersType);
+  }
+  if (self.hasRule) {
+    size += computeStringSize(62, self.rule);
   }
   size += self.unknownFields.serializedSize;
   memoizedSerializedSize = size;
@@ -3728,6 +3744,9 @@ static PBContest* defaultPBContestInstance = nil;
   if (other.hasJoinersType) {
     [self setJoinersType:other.joinersType];
   }
+  if (other.hasRule) {
+    [self setRule:other.rule];
+  }
   [self mergeUnknownFields:other.unknownFields];
   return self;
 }
@@ -3885,6 +3904,10 @@ static PBContest* defaultPBContestInstance = nil;
       }
       case 488: {
         [self setJoinersType:[input readInt32]];
+        break;
+      }
+      case 498: {
+        [self setRule:[input readString]];
         break;
       }
     }
@@ -4444,6 +4467,22 @@ static PBContest* defaultPBContestInstance = nil;
 - (PBContest_Builder*) clearJoinersType {
   result.hasJoinersType = NO;
   result.joinersType = 0;
+  return self;
+}
+- (BOOL) hasRule {
+  return result.hasRule;
+}
+- (NSString*) rule {
+  return result.rule;
+}
+- (PBContest_Builder*) setRule:(NSString*) value {
+  result.hasRule = YES;
+  result.rule = value;
+  return self;
+}
+- (PBContest_Builder*) clearRule {
+  result.hasRule = NO;
+  result.rule = @"";
   return self;
 }
 @end

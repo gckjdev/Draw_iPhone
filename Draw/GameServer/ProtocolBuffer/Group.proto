@@ -142,6 +142,7 @@ message PBContest
     
     optional PBGroup group = 60;                // 哪个家族发起的比赛。
     optional int32 joinersType = 61;            // 参赛者类型：0所有人都可以参赛；1家族人员可以参赛；2家族成员和嘉宾可以参赛
+    optional string rule = 62;
 }
 
 
