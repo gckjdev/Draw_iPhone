@@ -598,8 +598,8 @@
 #define PARA_APP_ULR        @"url"
 
 // create contest
-#define METHOD_CREATE_CONTEST_LIST @"createContest"
-
+#define METHOD_CREATE_CONTEST @"createContest"
+#define PARA_META_DATA @"meta_data"
 
 // for group contest
 #define METHOD_GET_GROUP_CONTEST_LIST @"ggcl"

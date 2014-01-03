@@ -88,6 +88,11 @@
     return _pbContestBuilder.title;
 }
 
+- (void)setTitle:(NSString *)title{
+    
+    [_pbContestBuilder setTitle:title];
+}
+
 - (NSString *)contestUrl
 {
     return _pbContestBuilder.contestUrl;
@@ -129,6 +134,11 @@
     }
     
     return value;
+}
+
+- (void)setRule:(NSString *)rule{
+    
+    [_pbContestBuilder setRule:rule];
 }
 
 - (BOOL)canSubmit
@@ -382,6 +392,11 @@
     contest.pbContestBuilder = [[[PBContest_Builder alloc] init] autorelease];
     [contest.pbContestBuilder setContestId:@""];
     [contest.pbContestBuilder setJoinersType:0];
+    [contest.pbContestBuilder setCategory:[GameApp getCategory]];
+    [contest.pbContestBuilder setCanSubmitCount:1];         // by default
+    [contest.pbContestBuilder setMaxFlowerPerOpus:3];       // by default
+    [contest.pbContestBuilder setMaxFlowerPerContest:6000]; // by default
+    
     
     PBGroup_Builder *pbGroupBuilder = [[[PBGroup_Builder alloc] init] autorelease];
     [pbGroupBuilder setGroupId:groupId];
@@ -394,6 +409,11 @@
     
     NSDate *endDate = [[[NSDate alloc] initWithTimeInterval:24*3600*7 sinceDate:startDate] autorelease];
     [contest.pbContestBuilder setEndDate:[endDate timeIntervalSince1970]];
+    
+    [contest.pbContestBuilder setVoteStartDate:startDate];          // by default
+    [contest.pbContestBuilder setVoteEndDate:nextDate(endDate)];    // by default
+    [contest.pbContestBuilder setIsAnounymous:YES];
+    [contest.pbContestBuilder setContestantsOnly:NO];
 
     contest.pbContestBuilder = [PBContest builderWithPrototype:contest.pbContest];
     

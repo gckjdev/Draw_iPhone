@@ -180,10 +180,17 @@
         return;
     }
     
+    [self.contest setTitle:self.contestNameInputField.text];
+    self.contest set
+    
     [[ContestService defaultService] createContest:self.contest
                                              image:self.image
                                          completed:^(int resultCode, Contest *contest) {
         
+        if (resultCode != 0) {
+            POSTMSG2(NSLS(@"kLoadFail"), 2);
+            return;
+        }                                     
     }];
 }
 

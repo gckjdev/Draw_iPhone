@@ -245,12 +245,8 @@ static ContestService *_staticContestService;
     
     dispatch_async(workingQueue, ^{
         
-        NSDictionary* para = @{PARA_CONTEST : data,
-                               PARA_IMAGE : [image data]
-                                };
+        GameNetworkOutput* output = [PPGameNetworkRequest trafficApiServerUploadAndResponsePB:METHOD_CREATE_CONTEST parameters:nil imageDataDict:@{PARA_IMAGE:[image data]} postDataDict:@{PARA_META_DATA : data} progressDelegate:nil];
         
-        GameNetworkOutput* output = [PPGameNetworkRequest trafficApiServerGetAndResponsePB:METHOD_CREATE_CONTEST_LIST
-                                                                                parameters:para];
         Contest *contest = [[[Contest alloc] initWithPBContest:output.pbResponse.contest] autorelease];
         
         dispatch_async(dispatch_get_main_queue(), ^{
@@ -259,8 +255,5 @@ static ContestService *_staticContestService;
         });
     });
 }
-
-
-
 
 @end

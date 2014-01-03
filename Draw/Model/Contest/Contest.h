@@ -37,12 +37,13 @@ typedef enum{
 @property(nonatomic, readonly) ContestStatus status;
 @property(nonatomic, readonly) NSInteger participantCount;
 @property(nonatomic, readonly) NSInteger opusCount;
-@property(nonatomic, readonly) NSString *title;
+@property(nonatomic, assign) NSString *title;
 @property(nonatomic, readonly) NSString *contestUrl;
 @property(nonatomic, readonly) NSString *statementUrl;
 @property(nonatomic, readonly) NSInteger canSubmitCount;
 @property(nonatomic, readonly) NSInteger maxFlowerPerOpus;
 @property(nonatomic, readonly) NSInteger maxFlowerPerContest;
+@property(nonatomic, assign) NSString *rule;
 
 @property(nonatomic, readonly) BOOL canSubmit;
 @property(nonatomic, readonly) BOOL canVote;
