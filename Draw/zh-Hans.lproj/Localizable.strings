@@ -2532,4 +2532,7 @@
 "kContestNameCannotBeBlank" = "比赛名称不能为空";
 "kPleaseSelectContestImage" = "请选择一副图片作为比赛海报";
 "kCreateContestSuccess" = "成功创建比赛";
-"kNumberXGetAwardX" = "第%d名 %d金币\n";
+"kNumberXGetAwardX" = "第%d名 %d金币";
+"kRankIs" = "第%d名";
+"kStartDateCannotAfterEndDate" = "开始时间不能大于结束时间";
+"kEndDateCannotBeforeStartDate" = "结束时间不能小于开始时间";

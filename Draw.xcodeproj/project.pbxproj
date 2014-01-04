@@ -69,6 +69,22 @@
 		A40B59A2180E6AB800F68A81 /* ImagePlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = A40B599F180E6AB800F68A81 /* ImagePlayer.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
 		A40B59BE180FD96200F68A81 /* OpusManagerFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = A40B59BD180FD96100F68A81 /* OpusManagerFactory.m */; };
 		A40D71DD16553575000CC598 /* FXLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = A40D71DC16553575000CC598 /* FXLabel.m */; };
+		A40DF8801876A29200C1A307 /* ContestAwardEditController.m in Sources */ = {isa = PBXBuildFile; fileRef = A40DF87E1876A29200C1A307 /* ContestAwardEditController.m */; };
+		A40DF8811876A29200C1A307 /* ContestAwardEditController.m in Sources */ = {isa = PBXBuildFile; fileRef = A40DF87E1876A29200C1A307 /* ContestAwardEditController.m */; };
+		A40DF8821876A29200C1A307 /* ContestAwardEditController.m in Sources */ = {isa = PBXBuildFile; fileRef = A40DF87E1876A29200C1A307 /* ContestAwardEditController.m */; };
+		A40DF8831876A29200C1A307 /* ContestAwardEditController.m in Sources */ = {isa = PBXBuildFile; fileRef = A40DF87E1876A29200C1A307 /* ContestAwardEditController.m */; };
+		A40DF8841876A29200C1A307 /* ContestAwardEditController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A40DF87F1876A29200C1A307 /* ContestAwardEditController.xib */; };
+		A40DF8851876A29200C1A307 /* ContestAwardEditController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A40DF87F1876A29200C1A307 /* ContestAwardEditController.xib */; };
+		A40DF8861876A29200C1A307 /* ContestAwardEditController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A40DF87F1876A29200C1A307 /* ContestAwardEditController.xib */; };
+		A40DF8871876A29200C1A307 /* ContestAwardEditController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A40DF87F1876A29200C1A307 /* ContestAwardEditController.xib */; };
+		A40DF88D1876A3EF00C1A307 /* ContestAwardEditCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A40DF88C1876A3EF00C1A307 /* ContestAwardEditCell.m */; };
+		A40DF88E1876A3EF00C1A307 /* ContestAwardEditCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A40DF88C1876A3EF00C1A307 /* ContestAwardEditCell.m */; };
+		A40DF88F1876A3EF00C1A307 /* ContestAwardEditCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A40DF88C1876A3EF00C1A307 /* ContestAwardEditCell.m */; };
+		A40DF8901876A3EF00C1A307 /* ContestAwardEditCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A40DF88C1876A3EF00C1A307 /* ContestAwardEditCell.m */; };
+		A40DF8921876A40900C1A307 /* ContestAwardEditCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A40DF8911876A40900C1A307 /* ContestAwardEditCell.xib */; };
+		A40DF8931876A40900C1A307 /* ContestAwardEditCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A40DF8911876A40900C1A307 /* ContestAwardEditCell.xib */; };
+		A40DF8941876A40900C1A307 /* ContestAwardEditCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A40DF8911876A40900C1A307 /* ContestAwardEditCell.xib */; };
+		A40DF8951876A40900C1A307 /* ContestAwardEditCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A40DF8911876A40900C1A307 /* ContestAwardEditCell.xib */; };
 		A40EE820170043A9003B8FFC /* ReflectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = A40EE81F170043A9003B8FFC /* ReflectionView.m */; };
 		A40EE826170053A5003B8FFC /* FeedCarousel.m in Sources */ = {isa = PBXBuildFile; fileRef = A40EE825170053A5003B8FFC /* FeedCarousel.m */; };
 		A40EE828170053C2003B8FFC /* FeedCarousel.xib in Resources */ = {isa = PBXBuildFile; fileRef = A40EE827170053C2003B8FFC /* FeedCarousel.xib */; };
@@ -7338,6 +7354,12 @@
 		A40B59BD180FD96100F68A81 /* OpusManagerFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OpusManagerFactory.m; sourceTree = "<group>"; };
 		A40D71DB16553575000CC598 /* FXLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FXLabel.h; sourceTree = "<group>"; };
 		A40D71DC16553575000CC598 /* FXLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FXLabel.m; sourceTree = "<group>"; };
+		A40DF87D1876A29200C1A307 /* ContestAwardEditController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContestAwardEditController.h; sourceTree = "<group>"; };
+		A40DF87E1876A29200C1A307 /* ContestAwardEditController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContestAwardEditController.m; sourceTree = "<group>"; };
+		A40DF87F1876A29200C1A307 /* ContestAwardEditController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ContestAwardEditController.xib; sourceTree = "<group>"; };
+		A40DF88B1876A3EE00C1A307 /* ContestAwardEditCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContestAwardEditCell.h; sourceTree = "<group>"; };
+		A40DF88C1876A3EF00C1A307 /* ContestAwardEditCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContestAwardEditCell.m; sourceTree = "<group>"; };
+		A40DF8911876A40900C1A307 /* ContestAwardEditCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ContestAwardEditCell.xib; sourceTree = "<group>"; };
 		A40EE81E170043A9003B8FFC /* ReflectionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReflectionView.h; sourceTree = "<group>"; };
 		A40EE81F170043A9003B8FFC /* ReflectionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReflectionView.m; sourceTree = "<group>"; };
 		A40EE824170053A5003B8FFC /* FeedCarousel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FeedCarousel.h; sourceTree = "<group>"; };
@@ -15410,6 +15432,12 @@
 				CA3F2ED01609B3350059667B /* StatementController.m */,
 				EA433E1417CDDA2E006E6FA7 /* JudgerScoreView.h */,
 				EA433E1517CDDA2E006E6FA7 /* JudgerScoreView.m */,
+				A40DF87D1876A29200C1A307 /* ContestAwardEditController.h */,
+				A40DF87E1876A29200C1A307 /* ContestAwardEditController.m */,
+				A40DF87F1876A29200C1A307 /* ContestAwardEditController.xib */,
+				A40DF88B1876A3EE00C1A307 /* ContestAwardEditCell.h */,
+				A40DF88C1876A3EF00C1A307 /* ContestAwardEditCell.m */,
+				A40DF8911876A40900C1A307 /* ContestAwardEditCell.xib */,
 			);
 			path = Contest;
 			sourceTree = "<group>";
@@ -18406,6 +18434,8 @@
 				A44AC48F187561F200927649 /* Group.proto in Resources */,
 				EA62853B18768F4600478502 /* bbs_post_detail_favor@2x.png in Resources */,
 				EA62853F18768F4600478502 /* bbs_post_detail_unfavor@2x.png in Resources */,
+				A40DF8861876A29200C1A307 /* ContestAwardEditController.xib in Resources */,
+				A40DF8941876A40900C1A307 /* ContestAwardEditCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -19383,6 +19413,8 @@
 				A44AC48E187561F200927649 /* Group.proto in Resources */,
 				EA62853A18768F4600478502 /* bbs_post_detail_favor@2x.png in Resources */,
 				EA62853E18768F4600478502 /* bbs_post_detail_unfavor@2x.png in Resources */,
+				A40DF8851876A29200C1A307 /* ContestAwardEditController.xib in Resources */,
+				A40DF8931876A40900C1A307 /* ContestAwardEditCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -20343,6 +20375,8 @@
 				A44AC48D187561F200927649 /* Group.proto in Resources */,
 				EA62853918768F4600478502 /* bbs_post_detail_favor@2x.png in Resources */,
 				EA62853D18768F4600478502 /* bbs_post_detail_unfavor@2x.png in Resources */,
+				A40DF8841876A29200C1A307 /* ContestAwardEditController.xib in Resources */,
+				A40DF8921876A40900C1A307 /* ContestAwardEditCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -21257,6 +21291,8 @@
 				A44AC490187561F200927649 /* Group.proto in Resources */,
 				EA62853C18768F4600478502 /* bbs_post_detail_favor@2x.png in Resources */,
 				EA62854018768F4600478502 /* bbs_post_detail_unfavor@2x.png in Resources */,
+				A40DF8871876A29200C1A307 /* ContestAwardEditController.xib in Resources */,
+				A40DF8951876A40900C1A307 /* ContestAwardEditCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -22160,6 +22196,8 @@
 				A434172018711AFB008D0A2B /* ContestCell.m in Sources */,
 				A44AC47C187551EA00927649 /* IQKeyBoardManager.m in Sources */,
 				A44AC4861875528D00927649 /* CreateContestController.m in Sources */,
+				A40DF8821876A29200C1A307 /* ContestAwardEditController.m in Sources */,
+				A40DF88F1876A3EF00C1A307 /* ContestAwardEditCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -22969,6 +23007,8 @@
 				A434171F18711AFB008D0A2B /* ContestCell.m in Sources */,
 				A44AC47B187551EA00927649 /* IQKeyBoardManager.m in Sources */,
 				A44AC4851875528D00927649 /* CreateContestController.m in Sources */,
+				A40DF8811876A29200C1A307 /* ContestAwardEditController.m in Sources */,
+				A40DF88E1876A3EF00C1A307 /* ContestAwardEditCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -23778,6 +23818,8 @@
 				A434171E18711AFB008D0A2B /* ContestCell.m in Sources */,
 				A44AC47A187551EA00927649 /* IQKeyBoardManager.m in Sources */,
 				A44AC4841875528D00927649 /* CreateContestController.m in Sources */,
+				A40DF8801876A29200C1A307 /* ContestAwardEditController.m in Sources */,
+				A40DF88D1876A3EF00C1A307 /* ContestAwardEditCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -24543,6 +24585,8 @@
 				A434172118711AFB008D0A2B /* ContestCell.m in Sources */,
 				A44AC47D187551EA00927649 /* IQKeyBoardManager.m in Sources */,
 				A44AC4871875528D00927649 /* CreateContestController.m in Sources */,
+				A40DF8831876A29200C1A307 /* ContestAwardEditController.m in Sources */,
+				A40DF8901876A3EF00C1A307 /* ContestAwardEditCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

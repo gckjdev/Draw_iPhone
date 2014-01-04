@@ -432,11 +432,12 @@
     [contest.pbContestBuilder setContestantsOnly:NO];
 
     contest.pbContestBuilder = [PBContest builderWithPrototype:contest.pbContest];
-    
-    [contest setAwardRules:@[@"5000", @"2000", @"1000", @"300", @"300",
-                            @"300",  @"300",  @"300",  @"300", @"300",
-                            @"300",  @"300",  @"300",  @"300", @"300",
-                            @"300",  @"300",  @"300",  @"300", @"300"]];
+
+    // 放在controller那边做
+//    [contest setAwardRules:@[@(5000), @(2000), @(1000), @(300), @(300),
+//                             @(300),  @(300),  @(300),  @(300), @(300),
+//                             @(300),  @(300),  @(300),  @(300), @(300),
+//                             @(300),  @(300),  @(300),  @(300), @(300)]];
     
     return contest;
 }
@@ -469,36 +470,59 @@
 
 - (void)setAwardRules:(NSArray *)awards{
     
-    NSMutableArray *awardRules = [NSMutableArray array];
-    for (int i = 0; i < [awards count]; i ++) {
-        
-        PBIntKeyIntValue_Builder *builder = [[PBIntKeyIntValue_Builder alloc] init];
-        [builder setKey:(i+1)];
-        NSNumber *award = awards[i];
-        [builder setValue:award.intValue];
-        
-        [awardRules addObject:[builder build]];
-        [builder release];
-    }
-    
     [_pbContestBuilder clearAwardRulesList];
-    [_pbContestBuilder addAllAwardRules:awardRules];
+    [_pbContestBuilder addAllAwardRules:awards];
+}
+
+- (NSArray *)awardRules{
+    
+    return [_pbContestBuilder awardRulesList];
 }
 
 - (NSString *)awardRulesShortDesc{
     
     NSArray *awardRules = _pbContestBuilder.awardRulesList;
     if ([awardRules count] > 0) {
-        PBIntKeyIntValue *award = [awardRules objectAtIndex:0];
-        return [self descForAward:award];
+        NSNumber *award = [awardRules objectAtIndex:0];
+        return [self descForRank:1 award:award.intValue];
     }else{
         return nil;
     }
 }
 
-- (NSString *)descForAward:(PBIntKeyIntValue *)award{
+- (NSString *)descForRank:(int)rank award:(int)award{
 
-    return [NSString stringWithFormat:NSLS(@"kNumberXGetAwardX"), award.key, award.value];
+    return [NSString stringWithFormat:NSLS(@"kNumberXGetAwardX"), rank, award];
+}
+
+- (int)awardWithRank:(int)rank{
+    
+    if (rank < [_pbContestBuilder.awardRulesList count]) {
+        
+        NSNumber *award = [_pbContestBuilder.awardRulesList objectAtIndex:rank];
+        return award.intValue;
+    }else{
+        
+        return 0;
+    }
+}
+
+- (void)setRank:(int)rank award:(int)award{
+    
+    NSMutableArray *awards = [[_pbContestBuilder awardRulesList] mutableCopy];
+    
+    if (rank < [awards count]) {
+//        [awards removeObjectAtIndex:rank];
+//        [awards insertObject:@(award) atIndex:rank];
+        [awards replaceObjectAtIndex:rank withObject:@(award)];
+    }else{
+        [awards insertObject:@(award) atIndex:rank];
+    }
+    
+    [_pbContestBuilder clearAwardRulesList];
+    [_pbContestBuilder addAllAwardRules:awards];
+    
+    [awards release];
 }
 
 @end

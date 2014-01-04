@@ -854,13 +854,13 @@ BOOL PBGroupUserTypeIsValidValue(PBGroupUserType value);
   NSString* contestId;
   PBGroup* group;
   PBOpusCategoryType category;
+  NSMutableArray* mutableAwardRulesList;
   NSMutableArray* mutableContestantsList;
   NSMutableArray* mutableJudgesList;
   NSMutableArray* mutableReportersList;
   NSMutableArray* mutableWinnerUsersList;
   NSMutableArray* mutableAwardUsersList;
   NSMutableArray* mutableRankTypesList;
-  NSMutableArray* mutableAwardRulesList;
 }
 - (BOOL) hasContestId;
 - (BOOL) hasStartDate;
@@ -923,7 +923,7 @@ BOOL PBGroupUserTypeIsValidValue(PBGroupUserType value);
 - (NSArray*) rankTypesList;
 - (PBIntKeyValue*) rankTypesAtIndex:(int32_t) index;
 - (NSArray*) awardRulesList;
-- (PBIntKeyIntValue*) awardRulesAtIndex:(int32_t) index;
+- (int32_t) awardRulesAtIndex:(int32_t) index;
 
 + (PBContest*) defaultInstance;
 - (PBContest*) defaultInstance;
@@ -1124,9 +1124,9 @@ BOOL PBGroupUserTypeIsValidValue(PBGroupUserType value);
 - (PBContest_Builder*) clearRule;
 
 - (NSArray*) awardRulesList;
-- (PBIntKeyIntValue*) awardRulesAtIndex:(int32_t) index;
-- (PBContest_Builder*) replaceAwardRulesAtIndex:(int32_t) index with:(PBIntKeyIntValue*) value;
-- (PBContest_Builder*) addAwardRules:(PBIntKeyIntValue*) value;
+- (int32_t) awardRulesAtIndex:(int32_t) index;
+- (PBContest_Builder*) replaceAwardRulesAtIndex:(int32_t) index with:(int32_t) value;
+- (PBContest_Builder*) addAwardRules:(int32_t) value;
 - (PBContest_Builder*) addAllAwardRules:(NSArray*) values;
 - (PBContest_Builder*) clearAwardRulesList;
 @end

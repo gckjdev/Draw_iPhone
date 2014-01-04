@@ -17,6 +17,8 @@
 #import "StringUtil.h"
 #import "ContestService.h"
 #import "GroupManager.h"
+#import "ContestAwardEditController.h"
+#import "IQKeyBoardManager.h"
 
 @interface CreateContestController ()<CKCalendarDelegate, UITextFieldDelegate>
 @property (retain, nonatomic) IBOutlet UILabel *contestNameLabel;
@@ -39,6 +41,7 @@
 @property (retain, nonatomic) UIButton *calendarDismissButton;
 @property (retain, nonatomic) ChangeAvatar *picker;
 @property (retain, nonatomic) UIImage *image;
+@property (retain, nonatomic) ContestAwardEditController *awardEditController;
 @end
 
 @implementation CreateContestController
@@ -48,6 +51,10 @@
     if (self = [super init]) {
         NSString *groupId = [[GroupManager defaultManager] userCurrentGroupId];
         self.contest = [Contest createGroupContestWithGroupId:groupId];
+        [self.contest setAwardRules:@[@(5000), @(2000), @(1000), @(300), @(300),
+                                    @(300),  @(300),  @(300),  @(300), @(300),
+                                    @(300),  @(300),  @(300),  @(300), @(300),
+                                    @(300),  @(300),  @(300),  @(300), @(300)]];
     }
     
     return self;
@@ -57,6 +64,7 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+    [IQKeyBoardManager enableKeyboardManger];
     
     CommonTitleView *v = [CommonTitleView createTitleView:self.view];
     [v setTitle:NSLS(@"kCreateContest")];
@@ -73,20 +81,19 @@
     self.contestImageLabel.text = NSLS(@"kContestImage");
     self.contestAwardLabel.text = NSLS(@"kContestAward");
     
-    UIView *accessory = [[UIView alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(self.view.bounds), 30)];
-    accessory.backgroundColor = [UIColor colorWithWhite:0 alpha:0.7];
-    UIButton *doneButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    [doneButton setFrame:CGRectMake(0, 0, 50, 30)];
-    [doneButton setTitle:NSLS(@"kDone") forState:UIControlStateNormal];
-    [accessory addSubview:doneButton];
-    [doneButton updateCenterX:(CGRectGetWidth(self.view.bounds) - CGRectGetWidth(doneButton.bounds)/2)];
-    [doneButton addTarget:self.contestRuleTextView action:@selector(resignFirstResponder) forControlEvents:UIControlEventTouchUpInside];
-    self.contestRuleTextView.inputAccessoryView = accessory;
+    
+    UIToolbar* numberToolbar = [[UIToolbar alloc]initWithFrame:CGRectMake(0, 0, 320, 50)];
+    numberToolbar.barStyle = UIBarStyleBlackTranslucent;
+    numberToolbar.items = [NSArray arrayWithObjects:
+//                           [[UIBarButtonItem alloc]initWithTitle:NSLS(@"kCancel") style:UIBarButtonItemStyleBordered target:self action:@selector(cancelNumberPad)],
+                           [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil],
+                           [[UIBarButtonItem alloc]initWithTitle:NSLS(@"kDone") style:UIBarButtonItemStyleDone target:self.contestRuleTextView action:@selector(resignFirstResponder)],
+                           nil];
+    [numberToolbar sizeToFit];
+    self.contestRuleTextView.inputAccessoryView = numberToolbar;
     
     self.contestNameInputField.returnKeyType = UIReturnKeyDone;
-    self.contestNameInputField.delegate = self;
-    
-    [accessory release];
+    self.contestNameInputField.delegate = self;    
     
     self.contestNameLabel.textColor = COLOR_BROWN;
     self.startTimeLabel.textColor = COLOR_BROWN;
@@ -215,7 +222,7 @@
 - (IBAction)clickStartTimeButton:(id)sender {
     
     [self.calendar setMinDate:nextDate([NSDate date])];
-    [self.calendar setMaxDate:self.contest.endDate];
+//    [self.calendar setMaxDate:self.contest.endDate];
     self.calendar.tag = CALENDAR_TAG_START_TIME;
     [self.calendar setSelectedDate:self.contest.startDate];
     [self.view addSubview:self.calendar];
@@ -225,8 +232,8 @@
 - (IBAction)clickEndTimeButton:(id)sender {
     
     [self.calendar setMinDate:self.contest.startDate];
-    NSDate *maxDate = [NSDate dateWithTimeInterval:24*3600*14 sinceDate:[NSDate date]];
-    [self.calendar setMaxDate:maxDate];
+//    NSDate *maxDate = [NSDate dateWithTimeInterval:24*3600*14 sinceDate:[NSDate date]];
+//    [self.calendar setMaxDate:maxDate];
     self.calendar.tag = CALENDAR_TAG_END_TIME;
     [self.calendar setSelectedDate:self.contest.endDate];
     [self.view addSubview:self.calendar];
@@ -234,9 +241,13 @@
 }
 
 - (void)calendar:(CKCalendarView *)calendar didSelectDate:(NSDate *)date{
-    
 
     if (calendar.tag == CALENDAR_TAG_START_TIME) {
+        
+        if ([date isAfterDay:[self.contest endDate]]) {
+            POSTMSG2(NSLS(@"kStartDateCannotAfterEndDate"), 2);
+            return;
+        }
         
         [self.contest setStartDate:date];
         [self.contest setVoteStartDate:date];
@@ -245,6 +256,11 @@
         [self.startTimeButton setTitle:startDateString forState:UIControlStateNormal];
         
     }else if (calendar.tag == CALENDAR_TAG_END_TIME){
+        
+        if ([date isBeforeDay:[self.contest startDate]]) {
+            POSTMSG2(NSLS(@"kEndDateCannotBeforeStartDate"), 2);
+            return;
+        }
         
         [self.contest setEndDate:date];
         [self.contest setVoteEndDate:nextDate(date)];
@@ -291,6 +307,19 @@
 }
 
 - (IBAction)clickContestAwardButton:(id)sender {
+    
+    self.awardEditController = [[[ContestAwardEditController alloc] initWithContest:self.contest] autorelease];
+    [self presentViewController:self.awardEditController animated:YES completion:NULL];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(contestAwardHasChanged) name:NotificationContestAwardEditDone object:nil];
+
+}
+
+- (void)contestAwardHasChanged{
+    
+    [self.awardEditController dismissViewControllerAnimated:YES completion:NULL];
+    [self.contestAwardButton setTitle:[self.contest awardRulesShortDesc] forState:UIControlStateNormal];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:NotificationContestAwardEditDone object:self];
 }
 
 - (void)didReceiveMemoryWarning
@@ -299,7 +328,14 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (void)clickBack:(id)sender{
+    
+    [IQKeyBoardManager disableKeyboardManager];
+    [super clickBack:sender];
+}
+
 - (void)dealloc {
+    [IQKeyBoardManager disableKeyboardManager];
     [_contestNameLabel release];
     [_contestNameInputField release];
     [_startTimeLabel release];
@@ -320,6 +356,7 @@
     [_image release];
     [_contestAwardLabel release];
     [_contestAwardButton release];
+    [_awardEditController release];
     [super dealloc];
 }
 

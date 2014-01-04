@@ -74,6 +74,10 @@ typedef enum{
 - (NSString *)joinersTypeString;
 - (NSArray *)joinersTypeStringArray;
 
-- (void)setAwardRules:(NSArray *)awardRules;
+- (NSArray *)awardRules;
+- (void)setAwardRules:(NSArray *)awards;
 - (NSString *)awardRulesShortDesc;
+- (int)awardWithRank:(int)rank;
+- (void)setRank:(int)rank award:(int)award;
+
 @end

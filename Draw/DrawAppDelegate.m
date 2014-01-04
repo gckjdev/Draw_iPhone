@@ -274,6 +274,7 @@ NSString* GlobalGetBoardServerURL()
 {
     //Enabling keyboard manager(Use this line to enable managing distance between keyboard & textField/textView).
     [IQKeyBoardManager installKeyboardManager];
+    [IQKeyBoardManager disableKeyboardManager];
     
     // TODO check benson
     [LocalNotificationUtil cancelAllLocalNotifications];
