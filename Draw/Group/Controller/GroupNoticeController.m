@@ -251,18 +251,18 @@ typedef enum{
     NSString *showTitle = (accpet ? NSLS(@"kAccepting") : NSLS(@"kRejecting"));
     [self showActivityWithText:showTitle];
     if (accpet) {        
-        [[GroupService defaultService] acceptInvitation:_selectedNotice.noticeId callback:^(NSError *error) {
+        [[GroupService defaultService] acceptInvitation:notice.noticeId callback:^(NSError *error) {
             [self hideActivity];
             if (!error) {
-                [self removeNoticeFromTable:_selectedNotice];
-                [[[GroupManager defaultManager] followedGroupIds] addObject:_selectedNotice.groupId];
+                [[[GroupManager defaultManager] followedGroupIds] addObject:notice.groupId];
+                [self removeNoticeFromTable:notice];                
             }
         }];
     }else{
-        [[GroupService defaultService] rejectInvitation:_selectedNotice.noticeId callback:^(NSError *error) {
+        [[GroupService defaultService] rejectInvitation:notice.noticeId callback:^(NSError *error) {
             [self hideActivity];
             if (!error) {
-                [self removeNoticeFromTable:_selectedNotice];
+                [self removeNoticeFromTable:notice];
             }
         }];
     }

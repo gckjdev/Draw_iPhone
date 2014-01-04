@@ -44,7 +44,7 @@ extern NSString* GlobalGetTrafficServerURL();
       KEY(ERROR_GROUP_TITLEID_NOTEXISTED)   : NSLS(@"kTitleIDNotFound"),
       KEY(ERROR_BALANCE_NOT_ENOUGH) : NSLS(@"kBalanceNotEnough"),
       KEY(ERROR_GROUP_BALANCE_NOT_ENOUGH) : NSLS(@"kGroupBalanceNotEnough"),
-
+//      KEY(ERROR_GROUP_CREATION): NSLS(@"kCan'tCreateGroup"),
       };
     NSString *errorMessage = errorMSGDict[KEY(code)];    
     return [errorMessage length] == 0 ? NSLS(@"kUnknowError") : errorMessage;
