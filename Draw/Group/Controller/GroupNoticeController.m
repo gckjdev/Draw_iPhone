@@ -360,7 +360,11 @@ typedef enum{
     [self ignoreNotice:notice];
 }
 
-
+- (NSString *)noDataCellContent{
+    NSInteger index = [[self currentTab] index];
+    NSArray *tips = @[NSLS(@"kNoComment"), NSLS(@"kNoRequest"), NSLS(@"kNoNotice")];
+    return tips[index];
+}
 
 - (NSInteger)tabCount
 {

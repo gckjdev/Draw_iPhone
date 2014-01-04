@@ -212,7 +212,7 @@ typedef enum{
     [groupService upgradeGroup:_group.groupId level:level callback:^(NSError *error) {
         [self hideActivity];
         if (!error) {
-            PBGroup *grp = [GroupManager incGroupBalance:_group amount:-fee];
+            PBGroup *grp = [GroupManager upgradeGroup:_group level:level];
             [self updateGroup:grp];
             [self reloadView];
         }

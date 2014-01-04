@@ -1009,6 +1009,14 @@
 "kNoRankHot" = "暫時沒有熱榜數據。";
 "kNoRankNew" = "暫時沒有最新數據。";
 "kNoData" = "暫時沒有數據。";
+
+"kNoNotice" = "暫無通知";
+"kNoComment" = "暫無評論";
+"kNoPost" = "暫無帖子";
+"kNoRequest" = "暫無請求";
+"kNoTopic" = "暫無話題";
+"kNoGroup" = "暫無家族";
+
 "kInputSongNameForSearch" = "請輸入歌曲名稱";
 "kSongNameCannotBeBlank" = "歌曲名稱不能為空";
 

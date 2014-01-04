@@ -81,6 +81,7 @@
 + (PBGroup *)updateGroup:(PBGroup *)group BGImageURL:(NSString *)url;
 
 + (PBGroup *)incGroupBalance:(PBGroup *)group amount:(NSInteger)amount;
++ (PBGroup *)upgradeGroup:(PBGroup *)group level:(NSInteger)level;
 
 + (BOOL)isUser:(PBGameUser *)user adminOrCreatorInGroup:(PBGroup *)group;
 + (BOOL)isMeAdminOrCreatorInSharedGroup;

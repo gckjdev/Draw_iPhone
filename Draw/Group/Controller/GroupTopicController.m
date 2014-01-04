@@ -370,6 +370,10 @@ typedef enum {
     return names[index];
 }
 
+- (NSString *)tabNoDataTipsforIndex:(NSInteger)index{
+    return NSLS(@"kNoTopic");
+}
+
 - (void)serviceLoadDataForTabID:(NSInteger)tabID{
     TableTab *tab = [_tabManager tabForID:tabID];
     [self showActivityWithText:NSLS(@"kLoading")];

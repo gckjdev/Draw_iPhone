@@ -281,6 +281,14 @@
 }
 
 
+- (NSString *)noDataCellContent
+{
+    if ([self isGroupTab:[self currentTabID]]) {
+        return NSLS(@"kNoGroup");
+    }
+    return NSLS(@"kNoTopic");
+}
+
 - (void)serviceLoadDataForTabID:(NSInteger)tabID
 {
     //test
