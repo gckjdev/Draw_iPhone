@@ -23,14 +23,8 @@
 @end
 
 @implementation SearchUserController
-@synthesize searchButton;
-@synthesize inputImageView;
-@synthesize inputTextField;
 
 - (void)dealloc {
-    PPRelease(searchButton);
-    PPRelease(inputTextField);
-    PPRelease(inputImageView);
     [super dealloc];
 }
 
@@ -63,133 +57,22 @@
     return self;
 }
 
-#define SEARCH_BUTTON_TAG 20121025
 - (void)viewDidLoad
 {
-    [self setPullRefreshType:PullRefreshTypeFooter];
+    [self.dataTableView updateWidth:CGRectGetWidth(self.view.bounds)];
+    [self.dataTableView updateOriginX:0];
     [super viewDidLoad];
-    [self.titleLabel setText:NSLS(@"kSearchUser")];
-    
-//    ShareImageManager *imageManager = [ShareImageManager defaultManager];
-    
-//    [inputImageView setImage:[imageManager inputImage]];
-    [inputTextField setPlaceholder:NSLS(@"kSearchUserPlaceholder")];
-    inputTextField.delegate = self;
-    inputTextField.returnKeyType = UIReturnKeyDone;
-    [inputTextField becomeFirstResponder];
-    inputTextField.textAlignment = UITextAlignmentCenter;
-    SET_INPUT_VIEW_STYLE(inputTextField);
-    
-
-    [searchButton setTitle:NSLS(@"kSearch") forState:UIControlStateNormal];
-    searchButton.tag = SEARCH_BUTTON_TAG;
-    SET_BUTTON_ROUND_STYLE_YELLOW(searchButton);
-    
-    
-    [inputTextField becomeFirstResponder];
-    
-    [CommonTitleView createTitleView:self.view];
-    CommonTitleView* titleView = [CommonTitleView titleView:self.view];
-    [titleView setTitle:NSLS(@"kSearchUser")];
-    [titleView setTarget:self];
-    
 }
 
 
 - (void)viewDidUnload
 {
-    [self setSearchButton:nil];
-    [self setTitleLabel:nil];
-    [self setInputTextField:nil];
-    [self setInputImageView:nil];
     [super viewDidUnload];
-    // Release any retained subviews of the main view.
-    // e.g. self.myOutlet = nil;
 }
 
 
-- (MyFriend *)friendOfIndex:(NSInteger)index
-{
-    NSArray *list = self.tabDataList;
-    if (index < [list count]) {
-        MyFriend *friend = [list objectAtIndex:index];
-        return friend;
-    }
-    return nil;
-}
 
 SET_CELL_BG_IN_CONTROLLER;
-
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    return [FriendCell getCellHeight];
-}
-
-
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    NSString *indentifier = [FriendCell getCellIdentifier];
-    FriendCell *cell = [tableView dequeueReusableCellWithIdentifier:indentifier];
-    if (cell == nil) {
-        cell = [FriendCell createCell:self];
-    }
-    MyFriend *friend = [self friendOfIndex:indexPath.row];
-    if (friend) {
-        [cell setCellWithMyFriend:friend indexPath:indexPath statusText:nil];        
-    }
-
-    return cell;
-}
-
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    
-    MyFriend *friend = [self friendOfIndex:indexPath.row];
-    if (friend == nil) {
-        return;
-    }
-    if (_type == ControllerTypeShowFriend) {
-        [CommonUserInfoView showFriend:friend inController:self needUpdate:YES canChat:YES];
-    }
-    if (_type == ControllerTypeSelectFriend) {
-        if (_delegate && [_delegate respondsToSelector:@selector(searchUserController:didSelectFriend:)]) {
-            [_delegate searchUserController:self didSelectFriend:friend];
-        }
-    }
-
-}
-
-
-#pragma -mark Button Action
-- (IBAction)clickBack:(id)sender {
-    [self.navigationController popViewControllerAnimated:YES];
-}
-
-
-- (IBAction)backgroundTap:(id)sender
-{
-    [inputTextField resignFirstResponder];
-}
-
-
-- (IBAction)clickSearch:(id)sender
-{
-    [inputTextField resignFirstResponder];
-    
-    if ([inputTextField.text length] == 0) {
-        POSTMSG(NSLS(@"kEnterWords"));
-        
-    }else {
-        NSInteger tabID = self.currentTab.tabID;
-        self.currentTab.offset = 0;
-        [self startToLoadDataForTabID:tabID];
-        [self serviceLoadDataForTabID:tabID];
-        [self showActivityWithText:NSLS(@"kSearching")];
-        
-    }
-}
-
-
 
 
 #pragma -mark FriendServiceDelegate Method
@@ -219,47 +102,59 @@ SET_CELL_BG_IN_CONTROLLER;
 }
 
 
-#pragma mark - text field delegate.
-- (BOOL)textFieldShouldReturn:(UITextField *)textField
-{
-    [self clickSearch:searchButton];
-    return YES;
-}
 
+//implemented by subclass.
 
-
-#pragma mark - common tab controller delegate
-
-- (NSInteger)tabCount
+- (void)loadDataWithKey:(NSString *)key tabID:(NSInteger)tabID
 {
-    return 1;
-}
-- (NSInteger)fetchDataLimitForTabIndex:(NSInteger)index
-{
-    return 20;
-}
-- (NSInteger)tabIDforIndex:(NSInteger)index
-{
-    return SEARCH_BUTTON_TAG;
-}
-- (NSString *)tabTitleforIndex:(NSInteger)index
-{
-    return nil;
-}
-
-- (NSInteger)currentTabIndex
-{
-    return 0;
-}
-
-- (void)serviceLoadDataForTabID:(NSInteger)tabID
-{
-    
+    [self showActivityWithText:NSLS(@"kSearching")];
     TableTab *tab = [_tabManager tabForID:tabID];
-    [[FriendService defaultService] searchUsersWithKey:inputTextField.text
-                                                offset:tab.offset 
+    [[FriendService defaultService] searchUsersWithKey:key
+                                                offset:tab.offset
                                                  limit:tab.limit
                                               delegate:self];
+
+}
+
+- (UITableViewCell *)cellForData:(id)data
+{
+    MyFriend *friend = data;
+    NSString *indentifier = [FriendCell getCellIdentifier];
+    FriendCell *cell = [self.dataTableView dequeueReusableCellWithIdentifier:indentifier];
+    if (cell == nil) {
+        cell = [FriendCell createCell:self];
+    }
+    [cell setCellWithMyFriend:friend indexPath:nil statusText:nil];
+    return cell;
+}
+- (CGFloat)heightForData:(id)data
+{
+    return [FriendCell getCellHeight];
+}
+- (void)didSelectedCellWithData:(id)data
+{
+    MyFriend *friend = data;
+    if (_type == ControllerTypeShowFriend) {
+        [CommonUserInfoView showFriend:friend inController:self needUpdate:YES canChat:YES];
+    }
+    if (_type == ControllerTypeSelectFriend) {
+        if (_delegate && [_delegate respondsToSelector:@selector(searchUserController:didSelectFriend:)]) {
+            [_delegate searchUserController:self didSelectFriend:friend];
+        }
+    }
+
+}
+- (NSString *)headerTitle
+{
+    return NSLS(@"kSearchUser");    
+}
+- (NSString *)searchTips
+{
+    return NSLS(@"kSearchUserPlaceholder");
+}
+- (NSString *)historyStoreKey
+{
+    return @"USER_SEARCHED_KEY";
 }
 
 

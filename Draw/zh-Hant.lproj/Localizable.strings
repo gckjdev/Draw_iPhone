@@ -1016,6 +1016,7 @@
 "kNoRequest" = "暫無請求";
 "kNoTopic" = "暫無話題";
 "kNoGroup" = "暫無家族";
+"kNoMatchResult" = "暫無匹配的結果";
 
 "kInputSongNameForSearch" = "請輸入歌曲名稱";
 "kSongNameCannotBeBlank" = "歌曲名稱不能為空";

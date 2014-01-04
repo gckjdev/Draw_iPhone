@@ -10,7 +10,6 @@
 		83E17DC016AB4A05BBF66F5E /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C73340CC5434A5894CC26E7 /* libPods.a */; };
 		8F5E9AD0400940DDB239EAC1 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C73340CC5434A5894CC26E7 /* libPods.a */; };
 		965990C8906A4D42B3A1D745 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C73340CC5434A5894CC26E7 /* libPods.a */; };
-		A3092468155ABEAF00235A55 /* SearchUserController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A3092465155ABEAF00235A55 /* SearchUserController~ipad.xib */; };
 		A30A28511580C2AE006CA3CC /* ChatCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A30A28461580C2AE006CA3CC /* ChatCell.m */; };
 		A30A28521580C2AE006CA3CC /* ChatCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A30A28471580C2AE006CA3CC /* ChatCell.xib */; };
 		A30A28531580C2AE006CA3CC /* ChatCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A30A28481580C2AE006CA3CC /* ChatCell~ipad.xib */; };
@@ -24,7 +23,6 @@
 		A31B5EF6157E1BE8003DDBF1 /* SelectCustomWordView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A31B5EF3157E1BE8003DDBF1 /* SelectCustomWordView.xib */; };
 		A31B5EF7157E1BE8003DDBF1 /* SelectCustomWordView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A31B5EF4157E1BE8003DDBF1 /* SelectCustomWordView~ipad.xib */; };
 		A329333115591D4D00621789 /* SearchUserController.m in Sources */ = {isa = PBXBuildFile; fileRef = A329332A15591D4D00621789 /* SearchUserController.m */; };
-		A329333215591D4D00621789 /* SearchUserController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A329332B15591D4D00621789 /* SearchUserController.xib */; };
 		A3431E801587279D002E0E81 /* ChatMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = A3431E7D1587279D002E0E81 /* ChatMessage.m */; };
 		A3598489157C7B2700745BAB /* CustomWordManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A3598488157C7B2700745BAB /* CustomWordManager.m */; };
 		A359848C157C977100745BAB /* CustomWord.m in Sources */ = {isa = PBXBuildFile; fileRef = A359848B157C977100745BAB /* CustomWord.m */; };
@@ -928,9 +926,7 @@
 		A461B422174CBAA70088B061 /* ShareCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2B3E93D155373FD00CCF52C /* ShareCell~ipad.xib */; };
 		A461B425174CBAA70088B061 /* ColorShopView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A42D9047155380760023AF32 /* ColorShopView~ipad.xib */; };
 		A461B426174CBAA70088B061 /* ChatController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A454CB6E1558F5CE00896761 /* ChatController.xib */; };
-		A461B427174CBAA70088B061 /* SearchUserController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A329332B15591D4D00621789 /* SearchUserController.xib */; };
 		A461B428174CBAA70088B061 /* MessageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A454CBC3155A181500896761 /* MessageCell.xib */; };
-		A461B429174CBAA70088B061 /* SearchUserController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A3092465155ABEAF00235A55 /* SearchUserController~ipad.xib */; };
 		A461B42B174CBAA70088B061 /* SearchRoomController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA0CB753155CB04D009C8EE6 /* SearchRoomController.xib */; };
 		A461B42C174CBAA70088B061 /* RoomCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA0CB758155CB064009C8EE6 /* RoomCell.xib */; };
 		A461B42D174CBAA70088B061 /* SearchRoomController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA0CB75D155CB0BC009C8EE6 /* SearchRoomController~ipad.xib */; };
@@ -3784,9 +3780,7 @@
 		C28A9D011738F04B007A819F /* ShareCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2B3E93D155373FD00CCF52C /* ShareCell~ipad.xib */; };
 		C28A9D041738F04B007A819F /* ColorShopView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A42D9047155380760023AF32 /* ColorShopView~ipad.xib */; };
 		C28A9D051738F04B007A819F /* ChatController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A454CB6E1558F5CE00896761 /* ChatController.xib */; };
-		C28A9D061738F04B007A819F /* SearchUserController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A329332B15591D4D00621789 /* SearchUserController.xib */; };
 		C28A9D071738F04B007A819F /* MessageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A454CBC3155A181500896761 /* MessageCell.xib */; };
-		C28A9D081738F04B007A819F /* SearchUserController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A3092465155ABEAF00235A55 /* SearchUserController~ipad.xib */; };
 		C28A9D0A1738F04B007A819F /* SearchRoomController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA0CB753155CB04D009C8EE6 /* SearchRoomController.xib */; };
 		C28A9D0B1738F04B007A819F /* RoomCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA0CB758155CB064009C8EE6 /* RoomCell.xib */; };
 		C28A9D0C1738F04B007A819F /* SearchRoomController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA0CB75D155CB0BC009C8EE6 /* SearchRoomController~ipad.xib */; };
@@ -6642,9 +6636,7 @@
 		EA411B7A176066F500DA72D0 /* ShareCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2B3E93D155373FD00CCF52C /* ShareCell~ipad.xib */; };
 		EA411B7D176066F500DA72D0 /* ColorShopView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A42D9047155380760023AF32 /* ColorShopView~ipad.xib */; };
 		EA411B7E176066F500DA72D0 /* ChatController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A454CB6E1558F5CE00896761 /* ChatController.xib */; };
-		EA411B7F176066F500DA72D0 /* SearchUserController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A329332B15591D4D00621789 /* SearchUserController.xib */; };
 		EA411B80176066F500DA72D0 /* MessageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A454CBC3155A181500896761 /* MessageCell.xib */; };
-		EA411B81176066F500DA72D0 /* SearchUserController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A3092465155ABEAF00235A55 /* SearchUserController~ipad.xib */; };
 		EA411B83176066F500DA72D0 /* SearchRoomController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA0CB753155CB04D009C8EE6 /* SearchRoomController.xib */; };
 		EA411B84176066F500DA72D0 /* RoomCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA0CB758155CB064009C8EE6 /* RoomCell.xib */; };
 		EA411B85176066F500DA72D0 /* SearchRoomController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA0CB75D155CB0BC009C8EE6 /* SearchRoomController~ipad.xib */; };
@@ -7277,7 +7269,6 @@
 /* Begin PBXFileReference section */
 		4C73340CC5434A5894CC26E7 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		5F5CBE3EAF724F1A9042D44B /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
-		A3092465155ABEAF00235A55 /* SearchUserController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "SearchUserController~ipad.xib"; sourceTree = "<group>"; };
 		A30A28451580C2AE006CA3CC /* ChatCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatCell.h; sourceTree = "<group>"; };
 		A30A28461580C2AE006CA3CC /* ChatCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatCell.m; sourceTree = "<group>"; };
 		A30A28471580C2AE006CA3CC /* ChatCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ChatCell.xib; sourceTree = "<group>"; };
@@ -7296,7 +7287,6 @@
 		A31B5EF4157E1BE8003DDBF1 /* SelectCustomWordView~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "SelectCustomWordView~ipad.xib"; sourceTree = "<group>"; };
 		A329332915591D4D00621789 /* SearchUserController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchUserController.h; sourceTree = "<group>"; };
 		A329332A15591D4D00621789 /* SearchUserController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchUserController.m; sourceTree = "<group>"; };
-		A329332B15591D4D00621789 /* SearchUserController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SearchUserController.xib; sourceTree = "<group>"; };
 		A3431E7C1587279D002E0E81 /* ChatMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatMessage.h; sourceTree = "<group>"; };
 		A3431E7D1587279D002E0E81 /* ChatMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatMessage.m; sourceTree = "<group>"; };
 		A3598486157C6B9800745BAB /* MainDataModel 6.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "MainDataModel 6.xcdatamodel"; sourceTree = "<group>"; };
@@ -15942,8 +15932,6 @@
 				A3D11BF41562306A00248B4C /* FriendCell~ipad.xib */,
 				A329332915591D4D00621789 /* SearchUserController.h */,
 				A329332A15591D4D00621789 /* SearchUserController.m */,
-				A329332B15591D4D00621789 /* SearchUserController.xib */,
-				A3092465155ABEAF00235A55 /* SearchUserController~ipad.xib */,
 			);
 			path = FriendManage;
 			sourceTree = "<group>";
@@ -17529,9 +17517,7 @@
 				A461B422174CBAA70088B061 /* ShareCell~ipad.xib in Resources */,
 				A461B425174CBAA70088B061 /* ColorShopView~ipad.xib in Resources */,
 				A461B426174CBAA70088B061 /* ChatController.xib in Resources */,
-				A461B427174CBAA70088B061 /* SearchUserController.xib in Resources */,
 				A461B428174CBAA70088B061 /* MessageCell.xib in Resources */,
-				A461B429174CBAA70088B061 /* SearchUserController~ipad.xib in Resources */,
 				A461B42B174CBAA70088B061 /* SearchRoomController.xib in Resources */,
 				A461B42C174CBAA70088B061 /* RoomCell.xib in Resources */,
 				A461B42D174CBAA70088B061 /* SearchRoomController~ipad.xib in Resources */,
@@ -18479,9 +18465,7 @@
 				C28A9D011738F04B007A819F /* ShareCell~ipad.xib in Resources */,
 				C28A9D041738F04B007A819F /* ColorShopView~ipad.xib in Resources */,
 				C28A9D051738F04B007A819F /* ChatController.xib in Resources */,
-				C28A9D061738F04B007A819F /* SearchUserController.xib in Resources */,
 				C28A9D071738F04B007A819F /* MessageCell.xib in Resources */,
-				C28A9D081738F04B007A819F /* SearchUserController~ipad.xib in Resources */,
 				C28A9D0A1738F04B007A819F /* SearchRoomController.xib in Resources */,
 				C28A9D0B1738F04B007A819F /* RoomCell.xib in Resources */,
 				C28A9D0C1738F04B007A819F /* SearchRoomController~ipad.xib in Resources */,
@@ -19460,9 +19444,7 @@
 				C2B3E93E155373FD00CCF52C /* ShareCell~ipad.xib in Resources */,
 				A42D9048155380760023AF32 /* ColorShopView~ipad.xib in Resources */,
 				A454CB701558F5CE00896761 /* ChatController.xib in Resources */,
-				A329333215591D4D00621789 /* SearchUserController.xib in Resources */,
 				A454CBC5155A181500896761 /* MessageCell.xib in Resources */,
-				A3092468155ABEAF00235A55 /* SearchUserController~ipad.xib in Resources */,
 				CA0CB755155CB04D009C8EE6 /* SearchRoomController.xib in Resources */,
 				CA0CB75A155CB064009C8EE6 /* RoomCell.xib in Resources */,
 				CA0CB75E155CB0BC009C8EE6 /* SearchRoomController~ipad.xib in Resources */,
@@ -20420,9 +20402,7 @@
 				EA411B7A176066F500DA72D0 /* ShareCell~ipad.xib in Resources */,
 				EA411B7D176066F500DA72D0 /* ColorShopView~ipad.xib in Resources */,
 				EA411B7E176066F500DA72D0 /* ChatController.xib in Resources */,
-				EA411B7F176066F500DA72D0 /* SearchUserController.xib in Resources */,
 				EA411B80176066F500DA72D0 /* MessageCell.xib in Resources */,
-				EA411B81176066F500DA72D0 /* SearchUserController~ipad.xib in Resources */,
 				EA411B83176066F500DA72D0 /* SearchRoomController.xib in Resources */,
 				EA411B84176066F500DA72D0 /* RoomCell.xib in Resources */,
 				EA411B85176066F500DA72D0 /* SearchRoomController~ipad.xib in Resources */,

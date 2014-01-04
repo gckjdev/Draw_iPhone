@@ -78,12 +78,16 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(SongService);
 }
 
 - (void)searchSongWithName:(NSString *)name
+                    offset:(NSInteger)offset
+                     limit:(NSInteger)limit
                  completed:(GetSongsCompleted)completed{
         
     dispatch_async(workingQueue, ^{
         
         NSDictionary *para = @{
-                               PARA_KEYWORD : (name == nil ? @"" : name)
+                               PARA_KEYWORD : (name == nil ? @"" : name),
+                               PARA_OFFSET : @(offset),
+                               PARA_LIMIT : @(limit),
                                };
         
         GameNetworkOutput* output = [PPGameNetworkRequest trafficApiServerGetAndResponsePB:METHOD_SEARCH_SONG parameters:para];
