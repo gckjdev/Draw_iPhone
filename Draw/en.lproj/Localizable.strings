@@ -2141,7 +2141,7 @@
 "kTypeTransferGroupBalanceDesc" = "%@, from %@, transfered %d coins to %@";
 
 
-"kGroupDetailRowWeath" = "Fame: %d  Balance: %d  Level: %d";
+"kGroupDetailRowWeath" = "Fame: %d  Level: %d  Balance: %ld";
 "kGroupDetailRowCreateDate" = "Create date %@";
 "kGroupDetailRowDesc" = "Description: %@";
 "kGroupDetailRowFee" = "Fee: %d coins/month";
@@ -2180,6 +2180,9 @@
 "kUpgradingGroup" = "Upgrading Group...";
 "kQuitGroupTitle" = "Quit Group";
 "kQuitGroupMessage" = "Quit a group will spend you %d coins. Continue?";
+"kGuestQuitGroupMessage" = "Do you make sure to quit the group?";
+"kCan'tCreateGroup" = "You the member of %@, Can't create a new group.";
+
 "kGroupTitleEmpty" = "Group title should not be empty.";
 
 "kUpdateTitle" = "Update Title";
@@ -2251,6 +2254,8 @@
 
 "kBalanceNotEnough" = "Sorry, your balance is not enough.";
 "kGroupBalanceNotEnough" = "Sorry, the balance of group is not enough.";
+
+"kNotTestUserCan'tCreateGroup" = "You are not the test user, can't create a new group.";
 
 /*********************小吉画画国际化字符串开始 ************************/
 "kLittleGeeRecommend" = "Featured";

@@ -62,7 +62,7 @@ typedef enum  {
     
     DeductForChargeGroup = 1000,
     DeductForCreateGroup = 1001,
-    
+    DeductForQuitGroup = 1002,
     
     TaskAward = 5000,
     TaskAwardEnd = 6000

@@ -129,7 +129,7 @@ typedef enum{
     }];
 }
 
-- (void)quit
+- (void)quit:(BOOL)isGuest
 {
     NSInteger fee = [PPConfigManager getQuitGroupFee];
     [self showActivityWithText:NSLS(@"kQuitingGroup")];
@@ -137,7 +137,9 @@ typedef enum{
         [self hideActivity];
         if (!error) {
             POSTMSG(NSLS(@"kQuitedGroup"));
-            [groupService chargeGroup:_group.groupId amount:fee callback:NULL];            
+            if (!isGuest) {
+                [[AccountService defaultService] deductCoin:fee source:DeductForQuitGroup];
+            }
             [GroupManager didUserQuited:[[UserManager defaultManager] pbUser]];
             [GroupPermissionManager removeRole:_group.groupId];
             [self reloadView];
@@ -147,14 +149,23 @@ typedef enum{
 
 - (void)clickQuit:(id)sender
 {
+    //is guest
+    BOOL isGuest = [_group.guestsList containsObject:[[UserManager defaultManager] pbUser]];
+    
+    NSLog(@"<clickQuit> is guest quit group? ans = %d",isGuest);
+    
     NSInteger fee = [PPConfigManager getQuitGroupFee];
     NSString *quitMessage = [NSString stringWithFormat:NSLS(@"kQuitGroupMessage"), fee];
-    CommonDialog *dialog = [CommonDialog createDialogWithTitle:NSLS(@"kQuitGroupTitle") message:quitMessage style:CommonDialogStyleDoubleButton];
+    NSString *title = NSLS(@"kQuitGroupTitle");
+    if (isGuest) {
+        quitMessage = NSLS(@"kGuestQuitGroupMessage");  
+    }
+    CommonDialog *dialog = [CommonDialog createDialogWithTitle:title message:quitMessage style:CommonDialogStyleDoubleButton];
     [dialog setClickOkBlock:^(id infoView){
-        if ([self checkMyBalance:fee]) {
-            [self quit];
-            [dialog setClickOkBlock:NULL];
+        if (isGuest || [self checkMyBalance:fee]) {
+            [self quit:isGuest];
         }
+        [dialog setClickOkBlock:NULL];
     }];
     [dialog showInView:self.view];
 }
@@ -353,12 +364,12 @@ typedef enum{
     if ([_groupPermission canManageGroup]) {
         [self.titleView setRightButtonTitle:NSLS(@"kManage")];
         [self.titleView setRightButtonSelector:@selector(clickManage:)];
-    }else if ([_groupPermission canJoinGroup]){
-        [self.titleView setRightButtonTitle:NSLS(@"kJoinGroup")];
-        [self.titleView setRightButtonSelector:@selector(clickJoin:)];
-    }else if([_groupPermission canQuitGroup]){
+    }else if ([_groupPermission canQuitGroup]){
         [self.titleView setRightButtonTitle:NSLS(@"kQuitGroup")];
         [self.titleView setRightButtonSelector:@selector(clickQuit:)];
+    }else if([_groupPermission canJoinGroup]){
+        [self.titleView setRightButtonTitle:NSLS(@"kJoinGroup")];
+        [self.titleView setRightButtonSelector:@selector(clickJoin:)];        
     }else{
         
     }
@@ -710,7 +721,7 @@ typedef enum{
     CellRowPosition position = CellRowPositionMid;
     switch (row) {
         case RowWealth:{
-            text = [NSString stringWithFormat:NSLS(@"kGroupDetailRowWeath"), _group.fame, _group.balance, _group.level];
+            text = [NSString stringWithFormat:NSLS(@"kGroupDetailRowWeath"), _group.fame,  _group.level, _group.balance];
             
             position = CellRowPositionFirst;
             break;
@@ -808,7 +819,7 @@ typedef enum{
             [cell setCellForAdminsInGroup:_group position:position];
         }else{
             NSInteger index = row - RowMemberStart;
-            PBGroupUsersByTitle *usersByTitle = @"";
+            PBGroupUsersByTitle *usersByTitle;
             
             if (index < [self.dataList count]) {
                 usersByTitle = self.dataList[index];

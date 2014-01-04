@@ -2176,7 +2176,7 @@
 "kTitleCountLimited" = "自定义职位不能超过%d，想增加职位限额请先升级群。";
 "kDeleteNotEmptyTitleError" = "删除职位之前请保证职位里没有成员了。";
 
-"kGroupDetailRowWeath" = "声望 %d  财富 %d  等级 %d";
+"kGroupDetailRowWeath" = "声望 %d  等级 %d  财富 %ld";
 "kGroupDetailRowCreateDate" = "创建时间 %@";
 "kGroupDetailRowDesc" = "说明 %@";
 "kGroupDetailRowFee" = "会费 %d金币/月";
@@ -2204,8 +2204,9 @@
 "kUpgradingGroup" = "升级家族中...";
 "kQuitGroupTitle" = "退出家族";
 "kQuitGroupMessage" = "退出家族将会扣除%d金币，确定退出吗？";
+"kGuestQuitGroupMessage" = "确定要退出家族吗？";
 "kGroupTitleEmpty" = "家族的职位不能为空。";
-
+"kCan'tCreateGroup" = "你已经是%@的成员了，不能再创建家族了。";
 
 "kContentDesc" = "内容：%@";
 "kPostscriptDesc" = "附言：%@";
@@ -2279,6 +2280,7 @@
 
 "kBalanceNotEnough" = "不好意思，您的余额不足，不能完成本操作。";
 "kGroupBalanceNotEnough" = "不好意思，家族的余额不足，不能完成本操作";
+"kNotTestUserCan'tCreateGroup" = "目前是内测阶段，你不是内测用户暂不能创建家族。";
 
 /*********************小吉画画国际化字符串开始 ************************/
 "kLittleGeeRecommend" = "推荐";

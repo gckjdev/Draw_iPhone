@@ -339,7 +339,15 @@
     switch (type) {
         case GroupCreateGroup:
         {
-            //TODO check if use has join a group?
+            if([[GroupManager defaultManager] userCurrentGroupId]){
+                NSString *msg = [NSString stringWithFormat:NSLS(@"kCan'tCreateGroup"), [[GroupManager defaultManager] userCurrentGroupName]];
+                POSTMSG(msg);
+                return;
+            }
+            if (![GroupPermissionManager amIGroupTestUser]) {
+                POSTMSG(NSLS(@"kNotTestUserCan'tCreateGroup"));
+                return;                
+            }
             
             CreateGroupController *cgc =  [[CreateGroupController alloc] init];
             [self.navigationController pushViewController:cgc animated:YES];

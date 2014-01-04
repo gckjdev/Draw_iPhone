@@ -65,6 +65,8 @@
 //global permission
 + (BOOL)canCreateGroup;
 
++ (BOOL)amIGroupTestUser;
+
 
 
 @end
