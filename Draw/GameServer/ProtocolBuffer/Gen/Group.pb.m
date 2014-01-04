@@ -3339,9 +3339,9 @@ static PBContest* defaultPBContestInstance = nil;
 - (NSArray*) awardRulesList {
   return mutableAwardRulesList;
 }
-- (PBIntKeyIntValue*) awardRulesAtIndex:(int32_t) index {
+- (int32_t) awardRulesAtIndex:(int32_t) index {
   id value = [mutableAwardRulesList objectAtIndex:index];
-  return value;
+  return [value intValue];
 }
 - (BOOL) isInitialized {
   if (!self.hasContestId) {
@@ -3379,11 +3379,6 @@ static PBContest* defaultPBContestInstance = nil;
   }
   if (self.hasGroup) {
     if (!self.group.isInitialized) {
-      return NO;
-    }
-  }
-  for (PBIntKeyIntValue* element in self.awardRulesList) {
-    if (!element.isInitialized) {
       return NO;
     }
   }
@@ -3480,8 +3475,8 @@ static PBContest* defaultPBContestInstance = nil;
   if (self.hasRule) {
     [output writeString:62 value:self.rule];
   }
-  for (PBIntKeyIntValue* element in self.awardRulesList) {
-    [output writeMessage:63 value:element];
+  for (NSNumber* value in self.mutableAwardRulesList) {
+    [output writeInt32:63 value:[value intValue]];
   }
   [self.unknownFields writeToCodedOutputStream:output];
 }
@@ -3582,8 +3577,13 @@ static PBContest* defaultPBContestInstance = nil;
   if (self.hasRule) {
     size += computeStringSize(62, self.rule);
   }
-  for (PBIntKeyIntValue* element in self.awardRulesList) {
-    size += computeMessageSize(63, element);
+  {
+    int32_t dataSize = 0;
+    for (NSNumber* value in self.mutableAwardRulesList) {
+      dataSize += computeInt32SizeNoTag([value intValue]);
+    }
+    size += dataSize;
+    size += 2 * self.mutableAwardRulesList.count;
   }
   size += self.unknownFields.serializedSize;
   memoizedSerializedSize = size;
@@ -3937,10 +3937,8 @@ static PBContest* defaultPBContestInstance = nil;
         [self setRule:[input readString]];
         break;
       }
-      case 506: {
-        PBIntKeyIntValue_Builder* subBuilder = [PBIntKeyIntValue builder];
-        [input readMessage:subBuilder extensionRegistry:extensionRegistry];
-        [self addAwardRules:[subBuilder buildPartial]];
+      case 504: {
+        [self addAwardRules:[input readInt32]];
         break;
       }
     }
@@ -4519,14 +4517,23 @@ static PBContest* defaultPBContestInstance = nil;
   return self;
 }
 - (NSArray*) awardRulesList {
-  if (result.mutableAwardRulesList == nil) { return [NSArray array]; }
+  if (result.mutableAwardRulesList == nil) {
+    return [NSArray array];
+  }
   return result.mutableAwardRulesList;
 }
-- (PBIntKeyIntValue*) awardRulesAtIndex:(int32_t) index {
+- (int32_t) awardRulesAtIndex:(int32_t) index {
   return [result awardRulesAtIndex:index];
 }
-- (PBContest_Builder*) replaceAwardRulesAtIndex:(int32_t) index with:(PBIntKeyIntValue*) value {
-  [result.mutableAwardRulesList replaceObjectAtIndex:index withObject:value];
+- (PBContest_Builder*) replaceAwardRulesAtIndex:(int32_t) index with:(int32_t) value {
+  [result.mutableAwardRulesList replaceObjectAtIndex:index withObject:[NSNumber numberWithInt:value]];
+  return self;
+}
+- (PBContest_Builder*) addAwardRules:(int32_t) value {
+  if (result.mutableAwardRulesList == nil) {
+    result.mutableAwardRulesList = [NSMutableArray array];
+  }
+  [result.mutableAwardRulesList addObject:[NSNumber numberWithInt:value]];
   return self;
 }
 - (PBContest_Builder*) addAllAwardRules:(NSArray*) values {
@@ -4538,13 +4545,6 @@ static PBContest* defaultPBContestInstance = nil;
 }
 - (PBContest_Builder*) clearAwardRulesList {
   result.mutableAwardRulesList = nil;
-  return self;
-}
-- (PBContest_Builder*) addAwardRules:(PBIntKeyIntValue*) value {
-  if (result.mutableAwardRulesList == nil) {
-    result.mutableAwardRulesList = [NSMutableArray array];
-  }
-  [result.mutableAwardRulesList addObject:value];
   return self;
 }
 @end

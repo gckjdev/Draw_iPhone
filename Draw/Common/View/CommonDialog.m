@@ -123,7 +123,7 @@
     
     ///
     
-    [view.inputTextField addTarget:view action:@selector(didTextChange:) forControlEvents:UIControlEventValueChanged];
+    [view.inputTextField addTarget:view action:@selector(didTextChange:) forControlEvents:UIControlEventEditingChanged];
     
     ///
     

@@ -260,6 +260,7 @@
 }
 
 - (void)layoutSubviews {
+    
     [super layoutSubviews];
 
     CGFloat containerWidth = self.bounds.size.width - (CALENDAR_MARGIN * 2);
@@ -316,10 +317,10 @@
         dateButton.date = date;
         CKDateItem *item = [[CKDateItem alloc] init];
             
-        if ([self _dateIsToday:dateButton.date]) {
+        /*if ([self _dateIsToday:dateButton.date]) {
             item.textColor = UIColorFromRGB(0xF2F2F2);
             item.backgroundColor = UIColorFromRGB(0x00BEB1);
-        }else if (!self.onlyShowCurrentMonth && [self _compareByMonth:date toDate:self.monthShowing] != NSOrderedSame) {
+        }else */if (!self.onlyShowCurrentMonth && [self _compareByMonth:date toDate:self.monthShowing] != NSOrderedSame) {
             item.textColor = [UIColor lightGrayColor];
         }
 

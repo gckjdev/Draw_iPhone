@@ -8,6 +8,14 @@
 
 #import "PPTableViewCell.h"
 
-@interface ContestAwardEditCell : PPTableViewCell
+@protocol ContestAwardEditCellDelegate <NSObject>
+
+- (void)didEditRow:(int)row award:(int)award;
+
+@end
+
+@interface ContestAwardEditCell : PPTableViewCell<UITextFieldDelegate>
+
+- (void)setRank:(NSString *)rank award:(int)award;
 
 @end
