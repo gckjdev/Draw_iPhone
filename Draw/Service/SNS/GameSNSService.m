@@ -946,6 +946,10 @@ GameSNSService* _defaultSNSService;
                                    [self uploadUserSNSCredential:shareType];
                                     */
                                    
+                                   [[UserService defaultService] loginSNSUser:userInfo
+                                                                    shareType:shareType
+                                                                   accessInfo:cred
+                                                                  resultBlock:resultBlock];
                                    
                                }
                                else{
@@ -965,6 +969,8 @@ GameSNSService* _defaultSNSService;
     if (shareType == ShareTypeAny){
         return;
     }
+    
+    
     
     id<ISSAuthOptions> authOptions = [ShareSDK authOptionsWithAutoAuth:YES
                                                          allowCallback:YES

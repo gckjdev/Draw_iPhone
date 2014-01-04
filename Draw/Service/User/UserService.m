@@ -164,6 +164,14 @@ static UserService* _defaultUserService;
     return -1;
 }
 
+- (void)loginSNSUser:(id<ISSUserInfo>)userInfo
+           shareType:(ShareType)shareType
+          accessInfo:(id<ISSOAuth2Credential>)accessInfo
+         resultBlock:(ShareSNSResultBlock)resultBlock
+{
+    
+}
+
 - (void)updateUserWithSNSUserInfo:(ShareType)shareType
                  credentialString:(NSString*)credentialString
 

@@ -126,6 +126,12 @@ typedef void(^UploadImageResultBlock)(int resultCode, NSString* imageRemoteURL);
 - (void)updateUserWithSNSUserInfo:(ShareType)shareType
                  credentialString:(NSString*)credentialString;
 
+- (void)loginSNSUser:(id<ISSUserInfo>)userInfo
+           shareType:(ShareType)shareType
+          accessInfo:(id<ISSOAuth2Credential>)accessInfo
+         resultBlock:(void(^)(int))resultBlock;
+
+
 - (void)getStatistic:(PPViewController<UserServiceDelegate>*)viewController;
 
 // this methods is kept for old implementation, new implementation will use getUserInfo
