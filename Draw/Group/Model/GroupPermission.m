@@ -222,4 +222,16 @@ static NSMutableArray *_roles;
 {
     return ![[UserManager defaultManager] hasJoinedAGroup];
 }
+
++ (BOOL)amIGroupTestUser{
+    if ([PPConfigManager isGroupVersionInBeta]) {
+        NSString *me = [[UserManager defaultManager] userId];
+        if ([[PPConfigManager getGroupTestUserIdSet] containsObject:me]) {
+            return YES;
+        }
+        return NO;
+    }else{
+        return YES;
+    }
+}
 @end

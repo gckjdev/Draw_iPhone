@@ -2280,6 +2280,7 @@
 
 "kBalanceNotEnough" = "不好意思，您的余额不足，不能完成本操作。";
 "kGroupBalanceNotEnough" = "不好意思，家族的余额不足，不能完成本操作";
+"kNotTestUserCan'tCreateGroup" = "目前是内测阶段，你不是内测用户暂不能创建家族。";
 
 /*********************小吉画画国际化字符串开始 ************************/
 "kLittleGeeRecommend" = "推荐";

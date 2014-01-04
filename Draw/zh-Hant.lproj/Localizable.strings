@@ -2291,6 +2291,7 @@
 "kExpelGroupUserMessage" = "確定要移除該用戶嗎？";
 "kBalanceNotEnough" = "不好意思，您的余額不足，不能完成本操作。";
 "kGroupBalanceNotEnough" = "不好意思，家族的余額不足，不能完成本操作。";
+"kNotTestUserCan'tCreateGroup" = "目前是內測階段，你不是內測用戶暫不能創建家族。";
 
 /*********************小吉画画国际化字符串开始 ************************/
 "kLittleGeeRecommend" = "推薦";

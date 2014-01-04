@@ -2255,6 +2255,8 @@
 "kBalanceNotEnough" = "Sorry, your balance is not enough.";
 "kGroupBalanceNotEnough" = "Sorry, the balance of group is not enough.";
 
+"kNotTestUserCan'tCreateGroup" = "You are not the test user, can't create a new group.";
+
 /*********************小吉画画国际化字符串开始 ************************/
 "kLittleGeeRecommend" = "Featured";
 "kLittleGeeDrawTo" = "Gift";

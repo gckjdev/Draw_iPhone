@@ -519,15 +519,28 @@ enum{
     
     [[[UserManager defaultManager] userDefaults] synchronize];
 }
+
 - (void)loadDataFromDisk
 {
-    self.followedGroupIds = [[[UserManager defaultManager]userDefaults] arrayForKey:FOLLOWED_GROUP_KEY];
+    NSArray *list = [[[UserManager defaultManager]userDefaults] arrayForKey:FOLLOWED_GROUP_KEY];
+    if ([list isKindOfClass:[NSMutableArray class]]) {
+        self.followedGroupIds = (id)list;
+    }else{
+        self.followedGroupIds = [NSMutableArray arrayWithArray:list];
+    }
+
     
     if (self.followedGroupIds == nil) {
         self.followedGroupIds = [NSMutableArray array];
     }
     
-    self.followedTopicIds = [[[UserManager defaultManager]userDefaults] arrayForKey:FOLLOWED_TOPIC_KEY];
+    list = [[[UserManager defaultManager]userDefaults] arrayForKey:FOLLOWED_TOPIC_KEY];
+    
+    if ([list isKindOfClass:[NSMutableArray class]]) {
+        self.followedTopicIds = (id)list;
+    }else{
+        self.followedTopicIds = [NSMutableArray arrayWithArray:list];
+    }
     
     if (self.followedTopicIds == nil) {
         self.followedTopicIds = [NSMutableArray array];

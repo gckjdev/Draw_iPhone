@@ -344,6 +344,11 @@
                 POSTMSG(msg);
                 return;
             }
+            if (![GroupPermissionManager amIGroupTestUser]) {
+                POSTMSG(NSLS(@"kNotTestUserCan'tCreateGroup"));
+                return;                
+            }
+            
             CreateGroupController *cgc =  [[CreateGroupController alloc] init];
             [self.navigationController pushViewController:cgc animated:YES];
             [cgc release];

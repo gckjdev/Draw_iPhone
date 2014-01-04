@@ -20,6 +20,9 @@
 
 #define GET_UMENG_INTVAL(key, intValue) [MobClickUtils getIntValueByKey:key defaultValue:intValue]
 
+#define GET_UMENG_BOOLVALUE(key, boolValue) [MobClickUtils getBoolValueByKey:key defaultValue:boolValue]
+
+#define GET_UMENG_STRVALUE(key, strValue)[MobClickUtils getStringValueByKey:key defaultValue:strValue]
 
 @implementation PPConfigManager
 
@@ -1352,6 +1355,23 @@
     return GET_UMENG_INTVAL(@"FEE_FOR_QUIT_GROUP", 188);
 }
 
++ (BOOL)isGroupVersionInBeta{
+    return GET_UMENG_BOOLVALUE(@"IS_BETA_VERSION_GROUP", YES);
+}
+
++ (NSSet *)getSetFromString:(NSString *)string separater:(NSString *)separater
+{
+    if ([string length] == 0) return nil;
+    NSArray *list = [string componentsSeparatedByString:@";"];
+    if([list count] == 0)return nil;
+    NSSet *set = [NSSet setWithArray:list];
+    return set;
+}
+
++ (NSSet *)getGroupTestUserIdSet{
+    NSString *idListString = GET_UMENG_STRVALUE(@"GROUP_TEST_USERID_LIST", @"");
+    return [self getSetFromString:idListString separater:@";"];
+}
 
 
 @end

@@ -337,4 +337,7 @@ typedef enum{
 + (NSInteger)getUpgradeGroupFeePerLevel;
 + (NSInteger)getQuitGroupFee;
 
++ (BOOL)isGroupVersionInBeta;
++ (NSSet *)getGroupTestUserIdSet;
+
 @end
