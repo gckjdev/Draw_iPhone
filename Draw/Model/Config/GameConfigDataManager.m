@@ -293,6 +293,20 @@ static dispatch_once_t onceToken;
     return zjhApp;
 }
 
++ (PBAppReward*)singAppWithRewardAmount:(int)rewardAmount
+                        rewardCurrency:(PBGameCurrency)rewardCurrency{
+    
+    PBAppReward* zjhApp = [GameConfigDataManager createAppReward:@"小吉大舌头"
+                                                          nameEn:@"Littlegee Voice"
+                                                          descCn:@"有趣的声音应用，可以唱歌、说笑话、讲故事"
+                                                          descEn:@"Funny voice application for sing songs"
+                                                           appId:SING_APP_ID
+                                                      appLogoURL:@"http://58.215.160.100:8080/icon/song_512.png"
+                                                    rewardAmount:rewardAmount
+                                                  rewardCurrency:rewardCurrency];
+    return zjhApp;
+}
+
 + (PBAppReward*)oldDiceAppWithRewardAmount:(int)rewardAmount
                             rewardCurrency:(PBGameCurrency)rewardCurrency{
     PBAppReward* diceApp = [GameConfigDataManager createAppReward:@"欢乐大话骰"

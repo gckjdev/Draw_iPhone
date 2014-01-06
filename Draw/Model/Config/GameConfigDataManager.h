@@ -49,4 +49,7 @@
 - (NSArray*)rewardWallList;
 - (void)syncData;
 
++ (PBAppReward*)singAppWithRewardAmount:(int)rewardAmount
+                         rewardCurrency:(PBGameCurrency)rewardCurrency;
+
 @end

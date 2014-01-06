@@ -271,9 +271,9 @@
     PPRelease(_loadingView);
     PPRelease(_failureView);
     PPRelease(_avatarView);
-    [_imgView release];
-    [_msgLabel release];
-    [_holderView release];
+    PPRelease(_imgView);
+    PPRelease(_msgLabel);
+    PPRelease(_holderView);
     [super dealloc];
 }
 

@@ -782,6 +782,18 @@ static ChatService *_chatService = nil;
     if (userId == nil || messageId == nil || friendId == nil)
         return;
     
+    if (message.status == MessageStatusSending || message.status == MessageStatusFail){
+        
+        // delete local message        
+        [[PPMessageManager defaultManager] deleteMessage:message];
+        [self postNotification:NOTIFICATION_MESSAGE_DELETE
+                       message:message
+                    resultCode:0
+                  insertMiddle:NO
+                       forward:YES];
+        return;
+    }
+    
     dispatch_async(workingQueue, ^{
         
         NSDictionary* para = @{ PARA_USERID : userId,
