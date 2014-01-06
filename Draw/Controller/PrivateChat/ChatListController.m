@@ -23,6 +23,7 @@
 #import "UserManager.h"
 #import "CommonUserInfoView.h"
 #import "GameApp.h"
+#import "GroupPermission.h"
 
 @interface ChatListController ()
 
@@ -279,6 +280,14 @@ SET_CELL_BG_IN_CONTROLLER;
 {
     MessageStat *messageStat = [self messageStatOfIndex:indexPath.row];
     if (messageStat) {
+        
+        if ([messageStat isGroup] &&
+            [[GroupPermissionManager myManagerWithGroupId:messageStat.friendId] canGroupChat] == NO){
+            
+            POSTMSG(NSLS(@"kCanotGroupChat"));
+            return;
+        }
+        
         [self openChatDetail:messageStat];
     }
 }
