@@ -106,6 +106,9 @@
     [self.titleView setTitle:NSLS(@"kGroup")];
     [self.titleView setTarget:self];
     [self.titleView setBackButtonSelector:@selector(clickBack:)];
+    [self.titleView setRightButtonAsRefresh];
+    [self.titleView setRightButtonSelector:@selector(clickRefreshButton:)];
+    
     [self setDefaultBGImage];
     
     [self initTabButtons];
@@ -184,6 +187,9 @@
 
 - (GroupTab)defaultGroupTab
 {
+    if([[[GroupManager defaultManager] followedGroupIds] count] > 0){
+        return GroupTabGroupFollow;
+    }
     return GroupTabGroupBalance;
 }
 

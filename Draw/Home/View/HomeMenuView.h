@@ -100,6 +100,9 @@ typedef enum{
     HomeMenuTypeLittleGeeFeed,
     HomeMenuTypeLittleGeePlaceholder,
     
+    //Group
+    HomeMenuTypeGroup,
+    
     
 }HomeMenuType;
 

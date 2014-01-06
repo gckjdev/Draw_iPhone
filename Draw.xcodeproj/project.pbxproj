@@ -7213,6 +7213,14 @@
 		EAB94F4C1772D4A20038DB7A /* LevelDBManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CA27B567176DF27800310651 /* LevelDBManager.m */; };
 		EAB94F4D1772D50B0038DB7A /* APLevelDB.mm in Sources */ = {isa = PBXBuildFile; fileRef = CA27B562176DF0D200310651 /* APLevelDB.mm */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
 		EAB94F4E1772D5B10038DB7A /* libleveldb.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A4C8D5E2175EEC23007ED7E4 /* libleveldb.a */; };
+		EABC81A4187A85E00099AA7C /* group_footer_contest@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EABC81A3187A85E00099AA7C /* group_footer_contest@2x.png */; };
+		EABC81A5187A85E00099AA7C /* group_footer_contest@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EABC81A3187A85E00099AA7C /* group_footer_contest@2x.png */; };
+		EABC81A6187A85E00099AA7C /* group_footer_contest@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EABC81A3187A85E00099AA7C /* group_footer_contest@2x.png */; };
+		EABC81A7187A85E00099AA7C /* group_footer_contest@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EABC81A3187A85E00099AA7C /* group_footer_contest@2x.png */; };
+		EABC81AC187A8D810099AA7C /* common_home_group@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EABC81AB187A8D810099AA7C /* common_home_group@2x.png */; };
+		EABC81AD187A8D810099AA7C /* common_home_group@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EABC81AB187A8D810099AA7C /* common_home_group@2x.png */; };
+		EABC81AE187A8D810099AA7C /* common_home_group@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EABC81AB187A8D810099AA7C /* common_home_group@2x.png */; };
+		EABC81AF187A8D810099AA7C /* common_home_group@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EABC81AB187A8D810099AA7C /* common_home_group@2x.png */; };
 		EABD0FFB17376A9B00A2F930 /* PhotoDrawSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = EABD0FFA17376A9B00A2F930 /* PhotoDrawSheet.m */; };
 		EAC81C0D172B983200ED78DE /* UIImage+fixOrientation.m in Sources */ = {isa = PBXBuildFile; fileRef = EAC81C0C172B983100ED78DE /* UIImage+fixOrientation.m */; };
 		EAD13B6717DDAF0700764FFB /* right@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EAD13B6617DDAF0700764FFB /* right@2x.png */; };
@@ -10224,6 +10232,8 @@
 		EAA9E1671622B2A000E8DF1A /* UserLocationController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "UserLocationController~ipad.xib"; sourceTree = "<group>"; };
 		EAAFC5451615A4AB00C72BAB /* StatisticManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StatisticManager.h; sourceTree = "<group>"; };
 		EAAFC5461615A4AB00C72BAB /* StatisticManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StatisticManager.m; sourceTree = "<group>"; };
+		EABC81A3187A85E00099AA7C /* group_footer_contest@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "group_footer_contest@2x.png"; sourceTree = "<group>"; };
+		EABC81AB187A8D810099AA7C /* common_home_group@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "common_home_group@2x.png"; sourceTree = "<group>"; };
 		EABD0FF917376A9B00A2F930 /* PhotoDrawSheet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotoDrawSheet.h; sourceTree = "<group>"; };
 		EABD0FFA17376A9B00A2F930 /* PhotoDrawSheet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotoDrawSheet.m; sourceTree = "<group>"; };
 		EAC81C0B172B983000ED78DE /* UIImage+fixOrientation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+fixOrientation.h"; sourceTree = "<group>"; };
@@ -12090,6 +12100,7 @@
 				A4D8FCE017DB089C0085061F /* common_home_setting@2x.png */,
 				A4D8FCE117DB089C0085061F /* common_home_shop@2x.png */,
 				A4D8FCE217DB089C0085061F /* common_home_splitline@2x.png */,
+				EABC81AB187A8D810099AA7C /* common_home_group@2x.png */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -17050,6 +17061,7 @@
 		EA11A3F81839EA1200F73D64 /* home */ = {
 			isa = PBXGroup;
 			children = (
+				EABC81A3187A85E00099AA7C /* group_footer_contest@2x.png */,
 				EA11A3F91839EA1200F73D64 /* group_footer_at@2x.png */,
 				EA11A3FA1839EA1200F73D64 /* group_footer_chat@2x.png */,
 				EA11A3FB1839EA1200F73D64 /* group_footer_create@2x.png */,
@@ -18422,6 +18434,8 @@
 				EA62853F18768F4600478502 /* bbs_post_detail_unfavor@2x.png in Resources */,
 				A40DF8861876A29200C1A307 /* ContestAwardEditController.xib in Resources */,
 				A40DF8941876A40900C1A307 /* ContestAwardEditCell.xib in Resources */,
+				EABC81A6187A85E00099AA7C /* group_footer_contest@2x.png in Resources */,
+				EABC81AE187A8D810099AA7C /* common_home_group@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -19399,6 +19413,8 @@
 				EA62853E18768F4600478502 /* bbs_post_detail_unfavor@2x.png in Resources */,
 				A40DF8851876A29200C1A307 /* ContestAwardEditController.xib in Resources */,
 				A40DF8931876A40900C1A307 /* ContestAwardEditCell.xib in Resources */,
+				EABC81A5187A85E00099AA7C /* group_footer_contest@2x.png in Resources */,
+				EABC81AD187A8D810099AA7C /* common_home_group@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -20359,6 +20375,8 @@
 				EA62853D18768F4600478502 /* bbs_post_detail_unfavor@2x.png in Resources */,
 				A40DF8841876A29200C1A307 /* ContestAwardEditController.xib in Resources */,
 				A40DF8921876A40900C1A307 /* ContestAwardEditCell.xib in Resources */,
+				EABC81A4187A85E00099AA7C /* group_footer_contest@2x.png in Resources */,
+				EABC81AC187A8D810099AA7C /* common_home_group@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -21273,6 +21291,8 @@
 				EA62854018768F4600478502 /* bbs_post_detail_unfavor@2x.png in Resources */,
 				A40DF8871876A29200C1A307 /* ContestAwardEditController.xib in Resources */,
 				A40DF8951876A40900C1A307 /* ContestAwardEditCell.xib in Resources */,
+				EABC81A7187A85E00099AA7C /* group_footer_contest@2x.png in Resources */,
+				EABC81AF187A8D810099AA7C /* common_home_group@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

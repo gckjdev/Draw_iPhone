@@ -37,6 +37,7 @@
 #import "DrawImageManager.h"
 #import "ContestController.h"
 #import "PainterController.h"
+#import "GroupHomeController.h"
 
 static NSDictionary* DEFAULT_MENU_TITLE_DICT = nil;
 static NSDictionary* DEFAULT_MENU_IMAGE_DICT = nil;
@@ -516,6 +517,14 @@ static NSDictionary* DEFAULT_MENU_IMAGE_DICT = nil;
     [self.navigationController pushViewController:vc animated:YES];
 }
 
+- (void)enterGroup
+{
+    [[AnalyticsManager sharedAnalyticsManager] reportClickHomeMenu:HOME_ACTION_GROUP];
+    GroupHomeController *grp = [[GroupHomeController alloc] init];
+    [self.navigationController pushViewController:grp animated:YES];
+    [grp release];
+}
+
 - (void)enterBBS
 {
     [[AnalyticsManager sharedAnalyticsManager] reportClickHomeMenu:HOME_ACTION_BBS];    
@@ -670,6 +679,12 @@ static NSDictionary* DEFAULT_MENU_IMAGE_DICT = nil;
                 break;
             }
                 
+            case HomeMenuTypeGroup:
+            {
+                [self enterGroup];
+                break;
+            }
+                
             default:
                 break;
         }
@@ -793,6 +808,7 @@ static NSDictionary* DEFAULT_MENU_IMAGE_DICT = nil;
                                  @(HomeMenuTypeDrawFreeCoins) : NSLS(@"kFreeIngots"),
                                  @(HomeMenuTypeDrawApps) : NSLS(@"kMore_apps"),
                                  @(HomeMenuTypeDrawMore) : NSLS(@"kHomeMenuTypeDrawMore"),
+                                 @(HomeMenuTypeGroup) : NSLS(@"kGroup"),
                                  };
         
         [DEFAULT_MENU_TITLE_DICT retain];  // make sure you retain the dictionary here for futher usage
@@ -838,7 +854,7 @@ static NSDictionary* DEFAULT_MENU_IMAGE_DICT = nil;
                                  @(HomeMenuTypeDrawSetting) : [imageManager drawHomeSetting],
                                  @(HomeMenuTypeDrawShop) : [imageManager drawHomeShop],
                                  @(HomeMenuTypeBottomTask) : [imageManager homeBottomTask],
-                                 
+                                 @(HomeMenuTypeGroup) : [imageManager drawHomeGroup],
                                  };
         
         [DEFAULT_MENU_IMAGE_DICT retain];  // make sure you retain the dictionary here for futher usage
