@@ -1135,8 +1135,9 @@
 "kAccountManage" = "账号管理";
 "kAddAccount" = "新账号";
 
-"kGetNumberTipsLabelText" = "首次使用，请先登录";
-"kTakeNumberButtonTitle" = "领            取";
+//"kGetNumberTipsLabelText" = "首次使用，请先登录";
+"kGetNumberTipsLabelText" = "首次使用，请先领取小吉号码\n或使用已有号码登录";
+"kTakeNumberButtonTitle" = "领取小吉号码";
 "kLoginButtonTitle" = "小吉号码登录";
 "kQQLoginButtonTitle" = "QQ号码登录";
 "kSinaLoginButtonTitle" = "新浪微博登录";
@@ -1234,7 +1235,7 @@
 
 "kCharge" = "充值";
 "kChargeTitle" = "充值";
-"kFreeCoins" = "金币";
+"kFreeCoins" = "免费金币";
 
 "kHomeMenuTypeZJHHelp" = "帮助";
 "kHomeMenuTypeZJHStart" = "快速开始";
@@ -1377,7 +1378,7 @@
 "kRewardIngotWallTips" = "下载第三方应用(免费)，注册使用60秒以上可赚取元宝";
 "kRewardCoinWallTips" = "下载第三方应用(免费)，注册使用60秒以上可赚取金币";
 
-"kFreeIngots" = "金币";
+"kFreeIngots" = "免费金币";
 "kGoToBBS4Help" = "逛逛论坛寻求帮助";
 "kCleaning" = "清理缓存中，时间可能比较长，请耐心等待";
 

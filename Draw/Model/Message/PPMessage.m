@@ -132,13 +132,27 @@
 {
     self.messageBuilder = [PBMessage builderWithPrototype:pbMessage];
     
-    if ([[UserManager defaultManager] isMe:pbMessage.from]) {
+    if ([pbMessage isGroup]){
+
         self.friendId = pbMessage.to;
-        self.sourceType = SourceTypeSend;
-    }else{
-        self.friendId = pbMessage.from;
-        self.sourceType = SourceTypeReceive;
-        self.status = MessageStatusRead;
+        
+        if ([[UserManager defaultManager] isMe:pbMessage.from]){
+            self.sourceType = SourceTypeSend;
+        }
+        else{
+            self.sourceType = SourceTypeReceive;
+            self.status = MessageStatusRead;
+        }
+    }
+    else{
+        if ([[UserManager defaultManager] isMe:pbMessage.from]) {
+            self.friendId = pbMessage.to;
+            self.sourceType = SourceTypeSend;
+        }else{
+            self.friendId = pbMessage.from;
+            self.sourceType = SourceTypeReceive;
+            self.status = MessageStatusRead;
+        }
     }
     
     // for draw
