@@ -461,8 +461,7 @@
         cell = [ContestCell createCell:self];
     }
     
-    PBContest *pbContest = [[[ContestManager defaultManager] allContestList] objectAtIndex:indexPath.row];
-    Contest *contest = [[[Contest alloc] initWithPBContest:pbContest] autorelease];
+    Contest *contest = [dataList objectAtIndex:indexPath.row];
     [cell setCellInfo:contest];
     return cell;
 }

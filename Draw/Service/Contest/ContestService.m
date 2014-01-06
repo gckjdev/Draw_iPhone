@@ -7,7 +7,6 @@
 //
 
 #import "ContestService.h"
-//#import "BoardNetworkConstant.h"
 #import "PPNetworkRequest.h"
 #import "ContestManager.h"
 #import "PPConfigManager.h"
@@ -31,10 +30,46 @@ static ContestService *_staticContestService;
     PPRelease(_staticContestService);
 }
 
+//- (void)getContestListWithType:(ContestListType)type
+//                        offset:(NSInteger)offset
+//                         limit:(NSInteger)limit
+//                      delegate:(id<ContestServiceDelegate>)delegate
+//{
+//    
+//    dispatch_async(workingQueue, ^{
+//        
+//        NSDictionary* para = @{ PARA_LANGUAGE : @(ChineseType),
+//                                PARA_TYPE : @(type),
+//                                PARA_OFFSET : @(offset),
+//                                PARA_COUNT : @(limit)
+//                                };
+//        
+//        GameNetworkOutput* output = [PPGameNetworkRequest trafficApiServerGetAndResponsePB:METHOD_GET_CONTEST_LIST
+//                                                                                parameters:para];        
+//        
+//        dispatch_async(dispatch_get_main_queue(), ^{
+//            
+//             NSArray *contestList = nil;
+//            if (output.resultCode == 0 && output.pbResponse.contestListList){
+//                 contestList = [[ContestManager defaultManager] parseContestList:output.pbResponse.contestListList];
+//                if (type == ContestListTypeAll) {
+//                    [[ContestManager defaultManager] setAllContestList:output.pbResponse.contestListList];
+//                }
+//            }
+//            
+//            if (delegate && [delegate respondsToSelector:@selector(didGetContestList:type:resultCode:)]) {
+//                [delegate didGetContestList:contestList type:type resultCode:output.resultCode];
+//            }
+//            
+//        });
+//        
+//    });
+//}
+
 - (void)getContestListWithType:(ContestListType)type
                         offset:(NSInteger)offset
                          limit:(NSInteger)limit
-                      delegate:(id<ContestServiceDelegate>)delegate
+                     completed:(GetContestListBlock)completed
 {
     
     dispatch_async(workingQueue, ^{
@@ -46,69 +81,75 @@ static ContestService *_staticContestService;
                                 };
         
         GameNetworkOutput* output = [PPGameNetworkRequest trafficApiServerGetAndResponsePB:METHOD_GET_CONTEST_LIST
-                                                                                parameters:para];        
+                                                                                parameters:para];
+        
+        NSArray *contestList = nil;
+        if (output.resultCode == 0 && output.pbResponse.contestListList){
+            contestList = [[ContestManager defaultManager] parseContestList:output.pbResponse.contestListList];
+            if (type == ContestListTypeAll) {
+                [[ContestManager defaultManager] setAllContestList:output.pbResponse.contestListList];
+            }
+        }
         
         dispatch_async(dispatch_get_main_queue(), ^{
-            
-             NSArray *contestList = nil;
-            if (output.resultCode == 0 && output.pbResponse.contestListList){
-                 contestList = [[ContestManager defaultManager] parseContestList:output.pbResponse.contestListList];
-                if (type == ContestListTypeAll) {
-                    [[ContestManager defaultManager] setAllContestList:output.pbResponse.contestListList];
-                }
-            }
-            
-            if (delegate && [delegate respondsToSelector:@selector(didGetContestList:type:resultCode:)]) {
-                [delegate didGetContestList:contestList type:type resultCode:output.resultCode];
-            }
-            
+
+            EXECUTE_BLOCK(completed, output.resultCode, type, contestList);
         });
-        
     });
-    
-//    dispatch_async(workingQueue, ^{
-//        NSString *appId = [PPConfigManager appId];
-//        NSString *userId =[[UserManager defaultManager] userId];
-//        int language = [[UserManager defaultManager] getLanguageType];
-//        
-//        CommonNetworkOutput *output = [GameNetworkRequest getContests:TRAFFIC_SERVER_URL
-//                                                                appId:appId
-//                                                               userId:userId 
-//                                                                 type:type 
-//                                                               offset:offset
-//                                                                limit:limit 
-//                                                             language:language];
-//        NSInteger errorCode = output.resultCode;
-//        NSArray *contestList = nil;
+}
+
+//- (void)getContestListWithGroupId:(NSString*)groupId
+//                           offset:(NSInteger)offset
+//                            limit:(NSInteger)limit
+//                         delegate:(id<ContestServiceDelegate>)delegate
+//{
+//    
+//    PPDebug(@"<getContestListWithGroupId> groupId=%@", groupId);
 //
-//        if (errorCode == ERROR_SUCCESS) {
-//            contestList = [[ContestManager defaultManager] parseContestList:output.jsonDataArray];
+//    if (groupId == nil){
+//        
+//        if (delegate && [delegate respondsToSelector:@selector(didGetContestList:type:resultCode:)]) {
+//            [delegate didGetContestList:nil type:ContestListTypeAll resultCode:0];
 //        }
 //        
-//        dispatch_async(dispatch_get_main_queue(), ^{
-//            if (delegate && [delegate respondsToSelector:@selector(didGetContestList:type:resultCode:)]) {
-//                [delegate didGetContestList:contestList type:type resultCode:errorCode];
-//            }
-//        });        
+//        return;
+//    }
+//    
+//    dispatch_async(workingQueue, ^{
 //        
+//        NSDictionary* para = @{ PARA_LANGUAGE : @(ChineseType),
+//                                PARA_GROUPID : groupId,
+//                                PARA_OFFSET : @(offset),
+//                                PARA_COUNT : @(limit),
+//                                };
+//        
+//        GameNetworkOutput* output = [PPGameNetworkRequest trafficApiServerGetAndResponsePB:METHOD_GET_CONTEST_LIST
+//                                                                                parameters:para];
+//        
+//        dispatch_async(dispatch_get_main_queue(), ^{
+//            
+//            NSArray *contestList = nil;
+//            if (output.resultCode == 0 && output.pbResponse.contestListList){
+//                contestList = [[ContestManager defaultManager] parseContestList:output.pbResponse.contestListList];
+//            }
+//            
+//            if (delegate && [delegate respondsToSelector:@selector(didGetContestList:type:resultCode:)]) {
+//                [delegate didGetContestList:contestList type:ContestListTypeAll resultCode:output.resultCode];
+//            }
+//            
+//        });
 //    });
-
-}
+//}
 
 - (void)getContestListWithGroupId:(NSString*)groupId
                            offset:(NSInteger)offset
                             limit:(NSInteger)limit
-                         delegate:(id<ContestServiceDelegate>)delegate
-{
+                        completed:(GetContestListBlock)completed{
     
     PPDebug(@"<getContestListWithGroupId> groupId=%@", groupId);
-
+    
     if (groupId == nil){
-        
-        if (delegate && [delegate respondsToSelector:@selector(didGetContestList:type:resultCode:)]) {
-            [delegate didGetContestList:nil type:ContestListTypeAll resultCode:0];
-        }
-        
+        EXECUTE_BLOCK(completed, 0, 0, nil);
         return;
     }
     
@@ -123,25 +164,57 @@ static ContestService *_staticContestService;
         GameNetworkOutput* output = [PPGameNetworkRequest trafficApiServerGetAndResponsePB:METHOD_GET_CONTEST_LIST
                                                                                 parameters:para];
         
+        
+        NSArray *contestList = nil;
+        if (output.resultCode == 0 && output.pbResponse.contestListList){
+            contestList = [[ContestManager defaultManager] parseContestList:output.pbResponse.contestListList];
+        }
+        
         dispatch_async(dispatch_get_main_queue(), ^{
+
             
-            NSArray *contestList = nil;
-            if (output.resultCode == 0 && output.pbResponse.contestListList){
-                contestList = [[ContestManager defaultManager] parseContestList:output.pbResponse.contestListList];
-            }
-            
-            if (delegate && [delegate respondsToSelector:@selector(didGetContestList:type:resultCode:)]) {
-                [delegate didGetContestList:contestList type:ContestListTypeAll resultCode:output.resultCode];
-            }
+            EXECUTE_BLOCK(completed, output.resultCode, 0, contestList);
             
         });
     });
 }
 
+//- (void)getGroupContestListWithType:(ContestListType)type
+//                             offset:(NSInteger)offset
+//                              limit:(NSInteger)limit
+//                           delegate:(id<ContestServiceDelegate>)delegate{
+//    
+//    dispatch_async(workingQueue, ^{
+//        
+//        NSDictionary* para = @{ PARA_LANGUAGE : @(ChineseType),
+//                                PARA_TYPE : @(type),
+//                                PARA_OFFSET : @(offset),
+//                                PARA_COUNT : @(limit),
+//                                PARA_IS_GROUP : @(YES)
+//                                };
+//        
+//        GameNetworkOutput* output = [PPGameNetworkRequest trafficApiServerGetAndResponsePB:METHOD_GET_CONTEST_LIST
+//                                                                                parameters:para];
+//        
+//        dispatch_async(dispatch_get_main_queue(), ^{
+//            
+//            NSArray *contestList = nil;
+//            if (output.resultCode == 0 && output.pbResponse.contestListList){
+//                contestList = [[ContestManager defaultManager] parseContestList:output.pbResponse.contestListList];
+//            }
+//            
+//            if (delegate && [delegate respondsToSelector:@selector(didGetContestList:type:resultCode:)]) {
+//                [delegate didGetContestList:contestList type:ContestListTypeAll resultCode:output.resultCode];
+//            }
+//            
+//        });
+//    });
+//}
+
 - (void)getGroupContestListWithType:(ContestListType)type
                              offset:(NSInteger)offset
                               limit:(NSInteger)limit
-                           delegate:(id<ContestServiceDelegate>)delegate{
+                          completed:(GetContestListBlock)completed{
     
     dispatch_async(workingQueue, ^{
         
@@ -162,13 +235,11 @@ static ContestService *_staticContestService;
                 contestList = [[ContestManager defaultManager] parseContestList:output.pbResponse.contestListList];
             }
             
-            if (delegate && [delegate respondsToSelector:@selector(didGetContestList:type:resultCode:)]) {
-                [delegate didGetContestList:contestList type:ContestListTypeAll resultCode:output.resultCode];
-            }
-            
+            EXECUTE_BLOCK(completed, output.resultCode, type, contestList);            
         });
     });
 }
+
 
 - (void)getMyContestListWithOffset:(NSInteger)offset
                              limit:(NSInteger)limit

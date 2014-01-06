@@ -2528,3 +2528,15 @@
 "kRankIs" = "第%d名";
 "kStartDateCannotAfterEndDate" = "开始时间不能大于结束时间";
 "kEndDateCannotBeforeStartDate" = "结束时间不能小于开始时间";
+"kCannotCreateContestPleaseJoinGroupFirst" = "你还没有加入家族，请先加入家族后再创建比赛";
+
+"kContestNotStart" = "未开始";
+"kContestOutOfTime" = "已结束";
+"kLeftDays" = "还剩%d天";
+
+"kNoGroupContest" = "暂无家族比赛";
+"kCreate" = "创建";
+
+"kCreatingContest" = "创建比赛中...";
+"kCreatingContestFail" = "创建比赛失败";
+"kCreateContestSuccess" = "成功创建比赛";

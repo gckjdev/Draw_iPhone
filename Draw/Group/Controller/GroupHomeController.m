@@ -20,6 +20,7 @@
 #import "SearchGroupController.h"
 #import "UIViewController+BGImage.h"
 #import "ChatDetailController.h"
+#import "ContestController.h"
 
 @interface GroupHomeController ()
 {
@@ -388,8 +389,10 @@
         }
             break;
          case GroupContest:
-        {
-            //TODO contest
+        {            
+            ContestController *vc = [[[ContestController alloc] initWithGroupContestOnly] autorelease];
+            [self.navigationController pushViewController:vc animated:YES];
+            
         }
             break;
             

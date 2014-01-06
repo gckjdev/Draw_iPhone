@@ -369,15 +369,17 @@
 - (NSString *)leftTime{
  
     NSTimeInterval now = [[NSDate date] timeIntervalSince1970];
-    if (_pbContestBuilder.startDate < now) {
+    NSTimeInterval start = _pbContestBuilder.startDate;
+    NSTimeInterval end = _pbContestBuilder.endDate;
+    if (now < start) {
         return NSLS(@"kContestNotStart");
-    }else if (now >= _pbContestBuilder.startDate
-              && now < _pbContestBuilder.endDate){
+    }else if (now >= start
+              && now < end){
         
-        NSTimeInterval left = _pbContestBuilder.endDate - now;
+        NSTimeInterval left = end - now;
         return [self leftTimeStringWithLeftTime:left];
     }else{
-        return NSLS(@"kContestIsOver");
+        return NSLS(@"kContestOutOfTime");
     }
 }
 
