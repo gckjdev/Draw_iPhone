@@ -170,6 +170,13 @@
 
 - (void)openChatDetail:(MessageStat *)messageStat
 {
+    if ([messageStat isGroup] &&
+        [[GroupPermissionManager myManagerWithGroupId:messageStat.friendId] canGroupChat] == NO){
+        
+        POSTMSG(NSLS(@"kCanotGroupChat"));
+        return;
+    }
+    
     ChatDetailController *controller = [[ChatDetailController alloc] initWithMessageStat:messageStat];
     controller.delegate = self;
     [self.navigationController pushViewController:controller animated:YES];
@@ -280,14 +287,6 @@ SET_CELL_BG_IN_CONTROLLER;
 {
     MessageStat *messageStat = [self messageStatOfIndex:indexPath.row];
     if (messageStat) {
-        
-        if ([messageStat isGroup] &&
-            [[GroupPermissionManager myManagerWithGroupId:messageStat.friendId] canGroupChat] == NO){
-            
-            POSTMSG(NSLS(@"kCanotGroupChat"));
-            return;
-        }
-        
         [self openChatDetail:messageStat];
     }
 }

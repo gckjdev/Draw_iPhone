@@ -323,8 +323,8 @@ typedef enum{
     }
 
     __block GroupDetailController *cp = self;
-    
-    [self.changeImage showSelectionView:(id)self selectedImageBlock:^(UIImage *image) {
+    self.changeImage.userOriginalImage = NO;    
+    [self.changeImage showSelectionView:(id)self  delegate:nil selectedImageBlock:^(UIImage *image) {
         [cp showActivityWithText:NSLS(@"kUpdating")];
         [groupService updateGroup:cp.group.groupId icon:image callback:^(NSURL *url, NSError *error) {
             [cp hideActivity];
@@ -334,7 +334,7 @@ typedef enum{
                 [cp updateGroup:group];
             }
         }];
-    } didSetDefaultBlock:NULL title:NSLS(@"kChangeGroupIcon") hasRemoveOption:NO];
+    } didSetDefaultBlock:NULL title:NSLS(@"kChangeGroupIcon") hasRemoveOption:NO canTakePhoto:YES userOriginalImage:NO];
 
 }
 
@@ -345,7 +345,8 @@ typedef enum{
     }
 
     __block GroupDetailController *cp = self;
-    [self.changeImage showSelectionView:(id)self selectedImageBlock:^(UIImage *image) {
+    self.changeImage.userOriginalImage = YES;
+    [self.changeImage showSelectionView:(id)self delegate:nil selectedImageBlock:^(UIImage *image) {
         [self showActivityWithText:NSLS(@"kUpdating")];
         [groupService updateGroup:cp.group.groupId BGImage:image callback:^(NSURL *url, NSError *error) {
             [cp hideActivity];
@@ -356,7 +357,7 @@ typedef enum{
             }
         }];
         
-    } didSetDefaultBlock:NULL title:NSLS(@"kChangeGroupBG") hasRemoveOption:NO];
+    } didSetDefaultBlock:NULL title:NSLS(@"kChangeGroupBG")  hasRemoveOption:NO canTakePhoto:YES userOriginalImage:YES];
 }
 
 - (void)updateRightButton
@@ -398,6 +399,7 @@ typedef enum{
 
     self.changeImage = [[[ChangeAvatar alloc] init] autorelease];
     self.changeImage.autoRoundRect = NO;
+    self.changeImage.userOriginalImage = YES;
     
     //update bg image view.
     if (_group.bgImageURL) {

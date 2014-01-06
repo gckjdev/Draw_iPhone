@@ -23,8 +23,17 @@ static NSMutableArray *_roles;
     if (!_roles) {
         _roles = [[NSMutableArray array] retain];
         NSArray *array = [[[UserManager defaultManager] userDefaults] arrayForKey:GROUP_ROLES_KEY];
-        if ([array count] > 0) {
-            [_roles addObjectsFromArray:array];
+        
+        for (NSData* data in array){
+            @try {
+                PBGroupUserRole* role = [PBGroupUserRole parseFromData:data];
+                [_roles addObject:role];
+            }
+            @catch (NSException *exception) {
+                PPDebug(@"<loadGroupRoles> but catch exception (%@)", [exception description]);
+            }
+            @finally {
+            }
         }
     }
     return _roles;
@@ -93,6 +102,7 @@ static NSMutableArray *_roles;
         [builder setPermission:GROUP_DEFAULT_PERMISSION];
         _defaultRole = [[builder build] retain];
         [builder release];
+        PPDebug(@"invoke defaultGroupRole");
     });
     return _defaultRole;
 }

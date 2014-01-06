@@ -59,7 +59,7 @@ extern NSString* GlobalGetTrafficServerURL();
     }
     NSString *errorMessage = [self errorMessageForCode:code];
     NSDictionary *userInfo = @{NSLocalizedDescriptionKey: errorMessage};
-    return [NSError errorWithDomain:GlobalGetTrafficServerURL() code:code userInfo:userInfo];
+    return [NSError errorWithDomain:@"ServiceError" code:code userInfo:userInfo];
 }
 
 + (void)postError:(NSError *)error
