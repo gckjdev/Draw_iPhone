@@ -666,22 +666,6 @@ static NSDictionary* DRAW_MENU_IMAGE_DICT = nil;
         }
             break;
         case HomeMenuTypeDrawContest:
-#ifdef DEBUG
-        {
-            GroupHomeController *gc = [[GroupHomeController alloc] init];
-            [self.navigationController pushViewController:gc animated:YES];
-            [gc release];
-            break;
-        }
-
-//        {
-//            CreateContestController *vc = [[[CreateContestController alloc] init] autorelease];
-//            [self.navigationController pushViewController:vc animated:YES];
-//        }
-//
-//            break;
-#endif
-            
         {
             [[AnalyticsManager sharedAnalyticsManager] reportClickHomeMenu:HOME_ACTION_CONTEST];
             
@@ -763,6 +747,11 @@ static NSDictionary* DRAW_MENU_IMAGE_DICT = nil;
         case HomeMenuTypeBottomTask:
         {
             [self enterTask];
+            break;
+        }
+        case HomeMenuTypeGroup:
+        {
+            [self enterGroup];
             break;
         }
             
@@ -1014,7 +1003,8 @@ int *getDrawMainMenuTypeListHasNewContest()
 {
     int static list[] = {
         HomeMenuTypeDrawDraw,
-        HomeMenuTypeDrawGame,
+//        HomeMenuTypeDrawGame,
+        HomeMenuTypeGroup,
         HomeMenuTypeDrawBBS,
         HomeMenuTypeDrawRank,
         HomeMenuTypeDrawContest,
@@ -1037,7 +1027,8 @@ int *getDrawMainMenuTypeListWithoutFreeCoins()
 {
     int static list[] = {
         HomeMenuTypeDrawDraw,
-        HomeMenuTypeDrawGame,
+//        HomeMenuTypeDrawGame,
+        HomeMenuTypeGroup,        
         HomeMenuTypeDrawBBS,
         HomeMenuTypeDrawRank,
         HomeMenuTypeDrawContest,

@@ -348,6 +348,10 @@ typedef enum {
     }
 }
 
+- (NSString *)noDataCellContent{
+    return NSLS(@"kNoTopic");
+}
+
 #pragma mark-- Common Tab Controller delegate
 
 - (NSInteger)tabCount
@@ -368,10 +372,6 @@ typedef enum {
 - (NSString *)tabTitleforIndex:(NSInteger)index{
     NSArray *names = @[NSLS(@"kLatest"), NSLS(@"kMarked")];
     return names[index];
-}
-
-- (NSString *)tabNoDataTipsforIndex:(NSInteger)index{
-    return NSLS(@"kNoTopic");
 }
 
 - (void)serviceLoadDataForTabID:(NSInteger)tabID{

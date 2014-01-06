@@ -11,6 +11,7 @@
 @interface DrawImageManager : NSObject
 + (id)defaultManager;
 
+- (UIImage *)drawHomeGroup;
 - (UIImage *)drawHomeBbs;
 - (UIImage *)singHomeTask;
 - (UIImage *)drawHomeTask;

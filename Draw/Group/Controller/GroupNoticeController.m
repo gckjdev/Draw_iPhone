@@ -62,7 +62,6 @@ typedef enum{
     [super viewDidLoad];
     [self setDefaultBGImage];
     [self.titleView setTitle:NSLS(@"kAtMe")];
-    [self.titleView setTransparentStyle];
     [self initTabButtons];
     [self updateBadge];
     [self updateTableView];

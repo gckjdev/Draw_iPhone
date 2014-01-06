@@ -75,9 +75,7 @@
         case GroupAtMe:
             return IMAGE_NAME(@"group_footer_at@2x.png");
         case GroupContest:
-            //TODO should replace the return value.
-            return IMAGE_NAME(@"group_add@2x.png");
-//            return IMAGE_NAME(@"group_footer_contest@2x.png");
+            return IMAGE_NAME(@"group_footer_contest@2x.png");
         default:
             return nil;
     }
