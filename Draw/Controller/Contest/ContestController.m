@@ -228,44 +228,6 @@ typedef enum{
 
 #pragma mark contest service delegate
 
-//- (void)didGetContestList:(NSArray *)contestList 
-//                     type:(ContestListType)type 
-//               resultCode:(NSInteger)code
-//{
-//    [self hideActivity];
-//
-//    PPDebug(@"didGetContestList, type = %d, code = %d, contestList = %@", type,code,contestList);
-//    if (code == 0) {
-//        if ([contestList count] != 0) {
-//            [self updateScorollViewWithContestList:contestList];
-//            [self hideTips];
-//        }else{
-//            [self showTips:NSLS(@"kNoContestTips")];
-//            [self.pageControl setNumberOfPages:0];
-//        }
-//        [[ContestManager defaultManager] updateHasReadContestList:contestList];
-//    }else{
-//
-//        [self showTips:NSLS(@"kFailLoad")];
-//    }
-//}
-
-//- (void)didGetWonderfulContestOpusList:(NSArray *)feedList resultCode:(NSInteger)resultCode{
-//    
-//    [self hideActivity];
-//    
-//    if (resultCode == 0) {
-//        if ([feedList count] != 0) {
-//            [self finishLoadDataForTabID:self.currentTab.tabID resultList:feedList];
-//            [self hideTips];
-//        }else{
-//            [self showTips:NSLS(@"kNoContestTips")];
-//        }
-//    }else{
-//        [self showTips:NSLS(@"kFailLoad")];
-//    }
-//}
-
 - (IBAction)clickBackButton:(id)sender {
     [self.navigationController popViewControllerAnimated:YES];
 }
@@ -666,7 +628,8 @@ typedef enum{
 
 - (void)didClickContest:(Contest *)contest{
     
-    
+    ContestOpusController *vc = [[[ContestOpusController alloc] initWithContest:contest] autorelease];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 - (void)didClickGroup:(PBGroup *)pbGroup{

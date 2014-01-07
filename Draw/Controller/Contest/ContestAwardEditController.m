@@ -38,7 +38,7 @@
     // Do any additional setup after loading the view from its nib.
     
     CommonTitleView *v = [CommonTitleView createTitleView:self.view];
-    [v setTitle:NSLS(@"kContestRules")];
+    [v setTitle:NSLS(@"kContestAward")];
     [v setTarget:self];
     [v setBackButtonSelector:@selector(clickBack:)];
     [v setRightButtonTitle:NSLS(@"kDone")];
@@ -74,7 +74,7 @@
     if (indexPath.row < 3) {
         rankDesc = [NSString stringWithFormat:NSLS(@"kRankIs"), indexPath.row + 1];
     }else{
-        rankDesc = [NSString stringWithFormat:@"第4～20名"];
+        rankDesc = [NSString stringWithFormat:NSLS(@"kRankRange"), @"4~20"];
     }
     
     [cell setRank:rankDesc award:award];

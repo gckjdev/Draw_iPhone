@@ -2162,7 +2162,7 @@
 "kNotGroupMember" = "用户不是家族普通成员，不能完成本操作。";
 "kNotGroupAdmin" = "用户不是家族管理员，不能完成本操作。";
 "kNotInvitee" = "你没有被邀请，或者邀请已经失效，不能完成本操作。";
-"kUnknowError" = "未知错误。";
+"kUnknowError" = "请求失败，请稍后再试或联系我们反馈问题";
 "kUpdateTitle" = "修改职位名称";
 "kTitleIDNotFound" = "职位不存在。";
 
@@ -2528,7 +2528,7 @@
 "kContestName" = "比赛名称";
 "kStartTime" = "开始时间";
 "kEndTime" = "结束时间";
-"kContestRules" = "比赛规则";
+"kContestDesc" = "比赛描述";
 "kContestJoiners" = "参赛成员";
 "kContestImage" = "比赛海报";
 "kContestAward" = "比赛奖励";
@@ -2542,7 +2542,9 @@
 "kPleaseSelectContestImage" = "请选择一副图片作为比赛海报";
 "kCreateContestSuccess" = "成功创建比赛";
 "kNumberXGetAwardX" = "第%d名 %d金币";
+"kNumberRangeGetAwardX" = "第%@名 %d金币";
 "kRankIs" = "第%d名";
+"kRankRange" = "第%@名";
 "kStartDateCannotAfterEndDate" = "开始时间不能大于结束时间";
 "kEndDateCannotBeforeStartDate" = "结束时间不能小于开始时间";
 "kCannotCreateContestPleaseJoinGroupFirst" = "你还没有加入家族，请先加入家族后再创建比赛";
@@ -2557,3 +2559,4 @@
 "kCreatingContest" = "创建比赛中...";
 "kCreatingContestFail" = "创建比赛失败";
 "kCreateContestSuccess" = "成功创建比赛";
+"kJoinContest" = "参赛";

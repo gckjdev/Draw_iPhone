@@ -6,10 +6,10 @@
 //  Copyright (c) 2012年 __MyCompanyName__. All rights reserved.
 //
 
-#import "PPViewController.h"
+#import "PPTableViewController.h"
 
 @class Contest;
-@interface StatementController : PPViewController
+@interface StatementController : PPTableViewController
 {
     Contest *_contest;
 }

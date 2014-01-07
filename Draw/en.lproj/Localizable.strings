@@ -2517,7 +2517,7 @@
 "kContestName" = "Name";
 "kStartTime" = "Start";
 "kEndTime" = "End";
-"kContestRules" = "Rules";
+"kContestDesc" = "Desc";
 "kContestJoiners" = "Joiners";
 "kContestImage" = "Image";
 "kContestAward" = "Award";
@@ -2531,7 +2531,9 @@
 "kPleaseSelectContestImage" = "Please select an image for contest";
 "kCreateContestSuccess" = "Create contest success";
 "kNumberXGetAwardX" = "Number %d get award %d coins";
+"kNumberRangeGetAwardX" = "Number %@ get award %d coins";
 "kRankIs" = "No.%d";
+"kRankRange" = "No.%@";
 "kStartDateCannotAfterEndDate" = "Start date can not after end date";
 "kEndDateCannotBeforeStartDate" = "End date can not after start date";
 "kCannotCreateContestPleaseJoinGroupFirst" = "Please join group first";
@@ -2546,4 +2548,4 @@
 "kCreatingContest" = "Creating contest";
 "kCreatingContestFail" = "Create contest fail";
 "kCreateContestSuccess" = "Create contest success";
-
+"kJoinContest" = "Join";
