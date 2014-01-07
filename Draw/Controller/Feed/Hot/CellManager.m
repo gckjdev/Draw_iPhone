@@ -458,11 +458,10 @@
     
     ContestCell *cell = [tableView dequeueReusableCellWithIdentifier:[ContestCell getCellIdentifier]];
     if (cell == nil) {
-        cell = [ContestCell createCell:self];
+        cell = [ContestCell createCell:delegate];
     }
     
-    PBContest *pbContest = [[[ContestManager defaultManager] allContestList] objectAtIndex:indexPath.row];
-    Contest *contest = [[[Contest alloc] initWithPBContest:pbContest] autorelease];
+    Contest *contest = [dataList objectAtIndex:indexPath.row];
     [cell setCellInfo:contest];
     return cell;
 }

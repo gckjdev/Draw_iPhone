@@ -1008,6 +1008,8 @@
 "kNoGroup" = "暂无家族";
 "kNoMatchResult" = "暂无匹配的结果";
 
+
+
 "kInputSongNameForSearch" = "输入歌曲或者歌手搜索歌词";
 "kSongNameCannotBeBlank" = "搜索关键字不能为空";
 
@@ -2177,7 +2179,7 @@
 "kGroupRejectMemberInvitationDesc" = "%@拒绝加入%@";
 "kGroupRejectGuestInvitationDesc" = "%@拒绝成为%@嘉宾。";
 "kTypeAcceptMemberInvitationDesc" = "%@同意加入%@。";
-"kTypeAcceptGuestInvitationDesc" = "%@同意成为%@的嘉宾。";
+"kTypeAcceptGuestInvitationDesc" = "%@成为了%@的嘉宾。";
 
 "kTypeChargeGroupDesc" = "%@给%@充了%d金币。";
 "kTypeTransferGroupBalanceDesc" = "%@从%@转了%d金币给%@。";
@@ -2291,6 +2293,8 @@
 "kBalanceNotEnough" = "不好意思，您的余额不足，不能完成本操作。";
 "kGroupBalanceNotEnough" = "不好意思，家族的余额不足，不能完成本操作";
 "kNotTestUserCan'tCreateGroup" = "目前是内测阶段，你不是内测用户暂不能创建家族。";
+
+"kJoinAGroup" = "加入家族";
 
 /*********************小吉画画国际化字符串开始 ************************/
 "kLittleGeeRecommend" = "推荐";
@@ -2538,3 +2542,15 @@
 "kRankIs" = "第%d名";
 "kStartDateCannotAfterEndDate" = "开始时间不能大于结束时间";
 "kEndDateCannotBeforeStartDate" = "结束时间不能小于开始时间";
+"kCannotCreateContestPleaseJoinGroupFirst" = "你还没有加入家族，请先加入家族后再创建比赛";
+
+"kContestNotStart" = "未开始";
+"kContestOutOfTime" = "已结束";
+"kLeftDays" = "还剩%d天";
+
+"kNoGroupContest" = "暂无家族比赛";
+"kCreate" = "创建";
+
+"kCreatingContest" = "创建比赛中...";
+"kCreatingContestFail" = "创建比赛失败";
+"kCreateContestSuccess" = "成功创建比赛";

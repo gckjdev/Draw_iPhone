@@ -30,6 +30,7 @@ typedef enum{
 }
 
 @property(nonatomic, readonly) NSString *contestId;
+@property(nonatomic, readonly) PBGroup *pbGroup;
 @property(nonatomic, assign) NSDate *startDate;
 @property(nonatomic, assign) NSDate *endDate;
 @property(nonatomic, assign) NSDate *voteStartDate;
@@ -44,6 +45,7 @@ typedef enum{
 @property(nonatomic, readonly) NSInteger maxFlowerPerOpus;
 @property(nonatomic, readonly) NSInteger maxFlowerPerContest;
 @property(nonatomic, assign) NSString *rule;
+@property(nonatomic, readonly) NSURL *groupMedalImageUrl;
 
 @property(nonatomic, readonly) BOOL canSubmit;
 @property(nonatomic, readonly) BOOL canVote;

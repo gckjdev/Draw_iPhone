@@ -20,4 +20,5 @@
 
 @property(nonatomic, retain)Contest *contest;
 - (id)initWithContest:(Contest *)contest;
+
 @end

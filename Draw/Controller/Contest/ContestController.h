@@ -14,20 +14,23 @@
 @class UICustomPageControl;
 @interface ContestController : CommonTabController<ContestServiceDelegate, UIScrollViewDelegate>
 {
-    ContestService *_contestService;
     NSMutableArray *_contestViewList;
-    UILabel *_noContestTipLabel;
 }
 
-- (IBAction)clickBackButton:(id)sender;
-- (IBAction)clickRefreshButton:(id)sender;
-
-- (void)enterDrawControllerWithContest:(Contest *)contest
-                              animated:(BOOL)animated;
 @property (retain, nonatomic) IBOutlet UILabel *noContestTipLabel;
 @property (retain, nonatomic) IBOutlet UIScrollView *scrollView;
 @property (retain, nonatomic) IBOutlet UICustomPageControl *pageControl;
-@property (retain, nonatomic) IBOutlet UILabel *titleLabel;
 @property (retain, nonatomic) IBOutlet UIView *scrollerViewHolder;
-@property (retain, nonatomic) IBOutlet UIView *tableViewHolder;
+
+- (IBAction)clickBackButton:(id)sender;
+- (IBAction)clickRefreshButton:(id)sender;
+- (void)enterDrawControllerWithContest:(Contest *)contest
+                              animated:(BOOL)animated;
+
+// 仅有家族比赛，没有官方比赛，家族比赛为所有家族的比赛。
+- (id)initWithGroupContestOnly;
+
+// 仅有家族比赛，没有官方比赛，家族比赛为指定的某个家族的比赛。
+- (id)initWithGroupId:(NSString *)groupId;
+
 @end

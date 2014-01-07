@@ -459,6 +459,15 @@ enum{
     return [self groupNameById:[self userCurrentGroupId]];
 }
 
+- (BOOL)hasJoinedAGroup{
+    
+    if ([[self userCurrentGroupId] length] == 0) {
+        return NO;
+    }else{
+        return YES;
+    }
+}
+
 - (NSString *)userCurrentGroupId
 {
     NSArray * list = [GroupPermissionManager groupRoles];
@@ -558,5 +567,8 @@ enum{
     }
 }
 
-
++ (BOOL)hasJoinedGroup
+{
+    return [[[self defaultManager] userCurrentGroupId] length] != 0;
+}
 @end

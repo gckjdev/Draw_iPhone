@@ -475,4 +475,11 @@ typedef enum{
                    cornerRadius:(CGFloat)cornerRadius
                           color:(UIColor *)color;
 
++ (UIImage *)boundImageWithType:(BoundImageType)type
+                         border:(CGFloat)border
+                   cornerRadius:(CGFloat)cornerRadius
+                     boundColor:(UIColor *)color
+                      fillColor:(UIColor *)fillColor;
+
+
 @end

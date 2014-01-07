@@ -250,7 +250,7 @@ typedef void (^ GetFeedListCompleteBlock)(int resultCode, NSArray* feedList);
 
 - (void)getWonderfulContestOpusListWithOffset:(NSInteger)offset
                                         limit:(NSInteger)limit
-                                     delegate:(id<FeedServiceDelegate>)delegate;
+                                    completed:(GetFeedListCompleteBlock)completed;
 
 
 

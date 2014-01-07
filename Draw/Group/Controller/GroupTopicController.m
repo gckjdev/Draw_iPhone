@@ -20,6 +20,7 @@
 #import "UIViewController+BGImage.h"
 #import "ChatDetailController.h"
 #import "MessageStat.h"
+#import "ContestController.h"
 
 typedef enum{
     NewestTopic = 1,
@@ -54,6 +55,19 @@ typedef enum {
     [controller.navigationController pushViewController:gt animated:YES];
     return [gt autorelease];
 }
+
++ (void)enterWithGroupId:(NSString *)groupId
+          fromController:(PPViewController *)controller
+{
+    [controller showActivityWithText:NSLS(@"kLoading")];
+    [[GroupService defaultService] getSimpleGroup:groupId callback:^(PBGroup *group, NSError *error) {
+        [controller hideActivity];
+        if (!error && group != nil) {
+            [self enterWithGroup:group fromController:controller];
+        }
+    }];
+}
+
 
 - (id)init
 {
@@ -142,6 +156,9 @@ typedef enum {
         case GroupContest:
         {
             //TODO contest
+            ContestController *vc = [[[ContestController alloc] initWithGroupId:self.group.groupId]autorelease];
+            [self.navigationController pushViewController:vc animated:YES];
+
         }
             break;
 
@@ -149,6 +166,7 @@ typedef enum {
             break;
     }
 }
+
 
 - (void)updateTitleView
 {

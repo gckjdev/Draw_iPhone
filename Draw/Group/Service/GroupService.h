@@ -30,6 +30,10 @@ typedef void (^ URLResultBlock) (NSURL *url, NSError *error);
 - (void)getGroup:(NSString *)groupId
         callback:(GroupResultBlock)callback;
 
+//without admin list, guest list, creator
+- (void)getSimpleGroup:(NSString *)groupId
+              callback:(GroupResultBlock)callback;
+
 
 - (void)getGroupsWithType:(GetGroupListType)type
                    offset:(NSInteger)offset

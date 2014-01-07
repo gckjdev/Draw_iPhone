@@ -1805,6 +1805,7 @@ static PBUserLevel* defaultPBUserLevelInstance = nil;
 @property BOOL canShakeNumber;
 @property int32_t shakeNumberTimes;
 @property int32_t takeCoins;
+@property (retain) PBSimpleGroup* groupInfo;
 @property int32_t singRecordLimit;
 @end
 
@@ -2148,6 +2149,13 @@ static PBUserLevel* defaultPBUserLevelInstance = nil;
   hasTakeCoins_ = !!value;
 }
 @synthesize takeCoins;
+- (BOOL) hasGroupInfo {
+  return !!hasGroupInfo_;
+}
+- (void) setHasGroupInfo:(BOOL) value {
+  hasGroupInfo_ = !!value;
+}
+@synthesize groupInfo;
 - (BOOL) hasSingRecordLimit {
   return !!hasSingRecordLimit_;
 }
@@ -2181,6 +2189,7 @@ static PBUserLevel* defaultPBUserLevelInstance = nil;
   self.bloodGroup = nil;
   self.signature = nil;
   self.friendMemo = nil;
+  self.groupInfo = nil;
   [super dealloc];
 }
 - (id) init {
@@ -2229,6 +2238,7 @@ static PBUserLevel* defaultPBUserLevelInstance = nil;
     self.canShakeNumber = NO;
     self.shakeNumberTimes = 0;
     self.takeCoins = 0;
+    self.groupInfo = [PBSimpleGroup defaultInstance];
     self.singRecordLimit = 30;
   }
   return self;
@@ -2304,6 +2314,11 @@ static PBGameUser* defaultPBGameUserInstance = nil;
   }
   for (PBUserItem* element in self.itemsList) {
     if (!element.isInitialized) {
+      return NO;
+    }
+  }
+  if (self.hasGroupInfo) {
+    if (!self.groupInfo.isInitialized) {
       return NO;
     }
   }
@@ -2456,6 +2471,9 @@ static PBGameUser* defaultPBGameUserInstance = nil;
   }
   if (self.hasTakeCoins) {
     [output writeInt32:106 value:self.takeCoins];
+  }
+  if (self.hasGroupInfo) {
+    [output writeMessage:150 value:self.groupInfo];
   }
   if (self.hasSingRecordLimit) {
     [output writeInt32:200 value:self.singRecordLimit];
@@ -2620,6 +2638,9 @@ static PBGameUser* defaultPBGameUserInstance = nil;
   }
   if (self.hasTakeCoins) {
     size += computeInt32Size(106, self.takeCoins);
+  }
+  if (self.hasGroupInfo) {
+    size += computeMessageSize(150, self.groupInfo);
   }
   if (self.hasSingRecordLimit) {
     size += computeInt32Size(200, self.singRecordLimit);
@@ -2861,6 +2882,9 @@ static PBGameUser* defaultPBGameUserInstance = nil;
   if (other.hasTakeCoins) {
     [self setTakeCoins:other.takeCoins];
   }
+  if (other.hasGroupInfo) {
+    [self mergeGroupInfo:other.groupInfo];
+  }
   if (other.hasSingRecordLimit) {
     [self setSingRecordLimit:other.singRecordLimit];
   }
@@ -3092,6 +3116,15 @@ static PBGameUser* defaultPBGameUserInstance = nil;
       }
       case 848: {
         [self setTakeCoins:[input readInt32]];
+        break;
+      }
+      case 1202: {
+        PBSimpleGroup_Builder* subBuilder = [PBSimpleGroup builder];
+        if (self.hasGroupInfo) {
+          [subBuilder mergeFrom:self.groupInfo];
+        }
+        [input readMessage:subBuilder extensionRegistry:extensionRegistry];
+        [self setGroupInfo:[subBuilder buildPartial]];
         break;
       }
       case 1600: {
@@ -3950,6 +3983,36 @@ static PBGameUser* defaultPBGameUserInstance = nil;
 - (PBGameUser_Builder*) clearTakeCoins {
   result.hasTakeCoins = NO;
   result.takeCoins = 0;
+  return self;
+}
+- (BOOL) hasGroupInfo {
+  return result.hasGroupInfo;
+}
+- (PBSimpleGroup*) groupInfo {
+  return result.groupInfo;
+}
+- (PBGameUser_Builder*) setGroupInfo:(PBSimpleGroup*) value {
+  result.hasGroupInfo = YES;
+  result.groupInfo = value;
+  return self;
+}
+- (PBGameUser_Builder*) setGroupInfoBuilder:(PBSimpleGroup_Builder*) builderForValue {
+  return [self setGroupInfo:[builderForValue build]];
+}
+- (PBGameUser_Builder*) mergeGroupInfo:(PBSimpleGroup*) value {
+  if (result.hasGroupInfo &&
+      result.groupInfo != [PBSimpleGroup defaultInstance]) {
+    result.groupInfo =
+      [[[PBSimpleGroup builderWithPrototype:result.groupInfo] mergeFrom:value] buildPartial];
+  } else {
+    result.groupInfo = value;
+  }
+  result.hasGroupInfo = YES;
+  return self;
+}
+- (PBGameUser_Builder*) clearGroupInfo {
+  result.hasGroupInfo = NO;
+  result.groupInfo = [PBSimpleGroup defaultInstance];
   return self;
 }
 - (BOOL) hasSingRecordLimit {

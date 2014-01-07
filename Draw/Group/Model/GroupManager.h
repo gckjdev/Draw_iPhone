@@ -88,6 +88,7 @@
 + (NSInteger)genTitleId;
 
 + (NSArray *)candidateTitlesForChangingTitle:(PBGroupTitle *)title;
++ (BOOL)hasJoinedGroup;
 
 
 - (NSMutableArray *)membersForShow;
@@ -98,6 +99,7 @@
 
 - (NSString *)groupNameById:(NSString*)groupId;
 
+- (BOOL)hasJoinedAGroup;
 - (NSString *)userCurrentGroupId;
 - (NSString *)userCurrentGroupName;
 - (PBGroup *)userCurrentGroup;

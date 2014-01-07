@@ -10,6 +10,7 @@
 #import "Group.pb.h"
 #import "BBSModelExt.h"
 #import "GroupModelExt.h"
+#import "GroupManager.h"
 
 static NSMutableArray *_roles;
 
@@ -131,7 +132,8 @@ static NSMutableArray *_roles;
 //Group
 - (BOOL)canJoinGroup
 {
-    return PERMIT(JOIN_GROUP) && ![[UserManager defaultManager] hasJoinedAGroup];
+    return PERMIT(JOIN_GROUP) && ([[[GroupManager defaultManager] userCurrentGroupId] length] == 0);
+;
 }
 
 - (BOOL)canQuitGroup
@@ -230,7 +232,7 @@ static NSMutableArray *_roles;
 
 + (BOOL)canCreateGroup
 {
-    return ![[UserManager defaultManager] hasJoinedAGroup];
+    return [[[GroupManager defaultManager] userCurrentGroupId] length] == 0;
 }
 
 + (BOOL)amIGroupTestUser{
