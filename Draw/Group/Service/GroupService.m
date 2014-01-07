@@ -545,7 +545,6 @@ static GroupService *_staticGroupService = nil;
     [self loadPBData:METHOD_CHARGE_GROUP
           parameters:params
             callback:^(DataQueryResponse *response, NSError *error) {
-                EXECUTE_BLOCK(callback, error);
                 if (!error) {
                     [[AccountService defaultService] deductCoin:amount source:DeductForChargeGroup];
                 }
@@ -582,10 +581,10 @@ static GroupService *_staticGroupService = nil;
     [self loadPBData:METHOD_ACCEPT_INVITATION
           parameters:@{PARA_NOTICEID:noticeId}
             callback:^(DataQueryResponse *response, NSError *error) {
-        EXECUTE_BLOCK(callback, error);
         if (!error) {
             [[GroupService defaultService] syncGroupRoles];
         }
+        EXECUTE_BLOCK(callback, error);                
     }];
 }
 

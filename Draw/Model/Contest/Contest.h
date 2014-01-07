@@ -44,7 +44,7 @@ typedef enum{
 @property(nonatomic, readonly) NSInteger canSubmitCount;
 @property(nonatomic, readonly) NSInteger maxFlowerPerOpus;
 @property(nonatomic, readonly) NSInteger maxFlowerPerContest;
-@property(nonatomic, assign) NSString *rule;
+@property(nonatomic, assign) NSString *desc;
 @property(nonatomic, readonly) NSURL *groupMedalImageUrl;
 
 @property(nonatomic, readonly) BOOL canSubmit;
@@ -81,5 +81,10 @@ typedef enum{
 - (NSString *)awardRulesShortDesc;
 - (int)awardWithRank:(int)rank;
 - (void)setRank:(int)rank award:(int)award;
+- (BOOL)isGroupContest;
+
+- (NSString *)contestingTimeDesc;
+- (NSString *)votingTimeDesc;
+- (NSString *)awardRulesDesc;
 
 @end

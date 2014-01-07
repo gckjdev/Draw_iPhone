@@ -1115,7 +1115,8 @@ typedef enum{
         [self hideActivity];
         if(!error){
             [controller.navigationController popToViewController:self animated:YES];
-            POSTMSG(NSLS(@"kGroupUserInvited"));            
+            POSTMSG(NSLS(@"kGroupUserInvited"));
+//            invitingTitle = nil;                        
         }
     };
     
@@ -1125,7 +1126,6 @@ typedef enum{
     }else{
         [groupService inviteMembers:@[aFriend.friendUserId] groupId:_group.groupId titleId:invitingTitle.titleId callback:callback];
     }
-    invitingTitle = nil;
 }
 
 

@@ -2544,7 +2544,7 @@
 "kContestName" = "比賽名稱";
 "kStartTime" = "開始時間";
 "kEndTime" = "結束時間";
-"kContestRules" = "比賽規則";
+"kContestDesc" = "比賽描述";
 "kContestJoiners" = "參賽成員";
 "kContestImage" = "比賽海報";
 "kContestAward" = "比賽獎勵";
@@ -2558,7 +2558,9 @@
 "kPleaseSelectContestImage" = "請選擇一副圖片作為比賽海報";
 "kCreateContestSuccess" = "成功創建比賽";
 "kNumberXGetAwardX" = "第%d名 %d金幣";
+"kNumberRangeGetAwardX" = "第%@名 %d金幣";
 "kRankIs" = "第%d名";
+"kRankRange" = "第%@名";
 "kStartDateCannotAfterEndDate" = "開始時間不能大於結束時間";
 "kEndDateCannotBeforeStartDate" = "結束時間不能小於開始時間";
 "kCannotCreateContestPleaseJoinGroupFirst" = "你還沒有加入家族，請先加入家族後再創建比賽";
@@ -2573,3 +2575,4 @@
 "kCreatingContest" = "創建比賽中...";
 "kCreatingContestFail" = "創建比賽失敗";
 "kCreateContestSuccess" = "成功創建比賽";
+"kJoinContest" = "參賽";

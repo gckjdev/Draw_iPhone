@@ -3036,7 +3036,7 @@ static PBGroupNotice* defaultPBGroupNoticeInstance = nil;
 @property (retain) NSMutableArray* mutableRankTypesList;
 @property (retain) PBGroup* group;
 @property int32_t joinersType;
-@property (retain) NSString* rule;
+@property (retain) NSString* desc;
 @property (retain) NSMutableArray* mutableAwardRulesList;
 @end
 
@@ -3229,13 +3229,13 @@ static PBGroupNotice* defaultPBGroupNoticeInstance = nil;
   hasJoinersType_ = !!value;
 }
 @synthesize joinersType;
-- (BOOL) hasRule {
-  return !!hasRule_;
+- (BOOL) hasDesc {
+  return !!hasDesc_;
 }
-- (void) setHasRule:(BOOL) value {
-  hasRule_ = !!value;
+- (void) setHasDesc:(BOOL) value {
+  hasDesc_ = !!value;
 }
-@synthesize rule;
+@synthesize desc;
 @synthesize mutableAwardRulesList;
 - (void) dealloc {
   self.contestId = nil;
@@ -3249,7 +3249,7 @@ static PBGroupNotice* defaultPBGroupNoticeInstance = nil;
   self.mutableAwardUsersList = nil;
   self.mutableRankTypesList = nil;
   self.group = nil;
-  self.rule = nil;
+  self.desc = nil;
   self.mutableAwardRulesList = nil;
   [super dealloc];
 }
@@ -3278,7 +3278,7 @@ static PBGroupNotice* defaultPBGroupNoticeInstance = nil;
     self.contestantsOnly = NO;
     self.group = [PBGroup defaultInstance];
     self.joinersType = 0;
-    self.rule = @"";
+    self.desc = @"";
   }
   return self;
 }
@@ -3472,8 +3472,8 @@ static PBContest* defaultPBContestInstance = nil;
   if (self.hasJoinersType) {
     [output writeInt32:61 value:self.joinersType];
   }
-  if (self.hasRule) {
-    [output writeString:62 value:self.rule];
+  if (self.hasDesc) {
+    [output writeString:62 value:self.desc];
   }
   for (NSNumber* value in self.mutableAwardRulesList) {
     [output writeInt32:63 value:[value intValue]];
@@ -3574,8 +3574,8 @@ static PBContest* defaultPBContestInstance = nil;
   if (self.hasJoinersType) {
     size += computeInt32Size(61, self.joinersType);
   }
-  if (self.hasRule) {
-    size += computeStringSize(62, self.rule);
+  if (self.hasDesc) {
+    size += computeStringSize(62, self.desc);
   }
   {
     int32_t dataSize = 0;
@@ -3765,8 +3765,8 @@ static PBContest* defaultPBContestInstance = nil;
   if (other.hasJoinersType) {
     [self setJoinersType:other.joinersType];
   }
-  if (other.hasRule) {
-    [self setRule:other.rule];
+  if (other.hasDesc) {
+    [self setDesc:other.desc];
   }
   if (other.mutableAwardRulesList.count > 0) {
     if (result.mutableAwardRulesList == nil) {
@@ -3934,7 +3934,7 @@ static PBContest* defaultPBContestInstance = nil;
         break;
       }
       case 498: {
-        [self setRule:[input readString]];
+        [self setDesc:[input readString]];
         break;
       }
       case 504: {
@@ -4500,20 +4500,20 @@ static PBContest* defaultPBContestInstance = nil;
   result.joinersType = 0;
   return self;
 }
-- (BOOL) hasRule {
-  return result.hasRule;
+- (BOOL) hasDesc {
+  return result.hasDesc;
 }
-- (NSString*) rule {
-  return result.rule;
+- (NSString*) desc {
+  return result.desc;
 }
-- (PBContest_Builder*) setRule:(NSString*) value {
-  result.hasRule = YES;
-  result.rule = value;
+- (PBContest_Builder*) setDesc:(NSString*) value {
+  result.hasDesc = YES;
+  result.desc = value;
   return self;
 }
-- (PBContest_Builder*) clearRule {
-  result.hasRule = NO;
-  result.rule = @"";
+- (PBContest_Builder*) clearDesc {
+  result.hasDesc = NO;
+  result.desc = @"";
   return self;
 }
 - (NSArray*) awardRulesList {

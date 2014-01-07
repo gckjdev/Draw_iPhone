@@ -27,8 +27,8 @@
 @property (retain, nonatomic) IBOutlet UIButton *startTimeButton;
 @property (retain, nonatomic) IBOutlet UILabel *endTimeLabel;
 @property (retain, nonatomic) IBOutlet UIButton *endTimeButton;
-@property (retain, nonatomic) IBOutlet UILabel *contestRuleLabel;
-@property (retain, nonatomic) IBOutlet UITextView *contestRuleTextView;
+@property (retain, nonatomic) IBOutlet UILabel *contestDescLabel;
+@property (retain, nonatomic) IBOutlet UITextView *contestDescTextView;
 @property (retain, nonatomic) IBOutlet UILabel *joinersLabel;
 @property (retain, nonatomic) IBOutlet UIButton *joinerButton;
 @property (retain, nonatomic) IBOutlet UILabel *contestImageLabel;
@@ -87,7 +87,7 @@
     self.contestNameLabel.text = NSLS(@"kContestName");
     self.startTimeLabel.text = NSLS(@"kStartTime");
     self.endTimeLabel.text = NSLS(@"kEndTime");
-    self.contestRuleLabel.text = NSLS(@"kContestRules");
+    self.contestDescLabel.text = NSLS(@"kContestDesc");
     self.joinersLabel.text = NSLS(@"kContestJoiners");
     self.contestImageLabel.text = NSLS(@"kContestImage");
     self.contestAwardLabel.text = NSLS(@"kContestAward");
@@ -98,10 +98,10 @@
     numberToolbar.items = [NSArray arrayWithObjects:
 //                           [[UIBarButtonItem alloc]initWithTitle:NSLS(@"kCancel") style:UIBarButtonItemStyleBordered target:self action:@selector(cancelNumberPad)],
                            [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil],
-                           [[UIBarButtonItem alloc]initWithTitle:NSLS(@"kDone") style:UIBarButtonItemStyleDone target:self.contestRuleTextView action:@selector(resignFirstResponder)],
+                           [[UIBarButtonItem alloc]initWithTitle:NSLS(@"kDone") style:UIBarButtonItemStyleDone target:self.contestDescTextView action:@selector(resignFirstResponder)],
                            nil];
     [numberToolbar sizeToFit];
-    self.contestRuleTextView.inputAccessoryView = numberToolbar;
+    self.contestDescTextView.inputAccessoryView = numberToolbar;
     
     self.contestNameInputField.returnKeyType = UIReturnKeyDone;
     self.contestNameInputField.delegate = self;    
@@ -109,7 +109,7 @@
     self.contestNameLabel.textColor = COLOR_BROWN;
     self.startTimeLabel.textColor = COLOR_BROWN;
     self.endTimeLabel.textColor = COLOR_BROWN;
-    self.contestRuleLabel.textColor = COLOR_BROWN;
+    self.contestDescLabel.textColor = COLOR_BROWN;
     self.joinersLabel.textColor = COLOR_BROWN;
     self.contestImageLabel.textColor = COLOR_BROWN;
     self.contestAwardLabel.textColor = COLOR_BROWN;
@@ -138,10 +138,10 @@
     self.endTimeButton.layer.borderWidth = TEXT_VIEW_BORDER_WIDTH;
     self.endTimeButton.layer.borderColor = [COLOR_ORANGE CGColor];
     
-    [self.contestRuleTextView.layer setCornerRadius:TEXT_VIEW_CORNER_RADIUS];
-    [self.contestRuleTextView.layer setMasksToBounds:YES];
-    self.contestRuleTextView.layer.borderWidth = TEXT_VIEW_BORDER_WIDTH;
-    self.contestRuleTextView.layer.borderColor = [COLOR_YELLOW CGColor];
+    [self.contestDescTextView.layer setCornerRadius:TEXT_VIEW_CORNER_RADIUS];
+    [self.contestDescTextView.layer setMasksToBounds:YES];
+    self.contestDescTextView.layer.borderWidth = TEXT_VIEW_BORDER_WIDTH;
+    self.contestDescTextView.layer.borderColor = [COLOR_YELLOW CGColor];
     
     [self.joinerButton.layer setCornerRadius:TEXT_VIEW_CORNER_RADIUS];
     [self.joinerButton.layer setMasksToBounds:YES];
@@ -213,7 +213,7 @@
     }
     
     [self.contest setTitle:self.contestNameInputField.text];
-    [self.contest setRule:self.contestRuleTextView.text];
+    [self.contest setDesc:self.contestDescTextView.text];
     
     [self showActivityWithText:NSLS(@"kCreatingContest")];
     
@@ -352,7 +352,7 @@
 - (void)clickBack:(id)sender{
     
     [IQKeyBoardManager disableKeyboardManager];
-    [super clickBack:sender];
+    [self dismissViewControllerAnimated:YES completion:NULL];
 }
 
 - (void)dealloc {
@@ -363,8 +363,8 @@
     [_startTimeButton release];
     [_endTimeLabel release];
     [_endTimeButton release];
-    [_contestRuleLabel release];
-    [_contestRuleTextView release];
+    [_contestDescLabel release];
+    [_contestDescTextView release];
     [_joinersLabel release];
     [_joinerButton release];
     [_contestImageLabel release];
@@ -388,8 +388,8 @@
     [self setStartTimeButton:nil];
     [self setEndTimeLabel:nil];
     [self setEndTimeButton:nil];
-    [self setContestRuleLabel:nil];
-    [self setContestRuleTextView:nil];
+    [self setContestDescLabel:nil];
+    [self setContestDescTextView:nil];
     [self setJoinersLabel:nil];
     [self setJoinerButton:nil];
     [self setContestImageLabel:nil];
