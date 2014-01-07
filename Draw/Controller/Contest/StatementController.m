@@ -72,15 +72,28 @@
 
 - (void)loadWebView
 {
+    self.contentView.hidden = NO;
+    self.dataTableView.hidden = YES;
     NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:self.contest.statementUrl]];
     [self.contentView loadRequest:request];
+}
+
+- (void)loadDataTableView{
+    
+    self.contentView.hidden = YES;
+    self.dataTableView.hidden = NO;
 }
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     [self initViews];
-    [self loadWebView];
+    
+    if ([self.contest isGroupContest]) {
+        [self loadDataTableView];
+    }else{
+       [self loadWebView]; 
+    }
 }
 
 - (void)viewDidUnload
@@ -112,6 +125,39 @@
         [OfflineDrawViewController startDrawWithContest:self.contest
                                          fromController:self startController:self.superController animated:YES];
     }
-
 }
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    
+    return 5;
+}
+
+- (float)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    return 50;
+}
+
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"StatementCell"];
+    if (cell == nil) {
+        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"StatementCell"] autorelease];
+    }
+
+    if (indexPath.row == 0){
+        cell.textLabel.text = [self.contest contestingTimeDesc];
+    }else if (indexPath.row == 1){
+        cell.textLabel.text = [self.contest votingTimeDesc];
+    }else if (indexPath.row == 2){
+        cell.textLabel.text = [self.contest title];
+    }else if (indexPath.row == 3){
+        cell.textLabel.text = [self.contest desc];
+    }else{
+        cell.textLabel.text = [self.contest awardRulesDesc];
+    }
+
+    return cell;
+}
+
 @end

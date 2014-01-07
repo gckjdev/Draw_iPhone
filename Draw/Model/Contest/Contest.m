@@ -153,9 +153,9 @@
     return value;
 }
 
-- (void)setRule:(NSString *)rule{
+- (void)setDesc:(NSString *)desc{
     
-    [_pbContestBuilder setRule:rule];
+    [_pbContestBuilder setDesc:desc];
 }
 
 - (NSURL *)groupMedalImageUrl{
@@ -539,6 +539,50 @@
     [_pbContestBuilder addAllAwardRules:awards];
     
     [awards release];
+}
+
+- (BOOL)isGroupContest{
+    
+    if ([_pbContestBuilder.group.groupId length] == 0) {
+        return NO;
+    }else{
+        return YES;
+    }
+}
+
+- (NSString *)contestingTimeDesc{
+    
+    NSString *startTimeDesc = dateToStringByFormat([NSDate dateWithTimeIntervalSince1970:_pbContestBuilder.startDate], @"yyyy.MM.dd");
+    NSString *endTimeDesc = dateToStringByFormat([NSDate dateWithTimeIntervalSince1970:_pbContestBuilder.endDate], @"yyyy.MM.dd");
+
+    NSString *desc = [[startTimeDesc stringByAppendingString:@" ~ "] stringByAppendingString:endTimeDesc];
+    return desc;
+}
+
+- (NSString *)votingTimeDesc{
+    
+    NSString *startTimeDesc = dateToStringByFormat([NSDate dateWithTimeIntervalSince1970:_pbContestBuilder.voteStartDate], @"yyyy.MM.dd");
+    NSString *endTimeDesc = dateToStringByFormat([NSDate dateWithTimeIntervalSince1970:_pbContestBuilder.voteEndDate], @"yyyy.MM.dd");
+    
+    NSString *desc = [[startTimeDesc stringByAppendingString:@" ~ "] stringByAppendingString:endTimeDesc];
+    return desc;
+}
+
+- (NSString *)awardRulesDesc{
+    
+    NSString *desc = @"";
+    
+    for (int i = 0; i < 4; i ++) {
+        int award = ((NSNumber *)[_pbContestBuilder.awardRulesList objectAtIndex:i]).intValue;
+        
+        if (i < 3) {
+            desc = [desc stringByAppendingString:[NSString stringWithFormat:NSLS(@"kNumberXGetAwardX"), i+1, award]];
+        }else{
+            desc = [desc stringByAppendingString:[NSString stringWithFormat:NSLS(@"kNumberRangeGetAwardX"), @"4~20", award]];
+        }
+    }
+    
+    return desc;
 }
 
 @end
