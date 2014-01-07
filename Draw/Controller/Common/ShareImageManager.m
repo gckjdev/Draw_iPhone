@@ -1489,16 +1489,25 @@ static NSMutableDictionary *colorImageDict;
 
 static NSMutableDictionary *boundImageDict = nil;
 
+
 + (UIImage *)boundImageWithType:(BoundImageType)type
                          border:(CGFloat)border
                    cornerRadius:(CGFloat)cornerRadius
-                          color:(UIColor *)color
-{ 
+                     boundColor:(UIColor *)color
+                      fillColor:(UIColor *)fillColor
+{
     if (boundImageDict == nil) {
         boundImageDict = [[NSMutableDictionary alloc] init];
     }
     
-    NSString *key = [NSString stringWithFormat:@"%d-%.1f-%.1f-%@",type, border, cornerRadius, [DrawUtils keyForColor:color]];
+    NSString *key = @"";
+    if(fillColor){
+        key = [NSString stringWithFormat:@"%d-%.1f-%.1f-%@-%@",type, border, cornerRadius, [DrawUtils keyForColor:color], [DrawUtils keyForColor:fillColor]];
+        
+    }else{
+        key = [NSString stringWithFormat:@"%d-%.1f-%.1f-%@",type, border, cornerRadius, [DrawUtils keyForColor:color]];
+        
+    }
     if ([boundImageDict objectForKey:key]) {
         return boundImageDict[key];
     }
@@ -1509,6 +1518,8 @@ static NSMutableDictionary *boundImageDict = nil;
     
     CGContextRef context = UIGraphicsGetCurrentContext();
     [color setStroke];
+    [fillColor setFill];
+    
     CGContextSetLineWidth(context, border);
     CGContextSetLineCap(context, kCGLineCapSquare);
     if (BoundImageTypeHorizontal == type){
@@ -1516,12 +1527,20 @@ static NSMutableDictionary *boundImageDict = nil;
         CGContextAddLineToPoint(context, size.width, border);
         CGContextMoveToPoint(context, 0, size.height-2*border);
         CGContextAddLineToPoint(context, size.width, size.height-2*border);
+        if (fillColor) {
+            CGContextClosePath(context);            
+            CGContextFillPath(context);
+        }        
         CGContextStrokePath(context);
     }else if(BoundImageTypeVertical == type){
         CGContextMoveToPoint(context, border, 0);
         CGContextAddLineToPoint(context, border, size.height);
         CGContextMoveToPoint(context, size.width-border, 0);
         CGContextAddLineToPoint(context, size.width-border, size.height);
+        if (fillColor) {
+            CGContextClosePath(context);
+            CGContextFillPath(context);
+        }        
         CGContextStrokePath(context);
     }
     else{
@@ -1539,17 +1558,30 @@ static NSMutableDictionary *boundImageDict = nil;
         }
         
         UIBezierPath *path = [UIBezierPath bezierPathWithRoundedRect:rect cornerRadius:cornerRadius];
-//        [path setFlatness:0];
+        //        [path setFlatness:0];
         [path setLineWidth:border];
         [path setLineCapStyle:kCGLineCapSquare];
+        if (fillColor) {
+            [path fill];
+        }
         [path stroke];
     }
     UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
-    UIGraphicsEndImageContext();    
+    UIGraphicsEndImageContext();
     image = [image stretchableImageWithLeftCapWidth:size.width/2 topCapHeight:size.height/2];
     [boundImageDict setObject:image forKey:key];
-
+    
     return image;
+
+}
+
+
++ (UIImage *)boundImageWithType:(BoundImageType)type
+                         border:(CGFloat)border
+                   cornerRadius:(CGFloat)cornerRadius
+                          color:(UIColor *)color
+{
+    [self boundImageWithType:type border:border cornerRadius:cornerRadius boundColor:color fillColor:nil];
 }
 
 

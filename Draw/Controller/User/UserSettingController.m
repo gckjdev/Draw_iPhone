@@ -38,6 +38,9 @@
 #import "HomeController.h"
 #import "AccountManageController.h"
 #import "GameSNSService.h"
+#import "GroupManager.h"
+#import "GroupHomeController.h"
+#import "GroupTopicController.h"
 
 enum{
     SECTION_USER = 0,
@@ -543,7 +546,12 @@ SET_CELL_BG_IN_CONTROLLER;
             [cell.customDetailLabel setHidden:NO];
         }else if(row == rowOfGroup){
             [cell.customTextLabel setText:NSLS(@"kGroup")];
-            //TODO set group name
+            GroupManager *grpManager = [GroupManager defaultManager];
+            if([GroupManager hasJoinedGroup]){
+                [cell.customDetailLabel setText:[grpManager userCurrentGroupName]];
+            }else{
+                [cell.customDetailLabel setText:NSLS(@"kJoinAGroup")];
+            }
         }
         else if(row == rowOfNickName)
         {
@@ -940,9 +948,17 @@ SET_CELL_BG_IN_CONTROLLER;
             [actionSheet release];
             
         }else if(row == rowOfGroup){
-            //TODO check use has join a group?
-            
-            //Enter group page.
+            // check use has join a group?
+            NSString *groupId = [[GroupManager defaultManager] userCurrentGroupId];
+            if([groupId length] != 0){
+            // enter group
+                [GroupTopicController enterWithGroupId:groupId fromController:self];
+            }else{
+            // enter group list
+                GroupHomeController *grpHome = [[GroupHomeController alloc] init];
+                [self.navigationController pushViewController:grpHome animated:YES];
+                [grpHome release];
+            }
         }
         
         else if(row == rowOfNickName){

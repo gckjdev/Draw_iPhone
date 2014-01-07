@@ -55,6 +55,19 @@ typedef enum {
     return [gt autorelease];
 }
 
++ (void)enterWithGroupId:(NSString *)groupId
+          fromController:(PPViewController *)controller
+{
+    [controller showActivityWithText:NSLS(@"kLoading")];
+    [[GroupService defaultService] getSimpleGroup:groupId callback:^(PBGroup *group, NSError *error) {
+        [controller hideActivity];
+        if (!error && group != nil) {
+            [self enterWithGroup:group fromController:controller];
+        }
+    }];
+}
+
+
 - (id)init
 {
     self = [super init];

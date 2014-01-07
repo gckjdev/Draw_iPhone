@@ -558,5 +558,8 @@ enum{
     }
 }
 
-
++ (BOOL)hasJoinedGroup
+{
+    return [[[self defaultManager] userCurrentGroupId] length] != 0;
+}
 @end

@@ -2186,7 +2186,7 @@
 "kGroupRejectMemberInvitationDesc" = "%@拒絕加入%@";
 "kGroupRejectGuestInvitationDesc" = "%@拒絕成為%@嘉賓。";
 "kTypeAcceptMemberInvitationDesc" = "%@同意加入%@。";
-"kTypeAcceptGuestInvitationDesc" = "%@同意成為%@的嘉賓。";
+"kTypeAcceptGuestInvitationDesc" = "%@成為了%@的嘉賓。";
 "kTypeChargeGroupDesc" = "%@給%@充了%d金幣。";
 "kTypeTransferGroupBalanceDesc" = "%@從%@轉了%d金幣給%@。";
 
@@ -2301,6 +2301,7 @@
 "kBalanceNotEnough" = "不好意思，您的余額不足，不能完成本操作。";
 "kGroupBalanceNotEnough" = "不好意思，家族的余額不足，不能完成本操作。";
 "kNotTestUserCan'tCreateGroup" = "目前是內測階段，你不是內測用戶暫不能創建家族。";
+"kJoinAGroup" = "加入家族";
 
 /*********************小吉画画国际化字符串开始 ************************/
 "kLittleGeeRecommend" = "推薦";

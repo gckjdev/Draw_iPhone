@@ -1003,7 +1003,6 @@ int *getDrawMainMenuTypeListHasNewContest()
 {
     int static list[] = {
         HomeMenuTypeDrawDraw,
-//        HomeMenuTypeDrawGame,
         HomeMenuTypeGroup,
         HomeMenuTypeDrawBBS,
         HomeMenuTypeDrawRank,
@@ -1014,7 +1013,7 @@ int *getDrawMainMenuTypeListHasNewContest()
         HomeMenuTypeTask,
         HomeMenuTypeDrawMore,
         HomeMenuTypeDrawPainter,
-//        HomeMenuTypeDrawFreeCoins,
+        HomeMenuTypeDrawGame,
         HomeMenuTypeDrawPhoto,
         
         HomeMenuTypeEnd
@@ -1027,7 +1026,6 @@ int *getDrawMainMenuTypeListWithoutFreeCoins()
 {
     int static list[] = {
         HomeMenuTypeDrawDraw,
-//        HomeMenuTypeDrawGame,
         HomeMenuTypeGroup,        
         HomeMenuTypeDrawBBS,
         HomeMenuTypeDrawRank,
@@ -1038,6 +1036,7 @@ int *getDrawMainMenuTypeListWithoutFreeCoins()
         HomeMenuTypeTask,
         HomeMenuTypeDrawMore,
         HomeMenuTypeDrawPainter,
+        HomeMenuTypeDrawGame,
         HomeMenuTypeDrawPhoto,
         
         HomeMenuTypeEnd
