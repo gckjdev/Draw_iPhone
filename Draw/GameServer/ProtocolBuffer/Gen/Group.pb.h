@@ -86,6 +86,8 @@
 @class PBSNSUserCredential;
 @class PBSNSUserCredential_Builder;
 @class PBSNSUser_Builder;
+@class PBSimpleGroup;
+@class PBSimpleGroup_Builder;
 @class PBSize;
 @class PBSize_Builder;
 @class PBTask;

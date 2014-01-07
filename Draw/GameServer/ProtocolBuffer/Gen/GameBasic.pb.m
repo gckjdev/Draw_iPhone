@@ -1805,7 +1805,6 @@ static PBUserLevel* defaultPBUserLevelInstance = nil;
 @property BOOL canShakeNumber;
 @property int32_t shakeNumberTimes;
 @property int32_t takeCoins;
-@property (retain) NSMutableArray* mutableJoinedGroupListList;
 @property int32_t singRecordLimit;
 @end
 
@@ -2149,7 +2148,6 @@ static PBUserLevel* defaultPBUserLevelInstance = nil;
   hasTakeCoins_ = !!value;
 }
 @synthesize takeCoins;
-@synthesize mutableJoinedGroupListList;
 - (BOOL) hasSingRecordLimit {
   return !!hasSingRecordLimit_;
 }
@@ -2183,7 +2181,6 @@ static PBUserLevel* defaultPBUserLevelInstance = nil;
   self.bloodGroup = nil;
   self.signature = nil;
   self.friendMemo = nil;
-  self.mutableJoinedGroupListList = nil;
   [super dealloc];
 }
 - (id) init {
@@ -2281,13 +2278,6 @@ static PBGameUser* defaultPBGameUserInstance = nil;
 }
 - (NSString*) blockDeviceIdsAtIndex:(int32_t) index {
   id value = [mutableBlockDeviceIdsList objectAtIndex:index];
-  return value;
-}
-- (NSArray*) joinedGroupListList {
-  return mutableJoinedGroupListList;
-}
-- (NSString*) joinedGroupListAtIndex:(int32_t) index {
-  id value = [mutableJoinedGroupListList objectAtIndex:index];
   return value;
 }
 - (BOOL) isInitialized {
@@ -2467,9 +2457,6 @@ static PBGameUser* defaultPBGameUserInstance = nil;
   if (self.hasTakeCoins) {
     [output writeInt32:106 value:self.takeCoins];
   }
-  for (NSString* element in self.mutableJoinedGroupListList) {
-    [output writeString:110 value:element];
-  }
   if (self.hasSingRecordLimit) {
     [output writeInt32:200 value:self.singRecordLimit];
   }
@@ -2633,14 +2620,6 @@ static PBGameUser* defaultPBGameUserInstance = nil;
   }
   if (self.hasTakeCoins) {
     size += computeInt32Size(106, self.takeCoins);
-  }
-  {
-    int32_t dataSize = 0;
-    for (NSString* element in self.mutableJoinedGroupListList) {
-      dataSize += computeStringSizeNoTag(element);
-    }
-    size += dataSize;
-    size += 2 * self.mutableJoinedGroupListList.count;
   }
   if (self.hasSingRecordLimit) {
     size += computeInt32Size(200, self.singRecordLimit);
@@ -2882,12 +2861,6 @@ static PBGameUser* defaultPBGameUserInstance = nil;
   if (other.hasTakeCoins) {
     [self setTakeCoins:other.takeCoins];
   }
-  if (other.mutableJoinedGroupListList.count > 0) {
-    if (result.mutableJoinedGroupListList == nil) {
-      result.mutableJoinedGroupListList = [NSMutableArray array];
-    }
-    [result.mutableJoinedGroupListList addObjectsFromArray:other.mutableJoinedGroupListList];
-  }
   if (other.hasSingRecordLimit) {
     [self setSingRecordLimit:other.singRecordLimit];
   }
@@ -3119,10 +3092,6 @@ static PBGameUser* defaultPBGameUserInstance = nil;
       }
       case 848: {
         [self setTakeCoins:[input readInt32]];
-        break;
-      }
-      case 882: {
-        [self addJoinedGroupList:[input readString]];
         break;
       }
       case 1600: {
@@ -3983,37 +3952,6 @@ static PBGameUser* defaultPBGameUserInstance = nil;
   result.takeCoins = 0;
   return self;
 }
-- (NSArray*) joinedGroupListList {
-  if (result.mutableJoinedGroupListList == nil) {
-    return [NSArray array];
-  }
-  return result.mutableJoinedGroupListList;
-}
-- (NSString*) joinedGroupListAtIndex:(int32_t) index {
-  return [result joinedGroupListAtIndex:index];
-}
-- (PBGameUser_Builder*) replaceJoinedGroupListAtIndex:(int32_t) index with:(NSString*) value {
-  [result.mutableJoinedGroupListList replaceObjectAtIndex:index withObject:value];
-  return self;
-}
-- (PBGameUser_Builder*) addJoinedGroupList:(NSString*) value {
-  if (result.mutableJoinedGroupListList == nil) {
-    result.mutableJoinedGroupListList = [NSMutableArray array];
-  }
-  [result.mutableJoinedGroupListList addObject:value];
-  return self;
-}
-- (PBGameUser_Builder*) addAllJoinedGroupList:(NSArray*) values {
-  if (result.mutableJoinedGroupListList == nil) {
-    result.mutableJoinedGroupListList = [NSMutableArray array];
-  }
-  [result.mutableJoinedGroupListList addObjectsFromArray:values];
-  return self;
-}
-- (PBGameUser_Builder*) clearJoinedGroupListList {
-  result.mutableJoinedGroupListList = nil;
-  return self;
-}
 - (BOOL) hasSingRecordLimit {
   return result.hasSingRecordLimit;
 }
@@ -4028,6 +3966,229 @@ static PBGameUser* defaultPBGameUserInstance = nil;
 - (PBGameUser_Builder*) clearSingRecordLimit {
   result.hasSingRecordLimit = NO;
   result.singRecordLimit = 30;
+  return self;
+}
+@end
+
+@interface PBSimpleGroup ()
+@property (retain) NSString* groupId;
+@property (retain) NSString* groupName;
+@end
+
+@implementation PBSimpleGroup
+
+- (BOOL) hasGroupId {
+  return !!hasGroupId_;
+}
+- (void) setHasGroupId:(BOOL) value {
+  hasGroupId_ = !!value;
+}
+@synthesize groupId;
+- (BOOL) hasGroupName {
+  return !!hasGroupName_;
+}
+- (void) setHasGroupName:(BOOL) value {
+  hasGroupName_ = !!value;
+}
+@synthesize groupName;
+- (void) dealloc {
+  self.groupId = nil;
+  self.groupName = nil;
+  [super dealloc];
+}
+- (id) init {
+  if ((self = [super init])) {
+    self.groupId = @"";
+    self.groupName = @"";
+  }
+  return self;
+}
+static PBSimpleGroup* defaultPBSimpleGroupInstance = nil;
++ (void) initialize {
+  if (self == [PBSimpleGroup class]) {
+    defaultPBSimpleGroupInstance = [[PBSimpleGroup alloc] init];
+  }
+}
++ (PBSimpleGroup*) defaultInstance {
+  return defaultPBSimpleGroupInstance;
+}
+- (PBSimpleGroup*) defaultInstance {
+  return defaultPBSimpleGroupInstance;
+}
+- (BOOL) isInitialized {
+  if (!self.hasGroupId) {
+    return NO;
+  }
+  if (!self.hasGroupName) {
+    return NO;
+  }
+  return YES;
+}
+- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
+  if (self.hasGroupId) {
+    [output writeString:1 value:self.groupId];
+  }
+  if (self.hasGroupName) {
+    [output writeString:2 value:self.groupName];
+  }
+  [self.unknownFields writeToCodedOutputStream:output];
+}
+- (int32_t) serializedSize {
+  int32_t size = memoizedSerializedSize;
+  if (size != -1) {
+    return size;
+  }
+
+  size = 0;
+  if (self.hasGroupId) {
+    size += computeStringSize(1, self.groupId);
+  }
+  if (self.hasGroupName) {
+    size += computeStringSize(2, self.groupName);
+  }
+  size += self.unknownFields.serializedSize;
+  memoizedSerializedSize = size;
+  return size;
+}
++ (PBSimpleGroup*) parseFromData:(NSData*) data {
+  return (PBSimpleGroup*)[[[PBSimpleGroup builder] mergeFromData:data] build];
+}
++ (PBSimpleGroup*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (PBSimpleGroup*)[[[PBSimpleGroup builder] mergeFromData:data extensionRegistry:extensionRegistry] build];
+}
++ (PBSimpleGroup*) parseFromInputStream:(NSInputStream*) input {
+  return (PBSimpleGroup*)[[[PBSimpleGroup builder] mergeFromInputStream:input] build];
+}
++ (PBSimpleGroup*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (PBSimpleGroup*)[[[PBSimpleGroup builder] mergeFromInputStream:input extensionRegistry:extensionRegistry] build];
+}
++ (PBSimpleGroup*) parseFromCodedInputStream:(PBCodedInputStream*) input {
+  return (PBSimpleGroup*)[[[PBSimpleGroup builder] mergeFromCodedInputStream:input] build];
+}
++ (PBSimpleGroup*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (PBSimpleGroup*)[[[PBSimpleGroup builder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] build];
+}
++ (PBSimpleGroup_Builder*) builder {
+  return [[[PBSimpleGroup_Builder alloc] init] autorelease];
+}
++ (PBSimpleGroup_Builder*) builderWithPrototype:(PBSimpleGroup*) prototype {
+  return [[PBSimpleGroup builder] mergeFrom:prototype];
+}
+- (PBSimpleGroup_Builder*) builder {
+  return [PBSimpleGroup builder];
+}
+@end
+
+@interface PBSimpleGroup_Builder()
+@property (retain) PBSimpleGroup* result;
+@end
+
+@implementation PBSimpleGroup_Builder
+@synthesize result;
+- (void) dealloc {
+  self.result = nil;
+  [super dealloc];
+}
+- (id) init {
+  if ((self = [super init])) {
+    self.result = [[[PBSimpleGroup alloc] init] autorelease];
+  }
+  return self;
+}
+- (PBGeneratedMessage*) internalGetResult {
+  return result;
+}
+- (PBSimpleGroup_Builder*) clear {
+  self.result = [[[PBSimpleGroup alloc] init] autorelease];
+  return self;
+}
+- (PBSimpleGroup_Builder*) clone {
+  return [PBSimpleGroup builderWithPrototype:result];
+}
+- (PBSimpleGroup*) defaultInstance {
+  return [PBSimpleGroup defaultInstance];
+}
+- (PBSimpleGroup*) build {
+  [self checkInitialized];
+  return [self buildPartial];
+}
+- (PBSimpleGroup*) buildPartial {
+  PBSimpleGroup* returnMe = [[result retain] autorelease];
+  self.result = nil;
+  return returnMe;
+}
+- (PBSimpleGroup_Builder*) mergeFrom:(PBSimpleGroup*) other {
+  if (other == [PBSimpleGroup defaultInstance]) {
+    return self;
+  }
+  if (other.hasGroupId) {
+    [self setGroupId:other.groupId];
+  }
+  if (other.hasGroupName) {
+    [self setGroupName:other.groupName];
+  }
+  [self mergeUnknownFields:other.unknownFields];
+  return self;
+}
+- (PBSimpleGroup_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input {
+  return [self mergeFromCodedInputStream:input extensionRegistry:[PBExtensionRegistry emptyRegistry]];
+}
+- (PBSimpleGroup_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  PBUnknownFieldSet_Builder* unknownFields = [PBUnknownFieldSet builderWithUnknownFields:self.unknownFields];
+  while (YES) {
+    int32_t tag = [input readTag];
+    switch (tag) {
+      case 0:
+        [self setUnknownFields:[unknownFields build]];
+        return self;
+      default: {
+        if (![self parseUnknownField:input unknownFields:unknownFields extensionRegistry:extensionRegistry tag:tag]) {
+          [self setUnknownFields:[unknownFields build]];
+          return self;
+        }
+        break;
+      }
+      case 10: {
+        [self setGroupId:[input readString]];
+        break;
+      }
+      case 18: {
+        [self setGroupName:[input readString]];
+        break;
+      }
+    }
+  }
+}
+- (BOOL) hasGroupId {
+  return result.hasGroupId;
+}
+- (NSString*) groupId {
+  return result.groupId;
+}
+- (PBSimpleGroup_Builder*) setGroupId:(NSString*) value {
+  result.hasGroupId = YES;
+  result.groupId = value;
+  return self;
+}
+- (PBSimpleGroup_Builder*) clearGroupId {
+  result.hasGroupId = NO;
+  result.groupId = @"";
+  return self;
+}
+- (BOOL) hasGroupName {
+  return result.hasGroupName;
+}
+- (NSString*) groupName {
+  return result.groupName;
+}
+- (PBSimpleGroup_Builder*) setGroupName:(NSString*) value {
+  result.hasGroupName = YES;
+  result.groupName = value;
+  return self;
+}
+- (PBSimpleGroup_Builder*) clearGroupName {
+  result.hasGroupName = NO;
+  result.groupName = @"";
   return self;
 }
 @end

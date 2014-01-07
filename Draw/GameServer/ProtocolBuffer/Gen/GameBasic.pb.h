@@ -50,6 +50,8 @@
 @class PBSNSUserCredential;
 @class PBSNSUserCredential_Builder;
 @class PBSNSUser_Builder;
+@class PBSimpleGroup;
+@class PBSimpleGroup_Builder;
 @class PBSize;
 @class PBSize_Builder;
 @class PBTask;
@@ -607,16 +609,16 @@ BOOL PBTaskIdTypeIsValidValue(PBTaskIdType value);
   BOOL hasXiaojiNumber_:1;
   BOOL hasEmail_:1;
   BOOL hasBloodGroup_:1;
-  BOOL hasDeviceToken_:1;
   BOOL hasDeviceType_:1;
-  BOOL hasCountryCode_:1;
   BOOL hasDeviceId_:1;
   BOOL hasDeviceOs_:1;
   BOOL hasDeviceModel_:1;
-  BOOL hasLanguage_:1;
   BOOL hasPassword_:1;
   BOOL hasBirthday_:1;
   BOOL hasBackgroundUrl_:1;
+  BOOL hasLanguage_:1;
+  BOOL hasCountryCode_:1;
+  BOOL hasDeviceToken_:1;
   BOOL hasOpenInfoType_:1;
   BOOL gender_:1;
   BOOL canShakeNumber_:1;
@@ -652,23 +654,22 @@ BOOL PBTaskIdTypeIsValidValue(PBTaskIdType value);
   NSString* xiaojiNumber;
   NSString* email;
   NSString* bloodGroup;
-  NSString* deviceToken;
   NSString* deviceType;
-  NSString* countryCode;
   NSString* deviceId;
   NSString* deviceOs;
   NSString* deviceModel;
-  NSString* language;
   NSString* password;
   NSString* birthday;
   NSString* backgroundUrl;
+  NSString* language;
+  NSString* countryCode;
+  NSString* deviceToken;
   PBOpenInfoType openInfoType;
-  NSMutableArray* mutableJoinedGroupListList;
   NSMutableArray* mutableBlockDeviceIdsList;
-  NSMutableArray* mutableSnsUsersList;
-  NSMutableArray* mutableItemsList;
-  NSMutableArray* mutableSnsCredentialsList;
   NSMutableArray* mutableAttributesList;
+  NSMutableArray* mutableSnsCredentialsList;
+  NSMutableArray* mutableItemsList;
+  NSMutableArray* mutableSnsUsersList;
 }
 - (BOOL) hasUserId;
 - (BOOL) hasNickName;
@@ -770,8 +771,6 @@ BOOL PBTaskIdTypeIsValidValue(PBTaskIdType value);
 - (PBUserItem*) itemsAtIndex:(int32_t) index;
 - (NSArray*) blockDeviceIdsList;
 - (NSString*) blockDeviceIdsAtIndex:(int32_t) index;
-- (NSArray*) joinedGroupListList;
-- (NSString*) joinedGroupListAtIndex:(int32_t) index;
 
 + (PBGameUser*) defaultInstance;
 - (PBGameUser*) defaultInstance;
@@ -1062,17 +1061,67 @@ BOOL PBTaskIdTypeIsValidValue(PBTaskIdType value);
 - (PBGameUser_Builder*) setTakeCoins:(int32_t) value;
 - (PBGameUser_Builder*) clearTakeCoins;
 
-- (NSArray*) joinedGroupListList;
-- (NSString*) joinedGroupListAtIndex:(int32_t) index;
-- (PBGameUser_Builder*) replaceJoinedGroupListAtIndex:(int32_t) index with:(NSString*) value;
-- (PBGameUser_Builder*) addJoinedGroupList:(NSString*) value;
-- (PBGameUser_Builder*) addAllJoinedGroupList:(NSArray*) values;
-- (PBGameUser_Builder*) clearJoinedGroupListList;
-
 - (BOOL) hasSingRecordLimit;
 - (int32_t) singRecordLimit;
 - (PBGameUser_Builder*) setSingRecordLimit:(int32_t) value;
 - (PBGameUser_Builder*) clearSingRecordLimit;
+@end
+
+@interface PBSimpleGroup : PBGeneratedMessage {
+@private
+  BOOL hasGroupId_:1;
+  BOOL hasGroupName_:1;
+  NSString* groupId;
+  NSString* groupName;
+}
+- (BOOL) hasGroupId;
+- (BOOL) hasGroupName;
+@property (readonly, retain) NSString* groupId;
+@property (readonly, retain) NSString* groupName;
+
++ (PBSimpleGroup*) defaultInstance;
+- (PBSimpleGroup*) defaultInstance;
+
+- (BOOL) isInitialized;
+- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
+- (PBSimpleGroup_Builder*) builder;
++ (PBSimpleGroup_Builder*) builder;
++ (PBSimpleGroup_Builder*) builderWithPrototype:(PBSimpleGroup*) prototype;
+
++ (PBSimpleGroup*) parseFromData:(NSData*) data;
++ (PBSimpleGroup*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
++ (PBSimpleGroup*) parseFromInputStream:(NSInputStream*) input;
++ (PBSimpleGroup*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
++ (PBSimpleGroup*) parseFromCodedInputStream:(PBCodedInputStream*) input;
++ (PBSimpleGroup*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+@end
+
+@interface PBSimpleGroup_Builder : PBGeneratedMessage_Builder {
+@private
+  PBSimpleGroup* result;
+}
+
+- (PBSimpleGroup*) defaultInstance;
+
+- (PBSimpleGroup_Builder*) clear;
+- (PBSimpleGroup_Builder*) clone;
+
+- (PBSimpleGroup*) build;
+- (PBSimpleGroup*) buildPartial;
+
+- (PBSimpleGroup_Builder*) mergeFrom:(PBSimpleGroup*) other;
+- (PBSimpleGroup_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
+- (PBSimpleGroup_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+
+- (BOOL) hasGroupId;
+- (NSString*) groupId;
+- (PBSimpleGroup_Builder*) setGroupId:(NSString*) value;
+- (PBSimpleGroup_Builder*) clearGroupId;
+
+- (BOOL) hasGroupName;
+- (NSString*) groupName;
+- (PBSimpleGroup_Builder*) setGroupName:(NSString*) value;
+- (PBSimpleGroup_Builder*) clearGroupName;
 @end
 
 @interface PBGameSession : PBGeneratedMessage {
