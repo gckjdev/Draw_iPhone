@@ -130,6 +130,7 @@ message PBGameUser {
 message PBSimpleGroup{
     required string groupId = 1;
     required string groupName = 2;
+    required string groupMedal = 3;
 }
 
 message PBGameSession {
