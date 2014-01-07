@@ -46,6 +46,17 @@
 
 @implementation CreateContestController
 
++ (void)enterFromController:(PPViewController *)controller{
+    
+    if (![[GroupManager defaultManager] hasJoinedAGroup]) {
+        POSTMSG2(NSLS(@"kCannotCreateContestPleaseJoinGroupFirst"), 2);
+    }else{
+        
+        CreateContestController *vc = [[[CreateContestController alloc] init] autorelease];
+        [controller presentViewController:vc animated:YES completion:NULL];
+    }
+}
+
 - (id)init{
     
     if (self = [super init]) {
@@ -204,14 +215,24 @@
     [self.contest setTitle:self.contestNameInputField.text];
     [self.contest setRule:self.contestRuleTextView.text];
     
+    [self showActivityWithText:NSLS(@"kCreatingContest")];
+    
+    CommonTitleView *titleView = [CommonTitleView titleView:self.view];
+    [titleView hideRightButton];
+    
     [[ContestService defaultService] createContest:self.contest
                                              image:self.image
                                          completed:^(int resultCode, Contest *contest) {
-        
+
+        [self hideActivity];
+        [titleView showRightButton];
+                                             
         if (resultCode != 0) {
-            POSTMSG2(NSLS(@"kLoadFail"), 2);
+            POSTMSG2(NSLS(@"kCreatingContestFail"), 2);
         }else{
             POSTMSG2(NSLS(@"kCreateContestSuccess"), 2);
+            [self dismissViewControllerAnimated:YES completion:NULL];
+            [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_CREATE_CONTEST_SUCCESS object:nil];
         }
     }];
 }

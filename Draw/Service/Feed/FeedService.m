@@ -276,64 +276,12 @@ static FeedService *_staticFeedService = nil;
     
 }
 
-//- (void)getUserFeedList:(NSString *)userId
-//                   type:(FeedListType)type
-//                 offset:(NSInteger)offset
-//                  limit:(NSInteger)limit
-//               delegate:(id<FeedServiceDelegate>)delegate
-//{
-//    dispatch_async(workingQueue, ^{
-//        
-//        // add by Benson
-//        NSAutoreleasePool *subPool = [[NSAutoreleasePool alloc] init];
-//        
-//        CommonNetworkOutput* output = [GameNetworkRequest
-//                                       getFeedListWithProtocolBuffer:TRAFFIC_SERVER_URL
-//                                       userId:userId
-//                                       feedListType:type
-//                                       offset:offset
-//                                       limit:limit
-//                                       lang:UnknowType];
-//        NSArray *list = nil;
-//        NSInteger resultCode = output.resultCode;
-//        if (resultCode == ERROR_SUCCESS){
-//            PPDebug(@"<FeedService> getUserFeedList type=%d finish, start to parse data.", type);
-//            
-//            @try{
-//                DataQueryResponse *response = [DataQueryResponse parseFromData:output.responseData];
-//                resultCode = [response resultCode];
-//                NSArray *pbFeedList = [response feedList];
-//                list = [FeedManager parsePbFeedList:pbFeedList];
-//            }
-//            @catch (NSException *exception) {
-//                PPDebug(@"<getUserFeedList> catch exception =%@", [exception description]);
-//                resultCode = ERROR_CLIENT_PARSE_DATA;
-//            }
-//            @finally {
-//            }
-//        }
-//        
-//        PPDebug(@"<FeedService> parse data finish, start display the views.");
-//        dispatch_async(dispatch_get_main_queue(), ^{
-//            if (delegate && [delegate respondsToSelector:@selector(didGetFeedList:targetUser:type:resultCode:)]) {
-//                [delegate didGetFeedList:list targetUser:userId type:type resultCode:resultCode];
-//            }
-//        });
-//        
-//        [subPool drain];
-//    });
-//}
 
 - (void)getUserFavoriteOpusList:(NSString *)userId
                          offset:(NSInteger)offset
                           limit:(NSInteger)limit
                        delegate:(id<FeedServiceDelegate>)delegate
 {
-//    [self getUserFeedList:userId
-//                     type:FeedListTypeUserFavorite
-//                   offset:offset
-//                    limit:limit
-//                 delegate:delegate];
     
     [self getUserOpusList:userId
                    offset:offset
@@ -347,13 +295,6 @@ static FeedService *_staticFeedService = nil;
                   limit:(NSInteger)limit 
                delegate:(id<FeedServiceDelegate>)delegate
 {
-    
-    
-//    [self getUserFeedList:userId
-//                     type:FeedListTypeUserFeed
-//                   offset:offset
-//                    limit:limit
-//                 delegate:delegate];
     
     [self getUserOpusList:userId
                    offset:offset
@@ -1290,7 +1231,7 @@ static FeedService *_staticFeedService = nil;
 
 - (void)getWonderfulContestOpusListWithOffset:(NSInteger)offset
                                         limit:(NSInteger)limit
-                                     delegate:(id<FeedServiceDelegate>)delegate;
+                                    completed:(GetFeedListCompleteBlock)completed;
 {
     
     dispatch_async(workingQueue, ^{
@@ -1313,9 +1254,7 @@ static FeedService *_staticFeedService = nil;
             NSArray *list = [FeedManager parsePbFeedList:pbFeedList];
                         
             dispatch_async(dispatch_get_main_queue(), ^{
-                if (delegate && [delegate respondsToSelector:@selector(didGetWonderfulContestOpusList:resultCode:)]) {
-                    [delegate didGetWonderfulContestOpusList:list resultCode:resultCode];
-                }
+                EXECUTE_BLOCK(completed, resultCode, list);
             });
         });
         

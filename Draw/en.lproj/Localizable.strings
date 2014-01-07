@@ -2532,4 +2532,16 @@
 "kRankIs" = "No.%d";
 "kStartDateCannotAfterEndDate" = "Start date can not after end date";
 "kEndDateCannotBeforeStartDate" = "End date can not after start date";
+"kCannotCreateContestPleaseJoinGroupFirst" = "Please join group first";
+
+"kContestNotStart" = "Pending";
+"kContestOutOfTime" = "Over";
+"kLeftDays" = "left %d days";
+
+"kNoGroupContest" = "No Group Contest";
+"kCreate" = "Create";
+
+"kCreatingContest" = "Creating contest";
+"kCreatingContestFail" = "Create contest fail";
+"kCreateContestSuccess" = "Create contest success";
 

@@ -22,15 +22,26 @@
 #import "PPConfigManager.h"
 #import "FeedService.h"
 #import "CellManager.h"
+#import "CreateContestController.h"
+#import "GroupManager.h"
+#import "GroupPermission.h"
+#import "ContestCell.h"
+#import "GroupTopicController.h"
 
 typedef enum{
     TabTypeOfficial = 1,
     TabTypeGroup = 2,
-    TabTypeOpus = 3,
+//    TabTypeOpus = 3,
 }TabType;
 
-@interface ContestController()<FeedServiceDelegate>
+@interface ContestController()<FeedServiceDelegate, ContestCellDelegate>
 
+@property (assign, nonatomic) BOOL groupContestOnly;
+@property (copy, nonatomic) NSString *groupId;
+
+
+@property (retain, nonatomic) IBOutlet UIButton *officialButton;
+@property (retain, nonatomic) IBOutlet UIButton *groupButton;
 @end
 
 
@@ -38,8 +49,6 @@ typedef enum{
 @synthesize noContestTipLabel = _noContestTipLabel;
 @synthesize scrollView = _scrollView;
 @synthesize pageControl = _pageControl;
-@synthesize titleLabel = _titleLabel;
-
 
 #define CONTEST_COUNT_LIMIT 20
 
@@ -75,13 +84,6 @@ typedef enum{
     }
 }
 
-- (void)getContestList
-{
-    [self showActivityWithText:NSLS(@"kLoading")];
-    _contestService = [ContestService  defaultService];
-    [_contestService getContestListWithType:ContestListTypeAll offset:0 limit:CONTEST_COUNT_LIMIT delegate:self];    
-}
-
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
@@ -101,33 +103,64 @@ typedef enum{
     [[self noContestTipLabel] setHidden:YES];
 }
 
+- (id)initWithGroupContestOnly{
+    
+    if (self = [super init]) {
+        self.groupContestOnly = YES;
+    }
+    
+    return self;
+}
+
+// 仅有家族比赛，没有官方比赛，家族比赛为指定的某个家族的比赛。
+- (id)initWithGroupId:(NSString *)groupId{
+    
+    if (self = [super init]) {
+        self.groupContestOnly = YES;
+        self.groupId = groupId;
+    }
+    
+    return self;
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     [self initTabButtons];
     
-    [self.titleLabel setText:NSLS(@"kContest")];
     SET_VIEW_BG(self.view);
     [self initCustomPageControl];
-    [self getContestList];
     
     CommonTitleView *titleView = [CommonTitleView createTitleView:self.view];
     [titleView setTarget:self];
     [titleView setTitle:NSLS(@"kContest")];
-    [titleView setRightButtonAsRefresh];
-    [titleView setRightButtonSelector:@selector(clickRefreshButton:)];
     [titleView setBackButtonSelector:@selector(clickBackButton:)];
     [self hideTips];
+    
+    if (_groupContestOnly) {
+        self.officialButton.hidden = YES;
+        self.groupButton.hidden = YES;
+        
+        GroupPermissionManager *permission =[GroupPermissionManager myManagerWithGroupId:self.groupId];
+        if ([permission canHoldContest]) {
+            [titleView setRightButtonTitle:NSLS(@"kCreate")];
+            [titleView setRightButtonSelector:@selector(clickCreateButton:)];
+        } ;
+    }else{
+        
+        self.officialButton.hidden = NO;
+        self.groupButton.hidden = NO;
+    }
 }
 
 - (void)viewDidUnload
 {
     [self setScrollView:nil];
     [self setPageControl:nil];
-    [self setTitleLabel:nil];
     [self setNoContestTipLabel:nil];
     [self setScrollerViewHolder:nil];
-    [self setTableViewHolder:nil];
+    [self setOfficialButton:nil];
+    [self setGroupButton:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
@@ -151,17 +184,14 @@ typedef enum{
             [contestList count]);
     [self clearScrollView];
     int i = 0;
-//    CGFloat width = [ContestView getViewWidth];
-//    CGFloat height = [ContestView getViewHeight];
+
     CGFloat width = self.scrollView.frame.size.width;
     CGFloat height = self.scrollView.frame.size.height;
     
     NSInteger count = [contestList count];
     [self.scrollView setContentSize:CGSizeMake(width * count, height)];
     for (Contest *contest in contestList) {
-//        if ([contest isRunning] && showIndex == 0) {
-//            showIndex = i;
-//        }
+        
         ContestView *contestView = [ContestView createContestView:self];
         contestView.frame = CGRectMake(width * i ++, 0, width, height);
         [self.scrollView addSubview:contestView];
@@ -173,8 +203,6 @@ typedef enum{
     int showIndex = 0;  // force the first one as current contest, add by Benson 2013-09-10
     [self.pageControl setCurrentPage:showIndex];
     [self.scrollView setContentOffset:CGPointMake(showIndex * width, 0) animated:YES];
-    
-//    [self.view bringSubviewToFront:self.pageControl];
 }
 
 - (void)updatePage
@@ -188,38 +216,55 @@ typedef enum{
 #pragma mark - Scroll view delegate
 - (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate
 {
+    [super scrollViewDidEndDragging:scrollView willDecelerate:decelerate];
     [self updatePage];
 }
+
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
 {
     [self updatePage];    
 }
 
 
-
 #pragma mark contest service delegate
 
-- (void)didGetContestList:(NSArray *)contestList 
-                     type:(ContestListType)type 
-               resultCode:(NSInteger)code
-{
+//- (void)didGetContestList:(NSArray *)contestList 
+//                     type:(ContestListType)type 
+//               resultCode:(NSInteger)code
+//{
+//    [self hideActivity];
+//
+//    PPDebug(@"didGetContestList, type = %d, code = %d, contestList = %@", type,code,contestList);
+//    if (code == 0) {
+//        if ([contestList count] != 0) {
+//            [self updateScorollViewWithContestList:contestList];
+//            [self hideTips];
+//        }else{
+//            [self showTips:NSLS(@"kNoContestTips")];
+//            [self.pageControl setNumberOfPages:0];
+//        }
+//        [[ContestManager defaultManager] updateHasReadContestList:contestList];
+//    }else{
+//
+//        [self showTips:NSLS(@"kFailLoad")];
+//    }
+//}
 
-    PPDebug(@"didGetContestList, type = %d, code = %d, contestList = %@", type,code,contestList);
-    if (code == 0) {
-        if ([contestList count] != 0) {
-            [self updateScorollViewWithContestList:contestList];
-            [self hideTips];
-        }else{
-            [self showTips:NSLS(@"kNoContestTips")];
-            [self.pageControl setNumberOfPages:0];
-        }
-        [[ContestManager defaultManager] updateHasReadContestList:contestList];
-    }else{
-
-        [self showTips:NSLS(@"kFailLoad")];
-    }
-    [self hideActivity];
-}
+//- (void)didGetWonderfulContestOpusList:(NSArray *)feedList resultCode:(NSInteger)resultCode{
+//    
+//    [self hideActivity];
+//    
+//    if (resultCode == 0) {
+//        if ([feedList count] != 0) {
+//            [self finishLoadDataForTabID:self.currentTab.tabID resultList:feedList];
+//            [self hideTips];
+//        }else{
+//            [self showTips:NSLS(@"kNoContestTips")];
+//        }
+//    }else{
+//        [self showTips:NSLS(@"kFailLoad")];
+//    }
+//}
 
 - (IBAction)clickBackButton:(id)sender {
     [self.navigationController popViewControllerAnimated:YES];
@@ -286,7 +331,6 @@ typedef enum{
                                                          isHappy:NO];        
         return;
     }
-//#endif
     
     [self alertCopyrightStatement:^{
         if ([contest joined]) {
@@ -331,15 +375,30 @@ typedef enum{
     PPRelease(_scrollView);
     PPRelease(_pageControl);
     PPRelease(_contestViewList);
-    PPRelease(_titleLabel);
     PPRelease(_noContestTipLabel);
     [[ContestManager defaultManager] setAllContestList:nil];
     [_scrollerViewHolder release];
-    [_tableViewHolder release];
+    [_officialButton release];
+    [_groupButton release];
+    [_groupId release];
     [super dealloc];
 }
+
 - (IBAction)clickRefreshButton:(id)sender {
-    [self getContestList];
+//    [self getContestList];
+}
+
+- (void)clickCreateButton:(id)sender{
+    
+    [CreateContestController enterFromController:self];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(craeteContestSuccess) name:NOTIFICATION_CREATE_CONTEST_SUCCESS object:nil];
+}
+
+
+- (void)craeteContestSuccess{
+    
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:NOTIFICATION_CREATE_CONTEST_SUCCESS object:nil];
+    [self clickTab:self.currentTab.tabID];
 }
 
 - (void)enterDrawControllerWithContest:(Contest *)contest
@@ -356,7 +415,11 @@ typedef enum{
 
 - (NSInteger)tabCount{
     
-    return 3;
+    if (_groupContestOnly) {
+        return 1;
+    }else{
+        return 2;
+    }
 };
 
 - (NSInteger)currentTabIndex{
@@ -371,13 +434,30 @@ typedef enum{
 
 - (NSInteger)tabIDforIndex:(NSInteger)index{
     
-    int indexs[] = {TabTypeOfficial,TabTypeGroup,TabTypeOpus};
-    return indexs[index];
+    if (_groupContestOnly) {
+        return TabTypeGroup;
+    }else{
+        int indexs[] = {TabTypeOfficial,TabTypeGroup};
+        return indexs[index];
+    }
 }
 
 - (NSString *)tabTitleforIndex:(NSInteger)index{
-    NSString *titles[] = {NSLS(@"kOfficialContest"),NSLS(@"kGroupContest"),NSLS(@"kGoodOpus")};
-    return titles[index];
+    
+    TabType tabId = [self tabIDforIndex:index];
+    switch (tabId) {
+        case TabTypeOfficial:
+            return NSLS(@"kOfficialContest");
+            
+        case TabTypeGroup:
+            return NSLS(@"kGroupContest");
+            
+//        case TabTypeOpus:
+//            return NSLS(@"kGoodOpus");
+            
+        default:
+            return nil;
+    }
 }
 
 - (void)serviceLoadDataForTabID:(NSInteger)tabID{
@@ -385,118 +465,213 @@ typedef enum{
     
     switch (tabID) {
         case TabTypeOfficial:
-            [[ContestService defaultService] syncOngoingContestList];
+            [self loadOfficialContestList];
             break;
             
         case TabTypeGroup:
-            [[ContestService defaultService] getGroupContestListWithType:ContestListTypeAll
-                                                                  offset:self.currentTab.offset
-                                                                   limit:self.currentTab.limit
-                                                                delegate:self];
+            [self loadGroupContestList];
             break;
             
-        case TabTypeOpus:
-            [[FeedService defaultService] getWonderfulContestOpusListWithOffset:self.currentTab.offset limit:self.currentTab.limit delegate:self];
-            break;
+//        case TabTypeOpus:
+//            [self loadWonderfulOpusList];
+//            break;
             
         default:
             break;
+    }
+}
+
+- (void)loadOfficialContestList{
+    
+    [self showActivityWithText:NSLS(@"kLoading")];
+
+    [[ContestService  defaultService] getContestListWithType:ContestListTypeAll offset:0 limit:CONTEST_COUNT_LIMIT completed:^(int resultCode, ContestListType type, NSArray *contestList) {
+        
+        [self hideActivity];
+
+        PPDebug(@"didGetContestList, type = %d, code = %d, contestList = %@", type,resultCode,contestList);
+        if (resultCode == 0) {
+            if ([contestList count] != 0) {
+                [self updateScorollViewWithContestList:contestList];
+                [self hideTips];
+            }else{
+                [self showTips:NSLS(@"kNoContestTips")];
+                [self.pageControl setNumberOfPages:0];
+            }
+            [[ContestManager defaultManager] updateHasReadContestList:contestList];
+        }else{
+            [self showTips:NSLS(@"kFailLoad")];
+        }
+     
+        // 为了避免第二次点击的时候显示loading
+        [self finishLoadDataForTabID:TabTypeOfficial resultList:nil];
+    }];
+}
+
+- (void)loadGroupContestList{
+    
+    [self showActivityWithText:NSLS(@"kLoading")];
+
+    if ([self.groupId length] == 0) {
+        [[ContestService defaultService] getGroupContestListWithType:ContestListTypeAll offset:self.currentTab.offset limit:self.currentTab.limit completed:^(int resultCode, ContestListType type, NSArray *contestList) {
+            
+            [self hideActivity];
+            if (resultCode == 0) {
+                [self finishLoadDataForTabID:TabTypeGroup resultList:contestList];
+            }else{
+                [self failLoadDataForTabID:TabTypeGroup];
+            }
+        }];
+    }else{
+        
+        [[ContestService defaultService] getContestListWithGroupId:self.groupId offset:self.currentTab.offset limit:self.currentTab.limit completed:^(int resultCode, ContestListType type, NSArray *contestList) {
+            
+            [self hideActivity];
+            if (resultCode == 0) {
+                [self finishLoadDataForTabID:TabTypeGroup resultList:contestList];
+            }else{
+                [self failLoadDataForTabID:TabTypeGroup];
+            }
+        }];
+    }
+   
+}
+
+//- (void)loadWonderfulOpusList{
+//    
+//    [self showActivityWithText:NSLS(@"kLoading")];
+//
+//    [[FeedService defaultService] getWonderfulContestOpusListWithOffset:self.currentTab.offset limit:self.currentTab.limit completed:^(int resultCode, NSArray *feedList) {
+//        
+//        [self hideActivity];
+//        if (resultCode == 0) {
+//            [self finishLoadDataForTabID:TabTypeOpus resultList:feedList];
+//        }else{
+//            [self failLoadDataForTabID:TabTypeOpus];
+//        }
+//    }];
+//}
+
+- (NSString *)tabNoDataTipsforIndex:(NSInteger)index{
+    
+    
+    
+    TabType tabId = [self tabIDforIndex:index];
+    switch (tabId) {
+        case TabTypeOfficial:
+            return NSLS(@"");
+            
+        case TabTypeGroup:
+            return NSLS(@"kNoGroupContest");
+            
+            //        case TabTypeOpus:
+            //            return NSLS(@"kNoOpus");
+            
+        default:
+            return nil;
     }
 }
 
 - (void)clickTab:(NSInteger)tabID{
     
     [super clickTab:tabID];
-    
+        
     switch (tabID) {
         case TabTypeOfficial:
             self.view.backgroundColor = COLOR_GRAY_BG;
             self.scrollerViewHolder.hidden = NO;
-            self.tableViewHolder.hidden = YES;
+            self.dataTableView.hidden = YES;
 
             break;
             
         case TabTypeGroup:
             self.view.backgroundColor = COLOR_WHITE;
             self.scrollerViewHolder.hidden = YES;
-            self.tableViewHolder.hidden = NO;
+            self.dataTableView.hidden = NO;
 
             break;
             
-        case TabTypeOpus:
-            self.view.backgroundColor = COLOR_WHITE;
-            self.scrollerViewHolder.hidden = YES;
-            self.tableViewHolder.hidden = NO;
-            break;
+//        case TabTypeOpus:
+//            self.view.backgroundColor = COLOR_WHITE;
+//            self.scrollerViewHolder.hidden = YES;
+//            self.tableViewHolder.hidden = NO;
+//            break;
             
         default:
             break;
     }
 }
 
-
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     
     switch ([[self currentTab] tabID]) {
+            
         case TabTypeGroup:
-        case TabTypeOfficial:
             return [CellManager getContestStyleCell:tableView
                                           indexPath:indexPath
                                            delegate:self
                                            dataList:self.currentTab.dataList];
-            break;
             
-        case TabTypeOpus:
-            return [CellManager getLastStyleCell:tableView
-                                       indexPath:indexPath
-                                        delegate:self
-                                        dataList:self.currentTab.dataList];
-            break;
+        case TabTypeOfficial:
+            return nil;
+            
+//        case TabTypeOpus:
+//            return [CellManager getLastStyleCell:tableView
+//                                       indexPath:indexPath
+//                                        delegate:self
+//                                        dataList:self.currentTab.dataList];
             
         default:
             return nil;
-            break;
     }
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     
-    int count = [[[ContestManager defaultManager] allContestList] count];
-    return count;
+    NSInteger count = [super tableView:tableView numberOfRowsInSection:section];
+    
+    switch ([[self currentTab] tabID]) {
+            
+        case TabTypeGroup:
+            return [CellManager getContestStyleCellCountWithDataCount:count];
+            
+        case TabTypeOfficial:
+            return 0;
+            
+//        case TabTypeOpus:
+//            return [CellManager getLastStyleCellCountWithDataCount:count roundingUp:NO];
+            
+        default:
+            return 0;
+    }
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     
     switch ([[self currentTab] tabID]) {
+            
+        case TabTypeOfficial:
+            return 0;
+            
         case TabTypeGroup:
             return [CellManager getContestStyleCellHeight];
-            break;
             
-        case TabTypeOpus:
-            return [CellManager getLastStyleCellHeightWithIndexPath:indexPath];
-            break;
+//        case TabTypeOpus:
+//            return [CellManager getLastStyleCellHeightWithIndexPath:indexPath];
             
         default:
             return 0;
-            break;
     }
 }
 
+- (void)didClickContest:(Contest *)contest{
+    
+    
+}
 
-- (void)didGetWonderfulContestOpusList:(NSArray *)feedList resultCode:(NSInteger)resultCode{
+- (void)didClickGroup:(PBGroup *)pbGroup{
     
-    [self hideActivity];
-    
-    if (resultCode == 0) {
-        if ([feedList count] != 0) {
-            [self finishLoadDataForTabID:self.currentTab.tabID resultList:feedList];
-            [self hideTips];
-        }else{
-            [self showTips:NSLS(@"kNoContestTips")];
-        }
-    }else{
-        [self showTips:NSLS(@"kFailLoad")];
-    }
+    [GroupTopicController enterWithGroup:pbGroup fromController:self];
 }
 
 @end

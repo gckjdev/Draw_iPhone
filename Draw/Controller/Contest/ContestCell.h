@@ -9,6 +9,14 @@
 #import "PPTableViewCell.h"
 
 @class Contest;
+@class PBGroup;
+
+@protocol ContestCellDelegate <NSObject>
+
+- (void)didClickGroup:(PBGroup *)pbGroup;
+- (void)didClickContest:(Contest *)contest;
+
+@end
 
 @interface ContestCell : PPTableViewCell
 

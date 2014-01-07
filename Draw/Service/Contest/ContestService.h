@@ -9,11 +9,6 @@
 #import "CommonService.h"
 #import "Contest.h"
 
-typedef void (^ CreateContestBlock) (int resultCode, Contest *contest);
-
-
-#define NOTIFCATION_CONTEST_DATA_CHANGE     @"NOTIFCATION_CONTEST_DATA_CHANGE"
-
 typedef enum{
     ContestListTypeAll = 0,
     ContestListTypePassed = 1,
@@ -21,18 +16,22 @@ typedef enum{
     ContestListTypePending = 3,
 }ContestListType;
 
+typedef void (^ CreateContestBlock) (int resultCode, Contest *contest);
+typedef void (^ GetContestListBlock) (int resultCode, ContestListType type, NSArray *contestList);
+
+
+#define NOTIFCATION_CONTEST_DATA_CHANGE     @"NOTIFCATION_CONTEST_DATA_CHANGE"
+
 @protocol ContestServiceDelegate <NSObject>
 
 @optional
+
 - (void)didGetContestList:(NSArray *)contestList 
                      type:(ContestListType)type 
                resultCode:(NSInteger)code;
 
 - (void)didGetMyContestList:(NSArray *)contestList 
                resultCode:(NSInteger)code;
-
-- (void)didGetContestOpusList:(NSArray *)opusList
-                   resultCode:(NSInteger)code;
 
 @end
 
@@ -41,20 +40,35 @@ typedef enum{
 + (ContestService *)defaultService;
 + (void)releaseDefaultService;
 
+//- (void)getContestListWithType:(ContestListType)type
+//                        offset:(NSInteger)offset
+//                         limit:(NSInteger)limit
+//                      delegate:(id<ContestServiceDelegate>)delegate;
+
 - (void)getContestListWithType:(ContestListType)type
                         offset:(NSInteger)offset
                          limit:(NSInteger)limit
-                      delegate:(id<ContestServiceDelegate>)delegate;
+                     completed:(GetContestListBlock)completed;
+
+//- (void)getGroupContestListWithType:(ContestListType)type
+//                             offset:(NSInteger)offset
+//                              limit:(NSInteger)limit
+//                           delegate:(id<ContestServiceDelegate>)delegate;
 
 - (void)getGroupContestListWithType:(ContestListType)type
                              offset:(NSInteger)offset
                               limit:(NSInteger)limit
-                           delegate:(id<ContestServiceDelegate>)delegate;
+                          completed:(GetContestListBlock)completed;
+
+//- (void)getContestListWithGroupId:(NSString*)groupId
+//                           offset:(NSInteger)offset
+//                            limit:(NSInteger)limit
+//                         delegate:(id<ContestServiceDelegate>)delegate;
 
 - (void)getContestListWithGroupId:(NSString*)groupId
                            offset:(NSInteger)offset
                             limit:(NSInteger)limit
-                         delegate:(id<ContestServiceDelegate>)delegate;
+                        completed:(GetContestListBlock)completed;
 
 - (void)getMyContestListWithOffset:(NSInteger)offset
                          limit:(NSInteger)limit

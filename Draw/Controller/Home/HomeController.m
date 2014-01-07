@@ -93,7 +93,6 @@
 #import "GroupHomeController.h"
 #import "DrawImageManager.h"
 
-#import "CreateContestController.h"
 
 static NSDictionary* DRAW_MENU_TITLE_DICT = nil;
 static NSDictionary* DRAW_MENU_IMAGE_DICT = nil;
@@ -666,6 +665,16 @@ static NSDictionary* DRAW_MENU_IMAGE_DICT = nil;
         }
             break;
         case HomeMenuTypeDrawContest:
+#ifdef DEBUG
+//        {
+//            GroupHomeController *gc = [[GroupHomeController alloc] init];
+//            [self.navigationController pushViewController:gc animated:YES];
+//            [gc release];
+//            break;
+//        }
+
+#endif
+            
         {
             [[AnalyticsManager sharedAnalyticsManager] reportClickHomeMenu:HOME_ACTION_CONTEST];
             
@@ -930,72 +939,6 @@ static NSDictionary* DRAW_MENU_IMAGE_DICT = nil;
     
     [VersionUpdateView showInView:self.view];
 }
-
-//- (void)gotoMyDetail
-//{
-//    UserDetailViewController* us = [[UserDetailViewController alloc] initWithUserDetail:[SelfUserDetail createDetail]];
-//    [self.navigationController pushViewController:us animated:YES];
-//    [us release];
-//}
-
-
-//- (void)askShake
-//{
-//    CommonDialog* dialog = [CommonDialog createDialogWithTitle:NSLS(@"kMessage")
-//                                                       message:NSLS(@"kTryShakeXiaoji")
-//                                                         style:CommonDialogStyleDoubleButtonWithCross];
-//    
-//    [dialog.oKButton setTitle:NSLS(@"kTryTakeNumber") forState:UIControlStateNormal];
-//    [dialog.cancelButton setTitle:NSLS(@"kViewMyProfile") forState:UIControlStateNormal];
-//    
-//    [dialog setClickOkBlock:^(id infoView){
-//        [[UserService defaultService] showXiaojiNumberView:self.view];
-//    }];
-//    
-//    [dialog setClickCancelBlock:^(id infoView){
-//        [self gotoMyDetail];
-//    }];
-//    
-//    [dialog showInView:self.view];
-//}
-
-//
-//- (void)clickAvatarHandler
-//{
-//    if ([self toRegister]){
-//        return;
-//    }
-//    if ([[UserManager defaultManager] isOldUserWithoutXiaoji]){
-//        [self askShake];
-//        return;
-//    }
-//    
-//    UserDetailViewController* us = [[UserDetailViewController alloc] initWithUserDetail:[SelfUserDetail createDetail]];
-//    [self.navigationController pushViewController:us animated:YES];
-//    [us release];
-//}
-
-//- (void)homeMainMenuPanel:(HomeMainMenuPanel *)mainMenuPanel
-//       didClickAvatarView:(AvatarView *)avatarView
-//{
-//
-//    [self clickAvatarHandler];
-//}
-
-//- (void)homeHeaderPanel:(HomeHeaderPanel *)headerPanel didClickAvatarButton:(UIButton *)button
-//{
-//    [super homeHeaderPanel:headerPanel didClickAvatarButton:button];
-//    [self clickAvatarHandler];
-//}
-
-//- (void)didGetContestList:(NSArray *)contestList type:(ContestListType)type resultCode:(NSInteger)code
-//{
-//    if (code == 0) {
-//        [[StatisticManager defaultManager] setNewContestCount:[[ContestManager defaultManager] calNewContestCount:contestList]];
-//    }
-//    [self updateAllBadge];
-//    
-//}
 
 #pragma mark - menu methods
 

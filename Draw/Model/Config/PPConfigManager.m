@@ -189,7 +189,6 @@
 //    return @"http://localhost:8100/api/i?";
 #endif
     return [MobClickUtils getStringValueByKey:@"GROUP_SERVER_URL" defaultValue:@"http://www.place100.com:8100/api/i?"];
-    
 }
 
 + (NSString*)getMusicDownloadHomeURL

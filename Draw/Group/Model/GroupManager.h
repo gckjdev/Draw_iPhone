@@ -99,6 +99,7 @@
 
 - (NSString *)groupNameById:(NSString*)groupId;
 
+- (BOOL)hasJoinedAGroup;
 - (NSString *)userCurrentGroupId;
 - (NSString *)userCurrentGroupName;
 - (PBGroup *)userCurrentGroup;

@@ -20,6 +20,7 @@
 #import "UIViewController+BGImage.h"
 #import "ChatDetailController.h"
 #import "MessageStat.h"
+#import "ContestController.h"
 
 typedef enum{
     NewestTopic = 1,
@@ -155,6 +156,9 @@ typedef enum {
         case GroupContest:
         {
             //TODO contest
+            ContestController *vc = [[[ContestController alloc] initWithGroupId:self.group.groupId]autorelease];
+            [self.navigationController pushViewController:vc animated:YES];
+
         }
             break;
 
@@ -162,6 +166,7 @@ typedef enum {
             break;
     }
 }
+
 
 - (void)updateTitleView
 {

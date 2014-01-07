@@ -8,7 +8,10 @@
 
 #import "PPTableViewController.h"
 
+#define NOTIFICATION_CREATE_CONTEST_SUCCESS @"NOTIFICATION_CREATE_CONTEST_SUCCESS"
+
 @interface CreateContestController : PPTableViewController
 
++ (void)enterFromController:(PPViewController *)controller;
 
 @end

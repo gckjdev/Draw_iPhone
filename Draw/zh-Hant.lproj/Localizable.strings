@@ -2560,3 +2560,15 @@
 "kRankIs" = "第%d名";
 "kStartDateCannotAfterEndDate" = "開始時間不能大於結束時間";
 "kEndDateCannotBeforeStartDate" = "結束時間不能小於開始時間";
+"kCannotCreateContestPleaseJoinGroupFirst" = "你還沒有加入家族，請先加入家族後再創建比賽";
+
+"kContestNotStart" = "未開始";
+"kContestOutOfTime" = "已結束";
+"kLeftDays" = "還剩%d天";
+
+"kNoGroupContest" = "暫無家族比賽";
+"kCreate" = "創建";
+
+"kCreatingContest" = "創建比賽中...";
+"kCreatingContestFail" = "創建比賽失敗";
+"kCreateContestSuccess" = "成功創建比賽";

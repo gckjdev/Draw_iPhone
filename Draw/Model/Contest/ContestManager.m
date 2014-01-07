@@ -136,6 +136,7 @@ static ContestManager *_staticContestManager;
     }
     return result;
 }
+
 - (void)updateHasReadContestList:(NSArray*)contestList
 {
     for (Contest* contest in contestList) {
