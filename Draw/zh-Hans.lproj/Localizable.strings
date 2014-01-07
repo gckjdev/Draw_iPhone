@@ -2162,7 +2162,7 @@
 "kNotGroupMember" = "用户不是家族普通成员，不能完成本操作。";
 "kNotGroupAdmin" = "用户不是家族管理员，不能完成本操作。";
 "kNotInvitee" = "你没有被邀请，或者邀请已经失效，不能完成本操作。";
-"kUnknowError" = "未知错误。";
+"kUnknowError" = "请求失败，请稍后再试或联系我们反馈问题";
 "kUpdateTitle" = "修改职位名称";
 "kTitleIDNotFound" = "职位不存在。";
 

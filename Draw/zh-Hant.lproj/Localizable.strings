@@ -2167,7 +2167,7 @@
 "kNotGroupMember" = "用戶不是家族普通成員，不能完成本操作。";
 "kNotGroupAdmin" = "用戶不是家族管理員，不能完成本操作。";
 "kNotInvitee" = "你沒有被邀請，或者邀請已經失效，不能完成本操作。";
-"kUnknowError" = "未知錯誤。";
+"kUnknowError" = "請求失敗，請稍後再試或聯繫我們反饋問題";
 
 "kUpdateTitle" = "修改職位名稱";
 "kTitleIDNotFound" = "職位不存在。";
