@@ -1505,9 +1505,11 @@ static NSMutableDictionary *boundImageDict = nil;
         key = [NSString stringWithFormat:@"%d-%.1f-%.1f-%@-%@",type, border, cornerRadius, [DrawUtils keyForColor:color], [DrawUtils keyForColor:fillColor]];
         
     }else{
-        key = [NSString stringWithFormat:@"%d-%.1f-%.1f-%@",type, border, cornerRadius, [DrawUtils keyForColor:color]];
-        
+        key = [NSString stringWithFormat:@"%d-%.1f-%.1f-%@",type, border, cornerRadius, [DrawUtils keyForColor:color]];        
     }
+    
+    PPDebug(@"<boundImageWithType> key = %@", key);
+    
     if ([boundImageDict objectForKey:key]) {
         return boundImageDict[key];
     }
@@ -1523,25 +1525,24 @@ static NSMutableDictionary *boundImageDict = nil;
     CGContextSetLineWidth(context, border);
     CGContextSetLineCap(context, kCGLineCapSquare);
     if (BoundImageTypeHorizontal == type){
+        if (fillColor) {
+            CGContextFillRect(context, CGRectMake(0, 0, size.width, size.height));
+        }
         CGContextMoveToPoint(context, 0, border);
         CGContextAddLineToPoint(context, size.width, border);
-        CGContextMoveToPoint(context, 0, size.height-2*border);
-        CGContextAddLineToPoint(context, size.width, size.height-2*border);
-        if (fillColor) {
-            CGContextClosePath(context);            
-            CGContextFillPath(context);
-        }        
+        CGContextMoveToPoint(context, 0, size.height-border);
+        CGContextAddLineToPoint(context, size.width, size.height-border);
         CGContextStrokePath(context);
     }else if(BoundImageTypeVertical == type){
+        if (fillColor) {
+            CGContextFillRect(context, CGRectMake(border, 0, size.width-2*border, size.height));
+        }
         CGContextMoveToPoint(context, border, 0);
         CGContextAddLineToPoint(context, border, size.height);
         CGContextMoveToPoint(context, size.width-border, 0);
         CGContextAddLineToPoint(context, size.width-border, size.height);
-        if (fillColor) {
-            CGContextClosePath(context);
-            CGContextFillPath(context);
-        }        
         CGContextStrokePath(context);
+        PPDebug(@"<boundImageWithType> BoundImageTypeVertical key = %@", key);
     }
     else{
         CGRect rect = CGRectMake(0, 0, size.width*2, size.height);
@@ -1581,7 +1582,7 @@ static NSMutableDictionary *boundImageDict = nil;
                    cornerRadius:(CGFloat)cornerRadius
                           color:(UIColor *)color
 {
-    [self boundImageWithType:type border:border cornerRadius:cornerRadius boundColor:color fillColor:nil];
+   return [self boundImageWithType:type border:border cornerRadius:cornerRadius boundColor:color fillColor:nil];
 }
 
 

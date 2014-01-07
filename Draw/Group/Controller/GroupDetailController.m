@@ -1062,20 +1062,20 @@ typedef enum{
             [titles addObject:TITLE_RM_ADMIN];
         }
     }else{
-        if ([self.groupPermission canArrangeAdmin]) {
-            if ([_group.adminsList containsObject:user]) {
-                [titles addObject:TITLE_RM_ADMIN];
-            }else{
+        if ([self.groupPermission canArrangeAdmin] && [title titleId] != GroupRoleGuest) {
+            if (![_group.adminsList containsObject:user]) {
                 [titles addObject:TITLE_SET_ADMIN];
+            }else if(![_group.creator.userId isEqualToString:user.userId]){
+                [titles addObject:TITLE_RM_ADMIN];
             }
         }
-        if ([self.groupPermission canCustomTitle]) {
+        if ([self.groupPermission canCustomTitle]  && [title titleId] != GroupRoleGuest) {
             [titles addObject:TITLE_CHANGE_TITLE];
         }
         if ([self.groupPermission canExpelUser:user] && ![GroupManager isUser:user adminOrCreatorInGroup:_group]) {
             [titles addObject:TITLE_RM_MEMBER];
         }
-        if ([self.groupPermission canManageGroup]) {
+        if ([self.groupPermission canManageGroup] && [title titleId] != GroupRoleGuest) {
             [titles addObject:TITLE_TRANSFER_BALANCE];
         }
         
