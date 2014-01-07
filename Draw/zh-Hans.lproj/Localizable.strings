@@ -2210,7 +2210,7 @@
 "kOutOfMaxLength" = "文字长度不能超过%d。";
 
 "kCan'tUpgradeMaxLevel" = "家族已经等级已经是顶级(%d级)了";
-"kUpgradeGroupTitle" = "将花费家族%d金币";
+"kUpgradeGroupTitle" = "升级需增加%d金币/月";
 "kCanInputIntRange" = "输入数字:(%d - %d)";
 "kDegradeGroup" = "对不起，输入不能低于当前等级。";
 "kUpgradingGroup" = "升级家族中...";
