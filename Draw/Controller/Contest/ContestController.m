@@ -25,6 +25,8 @@
 #import "CreateContestController.h"
 #import "GroupManager.h"
 #import "GroupPermission.h"
+#import "ContestCell.h"
+#import "GroupTopicController.h"
 
 typedef enum{
     TabTypeOfficial = 1,
@@ -32,7 +34,7 @@ typedef enum{
 //    TabTypeOpus = 3,
 }TabType;
 
-@interface ContestController()<FeedServiceDelegate>
+@interface ContestController()<FeedServiceDelegate, ContestCellDelegate>
 
 @property (assign, nonatomic) BOOL groupContestOnly;
 @property (copy, nonatomic) NSString *groupId;
@@ -148,8 +150,6 @@ typedef enum{
         
         self.officialButton.hidden = NO;
         self.groupButton.hidden = NO;
-//        [titleView setRightButtonAsRefresh];
-//        [titleView setRightButtonSelector:@selector(clickRefreshButton:)];
     }
 }
 
@@ -159,7 +159,6 @@ typedef enum{
     [self setPageControl:nil];
     [self setNoContestTipLabel:nil];
     [self setScrollerViewHolder:nil];
-    [self setTableViewHolder:nil];
     [self setOfficialButton:nil];
     [self setGroupButton:nil];
     [super viewDidUnload];
@@ -379,7 +378,6 @@ typedef enum{
     PPRelease(_noContestTipLabel);
     [[ContestManager defaultManager] setAllContestList:nil];
     [_scrollerViewHolder release];
-    [_tableViewHolder release];
     [_officialButton release];
     [_groupButton release];
     [_groupId release];
@@ -490,7 +488,7 @@ typedef enum{
     [[ContestService  defaultService] getContestListWithType:ContestListTypeAll offset:0 limit:CONTEST_COUNT_LIMIT completed:^(int resultCode, ContestListType type, NSArray *contestList) {
         
         [self hideActivity];
-        
+
         PPDebug(@"didGetContestList, type = %d, code = %d, contestList = %@", type,resultCode,contestList);
         if (resultCode == 0) {
             if ([contestList count] != 0) {
@@ -512,9 +510,8 @@ typedef enum{
 
 - (void)loadGroupContestList{
     
-    
     [self showActivityWithText:NSLS(@"kLoading")];
-    
+
     if ([self.groupId length] == 0) {
         [[ContestService defaultService] getGroupContestListWithType:ContestListTypeAll offset:self.currentTab.offset limit:self.currentTab.limit completed:^(int resultCode, ContestListType type, NSArray *contestList) {
             
@@ -578,19 +575,19 @@ typedef enum{
 - (void)clickTab:(NSInteger)tabID{
     
     [super clickTab:tabID];
-    
+        
     switch (tabID) {
         case TabTypeOfficial:
             self.view.backgroundColor = COLOR_GRAY_BG;
             self.scrollerViewHolder.hidden = NO;
-            self.tableViewHolder.hidden = YES;
+            self.dataTableView.hidden = YES;
 
             break;
             
         case TabTypeGroup:
             self.view.backgroundColor = COLOR_WHITE;
             self.scrollerViewHolder.hidden = YES;
-            self.tableViewHolder.hidden = NO;
+            self.dataTableView.hidden = NO;
 
             break;
             
@@ -667,12 +664,14 @@ typedef enum{
     }
 }
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+- (void)didClickContest:(Contest *)contest{
     
-//    if (self.currentTab.tabID == TabTypeGroup) {
-//        
-//        [self.currentTab.dataList objectAtIndex:indexPath.row];
-//    }
+    
+}
+
+- (void)didClickGroup:(PBGroup *)pbGroup{
+    
+    [GroupTopicController enterWithGroup:pbGroup fromController:self];
 }
 
 @end

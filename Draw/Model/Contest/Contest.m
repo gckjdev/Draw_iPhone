@@ -26,6 +26,11 @@
 
 }
 
+- (PBGroup *)pbGroup{
+    
+    return [_pbContestBuilder group];
+}
+
 - (NSDate *)startDate
 {
     return [NSDate dateWithTimeIntervalSince1970:_pbContestBuilder.startDate];
@@ -151,6 +156,15 @@
 - (void)setRule:(NSString *)rule{
     
     [_pbContestBuilder setRule:rule];
+}
+
+- (NSURL *)groupMedalImageUrl{
+    
+    if (_pbContestBuilder.group.medalImage == nil) {
+        return nil;
+    }else{
+        return [NSURL URLWithString:_pbContestBuilder.group.medalImage];
+    }
 }
 
 - (BOOL)canSubmit

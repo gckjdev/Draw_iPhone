@@ -187,10 +187,11 @@ int *getSingMainMenuTypeListWithFreeCoins()
     int static list[] = {
         HomeMenuTypeSing,
         HomeMenuTypeDrawPainter,
-        HomeMenuTypeDrawBBS,
+        HomeMenuTypeGroup,
         HomeMenuTypeDrawRank,
         HomeMenuTypeDrawContest,
         HomeMenuTypeGuessSing,
+        HomeMenuTypeDrawBBS,        
         HomeMenuTypeDrawBigShop,
         HomeMenuTypeTask,
         HomeMenuTypeDrawMore,
@@ -203,13 +204,14 @@ int *getSingMainMenuTypeListWithoutFreeCoins()
 {
     int static list[] = {
         HomeMenuTypeSing,
-        HomeMenuTypeTask,
-        HomeMenuTypeDrawBBS,
+        HomeMenuTypeDrawPainter,
+        HomeMenuTypeGroup,
         HomeMenuTypeDrawRank,
         HomeMenuTypeDrawContest,
         HomeMenuTypeGuessSing,
-        HomeMenuTypeDrawPainter,
+        HomeMenuTypeDrawBBS,
         HomeMenuTypeDrawBigShop,
+        HomeMenuTypeTask,
         HomeMenuTypeDrawMore,
         HomeMenuTypeEnd,
     };

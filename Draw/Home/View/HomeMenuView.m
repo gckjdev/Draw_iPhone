@@ -131,6 +131,10 @@
         case HomeMenuTypeDrawPainter: {
             return NSLS(@"kPainter");
         }
+        
+        case HomeMenuTypeGroup:{
+            return NSLS(@"kGroup");
+        }
             
         //ZJH
         case HomeMenuTypeZJHHelp:{
@@ -264,6 +268,7 @@
         case HomeMenuTypeDrawPainter:{
             return [imageManager drawHomePainter];
         }
+                        
             //draw bottom menu
         case HomeMenuTypeDrawHome :{
             return [imageManager drawHomeHome];

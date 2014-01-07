@@ -353,6 +353,10 @@ typedef enum {
     }
 }
 
+- (NSString *)noDataCellContent{
+    return NSLS(@"kNoTopic");
+}
+
 #pragma mark-- Common Tab Controller delegate
 
 - (NSInteger)tabCount

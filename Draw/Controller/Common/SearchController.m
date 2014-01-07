@@ -35,6 +35,7 @@ typedef enum{
 {
     self = [super initWithNibName:@"SearchController" bundle:nibBundleOrNil];
     if (self) {
+        
     }
     return self;
 }
@@ -56,13 +57,15 @@ typedef enum{
     [self loadHistory];
     
     [self.titleView setTitle:[self headerTitle]];
-    [self.titleView setTransparentStyle];
+    if ([self isTitleViewTransparentStyle]) {
+        [self.titleView setTransparentStyle];
+    }
     originWidth = CGRectGetWidth(self.dataTableView.bounds);
     SET_INPUT_VIEW_STYLE(self.searchTextField);
     [self.searchTextField becomeFirstResponder];
     self.searchTextField.text = nil;
     [self.searchTextField setPlaceholder:[self searchTips]];
-
+    self.searchTextField.returnKeyType = UIReturnKeySearch;
 }
 
 - (void)didReceiveMemoryWarning
@@ -79,7 +82,7 @@ typedef enum{
 }
 
 #define TABLE_HEIGHT_HISTORY (ISIPAD? 450 : 130)
-#define TABLE_HEIGHT_RESULT (CGRectGetHeight(self.view.bounds)-CGRectGetMinY(self.dataTableView.bounds))
+#define TABLE_HEIGHT_RESULT ((CGRectGetHeight(self.view.bounds)-CGRectGetMinY(self.dataTableView.frame)))
 
 
 - (void)reloadView
@@ -95,6 +98,7 @@ typedef enum{
         self.noMoreData = ![self currentTab].hasMoreData;
         [self.dataTableView updateWidth:originWidth];
         [self.dataTableView updateHeight:TABLE_HEIGHT_RESULT];
+        [self hideTipsOnTableView];
     }
     [self.dataTableView updateCenterX:CGRectGetMidX(self.view.bounds)];
 }
@@ -242,6 +246,11 @@ typedef enum{
     [self loadDataWithKey:text tabID:tabID];
 }
 
+- (NSString *)tabNoDataTipsforIndex:(NSInteger)index
+{
+    return NSLS(@"kNoMatchResult");
+}
+
 //should be override.
 
 - (void)loadDataWithKey:(NSString *)key tabID:(NSInteger)tabID
@@ -273,5 +282,7 @@ typedef enum{
     return NSStringFromClass([self class]);
 }
 
-
+- (BOOL)isTitleViewTransparentStyle{
+    return YES;
+}
 @end

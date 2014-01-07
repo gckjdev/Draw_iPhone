@@ -21,5 +21,8 @@
 - (NSString *)headerTitle;
 - (NSString *)searchTips; //used as placeholder.
 - (NSString *)historyStoreKey; //default is the class name.
+- (BOOL)isTitleViewTransparentStyle;
+
+
 @end
 

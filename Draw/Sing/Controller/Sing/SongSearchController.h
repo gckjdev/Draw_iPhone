@@ -8,12 +8,12 @@
 
 #import "PPTableViewController.h"
 #import "SingOpus.h"
+#import "SearchController.h"
 
 #define KEY_NOTIFICATION_SELECT_SONG @"KEY_NOTIFICATION_SELECT_SONG"
 
-@interface SongSearchController : PPTableViewController
+@interface SongSearchController : SearchController
 
-@property (retain, nonatomic) IBOutlet UITextField *searchTextField;
 
 - (id)initWithSingOpus:(SingOpus *)opus;
 

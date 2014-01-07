@@ -72,7 +72,8 @@ static GroupService *_staticGroupService = nil;
                                          returnPB:YES
                                          returnJSONArray:NO];
             dispatch_async(dispatch_get_main_queue(), ^{
-                NSError *error = DRAW_ERROR(output.pbResponse.resultCode);
+                
+                NSError *error = DRAW_ERROR(output.resultCode);
                 if (error) {
                     PPDebug(@"<GroupService> load data error = %@, method = %@", error, method);
                     [DrawError postError:error];

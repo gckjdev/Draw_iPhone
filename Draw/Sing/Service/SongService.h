@@ -24,6 +24,8 @@ typedef void (^GetSongsCompleted)(int resultCode, NSArray *songs);
                  completed:(GetSongsCompleted)completed;
 
 - (void)searchSongWithName:(NSString *)name
+                    offset:(NSInteger)offset
+                     limit:(NSInteger)limit
                  completed:(GetSongsCompleted)completed;
 
 @end

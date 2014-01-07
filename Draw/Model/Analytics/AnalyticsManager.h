@@ -17,6 +17,7 @@
 #define HOME_ACTION_TOP                     @"HOME_ACTION_TOP"
 #define HOME_ACTION_CONTEST                 @"HOME_ACTION_CONTEST"
 #define HOME_ACTION_BBS                     @"HOME_ACTION_BBS"
+#define HOME_ACTION_GROUP                   @"HOME_ACTION_GROUP"
 #define HOME_ACTION_SHOP                    @"HOME_ACTION_SHOP"
 #define HOME_ACTION_APPS                    @"HOME_ACTION_APPS"
 #define HOME_ACTION_FREE_COINS              @"HOME_ACTION_FREE_COINS"

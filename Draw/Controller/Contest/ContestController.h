@@ -21,7 +21,6 @@
 @property (retain, nonatomic) IBOutlet UIScrollView *scrollView;
 @property (retain, nonatomic) IBOutlet UICustomPageControl *pageControl;
 @property (retain, nonatomic) IBOutlet UIView *scrollerViewHolder;
-@property (retain, nonatomic) IBOutlet UIView *tableViewHolder;
 
 - (IBAction)clickBackButton:(id)sender;
 - (IBAction)clickRefreshButton:(id)sender;

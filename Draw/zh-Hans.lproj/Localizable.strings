@@ -999,6 +999,15 @@
 "kNoRankHot" = "暂时没有热榜数据";
 "kNoRankNew" = "暂时没有最新数据";
 "kNoData" = "暂无数据";
+
+"kNoNotice" = "暂无通知";
+"kNoComment" = "暂无评论";
+"kNoPost" = "暂无帖子";
+"kNoRequest" = "暂无请求";
+"kNoTopic" = "暂无话题";
+"kNoGroup" = "暂无家族";
+"kNoMatchResult" = "暂无匹配的结果";
+
 "kInputSongNameForSearch" = "输入歌曲或者歌手搜索歌词";
 "kSongNameCannotBeBlank" = "搜索关键字不能为空";
 

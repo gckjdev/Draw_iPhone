@@ -458,7 +458,7 @@
     
     ContestCell *cell = [tableView dequeueReusableCellWithIdentifier:[ContestCell getCellIdentifier]];
     if (cell == nil) {
-        cell = [ContestCell createCell:self];
+        cell = [ContestCell createCell:delegate];
     }
     
     Contest *contest = [dataList objectAtIndex:indexPath.row];

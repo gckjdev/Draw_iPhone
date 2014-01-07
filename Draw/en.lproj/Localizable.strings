@@ -974,6 +974,14 @@
 "kNoRankNew" = "No data";
 "kNoData" = "No data";
 
+"kNoTopic" = "No topics";
+"kNoGroup" = "No groups";
+"kNoNotice" = "No notices";
+"kNoComment" = "No comments";
+"kNoPost" = "No posts";
+"kNoRequest" = "No requests";
+"kNoMatchResult" = "No match result";
+
 "kInputSongNameForSearch" = "Input song name for search";
 "kSongNameCannotBeBlank" = "Song name can not be blank";
 

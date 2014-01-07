@@ -387,6 +387,7 @@
     self.noMoreData = !tab.hasMoreData;
     return count;
 }
+
 #pragma mark tab controller delegate
 
 - (NSInteger)tabCount

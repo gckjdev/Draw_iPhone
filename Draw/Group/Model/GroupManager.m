@@ -310,6 +310,17 @@ enum{
     return [builder build];
 }
 
++ (PBGroup *)upgradeGroup:(PBGroup *)group level:(NSInteger)level
+{
+    NSInteger amout = [GroupManager upgradeFeeFromLevel:group.level toLevel:level];
+    NSInteger balance = MAX(0, (group.balance - amout));
+    PBGroup_Builder *builder = [PBGroup builderWithPrototype:group];
+    [builder setBalance:balance];
+    [builder setLevel:level];
+    return [builder build];
+}
+
+
 + (void)didDeletedGroupTitle:(NSString *)groupId
                      titleId:(NSInteger)titleId
 {
