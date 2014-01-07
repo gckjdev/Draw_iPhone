@@ -1113,8 +1113,10 @@ typedef enum{
     }
     SimpleResultBlock callback = ^(NSError *error){
         [self hideActivity];
-        POSTMSG(NSLS(@"kGroupUserInvited"));
-        [controller.navigationController popToViewController:self animated:YES];
+        if(!error){
+            [controller.navigationController popToViewController:self animated:YES];
+            POSTMSG(NSLS(@"kGroupUserInvited"));            
+        }
     };
     
     [self showActivityWithText:NSLS(@"kInviting")];
@@ -1141,7 +1143,7 @@ didClickAddButtonAtTitle:(PBGroupTitle *)title
 - (void)groupDetailCell:(GroupDetailCell *)cell didClickAtTitle:(PBGroupTitle *)title
 {
     //check permission
-    if ([title titleId] != GroupRoleGuest && [_groupPermission canCustomTitle]) {
+    if ([title titleId] != GroupRoleGuest && [title titleId] != GroupRoleAdmin && [_groupPermission canCustomTitle]) {
         CommonDialog *dialog = [CommonDialog createInputFieldDialogWith:NSLS(@"kUpdateTitle")];
         dialog.inputTextField.text = title.title;
         [dialog setClickOkBlock:^(id view){

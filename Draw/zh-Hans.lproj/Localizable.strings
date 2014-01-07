@@ -2296,6 +2296,9 @@
 
 "kJoinAGroup" = "加入家族";
 
+"kInvitationFailure" = "Ta已是其他家族成员，不能收到邀请.";
+
+
 /*********************小吉画画国际化字符串开始 ************************/
 "kLittleGeeRecommend" = "推荐";
 "kLittleGeeDrawTo" = "送画";

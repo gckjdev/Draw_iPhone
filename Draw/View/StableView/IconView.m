@@ -25,7 +25,7 @@
     _imageView.userInteractionEnabled = NO;
     _imageView.contentMode = UIViewContentModeScaleAspectFit;
     [self addSubview:_imageView];
-    SET_VIEW_ROUND(_imageView);
+    SET_VIEW_ROUND(self);
     [self addTarget:self action:@selector(clickView:) forControlEvents:UIControlEventTouchUpInside];
     [self setBackgroundColor:[UIColor clearColor]];
 }
