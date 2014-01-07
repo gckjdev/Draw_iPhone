@@ -1082,13 +1082,17 @@ BOOL PBTaskIdTypeIsValidValue(PBTaskIdType value);
 @private
   BOOL hasGroupId_:1;
   BOOL hasGroupName_:1;
+  BOOL hasGroupMedal_:1;
   NSString* groupId;
   NSString* groupName;
+  NSString* groupMedal;
 }
 - (BOOL) hasGroupId;
 - (BOOL) hasGroupName;
+- (BOOL) hasGroupMedal;
 @property (readonly, retain) NSString* groupId;
 @property (readonly, retain) NSString* groupName;
+@property (readonly, retain) NSString* groupMedal;
 
 + (PBSimpleGroup*) defaultInstance;
 - (PBSimpleGroup*) defaultInstance;
@@ -1133,6 +1137,11 @@ BOOL PBTaskIdTypeIsValidValue(PBTaskIdType value);
 - (NSString*) groupName;
 - (PBSimpleGroup_Builder*) setGroupName:(NSString*) value;
 - (PBSimpleGroup_Builder*) clearGroupName;
+
+- (BOOL) hasGroupMedal;
+- (NSString*) groupMedal;
+- (PBSimpleGroup_Builder*) setGroupMedal:(NSString*) value;
+- (PBSimpleGroup_Builder*) clearGroupMedal;
 @end
 
 @interface PBGameSession : PBGeneratedMessage {

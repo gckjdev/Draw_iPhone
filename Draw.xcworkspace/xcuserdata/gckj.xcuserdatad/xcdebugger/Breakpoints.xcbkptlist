@@ -2,45 +2,4 @@
 <Bucket
    type = "0"
    version = "1.0">
-   <FileBreakpoints>
-      <FileBreakpoint
-         shouldBeEnabled = "Yes"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
-         filePath = "Draw/Controller/Common/ShareImageManager.m"
-         timestampString = "410698093.231178"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "1533"
-         endingLineNumber = "1533"
-         landmarkName = "+boundImageWithType:border:cornerRadius:boundColor:fillColor:"
-         landmarkType = "5">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "Yes"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
-         filePath = "Draw/Controller/Common/ShareImageManager.m"
-         timestampString = "410698135.039879"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "1523"
-         endingLineNumber = "1523"
-         landmarkName = "+boundImageWithType:border:cornerRadius:boundColor:fillColor:"
-         landmarkType = "5">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "Yes"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
-         filePath = "Draw/Group/Model/GroupUIManager.m"
-         timestampString = "410698176.585601"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "28"
-         endingLineNumber = "28"
-         landmarkName = "+groupDetailBoundMidImageForStyle:"
-         landmarkType = "5">
-      </FileBreakpoint>
-   </FileBreakpoints>
 </Bucket>

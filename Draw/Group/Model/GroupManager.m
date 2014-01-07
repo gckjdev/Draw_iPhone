@@ -520,10 +520,12 @@ enum{
 - (void)didFollowTopic:(NSString *)topicId
 {
     [self.followedTopicIds addObject:topicId];
+    [[NSNotificationCenter defaultCenter] postNotificationName:REFRESH_FOLLOW_TOPIC_TAB object:nil];
 }
 - (void)didUnfollowTopic:(NSString *)topicId
 {
     [self.followedTopicIds removeObject:topicId];
+    [[NSNotificationCenter defaultCenter] postNotificationName:REFRESH_FOLLOW_TOPIC_TAB object:nil];
 }
 
 
