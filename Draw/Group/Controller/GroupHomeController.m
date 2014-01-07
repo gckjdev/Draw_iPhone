@@ -116,6 +116,11 @@
     [self clickTabButton:[self defaultTabButton]];
     [self updateFooterView];
     [self loadBadge];
+
+    [self registerNotificationWithName:REFRESH_FOLLOW_TOPIC_TAB
+                            usingBlock:^(NSNotification *note) {
+        [self setNeedRefreshFollowTopicTab];
+    }];
 }
 
 - (void)setNeedRefreshFollowGroupTab
@@ -124,6 +129,14 @@
     tab.status = TableTabStatusUnload;
     tab.offset = 0;
 }
+
+- (void)setNeedRefreshFollowTopicTab
+{
+    TableTab *tab = [_tabManager tabForID:GroupTabFollow];
+    tab.status = TableTabStatusUnload;
+    tab.offset = 0;
+}
+
 
 - (void)viewDidAppear:(BOOL)animated
 {

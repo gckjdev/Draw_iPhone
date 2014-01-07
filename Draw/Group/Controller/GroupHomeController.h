@@ -10,6 +10,8 @@
 #import "DetailFooterView.h"
 #import "GroupCell.h"
 
+
+
 @interface GroupHomeController : CommonTabController<DetailFooterViewDelegate, GroupCellDelegate>
 @property (retain, nonatomic) IBOutlet UIView *subTabsHolder;
 @property (retain, nonatomic) IBOutlet UIView *tabsHolderView;

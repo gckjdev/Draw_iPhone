@@ -1062,20 +1062,20 @@ typedef enum{
             [titles addObject:TITLE_RM_ADMIN];
         }
     }else{
-        if ([self.groupPermission canArrangeAdmin]) {
-            if ([_group.adminsList containsObject:user]) {
-                [titles addObject:TITLE_RM_ADMIN];
-            }else{
+        if ([self.groupPermission canArrangeAdmin] && [title titleId] != GroupRoleGuest) {
+            if (![_group.adminsList containsObject:user]) {
                 [titles addObject:TITLE_SET_ADMIN];
+            }else if(![_group.creator.userId isEqualToString:user.userId]){
+                [titles addObject:TITLE_RM_ADMIN];
             }
         }
-        if ([self.groupPermission canCustomTitle]) {
+        if ([self.groupPermission canCustomTitle]  && [title titleId] != GroupRoleGuest) {
             [titles addObject:TITLE_CHANGE_TITLE];
         }
         if ([self.groupPermission canExpelUser:user] && ![GroupManager isUser:user adminOrCreatorInGroup:_group]) {
             [titles addObject:TITLE_RM_MEMBER];
         }
-        if ([self.groupPermission canManageGroup]) {
+        if ([self.groupPermission canManageGroup] && [title titleId] != GroupRoleGuest) {
             [titles addObject:TITLE_TRANSFER_BALANCE];
         }
         
@@ -1113,8 +1113,10 @@ typedef enum{
     }
     SimpleResultBlock callback = ^(NSError *error){
         [self hideActivity];
-        POSTMSG(NSLS(@"kGroupUserInvited"));
-        [controller.navigationController popToViewController:self animated:YES];
+        if(!error){
+            [controller.navigationController popToViewController:self animated:YES];
+            POSTMSG(NSLS(@"kGroupUserInvited"));            
+        }
     };
     
     [self showActivityWithText:NSLS(@"kInviting")];
@@ -1141,7 +1143,7 @@ didClickAddButtonAtTitle:(PBGroupTitle *)title
 - (void)groupDetailCell:(GroupDetailCell *)cell didClickAtTitle:(PBGroupTitle *)title
 {
     //check permission
-    if ([title titleId] != GroupRoleGuest && [_groupPermission canCustomTitle]) {
+    if ([title titleId] != GroupRoleGuest && [title titleId] != GroupRoleAdmin && [_groupPermission canCustomTitle]) {
         CommonDialog *dialog = [CommonDialog createInputFieldDialogWith:NSLS(@"kUpdateTitle")];
         dialog.inputTextField.text = title.title;
         [dialog setClickOkBlock:^(id view){

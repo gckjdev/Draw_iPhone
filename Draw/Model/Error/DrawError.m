@@ -45,8 +45,7 @@ extern NSString* GlobalGetTrafficServerURL();
       KEY(ERROR_BALANCE_NOT_ENOUGH) : NSLS(@"kBalanceNotEnough"),
       KEY(ERROR_GROUP_BALANCE_NOT_ENOUGH) : NSLS(@"kGroupBalanceNotEnough"),
       KEY(ERROR_NETWORK) : NSLS(@"kSystemFailure"),
-//      NSLS(@"kSystemFailure");
-//      KEY(ERROR_GROUP_CREATION): NSLS(@"kCan'tCreateGroup"),
+      KEY(ERROR_GROUP_INVITATION) : NSLS(@"kInvitationFailure"),
       };
     NSString *errorMessage = errorMSGDict[KEY(code)];    
     return [errorMessage length] == 0 ? NSLS(@"kUnknowError") : errorMessage;

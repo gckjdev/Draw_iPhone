@@ -2167,7 +2167,7 @@
 "kNotGroupMember" = "用戶不是家族普通成員，不能完成本操作。";
 "kNotGroupAdmin" = "用戶不是家族管理員，不能完成本操作。";
 "kNotInvitee" = "你沒有被邀請，或者邀請已經失效，不能完成本操作。";
-"kUnknowError" = "未知錯誤。";
+"kUnknowError" = "請求失敗，請稍後再試或聯繫我們反饋問題";
 
 "kUpdateTitle" = "修改職位名稱";
 "kTitleIDNotFound" = "職位不存在。";
@@ -2302,6 +2302,7 @@
 "kGroupBalanceNotEnough" = "不好意思，家族的余額不足，不能完成本操作。";
 "kNotTestUserCan'tCreateGroup" = "目前是內測階段，你不是內測用戶暫不能創建家族。";
 "kJoinAGroup" = "加入家族";
+"kInvitationFailure" = "Ta已是其他家族成员，不能收到邀请.";
 
 /*********************小吉画画国际化字符串开始 ************************/
 "kLittleGeeRecommend" = "推薦";

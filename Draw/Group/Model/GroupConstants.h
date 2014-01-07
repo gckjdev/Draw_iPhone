@@ -24,6 +24,9 @@ typedef enum{
 
 #define CUSTOM_TITLE_START 11
 
+//notification
+#define REFRESH_FOLLOW_TOPIC_TAB @"REFRESH_FOLLOW_TOPIC_TAB"
+
 typedef enum {
     
     NONE                    = (0),      //无权限

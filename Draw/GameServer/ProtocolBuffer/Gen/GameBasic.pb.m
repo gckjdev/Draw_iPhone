@@ -4036,6 +4036,7 @@ static PBGameUser* defaultPBGameUserInstance = nil;
 @interface PBSimpleGroup ()
 @property (retain) NSString* groupId;
 @property (retain) NSString* groupName;
+@property (retain) NSString* groupMedal;
 @end
 
 @implementation PBSimpleGroup
@@ -4054,15 +4055,24 @@ static PBGameUser* defaultPBGameUserInstance = nil;
   hasGroupName_ = !!value;
 }
 @synthesize groupName;
+- (BOOL) hasGroupMedal {
+  return !!hasGroupMedal_;
+}
+- (void) setHasGroupMedal:(BOOL) value {
+  hasGroupMedal_ = !!value;
+}
+@synthesize groupMedal;
 - (void) dealloc {
   self.groupId = nil;
   self.groupName = nil;
+  self.groupMedal = nil;
   [super dealloc];
 }
 - (id) init {
   if ((self = [super init])) {
     self.groupId = @"";
     self.groupName = @"";
+    self.groupMedal = @"";
   }
   return self;
 }
@@ -4085,6 +4095,9 @@ static PBSimpleGroup* defaultPBSimpleGroupInstance = nil;
   if (!self.hasGroupName) {
     return NO;
   }
+  if (!self.hasGroupMedal) {
+    return NO;
+  }
   return YES;
 }
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
@@ -4093,6 +4106,9 @@ static PBSimpleGroup* defaultPBSimpleGroupInstance = nil;
   }
   if (self.hasGroupName) {
     [output writeString:2 value:self.groupName];
+  }
+  if (self.hasGroupMedal) {
+    [output writeString:3 value:self.groupMedal];
   }
   [self.unknownFields writeToCodedOutputStream:output];
 }
@@ -4108,6 +4124,9 @@ static PBSimpleGroup* defaultPBSimpleGroupInstance = nil;
   }
   if (self.hasGroupName) {
     size += computeStringSize(2, self.groupName);
+  }
+  if (self.hasGroupMedal) {
+    size += computeStringSize(3, self.groupMedal);
   }
   size += self.unknownFields.serializedSize;
   memoizedSerializedSize = size;
@@ -4190,6 +4209,9 @@ static PBSimpleGroup* defaultPBSimpleGroupInstance = nil;
   if (other.hasGroupName) {
     [self setGroupName:other.groupName];
   }
+  if (other.hasGroupMedal) {
+    [self setGroupMedal:other.groupMedal];
+  }
   [self mergeUnknownFields:other.unknownFields];
   return self;
 }
@@ -4217,6 +4239,10 @@ static PBSimpleGroup* defaultPBSimpleGroupInstance = nil;
       }
       case 18: {
         [self setGroupName:[input readString]];
+        break;
+      }
+      case 26: {
+        [self setGroupMedal:[input readString]];
         break;
       }
     }
@@ -4252,6 +4278,22 @@ static PBSimpleGroup* defaultPBSimpleGroupInstance = nil;
 - (PBSimpleGroup_Builder*) clearGroupName {
   result.hasGroupName = NO;
   result.groupName = @"";
+  return self;
+}
+- (BOOL) hasGroupMedal {
+  return result.hasGroupMedal;
+}
+- (NSString*) groupMedal {
+  return result.groupMedal;
+}
+- (PBSimpleGroup_Builder*) setGroupMedal:(NSString*) value {
+  result.hasGroupMedal = YES;
+  result.groupMedal = value;
+  return self;
+}
+- (PBSimpleGroup_Builder*) clearGroupMedal {
+  result.hasGroupMedal = NO;
+  result.groupMedal = @"";
   return self;
 }
 @end

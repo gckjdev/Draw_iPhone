@@ -648,7 +648,9 @@ typedef enum{
                 msg = NSLS(@"kNetworkError");
                 break;
         }
-        [UIUtils alert:msg];
+
+        POSTMSG(msg);
+//        [UIUtils alert:msg];
     }
 
 }

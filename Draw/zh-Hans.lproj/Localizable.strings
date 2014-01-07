@@ -2162,7 +2162,7 @@
 "kNotGroupMember" = "用户不是家族普通成员，不能完成本操作。";
 "kNotGroupAdmin" = "用户不是家族管理员，不能完成本操作。";
 "kNotInvitee" = "你没有被邀请，或者邀请已经失效，不能完成本操作。";
-"kUnknowError" = "未知错误。";
+"kUnknowError" = "请求失败，请稍后再试或联系我们反馈问题";
 "kUpdateTitle" = "修改职位名称";
 "kTitleIDNotFound" = "职位不存在。";
 
@@ -2210,7 +2210,7 @@
 "kOutOfMaxLength" = "文字长度不能超过%d。";
 
 "kCan'tUpgradeMaxLevel" = "家族已经等级已经是顶级(%d级)了";
-"kUpgradeGroupTitle" = "将花费家族%d金币";
+"kUpgradeGroupTitle" = "升级需增加%d金币/月";
 "kCanInputIntRange" = "输入数字:(%d - %d)";
 "kDegradeGroup" = "对不起，输入不能低于当前等级。";
 "kUpgradingGroup" = "升级家族中...";
@@ -2295,6 +2295,9 @@
 "kNotTestUserCan'tCreateGroup" = "目前是内测阶段，你不是内测用户暂不能创建家族。";
 
 "kJoinAGroup" = "加入家族";
+
+"kInvitationFailure" = "Ta已是其他家族成员，不能收到邀请.";
+
 
 /*********************小吉画画国际化字符串开始 ************************/
 "kLittleGeeRecommend" = "推荐";
