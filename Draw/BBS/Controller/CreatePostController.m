@@ -603,7 +603,8 @@
     if(ISIPAD){        
         POSTMSG(msg);
     }else{
-        [UIUtils alert:msg];
+        POSTMSG(msg);
+//        [UIUtils alert:msg];
     }
 
 }
