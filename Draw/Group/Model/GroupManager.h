@@ -88,6 +88,7 @@
 + (NSInteger)genTitleId;
 
 + (NSArray *)candidateTitlesForChangingTitle:(PBGroupTitle *)title;
++ (BOOL)hasJoinedGroup;
 
 
 - (NSMutableArray *)membersForShow;

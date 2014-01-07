@@ -120,11 +120,16 @@ message PBGameUser {
   optional int32  shakeNumberTimes = 105[default=0];   // 用户可以摇一摇的次数
   optional int32  takeCoins = 106 [default=0];         // 用户可以领取的金币数目
 
-  repeated string joinedGroupList = 110;    //用户加入的家族id列表
+  optional PBSimpleGroup groupInfo = 150; 
 
   optional int32 singRecordLimit = 200[default = 30];  //你唱我猜用户最长录音时间限制。 
   
 
+}
+
+message PBSimpleGroup{
+    required string groupId = 1;
+    required string groupName = 2;
 }
 
 message PBGameSession {

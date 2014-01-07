@@ -70,10 +70,12 @@
     [self.takeNumberButton setTitle:NSLS(@"kTakeNumberButtonTitle") forState:UIControlStateNormal];
     [self.loginButton setTitle:NSLS(@"kLoginButtonTitle") forState:UIControlStateNormal];
 
-    self.takeNumberButton.hidden = YES; // hidden by Benson 2014-1-2
+//    self.takeNumberButton.hidden = YES; // hidden by Benson 2014-1-2
     
     [self.qqLoginButton setTitle:NSLS(@"kQQLoginButtonTitle") forState:UIControlStateNormal];
     [self.sinaLoginButton setTitle:NSLS(@"kSinaLoginButtonTitle") forState:UIControlStateNormal];
+    self.qqLoginButton.hidden = YES;
+    self.sinaLoginButton.hidden = YES;
     
     
     [self.view addSubview:self.getNumberMainView];

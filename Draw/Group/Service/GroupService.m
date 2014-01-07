@@ -121,6 +121,19 @@ static GroupService *_staticGroupService = nil;
 }
 
 
+- (void)getSimpleGroup:(NSString *)groupId
+              callback:(GroupResultBlock)callback
+{
+    NSDictionary *paras = @{PARA_GROUPID:groupId};
+    
+    [self loadPBData:METHOD_GET_SIMPLE_GROUP
+          parameters:paras
+            callback:^(DataQueryResponse *response, NSError *error )
+     {
+         EXECUTE_BLOCK(callback, error ? nil : response.group, error);
+     }];
+}
+
 //checked
 - (void)joinGroup:(NSString *)groupId
           message:(NSString *)message

@@ -706,6 +706,7 @@
 
 #define METHOD_CREATE_GROUP @"createGroup"
 #define METHOD_GET_GROUP @"getGroup"
+#define METHOD_GET_SIMPLE_GROUP @"getSimpleGroup"
 #define METHOD_JOIN_GROUP @"joinGroup"
 
 #define METHOD_HANDLE_JOIN_REQUEST @"handelJoinGroupRequest"

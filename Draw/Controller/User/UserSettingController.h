@@ -47,13 +47,14 @@
     NSInteger rowOfCustomDice;
     NSInteger rowOfLogout;
     NSInteger rowOfAccount;
+    NSInteger rowOfGroup;
     
     NSInteger rowsInSectionUser;
     NSInteger rowsInSectionGuessWord;
     NSInteger rowsInSectionSound;
     NSInteger rowsInSectionAccount;
     NSInteger rowsInSectionLogout;
-    
+
     
     ChangeAvatar *imageUploader;
     

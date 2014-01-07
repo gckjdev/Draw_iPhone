@@ -182,6 +182,11 @@
     return [self.messageStat isGroup];
 }
 
+- (BOOL)hasDeleteOption:(PPMessage*)message
+{
+    return [self.messageStat isGroup] && (message.status != MessageStatusSending && message.status != MessageStatusFail);
+}
+
 - (ChangeAvatar*)backgroundPicker
 {
     if (imageUploader == nil) {
@@ -712,7 +717,7 @@
     _asIndexResend = -1;
     NSInteger start = 0;
     
-    if ([self.messageStat isGroup] == NO){
+    if ([self hasDeleteOption:message] == NO){
         _asIndexDelete = start++;
     }
     
@@ -893,7 +898,7 @@
     }
     
     NSString *delete = NSLS(@"kDelete");
-    if ([self.messageStat isGroup]){
+    if ([self hasDeleteOption:message]){
         delete = nil;
     }    
     

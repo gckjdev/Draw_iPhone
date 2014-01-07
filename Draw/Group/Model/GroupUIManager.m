@@ -28,8 +28,9 @@
     return [ShareImageManager
             boundImageWithType:BoundImageTypeVertical
             border:BORDER
-            cornerRadius:CORNER_RADIUS
-            color:[self colorForStyle:style]];
+            cornerRadius:CORNER_RADIUS 
+            boundColor:[self colorForStyle:style]
+            fillColor:[UIColor whiteColor]];
 }
 + (UIImage *)groupDetailBoundHeaderImageForStyle:(ColorStyle)style
 {
@@ -37,7 +38,8 @@
             boundImageWithType:BoundImageTypeTop
             border:BORDER
             cornerRadius:CORNER_RADIUS
-            color:[self colorForStyle:style]];
+            boundColor:[self colorForStyle:style]
+            fillColor:[UIColor whiteColor]];
 }
 + (UIImage *)groupDetailBoundFooterImageForStyle:(ColorStyle)style
 {
@@ -45,7 +47,8 @@
             boundImageWithType:BoundImageTypeBottom
             border:BORDER
             cornerRadius:CORNER_RADIUS
-            color:[self colorForStyle:style]];
+            boundColor:[self colorForStyle:style]
+            fillColor:[UIColor whiteColor]];
 }
 
 + (UIImage *)followedGroupImage

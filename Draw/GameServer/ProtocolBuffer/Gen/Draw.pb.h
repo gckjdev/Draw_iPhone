@@ -96,6 +96,8 @@
 @class PBSNSUserCredential;
 @class PBSNSUserCredential_Builder;
 @class PBSNSUser_Builder;
+@class PBSimpleGroup;
+@class PBSimpleGroup_Builder;
 @class PBSingOpus;
 @class PBSingOpus_Builder;
 @class PBSize;

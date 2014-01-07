@@ -1783,16 +1783,6 @@ qqAccessTokenSecret:(NSString*)accessTokenSecret
         
 }
 
-- (BOOL)hasJoinedAGroup
-{
-    return [_pbUser.joinedGroupListList count] > 0;
-}
-
-- (NSArray *)joinedGroupList
-{
-    return _pbUser.joinedGroupListList;
-}
-
 #define TRY_SET_HOME_BG @"TRY_SET_HOME_BG"
 
 - (BOOL)hasTrySetHomeBg

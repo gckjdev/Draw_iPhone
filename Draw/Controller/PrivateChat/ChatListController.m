@@ -23,6 +23,7 @@
 #import "UserManager.h"
 #import "CommonUserInfoView.h"
 #import "GameApp.h"
+#import "GroupPermission.h"
 
 @interface ChatListController ()
 
@@ -169,6 +170,13 @@
 
 - (void)openChatDetail:(MessageStat *)messageStat
 {
+    if ([messageStat isGroup] &&
+        [[GroupPermissionManager myManagerWithGroupId:messageStat.friendId] canGroupChat] == NO){
+        
+        POSTMSG(NSLS(@"kCanotGroupChat"));
+        return;
+    }
+    
     ChatDetailController *controller = [[ChatDetailController alloc] initWithMessageStat:messageStat];
     controller.delegate = self;
     [self.navigationController pushViewController:controller animated:YES];

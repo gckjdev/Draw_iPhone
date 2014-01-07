@@ -38,6 +38,9 @@
 #import "HomeController.h"
 #import "AccountManageController.h"
 #import "GameSNSService.h"
+#import "GroupManager.h"
+#import "GroupHomeController.h"
+#import "GroupTopicController.h"
 
 enum{
     SECTION_USER = 0,
@@ -122,20 +125,22 @@ enum {
 - (void)updateRowIndexs
 {
     //section user
-    rowOfPassword = 0;
-    rowOfGender = 1;
-    rowOfNickName = 2;
-    rowOfLocation = 3;
-    rowOfBirthday = 4;
-    rowOfBloodGroup = 5;
-    rowOfZodiac = 6;
-    rowOfSignature = 7;
-    rowOfPrivacy = 8;
-    rowOfCustomHomeBg = 9,
-    rowOfCustomBg = 10;
-    rowOfCustomBBSBg = 11,
+    NSInteger index = 0;
+    rowOfPassword = index++;
+    rowOfGender = index++;
+    rowOfNickName = index++;
+    rowOfGroup = index ++;
+    rowOfLocation = index++;
+    rowOfBirthday = index++;
+    rowOfBloodGroup = index++;
+    rowOfZodiac = index++;
+    rowOfSignature = index++;
+    rowOfPrivacy = index++;
+    rowOfCustomHomeBg = index++;
+    rowOfCustomBg = index++;
+    rowOfCustomBBSBg = index++;
 //    rowOfCustomChatBg = 11,
-    rowsInSectionUser = 12;
+    rowsInSectionUser = index++;
     
     //section guessword
     if (isDrawApp()) {
@@ -539,7 +544,16 @@ SET_CELL_BG_IN_CONTROLLER;
                 [cell.customDetailLabel setText:NSLS(@"kFemale")];
             }
             [cell.customDetailLabel setHidden:NO];
-        }else if(row == rowOfNickName)
+        }else if(row == rowOfGroup){
+            [cell.customTextLabel setText:NSLS(@"kGroup")];
+            GroupManager *grpManager = [GroupManager defaultManager];
+            if([GroupManager hasJoinedGroup]){
+                [cell.customDetailLabel setText:[grpManager userCurrentGroupName]];
+            }else{
+                [cell.customDetailLabel setText:NSLS(@"kJoinAGroup")];
+            }
+        }
+        else if(row == rowOfNickName)
         {
             [cell.customTextLabel setText:NSLS(@"kNickname")];           
             [cell.customDetailLabel setText:nicknameLabel.text];            
@@ -933,7 +947,21 @@ SET_CELL_BG_IN_CONTROLLER;
             actionSheet.tag = GENDER_TAG;
             [actionSheet release];
             
-        }else if(row == rowOfNickName){
+        }else if(row == rowOfGroup){
+            // check use has join a group?
+            NSString *groupId = [[GroupManager defaultManager] userCurrentGroupId];
+            if([groupId length] != 0){
+            // enter group
+                [GroupTopicController enterWithGroupId:groupId fromController:self];
+            }else{
+            // enter group list
+                GroupHomeController *grpHome = [[GroupHomeController alloc] init];
+                [self.navigationController pushViewController:grpHome animated:YES];
+                [grpHome release];
+            }
+        }
+        
+        else if(row == rowOfNickName){
             CommonDialog *dialog = [CommonDialog createInputFieldDialogWith:NSLS(@"kNickname") delegate:self];
             dialog.tag = DIALOG_TAG_NICKNAME;
             dialog.inputTextField.text = nicknameLabel.text;
