@@ -19,8 +19,10 @@
 #import "GroupManager.h"
 #import "ContestAwardEditController.h"
 #import "IQKeyBoardManager.h"
+#import "UIButton+WebCache.h"
 
 @interface CreateContestController ()<CKCalendarDelegate, UITextFieldDelegate>
+
 @property (retain, nonatomic) IBOutlet UILabel *contestNameLabel;
 @property (retain, nonatomic) IBOutlet UITextField *contestNameInputField;
 @property (retain, nonatomic) IBOutlet UILabel *startTimeLabel;
@@ -42,6 +44,7 @@
 @property (retain, nonatomic) ChangeAvatar *picker;
 @property (retain, nonatomic) UIImage *image;
 @property (retain, nonatomic) ContestAwardEditController *awardEditController;
+@property (assign, nonatomic) BOOL isNewContest;
 @end
 
 @implementation CreateContestController
@@ -62,10 +65,30 @@
     if (self = [super init]) {
         NSString *groupId = [[GroupManager defaultManager] userCurrentGroupId];
         self.contest = [Contest createGroupContestWithGroupId:groupId];
+
         [self.contest setAwardRules:@[@(5000), @(2000), @(1000), @(300), @(300),
                                     @(300),  @(300),  @(300),  @(300), @(300),
                                     @(300),  @(300),  @(300),  @(300), @(300),
                                     @(300),  @(300),  @(300),  @(300), @(300)]];
+        
+        self.isNewContest = YES;
+    }
+    
+    return self;
+}
+
++ (void)enterFromController:(PPViewController *)controller withContest:(Contest *)contest{
+    
+    CreateContestController *vc = [[[CreateContestController alloc] initWithContest:contest] autorelease];
+    [controller presentViewController:vc animated:YES completion:NULL];
+}
+
+
+- (id)initWithContest:(Contest *)contest{
+    
+    if (self = [super init]) {
+        self.contest = contest;
+        self.isNewContest = NO;
     }
     
     return self;
@@ -184,6 +207,13 @@
     [self.view addSubview:self.calendarDismissButton];
     
     self.calendarDismissButton.hidden = YES;
+    
+    self.contestNameInputField.text = [self.contest title];
+    self.contestDescTextView.text = [self.contest desc];
+    if ([self.contest contestUrl] != nil) {
+        NSURL *url = [NSURL URLWithString:[self.contest contestUrl]];
+        [self.contestImageButton setImageWithURL:url forState:UIControlStateNormal];
+    }
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField{
@@ -207,7 +237,7 @@
         return;
     }
     
-    if (self.image == nil) {
+    if (self.isNewContest && self.image == nil) {
         POSTMSG(NSLS(@"kPleaseSelectContestImage"));
         return;
     }
@@ -220,21 +250,38 @@
     CommonTitleView *titleView = [CommonTitleView titleView:self.view];
     [titleView hideRightButton];
     
-    [[ContestService defaultService] createContest:self.contest
-                                             image:self.image
-                                         completed:^(int resultCode, Contest *contest) {
+    if (self.isNewContest) {
+        [[ContestService defaultService] createContest:self.contest
+                                                 image:self.image
+                                             completed:^(int resultCode, Contest *contest) {
+                                                 
+            [self hideActivity];
+            [titleView showRightButton];
 
-        [self hideActivity];
-        [titleView showRightButton];
-                                             
-        if (resultCode != 0) {
-            POSTMSG2(NSLS(@"kCreatingContestFail"), 2);
-        }else{
-            POSTMSG2(NSLS(@"kCreateContestSuccess"), 2);
-            [self dismissViewControllerAnimated:YES completion:NULL];
-            [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_CREATE_CONTEST_SUCCESS object:nil];
-        }
-    }];
+            if (resultCode != 0) {
+                 POSTMSG2(NSLS(@"kCreatingContestFail"), 2);
+            }else{
+                 POSTMSG2(NSLS(@"kCreateContestSuccess"), 2);
+                 [self dismissViewControllerAnimated:YES completion:NULL];
+                 [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_CREATE_CONTEST_SUCCESS object:nil];
+            }
+        }];
+    }else{
+        
+        [[ContestService defaultService] createContest:self.contest image:self.image completed:^(int resultCode, Contest *contest) {
+            
+            [self hideActivity];
+            [titleView showRightButton];
+            
+            if (resultCode != 0) {
+                POSTMSG2(NSLS(@"kCreatingContestFail"), 2);
+            }else{
+                POSTMSG2(NSLS(@"kCreateContestSuccess"), 2);
+                [self dismissViewControllerAnimated:YES completion:NULL];
+                [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_UPDATE_CONTEST_SUCCESS object:nil];
+            }
+        }];
+    }
 }
 
 #define CALENDAR_TAG_START_TIME 100

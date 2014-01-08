@@ -368,4 +368,32 @@ static ContestService *_staticContestService;
     });
 }
 
+- (void)updateContest:(Contest *)contest
+                image:(UIImage *)image
+            completed:(CreateContestBlock)completed{
+    
+    NSData *data = [contest data];
+    if ([data length] <= 0) {
+        PPDebug(@"<createContest> data length can not less than zero");
+        return;
+    }
+    
+    NSDictionary *imageDic = nil;
+    if (image != nil) {
+        imageDic = @{PARA_IMAGE:[image data]};
+    }
+    
+    dispatch_async(workingQueue, ^{
+        
+        GameNetworkOutput* output = [PPGameNetworkRequest trafficApiServerUploadAndResponsePB:METHOD_UPDATE_CONTEST parameters:nil imageDataDict:@{PARA_IMAGE:[image data]} postDataDict:imageDic progressDelegate:nil];
+        
+        Contest *contest = [[[Contest alloc] initWithPBContest:output.pbResponse.contest] autorelease];
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            
+            EXECUTE_BLOCK(completed, output.resultCode, contest);
+        });
+    });
+}
+
 @end

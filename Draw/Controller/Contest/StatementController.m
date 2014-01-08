@@ -12,6 +12,7 @@
 #import "OfflineDrawViewController.h"
 #import "ContestService.h"
 #import "SingController.h"
+#import "StatementCell.h"
 
 @implementation StatementController
 @synthesize contentView = _contentView;
@@ -129,33 +130,46 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     
-    return 5;
+    return 4;
 }
 
 - (float)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    return 50;
+    float height = 50;
+    if (indexPath.row == 0){
+        NSString *content = [[[self.contest contestingTimeDesc] stringByAppendingString:@"\n"] stringByAppendingString:[self.contest votingTimeDesc]];
+        height = [StatementCell getCellHeightWithContent:content];
+    }else if (indexPath.row == 1){
+        height = [StatementCell getCellHeightWithContent:[self.contest title]];
+    }else if (indexPath.row == 2){
+        height = [StatementCell getCellHeightWithContent:[self.contest desc]];
+    }else if (indexPath.row == 3){
+        height = [StatementCell getCellHeightWithContent:[self.contest awardRulesDesc]];
+    }
+    
+    return height;
 }
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"StatementCell"];
+    StatementCell *cell = [tableView dequeueReusableCellWithIdentifier:[StatementCell getCellIdentifier]];
     if (cell == nil) {
-        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"StatementCell"] autorelease];
+        cell = [StatementCell createCell:self];
     }
 
     if (indexPath.row == 0){
-        cell.textLabel.text = [self.contest contestingTimeDesc];
+        NSString *content = [[[self.contest contestingTimeDesc] stringByAppendingString:@"\n"] stringByAppendingString:[self.contest votingTimeDesc]];
+        [cell setCellTitle:NSLS(@"kTime") content:content];
     }else if (indexPath.row == 1){
-        cell.textLabel.text = [self.contest votingTimeDesc];
+        [cell setCellTitle:NSLS(@"kSubject") content:[self.contest title]];
     }else if (indexPath.row == 2){
-        cell.textLabel.text = [self.contest title];
+        [cell setCellTitle:NSLS(@"kDesc") content:[self.contest desc]];
     }else if (indexPath.row == 3){
-        cell.textLabel.text = [self.contest desc];
-    }else{
-        cell.textLabel.text = [self.contest awardRulesDesc];
+        [cell setCellTitle:NSLS(@"kAward") content:[self.contest awardRulesDesc]];
     }
+    
+    cell.indexPath = indexPath;
 
     return cell;
 }

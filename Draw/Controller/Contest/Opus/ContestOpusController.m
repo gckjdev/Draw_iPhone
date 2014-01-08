@@ -20,6 +20,8 @@
 #import "CellManager.h"
 #import "OfflineDrawViewController.h"
 #import "StatementController.h"
+#import "GroupManager.h"
+#import "CreateContestController.h"
 
 typedef enum{
     OpusTypeMy = 1,
@@ -77,11 +79,23 @@ typedef enum{
     
     if ([self.contest isGroupContest]
         && [self.contest isRunning]
+        && [self.contest isContesting]
         && [self.contest canSubmit]
         && [self.contest canUserJoined:[[UserManager defaultManager] userId]]
         && ![self.contest commitCountEnough]) {
         [self.titleView setRightButtonTitle:NSLS(@"kJoinContest")];
         [self.titleView setRightButtonSelector:@selector(clickJoinConest)];
+    }
+    
+
+    if ([self.contest isGroupContest]
+        && [self.contest isRunning]
+        && [self.contest isNotStart]) {
+        GroupPermissionManager *permission =[GroupPermissionManager myManagerWithGroupId:[self.contest pbGroup].groupId];
+        if ([permission canHoldContest]) {
+            [self.titleView setRightButtonTitle:NSLS(@"kManage")];
+            [self.titleView setRightButtonSelector:@selector(clickEditContest)];
+        }
     }
     
     SET_COMMON_TAB_TABLE_VIEW_Y(self.dataTableView);
@@ -128,6 +142,11 @@ typedef enum{
             [sc release];
         }
     }];
+}
+
+- (void)clickEditContest{
+    
+    [CreateContestController enterFromController:self withContest:self.contest];
 }
 
 - (void)alertCopyrightStatement:(void (^)(void))block{

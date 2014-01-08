@@ -1669,7 +1669,7 @@
 "kCompleteGuessContest" = "恭喜你完成比赛，比赛结束后揭晓你的比赛排名";
 
 "kGoOn" = "继续";
-"kAward" = "闯关成功";
+"kAward" = "奖励";
 "kGuessHappyModeAwardTips" = "\n猜中：%d 幅作品\n\n奖励：%d 金币\n\n";
 "kGuessGenuisModeAwardTips" = "\n猜中：%d 幅作品\n\n奖励：%d 金币\n\n级别：%@\n\n可选择分享到微博或微信朋友圈得瑟一下，或者继续闯关\n\n";
 "kShareGuessTitle" = "据某知名挨踢企业的大数据云计算系统显示，本人在24小时内不间断一次性连续猜对了%d幅画，获赠【%@】称号，好玩好玩！ ";

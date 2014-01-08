@@ -88,7 +88,9 @@ typedef void (^ GetContestListBlock) (int resultCode, ContestListType type, NSAr
                 image:(UIImage *)image
             completed:(CreateContestBlock)completed;
 
-
+- (void)updateContest:(Contest *)contest
+                image:(UIImage *)image
+            completed:(CreateContestBlock)completed;
 
 
 @end
