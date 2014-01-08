@@ -87,6 +87,7 @@
     self.contestNameLabel.text = contest.pbContest.title;
     self.leftTimeLabel.text = [contest leftTime];
     [self.contestImageView setImageWithURL:[NSURL URLWithString:[contest contestUrl]]];
+    self.joinedImageView.hidden = ![contest joined];
 }
 
 - (void)didClickOnContestImageView{

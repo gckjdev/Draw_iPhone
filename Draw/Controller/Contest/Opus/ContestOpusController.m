@@ -75,7 +75,11 @@ typedef enum{
     [self.titleView setTarget:self];
     [self.titleView setBackButtonSelector:@selector(clickBackButton:)];
     
-    if ([self.contest isGroupContest]) {
+    if ([self.contest isGroupContest]
+        && [self.contest isRunning]
+        && [self.contest canSubmit]
+        && [self.contest canUserJoined:[[UserManager defaultManager] userId]]
+        && ![self.contest commitCountEnough]) {
         [self.titleView setRightButtonTitle:NSLS(@"kJoinContest")];
         [self.titleView setRightButtonSelector:@selector(clickJoinConest)];
     }

@@ -151,6 +151,12 @@ typedef enum{
         self.officialButton.hidden = NO;
         self.groupButton.hidden = NO;
     }
+    
+    if (_groupContestOnly) {
+        self.view.backgroundColor = COLOR_WHITE;
+    }else{
+        self.view.backgroundColor = COLOR_GRAY;
+    }
 }
 
 - (void)viewDidUnload
@@ -353,11 +359,11 @@ typedef enum{
 - (void)clickCreateButton:(id)sender{
     
     [CreateContestController enterFromController:self];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(craeteContestSuccess) name:NOTIFICATION_CREATE_CONTEST_SUCCESS object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(createContestSuccess) name:NOTIFICATION_CREATE_CONTEST_SUCCESS object:nil];
 }
 
 
-- (void)craeteContestSuccess{
+- (void)createContestSuccess{
     
     [[NSNotificationCenter defaultCenter] removeObserver:self name:NOTIFICATION_CREATE_CONTEST_SUCCESS object:nil];
     [self clickTab:self.currentTab.tabID];

@@ -231,7 +231,7 @@ static ContestService *_staticContestService;
         dispatch_async(dispatch_get_main_queue(), ^{
             
             NSArray *contestList = nil;
-            if (output.resultCode == 0 && output.pbResponse.contestListList){
+            if (output.resultCode == 0){
                 contestList = [[ContestManager defaultManager] parseContestList:output.pbResponse.contestListList];
             }
             

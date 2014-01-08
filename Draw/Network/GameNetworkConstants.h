@@ -684,7 +684,7 @@
 
 //group
 
-#define PARA_GROUPID @"gid"
+#define PARA_GROUPID @"groupId"
 #define PARA_TITLE_ID @"titleId"
 #define PARA_SOURCE_TITLEID @"soruceTitleId"
 #define PARA_FEE @"fee"
