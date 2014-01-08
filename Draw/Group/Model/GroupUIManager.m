@@ -67,8 +67,9 @@
 {
     switch(type){
         case GroupCreateGroup:
-        case GroupCreateTopic:
             return IMAGE_NAME(@"group_footer_create@2x.png");
+        case GroupCreateTopic:
+            return IMAGE_NAME(@"group_footer_edit@2x.png");
         case GroupSearchGroup:
             return IMAGE_NAME(@"group_footer_search@2x.png");
         case GroupSearchTopic:
@@ -89,7 +90,9 @@
     NSMutableArray *images = [NSMutableArray arrayWithCapacity:types.count];
     for (NSNumber *type in types) {
         UIImage *image = [self imageForFooterActionType:type.integerValue];
-        [images addObject:image];
+        if(image){
+            [images addObject:image];
+        }
     }
     return images;
 }

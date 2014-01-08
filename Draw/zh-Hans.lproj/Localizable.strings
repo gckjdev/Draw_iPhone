@@ -2290,13 +2290,13 @@
 "kRejecting" = "发送拒绝请求中...";
 "kAccepting" = "发送同意请求中...";
 
-"kBalanceNotEnough" = "不好意思，您的余额不足，不能完成本操作。";
+"kBalanceNotEnough" = "不好意思，您的余额不足，不能完成本操作";
 "kGroupBalanceNotEnough" = "不好意思，家族的余额不足，不能完成本操作";
-"kNotTestUserCan'tCreateGroup" = "目前是内测阶段，你不是内测用户暂不能创建家族。";
+"kNotTestUserCan'tCreateGroup" = "目前是内测阶段，只有内测用户才可以创建家族";
 
 "kJoinAGroup" = "加入家族";
 
-"kInvitationFailure" = "Ta已是其他家族成员，不能收到邀请.";
+"kInvitationFailure" = "该用户已加入了其他家族成员，无法邀请";
 
 
 /*********************小吉画画国际化字符串开始 ************************/
