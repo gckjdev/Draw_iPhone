@@ -242,7 +242,9 @@
 
 - (IBAction)clickStartTimeButton:(id)sender {
     
-    [self.calendar setMinDate:nextDate([NSDate date])];
+//    [self.calendar setMinDate:nextDate([NSDate date])];
+    [self.calendar setMinDate:[NSDate date]];
+
 //    [self.calendar setMaxDate:self.contest.endDate];
     self.calendar.tag = CALENDAR_TAG_START_TIME;
     [self.calendar setSelectedDate:self.contest.startDate];
