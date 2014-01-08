@@ -2182,7 +2182,7 @@
 "kInputInvalid" = "Input invalid!";
 
 
-"kCanInputIntRange" = "Input:(%d - %d)";
+"kCanInputIntRange" = "Upgrade to:(%d - %d)";
 "kUpgradeGroupTitle" = "Spend %d coins of goups.";
 "kDegradeGroup" = "Can't degrade group.";
 "kUpgradingGroup" = "Upgrading Group...";
