@@ -2211,7 +2211,7 @@
 
 "kCan'tUpgradeMaxLevel" = "家族已经等级已经是顶级(%d级)了";
 "kUpgradeGroupTitle" = "升级需增加%d金币/月";
-"kCanInputIntRange" = "输入数字:(%d - %d)";
+"kCanInputIntRange" = "可升级到(%d-%d),每级可增加10成员";
 "kDegradeGroup" = "对不起，输入不能低于当前等级。";
 "kUpgradingGroup" = "升级家族中...";
 "kQuitGroupTitle" = "退出家族";
