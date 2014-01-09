@@ -154,9 +154,16 @@ typedef enum{
     
     if (_groupContestOnly) {
         self.view.backgroundColor = COLOR_WHITE;
+
     }else{
         self.view.backgroundColor = COLOR_GRAY;
+        
+        int delta = (ISIPAD ? 30 *2 : 30);
+        [self.dataTableView updateOriginY:(CGRectGetMinY(self.dataTableView.frame) + delta)];
+        [self.dataTableView updateHeight:(CGRectGetHeight(self.dataTableView.frame) - delta)];
     }
+    
+    [[ContestService defaultService] syncOngoingContestList];
 }
 
 - (void)viewDidUnload
@@ -352,10 +359,6 @@ typedef enum{
     [super dealloc];
 }
 
-- (IBAction)clickRefreshButton:(id)sender {
-//    [self getContestList];
-}
-
 - (void)clickCreateButton:(id)sender{
     
     [CreateContestController enterFromController:self];
@@ -367,6 +370,7 @@ typedef enum{
     
     [[NSNotificationCenter defaultCenter] removeObserver:self name:NOTIFICATION_CREATE_CONTEST_SUCCESS object:nil];
     [self clickTab:self.currentTab.tabID];
+    [self clickRefreshButton:nil];
 }
 
 - (void)enterDrawControllerWithContest:(Contest *)contest

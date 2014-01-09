@@ -80,9 +80,11 @@ typedef enum{
     if ([self.contest isGroupContest]
         && [self.contest isRunning]
         && [self.contest isContesting]
-        && [self.contest canSubmit]
-        && [self.contest canUserJoined:[[UserManager defaultManager] userId]]
-        && ![self.contest commitCountEnough]) {
+//        && [self.contest canSubmit]
+//        && [self.contest canUserJoined:[[UserManager defaultManager] userId]]
+//        && ![self.contest commitCountEnough]
+        )
+    {
         [self.titleView setRightButtonTitle:NSLS(@"kJoinContest")];
         [self.titleView setRightButtonSelector:@selector(clickJoinConest)];
     }
@@ -105,29 +107,25 @@ typedef enum{
 
 - (void)clickJoinConest{
     
-//    CHECK_AND_LOGIN(self.view);
-//    if (![contest isRunning]) {
-//        [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kContestNotRunning") delayTime:1.5 isHappy:NO];
-//        return;
-//    }
-//    
-//    if (![contest canSubmit]) {
-//        [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kContestSubmitEnd") delayTime:1.5 isHappy:NO];
-//        return;
-//    }
-//    
-//    if (![contest canUserJoined:[[UserManager defaultManager] userId]]) {
-//        [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kContestNotForUser") delayTime:1.5 isHappy:NO];
-//        return;
-//    }
-//    
-//    if([contest commitCountEnough]){
-//        NSString *title = [NSString stringWithFormat:NSLS(@"kContestCommitCountEnough"),contest.canSubmitCount];
-//        [[CommonMessageCenter defaultCenter] postMessageWithText:title
-//                                                       delayTime:1.5
-//                                                         isHappy:NO];
-//        return;
-//    }
+    CHECK_AND_LOGIN(self.view);
+    
+    if (![self.contest canSubmit]) {
+        [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kContestSubmitEnd") delayTime:1.5 isHappy:NO];
+        return;
+    }
+    
+    if (![self.contest canUserJoined:[[UserManager defaultManager] userId]]) {
+        [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kContestNotForUser") delayTime:1.5 isHappy:NO];
+        return;
+    }
+    
+    if([self.contest commitCountEnough]){
+        NSString *title = [NSString stringWithFormat:NSLS(@"kContestCommitCountEnough"),self.contest.canSubmitCount];
+        [[CommonMessageCenter defaultCenter] postMessageWithText:title
+                                                       delayTime:1.5
+                                                         isHappy:NO];
+        return;
+    }
     
     [self alertCopyrightStatement:^{
         if ([self.contest joined]) {
