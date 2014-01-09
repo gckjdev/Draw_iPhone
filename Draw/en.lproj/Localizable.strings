@@ -2553,3 +2553,5 @@
 "kJoinContest" = "Join";
 "kUpdateContestFail" = "Update contest fail";
 "kUpdateContestSuccess" = "Update contest success";
+"kContestingTimeIs" = "Contesting: ";
+"kVotingTimeIs" = "Voting: ";

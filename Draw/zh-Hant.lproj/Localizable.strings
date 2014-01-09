@@ -2579,3 +2579,5 @@
 "kJoinContest" = "參賽";
 "kUpdateContestFail" = "更新比賽失敗";
 "kUpdateContestSuccess" = "更新比賽成功";
+"kContestingTimeIs" = "比賽時間: ";
+"kVotingTimeIs" = "投票時間: ";

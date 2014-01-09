@@ -20,6 +20,7 @@
 #import "ContestAwardEditController.h"
 #import "IQKeyBoardManager.h"
 #import "UIButton+WebCache.h"
+#import "CropAndFilterViewController.h"
 
 @interface CreateContestController ()<CKCalendarDelegate, UITextFieldDelegate>
 
@@ -302,6 +303,9 @@
     [self.calendar setSelectedDate:self.contest.startDate];
     [self.view addSubview:self.calendar];
     self.calendarDismissButton.hidden = NO;
+    
+    [self.contestNameInputField resignFirstResponder];
+    [self.contestDescTextView resignFirstResponder];
 }
 
 - (IBAction)clickEndTimeButton:(id)sender {
@@ -313,6 +317,9 @@
     [self.calendar setSelectedDate:self.contest.endDate];
     [self.view addSubview:self.calendar];
     self.calendarDismissButton.hidden = NO;
+    
+    [self.contestNameInputField resignFirstResponder];
+    [self.contestDescTextView resignFirstResponder];
 }
 
 - (void)calendar:(CKCalendarView *)calendar didSelectDate:(NSDate *)date{
@@ -363,6 +370,7 @@
 
 - (IBAction)clickContestImageButton:(id)sender {
     
+    
     if (self.picker == nil) {
         self.picker = [[[ChangeAvatar alloc] init] autorelease];
     }
@@ -373,12 +381,41 @@
                        otherTitles:nil
                            handler:NULL
                 selectImageHanlder:^(UIImage *image) {
-                    bself.image = image;
-                    [bself.contestImageButton setImage:image forState:UIControlStateNormal];
+                    
+                    [bself showImageEditor:image];
+//                    bself.image = image;
+//                    [bself.contestImageButton setImage:image forState:UIControlStateNormal];
                     }
                       canTakePhoto:NO
                  userOriginalImage:YES];
     
+}
+
+- (void)showImageEditor:(UIImage *)image{
+    
+    CropAndFilterViewController *vc = [[CropAndFilterViewController alloc] init];
+    [vc setCropAspectRatio:0.377];
+    vc.delegate = self;
+    vc.image = image;
+    
+    [self presentViewController:vc animated:YES completion:NULL];
+    [vc release];
+}
+
+- (void)cropViewController:(CropAndFilterViewController *)controller didFinishCroppingImage:(UIImage *)image{
+    
+    [controller dismissViewControllerAnimated:YES completion:NULL];
+    
+    if (image != nil) {
+        PPDebug(@"image selected, image size = %@", NSStringFromCGSize(image.size));
+        
+        self.image = image;
+        [self.contestImageButton setImage:image forState:UIControlStateNormal];
+    }
+}
+
+- (void)cropViewControllerDidCancel:(CropAndFilterViewController *)controller{
+    [controller dismissViewControllerAnimated:YES completion:NULL];
 }
 
 - (IBAction)clickContestAwardButton:(id)sender {

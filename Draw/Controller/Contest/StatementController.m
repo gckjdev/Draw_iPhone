@@ -159,7 +159,10 @@
     }
 
     if (indexPath.row == 0){
-        NSString *content = [[[self.contest contestingTimeDesc] stringByAppendingString:@"\n"] stringByAppendingString:[self.contest votingTimeDesc]];
+        NSString *contestingTimeDesc = [NSString stringWithFormat:NSLS(@"kContestingTimeIs"), [self.contest contestingTimeDesc]];
+        NSString *votingTimeDesc = [NSString stringWithFormat:NSLS(@"kVotingTimeIs"), [self.contest votingTimeDesc]];
+                                 
+        NSString *content = [[contestingTimeDesc stringByAppendingString:@"\n"] stringByAppendingString:votingTimeDesc];
         [cell setCellTitle:NSLS(@"kTime") content:content];
     }else if (indexPath.row == 1){
         [cell setCellTitle:NSLS(@"kSubject") content:[self.contest title]];

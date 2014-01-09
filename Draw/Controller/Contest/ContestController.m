@@ -157,6 +157,8 @@ typedef enum{
     }else{
         self.view.backgroundColor = COLOR_GRAY;
     }
+    
+    [[ContestService defaultService] syncOngoingContestList];
 }
 
 - (void)viewDidUnload
@@ -352,10 +354,6 @@ typedef enum{
     [super dealloc];
 }
 
-- (IBAction)clickRefreshButton:(id)sender {
-//    [self getContestList];
-}
-
 - (void)clickCreateButton:(id)sender{
     
     [CreateContestController enterFromController:self];
@@ -367,6 +365,7 @@ typedef enum{
     
     [[NSNotificationCenter defaultCenter] removeObserver:self name:NOTIFICATION_CREATE_CONTEST_SUCCESS object:nil];
     [self clickTab:self.currentTab.tabID];
+    [self clickRefreshButton:nil];
 }
 
 - (void)enterDrawControllerWithContest:(Contest *)contest
