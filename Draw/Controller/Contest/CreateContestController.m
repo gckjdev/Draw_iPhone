@@ -67,10 +67,10 @@
         NSString *groupId = [[GroupManager defaultManager] userCurrentGroupId];
         self.contest = [Contest createGroupContestWithGroupId:groupId];
 
-        [self.contest setAwardRules:@[@(5000), @(2000), @(1000), @(300), @(300),
-                                    @(300),  @(300),  @(300),  @(300), @(300),
-                                    @(300),  @(300),  @(300),  @(300), @(300),
-                                    @(300),  @(300),  @(300),  @(300), @(300)]];
+        [self.contest setAwardRules:@[@(2000), @(1000), @(500), @(100), @(100),
+                                    @(100),  @(100),  @(100),  @(100), @(100),
+                                    @(100),  @(100),  @(100),  @(100), @(100),
+                                    @(100),  @(100),  @(100),  @(100), @(100)]];
         
         self.isNewContest = YES;
     }
@@ -248,6 +248,22 @@
         return;
     }
     
+    int totalAward = [self.contest totalAward];
+    int groupBalance = [[[GroupManager defaultManager] sharedGroup] balance];
+    if (groupBalance < totalAward) {
+        
+        NSString *msg = [NSString stringWithFormat:NSLS(@"kContestTotalAwardLargeThanGroupBalance"), totalAward, groupBalance];
+        POSTMSG2(msg, 2);
+        return;
+    }
+    
+    int minTotalAward = [PPConfigManager getGroupContestMinTotalAward];
+    if (totalAward < minTotalAward) {
+        NSString *msg = [NSString stringWithFormat:NSLS(@"kContestTotalAwardLessThan"), minTotalAward];
+        POSTMSG2(msg, 2);
+        return;
+    }
+    
     [self.contest setTitle:self.contestNameInputField.text];
     [self.contest setDesc:self.contestDescTextView.text];
     
@@ -265,11 +281,13 @@
             [titleView showRightButton];
 
             if (resultCode != 0) {
-                 POSTMSG2(NSLS(@"kCreatingContestFail"), 2);
+                POSTMSG2(NSLS(@"kCreatingContestFail"), 2);
             }else{
-                 POSTMSG2(NSLS(@"kCreateContestSuccess"), 2);
-                 [self dismissViewControllerAnimated:YES completion:NULL];
-                 [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_CREATE_CONTEST_SUCCESS object:nil];
+                POSTMSG2(NSLS(@"kCreateContestSuccess"), 2);
+                [self dismissViewControllerAnimated:YES completion:NULL];
+                PBGroup *pbGroup = [GroupManager incGroupBalance:[[GroupManager defaultManager] sharedGroup] amount:-totalAward];
+                [[GroupManager defaultManager] setSharedGroup:pbGroup];
+                [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_CREATE_CONTEST_SUCCESS object:nil];
             }
         }];
     }else{

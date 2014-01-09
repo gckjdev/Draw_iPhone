@@ -1372,5 +1372,8 @@
     return [self getSetFromString:idListString separater:@";"];
 }
 
-
++ (int)getGroupContestMinTotalAward{
+    
+    return GET_UMENG_INTVAL(@"GROUP_CONTEST_MIN_TOTAL_AWARD", 5000);
+}
 @end

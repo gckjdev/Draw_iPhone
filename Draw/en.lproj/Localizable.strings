@@ -2561,3 +2561,5 @@
 "kUpdateContestSuccess" = "Update contest success";
 "kContestingTimeIs" = "Contesting: ";
 "kVotingTimeIs" = "Voting: ";
+"kContestTotalAwardLargeThanGroupBalance" = "Contest total award %d is large than group balance %d";
+"kContestTotalAwardLessThan" = "Contest total award can not be less than %d";

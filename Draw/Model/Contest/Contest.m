@@ -585,6 +585,16 @@
     return desc;
 }
 
+- (int)totalAward{
+    
+    int totalAward = 0;
+    for (NSNumber *award in _pbContestBuilder.awardRulesList) {
+        totalAward += award.intValue;
+    }
+    
+    return totalAward;
+}
+
 - (BOOL)isNotStart{
     
     
