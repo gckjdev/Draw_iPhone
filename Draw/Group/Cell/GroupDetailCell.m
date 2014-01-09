@@ -60,6 +60,7 @@
     [self.infoLabel setFont:CELL_NICK_FONT];
     [self.infoLabel setTextColor:COLOR_BROWN];
     [self.infoLabel setNumberOfLines:0];
+    [self.infoLabel setBackgroundColor:[UIColor clearColor]];
 }
 
 + (id)createCell:(id<GroupDetailCellDelegate>)delegate
@@ -200,6 +201,8 @@
     [self.splitLine setHidden:(self.position == CellRowPositionLast)];
 }
 
+#define SPLIT_HEIGHT (ISIPAD?3:2)
+
 - (void)updateCellTextContent
 {
 
@@ -291,7 +294,7 @@
             UIScrollView *scrollView = [[UIScrollView alloc] initWithFrame:frame];
             
             scrollView.autoresizingMask = self.boundImage.autoresizingMask;
-            
+            scrollView.backgroundColor = [UIColor clearColor];
             scrollView.contentSize = frame.size;
             [self.contentView addSubview:scrollView];
             [scrollView release];
@@ -326,6 +329,8 @@
         default:
             break;
     }
+    [self.contentView bringSubviewToFront:self.splitLine];
+    [self.splitLine updateHeight:SPLIT_HEIGHT];
 }
 
 - (void)clickAddButton:(id)sender

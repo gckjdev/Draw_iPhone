@@ -195,7 +195,7 @@ typedef enum{
 
 - (void)clickEditButton:(id)sender
 {
-    [CreatePostController enterControllerWithPost:self.post forGroup:self.forGroup fromController:self];
+    [CreatePostController enterControllerWithPost:self.post forGroup:self.forGroup fromController:self].delegate = self;
 }
 
 - (void)initViews
