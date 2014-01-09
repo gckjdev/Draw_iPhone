@@ -2235,11 +2235,11 @@
 "kUserDetail" = "Profile";
 "kRemoveAdmin" = "Remove admin";
 "kChangeTitle" = "Change title";
-"kRemoveMember" = "Remove member";
+"kRemoveMember" = "Remove";
 "kSetAsAdmin" = "Set admin";
 "kRemovingAdmin" = "Removing admin...";
 "kChangingTitle" = "Changing title...";
-"kExpeling" = "Removing member...";
+"kExpeling" = "Removing...";
 "kSettingAsAdmin" = "To be admin...";
 "kGroupUserInvited" = "Invitation was sent";
 "kInviting" = "Sending invitation...";
