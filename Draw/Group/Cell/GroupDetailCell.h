@@ -76,4 +76,6 @@ typedef enum {
                       position:(CellRowPosition)position
                        inGroup:(PBGroup *)group;
 
+- (NSInteger)avatarCount;
+
 @end

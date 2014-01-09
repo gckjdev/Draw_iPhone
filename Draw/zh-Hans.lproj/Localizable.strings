@@ -2008,6 +2008,10 @@
 
 "kBBS" = "论坛";
 "kCreatePost" = "新建帖子";
+"kCreateTopic" = "新建话题";
+"kEditTopic" = "编辑话题";
+"kEditPost" = "编辑帖子";
+
 "kMyComment" = "我的评论";
 "kPostDetail" = "帖子详情";
 "kPublish" = "发布";
@@ -2241,7 +2245,8 @@
 "kJoinGroup" = "加入";
 "kQuitGroup" = "退出";
 "kDissolveGroup" = "解散家族";
-
+"kRemoveTitle" = "删除职位";
+"kEditTitle" = "编辑职位";
 "kJoiningGroup" = "发送加入申请中...";
 "kSentRequest" = "申请已经发送，请等待审核通过。";
 "kQuitingGroup" = "退出家族中...";
@@ -2270,11 +2275,11 @@
 "kUserDetail" = "用户详情";
 "kRemoveAdmin" = "移除管理员";
 "kChangeTitle" = "修改职位";
-"kRemoveMember" = "移除成员";
+"kRemoveMember" = "移除";
 "kSetAsAdmin" = "设为管理员";
 "kRemovingAdmin" = "移除管理员中...";
 "kChangingTitle" = "修改职位中...";
-"kExpeling" = "移除成员中...";
+"kExpeling" = "移除中...";
 "kSettingAsAdmin" = "设置管理员中...";
 "kGroupUserInvited" = "已经发送邀请，请等候回复。";
 "kInviting" = "发送邀请中...";

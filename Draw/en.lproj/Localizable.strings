@@ -2047,6 +2047,10 @@
 /*********************** BBS国际化字符串开始 *************************/
 "kBBS" = "Forum";
 "kCreatePost" = "Create Post";
+"kCreateTopic" = "Create Topic";
+"kEditTopic" = "Create Topic";
+"kEditPost" = "Create Topic";
+
 "kMyComment" = "My Comment";
 "kPostDetail" = "Post Detail";
 "kPublish" = "Send";
@@ -2205,6 +2209,8 @@
 "kJoinGroup" = "Join";
 "kQuitGroup" = "Quit";
 "kDissolveGroup" = "Dissolve";
+"kRemoveTitle" = "Remove title";
+"kEditTitle" = "Edit title";
 
 "kJoiningGroup" = "Sending join group request...";
 "kSentRequest" = "Request was sent.";
@@ -2229,11 +2235,11 @@
 "kUserDetail" = "Profile";
 "kRemoveAdmin" = "Remove admin";
 "kChangeTitle" = "Change title";
-"kRemoveMember" = "Remove member";
+"kRemoveMember" = "Remove";
 "kSetAsAdmin" = "Set admin";
 "kRemovingAdmin" = "Removing admin...";
 "kChangingTitle" = "Changing title...";
-"kExpeling" = "Removing member...";
+"kExpeling" = "Removing...";
 "kSettingAsAdmin" = "To be admin...";
 "kGroupUserInvited" = "Invitation was sent";
 "kInviting" = "Sending invitation...";

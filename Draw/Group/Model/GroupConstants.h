@@ -26,6 +26,7 @@ typedef enum{
 
 //notification
 #define REFRESH_FOLLOW_TOPIC_TAB @"REFRESH_FOLLOW_TOPIC_TAB"
+#define REFRESH_FOLLOW_GROUP_TAB @"REFRESH_FOLLOW_GROUP_TAB"
 
 typedef enum {
     

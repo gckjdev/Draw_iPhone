@@ -22,6 +22,7 @@
 @property (nonatomic, retain)PBBBSPost *post;
 @property (nonatomic, retain) UIView* adView;
 
+
 //@property (nonatomic, retain) PBGroup *group;
 
 - (void)updateViewWithPost:(PBBBSPost *)post;

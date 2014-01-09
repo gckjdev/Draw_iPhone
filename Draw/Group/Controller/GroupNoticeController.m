@@ -35,9 +35,19 @@ typedef enum{
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
+        _defaultTabIndex = [self defaultTabIndex];
         self.forGroup = YES;
     }
     return self;
+}
+
+- (NSInteger)defaultTabIndex
+{
+    GroupManager *gm = [GroupManager defaultManager];
+    if(gm.commentBadge > 0)return 0;
+    if(gm.requestBadge > 0)return 1;
+    if(gm.noticeBadge > 0)return 2;
+    return 0;
 }
 
 - (void)updateBadge
@@ -254,7 +264,9 @@ typedef enum{
             [self hideActivity];
             if (!error) {
                 [[[GroupManager defaultManager] followedGroupIds] addObject:notice.groupId];
-                [self removeNoticeFromTable:notice];                
+                [[NSNotificationCenter defaultCenter] postNotificationName:REFRESH_FOLLOW_GROUP_TAB object:nil];
+
+                [self removeNoticeFromTable:notice];
             }
         }];
     }else{
@@ -368,10 +380,6 @@ typedef enum{
 - (NSInteger)tabCount
 {
     return 3;
-}
-- (NSInteger)currentTabIndex
-{
-    return 0;
 }
 - (NSInteger)fetchDataLimitForTabIndex:(NSInteger)index
 {

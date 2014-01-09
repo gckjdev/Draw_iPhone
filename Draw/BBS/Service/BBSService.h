@@ -215,6 +215,10 @@ typedef void (^BBSOperatePostHandler) (NSInteger resultCode, PBBBSPost *editedPo
         delegate:(id<BBSServiceDelegate>)delegate;
 
 
+- (void)editPost:(PBBBSPost *)post
+            text:(NSString *)text
+        callback:(BBSOperatePostHandler)callback;
+
 
 #pragma mark - bbs privilege methods
 - (void)changeBBSUser:(NSString *)targetUid

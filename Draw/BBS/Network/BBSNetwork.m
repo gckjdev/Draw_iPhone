@@ -676,7 +676,7 @@
         str = [str stringByAddQueryParameter:PARA_POSTID value:postId];
         str = [str stringByAddQueryParameter:PARA_BOARDID value:boardId];
         str = [str stringByAddQueryParameter:PARA_STATUS intValue:status];
-        
+                
         return str;
     };
     

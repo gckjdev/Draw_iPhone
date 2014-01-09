@@ -646,6 +646,7 @@
 #define METHOD_GET_BBS_DRAWDATA @"gbd"
 #define METHOD_PAY_BBS_REWARD @"pbr"
 #define METHOD_EDIT_BBS_POST @"edp"
+#define METHOD_EDIT_BBS_POST_TEXT @"edpt"
 #define METHOD_CHANGE_BBS_ROLE @"cbr"
 #define METHOD_GET_BBS_PRIVILEGELIST @"gbpr"
 

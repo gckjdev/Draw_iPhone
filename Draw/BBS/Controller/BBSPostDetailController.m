@@ -192,12 +192,24 @@ typedef enum{
     [self.toolBarBG addSubview:panel];
 }
 
+
+- (void)clickEditButton:(id)sender
+{
+    [CreatePostController enterControllerWithPost:self.post forGroup:self.forGroup fromController:self];
+}
+
 - (void)initViews
 {
     
     [self.bgImageView setImage:[_bbsImageManager bbsBGImage]];
-    [self.refreshButton setImage:[_bbsImageManager bbsRefreshImage] forState:UIControlStateNormal];
 
+    if ([self.post isMyPost]) {
+        [self.refreshButton setImage:[_bbsImageManager bbsPostEditImage] forState:UIControlStateNormal];
+        [self.refreshButton removeTarget:self action:@selector(clickRefreshButton:) forControlEvents:UIControlEventTouchUpInside];
+        [self.refreshButton addTarget:self action:@selector(clickEditButton:) forControlEvents:UIControlEventTouchUpInside];
+    }else{
+        [self.refreshButton setImage:[_bbsImageManager bbsRefreshImage] forState:UIControlStateNormal];
+    }
 
     [BBSViewManager updateDefaultTitleLabel:self.titleLabel text:NSLS(@"kPostDetail")];
     [BBSViewManager updateDefaultBackButton:self.backButton];
@@ -468,8 +480,8 @@ typedef enum{
                     cell = [BBSPostActionCell createCell:self];
                 }
                 PBBBSAction *action = [self actionForIndexPath:indexPath];
-                [cell setCurrentUserId:self.currentUserId];
-                cell.hideReply = ![_grpPermissionManager canReplyTopic];
+                [cell setCurrentUserId:self.currentUserId];                
+                cell.hideReply = self.forGroup && ![_grpPermissionManager canReplyTopic];
                 [cell updateCellWithBBSAction:action post:self.post];
                 if ([self.post canPay] && action == _selectedAction && ![action isMyAction]) {
                     [cell showOption:YES];
@@ -609,6 +621,14 @@ typedef enum{
             
             [_header clickComment:_header.comment];
         }
+    }
+}
+
+- (void)didController:(CreatePostController *)controller editPost:(PBBBSPost *)post
+{
+    if (post) {
+        self.post = post;
+        [self.dataTableView reloadData];
     }
 }
 

@@ -1326,4 +1326,43 @@ BBSService *_staticGroupTopicService;
     });
 }
 
+- (void)editPost:(PBBBSPost *)post
+            text:(NSString *)text
+        callback:(BBSOperatePostHandler)callback
+{
+    dispatch_async(workingQueue, ^{
+       
+        NSInteger code = [self checkWithText:text contentType:post.content.type isPost:YES];
+        if (code != ERROR_SUCCESS) {
+            EXECUTE_BLOCK(callback, code, nil);
+            return;
+        }
+        
+        NSDictionary *paras = @{PARA_TEXT_CONTENT:text, PARA_POSTID:post.postId};
+        GameNetworkOutput* output = [PPGameNetworkRequest
+                                     sendGetRequestWithBaseURL:[self hostURL]
+                                     method:METHOD_EDIT_BBS_POST_TEXT
+                                     parameters:paras
+                                     returnPB:NO
+                                     returnJSONArray:NO];
+
+//       CommonNetworkOutput *output = [GameNetworkRequest sendGetRequestWithBaseURL:[self hostURL] method:METHOD_EDIT_BBS_POST_TEXT parameters:paras returnPB:NO returnArray:NO];
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            PBBBSPost *retPost = nil;
+            if (output.resultCode == ERROR_SUCCESS) {
+                PBBBSPost_Builder *retPostBuilder = [PBBBSPost builderWithPrototype:post];
+                PBBBSContent_Builder *contentBuilder = [PBBBSContent builderWithPrototype:post.content];
+                [contentBuilder setText:text];
+
+                [retPostBuilder setContent:[contentBuilder build]];
+                
+                retPost = [retPostBuilder build];
+                PPDebug(@"after edit post text, post.text = %@", retPost.content.text);
+            }
+            EXECUTE_BLOCK(callback, output.resultCode, retPost);
+        });
+    });
+}
+
 @end

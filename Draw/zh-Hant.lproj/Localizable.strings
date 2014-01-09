@@ -1441,7 +1441,7 @@
 "kPayViaAppleAccount" = "使用Apple賬戶購買";
 
 "kEditOpusDesc" = "編輯作品描述";
-"kEditOpusInfo" = "编辑作品信息";
+"kEditOpusInfo" = "編輯作品信息";
 "kCloseKeyboard" = "關鍵盤";
 "kHim" = "他";
 "kHer" = "她";
@@ -2017,6 +2017,10 @@
 
 "kBBS" = "論壇";
 "kCreatePost" = "新建帖子";
+"kCreateTopic" = "新建話題";
+"kEditTopic" = "編輯話題";
+"kEditPost" = "編輯帖子";
+
 "kMyComment" = "我的評論";
 "kPostDetail" = "帖子詳情";
 "kPublish" = "發布";
@@ -2251,6 +2255,8 @@
 "kJoinGroup" = "加入";
 "kQuitGroup" = "退出";
 "kDissolveGroup" = "解散";
+"kRemoveTitle" = "刪除職位";
+"kEditTitle" = "編輯職位";
 
 "kJoiningGroup" = "發送加入申請中...";
 "kSentRequest" = "申請已經發送，請等待審核通過。";
@@ -2276,11 +2282,11 @@
 "kUserDetail" = "用戶詳情";
 "kRemoveAdmin" = "移除管理員";
 "kChangeTitle" = "修改職位";
-"kRemoveMember" = "移除成員";
+"kRemoveMember" = "移除";
 "kSetAsAdmin" = "設為管理員";
 "kRemovingAdmin" = "移除管理員中...";
 "kChangingTitle" = "修改職位中...";
-"kExpeling" = "移除成員中...";
+"kExpeling" = "移除中...";
 "kSettingAsAdmin" = "設置管理員中...";
 "kGroupUserInvited" = "已經發送邀請，請等候回復。";
 "kInviting" = "發送邀請中...";
