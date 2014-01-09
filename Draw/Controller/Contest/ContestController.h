@@ -23,7 +23,6 @@
 @property (retain, nonatomic) IBOutlet UIView *scrollerViewHolder;
 
 - (IBAction)clickBackButton:(id)sender;
-- (IBAction)clickRefreshButton:(id)sender;
 - (void)enterDrawControllerWithContest:(Contest *)contest
                               animated:(BOOL)animated;
 
