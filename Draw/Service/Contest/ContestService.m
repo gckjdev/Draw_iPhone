@@ -231,7 +231,7 @@ static ContestService *_staticContestService;
         dispatch_async(dispatch_get_main_queue(), ^{
             
             NSArray *contestList = nil;
-            if (output.resultCode == 0 && output.pbResponse.contestListList){
+            if (output.resultCode == 0){
                 contestList = [[ContestManager defaultManager] parseContestList:output.pbResponse.contestListList];
             }
             
@@ -358,6 +358,34 @@ static ContestService *_staticContestService;
     dispatch_async(workingQueue, ^{
         
         GameNetworkOutput* output = [PPGameNetworkRequest trafficApiServerUploadAndResponsePB:METHOD_CREATE_CONTEST parameters:nil imageDataDict:@{PARA_IMAGE:[image data]} postDataDict:@{PARA_META_DATA : data} progressDelegate:nil];
+        
+        Contest *contest = [[[Contest alloc] initWithPBContest:output.pbResponse.contest] autorelease];
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            
+            EXECUTE_BLOCK(completed, output.resultCode, contest);
+        });
+    });
+}
+
+- (void)updateContest:(Contest *)contest
+                image:(UIImage *)image
+            completed:(CreateContestBlock)completed{
+    
+    NSData *data = [contest data];
+    if ([data length] <= 0) {
+        PPDebug(@"<createContest> data length can not less than zero");
+        return;
+    }
+    
+    NSDictionary *imageDic = nil;
+    if (image != nil) {
+        imageDic = @{PARA_IMAGE:[image data]};
+    }
+    
+    dispatch_async(workingQueue, ^{
+        
+        GameNetworkOutput* output = [PPGameNetworkRequest trafficApiServerUploadAndResponsePB:METHOD_UPDATE_CONTEST parameters:nil imageDataDict:imageDic postDataDict:@{PARA_META_DATA : data} progressDelegate:nil];
         
         Contest *contest = [[[Contest alloc] initWithPBContest:output.pbResponse.contest] autorelease];
         

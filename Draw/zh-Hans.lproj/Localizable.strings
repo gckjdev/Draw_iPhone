@@ -1669,7 +1669,7 @@
 "kCompleteGuessContest" = "恭喜你完成比赛，比赛结束后揭晓你的比赛排名";
 
 "kGoOn" = "继续";
-"kAward" = "闯关成功";
+"kAward" = "奖励";
 "kGuessHappyModeAwardTips" = "\n猜中：%d 幅作品\n\n奖励：%d 金币\n\n";
 "kGuessGenuisModeAwardTips" = "\n猜中：%d 幅作品\n\n奖励：%d 金币\n\n级别：%@\n\n可选择分享到微博或微信朋友圈得瑟一下，或者继续闯关\n\n";
 "kShareGuessTitle" = "据某知名挨踢企业的大数据云计算系统显示，本人在24小时内不间断一次性连续猜对了%d幅画，获赠【%@】称号，好玩好玩！ ";
@@ -2215,7 +2215,7 @@
 
 "kCan'tUpgradeMaxLevel" = "家族已经等级已经是顶级(%d级)了";
 "kUpgradeGroupTitle" = "升级需增加%d金币/月";
-"kCanInputIntRange" = "输入数字:(%d - %d)";
+"kCanInputIntRange" = "可升级到(%d-%d),每级可增加10成员";
 "kDegradeGroup" = "对不起，输入不能低于当前等级。";
 "kUpgradingGroup" = "升级家族中...";
 "kQuitGroupTitle" = "退出家族";
@@ -2530,6 +2530,7 @@
 "kGoodOpus" = "精彩作品";
 
 "kCreateContest" = "创建比赛";
+"kModifyContest" = "修改比赛";
 "kContestName" = "比赛名称";
 "kStartTime" = "开始时间";
 "kEndTime" = "结束时间";
@@ -2565,3 +2566,5 @@
 "kCreatingContestFail" = "创建比赛失败";
 "kCreateContestSuccess" = "成功创建比赛";
 "kJoinContest" = "参赛";
+"kUpdateContestFail" = "更新比赛失败";
+"kUpdateContestSuccess" = "更新比赛成功";

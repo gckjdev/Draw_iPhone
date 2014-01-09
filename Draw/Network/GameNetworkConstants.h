@@ -599,6 +599,7 @@
 
 // create contest
 #define METHOD_CREATE_CONTEST @"createContest"
+#define METHOD_UPDATE_CONTEST @"updateContest"
 #define PARA_META_DATA @"meta_data"
 
 // for group contest

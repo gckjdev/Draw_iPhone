@@ -481,5 +481,7 @@ typedef enum{
                      boundColor:(UIColor *)color
                       fillColor:(UIColor *)fillColor;
 
++ (UIImage *)statementCellBg1;
++ (UIImage *)statementCellBg2;
 
 @end

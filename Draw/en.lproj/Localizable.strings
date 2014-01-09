@@ -2186,7 +2186,7 @@
 "kInputInvalid" = "Input invalid!";
 
 
-"kCanInputIntRange" = "Input:(%d - %d)";
+"kCanInputIntRange" = "Upgrade to:(%d - %d)";
 "kUpgradeGroupTitle" = "Spend %d coins of goups.";
 "kDegradeGroup" = "Can't degrade group.";
 "kUpgradingGroup" = "Upgrading Group...";
@@ -2520,6 +2520,8 @@
 
 
 "kCreateContest" = "Create Contest";
+"kModifyContest" = "Modify contest";
+
 "kContestName" = "Name";
 "kStartTime" = "Start";
 "kEndTime" = "End";
@@ -2555,3 +2557,5 @@
 "kCreatingContestFail" = "Create contest fail";
 "kCreateContestSuccess" = "Create contest success";
 "kJoinContest" = "Join";
+"kUpdateContestFail" = "Update contest fail";
+"kUpdateContestSuccess" = "Update contest success";

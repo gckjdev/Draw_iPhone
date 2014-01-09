@@ -12,7 +12,7 @@
 #import "PPResourceService.h"
 #import "FXLabel.h"
 #import "DrawUtils.h"
-
+#import "UIImageUtil.h"
 
 @interface ShareImageManager () {
     PPResourceService *_resService;
@@ -1605,6 +1605,27 @@ static NSMutableDictionary *boundImageDict = nil;
 ////    label.innerShadowOffset = CGSizeMake(1.0f, 1.0f);
 //}
 
++ (UIImage *)statementCellBg1{
+    
+    UIImage *image = [UIImage imageNamed:@"statement_cell_bg1@2x.png"];
+    if (isIPad) {
+        return [image stretchableImageWithLeftCapWidth:145 topCapHeight:85];
+    }else{
+        image = [image scaleImage:image toScale:0.5];
+        return [image stretchableImageWithLeftCapWidth:72 topCapHeight:42];
+    }
+}
+
++ (UIImage *)statementCellBg2{
+        
+    UIImage *image = [UIImage imageNamed:@"statement_cell_bg2@2x.png"];
+    if (isIPad) {
+        return [image stretchableImageWithLeftCapWidth:145 topCapHeight:85];
+    }else{
+        image = [image scaleImage:image toScale:0.5];
+        return [image stretchableImageWithLeftCapWidth:72 topCapHeight:42];
+    }
+}
 
 @end
 

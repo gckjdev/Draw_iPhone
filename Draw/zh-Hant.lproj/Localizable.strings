@@ -2224,7 +2224,7 @@
 "kTextCanotBeNil" = "輸入不能為空！";
 "kOutOfMaxLength" = "文字長度不能超過%d。";
 
-"kCanInputIntRange" = "輸入數字:(%d - %d)";
+"kCanInputIntRange" = "可升級到(%d-%d),每級可增加10成員";
 "kCan'tUpgradeMaxLevel" = "家族已經等級已經是頂級(%d級)了。";
 "kUpgradeGroupTitle" = "將花費家族%d金幣";
 "kDegradeGroup" = "對不起，輸入不能低於當前等級。";
@@ -2547,6 +2547,7 @@
 "kGoodOpus" = "精彩作品";
 
 "kCreateContest" = "創建比賽";
+"kModifyContest" = "修改比賽";
 "kContestName" = "比賽名稱";
 "kStartTime" = "開始時間";
 "kEndTime" = "結束時間";
@@ -2582,3 +2583,5 @@
 "kCreatingContestFail" = "創建比賽失敗";
 "kCreateContestSuccess" = "成功創建比賽";
 "kJoinContest" = "參賽";
+"kUpdateContestFail" = "更新比賽失敗";
+"kUpdateContestSuccess" = "更新比賽成功";

@@ -576,13 +576,44 @@
         int award = ((NSNumber *)[_pbContestBuilder.awardRulesList objectAtIndex:i]).intValue;
         
         if (i < 3) {
-            desc = [desc stringByAppendingString:[NSString stringWithFormat:NSLS(@"kNumberXGetAwardX"), i+1, award]];
+            desc = [[desc stringByAppendingString:[NSString stringWithFormat:NSLS(@"kNumberXGetAwardX"), i+1, award]] stringByAppendingString:@"\n"];
         }else{
             desc = [desc stringByAppendingString:[NSString stringWithFormat:NSLS(@"kNumberRangeGetAwardX"), @"4~20", award]];
         }
     }
     
     return desc;
+}
+
+- (BOOL)isNotStart{
+    
+    
+    NSTimeInterval now = [[NSDate date] timeIntervalSince1970];
+    if (now < [_pbContestBuilder startDate]) {
+        return YES;
+    }else{
+        return NO;
+    }
+}
+
+- (BOOL)isOver{
+    
+    NSTimeInterval now = [[NSDate date] timeIntervalSince1970];
+    if (now > [_pbContestBuilder endDate]) {
+        return YES;
+    }else{
+        return NO;
+    }
+}
+
+- (BOOL)isContesting{
+    
+    NSTimeInterval now = [[NSDate date] timeIntervalSince1970];
+    if (now >= [_pbContestBuilder startDate] && now <= [_pbContestBuilder endDate]) {
+        return YES;
+    }else{
+        return NO;
+    }
 }
 
 @end
