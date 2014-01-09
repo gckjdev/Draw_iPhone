@@ -385,7 +385,7 @@ static ContestService *_staticContestService;
     
     dispatch_async(workingQueue, ^{
         
-        GameNetworkOutput* output = [PPGameNetworkRequest trafficApiServerUploadAndResponsePB:METHOD_UPDATE_CONTEST parameters:nil imageDataDict:@{PARA_IMAGE:[image data]} postDataDict:imageDic progressDelegate:nil];
+        GameNetworkOutput* output = [PPGameNetworkRequest trafficApiServerUploadAndResponsePB:METHOD_UPDATE_CONTEST parameters:nil imageDataDict:imageDic postDataDict:@{PARA_META_DATA : data} progressDelegate:nil];
         
         Contest *contest = [[[Contest alloc] initWithPBContest:output.pbResponse.contest] autorelease];
         

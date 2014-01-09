@@ -2541,6 +2541,7 @@
 "kGoodOpus" = "精彩作品";
 
 "kCreateContest" = "創建比賽";
+"kModifyContest" = "修改比賽";
 "kContestName" = "比賽名稱";
 "kStartTime" = "開始時間";
 "kEndTime" = "結束時間";
@@ -2576,3 +2577,5 @@
 "kCreatingContestFail" = "創建比賽失敗";
 "kCreateContestSuccess" = "成功創建比賽";
 "kJoinContest" = "參賽";
+"kUpdateContestFail" = "更新比賽失敗";
+"kUpdateContestSuccess" = "更新比賽成功";

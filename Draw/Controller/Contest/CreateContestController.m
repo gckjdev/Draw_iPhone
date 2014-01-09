@@ -101,7 +101,12 @@
     [IQKeyBoardManager enableKeyboardManger];
     
     CommonTitleView *v = [CommonTitleView createTitleView:self.view];
-    [v setTitle:NSLS(@"kCreateContest")];
+    if (self.isNewContest) {
+        [v setTitle:NSLS(@"kCreateContest")];
+    }else{
+        [v setTitle:NSLS(@"kModifyContest")];
+    }
+    
     [v setTarget:self];
     [v setBackButtonSelector:@selector(clickBack:)];
     [v setRightButtonTitle:NSLS(@"kDone")];
@@ -268,7 +273,7 @@
         }];
     }else{
         
-        [[ContestService defaultService] createContest:self.contest image:self.image completed:^(int resultCode, Contest *contest) {
+        [[ContestService defaultService] updateContest:self.contest image:self.image completed:^(int resultCode, Contest *contest) {
             
             [self hideActivity];
             [titleView showRightButton];
