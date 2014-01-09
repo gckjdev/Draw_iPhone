@@ -38,6 +38,10 @@ typedef enum{
 
 @implementation PBGroupNotice(Ext)
 
+- (BOOL)isGuestInvitation
+{
+    return TypeInviteGuest == self.type;
+}
 - (BOOL)isInvitation
 {
     return TypeInviteMember == self.type || TypeInviteGuest == self.type;

@@ -51,6 +51,7 @@
 @property(nonatomic, retain)UIImage *drawImage;
 @property(nonatomic, retain)NSMutableArray *drawActionList;
 @property(nonatomic, retain)NSString *text;
+@property(nonatomic, retain)PBBBSPost *post;
 @property(nonatomic, assign)NSInteger bonus;
 
 @property(nonatomic, retain) PBBBSAction *sourceAction;
@@ -85,6 +86,7 @@
 
 - (void)dealloc
 {
+    PPRelease(_post);
     PPRelease(_group);
     PPRelease(_image);
     PPRelease(_drawImage);
@@ -180,6 +182,22 @@
     return cp;
 }
 
++ (CreatePostController *)enterControllerWithPost:(PBBBSPost *)post
+                                         forGroup:(BOOL)forGroup
+                                   fromController:(UIViewController *)fromController
+{
+    CreatePostController *cp = [[[CreatePostController alloc] init] autorelease];
+    cp.post = post;
+    cp.postId = post.postId;
+    cp.postUid = post.createUser.userId;
+    cp.postText = post.content.text;
+    cp.forGroup = forGroup;
+    cp.forEditing = YES;
+    [fromController presentModalViewController:cp animated:YES];
+    return cp;
+}
+
+
 + (CreatePostController *)enterControllerWithSourecePostId:(NSString *)postId
                                                    postUid:(NSString *)postUid
                                                   postText:(NSString *)postText
@@ -246,6 +264,12 @@
         [self.rewardButton setTitle:NSLS(@"kReward")
                            forState:UIControlStateNormal];        
     }
+    
+    if([self isForEditing]){
+        self.rewardButton.hidden = YES;
+        self.imageButton.hidden = YES;
+        self.graffitiButton.hidden = YES;
+    }
 }
 
 - (void)keyboardWillShowWithRect:(CGRect)keyboardRect
@@ -269,7 +293,12 @@
 
 - (void)initViews
 {
-    NSString* initText = [BBSManager lastInputText];
+    NSString* initText = nil;
+    if ([self isForEditing]) {
+        initText = self.postText;
+    }else{
+        initText = [BBSManager lastInputText];
+    }
 //    if ([self.postText length] == 0){
 //        initText = [BBSManager lastInputText];
 //    }
@@ -316,13 +345,15 @@
                         forState:UIControlStateNormal];
 
     NSString *titleName = nil;
+    self.rewardButton.hidden = YES;
     
-    if ([self.postId length] != 0) {
-        self.rewardButton.hidden = YES;
+    if ([self isForCreatingAction]) {
         titleName = _sourceAction != nil ? NSLS(@"kReply") :  NSLS(@"kComment");
+    }else if([self isForEditing]){
+        titleName = [self isForGroup] ? NSLS(@"kEditTopic") : NSLS(@"kEditPost");
     }else{
         self.rewardButton.hidden = NO;
-        titleName = NSLS(@"kCreatePost");
+        titleName = [self isForGroup] ? NSLS(@"kCreateTopic") : NSLS(@"kCreatePost");
     }
     [BBSViewManager updateDefaultTitleLabel:self.titleLabel text:titleName];
     [BBSViewManager updateDefaultBackButton:self.backButton];
@@ -366,6 +397,14 @@
     [super viewDidUnload];
 }
 
+- (BOOL)isForCreatingAction
+{
+    if(self.isForEditing){
+        return NO;
+    }
+    return [self.postId length] != 0;
+}
+
 #define IMAGE_SIZE_MAX 1500
 
 - (IBAction)clickBackButton:(id)sender {
@@ -392,7 +431,7 @@
     
     
     [self showActivityWithText:NSLS(@"kSending") center:self.textView.center];
-    if ([self.postId length] != 0) {
+    if ([self isForCreatingAction]) {
         
         [[self service] createActionWithPostId:self.postId
                                     PostUid:self.postUid
@@ -406,15 +445,28 @@
                                    delegate:self
                                  canvasSize:self.canvasSize];
         
+    }else if([self isForEditing]){
+        [[self service] editPost:self.post text:self.text callback:^(NSInteger resultCode, PBBBSPost *editedPost) {
+            [self hideActivity];
+            [self alertError:resultCode];
+            if (resultCode == 0) {
+                self.post = editedPost;
+                if ([self.delegate respondsToSelector:@selector(didController:editPost:)]) {
+                    [self.delegate didController:self editPost:editedPost];
+                }
+                [self dismissModalViewControllerAnimated:YES];
+            }
+        }];
     }else{
+    
         [[self service] createPostWithBoardId:[self boardId]
-                                      text:self.text
-                                     image:self.image
-                            drawActionList:self.drawActionList
-                                 drawImage:self.drawImage
-                                     bonus:self.bonus
-                                  delegate:self
-                                canvasSize:self.canvasSize];
+                                         text:self.text
+                                        image:self.image
+                               drawActionList:self.drawActionList
+                                    drawImage:self.drawImage
+                                        bonus:self.bonus
+                                     delegate:self
+                                   canvasSize:self.canvasSize];        
     }
 
 }
@@ -575,6 +627,9 @@
 
 - (void)alertError:(NSInteger)errorCode
 {
+    if (errorCode == 0) {
+        return;
+    }
     NSString *msg = nil;
     switch (errorCode) {
         case ERROR_BBS_TEXT_TOO_SHORT:

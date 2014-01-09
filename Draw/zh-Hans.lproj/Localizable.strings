@@ -2008,6 +2008,10 @@
 
 "kBBS" = "论坛";
 "kCreatePost" = "新建帖子";
+"kCreateTopic" = "新建话题";
+"kEditTopic" = "编辑话题";
+"kEditPost" = "编辑帖子";
+
 "kMyComment" = "我的评论";
 "kPostDetail" = "帖子详情";
 "kPublish" = "发布";
@@ -2241,7 +2245,8 @@
 "kJoinGroup" = "加入";
 "kQuitGroup" = "退出";
 "kDissolveGroup" = "解散家族";
-
+"kRemoveTitle" = "删除职位";
+"kEditTitle" = "编辑职位";
 "kJoiningGroup" = "发送加入申请中...";
 "kSentRequest" = "申请已经发送，请等待审核通过。";
 "kQuitingGroup" = "退出家族中...";

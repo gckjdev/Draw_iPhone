@@ -64,6 +64,9 @@ typedef enum{
 #define TITLE_QUIT_GROUP NSLS(@"kQuitGroup")
 #define TITLE_DISMISSAL NSLS(@"kDissolveGroup")
 
+#define TITLE_RM_TITLE NSLS(@"kRemoveTitle")
+#define TITLE_EDIT_TITLE NSLS(@"kEditTitle")
+
 
 #define SIGN_LABEL_HEIGHT (ISIPAD? 490 : 238)
 #define MIN_SIGN_HEIGHT (ISIPAD?35:21)
@@ -1021,6 +1024,7 @@ typedef enum{
             }];
         }];
         [sheet showInView:self.view showAtPoint:self.view.center animated:YES];
+        [sheet release];
     }
     else if ([title isEqualToString:TITLE_RM_MEMBER]) {
         
@@ -1075,7 +1079,7 @@ typedef enum{
         if ([self.groupPermission canExpelUser:user] && ![GroupManager isUser:user adminOrCreatorInGroup:_group]) {
             [titles addObject:TITLE_RM_MEMBER];
         }
-        if ([self.groupPermission canManageGroup] && [title titleId] != GroupRoleGuest) {
+        if ([self.groupPermission canManageGroup]) {
             [titles addObject:TITLE_TRANSFER_BALANCE];
         }
         
@@ -1142,62 +1146,51 @@ didClickAddButtonAtTitle:(PBGroupTitle *)title
 
 - (void)groupDetailCell:(GroupDetailCell *)cell didClickAtTitle:(PBGroupTitle *)title
 {
-    //check permission
-    if ([title titleId] != GroupRoleGuest && [title titleId] != GroupRoleAdmin && [_groupPermission canCustomTitle]) {
-        CommonDialog *dialog = [CommonDialog createInputFieldDialogWith:NSLS(@"kUpdateTitle")];
-        dialog.inputTextField.text = title.title;
-        [dialog setClickOkBlock:^(id view){
-            NSString *text = [dialog.inputTextField text];
-            NSInteger len = MAX_LENGTH_TITLE;
-            BOOL flag = [self checkText:text length:len allowEmpty:NO];
-           [dialog setManualClose:!flag];
-            if(flag){
-                [groupService updateGroupTitle:_group.groupId titleId:title.titleId title:text callback:^(NSError *error) {
+    if ([title titleId] == GroupRoleGuest || [title titleId] == GroupRoleAdmin || ![_groupPermission canCustomTitle]) {
+        return;
+    }
+
+    NSArray *titles = @[TITLE_EDIT_TITLE, TITLE_RM_TITLE];
+    BBSActionSheet *sheet = [[BBSActionSheet alloc] initWithTitles:titles callback:^(NSInteger index) {
+        NSString *t = titles[index];
+        if ([t isEqualToString:TITLE_EDIT_TITLE]) {
+            //edit title
+            CommonDialog *dialog = [CommonDialog createInputFieldDialogWith:TITLE_EDIT_TITLE];
+            dialog.inputTextField.text = title.title;
+            [dialog setClickOkBlock:^(id view){
+                NSString *text = [dialog.inputTextField text];
+                NSInteger len = MAX_LENGTH_TITLE;
+                BOOL flag = [self checkText:text length:len allowEmpty:NO];
+                [dialog setManualClose:!flag];
+                if(flag){
+                    [groupService updateGroupTitle:_group.groupId titleId:title.titleId title:text callback:^(NSError *error) {
+                        if (!error) {
+                            [self.dataTableView reloadData];
+                        }
+                    }];
+                }
+            }];
+            [dialog showInView:self.view];
+        }else if([t isEqualToString:TITLE_RM_TITLE]){
+            if ([cell avatarCount] == 0) {
+                NSInteger titleId = title.titleId;
+                [groupService deleteGroupTitleId:titleId groupId:_group.groupId callback:^(NSError *error) {
                     if (!error) {
+                        //remove from local model
+                        [GroupManager didDeletedGroupTitle:_group.groupId titleId:titleId];
+                        [self updateDataList];
                         [self.dataTableView reloadData];
                     }
                 }];
-            }
-        }];
-        [dialog showInView:self.view];
-    }else{
-        PPDebug(@"<didClickAtTitle> can't custom title.");
-    }
-}
+            }else{
+                POSTMSG(NSLS(@"kDeleteNotEmptyTitleError"));
+            }            
+        }
+    }];
+    [sheet showInView:self.view showAtPoint:self.view.center animated:YES];
+    [sheet release];
 
-
-//DELETE TITLE
-
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if ([_groupPermission canManageGroup]) {
-        PBGroupUsersByTitle *usersByTitle = [self customTitleAtIndexPath:indexPath];
-        return !!usersByTitle;
-    }
-    return NO;
-}
-
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    PBGroupUsersByTitle *usersByTitle = [self customTitleAtIndexPath:indexPath];
-    if ([[usersByTitle usersList] count] == 0) {
-        NSInteger titleId = usersByTitle.title.titleId;
-        [groupService deleteGroupTitleId:titleId groupId:_group.groupId callback:^(NSError *error) {
-            if (!error) {
-                //remove from local model
-                [GroupManager didDeletedGroupTitle:_group.groupId titleId:titleId];
-                [self updateDataList];
-                [self.dataTableView reloadData];
-            }
-        }];
-    }else{
-        POSTMSG(NSLS(@"kDeleteNotEmptyTitleError"));
-    }
-}
-
-- (NSString *)tableView:(UITableView *)tableView titleForDeleteConfirmationButtonForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    return NSLS(@"kDelete");
+    
 }
 
 @end

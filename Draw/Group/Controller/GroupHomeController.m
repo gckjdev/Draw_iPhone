@@ -121,6 +121,12 @@
                             usingBlock:^(NSNotification *note) {
         [self setNeedRefreshFollowTopicTab];
     }];
+    
+    [self registerNotificationWithName:REFRESH_FOLLOW_GROUP_TAB
+                            usingBlock:^(NSNotification *note) {
+        [self setNeedRefreshFollowGroupTab];
+    }];
+
 }
 
 - (void)setNeedRefreshFollowGroupTab
@@ -524,7 +530,7 @@
                                       callback:^(NSError *error) {
        [self hideActivity];
        if (!error) {
-           [self setNeedRefreshFollowGroupTab];
+//           [self setNeedRefreshFollowGroupTab];
            [self.dataTableView reloadRowsAtIndexPaths:@[cell.indexPath] withRowAnimation:UITableViewRowAnimationFade];
        }                                          
     }];
@@ -542,7 +548,7 @@
                 [self.tabDataList removeObjectAtIndex:cell.indexPath.row];
                 [self.dataTableView deleteRowsAtIndexPaths:@[cell.indexPath] withRowAnimation:UITableViewRowAnimationFade];
             }else{
-                [self setNeedRefreshFollowGroupTab];
+//                [self setNeedRefreshFollowGroupTab];
                 [self.dataTableView reloadRowsAtIndexPaths:@[cell.indexPath] withRowAnimation:UITableViewRowAnimationFade];
             }
         }

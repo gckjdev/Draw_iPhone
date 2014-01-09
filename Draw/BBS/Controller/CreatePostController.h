@@ -25,6 +25,9 @@
         CreateNewPost:(PBBBSPost *)post;
 
 - (void)didController:(CreatePostController *)controller
+        editPost:(PBBBSPost *)post;
+
+- (void)didController:(CreatePostController *)controller
       CreateNewAction:(PBBBSAction *)action;
 @end
 
@@ -45,29 +48,36 @@
 @property (retain, nonatomic) IBOutlet UIButton *submitButton;
 @property (retain, nonatomic) IBOutlet UIImageView *inputBG;
 @property (assign, nonatomic, getter = isForGroup) BOOL forGroup;
+@property (assign, nonatomic, getter = isForEditing) BOOL forEditing;
 
 @property (assign, nonatomic) id<CreatePostControllerDelegate>delegate;
 
 //- (id)initWithBoard:(PBBBSBoard *)board;
+//create post
 + (CreatePostController *)enterControllerWithBoard:(PBBBSBoard *)board
                                     fromController:(UIViewController *)fromController;
 
+//create topic
 + (CreatePostController *)enterControllerWithGroup:(PBGroup *)group
                                     fromController:(UIViewController *)fromController;
 
-
+//reply
 + (CreatePostController *)enterControllerWithSourecePost:(PBBBSPost *)post
                                             sourceAction:(PBBBSAction *)action
                                           fromController:(UIViewController *)fromController;
 
+//reply
 + (CreatePostController *)enterControllerWithSourecePostId:(NSString *)postId
                                                    postUid:(NSString *)postUid
                                                   postText:(NSString *)postText
                                               sourceAction:(PBBBSAction *)action
                                           fromController:(UIViewController *)fromController;
+//edit
++ (CreatePostController *)enterControllerWithPost:(PBBBSPost *)post
+                                         forGroup:(BOOL)forGroup
+                                   fromController:(UIViewController *)fromController;
 
 - (IBAction)clickBackButton:(id)sender;
-
 - (IBAction)clickSubmitButton:(id)sender;
 - (IBAction)clickGraffitiButton:(id)sender;
 - (IBAction)clickImageButton:(id)sender;

@@ -308,6 +308,7 @@ static GroupService *_staticGroupService = nil;
          EXECUTE_BLOCK(callback, error);
          if (!error) {
              [[GroupService defaultService] syncGroupRoles];
+             [self unfollowGroup:groupId callback:NULL];
          }
      }];
 }
@@ -355,6 +356,7 @@ static GroupService *_staticGroupService = nil;
      {
          if (!error) {
              [self.groupManager.followedGroupIds addObject:groupId];
+             [[NSNotificationCenter defaultCenter] postNotificationName:REFRESH_FOLLOW_GROUP_TAB object:nil];             
          }
          EXECUTE_BLOCK(callback, error);
      }];
@@ -370,6 +372,7 @@ static GroupService *_staticGroupService = nil;
      {
          if (!error) {
              [self.groupManager.followedGroupIds removeObject:groupId];
+             [[NSNotificationCenter defaultCenter] postNotificationName:REFRESH_FOLLOW_GROUP_TAB object:nil];
          }
          EXECUTE_BLOCK(callback, error);
      }];    

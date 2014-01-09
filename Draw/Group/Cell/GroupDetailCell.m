@@ -359,4 +359,9 @@
     [self updateCellImageContent];
 }
 
+- (NSInteger)avatarCount
+{
+    return [self.members.usersList count];
+}
+
 @end

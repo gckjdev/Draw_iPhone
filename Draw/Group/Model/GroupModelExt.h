@@ -16,6 +16,7 @@
 - (NSString *)createDateString;
 
 - (BOOL)isInvitation;
+- (BOOL)isGuestInvitation;
 - (BOOL)isJoinRequest;
 @end
 
