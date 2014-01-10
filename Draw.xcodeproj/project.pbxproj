@@ -7268,6 +7268,10 @@
 		EADC02571817CF8C0038B6A8 /* SearchPostController.m in Sources */ = {isa = PBXBuildFile; fileRef = EADC02531817CF8B0038B6A8 /* SearchPostController.m */; };
 		EADC02581817CF8C0038B6A8 /* SearchPostController.m in Sources */ = {isa = PBXBuildFile; fileRef = EADC02531817CF8B0038B6A8 /* SearchPostController.m */; };
 		EAE5718D16FC6ACB000AFADA /* CacheManager.m in Sources */ = {isa = PBXBuildFile; fileRef = EAE5718C16FC6ACB000AFADA /* CacheManager.m */; };
+		EAFA04C2187FC7CE00B0CF61 /* CreateContestController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAFA04C1187FC7CE00B0CF61 /* CreateContestController~ipad.xib */; };
+		EAFA04C3187FC7CE00B0CF61 /* CreateContestController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAFA04C1187FC7CE00B0CF61 /* CreateContestController~ipad.xib */; };
+		EAFA04C4187FC7CE00B0CF61 /* CreateContestController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAFA04C1187FC7CE00B0CF61 /* CreateContestController~ipad.xib */; };
+		EAFA04C5187FC7CE00B0CF61 /* CreateContestController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAFA04C1187FC7CE00B0CF61 /* CreateContestController~ipad.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -10284,6 +10288,7 @@
 		EADC02531817CF8B0038B6A8 /* SearchPostController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchPostController.m; sourceTree = "<group>"; };
 		EAE5718B16FC6ACB000AFADA /* CacheManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CacheManager.h; sourceTree = "<group>"; };
 		EAE5718C16FC6ACB000AFADA /* CacheManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CacheManager.m; sourceTree = "<group>"; };
+		EAFA04C1187FC7CE00B0CF61 /* CreateContestController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "CreateContestController~ipad.xib"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -15442,6 +15447,7 @@
 				A44AC4811875528D00927649 /* CreateContestController.m */,
 				A44AC4821875528D00927649 /* CreateContestController.h */,
 				A44AC4831875528D00927649 /* CreateContestController.xib */,
+				EAFA04C1187FC7CE00B0CF61 /* CreateContestController~ipad.xib */,
 				A434171B18711AFB008D0A2B /* ContestCell.m */,
 				A434171C18711AFB008D0A2B /* ContestCell.xib */,
 				A434171D18711AFB008D0A2B /* ContestCell.h */,
@@ -18472,6 +18478,7 @@
 				A49DF8C4187D311600634196 /* StatementCell.xib in Resources */,
 				A49DF8CA187D3FA100634196 /* statement_cell_bg2@2x.png in Resources */,
 				A49DF8CE187D3FA100634196 /* statement_cell_bg1@2x.png in Resources */,
+				EAFA04C4187FC7CE00B0CF61 /* CreateContestController~ipad.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -19455,6 +19462,7 @@
 				A49DF8C3187D311600634196 /* StatementCell.xib in Resources */,
 				A49DF8C9187D3FA100634196 /* statement_cell_bg2@2x.png in Resources */,
 				A49DF8CD187D3FA100634196 /* statement_cell_bg1@2x.png in Resources */,
+				EAFA04C3187FC7CE00B0CF61 /* CreateContestController~ipad.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -20421,6 +20429,7 @@
 				A49DF8C2187D311600634196 /* StatementCell.xib in Resources */,
 				A49DF8C8187D3FA100634196 /* statement_cell_bg2@2x.png in Resources */,
 				A49DF8CC187D3FA100634196 /* statement_cell_bg1@2x.png in Resources */,
+				EAFA04C2187FC7CE00B0CF61 /* CreateContestController~ipad.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -21341,6 +21350,7 @@
 				A49DF8C5187D311600634196 /* StatementCell.xib in Resources */,
 				A49DF8CB187D3FA100634196 /* statement_cell_bg2@2x.png in Resources */,
 				A49DF8CF187D3FA100634196 /* statement_cell_bg1@2x.png in Resources */,
+				EAFA04C5187FC7CE00B0CF61 /* CreateContestController~ipad.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

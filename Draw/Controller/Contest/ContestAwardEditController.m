@@ -43,6 +43,16 @@
     [v setBackButtonSelector:@selector(clickBack:)];
     [v setRightButtonTitle:NSLS(@"kDone")];
     [v setRightButtonSelector:@selector(clickDone:)];
+    
+    //update tableView frame
+    
+    if (ISIPAD) {
+        CGFloat originY = CGRectGetMinY(self.dataTableView.frame);
+        CGFloat originHiehgt = CGRectGetHeight(self.dataTableView.frame);
+        CGFloat y = 100;
+        [self.dataTableView updateOriginY:y];
+        [self.dataTableView updateHeight:originHiehgt-(y-originY)];
+    }
 }
 
 - (void)clickBack:(id)sender{

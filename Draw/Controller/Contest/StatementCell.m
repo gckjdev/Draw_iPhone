@@ -16,19 +16,22 @@
 
 @implementation StatementCell
 
-+ (float)getCellHeightWithContent:(NSString *)content{
-    
-    return [self getTextHeight:content] + 10 * 2;
+#define CELL_VERTICAL_INSET (ISIPAD?20:10)
+#define LABEL_WIDTH (ISIPAD?618:241)
+#define CELL_MIN_HEIGHT (ISIPAD?180:90)
+
+
++ (float)getCellHeightWithContent:(NSString *)content{    
+    float height = [self getTextHeight:content];
+    height = MAX(CELL_MIN_HEIGHT, height+CELL_VERTICAL_INSET);
+    return height;
 }
 
 + (float)getTextHeight:(NSString *)text{
     
-    CGSize contrainedSize = CGSizeMake(231, 79);
-    CGSize size = [text sizeWithFont:FONT_BUTTON constrainedToSize:contrainedSize lineBreakMode:NSLineBreakByTruncatingTail];
-    
-    float height = MAX(21, size.height);
-    
-    return MAX(65, height);
+    CGSize contrainedSize = CGSizeMake(LABEL_WIDTH, CGFLOAT_MAX);
+    CGSize size = [text sizeWithFont:CELL_CONTENT_FONT constrainedToSize:contrainedSize lineBreakMode:NSLineBreakByCharWrapping];
+    return size.height;
 }
 
 + (NSString *)getCellIdentifier{
@@ -38,7 +41,9 @@
 
 + (id)createCell:(id)delegate{
     
-    StatementCell *cell = [super createCell:delegate];
+    StatementCell *cell = [self createViewWithXibIdentifier:[self getCellIdentifier] ofViewIndex:ISIPAD];
+    cell.titleLabel.font = CELL_NICK_FONT;
+    cell.contestLabel.font = CELL_CONTENT_FONT;
     cell.titleLabel.textColor = COLOR_BROWN;
     cell.contestLabel.textColor = COLOR_BROWN;
     return cell;
@@ -49,9 +54,9 @@
     self.titleLabel.text = title;
     self.contestLabel.text = content;
     
-    [self.contestLabel updateHeight:[StatementCell getTextHeight:content]];
+//    [self.contestLabel updateHeight:[StatementCell getTextHeight:content]];
 
-    [self.bgImageView updateHeight:(CGRectGetHeight(self.contestLabel.bounds) + 5*2)];
+//    [self.bgImageView updateHeight:(CGRectGetHeight(self.contestLabel.bounds) + 5*2)];
     
     if (self.indexPath.row % 2 == 0) {
         self.bgImageView.image = [ShareImageManager statementCellBg1];

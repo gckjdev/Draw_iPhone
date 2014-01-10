@@ -126,7 +126,6 @@ typedef enum{
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [self initTabButtons];
     
     SET_VIEW_BG(self.view);
     [self initCustomPageControl];
@@ -138,18 +137,21 @@ typedef enum{
     [self hideTips];
     
     if (_groupContestOnly) {
-        self.officialButton.hidden = YES;
-        self.groupButton.hidden = YES;
+//        self.officialButton.hidden = YES;
+//        self.groupButton.hidden = YES;
+        [self.officialButton removeFromSuperview];
+        [self.groupButton removeFromSuperview];
         
         GroupPermissionManager *permission =[GroupPermissionManager myManagerWithGroupId:self.groupId];
         if ([permission canHoldContest]) {
             [titleView setRightButtonTitle:NSLS(@"kCreate")];
             [titleView setRightButtonSelector:@selector(clickCreateButton:)];
         } ;
+        [self clickTab:TabTypeGroup];
     }else{
-        
-        self.officialButton.hidden = NO;
-        self.groupButton.hidden = NO;
+        [self initTabButtons];
+//        self.officialButton.hidden = NO;
+//        self.groupButton.hidden = NO;
     }
     
     if (_groupContestOnly) {

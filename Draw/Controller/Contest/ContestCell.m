@@ -14,6 +14,7 @@
 #import "StableView.h"
 #import "IconView.h"
 #import "GroupUIManager.h"
+#import "ShareUIManager.h"
 
 @interface ContestCell()
 @property (retain, nonatomic) IBOutlet GroupIconView *groupIconView;
@@ -45,21 +46,22 @@
 
 + (id)createCell:(id)delegate{
     
-    ContestCell *cell = [super createCell:nil];
+    ContestCell *cell = [self createViewWithXibIdentifier:[self getCellIdentifier] ofViewIndex:ISIPAD];    
     cell.bgImageView.image = [ShareImageManager bubleImage];
     [cell.contestImageView.layer setCornerRadius:4];
     [cell.contestImageView setClipsToBounds:YES];
     [cell.labelBgImageView.layer setCornerRadius:4];
     [cell.labelBgImageView setClipsToBounds:YES];
     cell.delegate = delegate;
-    
+    cell.contestNameLabel.font = CELL_SMALLTEXT_FONT;
+    cell.leftTimeLabel.font = CELL_SMALLTEXT_FONT;
     [cell.contestImageView addTapGuestureWithTarget:cell selector:@selector(didClickOnContestImageView)];
     return cell;
 }
 
 + (float)getCellHeight{
     
-    return 111;
+    return ISIPAD?200:111;
 }
 
 + (NSString*)getCellIdentifier
