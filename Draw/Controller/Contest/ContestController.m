@@ -154,8 +154,13 @@ typedef enum{
     
     if (_groupContestOnly) {
         self.view.backgroundColor = COLOR_WHITE;
+
     }else{
         self.view.backgroundColor = COLOR_GRAY;
+        
+        int delta = (ISIPAD ? 30 *2 : 30);
+        [self.dataTableView updateOriginY:(CGRectGetMinY(self.dataTableView.frame) + delta)];
+        [self.dataTableView updateHeight:(CGRectGetHeight(self.dataTableView.frame) - delta)];
     }
     
     [[ContestService defaultService] syncOngoingContestList];
