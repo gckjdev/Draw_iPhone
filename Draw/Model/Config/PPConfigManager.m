@@ -12,6 +12,7 @@
 #import "UserManager.h"
 #import "UIUtils.h"
 #import "FeedManager.h"
+#import "StringUtil.h"
 
 #define KEY_GUESS_DIFF_LEVEL    @"KEY_GUESS_DIFF_LEVEL"
 #define KEY_CHAT_VOICE_ENABLE   @"KEY_CHAT_VOICE_ENABLE"
@@ -162,7 +163,7 @@
 #ifdef DEBUG
 //    return @"http://58.215.184.18:8699/api/i?";
     //    return @"http://localhost:8100/api/i?";
-    return @"http://192.168.1.12:8100/api/i?";
+//    return @"http://192.168.1.12:8100/api/i?";
 #endif
 
     return [MobClickUtils getStringValueByKey:@"MESSAGE_SERVER_URL" defaultValue:@"http://www.place100.com:8100/api/i?"];
@@ -1109,7 +1110,11 @@
 
 + (NSString *)getAlipayNotifyUrl
 {
-    return [MobClickUtils getStringValueByKey:@"ALI_PAY_NOTIFY_URL" defaultValue:@"http://www.xxx.com"];
+    NSString* url = @"http://www.you100.me:9879/alipay/api?m1=notify";
+    url = [url encodedURLParameterString];
+    
+    return [MobClickUtils getStringValueByKey:@"ALI_PAY_NOTIFY_URL"
+                                 defaultValue:url];
 }
 
 + (NSString *)getLastAppVersion

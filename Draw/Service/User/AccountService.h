@@ -12,6 +12,7 @@
 #import "GameBasic.pb.h"
 #import "GameNetworkConstants.h"
 #import "AlixPayOrder.h"
+#import "AliPayManager.h"
 
 #define PAYMENT_SUCCESS 0
 #define PAYMENT_FAILURE 1
@@ -41,6 +42,7 @@ typedef void (^SyncAccountResultHandler)(int resultCode);
 }
 
 @property (nonatomic, retain) NSObject<AccountServiceDelegate> *delegate;
+@property (nonatomic, retain) AliPayManager *alipayManager;
 
 + (AccountService *)defaultService;
 
