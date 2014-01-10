@@ -1001,7 +1001,7 @@
 "kJoinCount" = "參加";
 
 
-"kContest" = "畫畫比賽";
+"kContest" = "比賽";
 "kRank" = "畫榜";
 "kContestRank" = "比賽作品";
 "kNoRankPlayer" = "暫時沒有達人榜數據。";
@@ -2582,6 +2582,12 @@
 "kCreatingContest" = "創建比賽中...";
 "kCreatingContestFail" = "創建比賽失敗";
 "kCreateContestSuccess" = "成功創建比賽";
+
+"kUpdatingContest" = "更新比賽數據中...";
+"kUpdateContestFail" = "更新比賽數據失敗";
+"kUpdateContestSuccess" = "已成功更新比賽數據";
+"kCannotUpdateStartContest" = "比賽已經開始了，無法修改比賽信息";
+
 "kJoinContest" = "參賽";
 "kUpdateContestFail" = "更新比賽失敗";
 "kUpdateContestSuccess" = "更新比賽成功";

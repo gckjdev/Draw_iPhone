@@ -304,7 +304,7 @@
     order.seller = [PPConfigManager getAlipaySeller];
     order.tradeNO = [AlixPayOrderManager tradeNoWithProductId:product.alipayProductId];
     order.productName = [NSString stringWithFormat:@"%d个%@", product.count, NSLS(product.name)];
-    order.productDescription = [NSString stringWithFormat:@"description: %@", product.desc];
+    order.productDescription = order.productName; //@""; //[NSString stringWithFormat:@"description: %@", product.desc];
 
 #ifdef DEBUG
     order.amount = @"0.01";
@@ -358,9 +358,9 @@
 
 - (void)alipayForOrder:(AlixPayOrder *)order
 {
-    [AliPayManager payWithOrder:order
-                      appScheme:[GameApp alipayCallBackScheme]
-                  rsaPrivateKey:[PPConfigManager getAlipayRSAPrivateKey]];
+    [[[AccountService defaultService] alipayManager] payWithOrder:order
+                                       appScheme:[GameApp alipayCallBackScheme]
+                                   rsaPrivateKey:[PPConfigManager getAlipayRSAPrivateKey]];
     
     
 }

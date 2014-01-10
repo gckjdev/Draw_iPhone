@@ -820,6 +820,7 @@
 
 #define ERROR_CONTEST_REACH_MAX_FLOWER          110006
 #define ERROR_CONTEST_EXCEED_THROW_FLOWER_DATE  110007
+#define ERROR_CONTEST_CANNOT_UPDATE_AFTER_START 110011
 
 
 #define ERROR_BALANCE_NOT_ENOUGH        70005 //change from 200002 to 70005, by Gamy, 2014.1.2. the code is just used at the client.

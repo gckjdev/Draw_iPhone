@@ -2556,6 +2556,14 @@
 "kCreatingContest" = "Creating contest";
 "kCreatingContestFail" = "Create contest fail";
 "kCreateContestSuccess" = "Create contest success";
+
+
+
+"kUpdatingContest" = "Updating contest";
+"kUpdateContestFail" = "Update contest fail";
+"kUpdateContestSuccess" = "Update contest success";
+"kCannotUpdateStartContest" = "Contest has started, cannot edit contest";
+
 "kJoinContest" = "Join";
 "kUpdateContestFail" = "Update contest fail";
 "kUpdateContestSuccess" = "Update contest success";
