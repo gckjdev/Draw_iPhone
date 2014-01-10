@@ -21,6 +21,7 @@
 #import "IQKeyBoardManager.h"
 #import "UIButton+WebCache.h"
 #import "CropAndFilterViewController.h"
+#import "GameNetworkConstants.h"
 
 @interface CreateContestController ()<CKCalendarDelegate, UITextFieldDelegate>
 
@@ -251,12 +252,12 @@
     [self.contest setTitle:self.contestNameInputField.text];
     [self.contest setDesc:self.contestDescTextView.text];
     
-    [self showActivityWithText:NSLS(@"kCreatingContest")];
     
     CommonTitleView *titleView = [CommonTitleView titleView:self.view];
     [titleView hideRightButton];
     
     if (self.isNewContest) {
+        [self showActivityWithText:NSLS(@"kCreatingContest")];
         [[ContestService defaultService] createContest:self.contest
                                                  image:self.image
                                              completed:^(int resultCode, Contest *contest) {
@@ -274,15 +275,22 @@
         }];
     }else{
         
+        [self showActivityWithText:NSLS(@"kUpdatingContest")];        
         [[ContestService defaultService] updateContest:self.contest image:self.image completed:^(int resultCode, Contest *contest) {
             
             [self hideActivity];
             [titleView showRightButton];
             
-            if (resultCode != 0) {
-                POSTMSG2(NSLS(@"kCreatingContestFail"), 2);
+            if (resultCode != ERROR_SUCCESS) {
+                NSString* msg = NSLS(@"kUpdateContestFail");
+                if (resultCode == ERROR_CONTEST_CANNOT_UPDATE_AFTER_START){
+                    msg = NSLS(@"kCannotUpdateStartContest");
+                }
+
+                POSTMSG2(msg, 2);
             }else{
-                POSTMSG2(NSLS(@"kCreateContestSuccess"), 2);
+                
+                POSTMSG2(NSLS(@"kUpdateContestSuccess"), 2);
                 [self dismissViewControllerAnimated:YES completion:NULL];
                 [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_UPDATE_CONTEST_SUCCESS object:nil];
             }

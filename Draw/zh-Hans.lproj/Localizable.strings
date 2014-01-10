@@ -991,7 +991,7 @@
 "kOpusCount" = "作品 (%d)";
 "kJoinCount" = "参加";
 
-"kContest" = "画画大赛";
+"kContest" = "比赛";
 "kRank" = "画榜";
 "kContestRank" = "比赛作品";
 "kNoRankPlayer" = "暂时没有达人榜数据。";
@@ -2565,6 +2565,13 @@
 "kCreatingContest" = "创建比赛中...";
 "kCreatingContestFail" = "创建比赛失败";
 "kCreateContestSuccess" = "成功创建比赛";
+
+"kUpdatingContest" = "更新比赛数据中...";
+"kUpdateContestFail" = "更新比赛数据失败";
+"kUpdateContestSuccess" = "已成功更新比赛数据";
+"kCannotUpdateStartContest" = "比赛已经开始了，无法修改比赛信息";
+
+
 "kJoinContest" = "参赛";
 "kUpdateContestFail" = "更新比赛失败";
 "kUpdateContestSuccess" = "更新比赛成功";
