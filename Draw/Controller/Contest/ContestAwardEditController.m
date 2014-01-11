@@ -8,6 +8,7 @@
 
 #import "ContestAwardEditController.h"
 #import "ContestAwardEditCell.h"
+#import "UIViewController+BGImage.h"
 
 @interface ContestAwardEditController ()<ContestAwardEditCellDelegate>
 
@@ -35,7 +36,9 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+
     // Do any additional setup after loading the view from its nib.
+    [self setDefaultBGImage];
     
     CommonTitleView *v = [CommonTitleView createTitleView:self.view];
     [v setTitle:NSLS(@"kContestAward")];
