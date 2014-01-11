@@ -18,6 +18,7 @@
 #import "LogUtil.h"
 #import "MyFriend.h"
 #import "UIImageView+Extend.h"
+#import "GroupUIManager.h"
 
 @implementation FriendCell
 @synthesize avatarView;
@@ -40,6 +41,8 @@
     PPRelease(_levelLabel);
     PPRelease(_myFriend);
     [_genderImageView release];
+    [_groupIcon release];
+    [_groupLabel release];
     [super dealloc];
 }
 
@@ -178,9 +181,16 @@
     self.nickNameLabel.textColor = COLOR_BROWN;
     self.levelLabel.textColor = COLOR_GREEN;
     self.areaLabel.textColor = COLOR_BROWN;
+    self.groupLabel.textColor = COLOR_BROWN;
     
     NSString *imageName = aFriend.isMale ? @"user_detail_gender_male@2x.png" : @"user_detail_gender_female@2x.png";
     [self.genderImageView setImage:[UIImage imageNamed:imageName]];
+    
+    self.groupIcon.hidden = self.groupLabel.hidden = ![aFriend hasGroup];
+    if ([aFriend hasGroup]) {
+        [self.groupIcon setImageURL:aFriend.groupMedalURL placeholderImage:[GroupUIManager defaultGroupMedal]];
+        [self.groupLabel setText:aFriend.groupName];
+    }
 }
 
 

@@ -220,7 +220,7 @@ typedef enum {
     if (value >= 300) {
         return 0.7;
     }
-    return 0.67;
+    return 0.7;
 }
 
 - (CGRect)scaleRect:(CGRect)rect
@@ -280,7 +280,7 @@ typedef enum {
                 txt = [NSString stringWithFormat:@"\t\t\t%.0f x\n\t\t\t%.0f",rect.size.width, rect.size.height];
             }
             if(CGRectGetHeight(rect) < 300){
-                txt = [NSString stringWithFormat:@"%.0fx%.0f",rect.size.width, rect.size.height];                
+                txt = [NSString stringWithFormat:@"%.0f x %.0f",rect.size.width, rect.size.height];                
             }
             
         }

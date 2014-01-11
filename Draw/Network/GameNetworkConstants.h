@@ -692,6 +692,8 @@
 #define PARA_SOURCE_TITLEID @"soruceTitleId"
 #define PARA_FEE @"fee"
 
+#define PARA_GROUP_NAME @"groupName"
+#define PARA_GROUP_MEDAL @"groupMedal"
 
 // learn draw
 #define METHOD_GET_LEARNDRAW_LIST @"gldl"
