@@ -809,6 +809,10 @@
 "Android Standard Canvas (Vertical)" = "Android Standard Canvas (Vertical)";
 "Contest Billboard Canvas" = "Contest Billboard Canvas";
 
+"Android Canvas(H)" = "Android Canvas(H)";
+"Android Canvas(V)" = "Android Canvas(V)";
+"Billboard" = "Billboard";
+
 "kSquareCanvasLarge" = "Square Canvas(L)";
 "kSquareCanvasLargeDesc" = "A Large Square Canvas of size 1024*1024, including zone in and zone out feature, make drawing more funny.";
 

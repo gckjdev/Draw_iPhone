@@ -444,7 +444,14 @@
     self.awardEditController = [[[ContestAwardEditController alloc] initWithContest:self.contest] autorelease];
     [self presentViewController:self.awardEditController animated:YES completion:NULL];
     
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(contestAwardHasChanged) name:NotificationContestAwardEditDone object:nil];
+    [self registerNotificationWithName:NotificationContestAwardEditDone
+                            usingBlock:^(NSNotification *note) {
+                               
+                                [self contestAwardHasChanged];
+                                
+                            }];
+    
+//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(contestAwardHasChanged) name:NotificationContestAwardEditDone object:nil];
 
 }
 
@@ -452,7 +459,8 @@
     
     [self.awardEditController dismissViewControllerAnimated:YES completion:NULL];
     [self.contestAwardButton setTitle:[self.contest awardRulesShortDesc] forState:UIControlStateNormal];
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:NotificationContestAwardEditDone object:self];
+    
+    [self unregisterNotificationWithName:NotificationContestAwardEditDone];
 }
 
 - (void)didReceiveMemoryWarning

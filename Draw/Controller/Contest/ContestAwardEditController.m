@@ -110,7 +110,8 @@
 
 - (void)clickDone:(id)sender{
     
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"NotificationContestAwardEditDone" object:nil];
+    [[NSNotificationCenter defaultCenter] postNotificationName:NotificationContestAwardEditDone
+                                                        object:nil];
 }
 
 @end

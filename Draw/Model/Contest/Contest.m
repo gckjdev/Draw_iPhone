@@ -159,6 +159,10 @@
     [_pbContestBuilder setDesc:desc];
 }
 
+- (NSString*)desc{
+    return [_pbContestBuilder desc];
+}
+
 - (NSURL *)groupMedalImageUrl{
     
     if (_pbContestBuilder.group.medalImage == nil) {

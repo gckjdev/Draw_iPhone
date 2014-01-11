@@ -1100,7 +1100,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GameItemService);
     
     // 海报画布
     [mutableArray addObject:[self itemWithItemId:CanvasRectContestBillboard
-                                            name:@"Contest Billboard Canvas"
+                                            name:@"Billboard"
                                             desc:@"Contest Billboard Canvas"
                                      consumeType:PBGameItemConsumeTypeNonConsumable
                                            image:DRAW_URL_ITEM_IMAGE(@"shop_item_horizontal_canvas@2x.png")
@@ -1113,27 +1113,27 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GameItemService);
     
     // Android标准画布（横）
     [mutableArray addObject:[self itemWithItemId:CanvasRectAndroidHorizontal
-                                            name:@"Android Standard Canvas (Horizontal)"
+                                            name:@"Android Canvas(H)"
                                             desc:@"Android Standard Canvas (Horizontal)"
                                      consumeType:PBGameItemConsumeTypeNonConsumable
                                            image:DRAW_URL_ITEM_IMAGE(@"shop_item_horizontal_canvas@2x.png")
                                             type:PBDrawItemTypeDrawTool
                                            price:2*1000
                                         currency:PBGameCurrencyCoin //]];
-                                  promotionPrice:2*1000 //discount
+                                  promotionPrice:2*1000/discount
                                        startDate:[NSDate date]
                                       expireDate:[[NSDate date] dateByAddingDays:90]]];
     
     // Android标准画布（竖）
     [mutableArray addObject:[self itemWithItemId:CanvasRectAndroidVertical
-                                            name:@"Android Standard Canvas (Vertical)"
+                                            name:@"Android Canvas(V)"
                                             desc:@"Android Standard Canvas (Vertical)"
                                      consumeType:PBGameItemConsumeTypeNonConsumable
                                            image:DRAW_URL_ITEM_IMAGE(@"shop_item_vertical_canvas@2x.png")
                                             type:PBDrawItemTypeDrawTool
                                            price:2*1000
                                         currency:PBGameCurrencyCoin //]];
-                                  promotionPrice:1000 //discount
+                                  promotionPrice:2*1000/discount
                                        startDate:[NSDate date]
                                       expireDate:[[NSDate date] dateByAddingDays:90]]];
     

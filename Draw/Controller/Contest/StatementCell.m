@@ -60,6 +60,9 @@
     cell.contestLabel.font = CELL_CONTENT_FONT;
     cell.titleLabel.textColor = COLOR_WHITE;
     cell.contestLabel.textColor = COLOR_BROWN;
+    
+    cell.delegate = delegate;
+    
     return cell;
 }
 

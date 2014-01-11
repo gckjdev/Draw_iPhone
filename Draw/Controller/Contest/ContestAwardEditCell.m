@@ -44,7 +44,11 @@
     [numberToolbar sizeToFit];
     cell.awardTextField.inputAccessoryView = numberToolbar;
     
-    [cell.awardTextField addTarget:cell action:@selector(awardTextFieldValueChanged:) forControlEvents:UIControlEventEditingDidEnd];
+    [cell.awardTextField addTarget:cell
+                            action:@selector(awardTextFieldValueChanged:)
+                  forControlEvents:UIControlEventEditingDidEnd];
+    
+    cell.delegate = delegate;
     
     return cell;
 }

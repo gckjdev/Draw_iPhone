@@ -118,6 +118,8 @@
     SET_INPUT_VIEW_STYLE(self.nameTextField);
     [self.nameLabel setText:NSLS(@"kName")];
     [self.nameTextField setPlaceholder:nil];
+    [self.nameTextField setTextAlignment:NSTextAlignmentCenter];
+    
     //level
     [self.levelLabel setTextColor:COLOR_BROWN];
     [self.levelTips setTextColor:COLOR_BROWN];
