@@ -193,7 +193,7 @@
 					<object class="IBUILabel" id="759483965">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{30, 886}, {130, 40}}</string>
+						<string key="NSFrame">{{30, 890}, {130, 40}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="601615375"/>
@@ -266,9 +266,10 @@
 					<object class="IBUIButton" id="601615375">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{190, 873}, {555, 66}}</string>
+						<string key="NSFrame">{{190, 877}, {555, 66}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
+						<reference key="NSNextKeyView"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<reference key="IBUIBackgroundColor" ref="101965112"/>
 						<bool key="IBUIOpaque">NO</bool>
@@ -309,7 +310,7 @@
 					<object class="IBUIButton" id="1013915512">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{190, 651}, {555, 208}}</string>
+						<string key="NSFrame">{{190, 651}, {555, 212}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="759483965"/>
@@ -717,6 +718,80 @@
 				<object class="IBPartialClassDescription">
 					<string key="className">CreateContestController</string>
 					<string key="superclassName">PPTableViewController</string>
+					<dictionary class="NSMutableDictionary" key="outlets">
+						<string key="contestAwardButton">UIButton</string>
+						<string key="contestAwardLabel">UILabel</string>
+						<string key="contestDescLabel">UILabel</string>
+						<string key="contestDescTextView">UITextView</string>
+						<string key="contestImageButton">UIButton</string>
+						<string key="contestImageLabel">UILabel</string>
+						<string key="contestNameInputField">UITextField</string>
+						<string key="contestNameLabel">UILabel</string>
+						<string key="endTimeButton">UIButton</string>
+						<string key="endTimeLabel">UILabel</string>
+						<string key="joinerButton">UIButton</string>
+						<string key="joinersLabel">UILabel</string>
+						<string key="startTimeButton">UIButton</string>
+						<string key="startTimeLabel">UILabel</string>
+					</dictionary>
+					<dictionary class="NSMutableDictionary" key="toOneOutletInfosByName">
+						<object class="IBToOneOutletInfo" key="contestAwardButton">
+							<string key="name">contestAwardButton</string>
+							<string key="candidateClassName">UIButton</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="contestAwardLabel">
+							<string key="name">contestAwardLabel</string>
+							<string key="candidateClassName">UILabel</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="contestDescLabel">
+							<string key="name">contestDescLabel</string>
+							<string key="candidateClassName">UILabel</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="contestDescTextView">
+							<string key="name">contestDescTextView</string>
+							<string key="candidateClassName">UITextView</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="contestImageButton">
+							<string key="name">contestImageButton</string>
+							<string key="candidateClassName">UIButton</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="contestImageLabel">
+							<string key="name">contestImageLabel</string>
+							<string key="candidateClassName">UILabel</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="contestNameInputField">
+							<string key="name">contestNameInputField</string>
+							<string key="candidateClassName">UITextField</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="contestNameLabel">
+							<string key="name">contestNameLabel</string>
+							<string key="candidateClassName">UILabel</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="endTimeButton">
+							<string key="name">endTimeButton</string>
+							<string key="candidateClassName">UIButton</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="endTimeLabel">
+							<string key="name">endTimeLabel</string>
+							<string key="candidateClassName">UILabel</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="joinerButton">
+							<string key="name">joinerButton</string>
+							<string key="candidateClassName">UIButton</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="joinersLabel">
+							<string key="name">joinersLabel</string>
+							<string key="candidateClassName">UILabel</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="startTimeButton">
+							<string key="name">startTimeButton</string>
+							<string key="candidateClassName">UIButton</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="startTimeLabel">
+							<string key="name">startTimeLabel</string>
+							<string key="candidateClassName">UILabel</string>
+						</object>
+					</dictionary>
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">
 						<string key="majorKey">IBProjectSource</string>
 						<string key="minorKey">./Classes/CreateContestController.h</string>

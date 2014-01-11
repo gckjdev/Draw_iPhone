@@ -44,13 +44,14 @@
     [super dealloc];
 }
 
+#define CORNER_RADIUS (ISIPAD?10:4)
 + (id)createCell:(id)delegate{
     
     ContestCell *cell = [self createViewWithXibIdentifier:[self getCellIdentifier] ofViewIndex:ISIPAD];    
     cell.bgImageView.image = [ShareImageManager bubleImage];
-    [cell.contestImageView.layer setCornerRadius:4];
+    [cell.contestImageView.layer setCornerRadius:CORNER_RADIUS];
     [cell.contestImageView setClipsToBounds:YES];
-    [cell.labelBgImageView.layer setCornerRadius:4];
+    [cell.labelBgImageView.layer setCornerRadius:CORNER_RADIUS];
     [cell.labelBgImageView setClipsToBounds:YES];
     cell.delegate = delegate;
     cell.contestNameLabel.font = CELL_SMALLTEXT_FONT;
@@ -61,7 +62,7 @@
 
 + (float)getCellHeight{
     
-    return ISIPAD?200:111;
+    return ISIPAD?270:120;
 }
 
 + (NSString*)getCellIdentifier

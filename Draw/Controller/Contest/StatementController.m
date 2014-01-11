@@ -69,6 +69,8 @@
     [titleView setBackButtonSelector:@selector(clickDeclineButton:)];
     [titleView setRightButtonTitle:NSLS(@"kAccept")];
     [titleView setRightButtonSelector:@selector(acceptButton:)];
+    
+    self.dataTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
 }
 
 - (void)loadWebView
@@ -135,7 +137,13 @@
 
 - (float)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    float height = 50;
+//    float height = 50;
+    if(indexPath.row != StatementCellTypeDesc){
+        return [StatementCell getCellHeightWithType:indexPath.row];
+    }else{
+        return [StatementCell getCellHeightWithContent:[self.contest desc]];
+    }
+    /*
     if (indexPath.row == 0){
         NSString *content = [[[self.contest contestingTimeDesc] stringByAppendingString:@"\n"] stringByAppendingString:[self.contest votingTimeDesc]];
         height = [StatementCell getCellHeightWithContent:content];
@@ -146,8 +154,8 @@
     }else if (indexPath.row == 3){
         height = [StatementCell getCellHeightWithContent:[self.contest awardRulesDesc]];
     }
-    
     return height;
+    */
 }
 
 
@@ -158,13 +166,13 @@
         cell = [StatementCell createCell:self];
     }
 
-    if (indexPath.row == 0){
+    if (indexPath.row == 1){
         NSString *contestingTimeDesc = [NSString stringWithFormat:NSLS(@"kContestingTimeIs"), [self.contest contestingTimeDesc]];
         NSString *votingTimeDesc = [NSString stringWithFormat:NSLS(@"kVotingTimeIs"), [self.contest votingTimeDesc]];
                                  
         NSString *content = [[contestingTimeDesc stringByAppendingString:@"\n"] stringByAppendingString:votingTimeDesc];
         [cell setCellTitle:NSLS(@"kTime") content:content];
-    }else if (indexPath.row == 1){
+    }else if (indexPath.row == 0){
         [cell setCellTitle:NSLS(@"kSubject") content:[self.contest title]];
     }else if (indexPath.row == 2){
         [cell setCellTitle:NSLS(@"kDesc") content:[self.contest desc]];

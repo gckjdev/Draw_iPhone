@@ -7276,6 +7276,10 @@
 		EAFA0519187FDF5500B0CF61 /* libssl.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EAFA04E4187FDF5400B0CF61 /* libssl.a */; };
 		EAFA051A187FDF5500B0CF61 /* libssl.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EAFA04E4187FDF5400B0CF61 /* libssl.a */; };
 		EAFA051B187FDF5500B0CF61 /* libssl.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EAFA04E4187FDF5400B0CF61 /* libssl.a */; };
+		EAFA051E1880ECA700B0CF61 /* CreateContestController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAFA051D1880ECA600B0CF61 /* CreateContestController~ipad.xib */; };
+		EAFA051F1880ECA700B0CF61 /* CreateContestController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAFA051D1880ECA600B0CF61 /* CreateContestController~ipad.xib */; };
+		EAFA05201880ECA700B0CF61 /* CreateContestController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAFA051D1880ECA600B0CF61 /* CreateContestController~ipad.xib */; };
+		EAFA05211880ECA700B0CF61 /* CreateContestController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAFA051D1880ECA600B0CF61 /* CreateContestController~ipad.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -10219,6 +10223,7 @@
 		EAFA04E4187FDF5400B0CF61 /* libssl.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libssl.a; sourceTree = "<group>"; };
 		EAFA04E6187FDF5400B0CF61 /* DataSigner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataSigner.h; sourceTree = "<group>"; };
 		EAFA04E7187FDF5400B0CF61 /* DataVerifier.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataVerifier.h; sourceTree = "<group>"; };
+		EAFA051D1880ECA600B0CF61 /* CreateContestController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "CreateContestController~ipad.xib"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -15241,6 +15246,7 @@
 		CA89747F16087BBD003A95F7 /* Contest */ = {
 			isa = PBXGroup;
 			children = (
+				EAFA051D1880ECA600B0CF61 /* CreateContestController~ipad.xib */,
 				A44AC4811875528D00927649 /* CreateContestController.m */,
 				A44AC4821875528D00927649 /* CreateContestController.h */,
 				A44AC4831875528D00927649 /* CreateContestController.xib */,
@@ -18323,6 +18329,7 @@
 				A49DF8CA187D3FA100634196 /* statement_cell_bg2@2x.png in Resources */,
 				A49DF8CE187D3FA100634196 /* statement_cell_bg1@2x.png in Resources */,
 				EAFA04EE187FDF5500B0CF61 /* Alixpay.bundle in Resources */,
+				EAFA05201880ECA700B0CF61 /* CreateContestController~ipad.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -19307,6 +19314,7 @@
 				A49DF8C9187D3FA100634196 /* statement_cell_bg2@2x.png in Resources */,
 				A49DF8CD187D3FA100634196 /* statement_cell_bg1@2x.png in Resources */,
 				EAFA04ED187FDF5500B0CF61 /* Alixpay.bundle in Resources */,
+				EAFA051F1880ECA700B0CF61 /* CreateContestController~ipad.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -20274,6 +20282,7 @@
 				A49DF8C8187D3FA100634196 /* statement_cell_bg2@2x.png in Resources */,
 				A49DF8CC187D3FA100634196 /* statement_cell_bg1@2x.png in Resources */,
 				EAFA04EC187FDF5500B0CF61 /* Alixpay.bundle in Resources */,
+				EAFA051E1880ECA700B0CF61 /* CreateContestController~ipad.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -21195,6 +21204,7 @@
 				A49DF8CB187D3FA100634196 /* statement_cell_bg2@2x.png in Resources */,
 				A49DF8CF187D3FA100634196 /* statement_cell_bg1@2x.png in Resources */,
 				EAFA04EF187FDF5500B0CF61 /* Alixpay.bundle in Resources */,
+				EAFA05211880ECA700B0CF61 /* CreateContestController~ipad.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

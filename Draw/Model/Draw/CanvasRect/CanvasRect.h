@@ -24,6 +24,11 @@ typedef enum{
 
     iPhone5HorizontalRect,
     iPhone5VerticalRect,
+
+    ContestBillboardRect,
+    AndroidHorizontalRect,
+    AndroidVerticalRect,
+    
     CanvasRectStyleCount,
     iPhoneDeprecatedRect = 10000,
     iPadDeprecatedRect = 10001,
