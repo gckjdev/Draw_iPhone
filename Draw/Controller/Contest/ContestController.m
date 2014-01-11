@@ -160,9 +160,10 @@ typedef enum{
     }else{
         self.view.backgroundColor = COLOR_GRAY;
         
-        int delta = (ISIPAD ? 30 *2 : 30);
-        [self.dataTableView updateOriginY:(CGRectGetMinY(self.dataTableView.frame) + delta)];
-        [self.dataTableView updateHeight:(CGRectGetHeight(self.dataTableView.frame) - delta)];
+//        int delta = (ISIPAD ? 30 *2 : 30);
+        CGFloat y = CGRectGetMaxY(self.groupButton.frame);
+        [self.dataTableView updateOriginY:y];
+        [self.dataTableView updateHeight:(CGRectGetHeight(self.view.bounds) - y)];
     }
     
     [[ContestService defaultService] syncOngoingContestList];
