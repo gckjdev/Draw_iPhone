@@ -125,12 +125,12 @@
     self.contestAwardLabel.text = NSLS(@"kContestAward");
     
     
-    UIToolbar* numberToolbar = [[UIToolbar alloc]initWithFrame:CGRectMake(0, 0, 320, 50)];
+    UIToolbar* numberToolbar = [[[UIToolbar alloc]initWithFrame:CGRectMake(0, 0, 320, 50)] autorelease];
     numberToolbar.barStyle = UIBarStyleBlackTranslucent;
     numberToolbar.items = [NSArray arrayWithObjects:
 //                           [[UIBarButtonItem alloc]initWithTitle:NSLS(@"kCancel") style:UIBarButtonItemStyleBordered target:self action:@selector(cancelNumberPad)],
-                           [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil],
-                           [[UIBarButtonItem alloc]initWithTitle:NSLS(@"kDone") style:UIBarButtonItemStyleDone target:self.contestDescTextView action:@selector(resignFirstResponder)],
+                           [[[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil] autorelease],
+                           [[[UIBarButtonItem alloc]initWithTitle:NSLS(@"kDone") style:UIBarButtonItemStyleDone target:self.contestDescTextView action:@selector(resignFirstResponder)] autorelease],
                            nil];
     [numberToolbar sizeToFit];
     self.contestDescTextView.inputAccessoryView = numberToolbar;
@@ -201,7 +201,7 @@
     [self.endTimeButton setTitle:endDateString forState:UIControlStateNormal];
     
     
-    self.calendar = [[CKCalendarView alloc] initWithStartDay:startMonday];
+    self.calendar = [[[CKCalendarView alloc] initWithStartDay:startMonday] autorelease];
     self.calendar.delegate = self;
     self.calendar.onlyShowCurrentMonth = YES;
     self.calendar.adaptHeightToNumberOfWeeksInMonth = YES;

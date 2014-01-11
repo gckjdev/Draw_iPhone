@@ -35,11 +35,11 @@
     cell.awardTextField.delegate = cell;
     cell.awardTextField.keyboardType = UIKeyboardTypeNumberPad;    
     
-    UIToolbar* numberToolbar = [[UIToolbar alloc]initWithFrame:ACCESSORY_FRAME];
+    UIToolbar* numberToolbar = [[[UIToolbar alloc]initWithFrame:ACCESSORY_FRAME] autorelease];
     numberToolbar.barStyle = UIBarStyleBlackTranslucent;
     numberToolbar.items = [NSArray arrayWithObjects:
-                           [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil],
-                           [[UIBarButtonItem alloc]initWithTitle:NSLS(@"kDone") style:UIBarButtonItemStyleDone target:cell.awardTextField action:@selector(resignFirstResponder)],
+                           [[[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil] autorelease],
+                           [[[UIBarButtonItem alloc]initWithTitle:NSLS(@"kDone") style:UIBarButtonItemStyleDone target:cell.awardTextField action:@selector(resignFirstResponder)] autorelease],
                            nil];
     [numberToolbar sizeToFit];
     cell.awardTextField.inputAccessoryView = numberToolbar;
