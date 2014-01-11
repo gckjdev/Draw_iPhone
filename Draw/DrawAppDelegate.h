@@ -32,6 +32,7 @@
 @property (nonatomic, retain) ReviewRequest *reviewRequest; 
 
 @property (nonatomic, retain) RoomController *roomController;
+@property (nonatomic, retain) UINavigationController *rootNavigationController;
 @property (nonatomic, retain) UIViewController<DrawHomeControllerProtocol> *homeController;
 @property (nonatomic, retain) NetworkDetector *networkDetector;
 

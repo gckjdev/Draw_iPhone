@@ -20,7 +20,10 @@
 @property(nonatomic, assign) NSInteger commentBadge;
 @property(nonatomic, assign) NSInteger requestBadge;
 @property(nonatomic, assign) NSInteger noticeBadge;
+@property(nonatomic, assign) NSInteger chatBadge;
+@property(nonatomic, assign) NSInteger contestBadge;
 @property(nonatomic, assign, readonly) NSInteger totalBadge;
+@property(nonatomic, assign, readonly) NSInteger atMeBadge;
 
 @property(atomic, retain) NSMutableArray *tempMemberList;
 @property(nonatomic, retain) PBGroup *sharedGroup;
