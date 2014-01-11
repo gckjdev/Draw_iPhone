@@ -14,6 +14,8 @@ typedef enum{
     ContestListTypePassed = 1,
     ContestListTypeRunning = 2,
     ContestListTypePending = 3,
+    ContestListTypeAllGroup = 4,
+    ContestListTypeGroup = 5,
 }ContestListType;
 
 typedef void (^ CreateContestBlock) (int resultCode, Contest *contest);

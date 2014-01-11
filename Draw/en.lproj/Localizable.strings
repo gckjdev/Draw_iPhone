@@ -805,6 +805,10 @@
 "kItemTypeGrid" = "Network Grid";
 "kItemTypeGridDesc" = "A Network grid show when you are drawing, make it easy to aline";
 
+"Android Standard Canvas (Horizontal)" = "Android Standard Canvas (Horizontal)";
+"Android Standard Canvas (Vertical)" = "Android Standard Canvas (Vertical)";
+"Contest Billboard Canvas" = "Contest Billboard Canvas";
+
 "kSquareCanvasLarge" = "Square Canvas(L)";
 "kSquareCanvasLargeDesc" = "A Large Square Canvas of size 1024*1024, including zone in and zone out feature, make drawing more funny.";
 

@@ -847,6 +847,10 @@
 "kItemTypeGrid" = "網格參考線";
 "kItemTypeGridDesc" = "繪畫時候用網格參考線，可對準和對齊繪畫元素";
 
+"Android Standard Canvas (Horizo​​ntal)" = "安卓手機標準畫布（橫）800*480";
+"Android Standard Canvas (Vertical)" = "安卓手機標準畫布（豎）480*800";
+"Contest Billboard Canvas" = "比賽海報專用畫布";
+
 "kSquareCanvasLarge" = "正方形畫布(大)";
 "kSquareCanvasLargeDesc" = "正方形畫布，尺寸為1024*1024，配合放大功能，可以畫的更加精細，也可以用於創作四格漫畫等";
 

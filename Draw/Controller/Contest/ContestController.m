@@ -487,7 +487,7 @@ typedef enum{
     [self showActivityWithText:NSLS(@"kLoading")];
 
     if ([self.groupId length] == 0) {
-        [[ContestService defaultService] getGroupContestListWithType:ContestListTypeAll offset:self.currentTab.offset limit:self.currentTab.limit completed:^(int resultCode, ContestListType type, NSArray *contestList) {
+        [[ContestService defaultService] getGroupContestListWithType:ContestListTypeAllGroup offset:self.currentTab.offset limit:self.currentTab.limit completed:^(int resultCode, ContestListType type, NSArray *contestList) {
             
             [self hideActivity];
             if (resultCode == 0) {

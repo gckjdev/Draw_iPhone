@@ -835,6 +835,10 @@
 "kItemTypeGrid" = "网格参考线";
 "kItemTypeGridDesc" = "绘画时候用网格参考线，可对准和对齐绘画元素";
 
+"Android Standard Canvas (Horizontal)" = "安卓手机标准画布（横）800*480";
+"Android Standard Canvas (Vertical)" = "安卓手机标准画布（竖）480*800";
+"Contest Billboard Canvas" = "比赛海报专用画布";
+
 "kSquareCanvasLarge" = "正方形画布(大)";
 "kSquareCanvasLargeDesc" = "正方形画布，尺寸为1024*1024，配合放大功能，可以画的更加精细，也可以用于创作四格漫画等";
 

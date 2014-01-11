@@ -153,12 +153,15 @@ static ContestService *_staticContestService;
         return;
     }
     
+    ContestListType type = ContestListTypeGroup;
+    
     dispatch_async(workingQueue, ^{
         
         NSDictionary* para = @{ PARA_LANGUAGE : @(ChineseType),
                                 PARA_GROUPID : groupId,
                                 PARA_OFFSET : @(offset),
                                 PARA_COUNT : @(limit),
+                                PARA_TYPE : @(type),
                                 };
         
         GameNetworkOutput* output = [PPGameNetworkRequest trafficApiServerGetAndResponsePB:METHOD_GET_CONTEST_LIST
@@ -171,7 +174,6 @@ static ContestService *_staticContestService;
         }
         
         dispatch_async(dispatch_get_main_queue(), ^{
-
             
             EXECUTE_BLOCK(completed, output.resultCode, 0, contestList);
             
@@ -215,6 +217,8 @@ static ContestService *_staticContestService;
                              offset:(NSInteger)offset
                               limit:(NSInteger)limit
                           completed:(GetContestListBlock)completed{
+    
+    type = ContestListTypeAllGroup;
     
     dispatch_async(workingQueue, ^{
         
