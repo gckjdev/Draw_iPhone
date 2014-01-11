@@ -22,6 +22,7 @@
 #import "UIButton+WebCache.h"
 #import "CropAndFilterViewController.h"
 #import "GameNetworkConstants.h"
+#import "UIViewController+BGImage.h"
 
 @interface CreateContestController ()<CKCalendarDelegate, UITextFieldDelegate>
 
@@ -101,6 +102,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     [IQKeyBoardManager enableKeyboardManger];
+    [self setDefaultBGImage];
     
     CommonTitleView *v = [CommonTitleView createTitleView:self.view];
     if (self.isNewContest) {

@@ -13,6 +13,7 @@
 #import "ContestService.h"
 #import "SingController.h"
 #import "StatementCell.h"
+#import "UIViewController+BGImage.h"
 
 @implementation StatementController
 @synthesize contentView = _contentView;
@@ -71,6 +72,8 @@
     [titleView setRightButtonSelector:@selector(acceptButton:)];
     
     self.dataTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    
+    [self setDefaultBGImage];
 }
 
 - (void)loadWebView
