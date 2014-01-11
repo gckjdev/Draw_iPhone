@@ -559,6 +559,7 @@
 #define PARA_ROOM_COUNT @"rc"
 #define PARA_TIME_LINE_GUESS_COUNT @"tlgc"
 #define PARA_TIME_LINE_OPUS_COUNT @"tloc"
+#define PARA_GROUP_NOTICE_COUNT @"gnc"
 
 //friends operation
 #define PARA_TARGETUSERID   @"tid"

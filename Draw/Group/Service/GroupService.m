@@ -50,7 +50,7 @@ static GroupService *_staticGroupService = nil;
 - (void)loadPBData:(NSString *)method
       parameters:(NSDictionary *)parameters
         callback:(PBResponseResultBlock)callback
-{    
+{
     if(self.isTestMode){
         GameNetworkOutput* output = [PPGameNetworkRequest
                                      sendGetRequestWithBaseURL:GROUP_HOST

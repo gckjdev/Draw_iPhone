@@ -2561,6 +2561,7 @@
 "kEveryone" = "所有人";
 "kGroupMember" = "家族成員";
 "kGroupMemberAndGuest" = "家族成員和嘉賓";
+"kContestTotalAwardNotEnough" = "比賽總獎金最少必須為%d金幣";
 
 "kContestNameCannotBeBlank" = "比賽名稱不能為空";
 "kPleaseSelectContestImage" = "請選擇一副圖片作為比賽海報";

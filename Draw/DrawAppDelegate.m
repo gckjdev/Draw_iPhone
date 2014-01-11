@@ -147,7 +147,7 @@ NSString* GlobalGetTrafficServerURL()
 //    return @"http://58.215.172.169:8037/api/i?";
     
 //    return @"http://192.168.1.3:8100/api/i?";
-//    return @"http://192.168.1.12:8100/api/i?";
+    return @"http://192.168.1.12:8100/api/i?";
 #endif
     
     return [PPConfigManager getTrafficAPIServerURL];

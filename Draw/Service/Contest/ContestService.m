@@ -332,6 +332,12 @@ static ContestService *_staticContestService;
     
     NSArray* ongoingContestList = [[ContestManager defaultManager] ongoingContestList];
     for (PBContest* contest in ongoingContestList){
+        
+        // skip ongoing group contest
+        if (contest.group != nil){
+            continue;
+        }
+        
         if ([self hasContestAccept:contest.contestId] == NO){
             count ++;
         }

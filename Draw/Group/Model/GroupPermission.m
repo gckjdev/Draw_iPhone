@@ -21,68 +21,79 @@ static NSMutableArray *_roles;
 
 + (NSMutableArray *)groupRoles
 {
-    if (!_roles) {
-        _roles = [[NSMutableArray array] retain];
-        NSArray *array = [[[UserManager defaultManager] userDefaults] arrayForKey:GROUP_ROLES_KEY];
-        
-        for (NSData* data in array){
-            @try {
-                PBGroupUserRole* role = [PBGroupUserRole parseFromData:data];
-                [_roles addObject:role];
-            }
-            @catch (NSException *exception) {
-                PPDebug(@"<loadGroupRoles> but catch exception (%@)", [exception description]);
-            }
-            @finally {
+    @synchronized(self){
+        if (!_roles) {
+            _roles = [[NSMutableArray array] retain];
+            NSArray *array = [[[UserManager defaultManager] userDefaults] arrayForKey:GROUP_ROLES_KEY];
+            
+            for (NSData* data in array){
+                @try {
+                    PBGroupUserRole* role = [PBGroupUserRole parseFromData:data];
+                    [_roles addObject:role];
+                }
+                @catch (NSException *exception) {
+                    PPDebug(@"<loadGroupRoles> but catch exception (%@)", [exception description]);
+                }
+                @finally {
+                }
             }
         }
+
+        return _roles;
     }
-    return _roles;
 }
 
 + (void)clearGroupRoles
 {
-    [_roles release];
-    _roles = nil;
+    @synchronized(self){
+        [_roles release];
+        _roles = nil;
+    }
 }
 
 + (PBGroupUserRole *)roleForGroupId:(NSString *)groupId
 {
-    NSArray *roles = [self groupRoles];
-    for (PBGroupUserRole *role in roles) {
-        if ([role.groupId isEqualToString:groupId]) {
-            return role;
+    @synchronized(self){    
+        NSArray *roles = [self groupRoles];
+        for (PBGroupUserRole *role in roles) {
+            if ([role.groupId isEqualToString:groupId]) {
+                return role;
+            }
         }
+        return nil;
     }
-    return nil;
 }
 
 + (void)removeRole:(NSString *)groupId
 {
-    PBGroupUserRole *role = [self roleForGroupId:groupId];
-    if (role) {
-        [_roles removeObject:role];
-        [self syncGroupRoles:_roles];
+    @synchronized(self){
+        PBGroupUserRole *role = [self roleForGroupId:groupId];
+        if (role) {
+            [_roles removeObject:role];
+            [self syncGroupRoles:_roles];
+        }
     }
 }
 
 + (void)syncGroupRoles:(NSArray *)roles
 {
-    NSMutableArray *dataList = [NSMutableArray array];
-    for (PBGroupUserRole *role in roles) {
-        NSData *data = [role data];
-        if (data) {
-            [dataList addObject:data];
+    @synchronized(self){
+        NSMutableArray *dataList = [NSMutableArray array];
+        for (PBGroupUserRole *role in roles) {
+            NSData *data = [role data];
+            if (data) {
+                [dataList addObject:data];
+            }
         }
+        if (_roles != roles) {
+            [_roles release];
+            _roles = [NSMutableArray arrayWithArray:roles];
+            [_roles retain];
+        }
+        
+        [[[UserManager defaultManager] userDefaults] setObject:dataList forKey:GROUP_ROLES_KEY];
+        [[[UserManager defaultManager] userDefaults] synchronize];
     }
-    if (_roles != roles) {
-        [_roles release];
-        _roles = [NSMutableArray arrayWithArray:roles];
-        [_roles retain];
-    }
-    
-    [[[UserManager defaultManager] userDefaults] setObject:dataList forKey:GROUP_ROLES_KEY];
-    [[[UserManager defaultManager] userDefaults] synchronize];
 }
 
 
