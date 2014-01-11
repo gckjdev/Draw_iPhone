@@ -2556,7 +2556,7 @@
 "kCreatingContest" = "Creating contest";
 "kCreatingContestFail" = "Create contest fail";
 "kCreateContestSuccess" = "Create contest success";
-
+"kContestTotalAwardNotEnough" = "Total contest award should be at least %d coins";
 
 
 "kUpdatingContest" = "Updating contest";

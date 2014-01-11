@@ -249,6 +249,12 @@
         return;
     }
     
+    if ([self.contest checkTotalAward] == NO){
+        NSString* msg = [NSString stringWithFormat:NSLS(@"kContestTotalAwardNotEnough"), [Contest getMinGroupContestAward]];
+        POSTMSG2(msg, 2);
+        return;
+    }
+    
     [self.contest setTitle:self.contestNameInputField.text];
     [self.contest setDesc:self.contestDescTextView.text];
     

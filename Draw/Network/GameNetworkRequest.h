@@ -478,7 +478,8 @@
 
 + (CommonNetworkOutput*)getStatistics:(NSString*)baseURL 
                                 appId:(NSString *)appId 
-                               userId:(NSString *)userId;
+                               userId:(NSString *)userId
+                              groupId:(NSString*)groupId;
 
 + (CommonNetworkOutput*)getOpusTimes:(NSString*)baseURL 
                                appId:(NSString *)appId 

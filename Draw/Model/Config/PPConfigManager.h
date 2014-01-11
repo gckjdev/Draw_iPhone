@@ -339,5 +339,6 @@ typedef enum{
 
 + (BOOL)isGroupVersionInBeta;
 + (NSSet *)getGroupTestUserIdSet;
++ (int)getMinGroupContestAward;
 
 @end

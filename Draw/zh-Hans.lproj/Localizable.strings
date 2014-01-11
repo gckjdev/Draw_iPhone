@@ -2544,6 +2544,8 @@
 "kGroupMember" = "家族成员";
 "kGroupMemberAndGuest" = "家族成员和嘉宾";
 
+"kContestTotalAwardNotEnough" = "比赛总奖金最少必须为%d金币";
+
 "kContestNameCannotBeBlank" = "比赛名称不能为空";
 "kPleaseSelectContestImage" = "请选择一副图片作为比赛海报";
 "kCreateContestSuccess" = "成功创建比赛";

@@ -9,6 +9,7 @@
 #import "Contest.h"
 #import "GameNetworkConstants.h"
 #import "TimeUtils.h"
+#import "PPConfigManager.h"
 
 @interface Contest()
 
@@ -614,6 +615,28 @@
     }else{
         return NO;
     }
+}
+
++ (int)getMinGroupContestAward
+{
+    return [PPConfigManager getMinGroupContestAward];
+}
+
+- (BOOL)checkTotalAward
+{
+    int total = 0;    
+    for (NSNumber* award in _pbContestBuilder.awardRulesList){
+        total += [award intValue];
+    }
+    
+    PPDebug(@"total contest award is %d", total);
+    if (total < [Contest getMinGroupContestAward]){
+        return NO;
+    }
+    else{
+        return YES;
+    }
+    
 }
 
 @end

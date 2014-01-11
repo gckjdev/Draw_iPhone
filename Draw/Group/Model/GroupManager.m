@@ -484,25 +484,29 @@ enum{
 
 - (NSString *)userCurrentGroupId
 {
-    NSArray * list = [GroupPermissionManager groupRoles];
-    
-    NSArray *intRoles = @[@(GroupRoleCreator),
-                          @(GroupRoleAdmin),
-                          @(GroupRoleMember)
-                          ];
-    
-    for (NSNumber* roleType in intRoles){
-        // 按照顺序，优先匹配权限
-        for (PBGroupUserRole *role in list) {
-            if (role.role == [roleType intValue]) {
-                PPDebug(@"current user groupId is %@ name %@", role.groupId, role.groupName);
-                return role.groupId;
+    @synchronized(self){
+        
+        NSArray * list = [GroupPermissionManager groupRoles];
+        
+        NSArray *intRoles = @[@(GroupRoleCreator),
+                              @(GroupRoleAdmin),
+                              @(GroupRoleMember)
+                              ];
+        
+        for (NSNumber* roleType in intRoles){
+            // 按照顺序，优先匹配权限
+            for (PBGroupUserRole *role in list) {
+                if (role.role == [roleType intValue]) {
+                    PPDebug(@"current user groupId is %@ name %@", role.groupId, role.groupName);
+                    return role.groupId;
+                }
             }
         }
+
+        PPDebug(@"current user groupId not found");
+        return nil;
     }
 
-    PPDebug(@"current user groupId not found");
-    return nil;
 }
 
 - (PBGroup*)userCurrentGroup

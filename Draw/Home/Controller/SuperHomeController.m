@@ -234,6 +234,7 @@ static NSDictionary* DEFAULT_MENU_IMAGE_DICT = nil;
     
     [self updateBadgeWithType:HomeMenuTypeDrawTimeline badge:timelineCount];
     [self updateBadgeWithType:HomeMenuTypeDrawContest badge:[manager newContestCount]];
+    [self updateBadgeWithType:HomeMenuTypeGroup badge:[manager groupNoticeCount]];
     [self.homeHeaderPanel updateBulletinBadge:[manager bulletinCount]];
     
 }
