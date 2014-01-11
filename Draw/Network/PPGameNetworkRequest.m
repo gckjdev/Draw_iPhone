@@ -10,6 +10,7 @@
 #import "PPNetworkConstants.h"
 #import "StringUtil.h"
 #import "UserManager.h"
+#import "GroupManager.h"
 
 @implementation PPGameNetworkRequest
 
@@ -32,6 +33,14 @@
     // gameId
     if (para == nil || [para objectForKey:PARA_GAME_ID] == nil){
         str = [str stringByAddQueryParameter:PARA_GAME_ID value:[GameApp gameId]];
+    }
+
+    // groupId
+    if (para == nil || [para objectForKey:PARA_GROUPID] == nil){
+        NSString* groupId = [[GroupManager defaultManager] userCurrentGroupId];
+        if ([groupId length] > 0){
+            str = [str stringByAddQueryParameter:PARA_GROUPID value:groupId];
+        }
     }
     
     return str;
@@ -377,7 +386,7 @@
     NSString *URL = TRAFFIC_SERVER_URL;
     
 #ifdef DEBUG
-    URL = @"http://192.168.1.12:8100/api/i?";
+//    URL = @"http://192.168.1.12:8100/api/i?";
     
 //    URL = @"http://localhost:8100/api/i?";
 //    URL = @"http://192.168.1.12:8100/api/i?";

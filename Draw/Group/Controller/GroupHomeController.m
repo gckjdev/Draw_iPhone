@@ -87,8 +87,20 @@
 
 - (void)updateAtMeBadge
 {
-    NSInteger badge = [[GroupManager defaultManager] totalBadge];
+    NSInteger badge = [[GroupManager defaultManager] atMeBadge];
     [self.footerView setButton:GroupAtMe badge:badge];
+}
+
+- (void)updateChatBadge
+{
+    NSInteger badge = [[GroupManager defaultManager] chatBadge];
+    [self.footerView setButton:GroupChat badge:badge];
+}
+
+- (void)updateContestBadge
+{
+    NSInteger badge = [[GroupManager defaultManager] contestBadge];
+    [self.footerView setButton:GroupContest badge:badge];
 }
 
 - (void)loadBadge
@@ -97,6 +109,8 @@
         if (!error) {
             [[GroupManager defaultManager] updateBadges:badges];
             [self updateAtMeBadge];
+            [self updateChatBadge];
+            [self updateContestBadge];
         }
     }];
 }

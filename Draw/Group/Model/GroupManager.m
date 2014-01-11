@@ -130,12 +130,20 @@ enum{
     BADGE_COMMENT = 1,
     BADGE_REQUEST = 2,
     BADGE_NOTICE = 3,
+    BADGE_CHAT = 4,
+    BADGE_CONTEST = 5
 };
 
 - (NSInteger)totalBadge
 {
+    return _noticeBadge + _commentBadge + _requestBadge + _chatBadge + _contestBadge;
+}
+
+- (NSInteger)atMeBadge
+{
     return _noticeBadge + _commentBadge + _requestBadge;
 }
+
 
 - (void)updateBadges:(NSArray *)badges
 {
@@ -150,6 +158,12 @@ enum{
                 break;
             case BADGE_NOTICE:
                 self.noticeBadge = kv.value;
+                break;
+            case BADGE_CHAT:
+                self.chatBadge = kv.value;
+                break;
+            case BADGE_CONTEST:
+                self.contestBadge = kv.value;
                 break;
             default:
                 break;
