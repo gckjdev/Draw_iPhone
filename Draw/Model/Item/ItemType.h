@@ -111,6 +111,11 @@ typedef enum
     CanvasRectiPadScreenVertical,       // 768 * 1024
     CanvasRectiPhone5Horizontal,        // 1136 * 640
     CanvasRectiPhone5Vertical,          // 640 * 1136
+
+    //new rect for version 7.8
+    CanvasRectContestBillboard,          // 700 * 268
+    CanvasRectAndroidHorizontal,         // 480 * 800
+    CanvasRectAndroidVertical,          // 800 * 480
     
     //Liar dice.
     ItemTypeRollAgain = 2001,

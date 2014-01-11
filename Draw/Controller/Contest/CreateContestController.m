@@ -203,7 +203,11 @@
     self.calendar.delegate = self;
     self.calendar.onlyShowCurrentMonth = YES;
     self.calendar.adaptHeightToNumberOfWeeksInMonth = YES;
-    self.calendar.frame = CGRectMake(10, 10, 300, 320);
+    if (ISIPAD) {
+        self.calendar.frame = CGRectMake(134, 134, 500, 500);
+    }else{
+        self.calendar.frame = CGRectMake(10, 10, 300, 320);        
+    }
 
     [self.calendar updateCenterY:CGRectGetHeight(self.view.bounds)/2];
     
@@ -221,6 +225,7 @@
         NSURL *url = [NSURL URLWithString:[self.contest contestUrl]];
         [self.contestImageButton setImageWithURL:url forState:UIControlStateNormal];
     }
+
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField{
@@ -377,10 +382,12 @@
 }
 
 - (IBAction)clickContestImageButton:(id)sender {
-    
-    
+        
     if (self.picker == nil) {
         self.picker = [[[ChangeAvatar alloc] init] autorelease];
+        [self.picker setImageSize:CGSizeZero];
+        [self.picker setAutoRoundRect:NO];
+        [self.picker setIsCompressImage:NO];
     }
     
     __block typeof(self) bself = self;
@@ -389,7 +396,7 @@
                        otherTitles:nil
                            handler:NULL
                 selectImageHanlder:^(UIImage *image) {
-                    
+                    PPDebug(@"<selectImageHanlder> image size = %@", NSStringFromCGSize(image.size));
                     [bself showImageEditor:image];
 //                    bself.image = image;
 //                    [bself.contestImageButton setImage:image forState:UIControlStateNormal];
@@ -402,7 +409,7 @@
 - (void)showImageEditor:(UIImage *)image{
     
     CropAndFilterViewController *vc = [[CropAndFilterViewController alloc] init];
-    [vc setCropAspectRatio:0.377];
+    [vc setCropAspectRatio:0.382];
     vc.delegate = self;
     vc.image = image;
     

@@ -21,8 +21,16 @@
 #define IPHONE5_HORIZONTAL_RECT CGRectMake(0, 0, 1136, 640)
 #define IPHONE5_VERTICAL_RECT CGRectMake(0, 0, 640, 1136)
 
+
+#define ANDROID_HORIZONTAL_RECT CGRectMake(0, 0, 800, 480)
+#define ANDROID_VERTICAL_RECT CGRectMake(0, 0, 480, 800)
+
+
 #define IPHONE_DEPRECATED_RECT CGRectMake(0, 0, 304, 320)
 #define IPAD_DEPRECATED_RECT CGRectMake(0, 0, 730, 698)
+
+#define CONTEST_BILLBOARD_RECT CGRectMake(0, 0, 700, 268)
+
 
 #define MAX_WIDTH 1024
 
@@ -113,6 +121,19 @@
         {
             return IPAD_DEPRECATED_RECT;
         }
+        case ContestBillboardRect:
+        {
+            return CONTEST_BILLBOARD_RECT;
+        }
+        case AndroidHorizontalRect:
+        {
+            return ANDROID_HORIZONTAL_RECT;
+        }
+        case AndroidVerticalRect:
+        {
+            return ANDROID_VERTICAL_RECT;
+        }
+            
         default:
             return [CanvasRect defaultRect];
     }
@@ -175,7 +196,9 @@
         iPadVerticalRect,
         iPadScreenVerticalRect,
         iPhone5VerticalRect,
-        
+        ContestBillboardRect,
+        AndroidVerticalRect,
+        AndroidHorizontalRect,
         CanvasRectEnd
     };
     return list;
