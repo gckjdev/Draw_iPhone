@@ -57,6 +57,7 @@
     cell.contestNameLabel.font = CELL_SMALLTEXT_FONT;
     cell.leftTimeLabel.font = CELL_SMALLTEXT_FONT;
     [cell.contestImageView addTapGuestureWithTarget:cell selector:@selector(didClickOnContestImageView)];
+        
     return cell;
 }
 

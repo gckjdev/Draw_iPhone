@@ -22,6 +22,7 @@
 #import "UIButton+WebCache.h"
 #import "CropAndFilterViewController.h"
 #import "GameNetworkConstants.h"
+#import "UIViewController+BGImage.h"
 
 @interface CreateContestController ()<CKCalendarDelegate, UITextFieldDelegate>
 
@@ -101,6 +102,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     [IQKeyBoardManager enableKeyboardManger];
+    [self setDefaultBGImage];
     
     CommonTitleView *v = [CommonTitleView createTitleView:self.view];
     if (self.isNewContest) {
@@ -444,7 +446,14 @@
     self.awardEditController = [[[ContestAwardEditController alloc] initWithContest:self.contest] autorelease];
     [self presentViewController:self.awardEditController animated:YES completion:NULL];
     
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(contestAwardHasChanged) name:NotificationContestAwardEditDone object:nil];
+    [self registerNotificationWithName:NotificationContestAwardEditDone
+                            usingBlock:^(NSNotification *note) {
+                               
+                                [self contestAwardHasChanged];
+                                
+                            }];
+    
+//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(contestAwardHasChanged) name:NotificationContestAwardEditDone object:nil];
 
 }
 
@@ -452,7 +461,8 @@
     
     [self.awardEditController dismissViewControllerAnimated:YES completion:NULL];
     [self.contestAwardButton setTitle:[self.contest awardRulesShortDesc] forState:UIControlStateNormal];
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:NotificationContestAwardEditDone object:self];
+    
+    [self unregisterNotificationWithName:NotificationContestAwardEditDone];
 }
 
 - (void)didReceiveMemoryWarning

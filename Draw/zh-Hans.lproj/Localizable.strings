@@ -839,6 +839,11 @@
 "Android Standard Canvas (Vertical)" = "安卓手机标准画布（竖）480*800";
 "Contest Billboard Canvas" = "比赛海报专用画布";
 
+"Android Canvas(H)" = "安卓标准(横)";
+"Android Canvas(V)" = "安卓标准(竖)";
+"Billboard" = "比赛海报";
+
+
 "kSquareCanvasLarge" = "正方形画布(大)";
 "kSquareCanvasLargeDesc" = "正方形画布，尺寸为1024*1024，配合放大功能，可以画的更加精细，也可以用于创作四格漫画等";
 
@@ -2143,7 +2148,7 @@
 //group
 
 "kCreateGroup" = "创建家族";
-"kLevelTips" = "可容纳 %d 族员\n每月需花费 %d 金币\n(首月费用在创建时扣除)";
+"kLevelTips" = "可容纳 %d 成员\n每月需花费 %d 金币\n(首月费用在创建时扣除)";
 
 
 
@@ -2581,5 +2586,5 @@
 "kJoinContest" = "参赛";
 "kUpdateContestFail" = "更新比赛失败";
 "kUpdateContestSuccess" = "更新比赛成功";
-"kContestingTimeIs" = "比赛时间: ";
-"kVotingTimeIs" = "投票时间: ";
+"kContestingTimeIs" = "比赛时间: %@";
+"kVotingTimeIs" = "投票时间: %@";

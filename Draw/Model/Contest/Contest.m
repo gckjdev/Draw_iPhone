@@ -159,6 +159,10 @@
     [_pbContestBuilder setDesc:desc];
 }
 
+- (NSString*)desc{
+    return [_pbContestBuilder desc];
+}
+
 - (NSURL *)groupMedalImageUrl{
     
     if (_pbContestBuilder.group.medalImage == nil) {
@@ -436,7 +440,7 @@
     
     [contest setJoinersType:0];
     
-    NSDate *startDate = nextDate([NSDate date]);
+    NSDate *startDate = nextNDate([NSDate date], 7);
     [contest setStartDate:startDate];
     
     NSDate *endDate = [[[NSDate alloc] initWithTimeInterval:24*3600*7 sinceDate:startDate] autorelease];

@@ -60,6 +60,9 @@
     cell.contestLabel.font = CELL_CONTENT_FONT;
     cell.titleLabel.textColor = COLOR_WHITE;
     cell.contestLabel.textColor = COLOR_BROWN;
+    
+    cell.delegate = delegate;
+    
     return cell;
 }
 
@@ -87,9 +90,13 @@
     [super layoutSubviews];
     StatementCellType type = self.indexPath.row;
     self.contestLabel.textAlignment = NSTextAlignmentCenter;
-    if (type == StatementCellTypeDesc && ![[self.contestLabel text] isEqualToString:NSLS(@"kNone")]) {
-        self.contestLabel.textAlignment = NSTextAlignmentLeft;
-    }
+//    if (type == StatementCellTypeDesc && ![[self.contestLabel text] isEqualToString:NSLS(@"kNone")]) {
+//        self.contestLabel.textAlignment = NSTextAlignmentLeft;
+//    }
+    
+//    if (type == StatementCellTypeTime){
+//        self.contestLabel.textAlignment = NSTextAlignmentLeft;
+//    }
 }
 
 - (void)dealloc {

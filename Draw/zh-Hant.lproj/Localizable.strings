@@ -850,6 +850,9 @@
 "Android Standard Canvas (Horizo​​ntal)" = "安卓手機標準畫布（橫）800*480";
 "Android Standard Canvas (Vertical)" = "安卓手機標準畫布（豎）480*800";
 "Contest Billboard Canvas" = "比賽海報專用畫布";
+"Android Canvas(H)" = "安卓標準(橫)";
+"Android Canvas(V)" = "安卓標準(豎)";
+"Billboard" = "比賽海報";
 
 "kSquareCanvasLarge" = "正方形畫布(大)";
 "kSquareCanvasLargeDesc" = "正方形畫布，尺寸為1024*1024，配合放大功能，可以畫的更加精細，也可以用於創作四格漫畫等";
@@ -2597,5 +2600,5 @@
 "kJoinContest" = "參賽";
 "kUpdateContestFail" = "更新比賽失敗";
 "kUpdateContestSuccess" = "更新比賽成功";
-"kContestingTimeIs" = "比賽時間: ";
-"kVotingTimeIs" = "投票時間: ";
+"kContestingTimeIs" = "提交作品時間: %@";
+"kVotingTimeIs" = "投票送花時間: %@";
