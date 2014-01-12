@@ -2565,7 +2565,7 @@
 "kCreatingContestFail" = "Create contest fail";
 "kCreateContestSuccess" = "Create contest success";
 "kContestTotalAwardNotEnough" = "Total contest award should be at least %d coins";
-
+"kGroupBalanceNotEnoughForContest" = "Current group balance is %d coins, not enough for contest total award (%d coins)";
 
 "kUpdatingContest" = "Updating contest";
 "kUpdateContestFail" = "Update contest fail";

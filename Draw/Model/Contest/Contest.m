@@ -626,14 +626,19 @@
     return [PPConfigManager getMinGroupContestAward];
 }
 
-- (BOOL)checkTotalAward
+- (int)totalAward
 {
-    int total = 0;    
+    int total = 0;
     for (NSNumber* award in _pbContestBuilder.awardRulesList){
         total += [award intValue];
     }
-    
     PPDebug(@"total contest award is %d", total);
+    return total;
+}
+
+- (BOOL)checkTotalAward
+{
+    int total = [self totalAward];
     if (total < [Contest getMinGroupContestAward]){
         return NO;
     }

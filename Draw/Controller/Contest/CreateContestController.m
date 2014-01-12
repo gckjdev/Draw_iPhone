@@ -261,6 +261,14 @@
         POSTMSG2(msg, 2);
         return;
     }
+
+    int groupBalance = [[GroupManager defaultManager] sharedGroup].balance;
+    int totalAward = [self.contest totalAward];
+    if (totalAward > groupBalance){
+        NSString* msg = [NSString stringWithFormat:NSLS(@"kGroupBalanceNotEnoughForContest"), groupBalance, totalAward];
+        POSTMSG2(msg, 2);
+        return;
+    }
     
     [self.contest setTitle:self.contestNameInputField.text];
     [self.contest setDesc:self.contestDescTextView.text];

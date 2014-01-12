@@ -93,5 +93,6 @@ typedef enum{
 
 + (int)getMinGroupContestAward;
 - (BOOL)checkTotalAward;
+- (int)totalAward;
 
 @end

@@ -2554,6 +2554,7 @@
 "kGroupMemberAndGuest" = "家族成员和嘉宾";
 
 "kContestTotalAwardNotEnough" = "比赛总奖金最少必须为%d金币";
+"kGroupBalanceNotEnoughForContest" = "当前家族余额不足（%d金币），比赛奖励总共需花费%d金币，请先给家族账户充值金币";
 
 "kContestNameCannotBeBlank" = "比赛名称不能为空";
 "kPleaseSelectContestImage" = "请选择一副图片作为比赛海报";

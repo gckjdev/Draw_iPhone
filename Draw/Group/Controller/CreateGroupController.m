@@ -62,11 +62,13 @@
 
     if ([name length] == 0) {
         [DrawError postErrorWithCode:ERROR_GROUP_NAME_EMPTY];
+        [self.nameTextField becomeFirstResponder];
         return;
     }
     
     if ([name length] > NAME_MAX_LENGTH) {
         [DrawError postErrorWithCode:ERROR_GROUP_NAME_TOO_LONG];
+        [self.nameTextField becomeFirstResponder];
         return;
     }
     
@@ -75,8 +77,11 @@
         return;
     }
     
+    [self.titleView.rightButton setEnabled:NO];
+    
     [self showActivityWithText:NSLS(@"kCreatingGroup")];
     [[GroupService defaultService] createGroup:name level:level callback:^(PBGroup *group, NSError *error) {
+        [self.titleView.rightButton setEnabled:YES];
         [self hideActivity];
         if (error) {
             [DrawError postError:error];

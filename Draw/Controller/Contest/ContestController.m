@@ -27,6 +27,7 @@
 #import "GroupPermission.h"
 #import "ContestCell.h"
 #import "GroupTopicController.h"
+#import "UIViewController+BGImage.h"
 
 typedef enum{
     TabTypeOfficial = 1,
@@ -148,6 +149,7 @@ typedef enum{
             [titleView setRightButtonSelector:@selector(clickCreateButton:)];
         } ;
         [self clickTab:TabTypeGroup];
+//        [self setDefaultBGImage];
     }else{
         [self initTabButtons];
 //        self.officialButton.hidden = NO;
