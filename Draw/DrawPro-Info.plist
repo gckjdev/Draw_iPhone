@@ -76,5 +76,7 @@
 		<string>accelerometer</string>
 		<string>gyroscope</string>
 	</array>
+	<key>UIViewControllerBasedStatusBarAppearance</key>
+	<false/>
 </dict>
 </plist>

@@ -13,6 +13,7 @@
 #import "GameNetworkRequest.h"
 #import "UserManager.h"
 #import "UIImageExt.h"
+#import "GroupManager.h"
 
 static ContestService *_staticContestService;
 
@@ -345,6 +346,28 @@ static ContestService *_staticContestService;
         if ([self hasContestAccept:contest.contestId] == NO){
             count ++;
         }
+    }
+    
+    return count;
+}
+
+- (long)newMyGroupContestCount
+{
+    long count = 0;
+    
+    NSArray* ongoingContestList = [[ContestManager defaultManager] ongoingContestList];
+    for (PBContest* contest in ongoingContestList){
+        
+        // skip ongoing group contest
+        if (contest.group == nil){
+            continue;
+        }
+        
+        if ([[[GroupManager defaultManager] userCurrentGroupId] isEqualToString:contest.group.groupId]){
+            if ([self hasContestAccept:contest.contestId] == NO){
+                count ++;
+            }
+        }        
     }
     
     return count;

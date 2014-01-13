@@ -2554,6 +2554,9 @@
 "kEndDateCannotBeforeStartDate" = "End date can not after start date";
 "kCannotCreateContestPleaseJoinGroupFirst" = "Please join group first";
 
+"kAllGroupContest" = "All Group Contest";
+"kMyGroupContest" = "Group Contest";
+
 "kContestNotStart" = "Pending";
 "kContestOutOfTime" = "Over";
 "kLeftDays" = "left %d days";

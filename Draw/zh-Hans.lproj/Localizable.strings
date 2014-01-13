@@ -2567,6 +2567,9 @@
 "kEndDateCannotBeforeStartDate" = "结束时间不能小于开始时间";
 "kCannotCreateContestPleaseJoinGroupFirst" = "你还没有加入家族，请先加入家族后再创建比赛";
 
+"kAllGroupContest" = "所有家族比赛";
+"kMyGroupContest" = "当前家族比赛";
+
 "kContestNotStart" = "未开始";
 "kContestOutOfTime" = "已结束";
 "kLeftDays" = "还剩%d天";

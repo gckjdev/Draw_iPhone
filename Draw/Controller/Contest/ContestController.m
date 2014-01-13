@@ -138,6 +138,14 @@ typedef enum{
     [self hideTips];
     
     if (_groupContestOnly) {
+        
+        if (self.groupId == nil){
+            [titleView setTitle:NSLS(@"kAllGroupContest")];
+        }
+        else{
+            [titleView setTitle:NSLS(@"kMyGroupContest")];
+        }
+        
 //        self.officialButton.hidden = YES;
 //        self.groupButton.hidden = YES;
         [self.officialButton removeFromSuperview];
@@ -149,7 +157,7 @@ typedef enum{
             [titleView setRightButtonSelector:@selector(clickCreateButton:)];
         } ;
         [self clickTab:TabTypeGroup];
-//        [self setDefaultBGImage];
+        [self setDefaultBGImage];
     }else{
         [self initTabButtons];
 //        self.officialButton.hidden = NO;

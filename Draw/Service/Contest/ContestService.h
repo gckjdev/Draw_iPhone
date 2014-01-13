@@ -82,8 +82,7 @@ typedef void (^ GetContestListBlock) (int resultCode, ContestListType type, NSAr
 
 - (void)acceptContest:(NSString*)contestId;
 - (long)newContestCount;
-
-
+- (long)newMyGroupContestCount;
 
 // 家族比赛
 - (void)createContest:(Contest *)contest
