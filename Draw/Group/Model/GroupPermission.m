@@ -75,6 +75,31 @@ static NSMutableArray *_roles;
     }
 }
 
++ (void)addNewRole:(PBGroupUserRole *)role
+{
+    if (role == nil) {
+        return;
+    }
+    @synchronized(self){
+        [self groupRoles];
+        [_roles addObject:role];
+    }
+}
++ (PBGroupUserRole *)roleForCreatorInGroup:(PBGroup *)group
+{
+    PBGroupUserRole *role = nil;
+    PBGroupUserRole_Builder *roleBuilder = [[PBGroupUserRole_Builder alloc] init];
+    [roleBuilder setGroupId:group.groupId];
+    [roleBuilder setGroupName:group.name];
+    [roleBuilder setRole:GroupRoleCreator];
+    [roleBuilder setPermission:GROUP_CREATOR_PERMISSION];
+    role = [roleBuilder build];
+    [roleBuilder release];
+    return role;
+}
+
+
+
 + (void)syncGroupRoles:(NSArray *)roles
 {
     @synchronized(self){

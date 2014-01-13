@@ -99,10 +99,11 @@ static GroupService *_staticGroupService = nil;
           parameters:paras
             callback:^(DataQueryResponse *response, NSError *error )
     {
-        EXECUTE_BLOCK(callback, error?nil:response.group, error);
         if (!error) {
+            [GroupPermissionManager addNewRole:[GroupPermissionManager roleForCreatorInGroup:response.group]];
             [self syncGroupRoles];
         }
+        EXECUTE_BLOCK(callback, error?nil:response.group, error);
     }];
 }
 
@@ -615,6 +616,7 @@ static GroupService *_staticGroupService = nil;
             callback:^(DataQueryResponse *response, NSError *error) {
                 if (!error) {
                     [GroupManager didAddedGroupTitle:groupId title:title titleId:titleId];
+                    [self syncGroupRoles];
                 }
                 EXECUTE_BLOCK(callback, error);
     }];

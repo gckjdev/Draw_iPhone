@@ -301,8 +301,7 @@ enum{
     
     PBGroupUsersByTitle *ut = [builder build];
     [builder release];
-    
-    [[[GroupManager defaultManager] tempMemberList] addObject:ut];
+    [[[GroupManager defaultManager] tempMemberList] addObject:ut];    
 }
 + (PBGroup *)updateGroup:(PBGroup *)group medalImageURL:(NSString *)url{
     PBGroup_Builder *builder = [PBGroup builderWithPrototype:group];
