@@ -527,6 +527,12 @@ static GroupService *_staticGroupService = nil;
 
 - (void)getGroupBadgeWithCallback:(BadgeResultBlock)callback
 {
+    NSMutableDictionary* dict = [NSMutableDictionary dictionary];
+    NSString* groupId = [[GroupManager defaultManager] userCurrentGroupId];
+    if ([groupId length] > 0){
+        [dict setObject:groupId forKey:PARA_GROUPID];
+    }
+    
     [self loadPBData:METHOD_GET_GROUP_BADGES
           parameters:nil
             callback:^(DataQueryResponse *response, NSError *error)

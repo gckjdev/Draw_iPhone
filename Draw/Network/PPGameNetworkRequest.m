@@ -36,12 +36,12 @@
     }
 
     // groupId
-    if (para == nil || [para objectForKey:PARA_GROUPID] == nil){
-        NSString* groupId = [[GroupManager defaultManager] userCurrentGroupId];
-        if ([groupId length] > 0){
-            str = [str stringByAddQueryParameter:PARA_GROUPID value:groupId];
-        }
-    }
+//    if (para == nil || [para objectForKey:PARA_GROUPID] == nil){
+//        NSString* groupId = [[GroupManager defaultManager] userCurrentGroupId];
+//        if ([groupId length] > 0){
+//            str = [str stringByAddQueryParameter:PARA_GROUPID value:groupId];
+//        }
+//    }
     
     return str;
 }
