@@ -535,7 +535,7 @@ static GroupService *_staticGroupService = nil;
     }
     
     [self loadPBData:METHOD_GET_GROUP_BADGES
-          parameters:nil
+          parameters:dict
             callback:^(DataQueryResponse *response, NSError *error)
      {
          EXECUTE_BLOCK(callback, response.badgesList, error);
