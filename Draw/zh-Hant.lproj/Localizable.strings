@@ -2204,7 +2204,7 @@
 
 "kInputInvalid" = "輸入不合法";
 
-"kGroupDetailRowWeath" = "聲望 %d  等級 %d  財富 %ld";
+"kGroupDetailRowWeath" = "等級 %d  財富 %ld";
 "kGroupDetailRowCreateDate" = "創建時間 %@";
 "kGroupDetailRowDesc" = "說明 %@";
 "kGroupDetailRowFee" = "會費 %d金幣/月";

@@ -12,6 +12,7 @@
 @class PBBBSPost;
 @class PBGroupUser;
 @class PBBBSAction;
+@class PBGroupUserRole;
 
 @interface GroupPermissionManager : NSObject
 
@@ -23,7 +24,8 @@
 + (void)syncGroupRoles:(NSArray *)array;
 + (void)clearGroupRoles;
 + (void)removeRole:(NSString *)groupId;
-
++ (void)addNewRole:(PBGroupUserRole *)role;
++ (PBGroupUserRole *)roleForCreatorInGroup:(PBGroup *)group;
 
 
 - (BOOL)hasPermission:(GroupPermission)permission;
