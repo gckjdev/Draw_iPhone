@@ -52,31 +52,30 @@
 	<string>7.8</string>
 	<key>CFChannelId</key>
 	<string>App Store</string>
+	<key>CFConfigVersion</key>
+	<string>1.0</string>
+	<key>CFResourceTest</key>
+	<true/>
+	<key>CFServerTest</key>
+	<false/>
 	<key>CFWordBaseVersion</key>
 	<integer>2</integer>
+	<key>LSApplicationCategoryType</key>
+	<string></string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSMainNibFile</key>
 	<string>MainWindow</string>
+	<key>UILaunchImageFile</key>
+	<string>DrawDefault</string>
 	<key>UIPrerenderedIcon</key>
 	<true/>
 	<key>UIStatusBarHidden</key>
 	<false/>
 	<key>UISupportedInterfaceOrientations</key>
 	<array>
-		<string>UIInterfaceOrientationPortrait</string>
 		<string>UIInterfaceOrientationPortraitUpsideDown</string>
 	</array>
-	<key>LSApplicationCategoryType</key>
-	<string></string>
-	<key>UILaunchImageFile</key>
-	<string>DrawDefault</string>
-	<key>CFResourceTest</key>
-	<true/>
-	<key>CFServerTest</key>
-	<false/>
-	<key>CFConfigVersion</key>
-	<string>1.0</string>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
 </dict>

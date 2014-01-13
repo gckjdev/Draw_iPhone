@@ -183,7 +183,7 @@
 {
     UIImage *image = [info objectForKey:self.userOriginalImage?UIImagePickerControllerOriginalImage:UIImagePickerControllerEditedImage];
 
-    PPDebug(@"select image size = %@", NSStringFromCGSize(image.size));
+    PPDebug(@"select original image size = %@", NSStringFromCGSize(image.size));
     if (image != nil){
         if (_superViewController){
             CGSize size = image.size;
@@ -196,6 +196,7 @@
             }
             else if (self.isCompressImage){
                 image = [image imageByScalingAndCroppingForSize:size];
+                PPDebug(@"compress image size = %@", NSStringFromCGSize(image.size));
             }
         }        
     }
