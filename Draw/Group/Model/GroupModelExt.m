@@ -29,6 +29,10 @@ typedef enum{
     
     TypeChargeGroup = 12,
     TypeTransferGroupBalance = 13,
+
+    TypeSystemDeductGroupFee = 14,
+    TypeSystemDeductGroupFeeFail = 15,
+
     
 }NoticeType;
 
@@ -88,7 +92,12 @@ typedef enum{
             return [NSString stringWithFormat:NSLS(@"kTypeChargeGroupDesc"), [self publisherName], self.groupName, self.amount];
         case TypeTransferGroupBalance:
             return [NSString stringWithFormat:NSLS(@"kTypeTransferGroupBalanceDesc"), [self publisherName], self.groupName, self.amount, [self targetName]];
-            
+
+        case TypeSystemDeductGroupFee:
+            return [NSString stringWithFormat:NSLS(@"kTypeDeductGroupFeeMonthlyDesc"), self.groupName, self.amount];
+
+        case TypeSystemDeductGroupFeeFail:
+            return [NSString stringWithFormat:NSLS(@"kTypeDeductGroupFeeMonthlyFailDesc"), self.groupName];
 
         default:
             return nil;

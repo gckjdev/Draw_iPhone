@@ -2158,8 +2158,9 @@
 "kTypeAcceptMemberInvitationDesc" = "%@ agreed to join %@.";
 "kTypeAcceptGuestInvitationDesc" = "%@ agreed to be the guest of %@.";
 "kTypeChargeGroupDesc" = "%@ charged %@ %d coins";
-"kTypeTransferGroupBalanceDesc" = "%@, from %@, transfered %d coins to %@";
-
+"kTypeTransferGroupBalanceDesc" = "%@, from %@, transfered %d coins to %@.";
+"kTypeDeductGroupFeeMonthlyDesc" = "Deducted %@ %d coins for monthly fee.";
+"kTypeDeductGroupFeeMonthlyFailDesc" = "%@ is not enough for monthly fee, charge for it please.";
 
 "kGroupDetailRowWeath" = "Level: %d  Balance: %ld";
 "kGroupDetailRowCreateDate" = "Create date %@";

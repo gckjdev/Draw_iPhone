@@ -2201,6 +2201,8 @@
 "kTypeAcceptGuestInvitationDesc" = "%@成為了%@的嘉賓。";
 "kTypeChargeGroupDesc" = "%@給%@充了%d金幣。";
 "kTypeTransferGroupBalanceDesc" = "%@從%@轉了%d金幣給%@。";
+"kTypeDeductGroupFeeMonthlyDesc" = "扣除了%@%d金幣作為月費.";
+"kTypeDeductGroupFeeMonthlyFailDesc" = "%@沒有足夠的金幣支付月費，請及時充值。";  
 
 "kInputInvalid" = "輸入不合法";
 
