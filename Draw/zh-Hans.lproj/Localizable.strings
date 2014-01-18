@@ -2194,6 +2194,9 @@
 "kTypeAcceptMemberInvitationDesc" = "%@同意加入%@。";
 "kTypeAcceptGuestInvitationDesc" = "%@成为了%@的嘉宾。";
 
+"kTypeDeductGroupFeeMonthlyDesc" = "扣除了%@%d金币作为月费.";
+"kTypeDeductGroupFeeMonthlyFailDesc" = "%@没有足够的金币支付月费，请及时充值。";
+
 "kTypeChargeGroupDesc" = "%@给%@充了%d金币。";
 "kTypeTransferGroupBalanceDesc" = "%@从%@转了%d金币给%@。";
 "kInputInvalid" = "输入不合法";
