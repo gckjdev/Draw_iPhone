@@ -11,13 +11,14 @@
 #import "BBSModelExt.h"
 #import "GroupModelExt.h"
 #import "GroupManager.h"
+#import "UserManager.h"
 
 static NSMutableArray *_roles;
 
 @implementation GroupPermissionManager
 
 
-#define GROUP_ROLES_KEY @"GROUP_ROLES"
+#define GROUP_ROLES_KEY ( [@"GROUP_ROLES" stringByAppendingFormat:@"_%@", [[UserManager defaultManager] userId]] )
 
 + (NSMutableArray *)groupRoles
 {

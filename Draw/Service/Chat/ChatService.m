@@ -35,10 +35,16 @@ static ChatService *_chatService = nil;
 {
     if (_chatService == nil) {
         _chatService = [[ChatService alloc] init];
+        _chatService.friendUserIdsForClean = [NSMutableArray array];
     }
     return _chatService;
 }
 
+- (void)dealloc
+{
+    PPRelease(_friendUserIdsForClean);
+    [super dealloc];
+}
 
 - (void)getMessageStats:(id<ChatServiceDelegate>)delegate 
                   offset:(int)starOffset 
@@ -832,6 +838,27 @@ static ChatService *_chatService = nil;
         });
 
     });    
+}
+
+- (void)addUserMessageForClean:(NSString*)friendId
+{
+    if ([friendId length] <= 0){
+        return;
+    }
+    
+    PPDebug(@"<addUserMessageForClean> %@", friendId);
+    [self.friendUserIdsForClean addObject:friendId];
+}
+
+#define KEEP_LOCAL_MESSAGE_COUNT 30
+
+- (void)cleanUserMessage
+{
+    PPDebug(@"<cleanUserMessage> %@", [self.friendUserIdsForClean description]);
+    for (NSString* friendUserId in _friendUserIdsForClean){
+        [[PPMessageManager defaultManager] cleanMessage:friendUserId keepCount:KEEP_LOCAL_MESSAGE_COUNT];
+    }
+    [self.friendUserIdsForClean removeAllObjects];
 }
 
 @end

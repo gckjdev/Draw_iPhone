@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "PPConfigManager.h"
+#import "StorageManager.h"
 
 #define MESSAGE_STAT_MAX_COUNT ([PPConfigManager getMessageStatMaxCount])
 
@@ -17,6 +18,7 @@
 @interface PPMessageManager : NSObject
 
 @property (nonatomic, retain) NSMutableDictionary* friendMessageDict;
+@property (nonatomic, retain) StorageManager* thumbImageManager;
 
 //@property (nonatomic, retain) APLevelDB* db;
 
@@ -41,6 +43,8 @@
 - (NSArray*)getMessageList:(NSString*)friendUserId;
 - (void)deleteMessage:(PPMessage*)message;
 - (void)deleteMessage:(NSString*)messageId friendId:(NSString*)friendId;
+- (void)deleteMessage:(NSString*)messageId friendId:(NSString*)friendId;
+
 - (void)addMessage:(PPMessage*)message;
 - (void)addOrUpdateMessage:(PPMessage*)message;
 - (void)addMessageListHead:(NSArray*)messageList friendUserId:(NSString*)friendUserId;
@@ -51,5 +55,7 @@
 - (void)save:(NSArray*)messageList friendUserId:(NSString*)friendUserId;
 //- (void)updateMessage:(PPMessage*)message friendUserId:(NSString*)friendUserId;
 - (void)saveMessageList:(NSString*)friendUserId;
+- (void)cleanMessage:(NSString*)friendUserId keepCount:(int)keepCount;
 
+- (UIImage*)setMessageDrawThumbImage:(PPMessage*)message;
 @end

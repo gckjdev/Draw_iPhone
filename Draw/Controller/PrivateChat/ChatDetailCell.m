@@ -24,6 +24,7 @@
 #import "DrawHolderView.h"
 #import "UIImageExt.h"
 #import "UIImageView+Extend.h"
+#import "PPMessageManager.h"
 
 
 @interface ChatDetailCell()
@@ -103,11 +104,6 @@
     }
 }
 
-//- (void)clickMessage:(PPMessage *)message;
-//
-//- (void)didLongClickMessage:(PPMessage *)message;
-
-
 #pragma mark - update the message show view.
 
 - (void)updateHolderViewSize:(CGSize)size hasEdge:(BOOL)hasEdge
@@ -164,13 +160,13 @@
         }
         return DEFAULT_MESSAGE_IMAGE_SIZE;
     }else if([message isDrawMessage]){
-        PPMessage *drawMessage = message;
-        if (drawMessage.thumbImage == nil) {
-            ShowDrawView *show = [ShowDrawView showViewWithFrame:CGRectFromCGSize(drawMessage.canvasSize) drawActionList:drawMessage.drawActionList delegate:nil];
-            [show updateLayers:[DrawLayer defaultLayersWithFrame:CGRectFromCGSize(drawMessage.canvasSize)]];
-            drawMessage.thumbImage = [show createImageWithSize:[ChatDetailCell adjustImageSize:drawMessage.canvasSize]];
-        }
-        image = [drawMessage thumbImage];
+//        PPMessage *drawMessage = message;
+//        if (drawMessage.thumbImage == nil) {
+//            ShowDrawView *show = [ShowDrawView showViewWithFrame:CGRectFromCGSize(drawMessage.canvasSize) drawActionList:drawMessage.drawActionList delegate:nil];
+//            [show updateLayers:[DrawLayer defaultLayersWithFrame:CGRectFromCGSize(drawMessage.canvasSize)]];
+//            drawMessage.thumbImage = [show createImageWithSize:[ChatDetailCell adjustImageSize:drawMessage.canvasSize]];
+//        }
+//        image = [drawMessage thumbImage];
 //        if (image) {
 //            return [self adjustImageSize:image.size];
 //        }
@@ -184,7 +180,8 @@
 - (void)updateDrawMessageView:(PPMessage *)message
 {
     [self.imgView setHidden:NO];
-    [self updateCellWithImage:message.thumbImage];
+    UIImage* image = [[PPMessageManager defaultManager] setMessageDrawThumbImage:message];
+    [self updateCellWithImage:image];
 }
 
 - (void)updateImageMessageView:(PPMessage *)message
@@ -254,6 +251,7 @@
     }else if(status == MessageStatusSending){
         view = self.loadingView;
     }
+    
     if (view) {
         [view setHidden:NO];
         CGFloat y = self.holderView.center.y;

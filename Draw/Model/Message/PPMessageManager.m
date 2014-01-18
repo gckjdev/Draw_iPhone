@@ -16,6 +16,10 @@
 #import "StringUtil.h"
 #import "APLevelDB.h"
 #import "LevelDBManager.h"
+#import "ShowDrawView.h"
+#import "ChatDetailCell.h"  // NOT GOOD...
+
+
 
 static PPMessageManager* globalDefaultMessageManager;
 
@@ -24,6 +28,7 @@ static PPMessageManager* globalDefaultMessageManager;
 #define MESSAGE_DIR @"message"
 #define MESSAGESTAT_DIR @"message_stat"
 #define MESSAGESTAT_KEY @"message_stat.dat"
+#define MESSAGE_THUMB_IMAGE_DIR @"message_thumb_image"
 
 + (PPMessageManager*)defaultManager
 {
@@ -218,12 +223,14 @@ static PPMessageManager* globalDefaultMessageManager;
 {
     self = [super init];
     _friendMessageDict = [[NSMutableDictionary alloc] init];
+    _thumbImageManager = [[StorageManager alloc] initWithStoreType:StorageTypeCache directoryName:MESSAGE_THUMB_IMAGE_DIR];
     return self;
 }
 
 - (void)dealloc
 {
     PPRelease(_friendMessageDict);
+    PPRelease(_thumbImageManager);
     [super dealloc];
 }
 
@@ -252,6 +259,34 @@ static PPMessageManager* globalDefaultMessageManager;
 {
     APLevelDB* db = [[LevelDBManager defaultManager] db:[self getMessageDBName:friendUserId]];    
     return db;    
+}
+
+- (void)cleanMessage:(NSString*)friendUserId keepCount:(int)keepCount
+{
+    if (friendUserId == nil)
+        return;
+    
+    APLevelDB* db = [self getDB:friendUserId];
+    NSArray* list = [db allKeys];
+    int totalCount = [list count];
+    int index = 0;
+    
+    int lastKeepIndex = totalCount - keepCount;
+    if (lastKeepIndex < 0){
+        PPDebug(@"<cleanMessage> but only %d records, no need to delete any record", totalCount);
+        return;
+    }
+    
+    for (NSString* messageId in list){
+        if (index < lastKeepIndex){
+            PPDebug(@"<cleanMessage> delete %@ at %d", messageId, index);
+            [db removeKey:messageId];
+        }
+        else{
+            break;
+        }
+        index ++;
+    }
 }
 
 - (NSArray*)getMessageList:(NSString*)friendUserId
@@ -568,6 +603,26 @@ static PPMessageManager* globalDefaultMessageManager;
 - (void)clearMemoryCache
 {
     [_friendMessageDict removeAllObjects];
+}
+
+- (UIImage*)setMessageDrawThumbImage:(PPMessage*)message
+{
+    UIImage* image = [_thumbImageManager imageForKey:message.messageId];
+    if (image){
+        message.thumbImage = image;
+        return image;
+    }
+    
+    if (message.thumbImage == nil) {
+        ShowDrawView *show = [ShowDrawView showViewWithFrame:CGRectFromCGSize(message.canvasSize) drawActionList:message.drawActionList delegate:nil];
+        [show updateLayers:[DrawLayer defaultLayersWithFrame:CGRectFromCGSize(message.canvasSize)]];
+        CGSize size = [ChatDetailCell adjustImageSize:message.canvasSize];
+        message.thumbImage = [show createImageWithSize:size];
+        image = [message thumbImage];
+        [_thumbImageManager saveImage:image forKey:message.messageId];
+    }
+
+    return image;
 }
 
 @end

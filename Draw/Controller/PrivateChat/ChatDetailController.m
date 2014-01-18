@@ -97,7 +97,6 @@
 
 - (NSArray*)getMessageList
 {
-    PPDebug(@"invoke getMessageList");
     if (self.dataList == nil){
         [self reloadDataList];
     }
@@ -160,6 +159,8 @@
 
 + (void)enterFromGroup:(PBGroup*)pbGroup superController:(UIViewController*)superController
 {
+    [[ChatService defaultService] addUserMessageForClean:pbGroup.groupId];
+    
     MessageStat* messageStat = [[MessageStat alloc] init];
     
     messageStat.friendId = pbGroup.groupId;
@@ -335,11 +336,10 @@
     [self updateLocateButton];
     
     [self updateBG];
-    [self scrollToBottom:NO];
     
     self.inputBackgroundView.backgroundColor = COLOR_BROWN;
     self.inputTextView.textColor = COLOR_BROWN;
-
+    
     // make this to avoid message list changed by receiving notification
     [self performSelector:@selector(loadNewMessageWhileLaunch) withObject:nil afterDelay:0.1f];
 }
@@ -402,9 +402,6 @@
         }
 
         [self reloadTableView];
-//        if (newMessageCount == 0) {
-//            return;
-//        }
 
         if (forward || insertMiddle) {
             [self tableViewScrollToBottom:YES];
@@ -416,6 +413,8 @@
             [[ChatService defaultService] sendHasReadMessage:self friendUserId:self.fid];
             self.messageStat.numberOfNewMessage = 0;
         }
+        
+    
         
     }else{
         PPDebug(@"<didGetMessages>, fail! resultCode = %d",resultCode);
@@ -446,7 +445,10 @@
     NSArray* messageList = [self getMessageList];
     if ([messageList count]>0) {
         NSIndexPath *indPath = [NSIndexPath indexPathForRow:[messageList count]-1 inSection:0];
-        [dataTableView scrollToRowAtIndexPath:indPath atScrollPosition:UITableViewScrollPositionBottom animated:animated];
+        [dataTableView beginUpdates];
+        [dataTableView scrollToRowAtIndexPath:indPath atScrollPosition:UITableViewScrollPositionBottom animated:NO];
+        [dataTableView reloadRowsAtIndexPaths:[dataTableView indexPathsForVisibleRows] withRowAnimation:NO];
+        [dataTableView endUpdates];
     }
 }
 
@@ -1063,7 +1065,6 @@
     }else if(_asIndexResend == buttonIndex){
         
         [[ChatService defaultService] sendMessage:_selectedMessage];
-        
         [self reloadTableView];
         [self tableViewScrollToBottom:YES];
     }
@@ -1147,25 +1148,30 @@
 - (void)tableViewScrollToTop
 {
     NSArray* messageList = [self getMessageList];
+
     if ([messageList count] > 0) {
         NSInteger row = 0;
         NSIndexPath *indexPath = [NSIndexPath indexPathForRow:row inSection:0];
+        [self.dataTableView beginUpdates];
         [self.dataTableView scrollToRowAtIndexPath:indexPath 
                                   atScrollPosition:UITableViewScrollPositionBottom 
-                                          animated:YES];        
-    }    
+                                          animated:NO];
+        [dataTableView reloadRowsAtIndexPaths:[dataTableView indexPathsForVisibleRows] withRowAnimation:NO];
+        [dataTableView endUpdates];
+    }
 }
 - (void)tableViewScrollToBottom:(BOOL)animated
 {
-    NSArray* messageList = [self getMessageList];
-
-    if ([messageList count] > 0) {
-        NSInteger row = [messageList count] - 1;
-        NSIndexPath *indexPath = [NSIndexPath indexPathForRow:row inSection:0];
-        [self.dataTableView scrollToRowAtIndexPath:indexPath 
-                                  atScrollPosition:UITableViewScrollPositionBottom 
-                                          animated:animated];
-    }
+    [self scrollToBottom:animated];
+//    NSArray* messageList = [self getMessageList];
+//    if ([messageList count] > 0) {
+//        NSInteger row = [messageList count] - 1;
+//        NSIndexPath *indexPath = [NSIndexPath indexPathForRow:row inSection:0];
+//        [self.dataTableView scrollToRowAtIndexPath:indexPath 
+//                                  atScrollPosition:UITableViewScrollPositionBottom 
+//                                          animated:animated];
+//
+//    }
 }
 
 

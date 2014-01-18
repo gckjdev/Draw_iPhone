@@ -583,6 +583,9 @@
 }
 
 - (void)dealloc {
+    
+    [[ChatService defaultService] cleanUserMessage];
+    
     [_subTabsHolder release];
     [_footerView release];
     [_tabsHolderView release];

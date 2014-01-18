@@ -58,4 +58,6 @@
                      indexPath:(NSIndexPath *)indexPath 
                       showTime:(BOOL)showTime;
 
++ (CGSize)adjustImageSize:(CGSize)size;
+
 @end

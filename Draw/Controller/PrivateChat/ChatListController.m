@@ -38,6 +38,8 @@
 
 
 - (void)dealloc {
+    
+    [[ChatService defaultService] cleanUserMessage];
     PPRelease(addChatButton);
     [super dealloc];
 }
@@ -121,7 +123,6 @@
     SET_NORMAL_TABLE_VIEW_Y(self.dataTableView);
 }
 
-
 - (void)viewDidUnload
 {
     [self setAddChatButton:nil];
@@ -176,6 +177,8 @@
         POSTMSG(NSLS(@"kCanotGroupChat"));
         return;
     }
+    
+    [[ChatService defaultService] addUserMessageForClean:messageStat.friendId];
     
     ChatDetailController *controller = [[ChatDetailController alloc] initWithMessageStat:messageStat];
     controller.delegate = self;
