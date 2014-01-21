@@ -312,6 +312,7 @@ SET_CELL_BG_IN_CONTROLLER;
         
         //delete message total
         [[ChatService defaultService] deleteMessageStat:self friendUserId:friendUserId];
+        [[ChatService defaultService] cleanUserMessage:friendUserId];
         [self.tabDataList removeObjectAtIndex:indexPath.row];
         [dataTableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationRight];
         

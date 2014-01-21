@@ -185,7 +185,7 @@
 {
 #ifdef DEBUG
 //    return @"http://192.168.1.12:8100/api/i?";
-//    return @"http://58.215.184.18:8699/api/i?";
+    return @"http://58.215.184.18:8699/api/i?";
 //    return @"http://192.168.100.192:8100/api/i?";
 //    return @"http://localhost:8100/api/i?";
 #endif
@@ -1381,7 +1381,7 @@
 
 + (int)getMinGroupContestAward
 {
-    return GET_UMENG_INTVAL(@"MIN_GROUP_CONTEST_AWARD", 5000);
+    return GET_UMENG_INTVAL(@"MIN_GROUP_CONTEST_AWARD", 10000);
 }
 
 @end

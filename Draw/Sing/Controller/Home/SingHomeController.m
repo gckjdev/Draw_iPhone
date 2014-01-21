@@ -193,7 +193,8 @@ int *getSingMainMenuTypeListWithFreeCoins()
         HomeMenuTypeGuessSing,
         HomeMenuTypeDrawBBS,        
         HomeMenuTypeDrawBigShop,
-        HomeMenuTypeTask,
+//        HomeMenuTypeTask,
+        HomeMenuTypeDrawFreeCoins,
         HomeMenuTypeDrawMore,
         HomeMenuTypeEnd,
     };

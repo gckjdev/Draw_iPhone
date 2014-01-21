@@ -252,7 +252,8 @@ static PPMessageManager* globalDefaultMessageManager;
 
 - (NSString*)getMessageDBName:(NSString*)friendUserId
 {
-    return [NSString stringWithFormat:@"db_message_%@", friendUserId];
+    NSString* userId = [[UserManager defaultManager] userId];
+    return [NSString stringWithFormat:@"db_message_%@_%@", userId, friendUserId];
 }
 
 - (APLevelDB*)getDB:(NSString*)friendUserId
