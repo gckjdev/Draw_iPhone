@@ -80,6 +80,10 @@
             return IMAGE_NAME(@"group_footer_at@2x.png");
         case GroupContest:
             return IMAGE_NAME(@"group_footer_contest@2x.png");
+        //TODO to be replaced.
+        case GroupTimeline:
+            return IMAGE_NAME(@"group_footer_contest@2x.png");
+
         default:
             return nil;
     }

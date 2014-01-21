@@ -8,12 +8,15 @@
 
 #import "IconView.h"
 #import "UIImageView+WebCache.h"
+#import "GroupTopicController.h"
+#import "ImagePlayer.h"
+
 
 @interface IconView()
 @property(nonatomic, retain)UIImageView *imageView;
 
 @property(nonatomic, retain)NSString *viewId;
-
+@property(nonatomic, retain)NSString *imgURL;
 
 @end
 
@@ -38,6 +41,7 @@
 - (void)dealloc
 {
     [_viewId release];
+    PPRelease(_imgURL);
     PPRelease(_imageView);
     RELEASE_BLOCK(_clickHandler);
     [super dealloc];
@@ -81,17 +85,20 @@
 }
 - (void)setImageURL:(NSURL *)imageURL
 {
+    self.imgURL = imageURL;
     [_imageView setImageWithURL:imageURL];
 }
 
 - (void)setImageURL:(NSURL *)imageURL placeholderImage:(UIImage *)image
 {
+    self.imgURL = imageURL;
     [_imageView setImageWithURL:imageURL placeholderImage:image];
 }
 
 - (void)setImageURLString:(NSString *)urlString
 {
-    [_imageView setImageWithURL:[NSURL URLWithString:urlString]];
+    self.imgURL = [NSURL URLWithString:urlString];
+    [_imageView setImageWithURL:self.imgURL];
 }
 
 @end
@@ -116,5 +123,14 @@
     return [view autorelease];
 }
 
-
+- (void)clickView:(id)sender
+{
+    if (self.clickHandler == NULL) {
+        [[ImagePlayer defaultPlayer] playWithUrl:self.imgURL
+                             displayActionButton:YES
+                                onViewController:[self theViewController]];
+    }else{
+        [super clickView:sender];
+    }
+}
 @end

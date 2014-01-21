@@ -21,6 +21,10 @@
 #import "UIViewController+BGImage.h"
 #import "ChatDetailController.h"
 #import "ContestController.h"
+#import "CommonUserInfoView.h"
+#import "GroupFeedController.h"
+#import "DrawPlayer.h"
+#import "ImagePlayer.h"
 
 @interface GroupHomeController ()
 {
@@ -454,6 +458,14 @@
             
         }
             break;
+        case GroupTimeline:
+        {
+            GroupFeedController *gfc = [[GroupFeedController alloc] init];
+            gfc.groupId = [[GroupManager defaultManager] userCurrentGroupId];
+            [self.navigationController pushViewController:gfc animated:YES];
+            [gfc release];
+            break;
+        }
             
         default:
             break;
@@ -506,6 +518,9 @@
         cell = [cellClass createCell:self];
     }
     id data = [self.tabDataList objectAtIndex:indexPath.row];
+    if ([cell isKindOfClass:[GroupCell class]]) {
+        [(GroupCell *)cell setShowBalance:([self currentTabID] == GroupTabGroupBalance)];
+    }
     [(id)cell setCellInfo:data];
     cell.indexPath = indexPath;
     return cell;
@@ -597,4 +612,59 @@
     [self setTabsHolderView:nil];
     [super viewDidUnload];
 }
+
+- (void)didClickUserAvatar:(PBBBSUser *)user
+{
+    PPDebug(@"<didClickUserAvatar>, userId = %@",user.userId);
+    [CommonUserInfoView showPBBBSUser:user
+                         inController:self
+                           needUpdate:YES
+                              canChat:YES];
+    
+}
+
+
+#pragma topic cell delegate
+
+- (void)didClickImageWithURL:(NSURL *)url
+{
+    [[ImagePlayer defaultPlayer] playWithUrl:url displayActionButton:YES onViewController:self];
+}
+
+- (void)didClickDrawImageWithPost:(PBBBSPost *)post
+{
+    [self showActivityWithText:NSLS(@"kLoading")];
+    [[BBSService groupTopicService] getBBSDrawDataWithPostId:post.postId
+                                       actionId:nil
+                                       delegate:self];
+}
+
+
+#pragma mark-- BBS Service Delegate
+
+- (void)didGetBBSDrawActionList:(NSMutableArray *)drawActionList
+                drawDataVersion:(NSInteger)version
+                     canvasSize:(CGSize)canvasSize
+                         postId:(NSString *)postId
+                       actionId:(NSString *)actionId
+                     fromRemote:(BOOL)fromRemote
+                     resultCode:(NSInteger)resultCode
+{
+    [self hideActivity];
+    if (resultCode == 0) {
+        BOOL isNewVersion = [PPConfigManager currentDrawDataVersion] < version;
+        ReplayObject *obj = [ReplayObject obj];
+        obj.actionList = drawActionList;
+        obj.isNewVersion = isNewVersion;
+        obj.canvasSize = canvasSize;
+        obj.layers = [DrawLayer defaultOldLayersWithFrame:CGRectFromCGSize(canvasSize)];
+        DrawPlayer *player =[DrawPlayer playerWithReplayObj:obj];
+        [player showInController:self];
+        
+    }else{
+        PPDebug(@"<didGetBBSDrawActionList> fail!, resultCode = %d",resultCode);
+    }
+}
+
+
 @end

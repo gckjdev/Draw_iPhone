@@ -20,6 +20,8 @@
 #import "FeedDownloadService.h"
 #import "PPGameNetworkRequest.h"
 
+
+
 #define GET_FEED_DETAIL_QUEUE   @"GET_FEED_DETAIL_QUEUE"
 #define GET_PBDRAW_QUEUE        @"GET_PBDRAW_QUEUE"
 #define GET_FEED_COMMENT_QUEUE  @"GET_FEED_COMMENT_QUEUE"
@@ -353,6 +355,27 @@ static FeedService *_staticFeedService = nil;
         });
         
         [subPool drain];
+    });
+}
+
+- (void)getGroupFeedList:(NSString *)groupId
+                  offset:(NSInteger)offset
+                   limit:(NSInteger)limit
+               completed:(GetFeedListCompleteBlock)completed
+{
+    dispatch_async(workingQueue, ^{
+        NSDictionary* para = @{ PARA_TYPE : @(FeedListTypeTimelineGroup),
+                                PARA_GROUPID : groupId,
+                                PARA_OFFSET : @(offset),
+                                PARA_COUNT : @(limit)
+                                };
+        
+        GameNetworkOutput* output = [PPGameNetworkRequest trafficApiServerGetAndResponsePB:METHOD_GET_FEED_LIST parameters:para];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            NSInteger code = output.resultCode;
+            NSArray *list = (code == 0) ? output.pbResponse.feedList : nil;
+            EXECUTE_BLOCK(completed, code, list);
+        });
     });
 }
 

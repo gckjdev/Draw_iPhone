@@ -125,6 +125,8 @@ typedef void (^ URLResultBlock) (NSURL *url, NSError *error);
           noticeType:(NSInteger)type
             callback:(SimpleResultBlock)callback;
 
+- (void)ignoreAllRequestNoticesWithCallback:(SimpleResultBlock)callback;
+
 
 - (void)syncFollowTopicIds;
 

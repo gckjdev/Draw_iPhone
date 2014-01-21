@@ -16,7 +16,7 @@
 
 @implementation StatementCell
 
-#define CELL_VERTICAL_INSET (ISIPAD?20:10)
+#define CELL_VERTICAL_INSET (ISIPAD?30:15)
 #define LABEL_WIDTH (ISIPAD?618:241)
 #define CELL_MIN_HEIGHT (ISIPAD?140:80)
 #define LABEL_HEIGHT_PERLINE (ISIPAD?40:22)
@@ -88,7 +88,7 @@
 - (void)layoutSubviews
 {
     [super layoutSubviews];
-    StatementCellType type = self.indexPath.row;
+//    StatementCellType type = self.indexPath.row;
     self.contestLabel.textAlignment = NSTextAlignmentCenter;
 //    if (type == StatementCellTypeDesc && ![[self.contestLabel text] isEqualToString:NSLS(@"kNone")]) {
 //        self.contestLabel.textAlignment = NSTextAlignmentLeft;

@@ -7224,6 +7224,14 @@
 		EADC02571817CF8C0038B6A8 /* SearchPostController.m in Sources */ = {isa = PBXBuildFile; fileRef = EADC02531817CF8B0038B6A8 /* SearchPostController.m */; };
 		EADC02581817CF8C0038B6A8 /* SearchPostController.m in Sources */ = {isa = PBXBuildFile; fileRef = EADC02531817CF8B0038B6A8 /* SearchPostController.m */; };
 		EAE5718D16FC6ACB000AFADA /* CacheManager.m in Sources */ = {isa = PBXBuildFile; fileRef = EAE5718C16FC6ACB000AFADA /* CacheManager.m */; };
+		EAEE550E188E5E61004A0907 /* SingleTabController.m in Sources */ = {isa = PBXBuildFile; fileRef = EAEE550D188E5E61004A0907 /* SingleTabController.m */; };
+		EAEE550F188E5E61004A0907 /* SingleTabController.m in Sources */ = {isa = PBXBuildFile; fileRef = EAEE550D188E5E61004A0907 /* SingleTabController.m */; };
+		EAEE5510188E5E61004A0907 /* SingleTabController.m in Sources */ = {isa = PBXBuildFile; fileRef = EAEE550D188E5E61004A0907 /* SingleTabController.m */; };
+		EAEE5511188E5E61004A0907 /* SingleTabController.m in Sources */ = {isa = PBXBuildFile; fileRef = EAEE550D188E5E61004A0907 /* SingleTabController.m */; };
+		EAEE5517188E644F004A0907 /* GroupFeedController.m in Sources */ = {isa = PBXBuildFile; fileRef = EAEE5516188E644F004A0907 /* GroupFeedController.m */; };
+		EAEE5518188E644F004A0907 /* GroupFeedController.m in Sources */ = {isa = PBXBuildFile; fileRef = EAEE5516188E644F004A0907 /* GroupFeedController.m */; };
+		EAEE5519188E644F004A0907 /* GroupFeedController.m in Sources */ = {isa = PBXBuildFile; fileRef = EAEE5516188E644F004A0907 /* GroupFeedController.m */; };
+		EAEE551A188E644F004A0907 /* GroupFeedController.m in Sources */ = {isa = PBXBuildFile; fileRef = EAEE5516188E644F004A0907 /* GroupFeedController.m */; };
 		EAFA04E8187FDF5400B0CF61 /* AlipayRsaLib.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EAFA04CD187FDF5400B0CF61 /* AlipayRsaLib.a */; };
 		EAFA04E9187FDF5500B0CF61 /* AlipayRsaLib.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EAFA04CD187FDF5400B0CF61 /* AlipayRsaLib.a */; };
 		EAFA04EA187FDF5500B0CF61 /* AlipayRsaLib.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EAFA04CD187FDF5400B0CF61 /* AlipayRsaLib.a */; };
@@ -10198,6 +10206,10 @@
 		EADC02531817CF8B0038B6A8 /* SearchPostController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchPostController.m; sourceTree = "<group>"; };
 		EAE5718B16FC6ACB000AFADA /* CacheManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CacheManager.h; sourceTree = "<group>"; };
 		EAE5718C16FC6ACB000AFADA /* CacheManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CacheManager.m; sourceTree = "<group>"; };
+		EAEE550C188E5E61004A0907 /* SingleTabController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SingleTabController.h; sourceTree = "<group>"; };
+		EAEE550D188E5E61004A0907 /* SingleTabController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SingleTabController.m; sourceTree = "<group>"; };
+		EAEE5515188E644E004A0907 /* GroupFeedController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GroupFeedController.h; sourceTree = "<group>"; };
+		EAEE5516188E644F004A0907 /* GroupFeedController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GroupFeedController.m; sourceTree = "<group>"; };
 		EAFA04CD187FDF5400B0CF61 /* AlipayRsaLib.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = AlipayRsaLib.a; sourceTree = "<group>"; };
 		EAFA04CE187FDF5400B0CF61 /* AlixLibService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlixLibService.h; sourceTree = "<group>"; };
 		EAFA04CF187FDF5400B0CF61 /* Alixpay.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Alixpay.bundle; sourceTree = "<group>"; };
@@ -13729,6 +13741,8 @@
 				EAA8D11518443CE200B3720B /* SearchController~ipad.xib */,
 				EA9289B31864360D0064A1AC /* UIViewController+BGImage.h */,
 				EA9289B41864360F0064A1AC /* UIViewController+BGImage.m */,
+				EAEE550C188E5E61004A0907 /* SingleTabController.h */,
+				EAEE550D188E5E61004A0907 /* SingleTabController.m */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -17055,6 +17069,8 @@
 				EA038974183B06D300516952 /* GroupTopicController.xib */,
 				EA2D573A1847243B00499ED4 /* SearchGroupController.h */,
 				EA2D573B1847243B00499ED4 /* SearchGroupController.m */,
+				EAEE5515188E644E004A0907 /* GroupFeedController.h */,
+				EAEE5516188E644F004A0907 /* GroupFeedController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -22111,6 +22127,8 @@
 				EAFA050A187FDF5500B0CF61 /* SBJsonBase.m in Sources */,
 				EAFA050E187FDF5500B0CF61 /* SBJsonParser.m in Sources */,
 				EAFA0512187FDF5500B0CF61 /* SBJsonWriter.m in Sources */,
+				EAEE5510188E5E61004A0907 /* SingleTabController.m in Sources */,
+				EAEE5519188E644F004A0907 /* GroupFeedController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -22923,6 +22941,8 @@
 				EAFA0509187FDF5500B0CF61 /* SBJsonBase.m in Sources */,
 				EAFA050D187FDF5500B0CF61 /* SBJsonParser.m in Sources */,
 				EAFA0511187FDF5500B0CF61 /* SBJsonWriter.m in Sources */,
+				EAEE550F188E5E61004A0907 /* SingleTabController.m in Sources */,
+				EAEE5518188E644F004A0907 /* GroupFeedController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -23735,6 +23755,8 @@
 				EAFA0508187FDF5500B0CF61 /* SBJsonBase.m in Sources */,
 				EAFA050C187FDF5500B0CF61 /* SBJsonParser.m in Sources */,
 				EAFA0510187FDF5500B0CF61 /* SBJsonWriter.m in Sources */,
+				EAEE550E188E5E61004A0907 /* SingleTabController.m in Sources */,
+				EAEE5517188E644F004A0907 /* GroupFeedController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -24503,6 +24525,8 @@
 				EAFA050B187FDF5500B0CF61 /* SBJsonBase.m in Sources */,
 				EAFA050F187FDF5500B0CF61 /* SBJsonParser.m in Sources */,
 				EAFA0513187FDF5500B0CF61 /* SBJsonWriter.m in Sources */,
+				EAEE5511188E5E61004A0907 /* SingleTabController.m in Sources */,
+				EAEE551A188E644F004A0907 /* GroupFeedController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

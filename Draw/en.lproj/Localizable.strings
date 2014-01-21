@@ -1019,6 +1019,9 @@
 "kDecline" = "Decline";
 "kAccept" = "Accept";
 "kIgnore" = "Ignore";
+"kIgnoreAll" = "Ignore all";
+"kIgnoreAllConfirm" = "Sure to ignore all the notices?";
+"kGroupTimeline" = "Group timeline";
 
 "kCoinsForFollowUs" = "+%d coins";
 "kFollowSinaWeibo" = "Follow us with Sina";
@@ -1404,7 +1407,7 @@
 
 "kStore" = "Store";
 "kBalance" = "Balance:";
-
+"kWealth" = "Wealth %ld coins";
 "kBalanceNotEnoughTitle" = "Balance Not Enough";
 "kBalanceNotEnoughDesc" = "Sorry, your balance is not enough. You can charge your account by IAP purchasing or download our other free apps.";
 

@@ -1051,6 +1051,8 @@
 "kDecline" = "拒绝";
 "kAccept" = "接受";
 "kIgnore" = "忽略";
+"kIgnoreAll" = "忽略所有";
+"kIgnoreAllConfirm" = "本操作将会忽略所有请求/邀请通知，确定要继续吗？";
 
 "kCoinsForFollowUs" = "+%d金币";
 "kFollowSinaWeibo" = "关注新浪官方微博";
@@ -2124,6 +2126,8 @@
 
 "kStore" = "商店";
 "kBalance" = "余额:";
+"kWealth" = "财富: %ld金币";
+"kGroupTimeline" = "家族动态";
 
 "kNoSupportViewFollow" = "暂不支持查看其他用户的粉丝";
 "kNoSupportViewFan" = "暂不支持查看其他用户的关注";

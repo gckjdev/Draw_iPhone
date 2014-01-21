@@ -37,7 +37,10 @@ typedef enum{
     
     FeedListTypeContestComment = 20,
     FeedListTypeIdList = 21,
-    
+
+    FeedListTypeTimelineGroup = 30,
+    FeedListTypeTimelineGroupAll = 31,
+
     FeedListTypeUserFavorite = 100,
     
 }FeedListType;

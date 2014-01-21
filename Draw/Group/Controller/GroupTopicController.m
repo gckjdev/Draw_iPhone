@@ -21,6 +21,7 @@
 #import "ChatDetailController.h"
 #import "MessageStat.h"
 #import "ContestController.h"
+#import "GroupFeedController.h"
 
 typedef enum{
     NewestTopic = 1,
@@ -155,12 +156,19 @@ typedef enum {
             break;
         case GroupContest:
         {
-            //TODO contest
             ContestController *vc = [[[ContestController alloc] initWithGroupId:self.group.groupId]autorelease];
             [self.navigationController pushViewController:vc animated:YES];
 
         }
             break;
+        case GroupTimeline:
+        {
+            GroupFeedController *gfc = [[GroupFeedController alloc] init];
+            gfc.groupId = [_group groupId];
+            [self.navigationController pushViewController:gfc animated:YES];
+            [gfc release];
+            break;
+        }
 
         default:
             break;
@@ -206,7 +214,7 @@ typedef enum {
     permissonManager = [GroupPermissionManager myManagerWithGroupId:_group.groupId];
     [[GroupManager defaultManager] setSharedGroup:_group];
     [permissonManager retain];
-    
+    self.forGroup = YES;
     [super viewDidLoad];
     [self setDefaultBGImage];
     [self updateTitleView];
@@ -337,6 +345,8 @@ typedef enum {
         }
     }
 }
+
+
 
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section

@@ -89,7 +89,12 @@
     [self.iconView setImageURL:[_group medalImageURL] placeholderImage:[GroupUIManager defaultGroupMedal]];
     
     [self.nameLabel setText:_group.name];
-    [self.descLabel setText:_group.signature];
+    if (!_showBalance) {
+        [self.descLabel setText:_group.signature];
+    }else{
+        [self.descLabel setText:[NSString stringWithFormat:NSLS(@"kWealth"), _group.balance]];
+    }
+
     
     //    [self.sizeLabel setText:[@(_group.size) stringValue]];
     NSString *sizeText = [NSString stringWithFormat:NSLS(@"kGroupMemberNumber"),_group.size];
@@ -102,7 +107,7 @@
     CGFloat width = SIZE_BASE_WIDTH + CGRectGetWidth(_sizeLabel.frame);
     [self.sizeLabel updateWidth:width];
     
-    if([_group.signature length] == 0){
+    if([_group.signature length] == 0 && _showBalance == NO){
         [self.nameLabel updateCenterY:CGRectGetMidY(self.bounds)];
     }else{
         [self.nameLabel updateOriginY:DEFAULT_NAME_Y];

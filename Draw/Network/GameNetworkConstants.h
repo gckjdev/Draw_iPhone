@@ -737,6 +737,8 @@
 #define METHOD_SYNC_FOLLOWED_TOPICIDS @"syncFollowedTopicIds"
 
 #define METHOD_IGNORE_NOTICE @"ignoreNotice"
+#define METHOD_IGNORE_ALL_REQUEST_NOTICE @"ignoreAllRequestNotices"
+
 #define METHOD_FOLLOW_TOPIC @"followTopic"
 #define METHOD_UNFOLLOW_TOPIC @"unfollowTopic"
 #define METHOD_GET_TOPIC_TIMELINE @"getTopicTimeline"

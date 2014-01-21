@@ -9,10 +9,10 @@
 #import "CommonTabController.h"
 #import "DetailFooterView.h"
 #import "GroupCell.h"
+#import "BBSService.h"
 
 
-
-@interface GroupHomeController : CommonTabController<DetailFooterViewDelegate, GroupCellDelegate>
+@interface GroupHomeController : CommonTabController<DetailFooterViewDelegate, GroupCellDelegate, BBSServiceDelegate>
 @property (retain, nonatomic) IBOutlet UIView *subTabsHolder;
 @property (retain, nonatomic) IBOutlet UIView *tabsHolderView;
 @property (retain, nonatomic) IBOutlet DetailFooterView *footerView;
