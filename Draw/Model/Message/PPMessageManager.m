@@ -618,6 +618,7 @@ static PPMessageManager* globalDefaultMessageManager;
         [show updateLayers:[DrawLayer defaultLayersWithFrame:CGRectFromCGSize(message.canvasSize)]];
         CGSize size = [ChatDetailCell adjustImageSize:message.canvasSize];
         message.thumbImage = [show createImageWithSize:size];
+        message.image = image;
         image = [message thumbImage];
         [_thumbImageManager saveImage:image forKey:message.messageId];
     }

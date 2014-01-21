@@ -340,6 +340,8 @@
     self.inputBackgroundView.backgroundColor = COLOR_BROWN;
     self.inputTextView.textColor = COLOR_BROWN;
     
+    [self scrollToBottom:NO];
+    
     // make this to avoid message list changed by receiving notification
     [self performSelector:@selector(loadNewMessageWhileLaunch) withObject:nil afterDelay:0.1f];
 }
@@ -445,9 +447,22 @@
     NSArray* messageList = [self getMessageList];
     if ([messageList count]>0) {
         NSIndexPath *indPath = [NSIndexPath indexPathForRow:[messageList count]-1 inSection:0];
+        
+        // reload last 20 rows
+        int RELOAD_ROW_COUNT = 15;
+        NSMutableArray *indexPathForReload = [NSMutableArray array];
+        for (int i=0; i<RELOAD_ROW_COUNT; i++){
+            int row = [messageList count] - 1 - i;
+            if (row < 0){
+                break;
+            }
+            NSIndexPath *index = [NSIndexPath indexPathForRow:i inSection:0];
+            [indexPathForReload addObject:index];
+        }
+        
         [dataTableView beginUpdates];
-        [dataTableView scrollToRowAtIndexPath:indPath atScrollPosition:UITableViewScrollPositionBottom animated:NO];
-        [dataTableView reloadRowsAtIndexPaths:[dataTableView indexPathsForVisibleRows] withRowAnimation:NO];
+        [dataTableView scrollToRowAtIndexPath:indPath atScrollPosition:UITableViewScrollPositionBottom animated:animated];
+        [dataTableView reloadRowsAtIndexPaths:indexPathForReload withRowAnimation:UITableViewRowAnimationNone]; // [dataTableView indexPathsForVisibleRows]
         [dataTableView endUpdates];
     }
 }
@@ -1152,26 +1167,29 @@
     if ([messageList count] > 0) {
         NSInteger row = 0;
         NSIndexPath *indexPath = [NSIndexPath indexPathForRow:row inSection:0];
+
+        // reload first 20 rows
+        int RELOAD_ROW_COUNT = 15;
+        NSMutableArray *indexPathForReload = [NSMutableArray array];
+        for (int i=0; i<RELOAD_ROW_COUNT; i++){
+            if (i >= [messageList count]){
+                break;
+            }
+            NSIndexPath *index = [NSIndexPath indexPathForRow:i inSection:0];
+            [indexPathForReload addObject:index];
+        }
+        
         [self.dataTableView beginUpdates];
-        [self.dataTableView scrollToRowAtIndexPath:indexPath 
+        [self.dataTableView scrollToRowAtIndexPath:indexPath
                                   atScrollPosition:UITableViewScrollPositionBottom 
-                                          animated:NO];
-        [dataTableView reloadRowsAtIndexPaths:[dataTableView indexPathsForVisibleRows] withRowAnimation:NO];
+                                          animated:YES];
+        [dataTableView reloadRowsAtIndexPaths:indexPathForReload withRowAnimation:UITableViewRowAnimationNone]; // [dataTableView indexPathsForVisibleRows]
         [dataTableView endUpdates];
     }
 }
 - (void)tableViewScrollToBottom:(BOOL)animated
 {
     [self scrollToBottom:animated];
-//    NSArray* messageList = [self getMessageList];
-//    if ([messageList count] > 0) {
-//        NSInteger row = [messageList count] - 1;
-//        NSIndexPath *indexPath = [NSIndexPath indexPathForRow:row inSection:0];
-//        [self.dataTableView scrollToRowAtIndexPath:indexPath 
-//                                  atScrollPosition:UITableViewScrollPositionBottom 
-//                                          animated:animated];
-//
-//    }
 }
 
 

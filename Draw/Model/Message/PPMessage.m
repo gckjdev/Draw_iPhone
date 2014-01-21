@@ -390,6 +390,29 @@
         }
     }
 }
+
+- (void)setDrawActionList:(NSMutableArray *)drawActionList
+{
+    if (_drawActionList != drawActionList){
+        PPRelease(_drawActionList);
+        _drawActionList = [drawActionList retain];
+        
+        [_messageBuilder clearDrawDataList];
+        if ([_drawActionList count] != 0) {
+            for (DrawAction *action in _drawActionList) {
+                NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
+                
+                NSData *data = [action toData];
+                
+                PBDrawAction* pbDrawAction = [PBDrawAction parseFromData:data];
+                [_messageBuilder addDrawData:pbDrawAction];
+                
+                [pool drain];
+            }
+        }
+    }
+}
+
 - (PBMessage*)toPBMessage
 {
     // set from and to
