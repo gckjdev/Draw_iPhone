@@ -861,4 +861,11 @@ static ChatService *_chatService = nil;
     [self.friendUserIdsForClean removeAllObjects];
 }
 
+- (void)cleanUserMessage:(NSString*)friendUserId
+{
+    PPDebug(@"<cleanUserMessage> %@", friendUserId);
+    [[PPMessageManager defaultManager] cleanMessage:friendUserId keepCount:KEEP_LOCAL_MESSAGE_COUNT];
+}
+
+
 @end

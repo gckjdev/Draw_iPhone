@@ -109,5 +109,6 @@
 
 - (void)addUserMessageForClean:(NSString*)friendId;
 - (void)cleanUserMessage;
+- (void)cleanUserMessage:(NSString*)friendUserId;
 
 @end
