@@ -1127,8 +1127,7 @@ BBSService *_staticGroupTopicService;
             key = actionId;
         }
         PBBBSDraw *draw = [_bbsManager loadBBSDrawDataFromCacheWithKey:key];
-    
-        if (draw != nil) {
+        if (draw != nil && [draw.drawActionListList count] > 0) {
             PPDebug(@"<getBBSDrawDataWithPostId> load data from local service");
 //            NSArray *list = [draw drawActionListList];
             NSMutableArray *drawActionList = [DrawAction drawActionListFromPBBBSDraw:draw];

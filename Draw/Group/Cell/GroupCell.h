@@ -28,5 +28,6 @@
 + (NSString*)getCellIdentifier;
 
 - (void)setCellInfo:(PBGroup *)group;
+- (void)setShowBalance:(BOOL)showBalance;
 
 @end

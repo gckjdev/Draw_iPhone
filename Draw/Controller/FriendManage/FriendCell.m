@@ -19,6 +19,8 @@
 #import "MyFriend.h"
 #import "UIImageView+Extend.h"
 #import "GroupUIManager.h"
+#import "UILabel+Touchable.h"
+#import "GroupTopicController.h"
 
 @implementation FriendCell
 @synthesize avatarView;
@@ -64,6 +66,16 @@
     areaLabel.font =
     statusLabel.font =
     _levelLabel.font = CELL_SMALLTEXT_FONT;
+    
+    [self.groupLabel enableTapTouch:self selector:@selector(handleTapOnGroupLabel:)];
+    
+}
+
+- (void)handleTapOnGroupLabel:(UITapGestureRecognizer *)tap
+{
+    if (tap.state == UIGestureRecognizerStateEnded) {
+        [GroupTopicController enterWithGroupId:self.myFriend.groupId fromController:[self theViewController]];
+    }
 }
 
 + (id)createCell:(id)delegate
@@ -186,9 +198,10 @@
     NSString *imageName = aFriend.isMale ? @"user_detail_gender_male@2x.png" : @"user_detail_gender_female@2x.png";
     [self.genderImageView setImage:[UIImage imageNamed:imageName]];
     
-    self.groupIcon.hidden = self.groupLabel.hidden = ![aFriend hasGroup];
+    self.groupLabel.hidden = ![aFriend hasGroup];
+    self.groupIcon.hidden = YES;
     if ([aFriend hasGroup]) {
-        [self.groupIcon setImageURL:aFriend.groupMedalURL placeholderImage:[GroupUIManager defaultGroupMedal]];
+//        [self.groupIcon setImageURL:aFriend.groupMedalURL placeholderImage:[GroupUIManager defaultGroupMedal]];
         [self.groupLabel setText:aFriend.groupName];
     }
 }

@@ -453,6 +453,17 @@ static GroupService *_staticGroupService = nil;
      }];
 }
 
+
+- (void)ignoreAllRequestNoticesWithCallback:(SimpleResultBlock)callback
+{
+    [self loadPBData:METHOD_IGNORE_ALL_REQUEST_NOTICE
+          parameters:nil
+            callback:^(DataQueryResponse *response, NSError *error)
+     {
+         EXECUTE_BLOCK(callback, error);
+     }];
+}
+
 - (void)syncFollowTopicIds
 {
     [self loadPBData:METHOD_SYNC_FOLLOWED_TOPICIDS parameters:nil callback:^(DataQueryResponse *response, NSError *error) {

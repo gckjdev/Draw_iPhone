@@ -50,6 +50,11 @@
     return @"GroupCell";
 }
 
+- (void)setShowBalance:(BOOL)showBalance
+{
+    [self.infoView setShowBalance:showBalance];
+}
+
 
 - (void)setCellInfo:(PBGroup *)group
 {

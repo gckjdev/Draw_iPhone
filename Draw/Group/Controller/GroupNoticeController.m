@@ -176,7 +176,8 @@ typedef enum{
     NOTICE_OPTION_ACCEPT = 0,
     NOTICE_OPTION_REJECT = 1,
     NOTICE_OPTION_IGNORE = 2,
-    NOTICE_OPTION_CANCEL = 3,
+    NOTICE_OPTION_IGNORE_ALL = 3,
+    NOTICE_OPTION_CANCEL = 4,
 
     COMMENT_OPTION_REPLY = 0,
     COMMENT_OPTION_DETAIL = 1,
@@ -193,7 +194,7 @@ typedef enum{
     PPDebug(@"did select at row = %d", indexPath.row);
     if (tabId == GroupRequest) {
         _selectedNotice = [self tabDataList][indexPath.row];
-        NSArray *titles = @[NSLS(@"kAccept"),NSLS(@"kDecline"),NSLS(@"kIgnore"),NSLS(@"kCancel")];
+        NSArray *titles = @[NSLS(@"kAccept"),NSLS(@"kDecline"),NSLS(@"kIgnore"),NSLS(@"kIgnoreAll"),NSLS(@"kCancel")];
         
         BBSActionSheet *sheet = [[BBSActionSheet alloc] initWithTitles:titles delegate:self];
         [sheet showInView:self.view
@@ -212,6 +213,21 @@ typedef enum{
 {
     [self removeModelData:notice];
     
+}
+
+- (void)ignoreAllRequestNotices
+{
+    CommonDialog *dialog = [CommonDialog createDialogWithTitle:NSLS(@"kIgnoreAll") message:NSLS(@"kIgnoreAllConfirm") style:CommonDialogStyleDoubleButton];
+    [dialog setClickOkBlock:^(id view){
+        [[GroupService defaultService] ignoreAllRequestNoticesWithCallback:^(NSError *error) {
+            if(!error){
+                TableTab *tab = [_tabManager tabForID:GroupRequest];
+                [tab.dataList removeAllObjects];
+                [self.dataTableView reloadData];                
+            }
+        }];
+    }];
+    [dialog showInView:self.view];
 }
 
 - (void)ignoreNotice:(PBGroupNotice *)notice
@@ -299,8 +315,8 @@ typedef enum{
             }
         }else if (index == NOTICE_OPTION_IGNORE) {
             [self ignoreNotice:_selectedNotice];
-        }else{
-            //do nothing
+        }else if(index == NOTICE_OPTION_IGNORE_ALL){
+            [self ignoreAllRequestNotices];
         }
         _selectedNotice = nil;
 
