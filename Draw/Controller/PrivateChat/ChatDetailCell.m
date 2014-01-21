@@ -275,6 +275,44 @@
     [super dealloc];
 }
 
+#define GROUP_INTERVAL 60 * 5
+
++ (void)calculateAndSetHeight:(NSArray*)messageList
+{
+    if ([messageList count] == 0)
+        return;
+    
+    PPMessage* lastMessage = nil;
+    [lastMessage setIsShowTime:YES];
+
+    int index = 0;
+    NSDate* now = [NSDate date];
+    for (index = 0; index < [messageList count]; index++){
+        
+        if (index == 0){
+            lastMessage = [messageList objectAtIndex:0];
+            [lastMessage setIsShowTime:YES];
+            continue;
+        }
+        
+        PPMessage* message = [messageList objectAtIndex:index];
+        
+        NSInteger timeValue = [[message createDate] timeIntervalSinceDate:now];
+        NSInteger lastTime = [[lastMessage createDate] timeIntervalSinceDate:now];
+        if (abs(timeValue - lastTime) >= GROUP_INTERVAL) {
+            [message setIsShowTime:YES];
+            lastMessage = message;
+        }
+        else{
+            [message setIsShowTime:NO];
+        }
+    }
+    
+    for (PPMessage* message in messageList){
+        [message setDisplayHeight:[ChatDetailCell getCellHeight:message showTime:message.isShowTime]];
+    }
+}
+
 
 + (CGFloat)getCellHeight:(PPMessage *)message 
                 showTime:(BOOL)showTime
@@ -363,7 +401,7 @@
 //       self.isReceive = ([message sourceType] == SourceTypeReceive);
 //    }
     
-    [self updateViewsWithShowTime:showTime];
+    [self updateViewsWithShowTime:message.isShowTime]; //showTime];
     [self updateAvatarImage:messageStat message:message];
     [self updateTime:message.createDate];
     self.imgView.hidden = self.msgLabel.hidden = YES;
