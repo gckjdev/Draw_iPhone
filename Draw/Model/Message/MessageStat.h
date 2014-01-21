@@ -40,6 +40,7 @@
 @property (nonatomic, assign) MessageType messageType;
 @property (nonatomic, assign) SourceType sourceType;
 @property (nonatomic, assign) BOOL isGroup;
+@property (nonatomic, readonly) NSString * groupId;
 
 - (id)initWithPBMessageStat:(PBMessageStat *)pbMessageStat;
 

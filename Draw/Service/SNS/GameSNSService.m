@@ -334,19 +334,30 @@ GameSNSService* _defaultSNSService;
                         {
                             // TODO save user weibo bind info, get user infomation here and upload user information to server
                             [self readUserInfoAndUpdateToServer:shareType];
-                            
-                            POSTMSG(NSLS(@"kAuthorizeSuccess"));
+
+                            CLEARMSG;
+                            POSTMSG2(NSLS(@"kAuthorizeSuccess"), 2);
                             PPDebug(@"autheticate shareType(%d) success", shareType);
                             
                             
                         }
                         else if (state == SSAuthStateFail)
                         {
+                            CLEARMSG;
                             POSTMSG(NSLS(@"kAuthorizeFailure"));
                             PPDebug(@"autheticate shareType(%d) failure, error=%@", shareType, [error errorDescription]);
                         }
+                        else if (state == SSAuthStateBegan){
+                            POSTMSG2(NSLS(@"kAuthorizeOngoing"), 200);
+                            PPDebug(@"autheticate shareType(%d) began", shareType);
+                        }
+                        else if (state == SSAuthStateCancel){
+                            CLEARMSG;
+                            POSTMSG2(NSLS(@"kAuthorizeCancel"), 2);
+                            PPDebug(@"autheticate shareType(%d) cancel", shareType);
+                        }
                         else{
-                            PPDebug(@"autheticate shareType(%d) unknown state, error=%@", shareType, [error errorDescription]);
+                            PPDebug(@"autheticate shareType(%d) unknown state(%d), error=%@", shareType, state, [error errorDescription]);
                         }
                     }];
 }

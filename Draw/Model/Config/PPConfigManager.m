@@ -29,12 +29,12 @@
 
 + (int)defaultHomeControllerFeedType
 {
-    return [MobClickUtils getIntValueByKey:@"DEFAULT_HOME_CONTROLLER_FEED_TYPE" defaultValue:HotLatestIndex];
+    return [MobClickUtils getIntValueByKey:@"DEFAULT_HOME_CONTROLLER_FEED_TYPE" defaultValue:HotTopIndex];
 }
 
 + (int)defaultHotControllerIndex
 {
-    return [MobClickUtils getIntValueByKey:@"DEFAULT_HOT_CONTROLLER_INDEX" defaultValue:HotLatestIndex];
+    return [MobClickUtils getIntValueByKey:@"DEFAULT_HOT_CONTROLLER_INDEX" defaultValue:HotTopIndex];
 }
 
 + (int)maxWeiboShareLength
@@ -161,7 +161,7 @@
 + (NSString*)getMessageServerURL
 {
 #ifdef DEBUG
-    return @"http://58.215.184.18:8699/api/i?";
+//    return @"http://58.215.184.18:8699/api/i?";
     //    return @"http://localhost:8100/api/i?";
 //    return @"http://192.168.1.12:8100/api/i?";
 #endif
@@ -185,7 +185,7 @@
 {
 #ifdef DEBUG
 //    return @"http://192.168.1.12:8100/api/i?";
-    return @"http://58.215.184.18:8699/api/i?";
+//    return @"http://58.215.184.18:8699/api/i?";
 //    return @"http://192.168.100.192:8100/api/i?";
 //    return @"http://localhost:8100/api/i?";
 #endif

@@ -2398,6 +2398,10 @@
 "kFollowSuccess" = "Follow successfully";
 "kAuthorizeSuccess" = "Authorize successfully";
 "kAuthorizeFailure" = "Fail to authorize, please check your account or network";
+"kAuthorizeOngoing" = "Authorizing...";
+"kAuthorizeCancel" = "Authorization cancelled";
+
+
 
 "kShareSinaWeibo" = "Share Sina Weibo";
 "kShareWeixinSession" = "Share WeChat Friend";

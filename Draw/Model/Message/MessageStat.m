@@ -177,4 +177,15 @@
 {
     return self.friendGender ? @"m" : @"f";
 }
+
+- (NSString *)groupId
+{
+    if (self.isGroup){
+        return self.friendId;
+    }
+    else{
+        return nil;
+    }
+}
+
 @end

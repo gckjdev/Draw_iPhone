@@ -24,6 +24,7 @@
 #import "CommonUserInfoView.h"
 #import "GameApp.h"
 #import "GroupPermission.h"
+#import "GroupTopicController.h"
 
 @interface ChatListController ()
 
@@ -355,8 +356,15 @@ SET_CELL_BG_IN_CONTROLLER;
 #pragma mark - ChatCellDelegate method
 - (void)didClickAvatar:(NSIndexPath *)aIndexPath
 {
-    MyFriend *aFriend = [self friendOfIndex:aIndexPath.row];
-    [CommonUserInfoView showFriend:aFriend inController:self needUpdate:YES canChat:YES];
+    MessageStat *stat = [self messageStatOfIndex:aIndexPath.row];
+    if ([stat isGroup]){
+        // goto group
+        [GroupTopicController enterWithGroupId:stat.groupId fromController:self];
+    }
+    else{
+        MyFriend *aFriend = [self friendOfIndex:aIndexPath.row];
+        [CommonUserInfoView showFriend:aFriend inController:self needUpdate:YES canChat:YES];
+    }
 }
 
 

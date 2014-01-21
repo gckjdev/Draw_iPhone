@@ -2422,6 +2422,9 @@
 "kFollowSuccess" = "已成功关注";
 "kAuthorizeSuccess" = "已成功授权";
 "kAuthorizeFailure" = "授权失败，请检查帐号或者网络";
+"kAuthorizeOngoing" = "授权请求中...";
+"kAuthorizeCancel" = "授权已取消";
+
 
 "kShareSinaWeibo" = "分享到新浪微博";
 "kShareWeixinSession" = "分享给微信好友";
@@ -2595,3 +2598,7 @@
 "kUpdateContestSuccess" = "更新比赛成功";
 "kContestingTimeIs" = "比赛时间: %@";
 "kVotingTimeIs" = "投票时间: %@";
+
+
+
+

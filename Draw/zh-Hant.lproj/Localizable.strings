@@ -2435,6 +2435,8 @@
 "kFollowSuccess" = "已成功關注";
 "kAuthorizeSuccess" = "已成功授權";
 "kAuthorizeFailure" = "授權失敗，請檢查帳號或者網絡";
+"kAuthorizeOngoing" = "授權請求中...";
+"kAuthorizeCancel" = "授權已取消";
 
 "kShareSinaWeibo" = "分享到新浪微博";
 "kShareWeixinSession" = "分享給微信好友";

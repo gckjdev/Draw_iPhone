@@ -27,10 +27,13 @@
 - (void)postWithCustomView:(UIView *)view
                  delayTime:(float)delayTime;
 
+- (void)clear;
+
 
 @end
 
-#define POSTMSG(msg)    ([[CommonMessageCenter defaultCenter] postMessageWithText:msg delayTime:1.5])
+#define CLEARMSG              ([[CommonMessageCenter defaultCenter] clear])
+#define POSTMSG(msg)          ([[CommonMessageCenter defaultCenter] postMessageWithText:msg delayTime:1.5])
 #define POSTMSG2(msg, sec)    ([[CommonMessageCenter defaultCenter] postMessageWithText:msg delayTime:sec])
 
 #define POSTVIEW(v, sec)  ([[CommonMessageCenter defaultCenter] postWithCustomView:v delayTime:sec])
