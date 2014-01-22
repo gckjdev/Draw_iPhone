@@ -738,6 +738,7 @@
 
 #define METHOD_IGNORE_NOTICE @"ignoreNotice"
 #define METHOD_IGNORE_ALL_REQUEST_NOTICE @"ignoreAllRequestNotices"
+#define METHOD_GET_GROUP_CHARGE_HISTORIES @"getGroupChargeHistories"
 
 #define METHOD_FOLLOW_TOPIC @"followTopic"
 #define METHOD_UNFOLLOW_TOPIC @"unfollowTopic"

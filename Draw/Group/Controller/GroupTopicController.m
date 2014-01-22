@@ -96,13 +96,19 @@ typedef enum {
 {
     UIButton *button = sender;
     if ([permissonManager canJoinGroup]) {
-        [self showActivityWithText:NSLS(@"kJoiningGroup")];
-        [groupService joinGroup:_group.groupId message:nil callback:^(NSError *error) {
-            [self hideActivity];
-            if (!error) {
-                POSTMSG(NSLS(@"kSentRequest"));
-                button.hidden = YES;
-            }
+        CommonDialog *dialog = [CommonDialog createInputFieldDialogWith:NSLS(@"kJoinGroup")];
+        dialog.inputTextField.placeholder = NSLS(@"kJoinGroupReason");
+        [dialog showInView:self.view];
+        [dialog setClickOkBlock:^(id view){
+            [self showActivityWithText:NSLS(@"kJoiningGroup")];
+            NSString *message = dialog.inputTextField.text;
+            [groupService joinGroup:_group.groupId message:message callback:^(NSError *error) {
+                [self hideActivity];
+                if (!error) {
+                    POSTMSG(NSLS(@"kSentRequest"));
+                    button.hidden = YES;
+                }
+            }];
         }];
     }
 }

@@ -27,6 +27,7 @@
 #import "GroupUIManager.h"
 #import "AccountService.h"
 #import "DrawError.h"
+#import "ChargeHistoryController.h"
 
 enum{
     SECTION_BASE_INDEX = 0,
@@ -119,16 +120,22 @@ typedef enum{
     [super dealloc];
 }
 
-
 - (void)clickJoin:(id)sender
 {
-    [self showActivityWithText:NSLS(@"kJoiningGroup")];
-    [groupService joinGroup:_group.groupId message:nil callback:^(NSError *error) {
-        [self hideActivity];
-        if (!error) {
-            POSTMSG(NSLS(@"kSentRequest"));
-            _titleView.rightButton.hidden = YES;
-        }
+    UIButton *button = sender;
+    CommonDialog *dialog = [CommonDialog createInputFieldDialogWith:NSLS(@"kJoinGroup")];
+    dialog.inputTextField.placeholder = NSLS(@"kJoinGroupReason");
+    [dialog showInView:self.view];
+    [dialog setClickOkBlock:^(id view){
+        [self showActivityWithText:NSLS(@"kJoiningGroup")];
+        NSString *message = dialog.inputTextField.text;
+        [groupService joinGroup:_group.groupId message:message callback:^(NSError *error) {
+            [self hideActivity];
+            if (!error) {
+                POSTMSG(NSLS(@"kSentRequest"));
+                _titleView.rightButton.hidden = YES;
+            }
+        }];
     }];
 }
 
@@ -951,16 +958,19 @@ typedef enum{
         return;
     }
     
-    if (![GroupManager isMeAdminOrCreatorInSharedGroup]) {
-        return;
-    }
+    BOOL canEdit = [GroupManager isMeAdminOrCreatorInSharedGroup];
     if (indexPath.section == SECTION_BASE_INDEX) {
 
-        if (indexPath.row == RowDescription) {
+        if (indexPath.row == RowDescription && canEdit) {
             [self alertToEditInfo:NSLS(@"kEditGroupDesc") info:_group.desc key:PARA_DESC];
-        }else if(indexPath.row == RowFee){
+        }else if(indexPath.row == RowFee && canEdit){
             NSString *feeString = [@(_group.memberFee) stringValue];
             [self alertToEditInfo:NSLS(@"kEditGroupFee") info:feeString key:PARA_FEE];
+        }else if(indexPath.row == RowWealth){
+            ChargeHistoryController *chc = [[ChargeHistoryController alloc] init];
+            chc.groupId = _group.groupId;
+            [self.navigationController pushViewController:chc animated:YES];
+            [chc release];
         }else{
             
         }

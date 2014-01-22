@@ -16,7 +16,7 @@
 @property(nonatomic, retain)UIImageView *imageView;
 
 @property(nonatomic, retain)NSString *viewId;
-@property(nonatomic, retain)NSString *imgURL;
+@property(nonatomic, retain)NSURL *imgURL;
 
 @end
 

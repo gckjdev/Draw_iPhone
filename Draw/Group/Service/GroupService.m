@@ -422,6 +422,20 @@ static GroupService *_staticGroupService = nil;
      }];    
 }
 
+- (void)getGroupChargeHistories:(NSString *)groupId
+                         offset:(NSInteger)offset
+                          limit:(NSInteger)limit
+                       callback:(ListResultBlock)callback
+{
+    NSDictionary *paras = @{PARA_GROUPID:groupId, PARA_OFFSET:@(offset), PARA_LIMIT:@(limit)};
+    
+    [self loadPBData:METHOD_GET_GROUP_CHARGE_HISTORIES
+          parameters:paras
+            callback:^(DataQueryResponse *response, NSError *error)
+     {
+         EXECUTE_BLOCK(callback, response.noticeListList, error);
+     }];
+}
 
 //notice
 - (void)getGroupNoticeByType:(GroupNoticeType)type

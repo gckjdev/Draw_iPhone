@@ -2193,7 +2193,7 @@
 "kGroupBulletinDesc" = "%@在%@中發布了公告。";
 "kGroupJoinDesc" = "%@申請加入%@。";
 "kGroupExpelDesc" = "%@將%@移除出了%@。";
-"kGroupQuitDesc" = "%@退出了%@";
+"kGroupQuitDesc" = "%@退出了%@。";
 "kGroupAcceptDesc" = "%@同意%@加入%@。";
 "kGroupRejectDesc" = "%@拒絕%@加入%@。";
 
@@ -2323,6 +2323,12 @@
 "kNotTestUserCan'tCreateGroup" = "目前是內測階段，你不是內測用戶暫不能創建家族。";
 "kJoinAGroup" = "加入家族";
 "kInvitationFailure" = "Ta已是其他家族成员，不能收到邀请.";
+
+"kRejectJoinGroup" = "拒绝申請";
+"kJoinJoinGroupReason" = "你的理由...";
+"kJoinGroupReason" = "你的理由...";
+"kNoChargeHistory" = "暫無充值記錄";
+"kGroupChargeHistory" = "充值記錄";
 
 /*********************小吉画画国际化字符串开始 ************************/
 "kLittleGeeRecommend" = "推薦";

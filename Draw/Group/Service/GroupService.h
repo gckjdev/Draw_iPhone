@@ -121,6 +121,12 @@ typedef void (^ URLResultBlock) (NSURL *url, NSError *error);
                        limit:(NSInteger)limit
                     callback:(ListResultBlock)callback;
 
+- (void)getGroupChargeHistories:(NSString *)groupId
+                         offset:(NSInteger)offset
+                          limit:(NSInteger)limit
+                       callback:(ListResultBlock)callback;
+
+
 - (void)ignoreNotice:(NSString *)noticeId
           noticeType:(NSInteger)type
             callback:(SimpleResultBlock)callback;

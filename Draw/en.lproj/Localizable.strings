@@ -2286,6 +2286,12 @@
 
 "kInvitationFailure" = "The user has joined a group, can't receive invitation";
 
+"kRejectJoinGroup" = "Reject request";
+"kJoinJoinGroupReason" = "Your reason...";
+"kJoinGroupReason" = "Your reason...";
+"kNoChargeHistory" = "No charge history.";
+"kGroupChargeHistory" = "Charge history";
+
 /*********************小吉画画国际化字符串开始 ************************/
 "kLittleGeeRecommend" = "Featured";
 "kLittleGeeDrawTo" = "Gift";
