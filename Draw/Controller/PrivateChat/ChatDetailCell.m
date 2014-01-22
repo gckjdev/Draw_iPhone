@@ -54,7 +54,7 @@
 
 #define TIME_FRAME (ISIPAD ? CGRectMake(34,14,700,40) : CGRectMake(10,6,300,17))
 
-#define TEXT_FONT [UIFont systemFontOfSize:VALUE(14)]
+#define TEXT_FONT [UIFont systemFontOfSize:(ISIPAD?(24):(14))]   // VALUE(14)]
 #define LINE_BREAK_MODE NSLineBreakByWordWrapping
 
 //#define DEFAULT_MESSAGE_IMAGE_SIZE (ISIPAD ? CGSizeMake(300,300) : CGSizeMake(120,120))
