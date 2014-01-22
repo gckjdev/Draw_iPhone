@@ -155,156 +155,6 @@ static ChatService *_chatService = nil;
 //    PPDebug(@"post notification %@", name);
 }
 
-
-//- (void)sendMessage:(PPMessage *)message 
-//           delegate:(id<ChatServiceDelegate>)delegate
-//{
-//    [message retain];
-//
-//    dispatch_async(workingQueue, ^{
-//        
-//        NSString *userId = [[UserManager defaultManager] userId];
-//        NSString *friendId = message.friendId;
-//        MessageType type  = message.messageType;
-//        
-//        //text
-//        NSString *text = nil;
-//        
-//        //draw
-//        NSArray *drawActionList = nil;        
-//        NSData *data = nil;
-//        
-//        //location request
-//        BOOL hasLocation = NO;
-//        double latitude = 0.0f, longitude = 0.0f;
-//        
-//        //location response
-//        NSInteger replyResult = ACCEPT_ASK_LOCATION;
-//        NSString *reqMessageId = nil;
-//        
-//        //image 
-//        __block NSString *imageUrl = nil;
-//        __block NSString *thumbImageUrl = nil;
-//        
-//        switch (type) {
-//            case MessageTypeText:
-//            {
-//                text = [(TextMessage *)message text];
-//                break;
-//            }
-//            case MessageTypeDraw:
-//            {
-//                drawActionList = [(DrawMessage *)message drawActionList];
-//                if (drawActionList != nil) {
-//                    
-//                    PBDraw *draw = [[DrawDataService defaultService] buildPBDraw:nil 
-//                                                                    nick:nil 
-//                                                                  avatar:nil
-//                                                          drawActionList:drawActionList
-//                                                                drawWord:nil 
-//                                                                language:ChineseType
-//                                                                    size:[(DrawMessage *)message canvasSize]
-//                                                            isCompressed:NO];
-//                    data = [draw data];
-//                }
-//                break;
-//            }
-//            case MessageTypeLocationRequest:
-//            {
-//                LocationAskMessage *laMessage = (LocationAskMessage *)message;
-//                longitude = [laMessage longitude];
-//                latitude = [laMessage latitude];
-//                hasLocation = YES;
-//                text = laMessage.text;
-//                break;
-//            }
-//            case MessageTypeLocationResponse:
-//            {
-//                LocationReplyMessage *laMessage = (LocationReplyMessage *)message;
-//                longitude = [laMessage longitude];
-//                latitude = [laMessage latitude];
-//                text = laMessage.text;
-//                replyResult = laMessage.replyResult;
-//                hasLocation = (replyResult == ACCEPT_ASK_LOCATION);
-//                reqMessageId = laMessage.reqMessageId;
-//                break;
-//            }
-//            case MessageTypeImage:
-//            {
-//                ImageMessage *imageMessage = (ImageMessage *)message;
-//                 data = [imageMessage.image data];
-//                
-//                if ([text length] == 0){
-//                    text = NSLS(@"kImageMessage");
-//                }
-//                
-//                thumbImageUrl = [imageMessage thumbImageUrl];
-//                imageUrl = [imageMessage imageUrl];
-//            }
-//
-//            default:
-//                break;
-//        }
-//
-//        
-//        
-//        CommonNetworkOutput* output = [GameNetworkRequest sendMessage:[PPConfigManager getMessageServerURL] 
-//                                                                appId:[PPConfigManager appId] 
-//                                                               userId:userId 
-//                                                         targetUserId:friendId 
-//                                                                 text:text
-//                                                                 data:data
-//                                                                 type:type
-//                                                          hasLocation:hasLocation
-//                                                            longitude:longitude
-//                                                             latitude:latitude
-//                                                         reqMessageId:reqMessageId
-//                                                          replyResult:replyResult];
-//        
-//        dispatch_async(dispatch_get_main_queue(), ^{
-//            if (output.resultCode == ERROR_SUCCESS){
-//                NSString *messageId = [output.jsonDataDict objectForKey:PARA_MESSAGE_ID];
-//                message.messageId = messageId;
-//                
-//                NSInteger timeValue = [[output.jsonDataDict objectForKey:PARA_CREATE_DATE] intValue];
-//                if (timeValue != 0) {
-//                    message.createDate = [NSDate dateWithTimeIntervalSince1970:timeValue];
-//                    PPDebug(@"return date = %@", message.createDate);
-//                }
-//                
-//                if (type == MessageTypeImage) {
-//                    imageUrl = [output.jsonDataDict objectForKey:PARA_IMAGE];
-//                    thumbImageUrl = [output.jsonDataDict objectForKey:PARA_THUMB_IMAGE];
-//                }
-//                
-//                message.status = MessageStatusSent;
-//                PPDebug(@"<ChatService>sendMessage success");
-//            }else {
-//                
-//                message.status = MessageStatusFail;
-//                PPDebug(@"<ChatService>sendMessage failed");
-//            }
-//            
-//            if (type == MessageTypeImage) {
-//                ImageMessage *imageMessage = (ImageMessage *)message;
-//                if (output.resultCode == ERROR_SUCCESS) {
-//                    [PPMessageManager removeLocalImage:[imageMessage thumbImageUrl]];
-//                }
-//                imageMessage.imageUrl = imageUrl;
-//                imageMessage.thumbImageUrl = thumbImageUrl;
-//            }
-//            
-//            if (delegate && [delegate respondsToSelector:@selector(didSendMessage:resultCode:)]){
-//                [delegate didSendMessage:message resultCode:output.resultCode];
-//            }
-//            
-//            [message release];
-//        });
-//    });
-//}
-
-
-
 - (void)sendHasReadMessage:(id<ChatServiceDelegate>)delegate friendUserId:(NSString *)friendUserId 
 {
     NSString *userId = [[UserManager defaultManager] userId];
@@ -320,8 +170,7 @@ static ChatService *_chatService = nil;
             PPDebug(@"<ChatService>sendHasReadMessage failed");
         }
         
-        dispatch_async(dispatch_get_main_queue(), ^{
-            
+        dispatch_async(dispatch_get_main_queue(), ^{            
             if (delegate && [delegate respondsToSelector:@selector(didSendHasReadMessage:resultCode:)]){
                 [delegate didSendHasReadMessage:friendUserId resultCode:output.resultCode];
             }
@@ -355,43 +204,6 @@ static ChatService *_chatService = nil;
         }); 
     });
 }
-
-/*
-- (void)deleteMessage:(id<ChatServiceDelegate>)delegate 
-        messageList:(NSArray *)messageList
-{
-    NSString *userId = [[UserManager defaultManager] userId];
-    [messageList retain];
-    
-    dispatch_async(workingQueue, ^{
-        
-        NSMutableArray *messageIdList = [NSMutableArray array];
-        for (PPMessage *message in messageList) {
-            [messageIdList addObject:message.messageId];
-        }
-        CommonNetworkOutput* output = [GameNetworkRequest deleteMessage:[PPConfigManager getMessageServerURL] 
-                                                                  appId:[PPConfigManager appId] 
-                                                                 userId:userId 
-                                                   targetMessageIdArray:messageIdList];
-        messageIdList = nil;
-        if (output.resultCode == ERROR_SUCCESS){
-            PPDebug(@"<ChatService>deleteMessage success");
-        }else {
-            PPDebug(@"<ChatService>deleteMessage failed");
-        }
-        
-        dispatch_async(dispatch_get_main_queue(), ^{
-            
-            if (delegate && [delegate respondsToSelector:
-                             @selector(didDeleteMessages:resultCode:)]){
-                [delegate didDeleteMessages:nil resultCode:output.resultCode];
-            }
-            [messageList release];
-        }); 
-    });
-    
-}
-*/
 
 #pragma mark new message methods
 
@@ -765,6 +577,7 @@ static ChatService *_chatService = nil;
 
             }else {                
                 message.status = MessageStatusFail;
+                [[PPMessageManager defaultManager] addOrUpdateMessage:message];
                 PPDebug(@"<ChatService> sendMessage failed, resultCode=%d", output.resultCode);
             }            
             
