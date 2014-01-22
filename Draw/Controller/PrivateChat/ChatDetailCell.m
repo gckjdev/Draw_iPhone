@@ -54,7 +54,7 @@
 
 #define TIME_FRAME (ISIPAD ? CGRectMake(34,14,700,40) : CGRectMake(10,6,300,17))
 
-#define TEXT_FONT [UIFont systemFontOfSize:VALUE(14)]
+#define TEXT_FONT [UIFont systemFontOfSize:(ISIPAD?(24):(14))]   // VALUE(14)]
 #define LINE_BREAK_MODE NSLineBreakByWordWrapping
 
 //#define DEFAULT_MESSAGE_IMAGE_SIZE (ISIPAD ? CGSizeMake(300,300) : CGSizeMake(120,120))
@@ -73,17 +73,12 @@
     ChatDetailCell *cell = [ChatDetailCell createViewWithXibIdentifier:@"ChatDetailCell" ofViewIndex:ISIPAD];
     SET_VIEW_ROUND_CORNER(cell.holderView);
     cell.delegate = delegate;
-//    cell.isReceive = NO;
     [cell.msgLabel setFont:TEXT_FONT];
     [cell.msgLabel setLineBreakMode:LINE_BREAK_MODE];
     cell.holderView.backgroundColor = [UIColor clearColor];
     [cell.holderView addTarget:cell action:@selector(clickDown:) forControlEvents:UIControlEventTouchDown];
     [cell.holderView addTarget:cell action:@selector(clickUp:) forControlEvents:UIControlEventTouchUpInside];
     [cell.holderView addTarget:cell action:@selector(clickUp:) forControlEvents:UIControlEventTouchUpOutside];
-
-//    CGSize imageSize = DEFAULT_MESSAGE_IMAGE_SIZE;
-//    CGRect frame = CGRectFromCGSize(imageSize);
-//    self.imgView.frame = frame;
     
     return cell;
 }
@@ -114,10 +109,13 @@
     }
     [self.holderView updateWidth:size.width];
     [self.holderView updateHeight:size.height];
+    
+    PPDebug(@"<debug> holder view size (%@)", NSStringFromCGSize(self.holderView.frame.size));
 }
 
 - (void)updateTextMessageView:(PPMessage *)message
 {
+    PPDebug(@"<debug> updateTextMessageView");
     self.msgLabel.hidden = NO;
     [self.msgLabel setText:message.text];
     CGSize size = [ChatDetailCell contentSizeForMessage:message];
@@ -160,16 +158,6 @@
         }
         return DEFAULT_MESSAGE_IMAGE_SIZE;
     }else if([message isDrawMessage]){
-//        PPMessage *drawMessage = message;
-//        if (drawMessage.thumbImage == nil) {
-//            ShowDrawView *show = [ShowDrawView showViewWithFrame:CGRectFromCGSize(drawMessage.canvasSize) drawActionList:drawMessage.drawActionList delegate:nil];
-//            [show updateLayers:[DrawLayer defaultLayersWithFrame:CGRectFromCGSize(drawMessage.canvasSize)]];
-//            drawMessage.thumbImage = [show createImageWithSize:[ChatDetailCell adjustImageSize:drawMessage.canvasSize]];
-//        }
-//        image = [drawMessage thumbImage];
-//        if (image) {
-//            return [self adjustImageSize:image.size];
-//        }
         return DEFAULT_MESSAGE_IMAGE_SIZE;
     }else{
         CGSize size = [message.text sizeWithFont:TEXT_FONT constrainedToSize:CGSizeMake(TEXT_WIDTH_MAX, TEXT_HEIGHT_MAX) lineBreakMode:LINE_BREAK_MODE];
@@ -179,6 +167,7 @@
 
 - (void)updateDrawMessageView:(PPMessage *)message
 {
+    PPDebug(@"<debug> updateDrawMessageView");
     [self.imgView setHidden:NO];
     UIImage* image = [[PPMessageManager defaultManager] setMessageDrawThumbImage:message];
     [self updateCellWithImage:image];
@@ -186,7 +175,15 @@
 
 - (void)updateImageMessageView:(PPMessage *)message
 {
+    PPDebug(@"<debug> updateImageMessageView");
     [self.imgView setHidden:NO];
+    
+    [self.imgView setContentMode:UIViewContentModeScaleAspectFill]; // UIViewContentModeScaleAspectFit];
+    CGSize size = DEFAULT_MESSAGE_IMAGE_SIZE; // [ChatDetailCell adjustImageSize:image.size];
+    [self updateHolderViewSize:size hasEdge:NO];
+    CGRect frame = CGRectFromCGSize(size);
+    self.imgView.frame = frame;
+        
     NSURL *url = nil;
     if ((message.status == MessageStatusFail || message.status == MessageStatusSending)&& message.imageUrl) {
         url = [NSURL fileURLWithPath:message.imageUrl];
@@ -198,18 +195,22 @@
     } else {
         url = [NSURL URLWithString:message.thumbImageUrl];
     }
+    
     if (message.image && message.status != MessageStatusFail) {
         [self updateCellWithImage:message.image];
     }else{
         id<ChatDetailCellDelegate> cellDelegate = self.delegate;
         NSIndexPath* ip = [NSIndexPath indexPathForRow:self.indexPath.row inSection:self.indexPath.section];
         [self.imgView setImageWithURL:url placeholderImage:[[ShareImageManager defaultManager] unloadBg] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType) {
+            PPDebug(@"<debug> <updateImageMessageView> callback");
             if (error == nil) {
                 message.image = image;
-                [self updateCellWithImage:message.image];
+                self.imgView.image = image;
+//                [self updateCellWithImage:message.image];
                 [cellDelegate didMessage:ip loadImage:image];
             }else{
-                [self updateCellWithImage:[[ShareImageManager defaultManager] splitPhoto]];
+                self.imgView.image = [[ShareImageManager defaultManager] splitPhoto];
+//                [self updateCellWithImage:[[ShareImageManager defaultManager] splitPhoto]];
             }
             
         }];
@@ -218,7 +219,7 @@
 
 - (void)updateTime:(NSDate *)date
 {
-    NSString *dateString = dateToTimeLineString(date);    
+    NSString *dateString = dateToChatTimeLineString(date);
     [self.timeButton setTitle:dateString forState:UIControlStateNormal];
 }
 
@@ -273,6 +274,44 @@
     PPRelease(_msgLabel);
     PPRelease(_holderView);
     [super dealloc];
+}
+
+#define GROUP_INTERVAL 60 * 5
+
++ (void)calculateAndSetHeight:(NSArray*)messageList
+{
+    if ([messageList count] == 0)
+        return;
+    
+    PPMessage* lastMessage = nil;
+    [lastMessage setIsShowTime:YES];
+
+    int index = 0;
+    NSDate* now = [NSDate date];
+    for (index = 0; index < [messageList count]; index++){
+        
+        if (index == 0){
+            lastMessage = [messageList objectAtIndex:0];
+            [lastMessage setIsShowTime:YES];
+            continue;
+        }
+        
+        PPMessage* message = [messageList objectAtIndex:index];
+        
+        NSInteger timeValue = [[message createDate] timeIntervalSinceDate:now];
+        NSInteger lastTime = [[lastMessage createDate] timeIntervalSinceDate:now];
+        if (abs(timeValue - lastTime) >= GROUP_INTERVAL) {
+            [message setIsShowTime:YES];
+            lastMessage = message;
+        }
+        else{
+            [message setIsShowTime:NO];
+        }
+    }
+    
+    for (PPMessage* message in messageList){
+        [message setDisplayHeight:[ChatDetailCell getCellHeight:message showTime:message.isShowTime]];
+    }
 }
 
 
@@ -344,38 +383,26 @@
                      indexPath:(NSIndexPath *)theIndexPath
                       showTime:(BOOL)showTime
 {    
-//    self.messageStat = messageStat;
-//    self.message = message;
-//    self.showTime = showTime;
     self.indexPath = theIndexPath;
     
     BOOL isReceive = [self isReceive:message];
     
-//    if (message.isGroup){
-//        if ([[UserManager defaultManager] isMe:message.fromUserToGroup.userId]){
-//            self.isReceive = NO;
-//        }
-//        else{
-//            self.isReceive = YES;
-//        }
-//    }
-//    else{
-//       self.isReceive = ([message sourceType] == SourceTypeReceive);
-//    }
-    
-    [self updateViewsWithShowTime:showTime];
+    [self updateViewsWithShowTime:message.isShowTime]; //showTime];
     [self updateAvatarImage:messageStat message:message];
     [self updateTime:message.createDate];
-    self.imgView.hidden = self.msgLabel.hidden = YES;
+    self.imgView.hidden = YES;
+    self.msgLabel.hidden = YES;
     if(message.messageType == MessageTypeDraw){
         [self updateDrawMessageView:message];
         [self.holderView setBackgroundImage:nil forState:UIControlStateNormal];
         [self.holderView setBackgroundImage:nil forState:UIControlStateHighlighted];
     } else if(message.messageType == MessageTypeImage){
         [self updateImageMessageView:message];
+        [self.holderView setBackgroundImage:nil forState:UIControlStateNormal];
+        [self.holderView setBackgroundImage:nil forState:UIControlStateHighlighted];
     }else{
+        self.imgView.hidden = YES;
         [self updateTextMessageView:message];
-        self.imgView.hidden = YES;        
         if (!isReceive) {
             SET_BUTTON_ROUND_STYLE_ORANGE(self.holderView);
             [self.msgLabel setTextColor:COLOR_WHITE];

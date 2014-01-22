@@ -84,6 +84,9 @@ typedef enum {
 @property (nonatomic, assign) NSString *reqMessageId;
 @property (nonatomic, assign) NSInteger replyResult;
 
+@property (nonatomic, assign) BOOL      isShowTime;
+@property (nonatomic, assign) CGFloat   displayHeight;
+
 - (BOOL)isTextMessage;
 - (BOOL)isDrawMessage;
 - (BOOL)isImageMessage;

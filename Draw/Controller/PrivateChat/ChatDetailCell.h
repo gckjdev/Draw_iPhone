@@ -50,8 +50,10 @@
 + (id)createCell:(id<ChatDetailCellDelegate>)delegate;
 + (NSString *)getCellIdentifier;
 
-+ (CGFloat)getCellHeight:(PPMessage *)message 
-                showTime:(BOOL)showTime;
++ (void)calculateAndSetHeight:(NSArray*)messageList;
+
+//+ (CGFloat)getCellHeight:(PPMessage *)message 
+//                showTime:(BOOL)showTime;
 
 - (void)setCellWithMessageStat:(MessageStat *)messageStat 
                        message:(PPMessage *)message 

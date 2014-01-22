@@ -93,6 +93,7 @@
 {
     PPDebug(@"invoke reloadDataList");
     self.dataList = [[PPMessageManager defaultManager] getMessageList:self.messageStat.friendId];
+    [ChatDetailCell calculateAndSetHeight:self.dataList];
 }
 
 - (NSArray*)getMessageList
@@ -122,6 +123,7 @@
     }
     return NO;
 }
+
 - (void)dealloc {
     
     [self unregisterAllNotifications];
@@ -500,9 +502,9 @@
 {
 //    PPDebug(@"<heightForRowAtIndexPath> index = %d", indexPath.row);
     PPMessage *message = [self messageOfIndex:indexPath.row];
-    BOOL flag = [self messageShowTime:message row:indexPath.row];
-    CGFloat height = [ChatDetailCell getCellHeight:message showTime:flag];
-    return height;
+//    BOOL flag = [self messageShowTime:message row:indexPath.row];
+//    CGFloat height = [ChatDetailCell getCellHeight:message showTime:flag];
+    return [message displayHeight];
 }
 
 
