@@ -1407,7 +1407,7 @@
 
 "kStore" = "Store";
 "kBalance" = "Balance:";
-"kWealth" = "Wealth %ld coins";
+"kWealth" = "%ld coins";
 "kBalanceNotEnoughTitle" = "Balance Not Enough";
 "kBalanceNotEnoughDesc" = "Sorry, your balance is not enough. You can charge your account by IAP purchasing or download our other free apps.";
 
