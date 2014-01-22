@@ -2187,7 +2187,7 @@
 "kGroupBulletinDesc" = "%@在%@中发布了公告。";
 "kGroupJoinDesc" = "%@申请加入%@。";
 "kGroupExpelDesc" = "%@将%@移除出了%@。";
-"kGroupQuitDesc" = "%@退出了%@";
+"kGroupQuitDesc" = "%@退出了%@。";
 "kGroupAcceptDesc" = "%@同意%@加入%@。";
 "kGroupRejectDesc" = "%@拒绝%@加入%@。";
 
@@ -2318,7 +2318,12 @@
 "kJoinAGroup" = "加入家族";
 
 "kInvitationFailure" = "该用户已加入了其他家族成员，无法邀请";
+"kRejectJoinGroup" = "拒绝申请";
+"kJoinJoinGroupReason" = "你的理由...";
+"kJoinGroupReason" = "你的理由...";
 
+"kNoChargeHistory" = "暂无充值记录";
+"kGroupChargeHistory" = "充值记录";
 
 /*********************小吉画画国际化字符串开始 ************************/
 "kLittleGeeRecommend" = "推荐";

@@ -20,7 +20,10 @@
 #define CREATOR_AVATAR_HEIGHT (ISIPAD?70:40)
 #define MEMBER_AVATAR_HEIGHT (ISIPAD?70:40)
 #define MEMBER_AVATAR_SPACE (ISIPAD?30:12)
-#define INFO_LABEL_WIDTH (ISIPAD?650:270)
+#define INFO_LABEL_WIDTH (ISIPAD?630:250)
+
+#define CREATOR_LABEL_WIDTH (ISIPAD?500:200)
+#define CREATOR_LABEL_X (ISIPAD?140:90)
 
 #define CREATOR_CELL_HEIGHT (ISIPAD?140:70)
 
@@ -210,7 +213,9 @@
     [self.infoLabel updateOriginY:0];
     [self.infoLabel updateHeight:CGRectGetMinY(self.splitLine.frame)];
     [self.infoLabel disableTapTouch];
-    
+    [self.infoLabel updateWidth:INFO_LABEL_WIDTH];
+    [self.infoLabel updateCenterX:CGRectGetMidX(self.contentView.bounds)];
+    [self.infoLabel setTextAlignment:NSTextAlignmentCenter];
     switch (self.cellStyle) {
         case DetailCellStyleSimpleText:{
             [self.infoLabel setText:self.text];
@@ -219,6 +224,9 @@
         case DetailCellStyleSingleAvatar:{
             NSString *desc = [NSString stringWithFormat:NSLS(@"kGroupCreator"),self.group.creatorNickName];
             [self.infoLabel setText:desc];
+            [self.infoLabel updateOriginX:CREATOR_LABEL_X];
+            [self.infoLabel updateWidth:CREATOR_LABEL_WIDTH];
+            [self.infoLabel setTextAlignment:NSTextAlignmentLeft];
             break;
         }
         case DetailCellStyleMultipleAvatars:{
@@ -267,6 +275,7 @@
 
 - (void)updateCellImageContent
 {
+    
     switch (self.cellStyle) {
         case DetailCellStyleSingleAvatar:{
             {

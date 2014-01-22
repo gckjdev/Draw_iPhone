@@ -90,13 +90,12 @@
     
     [self.nameLabel setText:_group.name];
     if (!_showBalance) {
-        [self.descLabel setText:_group.signature];
+        NSString *signature = ([_group.signature length] == 0) ? NSLS(@"kDefaultGroupSignature") : _group.signature;
+        [self.descLabel setText:signature];
     }else{
         [self.descLabel setText:[NSString stringWithFormat:NSLS(@"kWealth"), _group.balance]];
     }
 
-    
-    //    [self.sizeLabel setText:[@(_group.size) stringValue]];
     NSString *sizeText = [NSString stringWithFormat:NSLS(@"kGroupMemberNumber"),_group.size];
     [self.sizeLabel setText:sizeText];
     [self.nameLabel sizeToFit];
@@ -107,11 +106,11 @@
     CGFloat width = SIZE_BASE_WIDTH + CGRectGetWidth(_sizeLabel.frame);
     [self.sizeLabel updateWidth:width];
     
-    if([_group.signature length] == 0 && _showBalance == NO){
-        [self.nameLabel updateCenterY:CGRectGetMidY(self.bounds)];
-    }else{
-        [self.nameLabel updateOriginY:DEFAULT_NAME_Y];
-    }
+//    if(!_showBalance){
+//        [self.nameLabel updateCenterY:CGRectGetMidY(self.bounds)];
+//    }else{
+    [self.nameLabel updateOriginY:DEFAULT_NAME_Y];
+//    }
     [self.sizeLabel updateCenterY:_nameLabel.center.y];
     [self.customButton updateCenterY:self.center.y];   
 }

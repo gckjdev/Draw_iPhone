@@ -85,6 +85,7 @@ typedef enum{
 typedef enum{
     GroupNoticeTypeNotice = 1,
     GroupNoticeTypeRequest = 2,
+//    GroupNoticeTypeCharge = 3,
 }GroupNoticeType;
 
 

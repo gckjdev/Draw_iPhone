@@ -249,6 +249,8 @@ typedef enum{
     }
 }
 
+typedef void (^RequestHandler)(NSString *reason);
+
 - (void)handleRequestNotice:(PBGroupNotice *)notice accept:(BOOL)accpet
 {
     if (notice == nil) {
@@ -256,14 +258,26 @@ typedef enum{
         PPDebug(@"<handleRequestNotice> error!! notice is nil");
         return;
     }
-    NSString *showTitle = (accpet ? NSLS(@"kAccepting") : NSLS(@"kRejecting"));    
-    [self showActivityWithText:showTitle];
-    [[GroupService defaultService] handleUserRequestNotice:notice accept:accpet reason:nil callback:^(NSError *error) {
-        [self hideActivity];
-        if (!error) {
-            [self removeNoticeFromTable:notice];
-        }
-    }];
+    NSString *showTitle = (accpet ? NSLS(@"kAccepting") : NSLS(@"kRejecting"));
+    RequestHandler sendRequestBlock = ^(NSString *reason){
+        [self showActivityWithText:showTitle];
+        [[GroupService defaultService] handleUserRequestNotice:notice accept:accpet reason:reason callback:^(NSError *error) {
+            [self hideActivity];
+            if (!error) {
+                [self removeNoticeFromTable:notice];
+            }
+        }];
+    };
+    if (accpet) {
+        sendRequestBlock(nil);
+    }else{
+        CommonDialog *dialog = [CommonDialog createInputFieldDialogWith:NSLS(@"kRejectJoinGroup")];
+        dialog.inputTextField.placeholder = NSLS(@"kJoinJoinGroupReason");
+        [dialog showInView:self.view];
+        [dialog setClickOkBlock:^(id view){
+            sendRequestBlock(dialog.inputTextField.text);
+        }];
+    }
 }
 
 - (void)handleInvitationNotice:(PBGroupNotice *)notice accept:(BOOL)accpet

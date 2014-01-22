@@ -7232,6 +7232,10 @@
 		EAEE5518188E644F004A0907 /* GroupFeedController.m in Sources */ = {isa = PBXBuildFile; fileRef = EAEE5516188E644F004A0907 /* GroupFeedController.m */; };
 		EAEE5519188E644F004A0907 /* GroupFeedController.m in Sources */ = {isa = PBXBuildFile; fileRef = EAEE5516188E644F004A0907 /* GroupFeedController.m */; };
 		EAEE551A188E644F004A0907 /* GroupFeedController.m in Sources */ = {isa = PBXBuildFile; fileRef = EAEE5516188E644F004A0907 /* GroupFeedController.m */; };
+		EAEE551D188F7902004A0907 /* ChargeHistoryController.m in Sources */ = {isa = PBXBuildFile; fileRef = EAEE551C188F7902004A0907 /* ChargeHistoryController.m */; };
+		EAEE551E188F7902004A0907 /* ChargeHistoryController.m in Sources */ = {isa = PBXBuildFile; fileRef = EAEE551C188F7902004A0907 /* ChargeHistoryController.m */; };
+		EAEE551F188F7902004A0907 /* ChargeHistoryController.m in Sources */ = {isa = PBXBuildFile; fileRef = EAEE551C188F7902004A0907 /* ChargeHistoryController.m */; };
+		EAEE5520188F7902004A0907 /* ChargeHistoryController.m in Sources */ = {isa = PBXBuildFile; fileRef = EAEE551C188F7902004A0907 /* ChargeHistoryController.m */; };
 		EAFA04E8187FDF5400B0CF61 /* AlipayRsaLib.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EAFA04CD187FDF5400B0CF61 /* AlipayRsaLib.a */; };
 		EAFA04E9187FDF5500B0CF61 /* AlipayRsaLib.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EAFA04CD187FDF5400B0CF61 /* AlipayRsaLib.a */; };
 		EAFA04EA187FDF5500B0CF61 /* AlipayRsaLib.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EAFA04CD187FDF5400B0CF61 /* AlipayRsaLib.a */; };
@@ -10210,6 +10214,8 @@
 		EAEE550D188E5E61004A0907 /* SingleTabController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SingleTabController.m; sourceTree = "<group>"; };
 		EAEE5515188E644E004A0907 /* GroupFeedController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GroupFeedController.h; sourceTree = "<group>"; };
 		EAEE5516188E644F004A0907 /* GroupFeedController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GroupFeedController.m; sourceTree = "<group>"; };
+		EAEE551B188F7902004A0907 /* ChargeHistoryController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChargeHistoryController.h; sourceTree = "<group>"; };
+		EAEE551C188F7902004A0907 /* ChargeHistoryController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChargeHistoryController.m; sourceTree = "<group>"; };
 		EAFA04CD187FDF5400B0CF61 /* AlipayRsaLib.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = AlipayRsaLib.a; sourceTree = "<group>"; };
 		EAFA04CE187FDF5400B0CF61 /* AlixLibService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlixLibService.h; sourceTree = "<group>"; };
 		EAFA04CF187FDF5400B0CF61 /* Alixpay.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Alixpay.bundle; sourceTree = "<group>"; };
@@ -17071,6 +17077,8 @@
 				EA2D573B1847243B00499ED4 /* SearchGroupController.m */,
 				EAEE5515188E644E004A0907 /* GroupFeedController.h */,
 				EAEE5516188E644F004A0907 /* GroupFeedController.m */,
+				EAEE551B188F7902004A0907 /* ChargeHistoryController.h */,
+				EAEE551C188F7902004A0907 /* ChargeHistoryController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -22129,6 +22137,7 @@
 				EAFA0512187FDF5500B0CF61 /* SBJsonWriter.m in Sources */,
 				EAEE5510188E5E61004A0907 /* SingleTabController.m in Sources */,
 				EAEE5519188E644F004A0907 /* GroupFeedController.m in Sources */,
+				EAEE551F188F7902004A0907 /* ChargeHistoryController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -22943,6 +22952,7 @@
 				EAFA0511187FDF5500B0CF61 /* SBJsonWriter.m in Sources */,
 				EAEE550F188E5E61004A0907 /* SingleTabController.m in Sources */,
 				EAEE5518188E644F004A0907 /* GroupFeedController.m in Sources */,
+				EAEE551E188F7902004A0907 /* ChargeHistoryController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -23757,6 +23767,7 @@
 				EAFA0510187FDF5500B0CF61 /* SBJsonWriter.m in Sources */,
 				EAEE550E188E5E61004A0907 /* SingleTabController.m in Sources */,
 				EAEE5517188E644F004A0907 /* GroupFeedController.m in Sources */,
+				EAEE551D188F7902004A0907 /* ChargeHistoryController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -24527,6 +24538,7 @@
 				EAFA0513187FDF5500B0CF61 /* SBJsonWriter.m in Sources */,
 				EAEE5511188E5E61004A0907 /* SingleTabController.m in Sources */,
 				EAEE551A188E644F004A0907 /* GroupFeedController.m in Sources */,
+				EAEE5520188F7902004A0907 /* ChargeHistoryController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
