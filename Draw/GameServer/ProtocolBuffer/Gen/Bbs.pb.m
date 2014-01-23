@@ -1433,6 +1433,7 @@ static PBBBSReward* defaultPBBBSRewardInstance = nil;
 @property int32_t status;
 @property (retain) NSMutableArray* mutableBoardAdminListList;
 @property BOOL marked;
+@property BOOL isPrivate;
 @end
 
 @implementation PBBBSPost
@@ -1534,6 +1535,18 @@ static PBBBSReward* defaultPBBBSRewardInstance = nil;
 - (void) setMarked:(BOOL) value {
   marked_ = !!value;
 }
+- (BOOL) hasIsPrivate {
+  return !!hasIsPrivate_;
+}
+- (void) setHasIsPrivate:(BOOL) value {
+  hasIsPrivate_ = !!value;
+}
+- (BOOL) isPrivate {
+  return !!isPrivate_;
+}
+- (void) setIsPrivate:(BOOL) value {
+  isPrivate_ = !!value;
+}
 - (void) dealloc {
   self.postId = nil;
   self.boardId = nil;
@@ -1559,6 +1572,7 @@ static PBBBSReward* defaultPBBBSRewardInstance = nil;
     self.reward = [PBBBSReward defaultInstance];
     self.status = 0;
     self.marked = NO;
+    self.isPrivate = NO;
   }
   return self;
 }
@@ -1673,6 +1687,9 @@ static PBBBSPost* defaultPBBBSPostInstance = nil;
   if (self.hasMarked) {
     [output writeBool:14 value:self.marked];
   }
+  if (self.hasIsPrivate) {
+    [output writeBool:15 value:self.isPrivate];
+  }
   [self.unknownFields writeToCodedOutputStream:output];
 }
 - (int32_t) serializedSize {
@@ -1723,6 +1740,9 @@ static PBBBSPost* defaultPBBBSPostInstance = nil;
   }
   if (self.hasMarked) {
     size += computeBoolSize(14, self.marked);
+  }
+  if (self.hasIsPrivate) {
+    size += computeBoolSize(15, self.isPrivate);
   }
   size += self.unknownFields.serializedSize;
   memoizedSerializedSize = size;
@@ -1844,6 +1864,9 @@ static PBBBSPost* defaultPBBBSPostInstance = nil;
   if (other.hasMarked) {
     [self setMarked:other.marked];
   }
+  if (other.hasIsPrivate) {
+    [self setIsPrivate:other.isPrivate];
+  }
   [self mergeUnknownFields:other.unknownFields];
   return self;
 }
@@ -1936,6 +1959,10 @@ static PBBBSPost* defaultPBBBSPostInstance = nil;
       }
       case 112: {
         [self setMarked:[input readBool]];
+        break;
+      }
+      case 120: {
+        [self setIsPrivate:[input readBool]];
         break;
       }
     }
@@ -2218,6 +2245,22 @@ static PBBBSPost* defaultPBBBSPostInstance = nil;
 - (PBBBSPost_Builder*) clearMarked {
   result.hasMarked = NO;
   result.marked = NO;
+  return self;
+}
+- (BOOL) hasIsPrivate {
+  return result.hasIsPrivate;
+}
+- (BOOL) isPrivate {
+  return result.isPrivate;
+}
+- (PBBBSPost_Builder*) setIsPrivate:(BOOL) value {
+  result.hasIsPrivate = YES;
+  result.isPrivate = value;
+  return self;
+}
+- (PBBBSPost_Builder*) clearIsPrivate {
+  result.hasIsPrivate = NO;
+  result.isPrivate = NO;
   return self;
 }
 @end

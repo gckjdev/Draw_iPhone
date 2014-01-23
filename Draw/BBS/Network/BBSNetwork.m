@@ -68,6 +68,7 @@
                           drawData:(NSData *)drawData
                          drawImage:(NSData *)drawImage
                              bonus:(NSInteger)bonus
+                         isPrivate:(BOOL)isPrivate
 {
     
 //    baseURL = [PPConfigManager getBBSServerURL];
@@ -99,6 +100,9 @@
         str = [str stringByAddQueryParameter:PARA_CONTENT_TYPE intValue:contentType];
         str = [str stringByAddQueryParameter:PARA_TEXT_CONTENT value:text];
         str = [str stringByAddQueryParameter:PARA_BONUS intValue:bonus];
+        if (isPrivate) {
+            str = [str stringByAddQueryParameter:PARA_ISPRIVATE intValue:1];
+        }
         return str;
     };
     
