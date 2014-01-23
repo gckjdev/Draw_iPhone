@@ -952,7 +952,8 @@ typedef enum{
 //override super clickBlackButton method
 - (IBAction)clickBackButton:(id)sender
 {
-
+    [self unregisterAllNotifications];
+    
     PPDebug(@"<clickBack>");
     [_audioPlayer pauseForQuit];
     PPRelease(_audioPlayer);
@@ -967,6 +968,8 @@ typedef enum{
     // clear delegate to avoid callback
     self.drawCell.delegate = nil;
     self.drawCellFullScreen.delegate = nil;
+    
+    PPRelease(_shareAction);
 }
 
 

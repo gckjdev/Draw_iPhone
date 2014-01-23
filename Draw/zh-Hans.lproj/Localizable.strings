@@ -2126,7 +2126,7 @@
 
 "kStore" = "商店";
 "kBalance" = "余额:";
-"kWealth" = "财富: %ld金币";
+"kWealth" = "%ld金币";
 "kGroupTimeline" = "家族动态";
 
 "kNoSupportViewFollow" = "暂不支持查看其他用户的粉丝";

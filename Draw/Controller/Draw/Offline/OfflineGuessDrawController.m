@@ -258,6 +258,8 @@
     [self.showView stop];
     [self.showView removeFromSuperview];
     self.showView = nil;
+    self.wordInputView.delegate = nil;
+    self.wordInputView = nil;
 }
 
 - (void)quit:(BOOL)correct

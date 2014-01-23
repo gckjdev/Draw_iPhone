@@ -2131,7 +2131,7 @@
 
 "kStore" = "商店";
 "kBalance" = "餘額:";
-"kWealth" = "財富: %ld金幣";
+"kWealth" = "%ld金幣";
 "kGroupTimeline" = "家族動態";
 
 "kNoSupportViewFollow" = "暫不支持查看其他用戶的粉絲";
