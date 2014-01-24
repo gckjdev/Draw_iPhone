@@ -64,6 +64,15 @@
 {
     return [[UserManager defaultManager] isMe:self.userId];
 }
+
+- (BOOL)isVIP
+{
+#ifdef DEBUG
+    return YES;
+#endif
+    return self.vip != 0;
+}
+
 - (NSString *)showNick
 {
     if ([self isMe]) {

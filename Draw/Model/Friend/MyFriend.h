@@ -72,6 +72,7 @@ typedef enum{
 @property (nonatomic, retain) NSString * groupName;
 @property (nonatomic, retain) NSString * groupMedal;
 
+@property (nonatomic, assign, getter = isVip) BOOL vip;
 
 - (BOOL)hasGroup;
 - (NSURL *)groupMedalURL;
@@ -104,7 +105,6 @@ typedef enum{
 - (BOOL)isFacebookUser;
 - (NSString *)genderDesc;
 - (BOOL)hasBlack;
-
 + (BOOL)hasFollow:(RelationType)type;
 + (BOOL)hasBlack:(RelationType)type;
 + (BOOL)isMyFan:(RelationType)type;

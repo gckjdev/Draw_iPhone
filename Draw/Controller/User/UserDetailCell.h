@@ -94,6 +94,7 @@
 //@property (retain, nonatomic) IBOutlet UILabel *xiaojiLabel;
 @property (retain, nonatomic) IBOutlet UIButton *signButton;
 @property (retain, nonatomic) IBOutlet BadgeView *badgeView;
+@property (retain, nonatomic) IBOutlet UIImageView *vipFlag;
 
 @property (retain, nonatomic) IBOutlet UIButton *bgButton;
 @property (retain, nonatomic) IBOutlet BadgeView *bgBadgeView;

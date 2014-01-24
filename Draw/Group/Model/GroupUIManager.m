@@ -82,7 +82,7 @@
             return IMAGE_NAME(@"group_footer_contest@2x.png");
         //TODO to be replaced.
         case GroupTimeline:
-            return IMAGE_NAME(@"group_footer_contest@2x.png");
+            return IMAGE_NAME(@"draw_home_timeline@2x.png");
 
         default:
             return nil;

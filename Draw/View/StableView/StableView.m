@@ -274,13 +274,6 @@
     return self;
 }
 
-- (void)layoutSubviews
-{
-    [super layoutSubviews];
-    bgView.frame=self.bounds;
-    [self setContentInset:self.contentInset];
-}
-
 - (id)initWithUrlString:(NSString *)urlString type:(AvatarType)aType gender:(BOOL)gender level:(int)level;
 {
     
@@ -319,7 +312,10 @@
         self.layer.borderWidth = BORDER_WIDTH;
         self.layer.borderColor = [COLOR_GRAY_AVATAR CGColor];
     }
-    
+#ifdef DEBUG
+    [self setIsVIP:YES];
+#endif
+
     return self;
 }
 
@@ -341,6 +337,10 @@
         [self setAsRound];
         self.layer.borderWidth = BORDER_WIDTH;
         self.layer.borderColor = [COLOR_GRAY_AVATAR CGColor];
+        
+#ifdef DEBUG
+        [self setIsVIP:YES];
+#endif        
     }
     
     return self;
@@ -360,6 +360,12 @@
     [self setUrlString:user.avatar];
     [self setGender:user.gender];
     _user = user;
+    [self setIsVIP:(user.vip != 0)];
+    
+#ifdef DEBUG
+    [self setIsVIP:YES];
+#endif
+
 }
 
 - (void)clear
@@ -371,6 +377,7 @@
 - (void)dealloc
 {
 //    PPDebug(@"%@ dealloc", self);
+    [self hideVip];
     [imageView release];
     [markButton release];
     [_userId release];
@@ -488,6 +495,50 @@
         [bgView setImage:[self backgroundForLevel:level]];
     }
 }
+
+- (void)showVip
+{
+    [self hideVip];
+    _vipFlag = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"vip_v@2x.png"]];
+    [self addSubview:_vipFlag];
+    [self setNeedsLayout];
+}
+
+- (void)layoutSubviews
+{
+    [super layoutSubviews];
+    bgView.frame=self.bounds;
+    [self setContentInset:self.contentInset];
+    
+    if (_isVIP) {
+        if (_vipFlag.superview == self && self.superview != nil) {
+            CGFloat width = CGRectGetWidth(self.bounds)/3.82;
+            CGFloat height = CGRectGetHeight(self.bounds)/3.82;
+            CGFloat y = CGRectGetHeight(self.bounds) - height;
+            CGFloat x = 0;
+            CGRect frame = CGRectMake(x, y, width, height);
+            _vipFlag.frame = [self.superview convertRect:frame fromView:self];
+            [self.superview addSubview:_vipFlag];
+        }
+    }
+    
+}
+
+- (void)hideVip
+{
+    [_vipFlag removeFromSuperview];
+    PPRelease(_vipFlag);
+}
+- (void)setIsVIP:(BOOL)isVIP
+{
+    _isVIP = isVIP;
+    if (_vipFlag == nil && isVIP) {
+        [self showVip];
+    }else if(!isVIP){
+        [self hideVip];
+    }
+}
+
 @end
 
 
