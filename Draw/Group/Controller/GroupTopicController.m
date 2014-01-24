@@ -481,4 +481,26 @@ typedef enum {
     [self setFooterView:nil];
     [super viewDidUnload];
 }
+
+#pragma mark - BBSPost cell delegate
+- (void)didClickSupportButtonWithPost:(PBBBSPost *)post
+{
+    // ENTER DETAIL CONTROLLER
+    BBSPostDetailController *bbsDetail = [[BBSPostDetailController alloc]initWithDefaultTabIndex:0];
+    bbsDetail.post = post;
+    bbsDetail.forGroup = YES;
+    [self.navigationController pushViewController:bbsDetail animated:YES];
+    [bbsDetail release];
+    
+}
+- (void)didClickReplyButtonWithPost:(PBBBSPost *)post
+{
+    // ENTER DETAIL CONTROLLER
+    BBSPostDetailController *bbsDetail = [[BBSPostDetailController alloc]initWithDefaultTabIndex:1];
+    bbsDetail.post = post;
+    bbsDetail.forGroup = YES;
+    [self.navigationController pushViewController:bbsDetail animated:YES];
+    [bbsDetail release];
+    
+}
 @end

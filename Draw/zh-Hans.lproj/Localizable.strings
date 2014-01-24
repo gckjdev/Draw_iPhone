@@ -2324,6 +2324,16 @@
 
 "kNoChargeHistory" = "暂无充值记录";
 "kGroupChargeHistory" = "充值记录";
+"kPrivatePostForGroup" = "家族可见";
+"kCan'tAccessPrivatePost" = "本话题仅家族成员可见。";
+"kPrivatePostDesc" = "[私密话题]";
+
+"kInviteMemberTitle" = "邀请";
+"kInviteGuestTitle" = "邀请";
+"kInviteMemberMessage" = "确定邀请Ta成为你家族的成员吗?";
+"kInviteGuestMessage" = "确定邀请Ta成为你家族的嘉宾吗?";
+"kInvitationSent" = "邀请已发送";
+"kNoJoinGroup" = "没加入任何家族";
 
 /*********************小吉画画国际化字符串开始 ************************/
 "kLittleGeeRecommend" = "推荐";

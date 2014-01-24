@@ -206,6 +206,16 @@ static NSMutableArray *_roles;
     return PERMIT(DELETE_TOPIC) || [action isMyAction];
 }
 
+- (BOOL)canCreatePrivateTopic
+{
+    return PERMIT(CREATE_PRIVATE_TOPIC);
+}
+- (BOOL)canReadPrivateTopic
+{
+    return PERMIT(READ_PRIVATE_TOPIC);
+}
+
+
 //admin permission
 - (BOOL)canMarkTopic
 {

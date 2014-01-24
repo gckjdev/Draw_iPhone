@@ -2329,6 +2329,17 @@
 "kJoinGroupReason" = "你的理由...";
 "kNoChargeHistory" = "暫無充值記錄";
 "kGroupChargeHistory" = "充值記錄";
+"kPrivatePostForGroup" = "家族可見";
+
+"kCan'tAccessPrivatePost" = "本話題僅家族成員可見。";
+"kPrivatePostDesc" = "[私密話題]";
+
+"kInviteMemberTitle" = "邀請";
+"kInviteGuestTitle" = "邀請";
+"kInviteMemberMessage" = "確定邀請Ta成為你家族的成員嗎？";
+"kInviteGuestMessage" = "確定邀請Ta成為你家族的嘉賓嗎？";
+"kInvitationSent" = "邀請已發送";
+"kNoJoinGroup" = "沒加入任何家族";
 
 /*********************小吉画画国际化字符串开始 ************************/
 "kLittleGeeRecommend" = "推薦";

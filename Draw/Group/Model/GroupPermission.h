@@ -41,6 +41,8 @@
 - (BOOL)canReplyTopic;
 - (BOOL)canDeleteTopic:(PBBBSPost *)post;
 - (BOOL)canDeleteAction:(PBBBSAction *)action;
+- (BOOL)canCreatePrivateTopic;
+- (BOOL)canReadPrivateTopic;
 
 //admin permission
 - (BOOL)canMarkTopic;

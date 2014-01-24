@@ -19,6 +19,7 @@
 #import "PPConfigManager.h"
 #import "WordFilterService.h"
 #import "Group.pb.h"
+#import "GroupPermission.h"
 
 @interface CreatePostController ()
 {
@@ -110,6 +111,7 @@
     PPRelease(_submitButton);
     PPRelease(_inputBG);
     
+    [_isPrivate release];
     [super dealloc];
 }
 - (id)initWithBoard:(PBBBSBoard *)board
@@ -358,6 +360,16 @@
     [BBSViewManager updateDefaultTitleLabel:self.titleLabel text:titleName];
     [BBSViewManager updateDefaultBackButton:self.backButton];
 
+    GroupPermissionManager *gpm = [GroupPermissionManager myManagerWithGroupId:_group.groupId];    
+    [self.isPrivate setHidden:!(self.forGroup && [gpm canCreatePrivateTopic])];
+    [self.isPrivate setTitleColor:COLOR_BROWN forState:UIControlStateNormal];
+    [self.isPrivate setTitle:NSLS(@"kPrivatePostForGroup") forState:UIControlStateNormal];
+    
+    [self.isPrivate setTitleColor:COLOR_BROWN forState:UIControlStateHighlighted];
+    [self.isPrivate setTitle:NSLS(@"kPrivatePostForGroup") forState:UIControlStateHighlighted];
+    [self.isPrivate setTitleColor:COLOR_BROWN forState:UIControlStateSelected];
+    [self.isPrivate setTitle:NSLS(@"kPrivatePostForGroup") forState:UIControlStateSelected];
+
 }
 
 - (void)customBbsBg
@@ -394,6 +406,7 @@
     [self setBackButton:nil];
     [self setSubmitButton:nil];
     [self setInputBG:nil];
+    [self setIsPrivate:nil];
     [super viewDidUnload];
 }
 
@@ -467,14 +480,18 @@
                                         bonus:self.bonus
                                      delegate:self
                                    canvasSize:self.canvasSize
-                                    isPrivate:[self isPrivate]];
+                                    isPrivate:[self isPrivatePost]];
     }
 
 }
 
-- (BOOL)isPrivate
+- (BOOL)isPrivatePost
 {
-    return NO;
+    return self.isPrivate.isSelected;
+}
+
+- (IBAction)clickPrivateButton:(id)sender {
+    self.isPrivate.selected = !self.isPrivate.selected;
 }
 
 #define ALERT_CLEAR_IMAGE_TAG 201212041
