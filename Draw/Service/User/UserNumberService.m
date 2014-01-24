@@ -11,7 +11,7 @@
 #import "PPGameNetworkRequest.h"
 #import "StringUtil.h"
 #import "UIDevice+IdentifierAddition.h"
-
+#import "GroupService.h"
 
 #define GET_NUMBER_TYPE_NORMAL      1
 #define GET_NUMBER_TYPE_SHAKE       2
@@ -214,6 +214,8 @@ static UserNumberService* _defaultUserService;
                                         
                     [[UserService defaultService] createLocalUserAccount:user];                    
                     [UserManager addUserToHistoryList:user];
+                    
+                    [[GroupService defaultService] syncGroupRoles];
                 }
                 else{
                     output.resultCode = ERROR_USER_DATA_NULL;

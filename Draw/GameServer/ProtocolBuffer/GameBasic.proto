@@ -120,10 +120,15 @@ message PBGameUser {
   optional int32  shakeNumberTimes = 105[default=0];   // 用户可以摇一摇的次数
   optional int32  takeCoins = 106 [default=0];         // 用户可以领取的金币数目
 
+  optional int32  vip = 110 [default=0];               // VIP标志
+  optional int32  vipExpireDate = 111 [default=0];     // VIP到期时间
+  optional int32  vipLastPayDate = 112 [default=0];    // VIP最后一次续费时间
+
   optional PBSimpleGroup groupInfo = 150; 
 
   optional int32 singRecordLimit = 200[default = 30];  //你唱我猜用户最长录音时间限制。 
   
+
 
 }
 

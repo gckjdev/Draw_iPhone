@@ -1805,6 +1805,9 @@ static PBUserLevel* defaultPBUserLevelInstance = nil;
 @property BOOL canShakeNumber;
 @property int32_t shakeNumberTimes;
 @property int32_t takeCoins;
+@property int32_t vip;
+@property int32_t vipExpireDate;
+@property int32_t vipLastPayDate;
 @property (retain) PBSimpleGroup* groupInfo;
 @property int32_t singRecordLimit;
 @end
@@ -2149,6 +2152,27 @@ static PBUserLevel* defaultPBUserLevelInstance = nil;
   hasTakeCoins_ = !!value;
 }
 @synthesize takeCoins;
+- (BOOL) hasVip {
+  return !!hasVip_;
+}
+- (void) setHasVip:(BOOL) value {
+  hasVip_ = !!value;
+}
+@synthesize vip;
+- (BOOL) hasVipExpireDate {
+  return !!hasVipExpireDate_;
+}
+- (void) setHasVipExpireDate:(BOOL) value {
+  hasVipExpireDate_ = !!value;
+}
+@synthesize vipExpireDate;
+- (BOOL) hasVipLastPayDate {
+  return !!hasVipLastPayDate_;
+}
+- (void) setHasVipLastPayDate:(BOOL) value {
+  hasVipLastPayDate_ = !!value;
+}
+@synthesize vipLastPayDate;
 - (BOOL) hasGroupInfo {
   return !!hasGroupInfo_;
 }
@@ -2238,6 +2262,9 @@ static PBUserLevel* defaultPBUserLevelInstance = nil;
     self.canShakeNumber = NO;
     self.shakeNumberTimes = 0;
     self.takeCoins = 0;
+    self.vip = 0;
+    self.vipExpireDate = 0;
+    self.vipLastPayDate = 0;
     self.groupInfo = [PBSimpleGroup defaultInstance];
     self.singRecordLimit = 30;
   }
@@ -2472,6 +2499,15 @@ static PBGameUser* defaultPBGameUserInstance = nil;
   if (self.hasTakeCoins) {
     [output writeInt32:106 value:self.takeCoins];
   }
+  if (self.hasVip) {
+    [output writeInt32:110 value:self.vip];
+  }
+  if (self.hasVipExpireDate) {
+    [output writeInt32:111 value:self.vipExpireDate];
+  }
+  if (self.hasVipLastPayDate) {
+    [output writeInt32:112 value:self.vipLastPayDate];
+  }
   if (self.hasGroupInfo) {
     [output writeMessage:150 value:self.groupInfo];
   }
@@ -2638,6 +2674,15 @@ static PBGameUser* defaultPBGameUserInstance = nil;
   }
   if (self.hasTakeCoins) {
     size += computeInt32Size(106, self.takeCoins);
+  }
+  if (self.hasVip) {
+    size += computeInt32Size(110, self.vip);
+  }
+  if (self.hasVipExpireDate) {
+    size += computeInt32Size(111, self.vipExpireDate);
+  }
+  if (self.hasVipLastPayDate) {
+    size += computeInt32Size(112, self.vipLastPayDate);
   }
   if (self.hasGroupInfo) {
     size += computeMessageSize(150, self.groupInfo);
@@ -2882,6 +2927,15 @@ static PBGameUser* defaultPBGameUserInstance = nil;
   if (other.hasTakeCoins) {
     [self setTakeCoins:other.takeCoins];
   }
+  if (other.hasVip) {
+    [self setVip:other.vip];
+  }
+  if (other.hasVipExpireDate) {
+    [self setVipExpireDate:other.vipExpireDate];
+  }
+  if (other.hasVipLastPayDate) {
+    [self setVipLastPayDate:other.vipLastPayDate];
+  }
   if (other.hasGroupInfo) {
     [self mergeGroupInfo:other.groupInfo];
   }
@@ -3116,6 +3170,18 @@ static PBGameUser* defaultPBGameUserInstance = nil;
       }
       case 848: {
         [self setTakeCoins:[input readInt32]];
+        break;
+      }
+      case 880: {
+        [self setVip:[input readInt32]];
+        break;
+      }
+      case 888: {
+        [self setVipExpireDate:[input readInt32]];
+        break;
+      }
+      case 896: {
+        [self setVipLastPayDate:[input readInt32]];
         break;
       }
       case 1202: {
@@ -3983,6 +4049,54 @@ static PBGameUser* defaultPBGameUserInstance = nil;
 - (PBGameUser_Builder*) clearTakeCoins {
   result.hasTakeCoins = NO;
   result.takeCoins = 0;
+  return self;
+}
+- (BOOL) hasVip {
+  return result.hasVip;
+}
+- (int32_t) vip {
+  return result.vip;
+}
+- (PBGameUser_Builder*) setVip:(int32_t) value {
+  result.hasVip = YES;
+  result.vip = value;
+  return self;
+}
+- (PBGameUser_Builder*) clearVip {
+  result.hasVip = NO;
+  result.vip = 0;
+  return self;
+}
+- (BOOL) hasVipExpireDate {
+  return result.hasVipExpireDate;
+}
+- (int32_t) vipExpireDate {
+  return result.vipExpireDate;
+}
+- (PBGameUser_Builder*) setVipExpireDate:(int32_t) value {
+  result.hasVipExpireDate = YES;
+  result.vipExpireDate = value;
+  return self;
+}
+- (PBGameUser_Builder*) clearVipExpireDate {
+  result.hasVipExpireDate = NO;
+  result.vipExpireDate = 0;
+  return self;
+}
+- (BOOL) hasVipLastPayDate {
+  return result.hasVipLastPayDate;
+}
+- (int32_t) vipLastPayDate {
+  return result.vipLastPayDate;
+}
+- (PBGameUser_Builder*) setVipLastPayDate:(int32_t) value {
+  result.hasVipLastPayDate = YES;
+  result.vipLastPayDate = value;
+  return self;
+}
+- (PBGameUser_Builder*) clearVipLastPayDate {
+  result.hasVipLastPayDate = NO;
+  result.vipLastPayDate = 0;
   return self;
 }
 - (BOOL) hasGroupInfo {
