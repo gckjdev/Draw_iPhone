@@ -90,6 +90,18 @@
                       textColor:[_bbsColorManager postDateColor]
                            text:nil];
     
+    //update vip flag
+    self.vipFlag = [[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"vip_v@2x.png"]] autorelease];
+
+    
+    CGFloat width = CGRectGetWidth(self.avatar.frame) * 0.382;
+    CGFloat height = CGRectGetHeight(self.avatar.frame) * 0.382;
+    CGFloat y = CGRectGetMaxY(self.avatar.frame)- height;
+    CGFloat x = CGRectGetMinX(self.avatar.frame);// + width* 0.2;
+    CGRect frame = CGRectMake(x, y, width, height);
+    self.vipFlag.frame = frame;
+    [self.contentView addSubview:self.vipFlag];
+    
 }
 
 + (id)createCellWithIdentifier:(NSString *)identifier
@@ -147,6 +159,7 @@
     PPRelease(_superController);
     PPRelease(_bgImageView);
     PPRelease(_contentTextView);
+    PPRelease(_vipFlag);
     [super dealloc];
 }
 
@@ -157,6 +170,11 @@
 - (void)clickImageButton:(id)sender
 {
     PPDebug(@"<clickImageButton>");    
+}
+
+- (void)showVipFlag:(BOOL)show
+{
+    self.vipFlag.hidden = !show;
 }
 
 @end

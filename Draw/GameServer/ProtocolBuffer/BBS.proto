@@ -11,6 +11,7 @@ message PBBBSUser {
     optional string nickName = 2;
     optional string avatar =3;
     optional bool gender = 4;
+    optional int32 vip = 5;
 }
 
 message PBBBSDraw{

@@ -63,6 +63,7 @@ typedef enum {
     UIImageView *imageView;
     NSString *_userId;
     UIImageView *bgView;
+    UIImageView *_vipFlag;
 }
 
 
@@ -92,6 +93,7 @@ typedef enum {
 @property(nonatomic, assign) BOOL hasPen;
 @property(nonatomic, assign) CGSize contentInset;
 @property(nonatomic, assign) PBGameUser *user;
+@property(nonatomic, assign) BOOL isVIP;
 
 - (void)setBadge:(NSInteger)number;
 - (BadgeView *)badgeView;

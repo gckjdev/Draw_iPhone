@@ -45,7 +45,7 @@
     [builder setNickName:_nickName];
     [builder setLevel:_level];
     [builder setAvatar:_avatar];
-    
+    [builder setVip:self.isVip];
     PBGameUser *user = [builder build];
     [builder release];
     return user;
@@ -76,10 +76,11 @@
         self.groupId = [dict objectForKey:PARA_GROUPID];
         self.groupName = [dict objectForKey:PARA_GROUP_NAME];
         self.groupMedal = [dict objectForKey:PARA_GROUP_MEDAL];
-        
-//#ifdef DEBUG
-//        self.groupName = @"MM家族啦啦啦";
-//#endif
+        self.vip = [[dict objectForKey:@"vip"] boolValue];
+
+#ifdef DEBUG
+        self.vip = YES;
+#endif
         
         if (self.level < 1) {
             self.level = 1;

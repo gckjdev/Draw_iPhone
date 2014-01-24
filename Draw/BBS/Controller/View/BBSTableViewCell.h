@@ -53,6 +53,7 @@
 @property (retain, nonatomic) IBOutlet UIImageView *bgImageView;
 @property (retain, nonatomic) UIButton *imageMask;
 @property (retain, nonatomic) UIButton *avatarMask;
+@property (retain, nonatomic) UIImageView *vipFlag;
 @property (retain, nonatomic) PPTableViewController *superController;
 
 @property (assign, nonatomic) BOOL useContentLabel; //set once when init;
@@ -63,4 +64,7 @@
 - (void)clickAvatarButton:(id)sender;
 - (void)clickImageButton:(id)sender;
 - (void)updateImageViewFrameWithImage:(UIImage *)image;
+
+- (void)showVipFlag:(BOOL)show;
+
 @end

@@ -96,10 +96,12 @@
 @interface PBBBSUser : PBGeneratedMessage {
 @private
   BOOL hasGender_:1;
+  BOOL hasVip_:1;
   BOOL hasUserId_:1;
   BOOL hasNickName_:1;
   BOOL hasAvatar_:1;
   BOOL gender_:1;
+  int32_t vip;
   NSString* userId;
   NSString* nickName;
   NSString* avatar;
@@ -108,10 +110,12 @@
 - (BOOL) hasNickName;
 - (BOOL) hasAvatar;
 - (BOOL) hasGender;
+- (BOOL) hasVip;
 @property (readonly, retain) NSString* userId;
 @property (readonly, retain) NSString* nickName;
 @property (readonly, retain) NSString* avatar;
 - (BOOL) gender;
+@property (readonly) int32_t vip;
 
 + (PBBBSUser*) defaultInstance;
 - (PBBBSUser*) defaultInstance;
@@ -166,6 +170,11 @@
 - (BOOL) gender;
 - (PBBBSUser_Builder*) setGender:(BOOL) value;
 - (PBBBSUser_Builder*) clearGender;
+
+- (BOOL) hasVip;
+- (int32_t) vip;
+- (PBBBSUser_Builder*) setVip:(int32_t) value;
+- (PBBBSUser_Builder*) clearVip;
 @end
 
 @interface PBBBSDraw : PBGeneratedMessage {

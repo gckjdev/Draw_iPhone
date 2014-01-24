@@ -83,6 +83,7 @@
     [self.avatarView setAvatarUrl:self.messageStat.friendAvatar gender:self.messageStat.friendGender];
     self.avatarView.delegate = self;
 
+
 }
 
 - (void)updateBadge

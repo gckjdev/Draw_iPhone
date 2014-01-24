@@ -138,6 +138,7 @@
 {
     [self.nickName setText:user.showNick];
     [self.avatar setImageWithURL:user.avatarURL placeholderImage:user.defaultAvatar];
+    [self showVipFlag:user.isVIP];
 }
 
 - (void)resetView:(UIView *)view y:(CGFloat)y height:(CGFloat)height

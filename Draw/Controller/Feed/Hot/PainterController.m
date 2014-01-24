@@ -21,6 +21,7 @@ typedef enum{
     PainterTypeScore = 2,
     PainterTypePop = 3,
     PainterTypePotential = 4,
+    PainterTypeVIP = 5,
 }PainterType;
 
 @interface PainterController ()
@@ -150,7 +151,7 @@ typedef enum{
 
 - (NSInteger)tabCount
 {
-    return (SHOW_ALL_TAGS ? 4 : 2);
+    return (SHOW_ALL_TAGS ? 5 : 2);
 }
 
 - (NSInteger)fetchDataLimitForTabIndex:(NSInteger)index
@@ -159,13 +160,13 @@ typedef enum{
 }
 - (NSInteger)tabIDforIndex:(NSInteger)index
 {
-    NSInteger tabIDs[] = {PainterTypeScore,PainterTypeLevel,PainterTypePop,PainterTypePotential};
+    NSInteger tabIDs[] = {PainterTypeScore,PainterTypeLevel,PainterTypePop,PainterTypePotential,PainterTypeVIP};
     return tabIDs[index];
 }
 
 - (NSString *)tabTitleforIndex:(NSInteger)index
 {
-    NSArray *titles = @[NSLS(@"kFamousPlayer"), NSLS(@"kLevelPlayer"), NSLS(@"kPopPlayer"), NSLS(@"kNewStarPlayer")];
+    NSArray *titles = @[NSLS(@"kFamousPlayer"), NSLS(@"kLevelPlayer"), NSLS(@"kPopPlayer"), NSLS(@"kNewStarPlayer"), NSLS(@"kRankVip")];
     return titles[index];
 }
 

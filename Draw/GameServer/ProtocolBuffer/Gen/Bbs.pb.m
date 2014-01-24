@@ -25,6 +25,7 @@ static PBExtensionRegistry* extensionRegistry = nil;
 @property (retain) NSString* nickName;
 @property (retain) NSString* avatar;
 @property BOOL gender;
+@property int32_t vip;
 @end
 
 @implementation PBBBSUser
@@ -62,6 +63,13 @@ static PBExtensionRegistry* extensionRegistry = nil;
 - (void) setGender:(BOOL) value {
   gender_ = !!value;
 }
+- (BOOL) hasVip {
+  return !!hasVip_;
+}
+- (void) setHasVip:(BOOL) value {
+  hasVip_ = !!value;
+}
+@synthesize vip;
 - (void) dealloc {
   self.userId = nil;
   self.nickName = nil;
@@ -74,6 +82,7 @@ static PBExtensionRegistry* extensionRegistry = nil;
     self.nickName = @"";
     self.avatar = @"";
     self.gender = NO;
+    self.vip = 0;
   }
   return self;
 }
@@ -108,6 +117,9 @@ static PBBBSUser* defaultPBBBSUserInstance = nil;
   if (self.hasGender) {
     [output writeBool:4 value:self.gender];
   }
+  if (self.hasVip) {
+    [output writeInt32:5 value:self.vip];
+  }
   [self.unknownFields writeToCodedOutputStream:output];
 }
 - (int32_t) serializedSize {
@@ -128,6 +140,9 @@ static PBBBSUser* defaultPBBBSUserInstance = nil;
   }
   if (self.hasGender) {
     size += computeBoolSize(4, self.gender);
+  }
+  if (self.hasVip) {
+    size += computeInt32Size(5, self.vip);
   }
   size += self.unknownFields.serializedSize;
   memoizedSerializedSize = size;
@@ -216,6 +231,9 @@ static PBBBSUser* defaultPBBBSUserInstance = nil;
   if (other.hasGender) {
     [self setGender:other.gender];
   }
+  if (other.hasVip) {
+    [self setVip:other.vip];
+  }
   [self mergeUnknownFields:other.unknownFields];
   return self;
 }
@@ -251,6 +269,10 @@ static PBBBSUser* defaultPBBBSUserInstance = nil;
       }
       case 32: {
         [self setGender:[input readBool]];
+        break;
+      }
+      case 40: {
+        [self setVip:[input readInt32]];
         break;
       }
     }
@@ -318,6 +340,22 @@ static PBBBSUser* defaultPBBBSUserInstance = nil;
 - (PBBBSUser_Builder*) clearGender {
   result.hasGender = NO;
   result.gender = NO;
+  return self;
+}
+- (BOOL) hasVip {
+  return result.hasVip;
+}
+- (int32_t) vip {
+  return result.vip;
+}
+- (PBBBSUser_Builder*) setVip:(int32_t) value {
+  result.hasVip = YES;
+  result.vip = value;
+  return self;
+}
+- (PBBBSUser_Builder*) clearVip {
+  result.hasVip = NO;
+  result.vip = 0;
   return self;
 }
 @end

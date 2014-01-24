@@ -156,7 +156,7 @@
     self.avatarView = [[[AvatarView alloc] initWithUrlString:[user avatar] frame:self.avatarHolderView.bounds gender:user.gender level:user.level] autorelease];
     _avatarView.delegate = self;
     _avatarView.layer.borderWidth = 0;
-    
+    [_avatarView setIsVIP:NO];
     [self.avatarHolderView addSubview:_avatarView];
     
     self.signLabel.textColor = COLOR_WHITE;
@@ -177,7 +177,7 @@
 
     SET_VIEW_ROUND_CORNER(self.groupHeader);
     [self.groupHeader setBackgroundColor:COLOR_YELLOW];
-    self.groupHeader.textColor = [UIColor whiteColor];
+    self.groupHeader.textColor = COLOR_BROWN;
     
     SET_VIEW_ROUND_CORNER(self.specialTitleLabel);
     [self.specialTitleLabel setBackgroundColor:COLOR_YELLOW];
@@ -254,7 +254,7 @@
 
 + (float)getCellHeight
 {
-    return ([DeviceDetection isIPAD]?1551:776);
+    return ([DeviceDetection isIPAD]?1721:776);
 }
 
 + (NSString*)getCellIdentifier
@@ -356,6 +356,7 @@
     [_groupIcon release];
     [_groupHeader release];
     [_seperator5 release];
+    [_vipFlag release];
     [super dealloc];
 }
 
@@ -646,6 +647,13 @@
     
     CGFloat originX = self.nickNameLabel.frame.origin.x - (ISIPAD ? 4:2) - self.genderImageView.frame.size.width;
     [self.genderImageView updateOriginX:originX];
+
+    originX -= (CGRectGetWidth(self.vipFlag.bounds) + (ISIPAD?6:3));
+    [self.vipFlag updateOriginX:originX];
+    self.vipFlag.hidden = (_detail.getUser.vip == 0);
+#ifdef DEBUG
+    self.vipFlag.hidden = NO;
+#endif
 }
 
 - (void)clickNickNameLabel{

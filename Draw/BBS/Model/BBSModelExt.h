@@ -66,6 +66,7 @@ typedef enum{
 - (UIImage *)defaultAvatar;
 - (NSURL *)avatarURL;
 - (NSString *)genderString;
+- (BOOL)isVIP;
 @end
 
 

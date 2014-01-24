@@ -387,7 +387,7 @@
         }
         
         av.center = [self centerInPage:index];
-        
+        [av setIsVIP:NO];
         BadgeView *badgeView = [self badgeViewInPage:index];
         NSInteger badge = [[UserManager defaultManager] getUserBadgeCount];
         if (badgeView == nil) {
