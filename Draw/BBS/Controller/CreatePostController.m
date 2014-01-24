@@ -466,9 +466,15 @@
                                     drawImage:self.drawImage
                                         bonus:self.bonus
                                      delegate:self
-                                   canvasSize:self.canvasSize];        
+                                   canvasSize:self.canvasSize
+                                    isPrivate:[self isPrivate]];
     }
 
+}
+
+- (BOOL)isPrivate
+{
+    return NO;
 }
 
 #define ALERT_CLEAR_IMAGE_TAG 201212041

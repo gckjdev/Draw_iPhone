@@ -438,6 +438,8 @@
 #define PARA_REPLY_POSTID @"rpi"
 #define PARA_POST_ACTION_TYPE @"pat"
 
+#define PARA_ISPRIVATE @"isPrivate"
+
 #define PARA_CREATE_USERID @"cuid"
 
 #define PARA_STATUS @"s"

@@ -400,6 +400,7 @@ BBSService *_staticGroupTopicService;
                         bonus:(NSInteger)bonus
                      delegate:(id<BBSServiceDelegate>)delegate
                    canvasSize:(CGSize)size
+                    isPrivate:(BOOL)isPrivate
 {
 
         BBSPostContentType type = ContentTypeText;
@@ -459,7 +460,8 @@ BBSService *_staticGroupTopicService;
                                                            image:[image data]
                                                         drawData:drawData
                                                        drawImage:[drawImage data]
-                                                           bonus:bonus];
+                                                           bonus:bonus
+                                                       isPrivate:isPrivate];
             
             NSInteger resultCode = output.resultCode;
             PBBBSPost *post = nil;
