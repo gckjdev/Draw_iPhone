@@ -215,7 +215,7 @@
 								<string key="NSFrame">{{22, 406}, {70, 23}}</string>
 								<reference key="NSSuperview" ref="399887529"/>
 								<reference key="NSWindow"/>
-								<reference key="NSNextKeyView" ref="453295058"/>
+								<reference key="NSNextKeyView" ref="7902684"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<bool key="IBUIOpaque">NO</bool>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -245,11 +245,11 @@
 									<string key="NSClassName">NSImage</string>
 									<string key="NSResourceName">bbs_create_reward_bg@2x.png</string>
 								</object>
-								<object class="IBUIFontDescription" key="IBUIFontDescription">
+								<object class="IBUIFontDescription" key="IBUIFontDescription" id="905227164">
 									<int key="type">2</int>
 									<double key="pointSize">12</double>
 								</object>
-								<object class="NSFont" key="IBUIFont">
+								<object class="NSFont" key="IBUIFont" id="604016083">
 									<string key="NSName">Helvetica-Bold</string>
 									<double key="NSSize">12</double>
 									<int key="NSfFlags">16</int>
@@ -290,6 +290,44 @@
 								</object>
 								<bool key="IBUIAdjustsFontSizeToFit">NO</bool>
 							</object>
+							<object class="IBUIButton" id="7902684">
+								<reference key="NSNextResponder" ref="399887529"/>
+								<int key="NSvFlags">268</int>
+								<string key="NSFrame">{{99, 405}, {80, 26}}</string>
+								<reference key="NSSuperview" ref="399887529"/>
+								<reference key="NSWindow"/>
+								<reference key="NSNextKeyView" ref="453295058"/>
+								<string key="NSReuseIdentifierKey">_NS:9</string>
+								<bool key="IBUIOpaque">NO</bool>
+								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
+								<int key="IBUIContentHorizontalAlignment">0</int>
+								<int key="IBUIContentVerticalAlignment">0</int>
+								<double key="IBUITitleEdgeInsets.top">0.0</double>
+								<double key="IBUITitleEdgeInsets.bottom">0.0</double>
+								<double key="IBUITitleEdgeInsets.left">-4</double>
+								<double key="IBUITitleEdgeInsets.right">0.0</double>
+								<double key="IBUIImageEdgeInsets.top">4</double>
+								<double key="IBUIImageEdgeInsets.bottom">4</double>
+								<double key="IBUIImageEdgeInsets.left">5</double>
+								<double key="IBUIImageEdgeInsets.right">58</double>
+								<string key="IBUINormalTitle">家族可见</string>
+								<reference key="IBUIHighlightedTitleColor" ref="601660250"/>
+								<object class="NSColor" key="IBUINormalTitleColor">
+									<int key="NSColorSpace">1</int>
+									<bytes key="NSRGB">MC4xOTYwNzg0MzQ2IDAuMzA5ODAzOTMyOSAwLjUyMTU2ODY1NgA</bytes>
+								</object>
+								<reference key="IBUINormalTitleShadowColor" ref="640915272"/>
+								<object class="NSCustomResource" key="IBUISelectedImage">
+									<string key="NSClassName">NSImage</string>
+									<string key="NSResourceName">input_alert_check@2x.png</string>
+								</object>
+								<object class="NSCustomResource" key="IBUINormalImage">
+									<string key="NSClassName">NSImage</string>
+									<string key="NSResourceName">input_alert_uncheck@2x.png</string>
+								</object>
+								<reference key="IBUIFontDescription" ref="905227164"/>
+								<reference key="IBUIFont" ref="604016083"/>
+							</object>
 						</array>
 						<string key="NSFrameSize">{320, 460}</string>
 						<reference key="NSSuperview" ref="191373211"/>
@@ -303,7 +341,7 @@
 				<string key="NSFrame">{{0, 20}, {320, 460}}</string>
 				<reference key="NSSuperview"/>
 				<reference key="NSWindow"/>
-				<reference key="NSNextKeyView"/>
+				<reference key="NSNextKeyView" ref="399887529"/>
 				<object class="NSColor" key="IBUIBackgroundColor">
 					<int key="NSColorSpace">3</int>
 					<bytes key="NSWhite">MQA</bytes>
@@ -403,6 +441,14 @@
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">isPrivate</string>
+						<reference key="source" ref="372490531"/>
+						<reference key="destination" ref="7902684"/>
+					</object>
+					<int key="connectionID">38</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
 						<string key="label">delegate</string>
 						<reference key="source" ref="446010930"/>
 						<reference key="destination" ref="372490531"/>
@@ -454,6 +500,15 @@
 					</object>
 					<int key="connectionID">24</int>
 				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchEventConnection" key="connection">
+						<string key="label">clickPrivateButton:</string>
+						<reference key="source" ref="7902684"/>
+						<reference key="destination" ref="372490531"/>
+						<int key="IBEventType">7</int>
+					</object>
+					<int key="connectionID">39</int>
+				</object>
 			</array>
 			<object class="IBMutableOrderedSet" key="objectRecords">
 				<array key="orderedObjects">
@@ -494,6 +549,7 @@
 							<reference ref="735297713"/>
 							<reference ref="453295058"/>
 							<reference ref="60379430"/>
+							<reference ref="7902684"/>
 						</array>
 						<reference key="parent" ref="191373211"/>
 					</object>
@@ -537,6 +593,11 @@
 						<reference key="object" ref="735297713"/>
 						<reference key="parent" ref="399887529"/>
 					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">37</int>
+						<reference key="object" ref="7902684"/>
+						<reference key="parent" ref="399887529"/>
+					</object>
 				</array>
 			</object>
 			<dictionary class="NSMutableDictionary" key="flattenedProperties">
@@ -552,6 +613,9 @@
 				<real value="2" key="23.IBUIButtonInspectorSelectedEdgeInsetMetadataKey"/>
 				<string key="29.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="31.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
+				<string key="37.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
+				<real value="1" key="37.IBUIButtonInspectorSelectedEdgeInsetMetadataKey"/>
+				<real value="2" key="37.IBUIButtonInspectorSelectedStateConfigurationMetadataKey"/>
 				<string key="4.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="5.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="9.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
@@ -560,7 +624,7 @@
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">36</int>
+			<int key="maxID">39</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -571,6 +635,7 @@
 						<string key="clickBackButton:">id</string>
 						<string key="clickGraffitiButton:">id</string>
 						<string key="clickImageButton:">id</string>
+						<string key="clickPrivateButton:">id</string>
 						<string key="clickRewardButton:">id</string>
 						<string key="clickSubmitButton:">id</string>
 					</dictionary>
@@ -585,6 +650,10 @@
 						</object>
 						<object class="IBActionInfo" key="clickImageButton:">
 							<string key="name">clickImageButton:</string>
+							<string key="candidateClassName">id</string>
+						</object>
+						<object class="IBActionInfo" key="clickPrivateButton:">
+							<string key="name">clickPrivateButton:</string>
 							<string key="candidateClassName">id</string>
 						</object>
 						<object class="IBActionInfo" key="clickRewardButton:">
@@ -602,6 +671,7 @@
 						<string key="graffitiButton">UIButton</string>
 						<string key="imageButton">UIButton</string>
 						<string key="inputBG">UIImageView</string>
+						<string key="isPrivate">UIButton</string>
 						<string key="panel">UIView</string>
 						<string key="rewardButton">UIButton</string>
 						<string key="submitButton">UIButton</string>
@@ -628,6 +698,10 @@
 						<object class="IBToOneOutletInfo" key="inputBG">
 							<string key="name">inputBG</string>
 							<string key="candidateClassName">UIImageView</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="isPrivate">
+							<string key="name">isPrivate</string>
+							<string key="candidateClassName">UIButton</string>
 						</object>
 						<object class="IBToOneOutletInfo" key="panel">
 							<string key="name">panel</string>
@@ -688,6 +762,8 @@
 			<string key="bbs_create_reward_bg@2x.png">{99, 46}</string>
 			<string key="bbs_create_reward_option@2x.png">{22, 22}</string>
 			<string key="bbs_create_submit_bg@2x.png">{80, 48}</string>
+			<string key="input_alert_check@2x.png">{25, 25}</string>
+			<string key="input_alert_uncheck@2x.png">{25, 25}</string>
 		</dictionary>
 		<string key="IBCocoaTouchPluginVersion">2083</string>
 	</data>

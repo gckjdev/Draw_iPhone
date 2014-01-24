@@ -15,6 +15,8 @@
 #import "LocalizableLabel.h"
 #import "ChangeAvatar.h"
 
+@class GroupIconView;
+@class PBGroup;
 @class PBGameUser;
 @class AvatarView;
 @class LocalizableLabel;
@@ -95,6 +97,16 @@
 
 @property (retain, nonatomic) IBOutlet UIButton *bgButton;
 @property (retain, nonatomic) IBOutlet BadgeView *bgBadgeView;
+@property (retain, nonatomic) IBOutlet UILabel *groupName;
+@property (retain, nonatomic) IBOutlet UIButton *inviteMemberButton;
+@property (retain, nonatomic) IBOutlet UIButton *inviteGuestButton;
+@property (retain, nonatomic) IBOutlet GroupIconView *groupIcon;
+@property (retain, nonatomic) IBOutlet LocalizableLabel *groupHeader;
+
+@property (retain, nonatomic) IBOutlet UIImageView *seperator5;
+
+- (IBAction)inviteMember:(id)sender;
+- (IBAction)inviteGuest:(id)sender;
 
 - (void)setCellWithUserDetail:(NSObject<UserDetailProtocol> *)detail;
 - (void)setDrawFeedList:(NSArray*)feedList tipText:(NSString *)tipText;

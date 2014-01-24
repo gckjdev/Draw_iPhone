@@ -66,6 +66,11 @@ typedef enum{
                                                 fromController:(UIViewController *)fromController
                                                       animated:(BOOL)animated
 {
+    if ([post isPrivateForMe]) {
+        POSTMSG(NSLS(@"kCan'tAccessPrivatePost"));
+        return nil;
+    }
+
     BBSPostDetailController *pd = [[BBSPostDetailController alloc] init];
     pd.post = post;
     pd.postID = post.postId;
@@ -78,6 +83,11 @@ typedef enum{
                                                    animated:(BOOL)animated;
 
 {
+    if ([post isPrivateForMe]) {
+        POSTMSG(NSLS(@"kCan'tAccessPrivatePost"));
+        return nil;
+    }
+
     BBSPostDetailController *pd = [[BBSPostDetailController alloc] init];
     pd.post = post;
     pd.postID = post.postId;
@@ -332,6 +342,12 @@ typedef enum{
 
 - (void)serviceLoadDataForTabID:(NSInteger)tabID
 {
+    if ([self.post isPrivateForMe]) {
+        POSTMSG(NSLS(@"kCan'tAccessPrivatePost"));
+        [self finishLoadDataForTabID:tabID resultList:@[]];
+        [self hideActivity];
+        return;
+    }
     [self showActivityWithText:NSLS(@"kLoading")];
     TableTab *tab = [_tabManager tabForID:tabID];
     BBSActionType type = ActionTypeNO;
@@ -343,14 +359,12 @@ typedef enum{
             [self loadActionByUser];
             return;
         }
-    }
-    
-    
+    }    
     [[self bbsService] getBBSActionListWithPostId:self.postID
-                                                 actionType:type
-                                                     offset:tab.offset
-                                                      limit:tab.limit
-                                                   delegate:self];
+                                       actionType:type
+                                           offset:tab.offset
+                                            limit:tab.limit
+                                         delegate:self];
 
 }
 

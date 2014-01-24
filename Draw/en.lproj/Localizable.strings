@@ -2291,6 +2291,16 @@
 "kJoinGroupReason" = "Your reason...";
 "kNoChargeHistory" = "No charge history.";
 "kGroupChargeHistory" = "Charge history";
+"kPrivatePostForGroup" = "Private";
+"kCan'tAccessPrivatePost" = "Can't access private topic.";
+"kPrivatePostDesc" = "[Private topic]";
+
+"kInviteMemberTitle" = "Invitation";
+"kInviteGuestTitle" = "Invitation";
+"kInviteMemberMessage" = "Invite to be member of your group?";
+"kInviteGuestMessage" = "Invite to be guest of your group?";
+"kInvitationSent" = "Sent";
+"kNoJoinGroup" = "No group.";
 
 /*********************小吉画画国际化字符串开始 ************************/
 "kLittleGeeRecommend" = "Featured";

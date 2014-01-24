@@ -50,6 +50,8 @@
 @property (assign, nonatomic, getter = isForGroup) BOOL forGroup;
 @property (assign, nonatomic, getter = isForEditing) BOOL forEditing;
 
+@property (retain, nonatomic) IBOutlet UIButton *isPrivate;
+- (IBAction)clickPrivateButton:(id)sender;
 @property (assign, nonatomic) id<CreatePostControllerDelegate>delegate;
 
 //- (id)initWithBoard:(PBBBSBoard *)board;

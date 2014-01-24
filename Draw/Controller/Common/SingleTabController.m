@@ -32,6 +32,9 @@
     [self.dataTableView removeFromSuperview];
     
     self.titleView = [CommonTitleView createTitleView:self.view];
+    [self.titleView setRightButtonAsRefresh];
+    [self.titleView setRightButtonSelector:@selector(clickRefreshButton:)];
+    
     self.dataTableView = [[[UITableView alloc] initWithFrame:self.view.bounds style:UITableViewStylePlain] autorelease];
     self.dataTableView.dataSource = self;
     self.dataTableView.delegate = self;
@@ -43,6 +46,7 @@
     CGFloat height = CGRectGetHeight(self.view.frame) - CGRectGetHeight(self.titleView.bounds);
     [self.dataTableView updateHeight:height];
     [self.view addSubview:self.dataTableView];
+
 }
 
 - (void)viewDidLoad

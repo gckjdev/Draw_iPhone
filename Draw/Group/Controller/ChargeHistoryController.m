@@ -82,5 +82,9 @@
     return NSLS(@"kNoChargeHistory");
 }
 
+- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
+    cell.backgroundColor = (indexPath.row & 0x1)? COLOR_GRAY : COLOR_WHITE;
+    [super tableView:tableView willDisplayCell:cell forRowAtIndexPath:indexPath];
+}
 
 @end
