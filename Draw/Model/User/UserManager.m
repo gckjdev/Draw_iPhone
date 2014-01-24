@@ -1799,4 +1799,14 @@ qqAccessTokenSecret:(NSString*)accessTokenSecret
     return YES;
 }
 
+- (BOOL)isVip
+{
+    time_t now = time(0);
+    if ([_pbUser vip] && [_pbUser vipExpireDate] > now){
+        return YES;
+    }
+    
+    return NO;
+}
+
 @end

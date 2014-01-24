@@ -275,4 +275,6 @@ qqAccessTokenSecret:(NSString*)accessTokenSecret
 - (BOOL)hasTrySetHomeBg;
 - (BOOL)setTrySetHomeBg;
 
+- (BOOL)isVip;
+
 @end

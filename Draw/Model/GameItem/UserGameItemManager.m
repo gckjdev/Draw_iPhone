@@ -11,8 +11,7 @@
 #import "NSDate+TKCategory.h"
 #import "GameItemManager.h"
 #import "ItemType.h"
-
-
+#import "UserManager.h"
 
 static int *getDefaultItemTypeList()
 {
@@ -113,6 +112,10 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(UserGameItemManager);
 // 判断是否拥有1个道具(包括时间消耗品)
 - (BOOL)hasItem:(int)itemId
 {
+    if ([[UserManager defaultManager] isVip]){
+        return YES;
+    }
+    
     if ([self isDefaultItem:itemId]) {
         return YES;
     }
