@@ -334,6 +334,10 @@ typedef enum{
 + (NSInteger)getGroupIntroduceMaxLength;
 + (NSInteger)getGroupSignatureMaxLength;
 + (NSInteger)getGroupMaxLevel;
+
++ (NSInteger)getGroupMaxLevelForVIP;
++ (NSInteger)getUserMinLevelForCreateGroup;
+
 + (NSInteger)getUpgradeGroupFeePerLevel;
 + (NSInteger)getQuitGroupFee;
 

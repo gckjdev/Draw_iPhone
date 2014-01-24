@@ -412,7 +412,12 @@
                 POSTMSG(NSLS(@"kNotTestUserCan'tCreateGroup"));
                 return;                
             }
-            
+            NSInteger minUserLevel = [PPConfigManager getUserMinLevelForCreateGroup];
+            if([[UserManager defaultManager] level] < minUserLevel){
+                NSString *msg = [NSString stringWithFormat:NSLS(@"kCan'tCreateGroupForUserLevel"), minUserLevel];
+                POSTMSG(msg);
+                return;
+            }
             CreateGroupController *cgc =  [[CreateGroupController alloc] init];
             [self.navigationController pushViewController:cgc animated:YES];
             [cgc release];

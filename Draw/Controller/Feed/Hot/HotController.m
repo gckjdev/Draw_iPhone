@@ -30,6 +30,7 @@ typedef enum{
     RankTypeHot = FeedListTypeHot,
     RankTypeNew = FeedListTypeLatest,
     RankTypeRecommend = FeedListTypeRecommend,
+    RankTypeVIP = FeedListTypeVIP,
     
 }RankType;
 
@@ -452,7 +453,7 @@ typedef enum{
 
 - (NSInteger)tabCount
 {
-    return 4;
+    return 5;
 }
 - (NSInteger)fetchDataLimitForTabIndex:(NSInteger)index
 {
@@ -460,20 +461,20 @@ typedef enum{
 }
 - (NSInteger)tabIDforIndex:(NSInteger)index
 {
-    NSInteger tabId[] = {RankTypeHistory, RankTypeHot, RankTypeRecommend, RankTypeNew};
+    NSInteger tabId[] = {RankTypeHistory, RankTypeHot, RankTypeRecommend, RankTypeNew, RankTypeVIP};
     return tabId[index];
 }
 
 - (NSString *)tabNoDataTipsforIndex:(NSInteger)index
 {
-    NSString *tabDesc[] = {NSLS(@"kNoRankHistory"),NSLS(@"kNoRankHot"), NSLS(@"kNoRecommend"),NSLS(@"kNoRankNew")};
+    NSString *tabDesc[] = {NSLS(@"kNoRankHistory"),NSLS(@"kNoRankHot"), NSLS(@"kNoRecommend"),NSLS(@"kNoRankNew"),NSLS(@"kNoRankVip")};
     
     return tabDesc[index];
 }
 
 - (NSString *)tabTitleforIndex:(NSInteger)index
 {
-    NSString *tabTitle[] = {NSLS(@"kRankHistory"),NSLS(@"kRankHot"), NSLS(@"kLittleGeeRecommend"),NSLS(@"kRankNew")};
+    NSString *tabTitle[] = {NSLS(@"kRankHistory"),NSLS(@"kRankHot"), NSLS(@"kLittleGeeRecommend"),NSLS(@"kRankNew"),NSLS(@"kRankVip")};
     
     return tabTitle[index];
 

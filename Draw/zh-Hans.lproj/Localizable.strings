@@ -2334,6 +2334,12 @@
 "kInviteGuestMessage" = "确定邀请Ta成为你家族的嘉宾吗?";
 "kInvitationSent" = "邀请已发送";
 "kNoJoinGroup" = "没加入任何家族";
+"kCan'tCreateGroupForUserLevel" = "你的等级小于%d级，不能创建家族。";
+
+"kRankVip" = "会员";
+"kNoRankVip" = "暂无会员作品";
+"kNoVip" = "暂无会员";
+
 
 /*********************小吉画画国际化字符串开始 ************************/
 "kLittleGeeRecommend" = "推荐";

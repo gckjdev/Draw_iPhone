@@ -2301,6 +2301,11 @@
 "kInviteGuestMessage" = "Invite to be guest of your group?";
 "kInvitationSent" = "Sent";
 "kNoJoinGroup" = "No group.";
+"kCan'tCreateGroupForUserLevel" = "Your level is below %d, can;t create group.";
+
+"kRankVip" = "VIP";
+"kNoRankVip" = "No VIP opus.";
+"kNoVip" = "No VIP.";
 
 /*********************小吉画画国际化字符串开始 ************************/
 "kLittleGeeRecommend" = "Featured";

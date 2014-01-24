@@ -1350,8 +1350,20 @@
 }
 
 + (NSInteger)getGroupMaxLevel{
+    if([[UserManager defaultManager] isVip]){
+        return [self getGroupMaxLevelForVIP];
+    }
     return GET_UMENG_INTVAL(@"GROUP_MAX_LEVEL", 20);
 }
+
++ (NSInteger)getGroupMaxLevelForVIP{
+    return GET_UMENG_INTVAL(@"GROUP_MAX_LEVEL_VIP", 50);
+}
+
++ (NSInteger)getUserMinLevelForCreateGroup{
+    return GET_UMENG_INTVAL(@"MIN_LEVEL_FOR_CREATE_GROUP", 5);
+}
+
 
 + (NSInteger)getUpgradeGroupFeePerLevel{
     return GET_UMENG_INTVAL(@"UPGRADE_FEE_PER_LEVEL", 100);

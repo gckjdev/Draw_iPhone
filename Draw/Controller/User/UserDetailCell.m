@@ -177,7 +177,7 @@
 
     SET_VIEW_ROUND_CORNER(self.groupHeader);
     [self.groupHeader setBackgroundColor:COLOR_YELLOW];
-    self.groupHeader.textColor = [UIColor whiteColor];
+    self.groupHeader.textColor = COLOR_BROWN;
     
     SET_VIEW_ROUND_CORNER(self.specialTitleLabel);
     [self.specialTitleLabel setBackgroundColor:COLOR_YELLOW];
@@ -254,7 +254,7 @@
 
 + (float)getCellHeight
 {
-    return ([DeviceDetection isIPAD]?1551:776);
+    return ([DeviceDetection isIPAD]?1721:776);
 }
 
 + (NSString*)getCellIdentifier
