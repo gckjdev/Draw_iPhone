@@ -373,7 +373,9 @@ static FeedService *_staticFeedService = nil;
         GameNetworkOutput* output = [PPGameNetworkRequest trafficApiServerGetAndResponsePB:METHOD_GET_FEED_LIST parameters:para];
         dispatch_async(dispatch_get_main_queue(), ^{
             NSInteger code = output.resultCode;
-            NSArray *list = (code == 0) ? output.pbResponse.feedList : nil;
+            
+            NSArray *pbFeedList = [output.pbResponse feedList];
+            NSArray* list = [FeedManager parsePbFeedList:pbFeedList];
             EXECUTE_BLOCK(completed, code, list);
         });
     });

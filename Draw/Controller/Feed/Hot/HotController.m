@@ -320,14 +320,11 @@ typedef enum{
             
         case RankTypeRecommend:
         case RankTypeNew:
+        default:
             return [CellManager getLastStyleCell:theTableView
                                        indexPath:indexPath
                                         delegate:self
                                         dataList:[self tabDataList]];
-            break;
-            
-        default:
-            return nil;
             break;
     }
     
@@ -438,13 +435,10 @@ typedef enum{
             
         case RankTypeNew:
         case RankTypeRecommend:
+        default:
             return [CellManager getLastStyleCellCountWithDataCount:count
                                                         roundingUp:NO];
-            break;
-            
-        default:
-            return 0;
-            break;
+            break;            
     }
 }
 
