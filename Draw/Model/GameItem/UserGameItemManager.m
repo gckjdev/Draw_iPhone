@@ -205,7 +205,25 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(UserGameItemManager);
 
 - (ItemType *)boughtPenTypeList
 {
-    
+    if([[UserManager defaultManager] isVip]){
+        static ItemType vipPens = {
+            Pencil,
+            WaterPen,
+            Pen,
+            IcePen,
+            Quill,
+            DottedLinePen,
+            SmoothPen,
+            PolygonPen,
+            ItemTypeFunPen1,
+            ItemTypeFunPen2,
+            ItemTypeFunPen3,
+            ItemTypeFunPen4,
+            ItemTypeFunPen5,
+            ItemTypeListEndFlag
+        };
+        return vipPens;
+    }
     static ItemType typeList[10] = {Pencil,ItemTypeListEndFlag};
     int i = Pencil+1, j = 1;
     for (; i < PenCount; i ++) {
