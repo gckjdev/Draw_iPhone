@@ -19,6 +19,7 @@
 #import "AppTaskManager.h"
 #import "AppTask.h"
 #import "GameAdWallService.h"
+#import "PurchaseVipController.h"
 
 #define USER_TASK_LIST_KEY @"USER_TASK_LIST_KEY_5"
 
@@ -51,6 +52,15 @@ static TaskManager* _defaultTaskManager;
 //                                            badge:0
 //                                             award:0
 //                                          selector:@selector(checkIn:)];
+
+    GameTask* vipTask = [[[GameTask alloc] initWithId:PBTaskIdTypeTaskVip
+                                               name:NSLS(@"kTaskVip")
+                                               desc:NSLS(@"kTaskVipDesc")
+                                             status:PBTaskStatusTaskStatusAlwaysOpen
+                                              badge:1
+                                              award:0
+                                           selector:@selector(showVip:)] autorelease];
+
     
     GameTask* task2 = [[[GameTask alloc] initWithId:PBTaskIdTypeTaskBindSina
                                              name:NSLS(@"kTaskBindSinaWeibo")
@@ -148,6 +158,8 @@ static TaskManager* _defaultTaskManager;
 
     
 //    [retList addObject:task1];
+
+    [retList addObject:vipTask];
     [retList addObject:createOpusTask];
     [retList addObject:guessOpusTask];
     
@@ -159,8 +171,7 @@ static TaskManager* _defaultTaskManager;
         [retList addObject:task11];
     }
     else{
-        // clean local app upgrade task status
-        
+        // clean local app upgrade task status        
     }
     
     [retList addObject:task2];
@@ -326,6 +337,13 @@ static TaskManager* _defaultTaskManager;
     }
 
     [[AccountService defaultService] chargeCoin:task.award source:TaskAward+task.taskId];
+}
+
+- (void)showVip:(GameTask*)task
+{
+    PurchaseVipController* vc = [[PurchaseVipController alloc] init];
+    [self.viewController.navigationController pushViewController:vc animated:YES];
+    [vc release];
 }
 
 - (void)bindSinaWeibo:(GameTask*)task
