@@ -6977,6 +6977,10 @@
 		EA62854018768F4600478502 /* bbs_post_detail_unfavor@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EA62853818768F4600478502 /* bbs_post_detail_unfavor@2x.png */; };
 		EA64193617743A3D009FCFD5 /* SingHomeHeaderPanel.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA64193517743A3D009FCFD5 /* SingHomeHeaderPanel.xib */; };
 		EA64193D17743A66009FCFD5 /* SingHomeHeaderPanel~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA64193C17743A66009FCFD5 /* SingHomeHeaderPanel~ipad.xib */; };
+		EA68D4F71893B600003EB69A /* PurchaseVipController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA68D4F61893B600003EB69A /* PurchaseVipController~ipad.xib */; };
+		EA68D4F81893B600003EB69A /* PurchaseVipController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA68D4F61893B600003EB69A /* PurchaseVipController~ipad.xib */; };
+		EA68D4F91893B600003EB69A /* PurchaseVipController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA68D4F61893B600003EB69A /* PurchaseVipController~ipad.xib */; };
+		EA68D4FA1893B600003EB69A /* PurchaseVipController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA68D4F61893B600003EB69A /* PurchaseVipController~ipad.xib */; };
 		EA690BE218167F7300DCACCB /* bbs_post_mark@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EA690BE118167F7200DCACCB /* bbs_post_mark@2x.png */; };
 		EA690BE318167F7300DCACCB /* bbs_post_mark@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EA690BE118167F7200DCACCB /* bbs_post_mark@2x.png */; };
 		EA690BE418167F7300DCACCB /* bbs_post_mark@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EA690BE118167F7200DCACCB /* bbs_post_mark@2x.png */; };
@@ -10129,6 +10133,7 @@
 		EA62853818768F4600478502 /* bbs_post_detail_unfavor@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bbs_post_detail_unfavor@2x.png"; sourceTree = "<group>"; };
 		EA64193517743A3D009FCFD5 /* SingHomeHeaderPanel.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SingHomeHeaderPanel.xib; sourceTree = "<group>"; };
 		EA64193C17743A66009FCFD5 /* SingHomeHeaderPanel~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "SingHomeHeaderPanel~ipad.xib"; sourceTree = "<group>"; };
+		EA68D4F61893B600003EB69A /* PurchaseVipController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "PurchaseVipController~ipad.xib"; sourceTree = "<group>"; };
 		EA690BE118167F7200DCACCB /* bbs_post_mark@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bbs_post_mark@2x.png"; sourceTree = "<group>"; };
 		EA690BEA18167F8300DCACCB /* bbs_post_detail_unmark@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bbs_post_detail_unmark@2x.png"; sourceTree = "<group>"; };
 		EA690BEF181680D000DCACCB /* bbs_post_detail_mark@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bbs_post_detail_mark@2x.png"; sourceTree = "<group>"; };
@@ -14453,6 +14458,7 @@
 				CAD8EE331892226E0057EC30 /* PurchaseVipController.h */,
 				CAD8EE341892227A0057EC30 /* PurchaseVipController.m */,
 				CAD8EE351892227E0057EC30 /* PurchaseVipController.xib */,
+				EA68D4F61893B600003EB69A /* PurchaseVipController~ipad.xib */,
 			);
 			path = User;
 			sourceTree = "<group>";
@@ -18405,6 +18411,7 @@
 				CAD8EE4C18922F840057EC30 /* vip_title_ipad@2x.png in Resources */,
 				CAD8EE5018922F840057EC30 /* vip_title_iphone@2x.png in Resources */,
 				CAD8EE5418922F840057EC30 /* vip_v@2x.png in Resources */,
+				EA68D4F91893B600003EB69A /* PurchaseVipController~ipad.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -19395,6 +19402,7 @@
 				CAD8EE4B18922F840057EC30 /* vip_title_ipad@2x.png in Resources */,
 				CAD8EE4F18922F840057EC30 /* vip_title_iphone@2x.png in Resources */,
 				CAD8EE5318922F840057EC30 /* vip_v@2x.png in Resources */,
+				EA68D4F81893B600003EB69A /* PurchaseVipController~ipad.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -20368,6 +20376,7 @@
 				CAD8EE4A18922F840057EC30 /* vip_title_ipad@2x.png in Resources */,
 				CAD8EE4E18922F840057EC30 /* vip_title_iphone@2x.png in Resources */,
 				CAD8EE5218922F840057EC30 /* vip_v@2x.png in Resources */,
+				EA68D4F71893B600003EB69A /* PurchaseVipController~ipad.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -21295,6 +21304,7 @@
 				CAD8EE4D18922F840057EC30 /* vip_title_ipad@2x.png in Resources */,
 				CAD8EE5118922F840057EC30 /* vip_title_iphone@2x.png in Resources */,
 				CAD8EE5518922F840057EC30 /* vip_v@2x.png in Resources */,
+				EA68D4FA1893B600003EB69A /* PurchaseVipController~ipad.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
