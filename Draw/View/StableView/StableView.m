@@ -312,9 +312,9 @@
         self.layer.borderWidth = BORDER_WIDTH;
         self.layer.borderColor = [COLOR_GRAY_AVATAR CGColor];
     }
-#ifdef DEBUG
-    [self setIsVIP:YES];
-#endif
+//#ifdef DEBUG
+//    [self setIsVIP:YES];
+//#endif
 
     return self;
 }
@@ -338,9 +338,9 @@
         self.layer.borderWidth = BORDER_WIDTH;
         self.layer.borderColor = [COLOR_GRAY_AVATAR CGColor];
         
-#ifdef DEBUG
-        [self setIsVIP:YES];
-#endif        
+//#ifdef DEBUG
+//        [self setIsVIP:YES];
+//#endif        
     }
     
     return self;
@@ -362,9 +362,9 @@
     _user = user;
     [self setIsVIP:(user.vip != 0)];
     
-#ifdef DEBUG
-    [self setIsVIP:YES];
-#endif
+//#ifdef DEBUG
+//    [self setIsVIP:YES];
+//#endif
 
 }
 
