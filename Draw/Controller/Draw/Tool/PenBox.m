@@ -43,19 +43,25 @@
     return button;
 }
 
+#define NUMBER_PER_ROW 5
+
 - (void)updateView
 {
     ItemType *list = [[UserGameItemManager defaultManager] boughtPenTypeList];
     NSInteger i = 0;
+
     while (list != NULL && *list != ItemTypeListEndFlag) {
         UIButton *button = [self buttonWithPenType:*list];
         [self addSubview:button];
-        [button updateOriginX: (i * BUTTON_SIZE)];
+        [button updateOriginX: ((i%NUMBER_PER_ROW) * BUTTON_SIZE)];
+        [button updateOriginY: ((i/NUMBER_PER_ROW) * BUTTON_SIZE)];
 
         ++ i;
         ++ list;
     }
     [self updateWidth:(BUTTON_SIZE * (i))];
+    NSInteger row = (i/NUMBER_PER_ROW) + !!(i%NUMBER_PER_ROW);
+    [self updateHeight:row*BUTTON_SIZE];
 }
 
 + (id)createViewWithdelegate:(id)delegate
