@@ -53,6 +53,11 @@ typedef enum
     ItemTypePurse = 1105,
     ItemTypePurseOneThousand = 1107,
     
+    ItemTypeFunPen1 = 1151,
+    ItemTypeFunPen2 = 1152,
+    ItemTypeFunPen3 = 1153,
+    ItemTypeFunPen4 = 1154,
+    ItemTypeFunPen5 = 1155,
     
     DrawBackgroundStart = 1200,
     DrawBackground1,                
