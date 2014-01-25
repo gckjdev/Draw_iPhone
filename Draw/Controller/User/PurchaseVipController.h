@@ -7,8 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "AccountService.h"
+#import "PPViewController.h"
 
-@interface PurchaseVipController : UIViewController
+@interface PurchaseVipController : PPViewController<AccountServiceDelegate>
 @property (retain, nonatomic) IBOutlet UILabel *purchaseDescLabel;
 @property (retain, nonatomic) IBOutlet UILabel *featureLabel1;
 @property (retain, nonatomic) IBOutlet UILabel *featureLabel2;
@@ -26,5 +28,8 @@
 
 @property (retain, nonatomic) IBOutlet UILabel *purchaseYearLabel;
 @property (retain, nonatomic) IBOutlet UILabel *purchaseMonthLabel;
+
+- (IBAction)clickBuyMonth:(id)sender;
+- (IBAction)clickBuyYear:(id)sender;
 
 @end

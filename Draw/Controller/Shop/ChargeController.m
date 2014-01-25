@@ -185,7 +185,7 @@
 
 - (void)viewDidDisappear:(BOOL)animated
 {
-    [self unregisterAllNotifications];
+    [super viewDidDisappear:animated];
 }
 
 - (void)viewDidUnload {

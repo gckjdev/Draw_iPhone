@@ -54,6 +54,8 @@
 // 通用绿色。
 #define COLOR_GREEN OPAQUE_COLOR(0, 190, 177) 
 
+// 深蓝色
+#define COLOR_BLUE OPAQUE_COLOR(2, 76, 136)
 
 // 黄色按钮上的字体颜色。其他颜色的按钮上的字体为白色。
 //#define COLOR_COFFEE OPAQUE_COLOR(126, 49, 46)

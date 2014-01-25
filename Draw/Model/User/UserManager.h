@@ -277,4 +277,10 @@ qqAccessTokenSecret:(NSString*)accessTokenSecret
 
 - (BOOL)isVip;
 
+- (void)setVip:(int)vip;
+- (void)setVipExpireDate:(int)vipExpireDate;
+- (void)setVipLastPayDate:(int)vipLastPayDate;
+- (int)buyVipUserCount;
+- (void)setBuyVipUserCount:(int)value;
+
 @end

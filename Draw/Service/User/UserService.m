@@ -2224,6 +2224,32 @@ POSTMSG(NSLS(@"kLoginFailure"));
     return YES;
 }
 
+
+- (void)purchaseVipService:(int)type
+            viewController:(PPViewController*)viewController
+               resultBlock:(void(^)(int resultCode))resultBlock
+{
+
+    NSDictionary* para = @{ PARA_TYPE : @(type)
+                          };
+    
+    dispatch_async(workingQueue, ^{
+        GameNetworkOutput* output = [PPGameNetworkRequest apiServerGetAndResponsePB:METHOD_PURCHASE_VIP
+                                                                         parameters:para];
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            
+            if (output.resultCode == ERROR_SUCCESS && output.pbResponse.user){
+                // update user info with VIP data
+                [[UserManager defaultManager] storeUserData:output.pbResponse.user];
+            }
+            
+            EXECUTE_BLOCK(resultBlock, output.resultCode);
+        });
+    });
+    
+}
+
 @end
 
 

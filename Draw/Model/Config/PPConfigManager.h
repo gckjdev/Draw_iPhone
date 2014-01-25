@@ -345,4 +345,7 @@ typedef enum{
 + (NSSet *)getGroupTestUserIdSet;
 + (int)getMinGroupContestAward;
 
++ (int)getVipMonthFee;
++ (int)getVipYearFee;
+
 @end

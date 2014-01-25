@@ -204,4 +204,8 @@ typedef void(^UploadImageResultBlock)(int resultCode, NSString* imageRemoteURL);
 
 - (void)createLocalUserAccount:(PBGameUser*)user;
 
+- (void)purchaseVipService:(int)type
+            viewController:(PPViewController*)viewController
+               resultBlock:(void(^)(int resultCode))resultBlock;
+
 @end

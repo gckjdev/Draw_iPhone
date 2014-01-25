@@ -1803,10 +1803,53 @@ qqAccessTokenSecret:(NSString*)accessTokenSecret
 {
     time_t now = time(0);
     if ([_pbUser vip] && [_pbUser vipExpireDate] > now){
+        PPDebug(@"user is vip");
         return YES;
     }
     
+    PPDebug(@"user is not vip");
     return NO;
 }
+
+- (void)setVip:(int)vip
+{
+    if (self.pbUser == nil)
+        return;
+    
+    PBGameUser_Builder* builder = [PBGameUser builderWithPrototype:self.pbUser];
+    [builder setVip:vip];
+    self.pbUser = [builder build];    
+}
+
+- (void)setVipExpireDate:(int)vipExpireDate
+{
+    if (self.pbUser == nil)
+        return;
+    
+    PBGameUser_Builder* builder = [PBGameUser builderWithPrototype:self.pbUser];
+    [builder setVipExpireDate:vipExpireDate];
+    self.pbUser = [builder build];
+}
+
+- (void)setVipLastPayDate:(int)vipLastPayDate
+{
+    if (self.pbUser == nil)
+        return;
+    
+    PBGameUser_Builder* builder = [PBGameUser builderWithPrototype:self.pbUser];
+    [builder setVipLastPayDate:vipLastPayDate];
+    self.pbUser = [builder build];
+}
+
+- (int)buyVipUserCount
+{
+    return 0;
+}
+
+- (void)setBuyVipUserCount:(int)value
+{
+    
+}
+
 
 @end
