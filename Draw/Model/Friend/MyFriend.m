@@ -78,9 +78,9 @@
         self.groupMedal = [dict objectForKey:PARA_GROUP_MEDAL];
         self.vip = [[dict objectForKey:@"vip"] boolValue];
 
-#ifdef DEBUG
-        self.vip = YES;
-#endif
+//#ifdef DEBUG
+//        self.vip = YES;
+//#endif
         
         if (self.level < 1) {
             self.level = 1;

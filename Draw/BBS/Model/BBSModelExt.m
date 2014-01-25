@@ -67,9 +67,9 @@
 
 - (BOOL)isVIP
 {
-#ifdef DEBUG
-    return YES;
-#endif
+//#ifdef DEBUG
+//    return YES;
+//#endif
     return self.vip != 0;
 }
 
