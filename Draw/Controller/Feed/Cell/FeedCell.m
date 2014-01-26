@@ -205,6 +205,8 @@
         NSString *imageUrl = drawFeed.drawImageUrl;
         [self.drawImageView setImage:[[ShareImageManager defaultManager] 
                                       unloadBg]];
+        PPDebug(@"<updateDrawView> image url = %@", imageUrl);
+        
         if ([imageUrl length] != 0) {
             NSURL *url = [NSURL URLWithString:imageUrl];
             UIImage *defaultImage = [[ShareImageManager defaultManager] unloadBg];

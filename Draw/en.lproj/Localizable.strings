@@ -2306,6 +2306,7 @@
 "kRankVip" = "VIP";
 "kNoRankVip" = "No VIP opus.";
 "kNoVip" = "No VIP.";
+"kUpgradeVIP" = "Upgrade VIP";
 
 /*********************小吉画画国际化字符串开始 ************************/
 "kLittleGeeRecommend" = "Featured";

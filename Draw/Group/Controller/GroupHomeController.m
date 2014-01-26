@@ -560,7 +560,7 @@
     }
 }
 
-- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {                          
+- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
     if([self isNoDataCell:cell] || ![self isGroupTab:self.currentTabID]){
         cell.backgroundColor = [UIColor clearColor];
         return;

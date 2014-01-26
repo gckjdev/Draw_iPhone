@@ -367,7 +367,8 @@ static FeedService *_staticFeedService = nil;
         NSDictionary* para = @{ PARA_TYPE : @(FeedListTypeTimelineGroup),
                                 PARA_GROUPID : groupId,
                                 PARA_OFFSET : @(offset),
-                                PARA_COUNT : @(limit)
+                                PARA_COUNT : @(limit),
+                                PARA_IMAGE : @(1)
                                 };
         
         GameNetworkOutput* output = [PPGameNetworkRequest trafficApiServerGetAndResponsePB:METHOD_GET_FEED_LIST parameters:para];

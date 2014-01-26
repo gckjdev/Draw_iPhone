@@ -59,7 +59,7 @@
         ++ i;
         ++ list;
     }
-    [self updateWidth:(BUTTON_SIZE * (i))];
+    [self updateWidth:(BUTTON_SIZE * MIN(i,NUMBER_PER_ROW))];
     NSInteger row = (i/NUMBER_PER_ROW) + !!(i%NUMBER_PER_ROW);
     [self updateHeight:row*BUTTON_SIZE];
 }
