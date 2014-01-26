@@ -1846,14 +1846,19 @@ qqAccessTokenSecret:(NSString*)accessTokenSecret
     self.pbUser = [builder build];
 }
 
+#define KEY_BUY_VIP_USER @"KEY_BUY_VIP_USER"
+
 - (int)buyVipUserCount
 {
-    return 0;
+    NSUserDefaults* ud = [NSUserDefaults standardUserDefaults];
+    return [[ud objectForKey:KEY_BUY_VIP_USER] integerValue];
 }
 
 - (void)setBuyVipUserCount:(int)value
 {
-    
+    NSUserDefaults* ud = [NSUserDefaults standardUserDefaults];
+    [ud setInteger:value forKey:KEY_BUY_VIP_USER];
+    [ud synchronize];
 }
 
 

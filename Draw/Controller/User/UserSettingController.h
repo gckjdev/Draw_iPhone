@@ -20,6 +20,7 @@
 @class HJManagedImageV;
 @interface UserSettingController : PPTableViewController<UIActionSheetDelegate,UserServiceDelegate, CommonDialogDelegate, ChangeAvatarDelegate, GeographyServiceDelegate, AvatarViewDelegate>
 {    
+    NSInteger rowOfVip;
     NSInteger rowOfPassword;
     NSInteger rowOfGender;
     NSInteger rowOfNickName;

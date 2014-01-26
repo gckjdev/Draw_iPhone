@@ -41,6 +41,7 @@
 #import "GroupManager.h"
 #import "GroupHomeController.h"
 #import "GroupTopicController.h"
+#import "PurchaseVipController.h"
 
 enum{
     SECTION_USER = 0,
@@ -129,6 +130,7 @@ enum {
     rowOfPassword = index++;
     rowOfGender = index++;
     rowOfNickName = index++;
+    rowOfVip = index++;    
     rowOfGroup = index ++;
     rowOfLocation = index++;
     rowOfBirthday = index++;
@@ -557,7 +559,29 @@ SET_CELL_BG_IN_CONTROLLER;
         {
             [cell.customTextLabel setText:NSLS(@"kNickname")];           
             [cell.customDetailLabel setText:nicknameLabel.text];            
-        } else if (row == rowOfCustomDice) {
+        }
+        else if (row == rowOfVip){
+            
+            [cell.customTextLabel setText:NSLS(@"kVip")];            
+            
+            NSString* msg;
+            NSDate* expireDate = [NSDate dateWithTimeIntervalSince1970:[UserManager defaultManager].pbUser.vipExpireDate];
+            if ([[UserManager defaultManager].pbUser vip] && expireDate){
+                NSString* expireDateString = dateToChineseStringByFormat(expireDate, @"yyyy-MM-dd");
+                if ([[UserManager defaultManager] isVip]){
+                    msg = [NSString stringWithFormat:NSLS(@"kIsVip"), expireDateString];
+                }
+                else{
+                    msg = [NSString stringWithFormat:NSLS(@"kVipExpire"), expireDateString];
+                }
+                
+                 [cell.customDetailLabel setText:msg];
+            }
+            else{
+                [cell.customDetailLabel setText:NSLS(@"kIsNotVip")];
+            }
+        }
+        else if (row == rowOfCustomDice) {
             [cell.customTextLabel setText:NSLS(@"kCustomDice")];
         } else if (row == rowOfLocation) {
             [cell.customTextLabel setText:NSLS(@"kLocation")];
@@ -968,7 +992,11 @@ SET_CELL_BG_IN_CONTROLLER;
             [dialog setMaxInputLen:[PPConfigManager getNicknameMaxLen]];
             
             [dialog showInView:self.view];
-        } else if (row == rowOfCustomDice){
+        }
+        else if (row == rowOfVip){
+            [PurchaseVipController enter:self];
+        }
+        else if (row == rowOfCustomDice){
             Class class = NSClassFromString(@"CustomDiceSettingViewController");
             if (class && [class isSubclassOfClass:[UIViewController class]]) {
                 UIViewController* controller = [[[class alloc] init] autorelease];
