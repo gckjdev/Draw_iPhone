@@ -126,7 +126,7 @@
 - (void)clickView:(id)sender
 {
     if (self.clickHandler == NULL) {
-        if(self.imageURL){
+        if(self.imgURL){
             [[ImagePlayer defaultPlayer] playWithUrl:self.imgURL
                                  displayActionButton:YES
                                     onViewController:[self theViewController]];
