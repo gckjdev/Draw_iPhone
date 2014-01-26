@@ -126,9 +126,13 @@
 - (void)clickView:(id)sender
 {
     if (self.clickHandler == NULL) {
-        [[ImagePlayer defaultPlayer] playWithUrl:self.imgURL
-                             displayActionButton:YES
-                                onViewController:[self theViewController]];
+        if(self.imageURL){
+            [[ImagePlayer defaultPlayer] playWithUrl:self.imgURL
+                                 displayActionButton:YES
+                                    onViewController:[self theViewController]];
+        }else{
+            [[ImagePlayer defaultPlayer] playWithImage:self.imageView.image onViewController:[self theViewController]];            
+        }
     }else{
         [super clickView:sender];
     }
