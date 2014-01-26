@@ -697,6 +697,7 @@
 
 #define PARA_GROUP_NAME @"groupName"
 #define PARA_GROUP_MEDAL @"groupMedal"
+#define PARA_VIP @"vip"
 
 // learn draw
 #define METHOD_GET_LEARNDRAW_LIST @"gldl"

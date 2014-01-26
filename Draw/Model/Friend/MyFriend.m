@@ -76,7 +76,7 @@
         self.groupId = [dict objectForKey:PARA_GROUPID];
         self.groupName = [dict objectForKey:PARA_GROUP_NAME];
         self.groupMedal = [dict objectForKey:PARA_GROUP_MEDAL];
-        self.vip = [[dict objectForKey:@"vip"] boolValue];
+        self.vip = [[dict objectForKey:PARA_VIP] boolValue];
 
 //#ifdef DEBUG
 //        self.vip = YES;

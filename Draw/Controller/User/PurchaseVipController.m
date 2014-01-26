@@ -161,7 +161,7 @@
 
     }
     else{
-        msg = [NSString stringWithFormat:@"已有【%d】热心用户购买会员支持小吉", [[UserManager defaultManager] buyVipUserCount]];
+        msg = [NSString stringWithFormat:@"已有%d位热心用户购买会员支持小吉", [[UserManager defaultManager] buyVipUserCount]];
     }
     
     self.purchaseDescLabel.text = msg;

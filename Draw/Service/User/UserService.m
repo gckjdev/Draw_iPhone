@@ -2261,7 +2261,7 @@ POSTMSG(NSLS(@"kLoginFailure"));
         dispatch_async(dispatch_get_main_queue(), ^{
             
             if (output.resultCode == ERROR_SUCCESS){
-                int count = [output.jsonDataDict objectForKey:PARA_COUNT];
+                int count = [[output.jsonDataDict objectForKey:PARA_COUNT] integerValue];
                 [[UserManager defaultManager] setBuyVipUserCount:count];
             }
             
