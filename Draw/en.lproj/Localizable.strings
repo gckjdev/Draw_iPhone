@@ -2495,6 +2495,11 @@
 
 /*********************图库国际化字符串结束 ************************/
 
+"kBuyVip" = "Buy VIP";
+"kVip" = "VIP";
+"kIsNotVip" = "Not VIP";
+"kIsVip" = "Active till %@";
+"kVipExpire" = "Expired on %@";
 
 "kTaskVip" = "Become VIP";
 "kTaskVipDesc" = "Become our VIP users";

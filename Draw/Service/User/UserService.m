@@ -2250,6 +2250,27 @@ POSTMSG(NSLS(@"kLoginFailure"));
     
 }
 
+- (void)getBuyVipUserCount:(PPViewController*)viewController
+               resultBlock:(void(^)(int resultCode))resultBlock
+{
+    dispatch_async(workingQueue, ^{
+        GameNetworkOutput* output = [PPGameNetworkRequest apiServerGetAndResponseJSON:METHOD_GET_BUY_VIP_COUNT
+                                                                           parameters:nil
+                                                                        isReturnArray:NO];
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            
+            if (output.resultCode == ERROR_SUCCESS){
+                int count = [output.jsonDataDict objectForKey:PARA_COUNT];
+                [[UserManager defaultManager] setBuyVipUserCount:count];
+            }
+            
+            EXECUTE_BLOCK(resultBlock, output.resultCode);
+        });
+    });
+}
+
+
 @end
 
 

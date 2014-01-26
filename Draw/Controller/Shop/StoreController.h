@@ -16,6 +16,7 @@
 
 //@property (retain, nonatomic) IBOutlet UILabel *titleLabel;
 //@property (retain, nonatomic) IBOutlet UIButton *backButton;
+@property (retain, nonatomic) IBOutlet UIButton *buyVipButton;
 @property (retain, nonatomic) IBOutlet UIButton *chargeButton;
 @property (retain, nonatomic) IBOutlet UILabel *coinBalanceLabel;
 @property (retain, nonatomic) IBOutlet UILabel *ingotBalanceLabel;
@@ -27,5 +28,7 @@
 @property (retain, nonatomic) IBOutlet UIImageView *coinBalanceBgImageView;
 @property (retain, nonatomic) IBOutlet LocalizableLabel *balanceTipLabel;
 @property (retain, nonatomic) IBOutlet UIImageView *tableViewBgImageView;
+
+- (IBAction)clickBuyVipButton:(id)sender;
 
 @end

@@ -208,4 +208,8 @@ typedef void(^UploadImageResultBlock)(int resultCode, NSString* imageRemoteURL);
             viewController:(PPViewController*)viewController
                resultBlock:(void(^)(int resultCode))resultBlock;
 
+- (void)getBuyVipUserCount:(PPViewController*)viewController
+               resultBlock:(void(^)(int resultCode))resultBlock;
+
+
 @end

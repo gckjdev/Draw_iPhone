@@ -23,16 +23,17 @@
 
 @implementation PurchaseVipController
 
-+ (void)enter:(UIViewController*)fromController
++ (PurchaseVipController*)enter:(UIViewController*)fromController
 {
     if ([PPConfigManager isInReviewVersion]){
         POSTMSG(NSLS(@"kTaskVipUnderDev"));
-        return;
+        return nil;
     }
     
     PurchaseVipController* vc = [[PurchaseVipController alloc] init];
     [fromController.navigationController pushViewController:vc animated:YES];
     [vc release];
+    return vc;
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -136,7 +137,8 @@
     [self registerNotificationWithName:NOTIFICATION_JUMP_TO_ALIPAY_CLIENT usingBlock:^(NSNotification *note) {
         [self handleJumpToAlipayClient:note];
     }];
-
+    
+    [self updateBuyVipCount];
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -159,7 +161,7 @@
 
     }
     else{
-        msg = @"欢迎购买VIP会员支持小吉"; // [NSString stringWithFormat:@"欢迎购买VIP会员支持小吉", [[UserManager defaultManager] buyVipUserCount]];
+        msg = [NSString stringWithFormat:@"已有【%d】热心用户购买会员支持小吉", [[UserManager defaultManager] buyVipUserCount]];
     }
     
     self.purchaseDescLabel.text = msg;
@@ -322,6 +324,7 @@
             }
             
             [self viewDidAppear:NO];
+            [self updateBuyVipCount];
         }];
         
     }else{
@@ -400,6 +403,15 @@
     
     AlixPayOrder* order = [self createOrder:amount productId:PRODUCT_ID_BUY_VIP_YEAR productName:name];
     [self alipayForOrder:order];    
+}
+
+- (void)updateBuyVipCount
+{
+    [[UserService defaultService] getBuyVipUserCount:self resultBlock:^(int resultCode) {
+        if (resultCode == 0){
+            [self viewDidAppear:NO];
+        }
+    }];
 }
 
 @end
