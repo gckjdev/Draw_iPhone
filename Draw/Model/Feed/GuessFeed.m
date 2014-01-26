@@ -88,6 +88,7 @@
                           avatar:pbFeed.opusCreatorAvatar 
                           gender:pbFeed.opusCreatorGender
                           signature:pbFeed.signature
+                          vip:pbFeed.vip
                           drawImageUrl:pbFeed.opusImage 
                           pbDraw:pbFeed.drawData 
                           wordText:pbFeed.opusWord

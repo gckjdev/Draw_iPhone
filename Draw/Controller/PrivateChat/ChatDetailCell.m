@@ -337,14 +337,17 @@
 {
     NSString *avatar = messageStat.isGroup ? message.fromUserToGroup.avatar : messageStat.friendAvatar;
     BOOL isMale = messageStat.isGroup ? message.fromUserToGroup.gender : messageStat.friendGender;
+    int vip = messageStat.isGroup ? message.fromUserToGroup.vip : messageStat.vip;
     
     if (![self isReceive:message]) {
         avatar = [[UserManager defaultManager] avatarURL];
         isMale = [[[UserManager defaultManager] gender] isEqualToString:@"m"];
         self.avatarView.delegate = nil;
+        [self.avatarView setIsVIP:[[UserManager defaultManager] finalVip]];
         self.avatarView.userId = nil;        
     }else{
         self.avatarView.delegate = self;
+        [self.avatarView setIsVIP:vip];
         
         if ([messageStat isGroup]){
             self.avatarView.userId = message.fromUserToGroup.userId;
@@ -352,6 +355,7 @@
         else{
             self.avatarView.userId = [messageStat friendId];
         }
+        
     }
     [self.avatarView setAvatarUrl:avatar gender:isMale];
 }

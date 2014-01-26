@@ -1147,6 +1147,13 @@
     return [MobClickUtils getStringValueByKey:[GameApp appLinkUmengKey] defaultValue:[GameApp appItuneLink]];
 }
 
++ (NSString*)getShareOpusWebLink
+{
+    return [MobClickUtils getStringValueByKey:@"SHARE_WEB_LINK" defaultValue:@"http://www.xiaoji.fm/opus/%@"];
+}
+
+
+
 + (int)getBuyAnswerPrice
 {
     return [MobClickUtils getIntValueByKey:@"BUY_ANSWER_PRICE" defaultValue:30];

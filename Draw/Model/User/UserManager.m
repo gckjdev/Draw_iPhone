@@ -1816,6 +1816,14 @@ qqAccessTokenSecret:(NSString*)accessTokenSecret
     return NO;
 }
 
+- (int)finalVip
+{
+    if ([self isVip] == NO)
+        return 0;
+    
+    return self.pbUser.vip;
+}
+
 - (void)setVip:(int)vip
 {
     if (self.pbUser == nil)

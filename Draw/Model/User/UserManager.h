@@ -276,6 +276,7 @@ qqAccessTokenSecret:(NSString*)accessTokenSecret
 - (BOOL)setTrySetHomeBg;
 
 - (BOOL)isVip;
+- (int)finalVip;
 
 - (void)setVip:(int)vip;
 - (void)setVipExpireDate:(int)vipExpireDate;

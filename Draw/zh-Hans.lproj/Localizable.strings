@@ -331,7 +331,7 @@
 "kSay something..." = "";
 "kShare_via_SMS" = "短信分享给朋友";
 
-"kShare_message_body" = "推荐一款好玩的iPhone/iPad画画娱乐应用［%@］，AppStore下载链接是 %@ %@";
+"kShare_message_body" = "推荐一款好玩的iPhone/iPad画画应用［%@］，AppStore下载链接是 %@ %@";
 "kShare_SingApp_message_body" = "推荐一款好玩的iPhone/iPad声音娱乐应用［%@］，可以讲故事、说笑话、唱歌等，AppStore下载链接是 %@ %@";
 
 "kEmail_subject" = "分享［%@］iPhone/iPad版";
@@ -1540,7 +1540,7 @@
 "kSortedByPrice" = "作品价格";
 "kTime" = "时间";
 "kBought" = "销量";
-"kSNSSubject" = "小吉画画美图分享";
+"kSNSSubject" = "手绘作品分享";
 "kSingSNSSubject" = "小吉大舌头作品分享";
 "kDrawAppLink" = "http://itunes.apple.com/cn/app/cai-cai-hua-hua/id513819630?mt=8";
 "kPaintVia" = "(作品来自 %@ )";
@@ -2362,7 +2362,7 @@
 
 
 "kLittleGeeFeedbackTips" = "欢迎加入小吉画画玩家QQ群:228119679, 关注官方微博 @小吉画画";
-"kLittleGeeSNSSubject" = "小吉画画美图分享";
+"kLittleGeeSNSSubject" = "手绘作品分享";
 "kLittleGeeAppLink" = "";
 "kOnlyChineseTitleAllowed" = "作品标题只允许中文字符！";
 "kOnlyEnglishTitleAllowed" = "作品标题只允许英文单词！";

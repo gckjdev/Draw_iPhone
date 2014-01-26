@@ -110,7 +110,8 @@
     AvatarView* view = [[[AvatarView alloc] initWithUrlString:targetFriend.avatar
                                                        frame:rect
                                                       gender:targetFriend.isMale
-                                                       level:targetFriend.level] autorelease];
+                                                       level:targetFriend.level
+                                                          vip:targetFriend.vip] autorelease];
     view.tag = SUBVIEW_AVATAR_TAG;
     [self.contentView addSubview:view];
     view.delegate = self;

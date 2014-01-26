@@ -345,6 +345,8 @@ typedef enum{
 + (NSSet *)getGroupTestUserIdSet;
 + (int)getMinGroupContestAward;
 
++ (NSString*)getShareOpusWebLink;
+
 + (int)getVipMonthFee;
 + (int)getVipYearFee;
 

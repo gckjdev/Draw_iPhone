@@ -274,7 +274,7 @@
     return self;
 }
 
-- (id)initWithUrlString:(NSString *)urlString type:(AvatarType)aType gender:(BOOL)gender level:(int)level;
+- (id)initWithUrlString:(NSString *)urlString type:(AvatarType)aType gender:(BOOL)gender level:(int)level vip:(int)vip
 {
     
     self = [super initWithFrame:AVATAR_VIEW_FRAME];
@@ -320,7 +320,7 @@
 }
 
 
-- (id)initWithUrlString:(NSString *)urlString frame:(CGRect)frame gender:(BOOL)gender level:(int)level;
+- (id)initWithUrlString:(NSString *)urlString frame:(CGRect)frame gender:(BOOL)gender level:(int)level vip:(int)vip
 {
     self = [super initWithFrame:frame];    
     if (self) {
@@ -348,7 +348,7 @@
 
 - (id)initWithFrame:(CGRect)frame user:(PBGameUser *)user
 {
-    AvatarView *av = [self initWithUrlString:user.avatar frame:frame gender:user.gender level:user.level];
+    AvatarView *av = [self initWithUrlString:user.avatar frame:frame gender:user.gender level:user.level vip:user.vip];
     av.user = user;
 //    PPDebug(@"<AvatarView> initWithFrame, addr = %@", av);
     return av;

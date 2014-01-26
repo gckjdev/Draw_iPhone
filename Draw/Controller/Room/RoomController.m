@@ -230,7 +230,7 @@
     for (int i = imageStartTag; i <= imageEndTag; i++) {
         int holderViewTag = i-imageStartTag+AVATAR_HOLDER_VIEW_TAG_OFFSET;
         UIView* holderView = [self.view viewWithTag:holderViewTag];
-        AvatarView* avatarView = [[AvatarView alloc] initWithUrlString:@"" frame:holderView.frame gender:NO level:0];
+        AvatarView* avatarView = [[AvatarView alloc] initWithUrlString:@"" frame:holderView.frame gender:NO level:0 vip:0];
         [avatarView setAsSquare];
         avatarView.tag = i;
         [avatarView setImage:nil];

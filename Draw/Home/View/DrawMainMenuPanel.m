@@ -248,7 +248,11 @@
 - (void)addAvatarInPage:(NSInteger)page
 {
     UserManager *me = [UserManager defaultManager];
-    AvatarView *av = [[AvatarView alloc] initWithUrlString:nil frame:CGRectMake(0, 0, AVATAR_SIZE.width, AVATAR_SIZE.height) gender:[me gender] level:[me level]];
+    AvatarView *av = [[AvatarView alloc] initWithUrlString:nil
+                                                     frame:CGRectMake(0, 0, AVATAR_SIZE.width, AVATAR_SIZE.height)
+                                                    gender:[me gender]
+                                                     level:[me level]
+                                                       vip:[me isVip]];
     
     [self.scrollView insertSubview:av atIndex:0];
     av.delegate = self;

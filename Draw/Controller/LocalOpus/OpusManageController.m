@@ -522,10 +522,11 @@ typedef enum {
 {
     NSString* text = @"";
     text = [ShareAction createShareText:opus.pbOpus.name
-                            desc:opus.pbOpus.desc
-                      opusUserId:[[UserManager defaultManager] userId]
-                      userGender:[[UserManager defaultManager] isUserMale]
-                         snsType:type];
+                                   desc:opus.pbOpus.desc
+                             opusUserId:[[UserManager defaultManager] userId]
+                             userGender:[[UserManager defaultManager] isUserMale]
+                                snsType:type
+                                 opusId:opus.pbOpus.opusId];
 
     NSString* imagePath = [opus localImageURLString]; // .pbOpus.localImageUrl;
     

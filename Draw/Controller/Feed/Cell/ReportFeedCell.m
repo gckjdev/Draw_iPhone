@@ -94,6 +94,7 @@
     [self.avatarView setUrlString:avatar];
     [self.avatarView setUserId:userId];
     [self.avatarView setGender:gender];
+    [self.avatarView setIsVIP:feed.feedUser.vip];
 
     //name
     if ([feed isMyFeed]) {

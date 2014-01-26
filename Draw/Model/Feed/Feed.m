@@ -50,7 +50,8 @@
                                             nickName:pbFeed.nickName 
                                               avatar:pbFeed.avatar 
                                               gender:pbFeed.gender
-                                           signature:pbFeed.signature];
+                                           signature:pbFeed.signature
+                                                 vip:pbFeed.vip];
         
         
     }

@@ -137,6 +137,7 @@
               avatar:(NSString *)avatar 
               gender:(BOOL)gender
            signature:(NSString *)signature
+                 vip:(int)vip
         drawImageUrl:(NSString *)drawImageUrl 
               pbDraw:(PBDraw *)pbDraw 
             wordText:(NSString *)wordText
@@ -150,7 +151,8 @@
                                             nickName:nickName 
                                               avatar:avatar 
                                               gender:gender
-                                           signature:signature];
+                                           signature:signature
+                                                 vip:vip];
         self.wordText = wordText;
         self.contestId = contestId;
         [self setTimeList:timesArray];

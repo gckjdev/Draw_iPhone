@@ -20,7 +20,8 @@
                                                   nickName:pbFeed.targetUserNickName
                                                     avatar:nil
                                                     gender:YES
-                                                 signature:pbFeed.signature];
+                                                 signature:pbFeed.signature
+                                                       vip:pbFeed.vip];
         }
     }
     return self;

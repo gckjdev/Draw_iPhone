@@ -419,7 +419,7 @@
     int i = 0;
     float edge = (avatarHolderView.frame.size.width - MAX_NUM_AVATAR*WIDTH_AVATAR - (MAX_NUM_AVATAR-1)*DISTANCE_BETWEEN_AVATAR) / 2;
     for (GameSessionUser *user in userList) {
-        AvatarView *aView = [[AvatarView alloc] initWithUrlString:[user userAvatar] frame:frame gender:user.gender level:user.level];
+        AvatarView *aView = [[AvatarView alloc] initWithUrlString:[user userAvatar] frame:frame gender:user.gender level:user.level vip:0];
         aView.delegate = self;
         [aView setUserId:user.userId];
 
@@ -452,7 +452,7 @@
     DrawGameService* drawService = [DrawGameService defaultService];
     GameSessionUser* user = [[drawService session] getUserByUserId:userId];
     
-    AvatarView *aView = [[AvatarView alloc] initWithUrlString:[user userAvatar] frame:self.avatarView.bounds gender:user.gender level:user.level];
+    AvatarView *aView = [[AvatarView alloc] initWithUrlString:[user userAvatar] frame:self.avatarView.bounds gender:user.gender level:user.level vip:0];
     [aView setAvatarSelected:NO level:user.level];
     [avatarView addSubview:aView];
     [aView release];

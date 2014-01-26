@@ -153,7 +153,7 @@
     
     
     PBGameUser *user = [detail getUser];
-    self.avatarView = [[[AvatarView alloc] initWithUrlString:[user avatar] frame:self.avatarHolderView.bounds gender:user.gender level:user.level] autorelease];
+    self.avatarView = [[[AvatarView alloc] initWithUrlString:[user avatar] frame:self.avatarHolderView.bounds gender:user.gender level:user.level vip:user.vip] autorelease];
     _avatarView.delegate = self;
     _avatarView.layer.borderWidth = 0;
     [_avatarView setIsVIP:NO];

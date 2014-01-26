@@ -224,12 +224,8 @@ typedef enum{
             
         case RankTypeRecommend:
         case RankTypeNew:
-            return [CellManager getLastStyleCellHeightWithIndexPath:indexPath];
-            break;
-            
         default:
-            return 0;
-            break;
+            return [CellManager getLastStyleCellHeightWithIndexPath:indexPath];
     }
     
 //    if (isSingApp()){
