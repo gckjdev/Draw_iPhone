@@ -53,5 +53,10 @@
     [[self getBGView] setImageWithURL:imageURL placeholderImage:image];
 }
 
+- (void)setBGImageURLWithDefaultPlaceHolder:(NSURL *)imageURL
+{
+        UIImage* defaultImage = [[ShareImageManager defaultManager] drawBGImage];
+    [self setBGImageURL:imageURL placeholder:defaultImage];
+}
 
 @end

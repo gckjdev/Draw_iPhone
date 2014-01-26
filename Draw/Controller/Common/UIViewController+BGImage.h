@@ -13,6 +13,7 @@
 - (UIImageView *)bgImageView;
 - (void)setBGImage:(UIImage *)image;
 - (void)setBGImageURL:(NSURL *)imageURL;
+- (void)setBGImageURLWithDefaultPlaceHolder:(NSURL *)imageURL;
 - (void)setBGImageURL:(NSURL *)imageURL placeholder:(UIImage *)image;
 - (void)setDefaultBGImage;
 @end

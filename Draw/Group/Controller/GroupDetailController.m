@@ -413,7 +413,7 @@ typedef enum{
     
     //update bg image view.
     if (_group.bgImageURL) {
-        [[self bgImageView] setImageWithURL:_group.bgImageURL];
+        [self setBGImageURLWithDefaultPlaceHolder:_group.bgImageURL];
     }else{
         [self setDefaultBGImage];
     }

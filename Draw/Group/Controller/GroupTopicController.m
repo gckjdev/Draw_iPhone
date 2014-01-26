@@ -209,7 +209,7 @@ typedef enum {
     [self updateFooterView];
     [self.dataTableView reloadData];
     if (_group.bgImageURL) {
-        [self setBGImageURL:_group.bgImageURL];
+        [self setBGImageURLWithDefaultPlaceHolder:_group.bgImageURL];
     }else{
         [self setDefaultBGImage];
     }
