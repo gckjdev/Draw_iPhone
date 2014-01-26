@@ -320,6 +320,8 @@
             else{
                 POSTMSG2(@"获取VIP会员资格失败，请马上联系客服支持解决问题（可到官方论坛直接反馈）", 3);
             }
+            
+            [self viewDidAppear:NO];
         }];
         
     }else{
