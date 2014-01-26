@@ -23,6 +23,18 @@
 
 @implementation PurchaseVipController
 
++ (void)enter:(UIViewController*)fromController
+{
+    if ([PPConfigManager isInReviewVersion]){
+        POSTMSG(NSLS(@"kTaskVipUnderDev"));
+        return;
+    }
+    
+    PurchaseVipController* vc = [[PurchaseVipController alloc] init];
+    [fromController.navigationController pushViewController:vc animated:YES];
+    [vc release];
+}
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];

@@ -2512,6 +2512,11 @@
 "kSelectFromUserPhoto" = "从图库选择";
 /*********************图库国际化字符串结束 ************************/
 
+"kTaskVip" = "成为VIP会员";
+"kTaskVipDesc" = "加入VIP会员，支持小吉";
+"kTaskVipUnderDev" = "VIP会员功能正在开发中，敬请期待";
+
+
 "kTaskCheckIn" = "每日签到";
 "kTaskCheckInDesc" = "每日签到可以随机获得金币";
 

@@ -32,4 +32,6 @@
 - (IBAction)clickBuyMonth:(id)sender;
 - (IBAction)clickBuyYear:(id)sender;
 
++ (void)enter:(UIViewController*)fromController;
+
 @end

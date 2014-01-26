@@ -2528,6 +2528,11 @@
 "kSelectFromUserPhoto" = "從圖庫選擇";
 /*********************图库国际化字符串结束 ************************/
 
+// TODO 繁体
+"kTaskVip" = "成为VIP会员";
+"kTaskVipDesc" = "加入VIP会员，支持小吉";
+"kTaskVipUnderDev" = "VIP会员功能正在开发中，敬请期待";
+
 "kTaskCheckIn" = "每日簽到";
 "kTaskCheckInDesc" = "每日簽到可以隨機獲得金幣";
 

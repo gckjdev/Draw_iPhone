@@ -2496,6 +2496,10 @@
 /*********************图库国际化字符串结束 ************************/
 
 
+"kTaskVip" = "Become VIP";
+"kTaskVipDesc" = "Become our VIP users";
+"kTaskVipUnderDev" = "VIP feature is under development, please wait a bit";
+
 "kTaskCheckIn" = "Check In";
 "kTaskCheckInDesc" = "Check in everyday";
 
