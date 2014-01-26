@@ -20,6 +20,7 @@
 #import "WordFilterService.h"
 #import "Group.pb.h"
 #import "GroupPermission.h"
+#import "UIViewController+BGImage.h"
 
 @interface CreatePostController ()
 {
@@ -374,10 +375,11 @@
 
 - (void)customBbsBg
 {
-    UIImage* image = [[UserManager defaultManager] bbsBackground];
-    if (image) {
-        [self.bgImageView setImage:image];
-    }
+    [self setDefaultBGImage];
+//    UIImage* image = [[UserManager defaultManager] bbsBackground];
+//    if (image) {
+//        [self.bgImageView setImage:image];
+//    }
 }
 
 - (void)viewDidLoad

@@ -11,6 +11,7 @@
 #import "DeviceDetection.h"
 #import "AccountService.h"
 #import <QuartzCore/QuartzCore.h>
+#import "Item.h"
 #define VIEW_HEIGHT [DeviceDetection isIPAD] ? 70 : 35
 #define VIEW_WDITH [DeviceDetection isIPAD] ? 40 : 20
 
@@ -73,7 +74,14 @@
             return imageManager.showEraserImage;
         case Pencil:
             default:
-            return imageManager.showPencilPenImage;
+        {
+            UIImage *image = [Item showPenImageForType:type];
+            if (image == nil) {
+                return imageManager.showPencilPenImage;
+            }
+            return image;
+        }
+            
     }
     
 }

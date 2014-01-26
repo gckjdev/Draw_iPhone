@@ -254,7 +254,7 @@
 
 + (float)getCellHeight
 {
-    return ([DeviceDetection isIPAD]?1721:776);
+    return ([DeviceDetection isIPAD]?1770:800);
 }
 
 + (NSString*)getCellIdentifier
@@ -639,7 +639,7 @@
     
     [self.nickNameLabel setText:pbUser.nickName];
     
-    CGSize constrainedSize = ISIPAD ? CGSizeMake(468, 45) : CGSizeMake(185, 19);
+    CGSize constrainedSize = ISIPAD ? CGSizeMake(440, 45) : CGSizeMake(170, 19);
     [self.nickNameLabel wrapTextWithConstrainedSize:constrainedSize];
     [self.nickNameLabel updateCenterX:self.center.x];
     [self.nickNameLabel updateCenterY:self.genderImageView.center.y];
@@ -651,9 +651,6 @@
     originX -= (CGRectGetWidth(self.vipFlag.bounds) + (ISIPAD?6:3));
     [self.vipFlag updateOriginX:originX];
     self.vipFlag.hidden = (_detail.getUser.vip == 0);
-#ifdef DEBUG
-    self.vipFlag.hidden = NO;
-#endif
 }
 
 - (void)clickNickNameLabel{
@@ -687,35 +684,42 @@
 
 - (void)updateGroupInfo
 {
+    
+    [self.inviteGuestButton setBackgroundImage:[UIImage imageNamed:@"user_detail_button@2x.png"] forState:UIControlStateNormal];
+    [self.inviteGuestButton setTitleColor:COLOR_BROWN forState:UIControlStateNormal];
+    
+    [self.inviteMemberButton setBackgroundImage:[UIImage imageNamed:@"user_detail_button@2x.png"] forState:UIControlStateNormal];
+    [self.inviteMemberButton setTitleColor:COLOR_BROWN forState:UIControlStateNormal];
+    
+    [self.groupName setTextColor:self.noSNSTipsLabel.textColor];
+    [self.groupName setFont:self.noSNSTipsLabel.font];
+
+    
+    NSString *myGroupId = [[GroupManager defaultManager] userCurrentGroupId];
+    GroupPermissionManager *gpm = [GroupPermissionManager myManagerWithGroupId:myGroupId];
+
     if (![[self.detail getUser] hasGroupInfo]) {
+        [self.groupName setText:NSLS(@"kNoJoinGroup")];
         //not a member
-        self.groupIcon.hidden = self.groupName.hidden = YES;
-        NSString *myGroupId = [[GroupManager defaultManager] userCurrentGroupId];
-        GroupPermissionManager *gpm = [GroupPermissionManager myManagerWithGroupId:myGroupId];
-        self.inviteGuestButton.hidden = self.inviteMemberButton.hidden = ![gpm canInviteUser];
-        self.groupName.hidden = [gpm canInviteUser];
         
-        if (self.groupName.hidden == NO) {
-            [self.groupName setText:NSLS(@"kNoJoinGroup")];
-            [self.groupName setTextColor:self.noSNSTipsLabel.textColor];
-            [self.groupName setFont:self.noSNSTipsLabel.font];
+        self.groupIcon.hidden = YES;
+        self.inviteGuestButton.hidden = self.inviteMemberButton.hidden = ![gpm canInviteUser];
+        if (![gpm canInviteUser]) {
             [self.groupName updateCenterX:CGRectGetMidX(self.noSNSTipsLabel.frame)];
             [self.groupName setTextAlignment:NSTextAlignmentCenter];
             [self.groupName disableTapTouch];
-        }else{
-            [self.inviteGuestButton setBackgroundImage:[UIImage imageNamed:@"user_detail_button@2x.png"] forState:UIControlStateNormal];
-            [self.inviteGuestButton setTitleColor:COLOR_BROWN forState:UIControlStateNormal];
-
-            [self.inviteMemberButton setBackgroundImage:[UIImage imageNamed:@"user_detail_button@2x.png"] forState:UIControlStateNormal];
-            [self.inviteMemberButton setTitleColor:COLOR_BROWN forState:UIControlStateNormal];            
         }
         
     }else{
         //is member
         PBSimpleGroup *group = [[self.detail getUser] groupInfo];
         self.groupName.hidden = self.groupIcon.hidden = NO;
-        self.inviteGuestButton.hidden = self.inviteMemberButton.hidden = YES;
+        self.inviteGuestButton.hidden = ![gpm canInviteGuest] || [[UserManager defaultManager] isMe:_detail.getUserId];
+        
+        [self.inviteGuestButton updateCenterX:CGRectGetMidX(self.contentView.bounds)];
 
+        self.inviteMemberButton.hidden = YES;
+        [self.groupName setText:group.groupName];
         [self.groupIcon setGroupId:group.groupId];
         [self.groupIcon setImageURL:[NSURL URLWithString:group.groupMedal] placeholderImage:[GroupUIManager defaultGroupMedal]];
         __block typeof (self) cp = self;
@@ -724,13 +728,15 @@
             [cp enterGroup];
         }];
         
-        [self.groupName setText:group.groupName];
-        [self.groupName setTextColor:self.noSNSTipsLabel.textColor];
-        [self.groupName setFont:self.noSNSTipsLabel.font];
         [self.groupName setTextAlignment:NSTextAlignmentLeft];
         CGFloat x = CGRectGetMaxX(self.groupIcon.frame) + CGRectGetWidth(self.groupIcon.frame)/4;
         [self.groupName updateOriginX:x];
         [self.groupName enableTapTouch:self selector:@selector(handleTapOnGroupName:)];
+    }
+    if (self.inviteGuestButton.hidden) {
+        CGFloat centerY = (CGRectGetMidY(self.seperator2.frame)+CGRectGetMidY(self.seperator5.frame)) / 2;
+        [self.groupName updateCenterY:centerY];
+        [self.groupIcon updateCenterY:centerY];
     }
 }
 

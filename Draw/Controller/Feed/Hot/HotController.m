@@ -20,6 +20,7 @@
 #import "MKBlockActionSheet.h"
 #import "BBSPermissionManager.h"
 #import "UINavigationController+UINavigationControllerAdditions.h"
+#import "PurchaseVipController.h"
 //#import "SingHotCell.h"
 //#import "NSArray+Ext.h"
 #import "CellManager.h"
@@ -136,6 +137,11 @@ typedef enum{
     if ([tab.dataList count] == 0) {
         [self showCachedFeedList:tabID];
     }
+    if (tabID == RankTypeVIP && ![[UserManager defaultManager] isVip]) {
+        [self setRightButtonVipInfo];
+    }else{
+        [self setRightButtonRefresh];
+    }
     [super clickTabButton:sender];
     
 }
@@ -176,6 +182,26 @@ typedef enum{
     
     PPDebug(@"HotController viewDidLoad done!");
  
+}
+
+
+- (void)clickVipInfo:(id)sender
+{
+    [PurchaseVipController enter:self];
+}
+
+- (void)setRightButtonVipInfo
+{
+    [self.titleView setRightButtonTitle:NSLS(@"kUpgradeVIP")];
+    [self.titleView setRightButtonSelector:@selector(clickVipInfo:)];
+    [self.hotRankSettingButton setHidden:YES];
+}
+
+- (void)setRightButtonRefresh
+{
+    [self.hotRankSettingButton setHidden:NO];
+    [self.titleView setRightButtonAsRefresh];
+    [self.titleView setRightButtonSelector:@selector(clickRefreshButton:)];
 }
 
 - (void)viewDidUnload

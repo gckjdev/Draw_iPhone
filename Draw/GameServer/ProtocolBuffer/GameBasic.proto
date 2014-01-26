@@ -265,7 +265,8 @@ message PBMessageStat {
   optional bool   friendGender = 5;
   
   optional bool   isGroup = 6[default=false];   // 是否是群用户
-  
+  optional int32   isVip = 7[default=0];     // is VIP user
+
   // latest message info
   optional string messageId = 10;
   required string from = 11;

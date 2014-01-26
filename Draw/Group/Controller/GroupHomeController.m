@@ -560,13 +560,13 @@
     }
 }
 
-- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {                          
+- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
+    [super tableView:tableView willDisplayCell:cell forRowAtIndexPath:indexPath];
     if([self isNoDataCell:cell] || ![self isGroupTab:self.currentTabID]){
-        cell.backgroundColor = [UIColor clearColor];
+        cell.backgroundColor = [UIColor clearColor];        
         return;
     }
     cell.backgroundColor = (indexPath.row & 0x1)? COLOR_GRAY : COLOR_WHITE;
-    [super tableView:tableView willDisplayCell:cell forRowAtIndexPath:indexPath];
 }
 
 - (void)groupCell:(GroupCell *)cell goFollowGroup:(PBGroup *)group

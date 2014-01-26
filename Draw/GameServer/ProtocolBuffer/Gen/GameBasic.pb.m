@@ -8178,6 +8178,7 @@ static PBMessage* defaultPBMessageInstance = nil;
 @property (retain) NSString* friendAvatar;
 @property BOOL friendGender;
 @property BOOL isGroup;
+@property int32_t isVip;
 @property (retain) NSString* messageId;
 @property (retain) NSString* from;
 @property (retain) NSString* to;
@@ -8244,6 +8245,13 @@ static PBMessage* defaultPBMessageInstance = nil;
 - (void) setIsGroup:(BOOL) value {
   isGroup_ = !!value;
 }
+- (BOOL) hasIsVip {
+  return !!hasIsVip_;
+}
+- (void) setHasIsVip:(BOOL) value {
+  hasIsVip_ = !!value;
+}
+@synthesize isVip;
 - (BOOL) hasMessageId {
   return !!hasMessageId_;
 }
@@ -8328,6 +8336,7 @@ static PBMessage* defaultPBMessageInstance = nil;
     self.friendAvatar = @"";
     self.friendGender = NO;
     self.isGroup = NO;
+    self.isVip = 0;
     self.messageId = @"";
     self.from = @"";
     self.to = @"";
@@ -8401,6 +8410,9 @@ static PBMessageStat* defaultPBMessageStatInstance = nil;
   if (self.hasIsGroup) {
     [output writeBool:6 value:self.isGroup];
   }
+  if (self.hasIsVip) {
+    [output writeInt32:7 value:self.isVip];
+  }
   if (self.hasMessageId) {
     [output writeString:10 value:self.messageId];
   }
@@ -8457,6 +8469,9 @@ static PBMessageStat* defaultPBMessageStatInstance = nil;
   }
   if (self.hasIsGroup) {
     size += computeBoolSize(6, self.isGroup);
+  }
+  if (self.hasIsVip) {
+    size += computeInt32Size(7, self.isVip);
   }
   if (self.hasMessageId) {
     size += computeStringSize(10, self.messageId);
@@ -8581,6 +8596,9 @@ static PBMessageStat* defaultPBMessageStatInstance = nil;
   if (other.hasIsGroup) {
     [self setIsGroup:other.isGroup];
   }
+  if (other.hasIsVip) {
+    [self setIsVip:other.isVip];
+  }
   if (other.hasMessageId) {
     [self setMessageId:other.messageId];
   }
@@ -8657,6 +8675,10 @@ static PBMessageStat* defaultPBMessageStatInstance = nil;
       }
       case 48: {
         [self setIsGroup:[input readBool]];
+        break;
+      }
+      case 56: {
+        [self setIsVip:[input readInt32]];
         break;
       }
       case 82: {
@@ -8798,6 +8820,22 @@ static PBMessageStat* defaultPBMessageStatInstance = nil;
 - (PBMessageStat_Builder*) clearIsGroup {
   result.hasIsGroup = NO;
   result.isGroup = NO;
+  return self;
+}
+- (BOOL) hasIsVip {
+  return result.hasIsVip;
+}
+- (int32_t) isVip {
+  return result.isVip;
+}
+- (PBMessageStat_Builder*) setIsVip:(int32_t) value {
+  result.hasIsVip = YES;
+  result.isVip = value;
+  return self;
+}
+- (PBMessageStat_Builder*) clearIsVip {
+  result.hasIsVip = NO;
+  result.isVip = 0;
   return self;
 }
 - (BOOL) hasMessageId {

@@ -13,6 +13,7 @@
 #import "UserDetailViewController.h"
 #import "ViewUserDetail.h"
 #import "PPConfigManager.h"
+#import "PurchaseVipController.h"
 
 #define SHOW_ALL_TAGS ([PPConfigManager showAllPainterTags])
 
@@ -147,6 +148,25 @@ typedef enum{
     return [TopPlayerView getHeight] + 1;
 }
 
+
+- (void)clickVipInfo:(id)sender
+{
+    [PurchaseVipController enter:self];
+}
+
+- (void)setRightButtonVipInfo
+{
+    [self.titleView setRightButtonTitle:NSLS(@"kUpgradeVIP")];
+    [self.titleView setRightButtonSelector:@selector(clickVipInfo:)];
+}
+
+- (void)setRightButtonRefresh
+{
+    [self.titleView setRightButtonAsRefresh];
+    [self.titleView setRightButtonSelector:@selector(clickRefreshButton:)];
+}
+
+
 #pragma mark delegate
 
 - (NSInteger)tabCount
@@ -189,5 +209,15 @@ typedef enum{
 {
     TopPlayer *player = topPlayerView.topPlayer;
     [UserDetailViewController presentUserDetail:[ViewUserDetail viewUserDetailWithUserId:player.userId avatar:player.avatar nickName:player.nickName] inViewController:self];
+}
+
+- (void)clickTab:(NSInteger)tabID
+{
+    [super clickTab:tabID];
+    if (tabID == PainterTypeVIP && ![[UserManager defaultManager] isVip]) {
+        [self setRightButtonVipInfo];
+    }else{
+        [self setRightButtonRefresh];
+    }
 }
 @end

@@ -11,6 +11,7 @@
 #import "FeedService.h"
 #import "ShowFeedController.h"
 #import "UseItemScene.h"
+#import "CellManager.h"
 
 @interface GroupFeedController ()
 
@@ -89,6 +90,9 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    
+    return [CellManager getTimelineStyleCell:tableView indexPath:indexPath delegate:self dataList:self.tabDataList];
+/*
     FeedCell *cell = [tableView dequeueReusableCellWithIdentifier:[FeedCell getCellIdentifier]];
     if (cell == nil) {
         cell  = [FeedCell createCell:self];
@@ -96,10 +100,10 @@
 
     }
     Feed *feed = [self feedAtIndexPath:indexPath];
-    [feed updateDesc]; 
+    [feed updateDesc];
     [cell setCellInfo:feed];
-
     return cell;
+*/ 
 }
 
 - (NSString *)noDataTips
