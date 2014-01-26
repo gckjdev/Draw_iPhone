@@ -10,6 +10,7 @@
 #import "UIImageView+WebCache.h"
 #import "GroupTopicController.h"
 #import "ImagePlayer.h"
+#import "GroupUIManager.h"
 
 
 @interface IconView()
@@ -131,7 +132,8 @@
                                  displayActionButton:YES
                                     onViewController:[self theViewController]];
         }else{
-            [[ImagePlayer defaultPlayer] playWithImage:self.imageView.image onViewController:[self theViewController]];            
+            UIImage *image = [GroupUIManager defaultGroupMedal];
+            [[ImagePlayer defaultPlayer] playWithImage:image onViewController:[self theViewController]];            
         }
     }else{
         [super clickView:sender];
