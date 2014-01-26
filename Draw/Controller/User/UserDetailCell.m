@@ -648,7 +648,7 @@
     CGFloat originX = self.nickNameLabel.frame.origin.x - (ISIPAD ? 4:2) - self.genderImageView.frame.size.width;
     [self.genderImageView updateOriginX:originX];
 
-    originX -= (CGRectGetWidth(self.vipFlag.bounds) + (ISIPAD?6:3));
+    originX -= (CGRectGetWidth(self.vipFlag.bounds));
     [self.vipFlag updateOriginX:originX];
     self.vipFlag.hidden = (_detail.getUser.vip == 0);
 }
@@ -699,16 +699,17 @@
     GroupPermissionManager *gpm = [GroupPermissionManager myManagerWithGroupId:myGroupId];
 
     if (![[self.detail getUser] hasGroupInfo]) {
-        [self.groupName setText:NSLS(@"kNoJoinGroup")];
         //not a member
+        
+        [self.groupName setText:NSLS(@"kNoJoinGroup")];
+        [self.groupName updateCenterX:CGRectGetMidX(self.noSNSTipsLabel.frame)];
+        [self.groupName setTextAlignment:NSTextAlignmentCenter];
+        [self.groupName disableTapTouch];
+
+
         
         self.groupIcon.hidden = YES;
         self.inviteGuestButton.hidden = self.inviteMemberButton.hidden = ![gpm canInviteUser];
-        if (![gpm canInviteUser]) {
-            [self.groupName updateCenterX:CGRectGetMidX(self.noSNSTipsLabel.frame)];
-            [self.groupName setTextAlignment:NSTextAlignmentCenter];
-            [self.groupName disableTapTouch];
-        }
         
     }else{
         //is member
