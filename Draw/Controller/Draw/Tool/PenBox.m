@@ -45,23 +45,29 @@
 
 #define NUMBER_PER_ROW 5
 
+#define PEN_SPACE_Y (ISIPAD?25:12)
+
+
 - (void)updateView
 {
     ItemType *list = [[UserGameItemManager defaultManager] boughtPenTypeList];
     NSInteger i = 0;
 
+    CGFloat y = 0;
     while (list != NULL && *list != ItemTypeListEndFlag) {
         UIButton *button = [self buttonWithPenType:*list];
         [self addSubview:button];
         [button updateOriginX: ((i%NUMBER_PER_ROW) * BUTTON_SIZE)];
-        [button updateOriginY: ((i/NUMBER_PER_ROW) * BUTTON_SIZE)];
-
+        NSInteger row = (i/NUMBER_PER_ROW);
+        y = row*(BUTTON_SIZE + PEN_SPACE_Y);
+        [button updateOriginY: y];
         ++ i;
         ++ list;
     }
     [self updateWidth:(BUTTON_SIZE * MIN(i,NUMBER_PER_ROW))];
     NSInteger row = (i/NUMBER_PER_ROW) + !!(i%NUMBER_PER_ROW);
-    [self updateHeight:row*BUTTON_SIZE];
+    CGFloat height = y+BUTTON_SIZE;
+    [self updateHeight:height];
 }
 
 + (id)createViewWithdelegate:(id)delegate
