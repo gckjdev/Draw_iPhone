@@ -684,28 +684,30 @@
 
 - (void)updateGroupInfo
 {
+    
+    [self.inviteGuestButton setBackgroundImage:[UIImage imageNamed:@"user_detail_button@2x.png"] forState:UIControlStateNormal];
+    [self.inviteGuestButton setTitleColor:COLOR_BROWN forState:UIControlStateNormal];
+    
+    [self.inviteMemberButton setBackgroundImage:[UIImage imageNamed:@"user_detail_button@2x.png"] forState:UIControlStateNormal];
+    [self.inviteMemberButton setTitleColor:COLOR_BROWN forState:UIControlStateNormal];
+    
+    [self.groupName setTextColor:self.noSNSTipsLabel.textColor];
+    [self.groupName setFont:self.noSNSTipsLabel.font];
+
+    
     NSString *myGroupId = [[GroupManager defaultManager] userCurrentGroupId];
     GroupPermissionManager *gpm = [GroupPermissionManager myManagerWithGroupId:myGroupId];
 
     if (![[self.detail getUser] hasGroupInfo]) {
+        [self.groupName setText:NSLS(@"kNoJoinGroup")];
         //not a member
-        self.groupIcon.hidden = self.groupName.hidden = YES;
-        self.inviteGuestButton.hidden = self.inviteMemberButton.hidden = ![gpm canInviteUser];
-        self.groupName.hidden = [gpm canInviteUser];
         
-        if (self.groupName.hidden == NO) {
-            [self.groupName setText:NSLS(@"kNoJoinGroup")];
-            [self.groupName setTextColor:self.noSNSTipsLabel.textColor];
-            [self.groupName setFont:self.noSNSTipsLabel.font];
+        self.groupIcon.hidden = YES;
+        self.inviteGuestButton.hidden = self.inviteMemberButton.hidden = ![gpm canInviteUser];
+        if (![gpm canInviteUser]) {
             [self.groupName updateCenterX:CGRectGetMidX(self.noSNSTipsLabel.frame)];
             [self.groupName setTextAlignment:NSTextAlignmentCenter];
             [self.groupName disableTapTouch];
-        }else{
-            [self.inviteGuestButton setBackgroundImage:[UIImage imageNamed:@"user_detail_button@2x.png"] forState:UIControlStateNormal];
-            [self.inviteGuestButton setTitleColor:COLOR_BROWN forState:UIControlStateNormal];
-
-            [self.inviteMemberButton setBackgroundImage:[UIImage imageNamed:@"user_detail_button@2x.png"] forState:UIControlStateNormal];
-            [self.inviteMemberButton setTitleColor:COLOR_BROWN forState:UIControlStateNormal];            
         }
         
     }else{
@@ -716,13 +718,8 @@
         
         [self.inviteGuestButton updateCenterX:CGRectGetMidX(self.contentView.bounds)];
 
-        if (self.inviteGuestButton.hidden) {
-            CGFloat centerY = (CGRectGetMidY(self.seperator2.frame)+CGRectGetMidY(self.seperator5.frame)) / 2;
-            [self.groupName updateCenterY:centerY];
-            [self.groupIcon updateCenterY:centerY];
-        }
         self.inviteMemberButton.hidden = YES;
-
+        [self.groupName setText:group.groupName];
         [self.groupIcon setGroupId:group.groupId];
         [self.groupIcon setImageURL:[NSURL URLWithString:group.groupMedal] placeholderImage:[GroupUIManager defaultGroupMedal]];
         __block typeof (self) cp = self;
@@ -731,13 +728,15 @@
             [cp enterGroup];
         }];
         
-        [self.groupName setText:group.groupName];
-        [self.groupName setTextColor:self.noSNSTipsLabel.textColor];
-        [self.groupName setFont:self.noSNSTipsLabel.font];
         [self.groupName setTextAlignment:NSTextAlignmentLeft];
         CGFloat x = CGRectGetMaxX(self.groupIcon.frame) + CGRectGetWidth(self.groupIcon.frame)/4;
         [self.groupName updateOriginX:x];
         [self.groupName enableTapTouch:self selector:@selector(handleTapOnGroupName:)];
+    }
+    if (self.inviteGuestButton.hidden) {
+        CGFloat centerY = (CGRectGetMidY(self.seperator2.frame)+CGRectGetMidY(self.seperator5.frame)) / 2;
+        [self.groupName updateCenterY:centerY];
+        [self.groupIcon updateCenterY:centerY];
     }
 }
 
