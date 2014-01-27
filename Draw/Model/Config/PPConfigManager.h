@@ -349,5 +349,7 @@ typedef enum{
 
 + (int)getVipMonthFee;
 + (int)getVipYearFee;
++ (NSString*)getVipYearTaobaoURL;
++ (NSString*)getVipMonthTaobaoURL;
 
 @end

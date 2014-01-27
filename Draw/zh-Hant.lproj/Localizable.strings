@@ -2530,15 +2530,15 @@
 
 // TODO 繁体
 
-"kBuyVip" = "购买会员";
-"kVip" = "会员";
+"kBuyVip" = "購買會員";
+"kVip" = "會員";
 "kIsNotVip" = "否";
 "kIsVip" = "VIP至%@";
-"kVipExpire" = "已于%@过期";
+"kVipExpire" = "已於%@過期";
 
-"kTaskVip" = "成为VIP会员";
-"kTaskVipDesc" = "加入VIP会员，支持小吉";
-"kTaskVipUnderDev" = "VIP会员功能正在开发中，敬请期待";
+"kTaskVip" = "成為VIP會員";
+"kTaskVipDesc​​" = "加入VIP會員，支持小吉";
+"kTaskVipUnderDev" = "VIP會員功能正在開發中，敬請期待";
 
 "kTaskCheckIn" = "每日簽到";
 "kTaskCheckInDesc" = "每日簽到可以隨機獲得金幣";

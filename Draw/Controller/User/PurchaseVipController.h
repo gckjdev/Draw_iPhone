@@ -29,6 +29,8 @@
 @property (retain, nonatomic) IBOutlet UILabel *purchaseYearLabel;
 @property (retain, nonatomic) IBOutlet UILabel *purchaseMonthLabel;
 
+@property (retain, nonatomic) NSString* currentProductId;
+
 - (IBAction)clickBuyMonth:(id)sender;
 - (IBAction)clickBuyYear:(id)sender;
 

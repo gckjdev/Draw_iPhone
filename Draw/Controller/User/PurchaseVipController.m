@@ -16,6 +16,14 @@
 #import "NotificationName.h"
 #import "TimeUtils.h"
 #import "UILabel+Touchable.h"
+#import "TaoBaoController.h"
+
+#define PRODUCT_ID_BUY_VIP_MONTH    @"PRODUCT_BUY_VIP_MONTH"
+#define PRODUCT_ID_BUY_VIP_YEAR     @"PRODUCT_BUY_VIP_YEAR"
+
+#define VIP_BUY_TYPE_MONTH 1
+#define VIP_BUY_TYPE_YEAR  2
+
 
 @interface PurchaseVipController ()
 
@@ -174,6 +182,7 @@
 }
 
 - (void)dealloc {
+    [_currentProductId release];
     [_purchaseDescLabel release];
     [_featureLabel1 release];
     [_featureLabel2 release];
@@ -293,9 +302,35 @@
     
 }
 
-- (void)handlePayFailure:(NSString*)alipayProductId
+- (void)pushTaobao:(NSString *)taobaoUrl
 {
-    POSTMSG(@"支付未成功或被取消");    
+    TaoBaoController *controller = [[TaoBaoController alloc] initWithURL:taobaoUrl title:NSLS(@"kTaoBaoChargeTitle")];
+    [self.navigationController pushViewController:controller animated:YES];
+    [controller release];
+}
+
+
+- (NSString*)getTaobaoURL:(NSString*)productId
+{
+    if ([productId isEqualToString:PRODUCT_ID_BUY_VIP_YEAR]){
+        return [PPConfigManager getVipYearTaobaoURL];
+    }
+    else{
+        return [PPConfigManager getVipMonthTaobaoURL];
+    }
+}
+
+- (void)handlePayFailure:(NSString*)alipayProductId
+{    
+    CommonDialog* dialog = [CommonDialog createDialogWithTitle:@"温馨提示"
+                                                       message:@"支付宝支付被取消或者失败了，到官方淘宝店购买吧？"
+                                                         style:CommonDialogStyleDoubleButton];
+    
+    [dialog setClickOkBlock:^(id view){
+        [self pushTaobao:[self getTaobaoURL:self.currentProductId]];
+    }];
+    
+    [dialog showInView:self.view];
 }
 
 - (void)handleAlipayCallBack:(NSNotification *)note
@@ -318,13 +353,14 @@
             [self hideActivity];            
             if (resultCode == ERROR_SUCCESS){
                 POSTMSG(@"已成功购买VIP会员资格");
+
+                [self viewDidAppear:NO];
+                [self updateBuyVipCount];
             }
             else{
                 POSTMSG2(@"获取VIP会员资格失败，请马上联系客服支持解决问题（可到官方论坛直接反馈）", 3);
             }
             
-            [self viewDidAppear:NO];
-            [self updateBuyVipCount];
         }];
         
     }else{
@@ -369,11 +405,6 @@
     return order;
 }
 
-#define PRODUCT_ID_BUY_VIP_MONTH    @"PRODUCT_BUY_VIP_MONTH"
-#define PRODUCT_ID_BUY_VIP_YEAR     @"PRODUCT_BUY_VIP_YEAR"
-
-#define VIP_BUY_TYPE_MONTH 1
-#define VIP_BUY_TYPE_YEAR  2
 
 - (int)getTypeByProductId:(NSString*)pid
 {
@@ -387,6 +418,8 @@
 
 - (IBAction)clickBuyMonth:(id)sender
 {
+    self.currentProductId = PRODUCT_ID_BUY_VIP_MONTH;
+    
     int amount = [PPConfigManager getVipMonthFee];
     NSString* nick = @""; //[[UserManager defaultManager] nickName];
     NSString* name = [NSString stringWithFormat:@"小吉VIP会员包月（%d元/月），谢谢%@对小吉的热心支持！", amount, nick];
@@ -397,12 +430,14 @@
 
 - (IBAction)clickBuyYear:(id)sender
 {
+    self.currentProductId = PRODUCT_ID_BUY_VIP_YEAR;
+
     int amount = [PPConfigManager getVipYearFee];
     NSString* nick = @""; //[[UserManager defaultManager] nickName];
     NSString* name = [NSString stringWithFormat:@"小吉VIP会员包年（%d元/年），谢谢%@对小吉的热心支持！", amount, nick];
     
     AlixPayOrder* order = [self createOrder:amount productId:PRODUCT_ID_BUY_VIP_YEAR productName:name];
-    [self alipayForOrder:order];    
+    [self alipayForOrder:order];
 }
 
 - (void)updateBuyVipCount

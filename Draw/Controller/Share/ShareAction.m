@@ -345,6 +345,8 @@
         link = [NSString stringWithFormat:[PPConfigManager getShareOpusWebLink], opusId];
     }
     
+    link = @"";
+    
     if (isDrawByMe){
         if ([desc length] > 0) {
             text = [NSString stringWithFormat:[GameApp shareMyOpusWithDescText], desc, snsOfficialNick, word, [PPConfigManager getSNSShareSubject], link];
