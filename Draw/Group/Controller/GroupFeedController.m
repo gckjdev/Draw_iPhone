@@ -38,6 +38,7 @@
 {
     [super viewDidLoad];
     [self.titleView setTitle:NSLS(@"kGroupTimeline")];
+    self.view.backgroundColor = [UIColor whiteColor];
 }
 
 - (void)didReceiveMemoryWarning

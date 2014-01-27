@@ -254,7 +254,7 @@
 
 + (float)getCellHeight
 {
-    return ([DeviceDetection isIPAD]?1770:800);
+    return ([DeviceDetection isIPAD]?1770:820);
 }
 
 + (NSString*)getCellIdentifier
