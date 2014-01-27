@@ -511,7 +511,7 @@
     [self setContentInset:self.contentInset];
     
     if (_isVIP) {
-        if (_vipFlag.superview == self && self.superview != nil) {
+        if (self.superview != nil) {
             CGFloat width = CGRectGetWidth(self.bounds)/3.82;
             CGFloat height = CGRectGetHeight(self.bounds)/3.82;
             CGFloat y = CGRectGetHeight(self.bounds) - height;
@@ -531,6 +531,7 @@
 }
 - (void)setIsVIP:(BOOL)isVIP
 {
+    isVIP = (isVIP != 0);
     _isVIP = isVIP;
     if (_vipFlag == nil && isVIP) {
         [self showVip];

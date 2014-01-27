@@ -423,10 +423,16 @@
     else{
         
     }
-
     [self updateSendingFlag:message];
+    [self setNeedsLayout];
 }
 
+
+- (void)layoutSubviews
+{
+    [super layoutSubviews];
+    [self.avatarView setNeedsLayout];
+}
 
 #pragma mark action
 
