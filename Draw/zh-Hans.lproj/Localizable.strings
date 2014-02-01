@@ -2614,7 +2614,10 @@
 
 "kContestNotStart" = "未开始";
 "kContestOutOfTime" = "已结束";
-"kLeftDays" = "还剩%d天";
+"kLeftDays" = "还有%d天";
+"kLeftHours" = "还有%d小时";
+"kLeftMins" = "还有%d分钟";
+
 
 "kNoGroupContest" = "暂无家族比赛";
 "kCreate" = "创建";

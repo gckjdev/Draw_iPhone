@@ -2630,7 +2630,9 @@
 
 "kContestNotStart" = "未開始";
 "kContestOutOfTime" = "已結束";
-"kLeftDays" = "還剩%d天";
+"kLeftDays" = "還有%d天";
+"kLeftHours" = "還有%d小時";
+"kLeftMins" = "還有%d分鐘";
 
 "kNoGroupContest" = "暫無家族比賽";
 "kCreate" = "創建";

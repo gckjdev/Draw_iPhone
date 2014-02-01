@@ -122,7 +122,8 @@
 - (BOOL) isOpusType
 {
     return (self.feedType == FeedTypeDraw) || (self.feedType == FeedTypeDrawToUser)
-    || (self.feedType == FeedTypeSing || self.feedType == FeedTypeSingToUser);
+    || (self.feedType == FeedTypeSing) || (self.feedType == FeedTypeSingToUser)
+    || (self.feedType == FeedTypeSingContest) || (self.feedType == FeedTypeDrawToContest);
 }
 
 - (BOOL)isDrawCategory

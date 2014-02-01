@@ -2598,7 +2598,9 @@
 
 "kContestNotStart" = "Pending";
 "kContestOutOfTime" = "Over";
-"kLeftDays" = "left %d days";
+"kLeftDays" = "%d days left";
+"kLeftHours" = "%d hours left";
+"kLeftMins" = "%d minutes left";
 
 "kNoGroupContest" = "No Group Contest";
 "kCreate" = "Create";

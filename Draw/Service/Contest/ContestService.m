@@ -343,6 +343,10 @@ static ContestService *_staticContestService;
             continue;
         }
         
+        if ([contest category] != [GameApp getCategory]){
+            continue;
+        }
+        
         if ([self hasContestAccept:contest.contestId] == NO){
             count ++;
         }
