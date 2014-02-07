@@ -12,6 +12,7 @@
 #import "UserManager.h"
 #import "UIUtils.h"
 #import "FeedManager.h"
+#import "StringUtil.h"
 
 #define KEY_GUESS_DIFF_LEVEL    @"KEY_GUESS_DIFF_LEVEL"
 #define KEY_CHAT_VOICE_ENABLE   @"KEY_CHAT_VOICE_ENABLE"
@@ -160,9 +161,9 @@
 + (NSString*)getMessageServerURL
 {
 #ifdef DEBUG
-//    return @"http://58.215.184.18:8699/api/i?";
+    return @"http://58.215.184.18:8699/api/i?";
     //    return @"http://localhost:8100/api/i?";
-    return @"http://192.168.1.12:8100/api/i?";
+//    return @"http://192.168.1.12:8100/api/i?";
 #endif
 
     return [MobClickUtils getStringValueByKey:@"MESSAGE_SERVER_URL" defaultValue:@"http://www.place100.com:8100/api/i?"];
@@ -183,8 +184,8 @@
 + (NSString*)getGroupServerURL
 {
 #ifdef DEBUG
-    return @"http://192.168.1.12:8100/api/i?";
-    //    return @"http://58.215.184.18:8699/api/i?";
+//    return @"http://192.168.1.12:8100/api/i?";
+    return @"http://58.215.184.18:8699/api/i?";
 //    return @"http://192.168.100.192:8100/api/i?";
 //    return @"http://localhost:8100/api/i?";
 #endif
@@ -1071,11 +1072,13 @@
 }
 
 #define ALIPAY_PARTNER @"2088901423555415"
-#define ALIPAY_SELLER  ALIPAY_PARTNER
+#define ALIPAY_SELLER  @"gckjdev@sina.com" // ALIPAY_PARTNER
 
 #define ALIPAY_RSA_PRIVATE_KEY @"MIICdgIBADANBgkqhkiG9w0BAQEFAASCAmAwggJcAgEAAoGBAL5KqMc4AL1URSC327Qy85E/iqBVaHD/ZPEyqKCJzImrytIiEECLbHqM6Yb9ZzApln0LppDRaXvViS4Z/59PJwewca0gvkwkc+HeyEe6jdrAgDNuTgxvGAgT9wyTIGynmqt5CMeZn15TOQpZ+xW9kf1ELWHeaygYpshcdAKMYnoxAgMBAAECgYBZue53cWq322J1GPyZrWS32lRNYbhLf8FjEdX9TLyLNdv+1V0Acj2GU6dRpW7ggNuavsGdi4DHiVqTyGKGBdaKsrtXR94BA7sOxWUWJxUppaKY2HLCDjOcHK2c4iFJKcnKK9BlTZGFmF7XDyN2APAy0+rD5tHaGtjY2n+T5aD1gQJBAPBXsKwrdqwUQxep/2JJ2cfrBbmthhOGy9ePqZm+8fv5fJ9qfmDXbYHbsXBiadLrnusI8tVKs8gjmZyZ7EmEuVkCQQDKsD7vTWvMaIvnDAchNtNmqXAWQIGT+CPDCrS96j3SbNfrHCXQsNnjTgJ1TDcJ/u3dGOdPVF9VPj5YhvFi4tSZAkEAwe7gPmzr2zqWULf5vMO+mVSJUCQ2tfbk8NGZlte+xwWvi6sQwu/SCyDM8tRWc71whFK6L2WR4ALp5rVFNqWEMQJAXyEfOKOGr7Z1yygLBJy91ZY6xEbcSj2RU05oDCavg16QbImWef83FIcdgj4WKvvaWgYBMmtwHwsKqfQTwQyjKQJAO2PMKq5Z7BulxRT80S0lzgcTvgrnY0XJ6eqOyEdadDctd4/0623L951EzG4ZP0zf4ftsQ+kbNK5NNY84z+2qOw=="
 
-#define ALIPAY_ALIPAY_PUBLIC_KEY @"MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCRlOD4Xgor5mSAovA978ZQMMkIPGE5GYGRTxnF k1puI3N/EXwgiijARIxJs23psCI59vMxcE95lmVo0kyHBG9idAiC9/UebKSUJRGNpmrVa3SXk4Ca APH9fzo8HeagqfwldW0jbhBiiObG/yUb/PCexSw7QK4l7LwmJfekBBxGQQIDAQAB"
+//#define ALIPAY_ALIPAY_PUBLIC_KEY @"MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCRlOD4Xgor5mSAovA978ZQMMkIPGE5GYGRTxnF k1puI3N/EXwgiijARIxJs23psCI59vMxcE95lmVo0kyHBG9idAiC9/UebKSUJRGNpmrVa3SXk4Ca APH9fzo8HeagqfwldW0jbhBiiObG/yUb/PCexSw7QK4l7LwmJfekBBxGQQIDAQAB"
+
+#define ALIPAY_ALIPAY_PUBLIC_KEY   @"MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCnxj/9qwVfgoUh/y2W89L6BkRAFljhNhgPdyPuBV64bfQNN1PjbCzkIM6qRdKBoLPXmKKMiFYnkd6rAoprih3/PrQEB/VsW8OoM8fxn67UDYuyBTqA23MML9q1+ilIZwBC2AQ2UBVOrFXfFl75p6/B5KsiNG9zpgmLCUYuLkxpLQIDAQAB"
 
 
 + (NSString *)getAlipayPartner
@@ -1109,7 +1112,11 @@
 
 + (NSString *)getAlipayNotifyUrl
 {
-    return [MobClickUtils getStringValueByKey:@"ALI_PAY_NOTIFY_URL" defaultValue:@"http://www.xxx.com"];
+    NSString* url = @"http://www.xxx.com"; //@"http://www.you100.me:9879/alipay/api?m1=notify";
+    url = [url encodedURLParameterString];
+    
+    return [MobClickUtils getStringValueByKey:@"ALI_PAY_NOTIFY_URL"
+                                 defaultValue:url];
 }
 
 + (NSString *)getLastAppVersion
@@ -1376,4 +1383,10 @@
     
     return GET_UMENG_INTVAL(@"GROUP_CONTEST_MIN_TOTAL_AWARD", 5000);
 }
+
++ (int)getMinGroupContestAward
+{
+    return GET_UMENG_INTVAL(@"MIN_GROUP_CONTEST_AWARD", 5000);
+}
+
 @end

@@ -130,12 +130,20 @@ enum{
     BADGE_COMMENT = 1,
     BADGE_REQUEST = 2,
     BADGE_NOTICE = 3,
+    BADGE_CHAT = 4,
+    BADGE_CONTEST = 5
 };
 
 - (NSInteger)totalBadge
 {
+    return _noticeBadge + _commentBadge + _requestBadge + _chatBadge + _contestBadge;
+}
+
+- (NSInteger)atMeBadge
+{
     return _noticeBadge + _commentBadge + _requestBadge;
 }
+
 
 - (void)updateBadges:(NSArray *)badges
 {
@@ -150,6 +158,12 @@ enum{
                 break;
             case BADGE_NOTICE:
                 self.noticeBadge = kv.value;
+                break;
+            case BADGE_CHAT:
+                self.chatBadge = kv.value;
+                break;
+            case BADGE_CONTEST:
+                self.contestBadge = kv.value;
                 break;
             default:
                 break;
@@ -287,8 +301,7 @@ enum{
     
     PBGroupUsersByTitle *ut = [builder build];
     [builder release];
-    
-    [[[GroupManager defaultManager] tempMemberList] addObject:ut];
+    [[[GroupManager defaultManager] tempMemberList] addObject:ut];    
 }
 + (PBGroup *)updateGroup:(PBGroup *)group medalImageURL:(NSString *)url{
     PBGroup_Builder *builder = [PBGroup builderWithPrototype:group];
@@ -470,25 +483,29 @@ enum{
 
 - (NSString *)userCurrentGroupId
 {
-    NSArray * list = [GroupPermissionManager groupRoles];
-    
-    NSArray *intRoles = @[@(GroupRoleCreator),
-                          @(GroupRoleAdmin),
-                          @(GroupRoleMember)
-                          ];
-    
-    for (NSNumber* roleType in intRoles){
-        // 按照顺序，优先匹配权限
-        for (PBGroupUserRole *role in list) {
-            if (role.role == [roleType intValue]) {
-                PPDebug(@"current user groupId is %@ name %@", role.groupId, role.groupName);
-                return role.groupId;
+    @synchronized(self){
+        
+        NSArray * list = [GroupPermissionManager groupRoles];
+        
+        NSArray *intRoles = @[@(GroupRoleCreator),
+                              @(GroupRoleAdmin),
+                              @(GroupRoleMember)
+                              ];
+        
+        for (NSNumber* roleType in intRoles){
+            // 按照顺序，优先匹配权限
+            for (PBGroupUserRole *role in list) {
+                if (role.role == [roleType intValue]) {
+                    PPDebug(@"current user groupId is %@ name %@", role.groupId, role.groupName);
+                    return role.groupId;
+                }
             }
         }
+
+        PPDebug(@"current user groupId not found");
+        return nil;
     }
 
-    PPDebug(@"current user groupId not found");
-    return nil;
 }
 
 - (PBGroup*)userCurrentGroup

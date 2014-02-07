@@ -805,6 +805,14 @@
 "kItemTypeGrid" = "Network Grid";
 "kItemTypeGridDesc" = "A Network grid show when you are drawing, make it easy to aline";
 
+"Android Standard Canvas (Horizontal)" = "Android Standard Canvas (Horizontal)";
+"Android Standard Canvas (Vertical)" = "Android Standard Canvas (Vertical)";
+"Contest Billboard Canvas" = "Contest Billboard Canvas";
+
+"Android Canvas(H)" = "Android Canvas(H)";
+"Android Canvas(V)" = "Android Canvas(V)";
+"Billboard" = "Billboard";
+
 "kSquareCanvasLarge" = "Square Canvas(L)";
 "kSquareCanvasLargeDesc" = "A Large Square Canvas of size 1024*1024, including zone in and zone out feature, make drawing more funny.";
 
@@ -2150,10 +2158,11 @@
 "kTypeAcceptMemberInvitationDesc" = "%@ agreed to join %@.";
 "kTypeAcceptGuestInvitationDesc" = "%@ agreed to be the guest of %@.";
 "kTypeChargeGroupDesc" = "%@ charged %@ %d coins";
-"kTypeTransferGroupBalanceDesc" = "%@, from %@, transfered %d coins to %@";
+"kTypeTransferGroupBalanceDesc" = "%@, from %@, transfered %d coins to %@.";
+"kTypeDeductGroupFeeMonthlyDesc" = "Deducted %@ %d coins for monthly fee.";
+"kTypeDeductGroupFeeMonthlyFailDesc" = "%@ is not enough for monthly fee, charge for it please.";
 
-
-"kGroupDetailRowWeath" = "Fame: %d  Level: %d  Balance: %ld";
+"kGroupDetailRowWeath" = "Level: %d  Balance: %ld";
 "kGroupDetailRowCreateDate" = "Create date %@";
 "kGroupDetailRowDesc" = "Description: %@";
 "kGroupDetailRowFee" = "Fee: %d coins/month";
@@ -2546,6 +2555,9 @@
 "kEndDateCannotBeforeStartDate" = "End date can not after start date";
 "kCannotCreateContestPleaseJoinGroupFirst" = "Please join group first";
 
+"kAllGroupContest" = "All Group Contest";
+"kMyGroupContest" = "Group Contest";
+
 "kContestNotStart" = "Pending";
 "kContestOutOfTime" = "Over";
 "kLeftDays" = "left %d days";
@@ -2556,6 +2568,14 @@
 "kCreatingContest" = "Creating contest";
 "kCreatingContestFail" = "Create contest fail";
 "kCreateContestSuccess" = "Create contest success";
+"kContestTotalAwardNotEnough" = "Total contest award should be at least %d coins";
+"kGroupBalanceNotEnoughForContest" = "Current group balance is %d coins, not enough for contest total award (%d coins)";
+
+"kUpdatingContest" = "Updating contest";
+"kUpdateContestFail" = "Update contest fail";
+"kUpdateContestSuccess" = "Update contest success";
+"kCannotUpdateStartContest" = "Contest has started, cannot edit contest";
+
 "kJoinContest" = "Join";
 "kUpdateContestFail" = "Update contest fail";
 "kUpdateContestSuccess" = "Update contest success";
@@ -2563,3 +2583,7 @@
 "kVotingTimeIs" = "Voting: ";
 "kContestTotalAwardLargeThanGroupBalance" = "Contest total award %d is large than group balance %d";
 "kContestTotalAwardLessThan" = "Contest total award can not be less than %d";
+
+"kContestingTimeIs" = "Submission: %@";
+"kVotingTimeIs" = "Vote: %@";
+

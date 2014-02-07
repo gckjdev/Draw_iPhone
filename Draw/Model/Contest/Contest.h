@@ -92,4 +92,8 @@ typedef enum{
 - (BOOL)isContesting;
 - (BOOL)isOver;
 
++ (int)getMinGroupContestAward;
+- (BOOL)checkTotalAward;
+- (int)totalAward;
+
 @end

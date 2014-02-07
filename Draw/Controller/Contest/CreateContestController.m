@@ -21,6 +21,8 @@
 #import "IQKeyBoardManager.h"
 #import "UIButton+WebCache.h"
 #import "CropAndFilterViewController.h"
+#import "GameNetworkConstants.h"
+#import "UIViewController+BGImage.h"
 
 @interface CreateContestController ()<CKCalendarDelegate, UITextFieldDelegate>
 
@@ -67,10 +69,10 @@
         NSString *groupId = [[GroupManager defaultManager] userCurrentGroupId];
         self.contest = [Contest createGroupContestWithGroupId:groupId];
 
-        [self.contest setAwardRules:@[@(2000), @(1000), @(500), @(100), @(100),
-                                    @(100),  @(100),  @(100),  @(100), @(100),
-                                    @(100),  @(100),  @(100),  @(100), @(100),
-                                    @(100),  @(100),  @(100),  @(100), @(100)]];
+        [self.contest setAwardRules:@[@(5000), @(2000), @(1000), @(300), @(300),
+                                    @(300),  @(300),  @(300),  @(300), @(300),
+                                    @(300),  @(300),  @(300),  @(300), @(300),
+                                    @(300),  @(300),  @(300),  @(300), @(300)]];
         
         self.isNewContest = YES;
     }
@@ -100,6 +102,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     [IQKeyBoardManager enableKeyboardManger];
+    [self setDefaultBGImage];
     
     CommonTitleView *v = [CommonTitleView createTitleView:self.view];
     if (self.isNewContest) {
@@ -122,12 +125,12 @@
     self.contestAwardLabel.text = NSLS(@"kContestAward");
     
     
-    UIToolbar* numberToolbar = [[UIToolbar alloc]initWithFrame:CGRectMake(0, 0, 320, 50)];
+    UIToolbar* numberToolbar = [[[UIToolbar alloc]initWithFrame:CGRectMake(0, 0, 320, 50)] autorelease];
     numberToolbar.barStyle = UIBarStyleBlackTranslucent;
     numberToolbar.items = [NSArray arrayWithObjects:
 //                           [[UIBarButtonItem alloc]initWithTitle:NSLS(@"kCancel") style:UIBarButtonItemStyleBordered target:self action:@selector(cancelNumberPad)],
-                           [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil],
-                           [[UIBarButtonItem alloc]initWithTitle:NSLS(@"kDone") style:UIBarButtonItemStyleDone target:self.contestDescTextView action:@selector(resignFirstResponder)],
+                           [[[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil] autorelease],
+                           [[[UIBarButtonItem alloc]initWithTitle:NSLS(@"kDone") style:UIBarButtonItemStyleDone target:self.contestDescTextView action:@selector(resignFirstResponder)] autorelease],
                            nil];
     [numberToolbar sizeToFit];
     self.contestDescTextView.inputAccessoryView = numberToolbar;
@@ -198,11 +201,15 @@
     [self.endTimeButton setTitle:endDateString forState:UIControlStateNormal];
     
     
-    self.calendar = [[CKCalendarView alloc] initWithStartDay:startMonday];
+    self.calendar = [[[CKCalendarView alloc] initWithStartDay:startMonday] autorelease];
     self.calendar.delegate = self;
     self.calendar.onlyShowCurrentMonth = YES;
     self.calendar.adaptHeightToNumberOfWeeksInMonth = YES;
-    self.calendar.frame = CGRectMake(10, 10, 300, 320);
+    if (ISIPAD) {
+        self.calendar.frame = CGRectMake(134, 134, 500, 500);
+    }else{
+        self.calendar.frame = CGRectMake(10, 10, 300, 320);        
+    }
 
     [self.calendar updateCenterY:CGRectGetHeight(self.view.bounds)/2];
     
@@ -220,6 +227,7 @@
         NSURL *url = [NSURL URLWithString:[self.contest contestUrl]];
         [self.contestImageButton setImageWithURL:url forState:UIControlStateNormal];
     }
+
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField{
@@ -248,18 +256,16 @@
         return;
     }
     
-    int totalAward = [self.contest totalAward];
-    int groupBalance = [[[GroupManager defaultManager] sharedGroup] balance];
-    if (groupBalance < totalAward) {
-        
-        NSString *msg = [NSString stringWithFormat:NSLS(@"kContestTotalAwardLargeThanGroupBalance"), totalAward, groupBalance];
+    if ([self.contest checkTotalAward] == NO){
+        NSString* msg = [NSString stringWithFormat:NSLS(@"kContestTotalAwardNotEnough"), [Contest getMinGroupContestAward]];
         POSTMSG2(msg, 2);
         return;
     }
-    
-    int minTotalAward = [PPConfigManager getGroupContestMinTotalAward];
-    if (totalAward < minTotalAward) {
-        NSString *msg = [NSString stringWithFormat:NSLS(@"kContestTotalAwardLessThan"), minTotalAward];
+
+    int groupBalance = [[GroupManager defaultManager] sharedGroup].balance;
+    int totalAward = [self.contest totalAward];
+    if (totalAward > groupBalance){
+        NSString* msg = [NSString stringWithFormat:NSLS(@"kGroupBalanceNotEnoughForContest"), groupBalance, totalAward];
         POSTMSG2(msg, 2);
         return;
     }
@@ -267,12 +273,12 @@
     [self.contest setTitle:self.contestNameInputField.text];
     [self.contest setDesc:self.contestDescTextView.text];
     
-    [self showActivityWithText:NSLS(@"kCreatingContest")];
     
     CommonTitleView *titleView = [CommonTitleView titleView:self.view];
     [titleView hideRightButton];
     
     if (self.isNewContest) {
+        [self showActivityWithText:NSLS(@"kCreatingContest")];
         [[ContestService defaultService] createContest:self.contest
                                                  image:self.image
                                              completed:^(int resultCode, Contest *contest) {
@@ -281,26 +287,31 @@
             [titleView showRightButton];
 
             if (resultCode != 0) {
-                POSTMSG2(NSLS(@"kCreatingContestFail"), 2);
+                 POSTMSG2(NSLS(@"kCreatingContestFail"), 2);
             }else{
-                POSTMSG2(NSLS(@"kCreateContestSuccess"), 2);
-                [self dismissViewControllerAnimated:YES completion:NULL];
-                PBGroup *pbGroup = [GroupManager incGroupBalance:[[GroupManager defaultManager] sharedGroup] amount:-totalAward];
-                [[GroupManager defaultManager] setSharedGroup:pbGroup];
-                [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_CREATE_CONTEST_SUCCESS object:nil];
+                 POSTMSG2(NSLS(@"kCreateContestSuccess"), 2);
+                 [self dismissViewControllerAnimated:YES completion:NULL];
+                 [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_CREATE_CONTEST_SUCCESS object:nil];
             }
         }];
     }else{
         
+        [self showActivityWithText:NSLS(@"kUpdatingContest")];        
         [[ContestService defaultService] updateContest:self.contest image:self.image completed:^(int resultCode, Contest *contest) {
             
             [self hideActivity];
             [titleView showRightButton];
             
-            if (resultCode != 0) {
-                POSTMSG2(NSLS(@"kCreatingContestFail"), 2);
+            if (resultCode != ERROR_SUCCESS) {
+                NSString* msg = NSLS(@"kUpdateContestFail");
+                if (resultCode == ERROR_CONTEST_CANNOT_UPDATE_AFTER_START){
+                    msg = NSLS(@"kCannotUpdateStartContest");
+                }
+
+                POSTMSG2(msg, 2);
             }else{
-                POSTMSG2(NSLS(@"kCreateContestSuccess"), 2);
+                
+                POSTMSG2(NSLS(@"kUpdateContestSuccess"), 2);
                 [self dismissViewControllerAnimated:YES completion:NULL];
                 [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_UPDATE_CONTEST_SUCCESS object:nil];
             }
@@ -387,10 +398,12 @@
 }
 
 - (IBAction)clickContestImageButton:(id)sender {
-    
-    
+        
     if (self.picker == nil) {
         self.picker = [[[ChangeAvatar alloc] init] autorelease];
+        [self.picker setImageSize:CGSizeZero];
+        [self.picker setAutoRoundRect:NO];
+        [self.picker setIsCompressImage:NO];
     }
     
     __block typeof(self) bself = self;
@@ -399,7 +412,7 @@
                        otherTitles:nil
                            handler:NULL
                 selectImageHanlder:^(UIImage *image) {
-                    
+                    PPDebug(@"<selectImageHanlder> image size = %@", NSStringFromCGSize(image.size));
                     [bself showImageEditor:image];
 //                    bself.image = image;
 //                    [bself.contestImageButton setImage:image forState:UIControlStateNormal];
@@ -412,7 +425,7 @@
 - (void)showImageEditor:(UIImage *)image{
     
     CropAndFilterViewController *vc = [[CropAndFilterViewController alloc] init];
-    [vc setCropAspectRatio:0.377];
+    [vc setCropAspectRatio:0.382];
     vc.delegate = self;
     vc.image = image;
     
@@ -441,7 +454,14 @@
     self.awardEditController = [[[ContestAwardEditController alloc] initWithContest:self.contest] autorelease];
     [self presentViewController:self.awardEditController animated:YES completion:NULL];
     
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(contestAwardHasChanged) name:NotificationContestAwardEditDone object:nil];
+    [self registerNotificationWithName:NotificationContestAwardEditDone
+                            usingBlock:^(NSNotification *note) {
+                               
+                                [self contestAwardHasChanged];
+                                
+                            }];
+    
+//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(contestAwardHasChanged) name:NotificationContestAwardEditDone object:nil];
 
 }
 
@@ -449,7 +469,8 @@
     
     [self.awardEditController dismissViewControllerAnimated:YES completion:NULL];
     [self.contestAwardButton setTitle:[self.contest awardRulesShortDesc] forState:UIControlStateNormal];
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:NotificationContestAwardEditDone object:self];
+    
+    [self unregisterNotificationWithName:NotificationContestAwardEditDone];
 }
 
 - (void)didReceiveMemoryWarning

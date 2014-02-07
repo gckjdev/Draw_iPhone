@@ -21,6 +21,7 @@
 #import "UIUtils.h"
 #import "PPMessage.h"
 #import "UserManager.h"
+#import "GroupManager.h"
 
 #define DEVICE_INFO_SEPERATOR   @"_"
 
@@ -2642,10 +2643,11 @@
 + (CommonNetworkOutput*)getStatistics:(NSString*)baseURL 
                                 appId:(NSString *)appId 
                                userId:(NSString *)userId
+                              groupId:(NSString*)groupId
 {
     CommonNetworkOutput* output = [[[CommonNetworkOutput alloc] init] autorelease];
     
-    NSString* gameId = [GameApp gameId];
+    NSString* gameId = [GameApp gameId];    
     
     ConstructURLBlock constructURLHandler = ^NSString *(NSString *baseURL) {        
         // set input parameters
@@ -2654,6 +2656,10 @@
         str = [str stringByAddQueryParameter:PARA_APPID value:appId];   
         str = [str stringByAddQueryParameter:PARA_GAME_ID value:gameId];
         str = [str stringByAddQueryParameter:PARA_USERID value:userId];
+        
+        if ([groupId length] > 0){
+            str = [str stringByAddQueryParameter:PARA_GROUPID value:groupId];
+        }
         return str;
     };
     

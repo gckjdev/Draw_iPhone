@@ -68,6 +68,14 @@ typedef enum{
 @property (nonatomic, retain) NSString * memo;
 @property (nonatomic, retain) NSString * xiaoji;
 
+@property (nonatomic, retain) NSString * groupId;
+@property (nonatomic, retain) NSString * groupName;
+@property (nonatomic, retain) NSString * groupMedal;
+
+
+- (BOOL)hasGroup;
+- (NSURL *)groupMedalURL;
+
 - (PBGameUser *)toPBUser;
 
 - (id)initWithDict:(NSDictionary *)dict;

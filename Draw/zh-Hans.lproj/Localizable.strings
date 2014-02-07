@@ -835,6 +835,15 @@
 "kItemTypeGrid" = "网格参考线";
 "kItemTypeGridDesc" = "绘画时候用网格参考线，可对准和对齐绘画元素";
 
+"Android Standard Canvas (Horizontal)" = "安卓手机标准画布（横）800*480";
+"Android Standard Canvas (Vertical)" = "安卓手机标准画布（竖）480*800";
+"Contest Billboard Canvas" = "比赛海报专用画布";
+
+"Android Canvas(H)" = "安卓标准(横)";
+"Android Canvas(V)" = "安卓标准(竖)";
+"Billboard" = "比赛海报";
+
+
 "kSquareCanvasLarge" = "正方形画布(大)";
 "kSquareCanvasLargeDesc" = "正方形画布，尺寸为1024*1024，配合放大功能，可以画的更加精细，也可以用于创作四格漫画等";
 
@@ -991,7 +1000,7 @@
 "kOpusCount" = "作品 (%d)";
 "kJoinCount" = "参加";
 
-"kContest" = "画画大赛";
+"kContest" = "比赛";
 "kRank" = "画榜";
 "kContestRank" = "比赛作品";
 "kNoRankPlayer" = "暂时没有达人榜数据。";
@@ -1445,8 +1454,8 @@
 "kQuitTaoBaoTips" = "确定要离开当前页面？";
 
 "kSelectPaymentWay" = "选择购买方式";
-"kPayViaZhiFuBao" = "使用支付宝客户端购买";
-//"kPayViaZhiFuBao" = "使用支付宝购买";
+//"kPayViaZhiFuBao" = "使用支付宝客户端购买";
+"kPayViaZhiFuBao" = "使用支付宝购买";
 "kPayViaZhiFuBaoWeb" = "使用支付宝网页购买";
 "kPayViaAppleAccount" = "使用Apple账户购买";
 
@@ -2139,7 +2148,7 @@
 //group
 
 "kCreateGroup" = "创建家族";
-"kLevelTips" = "可容纳 %d 族员\n每月需花费 %d 金币\n(首月费用在创建时扣除)";
+"kLevelTips" = "可容纳 %d 成员\n每月需花费 %d 金币\n(首月费用在创建时扣除)";
 
 
 
@@ -2185,6 +2194,9 @@
 "kTypeAcceptMemberInvitationDesc" = "%@同意加入%@。";
 "kTypeAcceptGuestInvitationDesc" = "%@成为了%@的嘉宾。";
 
+"kTypeDeductGroupFeeMonthlyDesc" = "扣除了%@%d金币作为月费.";
+"kTypeDeductGroupFeeMonthlyFailDesc" = "%@没有足够的金币支付月费，请及时充值。";
+
 "kTypeChargeGroupDesc" = "%@给%@充了%d金币。";
 "kTypeTransferGroupBalanceDesc" = "%@从%@转了%d金币给%@。";
 "kInputInvalid" = "输入不合法";
@@ -2192,7 +2204,7 @@
 "kTitleCountLimited" = "自定义职位不能超过%d，想增加职位限额请先升级群。";
 "kDeleteNotEmptyTitleError" = "删除职位之前请保证职位里没有成员了。";
 
-"kGroupDetailRowWeath" = "声望 %d  等级 %d  财富 %ld";
+"kGroupDetailRowWeath" = "等级 %d  财富 %ld";
 "kGroupDetailRowCreateDate" = "创建时间 %@";
 "kGroupDetailRowDesc" = "说明 %@";
 "kGroupDetailRowFee" = "会费 %d金币/月";
@@ -2544,6 +2556,9 @@
 "kGroupMember" = "家族成员";
 "kGroupMemberAndGuest" = "家族成员和嘉宾";
 
+"kContestTotalAwardNotEnough" = "比赛总奖金最少必须为%d金币";
+"kGroupBalanceNotEnoughForContest" = "当前家族余额不足（%d金币），比赛奖励总共需花费%d金币，请先给家族账户充值金币";
+
 "kContestNameCannotBeBlank" = "比赛名称不能为空";
 "kPleaseSelectContestImage" = "请选择一副图片作为比赛海报";
 "kCreateContestSuccess" = "成功创建比赛";
@@ -2555,6 +2570,9 @@
 "kEndDateCannotBeforeStartDate" = "结束时间不能小于开始时间";
 "kCannotCreateContestPleaseJoinGroupFirst" = "你还没有加入家族，请先加入家族后再创建比赛";
 
+"kAllGroupContest" = "所有家族比赛";
+"kMyGroupContest" = "当前家族比赛";
+
 "kContestNotStart" = "未开始";
 "kContestOutOfTime" = "已结束";
 "kLeftDays" = "还剩%d天";
@@ -2565,6 +2583,13 @@
 "kCreatingContest" = "创建比赛中...";
 "kCreatingContestFail" = "创建比赛失败";
 "kCreateContestSuccess" = "成功创建比赛";
+
+"kUpdatingContest" = "更新比赛数据中...";
+"kUpdateContestFail" = "更新比赛数据失败";
+"kUpdateContestSuccess" = "已成功更新比赛数据";
+"kCannotUpdateStartContest" = "比赛已经开始了，无法修改比赛信息";
+
+
 "kJoinContest" = "参赛";
 "kUpdateContestFail" = "更新比赛失败";
 "kUpdateContestSuccess" = "更新比赛成功";
@@ -2572,4 +2597,8 @@
 "kVotingTimeIs" = "投票时间: ";
 "kContestTotalAwardLargeThanGroupBalance" = "比赛总奖励金币为%d，大于家族金币余额%d，不能创建比赛，请调整比赛总奖励";
 "kContestTotalAwardLessThan" = "比赛总奖励不能少于%d金币，请调整比赛总奖励";
+
+
+"kContestingTimeIs" = "比赛时间: %@";
+"kVotingTimeIs" = "投票时间: %@";
 

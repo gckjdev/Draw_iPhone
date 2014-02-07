@@ -50,7 +50,7 @@ static GroupService *_staticGroupService = nil;
 - (void)loadPBData:(NSString *)method
       parameters:(NSDictionary *)parameters
         callback:(PBResponseResultBlock)callback
-{    
+{
     if(self.isTestMode){
         GameNetworkOutput* output = [PPGameNetworkRequest
                                      sendGetRequestWithBaseURL:GROUP_HOST
@@ -99,10 +99,11 @@ static GroupService *_staticGroupService = nil;
           parameters:paras
             callback:^(DataQueryResponse *response, NSError *error )
     {
-        EXECUTE_BLOCK(callback, error?nil:response.group, error);
         if (!error) {
+            [GroupPermissionManager addNewRole:[GroupPermissionManager roleForCreatorInGroup:response.group]];
             [self syncGroupRoles];
         }
+        EXECUTE_BLOCK(callback, error?nil:response.group, error);
     }];
 }
 
@@ -527,8 +528,14 @@ static GroupService *_staticGroupService = nil;
 
 - (void)getGroupBadgeWithCallback:(BadgeResultBlock)callback
 {
+    NSMutableDictionary* dict = [NSMutableDictionary dictionary];
+    NSString* groupId = [[GroupManager defaultManager] userCurrentGroupId];
+    if ([groupId length] > 0){
+        [dict setObject:groupId forKey:PARA_GROUPID];
+    }
+    
     [self loadPBData:METHOD_GET_GROUP_BADGES
-          parameters:nil
+          parameters:dict
             callback:^(DataQueryResponse *response, NSError *error)
      {
          EXECUTE_BLOCK(callback, response.badgesList, error);
@@ -615,6 +622,7 @@ static GroupService *_staticGroupService = nil;
             callback:^(DataQueryResponse *response, NSError *error) {
                 if (!error) {
                     [GroupManager didAddedGroupTitle:groupId title:title titleId:titleId];
+                    [self syncGroupRoles];
                 }
                 EXECUTE_BLOCK(callback, error);
     }];

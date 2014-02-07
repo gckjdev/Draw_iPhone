@@ -67,6 +67,8 @@
         [CommonDialog createDialogWithTitle:NSLS(@"kGifTips")
                                     message:msg
                                       style:CommonDialogStyleSingleButton];
+        
+//        POSTMSG(@"支付失败");
     }
 }
 
@@ -205,12 +207,15 @@
 
 - (void)updateTaobaoLinkView
 {
-    if (([LocaleUtils isChina] || [LocaleUtils isChinese])
-        && [PPConfigManager isInReviewVersion] == NO) {
-        self.taobaoLinkView.hidden = NO;
-    } else {
-        self.taobaoLinkView.hidden = YES;
-    }
+    self.taobaoLinkView.hidden = YES;
+    
+    
+//    if (([LocaleUtils isChina] || [LocaleUtils isChinese])
+//        && [PPConfigManager isInReviewVersion] == NO) {
+//        self.taobaoLinkView.hidden = NO;
+//    } else {
+//        self.taobaoLinkView.hidden = YES;
+//    }
 }
 
 - (IBAction)clickBackButton:(id)sender {
@@ -283,7 +288,6 @@
     }
 }
 
-
 - (void)showBuyActionSheetWithIndex:(NSIndexPath *)indexPath
 {
     MKBlockActionSheet *sheet = [[MKBlockActionSheet alloc] initWithTitle:NSLS(@"kSelectPaymentWay")
@@ -291,7 +295,7 @@
                                                         cancelButtonTitle:NSLS(@"kCancel")
                                                    destructiveButtonTitle:nil
                                                         otherButtonTitles:
-                                                                NSLS(@"kPayViaZhiFuBaoWeb"),
+                                                                //NSLS(@"kPayViaZhiFuBaoWeb"),
                                                                 NSLS(@"kPayViaZhiFuBao"),
                                                                 NSLS(@"kPayViaAppleAccount"),
                                                                 nil];
@@ -302,9 +306,9 @@
     AlixPayOrder *order = [[[AlixPayOrder alloc] init] autorelease];
     order.partner = [PPConfigManager getAlipayPartner];
     order.seller = [PPConfigManager getAlipaySeller];
-    order.tradeNO = [AlixPayOrderManager tradeNoWithProductId:product.alipayProductId];
+    order.tradeNO =  [AlixPayOrderManager tradeNoWithProductId:product.alipayProductId];
     order.productName = [NSString stringWithFormat:@"%d个%@", product.count, NSLS(product.name)];
-    order.productDescription = [NSString stringWithFormat:@"description: %@", product.desc];
+    order.productDescription = [NSString stringWithFormat:@"【产品描述】%@", product.name];
 
 #ifdef DEBUG
     order.amount = @"0.01";
@@ -319,34 +323,21 @@
     
     [sheet setActionBlock:^(NSInteger buttonIndex){
         switch (buttonIndex) {
-                /*
+
+//            case 0:
+//                // pay via zhifubao
+//                [bself alipayWebPaymentForOrder:order product:product];
+//                break;
+                
             case 0:
                 // pay via zhifubao
                 [bself alipayForOrder:order];
                 break;
-                
+
             case 1:
                 // pay via apple account
                 [bself applePayForProduct:product];
                 break;
-                 */
-
-//                /*
-            case 0:
-                // pay via zhifubao
-                [bself alipayWebPaymentForOrder:order product:product];
-                break;
-                
-            case 1:
-                // pay via zhifubao
-                [bself alipayForOrder:order];
-                break;
-
-            case 2:
-                // pay via apple account
-                [bself applePayForProduct:product];
-                break;
-//                 */
                 
             default:
                 break;
@@ -358,9 +349,10 @@
 
 - (void)alipayForOrder:(AlixPayOrder *)order
 {
-    [AliPayManager payWithOrder:order
-                      appScheme:[GameApp alipayCallBackScheme]
-                  rsaPrivateKey:[PPConfigManager getAlipayRSAPrivateKey]];
+    [[AccountService defaultService] setDelegate:self];
+    [[[AccountService defaultService] alipayManager] payWithOrder:order
+                                                        appScheme:[GameApp alipayCallBackScheme]
+                                                    rsaPrivateKey:[PPConfigManager getAlipayRSAPrivateKey]];
     
     
 }

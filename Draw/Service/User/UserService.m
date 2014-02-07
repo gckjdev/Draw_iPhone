@@ -44,7 +44,7 @@
 #import "MyPaintManager.h"
 #import "UserDeviceService.h"
 #import "GameSNSService.h"
-
+#import "GroupManager.h"
 
 @implementation UserService
 
@@ -1311,10 +1311,15 @@ POSTMSG(NSLS(@"kLoginFailure"));
     if ([userId length] == 0)
         return;
     
+    NSString* groupId = [[GroupManager defaultManager] userCurrentGroupId];
+    
     _isCallingGetStatistic = YES;
     
     dispatch_async(workingQueue, ^{
-        CommonNetworkOutput* output = [GameNetworkRequest getStatistics:TRAFFIC_SERVER_URL appId:[PPConfigManager appId] userId:userId];        
+        CommonNetworkOutput* output = [GameNetworkRequest getStatistics:TRAFFIC_SERVER_URL
+                                                                  appId:[PPConfigManager appId]
+                                                                 userId:userId
+                                                                groupId:groupId];
         
         dispatch_async(dispatch_get_main_queue(), ^{
                         
@@ -1328,6 +1333,8 @@ POSTMSG(NSLS(@"kLoginFailure"));
                 long bbsActionCount = [[output.jsonDataDict objectForKey:PARA_BBS_ACTION_COUNT] longValue];
                 long timeLineOpusCount = [[output.jsonDataDict objectForKey:PARA_TIME_LINE_OPUS_COUNT] longValue];
                 long timeLineGuessCount = [[output.jsonDataDict objectForKey:PARA_TIME_LINE_GUESS_COUNT] longValue];
+                long groupNoticeCount = [[output.jsonDataDict objectForKey:PARA_GROUP_NOTICE_COUNT] longValue];
+                
                 
                 PPDebug(@"<didGetStatistic>:feedCount = %ld, messageCount = %ld, fanCount = %ld", feedCount,messageCount,fanCount);
                 
@@ -1342,6 +1349,7 @@ POSTMSG(NSLS(@"kLoginFailure"));
                 [manager setBbsActionCount:bbsActionCount];
                 [manager setTimelineOpusCount:timeLineOpusCount];
                 [manager setTimelineGuessCount:timeLineGuessCount];
+                [manager setGroupNoticeCount:groupNoticeCount];
             }
             if (viewController && [viewController respondsToSelector:@selector(didSyncStatisticWithResultCode:)]) {
                 [viewController didSyncStatisticWithResultCode:output.resultCode];

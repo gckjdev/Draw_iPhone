@@ -205,16 +205,22 @@ typedef enum {
     if (value >= 1136) {
         return 1;
     }
-    if (value == 1024) {
+    if (value >= 1024) {
         return 0.95;
     }
-    if (value == 700) {
+    if (value >= 800) {
+        return 0.86;
+    }
+    if (value >= 700) {
         return 0.82;
     }
-    if (value <= 300) {
+    if(value >= 450){
+        return 0.72;
+    }
+    if (value >= 300) {
         return 0.7;
     }
-    return 0.6;
+    return 0.7;
 }
 
 - (CGRect)scaleRect:(CGRect)rect
@@ -272,6 +278,9 @@ typedef enum {
 
             if (CGRectGetWidth(rect) < 500) {
                 txt = [NSString stringWithFormat:@"\t\t\t%.0f x\n\t\t\t%.0f",rect.size.width, rect.size.height];
+            }
+            if(CGRectGetHeight(rect) < 300){
+                txt = [NSString stringWithFormat:@"%.0f x %.0f",rect.size.width, rect.size.height];                
             }
             
         }

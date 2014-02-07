@@ -73,6 +73,14 @@
         self.coins = [[dict objectForKey:PARA_USER_COINS] longValue];
         self.memo = [dict objectForKey:PARA_MEMO];
         self.xiaoji = [dict objectForKey:PARA_XIAOJI_NUMBER];
+        self.groupId = [dict objectForKey:PARA_GROUPID];
+        self.groupName = [dict objectForKey:PARA_GROUP_NAME];
+        self.groupMedal = [dict objectForKey:PARA_GROUP_MEDAL];
+        
+//#ifdef DEBUG
+//        self.groupName = @"MM家族啦啦啦";
+//#endif
+        
         if (self.level < 1) {
             self.level = 1;
         }
@@ -235,6 +243,9 @@
     PPRelease(_location);
     PPRelease(_memo);
     PPRelease(_xiaoji);
+    PPRelease(_groupId);
+    PPRelease(_groupName);
+    PPRelease(_groupMedal);
     
     [super dealloc];
 }
@@ -254,6 +265,24 @@
     return (type & RelationTypeFan) != 0;
 }
 
+
+- (BOOL)hasGroup
+{
+//
+//#ifdef DEBUG
+//    return YES;
+//#endif
+    
+    return [_groupId length] > 0;
+}
+
+- (NSURL *)groupMedalURL
+{
+    if ([_groupMedal length] == 0) {
+        return nil;
+    }
+    return [NSURL URLWithString:_groupMedal];
+}
 //- (NSString*)displayName
 //{
 //    if ([self.memo length] > 0){

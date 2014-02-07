@@ -135,7 +135,7 @@ NSString* GlobalGetTrafficServerURL()
 //    return @"http://192.168.1.8:8100/api/i?";
     
     
-//    return @"http://58.215.184.18:8699/api/i?";
+    return @"http://58.215.184.18:8699/api/i?";
 
 //    return @"http://58.215.184.18:8037/api/i?";
 //    return @"http://192.168.1.198:8100/api/i?";
@@ -147,7 +147,7 @@ NSString* GlobalGetTrafficServerURL()
 //    return @"http://58.215.172.169:8037/api/i?";
     
 //    return @"http://192.168.1.3:8100/api/i?";
-    return @"http://192.168.1.12:8100/api/i?";
+//    return @"http://192.168.1.12:8100/api/i?";
 #endif
     
     return [PPConfigManager getTrafficAPIServerURL];
@@ -181,6 +181,7 @@ NSString* GlobalGetBoardServerURL()
 
 - (void)dealloc
 {
+    PPRelease(_rootNavigationController);
     PPRelease(_reviewRequest);
     PPRelease(_homeController);
     PPRelease(_roomController);
@@ -350,10 +351,10 @@ NSString* GlobalGetBoardServerURL()
     PPDebug(@"<AppDelegate> notification type = %d", type);
     _homeController.notificationType = type;
     
-    MLNavigationController* navigationController = [[[MLNavigationController alloc] 
+    self.rootNavigationController = [[[MLNavigationController alloc]
                                                      initWithRootViewController:rootController] 
                                                     autorelease];
-    navigationController.navigationBarHidden = YES;
+    self.rootNavigationController.navigationBarHidden = YES;
 
     // Try Fetch User Data By Device Id
     if ([[UserManager defaultManager] hasUser] == NO){
@@ -363,9 +364,8 @@ NSString* GlobalGetBoardServerURL()
                                                           resultBlock:nil];
     }
     
-    
-
-    self.window.rootViewController = navigationController;
+        
+    self.window.rootViewController = self.rootNavigationController;
     
     // Init SNS service
 //    [self initSNSService];

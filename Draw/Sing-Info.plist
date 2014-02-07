@@ -87,5 +87,7 @@
 	<array>
 		<string>accelerometer</string>
 	</array>
+	<key>UIViewControllerBasedStatusBarAppearance</key>
+	<false/>
 </dict>
 </plist>

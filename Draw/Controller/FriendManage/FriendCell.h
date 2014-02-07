@@ -8,6 +8,8 @@
 
 #import "PPTableViewCell.h"
 #import "StableView.h"
+#import "IconView.h"
+
 typedef enum{
     FromFriendList = 1,
     FromInviteList = 2,
@@ -40,6 +42,8 @@ typedef enum{
 @property (retain, nonatomic) IBOutlet UILabel *statusLabel;
 @property (retain, nonatomic) IBOutlet UILabel* levelLabel;
 @property (retain, nonatomic) IBOutlet AvatarView *avatarView;
+@property (retain, nonatomic) IBOutlet GroupIconView *groupIcon;
+@property (retain, nonatomic) IBOutlet UILabel *groupLabel;
 
 @property (assign, nonatomic) id<FollowDelegate> followDelegate;
 @property (retain, nonatomic) MyFriend *myFriend;

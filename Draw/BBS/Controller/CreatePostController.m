@@ -525,7 +525,8 @@
 {
     self.imagePicker = [[[ChangeAvatar alloc] init] autorelease];
     [self.imagePicker setAutoRoundRect:NO];
-    [self.imagePicker setImageSize:CGSizeMake(640, 960)];
+//    [self.imagePicker setImageSize:CGSizeMake(1024, 1024)];
+//    [self.imagePicker setIsCompressImage:YES];
     [self.imagePicker showSelectionView:self
                                delegate:self
                      selectedImageBlock:nil

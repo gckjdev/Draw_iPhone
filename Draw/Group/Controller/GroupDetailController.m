@@ -726,7 +726,7 @@ typedef enum{
     CellRowPosition position = CellRowPositionMid;
     switch (row) {
         case RowWealth:{
-            text = [NSString stringWithFormat:NSLS(@"kGroupDetailRowWeath"), _group.fame,  _group.level, _group.balance];
+            text = [NSString stringWithFormat:NSLS(@"kGroupDetailRowWeath"),_group.level, _group.balance];
             
             position = CellRowPositionFirst;
             break;
@@ -824,7 +824,7 @@ typedef enum{
             [cell setCellForAdminsInGroup:_group position:position];
         }else{
             NSInteger index = row - RowMemberStart;
-            PBGroupUsersByTitle *usersByTitle;
+            PBGroupUsersByTitle *usersByTitle = nil;
             
             if (index < [self.dataList count]) {
                 usersByTitle = self.dataList[index];

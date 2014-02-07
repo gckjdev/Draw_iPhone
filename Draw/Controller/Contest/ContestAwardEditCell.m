@@ -17,11 +17,15 @@
 
 @end
 
+
+#define ACCESSORY_FRAME (ISIPAD?CGRectMake(0, 0, 768, 80):CGRectMake(0, 0, 320, 44))
+
 @implementation ContestAwardEditCell
 
 + (id)createCell:(id)delegate{
     
-    ContestAwardEditCell *cell = [super createCell:delegate];
+    ContestAwardEditCell *cell = [self createViewWithXibIdentifier:[self getCellIdentifier] ofViewIndex:ISIPAD];
+    
     cell.numberLabel.textColor = COLOR_BROWN;
     cell.coinLabel.textColor = COLOR_BROWN;
     cell.awardTextField.textColor = COLOR_ORANGE;
@@ -31,16 +35,20 @@
     cell.awardTextField.delegate = cell;
     cell.awardTextField.keyboardType = UIKeyboardTypeNumberPad;    
     
-    UIToolbar* numberToolbar = [[UIToolbar alloc]initWithFrame:CGRectMake(0, 0, 320, 50)];
+    UIToolbar* numberToolbar = [[[UIToolbar alloc]initWithFrame:ACCESSORY_FRAME] autorelease];
     numberToolbar.barStyle = UIBarStyleBlackTranslucent;
     numberToolbar.items = [NSArray arrayWithObjects:
-                           [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil],
-                           [[UIBarButtonItem alloc]initWithTitle:NSLS(@"kDone") style:UIBarButtonItemStyleDone target:cell.awardTextField action:@selector(resignFirstResponder)],
+                           [[[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil] autorelease],
+                           [[[UIBarButtonItem alloc]initWithTitle:NSLS(@"kDone") style:UIBarButtonItemStyleDone target:cell.awardTextField action:@selector(resignFirstResponder)] autorelease],
                            nil];
     [numberToolbar sizeToFit];
     cell.awardTextField.inputAccessoryView = numberToolbar;
     
-    [cell.awardTextField addTarget:cell action:@selector(awardTextFieldValueChanged:) forControlEvents:UIControlEventEditingDidEnd];
+    [cell.awardTextField addTarget:cell
+                            action:@selector(awardTextFieldValueChanged:)
+                  forControlEvents:UIControlEventEditingDidEnd];
+    
+    cell.delegate = delegate;
     
     return cell;
 }
@@ -65,7 +73,7 @@
 
 + (float)getCellHeight{
     
-    return 44;
+    return ISIPAD?88:44;
 }
 
 - (void)setRank:(NSString *)rank award:(int)award{

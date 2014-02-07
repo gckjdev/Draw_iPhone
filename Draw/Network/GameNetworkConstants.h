@@ -559,6 +559,7 @@
 #define PARA_ROOM_COUNT @"rc"
 #define PARA_TIME_LINE_GUESS_COUNT @"tlgc"
 #define PARA_TIME_LINE_OPUS_COUNT @"tloc"
+#define PARA_GROUP_NOTICE_COUNT @"gnc"
 
 //friends operation
 #define PARA_TARGETUSERID   @"tid"
@@ -691,6 +692,8 @@
 #define PARA_SOURCE_TITLEID @"soruceTitleId"
 #define PARA_FEE @"fee"
 
+#define PARA_GROUP_NAME @"groupName"
+#define PARA_GROUP_MEDAL @"groupMedal"
 
 // learn draw
 #define METHOD_GET_LEARNDRAW_LIST @"gldl"
@@ -820,6 +823,7 @@
 
 #define ERROR_CONTEST_REACH_MAX_FLOWER          110006
 #define ERROR_CONTEST_EXCEED_THROW_FLOWER_DATE  110007
+#define ERROR_CONTEST_CANNOT_UPDATE_AFTER_START 110011
 
 
 #define ERROR_BALANCE_NOT_ENOUGH        70005 //change from 200002 to 70005, by Gamy, 2014.1.2. the code is just used at the client.

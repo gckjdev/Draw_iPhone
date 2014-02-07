@@ -58,6 +58,7 @@
                 _taskStatusLabel.text = NSLS(@"kTaskToBeTaken");
             }
             _awardButton.hidden = YES;
+            [_taskStatusLabel setTextColor:COLOR_ORANGE];
             break;
             
         case PBTaskStatusTaskStatusAward:
@@ -76,6 +77,7 @@
             [_badgeView setNumber:0];
             _taskStatusLabel.text = NSLS(@"kTaskWaitForStart");
             _awardButton.hidden = YES;
+            [_taskStatusLabel setTextColor:COLOR_ORANGE];
             break;
             
         case PBTaskStatusTaskStatusDone:

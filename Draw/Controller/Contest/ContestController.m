@@ -27,6 +27,7 @@
 #import "GroupPermission.h"
 #import "ContestCell.h"
 #import "GroupTopicController.h"
+#import "UIViewController+BGImage.h"
 
 typedef enum{
     TabTypeOfficial = 1,
@@ -126,7 +127,6 @@ typedef enum{
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [self initTabButtons];
     
     SET_VIEW_BG(self.view);
     [self initCustomPageControl];
@@ -138,18 +138,30 @@ typedef enum{
     [self hideTips];
     
     if (_groupContestOnly) {
-        self.officialButton.hidden = YES;
-        self.groupButton.hidden = YES;
+        
+        if (self.groupId == nil){
+            [titleView setTitle:NSLS(@"kAllGroupContest")];
+        }
+        else{
+            [titleView setTitle:NSLS(@"kMyGroupContest")];
+        }
+        
+//        self.officialButton.hidden = YES;
+//        self.groupButton.hidden = YES;
+        [self.officialButton removeFromSuperview];
+        [self.groupButton removeFromSuperview];
         
         GroupPermissionManager *permission =[GroupPermissionManager myManagerWithGroupId:self.groupId];
         if ([permission canHoldContest]) {
             [titleView setRightButtonTitle:NSLS(@"kCreate")];
             [titleView setRightButtonSelector:@selector(clickCreateButton:)];
         } ;
+        [self clickTab:TabTypeGroup];
+        [self setDefaultBGImage];
     }else{
-        
-        self.officialButton.hidden = NO;
-        self.groupButton.hidden = NO;
+        [self initTabButtons];
+//        self.officialButton.hidden = NO;
+//        self.groupButton.hidden = NO;
     }
     
     if (_groupContestOnly) {
@@ -158,9 +170,10 @@ typedef enum{
     }else{
         self.view.backgroundColor = COLOR_GRAY;
         
-        int delta = (ISIPAD ? 30 *2 : 30);
-        [self.dataTableView updateOriginY:(CGRectGetMinY(self.dataTableView.frame) + delta)];
-        [self.dataTableView updateHeight:(CGRectGetHeight(self.dataTableView.frame) - delta)];
+//        int delta = (ISIPAD ? 30 *2 : 30);
+        CGFloat y = CGRectGetMaxY(self.groupButton.frame);
+        [self.dataTableView updateOriginY:y];
+        [self.dataTableView updateHeight:(CGRectGetHeight(self.view.bounds) - y)];
     }
     
     [[ContestService defaultService] syncOngoingContestList];
@@ -485,7 +498,7 @@ typedef enum{
     [self showActivityWithText:NSLS(@"kLoading")];
 
     if ([self.groupId length] == 0) {
-        [[ContestService defaultService] getGroupContestListWithType:ContestListTypeAll offset:self.currentTab.offset limit:self.currentTab.limit completed:^(int resultCode, ContestListType type, NSArray *contestList) {
+        [[ContestService defaultService] getGroupContestListWithType:ContestListTypeAllGroup offset:self.currentTab.offset limit:self.currentTab.limit completed:^(int resultCode, ContestListType type, NSArray *contestList) {
             
             [self hideActivity];
             if (resultCode == 0) {

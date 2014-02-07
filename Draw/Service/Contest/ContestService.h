@@ -14,6 +14,8 @@ typedef enum{
     ContestListTypePassed = 1,
     ContestListTypeRunning = 2,
     ContestListTypePending = 3,
+    ContestListTypeAllGroup = 4,
+    ContestListTypeGroup = 5,
 }ContestListType;
 
 typedef void (^ CreateContestBlock) (int resultCode, Contest *contest);
@@ -80,8 +82,7 @@ typedef void (^ GetContestListBlock) (int resultCode, ContestListType type, NSAr
 
 - (void)acceptContest:(NSString*)contestId;
 - (long)newContestCount;
-
-
+- (long)newMyGroupContestCount;
 
 // 家族比赛
 - (void)createContest:(Contest *)contest

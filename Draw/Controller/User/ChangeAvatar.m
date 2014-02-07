@@ -183,22 +183,22 @@
 {
     UIImage *image = [info objectForKey:self.userOriginalImage?UIImagePickerControllerOriginalImage:UIImagePickerControllerEditedImage];
 
-    PPDebug(@"select image size = %@", NSStringFromCGSize(image.size));
+    PPDebug(@"select original image size = %@", NSStringFromCGSize(image.size));
     if (image != nil){
-        if (_superViewController)
-            
-            if (_autoRoundRect || (_imageSize.width > 0.0f && _imageSize.height > 0.0f)){
-                if (_autoRoundRect){
-                    image = [UIImage createRoundedRectImage:image size:_imageSize];
-                }
-                else{
-                    if (self.isCompressImage){
-                        image = [image imageByScalingAndCroppingForSize:_imageSize];
-                    }
-                }
+        if (_superViewController){
+            CGSize size = image.size;
+            if (_imageSize.width > 0 && _imageSize.height > 0) {
+                size = _imageSize;
             }
-
         
+            if (_autoRoundRect){
+                image = [UIImage createRoundedRectImage:image size:size];
+            }
+            else if (self.isCompressImage){
+                image = [image imageByScalingAndCroppingForSize:size];
+                PPDebug(@"compress image size = %@", NSStringFromCGSize(image.size));
+            }
+        }        
     }
 
     if (_popoverController != nil) {

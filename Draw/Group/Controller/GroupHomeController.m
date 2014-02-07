@@ -52,11 +52,17 @@
     for (int i = 0; i < count; ++ i) {
         GroupTab tab = [self tabIDforIndex:i];
         UIButton *button;
+//        CGFloat subButtonWidth = CGRectGetWidth([[UIScreen mainScreen] bounds])/[self groupSubTabCount];
+//        CGFloat subButtonX = 0;
         if ([self isSubGroupTab:tab]) {
             button = (id)[self.subTabsHolder viewWithTag:tab];
             SET_BUTTON_SQUARE_STYLE_YELLOW(button);
             [button setTitleColor:COLOR_WHITE forState:UIControlStateNormal];
-            [button setBackgroundImage:IMAGE_FROM_COLOR(COLOR_YELLOW) forState:UIControlStateSelected];
+            [button setBackgroundImage:IMAGE_FROM_COLOR(COLOR_YELLOW) forState:
+             UIControlStateSelected];
+//            [button updateWidth:subButtonWidth];
+//            [button updateOriginX:subButtonX];
+//            subButtonX += subButtonWidth;
         }else{
             button = (id)[self.tabsHolderView viewWithTag:tab];
             SET_BUTTON_AS_COMMON_TAB_STYLE(button);
@@ -87,8 +93,20 @@
 
 - (void)updateAtMeBadge
 {
-    NSInteger badge = [[GroupManager defaultManager] totalBadge];
+    NSInteger badge = [[GroupManager defaultManager] atMeBadge];
     [self.footerView setButton:GroupAtMe badge:badge];
+}
+
+- (void)updateChatBadge
+{
+    NSInteger badge = [[GroupManager defaultManager] chatBadge];
+    [self.footerView setButton:GroupChat badge:badge];
+}
+
+- (void)updateContestBadge
+{
+    NSInteger badge = [[GroupManager defaultManager] contestBadge];
+    [self.footerView setButton:GroupContest badge:badge];
 }
 
 - (void)loadBadge
@@ -97,6 +115,8 @@
         if (!error) {
             [[GroupManager defaultManager] updateBadges:badges];
             [self updateAtMeBadge];
+            [self updateChatBadge];
+            [self updateContestBadge];
         }
     }];
 }
@@ -210,7 +230,7 @@
     if([[[GroupManager defaultManager] followedGroupIds] count] > 0){
         return GroupTabGroupFollow;
     }
-    return GroupTabGroupBalance;
+    return GroupTabGroupNew;
 }
 
 #define TOPIC_TABLE_DELTA (ISIPAD?10:5)
@@ -266,7 +286,7 @@
 
 - (NSInteger)tabCount
 {
-    return 8;
+    return 7;
 }
 - (NSInteger)currentTabIndex
 {
@@ -287,9 +307,14 @@
     GroupTabGroupNew,
     GroupTabGroupBalance,
     GroupTabGroupActive,
-    GroupTabGroupFame
+    //GroupTabGroupFame
     };
     return tabs[index];
+}
+
+- (NSInteger)groupSubTabCount
+{
+    return 4;
 }
 
 - (NSString *)tabTitleforIndex:(NSInteger)index
@@ -302,7 +327,8 @@
         NSLS(@"kGroupTabGroupNew"),
         NSLS(@"kGroupTabGroupBalance"),
         NSLS(@"kGroupTabGroupActive"),
-        NSLS(@"kGroupTabGroupFame")};
+     //   NSLS(@"kGroupTabGroupFame")
+    };
     return titles[index];
 }
 

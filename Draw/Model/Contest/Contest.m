@@ -9,6 +9,7 @@
 #import "Contest.h"
 #import "GameNetworkConstants.h"
 #import "TimeUtils.h"
+#import "PPConfigManager.h"
 
 @interface Contest()
 
@@ -156,6 +157,10 @@
 - (void)setDesc:(NSString *)desc{
     
     [_pbContestBuilder setDesc:desc];
+}
+
+- (NSString*)desc{
+    return [_pbContestBuilder desc];
 }
 
 - (NSURL *)groupMedalImageUrl{
@@ -435,7 +440,7 @@
     
     [contest setJoinersType:0];
     
-    NSDate *startDate = nextDate([NSDate date]);
+    NSDate *startDate = nextNDate([NSDate date], 7);
     [contest setStartDate:startDate];
     
     NSDate *endDate = [[[NSDate alloc] initWithTimeInterval:24*3600*7 sinceDate:startDate] autorelease];
@@ -585,15 +590,6 @@
     return desc;
 }
 
-- (int)totalAward{
-    
-    int totalAward = 0;
-    for (NSNumber *award in _pbContestBuilder.awardRulesList) {
-        totalAward += award.intValue;
-    }
-    
-    return totalAward;
-}
 
 - (BOOL)isNotStart{
     
@@ -624,6 +620,33 @@
     }else{
         return NO;
     }
+}
+
++ (int)getMinGroupContestAward
+{
+    return [PPConfigManager getMinGroupContestAward];
+}
+
+- (int)totalAward
+{
+    int total = 0;
+    for (NSNumber* award in _pbContestBuilder.awardRulesList){
+        total += [award intValue];
+    }
+    PPDebug(@"total contest award is %d", total);
+    return total;
+}
+
+- (BOOL)checkTotalAward
+{
+    int total = [self totalAward];
+    if (total < [Contest getMinGroupContestAward]){
+        return NO;
+    }
+    else{
+        return YES;
+    }
+    
 }
 
 @end

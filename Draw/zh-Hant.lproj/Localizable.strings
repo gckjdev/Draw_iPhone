@@ -847,6 +847,13 @@
 "kItemTypeGrid" = "網格參考線";
 "kItemTypeGridDesc" = "繪畫時候用網格參考線，可對準和對齊繪畫元素";
 
+"Android Standard Canvas (Horizo​​ntal)" = "安卓手機標準畫布（橫）800*480";
+"Android Standard Canvas (Vertical)" = "安卓手機標準畫布（豎）480*800";
+"Contest Billboard Canvas" = "比賽海報專用畫布";
+"Android Canvas(H)" = "安卓標準(橫)";
+"Android Canvas(V)" = "安卓標準(豎)";
+"Billboard" = "比賽海報";
+
 "kSquareCanvasLarge" = "正方形畫布(大)";
 "kSquareCanvasLargeDesc" = "正方形畫布，尺寸為1024*1024，配合放大功能，可以畫的更加精細，也可以用於創作四格漫畫等";
 
@@ -1001,7 +1008,7 @@
 "kJoinCount" = "參加";
 
 
-"kContest" = "畫畫比賽";
+"kContest" = "比賽";
 "kRank" = "畫榜";
 "kContestRank" = "比賽作品";
 "kNoRankPlayer" = "暫時沒有達人榜數據。";
@@ -1436,7 +1443,8 @@
 "kQuitTaoBaoTips" = "確定退出？";
 
 "kSelectPaymentWay" = "選擇購買方式";
-"kPayViaZhiFuBao" = "使用支付寶客戶端購買";
+//"kPayViaZhiFuBao" = "使用支付寶客戶端購買";
+"kPayViaZhiFuBao" = "使用支付寶購買";
 "kPayViaZhiFuBaoWeb" = "使用支付寶網頁購買";
 "kPayViaAppleAccount" = "使用Apple賬戶購買";
 
@@ -2193,10 +2201,12 @@
 "kTypeAcceptGuestInvitationDesc" = "%@成為了%@的嘉賓。";
 "kTypeChargeGroupDesc" = "%@給%@充了%d金幣。";
 "kTypeTransferGroupBalanceDesc" = "%@從%@轉了%d金幣給%@。";
+"kTypeDeductGroupFeeMonthlyDesc" = "扣除了%@%d金幣作為月費.";
+"kTypeDeductGroupFeeMonthlyFailDesc" = "%@沒有足夠的金幣支付月費，請及時充值。";  
 
 "kInputInvalid" = "輸入不合法";
 
-"kGroupDetailRowWeath" = "聲望 %d  等級 %d  財富 %ld";
+"kGroupDetailRowWeath" = "等級 %d  財富 %ld";
 "kGroupDetailRowCreateDate" = "創建時間 %@";
 "kGroupDetailRowDesc" = "說明 %@";
 "kGroupDetailRowFee" = "會費 %d金幣/月";
@@ -2560,6 +2570,8 @@
 "kEveryone" = "所有人";
 "kGroupMember" = "家族成員";
 "kGroupMemberAndGuest" = "家族成員和嘉賓";
+"kContestTotalAwardNotEnough" = "比賽總獎金最少必須為%d金幣";
+"kGroupBalanceNotEnoughForContest" = "當前家族餘額不足（%d金幣），比賽獎勵總共需花費%d金幣，請先給家族賬戶充值金幣";
 
 "kContestNameCannotBeBlank" = "比賽名稱不能為空";
 "kPleaseSelectContestImage" = "請選擇一副圖片作為比賽海報";
@@ -2572,6 +2584,9 @@
 "kEndDateCannotBeforeStartDate" = "結束時間不能小於開始時間";
 "kCannotCreateContestPleaseJoinGroupFirst" = "你還沒有加入家族，請先加入家族後再創建比賽";
 
+"kAllGroupContest" = "所有家族比賽";
+"kMyGroupContest" = "當前家族比賽";
+
 "kContestNotStart" = "未開始";
 "kContestOutOfTime" = "已結束";
 "kLeftDays" = "還剩%d天";
@@ -2582,6 +2597,12 @@
 "kCreatingContest" = "創建比賽中...";
 "kCreatingContestFail" = "創建比賽失敗";
 "kCreateContestSuccess" = "成功創建比賽";
+
+"kUpdatingContest" = "更新比賽數據中...";
+"kUpdateContestFail" = "更新比賽數據失敗";
+"kUpdateContestSuccess" = "已成功更新比賽數據";
+"kCannotUpdateStartContest" = "比賽已經開始了，無法修改比賽信息";
+
 "kJoinContest" = "參賽";
 "kUpdateContestFail" = "更新比賽失敗";
 "kUpdateContestSuccess" = "更新比賽成功";
@@ -2589,3 +2610,7 @@
 "kVotingTimeIs" = "投票時間: ";
 "kContestTotalAwardLargeThanGroupBalance" = "比賽總獎勵金幣為%d，大於家族金幣余額%d，不能創建比賽，請調整比賽總獎勵";
 "kContestTotalAwardLessThan" = "比賽總獎勵不能少於%d金幣，請調整比賽總獎勵";
+
+"kContestingTimeIs" = "提交作品時間: %@";
+"kVotingTimeIs" = "投票送花時間: %@";
+

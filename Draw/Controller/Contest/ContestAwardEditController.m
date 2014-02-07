@@ -8,6 +8,7 @@
 
 #import "ContestAwardEditController.h"
 #import "ContestAwardEditCell.h"
+#import "UIViewController+BGImage.h"
 
 @interface ContestAwardEditController ()<ContestAwardEditCellDelegate>
 
@@ -35,7 +36,9 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+
     // Do any additional setup after loading the view from its nib.
+    [self setDefaultBGImage];
     
     CommonTitleView *v = [CommonTitleView createTitleView:self.view];
     [v setTitle:NSLS(@"kContestAward")];
@@ -43,6 +46,16 @@
     [v setBackButtonSelector:@selector(clickBack:)];
     [v setRightButtonTitle:NSLS(@"kDone")];
     [v setRightButtonSelector:@selector(clickDone:)];
+    
+    //update tableView frame
+    
+    if (ISIPAD) {
+        CGFloat originY = CGRectGetMinY(self.dataTableView.frame);
+        CGFloat originHiehgt = CGRectGetHeight(self.dataTableView.frame);
+        CGFloat y = 100;
+        [self.dataTableView updateOriginY:y];
+        [self.dataTableView updateHeight:originHiehgt-(y-originY)];
+    }
 }
 
 - (void)clickBack:(id)sender{
@@ -100,7 +113,8 @@
 
 - (void)clickDone:(id)sender{
     
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"NotificationContestAwardEditDone" object:nil];
+    [[NSNotificationCenter defaultCenter] postNotificationName:NotificationContestAwardEditDone
+                                                        object:nil];
 }
 
 @end
