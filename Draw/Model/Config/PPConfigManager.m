@@ -29,12 +29,12 @@
 
 + (int)defaultHomeControllerFeedType
 {
-    return [MobClickUtils getIntValueByKey:@"DEFAULT_HOME_CONTROLLER_FEED_TYPE" defaultValue:HotLatestIndex];
+    return [MobClickUtils getIntValueByKey:@"DEFAULT_HOME_CONTROLLER_FEED_TYPE" defaultValue:HotTopIndex];
 }
 
 + (int)defaultHotControllerIndex
 {
-    return [MobClickUtils getIntValueByKey:@"DEFAULT_HOT_CONTROLLER_INDEX" defaultValue:HotLatestIndex];
+    return [MobClickUtils getIntValueByKey:@"DEFAULT_HOT_CONTROLLER_INDEX" defaultValue:HotTopIndex];
 }
 
 + (int)maxWeiboShareLength
@@ -161,7 +161,7 @@
 + (NSString*)getMessageServerURL
 {
 #ifdef DEBUG
-    return @"http://58.215.184.18:8699/api/i?";
+//    return @"http://58.215.184.18:8699/api/i?";
     //    return @"http://localhost:8100/api/i?";
 //    return @"http://192.168.1.12:8100/api/i?";
 #endif
@@ -185,7 +185,7 @@
 {
 #ifdef DEBUG
 //    return @"http://192.168.1.12:8100/api/i?";
-    return @"http://58.215.184.18:8699/api/i?";
+//    return @"http://58.215.184.18:8699/api/i?";
 //    return @"http://192.168.100.192:8100/api/i?";
 //    return @"http://localhost:8100/api/i?";
 #endif
@@ -1147,6 +1147,13 @@
     return [MobClickUtils getStringValueByKey:[GameApp appLinkUmengKey] defaultValue:[GameApp appItuneLink]];
 }
 
++ (NSString*)getShareOpusWebLink
+{
+    return [MobClickUtils getStringValueByKey:@"SHARE_WEB_LINK" defaultValue:@"http://www.xiaoji.fm/opus/%@"];
+}
+
+
+
 + (int)getBuyAnswerPrice
 {
     return [MobClickUtils getIntValueByKey:@"BUY_ANSWER_PRICE" defaultValue:30];
@@ -1350,8 +1357,20 @@
 }
 
 + (NSInteger)getGroupMaxLevel{
+    if([[UserManager defaultManager] isVip]){
+        return [self getGroupMaxLevelForVIP];
+    }
     return GET_UMENG_INTVAL(@"GROUP_MAX_LEVEL", 20);
 }
+
++ (NSInteger)getGroupMaxLevelForVIP{
+    return GET_UMENG_INTVAL(@"GROUP_MAX_LEVEL_VIP", 50);
+}
+
++ (NSInteger)getUserMinLevelForCreateGroup{
+    return GET_UMENG_INTVAL(@"MIN_LEVEL_FOR_CREATE_GROUP", 5);
+}
+
 
 + (NSInteger)getUpgradeGroupFeePerLevel{
     return GET_UMENG_INTVAL(@"UPGRADE_FEE_PER_LEVEL", 100);
@@ -1386,7 +1405,28 @@
 
 + (int)getMinGroupContestAward
 {
-    return GET_UMENG_INTVAL(@"MIN_GROUP_CONTEST_AWARD", 5000);
+    return GET_UMENG_INTVAL(@"MIN_GROUP_CONTEST_AWARD", 10000);
 }
+
++ (int)getVipMonthFee
+{
+    return GET_UMENG_INTVAL(@"VIP_MONTH_FEE", 10);
+}
+
++ (int)getVipYearFee
+{
+    return GET_UMENG_INTVAL(@"VIP_YEAR_FEE", 99);
+}
+
++ (NSString*)getVipYearTaobaoURL
+{
+    return GET_UMENG_STRVALUE(@"VIP_YEAR_TAOBAO", @"http://a.m.taobao.com/i23758468517.htm");
+}
+
++ (NSString*)getVipMonthTaobaoURL
+{
+    return GET_UMENG_STRVALUE(@"VIP_MONTH_TAOBAO", @"http://a.m.taobao.com/i19955183025.htm");
+}
+
 
 @end

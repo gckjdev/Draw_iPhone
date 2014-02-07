@@ -167,7 +167,8 @@
 #define METHOD_SET_FRIEND_MEMO          @"setFriendMemo"
 #define METHOD_VERIFY_ACCOUNT           @"verifyAccount"
 #define METHOD_SEND_VERFICATION         @"sendVerification"
-
+#define METHOD_PURCHASE_VIP             @"purchaseVip"
+#define METHOD_GET_BUY_VIP_COUNT        @"buyVipCount"
 
 #define PARA_REMOVE_OLD_NUMBER          @"removeOldNumber"
 #define PARA_SET_USER_NUMBER            @"setUserNumber"
@@ -438,6 +439,8 @@
 #define PARA_REPLY_POSTID @"rpi"
 #define PARA_POST_ACTION_TYPE @"pat"
 
+#define PARA_ISPRIVATE @"isPrivate"
+
 #define PARA_CREATE_USERID @"cuid"
 
 #define PARA_STATUS @"s"
@@ -694,6 +697,7 @@
 
 #define PARA_GROUP_NAME @"groupName"
 #define PARA_GROUP_MEDAL @"groupMedal"
+#define PARA_VIP @"vip"
 
 // learn draw
 #define METHOD_GET_LEARNDRAW_LIST @"gldl"
@@ -737,6 +741,9 @@
 #define METHOD_SYNC_FOLLOWED_TOPICIDS @"syncFollowedTopicIds"
 
 #define METHOD_IGNORE_NOTICE @"ignoreNotice"
+#define METHOD_IGNORE_ALL_REQUEST_NOTICE @"ignoreAllRequestNotices"
+#define METHOD_GET_GROUP_CHARGE_HISTORIES @"getGroupChargeHistories"
+
 #define METHOD_FOLLOW_TOPIC @"followTopic"
 #define METHOD_UNFOLLOW_TOPIC @"unfollowTopic"
 #define METHOD_GET_TOPIC_TIMELINE @"getTopicTimeline"

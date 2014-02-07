@@ -81,7 +81,9 @@
 //    NSURL *url = [NSURL URLWithString:avatar];
     
     [self.avatarView setAvatarUrl:self.messageStat.friendAvatar gender:self.messageStat.friendGender];
+    [self.avatarView setIsVIP:self.messageStat.vip];
     self.avatarView.delegate = self;
+
 
 }
 

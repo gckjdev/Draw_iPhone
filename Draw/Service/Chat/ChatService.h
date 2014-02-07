@@ -46,6 +46,8 @@
 
 @interface ChatService : CommonService
 
+@property (nonatomic, retain) NSMutableSet *friendUserIdsForClean;
+
 + (ChatService*)defaultService;
 
 - (void)getMessageStats:(id<ChatServiceDelegate>)delegate 
@@ -105,5 +107,8 @@
 - (void)sendMessage:(PPMessage *)message;
 - (void)deleteMessage:(PPMessage*)message;
 
+- (void)addUserMessageForClean:(NSString*)friendId;
+- (void)cleanUserMessage;
+- (void)cleanUserMessage:(NSString*)friendUserId;
 
 @end

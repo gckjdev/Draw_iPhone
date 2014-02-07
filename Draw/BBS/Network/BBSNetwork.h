@@ -37,7 +37,8 @@
                              image:(NSData *)image
                           drawData:(NSData *)drawData
                          drawImage:(NSData *)drawImage
-                             bonus:(NSInteger)bonus;
+                             bonus:(NSInteger)bonus
+                         isPrivate:(BOOL)isPrivate;
 
 + (CommonNetworkOutput*)getPostList:(NSString*)baseURL
                               appId:(NSString*)appId

@@ -29,6 +29,12 @@
 #import "CommonDialog.h"
 #import "UILabel+Extend.h"
 #import "SuperHomeController.h"
+#import "IconView.h"
+#import "UILabel+Touchable.h"
+#import "GroupManager.h"
+#import "GroupService.h"
+#import "GroupTopicController.h"
+#import "GroupUIManager.h"
 
 #define BG_COLOR  OPAQUE_COLOR(56, 208, 186)
 
@@ -59,6 +65,7 @@
     }
     return self;
 }
+
 
 - (void)setCellWithUserDetail:(NSObject<UserDetailProtocol> *)detail
 {
@@ -146,10 +153,10 @@
     
     
     PBGameUser *user = [detail getUser];
-    self.avatarView = [[[AvatarView alloc] initWithUrlString:[user avatar] frame:self.avatarHolderView.bounds gender:user.gender level:user.level] autorelease];
+    self.avatarView = [[[AvatarView alloc] initWithUrlString:[user avatar] frame:self.avatarHolderView.bounds gender:user.gender level:user.level vip:user.vip] autorelease];
     _avatarView.delegate = self;
     _avatarView.layer.borderWidth = 0;
-    
+    [_avatarView setIsVIP:NO];
     [self.avatarHolderView addSubview:_avatarView];
     
     self.signLabel.textColor = COLOR_WHITE;
@@ -158,6 +165,7 @@
     [self.seperator1 setBackgroundColor:BG_COLOR];
     [self.seperator2 setBackgroundColor:COLOR_ORANGE];
     [self.seperator3 setBackgroundColor:COLOR_YELLOW];
+    [self.seperator5 setBackgroundColor:COLOR_YELLOW];
     
     SET_VIEW_ROUND_CORNER(self.hisOpusLabel);
     [self.hisOpusLabel setBackgroundColor:BG_COLOR];
@@ -166,6 +174,10 @@
     SET_VIEW_ROUND_CORNER(self.snsTipLabel);
     [self.snsTipLabel setBackgroundColor:COLOR_ORANGE];
     self.snsTipLabel.textColor = [UIColor whiteColor];
+
+    SET_VIEW_ROUND_CORNER(self.groupHeader);
+    [self.groupHeader setBackgroundColor:COLOR_YELLOW];
+    self.groupHeader.textColor = COLOR_BROWN;
     
     SET_VIEW_ROUND_CORNER(self.specialTitleLabel);
     [self.specialTitleLabel setBackgroundColor:COLOR_YELLOW];
@@ -198,7 +210,7 @@
         self.bgBadgeView.hidden = YES;
         self.bgButton.hidden = YES;
     }
-    
+    [self updateGroupInfo];
 }
 
 
@@ -242,7 +254,7 @@
 
 + (float)getCellHeight
 {
-    return ([DeviceDetection isIPAD]?1551:706);
+    return ([DeviceDetection isIPAD]?1770:820);
 }
 
 + (NSString*)getCellIdentifier
@@ -280,6 +292,7 @@
     [cell.carousel enabaleWrap:YES];
     [cell.carousel showActivity];
     cell.carousel.backgroundColor = [UIColor clearColor];
+    
     
     return cell;
 }
@@ -337,6 +350,13 @@
     [_snsTipLabel release];
     [_signButton release];
     [_badgeView release];
+    [_groupName release];
+    [_inviteMemberButton release];
+    [_inviteGuestButton release];
+    [_groupIcon release];
+    [_groupHeader release];
+    [_seperator5 release];
+    [_vipFlag release];
     [super dealloc];
 }
 
@@ -619,7 +639,7 @@
     
     [self.nickNameLabel setText:pbUser.nickName];
     
-    CGSize constrainedSize = ISIPAD ? CGSizeMake(468, 45) : CGSizeMake(185, 19);
+    CGSize constrainedSize = ISIPAD ? CGSizeMake(440, 45) : CGSizeMake(170, 19);
     [self.nickNameLabel wrapTextWithConstrainedSize:constrainedSize];
     [self.nickNameLabel updateCenterX:self.center.x];
     [self.nickNameLabel updateCenterY:self.genderImageView.center.y];
@@ -627,6 +647,10 @@
     
     CGFloat originX = self.nickNameLabel.frame.origin.x - (ISIPAD ? 4:2) - self.genderImageView.frame.size.width;
     [self.genderImageView updateOriginX:originX];
+
+    originX -= (CGRectGetWidth(self.vipFlag.bounds));
+    [self.vipFlag updateOriginX:originX];
+    self.vipFlag.hidden = (_detail.getUser.vip == 0);
 }
 
 - (void)clickNickNameLabel{
@@ -658,5 +682,125 @@
     }
 }
 
+- (void)updateGroupInfo
+{
+    
+    [self.inviteGuestButton setBackgroundImage:[UIImage imageNamed:@"user_detail_button@2x.png"] forState:UIControlStateNormal];
+    [self.inviteGuestButton setTitleColor:COLOR_BROWN forState:UIControlStateNormal];
+    
+    [self.inviteMemberButton setBackgroundImage:[UIImage imageNamed:@"user_detail_button@2x.png"] forState:UIControlStateNormal];
+    [self.inviteMemberButton setTitleColor:COLOR_BROWN forState:UIControlStateNormal];
+    
+    [self.groupName setTextColor:self.noSNSTipsLabel.textColor];
+    [self.groupName setFont:self.noSNSTipsLabel.font];
+
+    
+    NSString *myGroupId = [[GroupManager defaultManager] userCurrentGroupId];
+    GroupPermissionManager *gpm = [GroupPermissionManager myManagerWithGroupId:myGroupId];
+
+    if (![[self.detail getUser] hasGroupInfo]) {
+        //not a member
+        
+        [self.groupName setText:NSLS(@"kNoJoinGroup")];
+        [self.groupName updateCenterX:CGRectGetMidX(self.noSNSTipsLabel.frame)];
+        [self.groupName setTextAlignment:NSTextAlignmentCenter];
+        [self.groupName disableTapTouch];
+
+
+        
+        self.groupIcon.hidden = YES;
+        self.inviteGuestButton.hidden = self.inviteMemberButton.hidden = ![gpm canInviteUser];
+        
+    }else{
+        //is member
+        PBSimpleGroup *group = [[self.detail getUser] groupInfo];
+        self.groupName.hidden = self.groupIcon.hidden = NO;
+        self.inviteGuestButton.hidden = ![gpm canInviteGuest] || [[UserManager defaultManager] isMe:_detail.getUserId];
+        
+        [self.inviteGuestButton updateCenterX:CGRectGetMidX(self.contentView.bounds)];
+
+        self.inviteMemberButton.hidden = YES;
+        [self.groupName setText:group.groupName];
+        [self.groupIcon setGroupId:group.groupId];
+        [self.groupIcon setImageURL:[NSURL URLWithString:group.groupMedal] placeholderImage:[GroupUIManager defaultGroupMedal]];
+        __block typeof (self) cp = self;
+        
+        [self.groupIcon setClickHandler:^(IconView *iconView){
+            [cp enterGroup];
+        }];
+        
+        [self.groupName setTextAlignment:NSTextAlignmentLeft];
+        CGFloat x = CGRectGetMaxX(self.groupIcon.frame) + CGRectGetWidth(self.groupIcon.frame)/4;
+        [self.groupName updateOriginX:x];
+        [self.groupName enableTapTouch:self selector:@selector(handleTapOnGroupName:)];
+    }
+    if (self.inviteGuestButton.hidden) {
+        CGFloat centerY = (CGRectGetMidY(self.seperator2.frame)+CGRectGetMidY(self.seperator5.frame)) / 2;
+        [self.groupName updateCenterY:centerY];
+        [self.groupIcon updateCenterY:centerY];
+    }
+}
+
+- (void)handleTapOnGroupName:(UITapGestureRecognizer *)tap
+{
+    if(tap.state == UIGestureRecognizerStateEnded){
+        [self enterGroup];
+    }
+}
+
+- (NSString *)targetUserGroupId{
+    return [[[self.detail getUser] groupInfo] groupId];
+}
+
+- (NSString *)targetUserId
+{
+    return [self.detail getUserId];
+}
+
+- (void)enterGroup
+{
+    PPViewController * vc = (id)[self theViewController];
+    [GroupTopicController enterWithGroupId:[self targetUserGroupId] fromController:vc];
+}
+
+- (void)alertForInvation:(BOOL)member callback:(dispatch_block_t)callback
+{
+    NSString *title = member ? NSLS(@"kInviteMemberTitle") : NSLS(@"kInviteGuestTitle");
+    
+    NSString *message = member ? NSLS(@"kInviteMemberMessage") : NSLS(@"kInviteGuestMessage");
+
+    CommonDialog *dialog = [CommonDialog createDialogWithTitle:title message:message style:CommonDialogStyleDoubleButton];
+    [dialog setClickOkBlock:^(id view){
+        EXECUTE_BLOCK(callback);
+    }];
+    [dialog showInView:[self theTopView]];
+}
+
+- (IBAction)inviteMember:(id)sender {
+    __block UIButton *button = sender;
+    NSString *groupId = [[GroupManager defaultManager] userCurrentGroupId];
+    [self alertForInvation:YES callback:^{
+        [[GroupService defaultService] inviteMembers:@[[self targetUserId]] groupId:groupId titleId:GroupRoleMember callback:^(NSError *error) {
+            if (!error) {
+//                button.hidden = YES;
+                [button setTitle:NSLS(@"kInvitationSent") forState:UIControlStateNormal];
+                [button setEnabled:NO];
+            }
+        }];        
+    }];
+}
+
+- (IBAction)inviteGuest:(id)sender {
+    __block UIButton *button = sender;
+    NSString *groupId = [[GroupManager defaultManager] userCurrentGroupId];
+    [self alertForInvation:NO callback:^{
+        [[GroupService defaultService] inviteGuests:@[[self targetUserId]] groupId:groupId callback:^(NSError *error) {
+            if (!error) {
+                [button setTitle:NSLS(@"kInvitationSent") forState:UIControlStateNormal];
+                [button setEnabled:NO];
+            }
+        }];        
+    }];
+}
 
 @end

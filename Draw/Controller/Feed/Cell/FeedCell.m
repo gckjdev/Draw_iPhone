@@ -134,8 +134,10 @@
     self.avatarView = [[[AvatarView alloc] initWithUrlString:avatar 
                                                        frame:AVATAR_VIEW_FRAME 
                                                       gender:gender 
-                                                       level:0] autorelease];
+                                                       level:0
+                                                         vip:feed.feedUser.vip] autorelease];
     self.avatarView.userId = userId;
+    self.avatarView.isVIP = feed.feedUser.vip;
     self.avatarView.delegate = self;
     [self addSubview:self.avatarView];
     
@@ -205,6 +207,8 @@
         NSString *imageUrl = drawFeed.drawImageUrl;
         [self.drawImageView setImage:[[ShareImageManager defaultManager] 
                                       unloadBg]];
+        PPDebug(@"<updateDrawView> image url = %@", imageUrl);
+        
         if ([imageUrl length] != 0) {
             NSURL *url = [NSURL URLWithString:imageUrl];
             UIImage *defaultImage = [[ShareImageManager defaultManager] unloadBg];

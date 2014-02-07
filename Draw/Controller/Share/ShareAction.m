@@ -325,7 +325,12 @@
     
 }
 
-+ (NSString*)createShareText:(NSString*)word desc:(NSString*)desc opusUserId:(NSString*)opusUserId userGender:(BOOL)userGender snsType:(SnsType)type
++ (NSString*)createShareText:(NSString*)word
+                        desc:(NSString*)desc
+                  opusUserId:(NSString*)opusUserId
+                  userGender:(BOOL)userGender
+                     snsType:(SnsType)type
+                      opusId:(NSString*)opusId
 {
     NSString* snsOfficialNick = [GameSNSService snsOfficialNick:type];
     NSString* text = @"";
@@ -335,20 +340,27 @@
         word = NSLS(@"kUnknownWord");
     }
     
+    NSString* link = [PPConfigManager getAppItuneLink];
+    if ([opusId length] > 0){
+        link = [NSString stringWithFormat:[PPConfigManager getShareOpusWebLink], opusId];
+    }
+    
+    link = @"";
+    
     if (isDrawByMe){
         if ([desc length] > 0) {
-            text = [NSString stringWithFormat:[GameApp shareMyOpusWithDescText], desc, snsOfficialNick, word, [PPConfigManager getSNSShareSubject], [PPConfigManager getAppItuneLink]];
+            text = [NSString stringWithFormat:[GameApp shareMyOpusWithDescText], desc, snsOfficialNick, word, [PPConfigManager getSNSShareSubject], link];
         } else {
-            text = [NSString stringWithFormat:[GameApp shareMyOpusWithoutDescText], snsOfficialNick, word, [PPConfigManager getSNSShareSubject], [PPConfigManager getAppItuneLink]];
+            text = [NSString stringWithFormat:[GameApp shareMyOpusWithoutDescText], snsOfficialNick, word, [PPConfigManager getSNSShareSubject], link];
         }
     }
     else{
         NSString* heStr = userGender ? NSLS(@"kHim") : NSLS(@"kHer");
         if ([desc length] > 0) {
-            text = [NSString stringWithFormat:[GameApp shareOtherOpusWithDescText], desc, heStr, snsOfficialNick, word, [PPConfigManager getSNSShareSubject], [PPConfigManager getAppItuneLink]];
+            text = [NSString stringWithFormat:[GameApp shareOtherOpusWithDescText], desc, heStr, snsOfficialNick, word, [PPConfigManager getSNSShareSubject], link];
             
         } else {
-            text = [NSString stringWithFormat:[GameApp shareOtherOpusWithoutDescText],  heStr, snsOfficialNick, word, [PPConfigManager getSNSShareSubject], [PPConfigManager getAppItuneLink]];
+            text = [NSString stringWithFormat:[GameApp shareOtherOpusWithoutDescText],  heStr, snsOfficialNick, word, [PPConfigManager getSNSShareSubject], link];
         }
     }
     
@@ -362,7 +374,8 @@
                             desc:opus.pbOpus.desc
                       opusUserId:opus.pbOpus.author.userId
                       userGender:opus.pbOpus.author.gender
-                         snsType:type];
+                         snsType:type
+                          opusId:opus.pbOpus.opusId];
     
     return text;
 }
@@ -375,40 +388,20 @@
                             desc:feed.pbFeed.opusDesc
                       opusUserId:feed.author.userId
                       userGender:feed.author.gender
-                         snsType:type];
+                         snsType:type
+                          opusId:feed.feedId];
     
     return text;
 }
 
 - (void)shareViaSNS:(SnsType)type
-{
-//    NSString* snsOfficialNick = [GameSNSService snsOfficialNick:type];
-//    NSString* text = nil;
-//    if (self.feed != nil) {
-//        _drawWord = self.feed.wordText;
-//    }
-//    if (_isDrawByMe){        
-//        if (self.feed.opusDesc != nil && self.feed.opusDesc.length > 0) {
-//            text = [NSString stringWithFormat:NSLS(@"kShareMyOpusWithDescriptionText"), self.feed.opusDesc, snsOfficialNick, _drawWord, [PPConfigManager getSNSShareSubject], [PPConfigManager getAppItuneLink]];
-//        } else {
-//            text = [NSString stringWithFormat:NSLS(@"kShareMyOpusWithoutDescriptionText"), snsOfficialNick, _drawWord, [PPConfigManager getSNSShareSubject], [PPConfigManager getAppItuneLink]];
-//        }
-//    }
-//    else{
-//        NSString* heStr = [self.feed.author gender]?NSLS(@"kHim"):NSLS(@"kHer");
-//        if (self.feed.opusDesc != nil && self.feed.opusDesc.length > 0) {
-//            text = [NSString stringWithFormat:NSLS(@"kShareOtherOpusWithDescriptionText"), self.feed.opusDesc, heStr, snsOfficialNick, _drawWord, [PPConfigManager getSNSShareSubject], [PPConfigManager getAppItuneLink]];
-//
-//        } else {
-//            text = [NSString stringWithFormat:NSLS(@"kShareOtherOpusWithoutDescriptionText"),  heStr, snsOfficialNick, _drawWord, [PPConfigManager getSNSShareSubject], [PPConfigManager getAppItuneLink]];
-//        }
-//    }
-    
+{    
     NSString* text = [ShareAction createShareText:_drawWord
                                              desc:self.feed.pbFeed.opusDesc
                                        opusUserId:_drawUserId
                                        userGender:self.feed.author.gender
-                                          snsType:type];
+                                          snsType:type
+                                           opusId:nil];
 
     [[GameSNSService defaultService] publishWeibo:type
                                              text:text
@@ -419,67 +412,6 @@
                                    failureMessage:NSLS(@"kShareWeiboFailure")];
     
 }
-
-/*
-#define MAX_WEIXIN_IMAGE_WIDTH          ([PPConfigManager maxWeixinImageWidth])
-
-- (void)shareViaWeixin:(int)scene
-{
-    if ([WXApi isWXAppInstalled] == NO || [WXApi isWXAppSupportApi] == NO)
-    {
-        [UIUtils alert:NSLS(@"kWeixinNotInstall")];
-    }else {
-        WXMediaMessage *message = [WXMediaMessage message];
-        message.title = _drawWord;
-        UIImage *image = [UIImage imageWithContentsOfFile:_imageFilePath];
-        
-        CGFloat width = 250.f;
-        CGFloat height = 250.f;
-        CGFloat thumbRate = MAX(250.0f/image.size.width, 250.f/image.size.height);
-        width = image.size.width*thumbRate;
-        height = image.size.height*thumbRate;
-        
-        PPDebug(@"<shareViaWeixin> thumb image widht=%f, height=%f", width, height);
-        UIImage *thumbImage = [image imageByScalingAndCroppingForSize:CGSizeMake(width, height)];;
-        //[image imageByScalingAndCroppingForSize:CGSizeMake(250, 250)];        
-        
-        // compress image if it's too big, otherwize it will NOT be shared
-        UIImage *compressImage = image;
-        NSData  *shareData = nil;
-        if (image.size.width > MAX_WEIXIN_IMAGE_WIDTH){
-            // compress image
-            CGFloat width = (CGFloat)MAX_WEIXIN_IMAGE_WIDTH;
-            CGFloat height = (CGFloat)MAX_WEIXIN_IMAGE_WIDTH;
-            CGFloat compressRate = MIN(width/image.size.width, width/image.size.height);
-            
-            width = image.size.width * compressRate;
-            height = image.size.height * compressRate;
-
-            PPDebug(@"<shareViaWeixin> compress image widht=%f, height=%f", width, height);
-            compressImage = [image imageByScalingAndCroppingForSize:CGSizeMake(width, height)];
-            shareData = UIImageJPEGRepresentation(compressImage, 1.0f);
-        }
-        else{
-            PPDebug(@"<shareViaWeixin> no compress image");
-            shareData = [NSData dataWithContentsOfFile:_imageFilePath];
-        }
-        
-        [message setThumbImage:thumbImage];
-        WXImageObject *ext = [WXImageObject object];
-        ext.imageData = shareData;
-        
-        message.mediaObject = ext;
-        
-        SendMessageToWXReq* req = [[SendMessageToWXReq alloc] init];
-        req.bText = NO;
-        req.message = message;
-        req.scene = scene;
-        
-        [WXApi sendReq:req];
-        [req release];
-    }
-}
-*/
 
 - (void)saveToLocal
 {

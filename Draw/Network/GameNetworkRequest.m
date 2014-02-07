@@ -1783,6 +1783,7 @@
                              score:(NSInteger)score
                            words:(NSString*)words
                          category:(PBOpusCategoryType)category
+                              vip:(int)vip;
 {
     CommonNetworkOutput* output = [[[CommonNetworkOutput alloc] init] autorelease];
     
@@ -1797,7 +1798,8 @@
         str = [str stringByAddQueryParameter:PARA_NICKNAME value:nick];
         str = [str stringByAddQueryParameter:PARA_AVATAR value:avatar];                
         str = [str stringByAddQueryParameter:PARA_GENDER value:gender];
-            
+        str = [str stringByAddQueryParameter:PARA_VIP intValue:vip];
+        
         str = [str stringByAddQueryParameter:PARA_OPUS_ID value:opusId];
         str = [str stringByAddQueryParameter:PARA_OPUS_CREATOR_UID value:opusCreatorUId];
 
@@ -1849,7 +1851,7 @@
                     commentNickName:(NSString *)commentNickName
                           contestId:(NSString*)contestId
                                   category:(PBOpusCategoryType)category
-
+                                       vip:(int)vip
 
 {
     CommonNetworkOutput* output = [[[CommonNetworkOutput alloc] init] autorelease];
@@ -1869,6 +1871,7 @@
         str = [str stringByAddQueryParameter:PARA_OPUS_CREATOR_UID value:opusCreatorUId];
         str = [str stringByAddQueryParameter:PARA_COMMENT_CONTENT value:comment];
         str = [str stringByAddQueryParameter:PARA_CATEGORY intValue:category];
+        str = [str stringByAddQueryParameter:PARA_VIP intValue:vip];
         
         //Comment info
         str = [str stringByAddQueryParameter:PARA_COMMENT_TYPE intValue:commentType];
@@ -1915,7 +1918,7 @@
                      commentNickName:(NSString *)commentNickName
                           contestId:(NSString*)contestId
                            category:(PBOpusCategoryType)category
-
+                                vip:(int)vip
 
 {
     CommonNetworkOutput* output = [[[CommonNetworkOutput alloc] init] autorelease];
@@ -1935,6 +1938,7 @@
         str = [str stringByAddQueryParameter:PARA_OPUS_CREATOR_UID value:opusCreatorUId];
         str = [str stringByAddQueryParameter:PARA_COMMENT_CONTENT value:comment];
         str = [str stringByAddQueryParameter:PARA_CATEGORY intValue:category];
+        str = [str stringByAddQueryParameter:PARA_VIP intValue:vip];
 
 
         //Comment info
@@ -2017,6 +2021,7 @@
                                awardExp:(int)awardExp
                               contestId:(NSString*)contestId
                                category:(PBOpusCategoryType)category
+                                    vip:(int)vip
 
 {
     CommonNetworkOutput* output = [[[CommonNetworkOutput alloc] init] autorelease];
@@ -2044,6 +2049,7 @@
         str = [str stringByAddQueryParameter:PARA_TARGETUSERID value:opusCreatorUId];
         str = [str stringByAddQueryParameter:PARA_ACCOUNT_BALANCE intValue:awardBalance];
         str = [str stringByAddQueryParameter:PARA_EXP intValue:awardExp];
+        str = [str stringByAddQueryParameter:PARA_VIP intValue:vip];
         
         if ([contestId length] > 0){
             str = [str stringByAddQueryParameter:PARA_CONTESTID value:contestId];
@@ -2075,6 +2081,7 @@
                                   opusId:(NSString*)opusId
                                contestId:(NSString *)contestId
                                 category:(PBOpusCategoryType)category
+                                     vip:(int)vip
 
 {
     CommonNetworkOutput* output = [[[CommonNetworkOutput alloc] init] autorelease];
@@ -2094,6 +2101,7 @@
         str = [str stringByAddQueryParameter:PARA_LANGUAGE intValue:[[UserManager defaultManager] getLanguageType]];
         str = [str stringByAddQueryParameter:PARA_CONTESTID value:contestId];
         str = [str stringByAddQueryParameter:PARA_CATEGORY intValue:category];
+        str = [str stringByAddQueryParameter:PARA_VIP intValue:vip];
 
         return str;
     };

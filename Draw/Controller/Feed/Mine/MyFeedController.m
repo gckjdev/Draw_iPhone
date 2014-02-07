@@ -115,7 +115,8 @@ typedef enum{
                                                 nickName:nil
                                                   avatar:nil
                                                   gender:YES
-                                               signature:nil];
+                                               signature:nil
+                                                     vip:0];
     drawFeed.feedUser = feedUser;
     [feedUser release];
 

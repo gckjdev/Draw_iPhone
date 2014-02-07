@@ -216,6 +216,10 @@ SINGLETON_DISPATCH_ONE;
     [self postView:_view delay:delayTime];
 }
 
+- (void)clear
+{
+    [self disappear];
+}
 
 - (void)postView:(UIView *)view delay:(int)delay{
     	

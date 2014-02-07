@@ -102,6 +102,12 @@ typedef void (^ GetFeedListCompleteBlock)(int resultCode, NSArray* feedList);
                   limit:(NSInteger)limit 
                delegate:(id<FeedServiceDelegate>)delegate;
 
+- (void)getGroupFeedList:(NSString *)groupId
+                  offset:(NSInteger)offset
+                   limit:(NSInteger)limit
+              completed:(GetFeedListCompleteBlock)completed;
+
+
 - (void)getUserOpusList:(NSString *)userId
                  offset:(NSInteger)offset 
                   limit:(NSInteger)limit

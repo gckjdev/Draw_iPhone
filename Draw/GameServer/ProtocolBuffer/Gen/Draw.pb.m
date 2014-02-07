@@ -2402,6 +2402,7 @@ static PBLabelInfo* defaultPBLabelInfoInstance = nil;
 @property (retain) NSString* avatar;
 @property BOOL gender;
 @property (retain) NSString* signature;
+@property int32_t vip;
 @property (retain) PBDraw* drawData;
 @property (retain) NSString* targetUserId;
 @property (retain) NSString* targetUserNickName;
@@ -2531,6 +2532,13 @@ static PBLabelInfo* defaultPBLabelInfoInstance = nil;
   hasSignature_ = !!value;
 }
 @synthesize signature;
+- (BOOL) hasVip {
+  return !!hasVip_;
+}
+- (void) setHasVip:(BOOL) value {
+  hasVip_ = !!value;
+}
+@synthesize vip;
 - (BOOL) hasDrawData {
   return !!hasDrawData_;
 }
@@ -2817,6 +2825,7 @@ static PBLabelInfo* defaultPBLabelInfoInstance = nil;
     self.avatar = @"";
     self.gender = NO;
     self.signature = @"";
+    self.vip = 0;
     self.drawData = [PBDraw defaultInstance];
     self.targetUserId = @"";
     self.targetUserNickName = @"";
@@ -2974,6 +2983,9 @@ static PBFeed* defaultPBFeedInstance = nil;
   if (self.hasSignature) {
     [output writeString:24 value:self.signature];
   }
+  if (self.hasVip) {
+    [output writeInt32:25 value:self.vip];
+  }
   if (self.hasDrawData) {
     [output writeMessage:31 value:self.drawData];
   }
@@ -3126,6 +3138,9 @@ static PBFeed* defaultPBFeedInstance = nil;
   }
   if (self.hasSignature) {
     size += computeStringSize(24, self.signature);
+  }
+  if (self.hasVip) {
+    size += computeInt32Size(25, self.vip);
   }
   if (self.hasDrawData) {
     size += computeMessageSize(31, self.drawData);
@@ -3356,6 +3371,9 @@ static PBFeed* defaultPBFeedInstance = nil;
   if (other.hasSignature) {
     [self setSignature:other.signature];
   }
+  if (other.hasVip) {
+    [self setVip:other.vip];
+  }
   if (other.hasDrawData) {
     [self mergeDrawData:other.drawData];
   }
@@ -3548,6 +3566,10 @@ static PBFeed* defaultPBFeedInstance = nil;
       }
       case 194: {
         [self setSignature:[input readString]];
+        break;
+      }
+      case 200: {
+        [self setVip:[input readInt32]];
         break;
       }
       case 250: {
@@ -3921,6 +3943,22 @@ static PBFeed* defaultPBFeedInstance = nil;
 - (PBFeed_Builder*) clearSignature {
   result.hasSignature = NO;
   result.signature = @"";
+  return self;
+}
+- (BOOL) hasVip {
+  return result.hasVip;
+}
+- (int32_t) vip {
+  return result.vip;
+}
+- (PBFeed_Builder*) setVip:(int32_t) value {
+  result.hasVip = YES;
+  result.vip = value;
+  return self;
+}
+- (PBFeed_Builder*) clearVip {
+  result.hasVip = NO;
+  result.vip = 0;
   return self;
 }
 - (BOOL) hasDrawData {

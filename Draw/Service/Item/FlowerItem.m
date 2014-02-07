@@ -61,6 +61,11 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(FlowerItem);
         awardAmount = [PPConfigManager getFlowerAwardAmount];
         awardExp = [PPConfigManager getFlowerAwardExp];
         
+        if ([[UserManager defaultManager] isVip]){
+            PPDebug(@"user is VIP user, don't need to consume any coin/item for flower");
+            isFree = YES;
+        }
+        
         if (isFree) {
             [[FeedService defaultService] throwItem:[bself itemId]
                                              toOpus:opusId
@@ -134,6 +139,11 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(FlowerItem);
     ConsumeItemResultHandler tempHandler = (ConsumeItemResultHandler)[self.blockArray copyBlock:handler];
     __block typeof (self) bself = self;
 
+    if ([[UserManager defaultManager] isVip]){
+        PPDebug(@"user is VIP user, don't need to consume any coin/item for flower");
+        isFree = YES;
+    }    
+    
     if (isOffline) {
 
         // prepare data for consumeItem request

@@ -194,6 +194,11 @@ static AccountService* _defaultAccountService;
                     // sync user item from server
                     [[UserGameItemManager defaultManager] setUserItemList:user.itemsList];                    
                     
+                    // sync user VIP info
+                    [[UserManager defaultManager] setVip:user.vip];
+                    [[UserManager defaultManager] setVipExpireDate:user.vipExpireDate];
+                    [[UserManager defaultManager] setVipLastPayDate:user.vipLastPayDate];
+                    
                     // post notification
                     [self postNotification:NOTIFICATION_SYNC_ACCOUNT];                    
                     

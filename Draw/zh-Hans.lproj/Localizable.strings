@@ -331,7 +331,7 @@
 "kSay something..." = "";
 "kShare_via_SMS" = "短信分享给朋友";
 
-"kShare_message_body" = "推荐一款好玩的iPhone/iPad画画娱乐应用［%@］，AppStore下载链接是 %@ %@";
+"kShare_message_body" = "推荐一款好玩的iPhone/iPad画画应用［%@］，AppStore下载链接是 %@ %@";
 "kShare_SingApp_message_body" = "推荐一款好玩的iPhone/iPad声音娱乐应用［%@］，可以讲故事、说笑话、唱歌等，AppStore下载链接是 %@ %@";
 
 "kEmail_subject" = "分享［%@］iPhone/iPad版";
@@ -1051,6 +1051,8 @@
 "kDecline" = "拒绝";
 "kAccept" = "接受";
 "kIgnore" = "忽略";
+"kIgnoreAll" = "忽略所有";
+"kIgnoreAllConfirm" = "本操作将会忽略所有请求/邀请通知，确定要继续吗？";
 
 "kCoinsForFollowUs" = "+%d金币";
 "kFollowSinaWeibo" = "关注新浪官方微博";
@@ -1538,7 +1540,7 @@
 "kSortedByPrice" = "作品价格";
 "kTime" = "时间";
 "kBought" = "销量";
-"kSNSSubject" = "小吉画画美图分享";
+"kSNSSubject" = "手绘作品分享";
 "kSingSNSSubject" = "小吉大舌头作品分享";
 "kDrawAppLink" = "http://itunes.apple.com/cn/app/cai-cai-hua-hua/id513819630?mt=8";
 "kPaintVia" = "(作品来自 %@ )";
@@ -2124,6 +2126,8 @@
 
 "kStore" = "商店";
 "kBalance" = "余额:";
+"kWealth" = "%ld金币";
+"kGroupTimeline" = "家族动态";
 
 "kNoSupportViewFollow" = "暂不支持查看其他用户的粉丝";
 "kNoSupportViewFan" = "暂不支持查看其他用户的关注";
@@ -2183,7 +2187,7 @@
 "kGroupBulletinDesc" = "%@在%@中发布了公告。";
 "kGroupJoinDesc" = "%@申请加入%@。";
 "kGroupExpelDesc" = "%@将%@移除出了%@。";
-"kGroupQuitDesc" = "%@退出了%@";
+"kGroupQuitDesc" = "%@退出了%@。";
 "kGroupAcceptDesc" = "%@同意%@加入%@。";
 "kGroupRejectDesc" = "%@拒绝%@加入%@。";
 
@@ -2314,7 +2318,28 @@
 "kJoinAGroup" = "加入家族";
 
 "kInvitationFailure" = "该用户已加入了其他家族成员，无法邀请";
+"kRejectJoinGroup" = "拒绝申请";
+"kJoinJoinGroupReason" = "你的理由...";
+"kJoinGroupReason" = "你的理由...";
 
+"kNoChargeHistory" = "暂无充值记录";
+"kGroupChargeHistory" = "充值记录";
+"kPrivatePostForGroup" = "家族可见";
+"kCan'tAccessPrivatePost" = "本话题仅家族成员可见。";
+"kPrivatePostDesc" = "[私密话题]";
+
+"kInviteMemberTitle" = "邀请";
+"kInviteGuestTitle" = "邀请";
+"kInviteMemberMessage" = "确定邀请Ta成为你家族的成员吗?";
+"kInviteGuestMessage" = "确定邀请Ta成为你家族的嘉宾吗?";
+"kInvitationSent" = "邀请已发送";
+"kNoJoinGroup" = "没加入任何家族";
+"kCan'tCreateGroupForUserLevel" = "你的等级小于%d级，不能创建家族。";
+
+"kRankVip" = "会员";
+"kNoRankVip" = "暂无会员作品";
+"kNoVip" = "暂无会员";
+"kUpgradeVIP" = "升级会员";
 
 /*********************小吉画画国际化字符串开始 ************************/
 "kLittleGeeRecommend" = "推荐";
@@ -2337,7 +2362,7 @@
 
 
 "kLittleGeeFeedbackTips" = "欢迎加入小吉画画玩家QQ群:228119679, 关注官方微博 @小吉画画";
-"kLittleGeeSNSSubject" = "小吉画画美图分享";
+"kLittleGeeSNSSubject" = "手绘作品分享";
 "kLittleGeeAppLink" = "";
 "kOnlyChineseTitleAllowed" = "作品标题只允许中文字符！";
 "kOnlyEnglishTitleAllowed" = "作品标题只允许英文单词！";
@@ -2422,6 +2447,9 @@
 "kFollowSuccess" = "已成功关注";
 "kAuthorizeSuccess" = "已成功授权";
 "kAuthorizeFailure" = "授权失败，请检查帐号或者网络";
+"kAuthorizeOngoing" = "授权请求中...";
+"kAuthorizeCancel" = "授权已取消";
+
 
 "kShareSinaWeibo" = "分享到新浪微博";
 "kShareWeixinSession" = "分享给微信好友";
@@ -2483,6 +2511,17 @@
 "kReset" = "重置";
 "kSelectFromUserPhoto" = "从图库选择";
 /*********************图库国际化字符串结束 ************************/
+
+"kBuyVip" = "购买会员";
+"kVip" = "会员";
+"kIsNotVip" = "否";
+"kIsVip" = "VIP至%@";
+"kVipExpire" = "已于%@过期";
+
+"kTaskVip" = "成为VIP会员";
+"kTaskVipDesc" = "加入VIP会员，支持小吉";
+"kTaskVipUnderDev" = "VIP会员功能正在开发中，敬请期待";
+
 
 "kTaskCheckIn" = "每日签到";
 "kTaskCheckInDesc" = "每日签到可以随机获得金币";
@@ -2575,7 +2614,10 @@
 
 "kContestNotStart" = "未开始";
 "kContestOutOfTime" = "已结束";
-"kLeftDays" = "还剩%d天";
+"kLeftDays" = "还有%d天";
+"kLeftHours" = "还有%d小时";
+"kLeftMins" = "还有%d分钟";
+
 
 "kNoGroupContest" = "暂无家族比赛";
 "kCreate" = "创建";
@@ -2601,4 +2643,3 @@
 
 "kContestingTimeIs" = "比赛时间: %@";
 "kVotingTimeIs" = "投票时间: %@";
-

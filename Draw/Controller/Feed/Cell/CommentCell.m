@@ -87,9 +87,12 @@
     _avatarView = [[AvatarView alloc] initWithUrlString:author.avatar 
                                                   frame:AVATAR_VIEW_FRAME 
                                                  gender:author.gender 
-                                                  level:0];
+                                                  level:0
+                                                    vip:author.vip];
     _avatarView.delegate = self;
     _avatarView.userId = feed.author.userId;
+    _avatarView.isVIP = feed.author.vip;
+    
     [self addSubview:_avatarView];
     [_avatarView release];
     

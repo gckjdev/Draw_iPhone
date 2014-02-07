@@ -24,6 +24,7 @@
 #import "CommonUserInfoView.h"
 #import "GameApp.h"
 #import "GroupPermission.h"
+#import "GroupTopicController.h"
 
 @interface ChatListController ()
 
@@ -38,6 +39,8 @@
 
 
 - (void)dealloc {
+    
+    [[ChatService defaultService] cleanUserMessage];
     PPRelease(addChatButton);
     [super dealloc];
 }
@@ -121,7 +124,6 @@
     SET_NORMAL_TABLE_VIEW_Y(self.dataTableView);
 }
 
-
 - (void)viewDidUnload
 {
     [self setAddChatButton:nil];
@@ -176,6 +178,8 @@
         POSTMSG(NSLS(@"kCanotGroupChat"));
         return;
     }
+    
+    [[ChatService defaultService] addUserMessageForClean:messageStat.friendId];
     
     ChatDetailController *controller = [[ChatDetailController alloc] initWithMessageStat:messageStat];
     controller.delegate = self;
@@ -308,6 +312,7 @@ SET_CELL_BG_IN_CONTROLLER;
         
         //delete message total
         [[ChatService defaultService] deleteMessageStat:self friendUserId:friendUserId];
+        [[ChatService defaultService] cleanUserMessage:friendUserId];
         [self.tabDataList removeObjectAtIndex:indexPath.row];
         [dataTableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationRight];
         
@@ -352,8 +357,15 @@ SET_CELL_BG_IN_CONTROLLER;
 #pragma mark - ChatCellDelegate method
 - (void)didClickAvatar:(NSIndexPath *)aIndexPath
 {
-    MyFriend *aFriend = [self friendOfIndex:aIndexPath.row];
-    [CommonUserInfoView showFriend:aFriend inController:self needUpdate:YES canChat:YES];
+    MessageStat *stat = [self messageStatOfIndex:aIndexPath.row];
+    if ([stat isGroup]){
+        // goto group
+        [GroupTopicController enterWithGroupId:stat.groupId fromController:self];
+    }
+    else{
+        MyFriend *aFriend = [self friendOfIndex:aIndexPath.row];
+        [CommonUserInfoView showFriend:aFriend inController:self needUpdate:YES canChat:YES];
+    }
 }
 
 

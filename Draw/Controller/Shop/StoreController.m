@@ -25,7 +25,7 @@
 #import "PPConfigManager.h"
 #import "TaoBaoController.h"
 #import "UIViewUtils.h"
-
+#import "PurchaseVipController.h"
 
 typedef enum{
     TabIDNormal = 100,
@@ -53,6 +53,7 @@ typedef enum{
     [_selectedButton release];
 //    [_backButton release];
     [_chargeButton release];
+    PPRelease(_buyVipButton);
     [_coinBalanceLabel release];
     [_ingotBalanceLabel release];
     [_ingotImageView release];
@@ -71,6 +72,7 @@ typedef enum{
     [self setTitleLabel:nil];
 //    [self setBackButton:nil];
     [self setChargeButton:nil];
+    [self setBuyVipButton:nil];
     [self setCoinBalanceLabel:nil];
     [self setIngotBalanceLabel:nil];
     [self setIngotImageView:nil];
@@ -200,6 +202,7 @@ typedef enum{
 //    [self.titleView setBackButtonSelector:@selector(clickBackButton:)];
     
     [self.chargeButton setTitle:NSLS(@"kCharge") forState:UIControlStateNormal];
+    [self.buyVipButton setTitle:NSLS(@"kBuyVip") forState:UIControlStateNormal];
     [self updateBalance];
     [self updateItemData];
     
@@ -218,6 +221,7 @@ typedef enum{
     self.bottomBarImageView.backgroundColor = COLOR_RED;
 
     SET_BUTTON_ROUND_STYLE_YELLOW(self.chargeButton);
+    SET_BUTTON_ROUND_STYLE_ORANGE(self.buyVipButton);
 
     self.balanceTipLabel.textColor = COLOR_WHITE;
     self.ingotBalanceLabel.textColor = COLOR_WHITE;
@@ -266,6 +270,10 @@ typedef enum{
     ChargeController *controller = [[ChargeController alloc] init];
     [self.navigationController pushViewController:controller animated:YES];
     [controller release];
+}
+
+- (IBAction)clickBuyVipButton:(id)sender {
+    [PurchaseVipController enter:self];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath

@@ -16,7 +16,7 @@ typedef enum{
     GroupChat,
     GroupAtMe,
     GroupContest,
-    
+    GroupTimeline,
 }GroupFooterActionType;
 
 

@@ -114,7 +114,8 @@ typedef void (^BBSOperatePostHandler) (NSInteger resultCode, PBBBSPost *editedPo
                     drawImage:(UIImage *)drawImage
                         bonus:(NSInteger)bonus
                      delegate:(id<BBSServiceDelegate>)delegate
-                   canvasSize:(CGSize)size;
+                   canvasSize:(CGSize)size
+                    isPrivate:(BOOL)isPrivate;
 
 - (void)getBBSPostListWithBoardId:(NSString *)boardId
                         targetUid:(NSString *)targetUid

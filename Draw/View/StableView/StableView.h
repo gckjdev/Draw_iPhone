@@ -63,14 +63,15 @@ typedef enum {
     UIImageView *imageView;
     NSString *_userId;
     UIImageView *bgView;
+    UIImageView *_vipFlag;
 }
 
 
-- (id)initWithUrlString:(NSString *)urlString type:(AvatarType)aType gender:(BOOL)gender level:(int)level;
+- (id)initWithUrlString:(NSString *)urlString type:(AvatarType)aType gender:(BOOL)gender level:(int)level vip:(int)vip;
 
 - (id)initWithFrame:(CGRect)frame user:(PBGameUser *)user;
 
-- (id)initWithUrlString:(NSString *)urlString frame:(CGRect)frame gender:(BOOL)gender level:(int)level;
+- (id)initWithUrlString:(NSString *)urlString frame:(CGRect)frame gender:(BOOL)gender level:(int)level vip:(int)vip;
 
 - (void)setUrlString:(NSString *)urlString;
 - (void)setUser:(PBGameUser *)user;
@@ -92,6 +93,7 @@ typedef enum {
 @property(nonatomic, assign) BOOL hasPen;
 @property(nonatomic, assign) CGSize contentInset;
 @property(nonatomic, assign) PBGameUser *user;
+@property(nonatomic, assign) BOOL isVIP;
 
 - (void)setBadge:(NSInteger)number;
 - (BadgeView *)badgeView;

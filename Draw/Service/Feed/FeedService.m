@@ -20,6 +20,8 @@
 #import "FeedDownloadService.h"
 #import "PPGameNetworkRequest.h"
 
+
+
 #define GET_FEED_DETAIL_QUEUE   @"GET_FEED_DETAIL_QUEUE"
 #define GET_PBDRAW_QUEUE        @"GET_PBDRAW_QUEUE"
 #define GET_FEED_COMMENT_QUEUE  @"GET_FEED_COMMENT_QUEUE"
@@ -353,6 +355,30 @@ static FeedService *_staticFeedService = nil;
         });
         
         [subPool drain];
+    });
+}
+
+- (void)getGroupFeedList:(NSString *)groupId
+                  offset:(NSInteger)offset
+                   limit:(NSInteger)limit
+               completed:(GetFeedListCompleteBlock)completed
+{
+    dispatch_async(workingQueue, ^{
+        NSDictionary* para = @{ PARA_TYPE : @(FeedListTypeTimelineGroup),
+                                PARA_GROUPID : groupId,
+                                PARA_OFFSET : @(offset),
+                                PARA_COUNT : @(limit),
+                                PARA_IMAGE : @(1)
+                                };
+        
+        GameNetworkOutput* output = [PPGameNetworkRequest trafficApiServerGetAndResponsePB:METHOD_GET_FEED_LIST parameters:para];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            NSInteger code = output.resultCode;
+            
+            NSArray *pbFeedList = [output.pbResponse feedList];
+            NSArray* list = [FeedManager parsePbFeedList:pbFeedList];
+            EXECUTE_BLOCK(completed, code, list);
+        });
     });
 }
 
@@ -764,27 +790,29 @@ static FeedService *_staticFeedService = nil;
     NSString* gender = [[UserManager defaultManager] gender];
     NSString* avatar = [[UserManager defaultManager] avatarURL];
     NSString* appId = [PPConfigManager appId];
+    int vip = [[UserManager defaultManager] isVip] ? [UserManager defaultManager].pbUser.vip : 0;    
     
     dispatch_async(workingQueue, ^{
         
         CommonNetworkOutput* output = nil;
         if (forContestReport){
             output = [GameNetworkRequest contestCommentOpus:TRAFFIC_SERVER_URL
-                                               appId:appId
-                                              userId:userId
-                                                nick:nick
-                                              avatar:avatar
-                                              gender:gender
-                                              opusId:opusId
-                                      opusCreatorUId:author
-                                             comment:comment
-                                         commentType:commentType
-                                           commentId:commentId
-                                      commentSummary:commentSummary
-                                       commentUserId:commentUserId
-                                     commentNickName:commentNickName
-                                           contestId:contestId
-                                                   category:category];
+                                                       appId:appId
+                                                      userId:userId
+                                                        nick:nick
+                                                      avatar:avatar
+                                                      gender:gender
+                                                      opusId:opusId
+                                              opusCreatorUId:author
+                                                     comment:comment
+                                                 commentType:commentType
+                                                   commentId:commentId
+                                              commentSummary:commentSummary
+                                               commentUserId:commentUserId
+                                             commentNickName:commentNickName
+                                                   contestId:contestId
+                                                   category:category
+                                                        vip:vip];
 
         }
         else{
@@ -803,7 +831,8 @@ static FeedService *_staticFeedService = nil;
                                                             commentUserId:commentUserId
                                                           commentNickName:commentNickName
                                                                 contestId:contestId
-                                            category:category];
+                                            category:category
+                                                 vip:vip];
         }
         
         NSString *commentId = nil;
@@ -857,10 +886,10 @@ static FeedService *_staticFeedService = nil;
     NSString* gender = [[UserManager defaultManager] gender];
     NSString* avatar = [[UserManager defaultManager] avatarURL];
     NSString* appId = [PPConfigManager appId];
-    
+    int vip = [[UserManager defaultManager] isVip] ? [UserManager defaultManager].pbUser.vip : 0;
     
     dispatch_async(workingQueue, ^{
-        CommonNetworkOutput* output = [GameNetworkRequest throwItemToOpus:TRAFFIC_SERVER_URL appId:appId userId:userId nick:nick avatar:avatar gender:gender opusId:opusId opusCreatorUId:author itemType:itemType awardBalance:awardBalance awardExp:awardExp contestId:contestId category:category];
+        CommonNetworkOutput* output = [GameNetworkRequest throwItemToOpus:TRAFFIC_SERVER_URL appId:appId userId:userId nick:nick avatar:avatar gender:gender opusId:opusId opusCreatorUId:author itemType:itemType awardBalance:awardBalance awardExp:awardExp contestId:contestId category:category vip:vip];
         
         dispatch_async(dispatch_get_main_queue(), ^{
             
@@ -916,6 +945,7 @@ static FeedService *_staticFeedService = nil;
 {
     NSString* userId = [[UserManager defaultManager] userId];
     NSString* appId = [PPConfigManager appId];
+    int vip = [[UserManager defaultManager] isVip] ? [UserManager defaultManager].pbUser.vip : 0;
     
     dispatch_async(workingQueue, ^{
         CommonNetworkOutput* output = [GameNetworkRequest actionSaveOnOpus:TRAFFIC_SERVER_URL
@@ -925,7 +955,8 @@ static FeedService *_staticFeedService = nil;
                                                                 actionName:actionName
                                                                     opusId:opusId
                                                                  contestId:contestId
-                                                                  category:category];
+                                                                  category:category
+                                                                       vip:vip];
         
         PPDebug(@"<actionSaveOpus> opusId=%@, action=%@, resultCode=%d contestId=%@",
                 opusId, actionName, output.resultCode, contestId);

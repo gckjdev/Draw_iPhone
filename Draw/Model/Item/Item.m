@@ -125,6 +125,18 @@
         case Eraser:
         case DeprecatedEraser:
             return manager.selectedEraserImage;
+
+        case ItemTypeFunPen1:
+            return [UIImage imageNamed:@"selected_pen_fun1@2x.png"];
+        case ItemTypeFunPen2:
+            return [UIImage imageNamed:@"selected_pen_fun2@2x.png"];
+        case ItemTypeFunPen3:
+            return [UIImage imageNamed:@"selected_pen_fun3@2x.png"];
+        case ItemTypeFunPen4:
+            return [UIImage imageNamed:@"selected_pen_fun4@2x.png"];
+        case ItemTypeFunPen5:
+            return [UIImage imageNamed:@"selected_pen_fun5@2x.png"];
+            
         default:
             return nil;
     }
@@ -147,6 +159,18 @@
         case Eraser:
         case DeprecatedEraser:            
             return manager.showEraserImage;
+            
+        case ItemTypeFunPen1:
+            return [UIImage imageNamed:@"pen_show_fun1@2x.png"];
+        case ItemTypeFunPen2:
+            return [UIImage imageNamed:@"pen_show_fun2@2x.png"];
+        case ItemTypeFunPen3:
+            return [UIImage imageNamed:@"pen_show_fun3@2x.png"];
+        case ItemTypeFunPen4:
+            return [UIImage imageNamed:@"pen_show_fun4@2x.png"];
+        case ItemTypeFunPen5:
+            return [UIImage imageNamed:@"pen_show_fun5@2x.png"];
+            
         default:
             return nil;
     }
@@ -228,6 +252,16 @@
             return [diceManager toShopImage:diceManager.greenDiamondDiceImage];
         case ItemTypeCustomDicePurpleDiamondDice:
             return [diceManager toShopImage:diceManager.purpleDiamondDiceImage];
+        case ItemTypeFunPen1:
+            return [UIImage imageNamed:@"pen_fun1@2x.png"];
+        case ItemTypeFunPen2:
+            return [UIImage imageNamed:@"pen_fun2@2x.png"];
+        case ItemTypeFunPen3:
+            return [UIImage imageNamed:@"pen_fun3@2x.png"];
+        case ItemTypeFunPen4:
+            return [UIImage imageNamed:@"pen_fun4@2x.png"];
+        case ItemTypeFunPen5:
+            return [UIImage imageNamed:@"pen_fun5@2x.png"];
         default:
             return nil;
     }    

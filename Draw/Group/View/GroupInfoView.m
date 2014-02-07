@@ -89,9 +89,13 @@
     [self.iconView setImageURL:[_group medalImageURL] placeholderImage:[GroupUIManager defaultGroupMedal]];
     
     [self.nameLabel setText:_group.name];
-    [self.descLabel setText:_group.signature];
-    
-    //    [self.sizeLabel setText:[@(_group.size) stringValue]];
+    if (!_showBalance) {
+        NSString *signature = ([_group.signature length] == 0) ? NSLS(@"kDefaultGroupSignature") : _group.signature;
+        [self.descLabel setText:signature];
+    }else{
+        [self.descLabel setText:[NSString stringWithFormat:NSLS(@"kWealth"), _group.balance]];
+    }
+
     NSString *sizeText = [NSString stringWithFormat:NSLS(@"kGroupMemberNumber"),_group.size];
     [self.sizeLabel setText:sizeText];
     [self.nameLabel sizeToFit];
@@ -102,11 +106,11 @@
     CGFloat width = SIZE_BASE_WIDTH + CGRectGetWidth(_sizeLabel.frame);
     [self.sizeLabel updateWidth:width];
     
-    if([_group.signature length] == 0){
-        [self.nameLabel updateCenterY:CGRectGetMidY(self.bounds)];
-    }else{
-        [self.nameLabel updateOriginY:DEFAULT_NAME_Y];
-    }
+//    if(!_showBalance){
+//        [self.nameLabel updateCenterY:CGRectGetMidY(self.bounds)];
+//    }else{
+    [self.nameLabel updateOriginY:DEFAULT_NAME_Y];
+//    }
     [self.sizeLabel updateCenterY:_nameLabel.center.y];
     [self.customButton updateCenterY:self.center.y];   
 }

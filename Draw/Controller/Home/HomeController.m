@@ -953,7 +953,8 @@ int *getDrawMainMenuTypeListHasNewContest()
         HomeMenuTypeDrawGuess,
         
         HomeMenuTypeDrawBigShop,
-        HomeMenuTypeTask,
+//        HomeMenuTypeTask,
+        HomeMenuTypeDrawFreeCoins,
         HomeMenuTypeDrawMore,
         HomeMenuTypeDrawPainter,
         HomeMenuTypeDrawGame,

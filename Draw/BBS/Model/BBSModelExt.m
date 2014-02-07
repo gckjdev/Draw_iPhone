@@ -12,6 +12,8 @@
 #import "BBSManager.h"
 #import "TimeUtils.h"
 #import "BBSPermissionManager.h"
+#import "GroupManager.h"
+#import "GroupPermission.h"
 
 @implementation PBBBSContent (ContentExt)
 - (BOOL)hasThumbImage
@@ -52,6 +54,7 @@
     return nil;
 }
 
+
 @end
 
 
@@ -61,6 +64,15 @@
 {
     return [[UserManager defaultManager] isMe:self.userId];
 }
+
+- (BOOL)isVIP
+{
+//#ifdef DEBUG
+//    return YES;
+//#endif
+    return self.vip != 0;
+}
+
 - (NSString *)showNick
 {
     if ([self isMe]) {
@@ -155,6 +167,13 @@
 - (NSString *)createDateString
 {
     return dateToTimeLineString(self.cDate);
+}
+
+- (BOOL)isPrivateForMe
+{
+    NSString *groupId = [[GroupManager defaultManager] userCurrentGroupId];
+    GroupPermissionManager *gpm = [GroupPermissionManager myManagerWithGroupId:groupId];
+    return (self.isPrivate && ![gpm canReadPrivateTopic]);
 }
 
 @end

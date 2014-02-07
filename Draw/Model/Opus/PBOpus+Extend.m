@@ -48,6 +48,7 @@
                                       avatar:self.author.avatar
                                       gender:self.author.gender
                                    signature:self.author.signature
+                                         vip:self.author.vip
                                 drawImageUrl:self.image
                                       pbDraw:nil
                                     wordText:self.name

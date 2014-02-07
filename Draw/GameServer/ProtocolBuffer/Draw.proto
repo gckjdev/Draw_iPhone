@@ -92,6 +92,7 @@ message PBFeed {
   optional string avatar = 22;          // 用户头像
   optional bool   gender = 23;          // 用户性别
   optional string signature = 24;       // 用户签名，新增 2013-4-1
+  optional int32  vip = 25;             // is VIP user
 
   // for user draw
   optional PBDraw drawData = 31;            // 画画数据，已弃用

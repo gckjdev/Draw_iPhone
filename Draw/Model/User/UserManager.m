@@ -1799,4 +1799,75 @@ qqAccessTokenSecret:(NSString*)accessTokenSecret
     return YES;
 }
 
+- (BOOL)isVip
+{
+    
+//#ifdef DEBUG
+//    return YES;
+//#endif
+    
+    time_t now = time(0);
+    if ([_pbUser vip] && [_pbUser vipExpireDate] > now){
+        PPDebug(@"user is vip");
+        return YES;
+    }
+    
+    PPDebug(@"user is not vip");
+    return NO;
+}
+
+- (int)finalVip
+{
+    if ([self isVip] == NO)
+        return 0;
+    
+    return self.pbUser.vip;
+}
+
+- (void)setVip:(int)vip
+{
+    if (self.pbUser == nil)
+        return;
+    
+    PBGameUser_Builder* builder = [PBGameUser builderWithPrototype:self.pbUser];
+    [builder setVip:vip];
+    self.pbUser = [builder build];    
+}
+
+- (void)setVipExpireDate:(int)vipExpireDate
+{
+    if (self.pbUser == nil)
+        return;
+    
+    PBGameUser_Builder* builder = [PBGameUser builderWithPrototype:self.pbUser];
+    [builder setVipExpireDate:vipExpireDate];
+    self.pbUser = [builder build];
+}
+
+- (void)setVipLastPayDate:(int)vipLastPayDate
+{
+    if (self.pbUser == nil)
+        return;
+    
+    PBGameUser_Builder* builder = [PBGameUser builderWithPrototype:self.pbUser];
+    [builder setVipLastPayDate:vipLastPayDate];
+    self.pbUser = [builder build];
+}
+
+#define KEY_BUY_VIP_USER @"KEY_BUY_VIP_USER"
+
+- (int)buyVipUserCount
+{
+    NSUserDefaults* ud = [NSUserDefaults standardUserDefaults];
+    return [[ud objectForKey:KEY_BUY_VIP_USER] integerValue];
+}
+
+- (void)setBuyVipUserCount:(int)value
+{
+    NSUserDefaults* ud = [NSUserDefaults standardUserDefaults];
+    [ud setInteger:value forKey:KEY_BUY_VIP_USER];
+    [ud synchronize];
+}
+
+
 @end

@@ -422,6 +422,20 @@ static GroupService *_staticGroupService = nil;
      }];    
 }
 
+- (void)getGroupChargeHistories:(NSString *)groupId
+                         offset:(NSInteger)offset
+                          limit:(NSInteger)limit
+                       callback:(ListResultBlock)callback
+{
+    NSDictionary *paras = @{PARA_GROUPID:groupId, PARA_OFFSET:@(offset), PARA_LIMIT:@(limit)};
+    
+    [self loadPBData:METHOD_GET_GROUP_CHARGE_HISTORIES
+          parameters:paras
+            callback:^(DataQueryResponse *response, NSError *error)
+     {
+         EXECUTE_BLOCK(callback, response.noticeListList, error);
+     }];
+}
 
 //notice
 - (void)getGroupNoticeByType:(GroupNoticeType)type
@@ -447,6 +461,17 @@ static GroupService *_staticGroupService = nil;
     
     [self loadPBData:METHOD_IGNORE_NOTICE
           parameters:paras
+            callback:^(DataQueryResponse *response, NSError *error)
+     {
+         EXECUTE_BLOCK(callback, error);
+     }];
+}
+
+
+- (void)ignoreAllRequestNoticesWithCallback:(SimpleResultBlock)callback
+{
+    [self loadPBData:METHOD_IGNORE_ALL_REQUEST_NOTICE
+          parameters:nil
             callback:^(DataQueryResponse *response, NSError *error)
      {
          EXECUTE_BLOCK(callback, error);

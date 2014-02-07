@@ -1019,6 +1019,9 @@
 "kDecline" = "Decline";
 "kAccept" = "Accept";
 "kIgnore" = "Ignore";
+"kIgnoreAll" = "Ignore all";
+"kIgnoreAllConfirm" = "Sure to ignore all the notices?";
+"kGroupTimeline" = "Group timeline";
 
 "kCoinsForFollowUs" = "+%d coins";
 "kFollowSinaWeibo" = "Follow us with Sina";
@@ -1404,7 +1407,7 @@
 
 "kStore" = "Store";
 "kBalance" = "Balance:";
-
+"kWealth" = "%ld coins";
 "kBalanceNotEnoughTitle" = "Balance Not Enough";
 "kBalanceNotEnoughDesc" = "Sorry, your balance is not enough. You can charge your account by IAP purchasing or download our other free apps.";
 
@@ -2283,6 +2286,28 @@
 
 "kInvitationFailure" = "The user has joined a group, can't receive invitation";
 
+"kRejectJoinGroup" = "Reject request";
+"kJoinJoinGroupReason" = "Your reason...";
+"kJoinGroupReason" = "Your reason...";
+"kNoChargeHistory" = "No charge history.";
+"kGroupChargeHistory" = "Charge history";
+"kPrivatePostForGroup" = "Private";
+"kCan'tAccessPrivatePost" = "Can't access private topic.";
+"kPrivatePostDesc" = "[Private topic]";
+
+"kInviteMemberTitle" = "Invitation";
+"kInviteGuestTitle" = "Invitation";
+"kInviteMemberMessage" = "Invite to be member of your group?";
+"kInviteGuestMessage" = "Invite to be guest of your group?";
+"kInvitationSent" = "Sent";
+"kNoJoinGroup" = "No group.";
+"kCan'tCreateGroupForUserLevel" = "Your level is below %d, can;t create group.";
+
+"kRankVip" = "VIP";
+"kNoRankVip" = "No VIP opus.";
+"kNoVip" = "No VIP.";
+"kUpgradeVIP" = "Upgrade VIP";
+
 /*********************小吉画画国际化字符串开始 ************************/
 "kLittleGeeRecommend" = "Featured";
 "kLittleGeeDrawTo" = "Gift";
@@ -2398,6 +2423,10 @@
 "kFollowSuccess" = "Follow successfully";
 "kAuthorizeSuccess" = "Authorize successfully";
 "kAuthorizeFailure" = "Fail to authorize, please check your account or network";
+"kAuthorizeOngoing" = "Authorizing...";
+"kAuthorizeCancel" = "Authorization cancelled";
+
+
 
 "kShareSinaWeibo" = "Share Sina Weibo";
 "kShareWeixinSession" = "Share WeChat Friend";
@@ -2467,6 +2496,15 @@
 
 /*********************图库国际化字符串结束 ************************/
 
+"kBuyVip" = "Buy VIP";
+"kVip" = "VIP";
+"kIsNotVip" = "Not VIP";
+"kIsVip" = "Active till %@";
+"kVipExpire" = "Expired on %@";
+
+"kTaskVip" = "Become VIP";
+"kTaskVipDesc" = "Become our VIP users";
+"kTaskVipUnderDev" = "VIP feature is under development, please wait a bit";
 
 "kTaskCheckIn" = "Check In";
 "kTaskCheckInDesc" = "Check in everyday";
@@ -2560,7 +2598,9 @@
 
 "kContestNotStart" = "Pending";
 "kContestOutOfTime" = "Over";
-"kLeftDays" = "left %d days";
+"kLeftDays" = "%d days left";
+"kLeftHours" = "%d hours left";
+"kLeftMins" = "%d minutes left";
 
 "kNoGroupContest" = "No Group Contest";
 "kCreate" = "Create";

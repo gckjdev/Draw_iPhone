@@ -163,7 +163,10 @@ typedef enum{
 
 - (NSURL *)medalImageURL
 {
-    return [NSURL URLWithString:self.medalImage];
+    if ([self.medalImage length] > 0) {
+        return [NSURL URLWithString:self.medalImage];
+    }
+    return nil;
 }
 - (NSURL *)bgImageURL
 {

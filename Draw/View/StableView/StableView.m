@@ -274,14 +274,7 @@
     return self;
 }
 
-- (void)layoutSubviews
-{
-    [super layoutSubviews];
-    bgView.frame=self.bounds;
-    [self setContentInset:self.contentInset];
-}
-
-- (id)initWithUrlString:(NSString *)urlString type:(AvatarType)aType gender:(BOOL)gender level:(int)level;
+- (id)initWithUrlString:(NSString *)urlString type:(AvatarType)aType gender:(BOOL)gender level:(int)level vip:(int)vip
 {
     
     self = [super initWithFrame:AVATAR_VIEW_FRAME];
@@ -319,12 +312,15 @@
         self.layer.borderWidth = BORDER_WIDTH;
         self.layer.borderColor = [COLOR_GRAY_AVATAR CGColor];
     }
-    
+//#ifdef DEBUG
+//    [self setIsVIP:YES];
+//#endif
+
     return self;
 }
 
 
-- (id)initWithUrlString:(NSString *)urlString frame:(CGRect)frame gender:(BOOL)gender level:(int)level;
+- (id)initWithUrlString:(NSString *)urlString frame:(CGRect)frame gender:(BOOL)gender level:(int)level vip:(int)vip
 {
     self = [super initWithFrame:frame];    
     if (self) {
@@ -341,6 +337,10 @@
         [self setAsRound];
         self.layer.borderWidth = BORDER_WIDTH;
         self.layer.borderColor = [COLOR_GRAY_AVATAR CGColor];
+        
+//#ifdef DEBUG
+//        [self setIsVIP:YES];
+//#endif        
     }
     
     return self;
@@ -348,7 +348,7 @@
 
 - (id)initWithFrame:(CGRect)frame user:(PBGameUser *)user
 {
-    AvatarView *av = [self initWithUrlString:user.avatar frame:frame gender:user.gender level:user.level];
+    AvatarView *av = [self initWithUrlString:user.avatar frame:frame gender:user.gender level:user.level vip:user.vip];
     av.user = user;
 //    PPDebug(@"<AvatarView> initWithFrame, addr = %@", av);
     return av;
@@ -360,6 +360,12 @@
     [self setUrlString:user.avatar];
     [self setGender:user.gender];
     _user = user;
+    [self setIsVIP:(user.vip != 0)];
+    
+//#ifdef DEBUG
+//    [self setIsVIP:YES];
+//#endif
+
 }
 
 - (void)clear
@@ -371,6 +377,7 @@
 - (void)dealloc
 {
 //    PPDebug(@"%@ dealloc", self);
+    [self hideVip];
     [imageView release];
     [markButton release];
     [_userId release];
@@ -488,6 +495,51 @@
         [bgView setImage:[self backgroundForLevel:level]];
     }
 }
+
+- (void)showVip
+{
+    [self hideVip];
+    _vipFlag = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"vip_v@2x.png"]];
+    [self addSubview:_vipFlag];
+    [self setNeedsLayout];
+}
+
+- (void)layoutSubviews
+{
+    [super layoutSubviews];
+    bgView.frame=self.bounds;
+    [self setContentInset:self.contentInset];
+    
+    if (_isVIP) {
+        if (self.superview != nil) {
+            CGFloat width = CGRectGetWidth(self.bounds)/3.82;
+            CGFloat height = CGRectGetHeight(self.bounds)/3.82;
+            CGFloat y = CGRectGetHeight(self.bounds) - height;
+            CGFloat x = 0;
+            CGRect frame = CGRectMake(x, y, width, height);
+            _vipFlag.frame = [self.superview convertRect:frame fromView:self];
+            [self.superview addSubview:_vipFlag];
+        }
+    }
+    
+}
+
+- (void)hideVip
+{
+    [_vipFlag removeFromSuperview];
+    PPRelease(_vipFlag);
+}
+- (void)setIsVIP:(BOOL)isVIP
+{
+    isVIP = (isVIP != 0);
+    _isVIP = isVIP;
+    if (_vipFlag == nil && isVIP) {
+        [self showVip];
+    }else if(!isVIP){
+        [self hideVip];
+    }
+}
+
 @end
 
 

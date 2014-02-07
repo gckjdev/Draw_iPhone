@@ -96,10 +96,12 @@
 @interface PBBBSUser : PBGeneratedMessage {
 @private
   BOOL hasGender_:1;
+  BOOL hasVip_:1;
   BOOL hasUserId_:1;
   BOOL hasNickName_:1;
   BOOL hasAvatar_:1;
   BOOL gender_:1;
+  int32_t vip;
   NSString* userId;
   NSString* nickName;
   NSString* avatar;
@@ -108,10 +110,12 @@
 - (BOOL) hasNickName;
 - (BOOL) hasAvatar;
 - (BOOL) hasGender;
+- (BOOL) hasVip;
 @property (readonly, retain) NSString* userId;
 @property (readonly, retain) NSString* nickName;
 @property (readonly, retain) NSString* avatar;
 - (BOOL) gender;
+@property (readonly) int32_t vip;
 
 + (PBBBSUser*) defaultInstance;
 - (PBBBSUser*) defaultInstance;
@@ -166,6 +170,11 @@
 - (BOOL) gender;
 - (PBBBSUser_Builder*) setGender:(BOOL) value;
 - (PBBBSUser_Builder*) clearGender;
+
+- (BOOL) hasVip;
+- (int32_t) vip;
+- (PBBBSUser_Builder*) setVip:(int32_t) value;
+- (PBBBSUser_Builder*) clearVip;
 @end
 
 @interface PBBBSDraw : PBGeneratedMessage {
@@ -430,6 +439,7 @@
 @interface PBBBSPost : PBGeneratedMessage {
 @private
   BOOL hasMarked_:1;
+  BOOL hasIsPrivate_:1;
   BOOL hasDeviceType_:1;
   BOOL hasReplyCount_:1;
   BOOL hasSupportCount_:1;
@@ -443,6 +453,7 @@
   BOOL hasContent_:1;
   BOOL hasReward_:1;
   BOOL marked_:1;
+  BOOL isPrivate_:1;
   int32_t deviceType;
   int32_t replyCount;
   int32_t supportCount;
@@ -470,6 +481,7 @@
 - (BOOL) hasReward;
 - (BOOL) hasStatus;
 - (BOOL) hasMarked;
+- (BOOL) hasIsPrivate;
 @property (readonly, retain) NSString* postId;
 @property (readonly, retain) NSString* boardId;
 @property (readonly, retain) NSString* appId;
@@ -483,6 +495,7 @@
 @property (readonly, retain) PBBBSReward* reward;
 @property (readonly) int32_t status;
 - (BOOL) marked;
+- (BOOL) isPrivate;
 - (NSArray*) boardAdminListList;
 - (PBBBSUser*) boardAdminListAtIndex:(int32_t) index;
 
@@ -597,6 +610,11 @@
 - (BOOL) marked;
 - (PBBBSPost_Builder*) setMarked:(BOOL) value;
 - (PBBBSPost_Builder*) clearMarked;
+
+- (BOOL) hasIsPrivate;
+- (BOOL) isPrivate;
+- (PBBBSPost_Builder*) setIsPrivate:(BOOL) value;
+- (PBBBSPost_Builder*) clearIsPrivate;
 @end
 
 @interface PBBBSPrivilege : PBGeneratedMessage {

@@ -21,6 +21,7 @@
 #import "ChatDetailController.h"
 #import "MessageStat.h"
 #import "ContestController.h"
+#import "GroupFeedController.h"
 
 typedef enum{
     NewestTopic = 1,
@@ -95,13 +96,19 @@ typedef enum {
 {
     UIButton *button = sender;
     if ([permissonManager canJoinGroup]) {
-        [self showActivityWithText:NSLS(@"kJoiningGroup")];
-        [groupService joinGroup:_group.groupId message:nil callback:^(NSError *error) {
-            [self hideActivity];
-            if (!error) {
-                POSTMSG(NSLS(@"kSentRequest"));
-                button.hidden = YES;
-            }
+        CommonDialog *dialog = [CommonDialog createInputFieldDialogWith:NSLS(@"kJoinGroup")];
+        dialog.inputTextField.placeholder = NSLS(@"kJoinGroupReason");
+        [dialog showInView:self.view];
+        [dialog setClickOkBlock:^(id view){
+            [self showActivityWithText:NSLS(@"kJoiningGroup")];
+            NSString *message = dialog.inputTextField.text;
+            [groupService joinGroup:_group.groupId message:message callback:^(NSError *error) {
+                [self hideActivity];
+                if (!error) {
+                    POSTMSG(NSLS(@"kSentRequest"));
+                    button.hidden = YES;
+                }
+            }];
         }];
     }
 }
@@ -155,12 +162,19 @@ typedef enum {
             break;
         case GroupContest:
         {
-            //TODO contest
             ContestController *vc = [[[ContestController alloc] initWithGroupId:self.group.groupId]autorelease];
             [self.navigationController pushViewController:vc animated:YES];
 
         }
             break;
+        case GroupTimeline:
+        {
+            GroupFeedController *gfc = [[GroupFeedController alloc] init];
+            gfc.groupId = [_group groupId];
+            [self.navigationController pushViewController:gfc animated:YES];
+            [gfc release];
+            break;
+        }
 
         default:
             break;
@@ -195,7 +209,7 @@ typedef enum {
     [self updateFooterView];
     [self.dataTableView reloadData];
     if (_group.bgImageURL) {
-        [self setBGImageURL:_group.bgImageURL];
+        [self setBGImageURLWithDefaultPlaceHolder:_group.bgImageURL];
     }else{
         [self setDefaultBGImage];
     }
@@ -206,7 +220,7 @@ typedef enum {
     permissonManager = [GroupPermissionManager myManagerWithGroupId:_group.groupId];
     [[GroupManager defaultManager] setSharedGroup:_group];
     [permissonManager retain];
-    
+    self.forGroup = YES;
     [super viewDidLoad];
     [self setDefaultBGImage];
     [self updateTitleView];
@@ -339,6 +353,8 @@ typedef enum {
 }
 
 
+
+
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     NSInteger number = [super tableView:tableView numberOfRowsInSection:section];
@@ -464,5 +480,27 @@ typedef enum {
 - (void)viewDidUnload {
     [self setFooterView:nil];
     [super viewDidUnload];
+}
+
+#pragma mark - BBSPost cell delegate
+- (void)didClickSupportButtonWithPost:(PBBBSPost *)post
+{
+    // ENTER DETAIL CONTROLLER
+    BBSPostDetailController *bbsDetail = [[BBSPostDetailController alloc]initWithDefaultTabIndex:0];
+    bbsDetail.post = post;
+    bbsDetail.forGroup = YES;
+    [self.navigationController pushViewController:bbsDetail animated:YES];
+    [bbsDetail release];
+    
+}
+- (void)didClickReplyButtonWithPost:(PBBBSPost *)post
+{
+    // ENTER DETAIL CONTROLLER
+    BBSPostDetailController *bbsDetail = [[BBSPostDetailController alloc]initWithDefaultTabIndex:1];
+    bbsDetail.post = post;
+    bbsDetail.forGroup = YES;
+    [self.navigationController pushViewController:bbsDetail animated:YES];
+    [bbsDetail release];
+    
 }
 @end

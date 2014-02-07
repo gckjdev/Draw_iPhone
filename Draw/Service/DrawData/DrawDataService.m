@@ -429,7 +429,9 @@ static DrawDataService* _defaultDrawDataService = nil;
     NSString* avatar = [[UserManager defaultManager] avatarURL];
     NSString* appId = [PPConfigManager appId];    
     
-    NSString *words = [guessWords componentsJoinedByString:@":"];    
+    NSString *words = [guessWords componentsJoinedByString:@":"];
+    int vip = [[UserManager defaultManager] isVip] ? [UserManager defaultManager].pbUser.vip : 0;
+    
     
     PPDebug(@"<guessDraw> opusId=%@ creatorUserId=%@ score=%d", opusId, opusCreatorUid, score);    
     dispatch_async(workingQueue, ^{
@@ -444,7 +446,8 @@ static DrawDataService* _defaultDrawDataService = nil;
                                                           isCorrect:isCorrect 
                                                               score:score 
                                                               words:words
-                                                           category:category];
+                                                           category:category
+                                                                vip:vip];
         
         dispatch_async(dispatch_get_main_queue(), ^{
             

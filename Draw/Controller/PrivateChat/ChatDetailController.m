@@ -93,11 +93,11 @@
 {
     PPDebug(@"invoke reloadDataList");
     self.dataList = [[PPMessageManager defaultManager] getMessageList:self.messageStat.friendId];
+    [ChatDetailCell calculateAndSetHeight:self.dataList];
 }
 
 - (NSArray*)getMessageList
 {
-    PPDebug(@"invoke getMessageList");
     if (self.dataList == nil){
         [self reloadDataList];
     }
@@ -123,6 +123,7 @@
     }
     return NO;
 }
+
 - (void)dealloc {
     
     [self unregisterAllNotifications];
@@ -160,6 +161,8 @@
 
 + (void)enterFromGroup:(PBGroup*)pbGroup superController:(UIViewController*)superController
 {
+    [[ChatService defaultService] addUserMessageForClean:pbGroup.groupId];
+    
     MessageStat* messageStat = [[MessageStat alloc] init];
     
     messageStat.friendId = pbGroup.groupId;
@@ -335,11 +338,12 @@
     [self updateLocateButton];
     
     [self updateBG];
-    [self scrollToBottom:NO];
     
     self.inputBackgroundView.backgroundColor = COLOR_BROWN;
     self.inputTextView.textColor = COLOR_BROWN;
-
+    
+    [self scrollToBottom:NO];
+    
     // make this to avoid message list changed by receiving notification
     [self performSelector:@selector(loadNewMessageWhileLaunch) withObject:nil afterDelay:0.1f];
 }
@@ -402,9 +406,6 @@
         }
 
         [self reloadTableView];
-//        if (newMessageCount == 0) {
-//            return;
-//        }
 
         if (forward || insertMiddle) {
             [self tableViewScrollToBottom:YES];
@@ -416,6 +417,8 @@
             [[ChatService defaultService] sendHasReadMessage:self friendUserId:self.fid];
             self.messageStat.numberOfNewMessage = 0;
         }
+        
+    
         
     }else{
         PPDebug(@"<didGetMessages>, fail! resultCode = %d",resultCode);
@@ -446,7 +449,23 @@
     NSArray* messageList = [self getMessageList];
     if ([messageList count]>0) {
         NSIndexPath *indPath = [NSIndexPath indexPathForRow:[messageList count]-1 inSection:0];
+        
+        // reload last 20 rows
+        int RELOAD_ROW_COUNT = 15;
+        NSMutableArray *indexPathForReload = [NSMutableArray array];
+        for (int i=0; i<RELOAD_ROW_COUNT; i++){
+            int row = [messageList count] - 1 - i;
+            if (row < 0){
+                break;
+            }
+            NSIndexPath *index = [NSIndexPath indexPathForRow:i inSection:0];
+            [indexPathForReload addObject:index];
+        }
+        
+        [dataTableView beginUpdates];
         [dataTableView scrollToRowAtIndexPath:indPath atScrollPosition:UITableViewScrollPositionBottom animated:animated];
+        [dataTableView reloadRowsAtIndexPaths:indexPathForReload withRowAnimation:UITableViewRowAnimationNone]; // [dataTableView indexPathsForVisibleRows]
+        [dataTableView endUpdates];
     }
 }
 
@@ -483,9 +502,9 @@
 {
 //    PPDebug(@"<heightForRowAtIndexPath> index = %d", indexPath.row);
     PPMessage *message = [self messageOfIndex:indexPath.row];
-    BOOL flag = [self messageShowTime:message row:indexPath.row];
-    CGFloat height = [ChatDetailCell getCellHeight:message showTime:flag];
-    return height;
+//    BOOL flag = [self messageShowTime:message row:indexPath.row];
+//    CGFloat height = [ChatDetailCell getCellHeight:message showTime:flag];
+    return [message displayHeight];
 }
 
 
@@ -1063,7 +1082,6 @@
     }else if(_asIndexResend == buttonIndex){
         
         [[ChatService defaultService] sendMessage:_selectedMessage];
-        
         [self reloadTableView];
         [self tableViewScrollToBottom:YES];
     }
@@ -1147,25 +1165,33 @@
 - (void)tableViewScrollToTop
 {
     NSArray* messageList = [self getMessageList];
+
     if ([messageList count] > 0) {
         NSInteger row = 0;
         NSIndexPath *indexPath = [NSIndexPath indexPathForRow:row inSection:0];
-        [self.dataTableView scrollToRowAtIndexPath:indexPath 
+
+        // reload first 20 rows
+        int RELOAD_ROW_COUNT = 15;
+        NSMutableArray *indexPathForReload = [NSMutableArray array];
+        for (int i=0; i<RELOAD_ROW_COUNT; i++){
+            if (i >= [messageList count]){
+                break;
+            }
+            NSIndexPath *index = [NSIndexPath indexPathForRow:i inSection:0];
+            [indexPathForReload addObject:index];
+        }
+        
+        [self.dataTableView beginUpdates];
+        [self.dataTableView scrollToRowAtIndexPath:indexPath
                                   atScrollPosition:UITableViewScrollPositionBottom 
-                                          animated:YES];        
-    }    
+                                          animated:YES];
+        [dataTableView reloadRowsAtIndexPaths:indexPathForReload withRowAnimation:UITableViewRowAnimationNone]; // [dataTableView indexPathsForVisibleRows]
+        [dataTableView endUpdates];
+    }
 }
 - (void)tableViewScrollToBottom:(BOOL)animated
 {
-    NSArray* messageList = [self getMessageList];
-
-    if ([messageList count] > 0) {
-        NSInteger row = [messageList count] - 1;
-        NSIndexPath *indexPath = [NSIndexPath indexPathForRow:row inSection:0];
-        [self.dataTableView scrollToRowAtIndexPath:indexPath 
-                                  atScrollPosition:UITableViewScrollPositionBottom 
-                                          animated:animated];
-    }
+    [self scrollToBottom:animated];
 }
 
 

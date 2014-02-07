@@ -37,9 +37,11 @@
 @property (nonatomic, assign) BOOL friendGender;
 @property (nonatomic, assign) NSInteger numberOfNewMessage;
 @property (nonatomic, assign) NSInteger numberOfMessage;
+@property (nonatomic, assign) int vip;
 @property (nonatomic, assign) MessageType messageType;
 @property (nonatomic, assign) SourceType sourceType;
 @property (nonatomic, assign) BOOL isGroup;
+@property (nonatomic, readonly) NSString * groupId;
 
 - (id)initWithPBMessageStat:(PBMessageStat *)pbMessageStat;
 

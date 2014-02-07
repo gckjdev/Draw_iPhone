@@ -33,6 +33,7 @@
               avatar:(NSString *)avatar 
               gender:(BOOL)gender
            signature:(NSString*)signature
+                 vip:(int)vip
 {
     self = [super init];
     if (self) {
@@ -41,6 +42,7 @@
         self.avatar = avatar;
         self.gender = gender;
         self.signature = signature;
+        self.vip = vip;
 //        PPDebug(@"<initFeedUser> user nick=%@ signature = %@", nickName, signature);
     }
     return self;
@@ -50,6 +52,7 @@
 #define KEY_NICK @"NICK"
 #define KEY_AVATAR @"AVATAR"
 #define KEY_GENDER @"GENDER"
+#define KEY_VIP @"VIP"
 
 - (id)initWithCoder:(NSCoder *)aDecoder
 {
@@ -59,6 +62,7 @@
         self.nickName = [aDecoder decodeObjectForKey:KEY_NICK];
         self.avatar = [aDecoder decodeObjectForKey:KEY_AVATAR];
         self.gender = [aDecoder decodeBoolForKey:KEY_GENDER];
+        self.vip = [aDecoder decodeIntegerForKey:KEY_VIP];
     }
     return self;
 }
@@ -69,6 +73,7 @@
     [aCoder encodeObject:_nickName forKey:KEY_NICK];
     [aCoder encodeObject:_avatar forKey:KEY_AVATAR];
     [aCoder encodeBool:_gender forKey:KEY_GENDER];
+    [aCoder encodeInteger:_vip forKey:KEY_VIP];
 }
 
 + (FeedUser *)feedUserWithUserId:(NSString *)userId 
@@ -76,13 +81,15 @@
                           avatar:(NSString *)avatar 
                           gender:(BOOL)gender
                        signature:(NSString*)signature
+                             vip:(int)vip
 {
     return [[[FeedUser alloc] 
              initWithUserId:userId 
              nickName:nickName 
              avatar:avatar 
              gender:gender
-             signature:signature]
+             signature:signature
+             vip:vip]
             autorelease];
 }
 

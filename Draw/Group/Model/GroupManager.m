@@ -88,13 +88,18 @@ static GroupManager *_staticGroupManager = nil;
     }
     [array addObjectsFromArray:@[@(GroupSearchGroup), @(GroupChat), @(GroupContest),
      @(GroupAtMe)]];
+    
+    if ([[GroupManager defaultManager] userCurrentGroupId]) {
+        [array addObject:@(GroupTimeline)];
+    }
+    
     return array;
 }
 
 
 + (NSArray *)defaultTypesInGroupTopicFooter:(PBGroup *)group
 {
-    return @[@(GroupCreateTopic), @(GroupSearchTopic), @(GroupContest), @(GroupChat)];
+    return @[@(GroupCreateTopic), @(GroupSearchTopic), @(GroupContest), @(GroupChat), @(GroupTimeline)];
 }
 
 + (NSMutableArray *)getTopicCMDList:(PBBBSPost *)post inGroup:(NSString *)groupId

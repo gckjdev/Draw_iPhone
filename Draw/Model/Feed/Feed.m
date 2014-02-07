@@ -50,7 +50,8 @@
                                             nickName:pbFeed.nickName 
                                               avatar:pbFeed.avatar 
                                               gender:pbFeed.gender
-                                           signature:pbFeed.signature];
+                                           signature:pbFeed.signature
+                                                 vip:pbFeed.vip];
         
         
     }
@@ -121,7 +122,8 @@
 - (BOOL) isOpusType
 {
     return (self.feedType == FeedTypeDraw) || (self.feedType == FeedTypeDrawToUser)
-    || (self.feedType == FeedTypeSing || self.feedType == FeedTypeSingToUser);
+    || (self.feedType == FeedTypeSing) || (self.feedType == FeedTypeSingToUser)
+    || (self.feedType == FeedTypeSingContest) || (self.feedType == FeedTypeDrawToContest);
 }
 
 - (BOOL)isDrawCategory

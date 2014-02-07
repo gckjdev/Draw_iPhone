@@ -56,6 +56,7 @@ typedef enum{
 - (NSURL *)thumbImageURL;
 - (NSURL *)largeImageURL;
 
+
 @end
 
 @interface PBBBSUser (UserExt)
@@ -65,6 +66,7 @@ typedef enum{
 - (UIImage *)defaultAvatar;
 - (NSURL *)avatarURL;
 - (NSString *)genderString;
+- (BOOL)isVIP;
 @end
 
 
@@ -82,6 +84,7 @@ typedef enum{
 - (void)setPay:(BOOL)pay;
 - (BOOL)hasPay;
 - (NSString *)createDateString;
+- (BOOL)isPrivateForMe;
 
 @end
 

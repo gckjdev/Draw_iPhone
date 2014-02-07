@@ -19,6 +19,7 @@
 #import "ShowFeedController.h"
 #import "UserDetailViewController.h"
 #import "ViewUserDetail.h"
+#import "PurchaseVipController.h"
 
 #define FUNC_FEED                       @"feed"
 #define FUNC_CONTEST                    @"contest"
@@ -31,6 +32,7 @@
 #define FUNC_BBS_BUG_REPORT             @"bbs_bug_report"
 #define FUNC_OPUS_DETAIL                @"opus_detail"
 #define FUNC_USER_DETAIL                @"user_detail"
+#define FUNC_PURCHASE_VIP               @"vip"
 
 
 
@@ -78,6 +80,10 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(DrawGameJumpHandler)
     else if ([func isEqualToString:FUNC_USER_DETAIL ignoreCapital:YES]){
         ViewUserDetail *detail = [ViewUserDetail viewUserDetailWithUserId:para avatar:nil nickName:nil];
         jumpController = [[[UserDetailViewController alloc] initWithUserDetail:detail] autorelease];
+    }
+    else if ([func isEqualToString:FUNC_PURCHASE_VIP ignoreCapital:YES]){        
+        jumpController = [PurchaseVipController enter:controller];
+        return nil;
     }
     else{
         Class class = NSClassFromString(func);

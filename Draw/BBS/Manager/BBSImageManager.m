@@ -101,12 +101,19 @@ static BBSImageManager* _staticBBSImageManager;
 
 - (UIImage *)bbsBoardBgImage
 {
-
-    return [ShareImageManager boundImageWithType:BoundImageTypeVertical border:BBS_BOARD_BORDER cornerRadius:BBS_BOARD_RADIUS color:BOARD_BOUND_COLOR];
+    return [ShareImageManager boundImageWithType:BoundImageTypeVertical
+                                          border:BBS_BOARD_BORDER
+                                    cornerRadius:BBS_BOARD_RADIUS
+                                      boundColor:BOARD_BOUND_COLOR
+                                       fillColor:[UIColor whiteColor]];
 }
 - (UIImage *)bbsBoardLastBgImage
 {
-    return [ShareImageManager boundImageWithType:BoundImageTypeBottom border:BBS_BOARD_BORDER cornerRadius:BBS_BOARD_RADIUS color:BOARD_BOUND_COLOR];
+    return [ShareImageManager boundImageWithType:BoundImageTypeBottom
+                                          border:BBS_BOARD_BORDER
+                                    cornerRadius:BBS_BOARD_RADIUS
+                                      boundColor:BOARD_BOUND_COLOR
+                                       fillColor:[UIColor whiteColor]];
 }
 - (UIImage *)bbsBoardLineImage
 {

@@ -21,8 +21,8 @@
     [self.notice setTextColor:COLOR_BROWN];
     [self.message setTextColor:COLOR_BROWN];
     [self.timestamp setTextColor:COLOR_BROWN];
-    [self.notice setNumberOfLines:0];
-    [self.message setNumberOfLines:0];
+    [self.notice setNumberOfLines:2];
+    [self.message setNumberOfLines:1];
     [self.notice setLineBreakMode:NSLineBreakByCharWrapping];
     [self.message setLineBreakMode:NSLineBreakByCharWrapping];
     [self.avatar setDelegate:self];
@@ -48,7 +48,7 @@
 }
 + (CGFloat)getCellHeight
 {
-    return 44;
+    return (ISIPAD ? 176 : 97);
 }
 
 - (void)setCellInfo:(PBGroupNotice *)notice
@@ -58,60 +58,23 @@
     [self.message setText:notice.msg];
     [self.timestamp setText:notice.createDateString];
     [self.avatar setUser:notice.publisher];
-    [self setNeedsLayout];
+//    [self setNeedsLayout];
 }
 
 
 
-#define LABEL_Y_INSET (ISIPAD?12:8)
+#define LABEL_Y_INSET (ISIPAD?9:4)
 #define TIMELABEL_HEIGHT (ISIPAD?30:16)
 #define MIN_HEIGHT (ISIPAD?140:73)
 #define LABEL_WIDTH (ISIPAD?550:225)
 
 
-
-- (CGSize)sizeForLabel:(UILabel *)label
-{
-    CGFloat width = LABEL_WIDTH;//CGRectGetWidth(label.bounds);
-    CGSize size = [label.text sizeWithFont:label.font constrainedToSize:CGSizeMake(width, 9999999) lineBreakMode:NSLineBreakByCharWrapping];
-    if (!CGSizeEqualToSize(size, CGSizeZero)) {
-        size.height += LABEL_Y_INSET;
-    }
-    return size;
-}
-
-- (void)layoutSubviews
-{
-    [super layoutSubviews];
-    CGSize noticeSize = [self sizeForLabel:self.notice];
-    CGSize messageSize = [self sizeForLabel:self.message];
-
-    CGRect noticeFrame = self.notice.frame;
-    noticeFrame.size = noticeSize;
-    self.notice.frame = noticeFrame;
-    
-    CGRect messageFrame = self.message.frame;
-    messageFrame.size = messageSize;
-    messageFrame.origin.y = CGRectGetMaxY(noticeFrame);
-    self.message.frame = messageFrame;
-    
-}
-
-
 + (CGFloat)getCellHeightByNotice:(PBGroupNotice *)groupNotice
 {
-    CGSize noticeSize = [groupNotice.desc sizeWithFont:CELL_NICK_FONT constrainedToSize:CGSizeMake(LABEL_WIDTH, 999999) lineBreakMode:NSLineBreakByCharWrapping];
-    
-    noticeSize.height += LABEL_Y_INSET;
-    
-    CGSize messageSize = [groupNotice.msg sizeWithFont:CELL_CONTENT_FONT constrainedToSize:CGSizeMake(LABEL_WIDTH, 999999) lineBreakMode:NSLineBreakByCharWrapping];
-    if (messageSize.height != 0) {
-        messageSize.height += LABEL_Y_INSET;
+    if([groupNotice.message length] > 0){
+        return [self getCellHeight];
     }
-
-    CGFloat height = noticeSize.height + messageSize.height;
-    height += TIMELABEL_HEIGHT;
-    return MAX(MIN_HEIGHT, height);
+    return (ISIPAD ? 150: 80);
 }
 
 

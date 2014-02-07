@@ -330,7 +330,8 @@
                         isCorrect:(BOOL)isCorrect
                             score:(NSInteger)score
                             words:(NSString*)words
-                         category:(PBOpusCategoryType)category;
+                         category:(PBOpusCategoryType)category
+                              vip:(int)vip;
 
 + (CommonNetworkOutput*)commentOpus:(NSString*)baseURL
                               appId:(NSString*)appId
@@ -347,7 +348,8 @@
                       commentUserId:(NSString *)commentUserId 
                     commentNickName:(NSString *)commentNickName
                           contestId:(NSString*)contestId
-                           category:(PBOpusCategoryType)category;
+                           category:(PBOpusCategoryType)category
+                                vip:(int)vip;;
 
 + (CommonNetworkOutput*)contestCommentOpus:(NSString*)baseURL
                                      appId:(NSString*)appId
@@ -364,7 +366,8 @@
                              commentUserId:(NSString *)commentUserId
                            commentNickName:(NSString *)commentNickName
                                  contestId:(NSString*)contestId
-                                  category:(PBOpusCategoryType)category;
+                                  category:(PBOpusCategoryType)category
+                                       vip:(int)vip;
 
 + (CommonNetworkOutput*)getOpusCount:(NSString*)baseURL
                                appId:(NSString*)appId
@@ -383,7 +386,8 @@
                            awardBalance:(int)awardBalance
                                awardExp:(int)awardExp
                               contestId:(NSString*)contestId
-                               category:(PBOpusCategoryType)category;
+                               category:(PBOpusCategoryType)category
+                                    vip:(int)vip;
 
 
 + (CommonNetworkOutput*)getMessageList:(NSString*)baseURL
@@ -526,7 +530,8 @@
                               actionName:(NSString*)actionName
                                   opusId:(NSString*)opusId
                                contestId:(NSString *)contestId
-                                category:(PBOpusCategoryType)category;
+                                category:(PBOpusCategoryType)category
+                                     vip:(int)vip;
 
 + (CommonNetworkOutput*)reportStatus:(NSString*)baseURL 
                                appId:(NSString *)appId                                

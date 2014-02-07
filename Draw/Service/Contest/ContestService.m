@@ -339,7 +339,11 @@ static ContestService *_staticContestService;
     for (PBContest* contest in ongoingContestList){
         
         // skip ongoing group contest
-        if (contest.group != nil){
+        if ([contest hasGroup] == YES){
+            continue;
+        }
+        
+        if ([contest category] != [GameApp getCategory]){
             continue;
         }
         
@@ -359,7 +363,7 @@ static ContestService *_staticContestService;
     for (PBContest* contest in ongoingContestList){
         
         // skip ongoing group contest
-        if (contest.group == nil){
+        if ([contest hasGroup] == NO){
             continue;
         }
         

@@ -400,6 +400,7 @@ BBSService *_staticGroupTopicService;
                         bonus:(NSInteger)bonus
                      delegate:(id<BBSServiceDelegate>)delegate
                    canvasSize:(CGSize)size
+                    isPrivate:(BOOL)isPrivate
 {
 
         BBSPostContentType type = ContentTypeText;
@@ -459,7 +460,8 @@ BBSService *_staticGroupTopicService;
                                                            image:[image data]
                                                         drawData:drawData
                                                        drawImage:[drawImage data]
-                                                           bonus:bonus];
+                                                           bonus:bonus
+                                                       isPrivate:isPrivate];
             
             NSInteger resultCode = output.resultCode;
             PBBBSPost *post = nil;
@@ -1127,8 +1129,7 @@ BBSService *_staticGroupTopicService;
             key = actionId;
         }
         PBBBSDraw *draw = [_bbsManager loadBBSDrawDataFromCacheWithKey:key];
-    
-        if (draw != nil) {
+        if (draw != nil && [draw.drawActionListList count] > 0) {
             PPDebug(@"<getBBSDrawDataWithPostId> load data from local service");
 //            NSArray *list = [draw drawActionListList];
             NSMutableArray *drawActionList = [DrawAction drawActionListFromPBBBSDraw:draw];

@@ -11,7 +11,7 @@
 #import "BBSManager.h"
 #import "UserManager.h"
 #import "TimeUtils.h"
-
+#import "GroupManager.h"
 
 
 
@@ -27,6 +27,10 @@
 
 #define CONTENT_FONT [[BBSFontManager defaultManager] postContentFont]
 #define FLAG_RADIUS (ISIPAD ? 6 : 3)
+
+
+#define PRIVATE_POST NSLS(@"kPrivatePostDesc")
+
 
 @implementation BBSPostCell
 @synthesize post = _post;
@@ -126,12 +130,16 @@
     return size.height;
 }
 
+
 + (CGFloat)getCellHeightWithBBSPost:(PBBBSPost *)post
 {
     PBBBSContent * content = post.content;
-    CGFloat height = [BBSPostCell heightForContentText:content.text];
+    BOOL isPrivateForMe = [post isPrivateForMe];
+    NSString *text = isPrivateForMe ? PRIVATE_POST : content.text;
     
-    if (post.content.hasThumbImage) {
+    CGFloat height = [BBSPostCell heightForContentText:text];
+    
+    if (post.content.hasThumbImage && !isPrivateForMe) {
         height += (SPACE_CONTENT_TOP + SPACE_CONTENT_BOTTOM_IMAGE);
     }else{
         height += (SPACE_CONTENT_TOP + SPACE_CONTENT_BOTTOM_TEXT);
@@ -143,27 +151,22 @@
 {
     [self.nickName setText:user.showNick];
     [self.avatar setImageWithURL:user.avatarURL placeholderImage:user.defaultAvatar];
+    [self showVipFlag:user.isVIP];    
 }
 
 - (void)updateContent:(PBBBSContent *)content
 {
-    [self.content setText:content.text];
+    BOOL isPrivateForMe = [self.post isPrivateForMe];
+    NSString *text = !isPrivateForMe ? content.text : PRIVATE_POST;
+    [self.content setText:text];    
+    [self.content setTextColor:(isPrivateForMe?COLOR_GRAY_TEXT:COLOR_BROWN)];
     
     //reset the size
     CGRect frame = self.content.frame;
-    frame.size.height = [BBSPostCell heightForContentText:content.text];
+    frame.size.height = [BBSPostCell heightForContentText:text];
     self.content.frame = frame;
 
-  
-    if (content.hasThumbImage) {
-//        [self.image setImageWithURL:content.thumbImageURL
-//                   placeholderImage:PLACEHOLDER_IMAGE
-//                            success:^(UIImage *image, BOOL cached) {
-//                                [self updateImageViewFrameWithImage:image];
-//                            } failure:^(NSError *error) {
-//                                
-//        }];
-        
+    if (content.hasThumbImage && !isPrivateForMe) {
         [self.image setImageWithURL:content.thumbImageURL placeholderImage:PLACEHOLDER_IMAGE completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType) {
             if (error == nil) {
                 [self updateImageViewFrameWithImage:image];

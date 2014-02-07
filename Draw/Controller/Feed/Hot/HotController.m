@@ -20,6 +20,7 @@
 #import "MKBlockActionSheet.h"
 #import "BBSPermissionManager.h"
 #import "UINavigationController+UINavigationControllerAdditions.h"
+#import "PurchaseVipController.h"
 //#import "SingHotCell.h"
 //#import "NSArray+Ext.h"
 #import "CellManager.h"
@@ -30,6 +31,7 @@ typedef enum{
     RankTypeHot = FeedListTypeHot,
     RankTypeNew = FeedListTypeLatest,
     RankTypeRecommend = FeedListTypeRecommend,
+    RankTypeVIP = FeedListTypeVIP,
     
 }RankType;
 
@@ -135,6 +137,11 @@ typedef enum{
     if ([tab.dataList count] == 0) {
         [self showCachedFeedList:tabID];
     }
+    if (tabID == RankTypeVIP && ![[UserManager defaultManager] isVip]) {
+        [self setRightButtonVipInfo];
+    }else{
+        [self setRightButtonRefresh];
+    }
     [super clickTabButton:sender];
     
 }
@@ -177,6 +184,26 @@ typedef enum{
  
 }
 
+
+- (void)clickVipInfo:(id)sender
+{
+    [PurchaseVipController enter:self];
+}
+
+- (void)setRightButtonVipInfo
+{
+    [self.titleView setRightButtonTitle:NSLS(@"kUpgradeVIP")];
+    [self.titleView setRightButtonSelector:@selector(clickVipInfo:)];
+    [self.hotRankSettingButton setHidden:YES];
+}
+
+- (void)setRightButtonRefresh
+{
+    [self.hotRankSettingButton setHidden:NO];
+    [self.titleView setRightButtonAsRefresh];
+    [self.titleView setRightButtonSelector:@selector(clickRefreshButton:)];
+}
+
 - (void)viewDidUnload
 {
     [super viewDidUnload];
@@ -197,12 +224,8 @@ typedef enum{
             
         case RankTypeRecommend:
         case RankTypeNew:
-            return [CellManager getLastStyleCellHeightWithIndexPath:indexPath];
-            break;
-            
         default:
-            return 0;
-            break;
+            return [CellManager getLastStyleCellHeightWithIndexPath:indexPath];
     }
     
 //    if (isSingApp()){
@@ -319,14 +342,11 @@ typedef enum{
             
         case RankTypeRecommend:
         case RankTypeNew:
+        default:
             return [CellManager getLastStyleCell:theTableView
                                        indexPath:indexPath
                                         delegate:self
                                         dataList:[self tabDataList]];
-            break;
-            
-        default:
-            return nil;
             break;
     }
     
@@ -437,13 +457,10 @@ typedef enum{
             
         case RankTypeNew:
         case RankTypeRecommend:
+        default:
             return [CellManager getLastStyleCellCountWithDataCount:count
                                                         roundingUp:NO];
-            break;
-            
-        default:
-            return 0;
-            break;
+            break;            
     }
 }
 
@@ -452,7 +469,7 @@ typedef enum{
 
 - (NSInteger)tabCount
 {
-    return 4;
+    return 5;
 }
 - (NSInteger)fetchDataLimitForTabIndex:(NSInteger)index
 {
@@ -460,20 +477,20 @@ typedef enum{
 }
 - (NSInteger)tabIDforIndex:(NSInteger)index
 {
-    NSInteger tabId[] = {RankTypeHistory, RankTypeHot, RankTypeRecommend, RankTypeNew};
+    NSInteger tabId[] = {RankTypeHistory, RankTypeHot, RankTypeRecommend, RankTypeNew, RankTypeVIP};
     return tabId[index];
 }
 
 - (NSString *)tabNoDataTipsforIndex:(NSInteger)index
 {
-    NSString *tabDesc[] = {NSLS(@"kNoRankHistory"),NSLS(@"kNoRankHot"), NSLS(@"kNoRecommend"),NSLS(@"kNoRankNew")};
+    NSString *tabDesc[] = {NSLS(@"kNoRankHistory"),NSLS(@"kNoRankHot"), NSLS(@"kNoRecommend"),NSLS(@"kNoRankNew"),NSLS(@"kNoRankVip")};
     
     return tabDesc[index];
 }
 
 - (NSString *)tabTitleforIndex:(NSInteger)index
 {
-    NSString *tabTitle[] = {NSLS(@"kRankHistory"),NSLS(@"kRankHot"), NSLS(@"kLittleGeeRecommend"),NSLS(@"kRankNew")};
+    NSString *tabTitle[] = {NSLS(@"kRankHistory"),NSLS(@"kRankHot"), NSLS(@"kLittleGeeRecommend"),NSLS(@"kRankNew"),NSLS(@"kRankVip")};
     
     return tabTitle[index];
 

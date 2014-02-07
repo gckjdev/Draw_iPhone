@@ -275,4 +275,13 @@ qqAccessTokenSecret:(NSString*)accessTokenSecret
 - (BOOL)hasTrySetHomeBg;
 - (BOOL)setTrySetHomeBg;
 
+- (BOOL)isVip;
+- (int)finalVip;
+
+- (void)setVip:(int)vip;
+- (void)setVipExpireDate:(int)vipExpireDate;
+- (void)setVipLastPayDate:(int)vipLastPayDate;
+- (int)buyVipUserCount;
+- (void)setBuyVipUserCount:(int)value;
+
 @end

@@ -225,7 +225,7 @@
             avatarUrl = [user userAvatar];
         }
 
-        AvatarView *aView = [[AvatarView alloc] initWithUrlString:avatarUrl type:type gender:gender level:user.level];
+        AvatarView *aView = [[AvatarView alloc] initWithUrlString:avatarUrl type:type gender:gender level:user.level vip:0];
         [aView setUserId:user.userId];
         aView.delegate = self;
         

@@ -2,13 +2,9 @@
 
 
 
-//"CFBundleDisplayName" = "LIGE Draw";
+"CFBundleDisplayName" = "LIGE Draw";
 //"CFBundleDisplayName" = "LIGE Voice";
-"CFBundleDisplayName" = "Draw Lively";
-
-
-
-
+//"CFBundleDisplayName" = "Draw Lively";
 
 
 //"CFBundleDisplayName" = "Littlegee";
@@ -21,3 +17,4 @@
 //"CFBundleDisplayName" = "Private SMS";
 //"CFBundleDisplayName" = "Draw Photo";
 //"CFBundleDisplayName" = "Awesome Draw";
+

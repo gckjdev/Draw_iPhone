@@ -21,7 +21,7 @@
 @interface GroupInfoView : UIView
 @property (retain, nonatomic) PBGroup *group;
 @property (assign, nonatomic) id<GroupInfoViewDelegate>delegate;
-
+@property (assign, nonatomic) BOOL showBalance;
 + (id)infoViewWithGroup:(PBGroup *)group;
 + (CGFloat)getViewHeight;
 - (void)setCustomButton:(UIButton *)button;

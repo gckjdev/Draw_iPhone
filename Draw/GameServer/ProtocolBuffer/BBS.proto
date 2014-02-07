@@ -11,6 +11,7 @@ message PBBBSUser {
     optional string nickName = 2;
     optional string avatar =3;
     optional bool gender = 4;
+    optional int32 vip = 5;
 }
 
 message PBBBSDraw{
@@ -59,6 +60,7 @@ message PBBBSPost{
     optional int32 status = 12;
     repeated PBBBSUser boardAdminList = 13; //unused
     optional bool marked = 14;
+    optional bool isPrivate = 15;
 }
 
 message PBBBSPrivilege{

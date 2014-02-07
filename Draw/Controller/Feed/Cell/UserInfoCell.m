@@ -72,12 +72,15 @@
     NSString *avatar = isAnounymous ? DEFAULT_ANOUNYMOUS_AVATAR : feed.author.avatar;
     NSString *nickName = isAnounymous ? NSLS(@"kAnounymousContestNick") : feed.author.nickName;
     NSString *sign = isAnounymous ? @"" : feed.author.signature;
+    int vip = isAnounymous ? NO : feed.feedUser.vip;
     
     BOOL gender =  feed.author.gender;
     
-    self.avatarView = [[[AvatarView alloc] initWithUrlString:avatar frame:frame gender:gender level:0] autorelease];
+    self.avatarView = [[[AvatarView alloc] initWithUrlString:avatar frame:frame gender:gender level:0 vip:vip] autorelease];
     [self.avatarView setUserId:userId];
     [self.avatarView setUserInteractionEnabled:NO];
+    self.avatarView.isVIP = isAnounymous ? NO : feed.feedUser.vip;
+    
     [self addSubview:self.avatarView];
     
     //name

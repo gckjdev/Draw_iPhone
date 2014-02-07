@@ -11,13 +11,14 @@
 #import "BBSModelExt.h"
 #import "GroupModelExt.h"
 #import "GroupManager.h"
+#import "UserManager.h"
 
 static NSMutableArray *_roles;
 
 @implementation GroupPermissionManager
 
 
-#define GROUP_ROLES_KEY @"GROUP_ROLES"
+#define GROUP_ROLES_KEY ( [@"GROUP_ROLES" stringByAppendingFormat:@"_%@", [[UserManager defaultManager] userId]] )
 
 + (NSMutableArray *)groupRoles
 {
@@ -204,6 +205,16 @@ static NSMutableArray *_roles;
 {
     return PERMIT(DELETE_TOPIC) || [action isMyAction];
 }
+
+- (BOOL)canCreatePrivateTopic
+{
+    return PERMIT(CREATE_PRIVATE_TOPIC);
+}
+- (BOOL)canReadPrivateTopic
+{
+    return PERMIT(READ_PRIVATE_TOPIC);
+}
+
 
 //admin permission
 - (BOOL)canMarkTopic

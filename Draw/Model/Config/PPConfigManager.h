@@ -334,6 +334,10 @@ typedef enum{
 + (NSInteger)getGroupIntroduceMaxLength;
 + (NSInteger)getGroupSignatureMaxLength;
 + (NSInteger)getGroupMaxLevel;
+
++ (NSInteger)getGroupMaxLevelForVIP;
++ (NSInteger)getUserMinLevelForCreateGroup;
+
 + (NSInteger)getUpgradeGroupFeePerLevel;
 + (NSInteger)getQuitGroupFee;
 
@@ -342,5 +346,13 @@ typedef enum{
 + (int)getMinGroupContestAward;
 
 + (int)getGroupContestMinTotalAward;
+
++ (NSString*)getShareOpusWebLink;
+
++ (int)getVipMonthFee;
++ (int)getVipYearFee;
++ (NSString*)getVipYearTaobaoURL;
++ (NSString*)getVipMonthTaobaoURL;
+
 
 @end

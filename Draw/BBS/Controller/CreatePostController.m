@@ -19,6 +19,8 @@
 #import "PPConfigManager.h"
 #import "WordFilterService.h"
 #import "Group.pb.h"
+#import "GroupPermission.h"
+#import "UIViewController+BGImage.h"
 
 @interface CreatePostController ()
 {
@@ -110,6 +112,7 @@
     PPRelease(_submitButton);
     PPRelease(_inputBG);
     
+    [_isPrivate release];
     [super dealloc];
 }
 - (id)initWithBoard:(PBBBSBoard *)board
@@ -358,14 +361,25 @@
     [BBSViewManager updateDefaultTitleLabel:self.titleLabel text:titleName];
     [BBSViewManager updateDefaultBackButton:self.backButton];
 
+    GroupPermissionManager *gpm = [GroupPermissionManager myManagerWithGroupId:_group.groupId];    
+    [self.isPrivate setHidden:!(self.forGroup && [gpm canCreatePrivateTopic])];
+    [self.isPrivate setTitleColor:COLOR_BROWN forState:UIControlStateNormal];
+    [self.isPrivate setTitle:NSLS(@"kPrivatePostForGroup") forState:UIControlStateNormal];
+    
+    [self.isPrivate setTitleColor:COLOR_BROWN forState:UIControlStateHighlighted];
+    [self.isPrivate setTitle:NSLS(@"kPrivatePostForGroup") forState:UIControlStateHighlighted];
+    [self.isPrivate setTitleColor:COLOR_BROWN forState:UIControlStateSelected];
+    [self.isPrivate setTitle:NSLS(@"kPrivatePostForGroup") forState:UIControlStateSelected];
+
 }
 
 - (void)customBbsBg
 {
-    UIImage* image = [[UserManager defaultManager] bbsBackground];
-    if (image) {
-        [self.bgImageView setImage:image];
-    }
+    [self setDefaultBGImage];
+//    UIImage* image = [[UserManager defaultManager] bbsBackground];
+//    if (image) {
+//        [self.bgImageView setImage:image];
+//    }
 }
 
 - (void)viewDidLoad
@@ -394,6 +408,7 @@
     [self setBackButton:nil];
     [self setSubmitButton:nil];
     [self setInputBG:nil];
+    [self setIsPrivate:nil];
     [super viewDidUnload];
 }
 
@@ -466,9 +481,19 @@
                                     drawImage:self.drawImage
                                         bonus:self.bonus
                                      delegate:self
-                                   canvasSize:self.canvasSize];        
+                                   canvasSize:self.canvasSize
+                                    isPrivate:[self isPrivatePost]];
     }
 
+}
+
+- (BOOL)isPrivatePost
+{
+    return self.isPrivate.isSelected;
+}
+
+- (IBAction)clickPrivateButton:(id)sender {
+    self.isPrivate.selected = !self.isPrivate.selected;
 }
 
 #define ALERT_CLEAR_IMAGE_TAG 201212041

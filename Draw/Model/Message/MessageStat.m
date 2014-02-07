@@ -22,6 +22,7 @@
 #define KEY_SOURCE_TYPE @"KEY_SOURCE_TYPE"
 #define KEY_MESSAGE_TYPE @"KEY_MESSAGE_TYPE"
 #define KEY_IS_GROUP @"KEY_IS_GROUP"
+#define KEY_VIP @"KEY_VIP"
 
 @implementation MessageStat
 
@@ -51,6 +52,7 @@
     [messageStat setLatestCreateDate:[NSDate date]];
     [messageStat setMessageType:MessageTypeText];
     [messageStat setSourceType:SourceTypeSend];
+    [messageStat setVip:myFriend.vip];
     
     [messageStat setIsGroup:NO];
     
@@ -71,6 +73,7 @@
     [aCoder encodeInteger:self.numberOfNewMessage forKey:KEY_NUMBER_NEW];
     [aCoder encodeInteger:self.messageType forKey:KEY_MESSAGE_TYPE];
     [aCoder encodeInteger:self.sourceType forKey:KEY_SOURCE_TYPE];
+    [aCoder encodeInteger:self.vip forKey:KEY_VIP];
     
     [aCoder encodeBool:self.isGroup forKey:KEY_IS_GROUP];
 }
@@ -93,6 +96,7 @@
         
         self.numberOfMessage = [aDecoder decodeIntegerForKey:KEY_NUMBER_TOTAL];
         self.numberOfNewMessage = [aDecoder decodeIntegerForKey:KEY_NUMBER_NEW];
+        self.vip = [aDecoder decodeIntegerForKey:KEY_VIP];
         
         self.latestCreateDate = [aDecoder decodeObjectForKey:KEY_CREATE_DATE];
         self.latestText = [aDecoder decodeObjectForKey:KEY_TEXT];
@@ -123,6 +127,7 @@
         
         self.numberOfMessage = pbMessageStat.totalMessageCount;
         self.numberOfNewMessage = pbMessageStat.newMessageCount;
+        self.vip = pbMessageStat.isVip;
                 
         if ([[UserManager defaultManager] isMe:pbMessageStat.from]) {
             self.sourceType = SourceTypeSend;
@@ -177,4 +182,15 @@
 {
     return self.friendGender ? @"m" : @"f";
 }
+
+- (NSString *)groupId
+{
+    if (self.isGroup){
+        return self.friendId;
+    }
+    else{
+        return nil;
+    }
+}
+
 @end

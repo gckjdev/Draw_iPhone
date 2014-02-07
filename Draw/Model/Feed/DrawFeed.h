@@ -51,6 +51,7 @@ typedef enum{
               avatar:(NSString *)avatar 
               gender:(BOOL)gender
            signature:(NSString *)signature
+                 vip:(int)vip
         drawImageUrl:(NSString *)drawImageUrl 
               pbDraw:(PBDraw *)pbDraw 
             wordText:(NSString *)wordText
