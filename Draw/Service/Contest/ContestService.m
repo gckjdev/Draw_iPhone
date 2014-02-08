@@ -219,7 +219,7 @@ static ContestService *_staticContestService;
                               limit:(NSInteger)limit
                           completed:(GetContestListBlock)completed{
     
-    type = ContestListTypeAllGroup;
+//    type = ContestListTypeAllGroup;
     
     dispatch_async(workingQueue, ^{
         

@@ -29,20 +29,34 @@
 #import "GroupTopicController.h"
 #import "UIViewController+BGImage.h"
 
+
 typedef enum{
     TabTypeOfficial = 1,
     TabTypeGroup = 2,
-//    TabTypeOpus = 3,
+    
+    TabTypeGroupNew = 3,
+    TabTypeGroupFollow = 4,
+    TabTypeGroupPop = 5,
+    TabTypeGroupAward = 6
 }TabType;
 
-@interface ContestController()<FeedServiceDelegate, ContestCellDelegate>
+
+@interface ContestController()<FeedServiceDelegate, ContestCellDelegate>{
+    UIButton *currentTabButton;
+    UIButton *currentGroupSubButton;
+    int _defaultTabId;
+}
 
 @property (assign, nonatomic) BOOL groupContestOnly;
 @property (copy, nonatomic) NSString *groupId;
 
-
 @property (retain, nonatomic) IBOutlet UIButton *officialButton;
 @property (retain, nonatomic) IBOutlet UIButton *groupButton;
+
+@property (retain, nonatomic) IBOutlet UIView *subTabsHolder;
+
+@property (retain, nonatomic) IBOutlet UIView *tabsHolderView;
+
 @end
 
 
@@ -99,15 +113,33 @@ typedef enum{
     [[self noContestTipLabel] setHidden:NO];
     [[self noContestTipLabel] setText:tips];
 }
+
 - (void)hideTips
 {
     [[self noContestTipLabel] setHidden:YES];
+}
+
+- (id)init{
+    
+    if (self = [super init]) {
+        _defaultTabId = TabTypeOfficial;
+    }
+    return self;
+}
+
+- (id)initWithGroupDefault{
+    
+    if (self = [super init]) {
+        _defaultTabId = TabTypeGroup;
+    }
+    return self;
 }
 
 - (id)initWithGroupContestOnly{
     
     if (self = [super init]) {
         self.groupContestOnly = YES;
+        _defaultTabId = TabTypeGroupNew;
     }
     
     return self;
@@ -119,6 +151,7 @@ typedef enum{
     if (self = [super init]) {
         self.groupContestOnly = YES;
         self.groupId = groupId;
+        _defaultTabId = TabTypeGroupNew;
     }
     
     return self;
@@ -127,6 +160,9 @@ typedef enum{
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    [self initTabButtons];
+
     
     SET_VIEW_BG(self.view);
     [self initCustomPageControl];
@@ -141,27 +177,27 @@ typedef enum{
         
         if (self.groupId == nil){
             [titleView setTitle:NSLS(@"kAllGroupContest")];
+            
+            CGFloat originY = CGRectGetMinY(self.subTabsHolder.frame) - CGRectGetHeight(self.tabsHolderView.frame);
+            [self.subTabsHolder updateOriginY:originY];
         }
         else{
             [titleView setTitle:NSLS(@"kMyGroupContest")];
+            self.subTabsHolder.hidden = YES;
+            
+            CGFloat originY = CGRectGetMaxY(titleView.frame)- CGRectGetHeight(self.tabsHolderView.frame);
+            [self.subTabsHolder updateOriginY:originY];
         }
-        
-//        self.officialButton.hidden = YES;
-//        self.groupButton.hidden = YES;
-        [self.officialButton removeFromSuperview];
-        [self.groupButton removeFromSuperview];
+
+        self.tabsHolderView.hidden = YES;
         
         GroupPermissionManager *permission =[GroupPermissionManager myManagerWithGroupId:self.groupId];
         if ([permission canHoldContest]) {
             [titleView setRightButtonTitle:NSLS(@"kCreate")];
             [titleView setRightButtonSelector:@selector(clickCreateButton:)];
         } ;
-        [self clickTab:TabTypeGroup];
+        [self clickTab:TabTypeGroupNew];
         [self setDefaultBGImage];
-    }else{
-        [self initTabButtons];
-//        self.officialButton.hidden = NO;
-//        self.groupButton.hidden = NO;
     }
     
     if (_groupContestOnly) {
@@ -170,13 +206,24 @@ typedef enum{
     }else{
         self.view.backgroundColor = COLOR_GRAY;
         
-//        int delta = (ISIPAD ? 30 *2 : 30);
         CGFloat y = CGRectGetMaxY(self.groupButton.frame);
         [self.dataTableView updateOriginY:y];
         [self.dataTableView updateHeight:(CGRectGetHeight(self.view.bounds) - y)];
     }
     
     [[ContestService defaultService] syncOngoingContestList];
+    
+    [self clickTabButton:[self defaultTabButton]];
+}
+
+- (UIButton *)defaultTabButton
+{
+    id button = [self.tabsHolderView viewWithTag:_defaultTabId];
+    if (button == nil) {
+        button = [self.subTabsHolder viewWithTag:_defaultTabId];
+    }
+    
+    return button;
 }
 
 - (void)viewDidUnload
@@ -187,6 +234,8 @@ typedef enum{
     [self setScrollerViewHolder:nil];
     [self setOfficialButton:nil];
     [self setGroupButton:nil];
+    [self setSubTabsHolder:nil];
+    [self setTabsHolderView:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
@@ -369,6 +418,8 @@ typedef enum{
     [_officialButton release];
     [_groupButton release];
     [_groupId release];
+    [_subTabsHolder release];
+    [_tabsHolderView release];
     [super dealloc];
 }
 
@@ -396,14 +447,12 @@ typedef enum{
 
 }
 
-
-
 - (NSInteger)tabCount{
     
-    if (_groupContestOnly) {
+    if (_groupContestOnly && [self.groupId length] > 0) {
         return 1;
     }else{
-        return 2;
+        return 6;
     }
 };
 
@@ -419,10 +468,10 @@ typedef enum{
 
 - (NSInteger)tabIDforIndex:(NSInteger)index{
     
-    if (_groupContestOnly) {
-        return TabTypeGroup;
+    if (_groupContestOnly && [self.groupId length] > 0) {
+        return TabTypeGroupNew;
     }else{
-        int indexs[] = {TabTypeOfficial,TabTypeGroup};
+        int indexs[] = {TabTypeOfficial,TabTypeGroup,TabTypeGroupNew,TabTypeGroupFollow, TabTypeGroupPop, TabTypeGroupAward};
         return indexs[index];
     }
 }
@@ -440,6 +489,18 @@ typedef enum{
 //        case TabTypeOpus:
 //            return NSLS(@"kGoodOpus");
             
+        case TabTypeGroupNew:
+            return NSLS(@"kLatest");
+            
+        case TabTypeGroupFollow:
+            return NSLS(@"kFollow");
+            
+        case TabTypeGroupPop:
+            return NSLS(@"kPop");
+            
+        case TabTypeGroupAward:
+            return NSLS(@"kAward");
+            
         default:
             return nil;
     }
@@ -453,8 +514,15 @@ typedef enum{
             [self loadOfficialContestList];
             break;
             
-        case TabTypeGroup:
-            [self loadGroupContestList];
+//        case TabTypeGroup:
+//            [self loadGroupContestList];
+//            break;
+            
+        case TabTypeGroupNew:
+        case TabTypeGroupFollow:
+        case TabTypeGroupPop:
+        case TabTypeGroupAward:
+            [self loadGroupContestList:tabID];
             break;
             
 //        case TabTypeOpus:
@@ -493,18 +561,45 @@ typedef enum{
     }];
 }
 
-- (void)loadGroupContestList{
+- (ContestListType)getContestListTypeWithTabId:(int)tabId{
+    
+    switch (tabId) {
+        case TabTypeGroupNew:
+            return ContestListTypeAllGroupNew;
+            break;
+            
+        case TabTypeGroupFollow:
+            return ContestListTypeAllGroupFollow;
+            break;
+            
+        case TabTypeGroupPop:
+            return ContestListTypeAllGroupPop;
+            break;
+            
+        case TabTypeGroupAward:
+            return ContestListTypeAllGroupAward;
+            break;
+            
+        default:
+            return 0;
+            break;
+    }
+}
+
+- (void)loadGroupContestList:(int)tabId{
     
     [self showActivityWithText:NSLS(@"kLoading")];
 
     if ([self.groupId length] == 0) {
-        [[ContestService defaultService] getGroupContestListWithType:ContestListTypeAllGroup offset:self.currentTab.offset limit:self.currentTab.limit completed:^(int resultCode, ContestListType type, NSArray *contestList) {
+        
+        ContestListType type = [self getContestListTypeWithTabId:tabId];
+        [[ContestService defaultService] getGroupContestListWithType:type offset:self.currentTab.offset limit:self.currentTab.limit completed:^(int resultCode, ContestListType type, NSArray *contestList) {
             
             [self hideActivity];
             if (resultCode == 0) {
-                [self finishLoadDataForTabID:TabTypeGroup resultList:contestList];
+                [self finishLoadDataForTabID:tabId resultList:contestList];
             }else{
-                [self failLoadDataForTabID:TabTypeGroup];
+                [self failLoadDataForTabID:tabId];
             }
         }];
     }else{
@@ -513,29 +608,13 @@ typedef enum{
             
             [self hideActivity];
             if (resultCode == 0) {
-                [self finishLoadDataForTabID:TabTypeGroup resultList:contestList];
+                [self finishLoadDataForTabID:tabId resultList:contestList];
             }else{
-                [self failLoadDataForTabID:TabTypeGroup];
+                [self failLoadDataForTabID:tabId];
             }
         }];
     }
-   
 }
-
-//- (void)loadWonderfulOpusList{
-//    
-//    [self showActivityWithText:NSLS(@"kLoading")];
-//
-//    [[FeedService defaultService] getWonderfulContestOpusListWithOffset:self.currentTab.offset limit:self.currentTab.limit completed:^(int resultCode, NSArray *feedList) {
-//        
-//        [self hideActivity];
-//        if (resultCode == 0) {
-//            [self finishLoadDataForTabID:TabTypeOpus resultList:feedList];
-//        }else{
-//            [self failLoadDataForTabID:TabTypeOpus];
-//        }
-//    }];
-//}
 
 - (NSString *)tabNoDataTipsforIndex:(NSInteger)index{
     
@@ -547,6 +626,10 @@ typedef enum{
             return NSLS(@"");
             
         case TabTypeGroup:
+        case TabTypeGroupNew:
+        case TabTypeGroupFollow:
+        case TabTypeGroupPop:
+        case TabTypeGroupAward:
             return NSLS(@"kNoGroupContest");
             
             //        case TabTypeOpus:
@@ -570,6 +653,10 @@ typedef enum{
             break;
             
         case TabTypeGroup:
+        case TabTypeGroupNew:
+        case TabTypeGroupFollow:
+        case TabTypeGroupPop:
+        case TabTypeGroupAward:
             self.view.backgroundColor = COLOR_WHITE;
             self.scrollerViewHolder.hidden = YES;
             self.dataTableView.hidden = NO;
@@ -592,6 +679,10 @@ typedef enum{
     switch ([[self currentTab] tabID]) {
             
         case TabTypeGroup:
+        case TabTypeGroupNew:
+        case TabTypeGroupFollow:
+        case TabTypeGroupPop:
+        case TabTypeGroupAward:
             return [CellManager getContestStyleCell:tableView
                                           indexPath:indexPath
                                            delegate:self
@@ -618,6 +709,10 @@ typedef enum{
     switch ([[self currentTab] tabID]) {
             
         case TabTypeGroup:
+        case TabTypeGroupNew:
+        case TabTypeGroupFollow:
+        case TabTypeGroupPop:
+        case TabTypeGroupAward:
             return [CellManager getContestStyleCellCountWithDataCount:count];
             
         case TabTypeOfficial:
@@ -638,8 +733,15 @@ typedef enum{
         case TabTypeOfficial:
             return 0;
             
-        case TabTypeGroup:
+        case TabTypeGroup:            
+        case TabTypeGroupNew:
+        case TabTypeGroupFollow:
+        case TabTypeGroupPop:
+        case TabTypeGroupAward:
+
             return [CellManager getContestStyleCellHeight];
+            
+            
             
 //        case TabTypeOpus:
 //            return [CellManager getLastStyleCellHeightWithIndexPath:indexPath];
@@ -658,6 +760,153 @@ typedef enum{
 - (void)didClickGroup:(PBGroup *)pbGroup{
     
     [GroupTopicController enterWithGroup:pbGroup fromController:self];
+}
+
+- (void)initTabButtons
+{
+    NSInteger count = [self tabCount];
+    for (int i = 0; i < count; ++ i) {
+        GroupTab tab = [self tabIDforIndex:i];
+        UIButton *button;
+
+        if ([self isSubGroupTab:tab]) {
+            button = (id)[self.subTabsHolder viewWithTag:tab];
+            SET_BUTTON_SQUARE_STYLE_YELLOW(button);
+            [button setTitleColor:COLOR_WHITE forState:UIControlStateNormal];
+            [button setBackgroundImage:IMAGE_FROM_COLOR(COLOR_YELLOW) forState:
+             UIControlStateSelected];
+        }else{
+            button = (id)[self.tabsHolderView viewWithTag:tab];
+            SET_BUTTON_AS_COMMON_TAB_STYLE(button);
+        }
+        
+        NSString *title = [self tabTitleforIndex:i];
+        [button setTitle:title forState:UIControlStateNormal];
+        [button setTitle:title forState:UIControlStateSelected];
+        [button setTitle:title forState:UIControlStateHighlighted];
+    }
+    
+//    UIButton *newButton = (UIButton *)[self.subTabsHolder viewWithTag:TabTypeGroupNew];
+//    SET_BUTTON_SQUARE_STYLE_YELLOW(newButton);
+//    [newButton setTitleColor:COLOR_WHITE forState:UIControlStateNormal];
+//    [newButton setBackgroundImage:IMAGE_FROM_COLOR(COLOR_YELLOW) forState:
+//     UIControlStateSelected];
+//    NSString *title = [self tabTitleforIndex:TabTypeGroupNew];
+//    [newButton setTitle:title forState:UIControlStateNormal];
+//    [newButton setTitle:title forState:UIControlStateSelected];
+//    [newButton setTitle:title forState:UIControlStateHighlighted];
+//    
+//    UIButton *followButton = (UIButton *)[self.subTabsHolder viewWithTag:TabTypeGroupFollow];
+//    SET_BUTTON_SQUARE_STYLE_YELLOW(followButton);
+//    [followButton setTitleColor:COLOR_WHITE forState:UIControlStateNormal];
+//    [followButton setBackgroundImage:IMAGE_FROM_COLOR(COLOR_YELLOW) forState:
+//     UIControlStateSelected];
+//    title = [self tabTitleforIndex:TabTypeGroupFollow];
+//    [followButton setTitle:title forState:UIControlStateNormal];
+//    [followButton setTitle:title forState:UIControlStateSelected];
+//    [followButton setTitle:title forState:UIControlStateHighlighted];
+//    
+//    UIButton *topButton = (UIButton *)[self.subTabsHolder viewWithTag:TabTypeGroupPop];
+//    SET_BUTTON_SQUARE_STYLE_YELLOW(topButton);
+//    [topButton setTitleColor:COLOR_WHITE forState:UIControlStateNormal];
+//    [topButton setBackgroundImage:IMAGE_FROM_COLOR(COLOR_YELLOW) forState:
+//     UIControlStateSelected];
+//    title = [self tabTitleforIndex:TabTypeGroupPop];
+//    [topButton setTitle:title forState:UIControlStateNormal];
+//    [topButton setTitle:title forState:UIControlStateSelected];
+//    [topButton setTitle:title forState:UIControlStateHighlighted];
+//    
+//    UIButton *awardButton = (UIButton *)[self.subTabsHolder viewWithTag:TabTypeGroupAward];
+//    SET_BUTTON_SQUARE_STYLE_YELLOW(awardButton);
+//    [awardButton setTitleColor:COLOR_WHITE forState:UIControlStateNormal];
+//    [awardButton setBackgroundImage:IMAGE_FROM_COLOR(COLOR_YELLOW) forState:
+//     UIControlStateSelected];
+//    title = [self tabTitleforIndex:TabTypeGroupAward];
+//    [awardButton setTitle:title forState:UIControlStateNormal];
+//    [awardButton setTitle:title forState:UIControlStateSelected];
+//    [awardButton setTitle:title forState:UIControlStateHighlighted];
+}
+
+- (IBAction)clickTabButton:(id)sender
+{
+    UIButton *button = (UIButton *)sender;
+    if (button == currentTabButton || button == currentGroupSubButton) {
+        return;
+    }
+    [button setSelected:YES];
+    NSInteger tag = button.tag;
+    if (![self isSubGroupTab:tag]) {
+        [currentTabButton setSelected:NO];
+        currentTabButton = button;
+    }
+    
+    CGFloat originHeight = CGRectGetHeight(self.dataTableView.frame);
+    CGFloat newHeight = originHeight;
+    
+    if ([self isGroupTab:tag]) {
+        //don't load data. just show the sub tab buttons.
+        
+        if (_groupContestOnly && [self.groupId length] > 0) {
+            self.subTabsHolder.hidden = YES;
+        }else{
+            self.subTabsHolder.hidden = NO;
+        }
+        
+        [self.dataTableView updateOriginY:CGRectGetMaxY(self.subTabsHolder.frame)];
+        float appHeight = CGRectGetHeight([[UIScreen mainScreen] applicationFrame]);
+        float subTabsHolderMaxY = CGRectGetMaxY(self.subTabsHolder.frame);
+        newHeight = appHeight - subTabsHolderMaxY;
+        [self.dataTableView updateHeight:newHeight];
+
+        if ([self isSubGroupTab:tag]) {
+            [currentGroupSubButton setSelected:NO];
+            currentGroupSubButton = sender;
+            [self clickTab:tag];
+
+        }else{
+            if (!currentGroupSubButton) {
+                [self clickTab:[self defaultGroupTab]];
+                currentGroupSubButton = (id)[self.subTabsHolder viewWithTag:[self defaultGroupTab]];
+            }else{
+                [self clickTab:currentGroupSubButton.tag];
+            }
+        }
+        currentGroupSubButton.selected = YES;
+    }else{
+        self.subTabsHolder.hidden = YES;
+        [self.dataTableView updateOriginY:CGRectGetMaxY(self.tabsHolderView.frame)];
+        newHeight = (CGRectGetHeight([[UIScreen mainScreen] applicationFrame]) - CGRectGetMaxY(self.tabsHolderView.frame));
+        [self.dataTableView updateHeight:newHeight];
+        [self clickTab:button.tag];
+    }
+}
+
+- (BOOL)isSubGroupTab:(NSInteger)tab
+{
+    NSArray *tabs =@[
+                     @(TabTypeGroupNew),
+                     @(TabTypeGroupFollow),
+                     @(TabTypeGroupPop),
+                     @(TabTypeGroupAward)];
+    
+    return [tabs containsObject:@(tab)];
+}
+
+- (BOOL)isGroupTab:(NSInteger)tab
+{
+    if (tab == TabTypeOfficial) {
+        return NO;
+    }
+    
+    return YES;
+}
+
+- (GroupTab)defaultGroupTab
+{
+    if([[[GroupManager defaultManager] followedGroupIds] count] > 0){
+        return TabTypeGroupFollow;
+    }
+    return TabTypeGroupNew;
 }
 
 @end

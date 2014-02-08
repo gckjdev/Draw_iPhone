@@ -20,9 +20,7 @@
 + (GroupTopicController *)enterWithGroup:(PBGroup *)group
                           fromController:(PPViewController *)controller;
 
-
 + (void)enterWithGroupId:(NSString *)groupId
                             fromController:(PPViewController *)controller;
-
 
 @end
