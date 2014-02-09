@@ -1600,6 +1600,31 @@ POSTMSG(NSLS(@"kLoginFailure"));
         });
     });
 }
+
+- (void)superBlackUser:(NSString*)targetUserId
+                  type:(BlackUserType)type
+                  days:(int)days
+          successBlock:(void (^)(void))successBlock
+{
+    NSDictionary* para = @{ PARA_TARGETUSERID : targetUserId,
+                            PARA_TYPE : @(type),
+                            PARA_ACTION_TYPE : @(BLACK_ACTION_TYPE_BLACK),
+                            PARA_DAY : @(days)
+                           };
+    
+    dispatch_async(workingQueue, ^{
+        CommonNetworkOutput* output = [PPGameNetworkRequest apiServerGetAndResponseJSON:METHOD_BLACK_USER
+                                                                                    parameters:para
+                                                                                 isReturnArray:NO];
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if (output.resultCode == ERROR_SUCCESS) {
+                EXECUTE_BLOCK(successBlock);
+            }
+        });
+    });    
+}
+
 - (void)superUnblackUser:(NSString *)targetUserId
                     type:(BlackUserType)type
             successBlock:(void (^)(void))successBlock
@@ -1623,6 +1648,31 @@ POSTMSG(NSLS(@"kLoginFailure"));
             }
         });
     });
+}
+
+- (void)superUnblackUser:(NSString*)targetUserId
+                    type:(BlackUserType)type
+                    days:(int)days
+            successBlock:(void (^)(void))successBlock
+{
+    NSDictionary* para = @{ PARA_TARGETUSERID : targetUserId,
+                            PARA_TYPE : @(type),
+                            PARA_ACTION_TYPE : @(BLACK_ACTION_TYPE_UNBLACK),
+                            PARA_DAY : @(days)
+                            };
+    
+    dispatch_async(workingQueue, ^{
+        CommonNetworkOutput* output = [PPGameNetworkRequest apiServerGetAndResponseJSON:METHOD_BLACK_USER
+                                                                                    parameters:para
+                                                                                 isReturnArray:NO];
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if (output.resultCode == ERROR_SUCCESS) {
+                EXECUTE_BLOCK(successBlock);
+            }
+        });
+    });
+    
 }
 
 - (void)recoverUserOpus:(NSString*)targetUserId
@@ -2250,6 +2300,36 @@ POSTMSG(NSLS(@"kLoginFailure"));
     
 }
 
+- (void)purchaseVipService:(int)type
+                    userId:(NSString*)userId
+            viewController:(PPViewController*)viewController
+               resultBlock:(void(^)(int resultCode))resultBlock
+{
+    
+    NSDictionary* para = @{ PARA_TYPE : @(type),
+                            PARA_USERID : userId
+                            };
+    
+    dispatch_async(workingQueue, ^{
+        GameNetworkOutput* output = [PPGameNetworkRequest apiServerGetAndResponsePB:METHOD_PURCHASE_VIP
+                                                                         parameters:para];
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            
+            PPDebug(@"purcahse vip for %@ result is %d", userId, output.resultCode);
+            if (output.resultCode == ERROR_SUCCESS && output.pbResponse.user){
+                // update user info with VIP data
+                if ([[UserManager defaultManager] isMe:userId]){
+                    [[UserManager defaultManager] storeUserData:output.pbResponse.user];
+                }
+            }
+            
+            EXECUTE_BLOCK(resultBlock, output.resultCode);
+        });
+    });
+    
+}
+
 - (void)getBuyVipUserCount:(PPViewController*)viewController
                resultBlock:(void(^)(int resultCode))resultBlock
 {
@@ -2270,6 +2350,32 @@ POSTMSG(NSLS(@"kLoginFailure"));
     });
 }
 
+- (void)awardApp:(NSString*)appId amount:(int)amount
+{
+    if (appId == nil){
+        return;
+    }
+    
+    NSDictionary* para = @{ PARA_AMOUNT : @(amount),
+                            PARA_AWARD_APPID : appId
+                            };
+    
+    dispatch_async(workingQueue, ^{
+        GameNetworkOutput* output = [PPGameNetworkRequest apiServerGetAndResponsePB:METHOD_AWARD_APP
+                                                                         parameters:para];
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            
+            if (output.resultCode == ERROR_SUCCESS && output.pbResponse.user){
+                // sync balance from server
+                [_accountManager updateBalance:user.coinBalance currency:PBGameCurrencyCoin];
+                
+                [[UserManager defaultManager] storeUserData:output.pbResponse.user];
+            }
+            
+        });
+    });
+}
 
 @end
 

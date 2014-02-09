@@ -675,6 +675,7 @@ BOOL PBTaskIdTypeIsValidValue(PBTaskIdType value);
   PBSimpleGroup* groupInfo;
   PBOpenInfoType openInfoType;
   NSMutableArray* mutableBlockDeviceIdsList;
+  NSMutableArray* mutableAwardAppsList;
   NSMutableArray* mutableSnsCredentialsList;
   NSMutableArray* mutableItemsList;
   NSMutableArray* mutableSnsUsersList;
@@ -788,6 +789,8 @@ BOOL PBTaskIdTypeIsValidValue(PBTaskIdType value);
 - (PBUserItem*) itemsAtIndex:(int32_t) index;
 - (NSArray*) blockDeviceIdsList;
 - (NSString*) blockDeviceIdsAtIndex:(int32_t) index;
+- (NSArray*) awardAppsList;
+- (NSString*) awardAppsAtIndex:(int32_t) index;
 
 + (PBGameUser*) defaultInstance;
 - (PBGameUser*) defaultInstance;
@@ -1077,6 +1080,13 @@ BOOL PBTaskIdTypeIsValidValue(PBTaskIdType value);
 - (int32_t) takeCoins;
 - (PBGameUser_Builder*) setTakeCoins:(int32_t) value;
 - (PBGameUser_Builder*) clearTakeCoins;
+
+- (NSArray*) awardAppsList;
+- (NSString*) awardAppsAtIndex:(int32_t) index;
+- (PBGameUser_Builder*) replaceAwardAppsAtIndex:(int32_t) index with:(NSString*) value;
+- (PBGameUser_Builder*) addAwardApps:(NSString*) value;
+- (PBGameUser_Builder*) addAllAwardApps:(NSArray*) values;
+- (PBGameUser_Builder*) clearAwardAppsList;
 
 - (BOOL) hasVip;
 - (int32_t) vip;

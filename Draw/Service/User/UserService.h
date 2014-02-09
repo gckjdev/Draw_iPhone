@@ -157,8 +157,19 @@ typedef void(^UploadImageResultBlock)(int resultCode, NSString* imageRemoteURL);
 - (void)superBlackUser:(NSString*)targetUserId
                   type:(BlackUserType)type
           successBlock:(void (^)(void))successBlock;
+
 - (void)superUnblackUser:(NSString*)targetUserId
                     type:(BlackUserType)type
+            successBlock:(void (^)(void))successBlock;
+
+- (void)superBlackUser:(NSString*)targetUserId
+                  type:(BlackUserType)type
+                  days:(int)days
+          successBlock:(void (^)(void))successBlock;
+
+- (void)superUnblackUser:(NSString*)targetUserId
+                    type:(BlackUserType)type
+                    days:(int)days
             successBlock:(void (^)(void))successBlock;
 
 
@@ -208,8 +219,15 @@ typedef void(^UploadImageResultBlock)(int resultCode, NSString* imageRemoteURL);
             viewController:(PPViewController*)viewController
                resultBlock:(void(^)(int resultCode))resultBlock;
 
+- (void)purchaseVipService:(int)type
+                    userId:(NSString*)userId
+            viewController:(PPViewController*)viewController
+               resultBlock:(void(^)(int resultCode))resultBlock;
+
 - (void)getBuyVipUserCount:(PPViewController*)viewController
                resultBlock:(void(^)(int resultCode))resultBlock;
 
+
+- (void)awardApp:(NSString*)appId amount:(int)amount;
 
 @end

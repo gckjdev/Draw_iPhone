@@ -21,8 +21,7 @@
 #define PRODUCT_ID_BUY_VIP_MONTH    @"PRODUCT_BUY_VIP_MONTH"
 #define PRODUCT_ID_BUY_VIP_YEAR     @"PRODUCT_BUY_VIP_YEAR"
 
-#define VIP_BUY_TYPE_MONTH 1
-#define VIP_BUY_TYPE_YEAR  2
+
 
 
 @interface PurchaseVipController ()

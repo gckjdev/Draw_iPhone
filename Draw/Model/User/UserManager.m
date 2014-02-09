@@ -1869,5 +1869,15 @@ qqAccessTokenSecret:(NSString*)accessTokenSecret
     [ud synchronize];
 }
 
+- (BOOL)hasAwardApp:(NSString*)appId
+{
+    for (NSString* value in self.pbUser.awardAppsList){
+        if ([value isEqualToString:appId]){
+            return YES;
+        }
+    }
+    
+    return NO;
+}
 
 @end

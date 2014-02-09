@@ -14,11 +14,12 @@
 #import "GameBasic.pb.h"
 #import "MKBlockActionSheet.h"
 #import "StringUtil.h"
+#import "ChatService.h"
 
 typedef enum
 {
     SuperUserManageActionIndexCharge = 0,
-    SuperUserManageActionIndexChargeIngot,
+    SuperUserManageActionIndexVIP,
     SuperUserManageActionIndexFeatureOpus,
     SuperUserManageActionIndexResetUserPassword,
     SuperUserManageActionIndexBlackUserId,
@@ -27,6 +28,7 @@ typedef enum
     SuperUserManageActionIndexUnblackDevice,
     SuperUserManageActionIndexRecoverOpus,
     SuperUserManageActionIndexExportOpusImage,
+    SuperUserManageActionIndexChargeIngot,
 }SuperUserManageActionIndex;
 
 @implementation SuperUserManageAction
@@ -60,7 +62,7 @@ typedef enum
 
 - (void)showInController:(UIViewController*)controller
 {
-    UIActionSheet* actionSheet = [[[UIActionSheet alloc] initWithTitle:[NSString stringWithFormat:@"%@(userId:%@,金币:%d 元宝:%d)", _targetUserNickName, _targetUserId, _targetUserCurrentBalance, _targetUserCurrentIngot] delegate:self cancelButtonTitle:@"cancel" destructiveButtonTitle:@"金币充值" otherButtonTitles:@"元宝充值", @"用户作品推荐设置", @"重置用户密码", @"加入用户黑名单", @"加入设备黑名单", @"从用户黑名单解禁", @"从设备黑名单解禁", @"恢复用户作品", @"导出用户作品图片", nil] autorelease];
+    UIActionSheet* actionSheet = [[[UIActionSheet alloc] initWithTitle:[NSString stringWithFormat:@"%@(userId:%@,金币:%d 元宝:%d)", _targetUserNickName, _targetUserId, _targetUserCurrentBalance, _targetUserCurrentIngot] delegate:self cancelButtonTitle:@"cancel" destructiveButtonTitle:@"金币充值" otherButtonTitles:@"VIP购买", @"用户作品推荐设置", @"重置用户密码", @"加入用户黑名单", @"加入设备黑名单", @"从用户黑名单解禁", @"从设备黑名单解禁", @"恢复用户作品", @"导出用户作品图片", @"元宝充值" , nil] autorelease];
     
     [actionSheet showInView:controller.view];
     _superController = controller;
@@ -96,6 +98,55 @@ typedef enum
             [dialog.inputTextField setPlaceholder:@"请输入要充值的金币数"];
             [dialog showInView:_superController.view];
         } break;
+            
+        case SuperUserManageActionIndexVIP:{
+
+            int buyMonthVIP = 0;
+            int buyYearVIP = 1;
+            
+            MKBlockActionSheet* sheet = [[MKBlockActionSheet alloc] initWithTitle:NSLS(@"选项")
+                                                                         delegate:nil
+                                                                cancelButtonTitle:NSLS(@"取消")
+                                                           destructiveButtonTitle:NSLS(@"购买包月VIP")
+                                                                otherButtonTitles:NSLS(@"购买包年VIP"), nil];
+            
+            [sheet setActionBlock:^(NSInteger buttonIndex){
+                int type = -1;
+                if (buttonIndex == buyMonthVIP) {
+                    type = VIP_BUY_TYPE_MONTH;
+                }else if (buttonIndex == buyYearVIP){
+                    type = VIP_BUY_TYPE_YEAR;
+                }
+                else{
+                }
+                
+                if (type != -1){
+                    [[UserService defaultService] purchaseVipService:VIP_BUY_TYPE_MONTH
+                                                              userId:_targetUserId
+                                                      viewController:nil
+                                                         resultBlock:^(int resultCode) {
+                        if (resultCode == 0){
+                            POSTMSG(@"购买成功");
+                            
+//                            // move to client
+//                            NSString* msg = [NSString stringWithFormat:@"你好，恭喜你已经成功购买了VIP会员，谢谢对小吉的热心支持！我们会努力做的更好的！"];
+//                            [[ChatService defaultService] sendTextMessage:msg friendUserId:_targetUserId isGroup:NO];                            
+                        }
+                        else{
+                            NSString* msg = [NSString stringWithFormat:@"购买失败,错误码为%d", resultCode];
+                            POSTMSG(msg);
+                        }
+                    }];
+                }
+
+                [sheet setActionBlock:NULL];
+            }];
+            
+            [sheet showInView:_superController.view];
+            
+        }
+            break;
+            
         case SuperUserManageActionIndexChargeIngot: {
             
             CommonDialog* dialog = [CommonDialog createInputFieldDialogWith:@"请输入要充值的元宝数"];
@@ -151,6 +202,7 @@ typedef enum
                     return;
                 }
                 
+                NSString* password = dialog.inputTextField.text;
                 NSString* encryptPassword = [dialog.inputTextField.text encodeMD5Base64:PASSWORD_KEY];
                 
                 [[UserService defaultService] setUserPassword:_targetUserId
@@ -158,6 +210,8 @@ typedef enum
                                                   resultBlock:^(int resultCode) {
                                                       if (resultCode == 0){
                                                           POSTMSG(@"重置密码成功");
+                                                          NSString* msg = [NSString stringWithFormat:@"你好，你的密码已经重置为%@", password];
+                                                          [[ChatService defaultService] sendTextMessage:msg friendUserId:_targetUserId isGroup:NO];
                                                       }
                                                       else{
                                                           POSTMSG(@"重置密码失败");
@@ -172,25 +226,56 @@ typedef enum
             
         case SuperUserManageActionIndexBlackUserId: {
             
-            CommonDialog* dialog = [CommonDialog createDialogWithTitle:nil message:@"确定要将该用户加入黑名单吗？" style:CommonDialogStyleDoubleButton];
-            [dialog setClickOkBlock:^(UILabel *label){
-                [[UserService defaultService] superBlackUser:_targetUserId type:BLACK_USER_TYPE_USERID successBlock:^{
-                    [[CommonMessageCenter defaultCenter] postMessageWithText:@"加入黑名单成功" delayTime:1];
-                }];
+            CommonDialog* inputDialog = [CommonDialog createInputFieldDialogWith:@"请输入要充值的金币数"];
+            [inputDialog setClickOkBlock:^(UITextField *tf) {
+                if ([self isInputValid:tf.text]) {
+                    int days = tf.text.intValue;
+                    
+                    CommonDialog* dialog = [CommonDialog createDialogWithTitle:nil message:@"确定要将该用户加入黑名单吗？" style:CommonDialogStyleDoubleButton];
+                    [dialog setClickOkBlock:^(UILabel *label){
+                        [[UserService defaultService] superBlackUser:_targetUserId
+                                                                type:BLACK_USER_TYPE_USERID
+                                                                days:days
+                                                        successBlock:^{
+                            [[CommonMessageCenter defaultCenter] postMessageWithText:@"加入黑名单成功" delayTime:1];
+                        }];
+                    }];
+                    
+                    [dialog showInView:_superController.view];
+                }
             }];
             
-            [dialog showInView:_superController.view];
+            [inputDialog.inputTextField setPlaceholder:@"请输入要禁言的天数"];
+            [inputDialog.inputTextField setText:@"7"];
+            [inputDialog showInView:_superController.view];
+            
+            
         } break;
         case SuperUserManageActionIndexBlackDevice: {
 
-            CommonDialog* dialog = [CommonDialog createDialogWithTitle:nil message:@"确定要将该用户的设备加入黑名单吗？" style:CommonDialogStyleDoubleButton];
-           [dialog setClickOkBlock:^(UILabel *label){
-                    [[UserService defaultService] superBlackUser:_targetUserId type:BLACK_USER_TYPE_DEVICEID successBlock:^{
-                        [[CommonMessageCenter defaultCenter] postMessageWithText:@"加入黑名单成功" delayTime:1];
+            CommonDialog* inputDialog = [CommonDialog createInputFieldDialogWith:@"请输入要充值的金币数"];
+            [inputDialog setClickOkBlock:^(UITextField *tf) {
+                if ([self isInputValid:tf.text]) {
+                    int days = tf.text.intValue;
+                    
+                    CommonDialog* dialog = [CommonDialog createDialogWithTitle:nil message:@"确定要将该用户的设备加入黑名单吗？" style:CommonDialogStyleDoubleButton];
+                    [dialog setClickOkBlock:^(UILabel *label){
+                        [[UserService defaultService] superBlackUser:_targetUserId
+                                                                type:BLACK_USER_TYPE_DEVICEID
+                                                                days:days
+                                                        successBlock:^{
+                            [[CommonMessageCenter defaultCenter] postMessageWithText:@"加入黑名单成功" delayTime:1];
+                        }];
                     }];
-           }];
+                    
+                    [dialog showInView:_superController.view];                    
+                }
+            }];
             
-            [dialog showInView:_superController.view];
+            [inputDialog.inputTextField setPlaceholder:@"请输入要禁言的天数"];
+            [inputDialog.inputTextField setText:@"7"];
+            [inputDialog showInView:_superController.view];
+            
         } break;
         case SuperUserManageActionIndexUnblackUserId: {
             
