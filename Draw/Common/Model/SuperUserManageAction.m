@@ -121,16 +121,12 @@ typedef enum
                 }
                 
                 if (type != -1){
-                    [[UserService defaultService] purchaseVipService:VIP_BUY_TYPE_MONTH
+                    [[UserService defaultService] purchaseVipService:type
                                                               userId:_targetUserId
                                                       viewController:nil
                                                          resultBlock:^(int resultCode) {
                         if (resultCode == 0){
                             POSTMSG(@"购买成功");
-                            
-//                            // move to client
-//                            NSString* msg = [NSString stringWithFormat:@"你好，恭喜你已经成功购买了VIP会员，谢谢对小吉的热心支持！我们会努力做的更好的！"];
-//                            [[ChatService defaultService] sendTextMessage:msg friendUserId:_targetUserId isGroup:NO];                            
                         }
                         else{
                             NSString* msg = [NSString stringWithFormat:@"购买失败,错误码为%d", resultCode];
@@ -143,6 +139,7 @@ typedef enum
             }];
             
             [sheet showInView:_superController.view];
+            [sheet release];
             
         }
             break;

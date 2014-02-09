@@ -35,7 +35,7 @@ static ChatService *_chatService = nil;
 {
     if (_chatService == nil) {
         _chatService = [[ChatService alloc] init];
-        _chatService.friendUserIdsForClean = [NSMutableArray array];
+        _chatService.friendUserIdsForClean = [NSMutableSet set];
     }
     return _chatService;
 }
