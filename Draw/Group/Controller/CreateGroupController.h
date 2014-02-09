@@ -8,6 +8,6 @@
 
 #import "PPViewController.h"
 
-@interface CreateGroupController : PPViewController<UIPickerViewDataSource, UIPickerViewDelegate>
+@interface CreateGroupController : PPViewController<UIPickerViewDataSource, UIPickerViewDelegate, UITextFieldDelegate>
 
 @end

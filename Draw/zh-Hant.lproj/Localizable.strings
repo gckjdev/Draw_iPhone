@@ -2649,5 +2649,11 @@
 "kJoinContest" = "參賽";
 "kUpdateContestFail" = "更新比賽失敗";
 "kUpdateContestSuccess" = "更新比賽成功";
+"kContestingTimeIs" = "比賽時間: ";
+"kVotingTimeIs" = "投票時間: ";
+"kContestTotalAwardLargeThanGroupBalance" = "比賽總獎勵金幣為%d，大於家族金幣余額%d，不能創建比賽，請調整比賽總獎勵";
+"kContestTotalAwardLessThan" = "比賽總獎勵不能少於%d金幣，請調整比賽總獎勵";
+
 "kContestingTimeIs" = "提交作品時間: %@";
 "kVotingTimeIs" = "投票送花時間: %@";
+

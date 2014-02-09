@@ -86,6 +86,7 @@ typedef enum{
 - (NSString *)contestingTimeDesc;
 - (NSString *)votingTimeDesc;
 - (NSString *)awardRulesDesc;
+- (int)totalAward;
 
 - (BOOL)isNotStart;
 - (BOOL)isContesting;

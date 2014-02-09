@@ -2635,9 +2635,11 @@
 "kJoinContest" = "参赛";
 "kUpdateContestFail" = "更新比赛失败";
 "kUpdateContestSuccess" = "更新比赛成功";
+"kContestingTimeIs" = "比赛时间: ";
+"kVotingTimeIs" = "投票时间: ";
+"kContestTotalAwardLargeThanGroupBalance" = "比赛总奖励金币为%d，大于家族金币余额%d，不能创建比赛，请调整比赛总奖励";
+"kContestTotalAwardLessThan" = "比赛总奖励不能少于%d金币，请调整比赛总奖励";
+
+
 "kContestingTimeIs" = "比赛时间: %@";
 "kVotingTimeIs" = "投票时间: %@";
-
-
-
-
