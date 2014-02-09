@@ -62,13 +62,13 @@
 
     if ([name length] == 0) {
         [DrawError postErrorWithCode:ERROR_GROUP_NAME_EMPTY];
-        [self.nameTextField becomeFirstResponder];
+//        [self.nameTextField becomeFirstResponder];
         return;
     }
     
     if ([name length] > NAME_MAX_LENGTH) {
         [DrawError postErrorWithCode:ERROR_GROUP_NAME_TOO_LONG];
-        [self.nameTextField becomeFirstResponder];
+//        [self.nameTextField becomeFirstResponder];
         return;
     }
     
@@ -124,7 +124,7 @@
     [self.nameLabel setText:NSLS(@"kName")];
     [self.nameTextField setPlaceholder:nil];
     [self.nameTextField setTextAlignment:NSTextAlignmentCenter];
-    
+
     //level
     [self.levelLabel setTextColor:COLOR_BROWN];
     [self.levelTips setTextColor:COLOR_BROWN];
@@ -223,4 +223,11 @@
     }
     [self.levelPicker setHidden:NO];
 }
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+    [self clickDone:nil];
+    return YES;
+}
+
 @end

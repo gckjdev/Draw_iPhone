@@ -119,6 +119,7 @@ message PBGameUser {
   optional bool   canShakeNumber = 104[default=false]; // 用户是否可以摇一摇获取小吉号码
   optional int32  shakeNumberTimes = 105[default=0];   // 用户可以摇一摇的次数
   optional int32  takeCoins = 106 [default=0];         // 用户可以领取的金币数目
+  repeated string awardApps = 107;                     // 已经奖励的App列表
 
   optional int32  vip = 110 [default=0];               // VIP标志
   optional int32  vipExpireDate = 111 [default=0];     // VIP到期时间
