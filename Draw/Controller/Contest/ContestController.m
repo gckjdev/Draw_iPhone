@@ -33,11 +33,11 @@
 typedef enum{
     TabTypeOfficial = 1,
     TabTypeGroup = 2,
-    
-    TabTypeGroupNew = 3,
-    TabTypeGroupFollow = 4,
-    TabTypeGroupPop = 5,
-    TabTypeGroupAward = 6
+
+    TabTypeGroupFollow = 3,
+    TabTypeGroupPop = 4,
+    TabTypeGroupAward = 5,
+    TabTypeGroupNew = 6,
 }TabType;
 
 
@@ -139,7 +139,7 @@ typedef enum{
     
     if (self = [super init]) {
         self.groupContestOnly = YES;
-        _defaultTabId = TabTypeGroupNew;
+        _defaultTabId = TabTypeGroupPop;
     }
     
     return self;
@@ -471,7 +471,7 @@ typedef enum{
     if (_groupContestOnly && [self.groupId length] > 0) {
         return TabTypeGroupNew;
     }else{
-        int indexs[] = {TabTypeOfficial,TabTypeGroup,TabTypeGroupNew,TabTypeGroupFollow, TabTypeGroupPop, TabTypeGroupAward};
+        int indexs[] = {TabTypeOfficial,TabTypeGroup,TabTypeGroupFollow,TabTypeGroupPop, TabTypeGroupAward, TabTypeGroupNew};
         return indexs[index];
     }
 }
@@ -903,10 +903,10 @@ typedef enum{
 
 - (GroupTab)defaultGroupTab
 {
-    if([[[GroupManager defaultManager] followedGroupIds] count] > 0){
-        return TabTypeGroupFollow;
-    }
-    return TabTypeGroupNew;
+//    if([[[GroupManager defaultManager] followedGroupIds] count] > 0){
+//        return TabTypeGroupFollow;
+//    }
+    return TabTypeGroupPop;
 }
 
 @end
