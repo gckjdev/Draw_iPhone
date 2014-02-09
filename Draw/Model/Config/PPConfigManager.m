@@ -1229,8 +1229,18 @@
     return [MobClickUtils getIntValueByKey:@"MAX_LENGTH_OF_DRAW_DESC" defaultValue:4096];
 }
 
+
+#define VIP_LAYER_NUMBER 8
+
 + (int)getMaxLayerNumber
 {
+#ifdef DEBUG
+        return VIP_LAYER_NUMBER;
+#endif
+    
+    if ([[UserManager defaultManager] isVip]) {
+        return VIP_LAYER_NUMBER;
+    }
     return [MobClickUtils getIntValueByKey:@"MAX_LAYER_NUMBER" defaultValue:4];
 }
 
