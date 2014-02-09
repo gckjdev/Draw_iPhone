@@ -28,6 +28,7 @@
         bgView.autoresizingMask = (0x1 << 6) - 1;
         [self.view insertSubview:bgView atIndex:0];
         [bgView release];
+        bgView.contentMode = UIViewContentModeScaleAspectFill;
     }
     return bgView;
 }

@@ -868,42 +868,42 @@ enum{
         self.picker = [[[ChangeAvatar alloc] init] autorelease];
         _picker.autoRoundRect = NO;
         _picker.userOriginalImage = YES;
+        _picker.enableCrop = YES;
+        [_picker setCropRatio:1];
     }
     
     [_picker showSelectionView:self];
 }
 
-- (void)didImageSelected:(UIImage*)image{
+//- (void)didImageSelected:(UIImage*)image{
+//
+//    [self showImageEditor:image];
+//}
 
-    [self showImageEditor:image];
-//    [self performSelector:@selector(showImageEditor:) withObject:image afterDelay:0.7];
-}
+//- (void)showImageEditor:(UIImage *)image{
+//    
+//    CropAndFilterViewController *vc = [[CropAndFilterViewController alloc] init];
+//    vc.delegate = self;
+//    vc.image = image;
+//    [vc setCropAspectRatio:1];
+//    
+//    [self presentViewController:vc animated:YES completion:NULL];
+//    [vc release];
+//}
 
-- (void)showImageEditor:(UIImage *)image{
-    
-    CropAndFilterViewController *vc = [[CropAndFilterViewController alloc] init];
-    vc.delegate = self;
-    vc.image = image;
-    
-    [self presentViewController:vc animated:YES completion:NULL];
-    [vc release];
-}
-
-- (void)cropViewController:(CropAndFilterViewController *)controller didFinishCroppingImage:(UIImage *)image{
-    
-    [controller dismissViewControllerAnimated:YES completion:NULL];
+- (void)didCropImageSelected:(UIImage *)image{
     
     if (image != nil) {
         PPDebug(@"image selected, image size = %@", NSStringFromCGSize(image.size));
-        
+
         _hasEdited = YES;
         self.image = image;
         self.opusImageView.image = image;
         [self removeHolderView];
         self.opusImageView.contentMode = UIViewContentModeScaleAspectFit;
-        
+
         NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
-        
+
         NSData *data = [self.image data];
         NSString *path = self.singOpus.localImageURLString;
         [data writeToFile:path atomically:YES];
@@ -912,9 +912,32 @@ enum{
     }
 }
 
-- (void)cropViewControllerDidCancel:(CropAndFilterViewController *)controller{
-    [controller dismissViewControllerAnimated:YES completion:NULL];
-}
+//- (void)cropViewController:(CropAndFilterViewController *)controller didFinishCroppingImage:(UIImage *)image{
+//    
+//    [controller dismissViewControllerAnimated:YES completion:NULL];
+//    
+//    if (image != nil) {
+//        PPDebug(@"image selected, image size = %@", NSStringFromCGSize(image.size));
+//        
+//        _hasEdited = YES;
+//        self.image = image;
+//        self.opusImageView.image = image;
+//        [self removeHolderView];
+//        self.opusImageView.contentMode = UIViewContentModeScaleAspectFit;
+//        
+//        NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
+//        
+//        NSData *data = [self.image data];
+//        NSString *path = self.singOpus.localImageURLString;
+//        [data writeToFile:path atomically:YES];
+//        
+//        [pool drain];
+//    }
+//}
+
+//- (void)cropViewControllerDidCancel:(CropAndFilterViewController *)controller{
+//    [controller dismissViewControllerAnimated:YES completion:NULL];
+//}
 
 - (IBAction)clickBackButton:(id)sender {
 

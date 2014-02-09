@@ -12,6 +12,9 @@
 
 - (void)didImageSelected:(UIImage*)image;
 
+@optional
+- (void)didCropImageSelected:(UIImage*)image;
+
 @end
 
 typedef void(^DidSelectedImageBlock)(UIImage* image);
@@ -31,8 +34,18 @@ typedef void(^CallBackBlock)(NSInteger index);
 @property (nonatomic, copy) DidSelectedImageBlock selectImageBlock;
 @property (nonatomic, copy) DidSetDefaultBlock setDefaultBlock;
 @property (assign, nonatomic) BOOL userOriginalImage;
+@property (assign, nonatomic) BOOL enableCrop;
+@property (assign, nonatomic) float cropRatio;
 
+// 使用该方法，可以弹出三个选项(拍照，相册，取消)，并且完成相应的功能，最后回调
+// - (void)didImageSelected:(UIImage*)image;
+// 如果你讲enableCrop设置成YES(同时设定相应的cropRatio)，则可在选择相片后对相片进行裁减和滤镜，最后回调
+//- (void)didCropImageSelected:(UIImage*)image; 这种情况下就不会回调 - (void)didImageSelected:(UIImage*)image;这个方法了。
 - (void)showSelectionView:(UIViewController<ChangeAvatarDelegate>*)superViewController;
+
+
+
+
 - (void)showEditImageView:(UIImage*)image
              inController:(UIViewController<ChangeAvatarDelegate>*)superViewController;
 
