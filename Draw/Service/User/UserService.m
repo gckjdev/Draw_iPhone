@@ -2368,7 +2368,7 @@ POSTMSG(NSLS(@"kLoginFailure"));
             
             if (output.resultCode == ERROR_SUCCESS && output.pbResponse.user){
                 // sync balance from server
-                [_accountManager updateBalance:user.coinBalance currency:PBGameCurrencyCoin];
+                [[AccountManager defaultManager] updateBalance:output.pbResponse.user.coinBalance currency:PBGameCurrencyCoin];
                 
                 [[UserManager defaultManager] storeUserData:output.pbResponse.user];
             }
