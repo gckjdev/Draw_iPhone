@@ -12,6 +12,7 @@
 #import "UIImageExt.h"
 #import "DeviceDetection.h"
 #import "MKBlockActionSheet.h"
+#import "CropAndFilterViewController.h"
 
 #define DEFAULT_AVATAR_SIZE 320
 
@@ -64,9 +65,6 @@
     [actionSheet showInView:[superViewController view]];
 //    [actionSheet showFromTabBar:superViewController.tabBarController.tabBar];
     [actionSheet release];
-    
-    
-    
 }
 
 - (void)showSelectionView:(UIViewController<ChangeAvatarDelegate>*)superViewController
@@ -207,16 +205,46 @@
         [picker dismissModalViewControllerAnimated:NO];
     }
     
-    if (image && _delegate && [_delegate respondsToSelector:@selector(didImageSelected:)]) {
-        [_delegate didImageSelected:image];
+    id delegate = self.enableCrop ? (id)self : _delegate;
+    
+    if (image && delegate && [delegate respondsToSelector:@selector(didImageSelected:)]) {
+        [delegate didImageSelected:image];
     }
     
     if (_selectImageBlock != NULL) {
         EXECUTE_BLOCK(_selectImageBlock, image);
         self.selectImageBlock = nil;
     }
+}
 
+- (void)didImageSelected:(UIImage*)image{
+    
+    [self showImageEditor:image];
+}
 
+- (void)showImageEditor:(UIImage *)image{
+    
+    CropAndFilterViewController *vc = [[CropAndFilterViewController alloc] init];
+    vc.delegate = self;
+    vc.image = image;
+    [vc setCropAspectRatio:_cropRatio];
+    
+    [_superViewController presentViewController:vc animated:YES completion:NULL];
+    [vc release];
+}
+
+- (void)cropViewController:(CropAndFilterViewController *)controller didFinishCroppingImage:(UIImage *)image{
+    
+    [controller dismissViewControllerAnimated:YES completion:NULL];
+    PPDebug(@"image selected, image size = %@", NSStringFromCGSize(image.size));
+
+    if ([self.delegate respondsToSelector:@selector(didCropImageSelected:)]) {
+        [self.delegate didCropImageSelected:image];
+    }
+}
+
+- (void)cropViewControllerDidCancel:(CropAndFilterViewController *)controller{
+    [controller dismissViewControllerAnimated:YES completion:NULL];
 }
 
 - (void)showEditImageView:(UIImage*)image
