@@ -534,6 +534,21 @@ static GroupService *_staticGroupService = nil;
      }];
 }
 
+
+- (void)getTopicListByType:(GetTopicListType)type
+                    offset:(NSInteger)offset
+                     limit:(NSInteger)limit
+                  callback:(ListResultBlock)callback
+{
+    NSDictionary *paras = @{PARA_OFFSET:@(offset), PARA_LIMIT:@(limit), PARA_TYPE:@(type)};
+    [self loadPBData:METHOD_GET_TOPICS
+          parameters:paras
+            callback:^(DataQueryResponse *response, NSError *error)
+     {
+         EXECUTE_BLOCK(callback, response.bbsPostList, error);
+     }];
+}
+
 - (void)getTopicTimelineList:(NSInteger)offset
                        limit:(NSInteger)limit
                     callback:(ListResultBlock)callback

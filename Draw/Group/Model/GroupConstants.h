@@ -85,6 +85,14 @@ typedef enum{
 
 
 typedef enum{
+    GetTopicListTypeHot = 11,
+    GetTopicListTypeNew = 12,
+    GetTopicListTypeFollow = 13,
+    GetTopicListTypeMine = 14,
+}GetTopicListType;
+
+
+typedef enum{
     GroupNoticeTypeNotice = 1,
     GroupNoticeTypeRequest = 2,
 //    GroupNoticeTypeCharge = 3,
@@ -94,13 +102,20 @@ typedef enum{
 typedef enum{
     GroupTabGroup = 100,
     GroupTabTopic = 101,
-    GroupTabFollow = 102,
-    
+//    GroupTabFollow = 102,
+
+    //group sub tabs
     GroupTabGroupFollow = GetGroupListTypeFollow,
     GroupTabGroupNew = GetGroupListTypeNew,
     GroupTabGroupBalance = GetGroupListTypeBalance,
     GroupTabGroupActive = GetGroupListTypeActive,
     GroupTabGroupFame = GetGroupListTypeFame,
+    
+    //topic sub tabs
+    GroupTabTopicHot = GetTopicListTypeHot,
+    GroupTabTopicNew = GetTopicListTypeNew,
+    GroupTabTopicFollow = GetTopicListTypeFollow,
+    GroupTabTopicMine = GetTopicListTypeMine,
     
 }GroupTab;
 

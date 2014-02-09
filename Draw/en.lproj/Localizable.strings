@@ -2263,6 +2263,13 @@
 "kGroupTabGroupBalance" = "Balance";
 "kGroupTabGroupActive" = "Active";
 "kGroupTabGroupFame" = "Fame";
+
+"kGroupTabTopicHot" = "Hot";
+"kGroupTabTopicNew" = "New";
+"kGroupTabTopicFollow" = "Follow";
+"kGroupTabGroupMine" = "Mine";
+
+
 "kIgnoring" = "Sending ignore request...";
 "kRejecting" = "Sending rejection response...";
 "kAccepting" = "Sending accept response...";
