@@ -6,6 +6,7 @@
 //
 
 #import "AppTask.h"
+#import "UserManager.h"
 
 @implementation AppTask
 
@@ -59,15 +60,21 @@
 
 - (BOOL)isAppAward
 {
-    NSUserDefaults* ud = [NSUserDefaults standardUserDefaults];
-    return [ud boolForKey:[self appAwardKey]];
+    return [[UserManager defaultManager] hasAwardApp:self.appid];
+    
+//    NSUserDefaults* ud = [NSUserDefaults standardUserDefaults];
+//    return [ud boolForKey:[self appAwardKey]];
 }
 
 - (void)setAppAward
 {
-    NSUserDefaults* ud = [NSUserDefaults standardUserDefaults];
-    [ud setBool:YES forKey:[self appAwardKey]];
-    [ud synchronize];
+    // send app award request here
+    
+//    NSUserDefaults* ud = [NSUserDefaults standardUserDefaults];
+//    [ud setBool:YES forKey:[self appAwardKey]];
+//    [ud synchronize];
+
+    [[UserService defaultService] awardApp:self.appid amount:self.award];
 }
 
 

@@ -901,10 +901,26 @@ typedef enum{
     [dialog setClickOkBlock:^(id view){
         NSString *text = dialog.inputTextField.text;
         NSInteger amount = [text integerValue];
+        
+        if (amount < 0 && [[UserManager defaultManager] isSuperUser]){
+            [self showActivityWithText:NSLS(@"kCharging")];
+            [groupService adminChargeGroup:_group.groupId amount:amount callback:^(NSError *error) {
+                [self hideActivity];
+                if (!error) {
+                    POSTMSG(NSLS(@"kChargeIconSuccess"));
+                    PBGroup *grp = [GroupManager incGroupBalance:_group amount:amount];
+                    [self updateGroup:grp];
+                    [self reloadView];
+                }
+            }];
+            return;
+        }
+        
         if (amount <= 0) {
             POSTMSG(NSLS(@"kNegativeInput"));
             return;
-        }        
+        }
+        
         if ([self checkMyBalance:amount]) {
             [self showActivityWithText:NSLS(@"kCharging")];
             [groupService chargeGroup:_group.groupId amount:amount callback:^(NSError *error) {

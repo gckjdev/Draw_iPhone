@@ -1806,6 +1806,7 @@ static PBUserLevel* defaultPBUserLevelInstance = nil;
 @property BOOL canShakeNumber;
 @property int32_t shakeNumberTimes;
 @property int32_t takeCoins;
+@property (retain) NSMutableArray* mutableAwardAppsList;
 @property int32_t vip;
 @property int32_t vipExpireDate;
 @property int32_t vipLastPayDate;
@@ -2153,6 +2154,7 @@ static PBUserLevel* defaultPBUserLevelInstance = nil;
   hasTakeCoins_ = !!value;
 }
 @synthesize takeCoins;
+@synthesize mutableAwardAppsList;
 - (BOOL) hasVip {
   return !!hasVip_;
 }
@@ -2214,6 +2216,7 @@ static PBUserLevel* defaultPBUserLevelInstance = nil;
   self.bloodGroup = nil;
   self.signature = nil;
   self.friendMemo = nil;
+  self.mutableAwardAppsList = nil;
   self.groupInfo = nil;
   [super dealloc];
 }
@@ -2316,6 +2319,13 @@ static PBGameUser* defaultPBGameUserInstance = nil;
 }
 - (NSString*) blockDeviceIdsAtIndex:(int32_t) index {
   id value = [mutableBlockDeviceIdsList objectAtIndex:index];
+  return value;
+}
+- (NSArray*) awardAppsList {
+  return mutableAwardAppsList;
+}
+- (NSString*) awardAppsAtIndex:(int32_t) index {
+  id value = [mutableAwardAppsList objectAtIndex:index];
   return value;
 }
 - (BOOL) isInitialized {
@@ -2500,6 +2510,9 @@ static PBGameUser* defaultPBGameUserInstance = nil;
   if (self.hasTakeCoins) {
     [output writeInt32:106 value:self.takeCoins];
   }
+  for (NSString* element in self.mutableAwardAppsList) {
+    [output writeString:107 value:element];
+  }
   if (self.hasVip) {
     [output writeInt32:110 value:self.vip];
   }
@@ -2675,6 +2688,14 @@ static PBGameUser* defaultPBGameUserInstance = nil;
   }
   if (self.hasTakeCoins) {
     size += computeInt32Size(106, self.takeCoins);
+  }
+  {
+    int32_t dataSize = 0;
+    for (NSString* element in self.mutableAwardAppsList) {
+      dataSize += computeStringSizeNoTag(element);
+    }
+    size += dataSize;
+    size += 2 * self.mutableAwardAppsList.count;
   }
   if (self.hasVip) {
     size += computeInt32Size(110, self.vip);
@@ -2928,6 +2949,12 @@ static PBGameUser* defaultPBGameUserInstance = nil;
   if (other.hasTakeCoins) {
     [self setTakeCoins:other.takeCoins];
   }
+  if (other.mutableAwardAppsList.count > 0) {
+    if (result.mutableAwardAppsList == nil) {
+      result.mutableAwardAppsList = [NSMutableArray array];
+    }
+    [result.mutableAwardAppsList addObjectsFromArray:other.mutableAwardAppsList];
+  }
   if (other.hasVip) {
     [self setVip:other.vip];
   }
@@ -3171,6 +3198,10 @@ static PBGameUser* defaultPBGameUserInstance = nil;
       }
       case 848: {
         [self setTakeCoins:[input readInt32]];
+        break;
+      }
+      case 858: {
+        [self addAwardApps:[input readString]];
         break;
       }
       case 880: {
@@ -4050,6 +4081,37 @@ static PBGameUser* defaultPBGameUserInstance = nil;
 - (PBGameUser_Builder*) clearTakeCoins {
   result.hasTakeCoins = NO;
   result.takeCoins = 0;
+  return self;
+}
+- (NSArray*) awardAppsList {
+  if (result.mutableAwardAppsList == nil) {
+    return [NSArray array];
+  }
+  return result.mutableAwardAppsList;
+}
+- (NSString*) awardAppsAtIndex:(int32_t) index {
+  return [result awardAppsAtIndex:index];
+}
+- (PBGameUser_Builder*) replaceAwardAppsAtIndex:(int32_t) index with:(NSString*) value {
+  [result.mutableAwardAppsList replaceObjectAtIndex:index withObject:value];
+  return self;
+}
+- (PBGameUser_Builder*) addAwardApps:(NSString*) value {
+  if (result.mutableAwardAppsList == nil) {
+    result.mutableAwardAppsList = [NSMutableArray array];
+  }
+  [result.mutableAwardAppsList addObject:value];
+  return self;
+}
+- (PBGameUser_Builder*) addAllAwardApps:(NSArray*) values {
+  if (result.mutableAwardAppsList == nil) {
+    result.mutableAwardAppsList = [NSMutableArray array];
+  }
+  [result.mutableAwardAppsList addObjectsFromArray:values];
+  return self;
+}
+- (PBGameUser_Builder*) clearAwardAppsList {
+  result.mutableAwardAppsList = nil;
   return self;
 }
 - (BOOL) hasVip {

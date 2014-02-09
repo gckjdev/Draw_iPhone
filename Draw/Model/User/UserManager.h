@@ -284,4 +284,6 @@ qqAccessTokenSecret:(NSString*)accessTokenSecret
 - (int)buyVipUserCount;
 - (void)setBuyVipUserCount:(int)value;
 
+- (BOOL)hasAwardApp:(NSString*)appId;
+
 @end

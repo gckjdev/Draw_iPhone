@@ -185,7 +185,7 @@
 {
 #ifdef DEBUG
 //    return @"http://192.168.1.12:8100/api/i?";
-//    return @"http://58.215.184.18:8699/api/i?";
+    return @"http://58.215.184.18:8699/api/i?";
 //    return @"http://192.168.100.192:8100/api/i?";
 //    return @"http://localhost:8100/api/i?";
 #endif
@@ -1415,7 +1415,7 @@
 
 + (NSString*)getVipYearTaobaoURL
 {
-    return GET_UMENG_STRVALUE(@"VIP_YEAR_TAOBAO", @"http://a.m.taobao.com/i23758468517.htm");
+    return GET_UMENG_STRVALUE(@"VIP_YEAR_TAOBAO", @"http://a.m.taobao.com/i19339015795.htm");
 }
 
 + (NSString*)getVipMonthTaobaoURL

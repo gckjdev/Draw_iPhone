@@ -158,6 +158,10 @@ typedef void (^ URLResultBlock) (NSURL *url, NSError *error);
              amount:(NSInteger)amount
            callback:(SimpleResultBlock)callback;
 
+- (void)adminChargeGroup:(NSString *)groupId
+                  amount:(NSInteger)amount
+                callback:(SimpleResultBlock)callback;
+
 - (void)transferGroupBalance:(NSString *)groupId
                       amount:(NSInteger)amount
                    targetUid:(NSString *)targetUid

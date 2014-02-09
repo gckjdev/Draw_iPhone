@@ -587,6 +587,22 @@ static GroupService *_staticGroupService = nil;
     }];
 }
 
+//ADMIN充值, can be minus
+- (void)adminChargeGroup:(NSString *)groupId
+                  amount:(NSInteger)amount
+                callback:(SimpleResultBlock)callback
+{
+    NSDictionary *params = @{PARA_GROUPID:groupId, PARA_AMOUNT:@(amount), PARA_FORCE_BY_ADMIN:@(1)};
+    [self loadPBData:METHOD_CHARGE_GROUP
+          parameters:params
+            callback:^(DataQueryResponse *response, NSError *error) {
+                if (!error) {
+                    [[AccountService defaultService] deductCoin:amount source:DeductForChargeGroup];
+                }
+                EXECUTE_BLOCK(callback, error);
+            }];
+}
+
 //转给成员
 - (void)transferGroupBalance:(NSString *)groupId
                       amount:(NSInteger)amount

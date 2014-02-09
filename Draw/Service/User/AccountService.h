@@ -14,6 +14,9 @@
 #import "AlixPayOrder.h"
 #import "AliPayManager.h"
 
+#define VIP_BUY_TYPE_MONTH 1
+#define VIP_BUY_TYPE_YEAR  2
+
 #define PAYMENT_SUCCESS 0
 #define PAYMENT_FAILURE 1
 #define PAYMENT_CANCEL  2

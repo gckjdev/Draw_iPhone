@@ -169,6 +169,7 @@
 #define METHOD_SEND_VERFICATION         @"sendVerification"
 #define METHOD_PURCHASE_VIP             @"purchaseVip"
 #define METHOD_GET_BUY_VIP_COUNT        @"buyVipCount"
+#define METHOD_AWARD_APP                @"awardApp"
 
 #define PARA_REMOVE_OLD_NUMBER          @"removeOldNumber"
 #define PARA_SET_USER_NUMBER            @"setUserNumber"
@@ -259,6 +260,8 @@
 #define PARA_RESCUE_DATA_TAG @"rdt"
 
 #define PARA_AMOUNT @"pa"
+#define PARA_AWARD_APPID @"awardAppId"
+#define PARA_FORCE_BY_ADMIN @"forceByAdmin"
 #define PARA_SOURCE @"sr"
 #define PARA_TRANSACTION_ID @"tid"
 #define PARA_TRANSACTION_RECEIPT @"tre"
@@ -404,6 +407,7 @@
 #define PARA_OPUS_ID @"opid"
 #define PARA_CORRECT @"cre"
 #define PARA_ACTION_TYPE @"act"
+#define PARA_DAY @"day"
 #define PARA_WORD_LIST @"wl"
 #define PARA_OPUS_CREATOR_UID @"opc"
 #define PARA_RETURN_ITEM @"ri"
