@@ -510,7 +510,7 @@
             break;
          case GroupContest:
         {            
-            ContestController *vc = [[[ContestController alloc] initWithGroupContestOnly] autorelease];
+            ContestController *vc = [[[ContestController alloc] initWithGroupDefault] autorelease];
             [self.navigationController pushViewController:vc animated:YES];
             
         }

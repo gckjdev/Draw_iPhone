@@ -73,7 +73,7 @@ typedef enum{
 #define MIN_SIGN_HEIGHT (ISIPAD?35:21)
 #define TABLE_SIGN_SPACE (ISIPAD? 15 : 6)
 
-@interface GroupDetailController ()
+@interface GroupDetailController () <ChangeAvatarDelegate>
 {
     GroupService *groupService;
     GroupManager *groupManager;
@@ -122,7 +122,7 @@ typedef enum{
 
 - (void)clickJoin:(id)sender
 {
-    UIButton *button = sender;
+//    UIButton *button = sender;
     CommonDialog *dialog = [CommonDialog createInputFieldDialogWith:NSLS(@"kJoinGroup")];
     dialog.inputTextField.placeholder = NSLS(@"kJoinGroupReason");
     [dialog showInView:self.view];
@@ -354,20 +354,38 @@ typedef enum{
         return;
     }
 
-    __block GroupDetailController *cp = self;
+//    __block GroupDetailController *cp = self;
     self.changeImage.userOriginalImage = YES;
-    [self.changeImage showSelectionView:(id)self delegate:nil selectedImageBlock:^(UIImage *image) {
-        [self showActivityWithText:NSLS(@"kUpdating")];
-        [groupService updateGroup:cp.group.groupId BGImage:image callback:^(NSURL *url, NSError *error) {
-            [cp hideActivity];
-            if (!error) {
-                [cp.bgImageView setImageWithURL:url];
-                PBGroup *group = [GroupManager updateGroup:cp.group BGImageURL:[url absoluteString]];
-                [cp updateGroup:group];
-            }
-        }];
-        
-    } didSetDefaultBlock:NULL title:NSLS(@"kChangeGroupBG")  hasRemoveOption:NO canTakePhoto:YES userOriginalImage:YES];
+    
+    self.changeImage.enableCrop = YES;
+    float ratio = 460.0/320.0;
+    [self.changeImage setCropRatio:ratio];
+    [self.changeImage showSelectionView:self];
+//    [self.changeImage showSelectionView:(id)self delegate:nil selectedImageBlock:^(UIImage *image) {
+//        [self showActivityWithText:NSLS(@"kUpdating")];
+//        [groupService updateGroup:cp.group.groupId BGImage:image callback:^(NSURL *url, NSError *error) {
+//            [cp hideActivity];
+//            if (!error) {
+//                [cp.bgImageView setImageWithURL:url];
+//                PBGroup *group = [GroupManager updateGroup:cp.group BGImageURL:[url absoluteString]];
+//                [cp updateGroup:group];
+//            }
+//        }];
+//        
+//    } didSetDefaultBlock:NULL title:NSLS(@"kChangeGroupBG")  hasRemoveOption:NO canTakePhoto:YES userOriginalImage:YES];
+}
+
+- (void)didCropImageSelected:(UIImage *)image{
+    
+    [self showActivityWithText:NSLS(@"kUpdating")];
+    [groupService updateGroup:self.group.groupId BGImage:image callback:^(NSURL *url, NSError *error) {
+        [self hideActivity];
+        if (!error) {
+            [self.bgImageView setImageWithURL:url];
+            PBGroup *group = [GroupManager updateGroup:self.group BGImageURL:[url absoluteString]];
+            [self updateGroup:group];
+        }
+    }];
 }
 
 - (void)updateRightButton

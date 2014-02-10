@@ -26,6 +26,9 @@
 - (void)enterDrawControllerWithContest:(Contest *)contest
                               animated:(BOOL)animated;
 
+// 官方比赛+家族比赛，默认选中家族比赛
+- (id)initWithGroupDefault;
+
 // 仅有家族比赛，没有官方比赛，家族比赛为所有家族的比赛。
 - (id)initWithGroupContestOnly;
 

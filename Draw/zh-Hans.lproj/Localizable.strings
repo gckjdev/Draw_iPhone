@@ -2650,3 +2650,5 @@
 
 "kContestingTimeIs" = "比赛时间: %@";
 "kVotingTimeIs" = "投票时间: %@";
+
+"kPop" = "人气";
