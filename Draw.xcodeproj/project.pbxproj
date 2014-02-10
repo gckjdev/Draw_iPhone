@@ -295,6 +295,10 @@
 		A455F8CB1585D21400CA5743 /* grayArrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A455F8C01585D21400CA5743 /* grayArrow@2x.png */; };
 		A455F8CC1585D21400CA5743 /* whiteArrow.png in Resources */ = {isa = PBXBuildFile; fileRef = A455F8C11585D21400CA5743 /* whiteArrow.png */; };
 		A455F8CD1585D21400CA5743 /* whiteArrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A455F8C21585D21400CA5743 /* whiteArrow@2x.png */; };
+		A4563E6418A885B1005DAA03 /* finish@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4563E6318A885B1005DAA03 /* finish@2x.png */; };
+		A4563E6518A885B9005DAA03 /* finish@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4563E6318A885B1005DAA03 /* finish@2x.png */; };
+		A4563E6618A885B9005DAA03 /* finish@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4563E6318A885B1005DAA03 /* finish@2x.png */; };
+		A4563E6718A885B9005DAA03 /* finish@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4563E6318A885B1005DAA03 /* finish@2x.png */; };
 		A4572D7418570B0F0076ADF7 /* UIView+Pan.m in Sources */ = {isa = PBXBuildFile; fileRef = A4572D7318570B0F0076ADF7 /* UIView+Pan.m */; };
 		A4572D7518570B0F0076ADF7 /* UIView+Pan.m in Sources */ = {isa = PBXBuildFile; fileRef = A4572D7318570B0F0076ADF7 /* UIView+Pan.m */; };
 		A4572D7618570B0F0076ADF7 /* UIView+Pan.m in Sources */ = {isa = PBXBuildFile; fileRef = A4572D7318570B0F0076ADF7 /* UIView+Pan.m */; };
@@ -7671,6 +7675,7 @@
 		A455F8C01585D21400CA5743 /* grayArrow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "grayArrow@2x.png"; sourceTree = "<group>"; };
 		A455F8C11585D21400CA5743 /* whiteArrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = whiteArrow.png; sourceTree = "<group>"; };
 		A455F8C21585D21400CA5743 /* whiteArrow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "whiteArrow@2x.png"; sourceTree = "<group>"; };
+		A4563E6318A885B1005DAA03 /* finish@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "finish@2x.png"; sourceTree = "<group>"; };
 		A4572D7218570B0F0076ADF7 /* UIView+Pan.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Pan.h"; sourceTree = "<group>"; };
 		A4572D7318570B0F0076ADF7 /* UIView+Pan.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Pan.m"; sourceTree = "<group>"; };
 		A4572D941858059C0076ADF7 /* AudioFormatConverter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioFormatConverter.h; sourceTree = "<group>"; };
@@ -11570,6 +11575,7 @@
 		A4D8F93D17DB08160085061F /* flag */ = {
 			isa = PBXGroup;
 			children = (
+				A4563E6318A885B1005DAA03 /* finish@2x.png */,
 				EAD13B6617DDAF0700764FFB /* right@2x.png */,
 				A49C9CC417DB2F4600C9F39F /* gallary_filter2@2x.png */,
 				A49C9CC517DB2F4600C9F39F /* gallary_search2@2x.png */,
@@ -18072,6 +18078,7 @@
 				A4D8FB7317DB08170085061F /* shake@2x.png in Resources */,
 				A4D8FB7717DB08170085061F /* room_seat_bg_1@2x.png in Resources */,
 				A4D8FB7B17DB08170085061F /* room_seat_bg_2@2x.png in Resources */,
+				A4563E6618A885B9005DAA03 /* finish@2x.png in Resources */,
 				A4D8FB7F17DB08170085061F /* room_seat_bg_3@2x.png in Resources */,
 				A4D8FB8317DB08170085061F /* room_seat_bg_4@2x.png in Resources */,
 				A4D8FB8717DB08170085061F /* room_seat_bg_5@2x.png in Resources */,
@@ -18877,6 +18884,7 @@
 				C2773FFA17699F2E00929AE3 /* search_bar_bg@2x.png in Resources */,
 				C2773FFC17699F2E00929AE3 /* search_btn@2x.png in Resources */,
 				C277400017699F2E00929AE3 /* search_setting_btn@2x.png in Resources */,
+				A4563E6518A885B9005DAA03 /* finish@2x.png in Resources */,
 				C27740031769A1D600929AE3 /* search_input_bg@2x.png in Resources */,
 				C23C3359176AB922004BE236 /* photo_tags.txt in Resources */,
 				C23C335C176ABA38004BE236 /* keywords.txt in Resources */,
@@ -20488,6 +20496,7 @@
 				EA7E4F71186ADE8F00E0B20F /* CreateGroupController~ipad.xib in Resources */,
 				EA7E4F75186ADE8F00E0B20F /* GroupDetailController~ipad.xib in Resources */,
 				EA7E4F79186ADE8F00E0B20F /* GroupHomeController~ipad.xib in Resources */,
+				A4563E6418A885B1005DAA03 /* finish@2x.png in Resources */,
 				EA7E4F7D186ADE8F00E0B20F /* GroupNoticeController~ipad.xib in Resources */,
 				EA7E4F81186ADE8F00E0B20F /* GroupTopicController~ipad.xib in Resources */,
 				EA716B95186C373F005CC0F0 /* group_add@2x.png in Resources */,
@@ -21338,6 +21347,7 @@
 				CA9AAF2F18321621002DBAA5 /* SingController.xib in Resources */,
 				CA9AAF3318321621002DBAA5 /* SingController~ipad.xib in Resources */,
 				CA9AAF3B18321621002DBAA5 /* SingInfoEditController.xib in Resources */,
+				A4563E6718A885B9005DAA03 /* finish@2x.png in Resources */,
 				CA9AAF3F18321621002DBAA5 /* SingInfoEditController~ipad.xib in Resources */,
 				CA9AAF4718321621002DBAA5 /* SongCell.xib in Resources */,
 				CA9AAF4B18321621002DBAA5 /* SongCell~ipad.xib in Resources */,
