@@ -170,6 +170,7 @@
 #define METHOD_PURCHASE_VIP             @"purchaseVip"
 #define METHOD_GET_BUY_VIP_COUNT        @"buyVipCount"
 #define METHOD_AWARD_APP                @"awardApp"
+#define METHOD_SET_USER_OFF_GROUP       @"setUserOffGroup"
 
 #define PARA_REMOVE_OLD_NUMBER          @"removeOldNumber"
 #define PARA_SET_USER_NUMBER            @"setUserNumber"

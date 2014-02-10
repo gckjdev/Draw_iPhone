@@ -2628,3 +2628,7 @@
 "kVotingTimeIs" = "Vote: %@";
 
 "kPop" = "Hot";
+
+"kEnableGroupNoticeSucc" = "Enable group message notification successfully";
+"kDisableGroupNoticeSucc" = "Disable group message notification successfully";
+
