@@ -15,6 +15,8 @@
 @interface GroupHomeController : CommonTabController<DetailFooterViewDelegate, GroupCellDelegate, BBSServiceDelegate>
 @property (retain, nonatomic) IBOutlet UIView *subTabsHolder;
 @property (retain, nonatomic) IBOutlet UIView *tabsHolderView;
+@property (retain, nonatomic) IBOutlet UIView *subTopicTabHolder;
+
 @property (retain, nonatomic) IBOutlet DetailFooterView *footerView;
 
 @end

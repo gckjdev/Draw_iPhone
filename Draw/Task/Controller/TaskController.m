@@ -11,6 +11,7 @@
 #import "TaskManager.h"
 #import "GameTask.h"
 #import "CommonTitleView.h"
+#import "UIViewController+BGImage.h"
 
 @interface TaskController ()
 
@@ -39,13 +40,16 @@
                                 self.dataList = [[TaskManager defaultManager] taskList];
                                 [self.dataTableView reloadData];
                             }];
+    
+    
+    [self setDefaultBGImage];
 }
 
 //SET_CELL_BG_IN_VIEW;
 
 #pragma mark - table view delegate
 
-SET_CELL_BG_IN_CONTROLLER
+//SET_CELL_BG_IN_CONTROLLER
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     

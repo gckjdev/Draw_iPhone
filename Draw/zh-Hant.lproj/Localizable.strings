@@ -2312,6 +2312,13 @@
 "kGroupTabGroupBalance" = "財富";
 "kGroupTabGroupActive" = "活躍";
 "kGroupTabGroupFame" = "聲望";
+
+"kGroupTabTopicHot" = "熱度";
+"kGroupTabTopicNew" = "最新";
+"kGroupTabTopicFollow" = "關註";
+"kGroupTabGroupMine" = "我的";
+
+
 "kIgnoring" = "發送忽略請求中...";
 "kRejecting" = "發送拒絕請求中...";
 "kAccepting" = "發送同意請求中...";
@@ -2657,9 +2664,7 @@
 "kContestingTimeIs" = "提交作品時間: %@";
 "kVotingTimeIs" = "投票送花時間: %@";
 
-
 "kPop" = "人氣";
 
 "kEnableGroupNoticeSucc" = "已經開啟本群聊通知功能";
 "kDisableGroupNoticeSucc" = "已經關閉本群聊通知功能";
-

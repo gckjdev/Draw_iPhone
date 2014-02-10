@@ -99,7 +99,7 @@ NSString* GlobalGetServerURL()
 //    return @"http://localhost:8000/api/i?";
 //    return @"http://58.215.160.100:8002/api/i?";
 //    return @"http://192.168.1.13:8001/api/i?";
-    return @"http://58.215.160.100:8020/api/i?";
+//    return @"http://58.215.160.100:8020/api/i?";
 //    return @"http://192.168.1.198:8000/api/i?";
 //    return @"http://58.215.160.100:8888/api/i?";
 //
@@ -135,7 +135,7 @@ NSString* GlobalGetTrafficServerURL()
 //    return @"http://192.168.1.8:8100/api/i?";
     
     
-    return @"http://58.215.184.18:8699/api/i?";
+//    return @"http://58.215.184.18:8699/api/i?";
 
 //    return @"http://58.215.184.18:8037/api/i?";
 //    return @"http://192.168.1.198:8100/api/i?";
@@ -396,14 +396,14 @@ NSString* GlobalGetBoardServerURL()
     [[GroupService defaultService] syncFollowGroupIds];
     [[GroupService defaultService] syncFollowTopicIds];
     
-    if (ISIOS7) {
-//        [application setStatusBarStyle:UIStatusBarStyleLightContent];
-        self.window.clipsToBounds =YES;
-        CGRect frame = self.window.frame;
-        frame.origin.y = 20;
-        frame.size.height -= 20;
-        self.window.frame = frame;
-    }
+//    if (ISIOS7) {
+////        [application setStatusBarStyle:UIStatusBarStyleLightContent];
+//        self.window.clipsToBounds =YES;
+//        CGRect frame = self.window.frame;
+//        frame.origin.y = 20;
+//        frame.size.height -= 20;
+//        self.window.frame = frame;
+//    }
     
     return YES;
 }

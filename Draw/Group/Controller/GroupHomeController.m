@@ -30,6 +30,7 @@
 {
     UIButton *currentTabButton;
     UIButton *currentGroupSubButton;
+    UIButton *currentTopicSubButton;
     GroupService *groupService;
 }
 @end
@@ -56,17 +57,18 @@
     for (int i = 0; i < count; ++ i) {
         GroupTab tab = [self tabIDforIndex:i];
         UIButton *button;
-//        CGFloat subButtonWidth = CGRectGetWidth([[UIScreen mainScreen] bounds])/[self groupSubTabCount];
-//        CGFloat subButtonX = 0;
         if ([self isSubGroupTab:tab]) {
             button = (id)[self.subTabsHolder viewWithTag:tab];
             SET_BUTTON_SQUARE_STYLE_YELLOW(button);
             [button setTitleColor:COLOR_WHITE forState:UIControlStateNormal];
             [button setBackgroundImage:IMAGE_FROM_COLOR(COLOR_YELLOW) forState:
              UIControlStateSelected];
-//            [button updateWidth:subButtonWidth];
-//            [button updateOriginX:subButtonX];
-//            subButtonX += subButtonWidth;
+        }else if([self isSubTopicTab:tab]){
+            button = (id)[self.subTopicTabHolder viewWithTag:tab];
+            SET_BUTTON_SQUARE_STYLE_YELLOW(button);
+            [button setTitleColor:COLOR_WHITE forState:UIControlStateNormal];
+            [button setBackgroundImage:IMAGE_FROM_COLOR(COLOR_YELLOW) forState:
+             UIControlStateSelected];
         }else{
             button = (id)[self.tabsHolderView viewWithTag:tab];
             SET_BUTTON_AS_COMMON_TAB_STYLE(button);
@@ -82,6 +84,7 @@
 {
     return (id)[self.tabsHolderView viewWithTag:GroupTabGroup];
 }
+
 
 - (void)updateFooterView
 {
@@ -162,7 +165,7 @@
 
 - (void)setNeedRefreshFollowTopicTab
 {
-    TableTab *tab = [_tabManager tabForID:GroupTabFollow];
+    TableTab *tab = [_tabManager tabForID:GroupTabTopicFollow];
     tab.status = TableTabStatusUnload;
     tab.offset = 0;
 }
@@ -211,13 +214,21 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (BOOL)isMainTab:(NSInteger)tab
+{
+    return GroupTabTopic == tab || GroupTabGroup == tab;
+}
+
 - (BOOL)isGroupTab:(NSInteger)tab
 {
-    if (tab == GroupTabFollow || tab == GroupTabTopic) {
-        return NO;
-    }
-    return YES;
+    return (GroupTabGroup == tab || [self isSubGroupTab:tab]);
 }
+
+- (BOOL)isTopicTab:(NSInteger)tab
+{
+    return (GroupTabTopic == tab || [self isSubTopicTab:tab]);
+}
+
 - (BOOL)isSubGroupTab:(NSInteger)tab
 {
     NSArray *tabs =@[
@@ -227,6 +238,21 @@
                     @(GroupTabGroupActive),
                     @(GroupTabGroupFame)];
     return [tabs containsObject:@(tab)];
+}
+
+- (BOOL)isSubTopicTab:(NSInteger)tab
+{
+    NSArray *tabs =@[
+                     @(GroupTabTopicHot),
+                     @(GroupTabTopicNew),
+                     @(GroupTabTopicMine),
+                     @(GroupTabTopicFollow)];
+    return [tabs containsObject:@(tab)];
+}
+
+- (GroupTab)defaultTopicTab
+{
+    return GroupTabTopicHot;
 }
 
 - (GroupTab)defaultGroupTab
@@ -241,56 +267,63 @@
 #define TOPIC_TABLE_WIDTH (ISIPAD?700:300)
 #define GROUP_TABLE_WIDTH (ISIPAD?768:320)
 
+
+
 - (void)clickTabButton:(id)sender
 {
-    UIButton *button = (UIButton *)sender;
-    if (button == currentTabButton || button == currentGroupSubButton) {
-        return;
-    }
-    [button setSelected:YES];
-    NSInteger tag = button.tag;
-    if (![self isSubGroupTab:tag]) {
-        [currentTabButton setSelected:NO];
-        currentTabButton = button;
-    }
-
-    CGFloat originHeight = CGRectGetHeight(self.dataTableView.frame);
-    CGFloat newHeight = originHeight;
     
-    if ([self isGroupTab:tag]) {
-        //don't load data. just show the sub tab buttons.
-        self.subTabsHolder.hidden = NO;
-        [self.dataTableView updateOriginY:CGRectGetMaxY(self.subTabsHolder.frame)];
-        newHeight = (CGRectGetMinY(self.footerView.frame) - CGRectGetMinY(self.dataTableView.frame));
-        [self.dataTableView updateHeight:newHeight];
-        if ([self isSubGroupTab:tag]) {
-            [currentGroupSubButton setSelected:NO];
-            currentGroupSubButton = sender;
-            [self clickTab:tag];
-        }else{
-            if (!currentGroupSubButton) {
-                [self clickTab:[self defaultGroupTab]];
-                currentGroupSubButton = (id)[self.subTabsHolder viewWithTag:[self defaultGroupTab]];
-            }else{
-                [self clickTab:currentGroupSubButton.tag];
-            }
+    UIButton *button = (UIButton *)sender;
+    
+//    if ([button isSelected]) {
+//        return;
+//    }
+    
+    NSInteger tabID = button.tag;
+    
+    
+    if ([self isMainTab:tabID]) {
+        if (currentTabButton != button) {
+            currentTabButton.selected = NO;
+            button.selected = YES;
         }
-        currentGroupSubButton.selected = YES;
-        [self.dataTableView updateWidth:GROUP_TABLE_WIDTH];
+        currentTabButton = button;
+        
+        if ([self isGroupTab:tabID]) {
+            id subButton = currentGroupSubButton;
+            if (!subButton) {
+                subButton = [self.subTabsHolder viewWithTag:[self defaultGroupTab]];
+            }
+            self.subTabsHolder.hidden = NO;
+            self.subTopicTabHolder.hidden = YES;
+            
+            [self clickTabButton:subButton];
+        }else {
+            id subButton = currentTopicSubButton;
+            if (!subButton) {
+                subButton = [self.subTopicTabHolder viewWithTag:[self defaultTopicTab]];
+            }
+            self.subTabsHolder.hidden = YES;
+            self.subTopicTabHolder.hidden = NO;
+
+            [self clickTabButton:subButton];
+        }
     }else{
-        self.subTabsHolder.hidden = YES;
-        [self.dataTableView updateOriginY:CGRectGetMaxY(self.tabsHolderView.frame)];
-        newHeight = (CGRectGetMinY(self.footerView.frame) -CGRectGetMinY(self.dataTableView.frame));
-        [self.dataTableView updateHeight:newHeight];
-        [self clickTab:button.tag];
-        [self.dataTableView updateWidth:TOPIC_TABLE_WIDTH];
+        if ([self isGroupTab:tabID] && currentGroupSubButton != button) {
+            currentGroupSubButton.selected = NO;
+            button.selected = YES;
+            currentGroupSubButton = button;
+        }else if ([self isTopicTab:tabID] && currentTopicSubButton != button) {
+            currentTopicSubButton.selected = NO;
+            button.selected = YES;
+            currentTopicSubButton = button;
+        }
+        [self clickTab:tabID];
     }
-    [self.dataTableView updateCenterX:CGRectGetMidX(self.view.bounds)];
 }
 
 - (NSInteger)tabCount
 {
-    return 7;
+    return 11;
 }
 - (NSInteger)currentTabIndex
 {
@@ -303,22 +336,23 @@
 - (NSInteger)tabIDforIndex:(NSInteger)index
 {
     NSInteger tabs[] = {
-    GroupTabGroup,
-    GroupTabTopic,
-    GroupTabFollow,
+        GroupTabGroup,
+        GroupTabTopic,
+
+        //group sub tabs
+        GroupTabGroupFollow,
+        GroupTabGroupNew,
+        GroupTabGroupBalance,
+        GroupTabGroupActive,
+        GroupTabGroupFame,
         
-    GroupTabGroupFollow,
-    GroupTabGroupNew,
-    GroupTabGroupBalance,
-    GroupTabGroupActive,
-    //GroupTabGroupFame
+        //topic sub tabs
+        GroupTabTopicHot,
+        GroupTabTopicNew,
+        GroupTabTopicFollow,
+        GroupTabTopicMine,
     };
     return tabs[index];
-}
-
-- (NSInteger)groupSubTabCount
-{
-    return 4;
 }
 
 - (NSString *)tabTitleforIndex:(NSInteger)index
@@ -326,12 +360,18 @@
     NSString *titles[]={
         NSLS(@"kGroupTabGroup"),
         NSLS(@"kGroupTabTopic"),
-        NSLS(@"kGroupTabFollow"),
+
         NSLS(@"kGroupTabGroupFollow"),
         NSLS(@"kGroupTabGroupNew"),
         NSLS(@"kGroupTabGroupBalance"),
         NSLS(@"kGroupTabGroupActive"),
-     //   NSLS(@"kGroupTabGroupFame")
+        NSLS(@"kGroupTabGroupFame"),
+        
+        NSLS(@"kGroupTabTopicHot"),
+        NSLS(@"kGroupTabTopicNew"),
+        NSLS(@"kGroupTabTopicFollow"),
+        NSLS(@"kGroupTabGroupMine"),
+        
     };
     return titles[index];
 }
@@ -376,7 +416,7 @@
             [self finishLoadDataForTabID:tabID resultList:nil];
             break;
         }
-        case GroupTabFollow:
+        case GroupTabTopicFollow:
         {
             [[GroupService defaultService] getFollowedTopicList:tab.offset
                                                           limit:tab.limit
@@ -390,6 +430,18 @@
                                                        callback:callback];
             break;
         }
+        case GroupTabTopicHot:
+        case GroupTabTopicNew:
+        case GroupTabTopicMine:
+            //get topic list.
+        {
+            [[GroupService defaultService] getTopicListByType:tabID
+                                                       offset:tab.offset
+                                                        limit:tab.limit
+                                                     callback:callback];
+            break;
+        }
+        
         default:
             [self finishLoadDataForTabID:tabID resultList:nil];
             break;
@@ -562,6 +614,7 @@
 
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
     [super tableView:tableView willDisplayCell:cell forRowAtIndexPath:indexPath];
+    
     if([self isNoDataCell:cell] || ![self isGroupTab:self.currentTabID]){
         cell.backgroundColor = [UIColor clearColor];        
         return;
@@ -610,11 +663,13 @@
     [_footerView release];
     [_tabsHolderView release];
     [GroupPermissionManager clearGroupRoles];
+    [_subTopicTabHolder release];
     [super dealloc];
 }
 - (void)viewDidUnload {
     [self setFooterView:nil];
     [self setTabsHolderView:nil];
+    [self setSubTopicTabHolder:nil];
     [super viewDidUnload];
 }
 

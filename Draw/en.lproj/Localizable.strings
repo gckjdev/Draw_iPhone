@@ -2263,6 +2263,13 @@
 "kGroupTabGroupBalance" = "Balance";
 "kGroupTabGroupActive" = "Active";
 "kGroupTabGroupFame" = "Fame";
+
+"kGroupTabTopicHot" = "Hot";
+"kGroupTabTopicNew" = "New";
+"kGroupTabTopicFollow" = "Follow";
+"kGroupTabGroupMine" = "Mine";
+
+
 "kIgnoring" = "Sending ignore request...";
 "kRejecting" = "Sending rejection response...";
 "kAccepting" = "Sending accept response...";
@@ -2631,4 +2638,3 @@
 
 "kEnableGroupNoticeSucc" = "Enable group message notification successfully";
 "kDisableGroupNoticeSucc" = "Disable group message notification successfully";
-

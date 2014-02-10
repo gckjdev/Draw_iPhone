@@ -2307,6 +2307,13 @@
 "kGroupTabGroupBalance" = "财富";
 "kGroupTabGroupActive" = "活跃";
 "kGroupTabGroupFame" = "声望";
+
+"kGroupTabTopicHot" = "热度";
+"kGroupTabTopicNew" = "最新";
+"kGroupTabTopicFollow" = "关注";
+"kGroupTabGroupMine" = "我的";
+
+
 "kIgnoring" = "发送忽略请求中...";
 "kRejecting" = "发送拒绝请求中...";
 "kAccepting" = "发送同意请求中...";

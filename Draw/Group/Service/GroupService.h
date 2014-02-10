@@ -146,6 +146,13 @@ typedef void (^ URLResultBlock) (NSURL *url, NSError *error);
                        limit:(NSInteger)limit
                     callback:(ListResultBlock)callback;
 
+
+- (void)getTopicListByType:(GetTopicListType)type
+                    offset:(NSInteger)offset
+                     limit:(NSInteger)limit
+                  callback:(ListResultBlock)callback;
+
+
 - (void)getTopicTimelineList:(NSInteger)offset
                        limit:(NSInteger)limit
                     callback:(ListResultBlock)callback;

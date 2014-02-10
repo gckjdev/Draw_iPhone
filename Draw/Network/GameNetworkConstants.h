@@ -753,6 +753,8 @@
 #define METHOD_UNFOLLOW_TOPIC @"unfollowTopic"
 #define METHOD_GET_TOPIC_TIMELINE @"getTopicTimeline"
 #define METHOD_GET_FOLLOWED_TOPIC @"getFollowTopics"
+#define METHOD_GET_TOPICS @"getTopics"
+
 //#define METHOD_GET_GROUPRELATION @"getRelationWithGroup"
 #define METHOD_SEARCH_GROUP @"searchGroup"
 #define METHOD_GET_GROUP_BADGES @"getGroupBadge"
