@@ -21,5 +21,6 @@
 @interface ContestCell : PPTableViewCell
 
 - (void)setCellInfo:(Contest *)contest;
+- (void)showAward;
 
 @end

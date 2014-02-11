@@ -21,6 +21,7 @@
 #import "UIViewUtils.h"
 #import "CommentCell.h"
 #import "UIImageUtil.h"
+#import "StringUtil.h"
 
 @implementation FeedCell
 @synthesize guessLabel;
@@ -70,7 +71,7 @@
     if ([Feed isKindOfClass:[CommentFeed class]]){
         NSString *comment = [feed desc];
         UIFont *font = [ShareUIManager timelineContentFont];
-        CGSize commentSize = [comment sizeWithFont:font constrainedToSize:CGSizeMake(DESC_WIDTH, 10000000) lineBreakMode:UILineBreakModeCharacterWrap];
+        CGSize commentSize = [comment sizeWithMyFont:font constrainedToSize:CGSizeMake(DESC_WIDTH, 10000000) lineBreakMode:UILineBreakModeCharacterWrap];
         CGFloat height = NON_DESC_HEIGHT + commentSize.height;
         if (height <= FEED_CELL_HEIGHT){
             height = FEED_CELL_HEIGHT;
@@ -112,7 +113,7 @@
     CGPoint origin = self.descLabel.frame.origin;
     UIFont *font = [ShareUIManager timelineContentFont];
     CGSize maxSize = CGSizeMake(DESC_WIDTH, DESC_HEIGHT);
-    CGSize labelSize = [feed.desc sizeWithFont:font constrainedToSize:maxSize 
+    CGSize labelSize = [feed.desc sizeWithMyFont:font constrainedToSize:maxSize 
          lineBreakMode:UILineBreakModeCharacterWrap];
     CGRect rect = CGRectMake(origin.x, origin.y, DESC_WIDTH, labelSize.height);
     self.descLabel.frame = rect;

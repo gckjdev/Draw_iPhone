@@ -70,4 +70,14 @@
 + (int)getContestStyleCellCountWithDataCount:(int)count;
 + (float)getContestStyleCellHeight;
 
+
+
++ (UITableViewCell *)getContestRuleCell:(UITableView *)tableView
+                              indexPath:(NSIndexPath *)indexPath
+                               delegate:(id)delegate
+                                contest:(Contest *)contest;
++ (int)getContestRuleCellCount;
++ (float)getContestRuleCellHeight:(NSIndexPath *)indexPath
+                          contest:(Contest *)contest;
+
 @end

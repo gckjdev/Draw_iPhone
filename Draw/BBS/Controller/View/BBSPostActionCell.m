@@ -12,6 +12,7 @@
 #import "UserManager.h"
 #import "TimeUtils.h"
 #import "BBSPopupSelectionView.h"
+#import "StringUtil.h"
 
 #define SPACE_CONTENT_TOP (ISIPAD ? 77 : 35)
 #define SPACE_CONTENT_BOTTOM_IMAGE (ISIPAD ? 100 * 2.5 : 100) //IMAGE TYPE OR DRAW TYPE
@@ -93,7 +94,7 @@
     if (ISIOS7) {
         float fPadding = 16.0*2; // 8.0px x 2
         CGSize constraint = CGSizeMake(CONTENT_WIDTH - fPadding, CGFLOAT_MAX);
-        CGSize size = [text sizeWithFont:font constrainedToSize:constraint lineBreakMode:UILineBreakModeWordWrap];
+        CGSize size = [text sizeWithMyFont:font constrainedToSize:constraint lineBreakMode:UILineBreakModeWordWrap];
         height = size.height + 20;
     }else{
         height = textView.contentSize.height;
@@ -122,7 +123,7 @@
 
 + (CGFloat)heightForContentText:(NSString *)text
 {
-    CGSize size = [text sizeWithFont:CONTENT_FONT constrainedToSize:CGSizeMake(CONTENT_WIDTH, CONTENT_MAX_HEIGHT) lineBreakMode:NSLineBreakByCharWrapping];
+    CGSize size = [text sizeWithMyFont:CONTENT_FONT constrainedToSize:CGSizeMake(CONTENT_WIDTH, CONTENT_MAX_HEIGHT) lineBreakMode:NSLineBreakByCharWrapping];
     size.height += 2*Y_CONTENT_TEXT;
     return size.height;
 }

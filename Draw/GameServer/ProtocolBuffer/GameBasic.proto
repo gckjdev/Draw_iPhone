@@ -125,7 +125,8 @@ message PBGameUser {
   optional int32  vipExpireDate = 111 [default=0];     // VIP到期时间
   optional int32  vipLastPayDate = 112 [default=0];    // VIP最后一次续费时间
 
-  optional PBSimpleGroup groupInfo = 150; 
+  optional PBSimpleGroup groupInfo = 150;              // 用户所属当前群组（用于返回）
+  repeated string offGroupIds = 151;                   // 用户屏蔽的群聊消息
 
   optional int32 singRecordLimit = 200[default = 30];  //你唱我猜用户最长录音时间限制。 
   

@@ -202,7 +202,8 @@
     if (_popoverController != nil) {
         [_popoverController dismissPopoverAnimated:NO];
     }else{
-        [picker dismissModalViewControllerAnimated:NO];
+//        [picker dismissModalViewControllerAnimated:NO];
+        [picker dismissViewControllerAnimated:NO completion:nil];
     }
     
     id delegate = self.enableCrop ? (id)self : _delegate;

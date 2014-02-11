@@ -486,4 +486,8 @@ typedef enum{
 + (UIImage *)statementCellBg1;
 + (UIImage *)statementCellBg2;
 
+- (UIImage *)disableGroupMessageNoticeOff;
+- (UIImage *)disableGroupMessageNoticeOn;
+
+
 @end

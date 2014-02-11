@@ -94,6 +94,12 @@
     self.joinedImageView.hidden = ![contest joined];
 }
 
+- (void)showAward{
+    
+    NSString *award = [NSString stringWithFormat:NSLS(@"kNCoins"),[self.contest totalAward]];
+    self.leftTimeLabel.text = award;
+}
+
 - (void)didClickOnContestImageView{
     
     if ([delegate respondsToSelector:@selector(didClickContest:)]) {

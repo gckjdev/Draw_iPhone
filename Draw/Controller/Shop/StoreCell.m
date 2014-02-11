@@ -13,6 +13,7 @@
 #import "UIImageView+WebCache.h"
 #import "UserGameItemManager.h"
 #import "ItemType.h"
+#import "StringUtil.h"
 
 #define TAG_PRICE_VIEW 209
 #define ORIGINY_PRICE_VIEW 13;
@@ -93,7 +94,7 @@
     self.itemNameLabel.text = NSLS(item.name);
     
     CGSize withinSize = CGSizeMake(MAX_WITH_ITEM_NAME, 19);
-    CGSize size = [self.itemNameLabel.text sizeWithFont:self.itemNameLabel.font constrainedToSize:withinSize lineBreakMode:self.itemNameLabel.lineBreakMode];
+    CGSize size = [self.itemNameLabel.text sizeWithMyFont:self.itemNameLabel.font constrainedToSize:withinSize lineBreakMode:self.itemNameLabel.lineBreakMode];
     [self.itemNameLabel updateWidth:size.width];
     
     [self setItem:item count:[[UserGameItemManager defaultManager] countOfItem:item.itemId]];

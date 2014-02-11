@@ -229,5 +229,8 @@ typedef void(^UploadImageResultBlock)(int resultCode, NSString* imageRemoteURL);
 
 
 - (void)awardApp:(NSString*)appId amount:(int)amount;
+- (void)setUserGroupNotice:(NSString*)groupId
+                    status:(int)status
+               resultBlock:(void(^)(int resultCode))resultBlock;
 
 @end

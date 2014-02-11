@@ -2621,6 +2621,7 @@
 
 "kContestNotStart" = "未开始";
 "kContestOutOfTime" = "已结束";
+"kContestSubmitEnd" = "作品提交已截止";
 "kLeftDays" = "还有%d天";
 "kLeftHours" = "还有%d小时";
 "kLeftMins" = "还有%d分钟";
@@ -2652,3 +2653,7 @@
 "kVotingTimeIs" = "投票时间: %@";
 
 "kPop" = "人气";
+"kNCoins" = "%d 金币";
+
+"kEnableGroupNoticeSucc" = "已经开启本群聊通知功能";
+"kDisableGroupNoticeSucc" = "已经关闭本群聊通知功能";

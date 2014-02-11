@@ -2605,6 +2605,7 @@
 
 "kContestNotStart" = "Pending";
 "kContestOutOfTime" = "Over";
+"kContestSubmitEnd" = "Submission Closed";
 "kLeftDays" = "%d days left";
 "kLeftHours" = "%d hours left";
 "kLeftMins" = "%d minutes left";
@@ -2635,3 +2636,7 @@
 "kVotingTimeIs" = "Vote: %@";
 
 "kPop" = "Hot";
+"kNCoins" = "%d coins";
+
+"kEnableGroupNoticeSucc" = "Enable group message notification successfully";
+"kDisableGroupNoticeSucc" = "Disable group message notification successfully";

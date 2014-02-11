@@ -11,6 +11,7 @@
 #import "ImageSearchResult.h"
 #import "ShareImageManager.h"
 #import "UIColor+UIColorExt.h"
+#import "StringUtil.h"
 
 @interface SearchResultView ()
 
@@ -153,7 +154,7 @@
 //    
 //    // Label
 ////    CGSize labelSize = CGSizeZero;
-////    labelSize = [self.captionLabel.text sizeWithFont:self.captionLabel.font constrainedToSize:CGSizeMake(width, INT_MAX) lineBreakMode:self.captionLabel.lineBreakMode];
+////    labelSize = [self.captionLabel.text sizeWithMyFont:self.captionLabel.font constrainedToSize:CGSizeMake(width, INT_MAX) lineBreakMode:self.captionLabel.lineBreakMode];
 //    top = self.imageView.frame.origin.y + self.imageView.frame.size.height + MARGIN;
 //    
 ////    self.captionLabel.frame = CGRectMake(left, top, labelSize.width, labelSize.height);

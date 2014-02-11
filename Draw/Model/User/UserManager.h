@@ -285,5 +285,8 @@ qqAccessTokenSecret:(NSString*)accessTokenSecret
 - (void)setBuyVipUserCount:(int)value;
 
 - (BOOL)hasAwardApp:(NSString*)appId;
+- (void)setUserGroupNotice:(NSString*)groupId status:(int)status;
+- (BOOL)isDisableGroupNotice:(NSString*)groupId;
+- (void)setOffGroupIds:(NSArray*)offGroupIds;
 
 @end

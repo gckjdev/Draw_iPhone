@@ -17,6 +17,7 @@
 #import "ContestPrizeCell.h"
 #import "ContestCell.h"
 #import "ContestManager.h"
+#import "StatementCell.h"
 
 #define NORMAL_CELL_VIEW_NUMBER 3
 #define WHISPER_CELL_VIEW_NUMBER (ISIPAD? 3 : 2)
@@ -474,6 +475,52 @@
 + (float)getContestStyleCellHeight{
     
     return [ContestCell getCellHeight];
+}
+
+
+
++ (UITableViewCell *)getContestRuleCell:(UITableView *)tableView
+                              indexPath:(NSIndexPath *)indexPath
+                               delegate:(id)delegate
+                                contest:(Contest *)contest{
+    
+    StatementCell *cell = [tableView dequeueReusableCellWithIdentifier:[StatementCell getCellIdentifier]];
+    if (cell == nil) {
+        cell = [StatementCell createCell:self];
+    }
+    
+    if (indexPath.row == 1){
+        NSString *contestingTimeDesc = [NSString stringWithFormat:NSLS(@"kContestingTimeIs"), [contest contestingTimeDesc]];
+        NSString *votingTimeDesc = [NSString stringWithFormat:NSLS(@"kVotingTimeIs"), [contest votingTimeDesc]];
+        
+        NSString *content = [[contestingTimeDesc stringByAppendingString:@"\n"] stringByAppendingString:votingTimeDesc];
+        [cell setCellTitle:NSLS(@"kTime") content:content];
+    }else if (indexPath.row == 0){
+        [cell setCellTitle:NSLS(@"kSubject") content:[contest title]];
+    }else if (indexPath.row == 2){
+        [cell setCellTitle:NSLS(@"kDesc") content:[contest desc]];
+    }else if (indexPath.row == 3){
+        [cell setCellTitle:NSLS(@"kAward") content:[contest awardRulesDesc]];
+    }
+    
+    cell.indexPath = indexPath;
+    
+    return cell;
+}
+
++ (int)getContestRuleCellCount{
+    
+    return 4;
+}
+
++ (float)getContestRuleCellHeight:(NSIndexPath *)indexPath
+                          contest:(Contest *)contest{
+    
+    if(indexPath.row != StatementCellTypeDesc){
+        return [StatementCell getCellHeightWithType:indexPath.row];
+    }else{
+        return [StatementCell getCellHeightWithContent:[contest desc]];
+    }
 }
 
 @end

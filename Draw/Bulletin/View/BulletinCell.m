@@ -13,6 +13,7 @@
 #import "TimeUtils.h"
 #import "JumpHandler.h"
 #import "UILabel+Extend.h"
+#import "StringUtil.h"
 
 #define TOTAL_SEPERATOR ([DeviceDetection isIPAD]?85:42)
 #define MAX_CONTENT_LABEL_HEIGHT  ([DeviceDetection isIPAD]?900:450)
@@ -41,7 +42,7 @@ AUTO_CREATE_VIEW_BY_XIB(BulletinCell)
 
 + (CGSize)cellSizeForContent:(NSString *)content
 {
-    CGSize size = [content sizeWithFont:[UIFont systemFontOfSize:CONTENT_FONT_SIZE]
+    CGSize size = [content sizeWithMyFont:[UIFont systemFontOfSize:CONTENT_FONT_SIZE]
                                      constrainedToSize:CGSizeMake(CONTENT_LABEL_WIDTH, MAX_CONTENT_LABEL_HEIGHT)
                                          lineBreakMode:UILineBreakModeTailTruncation];
 

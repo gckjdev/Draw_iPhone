@@ -36,6 +36,8 @@
 #import "Group.pb.h"
 #import "UserDetailViewController.h"
 #import "ViewUserDetail.h"
+#import "UserService.h"
+#import "StringUtil.h"
 
 @interface ChatDetailController ()
 {
@@ -200,8 +202,83 @@
     return imageUploader;
 }
 
+- (void)showGroupMessageNotice
+{
+    MKBlockActionSheet* actionSheet = [[MKBlockActionSheet alloc] initWithTitle:NSLS(@"kDisableGroupMessageNotice")
+                                                                       delegate:nil
+                                                              cancelButtonTitle:NSLS(@"Cancel")
+                                                         destructiveButtonTitle:NSLS(@"kDisableGroupMessageNoticeOn")
+                                                              otherButtonTitles:NSLS(@"kDisableGroupMessageNoticeOff"), nil];
+    
+    int indexOn = 0;
+    int indexOff = 1;
+    
+    [actionSheet setActionBlock:^(NSInteger buttonIndex){
+        int status = -1;
+        if (buttonIndex == indexOn){
+            status = 0;
+        }
+        else if (buttonIndex == indexOff){
+            status = 1;
+        }
+        
+        if (status != -1){
+            [[UserService defaultService] setUserGroupNotice:self.messageStat.groupId
+                                                      status:status
+                                                 resultBlock:nil];
+        }
+    }];
+    
+    [actionSheet showInView:self.view];
+    [actionSheet release];
+}
+
+- (void)changeGroupNotice
+{
+    int status;
+    if ([[UserManager defaultManager] isDisableGroupNotice:self.messageStat.groupId]){
+        status = 1;
+    }
+    else{
+        status = 0;
+    }
+    
+    [self showActivityWithText:NSLS(@"kHandling")];
+    [[UserService defaultService] setUserGroupNotice:self.messageStat.groupId
+                                              status:status
+                                         resultBlock:
+     ^(int resultCode){
+         
+         [self hideActivity];
+         
+         if (resultCode == 0){
+             UIImage* image;
+             if ([[UserManager defaultManager] isDisableGroupNotice:self.messageStat.groupId]){
+                 image = [[ShareImageManager defaultManager] disableGroupMessageNoticeOn];
+                 POSTMSG(NSLS(@"kDisableGroupNoticeSucc"));
+             }
+             else{
+                 image = [[ShareImageManager defaultManager] disableGroupMessageNoticeOff];
+                 POSTMSG(NSLS(@"kEnableGroupNoticeSucc"));
+             }
+
+             [self.changeBgButton setBackgroundImage:image
+                                            forState:UIControlStateNormal];
+         }
+         else{
+             POSTMSG(NSLS(@"kSystemFailure"));
+         }
+     }];
+    
+}
+
 
 - (IBAction)clickChangeBGButton:(id)sender {
+    
+    if ([self isGroup]){
+        [self changeGroupNotice];
+        return;
+    }
     
     [[self backgroundPicker] showSelectionView:self
                                       delegate:nil
@@ -242,11 +319,22 @@
     [titleView setRightButtonSelector:@selector(clickRefresh:)];
     [self.view sendSubviewToBack:titleView];
 
+    UIImage* image = [[ShareImageManager defaultManager] changeBgImage];
+    
+    if ([self isGroup]){
+        // use for disable
+        if ([[UserManager defaultManager] isDisableGroupNotice:self.messageStat.groupId]){
+            image = [[ShareImageManager defaultManager] disableGroupMessageNoticeOn];
+        }
+        else{
+            image = [[ShareImageManager defaultManager] disableGroupMessageNoticeOff];
+        }
+    }
+    
     CGRect rect = [titleView rectFromButtonBeforeRightButton];
     [self.changeBgButton setFrame:rect];
-    [self.changeBgButton setBackgroundImage:[[ShareImageManager defaultManager] changeBgImage]
+    [self.changeBgButton setBackgroundImage:image
                                    forState:UIControlStateNormal];
-
 }
 
 
@@ -647,7 +735,9 @@
 #pragma mark - OfflineDrawDelegate methods
 - (void)didControllerClickBack:(OfflineDrawViewController *)controller
 {
-    [controller dismissModalViewControllerAnimated:YES];
+//    [controller dismissModalViewControllerAnimated:YES];
+    [controller dismissViewControllerAnimated:YES completion:nil];
+    
 }
 
 - (void)didController:(OfflineDrawViewController *)controller
@@ -703,7 +793,7 @@
 - (void)textViewDidChange:(UITextView *)textView
 {
     NSString *text = textView.text;
-    CGSize size = [text sizeWithFont:textView.font 
+    CGSize size = [text sizeWithMyFont:textView.font 
                    constrainedToSize:CGSizeMake(textView.frame.size.width, TEXT_VIEW_MAX_HEIGHT) 
                        lineBreakMode:UILineBreakModeWordWrap];
     CGFloat textHeight = (size.height < TEXT_VIEW_MIN_HEIGHT) ? TEXT_VIEW_MIN_HEIGHT : (size.height);

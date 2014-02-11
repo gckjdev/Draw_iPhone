@@ -91,7 +91,7 @@
 #import "CreateGroupController.h"
 #import "GroupHomeController.h"
 #import "DrawImageManager.h"
-
+#import "StringUtil.h"
 
 static NSDictionary* DRAW_MENU_TITLE_DICT = nil;
 static NSDictionary* DRAW_MENU_IMAGE_DICT = nil;
@@ -141,7 +141,7 @@ static NSDictionary* DRAW_MENU_IMAGE_DICT = nil;
     [self.recommendButton setBackgroundImage:[ShareImageManager defaultManager].greenImage forState:UIControlStateNormal];
     [self.recommendButton setTitle:NSLS(@"kRecommend") forState:UIControlStateNormal];
     int fontSize = ([DeviceDetection isIPAD]?30:17);
-    CGSize size = [self.recommendButton.titleLabel.text sizeWithFont:[UIFont systemFontOfSize:fontSize]];
+    CGSize size = [self.recommendButton.titleLabel.text sizeWithMyFont:[UIFont systemFontOfSize:fontSize]];
     if (size.width >= self.recommendButton.frame.size.width) {
         [self.recommendButton setFrame:CGRectMake(self.recommendButton.frame.origin.x, 
                                                   self.recommendButton.frame.origin.y, 
