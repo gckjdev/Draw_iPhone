@@ -94,6 +94,9 @@
     self.frame = CGRectMake(0, 0, COMMON_TITLE_VIEW_WIDTH, COMMON_TITLE_VIEW_HEIGHT);
     _centerX = (self.bounds.size.width/2);
     _centerY = (self.bounds.size.height/2);
+    if (ISIOS7) {
+        _centerY += 10;
+    }
     
     self.bgImageView = [[[UIImageView alloc] initWithFrame:self.bounds] autorelease];
     _bgImageView.image = UIThemeImageNamed(@"navigation_bg@2x.jpg");

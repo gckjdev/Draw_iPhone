@@ -470,6 +470,7 @@ typedef enum{
     }
     CGRect frame = [self.groupSignature autoFitFrame];
     CGFloat labelHeight = MAX(CGRectGetHeight(frame), MIN_SIGN_HEIGHT);
+    [self.groupSignature updateHeight:labelHeight];
     
     CGFloat originY = CGRectGetMinY(frame) + labelHeight + TABLE_SIGN_SPACE;
     

@@ -122,6 +122,9 @@
     [self clickTab:tab.tabID];
     
     SET_NORMAL_TABLE_VIEW_Y(self.dataTableView);
+    CGFloat height = CGRectGetMaxY(self.view.bounds) - CGRectGetMinY(self.dataTableView.frame);
+    [self.dataTableView updateHeight:height];
+    
 }
 
 - (void)viewDidUnload

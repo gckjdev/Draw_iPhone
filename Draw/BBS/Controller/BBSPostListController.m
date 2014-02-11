@@ -15,7 +15,7 @@
 #import "DrawPlayer.h"
 #import "AdService.h"
 
-#define ADMINLISTVIEW_ORIGIN (ISIPAD ? CGPointMake(0,110) : CGPointMake(0,49))
+#define ADMINLISTVIEW_ORIGIN (ISIPAD ? CGPointMake(0,110+STATUSBAR_DELTA) : CGPointMake(0,49+STATUSBAR_DELTA))
 
 @interface BBSPostListController ()
 {

@@ -40,7 +40,6 @@
 #import "ToolCommand.h"
 #import "DrawHolderView.h"
 #import "DrawInfo.h"
-#import "MLNavigationController.h"
 
 @interface OnlineDrawViewController ()
 {

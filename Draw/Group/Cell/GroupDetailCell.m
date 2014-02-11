@@ -59,6 +59,7 @@
 
 - (void)updateView
 {
+    [self setBackgroundColor:[UIColor clearColor]];
     [self.infoLabel setLineBreakMode:NSLineBreakByCharWrapping];
     [self.infoLabel setFont:CELL_NICK_FONT];
     [self.infoLabel setTextColor:COLOR_BROWN];

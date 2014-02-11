@@ -39,6 +39,7 @@
                                 self.dataList = [[TaskManager defaultManager] taskList];
                                 [self.dataTableView reloadData];
                             }];
+//    SET_COMMON_TAB_TABLE_VIEW_Y(self.dataTableView);
 }
 
 //SET_CELL_BG_IN_VIEW;

@@ -23,7 +23,7 @@
 #define FOOTER_HEIGHT (ISIPAD ? 88 : 44)
 + (DetailFooterView *)footerViewWithDelegate:(id<DetailFooterViewDelegate>)delegate
 {
-    CGFloat y = CGRectGetHeight([[UIScreen mainScreen] applicationFrame]) - FOOTER_HEIGHT;
+    CGFloat y = CGRectGetHeight([[UIScreen mainScreen] bounds]) - FOOTER_HEIGHT-(ISIOS7?0:20);
     CGRect frame = CGRectMake(0, y, CGRectGetWidth([[UIScreen mainScreen] bounds]), FOOTER_HEIGHT);
     DetailFooterView *footer = [[DetailFooterView alloc] initWithFrame:frame];
     footer.delegate = delegate;

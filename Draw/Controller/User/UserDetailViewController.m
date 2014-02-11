@@ -64,10 +64,13 @@
     return self;
 }
 
+#define BG_COLOR  OPAQUE_COLOR(56, 208, 186)
+
 - (void)viewDidLoad
 {
     [self.detail loadUser:self];
     [super viewDidLoad];
+
     [self.backButton setBackgroundImage:UIThemeImageNamed(@"navigation_back@2x.png") forState:UIControlStateNormal];
     self.unReloadDataWhenViewDidAppear = YES;
     
@@ -82,7 +85,8 @@
             [self.dataTableView reloadData];
         }];
     }
-    
+    self.view.backgroundColor = BG_COLOR;
+//    self.dataTableView.backgroundColor = COLOR_WHITE;
 }
 
 //- (void)viewDidAppear:(BOOL)animated
@@ -129,6 +133,13 @@
     }
     
     return self.detailCell;
+}
+
+
+- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [super tableView:tableView willDisplayCell:cell forRowAtIndexPath:indexPath];
+    cell.backgroundColor = COLOR_WHITE;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section

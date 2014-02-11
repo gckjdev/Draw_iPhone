@@ -351,9 +351,16 @@ NSString* GlobalGetBoardServerURL()
     PPDebug(@"<AppDelegate> notification type = %d", type);
     _homeController.notificationType = type;
     
-    self.rootNavigationController = [[[MLNavigationController alloc]
-                                                     initWithRootViewController:rootController] 
-                                                    autorelease];
+//    if (ISIOS7 && !ISIPAD) {
+//        self.rootNavigationController = [[[UINavigationController alloc]
+//                                          initWithRootViewController:rootController]
+//                                         autorelease];
+//        self.rootNavigationController.interactivePopGestureRecognizer.enabled = YES;
+//    }else{
+        self.rootNavigationController = [[[MLNavigationController alloc]
+                                                        initWithRootViewController:rootController]
+                                                        autorelease];
+//    }
     self.rootNavigationController.navigationBarHidden = YES;
 
     // Try Fetch User Data By Device Id

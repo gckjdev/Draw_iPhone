@@ -1,1000 +1,349 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<archive type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="8.00">
-	<data>
-		<int key="IBDocument.SystemTarget">1552</int>
-		<string key="IBDocument.SystemVersion">11E53</string>
-		<string key="IBDocument.InterfaceBuilderVersion">3084</string>
-		<string key="IBDocument.AppKitVersion">1138.47</string>
-		<string key="IBDocument.HIToolboxVersion">569.00</string>
-		<object class="NSMutableDictionary" key="IBDocument.PluginVersions">
-			<string key="NS.key.0">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-			<string key="NS.object.0">2083</string>
-		</object>
-		<array key="IBDocument.IntegratedClassDependencies">
-			<string>IBProxyObject</string>
-			<string>IBUIButton</string>
-			<string>IBUIImageView</string>
-			<string>IBUIView</string>
-		</array>
-		<array key="IBDocument.PluginDependencies">
-			<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-		</array>
-		<object class="NSMutableDictionary" key="IBDocument.Metadata">
-			<string key="NS.key.0">PluginDependencyRecalculationVersion</string>
-			<integer value="1" key="NS.object.0"/>
-		</object>
-		<array class="NSMutableArray" key="IBDocument.RootObjects" id="1000">
-			<object class="IBProxyObject" id="372490531">
-				<string key="IBProxiedObjectIdentifier">IBFilesOwner</string>
-				<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-			</object>
-			<object class="IBProxyObject" id="975951072">
-				<string key="IBProxiedObjectIdentifier">IBFirstResponder</string>
-				<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-			</object>
-			<object class="IBUIView" id="632572347">
-				<reference key="NSNextResponder"/>
-				<int key="NSvFlags">292</int>
-				<array class="NSMutableArray" key="NSSubviews">
-					<object class="IBUIImageView" id="262615719">
-						<reference key="NSNextResponder" ref="632572347"/>
-						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{5, 10.5}, {310, 385}}</string>
-						<reference key="NSSuperview" ref="632572347"/>
-						<reference key="NSNextKeyView" ref="232438996"/>
-						<string key="NSReuseIdentifierKey">_NS:9</string>
-						<object class="NSColor" key="IBUIBackgroundColor" id="996242187">
-							<int key="NSColorSpace">3</int>
-							<bytes key="NSWhite">MCAwAA</bytes>
-						</object>
-						<bool key="IBUIUserInteractionEnabled">NO</bool>
-						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-						<object class="NSCustomResource" key="IBUIImage">
-							<string key="NSClassName">NSImage</string>
-							<string key="NSResourceName">guess_select_bg@2x.jpg</string>
-						</object>
-					</object>
-					<object class="IBUIButton" id="93093229">
-						<reference key="NSNextResponder" ref="632572347"/>
-						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{92, 4}, {34, 34}}</string>
-						<reference key="NSSuperview" ref="632572347"/>
-						<reference key="NSNextKeyView" ref="864584125"/>
-						<string key="NSReuseIdentifierKey">_NS:9</string>
-						<bool key="IBUIOpaque">NO</bool>
-						<int key="IBUITag">100</int>
-						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-						<int key="IBUIContentHorizontalAlignment">0</int>
-						<int key="IBUIContentVerticalAlignment">0</int>
-						<string key="IBUINormalTitle">1</string>
-						<object class="NSColor" key="IBUIHighlightedTitleColor" id="24326126">
-							<int key="NSColorSpace">3</int>
-							<bytes key="NSWhite">MQA</bytes>
-						</object>
-						<object class="NSColor" key="IBUINormalTitleColor">
-							<int key="NSColorSpace">1</int>
-							<bytes key="NSRGB">MC4xOTYwNzg0MzQ2IDAuMzA5ODAzOTMyOSAwLjUyMTU2ODY1NgA</bytes>
-						</object>
-						<object class="NSColor" key="IBUINormalTitleShadowColor" id="607366843">
-							<int key="NSColorSpace">3</int>
-							<bytes key="NSWhite">MC41AA</bytes>
-						</object>
-						<object class="NSCustomResource" key="IBUINormalImage">
-							<string key="NSClassName">NSImage</string>
-							<string key="NSResourceName">round_dot_1@2x.png</string>
-						</object>
-						<object class="IBUIFontDescription" key="IBUIFontDescription" id="847187840">
-							<int key="type">2</int>
-							<double key="pointSize">15</double>
-						</object>
-						<object class="NSFont" key="IBUIFont" id="804033657">
-							<string key="NSName">Helvetica-Bold</string>
-							<double key="NSSize">15</double>
-							<int key="NSfFlags">16</int>
-						</object>
-					</object>
-					<object class="IBUIButton" id="127113392">
-						<reference key="NSNextResponder" ref="632572347"/>
-						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{286, 4}, {34, 34}}</string>
-						<reference key="NSSuperview" ref="632572347"/>
-						<reference key="NSNextKeyView" ref="724364486"/>
-						<string key="NSReuseIdentifierKey">_NS:9</string>
-						<bool key="IBUIOpaque">NO</bool>
-						<int key="IBUITag">101</int>
-						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-						<int key="IBUIContentHorizontalAlignment">0</int>
-						<int key="IBUIContentVerticalAlignment">0</int>
-						<string key="IBUINormalTitle">2</string>
-						<reference key="IBUIHighlightedTitleColor" ref="24326126"/>
-						<object class="NSColor" key="IBUINormalTitleColor">
-							<int key="NSColorSpace">1</int>
-							<bytes key="NSRGB">MC4xOTYwNzg0MzQ2IDAuMzA5ODAzOTMyOSAwLjUyMTU2ODY1NgA</bytes>
-						</object>
-						<reference key="IBUINormalTitleShadowColor" ref="607366843"/>
-						<object class="NSCustomResource" key="IBUINormalImage">
-							<string key="NSClassName">NSImage</string>
-							<string key="NSResourceName">round_dot_2@2x.png</string>
-						</object>
-						<reference key="IBUIFontDescription" ref="847187840"/>
-						<reference key="IBUIFont" ref="804033657"/>
-					</object>
-					<object class="IBUIButton" id="232438996">
-						<reference key="NSNextResponder" ref="632572347"/>
-						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{65, 37}, {34, 34}}</string>
-						<reference key="NSSuperview" ref="632572347"/>
-						<reference key="NSNextKeyView" ref="93093229"/>
-						<string key="NSReuseIdentifierKey">_NS:9</string>
-						<bool key="IBUIOpaque">NO</bool>
-						<int key="IBUITag">102</int>
-						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-						<int key="IBUIContentHorizontalAlignment">0</int>
-						<int key="IBUIContentVerticalAlignment">0</int>
-						<string key="IBUINormalTitle">3</string>
-						<reference key="IBUIHighlightedTitleColor" ref="24326126"/>
-						<object class="NSColor" key="IBUINormalTitleColor">
-							<int key="NSColorSpace">1</int>
-							<bytes key="NSRGB">MC4xOTYwNzg0MzQ2IDAuMzA5ODAzOTMyOSAwLjUyMTU2ODY1NgA</bytes>
-						</object>
-						<reference key="IBUINormalTitleShadowColor" ref="607366843"/>
-						<object class="NSCustomResource" key="IBUINormalImage">
-							<string key="NSClassName">NSImage</string>
-							<string key="NSResourceName">foot@2x.png</string>
-						</object>
-						<reference key="IBUIFontDescription" ref="847187840"/>
-						<reference key="IBUIFont" ref="804033657"/>
-					</object>
-					<object class="IBUIButton" id="1073581745">
-						<reference key="NSNextResponder" ref="632572347"/>
-						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{233, 37}, {34, 34}}</string>
-						<reference key="NSSuperview" ref="632572347"/>
-						<reference key="NSNextKeyView" ref="127113392"/>
-						<string key="NSReuseIdentifierKey">_NS:9</string>
-						<bool key="IBUIOpaque">NO</bool>
-						<int key="IBUITag">103</int>
-						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-						<int key="IBUIContentHorizontalAlignment">0</int>
-						<int key="IBUIContentVerticalAlignment">0</int>
-						<string key="IBUINormalTitle">4</string>
-						<reference key="IBUIHighlightedTitleColor" ref="24326126"/>
-						<object class="NSColor" key="IBUINormalTitleColor">
-							<int key="NSColorSpace">1</int>
-							<bytes key="NSRGB">MC4xOTYwNzg0MzQ2IDAuMzA5ODAzOTMyOSAwLjUyMTU2ODY1NgA</bytes>
-						</object>
-						<reference key="IBUINormalTitleShadowColor" ref="607366843"/>
-						<object class="NSCustomResource" key="IBUINormalImage">
-							<string key="NSClassName">NSImage</string>
-							<string key="NSResourceName">round_dot_4@2x.png</string>
-						</object>
-						<reference key="IBUIFontDescription" ref="847187840"/>
-						<reference key="IBUIFont" ref="804033657"/>
-					</object>
-					<object class="IBUIButton" id="677592442">
-						<reference key="NSNextResponder" ref="632572347"/>
-						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{4, 70}, {34, 34}}</string>
-						<reference key="NSSuperview" ref="632572347"/>
-						<reference key="NSNextKeyView" ref="262615719"/>
-						<string key="NSReuseIdentifierKey">_NS:9</string>
-						<bool key="IBUIOpaque">NO</bool>
-						<int key="IBUITag">104</int>
-						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-						<int key="IBUIContentHorizontalAlignment">0</int>
-						<int key="IBUIContentVerticalAlignment">0</int>
-						<string key="IBUINormalTitle">5</string>
-						<reference key="IBUIHighlightedTitleColor" ref="24326126"/>
-						<object class="NSColor" key="IBUINormalTitleColor">
-							<int key="NSColorSpace">1</int>
-							<bytes key="NSRGB">MC4xOTYwNzg0MzQ2IDAuMzA5ODAzOTMyOSAwLjUyMTU2ODY1NgA</bytes>
-						</object>
-						<reference key="IBUINormalTitleShadowColor" ref="607366843"/>
-						<object class="NSCustomResource" key="IBUINormalImage">
-							<string key="NSClassName">NSImage</string>
-							<string key="NSResourceName">round_dot_5@2x.png</string>
-						</object>
-						<reference key="IBUIFontDescription" ref="847187840"/>
-						<reference key="IBUIFont" ref="804033657"/>
-					</object>
-					<object class="IBUIButton" id="864584125">
-						<reference key="NSNextResponder" ref="632572347"/>
-						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{163, 70}, {34, 34}}</string>
-						<reference key="NSSuperview" ref="632572347"/>
-						<reference key="NSNextKeyView" ref="1073581745"/>
-						<string key="NSReuseIdentifierKey">_NS:9</string>
-						<bool key="IBUIOpaque">NO</bool>
-						<int key="IBUITag">105</int>
-						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-						<int key="IBUIContentHorizontalAlignment">0</int>
-						<int key="IBUIContentVerticalAlignment">0</int>
-						<string key="IBUINormalTitle">6</string>
-						<reference key="IBUIHighlightedTitleColor" ref="24326126"/>
-						<object class="NSColor" key="IBUINormalTitleColor">
-							<int key="NSColorSpace">1</int>
-							<bytes key="NSRGB">MC4xOTYwNzg0MzQ2IDAuMzA5ODAzOTMyOSAwLjUyMTU2ODY1NgA</bytes>
-						</object>
-						<reference key="IBUINormalTitleShadowColor" ref="607366843"/>
-						<object class="NSCustomResource" key="IBUINormalImage">
-							<string key="NSClassName">NSImage</string>
-							<string key="NSResourceName">angel@2x.png</string>
-						</object>
-						<reference key="IBUIFontDescription" ref="847187840"/>
-						<reference key="IBUIFont" ref="804033657"/>
-					</object>
-					<object class="IBUIButton" id="724364486">
-						<reference key="NSNextResponder" ref="632572347"/>
-						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{261, 103}, {34, 34}}</string>
-						<reference key="NSSuperview" ref="632572347"/>
-						<reference key="NSNextKeyView" ref="994120635"/>
-						<string key="NSReuseIdentifierKey">_NS:9</string>
-						<bool key="IBUIOpaque">NO</bool>
-						<int key="IBUITag">106</int>
-						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-						<int key="IBUIContentHorizontalAlignment">0</int>
-						<int key="IBUIContentVerticalAlignment">0</int>
-						<string key="IBUINormalTitle">7</string>
-						<reference key="IBUIHighlightedTitleColor" ref="24326126"/>
-						<object class="NSColor" key="IBUINormalTitleColor">
-							<int key="NSColorSpace">1</int>
-							<bytes key="NSRGB">MC4xOTYwNzg0MzQ2IDAuMzA5ODAzOTMyOSAwLjUyMTU2ODY1NgA</bytes>
-						</object>
-						<reference key="IBUINormalTitleShadowColor" ref="607366843"/>
-						<object class="NSCustomResource" key="IBUINormalImage">
-							<string key="NSClassName">NSImage</string>
-							<string key="NSResourceName">round_dot_7@2x.png</string>
-						</object>
-						<reference key="IBUIFontDescription" ref="847187840"/>
-						<reference key="IBUIFont" ref="804033657"/>
-					</object>
-					<object class="IBUIButton" id="994120635">
-						<reference key="NSNextResponder" ref="632572347"/>
-						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{51, 137}, {34, 34}}</string>
-						<reference key="NSSuperview" ref="632572347"/>
-						<reference key="NSNextKeyView" ref="455589474"/>
-						<string key="NSReuseIdentifierKey">_NS:9</string>
-						<bool key="IBUIOpaque">NO</bool>
-						<int key="IBUITag">107</int>
-						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-						<int key="IBUIContentHorizontalAlignment">0</int>
-						<int key="IBUIContentVerticalAlignment">0</int>
-						<string key="IBUINormalTitle">8</string>
-						<reference key="IBUIHighlightedTitleColor" ref="24326126"/>
-						<object class="NSColor" key="IBUINormalTitleColor">
-							<int key="NSColorSpace">1</int>
-							<bytes key="NSRGB">MC4xOTYwNzg0MzQ2IDAuMzA5ODAzOTMyOSAwLjUyMTU2ODY1NgA</bytes>
-						</object>
-						<reference key="IBUINormalTitleShadowColor" ref="607366843"/>
-						<object class="NSCustomResource" key="IBUINormalImage">
-							<string key="NSClassName">NSImage</string>
-							<string key="NSResourceName">round_dot_8@2x.png</string>
-						</object>
-						<reference key="IBUIFontDescription" ref="847187840"/>
-						<reference key="IBUIFont" ref="804033657"/>
-					</object>
-					<object class="IBUIButton" id="372776104">
-						<reference key="NSNextResponder" ref="632572347"/>
-						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{152, 137}, {34, 34}}</string>
-						<reference key="NSSuperview" ref="632572347"/>
-						<reference key="NSNextKeyView" ref="643171843"/>
-						<string key="NSReuseIdentifierKey">_NS:9</string>
-						<bool key="IBUIOpaque">NO</bool>
-						<int key="IBUITag">108</int>
-						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-						<int key="IBUIContentHorizontalAlignment">0</int>
-						<int key="IBUIContentVerticalAlignment">0</int>
-						<string key="IBUINormalTitle">9</string>
-						<reference key="IBUIHighlightedTitleColor" ref="24326126"/>
-						<object class="NSColor" key="IBUINormalTitleColor">
-							<int key="NSColorSpace">1</int>
-							<bytes key="NSRGB">MC4xOTYwNzg0MzQ2IDAuMzA5ODAzOTMyOSAwLjUyMTU2ODY1NgA</bytes>
-						</object>
-						<reference key="IBUINormalTitleShadowColor" ref="607366843"/>
-						<object class="NSCustomResource" key="IBUINormalImage">
-							<string key="NSClassName">NSImage</string>
-							<string key="NSResourceName">shoes@2x.png</string>
-						</object>
-						<reference key="IBUIFontDescription" ref="847187840"/>
-						<reference key="IBUIFont" ref="804033657"/>
-					</object>
-					<object class="IBUIButton" id="455589474">
-						<reference key="NSNextResponder" ref="632572347"/>
-						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{96, 170}, {34, 34}}</string>
-						<reference key="NSSuperview" ref="632572347"/>
-						<reference key="NSNextKeyView" ref="372776104"/>
-						<string key="NSReuseIdentifierKey">_NS:9</string>
-						<bool key="IBUIOpaque">NO</bool>
-						<int key="IBUITag">109</int>
-						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-						<int key="IBUIContentHorizontalAlignment">0</int>
-						<int key="IBUIContentVerticalAlignment">0</int>
-						<string key="IBUINormalTitle">10</string>
-						<reference key="IBUIHighlightedTitleColor" ref="24326126"/>
-						<object class="NSColor" key="IBUINormalTitleColor">
-							<int key="NSColorSpace">1</int>
-							<bytes key="NSRGB">MC4xOTYwNzg0MzQ2IDAuMzA5ODAzOTMyOSAwLjUyMTU2ODY1NgA</bytes>
-						</object>
-						<reference key="IBUINormalTitleShadowColor" ref="607366843"/>
-						<object class="NSCustomResource" key="IBUINormalImage">
-							<string key="NSClassName">NSImage</string>
-							<string key="NSResourceName">round_dot_10@2x.png</string>
-						</object>
-						<reference key="IBUIFontDescription" ref="847187840"/>
-						<reference key="IBUIFont" ref="804033657"/>
-					</object>
-					<object class="IBUIButton" id="9869648">
-						<reference key="NSNextResponder" ref="632572347"/>
-						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{286, 170}, {34, 34}}</string>
-						<reference key="NSSuperview" ref="632572347"/>
-						<reference key="NSNextKeyView" ref="431340253"/>
-						<string key="NSReuseIdentifierKey">_NS:9</string>
-						<bool key="IBUIOpaque">NO</bool>
-						<int key="IBUITag">110</int>
-						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-						<int key="IBUIContentHorizontalAlignment">0</int>
-						<int key="IBUIContentVerticalAlignment">0</int>
-						<string key="IBUINormalTitle">11</string>
-						<reference key="IBUIHighlightedTitleColor" ref="24326126"/>
-						<object class="NSColor" key="IBUINormalTitleColor">
-							<int key="NSColorSpace">1</int>
-							<bytes key="NSRGB">MC4xOTYwNzg0MzQ2IDAuMzA5ODAzOTMyOSAwLjUyMTU2ODY1NgA</bytes>
-						</object>
-						<reference key="IBUINormalTitleShadowColor" ref="607366843"/>
-						<object class="NSCustomResource" key="IBUINormalImage">
-							<string key="NSClassName">NSImage</string>
-							<string key="NSResourceName">round_dot_11@2x.png</string>
-						</object>
-						<reference key="IBUIFontDescription" ref="847187840"/>
-						<reference key="IBUIFont" ref="804033657"/>
-					</object>
-					<object class="IBUIButton" id="204855070">
-						<reference key="NSNextResponder" ref="632572347"/>
-						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{261, 235}, {34, 34}}</string>
-						<reference key="NSSuperview" ref="632572347"/>
-						<reference key="NSNextKeyView" ref="1062557436"/>
-						<string key="NSReuseIdentifierKey">_NS:9</string>
-						<bool key="IBUIOpaque">NO</bool>
-						<int key="IBUITag">114</int>
-						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-						<int key="IBUIContentHorizontalAlignment">0</int>
-						<int key="IBUIContentVerticalAlignment">0</int>
-						<string key="IBUINormalTitle">15</string>
-						<reference key="IBUIHighlightedTitleColor" ref="24326126"/>
-						<object class="NSColor" key="IBUINormalTitleColor">
-							<int key="NSColorSpace">1</int>
-							<bytes key="NSRGB">MC4xOTYwNzg0MzQ2IDAuMzA5ODAzOTMyOSAwLjUyMTU2ODY1NgA</bytes>
-						</object>
-						<reference key="IBUINormalTitleShadowColor" ref="607366843"/>
-						<object class="NSCustomResource" key="IBUINormalImage">
-							<string key="NSClassName">NSImage</string>
-							<string key="NSResourceName">round_dot_15@2x.png</string>
-						</object>
-						<reference key="IBUIFontDescription" ref="847187840"/>
-						<reference key="IBUIFont" ref="804033657"/>
-					</object>
-					<object class="IBUIButton" id="643171843">
-						<reference key="NSNextResponder" ref="632572347"/>
-						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{206, 202}, {34, 34}}</string>
-						<reference key="NSSuperview" ref="632572347"/>
-						<reference key="NSNextKeyView" ref="9869648"/>
-						<string key="NSReuseIdentifierKey">_NS:9</string>
-						<bool key="IBUIOpaque">NO</bool>
-						<int key="IBUITag">111</int>
-						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-						<int key="IBUIContentHorizontalAlignment">0</int>
-						<int key="IBUIContentVerticalAlignment">0</int>
-						<string key="IBUINormalTitle">12</string>
-						<reference key="IBUIHighlightedTitleColor" ref="24326126"/>
-						<object class="NSColor" key="IBUINormalTitleColor">
-							<int key="NSColorSpace">1</int>
-							<bytes key="NSRGB">MC4xOTYwNzg0MzQ2IDAuMzA5ODAzOTMyOSAwLjUyMTU2ODY1NgA</bytes>
-						</object>
-						<reference key="IBUINormalTitleShadowColor" ref="607366843"/>
-						<object class="NSCustomResource" key="IBUINormalImage">
-							<string key="NSClassName">NSImage</string>
-							<string key="NSResourceName">round_dot_12@2x.png</string>
-						</object>
-						<reference key="IBUIFontDescription" ref="847187840"/>
-						<reference key="IBUIFont" ref="804033657"/>
-					</object>
-					<object class="IBUIButton" id="431340253">
-						<reference key="NSNextResponder" ref="632572347"/>
-						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{14, 236}, {34, 34}}</string>
-						<reference key="NSSuperview" ref="632572347"/>
-						<reference key="NSNextKeyView" ref="204855070"/>
-						<string key="NSReuseIdentifierKey">_NS:9</string>
-						<bool key="IBUIOpaque">NO</bool>
-						<int key="IBUITag">112</int>
-						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-						<int key="IBUIContentHorizontalAlignment">0</int>
-						<int key="IBUIContentVerticalAlignment">0</int>
-						<string key="IBUINormalTitle">13</string>
-						<reference key="IBUIHighlightedTitleColor" ref="24326126"/>
-						<object class="NSColor" key="IBUINormalTitleColor">
-							<int key="NSColorSpace">1</int>
-							<bytes key="NSRGB">MC4xOTYwNzg0MzQ2IDAuMzA5ODAzOTMyOSAwLjUyMTU2ODY1NgA</bytes>
-						</object>
-						<reference key="IBUINormalTitleShadowColor" ref="607366843"/>
-						<object class="NSCustomResource" key="IBUINormalImage">
-							<string key="NSClassName">NSImage</string>
-							<string key="NSResourceName">round_dot_13@2x.png</string>
-						</object>
-						<reference key="IBUIFontDescription" ref="847187840"/>
-						<reference key="IBUIFont" ref="804033657"/>
-					</object>
-					<object class="IBUIButton" id="1062557436">
-						<reference key="NSNextResponder" ref="632572347"/>
-						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{99, 269}, {34, 34}}</string>
-						<reference key="NSSuperview" ref="632572347"/>
-						<reference key="NSNextKeyView" ref="134897409"/>
-						<string key="NSReuseIdentifierKey">_NS:9</string>
-						<bool key="IBUIOpaque">NO</bool>
-						<int key="IBUITag">115</int>
-						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-						<int key="IBUIContentHorizontalAlignment">0</int>
-						<int key="IBUIContentVerticalAlignment">0</int>
-						<string key="IBUINormalTitle">16</string>
-						<reference key="IBUIHighlightedTitleColor" ref="24326126"/>
-						<object class="NSColor" key="IBUINormalTitleColor">
-							<int key="NSColorSpace">1</int>
-							<bytes key="NSRGB">MC4xOTYwNzg0MzQ2IDAuMzA5ODAzOTMyOSAwLjUyMTU2ODY1NgA</bytes>
-						</object>
-						<reference key="IBUINormalTitleShadowColor" ref="607366843"/>
-						<object class="NSCustomResource" key="IBUINormalImage">
-							<string key="NSClassName">NSImage</string>
-							<string key="NSResourceName">round_dot_16@2x.png</string>
-						</object>
-						<reference key="IBUIFontDescription" ref="847187840"/>
-						<reference key="IBUIFont" ref="804033657"/>
-					</object>
-					<object class="IBUIButton" id="947110534">
-						<reference key="NSNextResponder" ref="632572347"/>
-						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{223, 302}, {34, 34}}</string>
-						<reference key="NSSuperview" ref="632572347"/>
-						<reference key="NSNextKeyView" ref="969827617"/>
-						<string key="NSReuseIdentifierKey">_NS:9</string>
-						<bool key="IBUIOpaque">NO</bool>
-						<int key="IBUITag">116</int>
-						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-						<int key="IBUIContentHorizontalAlignment">0</int>
-						<int key="IBUIContentVerticalAlignment">0</int>
-						<string key="IBUINormalTitle">17</string>
-						<reference key="IBUIHighlightedTitleColor" ref="24326126"/>
-						<object class="NSColor" key="IBUINormalTitleColor">
-							<int key="NSColorSpace">1</int>
-							<bytes key="NSRGB">MC4xOTYwNzg0MzQ2IDAuMzA5ODAzOTMyOSAwLjUyMTU2ODY1NgA</bytes>
-						</object>
-						<reference key="IBUINormalTitleShadowColor" ref="607366843"/>
-						<object class="NSCustomResource" key="IBUINormalImage">
-							<string key="NSClassName">NSImage</string>
-							<string key="NSResourceName">round_dot_17@2x.png</string>
-						</object>
-						<reference key="IBUIFontDescription" ref="847187840"/>
-						<reference key="IBUIFont" ref="804033657"/>
-					</object>
-					<object class="IBUIButton" id="691104843">
-						<reference key="NSNextResponder" ref="632572347"/>
-						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{11, 335}, {34, 34}}</string>
-						<reference key="NSSuperview" ref="632572347"/>
-						<reference key="NSNextKeyView" ref="167172351"/>
-						<string key="NSReuseIdentifierKey">_NS:9</string>
-						<bool key="IBUIOpaque">NO</bool>
-						<int key="IBUITag">117</int>
-						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-						<int key="IBUIContentHorizontalAlignment">0</int>
-						<int key="IBUIContentVerticalAlignment">0</int>
-						<string key="IBUINormalTitle">18</string>
-						<reference key="IBUIHighlightedTitleColor" ref="24326126"/>
-						<object class="NSColor" key="IBUINormalTitleColor">
-							<int key="NSColorSpace">1</int>
-							<bytes key="NSRGB">MC4xOTYwNzg0MzQ2IDAuMzA5ODAzOTMyOSAwLjUyMTU2ODY1NgA</bytes>
-						</object>
-						<reference key="IBUINormalTitleShadowColor" ref="607366843"/>
-						<object class="NSCustomResource" key="IBUINormalImage">
-							<string key="NSClassName">NSImage</string>
-							<string key="NSResourceName">round_dot_18@2x.png</string>
-						</object>
-						<reference key="IBUIFontDescription" ref="847187840"/>
-						<reference key="IBUIFont" ref="804033657"/>
-					</object>
-					<object class="IBUIButton" id="167172351">
-						<reference key="NSNextResponder" ref="632572347"/>
-						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{188, 335}, {34, 34}}</string>
-						<reference key="NSSuperview" ref="632572347"/>
-						<reference key="NSNextKeyView" ref="947110534"/>
-						<string key="NSReuseIdentifierKey">_NS:9</string>
-						<bool key="IBUIOpaque">NO</bool>
-						<int key="IBUITag">118</int>
-						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-						<int key="IBUIContentHorizontalAlignment">0</int>
-						<int key="IBUIContentVerticalAlignment">0</int>
-						<string key="IBUINormalTitle">19</string>
-						<reference key="IBUIHighlightedTitleColor" ref="24326126"/>
-						<object class="NSColor" key="IBUINormalTitleColor">
-							<int key="NSColorSpace">1</int>
-							<bytes key="NSRGB">MC4xOTYwNzg0MzQ2IDAuMzA5ODAzOTMyOSAwLjUyMTU2ODY1NgA</bytes>
-						</object>
-						<reference key="IBUINormalTitleShadowColor" ref="607366843"/>
-						<object class="NSCustomResource" key="IBUINormalImage">
-							<string key="NSClassName">NSImage</string>
-							<string key="NSResourceName">round_dot_19@2x.png</string>
-						</object>
-						<reference key="IBUIFontDescription" ref="847187840"/>
-						<reference key="IBUIFont" ref="804033657"/>
-					</object>
-					<object class="IBUIButton" id="969827617">
-						<reference key="NSNextResponder" ref="632572347"/>
-						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{121, 369}, {34, 34}}</string>
-						<reference key="NSSuperview" ref="632572347"/>
-						<string key="NSReuseIdentifierKey">_NS:9</string>
-						<bool key="IBUIOpaque">NO</bool>
-						<int key="IBUITag">119</int>
-						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-						<int key="IBUIContentHorizontalAlignment">0</int>
-						<int key="IBUIContentVerticalAlignment">0</int>
-						<string key="IBUINormalTitle">20</string>
-						<reference key="IBUIHighlightedTitleColor" ref="24326126"/>
-						<object class="NSColor" key="IBUINormalTitleColor">
-							<int key="NSColorSpace">1</int>
-							<bytes key="NSRGB">MC4xOTYwNzg0MzQ2IDAuMzA5ODAzOTMyOSAwLjUyMTU2ODY1NgA</bytes>
-						</object>
-						<reference key="IBUINormalTitleShadowColor" ref="607366843"/>
-						<object class="NSCustomResource" key="IBUINormalImage">
-							<string key="NSClassName">NSImage</string>
-							<string key="NSResourceName">round_dot_20@2x.png</string>
-						</object>
-						<reference key="IBUIFontDescription" ref="847187840"/>
-						<reference key="IBUIFont" ref="804033657"/>
-					</object>
-					<object class="IBUIButton" id="134897409">
-						<reference key="NSNextResponder" ref="632572347"/>
-						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{147, 236}, {34, 34}}</string>
-						<reference key="NSSuperview" ref="632572347"/>
-						<reference key="NSNextKeyView" ref="691104843"/>
-						<string key="NSReuseIdentifierKey">_NS:9</string>
-						<bool key="IBUIOpaque">NO</bool>
-						<int key="IBUITag">113</int>
-						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-						<int key="IBUIContentHorizontalAlignment">0</int>
-						<int key="IBUIContentVerticalAlignment">0</int>
-						<string key="IBUINormalTitle">14</string>
-						<reference key="IBUIHighlightedTitleColor" ref="24326126"/>
-						<object class="NSColor" key="IBUINormalTitleColor">
-							<int key="NSColorSpace">1</int>
-							<bytes key="NSRGB">MC4xOTYwNzg0MzQ2IDAuMzA5ODAzOTMyOSAwLjUyMTU2ODY1NgA</bytes>
-						</object>
-						<reference key="IBUINormalTitleShadowColor" ref="607366843"/>
-						<object class="NSCustomResource" key="IBUINormalImage">
-							<string key="NSClassName">NSImage</string>
-							<string key="NSResourceName">round_dot_14@2x.png</string>
-						</object>
-						<reference key="IBUIFontDescription" ref="847187840"/>
-						<reference key="IBUIFont" ref="804033657"/>
-					</object>
-				</array>
-				<string key="NSFrameSize">{320, 408}</string>
-				<reference key="NSSuperview"/>
-				<reference key="NSNextKeyView" ref="677592442"/>
-				<string key="NSReuseIdentifierKey">_NS:9</string>
-				<reference key="IBUIBackgroundColor" ref="996242187"/>
-				<string key="IBUIRestorationIdentifier">GuessSelectCell</string>
-				<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-			</object>
-		</array>
-		<object class="IBObjectContainer" key="IBDocument.Objects">
-			<array class="NSMutableArray" key="connectionRecords">
-				<object class="IBConnectionRecord">
-					<object class="IBCocoaTouchEventConnection" key="connection">
-						<string key="label">clickOpusButton:</string>
-						<reference key="source" ref="372776104"/>
-						<reference key="destination" ref="632572347"/>
-						<int key="IBEventType">7</int>
-					</object>
-					<int key="connectionID">159</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBCocoaTouchEventConnection" key="connection">
-						<string key="label">clickOpusButton:</string>
-						<reference key="source" ref="969827617"/>
-						<reference key="destination" ref="632572347"/>
-						<int key="IBEventType">7</int>
-					</object>
-					<int key="connectionID">169</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBCocoaTouchEventConnection" key="connection">
-						<string key="label">clickOpusButton:</string>
-						<reference key="source" ref="691104843"/>
-						<reference key="destination" ref="632572347"/>
-						<int key="IBEventType">7</int>
-					</object>
-					<int key="connectionID">167</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBCocoaTouchEventConnection" key="connection">
-						<string key="label">clickOpusButton:</string>
-						<reference key="source" ref="1062557436"/>
-						<reference key="destination" ref="632572347"/>
-						<int key="IBEventType">7</int>
-					</object>
-					<int key="connectionID">165</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBCocoaTouchEventConnection" key="connection">
-						<string key="label">clickOpusButton:</string>
-						<reference key="source" ref="127113392"/>
-						<reference key="destination" ref="632572347"/>
-						<int key="IBEventType">7</int>
-					</object>
-					<int key="connectionID">152</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBCocoaTouchEventConnection" key="connection">
-						<string key="label">clickOpusButton:</string>
-						<reference key="source" ref="134897409"/>
-						<reference key="destination" ref="632572347"/>
-						<int key="IBEventType">7</int>
-					</object>
-					<int key="connectionID">170</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBCocoaTouchEventConnection" key="connection">
-						<string key="label">clickOpusButton:</string>
-						<reference key="source" ref="167172351"/>
-						<reference key="destination" ref="632572347"/>
-						<int key="IBEventType">7</int>
-					</object>
-					<int key="connectionID">168</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBCocoaTouchEventConnection" key="connection">
-						<string key="label">clickOpusButton:</string>
-						<reference key="source" ref="431340253"/>
-						<reference key="destination" ref="632572347"/>
-						<int key="IBEventType">7</int>
-					</object>
-					<int key="connectionID">164</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBCocoaTouchEventConnection" key="connection">
-						<string key="label">clickOpusButton:</string>
-						<reference key="source" ref="204855070"/>
-						<reference key="destination" ref="632572347"/>
-						<int key="IBEventType">7</int>
-					</object>
-					<int key="connectionID">162</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBCocoaTouchEventConnection" key="connection">
-						<string key="label">clickOpusButton:</string>
-						<reference key="source" ref="947110534"/>
-						<reference key="destination" ref="632572347"/>
-						<int key="IBEventType">7</int>
-					</object>
-					<int key="connectionID">166</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBCocoaTouchEventConnection" key="connection">
-						<string key="label">clickOpusButton:</string>
-						<reference key="source" ref="643171843"/>
-						<reference key="destination" ref="632572347"/>
-						<int key="IBEventType">7</int>
-					</object>
-					<int key="connectionID">163</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBCocoaTouchEventConnection" key="connection">
-						<string key="label">clickOpusButton:</string>
-						<reference key="source" ref="9869648"/>
-						<reference key="destination" ref="632572347"/>
-						<int key="IBEventType">7</int>
-					</object>
-					<int key="connectionID">161</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBCocoaTouchEventConnection" key="connection">
-						<string key="label">clickOpusButton:</string>
-						<reference key="source" ref="455589474"/>
-						<reference key="destination" ref="632572347"/>
-						<int key="IBEventType">7</int>
-					</object>
-					<int key="connectionID">160</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBCocoaTouchEventConnection" key="connection">
-						<string key="label">clickOpusButton:</string>
-						<reference key="source" ref="994120635"/>
-						<reference key="destination" ref="632572347"/>
-						<int key="IBEventType">7</int>
-					</object>
-					<int key="connectionID">158</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBCocoaTouchEventConnection" key="connection">
-						<string key="label">clickOpusButton:</string>
-						<reference key="source" ref="724364486"/>
-						<reference key="destination" ref="632572347"/>
-						<int key="IBEventType">7</int>
-					</object>
-					<int key="connectionID">157</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBCocoaTouchEventConnection" key="connection">
-						<string key="label">clickOpusButton:</string>
-						<reference key="source" ref="864584125"/>
-						<reference key="destination" ref="632572347"/>
-						<int key="IBEventType">7</int>
-					</object>
-					<int key="connectionID">153</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBCocoaTouchEventConnection" key="connection">
-						<string key="label">clickOpusButton:</string>
-						<reference key="source" ref="677592442"/>
-						<reference key="destination" ref="632572347"/>
-						<int key="IBEventType">7</int>
-					</object>
-					<int key="connectionID">155</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBCocoaTouchEventConnection" key="connection">
-						<string key="label">clickOpusButton:</string>
-						<reference key="source" ref="1073581745"/>
-						<reference key="destination" ref="632572347"/>
-						<int key="IBEventType">7</int>
-					</object>
-					<int key="connectionID">154</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBCocoaTouchEventConnection" key="connection">
-						<string key="label">clickOpusButton:</string>
-						<reference key="source" ref="232438996"/>
-						<reference key="destination" ref="632572347"/>
-						<int key="IBEventType">7</int>
-					</object>
-					<int key="connectionID">156</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBCocoaTouchEventConnection" key="connection">
-						<string key="label">clickOpusButton:</string>
-						<reference key="source" ref="93093229"/>
-						<reference key="destination" ref="632572347"/>
-						<int key="IBEventType">7</int>
-					</object>
-					<int key="connectionID">151</int>
-				</object>
-			</array>
-			<object class="IBMutableOrderedSet" key="objectRecords">
-				<array key="orderedObjects">
-					<object class="IBObjectRecord">
-						<int key="objectID">0</int>
-						<array key="object" id="0"/>
-						<reference key="children" ref="1000"/>
-						<nil key="parent"/>
-					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">-1</int>
-						<reference key="object" ref="372490531"/>
-						<reference key="parent" ref="0"/>
-						<string key="objectName">File's Owner</string>
-					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">-2</int>
-						<reference key="object" ref="975951072"/>
-						<reference key="parent" ref="0"/>
-					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">127</int>
-						<reference key="object" ref="632572347"/>
-						<array class="NSMutableArray" key="children">
-							<reference ref="372776104"/>
-							<reference ref="969827617"/>
-							<reference ref="691104843"/>
-							<reference ref="1062557436"/>
-							<reference ref="127113392"/>
-							<reference ref="134897409"/>
-							<reference ref="167172351"/>
-							<reference ref="431340253"/>
-							<reference ref="204855070"/>
-							<reference ref="643171843"/>
-							<reference ref="9869648"/>
-							<reference ref="455589474"/>
-							<reference ref="994120635"/>
-							<reference ref="724364486"/>
-							<reference ref="864584125"/>
-							<reference ref="677592442"/>
-							<reference ref="1073581745"/>
-							<reference ref="93093229"/>
-							<reference ref="262615719"/>
-							<reference ref="947110534"/>
-							<reference ref="232438996"/>
-						</array>
-						<reference key="parent" ref="0"/>
-					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">128</int>
-						<reference key="object" ref="372776104"/>
-						<reference key="parent" ref="632572347"/>
-					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">129</int>
-						<reference key="object" ref="969827617"/>
-						<reference key="parent" ref="632572347"/>
-					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">130</int>
-						<reference key="object" ref="691104843"/>
-						<reference key="parent" ref="632572347"/>
-					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">131</int>
-						<reference key="object" ref="1062557436"/>
-						<reference key="parent" ref="632572347"/>
-					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">132</int>
-						<reference key="object" ref="127113392"/>
-						<reference key="parent" ref="632572347"/>
-					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">133</int>
-						<reference key="object" ref="134897409"/>
-						<reference key="parent" ref="632572347"/>
-					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">134</int>
-						<reference key="object" ref="167172351"/>
-						<reference key="parent" ref="632572347"/>
-					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">135</int>
-						<reference key="object" ref="431340253"/>
-						<reference key="parent" ref="632572347"/>
-					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">136</int>
-						<reference key="object" ref="204855070"/>
-						<reference key="parent" ref="632572347"/>
-					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">137</int>
-						<reference key="object" ref="947110534"/>
-						<reference key="parent" ref="632572347"/>
-					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">138</int>
-						<reference key="object" ref="643171843"/>
-						<reference key="parent" ref="632572347"/>
-					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">139</int>
-						<reference key="object" ref="9869648"/>
-						<reference key="parent" ref="632572347"/>
-					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">140</int>
-						<reference key="object" ref="455589474"/>
-						<reference key="parent" ref="632572347"/>
-					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">141</int>
-						<reference key="object" ref="994120635"/>
-						<reference key="parent" ref="632572347"/>
-					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">142</int>
-						<reference key="object" ref="724364486"/>
-						<reference key="parent" ref="632572347"/>
-					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">143</int>
-						<reference key="object" ref="864584125"/>
-						<reference key="parent" ref="632572347"/>
-					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">144</int>
-						<reference key="object" ref="677592442"/>
-						<reference key="parent" ref="632572347"/>
-					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">145</int>
-						<reference key="object" ref="1073581745"/>
-						<reference key="parent" ref="632572347"/>
-					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">146</int>
-						<reference key="object" ref="232438996"/>
-						<reference key="parent" ref="632572347"/>
-					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">147</int>
-						<reference key="object" ref="93093229"/>
-						<reference key="parent" ref="632572347"/>
-					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">148</int>
-						<reference key="object" ref="262615719"/>
-						<reference key="parent" ref="632572347"/>
-					</object>
-				</array>
-			</object>
-			<dictionary class="NSMutableDictionary" key="flattenedProperties">
-				<string key="-1.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-				<string key="-2.CustomClassName">UIResponder</string>
-				<string key="-2.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-				<string key="127.CustomClassName">GuessSelectCell</string>
-				<string key="127.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-				<string key="128.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-				<string key="129.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-				<string key="130.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-				<string key="131.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-				<string key="132.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-				<string key="133.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-				<string key="134.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-				<string key="135.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-				<string key="136.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-				<string key="137.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-				<string key="138.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-				<string key="139.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-				<string key="140.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-				<string key="141.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-				<string key="142.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-				<string key="143.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-				<string key="144.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-				<string key="145.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-				<string key="146.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-				<string key="147.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-				<string key="148.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-			</dictionary>
-			<dictionary class="NSMutableDictionary" key="unlocalizedProperties"/>
-			<nil key="activeLocalization"/>
-			<dictionary class="NSMutableDictionary" key="localizations"/>
-			<nil key="sourceID"/>
-			<int key="maxID">175</int>
-		</object>
-		<object class="IBClassDescriber" key="IBDocument.Classes"/>
-		<int key="IBDocument.localizationMode">0</int>
-		<string key="IBDocument.TargetRuntimeIdentifier">IBCocoaTouchFramework</string>
-		<bool key="IBDocument.PluginDeclaredDependenciesTrackSystemTargetVersion">YES</bool>
-		<int key="IBDocument.defaultPropertyAccessControl">3</int>
-		<dictionary class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
-			<string key="angel@2x.png">{66, 66}</string>
-			<string key="foot@2x.png">{66, 66}</string>
-			<string key="guess_select_bg@2x.jpg">{698, 708}</string>
-			<string key="round_dot_10@2x.png">{68, 69}</string>
-			<string key="round_dot_11@2x.png">{68, 69}</string>
-			<string key="round_dot_12@2x.png">{68, 69}</string>
-			<string key="round_dot_13@2x.png">{68, 69}</string>
-			<string key="round_dot_14@2x.png">{68, 69}</string>
-			<string key="round_dot_15@2x.png">{68, 69}</string>
-			<string key="round_dot_16@2x.png">{68, 69}</string>
-			<string key="round_dot_17@2x.png">{68, 69}</string>
-			<string key="round_dot_18@2x.png">{68, 69}</string>
-			<string key="round_dot_19@2x.png">{68, 69}</string>
-			<string key="round_dot_1@2x.png">{68, 69}</string>
-			<string key="round_dot_20@2x.png">{68, 69}</string>
-			<string key="round_dot_2@2x.png">{68, 69}</string>
-			<string key="round_dot_4@2x.png">{68, 69}</string>
-			<string key="round_dot_5@2x.png">{68, 69}</string>
-			<string key="round_dot_7@2x.png">{68, 69}</string>
-			<string key="round_dot_8@2x.png">{68, 69}</string>
-			<string key="shoes@2x.png">{66, 66}</string>
-		</dictionary>
-		<string key="IBCocoaTouchPluginVersion">2083</string>
-	</data>
-</archive>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="4514" systemVersion="13B3116" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none">
+    <dependencies>
+        <deployment defaultVersion="1280" identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3747"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="GuessSelectCell" id="OdM-WU-WxO" customClass="GuessSelectCell">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="408"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="OdM-WU-WxO" id="Xlk-XT-4oW">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="407"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="guess_select_bg@2x.jpg" id="beQ-5X-bob">
+                        <rect key="frame" x="5" y="8" width="310" height="385"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    </imageView>
+                    <button opaque="NO" tag="100" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="lSO-fs-teE">
+                        <rect key="frame" x="92" y="2" width="34" height="34"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                        <state key="normal" image="round_dot_1.png">
+                            <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                        </state>
+                        <state key="highlighted">
+                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        </state>
+                        <connections>
+                            <action selector="clickOpusButton:" destination="OdM-WU-WxO" eventType="touchUpInside" id="C5e-NP-ApT"/>
+                        </connections>
+                    </button>
+                    <button opaque="NO" tag="101" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="wdl-Gq-TEg">
+                        <rect key="frame" x="286" y="2" width="34" height="34"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                        <state key="normal" image="round_dot_2.png">
+                            <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                        </state>
+                        <state key="highlighted">
+                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        </state>
+                        <connections>
+                            <action selector="clickOpusButton:" destination="OdM-WU-WxO" eventType="touchUpInside" id="I0E-aH-0tK"/>
+                        </connections>
+                    </button>
+                    <button opaque="NO" tag="102" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="vT9-cF-qyy">
+                        <rect key="frame" x="65" y="35" width="34" height="34"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                        <state key="normal" image="foot.png">
+                            <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                        </state>
+                        <state key="highlighted">
+                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        </state>
+                        <connections>
+                            <action selector="clickOpusButton:" destination="OdM-WU-WxO" eventType="touchUpInside" id="6NC-Wb-gQQ"/>
+                        </connections>
+                    </button>
+                    <button opaque="NO" tag="103" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="Vyw-6h-H4s">
+                        <rect key="frame" x="233" y="35" width="34" height="34"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                        <state key="normal" image="round_dot_4.png">
+                            <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                        </state>
+                        <state key="highlighted">
+                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        </state>
+                        <connections>
+                            <action selector="clickOpusButton:" destination="OdM-WU-WxO" eventType="touchUpInside" id="UQh-WJ-x3F"/>
+                        </connections>
+                    </button>
+                    <button opaque="NO" tag="104" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="Yqa-Nh-iGQ">
+                        <rect key="frame" x="4" y="68" width="34" height="34"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                        <state key="normal" image="round_dot_5.png">
+                            <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                        </state>
+                        <state key="highlighted">
+                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        </state>
+                        <connections>
+                            <action selector="clickOpusButton:" destination="OdM-WU-WxO" eventType="touchUpInside" id="JQV-18-Kd5"/>
+                        </connections>
+                    </button>
+                    <button opaque="NO" tag="105" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="fwV-ON-Kja">
+                        <rect key="frame" x="163" y="68" width="34" height="34"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                        <state key="normal" image="angel.png">
+                            <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                        </state>
+                        <state key="highlighted">
+                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        </state>
+                        <connections>
+                            <action selector="clickOpusButton:" destination="OdM-WU-WxO" eventType="touchUpInside" id="BPA-BQ-g3n"/>
+                        </connections>
+                    </button>
+                    <button opaque="NO" tag="106" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="JSO-cT-G1o">
+                        <rect key="frame" x="261" y="101" width="34" height="34"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                        <state key="normal" image="round_dot_7.png">
+                            <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                        </state>
+                        <state key="highlighted">
+                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        </state>
+                        <connections>
+                            <action selector="clickOpusButton:" destination="OdM-WU-WxO" eventType="touchUpInside" id="ic0-Jh-N0y"/>
+                        </connections>
+                    </button>
+                    <button opaque="NO" tag="107" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="CNd-Fc-OjQ">
+                        <rect key="frame" x="51" y="135" width="34" height="34"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                        <state key="normal" image="round_dot_8.png">
+                            <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                        </state>
+                        <state key="highlighted">
+                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        </state>
+                        <connections>
+                            <action selector="clickOpusButton:" destination="OdM-WU-WxO" eventType="touchUpInside" id="9CR-He-cEC"/>
+                        </connections>
+                    </button>
+                    <button opaque="NO" tag="108" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="5d1-om-wxp">
+                        <rect key="frame" x="152" y="135" width="34" height="34"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                        <state key="normal" image="shoes.png">
+                            <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                        </state>
+                        <state key="highlighted">
+                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        </state>
+                        <connections>
+                            <action selector="clickOpusButton:" destination="OdM-WU-WxO" eventType="touchUpInside" id="6Ol-SO-qZO"/>
+                        </connections>
+                    </button>
+                    <button opaque="NO" tag="109" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="LkU-03-f97">
+                        <rect key="frame" x="96" y="168" width="34" height="34"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                        <state key="normal" image="round_dot_10.png">
+                            <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                        </state>
+                        <state key="highlighted">
+                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        </state>
+                        <connections>
+                            <action selector="clickOpusButton:" destination="OdM-WU-WxO" eventType="touchUpInside" id="duP-Wj-PZh"/>
+                        </connections>
+                    </button>
+                    <button opaque="NO" tag="110" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="m7W-Hz-jhx">
+                        <rect key="frame" x="286" y="168" width="34" height="34"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                        <state key="normal" image="round_dot_11.png">
+                            <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                        </state>
+                        <state key="highlighted">
+                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        </state>
+                        <connections>
+                            <action selector="clickOpusButton:" destination="OdM-WU-WxO" eventType="touchUpInside" id="yVK-j9-Y4w"/>
+                        </connections>
+                    </button>
+                    <button opaque="NO" tag="114" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="tTv-M7-sTV">
+                        <rect key="frame" x="261" y="233" width="34" height="34"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                        <state key="normal" image="round_dot_15.png">
+                            <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                        </state>
+                        <state key="highlighted">
+                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        </state>
+                        <connections>
+                            <action selector="clickOpusButton:" destination="OdM-WU-WxO" eventType="touchUpInside" id="1rA-tS-ZmP"/>
+                        </connections>
+                    </button>
+                    <button opaque="NO" tag="111" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="4sQ-Am-xkR">
+                        <rect key="frame" x="206" y="200" width="34" height="34"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                        <state key="normal" image="round_dot_12.png">
+                            <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                        </state>
+                        <state key="highlighted">
+                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        </state>
+                        <connections>
+                            <action selector="clickOpusButton:" destination="OdM-WU-WxO" eventType="touchUpInside" id="Mwy-QG-vqJ"/>
+                        </connections>
+                    </button>
+                    <button opaque="NO" tag="112" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="8ub-V5-lRy">
+                        <rect key="frame" x="14" y="234" width="34" height="34"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                        <state key="normal" image="round_dot_13.png">
+                            <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                        </state>
+                        <state key="highlighted">
+                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        </state>
+                        <connections>
+                            <action selector="clickOpusButton:" destination="OdM-WU-WxO" eventType="touchUpInside" id="dkE-XZ-WTR"/>
+                        </connections>
+                    </button>
+                    <button opaque="NO" tag="115" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="NDi-K6-3AL">
+                        <rect key="frame" x="99" y="267" width="34" height="34"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                        <state key="normal" image="round_dot_16.png">
+                            <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                        </state>
+                        <state key="highlighted">
+                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        </state>
+                        <connections>
+                            <action selector="clickOpusButton:" destination="OdM-WU-WxO" eventType="touchUpInside" id="jP2-1x-6fc"/>
+                        </connections>
+                    </button>
+                    <button opaque="NO" tag="116" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="Jqq-xL-0vs">
+                        <rect key="frame" x="223" y="300" width="34" height="34"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                        <state key="normal" image="round_dot_17.png">
+                            <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                        </state>
+                        <state key="highlighted">
+                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        </state>
+                        <connections>
+                            <action selector="clickOpusButton:" destination="OdM-WU-WxO" eventType="touchUpInside" id="Dm3-xb-7LN"/>
+                        </connections>
+                    </button>
+                    <button opaque="NO" tag="117" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="e6Z-Jf-fYS">
+                        <rect key="frame" x="11" y="333" width="34" height="34"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                        <state key="normal" image="round_dot_18.png">
+                            <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                        </state>
+                        <state key="highlighted">
+                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        </state>
+                        <connections>
+                            <action selector="clickOpusButton:" destination="OdM-WU-WxO" eventType="touchUpInside" id="UfW-pU-7ji"/>
+                        </connections>
+                    </button>
+                    <button opaque="NO" tag="118" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="LMa-rJ-Wa0">
+                        <rect key="frame" x="188" y="333" width="34" height="34"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                        <state key="normal" image="round_dot_19.png">
+                            <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                        </state>
+                        <state key="highlighted">
+                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        </state>
+                        <connections>
+                            <action selector="clickOpusButton:" destination="OdM-WU-WxO" eventType="touchUpInside" id="7h0-Sa-eMo"/>
+                        </connections>
+                    </button>
+                    <button opaque="NO" tag="119" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="ySi-0x-YYl">
+                        <rect key="frame" x="121" y="367" width="34" height="34"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                        <state key="normal" image="round_dot_20.png">
+                            <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                        </state>
+                        <state key="highlighted">
+                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        </state>
+                        <connections>
+                            <action selector="clickOpusButton:" destination="OdM-WU-WxO" eventType="touchUpInside" id="ELs-Xc-YZP"/>
+                        </connections>
+                    </button>
+                    <button opaque="NO" tag="113" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="rfg-t0-TD1">
+                        <rect key="frame" x="147" y="234" width="34" height="34"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                        <state key="normal" image="round_dot_14.png">
+                            <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                        </state>
+                        <state key="highlighted">
+                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        </state>
+                        <connections>
+                            <action selector="clickOpusButton:" destination="OdM-WU-WxO" eventType="touchUpInside" id="kh8-3u-APd"/>
+                        </connections>
+                    </button>
+                </subviews>
+            </tableViewCellContentView>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="angel.png" width="33" height="33"/>
+        <image name="foot.png" width="33" height="33"/>
+        <image name="guess_select_bg@2x.jpg" width="217" height="243"/>
+        <image name="round_dot_1.png" width="34" height="34"/>
+        <image name="round_dot_10.png" width="34" height="34"/>
+        <image name="round_dot_11.png" width="34" height="34"/>
+        <image name="round_dot_12.png" width="34" height="34"/>
+        <image name="round_dot_13.png" width="34" height="34"/>
+        <image name="round_dot_14.png" width="34" height="34"/>
+        <image name="round_dot_15.png" width="34" height="34"/>
+        <image name="round_dot_16.png" width="34" height="34"/>
+        <image name="round_dot_17.png" width="34" height="34"/>
+        <image name="round_dot_18.png" width="34" height="34"/>
+        <image name="round_dot_19.png" width="34" height="34"/>
+        <image name="round_dot_2.png" width="34" height="34"/>
+        <image name="round_dot_20.png" width="34" height="34"/>
+        <image name="round_dot_4.png" width="34" height="34"/>
+        <image name="round_dot_5.png" width="34" height="34"/>
+        <image name="round_dot_7.png" width="34" height="34"/>
+        <image name="round_dot_8.png" width="34" height="34"/>
+        <image name="shoes.png" width="33" height="33"/>
+    </resources>
+</document>

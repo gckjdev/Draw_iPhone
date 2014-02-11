@@ -29,4 +29,6 @@
     #define ISIPAD [DeviceDetection isIPAD]
     #define ISIPHONE5 [DeviceDetection isIPhone5]
     #define ISIOS7 [DeviceDetection isOS7]
+    #define STATUSBAR_DELTA (ISIOS7 ? 20 : 0)
+
 #endif

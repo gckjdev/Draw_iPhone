@@ -1,743 +1,171 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<archive type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="8.00">
-	<data>
-		<int key="IBDocument.SystemTarget">1552</int>
-		<string key="IBDocument.SystemVersion">12F45</string>
-		<string key="IBDocument.InterfaceBuilderVersion">3084</string>
-		<string key="IBDocument.AppKitVersion">1187.40</string>
-		<string key="IBDocument.HIToolboxVersion">626.00</string>
-		<object class="NSMutableDictionary" key="IBDocument.PluginVersions">
-			<string key="NS.key.0">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-			<string key="NS.object.0">2083</string>
-		</object>
-		<array key="IBDocument.IntegratedClassDependencies">
-			<string>IBProxyObject</string>
-			<string>IBUIActivityIndicatorView</string>
-			<string>IBUIButton</string>
-			<string>IBUIImageView</string>
-			<string>IBUILabel</string>
-			<string>IBUIView</string>
-			<string>IBUIWebView</string>
-		</array>
-		<array key="IBDocument.PluginDependencies">
-			<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-		</array>
-		<object class="NSMutableDictionary" key="IBDocument.Metadata">
-			<string key="NS.key.0">PluginDependencyRecalculationVersion</string>
-			<integer value="1" key="NS.object.0"/>
-		</object>
-		<array class="NSMutableArray" key="IBDocument.RootObjects" id="1000">
-			<object class="IBProxyObject" id="372490531">
-				<string key="IBProxiedObjectIdentifier">IBFilesOwner</string>
-				<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-			</object>
-			<object class="IBProxyObject" id="975951072">
-				<string key="IBProxiedObjectIdentifier">IBFirstResponder</string>
-				<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-			</object>
-			<object class="IBUIView" id="93199463">
-				<reference key="NSNextResponder"/>
-				<int key="NSvFlags">292</int>
-				<array class="NSMutableArray" key="NSSubviews">
-					<object class="IBUIWebView" id="395969670">
-						<reference key="NSNextResponder" ref="93199463"/>
-						<int key="NSvFlags">268</int>
-						<string key="NSFrame">{{49.5, 0}, {670, 670}}</string>
-						<reference key="NSSuperview" ref="93199463"/>
-						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView" ref="385813385"/>
-						<object class="NSColor" key="IBUIBackgroundColor">
-							<int key="NSColorSpace">3</int>
-							<bytes key="NSWhite">MCAwAA</bytes>
-						</object>
-						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-						<bool key="IBUIScalesPageToFit">YES</bool>
-						<int key="IBUIDataDetectorTypes">1</int>
-						<bool key="IBUIDetectsPhoneNumbers">YES</bool>
-					</object>
-					<object class="IBUIImageView" id="754696346">
-						<reference key="NSNextResponder" ref="93199463"/>
-						<int key="NSvFlags">268</int>
-						<string key="NSFrame">{{48.5, 0}, {670, 670}}</string>
-						<reference key="NSSuperview" ref="93199463"/>
-						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView" ref="568112272"/>
-						<string key="NSReuseIdentifierKey">_NS:9</string>
-						<int key="IBUIContentMode">1</int>
-						<bool key="IBUIUserInteractionEnabled">NO</bool>
-						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-					</object>
-					<object class="IBUILabel" id="276370629">
-						<reference key="NSNextResponder" ref="93199463"/>
-						<int key="NSvFlags">268</int>
-						<string key="NSFrame">{{48.5, 601}, {670, 69}}</string>
-						<reference key="NSSuperview" ref="93199463"/>
-						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView" ref="395969670"/>
-						<string key="NSReuseIdentifierKey">_NS:9</string>
-						<object class="NSColor" key="IBUIBackgroundColor">
-							<int key="NSColorSpace">1</int>
-							<bytes key="NSRGB">MC42ODYyNzQ1MDk4IDAuNjYyNzQ1MDk4IDAuNjI3NDUwOTgwNAA</bytes>
-						</object>
-						<bool key="IBUIOpaque">NO</bool>
-						<bool key="IBUIClipsSubviews">YES</bool>
-						<float key="IBUIAlpha">0.5</float>
-						<int key="IBUIContentMode">7</int>
-						<bool key="IBUIUserInteractionEnabled">NO</bool>
-						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-						<string key="IBUIText">还剩余15天</string>
-						<object class="NSColor" key="IBUITextColor" id="44759917">
-							<int key="NSColorSpace">3</int>
-							<bytes key="NSWhite">MQA</bytes>
-						</object>
-						<nil key="IBUIHighlightedColor"/>
-						<int key="IBUIBaselineAdjustment">0</int>
-						<int key="IBUITextAlignment">1</int>
-						<object class="IBUIFontDescription" key="IBUIFontDescription" id="275117569">
-							<int key="type">1</int>
-							<double key="pointSize">26</double>
-						</object>
-						<object class="NSFont" key="IBUIFont" id="783003233">
-							<string key="NSName">Helvetica</string>
-							<double key="NSSize">26</double>
-							<int key="NSfFlags">16</int>
-						</object>
-						<bool key="IBUIAdjustsFontSizeToFit">NO</bool>
-					</object>
-					<object class="IBUIButton" id="652988910">
-						<reference key="NSNextResponder" ref="93199463"/>
-						<int key="NSvFlags">268</int>
-						<string key="NSFrame">{{74, 663}, {93, 122}}</string>
-						<reference key="NSSuperview" ref="93199463"/>
-						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView" ref="605967484"/>
-						<bool key="IBUIOpaque">NO</bool>
-						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-						<int key="IBUIContentHorizontalAlignment">0</int>
-						<int key="IBUIContentVerticalAlignment">0</int>
-						<double key="IBUIContentEdgeInsets.top">0.0</double>
-						<double key="IBUIContentEdgeInsets.bottom">20</double>
-						<double key="IBUIContentEdgeInsets.left">0.0</double>
-						<double key="IBUIContentEdgeInsets.right">0.0</double>
-						<reference key="IBUIHighlightedTitleColor" ref="44759917"/>
-						<reference key="IBUINormalTitleColor" ref="44759917"/>
-						<object class="NSColor" key="IBUINormalTitleShadowColor" id="21697313">
-							<int key="NSColorSpace">1</int>
-							<bytes key="NSRGB">MCAwIDAAA</bytes>
-							<string key="IBUIColorCocoaTouchKeyPath">darkTextColor</string>
-						</object>
-						<object class="NSCustomResource" key="IBUINormalImage">
-							<string key="NSClassName">NSImage</string>
-							<string key="NSResourceName">contest_opus@2x.png</string>
-						</object>
-						<object class="IBUIFontDescription" key="IBUIFontDescription" id="705462445">
-							<int key="type">1</int>
-							<double key="pointSize">14</double>
-						</object>
-						<object class="NSFont" key="IBUIFont" id="609114934">
-							<string key="NSName">Helvetica</string>
-							<double key="NSSize">14</double>
-							<int key="NSfFlags">16</int>
-						</object>
-					</object>
-					<object class="IBUIButton" id="119445059">
-						<reference key="NSNextResponder" ref="93199463"/>
-						<int key="NSvFlags">268</int>
-						<string key="NSFrame">{{428, 663}, {93, 122}}</string>
-						<reference key="NSSuperview" ref="93199463"/>
-						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView" ref="596974477"/>
-						<bool key="IBUIOpaque">NO</bool>
-						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-						<int key="IBUIContentHorizontalAlignment">0</int>
-						<int key="IBUIContentVerticalAlignment">0</int>
-						<double key="IBUIContentEdgeInsets.top">0.0</double>
-						<double key="IBUIContentEdgeInsets.bottom">20</double>
-						<double key="IBUIContentEdgeInsets.left">0.0</double>
-						<double key="IBUIContentEdgeInsets.right">0.0</double>
-						<reference key="IBUIHighlightedTitleColor" ref="44759917"/>
-						<reference key="IBUINormalTitleColor" ref="44759917"/>
-						<reference key="IBUINormalTitleShadowColor" ref="21697313"/>
-						<object class="NSCustomResource" key="IBUINormalImage">
-							<string key="NSClassName">NSImage</string>
-							<string key="NSResourceName">contest_detail@2x.png</string>
-						</object>
-						<reference key="IBUIFontDescription" ref="705462445"/>
-						<reference key="IBUIFont" ref="609114934"/>
-					</object>
-					<object class="IBUIButton" id="357900549">
-						<reference key="NSNextResponder" ref="93199463"/>
-						<int key="NSvFlags">268</int>
-						<string key="NSFrame">{{602, 663}, {93, 122}}</string>
-						<reference key="NSSuperview" ref="93199463"/>
-						<reference key="NSWindow"/>
-						<bool key="IBUIOpaque">NO</bool>
-						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-						<int key="IBUIContentHorizontalAlignment">0</int>
-						<int key="IBUIContentVerticalAlignment">0</int>
-						<double key="IBUIContentEdgeInsets.top">0.0</double>
-						<double key="IBUIContentEdgeInsets.bottom">20</double>
-						<double key="IBUIContentEdgeInsets.left">0.0</double>
-						<double key="IBUIContentEdgeInsets.right">0.0</double>
-						<reference key="IBUIHighlightedTitleColor" ref="44759917"/>
-						<reference key="IBUINormalTitleColor" ref="44759917"/>
-						<reference key="IBUINormalTitleShadowColor" ref="21697313"/>
-						<object class="NSCustomResource" key="IBUINormalImage">
-							<string key="NSClassName">NSImage</string>
-							<string key="NSResourceName">contest_join@2x.png</string>
-						</object>
-						<reference key="IBUIFontDescription" ref="705462445"/>
-						<reference key="IBUIFont" ref="609114934"/>
-					</object>
-					<object class="IBUIButton" id="698949446">
-						<reference key="NSNextResponder" ref="93199463"/>
-						<int key="NSvFlags">269</int>
-						<string key="NSFrame">{{249, 663}, {93, 122}}</string>
-						<reference key="NSSuperview" ref="93199463"/>
-						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView" ref="957875247"/>
-						<bool key="IBUIOpaque">NO</bool>
-						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-						<int key="IBUIContentHorizontalAlignment">0</int>
-						<int key="IBUIContentVerticalAlignment">0</int>
-						<double key="IBUIContentEdgeInsets.top">0.0</double>
-						<double key="IBUIContentEdgeInsets.bottom">20</double>
-						<double key="IBUIContentEdgeInsets.left">0.0</double>
-						<double key="IBUIContentEdgeInsets.right">0.0</double>
-						<reference key="IBUIHighlightedTitleColor" ref="44759917"/>
-						<reference key="IBUINormalTitleColor" ref="44759917"/>
-						<reference key="IBUINormalTitleShadowColor" ref="21697313"/>
-						<object class="NSCustomResource" key="IBUINormalImage">
-							<string key="NSClassName">NSImage</string>
-							<string key="NSResourceName">contest_report@2x.png</string>
-						</object>
-						<reference key="IBUIFontDescription" ref="705462445"/>
-						<reference key="IBUIFont" ref="609114934"/>
-					</object>
-					<object class="IBUILabel" id="385813385">
-						<reference key="NSNextResponder" ref="93199463"/>
-						<int key="NSvFlags">268</int>
-						<string key="NSFrame">{{39, 752}, {162, 45}}</string>
-						<reference key="NSSuperview" ref="93199463"/>
-						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView" ref="652988910"/>
-						<bool key="IBUIOpaque">NO</bool>
-						<bool key="IBUIClipsSubviews">YES</bool>
-						<int key="IBUIContentMode">7</int>
-						<bool key="IBUIUserInteractionEnabled">NO</bool>
-						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-						<string key="IBUIText">Label</string>
-						<object class="NSColor" key="IBUITextColor" id="583937499">
-							<int key="NSColorSpace">1</int>
-							<bytes key="NSRGB">MC41NjA3ODQzMTM3IDAuNDIzNTI5NDExOCAwLjMxNzY0NzA1ODgAA</bytes>
-						</object>
-						<reference key="IBUIHighlightedColor" ref="21697313"/>
-						<reference key="IBUIShadowColor" ref="44759917"/>
-						<string key="IBUIShadowOffset">{0, 1}</string>
-						<int key="IBUIBaselineAdjustment">1</int>
-						<float key="IBUIMinimumFontSize">10</float>
-						<int key="IBUITextAlignment">1</int>
-						<reference key="IBUIFontDescription" ref="275117569"/>
-						<reference key="IBUIFont" ref="783003233"/>
-					</object>
-					<object class="IBUILabel" id="118915607">
-						<reference key="NSNextResponder" ref="93199463"/>
-						<int key="NSvFlags">268</int>
-						<string key="NSFrame">{{393, 752}, {162, 45}}</string>
-						<reference key="NSSuperview" ref="93199463"/>
-						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView" ref="119445059"/>
-						<bool key="IBUIOpaque">NO</bool>
-						<bool key="IBUIClipsSubviews">YES</bool>
-						<int key="IBUIContentMode">7</int>
-						<bool key="IBUIUserInteractionEnabled">NO</bool>
-						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-						<string key="IBUIText">详细</string>
-						<reference key="IBUITextColor" ref="583937499"/>
-						<reference key="IBUIHighlightedColor" ref="21697313"/>
-						<reference key="IBUIShadowColor" ref="44759917"/>
-						<string key="IBUIShadowOffset">{0, 1}</string>
-						<int key="IBUIBaselineAdjustment">1</int>
-						<float key="IBUIMinimumFontSize">10</float>
-						<int key="IBUITextAlignment">1</int>
-						<reference key="IBUIFontDescription" ref="275117569"/>
-						<reference key="IBUIFont" ref="783003233"/>
-					</object>
-					<object class="IBUILabel" id="734699586">
-						<reference key="NSNextResponder" ref="93199463"/>
-						<int key="NSvFlags">268</int>
-						<string key="NSFrame">{{567, 752}, {162, 45}}</string>
-						<reference key="NSSuperview" ref="93199463"/>
-						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView" ref="357900549"/>
-						<bool key="IBUIOpaque">NO</bool>
-						<bool key="IBUIClipsSubviews">YES</bool>
-						<int key="IBUIContentMode">7</int>
-						<bool key="IBUIUserInteractionEnabled">NO</bool>
-						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-						<string key="IBUIText">Label</string>
-						<reference key="IBUITextColor" ref="583937499"/>
-						<reference key="IBUIHighlightedColor" ref="21697313"/>
-						<reference key="IBUIShadowColor" ref="44759917"/>
-						<string key="IBUIShadowOffset">{0, 1}</string>
-						<int key="IBUIBaselineAdjustment">1</int>
-						<float key="IBUIMinimumFontSize">10</float>
-						<int key="IBUITextAlignment">1</int>
-						<reference key="IBUIFontDescription" ref="275117569"/>
-						<reference key="IBUIFont" ref="783003233"/>
-					</object>
-					<object class="IBUILabel" id="562948671">
-						<reference key="NSNextResponder" ref="93199463"/>
-						<int key="NSvFlags">268</int>
-						<string key="NSFrame">{{214, 752}, {162, 45}}</string>
-						<reference key="NSSuperview" ref="93199463"/>
-						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView" ref="698949446"/>
-						<bool key="IBUIOpaque">NO</bool>
-						<bool key="IBUIClipsSubviews">YES</bool>
-						<int key="IBUIContentMode">7</int>
-						<bool key="IBUIUserInteractionEnabled">NO</bool>
-						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-						<string key="IBUIText">报道</string>
-						<reference key="IBUITextColor" ref="583937499"/>
-						<reference key="IBUIHighlightedColor" ref="21697313"/>
-						<reference key="IBUIShadowColor" ref="44759917"/>
-						<string key="IBUIShadowOffset">{0, 1}</string>
-						<int key="IBUIBaselineAdjustment">1</int>
-						<float key="IBUIMinimumFontSize">10</float>
-						<int key="IBUITextAlignment">1</int>
-						<reference key="IBUIFontDescription" ref="275117569"/>
-						<reference key="IBUIFont" ref="783003233"/>
-					</object>
-					<object class="IBUIImageView" id="605967484">
-						<reference key="NSNextResponder" ref="93199463"/>
-						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{206, 699}, {2, 109}}</string>
-						<reference key="NSSuperview" ref="93199463"/>
-						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView" ref="562948671"/>
-						<bool key="IBUIUserInteractionEnabled">NO</bool>
-						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-						<object class="NSCustomResource" key="IBUIImage" id="382164769">
-							<string key="NSClassName">NSImage</string>
-							<string key="NSResourceName">contest_line@2x.png</string>
-						</object>
-					</object>
-					<object class="IBUIImageView" id="957875247">
-						<reference key="NSNextResponder" ref="93199463"/>
-						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{383, 699}, {2, 109}}</string>
-						<reference key="NSSuperview" ref="93199463"/>
-						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView" ref="118915607"/>
-						<bool key="IBUIUserInteractionEnabled">NO</bool>
-						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-						<reference key="IBUIImage" ref="382164769"/>
-					</object>
-					<object class="IBUIImageView" id="596974477">
-						<reference key="NSNextResponder" ref="93199463"/>
-						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{560, 699}, {2, 109}}</string>
-						<reference key="NSSuperview" ref="93199463"/>
-						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView" ref="734699586"/>
-						<bool key="IBUIUserInteractionEnabled">NO</bool>
-						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-						<reference key="IBUIImage" ref="382164769"/>
-					</object>
-					<object class="IBUIActivityIndicatorView" id="568112272">
-						<reference key="NSNextResponder" ref="93199463"/>
-						<int key="NSvFlags">301</int>
-						<string key="NSFrame">{{366, 337}, {37, 37}}</string>
-						<reference key="NSSuperview" ref="93199463"/>
-						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView" ref="276370629"/>
-						<bool key="IBUIOpaque">NO</bool>
-						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-						<bool key="IBUIAnimating">YES</bool>
-						<int key="IBUIStyle">0</int>
-					</object>
-				</array>
-				<string key="NSFrameSize">{768, 800}</string>
-				<reference key="NSSuperview"/>
-				<reference key="NSWindow"/>
-				<reference key="NSNextKeyView" ref="754696346"/>
-				<object class="NSColor" key="IBUIBackgroundColor">
-					<int key="NSColorSpace">1</int>
-					<bytes key="NSRGB">MC45NjA3ODQzMTM3IDAuOTYwNzg0MzEzNyAwLjk2MDc4NDMxMzcgMAA</bytes>
-				</object>
-				<bool key="IBUIClipsSubviews">YES</bool>
-				<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-			</object>
-		</array>
-		<object class="IBObjectContainer" key="IBDocument.Objects">
-			<array class="NSMutableArray" key="connectionRecords">
-				<object class="IBConnectionRecord">
-					<object class="IBCocoaTouchOutletConnection" key="connection">
-						<string key="label">webView</string>
-						<reference key="source" ref="93199463"/>
-						<reference key="destination" ref="395969670"/>
-					</object>
-					<int key="connectionID">9</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBCocoaTouchOutletConnection" key="connection">
-						<string key="label">opusLabel</string>
-						<reference key="source" ref="93199463"/>
-						<reference key="destination" ref="385813385"/>
-					</object>
-					<int key="connectionID">25</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBCocoaTouchOutletConnection" key="connection">
-						<string key="label">detailLabel</string>
-						<reference key="source" ref="93199463"/>
-						<reference key="destination" ref="118915607"/>
-					</object>
-					<int key="connectionID">26</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBCocoaTouchOutletConnection" key="connection">
-						<string key="label">joinLabel</string>
-						<reference key="source" ref="93199463"/>
-						<reference key="destination" ref="734699586"/>
-					</object>
-					<int key="connectionID">27</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBCocoaTouchOutletConnection" key="connection">
-						<string key="label">activity</string>
-						<reference key="source" ref="93199463"/>
-						<reference key="destination" ref="568112272"/>
-					</object>
-					<int key="connectionID">32</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBCocoaTouchOutletConnection" key="connection">
-						<string key="label">imageView</string>
-						<reference key="source" ref="93199463"/>
-						<reference key="destination" ref="754696346"/>
-					</object>
-					<int key="connectionID">34</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBCocoaTouchOutletConnection" key="connection">
-						<string key="label">reportLabel</string>
-						<reference key="source" ref="93199463"/>
-						<reference key="destination" ref="562948671"/>
-					</object>
-					<int key="connectionID">39</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBCocoaTouchOutletConnection" key="connection">
-						<string key="label">dateLeftLabel</string>
-						<reference key="source" ref="93199463"/>
-						<reference key="destination" ref="276370629"/>
-					</object>
-					<int key="connectionID">44</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBCocoaTouchOutletConnection" key="connection">
-						<string key="label">delegate</string>
-						<reference key="source" ref="395969670"/>
-						<reference key="destination" ref="93199463"/>
-					</object>
-					<int key="connectionID">21</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBCocoaTouchEventConnection" key="connection">
-						<string key="label">clickOpusButton:</string>
-						<reference key="source" ref="652988910"/>
-						<reference key="destination" ref="93199463"/>
-						<int key="IBEventType">7</int>
-					</object>
-					<int key="connectionID">13</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBCocoaTouchEventConnection" key="connection">
-						<string key="label">clickDetailButton:</string>
-						<reference key="source" ref="119445059"/>
-						<reference key="destination" ref="93199463"/>
-						<int key="IBEventType">7</int>
-					</object>
-					<int key="connectionID">15</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBCocoaTouchEventConnection" key="connection">
-						<string key="label">clickJoinButton:</string>
-						<reference key="source" ref="357900549"/>
-						<reference key="destination" ref="93199463"/>
-						<int key="IBEventType">7</int>
-					</object>
-					<int key="connectionID">16</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBCocoaTouchEventConnection" key="connection">
-						<string key="label">clickReportButton:</string>
-						<reference key="source" ref="698949446"/>
-						<reference key="destination" ref="93199463"/>
-						<int key="IBEventType">7</int>
-					</object>
-					<int key="connectionID">40</int>
-				</object>
-			</array>
-			<object class="IBMutableOrderedSet" key="objectRecords">
-				<array key="orderedObjects">
-					<object class="IBObjectRecord">
-						<int key="objectID">0</int>
-						<array key="object" id="0"/>
-						<reference key="children" ref="1000"/>
-						<nil key="parent"/>
-					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">-1</int>
-						<reference key="object" ref="372490531"/>
-						<reference key="parent" ref="0"/>
-						<string key="objectName">File's Owner</string>
-					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">-2</int>
-						<reference key="object" ref="975951072"/>
-						<reference key="parent" ref="0"/>
-					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">4</int>
-						<reference key="object" ref="93199463"/>
-						<array class="NSMutableArray" key="children">
-							<reference ref="395969670"/>
-							<reference ref="652988910"/>
-							<reference ref="357900549"/>
-							<reference ref="385813385"/>
-							<reference ref="734699586"/>
-							<reference ref="605967484"/>
-							<reference ref="568112272"/>
-							<reference ref="754696346"/>
-							<reference ref="596974477"/>
-							<reference ref="119445059"/>
-							<reference ref="118915607"/>
-							<reference ref="562948671"/>
-							<reference ref="698949446"/>
-							<reference ref="957875247"/>
-							<reference ref="276370629"/>
-						</array>
-						<reference key="parent" ref="0"/>
-					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">6</int>
-						<reference key="object" ref="652988910"/>
-						<reference key="parent" ref="93199463"/>
-					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">7</int>
-						<reference key="object" ref="119445059"/>
-						<reference key="parent" ref="93199463"/>
-					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">8</int>
-						<reference key="object" ref="357900549"/>
-						<reference key="parent" ref="93199463"/>
-					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">5</int>
-						<reference key="object" ref="395969670"/>
-						<reference key="parent" ref="93199463"/>
-					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">22</int>
-						<reference key="object" ref="385813385"/>
-						<reference key="parent" ref="93199463"/>
-					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">23</int>
-						<reference key="object" ref="118915607"/>
-						<reference key="parent" ref="93199463"/>
-					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">24</int>
-						<reference key="object" ref="734699586"/>
-						<reference key="parent" ref="93199463"/>
-					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">29</int>
-						<reference key="object" ref="605967484"/>
-						<reference key="parent" ref="93199463"/>
-					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">30</int>
-						<reference key="object" ref="596974477"/>
-						<reference key="parent" ref="93199463"/>
-					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">31</int>
-						<reference key="object" ref="568112272"/>
-						<reference key="parent" ref="93199463"/>
-					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">33</int>
-						<reference key="object" ref="754696346"/>
-						<reference key="parent" ref="93199463"/>
-					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">35</int>
-						<reference key="object" ref="698949446"/>
-						<reference key="parent" ref="93199463"/>
-					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">38</int>
-						<reference key="object" ref="562948671"/>
-						<reference key="parent" ref="93199463"/>
-					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">41</int>
-						<reference key="object" ref="957875247"/>
-						<reference key="parent" ref="93199463"/>
-					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">42</int>
-						<reference key="object" ref="276370629"/>
-						<reference key="parent" ref="93199463"/>
-					</object>
-				</array>
-			</object>
-			<dictionary class="NSMutableDictionary" key="flattenedProperties">
-				<string key="-1.CustomClassName">ContestView</string>
-				<string key="-1.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-				<string key="-2.CustomClassName">UIResponder</string>
-				<string key="-2.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-				<string key="22.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-				<string key="23.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-				<string key="24.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-				<string key="29.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-				<string key="30.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-				<string key="31.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-				<string key="33.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-				<string key="35.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-				<real value="0.0" key="35.IBUIButtonInspectorSelectedEdgeInsetMetadataKey"/>
-				<string key="38.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-				<string key="4.CustomClassName">ContestView</string>
-				<string key="4.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-				<string key="41.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-				<string key="42.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-				<string key="5.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-				<string key="6.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-				<real value="0.0" key="6.IBUIButtonInspectorSelectedEdgeInsetMetadataKey"/>
-				<string key="7.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-				<real value="0.0" key="7.IBUIButtonInspectorSelectedEdgeInsetMetadataKey"/>
-				<string key="8.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-				<real value="0.0" key="8.IBUIButtonInspectorSelectedEdgeInsetMetadataKey"/>
-			</dictionary>
-			<dictionary class="NSMutableDictionary" key="unlocalizedProperties"/>
-			<nil key="activeLocalization"/>
-			<dictionary class="NSMutableDictionary" key="localizations"/>
-			<nil key="sourceID"/>
-			<int key="maxID">44</int>
-		</object>
-		<object class="IBClassDescriber" key="IBDocument.Classes">
-			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
-				<object class="IBPartialClassDescription">
-					<string key="className">ContestView</string>
-					<string key="superclassName">UIView</string>
-					<dictionary class="NSMutableDictionary" key="actions">
-						<string key="clickDetailButton:">id</string>
-						<string key="clickJoinButton:">id</string>
-						<string key="clickOpusButton:">id</string>
-						<string key="clickReportButton:">id</string>
-					</dictionary>
-					<dictionary class="NSMutableDictionary" key="actionInfosByName">
-						<object class="IBActionInfo" key="clickDetailButton:">
-							<string key="name">clickDetailButton:</string>
-							<string key="candidateClassName">id</string>
-						</object>
-						<object class="IBActionInfo" key="clickJoinButton:">
-							<string key="name">clickJoinButton:</string>
-							<string key="candidateClassName">id</string>
-						</object>
-						<object class="IBActionInfo" key="clickOpusButton:">
-							<string key="name">clickOpusButton:</string>
-							<string key="candidateClassName">id</string>
-						</object>
-						<object class="IBActionInfo" key="clickReportButton:">
-							<string key="name">clickReportButton:</string>
-							<string key="candidateClassName">id</string>
-						</object>
-					</dictionary>
-					<dictionary class="NSMutableDictionary" key="outlets">
-						<string key="actionHolderView">UIView</string>
-						<string key="activity">UIActivityIndicatorView</string>
-						<string key="bgView">UIImageView</string>
-						<string key="dateLeftLabel">UILabel</string>
-						<string key="detailLabel">UILabel</string>
-						<string key="imageView">UIImageView</string>
-						<string key="infoHolderView">UIView</string>
-						<string key="joinLabel">UILabel</string>
-						<string key="opusLabel">UILabel</string>
-						<string key="reportLabel">UILabel</string>
-						<string key="webView">UIWebView</string>
-					</dictionary>
-					<dictionary class="NSMutableDictionary" key="toOneOutletInfosByName">
-						<object class="IBToOneOutletInfo" key="actionHolderView">
-							<string key="name">actionHolderView</string>
-							<string key="candidateClassName">UIView</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="activity">
-							<string key="name">activity</string>
-							<string key="candidateClassName">UIActivityIndicatorView</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="bgView">
-							<string key="name">bgView</string>
-							<string key="candidateClassName">UIImageView</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="dateLeftLabel">
-							<string key="name">dateLeftLabel</string>
-							<string key="candidateClassName">UILabel</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="detailLabel">
-							<string key="name">detailLabel</string>
-							<string key="candidateClassName">UILabel</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="imageView">
-							<string key="name">imageView</string>
-							<string key="candidateClassName">UIImageView</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="infoHolderView">
-							<string key="name">infoHolderView</string>
-							<string key="candidateClassName">UIView</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="joinLabel">
-							<string key="name">joinLabel</string>
-							<string key="candidateClassName">UILabel</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="opusLabel">
-							<string key="name">opusLabel</string>
-							<string key="candidateClassName">UILabel</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="reportLabel">
-							<string key="name">reportLabel</string>
-							<string key="candidateClassName">UILabel</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="webView">
-							<string key="name">webView</string>
-							<string key="candidateClassName">UIWebView</string>
-						</object>
-					</dictionary>
-					<object class="IBClassDescriptionSource" key="sourceIdentifier">
-						<string key="majorKey">IBProjectSource</string>
-						<string key="minorKey">./Classes/ContestView.h</string>
-					</object>
-				</object>
-			</array>
-		</object>
-		<int key="IBDocument.localizationMode">0</int>
-		<string key="IBDocument.TargetRuntimeIdentifier">IBCocoaTouchFramework</string>
-		<bool key="IBDocument.PluginDeclaredDependenciesTrackSystemTargetVersion">YES</bool>
-		<int key="IBDocument.defaultPropertyAccessControl">3</int>
-		<dictionary class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
-			<string key="contest_detail@2x.png">{72, 72}</string>
-			<string key="contest_join@2x.png">{72, 72}</string>
-			<string key="contest_line@2x.png">{1, 96}</string>
-			<string key="contest_opus@2x.png">{72, 72}</string>
-			<string key="contest_report@2x.png">{72, 72}</string>
-		</dictionary>
-		<string key="IBCocoaTouchPluginVersion">2083</string>
-	</data>
-</archive>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="4514" systemVersion="13B3116" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none">
+    <dependencies>
+        <deployment defaultVersion="1280" identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3747"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ContestView"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clipsSubviews="YES" contentMode="scaleToFill" id="4" customClass="ContestView">
+            <rect key="frame" x="0.0" y="0.0" width="768" height="800"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <webView contentMode="scaleToFill" scalesPageToFit="YES" id="5">
+                    <rect key="frame" x="49.5" y="0.0" width="670" height="670"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <connections>
+                        <outlet property="delegate" destination="4" id="21"/>
+                    </connections>
+                </webView>
+                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" id="33">
+                    <rect key="frame" x="48.5" y="0.0" width="670" height="670"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                </imageView>
+                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.5" contentMode="left" text="还剩余15天" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="42">
+                    <rect key="frame" x="48.5" y="601" width="670" height="69"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    <color key="backgroundColor" red="0.68627450980000004" green="0.66274509800000003" blue="0.62745098040000002" alpha="1" colorSpace="calibratedRGB"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="26"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="6">
+                    <rect key="frame" x="74" y="663" width="93" height="122"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <inset key="contentEdgeInsets" minX="0.0" minY="0.0" maxX="0.0" maxY="20"/>
+                    <state key="normal" image="contest_opus@2x.png">
+                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="titleShadowColor" cocoaTouchSystemColor="darkTextColor"/>
+                    </state>
+                    <state key="highlighted">
+                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="clickOpusButton:" destination="4" eventType="touchUpInside" id="13"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="7">
+                    <rect key="frame" x="428" y="663" width="93" height="122"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <inset key="contentEdgeInsets" minX="0.0" minY="0.0" maxX="0.0" maxY="20"/>
+                    <state key="normal" image="contest_detail@2x.png">
+                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="titleShadowColor" cocoaTouchSystemColor="darkTextColor"/>
+                    </state>
+                    <state key="highlighted">
+                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="clickDetailButton:" destination="4" eventType="touchUpInside" id="15"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="8">
+                    <rect key="frame" x="602" y="663" width="93" height="122"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <inset key="contentEdgeInsets" minX="0.0" minY="0.0" maxX="0.0" maxY="20"/>
+                    <state key="normal" image="contest_join@2x.png">
+                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="titleShadowColor" cocoaTouchSystemColor="darkTextColor"/>
+                    </state>
+                    <state key="highlighted">
+                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="clickJoinButton:" destination="4" eventType="touchUpInside" id="16"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="35">
+                    <rect key="frame" x="249" y="663" width="93" height="122"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <inset key="contentEdgeInsets" minX="0.0" minY="0.0" maxX="0.0" maxY="20"/>
+                    <state key="normal" image="contest_report@2x.png">
+                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="titleShadowColor" cocoaTouchSystemColor="darkTextColor"/>
+                    </state>
+                    <state key="highlighted">
+                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="clickReportButton:" destination="4" eventType="touchUpInside" id="40"/>
+                    </connections>
+                </button>
+                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Label" textAlignment="center" lineBreakMode="tailTruncation" minimumFontSize="10" id="22">
+                    <rect key="frame" x="39" y="752" width="162" height="45"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="26"/>
+                    <color key="textColor" red="0.56078431370000004" green="0.42352941179999998" blue="0.31764705879999999" alpha="1" colorSpace="calibratedRGB"/>
+                    <color key="highlightedColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <color key="shadowColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <size key="shadowOffset" width="0.0" height="1"/>
+                </label>
+                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="详细" textAlignment="center" lineBreakMode="tailTruncation" minimumFontSize="10" id="23">
+                    <rect key="frame" x="393" y="752" width="162" height="45"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="26"/>
+                    <color key="textColor" red="0.56078431370000004" green="0.42352941179999998" blue="0.31764705879999999" alpha="1" colorSpace="calibratedRGB"/>
+                    <color key="highlightedColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <color key="shadowColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <size key="shadowOffset" width="0.0" height="1"/>
+                </label>
+                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Label" textAlignment="center" lineBreakMode="tailTruncation" minimumFontSize="10" id="24">
+                    <rect key="frame" x="567" y="752" width="162" height="45"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="26"/>
+                    <color key="textColor" red="0.56078431370000004" green="0.42352941179999998" blue="0.31764705879999999" alpha="1" colorSpace="calibratedRGB"/>
+                    <color key="highlightedColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <color key="shadowColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <size key="shadowOffset" width="0.0" height="1"/>
+                </label>
+                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="报道" textAlignment="center" lineBreakMode="tailTruncation" minimumFontSize="10" id="38">
+                    <rect key="frame" x="214" y="752" width="162" height="45"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="26"/>
+                    <color key="textColor" red="0.56078431370000004" green="0.42352941179999998" blue="0.31764705879999999" alpha="1" colorSpace="calibratedRGB"/>
+                    <color key="highlightedColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <color key="shadowColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <size key="shadowOffset" width="0.0" height="1"/>
+                </label>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="contest_line.png" id="29">
+                    <rect key="frame" x="206" y="699" width="2" height="109"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                </imageView>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="contest_line.png" id="41">
+                    <rect key="frame" x="383" y="699" width="2" height="109"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                </imageView>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="contest_line.png" id="30">
+                    <rect key="frame" x="560" y="699" width="2" height="109"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                </imageView>
+                <activityIndicatorView opaque="NO" contentMode="scaleToFill" hidesWhenStopped="YES" animating="YES" style="whiteLarge" id="31">
+                    <rect key="frame" x="366" y="337" width="37" height="37"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                </activityIndicatorView>
+            </subviews>
+            <color key="backgroundColor" red="0.96078431369999995" green="0.96078431369999995" blue="0.96078431369999995" alpha="0.0" colorSpace="calibratedRGB"/>
+            <connections>
+                <outlet property="activity" destination="31" id="32"/>
+                <outlet property="dateLeftLabel" destination="42" id="44"/>
+                <outlet property="detailLabel" destination="23" id="26"/>
+                <outlet property="imageView" destination="33" id="34"/>
+                <outlet property="joinLabel" destination="24" id="27"/>
+                <outlet property="opusLabel" destination="22" id="25"/>
+                <outlet property="reportLabel" destination="38" id="39"/>
+                <outlet property="webView" destination="5" id="9"/>
+            </connections>
+        </view>
+    </objects>
+    <resources>
+        <image name="contest_detail@2x.png" width="36" height="36"/>
+        <image name="contest_join@2x.png" width="36" height="36"/>
+        <image name="contest_line.png" width="1" height="1"/>
+        <image name="contest_opus@2x.png" width="36" height="36"/>
+        <image name="contest_report@2x.png" width="36" height="36"/>
+    </resources>
+</document>

@@ -211,6 +211,7 @@
         self.bgButton.hidden = YES;
     }
     [self updateGroupInfo];
+    self.backgroundColor = COLOR_WHITE;
 }
 
 

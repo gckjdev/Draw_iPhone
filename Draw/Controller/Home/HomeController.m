@@ -27,7 +27,6 @@
 #import "PPConfigManager.h"
 #import "ChatController.h"
 #import "CommonMessageCenter.h"
-#import "SearchRoomController.h"
 #import "AudioManager.h"
 #import "DrawAppDelegate.h"
 #import "AnimationManager.h"
@@ -543,14 +542,6 @@ static NSDictionary* DRAW_MENU_IMAGE_DICT = nil;
     UIViewController *viewController = nil;
     
     UINavigationController* navigationController = [[HomeController defaultInstance] navigationController];
-    
-    for(UIViewController *vc in navigationController.viewControllers)
-    {
-        if ([vc isKindOfClass:[SearchRoomController class]]) {
-            viewController = vc;
-            break;
-        }
-    }
     
     if (viewController != nil) {
         [navigationController popToViewController:viewController animated:YES];        

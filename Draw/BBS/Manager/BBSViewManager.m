@@ -39,6 +39,8 @@
     [button setTitle:title forState:state];
 }
 
+
+
 + (void)updateDefaultTitleLabel:(UILabel *)titleLabel
                            text:(NSString *)text
 {
@@ -51,9 +53,9 @@
    
     //update frame
     if ([DeviceDetection isIPAD]) {
-        titleLabel.frame = CGRectMake(194,26,380,76);
+        titleLabel.frame = CGRectMake(194,26+STATUSBAR_DELTA,380,76);
     }else{
-        titleLabel.frame = CGRectMake(85,12,150,35);
+        titleLabel.frame = CGRectMake(85,12+STATUSBAR_DELTA,150,35);
     }
 }
 + (void)updateDefaultBackButton:(UIButton *)backButton
@@ -65,18 +67,18 @@
     
     //update button frame
     if ([DeviceDetection isIPAD]) {
-        backButton.frame = CGRectMake(34,37,60,53);
+        backButton.frame = CGRectMake(34,37+STATUSBAR_DELTA,60,53);
     }else{
-        backButton.frame = CGRectMake(14,16,30,27);
+        backButton.frame = CGRectMake(14,16+STATUSBAR_DELTA,30,27);
     }
 }
 + (void)updateDefaultTableView:(UITableView *)tableView
 {
     //update frame
     if ([DeviceDetection isIPAD]) {
-        tableView.frame = CGRectMake(34,134,700,870);
+        tableView.frame = CGRectMake(34,134+STATUSBAR_DELTA,700,870);
     }else{
-        tableView.frame = CGRectMake(10,60,300,400);
+        tableView.frame = CGRectMake(10,60+STATUSBAR_DELTA,300,400);
     }
 }
 

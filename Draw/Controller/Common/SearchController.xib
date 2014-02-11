@@ -24,24 +24,27 @@
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                 </imageView>
                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="67">
-                    <rect key="frame" x="85" y="213" width="150" height="35"/>
+                    <rect key="frame" x="85" y="232.5" width="150" height="35"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <inset key="insetFor6xAndEarlier" minX="0.0" minY="20" maxX="0.0" maxY="-20"/>
                     <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="63">
-                    <rect key="frame" x="10" y="93" width="300" height="367"/>
+                    <rect key="frame" x="10" y="113" width="300" height="347"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <inset key="insetFor6xAndEarlier" minX="0.0" minY="20" maxX="0.0" maxY="-20"/>
                     <connections>
                         <outlet property="dataSource" destination="-1" id="72"/>
                         <outlet property="delegate" destination="-1" id="73"/>
                     </connections>
                 </tableView>
                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="111" textAlignment="center" minimumFontSize="17" id="60">
-                    <rect key="frame" x="60" y="55" width="201" height="30"/>
+                    <rect key="frame" x="60" y="75" width="201" height="30"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <inset key="insetFor6xAndEarlier" minX="0.0" minY="20" maxX="0.0" maxY="-20"/>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <textInputTraits key="textInputTraits" returnKeyType="search"/>
                     <connections>
@@ -50,8 +53,9 @@
                     </connections>
                 </textField>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="61">
-                    <rect key="frame" x="269" y="50" width="40" height="40"/>
+                    <rect key="frame" x="269" y="70" width="40" height="40"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <inset key="insetFor6xAndEarlier" minX="0.0" minY="20" maxX="0.0" maxY="-20"/>
                     <fontDescription key="fontDescription" type="boldSystem" size="button"/>
                     <inset key="contentEdgeInsets" minX="3" minY="3" maxX="3" maxY="3"/>
                     <state key="normal" image="bbs_post_search.png">
@@ -78,6 +82,6 @@
     </objects>
     <resources>
         <image name="bbs_post_search.png" width="34" height="34"/>
-        <image name="draw_main_bg@2x.jpg" width="768" height="1024"/>
+        <image name="draw_main_bg@2x.jpg" width="16" height="16"/>
     </resources>
 </document>
