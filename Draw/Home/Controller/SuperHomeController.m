@@ -352,11 +352,11 @@ static NSDictionary* DEFAULT_MENU_IMAGE_DICT = nil;
 
 - (float)getMainMenuOriginY
 {
-    return MAIN_MENU_ORIGIN_Y;
+    return MAIN_MENU_ORIGIN_Y + STATUSBAR_DELTA;
 }
 - (float)getBottomMenuOriginY
 {
-    return BOTTOM_MENU_ORIGIN_Y+2;
+    return BOTTOM_MENU_ORIGIN_Y+2 + STATUSBAR_DELTA;
 }
 
 #pragma mark - Click User Avatar, User Login and Enter Detail 

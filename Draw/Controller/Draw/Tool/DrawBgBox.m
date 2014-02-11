@@ -190,7 +190,8 @@ CGPoint boxContentOffset;
 {
     DrawBgCell *cell = [UIView createViewWithXibIdentifier:[DrawBgCell getCellIdentifier]];
     cell.delegate = delegate;
-    for (UIButton *button in cell.subviews) {
+//    UIView *contentView = (!ISIOS7 ? cell.contentView : cell);
+    for (UIButton *button in cell.contentView.subviews) {
         if ([button isKindOfClass:[UIButton class]]) {
             if (button.tag > 0 && button.tag <= BUTTON_COUNT) {
                 [button setBackgroundColor:[UIColor clearColor]];

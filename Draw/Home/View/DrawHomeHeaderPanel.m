@@ -314,7 +314,7 @@
 #define OPEN_HEIGHT_OFFSET (ISIPHONE5?62:0)
 #define SELF_WIDTH (ISIPAD?768:320)
 #define SELF_HEIGHT_OPEN ((ISIPAD?800:370)+OPEN_HEIGHT_OFFSET)
-#define SELF_HEIGHT_CLOSE ((ISIPAD?200:100)+HEIGHT_MINUS)
+#define SELF_HEIGHT_CLOSE ((ISIPAD?200:100)+HEIGHT_MINUS+STATUSBAR_DELTA)
 
 #define HOLDER_HEIGHT_OPEN ((SELF_HEIGHT_OPEN-VALUE(2)))
 #define HOLDER_HEIGHT_CLOSE ((SELF_HEIGHT_CLOSE-VALUE(2)))
@@ -327,14 +327,14 @@
     
     self.frame = CGRectMake(0, 0,SELF_WIDTH, SELF_HEIGHT_OPEN);
     CGFloat x = (SELF_WIDTH - HOLDER_WIDTH_OPEN) / 2;
-    self.holderView.frame = CGRectMake(x, 0, HOLDER_WIDTH_OPEN,HOLDER_HEIGHT_OPEN);
+    self.holderView.frame = CGRectMake(x, 0+STATUSBAR_DELTA, HOLDER_WIDTH_OPEN,HOLDER_HEIGHT_OPEN);
 }
 
 - (void)updateFrameForClose
 {
     self.frame = CGRectMake(0, 0, SELF_WIDTH, SELF_HEIGHT_CLOSE);
     CGFloat x = (SELF_WIDTH - HOLDER_WIDTH_CLOSE) / 2;
-    self.holderView.frame = CGRectMake(x, 0, HOLDER_WIDTH_CLOSE,HOLDER_HEIGHT_CLOSE);
+    self.holderView.frame = CGRectMake(x, 0+STATUSBAR_DELTA, HOLDER_WIDTH_CLOSE,HOLDER_HEIGHT_CLOSE);
 }
 
 #define ROPE_OFFSET_Y (ISIPAD?14:5)
@@ -380,7 +380,7 @@
         }
         [self addSubview:self.rope];
         [self.rope reset];
-        [self.rope updateOriginY:0];
+        [self.rope updateOriginY:STATUSBAR_DELTA];
         [self.rope updateOriginX:ROPE_X];
         if (self.badgeView.number > 0) {
             [self.badgeView setHidden:NO];            

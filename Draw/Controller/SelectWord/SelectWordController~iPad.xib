@@ -22,12 +22,12 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="wood_pallets.png" id="3">
-                    <rect key="frame" x="80" y="881" width="608" height="44"/>
+                    <rect key="frame" x="80" y="861" width="608" height="44"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <inset key="insetFor6xAndEarlier" minX="0.0" minY="20" maxX="0.0" maxY="-20"/>
                 </imageView>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="7">
-                    <rect key="frame" x="103" y="799" width="201" height="74"/>
+                    <rect key="frame" x="103" y="797" width="201" height="74"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <color key="backgroundColor" red="0.98823529409999999" green="0.30588235289999999" blue="0.078431372550000003" alpha="1" colorSpace="calibratedRGB"/>
                     <inset key="insetFor6xAndEarlier" minX="0.0" minY="20" maxX="0.0" maxY="-20"/>
@@ -55,7 +55,7 @@
                     </connections>
                 </tableView>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="22">
-                    <rect key="frame" x="344" y="799" width="201" height="74"/>
+                    <rect key="frame" x="344" y="797" width="201" height="74"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <color key="backgroundColor" red="0.98823529409999999" green="0.30588235289999999" blue="0.078431372550000003" alpha="1" colorSpace="calibratedRGB"/>
                     <inset key="insetFor6xAndEarlier" minX="0.0" minY="20" maxX="0.0" maxY="-20"/>
@@ -77,13 +77,13 @@
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                 </view>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="timeset.png" id="6">
-                    <rect key="frame" x="596" y="816" width="74" height="76"/>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="timeset@2x.png" id="6">
+                    <rect key="frame" x="596" y="800" width="74" height="76"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                     <inset key="insetFor6xAndEarlier" minX="0.0" minY="20" maxX="0.0" maxY="-20"/>
                 </imageView>
                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="10" textAlignment="center" lineBreakMode="tailTruncation" minimumFontSize="10" adjustsFontSizeToFit="NO" id="9">
-                    <rect key="frame" x="596" y="816" width="74" height="76"/>
+                    <rect key="frame" x="596" y="800" width="74" height="76"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                     <inset key="insetFor6xAndEarlier" minX="0.0" minY="20" maxX="0.0" maxY="-20"/>
                     <fontDescription key="fontDescription" name="DBLCDTempBlack" family="DB LCD Temp" pointSize="38"/>
@@ -95,7 +95,7 @@
         </view>
     </objects>
     <resources>
-        <image name="timeset.png" width="38" height="37"/>
+        <image name="timeset@2x.png" width="356" height="18"/>
         <image name="wood_pallets.png" width="356" height="18"/>
     </resources>
 </document>
