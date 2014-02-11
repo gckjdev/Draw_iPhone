@@ -692,7 +692,6 @@
     view.frame = CGRectMake(origin.x, origin.y, size.width, size.height);
 }
 
-#define STATUS_BAR_HEIGHT 20.0f
 
 - (void)clickMaskView:(UIButton *)view
 {
@@ -723,9 +722,11 @@
 
 - (void)keyboardWillHideWithRect:(CGRect)keyboardRect
 {
+    float statusBarHeight = 20.0f;
+    
     PPDebug(@"<keyboardWillHideWithRect> keyboardRect = %@",NSStringFromCGRect(keyboardRect));
     CGFloat yLine = [[UIScreen mainScreen] bounds].size.height;
-    [self updateInputPanel:self.inputBackgroundView withBottomLine:yLine - STATUS_BAR_HEIGHT];
+    [self updateInputPanel:self.inputBackgroundView withBottomLine:yLine - statusBarHeight + STATUSBAR_DELTA];
     
     yLine = self.inputBackgroundView.frame.origin.y;
     [self updateTableView:self.dataTableView withBottomLine:yLine];
