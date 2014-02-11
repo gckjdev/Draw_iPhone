@@ -23,6 +23,7 @@
 #import "NotificationManager.h"
 #import "PPMessage.h"
 #import "CustomUITextField.h"
+#import "StringUtil.h"
 
 #define NUM_EXPRESSION_IN_ONE_PAGE 5
 
@@ -609,7 +610,7 @@
 
 - (CGSize)getStringSize:(UIFont*)font string:(NSString*)string withinSize:(CGSize)withinSize
 {
-    CGSize size = [string sizeWithFont:font constrainedToSize:withinSize lineBreakMode:UILineBreakModeWordWrap];
+    CGSize size = [string sizeWithMyFont:font constrainedToSize:withinSize lineBreakMode:UILineBreakModeWordWrap];
     
     return size;
 }

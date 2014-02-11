@@ -12,7 +12,7 @@
 #import "UserManager.h"
 #import "TimeUtils.h"
 #import "GroupManager.h"
-
+#import "StringUtil.h"
 
 
 
@@ -125,7 +125,7 @@
 
 + (CGFloat)heightForContentText:(NSString *)text
 {
-    CGSize size = [text sizeWithFont:CONTENT_FONT constrainedToSize:CGSizeMake(CONTENT_WIDTH, CONTENT_MAX_HEIGHT) lineBreakMode:NSLineBreakByCharWrapping];
+    CGSize size = [text sizeWithMyFont:CONTENT_FONT constrainedToSize:CGSizeMake(CONTENT_WIDTH, CONTENT_MAX_HEIGHT) lineBreakMode:NSLineBreakByCharWrapping];
     size.height += 2*Y_CONTENT_TEXT;
     return size.height;
 }

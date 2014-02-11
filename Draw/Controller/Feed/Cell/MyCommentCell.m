@@ -18,6 +18,7 @@
 #import "ShareImageManager.h"
 #import "CommentFeed.h"
 #import "MyFriend.h"
+#import "StringUtil.h"
 
 @implementation MyCommentCell
 @synthesize sourceButton;
@@ -76,7 +77,7 @@
 {
     NSString *comment = [feed commentInMyComment];
     UIFont *font = [ShareUIManager commentMessageContentFont];
-    CGSize commentSize = [comment sizeWithFont:font constrainedToSize:CGSizeMake(COMMENT_WIDTH, 10000000) lineBreakMode:UILineBreakModeCharacterWrap];
+    CGSize commentSize = [comment sizeWithMyFont:font constrainedToSize:CGSizeMake(COMMENT_WIDTH, 10000000) lineBreakMode:UILineBreakModeCharacterWrap];
     
     return CGRectMake(COMMENT_BASE_X, startY, COMMENT_WIDTH, commentSize.height + COMMENT_PAN);
 
@@ -86,7 +87,7 @@
 {
     NSString *reply = [feed replySummary];
     UIFont *font = [ShareUIManager commentMessageSourceFont];
-    CGSize commentSize = [reply sizeWithFont:font constrainedToSize:CGSizeMake(REPLY_WIDTH, 10000000) lineBreakMode:UILineBreakModeCharacterWrap];
+    CGSize commentSize = [reply sizeWithMyFont:font constrainedToSize:CGSizeMake(REPLY_WIDTH, 10000000) lineBreakMode:UILineBreakModeCharacterWrap];
     return CGRectMake(COMMENT_BASE_X, startY, COMMENT_WIDTH, commentSize.height + REPLY_PAN);    
 }
 

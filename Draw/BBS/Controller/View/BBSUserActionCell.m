@@ -7,6 +7,7 @@
 //
 
 #import "BBSUserActionCell.h"
+#import "StringUtil.h"
 
 @interface BBSUserActionCell ()
 
@@ -100,7 +101,7 @@
 
 + (CGFloat)heightForContentText:(NSString *)text
 {
-    CGSize size = [text sizeWithFont:CONTENT_FONT
+    CGSize size = [text sizeWithMyFont:CONTENT_FONT
                    constrainedToSize:CGSizeMake(CONTENT_WIDTH, CONTENT_MAX_HEIGHT)
                        lineBreakMode:NSLineBreakByCharWrapping];
     size.height += 2*Y_CONTENT_TEXT;
@@ -109,7 +110,7 @@
 
 + (CGFloat)heightForSourceText:(NSString *)text
 {
-    CGSize size = [text sizeWithFont:SOURCE_FONT
+    CGSize size = [text sizeWithMyFont:SOURCE_FONT
                    constrainedToSize:CGSizeMake(SOURCE_WIDTH, SOURCE_MAX_HEIGHT)
                        lineBreakMode:NSLineBreakByTruncatingTail];
     size.height += 2*Y_SOURCE_TEXT;

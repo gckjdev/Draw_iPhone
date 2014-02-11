@@ -35,6 +35,7 @@
 #import "GroupService.h"
 #import "GroupTopicController.h"
 #import "GroupUIManager.h"
+#import "StringUtil.h"
 
 #define BG_COLOR  OPAQUE_COLOR(56, 208, 186)
 
@@ -244,7 +245,7 @@
 - (void)adjustSignatureLabel:(UILabel*)label WithText:(NSString*)signatureText
 {
     [label setText:signatureText];
-    CGSize size = [signatureText sizeWithFont:label.font constrainedToSize:CGSizeMake(label.frame.size.width, MAX_CONSTRAIN_HEIGHT) lineBreakMode:UILineBreakModeCharacterWrap];
+    CGSize size = [signatureText sizeWithMyFont:label.font constrainedToSize:CGSizeMake(label.frame.size.width, MAX_CONSTRAIN_HEIGHT) lineBreakMode:UILineBreakModeCharacterWrap];
     if (size.height < MAX_HEIGHT) {
         [label updateHeight:size.height];
     } else {

@@ -10,6 +10,7 @@
 #import "AutoCreateViewByXib.h"
 #import "UIViewUtils.h"
 #import "ShareImageManager.h"
+#import "StringUtil.h"
 
 @implementation PriceView
 
@@ -47,7 +48,7 @@ AUTO_CREATE_VIEW_BY_XIB(PriceView);
 {
     CGSize withinSize = CGSizeMake(100, label.frame.size.height);
     
-    CGSize size = [text sizeWithFont:label.font constrainedToSize:withinSize lineBreakMode:UILineBreakModeTailTruncation];
+    CGSize size = [text sizeWithMyFont:label.font constrainedToSize:withinSize lineBreakMode:UILineBreakModeTailTruncation];
     
     [label updateWidth:size.width];
     

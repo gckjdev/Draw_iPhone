@@ -21,6 +21,7 @@
 #import "UITextView+Extend.h"
 #import "UILabel+Extend.h"
 #import "WhisperStyleView.h"
+#import "StringUtil.h"
 
 #define DESC_FONT_SIZE (ISIPAD ? 20 : 11)
 #define DESC_WIDTH (ISIPAD ? 481 : 220)
@@ -96,7 +97,7 @@
     if ([desc length] == 0) {
         return CGSizeZero;
     }
-    CGSize size = [desc sizeWithFont:[UIFont systemFontOfSize:DESC_FONT_SIZE] constrainedToSize:CGSizeMake(DESC_WIDTH, 9999999) lineBreakMode:NSLineBreakByCharWrapping];
+    CGSize size = [desc sizeWithMyFont:[UIFont systemFontOfSize:DESC_FONT_SIZE] constrainedToSize:CGSizeMake(DESC_WIDTH, 9999999) lineBreakMode:NSLineBreakByCharWrapping];
     size.height += DESC_HEIGHT_SPACE;
     return size;
 }

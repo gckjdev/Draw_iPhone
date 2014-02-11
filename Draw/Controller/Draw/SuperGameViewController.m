@@ -28,6 +28,7 @@
 #import "UserGameItemManager.h"
 #import "DrawHolderView.h"
 #import "CMPopTipView.h"
+#import "StringUtil.h"
 
 #define ITEM_FRAME  ([DeviceDetection isIPAD]?CGRectMake(0, 0, 122, 122):CGRectMake(0, 0, 61, 61))
 
@@ -275,7 +276,7 @@
         return;
     }
     
-    CGSize size = [message sizeWithFont:POP_FONT constrainedToSize:CGSizeMake(POP_WIDTH, CGFLOAT_MAX) lineBreakMode:NSLineBreakByCharWrapping];
+    CGSize size = [message sizeWithMyFont:POP_FONT constrainedToSize:CGSizeMake(POP_WIDTH, CGFLOAT_MAX) lineBreakMode:NSLineBreakByCharWrapping];
     
     if (self.popLabel == nil) {
         self.popLabel = [[[UILabel alloc] initWithFrame:CGRectMake(0, 0, size.width, size.height)] autorelease];

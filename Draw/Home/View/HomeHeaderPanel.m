@@ -23,6 +23,7 @@
 #import "UIViewUtils.h"
 #import "ShareImageManager.h"
 #import "UIImageView+Extend.h"
+#import "StringUtil.h"
 
 @interface HomeHeaderPanel ()<AvatarViewDelegate>
 {
@@ -275,7 +276,7 @@
     self.friendCountLabel.text = [NSString stringWithFormat:@"%d", fanCount];
     
     //change bg size
-    CGSize size = [_friendCountLabel.text sizeWithFont:_friendCountLabel.font];
+    CGSize size = [_friendCountLabel.text sizeWithMyFont:_friendCountLabel.font];
     if (size.width > MAX_COUNT_BG_SIZE.width) {
         size = MAX_COUNT_BG_SIZE;
     }
@@ -363,7 +364,7 @@
     
     if (isSingApp()) {
         //change coin bg size
-        CGSize size = [_coin.text sizeWithFont:_coin.font];
+        CGSize size = [_coin.text sizeWithMyFont:_coin.font];
         if (size.width > MAX_COUNT_BG_SIZE.width) {
             size = MAX_COUNT_BG_SIZE;
         }
