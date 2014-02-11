@@ -37,6 +37,7 @@
 #import "UserDetailViewController.h"
 #import "ViewUserDetail.h"
 #import "UserService.h"
+#import "StringUtil.h"
 
 @interface ChatDetailController ()
 {
@@ -734,7 +735,9 @@
 #pragma mark - OfflineDrawDelegate methods
 - (void)didControllerClickBack:(OfflineDrawViewController *)controller
 {
-    [controller dismissModalViewControllerAnimated:YES];
+//    [controller dismissModalViewControllerAnimated:YES];
+    [controller dismissViewControllerAnimated:YES completion:nil];
+    
 }
 
 - (void)didController:(OfflineDrawViewController *)controller
@@ -790,7 +793,7 @@
 - (void)textViewDidChange:(UITextView *)textView
 {
     NSString *text = textView.text;
-    CGSize size = [text sizeWithFont:textView.font 
+    CGSize size = [text sizeWithMyFont:textView.font 
                    constrainedToSize:CGSizeMake(textView.frame.size.width, TEXT_VIEW_MAX_HEIGHT) 
                        lineBreakMode:UILineBreakModeWordWrap];
     CGFloat textHeight = (size.height < TEXT_VIEW_MIN_HEIGHT) ? TEXT_VIEW_MIN_HEIGHT : (size.height);

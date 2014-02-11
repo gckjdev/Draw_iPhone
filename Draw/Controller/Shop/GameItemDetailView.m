@@ -13,6 +13,7 @@
 #import "UIViewUtils.h"
 #import "UIImageView+WebCache.h"
 #import "ShareImageManager.h"
+#import "StringUtil.h"
 
 @implementation GameItemDetailView
 
@@ -69,7 +70,7 @@ AUTO_CREATE_VIEW_BY_XIB(GameItemDetailView);
 
 
     CGSize withinSize = CGSizeMake(MAX_WITH_DESC_LABEL, MAX_HEIGHT_DESC_LABEL);
-    CGSize size = [desc sizeWithFont:label.font constrainedToSize:withinSize lineBreakMode:UILineBreakModeTailTruncation];
+    CGSize size = [desc sizeWithMyFont:label.font constrainedToSize:withinSize lineBreakMode:UILineBreakModeTailTruncation];
     
     if(size.height > HEIGHT_OF_DESC_LABEL){
         CGFloat delta = (size.height - HEIGHT_OF_DESC_LABEL + HEIGHT_ADDTION_TO_DESC_LABEL);

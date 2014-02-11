@@ -13,6 +13,7 @@
 #import "MyFriend.h"
 #import "UIImageView+WebCache.h"
 #import "BBSViewManager.h"
+#import "StringUtil.h"
 
 #import <QuartzCore/QuartzCore.h>
 
@@ -74,7 +75,9 @@
     CGRect frame = CGRectZero;
     CGFloat y = (CGRectGetHeight(self.bounds) - ADMIN_VIEW_HEIGHT)/2.0;
     frame.origin = CGPointMake(ADMIN_AVATAR_WIDTH * 1.3, y);
-    CGSize size = [_user.nickName sizeWithFont:NICK_FONT forWidth:ADMIN_NICK_MAX_WIDTH lineBreakMode:NSLineBreakByCharWrapping];
+    CGSize size = [_user.nickName sizeWithMyFont:NICK_FONT
+                               constrainedToSize:CGSizeMake(10000, ADMIN_NICK_MAX_WIDTH)
+                                   lineBreakMode:NSLineBreakByCharWrapping];
     frame.size = CGSizeMake(size.width * 1.2, CGRectGetHeight(self.bounds));
     
     _nick = [[[UILabel alloc] initWithFrame:frame] autorelease];

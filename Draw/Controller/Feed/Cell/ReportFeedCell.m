@@ -13,6 +13,7 @@
 #import "UserDetailViewController.h"
 #import "ViewUserDetail.h"
 #import "ContestManager.h"
+#import "StringUtil.h"
 
 @implementation ReportFeedCell
 
@@ -71,7 +72,7 @@
 
 + (CGFloat)getCellHeightWithFeed:(CommentFeed *)feed
 {
-    CGSize size = [[feed displayText] sizeWithFont:[ShareUIManager timelineContentFont] constrainedToSize:CGSizeMake(DESC_WIDTH, MAXFLOAT) lineBreakMode:0];
+    CGSize size = [[feed displayText] sizeWithMyFont:[ShareUIManager timelineContentFont] constrainedToSize:CGSizeMake(DESC_WIDTH, MAXFLOAT) lineBreakMode:0];
     return BASE_HEIGHT+size.height;
 }
 

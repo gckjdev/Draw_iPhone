@@ -7,6 +7,7 @@
 //
 
 #import "StatementCell.h"
+#import "StringUtil.h"
 
 @interface StatementCell()
 @property (retain, nonatomic) IBOutlet UIImageView *bgImageView;
@@ -44,7 +45,7 @@
 + (float)getTextHeight:(NSString *)text{
     
     CGSize contrainedSize = CGSizeMake(LABEL_WIDTH, CGFLOAT_MAX);
-    CGSize size = [text sizeWithFont:CELL_CONTENT_FONT constrainedToSize:contrainedSize lineBreakMode:NSLineBreakByCharWrapping];
+    CGSize size = [text sizeWithMyFont:CELL_CONTENT_FONT constrainedToSize:contrainedSize lineBreakMode:NSLineBreakByCharWrapping];
     return size.height;
 }
 

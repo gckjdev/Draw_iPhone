@@ -16,6 +16,7 @@
 #import "CommentFeed.h"
 #import "MyFriend.h"
 #import "ContestManager.h"
+#import "StringUtil.h"
 
 @implementation CommentCell
 @synthesize commentLabel;
@@ -68,7 +69,7 @@
     NSString *comment = [feed commentInFeedDeatil];
     UIFont *font = [ShareUIManager commentContentFont];
     PPDebug(@"start to cal height, comment = %@",comment);
-    CGSize commentSize = [comment sizeWithFont:font constrainedToSize:CGSizeMake(COMMENT_WIDTH, 10000000) lineBreakMode:UILineBreakModeCharacterWrap];
+    CGSize commentSize = [comment sizeWithMyFont:font constrainedToSize:CGSizeMake(COMMENT_WIDTH, 10000000) lineBreakMode:UILineBreakModeCharacterWrap];
     CGFloat height = COMMENT_CONST_HEIGHT + commentSize.height;
     PPDebug(@"comment = %@,height = %f", comment,height);
     return height;

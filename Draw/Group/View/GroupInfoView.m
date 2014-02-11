@@ -10,7 +10,7 @@
 #import "Group.pb.h"
 #import "IconView.h"
 #import "GroupUIManager.h"
-
+#import "StringUtil.h"
 
 #define SPACE_NICK_SIZE (ISIPAD?8:5)
 #define SIZE_BASE_WIDTH (ISIPAD?20:12)
@@ -69,7 +69,7 @@
 + (CGFloat)recommandHeightForGroup:(PBGroup *)group
 {
     CGSize size = CGSizeMake(DESC_LABEL_WIDTH, 99999999);
-    CGSize textSize = [group.signature sizeWithFont:CELL_CONTENT_FONT
+    CGSize textSize = [group.signature sizeWithMyFont:CELL_CONTENT_FONT
                               constrainedToSize:size
                                   lineBreakMode:NSLineBreakByCharWrapping];
     CGFloat delta = textSize.height - DEFAULT_LABEL_HEIGHT;

@@ -14,6 +14,7 @@
 #import "GroupModelExt.h"
 #import "GroupManager.h"
 #import "UILabel+Touchable.h"
+#import "StringUtil.h"
 
 #define MEMBER_NUMBER_PERROW (ISIPAD?7:5)
 #define TITLE_INFO_HEIGHT (ISIPAD?55:30)
@@ -82,7 +83,7 @@
 + (CGFloat)getCellHeightForText:(NSString *)text
 {
     CGFloat minHeight = [self getCellHeightForSingleLineText];
-    CGSize textSize = [text sizeWithFont:CELL_NICK_FONT constrainedToSize:CGSizeMake(INFO_LABEL_WIDTH, 9999999) lineBreakMode:NSLineBreakByCharWrapping];
+    CGSize textSize = [text sizeWithMyFont:CELL_NICK_FONT constrainedToSize:CGSizeMake(INFO_LABEL_WIDTH, 9999999) lineBreakMode:NSLineBreakByCharWrapping];
     CGFloat height = MAX(textSize.height +MULTIPLE_LINE_TEXT_Y_SPACE, minHeight);
 
     PPDebug(@"<getCellHeightForText> text = %@, height = %f",text, height);

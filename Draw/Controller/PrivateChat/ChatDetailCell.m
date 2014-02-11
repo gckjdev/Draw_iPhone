@@ -25,6 +25,7 @@
 #import "UIImageExt.h"
 #import "UIImageView+Extend.h"
 #import "PPMessageManager.h"
+#import "StringUtil.h"
 
 
 @interface ChatDetailCell()
@@ -162,7 +163,9 @@
     }else if([message isDrawMessage]){
         return DEFAULT_MESSAGE_IMAGE_SIZE;
     }else{
-        CGSize size = [message.text sizeWithFont:TEXT_FONT constrainedToSize:CGSizeMake(TEXT_WIDTH_MAX, TEXT_HEIGHT_MAX) lineBreakMode:LINE_BREAK_MODE];
+        CGSize size = [message.text sizeWithMyFont:TEXT_FONT
+                                 constrainedToSize:CGSizeMake(TEXT_WIDTH_MAX, TEXT_HEIGHT_MAX)
+                                     lineBreakMode:LINE_BREAK_MODE];
         return size;
     }
 }

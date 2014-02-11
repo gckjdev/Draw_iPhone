@@ -26,6 +26,7 @@
 #import "SuperUserManageAction.h"
 #import "BBSPermissionManager.h"
 #import "ImagePlayer.h"
+#import "StringUtil.h"
 
 #define RUN_OUT_TIME 0.2
 #define RUN_IN_TIME 0.4
@@ -144,7 +145,7 @@
         
         UIFont* font = [DeviceDetection isIPAD]?[UIFont systemFontOfSize:26]:[UIFont systemFontOfSize:13];
         float maxWidth = [DeviceDetection isIPAD]?224:101;
-        CGSize nameSize = [nickName sizeWithFont:font];
+        CGSize nameSize = [nickName sizeWithMyFont:font ];
         if (nameSize.width < maxWidth) {
             [self.userName setFrame:CGRectMake(self.userName.frame.origin.x, 
                                                self.userName.frame.origin.y, 

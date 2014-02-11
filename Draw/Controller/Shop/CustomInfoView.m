@@ -14,6 +14,7 @@
 #import "BlockUtils.h"
 #import "UIImageUtil.h"
 #import "CommonDialog.h"
+#import "StringUtil.h"
 
 @interface CustomInfoView()
 @property (retain, nonatomic) UIActivityIndicatorView *indicator;
@@ -226,7 +227,7 @@ AUTO_CREATE_VIEW_BY_XIB(CustomInfoView);
     
     // set info label height
     CGSize maxSize = CGSizeMake(WIDTH_INFO_LABEL, HEIGHT_MAX_INFO_LABEL);
-    CGSize size = [infoLabel.text sizeWithFont:infoLabel.font constrainedToSize:maxSize];
+    CGSize size = [infoLabel.text sizeWithMyFont:infoLabel.font constrainedToSize:maxSize lineBreakMode:UILineBreakModeCharacterWrap];
     if (size.height < HEIGHT_MIN_INFO_LABEL) {
         size = CGSizeMake(size.width, HEIGHT_MIN_INFO_LABEL);
     }
