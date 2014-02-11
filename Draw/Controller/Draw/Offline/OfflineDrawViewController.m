@@ -352,7 +352,6 @@
         self.opusDesc = self.draft.opusDesc;
     }
     DrawHolderView *holder = [DrawHolderView defaultDrawHolderViewWithContentView:drawView];
-
     [self.view insertSubview:holder aboveSubview:self.draftButton];
     PPDebug(@"DrawView Rect = %@",NSStringFromCGRect(drawView.frame));
 }
@@ -404,7 +403,7 @@
 {
     self.drawToolPanel = [DrawToolPanel createViewWithDrawView:drawView];
     CGFloat x = self.view.center.x;
-    CGFloat y = CGRectGetHeight([[UIScreen mainScreen] bounds]) - CGRectGetHeight(self.drawToolPanel.bounds) / 2.0 - STATUSBAR_HEIGHT;
+    CGFloat y = CGRectGetHeight([[UIScreen mainScreen] bounds]) - CGRectGetHeight(self.drawToolPanel.bounds) / 2.0 - STATUSBAR_HEIGHT + STATUSBAR_DELTA;
     self.drawToolPanel.center = CGPointMake(x, y);
     [self.view addSubview:self.drawToolPanel];
     [self.drawToolPanel setPanelForOnline:NO];    

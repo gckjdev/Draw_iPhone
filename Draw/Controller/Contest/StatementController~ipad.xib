@@ -93,7 +93,7 @@
     </objects>
     <resources>
         <image name="contest_agree.png" width="77" height="71"/>
-        <image name="contest_disagree.png" width="77" height="71"/>
+        <image name="contest_disagree.png" width="11" height="10"/>
         <image name="contest_line.png" width="1" height="1"/>
     </resources>
 </document>

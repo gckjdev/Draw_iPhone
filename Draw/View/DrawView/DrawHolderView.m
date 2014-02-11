@@ -86,6 +86,8 @@
     }else{
         frame.origin = CGPointMake((320-frame.size.width)/2, 42);
     }
+    frame.origin.y += +STATUSBAR_DELTA;
+
     return [DrawHolderView drawHolderViewWithFrame:frame contentView:contentView];
 }
 

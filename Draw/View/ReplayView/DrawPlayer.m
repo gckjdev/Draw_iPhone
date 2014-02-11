@@ -99,6 +99,7 @@
     if (holderView == nil) {
         holderView = [DrawHolderView drawHolderViewWithFrame:self.bounds contentView:self.showView];
         [holderView addTarget:self action:@selector(clickHolderView:) forControlEvents:UIControlEventTouchUpInside];
+        [holderView updateOriginY:STATUSBAR_DELTA];
     }
     [self insertSubview:holderView atIndex:0];
     [controller.view addSubview:self];

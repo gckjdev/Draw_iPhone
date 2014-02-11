@@ -210,7 +210,7 @@
     </objects>
     <resources>
         <image name="changeroom.png" width="37" height="37"/>
-        <image name="draw_main_bg@2x.jpg" width="768" height="1024"/>
+        <image name="draw_main_bg@2x.jpg" width="16" height="16"/>
         <image name="group_message.png" width="43" height="33"/>
         <image name="room_seat_bg_1.png" width="71" height="71"/>
         <image name="room_seat_bg_2.png" width="71" height="71"/>
