@@ -1854,6 +1854,20 @@ qqAccessTokenSecret:(NSString*)accessTokenSecret
     self.pbUser = [builder build];
 }
 
+- (void)setOffGroupIds:(NSArray*)offGroupIds
+{
+    if (self.pbUser == nil)
+        return;
+    
+    PBGameUser_Builder* builder = [PBGameUser builderWithPrototype:self.pbUser];
+    [builder clearOffGroupIdsList];
+    if (offGroupIds){
+        [builder addAllOffGroupIds:offGroupIds];
+    }
+    
+    self.pbUser = [builder build];
+}
+
 #define KEY_BUY_VIP_USER @"KEY_BUY_VIP_USER"
 
 - (int)buyVipUserCount
@@ -1878,6 +1892,46 @@ qqAccessTokenSecret:(NSString*)accessTokenSecret
     }
     
     return NO;
+}
+
+- (void)setUserGroupNotice:(NSString*)groupId status:(int)status
+{
+    if (self.pbUser == nil)
+        return;
+    
+    PBGameUser_Builder* builder = [PBGameUser builderWithPrototype:self.pbUser];
+    
+    NSMutableArray* offGroupIds = [NSMutableArray array];
+    if ([builder offGroupIdsList]){
+        [offGroupIds addObjectsFromArray:[builder offGroupIdsList]];
+    }
+    
+    if (status){
+        [offGroupIds removeObject:groupId];
+    }
+    else{
+        if ([offGroupIds indexOfObject:groupId] == NSNotFound){
+            [offGroupIds addObject:groupId];
+        }
+    }
+    
+    [builder clearOffGroupIdsList];
+    [builder addAllOffGroupIds:offGroupIds];
+    self.pbUser = [builder build];
+}
+
+- (BOOL)isDisableGroupNotice:(NSString*)groupId
+{
+    if (groupId == nil){
+        return NO;
+    }
+    
+    if ([self.pbUser.offGroupIdsList indexOfObject:groupId] != NSNotFound){
+        return YES;
+    }
+    else{
+        return NO;
+    }
 }
 
 @end

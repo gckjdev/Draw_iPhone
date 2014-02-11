@@ -2373,6 +2373,34 @@ POSTMSG(NSLS(@"kLoginFailure"));
                 [[UserManager defaultManager] storeUserData:output.pbResponse.user];
             }
             
+            
+        });
+    });
+}
+
+- (void)setUserGroupNotice:(NSString*)groupId
+                    status:(int)status
+               resultBlock:(void(^)(int resultCode))resultBlock
+{
+    if (groupId == nil){
+        return;
+    }
+    
+    NSDictionary* para = @{ PARA_GROUPID : groupId,
+                            PARA_STATUS : @(status)
+                            };
+    
+    dispatch_async(workingQueue, ^{
+        GameNetworkOutput* output = [PPGameNetworkRequest trafficApiServerGetAndResponsePB:METHOD_SET_USER_OFF_GROUP
+                                                                                parameters:para];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            
+            if (output.resultCode == ERROR_SUCCESS && output.pbResponse.user){
+                [[UserManager defaultManager] setOffGroupIds:output.pbResponse.user.offGroupIdsList];
+            }
+            
+            EXECUTE_BLOCK(resultBlock, output.resultCode);
+            
         });
     });
 }

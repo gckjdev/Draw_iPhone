@@ -1811,6 +1811,7 @@ static PBUserLevel* defaultPBUserLevelInstance = nil;
 @property int32_t vipExpireDate;
 @property int32_t vipLastPayDate;
 @property (retain) PBSimpleGroup* groupInfo;
+@property (retain) NSMutableArray* mutableOffGroupIdsList;
 @property int32_t singRecordLimit;
 @end
 
@@ -2183,6 +2184,7 @@ static PBUserLevel* defaultPBUserLevelInstance = nil;
   hasGroupInfo_ = !!value;
 }
 @synthesize groupInfo;
+@synthesize mutableOffGroupIdsList;
 - (BOOL) hasSingRecordLimit {
   return !!hasSingRecordLimit_;
 }
@@ -2218,6 +2220,7 @@ static PBUserLevel* defaultPBUserLevelInstance = nil;
   self.friendMemo = nil;
   self.mutableAwardAppsList = nil;
   self.groupInfo = nil;
+  self.mutableOffGroupIdsList = nil;
   [super dealloc];
 }
 - (id) init {
@@ -2326,6 +2329,13 @@ static PBGameUser* defaultPBGameUserInstance = nil;
 }
 - (NSString*) awardAppsAtIndex:(int32_t) index {
   id value = [mutableAwardAppsList objectAtIndex:index];
+  return value;
+}
+- (NSArray*) offGroupIdsList {
+  return mutableOffGroupIdsList;
+}
+- (NSString*) offGroupIdsAtIndex:(int32_t) index {
+  id value = [mutableOffGroupIdsList objectAtIndex:index];
   return value;
 }
 - (BOOL) isInitialized {
@@ -2525,6 +2535,9 @@ static PBGameUser* defaultPBGameUserInstance = nil;
   if (self.hasGroupInfo) {
     [output writeMessage:150 value:self.groupInfo];
   }
+  for (NSString* element in self.mutableOffGroupIdsList) {
+    [output writeString:151 value:element];
+  }
   if (self.hasSingRecordLimit) {
     [output writeInt32:200 value:self.singRecordLimit];
   }
@@ -2708,6 +2721,14 @@ static PBGameUser* defaultPBGameUserInstance = nil;
   }
   if (self.hasGroupInfo) {
     size += computeMessageSize(150, self.groupInfo);
+  }
+  {
+    int32_t dataSize = 0;
+    for (NSString* element in self.mutableOffGroupIdsList) {
+      dataSize += computeStringSizeNoTag(element);
+    }
+    size += dataSize;
+    size += 2 * self.mutableOffGroupIdsList.count;
   }
   if (self.hasSingRecordLimit) {
     size += computeInt32Size(200, self.singRecordLimit);
@@ -2967,6 +2988,12 @@ static PBGameUser* defaultPBGameUserInstance = nil;
   if (other.hasGroupInfo) {
     [self mergeGroupInfo:other.groupInfo];
   }
+  if (other.mutableOffGroupIdsList.count > 0) {
+    if (result.mutableOffGroupIdsList == nil) {
+      result.mutableOffGroupIdsList = [NSMutableArray array];
+    }
+    [result.mutableOffGroupIdsList addObjectsFromArray:other.mutableOffGroupIdsList];
+  }
   if (other.hasSingRecordLimit) {
     [self setSingRecordLimit:other.singRecordLimit];
   }
@@ -3223,6 +3250,10 @@ static PBGameUser* defaultPBGameUserInstance = nil;
         }
         [input readMessage:subBuilder extensionRegistry:extensionRegistry];
         [self setGroupInfo:[subBuilder buildPartial]];
+        break;
+      }
+      case 1210: {
+        [self addOffGroupIds:[input readString]];
         break;
       }
       case 1600: {
@@ -4190,6 +4221,37 @@ static PBGameUser* defaultPBGameUserInstance = nil;
 - (PBGameUser_Builder*) clearGroupInfo {
   result.hasGroupInfo = NO;
   result.groupInfo = [PBSimpleGroup defaultInstance];
+  return self;
+}
+- (NSArray*) offGroupIdsList {
+  if (result.mutableOffGroupIdsList == nil) {
+    return [NSArray array];
+  }
+  return result.mutableOffGroupIdsList;
+}
+- (NSString*) offGroupIdsAtIndex:(int32_t) index {
+  return [result offGroupIdsAtIndex:index];
+}
+- (PBGameUser_Builder*) replaceOffGroupIdsAtIndex:(int32_t) index with:(NSString*) value {
+  [result.mutableOffGroupIdsList replaceObjectAtIndex:index withObject:value];
+  return self;
+}
+- (PBGameUser_Builder*) addOffGroupIds:(NSString*) value {
+  if (result.mutableOffGroupIdsList == nil) {
+    result.mutableOffGroupIdsList = [NSMutableArray array];
+  }
+  [result.mutableOffGroupIdsList addObject:value];
+  return self;
+}
+- (PBGameUser_Builder*) addAllOffGroupIds:(NSArray*) values {
+  if (result.mutableOffGroupIdsList == nil) {
+    result.mutableOffGroupIdsList = [NSMutableArray array];
+  }
+  [result.mutableOffGroupIdsList addObjectsFromArray:values];
+  return self;
+}
+- (PBGameUser_Builder*) clearOffGroupIdsList {
+  result.mutableOffGroupIdsList = nil;
   return self;
 }
 - (BOOL) hasSingRecordLimit {

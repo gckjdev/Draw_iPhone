@@ -175,6 +175,17 @@ static NSMutableDictionary *colorImageDict;
     return [UIImage imageNamed:@"chat_change_bg.png"];
 }
 
+- (UIImage *)disableGroupMessageNoticeOff
+{
+    return [UIImage imageNamed:@"disable_notice_off.png"];
+}
+
+- (UIImage *)disableGroupMessageNoticeOn
+{
+    return [UIImage imageNamed:@"disable_notice_on.png"];
+}
+
+
 - (UIImage *)changeHotTopImage
 {
     return [UIImage imageNamed:@"button_rank.png"];

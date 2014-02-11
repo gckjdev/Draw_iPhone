@@ -200,7 +200,9 @@ static AccountService* _defaultAccountService;
                     [[UserManager defaultManager] setVipLastPayDate:user.vipLastPayDate];
                     
                     // post notification
-                    [self postNotification:NOTIFICATION_SYNC_ACCOUNT];                    
+                    [self postNotification:NOTIFICATION_SYNC_ACCOUNT];
+                    
+                    [[UserManager defaultManager] setOffGroupIds:user.offGroupIdsList];
                     
                     if ([user.blockDeviceIdsList count] > 0){
                         NSString* deviceId = [[UIDevice currentDevice] uniqueGlobalDeviceIdentifier];

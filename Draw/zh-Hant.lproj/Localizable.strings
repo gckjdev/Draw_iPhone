@@ -2637,6 +2637,7 @@
 
 "kContestNotStart" = "未開始";
 "kContestOutOfTime" = "已結束";
+"kContestSubmitEnd" = "作品提交已截止";
 "kLeftDays" = "還有%d天";
 "kLeftHours" = "還有%d小時";
 "kLeftMins" = "還有%d分鐘";
@@ -2666,3 +2667,6 @@
 
 "kPop" = "人氣";
 "kNCoins" = "%d 金幣";
+
+"kEnableGroupNoticeSucc" = "已經開啟本群聊通知功能";
+"kDisableGroupNoticeSucc" = "已經關閉本群聊通知功能";
