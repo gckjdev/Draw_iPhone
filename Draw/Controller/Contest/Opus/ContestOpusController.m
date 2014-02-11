@@ -27,8 +27,10 @@ typedef enum{
     OpusTypeMy = 1,
     OpusTypeRank = 2,
     OpusTypeNew = 3,
+    OpusTypeGroupContestRule = 4,
     OpusTypeReport = CommentTypeContestComment,
     OpusTypePrize = 21,//FeedListTypeIdList
+    
 }OpusType;
 
 #define  HISTORY_RANK_NUMBER [PPConfigManager historyRankNumber]
@@ -190,6 +192,10 @@ typedef enum{
             return [CellManager getLastStyleCellHeightWithIndexPath:indexPath];
             break;
             
+        case OpusTypeGroupContestRule:
+            return [CellManager getContestRuleCellHeight:indexPath contest:self.contest];
+            break;
+            
         default:
             return 0;
             break;
@@ -231,6 +237,13 @@ typedef enum{
                                        indexPath:indexPath
                                         delegate:self
                                         dataList:self.tabDataList];
+            break;
+            
+        case OpusTypeGroupContestRule:
+            return [CellManager getContestRuleCell:theTableView
+                                         indexPath:indexPath
+                                          delegate:self
+                                           contest:self.contest];
             break;
             
         default:
@@ -295,6 +308,10 @@ typedef enum{
                                                         roundingUp:YES];
             break;
             
+        case OpusTypeGroupContestRule:
+            return [CellManager getContestRuleCellCount];
+            break;
+            
         default:
             return 0;
             break;
@@ -306,20 +323,22 @@ typedef enum{
 
 - (NSInteger)tabCount
 {
-    if ([self.contest isGroupContest]) {
-        return 3;
-    }else{
-        return 4;
-    }
+//    if ([self.contest isGroupContest]) {
+//        return 3;
+//    }else{
+//        return 4;
+//    }
+    return 4;
 }
 - (NSInteger)fetchDataLimitForTabIndex:(NSInteger)index
 {
     return 24;
 }
+
 - (NSInteger)tabIDforIndex:(NSInteger)index
 {
     if ([self.contest isGroupContest]) {
-        NSInteger tabId[] = {OpusTypeRank,OpusTypeNew,OpusTypeMy};
+        NSInteger tabId[] = {OpusTypeRank,OpusTypeNew,OpusTypeMy,OpusTypeGroupContestRule};
         if ([self.contest isPassed]) {
             [[self.view viewWithTag:OpusTypeNew] setTag:OpusTypePrize];
             tabId[1] = OpusTypePrize;
@@ -343,7 +362,7 @@ typedef enum{
 - (NSString *)tabTitleforIndex:(NSInteger)index
 {
     if ([self.contest isGroupContest]) {
-        NSString *tabTitle[] = {NSLS(@"kOpusRank"),NSLS(@"kOpusNew"),NSLS(@"kOpusMy")};
+        NSString *tabTitle[] = {NSLS(@"kOpusRank"),NSLS(@"kOpusNew"),NSLS(@"kOpusMy"),NSLS(@"kContestRule")};
         if ([self.contest isPassed]) {
             tabTitle[1] = NSLS(@"kContestPrize");
         }
@@ -378,6 +397,10 @@ typedef enum{
         case OpusTypeRank:
             [self loadOpus:tab];
             break;
+            
+        case OpusTypeGroupContestRule:
+            [self loadContestRules];
+            break;
 
         default:
             break;
@@ -406,6 +429,18 @@ typedef enum{
                                               offset:tab.offset
                                                limit:tab.limit
                                             delegate:self];
+}
+
+- (void)loadContestRules{
+    
+    
+    [self performSelector:@selector(finishLoadContestRules) withObject:nil afterDelay:0.3];
+}
+
+- (void)finishLoadContestRules{
+    [self hideActivity];
+    [self finishLoadDataForTabID:OpusTypeGroupContestRule resultList:nil];
+    [self hideTipsOnTableView];
 }
 
 #pragma mark - feed service delegate
@@ -487,6 +522,13 @@ typedef enum{
 {
     TopPlayer *player = topPlayerView.topPlayer;
     [UserDetailViewController presentUserDetail:[ViewUserDetail viewUserDetailWithUserId:player.userId avatar:player.avatar nickName:player.nickName] inViewController:self];
+}
+
+- (void)clickTab:(NSInteger)tabID{
+    [super clickTab:tabID];
+    if (tabID == OpusTypeGroupContestRule) {
+        [self hideTipsOnTableView];
+    }
 }
 
 @end

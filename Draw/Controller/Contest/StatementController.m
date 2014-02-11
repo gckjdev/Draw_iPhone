@@ -14,6 +14,7 @@
 #import "SingController.h"
 #import "StatementCell.h"
 #import "UIViewController+BGImage.h"
+#import "CellManager.h"
 
 @implementation StatementController
 @synthesize contentView = _contentView;
@@ -135,57 +136,47 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     
-    return 4;
+//    return 4;
+    return [CellManager getContestRuleCellCount];
 }
 
 - (float)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     
-//    float height = 50;
-    if(indexPath.row != StatementCellTypeDesc){
-        return [StatementCell getCellHeightWithType:indexPath.row];
-    }else{
-        return [StatementCell getCellHeightWithContent:[self.contest desc]];
-    }
-    /*
-    if (indexPath.row == 0){
-        NSString *content = [[[self.contest contestingTimeDesc] stringByAppendingString:@"\n"] stringByAppendingString:[self.contest votingTimeDesc]];
-        height = [StatementCell getCellHeightWithContent:content];
-    }else if (indexPath.row == 1){
-        height = [StatementCell getCellHeightWithContent:[self.contest title]];
-    }else if (indexPath.row == 2){
-        height = [StatementCell getCellHeightWithContent:[self.contest desc]];
-    }else if (indexPath.row == 3){
-        height = [StatementCell getCellHeightWithContent:[self.contest awardRulesDesc]];
-    }
-    return height;
-    */
+//    if(indexPath.row != StatementCellTypeDesc){
+//        return [StatementCell getCellHeightWithType:indexPath.row];
+//    }else{
+//        return [StatementCell getCellHeightWithContent:[self.contest desc]];
+//    }
+    
+    return [CellManager getContestRuleCellHeight:indexPath contest:self.contest];
 }
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    StatementCell *cell = [tableView dequeueReusableCellWithIdentifier:[StatementCell getCellIdentifier]];
-    if (cell == nil) {
-        cell = [StatementCell createCell:self];
-    }
+    return [CellManager getContestRuleCell:tableView indexPath:indexPath delegate:self contest:self.contest];
+//    StatementCell *cell = [tableView dequeueReusableCellWithIdentifier:[StatementCell getCellIdentifier]];
+//    if (cell == nil) {
+//        cell = [StatementCell createCell:self];
+//    }
+//
+//    if (indexPath.row == 1){
+//        NSString *contestingTimeDesc = [NSString stringWithFormat:NSLS(@"kContestingTimeIs"), [self.contest contestingTimeDesc]];
+//        NSString *votingTimeDesc = [NSString stringWithFormat:NSLS(@"kVotingTimeIs"), [self.contest votingTimeDesc]];
+//                                 
+//        NSString *content = [[contestingTimeDesc stringByAppendingString:@"\n"] stringByAppendingString:votingTimeDesc];
+//        [cell setCellTitle:NSLS(@"kTime") content:content];
+//    }else if (indexPath.row == 0){
+//        [cell setCellTitle:NSLS(@"kSubject") content:[self.contest title]];
+//    }else if (indexPath.row == 2){
+//        [cell setCellTitle:NSLS(@"kDesc") content:[self.contest desc]];
+//    }else if (indexPath.row == 3){
+//        [cell setCellTitle:NSLS(@"kAward") content:[self.contest awardRulesDesc]];
+//    }
+//    
+//    cell.indexPath = indexPath;
 
-    if (indexPath.row == 1){
-        NSString *contestingTimeDesc = [NSString stringWithFormat:NSLS(@"kContestingTimeIs"), [self.contest contestingTimeDesc]];
-        NSString *votingTimeDesc = [NSString stringWithFormat:NSLS(@"kVotingTimeIs"), [self.contest votingTimeDesc]];
-                                 
-        NSString *content = [[contestingTimeDesc stringByAppendingString:@"\n"] stringByAppendingString:votingTimeDesc];
-        [cell setCellTitle:NSLS(@"kTime") content:content];
-    }else if (indexPath.row == 0){
-        [cell setCellTitle:NSLS(@"kSubject") content:[self.contest title]];
-    }else if (indexPath.row == 2){
-        [cell setCellTitle:NSLS(@"kDesc") content:[self.contest desc]];
-    }else if (indexPath.row == 3){
-        [cell setCellTitle:NSLS(@"kAward") content:[self.contest awardRulesDesc]];
-    }
-    
-    cell.indexPath = indexPath;
-
-    return cell;
+//    return cell;
 }
 
 @end

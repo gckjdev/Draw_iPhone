@@ -682,11 +682,20 @@ typedef enum{
         case TabTypeGroupNew:
         case TabTypeGroupFollow:
         case TabTypeGroupPop:
-        case TabTypeGroupAward:
             return [CellManager getContestStyleCell:tableView
                                           indexPath:indexPath
                                            delegate:self
                                            dataList:self.currentTab.dataList];
+            
+        case TabTypeGroupAward:{
+            
+            ContestCell *cell = (id)[CellManager getContestStyleCell:tableView
+                                   indexPath:indexPath
+                                    delegate:self
+                                                            dataList:self.currentTab.dataList];
+            [cell showAward];
+            return cell;
+        }
             
         case TabTypeOfficial:
             return nil;
