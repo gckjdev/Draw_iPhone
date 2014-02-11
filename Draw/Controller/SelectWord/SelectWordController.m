@@ -308,6 +308,7 @@
     SelectWordCell *cell = [tableView dequeueReusableCellWithIdentifier:[SelectWordCell getCellIdentifier]];
     if (cell == nil) {
         cell = [SelectWordCell createCell:self];
+        cell.backgroundColor = [UIColor clearColor];
     }
     
     Word *word = [self.wordArray objectAtIndex:indexPath.row];
