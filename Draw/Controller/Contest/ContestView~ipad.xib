@@ -165,7 +165,7 @@
         <image name="contest_detail@2x.png" width="36" height="36"/>
         <image name="contest_join@2x.png" width="36" height="36"/>
         <image name="contest_line.png" width="1" height="1"/>
-        <image name="contest_opus@2x.png" width="36" height="36"/>
+        <image name="contest_opus@2x.png" width="77" height="71"/>
         <image name="contest_report@2x.png" width="36" height="36"/>
     </resources>
 </document>
