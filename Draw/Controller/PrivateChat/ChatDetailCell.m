@@ -80,6 +80,8 @@
     [cell.holderView addTarget:cell action:@selector(clickUp:) forControlEvents:UIControlEventTouchUpInside];
     [cell.holderView addTarget:cell action:@selector(clickUp:) forControlEvents:UIControlEventTouchUpOutside];
     
+    cell.backgroundColor = [UIColor clearColor];
+    
     return cell;
 }
 
