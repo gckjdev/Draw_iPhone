@@ -2605,6 +2605,7 @@
 
 "kContestNotStart" = "Pending";
 "kContestOutOfTime" = "Over";
+"kContestSubmitEnd" = "Submission Closed";
 "kLeftDays" = "%d days left";
 "kLeftHours" = "%d hours left";
 "kLeftMins" = "%d minutes left";

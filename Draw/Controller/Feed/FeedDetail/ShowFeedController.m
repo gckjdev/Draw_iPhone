@@ -779,14 +779,18 @@ typedef enum{
 //    [self hideActivity];
 }
 
-- (void)performReplay
+- (void)reportPlayTimes
 {
     [[FeedService defaultService] playOpus:self.feed.feedId contestId:self.feed.contestId resultBlock:^(int resultCode) {
         [self.feed incPlayTimes];
         [self.commentHeader updateTimes:self.feed];
     }];
-    
+}
+
+- (void)performReplay
+{
     if ([self.feed isDrawCategory]) {
+        [self reportPlayTimes];
         [self performReplayDraw];
     }else if ([self.feed isSingCategory]){
         [self performReplaySing];
@@ -1395,6 +1399,8 @@ typedef enum{
 
 - (void)didClickFullScreenButton{
 
+    [self reportPlayTimes];
+    
     if (_isDrawInfoFullScreen == NO) {
         _isDrawInfoFullScreen = YES;
         
