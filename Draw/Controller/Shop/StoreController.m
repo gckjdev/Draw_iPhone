@@ -153,7 +153,7 @@ typedef enum{
     CGFloat originX = self.tableViewBgImageView.frame.origin.x;
     CGFloat originY = (ISIPAD ? 216 : 99);
     CGRect rect;
-    for (NSInteger i = 0; i < count; ++i) {
+    for (NSInteger i = 0; i < count; i++) {
         NSInteger tabID = [self tabIDforIndex:i];
         UIButton *button = [self tabButtonWithTabID:tabID];
         [button setBackgroundImage:dImage forState:UIControlStateNormal];
@@ -236,21 +236,6 @@ typedef enum{
 - (void)hideTaoBaoTab
 {
     [[self tabButtonWithTabID:TabIDTaoBao] setHidden:YES];
-    return;
-    //origin code below
-    UIButton *normalButton = [self tabButtonWithTabID:TabIDNormal];
-    UIButton *toolButton = [self tabButtonWithTabID:TabIDTool];
-    UIButton *promotionButton = [self tabButtonWithTabID:TabIDPromotion];
-    UIButton *taoBaoButton = [self tabButtonWithTabID:TabIDTaoBao];
-    
-    [promotionButton setBackgroundImage:[taoBaoButton backgroundImageForState:UIControlStateNormal] forState:UIControlStateNormal];
-    [promotionButton setBackgroundImage:[taoBaoButton backgroundImageForState:UIControlStateSelected] forState:UIControlStateSelected];
-    
-    [toolButton updateCenterX:self.view.center.x];
-    [normalButton updateOriginX:toolButton.frame.origin.x - normalButton.frame.size.width];
-    [promotionButton updateOriginX:toolButton.frame.origin.x + toolButton.frame.size.width];
-    
-    taoBaoButton.hidden = YES;
 }
 
 

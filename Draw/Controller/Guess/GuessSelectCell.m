@@ -94,6 +94,7 @@
     
     UIButton *button = (UIButton *)[self viewWithTag:tag];
     
+
     [button.layer addAnimation:[AnimationManager scaleTo:CATransform3DMakeScale(1.2, 1.2, 1.2) duration:0.5 scaleTo:CATransform3DMakeScale(0.8, 0.8, 0.8) duration:0.5 repeatCount:MAXFLOAT] forKey:nil];
 }
 

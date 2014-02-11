@@ -12,7 +12,7 @@
 
 
 #define PAGE_WIDTH CGRectGetWidth([[UIScreen mainScreen] bounds])//(ISIPAD ? 768 : 320)
-#define PAGE_HEIGHT (CGRectGetHeight([[UIScreen mainScreen] bounds]) - 20)//(ISIPAD ? 1004 : 460)
+#define PAGE_HEIGHT (CGRectGetHeight([[UIScreen mainScreen] applicationFrame]) + STATUSBAR_DELTA)//(ISIPAD ? 1004 : 460)
 #define FRAME CGRectMake(0, 0, PAGE_WIDTH, PAGE_HEIGHT) //(ISIPAD ? CGRectMake(0, 0, 768, 1004) : CGRectMake(0, 0, 320, 460))
 //#define FONT (ISIPAD ? 1004 : 460)
 //#define VALUE(x) (ISIPAD ? (2*(x)) : (x))
@@ -41,6 +41,9 @@
     [_feedList release];
     [_pageScroller release];
     [super dealloc];
+    
+
+
 }
 
 

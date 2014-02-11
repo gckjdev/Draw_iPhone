@@ -1,318 +1,72 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<archive type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="8.00">
-	<data>
-		<int key="IBDocument.SystemTarget">1552</int>
-		<string key="IBDocument.SystemVersion">12E55</string>
-		<string key="IBDocument.InterfaceBuilderVersion">3084</string>
-		<string key="IBDocument.AppKitVersion">1187.39</string>
-		<string key="IBDocument.HIToolboxVersion">626.00</string>
-		<object class="NSMutableDictionary" key="IBDocument.PluginVersions">
-			<string key="NS.key.0">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-			<string key="NS.object.0">2083</string>
-		</object>
-		<array key="IBDocument.IntegratedClassDependencies">
-			<string>IBProxyObject</string>
-			<string>IBUIImageView</string>
-			<string>IBUILabel</string>
-			<string>IBUITableViewCell</string>
-			<string>IBUIView</string>
-		</array>
-		<array key="IBDocument.PluginDependencies">
-			<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-		</array>
-		<object class="NSMutableDictionary" key="IBDocument.Metadata">
-			<string key="NS.key.0">PluginDependencyRecalculationVersion</string>
-			<integer value="1" key="NS.object.0"/>
-		</object>
-		<array class="NSMutableArray" key="IBDocument.RootObjects" id="1000">
-			<object class="IBProxyObject" id="372490531">
-				<string key="IBProxiedObjectIdentifier">IBFilesOwner</string>
-				<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-			</object>
-			<object class="IBProxyObject" id="975951072">
-				<string key="IBProxiedObjectIdentifier">IBFirstResponder</string>
-				<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-			</object>
-			<object class="IBUITableViewCell" id="820496868">
-				<reference key="NSNextResponder"/>
-				<int key="NSvFlags">292</int>
-				<array class="NSMutableArray" key="NSSubviews">
-					<object class="IBUIView" id="792597380">
-						<reference key="NSNextResponder" ref="820496868"/>
-						<int key="NSvFlags">256</int>
-						<array class="NSMutableArray" key="NSSubviews">
-							<object class="IBUIImageView" id="1037989928">
-								<reference key="NSNextResponder" ref="792597380"/>
-								<int key="NSvFlags">268</int>
-								<string key="NSFrame">{{6, 46}, {292, 20}}</string>
-								<reference key="NSSuperview" ref="792597380"/>
-								<reference key="NSNextKeyView" ref="320889418"/>
-								<bool key="IBUIUserInteractionEnabled">NO</bool>
-								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-								<object class="NSCustomResource" key="IBUIImage">
-									<string key="NSClassName">NSImage</string>
-									<string key="NSResourceName">wood_pallets@2x.png</string>
-								</object>
-							</object>
-							<object class="IBUIView" id="668795355">
-								<reference key="NSNextResponder" ref="792597380"/>
-								<int key="NSvFlags">268</int>
-								<string key="NSFrame">{{40, 11}, {43, 44}}</string>
-								<reference key="NSSuperview" ref="792597380"/>
-								<reference key="NSNextKeyView" ref="782027522"/>
-								<object class="NSColor" key="IBUIBackgroundColor" id="480682483">
-									<int key="NSColorSpace">3</int>
-									<bytes key="NSWhite">MCAwAA</bytes>
-								</object>
-								<int key="IBUITag">10</int>
-								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-							</object>
-							<object class="IBUIView" id="160459596">
-								<reference key="NSNextResponder" ref="792597380"/>
-								<int key="NSvFlags">268</int>
-								<string key="NSFrame">{{92, 11}, {43, 44}}</string>
-								<reference key="NSSuperview" ref="792597380"/>
-								<reference key="NSNextKeyView" ref="987059417"/>
-								<reference key="IBUIBackgroundColor" ref="480682483"/>
-								<int key="IBUITag">11</int>
-								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-							</object>
-							<object class="IBUIView" id="987059417">
-								<reference key="NSNextResponder" ref="792597380"/>
-								<int key="NSvFlags">268</int>
-								<string key="NSFrame">{{143, 11}, {43, 44}}</string>
-								<reference key="NSSuperview" ref="792597380"/>
-								<reference key="NSNextKeyView" ref="243805671"/>
-								<reference key="IBUIBackgroundColor" ref="480682483"/>
-								<int key="IBUITag">12</int>
-								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-							</object>
-							<object class="IBUIView" id="243805671">
-								<reference key="NSNextResponder" ref="792597380"/>
-								<int key="NSvFlags">268</int>
-								<string key="NSFrame">{{195, 11}, {43, 44}}</string>
-								<reference key="NSSuperview" ref="792597380"/>
-								<reference key="NSNextKeyView" ref="503870791"/>
-								<reference key="IBUIBackgroundColor" ref="480682483"/>
-								<int key="IBUITag">13</int>
-								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-							</object>
-							<object class="IBUIView" id="503870791">
-								<reference key="NSNextResponder" ref="792597380"/>
-								<int key="NSvFlags">268</int>
-								<string key="NSFrame">{{245, 11}, {43, 44}}</string>
-								<reference key="NSSuperview" ref="792597380"/>
-								<reference key="IBUIBackgroundColor" ref="480682483"/>
-								<int key="IBUITag">14</int>
-								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-							</object>
-							<object class="IBUIImageView" id="320889418">
-								<reference key="NSNextResponder" ref="792597380"/>
-								<int key="NSvFlags">268</int>
-								<string key="NSFrame">{{7, 27}, {28, 28}}</string>
-								<reference key="NSSuperview" ref="792597380"/>
-								<reference key="NSNextKeyView" ref="668795355"/>
-								<bool key="IBUIUserInteractionEnabled">NO</bool>
-								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-								<object class="NSCustomResource" key="IBUIImage">
-									<string key="NSClassName">NSImage</string>
-									<string key="NSResourceName">right@2x.png</string>
-								</object>
-							</object>
-							<object class="IBUILabel" id="782027522">
-								<reference key="NSNextResponder" ref="792597380"/>
-								<int key="NSvFlags">-2147483356</int>
-								<string key="NSFrame">{{52, 8}, {200, 21}}</string>
-								<reference key="NSSuperview" ref="792597380"/>
-								<reference key="NSNextKeyView" ref="160459596"/>
-								<bool key="IBUIOpaque">NO</bool>
-								<bool key="IBUIClipsSubviews">YES</bool>
-								<int key="IBUIContentMode">7</int>
-								<bool key="IBUIUserInteractionEnabled">NO</bool>
-								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-								<string key="IBUIText">x 100</string>
-								<object class="NSColor" key="IBUITextColor">
-									<int key="NSColorSpace">1</int>
-									<bytes key="NSRGB">MC45ODgyMzUyOTQxIDAuMzA1ODgyMzUyOSAwLjA3ODQzMTM3MjU1AA</bytes>
-								</object>
-								<nil key="IBUIHighlightedColor"/>
-								<object class="NSColor" key="IBUIShadowColor">
-									<int key="NSColorSpace">3</int>
-									<bytes key="NSWhite">MAA</bytes>
-									<object class="NSColorSpace" key="NSCustomColorSpace">
-										<int key="NSID">2</int>
-									</object>
-								</object>
-								<string key="IBUIShadowOffset">{0, 1}</string>
-								<int key="IBUIBaselineAdjustment">1</int>
-								<float key="IBUIMinimumFontSize">10</float>
-								<object class="IBUIFontDescription" key="IBUIFontDescription">
-									<int key="type">1</int>
-									<double key="pointSize">17</double>
-								</object>
-								<object class="NSFont" key="IBUIFont">
-									<string key="NSName">Helvetica</string>
-									<double key="NSSize">17</double>
-									<int key="NSfFlags">16</int>
-								</object>
-							</object>
-						</array>
-						<string key="NSFrameSize">{304, 65}</string>
-						<reference key="NSSuperview" ref="820496868"/>
-						<reference key="NSNextKeyView" ref="1037989928"/>
-						<reference key="IBUIBackgroundColor" ref="480682483"/>
-						<bool key="IBUIOpaque">NO</bool>
-						<bool key="IBUIClipsSubviews">YES</bool>
-						<int key="IBUIContentMode">4</int>
-						<bool key="IBUIMultipleTouchEnabled">YES</bool>
-						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-					</object>
-				</array>
-				<string key="NSFrameSize">{304, 66}</string>
-				<reference key="NSSuperview"/>
-				<reference key="NSNextKeyView" ref="792597380"/>
-				<reference key="IBUIBackgroundColor" ref="480682483"/>
-				<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-				<reference key="IBUIContentView" ref="792597380"/>
-				<string key="IBUIReuseIdentifier">ColorShopCell</string>
-				<real value="100" key="IBUIRowHeight"/>
-			</object>
-		</array>
-		<object class="IBObjectContainer" key="IBDocument.Objects">
-			<array class="NSMutableArray" key="connectionRecords">
-				<object class="IBConnectionRecord">
-					<object class="IBCocoaTouchOutletConnection" key="connection">
-						<string key="label">coinImageView</string>
-						<reference key="source" ref="820496868"/>
-						<reference key="destination" ref="320889418"/>
-					</object>
-					<int key="connectionID">14</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBCocoaTouchOutletConnection" key="connection">
-						<string key="label">priceLabel</string>
-						<reference key="source" ref="820496868"/>
-						<reference key="destination" ref="782027522"/>
-					</object>
-					<int key="connectionID">15</int>
-				</object>
-			</array>
-			<object class="IBMutableOrderedSet" key="objectRecords">
-				<array key="orderedObjects">
-					<object class="IBObjectRecord">
-						<int key="objectID">0</int>
-						<array key="object" id="0"/>
-						<reference key="children" ref="1000"/>
-						<nil key="parent"/>
-					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">-1</int>
-						<reference key="object" ref="372490531"/>
-						<reference key="parent" ref="0"/>
-						<string key="objectName">File's Owner</string>
-					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">-2</int>
-						<reference key="object" ref="975951072"/>
-						<reference key="parent" ref="0"/>
-					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">4</int>
-						<reference key="object" ref="820496868"/>
-						<array class="NSMutableArray" key="children">
-							<reference ref="1037989928"/>
-							<reference ref="320889418"/>
-							<reference ref="782027522"/>
-							<reference ref="668795355"/>
-							<reference ref="160459596"/>
-							<reference ref="987059417"/>
-							<reference ref="243805671"/>
-							<reference ref="503870791"/>
-						</array>
-						<reference key="parent" ref="0"/>
-					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">5</int>
-						<reference key="object" ref="1037989928"/>
-						<reference key="parent" ref="820496868"/>
-					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">6</int>
-						<reference key="object" ref="668795355"/>
-						<reference key="parent" ref="820496868"/>
-					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">7</int>
-						<reference key="object" ref="160459596"/>
-						<reference key="parent" ref="820496868"/>
-					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">8</int>
-						<reference key="object" ref="987059417"/>
-						<reference key="parent" ref="820496868"/>
-					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">9</int>
-						<reference key="object" ref="243805671"/>
-						<reference key="parent" ref="820496868"/>
-					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">10</int>
-						<reference key="object" ref="503870791"/>
-						<reference key="parent" ref="820496868"/>
-					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">12</int>
-						<reference key="object" ref="320889418"/>
-						<reference key="parent" ref="820496868"/>
-					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">13</int>
-						<reference key="object" ref="782027522"/>
-						<reference key="parent" ref="820496868"/>
-					</object>
-				</array>
-			</object>
-			<dictionary class="NSMutableDictionary" key="flattenedProperties">
-				<string key="-1.CustomClassName">ColorShopCell</string>
-				<string key="-1.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-				<string key="-2.CustomClassName">UIResponder</string>
-				<string key="-2.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-				<string key="10.CustomClassName">ColorView</string>
-				<string key="10.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-				<string key="12.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-				<string key="13.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-				<string key="4.CustomClassName">ColorShopCell</string>
-				<string key="4.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-				<string key="5.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-				<string key="6.CustomClassName">ColorView</string>
-				<string key="6.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-				<string key="7.CustomClassName">ColorView</string>
-				<string key="7.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-				<string key="8.CustomClassName">ColorView</string>
-				<string key="8.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-				<string key="9.CustomClassName">ColorView</string>
-				<string key="9.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-			</dictionary>
-			<dictionary class="NSMutableDictionary" key="unlocalizedProperties"/>
-			<nil key="activeLocalization"/>
-			<dictionary class="NSMutableDictionary" key="localizations"/>
-			<nil key="sourceID"/>
-			<int key="maxID">15</int>
-		</object>
-		<object class="IBClassDescriber" key="IBDocument.Classes"/>
-		<int key="IBDocument.localizationMode">0</int>
-		<string key="IBDocument.TargetRuntimeIdentifier">IBCocoaTouchFramework</string>
-		<object class="NSMutableDictionary" key="IBDocument.PluginDeclaredDependencyDefaults">
-			<string key="NS.key.0">com.apple.InterfaceBuilder.CocoaTouchPlugin.iPhoneOS</string>
-			<real value="1552" key="NS.object.0"/>
-		</object>
-		<bool key="IBDocument.PluginDeclaredDependenciesTrackSystemTargetVersion">YES</bool>
-		<int key="IBDocument.defaultPropertyAccessControl">3</int>
-		<dictionary class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
-			<string key="right@2x.png">{49, 39}</string>
-			<string key="wood_pallets@2x.png">{713, 37}</string>
-		</dictionary>
-		<string key="IBCocoaTouchPluginVersion">2083</string>
-	</data>
-</archive>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="4514" systemVersion="12F45" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none">
+    <dependencies>
+        <deployment defaultVersion="1280" identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3747"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ColorShopCell"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="blue" indentationWidth="10" reuseIdentifier="ColorShopCell" rowHeight="100" id="4" customClass="ColorShopCell">
+            <rect key="frame" x="0.0" y="0.0" width="304" height="66"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="4" id="NtN-22-EIn">
+                <rect key="frame" x="0.0" y="0.0" width="304" height="65"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="wood_pallets.png" id="5">
+                        <rect key="frame" x="6" y="46" width="292" height="20"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    </imageView>
+                    <view tag="10" contentMode="scaleToFill" id="6" customClass="ColorView">
+                        <rect key="frame" x="40" y="11" width="43" height="44"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    </view>
+                    <view tag="11" contentMode="scaleToFill" id="7" customClass="ColorView">
+                        <rect key="frame" x="92" y="11" width="43" height="44"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    </view>
+                    <view tag="12" contentMode="scaleToFill" id="8" customClass="ColorView">
+                        <rect key="frame" x="143" y="11" width="43" height="44"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    </view>
+                    <view tag="13" contentMode="scaleToFill" id="9" customClass="ColorView">
+                        <rect key="frame" x="195" y="11" width="43" height="44"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    </view>
+                    <view tag="14" contentMode="scaleToFill" id="10" customClass="ColorView">
+                        <rect key="frame" x="245" y="11" width="43" height="44"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    </view>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="right.png" id="12">
+                        <rect key="frame" x="7" y="27" width="28" height="28"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    </imageView>
+                    <label hidden="YES" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="x 100" lineBreakMode="tailTruncation" minimumFontSize="10" id="13">
+                        <rect key="frame" x="52" y="8" width="200" height="21"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <color key="textColor" red="0.98823529409999999" green="0.30588235289999999" blue="0.078431372550000003" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                        <color key="shadowColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <size key="shadowOffset" width="0.0" height="1"/>
+                    </label>
+                </subviews>
+            </tableViewCellContentView>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+            <connections>
+                <outlet property="coinImageView" destination="12" id="14"/>
+                <outlet property="priceLabel" destination="13" id="15"/>
+            </connections>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="right.png" width="24" height="19"/>
+        <image name="wood_pallets.png" width="356" height="18"/>
+    </resources>
+</document>
