@@ -31,6 +31,7 @@
     cell.nickLabel.font = CELL_NICK_FONT;
     cell.signLabel.font = CELL_CONTENT_FONT;
     cell.nickNameLabel.font = CELL_NICK_FONT;
+    cell.backgroundColor = [UIColor clearColor];
     return cell;
 }
 

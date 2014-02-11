@@ -747,7 +747,7 @@
         <image name="draw_palette@2x.png" width="60" height="62"/>
         <image name="draw_rubber.png" width="61" height="61"/>
         <image name="draw_straw.png" width="16" height="33"/>
-        <image name="draw_straw@2x.png" width="60" height="62"/>
+        <image name="draw_straw@2x.png" width="27" height="27"/>
         <image name="draw_straw_seleted.png" width="16" height="33"/>
         <image name="draw_straw_seleted@2x.png" width="60" height="62"/>
         <image name="draw_switch.png" width="25" height="22"/>

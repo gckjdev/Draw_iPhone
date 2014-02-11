@@ -210,7 +210,7 @@ CGPoint boxContentOffset;
 
 + (CGFloat)getCellHeight
 {
-    return (ISIPAD ? 152 : 76);
+    return (ISIPAD ? 152 : 80);
 }
 
 - (NSString *)nameInList:(NSArray *)list language:(NSString *)language

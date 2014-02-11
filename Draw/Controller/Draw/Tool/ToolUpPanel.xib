@@ -156,7 +156,7 @@
     </objects>
     <resources>
         <image name="draw_up_panel_accessory.png" width="19" height="19"/>
-        <image name="draw_up_panel_accessory@2x.png" width="60" height="62"/>
+        <image name="draw_up_panel_accessory@2x.png" width="27" height="27"/>
         <image name="draw_up_panel_background.png" width="27" height="27"/>
     </resources>
 </document>

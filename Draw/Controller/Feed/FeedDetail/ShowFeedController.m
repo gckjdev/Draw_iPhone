@@ -277,6 +277,7 @@ typedef enum{
             v.backgroundColor = [UIColor whiteColor];
             [cell.contentView addSubview:v];
             [cell.contentView sendSubviewToBack:v];
+            cell.backgroundColor = [UIColor clearColor];
         }
         if (row == 0) {
             [cell.textLabel setTextAlignment:UITextAlignmentCenter];

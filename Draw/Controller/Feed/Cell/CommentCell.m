@@ -36,7 +36,7 @@
     NSString* cellId = [self getCellIdentifier];
     CommentCell *cell = [CommentCell createViewWithXibIdentifier:cellId];
     cell.delegate = delegate;
-    cell.backgroundColor = [UIColor whiteColor];
+    cell.backgroundColor = [UIColor clearColor];
     cell.splitLine.backgroundColor = COLOR_GRAY_BG;
     return cell;
 }
