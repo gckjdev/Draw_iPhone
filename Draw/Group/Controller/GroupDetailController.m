@@ -819,8 +819,9 @@ typedef enum{
     [button setTitle:NSLS(@"kChargeTitle") forState:UIControlStateNormal];
     [button addTarget:self action:@selector(charge) forControlEvents:UIControlEventTouchUpInside];
     button.tag = CHARGE_BUTTON_TAG;
+    [button updateCenterX:CGRectGetMidX([[UIScreen mainScreen] bounds])];
     [cell.contentView addSubview:button];
-    
+    cell.backgroundColor = [UIColor clearColor];
     return cell;
 }
 

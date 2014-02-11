@@ -72,6 +72,7 @@
 
     DrawInfoCell *cell = [DrawInfoCell createViewWithXibIdentifier:cellId ofViewIndex:index];
     cell.delegate = delegate;
+    cell.backgroundColor = [UIColor clearColor];
     return cell;
 }
 

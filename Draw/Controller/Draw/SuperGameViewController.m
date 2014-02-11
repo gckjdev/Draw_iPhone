@@ -232,10 +232,11 @@
         
         //set center
         if ([DeviceDetection isIPAD]) {
-            aView.center = CGPointMake(70 * 2 + AVATAR_VIEW_SPACE * i, 50);
+            aView.center = CGPointMake(70 * 2 + AVATAR_VIEW_SPACE * i, 50 + STATUSBAR_DELTA);
         }else{
-            aView.center = CGPointMake(70 + AVATAR_VIEW_SPACE * i, 20);
+            aView.center = CGPointMake(70 + AVATAR_VIEW_SPACE * i, 20 + STATUSBAR_DELTA);
         }
+
         
         [self.view addSubview:aView];
         [avatarArray addObject:aView];

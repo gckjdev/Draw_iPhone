@@ -298,7 +298,7 @@
     </objects>
     <resources>
         <image name="draw_add.png" width="23" height="23"/>
-        <image name="draw_add@2x.png" width="28" height="29"/>
+        <image name="draw_add@2x.png" width="27" height="27"/>
         <image name="draw_up_panel_help_btn_.png" width="27" height="27"/>
         <image name="draw_up_panel_help_btn_@2x.png" width="60" height="62"/>
         <image name="drawlayer_delete.png" width="25" height="25"/>
