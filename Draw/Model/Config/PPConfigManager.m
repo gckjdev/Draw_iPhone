@@ -1438,5 +1438,9 @@
     return GET_UMENG_STRVALUE(@"VIP_MONTH_TAOBAO", @"http://a.m.taobao.com/i37164654977.htm");
 }
 
++ (BOOL)useAlipyaWeb
+{
+    return GET_UMENG_BOOLVALUE(@"USE_ALIPAY_WEB", YES);
+}
 
 @end
