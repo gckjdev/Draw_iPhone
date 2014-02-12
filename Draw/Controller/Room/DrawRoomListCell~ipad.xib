@@ -1,466 +1,105 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<archive type="com.apple.InterfaceBuilder3.CocoaTouch.iPad.XIB" version="8.00">
-	<data>
-		<int key="IBDocument.SystemTarget">1552</int>
-		<string key="IBDocument.SystemVersion">11E53</string>
-		<string key="IBDocument.InterfaceBuilderVersion">3084</string>
-		<string key="IBDocument.AppKitVersion">1138.47</string>
-		<string key="IBDocument.HIToolboxVersion">569.00</string>
-		<object class="NSMutableDictionary" key="IBDocument.PluginVersions">
-			<string key="NS.key.0">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-			<string key="NS.object.0">2083</string>
-		</object>
-		<array key="IBDocument.IntegratedClassDependencies">
-			<string>IBProxyObject</string>
-			<string>IBUIImageView</string>
-			<string>IBUILabel</string>
-			<string>IBUITableViewCell</string>
-			<string>IBUIView</string>
-		</array>
-		<array key="IBDocument.PluginDependencies">
-			<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-		</array>
-		<object class="NSMutableDictionary" key="IBDocument.Metadata">
-			<string key="NS.key.0">PluginDependencyRecalculationVersion</string>
-			<integer value="1" key="NS.object.0"/>
-		</object>
-		<array class="NSMutableArray" key="IBDocument.RootObjects" id="1000">
-			<object class="IBProxyObject" id="372490531">
-				<string key="IBProxiedObjectIdentifier">IBFilesOwner</string>
-				<string key="targetRuntimeIdentifier">IBIPadFramework</string>
-			</object>
-			<object class="IBProxyObject" id="975951072">
-				<string key="IBProxiedObjectIdentifier">IBFirstResponder</string>
-				<string key="targetRuntimeIdentifier">IBIPadFramework</string>
-			</object>
-			<object class="IBUITableViewCell" id="67202946">
-				<reference key="NSNextResponder"/>
-				<int key="NSvFlags">292</int>
-				<array class="NSMutableArray" key="NSSubviews">
-					<object class="IBUIView" id="916843377">
-						<reference key="NSNextResponder" ref="67202946"/>
-						<int key="NSvFlags">256</int>
-						<array class="NSMutableArray" key="NSSubviews">
-							<object class="IBUIImageView" id="796724541">
-								<reference key="NSNextResponder" ref="916843377"/>
-								<int key="NSvFlags">319</int>
-								<string key="NSFrame">{{127, 13}, {628, 221}}</string>
-								<reference key="NSSuperview" ref="916843377"/>
-								<reference key="NSNextKeyView" ref="1016410713"/>
-								<string key="NSReuseIdentifierKey">_NS:9</string>
-								<bool key="IBUIUserInteractionEnabled">NO</bool>
-								<string key="targetRuntimeIdentifier">IBIPadFramework</string>
-							</object>
-							<object class="IBUIImageView" id="191265845">
-								<reference key="NSNextResponder" ref="916843377"/>
-								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{127, 13}, {628, 65}}</string>
-								<reference key="NSSuperview" ref="916843377"/>
-								<string key="NSReuseIdentifierKey">_NS:9</string>
-								<bool key="IBUIUserInteractionEnabled">NO</bool>
-								<string key="targetRuntimeIdentifier">IBIPadFramework</string>
-								<object class="NSCustomResource" key="IBUIImage">
-									<string key="NSClassName">NSImage</string>
-									<string key="NSResourceName">room_title_bg@2x.png</string>
-								</object>
-							</object>
-							<object class="IBUILabel" id="1016410713">
-								<reference key="NSNextResponder" ref="916843377"/>
-								<int key="NSvFlags">319</int>
-								<string key="NSFrame">{{169, 16}, {549, 60}}</string>
-								<reference key="NSSuperview" ref="916843377"/>
-								<reference key="NSNextKeyView" ref="934765984"/>
-								<string key="NSReuseIdentifierKey">_NS:9</string>
-								<bool key="IBUIOpaque">NO</bool>
-								<bool key="IBUIClipsSubviews">YES</bool>
-								<int key="IBUIContentMode">7</int>
-								<bool key="IBUIUserInteractionEnabled">NO</bool>
-								<string key="targetRuntimeIdentifier">IBIPadFramework</string>
-								<string key="IBUIText">Label</string>
-								<object class="NSColor" key="IBUITextColor">
-									<int key="NSColorSpace">1</int>
-									<bytes key="NSRGB">MC45NDkwMTk2MDc4IDAuOTQ5MDE5NjA3OCAwLjkxMzcyNTQ5MDIAA</bytes>
-								</object>
-								<object class="NSColor" key="IBUIHighlightedColor">
-									<int key="NSColorSpace">3</int>
-									<bytes key="NSWhite">MQA</bytes>
-								</object>
-								<object class="NSColor" key="IBUIShadowColor" id="506328380">
-									<int key="NSColorSpace">3</int>
-									<bytes key="NSWhite">MCAwAA</bytes>
-								</object>
-								<string key="IBUIShadowOffset">{0, 0}</string>
-								<int key="IBUIBaselineAdjustment">0</int>
-								<float key="IBUIMinimumFontSize">10</float>
-								<int key="IBUITextAlignment">1</int>
-								<object class="IBUIFontDescription" key="IBUIFontDescription">
-									<int key="type">1</int>
-									<double key="pointSize">30</double>
-								</object>
-								<object class="NSFont" key="IBUIFont">
-									<string key="NSName">Helvetica</string>
-									<double key="NSSize">30</double>
-									<int key="NSfFlags">16</int>
-								</object>
-							</object>
-							<object class="IBUIImageView" id="971751825">
-								<reference key="NSNextResponder" ref="916843377"/>
-								<int key="NSvFlags">319</int>
-								<string key="NSFrame">{{24.5, 29.5}, {90, 90}}</string>
-								<reference key="NSSuperview" ref="916843377"/>
-								<reference key="NSNextKeyView" ref="379319168"/>
-								<string key="NSReuseIdentifierKey">_NS:9</string>
-								<bool key="IBUIUserInteractionEnabled">NO</bool>
-								<string key="targetRuntimeIdentifier">IBIPadFramework</string>
-								<object class="NSCustomResource" key="IBUIImage">
-									<string key="NSClassName">NSImage</string>
-									<string key="NSResourceName">draw_room_seat_white@2x.png</string>
-								</object>
-							</object>
-							<object class="IBUIImageView" id="1041211401">
-								<reference key="NSNextResponder" ref="916843377"/>
-								<int key="NSvFlags">319</int>
-								<string key="NSFrame">{{278.5, 116.5}, {90, 90}}</string>
-								<reference key="NSSuperview" ref="916843377"/>
-								<reference key="NSNextKeyView" ref="399975565"/>
-								<string key="NSReuseIdentifierKey">_NS:9</string>
-								<bool key="IBUIUserInteractionEnabled">NO</bool>
-								<string key="targetRuntimeIdentifier">IBIPadFramework</string>
-								<object class="NSCustomResource" key="IBUIImage">
-									<string key="NSClassName">NSImage</string>
-									<string key="NSResourceName">draw_room_seat_blue@2x.png</string>
-								</object>
-							</object>
-							<object class="IBUIImageView" id="14627933">
-								<reference key="NSNextResponder" ref="916843377"/>
-								<int key="NSvFlags">319</int>
-								<string key="NSFrame">{{398.5, 116.5}, {90, 90}}</string>
-								<reference key="NSSuperview" ref="916843377"/>
-								<reference key="NSNextKeyView" ref="5964861"/>
-								<string key="NSReuseIdentifierKey">_NS:9</string>
-								<bool key="IBUIUserInteractionEnabled">NO</bool>
-								<string key="targetRuntimeIdentifier">IBIPadFramework</string>
-								<object class="NSCustomResource" key="IBUIImage">
-									<string key="NSClassName">NSImage</string>
-									<string key="NSResourceName">draw_room_seat_yellow@2x.png</string>
-								</object>
-							</object>
-							<object class="IBUIImageView" id="765333099">
-								<reference key="NSNextResponder" ref="916843377"/>
-								<int key="NSvFlags">319</int>
-								<string key="NSFrame">{{518.5, 116.5}, {90, 90}}</string>
-								<reference key="NSSuperview" ref="916843377"/>
-								<reference key="NSNextKeyView" ref="565984621"/>
-								<string key="NSReuseIdentifierKey">_NS:9</string>
-								<bool key="IBUIUserInteractionEnabled">NO</bool>
-								<string key="targetRuntimeIdentifier">IBIPadFramework</string>
-								<object class="NSCustomResource" key="IBUIImage">
-									<string key="NSClassName">NSImage</string>
-									<string key="NSResourceName">draw_room_seat_purple@2x.png</string>
-								</object>
-							</object>
-							<object class="IBUIImageView" id="612075701">
-								<reference key="NSNextResponder" ref="916843377"/>
-								<int key="NSvFlags">319</int>
-								<string key="NSFrame">{{638.5, 116.5}, {90, 90}}</string>
-								<reference key="NSSuperview" ref="916843377"/>
-								<reference key="NSNextKeyView" ref="22147581"/>
-								<string key="NSReuseIdentifierKey">_NS:9</string>
-								<bool key="IBUIUserInteractionEnabled">NO</bool>
-								<string key="targetRuntimeIdentifier">IBIPadFramework</string>
-								<object class="NSCustomResource" key="IBUIImage">
-									<string key="NSClassName">NSImage</string>
-									<string key="NSResourceName">draw_room_seat_pink@2x.png</string>
-								</object>
-							</object>
-							<object class="IBUIImageView" id="934765984">
-								<reference key="NSNextResponder" ref="916843377"/>
-								<int key="NSvFlags">319</int>
-								<string key="NSFrame">{{158.5, 116.5}, {90, 90}}</string>
-								<reference key="NSSuperview" ref="916843377"/>
-								<reference key="NSNextKeyView" ref="907937624"/>
-								<string key="NSReuseIdentifierKey">_NS:9</string>
-								<bool key="IBUIUserInteractionEnabled">NO</bool>
-								<string key="targetRuntimeIdentifier">IBIPadFramework</string>
-								<object class="NSCustomResource" key="IBUIImage">
-									<string key="NSClassName">NSImage</string>
-									<string key="NSResourceName">draw_room_seat_orange@2x.png</string>
-								</object>
-							</object>
-							<object class="IBUIView" id="379319168">
-								<reference key="NSNextResponder" ref="916843377"/>
-								<int key="NSvFlags">319</int>
-								<string key="NSFrame">{{25, 29}, {90, 90}}</string>
-								<reference key="NSSuperview" ref="916843377"/>
-								<reference key="NSNextKeyView" ref="796724541"/>
-								<string key="NSReuseIdentifierKey">_NS:9</string>
-								<reference key="IBUIBackgroundColor" ref="506328380"/>
-								<int key="IBUITag">101</int>
-								<string key="targetRuntimeIdentifier">IBIPadFramework</string>
-							</object>
-							<object class="IBUIView" id="907937624">
-								<reference key="NSNextResponder" ref="916843377"/>
-								<int key="NSvFlags">319</int>
-								<string key="NSFrame">{{158.5, 116}, {90, 90}}</string>
-								<reference key="NSSuperview" ref="916843377"/>
-								<reference key="NSNextKeyView" ref="1041211401"/>
-								<string key="NSReuseIdentifierKey">_NS:9</string>
-								<reference key="IBUIBackgroundColor" ref="506328380"/>
-								<int key="IBUITag">102</int>
-								<string key="targetRuntimeIdentifier">IBIPadFramework</string>
-							</object>
-							<object class="IBUIView" id="399975565">
-								<reference key="NSNextResponder" ref="916843377"/>
-								<int key="NSvFlags">319</int>
-								<string key="NSFrame">{{278.5, 116}, {90, 90}}</string>
-								<reference key="NSSuperview" ref="916843377"/>
-								<reference key="NSNextKeyView" ref="14627933"/>
-								<string key="NSReuseIdentifierKey">_NS:9</string>
-								<reference key="IBUIBackgroundColor" ref="506328380"/>
-								<int key="IBUITag">103</int>
-								<string key="targetRuntimeIdentifier">IBIPadFramework</string>
-							</object>
-							<object class="IBUIView" id="5964861">
-								<reference key="NSNextResponder" ref="916843377"/>
-								<int key="NSvFlags">319</int>
-								<string key="NSFrame">{{398.5, 116}, {90, 90}}</string>
-								<reference key="NSSuperview" ref="916843377"/>
-								<reference key="NSNextKeyView" ref="765333099"/>
-								<string key="NSReuseIdentifierKey">_NS:9</string>
-								<reference key="IBUIBackgroundColor" ref="506328380"/>
-								<int key="IBUITag">104</int>
-								<string key="targetRuntimeIdentifier">IBIPadFramework</string>
-							</object>
-							<object class="IBUIView" id="565984621">
-								<reference key="NSNextResponder" ref="916843377"/>
-								<int key="NSvFlags">319</int>
-								<string key="NSFrame">{{518.5, 116}, {90, 90}}</string>
-								<reference key="NSSuperview" ref="916843377"/>
-								<reference key="NSNextKeyView" ref="612075701"/>
-								<string key="NSReuseIdentifierKey">_NS:9</string>
-								<reference key="IBUIBackgroundColor" ref="506328380"/>
-								<int key="IBUITag">105</int>
-								<string key="targetRuntimeIdentifier">IBIPadFramework</string>
-							</object>
-							<object class="IBUIView" id="22147581">
-								<reference key="NSNextResponder" ref="916843377"/>
-								<int key="NSvFlags">319</int>
-								<string key="NSFrame">{{638.5, 116}, {90, 90}}</string>
-								<reference key="NSSuperview" ref="916843377"/>
-								<string key="NSReuseIdentifierKey">_NS:9</string>
-								<reference key="IBUIBackgroundColor" ref="506328380"/>
-								<int key="IBUITag">106</int>
-								<string key="targetRuntimeIdentifier">IBIPadFramework</string>
-							</object>
-						</array>
-						<string key="NSFrameSize">{768, 244}</string>
-						<reference key="NSSuperview" ref="67202946"/>
-						<reference key="NSNextKeyView" ref="971751825"/>
-						<string key="NSReuseIdentifierKey">_NS:11</string>
-						<reference key="IBUIBackgroundColor" ref="506328380"/>
-						<bool key="IBUIOpaque">NO</bool>
-						<bool key="IBUIClipsSubviews">YES</bool>
-						<int key="IBUIContentMode">4</int>
-						<bool key="IBUIMultipleTouchEnabled">YES</bool>
-						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-					</object>
-				</array>
-				<string key="NSFrameSize">{768, 245}</string>
-				<reference key="NSSuperview"/>
-				<reference key="NSNextKeyView" ref="916843377"/>
-				<string key="NSReuseIdentifierKey">_NS:9</string>
-				<string key="IBUIRestorationIdentifier">ZJHRoomListCell</string>
-				<string key="targetRuntimeIdentifier">IBIPadFramework</string>
-				<reference key="IBUIContentView" ref="916843377"/>
-				<string key="IBUIReuseIdentifier">DiceRoomListCell</string>
-			</object>
-		</array>
-		<object class="IBObjectContainer" key="IBDocument.Objects">
-			<array class="NSMutableArray" key="connectionRecords">
-				<object class="IBConnectionRecord">
-					<object class="IBCocoaTouchOutletConnection" key="connection">
-						<string key="label">roomNameLabel</string>
-						<reference key="source" ref="67202946"/>
-						<reference key="destination" ref="1016410713"/>
-					</object>
-					<int key="connectionID">74</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBCocoaTouchOutletConnection" key="connection">
-						<string key="label">backgroundImageView</string>
-						<reference key="source" ref="67202946"/>
-						<reference key="destination" ref="796724541"/>
-					</object>
-					<int key="connectionID">75</int>
-				</object>
-			</array>
-			<object class="IBMutableOrderedSet" key="objectRecords">
-				<array key="orderedObjects">
-					<object class="IBObjectRecord">
-						<int key="objectID">0</int>
-						<array key="object" id="0"/>
-						<reference key="children" ref="1000"/>
-						<nil key="parent"/>
-					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">-1</int>
-						<reference key="object" ref="372490531"/>
-						<reference key="parent" ref="0"/>
-						<string key="objectName">File's Owner</string>
-					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">-2</int>
-						<reference key="object" ref="975951072"/>
-						<reference key="parent" ref="0"/>
-					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">59</int>
-						<reference key="object" ref="67202946"/>
-						<array class="NSMutableArray" key="children">
-							<reference ref="399975565"/>
-							<reference ref="5964861"/>
-							<reference ref="565984621"/>
-							<reference ref="379319168"/>
-							<reference ref="907937624"/>
-							<reference ref="796724541"/>
-							<reference ref="971751825"/>
-							<reference ref="612075701"/>
-							<reference ref="934765984"/>
-							<reference ref="1041211401"/>
-							<reference ref="765333099"/>
-							<reference ref="14627933"/>
-							<reference ref="22147581"/>
-							<reference ref="191265845"/>
-							<reference ref="1016410713"/>
-						</array>
-						<reference key="parent" ref="0"/>
-					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">60</int>
-						<reference key="object" ref="399975565"/>
-						<reference key="parent" ref="67202946"/>
-					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">61</int>
-						<reference key="object" ref="5964861"/>
-						<reference key="parent" ref="67202946"/>
-					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">62</int>
-						<reference key="object" ref="565984621"/>
-						<reference key="parent" ref="67202946"/>
-					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">63</int>
-						<reference key="object" ref="1016410713"/>
-						<reference key="parent" ref="67202946"/>
-					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">64</int>
-						<reference key="object" ref="379319168"/>
-						<reference key="parent" ref="67202946"/>
-					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">65</int>
-						<reference key="object" ref="907937624"/>
-						<reference key="parent" ref="67202946"/>
-					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">66</int>
-						<reference key="object" ref="796724541"/>
-						<reference key="parent" ref="67202946"/>
-					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">67</int>
-						<reference key="object" ref="971751825"/>
-						<reference key="parent" ref="67202946"/>
-					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">68</int>
-						<reference key="object" ref="612075701"/>
-						<reference key="parent" ref="67202946"/>
-					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">69</int>
-						<reference key="object" ref="934765984"/>
-						<reference key="parent" ref="67202946"/>
-					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">70</int>
-						<reference key="object" ref="1041211401"/>
-						<reference key="parent" ref="67202946"/>
-					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">71</int>
-						<reference key="object" ref="765333099"/>
-						<reference key="parent" ref="67202946"/>
-					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">72</int>
-						<reference key="object" ref="14627933"/>
-						<reference key="parent" ref="67202946"/>
-					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">73</int>
-						<reference key="object" ref="22147581"/>
-						<reference key="parent" ref="67202946"/>
-					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">76</int>
-						<reference key="object" ref="191265845"/>
-						<reference key="parent" ref="67202946"/>
-					</object>
-				</array>
-			</object>
-			<dictionary class="NSMutableDictionary" key="flattenedProperties">
-				<string key="-1.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-				<string key="-2.CustomClassName">UIResponder</string>
-				<string key="-2.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-				<string key="59.CustomClassName">DrawRoomListCell</string>
-				<string key="59.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-				<string key="60.CustomClassName">AvatarView</string>
-				<string key="60.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-				<string key="61.CustomClassName">AvatarView</string>
-				<string key="61.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-				<string key="62.CustomClassName">AvatarView</string>
-				<string key="62.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-				<string key="63.CustomClassName">FXLabel</string>
-				<string key="63.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-				<string key="64.CustomClassName">AvatarView</string>
-				<string key="64.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-				<string key="65.CustomClassName">AvatarView</string>
-				<string key="65.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-				<string key="66.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-				<string key="67.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-				<string key="68.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-				<string key="69.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-				<string key="70.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-				<string key="71.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-				<string key="72.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-				<string key="73.CustomClassName">AvatarView</string>
-				<string key="73.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-				<string key="76.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-			</dictionary>
-			<dictionary class="NSMutableDictionary" key="unlocalizedProperties"/>
-			<nil key="activeLocalization"/>
-			<dictionary class="NSMutableDictionary" key="localizations"/>
-			<nil key="sourceID"/>
-			<int key="maxID">76</int>
-		</object>
-		<object class="IBClassDescriber" key="IBDocument.Classes"/>
-		<int key="IBDocument.localizationMode">0</int>
-		<string key="IBDocument.TargetRuntimeIdentifier">IBIPadFramework</string>
-		<bool key="IBDocument.PluginDeclaredDependenciesTrackSystemTargetVersion">YES</bool>
-		<int key="IBDocument.defaultPropertyAccessControl">3</int>
-		<dictionary class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
-			<string key="draw_room_seat_blue@2x.png">{89, 89}</string>
-			<string key="draw_room_seat_orange@2x.png">{89, 89}</string>
-			<string key="draw_room_seat_pink@2x.png">{89, 89}</string>
-			<string key="draw_room_seat_purple@2x.png">{89, 89}</string>
-			<string key="draw_room_seat_white@2x.png">{89, 89}</string>
-			<string key="draw_room_seat_yellow@2x.png">{89, 89}</string>
-			<string key="room_title_bg@2x.png">{619, 68}</string>
-		</dictionary>
-		<string key="IBCocoaTouchPluginVersion">2083</string>
-	</data>
-</archive>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.iPad.XIB" version="3.0" toolsVersion="4514" systemVersion="12F45" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none">
+    <dependencies>
+        <deployment defaultVersion="1280" identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3747"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="blue" indentationWidth="10" reuseIdentifier="DiceRoomListCell" id="59" customClass="DrawRoomListCell">
+            <rect key="frame" x="0.0" y="0.0" width="768" height="245"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="59" id="BCI-jh-0Yt">
+                <rect key="frame" x="0.0" y="0.0" width="768" height="244"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" id="66">
+                        <rect key="frame" x="127" y="13" width="628" height="221"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
+                    </imageView>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="room_title_bg.png" id="76">
+                        <rect key="frame" x="127" y="13" width="628" height="65"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    </imageView>
+                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" id="63" customClass="FXLabel">
+                        <rect key="frame" x="169" y="16" width="549" height="60"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                        <color key="textColor" red="0.94901960780000005" green="0.94901960780000005" blue="0.91372549020000005" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="shadowColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        <size key="shadowOffset" width="0.0" height="0.0"/>
+                    </label>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="draw_room_seat_white.png" id="67">
+                        <rect key="frame" x="25" y="29" width="90" height="90"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
+                    </imageView>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="draw_room_seat_blue.png" id="70">
+                        <rect key="frame" x="279" y="116" width="90" height="90"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
+                    </imageView>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="draw_room_seat_yellow.png" id="72">
+                        <rect key="frame" x="398" y="116" width="90" height="90"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
+                    </imageView>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="draw_room_seat_purple.png" id="71">
+                        <rect key="frame" x="518" y="116" width="90" height="90"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
+                    </imageView>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="draw_room_seat_pink.png" id="68">
+                        <rect key="frame" x="638" y="116" width="90" height="90"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
+                    </imageView>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="draw_room_seat_orange.png" id="69">
+                        <rect key="frame" x="158" y="116" width="90" height="90"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
+                    </imageView>
+                    <view tag="101" contentMode="scaleToFill" id="64" customClass="AvatarView">
+                        <rect key="frame" x="25" y="29" width="90" height="90"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    </view>
+                    <view tag="102" contentMode="scaleToFill" id="65" customClass="AvatarView">
+                        <rect key="frame" x="158" y="116" width="90" height="90"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    </view>
+                    <view tag="103" contentMode="scaleToFill" id="60" customClass="AvatarView">
+                        <rect key="frame" x="279" y="116" width="90" height="90"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    </view>
+                    <view tag="104" contentMode="scaleToFill" id="61" customClass="AvatarView">
+                        <rect key="frame" x="398" y="116" width="90" height="90"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    </view>
+                    <view tag="105" contentMode="scaleToFill" id="62" customClass="AvatarView">
+                        <rect key="frame" x="518" y="116" width="90" height="90"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    </view>
+                    <view tag="106" contentMode="scaleToFill" id="73" customClass="AvatarView">
+                        <rect key="frame" x="638" y="116" width="90" height="90"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    </view>
+                </subviews>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="backgroundImageView" destination="66" id="75"/>
+                <outlet property="roomNameLabel" destination="63" id="74"/>
+            </connections>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="draw_room_seat_blue.png" width="44" height="44"/>
+        <image name="draw_room_seat_orange.png" width="44" height="44"/>
+        <image name="draw_room_seat_pink.png" width="44" height="44"/>
+        <image name="draw_room_seat_purple.png" width="44" height="44"/>
+        <image name="draw_room_seat_white.png" width="44" height="44"/>
+        <image name="draw_room_seat_yellow.png" width="44" height="44"/>
+        <image name="room_title_bg.png" width="309" height="34"/>
+    </resources>
+</document>
