@@ -341,9 +341,7 @@ static TaskManager* _defaultTaskManager;
 
 - (void)showVip:(GameTask*)task
 {
-    PurchaseVipController* vc = [[PurchaseVipController alloc] init];
-    [self.viewController.navigationController pushViewController:vc animated:YES];
-    [vc release];
+    [PurchaseVipController enter:self.viewController];
 }
 
 - (void)bindSinaWeibo:(GameTask*)task

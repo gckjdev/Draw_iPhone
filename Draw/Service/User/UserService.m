@@ -45,6 +45,7 @@
 #import "UserDeviceService.h"
 #import "GameSNSService.h"
 #import "GroupManager.h"
+#import "TimeUtils.h"
 
 @implementation UserService
 
@@ -2401,6 +2402,34 @@ POSTMSG(NSLS(@"kLoginFailure"));
             
             EXECUTE_BLOCK(resultBlock, output.resultCode);
             
+        });
+    });
+}
+
+- (void)getVipPurchaseInfo:(void(^)(int resultCode))resultBlock
+{
+    dispatch_async(workingQueue, ^{
+        GameNetworkOutput* output = [PPGameNetworkRequest apiServerGetAndResponseJSON:METHOD_GET_VIP_PURCHASE_INFO
+                                                                           parameters:nil
+                                                                        isReturnArray:NO];
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            
+            if (output.resultCode == ERROR_SUCCESS){
+                // save data
+                self.canBuyVip = [[output.jsonDataDict objectForKey:PARA_CAN_BUY_VIP] boolValue];
+                self.vipNextOpenDate = [NSDate dateWithTimeIntervalSince1970:[[output.jsonDataDict objectForKey:PARA_VIP_NEXT_OPEN_DATE] integerValue]];
+                self.vipMonthLeft = [[output.jsonDataDict objectForKey:PARA_VIP_MONTH_LEFT] integerValue];
+                self.vipYearLeft = [[output.jsonDataDict objectForKey:PARA_VIP_YEAR_LEFT] integerValue];
+                
+                PPDebug(@"getVipPurchaseInfo success, data=%@, canBuyVip=%d, nextOpenDate=%@, vipMonthLeft=%d, vipYearLeft=%d", [output.jsonDataDict description],
+                        self.canBuyVip,
+                        dateToChineseString(self.vipNextOpenDate),
+                        self.vipMonthLeft,
+                        self.vipYearLeft);
+            }
+            
+            EXECUTE_BLOCK(resultBlock, output.resultCode);
         });
     });
 }

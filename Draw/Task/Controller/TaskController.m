@@ -42,6 +42,8 @@
                             }];
     
     [self setDefaultBGImage];
+    
+    [[UserService defaultService] getVipPurchaseInfo:nil];
 }
 
 //SET_CELL_BG_IN_VIEW;

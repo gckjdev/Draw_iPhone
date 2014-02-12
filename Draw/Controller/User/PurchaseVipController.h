@@ -34,6 +34,6 @@
 - (IBAction)clickBuyMonth:(id)sender;
 - (IBAction)clickBuyYear:(id)sender;
 
-+ (PurchaseVipController*)enter:(UIViewController*)fromController;
++ (PurchaseVipController*)enter:(PPViewController*)fromController;
 
 @end

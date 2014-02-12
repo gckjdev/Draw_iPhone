@@ -31,17 +31,49 @@
 
 @implementation PurchaseVipController
 
-+ (PurchaseVipController*)enter:(UIViewController*)fromController
++ (PurchaseVipController*)enter:(PPViewController*)fromController
 {
     if ([PPConfigManager isInReviewVersion]){
         POSTMSG(NSLS(@"kTaskVipUnderDev"));
         return nil;
     }
     
-    PurchaseVipController* vc = [[PurchaseVipController alloc] init];
-    [fromController.navigationController pushViewController:vc animated:YES];
-    [vc release];
-    return vc;
+    if ([[UserManager defaultManager].pbUser vip]){
+        
+        // still need to sync info
+        [[UserService defaultService] getVipPurchaseInfo:nil];
+        
+        // already VIP, enter directly
+        PurchaseVipController* vc = [[PurchaseVipController alloc] init];
+        [fromController.navigationController pushViewController:vc animated:YES];
+        [vc release];
+        return vc;
+    }
+    
+    [fromController showActivityWithText:NSLS(@"kLoading")];
+    [[UserService defaultService] getVipPurchaseInfo:^(int resultCode) {
+        [fromController hideActivity];
+        if (resultCode == 0){
+            if ([[UserService defaultService] canBuyVip] == NO){
+                NSString* msg = [NSString stringWithFormat:@"还未到VIP购买日期 ^-^\n下一个购买开放日期是\n%@（%@）",
+                                 dateToChineseString([[UserService defaultService] vipNextOpenDate]),
+                                 chineseWeekDayFromDate([[UserService defaultService] vipNextOpenDate])];
+                
+                POSTMSG2(msg, 3);
+                return;
+            }
+            
+            PurchaseVipController* vc = [[PurchaseVipController alloc] init];
+            [fromController.navigationController pushViewController:vc animated:YES];
+            [vc release];
+        }
+        else{
+            POSTMSG(NSLS(@"kSystemFailure"));
+        }
+    }];
+    
+    return nil;
+
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -439,6 +471,17 @@
 
 - (IBAction)clickBuyMonth:(id)sender
 {
+    if ([[UserService defaultService] vipMonthLeft] == 0){
+        
+        NSDate* nextDate = [NSDate dateWithTimeInterval:7*24*3600 sinceDate:[[UserService defaultService] vipNextOpenDate]];
+        
+        NSString* msg = [NSString stringWithFormat:@"本期包月VIP名额已经售完\n下次购买日期为\n%@（%@）",
+                         dateToChineseString(nextDate),
+                         chineseWeekDayFromDate(nextDate)];
+        POSTMSG2(msg, 3);
+        return;
+    }
+    
     self.currentProductId = PRODUCT_ID_BUY_VIP_MONTH;
     
     int amount = [PPConfigManager getVipMonthFee];
@@ -455,6 +498,17 @@
 
 - (IBAction)clickBuyYear:(id)sender
 {
+    if ([[UserService defaultService] vipMonthLeft] == 0){
+        NSDate* nextDate = [NSDate dateWithTimeInterval:7*24*3600 sinceDate:[[UserService defaultService] vipNextOpenDate]];
+
+        NSString* msg = [NSString stringWithFormat:@"本期包年VIP名额已经售完\n下次购买日期为\n%@（%@）",
+                         dateToChineseString(nextDate),
+                         chineseWeekDayFromDate(nextDate)];
+        POSTMSG2(msg, 3);
+        return;
+    }
+
+    
     self.currentProductId = PRODUCT_ID_BUY_VIP_YEAR;
 
     int amount = [PPConfigManager getVipYearFee];
