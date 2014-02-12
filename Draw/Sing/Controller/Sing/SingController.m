@@ -175,7 +175,6 @@ enum{
     return self;
 }
 
-#define TAG_TITLE_VIEW 201311061604
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
@@ -219,7 +218,7 @@ enum{
     __block typeof (self) bself = self;
     [bself registerNotificationWithName:KEY_NOTIFICATION_SELECT_SONG usingBlock:^(NSNotification *note) {
         
-        [((CommonTitleView*)[bself.view viewWithTag:TAG_TITLE_VIEW]) setTitle:bself.singOpus.name];
+        [((CommonTitleView*)[CommonTitleView titleView:self.view]) setTitle:bself.singOpus.name];
         bself.lyricTextView.text = bself.singOpus.pbOpus.sing.song.lyric;
         bself.lyricTextView.hidden = NO;
         self.lyricBgImageView.hidden = NO;
@@ -233,7 +232,7 @@ enum{
     
     [bself registerNotificationWithName:KEY_NOTIFICATION_SING_INFO_CHANGE usingBlock:^(NSNotification *note) {
         
-        [((CommonTitleView*)[bself.view viewWithTag:TAG_TITLE_VIEW]) setTitle:bself.singOpus.name];
+        [((CommonTitleView*)[CommonTitleView titleView:self.view]) setTitle:bself.singOpus.name];
         
         [bself updateDescLabelInfo:bself.singOpus.pbOpus.desc];
         bself.lyricTextView.hidden = YES;
@@ -252,7 +251,6 @@ enum{
     [titleView setTarget:self];
     [titleView setBackButtonSelector:@selector(clickBackButton:)];
     [titleView setTitleLabelSelector:@selector(clickDescButton:)];
-    titleView.tag = TAG_TITLE_VIEW;
     [self.view sendSubviewToBack:titleView];
 }
 
@@ -772,6 +770,7 @@ enum{
     
     self.saveButton.hidden = NO;
     self.submitButton.hidden = NO;
+
 }
 
 - (void)uiPlaying{
