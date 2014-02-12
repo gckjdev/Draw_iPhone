@@ -10,7 +10,7 @@
 
 @implementation RopeView
 
-#define SELF_FRAME (!ISIPAD?CGRectMake(0,0,35,100+(ISIPHONE5?10:0)):CGRectMake(0,0,69,200))
+#define SELF_FRAME (!ISIPAD?CGRectMake(0,STATUSBAR_DELTA,35,100+(ISIPHONE5?10:0)):CGRectMake(0,STATUSBAR_DELTA,69,200))
 
 #define IMAGE_FRAME (!ISIPAD?CGRectMake(11,0,13,50):CGRectMake(22,0,25,100))
 
@@ -101,7 +101,8 @@
 
 - (void)reset
 {
-    self.frame = SELF_FRAME;    
+    self.frame = SELF_FRAME;
+    [self updateOriginY:STATUSBAR_DELTA];
     _ropeImage.frame = IMAGE_FRAME;
     self.hidden = NO;
     [self startAnimation];
