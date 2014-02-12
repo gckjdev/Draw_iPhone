@@ -2316,8 +2316,8 @@
 "kGroupTabTopicHot" = "熱度";
 "kGroupTabTopicNew" = "最新";
 "kGroupTabTopicFollow" = "關註";
-"kGroupTabGroupMine" = "我的";
-
+"kGroupTabTopicMine" = "我的";
+"kGroupTabTopicGroup" = "我家";
 
 "kIgnoring" = "發送忽略請求中...";
 "kRejecting" = "發送拒絕請求中...";

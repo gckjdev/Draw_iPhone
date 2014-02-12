@@ -2267,7 +2267,8 @@
 "kGroupTabTopicHot" = "Hot";
 "kGroupTabTopicNew" = "New";
 "kGroupTabTopicFollow" = "Follow";
-"kGroupTabGroupMine" = "Mine";
+"kGroupTabTopicMine" = "Mine";
+"kGroupTabTopicGroup" = "Home";
 
 
 "kIgnoring" = "Sending ignore request...";

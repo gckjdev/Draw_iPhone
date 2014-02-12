@@ -185,7 +185,7 @@
 
 - (void)hideAnimated:(BOOL)animated
 {
-    CGFloat y = CGRectGetHeight([[UIScreen mainScreen] bounds]) - 20;
+    CGFloat y = CGRectGetHeight([[UIScreen mainScreen] bounds]) - 20 + STATUSBAR_DELTA;
     if (animated) {
         [UIView animateWithDuration:BOTTOM_ANIMATION_INTERVAL animations:^{
             [self updateOriginY:y];            
@@ -196,7 +196,7 @@
 }
 - (void)showAnimated:(BOOL)animated
 {
-    CGFloat y = CGRectGetHeight([[UIScreen mainScreen] bounds]) - CGRectGetHeight(self.bounds) - 20;
+    CGFloat y = CGRectGetHeight([[UIScreen mainScreen] bounds]) - CGRectGetHeight(self.bounds) - 20 + STATUSBAR_DELTA;
     if (animated) {
         [UIView animateWithDuration:BOTTOM_ANIMATION_INTERVAL animations:^{
             [self updateOriginY:y];
