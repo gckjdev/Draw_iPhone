@@ -57,8 +57,8 @@
                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="bbs_board_line@2x.png" id="53">
-                        <rect key="frame" x="55" y="43" width="225" height="1"/>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="bbs_board_line.png" id="53">
+                        <rect key="frame" x="55" y="42" width="225" height="1"/>
                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
                     </imageView>
                 </subviews>
@@ -76,6 +76,6 @@
         </tableViewCell>
     </objects>
     <resources>
-        <image name="bbs_board_line@2x.png" width="52" height="48"/>
+        <image name="bbs_board_line.png" width="215" height="1"/>
     </resources>
 </document>
