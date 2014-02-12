@@ -331,7 +331,12 @@
                 
             case 0:
                 // pay via zhifubao
-                [bself alipayForOrder:order];
+                if ([PPConfigManager useAlipyaWeb]){
+                    [bself alipayWebPaymentForOrder:order product:product];
+                }
+                else{
+                    [bself alipayForOrder:order];
+                }
                 break;
 
             case 1:

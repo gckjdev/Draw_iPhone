@@ -354,5 +354,6 @@ typedef enum{
 + (NSString*)getVipYearTaobaoURL;
 + (NSString*)getVipMonthTaobaoURL;
 
++ (BOOL)useAlipyaWeb;
 
 @end

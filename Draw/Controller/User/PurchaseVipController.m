@@ -17,6 +17,7 @@
 #import "TimeUtils.h"
 #import "UILabel+Touchable.h"
 #import "TaoBaoController.h"
+#import "StringUtil.h"
 
 #define PRODUCT_ID_BUY_VIP_MONTH    @"PRODUCT_BUY_VIP_MONTH"
 #define PRODUCT_ID_BUY_VIP_YEAR     @"PRODUCT_BUY_VIP_YEAR"
@@ -148,10 +149,8 @@
     [self updateBuyVipCount];
 }
 
-- (void)viewDidAppear:(BOOL)animated
+- (void)updateVipInfo
 {
-    [super viewDidAppear:animated];
-    
     NSString* msg;
     NSDate* expireDate = [NSDate dateWithTimeIntervalSince1970:[UserManager defaultManager].pbUser.vipExpireDate];
     if ([[UserManager defaultManager].pbUser vip] && expireDate){
@@ -165,13 +164,24 @@
         
         self.purchaseYearLabel.text = @"包年续费\n99元/年";
         self.purchaseMonthLabel.text = @"包月续费\n10元/月";
-
+        
     }
     else{
         msg = [NSString stringWithFormat:@"已有%d位热心用户购买会员支持小吉", [[UserManager defaultManager] buyVipUserCount]];
     }
     
-    self.purchaseDescLabel.text = msg;
+    self.purchaseDescLabel.text = msg;}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    [self updateVipInfo];
+
+    [[AccountService defaultService] syncAccountWithResultHandler:^(int resultCode) {
+        if (resultCode == 0){
+            [self updateVipInfo];
+        }
+    }];
 }
 
 - (void)didReceiveMemoryWarning
@@ -290,14 +300,24 @@
 }
 
 
-
-- (void)alipayForOrder:(AlixPayOrder *)order
+- (void)alipayClientPaymentForOrder:(AlixPayOrder *)order
 {
     [[AccountService defaultService] setDelegate:self];
     [[[AccountService defaultService] alipayManager] payWithOrder:order
                                                         appScheme:[GameApp alipayCallBackScheme]
                                                     rsaPrivateKey:[PPConfigManager getAlipayRSAPrivateKey]];
-    
+}
+
+
+- (void)alipayForOrder:(AlixPayOrder *)order
+{
+    if ([PPConfigManager useAlipyaWeb]){
+        [self alipayWebPaymentForOrder:order];
+    }
+    else{
+        [self alipayClientPaymentForOrder:order];
+    }
+    return;
     
 }
 
@@ -383,6 +403,8 @@
 - (AlixPayOrder*)createOrder:(int)amount
                    productId:(NSString*)productId
                  productName:(NSString*)productName
+                        type:(int)type
+                       value:(int)value
 {
     AlixPayOrder *order = [[[AlixPayOrder alloc] init] autorelease];
     order.partner = [PPConfigManager getAlipayPartner];
@@ -423,7 +445,11 @@
     NSString* nick = @""; //[[UserManager defaultManager] nickName];
     NSString* name = [NSString stringWithFormat:@"小吉VIP会员包月（%d元/月），谢谢%@对小吉的热心支持！", amount, nick];
     
-    AlixPayOrder* order = [self createOrder:amount productId:PRODUCT_ID_BUY_VIP_MONTH productName:name];
+    AlixPayOrder* order = [self createOrder:amount
+                                  productId:PRODUCT_ID_BUY_VIP_MONTH
+                                productName:name
+                                       type:VIP_BUY_TYPE_MONTH
+                                      value:1];
     [self alipayForOrder:order];
 }
 
@@ -435,7 +461,11 @@
     NSString* nick = @""; //[[UserManager defaultManager] nickName];
     NSString* name = [NSString stringWithFormat:@"小吉VIP会员包年（%d元/年），谢谢%@对小吉的热心支持！", amount, nick];
     
-    AlixPayOrder* order = [self createOrder:amount productId:PRODUCT_ID_BUY_VIP_YEAR productName:name];
+    AlixPayOrder* order = [self createOrder:amount
+                                  productId:PRODUCT_ID_BUY_VIP_YEAR
+                                productName:name
+                                       type:VIP_BUY_TYPE_YEAR
+                                      value:1];
     [self alipayForOrder:order];
 }
 
@@ -446,6 +476,29 @@
             [self viewDidAppear:NO];
         }
     }];
+}
+
+- (void)alipayWebPaymentForOrder:(AlixPayOrder *)order
+{
+    NSString* PRODUCT = @"buyVip";
+    
+    NSString* url = [PPConfigManager getAlipayWebUrl];
+    url = [url stringByAddQueryParameter:METHOD value:@"charge"];
+    url = [url stringByAddQueryParameter:PARA_APPID value:[GameApp appId]];
+    url = [url stringByAddQueryParameter:PARA_GAME_ID value:[GameApp gameId]];
+    url = [url stringByAddQueryParameter:PARA_AMOUNT value:order.amount];
+    url = [url stringByAddQueryParameter:PARA_DESC value:order.productName];
+//    url = [url stringByAddQueryParameter:PARA_URL value:product.taobaoUrl];
+    url = [url stringByAddQueryParameter:PARA_USERID value:[[UserManager defaultManager] userId]];
+    url = [url stringByAddQueryParameter:PARA_TYPE intValue:[self getTypeByProductId:self.currentProductId]];
+    url = [url stringByAddQueryParameter:PARA_COUNT intValue:1];
+    url = [url stringByAddQueryParameter:PARA_PRODUCT value:PRODUCT];
+    
+    
+    NSString* title = [NSString stringWithFormat:@"%@", order.productName];
+    TaoBaoController* vc = [[TaoBaoController alloc] initWithURL:url title:title];
+    [self.navigationController pushViewController:vc animated:YES];
+    [vc release];
 }
 
 @end
