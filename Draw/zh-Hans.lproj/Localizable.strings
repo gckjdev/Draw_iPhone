@@ -2311,7 +2311,8 @@
 "kGroupTabTopicHot" = "热度";
 "kGroupTabTopicNew" = "最新";
 "kGroupTabTopicFollow" = "关注";
-"kGroupTabGroupMine" = "我的";
+"kGroupTabTopicMine" = "我的";
+"kGroupTabTopicGroup" = "我家";
 
 
 "kIgnoring" = "发送忽略请求中...";

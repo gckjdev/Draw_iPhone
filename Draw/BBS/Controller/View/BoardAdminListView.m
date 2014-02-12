@@ -70,6 +70,8 @@
     _avatar.userInteractionEnabled = YES;
 }
 
+#define MAX_NICK_WIDTH (ISIPAD?180:68)
+
 - (void)updateNickName
 {
     CGRect frame = CGRectZero;
@@ -78,21 +80,24 @@
     CGSize size = [_user.nickName sizeWithMyFont:NICK_FONT
                                constrainedToSize:CGSizeMake(10000, ADMIN_NICK_MAX_WIDTH)
                                    lineBreakMode:NSLineBreakByCharWrapping];
-    frame.size = CGSizeMake(size.width * 1.2, CGRectGetHeight(self.bounds));
+    CGFloat width = MIN(MAX_NICK_WIDTH, size.width);
+    frame.size = CGSizeMake(width, CGRectGetHeight(self.bounds));
     
     _nick = [[[UILabel alloc] initWithFrame:frame] autorelease];
     [_nick setText:_user.nickName];
     [_nick setLineBreakMode:NSLineBreakByTruncatingTail];
+    _nick.numberOfLines = 1;
     [_nick setFont:NICK_FONT];
     [_nick setBackgroundColor:[UIColor clearColor]];
     [_nick setTextColor:[[BBSColorManager defaultManager] bbsAdminNickColor]];
     [self addSubview:_nick];
 }
 
+#define SPACE (ISIPAD?10:5)
 - (void)updateFrame
 {
     CGFloat width = CGRectGetWidth(_nick.frame) + CGRectGetWidth(_avatar.frame);
-    self.frame = CGRectMake(0, 0, width, ADMIN_VIEW_HEIGHT);
+    self.frame = CGRectMake(0, 0, width+SPACE, ADMIN_VIEW_HEIGHT);
 }
 
 + (id)adminViewWithBBSUser:(PBBBSUser *)user

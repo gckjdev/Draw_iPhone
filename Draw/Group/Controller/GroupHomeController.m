@@ -246,7 +246,8 @@
                      @(GroupTabTopicHot),
                      @(GroupTabTopicNew),
                      @(GroupTabTopicMine),
-                     @(GroupTabTopicFollow)];
+                     @(GroupTabTopicFollow),
+                     @(GroupTabTopicGroup)];
     return [tabs containsObject:@(tab)];
 }
 
@@ -323,7 +324,7 @@
 
 - (NSInteger)tabCount
 {
-    return 11;
+    return 12;
 }
 - (NSInteger)currentTabIndex
 {
@@ -347,10 +348,11 @@
         GroupTabGroupFame,
         
         //topic sub tabs
-        GroupTabTopicHot,
-        GroupTabTopicNew,
         GroupTabTopicFollow,
+        GroupTabTopicGroup,
         GroupTabTopicMine,
+        GroupTabTopicNew,
+        GroupTabTopicHot,
     };
     return tabs[index];
 }
@@ -367,11 +369,11 @@
         NSLS(@"kGroupTabGroupActive"),
         NSLS(@"kGroupTabGroupFame"),
         
-        NSLS(@"kGroupTabTopicHot"),
-        NSLS(@"kGroupTabTopicNew"),
         NSLS(@"kGroupTabTopicFollow"),
-        NSLS(@"kGroupTabGroupMine"),
-        
+        NSLS(@"kGroupTabTopicGroup"),
+        NSLS(@"kGroupTabTopicMine"),
+        NSLS(@"kGroupTabTopicNew"),
+        NSLS(@"kGroupTabTopicHot"),
     };
     return titles[index];
 }
@@ -391,12 +393,14 @@
     TableTab *tab = [_tabManager tabForID:tabID];
 
     ListResultBlock callback = ^(NSArray *list, NSError *error){
+        [self hideActivity];
         if (error) {
             [self failLoadDataForTabID:tabID];
         }else{
             [self finishLoadDataForTabID:tabID resultList:list];
         }
     };
+    [self showActivityWithText:NSLS(@"kLoading")];
     
     switch (tabID) {
         case GroupTabGroupFollow:
@@ -423,7 +427,7 @@
                                                        callback:callback];
             break;
         }
-        case GroupTabTopic:
+        case GroupTabTopicGroup:
         {
             [[GroupService defaultService] getTopicTimelineList:tab.offset
                                                           limit:tab.limit
@@ -444,6 +448,7 @@
         
         default:
             [self finishLoadDataForTabID:tabID resultList:nil];
+            [self hideActivity];
             break;
     }
 }

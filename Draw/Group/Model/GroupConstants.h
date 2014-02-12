@@ -89,6 +89,7 @@ typedef enum{
     GetTopicListTypeNew = 12,
     GetTopicListTypeFollow = 13,
     GetTopicListTypeMine = 14,
+    GetTopicListTypeGroup = 15
 }GetTopicListType;
 
 
@@ -102,7 +103,7 @@ typedef enum{
 typedef enum{
     GroupTabGroup = 100,
     GroupTabTopic = 101,
-//    GroupTabFollow = 102,
+    GroupTabFollow = 102,
 
     //group sub tabs
     GroupTabGroupFollow = GetGroupListTypeFollow,
@@ -116,6 +117,7 @@ typedef enum{
     GroupTabTopicNew = GetTopicListTypeNew,
     GroupTabTopicFollow = GetTopicListTypeFollow,
     GroupTabTopicMine = GetTopicListTypeMine,
+    GroupTabTopicGroup = GetTopicListTypeGroup,
     
 }GroupTab;
 

@@ -159,7 +159,7 @@
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <subviews>
                         <button opaque="NO" tag="11" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="nlp-IN-GfZ">
-                            <rect key="frame" x="0.0" y="0.0" width="80" height="30"/>
+                            <rect key="frame" x="256" y="0.0" width="64" height="30"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             <color key="backgroundColor" red="1" green="0.47843137250000001" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                             <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
@@ -175,7 +175,7 @@
                             </connections>
                         </button>
                         <button opaque="NO" tag="12" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="oGM-pj-7Pt">
-                            <rect key="frame" x="80" y="0.0" width="80" height="30"/>
+                            <rect key="frame" x="192" y="0.0" width="64" height="30"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             <color key="backgroundColor" red="1" green="0.47843137250000001" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                             <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
@@ -191,7 +191,7 @@
                             </connections>
                         </button>
                         <button opaque="NO" tag="13" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="p4D-e4-Vs2">
-                            <rect key="frame" x="160" y="0.0" width="80" height="30"/>
+                            <rect key="frame" x="0.0" y="0.0" width="64" height="30"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             <color key="backgroundColor" red="1" green="0.47843137250000001" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                             <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
@@ -207,7 +207,7 @@
                             </connections>
                         </button>
                         <button opaque="NO" tag="14" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="7iT-bm-ttQ">
-                            <rect key="frame" x="240" y="0.0" width="80" height="30"/>
+                            <rect key="frame" x="128" y="0.0" width="64" height="30"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             <color key="backgroundColor" red="1" green="0.47843137250000001" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                             <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
@@ -220,6 +220,22 @@
                             </state>
                             <connections>
                                 <action selector="clickTabButton:" destination="-1" eventType="touchUpInside" id="gGx-71-lja"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" tag="15" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="5PY-Kv-SVb">
+                            <rect key="frame" x="64" y="0.0" width="64" height="30"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                            <color key="backgroundColor" red="1" green="0.47843137250000001" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                            <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                            <state key="normal" title="我家">
+                                <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <state key="highlighted">
+                                <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <connections>
+                                <action selector="clickTabButton:" destination="-1" eventType="touchUpInside" id="peW-A4-YbT"/>
                             </connections>
                         </button>
                     </subviews>
