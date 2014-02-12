@@ -151,7 +151,7 @@ typedef enum{
     CGFloat width = self.tableViewBgImageView.frame.size.width/4;
     CGFloat height = (ISIPAD ? 61 : 28);
     CGFloat originX = self.tableViewBgImageView.frame.origin.x;
-    CGFloat originY = (ISIPAD ? 216 : 99);
+    CGFloat originY = (ISIPAD ? 216 : 102);
     CGRect rect;
     for (NSInteger i = 0; i < count; i++) {
         NSInteger tabID = [self tabIDforIndex:i];

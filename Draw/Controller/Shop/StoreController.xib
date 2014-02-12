@@ -25,7 +25,7 @@
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="1">
-            <rect key="frame" x="0.0" y="0.0" width="320" height="480.00000000000006"/>
+            <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="store_bg.jpg" id="94">
@@ -34,7 +34,7 @@
                     <rect key="contentStretch" x="0.5" y="0.5" width="0.0" height="0.0"/>
                 </imageView>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" id="30">
-                    <rect key="frame" x="4" y="424.00000000000006" width="312" height="53"/>
+                    <rect key="frame" x="4" y="424" width="312" height="53.000000000000043"/>
                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES"/>
                 </imageView>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" id="97">
@@ -84,7 +84,7 @@
                     </connections>
                 </tableView>
                 <button opaque="NO" tag="100" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="39">
-                    <rect key="frame" x="4" y="103" width="78" height="30"/>
+                    <rect key="frame" x="4" y="105" width="78" height="30"/>
                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" heightSizable="YES" flexibleMaxY="YES"/>
                     <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
                     <state key="normal" title="道具">
@@ -104,7 +104,7 @@
                     </connections>
                 </button>
                 <button opaque="NO" tag="101" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="40">
-                    <rect key="frame" x="82" y="103" width="78" height="30"/>
+                    <rect key="frame" x="82" y="105" width="78" height="30"/>
                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" heightSizable="YES" flexibleMaxY="YES"/>
                     <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
                     <state key="normal" title="工具">
@@ -124,7 +124,7 @@
                     </connections>
                 </button>
                 <button opaque="NO" tag="102" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="63">
-                    <rect key="frame" x="160" y="103" width="78" height="30"/>
+                    <rect key="frame" x="160" y="105" width="78" height="30"/>
                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" heightSizable="YES" flexibleMaxY="YES"/>
                     <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
                     <state key="normal" title="促销">
@@ -144,7 +144,7 @@
                     </connections>
                 </button>
                 <button opaque="NO" tag="103" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="41">
-                    <rect key="frame" x="238" y="103" width="78" height="30"/>
+                    <rect key="frame" x="238" y="105" width="78" height="30"/>
                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" heightSizable="YES" flexibleMaxY="YES"/>
                     <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
                     <state key="normal" title="淘宝">
@@ -164,7 +164,7 @@
                     </connections>
                 </button>
                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="kBalance" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="47" customClass="LocalizableLabel">
-                    <rect key="frame" x="7" y="444" width="69" height="23.999999999999986"/>
+                    <rect key="frame" x="7" y="444" width="69" height="24"/>
                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="16"/>
@@ -174,19 +174,19 @@
                     <size key="shadowOffset" width="0.0" height="0.0"/>
                 </label>
                 <view contentMode="scaleToFill" id="67">
-                    <rect key="frame" x="76" y="443.00000000000006" width="95" height="24"/>
+                    <rect key="frame" x="76" y="443" width="95" height="24.000000000000075"/>
                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES"/>
                     <subviews>
                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="coin.png" id="48">
-                            <rect key="frame" x="-1" y="0.0" width="25" height="25"/>
+                            <rect key="frame" x="-1" y="7.1054273576010019e-14" width="25" height="25"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         </imageView>
                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" id="51">
-                            <rect key="frame" x="24" y="5.0000000000000018" width="64" height="17"/>
+                            <rect key="frame" x="24" y="5.0000000000000746" width="64" height="17"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         </imageView>
                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="5000000" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="12" id="52">
-                            <rect key="frame" x="26" y="5.0000000000000018" width="60" height="17"/>
+                            <rect key="frame" x="26" y="5.0000000000000746" width="60" height="17"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -198,19 +198,19 @@
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                 </view>
                 <view contentMode="scaleToFill" id="68">
-                    <rect key="frame" x="171" y="443.00000000000006" width="95" height="24"/>
+                    <rect key="frame" x="171" y="443" width="95" height="24.000000000000075"/>
                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES"/>
                     <subviews>
                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="ingot.png" id="53">
-                            <rect key="frame" x="-1" y="-1.7763568394002505e-15" width="25" height="25"/>
+                            <rect key="frame" x="-1" y="7.460698725481052e-14" width="25" height="25"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         </imageView>
                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" id="54">
-                            <rect key="frame" x="24" y="5" width="51" height="17"/>
+                            <rect key="frame" x="24" y="5.0000000000000746" width="51" height="17"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         </imageView>
                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="0" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="12" id="55">
-                            <rect key="frame" x="26" y="5" width="47" height="17"/>
+                            <rect key="frame" x="26" y="5.0000000000000746" width="47" height="17"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>

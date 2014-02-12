@@ -31,8 +31,9 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="229">
-                    <rect key="frame" x="277" y="3" width="40" height="40"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <rect key="frame" x="277" y="23" width="40" height="40"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <inset key="insetFor6xAndEarlier" minX="0.0" minY="-1" maxX="0.0" maxY="1"/>
                     <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                     <inset key="contentEdgeInsets" minX="2" minY="2" maxX="2" maxY="2"/>
                     <size key="titleShadowOffset" width="0.0" height="1"/>
@@ -45,8 +46,9 @@
                     </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="108" userLabel="Button">
-                    <rect key="frame" x="237" y="3" width="40" height="40"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <rect key="frame" x="237" y="23" width="40" height="40"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <inset key="insetFor6xAndEarlier" minX="0.0" minY="-1" maxX="0.0" maxY="1"/>
                     <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                     <inset key="contentEdgeInsets" minX="2" minY="2" maxX="2" maxY="2"/>
                     <state key="normal" image="draw_save_btn.png">
@@ -61,7 +63,7 @@
                     </connections>
                 </button>
                 <view contentMode="scaleToFill" id="183">
-                    <rect key="frame" x="0.0" y="57" width="320" height="295"/>
+                    <rect key="frame" x="0.0" y="77" width="320" height="295"/>
                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                     <subviews>
                         <imageView contentMode="scaleAspectFit" id="218">
@@ -105,13 +107,14 @@
                         </textView>
                     </subviews>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <inset key="insetFor6xAndEarlier" minX="0.0" minY="20" maxX="0.0" maxY="-20"/>
                 </view>
                 <view contentMode="scaleToFill" id="232">
-                    <rect key="frame" x="0.0" y="360" width="320" height="120"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
+                    <rect key="frame" x="0.0" y="377" width="320" height="95"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                     <subviews>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="95">
-                            <rect key="frame" x="113" y="10" width="95" height="95"/>
+                            <rect key="frame" x="113" y="0.0" width="95" height="95"/>
                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                             <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                             <state key="normal" image="sing_record_bg.png">
@@ -126,11 +129,11 @@
                             </connections>
                         </button>
                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="sing_record.png" id="99">
-                            <rect key="frame" x="113" y="10" width="95" height="95"/>
+                            <rect key="frame" x="113" y="0.0" width="95" height="95"/>
                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                         </imageView>
                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="00:36" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="96">
-                            <rect key="frame" x="117" y="35" width="86" height="41"/>
+                            <rect key="frame" x="117" y="22" width="86" height="41"/>
                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             <fontDescription key="fontDescription" type="boldSystem" pointSize="22"/>
@@ -140,15 +143,15 @@
                             <size key="shadowOffset" width="0.0" height="0.0"/>
                         </label>
                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="sing_play.png" id="97">
-                            <rect key="frame" x="153" y="71" width="14" height="13"/>
+                            <rect key="frame" x="153" y="60" width="14" height="13"/>
                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                         </imageView>
                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="sing_pause.png" id="98">
-                            <rect key="frame" x="153" y="71" width="14" height="13"/>
+                            <rect key="frame" x="153" y="60" width="14" height="13"/>
                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                         </imageView>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="166">
-                            <rect key="frame" x="59" y="35" width="45" height="45"/>
+                            <rect key="frame" x="59" y="22" width="45" height="45"/>
                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                             <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                             <state key="normal" image="sing_voice.png">
@@ -163,7 +166,7 @@
                             </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="110">
-                            <rect key="frame" x="214" y="35" width="45" height="45"/>
+                            <rect key="frame" x="214" y="22" width="45" height="45"/>
                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                             <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                             <state key="normal" image="sing_rerecord.png">
@@ -178,7 +181,7 @@
                             </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="222">
-                            <rect key="frame" x="8" y="35" width="45" height="45"/>
+                            <rect key="frame" x="8" y="22" width="45" height="45"/>
                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                             <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                             <state key="normal" image="sing_lyric.png">
@@ -193,7 +196,7 @@
                             </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="165">
-                            <rect key="frame" x="265" y="35" width="45" height="45"/>
+                            <rect key="frame" x="265" y="22" width="45" height="45"/>
                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                             <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                             <state key="normal" image="sing_edit.png">
@@ -209,6 +212,7 @@
                         </button>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    <inset key="insetFor6xAndEarlier" minX="0.0" minY="20" maxX="0.0" maxY="-20"/>
                 </view>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>

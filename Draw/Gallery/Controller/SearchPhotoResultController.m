@@ -272,6 +272,10 @@
                         height:searchResult.height];
     }];
     
+    [dialog setClickCloseBlock:^(PhotoEditView* infoView){
+        [dialog disappear];
+    }];
+    
     [dialog showInView:self.view];
 }
 

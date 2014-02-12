@@ -1,1411 +1,559 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<archive type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="8.00">
-	<data>
-		<int key="IBDocument.SystemTarget">1552</int>
-		<string key="IBDocument.SystemVersion">12F45</string>
-		<string key="IBDocument.InterfaceBuilderVersion">3084</string>
-		<string key="IBDocument.AppKitVersion">1187.40</string>
-		<string key="IBDocument.HIToolboxVersion">626.00</string>
-		<object class="NSMutableDictionary" key="IBDocument.PluginVersions">
-			<string key="NS.key.0">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-			<string key="NS.object.0">2083</string>
-		</object>
-		<array key="IBDocument.IntegratedClassDependencies">
-			<string>IBProxyObject</string>
-			<string>IBUIButton</string>
-			<string>IBUILabel</string>
-			<string>IBUIView</string>
-		</array>
-		<array key="IBDocument.PluginDependencies">
-			<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-		</array>
-		<object class="NSMutableDictionary" key="IBDocument.Metadata">
-			<string key="NS.key.0">PluginDependencyRecalculationVersion</string>
-			<integer value="1" key="NS.object.0"/>
-		</object>
-		<array class="NSMutableArray" key="IBDocument.RootObjects" id="1000">
-			<object class="IBProxyObject" id="372490531">
-				<string key="IBProxiedObjectIdentifier">IBFilesOwner</string>
-				<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-			</object>
-			<object class="IBProxyObject" id="975951072">
-				<string key="IBProxiedObjectIdentifier">IBFirstResponder</string>
-				<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-			</object>
-			<object class="IBUIView" id="191373211">
-				<reference key="NSNextResponder"/>
-				<int key="NSvFlags">292</int>
-				<array class="NSMutableArray" key="NSSubviews">
-					<object class="IBUIView" id="863488231">
-						<reference key="NSNextResponder" ref="191373211"/>
-						<int key="NSvFlags">292</int>
-						<array class="NSMutableArray" key="NSSubviews">
-							<object class="IBUILabel" id="115890540">
-								<reference key="NSNextResponder" ref="863488231"/>
-								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{17, 14}, {56, 20}}</string>
-								<reference key="NSSuperview" ref="863488231"/>
-								<reference key="NSNextKeyView" ref="864406241"/>
-								<string key="NSReuseIdentifierKey">_NS:9</string>
-								<bool key="IBUIOpaque">NO</bool>
-								<bool key="IBUIClipsSubviews">YES</bool>
-								<int key="IBUIContentMode">7</int>
-								<bool key="IBUIUserInteractionEnabled">NO</bool>
-								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-								<string key="IBUIText">kColorful</string>
-								<object class="NSColor" key="IBUITextColor" id="639158471">
-									<int key="NSColorSpace">1</int>
-									<bytes key="NSRGB">MC41MDU4ODIzNTI5IDAuMzMzMzMzMzMzMyAwLjE0NTA5ODAzOTIAA</bytes>
-								</object>
-								<nil key="IBUIHighlightedColor"/>
-								<int key="IBUIBaselineAdjustment">0</int>
-								<object class="IBUIFontDescription" key="IBUIFontDescription" id="52019441">
-									<int key="type">1</int>
-									<double key="pointSize">13</double>
-								</object>
-								<object class="NSFont" key="IBUIFont" id="830149206">
-									<string key="NSName">Helvetica</string>
-									<double key="NSSize">13</double>
-									<int key="NSfFlags">16</int>
-								</object>
-								<bool key="IBUIAdjustsFontSizeToFit">NO</bool>
-							</object>
-							<object class="IBUIButton" id="864406241">
-								<reference key="NSNextResponder" ref="863488231"/>
-								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{85, 9}, {59, 32}}</string>
-								<reference key="NSSuperview" ref="863488231"/>
-								<reference key="NSNextKeyView" ref="30893582"/>
-								<string key="NSReuseIdentifierKey">_NS:9</string>
-								<bool key="IBUIOpaque">NO</bool>
-								<int key="IBUITag">120130605</int>
-								<string key="IBUIContentStretch">{{0, 0}, {0, 0}}</string>
-								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-								<bool key="IBUISelected">YES</bool>
-								<int key="IBUIContentHorizontalAlignment">0</int>
-								<int key="IBUIContentVerticalAlignment">0</int>
-								<string key="IBUINormalTitle">不限</string>
-								<object class="NSColor" key="IBUIHighlightedTitleColor" id="689617089">
-									<int key="NSColorSpace">3</int>
-									<bytes key="NSWhite">MQA</bytes>
-								</object>
-								<reference key="IBUISelectedTitleColor" ref="689617089"/>
-								<object class="NSColor" key="IBUINormalTitleColor" id="783181227">
-									<int key="NSColorSpace">1</int>
-									<bytes key="NSRGB">MC41MDU4ODIzNTI5IDAuMzMzMzMzMzMzMyAwLjE0NTA5ODAzOTIAA</bytes>
-								</object>
-								<object class="NSColor" key="IBUINormalTitleShadowColor" id="848830136">
-									<int key="NSColorSpace">3</int>
-									<bytes key="NSWhite">MC41AA</bytes>
-								</object>
-								<object class="NSCustomResource" key="IBUISelectedBackgroundImage" id="752955701">
-									<string key="NSClassName">NSImage</string>
-									<string key="NSResourceName">photo_tag_select@2x.png</string>
-								</object>
-								<object class="NSCustomResource" key="IBUINormalBackgroundImage" id="746271611">
-									<string key="NSClassName">NSImage</string>
-									<string key="NSResourceName">photo_tag_unselect@2x.png</string>
-								</object>
-								<reference key="IBUIFontDescription" ref="52019441"/>
-								<reference key="IBUIFont" ref="830149206"/>
-							</object>
-							<object class="IBUIButton" id="30893582">
-								<reference key="NSNextResponder" ref="863488231"/>
-								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{152, 9}, {59, 32}}</string>
-								<reference key="NSSuperview" ref="863488231"/>
-								<reference key="NSNextKeyView" ref="469150547"/>
-								<string key="NSReuseIdentifierKey">_NS:9</string>
-								<bool key="IBUIOpaque">NO</bool>
-								<int key="IBUITag">120130606</int>
-								<string key="IBUIContentStretch">{{0, 0}, {0, 0}}</string>
-								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-								<int key="IBUIContentHorizontalAlignment">0</int>
-								<int key="IBUIContentVerticalAlignment">0</int>
-								<string key="IBUINormalTitle">黑白</string>
-								<reference key="IBUIHighlightedTitleColor" ref="689617089"/>
-								<reference key="IBUISelectedTitleColor" ref="689617089"/>
-								<reference key="IBUINormalTitleColor" ref="783181227"/>
-								<reference key="IBUINormalTitleShadowColor" ref="848830136"/>
-								<reference key="IBUISelectedBackgroundImage" ref="752955701"/>
-								<reference key="IBUINormalBackgroundImage" ref="746271611"/>
-								<reference key="IBUIFontDescription" ref="52019441"/>
-								<reference key="IBUIFont" ref="830149206"/>
-							</object>
-							<object class="IBUIButton" id="469150547">
-								<reference key="NSNextResponder" ref="863488231"/>
-								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{218, 9}, {59, 32}}</string>
-								<reference key="NSSuperview" ref="863488231"/>
-								<reference key="NSNextKeyView" ref="760642670"/>
-								<string key="NSReuseIdentifierKey">_NS:9</string>
-								<bool key="IBUIOpaque">NO</bool>
-								<int key="IBUITag">120130607</int>
-								<string key="IBUIContentStretch">{{0, 0}, {0, 0}}</string>
-								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-								<int key="IBUIContentHorizontalAlignment">0</int>
-								<int key="IBUIContentVerticalAlignment">0</int>
-								<string key="IBUINormalTitle">彩色</string>
-								<reference key="IBUIHighlightedTitleColor" ref="689617089"/>
-								<reference key="IBUISelectedTitleColor" ref="689617089"/>
-								<reference key="IBUINormalTitleColor" ref="783181227"/>
-								<reference key="IBUINormalTitleShadowColor" ref="848830136"/>
-								<reference key="IBUISelectedBackgroundImage" ref="752955701"/>
-								<reference key="IBUINormalBackgroundImage" ref="746271611"/>
-								<reference key="IBUIFontDescription" ref="52019441"/>
-								<reference key="IBUIFont" ref="830149206"/>
-							</object>
-							<object class="IBUILabel" id="760642670">
-								<reference key="NSNextResponder" ref="863488231"/>
-								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{17, 52}, {56, 20}}</string>
-								<reference key="NSSuperview" ref="863488231"/>
-								<reference key="NSNextKeyView" ref="580405008"/>
-								<string key="NSReuseIdentifierKey">_NS:9</string>
-								<bool key="IBUIOpaque">NO</bool>
-								<bool key="IBUIClipsSubviews">YES</bool>
-								<int key="IBUIContentMode">7</int>
-								<bool key="IBUIUserInteractionEnabled">NO</bool>
-								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-								<string key="IBUIText">kColorTone</string>
-								<reference key="IBUITextColor" ref="639158471"/>
-								<nil key="IBUIHighlightedColor"/>
-								<int key="IBUIBaselineAdjustment">0</int>
-								<reference key="IBUIFontDescription" ref="52019441"/>
-								<reference key="IBUIFont" ref="830149206"/>
-								<bool key="IBUIAdjustsFontSizeToFit">NO</bool>
-							</object>
-							<object class="IBUIButton" id="580405008">
-								<reference key="NSNextResponder" ref="863488231"/>
-								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{85, 46}, {59, 32}}</string>
-								<reference key="NSSuperview" ref="863488231"/>
-								<reference key="NSNextKeyView" ref="729360167"/>
-								<string key="NSReuseIdentifierKey">_NS:9</string>
-								<bool key="IBUIOpaque">NO</bool>
-								<int key="IBUITag">220130605</int>
-								<string key="IBUIContentStretch">{{0, 0}, {0, 0}}</string>
-								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-								<bool key="IBUISelected">YES</bool>
-								<int key="IBUIContentHorizontalAlignment">0</int>
-								<int key="IBUIContentVerticalAlignment">0</int>
-								<string key="IBUINormalTitle">不限</string>
-								<reference key="IBUIHighlightedTitleColor" ref="689617089"/>
-								<reference key="IBUISelectedTitleColor" ref="689617089"/>
-								<object class="NSColor" key="IBUINormalTitleColor">
-									<int key="NSColorSpace">1</int>
-									<bytes key="NSRGB">MC41MDU4ODIzNTI5IDAuMzMzMzMzMzMzMyAwLjE0NTA5ODAzOTIAA</bytes>
-								</object>
-								<reference key="IBUINormalTitleShadowColor" ref="848830136"/>
-								<reference key="IBUISelectedBackgroundImage" ref="752955701"/>
-								<reference key="IBUINormalBackgroundImage" ref="746271611"/>
-								<reference key="IBUIFontDescription" ref="52019441"/>
-								<reference key="IBUIFont" ref="830149206"/>
-							</object>
-							<object class="IBUIButton" id="729360167">
-								<reference key="NSNextResponder" ref="863488231"/>
-								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{152, 46}, {59, 32}}</string>
-								<reference key="NSSuperview" ref="863488231"/>
-								<reference key="NSNextKeyView" ref="233904066"/>
-								<string key="NSReuseIdentifierKey">_NS:9</string>
-								<bool key="IBUIOpaque">NO</bool>
-								<int key="IBUITag">220130606</int>
-								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-								<int key="IBUIContentHorizontalAlignment">0</int>
-								<int key="IBUIContentVerticalAlignment">0</int>
-								<double key="IBUIContentEdgeInsets.top">0.0</double>
-								<double key="IBUIContentEdgeInsets.bottom">8</double>
-								<double key="IBUIContentEdgeInsets.left">0.0</double>
-								<double key="IBUIContentEdgeInsets.right">0.0</double>
-								<string key="IBUINormalTitle">▅</string>
-								<reference key="IBUIHighlightedTitleColor" ref="689617089"/>
-								<object class="NSColor" key="IBUISelectedTitleColor">
-									<int key="NSColorSpace">1</int>
-									<bytes key="NSRGB">MCAwIDAAA</bytes>
-								</object>
-								<object class="NSColor" key="IBUINormalTitleColor">
-									<int key="NSColorSpace">3</int>
-									<bytes key="NSWhite">MAA</bytes>
-								</object>
-								<reference key="IBUINormalTitleShadowColor" ref="848830136"/>
-								<reference key="IBUISelectedBackgroundImage" ref="752955701"/>
-								<reference key="IBUINormalBackgroundImage" ref="746271611"/>
-								<object class="IBUIFontDescription" key="IBUIFontDescription" id="111941140">
-									<int key="type">2</int>
-									<double key="pointSize">24</double>
-								</object>
-								<object class="NSFont" key="IBUIFont" id="709760418">
-									<string key="NSName">Helvetica-Bold</string>
-									<double key="NSSize">24</double>
-									<int key="NSfFlags">16</int>
-								</object>
-							</object>
-							<object class="IBUIButton" id="233904066">
-								<reference key="NSNextResponder" ref="863488231"/>
-								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{218, 46}, {59, 32}}</string>
-								<reference key="NSSuperview" ref="863488231"/>
-								<reference key="NSNextKeyView" ref="267287533"/>
-								<string key="NSReuseIdentifierKey">_NS:9</string>
-								<object class="NSColor" key="IBUIBackgroundColor" id="21607452">
-									<int key="NSColorSpace">3</int>
-									<bytes key="NSWhite">MCAwAA</bytes>
-								</object>
-								<bool key="IBUIOpaque">NO</bool>
-								<int key="IBUITag">220130607</int>
-								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-								<int key="IBUIContentHorizontalAlignment">0</int>
-								<int key="IBUIContentVerticalAlignment">0</int>
-								<double key="IBUIContentEdgeInsets.top">0.0</double>
-								<double key="IBUIContentEdgeInsets.bottom">8</double>
-								<double key="IBUIContentEdgeInsets.left">0.0</double>
-								<double key="IBUIContentEdgeInsets.right">0.0</double>
-								<string key="IBUINormalTitle">▅</string>
-								<reference key="IBUIHighlightedTitleColor" ref="689617089"/>
-								<object class="NSColor" key="IBUISelectedTitleColor" id="862751449">
-									<int key="NSColorSpace">1</int>
-									<bytes key="NSRGB">MCAwIDEAA</bytes>
-								</object>
-								<reference key="IBUINormalTitleColor" ref="862751449"/>
-								<reference key="IBUINormalTitleShadowColor" ref="848830136"/>
-								<reference key="IBUISelectedBackgroundImage" ref="752955701"/>
-								<reference key="IBUINormalBackgroundImage" ref="746271611"/>
-								<reference key="IBUIFontDescription" ref="111941140"/>
-								<reference key="IBUIFont" ref="709760418"/>
-							</object>
-							<object class="IBUIButton" id="890741209">
-								<reference key="NSNextResponder" ref="863488231"/>
-								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{151, 157}, {59, 32}}</string>
-								<reference key="NSSuperview" ref="863488231"/>
-								<reference key="NSNextKeyView" ref="1056237893"/>
-								<string key="NSReuseIdentifierKey">_NS:9</string>
-								<reference key="IBUIBackgroundColor" ref="21607452"/>
-								<bool key="IBUIOpaque">NO</bool>
-								<int key="IBUITag">220130608</int>
-								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-								<int key="IBUIContentHorizontalAlignment">0</int>
-								<int key="IBUIContentVerticalAlignment">0</int>
-								<double key="IBUIContentEdgeInsets.top">0.0</double>
-								<double key="IBUIContentEdgeInsets.bottom">8</double>
-								<double key="IBUIContentEdgeInsets.left">0.0</double>
-								<double key="IBUIContentEdgeInsets.right">0.0</double>
-								<string key="IBUINormalTitle">▅</string>
-								<reference key="IBUIHighlightedTitleColor" ref="689617089"/>
-								<object class="NSColor" key="IBUISelectedTitleColor" id="382722253">
-									<int key="NSColorSpace">1</int>
-									<bytes key="NSRGB">MC42MDAwMDAwMjM4IDAuNDAwMDAwMDA2IDAuMjAwMDAwMDAzAA</bytes>
-								</object>
-								<reference key="IBUINormalTitleColor" ref="382722253"/>
-								<reference key="IBUINormalTitleShadowColor" ref="848830136"/>
-								<reference key="IBUISelectedBackgroundImage" ref="752955701"/>
-								<reference key="IBUINormalBackgroundImage" ref="746271611"/>
-								<reference key="IBUIFontDescription" ref="111941140"/>
-								<reference key="IBUIFont" ref="709760418"/>
-							</object>
-							<object class="IBUIButton" id="494415589">
-								<reference key="NSNextResponder" ref="863488231"/>
-								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{85, 83}, {59, 32}}</string>
-								<reference key="NSSuperview" ref="863488231"/>
-								<reference key="NSNextKeyView" ref="48678854"/>
-								<string key="NSReuseIdentifierKey">_NS:9</string>
-								<bool key="IBUIOpaque">NO</bool>
-								<int key="IBUITag">220130609</int>
-								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-								<int key="IBUIContentHorizontalAlignment">0</int>
-								<int key="IBUIContentVerticalAlignment">0</int>
-								<double key="IBUIContentEdgeInsets.top">0.0</double>
-								<double key="IBUIContentEdgeInsets.bottom">8</double>
-								<double key="IBUIContentEdgeInsets.left">0.0</double>
-								<double key="IBUIContentEdgeInsets.right">0.0</double>
-								<string key="IBUINormalTitle">▅</string>
-								<reference key="IBUIHighlightedTitleColor" ref="689617089"/>
-								<object class="NSColor" key="IBUISelectedTitleColor" id="870072365">
-									<int key="NSColorSpace">6</int>
-									<string key="NSCatalogName">System</string>
-									<string key="NSColorName">controlShadowColor</string>
-									<object class="NSColor" key="NSColor">
-										<int key="NSColorSpace">3</int>
-										<bytes key="NSWhite">MC4zMzMzMzMzMzMzAA</bytes>
-									</object>
-								</object>
-								<reference key="IBUINormalTitleColor" ref="870072365"/>
-								<reference key="IBUINormalTitleShadowColor" ref="848830136"/>
-								<reference key="IBUISelectedBackgroundImage" ref="752955701"/>
-								<reference key="IBUINormalBackgroundImage" ref="746271611"/>
-								<reference key="IBUIFontDescription" ref="111941140"/>
-								<reference key="IBUIFont" ref="709760418"/>
-							</object>
-							<object class="IBUIButton" id="48678854">
-								<reference key="NSNextResponder" ref="863488231"/>
-								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{152, 83}, {59, 32}}</string>
-								<reference key="NSSuperview" ref="863488231"/>
-								<reference key="NSNextKeyView" ref="889212231"/>
-								<string key="NSReuseIdentifierKey">_NS:9</string>
-								<reference key="IBUIBackgroundColor" ref="21607452"/>
-								<bool key="IBUIOpaque">NO</bool>
-								<int key="IBUITag">220130610</int>
-								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-								<int key="IBUIContentHorizontalAlignment">0</int>
-								<int key="IBUIContentVerticalAlignment">0</int>
-								<double key="IBUIContentEdgeInsets.top">0.0</double>
-								<double key="IBUIContentEdgeInsets.bottom">8</double>
-								<double key="IBUIContentEdgeInsets.left">0.0</double>
-								<double key="IBUIContentEdgeInsets.right">0.0</double>
-								<string key="IBUINormalTitle">▅</string>
-								<reference key="IBUIHighlightedTitleColor" ref="689617089"/>
-								<object class="NSColor" key="IBUISelectedTitleColor" id="670079472">
-									<int key="NSColorSpace">1</int>
-									<bytes key="NSRGB">MCAxIDAAA</bytes>
-								</object>
-								<reference key="IBUINormalTitleColor" ref="670079472"/>
-								<reference key="IBUINormalTitleShadowColor" ref="848830136"/>
-								<reference key="IBUISelectedBackgroundImage" ref="752955701"/>
-								<reference key="IBUINormalBackgroundImage" ref="746271611"/>
-								<reference key="IBUIFontDescription" ref="111941140"/>
-								<reference key="IBUIFont" ref="709760418"/>
-							</object>
-							<object class="IBUIButton" id="889212231">
-								<reference key="NSNextResponder" ref="863488231"/>
-								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{218, 83}, {59, 32}}</string>
-								<reference key="NSSuperview" ref="863488231"/>
-								<reference key="NSNextKeyView" ref="808455804"/>
-								<string key="NSReuseIdentifierKey">_NS:9</string>
-								<reference key="IBUIBackgroundColor" ref="21607452"/>
-								<bool key="IBUIOpaque">NO</bool>
-								<int key="IBUITag">220130611</int>
-								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-								<int key="IBUIContentHorizontalAlignment">0</int>
-								<int key="IBUIContentVerticalAlignment">0</int>
-								<double key="IBUIContentEdgeInsets.top">0.0</double>
-								<double key="IBUIContentEdgeInsets.bottom">8</double>
-								<double key="IBUIContentEdgeInsets.left">0.0</double>
-								<double key="IBUIContentEdgeInsets.right">0.0</double>
-								<string key="IBUINormalTitle">▅</string>
-								<reference key="IBUIHighlightedTitleColor" ref="689617089"/>
-								<object class="NSColor" key="IBUISelectedTitleColor" id="182353722">
-									<int key="NSColorSpace">1</int>
-									<bytes key="NSRGB">MSAwLjUgMAA</bytes>
-								</object>
-								<reference key="IBUINormalTitleColor" ref="182353722"/>
-								<reference key="IBUINormalTitleShadowColor" ref="848830136"/>
-								<reference key="IBUISelectedBackgroundImage" ref="752955701"/>
-								<reference key="IBUINormalBackgroundImage" ref="746271611"/>
-								<reference key="IBUIFontDescription" ref="111941140"/>
-								<reference key="IBUIFont" ref="709760418"/>
-							</object>
-							<object class="IBUIButton" id="1056237893">
-								<reference key="NSNextResponder" ref="863488231"/>
-								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{218, 157}, {59, 32}}</string>
-								<reference key="NSSuperview" ref="863488231"/>
-								<reference key="NSNextKeyView" ref="384615198"/>
-								<string key="NSReuseIdentifierKey">_NS:9</string>
-								<reference key="IBUIBackgroundColor" ref="21607452"/>
-								<bool key="IBUIOpaque">NO</bool>
-								<int key="IBUITag">220130612</int>
-								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-								<int key="IBUIContentHorizontalAlignment">0</int>
-								<int key="IBUIContentVerticalAlignment">0</int>
-								<double key="IBUIContentEdgeInsets.top">0.0</double>
-								<double key="IBUIContentEdgeInsets.bottom">8</double>
-								<double key="IBUIContentEdgeInsets.left">0.0</double>
-								<double key="IBUIContentEdgeInsets.right">0.0</double>
-								<string key="IBUINormalTitle">▅</string>
-								<reference key="IBUIHighlightedTitleColor" ref="689617089"/>
-								<object class="NSColor" key="IBUISelectedTitleColor" id="950987240">
-									<int key="NSColorSpace">1</int>
-									<bytes key="NSRGB">MSAwIDEAA</bytes>
-								</object>
-								<reference key="IBUINormalTitleColor" ref="950987240"/>
-								<reference key="IBUINormalTitleShadowColor" ref="848830136"/>
-								<reference key="IBUISelectedBackgroundImage" ref="752955701"/>
-								<reference key="IBUINormalBackgroundImage" ref="746271611"/>
-								<reference key="IBUIFontDescription" ref="111941140"/>
-								<reference key="IBUIFont" ref="709760418"/>
-							</object>
-							<object class="IBUIButton" id="808455804">
-								<reference key="NSNextResponder" ref="863488231"/>
-								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{85, 120}, {59, 32}}</string>
-								<reference key="NSSuperview" ref="863488231"/>
-								<reference key="NSNextKeyView" ref="353046071"/>
-								<string key="NSReuseIdentifierKey">_NS:9</string>
-								<reference key="IBUIBackgroundColor" ref="21607452"/>
-								<bool key="IBUIOpaque">NO</bool>
-								<int key="IBUITag">220130613</int>
-								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-								<int key="IBUIContentHorizontalAlignment">0</int>
-								<int key="IBUIContentVerticalAlignment">0</int>
-								<double key="IBUIContentEdgeInsets.top">0.0</double>
-								<double key="IBUIContentEdgeInsets.bottom">8</double>
-								<double key="IBUIContentEdgeInsets.left">0.0</double>
-								<double key="IBUIContentEdgeInsets.right">0.0</double>
-								<string key="IBUINormalTitle">▅</string>
-								<reference key="IBUIHighlightedTitleColor" ref="689617089"/>
-								<object class="NSColor" key="IBUISelectedTitleColor" id="595392119">
-									<int key="NSColorSpace">1</int>
-									<bytes key="NSRGB">MC41IDAgMC41AA</bytes>
-								</object>
-								<reference key="IBUINormalTitleColor" ref="595392119"/>
-								<reference key="IBUINormalTitleShadowColor" ref="848830136"/>
-								<reference key="IBUISelectedBackgroundImage" ref="752955701"/>
-								<reference key="IBUINormalBackgroundImage" ref="746271611"/>
-								<reference key="IBUIFontDescription" ref="111941140"/>
-								<reference key="IBUIFont" ref="709760418"/>
-							</object>
-							<object class="IBUIButton" id="353046071">
-								<reference key="NSNextResponder" ref="863488231"/>
-								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{152, 120}, {59, 32}}</string>
-								<reference key="NSSuperview" ref="863488231"/>
-								<reference key="NSNextKeyView" ref="32947837"/>
-								<string key="NSReuseIdentifierKey">_NS:9</string>
-								<reference key="IBUIBackgroundColor" ref="21607452"/>
-								<bool key="IBUIOpaque">NO</bool>
-								<int key="IBUITag">220130614</int>
-								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-								<int key="IBUIContentHorizontalAlignment">0</int>
-								<int key="IBUIContentVerticalAlignment">0</int>
-								<double key="IBUIContentEdgeInsets.top">0.0</double>
-								<double key="IBUIContentEdgeInsets.bottom">8</double>
-								<double key="IBUIContentEdgeInsets.left">0.0</double>
-								<double key="IBUIContentEdgeInsets.right">0.0</double>
-								<string key="IBUINormalTitle">▅</string>
-								<reference key="IBUIHighlightedTitleColor" ref="689617089"/>
-								<object class="NSColor" key="IBUISelectedTitleColor" id="1059059068">
-									<int key="NSColorSpace">1</int>
-									<bytes key="NSRGB">MSAwIDAAA</bytes>
-								</object>
-								<reference key="IBUINormalTitleColor" ref="1059059068"/>
-								<reference key="IBUINormalTitleShadowColor" ref="848830136"/>
-								<reference key="IBUISelectedBackgroundImage" ref="752955701"/>
-								<reference key="IBUINormalBackgroundImage" ref="746271611"/>
-								<reference key="IBUIFontDescription" ref="111941140"/>
-								<reference key="IBUIFont" ref="709760418"/>
-							</object>
-							<object class="IBUIButton" id="267287533">
-								<reference key="NSNextResponder" ref="863488231"/>
-								<int key="NSvFlags">-2147483356</int>
-								<string key="NSFrame">{{14, 97}, {59, 32}}</string>
-								<reference key="NSSuperview" ref="863488231"/>
-								<reference key="NSNextKeyView" ref="494415589"/>
-								<string key="NSReuseIdentifierKey">_NS:9</string>
-								<bool key="IBUIOpaque">NO</bool>
-								<int key="IBUITag">220130615</int>
-								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-								<int key="IBUIContentHorizontalAlignment">0</int>
-								<int key="IBUIContentVerticalAlignment">0</int>
-								<string key="IBUINormalTitle">teal</string>
-								<reference key="IBUIHighlightedTitleColor" ref="689617089"/>
-								<object class="NSColor" key="IBUISelectedTitleColor">
-									<int key="NSColorSpace">1</int>
-									<bytes key="NSRGB">MC4xNDExNzY0NzA2IDAuNDE1Njg2Mjc0NSAwLjQyNzQ1MDk4MDQAA</bytes>
-								</object>
-								<object class="NSColor" key="IBUINormalTitleColor">
-									<int key="NSColorSpace">1</int>
-									<bytes key="NSRGB">MC4xOTYwNzg0MzQ2IDAuMzA5ODAzOTMyOSAwLjUyMTU2ODY1NgA</bytes>
-								</object>
-								<reference key="IBUINormalTitleShadowColor" ref="848830136"/>
-								<reference key="IBUISelectedBackgroundImage" ref="752955701"/>
-								<reference key="IBUINormalBackgroundImage" ref="746271611"/>
-								<object class="IBUIFontDescription" key="IBUIFontDescription">
-									<int key="type">2</int>
-									<double key="pointSize">15</double>
-								</object>
-								<object class="NSFont" key="IBUIFont">
-									<string key="NSName">Helvetica-Bold</string>
-									<double key="NSSize">15</double>
-									<int key="NSfFlags">16</int>
-								</object>
-							</object>
-							<object class="IBUIButton" id="32947837">
-								<reference key="NSNextResponder" ref="863488231"/>
-								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{218, 120}, {59, 32}}</string>
-								<reference key="NSSuperview" ref="863488231"/>
-								<reference key="NSNextKeyView" ref="325228121"/>
-								<string key="NSReuseIdentifierKey">_NS:9</string>
-								<reference key="IBUIBackgroundColor" ref="21607452"/>
-								<bool key="IBUIOpaque">NO</bool>
-								<int key="IBUITag">220130616</int>
-								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-								<int key="IBUIContentHorizontalAlignment">0</int>
-								<int key="IBUIContentVerticalAlignment">0</int>
-								<double key="IBUIContentEdgeInsets.top">0.0</double>
-								<double key="IBUIContentEdgeInsets.bottom">8</double>
-								<double key="IBUIContentEdgeInsets.left">0.0</double>
-								<double key="IBUIContentEdgeInsets.right">0.0</double>
-								<string key="IBUINormalTitle">▅</string>
-								<reference key="IBUIHighlightedTitleColor" ref="689617089"/>
-								<object class="NSColor" key="IBUISelectedTitleColor" id="387198739">
-									<int key="NSColorSpace">1</int>
-									<bytes key="NSRGB">MSAxIDEAA</bytes>
-								</object>
-								<reference key="IBUINormalTitleColor" ref="387198739"/>
-								<reference key="IBUINormalTitleShadowColor" ref="848830136"/>
-								<reference key="IBUISelectedBackgroundImage" ref="752955701"/>
-								<reference key="IBUINormalBackgroundImage" ref="746271611"/>
-								<reference key="IBUIFontDescription" ref="111941140"/>
-								<reference key="IBUIFont" ref="709760418"/>
-							</object>
-							<object class="IBUIButton" id="325228121">
-								<reference key="NSNextResponder" ref="863488231"/>
-								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{85, 157}, {59, 32}}</string>
-								<reference key="NSSuperview" ref="863488231"/>
-								<reference key="NSNextKeyView" ref="890741209"/>
-								<string key="NSReuseIdentifierKey">_NS:9</string>
-								<reference key="IBUIBackgroundColor" ref="21607452"/>
-								<bool key="IBUIOpaque">NO</bool>
-								<int key="IBUITag">220130617</int>
-								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-								<int key="IBUIContentHorizontalAlignment">0</int>
-								<int key="IBUIContentVerticalAlignment">0</int>
-								<double key="IBUIContentEdgeInsets.top">0.0</double>
-								<double key="IBUIContentEdgeInsets.bottom">8</double>
-								<double key="IBUIContentEdgeInsets.left">0.0</double>
-								<double key="IBUIContentEdgeInsets.right">0.0</double>
-								<string key="IBUINormalTitle">▅</string>
-								<reference key="IBUIHighlightedTitleColor" ref="689617089"/>
-								<object class="NSColor" key="IBUISelectedTitleColor" id="572165506">
-									<int key="NSColorSpace">1</int>
-									<bytes key="NSRGB">MSAxIDAAA</bytes>
-								</object>
-								<reference key="IBUINormalTitleColor" ref="572165506"/>
-								<reference key="IBUINormalTitleShadowColor" ref="848830136"/>
-								<reference key="IBUISelectedBackgroundImage" ref="752955701"/>
-								<reference key="IBUINormalBackgroundImage" ref="746271611"/>
-								<reference key="IBUIFontDescription" ref="111941140"/>
-								<reference key="IBUIFont" ref="709760418"/>
-							</object>
-							<object class="IBUILabel" id="384615198">
-								<reference key="NSNextResponder" ref="863488231"/>
-								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{17, 204}, {56, 20}}</string>
-								<reference key="NSSuperview" ref="863488231"/>
-								<reference key="NSNextKeyView" ref="537949686"/>
-								<string key="NSReuseIdentifierKey">_NS:9</string>
-								<bool key="IBUIOpaque">NO</bool>
-								<bool key="IBUIClipsSubviews">YES</bool>
-								<int key="IBUIContentMode">7</int>
-								<bool key="IBUIUserInteractionEnabled">NO</bool>
-								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-								<string key="IBUIText">kImageSize</string>
-								<reference key="IBUITextColor" ref="639158471"/>
-								<nil key="IBUIHighlightedColor"/>
-								<int key="IBUIBaselineAdjustment">0</int>
-								<reference key="IBUIFontDescription" ref="52019441"/>
-								<reference key="IBUIFont" ref="830149206"/>
-								<bool key="IBUIAdjustsFontSizeToFit">NO</bool>
-							</object>
-							<object class="IBUIButton" id="1021302256">
-								<reference key="NSNextResponder" ref="863488231"/>
-								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{152, 194}, {59, 32}}</string>
-								<reference key="NSSuperview" ref="863488231"/>
-								<reference key="NSNextKeyView" ref="94616418"/>
-								<string key="NSReuseIdentifierKey">_NS:9</string>
-								<bool key="IBUIOpaque">NO</bool>
-								<int key="IBUITag">320120606</int>
-								<string key="IBUIContentStretch">{{0, 0}, {0, 0}}</string>
-								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-								<int key="IBUIContentHorizontalAlignment">0</int>
-								<int key="IBUIContentVerticalAlignment">0</int>
-								<string key="IBUINormalTitle">图标</string>
-								<reference key="IBUIHighlightedTitleColor" ref="689617089"/>
-								<reference key="IBUISelectedTitleColor" ref="689617089"/>
-								<reference key="IBUINormalTitleColor" ref="783181227"/>
-								<reference key="IBUINormalTitleShadowColor" ref="848830136"/>
-								<reference key="IBUISelectedBackgroundImage" ref="752955701"/>
-								<reference key="IBUINormalBackgroundImage" ref="746271611"/>
-								<reference key="IBUIFontDescription" ref="52019441"/>
-								<reference key="IBUIFont" ref="830149206"/>
-							</object>
-							<object class="IBUIButton" id="537949686">
-								<reference key="NSNextResponder" ref="863488231"/>
-								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{85, 194}, {59, 32}}</string>
-								<reference key="NSSuperview" ref="863488231"/>
-								<reference key="NSNextKeyView" ref="1021302256"/>
-								<string key="NSReuseIdentifierKey">_NS:9</string>
-								<bool key="IBUIOpaque">NO</bool>
-								<int key="IBUITag">320120605</int>
-								<string key="IBUIContentStretch">{{0, 0}, {0, 0}}</string>
-								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-								<bool key="IBUISelected">YES</bool>
-								<int key="IBUIContentHorizontalAlignment">0</int>
-								<int key="IBUIContentVerticalAlignment">0</int>
-								<string key="IBUINormalTitle">不限</string>
-								<reference key="IBUIHighlightedTitleColor" ref="689617089"/>
-								<reference key="IBUISelectedTitleColor" ref="689617089"/>
-								<reference key="IBUINormalTitleColor" ref="783181227"/>
-								<reference key="IBUINormalTitleShadowColor" ref="848830136"/>
-								<reference key="IBUISelectedBackgroundImage" ref="752955701"/>
-								<reference key="IBUINormalBackgroundImage" ref="746271611"/>
-								<reference key="IBUIFontDescription" ref="52019441"/>
-								<reference key="IBUIFont" ref="830149206"/>
-							</object>
-							<object class="IBUIButton" id="94616418">
-								<reference key="NSNextResponder" ref="863488231"/>
-								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{218, 194}, {59, 32}}</string>
-								<reference key="NSSuperview" ref="863488231"/>
-								<reference key="NSNextKeyView" ref="272276502"/>
-								<string key="NSReuseIdentifierKey">_NS:9</string>
-								<bool key="IBUIOpaque">NO</bool>
-								<int key="IBUITag">320120607</int>
-								<string key="IBUIContentStretch">{{0, 0}, {0, 0}}</string>
-								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-								<int key="IBUIContentHorizontalAlignment">0</int>
-								<int key="IBUIContentVerticalAlignment">0</int>
-								<string key="IBUINormalTitle">标准</string>
-								<reference key="IBUIHighlightedTitleColor" ref="689617089"/>
-								<reference key="IBUISelectedTitleColor" ref="689617089"/>
-								<reference key="IBUINormalTitleColor" ref="783181227"/>
-								<reference key="IBUINormalTitleShadowColor" ref="848830136"/>
-								<reference key="IBUISelectedBackgroundImage" ref="752955701"/>
-								<reference key="IBUINormalBackgroundImage" ref="746271611"/>
-								<reference key="IBUIFontDescription" ref="52019441"/>
-								<reference key="IBUIFont" ref="830149206"/>
-							</object>
-							<object class="IBUIButton" id="272276502">
-								<reference key="NSNextResponder" ref="863488231"/>
-								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{84, 231}, {59, 32}}</string>
-								<reference key="NSSuperview" ref="863488231"/>
-								<reference key="NSNextKeyView" ref="944403770"/>
-								<string key="NSReuseIdentifierKey">_NS:9</string>
-								<bool key="IBUIOpaque">NO</bool>
-								<int key="IBUITag">320120608</int>
-								<string key="IBUIContentStretch">{{0, 0}, {0, 0}}</string>
-								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-								<int key="IBUIContentHorizontalAlignment">0</int>
-								<int key="IBUIContentVerticalAlignment">0</int>
-								<string key="IBUINormalTitle">大</string>
-								<reference key="IBUIHighlightedTitleColor" ref="689617089"/>
-								<reference key="IBUISelectedTitleColor" ref="689617089"/>
-								<reference key="IBUINormalTitleColor" ref="783181227"/>
-								<reference key="IBUINormalTitleShadowColor" ref="848830136"/>
-								<reference key="IBUISelectedBackgroundImage" ref="752955701"/>
-								<reference key="IBUINormalBackgroundImage" ref="746271611"/>
-								<reference key="IBUIFontDescription" ref="52019441"/>
-								<reference key="IBUIFont" ref="830149206"/>
-							</object>
-							<object class="IBUIButton" id="944403770">
-								<reference key="NSNextResponder" ref="863488231"/>
-								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{151, 231}, {59, 32}}</string>
-								<reference key="NSSuperview" ref="863488231"/>
-								<reference key="NSNextKeyView" ref="637175522"/>
-								<string key="NSReuseIdentifierKey">_NS:9</string>
-								<bool key="IBUIOpaque">NO</bool>
-								<int key="IBUITag">320120609</int>
-								<string key="IBUIContentStretch">{{0, 0}, {0, 0}}</string>
-								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-								<int key="IBUIContentHorizontalAlignment">0</int>
-								<int key="IBUIContentVerticalAlignment">0</int>
-								<string key="IBUINormalTitle">超大</string>
-								<reference key="IBUIHighlightedTitleColor" ref="689617089"/>
-								<reference key="IBUISelectedTitleColor" ref="689617089"/>
-								<reference key="IBUINormalTitleColor" ref="783181227"/>
-								<reference key="IBUINormalTitleShadowColor" ref="848830136"/>
-								<reference key="IBUISelectedBackgroundImage" ref="752955701"/>
-								<reference key="IBUINormalBackgroundImage" ref="746271611"/>
-								<reference key="IBUIFontDescription" ref="52019441"/>
-								<reference key="IBUIFont" ref="830149206"/>
-							</object>
-							<object class="IBUILabel" id="637175522">
-								<reference key="NSNextResponder" ref="863488231"/>
-								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{14, 274}, {60, 20}}</string>
-								<reference key="NSSuperview" ref="863488231"/>
-								<reference key="NSNextKeyView" ref="174847206"/>
-								<string key="NSReuseIdentifierKey">_NS:9</string>
-								<bool key="IBUIOpaque">NO</bool>
-								<bool key="IBUIClipsSubviews">YES</bool>
-								<int key="IBUIContentMode">7</int>
-								<bool key="IBUIUserInteractionEnabled">NO</bool>
-								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-								<string key="IBUIText">kImageType</string>
-								<reference key="IBUITextColor" ref="639158471"/>
-								<nil key="IBUIHighlightedColor"/>
-								<int key="IBUIBaselineAdjustment">0</int>
-								<reference key="IBUIFontDescription" ref="52019441"/>
-								<reference key="IBUIFont" ref="830149206"/>
-								<bool key="IBUIAdjustsFontSizeToFit">NO</bool>
-							</object>
-							<object class="IBUIButton" id="408742770">
-								<reference key="NSNextResponder" ref="863488231"/>
-								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{151, 268}, {59, 32}}</string>
-								<reference key="NSSuperview" ref="863488231"/>
-								<reference key="NSNextKeyView" ref="719492081"/>
-								<string key="NSReuseIdentifierKey">_NS:9</string>
-								<bool key="IBUIOpaque">NO</bool>
-								<int key="IBUITag">420120606</int>
-								<string key="IBUIContentStretch">{{0, 0}, {0, 0}}</string>
-								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-								<int key="IBUIContentHorizontalAlignment">0</int>
-								<int key="IBUIContentVerticalAlignment">0</int>
-								<string key="IBUINormalTitle">人脸</string>
-								<reference key="IBUIHighlightedTitleColor" ref="689617089"/>
-								<reference key="IBUISelectedTitleColor" ref="689617089"/>
-								<reference key="IBUINormalTitleColor" ref="783181227"/>
-								<reference key="IBUINormalTitleShadowColor" ref="848830136"/>
-								<reference key="IBUISelectedBackgroundImage" ref="752955701"/>
-								<reference key="IBUINormalBackgroundImage" ref="746271611"/>
-								<reference key="IBUIFontDescription" ref="52019441"/>
-								<reference key="IBUIFont" ref="830149206"/>
-							</object>
-							<object class="IBUIButton" id="174847206">
-								<reference key="NSNextResponder" ref="863488231"/>
-								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{85, 268}, {59, 32}}</string>
-								<reference key="NSSuperview" ref="863488231"/>
-								<reference key="NSNextKeyView" ref="408742770"/>
-								<string key="NSReuseIdentifierKey">_NS:9</string>
-								<bool key="IBUIOpaque">NO</bool>
-								<int key="IBUITag">420120605</int>
-								<string key="IBUIContentStretch">{{0, 0}, {0, 0}}</string>
-								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-								<bool key="IBUISelected">YES</bool>
-								<int key="IBUIContentHorizontalAlignment">0</int>
-								<int key="IBUIContentVerticalAlignment">0</int>
-								<string key="IBUINormalTitle">不限</string>
-								<reference key="IBUIHighlightedTitleColor" ref="689617089"/>
-								<reference key="IBUISelectedTitleColor" ref="689617089"/>
-								<reference key="IBUINormalTitleColor" ref="783181227"/>
-								<reference key="IBUINormalTitleShadowColor" ref="848830136"/>
-								<reference key="IBUISelectedBackgroundImage" ref="752955701"/>
-								<reference key="IBUINormalBackgroundImage" ref="746271611"/>
-								<reference key="IBUIFontDescription" ref="52019441"/>
-								<reference key="IBUIFont" ref="830149206"/>
-							</object>
-							<object class="IBUIButton" id="719492081">
-								<reference key="NSNextResponder" ref="863488231"/>
-								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{218, 268}, {59, 32}}</string>
-								<reference key="NSSuperview" ref="863488231"/>
-								<reference key="NSNextKeyView" ref="750384663"/>
-								<string key="NSReuseIdentifierKey">_NS:9</string>
-								<bool key="IBUIOpaque">NO</bool>
-								<int key="IBUITag">420120607</int>
-								<string key="IBUIContentStretch">{{0, 0}, {0, 0}}</string>
-								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-								<int key="IBUIContentHorizontalAlignment">0</int>
-								<int key="IBUIContentVerticalAlignment">0</int>
-								<string key="IBUINormalTitle">照片</string>
-								<reference key="IBUIHighlightedTitleColor" ref="689617089"/>
-								<reference key="IBUISelectedTitleColor" ref="689617089"/>
-								<reference key="IBUINormalTitleColor" ref="783181227"/>
-								<reference key="IBUINormalTitleShadowColor" ref="848830136"/>
-								<reference key="IBUISelectedBackgroundImage" ref="752955701"/>
-								<reference key="IBUINormalBackgroundImage" ref="746271611"/>
-								<reference key="IBUIFontDescription" ref="52019441"/>
-								<reference key="IBUIFont" ref="830149206"/>
-							</object>
-							<object class="IBUIButton" id="513685811">
-								<reference key="NSNextResponder" ref="863488231"/>
-								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{151, 305}, {59, 32}}</string>
-								<reference key="NSSuperview" ref="863488231"/>
-								<string key="NSReuseIdentifierKey">_NS:9</string>
-								<bool key="IBUIOpaque">NO</bool>
-								<int key="IBUITag">420120608</int>
-								<string key="IBUIContentStretch">{{0, 0}, {0, 0}}</string>
-								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-								<int key="IBUIContentHorizontalAlignment">0</int>
-								<int key="IBUIContentVerticalAlignment">0</int>
-								<string key="IBUINormalTitle">卡通</string>
-								<reference key="IBUIHighlightedTitleColor" ref="689617089"/>
-								<reference key="IBUISelectedTitleColor" ref="689617089"/>
-								<reference key="IBUINormalTitleColor" ref="783181227"/>
-								<reference key="IBUINormalTitleShadowColor" ref="848830136"/>
-								<reference key="IBUISelectedBackgroundImage" ref="752955701"/>
-								<reference key="IBUINormalBackgroundImage" ref="746271611"/>
-								<reference key="IBUIFontDescription" ref="52019441"/>
-								<reference key="IBUIFont" ref="830149206"/>
-							</object>
-							<object class="IBUIButton" id="750384663">
-								<reference key="NSNextResponder" ref="863488231"/>
-								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{84, 305}, {59, 32}}</string>
-								<reference key="NSSuperview" ref="863488231"/>
-								<reference key="NSNextKeyView" ref="513685811"/>
-								<string key="NSReuseIdentifierKey">_NS:9</string>
-								<bool key="IBUIOpaque">NO</bool>
-								<int key="IBUITag">420120609</int>
-								<string key="IBUIContentStretch">{{0, 0}, {0, 0}}</string>
-								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-								<int key="IBUIContentHorizontalAlignment">0</int>
-								<int key="IBUIContentVerticalAlignment">0</int>
-								<string key="IBUINormalTitle">素描</string>
-								<reference key="IBUIHighlightedTitleColor" ref="689617089"/>
-								<reference key="IBUISelectedTitleColor" ref="689617089"/>
-								<reference key="IBUINormalTitleColor" ref="783181227"/>
-								<reference key="IBUINormalTitleShadowColor" ref="848830136"/>
-								<reference key="IBUISelectedBackgroundImage" ref="752955701"/>
-								<reference key="IBUINormalBackgroundImage" ref="746271611"/>
-								<reference key="IBUIFontDescription" ref="52019441"/>
-								<reference key="IBUIFont" ref="830149206"/>
-							</object>
-						</array>
-						<string key="NSFrameSize">{285, 345}</string>
-						<reference key="NSSuperview" ref="191373211"/>
-						<reference key="NSNextKeyView" ref="115890540"/>
-						<string key="NSReuseIdentifierKey">_NS:9</string>
-						<reference key="IBUIBackgroundColor" ref="21607452"/>
-						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-					</object>
-				</array>
-				<string key="NSFrameSize">{285, 345}</string>
-				<reference key="NSSuperview"/>
-				<reference key="NSNextKeyView" ref="863488231"/>
-				<reference key="IBUIBackgroundColor" ref="21607452"/>
-				<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-			</object>
-		</array>
-		<object class="IBObjectContainer" key="IBDocument.Objects">
-			<array class="NSMutableArray" key="connectionRecords">
-				<object class="IBConnectionRecord">
-					<object class="IBCocoaTouchEventConnection" key="connection">
-						<string key="label">clickFilterBtn:</string>
-						<reference key="source" ref="864406241"/>
-						<reference key="destination" ref="191373211"/>
-						<int key="IBEventType">7</int>
-					</object>
-					<int key="connectionID">55</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBCocoaTouchEventConnection" key="connection">
-						<string key="label">clickFilterBtn:</string>
-						<reference key="source" ref="30893582"/>
-						<reference key="destination" ref="191373211"/>
-						<int key="IBEventType">7</int>
-					</object>
-					<int key="connectionID">54</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBCocoaTouchEventConnection" key="connection">
-						<string key="label">clickFilterBtn:</string>
-						<reference key="source" ref="469150547"/>
-						<reference key="destination" ref="191373211"/>
-						<int key="IBEventType">7</int>
-					</object>
-					<int key="connectionID">56</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBCocoaTouchEventConnection" key="connection">
-						<string key="label">clickFilterBtn:</string>
-						<reference key="source" ref="580405008"/>
-						<reference key="destination" ref="191373211"/>
-						<int key="IBEventType">7</int>
-					</object>
-					<int key="connectionID">50</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBCocoaTouchEventConnection" key="connection">
-						<string key="label">clickFilterBtn:</string>
-						<reference key="source" ref="729360167"/>
-						<reference key="destination" ref="191373211"/>
-						<int key="IBEventType">7</int>
-					</object>
-					<int key="connectionID">48</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBCocoaTouchEventConnection" key="connection">
-						<string key="label">clickFilterBtn:</string>
-						<reference key="source" ref="233904066"/>
-						<reference key="destination" ref="191373211"/>
-						<int key="IBEventType">7</int>
-					</object>
-					<int key="connectionID">49</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBCocoaTouchEventConnection" key="connection">
-						<string key="label">clickFilterBtn:</string>
-						<reference key="source" ref="890741209"/>
-						<reference key="destination" ref="191373211"/>
-						<int key="IBEventType">7</int>
-					</object>
-					<int key="connectionID">57</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBCocoaTouchEventConnection" key="connection">
-						<string key="label">clickFilterBtn:</string>
-						<reference key="source" ref="494415589"/>
-						<reference key="destination" ref="191373211"/>
-						<int key="IBEventType">7</int>
-					</object>
-					<int key="connectionID">58</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBCocoaTouchEventConnection" key="connection">
-						<string key="label">clickFilterBtn:</string>
-						<reference key="source" ref="48678854"/>
-						<reference key="destination" ref="191373211"/>
-						<int key="IBEventType">7</int>
-					</object>
-					<int key="connectionID">59</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBCocoaTouchEventConnection" key="connection">
-						<string key="label">clickFilterBtn:</string>
-						<reference key="source" ref="889212231"/>
-						<reference key="destination" ref="191373211"/>
-						<int key="IBEventType">7</int>
-					</object>
-					<int key="connectionID">60</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBCocoaTouchEventConnection" key="connection">
-						<string key="label">clickFilterBtn:</string>
-						<reference key="source" ref="1056237893"/>
-						<reference key="destination" ref="191373211"/>
-						<int key="IBEventType">7</int>
-					</object>
-					<int key="connectionID">61</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBCocoaTouchEventConnection" key="connection">
-						<string key="label">clickFilterBtn:</string>
-						<reference key="source" ref="808455804"/>
-						<reference key="destination" ref="191373211"/>
-						<int key="IBEventType">7</int>
-					</object>
-					<int key="connectionID">62</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBCocoaTouchEventConnection" key="connection">
-						<string key="label">clickFilterBtn:</string>
-						<reference key="source" ref="353046071"/>
-						<reference key="destination" ref="191373211"/>
-						<int key="IBEventType">7</int>
-					</object>
-					<int key="connectionID">63</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBCocoaTouchEventConnection" key="connection">
-						<string key="label">clickFilterBtn:</string>
-						<reference key="source" ref="267287533"/>
-						<reference key="destination" ref="191373211"/>
-						<int key="IBEventType">7</int>
-					</object>
-					<int key="connectionID">64</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBCocoaTouchEventConnection" key="connection">
-						<string key="label">clickFilterBtn:</string>
-						<reference key="source" ref="32947837"/>
-						<reference key="destination" ref="191373211"/>
-						<int key="IBEventType">7</int>
-					</object>
-					<int key="connectionID">65</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBCocoaTouchEventConnection" key="connection">
-						<string key="label">clickFilterBtn:</string>
-						<reference key="source" ref="325228121"/>
-						<reference key="destination" ref="191373211"/>
-						<int key="IBEventType">7</int>
-					</object>
-					<int key="connectionID">66</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBCocoaTouchEventConnection" key="connection">
-						<string key="label">clickFilterBtn:</string>
-						<reference key="source" ref="1021302256"/>
-						<reference key="destination" ref="191373211"/>
-						<int key="IBEventType">7</int>
-					</object>
-					<int key="connectionID">52</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBCocoaTouchEventConnection" key="connection">
-						<string key="label">clickFilterBtn:</string>
-						<reference key="source" ref="537949686"/>
-						<reference key="destination" ref="191373211"/>
-						<int key="IBEventType">7</int>
-					</object>
-					<int key="connectionID">51</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBCocoaTouchEventConnection" key="connection">
-						<string key="label">clickFilterBtn:</string>
-						<reference key="source" ref="94616418"/>
-						<reference key="destination" ref="191373211"/>
-						<int key="IBEventType">7</int>
-					</object>
-					<int key="connectionID">53</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBCocoaTouchEventConnection" key="connection">
-						<string key="label">clickFilterBtn:</string>
-						<reference key="source" ref="272276502"/>
-						<reference key="destination" ref="191373211"/>
-						<int key="IBEventType">7</int>
-					</object>
-					<int key="connectionID">67</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBCocoaTouchEventConnection" key="connection">
-						<string key="label">clickFilterBtn:</string>
-						<reference key="source" ref="944403770"/>
-						<reference key="destination" ref="191373211"/>
-						<int key="IBEventType">7</int>
-					</object>
-					<int key="connectionID">68</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBCocoaTouchEventConnection" key="connection">
-						<string key="label">clickFilterBtn:</string>
-						<reference key="source" ref="408742770"/>
-						<reference key="destination" ref="191373211"/>
-						<int key="IBEventType">7</int>
-					</object>
-					<int key="connectionID">70</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBCocoaTouchEventConnection" key="connection">
-						<string key="label">clickFilterBtn:</string>
-						<reference key="source" ref="174847206"/>
-						<reference key="destination" ref="191373211"/>
-						<int key="IBEventType">7</int>
-					</object>
-					<int key="connectionID">69</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBCocoaTouchEventConnection" key="connection">
-						<string key="label">clickFilterBtn:</string>
-						<reference key="source" ref="719492081"/>
-						<reference key="destination" ref="191373211"/>
-						<int key="IBEventType">7</int>
-					</object>
-					<int key="connectionID">71</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBCocoaTouchEventConnection" key="connection">
-						<string key="label">clickFilterBtn:</string>
-						<reference key="source" ref="513685811"/>
-						<reference key="destination" ref="191373211"/>
-						<int key="IBEventType">7</int>
-					</object>
-					<int key="connectionID">72</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBCocoaTouchEventConnection" key="connection">
-						<string key="label">clickFilterBtn:</string>
-						<reference key="source" ref="750384663"/>
-						<reference key="destination" ref="191373211"/>
-						<int key="IBEventType">7</int>
-					</object>
-					<int key="connectionID">73</int>
-				</object>
-			</array>
-			<object class="IBMutableOrderedSet" key="objectRecords">
-				<array key="orderedObjects">
-					<object class="IBObjectRecord">
-						<int key="objectID">0</int>
-						<array key="object" id="0"/>
-						<reference key="children" ref="1000"/>
-						<nil key="parent"/>
-					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">1</int>
-						<reference key="object" ref="191373211"/>
-						<array class="NSMutableArray" key="children">
-							<reference ref="863488231"/>
-						</array>
-						<reference key="parent" ref="0"/>
-					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">-1</int>
-						<reference key="object" ref="372490531"/>
-						<reference key="parent" ref="0"/>
-						<string key="objectName">File's Owner</string>
-					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">-2</int>
-						<reference key="object" ref="975951072"/>
-						<reference key="parent" ref="0"/>
-					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">3</int>
-						<reference key="object" ref="863488231"/>
-						<array class="NSMutableArray" key="children">
-							<reference ref="115890540"/>
-							<reference ref="864406241"/>
-							<reference ref="30893582"/>
-							<reference ref="469150547"/>
-							<reference ref="760642670"/>
-							<reference ref="580405008"/>
-							<reference ref="729360167"/>
-							<reference ref="233904066"/>
-							<reference ref="494415589"/>
-							<reference ref="48678854"/>
-							<reference ref="889212231"/>
-							<reference ref="1056237893"/>
-							<reference ref="808455804"/>
-							<reference ref="267287533"/>
-							<reference ref="32947837"/>
-							<reference ref="325228121"/>
-							<reference ref="384615198"/>
-							<reference ref="1021302256"/>
-							<reference ref="537949686"/>
-							<reference ref="944403770"/>
-							<reference ref="637175522"/>
-							<reference ref="408742770"/>
-							<reference ref="719492081"/>
-							<reference ref="513685811"/>
-							<reference ref="750384663"/>
-							<reference ref="94616418"/>
-							<reference ref="353046071"/>
-							<reference ref="272276502"/>
-							<reference ref="174847206"/>
-							<reference ref="890741209"/>
-						</array>
-						<reference key="parent" ref="191373211"/>
-					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">9</int>
-						<reference key="object" ref="115890540"/>
-						<reference key="parent" ref="863488231"/>
-					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">11</int>
-						<reference key="object" ref="864406241"/>
-						<reference key="parent" ref="863488231"/>
-					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">12</int>
-						<reference key="object" ref="30893582"/>
-						<reference key="parent" ref="863488231"/>
-					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">13</int>
-						<reference key="object" ref="469150547"/>
-						<reference key="parent" ref="863488231"/>
-					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">15</int>
-						<reference key="object" ref="760642670"/>
-						<reference key="parent" ref="863488231"/>
-					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">16</int>
-						<reference key="object" ref="580405008"/>
-						<reference key="parent" ref="863488231"/>
-					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">17</int>
-						<reference key="object" ref="729360167"/>
-						<reference key="parent" ref="863488231"/>
-					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">18</int>
-						<reference key="object" ref="233904066"/>
-						<reference key="parent" ref="863488231"/>
-					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">19</int>
-						<reference key="object" ref="890741209"/>
-						<reference key="parent" ref="863488231"/>
-					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">21</int>
-						<reference key="object" ref="494415589"/>
-						<reference key="parent" ref="863488231"/>
-					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">22</int>
-						<reference key="object" ref="48678854"/>
-						<reference key="parent" ref="863488231"/>
-					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">23</int>
-						<reference key="object" ref="889212231"/>
-						<reference key="parent" ref="863488231"/>
-					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">24</int>
-						<reference key="object" ref="1056237893"/>
-						<reference key="parent" ref="863488231"/>
-					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">25</int>
-						<reference key="object" ref="808455804"/>
-						<reference key="parent" ref="863488231"/>
-					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">26</int>
-						<reference key="object" ref="353046071"/>
-						<reference key="parent" ref="863488231"/>
-					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">27</int>
-						<reference key="object" ref="267287533"/>
-						<reference key="parent" ref="863488231"/>
-					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">28</int>
-						<reference key="object" ref="32947837"/>
-						<reference key="parent" ref="863488231"/>
-					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">29</int>
-						<reference key="object" ref="325228121"/>
-						<reference key="parent" ref="863488231"/>
-					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">30</int>
-						<reference key="object" ref="384615198"/>
-						<reference key="parent" ref="863488231"/>
-					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">31</int>
-						<reference key="object" ref="1021302256"/>
-						<reference key="parent" ref="863488231"/>
-					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">32</int>
-						<reference key="object" ref="537949686"/>
-						<reference key="parent" ref="863488231"/>
-					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">33</int>
-						<reference key="object" ref="94616418"/>
-						<reference key="parent" ref="863488231"/>
-					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">34</int>
-						<reference key="object" ref="272276502"/>
-						<reference key="parent" ref="863488231"/>
-					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">35</int>
-						<reference key="object" ref="944403770"/>
-						<reference key="parent" ref="863488231"/>
-					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">36</int>
-						<reference key="object" ref="637175522"/>
-						<reference key="parent" ref="863488231"/>
-					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">37</int>
-						<reference key="object" ref="408742770"/>
-						<reference key="parent" ref="863488231"/>
-					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">38</int>
-						<reference key="object" ref="174847206"/>
-						<reference key="parent" ref="863488231"/>
-					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">39</int>
-						<reference key="object" ref="719492081"/>
-						<reference key="parent" ref="863488231"/>
-					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">40</int>
-						<reference key="object" ref="513685811"/>
-						<reference key="parent" ref="863488231"/>
-					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">41</int>
-						<reference key="object" ref="750384663"/>
-						<reference key="parent" ref="863488231"/>
-					</object>
-				</array>
-			</object>
-			<dictionary class="NSMutableDictionary" key="flattenedProperties">
-				<string key="-1.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-				<string key="-2.CustomClassName">UIResponder</string>
-				<string key="-2.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-				<string key="1.CustomClassName">CommonSearchImageFilterView</string>
-				<string key="1.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-				<string key="11.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-				<real value="2" key="11.IBUIButtonInspectorSelectedStateConfigurationMetadataKey"/>
-				<string key="12.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-				<real value="2" key="12.IBUIButtonInspectorSelectedStateConfigurationMetadataKey"/>
-				<string key="13.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-				<real value="2" key="13.IBUIButtonInspectorSelectedStateConfigurationMetadataKey"/>
-				<string key="15.CustomClassName">LocalizableLabel</string>
-				<string key="15.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-				<string key="16.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-				<real value="2" key="16.IBUIButtonInspectorSelectedStateConfigurationMetadataKey"/>
-				<string key="17.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-				<real value="0.0" key="17.IBUIButtonInspectorSelectedStateConfigurationMetadataKey"/>
-				<string key="18.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-				<real value="0.0" key="18.IBUIButtonInspectorSelectedStateConfigurationMetadataKey"/>
-				<string key="19.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-				<real value="0.0" key="19.IBUIButtonInspectorSelectedStateConfigurationMetadataKey"/>
-				<string key="21.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-				<real value="0.0" key="21.IBUIButtonInspectorSelectedStateConfigurationMetadataKey"/>
-				<string key="22.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-				<real value="0.0" key="22.IBUIButtonInspectorSelectedStateConfigurationMetadataKey"/>
-				<string key="23.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-				<real value="0.0" key="23.IBUIButtonInspectorSelectedStateConfigurationMetadataKey"/>
-				<string key="24.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-				<real value="0.0" key="24.IBUIButtonInspectorSelectedStateConfigurationMetadataKey"/>
-				<string key="25.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-				<real value="0.0" key="25.IBUIButtonInspectorSelectedStateConfigurationMetadataKey"/>
-				<string key="26.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-				<real value="0.0" key="26.IBUIButtonInspectorSelectedStateConfigurationMetadataKey"/>
-				<string key="27.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-				<real value="0.0" key="27.IBUIButtonInspectorSelectedStateConfigurationMetadataKey"/>
-				<string key="28.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-				<real value="0.0" key="28.IBUIButtonInspectorSelectedStateConfigurationMetadataKey"/>
-				<string key="29.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-				<real value="0.0" key="29.IBUIButtonInspectorSelectedStateConfigurationMetadataKey"/>
-				<string key="3.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-				<string key="30.CustomClassName">LocalizableLabel</string>
-				<string key="30.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-				<string key="31.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-				<real value="2" key="31.IBUIButtonInspectorSelectedStateConfigurationMetadataKey"/>
-				<string key="32.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-				<real value="2" key="32.IBUIButtonInspectorSelectedStateConfigurationMetadataKey"/>
-				<string key="33.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-				<real value="2" key="33.IBUIButtonInspectorSelectedStateConfigurationMetadataKey"/>
-				<string key="34.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-				<real value="2" key="34.IBUIButtonInspectorSelectedStateConfigurationMetadataKey"/>
-				<string key="35.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-				<real value="2" key="35.IBUIButtonInspectorSelectedStateConfigurationMetadataKey"/>
-				<string key="36.CustomClassName">LocalizableLabel</string>
-				<string key="36.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-				<string key="37.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-				<real value="2" key="37.IBUIButtonInspectorSelectedStateConfigurationMetadataKey"/>
-				<string key="38.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-				<real value="2" key="38.IBUIButtonInspectorSelectedStateConfigurationMetadataKey"/>
-				<string key="39.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-				<real value="2" key="39.IBUIButtonInspectorSelectedStateConfigurationMetadataKey"/>
-				<string key="40.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-				<real value="2" key="40.IBUIButtonInspectorSelectedStateConfigurationMetadataKey"/>
-				<string key="41.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-				<real value="0.0" key="41.IBUIButtonInspectorSelectedStateConfigurationMetadataKey"/>
-				<string key="9.CustomClassName">LocalizableLabel</string>
-				<string key="9.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-			</dictionary>
-			<dictionary class="NSMutableDictionary" key="unlocalizedProperties"/>
-			<nil key="activeLocalization"/>
-			<dictionary class="NSMutableDictionary" key="localizations"/>
-			<nil key="sourceID"/>
-			<int key="maxID">86</int>
-		</object>
-		<object class="IBClassDescriber" key="IBDocument.Classes"/>
-		<int key="IBDocument.localizationMode">0</int>
-		<string key="IBDocument.TargetRuntimeIdentifier">IBCocoaTouchFramework</string>
-		<bool key="IBDocument.PluginDeclaredDependenciesTrackSystemTargetVersion">YES</bool>
-		<int key="IBDocument.defaultPropertyAccessControl">3</int>
-		<dictionary class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
-			<string key="photo_tag_select@2x.png">{130, 51}</string>
-			<string key="photo_tag_unselect@2x.png">{130, 51}</string>
-		</dictionary>
-		<string key="IBCocoaTouchPluginVersion">2083</string>
-	</data>
-</archive>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="4514" systemVersion="12F45" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none">
+    <dependencies>
+        <deployment defaultVersion="1280" identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3747"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="1" customClass="CommonSearchImageFilterView">
+            <rect key="frame" x="0.0" y="0.0" width="285" height="345"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" id="3">
+                    <rect key="frame" x="0.0" y="0.0" width="285" height="345"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <subviews>
+                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="kColorful" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="9" customClass="LocalizableLabel">
+                            <rect key="frame" x="17" y="14" width="56" height="20"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                            <color key="textColor" red="0.50588235290000005" green="0.33333333329999998" blue="0.1450980392" alpha="1" colorSpace="calibratedRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <button opaque="NO" tag="120130605" contentMode="scaleToFill" selected="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="11">
+                            <rect key="frame" x="85" y="9" width="59" height="32"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <rect key="contentStretch" x="0.0" y="0.0" width="0.0" height="0.0"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                            <state key="normal" title="不限" backgroundImage="photo_tag_unselect.png">
+                                <color key="titleColor" red="0.50588235290000005" green="0.33333333329999998" blue="0.1450980392" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <state key="selected" backgroundImage="photo_tag_select.png">
+                                <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <state key="highlighted">
+                                <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <connections>
+                                <action selector="clickFilterBtn:" destination="1" eventType="touchUpInside" id="55"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" tag="120130606" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="12">
+                            <rect key="frame" x="152" y="9" width="59" height="32"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <rect key="contentStretch" x="0.0" y="0.0" width="0.0" height="0.0"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                            <state key="normal" title="黑白" backgroundImage="photo_tag_unselect.png">
+                                <color key="titleColor" red="0.50588235290000005" green="0.33333333329999998" blue="0.1450980392" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <state key="selected" backgroundImage="photo_tag_select.png">
+                                <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <state key="highlighted">
+                                <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <connections>
+                                <action selector="clickFilterBtn:" destination="1" eventType="touchUpInside" id="54"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" tag="120130607" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="13">
+                            <rect key="frame" x="218" y="9" width="59" height="32"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <rect key="contentStretch" x="0.0" y="0.0" width="0.0" height="0.0"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                            <state key="normal" title="彩色" backgroundImage="photo_tag_unselect.png">
+                                <color key="titleColor" red="0.50588235290000005" green="0.33333333329999998" blue="0.1450980392" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <state key="selected" backgroundImage="photo_tag_select.png">
+                                <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <state key="highlighted">
+                                <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <connections>
+                                <action selector="clickFilterBtn:" destination="1" eventType="touchUpInside" id="56"/>
+                            </connections>
+                        </button>
+                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="kColorTone" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="15" customClass="LocalizableLabel">
+                            <rect key="frame" x="17" y="52" width="56" height="20"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                            <color key="textColor" red="0.50588235290000005" green="0.33333333329999998" blue="0.1450980392" alpha="1" colorSpace="calibratedRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <button opaque="NO" tag="220130605" contentMode="scaleToFill" selected="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="16">
+                            <rect key="frame" x="85" y="46" width="59" height="32"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <rect key="contentStretch" x="0.0" y="0.0" width="0.0" height="0.0"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                            <state key="normal" title="不限" backgroundImage="photo_tag_unselect.png">
+                                <color key="titleColor" red="0.50588235290000005" green="0.33333333329999998" blue="0.1450980392" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <state key="selected" backgroundImage="photo_tag_select.png">
+                                <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <state key="highlighted">
+                                <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <connections>
+                                <action selector="clickFilterBtn:" destination="1" eventType="touchUpInside" id="50"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" tag="220130606" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="17">
+                            <rect key="frame" x="152" y="46" width="59" height="32"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <fontDescription key="fontDescription" type="boldSystem" pointSize="24"/>
+                            <inset key="contentEdgeInsets" minX="0.0" minY="0.0" maxX="0.0" maxY="8"/>
+                            <state key="normal" title="▅" backgroundImage="photo_tag_unselect.png">
+                                <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <state key="selected" backgroundImage="photo_tag_select.png">
+                                <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                            </state>
+                            <state key="highlighted">
+                                <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <connections>
+                                <action selector="clickFilterBtn:" destination="1" eventType="touchUpInside" id="48"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" tag="220130607" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="18">
+                            <rect key="frame" x="218" y="46" width="59" height="32"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                            <fontDescription key="fontDescription" type="boldSystem" pointSize="24"/>
+                            <inset key="contentEdgeInsets" minX="0.0" minY="0.0" maxX="0.0" maxY="8"/>
+                            <state key="normal" title="▅" backgroundImage="photo_tag_unselect.png">
+                                <color key="titleColor" red="0.0" green="0.0" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <state key="selected" backgroundImage="photo_tag_select.png">
+                                <color key="titleColor" red="0.0" green="0.0" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            </state>
+                            <state key="highlighted">
+                                <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <connections>
+                                <action selector="clickFilterBtn:" destination="1" eventType="touchUpInside" id="49"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" tag="220130608" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="19">
+                            <rect key="frame" x="151" y="157" width="59" height="32"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                            <fontDescription key="fontDescription" type="boldSystem" pointSize="24"/>
+                            <inset key="contentEdgeInsets" minX="0.0" minY="0.0" maxX="0.0" maxY="8"/>
+                            <state key="normal" title="▅" backgroundImage="photo_tag_unselect.png">
+                                <color key="titleColor" red="0.60000002379999995" green="0.40000000600000002" blue="0.20000000300000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <state key="selected" backgroundImage="photo_tag_select.png">
+                                <color key="titleColor" red="0.60000002379999995" green="0.40000000600000002" blue="0.20000000300000001" alpha="1" colorSpace="calibratedRGB"/>
+                            </state>
+                            <state key="highlighted">
+                                <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <connections>
+                                <action selector="clickFilterBtn:" destination="1" eventType="touchUpInside" id="57"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" tag="220130609" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="21">
+                            <rect key="frame" x="85" y="83" width="59" height="32"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <fontDescription key="fontDescription" type="boldSystem" pointSize="24"/>
+                            <inset key="contentEdgeInsets" minX="0.0" minY="0.0" maxX="0.0" maxY="8"/>
+                            <state key="normal" title="▅" backgroundImage="photo_tag_unselect.png">
+                                <color key="titleColor" name="controlShadowColor" catalog="System" colorSpace="catalog"/>
+                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <state key="selected" backgroundImage="photo_tag_select.png">
+                                <color key="titleColor" name="controlShadowColor" catalog="System" colorSpace="catalog"/>
+                            </state>
+                            <state key="highlighted">
+                                <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <connections>
+                                <action selector="clickFilterBtn:" destination="1" eventType="touchUpInside" id="58"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" tag="220130610" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="22">
+                            <rect key="frame" x="152" y="83" width="59" height="32"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                            <fontDescription key="fontDescription" type="boldSystem" pointSize="24"/>
+                            <inset key="contentEdgeInsets" minX="0.0" minY="0.0" maxX="0.0" maxY="8"/>
+                            <state key="normal" title="▅" backgroundImage="photo_tag_unselect.png">
+                                <color key="titleColor" red="0.0" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <state key="selected" backgroundImage="photo_tag_select.png">
+                                <color key="titleColor" red="0.0" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                            </state>
+                            <state key="highlighted">
+                                <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <connections>
+                                <action selector="clickFilterBtn:" destination="1" eventType="touchUpInside" id="59"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" tag="220130611" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="23">
+                            <rect key="frame" x="218" y="83" width="59" height="32"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                            <fontDescription key="fontDescription" type="boldSystem" pointSize="24"/>
+                            <inset key="contentEdgeInsets" minX="0.0" minY="0.0" maxX="0.0" maxY="8"/>
+                            <state key="normal" title="▅" backgroundImage="photo_tag_unselect.png">
+                                <color key="titleColor" red="1" green="0.5" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <state key="selected" backgroundImage="photo_tag_select.png">
+                                <color key="titleColor" red="1" green="0.5" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                            </state>
+                            <state key="highlighted">
+                                <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <connections>
+                                <action selector="clickFilterBtn:" destination="1" eventType="touchUpInside" id="60"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" tag="220130612" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="24">
+                            <rect key="frame" x="218" y="157" width="59" height="32"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                            <fontDescription key="fontDescription" type="boldSystem" pointSize="24"/>
+                            <inset key="contentEdgeInsets" minX="0.0" minY="0.0" maxX="0.0" maxY="8"/>
+                            <state key="normal" title="▅" backgroundImage="photo_tag_unselect.png">
+                                <color key="titleColor" red="1" green="0.0" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <state key="selected" backgroundImage="photo_tag_select.png">
+                                <color key="titleColor" red="1" green="0.0" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            </state>
+                            <state key="highlighted">
+                                <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <connections>
+                                <action selector="clickFilterBtn:" destination="1" eventType="touchUpInside" id="61"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" tag="220130613" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="25">
+                            <rect key="frame" x="85" y="120" width="59" height="32"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                            <fontDescription key="fontDescription" type="boldSystem" pointSize="24"/>
+                            <inset key="contentEdgeInsets" minX="0.0" minY="0.0" maxX="0.0" maxY="8"/>
+                            <state key="normal" title="▅" backgroundImage="photo_tag_unselect.png">
+                                <color key="titleColor" red="0.5" green="0.0" blue="0.5" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <state key="selected" backgroundImage="photo_tag_select.png">
+                                <color key="titleColor" red="0.5" green="0.0" blue="0.5" alpha="1" colorSpace="calibratedRGB"/>
+                            </state>
+                            <state key="highlighted">
+                                <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <connections>
+                                <action selector="clickFilterBtn:" destination="1" eventType="touchUpInside" id="62"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" tag="220130614" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="26">
+                            <rect key="frame" x="152" y="120" width="59" height="32"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                            <fontDescription key="fontDescription" type="boldSystem" pointSize="24"/>
+                            <inset key="contentEdgeInsets" minX="0.0" minY="0.0" maxX="0.0" maxY="8"/>
+                            <state key="normal" title="▅" backgroundImage="photo_tag_unselect.png">
+                                <color key="titleColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <state key="selected" backgroundImage="photo_tag_select.png">
+                                <color key="titleColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                            </state>
+                            <state key="highlighted">
+                                <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <connections>
+                                <action selector="clickFilterBtn:" destination="1" eventType="touchUpInside" id="63"/>
+                            </connections>
+                        </button>
+                        <button hidden="YES" opaque="NO" tag="220130615" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="27">
+                            <rect key="frame" x="14" y="97" width="59" height="32"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                            <state key="normal" title="teal" backgroundImage="photo_tag_unselect.png">
+                                <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <state key="selected" backgroundImage="photo_tag_select.png">
+                                <color key="titleColor" red="0.14117647059999999" green="0.41568627450000001" blue="0.42745098040000001" alpha="1" colorSpace="calibratedRGB"/>
+                            </state>
+                            <state key="highlighted">
+                                <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <connections>
+                                <action selector="clickFilterBtn:" destination="1" eventType="touchUpInside" id="64"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" tag="220130616" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="28">
+                            <rect key="frame" x="218" y="120" width="59" height="32"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                            <fontDescription key="fontDescription" type="boldSystem" pointSize="24"/>
+                            <inset key="contentEdgeInsets" minX="0.0" minY="0.0" maxX="0.0" maxY="8"/>
+                            <state key="normal" title="▅" backgroundImage="photo_tag_unselect.png">
+                                <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <state key="selected" backgroundImage="photo_tag_select.png">
+                                <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            </state>
+                            <state key="highlighted">
+                                <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <connections>
+                                <action selector="clickFilterBtn:" destination="1" eventType="touchUpInside" id="65"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" tag="220130617" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="29">
+                            <rect key="frame" x="85" y="157" width="59" height="32"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                            <fontDescription key="fontDescription" type="boldSystem" pointSize="24"/>
+                            <inset key="contentEdgeInsets" minX="0.0" minY="0.0" maxX="0.0" maxY="8"/>
+                            <state key="normal" title="▅" backgroundImage="photo_tag_unselect.png">
+                                <color key="titleColor" red="1" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <state key="selected" backgroundImage="photo_tag_select.png">
+                                <color key="titleColor" red="1" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                            </state>
+                            <state key="highlighted">
+                                <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <connections>
+                                <action selector="clickFilterBtn:" destination="1" eventType="touchUpInside" id="66"/>
+                            </connections>
+                        </button>
+                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="kImageSize" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="30" customClass="LocalizableLabel">
+                            <rect key="frame" x="17" y="204" width="56" height="20"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                            <color key="textColor" red="0.50588235290000005" green="0.33333333329999998" blue="0.1450980392" alpha="1" colorSpace="calibratedRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <button opaque="NO" tag="320120606" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="31">
+                            <rect key="frame" x="152" y="194" width="59" height="32"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <rect key="contentStretch" x="0.0" y="0.0" width="0.0" height="0.0"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                            <state key="normal" title="图标" backgroundImage="photo_tag_unselect.png">
+                                <color key="titleColor" red="0.50588235290000005" green="0.33333333329999998" blue="0.1450980392" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <state key="selected" backgroundImage="photo_tag_select.png">
+                                <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <state key="highlighted">
+                                <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <connections>
+                                <action selector="clickFilterBtn:" destination="1" eventType="touchUpInside" id="52"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" tag="320120605" contentMode="scaleToFill" selected="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="32">
+                            <rect key="frame" x="85" y="194" width="59" height="32"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <rect key="contentStretch" x="0.0" y="0.0" width="0.0" height="0.0"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                            <state key="normal" title="不限" backgroundImage="photo_tag_unselect.png">
+                                <color key="titleColor" red="0.50588235290000005" green="0.33333333329999998" blue="0.1450980392" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <state key="selected" backgroundImage="photo_tag_select.png">
+                                <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <state key="highlighted">
+                                <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <connections>
+                                <action selector="clickFilterBtn:" destination="1" eventType="touchUpInside" id="51"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" tag="320120607" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="33">
+                            <rect key="frame" x="218" y="194" width="59" height="32"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <rect key="contentStretch" x="0.0" y="0.0" width="0.0" height="0.0"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                            <state key="normal" title="标准" backgroundImage="photo_tag_unselect.png">
+                                <color key="titleColor" red="0.50588235290000005" green="0.33333333329999998" blue="0.1450980392" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <state key="selected" backgroundImage="photo_tag_select.png">
+                                <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <state key="highlighted">
+                                <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <connections>
+                                <action selector="clickFilterBtn:" destination="1" eventType="touchUpInside" id="53"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" tag="320120608" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="34">
+                            <rect key="frame" x="84" y="231" width="59" height="32"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <rect key="contentStretch" x="0.0" y="0.0" width="0.0" height="0.0"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                            <state key="normal" title="大" backgroundImage="photo_tag_unselect.png">
+                                <color key="titleColor" red="0.50588235290000005" green="0.33333333329999998" blue="0.1450980392" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <state key="selected" backgroundImage="photo_tag_select.png">
+                                <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <state key="highlighted">
+                                <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <connections>
+                                <action selector="clickFilterBtn:" destination="1" eventType="touchUpInside" id="67"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" tag="320120609" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="35">
+                            <rect key="frame" x="151" y="231" width="59" height="32"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <rect key="contentStretch" x="0.0" y="0.0" width="0.0" height="0.0"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                            <state key="normal" title="超大" backgroundImage="photo_tag_unselect.png">
+                                <color key="titleColor" red="0.50588235290000005" green="0.33333333329999998" blue="0.1450980392" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <state key="selected" backgroundImage="photo_tag_select.png">
+                                <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <state key="highlighted">
+                                <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <connections>
+                                <action selector="clickFilterBtn:" destination="1" eventType="touchUpInside" id="68"/>
+                            </connections>
+                        </button>
+                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="kImageType" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="36" customClass="LocalizableLabel">
+                            <rect key="frame" x="14" y="274" width="60" height="20"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                            <color key="textColor" red="0.50588235290000005" green="0.33333333329999998" blue="0.1450980392" alpha="1" colorSpace="calibratedRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <button opaque="NO" tag="420120606" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="37">
+                            <rect key="frame" x="151" y="268" width="59" height="32"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <rect key="contentStretch" x="0.0" y="0.0" width="0.0" height="0.0"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                            <state key="normal" title="人脸" backgroundImage="photo_tag_unselect.png">
+                                <color key="titleColor" red="0.50588235290000005" green="0.33333333329999998" blue="0.1450980392" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <state key="selected" backgroundImage="photo_tag_select.png">
+                                <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <state key="highlighted">
+                                <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <connections>
+                                <action selector="clickFilterBtn:" destination="1" eventType="touchUpInside" id="70"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" tag="420120605" contentMode="scaleToFill" selected="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="38">
+                            <rect key="frame" x="85" y="268" width="59" height="32"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <rect key="contentStretch" x="0.0" y="0.0" width="0.0" height="0.0"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                            <state key="normal" title="不限" backgroundImage="photo_tag_unselect.png">
+                                <color key="titleColor" red="0.50588235290000005" green="0.33333333329999998" blue="0.1450980392" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <state key="selected" backgroundImage="photo_tag_select.png">
+                                <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <state key="highlighted">
+                                <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <connections>
+                                <action selector="clickFilterBtn:" destination="1" eventType="touchUpInside" id="69"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" tag="420120607" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="39">
+                            <rect key="frame" x="218" y="268" width="59" height="32"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <rect key="contentStretch" x="0.0" y="0.0" width="0.0" height="0.0"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                            <state key="normal" title="照片" backgroundImage="photo_tag_unselect.png">
+                                <color key="titleColor" red="0.50588235290000005" green="0.33333333329999998" blue="0.1450980392" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <state key="selected" backgroundImage="photo_tag_select.png">
+                                <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <state key="highlighted">
+                                <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <connections>
+                                <action selector="clickFilterBtn:" destination="1" eventType="touchUpInside" id="71"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" tag="420120608" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="40">
+                            <rect key="frame" x="151" y="305" width="59" height="32"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <rect key="contentStretch" x="0.0" y="0.0" width="0.0" height="0.0"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                            <state key="normal" title="卡通" backgroundImage="photo_tag_unselect.png">
+                                <color key="titleColor" red="0.50588235290000005" green="0.33333333329999998" blue="0.1450980392" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <state key="selected" backgroundImage="photo_tag_select.png">
+                                <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <state key="highlighted">
+                                <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <connections>
+                                <action selector="clickFilterBtn:" destination="1" eventType="touchUpInside" id="72"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" tag="420120609" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="41">
+                            <rect key="frame" x="84" y="305" width="59" height="32"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <rect key="contentStretch" x="0.0" y="0.0" width="0.0" height="0.0"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                            <state key="normal" title="素描" backgroundImage="photo_tag_unselect.png">
+                                <color key="titleColor" red="0.50588235290000005" green="0.33333333329999998" blue="0.1450980392" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <state key="selected" backgroundImage="photo_tag_select.png">
+                                <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <state key="highlighted">
+                                <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <connections>
+                                <action selector="clickFilterBtn:" destination="1" eventType="touchUpInside" id="73"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                </view>
+            </subviews>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="photo_tag_select.png" width="65" height="25"/>
+        <image name="photo_tag_unselect.png" width="65" height="25"/>
+    </resources>
+</document>
