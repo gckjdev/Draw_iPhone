@@ -1309,6 +1309,11 @@ qqAccessTokenSecret:(NSString*)accessTokenSecret
 
 - (BOOL)canShakeXiaojiNumber
 {
+    
+#ifdef DEBUG
+    return YES;
+#endif
+    
     if ([self hasXiaojiNumber]){
         return NO;
     }
@@ -1357,6 +1362,10 @@ qqAccessTokenSecret:(NSString*)accessTokenSecret
 
 - (int)shakeTimesLeft
 {
+#ifdef DEBUG
+    return 99;
+#endif
+    
     int current = [self currentShakeTimes];
     if (_pbUser.shakeNumberTimes - current <= 0){
         return 0;
