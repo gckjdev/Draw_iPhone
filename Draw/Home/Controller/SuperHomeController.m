@@ -51,7 +51,7 @@ static NSDictionary* DEFAULT_MENU_IMAGE_DICT = nil;
 
 
 #define MAIN_MENU_ORIGIN_Y (ISIPAD ? 200 : 100+(ISIPHONE5?10:0))
-#define BOTTOM_MENU_ORIGIN_Y ISIPAD ? (1004-76) : ((460-38)+(ISIPHONE5?88:0))
+#define BOTTOM_MENU_ORIGIN_Y (CGRectGetHeight([[UIScreen mainScreen] bounds]) - 20 - (ISIPAD ? 76 : 38))
 
 @implementation SuperHomeController
 

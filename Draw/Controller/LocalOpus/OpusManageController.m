@@ -288,6 +288,9 @@ typedef enum {
     }
     
     SET_COMMON_TAB_TABLE_VIEW_Y(self.dataTableView);
+    CGFloat height = CGRectGetMaxY(self.view.bounds) - CGRectGetMinY(self.dataTableView.frame);
+    [self.dataTableView updateHeight:height];
+
 }
 
 - (void)viewDidUnload
