@@ -271,22 +271,23 @@ typedef enum {
             txt = [NSString stringWithFormat:@"%.0f\nx\n%.0f",rect.size.width, rect.size.height];
         }else{
             if (CGRectGetHeight(rect) == CGRectGetWidth(rect)) {
-                txt = [NSString stringWithFormat:@"\t\t\t\t%.0f x\n\t\t\t\t%.0f",rect.size.width, rect.size.height];     
+                txt = [NSString stringWithFormat:@"%.0f x\n%.0f",rect.size.width, rect.size.height];
             }else{
-                txt = [NSString stringWithFormat:@"\t\t\t\t%.0f\n\t\t\t\tx %.0f",rect.size.width, rect.size.height];
+                txt = [NSString stringWithFormat:@"%.0f\nx %.0f",rect.size.width, rect.size.height];
             }
 
             if (CGRectGetWidth(rect) < 500) {
-                txt = [NSString stringWithFormat:@"\t\t\t%.0f x\n\t\t\t%.0f",rect.size.width, rect.size.height];
+                txt = [NSString stringWithFormat:@"%.0f x\n%.0f",rect.size.width, rect.size.height];
             }
             if(CGRectGetHeight(rect) < 300){
-                txt = [NSString stringWithFormat:@"%.0f x %.0f",rect.size.width, rect.size.height];                
+                txt = [NSString stringWithFormat:@"%.0fx%.0f",rect.size.width, rect.size.height];
             }
             
         }
         [tt setText:txt];
         tt.numberOfLines = 0;
-        
+        tt.textAlignment = NSTextAlignmentCenter;
+        [tt setMinimumScaleFactor:0.1];
         [self addSubview:tt];
     }
     return self;
