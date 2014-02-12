@@ -174,7 +174,9 @@ typedef enum{
     [self.titleView setRightButtonSelector:@selector(clickRefreshButton:)];
     
     SET_COMMON_TAB_TABLE_VIEW_Y(self.dataTableView);
-    
+    CGFloat height = CGRectGetMaxY(self.view.bounds) - CGRectGetMinY(self.dataTableView.frame);
+    [self.dataTableView updateHeight:height];
+
     CGRect rect = [self.titleView rectFromButtonBeforeRightButton];
     [_hotRankSettingButton setFrame:rect];
     [_hotRankSettingButton setBackgroundImage:[[ShareImageManager defaultManager] changeHotTopImage]
