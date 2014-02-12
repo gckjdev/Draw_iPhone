@@ -386,7 +386,7 @@
     CGRect rect;
     
     if (ISIPAD) {
-        rect = CGRectMake(70, 92, 628, 628);
+        rect = CGRectMake(70, 112, 628, 628);
     }else if (ISIPHONE5){
         rect = CGRectMake(21, 88, 280, 280);
     }else{

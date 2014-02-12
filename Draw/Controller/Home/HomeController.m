@@ -32,7 +32,7 @@
 #import "AnimationManager.h"
 #import "WordManager.h"
 
-#import "OfflineGuessDrawController.h"
+//#import "OfflineGuessDrawController.h"
 #import "UseItemScene.h"
 
 #import "ChatListController.h"
