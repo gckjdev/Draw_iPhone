@@ -227,9 +227,14 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GameAdWallService)
         
     };
     
-    
-    for (CommonAdWallService* wallService in _wallServiceArray){
-        [wallService queryScore:userId completeHandler:handler];
+    @try {
+        for (CommonAdWallService* wallService in _wallServiceArray){
+            [wallService queryScore:userId completeHandler:handler];
+        }        
+    }
+    @catch (NSException *exception) {
+    }
+    @finally {
     }
     
 }

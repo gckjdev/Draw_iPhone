@@ -405,15 +405,6 @@ NSString* GlobalGetBoardServerURL()
         [[GroupService defaultService] syncFollowTopicIds];        
     }
     
-//    if (ISIOS7) {
-////        [application setStatusBarStyle:UIStatusBarStyleLightContent];
-//        self.window.clipsToBounds =YES;
-//        CGRect frame = self.window.frame;
-//        frame.origin.y = 20;
-//        frame.size.height -= 20;
-//        self.window.frame = frame;
-//    }
-    
     return YES;
 }
 
@@ -501,6 +492,12 @@ NSString* GlobalGetBoardServerURL()
     
     [[UserStatusService defaultService] stop];
     
+    if ([[UserManager defaultManager] hasUser]) {
+        [[GroupService defaultService] syncGroupRoles];
+        [[GroupService defaultService] syncFollowGroupIds];
+        [[GroupService defaultService] syncFollowTopicIds];
+    }
+    
     // store user defaults
     NSUserDefaults* userDefaults = [NSUserDefaults standardUserDefaults];
     [userDefaults synchronize];
@@ -515,15 +512,6 @@ NSString* GlobalGetBoardServerURL()
 
     PPDebug(@"<applicationWillEnterForeground>");    
     application.applicationIconBadgeNumber = 0;
-    
-    
-#if DEBUG
-    
-//    [[UserService defaultService] sendPassword:@"29356050@qq.com" resultBlock:nil];
-//    [[UserService defaultService] sendVerificationRequest:nil];
-//    [[UserService defaultService] verifyAccount:@"233149" resultBlock:nil];
-    
-#endif
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application
@@ -539,7 +527,6 @@ NSString* GlobalGetBoardServerURL()
     [[AccountService defaultService] syncAccount:nil];
     
     [[DrawGameService defaultService] clearDisconnectTimer];
-//    [[DiceGameService defaultService] clearDisconnectTimer];
     [self.networkDetector start];
     
     [[UserStatusService defaultService] start];

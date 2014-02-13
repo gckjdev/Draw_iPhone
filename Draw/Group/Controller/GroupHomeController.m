@@ -44,9 +44,11 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         groupService = [GroupService defaultService];
-        [groupService syncFollowGroupIds];
-        [groupService syncGroupRoles];
-        [groupService syncFollowTopicIds];        
+        if ([[UserManager defaultManager] hasUser]){
+            [groupService syncFollowGroupIds];
+            [groupService syncGroupRoles];
+            [groupService syncFollowTopicIds];
+        }
     }
     return self;
 }
