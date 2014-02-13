@@ -82,6 +82,6 @@
     </objects>
     <resources>
         <image name="bbs_post_search.png" width="34" height="34"/>
-        <image name="draw_main_bg@2x.jpg" width="16" height="16"/>
+        <image name="draw_main_bg@2x.jpg" width="68" height="69"/>
     </resources>
 </document>

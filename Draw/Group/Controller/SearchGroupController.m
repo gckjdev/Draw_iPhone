@@ -28,6 +28,9 @@
 
 - (void)viewDidLoad
 {
+    [self.dataTableView updateWidth:([[UIScreen mainScreen] bounds].size.width)];
+    [self.dataTableView updateCenterX:CGRectGetMidX([[UIScreen mainScreen] bounds])];
+
     [super viewDidLoad];
 }
 
@@ -59,6 +62,7 @@
     if (cell == nil) {
         cell = [GroupCell createCell:nil];
         [cell setCellInfo:data];
+        cell.backgroundColor = [UIColor clearColor];
     }
     return cell;
 }
@@ -83,5 +87,11 @@
     return @"GroupSearchHistory";
 }
 
+
+- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [super tableView:tableView willDisplayCell:cell forRowAtIndexPath:indexPath];
+    cell.backgroundColor = (indexPath.row & 0x1)? COLOR_GRAY : COLOR_WHITE;
+}
 
 @end

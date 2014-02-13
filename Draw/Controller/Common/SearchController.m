@@ -66,6 +66,7 @@ typedef enum{
     self.searchTextField.text = nil;
     [self.searchTextField setPlaceholder:[self searchTips]];
     self.searchTextField.returnKeyType = UIReturnKeySearch;
+    [self.dataTableView setBackgroundColor:[UIColor clearColor]];
 }
 
 - (void)didReceiveMemoryWarning
@@ -285,4 +286,10 @@ typedef enum{
 - (BOOL)isTitleViewTransparentStyle{
     return YES;
 }
+
+- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [super tableView:tableView willDisplayCell:cell forRowAtIndexPath:indexPath];
+}
+
 @end
