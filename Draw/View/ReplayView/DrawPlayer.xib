@@ -43,7 +43,7 @@
                             <rect key="frame" x="3" y="3" width="29" height="29"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                            <state key="normal" title="Button" image="draw_player_play.png"/>
+                            <state key="normal" image="draw_player_play.png"/>
                             <state key="selected" image="draw_player_pause.png"/>
                             <state key="highlighted">
                                 <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
