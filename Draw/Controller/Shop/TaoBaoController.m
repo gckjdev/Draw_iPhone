@@ -34,6 +34,7 @@
     [self setCanDragBack:NO];
     self.titleLabel.text = self.customTitle;
     
+    PPDebug(@"loading URL %@", _url);
     NSURL *url = [NSURL URLWithString:_url];
     if (url != nil) {
         NSURLRequest *request = [NSURLRequest requestWithURL:url];
