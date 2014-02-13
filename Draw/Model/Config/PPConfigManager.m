@@ -161,7 +161,7 @@
 + (NSString*)getMessageServerURL
 {
 #ifdef DEBUG
-    return @"http://58.215.184.18:8699/api/i?";
+//    return @"http://58.215.184.18:8699/api/i?";
     //    return @"http://localhost:8100/api/i?";
 //    return @"http://192.168.1.12:8100/api/i?";
 #endif
@@ -185,7 +185,7 @@
 {
 #ifdef DEBUG
 //    return @"http://192.168.1.12:8100/api/i?";
-    return @"http://58.215.184.18:8699/api/i?";
+//    return @"http://58.215.184.18:8699/api/i?";
 //    return @"http://192.168.100.192:8100/api/i?";
 //    return @"http://localhost:8100/api/i?";
 #endif
@@ -1230,7 +1230,7 @@
 }
 
 
-#define VIP_LAYER_NUMBER 7
+#define VIP_LAYER_NUMBER INT_MAX
 
 + (int)getMaxLayerNumber
 {
@@ -1239,7 +1239,7 @@
 #endif
     
     if ([[UserManager defaultManager] isVip]) {
-        return [MobClickUtils getIntValueByKey:@"MAX_LAYER_NUMBER_VIP" defaultValue:7];
+        return [MobClickUtils getIntValueByKey:@"MAX_LAYER_NUMBER_VIP" defaultValue:VIP_LAYER_NUMBER];
     }
     return [MobClickUtils getIntValueByKey:@"MAX_LAYER_NUMBER" defaultValue:4];
 }

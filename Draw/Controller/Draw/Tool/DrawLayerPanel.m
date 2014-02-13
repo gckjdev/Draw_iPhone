@@ -169,6 +169,9 @@
     self.alphaSlider.center = CGRectGetCenter(frame);
     [self addSubview:self.alphaSlider];
     [self reloadView];
+    
+
+    
 }
 
 + (id)drawLayerPanelWithDrawLayerManager:(DrawLayerManager *)dlManager
@@ -292,11 +295,15 @@ didClickRemoveAtDrawLayer:(DrawLayer *)layer
 
 
 
+#define MAX_SHOW_COUNT 4
+
 - (void)reloadView
 {
+    
+    NSInteger count = MIN(MAX_SHOW_COUNT, [[_dlManager layers] count]);
  
     CMPopTipView *superView = (id)self.superview;
-    CGFloat height = [[_dlManager layers] count] * CELL_HEIGHT + (CELL_HEIGHT * 3);
+    CGFloat height = count * CELL_HEIGHT + (CELL_HEIGHT * 3);
     
     CGFloat x = height - CGRectGetHeight(self.bounds);
     
@@ -315,6 +322,21 @@ didClickRemoveAtDrawLayer:(DrawLayer *)layer
     }];
     
     [self.tableView reloadData];
+    
+    [self performSelector:@selector(scrollToSelectedLayer) withObject:nil afterDelay:0.2];
+
+}
+
+
+- (void)scrollToSelectedLayer
+{
+    //scroll to the selected layer.
+    id layer = [_dlManager selectedLayer];
+    NSUInteger index = [[_dlManager layers] indexOfObject:layer];
+    if (index != NSNotFound) {
+        NSIndexPath *indexPath = [NSIndexPath indexPathForRow:index inSection:0];
+        [self.tableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionMiddle animated:YES];
+    }
 }
 
 #pragma mark DrawLayer Cell Delegate

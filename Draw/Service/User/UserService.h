@@ -66,6 +66,12 @@ typedef void(^UploadImageResultBlock)(int resultCode, NSString* imageRemoteURL);
 @property (nonatomic, retain) GetNewNumberViewController* getNewNumberController;
 @property (nonatomic, retain) ShakeNumberController* shakeNumberController;
 
+@property (nonatomic, assign) int vipYearLeft;
+@property (nonatomic, assign) int vipMonthLeft;
+@property (nonatomic, assign) BOOL canBuyVip;
+@property (nonatomic, retain) NSDate *vipNextOpenDate;
+
+
 + (UserService*)defaultService;
 
 - (void)registerUser:(NSString*)email 
@@ -232,5 +238,8 @@ typedef void(^UploadImageResultBlock)(int resultCode, NSString* imageRemoteURL);
 - (void)setUserGroupNotice:(NSString*)groupId
                     status:(int)status
                resultBlock:(void(^)(int resultCode))resultBlock;
+
+- (void)getVipPurchaseInfo:(void(^)(int resultCode))resultBlock;
+
 
 @end

@@ -614,6 +614,16 @@
     return cell;
 }
 
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
+{
+    return 10;
+}
+
+- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
+{
+    UIView* view = [[[UIView alloc] initWithFrame:CGRectMake(0, 0, 1, 10)] autorelease];
+    return view;
+}
 
 #pragma mark - button action
 - (IBAction)clickBack:(id)sender 

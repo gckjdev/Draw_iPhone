@@ -172,6 +172,12 @@
 #define METHOD_AWARD_APP                @"awardApp"
 #define METHOD_SET_USER_OFF_GROUP       @"setUserOffGroup"
 
+#define METHOD_GET_VIP_PURCHASE_INFO    @"getVipPurchaseInfo"
+#define PARA_VIP_NEXT_OPEN_DATE         @"vipNextOpenDate"
+#define PARA_CAN_BUY_VIP                @"canBuyVip"
+#define PARA_VIP_MONTH_LEFT             @"vipMonthLeft"
+#define PARA_VIP_YEAR_LEFT              @"vipYearLeft"
+
 #define PARA_REMOVE_OLD_NUMBER          @"removeOldNumber"
 #define PARA_SET_USER_NUMBER            @"setUserNumber"
 #define PARA_XIAOJI_NUMBER              @"xn"

@@ -362,8 +362,11 @@
     
 }
 
+
 - (void)alipayWebPaymentForOrder:(AlixPayOrder *)order product:(PBIAPProduct*)product
 {
+    NSString* PRODUCT = @"chargeCoin";
+    
     NSString* url = [PPConfigManager getAlipayWebUrl];
     url = [url stringByAddQueryParameter:METHOD value:@"charge"];
     url = [url stringByAddQueryParameter:PARA_APPID value:[GameApp appId]];
@@ -375,6 +378,8 @@
     url = [url stringByAddQueryParameter:PARA_TYPE intValue:product.type];
     url = [url stringByAddQueryParameter:PARA_COUNT intValue:product.count];
     
+    url = [url stringByAddQueryParameter:PARA_XIAOJI_NUMBER value:[[UserManager defaultManager] xiaojiNumber]];
+    url = [url stringByAddQueryParameter:PARA_PRODUCT value:PRODUCT];
 
     NSString* title = [NSString stringWithFormat:@"充值 - %@", order.productName];
     TaoBaoController* vc = [[TaoBaoController alloc] initWithURL:url title:title];
