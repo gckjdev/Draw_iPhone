@@ -164,7 +164,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" id="61">
-                        <rect key="frame" x="0.0" y="73" width="230" height="2"/>
+                        <rect key="frame" x="0.0" y="73" width="230" height="1"/>
                         <autoresizingMask key="autoresizingMask" flexibleMinY="YES"/>
                         <color key="backgroundColor" red="0.56078431370000004" green="0.42352941179999998" blue="0.31764705879999999" alpha="1" colorSpace="calibratedRGB"/>
                     </imageView>

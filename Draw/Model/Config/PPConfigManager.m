@@ -1230,7 +1230,7 @@
 }
 
 
-#define VIP_LAYER_NUMBER 7
+#define VIP_LAYER_NUMBER INT_MAX
 
 + (int)getMaxLayerNumber
 {
@@ -1239,7 +1239,7 @@
 #endif
     
     if ([[UserManager defaultManager] isVip]) {
-        return [MobClickUtils getIntValueByKey:@"MAX_LAYER_NUMBER_VIP" defaultValue:7];
+        return [MobClickUtils getIntValueByKey:@"MAX_LAYER_NUMBER_VIP" defaultValue:VIP_LAYER_NUMBER];
     }
     return [MobClickUtils getIntValueByKey:@"MAX_LAYER_NUMBER" defaultValue:4];
 }
