@@ -179,8 +179,8 @@
 
 
 - (IBAction)clickCancel:(id)sender {
-    if (delegate && [delegate respondsToSelector:@selector(didCancel)]) {
-        [delegate didCancel];
+    if (delegate && [delegate respondsToSelector:@selector(didCancelSelectFriend)]) {
+        [delegate didCancelSelectFriend];
     }
 }
 
