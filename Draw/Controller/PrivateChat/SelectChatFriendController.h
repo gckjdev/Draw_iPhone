@@ -13,7 +13,7 @@
 @protocol SelectChatFriendDelagate <NSObject>
 
 @optional
-- (void)didCancel;
+- (void)didCancelSelectFriend;
 - (void)didSelectFriend:(MyFriend *)aFriend;
 
 @end

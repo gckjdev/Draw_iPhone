@@ -25055,11 +25055,12 @@
 					"\"$(SRCROOT)/../Common_iPhone_20/Core/Core-Utils-Audio-Convert\"",
 					"\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/AliPaySDK/alipay\"",
 				);
+				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = Sing;
 				PROVISIONING_PROFILE = "9B5B4B31-701F-4498-A959-4E06A74F97F0";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "9B5B4B31-701F-4498-A959-4E06A74F97F0";
-				VALID_ARCHS = "arm64 armv7 armv7s armv6";
+				VALID_ARCHS = "arm64 armv7 armv7s";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -25134,12 +25135,13 @@
 					"\"$(SRCROOT)/../Common_iPhone_20/Core/Core-Utils-Audio-Convert\"",
 					"\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/AliPaySDK/alipay\"",
 				);
+				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = Sing;
 				PROVISIONING_PROFILE = "5F84A650-DB22-43A3-B873-208FEB7E1F98";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "5F84A650-DB22-43A3-B873-208FEB7E1F98";
 				VALIDATE_PRODUCT = YES;
-				VALID_ARCHS = "arm64 armv7 armv7s armv6";
+				VALID_ARCHS = "arm64 armv7 armv7s";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
