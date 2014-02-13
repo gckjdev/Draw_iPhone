@@ -471,7 +471,7 @@
 
 - (IBAction)clickBuyMonth:(id)sender
 {
-    if ([[UserService defaultService] vipMonthLeft] == 0){
+    if ([[UserManager defaultManager].pbUser vip] == 0 && [[UserService defaultService] vipMonthLeft] == 0){
         
         NSDate* nextDate = [NSDate dateWithTimeInterval:7*24*3600 sinceDate:[[UserService defaultService] vipNextOpenDate]];
         
@@ -498,7 +498,7 @@
 
 - (IBAction)clickBuyYear:(id)sender
 {
-    if ([[UserService defaultService] vipMonthLeft] == 0){
+    if ([[UserManager defaultManager].pbUser vip] == 0 && [[UserService defaultService] vipMonthLeft] == 0){
         NSDate* nextDate = [NSDate dateWithTimeInterval:7*24*3600 sinceDate:[[UserService defaultService] vipNextOpenDate]];
 
         NSString* msg = [NSString stringWithFormat:@"本期包年VIP名额已经售完\n下次购买日期为\n%@（%@）",
@@ -542,6 +542,8 @@
     url = [url stringByAddQueryParameter:PARA_GAME_ID value:[GameApp gameId]];
     url = [url stringByAddQueryParameter:PARA_AMOUNT value:order.amount];
     url = [url stringByAddQueryParameter:PARA_DESC value:order.productName];
+    url = [url stringByAddQueryParameter:PARA_XIAOJI_NUMBER value:[[UserManager defaultManager] xiaojiNumber]];
+
 //    url = [url stringByAddQueryParameter:PARA_URL value:product.taobaoUrl];
     url = [url stringByAddQueryParameter:PARA_USERID value:[[UserManager defaultManager] userId]];
     url = [url stringByAddQueryParameter:PARA_TYPE intValue:[self getTypeByProductId:self.currentProductId]];
