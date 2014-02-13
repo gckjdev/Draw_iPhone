@@ -1230,7 +1230,7 @@
 }
 
 
-#define VIP_LAYER_NUMBER INT_MAX
+#define VIP_LAYER_NUMBER 10
 
 + (int)getMaxLayerNumber
 {
