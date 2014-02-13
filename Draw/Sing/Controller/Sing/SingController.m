@@ -74,6 +74,7 @@ enum{
 @property (copy, nonatomic) NSString *mp3FilePath;
 @property (retain, nonatomic) Contest *contest;
 
+@property (retain, nonatomic) IBOutlet UIView *actionHolder;
 
 @end
 
@@ -108,6 +109,7 @@ enum{
     [_reviewButton release];
     [_lyricBgImageView release];
     [_descTextView release];
+    [_actionHolder release];
     [super dealloc];
 }
 
@@ -213,6 +215,10 @@ enum{
     }else{
         [self prepareToRecord];
         [self setState:StateReadyRecord];
+    }
+    
+    if (ISIPHONE5) {
+        [self.actionHolder updateCenterY:(CGRectGetMidY(self.actionHolder.frame)- 20)];
     }
     
     __block typeof (self) bself = self;
@@ -510,6 +516,7 @@ enum{
     [self setReviewButton:nil];
     [self setLyricBgImageView:nil];
     [self setDescTextView:nil];
+    [self setActionHolder:nil];
     [super viewDidUnload];
 }
 

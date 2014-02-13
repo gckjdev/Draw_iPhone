@@ -242,6 +242,7 @@ typedef enum{
     [cell setDelegate:self];
     
     
+    [cell showAwardInfo];
     if ([self.currentSelect isEqualToString:TODAY] &&
         ![GuessManager isContestOver:[_contests objectAtIndex:0]]) {
         [cell hideAwardInfo];

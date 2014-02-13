@@ -26,11 +26,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "../Common_iPhone_20/Components/Component-View/MWPhotoBrowser/MWPhotoBrowser/Classes/MWPhotoBrowser.m"
-            timestampString = "413884825.033929"
+            timestampString = "413956124.866263"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1299"
-            endingLineNumber = "1299"
+            startingLineNumber = "1304"
+            endingLineNumber = "1304"
             landmarkName = "-actionButtonPressed:"
             landmarkType = "5">
          </BreakpointContent>

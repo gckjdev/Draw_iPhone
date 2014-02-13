@@ -295,7 +295,7 @@ didClickRemoveAtDrawLayer:(DrawLayer *)layer
 
 
 
-#define MAX_SHOW_COUNT 4
+#define MAX_SHOW_COUNT 6
 
 - (void)reloadView
 {
