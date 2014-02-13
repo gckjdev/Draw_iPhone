@@ -245,6 +245,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GameAdWallService)
     if ([userId length] == 0)
         return;
     
+    POSTMSG2(@"加载积分墙中...请耐心等待", 3);
     [[self wallServiceByType:wallType forceShowWall:forceShowWall] show:superController userId:userId];
 }
 
