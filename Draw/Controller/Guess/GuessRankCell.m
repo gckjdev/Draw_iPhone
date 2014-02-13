@@ -74,6 +74,12 @@
     _geniusTitleLabel.text = [GuessService geniusTitle:_rank.pass];
 }
 
+- (void)showAwardInfo{
+    
+    _awardImageView.hidden = NO;
+    _awardLabel.hidden = NO;
+}
+
 - (void)hideAwardInfo{
     
     _awardImageView.hidden = YES;

@@ -31,5 +31,6 @@
 
 - (void)setCellInfo:(PBGuessRank *)rank;
 - (void)hideAwardInfo;
+- (void)showAwardInfo;
 
 @end
