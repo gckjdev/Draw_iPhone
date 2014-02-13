@@ -170,13 +170,7 @@
     [self addSubview:self.alphaSlider];
     [self reloadView];
     
-    //scroll to the selected layer.
-    id layer = [_dlManager selectedLayer];
-    NSUInteger index = [[_dlManager layers] indexOfObject:layer];
-    if (index != NSNotFound) {
-        NSIndexPath *indexPath = [NSIndexPath indexPathForRow:index inSection:0];
-        [self.tableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionMiddle animated:YES];
-    }
+
     
 }
 
@@ -328,6 +322,21 @@ didClickRemoveAtDrawLayer:(DrawLayer *)layer
     }];
     
     [self.tableView reloadData];
+    
+    [self performSelector:@selector(scrollToSelectedLayer) withObject:nil afterDelay:0.2];
+
+}
+
+
+- (void)scrollToSelectedLayer
+{
+    //scroll to the selected layer.
+    id layer = [_dlManager selectedLayer];
+    NSUInteger index = [[_dlManager layers] indexOfObject:layer];
+    if (index != NSNotFound) {
+        NSIndexPath *indexPath = [NSIndexPath indexPathForRow:index inSection:0];
+        [self.tableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionMiddle animated:YES];
+    }
 }
 
 #pragma mark DrawLayer Cell Delegate
