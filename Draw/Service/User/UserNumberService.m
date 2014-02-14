@@ -216,6 +216,9 @@ static UserNumberService* _defaultUserService;
                     [UserManager addUserToHistoryList:user];
                     
                     [[GroupService defaultService] syncGroupRoles];
+                    [[GroupService defaultService] syncFollowGroupIds];
+                    [[GroupService defaultService] syncFollowTopicIds];
+                    
                 }
                 else{
                     output.resultCode = ERROR_USER_DATA_NULL;

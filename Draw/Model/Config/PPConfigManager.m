@@ -1430,12 +1430,12 @@
 
 + (NSString*)getVipYearTaobaoURL
 {
-    return GET_UMENG_STRVALUE(@"VIP_YEAR_TAOBAO", @"http://a.m.taobao.com/i37164938312.htm");
+    return GET_UMENG_STRVALUE(@"VIP_YEAR_TAOBAO", @"http://a.m.taobao.com/i37241322828.htm");
 }
 
 + (NSString*)getVipMonthTaobaoURL
 {
-    return GET_UMENG_STRVALUE(@"VIP_MONTH_TAOBAO", @"http://a.m.taobao.com/i37164654977.htm");
+    return GET_UMENG_STRVALUE(@"VIP_MONTH_TAOBAO", @"http://a.m.taobao.com/i37241999720.htm");
 }
 
 + (BOOL)useAlipyaWeb

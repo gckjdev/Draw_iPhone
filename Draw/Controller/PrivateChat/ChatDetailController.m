@@ -420,6 +420,7 @@
     
     [self setSupportRefreshHeader:YES];
     [super viewDidLoad];
+    
 
     [self initViews];
     self.unReloadDataWhenViewDidAppear = YES;

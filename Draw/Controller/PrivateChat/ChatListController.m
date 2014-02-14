@@ -93,6 +93,7 @@
     self.dataTableView.separatorColor = [UIColor clearColor];
 
     [super viewDidLoad];
+    self.canDragBack = NO;
 
     //use local data
     [self initListWithLocalData];    
