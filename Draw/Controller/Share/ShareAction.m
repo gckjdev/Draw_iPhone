@@ -341,11 +341,13 @@
     }
     
     NSString* link = [PPConfigManager getAppItuneLink];
-    if ([opusId length] > 0){
+    if ([PPConfigManager showOpusLinkInShare] && [opusId length] > 0){
         link = [NSString stringWithFormat:[PPConfigManager getShareOpusWebLink], opusId];
     }
-    
-    link = @"";
+
+    if ([PPConfigManager showLinkInShare] == NO){
+        link = @"";
+    }
     
     if (isDrawByMe){
         if ([desc length] > 0) {

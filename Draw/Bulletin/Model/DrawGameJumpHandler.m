@@ -82,7 +82,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(DrawGameJumpHandler)
         jumpController = [[[UserDetailViewController alloc] initWithUserDetail:detail] autorelease];
     }
     else if ([func isEqualToString:FUNC_PURCHASE_VIP ignoreCapital:YES]){        
-        jumpController = [PurchaseVipController enter:controller];
+        jumpController = [PurchaseVipController enter:(PPViewController*)controller];
         return nil;
     }
     else{

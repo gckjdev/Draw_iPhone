@@ -355,5 +355,7 @@ typedef enum{
 + (NSString*)getVipMonthTaobaoURL;
 
 + (BOOL)useAlipyaWeb;
++ (BOOL)showLinkInShare;
++ (BOOL)showOpusLinkInShare;
 
 @end

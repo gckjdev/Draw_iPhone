@@ -65,7 +65,7 @@
         ++ list;
     }
     [self updateWidth:(BUTTON_SIZE * MIN(i,NUMBER_PER_ROW))];
-    NSInteger row = (i/NUMBER_PER_ROW) + !!(i%NUMBER_PER_ROW);
+//    NSInteger row = (i/NUMBER_PER_ROW) + !!(i%NUMBER_PER_ROW);
     CGFloat height = y+BUTTON_SIZE;
     [self updateHeight:height];
 }

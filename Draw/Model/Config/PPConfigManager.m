@@ -1443,4 +1443,14 @@
     return GET_UMENG_BOOLVALUE(@"USE_ALIPAY_WEB", YES);
 }
 
++ (BOOL)showLinkInShare
+{
+    return GET_UMENG_BOOLVALUE(@"SHOW_LINK_IN_SHARE", YES);    
+}
+
++ (BOOL)showOpusLinkInShare
+{
+    return GET_UMENG_BOOLVALUE(@"SHOW_OPUS_LINK_IN_SHARE", YES);
+}
+
 @end
