@@ -489,6 +489,10 @@ typedef enum {
 #pragma mark - BBSPost cell delegate
 - (void)didClickSupportButtonWithPost:(PBBBSPost *)post
 {
+    if ([post isPrivateForMe]) {
+        return;
+    }
+
     // ENTER DETAIL CONTROLLER
     BBSPostDetailController *bbsDetail = [[BBSPostDetailController alloc]initWithDefaultTabIndex:0];
     bbsDetail.post = post;
@@ -499,6 +503,9 @@ typedef enum {
 }
 - (void)didClickReplyButtonWithPost:(PBBBSPost *)post
 {
+    if ([post isPrivateForMe]) {
+        return;
+    }
     // ENTER DETAIL CONTROLLER
     BBSPostDetailController *bbsDetail = [[BBSPostDetailController alloc]initWithDefaultTabIndex:1];
     bbsDetail.post = post;
