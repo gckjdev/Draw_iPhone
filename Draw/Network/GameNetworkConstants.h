@@ -621,6 +621,7 @@
 #define METHOD_GET_GROUP_CONTEST_LIST @"ggcl"
 
 #define METHOD_GET_WONDERFUL_CONTEST_LIST @"gwcl"
+#define METHOD_SET_OPUS_TARGET_USER @"setOpusTargetUser"
 
 //for draw contest
 #define METHOD_GET_CONTEST_LIST @"gcl"

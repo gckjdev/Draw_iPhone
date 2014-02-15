@@ -14,8 +14,10 @@
 #import "RankView.h"
 #import "OpusImageBrower.h"
 #import "CommonDialog.h"
+#import "FriendController.h"
 
-@interface UserFeedController : CommonTabController<FeedServiceDelegate, RankViewDelegate, UIActionSheetDelegate, OpusImageBrowerDelegate, CommonDialogDelegate>
+@interface UserFeedController : CommonTabController<FeedServiceDelegate, RankViewDelegate,
+UIActionSheetDelegate, OpusImageBrowerDelegate, CommonDialogDelegate, FriendControllerDelegate>
 {
     NSString *_userId;
     NSString *_nickName;

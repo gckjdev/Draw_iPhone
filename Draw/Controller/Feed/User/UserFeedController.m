@@ -19,6 +19,7 @@
 #import "UINavigationController+UINavigationControllerAdditions.h"
 //#import "SingHotCell.h"
 #import "CellManager.h"
+#import "FriendController.h"
 
 typedef enum{
     UserTypeFeed = FeedListTypeUserFeed,
@@ -354,6 +355,44 @@ typedef enum{
     [self enterDetailFeed:drawFeed showOpusImageBrowser:NO];
 }
 
+- (void)friendController:(FriendController *)controller didSelectFriend:(MyFriend *)aFriend
+{
+    if (aFriend) {
+
+        [controller.navigationController popViewControllerAnimated:NO];
+        
+        [[FeedService defaultService] setOpusTargetUser:aFriend.friendUserId
+                                               nickName:aFriend.friendNick
+                                            resultBlock:^(int resultCode)
+        {
+            if (resultCode == 0){
+                POSTMSG(NSLS(@"kEditOpusUserSuccess"));
+            }
+            else{
+                POSTMSG(NSLS(@"kSystemFailure"));
+            }
+        
+        }];
+    }
+}
+
+//
+
+
+
+- (void)editOpusToUser:(DrawFeed*)feed
+{
+    PPDebug(@"<editOpusToUser>");
+    if ([feed.pbFeed.targetUserId length] > 0){
+        POSTMSG(NSLS(@"kCannotEditOpusToUser"));
+        return;
+    }
+    
+    FriendController *fc = [[FriendController alloc] initWithDelegate:self];
+    [self.navigationController pushViewController:fc animated:YES];
+    [fc release];
+}
+
 - (void)enterDetailFeed:(DrawFeed *)feed showOpusImageBrowser:(BOOL)showOpusImageBrowser
 {
     ShowFeedController *sc = [[ShowFeedController alloc] initWithFeed:feed scene:[UseItemScene createSceneByType:UseSceneTypeShowFeedDetail feed:feed]];
@@ -446,6 +485,7 @@ typedef enum{
 typedef enum{
     ActionSheetIndexDetail = 0,
     ActionSheetIndexEditDesc,
+    ActionSheetIndexEditOpusToUser,
     ActionSheetIndexDelete,
     ActionSheetIndexCancel,
 }ActionSheetIndex;
@@ -458,7 +498,8 @@ typedef enum{
 
 typedef enum{
     SuperActionSheetIndexDetail = 0,
-    SuperActionSheetIndexDelete = 1,
+    SuperActionSheetIndexEditOpusToUser,
+    SuperActionSheetIndexDelete,
     SuperActionSheetIndexAddToCell,
     SuperActionSheetIndexAddToRecommend,
     SuperActionSheetIndexRemoveFromRecommend,
@@ -494,6 +535,11 @@ typedef enum{
         case ActionSheetIndexEditDesc: {
             [self editDescOfFeed:feed];
         } break;
+        case ActionSheetIndexEditOpusToUser:{
+            [self editOpusToUser:feed];
+            break;
+        }
+            
         default:
         {
             
@@ -524,6 +570,12 @@ typedef enum{
             [self enterDetailFeed:_selectedRankView.feed showOpusImageBrowser:YES];
         }
             break;
+        case SuperActionSheetIndexEditOpusToUser:
+        {
+            [self editOpusToUser:feed];
+            break;
+        }
+            
         case SuperActionSheetIndexAddToCell:
         {/*
             if (canSellOpus) {
@@ -696,7 +748,7 @@ typedef enum{
     BOOL isMyFavor = [[UserManager defaultManager] isMe:self.userId];
     if(tab.tabID == UserTypeOpus ){
         if ([rankView.feed isMyOpus]) {
-            sheet = [[[MKBlockActionSheet alloc] initWithTitle:nil delegate:nil cancelButtonTitle:NSLS(@"kCancel") destructiveButtonTitle:NSLS(@"kOpusDetail") otherButtonTitles:NSLS(@"kEditOpusDesc"), NSLS(@"kDelete"), nil] autorelease];
+            sheet = [[[MKBlockActionSheet alloc] initWithTitle:nil delegate:nil cancelButtonTitle:NSLS(@"kCancel") destructiveButtonTitle:NSLS(@"kOpusDetail") otherButtonTitles:NSLS(@"kEditOpusDesc"), NSLS(@"kEditOpusToUser"), NSLS(@"kDelete"), nil] autorelease];
             sheet.cancelButtonIndex = ActionSheetIndexCancel;
             [sheet showInView:self.view];
             __block typeof (self) bself  = self;
@@ -710,7 +762,7 @@ typedef enum{
                                               delegate:self
                                               cancelButtonTitle:NSLS(@"kCancel")
                                               destructiveButtonTitle:NSLS(@"kOpusDetail")
-                                              otherButtonTitles:NSLS(@"kDelete"), NSLS(@"kAddLearnDraw"), NSLS(@"kRecommend"), @"取消推荐", nil];
+                                              otherButtonTitles:NSLS(@"kEditOpusToUser"), NSLS(@"kDelete"), NSLS(@"kAddLearnDraw"), NSLS(@"kRecommend"), @"取消推荐", nil];
                 
             __block typeof (self) bself  = self;
             [sheet setActionBlock:^(NSInteger buttonIndex){

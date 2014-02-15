@@ -1293,5 +1293,39 @@ static FeedService *_staticFeedService = nil;
     });
 }
 
+- (void)setOpusTargetUser:(NSString*)targetUserId
+                 nickName:(NSString*)targetUserNick
+              resultBlock:(FeedActionResultBlock)resultBlock
+{
+    if (targetUserId == nil || targetUserNick == nil){
+        return;
+    }
+    
+    dispatch_async(workingQueue, ^{
+        
+        NSAutoreleasePool *subPool = [[NSAutoreleasePool alloc] init];
+        
+        NSDictionary* para = @{ PARA_LANGUAGE : targetUserId,
+                                PARA_OFFSET : targetUserNick,
+                                };
+        
+        GameNetworkOutput* output = [PPGameNetworkRequest trafficApiServerGetAndResponseJSON:METHOD_SET_OPUS_TARGET_USER
+                                                                                parameters:para
+                                                                               isReturnArray:NO];
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            
+            
+            NSInteger resultCode = output.resultCode;
+            dispatch_async(dispatch_get_main_queue(), ^{
+                EXECUTE_BLOCK(resultBlock, resultCode);
+            });
+        });
+        
+        [subPool drain];
+    });
+    
+}
+
 
 @end

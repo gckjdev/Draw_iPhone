@@ -2641,3 +2641,8 @@
 
 "kEnableGroupNoticeSucc" = "Enable group message notification successfully";
 "kDisableGroupNoticeSucc" = "Disable group message notification successfully";
+
+"kCannotEditOpusToUser" = "The opus already has targeted user, cannot edit.";
+"kEditOpusToUser" = "Set Target User";
+"kEditOpusUserSuccess" = "Set target user successfully";
+

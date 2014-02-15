@@ -2658,3 +2658,7 @@
 
 "kEnableGroupNoticeSucc" = "已经开启本群聊通知功能";
 "kDisableGroupNoticeSucc" = "已经关闭本群聊通知功能";
+
+"kCannotEditOpusToUser" = "作品已经送给用户了，无法修改";
+"kEditOpusToUser" = "设置作品赠送用户";
+"kEditOpusUserSuccess" = "设置成功";

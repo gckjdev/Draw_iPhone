@@ -258,6 +258,8 @@ typedef void (^ GetFeedListCompleteBlock)(int resultCode, NSArray* feedList);
                                         limit:(NSInteger)limit
                                     completed:(GetFeedListCompleteBlock)completed;
 
-
+- (void)setOpusTargetUser:(NSString*)targetUserId
+                 nickName:(NSString*)targetUserNick
+              resultBlock:(FeedActionResultBlock)resultBlock;
 
 @end
