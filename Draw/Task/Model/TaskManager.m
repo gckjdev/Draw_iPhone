@@ -160,8 +160,6 @@ static TaskManager* _defaultTaskManager;
 //    [retList addObject:task1];
 
     [retList addObject:vipTask];
-    [retList addObject:createOpusTask];
-    [retList addObject:guessOpusTask];
     
 
     
@@ -174,14 +172,6 @@ static TaskManager* _defaultTaskManager;
         // clean local app upgrade task status        
     }
     
-    [retList addObject:task2];
-    [retList addObject:task3];
-    [retList addObject:task4];
-    [retList addObject:task5];
-    [retList addObject:task61];
-//    [retList addObject:task6];
-    [retList addObject:task9];
-        
     if ([PPConfigManager isInReviewVersion] == NO){
         [retList addObject:reviewTask];
         
@@ -196,13 +186,13 @@ static TaskManager* _defaultTaskManager;
                 int status = ([appTask type] == AppTaskTypeWall) ? PBTaskStatusTaskStatusAlwaysOpen : PBTaskStatusTaskStatusCanTake;
                 
                 GameTask* t = [[[GameTask alloc] initWithId:taskStartId+[appTask index]
-                                                      name:[appTask name]
-                                                      desc:[appTask desc]
-                                                    status:status
-                                                     badge:1
-                                                     award:[appTask award]
-                                                  selector:selector
-                                                   appTask:appTask] autorelease];
+                                                       name:[appTask name]
+                                                       desc:[appTask desc]
+                                                     status:status
+                                                      badge:1
+                                                      award:[appTask award]
+                                                   selector:selector
+                                                    appTask:appTask] autorelease];
                 
                 if (appTask.type == AppTaskTypeWall && [PPConfigManager wallEnabled] == NO){
                     continue;
@@ -210,13 +200,25 @@ static TaskManager* _defaultTaskManager;
                 else if (appTask.type == AppTaskTypeDownload && [appTask isAppAward] == YES){
                     continue;
                 }
-
+                
                 [retList addObject:t];
-
+                
             }
         }
         
     }
+
+    [retList addObject:createOpusTask];
+    [retList addObject:guessOpusTask];
+    
+    [retList addObject:task2];
+    [retList addObject:task3];
+    [retList addObject:task4];
+    [retList addObject:task5];
+    [retList addObject:task61];
+//    [retList addObject:task6];
+    [retList addObject:task9];
+        
     
     return retList;
 }

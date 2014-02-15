@@ -403,7 +403,7 @@
                                        opusUserId:_drawUserId
                                        userGender:self.feed.author.gender
                                           snsType:type
-                                           opusId:nil];
+                                           opusId:_feed.feedId];
 
     [[GameSNSService defaultService] publishWeibo:type
                                              text:text
