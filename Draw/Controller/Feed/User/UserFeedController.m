@@ -20,6 +20,8 @@
 //#import "SingHotCell.h"
 #import "CellManager.h"
 #import "FriendController.h"
+#import "PurchaseVipController.h"
+#import "OfflineDrawViewController.h"
 
 typedef enum{
     UserTypeFeed = FeedListTypeUserFeed,
@@ -46,6 +48,7 @@ typedef enum{
     PPRelease(_userId);
     PPRelease(_nickName);
     PPRelease(_currentSelectFeed);
+    PPRelease(_shareAction);
     [super dealloc];
 }
 
@@ -395,6 +398,70 @@ typedef enum{
     [fc release];
 }
 
+- (UIImage*)getFeedImage:(DrawFeed*)feed
+{
+    UIImage* image = [[SDImageCache sharedImageCache] imageFromMemoryCacheForKey:feed.drawImageUrl];
+    if (image == nil) {
+        image = [[SDImageCache sharedImageCache] imageFromDiskCacheForKey:feed.drawImageUrl];
+    }
+    
+    if (image == nil){
+        image = feed.largeImage;
+    }
+    
+    return image;
+}
+
+- (void)didSaveDraftOpus:(MyPaint *)draft
+{
+    if (draft){
+        // enter draw
+        OfflineDrawViewController* vc = [[OfflineDrawViewController alloc] initWithDraft:draft];
+        [self.navigationController pushViewController:vc animated:YES];
+        [vc release];
+    }
+}
+
+- (void)didSaveOpus:(BOOL)succ
+{
+    if (!succ){
+        POSTMSG(NSLS(@"kFailToSaveLocalDraft"));
+    }
+}
+
+- (void)saveOpusAsDraft:(DrawFeed*)feed
+{
+    UIImage* image = [self getFeedImage:feed];
+    if (_shareAction == nil) {
+        _shareAction = [[ShareAction alloc] initWithFeed:feed
+                                                   image:image];
+    }
+    [_shareAction saveToLocalDraft:self];
+}
+
+- (void)editOpusAgain:(DrawFeed*)feed
+{
+    if ([feed isSingCategory]){
+        // cannot edit
+        POSTMSG(NSLS(@"kCannotEditSingOpus"));
+        return;
+    }
+    
+    if ([[UserManager defaultManager] isVip] == NO){
+        CommonDialog* dialog = [CommonDialog createDialogWithTitle:NSLS(@"kNotVip") message:NSLS(@"kEditDraftButNotVip") style:CommonDialogStyleDoubleButton];
+        [dialog setClickOkBlock:^(id view){
+            [PurchaseVipController enter:self];
+        }];
+        [dialog showInView:self.view];
+        return;
+    }
+    else{
+        // load opus and save as draft
+        [self saveOpusAsDraft:feed];
+    }
+    
+}
+
 - (void)enterDetailFeed:(DrawFeed *)feed showOpusImageBrowser:(BOOL)showOpusImageBrowser
 {
     ShowFeedController *sc = [[ShowFeedController alloc] initWithFeed:feed scene:[UseItemScene createSceneByType:UseSceneTypeShowFeedDetail feed:feed]];
@@ -488,6 +555,7 @@ typedef enum{
     ActionSheetIndexDetail = 0,
     ActionSheetIndexEditDesc,
     ActionSheetIndexEditOpusToUser,
+    ActionSheetIndexEditOpusAgain,
     ActionSheetIndexDelete,
     ActionSheetIndexCancel,
 }ActionSheetIndex;
@@ -539,6 +607,10 @@ typedef enum{
         } break;
         case ActionSheetIndexEditOpusToUser:{
             [self editOpusToUser:feed];
+            break;
+        }
+        case ActionSheetIndexEditOpusAgain:{
+            [self editOpusAgain:feed];
             break;
         }
             
@@ -750,7 +822,7 @@ typedef enum{
     BOOL isMyFavor = [[UserManager defaultManager] isMe:self.userId];
     if(tab.tabID == UserTypeOpus ){
         if ([rankView.feed isMyOpus]) {
-            sheet = [[[MKBlockActionSheet alloc] initWithTitle:nil delegate:nil cancelButtonTitle:NSLS(@"kCancel") destructiveButtonTitle:NSLS(@"kOpusDetail") otherButtonTitles:NSLS(@"kEditOpusDesc"), NSLS(@"kEditOpusToUser"), NSLS(@"kDelete"), nil] autorelease];
+            sheet = [[[MKBlockActionSheet alloc] initWithTitle:nil delegate:nil cancelButtonTitle:NSLS(@"kCancel") destructiveButtonTitle:NSLS(@"kOpusDetail") otherButtonTitles:NSLS(@"kEditOpusDesc"), NSLS(@"kEditOpusToUser"), NSLS(@"kEditOpusAgain"), NSLS(@"kDelete"), nil] autorelease];
             sheet.cancelButtonIndex = ActionSheetIndexCancel;
             [sheet showInView:self.view];
             __block typeof (self) bself  = self;

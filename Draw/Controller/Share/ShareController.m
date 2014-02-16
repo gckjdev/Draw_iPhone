@@ -27,6 +27,7 @@
 #import "UIImageExt.h"
 #import "DrawPlayer.h"
 #import "GameSNSService.h"
+#import "PurchaseVipController.h"
 
 #define BUTTON_INDEX_OFFSET 20120229
 #define IMAGE_WIDTH 93
@@ -276,9 +277,6 @@ typedef enum{
     
     NSString* editString = [[self.selectedPaint isRecovery] boolValue]?NSLS(@"kRecovery"):NSLS(@"kEdit");
     
-//    NSString *shareString = (![GameApp canShareViaSNS] ? NSLS(@"kSave_to_album") : NSLS(@"kShareAsPhoto"));
-    
-//    if ([LocaleUtils isChina]){
     
         if (self.isDraftTab) {
             tips = [[UIActionSheet alloc] initWithTitle:NSLS(@"kOptions")
@@ -291,7 +289,7 @@ typedef enum{
                     NSLS(@"kShareQQWeibo"), NSLS(@"kShareFacebook"),
                     nil];
         }else{
-#if DEBUG
+//#if DEBUG
             tips = [[UIActionSheet alloc] initWithTitle:NSLS(@"kOptions")
                                                delegate:self
                                       cancelButtonTitle:NSLS(@"kCancel")
@@ -304,38 +302,21 @@ typedef enum{
 
                     nil];
             
-#else
-            tips = [[UIActionSheet alloc] initWithTitle:NSLS(@"kOptions")
-                                                          delegate:self 
-                                                 cancelButtonTitle:NSLS(@"kCancel") 
-                                            destructiveButtonTitle:NSLS(@"kReplay") 
-                                                 otherButtonTitles:
-                                                         NSLS(@"kDelete"),
-                    NSLS(@"kSaveAsPhoto"), NSLS(@"kShareSinaWeibo"),  // NSLS(@"kShareQQSpace"),
-                    NSLS(@"kShareWeixinSession"), NSLS(@"kShareWeixinTimeline"),
-                    NSLS(@"kShareQQWeibo"), NSLS(@"kShareFacebook"),
-
-                    nil];
-#endif
+//#else
+//            tips = [[UIActionSheet alloc] initWithTitle:NSLS(@"kOptions")
+//                                                          delegate:self 
+//                                                 cancelButtonTitle:NSLS(@"kCancel") 
+//                                            destructiveButtonTitle:NSLS(@"kReplay") 
+//                                                 otherButtonTitles:
+//                                                         NSLS(@"kDelete"),
+//                    NSLS(@"kSaveAsPhoto"), NSLS(@"kShareSinaWeibo"),  // NSLS(@"kShareQQSpace"),
+//                    NSLS(@"kShareWeixinSession"), NSLS(@"kShareWeixinTimeline"),
+//                    NSLS(@"kShareQQWeibo"), NSLS(@"kShareFacebook"),
+//
+//                    nil];
+//#endif
         }
-//    }
-//    else{
-//        if (self.isDraftTab) {
-//            tips = [[UIActionSheet alloc] initWithTitle:NSLS(@"kOptions") 
-//                                               delegate:self 
-//                                      cancelButtonTitle:NSLS(@"kCancel") 
-//                                 destructiveButtonTitle:editString 
-//                                      otherButtonTitles:shareString,
-//                    NSLS(@"kReplay"), NSLS(@"kDelete"), nil];            
-//        }else{           
-//            tips = [[UIActionSheet alloc] initWithTitle:NSLS(@"kOptions") 
-//                                               delegate:self 
-//                                      cancelButtonTitle:NSLS(@"kCancel") 
-//                                 destructiveButtonTitle:shareString 
-//                                      otherButtonTitles:NSLS(@"kReplay"), NSLS(@"kDelete"), nil];
-//        }
-//        
-//    }
+
     tips.tag = IMAGE_OPTION;
     [tips showInView:self.view];
     [tips release];
@@ -473,48 +454,6 @@ typedef enum{
 {
     [self performLoadOpus:@selector(gotoEditConroller)];
     return;
-    
-    
-    MyPaint* currentPaint = _selectedPaint;
-    
-    [self registerNotificationWithName:NOTIFICATION_DATA_PARSING usingBlock:^(NSNotification *note) {
-        float progress = [[[note userInfo] objectForKey:KEY_DATA_PARSING_PROGRESS] floatValue];
-//        PPDebug(@"handle data parsing notification, progress = %f", progress);
-        NSString* progressText = @"";
-        if (progress == 1.0f){
-            progress = 0.99f;            
-            progressText = [NSString stringWithFormat:NSLS(@"kDisplayProgress"), progress*100];
-        }
-        else{
-            progressText = [NSString stringWithFormat:NSLS(@"kParsingProgress"), progress*100];            
-        }
-        [self showProgressViewWithMessage:progressText progress:progress];
-    }];
-    
-    dispatch_async(workingQueue, ^{
-
-        [currentPaint drawActionList];
-        
-        dispatch_async(dispatch_get_main_queue(), ^{
-
-            [self gotoEditConroller];
-            
-//            [UIApplication sharedApplication].idleTimerDisabled = YES; // disable lock screen while in drawing
-//            
-//            OfflineDrawViewController *od = [[OfflineDrawViewController alloc] initWithDraft:currentPaint];
-//            od.startController = self;
-//            [self.navigationController pushViewController:od animated:YES];
-//            [od release];
-
-            [self hideActivity];
-            [self unregisterNotificationWithName:KEY_DATA_PARSING_PROGRESS];
-            
-            // clear draw action list
-            currentPaint.drawActionList = nil;
-        });
-    });
-    
-    
 }
 
 - (void)share:(PPSNSType)type
@@ -605,14 +544,30 @@ typedef enum{
         dialog.tag = DELETE_ALL;
         [dialog showInView:self.view];
     }else if(buttonIndex == EDIT){
-#if DEBUG
-        if (YES) {
-#else
-        if (currentPaint.draft.boolValue) {
-#endif
-            [self showActivityWithText:NSLS(@"kLoading")];
-            [self performSelector:@selector(performEdit) withObject:nil afterDelay:0.1f];
+        if (self.currentTab.tabID == TabTypeAll){
+            POSTMSG(NSLS(@"kCannotEditThisTab"));
+            return;
         }
+        else if (self.currentTab.tabID == TabTypeMine){
+            // VIP only
+            if ([[UserManager defaultManager] isVip] == NO){
+                CommonDialog* dialog = [CommonDialog createDialogWithTitle:NSLS(@"kNotVip") message:NSLS(@"kEditDraftButNotVip") style:CommonDialogStyleDoubleButton];
+                [dialog setClickOkBlock:^(id view){
+                    [PurchaseVipController enter:self];
+                }];
+                [dialog showInView:self.view];
+                return;
+            }
+            else{
+                // change state to draft
+                [self.selectedPaint setDraft:@(1)];
+                [self.selectedPaint setCreateDate:[NSDate date]];
+                [[MyPaintManager defaultManager] save];
+            }
+        }
+
+        [self showActivityWithText:NSLS(@"kLoading")];
+        [self performSelector:@selector(performEdit) withObject:nil afterDelay:0.1f];
     }
 }
 
@@ -804,7 +759,6 @@ typedef enum{
         TableTab *tab = self.currentTab;
         if (!isLoading && tab.hasMoreData && tab.status != TableTabStatusLoading) {
             [self serviceLoadDataForTabID:tab.tabID];
-//            PPDebug(@"service load opus, tab id = %d", tab.tabID);
         }
     }
 }
@@ -1012,13 +966,6 @@ typedef enum{
 
 - (void)viewDidAppear:(BOOL)animated
 {
-    
-//    if (self.isDraftTab) {
-//        TableTab *tab = [self currentTab];
-//        tab.offset = 0;
-//        [tab.dataList removeAllObjects];
-//        [self loadDrafts];
-//    }
     [super viewDidAppear:animated];
     [self clickRefreshButton:nil];
 }

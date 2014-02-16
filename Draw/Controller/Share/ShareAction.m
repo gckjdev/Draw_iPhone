@@ -447,6 +447,40 @@
     }
 }
 
+- (void)saveToLocalDraft:(id<DrawDataServiceDelegate>)delegate
+{
+    
+    
+    [self.superViewController showActivityWithText:NSLS(@"kSaving")];
+    if (self.feed.pbDrawData) {
+        [[DrawDataService defaultService] savePaintWithPBDraw:self.feed
+                                                   pbDrawData:self.feed.pbDrawData
+                                                        image:self.image
+                                                      isDraft:YES
+                                                     delegate:delegate];
+        [self.superViewController hideActivity];
+    }else{
+        __block ShareAction *cp = self;
+        [self.superViewController showProgressViewWithMessage:NSLS(@"kLoading")];
+        [[FeedService defaultService] getPBDrawByFeed:cp.feed handler:^(int resultCode, NSData *pbDrawData, DrawFeed *feed, BOOL fromCache) {
+            
+            if (resultCode == 0 && pbDrawData != nil) {
+                [[DrawDataService defaultService] savePaintWithPBDraw:feed
+                                                           pbDrawData:pbDrawData
+                                                                image:cp.image
+                                                              isDraft:YES
+                                                             delegate:delegate];
+            }else{
+                POSTMSG(NSLS(@"kFailLoad"));
+            }
+            
+            [cp.superViewController hideActivity];
+            [cp.superViewController hideProgressView];
+        }
+                                     downloadDelegate:self];
+    }
+}
+
 - (void)favorite
 {
     __block PPViewController* vc = self.superViewController;

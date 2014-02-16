@@ -611,12 +611,6 @@ pbNoCompressDrawData:(PBNoCompressDrawData*)pbNoCompressDrawData
 - (BOOL)createMyPaintWithImage:(UIImage*)image
                     pbDrawData:(NSData*)pbDrawData
                           feed:(DrawFeed*)feed
-//                        userId:(NSString*)userId
-//                      nickName:(NSString*)nickName
-//                          word:(NSString*)word
-//                      language:(int)language
-//                         level:(int)level
-
 {
     CoreDataManager* dataManager = GlobalGetCoreDataManager();
     MyPaint* newMyPaint = [dataManager insert:@"MyPaint"];
@@ -632,6 +626,24 @@ pbNoCompressDrawData:(PBNoCompressDrawData*)pbNoCompressDrawData
     return [dataManager save];
     
 }
+
+- (MyPaint*)createDraftPaintWithImage:(UIImage*)image
+                       pbDrawData:(NSData*)pbDrawData
+                             feed:(DrawFeed*)feed
+{
+    CoreDataManager* dataManager = GlobalGetCoreDataManager();
+    MyPaint* newMyPaint = [dataManager insert:@"MyPaint"];
+    
+    [self initMyPaint:newMyPaint
+                image:image
+           pbDrawData:pbDrawData
+                 feed:feed];
+    
+    [newMyPaint setDraft:@(1)];
+    PPDebug(@"<createDraftPaintWithImage> %@", [newMyPaint description]);
+    return newMyPaint;
+}
+
 
 - (BOOL)createMyPaintWithImage:(UIImage*)image
                         pbDraw:(PBDraw*)pbDraw

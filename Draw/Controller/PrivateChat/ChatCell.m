@@ -111,6 +111,10 @@
         self.timeLabel.text = [dateFormatter stringFromDate:date];
     }
     
+    if ([self.messageStat isGroup] && [[UserManager defaultManager] isDisableGroupNotice:self.messageStat.groupId]){
+        self.timeLabel.text = NSLS(@"kGroupMessageNoticeDisable");
+    }
+    
     self.timeLabel.textColor = COLOR_GRAY_TEXT;
 
 }

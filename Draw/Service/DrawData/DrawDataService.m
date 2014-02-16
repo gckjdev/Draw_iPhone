@@ -464,6 +464,15 @@ static DrawDataService* _defaultDrawDataService = nil;
 - (void)savePaintWithPBDraw:(DrawFeed*)feed
                  pbDrawData:(NSData*)pbDrawData
                       image:(UIImage*)image
+                   delegate:(id<DrawDataServiceDelegate>)delegate
+{
+    [self savePaintWithPBDraw:feed pbDrawData:pbDrawData image:image isDraft:NO delegate:delegate];
+}
+
+- (void)savePaintWithPBDraw:(DrawFeed*)feed
+                 pbDrawData:(NSData*)pbDrawData
+                      image:(UIImage*)image
+                    isDraft:(BOOL)isDraft
                    delegate:(id<DrawDataServiceDelegate>)delegate;
 {
     if ([pbDrawData length] == 0){
@@ -481,16 +490,22 @@ static DrawDataService* _defaultDrawDataService = nil;
         return;
     }
     
-//    dispatch_async(workingQueue, ^{
+    if (isDraft){
+        MyPaint* draft = [[MyPaintManager defaultManager] createDraftPaintWithImage:image
+                                                                      pbDrawData:pbDrawData
+                                                                            feed:feed];
+        if (delegate && [delegate respondsToSelector:@selector(didSaveDraftOpus:)]) {
+            [delegate didSaveDraftOpus:draft];
+        }
+    }
+    else{
         BOOL result = [[MyPaintManager defaultManager] createMyPaintWithImage:image
                                                                    pbDrawData:pbDrawData
                                                                          feed:feed];
-//        dispatch_async(dispatch_get_main_queue(), ^{
-            if (delegate && [delegate respondsToSelector:@selector(didSaveOpus:)]) {
-                [delegate didSaveOpus:result];
-            }
-//        });
-//    });
+        if (delegate && [delegate respondsToSelector:@selector(didSaveOpus:)]) {
+            [delegate didSaveOpus:result];
+        }
+    }
 }
 
 

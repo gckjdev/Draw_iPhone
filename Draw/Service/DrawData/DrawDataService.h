@@ -19,6 +19,7 @@
 @class DrawFeed;
 @class PBDraw;
 @class PBDrawBg;
+@class MyPaint;
 
 @protocol  DrawDataServiceDelegate<NSObject>
 
@@ -30,6 +31,7 @@
 - (void)didGuessOfflineDraw:(int)resultCode;
 
 - (void)didSaveOpus:(BOOL)succ;
+- (void)didSaveDraftOpus:(MyPaint*)draft;
 @end
 
 
@@ -82,6 +84,12 @@
 - (BOOL)savePaintWithPBDraw:(PBDraw*)pbDraw
              image:(UIImage*)image
           delegate:(id<DrawDataServiceDelegate>)delegate;
+
+- (void)savePaintWithPBDraw:(DrawFeed*)feed
+                 pbDrawData:(NSData*)pbDrawData
+                      image:(UIImage*)image
+                    isDraft:(BOOL)isDraft
+                   delegate:(id<DrawDataServiceDelegate>)delegate;
 
 - (BOOL)savePaintWithPBDrawData:(NSData*)pbDrawData
                           image:(UIImage*)image

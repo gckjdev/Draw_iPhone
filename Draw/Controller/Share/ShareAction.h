@@ -57,6 +57,7 @@
 - (void)displayWithViewController:(PPViewController<UserServiceDelegate>*)superViewController;
 - (void)displayWithViewController:(PPViewController<UserServiceDelegate>*)superViewController onView:(UIView*)view;
 
+- (void)saveToLocalDraft:(id<DrawDataServiceDelegate>)delegate;
 - (void)saveToLocal;
 - (void)saveAlbum;
 @end

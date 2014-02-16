@@ -135,4 +135,8 @@
 - (int)countAllDrafts;
 - (void)removeAllDraft;
 
+- (MyPaint*)createDraftPaintWithImage:(UIImage*)image
+                           pbDrawData:(NSData*)pbDrawData
+                                 feed:(DrawFeed*)feed;
+
 @end

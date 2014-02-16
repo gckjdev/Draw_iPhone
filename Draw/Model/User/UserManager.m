@@ -1811,9 +1811,9 @@ qqAccessTokenSecret:(NSString*)accessTokenSecret
 - (BOOL)isVip
 {
     
-#ifdef DEBUG
-    return YES;
-#endif
+//#ifdef DEBUG
+//    return YES;
+//#endif
     
     time_t now = time(0);
     if ([_pbUser vip] && [_pbUser vipExpireDate] > now){

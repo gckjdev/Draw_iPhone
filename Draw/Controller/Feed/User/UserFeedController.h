@@ -15,9 +15,10 @@
 #import "OpusImageBrower.h"
 #import "CommonDialog.h"
 #import "FriendController.h"
+#import "ShareAction.h"
 
 @interface UserFeedController : CommonTabController<FeedServiceDelegate, RankViewDelegate,
-UIActionSheetDelegate, OpusImageBrowerDelegate, CommonDialogDelegate, FriendControllerDelegate>
+UIActionSheetDelegate, OpusImageBrowerDelegate, CommonDialogDelegate, FriendControllerDelegate, DrawDataServiceDelegate>
 {
     NSString *_userId;
     NSString *_nickName;
@@ -25,6 +26,7 @@ UIActionSheetDelegate, OpusImageBrowerDelegate, CommonDialogDelegate, FriendCont
 
 @property(nonatomic, retain)NSString *userId;
 @property(nonatomic, retain)NSString *nickName;
+@property(nonatomic, retain)ShareAction *shareAction;
 
 - (id)initWithUserId:(NSString *)userId
             nickName:(NSString *)nickName;

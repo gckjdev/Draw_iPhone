@@ -2662,3 +2662,11 @@
 "kCannotEditOpusToUser" = "作品已经送给用户了，无法修改";
 "kEditOpusToUser" = "设置作品赠送用户";
 "kEditOpusUserSuccess" = "设置成功";
+"kGroupMessageNoticeDisable" = "群聊通知关闭";
+
+"kCannotEditThisTab" = "请勿在本标签下编辑作品，可在我的或者草稿标签下编辑作品";
+"kNotVip" = "无法编辑作品";
+"kEditDraftButNotVip" = "已经提交的作品，只有VIP会员可以编辑，你要购买我们的VIP会员成为VIP吗？";
+"kEditOpusAgain" = "重新编辑作品";
+"kFailToSaveLocalDraft" = "保存作品到本地草稿箱失败，请检查网络或者稍后再试";
+"kCannotEditSingOpus" = "声音作品目前不能编辑";

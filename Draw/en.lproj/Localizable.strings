@@ -2645,4 +2645,11 @@
 "kCannotEditOpusToUser" = "The opus already has targeted user, cannot edit.";
 "kEditOpusToUser" = "Set Target User";
 "kEditOpusUserSuccess" = "Set target user successfully";
+"kGroupMessageNoticeDisable" = "Disabled";
 
+"kCannotEditThisTab" = "Cannot edit opus in this tab";
+"kNotVip" = "Cannot Edit";
+"kEditDraftButNotVip" = "Only VIP can edit opus submit, do you want to purchase our VIP program?";
+"kEditOpusAgain" = "Edit Opus Again";
+"kFailToSaveLocalDraft" = "Fail to save opus into local draft box";
+"kCannotEditSingOpus" = "Cannot edit sing opus";
