@@ -504,7 +504,10 @@
         
         if (forward) {
             [[ChatService defaultService] sendHasReadMessage:self friendUserId:self.fid];
+            
+            // clean flag
             self.messageStat.numberOfNewMessage = 0;
+            self.messageStat.numberOfNewMessageForGroup = 0;
         }
         
     
