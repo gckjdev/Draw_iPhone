@@ -282,7 +282,8 @@ message PBMessageStat {
   optional int32  modifiedDate = 31;
   optional int32  totalMessageCount = 32;
   optional int32  newMessageCount = 33;
-  
+  optional int32  newGroupMessageCount = 34;
+
 }
 
 message PBUserBasicInfo

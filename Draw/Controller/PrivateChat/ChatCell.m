@@ -89,7 +89,7 @@
 
 - (void)updateBadge
 {
-    NSInteger count = [self.messageStat numberOfNewMessage];
+    NSInteger count = [self.messageStat isGroup] ? [self.messageStat numberOfNewMessageForGroup] : [self.messageStat numberOfNewMessage];
     [self.badgeView setNumber:count];
 }
 

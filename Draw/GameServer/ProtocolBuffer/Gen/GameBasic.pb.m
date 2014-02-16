@@ -8313,6 +8313,7 @@ static PBMessage* defaultPBMessageInstance = nil;
 @property int32_t modifiedDate;
 @property int32_t totalMessageCount;
 @property int32_t newMessageCount;
+@property int32_t newGroupMessageCount;
 @end
 
 @implementation PBMessageStat
@@ -8440,6 +8441,13 @@ static PBMessage* defaultPBMessageInstance = nil;
   hasNewMessageCount_ = !!value;
 }
 @synthesize newMessageCount;
+- (BOOL) hasNewGroupMessageCount {
+  return !!hasNewGroupMessageCount_;
+}
+- (void) setHasNewGroupMessageCount:(BOOL) value {
+  hasNewGroupMessageCount_ = !!value;
+}
+@synthesize newGroupMessageCount;
 - (void) dealloc {
   self.userId = nil;
   self.friendUserId = nil;
@@ -8470,6 +8478,7 @@ static PBMessage* defaultPBMessageInstance = nil;
     self.modifiedDate = 0;
     self.totalMessageCount = 0;
     self.newMessageCount = 0;
+    self.newGroupMessageCount = 0;
   }
   return self;
 }
@@ -8567,6 +8576,9 @@ static PBMessageStat* defaultPBMessageStatInstance = nil;
   if (self.hasNewMessageCount) {
     [output writeInt32:33 value:self.newMessageCount];
   }
+  if (self.hasNewGroupMessageCount) {
+    [output writeInt32:34 value:self.newGroupMessageCount];
+  }
   [self.unknownFields writeToCodedOutputStream:output];
 }
 - (int32_t) serializedSize {
@@ -8626,6 +8638,9 @@ static PBMessageStat* defaultPBMessageStatInstance = nil;
   }
   if (self.hasNewMessageCount) {
     size += computeInt32Size(33, self.newMessageCount);
+  }
+  if (self.hasNewGroupMessageCount) {
+    size += computeInt32Size(34, self.newGroupMessageCount);
   }
   size += self.unknownFields.serializedSize;
   memoizedSerializedSize = size;
@@ -8756,6 +8771,9 @@ static PBMessageStat* defaultPBMessageStatInstance = nil;
   if (other.hasNewMessageCount) {
     [self setNewMessageCount:other.newMessageCount];
   }
+  if (other.hasNewGroupMessageCount) {
+    [self setNewGroupMessageCount:other.newGroupMessageCount];
+  }
   [self mergeUnknownFields:other.unknownFields];
   return self;
 }
@@ -8845,6 +8863,10 @@ static PBMessageStat* defaultPBMessageStatInstance = nil;
       }
       case 264: {
         [self setNewMessageCount:[input readInt32]];
+        break;
+      }
+      case 272: {
+        [self setNewGroupMessageCount:[input readInt32]];
         break;
       }
     }
@@ -9133,6 +9155,22 @@ static PBMessageStat* defaultPBMessageStatInstance = nil;
 - (PBMessageStat_Builder*) clearNewMessageCount {
   result.hasNewMessageCount = NO;
   result.newMessageCount = 0;
+  return self;
+}
+- (BOOL) hasNewGroupMessageCount {
+  return result.hasNewGroupMessageCount;
+}
+- (int32_t) newGroupMessageCount {
+  return result.newGroupMessageCount;
+}
+- (PBMessageStat_Builder*) setNewGroupMessageCount:(int32_t) value {
+  result.hasNewGroupMessageCount = YES;
+  result.newGroupMessageCount = value;
+  return self;
+}
+- (PBMessageStat_Builder*) clearNewGroupMessageCount {
+  result.hasNewGroupMessageCount = NO;
+  result.newGroupMessageCount = 0;
   return self;
 }
 @end

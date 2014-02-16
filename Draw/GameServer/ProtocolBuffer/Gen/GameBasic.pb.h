@@ -2038,11 +2038,12 @@ BOOL PBTaskIdTypeIsValidValue(PBTaskIdType value);
 @private
   BOOL hasFriendGender_:1;
   BOOL hasIsGroup_:1;
+  BOOL hasNewGroupMessageCount_:1;
   BOOL hasNewMessageCount_:1;
   BOOL hasTotalMessageCount_:1;
   BOOL hasModifiedDate_:1;
-  BOOL hasType_:1;
   BOOL hasIsVip_:1;
+  BOOL hasType_:1;
   BOOL hasCreateDate_:1;
   BOOL hasText_:1;
   BOOL hasTo_:1;
@@ -2054,11 +2055,12 @@ BOOL PBTaskIdTypeIsValidValue(PBTaskIdType value);
   BOOL hasUserId_:1;
   BOOL friendGender_:1;
   BOOL isGroup_:1;
+  int32_t newGroupMessageCount;
   int32_t newMessageCount;
   int32_t totalMessageCount;
   int32_t modifiedDate;
-  int32_t type;
   int32_t isVip;
+  int32_t type;
   int32_t createDate;
   NSString* text;
   NSString* to;
@@ -2086,6 +2088,7 @@ BOOL PBTaskIdTypeIsValidValue(PBTaskIdType value);
 - (BOOL) hasModifiedDate;
 - (BOOL) hasTotalMessageCount;
 - (BOOL) hasNewMessageCount;
+- (BOOL) hasNewGroupMessageCount;
 @property (readonly, retain) NSString* userId;
 @property (readonly, retain) NSString* friendUserId;
 @property (readonly, retain) NSString* friendNickName;
@@ -2102,6 +2105,7 @@ BOOL PBTaskIdTypeIsValidValue(PBTaskIdType value);
 @property (readonly) int32_t modifiedDate;
 @property (readonly) int32_t totalMessageCount;
 @property (readonly) int32_t newMessageCount;
+@property (readonly) int32_t newGroupMessageCount;
 - (NSArray*) drawDataList;
 - (PBDrawAction*) drawDataAtIndex:(int32_t) index;
 
@@ -2225,6 +2229,11 @@ BOOL PBTaskIdTypeIsValidValue(PBTaskIdType value);
 - (int32_t) newMessageCount;
 - (PBMessageStat_Builder*) setNewMessageCount:(int32_t) value;
 - (PBMessageStat_Builder*) clearNewMessageCount;
+
+- (BOOL) hasNewGroupMessageCount;
+- (int32_t) newGroupMessageCount;
+- (PBMessageStat_Builder*) setNewGroupMessageCount:(int32_t) value;
+- (PBMessageStat_Builder*) clearNewGroupMessageCount;
 @end
 
 @interface PBUserBasicInfo : PBGeneratedMessage {

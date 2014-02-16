@@ -363,6 +363,7 @@ typedef enum{
         
         [[FeedService defaultService] setOpusTargetUser:aFriend.friendUserId
                                                nickName:aFriend.friendNick
+                                                 opusId:self.currentSelectFeed.feedId
                                             resultBlock:^(int resultCode)
         {
             if (resultCode == 0){
@@ -388,6 +389,7 @@ typedef enum{
         return;
     }
     
+    self.currentSelectFeed = feed;
     FriendController *fc = [[FriendController alloc] initWithDelegate:self];
     [self.navigationController pushViewController:fc animated:YES];
     [fc release];

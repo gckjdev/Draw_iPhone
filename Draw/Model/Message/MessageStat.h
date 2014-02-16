@@ -36,6 +36,7 @@
 
 @property (nonatomic, assign) BOOL friendGender;
 @property (nonatomic, assign) NSInteger numberOfNewMessage;
+@property (nonatomic, assign) NSInteger numberOfNewMessageForGroup;
 @property (nonatomic, assign) NSInteger numberOfMessage;
 @property (nonatomic, assign) int vip;
 @property (nonatomic, assign) MessageType messageType;

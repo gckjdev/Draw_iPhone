@@ -19,6 +19,7 @@
 #define KEY_CREATE_DATE @"KEY_CREATE_DATE"
 #define KEY_NUMBER_TOTAL @"KEY_NUMBER_TOTAL"
 #define KEY_NUMBER_NEW @"KEY_NUMBER_NEW"
+#define KEY_NUMBER_NEW_GROUP @"KEY_NUMBER_NEW_GROUP"
 #define KEY_SOURCE_TYPE @"KEY_SOURCE_TYPE"
 #define KEY_MESSAGE_TYPE @"KEY_MESSAGE_TYPE"
 #define KEY_IS_GROUP @"KEY_IS_GROUP"
@@ -74,6 +75,7 @@
     [aCoder encodeInteger:self.messageType forKey:KEY_MESSAGE_TYPE];
     [aCoder encodeInteger:self.sourceType forKey:KEY_SOURCE_TYPE];
     [aCoder encodeInteger:self.vip forKey:KEY_VIP];
+    [aCoder encodeInteger:self.numberOfNewMessageForGroup forKey:KEY_NUMBER_NEW_GROUP];
     
     [aCoder encodeBool:self.isGroup forKey:KEY_IS_GROUP];
 }
@@ -100,6 +102,7 @@
         
         self.latestCreateDate = [aDecoder decodeObjectForKey:KEY_CREATE_DATE];
         self.latestText = [aDecoder decodeObjectForKey:KEY_TEXT];
+        self.numberOfNewMessageForGroup = [aDecoder decodeIntegerForKey:KEY_NUMBER_NEW_GROUP];
         
         self.isGroup = [aDecoder decodeBoolForKey:KEY_IS_GROUP];
     }
@@ -128,6 +131,7 @@
         self.numberOfMessage = pbMessageStat.totalMessageCount;
         self.numberOfNewMessage = pbMessageStat.newMessageCount;
         self.vip = pbMessageStat.isVip;
+        self.numberOfNewMessageForGroup = pbMessageStat.newGroupMessageCount;
                 
         if ([[UserManager defaultManager] isMe:pbMessageStat.from]) {
             self.sourceType = SourceTypeSend;

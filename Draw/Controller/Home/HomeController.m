@@ -940,14 +940,14 @@ int *getDrawMainMenuTypeListHasNewContest()
         HomeMenuTypeGroup,
         HomeMenuTypeDrawBBS,
         HomeMenuTypeDrawRank,
+        HomeMenuTypeDrawPainter,
         HomeMenuTypeDrawContest,
-        HomeMenuTypeDrawGuess,
         
         HomeMenuTypeDrawBigShop,
 //        HomeMenuTypeTask,
-        HomeMenuTypeDrawFreeCoins,
+        HomeMenuTypeDrawGuess,
         HomeMenuTypeDrawMore,
-        HomeMenuTypeDrawPainter,
+        HomeMenuTypeDrawFreeCoins,
         HomeMenuTypeDrawGame,
         HomeMenuTypeDrawPhoto,
         
@@ -964,13 +964,14 @@ int *getDrawMainMenuTypeListWithoutFreeCoins()
         HomeMenuTypeGroup,        
         HomeMenuTypeDrawBBS,
         HomeMenuTypeDrawRank,
+        HomeMenuTypeDrawPainter,
         HomeMenuTypeDrawContest,
-        HomeMenuTypeDrawGuess,
         
         HomeMenuTypeDrawBigShop,
         HomeMenuTypeTask,
         HomeMenuTypeDrawMore,
-        HomeMenuTypeDrawPainter,
+        HomeMenuTypeDrawGuess,
+
         HomeMenuTypeDrawGame,
         HomeMenuTypeDrawPhoto,
         

@@ -260,6 +260,7 @@ typedef void (^ GetFeedListCompleteBlock)(int resultCode, NSArray* feedList);
 
 - (void)setOpusTargetUser:(NSString*)targetUserId
                  nickName:(NSString*)targetUserNick
+                   opusId:(NSString*)opusId
               resultBlock:(FeedActionResultBlock)resultBlock;
 
 @end

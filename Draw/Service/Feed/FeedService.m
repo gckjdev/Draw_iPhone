@@ -1295,6 +1295,7 @@ static FeedService *_staticFeedService = nil;
 
 - (void)setOpusTargetUser:(NSString*)targetUserId
                  nickName:(NSString*)targetUserNick
+                   opusId:(NSString*)opusId
               resultBlock:(FeedActionResultBlock)resultBlock
 {
     if (targetUserId == nil || targetUserNick == nil){
@@ -1305,8 +1306,9 @@ static FeedService *_staticFeedService = nil;
         
         NSAutoreleasePool *subPool = [[NSAutoreleasePool alloc] init];
         
-        NSDictionary* para = @{ PARA_LANGUAGE : targetUserId,
-                                PARA_OFFSET : targetUserNick,
+        NSDictionary* para = @{ PARA_TARGETUSERID : targetUserId,
+                                PARA_TARGETUSER_NICKNAME : targetUserNick,
+                                PARA_OPUS_ID : opusId
                                 };
         
         GameNetworkOutput* output = [PPGameNetworkRequest trafficApiServerGetAndResponseJSON:METHOD_SET_OPUS_TARGET_USER
