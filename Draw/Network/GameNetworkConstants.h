@@ -666,6 +666,11 @@
 #define METHOD_CHANGE_BBS_ROLE @"cbr"
 #define METHOD_GET_BBS_PRIVILEGELIST @"gbpr"
 
+#define METHOD_CREATE_BOARD @"createBoard"
+#define METHOD_UPDATE_BOARD @"updateBoard"
+#define METHOD_DELETE_BOARD @"deleteBoard"
+#define METHOD_SET_USER_BOARD_TYPE @"cbr"
+
 #define METHOD_CREATE_USER_WALL @"createWall"
 #define METHOD_UPDATE_USER_WALL @"updateWall"
 #define METHOD_GET_USER_WALL_LIST @"getWallList"

@@ -7511,12 +7511,6 @@
 		A4170C1618613E48007DF362 /* SingHotCell~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "SingHotCell~ipad.xib"; sourceTree = "<group>"; };
 		A41CF589165790380011AE45 /* RRSGlowLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RRSGlowLabel.h; sourceTree = "<group>"; };
 		A41CF58A165790380011AE45 /* RRSGlowLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RRSGlowLabel.m; sourceTree = "<group>"; };
-		A41D2B4616B910D10094BA7C /* FrameCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FrameCell.h; sourceTree = "<group>"; };
-		A41D2B4716B910D10094BA7C /* FrameCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FrameCell.m; sourceTree = "<group>"; };
-		A41D2B4816B910D10094BA7C /* FrameCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FrameCell.xib; sourceTree = "<group>"; };
-		A41D2B4916B910D10094BA7C /* FrameSelectController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FrameSelectController.h; sourceTree = "<group>"; };
-		A41D2B4A16B910D10094BA7C /* FrameSelectController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FrameSelectController.m; sourceTree = "<group>"; };
-		A41D2B4B16B910D10094BA7C /* FrameSelectController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FrameSelectController.xib; sourceTree = "<group>"; };
 		A41D2B5416B910E30094BA7C /* WallService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WallService.h; sourceTree = "<group>"; };
 		A41D2B5516B910E30094BA7C /* WallService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WallService.m; sourceTree = "<group>"; };
 		A41ECB7916F1D2C000248AEA /* VersionUpdateView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VersionUpdateView.h; sourceTree = "<group>"; };
@@ -7775,9 +7769,6 @@
 		A49DF8C1187D311500634196 /* StatementCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = StatementCell.xib; sourceTree = "<group>"; };
 		A49DF8C6187D3FA100634196 /* statement_cell_bg2@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "statement_cell_bg2@2x.png"; sourceTree = "<group>"; };
 		A49DF8C7187D3FA100634196 /* statement_cell_bg1@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "statement_cell_bg1@2x.png"; sourceTree = "<group>"; };
-		A4A0CEC716D7631D004AC167 /* WallOpusView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WallOpusView.h; sourceTree = "<group>"; };
-		A4A0CEC816D7631D004AC167 /* WallOpusView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WallOpusView.m; sourceTree = "<group>"; };
-		A4A0CEC916D7631D004AC167 /* WallOpusView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WallOpusView.xib; sourceTree = "<group>"; };
 		A4A2E7A316E71DE900445888 /* JRSwizzle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JRSwizzle.h; sourceTree = "<group>"; };
 		A4A2E7A416E71DE900445888 /* JRSwizzle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JRSwizzle.m; sourceTree = "<group>"; };
 		A4A2E7B016E7223F00445888 /* LocalizableLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocalizableLabel.h; sourceTree = "<group>"; };
@@ -7876,15 +7867,6 @@
 		A4C9E05117A651C800DE982F /* PBGuessRank+Extend.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "PBGuessRank+Extend.m"; sourceTree = "<group>"; };
 		A4CD500F16F9B56200BE6694 /* BalanceNotEnoughAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BalanceNotEnoughAlertView.h; sourceTree = "<group>"; };
 		A4CD501016F9B56300BE6694 /* BalanceNotEnoughAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BalanceNotEnoughAlertView.m; sourceTree = "<group>"; };
-		A4D1744816B1089C00958355 /* OpusCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OpusCell.h; sourceTree = "<group>"; };
-		A4D1744916B1089C00958355 /* OpusCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OpusCell.m; sourceTree = "<group>"; };
-		A4D1744A16B1089C00958355 /* OpusCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OpusCell.xib; sourceTree = "<group>"; };
-		A4D1744B16B1089C00958355 /* OpusSelectController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OpusSelectController.h; sourceTree = "<group>"; };
-		A4D1744C16B1089C00958355 /* OpusSelectController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OpusSelectController.m; sourceTree = "<group>"; };
-		A4D1744D16B1089C00958355 /* OpusSelectController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OpusSelectController.xib; sourceTree = "<group>"; };
-		A4D174AA16B621FE00958355 /* OpusWallController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OpusWallController.h; sourceTree = "<group>"; };
-		A4D174AB16B621FE00958355 /* OpusWallController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OpusWallController.m; sourceTree = "<group>"; };
-		A4D174AC16B621FE00958355 /* OpusWallController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OpusWallController.xib; sourceTree = "<group>"; };
 		A4D3B1581560E4B50013C882 /* ExpressionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExpressionManager.h; sourceTree = "<group>"; };
 		A4D3B1591560E4B50013C882 /* ExpressionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExpressionManager.m; sourceTree = "<group>"; };
 		A4D3B15C1560E4F80013C882 /* MessageManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageManager.h; sourceTree = "<group>"; };
@@ -11378,31 +11360,6 @@
 				A4C9E04417A61B6500DE982F /* KxMenu.m */,
 			);
 			path = KxMenu;
-			sourceTree = "<group>";
-		};
-		A4D1744716B1089C00958355 /* OpusWall */ = {
-			isa = PBXGroup;
-			children = (
-				A4A0CEC716D7631D004AC167 /* WallOpusView.h */,
-				A4A0CEC816D7631D004AC167 /* WallOpusView.m */,
-				A4A0CEC916D7631D004AC167 /* WallOpusView.xib */,
-				A41D2B4616B910D10094BA7C /* FrameCell.h */,
-				A41D2B4716B910D10094BA7C /* FrameCell.m */,
-				A41D2B4816B910D10094BA7C /* FrameCell.xib */,
-				A41D2B4916B910D10094BA7C /* FrameSelectController.h */,
-				A41D2B4A16B910D10094BA7C /* FrameSelectController.m */,
-				A41D2B4B16B910D10094BA7C /* FrameSelectController.xib */,
-				A4D174AA16B621FE00958355 /* OpusWallController.h */,
-				A4D174AB16B621FE00958355 /* OpusWallController.m */,
-				A4D174AC16B621FE00958355 /* OpusWallController.xib */,
-				A4D1744816B1089C00958355 /* OpusCell.h */,
-				A4D1744916B1089C00958355 /* OpusCell.m */,
-				A4D1744A16B1089C00958355 /* OpusCell.xib */,
-				A4D1744B16B1089C00958355 /* OpusSelectController.h */,
-				A4D1744C16B1089C00958355 /* OpusSelectController.m */,
-				A4D1744D16B1089C00958355 /* OpusSelectController.xib */,
-			);
-			path = OpusWall;
 			sourceTree = "<group>";
 		};
 		A4D3B1561560E4B50013C882 /* Chat */ = {
@@ -16587,7 +16544,6 @@
 				A49971F9177831E100B01EBE /* Guess */,
 				A49971FD177831E100B01EBE /* OpusDetail */,
 				C21455241778279E007D44C7 /* LocalOpus */,
-				A4D1744716B1089C00958355 /* OpusWall */,
 				CA89747F16087BBD003A95F7 /* Contest */,
 				CA8973F51607230E003A95F7 /* Feed */,
 				CA22DCCD157CAFFC009C95CB /* Result */,

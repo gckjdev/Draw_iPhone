@@ -945,11 +945,11 @@ int *getDrawMainMenuTypeListHasNewContest()
         
         HomeMenuTypeDrawBigShop,
 //        HomeMenuTypeTask,
-        HomeMenuTypeDrawGuess,
+        HomeMenuTypeDrawPhoto,
         HomeMenuTypeDrawMore,
         HomeMenuTypeDrawFreeCoins,
         HomeMenuTypeDrawGame,
-        HomeMenuTypeDrawPhoto,
+        HomeMenuTypeDrawGuess,
         
         HomeMenuTypeEnd
     };
@@ -970,10 +970,10 @@ int *getDrawMainMenuTypeListWithoutFreeCoins()
         HomeMenuTypeDrawBigShop,
         HomeMenuTypeTask,
         HomeMenuTypeDrawMore,
-        HomeMenuTypeDrawGuess,
+        HomeMenuTypeDrawPhoto,
 
         HomeMenuTypeDrawGame,
-        HomeMenuTypeDrawPhoto,
+        HomeMenuTypeDrawGuess,
         
         HomeMenuTypeEnd
     };

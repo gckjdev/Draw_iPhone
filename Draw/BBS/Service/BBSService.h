@@ -19,6 +19,8 @@ typedef void (^BBSGetPostResultHandler) (NSInteger resultCode, NSArray *postList
 
 typedef void (^BBSOperatePostHandler) (NSInteger resultCode, PBBBSPost *editedPost);
 
+typedef void (^BBSResultHandler) (NSInteger resultCode);
+
 
 @protocol BBSServiceDelegate <NSObject>
 
@@ -235,4 +237,9 @@ typedef void (^BBSOperatePostHandler) (NSInteger resultCode, PBBBSPost *editedPo
 
 
 - (PBBBSUser *)myself;
+
+#pragma mark - bbs board management
+
+- (void)createBoard:(NSString*)boardName seq:(int)boardSeq;
+
 @end

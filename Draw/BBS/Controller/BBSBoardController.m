@@ -14,6 +14,8 @@
 #import "StatisticManager.h"
 #import "StableView.h"
 #import "SearchPostController.h"
+#import "UILabel+Touchable.h"
+#import "MKBlockActionSheet.h"
 
 @interface BBSBoardController ()
 {
@@ -126,6 +128,11 @@
     [self updateBoardList];
     [self customBbsBg];
     [self updateBadge];
+    
+    if ([[UserManager defaultManager] isSuperUser]){
+        [self.titleLabel addTapGuestureWithTarget:self selector:@selector(clickTitleLabel)];
+    }
+    
 //    // Do any additional setup after loading the view from its nib.
 }
 
@@ -155,6 +162,31 @@
     CHECK_AND_LOGIN(self.view);
     [[StatisticManager defaultManager] setBbsActionCount:0];
     [BBSActionListController enterActionListControllerFromController:self animated:YES];
+}
+
+- (void)clickTitleLabel
+{
+    enum{
+        INDEX_CREATE_BOARD = 0,
+        INDEX_CANCEL
+    };
+    
+    MKBlockActionSheet* actionSheet = [[MKBlockActionSheet alloc] initWithTitle:@"管理员操作" delegate:nil cancelButtonTitle:@"取消" destructiveButtonTitle:@"创建版块" otherButtonTitles:nil];
+
+    [actionSheet setActionBlock:^(NSInteger buttonIndex){
+        switch (buttonIndex) {
+            case INDEX_CREATE_BOARD:
+                PPDebug(@"select create board");
+                break;
+                
+            default:
+                break;
+        }
+    }];
+    
+    [actionSheet showInView:self.view];
+    [actionSheet release];
+    
 }
 
 #pragma mark bbs borad delegate

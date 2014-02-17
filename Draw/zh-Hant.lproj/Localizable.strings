@@ -2674,7 +2674,7 @@
 "kCannotEditOpusToUser" = "作品已經送給用戶了，無法修改";
 "kEditOpusToUser" = "設置作品贈送用戶";
 "kEditOpusUserSuccess" = "設置成功";
-"kGroupMessageNoticeDisable" = "群聊通知關閉";
+"kGroupMessageNoticeDisable" = "通知關閉";
 
 "kCannotEditThisTab" = "請勿在本標籤下編輯作品，可在我的或者草稿標籤下編輯作品";
 "kNotVip" = "無法編輯作品";

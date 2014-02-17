@@ -1366,4 +1366,119 @@ BBSService *_staticGroupTopicService;
     });
 }
 
+- (void)createBoard:(NSString*)boardName seq:(int)boardSeq resultBlock:(BBSResultHandler)resultBlock
+{
+    dispatch_async(workingQueue, ^{
+        
+        NSDictionary *paras = @{PARA_NAME:boardName, PARA_SEQ:@(boardSeq)};
+        GameNetworkOutput* output = [PPGameNetworkRequest
+                                     sendGetRequestWithBaseURL:[self hostURL]
+                                     method:METHOD_CREATE_BOARD
+                                     parameters:paras
+                                     returnPB:NO
+                                     returnJSONArray:NO];
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if (output.resultCode == ERROR_SUCCESS) {
+            }
+            PPDebug(@"<createBoard> name=%@, seq=%d, result=%d", boardName, boardSeq, output.resultCode);
+            EXECUTE_BLOCK(resultBlock, output.resultCode);
+        });
+    });
+}
+
+- (void)updateBoard:(NSString*)boardId
+               name:(NSString*)boardName
+                seq:(int)boardSeq
+        resultBlock:(BBSResultHandler)resultBlock
+{
+    if (boardName == nil || boardId == nil){
+        return;
+    }
+    
+    dispatch_async(workingQueue, ^{
+        
+        NSDictionary *paras = @{PARA_BOARDID:boardId,
+                                PARA_NAME:boardName,
+                                PARA_SEQ:@(boardSeq)};
+        
+        GameNetworkOutput* output = [PPGameNetworkRequest
+                                     sendGetRequestWithBaseURL:[self hostURL]
+                                     method:METHOD_UPDATE_BOARD
+                                     parameters:paras
+                                     returnPB:NO
+                                     returnJSONArray:NO];
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if (output.resultCode == ERROR_SUCCESS) {
+            }
+            PPDebug(@"<updateBoard> id=%@, name=%@, seq=%d, result=%d",
+                    boardId, boardName, boardSeq, output.resultCode);
+            EXECUTE_BLOCK(resultBlock, output.resultCode);
+        });
+    });
+}
+
+- (void)deleteBoard:(NSString*)boardId
+        resultBlock:(BBSResultHandler)resultBlock
+{
+    if (boardId == nil){
+        return;
+    }
+    
+    dispatch_async(workingQueue, ^{
+        
+        NSDictionary *paras = @{PARA_BOARDID:boardId};
+        
+        GameNetworkOutput* output = [PPGameNetworkRequest
+                                     sendGetRequestWithBaseURL:[self hostURL]
+                                     method:METHOD_DELETE_BOARD
+                                     parameters:paras
+                                     returnPB:NO
+                                     returnJSONArray:NO];
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if (output.resultCode == ERROR_SUCCESS) {
+            }
+            PPDebug(@"<deleteBoard> id=%@, result=%d",
+                    boardId, output.resultCode);
+            EXECUTE_BLOCK(resultBlock, output.resultCode);
+        });
+    });
+}
+
+- (void)setUserBoardType:(NSString*)boardId
+                  userId:(NSString*)userId
+                    type:(int)type
+             resultBlock:(BBSResultHandler)resultBlock
+{
+    if (boardId == nil || userId == nil){
+        return;
+    }
+    
+    dispatch_async(workingQueue, ^{
+        
+        NSDictionary *paras = @{PARA_BOARDID:boardId,
+                                PARA_TARGETUSERID:userId,
+                                PARA_TYPE:@(type)};
+        
+        GameNetworkOutput* output = [PPGameNetworkRequest
+                                     sendGetRequestWithBaseURL:[self hostURL]
+                                     method:METHOD_SET_USER_BOARD_TYPE
+                                     parameters:paras
+                                     returnPB:NO
+                                     returnJSONArray:NO];
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if (output.resultCode == ERROR_SUCCESS) {
+            }
+            PPDebug(@"<setUserBoardType> id=%@, userId=%@, type=%d, result=%d",
+                    boardId, userId, type, output.resultCode);
+            EXECUTE_BLOCK(resultBlock, output.resultCode);
+        });
+    });
+}
+
+
+
 @end
