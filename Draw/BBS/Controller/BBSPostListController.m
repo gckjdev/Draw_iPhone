@@ -302,7 +302,7 @@
 - (void)setBoardName
 {
     CommonDialog* dialog = [CommonDialog createInputFieldDialogWith:@"请输入版块名称"];
-    dialog.inputTextField.text = @"";
+    dialog.inputTextField.text = self.bbsBoard.name;
     
     [dialog setClickOkBlock:^(id infoView){
         NSString* name = dialog.inputTextField.text;
@@ -317,7 +317,7 @@
 - (void)setBoardSeq
 {
     CommonDialog* dialog = [CommonDialog createInputFieldDialogWith:@"请输入版块顺序"];
-    dialog.inputTextField.text = @"";
+    dialog.inputTextField.text = [NSString stringWithFormat:@"%d", self.bbsBoard.index];
     
     [dialog setClickOkBlock:^(id infoView){
         int seq = [dialog.inputTextField.text intValue];

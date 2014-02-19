@@ -3485,6 +3485,7 @@ static PBBBSAction* defaultPBBBSActionInstance = nil;
 @property (retain) PBBBSPost* lastPost;
 @property (retain) NSString* desc;
 @property (retain) NSMutableArray* mutableAdminListList;
+@property int32_t index;
 @end
 
 @implementation PBBBSBoard
@@ -3553,6 +3554,13 @@ static PBBBSAction* defaultPBBBSActionInstance = nil;
 }
 @synthesize desc;
 @synthesize mutableAdminListList;
+- (BOOL) hasIndex {
+  return !!hasIndex_;
+}
+- (void) setHasIndex:(BOOL) value {
+  hasIndex_ = !!value;
+}
+@synthesize index;
 - (void) dealloc {
   self.boardId = nil;
   self.name = nil;
@@ -3574,6 +3582,7 @@ static PBBBSAction* defaultPBBBSActionInstance = nil;
     self.parentBoardId = @"";
     self.lastPost = [PBBBSPost defaultInstance];
     self.desc = @"";
+    self.index = 0;
   }
   return self;
 }
@@ -3655,6 +3664,9 @@ static PBBBSBoard* defaultPBBBSBoardInstance = nil;
   for (PBBBSUser* element in self.adminListList) {
     [output writeMessage:10 value:element];
   }
+  if (self.hasIndex) {
+    [output writeInt32:11 value:self.index];
+  }
   [self.unknownFields writeToCodedOutputStream:output];
 }
 - (int32_t) serializedSize {
@@ -3693,6 +3705,9 @@ static PBBBSBoard* defaultPBBBSBoardInstance = nil;
   }
   for (PBBBSUser* element in self.adminListList) {
     size += computeMessageSize(10, element);
+  }
+  if (self.hasIndex) {
+    size += computeInt32Size(11, self.index);
   }
   size += self.unknownFields.serializedSize;
   memoizedSerializedSize = size;
@@ -3802,6 +3817,9 @@ static PBBBSBoard* defaultPBBBSBoardInstance = nil;
     }
     [result.mutableAdminListList addObjectsFromArray:other.mutableAdminListList];
   }
+  if (other.hasIndex) {
+    [self setIndex:other.index];
+  }
   [self mergeUnknownFields:other.unknownFields];
   return self;
 }
@@ -3868,6 +3886,10 @@ static PBBBSBoard* defaultPBBBSBoardInstance = nil;
         PBBBSUser_Builder* subBuilder = [PBBBSUser builder];
         [input readMessage:subBuilder extensionRegistry:extensionRegistry];
         [self addAdminList:[subBuilder buildPartial]];
+        break;
+      }
+      case 88: {
+        [self setIndex:[input readInt32]];
         break;
       }
     }
@@ -4058,6 +4080,22 @@ static PBBBSBoard* defaultPBBBSBoardInstance = nil;
     result.mutableAdminListList = [NSMutableArray array];
   }
   [result.mutableAdminListList addObject:value];
+  return self;
+}
+- (BOOL) hasIndex {
+  return result.hasIndex;
+}
+- (int32_t) index {
+  return result.index;
+}
+- (PBBBSBoard_Builder*) setIndex:(int32_t) value {
+  result.hasIndex = YES;
+  result.index = value;
+  return self;
+}
+- (PBBBSBoard_Builder*) clearIndex {
+  result.hasIndex = NO;
+  result.index = 0;
   return self;
 }
 @end

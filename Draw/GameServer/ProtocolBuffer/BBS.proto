@@ -108,6 +108,8 @@ message PBBBSBoard{
     optional PBBBSPost lastPost = 8;
     optional string desc = 9;
     repeated PBBBSUser adminList = 10;
+    
+    optional int32 index = 11;
 }
 
 

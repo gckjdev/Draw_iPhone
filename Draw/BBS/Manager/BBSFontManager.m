@@ -38,36 +38,36 @@ static BBSFontManager* _staticBBSFontManager;
 #pragma mark index page font
 - (UIFont *)indexTabFont
 {
-    return ISIPHONE ? FONT(12) : FONT(24);
+    return CELL_CONTENT_FONT; // ISIPHONE ? FONT(12) : FONT(24);
 }
 - (UIFont *)indexCountFont
 {
-    return ISIPHONE ? FONT(11) : FONT(22);
+    return CELL_CONTENT_FONT; // ISIPHONE ? FONT(11) : FONT(22);
 }
 - (UIFont *)indexLastPostTextFont
 {
-    return ISIPHONE ? FONT(11) : FONT(22);
+    return CELL_CONTENT_FONT; // ISIPHONE ? FONT(11) : FONT(22);
 }
 - (UIFont *)indexLastPostNickFont
 {
-    return ISIPHONE ? FONT(11) : FONT(22);
+    return CELL_CONTENT_FONT; // ISIPHONE ? FONT(11) : FONT(22);
 }
 - (UIFont *)indexLastPostDateFont
 {
-    return ISIPHONE ? FONT(9) : FONT(18);
+    return CELL_SMALLTEXT_FONT; // ISIPHONE ? FONT(9) : FONT(18);
 }
 
 - (UIFont *)indexBoardNameFont
 {
-    return ISIPHONE ? FONT(11) : FONT(22);
+    return CELL_NICK_FONT; // ISIPHONE ? FONT(11) : FONT(22);
 }
 - (UIFont *)indexSectionNameFont
 {
-    return ISIPHONE ? FONT(16) : FONT(32);
+    return ISIPHONE ? FONT(15) : FONT(28);
 }
 - (UIFont *)indexBadgeFont
 {
-    return ISIPHONE ? BOLDFONT(11) : BOLDFONT(22);
+    return CELL_CONTENT_FONT; // ISIPHONE ? BOLDFONT(11) : BOLDFONT(22);
 }
 
 #pragma mark post list page font
@@ -99,11 +99,11 @@ static BBSFontManager* _staticBBSFontManager;
 
 - (UIFont *)boardAdminTitleFont
 {
-    return ISIPHONE ? FONT(14) : FONT(14*2);
+    return CELL_NICK_FONT; // ISIPHONE ? FONT(14) : FONT(14*2);
 }
 - (UIFont *)boardAdminNickFont
 {
-    return ISIPHONE ? FONT(14) : FONT(14*2);
+    return CELL_NICK_FONT; // ISIPHONE ? FONT(14) : FONT(14*2);
 }
 
 

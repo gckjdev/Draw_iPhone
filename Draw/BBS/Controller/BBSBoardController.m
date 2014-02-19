@@ -172,8 +172,13 @@
     CommonDialog* dialog = [CommonDialog createInputFieldDialogWith:@"请输入版块名称"];
     dialog.inputTextField.text = @"";
     
+    int STEP = 50;
+    int index = [[BBSManager defaultManager] getLastBoardIndex] + STEP;
+    
     [dialog setClickOkBlock:^(id infoView){
-        [[BBSService defaultService] createBoard:dialog.inputTextField.text seq:DEFAULT_BOARD_INDEX resultBlock:^(NSInteger resultCode) {
+        [[BBSService defaultService] createBoard:dialog.inputTextField.text
+                                             seq:index
+                                     resultBlock:^(NSInteger resultCode) {
         }];
     }];
     

@@ -898,6 +898,7 @@
   BOOL hasType_:1;
   BOOL hasActionCount_:1;
   BOOL hasPostCount_:1;
+  BOOL hasIndex_:1;
   BOOL hasBoardId_:1;
   BOOL hasName_:1;
   BOOL hasIcon_:1;
@@ -907,6 +908,7 @@
   int32_t type;
   int32_t actionCount;
   int32_t postCount;
+  int32_t index;
   NSString* boardId;
   NSString* name;
   NSString* icon;
@@ -924,6 +926,7 @@
 - (BOOL) hasParentBoardId;
 - (BOOL) hasLastPost;
 - (BOOL) hasDesc;
+- (BOOL) hasIndex;
 @property (readonly, retain) NSString* boardId;
 @property (readonly) int32_t type;
 @property (readonly, retain) NSString* name;
@@ -933,6 +936,7 @@
 @property (readonly, retain) NSString* parentBoardId;
 @property (readonly, retain) PBBBSPost* lastPost;
 @property (readonly, retain) NSString* desc;
+@property (readonly) int32_t index;
 - (NSArray*) adminListList;
 - (PBBBSUser*) adminListAtIndex:(int32_t) index;
 
@@ -1023,5 +1027,10 @@
 - (PBBBSBoard_Builder*) addAdminList:(PBBBSUser*) value;
 - (PBBBSBoard_Builder*) addAllAdminList:(NSArray*) values;
 - (PBBBSBoard_Builder*) clearAdminListList;
+
+- (BOOL) hasIndex;
+- (int32_t) index;
+- (PBBBSBoard_Builder*) setIndex:(int32_t) value;
+- (PBBBSBoard_Builder*) clearIndex;
 @end
 

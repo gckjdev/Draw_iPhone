@@ -77,4 +77,6 @@
 + (NSString *)lastInputText;
 + (BOOL)saveLastInputText:(NSString *)lastInputText;
 
+- (int)getLastBoardIndex;
+
 @end

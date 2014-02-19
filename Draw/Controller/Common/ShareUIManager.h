@@ -26,16 +26,16 @@
 
 
 //Cell的昵称字体，例如FeedCell，PostCell，FriendCell的昵称
-#define CELL_NICK_FONT          AD_FONT(26, 14)
+#define CELL_NICK_FONT          AD_FONT(22, 13)
 
 //Cell 的内容字体
-#define CELL_CONTENT_FONT       AD_FONT(24, 12)
+#define CELL_CONTENT_FONT       AD_FONT(20, 12)
 
 //Cell的所回复的评论的字体
-#define CELL_REPLY_SOURCE_FONT  AD_FONT(22, 11)
+#define CELL_REPLY_SOURCE_FONT  AD_FONT(18, 11)
 
 //Cell的小字，例如说明，时间，小吉号，猜对数目，评论数目等
-#define CELL_SMALLTEXT_FONT    AD_FONT(18, 10)
+#define CELL_SMALLTEXT_FONT    AD_FONT(14, 10)
 
 
 

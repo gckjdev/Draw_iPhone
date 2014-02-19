@@ -316,4 +316,15 @@ BBSManager *_staticBBSManager;
     return [userDefaults synchronize];
 }
 
+- (int)getLastBoardIndex
+{
+    if ([self.boardList count] > 0){
+        PBBBSBoard* lastBoard = [self.boardList objectAtIndex:([self.boardList count]-1)];
+        return lastBoard.index;
+    }
+    else{
+        return 0;
+    }
+}
+
 @end
