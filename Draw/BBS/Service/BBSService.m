@@ -1380,6 +1380,10 @@ BBSService *_staticGroupTopicService;
         
         dispatch_async(dispatch_get_main_queue(), ^{
             if (output.resultCode == ERROR_SUCCESS) {
+                POSTMSG(@"创建版块成功");
+            }
+            else{
+                POSTMSG(@"创建版块失败");
             }
             PPDebug(@"<createBoard> name=%@, seq=%d, result=%d", boardName, boardSeq, output.resultCode);
             EXECUTE_BLOCK(resultBlock, output.resultCode);
@@ -1411,6 +1415,10 @@ BBSService *_staticGroupTopicService;
         
         dispatch_async(dispatch_get_main_queue(), ^{
             if (output.resultCode == ERROR_SUCCESS) {
+                POSTMSG(@"修改版块成功");
+            }
+            else{
+                POSTMSG(@"修改版块失败");
             }
             PPDebug(@"<updateBoard> id=%@, name=%@, seq=%d, result=%d",
                     boardId, boardName, boardSeq, output.resultCode);
@@ -1439,6 +1447,10 @@ BBSService *_staticGroupTopicService;
         
         dispatch_async(dispatch_get_main_queue(), ^{
             if (output.resultCode == ERROR_SUCCESS) {
+                POSTMSG(@"删除版块成功");
+            }
+            else{
+                POSTMSG(@"删除版块失败");
             }
             PPDebug(@"<deleteBoard> id=%@, result=%d",
                     boardId, output.resultCode);
@@ -1446,6 +1458,11 @@ BBSService *_staticGroupTopicService;
         });
     });
 }
+
+#define USER_BOARD_TYPE_ADMIN           4
+#define USER_BOARD_TYPE_USER            0
+#define USER_BOARD_TYPE_MANAGER         2
+#define USER_BOARD_TYPE_REMOVE          (-1)
 
 - (void)setUserBoardType:(NSString*)boardId
                   userId:(NSString*)userId
@@ -1462,6 +1479,11 @@ BBSService *_staticGroupTopicService;
                                 PARA_TARGETUSERID:userId,
                                 PARA_TYPE:@(type)};
         
+        NSMutableDictionary* finalParas = [NSMutableDictionary dictionaryWithDictionary:paras];
+        if (type == USER_BOARD_TYPE_REMOVE){
+            [finalParas removeObjectForKey:PARA_TYPE];
+        }
+        
         GameNetworkOutput* output = [PPGameNetworkRequest
                                      sendGetRequestWithBaseURL:[self hostURL]
                                      method:METHOD_SET_USER_BOARD_TYPE
@@ -1471,6 +1493,10 @@ BBSService *_staticGroupTopicService;
         
         dispatch_async(dispatch_get_main_queue(), ^{
             if (output.resultCode == ERROR_SUCCESS) {
+                POSTMSG(@"设置用户类型成功");
+            }
+            else{
+                POSTMSG(@"设置用户类型失败");
             }
             PPDebug(@"<setUserBoardType> id=%@, userId=%@, type=%d, result=%d",
                     boardId, userId, type, output.resultCode);
@@ -1479,6 +1505,20 @@ BBSService *_staticGroupTopicService;
     });
 }
 
+- (void)removeBoardAdminOrManager:(NSString*)boardId userId:(NSString*)userId resultBlock:(BBSResultHandler)resultBlock
+{
+    [self setUserBoardType:boardId userId:userId type:USER_BOARD_TYPE_REMOVE resultBlock:resultBlock];
+    [self setUserBoardType:boardId userId:userId type:USER_BOARD_TYPE_USER resultBlock:resultBlock];
+}
 
+- (void)addBoardAdmin:(NSString*)boardId userId:(NSString*)userId resultBlock:(BBSResultHandler)resultBlock
+{
+    [self setUserBoardType:boardId userId:userId type:USER_BOARD_TYPE_ADMIN resultBlock:resultBlock];
+}
+
+- (void)addBoardManager:(NSString*)boardId userId:(NSString*)userId resultBlock:(BBSResultHandler)resultBlock
+{
+    [self setUserBoardType:boardId userId:userId type:USER_BOARD_TYPE_MANAGER resultBlock:resultBlock];
+}
 
 @end

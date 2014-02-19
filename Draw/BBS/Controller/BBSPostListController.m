@@ -12,8 +12,12 @@
 #import "BBSPostCell.h"
 #import "BBSPostDetailController.h"
 #import "BoardAdminListView.h"
+
 #import "DrawPlayer.h"
 #import "AdService.h"
+#import "UILabel+Touchable.h"
+#import "MKBlockActionSheet.h"
+#import "FriendController.h"
 
 #define ADMINLISTVIEW_ORIGIN (ISIPAD ? CGPointMake(0,110+STATUSBAR_DELTA) : CGPointMake(0,49+STATUSBAR_DELTA))
 
@@ -100,7 +104,7 @@
 
 - (void)showAdminListView
 {
-    BoardAdminListView *adminListView = [BoardAdminListView adminListViewWithBBSUserList:self.bbsBoard.adminListList controller:self];
+    BoardAdminListView *adminListView = [BoardAdminListView adminListViewWithBBSUserList:self.bbsBoard.adminListList controller:self boardId:self.bbsBoard.boardId];
     CGRect frame = [adminListView frame];
     frame.origin = ADMINLISTVIEW_ORIGIN;
     adminListView.frame = frame;
@@ -182,6 +186,11 @@
     
     [self customBbsBg];
     // Do any additional setup after loading the view from its nib.
+    
+    if ([[UserManager defaultManager] isSuperUser]){
+        [self.titleLabel addTapGuestureWithTarget:self selector:@selector(clickTitleLabel)];
+    }
+    
 }
 
 
@@ -253,6 +262,126 @@
 
     [BBSPostListController enterMarkedPostListController:self.bbsBoard fromController:self];
     return;
+}
+
+- (void)addAdmin
+{
+    [FriendController searchUser:self callback:^(FriendController *controller, MyFriend *selectUser) {
+        if (selectUser){
+            [[BBSService defaultService] addBoardAdmin:self.bbsBoard.boardId userId:selectUser.friendUserId resultBlock:^(NSInteger resultCode) {
+                
+            }];
+        }
+    }];
+}
+
+- (void)addManager
+{
+    [FriendController searchUser:self callback:^(FriendController *controller, MyFriend *selectUser) {
+        if (selectUser){
+            [[BBSService defaultService] addBoardManager:self.bbsBoard.boardId userId:selectUser.friendUserId resultBlock:^(NSInteger resultCode) {
+                
+            }];
+        }
+    }];
+}
+
+- (void)deleteBoard
+{
+    NSString* msg = [NSString stringWithFormat:@"确认删除板块【%@】", self.bbsBoard.name];
+    CommonDialog* dialog = [CommonDialog createDialogWithTitle:@"删除板块" message:msg style:CommonDialogStyleDoubleButton];
+    [dialog setClickOkBlock:^(id infoView){
+        [[BBSService defaultService] deleteBoard:self.bbsBoard.boardId resultBlock:^(NSInteger resultCode) {
+            
+        }];
+    }];
+    
+    [dialog showInView:self.view];
+}
+
+- (void)setBoardName
+{
+    CommonDialog* dialog = [CommonDialog createInputFieldDialogWith:@"请输入版块名称"];
+    dialog.inputTextField.text = @"";
+    
+    [dialog setClickOkBlock:^(id infoView){
+        NSString* name = dialog.inputTextField.text;
+        [[BBSService defaultService] updateBoard:self.bbsBoard.boardId name:name seq:0 resultBlock:^(NSInteger resultCode) {
+            
+        }];
+    }];
+    
+    [dialog showInView:self.view];
+}
+
+- (void)setBoardSeq
+{
+    CommonDialog* dialog = [CommonDialog createInputFieldDialogWith:@"请输入版块顺序"];
+    dialog.inputTextField.text = @"";
+    
+    [dialog setClickOkBlock:^(id infoView){
+        int seq = [dialog.inputTextField.text intValue];
+        [[BBSService defaultService] updateBoard:self.bbsBoard.boardId name:@"" seq:seq resultBlock:^(NSInteger resultCode) {
+            
+        }];
+    }];
+    
+    [dialog showInView:self.view];
+}
+
+
+- (void)clickTitleLabel
+{
+    enum{
+        INDEX_ADD_ADMIN = 0,
+        INDEX_ADD_MANAGER,
+        INDEX_DELETE_BOARD,
+        INDEX_SET_BOARD_NAME,
+        INDEX_SET_BOARD_SEQ,
+        INDEX_CANCEL
+    };
+    
+    MKBlockActionSheet* actionSheet = [[MKBlockActionSheet alloc] initWithTitle:@"管理员操作"
+                                                                       delegate:nil
+                                                              cancelButtonTitle:@"取消"
+                                                         destructiveButtonTitle:@"设置管理员"
+                                                              otherButtonTitles:@"设置版主", @"删除版块", @"设置名称", @"设置顺序", nil];
+    
+    [actionSheet setActionBlock:^(NSInteger buttonIndex){
+        switch (buttonIndex) {
+            case INDEX_ADD_ADMIN:
+                PPDebug(@"select INDEX_ADD_ADMIN");
+                [self addAdmin];
+                break;
+                
+            case INDEX_ADD_MANAGER:
+                PPDebug(@"select INDEX_ADD_MANAGER");
+                [self addManager];
+                break;
+                
+            case INDEX_DELETE_BOARD:
+                PPDebug(@"select INDEX_DELETE_BOARD");
+                [self deleteBoard];
+                break;
+                
+            case INDEX_SET_BOARD_NAME:
+                PPDebug(@"select INDEX_SET_BOARD_NAME");
+                [self setBoardName];
+                break;
+                
+            case INDEX_SET_BOARD_SEQ:
+                PPDebug(@"select INDEX_SET_BOARD_SEQ");
+                [self setBoardSeq];
+                break;
+                
+            default:
+                break;
+        }
+    }];
+    
+    [actionSheet showInView:self.view];
+    [actionSheet release];
+    
 }
 
 #pragma mark - common tab controller delegate

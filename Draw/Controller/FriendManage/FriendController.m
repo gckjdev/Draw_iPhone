@@ -74,6 +74,9 @@ typedef enum{
     PPRelease(_invitedFidSet);
     PPRelease(_inviteText);
     PPRelease(inviteButton);
+
+    RELEASE_BLOCK(_selectCallback);
+    
     [_buttonBgImageView release];
     [super dealloc];
 }
@@ -96,6 +99,21 @@ typedef enum{
     return self;
 }
 
++ (FriendController*)searchUser:(PPViewController*)fromController delegate:(id<FriendControllerDelegate>)delegate
+{
+    FriendController *fc = [[FriendController alloc] initWithDelegate:delegate];
+    [fromController.navigationController pushViewController:fc animated:YES];
+    [fc release];
+    return fc;
+}
+
++ (FriendController*)searchUser:(PPViewController*)fromController callback:(FriendControllerCallback)callback
+{
+    FriendController *fc = [[FriendController alloc] initWithCallback:callback];
+    [fromController.navigationController pushViewController:fc animated:YES];
+    [fc release];
+    return fc;
+}
 
 - (id)initWithInviteText:(NSString *)inviteText //a invite text send to friends via sms        
       invitedFriendIdSet:(NSSet *)fSet 
@@ -120,6 +138,18 @@ typedef enum{
     if (self) {
         _type = ControllerTypeSelectFriend;
         _delegate = delegate;
+    }
+    return self;
+}
+
+//select a friend
+- (id)initWithCallback:(FriendControllerCallback)callback
+{
+    self = [super init];
+    if (self) {
+        _type = ControllerTypeSelectFriend;
+        _delegate = nil;
+        self.selectCallback = callback;        
     }
     return self;
 }
@@ -399,9 +429,16 @@ SET_CELL_BG_IN_CONTROLLER;
     if (friend) {        
         switch (_type) {
             case ControllerTypeSelectFriend:
+            {
                 if (_delegate && [_delegate respondsToSelector:@selector(friendController:didSelectFriend:)]) {
                     [_delegate friendController:self didSelectFriend:friend];
                 }
+                else if (self.selectCallback){
+                    EXECUTE_BLOCK(self.selectCallback, self, friend);
+                    RELEASE_BLOCK(_selectCallback);                    
+                }
+                
+            }
                 break;
                 
             case ControllerTypeInviteFriend:
@@ -715,6 +752,10 @@ enum {
     if (_type == ControllerTypeSelectFriend) {
         if (_delegate && [_delegate respondsToSelector:@selector(friendController:didSelectFriend:)]) {
             [_delegate friendController:self didSelectFriend:aFriend];
+        }
+        else if (self.selectCallback){
+            EXECUTE_BLOCK(self.selectCallback, self, aFriend);
+            RELEASE_BLOCK(_selectCallback);
         }
     }
 }

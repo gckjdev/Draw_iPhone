@@ -14,6 +14,8 @@
 #import "UIImageView+WebCache.h"
 #import "BBSViewManager.h"
 #import "StringUtil.h"
+#import "MKBlockActionSheet.h"
+#import "BBSService.h"
 
 #import <QuartzCore/QuartzCore.h>
 
@@ -120,16 +122,69 @@
     PPDebug(@"%@ dealloc", self);
     [_adminTitle release];
     [_splitLine release];
+    PPRelease(_boardId);
     [super dealloc];
 }
 
-- (void)clickAdminView:(AdminView *)adminView
+- (void)superUserClickAdmin:(AdminView *)adminView
 {
+    enum{
+        INDEX_VIEW_USER = 0,
+        INDEX_REMOVE_BOARD_ADMIN,
+        INDEX_CANCEL
+    };
+    
+    MKBlockActionSheet* actionSheet = [[MKBlockActionSheet alloc] initWithTitle:@"管理员操作"
+                                                                       delegate:nil
+                                                              cancelButtonTitle:@"取消"
+                                                         destructiveButtonTitle:@"查看用户详情"
+                                                              otherButtonTitles:@"移除管理员/版主", nil];
+    
+    [actionSheet setActionBlock:^(NSInteger buttonIndex){
+        switch (buttonIndex) {
+            case INDEX_VIEW_USER:
+                PPDebug(@"select INDEX_VIEW_USER");
+                [self viewUser:adminView];
+                break;
+                
+            case INDEX_REMOVE_BOARD_ADMIN:
+            {
+                PBBBSUser *user = adminView.user;
+                [[BBSService defaultService] removeBoardAdminOrManager:self.boardId userId:user.userId resultBlock:^(NSInteger resultCode) {
+                    
+                }];
+                PPDebug(@"select INDEX_REMOVE_BOARD_ADMIN");
+                break;
+            }
+                
+            default:
+                break;
+        }
+    }];
+    
+    [actionSheet showInView:self.controller.view];
+    [actionSheet release];
+    
+}
+
+- (void)viewUser:(AdminView *)adminView
+{
+    
     PBBBSUser *user = adminView.user;
     if (user) {
         MyFriend *f = [MyFriend friendWithFid:user.userId nickName:user.nickName avatar:user.avatar gender:user.genderString level:1];
         [CommonUserInfoView showFriend:f inController:self.controller needUpdate:YES canChat:YES];
     }
+}
+
+- (void)clickAdminView:(AdminView *)adminView
+{
+    if ([[UserManager defaultManager] isSuperUser]){
+        [self superUserClickAdmin:adminView];
+        return;
+    }
+
+    [self viewUser:adminView];
 }
 
 - (void)updateAdminView:(AdminView *)view frameWithX:(CGFloat)x
@@ -168,11 +223,12 @@
     [self.adminTitle setBackgroundColor:[UIColor clearColor]];
 }
 
-+ (id)adminListViewWithBBSUserList:(NSArray *)userList controller:(PPViewController *)controller
++ (id)adminListViewWithBBSUserList:(NSArray *)userList controller:(PPViewController *)controller boardId:(NSString*)boardId
 {
     BoardAdminListView *view = [UIView createViewWithXibIdentifier:@"BoardAdminListView"];
     view.splitLine.backgroundColor = [[BBSColorManager defaultManager] bbsAdminLineColor];
     view.controller = controller;
+    view.boardId = boardId;
     [view updateViewWithUserList:userList];
     return view;
 }

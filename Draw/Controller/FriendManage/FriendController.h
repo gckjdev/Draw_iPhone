@@ -32,18 +32,20 @@ typedef enum{
 } FriendTabIndexType;
 
 
+typedef void (^ FriendControllerCallback)(FriendController* controller, MyFriend *selectUser);
 
 //@class Room;
 @class MyFriend;
 @interface FriendController : CommonTabController <FriendServiceDelegate,FollowDelegate,RoomServiceDelegate, UIActionSheetDelegate, SearchUserControllerDelegate>
 {
-
+    
 }
 
 @property (retain, nonatomic) IBOutlet UIButton *editButton;
 @property (retain, nonatomic) IBOutlet UIButton *searchUserButton;
 @property (retain, nonatomic) IBOutlet UIButton *inviteButton;
 @property (retain, nonatomic) IBOutlet UIImageView *buttonBgImageView;
+@property (copy, nonatomic) FriendControllerCallback selectCallback;
 
 - (void)setDefaultTabIndex:(FriendTabIndexType)tabIndex;
 
@@ -59,4 +61,8 @@ typedef enum{
 - (IBAction)clickEdit:(id)sender;
 - (IBAction)clickSearchUser:(id)sender;
 - (IBAction)clickInviteButton:(id)sender;
+
++ (FriendController*)searchUser:(PPViewController*)fromController delegate:(id<FriendControllerDelegate>)delegate;
++ (FriendController*)searchUser:(PPViewController*)fromController callback:(FriendControllerCallback)callback;
+
 @end

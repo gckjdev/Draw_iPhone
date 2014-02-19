@@ -164,6 +164,23 @@
     [BBSActionListController enterActionListControllerFromController:self animated:YES];
 }
 
+
+#define DEFAULT_BOARD_INDEX 800
+
+- (void)createBoard
+{
+    CommonDialog* dialog = [CommonDialog createInputFieldDialogWith:@"请输入版块名称"];
+    dialog.inputTextField.text = @"";
+    
+    [dialog setClickOkBlock:^(id infoView){
+        [[BBSService defaultService] createBoard:dialog.inputTextField.text seq:DEFAULT_BOARD_INDEX resultBlock:^(NSInteger resultCode) {
+        }];
+    }];
+    
+    [dialog showInView:self.view];
+}
+
+
 - (void)clickTitleLabel
 {
     enum{
@@ -172,11 +189,12 @@
     };
     
     MKBlockActionSheet* actionSheet = [[MKBlockActionSheet alloc] initWithTitle:@"管理员操作" delegate:nil cancelButtonTitle:@"取消" destructiveButtonTitle:@"创建版块" otherButtonTitles:nil];
-
+    
     [actionSheet setActionBlock:^(NSInteger buttonIndex){
         switch (buttonIndex) {
             case INDEX_CREATE_BOARD:
                 PPDebug(@"select create board");
+                [self createBoard];
                 break;
                 
             default:
@@ -188,6 +206,8 @@
     [actionSheet release];
     
 }
+
+
 
 #pragma mark bbs borad delegate
 

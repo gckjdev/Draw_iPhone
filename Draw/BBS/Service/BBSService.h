@@ -240,6 +240,15 @@ typedef void (^BBSResultHandler) (NSInteger resultCode);
 
 #pragma mark - bbs board management
 
-- (void)createBoard:(NSString*)boardName seq:(int)boardSeq;
+- (void)createBoard:(NSString*)boardName seq:(int)boardSeq resultBlock:(BBSResultHandler)resultBlock;
+- (void)deleteBoard:(NSString*)boardId
+        resultBlock:(BBSResultHandler)resultBlock;
+- (void)updateBoard:(NSString*)boardId
+               name:(NSString*)boardName
+                seq:(int)boardSeq
+        resultBlock:(BBSResultHandler)resultBlock;
+- (void)removeBoardAdminOrManager:(NSString*)boardId userId:(NSString*)userId resultBlock:(BBSResultHandler)resultBlock;
+- (void)addBoardAdmin:(NSString*)boardId userId:(NSString*)userId resultBlock:(BBSResultHandler)resultBlock;
+- (void)addBoardManager:(NSString*)boardId userId:(NSString*)userId resultBlock:(BBSResultHandler)resultBlock;
 
 @end
