@@ -19,7 +19,8 @@
 
 + (float)getCellHeight{
     
-    return ISIPAD ? 153 : 70;
+//    return ISIPAD ? 153 : 70;
+    return ISIPAD ? 120 : 70;
 }
 
 + (NSString *)getCellIdentifier{    
