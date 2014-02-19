@@ -1579,6 +1579,10 @@ qqAccessTokenSecret:(NSString*)accessTokenSecret
         count ++;
     }
     
+    if ([self isVipExpire]){
+        count ++;
+    }
+    
     return count;
 }
 
@@ -1851,6 +1855,17 @@ qqAccessTokenSecret:(NSString*)accessTokenSecret
     PBGameUser_Builder* builder = [PBGameUser builderWithPrototype:self.pbUser];
     [builder setVipExpireDate:vipExpireDate];
     self.pbUser = [builder build];
+}
+
+- (BOOL)isVipExpire
+{
+    time_t now = time(0);
+    if (_pbUser.vip && _pbUser.vipExpireDate < now){
+        return YES;
+    }
+    else{
+        return NO;
+    }
 }
 
 - (void)setVipLastPayDate:(int)vipLastPayDate

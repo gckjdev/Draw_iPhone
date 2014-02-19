@@ -570,9 +570,11 @@ SET_CELL_BG_IN_CONTROLLER;
                 NSString* expireDateString = dateToChineseStringByFormat(expireDate, @"yyyy-MM-dd");
                 if ([[UserManager defaultManager] isVip]){
                     msg = [NSString stringWithFormat:NSLS(@"kIsVip"), expireDateString];
+                    [cell setBadge:0];
                 }
                 else{
                     msg = [NSString stringWithFormat:NSLS(@"kVipExpire"), expireDateString];
+                    [cell setBadge:1];
                 }
                 
                  [cell.customDetailLabel setText:msg];

@@ -259,6 +259,11 @@ static TaskManager* _defaultTaskManager;
                         [t setStatus:task.status];
                         [t setBadge:task.badge];
                         
+                        if (task.taskId == PBTaskIdTypeTaskVip && [[UserManager defaultManager] isVipExpire]){
+                            // VIP expired notice
+                            [t setBadge:1];
+                        }
+                        
                         foundTask = t;                        
                         break;
                     }

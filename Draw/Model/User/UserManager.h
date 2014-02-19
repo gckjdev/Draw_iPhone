@@ -283,6 +283,7 @@ qqAccessTokenSecret:(NSString*)accessTokenSecret
 - (void)setVipLastPayDate:(int)vipLastPayDate;
 - (int)buyVipUserCount;
 - (void)setBuyVipUserCount:(int)value;
+- (BOOL)isVipExpire;
 
 - (BOOL)hasAwardApp:(NSString*)appId;
 - (void)setUserGroupNotice:(NSString*)groupId status:(int)status;

@@ -442,7 +442,7 @@
 
 + (int)getDeductCoinsInHappyMode
 {
-    return [MobClickUtils getIntValueByKey:@"DEDUCT_COINS_IN_HAPPY_MODE" defaultValue:10];
+    return [MobClickUtils getIntValueByKey:@"DEDUCT_COINS_IN_HAPPY_MODE" defaultValue:100];
 }
 
 + (int)getDeductCoinsInGeniusMode

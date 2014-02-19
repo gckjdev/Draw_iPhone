@@ -387,7 +387,7 @@ typedef enum{
 - (void)editOpusToUser:(DrawFeed*)feed
 {
     PPDebug(@"<editOpusToUser>");
-    if ([feed.pbFeed.targetUserId length] > 0){
+    if ([[UserManager defaultManager] isSuperUser] == NO && [feed.pbFeed.targetUserId length] > 0){
         POSTMSG(NSLS(@"kCannotEditOpusToUser"));
         return;
     }
