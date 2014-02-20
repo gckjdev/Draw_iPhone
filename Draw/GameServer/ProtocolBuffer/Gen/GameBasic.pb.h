@@ -147,6 +147,7 @@ typedef enum {
   PBTaskIdTypeTaskShareQqWeibo = 11,
   PBTaskIdTypeTaskAppUpgrade = 12,
   PBTaskIdTypeTaskVip = 13,
+  PBTaskIdTypeTaskAppViewWeb = 14,
   PBTaskIdTypeTaskAppWall = 100,
   PBTaskIdTypeTaskAppDownload = 200,
 } PBTaskIdType;

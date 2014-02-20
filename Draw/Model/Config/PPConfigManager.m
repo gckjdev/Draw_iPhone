@@ -1453,4 +1453,9 @@
     return GET_UMENG_BOOLVALUE(@"SHOW_OPUS_LINK_IN_SHARE", YES);
 }
 
++ (NSString*)xiaojiWeb
+{
+    return GET_UMENG_STRVALUE(@"XIAOJI_WEB", @"http://www.xiaoji.fm");
+}
+
 @end

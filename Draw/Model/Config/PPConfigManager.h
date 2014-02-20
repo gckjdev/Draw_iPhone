@@ -357,5 +357,6 @@ typedef enum{
 + (BOOL)useAlipyaWeb;
 + (BOOL)showLinkInShare;
 + (BOOL)showOpusLinkInShare;
++ (NSString*)xiaojiWeb;
 
 @end

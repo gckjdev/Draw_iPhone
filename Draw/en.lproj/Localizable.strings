@@ -2653,3 +2653,9 @@
 "kEditOpusAgain" = "Edit Opus Again";
 "kFailToSaveLocalDraft" = "Fail to save opus into local draft box";
 "kCannotEditSingOpus" = "Cannot edit sing opus";
+
+"kGotoWebTitle" = "Visit Web Site";
+"kGotoWebMsg" = "Do you want to visit littlegee web site %@ now?";
+"kTaskAppViewWeb" = "Visit web site";
+"kTaskAppViewWebDesc" = "Visit littlegee web site %@";
+

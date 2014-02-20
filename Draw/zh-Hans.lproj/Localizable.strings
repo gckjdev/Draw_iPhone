@@ -2534,11 +2534,11 @@
 "kTaskCheckIn" = "每日签到";
 "kTaskCheckInDesc" = "每日签到可以随机获得金币";
 
-"kTaskBindSinaWeibo" = "绑定新浪微博";
-"kTaskBindSinaWeiboDesc" = "绑定新浪微博并关注官方微博，可获得%d金币";
+"kTaskBindSinaWeibo" = "关注官方新浪微博";
+"kTaskBindSinaWeiboDesc" = "关注官方新浪微博，可获得%d金币";
 
-"kTaskBindQQWeibo" = "绑定腾讯微博";
-"kTaskBindQQWeiboDesc" = "绑定腾讯微博并关注官方微博，可获得%d金币";
+"kTaskBindQQWeibo" = "关注官方腾讯微博";
+"kTaskBindQQWeiboDesc" = "关注官方腾讯微博，可获得%d金币";
 
 "kTaskShareSinaWeibo" = "分享应用到新浪微博";
 "kTaskShareSinaWeiboDesc" = "分享一条30字左右的应用使用体验，可获得%d金币";
@@ -2670,3 +2670,8 @@
 "kEditOpusAgain" = "重新编辑作品";
 "kFailToSaveLocalDraft" = "保存作品到本地草稿箱失败，请检查网络或者稍后再试";
 "kCannotEditSingOpus" = "声音作品目前不能编辑";
+
+"kGotoWebTitle" = "访问小吉网站";
+"kGotoWebMsg" = "是否现在就去访问小吉的Web网站（%@）？";
+"kTaskAppViewWeb" = "访问小吉网站";
+"kTaskAppViewWebDesc" = "访问小吉网站 %@";

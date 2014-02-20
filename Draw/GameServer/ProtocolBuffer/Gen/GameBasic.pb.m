@@ -116,6 +116,7 @@ BOOL PBTaskIdTypeIsValidValue(PBTaskIdType value) {
     case PBTaskIdTypeTaskShareQqWeibo:
     case PBTaskIdTypeTaskAppUpgrade:
     case PBTaskIdTypeTaskVip:
+    case PBTaskIdTypeTaskAppViewWeb:
     case PBTaskIdTypeTaskAppWall:
     case PBTaskIdTypeTaskAppDownload:
       return YES;

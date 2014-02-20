@@ -156,6 +156,14 @@ static TaskManager* _defaultTaskManager;
                                               award:0
                                            selector:@selector(upgradeApp:)] autorelease];
 
+    GameTask* webTask =  [[[GameTask alloc] initWithId:PBTaskIdTypeTaskAppViewWeb
+                                                  name:NSLS(@"kTaskAppViewWeb")
+                                                  desc:[NSString stringWithFormat:NSLS(@"kTaskAppViewWebDesc"),
+                                                        [PPConfigManager xiaojiWeb]]
+                                                status:PBTaskStatusTaskStatusAlwaysOpen
+                                                 badge:1
+                                                 award:0
+                                              selector:@selector(viewWeb:)] autorelease];
     
 //    [retList addObject:task1];
 
@@ -210,6 +218,7 @@ static TaskManager* _defaultTaskManager;
 
     [retList addObject:createOpusTask];
     [retList addObject:guessOpusTask];
+    [retList addObject:webTask];
     
     [retList addObject:task2];
     [retList addObject:task3];
@@ -487,6 +496,19 @@ static TaskManager* _defaultTaskManager;
     }else{
         POSTMSG(NSLS(@"kAlreadLastVersion"));
     }
+}
+
+- (void)viewWeb:(GameTask*)task
+{
+    NSString* url = [PPConfigManager xiaojiWeb];
+    NSString* msg = [NSString stringWithFormat:NSLS(@"kGotoWebMsg"), url];
+    CommonDialog* dialog = [CommonDialog createDialogWithTitle:NSLS(@"kGotoWebTitle") message:msg style:CommonDialogStyleDoubleButton];
+    
+    [dialog setClickOkBlock:^(id infoView){
+        [UIUtils openURL:url];
+    }];
+    
+    [dialog showInView:self.viewController.view];
 }
 
 - (void)downloadApp:(GameTask*)task

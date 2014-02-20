@@ -76,6 +76,20 @@
     view.coinHolderView.backgroundColor = COLOR_ORANGE;
     
     [view.coinCountLabel setTextColor:COLOR_WHITE];
+    
+    //update frame
+    CGRect tableViewFrame = view.dataTableView.frame;
+    view.dataTableView.frame = CGRectMake(tableViewFrame.origin.x,
+                                          tableViewFrame.origin.y + STATUSBAR_DELTA,
+                                          tableViewFrame.size.width,
+                                          tableViewFrame.size.height + abs(STATUSBAR_DELTA));
+    
+    CGRect holderFrame = view.coinHolderView.frame;
+    view.coinHolderView.frame = CGRectMake(holderFrame.origin.x,
+                                          holderFrame.origin.y + STATUSBAR_DELTA,
+                                          holderFrame.size.width,
+                                          holderFrame.size.height);
+    
     return view;
     
 }

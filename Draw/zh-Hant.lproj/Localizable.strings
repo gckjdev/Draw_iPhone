@@ -2682,3 +2682,8 @@
 "kEditOpusAgain" = "重新編輯作品";
 "kFailToSaveLocalDraft" = "保存作品到本地草稿箱失敗，請檢查網絡或者稍後再試";
 "kCannotEditSingOpus" = "聲音作品目前不能編輯";
+
+"kGotoWebTitle" = "訪問小吉網站";
+"kGotoWebMsg" = "是否現在就去訪問小吉的Web網站（%@）？";
+"kTaskAppViewWeb" = "訪問小吉網站";
+"kTaskAppViewWebDesc" = "訪問小吉網站 %@";
