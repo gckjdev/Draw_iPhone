@@ -73,6 +73,10 @@
     DrawInfoCell *cell = [DrawInfoCell createViewWithXibIdentifier:cellId ofViewIndex:index];
     cell.delegate = delegate;
     cell.backgroundColor = [UIColor clearColor];
+    
+    cell.timeLabel.font = CELL_REPLY_SOURCE_FONT;
+    cell.drawToButton.titleLabel.font = CELL_REPLY_SOURCE_FONT;
+    
     return cell;
 }
 

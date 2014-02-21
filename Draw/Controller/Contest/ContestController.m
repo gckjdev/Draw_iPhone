@@ -123,6 +123,11 @@ typedef enum{
     
     if (self = [super init]) {
         _defaultTabId = TabTypeOfficial;
+
+        if ([[ContestService defaultService] newContestCount] == 0){
+            _defaultTabId = TabTypeGroup;
+        }
+        
     }
     return self;
 }
@@ -212,6 +217,7 @@ typedef enum{
     }
     
     [[ContestService defaultService] syncOngoingContestList];
+    
     
     [self clickTabButton:[self defaultTabButton]];
 }

@@ -67,10 +67,11 @@
 {
     NSMutableArray *array = [[[NSMutableArray alloc] initWithCapacity:5]autorelease];
     for (int i = 0; i < COLOR_VALUE_SIZE; i += 3) {
-        NSInteger red = values[i];
-        NSInteger green = values[i + 1];
-        NSInteger blue = values[i + 2];
-        DrawColor *color = [DrawColor colorWithRed:red/255. green:green/255. blue:blue/255. alpha:1];
+        CGFloat red = values[i];
+        CGFloat green = values[i + 1];
+        CGFloat blue = values[i + 2];
+//        DrawColor *color = [DrawColor colorWithRed:red/255. green:green/255. blue:blue/255. alpha:1];
+        DrawColor *color = [DrawColor colorWithRed:red/255.0f green:green/255.0f blue:blue/255.0f alpha:1];
         [array addObject:color];
     }
     return array;

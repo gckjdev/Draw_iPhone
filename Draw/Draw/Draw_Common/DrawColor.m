@@ -64,7 +64,7 @@
 }
 
 #define CHANGE_VALUE_255(x) (x)//(((int)(x * 255)) / 255.0f)
-
+//
 - (void)setAlpha:(CGFloat)alpha
 {
     if(_alpha != alpha){

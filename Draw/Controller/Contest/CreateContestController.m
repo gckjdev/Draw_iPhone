@@ -340,8 +340,8 @@
 - (IBAction)clickEndTimeButton:(id)sender {
     
     [self.calendar setMinDate:self.contest.startDate];
-//    NSDate *maxDate = [NSDate dateWithTimeInterval:24*3600*14 sinceDate:[NSDate date]];
-//    [self.calendar setMaxDate:maxDate];
+    NSDate *maxDate = [NSDate dateWithTimeInterval:24*3600*45 sinceDate:[NSDate date]];
+    [self.calendar setMaxDate:maxDate];
     self.calendar.tag = CALENDAR_TAG_END_TIME;
     [self.calendar setSelectedDate:self.contest.endDate];
     [self.view addSubview:self.calendar];

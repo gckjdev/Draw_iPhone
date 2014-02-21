@@ -435,6 +435,8 @@
     
     // make this to avoid message list changed by receiving notification
     [self performSelector:@selector(loadNewMessageWhileLaunch) withObject:nil afterDelay:0.1f];
+    
+    self.dataTableView.tableFooterView = [[[UIView alloc] initWithFrame:CGRectMake(0, 0, 1, 10)] autorelease];
 }
 
 - (void)loadNewMessageWhileLaunch
@@ -616,17 +618,6 @@
                        indexPath:indexPath 
                         showTime:flag];
     return cell;
-}
-
-- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
-{
-    return 10;
-}
-
-- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
-{
-    UIView* view = [[[UIView alloc] initWithFrame:CGRectMake(0, 0, 1, 10)] autorelease];
-    return view;
 }
 
 #pragma mark - button action

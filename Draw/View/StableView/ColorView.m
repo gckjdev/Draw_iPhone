@@ -68,12 +68,12 @@
     }
     return self;
 }
-- (id)initWithRed:(NSInteger)red 
-            green:(NSInteger)green 
-             blue:(NSInteger)blue 
+- (id)initWithRed:(CGFloat)red
+            green:(CGFloat)green
+             blue:(CGFloat)blue
             scale:(ColorViewScale)scale
 {
-    DrawColor *dColor = [DrawColor colorWithRed:red / 255.0 green:green / 255.0 blue:blue / 255.0 alpha:1];
+    DrawColor *dColor = [DrawColor colorWithRed:red/255.0f green:green/255.0f blue:blue/255.0f alpha:1];
     return [self initWithDrawColor:dColor scale:scale];
 }
 
