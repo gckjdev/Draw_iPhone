@@ -397,6 +397,7 @@
                                                        feed:self.feed
                                                 useBigImage:YES];
     [v setFeedDetailStyle];
+    [v updateOriginY:COMMON_TITLE_VIEW_HEIGHT];
     [self.view addSubview:v];
 }
 

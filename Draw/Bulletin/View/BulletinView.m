@@ -44,6 +44,12 @@ AUTO_CREATE_VIEW_BY_XIB(BulletinView);
     view.superController = controller;
     [[BulletinService defaultService] readAllBulletins];
     
+    CGRect frame = view.frame;
+    view.frame = CGRectMake(frame.origin.x,
+                            frame.origin.y - STATUSBAR_DELTA,
+                            frame.size.width,
+                            frame.size.height);
+    
     return view;
 }
 

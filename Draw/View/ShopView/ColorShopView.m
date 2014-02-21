@@ -82,7 +82,7 @@
     view.dataTableView.frame = CGRectMake(tableViewFrame.origin.x,
                                           tableViewFrame.origin.y + STATUSBAR_DELTA,
                                           tableViewFrame.size.width,
-                                          tableViewFrame.size.height + abs(STATUSBAR_DELTA));
+                                          tableViewFrame.size.height - abs(STATUSBAR_DELTA));
     
     CGRect holderFrame = view.coinHolderView.frame;
     view.coinHolderView.frame = CGRectMake(holderFrame.origin.x,

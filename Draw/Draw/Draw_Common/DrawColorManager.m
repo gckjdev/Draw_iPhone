@@ -38,17 +38,17 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(DrawColorManager)
     [defaultList addObject:color];
     color = [DrawColor whiteColor];
     [defaultList addObject:color];
-    color = [DrawColor colorWithRed:127/255.0 green:130/255.0 blue:133/255.0 alpha:1.0];
+    color = [DrawColor colorWithRed:127.0/255.0 green:130.0/255.0 blue:133.0/255.0 alpha:1.0];
     [defaultList addObject:color];
-    color = [DrawColor colorWithRed:252/255.0 green:0/255.0 blue:7/255.0 alpha:1.0];
+    color = [DrawColor colorWithRed:252.0/255.0 green:0.0/255.0 blue:7.0/255.0 alpha:1.0];
     [defaultList addObject:color];
-    color = [DrawColor colorWithRed:0/255.0 green:19/255.0 blue:255/255.0 alpha:1.0];
+    color = [DrawColor colorWithRed:0.0/255.0 green:19.0/255.0 blue:255.0/255.0 alpha:1.0];
     [defaultList addObject:color];
-    color = [DrawColor colorWithRed:255/255.0 green:254/255.0 blue:10/255.0 alpha:1.0];
+    color = [DrawColor colorWithRed:255.0/255.0 green:254.0/255.0 blue:10.0/255.0 alpha:1.0];
     [defaultList addObject:color];
-    color = [DrawColor colorWithRed:241/255.0 green:0/255.0 blue:110/255.0 alpha:1.0];
+    color = [DrawColor colorWithRed:241.0/255.0 green:0.0/255.0 blue:110.0/255.0 alpha:1.0];
     [defaultList addObject:color];
-    color = [DrawColor colorWithRed:46/255.0 green:201/255.0 blue:254/255.0 alpha:1.0];
+    color = [DrawColor colorWithRed:46.0/255.0 green:201.0/255.0 blue:254.0/255.0 alpha:1.0];
     [defaultList addObject:color];
     
     color = [DrawColor greenColor];

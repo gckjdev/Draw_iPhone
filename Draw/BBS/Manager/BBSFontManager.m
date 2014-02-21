@@ -38,36 +38,36 @@ static BBSFontManager* _staticBBSFontManager;
 #pragma mark index page font
 - (UIFont *)indexTabFont
 {
-    return CELL_CONTENT_FONT; // ISIPHONE ? FONT(12) : FONT(24);
+    return ISIPHONE ? FONT(11) : FONT(24);
 }
 - (UIFont *)indexCountFont
 {
-    return CELL_CONTENT_FONT; // ISIPHONE ? FONT(11) : FONT(22);
+    return ISIPHONE ? FONT(11) : FONT(20);
 }
 - (UIFont *)indexLastPostTextFont
 {
-    return CELL_CONTENT_FONT; // ISIPHONE ? FONT(11) : FONT(22);
+    return ISIPHONE ? FONT(9) : FONT(18);
 }
 - (UIFont *)indexLastPostNickFont
 {
-    return CELL_CONTENT_FONT; // ISIPHONE ? FONT(11) : FONT(22);
+    return ISIPHONE ? FONT(11) : FONT(20);
 }
 - (UIFont *)indexLastPostDateFont
 {
-    return CELL_SMALLTEXT_FONT; // ISIPHONE ? FONT(9) : FONT(18);
+    return ISIPHONE ? FONT(9) : FONT(18);
 }
 
 - (UIFont *)indexBoardNameFont
 {
-    return CELL_NICK_FONT; // ISIPHONE ? FONT(11) : FONT(22);
+    return ISIPHONE ? FONT(11) : FONT(20);
 }
 - (UIFont *)indexSectionNameFont
 {
-    return ISIPHONE ? FONT(15) : FONT(28);
+    return ISIPHONE ? FONT(14) : FONT(26);
 }
 - (UIFont *)indexBadgeFont
 {
-    return CELL_CONTENT_FONT; // ISIPHONE ? BOLDFONT(11) : BOLDFONT(22);
+    return ISIPHONE ? BOLDFONT(11) : BOLDFONT(20);
 }
 
 #pragma mark post list page font

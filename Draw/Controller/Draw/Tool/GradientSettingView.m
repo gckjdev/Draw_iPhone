@@ -204,7 +204,7 @@
     [palette setSourceColor:color.color];
     self.popColorView = [[[CMPopTipView alloc] initWithCustomView:palette] autorelease];
     self.popColorView.delegate = self;    
-    [self.popColorView setBackgroundColor:[UIColor colorWithRed:255./255. green:255./255. blue:255./255. alpha:0.95]];
+    [self.popColorView setBackgroundColor:[UIColor colorWithRed:255.0f/255.0f green:255.0f/255.0f blue:255.0f/255.0f alpha:0.95]];
 
     [self.popColorView presentPointingAtView:sender inView:self.theTopView animated:NO pointDirection:PointDirectionDown];
  
