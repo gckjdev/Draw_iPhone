@@ -544,7 +544,7 @@ typedef enum{
         dialog.tag = DELETE_ALL;
         [dialog showInView:self.view];
     }else if(buttonIndex == EDIT){
-        if (self.currentTab.tabID == TabTypeAll){
+        if ([[UserManager defaultManager] isSuperUser] == NO && self.currentTab.tabID == TabTypeAll){
             POSTMSG(NSLS(@"kCannotEditThisTab"));
             return;
         }

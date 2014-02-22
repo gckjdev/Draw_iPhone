@@ -28,7 +28,7 @@
 enum{
     
 //    package color    
-    PACKAGE_16 = PACKAGE_START,
+    PACKAGE_16 = 101, // PACKAGE_START,
     PACKAGE_3,
     PACKAGE_14,
     PACKAGE_8,
@@ -52,7 +52,7 @@ enum{
     
 //    Gradual Color
     
-    GRADUAL_BROWN = GRADUAL_START,
+    GRADUAL_BROWN = 200, //GRADUAL_START,
     GRADUAL_CYAN,
     GRADUAL_PINK,
     GRADUAL_PURPLE,

@@ -25127,6 +25127,7 @@
 					"\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/ShareSDK/UI\"",
 				);
 				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Draw/Draw-Prefix.pch";
 				HEADER_SEARCH_PATHS = (
@@ -25340,6 +25341,7 @@
 					"\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/ShareSDK/UI\"",
 				);
 				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Draw/Draw-Prefix.pch";
 				HEADER_SEARCH_PATHS = (
