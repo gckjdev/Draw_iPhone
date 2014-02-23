@@ -437,16 +437,18 @@ static NSDictionary* DEFAULT_MENU_IMAGE_DICT = nil;
 
 - (void)updateBGImageView
 {
+    CGRect imageFrame = [UIScreen mainScreen].bounds;
+    
     PPDebug(@"<update bg image view>");
     UIImage *homeImage = [[UserManager defaultManager] pageBgForKey:HOME_BG_KEY];
     if (homeImage) {
         [self.view setBackgroundColor:[UIColor clearColor]];
-        UIImageView *imageView = (id)[self.view reuseViewWithTag:HOME_BG_IMAGE_VIEW_TAG viewClass:[UIImageView class] frame:self.view.bounds];
+        UIImageView *imageView = (id)[self.view reuseViewWithTag:HOME_BG_IMAGE_VIEW_TAG viewClass:[UIImageView class] frame:imageFrame];
         [imageView setImage:homeImage];
         [self.view insertSubview:imageView atIndex:0];
     }else{
         [self.view setBackgroundColor:[self getMainBackgroundColor]]; // OPAQUE_COLOR(0, 191, 178)];
-        UIImageView *imageView = (id)[self.view reuseViewWithTag:HOME_BG_IMAGE_VIEW_TAG viewClass:[UIImageView class] frame:self.view.bounds];
+        UIImageView *imageView = (id)[self.view reuseViewWithTag:HOME_BG_IMAGE_VIEW_TAG viewClass:[UIImageView class] frame:imageFrame];
         [imageView removeFromSuperview];
     }
     [(DrawHomeHeaderPanel *)self.homeHeaderPanel updateBG];
