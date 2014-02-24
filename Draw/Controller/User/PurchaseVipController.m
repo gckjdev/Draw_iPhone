@@ -18,6 +18,7 @@
 #import "UILabel+Touchable.h"
 #import "TaoBaoController.h"
 #import "StringUtil.h"
+#import "MKBlockActionSheet.h"
 
 #define PRODUCT_ID_BUY_VIP_MONTH    @"PRODUCT_BUY_VIP_MONTH"
 #define PRODUCT_ID_BUY_VIP_YEAR     @"PRODUCT_BUY_VIP_YEAR"
@@ -469,6 +470,14 @@
     }
 }
 
+- (void)choosePaymentForMonth
+{
+    MKBlockActionSheet* as = [[MKBlockActionSheet alloc] initWithTitle:@"请选择支付方式" delegate:nil cancelButtonTitle:@"取消" destructiveButtonTitle:@"支付宝" otherButtonTitles:@"淘宝", nil];
+    
+    [as showInView:self.view];
+    [as release];
+}
+
 - (IBAction)clickBuyMonth:(id)sender
 {
     if ([[UserManager defaultManager].pbUser vip] == 0 && [[UserService defaultService] vipMonthLeft] == 0){
@@ -498,15 +507,15 @@
 
 - (IBAction)clickBuyYear:(id)sender
 {
-    if ([[UserManager defaultManager].pbUser vip] == 0 && [[UserService defaultService] vipMonthLeft] == 0){
-        NSDate* nextDate = [NSDate dateWithTimeInterval:7*24*3600 sinceDate:[[UserService defaultService] vipNextOpenDate]];
-
-        NSString* msg = [NSString stringWithFormat:@"本期包年VIP名额已经售完\n下次购买日期为\n%@（%@）",
-                         dateToChineseString(nextDate),
-                         chineseWeekDayFromDate(nextDate)];
-        POSTMSG2(msg, 3);
-        return;
-    }
+//    if ([[UserManager defaultManager].pbUser vip] == 0 && [[UserService defaultService] vipMonthLeft] == 0){
+//        NSDate* nextDate = [NSDate dateWithTimeInterval:7*24*3600 sinceDate:[[UserService defaultService] vipNextOpenDate]];
+//
+//        NSString* msg = [NSString stringWithFormat:@"本期包年VIP名额已经售完\n下次购买日期为\n%@（%@）",
+//                         dateToChineseString(nextDate),
+//                         chineseWeekDayFromDate(nextDate)];
+//        POSTMSG2(msg, 3);
+//        return;
+//    }
 
     
     self.currentProductId = PRODUCT_ID_BUY_VIP_YEAR;
@@ -552,7 +561,7 @@
     
     
     NSString* title = [NSString stringWithFormat:@"%@", order.productName];
-    TaoBaoController* vc = [[TaoBaoController alloc] initWithURL:url title:title];
+    TaoBaoController* vc = [[TaoBaoController alloc] initWithURL:url title:title taobaoURL:[self getTaobaoURL:self.currentProductId]];
     [self.navigationController pushViewController:vc animated:YES];
     [vc release];
 }

@@ -18,6 +18,7 @@
 @property (retain, nonatomic) IBOutlet UIButton *webViewRefreshButton;
 
 - (id)initWithURL:(NSString *)URL title:(NSString *)title;
+- (id)initWithURL:(NSString *)URL title:(NSString *)title taobaoURL:(NSString*)taobaoURL;
 
 - (IBAction)clickWebViewBack:(id)sender;
 - (IBAction)clickWebViewForward:(id)sender;

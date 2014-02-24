@@ -13,19 +13,26 @@
 @interface TaoBaoController()
 @property (retain, nonatomic) NSString *customTitle;
 @property (retain, nonatomic) NSString *url;
+@property (retain, nonatomic) NSString *taobaoURL;
 
 @end
 
 @implementation TaoBaoController
 
-- (id)initWithURL:(NSString *)URL title:(NSString *)title
+- (id)initWithURL:(NSString *)URL title:(NSString *)title taobaoURL:(NSString*)taobaoURL
 {
     self = [super init];
     if (self) {
         self.url = URL;
         self.customTitle = title;
+        self.taobaoURL = taobaoURL;
     }
     return self;
+}
+
+- (id)initWithURL:(NSString *)URL title:(NSString *)title
+{
+    return [self initWithURL:URL title:title taobaoURL:nil];
 }
 
 - (void)viewDidLoad
@@ -50,18 +57,56 @@
     [titleView setTitle:self.customTitle];
     [titleView setTarget:self];
     [self updateButtonsState];
+    
+    if ([self.taobaoURL length] > 0){
+        [titleView setRightButtonTitle:@"淘宝店"];
+        [titleView setRightButtonSelector:@selector(gotoTaobao)];
+    }
+}
+
+- (void)gotoTaobao
+{
+    NSString* title = [NSString stringWithFormat:@"%@", self.customTitle];
+    TaoBaoController* vc = [[TaoBaoController alloc] initWithURL:self.taobaoURL title:title taobaoURL:nil];
+    [self.navigationController pushViewController:vc animated:NO];
+    [vc release];
+}
+
+- (void)askGotoTaobao
+{
+    CommonDialog *dialog = [CommonDialog createDialogWithTitle:NSLS(@"kNotice") message:@"如果支付成功，请选择返回；如果支付失败或者无法使用支付宝，可选择去淘宝店购买" style:CommonDialogStyleDoubleButtonWithCross];
+    
+    [dialog.oKButton setTitle:@"淘宝购买" forState:UIControlStateNormal];
+    [dialog.cancelButton setTitle:@"返回" forState:UIControlStateNormal];
+    
+    [dialog setClickOkBlock:^(UILabel *label){
+        [self gotoTaobao];
+    }];
+    
+    [dialog setClickCancelBlock:^(UILabel *label){
+        [self.navigationController popViewControllerAnimated:YES];
+    }];
+    
+    [dialog showInView:self.view];
 }
 
 - (void)clickBack:(id)sender
 {
-    __block TaoBaoController* vc = self;
-    
-    CommonDialog *dialog = [CommonDialog createDialogWithTitle:NSLS(@"kNotice") message:NSLS(@"kQuitTaoBaoTips") style:CommonDialogStyleDoubleButton];
-    [dialog setClickOkBlock:^(UILabel *label){
+    if ([self.taobaoURL length] == 0){
+        __block TaoBaoController* vc = self;
+        
+        CommonDialog *dialog = [CommonDialog createDialogWithTitle:NSLS(@"kNotice")
+                                                           message:NSLS(@"kQuitTaoBaoTips")
+                                                             style:CommonDialogStyleDoubleButtonWithCross];
+        [dialog setClickOkBlock:^(UILabel *label){
             [vc.navigationController popViewControllerAnimated:YES];
-    }];
-    
-    [dialog showInView:self.view];
+        }];
+        
+        [dialog showInView:self.view];
+    }
+    else{
+        [self askGotoTaobao];
+    }
 }
 
 - (void)didReceiveMemoryWarning
@@ -77,6 +122,7 @@
     [_webViewBackButton release];
     [_webViewForwardButton release];
     [_webViewRefreshButton release];
+    PPRelease(_taobaoURL);
     [super dealloc];
 }
 
