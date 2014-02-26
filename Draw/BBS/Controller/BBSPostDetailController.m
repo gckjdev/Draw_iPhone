@@ -561,7 +561,9 @@ typedef enum{
     PBBBSAction *action = [self actionForIndexPath:indexPath];
     if ([self actionCanDelete:action]) {
         [self showActivityWithText:NSLS(@"kDeleting")];
-        [[self bbsService] deleteActionWithActionId:action.actionId delegate:self];
+        [[self bbsService] deleteActionWithActionId:action.actionId
+                                            boardId:self.post.boardId
+                                           delegate:self];
     }
 }
 

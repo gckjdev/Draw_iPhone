@@ -10,7 +10,7 @@
 #import "BBSPostCommand.h"
 #import "BBSPostCommandView.h"
 
-#define VIEW_SIZE (ISIPAD ? CGSizeMake(768,87): CGSizeMake(320,40))
+#define VIEW_SIZE (ISIPAD ? CGSizeMake(768,88): CGSizeMake(320,40))
 #define COMMAND_MAX_COUNT 5
 
 @interface BBSPostCommandPanel()

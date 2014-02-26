@@ -409,6 +409,7 @@
                              deviceType:(NSInteger)deviceType
                                  userId:(NSString *)userId
                                actionId:(NSString *)actionId
+                                boardId:(NSString *)boardId
 {
 //    baseURL = [PPConfigManager getBBSServerURL];
     
@@ -424,6 +425,7 @@
         str = [str stringByAddQueryParameter:PARA_USERID value:userId];
         str = [str stringByAddQueryParameter:PARA_DEVICETYPE intValue:deviceType];
         str = [str stringByAddQueryParameter:PARA_ACTIONID value:actionId];
+        str = [str stringByAddQueryParameter:PARA_BOARDID value:boardId];
         
         return str;
     };

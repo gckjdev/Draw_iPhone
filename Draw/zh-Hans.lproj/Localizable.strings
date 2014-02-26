@@ -2675,3 +2675,5 @@
 "kGotoWebMsg" = "是否现在就去访问小吉的Web网站（%@）？";
 "kTaskAppViewWeb" = "访问小吉网站";
 "kTaskAppViewWebDesc" = "访问小吉网站 %@";
+
+"kUserBoardForbidden" = "你已经在本版块被禁言，无法执行本操作";

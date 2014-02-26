@@ -431,6 +431,9 @@ BBSService *_staticGroupTopicService;
             if (delegate && [delegate respondsToSelector:@selector(didCreatePost:resultCode:)]) {
                 [delegate didCreatePost:nil resultCode:resultCode];
             }
+            
+            [self showErrorUserForbidden:resultCode];
+            
             return;
         }
 
@@ -493,6 +496,8 @@ BBSService *_staticGroupTopicService;
                 if (delegate && [delegate respondsToSelector:@selector(didCreatePost:resultCode:)]) {
                     [delegate didCreatePost:post resultCode:resultCode];
                 }
+                
+                [self showErrorUserForbidden:resultCode];
 
             });
         }];
@@ -1260,11 +1265,22 @@ BBSService *_staticGroupTopicService;
             if (delegate && [delegate respondsToSelector:@selector(didDeleteBBSPost:resultCode:)]) {
                 [delegate didDeleteBBSPost:post resultCode:resultCode];
             }
+            
+            [self showErrorUserForbidden:resultCode];
+            
         });
     });
 }
 
+- (void)showErrorUserForbidden:(int)resultCode
+{
+    if (resultCode == ERROR_BBS_BOARD_FORIDDEN){
+        POSTMSG(NSLS(@"kUserBoardForbidden"));
+    }
+}
+
 - (void)deleteActionWithActionId:(NSString *)actionId
+                         boardId:(NSString *)boardId
                         delegate:(id<BBSServiceDelegate>)delegate
 {
     dispatch_async(workingQueue, ^{
@@ -1275,13 +1291,16 @@ BBSService *_staticGroupTopicService;
                                                             appId:appId
                                                        deviceType:deviceType
                                                            userId:userId
-                                                         actionId:actionId];
+                                                         actionId:actionId
+                                                          boardId:boardId];
         NSInteger resultCode = [output resultCode];
         
         dispatch_async(dispatch_get_main_queue(), ^{
             if (delegate && [delegate respondsToSelector:@selector(didDeleteBBSAction:resultCode:)]) {
                 [delegate didDeleteBBSAction:actionId resultCode:resultCode];
             }
+            
+            [self showErrorUserForbidden:resultCode];
         });
     });
     
@@ -1323,6 +1342,9 @@ BBSService *_staticGroupTopicService;
             if (delegate && [delegate respondsToSelector:@selector(didEditPostPost:resultCode:)]) {
                 [delegate didEditPostPost:tempPost resultCode:resultCode];
             }
+            
+            [self showErrorUserForbidden:resultCode];
+            
         });
     });
 }
@@ -1339,7 +1361,10 @@ BBSService *_staticGroupTopicService;
             return;
         }
         
-        NSDictionary *paras = @{PARA_TEXT_CONTENT:text, PARA_POSTID:post.postId};
+        NSDictionary *paras = @{PARA_TEXT_CONTENT:text,
+                                PARA_POSTID:post.postId,
+                                PARA_BOARDID:post.boardId ? post.boardId : @""
+                                };
         GameNetworkOutput* output = [PPGameNetworkRequest
                                      sendGetRequestWithBaseURL:[self hostURL]
                                      method:METHOD_EDIT_BBS_POST_TEXT
@@ -1362,6 +1387,9 @@ BBSService *_staticGroupTopicService;
                 PPDebug(@"after edit post text, post.text = %@", retPost.content.text);
             }
             EXECUTE_BLOCK(callback, output.resultCode, retPost);
+
+            [self showErrorUserForbidden:output.resultCode];
+
         });
     });
 }

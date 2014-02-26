@@ -118,7 +118,8 @@
                                   appId:(NSString *)appId
                              deviceType:(NSInteger)deviceType
                                  userId:(NSString *)userId
-                               actionId:(NSString *)actionId;
+                               actionId:(NSString *)actionId
+                                boardId:(NSString *)boardId;
 
 + (CommonNetworkOutput*)getBBSPost:(NSString*)baseURL
                              appId:(NSString *)appId

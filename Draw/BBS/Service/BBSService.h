@@ -207,6 +207,7 @@ typedef void (^BBSResultHandler) (NSInteger resultCode);
                     delegate:(id<BBSServiceDelegate>)delegate;
 
 - (void)deleteActionWithActionId:(NSString *)actionId
+                         boardId:(NSString *)boardId
                         delegate:(id<BBSServiceDelegate>)delegate;
 
 #pragma mark - update post methods

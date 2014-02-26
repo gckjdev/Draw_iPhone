@@ -2659,3 +2659,4 @@
 "kTaskAppViewWeb" = "Visit web site";
 "kTaskAppViewWebDesc" = "Visit littlegee web site %@";
 
+"kUserBoardForbidden" = "You are forbidden in this board";
