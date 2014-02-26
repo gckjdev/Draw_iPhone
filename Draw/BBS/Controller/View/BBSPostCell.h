@@ -42,4 +42,9 @@
 
 //the same with updateCellWithBBSPost
 - (void)setCellInfo:(PBBBSPost *)post;
++ (void)showBoardManagerUserAction:(PBBBSUser*)user
+                           boardId:(NSString*)boardId
+                            inView:(UIView*)view
+                          delegate:(id)delegate;
+
 @end

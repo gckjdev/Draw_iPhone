@@ -12,7 +12,8 @@
 #import "UserManager.h"
 #import "TimeUtils.h"
 #import "StringUtil.h"
-
+#import "BBSPermissionManager.h"
+#import "BBSPostCell.h"
 
 
 
@@ -321,9 +322,22 @@
 
 - (void)clickAvatarButton:(id)sender
 {
-    if (delegate && [delegate respondsToSelector:@selector(didClickUserAvatar:)]) {
-        [delegate didClickUserAvatar:self.post.createUser];
+    BBSPermissionManager *pm = [BBSPermissionManager defaultManager];
+    if ([pm isBoardManager:self.post.boardId]){
+        [BBSPostCell showBoardManagerUserAction:self.post.createUser
+                                        boardId:self.post.boardId
+                                         inView:self
+                                       delegate:delegate];
     }
+    else{
+        if (delegate && [delegate respondsToSelector:@selector(didClickUserAvatar:)]) {
+            [delegate didClickUserAvatar:self.post.createUser];
+        }
+    }
+    
+//    if (delegate && [delegate respondsToSelector:@selector(didClickUserAvatar:)]) {
+//        [delegate didClickUserAvatar:self.post.createUser];
+//    }
 }
 - (void)clickImageButton:(id)sender
 {

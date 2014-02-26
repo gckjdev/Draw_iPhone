@@ -17,6 +17,8 @@
 #define HOME_BG_KEY @"home_bg.png"
 #define CHAT_PAGE_BG_KEY @"chat_bg.png"
 
+#define PERMISSION_BLACK_USER @"black_user"
+
 @class PBGameUser;
 
 typedef enum {
@@ -289,5 +291,6 @@ qqAccessTokenSecret:(NSString*)accessTokenSecret
 - (void)setUserGroupNotice:(NSString*)groupId status:(int)status;
 - (BOOL)isDisableGroupNotice:(NSString*)groupId;
 - (void)setOffGroupIds:(NSArray*)offGroupIds;
+- (BOOL)canBlackUser;
 
 @end

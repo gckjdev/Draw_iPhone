@@ -45,6 +45,8 @@ AUTO_CREATE_VIEW_BY_XIB(SongCell);
     SET_BUTTON_ROUND_STYLE_ORANGE(self.selectButton);
     
     self.song = song;
+    
+    [self bringSubviewToFront:self.selectButton];
 }
 
 - (IBAction)clickSelectButton:(id)sender {

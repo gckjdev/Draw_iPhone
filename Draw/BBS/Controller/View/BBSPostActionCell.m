@@ -13,6 +13,8 @@
 #import "TimeUtils.h"
 #import "BBSPopupSelectionView.h"
 #import "StringUtil.h"
+#import "BBSPermissionManager.h"
+#import "BBSPostCell.h"
 
 #define SPACE_CONTENT_TOP (ISIPAD ? 77 : 35)
 #define SPACE_CONTENT_BOTTOM_IMAGE (ISIPAD ? 100 * 2.5 : 100) //IMAGE TYPE OR DRAW TYPE
@@ -310,9 +312,22 @@
 #pragma mark - action delegate
 - (void)clickAvatarButton:(id)sender
 {
-    if (delegate && [delegate respondsToSelector:@selector(didClickUserAvatar:)]) {
-        [delegate didClickUserAvatar:self.action.createUser];
+    BBSPermissionManager *pm = [BBSPermissionManager defaultManager];
+    if ([pm isBoardManager:self.post.boardId]){
+        [BBSPostCell showBoardManagerUserAction:self.action.createUser
+                                        boardId:self.post.boardId
+                                         inView:self
+                                       delegate:delegate];
     }
+    else{
+        if (delegate && [delegate respondsToSelector:@selector(didClickUserAvatar:)]) {
+            [delegate didClickUserAvatar:self.action.createUser];
+        }
+    }
+    
+//    if (delegate && [delegate respondsToSelector:@selector(didClickUserAvatar:)]) {
+//        [delegate didClickUserAvatar:self.action.createUser];
+//    }
 }
 - (void)clickImageButton:(id)sender
 {

@@ -25,5 +25,6 @@
 - (id)initWithPBGameUser:(PBGameUser*)pbUser;
 
 - (void)showInController:(UIViewController*)controller;
-
++ (void)askBlackUser:(NSString*)targetUserId viewController:(UIViewController*)viewController;
++ (BOOL)isInputValid:(NSString*)inputString;
 @end

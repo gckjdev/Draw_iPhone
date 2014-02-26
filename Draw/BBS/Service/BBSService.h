@@ -251,4 +251,7 @@ typedef void (^BBSResultHandler) (NSInteger resultCode);
 - (void)addBoardAdmin:(NSString*)boardId userId:(NSString*)userId resultBlock:(BBSResultHandler)resultBlock;
 - (void)addBoardManager:(NSString*)boardId userId:(NSString*)userId resultBlock:(BBSResultHandler)resultBlock;
 
+- (void)forbidUser:(NSString*)targetUserId boardId:(NSString*)boardId days:(int)days resultBlock:(BBSResultHandler)resultBlock;
+- (void)unforbidUser:(NSString*)targetUserId boardId:(NSString*)boardId days:(int)days resultBlock:(BBSResultHandler)resultBlock;
+
 @end

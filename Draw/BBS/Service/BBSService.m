@@ -1521,4 +1521,80 @@ BBSService *_staticGroupTopicService;
     [self setUserBoardType:boardId userId:userId type:USER_BOARD_TYPE_MANAGER resultBlock:resultBlock];
 }
 
+#define FORBID_USER     1
+#define UNFORBID_USER   2
+
+- (void)forbidUser:(NSString*)targetUserId boardId:(NSString*)boardId days:(int)days resultBlock:(BBSResultHandler)resultBlock
+{
+    if (boardId == nil || targetUserId == nil){
+        return;
+    }
+    
+    int type = FORBID_USER;
+    
+    dispatch_async(workingQueue, ^{
+        
+        NSDictionary *paras = @{PARA_BOARDID:boardId,
+                                PARA_TARGETUSERID:targetUserId,
+                                PARA_DAY:@(days),
+                                PARA_TYPE:@(type)};
+        
+        GameNetworkOutput* output = [PPGameNetworkRequest
+                                     sendGetRequestWithBaseURL:[self hostURL]
+                                     method:METHOD_FORBID_USER_BOARD
+                                     parameters:paras
+                                     returnPB:NO
+                                     returnJSONArray:NO];
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if (output.resultCode == ERROR_SUCCESS) {
+                POSTMSG(@"禁言成功");
+            }
+            else{
+                POSTMSG(@"禁言失败");
+            }
+            PPDebug(@"<forbidUser> id=%@, userId=%@, type=%d, result=%d",
+                    boardId, targetUserId, type, output.resultCode);
+            EXECUTE_BLOCK(resultBlock, output.resultCode);
+        });
+    });
+}
+
+- (void)unforbidUser:(NSString*)targetUserId boardId:(NSString*)boardId days:(int)days resultBlock:(BBSResultHandler)resultBlock
+{
+    if (boardId == nil || targetUserId == nil){
+        return;
+    }
+    
+    int type = UNFORBID_USER;
+    
+    dispatch_async(workingQueue, ^{
+        
+        NSDictionary *paras = @{PARA_BOARDID:boardId,
+                                PARA_TARGETUSERID:targetUserId,
+                                PARA_DAY:@(days),
+                                PARA_TYPE:@(type)};
+        
+        GameNetworkOutput* output = [PPGameNetworkRequest
+                                     sendGetRequestWithBaseURL:[self hostURL]
+                                     method:METHOD_FORBID_USER_BOARD
+                                     parameters:paras
+                                     returnPB:NO
+                                     returnJSONArray:NO];
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if (output.resultCode == ERROR_SUCCESS) {
+                POSTMSG(@"解除禁言成功");
+            }
+            else{
+                POSTMSG(@"解除禁言失败");
+            }
+            PPDebug(@"<forbidUser> id=%@, userId=%@, type=%d, result=%d",
+                    boardId, targetUserId, type, output.resultCode);
+            EXECUTE_BLOCK(resultBlock, output.resultCode);
+        });
+    });
+}
+
+
 @end

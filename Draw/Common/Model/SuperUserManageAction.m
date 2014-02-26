@@ -15,6 +15,7 @@
 #import "MKBlockActionSheet.h"
 #import "StringUtil.h"
 #import "ChatService.h"
+#import "PPConfigManager.h"
 
 typedef enum
 {
@@ -68,7 +69,7 @@ typedef enum
     _superController = controller;
 }
 
-- (BOOL)isInputValid:(NSString*)inputString
++ (BOOL)isInputValid:(NSString*)inputString
 {
     NSScanner* scan = [NSScanner scannerWithString:inputString];
     int val;
@@ -77,6 +78,39 @@ typedef enum
         return NO;
     }
     return YES;
+}
+
++ (void)askBlackUser:(NSString*)targetUserId viewController:(UIViewController*)viewController
+{
+    CommonDialog* inputDialog = [CommonDialog createInputFieldDialogWith:@"请输入要封禁的天数"];
+    [inputDialog setClickOkBlock:^(UITextField *tf) {
+        if ([SuperUserManageAction isInputValid:tf.text]) {
+            int days = tf.text.intValue;
+            
+            if ([[UserManager defaultManager] isSuperUser] == NO && (days <=0 || days > [PPConfigManager boardManagerBlackUserDays])){
+                NSString* msg = [NSString stringWithFormat:@"封禁天数超过当前权限，最多可以封禁%d天", [PPConfigManager boardManagerBlackUserDays]];
+                POSTMSG(msg);
+                return;
+            }
+            
+            CommonDialog* dialog = [CommonDialog createDialogWithTitle:nil message:@"确定要将该用户加入黑名单吗？" style:CommonDialogStyleDoubleButton];
+            [dialog setClickOkBlock:^(UILabel *label){
+                [[UserService defaultService] superBlackUser:targetUserId
+                                                        type:BLACK_USER_TYPE_USERID
+                                                        days:days
+                                                successBlock:^{
+                                                    [[CommonMessageCenter defaultCenter] postMessageWithText:@"加入黑名单成功" delayTime:1];
+                                                }];
+            }];
+            
+            [dialog showInView:viewController.view];
+        }
+    }];
+    
+    [inputDialog.inputTextField setPlaceholder:@"请输入要禁言的天数"];
+    [inputDialog.inputTextField setText:@"3"];
+    [inputDialog showInView:viewController.view];
+
 }
 
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
@@ -90,7 +124,7 @@ typedef enum
 
             CommonDialog* dialog = [CommonDialog createInputFieldDialogWith:@"请输入要充值的金币数"];
             [dialog setClickOkBlock:^(UITextField *tf) {
-                if ([self isInputValid:tf.text]) {
+                if ([SuperUserManageAction isInputValid:tf.text]) {
                     [[AccountService defaultService] chargeCoin:tf.text.intValue toUser:_targetUserId source:SuperUserCharge];
                 }
             }];
@@ -148,7 +182,7 @@ typedef enum
             
             CommonDialog* dialog = [CommonDialog createInputFieldDialogWith:@"请输入要充值的元宝数"];
             [dialog setClickOkBlock:^(UITextField *tf) {
-                if ([self isInputValid:tf.text]) {
+                if ([SuperUserManageAction isInputValid:tf.text]) {
                     [[AccountService defaultService] chargeIngot:tf.text.intValue toUser:_targetUserId source:SuperUserCharge];
                 }
             }];
@@ -223,36 +257,14 @@ typedef enum
             
         case SuperUserManageActionIndexBlackUserId: {
             
-            CommonDialog* inputDialog = [CommonDialog createInputFieldDialogWith:@"请输入要充值的金币数"];
-            [inputDialog setClickOkBlock:^(UITextField *tf) {
-                if ([self isInputValid:tf.text]) {
-                    int days = tf.text.intValue;
-                    
-                    CommonDialog* dialog = [CommonDialog createDialogWithTitle:nil message:@"确定要将该用户加入黑名单吗？" style:CommonDialogStyleDoubleButton];
-                    [dialog setClickOkBlock:^(UILabel *label){
-                        [[UserService defaultService] superBlackUser:_targetUserId
-                                                                type:BLACK_USER_TYPE_USERID
-                                                                days:days
-                                                        successBlock:^{
-                            [[CommonMessageCenter defaultCenter] postMessageWithText:@"加入黑名单成功" delayTime:1];
-                        }];
-                    }];
-                    
-                    [dialog showInView:_superController.view];
-                }
-            }];
-            
-            [inputDialog.inputTextField setPlaceholder:@"请输入要禁言的天数"];
-            [inputDialog.inputTextField setText:@"7"];
-            [inputDialog showInView:_superController.view];
-            
+            [SuperUserManageAction askBlackUser:_targetUserId viewController:_superController];
             
         } break;
         case SuperUserManageActionIndexBlackDevice: {
 
-            CommonDialog* inputDialog = [CommonDialog createInputFieldDialogWith:@"请输入要充值的金币数"];
+            CommonDialog* inputDialog = [CommonDialog createInputFieldDialogWith:@"请输入要封禁的天数"];
             [inputDialog setClickOkBlock:^(UITextField *tf) {
-                if ([self isInputValid:tf.text]) {
+                if ([SuperUserManageAction isInputValid:tf.text]) {
                     int days = tf.text.intValue;
                     
                     CommonDialog* dialog = [CommonDialog createDialogWithTitle:nil message:@"确定要将该用户的设备加入黑名单吗？" style:CommonDialogStyleDoubleButton];

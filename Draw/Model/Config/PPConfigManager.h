@@ -359,4 +359,6 @@ typedef enum{
 + (BOOL)showOpusLinkInShare;
 + (NSString*)xiaojiWeb;
 
++ (int)boardManagerBlackUserDays;
+
 @end

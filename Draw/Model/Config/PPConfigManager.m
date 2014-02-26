@@ -1458,4 +1458,9 @@
     return GET_UMENG_STRVALUE(@"XIAOJI_WEB", @"http://www.xiaoji.fm");
 }
 
++ (int)boardManagerBlackUserDays
+{
+    return GET_UMENG_INTVAL(@"BLACK_USER_MAX_DAYS", 7);
+}
+
 @end

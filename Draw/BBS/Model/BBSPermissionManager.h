@@ -40,4 +40,6 @@ typedef enum{
 - (BOOL)canForbidUserIntoBlackUserList;
 - (BOOL)canPutDrawOnCell;
 
+- (BOOL)isBoardManager:(NSString*)boardId;
+
 @end

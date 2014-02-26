@@ -13,8 +13,12 @@
 #import "TimeUtils.h"
 #import "GroupManager.h"
 #import "StringUtil.h"
-
-
+#import "BBSPermissionManager.h"
+#import "MKBlockActionSheet.h"
+#import "CommonUserInfoView.h"
+#import "UserService.h"
+#import "SuperUserManageAction.h"
+#import "BBSService.h"
 
 #define SPACE_CONTENT_TOP (ISIPAD ? (2.33 * 30) : 30)
 #define SPACE_CONTENT_BOTTOM_IMAGE (ISIPAD ? (2.33 * 120) : 120) //IMAGE TYPE OR DRAW TYPE
@@ -261,10 +265,104 @@
 
 #pragma mark - Click avatar && image
 
+
++ (void)showBoardManagerUserAction:(PBBBSUser*)user
+                           boardId:(NSString*)boardId
+                            inView:(UIView*)view
+                          delegate:(id)delegate
+{
+    MKBlockActionSheet* as = nil;
+
+    int index = 0;
+    
+    int BUTTON_INDEX_VIEW_USER = index++;
+    int BUTTON_INDEX_FORBID_USER_BOARD = index++;
+    int BUTTON_INDEX_UNFORBID_USER_BOARD = index++;
+    int BUTTON_INDEX_BLACK_USER = -1;
+    int BUTTON_INDEX_CANCEL = -1;
+    
+    if ([[UserManager defaultManager] canBlackUser]){
+        as = [[MKBlockActionSheet alloc] initWithTitle:@"版主/管理员操作"
+                                              delegate:nil
+                                     cancelButtonTitle:@"取消"
+                                destructiveButtonTitle:@"查看用户详情"
+                                     otherButtonTitles:@"禁言该用户", @"解除用户禁言", @"加入系统黑名单", nil];
+        
+        BUTTON_INDEX_BLACK_USER = index ++;
+        BUTTON_INDEX_CANCEL = index ++;
+        
+    }
+    else{
+        as = [[MKBlockActionSheet alloc] initWithTitle:@"版主/管理员操作"
+                                              delegate:nil cancelButtonTitle:@"取消"
+                                destructiveButtonTitle:@"查看用户详情"
+                                     otherButtonTitles:@"禁言该用户", @"解除用户禁言", nil];
+
+        BUTTON_INDEX_CANCEL = index ++;
+    }
+    
+
+    
+    [as setActionBlock:^(NSInteger buttonIndex){
+        
+        if (buttonIndex == BUTTON_INDEX_VIEW_USER){
+            [CommonUserInfoView showPBBBSUser:user
+                                 inController:delegate
+                                   needUpdate:YES
+                                      canChat:YES];
+        }
+        else if (buttonIndex == BUTTON_INDEX_FORBID_USER_BOARD){
+
+            UIViewController* vc = (UIViewController*)delegate;
+            UIView* view = vc.view;
+            
+            CommonDialog* inputDialog = [CommonDialog createInputFieldDialogWith:@"请输入版块禁言天数(0:永久)"];
+            [inputDialog setClickOkBlock:^(UITextField *tf) {
+
+                if ([SuperUserManageAction isInputValid:tf.text]) {
+
+                    int days = tf.text.intValue;
+                    NSString* msg = [NSString stringWithFormat:@"确定要对该用户【%@】在本版块禁言吗？", user.nickName];
+                    CommonDialog* dialog = [CommonDialog createDialogWithTitle:nil message:msg style:CommonDialogStyleDoubleButton];
+                    [dialog setClickOkBlock:^(UILabel *label){
+                        
+                        [[BBSService defaultService] forbidUser:user.userId boardId:boardId days:days resultBlock:nil];
+                    }];
+                    
+                    [dialog showInView:view];
+                }
+            }];
+            
+            [inputDialog.inputTextField setPlaceholder:@"请输入要禁言的天数"];
+            [inputDialog.inputTextField setText:@"3"];
+            [inputDialog showInView:view];
+        }
+        else if (buttonIndex == BUTTON_INDEX_UNFORBID_USER_BOARD){
+            [[BBSService defaultService] unforbidUser:user.userId boardId:boardId days:0 resultBlock:nil];
+        }
+        else if (buttonIndex == BUTTON_INDEX_BLACK_USER){
+            [SuperUserManageAction askBlackUser:user.userId viewController:delegate];
+        }
+        else{
+            // do nothing
+        }
+        
+    }];
+    
+    [as showInView:view];
+    [as release];
+}
+
 - (void)clickAvatarButton:(id)sender
 {
-    if (delegate && [delegate respondsToSelector:@selector(didClickUserAvatar:)]) {
-        [delegate didClickUserAvatar:self.post.createUser];
+    BBSPermissionManager *pm = [BBSPermissionManager defaultManager];
+    if ([pm isBoardManager:self.post.boardId]){
+        [BBSPostCell showBoardManagerUserAction:self.post.createUser boardId:self.post.boardId inView:self delegate:delegate];
+    }
+    else{
+        if (delegate && [delegate respondsToSelector:@selector(didClickUserAvatar:)]) {
+            [delegate didClickUserAvatar:self.post.createUser];
+        }
     }
 }
 - (void)clickImageButton:(id)sender

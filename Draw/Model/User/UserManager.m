@@ -1958,4 +1958,13 @@ qqAccessTokenSecret:(NSString*)accessTokenSecret
     }
 }
 
+- (BOOL)canBlackUser
+{
+    if ([self isSuperUser]){
+        return YES;
+    }
+    
+    return [_pbUser.permissionsList containsObject:PERMISSION_BLACK_USER];
+}
+
 @end

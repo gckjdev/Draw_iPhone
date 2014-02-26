@@ -56,6 +56,10 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(BBSPermissionManager)
 #define BOARD_PERMISSION(x) ([self permissionOnnBoard:x])
 #define JUDGE_BOARD_PERMISSION(x,y) (((BBS_PERMISSION | BOARD_PERMISSION(x)) & y) != 0)
 
+- (BOOL)isBoardManager:(NSString*)boardId
+{
+    return JUDGE_BOARD_PERMISSION(boardId, PermissionToTop);
+}
 
 - (BOOL)canWriteOnBBBoard:(NSString *)boardId
 {

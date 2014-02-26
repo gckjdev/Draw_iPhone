@@ -127,10 +127,10 @@ message PBGameUser {
 
   optional PBSimpleGroup groupInfo = 150;              // 用户所属当前群组（用于返回）
   repeated string offGroupIds = 151;                   // 用户屏蔽的群聊消息
+  repeated string permissions = 152;                   // 权限列表
 
   optional int32 singRecordLimit = 200[default = 30];  //你唱我猜用户最长录音时间限制。 
   
-
 
 }
 

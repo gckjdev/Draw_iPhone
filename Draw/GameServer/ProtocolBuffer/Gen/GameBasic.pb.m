@@ -1813,6 +1813,7 @@ static PBUserLevel* defaultPBUserLevelInstance = nil;
 @property int32_t vipLastPayDate;
 @property (retain) PBSimpleGroup* groupInfo;
 @property (retain) NSMutableArray* mutableOffGroupIdsList;
+@property (retain) NSMutableArray* mutablePermissionsList;
 @property int32_t singRecordLimit;
 @end
 
@@ -2186,6 +2187,7 @@ static PBUserLevel* defaultPBUserLevelInstance = nil;
 }
 @synthesize groupInfo;
 @synthesize mutableOffGroupIdsList;
+@synthesize mutablePermissionsList;
 - (BOOL) hasSingRecordLimit {
   return !!hasSingRecordLimit_;
 }
@@ -2222,6 +2224,7 @@ static PBUserLevel* defaultPBUserLevelInstance = nil;
   self.mutableAwardAppsList = nil;
   self.groupInfo = nil;
   self.mutableOffGroupIdsList = nil;
+  self.mutablePermissionsList = nil;
   [super dealloc];
 }
 - (id) init {
@@ -2337,6 +2340,13 @@ static PBGameUser* defaultPBGameUserInstance = nil;
 }
 - (NSString*) offGroupIdsAtIndex:(int32_t) index {
   id value = [mutableOffGroupIdsList objectAtIndex:index];
+  return value;
+}
+- (NSArray*) permissionsList {
+  return mutablePermissionsList;
+}
+- (NSString*) permissionsAtIndex:(int32_t) index {
+  id value = [mutablePermissionsList objectAtIndex:index];
   return value;
 }
 - (BOOL) isInitialized {
@@ -2539,6 +2549,9 @@ static PBGameUser* defaultPBGameUserInstance = nil;
   for (NSString* element in self.mutableOffGroupIdsList) {
     [output writeString:151 value:element];
   }
+  for (NSString* element in self.mutablePermissionsList) {
+    [output writeString:152 value:element];
+  }
   if (self.hasSingRecordLimit) {
     [output writeInt32:200 value:self.singRecordLimit];
   }
@@ -2730,6 +2743,14 @@ static PBGameUser* defaultPBGameUserInstance = nil;
     }
     size += dataSize;
     size += 2 * self.mutableOffGroupIdsList.count;
+  }
+  {
+    int32_t dataSize = 0;
+    for (NSString* element in self.mutablePermissionsList) {
+      dataSize += computeStringSizeNoTag(element);
+    }
+    size += dataSize;
+    size += 2 * self.mutablePermissionsList.count;
   }
   if (self.hasSingRecordLimit) {
     size += computeInt32Size(200, self.singRecordLimit);
@@ -2995,6 +3016,12 @@ static PBGameUser* defaultPBGameUserInstance = nil;
     }
     [result.mutableOffGroupIdsList addObjectsFromArray:other.mutableOffGroupIdsList];
   }
+  if (other.mutablePermissionsList.count > 0) {
+    if (result.mutablePermissionsList == nil) {
+      result.mutablePermissionsList = [NSMutableArray array];
+    }
+    [result.mutablePermissionsList addObjectsFromArray:other.mutablePermissionsList];
+  }
   if (other.hasSingRecordLimit) {
     [self setSingRecordLimit:other.singRecordLimit];
   }
@@ -3255,6 +3282,10 @@ static PBGameUser* defaultPBGameUserInstance = nil;
       }
       case 1210: {
         [self addOffGroupIds:[input readString]];
+        break;
+      }
+      case 1218: {
+        [self addPermissions:[input readString]];
         break;
       }
       case 1600: {
@@ -4253,6 +4284,37 @@ static PBGameUser* defaultPBGameUserInstance = nil;
 }
 - (PBGameUser_Builder*) clearOffGroupIdsList {
   result.mutableOffGroupIdsList = nil;
+  return self;
+}
+- (NSArray*) permissionsList {
+  if (result.mutablePermissionsList == nil) {
+    return [NSArray array];
+  }
+  return result.mutablePermissionsList;
+}
+- (NSString*) permissionsAtIndex:(int32_t) index {
+  return [result permissionsAtIndex:index];
+}
+- (PBGameUser_Builder*) replacePermissionsAtIndex:(int32_t) index with:(NSString*) value {
+  [result.mutablePermissionsList replaceObjectAtIndex:index withObject:value];
+  return self;
+}
+- (PBGameUser_Builder*) addPermissions:(NSString*) value {
+  if (result.mutablePermissionsList == nil) {
+    result.mutablePermissionsList = [NSMutableArray array];
+  }
+  [result.mutablePermissionsList addObject:value];
+  return self;
+}
+- (PBGameUser_Builder*) addAllPermissions:(NSArray*) values {
+  if (result.mutablePermissionsList == nil) {
+    result.mutablePermissionsList = [NSMutableArray array];
+  }
+  [result.mutablePermissionsList addObjectsFromArray:values];
+  return self;
+}
+- (PBGameUser_Builder*) clearPermissionsList {
+  result.mutablePermissionsList = nil;
   return self;
 }
 - (BOOL) hasSingRecordLimit {

@@ -670,6 +670,7 @@
 #define METHOD_UPDATE_BOARD @"updateBoard"
 #define METHOD_DELETE_BOARD @"deleteBoard"
 #define METHOD_SET_USER_BOARD_TYPE @"cbr"
+#define METHOD_FORBID_USER_BOARD @"forbidUserBoard"
 
 #define METHOD_CREATE_USER_WALL @"createWall"
 #define METHOD_UPDATE_USER_WALL @"updateWall"
