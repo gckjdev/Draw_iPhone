@@ -1967,4 +1967,21 @@ qqAccessTokenSecret:(NSString*)accessTokenSecret
     return [_pbUser.permissionsList containsObject:PERMISSION_BLACK_USER];
 }
 
+- (void)setUserPermissions:(NSArray*)persmissions
+{
+    if (self.pbUser == nil)
+        return;
+    
+    PBGameUser_Builder* builder = [PBGameUser builderWithPrototype:self.pbUser];
+    
+    NSMutableArray* permissions = [NSMutableArray array];
+    if ([builder permissionsList]){
+        [permissions addObjectsFromArray:[builder permissionsList]];
+    }
+    
+    [builder clearPermissionsList];
+    [builder addAllOffGroupIds:permissions];
+    self.pbUser = [builder build];
+}
+
 @end

@@ -199,6 +199,9 @@ static AccountService* _defaultAccountService;
                     [[UserManager defaultManager] setVipExpireDate:user.vipExpireDate];
                     [[UserManager defaultManager] setVipLastPayDate:user.vipLastPayDate];
                     
+                    // sync user permission
+                    [[UserManager defaultManager] setUserPermissions:user.permissionsList];
+                    
                     // post notification
                     [self postNotification:NOTIFICATION_SYNC_ACCOUNT];
                     

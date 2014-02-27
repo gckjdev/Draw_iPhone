@@ -291,6 +291,8 @@ qqAccessTokenSecret:(NSString*)accessTokenSecret
 - (void)setUserGroupNotice:(NSString*)groupId status:(int)status;
 - (BOOL)isDisableGroupNotice:(NSString*)groupId;
 - (void)setOffGroupIds:(NSArray*)offGroupIds;
+
 - (BOOL)canBlackUser;
+- (void)setUserPermissions:(NSArray*)persmissions;
 
 @end
