@@ -68,6 +68,7 @@
                                         image:nil
                                drawActionList:nil
                                     drawImage:nil
+                                      boardId:self.post.boardId
                                      delegate:self.controller
                                    canvasSize:CGSizeZero];
 

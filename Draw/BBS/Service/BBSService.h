@@ -165,6 +165,7 @@ typedef void (^BBSResultHandler) (NSInteger resultCode);
                          image:(UIImage *)image
                 drawActionList:(NSArray *)drawActionList
                      drawImage:(UIImage *)drawImage
+                       boardId:(NSString *)boardId
                       delegate:(id<BBSServiceDelegate>)delegate
                     canvasSize:(CGSize)size;
 

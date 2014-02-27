@@ -449,16 +449,17 @@
     if ([self isForCreatingAction]) {
         
         [[self service] createActionWithPostId:self.postId
-                                    PostUid:self.postUid
-                                   postText:self.postText
-                               sourceAction:self.sourceAction
-                                 actionType:ActionTypeComment
-                                       text:self.text
-                                      image:self.image
-                             drawActionList:self.drawActionList
-                                  drawImage:self.drawImage
-                                   delegate:self
-                                 canvasSize:self.canvasSize];
+                                        PostUid:self.postUid
+                                       postText:self.postText
+                                   sourceAction:self.sourceAction
+                                     actionType:ActionTypeComment
+                                           text:self.text
+                                          image:self.image
+                                 drawActionList:self.drawActionList
+                                      drawImage:self.drawImage
+                                       boardId:self.bbsBoard.boardId
+                                       delegate:self
+                                     canvasSize:self.canvasSize];
         
     }else if([self isForEditing]){
         [[self service] editPost:self.post text:self.text callback:^(NSInteger resultCode, PBBBSPost *editedPost) {

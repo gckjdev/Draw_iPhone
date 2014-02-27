@@ -836,6 +836,7 @@ BBSService *_staticGroupTopicService;
                          image:(UIImage *)image
                 drawActionList:(NSArray *)drawActionList
                      drawImage:(UIImage *)drawImage
+                       boardId:(NSString *)boardId
                       delegate:(id<BBSServiceDelegate>)delegate
                     canvasSize:(CGSize)size
 {
