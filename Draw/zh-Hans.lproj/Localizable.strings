@@ -2033,6 +2033,9 @@
 "kMyPost" = "我的帖子";
 "kBBSDraw" = "涂鸦";
 "kBBSImage" = "图片";
+"kBBSDrawOpus" = "绘画作品";
+"kBBSSingOpus" = "声音作品";
+
 
 "kSupportCount" = "顶(%d)";
 "kCommentCount" = "评论(%d)";

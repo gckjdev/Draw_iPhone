@@ -139,6 +139,12 @@ BBSService *_staticGroupTopicService;
     if (ContentTypeImage == type) {
         return NSLS(@"kBBSImage");
     }
+    if (ContentTypeDrawOpus == type) {
+        return NSLS(@"kBBSDrawOpus");
+    }
+    if (ContentTypeSingOpus == type) {
+        return NSLS(@"kBBSSingOpus");
+    }
     return nil;
 }
 
@@ -161,10 +167,14 @@ BBSService *_staticGroupTopicService;
 
 
 - (PBBBSContent *)buildPBBBSContentWithType:(NSInteger)type
-                                       text:(NSString *)text                                imageUrl:(NSString *)imageUrl
+                                       text:(NSString *)text
+                                   imageUrl:(NSString *)imageUrl
                               thumbImageUrl:(NSString *)thumbImageUrl
                                drawImageUrl:(NSString *)drawImageUrl
                           drawImageThumbUrl:(NSString *)drawImageThumbUrl
+                                     opusId:(NSString *)opusId
+                               opusCategory:(int)opusCategory
+
 {
     PBBBSContent_Builder *builder = [[PBBBSContent_Builder alloc] init];
     [builder setType:type];
@@ -173,6 +183,8 @@ BBSService *_staticGroupTopicService;
     [builder setThumbImageUrl:thumbImageUrl];
     [builder setDrawImageUrl:drawImageUrl];
     [builder setDrawThumbUrl:drawImageThumbUrl];
+    [builder setOpusId:opusId];
+    [builder setOpusCategory:opusCategory];
     PBBBSContent *content = [builder build];
     [builder release];
     return content;
@@ -205,6 +217,8 @@ BBSService *_staticGroupTopicService;
                           thumbImageUrl:(NSString *)thumbImageUrl
                            drawImageUrl:(NSString *)drawImageUrl
                       drawImageThumbUrl:(NSString *)drawImageThumbUrl
+                                 opusId:(NSString *)opusId
+                           opusCategory:(int)opusCategory
                                   bonus:(NSInteger)bonus
 {
     PBBBSPost_Builder *builder = [[PBBBSPost_Builder alloc] init];
@@ -228,7 +242,9 @@ BBSService *_staticGroupTopicService;
                                                    imageUrl:imageUrl
                                               thumbImageUrl:thumbImageUrl
                                                drawImageUrl:drawImageUrl
-                                          drawImageThumbUrl:drawImageThumbUrl];
+                                          drawImageThumbUrl:drawImageThumbUrl
+                                                     opusId:opusId
+                                               opusCategory:opusCategory];
     [builder setContent:content];
     
     PBBBSReward *reward = [self buildPBBBSRewardWithBounus:bonus];
@@ -302,6 +318,8 @@ BBSService *_staticGroupTopicService;
                            thumbImageUrl:(NSString *)thumbImageUrl
                             drawImageUrl:(NSString *)drawImageUrl
                        drawImageThumbUrl:(NSString *)drawImageThumbUrl
+                                  opusId:(NSString *)opusId
+                            opusCategory:(int)opusCategory
                             sourcePostId:(NSString *)sourcePostId
                            sourcePostUid:(NSString *)sourcePostUid
                           sourceActionId:(NSString *)sourceActionId
@@ -327,7 +345,9 @@ BBSService *_staticGroupTopicService;
                                                    imageUrl:imageUrl
                                               thumbImageUrl:thumbImageUrl
                                                drawImageUrl:drawImageUrl
-                                          drawImageThumbUrl:drawImageThumbUrl];
+                                          drawImageThumbUrl:drawImageThumbUrl
+                                                     opusId:opusId
+                                               opusCategory:opusCategory];
     [builder setContent:content];
     PBBBSActionSource *source = [self buildActionSourceWithPostId:sourcePostId
                                                           postUid:sourcePostUid
@@ -487,20 +507,22 @@ BBSService *_staticGroupTopicService;
                 NSString *drawImageURL = [output.jsonDataDict objectForKey:PARA_DRAW_IMAGE];
                 NSString *drawThumbURL = [output.jsonDataDict objectForKey:PARA_DRAW_THUMB];
                 post = [self buildPBBBSPostWithPostId:postId
-                                                           appId:appId
-                                                      deviceType:deviceType
-                                                          userId:userId
-                                                        nickName:nickName
-                                                          gender:gender
-                                                          avatar:avatar
-                                                         boradId:boardId
-                                                     contentType:type
-                                                            text:nText
-                                                        imageUrl:imageURL
-                                                   thumbImageUrl:thumbURL
-                                                    drawImageUrl:drawImageURL
-                                               drawImageThumbUrl:drawThumbURL
-                                                           bonus:bonus];
+                                               appId:appId
+                                          deviceType:deviceType
+                                              userId:userId
+                                            nickName:nickName
+                                              gender:gender
+                                              avatar:avatar
+                                             boradId:boardId
+                                         contentType:type
+                                                text:nText
+                                            imageUrl:imageURL
+                                       thumbImageUrl:thumbURL
+                                        drawImageUrl:drawImageURL
+                                   drawImageThumbUrl:drawThumbURL
+                                               opusId:opusId
+                                         opusCategory:opusCategory
+                                                bonus:bonus];
                 [[BBSManager defaultManager] updateLastCreationDate];
                 self.lastPostText = nText;
             }
@@ -1005,6 +1027,8 @@ BBSService *_staticGroupTopicService;
                                              thumbImageUrl:thumbURL
                                               drawImageUrl:drawImageURL
                                          drawImageThumbUrl:drawThumbURL
+                                                 opusId:opusId
+                                           opusCategory:opusCategory
                                               sourcePostId:postId
                                              sourcePostUid:postUid
                                             sourceActionId:sourceAction.actionId
@@ -1012,6 +1036,7 @@ BBSService *_staticGroupTopicService;
                                       sourceActionNickName:sourceAction.createUser.nickName
                                           sourceActionType:sourceAction.type
                                            sourceBriefText:briefText];
+                    
                     [[BBSManager defaultManager] updateLastCreationDate];
                 }
                 if (delegate && [delegate respondsToSelector:@selector(didCreateAction:atPost:replyAction:resultCode:)]) {

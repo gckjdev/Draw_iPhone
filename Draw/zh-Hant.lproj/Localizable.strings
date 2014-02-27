@@ -2041,6 +2041,8 @@
 
 "kBBSDraw" = "塗鴉";
 "kBBSImage" = "圖片";
+"kBBSDrawOpus" = "繪畫作品";
+"kBBSSingOpus" = "聲音作品";
 
 "kSupportCount" = "頂(%d)";
 "kCommentCount" = "評論(%d)";
@@ -2689,8 +2691,8 @@
 "kTaskAppViewWebDesc" = "訪問小吉網站 %@";
 
 // TODO translation
-"kUserBoardForbidden" = "你已经在本版块被禁言，无法执行本操作";
-"kSelectImageOrOpus" = "请选择图片或者作品";
-"kSelectOpus" = "选择作品";
-"kConfirmSelectOpusTitle" = "确认消息";
-"kConfirmSelectOpusMsg" = "确认使用这幅作品吗?";
+"kUserBoardForbidden" = "你已經在本版塊被禁言，無法執行本操作";
+"kSelectImageOrOpus" = "請選擇圖片或者作品";
+"kSelectOpus" = "選擇作品";
+"kConfirmSelectOpusTitle" = "確認消息";
+"kConfirmSelectOpusMsg" = "確認使用這幅作品嗎?";

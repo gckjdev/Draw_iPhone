@@ -2071,6 +2071,8 @@
 "kMyPost" = "My Post";
 "kBBSDraw" = "painting";
 "kBBSImage" = "image";
+"kBBSDrawOpus" = "Drawing Opus";
+"kBBSSingOpus" = "Voice Opus";
 
 "kSupportCount" = "Support(%d)";
 "kCommentCount" = "Comment(%d)";
