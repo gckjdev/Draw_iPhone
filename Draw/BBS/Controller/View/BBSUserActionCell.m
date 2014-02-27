@@ -8,6 +8,7 @@
 
 #import "BBSUserActionCell.h"
 #import "StringUtil.h"
+#import "ShowFeedController.h"
 
 @interface BBSUserActionCell ()
 
@@ -246,10 +247,15 @@
         [delegate didClickDrawImageWithAction:self.action];
         
         //show image...
-    }else if(self.action.content.type == ContentTypeImage && delegate &&
+    }
+    else if(self.action.content.type == ContentTypeImage && delegate &&
              [delegate respondsToSelector:@selector(didClickImageWithURL:)])
     {
         [delegate didClickImageWithURL:self.action.content.largeImageURL];
+    }
+    else if([self.action.content.opusId length] > 0){
+        // TODO BBS OPUS go to opus feed detail
+        [ShowFeedController enterWithFeedId:self.action.content.opusId fromController:delegate];
     }
 }
 

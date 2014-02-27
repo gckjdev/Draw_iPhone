@@ -14,7 +14,7 @@
 #import "StringUtil.h"
 #import "BBSPermissionManager.h"
 #import "BBSPostCell.h"
-
+#import "ShowFeedController.h"
 
 
 #define SPACE_CONTENT_TOP (ISIPAD ? (2.33 * 30) : 30)
@@ -345,10 +345,15 @@
         && [delegate respondsToSelector:@selector(didClickDrawImageWithPost:)]) {
         [delegate didClickDrawImageWithPost:self.post];
     //show image...
-    }else if(self.post.content.type == ContentTypeImage && delegate &&
+    }
+    else if(self.post.content.type == ContentTypeImage && delegate &&
              [delegate respondsToSelector:@selector(didClickImageWithURL:)])
     {
         [delegate didClickImageWithURL:self.post.content.largeImageURL];
+    }
+    else if([self.post.content.opusId length] > 0){
+        // TODO BBS OPUS go to opus feed detail
+        [ShowFeedController enterWithFeedId:self.post.content.opusId fromController:delegate];
     }
 }
 @end

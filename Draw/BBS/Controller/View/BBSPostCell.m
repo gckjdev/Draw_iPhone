@@ -20,6 +20,7 @@
 #import "SuperUserManageAction.h"
 #import "BBSService.h"
 #import "GroupManager.h"
+#import "ShowFeedController.h"
 
 #define SPACE_CONTENT_TOP (ISIPAD ? (2.33 * 30) : 30)
 #define SPACE_CONTENT_BOTTOM_IMAGE (ISIPAD ? (2.33 * 120) : 120) //IMAGE TYPE OR DRAW TYPE
@@ -403,6 +404,10 @@
              [delegate respondsToSelector:@selector(didClickImageWithURL:)])
     {
         [delegate didClickImageWithURL:self.post.content.largeImageURL];
+    }
+    else if([self.post.content.opusId length] > 0){
+        // TODO BBS OPUS go to opus feed detail
+        [ShowFeedController enterWithFeedId:self.post.content.opusId fromController:delegate];
     }
 }
 @end

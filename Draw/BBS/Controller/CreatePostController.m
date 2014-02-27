@@ -563,6 +563,10 @@
     
     [UserFeedController selectOpus:self callback:^(int resultCode, NSString *opusId, UIImage *opusImage, int opusCategory) {
         if (resultCode == 0 && [opusId length] > 0){
+            
+            self.opusId = opusId;
+            self.opusCategory = opusCategory;
+            
             self.image = opusImage;
             [self updateToolButtons];
             [self.textView becomeFirstResponder];

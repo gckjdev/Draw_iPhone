@@ -249,18 +249,22 @@
 @interface PBBBSContent : PBGeneratedMessage {
 @private
   BOOL hasType_:1;
+  BOOL hasOpusCategory_:1;
   BOOL hasText_:1;
   BOOL hasThumbImageUrl_:1;
   BOOL hasImageUrl_:1;
   BOOL hasDrawThumbUrl_:1;
   BOOL hasDrawImageUrl_:1;
+  BOOL hasOpusId_:1;
   BOOL hasDrawData_:1;
   int32_t type;
+  int32_t opusCategory;
   NSString* text;
   NSString* thumbImageUrl;
   NSString* imageUrl;
   NSString* drawThumbUrl;
   NSString* drawImageUrl;
+  NSString* opusId;
   PBBBSDraw* drawData;
 }
 - (BOOL) hasType;
@@ -270,6 +274,8 @@
 - (BOOL) hasDrawThumbUrl;
 - (BOOL) hasDrawImageUrl;
 - (BOOL) hasDrawData;
+- (BOOL) hasOpusId;
+- (BOOL) hasOpusCategory;
 @property (readonly) int32_t type;
 @property (readonly, retain) NSString* text;
 @property (readonly, retain) NSString* thumbImageUrl;
@@ -277,6 +283,8 @@
 @property (readonly, retain) NSString* drawThumbUrl;
 @property (readonly, retain) NSString* drawImageUrl;
 @property (readonly, retain) PBBBSDraw* drawData;
+@property (readonly, retain) NSString* opusId;
+@property (readonly) int32_t opusCategory;
 
 + (PBBBSContent*) defaultInstance;
 - (PBBBSContent*) defaultInstance;
@@ -348,6 +356,16 @@
 - (PBBBSContent_Builder*) setDrawDataBuilder:(PBBBSDraw_Builder*) builderForValue;
 - (PBBBSContent_Builder*) mergeDrawData:(PBBBSDraw*) value;
 - (PBBBSContent_Builder*) clearDrawData;
+
+- (BOOL) hasOpusId;
+- (NSString*) opusId;
+- (PBBBSContent_Builder*) setOpusId:(NSString*) value;
+- (PBBBSContent_Builder*) clearOpusId;
+
+- (BOOL) hasOpusCategory;
+- (int32_t) opusCategory;
+- (PBBBSContent_Builder*) setOpusCategory:(int32_t) value;
+- (PBBBSContent_Builder*) clearOpusCategory;
 @end
 
 @interface PBBBSReward : PBGeneratedMessage {

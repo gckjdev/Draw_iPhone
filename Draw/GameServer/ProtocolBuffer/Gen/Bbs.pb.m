@@ -665,6 +665,8 @@ static PBBBSDraw* defaultPBBBSDrawInstance = nil;
 @property (retain) NSString* drawThumbUrl;
 @property (retain) NSString* drawImageUrl;
 @property (retain) PBBBSDraw* drawData;
+@property (retain) NSString* opusId;
+@property int32_t opusCategory;
 @end
 
 @implementation PBBBSContent
@@ -718,6 +720,20 @@ static PBBBSDraw* defaultPBBBSDrawInstance = nil;
   hasDrawData_ = !!value;
 }
 @synthesize drawData;
+- (BOOL) hasOpusId {
+  return !!hasOpusId_;
+}
+- (void) setHasOpusId:(BOOL) value {
+  hasOpusId_ = !!value;
+}
+@synthesize opusId;
+- (BOOL) hasOpusCategory {
+  return !!hasOpusCategory_;
+}
+- (void) setHasOpusCategory:(BOOL) value {
+  hasOpusCategory_ = !!value;
+}
+@synthesize opusCategory;
 - (void) dealloc {
   self.text = nil;
   self.thumbImageUrl = nil;
@@ -725,6 +741,7 @@ static PBBBSDraw* defaultPBBBSDrawInstance = nil;
   self.drawThumbUrl = nil;
   self.drawImageUrl = nil;
   self.drawData = nil;
+  self.opusId = nil;
   [super dealloc];
 }
 - (id) init {
@@ -736,6 +753,8 @@ static PBBBSDraw* defaultPBBBSDrawInstance = nil;
     self.drawThumbUrl = @"";
     self.drawImageUrl = @"";
     self.drawData = [PBBBSDraw defaultInstance];
+    self.opusId = @"";
+    self.opusCategory = 0;
   }
   return self;
 }
@@ -784,6 +803,12 @@ static PBBBSContent* defaultPBBBSContentInstance = nil;
   if (self.hasDrawData) {
     [output writeMessage:22 value:self.drawData];
   }
+  if (self.hasOpusId) {
+    [output writeString:30 value:self.opusId];
+  }
+  if (self.hasOpusCategory) {
+    [output writeInt32:31 value:self.opusCategory];
+  }
   [self.unknownFields writeToCodedOutputStream:output];
 }
 - (int32_t) serializedSize {
@@ -813,6 +838,12 @@ static PBBBSContent* defaultPBBBSContentInstance = nil;
   }
   if (self.hasDrawData) {
     size += computeMessageSize(22, self.drawData);
+  }
+  if (self.hasOpusId) {
+    size += computeStringSize(30, self.opusId);
+  }
+  if (self.hasOpusCategory) {
+    size += computeInt32Size(31, self.opusCategory);
   }
   size += self.unknownFields.serializedSize;
   memoizedSerializedSize = size;
@@ -910,6 +941,12 @@ static PBBBSContent* defaultPBBBSContentInstance = nil;
   if (other.hasDrawData) {
     [self mergeDrawData:other.drawData];
   }
+  if (other.hasOpusId) {
+    [self setOpusId:other.opusId];
+  }
+  if (other.hasOpusCategory) {
+    [self setOpusCategory:other.opusCategory];
+  }
   [self mergeUnknownFields:other.unknownFields];
   return self;
 }
@@ -962,6 +999,14 @@ static PBBBSContent* defaultPBBBSContentInstance = nil;
         }
         [input readMessage:subBuilder extensionRegistry:extensionRegistry];
         [self setDrawData:[subBuilder buildPartial]];
+        break;
+      }
+      case 242: {
+        [self setOpusId:[input readString]];
+        break;
+      }
+      case 248: {
+        [self setOpusCategory:[input readInt32]];
         break;
       }
     }
@@ -1091,6 +1136,38 @@ static PBBBSContent* defaultPBBBSContentInstance = nil;
 - (PBBBSContent_Builder*) clearDrawData {
   result.hasDrawData = NO;
   result.drawData = [PBBBSDraw defaultInstance];
+  return self;
+}
+- (BOOL) hasOpusId {
+  return result.hasOpusId;
+}
+- (NSString*) opusId {
+  return result.opusId;
+}
+- (PBBBSContent_Builder*) setOpusId:(NSString*) value {
+  result.hasOpusId = YES;
+  result.opusId = value;
+  return self;
+}
+- (PBBBSContent_Builder*) clearOpusId {
+  result.hasOpusId = NO;
+  result.opusId = @"";
+  return self;
+}
+- (BOOL) hasOpusCategory {
+  return result.hasOpusCategory;
+}
+- (int32_t) opusCategory {
+  return result.opusCategory;
+}
+- (PBBBSContent_Builder*) setOpusCategory:(int32_t) value {
+  result.hasOpusCategory = YES;
+  result.opusCategory = value;
+  return self;
+}
+- (PBBBSContent_Builder*) clearOpusCategory {
+  result.hasOpusCategory = NO;
+  result.opusCategory = 0;
   return self;
 }
 @end

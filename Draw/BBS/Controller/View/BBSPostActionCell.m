@@ -16,6 +16,7 @@
 #import "BBSPermissionManager.h"
 #import "GroupPermission.h"
 #import "BBSPostCell.h"
+#import "ShowFeedController.h"
 
 #define SPACE_CONTENT_TOP (ISIPAD ? 77 : 35)
 #define SPACE_CONTENT_BOTTOM_IMAGE (ISIPAD ? 100 * 2.5 : 100) //IMAGE TYPE OR DRAW TYPE
@@ -337,10 +338,16 @@
         [delegate didClickDrawImageWithAction:self.action];
 
     //show image...
-    }else if(self.action.content.type == ContentTypeImage && delegate &&
+    }
+    else if(self.action.content.type == ContentTypeImage && delegate &&
              [delegate respondsToSelector:@selector(didClickImageWithURL:)])
     {
         [delegate didClickImageWithURL:self.action.content.largeImageURL];
+    }
+    else if([self.action.content.opusId length] > 0){
+        // TODO BBS OPUS go to opus feed detail
+        [ShowFeedController enterWithFeedId:self.action.content.opusId fromController:delegate];
+        
     }
 }
 

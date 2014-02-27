@@ -20,19 +20,29 @@
 {
     if (self.type == ContentTypeImage && self.hasThumbImageUrl) {
         return YES;
-    }else if (self.type == ContentTypeDraw && self.hasDrawThumbUrl) {
+    }
+    else if (self.type == ContentTypeDraw && self.hasDrawThumbUrl) {
         return YES;
     }
+    else if (self.type != ContentTypeText && self.hasThumbImageUrl){
+        return YES;
+    }
+    
     return NO;
 }
 - (BOOL)hasLargeImage
 {
     if (self.type == ContentTypeImage && self.hasImageUrl) {
         return YES;
-    }else if(self.type == ContentTypeDraw && self.hasDrawImageUrl) {
+    }
+    else if(self.type == ContentTypeDraw && self.hasDrawImageUrl) {
         return YES;
     }
-    return NO;    
+    else if (self.type != ContentTypeText && self.hasImageUrl){
+        return YES;
+    }
+    
+    return NO;
 }
 - (NSURL *)thumbImageURL
 {
@@ -41,6 +51,10 @@
     }else if(self.type == ContentTypeDraw && self.hasDrawThumbUrl){
         return [NSURL URLWithString:self.drawThumbUrl];
     }
+    else if (self.type != ContentTypeText && self.hasThumbImageUrl){
+        return [NSURL URLWithString:self.thumbImageUrl];
+    }
+
     return nil;
     
 }
@@ -49,8 +63,12 @@
     if (self.type == ContentTypeImage && self.hasImageUrl) {
         return [NSURL URLWithString:self.imageUrl];;
     }else if(self.type == ContentTypeDraw && self.hasDrawImageUrl) {
-        return [NSURL URLWithString:self.drawImageUrl];;
+        return [NSURL URLWithString:self.drawImageUrl];
     }
+    else if (self.type != ContentTypeText && self.hasImageUrl){
+        return [NSURL URLWithString:self.imageUrl];
+    }
+    
     return nil;
 }
 
