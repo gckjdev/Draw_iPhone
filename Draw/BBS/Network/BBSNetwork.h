@@ -66,6 +66,7 @@
                             nickName:(NSString*)nickName
                               gender:(NSString*)gender
                               avatar:(NSString*)avatar
+                             boardId:(NSString*)boardId
 //source
                         sourcePostId:(NSString*)sourcePostId
                        sourcePostUid:(NSString *)sourcePostUid

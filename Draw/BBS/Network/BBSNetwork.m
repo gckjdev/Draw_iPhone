@@ -234,6 +234,8 @@
                             nickName:(NSString*)nickName
                               gender:(NSString*)gender
                               avatar:(NSString*)avatar
+
+                             boardId:(NSString*)boardId
 //source
                         sourcePostId:(NSString*)sourcePostId
                        sourcePostUid:(NSString *)sourcePostUid
@@ -286,6 +288,8 @@
         str = [str stringByAddQueryParameter:PARA_ACTION_TYPE intValue:actionType];
         str = [str stringByAddQueryParameter:PARA_TEXT_CONTENT value:text];
 
+        str = [str stringByAddQueryParameter:PARA_BOARDID value:boardId];
+        
         return str;
     };
     

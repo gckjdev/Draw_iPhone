@@ -925,6 +925,7 @@ BBSService *_staticGroupTopicService;
                                                           nickName:nickName
                                                             gender:gender
                                                             avatar:avatar
+                                                           boardId:boardId
                                            //source
                                                       sourcePostId:postId
                                                      sourcePostUid:postUid
