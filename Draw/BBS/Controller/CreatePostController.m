@@ -457,7 +457,7 @@
                                           image:self.image
                                  drawActionList:self.drawActionList
                                       drawImage:self.drawImage
-                                       boardId:self.bbsBoard.boardId
+                                       boardId:self.post.boardId
                                        delegate:self
                                      canvasSize:self.canvasSize];
         
