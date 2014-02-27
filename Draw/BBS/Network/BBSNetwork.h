@@ -37,6 +37,8 @@
                              image:(NSData *)image
                           drawData:(NSData *)drawData
                          drawImage:(NSData *)drawImage
+                            opusId:(NSString *)opusId
+                      opusCategory:(int)opusCategory
                              bonus:(NSInteger)bonus
                          isPrivate:(BOOL)isPrivate;
 
@@ -81,7 +83,9 @@
                                 text:(NSString *)text
                                image:(NSData *)image
                             drawData:(NSData *)drawData
-                           drawImage:(NSData *)drawImage;
+                           drawImage:(NSData *)drawImage
+                              opusId:(NSString *)opusId
+                        opusCategory:(int)opusCategory;
 
 
 + (CommonNetworkOutput*)getActionList:(NSString*)baseURL

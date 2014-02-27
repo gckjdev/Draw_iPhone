@@ -25,7 +25,9 @@ typedef enum {
     ContentTypeNo = 0,
     ContentTypeText = 1,
     ContentTypeImage = 2,
-    ContentTypeDraw = 4
+    ContentTypeDraw = 4,
+    ContentTypeDrawOpus = 8,
+    ContentTypeSingOpus = 16,
 }BBSPostContentType;
 
 typedef enum {

@@ -2660,3 +2660,7 @@
 "kTaskAppViewWebDesc" = "Visit littlegee web site %@";
 
 "kUserBoardForbidden" = "You are forbidden in this board";
+"kSelectImageOrOpus" = "Please choose image or opus";
+"kSelectOpus" = "Use Opus";
+"kConfirmSelectOpusTitle" = "Message";
+"kConfirmSelectOpusMsg" = "Are you sure to use this opus?";

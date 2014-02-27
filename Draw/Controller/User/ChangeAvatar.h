@@ -32,6 +32,7 @@ typedef void(^CallBackBlock)(NSInteger index);
 @property (assign, nonatomic) BOOL isCompressImage;
 @property (nonatomic, retain) UIPopoverController *popoverController;
 @property (nonatomic, copy) DidSelectedImageBlock selectImageBlock;
+@property (nonatomic, copy) CallBackBlock otherHandlerBlock;
 @property (nonatomic, copy) DidSetDefaultBlock setDefaultBlock;
 @property (assign, nonatomic) BOOL userOriginalImage;
 @property (assign, nonatomic) BOOL enableCrop;

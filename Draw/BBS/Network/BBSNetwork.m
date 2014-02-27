@@ -67,6 +67,8 @@
                              image:(NSData *)image
                           drawData:(NSData *)drawData
                          drawImage:(NSData *)drawImage
+                            opusId:(NSString *)opusId
+                      opusCategory:(int)opusCategory
                              bonus:(NSInteger)bonus
                          isPrivate:(BOOL)isPrivate
 {
@@ -103,6 +105,12 @@
         if (isPrivate) {
             str = [str stringByAddQueryParameter:PARA_ISPRIVATE intValue:1];
         }
+        
+        if ([opusId length] > 0){
+            str = [str stringByAddQueryParameter:PARA_CATEGORY intValue:opusCategory];
+            str = [str stringByAddQueryParameter:PARA_OPUS_ID value:opusId];
+        }
+        
         return str;
     };
     
@@ -251,6 +259,10 @@
                                image:(NSData *)image
                             drawData:(NSData *)drawData
                            drawImage:(NSData *)drawImage
+
+                              opusId:(NSString *)opusId
+                        opusCategory:(int)opusCategory
+
 {
     
 //    baseURL = [PPConfigManager getBBSServerURL];
@@ -290,6 +302,11 @@
 
         str = [str stringByAddQueryParameter:PARA_BOARDID value:boardId];
         
+        if ([opusId length] > 0){
+            str = [str stringByAddQueryParameter:PARA_CATEGORY intValue:opusCategory];
+            str = [str stringByAddQueryParameter:PARA_OPUS_ID value:opusId];
+        }
+
         return str;
     };
     

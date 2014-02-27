@@ -36,6 +36,9 @@ typedef enum{
 }
 @property (retain, nonatomic) DrawFeed* currentSelectFeed;
 
+@property (assign, nonatomic) BOOL isForSelectOpus;
+@property (copy, nonatomic) UserFeedControllerSelectResultBlock selectOpusCallback;
+
 @end
 
 @implementation UserFeedController
@@ -45,11 +48,26 @@ typedef enum{
 
 - (void)dealloc
 {
+    self.selectOpusCallback = nil;
+    
     PPRelease(_userId);
     PPRelease(_nickName);
     PPRelease(_currentSelectFeed);
     PPRelease(_shareAction);
     [super dealloc];
+}
+
++ (UserFeedController*)selectOpus:(PPViewController*)fromController callback:(UserFeedControllerSelectResultBlock)callback
+{
+    NSString* userId = [[UserManager defaultManager] userId];
+    NSString* nickName = [[UserManager defaultManager] nickName];
+    
+    UserFeedController* vc = [[[UserFeedController alloc] initWithUserId:userId nickName:nickName] autorelease];
+    vc.isForSelectOpus = YES;
+    vc.selectOpusCallback = callback;
+    
+    [fromController presentModalViewController:vc animated:YES];
+    return vc;
 }
 
 - (id)initWithUserId:(NSString *)userId
@@ -121,6 +139,16 @@ typedef enum{
     [titleView setRightButtonSelector:@selector(clickRefreshButton:)];
     
     self.view.backgroundColor = COLOR_WHITE;
+}
+
+- (void)clickBackButton:(id)sender
+{
+    if (_isForSelectOpus){
+        [self dismissModalViewControllerAnimated:YES];
+    }
+    else{
+        [super clickBackButton:sender];
+    }
 }
 
 - (void)viewDidUnload
@@ -355,6 +383,11 @@ typedef enum{
         return;
     }
     
+    if (_isForSelectOpus){
+        [self showSelectOpusOption:drawFeed];
+        return;
+    }
+
     [self enterDetailFeed:drawFeed showOpusImageBrowser:NO];
 }
 
@@ -810,12 +843,41 @@ typedef enum{
     [self finishDeleteData:feed ForTabID:self.currentTab.tabID];
 }
 
+- (void)showSelectOpusOption:(DrawFeed*)drawFeed
+{
+    CommonDialog* dialog = [CommonDialog createDialogWithTitle:NSLS(@"kConfirmSelectOpusTitle") message:NSLS(@"kConfirmSelectOpusMsg") style:CommonDialogStyleDoubleButton];
+    [dialog setClickOkBlock:^(id view){
+        
+        PPDebug(@"<showSelectOpusOption> select opus(%@, %@, %@, %@)", drawFeed.feedId, drawFeed.pbFeed.opusWord, drawFeed.feedUser.userId, drawFeed.feedUser.nickName);
+        
+        UIImage* image = [self getFeedImage:drawFeed];
+        EXECUTE_BLOCK(self.selectOpusCallback, 0, drawFeed.feedId, image, drawFeed.pbFeed.category);
+        self.selectOpusCallback = nil;
+        
+        [self dismissModalViewControllerAnimated:YES];
+    }];
+    
+    [dialog setClickCancelBlock:^(id view){
+        PPDebug(@"<showSelectOpusOption> cancel");
 
+        EXECUTE_BLOCK(self.selectOpusCallback, -1, nil, nil, 0);
+        self.selectOpusCallback = nil;
+
+        [self dismissModalViewControllerAnimated:YES];
+    }];
+
+    [dialog showInView:self.view];
+}
 
 #pragma mark Rank View delegate
 - (void)didClickRankView:(RankView *)rankView
 {
     _selectedRankView = rankView;
+
+    if (_isForSelectOpus){
+        [self showSelectOpusOption:_selectedRankView.feed];
+        return;
+    }
     
     MKBlockActionSheet *sheet;
     TableTab *tab = [self currentTab];

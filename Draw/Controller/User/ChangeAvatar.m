@@ -48,7 +48,8 @@
     PPRelease(_superViewController);
     PPRelease(_popoverController);
     self.selectImageBlock = nil;
-    self.setDefaultBlock = nil;    
+    self.setDefaultBlock = nil;
+    self.otherHandlerBlock = nil;
     [super dealloc];
 }
 
@@ -140,7 +141,7 @@
     self.canTakePhoto = canTakePhoto;
     self.userOriginalImage = userOriginalImage;
     self.selectImageBlock = selectImageHanlder;
-    
+    self.otherHandlerBlock = handler;
 
     MKBlockActionSheet *sheet = [[MKBlockActionSheet alloc] initWithTitle:title
                                                                  delegate:nil
@@ -148,28 +149,42 @@
                                                    destructiveButtonTitle:NSLS(@"kSelectFromAlbum")
                                                         otherButtonTitles:nil];
     
-    _buttonIndexAlbum = 0;
+    int fromIndex = 0;
+    _buttonIndexAlbum = fromIndex++;
     if (canTakePhoto) {
-        _buttonIndexCamera = [sheet addButtonWithTitle:NSLS(@"kTakePhoto")];
-    }
-    for (NSString *t in otherTitles) {
-        [sheet addButtonWithTitle:t];
+        [sheet addButtonWithTitle:NSLS(@"kTakePhoto")];
+        _buttonIndexCamera = fromIndex++;
     }
 
+    int otherIndexStart = fromIndex;
+    for (NSString *t in otherTitles) {
+        [sheet addButtonWithTitle:t];
+        fromIndex ++;
+    }
+    int otherIndexEnd = fromIndex - 1;
+    
     int index = [sheet addButtonWithTitle:NSLS(@"kCancel")];
     [sheet setCancelButtonIndex:index];
     
     [sheet setActionBlock:^(NSInteger buttonIndex)
     {
+        PPDebug(@"<showSelectionView> click at index = %d", buttonIndex);
         if (buttonIndex == _buttonIndexAlbum) {
             [self selectPhoto];
         }
         else if (buttonIndex == _buttonIndexCamera) {
             [self takePhoto];
-        }else{
-            EXECUTE_BLOCK(handler,buttonIndex);
         }
-        PPDebug(@"<showSelectionView> click at index = %d", buttonIndex);
+        else if (buttonIndex >= otherIndexStart && buttonIndex <= otherIndexEnd){
+            EXECUTE_BLOCK(self.otherHandlerBlock, buttonIndex);
+            self.otherHandlerBlock = nil;
+        }
+        else{
+            PPDebug(@"<showSelectionView> cancel");
+            self.otherHandlerBlock = nil;
+            self.selectImageBlock = nil;
+            self.superViewController = nil;
+        }
         
     }];
     [sheet showInView:[superViewController view]];

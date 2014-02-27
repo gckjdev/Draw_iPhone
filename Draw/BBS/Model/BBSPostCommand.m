@@ -68,6 +68,8 @@
                                         image:nil
                                drawActionList:nil
                                     drawImage:nil
+                                       opusId:nil
+                                 opusCategory:0
                                       boardId:self.post.boardId
                                      delegate:self.controller
                                    canvasSize:CGSizeZero];

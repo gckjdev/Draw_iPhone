@@ -2677,3 +2677,8 @@
 "kTaskAppViewWebDesc" = "访问小吉网站 %@";
 
 "kUserBoardForbidden" = "你已经在本版块被禁言，无法执行本操作";
+"kSelectImageOrOpus" = "请选择图片或者作品";
+"kSelectOpus" = "选择作品";
+
+"kConfirmSelectOpusTitle" = "确认消息";
+"kConfirmSelectOpusMsg" = "确认使用这幅作品吗?";

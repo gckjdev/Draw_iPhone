@@ -21,6 +21,7 @@
 #import "Group.pb.h"
 #import "GroupPermission.h"
 #import "UIViewController+BGImage.h"
+#import "UserFeedController.h"
 
 @interface CreatePostController ()
 {
@@ -63,6 +64,10 @@
 @property(nonatomic, retain) NSString *postUid;
 @property(nonatomic, retain) NSString *postText;
 @property(nonatomic, assign) CGSize canvasSize;
+
+// for select opus
+@property(nonatomic, retain) NSString *opusId;
+@property(nonatomic, assign) int opusCategory;
 
 
 @end
@@ -457,6 +462,8 @@
                                           image:self.image
                                  drawActionList:self.drawActionList
                                       drawImage:self.drawImage
+                                        opusId:self.opusId
+                                  opusCategory:self.opusCategory
                                        boardId:self.post.boardId
                                        delegate:self
                                      canvasSize:self.canvasSize];
@@ -480,6 +487,8 @@
                                         image:self.image
                                drawActionList:self.drawActionList
                                     drawImage:self.drawImage
+                                       opusId:self.opusId
+                                 opusCategory:self.opusCategory
                                         bonus:self.bonus
                                      delegate:self
                                    canvasSize:self.canvasSize
@@ -547,20 +556,50 @@
                                       initWithTargetType:TypeGraffiti delegate:self] autorelease];
     [self presentModalViewController:odc animated:YES];
 }
+
+- (void)selectOpus
+{
+    PPDebug(@"select opus invoke");
+    
+    [UserFeedController selectOpus:self callback:^(int resultCode, NSString *opusId, UIImage *opusImage, int opusCategory) {
+        if (resultCode == 0 && [opusId length] > 0){
+            self.image = opusImage;
+            [self updateToolButtons];
+            [self.textView becomeFirstResponder];
+        }
+        else{
+            
+        }
+    }];
+}
+
 - (void)startToSelectImage
 {
     self.imagePicker = [[[ChangeAvatar alloc] init] autorelease];
     [self.imagePicker setAutoRoundRect:NO];
-//    [self.imagePicker setImageSize:CGSizeMake(1024, 1024)];
-//    [self.imagePicker setIsCompressImage:YES];
+//    [self.imagePicker showSelectionView:self
+//                               delegate:self
+//                     selectedImageBlock:nil
+//                     didSetDefaultBlock:  
+//                                  title:nil
+//                        hasRemoveOption:NO
+//                           canTakePhoto:YES
+//                      userOriginalImage:YES];
+
+    __block CreatePostController* bself = self;
+    
     [self.imagePicker showSelectionView:self
-                               delegate:self
-                     selectedImageBlock:nil
-                     didSetDefaultBlock:nil
-                                  title:nil
-                        hasRemoveOption:NO
+                                  title:NSLS(@"kSelectImageOrOpus")
+                            otherTitles:@[NSLS(@"kSelectOpus")]
+                                handler:^(NSInteger index) {
+                                    [bself selectOpus];
+                                }
+                     selectImageHanlder:^(UIImage *image) {
+                         [self didImageSelected:image];
+                                }
                            canTakePhoto:YES
                       userOriginalImage:YES];
+    
     [self.textView resignFirstResponder];
 }
 - (IBAction)clickGraffitiButton:(id)sender {
@@ -646,6 +685,7 @@
 {
     self.drawActionList = nil;
     self.drawImage = nil;
+    self.opusId = nil;
 
     self.image = image;
     [self updateToolButtons];

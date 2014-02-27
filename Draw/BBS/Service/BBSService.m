@@ -397,6 +397,8 @@ BBSService *_staticGroupTopicService;
                         image:(UIImage *)image
                drawActionList:(NSArray *)drawActionList
                     drawImage:(UIImage *)drawImage
+                       opusId:(NSString *)opusId
+                 opusCategory:(int)opusCategory
                         bonus:(NSInteger)bonus
                      delegate:(id<BBSServiceDelegate>)delegate
                    canvasSize:(CGSize)size
@@ -406,7 +408,15 @@ BBSService *_staticGroupTopicService;
         BBSPostContentType type = ContentTypeText;
     
         NSData *drawData = nil;
-        if (image) {
+        if ([opusId length] > 0){
+            if (opusCategory == PBOpusCategoryTypeSingCategory){
+                type = ContentTypeSingOpus;
+            }
+            else{
+                type = ContentTypeDrawOpus;
+            }
+        }
+        else if (image) {
             type = ContentTypeImage;
         }else if (drawImage) {
             type = ContentTypeDraw;
@@ -463,6 +473,8 @@ BBSService *_staticGroupTopicService;
                                                            image:[image data]
                                                         drawData:drawData
                                                        drawImage:[drawImage data]
+                                                          opusId:opusId
+                                                    opusCategory:opusCategory
                                                            bonus:bonus
                                                        isPrivate:isPrivate];
             
@@ -836,6 +848,8 @@ BBSService *_staticGroupTopicService;
                          image:(UIImage *)image
                 drawActionList:(NSArray *)drawActionList
                      drawImage:(UIImage *)drawImage
+                        opusId:(NSString *)opusId
+                  opusCategory:(int)opusCategory
                        boardId:(NSString *)boardId
                       delegate:(id<BBSServiceDelegate>)delegate
                     canvasSize:(CGSize)size
@@ -851,12 +865,22 @@ BBSService *_staticGroupTopicService;
             resultCode = [self checkFrequent];
         }
         if(resultCode == ERROR_SUCCESS){
-            if (image) {
+            if ([opusId length] > 0){
+                if (opusCategory == PBOpusCategoryTypeSingCategory){
+                    contentType = ContentTypeSingOpus;
+                }
+                else{
+                    contentType = ContentTypeDrawOpus;
+                }
+            }
+            else if (image) {
                 contentType = ContentTypeImage;
-            }else if (drawImage) {
+            }
+            else if (drawImage) {
                 contentType = ContentTypeDraw;
                 drawData = [DrawAction buildBBSDrawData:drawActionList canvasSize:size info:nil];
-            }else{
+            }
+            else{
                 contentType = ContentTypeText;
             }
         }
@@ -939,8 +963,12 @@ BBSService *_staticGroupTopicService;
                                                         actionType:actionType
                                                               text:nText
                                                              image:[image data]
+                                                                                      
                                                           drawData:drawData
-                                                         drawImage:[drawImage data]];
+                                                         drawImage:[drawImage data]
+                                           
+                                                            opusId:opusId
+                                                      opusCategory:opusCategory];
 
             
             dispatch_async(dispatch_get_main_queue(), ^{

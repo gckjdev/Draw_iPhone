@@ -17,6 +17,8 @@
 #import "FriendController.h"
 #import "ShareAction.h"
 
+typedef void (^UserFeedControllerSelectResultBlock)(int resultCode, NSString* opusId, UIImage* opusImage, int opusCategory);
+
 @interface UserFeedController : CommonTabController<FeedServiceDelegate, RankViewDelegate,
 UIActionSheetDelegate, OpusImageBrowerDelegate, CommonDialogDelegate, FriendControllerDelegate, DrawDataServiceDelegate>
 {
@@ -34,4 +36,8 @@ UIActionSheetDelegate, OpusImageBrowerDelegate, CommonDialogDelegate, FriendCont
 - (id)initWithUserId:(NSString *)userId
             nickName:(NSString *)nickName
      defaultTabIndex:(int)defaultTabIndex;
+
+
++ (UserFeedController*)selectOpus:(PPViewController*)fromController callback:(UserFeedControllerSelectResultBlock)callback;
+
 @end

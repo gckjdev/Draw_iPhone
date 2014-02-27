@@ -114,6 +114,8 @@ typedef void (^BBSResultHandler) (NSInteger resultCode);
                         image:(UIImage *)image
                drawActionList:(NSArray *)drawActionList
                     drawImage:(UIImage *)drawImage
+                       opusId:(NSString *)opusId
+                 opusCategory:(int)opusCategory
                         bonus:(NSInteger)bonus
                      delegate:(id<BBSServiceDelegate>)delegate
                    canvasSize:(CGSize)size
@@ -165,6 +167,8 @@ typedef void (^BBSResultHandler) (NSInteger resultCode);
                          image:(UIImage *)image
                 drawActionList:(NSArray *)drawActionList
                      drawImage:(UIImage *)drawImage
+                        opusId:(NSString *)opusId
+                  opusCategory:(int)opusCategory
                        boardId:(NSString *)boardId
                       delegate:(id<BBSServiceDelegate>)delegate
                     canvasSize:(CGSize)size;
