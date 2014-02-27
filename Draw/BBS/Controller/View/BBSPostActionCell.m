@@ -14,6 +14,7 @@
 #import "BBSPopupSelectionView.h"
 #import "StringUtil.h"
 #import "BBSPermissionManager.h"
+#import "GroupPermission.h"
 #import "BBSPostCell.h"
 
 #define SPACE_CONTENT_TOP (ISIPAD ? 77 : 35)
@@ -312,8 +313,7 @@
 #pragma mark - action delegate
 - (void)clickAvatarButton:(id)sender
 {
-    BBSPermissionManager *pm = [BBSPermissionManager defaultManager];
-    if ([pm isBoardManager:self.post.boardId]){
+    if ([BBSPostCell isBoardManager:delegate boardId:self.post.boardId]){
         [BBSPostCell showBoardManagerUserAction:self.action.createUser
                                         boardId:self.post.boardId
                                          inView:self

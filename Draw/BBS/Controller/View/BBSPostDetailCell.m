@@ -322,8 +322,7 @@
 
 - (void)clickAvatarButton:(id)sender
 {
-    BBSPermissionManager *pm = [BBSPermissionManager defaultManager];
-    if ([pm isBoardManager:self.post.boardId]){
+    if ([BBSPostCell isBoardManager:delegate boardId:self.post.boardId]){
         [BBSPostCell showBoardManagerUserAction:self.post.createUser
                                         boardId:self.post.boardId
                                          inView:self

@@ -19,6 +19,7 @@
 #import "UserService.h"
 #import "SuperUserManageAction.h"
 #import "BBSService.h"
+#import "GroupManager.h"
 
 #define SPACE_CONTENT_TOP (ISIPAD ? (2.33 * 30) : 30)
 #define SPACE_CONTENT_BOTTOM_IMAGE (ISIPAD ? (2.33 * 120) : 120) //IMAGE TYPE OR DRAW TYPE
@@ -265,6 +266,28 @@
 
 #pragma mark - Click avatar && image
 
++ (BOOL)isBoardManager:(id)delegate boardId:(NSString*)boardId
+{
+    if ([delegate respondsToSelector:@selector(forGroup)] == NO){
+        PPDebug(@"<isBoardManager> delegate not respond to forGroup");
+        return NO;
+    }
+    
+    BOOL forGroup = [delegate performSelector:@selector(forGroup)];
+    if (forGroup){
+        
+        GroupPermissionManager* pm = [GroupPermissionManager myManagerWithGroupId:boardId];
+        BOOL ret = [pm canTopTopic];
+        PPDebug(@"<isBoardManager> group admin %d", ret);
+        return ret;
+    }
+    else{
+        BBSPermissionManager *pm = [BBSPermissionManager defaultManager];
+        BOOL ret = [pm isBoardManager:boardId];
+        PPDebug(@"<isBoardManager> BBS board admin %d for %@", ret, boardId);
+        return ret;
+    }
+}
 
 + (void)showBoardManagerUserAction:(PBBBSUser*)user
                            boardId:(NSString*)boardId
@@ -313,6 +336,11 @@
         }
         else if (buttonIndex == BUTTON_INDEX_FORBID_USER_BOARD){
 
+            if ([delegate isKindOfClass:[UIViewController class]] == NO){
+                PPDebug(@"<showBoardManagerUserAction> but delegate is NOT UIViewController");
+                return;
+            }
+            
             UIViewController* vc = (UIViewController*)delegate;
             UIView* view = vc.view;
             
@@ -355,8 +383,7 @@
 
 - (void)clickAvatarButton:(id)sender
 {
-    BBSPermissionManager *pm = [BBSPermissionManager defaultManager];
-    if ([pm isBoardManager:self.post.boardId]){
+    if ([BBSPostCell isBoardManager:delegate boardId:self.post.boardId]){
         [BBSPostCell showBoardManagerUserAction:self.post.createUser boardId:self.post.boardId inView:self delegate:delegate];
     }
     else{

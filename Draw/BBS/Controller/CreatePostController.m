@@ -678,6 +678,10 @@
         case ERROR_BBS_TEXT_REPEAT:
             msg = NSLS(@"kContentRepeatedError");
             break;
+        case ERROR_BBS_BOARD_FORIDDEN:
+            msg = NSLS(@"kUserBoardForbidden");
+            break;
+            
         default:
             msg = NSLS(@"kNetworkError");
             break;

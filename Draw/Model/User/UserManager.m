@@ -1980,7 +1980,7 @@ qqAccessTokenSecret:(NSString*)accessTokenSecret
     }
     
     [builder clearPermissionsList];
-    [builder addAllOffGroupIds:permissions];
+    [builder addAllPermissions:permissions];
     self.pbUser = [builder build];
 }
 

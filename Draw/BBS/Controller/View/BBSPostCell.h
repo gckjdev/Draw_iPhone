@@ -46,5 +46,6 @@
                            boardId:(NSString*)boardId
                             inView:(UIView*)view
                           delegate:(id)delegate;
++ (BOOL)isBoardManager:(id)delegate boardId:(NSString*)boardId;
 
 @end

@@ -368,13 +368,20 @@ enum{
 
 + (BOOL)isUser:(PBGameUser *)user adminOrCreatorInGroup:(PBGroup *)group
 {
-    if ([group.creator isEqual:user]) {
+    if ([group.creator.userId isEqualToString:user.userId]) {
         return YES;
     }
-    if ([group.adminsList containsObject:user]){
-        return YES;
+    
+    for (PBGameUser* adminUser in group.adminsList){
+        if ([adminUser.userId isEqualToString:user.userId]){
+            return YES;
+        }
     }
-    return NO;        
+//    
+//    if ([group.adminsList containsObject:user]){
+//        return YES;
+//    }
+    return NO;
 }
 
 + (BOOL)isMeAdminOrCreatorInSharedGroup
