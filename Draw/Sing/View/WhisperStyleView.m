@@ -73,7 +73,7 @@ AUTO_CREATE_VIEW_BY_XIB(WhisperStyleView);
         self.label.numberOfLines = 0;
         
         // set text stroke widht
-        self.label.textOutlineWidth = (ISIPAD ? 2 : 1); // change by Benson
+        self.label.textOutlineWidth = (ISIPAD ? 1 : 1); // change by Benson
         
         [self addSubview:self.label];
 
@@ -111,7 +111,7 @@ AUTO_CREATE_VIEW_BY_XIB(WhisperStyleView);
         self.label.textColor = [[DrawColor colorWithBetterCompressColor:labelInfo.textColor] color];
         
         // set font
-        self.label.font = [UIFont systemFontOfSize:ISIPAD ? 25 : 15];
+        self.label.font = [UIFont systemFontOfSize:ISIPAD ? 22 : 15];
         
         // set text stroke color
         self.label.textOutlineColor = [[DrawColor colorWithBetterCompressColor:labelInfo.textStrokeColor] color];

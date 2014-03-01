@@ -147,6 +147,7 @@ typedef enum {
 #define BORDER_WIDTH (ISIPAD ? 4 : 2)
 
 #define FONT_SIZE (ISIPAD ? 20 : 10)
+#define MIN_FONT_SIZE (ISIPAD ? 15 : 8)
 
 #define MAX_SIZE 1136
 
@@ -287,7 +288,12 @@ typedef enum {
         [tt setText:txt];
         tt.numberOfLines = 0;
         tt.textAlignment = NSTextAlignmentCenter;
-        [tt setMinimumScaleFactor:0.1];
+        if ([DeviceDetection isOS6]){
+            [tt setMinimumScaleFactor:0.1];
+        }
+        else{
+            [tt setMinimumFontSize:MIN_FONT_SIZE];
+        }
         [self addSubview:tt];
     }
     return self;
