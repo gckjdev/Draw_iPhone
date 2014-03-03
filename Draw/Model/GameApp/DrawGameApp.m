@@ -493,7 +493,7 @@
 //    [builder addAppRewards:diceApp];
     
     [builder addRewardWalls:limei];
-    [builder addRewardWalls:youmi];
+//    [builder addRewardWalls:youmi];
 //    [builder addRewardWalls:ader];
 //    [builder addRewardWalls:domod];
 //    [builder addRewardWalls:tapjoy];
