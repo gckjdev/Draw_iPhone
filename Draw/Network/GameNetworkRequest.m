@@ -787,12 +787,14 @@
         if (currentStatus == ReachableViaWWAN) {
             currnetNetwork = @"WWAN";
         }
-        NSString* basicInfo = [NSString stringWithFormat:@"\n设备(%@):%@\n系统:%@-%@\n版本:%@\n联网类型:%@\n", myDevice.model, [DeviceDetection platform], myDevice.systemName, myDevice.systemVersion, [PPApplication getAppVersion], currnetNetwork ];
+        NSString* basicInfo = [NSString stringWithFormat:@"\n设备(%@):%@\n系统:%@-%@\n版本:%@\n联网类型:%@\n小吉号码:%@\n用户昵称:%@\n", myDevice.model, [DeviceDetection platform], myDevice.systemName, myDevice.systemVersion, [PPApplication getAppVersion], currnetNetwork, [[UserManager defaultManager] xiaojiNumber], [[UserManager defaultManager] nickName]];
         
         
         str = [str stringByAddQueryParameter:METHOD value:METHOD_FEEDBACK];
         str = [str stringByAddQueryParameter:PARA_APPID value:appId];
         str = [str stringByAddQueryParameter:PARA_USERID value:userId];
+        str = [str stringByAddQueryParameter:PARA_XIAOJI_NUMBER value:[[UserManager defaultManager] xiaojiNumber]];
+        str = [str stringByAddQueryParameter:PARA_NICKNAME value:[[UserManager defaultManager] nickName]];
         
         if ([feedback length] > 0){
             NSString* completeFeedback = [feedback stringByAppendingString:basicInfo];

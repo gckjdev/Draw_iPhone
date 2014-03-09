@@ -300,6 +300,8 @@
     [titleView setTitle:title];
     [titleView setTarget:self];
     [titleView setBackButtonSelector:@selector(clickBack:)];
+    [titleView setRightButtonTitle:NSLS(@"kSubmit")];
+    [titleView setRightButtonSelector:@selector(submit:)];
 }
 
 

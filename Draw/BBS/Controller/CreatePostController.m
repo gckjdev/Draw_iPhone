@@ -632,6 +632,7 @@
         }else if(theAlertView.tag == ALERT_CLEAR_DRAW_TAG){
             [self startToSelectImage];
         }else if(theAlertView.tag == ALERT_QUIT_TAG){
+            [BBSManager saveLastInputText:@""];
             [self dismissModalViewControllerAnimated:YES];
         }
     }
@@ -745,7 +746,7 @@
     [self hideActivity];
     canCommit = YES;
     if (resultCode == 0) {
-        [BBSManager saveLastInputText:nil];
+        [BBSManager saveLastInputText:@""];
         PPDebug(@"<didCreatePost>create post successful!");
         if (self.delegate && [self.delegate
                               respondsToSelector:@selector(didController:CreateNewPost:)]) {
@@ -770,7 +771,7 @@
     [self hideActivity];
     canCommit = YES;    
     if (resultCode == 0) {
-        [BBSManager saveLastInputText:nil];
+        [BBSManager saveLastInputText:@""];
         PPDebug(@"<didCreateAction>create action successful!");
         if (self.delegate && [self.delegate
                               respondsToSelector:@selector(didController:CreateNewAction:)]) {
