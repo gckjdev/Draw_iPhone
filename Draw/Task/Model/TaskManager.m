@@ -164,6 +164,17 @@ static TaskManager* _defaultTaskManager;
                                                  badge:1
                                                  award:0
                                               selector:@selector(viewWeb:)] autorelease];
+
+    /*
+    GameTask* videoWallTask =  [[[GameTask alloc] initWithId:PBTaskIdTypeTaskVideoWall
+                                                  name:NSLS(@"kTaskAppVideoWall")
+                                                  desc:NSLS(@"kTaskAppVideoWallDesc")]
+                                                status:PBTaskStatusTaskStatusAlwaysOpen
+                                                 badge:1
+                                                 award:0
+                                              selector:@selector(gotoVideoWall:)] autorelease];
+     */
+     
     
 //    [retList addObject:task1];
 
@@ -498,6 +509,12 @@ static TaskManager* _defaultTaskManager;
     }
 }
 
+
+- (void)gotoVideoWall:(GameTask*)task
+{
+    
+}
+
 - (void)viewWeb:(GameTask*)task
 {
     NSString* url = [PPConfigManager xiaojiWeb];
@@ -644,6 +661,28 @@ static TaskManager* _defaultTaskManager;
     return count;
 }
 
-
+/*
+#pragma mark - DMVideoControllerDelegate
+// 开始加载视频广告。
+// Offer Video starts to fetch video.
+- (void)offerVideoDidStartLoad {
+    NSLog(@"offerVideoDidStartLoad");
+}
+// 积分视频广告加载完成。
+// Fetching Offer Video successfully.
+- (void)offerVideoDidFinishLoad {
+    NSLog(@"offerVideoDidFinishLoad");
+}
+// 积分视频广告加载失败。可能的原因由error部分提供，例如网络连接失败、被禁用等。
+// Failed to load Offer Video.
+- (void)offerVideoDidFailLoadWithError:(NSError *)error {
+    NSLog(@"offerVideoDidFailLoadWithError:%@",error);
+}
+// 积分视频广告页面被关闭。
+// Offer Video closed.
+- (void)offerVideoDidClosed {
+    NSLog(@"offerVideoDidClosed");
+}
+*/
 
 @end

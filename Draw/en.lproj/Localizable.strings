@@ -2140,6 +2140,9 @@
 "kGroupNameIsEmpty" = "The group name is empty.";
 "kGroupNameTooLong" = "The group name length should be less than 16";
 
+"kFollowGroupSuccess" = "Follow group successfully";
+"kUnfollowGroupSuccess" = "Unfollow group successfully";
+
 "kGroupNoticeIDEmpty" = "Group notice id is empty or null.";
 "kInvalidHandleType" = "Invalid hanle type.";
 "kGroupNoticeNotFound" = "Group notice not found.";

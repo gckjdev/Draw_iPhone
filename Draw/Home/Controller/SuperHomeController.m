@@ -61,6 +61,9 @@ static NSDictionary* DEFAULT_MENU_IMAGE_DICT = nil;
     PPRelease(_homeBottomMenuPanel);
     PPRelease(_homeHeaderPanel);
     PPRelease(_homeMainMenuPanel);
+    
+    [self stopStatisticTimer];
+    PPRelease(_statisTimer);
     [super dealloc];
 }
 
@@ -145,8 +148,6 @@ static NSDictionary* DEFAULT_MENU_IMAGE_DICT = nil;
     }];
     [self updateBGImageView];
 
-    // pull statistic timer
-    [NSTimer scheduledTimerWithTimeInterval:300 target:self selector:@selector(handleStaticTimer:) userInfo:nil repeats:YES];
     
     [[AudioManager defaultManager] setBackGroundMusicWithName:[GameApp getBackgroundMusicName]];
     [[AudioManager defaultManager] setVolume:[PPConfigManager getBGMVolume]];
@@ -160,6 +161,24 @@ static NSDictionary* DEFAULT_MENU_IMAGE_DICT = nil;
     [self updateAnimation];
 }
 
+- (void)startStatisticTimer
+{
+    if (self.statisTimer == nil){
+        PPDebug(@"<startStatisticTimer>");
+        self.statisTimer = [NSTimer scheduledTimerWithTimeInterval:300 target:self selector:@selector(handleStaticTimer:) userInfo:nil repeats:YES];
+    }
+}
+
+- (void)stopStatisticTimer
+{
+    if (self.statisTimer){
+        PPDebug(@"<stopStatisticTimer>");
+        if ([self.statisTimer isValid]){
+            [self.statisTimer invalidate];
+        }
+        self.statisTimer = nil;
+    }
+}
 
 - (void)viewDidAppear:(BOOL)animated
 {
@@ -174,10 +193,13 @@ static NSDictionary* DEFAULT_MENU_IMAGE_DICT = nil;
     if (self.adView){
         [self.view bringSubviewToFront:self.adView];
     }
+    
+    [self startStatisticTimer];
 }
 
 - (void)viewDidDisappear:(BOOL)animated
 {
+    [self stopStatisticTimer];
     [self unregisterJoinGameResponseNotification];
     [self unregisterNetworkConnectedNotification];
     [super viewDidDisappear:animated];

@@ -84,7 +84,7 @@
 
 - (UIButton *)defaultTabButton
 {
-    return (id)[self.tabsHolderView viewWithTag:GroupTabGroup];
+    return (id)[self.tabsHolderView viewWithTag:GroupTabTopic];
 }
 
 
@@ -255,7 +255,10 @@
 
 - (GroupTab)defaultTopicTab
 {
-    return GroupTabTopicHot;
+    if([[[GroupManager defaultManager] followedGroupIds] count] > 0){
+        return GroupTabTopicGroup;
+    }
+    return GroupTabTopicNew;
 }
 
 - (GroupTab)defaultGroupTab
@@ -351,8 +354,8 @@
         
         //topic sub tabs
         GroupTabTopicFollow,
-        GroupTabTopicGroup,
         GroupTabTopicMine,
+        GroupTabTopicGroup,
         GroupTabTopicNew,
         GroupTabTopicHot,
     };
@@ -372,8 +375,8 @@
         NSLS(@"kGroupTabGroupFame"),
         
         NSLS(@"kGroupTabTopicFollow"),
-        NSLS(@"kGroupTabTopicGroup"),
         NSLS(@"kGroupTabTopicMine"),
+        NSLS(@"kGroupTabTopicGroup"),
         NSLS(@"kGroupTabTopicNew"),
         NSLS(@"kGroupTabTopicHot"),
     };

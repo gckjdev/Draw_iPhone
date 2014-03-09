@@ -26,6 +26,7 @@
 @property(nonatomic, retain)HomeMainMenuPanel *homeMainMenuPanel;
 @property(nonatomic, retain)HomeBottomMenuPanel *homeBottomMenuPanel;
 @property(nonatomic, retain)UIView *adView;
+@property(nonatomic, retain)NSTimer *statisTimer;
 
 - (void)updateAllBadge;
 - (BOOL)isRegistered;

@@ -9,18 +9,20 @@
 #import <Foundation/Foundation.h>
 #import "PPSNSConstants.h"
 #import <ShareSDK/ShareSDK.h>
+//#import "DMVideoViewController.h"
 
 #define TASK_DATA_RELOAD_NOTIFICATION       @"TASK_DATA_RELOAD_NOTIFICATION"
 
 @class GameTask;
 @class PPViewController;
 
-@interface TaskManager : NSObject
+@interface TaskManager : NSObject //<DMVideoControllerDelegate>
 
 + (TaskManager*)defaultManager;
 
 @property (nonatomic, retain) NSMutableArray *taskList;
 @property (nonatomic, retain) PPViewController *viewController;
+//@property (nonatomic, retain) DMVideoViewController *videoOfferController;
 
 - (void)execute:(GameTask*)task viewController:(PPViewController*)viewController;
 - (void)awardTask:(GameTask*)task viewController:(PPViewController*)viewController;

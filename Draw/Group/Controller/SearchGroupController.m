@@ -62,6 +62,7 @@
     if (cell == nil) {
         cell = [GroupCell createCell:nil];
         [cell setCellInfo:data];
+        cell.delegate = self;
         cell.backgroundColor = [UIColor clearColor];
     }
     return cell;
@@ -92,6 +93,32 @@
 {
     [super tableView:tableView willDisplayCell:cell forRowAtIndexPath:indexPath];
     cell.backgroundColor = (indexPath.row & 0x1)? COLOR_GRAY : COLOR_WHITE;
+}
+
+
+- (void)groupCell:(GroupCell *)cell goFollowGroup:(PBGroup *)group
+{
+    [self showActivityWithText:NSLS(@"kFollowing")];
+    [[GroupService defaultService] followGroup:group.groupId
+                                      callback:^(NSError *error) {
+                                          [self hideActivity];
+                                          if (!error) {
+                                              POSTMSG(NSLS(@"kFollowGroupSuccess"));
+                                          }
+                                      }];
+}
+
+- (void)groupCell:(GroupCell *)cell goUnfollowGroup:(PBGroup *)group
+{
+    [self showActivityWithText:NSLS(@"kUnfollowing")];
+    [[GroupService defaultService] unfollowGroup:group.groupId
+                                        callback:^(NSError *error) {
+                                            [self hideActivity];
+                                            if (!error) {
+                                                POSTMSG(NSLS(@"kUnfollowGroupSuccess"));
+                                            }
+                                            
+                                        }];
 }
 
 @end
