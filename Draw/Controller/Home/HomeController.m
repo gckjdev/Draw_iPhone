@@ -649,6 +649,11 @@ static NSDictionary* DRAW_MENU_IMAGE_DICT = nil;
             break;
         case HomeMenuTypeDrawBigShop:
         {
+//#ifdef DEBUG
+//            [[UserService defaultService] showXiaojiNumberView:self.view];
+//            return;
+//#endif
+            
             [[AnalyticsManager sharedAnalyticsManager] reportClickHomeMenu:HOME_ACTION_SHOP];
             
             StoreController *vc = [[[StoreController alloc] init] autorelease];

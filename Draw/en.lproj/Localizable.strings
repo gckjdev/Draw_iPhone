@@ -451,7 +451,7 @@
 "kDrawTillDawn" = "Awesome";
 "kHelloEveryone" = "Hello";
 "kDontLeave" = "So smart";
-"kFunny" = "Funny";
+"kFunny" = "So so";
 "kDrawedWhat" = "What ?!";
 "kHardToGuess" = "Unbelivable";
 "kSelfDefine" = "+";
@@ -2669,3 +2669,7 @@
 "kSelectOpus" = "Use Opus";
 "kConfirmSelectOpusTitle" = "Message";
 "kConfirmSelectOpusMsg" = "Are you sure to use this opus?";
+
+"kEasyTakeNumber" = "Just one click to complete registration, no additional information required.";
+"kTakeNumberNow" = "OK";
+"Quit" = "Quit";

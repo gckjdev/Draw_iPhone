@@ -481,7 +481,7 @@
 "kDrawTillDawn" = "我好聰明吧";
 "kHelloEveryone" = "Hi,大家好";
 "kDontLeave" = "你真聰明";
-"kFunny" = "畫的好爛";
+"kFunny" = "囧";
 "kDrawedWhat" = "畫神馬啊";
 "kHardToGuess" = "畫的不錯";
 "kSelfDefine" = "+";
@@ -2693,9 +2693,13 @@
 "kTaskAppViewWeb" = "訪問小吉網站";
 "kTaskAppViewWebDesc" = "訪問小吉網站 %@";
 
-// TODO translation
 "kUserBoardForbidden" = "你已經在本版塊被禁言，無法執行本操作";
 "kSelectImageOrOpus" = "請選擇圖片或者作品";
 "kSelectOpus" = "選擇作品";
 "kConfirmSelectOpusTitle" = "確認消息";
 "kConfirmSelectOpusMsg" = "確認使用這幅作品嗎?";
+
+// TODO translation
+"kEasyTakeNumber" = "小吉应用注册非常简单，只要点击【领取号码】按钮即可完成注册，不需要输入任何额外信息";
+"kTakeNumberNow" = "领取号码";
+"Quit" = "退出";

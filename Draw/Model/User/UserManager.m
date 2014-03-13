@@ -1310,9 +1310,9 @@ qqAccessTokenSecret:(NSString*)accessTokenSecret
 - (BOOL)canShakeXiaojiNumber
 {
     
-#ifdef DEBUG
-    return YES;
-#endif
+//#ifdef DEBUG
+//    return YES;
+//#endif
     
     if ([self hasXiaojiNumber]){
         return NO;

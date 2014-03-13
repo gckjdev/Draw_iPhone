@@ -483,7 +483,7 @@
 "kDrawTillDawn" = "我好聪明";
 "kHelloEveryone" = "Hi,大家好";
 "kDontLeave" = "你真聪明";
-"kFunny" = "画的好烂";
+"kFunny" = "囧";
 "kDrawedWhat" = "画神马啊";
 "kHardToGuess" = "画的不错";
 "kSelfDefine" = "+";
@@ -2689,3 +2689,7 @@
 
 "kConfirmSelectOpusTitle" = "确认消息";
 "kConfirmSelectOpusMsg" = "确认使用这幅作品吗?";
+
+"kEasyTakeNumber" = "小吉应用注册非常简单，只要点击【领取号码】按钮即可完成注册，不需要输入任何额外信息";
+"kTakeNumberNow" = "领取号码";
+"Quit" = "退出";

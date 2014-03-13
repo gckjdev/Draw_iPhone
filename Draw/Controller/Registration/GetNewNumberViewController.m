@@ -79,7 +79,13 @@
     
     
     [self.view addSubview:self.getNumberMainView];
-    
+
+//    UIButton* button = [UIButton buttonWithType:UIButtonTypeCustom];
+//    button.frame = self.getNumberMainView.bounds;
+//    [button addTarget:self action:@selector(clickBgButton:) forControlEvents:UIControlStateNormal];
+//    
+//    [self.getNumberMainView addSubview:button];
+//    [self.getNumberMainView sendSubviewToBack:button];
 }
 
 
@@ -370,7 +376,41 @@
 
 - (IBAction)clickClose:(id)sender
 {
-    [[UserService defaultService] dismissGetNumberView];
+    CommonDialog* dialog = [CommonDialog createDialogWithTitle:NSLS(@"kMessage")
+                                                       message:NSLS(@"kEasyTakeNumber")
+                                                         style:CommonDialogStyleDoubleButton];
+    
+    
+    [dialog.oKButton setTitle:NSLS(@"kTakeNumberNow") forState:UIControlStateNormal];
+    [dialog.cancelButton setTitle:NSLS(@"Quit") forState:UIControlStateNormal];
+    
+    [dialog setClickOkBlock:^(id view){
+        [self clickTakeNumber:nil];
+    }];
+    
+    [dialog setClickCancelBlock:^(id view){
+        [[UserService defaultService] dismissGetNumberView];
+    }];
+
+    [dialog showInView:self.view];
+
+}
+
+- (IBAction)clickBgButton:(id)sender
+{
+    CommonDialog* dialog = [CommonDialog createDialogWithTitle:NSLS(@"kMessage")
+                                                       message:NSLS(@"kEasyTakeNumber")
+                                                         style:CommonDialogStyleDoubleButton];
+    
+
+    [dialog.oKButton setTitle:NSLS(@"kTakeNumberNow") forState:UIControlStateNormal];
+    [dialog.cancelButton setTitle:NSLS(@"Back") forState:UIControlStateNormal];
+
+    [dialog setClickOkBlock:^(id view){
+        [self clickTakeNumber:nil];
+    }];
+    
+    [dialog showInView:self.view];
 }
 
 @end

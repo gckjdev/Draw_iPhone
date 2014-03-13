@@ -827,13 +827,14 @@ typedef enum{
     
     REPLAY = index++;
     DELETE = index++;
+    EDIT = index++;
         
-#if DEBUG
-    if (![self isDraftTab]) {
-        // for super admin test
-        EDIT = index++;
-    }
-#endif
+//#if DEBUG
+//    if (![self isDraftTab]) {
+//        // for super admin test
+//        EDIT = index++;
+//    }
+//#endif
     
     SAVE_INTO_PHOTO = index++;
     SHARE_SINA_WEIBO = index++;

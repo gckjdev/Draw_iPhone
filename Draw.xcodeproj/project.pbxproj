@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 45;
+	objectVersion = 46;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -279,7 +279,6 @@
 		A44F32EE17E16C5000AF9B26 /* ContestRankView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A44F32EC17E16C5000AF9B26 /* ContestRankView.xib */; };
 		A44F32EF17E16C5000AF9B26 /* ContestRankView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A44F32EC17E16C5000AF9B26 /* ContestRankView.xib */; };
 		A44F32F017E16C5000AF9B26 /* ContestRankView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A44F32EC17E16C5000AF9B26 /* ContestRankView.xib */; };
-		A454207816E060BA0073A431 /* Draw-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = CA745D2A1503B1B500600024 /* Draw-Info.plist */; };
 		A454CB6F1558F5CE00896761 /* ChatController.m in Sources */ = {isa = PBXBuildFile; fileRef = A454CB6D1558F5CE00896761 /* ChatController.m */; };
 		A454CB701558F5CE00896761 /* ChatController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A454CB6E1558F5CE00896761 /* ChatController.xib */; };
 		A454CBC4155A181500896761 /* MessageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A454CBC2155A181500896761 /* MessageCell.m */; };
@@ -1172,7 +1171,6 @@
 		A461B7BF174CBAA70088B061 /* DrawOnCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAE5AD671717EB0E009BFDC1 /* DrawOnCell~ipad.xib */; };
 		A461B7D4174CBAA70088B061 /* README.txt in Resources */ = {isa = PBXBuildFile; fileRef = C282E5A3172BC53200F8C610 /* README.txt */; };
 		A461B7F8174CBAA70088B061 /* Sing.proto in Resources */ = {isa = PBXBuildFile; fileRef = A461B074174CAE050088B061 /* Sing.proto */; };
-		A461B7FE174CBB240088B061 /* Sing-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A461B079174CBA490088B061 /* Sing-Info.plist */; };
 		A461C9281565E3700076FD9C /* ChatMessageView.m in Sources */ = {isa = PBXBuildFile; fileRef = A461C9271565E3700076FD9C /* ChatMessageView.m */; };
 		A461C94115662BC30076FD9C /* ChatController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A461C93F15662BC30076FD9C /* ChatController~ipad.xib */; };
 		A461C94215662BC30076FD9C /* MessageCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A461C94015662BC30076FD9C /* MessageCell~ipad.xib */; };
@@ -4026,7 +4024,6 @@
 		C28AA0A01738F04B007A819F /* DrawOnCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAE5AD631717EAE8009BFDC1 /* DrawOnCell.xib */; };
 		C28AA0A11738F04B007A819F /* DrawOnCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAE5AD671717EB0E009BFDC1 /* DrawOnCell~ipad.xib */; };
 		C28AA0B61738F04B007A819F /* README.txt in Resources */ = {isa = PBXBuildFile; fileRef = C282E5A3172BC53200F8C610 /* README.txt */; };
-		C28AA0D01738F0ED007A819F /* LittleGeeDraw-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C28AA0C21738F0ED007A819F /* LittleGeeDraw-Info.plist */; };
 		C28AA0E01738F406007A819F /* LittleGeeDrawApp.m in Sources */ = {isa = PBXBuildFile; fileRef = C28AA0D21738F405007A819F /* LittleGeeDrawApp.m */; };
 		C28C0A7316EB324500A29B6C /* CacheService.m in Sources */ = {isa = PBXBuildFile; fileRef = C28C0A7216EB324500A29B6C /* CacheService.m */; };
 		C295B912168571C2005B3559 /* DrawGameJumpHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = C295B90E168571C2005B3559 /* DrawGameJumpHandler.m */; };
@@ -6894,7 +6891,6 @@
 		EA411F1C176066F500DA72D0 /* Sing.proto in Resources */ = {isa = PBXBuildFile; fileRef = A461B074174CAE050088B061 /* Sing.proto */; };
 		EA411F21176066F500DA72D0 /* default_config_513819630_version.txt in Resources */ = {isa = PBXBuildFile; fileRef = CA2488E51753562800848A5F /* default_config_513819630_version.txt */; };
 		EA411F22176066F500DA72D0 /* default_config_513819630.pb in Resources */ = {isa = PBXBuildFile; fileRef = CA2488E61753562800848A5F /* default_config_513819630.pb */; };
-		EA411F2E17606A6700DA72D0 /* AskPs-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = EA411F2D17606A6700DA72D0 /* AskPs-Info.plist */; };
 		EA411F3117606CD800DA72D0 /* AskPsApp.m in Sources */ = {isa = PBXBuildFile; fileRef = EA411F3017606CD800DA72D0 /* AskPsApp.m */; };
 		EA411F4F176310FA00DA72D0 /* AskPsController.m in Sources */ = {isa = PBXBuildFile; fileRef = EA411F4D176310FA00DA72D0 /* AskPsController.m */; };
 		EA411F50176310FA00DA72D0 /* AskPsController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA411F4E176310FA00DA72D0 /* AskPsController.xib */; };
@@ -17450,7 +17446,7 @@
 		CA745D151503B1B400600024 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0420;
+				LastUpgradeCheck = 0500;
 				TargetAttributes = {
 					CA745D1D1503B1B400600024 = {
 						DevelopmentTeam = LPN7A567X3;
@@ -17458,7 +17454,7 @@
 				};
 			};
 			buildConfigurationList = CA745D181503B1B400600024 /* Build configuration list for PBXProject "Draw" */;
-			compatibilityVersion = "Xcode 3.1";
+			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -17808,7 +17804,6 @@
 				A461B7BF174CBAA70088B061 /* DrawOnCell~ipad.xib in Resources */,
 				A461B7D4174CBAA70088B061 /* README.txt in Resources */,
 				A461B7F8174CBAA70088B061 /* Sing.proto in Resources */,
-				A461B7FE174CBB240088B061 /* Sing-Info.plist in Resources */,
 				A4364369176706A4006B6946 /* Opus.proto in Resources */,
 				EA64193617743A3D009FCFD5 /* SingHomeHeaderPanel.xib in Resources */,
 				EA64193D17743A66009FCFD5 /* SingHomeHeaderPanel~ipad.xib in Resources */,
@@ -18798,7 +18793,6 @@
 				C28AA0A01738F04B007A819F /* DrawOnCell.xib in Resources */,
 				C28AA0A11738F04B007A819F /* DrawOnCell~ipad.xib in Resources */,
 				C28AA0B61738F04B007A819F /* README.txt in Resources */,
-				C28AA0D01738F0ED007A819F /* LittleGeeDraw-Info.plist in Resources */,
 				C2F564BB173DED2800C8E313 /* little_gee_home_big_pen@2x.png in Resources */,
 				C2F564C9173DED2800C8E313 /* little_gee_home_draw_btn_bg@2x.png in Resources */,
 				C2F564D7173DED2800C8E313 /* little_gee_home_options@2x.png in Resources */,
@@ -19765,7 +19759,6 @@
 				CA5B073F16C0106A004A64C4 /* DrawSlider~ipad.xib in Resources */,
 				CA9A7ECD16DC57D40089BD51 /* ShapeBox.xib in Resources */,
 				CA9A7ED216DC57F70089BD51 /* ShapeBox~ipad.xib in Resources */,
-				A454207816E060BA0073A431 /* Draw-Info.plist in Resources */,
 				CA485F5616E440E300AEE725 /* DrawBgBox.xib in Resources */,
 				CA485F5816E440E300AEE725 /* DrawBgBox~ipad.xib in Resources */,
 				CA23514816EB0DD200C88082 /* CustomInfoView.xib in Resources */,
@@ -20792,7 +20785,6 @@
 				EA411F1C176066F500DA72D0 /* Sing.proto in Resources */,
 				EA411F21176066F500DA72D0 /* default_config_513819630_version.txt in Resources */,
 				EA411F22176066F500DA72D0 /* default_config_513819630.pb in Resources */,
-				EA411F2E17606A6700DA72D0 /* AskPs-Info.plist in Resources */,
 				EA411F50176310FA00DA72D0 /* AskPsController.xib in Resources */,
 				EA411F551763165F00DA72D0 /* AskPsHomeController.xib in Resources */,
 				A436436A176706A4006B6946 /* Opus.proto in Resources */,
@@ -24969,6 +24961,7 @@
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Draw/Draw-Prefix.pch";
+				GCC_THUMB_SUPPORT = NO;
 				HEADER_SEARCH_PATHS = (
 					"../Common_iPhone_20/Components/Component-Network/ProtocolBuffer/objectivec/Classes/**",
 					"../Common_iPhone_20/3PP-SDK/QWeiboSDK4iOS/**",
@@ -24976,7 +24969,7 @@
 					"${SRCROOT}/**",
 				);
 				INFOPLIST_FILE = "$(SRCROOT)/Draw/Sing-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/MobClick\"",
@@ -25049,6 +25042,7 @@
 				GCC_C_LANGUAGE_STANDARD = "compiler-default";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Draw/Draw-Prefix.pch";
+				GCC_THUMB_SUPPORT = NO;
 				HEADER_SEARCH_PATHS = (
 					"../Common_iPhone_20/Components/Component-Network/ProtocolBuffer/objectivec/Classes/**",
 					"../Common_iPhone_20/3PP-SDK/QWeiboSDK4iOS/**",
@@ -25056,7 +25050,7 @@
 					"${SRCROOT}/**",
 				);
 				INFOPLIST_FILE = "$(SRCROOT)/Draw/Sing-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/MobClick\"",
@@ -25130,6 +25124,7 @@
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Draw/Draw-Prefix.pch";
+				GCC_THUMB_SUPPORT = NO;
 				HEADER_SEARCH_PATHS = (
 					"../Common_iPhone_20/Components/Component-Network/ProtocolBuffer/objectivec/Classes/**",
 					"../Common_iPhone_20/3PP-SDK/QWeiboSDK4iOS/**",
@@ -25137,7 +25132,7 @@
 					"${SRCROOT}/**",
 				);
 				INFOPLIST_FILE = "$(SRCROOT)/Draw/LittleGeeDraw-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/MobClick\"",
@@ -25204,6 +25199,7 @@
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Draw/Draw-Prefix.pch";
+				GCC_THUMB_SUPPORT = NO;
 				HEADER_SEARCH_PATHS = (
 					"../Common_iPhone_20/Components/Component-Network/ProtocolBuffer/objectivec/Classes/**",
 					"../Common_iPhone_20/3PP-SDK/QWeiboSDK4iOS/**",
@@ -25211,7 +25207,7 @@
 					"${SRCROOT}/**",
 				);
 				INFOPLIST_FILE = "$(SRCROOT)/Draw/LittleGeeDraw-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/MobClick\"",
@@ -25256,10 +25252,7 @@
 		CA745D531503B1B500600024 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = (
-					armv7,
-					armv6,
-				);
+				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				CODE_SIGN_IDENTITY = "iPhone Developer: Lingzhe Peng (9WG829Y3AG)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Lingzhe Peng (9WG829Y3AG)";
 				COMPRESS_PNG_FILES = YES;
@@ -25267,6 +25260,7 @@
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = DEBUG;
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_THUMB_SUPPORT = NO;
 				GCC_VERSION = "";
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
@@ -25276,26 +25270,26 @@
 					"./Draw/GameServer/ProtocolBuffer/**",
 				);
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = "-ObjC";
 				PROVISIONING_PROFILE = "8D3E3C65-E145-47C7-BB9A-53FA7CEA0E6F";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "8D3E3C65-E145-47C7-BB9A-53FA7CEA0E6F";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				USER_HEADER_SEARCH_PATHS = "./Draw/GameServer/ProtocolBuffer/**";
+				VALID_ARCHS = "arm64 armv7 armv7s armv6";
 			};
 			name = Debug;
 		};
 		CA745D541503B1B500600024 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = (
-					armv7,
-					armv6,
-				);
+				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				CODE_SIGN_IDENTITY = "iPhone Developer: Lingzhe Peng (9WG829Y3AG)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				COMPRESS_PNG_FILES = YES;
 				GCC_C_LANGUAGE_STANDARD = "compiler-default";
+				GCC_THUMB_SUPPORT = NO;
 				GCC_VERSION = "";
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
@@ -25304,7 +25298,7 @@
 					"../Common_iPhone_20/3PP-SDK/QWeiboSDK4iOS/**",
 					"./Draw/GameServer/ProtocolBuffer/**",
 				);
-				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1.1;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				OTHER_LDFLAGS = "-ObjC";
 				PROVISIONING_PROFILE = "8D3E3C65-E145-47C7-BB9A-53FA7CEA0E6F";
@@ -25312,6 +25306,7 @@
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				USER_HEADER_SEARCH_PATHS = "./Draw/GameServer/ProtocolBuffer/**";
+				VALID_ARCHS = "arm64 armv7 armv7s armv6";
 			};
 			name = Release;
 		};
@@ -25344,6 +25339,7 @@
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Draw/Draw-Prefix.pch";
+				GCC_THUMB_SUPPORT = NO;
 				HEADER_SEARCH_PATHS = (
 					"../Common_iPhone_20/Components/Component-Network/ProtocolBuffer/objectivec/Classes/**",
 					"../Common_iPhone_20/3PP-SDK/QWeiboSDK4iOS/**",
@@ -25351,7 +25347,7 @@
 					"${SRCROOT}/**",
 				);
 				INFOPLIST_FILE = "Draw/Draw-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/MobClick\"",
@@ -25421,6 +25417,7 @@
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Draw/Draw-Prefix.pch";
+				GCC_THUMB_SUPPORT = NO;
 				HEADER_SEARCH_PATHS = (
 					"../Common_iPhone_20/Components/Component-Network/ProtocolBuffer/objectivec/Classes/**",
 					"../Common_iPhone_20/3PP-SDK/QWeiboSDK4iOS/**",
@@ -25428,7 +25425,7 @@
 					"${SRCROOT}/**",
 				);
 				INFOPLIST_FILE = "Draw/Draw-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/MobClick\"",
@@ -25499,6 +25496,7 @@
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Draw/Draw-Prefix.pch";
+				GCC_THUMB_SUPPORT = NO;
 				HEADER_SEARCH_PATHS = (
 					"../Common_iPhone_20/Components/Component-Network/ProtocolBuffer/objectivec/Classes/**",
 					"../Common_iPhone_20/3PP-SDK/QWeiboSDK4iOS/**",
@@ -25506,7 +25504,7 @@
 					"${SRCROOT}/**",
 				);
 				INFOPLIST_FILE = "$(SRCROOT)/Draw/AskPs-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/MobClick\"",
@@ -25574,6 +25572,7 @@
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Draw/Draw-Prefix.pch";
+				GCC_THUMB_SUPPORT = NO;
 				HEADER_SEARCH_PATHS = (
 					"../Common_iPhone_20/Components/Component-Network/ProtocolBuffer/objectivec/Classes/**",
 					"../Common_iPhone_20/3PP-SDK/QWeiboSDK4iOS/**",
@@ -25581,7 +25580,7 @@
 					"${SRCROOT}/**",
 				);
 				INFOPLIST_FILE = "$(SRCROOT)/Draw/AskPs-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/MobClick\"",

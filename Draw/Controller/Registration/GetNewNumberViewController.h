@@ -50,7 +50,7 @@
 @property (retain, nonatomic) IBOutlet UIButton *qqLoginButton;
 @property (retain, nonatomic) IBOutlet UIButton *sinaLoginButton;
 
-
+- (IBAction)clickBgButton:(id)sender;
 - (IBAction)clickClose:(id)sender;
 
 - (IBAction)clickForgot:(id)sender;
