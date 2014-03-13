@@ -2700,6 +2700,7 @@
 "kConfirmSelectOpusMsg" = "確認使用這幅作品嗎?";
 
 // TODO translation
-"kEasyTakeNumber" = "小吉应用注册非常简单，只要点击【领取号码】按钮即可完成注册，不需要输入任何额外信息";
-"kTakeNumberNow" = "领取号码";
+"kEasyTakeNumber" = "小吉應用註冊非常簡單，只要點擊【領取號碼】按鈕即可完成註冊，不需要輸入任何額外信息";
+"kTakeNumberNow" = "領取號碼";
 "Quit" = "退出";
+
