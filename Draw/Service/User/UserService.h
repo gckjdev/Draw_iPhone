@@ -7,7 +7,7 @@
 //
 
 #import "CommonService.h"
-#import "ShareSDK/ShareSDK.h"
+#import <ShareSDK/ShareSDK.h>
 
 typedef enum {
     BLACK_USER_TYPE_USERID = 0,

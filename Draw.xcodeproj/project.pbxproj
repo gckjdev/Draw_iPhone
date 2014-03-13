@@ -25007,8 +25007,8 @@
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = Sing;
-				PROVISIONING_PROFILE = "9B5B4B31-701F-4498-A959-4E06A74F97F0";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "9B5B4B31-701F-4498-A959-4E06A74F97F0";
+				PROVISIONING_PROFILE = "288ABD33-404C-43F2-A3FD-2016270FA6BF";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "288ABD33-404C-43F2-A3FD-2016270FA6BF";
 				VALID_ARCHS = "arm64 armv7 armv7s";
 				WRAPPER_EXTENSION = app;
 			};
@@ -25088,8 +25088,8 @@
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = Sing;
-				PROVISIONING_PROFILE = "5F84A650-DB22-43A3-B873-208FEB7E1F98";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "5F84A650-DB22-43A3-B873-208FEB7E1F98";
+				PROVISIONING_PROFILE = "200BB87F-BBAC-4704-9F0D-4227122B0D5B";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "200BB87F-BBAC-4704-9F0D-4227122B0D5B";
 				VALIDATE_PRODUCT = YES;
 				VALID_ARCHS = "arm64 armv7 armv7s";
 				WRAPPER_EXTENSION = app;
@@ -25169,6 +25169,7 @@
 				PRODUCT_NAME = LittleGeeDraw;
 				PROVISIONING_PROFILE = "8B18D76F-50BA-471C-B18C-66FEF85EEE8B";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "8B18D76F-50BA-471C-B18C-66FEF85EEE8B";
+				VALID_ARCHS = "arm64 armv7 armv7s";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -25245,6 +25246,7 @@
 				PROVISIONING_PROFILE = "A13C845E-7761-4C20-B34D-EACABFABB459";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "A13C845E-7761-4C20-B34D-EACABFABB459";
 				VALIDATE_PRODUCT = YES;
+				VALID_ARCHS = "arm64 armv7 armv7s";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
@@ -25252,7 +25254,10 @@
 		CA745D531503B1B500600024 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
+				ARCHS = (
+					armv7,
+					armv6,
+				);
 				CODE_SIGN_IDENTITY = "iPhone Developer: Lingzhe Peng (9WG829Y3AG)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Lingzhe Peng (9WG829Y3AG)";
 				COMPRESS_PNG_FILES = YES;
@@ -25272,21 +25277,24 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = "-ObjC";
-				PROVISIONING_PROFILE = "8D3E3C65-E145-47C7-BB9A-53FA7CEA0E6F";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "8D3E3C65-E145-47C7-BB9A-53FA7CEA0E6F";
+				PROVISIONING_PROFILE = "24E88A41-CC4E-4714-AA97-845A82B78813";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "24E88A41-CC4E-4714-AA97-845A82B78813";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				USER_HEADER_SEARCH_PATHS = "./Draw/GameServer/ProtocolBuffer/**";
-				VALID_ARCHS = "arm64 armv7 armv7s armv6";
+				VALID_ARCHS = "arm64 armv7 armv7s";
 			};
 			name = Debug;
 		};
 		CA745D541503B1B500600024 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
-				CODE_SIGN_IDENTITY = "iPhone Developer: Lingzhe Peng (9WG829Y3AG)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				ARCHS = (
+					armv7,
+					armv6,
+				);
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Lingzhe Peng (LPN7A567X3)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Lingzhe Peng (LPN7A567X3)";
 				COMPRESS_PNG_FILES = YES;
 				GCC_C_LANGUAGE_STANDARD = "compiler-default";
 				GCC_THUMB_SUPPORT = NO;
@@ -25301,12 +25309,12 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 5.1.1;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				OTHER_LDFLAGS = "-ObjC";
-				PROVISIONING_PROFILE = "8D3E3C65-E145-47C7-BB9A-53FA7CEA0E6F";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
+				PROVISIONING_PROFILE = "2DFA37DA-4AF3-4537-AEAE-76216B3A2502";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "2DFA37DA-4AF3-4537-AEAE-76216B3A2502";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				USER_HEADER_SEARCH_PATHS = "./Draw/GameServer/ProtocolBuffer/**";
-				VALID_ARCHS = "arm64 armv7 armv7s armv6";
+				VALID_ARCHS = "arm64 armv7 armv7s";
 			};
 			name = Release;
 		};
@@ -25384,8 +25392,9 @@
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "8D3E3C65-E145-47C7-BB9A-53FA7CEA0E6F";
+				PROVISIONING_PROFILE = "24E88A41-CC4E-4714-AA97-845A82B78813";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "24E88A41-CC4E-4714-AA97-845A82B78813";
+				VALID_ARCHS = "arm64 armv7 armv7s";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -25395,8 +25404,8 @@
 			baseConfigurationReference = 5F5CBE3EAF724F1A9042D44B /* Pods.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Lingzhe Peng (LPN7A567X3)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Lingzhe Peng (LPN7A567X3)";
 				COPY_PHASE_STRIP = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -25462,9 +25471,10 @@
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "8D3E3C65-E145-47C7-BB9A-53FA7CEA0E6F";
+				PROVISIONING_PROFILE = "2DFA37DA-4AF3-4537-AEAE-76216B3A2502";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "2DFA37DA-4AF3-4537-AEAE-76216B3A2502";
 				VALIDATE_PRODUCT = YES;
+				VALID_ARCHS = "arm64 armv7 armv7s";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
