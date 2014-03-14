@@ -1236,7 +1236,7 @@
 "kHomeMenuTypeDrawTimeline" = "动态";
 "kHomeMenuTypeDrawRank" = "画榜";
 "kHomeMenuTypeDrawContest" = "比赛";
-"kHomeMenuTypeDrawBBS" = "论坛";
+"kHomeMenuTypeDrawBBS" = "交流";
 "kHomeMenuTypeTask" = "任务";
 "kHomeMenuTypeDrawApps" = "应用推荐";
 "kHomeMenuTypeDrawHome" = "主页";
@@ -2693,3 +2693,6 @@
 "kEasyTakeNumber" = "小吉应用注册非常简单，只要点击【领取号码】按钮即可完成注册，不需要输入任何额外信息";
 "kTakeNumberNow" = "领取号码";
 "Quit" = "退出";
+
+"kUserHasNoGroupYet" = "你还不属于任何家族，可以选择加入一个家族或者自己建立一个家族";
+"kEnterMyGroup" = "进入我家";

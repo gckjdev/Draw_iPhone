@@ -25,6 +25,7 @@
 #import "GroupFeedController.h"
 #import "DrawPlayer.h"
 #import "ImagePlayer.h"
+#import "GroupDetailController.h"
 
 @interface GroupHomeController ()
 {
@@ -139,6 +140,9 @@
     [self.titleView setRightButtonAsRefresh];
     [self.titleView setRightButtonSelector:@selector(clickRefreshButton:)];
     
+    [self.titleView setRightButtonTitle:NSLS(@"kEnterMyGroup")];
+    [self.titleView setRightButtonSelector:@selector(clickEnterMyGroup:)];
+    
     [self setDefaultBGImage];
     
     [self initTabButtons];
@@ -157,6 +161,19 @@
     }];
 
 }
+    
+- (IBAction)clickEnterMyGroup:(id)sender
+{
+    PBGroup* group = [[GroupManager defaultManager] userCurrentGroup];
+    if(group == nil){
+        POSTMSG(NSLS(@"kUserHasNoGroupYet"));
+        return;
+    }
+    
+    [GroupTopicController enterWithGroup:group fromController:self];
+}
+    
+    
 
 - (void)setNeedRefreshFollowGroupTab
 {
@@ -474,12 +491,15 @@
                 POSTMSG(NSLS(@"kNotTestUserCan'tCreateGroup"));
                 return;                
             }
+
+#ifndef DEBUG
             NSInteger minUserLevel = [PPConfigManager getUserMinLevelForCreateGroup];
             if([[UserManager defaultManager] level] < minUserLevel){
                 NSString *msg = [NSString stringWithFormat:NSLS(@"kCan'tCreateGroupForUserLevel"), minUserLevel];
                 POSTMSG(msg);
                 return;
             }
+#endif
             CreateGroupController *cgc =  [[CreateGroupController alloc] init];
             [self.navigationController pushViewController:cgc animated:YES];
             [cgc release];

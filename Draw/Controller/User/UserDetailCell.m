@@ -793,7 +793,7 @@
 }
 
 - (IBAction)inviteGuest:(id)sender {
-    __block UIButton *button = sender;
+    UIButton *button = sender;
     NSString *groupId = [[GroupManager defaultManager] userCurrentGroupId];
     [self alertForInvation:NO callback:^{
         [[GroupService defaultService] inviteGuests:@[[self targetUserId]] groupId:groupId callback:^(NSError *error) {

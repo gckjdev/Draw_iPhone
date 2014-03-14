@@ -1247,7 +1247,8 @@
 "kHomeMenuTypeDrawTimeline" = "動態";
 "kHomeMenuTypeDrawRank" = "畫榜";
 "kHomeMenuTypeDrawContest" = "比賽";
-"kHomeMenuTypeDrawBBS" = "論壇";
+//"kHomeMenuTypeDrawBBS" = "論壇";
+"kHomeMenuTypeDrawBBS" = "交流";
 "kHomeMenuTypeTask" = "任務";
 "kHomeMenuTypeDrawApps" = "應用推薦";
 "kHomeMenuTypeDrawHome" = "主頁";
@@ -2703,4 +2704,7 @@
 "kEasyTakeNumber" = "小吉應用註冊非常簡單，只要點擊【領取號碼】按鈕即可完成註冊，不需要輸入任何額外信息";
 "kTakeNumberNow" = "領取號碼";
 "Quit" = "退出";
+
+"kUserHasNoGroupYet" = "你還不屬於任何家族，可以選擇加入一個家族或者自己建立一個家族";
+"kEnterMyGroup" = "進入我家";
 

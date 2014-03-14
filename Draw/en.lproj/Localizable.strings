@@ -2673,3 +2673,6 @@
 "kEasyTakeNumber" = "Just one click to complete registration, no additional information required.";
 "kTakeNumberNow" = "OK";
 "Quit" = "Quit";
+
+"kUserHasNoGroupYet" = "You don't belong to any group yet.";
+"kEnterMyGroup" = "My Group";
