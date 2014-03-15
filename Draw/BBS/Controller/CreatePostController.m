@@ -28,7 +28,7 @@
     PBBBSBoard *_bbsBoard;
     
     PBBBSAction *_sourceAction;
-//    PBBBSPost *_sourcePost;
+//    PBBBSPost *_sourcePost;`
 
     //post info
     NSString *_postId;
@@ -473,6 +473,8 @@
             [self hideActivity];
             [self alertError:resultCode];
             if (resultCode == 0) {
+                [BBSManager saveLastInputText:@""];
+                
                 self.post = editedPost;
                 if ([self.delegate respondsToSelector:@selector(didController:editPost:)]) {
                     [self.delegate didController:self editPost:editedPost];

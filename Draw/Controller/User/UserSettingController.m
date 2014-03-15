@@ -1512,6 +1512,10 @@ SET_CELL_BG_IN_CONTROLLER;
     if (imageUploader == nil) {
         imageUploader = [[ChangeAvatar alloc] init];
         imageUploader.autoRoundRect = NO;
+
+        imageUploader.enableCrop = YES;
+        [imageUploader setCropRatio:1];
+        
     }
     [imageUploader showSelectionView:self
                   selectedImageBlock:^(UIImage *image) {

@@ -495,7 +495,7 @@
     if (imageUploader == nil) {
         imageUploader = [[ChangeAvatar alloc] init];
         imageUploader.autoRoundRect = NO;
-        imageUploader.isCompressImage = NO;
+        imageUploader.isCompressImage = NO;                
     }
     return imageUploader;
 }

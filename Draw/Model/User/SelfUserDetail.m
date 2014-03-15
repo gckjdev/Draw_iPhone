@@ -396,6 +396,10 @@
     if (_changeAvatar == nil) {
         _changeAvatar = [[ChangeAvatar alloc] init];
         _changeAvatar.autoRoundRect = NO;
+
+        _changeAvatar.enableCrop = YES;
+        [_changeAvatar setCropRatio:1];
+        
     }
     [_changeAvatar showSelectionView:viewController selectedImageBlock:^(UIImage *image)
     {

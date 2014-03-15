@@ -227,7 +227,7 @@
         [delegate didImageSelected:image];
     }
     
-    if (_selectImageBlock != NULL) {
+    if (self.enableCrop == NO && _selectImageBlock != NULL) {
         EXECUTE_BLOCK(_selectImageBlock, image);
         self.selectImageBlock = nil;
     }
@@ -257,6 +257,12 @@
     if ([self.delegate respondsToSelector:@selector(didCropImageSelected:)]) {
         [self.delegate didCropImageSelected:image];
     }
+    
+    if (self.enableCrop == YES && _selectImageBlock != NULL) {
+        EXECUTE_BLOCK(_selectImageBlock, image);
+        self.selectImageBlock = nil;
+    }
+    
 }
 
 - (void)cropViewControllerDidCancel:(CropAndFilterViewController *)controller{

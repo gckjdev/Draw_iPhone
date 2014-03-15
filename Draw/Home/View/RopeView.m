@@ -61,7 +61,6 @@
 
 - (void)handleTap:(UITapGestureRecognizer *)tap
 {
-//    [self startAnimation];
     if (tap.state == UIGestureRecognizerStateRecognized) {
         [self dismissAndCallBack];
     }
