@@ -461,17 +461,17 @@ static NSDictionary* DEFAULT_MENU_IMAGE_DICT = nil;
     int awardTomorrow = [[CheckInManager defaultManager] getTomorrowCheckInAward];
 
     NSString* msg = [NSString stringWithFormat:NSLS(@"kCheckInSucc"), awardToday, days, awardTomorrow];
-    POSTMSG2(msg, 3);
+    POSTMSG2(msg, 3.5);
 }
 
 - (void)askEnterFreeCoin
 {
     if ([PPConfigManager wallEnabled] && [PPConfigManager isInReviewVersion] == NO){
-        POSTMSG2(NSLS(@"kAlreadyCheckInWithFreeCoin"), 2);
+        POSTMSG2(NSLS(@"kAlreadyCheckInWithFreeCoin"), 3.5);
         [self enterFreeCoins];
     }
     else{
-        POSTMSG2(NSLS(@"kAlreadyCheckIn"), 2);
+        POSTMSG2(NSLS(@"kAlreadyCheckIn"), 3.5);
     }
 }
 
