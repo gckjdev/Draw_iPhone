@@ -2708,8 +2708,8 @@
 "kEnterMyGroup" = "進入我家";
 
 // TODO translation
-"kCheckIn" = "签到";
-"kCheckInSucc" = "今日签到成功！获得%d金币，你已经连续签到%d天，明日继续签到可获得%d金币 (^v^)";
-"kAlreadyCheckIn" = "今天已经签到过了，欢迎明天再来 (^v^)";
-"kAlreadyCheckInWithFreeCoin" = "今天已经签到过了，欢迎明天再来 (^v^) ，要继续获取更多金币，下载免费应用就好了";
-"Open" = "打开";
+"kCheckIn" = "簽到";
+"kCheckInSucc" = "今日簽到成功！獲得%d金幣，你已經連續簽到%d天，明日繼續簽到可獲得%d金幣(^v^)";
+"kAlreadyCheckIn" = "今天已經簽到過了，歡迎明天再來 (^v^)";
+"kAlreadyCheckInWithFreeCoin" = "今天已經簽到過了，歡迎明天再來(^v^) ，要繼續獲取更多金幣，下載免費應用就好了";
+"Open" = "打開";
