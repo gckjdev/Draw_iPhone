@@ -2676,3 +2676,9 @@
 
 "kUserHasNoGroupYet" = "You don't belong to any group yet.";
 "kEnterMyGroup" = "My Group";
+
+"kCheckIn" = "Check In";
+"kCheckInSucc" = "Check in today successfully! You got %d coins for %d days! Come tomorrow and you will get %d coins!";
+"kAlreadyCheckIn" = "You have checked in today, please come tomorrow!";
+"kAlreadyCheckInWithFreeCoin" = "You have checked in today, please come tomorrow! Download free apps to get more coins!";
+"Open" = "Open";

@@ -1247,8 +1247,8 @@
 "kHomeMenuTypeDrawTimeline" = "動態";
 "kHomeMenuTypeDrawRank" = "畫榜";
 "kHomeMenuTypeDrawContest" = "比賽";
-//"kHomeMenuTypeDrawBBS" = "論壇";
-"kHomeMenuTypeDrawBBS" = "交流";
+"kHomeMenuTypeDrawBBS" = "論壇";
+//"kHomeMenuTypeDrawBBS" = "交流";
 "kHomeMenuTypeTask" = "任務";
 "kHomeMenuTypeDrawApps" = "應用推薦";
 "kHomeMenuTypeDrawHome" = "主頁";
@@ -2700,7 +2700,6 @@
 "kConfirmSelectOpusTitle" = "確認消息";
 "kConfirmSelectOpusMsg" = "確認使用這幅作品嗎?";
 
-// TODO translation
 "kEasyTakeNumber" = "小吉應用註冊非常簡單，只要點擊【領取號碼】按鈕即可完成註冊，不需要輸入任何額外信息";
 "kTakeNumberNow" = "領取號碼";
 "Quit" = "退出";
@@ -2708,3 +2707,9 @@
 "kUserHasNoGroupYet" = "你還不屬於任何家族，可以選擇加入一個家族或者自己建立一個家族";
 "kEnterMyGroup" = "進入我家";
 
+// TODO translation
+"kCheckIn" = "签到";
+"kCheckInSucc" = "今日签到成功！获得%d金币，你已经连续签到%d天，明日继续签到可获得%d金币 (^v^)";
+"kAlreadyCheckIn" = "今天已经签到过了，欢迎明天再来 (^v^)";
+"kAlreadyCheckInWithFreeCoin" = "今天已经签到过了，欢迎明天再来 (^v^) ，要继续获取更多金币，下载免费应用就好了";
+"Open" = "打开";

@@ -1236,7 +1236,7 @@
 "kHomeMenuTypeDrawTimeline" = "动态";
 "kHomeMenuTypeDrawRank" = "画榜";
 "kHomeMenuTypeDrawContest" = "比赛";
-"kHomeMenuTypeDrawBBS" = "交流";
+"kHomeMenuTypeDrawBBS" = "论坛";
 "kHomeMenuTypeTask" = "任务";
 "kHomeMenuTypeDrawApps" = "应用推荐";
 "kHomeMenuTypeDrawHome" = "主页";
@@ -2696,3 +2696,9 @@
 
 "kUserHasNoGroupYet" = "你还不属于任何家族，可以选择加入一个家族或者自己建立一个家族";
 "kEnterMyGroup" = "进入我家";
+
+"kCheckIn" = "签到";
+"kCheckInSucc" = "今日签到成功！获得%d金币，你已经连续签到%d天，明日继续签到可获得%d金币 (^v^)";
+"kAlreadyCheckIn" = "今天已经签到过了，欢迎明天再来 (^v^)";
+"kAlreadyCheckInWithFreeCoin" = "今天已经签到过了，欢迎明天再来 (^v^) ，要继续获取更多金币，下载免费应用就好了";
+"Open" = "打开";

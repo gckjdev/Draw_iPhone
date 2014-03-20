@@ -361,4 +361,12 @@ typedef enum{
 
 + (int)boardManagerBlackUserDays;
 
++ (int)getCheckInAwardFirstDay;
++ (int)getCheckInAwardAddPerDay;
++ (int)maxCheckInDays;
+
++ (BOOL)enableComeback;
++ (int)comebackDays;
++ (NSString*)comebackMessage;
+
 @end

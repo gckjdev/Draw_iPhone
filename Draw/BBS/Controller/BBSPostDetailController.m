@@ -213,7 +213,7 @@ typedef enum{
     
     [self.bgImageView setImage:[_bbsImageManager bbsBGImage]];
 
-    if ([self.post isMyPost]) {
+    if ([self.post isMyPost] || [[BBSPermissionManager defaultManager] isBoardManager:self.post.boardId]) {
         [self.refreshButton setImage:[_bbsImageManager bbsPostEditImage] forState:UIControlStateNormal];
         [self.refreshButton removeTarget:self action:@selector(clickRefreshButton:) forControlEvents:UIControlEventTouchUpInside];
         [self.refreshButton addTarget:self action:@selector(clickEditButton:) forControlEvents:UIControlEventTouchUpInside];

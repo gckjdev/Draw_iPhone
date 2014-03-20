@@ -23,6 +23,10 @@
 #import "StorageManager.h"
 #import "UIImage+Scale.h"
 #import "PPConfigManager.h"
+#import "APLevelDB.h"
+#import "LevelDBManager.h"
+#import "TimeUtils.h"
+#import "LocalNotificationUtil.h"
 
 
 #define KEY_ALL_USER_PB_DATA            @"KEY_ALL_USER_PB_DATA"
@@ -1983,5 +1987,221 @@ qqAccessTokenSecret:(NSString*)accessTokenSecret
     [builder addAllPermissions:permissions];
     self.pbUser = [builder build];
 }
+
+@end
+
+
+/*
+ 
+ 首页，签到和免费金币融合
+ 
+ 
+ 
+ 1）点击【签到】，根据连续N天签到，显示当天获得的金币，以及下一天可以获得的签到金币
+ 
+ 2）如果当天已经签到，则告知已经签到了，询问是否要进入免费金币获取免费金币
+ 
+ 3）如果未签到，启动时候显示一个数字【1】
+ 
+ 从200金币起步，每日递增100
+ 
+ 200，300，400，500，600，700，800
+ 
+ 
+ 
+ 
+ 
+ Local Notification
+ 
+ 每次登录的时候，设置一个N天后的通知（N天后的晚上M-N点钟之间随机），提示用户“自上次使用【小吉画画】已经有3天了，快回来画画，还有更多精彩绘画作品等着你 (^v^)”
+ 
+ 每次启动的时候清除之前的通知设定
+ 
+ 
+ 
+ 一日一画的通知，每天通知用户今日一日一画的主题
+ 
+
+ 
+ */
+
+#define DB_USER_CONFIG      @"db_user_config"
+#define DB_KEY_CHECK_IN     @"check_in_"
+
+@interface CheckInManager()
+
+@property (nonatomic, retain) APLevelDB* db;
+
+@end
+
+@implementation CheckInManager
+
+static CheckInManager* _defaultCheckInManager;
+APLevelDB* _db;
+
++ (CheckInManager*)defaultManager
+{
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        if (_defaultCheckInManager == nil){
+            _defaultCheckInManager = [[CheckInManager alloc] init];
+            _defaultCheckInManager.db = [[LevelDBManager defaultManager] db:DB_USER_CONFIG];
+            
+        }
+    });
+    
+    return _defaultCheckInManager;
+}
+
+- (NSString*)getKey:(NSDate*)date
+{
+    NSString* key = [NSString stringWithFormat:@"%@_%@", DB_KEY_CHECK_IN, dateToChineseStringByFormat(date, @"yyyyMMdd")];
+    return key;
+}
+
+#define KEY_LAST_CHECKIN_DATE   @"KEY_LAST_CHECKIN_DATE"
+
+- (NSDate*)getLastCheckInDate
+{
+    NSUserDefaults* ud = [NSUserDefaults standardUserDefaults];
+    return [ud objectForKey:KEY_LAST_CHECKIN_DATE];
+}
+
+- (void)updateLastCheckInDate
+{
+    NSDate* now = [NSDate date];
+    NSUserDefaults* ud = [NSUserDefaults standardUserDefaults];
+    [ud setObject:now forKey:KEY_LAST_CHECKIN_DATE];
+    [ud synchronize];
+}
+
+- (void)checkIn
+{
+    NSDate* now = [NSDate date];
+    NSString* key = [self getKey:now];
+    PPDebug(@"<checkIn> %@", key);
+    [self.db setObject:@(1) forKey:key];
+    
+    [self updateLastCheckInDate];
+}
+
+- (void)clearAllCheckInBefore
+{
+    [self.db removeAllObjects];
+}
+
+- (BOOL)isContinousCheckIn
+{
+    NSDate* lastCheckInDate = [self getLastCheckInDate];
+    NSString* lastCheckInDateString = dateToChineseStringByFormat(lastCheckInDate, @"yyyyMMdd");
+    
+    NSDate* now = [NSDate date];
+    NSDate* yesterday = previousDate(now);
+    NSString* yesterdayString = dateToChineseStringByFormat(yesterday, @"yyyyMMdd");
+
+    if ([lastCheckInDateString isEqualToString:yesterdayString]){
+        return YES;
+    }
+    else{
+        return NO;
+    }
+}
+
+- (int)continuousCheckInDays
+{
+    return [[self.db allKeys] count];
+}
+
+- (BOOL)isCheckInToday
+{
+//    for (int i=1; i<10; i++){
+//        PPDebug(@"<test check in> %d", [self getCheckInAward:i]);
+//    }
+    
+    NSDate* now = [NSDate date];
+    NSString* key = [self getKey:now];
+    int value = [[self.db objectForKey:key] intValue];
+    return value;
+}
+
+- (int)getAccumulateCheckInDays
+{
+    NSArray* keys = [self.db allKeys];
+    return [keys count];
+}
+
+- (int)getCheckInAward:(int)count
+{
+    int maxCount = [PPConfigManager maxCheckInDays];
+    int mulCount = count > maxCount ? maxCount - 1 : count - 1;
+    
+    int start = [PPConfigManager getCheckInAwardFirstDay];
+    int add = [PPConfigManager getCheckInAwardAddPerDay] * mulCount;
+    return start + add;
+}
+
+- (int)getTodayCheckInAward
+{
+    int count = [self getAccumulateCheckInDays] + 1;
+    return [self getCheckInAward:count];
+}
+
+- (int)getTomorrowCheckInAward
+{
+    int count = [self getAccumulateCheckInDays] + 1;
+    return [self getCheckInAward:count];
+}
+
+@end
+
+@interface ComebackManager()
+
+@property (nonatomic, retain) UILocalNotification* notification;
+
+@end
+
+@implementation ComebackManager
+
+static ComebackManager* _defaultLoginManager;
+
++ (ComebackManager*)defaultManager
+{
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        if (_defaultLoginManager == nil){
+            _defaultLoginManager = [[ComebackManager alloc] init];
+        }
+    });
+    
+    return _defaultLoginManager;
+}
+
+- (void)registerNotification
+{
+    [self clearNotification];
+
+    if ([PPConfigManager enableComeback] == NO){
+        return;
+    }    
+    
+    NSDate* fireDate = [NSDate dateWithTimeInterval:24*60*60*[PPConfigManager comebackDays] sinceDate:[NSDate date]]; //nextNDate([NSDate date], );
+    NSString* msg = [PPConfigManager comebackMessage];
+    
+    self.notification = [LocalNotificationUtil scheduleLocalNotificationWithFireDate:fireDate
+                                                       alertBody:msg
+                                                  repeatInterval:0
+                                                        userInfo:[NSDictionary dictionary]];
+}
+
+- (void)clearNotification
+{
+    if (self.notification == nil){
+        return;
+    }
+    
+    [LocalNotificationUtil cancelLocalNotification:self.notification];
+    self.notification = nil;
+}
+
 
 @end

@@ -296,3 +296,34 @@ qqAccessTokenSecret:(NSString*)accessTokenSecret
 - (void)setUserPermissions:(NSArray*)persmissions;
 
 @end
+
+@interface CheckInManager : NSObject{
+
+    
+    
+}
+
++ (CheckInManager*)defaultManager;
+
+- (void)checkIn;
+- (BOOL)isCheckInToday;
+- (int)getTodayCheckInAward;
+- (int)getTomorrowCheckInAward;
+- (void)clearAllCheckInBefore;
+- (BOOL)isContinousCheckIn;
+- (int)continuousCheckInDays;
+
+@end
+
+@interface ComebackManager : NSObject{
+    
+}
+
++ (ComebackManager*)defaultManager;
+
+- (void)registerNotification;
+- (void)clearNotification;
+
+@end
+
+

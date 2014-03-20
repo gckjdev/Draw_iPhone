@@ -709,10 +709,7 @@ static NSDictionary* DRAW_MENU_IMAGE_DICT = nil;
             
         case HomeMenuTypeDrawFreeCoins:
         {
-            [[AnalyticsManager sharedAnalyticsManager] reportClickHomeMenu:HOME_ACTION_FREE_COINS];
-            FreeIngotController* fc = [[[FreeIngotController alloc] init] autorelease];
-            [self.navigationController pushViewController:fc animated:YES];
-            
+            [self enterCheckIn];
         }
             break;
             
@@ -945,14 +942,13 @@ int *getDrawMainMenuTypeListHasNewContest()
         HomeMenuTypeGroup,
         HomeMenuTypeDrawBBS,
         HomeMenuTypeDrawRank,
-        HomeMenuTypeDrawPainter,
+        HomeMenuTypeDrawFreeCoins,
         HomeMenuTypeDrawContest,
         
         HomeMenuTypeDrawBigShop,
-//        HomeMenuTypeTask,
         HomeMenuTypeDrawPhoto,
         HomeMenuTypeDrawMore,
-        HomeMenuTypeDrawFreeCoins,
+        HomeMenuTypeDrawPainter,
         HomeMenuTypeDrawGame,
         HomeMenuTypeDrawGuess,
         
@@ -966,21 +962,36 @@ int *getDrawMainMenuTypeListWithoutFreeCoins()
 {
     int static list[] = {
         HomeMenuTypeDrawDraw,
-        HomeMenuTypeGroup,        
+        HomeMenuTypeGroup,
         HomeMenuTypeDrawBBS,
         HomeMenuTypeDrawRank,
-        HomeMenuTypeDrawPainter,
+        HomeMenuTypeDrawFreeCoins,
         HomeMenuTypeDrawContest,
         
         HomeMenuTypeDrawBigShop,
-        HomeMenuTypeTask,
-        HomeMenuTypeDrawMore,
         HomeMenuTypeDrawPhoto,
-
+        HomeMenuTypeDrawMore,
+        HomeMenuTypeDrawPainter,
         HomeMenuTypeDrawGame,
         HomeMenuTypeDrawGuess,
         
         HomeMenuTypeEnd
+//        HomeMenuTypeDrawDraw,
+//        HomeMenuTypeGroup,        
+//        HomeMenuTypeDrawBBS,
+//        HomeMenuTypeDrawRank,
+//        HomeMenuTypeDrawPainter,
+//        HomeMenuTypeDrawContest,
+//        
+//        HomeMenuTypeDrawBigShop,
+//        HomeMenuTypeTask,
+//        HomeMenuTypeDrawMore,
+//        HomeMenuTypeDrawPhoto,
+//
+//        HomeMenuTypeDrawGame,
+//        HomeMenuTypeDrawGuess,
+//        
+//        HomeMenuTypeEnd
     };
     return list;
 }

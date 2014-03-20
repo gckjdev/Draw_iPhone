@@ -1463,4 +1463,35 @@
     return GET_UMENG_INTVAL(@"BLACK_USER_MAX_DAYS", 7);
 }
 
++ (int)getCheckInAwardFirstDay
+{
+    return GET_UMENG_INTVAL(@"CHECKIN_FIRST", 100);
+}
+
++ (int)getCheckInAwardAddPerDay
+{
+    return GET_UMENG_INTVAL(@"CHECKIN_ADD", 100);
+}
+
++ (int)maxCheckInDays
+{
+    return GET_UMENG_INTVAL(@"CHECKIN_ADD", 5);
+}
+
++ (BOOL)enableComeback
+{
+    return GET_UMENG_BOOLVALUE(@"COMEBACK", YES);
+}
+
++ (int)comebackDays
+{
+    return GET_UMENG_INTVAL(@"COMEBACK_DAYS", 3);
+}
+
++ (NSString*)comebackMessage
+{
+    return GET_UMENG_STRVALUE(@"COMEBACK_DAYS", @"自上次登录后，你已经有好几天没有来小吉，快回来吧，更多精彩等着你 (^v^)");
+}
+
+
 @end

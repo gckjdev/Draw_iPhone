@@ -38,6 +38,7 @@
 #import "ContestController.h"
 #import "PainterController.h"
 #import "GroupHomeController.h"
+#import "FreeIngotController.h"
 
 static NSDictionary* DEFAULT_MENU_TITLE_DICT = nil;
 static NSDictionary* DEFAULT_MENU_IMAGE_DICT = nil;
@@ -252,6 +253,8 @@ static NSDictionary* DEFAULT_MENU_IMAGE_DICT = nil;
     [self updateBadgeWithType:HomeMenuTypeBottomTask badge:manager.taskCount];
     [self updateBadgeWithType:HomeMenuTypeDrawGuess badge:manager.guessContestNotif];
     
+    [self updateBadgeWithType:HomeMenuTypeDrawFreeCoins badge:[[CheckInManager defaultManager] isCheckInToday] ? 0:1];
+    
     long timelineCount = manager.timelineOpusCount + manager.timelineGuessCount + manager.commentCount + manager.drawToMeCount;
     
     [self updateBadgeWithType:HomeMenuTypeDrawTimeline badge:timelineCount];
@@ -425,6 +428,64 @@ static NSDictionary* DEFAULT_MENU_IMAGE_DICT = nil;
     [us release];
 }
 
+- (void)enterFreeCoins
+{
+    [[AnalyticsManager sharedAnalyticsManager] reportClickHomeMenu:HOME_ACTION_FREE_COINS];
+    FreeIngotController* fc = [[[FreeIngotController alloc] init] autorelease];
+    [self.navigationController pushViewController:fc animated:YES];
+}
+
+
+/*
+ 1）点击【签到】，根据连续N天签到，显示当天获得的金币，以及下一天可以获得的签到金币
+ 
+ 2）如果当天已经签到，则告知已经签到了，询问是否要进入免费金币获取免费金币
+ 
+ 3）如果未签到，启动时候显示一个数字【1】
+ 
+ */
+
+- (void)askCheckIn
+{
+    
+    if ([[CheckInManager defaultManager] isContinousCheckIn] == NO){
+        [[CheckInManager defaultManager] clearAllCheckInBefore];
+    }
+    
+    int awardToday = [[CheckInManager defaultManager] getTodayCheckInAward];
+    [[CheckInManager defaultManager] checkIn];
+    [self updateAllBadge];
+    [[AccountService defaultService] chargeCoin:awardToday source:CheckInType];
+
+    int days = [[CheckInManager defaultManager] continuousCheckInDays];
+    int awardTomorrow = [[CheckInManager defaultManager] getTomorrowCheckInAward];
+
+    NSString* msg = [NSString stringWithFormat:NSLS(@"kCheckInSucc"), awardToday, days, awardTomorrow];
+    POSTMSG2(msg, 3);
+}
+
+- (void)askEnterFreeCoin
+{
+    if ([PPConfigManager wallEnabled] && [PPConfigManager isInReviewVersion] == NO){
+        POSTMSG2(NSLS(@"kAlreadyCheckInWithFreeCoin"), 2);
+        [self enterFreeCoins];
+    }
+    else{
+        POSTMSG2(NSLS(@"kAlreadyCheckIn"), 2);
+    }
+}
+
+- (void)enterCheckIn
+{
+//    [[CheckInManager defaultManager] clearAllCheckInBefore];
+    
+    if ([[CheckInManager defaultManager] isCheckInToday] == NO){
+        [self askCheckIn];
+    }
+    else{
+        [self askEnterFreeCoin];
+    }
+}
 
 - (void)askShake
 {
@@ -830,7 +891,7 @@ static NSDictionary* DEFAULT_MENU_IMAGE_DICT = nil;
                                  @(HomeMenuTypeDrawPhoto) : NSLS(@"kGallery"),
                                  @(HomeMenuTypeDrawApps) : NSLS(@"kMore_apps"),
                                  @(HomeMenuTypeDrawCharge) : NSLS(@"kChargeTitle"),
-                                 @(HomeMenuTypeDrawFreeCoins) : NSLS(@"kFreeIngots"),
+                                 @(HomeMenuTypeDrawFreeCoins) : NSLS(@"kCheckIn"), //NSLS(@"kFreeIngots"),
                                  @(HomeMenuTypeDrawApps) : NSLS(@"kMore_apps"),
                                  @(HomeMenuTypeDrawMore) : NSLS(@"kHomeMenuTypeDrawMore"),
                                  @(HomeMenuTypeGroup) : NSLS(@"kGroup"),

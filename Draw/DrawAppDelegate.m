@@ -464,6 +464,8 @@ NSString* GlobalGetBoardServerURL()
     
     PPDebug(@"<applicationDidEnterBackground>");
     
+    [[ComebackManager defaultManager] registerNotification];
+    
     UIApplication* app = [UIApplication sharedApplication];
     
     bgTask = [app beginBackgroundTaskWithExpirationHandler:^{
@@ -504,6 +506,11 @@ NSString* GlobalGetBoardServerURL()
     
 }
 
+- (void)application:(UIApplication *)application didReceiveLocalNotification:(UILocalNotification*)notification
+{
+    PPDebug(@"<didReceiveLocalNotification>");
+}
+
 - (void)applicationWillEnterForeground:(UIApplication *)application
 {
     /*
@@ -533,7 +540,10 @@ NSString* GlobalGetBoardServerURL()
     
     [[ContestService defaultService] syncOngoingContestList];
     
-    [GameApp HandleWithDidBecomeActive];    
+    [GameApp HandleWithDidBecomeActive];
+    
+    [[ComebackManager defaultManager] registerNotification];
+    
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application

@@ -203,7 +203,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GameAdWallService)
     if ([userId length] == 0)
         return;
     
-    if ([PPConfigManager wallEnabled] == NO){
+    if ([PPConfigManager wallEnabled] == NO || [PPConfigManager isInReviewVersion] == YES){
         return;
     }
     
