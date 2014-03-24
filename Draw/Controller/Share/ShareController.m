@@ -827,8 +827,11 @@ typedef enum{
     
     REPLAY = index++;
     DELETE = index++;
-    EDIT = index++;
-        
+    
+    if (![self isDraftTab]) {
+        EDIT = index++;
+    }
+    
 //#if DEBUG
 //    if (![self isDraftTab]) {
 //        // for super admin test

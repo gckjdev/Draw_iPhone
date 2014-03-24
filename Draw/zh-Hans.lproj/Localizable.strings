@@ -1149,9 +1149,9 @@
 "kAddAccount" = "新账号";
 
 //"kGetNumberTipsLabelText" = "首次使用，请先登录";
-"kGetNumberTipsLabelText" = "首次使用，请先领取小吉号码\n或使用已有号码登录";
-"kTakeNumberButtonTitle" = "领取小吉号码";
-"kLoginButtonTitle" = "小吉号码登录";
+"kGetNumberTipsLabelText" = "首次使用，请先快速注册小吉号码\n或使用已有号码登录";
+"kTakeNumberButtonTitle" = "快速一键注册";
+"kLoginButtonTitle" = "已有号码登录";
 "kQQLoginButtonTitle" = "QQ号码登录";
 "kSinaLoginButtonTitle" = "新浪微博登录";
 
@@ -2691,7 +2691,7 @@
 "kConfirmSelectOpusMsg" = "确认使用这幅作品吗?";
 
 "kEasyTakeNumber" = "小吉应用注册非常简单，只要点击【领取号码】按钮即可完成注册，不需要输入任何额外信息";
-"kTakeNumberNow" = "领取号码";
+"kTakeNumberNow" = "一键注册";
 "Quit" = "退出";
 
 "kUserHasNoGroupYet" = "你还不属于任何家族，可以选择加入一个家族或者自己建立一个家族";

@@ -1108,7 +1108,7 @@
 "kAddAccount" = "New";
 
 "kGetNumberTipsLabelText" = "Login";
-"kTakeNumberButtonTitle" = "Take Number";
+"kTakeNumberButtonTitle" = "Continue";
 "kLoginButtonTitle" = "Login";
 "kQQLoginButtonTitle" = "QQ Login";
 "kSinaLoginButtonTitle" = "Weibo Login";
