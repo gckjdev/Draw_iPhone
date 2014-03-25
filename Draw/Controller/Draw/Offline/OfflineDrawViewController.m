@@ -68,6 +68,7 @@
 #import "DrawLayerPanel.h"
 #import "ImagePlayer.h"
 #import "TaskManager.h"
+#import "BBSActionSheet.h"
 
 @interface OfflineDrawViewController()
 {
@@ -1216,9 +1217,89 @@
         if(self.contest){
             [self commitContestOpus];
         } else {
-            [self showInputAlertView];
+            // change by Benson 2014-03-24
+            [self showSubmitActionList];
+//            [self showInputAlertView];
         }
     }
+}
+
+- (void)submitSNS:(PPSNSType)snsType
+{
+    [self saveDraft:NO];
+    
+    NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
+    NSString* text = [NSString stringWithFormat:NSLS(@"kSubmitShareText"), self.draft.drawWord];
+//    NSString* title = self.draft.drawWord;
+    int award = [PPConfigManager getShareWeiboReward];
+    
+    UIImage *image = [drawView createImage];
+    if(image == nil){
+        [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kImageNull") delayTime:1.5 isHappy:NO];
+        return;
+    }
+    // create temp file for weibo sharing
+    [self writeTempFile:image];
+    
+//    POSTMSG2(NSLS(@"kSubmittingWeibo"), 2.5);
+    
+    [[GameSNSService defaultService] publishWeibo:snsType
+                                             text:text
+                                    imageFilePath:self.tempImageFilePath //[[MyPaintManager defaultManager] imagePathForPaint:self.draft]
+                                           inView:self.view
+                                       awardCoins:award
+                                   successMessage:NSLS(@"kSubmitWeiboSuccAndNext")
+                                   failureMessage:NSLS(@"kSubmitWeiboFailure")];
+    
+    [pool drain];
+}
+
+- (void)showSubmitActionList
+{
+    NSArray* titles = @[ NSLS(@"kPublishSina"), NSLS(@"kPublishTecent"), NSLS(@"kPublishWeixinFriend"), NSLS(@"kPublishWeixinTimeline"), NSLS(@"kPublishXiaoji"), NSLS(@"kCancel") ];
+    BBSActionSheet *sheet = [[BBSActionSheet alloc] initWithTitles:titles callback:^(NSInteger index) {
+        enum{
+            SUBMIT_SINA,
+            SUBMIT_TECENT,
+            SUBMIT_WEIXIN_FRIEND,
+            SUBMIT_WEIXIN_TIMELINE,
+            SUBMIT_XIAOJI,
+            SUBMIT_CANCEL
+        };
+
+        PPSNSType snsType;
+        switch (index){
+                
+            case SUBMIT_WEIXIN_TIMELINE:
+                snsType = TYPE_WEIXIN_TIMELINE;
+                break;
+            
+            case SUBMIT_WEIXIN_FRIEND:
+                snsType = TYPE_WEIXIN_SESSION;
+                break;
+
+            case SUBMIT_TECENT:
+                snsType = TYPE_QQ;
+                break;
+
+            case SUBMIT_SINA:
+                snsType = TYPE_SINA;
+                break;
+                
+            case SUBMIT_CANCEL:
+                return;
+                
+            case SUBMIT_XIAOJI:
+            default:
+                [self showInputAlertView];
+                return;
+        }
+
+        [self submitSNS:snsType];
+        
+    }];
+    [sheet showInView:self.view showAtPoint:self.view.center animated:YES];
+    [sheet release];
 }
 
 - (void)commitContestOpus{

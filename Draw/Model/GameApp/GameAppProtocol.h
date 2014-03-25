@@ -195,6 +195,9 @@
 
 - (NSString *)painterName;
 
+- (NSString *)zeroQianAppKey;
+- (NSString *)zeroQianAppSecret;
+
 @end
 
 @protocol ContentGameAppProtocol <GameAppProtocol>

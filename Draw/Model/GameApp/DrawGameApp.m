@@ -642,4 +642,15 @@
     return NSLS(@"kPainter");
 }
 
+- (NSString *)zeroQianAppKey
+{
+    return [MobClickUtils getStringValueByKey:@"0QIAN_APPKEY" defaultValue:@"023a559d2257eb2febe24d110949beed"];
+}
+
+- (NSString *)zeroQianAppSecret
+{
+    return [MobClickUtils getStringValueByKey:@"0QIAN_SECRET" defaultValue:@"c361a4d55a87a7a7f35756516846587a"];
+}
+
+
 @end

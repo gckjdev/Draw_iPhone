@@ -222,6 +222,15 @@
     return [UIImage imageNamed:@"user_detail_draw_to_bg@2x.png"];
 }
 
+- (NSString *)zeroQianAppKey
+{
+    return [MobClickUtils getStringValueByKey:@"0QIAN_APPKEY" defaultValue:@"ac8e8ea505db87e569e43899c510f810"];
+}
+
+- (NSString *)zeroQianAppSecret
+{
+    return [MobClickUtils getStringValueByKey:@"0QIAN_SECRET" defaultValue:@"ca23464034492db669d8a453cfad9976"];
+}
 
 
 @end

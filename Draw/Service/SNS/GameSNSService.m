@@ -26,6 +26,7 @@
 #import <ShareSDK/ShareSDK.h>
 #import "WBApi.h"
 #import "TaskManager.h"
+#import "ZeroQianManager.h"
 
 GameSNSService* _defaultSNSService;
 
@@ -435,7 +436,7 @@ GameSNSService* _defaultSNSService;
             msg = successMessage;
         }
         
-        POSTMSG(msg);
+        POSTMSG2(msg, 2.5);
     }
 }
 
@@ -467,7 +468,7 @@ GameSNSService* _defaultSNSService;
 //        if ([error.errorDescription length] > 0){
 //            msg = [NSString stringWithFormat:@"%@, %@", failureMessage, error.errorDescription];
 //        }
-        POSTMSG(failureMessage);
+        POSTMSG2(failureMessage, 2.5);
         PPDebug(@"publish weibo failure, code=%d, error=%@", [error errorCode], error.errorDescription);
     }
 }
@@ -620,6 +621,10 @@ GameSNSService* _defaultSNSService;
                                  
                                  if (state == SSPublishContentStateSuccess){
                                      [[TaskManager defaultManager] completeTask:taskId isAward:YES clearBadge:YES];
+                                     
+                                     if (awardCoins > 0){
+                                         [[ZeroQianManager defaultManager] awardForShare];
+                                     }
                                  }
                                  
 //                                 if (state == SSPublishContentStateSuccess)

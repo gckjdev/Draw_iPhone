@@ -27,7 +27,7 @@
 #import "LevelDBManager.h"
 #import "TimeUtils.h"
 #import "LocalNotificationUtil.h"
-
+#import "ZeroQianManager.h"
 
 #define KEY_ALL_USER_PB_DATA            @"KEY_ALL_USER_PB_DATA"
 #define KEY_USERID                      @"USER_KEY_USERID"
@@ -2077,12 +2077,17 @@ APLevelDB* _db;
 
 - (void)checkIn
 {
+    if ([[UserManager defaultManager] hasUser] == NO)
+        return;
+    
     NSDate* now = [NSDate date];
     NSString* key = [self getKey:now];
     PPDebug(@"<checkIn> %@", key);
     [self.db setObject:@(1) forKey:key];
     
     [self updateLastCheckInDate];
+    
+    [[ZeroQianManager defaultManager] awardForCheckIn];
 }
 
 - (void)clearAllCheckInBefore

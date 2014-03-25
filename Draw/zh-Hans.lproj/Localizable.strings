@@ -2702,3 +2702,18 @@
 "kAlreadyCheckIn" = "今天已经签到过了，欢迎明天再来 (^v^)";
 "kAlreadyCheckInWithFreeCoin" = "今天已经签到过了，欢迎明天再来 (^v^) ，要继续获取更多金币，下载免费应用就好了";
 "Open" = "打开";
+
+"kTaskZeroQian" = "实物抽奖兑换";
+"kTaskZeroQianDesc" = "签到和分享作品，均可获得积分，积分可抽奖兑换实物（本服务由零钱提供）";
+
+"kPublishSina" = "发表至新浪微博";
+"kPublishTecent" = "发表至腾讯微博";
+"kPublishWeixinFriend" = "发送给微信好友";
+"kPublishWeixinTimeline" = "发至微信朋友圈";
+"kPublishXiaoji" = "发表至小吉画榜";
+
+"kSubmitWeiboSuccAndNext" = "分享成功，同时作品已经保存到草稿箱，可继续编辑或者退出";
+"kSubmitWeiboFailure" = "分享失败或者被取消了";
+"kSubmitShareText" = "看看我画的【%@】";
+"kSubmittingWeibo" = "作品已经保存到草稿箱，正在发送中...";
+

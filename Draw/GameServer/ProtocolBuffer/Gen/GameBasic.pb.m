@@ -117,6 +117,7 @@ BOOL PBTaskIdTypeIsValidValue(PBTaskIdType value) {
     case PBTaskIdTypeTaskAppUpgrade:
     case PBTaskIdTypeTaskVip:
     case PBTaskIdTypeTaskAppViewWeb:
+    case PBTaskIdTypeTaskLingqian:
     case PBTaskIdTypeTaskAppWall:
     case PBTaskIdTypeTaskAppDownload:
       return YES;

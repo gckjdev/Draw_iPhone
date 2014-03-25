@@ -20,6 +20,7 @@
 #import "AppTask.h"
 #import "GameAdWallService.h"
 #import "PurchaseVipController.h"
+#import "ZeroQianManager.h"
 
 #define USER_TASK_LIST_KEY @"USER_TASK_LIST_KEY_5"
 
@@ -53,6 +54,15 @@ static TaskManager* _defaultTaskManager;
 //                                             award:0
 //                                          selector:@selector(checkIn:)];
 
+    GameTask* zeroQianTask = [[[GameTask alloc] initWithId:PBTaskIdTypeTaskLingqian
+                                                 name:NSLS(@"kTaskZeroQian")
+                                                 desc:NSLS(@"kTaskZeroQianDesc")
+                                               status:PBTaskStatusTaskStatusAlwaysOpen
+                                                badge:1
+                                                award:0
+                                             selector:@selector(gotoZeroQianStore:)] autorelease];
+
+    
     GameTask* vipTask = [[[GameTask alloc] initWithId:PBTaskIdTypeTaskVip
                                                name:NSLS(@"kTaskVip")
                                                desc:NSLS(@"kTaskVipDesc")
@@ -178,11 +188,11 @@ static TaskManager* _defaultTaskManager;
     
 //    [retList addObject:task1];
 
+    if ([ZeroQianManager enabled]){
+        [retList addObject:zeroQianTask];
+    }
+    
     [retList addObject:vipTask];
-    
-
-    
-    
     
     if ([UIUtils checkAppHasUpdateVersion]){
         [retList addObject:task11];
@@ -369,6 +379,11 @@ static TaskManager* _defaultTaskManager;
 - (void)showVip:(GameTask*)task
 {
     [PurchaseVipController enter:self.viewController];
+}
+
+- (void)gotoZeroQianStore:(GameTask*)task
+{
+    [[ZeroQianManager defaultManager] gotoStore];
 }
 
 - (void)bindSinaWeibo:(GameTask*)task

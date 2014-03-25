@@ -2682,3 +2682,16 @@
 "kAlreadyCheckIn" = "You have checked in today, please come tomorrow!";
 "kAlreadyCheckInWithFreeCoin" = "You have checked in today, please come tomorrow! Download free apps to get more coins!";
 "Open" = "Open";
+
+"kTaskZeroQian" = "Reward Store";
+"kTaskZeroQianDesc" = "Goto reward store";
+
+"kPublishSina" = "Share Sina Weibo";
+"kPublishTecent" = "Share Tecent Weibo";
+"kPublishWeixinFriend" = "Share Wechat Friend";
+"kPublishWeixinTimeline" = "Share Wechat Timeline";
+"kPublishXiaoji" = "Just Submit";
+"kSubmitWeiboSuccAndNext" = "Draft saved and shared successfully.";
+"kSubmitWeiboFailure" = "Fail to share or share is cancelled.";
+"kSubmitShareText" = "Look at my drawing【%@】";
+"kSubmittingWeibo" = "Draft saved and sending...";
