@@ -458,13 +458,6 @@ allowClickMaskDismiss:(BOOL)allowClickMaskDismiss
 - (void)actionOnShareSina
 {
     [self shareViaSNS:TYPE_SINA];
-    
-//    if ([[UserManager defaultManager] hasBindSinaWeibo] == NO ||
-//        [[[PPSNSIntegerationService defaultService] snsServiceByType:TYPE_SINA] isAuthorizeExpired]){
-//        [self bindSinaWeibo];
-//    } else {
-//        [self shareViaSNS:SINA_WEIBO];
-//    }
 }
 
 - (void)handleWithShareActionTag:(ShareActionTag)tag{
@@ -502,7 +495,6 @@ allowClickMaskDismiss:(BOOL)allowClickMaskDismiss
                                        successMessage:NSLS(@"kShareWeiboSucc")
                                        failureMessage:NSLS(@"kShareWeiboFailure")];
         
-//        [self shareViaWeixin:WXSceneSession];
     }
     else if (tag == ShareActionTagSinaWeibo)
     {
@@ -511,19 +503,9 @@ allowClickMaskDismiss:(BOOL)allowClickMaskDismiss
     } else if (tag == ShareActionTagQQWeibo) {
         [[AnalyticsManager sharedAnalyticsManager] reportShareActionClicks:SHARE_ACTION_QQ];
         [self shareViaSNS:TYPE_QQ];
-//        if ([[UserManager defaultManager] hasBindQQWeibo] == NO || [[[PPSNSIntegerationService defaultService] snsServiceByType:TYPE_QQ] isAuthorizeExpired]){
-//            [self bindQQWeibo];
-//        } else {
-//            [self shareViaSNS:TYPE_QQ];
-//        }
     } else if (tag == ShareActionTagFacebook) {
         [[AnalyticsManager sharedAnalyticsManager] reportShareActionClicks:SHARE_ACTION_FACEBOOK];
         [self shareViaSNS:TYPE_FACEBOOK];
-//        if ([[UserManager defaultManager] hasBindFacebook] == NO || [[[PPSNSIntegerationService defaultService] snsServiceByType:TYPE_FACEBOOK] isAuthorizeExpired]){
-//            [self bindFacebook];
-//        } else {
-//            [self shareViaSNS:TYPE_FACEBOOK];
-//        }
     } else if (tag == ShareActionTagFavorite) {
         [[AnalyticsManager sharedAnalyticsManager] reportShareActionClicks:SHARE_ACTION_SAVE];
     }

@@ -630,7 +630,6 @@
 		A461B285174CBAA70088B061 /* mztools.c in Sources */ = {isa = PBXBuildFile; fileRef = CAFEFD2016606FC100441D77 /* mztools.c */; };
 		A461B286174CBAA70088B061 /* unzip.c in Sources */ = {isa = PBXBuildFile; fileRef = CAFEFD2216606FC100441D77 /* unzip.c */; };
 		A461B287174CBAA70088B061 /* zip.c in Sources */ = {isa = PBXBuildFile; fileRef = CAFEFD2416606FC100441D77 /* zip.c */; };
-		A461B288174CBAA70088B061 /* SSZipArchive.m in Sources */ = {isa = PBXBuildFile; fileRef = CAFEFD2716606FC100441D77 /* SSZipArchive.m */; };
 		A461B28C174CBAA70088B061 /* DrawColor.m in Sources */ = {isa = PBXBuildFile; fileRef = CAFEFEF8166072AB00441D77 /* DrawColor.m */; };
 		A461B28D174CBAA70088B061 /* DrawUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = CAFEFEFA166072AB00441D77 /* DrawUtils.m */; };
 		A461B28E174CBAA70088B061 /* DrawGameAnimationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CA42FE851660B73A0097453A /* DrawGameAnimationManager.m */; };
@@ -3460,7 +3459,6 @@
 		C28A9B6D1738F04B007A819F /* mztools.c in Sources */ = {isa = PBXBuildFile; fileRef = CAFEFD2016606FC100441D77 /* mztools.c */; };
 		C28A9B6E1738F04B007A819F /* unzip.c in Sources */ = {isa = PBXBuildFile; fileRef = CAFEFD2216606FC100441D77 /* unzip.c */; };
 		C28A9B6F1738F04B007A819F /* zip.c in Sources */ = {isa = PBXBuildFile; fileRef = CAFEFD2416606FC100441D77 /* zip.c */; };
-		C28A9B701738F04B007A819F /* SSZipArchive.m in Sources */ = {isa = PBXBuildFile; fileRef = CAFEFD2716606FC100441D77 /* SSZipArchive.m */; };
 		C28A9B741738F04B007A819F /* DrawColor.m in Sources */ = {isa = PBXBuildFile; fileRef = CAFEFEF8166072AB00441D77 /* DrawColor.m */; };
 		C28A9B751738F04B007A819F /* DrawUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = CAFEFEFA166072AB00441D77 /* DrawUtils.m */; };
 		C28A9B761738F04B007A819F /* DrawGameAnimationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CA42FE851660B73A0097453A /* DrawGameAnimationManager.m */; };
@@ -4499,6 +4497,8 @@
 		CA3221A5151F657F0039A384 /* FeedbackController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA3221A3151F657F0039A384 /* FeedbackController.xib */; };
 		CA3221A9151F65AE0039A384 /* UserSettingController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA3221A7151F65AD0039A384 /* UserSettingController.m */; };
 		CA3221AA151F65AE0039A384 /* UserSettingController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA3221A8151F65AE0039A384 /* UserSettingController.xib */; };
+		CA32E63018F00AC70076959B /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA93D13818F00994002BB805 /* CoreMotion.framework */; };
+		CA32E63418F00ACE0076959B /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA93D13818F00994002BB805 /* CoreMotion.framework */; };
 		CA335D5216A90DC400D3BFF2 /* bbs_reward_action_content_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA335D5116A90DC300D3BFF2 /* bbs_reward_action_content_bg@2x.png */; };
 		CA33F67817E94B69005950EF /* Photo.pb-c.c in Sources */ = {isa = PBXBuildFile; fileRef = CA33F67717E94B67005950EF /* Photo.pb-c.c */; };
 		CA33F67917E94B69005950EF /* Photo.pb-c.c in Sources */ = {isa = PBXBuildFile; fileRef = CA33F67717E94B67005950EF /* Photo.pb-c.c */; };
@@ -4883,6 +4883,63 @@
 		CA926BAF18A8C950002C73B4 /* disable_notice_off.png in Resources */ = {isa = PBXBuildFile; fileRef = CA926BA918A8C94F002C73B4 /* disable_notice_off.png */; };
 		CA926BB018A8C950002C73B4 /* disable_notice_off.png in Resources */ = {isa = PBXBuildFile; fileRef = CA926BA918A8C94F002C73B4 /* disable_notice_off.png */; };
 		CA926BB118A8C950002C73B4 /* disable_notice_off.png in Resources */ = {isa = PBXBuildFile; fileRef = CA926BA918A8C94F002C73B4 /* disable_notice_off.png */; };
+		CA93D0E518EFF136002BB805 /* TencentOpenAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA93D0BD18EFF136002BB805 /* TencentOpenAPI.framework */; };
+		CA93D0E618EFF136002BB805 /* TencentOpenAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA93D0BD18EFF136002BB805 /* TencentOpenAPI.framework */; };
+		CA93D0E718EFF136002BB805 /* TencentOpenAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA93D0BD18EFF136002BB805 /* TencentOpenAPI.framework */; };
+		CA93D0E818EFF136002BB805 /* TencentOpenAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA93D0BD18EFF136002BB805 /* TencentOpenAPI.framework */; };
+		CA93D0E918EFF136002BB805 /* TencentOpenApi_IOS_Bundle.bundle in Resources */ = {isa = PBXBuildFile; fileRef = CA93D0BE18EFF136002BB805 /* TencentOpenApi_IOS_Bundle.bundle */; };
+		CA93D0EA18EFF136002BB805 /* TencentOpenApi_IOS_Bundle.bundle in Resources */ = {isa = PBXBuildFile; fileRef = CA93D0BE18EFF136002BB805 /* TencentOpenApi_IOS_Bundle.bundle */; };
+		CA93D0EB18EFF136002BB805 /* TencentOpenApi_IOS_Bundle.bundle in Resources */ = {isa = PBXBuildFile; fileRef = CA93D0BE18EFF136002BB805 /* TencentOpenApi_IOS_Bundle.bundle */; };
+		CA93D0EC18EFF136002BB805 /* TencentOpenApi_IOS_Bundle.bundle in Resources */ = {isa = PBXBuildFile; fileRef = CA93D0BE18EFF136002BB805 /* TencentOpenApi_IOS_Bundle.bundle */; };
+		CA93D0F518EFF136002BB805 /* libSinaWeiboSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CA93D0C318EFF136002BB805 /* libSinaWeiboSDK.a */; };
+		CA93D0F618EFF137002BB805 /* libSinaWeiboSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CA93D0C318EFF136002BB805 /* libSinaWeiboSDK.a */; };
+		CA93D0F718EFF137002BB805 /* libSinaWeiboSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CA93D0C318EFF136002BB805 /* libSinaWeiboSDK.a */; };
+		CA93D0F818EFF137002BB805 /* libSinaWeiboSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CA93D0C318EFF136002BB805 /* libSinaWeiboSDK.a */; };
+		CA93D0F918EFF137002BB805 /* WeiboSDK.bundle in Resources */ = {isa = PBXBuildFile; fileRef = CA93D0C418EFF136002BB805 /* WeiboSDK.bundle */; };
+		CA93D0FA18EFF137002BB805 /* WeiboSDK.bundle in Resources */ = {isa = PBXBuildFile; fileRef = CA93D0C418EFF136002BB805 /* WeiboSDK.bundle */; };
+		CA93D0FB18EFF137002BB805 /* WeiboSDK.bundle in Resources */ = {isa = PBXBuildFile; fileRef = CA93D0C418EFF136002BB805 /* WeiboSDK.bundle */; };
+		CA93D0FC18EFF137002BB805 /* WeiboSDK.bundle in Resources */ = {isa = PBXBuildFile; fileRef = CA93D0C418EFF136002BB805 /* WeiboSDK.bundle */; };
+		CA93D0FD18EFF137002BB805 /* libTCWeiboSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CA93D0C718EFF136002BB805 /* libTCWeiboSDK.a */; };
+		CA93D0FE18EFF137002BB805 /* libTCWeiboSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CA93D0C718EFF136002BB805 /* libTCWeiboSDK.a */; };
+		CA93D0FF18EFF137002BB805 /* libTCWeiboSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CA93D0C718EFF136002BB805 /* libTCWeiboSDK.a */; };
+		CA93D10018EFF137002BB805 /* libTCWeiboSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CA93D0C718EFF136002BB805 /* libTCWeiboSDK.a */; };
+		CA93D10118EFF137002BB805 /* libWeChatSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CA93D0CA18EFF136002BB805 /* libWeChatSDK.a */; };
+		CA93D10218EFF138002BB805 /* libWeChatSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CA93D0CA18EFF136002BB805 /* libWeChatSDK.a */; };
+		CA93D10318EFF138002BB805 /* libWeChatSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CA93D0CA18EFF136002BB805 /* libWeChatSDK.a */; };
+		CA93D10418EFF138002BB805 /* libWeChatSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CA93D0CA18EFF136002BB805 /* libWeChatSDK.a */; };
+		CA93D11818F008FA002BB805 /* GoogleOpenSource.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA93D10A18F008FA002BB805 /* GoogleOpenSource.framework */; };
+		CA93D11918F008FA002BB805 /* GoogleOpenSource.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA93D10A18F008FA002BB805 /* GoogleOpenSource.framework */; };
+		CA93D11A18F008FA002BB805 /* GoogleOpenSource.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA93D10A18F008FA002BB805 /* GoogleOpenSource.framework */; };
+		CA93D11B18F008FA002BB805 /* GoogleOpenSource.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA93D10A18F008FA002BB805 /* GoogleOpenSource.framework */; };
+		CA93D11C18F008FA002BB805 /* GooglePlus.bundle in Resources */ = {isa = PBXBuildFile; fileRef = CA93D10B18F008FA002BB805 /* GooglePlus.bundle */; };
+		CA93D11D18F008FA002BB805 /* GooglePlus.bundle in Resources */ = {isa = PBXBuildFile; fileRef = CA93D10B18F008FA002BB805 /* GooglePlus.bundle */; };
+		CA93D11E18F008FA002BB805 /* GooglePlus.bundle in Resources */ = {isa = PBXBuildFile; fileRef = CA93D10B18F008FA002BB805 /* GooglePlus.bundle */; };
+		CA93D11F18F008FA002BB805 /* GooglePlus.bundle in Resources */ = {isa = PBXBuildFile; fileRef = CA93D10B18F008FA002BB805 /* GooglePlus.bundle */; };
+		CA93D12018F008FA002BB805 /* GooglePlus.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA93D10C18F008FA002BB805 /* GooglePlus.framework */; };
+		CA93D12118F008FA002BB805 /* GooglePlus.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA93D10C18F008FA002BB805 /* GooglePlus.framework */; };
+		CA93D12218F008FA002BB805 /* GooglePlus.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA93D10C18F008FA002BB805 /* GooglePlus.framework */; };
+		CA93D12318F008FA002BB805 /* GooglePlus.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA93D10C18F008FA002BB805 /* GooglePlus.framework */; };
+		CA93D12418F008FA002BB805 /* Pinterest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA93D10E18F008FA002BB805 /* Pinterest.framework */; };
+		CA93D12518F008FA002BB805 /* Pinterest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA93D10E18F008FA002BB805 /* Pinterest.framework */; };
+		CA93D12618F008FA002BB805 /* Pinterest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA93D10E18F008FA002BB805 /* Pinterest.framework */; };
+		CA93D12718F008FA002BB805 /* Pinterest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA93D10E18F008FA002BB805 /* Pinterest.framework */; };
+		CA93D12818F008FA002BB805 /* PinterestSDKResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = CA93D11018F008FA002BB805 /* PinterestSDKResources.bundle */; };
+		CA93D12918F008FA002BB805 /* PinterestSDKResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = CA93D11018F008FA002BB805 /* PinterestSDKResources.bundle */; };
+		CA93D12A18F008FA002BB805 /* PinterestSDKResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = CA93D11018F008FA002BB805 /* PinterestSDKResources.bundle */; };
+		CA93D12B18F008FA002BB805 /* PinterestSDKResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = CA93D11018F008FA002BB805 /* PinterestSDKResources.bundle */; };
+		CA93D12C18F008FA002BB805 /* RennSDK.bundle in Resources */ = {isa = PBXBuildFile; fileRef = CA93D11218F008FA002BB805 /* RennSDK.bundle */; };
+		CA93D12D18F008FA002BB805 /* RennSDK.bundle in Resources */ = {isa = PBXBuildFile; fileRef = CA93D11218F008FA002BB805 /* RennSDK.bundle */; };
+		CA93D12E18F008FA002BB805 /* RennSDK.bundle in Resources */ = {isa = PBXBuildFile; fileRef = CA93D11218F008FA002BB805 /* RennSDK.bundle */; };
+		CA93D12F18F008FA002BB805 /* RennSDK.bundle in Resources */ = {isa = PBXBuildFile; fileRef = CA93D11218F008FA002BB805 /* RennSDK.bundle */; };
+		CA93D13018F008FA002BB805 /* RennSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA93D11318F008FA002BB805 /* RennSDK.framework */; };
+		CA93D13118F008FA002BB805 /* RennSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA93D11318F008FA002BB805 /* RennSDK.framework */; };
+		CA93D13218F008FA002BB805 /* RennSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA93D11318F008FA002BB805 /* RennSDK.framework */; };
+		CA93D13318F008FA002BB805 /* RennSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA93D11318F008FA002BB805 /* RennSDK.framework */; };
+		CA93D13418F008FA002BB805 /* libYixinSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CA93D11518F008FA002BB805 /* libYixinSDK.a */; };
+		CA93D13518F008FA002BB805 /* libYixinSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CA93D11518F008FA002BB805 /* libYixinSDK.a */; };
+		CA93D13618F008FA002BB805 /* libYixinSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CA93D11518F008FA002BB805 /* libYixinSDK.a */; };
+		CA93D13718F008FA002BB805 /* libYixinSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CA93D11518F008FA002BB805 /* libYixinSDK.a */; };
+		CA93D13918F00994002BB805 /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA93D13818F00994002BB805 /* CoreMotion.framework */; };
 		CA963A5615C7C5A8007ACFB9 /* CommonGameSession.m in Sources */ = {isa = PBXBuildFile; fileRef = CA963A5515C7C5A8007ACFB9 /* CommonGameSession.m */; };
 		CA96E26E150DE4FD00292335 /* GameSession.m in Sources */ = {isa = PBXBuildFile; fileRef = CA96E26D150DE4FD00292335 /* GameSession.m */; };
 		CA96E271150DE56400292335 /* GameSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CA96E270150DE56400292335 /* GameSessionManager.m */; };
@@ -5609,58 +5666,6 @@
 		CACD6AC618E03A29003F97C0 /* ShareSDKCoreService.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CACD6A2618E03A27003F97C0 /* ShareSDKCoreService.framework */; };
 		CACD6AC718E03A29003F97C0 /* ShareSDKCoreService.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CACD6A2618E03A27003F97C0 /* ShareSDKCoreService.framework */; };
 		CACD6AC818E03A29003F97C0 /* ShareSDKCoreService.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CACD6A2618E03A27003F97C0 /* ShareSDKCoreService.framework */; };
-		CACD6AC918E03A29003F97C0 /* GoogleOpenSource.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CACD6A2A18E03A27003F97C0 /* GoogleOpenSource.framework */; };
-		CACD6ACA18E03A29003F97C0 /* GoogleOpenSource.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CACD6A2A18E03A27003F97C0 /* GoogleOpenSource.framework */; };
-		CACD6ACB18E03A29003F97C0 /* GoogleOpenSource.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CACD6A2A18E03A27003F97C0 /* GoogleOpenSource.framework */; };
-		CACD6ACC18E03A2A003F97C0 /* GoogleOpenSource.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CACD6A2A18E03A27003F97C0 /* GoogleOpenSource.framework */; };
-		CACD6ACD18E03A2A003F97C0 /* GooglePlus.bundle in Resources */ = {isa = PBXBuildFile; fileRef = CACD6A2B18E03A27003F97C0 /* GooglePlus.bundle */; };
-		CACD6ACE18E03A2A003F97C0 /* GooglePlus.bundle in Resources */ = {isa = PBXBuildFile; fileRef = CACD6A2B18E03A27003F97C0 /* GooglePlus.bundle */; };
-		CACD6ACF18E03A2A003F97C0 /* GooglePlus.bundle in Resources */ = {isa = PBXBuildFile; fileRef = CACD6A2B18E03A27003F97C0 /* GooglePlus.bundle */; };
-		CACD6AD018E03A2A003F97C0 /* GooglePlus.bundle in Resources */ = {isa = PBXBuildFile; fileRef = CACD6A2B18E03A27003F97C0 /* GooglePlus.bundle */; };
-		CACD6AD118E03A2A003F97C0 /* GooglePlus.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CACD6A2C18E03A27003F97C0 /* GooglePlus.framework */; };
-		CACD6AD218E03A2A003F97C0 /* GooglePlus.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CACD6A2C18E03A27003F97C0 /* GooglePlus.framework */; };
-		CACD6AD318E03A2A003F97C0 /* GooglePlus.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CACD6A2C18E03A27003F97C0 /* GooglePlus.framework */; };
-		CACD6AD418E03A2A003F97C0 /* GooglePlus.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CACD6A2C18E03A27003F97C0 /* GooglePlus.framework */; };
-		CACD6AD518E03A2A003F97C0 /* libSinaWeiboSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CACD6A2E18E03A27003F97C0 /* libSinaWeiboSDK.a */; };
-		CACD6AD618E03A2A003F97C0 /* libSinaWeiboSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CACD6A2E18E03A27003F97C0 /* libSinaWeiboSDK.a */; };
-		CACD6AD718E03A2A003F97C0 /* libSinaWeiboSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CACD6A2E18E03A27003F97C0 /* libSinaWeiboSDK.a */; };
-		CACD6AD818E03A2A003F97C0 /* libSinaWeiboSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CACD6A2E18E03A27003F97C0 /* libSinaWeiboSDK.a */; };
-		CACD6AD918E03A2A003F97C0 /* WeiboSDK.bundle in Resources */ = {isa = PBXBuildFile; fileRef = CACD6A2F18E03A27003F97C0 /* WeiboSDK.bundle */; };
-		CACD6ADA18E03A2A003F97C0 /* WeiboSDK.bundle in Resources */ = {isa = PBXBuildFile; fileRef = CACD6A2F18E03A27003F97C0 /* WeiboSDK.bundle */; };
-		CACD6ADB18E03A2A003F97C0 /* WeiboSDK.bundle in Resources */ = {isa = PBXBuildFile; fileRef = CACD6A2F18E03A27003F97C0 /* WeiboSDK.bundle */; };
-		CACD6ADC18E03A2A003F97C0 /* WeiboSDK.bundle in Resources */ = {isa = PBXBuildFile; fileRef = CACD6A2F18E03A27003F97C0 /* WeiboSDK.bundle */; };
-		CACD6ADD18E03A2A003F97C0 /* Pinterest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CACD6A3218E03A27003F97C0 /* Pinterest.framework */; };
-		CACD6ADE18E03A2A003F97C0 /* Pinterest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CACD6A3218E03A27003F97C0 /* Pinterest.framework */; };
-		CACD6ADF18E03A2A003F97C0 /* Pinterest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CACD6A3218E03A27003F97C0 /* Pinterest.framework */; };
-		CACD6AE018E03A2A003F97C0 /* Pinterest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CACD6A3218E03A27003F97C0 /* Pinterest.framework */; };
-		CACD6AE118E03A2B003F97C0 /* PinterestSDKResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = CACD6A3418E03A27003F97C0 /* PinterestSDKResources.bundle */; };
-		CACD6AE218E03A2B003F97C0 /* PinterestSDKResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = CACD6A3418E03A27003F97C0 /* PinterestSDKResources.bundle */; };
-		CACD6AE318E03A2B003F97C0 /* PinterestSDKResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = CACD6A3418E03A27003F97C0 /* PinterestSDKResources.bundle */; };
-		CACD6AE418E03A2B003F97C0 /* PinterestSDKResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = CACD6A3418E03A27003F97C0 /* PinterestSDKResources.bundle */; };
-		CACD6AE518E03A2B003F97C0 /* RennSDK.bundle in Resources */ = {isa = PBXBuildFile; fileRef = CACD6A3618E03A27003F97C0 /* RennSDK.bundle */; };
-		CACD6AE618E03A2B003F97C0 /* RennSDK.bundle in Resources */ = {isa = PBXBuildFile; fileRef = CACD6A3618E03A27003F97C0 /* RennSDK.bundle */; };
-		CACD6AE718E03A2B003F97C0 /* RennSDK.bundle in Resources */ = {isa = PBXBuildFile; fileRef = CACD6A3618E03A27003F97C0 /* RennSDK.bundle */; };
-		CACD6AE818E03A2B003F97C0 /* RennSDK.bundle in Resources */ = {isa = PBXBuildFile; fileRef = CACD6A3618E03A27003F97C0 /* RennSDK.bundle */; };
-		CACD6AE918E03A2B003F97C0 /* RennSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CACD6A3718E03A27003F97C0 /* RennSDK.framework */; };
-		CACD6AEA18E03A2B003F97C0 /* RennSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CACD6A3718E03A27003F97C0 /* RennSDK.framework */; };
-		CACD6AEB18E03A2B003F97C0 /* RennSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CACD6A3718E03A27003F97C0 /* RennSDK.framework */; };
-		CACD6AEC18E03A2B003F97C0 /* RennSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CACD6A3718E03A27003F97C0 /* RennSDK.framework */; };
-		CACD6AED18E03A2B003F97C0 /* libWeChatSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CACD6A3918E03A27003F97C0 /* libWeChatSDK.a */; };
-		CACD6AEE18E03A2B003F97C0 /* libWeChatSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CACD6A3918E03A27003F97C0 /* libWeChatSDK.a */; };
-		CACD6AEF18E03A2B003F97C0 /* libWeChatSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CACD6A3918E03A27003F97C0 /* libWeChatSDK.a */; };
-		CACD6AF018E03A2B003F97C0 /* libWeChatSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CACD6A3918E03A27003F97C0 /* libWeChatSDK.a */; };
-		CACD6AF118E03A2B003F97C0 /* TencentOpenAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CACD6A3C18E03A27003F97C0 /* TencentOpenAPI.framework */; };
-		CACD6AF218E03A2C003F97C0 /* TencentOpenAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CACD6A3C18E03A27003F97C0 /* TencentOpenAPI.framework */; };
-		CACD6AF318E03A2C003F97C0 /* TencentOpenAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CACD6A3C18E03A27003F97C0 /* TencentOpenAPI.framework */; };
-		CACD6AF418E03A2C003F97C0 /* TencentOpenAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CACD6A3C18E03A27003F97C0 /* TencentOpenAPI.framework */; };
-		CACD6AF518E03A2C003F97C0 /* TencentOpenApi_IOS_Bundle.bundle in Resources */ = {isa = PBXBuildFile; fileRef = CACD6A3D18E03A27003F97C0 /* TencentOpenApi_IOS_Bundle.bundle */; };
-		CACD6AF618E03A2C003F97C0 /* TencentOpenApi_IOS_Bundle.bundle in Resources */ = {isa = PBXBuildFile; fileRef = CACD6A3D18E03A27003F97C0 /* TencentOpenApi_IOS_Bundle.bundle */; };
-		CACD6AF718E03A2C003F97C0 /* TencentOpenApi_IOS_Bundle.bundle in Resources */ = {isa = PBXBuildFile; fileRef = CACD6A3D18E03A27003F97C0 /* TencentOpenApi_IOS_Bundle.bundle */; };
-		CACD6AF818E03A2C003F97C0 /* TencentOpenApi_IOS_Bundle.bundle in Resources */ = {isa = PBXBuildFile; fileRef = CACD6A3D18E03A27003F97C0 /* TencentOpenApi_IOS_Bundle.bundle */; };
-		CACD6AF918E03A2C003F97C0 /* libWeiboSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CACD6A3F18E03A27003F97C0 /* libWeiboSDK.a */; };
-		CACD6AFA18E03A2C003F97C0 /* libWeiboSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CACD6A3F18E03A27003F97C0 /* libWeiboSDK.a */; };
-		CACD6AFB18E03A2C003F97C0 /* libWeiboSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CACD6A3F18E03A27003F97C0 /* libWeiboSDK.a */; };
-		CACD6AFC18E03A2C003F97C0 /* libWeiboSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CACD6A3F18E03A27003F97C0 /* libWeiboSDK.a */; };
 		CACD6AFD18E03A2C003F97C0 /* ShareSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CACD6A4218E03A27003F97C0 /* ShareSDK.framework */; };
 		CACD6AFE18E03A2D003F97C0 /* ShareSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CACD6A4218E03A27003F97C0 /* ShareSDK.framework */; };
 		CACD6AFF18E03A2D003F97C0 /* ShareSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CACD6A4218E03A27003F97C0 /* ShareSDK.framework */; };
@@ -6037,7 +6042,6 @@
 		CAFEFE8116606FC200441D77 /* mztools.c in Sources */ = {isa = PBXBuildFile; fileRef = CAFEFD2016606FC100441D77 /* mztools.c */; };
 		CAFEFE8216606FC200441D77 /* unzip.c in Sources */ = {isa = PBXBuildFile; fileRef = CAFEFD2216606FC100441D77 /* unzip.c */; };
 		CAFEFE8316606FC200441D77 /* zip.c in Sources */ = {isa = PBXBuildFile; fileRef = CAFEFD2416606FC100441D77 /* zip.c */; };
-		CAFEFE8416606FC200441D77 /* SSZipArchive.m in Sources */ = {isa = PBXBuildFile; fileRef = CAFEFD2716606FC100441D77 /* SSZipArchive.m */; };
 		CAFEFFB4166072AB00441D77 /* DrawColor.m in Sources */ = {isa = PBXBuildFile; fileRef = CAFEFEF8166072AB00441D77 /* DrawColor.m */; };
 		CAFEFFB5166072AB00441D77 /* DrawUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = CAFEFEFA166072AB00441D77 /* DrawUtils.m */; };
 		EA038975183B06D300516952 /* GroupTopicController.m in Sources */ = {isa = PBXBuildFile; fileRef = EA038973183B06D300516952 /* GroupTopicController.m */; };
@@ -6507,7 +6511,6 @@
 		EA4119D2176066F500DA72D0 /* mztools.c in Sources */ = {isa = PBXBuildFile; fileRef = CAFEFD2016606FC100441D77 /* mztools.c */; };
 		EA4119D3176066F500DA72D0 /* unzip.c in Sources */ = {isa = PBXBuildFile; fileRef = CAFEFD2216606FC100441D77 /* unzip.c */; };
 		EA4119D4176066F500DA72D0 /* zip.c in Sources */ = {isa = PBXBuildFile; fileRef = CAFEFD2416606FC100441D77 /* zip.c */; };
-		EA4119D5176066F500DA72D0 /* SSZipArchive.m in Sources */ = {isa = PBXBuildFile; fileRef = CAFEFD2716606FC100441D77 /* SSZipArchive.m */; };
 		EA4119D9176066F500DA72D0 /* DrawColor.m in Sources */ = {isa = PBXBuildFile; fileRef = CAFEFEF8166072AB00441D77 /* DrawColor.m */; };
 		EA4119DA176066F500DA72D0 /* DrawUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = CAFEFEFA166072AB00441D77 /* DrawUtils.m */; };
 		EA4119DB176066F500DA72D0 /* DrawGameAnimationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CA42FE851660B73A0097453A /* DrawGameAnimationManager.m */; };
@@ -9520,6 +9523,27 @@
 		CA923017183DC40600669DE3 /* sing_home_task@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "sing_home_task@2x.png"; sourceTree = "<group>"; };
 		CA926BA818A8C94F002C73B4 /* disable_notice_on.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = disable_notice_on.png; sourceTree = "<group>"; };
 		CA926BA918A8C94F002C73B4 /* disable_notice_off.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = disable_notice_off.png; sourceTree = "<group>"; };
+		CA93D0BD18EFF136002BB805 /* TencentOpenAPI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = TencentOpenAPI.framework; sourceTree = "<group>"; };
+		CA93D0BE18EFF136002BB805 /* TencentOpenApi_IOS_Bundle.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = TencentOpenApi_IOS_Bundle.bundle; sourceTree = "<group>"; };
+		CA93D0C318EFF136002BB805 /* libSinaWeiboSDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libSinaWeiboSDK.a; sourceTree = "<group>"; };
+		CA93D0C418EFF136002BB805 /* WeiboSDK.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = WeiboSDK.bundle; sourceTree = "<group>"; };
+		CA93D0C518EFF136002BB805 /* WeiboSDK.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WeiboSDK.h; sourceTree = "<group>"; };
+		CA93D0C718EFF136002BB805 /* libTCWeiboSDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libTCWeiboSDK.a; sourceTree = "<group>"; };
+		CA93D0C818EFF136002BB805 /* WeiboApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WeiboApi.h; sourceTree = "<group>"; };
+		CA93D0CA18EFF136002BB805 /* libWeChatSDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libWeChatSDK.a; sourceTree = "<group>"; };
+		CA93D0CB18EFF136002BB805 /* WXApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXApi.h; sourceTree = "<group>"; };
+		CA93D0CC18EFF136002BB805 /* WXApiObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXApiObject.h; sourceTree = "<group>"; };
+		CA93D10A18F008FA002BB805 /* GoogleOpenSource.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GoogleOpenSource.framework; sourceTree = "<group>"; };
+		CA93D10B18F008FA002BB805 /* GooglePlus.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = GooglePlus.bundle; sourceTree = "<group>"; };
+		CA93D10C18F008FA002BB805 /* GooglePlus.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GooglePlus.framework; sourceTree = "<group>"; };
+		CA93D10E18F008FA002BB805 /* Pinterest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Pinterest.framework; sourceTree = "<group>"; };
+		CA93D11018F008FA002BB805 /* PinterestSDKResources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = PinterestSDKResources.bundle; sourceTree = "<group>"; };
+		CA93D11218F008FA002BB805 /* RennSDK.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = RennSDK.bundle; sourceTree = "<group>"; };
+		CA93D11318F008FA002BB805 /* RennSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = RennSDK.framework; sourceTree = "<group>"; };
+		CA93D11518F008FA002BB805 /* libYixinSDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libYixinSDK.a; sourceTree = "<group>"; };
+		CA93D11618F008FA002BB805 /* YXApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXApi.h; sourceTree = "<group>"; };
+		CA93D11718F008FA002BB805 /* YXApiObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXApiObject.h; sourceTree = "<group>"; };
+		CA93D13818F00994002BB805 /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
 		CA963A5415C7C5A8007ACFB9 /* CommonGameSession.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommonGameSession.h; sourceTree = "<group>"; };
 		CA963A5515C7C5A8007ACFB9 /* CommonGameSession.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommonGameSession.m; sourceTree = "<group>"; };
 		CA96E26C150DE4FD00292335 /* GameSession.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameSession.h; sourceTree = "<group>"; };
@@ -9868,24 +9892,6 @@
 		CACD6A2518E03A27003F97C0 /* Resource.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Resource.bundle; sourceTree = "<group>"; };
 		CACD6A2618E03A27003F97C0 /* ShareSDKCoreService.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ShareSDKCoreService.framework; sourceTree = "<group>"; };
 		CACD6A2718E03A27003F97C0 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/ShareSDKLocalizable.strings"; sourceTree = "<group>"; };
-		CACD6A2A18E03A27003F97C0 /* GoogleOpenSource.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GoogleOpenSource.framework; sourceTree = "<group>"; };
-		CACD6A2B18E03A27003F97C0 /* GooglePlus.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = GooglePlus.bundle; sourceTree = "<group>"; };
-		CACD6A2C18E03A27003F97C0 /* GooglePlus.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GooglePlus.framework; sourceTree = "<group>"; };
-		CACD6A2E18E03A27003F97C0 /* libSinaWeiboSDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libSinaWeiboSDK.a; sourceTree = "<group>"; };
-		CACD6A2F18E03A27003F97C0 /* WeiboSDK.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = WeiboSDK.bundle; sourceTree = "<group>"; };
-		CACD6A3018E03A27003F97C0 /* WeiboSDK.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WeiboSDK.h; sourceTree = "<group>"; };
-		CACD6A3218E03A27003F97C0 /* Pinterest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Pinterest.framework; sourceTree = "<group>"; };
-		CACD6A3418E03A27003F97C0 /* PinterestSDKResources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = PinterestSDKResources.bundle; sourceTree = "<group>"; };
-		CACD6A3618E03A27003F97C0 /* RennSDK.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = RennSDK.bundle; sourceTree = "<group>"; };
-		CACD6A3718E03A27003F97C0 /* RennSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = RennSDK.framework; sourceTree = "<group>"; };
-		CACD6A3918E03A27003F97C0 /* libWeChatSDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libWeChatSDK.a; sourceTree = "<group>"; };
-		CACD6A3A18E03A27003F97C0 /* WXApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXApi.h; sourceTree = "<group>"; };
-		CACD6A3B18E03A27003F97C0 /* WXApiObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXApiObject.h; sourceTree = "<group>"; };
-		CACD6A3C18E03A27003F97C0 /* TencentOpenAPI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = TencentOpenAPI.framework; sourceTree = "<group>"; };
-		CACD6A3D18E03A27003F97C0 /* TencentOpenApi_IOS_Bundle.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = TencentOpenApi_IOS_Bundle.bundle; sourceTree = "<group>"; };
-		CACD6A3F18E03A27003F97C0 /* libWeiboSDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libWeiboSDK.a; sourceTree = "<group>"; };
-		CACD6A4018E03A27003F97C0 /* WBApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WBApi.h; sourceTree = "<group>"; };
-		CACD6A4118E03A27003F97C0 /* WBApiObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WBApiObject.h; sourceTree = "<group>"; };
 		CACD6A4218E03A27003F97C0 /* ShareSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ShareSDK.framework; sourceTree = "<group>"; };
 		CACD6A4418E03A27003F97C0 /* ShareSDKiPadDefaultShareViewUI.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = ShareSDKiPadDefaultShareViewUI.bundle; sourceTree = "<group>"; };
 		CACD6A4518E03A27003F97C0 /* ShareSDKiPadDefaultShareViewUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ShareSDKiPadDefaultShareViewUI.framework; sourceTree = "<group>"; };
@@ -10486,14 +10492,15 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CA32E63418F00ACE0076959B /* CoreMotion.framework in Frameworks */,
 				CACD6A5718E03A28003F97C0 /* EverNoteConnection.framework in Frameworks */,
 				CACD6A6718E03A28003F97C0 /* InstapaperConnection.framework in Frameworks */,
-				CACD6AEB18E03A2B003F97C0 /* RennSDK.framework in Frameworks */,
 				CACD6B2918E03A91003F97C0 /* immobSDK.framework in Frameworks */,
 				A461B3CF174CBAA70088B061 /* libstdc++.dylib in Frameworks */,
 				A4B1233818279ECD00A0603F /* CoreVideo.framework in Frameworks */,
 				A461B3D5174CBAA70088B061 /* ImageIO.framework in Frameworks */,
 				CACD6A9F18E03A28003F97C0 /* SohuWeiboConnection.framework in Frameworks */,
+				CA93D10318EFF138002BB805 /* libWeChatSDK.a in Frameworks */,
 				A4F04B851806543C007274BE /* AssetsLibrary.framework in Frameworks */,
 				CACD6A5F18E03A28003F97C0 /* FlickrConnection.framework in Frameworks */,
 				A4990773174DC624005AF334 /* Accelerate.framework in Frameworks */,
@@ -10509,20 +10516,25 @@
 				CACD6B1B18E03A2D003F97C0 /* ShareSDKiPhoneDefaultShareViewUI.framework in Frameworks */,
 				CACD6A4F18E03A27003F97C0 /* DouBanConnection.framework in Frameworks */,
 				A461B3C4174CBAA70088B061 /* PassKit.framework in Frameworks */,
+				CA93D12618F008FA002BB805 /* Pinterest.framework in Frameworks */,
 				A461B3C5174CBAA70088B061 /* Social.framework in Frameworks */,
 				A461B3C6174CBAA70088B061 /* AdSupport.framework in Frameworks */,
+				CA93D12218F008FA002BB805 /* GooglePlus.framework in Frameworks */,
 				A461B3C7174CBAA70088B061 /* OpenGLES.framework in Frameworks */,
 				A461B3C8174CBAA70088B061 /* CoreImage.framework in Frameworks */,
 				A461B3C9174CBAA70088B061 /* libicucore.dylib in Frameworks */,
 				CACD6CA818E03BCD003F97C0 /* AlipayRsaLib.a in Frameworks */,
 				A461B3CA174CBAA70088B061 /* OpenAL.framework in Frameworks */,
 				A461B3CB174CBAA70088B061 /* EventKitUI.framework in Frameworks */,
+				CA93D13218F008FA002BB805 /* RennSDK.framework in Frameworks */,
 				A461B3CD174CBAA70088B061 /* EventKit.framework in Frameworks */,
 				A461B3CE174CBAA70088B061 /* CoreLocation.framework in Frameworks */,
 				CACD6D4A18E03C86003F97C0 /* libmp3lame.a in Frameworks */,
 				CACD6CDC18E03BCD003F97C0 /* libssl.a in Frameworks */,
+				CA93D13618F008FA002BB805 /* libYixinSDK.a in Frameworks */,
 				A461B3D0174CBAA70088B061 /* CoreTelephony.framework in Frameworks */,
 				A461B3D1174CBAA70088B061 /* libsqlite3.dylib in Frameworks */,
+				CA93D0FF18EFF137002BB805 /* libTCWeiboSDK.a in Frameworks */,
 				A461B3D4174CBAA70088B061 /* MobileCoreServices.framework in Frameworks */,
 				A461B3D7174CBAA70088B061 /* Security.framework in Frameworks */,
 				CACD6ABB18E03A29003F97C0 /* AGCommon.framework in Frameworks */,
@@ -10532,15 +10544,12 @@
 				A461B3DA174CBAA70088B061 /* libz.1.1.3.dylib in Frameworks */,
 				A461B3DB174CBAA70088B061 /* MessageUI.framework in Frameworks */,
 				A461B3DC174CBAA70088B061 /* MapKit.framework in Frameworks */,
-				CACD6AEF18E03A2B003F97C0 /* libWeChatSDK.a in Frameworks */,
 				CACD6A7F18E03A28003F97C0 /* PocketConnection.framework in Frameworks */,
 				CACD6A8318E03A28003F97C0 /* PrintConnection.framework in Frameworks */,
-				CACD6AF318E03A2C003F97C0 /* TencentOpenAPI.framework in Frameworks */,
 				CACD6B3718E03B4B003F97C0 /* libMobClickLibrary.a in Frameworks */,
 				A461B3DD174CBAA70088B061 /* AddressBook.framework in Frameworks */,
 				CACD6A8B18E03A28003F97C0 /* QZoneConnection.framework in Frameworks */,
 				A461B3DE174CBAA70088B061 /* CoreData.framework in Frameworks */,
-				CACD6AD318E03A2A003F97C0 /* GooglePlus.framework in Frameworks */,
 				CACD6B4B18E03B7F003F97C0 /* libGoogleAdMobAds.a in Frameworks */,
 				A461B3DF174CBAA70088B061 /* SystemConfiguration.framework in Frameworks */,
 				CACD6B0718E03A2D003F97C0 /* ShareSDKiPadDefaultShareViewUI.framework in Frameworks */,
@@ -10554,27 +10563,26 @@
 				CACD6A6318E03A28003F97C0 /* GooglePlusConnection.framework in Frameworks */,
 				A461B3E4174CBAA70088B061 /* CoreGraphics.framework in Frameworks */,
 				CACD6D3918E03C40003F97C0 /* libDIRAC_iOS4-fat.a in Frameworks */,
-				CACD6ADF18E03A2A003F97C0 /* Pinterest.framework in Frameworks */,
 				CACD6A9718E03A28003F97C0 /* SMSConnection.framework in Frameworks */,
+				CA93D0E718EFF136002BB805 /* TencentOpenAPI.framework in Frameworks */,
 				CACD6B0F18E03A2D003F97C0 /* ShareSDKiPadSimpleShareViewUI.framework in Frameworks */,
 				CACD6AAB18E03A29003F97C0 /* TumblrConnection.framework in Frameworks */,
 				CACD6A8718E03A28003F97C0 /* QQConnection.framework in Frameworks */,
-				CACD6AD718E03A2A003F97C0 /* libSinaWeiboSDK.a in Frameworks */,
 				CACD6B1318E03A2D003F97C0 /* ShareSDKiPhoneAppRecommendShareViewUI.framework in Frameworks */,
 				CACD6CB018E03BCD003F97C0 /* AlixPaylib.a in Frameworks */,
 				CA62C7911756FC5B00C9EF56 /* protolCLib.a in Frameworks */,
-				CACD6AFB18E03A2C003F97C0 /* libWeiboSDK.a in Frameworks */,
+				CA93D11A18F008FA002BB805 /* GoogleOpenSource.framework in Frameworks */,
 				CACD6A5318E03A28003F97C0 /* DropboxConnection.framework in Frameworks */,
 				CACD6AFF18E03A2D003F97C0 /* ShareSDK.framework in Frameworks */,
 				CACD6A7318E03A28003F97C0 /* LinkedInConnection.framework in Frameworks */,
 				CACD6A7718E03A28003F97C0 /* MailConnection.framework in Frameworks */,
 				CACD6A5B18E03A28003F97C0 /* FacebookConnection.framework in Frameworks */,
+				CA93D0F718EFF137002BB805 /* libSinaWeiboSDK.a in Frameworks */,
 				83E17DC016AB4A05BBF66F5E /* libPods.a in Frameworks */,
 				CACD6AAF18E03A29003F97C0 /* TwitterConnection.framework in Frameworks */,
 				CACD69FF18E03880003F97C0 /* LingQianSDK.framework in Frameworks */,
 				CACD6A8F18E03A28003F97C0 /* RenRenConnection.framework in Frameworks */,
 				CACD6AB718E03A29003F97C0 /* YouDaoNoteConnection.framework in Frameworks */,
-				CACD6ACB18E03A29003F97C0 /* GoogleOpenSource.framework in Frameworks */,
 				CACD6AA318E03A28003F97C0 /* T163WeiboConnection.framework in Frameworks */,
 				CACD6B2318E03A2D003F97C0 /* ShareSDKiPhoneSimpleShareViewUI.framework in Frameworks */,
 				CACD6A9B18E03A28003F97C0 /* SohuConnection.framework in Frameworks */,
@@ -10588,21 +10596,24 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CA32E63018F00AC70076959B /* CoreMotion.framework in Frameworks */,
 				CA1162901836098800FDD3A9 /* Accelerate.framework in Frameworks */,
 				C28A9CAE1738F04B007A819F /* libstdc++.dylib in Frameworks */,
 				CACD6AAE18E03A29003F97C0 /* TwitterConnection.framework in Frameworks */,
 				CA9AFE65181D45B100E08747 /* CoreMedia.framework in Frameworks */,
+				CA93D12518F008FA002BB805 /* Pinterest.framework in Frameworks */,
 				CA9AFE64181D434700E08747 /* CoreVideo.framework in Frameworks */,
 				C28A9CB41738F04B007A819F /* ImageIO.framework in Frameworks */,
 				A4F04B84180643BD007274BE /* AssetsLibrary.framework in Frameworks */,
-				CACD6ACA18E03A29003F97C0 /* GoogleOpenSource.framework in Frameworks */,
 				C28A9CA21738F04B007A819F /* AddressBookUI.framework in Frameworks */,
 				C28A9CA31738F04B007A819F /* PassKit.framework in Frameworks */,
+				CA93D0E618EFF136002BB805 /* TencentOpenAPI.framework in Frameworks */,
 				C28A9CA41738F04B007A819F /* Social.framework in Frameworks */,
 				CACD6A8A18E03A28003F97C0 /* QZoneConnection.framework in Frameworks */,
 				C28A9CA51738F04B007A819F /* AdSupport.framework in Frameworks */,
 				CACD6AA218E03A28003F97C0 /* T163WeiboConnection.framework in Frameworks */,
 				CACD6CAF18E03BCD003F97C0 /* AlixPaylib.a in Frameworks */,
+				CA93D11918F008FA002BB805 /* GoogleOpenSource.framework in Frameworks */,
 				CACD6B1218E03A2D003F97C0 /* ShareSDKiPhoneAppRecommendShareViewUI.framework in Frameworks */,
 				C28A9CA61738F04B007A819F /* OpenGLES.framework in Frameworks */,
 				CACD6A8E18E03A28003F97C0 /* RenRenConnection.framework in Frameworks */,
@@ -10617,7 +10628,6 @@
 				CACD6B4A18E03B7F003F97C0 /* libGoogleAdMobAds.a in Frameworks */,
 				CACD6B0618E03A2D003F97C0 /* ShareSDKiPadDefaultShareViewUI.framework in Frameworks */,
 				CACD6CD718E03BCD003F97C0 /* libcrypto.a in Frameworks */,
-				CACD6AEE18E03A2B003F97C0 /* libWeChatSDK.a in Frameworks */,
 				C28A9CAC1738F04B007A819F /* EventKit.framework in Frameworks */,
 				CACD6A7618E03A28003F97C0 /* MailConnection.framework in Frameworks */,
 				C28A9CAD1738F04B007A819F /* CoreLocation.framework in Frameworks */,
@@ -10625,7 +10635,6 @@
 				C28A9CB01738F04B007A819F /* libsqlite3.dylib in Frameworks */,
 				CACD6D4918E03C86003F97C0 /* libmp3lame.a in Frameworks */,
 				C28A9CB11738F04B007A819F /* AudioToolbox.framework in Frameworks */,
-				CACD6AF218E03A2C003F97C0 /* TencentOpenAPI.framework in Frameworks */,
 				CACD6A5218E03A28003F97C0 /* DropboxConnection.framework in Frameworks */,
 				C28A9CB21738F04B007A819F /* AVFoundation.framework in Frameworks */,
 				CACD6B1A18E03A2D003F97C0 /* ShareSDKiPhoneDefaultShareViewUI.framework in Frameworks */,
@@ -10634,15 +10643,15 @@
 				C28A9CB71738F04B007A819F /* StoreKit.framework in Frameworks */,
 				CACD6A5A18E03A28003F97C0 /* FacebookConnection.framework in Frameworks */,
 				CACD6AA618E03A29003F97C0 /* TencentWeiboConnection.framework in Frameworks */,
-				CACD6ADE18E03A2A003F97C0 /* Pinterest.framework in Frameworks */,
+				CA93D12118F008FA002BB805 /* GooglePlus.framework in Frameworks */,
 				CACD6A8218E03A28003F97C0 /* PrintConnection.framework in Frameworks */,
 				C28A9CB81738F04B007A819F /* libProtocolBuffers.a in Frameworks */,
 				CACD6CA718E03BCC003F97C0 /* AlipayRsaLib.a in Frameworks */,
+				CA93D10218EFF138002BB805 /* libWeChatSDK.a in Frameworks */,
 				CACD6ABA18E03A29003F97C0 /* AGCommon.framework in Frameworks */,
 				C28A9CB91738F04B007A819F /* libz.1.1.3.dylib in Frameworks */,
 				CACD6D3418E03C40003F97C0 /* libDIRAC_iOS-fat.a in Frameworks */,
 				CACD6AC618E03A29003F97C0 /* ShareSDKCoreService.framework in Frameworks */,
-				CACD6AEA18E03A2B003F97C0 /* RennSDK.framework in Frameworks */,
 				C28A9CBA1738F04B007A819F /* MessageUI.framework in Frameworks */,
 				CACD6A4E18E03A27003F97C0 /* DouBanConnection.framework in Frameworks */,
 				CACD6CDB18E03BCD003F97C0 /* libssl.a in Frameworks */,
@@ -10662,12 +10671,12 @@
 				CACD6A5618E03A28003F97C0 /* EverNoteConnection.framework in Frameworks */,
 				CACD6CFC18E03C0A003F97C0 /* libleveldb.a in Frameworks */,
 				C28A9CC11738F04B007A819F /* UIKit.framework in Frameworks */,
-				CACD6AD218E03A2A003F97C0 /* GooglePlus.framework in Frameworks */,
+				CA93D13518F008FA002BB805 /* libYixinSDK.a in Frameworks */,
 				C28A9CC21738F04B007A819F /* Foundation.framework in Frameworks */,
 				C28A9CC31738F04B007A819F /* CoreGraphics.framework in Frameworks */,
 				CACD6A9618E03A28003F97C0 /* SMSConnection.framework in Frameworks */,
-				CACD6AFA18E03A2C003F97C0 /* libWeiboSDK.a in Frameworks */,
 				CA62C78E1756FC5B00C9EF56 /* protolCLib.a in Frameworks */,
+				CA93D13118F008FA002BB805 /* RennSDK.framework in Frameworks */,
 				CACD6BCC18E03B9C003F97C0 /* libYouMi.a in Frameworks */,
 				CACD6AAA18E03A29003F97C0 /* TumblrConnection.framework in Frameworks */,
 				CACD6AFE18E03A2D003F97C0 /* ShareSDK.framework in Frameworks */,
@@ -10675,10 +10684,11 @@
 				CACD6A5E18E03A28003F97C0 /* FlickrConnection.framework in Frameworks */,
 				CACD6AB218E03A29003F97C0 /* WeChatConnection.framework in Frameworks */,
 				8F5E9AD0400940DDB239EAC1 /* libPods.a in Frameworks */,
+				CA93D0FE18EFF137002BB805 /* libTCWeiboSDK.a in Frameworks */,
 				CACD6B2218E03A2D003F97C0 /* ShareSDKiPhoneSimpleShareViewUI.framework in Frameworks */,
+				CA93D0F618EFF137002BB805 /* libSinaWeiboSDK.a in Frameworks */,
 				CACD6AB618E03A29003F97C0 /* YouDaoNoteConnection.framework in Frameworks */,
 				CACD6D3818E03C40003F97C0 /* libDIRAC_iOS4-fat.a in Frameworks */,
-				CACD6AD618E03A2A003F97C0 /* libSinaWeiboSDK.a in Frameworks */,
 				CACD6A6618E03A28003F97C0 /* InstapaperConnection.framework in Frameworks */,
 				CACD6A7218E03A28003F97C0 /* LinkedInConnection.framework in Frameworks */,
 				CACD6A9E18E03A28003F97C0 /* SohuWeiboConnection.framework in Frameworks */,
@@ -10689,14 +10699,15 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CA93D13918F00994002BB805 /* CoreMotion.framework in Frameworks */,
 				CACD6A5518E03A28003F97C0 /* EverNoteConnection.framework in Frameworks */,
 				CACD6A6518E03A28003F97C0 /* InstapaperConnection.framework in Frameworks */,
-				CACD6AE918E03A2B003F97C0 /* RennSDK.framework in Frameworks */,
 				CACD6B2718E03A91003F97C0 /* immobSDK.framework in Frameworks */,
 				CAA1AFC7159EAB1700504C98 /* libstdc++.dylib in Frameworks */,
 				C2A09762152ECDEA006535F7 /* ImageIO.framework in Frameworks */,
 				CAEEC19F181A5F19007FD75F /* CoreVideo.framework in Frameworks */,
 				CACD6A9D18E03A28003F97C0 /* SohuWeiboConnection.framework in Frameworks */,
+				CA93D10118EFF137002BB805 /* libWeChatSDK.a in Frameworks */,
 				A421503A1803E87C007F2EFD /* AssetsLibrary.framework in Frameworks */,
 				CACD6A5D18E03A28003F97C0 /* FlickrConnection.framework in Frameworks */,
 				A4990770174DBC61005AF334 /* Accelerate.framework in Frameworks */,
@@ -10712,20 +10723,25 @@
 				CACD6B1918E03A2D003F97C0 /* ShareSDKiPhoneDefaultShareViewUI.framework in Frameworks */,
 				CACD6A4D18E03A27003F97C0 /* DouBanConnection.framework in Frameworks */,
 				CAD9F1B11735531600011AFA /* PassKit.framework in Frameworks */,
+				CA93D12418F008FA002BB805 /* Pinterest.framework in Frameworks */,
 				CAD9F1AF1735530100011AFA /* Social.framework in Frameworks */,
 				C2BB7DF917226E1700E78E0C /* AdSupport.framework in Frameworks */,
+				CA93D12018F008FA002BB805 /* GooglePlus.framework in Frameworks */,
 				C28A23D2166C92C1007C9EA5 /* OpenGLES.framework in Frameworks */,
 				C2EE14601665FE9300ADBE2E /* CoreImage.framework in Frameworks */,
 				CA8815CF1657447800E29BB1 /* libicucore.dylib in Frameworks */,
 				CACD6CA618E03BCC003F97C0 /* AlipayRsaLib.a in Frameworks */,
 				C223397F164E41C900D2C123 /* OpenAL.framework in Frameworks */,
 				CA67B8AA15EB292E002050DB /* EventKitUI.framework in Frameworks */,
+				CA93D13018F008FA002BB805 /* RennSDK.framework in Frameworks */,
 				CAA1AFC5159EAA9900504C98 /* EventKit.framework in Frameworks */,
 				CA103F2A1509A6CA00F60C03 /* CoreLocation.framework in Frameworks */,
 				CACD6D4818E03C86003F97C0 /* libmp3lame.a in Frameworks */,
 				CACD6CDA18E03BCD003F97C0 /* libssl.a in Frameworks */,
+				CA93D13418F008FA002BB805 /* libYixinSDK.a in Frameworks */,
 				CAA1AF8E159EA86A00504C98 /* CoreTelephony.framework in Frameworks */,
 				CAAE4A8315790F480012F6B8 /* libsqlite3.dylib in Frameworks */,
+				CA93D0FD18EFF137002BB805 /* libTCWeiboSDK.a in Frameworks */,
 				CA103F3A1509A72100F60C03 /* MobileCoreServices.framework in Frameworks */,
 				CA65C1BE152D9A7E00462C96 /* Security.framework in Frameworks */,
 				CACD6AB918E03A29003F97C0 /* AGCommon.framework in Frameworks */,
@@ -10735,15 +10751,12 @@
 				CA103F381509A71A00F60C03 /* libz.1.1.3.dylib in Frameworks */,
 				CA103F341509A70800F60C03 /* MessageUI.framework in Frameworks */,
 				CA103F321509A6EE00F60C03 /* MapKit.framework in Frameworks */,
-				CACD6AED18E03A2B003F97C0 /* libWeChatSDK.a in Frameworks */,
 				CACD6A7D18E03A28003F97C0 /* PocketConnection.framework in Frameworks */,
 				CACD6A8118E03A28003F97C0 /* PrintConnection.framework in Frameworks */,
-				CACD6AF118E03A2B003F97C0 /* TencentOpenAPI.framework in Frameworks */,
 				CACD6B3518E03B4A003F97C0 /* libMobClickLibrary.a in Frameworks */,
 				CA103F301509A6E600F60C03 /* AddressBook.framework in Frameworks */,
 				CACD6A8918E03A28003F97C0 /* QZoneConnection.framework in Frameworks */,
 				CA103F2E1509A6DE00F60C03 /* CoreData.framework in Frameworks */,
-				CACD6AD118E03A2A003F97C0 /* GooglePlus.framework in Frameworks */,
 				CACD6B4918E03B7F003F97C0 /* libGoogleAdMobAds.a in Frameworks */,
 				CA103F2C1509A6D400F60C03 /* SystemConfiguration.framework in Frameworks */,
 				CACD6B0518E03A2D003F97C0 /* ShareSDKiPadDefaultShareViewUI.framework in Frameworks */,
@@ -10757,27 +10770,26 @@
 				CACD6A6118E03A28003F97C0 /* GooglePlusConnection.framework in Frameworks */,
 				CA745D271503B1B500600024 /* CoreGraphics.framework in Frameworks */,
 				CACD6D3718E03C40003F97C0 /* libDIRAC_iOS4-fat.a in Frameworks */,
-				CACD6ADD18E03A2A003F97C0 /* Pinterest.framework in Frameworks */,
 				CACD6A9518E03A28003F97C0 /* SMSConnection.framework in Frameworks */,
+				CA93D0E518EFF136002BB805 /* TencentOpenAPI.framework in Frameworks */,
 				CACD6B0D18E03A2D003F97C0 /* ShareSDKiPadSimpleShareViewUI.framework in Frameworks */,
 				CACD6AA918E03A29003F97C0 /* TumblrConnection.framework in Frameworks */,
 				CACD6A8518E03A28003F97C0 /* QQConnection.framework in Frameworks */,
-				CACD6AD518E03A2A003F97C0 /* libSinaWeiboSDK.a in Frameworks */,
 				CACD6B1118E03A2D003F97C0 /* ShareSDKiPhoneAppRecommendShareViewUI.framework in Frameworks */,
 				CACD6CAE18E03BCD003F97C0 /* AlixPaylib.a in Frameworks */,
 				CA62C7811756FC5A00C9EF56 /* protolCLib.a in Frameworks */,
-				CACD6AF918E03A2C003F97C0 /* libWeiboSDK.a in Frameworks */,
+				CA93D11818F008FA002BB805 /* GoogleOpenSource.framework in Frameworks */,
 				CACD6A5118E03A28003F97C0 /* DropboxConnection.framework in Frameworks */,
 				CACD6AFD18E03A2C003F97C0 /* ShareSDK.framework in Frameworks */,
 				CACD6A7118E03A28003F97C0 /* LinkedInConnection.framework in Frameworks */,
 				CACD6A7518E03A28003F97C0 /* MailConnection.framework in Frameworks */,
 				CACD6A5918E03A28003F97C0 /* FacebookConnection.framework in Frameworks */,
+				CA93D0F518EFF136002BB805 /* libSinaWeiboSDK.a in Frameworks */,
 				965990C8906A4D42B3A1D745 /* libPods.a in Frameworks */,
 				CACD6AAD18E03A29003F97C0 /* TwitterConnection.framework in Frameworks */,
 				CACD69FD18E03846003F97C0 /* LingQianSDK.framework in Frameworks */,
 				CACD6A8D18E03A28003F97C0 /* RenRenConnection.framework in Frameworks */,
 				CACD6AB518E03A29003F97C0 /* YouDaoNoteConnection.framework in Frameworks */,
-				CACD6AC918E03A29003F97C0 /* GoogleOpenSource.framework in Frameworks */,
 				CACD6AA118E03A28003F97C0 /* T163WeiboConnection.framework in Frameworks */,
 				CACD6B2118E03A2D003F97C0 /* ShareSDKiPhoneSimpleShareViewUI.framework in Frameworks */,
 				CACD6A9918E03A28003F97C0 /* SohuConnection.framework in Frameworks */,
@@ -10796,6 +10808,7 @@
 				EA411B28176066F500DA72D0 /* libstdc++.dylib in Frameworks */,
 				CACD6A9C18E03A28003F97C0 /* SohuConnection.framework in Frameworks */,
 				EA411B17176066F500DA72D0 /* Accelerate.framework in Frameworks */,
+				CA93D13718F008FA002BB805 /* libYixinSDK.a in Frameworks */,
 				EA411B18176066F500DA72D0 /* CoreMedia.framework in Frameworks */,
 				EA411B19176066F500DA72D0 /* MediaPlayer.framework in Frameworks */,
 				CACD6A8818E03A28003F97C0 /* QQConnection.framework in Frameworks */,
@@ -10811,13 +10824,14 @@
 				EA411B1F176066F500DA72D0 /* Social.framework in Frameworks */,
 				EA411B20176066F500DA72D0 /* AdSupport.framework in Frameworks */,
 				EA411B21176066F500DA72D0 /* OpenGLES.framework in Frameworks */,
-				CACD6AF018E03A2B003F97C0 /* libWeChatSDK.a in Frameworks */,
 				EA411B22176066F500DA72D0 /* CoreImage.framework in Frameworks */,
 				CACD6D3A18E03C40003F97C0 /* libDIRAC_iOS4-fat.a in Frameworks */,
 				CACD6A9818E03A28003F97C0 /* SMSConnection.framework in Frameworks */,
 				EA411B23176066F500DA72D0 /* libicucore.dylib in Frameworks */,
-				CACD6AE018E03A2A003F97C0 /* Pinterest.framework in Frameworks */,
 				EA411B24176066F500DA72D0 /* OpenAL.framework in Frameworks */,
+				CA93D12318F008FA002BB805 /* GooglePlus.framework in Frameworks */,
+				CA93D13318F008FA002BB805 /* RennSDK.framework in Frameworks */,
+				CA93D0F818EFF137002BB805 /* libSinaWeiboSDK.a in Frameworks */,
 				CACD6A7818E03A28003F97C0 /* MailConnection.framework in Frameworks */,
 				EA411B25176066F500DA72D0 /* EventKitUI.framework in Frameworks */,
 				CACD6AB418E03A29003F97C0 /* WeChatConnection.framework in Frameworks */,
@@ -10829,7 +10843,7 @@
 				EA411B27176066F500DA72D0 /* CoreLocation.framework in Frameworks */,
 				CACD6A0018E03880003F97C0 /* LingQianSDK.framework in Frameworks */,
 				EA411B29176066F500DA72D0 /* CoreTelephony.framework in Frameworks */,
-				CACD6ACC18E03A2A003F97C0 /* GoogleOpenSource.framework in Frameworks */,
+				CA93D10418EFF138002BB805 /* libWeChatSDK.a in Frameworks */,
 				CACD6D3618E03C40003F97C0 /* libDIRAC_iOS-fat.a in Frameworks */,
 				CACD6A7018E03A28003F97C0 /* KaiXinConnection.framework in Frameworks */,
 				EA411B2A176066F500DA72D0 /* libsqlite3.dylib in Frameworks */,
@@ -10843,18 +10857,20 @@
 				EA411B2F176066F500DA72D0 /* StoreKit.framework in Frameworks */,
 				EA411B30176066F500DA72D0 /* libProtocolBuffers.a in Frameworks */,
 				EA411B31176066F500DA72D0 /* libz.1.1.3.dylib in Frameworks */,
+				CA93D11B18F008FA002BB805 /* GoogleOpenSource.framework in Frameworks */,
 				CACD6B1018E03A2D003F97C0 /* ShareSDKiPadSimpleShareViewUI.framework in Frameworks */,
 				EA411B32176066F500DA72D0 /* MessageUI.framework in Frameworks */,
 				EA411B33176066F500DA72D0 /* MapKit.framework in Frameworks */,
+				CA93D0E818EFF136002BB805 /* TencentOpenAPI.framework in Frameworks */,
 				CACD6AC818E03A29003F97C0 /* ShareSDKCoreService.framework in Frameworks */,
 				EA411B34176066F500DA72D0 /* AddressBook.framework in Frameworks */,
-				CACD6AFC18E03A2C003F97C0 /* libWeiboSDK.a in Frameworks */,
 				EA411B35176066F500DA72D0 /* CoreData.framework in Frameworks */,
 				EA411B36176066F500DA72D0 /* SystemConfiguration.framework in Frameworks */,
 				CACD6A6818E03A28003F97C0 /* InstapaperConnection.framework in Frameworks */,
 				EA411B37176066F500DA72D0 /* QuartzCore.framework in Frameworks */,
 				CACD6A6418E03A28003F97C0 /* GooglePlusConnection.framework in Frameworks */,
 				EA411B38176066F500DA72D0 /* CFNetwork.framework in Frameworks */,
+				CA93D10018EFF137002BB805 /* libTCWeiboSDK.a in Frameworks */,
 				CACD6A7C18E03A28003F97C0 /* PinterestConnection.framework in Frameworks */,
 				CACD6CDD18E03BCD003F97C0 /* libssl.a in Frameworks */,
 				CACD6CA918E03BCD003F97C0 /* AlipayRsaLib.a in Frameworks */,
@@ -10868,17 +10884,14 @@
 				EA411B3B176066F500DA72D0 /* CoreGraphics.framework in Frameworks */,
 				CACD6A5818E03A28003F97C0 /* EverNoteConnection.framework in Frameworks */,
 				EA411B49176066F500DA72D0 /* protolCLib.a in Frameworks */,
+				CA93D12718F008FA002BB805 /* Pinterest.framework in Frameworks */,
 				CACD6CB118E03BCD003F97C0 /* AlixPaylib.a in Frameworks */,
 				CACD6AAC18E03A29003F97C0 /* TumblrConnection.framework in Frameworks */,
-				CACD6AD418E03A2A003F97C0 /* GooglePlus.framework in Frameworks */,
 				CACD6A7418E03A28003F97C0 /* LinkedInConnection.framework in Frameworks */,
 				CACD6A5418E03A28003F97C0 /* DropboxConnection.framework in Frameworks */,
-				CACD6AD818E03A2A003F97C0 /* libSinaWeiboSDK.a in Frameworks */,
 				CACD6B2A18E03A91003F97C0 /* immobSDK.framework in Frameworks */,
-				CACD6AF418E03A2C003F97C0 /* TencentOpenAPI.framework in Frameworks */,
 				CACD6A6018E03A28003F97C0 /* FlickrConnection.framework in Frameworks */,
 				CACD6CD918E03BCD003F97C0 /* libcrypto.a in Frameworks */,
-				CACD6AEC18E03A2B003F97C0 /* RennSDK.framework in Frameworks */,
 				CACD6AA418E03A29003F97C0 /* T163WeiboConnection.framework in Frameworks */,
 				CACD6AA018E03A28003F97C0 /* SohuWeiboConnection.framework in Frameworks */,
 				CACD6AB018E03A29003F97C0 /* TwitterConnection.framework in Frameworks */,
@@ -15015,6 +15028,7 @@
 		CA745D211503B1B500600024 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				CA93D13818F00994002BB805 /* CoreMotion.framework */,
 				CAEEC19E181A5F18007FD75F /* CoreVideo.framework */,
 				A42150391803E87C007F2EFD /* AssetsLibrary.framework */,
 				A499076F174DBC61005AF334 /* Accelerate.framework */,
@@ -15410,6 +15424,105 @@
 				CA913A2F1653432C00B6387F /* GameResource.h */,
 			);
 			path = Resource;
+			sourceTree = "<group>";
+		};
+		CA93D0B318EFF136002BB805 /* Extend */ = {
+			isa = PBXGroup;
+			children = (
+				CA93D10918F008FA002BB805 /* GooglePlusSDK */,
+				CA93D10D18F008FA002BB805 /* Pinterest.embeddedframework */,
+				CA93D11118F008FA002BB805 /* RenRenSDK */,
+				CA93D11418F008FA002BB805 /* YiXinSDK */,
+				CA93D0BC18EFF136002BB805 /* QQConnectSDK */,
+				CA93D0C218EFF136002BB805 /* SinaWeiboSDK */,
+				CA93D0C618EFF136002BB805 /* TencentWeiboSDK */,
+				CA93D0C918EFF136002BB805 /* WeChatSDK */,
+			);
+			path = Extend;
+			sourceTree = "<group>";
+		};
+		CA93D0BC18EFF136002BB805 /* QQConnectSDK */ = {
+			isa = PBXGroup;
+			children = (
+				CA93D0BD18EFF136002BB805 /* TencentOpenAPI.framework */,
+				CA93D0BE18EFF136002BB805 /* TencentOpenApi_IOS_Bundle.bundle */,
+			);
+			path = QQConnectSDK;
+			sourceTree = "<group>";
+		};
+		CA93D0C218EFF136002BB805 /* SinaWeiboSDK */ = {
+			isa = PBXGroup;
+			children = (
+				CA93D0C318EFF136002BB805 /* libSinaWeiboSDK.a */,
+				CA93D0C418EFF136002BB805 /* WeiboSDK.bundle */,
+				CA93D0C518EFF136002BB805 /* WeiboSDK.h */,
+			);
+			path = SinaWeiboSDK;
+			sourceTree = "<group>";
+		};
+		CA93D0C618EFF136002BB805 /* TencentWeiboSDK */ = {
+			isa = PBXGroup;
+			children = (
+				CA93D0C718EFF136002BB805 /* libTCWeiboSDK.a */,
+				CA93D0C818EFF136002BB805 /* WeiboApi.h */,
+			);
+			path = TencentWeiboSDK;
+			sourceTree = "<group>";
+		};
+		CA93D0C918EFF136002BB805 /* WeChatSDK */ = {
+			isa = PBXGroup;
+			children = (
+				CA93D0CA18EFF136002BB805 /* libWeChatSDK.a */,
+				CA93D0CB18EFF136002BB805 /* WXApi.h */,
+				CA93D0CC18EFF136002BB805 /* WXApiObject.h */,
+			);
+			path = WeChatSDK;
+			sourceTree = "<group>";
+		};
+		CA93D10918F008FA002BB805 /* GooglePlusSDK */ = {
+			isa = PBXGroup;
+			children = (
+				CA93D10A18F008FA002BB805 /* GoogleOpenSource.framework */,
+				CA93D10B18F008FA002BB805 /* GooglePlus.bundle */,
+				CA93D10C18F008FA002BB805 /* GooglePlus.framework */,
+			);
+			path = GooglePlusSDK;
+			sourceTree = "<group>";
+		};
+		CA93D10D18F008FA002BB805 /* Pinterest.embeddedframework */ = {
+			isa = PBXGroup;
+			children = (
+				CA93D10E18F008FA002BB805 /* Pinterest.framework */,
+				CA93D10F18F008FA002BB805 /* Resources */,
+			);
+			path = Pinterest.embeddedframework;
+			sourceTree = "<group>";
+		};
+		CA93D10F18F008FA002BB805 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				CA93D11018F008FA002BB805 /* PinterestSDKResources.bundle */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		CA93D11118F008FA002BB805 /* RenRenSDK */ = {
+			isa = PBXGroup;
+			children = (
+				CA93D11218F008FA002BB805 /* RennSDK.bundle */,
+				CA93D11318F008FA002BB805 /* RennSDK.framework */,
+			);
+			path = RenRenSDK;
+			sourceTree = "<group>";
+		};
+		CA93D11418F008FA002BB805 /* YiXinSDK */ = {
+			isa = PBXGroup;
+			children = (
+				CA93D11518F008FA002BB805 /* libYixinSDK.a */,
+				CA93D11618F008FA002BB805 /* YXApi.h */,
+				CA93D11718F008FA002BB805 /* YXApiObject.h */,
+			);
+			path = YiXinSDK;
 			sourceTree = "<group>";
 		};
 		CA96E264150DD55400292335 /* GameServer */ = {
@@ -16369,9 +16482,9 @@
 		CACD6A0418E03A27003F97C0 /* ShareSDK */ = {
 			isa = PBXGroup;
 			children = (
+				CA93D0B318EFF136002BB805 /* Extend */,
 				CACD6A0518E03A27003F97C0 /* Connection */,
 				CACD6A2118E03A27003F97C0 /* Core */,
-				CACD6A2818E03A27003F97C0 /* Extend */,
 				CACD6A4218E03A27003F97C0 /* ShareSDK.framework */,
 				CACD6A4318E03A27003F97C0 /* UI */,
 			);
@@ -16421,87 +16534,6 @@
 				CACD6A2618E03A27003F97C0 /* ShareSDKCoreService.framework */,
 			);
 			path = Core;
-			sourceTree = "<group>";
-		};
-		CACD6A2818E03A27003F97C0 /* Extend */ = {
-			isa = PBXGroup;
-			children = (
-				CACD6A2918E03A27003F97C0 /* GooglePlusSDK */,
-				CACD6A2D18E03A27003F97C0 /* libWeiboSDK */,
-				CACD6A3118E03A27003F97C0 /* Pinterest.embeddedframework */,
-				CACD6A3518E03A27003F97C0 /* RenRenSDK */,
-				CACD6A3818E03A27003F97C0 /* SDKExport */,
-				CACD6A3C18E03A27003F97C0 /* TencentOpenAPI.framework */,
-				CACD6A3D18E03A27003F97C0 /* TencentOpenApi_IOS_Bundle.bundle */,
-				CACD6A3E18E03A27003F97C0 /* TencentWeiboSSO */,
-			);
-			path = Extend;
-			sourceTree = "<group>";
-		};
-		CACD6A2918E03A27003F97C0 /* GooglePlusSDK */ = {
-			isa = PBXGroup;
-			children = (
-				CACD6A2A18E03A27003F97C0 /* GoogleOpenSource.framework */,
-				CACD6A2B18E03A27003F97C0 /* GooglePlus.bundle */,
-				CACD6A2C18E03A27003F97C0 /* GooglePlus.framework */,
-			);
-			path = GooglePlusSDK;
-			sourceTree = "<group>";
-		};
-		CACD6A2D18E03A27003F97C0 /* libWeiboSDK */ = {
-			isa = PBXGroup;
-			children = (
-				CACD6A2E18E03A27003F97C0 /* libSinaWeiboSDK.a */,
-				CACD6A2F18E03A27003F97C0 /* WeiboSDK.bundle */,
-				CACD6A3018E03A27003F97C0 /* WeiboSDK.h */,
-			);
-			path = libWeiboSDK;
-			sourceTree = "<group>";
-		};
-		CACD6A3118E03A27003F97C0 /* Pinterest.embeddedframework */ = {
-			isa = PBXGroup;
-			children = (
-				CACD6A3218E03A27003F97C0 /* Pinterest.framework */,
-				CACD6A3318E03A27003F97C0 /* Resources */,
-			);
-			path = Pinterest.embeddedframework;
-			sourceTree = "<group>";
-		};
-		CACD6A3318E03A27003F97C0 /* Resources */ = {
-			isa = PBXGroup;
-			children = (
-				CACD6A3418E03A27003F97C0 /* PinterestSDKResources.bundle */,
-			);
-			path = Resources;
-			sourceTree = "<group>";
-		};
-		CACD6A3518E03A27003F97C0 /* RenRenSDK */ = {
-			isa = PBXGroup;
-			children = (
-				CACD6A3618E03A27003F97C0 /* RennSDK.bundle */,
-				CACD6A3718E03A27003F97C0 /* RennSDK.framework */,
-			);
-			path = RenRenSDK;
-			sourceTree = "<group>";
-		};
-		CACD6A3818E03A27003F97C0 /* SDKExport */ = {
-			isa = PBXGroup;
-			children = (
-				CACD6A3918E03A27003F97C0 /* libWeChatSDK.a */,
-				CACD6A3A18E03A27003F97C0 /* WXApi.h */,
-				CACD6A3B18E03A27003F97C0 /* WXApiObject.h */,
-			);
-			path = SDKExport;
-			sourceTree = "<group>";
-		};
-		CACD6A3E18E03A27003F97C0 /* TencentWeiboSSO */ = {
-			isa = PBXGroup;
-			children = (
-				CACD6A3F18E03A27003F97C0 /* libWeiboSDK.a */,
-				CACD6A4018E03A27003F97C0 /* WBApi.h */,
-				CACD6A4118E03A27003F97C0 /* WBApiObject.h */,
-			);
-			path = TencentWeiboSSO;
 			sourceTree = "<group>";
 		};
 		CACD6A4318E03A27003F97C0 /* UI */ = {
@@ -17844,10 +17876,12 @@
 				A461B422174CBAA70088B061 /* ShareCell~ipad.xib in Resources */,
 				A461B425174CBAA70088B061 /* ColorShopView~ipad.xib in Resources */,
 				A461B426174CBAA70088B061 /* ChatController.xib in Resources */,
+				CA93D0EB18EFF136002BB805 /* TencentOpenApi_IOS_Bundle.bundle in Resources */,
 				A461B428174CBAA70088B061 /* MessageCell.xib in Resources */,
 				A461B42C174CBAA70088B061 /* RoomCell.xib in Resources */,
 				A461B42E174CBAA70088B061 /* RoomCell~ipad.xib in Resources */,
 				A461B432174CBAA70088B061 /* FriendCell.xib in Resources */,
+				CA93D0FB18EFF137002BB805 /* WeiboSDK.bundle in Resources */,
 				A461B433174CBAA70088B061 /* FriendCell~ipad.xib in Resources */,
 				A461B434174CBAA70088B061 /* ChatController~ipad.xib in Resources */,
 				A461B435174CBAA70088B061 /* MessageCell~ipad.xib in Resources */,
@@ -17901,6 +17935,7 @@
 				CACD6ABF18E03A29003F97C0 /* ShareSDKLocalizable.strings in Resources */,
 				A461B4CE174CBAA70088B061 /* TopPlayerView.xib in Resources */,
 				A461B4CF174CBAA70088B061 /* RankFirstView~ipad.xib in Resources */,
+				CA93D12E18F008FA002BB805 /* RennSDK.bundle in Resources */,
 				A461B4D0174CBAA70088B061 /* RankSecondView~ipad.xib in Resources */,
 				A461B4D1174CBAA70088B061 /* RankView~ipad.xib in Resources */,
 				A461B4D2174CBAA70088B061 /* TopPlayerView~ipad.xib in Resources */,
@@ -17969,6 +18004,7 @@
 				A461B53C174CBAA70088B061 /* bbs_action_sheet_bg@2x.png in Resources */,
 				A461B53D174CBAA70088B061 /* BBSActionListController~ipad.xib in Resources */,
 				A461B53E174CBAA70088B061 /* BBSPostDetailController~ipad.xib in Resources */,
+				CA93D11E18F008FA002BB805 /* GooglePlus.bundle in Resources */,
 				A461B53F174CBAA70088B061 /* CreatePostController~ipad.xib in Resources */,
 				CACD6AC318E03A29003F97C0 /* Resource.bundle in Resources */,
 				A461B540174CBAA70088B061 /* BBSUserActionCell~ipad.xib in Resources */,
@@ -17996,6 +18032,7 @@
 				A461B56F174CBAA70088B061 /* CommonUserInfoView.xib in Resources */,
 				A461B570174CBAA70088B061 /* CommonUserInfoView~ipad.xib in Resources */,
 				A461B571174CBAA70088B061 /* CommonZJHDialog.xib in Resources */,
+				CA93D12A18F008FA002BB805 /* PinterestSDKResources.bundle in Resources */,
 				A461B572174CBAA70088B061 /* CommonZJHDialog~ipad.xib in Resources */,
 				A461B573174CBAA70088B061 /* DiceInputDialog.xib in Resources */,
 				A461B574174CBAA70088B061 /* DiceInputDialog~ipad.xib in Resources */,
@@ -18212,7 +18249,6 @@
 				A42BB03417D9735A007FB11B /* TwoInputFieldView~ipad.xib in Resources */,
 				A4D8F9BB17DB08170085061F /* easy@2x.png in Resources */,
 				A4D8F9BF17DB08170085061F /* guessword_pallets@2x.png in Resources */,
-				CACD6AE318E03A2B003F97C0 /* PinterestSDKResources.bundle in Resources */,
 				A4D8F9C317DB08170085061F /* hard@2x.png in Resources */,
 				A4D8F9C717DB08170085061F /* normal@2x.png in Resources */,
 				A4D8F9CB17DB08170085061F /* print_tip@2x.png in Resources */,
@@ -18262,7 +18298,6 @@
 				A4D8FA7B17DB08170085061F /* draw_room_seat_pink@2x.png in Resources */,
 				A4D8FA7F17DB08170085061F /* draw_room_seat_purple@2x.png in Resources */,
 				A4D8FA8317DB08170085061F /* draw_room_seat_white@2x.png in Resources */,
-				CACD6ACF18E03A2A003F97C0 /* GooglePlus.bundle in Resources */,
 				A4D8FA8717DB08170085061F /* draw_room_seat_yellow@2x.png in Resources */,
 				A4D8FA8B17DB08170085061F /* room_title_bg@2x.png in Resources */,
 				A4D8FA8F17DB08170085061F /* face_anger@2x.png in Resources */,
@@ -18486,7 +18521,6 @@
 				A4D8FEF917DB089C0085061F /* green_button@2x.png in Resources */,
 				A4D8FEFD17DB089C0085061F /* highlight_mask@2x.png in Resources */,
 				A4D8FF0117DB089C0085061F /* common_home_badge@2x.png in Resources */,
-				CACD6AF718E03A2C003F97C0 /* TencentOpenApi_IOS_Bundle.bundle in Resources */,
 				A4D8FF0517DB089C0085061F /* common_home_bbs@2x.png in Resources */,
 				A4D8FF0D17DB089C0085061F /* common_home_friend@2x.png in Resources */,
 				A4D8FF1117DB089C0085061F /* common_home_front_page@2x.png in Resources */,
@@ -18561,7 +18595,6 @@
 				A4D8008117DB089C0085061F /* wechat_friend@2x.png in Resources */,
 				A4D8008517DB089C0085061F /* wood_pallets@2x.png in Resources */,
 				A4D8008D17DB0B370085061F /* coin@2x.png in Resources */,
-				CACD6AE718E03A2B003F97C0 /* RennSDK.bundle in Resources */,
 				A4D8009117DB0B370085061F /* gray_coin@2x.png in Resources */,
 				A4D8009517DB0B370085061F /* gray_ingot@2x.png in Resources */,
 				A4D8009917DB0B370085061F /* ingot@2x.png in Resources */,
@@ -18579,7 +18612,6 @@
 				EAD13B7D17DECFB700764FFB /* orange_loading_empty@2x.png in Resources */,
 				EAD13B8117DECFB700764FFB /* orange_loading_full@2x.png in Resources */,
 				A44F32EF17E16C5000AF9B26 /* ContestRankView.xib in Resources */,
-				CACD6ADB18E03A2A003F97C0 /* WeiboSDK.bundle in Resources */,
 				A4D410C617E1945600DE07C6 /* ContestRankView~ipad.xib in Resources */,
 				EA8EF62217E55D3B003F1AF8 /* draw_home_bottom_split@2x.png in Resources */,
 				EA8EF62617E55D3B003F1AF8 /* draw_home_opus@2x.png in Resources */,
@@ -18889,6 +18921,7 @@
 				C28A9D9A1738F04B007A819F /* MyFeedController.xib in Resources */,
 				C28A9D9B1738F04B007A819F /* UserFeedController.xib in Resources */,
 				C28A9D9C1738F04B007A819F /* UserFeedController~ipad.xib in Resources */,
+				CA93D0FA18EFF137002BB805 /* WeiboSDK.bundle in Resources */,
 				C28A9D9E1738F04B007A819F /* ContestController.xib in Resources */,
 				C28A9DA01738F04B007A819F /* ContestView.xib in Resources */,
 				C28A9DA41738F04B007A819F /* StatementController.xib in Resources */,
@@ -18970,7 +19003,6 @@
 				C28A9E1D1738F04B007A819F /* BBSPostDetailController~ipad.xib in Resources */,
 				C28A9E1E1738F04B007A819F /* CreatePostController~ipad.xib in Resources */,
 				C28A9E1F1738F04B007A819F /* BBSUserActionCell~ipad.xib in Resources */,
-				CACD6ADA18E03A2A003F97C0 /* WeiboSDK.bundle in Resources */,
 				C28A9E201738F04B007A819F /* BBSPostActionCell~ipad.xib in Resources */,
 				C28A9E211738F04B007A819F /* BBSPostActionHeaderView~ipad.xib in Resources */,
 				C28A9E221738F04B007A819F /* BBSPostDetailCell~ipad.xib in Resources */,
@@ -19029,6 +19061,7 @@
 				C28A9F3F1738F04B007A819F /* DraftCell.xib in Resources */,
 				C28A9F401738F04B007A819F /* DraftCell~ipad.xib in Resources */,
 				C28A9F411738F04B007A819F /* DraftsView.xib in Resources */,
+				CA93D12D18F008FA002BB805 /* RennSDK.bundle in Resources */,
 				C28A9F421738F04B007A819F /* DraftsView~ipad.xib in Resources */,
 				C28A9F491738F04B007A819F /* ColorBox.xib in Resources */,
 				C28A9F4A1738F04B007A819F /* ColorBox~ipad.xib in Resources */,
@@ -19095,7 +19128,6 @@
 				C28AA0881738F04B007A819F /* TaoBaoController.xib in Resources */,
 				C28AA0891738F04B007A819F /* TaoBaoController~ipad.xib in Resources */,
 				C28AA0991738F04B007A819F /* UserSettingCell.xib in Resources */,
-				CACD6ACE18E03A2A003F97C0 /* GooglePlus.bundle in Resources */,
 				C28AA09A1738F04B007A819F /* UserSettingCell~ipad.xib in Resources */,
 				C28AA0A01738F04B007A819F /* DrawOnCell.xib in Resources */,
 				C28AA0A11738F04B007A819F /* DrawOnCell~ipad.xib in Resources */,
@@ -19182,7 +19214,6 @@
 				CA518350179F79570033AA95 /* GetNewNumberViewController.xib in Resources */,
 				A4B78A58179F7A2E0008E21B /* GuessModesController.xib in Resources */,
 				A4B78A60179F7C5E0008E21B /* GuessSelectController.xib in Resources */,
-				CACD6AE218E03A2B003F97C0 /* PinterestSDKResources.bundle in Resources */,
 				A4B78A64179F7C660008E21B /* DrawGuessController.xib in Resources */,
 				A4B78A6E179FA6F10008E21B /* GuessRankListController.xib in Resources */,
 				CA518385179FB6340033AA95 /* ShakeNumberController.xib in Resources */,
@@ -19191,7 +19222,6 @@
 				CAE74B7B17AF83D500E73875 /* DrawLayerPanel.xib in Resources */,
 				A4E1D21E17B2236800E13728 /* GuessSelectCell.xib in Resources */,
 				A489C01517B5D942003E5150 /* JDFlipNumberView.bundle in Resources */,
-				CACD6AE618E03A2B003F97C0 /* RennSDK.bundle in Resources */,
 				A4ADB61917B9FA0C00EBF418 /* Themes.plist in Resources */,
 				A440355817C5C6CF00301EDD /* GuessModesController~ipad.xib in Resources */,
 				A440355E17C5C96B00301EDD /* GuessSelectCell~ipad.xib in Resources */,
@@ -19282,6 +19312,7 @@
 				A4D8FA5E17DB08170085061F /* draw_setting_btn@2x.png in Resources */,
 				A4D8FA6217DB08170085061F /* draw_share@2x.png in Resources */,
 				A4D8FA6617DB08170085061F /* experience@2x.png in Resources */,
+				CA93D12918F008FA002BB805 /* PinterestSDKResources.bundle in Resources */,
 				CACD6ABE18E03A29003F97C0 /* ShareSDKLocalizable.strings in Resources */,
 				A4D8FA6A17DB08170085061F /* group_message@2x.png in Resources */,
 				A4D8FA6E17DB08170085061F /* message_popup@2x.png in Resources */,
@@ -19527,6 +19558,7 @@
 				A4D8FF3417DB089C0085061F /* common_home_splitline@2x.png in Resources */,
 				A4D8FF3C17DB089C0085061F /* dice_home_header_bg@2x.png in Resources */,
 				A4D8FF4017DB089C0085061F /* dice_home_header_foot@2x.png in Resources */,
+				CA93D11D18F008FA002BB805 /* GooglePlus.bundle in Resources */,
 				A4D8FF4417DB089C0085061F /* dice_home_header_man@2x.png in Resources */,
 				A4D8FFA017DB089C0085061F /* learndraw_bg@2x.png in Resources */,
 				A4D8FFA417DB089C0085061F /* learndraw_bottom_bar@2x.png in Resources */,
@@ -19587,7 +19619,6 @@
 				A4D8008C17DB0B370085061F /* coin@2x.png in Resources */,
 				A4D8009017DB0B370085061F /* gray_coin@2x.png in Resources */,
 				A4D8009417DB0B370085061F /* gray_ingot@2x.png in Resources */,
-				CACD6AF618E03A2C003F97C0 /* TencentOpenApi_IOS_Bundle.bundle in Resources */,
 				A4D8009817DB0B370085061F /* ingot@2x.png in Resources */,
 				A49C9CB817DB2D0700C9F39F /* gallary_filter@2x.png in Resources */,
 				A49C9CBC17DB2D0700C9F39F /* gallary_search@2x.png in Resources */,
@@ -19732,6 +19763,7 @@
 				EA11A42C1839EA1200F73D64 /* group_footer_unfollowing@2x.png in Resources */,
 				EA03897A183B06D300516952 /* GroupTopicController.xib in Resources */,
 				EA038985183B122900516952 /* GroupDetailCell.xib in Resources */,
+				CA93D0EA18EFF136002BB805 /* TencentOpenApi_IOS_Bundle.bundle in Resources */,
 				EA0389A0183B151A00516952 /* GroupInfoView.xib in Resources */,
 				CA92300C183DA8C900669DE3 /* TaskCell~ipad.xib in Resources */,
 				CA923010183DA8C900669DE3 /* TaskController~ipad.xib in Resources */,
@@ -19851,7 +19883,7 @@
 				CA0CB75A155CB064009C8EE6 /* RoomCell.xib in Resources */,
 				CA0CB760155CB0D4009C8EE6 /* RoomCell~ipad.xib in Resources */,
 				A3D11BF61562306A00248B4C /* FriendCell.xib in Resources */,
-				CACD6AE518E03A2B003F97C0 /* RennSDK.bundle in Resources */,
+				CA93D11C18F008FA002BB805 /* GooglePlus.bundle in Resources */,
 				A3D11BF71562306A00248B4C /* FriendCell~ipad.xib in Resources */,
 				A461C94115662BC30076FD9C /* ChatController~ipad.xib in Resources */,
 				A461C94215662BC30076FD9C /* MessageCell~ipad.xib in Resources */,
@@ -19929,7 +19961,6 @@
 				CA9D5F4A1616F2040082E258 /* HotController~ipad.xib in Resources */,
 				EA372344162018DA00FC6F3E /* UserLocationController.xib in Resources */,
 				EAA9E1681622B2A000E8DF1A /* UserLocationController~ipad.xib in Resources */,
-				CACD6AF518E03A2C003F97C0 /* TencentOpenApi_IOS_Bundle.bundle in Resources */,
 				A4E7876A16366FF8003557AD /* ZhaJinHua.proto in Resources */,
 				CA1882B11648C7EE000942D6 /* FriendController~ipad.xib in Resources */,
 				CA1882B21648C7EE000942D6 /* FriendController.xib in Resources */,
@@ -19977,7 +20008,6 @@
 				CAC792AD1668D6B0009B4053 /* bbs_option_bubble@2x.png in Resources */,
 				CAB5DE541669FF7600A23011 /* bbs_create_draw_enable@2x.png in Resources */,
 				CAB5DE561669FF7600A23011 /* bbs_create_image_enable@2x.png in Resources */,
-				CACD6ACD18E03A2A003F97C0 /* GooglePlus.bundle in Resources */,
 				CAB5DE571669FF7600A23011 /* bbs_create_input_bg@2x.png in Resources */,
 				CAB5DE581669FF7600A23011 /* bbs_create_reward_bg@2x.png in Resources */,
 				CAB5DE591669FF7600A23011 /* bbs_create_reward_option@2x.png in Resources */,
@@ -20062,6 +20092,7 @@
 				CADECC7116B0DA10001D414C /* bbs_post_detail_delete@2x.png in Resources */,
 				CADECC7516B0DA10001D414C /* bbs_post_detail_support@2x.png in Resources */,
 				CADECC7916B0DA10001D414C /* bbs_post_detail_totop@2x.png in Resources */,
+				CA93D12818F008FA002BB805 /* PinterestSDKResources.bundle in Resources */,
 				CADECC7D16B0DA10001D414C /* bbs_post_detail_transfer@2x.png in Resources */,
 				CADECC9C16B11EF0001D414C /* bbs_post_top_bg@2x.png in Resources */,
 				CA853BFC16B3830B006FC155 /* bbs_post_detail_untop@2x.png in Resources */,
@@ -20414,6 +20445,7 @@
 				A4D8FD8717DB089C0085061F /* selected_pen_feather@2x.png in Resources */,
 				A4D8FD8B17DB089C0085061F /* selected_pen_ice-cream@2x.png in Resources */,
 				A4D8FD8F17DB089C0085061F /* selected_pen_mark@2x.png in Resources */,
+				CA93D12C18F008FA002BB805 /* RennSDK.bundle in Resources */,
 				A4D8FD9317DB089C0085061F /* selected_pen_pencil@2x.png in Resources */,
 				A4D8FD9717DB089C0085061F /* selected_pen_rubber@2x.png in Resources */,
 				A4D8FD9B17DB089C0085061F /* eraser_show@2x.png in Resources */,
@@ -20470,6 +20502,7 @@
 				A4D8FE6317DB089C0085061F /* draw_up_panel_accessory@2x.png in Resources */,
 				A4D8FE6717DB089C0085061F /* draw_up_panel_background@2x.png in Resources */,
 				A4D8FE6B17DB089C0085061F /* draw_up_panel_blocks@2x.png in Resources */,
+				CA93D0F918EFF137002BB805 /* WeiboSDK.bundle in Resources */,
 				A4D8FE6F17DB089C0085061F /* draw_up_panel_canvas_btn@2x.png in Resources */,
 				CACD6ABD18E03A29003F97C0 /* ShareSDKLocalizable.strings in Resources */,
 				A4D8FE7317DB089C0085061F /* draw_up_panel_copy_paint_btn@2x.png in Resources */,
@@ -20531,7 +20564,6 @@
 				A4D8FFC317DB089C0085061F /* line.svg in Resources */,
 				A4D8FFC717DB089C0085061F /* path.svg in Resources */,
 				A4D8FFCB17DB089C0085061F /* rect.svg in Resources */,
-				CACD6AD918E03A2A003F97C0 /* WeiboSDK.bundle in Resources */,
 				A4D8FFCF17DB089C0085061F /* zjh_home_charge@2x.png in Resources */,
 				A4D8FFD317DB089C0085061F /* zjh_home_charge_bg@2x.png in Resources */,
 				A4D8FFD717DB089C0085061F /* zjh_home_freecoin_bg@2x.png in Resources */,
@@ -20760,7 +20792,6 @@
 				A4563E6418A885B1005DAA03 /* finish@2x.png in Resources */,
 				EA7E4F7D186ADE8F00E0B20F /* GroupNoticeController~ipad.xib in Resources */,
 				EA7E4F81186ADE8F00E0B20F /* GroupTopicController~ipad.xib in Resources */,
-				CACD6AE118E03A2B003F97C0 /* PinterestSDKResources.bundle in Resources */,
 				EA716B95186C373F005CC0F0 /* group_add@2x.png in Resources */,
 				A434172218711AFB008D0A2B /* ContestCell.xib in Resources */,
 				EA481CC2187162E000177423 /* default_group_medal@2x.png in Resources */,
@@ -20769,6 +20800,7 @@
 				EA62853918768F4600478502 /* bbs_post_detail_favor@2x.png in Resources */,
 				EA62853D18768F4600478502 /* bbs_post_detail_unfavor@2x.png in Resources */,
 				A40DF8841876A29200C1A307 /* ContestAwardEditController.xib in Resources */,
+				CA93D0E918EFF136002BB805 /* TencentOpenApi_IOS_Bundle.bundle in Resources */,
 				A40DF8921876A40900C1A307 /* ContestAwardEditCell.xib in Resources */,
 				EABC81A4187A85E00099AA7C /* group_footer_contest@2x.png in Resources */,
 				EABC81AC187A8D810099AA7C /* common_home_group@2x.png in Resources */,
@@ -20839,6 +20871,7 @@
 				EA411B74176066F500DA72D0 /* FeedbackController~ipad.xib in Resources */,
 				EA411B75176066F500DA72D0 /* ReportController~ipad.xib in Resources */,
 				EA411B76176066F500DA72D0 /* AboutUsController~ipad.xib in Resources */,
+				CA93D0FC18EFF137002BB805 /* WeiboSDK.bundle in Resources */,
 				EA411B79176066F500DA72D0 /* ShareController~ipad.xib in Resources */,
 				EA411B7A176066F500DA72D0 /* ShareCell~ipad.xib in Resources */,
 				EA411B7D176066F500DA72D0 /* ColorShopView~ipad.xib in Resources */,
@@ -20878,7 +20911,6 @@
 				EA411BB3176066F500DA72D0 /* Dice.proto in Resources */,
 				EA411BF8176066F500DA72D0 /* CommentCell.xib in Resources */,
 				EA411BF9176066F500DA72D0 /* CommentCell~ipad.xib in Resources */,
-				CACD6AE418E03A2B003F97C0 /* PinterestSDKResources.bundle in Resources */,
 				EA411BFC176066F500DA72D0 /* DrawInfoCell.xib in Resources */,
 				EA411BFD176066F500DA72D0 /* DrawInfoCell~ipad.xib in Resources */,
 				EA411BFE176066F500DA72D0 /* FeedCell.xib in Resources */,
@@ -20972,7 +21004,6 @@
 				EA411C6D176066F500DA72D0 /* BBSActionListController~ipad.xib in Resources */,
 				EA411C6E176066F500DA72D0 /* BBSPostDetailController~ipad.xib in Resources */,
 				EA411C6F176066F500DA72D0 /* CreatePostController~ipad.xib in Resources */,
-				CACD6AD018E03A2A003F97C0 /* GooglePlus.bundle in Resources */,
 				EA411C70176066F500DA72D0 /* BBSUserActionCell~ipad.xib in Resources */,
 				EA411C71176066F500DA72D0 /* BBSPostActionCell~ipad.xib in Resources */,
 				EA411C72176066F500DA72D0 /* BBSPostActionHeaderView~ipad.xib in Resources */,
@@ -21029,7 +21060,6 @@
 				EA411D7F176066F500DA72D0 /* WordSelectCell.xib in Resources */,
 				EA411D84176066F500DA72D0 /* SelectCustomWordCell.xib in Resources */,
 				EA411D85176066F500DA72D0 /* SelectCustomWordCell~ipad.xib in Resources */,
-				CACD6ADC18E03A2A003F97C0 /* WeiboSDK.bundle in Resources */,
 				EA411D86176066F500DA72D0 /* DrawPro-Info.plist in Resources */,
 				EA411D87176066F500DA72D0 /* DraftCell.xib in Resources */,
 				EA411D88176066F500DA72D0 /* DraftCell~ipad.xib in Resources */,
@@ -21288,6 +21318,7 @@
 				A4D8FB0817DB08170085061F /* round_dot_15@2x.png in Resources */,
 				A4D8FB0C17DB08170085061F /* round_dot_16@2x.png in Resources */,
 				A4D8FB1017DB08170085061F /* round_dot_17@2x.png in Resources */,
+				CA93D11F18F008FA002BB805 /* GooglePlus.bundle in Resources */,
 				A4D8FB1417DB08170085061F /* round_dot_18@2x.png in Resources */,
 				A4D8FB1817DB08170085061F /* round_dot_19@2x.png in Resources */,
 				A4D8FB1C17DB08170085061F /* round_dot_1@2x.png in Resources */,
@@ -21358,6 +21389,7 @@
 				A4D8FC2C17DB08180085061F /* user_detail_pull_down@2x.png in Resources */,
 				A4D8FC3017DB08180085061F /* user_detail_qq@2x.png in Resources */,
 				A4D8FC3417DB08180085061F /* user_detail_round_avatar_bg@2x.png in Resources */,
+				CA93D12F18F008FA002BB805 /* RennSDK.bundle in Resources */,
 				A4D8FC3817DB08180085061F /* user_detail_round_avatar_bg@2x.png_bak1.png in Resources */,
 				A4D8FC3C17DB08180085061F /* user_detail_sina@2x.png in Resources */,
 				A4D8FC4017DB08180085061F /* hot_words_bg@2x.png in Resources */,
@@ -21420,6 +21452,7 @@
 				A4D8FE0E17DB089C0085061F /* draw_eraser@2x.png in Resources */,
 				A4D8FE1217DB089C0085061F /* draw_fx@2x.png in Resources */,
 				A4D8FE1617DB089C0085061F /* draw_gradient@2x.png in Resources */,
+				CA93D0EC18EFF136002BB805 /* TencentOpenApi_IOS_Bundle.bundle in Resources */,
 				A4D8FE1A17DB089C0085061F /* draw_grid@2x.png in Resources */,
 				A4D8FE1E17DB089C0085061F /* draw_grid_selected@2x.png in Resources */,
 				A4D8FE2217DB089C0085061F /* draw_line@2x.png in Resources */,
@@ -21460,7 +21493,6 @@
 				A4D8FEA617DB089C0085061F /* face_lovely@2x.png in Resources */,
 				A4D8FEAA17DB089C0085061F /* face_proud@2x.png in Resources */,
 				A4D8FEAE17DB089C0085061F /* face_randy@2x.png in Resources */,
-				CACD6AE818E03A2B003F97C0 /* RennSDK.bundle in Resources */,
 				A4D8FEB217DB089C0085061F /* face_shock@2x.png in Resources */,
 				A4D8FEB617DB089C0085061F /* face_shy@2x.png in Resources */,
 				A4D8FEBA17DB089C0085061F /* face_sleep@2x.png in Resources */,
@@ -21735,6 +21767,7 @@
 				CAD8EE5518922F840057EC30 /* vip_v@2x.png in Resources */,
 				EA68D4FA1893B600003EB69A /* PurchaseVipController~ipad.xib in Resources */,
 				EA68D5021893C43A003EB69A /* group_footer_timeline@2x.png in Resources */,
+				CA93D12B18F008FA002BB805 /* PinterestSDKResources.bundle in Resources */,
 				EA68D50B1893C4A5003EB69A /* pen_show_fun1@2x.png in Resources */,
 				EA68D50F1893C4A5003EB69A /* pen_show_fun2@2x.png in Resources */,
 				EA68D5131893C4A5003EB69A /* pen_show_fun3@2x.png in Resources */,
@@ -21742,7 +21775,6 @@
 				EA68D51B1893C4A5003EB69A /* pen_show_fun5@2x.png in Resources */,
 				EA68D5241893C503003EB69A /* pen_fun1@2x.png in Resources */,
 				EA68D5281893C503003EB69A /* pen_fun2@2x.png in Resources */,
-				CACD6AF818E03A2C003F97C0 /* TencentOpenApi_IOS_Bundle.bundle in Resources */,
 				EA68D52C1893C503003EB69A /* pen_fun3@2x.png in Resources */,
 				EA68D5301893C503003EB69A /* pen_fun4@2x.png in Resources */,
 				EA68D5341893C503003EB69A /* pen_fun5@2x.png in Resources */,
@@ -22168,7 +22200,6 @@
 				A461B285174CBAA70088B061 /* mztools.c in Sources */,
 				A461B286174CBAA70088B061 /* unzip.c in Sources */,
 				A461B287174CBAA70088B061 /* zip.c in Sources */,
-				A461B288174CBAA70088B061 /* SSZipArchive.m in Sources */,
 				A461B28C174CBAA70088B061 /* DrawColor.m in Sources */,
 				A461B28D174CBAA70088B061 /* DrawUtils.m in Sources */,
 				A461B28E174CBAA70088B061 /* DrawGameAnimationManager.m in Sources */,
@@ -22985,7 +23016,6 @@
 				C28A9B6D1738F04B007A819F /* mztools.c in Sources */,
 				C28A9B6E1738F04B007A819F /* unzip.c in Sources */,
 				C28A9B6F1738F04B007A819F /* zip.c in Sources */,
-				C28A9B701738F04B007A819F /* SSZipArchive.m in Sources */,
 				C28A9B741738F04B007A819F /* DrawColor.m in Sources */,
 				C28A9B751738F04B007A819F /* DrawUtils.m in Sources */,
 				C28A9B761738F04B007A819F /* DrawGameAnimationManager.m in Sources */,
@@ -23803,7 +23833,6 @@
 				CAFEFE8116606FC200441D77 /* mztools.c in Sources */,
 				CAFEFE8216606FC200441D77 /* unzip.c in Sources */,
 				CAFEFE8316606FC200441D77 /* zip.c in Sources */,
-				CAFEFE8416606FC200441D77 /* SSZipArchive.m in Sources */,
 				CAFEFFB4166072AB00441D77 /* DrawColor.m in Sources */,
 				CAFEFFB5166072AB00441D77 /* DrawUtils.m in Sources */,
 				CA42FE861660B73A0097453A /* DrawGameAnimationManager.m in Sources */,
@@ -24616,7 +24645,6 @@
 				EA4119D2176066F500DA72D0 /* mztools.c in Sources */,
 				EA4119D3176066F500DA72D0 /* unzip.c in Sources */,
 				EA4119D4176066F500DA72D0 /* zip.c in Sources */,
-				EA4119D5176066F500DA72D0 /* SSZipArchive.m in Sources */,
 				EA4119D9176066F500DA72D0 /* DrawColor.m in Sources */,
 				EA4119DA176066F500DA72D0 /* DrawUtils.m in Sources */,
 				EA4119DB176066F500DA72D0 /* DrawGameAnimationManager.m in Sources */,
@@ -25268,20 +25296,20 @@
 				COPY_PHASE_STRIP = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/iFly\\\"",
-					"\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/LmmobSDK\\\"",
-					"\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/MangoAd/AdsMOGO_iOS_SDK_1.1.9/AdsMoGoLib/AdNetworkLibs/MobWin\\\"",
-					"\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/WAPS_IOS_1.0.2\\\"",
-					"\\\"$(SRCROOT)/../Common_iPhone_20/Components/Component-Service/Unrar4iOS\\\"",
-					"\\\"$(SYSTEM_APPS_DIR)/Xcode.app/Contents/Developer/Library/Frameworks\\\"",
-					"\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/ShareSDK/Connection\\\"",
-					"\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/ShareSDK/Core\\\"",
-					"\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/ShareSDK/Extend/GooglePlusSDK\\\"",
-					"\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/ShareSDK/Extend/Pinterest.embeddedframework\\\"",
-					"\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/ShareSDK/Extend/RenRenSDK\\\"",
-					"\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/ShareSDK/Extend\\\"",
-					"\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/ShareSDK\\\"",
-					"\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/ShareSDK/UI\\\"",
+					"\\\\\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/iFly\\\\\\\"",
+					"\\\\\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/LmmobSDK\\\\\\\"",
+					"\\\\\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/MangoAd/AdsMOGO_iOS_SDK_1.1.9/AdsMoGoLib/AdNetworkLibs/MobWin\\\\\\\"",
+					"\\\\\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/WAPS_IOS_1.0.2\\\\\\\"",
+					"\\\\\\\"$(SRCROOT)/../Common_iPhone_20/Components/Component-Service/Unrar4iOS\\\\\\\"",
+					"\\\\\\\"$(SYSTEM_APPS_DIR)/Xcode.app/Contents/Developer/Library/Frameworks\\\\\\\"",
+					"\\\\\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/ShareSDK/Connection\\\\\\\"",
+					"\\\\\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/ShareSDK/Core\\\\\\\"",
+					"\\\\\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/ShareSDK/Extend/GooglePlusSDK\\\\\\\"",
+					"\\\\\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/ShareSDK/Extend/Pinterest.embeddedframework\\\\\\\"",
+					"\\\\\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/ShareSDK/Extend/RenRenSDK\\\\\\\"",
+					"\\\\\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/ShareSDK/Extend\\\\\\\"",
+					"\\\\\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/ShareSDK\\\\\\\"",
+					"\\\\\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/ShareSDK/UI\\\\\\\"",
 					"/gitdata/Common_iPhone_20/3PP-SDK/ZeroQian",
 					"/gitdata/Common_iPhone_20/3PP-SDK/ShareSDK/Connection",
 					"/gitdata/Common_iPhone_20/3PP-SDK/ShareSDK/Core",
@@ -25292,6 +25320,7 @@
 					"/gitdata/Common_iPhone_20/3PP-SDK/ShareSDK",
 					"/gitdata/Common_iPhone_20/3PP-SDK/ShareSDK/UI",
 					"/gitdata/Common_iPhone_20/3PP-SDK/LmmobSDK",
+					"/gitdata/Common_iPhone_20/3PP-SDK/ShareSDK/Extend/QQConnectSDK",
 				);
 				GCC_C_LANGUAGE_STANDARD = "compiler-default";
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -25308,37 +25337,37 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/MobClick\\\"",
-					"\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/WeixinSDK\\\"",
-					"\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/DomobAdSDK\\\"",
-					"\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/GoogleAdMobAdsSDK\\\"",
-					"\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/UMAppNetwork_SDK_3.5.2\\\"",
-					"\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/TapjoyPublisherLibrary\\\"",
-					"\\\"$(SRCROOT)/../Common_iPhone_20/Components/Component-View/MWPhotoBrowser/build/Debug-iphoneos\\\"",
-					"\\\"$(SRCROOT)/../Common_iPhone_20/Components/Component-View/MWPhotoBrowser/build/MWPhotoBrowser.build/Debug-iphoneos/MWPhotoBrowser.build/Objects-normal/armv7\\\"",
-					"\\\"$(SRCROOT)/../Common_iPhone_20/Components/Component-View/MWPhotoBrowser/build/MWPhotoBrowser.build/Debug-iphoneos/MWPhotoBrowser.build/Objects-normal/armv7s\\\"",
-					"\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/aderwall-ios-sdk/AderWallSDKPackageRelease/lib\\\"",
-					"\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/aderwall-ios-sdk/AderWallSDKPackageRelease/Sample/Sample/lib\\\"",
-					"\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/AliPaySDK/libs\\\"",
-					"\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/AliPaySDK/Utilities\\\"",
-					"\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/Analytics_iOS_SDK_2.2.0.OpenUDID/UMAnalytics_Sdk_2.2.0.OpenUDID\\\"",
-					"\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/DMOfferWallSDK\\\"",
-					"\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/GoogleAdMobAdsSDK/Add-ons/GoogleAnalyticsiOS_2.0beta4/Library\\\"",
-					"\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/UMUFP_iPhone_SDK_old\\\"",
-					"\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/YoumiSDK/lib\\\"",
-					"\\\"$(SRCROOT)/Draw/GameServer/ProtocolBuffer\\\"",
-					"\\\"$(SRCROOT)/Draw/GameServer/ProtocolBuffer/google/protobuf-c\\\"",
-					"\\\"$(SRCROOT)/../Common_iPhone_20/Components/Component-Audio/AudioProcessing/--DIRAC3LE--/Dirac3-Mobile/Common\\ Files/src\\\"",
-					"\\\"$(SRCROOT)/../Common_iPhone_20/Components/Component-Service/UPPayPlugin/libs/Release-iphoneos\\\"",
-					"\\\"$(SRCROOT)/../Common_iPhone_20/Components/Component-Service/UPPayPlugin/libs/Release-iphonesimulator\\\"",
-					"\\\"$(SRCROOT)/../Common_iPhone_20/Components/Component-Buri/Classes/LevelDB\\\"",
-					"\\\"$(SRCROOT)/../Common_iPhone_20/Components/Component-Buri/LevelDB\\\"",
-					"\\\"$(SRCROOT)/../Common_iPhone_20/Components/Component-DB/Buri/LevelDB\\\"",
-					"\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/ShareSDK/Extend/libWeiboSDK\\\"",
-					"\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/ShareSDK/Extend/SDKExport\\\"",
-					"\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/ShareSDK/Extend/TencentWeiboSSO\\\"",
-					"\\\"$(SRCROOT)/../Common_iPhone_20/Core/Core-Utils-Audio-Convert\\\"",
-					"\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/AliPaySDK/alipay\\\"",
+					"\\\\\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/MobClick\\\\\\\"",
+					"\\\\\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/WeixinSDK\\\\\\\"",
+					"\\\\\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/DomobAdSDK\\\\\\\"",
+					"\\\\\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/GoogleAdMobAdsSDK\\\\\\\"",
+					"\\\\\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/UMAppNetwork_SDK_3.5.2\\\\\\\"",
+					"\\\\\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/TapjoyPublisherLibrary\\\\\\\"",
+					"\\\\\\\"$(SRCROOT)/../Common_iPhone_20/Components/Component-View/MWPhotoBrowser/build/Debug-iphoneos\\\\\\\"",
+					"\\\\\\\"$(SRCROOT)/../Common_iPhone_20/Components/Component-View/MWPhotoBrowser/build/MWPhotoBrowser.build/Debug-iphoneos/MWPhotoBrowser.build/Objects-normal/armv7\\\\\\\"",
+					"\\\\\\\"$(SRCROOT)/../Common_iPhone_20/Components/Component-View/MWPhotoBrowser/build/MWPhotoBrowser.build/Debug-iphoneos/MWPhotoBrowser.build/Objects-normal/armv7s\\\\\\\"",
+					"\\\\\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/aderwall-ios-sdk/AderWallSDKPackageRelease/lib\\\\\\\"",
+					"\\\\\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/aderwall-ios-sdk/AderWallSDKPackageRelease/Sample/Sample/lib\\\\\\\"",
+					"\\\\\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/AliPaySDK/libs\\\\\\\"",
+					"\\\\\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/AliPaySDK/Utilities\\\\\\\"",
+					"\\\\\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/Analytics_iOS_SDK_2.2.0.OpenUDID/UMAnalytics_Sdk_2.2.0.OpenUDID\\\\\\\"",
+					"\\\\\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/DMOfferWallSDK\\\\\\\"",
+					"\\\\\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/GoogleAdMobAdsSDK/Add-ons/GoogleAnalyticsiOS_2.0beta4/Library\\\\\\\"",
+					"\\\\\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/UMUFP_iPhone_SDK_old\\\\\\\"",
+					"\\\\\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/YoumiSDK/lib\\\\\\\"",
+					"\\\\\\\"$(SRCROOT)/Draw/GameServer/ProtocolBuffer\\\\\\\"",
+					"\\\\\\\"$(SRCROOT)/Draw/GameServer/ProtocolBuffer/google/protobuf-c\\\\\\\"",
+					"\\\\\\\"$(SRCROOT)/../Common_iPhone_20/Components/Component-Audio/AudioProcessing/--DIRAC3LE--/Dirac3-Mobile/Common\\\\\\ Files/src\\\\\\\"",
+					"\\\\\\\"$(SRCROOT)/../Common_iPhone_20/Components/Component-Service/UPPayPlugin/libs/Release-iphoneos\\\\\\\"",
+					"\\\\\\\"$(SRCROOT)/../Common_iPhone_20/Components/Component-Service/UPPayPlugin/libs/Release-iphonesimulator\\\\\\\"",
+					"\\\\\\\"$(SRCROOT)/../Common_iPhone_20/Components/Component-Buri/Classes/LevelDB\\\\\\\"",
+					"\\\\\\\"$(SRCROOT)/../Common_iPhone_20/Components/Component-Buri/LevelDB\\\\\\\"",
+					"\\\\\\\"$(SRCROOT)/../Common_iPhone_20/Components/Component-DB/Buri/LevelDB\\\\\\\"",
+					"\\\\\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/ShareSDK/Extend/libWeiboSDK\\\\\\\"",
+					"\\\\\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/ShareSDK/Extend/SDKExport\\\\\\\"",
+					"\\\\\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/ShareSDK/Extend/TencentWeiboSSO\\\\\\\"",
+					"\\\\\\\"$(SRCROOT)/../Common_iPhone_20/Core/Core-Utils-Audio-Convert\\\\\\\"",
+					"\\\\\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/AliPaySDK/alipay\\\\\\\"",
 					"/gitdata/Common_iPhone_20/3PP-SDK/ShareSDK/Extend/libWeiboSDK",
 					"/gitdata/Common_iPhone_20/3PP-SDK/ShareSDK/Extend/SDKExport",
 					"/gitdata/Common_iPhone_20/3PP-SDK/ShareSDK/Extend/TencentWeiboSSO",
@@ -25349,6 +25378,11 @@
 					"/gitdata/Common_iPhone_20/Components/Component-DB/Buri/LevelDB",
 					"/gitdata/Common_iPhone_20/Components/Component-Audio/AudioProcessing/--DIRAC3LE--/Dirac3-Mobile/Common\\ Files/src",
 					"/gitdata/Common_iPhone_20/Core/Core-Utils-Audio-Convert",
+					"/gitdata/Common_iPhone_20/3PP-SDK/WeixinSDK",
+					"/gitdata/Common_iPhone_20/3PP-SDK/ShareSDK/Extend/SinaWeiboSDK",
+					"/gitdata/Common_iPhone_20/3PP-SDK/ShareSDK/Extend/TencentWeiboSDK",
+					"/gitdata/Common_iPhone_20/3PP-SDK/ShareSDK/Extend/WeChatSDK",
+					"/gitdata/Common_iPhone_20/3PP-SDK/ShareSDK/Extend/YiXinSDK",
 				);
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = "-ObjC";
@@ -25370,20 +25404,20 @@
 				COPY_PHASE_STRIP = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/iFly\\\"",
-					"\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/LmmobSDK\\\"",
-					"\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/MangoAd/AdsMOGO_iOS_SDK_1.1.9/AdsMoGoLib/AdNetworkLibs/MobWin\\\"",
-					"\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/WAPS_IOS_1.0.2\\\"",
-					"\\\"$(SRCROOT)/../Common_iPhone_20/Components/Component-Service/Unrar4iOS\\\"",
-					"\\\"$(SYSTEM_APPS_DIR)/Xcode.app/Contents/Developer/Library/Frameworks\\\"",
-					"\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/ShareSDK/Connection\\\"",
-					"\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/ShareSDK/Core\\\"",
-					"\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/ShareSDK/Extend/GooglePlusSDK\\\"",
-					"\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/ShareSDK/Extend/Pinterest.embeddedframework\\\"",
-					"\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/ShareSDK/Extend/RenRenSDK\\\"",
-					"\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/ShareSDK/Extend\\\"",
-					"\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/ShareSDK\\\"",
-					"\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/ShareSDK/UI\\\"",
+					"\\\\\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/iFly\\\\\\\"",
+					"\\\\\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/LmmobSDK\\\\\\\"",
+					"\\\\\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/MangoAd/AdsMOGO_iOS_SDK_1.1.9/AdsMoGoLib/AdNetworkLibs/MobWin\\\\\\\"",
+					"\\\\\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/WAPS_IOS_1.0.2\\\\\\\"",
+					"\\\\\\\"$(SRCROOT)/../Common_iPhone_20/Components/Component-Service/Unrar4iOS\\\\\\\"",
+					"\\\\\\\"$(SYSTEM_APPS_DIR)/Xcode.app/Contents/Developer/Library/Frameworks\\\\\\\"",
+					"\\\\\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/ShareSDK/Connection\\\\\\\"",
+					"\\\\\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/ShareSDK/Core\\\\\\\"",
+					"\\\\\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/ShareSDK/Extend/GooglePlusSDK\\\\\\\"",
+					"\\\\\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/ShareSDK/Extend/Pinterest.embeddedframework\\\\\\\"",
+					"\\\\\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/ShareSDK/Extend/RenRenSDK\\\\\\\"",
+					"\\\\\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/ShareSDK/Extend\\\\\\\"",
+					"\\\\\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/ShareSDK\\\\\\\"",
+					"\\\\\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/ShareSDK/UI\\\\\\\"",
 					"/gitdata/Common_iPhone_20/3PP-SDK/ZeroQian",
 					"/gitdata/Common_iPhone_20/3PP-SDK/ShareSDK/Connection",
 					"/gitdata/Common_iPhone_20/3PP-SDK/ShareSDK/Core",
@@ -25394,6 +25428,7 @@
 					"/gitdata/Common_iPhone_20/3PP-SDK/ShareSDK",
 					"/gitdata/Common_iPhone_20/3PP-SDK/ShareSDK/UI",
 					"/gitdata/Common_iPhone_20/3PP-SDK/LmmobSDK",
+					"/gitdata/Common_iPhone_20/3PP-SDK/ShareSDK/Extend/QQConnectSDK",
 				);
 				GCC_C_LANGUAGE_STANDARD = "compiler-default";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -25409,37 +25444,37 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/MobClick\\\"",
-					"\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/WeixinSDK\\\"",
-					"\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/DomobAdSDK\\\"",
-					"\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/GoogleAdMobAdsSDK\\\"",
-					"\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/UMAppNetwork_SDK_3.5.2\\\"",
-					"\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/TapjoyPublisherLibrary\\\"",
-					"\\\"$(SRCROOT)/../Common_iPhone_20/Components/Component-View/MWPhotoBrowser/build/Debug-iphoneos\\\"",
-					"\\\"$(SRCROOT)/../Common_iPhone_20/Components/Component-View/MWPhotoBrowser/build/MWPhotoBrowser.build/Debug-iphoneos/MWPhotoBrowser.build/Objects-normal/armv7\\\"",
-					"\\\"$(SRCROOT)/../Common_iPhone_20/Components/Component-View/MWPhotoBrowser/build/MWPhotoBrowser.build/Debug-iphoneos/MWPhotoBrowser.build/Objects-normal/armv7s\\\"",
-					"\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/aderwall-ios-sdk/AderWallSDKPackageRelease/lib\\\"",
-					"\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/aderwall-ios-sdk/AderWallSDKPackageRelease/Sample/Sample/lib\\\"",
-					"\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/AliPaySDK/libs\\\"",
-					"\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/AliPaySDK/Utilities\\\"",
-					"\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/Analytics_iOS_SDK_2.2.0.OpenUDID/UMAnalytics_Sdk_2.2.0.OpenUDID\\\"",
-					"\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/DMOfferWallSDK\\\"",
-					"\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/GoogleAdMobAdsSDK/Add-ons/GoogleAnalyticsiOS_2.0beta4/Library\\\"",
-					"\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/UMUFP_iPhone_SDK_old\\\"",
-					"\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/YoumiSDK/lib\\\"",
-					"\\\"$(SRCROOT)/Draw/GameServer/ProtocolBuffer\\\"",
-					"\\\"$(SRCROOT)/Draw/GameServer/ProtocolBuffer/google/protobuf-c\\\"",
-					"\\\"$(SRCROOT)/../Common_iPhone_20/Components/Component-Audio/AudioProcessing/--DIRAC3LE--/Dirac3-Mobile/Common\\ Files/src\\\"",
-					"\\\"$(SRCROOT)/../Common_iPhone_20/Components/Component-Service/UPPayPlugin/libs/Release-iphoneos\\\"",
-					"\\\"$(SRCROOT)/../Common_iPhone_20/Components/Component-Service/UPPayPlugin/libs/Release-iphonesimulator\\\"",
-					"\\\"$(SRCROOT)/../Common_iPhone_20/Components/Component-Buri/Classes/LevelDB\\\"",
-					"\\\"$(SRCROOT)/../Common_iPhone_20/Components/Component-Buri/LevelDB\\\"",
-					"\\\"$(SRCROOT)/../Common_iPhone_20/Components/Component-DB/Buri/LevelDB\\\"",
-					"\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/ShareSDK/Extend/libWeiboSDK\\\"",
-					"\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/ShareSDK/Extend/SDKExport\\\"",
-					"\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/ShareSDK/Extend/TencentWeiboSSO\\\"",
-					"\\\"$(SRCROOT)/../Common_iPhone_20/Core/Core-Utils-Audio-Convert\\\"",
-					"\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/AliPaySDK/alipay\\\"",
+					"\\\\\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/MobClick\\\\\\\"",
+					"\\\\\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/WeixinSDK\\\\\\\"",
+					"\\\\\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/DomobAdSDK\\\\\\\"",
+					"\\\\\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/GoogleAdMobAdsSDK\\\\\\\"",
+					"\\\\\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/UMAppNetwork_SDK_3.5.2\\\\\\\"",
+					"\\\\\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/TapjoyPublisherLibrary\\\\\\\"",
+					"\\\\\\\"$(SRCROOT)/../Common_iPhone_20/Components/Component-View/MWPhotoBrowser/build/Debug-iphoneos\\\\\\\"",
+					"\\\\\\\"$(SRCROOT)/../Common_iPhone_20/Components/Component-View/MWPhotoBrowser/build/MWPhotoBrowser.build/Debug-iphoneos/MWPhotoBrowser.build/Objects-normal/armv7\\\\\\\"",
+					"\\\\\\\"$(SRCROOT)/../Common_iPhone_20/Components/Component-View/MWPhotoBrowser/build/MWPhotoBrowser.build/Debug-iphoneos/MWPhotoBrowser.build/Objects-normal/armv7s\\\\\\\"",
+					"\\\\\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/aderwall-ios-sdk/AderWallSDKPackageRelease/lib\\\\\\\"",
+					"\\\\\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/aderwall-ios-sdk/AderWallSDKPackageRelease/Sample/Sample/lib\\\\\\\"",
+					"\\\\\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/AliPaySDK/libs\\\\\\\"",
+					"\\\\\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/AliPaySDK/Utilities\\\\\\\"",
+					"\\\\\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/Analytics_iOS_SDK_2.2.0.OpenUDID/UMAnalytics_Sdk_2.2.0.OpenUDID\\\\\\\"",
+					"\\\\\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/DMOfferWallSDK\\\\\\\"",
+					"\\\\\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/GoogleAdMobAdsSDK/Add-ons/GoogleAnalyticsiOS_2.0beta4/Library\\\\\\\"",
+					"\\\\\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/UMUFP_iPhone_SDK_old\\\\\\\"",
+					"\\\\\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/YoumiSDK/lib\\\\\\\"",
+					"\\\\\\\"$(SRCROOT)/Draw/GameServer/ProtocolBuffer\\\\\\\"",
+					"\\\\\\\"$(SRCROOT)/Draw/GameServer/ProtocolBuffer/google/protobuf-c\\\\\\\"",
+					"\\\\\\\"$(SRCROOT)/../Common_iPhone_20/Components/Component-Audio/AudioProcessing/--DIRAC3LE--/Dirac3-Mobile/Common\\\\\\ Files/src\\\\\\\"",
+					"\\\\\\\"$(SRCROOT)/../Common_iPhone_20/Components/Component-Service/UPPayPlugin/libs/Release-iphoneos\\\\\\\"",
+					"\\\\\\\"$(SRCROOT)/../Common_iPhone_20/Components/Component-Service/UPPayPlugin/libs/Release-iphonesimulator\\\\\\\"",
+					"\\\\\\\"$(SRCROOT)/../Common_iPhone_20/Components/Component-Buri/Classes/LevelDB\\\\\\\"",
+					"\\\\\\\"$(SRCROOT)/../Common_iPhone_20/Components/Component-Buri/LevelDB\\\\\\\"",
+					"\\\\\\\"$(SRCROOT)/../Common_iPhone_20/Components/Component-DB/Buri/LevelDB\\\\\\\"",
+					"\\\\\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/ShareSDK/Extend/libWeiboSDK\\\\\\\"",
+					"\\\\\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/ShareSDK/Extend/SDKExport\\\\\\\"",
+					"\\\\\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/ShareSDK/Extend/TencentWeiboSSO\\\\\\\"",
+					"\\\\\\\"$(SRCROOT)/../Common_iPhone_20/Core/Core-Utils-Audio-Convert\\\\\\\"",
+					"\\\\\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/AliPaySDK/alipay\\\\\\\"",
 					"/gitdata/Common_iPhone_20/3PP-SDK/ShareSDK/Extend/libWeiboSDK",
 					"/gitdata/Common_iPhone_20/3PP-SDK/ShareSDK/Extend/SDKExport",
 					"/gitdata/Common_iPhone_20/3PP-SDK/ShareSDK/Extend/TencentWeiboSSO",
@@ -25450,6 +25485,11 @@
 					"/gitdata/Common_iPhone_20/Components/Component-DB/Buri/LevelDB",
 					"/gitdata/Common_iPhone_20/Components/Component-Audio/AudioProcessing/--DIRAC3LE--/Dirac3-Mobile/Common\\ Files/src",
 					"/gitdata/Common_iPhone_20/Core/Core-Utils-Audio-Convert",
+					"/gitdata/Common_iPhone_20/3PP-SDK/WeixinSDK",
+					"/gitdata/Common_iPhone_20/3PP-SDK/ShareSDK/Extend/SinaWeiboSDK",
+					"/gitdata/Common_iPhone_20/3PP-SDK/ShareSDK/Extend/TencentWeiboSDK",
+					"/gitdata/Common_iPhone_20/3PP-SDK/ShareSDK/Extend/WeChatSDK",
+					"/gitdata/Common_iPhone_20/3PP-SDK/ShareSDK/Extend/YiXinSDK",
 				);
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = "-ObjC";
@@ -25472,19 +25512,19 @@
 				COPY_PHASE_STRIP = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/iFly\\\"",
-					"\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/LmmobSDK\\\"",
-					"\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/MangoAd/AdsMOGO_iOS_SDK_1.1.9/AdsMoGoLib/AdNetworkLibs/MobWin\\\"",
-					"\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/WAPS_IOS_1.0.2\\\"",
-					"\\\"$(SRCROOT)/../Common_iPhone_20/Components/Component-Service/Unrar4iOS\\\"",
-					"\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/ShareSDK/Connection\\\"",
-					"\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/ShareSDK/Core\\\"",
-					"\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/ShareSDK/Extend/GooglePlusSDK\\\"",
-					"\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/ShareSDK/Extend/Pinterest.embeddedframework\\\"",
-					"\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/ShareSDK/Extend/RenRenSDK\\\"",
-					"\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/ShareSDK/Extend\\\"",
-					"\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/ShareSDK\\\"",
-					"\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/ShareSDK/UI\\\"",
+					"\\\\\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/iFly\\\\\\\"",
+					"\\\\\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/LmmobSDK\\\\\\\"",
+					"\\\\\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/MangoAd/AdsMOGO_iOS_SDK_1.1.9/AdsMoGoLib/AdNetworkLibs/MobWin\\\\\\\"",
+					"\\\\\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/WAPS_IOS_1.0.2\\\\\\\"",
+					"\\\\\\\"$(SRCROOT)/../Common_iPhone_20/Components/Component-Service/Unrar4iOS\\\\\\\"",
+					"\\\\\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/ShareSDK/Connection\\\\\\\"",
+					"\\\\\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/ShareSDK/Core\\\\\\\"",
+					"\\\\\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/ShareSDK/Extend/GooglePlusSDK\\\\\\\"",
+					"\\\\\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/ShareSDK/Extend/Pinterest.embeddedframework\\\\\\\"",
+					"\\\\\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/ShareSDK/Extend/RenRenSDK\\\\\\\"",
+					"\\\\\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/ShareSDK/Extend\\\\\\\"",
+					"\\\\\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/ShareSDK\\\\\\\"",
+					"\\\\\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/ShareSDK/UI\\\\\\\"",
 					"/gitdata/Common_iPhone_20/3PP-SDK/ZeroQian",
 					"/gitdata/Common_iPhone_20/3PP-SDK/ShareSDK/Connection",
 					"/gitdata/Common_iPhone_20/3PP-SDK/ShareSDK/Core",
@@ -25495,6 +25535,7 @@
 					"/gitdata/Common_iPhone_20/3PP-SDK/ShareSDK",
 					"/gitdata/Common_iPhone_20/3PP-SDK/ShareSDK/UI",
 					"/gitdata/Common_iPhone_20/3PP-SDK/LmmobSDK",
+					"/gitdata/Common_iPhone_20/3PP-SDK/ShareSDK/Extend/QQConnectSDK",
 				);
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -25511,35 +25552,35 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/MobClick\\\"",
-					"\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/WeixinSDK\\\"",
-					"\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/DomobAdSDK\\\"",
-					"\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/GoogleAdMobAdsSDK\\\"",
-					"\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/UMAppNetwork_SDK_3.5.2\\\"",
-					"\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/TapjoyPublisherLibrary\\\"",
-					"\\\"$(SRCROOT)/../Common_iPhone_20/Components/Component-View/MWPhotoBrowser/build/Debug-iphoneos\\\"",
-					"\\\"$(SRCROOT)/../Common_iPhone_20/Components/Component-View/MWPhotoBrowser/build/MWPhotoBrowser.build/Debug-iphoneos/MWPhotoBrowser.build/Objects-normal/armv7\\\"",
-					"\\\"$(SRCROOT)/../Common_iPhone_20/Components/Component-View/MWPhotoBrowser/build/MWPhotoBrowser.build/Debug-iphoneos/MWPhotoBrowser.build/Objects-normal/armv7s\\\"",
-					"\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/aderwall-ios-sdk/AderWallSDKPackageRelease/lib\\\"",
-					"\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/aderwall-ios-sdk/AderWallSDKPackageRelease/Sample/Sample/lib\\\"",
-					"\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/AliPaySDK/libs\\\"",
-					"\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/AliPaySDK/Utilities\\\"",
-					"\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/Analytics_iOS_SDK_2.2.0.OpenUDID/UMAnalytics_Sdk_2.2.0.OpenUDID\\\"",
-					"\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/DMOfferWallSDK\\\"",
-					"\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/GoogleAdMobAdsSDK/Add-ons/GoogleAnalyticsiOS_2.0beta4/Library\\\"",
-					"\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/UMUFP_iPhone_SDK_old\\\"",
-					"\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/YoumiSDK/lib\\\"",
-					"\\\"$(SRCROOT)/Draw/GameServer/ProtocolBuffer\\\"",
-					"\\\"$(SRCROOT)/Draw/GameServer/ProtocolBuffer/google/protobuf-c\\\"",
-					"\\\"$(SRCROOT)/../Common_iPhone_20/Components/Component-Audio/AudioProcessing/--DIRAC3LE--/Dirac3-Mobile/Common\\ Files/src\\\"",
-					"\\\"$(SRCROOT)/../Common_iPhone_20/Components/Component-Service/UPPayPlugin/libs/Release-iphoneos\\\"",
-					"\\\"$(SRCROOT)/../Common_iPhone_20/Components/Component-Service/UPPayPlugin/libs/Release-iphonesimulator\\\"",
-					"\\\"$(SRCROOT)/../Common_iPhone_20/Components/Component-DB/Buri/LevelDB\\\"",
-					"\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/ShareSDK/Extend/libWeiboSDK\\\"",
-					"\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/ShareSDK/Extend/SDKExport\\\"",
-					"\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/ShareSDK/Extend/TencentWeiboSSO\\\"",
-					"\\\"$(SRCROOT)/../Common_iPhone_20/Core/Core-Utils-Audio-Convert\\\"",
-					"\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/AliPaySDK/alipay\\\"",
+					"\\\\\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/MobClick\\\\\\\"",
+					"\\\\\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/WeixinSDK\\\\\\\"",
+					"\\\\\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/DomobAdSDK\\\\\\\"",
+					"\\\\\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/GoogleAdMobAdsSDK\\\\\\\"",
+					"\\\\\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/UMAppNetwork_SDK_3.5.2\\\\\\\"",
+					"\\\\\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/TapjoyPublisherLibrary\\\\\\\"",
+					"\\\\\\\"$(SRCROOT)/../Common_iPhone_20/Components/Component-View/MWPhotoBrowser/build/Debug-iphoneos\\\\\\\"",
+					"\\\\\\\"$(SRCROOT)/../Common_iPhone_20/Components/Component-View/MWPhotoBrowser/build/MWPhotoBrowser.build/Debug-iphoneos/MWPhotoBrowser.build/Objects-normal/armv7\\\\\\\"",
+					"\\\\\\\"$(SRCROOT)/../Common_iPhone_20/Components/Component-View/MWPhotoBrowser/build/MWPhotoBrowser.build/Debug-iphoneos/MWPhotoBrowser.build/Objects-normal/armv7s\\\\\\\"",
+					"\\\\\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/aderwall-ios-sdk/AderWallSDKPackageRelease/lib\\\\\\\"",
+					"\\\\\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/aderwall-ios-sdk/AderWallSDKPackageRelease/Sample/Sample/lib\\\\\\\"",
+					"\\\\\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/AliPaySDK/libs\\\\\\\"",
+					"\\\\\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/AliPaySDK/Utilities\\\\\\\"",
+					"\\\\\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/Analytics_iOS_SDK_2.2.0.OpenUDID/UMAnalytics_Sdk_2.2.0.OpenUDID\\\\\\\"",
+					"\\\\\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/DMOfferWallSDK\\\\\\\"",
+					"\\\\\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/GoogleAdMobAdsSDK/Add-ons/GoogleAnalyticsiOS_2.0beta4/Library\\\\\\\"",
+					"\\\\\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/UMUFP_iPhone_SDK_old\\\\\\\"",
+					"\\\\\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/YoumiSDK/lib\\\\\\\"",
+					"\\\\\\\"$(SRCROOT)/Draw/GameServer/ProtocolBuffer\\\\\\\"",
+					"\\\\\\\"$(SRCROOT)/Draw/GameServer/ProtocolBuffer/google/protobuf-c\\\\\\\"",
+					"\\\\\\\"$(SRCROOT)/../Common_iPhone_20/Components/Component-Audio/AudioProcessing/--DIRAC3LE--/Dirac3-Mobile/Common\\\\\\ Files/src\\\\\\\"",
+					"\\\\\\\"$(SRCROOT)/../Common_iPhone_20/Components/Component-Service/UPPayPlugin/libs/Release-iphoneos\\\\\\\"",
+					"\\\\\\\"$(SRCROOT)/../Common_iPhone_20/Components/Component-Service/UPPayPlugin/libs/Release-iphonesimulator\\\\\\\"",
+					"\\\\\\\"$(SRCROOT)/../Common_iPhone_20/Components/Component-DB/Buri/LevelDB\\\\\\\"",
+					"\\\\\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/ShareSDK/Extend/libWeiboSDK\\\\\\\"",
+					"\\\\\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/ShareSDK/Extend/SDKExport\\\\\\\"",
+					"\\\\\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/ShareSDK/Extend/TencentWeiboSSO\\\\\\\"",
+					"\\\\\\\"$(SRCROOT)/../Common_iPhone_20/Core/Core-Utils-Audio-Convert\\\\\\\"",
+					"\\\\\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/AliPaySDK/alipay\\\\\\\"",
 					"/gitdata/Common_iPhone_20/3PP-SDK/ShareSDK/Extend/libWeiboSDK",
 					"/gitdata/Common_iPhone_20/3PP-SDK/ShareSDK/Extend/SDKExport",
 					"/gitdata/Common_iPhone_20/3PP-SDK/ShareSDK/Extend/TencentWeiboSSO",
@@ -25550,6 +25591,11 @@
 					"/gitdata/Common_iPhone_20/Components/Component-DB/Buri/LevelDB",
 					"/gitdata/Common_iPhone_20/Components/Component-Audio/AudioProcessing/--DIRAC3LE--/Dirac3-Mobile/Common\\ Files/src",
 					"/gitdata/Common_iPhone_20/Core/Core-Utils-Audio-Convert",
+					"/gitdata/Common_iPhone_20/3PP-SDK/WeixinSDK",
+					"/gitdata/Common_iPhone_20/3PP-SDK/ShareSDK/Extend/SinaWeiboSDK",
+					"/gitdata/Common_iPhone_20/3PP-SDK/ShareSDK/Extend/TencentWeiboSDK",
+					"/gitdata/Common_iPhone_20/3PP-SDK/ShareSDK/Extend/WeChatSDK",
+					"/gitdata/Common_iPhone_20/3PP-SDK/ShareSDK/Extend/YiXinSDK",
 				);
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = LittleGeeDraw;
@@ -25570,19 +25616,19 @@
 				COPY_PHASE_STRIP = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/iFly\\\"",
-					"\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/LmmobSDK\\\"",
-					"\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/MangoAd/AdsMOGO_iOS_SDK_1.1.9/AdsMoGoLib/AdNetworkLibs/MobWin\\\"",
-					"\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/WAPS_IOS_1.0.2\\\"",
-					"\\\"$(SRCROOT)/../Common_iPhone_20/Components/Component-Service/Unrar4iOS\\\"",
-					"\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/ShareSDK/Connection\\\"",
-					"\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/ShareSDK/Core\\\"",
-					"\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/ShareSDK/Extend/GooglePlusSDK\\\"",
-					"\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/ShareSDK/Extend/Pinterest.embeddedframework\\\"",
-					"\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/ShareSDK/Extend/RenRenSDK\\\"",
-					"\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/ShareSDK/Extend\\\"",
-					"\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/ShareSDK\\\"",
-					"\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/ShareSDK/UI\\\"",
+					"\\\\\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/iFly\\\\\\\"",
+					"\\\\\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/LmmobSDK\\\\\\\"",
+					"\\\\\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/MangoAd/AdsMOGO_iOS_SDK_1.1.9/AdsMoGoLib/AdNetworkLibs/MobWin\\\\\\\"",
+					"\\\\\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/WAPS_IOS_1.0.2\\\\\\\"",
+					"\\\\\\\"$(SRCROOT)/../Common_iPhone_20/Components/Component-Service/Unrar4iOS\\\\\\\"",
+					"\\\\\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/ShareSDK/Connection\\\\\\\"",
+					"\\\\\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/ShareSDK/Core\\\\\\\"",
+					"\\\\\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/ShareSDK/Extend/GooglePlusSDK\\\\\\\"",
+					"\\\\\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/ShareSDK/Extend/Pinterest.embeddedframework\\\\\\\"",
+					"\\\\\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/ShareSDK/Extend/RenRenSDK\\\\\\\"",
+					"\\\\\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/ShareSDK/Extend\\\\\\\"",
+					"\\\\\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/ShareSDK\\\\\\\"",
+					"\\\\\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/ShareSDK/UI\\\\\\\"",
 					"/gitdata/Common_iPhone_20/3PP-SDK/ZeroQian",
 					"/gitdata/Common_iPhone_20/3PP-SDK/ShareSDK/Connection",
 					"/gitdata/Common_iPhone_20/3PP-SDK/ShareSDK/Core",
@@ -25593,6 +25639,7 @@
 					"/gitdata/Common_iPhone_20/3PP-SDK/ShareSDK",
 					"/gitdata/Common_iPhone_20/3PP-SDK/ShareSDK/UI",
 					"/gitdata/Common_iPhone_20/3PP-SDK/LmmobSDK",
+					"/gitdata/Common_iPhone_20/3PP-SDK/ShareSDK/Extend/QQConnectSDK",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Draw/Draw-Prefix.pch";
@@ -25607,35 +25654,35 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/MobClick\\\"",
-					"\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/WeixinSDK\\\"",
-					"\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/DomobAdSDK\\\"",
-					"\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/GoogleAdMobAdsSDK\\\"",
-					"\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/UMAppNetwork_SDK_3.5.2\\\"",
-					"\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/TapjoyPublisherLibrary\\\"",
-					"\\\"$(SRCROOT)/../Common_iPhone_20/Components/Component-View/MWPhotoBrowser/build/Debug-iphoneos\\\"",
-					"\\\"$(SRCROOT)/../Common_iPhone_20/Components/Component-View/MWPhotoBrowser/build/MWPhotoBrowser.build/Debug-iphoneos/MWPhotoBrowser.build/Objects-normal/armv7\\\"",
-					"\\\"$(SRCROOT)/../Common_iPhone_20/Components/Component-View/MWPhotoBrowser/build/MWPhotoBrowser.build/Debug-iphoneos/MWPhotoBrowser.build/Objects-normal/armv7s\\\"",
-					"\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/aderwall-ios-sdk/AderWallSDKPackageRelease/lib\\\"",
-					"\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/aderwall-ios-sdk/AderWallSDKPackageRelease/Sample/Sample/lib\\\"",
-					"\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/AliPaySDK/libs\\\"",
-					"\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/AliPaySDK/Utilities\\\"",
-					"\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/Analytics_iOS_SDK_2.2.0.OpenUDID/UMAnalytics_Sdk_2.2.0.OpenUDID\\\"",
-					"\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/DMOfferWallSDK\\\"",
-					"\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/GoogleAdMobAdsSDK/Add-ons/GoogleAnalyticsiOS_2.0beta4/Library\\\"",
-					"\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/UMUFP_iPhone_SDK_old\\\"",
-					"\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/YoumiSDK/lib\\\"",
-					"\\\"$(SRCROOT)/Draw/GameServer/ProtocolBuffer\\\"",
-					"\\\"$(SRCROOT)/Draw/GameServer/ProtocolBuffer/google/protobuf-c\\\"",
-					"\\\"$(SRCROOT)/../Common_iPhone_20/Components/Component-Audio/AudioProcessing/--DIRAC3LE--/Dirac3-Mobile/Common\\ Files/src\\\"",
-					"\\\"$(SRCROOT)/../Common_iPhone_20/Components/Component-Service/UPPayPlugin/libs/Release-iphoneos\\\"",
-					"\\\"$(SRCROOT)/../Common_iPhone_20/Components/Component-Service/UPPayPlugin/libs/Release-iphonesimulator\\\"",
-					"\\\"$(SRCROOT)/../Common_iPhone_20/Components/Component-DB/Buri/LevelDB\\\"",
-					"\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/ShareSDK/Extend/libWeiboSDK\\\"",
-					"\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/ShareSDK/Extend/SDKExport\\\"",
-					"\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/ShareSDK/Extend/TencentWeiboSSO\\\"",
-					"\\\"$(SRCROOT)/../Common_iPhone_20/Core/Core-Utils-Audio-Convert\\\"",
-					"\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/AliPaySDK/alipay\\\"",
+					"\\\\\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/MobClick\\\\\\\"",
+					"\\\\\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/WeixinSDK\\\\\\\"",
+					"\\\\\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/DomobAdSDK\\\\\\\"",
+					"\\\\\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/GoogleAdMobAdsSDK\\\\\\\"",
+					"\\\\\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/UMAppNetwork_SDK_3.5.2\\\\\\\"",
+					"\\\\\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/TapjoyPublisherLibrary\\\\\\\"",
+					"\\\\\\\"$(SRCROOT)/../Common_iPhone_20/Components/Component-View/MWPhotoBrowser/build/Debug-iphoneos\\\\\\\"",
+					"\\\\\\\"$(SRCROOT)/../Common_iPhone_20/Components/Component-View/MWPhotoBrowser/build/MWPhotoBrowser.build/Debug-iphoneos/MWPhotoBrowser.build/Objects-normal/armv7\\\\\\\"",
+					"\\\\\\\"$(SRCROOT)/../Common_iPhone_20/Components/Component-View/MWPhotoBrowser/build/MWPhotoBrowser.build/Debug-iphoneos/MWPhotoBrowser.build/Objects-normal/armv7s\\\\\\\"",
+					"\\\\\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/aderwall-ios-sdk/AderWallSDKPackageRelease/lib\\\\\\\"",
+					"\\\\\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/aderwall-ios-sdk/AderWallSDKPackageRelease/Sample/Sample/lib\\\\\\\"",
+					"\\\\\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/AliPaySDK/libs\\\\\\\"",
+					"\\\\\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/AliPaySDK/Utilities\\\\\\\"",
+					"\\\\\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/Analytics_iOS_SDK_2.2.0.OpenUDID/UMAnalytics_Sdk_2.2.0.OpenUDID\\\\\\\"",
+					"\\\\\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/DMOfferWallSDK\\\\\\\"",
+					"\\\\\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/GoogleAdMobAdsSDK/Add-ons/GoogleAnalyticsiOS_2.0beta4/Library\\\\\\\"",
+					"\\\\\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/UMUFP_iPhone_SDK_old\\\\\\\"",
+					"\\\\\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/YoumiSDK/lib\\\\\\\"",
+					"\\\\\\\"$(SRCROOT)/Draw/GameServer/ProtocolBuffer\\\\\\\"",
+					"\\\\\\\"$(SRCROOT)/Draw/GameServer/ProtocolBuffer/google/protobuf-c\\\\\\\"",
+					"\\\\\\\"$(SRCROOT)/../Common_iPhone_20/Components/Component-Audio/AudioProcessing/--DIRAC3LE--/Dirac3-Mobile/Common\\\\\\ Files/src\\\\\\\"",
+					"\\\\\\\"$(SRCROOT)/../Common_iPhone_20/Components/Component-Service/UPPayPlugin/libs/Release-iphoneos\\\\\\\"",
+					"\\\\\\\"$(SRCROOT)/../Common_iPhone_20/Components/Component-Service/UPPayPlugin/libs/Release-iphonesimulator\\\\\\\"",
+					"\\\\\\\"$(SRCROOT)/../Common_iPhone_20/Components/Component-DB/Buri/LevelDB\\\\\\\"",
+					"\\\\\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/ShareSDK/Extend/libWeiboSDK\\\\\\\"",
+					"\\\\\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/ShareSDK/Extend/SDKExport\\\\\\\"",
+					"\\\\\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/ShareSDK/Extend/TencentWeiboSSO\\\\\\\"",
+					"\\\\\\\"$(SRCROOT)/../Common_iPhone_20/Core/Core-Utils-Audio-Convert\\\\\\\"",
+					"\\\\\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/AliPaySDK/alipay\\\\\\\"",
 					"/gitdata/Common_iPhone_20/3PP-SDK/ShareSDK/Extend/libWeiboSDK",
 					"/gitdata/Common_iPhone_20/3PP-SDK/ShareSDK/Extend/SDKExport",
 					"/gitdata/Common_iPhone_20/3PP-SDK/ShareSDK/Extend/TencentWeiboSSO",
@@ -25646,6 +25693,11 @@
 					"/gitdata/Common_iPhone_20/Components/Component-DB/Buri/LevelDB",
 					"/gitdata/Common_iPhone_20/Components/Component-Audio/AudioProcessing/--DIRAC3LE--/Dirac3-Mobile/Common\\ Files/src",
 					"/gitdata/Common_iPhone_20/Core/Core-Utils-Audio-Convert",
+					"/gitdata/Common_iPhone_20/3PP-SDK/WeixinSDK",
+					"/gitdata/Common_iPhone_20/3PP-SDK/ShareSDK/Extend/SinaWeiboSDK",
+					"/gitdata/Common_iPhone_20/3PP-SDK/ShareSDK/Extend/TencentWeiboSDK",
+					"/gitdata/Common_iPhone_20/3PP-SDK/ShareSDK/Extend/WeChatSDK",
+					"/gitdata/Common_iPhone_20/3PP-SDK/ShareSDK/Extend/YiXinSDK",
 				);
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = LittleGeeDraw;
@@ -25734,20 +25786,20 @@
 				COPY_PHASE_STRIP = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/iFly\\\"",
-					"\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/LmmobSDK\\\"",
-					"\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/MangoAd/AdsMOGO_iOS_SDK_1.1.9/AdsMoGoLib/AdNetworkLibs/MobWin\\\"",
-					"\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/WAPS_IOS_1.0.2\\\"",
-					"\\\"$(SRCROOT)/../Common_iPhone_20/Components/Component-Service/Unrar4iOS\\\"",
-					"\\\"$(SYSTEM_APPS_DIR)/Xcode.app/Contents/Developer/Library/Frameworks\\\"",
-					"\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/ShareSDK/Connection\\\"",
-					"\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/ShareSDK/Core\\\"",
-					"\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/ShareSDK/Extend/GooglePlusSDK\\\"",
-					"\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/ShareSDK/Extend/Pinterest.embeddedframework\\\"",
-					"\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/ShareSDK/Extend/RenRenSDK\\\"",
-					"\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/ShareSDK/Extend\\\"",
-					"\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/ShareSDK\\\"",
-					"\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/ShareSDK/UI\\\"",
+					"\\\\\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/iFly\\\\\\\"",
+					"\\\\\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/LmmobSDK\\\\\\\"",
+					"\\\\\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/MangoAd/AdsMOGO_iOS_SDK_1.1.9/AdsMoGoLib/AdNetworkLibs/MobWin\\\\\\\"",
+					"\\\\\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/WAPS_IOS_1.0.2\\\\\\\"",
+					"\\\\\\\"$(SRCROOT)/../Common_iPhone_20/Components/Component-Service/Unrar4iOS\\\\\\\"",
+					"\\\\\\\"$(SYSTEM_APPS_DIR)/Xcode.app/Contents/Developer/Library/Frameworks\\\\\\\"",
+					"\\\\\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/ShareSDK/Connection\\\\\\\"",
+					"\\\\\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/ShareSDK/Core\\\\\\\"",
+					"\\\\\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/ShareSDK/Extend/GooglePlusSDK\\\\\\\"",
+					"\\\\\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/ShareSDK/Extend/Pinterest.embeddedframework\\\\\\\"",
+					"\\\\\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/ShareSDK/Extend/RenRenSDK\\\\\\\"",
+					"\\\\\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/ShareSDK/Extend\\\\\\\"",
+					"\\\\\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/ShareSDK\\\\\\\"",
+					"\\\\\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/ShareSDK/UI\\\\\\\"",
 					"/gitdata/Common_iPhone_20/3PP-SDK/ZeroQian",
 					"/gitdata/Common_iPhone_20/3PP-SDK/ShareSDK/Connection",
 					"/gitdata/Common_iPhone_20/3PP-SDK/ShareSDK/Core",
@@ -25758,6 +25810,7 @@
 					"/gitdata/Common_iPhone_20/3PP-SDK/ShareSDK",
 					"/gitdata/Common_iPhone_20/3PP-SDK/ShareSDK/UI",
 					"/gitdata/Common_iPhone_20/3PP-SDK/LmmobSDK",
+					"/gitdata/Common_iPhone_20/3PP-SDK/ShareSDK/Extend/QQConnectSDK",
 				);
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -25774,36 +25827,36 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/MobClick\\\"",
-					"\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/WeixinSDK\\\"",
-					"\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/DomobAdSDK\\\"",
-					"\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/GoogleAdMobAdsSDK\\\"",
-					"\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/UMAppNetwork_SDK_3.5.2\\\"",
-					"\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/TapjoyPublisherLibrary\\\"",
-					"\\\"$(SRCROOT)/../Common_iPhone_20/Components/Component-View/MWPhotoBrowser/build/Debug-iphoneos\\\"",
-					"\\\"$(SRCROOT)/../Common_iPhone_20/Components/Component-View/MWPhotoBrowser/build/MWPhotoBrowser.build/Debug-iphoneos/MWPhotoBrowser.build/Objects-normal/armv7\\\"",
-					"\\\"$(SRCROOT)/../Common_iPhone_20/Components/Component-View/MWPhotoBrowser/build/MWPhotoBrowser.build/Debug-iphoneos/MWPhotoBrowser.build/Objects-normal/armv7s\\\"",
-					"\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/aderwall-ios-sdk/AderWallSDKPackageRelease/lib\\\"",
-					"\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/aderwall-ios-sdk/AderWallSDKPackageRelease/Sample/Sample/lib\\\"",
-					"\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/AliPaySDK/libs\\\"",
-					"\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/AliPaySDK/Utilities\\\"",
-					"\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/Analytics_iOS_SDK_2.2.0.OpenUDID/UMAnalytics_Sdk_2.2.0.OpenUDID\\\"",
-					"\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/DMOfferWallSDK\\\"",
-					"\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/GoogleAdMobAdsSDK/Add-ons/GoogleAnalyticsiOS_2.0beta4/Library\\\"",
-					"\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/UMUFP_iPhone_SDK_old\\\"",
-					"\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/YoumiSDK/lib\\\"",
-					"\\\"$(SRCROOT)/Draw/GameServer/ProtocolBuffer\\\"",
-					"\\\"$(SRCROOT)/Draw/GameServer/ProtocolBuffer/google/protobuf-c\\\"",
-					"\\\"$(SRCROOT)/../Common_iPhone_20/Components/Component-Audio/AudioProcessing/--DIRAC3LE--/Dirac3-Mobile/Common\\ Files/src\\\"",
-					"\\\"$(SRCROOT)/../Common_iPhone_20/Components/Component-Service/UPPayPlugin/libs/Release-iphoneos\\\"",
-					"\\\"$(SRCROOT)/../Common_iPhone_20/Components/Component-Service/UPPayPlugin/libs/Release-iphonesimulator\\\"",
-					"\\\"$(SRCROOT)/../Common_iPhone_20/Components/Component-Buri/LevelDB\\\"",
-					"\\\"$(SRCROOT)/../Common_iPhone_20/Components/Component-DB/Buri/LevelDB\\\"",
-					"\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/ShareSDK/Extend/libWeiboSDK\\\"",
-					"\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/ShareSDK/Extend/SDKExport\\\"",
-					"\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/ShareSDK/Extend/TencentWeiboSSO\\\"",
-					"\\\"$(SRCROOT)/../Common_iPhone_20/Core/Core-Utils-Audio-Convert\\\"",
-					"\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/AliPaySDK/alipay\\\"",
+					"\\\\\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/MobClick\\\\\\\"",
+					"\\\\\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/WeixinSDK\\\\\\\"",
+					"\\\\\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/DomobAdSDK\\\\\\\"",
+					"\\\\\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/GoogleAdMobAdsSDK\\\\\\\"",
+					"\\\\\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/UMAppNetwork_SDK_3.5.2\\\\\\\"",
+					"\\\\\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/TapjoyPublisherLibrary\\\\\\\"",
+					"\\\\\\\"$(SRCROOT)/../Common_iPhone_20/Components/Component-View/MWPhotoBrowser/build/Debug-iphoneos\\\\\\\"",
+					"\\\\\\\"$(SRCROOT)/../Common_iPhone_20/Components/Component-View/MWPhotoBrowser/build/MWPhotoBrowser.build/Debug-iphoneos/MWPhotoBrowser.build/Objects-normal/armv7\\\\\\\"",
+					"\\\\\\\"$(SRCROOT)/../Common_iPhone_20/Components/Component-View/MWPhotoBrowser/build/MWPhotoBrowser.build/Debug-iphoneos/MWPhotoBrowser.build/Objects-normal/armv7s\\\\\\\"",
+					"\\\\\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/aderwall-ios-sdk/AderWallSDKPackageRelease/lib\\\\\\\"",
+					"\\\\\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/aderwall-ios-sdk/AderWallSDKPackageRelease/Sample/Sample/lib\\\\\\\"",
+					"\\\\\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/AliPaySDK/libs\\\\\\\"",
+					"\\\\\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/AliPaySDK/Utilities\\\\\\\"",
+					"\\\\\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/Analytics_iOS_SDK_2.2.0.OpenUDID/UMAnalytics_Sdk_2.2.0.OpenUDID\\\\\\\"",
+					"\\\\\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/DMOfferWallSDK\\\\\\\"",
+					"\\\\\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/GoogleAdMobAdsSDK/Add-ons/GoogleAnalyticsiOS_2.0beta4/Library\\\\\\\"",
+					"\\\\\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/UMUFP_iPhone_SDK_old\\\\\\\"",
+					"\\\\\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/YoumiSDK/lib\\\\\\\"",
+					"\\\\\\\"$(SRCROOT)/Draw/GameServer/ProtocolBuffer\\\\\\\"",
+					"\\\\\\\"$(SRCROOT)/Draw/GameServer/ProtocolBuffer/google/protobuf-c\\\\\\\"",
+					"\\\\\\\"$(SRCROOT)/../Common_iPhone_20/Components/Component-Audio/AudioProcessing/--DIRAC3LE--/Dirac3-Mobile/Common\\\\\\ Files/src\\\\\\\"",
+					"\\\\\\\"$(SRCROOT)/../Common_iPhone_20/Components/Component-Service/UPPayPlugin/libs/Release-iphoneos\\\\\\\"",
+					"\\\\\\\"$(SRCROOT)/../Common_iPhone_20/Components/Component-Service/UPPayPlugin/libs/Release-iphonesimulator\\\\\\\"",
+					"\\\\\\\"$(SRCROOT)/../Common_iPhone_20/Components/Component-Buri/LevelDB\\\\\\\"",
+					"\\\\\\\"$(SRCROOT)/../Common_iPhone_20/Components/Component-DB/Buri/LevelDB\\\\\\\"",
+					"\\\\\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/ShareSDK/Extend/libWeiboSDK\\\\\\\"",
+					"\\\\\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/ShareSDK/Extend/SDKExport\\\\\\\"",
+					"\\\\\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/ShareSDK/Extend/TencentWeiboSSO\\\\\\\"",
+					"\\\\\\\"$(SRCROOT)/../Common_iPhone_20/Core/Core-Utils-Audio-Convert\\\\\\\"",
+					"\\\\\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/AliPaySDK/alipay\\\\\\\"",
 					"/gitdata/Common_iPhone_20/3PP-SDK/ShareSDK/Extend/libWeiboSDK",
 					"/gitdata/Common_iPhone_20/3PP-SDK/ShareSDK/Extend/SDKExport",
 					"/gitdata/Common_iPhone_20/3PP-SDK/ShareSDK/Extend/TencentWeiboSSO",
@@ -25814,6 +25867,11 @@
 					"/gitdata/Common_iPhone_20/Components/Component-DB/Buri/LevelDB",
 					"/gitdata/Common_iPhone_20/Components/Component-Audio/AudioProcessing/--DIRAC3LE--/Dirac3-Mobile/Common\\ Files/src",
 					"/gitdata/Common_iPhone_20/Core/Core-Utils-Audio-Convert",
+					"/gitdata/Common_iPhone_20/3PP-SDK/WeixinSDK",
+					"/gitdata/Common_iPhone_20/3PP-SDK/ShareSDK/Extend/SinaWeiboSDK",
+					"/gitdata/Common_iPhone_20/3PP-SDK/ShareSDK/Extend/TencentWeiboSDK",
+					"/gitdata/Common_iPhone_20/3PP-SDK/ShareSDK/Extend/WeChatSDK",
+					"/gitdata/Common_iPhone_20/3PP-SDK/ShareSDK/Extend/YiXinSDK",
 				);
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = "-ObjC";
@@ -25835,20 +25893,20 @@
 				COPY_PHASE_STRIP = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/iFly\\\"",
-					"\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/LmmobSDK\\\"",
-					"\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/MangoAd/AdsMOGO_iOS_SDK_1.1.9/AdsMoGoLib/AdNetworkLibs/MobWin\\\"",
-					"\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/WAPS_IOS_1.0.2\\\"",
-					"\\\"$(SRCROOT)/../Common_iPhone_20/Components/Component-Service/Unrar4iOS\\\"",
-					"\\\"$(SYSTEM_APPS_DIR)/Xcode.app/Contents/Developer/Library/Frameworks\\\"",
-					"\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/ShareSDK/Connection\\\"",
-					"\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/ShareSDK/Core\\\"",
-					"\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/ShareSDK/Extend/GooglePlusSDK\\\"",
-					"\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/ShareSDK/Extend/Pinterest.embeddedframework\\\"",
-					"\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/ShareSDK/Extend/RenRenSDK\\\"",
-					"\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/ShareSDK/Extend\\\"",
-					"\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/ShareSDK\\\"",
-					"\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/ShareSDK/UI\\\"",
+					"\\\\\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/iFly\\\\\\\"",
+					"\\\\\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/LmmobSDK\\\\\\\"",
+					"\\\\\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/MangoAd/AdsMOGO_iOS_SDK_1.1.9/AdsMoGoLib/AdNetworkLibs/MobWin\\\\\\\"",
+					"\\\\\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/WAPS_IOS_1.0.2\\\\\\\"",
+					"\\\\\\\"$(SRCROOT)/../Common_iPhone_20/Components/Component-Service/Unrar4iOS\\\\\\\"",
+					"\\\\\\\"$(SYSTEM_APPS_DIR)/Xcode.app/Contents/Developer/Library/Frameworks\\\\\\\"",
+					"\\\\\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/ShareSDK/Connection\\\\\\\"",
+					"\\\\\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/ShareSDK/Core\\\\\\\"",
+					"\\\\\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/ShareSDK/Extend/GooglePlusSDK\\\\\\\"",
+					"\\\\\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/ShareSDK/Extend/Pinterest.embeddedframework\\\\\\\"",
+					"\\\\\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/ShareSDK/Extend/RenRenSDK\\\\\\\"",
+					"\\\\\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/ShareSDK/Extend\\\\\\\"",
+					"\\\\\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/ShareSDK\\\\\\\"",
+					"\\\\\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/ShareSDK/UI\\\\\\\"",
 					"/gitdata/Common_iPhone_20/3PP-SDK/ZeroQian",
 					"/gitdata/Common_iPhone_20/3PP-SDK/ShareSDK/Connection",
 					"/gitdata/Common_iPhone_20/3PP-SDK/ShareSDK/Core",
@@ -25859,6 +25917,7 @@
 					"/gitdata/Common_iPhone_20/3PP-SDK/ShareSDK",
 					"/gitdata/Common_iPhone_20/3PP-SDK/ShareSDK/UI",
 					"/gitdata/Common_iPhone_20/3PP-SDK/LmmobSDK",
+					"/gitdata/Common_iPhone_20/3PP-SDK/ShareSDK/Extend/QQConnectSDK",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Draw/Draw-Prefix.pch";
@@ -25873,36 +25932,36 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/MobClick\\\"",
-					"\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/WeixinSDK\\\"",
-					"\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/DomobAdSDK\\\"",
-					"\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/GoogleAdMobAdsSDK\\\"",
-					"\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/UMAppNetwork_SDK_3.5.2\\\"",
-					"\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/TapjoyPublisherLibrary\\\"",
-					"\\\"$(SRCROOT)/../Common_iPhone_20/Components/Component-View/MWPhotoBrowser/build/Debug-iphoneos\\\"",
-					"\\\"$(SRCROOT)/../Common_iPhone_20/Components/Component-View/MWPhotoBrowser/build/MWPhotoBrowser.build/Debug-iphoneos/MWPhotoBrowser.build/Objects-normal/armv7\\\"",
-					"\\\"$(SRCROOT)/../Common_iPhone_20/Components/Component-View/MWPhotoBrowser/build/MWPhotoBrowser.build/Debug-iphoneos/MWPhotoBrowser.build/Objects-normal/armv7s\\\"",
-					"\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/aderwall-ios-sdk/AderWallSDKPackageRelease/lib\\\"",
-					"\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/aderwall-ios-sdk/AderWallSDKPackageRelease/Sample/Sample/lib\\\"",
-					"\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/AliPaySDK/libs\\\"",
-					"\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/AliPaySDK/Utilities\\\"",
-					"\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/Analytics_iOS_SDK_2.2.0.OpenUDID/UMAnalytics_Sdk_2.2.0.OpenUDID\\\"",
-					"\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/DMOfferWallSDK\\\"",
-					"\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/GoogleAdMobAdsSDK/Add-ons/GoogleAnalyticsiOS_2.0beta4/Library\\\"",
-					"\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/UMUFP_iPhone_SDK_old\\\"",
-					"\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/YoumiSDK/lib\\\"",
-					"\\\"$(SRCROOT)/Draw/GameServer/ProtocolBuffer\\\"",
-					"\\\"$(SRCROOT)/Draw/GameServer/ProtocolBuffer/google/protobuf-c\\\"",
-					"\\\"$(SRCROOT)/../Common_iPhone_20/Components/Component-Audio/AudioProcessing/--DIRAC3LE--/Dirac3-Mobile/Common\\ Files/src\\\"",
-					"\\\"$(SRCROOT)/../Common_iPhone_20/Components/Component-Service/UPPayPlugin/libs/Release-iphoneos\\\"",
-					"\\\"$(SRCROOT)/../Common_iPhone_20/Components/Component-Service/UPPayPlugin/libs/Release-iphonesimulator\\\"",
-					"\\\"$(SRCROOT)/../Common_iPhone_20/Components/Component-Buri/LevelDB\\\"",
-					"\\\"$(SRCROOT)/../Common_iPhone_20/Components/Component-DB/Buri/LevelDB\\\"",
-					"\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/ShareSDK/Extend/libWeiboSDK\\\"",
-					"\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/ShareSDK/Extend/SDKExport\\\"",
-					"\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/ShareSDK/Extend/TencentWeiboSSO\\\"",
-					"\\\"$(SRCROOT)/../Common_iPhone_20/Core/Core-Utils-Audio-Convert\\\"",
-					"\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/AliPaySDK/alipay\\\"",
+					"\\\\\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/MobClick\\\\\\\"",
+					"\\\\\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/WeixinSDK\\\\\\\"",
+					"\\\\\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/DomobAdSDK\\\\\\\"",
+					"\\\\\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/GoogleAdMobAdsSDK\\\\\\\"",
+					"\\\\\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/UMAppNetwork_SDK_3.5.2\\\\\\\"",
+					"\\\\\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/TapjoyPublisherLibrary\\\\\\\"",
+					"\\\\\\\"$(SRCROOT)/../Common_iPhone_20/Components/Component-View/MWPhotoBrowser/build/Debug-iphoneos\\\\\\\"",
+					"\\\\\\\"$(SRCROOT)/../Common_iPhone_20/Components/Component-View/MWPhotoBrowser/build/MWPhotoBrowser.build/Debug-iphoneos/MWPhotoBrowser.build/Objects-normal/armv7\\\\\\\"",
+					"\\\\\\\"$(SRCROOT)/../Common_iPhone_20/Components/Component-View/MWPhotoBrowser/build/MWPhotoBrowser.build/Debug-iphoneos/MWPhotoBrowser.build/Objects-normal/armv7s\\\\\\\"",
+					"\\\\\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/aderwall-ios-sdk/AderWallSDKPackageRelease/lib\\\\\\\"",
+					"\\\\\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/aderwall-ios-sdk/AderWallSDKPackageRelease/Sample/Sample/lib\\\\\\\"",
+					"\\\\\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/AliPaySDK/libs\\\\\\\"",
+					"\\\\\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/AliPaySDK/Utilities\\\\\\\"",
+					"\\\\\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/Analytics_iOS_SDK_2.2.0.OpenUDID/UMAnalytics_Sdk_2.2.0.OpenUDID\\\\\\\"",
+					"\\\\\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/DMOfferWallSDK\\\\\\\"",
+					"\\\\\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/GoogleAdMobAdsSDK/Add-ons/GoogleAnalyticsiOS_2.0beta4/Library\\\\\\\"",
+					"\\\\\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/UMUFP_iPhone_SDK_old\\\\\\\"",
+					"\\\\\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/YoumiSDK/lib\\\\\\\"",
+					"\\\\\\\"$(SRCROOT)/Draw/GameServer/ProtocolBuffer\\\\\\\"",
+					"\\\\\\\"$(SRCROOT)/Draw/GameServer/ProtocolBuffer/google/protobuf-c\\\\\\\"",
+					"\\\\\\\"$(SRCROOT)/../Common_iPhone_20/Components/Component-Audio/AudioProcessing/--DIRAC3LE--/Dirac3-Mobile/Common\\\\\\ Files/src\\\\\\\"",
+					"\\\\\\\"$(SRCROOT)/../Common_iPhone_20/Components/Component-Service/UPPayPlugin/libs/Release-iphoneos\\\\\\\"",
+					"\\\\\\\"$(SRCROOT)/../Common_iPhone_20/Components/Component-Service/UPPayPlugin/libs/Release-iphonesimulator\\\\\\\"",
+					"\\\\\\\"$(SRCROOT)/../Common_iPhone_20/Components/Component-Buri/LevelDB\\\\\\\"",
+					"\\\\\\\"$(SRCROOT)/../Common_iPhone_20/Components/Component-DB/Buri/LevelDB\\\\\\\"",
+					"\\\\\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/ShareSDK/Extend/libWeiboSDK\\\\\\\"",
+					"\\\\\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/ShareSDK/Extend/SDKExport\\\\\\\"",
+					"\\\\\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/ShareSDK/Extend/TencentWeiboSSO\\\\\\\"",
+					"\\\\\\\"$(SRCROOT)/../Common_iPhone_20/Core/Core-Utils-Audio-Convert\\\\\\\"",
+					"\\\\\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/AliPaySDK/alipay\\\\\\\"",
 					"/gitdata/Common_iPhone_20/3PP-SDK/ShareSDK/Extend/libWeiboSDK",
 					"/gitdata/Common_iPhone_20/3PP-SDK/ShareSDK/Extend/SDKExport",
 					"/gitdata/Common_iPhone_20/3PP-SDK/ShareSDK/Extend/TencentWeiboSSO",
@@ -25913,6 +25972,11 @@
 					"/gitdata/Common_iPhone_20/Components/Component-DB/Buri/LevelDB",
 					"/gitdata/Common_iPhone_20/Components/Component-Audio/AudioProcessing/--DIRAC3LE--/Dirac3-Mobile/Common\\ Files/src",
 					"/gitdata/Common_iPhone_20/Core/Core-Utils-Audio-Convert",
+					"/gitdata/Common_iPhone_20/3PP-SDK/WeixinSDK",
+					"/gitdata/Common_iPhone_20/3PP-SDK/ShareSDK/Extend/SinaWeiboSDK",
+					"/gitdata/Common_iPhone_20/3PP-SDK/ShareSDK/Extend/TencentWeiboSDK",
+					"/gitdata/Common_iPhone_20/3PP-SDK/ShareSDK/Extend/WeChatSDK",
+					"/gitdata/Common_iPhone_20/3PP-SDK/ShareSDK/Extend/YiXinSDK",
 				);
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = "-ObjC";
@@ -25934,20 +25998,20 @@
 				COPY_PHASE_STRIP = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/iFly\\\"",
-					"\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/LmmobSDK\\\"",
-					"\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/MangoAd/AdsMOGO_iOS_SDK_1.1.9/AdsMoGoLib/AdNetworkLibs/MobWin\\\"",
-					"\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/WAPS_IOS_1.0.2\\\"",
-					"\\\"$(SRCROOT)/../Common_iPhone_20/Components/Component-Service/Unrar4iOS\\\"",
-					"\\\"$(SYSTEM_APPS_DIR)/Xcode.app/Contents/Developer/Library/Frameworks\\\"",
-					"\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/ShareSDK/Connection\\\"",
-					"\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/ShareSDK/Core\\\"",
-					"\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/ShareSDK/Extend/GooglePlusSDK\\\"",
-					"\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/ShareSDK/Extend/Pinterest.embeddedframework\\\"",
-					"\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/ShareSDK/Extend/RenRenSDK\\\"",
-					"\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/ShareSDK/Extend\\\"",
-					"\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/ShareSDK\\\"",
-					"\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/ShareSDK/UI\\\"",
+					"\\\\\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/iFly\\\\\\\"",
+					"\\\\\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/LmmobSDK\\\\\\\"",
+					"\\\\\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/MangoAd/AdsMOGO_iOS_SDK_1.1.9/AdsMoGoLib/AdNetworkLibs/MobWin\\\\\\\"",
+					"\\\\\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/WAPS_IOS_1.0.2\\\\\\\"",
+					"\\\\\\\"$(SRCROOT)/../Common_iPhone_20/Components/Component-Service/Unrar4iOS\\\\\\\"",
+					"\\\\\\\"$(SYSTEM_APPS_DIR)/Xcode.app/Contents/Developer/Library/Frameworks\\\\\\\"",
+					"\\\\\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/ShareSDK/Connection\\\\\\\"",
+					"\\\\\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/ShareSDK/Core\\\\\\\"",
+					"\\\\\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/ShareSDK/Extend/GooglePlusSDK\\\\\\\"",
+					"\\\\\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/ShareSDK/Extend/Pinterest.embeddedframework\\\\\\\"",
+					"\\\\\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/ShareSDK/Extend/RenRenSDK\\\\\\\"",
+					"\\\\\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/ShareSDK/Extend\\\\\\\"",
+					"\\\\\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/ShareSDK\\\\\\\"",
+					"\\\\\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/ShareSDK/UI\\\\\\\"",
 					"/gitdata/Common_iPhone_20/3PP-SDK/ZeroQian",
 					"/gitdata/Common_iPhone_20/3PP-SDK/ShareSDK/Connection",
 					"/gitdata/Common_iPhone_20/3PP-SDK/ShareSDK/Core",
@@ -25958,6 +26022,7 @@
 					"/gitdata/Common_iPhone_20/3PP-SDK/ShareSDK",
 					"/gitdata/Common_iPhone_20/3PP-SDK/ShareSDK/UI",
 					"/gitdata/Common_iPhone_20/3PP-SDK/LmmobSDK",
+					"/gitdata/Common_iPhone_20/3PP-SDK/ShareSDK/Extend/QQConnectSDK",
 				);
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -25973,36 +26038,36 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/MobClick\\\"",
-					"\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/WeixinSDK\\\"",
-					"\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/DomobAdSDK\\\"",
-					"\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/GoogleAdMobAdsSDK\\\"",
-					"\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/UMAppNetwork_SDK_3.5.2\\\"",
-					"\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/TapjoyPublisherLibrary\\\"",
-					"\\\"$(SRCROOT)/../Common_iPhone_20/Components/Component-View/MWPhotoBrowser/build/Debug-iphoneos\\\"",
-					"\\\"$(SRCROOT)/../Common_iPhone_20/Components/Component-View/MWPhotoBrowser/build/MWPhotoBrowser.build/Debug-iphoneos/MWPhotoBrowser.build/Objects-normal/armv7\\\"",
-					"\\\"$(SRCROOT)/../Common_iPhone_20/Components/Component-View/MWPhotoBrowser/build/MWPhotoBrowser.build/Debug-iphoneos/MWPhotoBrowser.build/Objects-normal/armv7s\\\"",
-					"\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/aderwall-ios-sdk/AderWallSDKPackageRelease/lib\\\"",
-					"\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/aderwall-ios-sdk/AderWallSDKPackageRelease/Sample/Sample/lib\\\"",
-					"\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/AliPaySDK/libs\\\"",
-					"\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/AliPaySDK/Utilities\\\"",
-					"\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/Analytics_iOS_SDK_2.2.0.OpenUDID/UMAnalytics_Sdk_2.2.0.OpenUDID\\\"",
-					"\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/DMOfferWallSDK\\\"",
-					"\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/GoogleAdMobAdsSDK/Add-ons/GoogleAnalyticsiOS_2.0beta4/Library\\\"",
-					"\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/UMUFP_iPhone_SDK_old\\\"",
-					"\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/YoumiSDK/lib\\\"",
-					"\\\"$(SRCROOT)/Draw/GameServer/ProtocolBuffer\\\"",
-					"\\\"$(SRCROOT)/Draw/GameServer/ProtocolBuffer/google/protobuf-c\\\"",
-					"\\\"$(SRCROOT)/../Common_iPhone_20/Components/Component-Audio/AudioProcessing/--DIRAC3LE--/Dirac3-Mobile/Common\\ Files/src\\\"",
-					"\\\"$(SRCROOT)/../Common_iPhone_20/Components/Component-Service/UPPayPlugin/libs/Release-iphoneos\\\"",
-					"\\\"$(SRCROOT)/../Common_iPhone_20/Components/Component-Service/UPPayPlugin/libs/Release-iphonesimulator\\\"",
-					"\\\"$(SRCROOT)/../Common_iPhone_20/Components/Component-Buri/LevelDB\\\"",
-					"\\\"$(SRCROOT)/../Common_iPhone_20/Components/Component-DB/Buri/LevelDB\\\"",
-					"\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/ShareSDK/Extend/libWeiboSDK\\\"",
-					"\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/ShareSDK/Extend/SDKExport\\\"",
-					"\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/ShareSDK/Extend/TencentWeiboSSO\\\"",
-					"\\\"$(SRCROOT)/../Common_iPhone_20/Core/Core-Utils-Audio-Convert\\\"",
-					"\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/AliPaySDK/alipay\\\"",
+					"\\\\\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/MobClick\\\\\\\"",
+					"\\\\\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/WeixinSDK\\\\\\\"",
+					"\\\\\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/DomobAdSDK\\\\\\\"",
+					"\\\\\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/GoogleAdMobAdsSDK\\\\\\\"",
+					"\\\\\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/UMAppNetwork_SDK_3.5.2\\\\\\\"",
+					"\\\\\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/TapjoyPublisherLibrary\\\\\\\"",
+					"\\\\\\\"$(SRCROOT)/../Common_iPhone_20/Components/Component-View/MWPhotoBrowser/build/Debug-iphoneos\\\\\\\"",
+					"\\\\\\\"$(SRCROOT)/../Common_iPhone_20/Components/Component-View/MWPhotoBrowser/build/MWPhotoBrowser.build/Debug-iphoneos/MWPhotoBrowser.build/Objects-normal/armv7\\\\\\\"",
+					"\\\\\\\"$(SRCROOT)/../Common_iPhone_20/Components/Component-View/MWPhotoBrowser/build/MWPhotoBrowser.build/Debug-iphoneos/MWPhotoBrowser.build/Objects-normal/armv7s\\\\\\\"",
+					"\\\\\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/aderwall-ios-sdk/AderWallSDKPackageRelease/lib\\\\\\\"",
+					"\\\\\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/aderwall-ios-sdk/AderWallSDKPackageRelease/Sample/Sample/lib\\\\\\\"",
+					"\\\\\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/AliPaySDK/libs\\\\\\\"",
+					"\\\\\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/AliPaySDK/Utilities\\\\\\\"",
+					"\\\\\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/Analytics_iOS_SDK_2.2.0.OpenUDID/UMAnalytics_Sdk_2.2.0.OpenUDID\\\\\\\"",
+					"\\\\\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/DMOfferWallSDK\\\\\\\"",
+					"\\\\\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/GoogleAdMobAdsSDK/Add-ons/GoogleAnalyticsiOS_2.0beta4/Library\\\\\\\"",
+					"\\\\\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/UMUFP_iPhone_SDK_old\\\\\\\"",
+					"\\\\\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/YoumiSDK/lib\\\\\\\"",
+					"\\\\\\\"$(SRCROOT)/Draw/GameServer/ProtocolBuffer\\\\\\\"",
+					"\\\\\\\"$(SRCROOT)/Draw/GameServer/ProtocolBuffer/google/protobuf-c\\\\\\\"",
+					"\\\\\\\"$(SRCROOT)/../Common_iPhone_20/Components/Component-Audio/AudioProcessing/--DIRAC3LE--/Dirac3-Mobile/Common\\\\\\ Files/src\\\\\\\"",
+					"\\\\\\\"$(SRCROOT)/../Common_iPhone_20/Components/Component-Service/UPPayPlugin/libs/Release-iphoneos\\\\\\\"",
+					"\\\\\\\"$(SRCROOT)/../Common_iPhone_20/Components/Component-Service/UPPayPlugin/libs/Release-iphonesimulator\\\\\\\"",
+					"\\\\\\\"$(SRCROOT)/../Common_iPhone_20/Components/Component-Buri/LevelDB\\\\\\\"",
+					"\\\\\\\"$(SRCROOT)/../Common_iPhone_20/Components/Component-DB/Buri/LevelDB\\\\\\\"",
+					"\\\\\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/ShareSDK/Extend/libWeiboSDK\\\\\\\"",
+					"\\\\\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/ShareSDK/Extend/SDKExport\\\\\\\"",
+					"\\\\\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/ShareSDK/Extend/TencentWeiboSSO\\\\\\\"",
+					"\\\\\\\"$(SRCROOT)/../Common_iPhone_20/Core/Core-Utils-Audio-Convert\\\\\\\"",
+					"\\\\\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/AliPaySDK/alipay\\\\\\\"",
 					"/gitdata/Common_iPhone_20/3PP-SDK/ShareSDK/Extend/libWeiboSDK",
 					"/gitdata/Common_iPhone_20/3PP-SDK/ShareSDK/Extend/SDKExport",
 					"/gitdata/Common_iPhone_20/3PP-SDK/ShareSDK/Extend/TencentWeiboSSO",
@@ -26013,6 +26078,11 @@
 					"/gitdata/Common_iPhone_20/Components/Component-DB/Buri/LevelDB",
 					"/gitdata/Common_iPhone_20/Components/Component-Audio/AudioProcessing/--DIRAC3LE--/Dirac3-Mobile/Common\\ Files/src",
 					"/gitdata/Common_iPhone_20/Core/Core-Utils-Audio-Convert",
+					"/gitdata/Common_iPhone_20/3PP-SDK/WeixinSDK",
+					"/gitdata/Common_iPhone_20/3PP-SDK/ShareSDK/Extend/SinaWeiboSDK",
+					"/gitdata/Common_iPhone_20/3PP-SDK/ShareSDK/Extend/TencentWeiboSDK",
+					"/gitdata/Common_iPhone_20/3PP-SDK/ShareSDK/Extend/WeChatSDK",
+					"/gitdata/Common_iPhone_20/3PP-SDK/ShareSDK/Extend/YiXinSDK",
 				);
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = AskPs;
@@ -26031,20 +26101,20 @@
 				COPY_PHASE_STRIP = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/iFly\\\"",
-					"\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/LmmobSDK\\\"",
-					"\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/MangoAd/AdsMOGO_iOS_SDK_1.1.9/AdsMoGoLib/AdNetworkLibs/MobWin\\\"",
-					"\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/WAPS_IOS_1.0.2\\\"",
-					"\\\"$(SRCROOT)/../Common_iPhone_20/Components/Component-Service/Unrar4iOS\\\"",
-					"\\\"$(SYSTEM_APPS_DIR)/Xcode.app/Contents/Developer/Library/Frameworks\\\"",
-					"\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/ShareSDK/Connection\\\"",
-					"\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/ShareSDK/Core\\\"",
-					"\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/ShareSDK/Extend/GooglePlusSDK\\\"",
-					"\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/ShareSDK/Extend/Pinterest.embeddedframework\\\"",
-					"\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/ShareSDK/Extend/RenRenSDK\\\"",
-					"\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/ShareSDK/Extend\\\"",
-					"\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/ShareSDK\\\"",
-					"\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/ShareSDK/UI\\\"",
+					"\\\\\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/iFly\\\\\\\"",
+					"\\\\\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/LmmobSDK\\\\\\\"",
+					"\\\\\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/MangoAd/AdsMOGO_iOS_SDK_1.1.9/AdsMoGoLib/AdNetworkLibs/MobWin\\\\\\\"",
+					"\\\\\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/WAPS_IOS_1.0.2\\\\\\\"",
+					"\\\\\\\"$(SRCROOT)/../Common_iPhone_20/Components/Component-Service/Unrar4iOS\\\\\\\"",
+					"\\\\\\\"$(SYSTEM_APPS_DIR)/Xcode.app/Contents/Developer/Library/Frameworks\\\\\\\"",
+					"\\\\\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/ShareSDK/Connection\\\\\\\"",
+					"\\\\\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/ShareSDK/Core\\\\\\\"",
+					"\\\\\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/ShareSDK/Extend/GooglePlusSDK\\\\\\\"",
+					"\\\\\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/ShareSDK/Extend/Pinterest.embeddedframework\\\\\\\"",
+					"\\\\\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/ShareSDK/Extend/RenRenSDK\\\\\\\"",
+					"\\\\\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/ShareSDK/Extend\\\\\\\"",
+					"\\\\\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/ShareSDK\\\\\\\"",
+					"\\\\\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/ShareSDK/UI\\\\\\\"",
 					"/gitdata/Common_iPhone_20/3PP-SDK/ZeroQian",
 					"/gitdata/Common_iPhone_20/3PP-SDK/ShareSDK/Connection",
 					"/gitdata/Common_iPhone_20/3PP-SDK/ShareSDK/Core",
@@ -26055,6 +26125,7 @@
 					"/gitdata/Common_iPhone_20/3PP-SDK/ShareSDK",
 					"/gitdata/Common_iPhone_20/3PP-SDK/ShareSDK/UI",
 					"/gitdata/Common_iPhone_20/3PP-SDK/LmmobSDK",
+					"/gitdata/Common_iPhone_20/3PP-SDK/ShareSDK/Extend/QQConnectSDK",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Draw/Draw-Prefix.pch";
@@ -26069,36 +26140,36 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/MobClick\\\"",
-					"\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/WeixinSDK\\\"",
-					"\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/DomobAdSDK\\\"",
-					"\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/GoogleAdMobAdsSDK\\\"",
-					"\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/UMAppNetwork_SDK_3.5.2\\\"",
-					"\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/TapjoyPublisherLibrary\\\"",
-					"\\\"$(SRCROOT)/../Common_iPhone_20/Components/Component-View/MWPhotoBrowser/build/Debug-iphoneos\\\"",
-					"\\\"$(SRCROOT)/../Common_iPhone_20/Components/Component-View/MWPhotoBrowser/build/MWPhotoBrowser.build/Debug-iphoneos/MWPhotoBrowser.build/Objects-normal/armv7\\\"",
-					"\\\"$(SRCROOT)/../Common_iPhone_20/Components/Component-View/MWPhotoBrowser/build/MWPhotoBrowser.build/Debug-iphoneos/MWPhotoBrowser.build/Objects-normal/armv7s\\\"",
-					"\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/aderwall-ios-sdk/AderWallSDKPackageRelease/lib\\\"",
-					"\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/aderwall-ios-sdk/AderWallSDKPackageRelease/Sample/Sample/lib\\\"",
-					"\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/AliPaySDK/libs\\\"",
-					"\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/AliPaySDK/Utilities\\\"",
-					"\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/Analytics_iOS_SDK_2.2.0.OpenUDID/UMAnalytics_Sdk_2.2.0.OpenUDID\\\"",
-					"\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/DMOfferWallSDK\\\"",
-					"\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/GoogleAdMobAdsSDK/Add-ons/GoogleAnalyticsiOS_2.0beta4/Library\\\"",
-					"\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/UMUFP_iPhone_SDK_old\\\"",
-					"\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/YoumiSDK/lib\\\"",
-					"\\\"$(SRCROOT)/Draw/GameServer/ProtocolBuffer\\\"",
-					"\\\"$(SRCROOT)/Draw/GameServer/ProtocolBuffer/google/protobuf-c\\\"",
-					"\\\"$(SRCROOT)/../Common_iPhone_20/Components/Component-Audio/AudioProcessing/--DIRAC3LE--/Dirac3-Mobile/Common\\ Files/src\\\"",
-					"\\\"$(SRCROOT)/../Common_iPhone_20/Components/Component-Service/UPPayPlugin/libs/Release-iphoneos\\\"",
-					"\\\"$(SRCROOT)/../Common_iPhone_20/Components/Component-Service/UPPayPlugin/libs/Release-iphonesimulator\\\"",
-					"\\\"$(SRCROOT)/../Common_iPhone_20/Components/Component-Buri/LevelDB\\\"",
-					"\\\"$(SRCROOT)/../Common_iPhone_20/Components/Component-DB/Buri/LevelDB\\\"",
-					"\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/ShareSDK/Extend/libWeiboSDK\\\"",
-					"\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/ShareSDK/Extend/SDKExport\\\"",
-					"\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/ShareSDK/Extend/TencentWeiboSSO\\\"",
-					"\\\"$(SRCROOT)/../Common_iPhone_20/Core/Core-Utils-Audio-Convert\\\"",
-					"\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/AliPaySDK/alipay\\\"",
+					"\\\\\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/MobClick\\\\\\\"",
+					"\\\\\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/WeixinSDK\\\\\\\"",
+					"\\\\\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/DomobAdSDK\\\\\\\"",
+					"\\\\\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/GoogleAdMobAdsSDK\\\\\\\"",
+					"\\\\\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/UMAppNetwork_SDK_3.5.2\\\\\\\"",
+					"\\\\\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/TapjoyPublisherLibrary\\\\\\\"",
+					"\\\\\\\"$(SRCROOT)/../Common_iPhone_20/Components/Component-View/MWPhotoBrowser/build/Debug-iphoneos\\\\\\\"",
+					"\\\\\\\"$(SRCROOT)/../Common_iPhone_20/Components/Component-View/MWPhotoBrowser/build/MWPhotoBrowser.build/Debug-iphoneos/MWPhotoBrowser.build/Objects-normal/armv7\\\\\\\"",
+					"\\\\\\\"$(SRCROOT)/../Common_iPhone_20/Components/Component-View/MWPhotoBrowser/build/MWPhotoBrowser.build/Debug-iphoneos/MWPhotoBrowser.build/Objects-normal/armv7s\\\\\\\"",
+					"\\\\\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/aderwall-ios-sdk/AderWallSDKPackageRelease/lib\\\\\\\"",
+					"\\\\\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/aderwall-ios-sdk/AderWallSDKPackageRelease/Sample/Sample/lib\\\\\\\"",
+					"\\\\\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/AliPaySDK/libs\\\\\\\"",
+					"\\\\\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/AliPaySDK/Utilities\\\\\\\"",
+					"\\\\\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/Analytics_iOS_SDK_2.2.0.OpenUDID/UMAnalytics_Sdk_2.2.0.OpenUDID\\\\\\\"",
+					"\\\\\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/DMOfferWallSDK\\\\\\\"",
+					"\\\\\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/GoogleAdMobAdsSDK/Add-ons/GoogleAnalyticsiOS_2.0beta4/Library\\\\\\\"",
+					"\\\\\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/UMUFP_iPhone_SDK_old\\\\\\\"",
+					"\\\\\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/YoumiSDK/lib\\\\\\\"",
+					"\\\\\\\"$(SRCROOT)/Draw/GameServer/ProtocolBuffer\\\\\\\"",
+					"\\\\\\\"$(SRCROOT)/Draw/GameServer/ProtocolBuffer/google/protobuf-c\\\\\\\"",
+					"\\\\\\\"$(SRCROOT)/../Common_iPhone_20/Components/Component-Audio/AudioProcessing/--DIRAC3LE--/Dirac3-Mobile/Common\\\\\\ Files/src\\\\\\\"",
+					"\\\\\\\"$(SRCROOT)/../Common_iPhone_20/Components/Component-Service/UPPayPlugin/libs/Release-iphoneos\\\\\\\"",
+					"\\\\\\\"$(SRCROOT)/../Common_iPhone_20/Components/Component-Service/UPPayPlugin/libs/Release-iphonesimulator\\\\\\\"",
+					"\\\\\\\"$(SRCROOT)/../Common_iPhone_20/Components/Component-Buri/LevelDB\\\\\\\"",
+					"\\\\\\\"$(SRCROOT)/../Common_iPhone_20/Components/Component-DB/Buri/LevelDB\\\\\\\"",
+					"\\\\\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/ShareSDK/Extend/libWeiboSDK\\\\\\\"",
+					"\\\\\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/ShareSDK/Extend/SDKExport\\\\\\\"",
+					"\\\\\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/ShareSDK/Extend/TencentWeiboSSO\\\\\\\"",
+					"\\\\\\\"$(SRCROOT)/../Common_iPhone_20/Core/Core-Utils-Audio-Convert\\\\\\\"",
+					"\\\\\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/AliPaySDK/alipay\\\\\\\"",
 					"/gitdata/Common_iPhone_20/3PP-SDK/ShareSDK/Extend/libWeiboSDK",
 					"/gitdata/Common_iPhone_20/3PP-SDK/ShareSDK/Extend/SDKExport",
 					"/gitdata/Common_iPhone_20/3PP-SDK/ShareSDK/Extend/TencentWeiboSSO",
@@ -26109,6 +26180,11 @@
 					"/gitdata/Common_iPhone_20/Components/Component-DB/Buri/LevelDB",
 					"/gitdata/Common_iPhone_20/Components/Component-Audio/AudioProcessing/--DIRAC3LE--/Dirac3-Mobile/Common\\ Files/src",
 					"/gitdata/Common_iPhone_20/Core/Core-Utils-Audio-Convert",
+					"/gitdata/Common_iPhone_20/3PP-SDK/WeixinSDK",
+					"/gitdata/Common_iPhone_20/3PP-SDK/ShareSDK/Extend/SinaWeiboSDK",
+					"/gitdata/Common_iPhone_20/3PP-SDK/ShareSDK/Extend/TencentWeiboSDK",
+					"/gitdata/Common_iPhone_20/3PP-SDK/ShareSDK/Extend/WeChatSDK",
+					"/gitdata/Common_iPhone_20/3PP-SDK/ShareSDK/Extend/YiXinSDK",
 				);
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = AskPs;

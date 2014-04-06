@@ -2700,7 +2700,7 @@
 "kConfirmSelectOpusTitle" = "確認消息";
 "kConfirmSelectOpusMsg" = "確認使用這幅作品嗎?";
 
-"kEasyTakeNumber" = "小吉應用註冊非常簡單，只要點擊【領取號碼】按鈕即可完成註冊，不需要輸入任何額外信息";
+"kEasyTakeNumber" = "小吉應用註冊非常簡單，只要點擊【一鍵註冊】按鈕即可完成註冊，不需要輸入任何額外信息";
 "kTakeNumberNow" = "一鍵註冊";
 "Quit" = "退出";
 

@@ -125,10 +125,6 @@ static ShareService* _defaultService;
                                                        successMessage:NSLS(@"kShareWeiboSucc")
                                                        failureMessage:NSLS(@"kShareWeiboFailure")];
             
-//            [[GameSNSService defaultService] publishWeibo:TYPE_QQ text:textForQQ imageFilePath:imagePath inView:nil];
-            
-//            [[[PPSNSIntegerationService defaultService] snsServiceByType:TYPE_QQ] publishWeibo:textForQQ imageFilePath:imagePath successBlock:NULL failureBlock:NULL];
-            
             NSString* textForSina = [self getWeiboText:TYPE_SINA drawUserNickName:nickName drawUserSNSNick:sinaNick isDrawByMe:isDrawByMe drawWord:drawWord drawUserGender:gender];
             [[GameSNSService defaultService] publishWeiboAtBackground:TYPE_SINA
                                                                  text:textForSina
@@ -137,7 +133,6 @@ static ShareService* _defaultService;
                                                        successMessage:NSLS(@"kShareWeiboSucc")
                                                        failureMessage:NSLS(@"kShareWeiboFailure")];
             
-//            [[[PPSNSIntegerationService defaultService] snsServiceByType:TYPE_SINA] publishWeibo:textForSina imageFilePath:imagePath successBlock:NULL failureBlock:NULL];
             
             NSString* textForFacebook = [self getWeiboText:TYPE_FACEBOOK drawUserNickName:nickName drawUserSNSNick:nil isDrawByMe:isDrawByMe drawWord:drawWord drawUserGender:gender];
             [[GameSNSService defaultService] publishWeiboAtBackground:TYPE_FACEBOOK
@@ -147,30 +142,7 @@ static ShareService* _defaultService;
                                                        successMessage:NSLS(@"kShareWeiboSucc")
                                                        failureMessage:NSLS(@"kShareWeiboFailure")];
             
-//            [[[PPSNSIntegerationService defaultService] snsServiceByType:TYPE_FACEBOOK] publishWeibo:textForFacebook imageFilePath:imagePath successBlock:NULL failureBlock:NULL];
 
-            /*
-            if ([[UserManager defaultManager] hasBindQQWeibo]){
-                NSString* textForQQ = [self getWeiboText:TYPE_QQ drawUserNickName:qqId isDrawByMe:isDrawByMe drawWord:drawWord];
-                [[QQWeiboService defaultService] publishWeibo:textForQQ
-                                                imageFilePath:imagePath 
-                                                     delegate:nil];        
-            }
-            
-            if ([[UserManager defaultManager] hasBindSinaWeibo] && [[SinaSNSService defaultService] isAuthorizeExpired] == NO){
-                NSString* textForSina = [self getWeiboText:TYPE_SINA drawUserNickName:sinaNick isDrawByMe:isDrawByMe drawWord:drawWord];
-                [[SinaSNSService defaultService] publishWeibo:textForSina
-                                                imageFilePath:imagePath 
-                                                     delegate:nil];
-            }
-            
-            if ([[UserManager defaultManager] hasBindFacebook] && [[FacebookSNSService defaultService] isAuthorizeExpired] == NO){
-                NSString* textForFacebook = [self getWeiboText:TYPE_FACEBOOK drawUserNickName:@"" isDrawByMe:isDrawByMe drawWord:drawWord];
-                [[FacebookSNSService defaultService] publishWeibo:textForFacebook
-                                                    imageFilePath:imagePath 
-                                                         delegate:nil];                
-            }
-             */
         });
     });
 

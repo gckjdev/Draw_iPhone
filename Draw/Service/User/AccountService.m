@@ -202,6 +202,9 @@ static AccountService* _defaultAccountService;
                     // sync user permission
                     [[UserManager defaultManager] setUserPermissions:user.permissionsList];
                     
+                    // sync user weibo info
+                    [[UserService defaultService] saveSNSUserData:user];
+                    
                     // post notification
                     [self postNotification:NOTIFICATION_SYNC_ACCOUNT];
                     

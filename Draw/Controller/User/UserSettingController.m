@@ -705,18 +705,6 @@ SET_CELL_BG_IN_CONTROLLER;
                 else{
                     [cell.customDetailLabel setText:NSLS(@"kNotSet")];
                 }
-                
-//                if ([_userManager hasBindSinaWeibo]){
-//                    if ([[[PPSNSIntegerationService defaultService] snsServiceByType:TYPE_SINA] isAuthorizeExpired]){
-//                        [cell.customDetailLabel setText:NSLS(@"kWeiboExpired")];
-//                    }
-//                    else{
-//                        [cell.customDetailLabel setText:NSLS(@"kWeiboSet")];
-//                    }
-//                }
-//                else{
-//                    [cell.customDetailLabel setText:NSLS(@"kNotSet")];
-//                }                
             }
                 break;
                 
@@ -735,18 +723,6 @@ SET_CELL_BG_IN_CONTROLLER;
                 else{
                     [cell.customDetailLabel setText:NSLS(@"kNotSet")];
                 }
-                
-//                if ([_userManager hasBindQQWeibo]){
-//                    if ([[[PPSNSIntegerationService defaultService] snsServiceByType:TYPE_QQ] isAuthorizeExpired]){
-//                        [cell.customDetailLabel setText:NSLS(@"kWeiboExpired")];
-//                    }
-//                    else{
-//                        [cell.customDetailLabel setText:NSLS(@"kWeiboSet")];
-//                    }
-//                }
-//                else{
-//                    [cell.customDetailLabel setText:NSLS(@"kNotSet")];
-//                }                
             }
                 break;
                 
@@ -766,18 +742,6 @@ SET_CELL_BG_IN_CONTROLLER;
                 else{
                     [cell.customDetailLabel setText:NSLS(@"kNotSet")];
                 }
-                
-//                if ([_userManager hasBindFacebook]){
-//                    if ([[[PPSNSIntegerationService defaultService] snsServiceByType:TYPE_FACEBOOK] isAuthorizeExpired]){
-//                        [cell.customDetailLabel setText:NSLS(@"kWeiboExpired")];
-//                    }
-//                    else{
-//                        [cell.customDetailLabel setText:NSLS(@"kWeiboSet")];
-//                    }
-//                }
-//                else{
-//                    [cell.customDetailLabel setText:NSLS(@"kNotSet")];
-//                }                
             }
                 break;
                 
@@ -1099,7 +1063,6 @@ SET_CELL_BG_IN_CONTROLLER;
             case ROW_EMAIL:
             {
                 [self clickEmailRow];
-//                [self askInputEmail:_pbUserBuilder.email];
             }
                 break;
             case ROW_SINA_WEIBO:
@@ -1113,12 +1076,6 @@ SET_CELL_BG_IN_CONTROLLER;
                     [self askRebindSina];
                 }
                 
-//                if ([_userManager hasBindSinaWeibo] == NO || [[[PPSNSIntegerationService defaultService] snsServiceByType:TYPE_SINA] isAuthorizeExpired]){
-//                    [self bindSina];
-//                }
-//                else{
-//                    [self askRebindSina];                                        
-//                }
             }
                 break;
                 
@@ -1133,13 +1090,6 @@ SET_CELL_BG_IN_CONTROLLER;
                     [self askRebindQQ];
                 }
                 
-                
-//                if ([_userManager hasBindQQWeibo]){
-//                    [self askRebindQQ];                    
-//                }
-//                else{
-//                    [self bindQQ];                    
-//                }
             }
                 break;
                 
@@ -1154,12 +1104,6 @@ SET_CELL_BG_IN_CONTROLLER;
                 }
                 
                 
-//                if ([_userManager hasBindFacebook] == NO || [[[PPSNSIntegerationService defaultService] snsServiceByType:TYPE_FACEBOOK] isAuthorizeExpired]){
-//                    [self bindFacebook];
-//                }
-//                else{
-//                    [self askRebindFacebook];
-//                }
             }
                 break;
                 

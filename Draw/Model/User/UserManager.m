@@ -2119,9 +2119,13 @@ APLevelDB* _db;
 
 - (BOOL)isCheckInToday
 {
-//    for (int i=1; i<10; i++){
-//        PPDebug(@"<test check in> %d", [self getCheckInAward:i]);
-//    }
+    NSDate* lastCheckInDate = [self getLastCheckInDate];
+    if (lastCheckInDate){
+        if ([lastCheckInDate timeIntervalSinceNow] > 0){
+            PPDebug(@"last check in date is ahead of now, so it's check in");
+            return YES;
+        }
+    }
     
     NSDate* now = [NSDate date];
     NSString* key = [self getKey:now];

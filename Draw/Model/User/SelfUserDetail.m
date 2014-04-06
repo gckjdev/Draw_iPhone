@@ -104,8 +104,6 @@
 - (BOOL)isSNSBtnVisable:(int)snsType
 {
     return ([[GameSNSService defaultService] isExpired:snsType] == NO);
-    
-//    return [SNSUtils hasSNSType:snsType inpbSnsUserArray:[[self getUser] snsUsersList]] && ![[[PPSNSIntegerationService defaultService] snsServiceByType:snsType] isAuthorizeExpired];
 }
 
 - (BOOL)hasFeedTab
@@ -176,69 +174,35 @@
 - (void)clickSina:(PPTableViewController*)viewController
 {
     if ([[GameSNSService defaultService] isExpired:TYPE_SINA]){
+        [[GameSNSService defaultService] cleanSNSInfo:ShareTypeSinaWeibo];
         [[GameSNSService defaultService] autheticate:TYPE_SINA];
     }
     else{
         [[GameSNSService defaultService] askRebindSina:viewController];
     }
-    
-//    if ([[UserManager defaultManager] hasBindSinaWeibo] && ![[[PPSNSIntegerationService defaultService] snsServiceByType:TYPE_SINA] isAuthorizeExpired]) {
-//        [GameSNSService askRebindSina:viewController];
-//    } else {
-//        [SNSUtils bindSNS:TYPE_SINA succ:^(NSDictionary *userInfo){
-//            [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kBindSinaWeibo") delayTime:1 isHappy:YES];
-//            [[UserService defaultService] updateUserWithSNSUserInfo:[self getUserId] userInfo:userInfo viewController:nil];
-//            [viewController.dataTableView reloadData];
-//        } failure:^{
-//            //
-//        }];
-//    }
-    
 }
 - (void)clickQQ:(PPTableViewController*)viewController
 {
     if ([[GameSNSService defaultService] isExpired:TYPE_QQ]){
+        [[GameSNSService defaultService] cleanSNSInfo:ShareTypeTencentWeibo];
         [[GameSNSService defaultService] autheticate:TYPE_QQ];
     }
     else{
         [[GameSNSService defaultService] askRebindQQ:viewController];
     }
 
-    
-//    if ([[UserManager defaultManager] hasBindQQWeibo] && ![[[PPSNSIntegerationService defaultService] snsServiceByType:TYPE_QQ] isAuthorizeExpired]) {
-//        [GameSNSService askRebindQQ:viewController];
-//    } else {
-//        [SNSUtils bindSNS:TYPE_QQ succ:^(NSDictionary *userInfo){
-//            [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kBindQQWeibo") delayTime:1 isHappy:YES];
-//            [[UserService defaultService] updateUserWithSNSUserInfo:[self getUserId] userInfo:userInfo viewController:nil];
-//            [viewController.dataTableView reloadData];
-//        } failure:^{
-//            //
-//        }];
-//    }
 }
 
 - (void)clickFacebook:(PPTableViewController*)viewController
 {
     if ([[GameSNSService defaultService] isExpired:TYPE_FACEBOOK]){
+        [[GameSNSService defaultService] cleanSNSInfo:ShareTypeFacebook];
         [[GameSNSService defaultService] autheticate:TYPE_FACEBOOK];
     }
     else{
         [[GameSNSService defaultService] askRebindFacebook:viewController];
     }
 
-    
-//    if ([[UserManager defaultManager] hasBindFacebook] && ![[[PPSNSIntegerationService defaultService] snsServiceByType:TYPE_FACEBOOK] isAuthorizeExpired]) {
-//        [GameSNSService askRebindFacebook:viewController];
-//    } else {
-//        [SNSUtils bindSNS:TYPE_FACEBOOK succ:^(NSDictionary *userInfo){
-//            [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kBindFacebook") delayTime:1 isHappy:YES];
-//            [[UserService defaultService] updateUserWithSNSUserInfo:[self getUserId] userInfo:userInfo viewController:nil];
-//            [viewController.dataTableView reloadData];
-//        } failure:^{
-//            
-//        }];
-//    }
 }
 
 

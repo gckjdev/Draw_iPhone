@@ -376,6 +376,11 @@
 
 - (IBAction)clickClose:(id)sender
 {
+    if ([[UserManager defaultManager] hasXiaojiNumber]){
+        [[UserService defaultService] dismissGetNumberView];
+        return;
+    }
+    
     CommonDialog* dialog = [CommonDialog createDialogWithTitle:NSLS(@"kMessage")
                                                        message:NSLS(@"kEasyTakeNumber")
                                                          style:CommonDialogStyleDoubleButton];

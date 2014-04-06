@@ -125,16 +125,16 @@ typedef void(^UploadImageResultBlock)(int resultCode, NSString* imageRemoteURL);
 
 - (void)updateUserWithSNSUserInfo:(NSString*)userId
                         shareType:(ShareType)shareType
-                         userInfo:(id<ISSUserInfo>)userInfo
-                       accessInfo:(id<ISSOAuth2Credential>)accessInfo
+                         userInfo:(id<ISSPlatformUser>)userInfo
+                       accessInfo:(id<ISSPlatformCredential>)accessInfo
                    viewController:(PPViewController<UserServiceDelegate>*)viewController;
 
 - (void)updateUserWithSNSUserInfo:(ShareType)shareType
                  credentialString:(NSString*)credentialString;
 
-- (void)loginSNSUser:(id<ISSUserInfo>)userInfo
+- (void)loginSNSUser:(id<ISSPlatformUser>)userInfo
            shareType:(ShareType)shareType
-          accessInfo:(id<ISSOAuth2Credential>)accessInfo
+          accessInfo:(id<ISSPlatformCredential>)accessInfo
          resultBlock:(void(^)(int))resultBlock;
 
 
@@ -241,5 +241,6 @@ typedef void(^UploadImageResultBlock)(int resultCode, NSString* imageRemoteURL);
 
 - (void)getVipPurchaseInfo:(void(^)(int resultCode))resultBlock;
 
+- (void)saveSNSUserData:(PBGameUser*)pbUser;
 
 @end

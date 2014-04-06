@@ -165,9 +165,9 @@ static UserService* _defaultUserService;
     return -1;
 }
 
-- (void)loginSNSUser:(id<ISSUserInfo>)userInfo
+- (void)loginSNSUser:(id<ISSPlatformUser>)userInfo
            shareType:(ShareType)shareType
-          accessInfo:(id<ISSOAuth2Credential>)accessInfo
+          accessInfo:(id<ISSPlatformCredential>)accessInfo
          resultBlock:(ShareSNSResultBlock)resultBlock
 {
     
@@ -203,14 +203,14 @@ static UserService* _defaultUserService;
 
 - (void)updateUserWithSNSUserInfo:(NSString*)userId
                         shareType:(ShareType)shareType
-                         userInfo:(id<ISSUserInfo>)userInfo
-                       accessInfo:(id<ISSOAuth2Credential>)accessInfo
+                         userInfo:(id<ISSPlatformUser>)userInfo
+                       accessInfo:(id<ISSPlatformCredential>)accessInfo
                    viewController:(PPViewController<UserServiceDelegate>*)viewController
 {
     PPDebug(@"<updateUserWithSNSUserInfo> userId=%@, userInfo=%@", userId, [userInfo description]);
     
-    NSString* accessToken = accessInfo.accessToken;
-    NSDate*   expireDate = accessInfo.expiresIn;
+    NSString* accessToken = accessInfo.token;
+    NSDate*   expireDate = accessInfo.expired;
     
     NSString* appId = [PPConfigManager appId];
     NSString* loginId = userInfo.uid; //[userInfo objectForKey:SNS_USER_ID];
@@ -247,7 +247,7 @@ static UserService* _defaultUserService;
     
     NSString* avatar = nil;
     if ([[[UserManager defaultManager] avatarURL] length] == 0){
-        avatar = userInfo.icon; // [userInfo objectForKey:SNS_USER_IMAGE_URL];
+        avatar = userInfo.profileImage; // [userInfo objectForKey:SNS_USER_IMAGE_URL];
         PPDebug(@"<updateUserWithSNSUserInfo> set avatar to %@", avatar);
     }
     else{
@@ -802,7 +802,7 @@ static UserService* _defaultUserService;
 
 - (void)cleanSNSUserData:(PBGameUser*)pbUser
 {    
-    [[GameSNSService defaultService] cleanSNSInfo:nil];
+    [[GameSNSService defaultService] cleanAllSNSInfo];
 }
 
 - (void)saveSNSUserData:(PBGameUser*)pbUser

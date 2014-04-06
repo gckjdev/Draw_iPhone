@@ -24,7 +24,7 @@
 #import <TencentOpenAPI/TencentOAuth.h>
 #import "GTMBase64.h"
 #import <ShareSDK/ShareSDK.h>
-#import "WBApi.h"
+#import "WeiboApi.h"
 #import "TaskManager.h"
 #import "ZeroQianManager.h"
 
@@ -47,7 +47,9 @@ GameSNSService* _defaultSNSService;
     self = [super init];
     if (self){
         
+        PPDebug(@"before registerApp");
         [ShareSDK registerApp:[PPConfigManager getShareSDKAppId]];
+        PPDebug(@"after registerApp");
         
         //添加新浪微博应用
         [ShareSDK connectSinaWeiboWithAppKey:[GameApp sinaAppKey]       //  @"3201194191"
@@ -58,8 +60,8 @@ GameSNSService* _defaultSNSService;
         [ShareSDK connectTencentWeiboWithAppKey:[GameApp qqAppKey]          //@"801307650"
                                       appSecret:[GameApp qqAppSecret]       // @"ae36f4ee3946e1cbb98d6965b0b2ff5c"
                                     redirectUri:[GameApp qqAppRedirectURI]  // @"http://www.sharesdk.cn"];
-                                       wbApiCls:[WBApi class]]; 
-                
+                                       wbApiCls:[WeiboApi class]];
+        
         //添加Facebook应用
         [ShareSDK connectFacebookWithAppKey:[GameApp facebookAppKey]   //@"107704292745179"
                                   appSecret:[GameApp facebookAppSecret]]; // @"38053202e1a5fe26c80c753071f0b573"];
@@ -68,6 +70,7 @@ GameSNSService* _defaultSNSService;
         [ShareSDK connectWeChatWithAppId:[GameApp weixinId] // @"wx6dd7a9b94f3dd72a"        //此参数为申请的微信AppID
                                wechatCls:[WXApi class]];
         
+        /* rem QQ Zone
         //添加QQ应用(QQ空间)
         [ShareSDK connectQQWithQZoneAppKey:[GameApp qqSpaceAppId]                //该参数填入申请的QQ AppId
                          qqApiInterfaceCls:[QQApiInterface class]
@@ -76,7 +79,13 @@ GameSNSService* _defaultSNSService;
         //添加QQ应用(QQ空间)
         [ShareSDK connectQZoneWithAppKey:[GameApp qqSpaceAppId]                //该参数填入申请的QQ AppId
                                appSecret:[GameApp qqSpaceAppKey]];
+         */
         
+        
+        // clear SNS local data if expired
+        [self cleanSNSInfoIfExpired:ShareTypeSinaWeibo];
+        [self cleanSNSInfoIfExpired:ShareTypeTencentWeibo];
+        [self cleanSNSInfoIfExpired:ShareTypeFacebook];
     }
     
     return self;
@@ -270,7 +279,7 @@ GameSNSService* _defaultSNSService;
     
     return [ShareSDK hasAuthorizedWithType:shareType];
     
-//    id<ISSCredential> credential = [ShareSDK getCredentialWithType:shareType];    //传入获取授权信息的类型
+//    id<ISSPlatformCredential> credential = [ShareSDK getCredentialWithType:shareType];    //传入获取授权信息的类型
 //    id<ISSOAuth2Credential> cred = (id<ISSOAuth2Credential>)credential;           //转换为OAuth2授权凭证
 //    PPDebug(@"<isAuthenticated> shareType=%d, accessToken = %@, expiresIn = %@",
 //            shareType, [cred accessToken], [cred expiresIn]);
@@ -294,20 +303,21 @@ GameSNSService* _defaultSNSService;
         return YES;
     }
     
-    id<ISSCredential> credential = [ShareSDK getCredentialWithType:shareType];    //传入获取授权信息的类型
-    id<ISSOAuth2Credential> cred = (id<ISSOAuth2Credential>)credential;           //转换为OAuth2授权凭证
-    PPDebug(@"<isExpired> shareType=%d, accessToken = %@, expiresIn = %@",
-            shareType, [cred accessToken], [cred expiresIn]);
+    id<ISSPlatformCredential> credential = [ShareSDK getCredentialWithType:shareType];    //传入获取授权信息的类型
+    id<ISSPlatformCredential> cred = (id<ISSPlatformCredential>)credential;           //转换为OAuth2授权凭证
+    PPDebug(@"<isExpired> shareType=%d, accessToken = %@, expiresIn = %@, available=%d", shareType, [cred token], [cred expired], [cred available]);
+
+    return [cred available] == NO;
     
-    if (cred == nil){
-        return YES;
-    }
-    else if ([[cred expiresIn] timeIntervalSinceNow] <= 0){
-        return YES;
-    }
-    else{
-        return NO;
-    }    
+//    if (cred == nil){
+//        return YES;
+//    }
+//    else if ([[cred expired] timeIntervalSinceNow] <= 0){
+//        return YES;
+//    }
+//    else{
+//        return NO;
+//    }    
 }
 
 - (void)autheticate:(PPSNSType)snsType
@@ -404,7 +414,7 @@ GameSNSService* _defaultSNSService;
                        fieldType:fieldType              //字段类型，用于指定第二个参数是名称还是ID
                      authOptions:nil                    //授权选项
                     viewDelegate:nil                    //授权视图委托
-                          result:^(SSResponseState state, id<ISSUserInfo> userInfo, id<ICMErrorInfo> error) {               //返回回调
+                          result:^(SSResponseState state, id<ISSPlatformUser> userInfo, id<ICMErrorInfo> error) {               //返回回调
                               if (state == SSResponseStateSuccess)
                               {
                                   // TODO save user weibo bind info, get user infomation here and upload user information to server
@@ -441,7 +451,7 @@ GameSNSService* _defaultSNSService;
 }
 
 - (void)handlePublishWeiboSuccess:(ShareType)shareType
-                            state:(SSPublishContentState)state
+                            state:(SSResponseState)state
                             error:(id<ICMErrorInfo>)error
                needUpdateUserInfo:(BOOL)needUpdateUserInfo
                        awardCoins:(int)awardCoins
@@ -608,7 +618,7 @@ GameSNSService* _defaultSNSService;
                                                          shareViewDelegate:nil //_appDelegate.viewDelegate TODO check
                                                        friendsViewDelegate:nil //_appDelegate.viewDelegate TODO check
                                                      picViewerViewDelegate:nil]
-                             result:^(ShareType type, SSPublishContentState state, id<ISSStatusInfo> statusInfo, id<ICMErrorInfo> error, BOOL end) {
+                             result:^(ShareType type, SSResponseState state, id<ISSPlatformShareInfo> statusInfo, id<ICMErrorInfo> error, BOOL end) {
                                  
                                  
                                  [self handlePublishWeiboSuccess:shareType
@@ -683,7 +693,7 @@ GameSNSService* _defaultSNSService;
                authOptions:nil
               shareOptions:nil
              statusBarTips:YES
-                    result:^(ShareType type, SSPublishContentState state, id<ISSStatusInfo> statusInfo, id<ICMErrorInfo> error, BOOL end) {
+                    result:^(ShareType type, SSResponseState state, id<ISSPlatformShareInfo> statusInfo, id<ICMErrorInfo> error, BOOL end) {
                         
                         [self handlePublishWeiboSuccess:shareType
                                                   state:state
@@ -766,7 +776,7 @@ GameSNSService* _defaultSNSService;
     }
         
     //将授权数据转换为新的授权凭证
-    id<ISSCredential> newCredential = [ShareSDK credentialWithData:credentialData type:shareType];
+    id<ISSPlatformCredential> newCredential = [ShareSDK credentialWithData:credentialData type:shareType];
     
     //设置使用新的授权凭证
     [ShareSDK setCredential:newCredential type:shareType];
@@ -796,25 +806,8 @@ GameSNSService* _defaultSNSService;
 
 }
 
-- (void)cleanSNSInfo:(NSArray*)snsCredentials
+- (void)cleanAllSNSInfo
 {
-//    for (PBSNSUserCredential* credential in snsCredentials){
-//        
-//        PPDebug(@"<cleanSNSInfo> remove SNS credential, type(%d), credential(%@)", credential.type, credential.credential);
-//        
-//        if ([credential.credential length] == 0){
-//            continue;
-//        }
-//        
-//        // clear local data in Share SDK
-//        ShareType shareType = [GameSNSService shareSDKType:credential.type];
-//        if (shareType == ShareTypeAny){
-//            continue;
-//        }
-//        
-//        
-//    }
-
     NSArray* shareTypes = @[ @(ShareTypeSinaWeibo), @(ShareTypeTencentWeibo),
                              @(ShareTypeFacebook), @(ShareTypeQQSpace), @(ShareTypeTwitter),
                              @(ShareTypeQQ)];
@@ -823,6 +816,25 @@ GameSNSService* _defaultSNSService;
         [ShareSDK setCredential:nil type:[shareType intValue]];
     }
 }
+
+- (void)cleanSNSInfo:(ShareType)shareType
+{
+    [ShareSDK setCredential:nil type:shareType];
+}
+
+- (void)cleanSNSInfoIfExpired:(ShareType)shareType
+{
+    id<ISSPlatformCredential> credential = [ShareSDK getCredentialWithType:shareType];      //传入获取授权信息的类型
+    if (credential == nil){
+        return;
+    }
+
+    if ([credential available] == NO || [ShareSDK hasAuthorizedWithType:shareType] == NO){
+        PPDebug(@"<cleanSNSInfoIfExpired> shareType=%d", shareType);
+        [ShareSDK setCredential:nil type:shareType];
+    }
+}
+
 
 - (void)saveSNSInfo:(NSArray*)snsCredentials
 {
@@ -848,7 +860,7 @@ GameSNSService* _defaultSNSService;
 
 - (void)uploadUserSNSCredential:(ShareType)shareType
 {
-    id<ISSCredential> credential = [ShareSDK getCredentialWithType:shareType];      //传入获取授权信息的类型
+    id<ISSPlatformCredential> credential = [ShareSDK getCredentialWithType:shareType];      //传入获取授权信息的类型
     // store creditial data locally and send to server
     NSData *credentialData = [ShareSDK dataWithCredential:credential];
     NSString* credentialString = [GTMBase64 stringByEncodingData:credentialData];
@@ -858,14 +870,14 @@ GameSNSService* _defaultSNSService;
 
 - (void)readUserInfoAndUpdateToServer:(ShareType)shareType
 {
-    id<ISSCredential> credential = [ShareSDK getCredentialWithType:shareType];      //传入获取授权信息的类型
+    id<ISSPlatformCredential> credential = [ShareSDK getCredentialWithType:shareType];      //传入获取授权信息的类型
     if (credential == nil){
         return;
     }
     
-    id<ISSOAuth2Credential> cred = (id<ISSOAuth2Credential>)credential;             //转换为OAuth2授权凭证
+    id<ISSPlatformCredential> cred = (id<ISSPlatformCredential>)credential;             //转换为OAuth2授权凭证
     
-    PPDebug(@"<readUserInfoAndUpdateToServer> user access token(%@), expire(%@)", [cred accessToken], [cred expiresIn]);
+    PPDebug(@"<readUserInfoAndUpdateToServer> user access token(%@), expire(%@)", [cred token], [cred expired]);
     PPDebug(@"<readUserInfoAndUpdateToServer> credential(%@), oauth2(%@)", [credential description], [cred description]);
     
     [self uploadUserSNSCredential:shareType];
@@ -876,7 +888,7 @@ GameSNSService* _defaultSNSService;
     // read user information and upload to server
     [ShareSDK getUserInfoWithType:shareType                                     //平台类型
                       authOptions:nil                                           //授权选项
-                           result:^(BOOL result, id<ISSUserInfo> userInfo, id<ICMErrorInfo> error) {             //返回回调
+                           result:^(BOOL result, id<ISSPlatformUser> userInfo, id<ICMErrorInfo> error) {             //返回回调
                                if (result){
                                    PPDebug(@"<getUserInfo> success, userInfo(%@)", [userInfo.sourceData description]);
                                    [[UserService defaultService] updateUserWithSNSUserInfo:[[UserManager defaultManager] userId]                                    
@@ -920,15 +932,15 @@ GameSNSService* _defaultSNSService;
          resultBlock:(ShareSNSResultBlock)resultBlock
     PPViewController:(PPViewController*)viewController
 {
-    id<ISSCredential> credential = [ShareSDK getCredentialWithType:shareType];      //传入获取授权信息的类型
+    id<ISSPlatformCredential> credential = [ShareSDK getCredentialWithType:shareType];      //传入获取授权信息的类型
     if (credential == nil){
         EXECUTE_BLOCK(resultBlock, ERROR_SNS_NO_CREDENTIAL);
         return;
     }
     
-    id<ISSOAuth2Credential> cred = (id<ISSOAuth2Credential>)credential;             //转换为OAuth2授权凭证
+    id<ISSPlatformCredential> cred = (id<ISSPlatformCredential>)credential;             //转换为OAuth2授权凭证
     
-    PPDebug(@"<readUserInfoAndUpdateToServer> user access token(%@), expire(%@)", [cred accessToken], [cred expiresIn]);
+    PPDebug(@"<readUserInfoAndUpdateToServer> user access token(%@), expire(%@)", [cred token], [cred expired]);
     PPDebug(@"<readUserInfoAndUpdateToServer> credential(%@), oauth2(%@)", [credential description], [cred description]);
     
 //    [self uploadUserSNSCredential:shareType];
@@ -941,7 +953,7 @@ GameSNSService* _defaultSNSService;
     // read user information and upload to server
     [ShareSDK getUserInfoWithType:shareType                                     //平台类型
                       authOptions:nil                                           //授权选项
-                           result:^(BOOL result, id<ISSUserInfo> userInfo, id<ICMErrorInfo> error) {             //返回回调
+                           result:^(BOOL result, id<ISSPlatformUser> userInfo, id<ICMErrorInfo> error) {             //返回回调
                                
                                [viewController hideActivity];
                                

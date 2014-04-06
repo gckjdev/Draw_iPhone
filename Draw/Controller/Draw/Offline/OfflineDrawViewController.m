@@ -1256,14 +1256,14 @@
 
 - (void)showSubmitActionList
 {
-    NSArray* titles = @[ NSLS(@"kPublishSina"), NSLS(@"kPublishTecent"), NSLS(@"kPublishWeixinFriend"), NSLS(@"kPublishWeixinTimeline"), NSLS(@"kPublishXiaoji"), NSLS(@"kCancel") ];
+    NSArray* titles = @[ NSLS(@"kPublishXiaoji"), NSLS(@"kPublishSina"), NSLS(@"kPublishTecent"), NSLS(@"kPublishWeixinFriend"), NSLS(@"kPublishWeixinTimeline"), NSLS(@"kCancel") ];
     BBSActionSheet *sheet = [[BBSActionSheet alloc] initWithTitles:titles callback:^(NSInteger index) {
         enum{
+            SUBMIT_XIAOJI,
             SUBMIT_SINA,
             SUBMIT_TECENT,
             SUBMIT_WEIXIN_FRIEND,
             SUBMIT_WEIXIN_TIMELINE,
-            SUBMIT_XIAOJI,
             SUBMIT_CANCEL
         };
 

@@ -589,12 +589,7 @@
 
 - (void)actionOnShareSina
 {
-//    if ([[UserManager defaultManager] hasBindSinaWeibo] == NO ||
-//        [[[PPSNSIntegerationService defaultService] snsServiceByType:TYPE_SINA] isAuthorizeExpired]){
-//        [self bindSinaWeibo];
-//    } else {
-        [self shareViaSNS:SINA_WEIBO];
-//    }
+    [self shareViaSNS:SINA_WEIBO];
 }
 
 - (void)saveAlbum
@@ -662,18 +657,8 @@
     } else if (buttonIndex == buttonIndexQQWeibo) {
         [[AnalyticsManager sharedAnalyticsManager] reportShareActionClicks:SHARE_ACTION_QQ];
         [self shareViaSNS:TYPE_QQ];
-//        if ([[UserManager defaultManager] hasBindQQWeibo] == NO || [[[PPSNSIntegerationService defaultService] snsServiceByType:TYPE_QQ] isAuthorizeExpired]){
-//            [self bindQQWeibo];
-//        } else {
-//            [self shareViaSNS:TYPE_QQ];
-//        }
     } else if (buttonIndex == buttonIndexFacebook) {
         [[AnalyticsManager sharedAnalyticsManager] reportShareActionClicks:SHARE_ACTION_FACEBOOK];
-//        if ([[UserManager defaultManager] hasBindFacebook] == NO || [[[PPSNSIntegerationService defaultService] snsServiceByType:TYPE_FACEBOOK] isAuthorizeExpired]){
-//            [self bindFacebook];
-//        } else {
-//            [self shareViaSNS:TYPE_FACEBOOK];
-//        }
         [self shareViaSNS:TYPE_FACEBOOK];
 
         

@@ -87,7 +87,8 @@ typedef void(^ShareSNSResultBlock) (int resultCode);
               taskId:(int)taskId;
 
 - (void)saveSNSInfo:(NSArray*)snsCredentials;
-- (void)cleanSNSInfo:(NSArray*)snsCredentials;
+- (void)cleanAllSNSInfo;
+- (void)cleanSNSInfo:(ShareType)shareType;
 
 - (void)askRebindQQ:(UIViewController*)viewController;
 - (void)askRebindSina:(UIViewController*)viewController;
