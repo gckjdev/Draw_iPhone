@@ -354,25 +354,25 @@ typedef enum{
         return;
     }
 
-//    __block GroupDetailController *cp = self;
+    __block GroupDetailController *cp = self;
     self.changeImage.userOriginalImage = YES;
     
-    self.changeImage.enableCrop = YES;
-    float ratio = 460.0/320.0;
-    [self.changeImage setCropRatio:ratio];
-    [self.changeImage showSelectionView:self];
-//    [self.changeImage showSelectionView:(id)self delegate:nil selectedImageBlock:^(UIImage *image) {
-//        [self showActivityWithText:NSLS(@"kUpdating")];
-//        [groupService updateGroup:cp.group.groupId BGImage:image callback:^(NSURL *url, NSError *error) {
-//            [cp hideActivity];
-//            if (!error) {
-//                [cp.bgImageView setImageWithURL:url];
-//                PBGroup *group = [GroupManager updateGroup:cp.group BGImageURL:[url absoluteString]];
-//                [cp updateGroup:group];
-//            }
-//        }];
-//        
-//    } didSetDefaultBlock:NULL title:NSLS(@"kChangeGroupBG")  hasRemoveOption:NO canTakePhoto:YES userOriginalImage:YES];
+//    self.changeImage.enableCrop = YES;
+//    float ratio = 460.0/320.0;
+//    [self.changeImage setCropRatio:ratio];
+//    [self.changeImage showSelectionView:self];
+    [self.changeImage showSelectionView:(id)self delegate:nil selectedImageBlock:^(UIImage *image) {
+        [self showActivityWithText:NSLS(@"kUpdating")];
+        [groupService updateGroup:cp.group.groupId BGImage:image callback:^(NSURL *url, NSError *error) {
+            [cp hideActivity];
+            if (!error) {
+                [cp.bgImageView setImageWithURL:url];
+                PBGroup *group = [GroupManager updateGroup:cp.group BGImageURL:[url absoluteString]];
+                [cp updateGroup:group];
+            }
+        }];
+        
+    } didSetDefaultBlock:NULL title:NSLS(@"kChangeGroupBG")  hasRemoveOption:NO canTakePhoto:YES userOriginalImage:YES];
 }
 
 - (void)didCropImageSelected:(UIImage *)image{

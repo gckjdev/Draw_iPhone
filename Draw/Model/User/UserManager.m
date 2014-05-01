@@ -27,7 +27,7 @@
 #import "LevelDBManager.h"
 #import "TimeUtils.h"
 #import "LocalNotificationUtil.h"
-#import "ZeroQianManager.h"
+//#import "ZeroQianManager.h"
 
 #define KEY_ALL_USER_PB_DATA            @"KEY_ALL_USER_PB_DATA"
 #define KEY_USERID                      @"USER_KEY_USERID"
@@ -2087,7 +2087,7 @@ APLevelDB* _db;
     
     [self updateLastCheckInDate];
     
-    [[ZeroQianManager defaultManager] awardForCheckIn];
+//    [[ZeroQianManager defaultManager] awardForCheckIn];
 }
 
 - (void)clearAllCheckInBefore

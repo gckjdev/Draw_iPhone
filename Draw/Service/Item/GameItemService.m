@@ -1137,6 +1137,15 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GameItemService);
                                        startDate:[NSDate date]
                                       expireDate:[[NSDate date] dateByAddingDays:90]]];
     
+    [mutableArray addObject:[self itemWithItemId:ItemTypeTaoBao
+                                            name:@"obb电容笔"
+                                            desc:@"obb知名电容笔品牌,布头,可换笔头,高精度,包邮29.9元,近期促销23.92元"
+                                           image:DRAW_URL_ITEM_IMAGE(@"shop_item_taobao_obb_pen.png")
+                             
+                                            type:PBDrawItemTypeDrawTaoBao
+                                             url:@"http://re.taobao.com/eauction?e=YABvLk7cRE8jmraEDZVrLu1ZzttXXd5pAUuPt4hhrd%2BLltG5xFicOSZqewpHPyZz6sGY91fAsX0jyOUZkjv5HyzD7IzUEp4zi9vrzXXZm2WB3ujUJI0OeA%3D%3D&ptype=100010&clk1=62dcd709d651c3d38b8f0d239d401ebe&upsid=62dcd709d651c3d38b8f0d239d401ebe"]];
+
+    
     /*
     // 维锐电容笔（大）
     [mutableArray addObject:[self itemWithItemId:ItemTypeTaoBao
@@ -1441,6 +1450,8 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GameItemService);
                                         currency:PBGameCurrencyIngot]];
     
     
+
+    
     /*
     // 维锐电容笔（大）
     [mutableArray addObject:[self itemWithItemId:ItemTypeTaoBao
@@ -1450,6 +1461,11 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GameItemService);
                              
                                             type:PBDrawItemTypeDrawTaoBao
                                              url:@"http://a.m.taobao.com/i17538377874.htm"]];
+
+     
+     
+     http://re.taobao.com/eauction?e=YABvLk7cRE8jmraEDZVrLu1ZzttXXd5pAUuPt4hhrd%2BLltG5xFicOSZqewpHPyZz6sGY91fAsX0jyOUZkjv5HyzD7IzUEp4zi9vrzXXZm2WB3ujUJI0OeA%3D%3D&ptype=100010&clk1=62dcd709d651c3d38b8f0d239d401ebe&upsid=62dcd709d651c3d38b8f0d239d401ebe
+     
      */
     
     PBGameItemList_Builder* listBuilder = [[PBGameItemList_Builder alloc] init];

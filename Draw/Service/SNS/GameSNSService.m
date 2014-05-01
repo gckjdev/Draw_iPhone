@@ -26,7 +26,7 @@
 #import <ShareSDK/ShareSDK.h>
 #import "WeiboApi.h"
 #import "TaskManager.h"
-#import "ZeroQianManager.h"
+//#import "ZeroQianManager.h"
 
 GameSNSService* _defaultSNSService;
 
@@ -69,8 +69,10 @@ GameSNSService* _defaultSNSService;
         
         [ShareSDK connectWeChatWithAppId:[GameApp weixinId] // @"wx6dd7a9b94f3dd72a"        //此参数为申请的微信AppID
                                wechatCls:[WXApi class]];
+
+        PPDebug(@"end registerApp 1");
         
-        /* rem QQ Zone
+//        /* rem QQ Zone
         //添加QQ应用(QQ空间)
         [ShareSDK connectQQWithQZoneAppKey:[GameApp qqSpaceAppId]                //该参数填入申请的QQ AppId
                          qqApiInterfaceCls:[QQApiInterface class]
@@ -79,8 +81,9 @@ GameSNSService* _defaultSNSService;
         //添加QQ应用(QQ空间)
         [ShareSDK connectQZoneWithAppKey:[GameApp qqSpaceAppId]                //该参数填入申请的QQ AppId
                                appSecret:[GameApp qqSpaceAppKey]];
-         */
+//         */
         
+        PPDebug(@"end registerApp 2");
         
         // clear SNS local data if expired
         [self cleanSNSInfoIfExpired:ShareTypeSinaWeibo];
@@ -633,7 +636,7 @@ GameSNSService* _defaultSNSService;
                                      [[TaskManager defaultManager] completeTask:taskId isAward:YES clearBadge:YES];
                                      
                                      if (awardCoins > 0){
-                                         [[ZeroQianManager defaultManager] awardForShare];
+//                                         [[ZeroQianManager defaultManager] awardForShare];
                                      }
                                  }
                                  

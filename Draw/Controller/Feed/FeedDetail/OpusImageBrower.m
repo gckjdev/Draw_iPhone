@@ -81,6 +81,11 @@
                                 desc:desc];
 }
 
+- (void)handleSwipe:(UISwipeGestureRecognizer *)swipe
+{
+    [self.pageScroller handleTap:nil];
+}
+
 - (void)handlePinch:(UIPinchGestureRecognizer *)pinch
 {
     if (pinch.scale < 1) {

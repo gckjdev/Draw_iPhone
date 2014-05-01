@@ -20,7 +20,7 @@
 #import "AppTask.h"
 #import "GameAdWallService.h"
 #import "PurchaseVipController.h"
-#import "ZeroQianManager.h"
+//#import "ZeroQianManager.h"
 
 #define USER_TASK_LIST_KEY @"USER_TASK_LIST_KEY_5"
 
@@ -188,9 +188,9 @@ static TaskManager* _defaultTaskManager;
     
 //    [retList addObject:task1];
 
-    if ([ZeroQianManager enabled]){
-        [retList addObject:zeroQianTask];
-    }
+//    if ([ZeroQianManager enabled]){
+//        [retList addObject:zeroQianTask];
+//    }
     
     [retList addObject:vipTask];
     
@@ -383,7 +383,7 @@ static TaskManager* _defaultTaskManager;
 
 - (void)gotoZeroQianStore:(GameTask*)task
 {
-    [[ZeroQianManager defaultManager] gotoStore];
+//    [[ZeroQianManager defaultManager] gotoStore];
 }
 
 - (void)bindSinaWeibo:(GameTask*)task

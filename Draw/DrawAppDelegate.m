@@ -91,7 +91,7 @@
 #import "GameSNSService.h"
 #import "GroupService.h"
 #import "IQKeyBoardManager.h"
-#import "ZeroQianManager.h"
+//#import "ZeroQianManager.h"
 
 NSString* GlobalGetServerURL()
 {
@@ -406,7 +406,7 @@ NSString* GlobalGetBoardServerURL()
         [[GroupService defaultService] syncFollowTopicIds];        
     }
     
-    [[ZeroQianManager defaultManager] start];    
+//    [[ZeroQianManager defaultManager] start];    
     return YES;
 }
 
