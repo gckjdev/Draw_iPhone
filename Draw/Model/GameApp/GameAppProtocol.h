@@ -198,6 +198,10 @@
 - (NSString *)zeroQianAppKey;
 - (NSString *)zeroQianAppSecret;
 
+- (NSString *)defaultImage;
+- (NSString *)defaultImageIPAD;
+- (NSString *)defaultImageRetina;
+
 @end
 
 @protocol ContentGameAppProtocol <GameAppProtocol>

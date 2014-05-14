@@ -1493,5 +1493,39 @@
     return GET_UMENG_STRVALUE(@"COMEBACK_DAYS", @"自上次登录后，你已经有好几天没有来小吉，快回来吧，更多精彩等着你 (^v^)");
 }
 
++ (BOOL)enableSplashAd
+{
+#ifdef DEBUG
+    return YES;
+#endif
+    
+    return GET_UMENG_BOOLVALUE(@"SPLASH_AD", NO);
+}
+
++ (BOOL)enableCacheSplash
+{
+    return GET_UMENG_BOOLVALUE(@"SPLASH_AD_CACHE", NO);
+}
+
++ (NSString*)splashAdPublisherId
+{
+    return GET_UMENG_STRVALUE(@"SPLASH_AD_PUB_ID", @"56OJz8QIuMyvO2LjPI");
+}
+
++ (NSString*)splashAdPlacementId
+{
+    return GET_UMENG_STRVALUE(@"SPLASH_AD_ID", @"16TLmCOoAcaIONUEOHEOnqoz");
+}
+
++ (NSString*)defaultDrawWord
+{
+    if ([LocaleUtils isChina]){
+        return GET_UMENG_STRVALUE(@"DRAW_WORD", @"");
+    }
+    else{
+        return @"";
+    }
+}
+
 
 @end

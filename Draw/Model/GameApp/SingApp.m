@@ -840,4 +840,22 @@
     return [MobClickUtils getStringValueByKey:@"0QIAN_SECRET" defaultValue:@"c361a4d55a87a7a7f35756516846587a"];
 }
 
+- (NSString *)defaultImage
+{
+    return @"SingDefault";
+    
+}
+
+- (NSString *)defaultImageIPAD
+{
+    return @"SingDefault~ipad";
+    
+}
+
+- (NSString *)defaultImageRetina
+{
+    return @"SingDefault-568h";
+}
+
+
 @end

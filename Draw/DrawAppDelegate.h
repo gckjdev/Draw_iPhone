@@ -13,6 +13,10 @@
 #import "WXApi.h"
 #import "DrawHomeControllerProtocol.h"
 
+#import "DMSplashAdController.h"
+#import "DMRTSplashAdController.h"
+
+
 //#define DRAW_APP_ID      @"513819630"
 
 @class OnlineDrawViewController;
@@ -22,9 +26,13 @@
 @class HomeController;
 @class CPMotionRecognizingWindow;
 
-@interface DrawAppDelegate : PPApplication <UIApplicationDelegate, CommonNetworkClientDelegate, WXApiDelegate, ReviewRequestDelegate> {
+@interface DrawAppDelegate : PPApplication <UIApplicationDelegate, CommonNetworkClientDelegate, WXApiDelegate, ReviewRequestDelegate, DMSplashAdControllerDelegate> {
 
     UIBackgroundTaskIdentifier bgTask;
+    DMSplashAdController *_splashAd;
+    DMRTSplashAdController* _rtsplashAd;
+    
+
 }
 
 @property (nonatomic, retain) IBOutlet UIWindow *window;

@@ -4528,18 +4528,10 @@
 		CA3B101A18F93CA2003867E3 /* DomobAdSDKBundle.bundle in Resources */ = {isa = PBXBuildFile; fileRef = CA3B101418F93CA2003867E3 /* DomobAdSDKBundle.bundle */; };
 		CA3B101B18F93CA2003867E3 /* DomobAdSDKBundle.bundle in Resources */ = {isa = PBXBuildFile; fileRef = CA3B101418F93CA2003867E3 /* DomobAdSDKBundle.bundle */; };
 		CA3B101C18F93CA2003867E3 /* DomobAdSDKBundle.bundle in Resources */ = {isa = PBXBuildFile; fileRef = CA3B101418F93CA2003867E3 /* DomobAdSDKBundle.bundle */; };
-		CA3B101D18F93CA2003867E3 /* DomobOfferWallBundle.bundle in Resources */ = {isa = PBXBuildFile; fileRef = CA3B101618F93CA2003867E3 /* DomobOfferWallBundle.bundle */; };
-		CA3B101E18F93CA2003867E3 /* DomobOfferWallBundle.bundle in Resources */ = {isa = PBXBuildFile; fileRef = CA3B101618F93CA2003867E3 /* DomobOfferWallBundle.bundle */; };
-		CA3B101F18F93CA2003867E3 /* DomobOfferWallBundle.bundle in Resources */ = {isa = PBXBuildFile; fileRef = CA3B101618F93CA2003867E3 /* DomobOfferWallBundle.bundle */; };
-		CA3B102018F93CA2003867E3 /* DomobOfferWallBundle.bundle in Resources */ = {isa = PBXBuildFile; fileRef = CA3B101618F93CA2003867E3 /* DomobOfferWallBundle.bundle */; };
 		CA3B102118F93CA2003867E3 /* libDomobAdSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CA3B101718F93CA2003867E3 /* libDomobAdSDK.a */; };
 		CA3B102218F93CA3003867E3 /* libDomobAdSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CA3B101718F93CA2003867E3 /* libDomobAdSDK.a */; };
 		CA3B102318F93CA3003867E3 /* libDomobAdSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CA3B101718F93CA2003867E3 /* libDomobAdSDK.a */; };
 		CA3B102418F93CA3003867E3 /* libDomobAdSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CA3B101718F93CA2003867E3 /* libDomobAdSDK.a */; };
-		CA3B102518F93CA3003867E3 /* libDomobOfferWallSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CA3B101818F93CA2003867E3 /* libDomobOfferWallSDK.a */; };
-		CA3B102618F93CA3003867E3 /* libDomobOfferWallSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CA3B101818F93CA2003867E3 /* libDomobOfferWallSDK.a */; };
-		CA3B102718F93CA3003867E3 /* libDomobOfferWallSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CA3B101818F93CA2003867E3 /* libDomobOfferWallSDK.a */; };
-		CA3B102818F93CA3003867E3 /* libDomobOfferWallSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CA3B101818F93CA2003867E3 /* libDomobOfferWallSDK.a */; };
 		CA3B56DD1514C92800A93137 /* GameSessionUser.m in Sources */ = {isa = PBXBuildFile; fileRef = CA3B56DC1514C92800A93137 /* GameSessionUser.m */; };
 		CA3B56E01514C9DF00A93137 /* GameTurn.m in Sources */ = {isa = PBXBuildFile; fileRef = CA3B56DF1514C9DF00A93137 /* GameTurn.m */; };
 		CA3B56E31514CB7D00A93137 /* GamePlayResult.m in Sources */ = {isa = PBXBuildFile; fileRef = CA3B56E21514CB7D00A93137 /* GamePlayResult.m */; };
@@ -9175,17 +9167,11 @@
 		CA3B100918F93CA2003867E3 /* DMAdView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DMAdView.h; sourceTree = "<group>"; };
 		CA3B100A18F93CA2003867E3 /* DMFeedsAdView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DMFeedsAdView.h; sourceTree = "<group>"; };
 		CA3B100B18F93CA2003867E3 /* DMInterstitialAdController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DMInterstitialAdController.h; sourceTree = "<group>"; };
-		CA3B100C18F93CA2003867E3 /* DMOfferWallManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DMOfferWallManager.h; sourceTree = "<group>"; };
-		CA3B100D18F93CA2003867E3 /* DMOfferWallManagerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DMOfferWallManagerDelegate.h; sourceTree = "<group>"; };
-		CA3B100E18F93CA2003867E3 /* DMOfferWallViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DMOfferWallViewController.h; sourceTree = "<group>"; };
 		CA3B100F18F93CA2003867E3 /* DMRTSplashAdController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DMRTSplashAdController.h; sourceTree = "<group>"; };
 		CA3B101018F93CA2003867E3 /* DMSplashAdController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DMSplashAdController.h; sourceTree = "<group>"; };
 		CA3B101118F93CA2003867E3 /* DMTools.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DMTools.h; sourceTree = "<group>"; };
-		CA3B101218F93CA2003867E3 /* DMVideoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DMVideoViewController.h; sourceTree = "<group>"; };
 		CA3B101418F93CA2003867E3 /* DomobAdSDKBundle.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = DomobAdSDKBundle.bundle; sourceTree = "<group>"; };
-		CA3B101618F93CA2003867E3 /* DomobOfferWallBundle.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = DomobOfferWallBundle.bundle; sourceTree = "<group>"; };
 		CA3B101718F93CA2003867E3 /* libDomobAdSDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libDomobAdSDK.a; sourceTree = "<group>"; };
-		CA3B101818F93CA2003867E3 /* libDomobOfferWallSDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libDomobOfferWallSDK.a; sourceTree = "<group>"; };
 		CA3B56DB1514C92800A93137 /* GameSessionUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameSessionUser.h; sourceTree = "<group>"; };
 		CA3B56DC1514C92800A93137 /* GameSessionUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameSessionUser.m; sourceTree = "<group>"; };
 		CA3B56DE1514C9DF00A93137 /* GameTurn.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameTurn.h; sourceTree = "<group>"; };
@@ -10517,7 +10503,6 @@
 				CACD6B2918E03A91003F97C0 /* immobSDK.framework in Frameworks */,
 				A461B3CF174CBAA70088B061 /* libstdc++.dylib in Frameworks */,
 				A4B1233818279ECD00A0603F /* CoreVideo.framework in Frameworks */,
-				CA3B102718F93CA3003867E3 /* libDomobOfferWallSDK.a in Frameworks */,
 				A461B3D5174CBAA70088B061 /* ImageIO.framework in Frameworks */,
 				CACD6A9F18E03A28003F97C0 /* SohuWeiboConnection.framework in Frameworks */,
 				CA93D10318EFF138002BB805 /* libWeChatSDK.a in Frameworks */,
@@ -10625,7 +10610,6 @@
 				CA3B102218F93CA3003867E3 /* libDomobAdSDK.a in Frameworks */,
 				CA9AFE64181D434700E08747 /* CoreVideo.framework in Frameworks */,
 				C28A9CB41738F04B007A819F /* ImageIO.framework in Frameworks */,
-				CA3B102618F93CA3003867E3 /* libDomobOfferWallSDK.a in Frameworks */,
 				A4F04B84180643BD007274BE /* AssetsLibrary.framework in Frameworks */,
 				C28A9CA21738F04B007A819F /* AddressBookUI.framework in Frameworks */,
 				C28A9CA31738F04B007A819F /* PassKit.framework in Frameworks */,
@@ -10726,7 +10710,6 @@
 				CACD6B2718E03A91003F97C0 /* immobSDK.framework in Frameworks */,
 				CAA1AFC7159EAB1700504C98 /* libstdc++.dylib in Frameworks */,
 				C2A09762152ECDEA006535F7 /* ImageIO.framework in Frameworks */,
-				CA3B102518F93CA3003867E3 /* libDomobOfferWallSDK.a in Frameworks */,
 				CAEEC19F181A5F19007FD75F /* CoreVideo.framework in Frameworks */,
 				CACD6A9D18E03A28003F97C0 /* SohuWeiboConnection.framework in Frameworks */,
 				CA93D10118EFF137002BB805 /* libWeChatSDK.a in Frameworks */,
@@ -10847,7 +10830,6 @@
 				EA411B1F176066F500DA72D0 /* Social.framework in Frameworks */,
 				EA411B20176066F500DA72D0 /* AdSupport.framework in Frameworks */,
 				EA411B21176066F500DA72D0 /* OpenGLES.framework in Frameworks */,
-				CA3B102818F93CA3003867E3 /* libDomobOfferWallSDK.a in Frameworks */,
 				EA411B22176066F500DA72D0 /* CoreImage.framework in Frameworks */,
 				CACD6D3A18E03C40003F97C0 /* libDIRAC_iOS4-fat.a in Frameworks */,
 				CACD6A9818E03A28003F97C0 /* SMSConnection.framework in Frameworks */,
@@ -14690,17 +14672,11 @@
 				CA3B100918F93CA2003867E3 /* DMAdView.h */,
 				CA3B100A18F93CA2003867E3 /* DMFeedsAdView.h */,
 				CA3B100B18F93CA2003867E3 /* DMInterstitialAdController.h */,
-				CA3B100C18F93CA2003867E3 /* DMOfferWallManager.h */,
-				CA3B100D18F93CA2003867E3 /* DMOfferWallManagerDelegate.h */,
-				CA3B100E18F93CA2003867E3 /* DMOfferWallViewController.h */,
 				CA3B100F18F93CA2003867E3 /* DMRTSplashAdController.h */,
 				CA3B101018F93CA2003867E3 /* DMSplashAdController.h */,
 				CA3B101118F93CA2003867E3 /* DMTools.h */,
-				CA3B101218F93CA2003867E3 /* DMVideoViewController.h */,
 				CA3B101318F93CA2003867E3 /* DomobAdSDKBundle */,
-				CA3B101518F93CA2003867E3 /* DomobOfferWallBundle */,
 				CA3B101718F93CA2003867E3 /* libDomobAdSDK.a */,
-				CA3B101818F93CA2003867E3 /* libDomobOfferWallSDK.a */,
 			);
 			path = DomobAdSDK;
 			sourceTree = "<group>";
@@ -14711,14 +14687,6 @@
 				CA3B101418F93CA2003867E3 /* DomobAdSDKBundle.bundle */,
 			);
 			path = DomobAdSDKBundle;
-			sourceTree = "<group>";
-		};
-		CA3B101518F93CA2003867E3 /* DomobOfferWallBundle */ = {
-			isa = PBXGroup;
-			children = (
-				CA3B101618F93CA2003867E3 /* DomobOfferWallBundle.bundle */,
-			);
-			path = DomobOfferWallBundle;
 			sourceTree = "<group>";
 		};
 		CA3EB93A16B927B300660FE7 /* StrawView */ = {
@@ -18125,7 +18093,6 @@
 				A461B68D174CBAA70088B061 /* DrawRoomListCell~ipad.xib in Resources */,
 				A461B69C174CBAA70088B061 /* bbs_post_detail_comment@2x.png in Resources */,
 				A461B69D174CBAA70088B061 /* bbs_post_detail_delete@2x.png in Resources */,
-				CA3B101F18F93CA2003867E3 /* DomobOfferWallBundle.bundle in Resources */,
 				A461B69E174CBAA70088B061 /* bbs_post_detail_support@2x.png in Resources */,
 				A461B69F174CBAA70088B061 /* bbs_post_detail_totop@2x.png in Resources */,
 				A461B6A0174CBAA70088B061 /* bbs_post_detail_transfer@2x.png in Resources */,
@@ -19470,7 +19437,6 @@
 				A4D8FC2617DB08180085061F /* user_detail_more@2x.png in Resources */,
 				A4D8FC2A17DB08180085061F /* user_detail_pull_down@2x.png in Resources */,
 				A4D8FC2E17DB08180085061F /* user_detail_qq@2x.png in Resources */,
-				CA3B101E18F93CA2003867E3 /* DomobOfferWallBundle.bundle in Resources */,
 				A4D8FC3217DB08180085061F /* user_detail_round_avatar_bg@2x.png in Resources */,
 				A4D8FC3617DB08180085061F /* user_detail_round_avatar_bg@2x.png_bak1.png in Resources */,
 				A4D8FC3A17DB08180085061F /* user_detail_sina@2x.png in Resources */,
@@ -19965,7 +19931,6 @@
 				A455F8CC1585D21400CA5743 /* whiteArrow.png in Resources */,
 				A455F8CD1585D21400CA5743 /* whiteArrow@2x.png in Resources */,
 				A387F098158853EF00DC7C5D /* SelectChatFriendController.xib in Resources */,
-				CA3B101D18F93CA2003867E3 /* DomobOfferWallBundle.bundle in Resources */,
 				A387F099158853EF00DC7C5D /* SelectChatFriendController~ipad.xib in Resources */,
 				CA50A01715BA5BF400CAB603 /* ResultController~ipad.xib in Resources */,
 				A4B763A215C25208003B4E72 /* Draw.proto in Resources */,
@@ -21345,7 +21310,6 @@
 				A4D8FAB417DB08170085061F /* award_coin@2x.png in Resources */,
 				A4D8FAB817DB08170085061F /* foot@2x.png in Resources */,
 				A4D8FABC17DB08170085061F /* guess_contest_mode@2x.png in Resources */,
-				CA3B102018F93CA2003867E3 /* DomobOfferWallBundle.bundle in Resources */,
 				A4D8FAC017DB08170085061F /* guess_contest_time@2x.png in Resources */,
 				A4D8FAC417DB08170085061F /* guess_correct@2x.png in Resources */,
 				A4D8FAC817DB08170085061F /* guess_genius_mode@2x.png in Resources */,

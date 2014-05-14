@@ -556,7 +556,7 @@
     [super viewDidLoad];
 
     if ([self.word.text length] == 0) {
-        self.word = [Word cusWordWithText:NSLS(@"kDefaultDrawWord")];
+        self.word = [Word cusWordWithText:[PPConfigManager defaultDrawWord]];   //@""]; // NSLS(@"kDefaultDrawWord")];
     }
     
     [self initDrawView];

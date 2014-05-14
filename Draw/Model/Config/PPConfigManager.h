@@ -369,4 +369,12 @@ typedef enum{
 + (int)comebackDays;
 + (NSString*)comebackMessage;
 
++ (BOOL)enableSplashAd;
++ (BOOL)enableCacheSplash;
++ (NSString*)splashAdPublisherId;
++ (NSString*)splashAdPlacementId;
+
++ (NSString*)defaultDrawWord;
+
+
 @end

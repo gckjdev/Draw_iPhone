@@ -133,12 +133,12 @@
     self.featureLabel3.text = @"每月\n29999金币";
 
     self.featureLabel4.text = @"VIP\n专属标记";
-    self.featureLabel5.text = @"VIP\n画家专区";
-    self.featureLabel6.text = @"VIP\n作品专区";
+    self.featureLabel5.text = @"VIP\n作品专区";
+    self.featureLabel6.text = @"重复编辑\n已上传作品";
     
     self.featureLabel7.text = @"无限鲜花";
     self.featureLabel8.text = @"道具\n全部免费";
-    self.featureLabel9.text = @"创建20级\n以上家族";
+    self.featureLabel9.text = @"创建4个\n以上图层";
         
     self.purchaseYearLabel.text = @"包年购买\n99元/年";
     self.purchaseMonthLabel.text = @"包月购买\n10元/月";

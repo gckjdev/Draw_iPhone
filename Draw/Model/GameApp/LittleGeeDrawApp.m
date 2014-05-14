@@ -232,5 +232,22 @@
     return [MobClickUtils getStringValueByKey:@"0QIAN_SECRET" defaultValue:@"ca23464034492db669d8a453cfad9976"];
 }
 
+- (NSString *)defaultImage
+{
+    return @"LittleGeeDefault";
+    
+}
+
+- (NSString *)defaultImageIPAD
+{
+    return @"LittleGeeDefault~ipad";
+    
+}
+
+- (NSString *)defaultImageRetina
+{
+    return @"LittleGeeDefault-568h";
+}
+
 
 @end

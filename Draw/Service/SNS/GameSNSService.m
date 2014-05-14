@@ -73,14 +73,16 @@ GameSNSService* _defaultSNSService;
         PPDebug(@"end registerApp 1");
         
 //        /* rem QQ Zone
-        //添加QQ应用(QQ空间)
-        [ShareSDK connectQQWithQZoneAppKey:[GameApp qqSpaceAppId]                //该参数填入申请的QQ AppId
-                         qqApiInterfaceCls:[QQApiInterface class]
-                           tencentOAuthCls:[TencentOAuth class]];
+        if ([DeviceDetection isOS6] == NO){
+            //添加QQ应用(QQ空间)
+            [ShareSDK connectQQWithQZoneAppKey:[GameApp qqSpaceAppId]                //该参数填入申请的QQ AppId
+                             qqApiInterfaceCls:[QQApiInterface class]
+                               tencentOAuthCls:[TencentOAuth class]];
 
-        //添加QQ应用(QQ空间)
-        [ShareSDK connectQZoneWithAppKey:[GameApp qqSpaceAppId]                //该参数填入申请的QQ AppId
-                               appSecret:[GameApp qqSpaceAppKey]];
+            //添加QQ应用(QQ空间)
+            [ShareSDK connectQZoneWithAppKey:[GameApp qqSpaceAppId]                //该参数填入申请的QQ AppId
+                                   appSecret:[GameApp qqSpaceAppKey]];
+        }
 //         */
         
         PPDebug(@"end registerApp 2");
