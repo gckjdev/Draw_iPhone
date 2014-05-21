@@ -2439,6 +2439,8 @@ static PBLabelInfo* defaultPBLabelInfoInstance = nil;
 @property (retain) PBSingOpus* sing;
 @property (retain) PBLabelInfo* descLabelInfo;
 @property (retain) PBSize* canvasSize;
+@property int64_t strokes;
+@property (retain) NSMutableArray* mutableClassList;
 @end
 
 @implementation PBFeed
@@ -2777,6 +2779,14 @@ static PBLabelInfo* defaultPBLabelInfoInstance = nil;
   hasCanvasSize_ = !!value;
 }
 @synthesize canvasSize;
+- (BOOL) hasStrokes {
+  return !!hasStrokes_;
+}
+- (void) setHasStrokes:(BOOL) value {
+  hasStrokes_ = !!value;
+}
+@synthesize strokes;
+@synthesize mutableClassList;
 - (void) dealloc {
   self.feedId = nil;
   self.userId = nil;
@@ -2809,6 +2819,7 @@ static PBLabelInfo* defaultPBLabelInfoInstance = nil;
   self.sing = nil;
   self.descLabelInfo = nil;
   self.canvasSize = nil;
+  self.mutableClassList = nil;
   [super dealloc];
 }
 - (id) init {
@@ -2858,6 +2869,7 @@ static PBLabelInfo* defaultPBLabelInfoInstance = nil;
     self.sing = [PBSingOpus defaultInstance];
     self.descLabelInfo = [PBLabelInfo defaultInstance];
     self.canvasSize = [PBSize defaultInstance];
+    self.strokes = 0L;
   }
   return self;
 }
@@ -2901,6 +2913,13 @@ static PBFeed* defaultPBFeedInstance = nil;
   id value = [mutableRankInfoList objectAtIndex:index];
   return value;
 }
+- (NSArray*) classList {
+  return mutableClassList;
+}
+- (PBClass*) classAtIndex:(int32_t) index {
+  id value = [mutableClassList objectAtIndex:index];
+  return value;
+}
 - (BOOL) isInitialized {
   if (!self.hasFeedId) {
     return NO;
@@ -2941,6 +2960,11 @@ static PBFeed* defaultPBFeedInstance = nil;
   }
   if (self.hasSing) {
     if (!self.sing.isInitialized) {
+      return NO;
+    }
+  }
+  for (PBClass* element in self.classList) {
+    if (!element.isInitialized) {
       return NO;
     }
   }
@@ -3093,6 +3117,12 @@ static PBFeed* defaultPBFeedInstance = nil;
   }
   if (self.hasCanvasSize) {
     [output writeMessage:201 value:self.canvasSize];
+  }
+  if (self.hasStrokes) {
+    [output writeInt64:202 value:self.strokes];
+  }
+  for (PBClass* element in self.classList) {
+    [output writeMessage:210 value:element];
   }
   [self.unknownFields writeToCodedOutputStream:output];
 }
@@ -3259,6 +3289,12 @@ static PBFeed* defaultPBFeedInstance = nil;
   }
   if (self.hasCanvasSize) {
     size += computeMessageSize(201, self.canvasSize);
+  }
+  if (self.hasStrokes) {
+    size += computeInt64Size(202, self.strokes);
+  }
+  for (PBClass* element in self.classList) {
+    size += computeMessageSize(210, element);
   }
   size += self.unknownFields.serializedSize;
   memoizedSerializedSize = size;
@@ -3493,6 +3529,15 @@ static PBFeed* defaultPBFeedInstance = nil;
   }
   if (other.hasCanvasSize) {
     [self mergeCanvasSize:other.canvasSize];
+  }
+  if (other.hasStrokes) {
+    [self setStrokes:other.strokes];
+  }
+  if (other.mutableClassList.count > 0) {
+    if (result.mutableClassList == nil) {
+      result.mutableClassList = [NSMutableArray array];
+    }
+    [result.mutableClassList addObjectsFromArray:other.mutableClassList];
   }
   [self mergeUnknownFields:other.unknownFields];
   return self;
@@ -3748,6 +3793,16 @@ static PBFeed* defaultPBFeedInstance = nil;
         }
         [input readMessage:subBuilder extensionRegistry:extensionRegistry];
         [self setCanvasSize:[subBuilder buildPartial]];
+        break;
+      }
+      case 1616: {
+        [self setStrokes:[input readInt64]];
+        break;
+      }
+      case 1682: {
+        PBClass_Builder* subBuilder = [PBClass builder];
+        [input readMessage:subBuilder extensionRegistry:extensionRegistry];
+        [self addClass:[subBuilder buildPartial]];
         break;
       }
     }
@@ -4675,6 +4730,51 @@ static PBFeed* defaultPBFeedInstance = nil;
 - (PBFeed_Builder*) clearCanvasSize {
   result.hasCanvasSize = NO;
   result.canvasSize = [PBSize defaultInstance];
+  return self;
+}
+- (BOOL) hasStrokes {
+  return result.hasStrokes;
+}
+- (int64_t) strokes {
+  return result.strokes;
+}
+- (PBFeed_Builder*) setStrokes:(int64_t) value {
+  result.hasStrokes = YES;
+  result.strokes = value;
+  return self;
+}
+- (PBFeed_Builder*) clearStrokes {
+  result.hasStrokes = NO;
+  result.strokes = 0L;
+  return self;
+}
+- (NSArray*) classList {
+  if (result.mutableClassList == nil) { return [NSArray array]; }
+  return result.mutableClassList;
+}
+- (PBClass*) classAtIndex:(int32_t) index {
+  return [result classAtIndex:index];
+}
+- (PBFeed_Builder*) replaceClassAtIndex:(int32_t) index with:(PBClass*) value {
+  [result.mutableClassList replaceObjectAtIndex:index withObject:value];
+  return self;
+}
+- (PBFeed_Builder*) addAllClass:(NSArray*) values {
+  if (result.mutableClassList == nil) {
+    result.mutableClassList = [NSMutableArray array];
+  }
+  [result.mutableClassList addObjectsFromArray:values];
+  return self;
+}
+- (PBFeed_Builder*) clearClassList {
+  result.mutableClassList = nil;
+  return self;
+}
+- (PBFeed_Builder*) addClass:(PBClass*) value {
+  if (result.mutableClassList == nil) {
+    result.mutableClassList = [NSMutableArray array];
+  }
+  [result.mutableClassList addObject:value];
   return self;
 }
 @end

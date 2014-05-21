@@ -14897,3 +14897,451 @@ static PBTask* defaultPBTaskInstance = nil;
 }
 @end
 
+@interface PBClass ()
+@property int32_t classId;
+@property (retain) NSMutableArray* mutableNamesList;
+@property (retain) NSMutableArray* mutableSubClassesList;
+@property (retain) NSMutableArray* mutableKeywordsList;
+@property (retain) NSString* desc;
+@property BOOL isTopClass;
+@end
+
+@implementation PBClass
+
+- (BOOL) hasClassId {
+  return !!hasClassId_;
+}
+- (void) setHasClassId:(BOOL) value {
+  hasClassId_ = !!value;
+}
+@synthesize classId;
+@synthesize mutableNamesList;
+@synthesize mutableSubClassesList;
+@synthesize mutableKeywordsList;
+- (BOOL) hasDesc {
+  return !!hasDesc_;
+}
+- (void) setHasDesc:(BOOL) value {
+  hasDesc_ = !!value;
+}
+@synthesize desc;
+- (BOOL) hasIsTopClass {
+  return !!hasIsTopClass_;
+}
+- (void) setHasIsTopClass:(BOOL) value {
+  hasIsTopClass_ = !!value;
+}
+- (BOOL) isTopClass {
+  return !!isTopClass_;
+}
+- (void) setIsTopClass:(BOOL) value {
+  isTopClass_ = !!value;
+}
+- (void) dealloc {
+  self.mutableNamesList = nil;
+  self.mutableSubClassesList = nil;
+  self.mutableKeywordsList = nil;
+  self.desc = nil;
+  [super dealloc];
+}
+- (id) init {
+  if ((self = [super init])) {
+    self.classId = 0;
+    self.desc = @"";
+    self.isTopClass = NO;
+  }
+  return self;
+}
+static PBClass* defaultPBClassInstance = nil;
++ (void) initialize {
+  if (self == [PBClass class]) {
+    defaultPBClassInstance = [[PBClass alloc] init];
+  }
+}
++ (PBClass*) defaultInstance {
+  return defaultPBClassInstance;
+}
+- (PBClass*) defaultInstance {
+  return defaultPBClassInstance;
+}
+- (NSArray*) namesList {
+  return mutableNamesList;
+}
+- (PBLocalizeString*) namesAtIndex:(int32_t) index {
+  id value = [mutableNamesList objectAtIndex:index];
+  return value;
+}
+- (NSArray*) subClassesList {
+  return mutableSubClassesList;
+}
+- (PBClass*) subClassesAtIndex:(int32_t) index {
+  id value = [mutableSubClassesList objectAtIndex:index];
+  return value;
+}
+- (NSArray*) keywordsList {
+  return mutableKeywordsList;
+}
+- (NSString*) keywordsAtIndex:(int32_t) index {
+  id value = [mutableKeywordsList objectAtIndex:index];
+  return value;
+}
+- (BOOL) isInitialized {
+  if (!self.hasClassId) {
+    return NO;
+  }
+  for (PBLocalizeString* element in self.namesList) {
+    if (!element.isInitialized) {
+      return NO;
+    }
+  }
+  for (PBClass* element in self.subClassesList) {
+    if (!element.isInitialized) {
+      return NO;
+    }
+  }
+  return YES;
+}
+- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
+  if (self.hasClassId) {
+    [output writeInt32:1 value:self.classId];
+  }
+  for (PBLocalizeString* element in self.namesList) {
+    [output writeMessage:2 value:element];
+  }
+  for (PBClass* element in self.subClassesList) {
+    [output writeMessage:3 value:element];
+  }
+  for (NSString* element in self.mutableKeywordsList) {
+    [output writeString:4 value:element];
+  }
+  if (self.hasDesc) {
+    [output writeString:5 value:self.desc];
+  }
+  if (self.hasIsTopClass) {
+    [output writeBool:6 value:self.isTopClass];
+  }
+  [self.unknownFields writeToCodedOutputStream:output];
+}
+- (int32_t) serializedSize {
+  int32_t size = memoizedSerializedSize;
+  if (size != -1) {
+    return size;
+  }
+
+  size = 0;
+  if (self.hasClassId) {
+    size += computeInt32Size(1, self.classId);
+  }
+  for (PBLocalizeString* element in self.namesList) {
+    size += computeMessageSize(2, element);
+  }
+  for (PBClass* element in self.subClassesList) {
+    size += computeMessageSize(3, element);
+  }
+  {
+    int32_t dataSize = 0;
+    for (NSString* element in self.mutableKeywordsList) {
+      dataSize += computeStringSizeNoTag(element);
+    }
+    size += dataSize;
+    size += 1 * self.mutableKeywordsList.count;
+  }
+  if (self.hasDesc) {
+    size += computeStringSize(5, self.desc);
+  }
+  if (self.hasIsTopClass) {
+    size += computeBoolSize(6, self.isTopClass);
+  }
+  size += self.unknownFields.serializedSize;
+  memoizedSerializedSize = size;
+  return size;
+}
++ (PBClass*) parseFromData:(NSData*) data {
+  return (PBClass*)[[[PBClass builder] mergeFromData:data] build];
+}
++ (PBClass*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (PBClass*)[[[PBClass builder] mergeFromData:data extensionRegistry:extensionRegistry] build];
+}
++ (PBClass*) parseFromInputStream:(NSInputStream*) input {
+  return (PBClass*)[[[PBClass builder] mergeFromInputStream:input] build];
+}
++ (PBClass*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (PBClass*)[[[PBClass builder] mergeFromInputStream:input extensionRegistry:extensionRegistry] build];
+}
++ (PBClass*) parseFromCodedInputStream:(PBCodedInputStream*) input {
+  return (PBClass*)[[[PBClass builder] mergeFromCodedInputStream:input] build];
+}
++ (PBClass*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (PBClass*)[[[PBClass builder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] build];
+}
++ (PBClass_Builder*) builder {
+  return [[[PBClass_Builder alloc] init] autorelease];
+}
++ (PBClass_Builder*) builderWithPrototype:(PBClass*) prototype {
+  return [[PBClass builder] mergeFrom:prototype];
+}
+- (PBClass_Builder*) builder {
+  return [PBClass builder];
+}
+@end
+
+@interface PBClass_Builder()
+@property (retain) PBClass* result;
+@end
+
+@implementation PBClass_Builder
+@synthesize result;
+- (void) dealloc {
+  self.result = nil;
+  [super dealloc];
+}
+- (id) init {
+  if ((self = [super init])) {
+    self.result = [[[PBClass alloc] init] autorelease];
+  }
+  return self;
+}
+- (PBGeneratedMessage*) internalGetResult {
+  return result;
+}
+- (PBClass_Builder*) clear {
+  self.result = [[[PBClass alloc] init] autorelease];
+  return self;
+}
+- (PBClass_Builder*) clone {
+  return [PBClass builderWithPrototype:result];
+}
+- (PBClass*) defaultInstance {
+  return [PBClass defaultInstance];
+}
+- (PBClass*) build {
+  [self checkInitialized];
+  return [self buildPartial];
+}
+- (PBClass*) buildPartial {
+  PBClass* returnMe = [[result retain] autorelease];
+  self.result = nil;
+  return returnMe;
+}
+- (PBClass_Builder*) mergeFrom:(PBClass*) other {
+  if (other == [PBClass defaultInstance]) {
+    return self;
+  }
+  if (other.hasClassId) {
+    [self setClassId:other.classId];
+  }
+  if (other.mutableNamesList.count > 0) {
+    if (result.mutableNamesList == nil) {
+      result.mutableNamesList = [NSMutableArray array];
+    }
+    [result.mutableNamesList addObjectsFromArray:other.mutableNamesList];
+  }
+  if (other.mutableSubClassesList.count > 0) {
+    if (result.mutableSubClassesList == nil) {
+      result.mutableSubClassesList = [NSMutableArray array];
+    }
+    [result.mutableSubClassesList addObjectsFromArray:other.mutableSubClassesList];
+  }
+  if (other.mutableKeywordsList.count > 0) {
+    if (result.mutableKeywordsList == nil) {
+      result.mutableKeywordsList = [NSMutableArray array];
+    }
+    [result.mutableKeywordsList addObjectsFromArray:other.mutableKeywordsList];
+  }
+  if (other.hasDesc) {
+    [self setDesc:other.desc];
+  }
+  if (other.hasIsTopClass) {
+    [self setIsTopClass:other.isTopClass];
+  }
+  [self mergeUnknownFields:other.unknownFields];
+  return self;
+}
+- (PBClass_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input {
+  return [self mergeFromCodedInputStream:input extensionRegistry:[PBExtensionRegistry emptyRegistry]];
+}
+- (PBClass_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  PBUnknownFieldSet_Builder* unknownFields = [PBUnknownFieldSet builderWithUnknownFields:self.unknownFields];
+  while (YES) {
+    int32_t tag = [input readTag];
+    switch (tag) {
+      case 0:
+        [self setUnknownFields:[unknownFields build]];
+        return self;
+      default: {
+        if (![self parseUnknownField:input unknownFields:unknownFields extensionRegistry:extensionRegistry tag:tag]) {
+          [self setUnknownFields:[unknownFields build]];
+          return self;
+        }
+        break;
+      }
+      case 8: {
+        [self setClassId:[input readInt32]];
+        break;
+      }
+      case 18: {
+        PBLocalizeString_Builder* subBuilder = [PBLocalizeString builder];
+        [input readMessage:subBuilder extensionRegistry:extensionRegistry];
+        [self addNames:[subBuilder buildPartial]];
+        break;
+      }
+      case 26: {
+        PBClass_Builder* subBuilder = [PBClass builder];
+        [input readMessage:subBuilder extensionRegistry:extensionRegistry];
+        [self addSubClasses:[subBuilder buildPartial]];
+        break;
+      }
+      case 34: {
+        [self addKeywords:[input readString]];
+        break;
+      }
+      case 42: {
+        [self setDesc:[input readString]];
+        break;
+      }
+      case 48: {
+        [self setIsTopClass:[input readBool]];
+        break;
+      }
+    }
+  }
+}
+- (BOOL) hasClassId {
+  return result.hasClassId;
+}
+- (int32_t) classId {
+  return result.classId;
+}
+- (PBClass_Builder*) setClassId:(int32_t) value {
+  result.hasClassId = YES;
+  result.classId = value;
+  return self;
+}
+- (PBClass_Builder*) clearClassId {
+  result.hasClassId = NO;
+  result.classId = 0;
+  return self;
+}
+- (NSArray*) namesList {
+  if (result.mutableNamesList == nil) { return [NSArray array]; }
+  return result.mutableNamesList;
+}
+- (PBLocalizeString*) namesAtIndex:(int32_t) index {
+  return [result namesAtIndex:index];
+}
+- (PBClass_Builder*) replaceNamesAtIndex:(int32_t) index with:(PBLocalizeString*) value {
+  [result.mutableNamesList replaceObjectAtIndex:index withObject:value];
+  return self;
+}
+- (PBClass_Builder*) addAllNames:(NSArray*) values {
+  if (result.mutableNamesList == nil) {
+    result.mutableNamesList = [NSMutableArray array];
+  }
+  [result.mutableNamesList addObjectsFromArray:values];
+  return self;
+}
+- (PBClass_Builder*) clearNamesList {
+  result.mutableNamesList = nil;
+  return self;
+}
+- (PBClass_Builder*) addNames:(PBLocalizeString*) value {
+  if (result.mutableNamesList == nil) {
+    result.mutableNamesList = [NSMutableArray array];
+  }
+  [result.mutableNamesList addObject:value];
+  return self;
+}
+- (NSArray*) subClassesList {
+  if (result.mutableSubClassesList == nil) { return [NSArray array]; }
+  return result.mutableSubClassesList;
+}
+- (PBClass*) subClassesAtIndex:(int32_t) index {
+  return [result subClassesAtIndex:index];
+}
+- (PBClass_Builder*) replaceSubClassesAtIndex:(int32_t) index with:(PBClass*) value {
+  [result.mutableSubClassesList replaceObjectAtIndex:index withObject:value];
+  return self;
+}
+- (PBClass_Builder*) addAllSubClasses:(NSArray*) values {
+  if (result.mutableSubClassesList == nil) {
+    result.mutableSubClassesList = [NSMutableArray array];
+  }
+  [result.mutableSubClassesList addObjectsFromArray:values];
+  return self;
+}
+- (PBClass_Builder*) clearSubClassesList {
+  result.mutableSubClassesList = nil;
+  return self;
+}
+- (PBClass_Builder*) addSubClasses:(PBClass*) value {
+  if (result.mutableSubClassesList == nil) {
+    result.mutableSubClassesList = [NSMutableArray array];
+  }
+  [result.mutableSubClassesList addObject:value];
+  return self;
+}
+- (NSArray*) keywordsList {
+  if (result.mutableKeywordsList == nil) {
+    return [NSArray array];
+  }
+  return result.mutableKeywordsList;
+}
+- (NSString*) keywordsAtIndex:(int32_t) index {
+  return [result keywordsAtIndex:index];
+}
+- (PBClass_Builder*) replaceKeywordsAtIndex:(int32_t) index with:(NSString*) value {
+  [result.mutableKeywordsList replaceObjectAtIndex:index withObject:value];
+  return self;
+}
+- (PBClass_Builder*) addKeywords:(NSString*) value {
+  if (result.mutableKeywordsList == nil) {
+    result.mutableKeywordsList = [NSMutableArray array];
+  }
+  [result.mutableKeywordsList addObject:value];
+  return self;
+}
+- (PBClass_Builder*) addAllKeywords:(NSArray*) values {
+  if (result.mutableKeywordsList == nil) {
+    result.mutableKeywordsList = [NSMutableArray array];
+  }
+  [result.mutableKeywordsList addObjectsFromArray:values];
+  return self;
+}
+- (PBClass_Builder*) clearKeywordsList {
+  result.mutableKeywordsList = nil;
+  return self;
+}
+- (BOOL) hasDesc {
+  return result.hasDesc;
+}
+- (NSString*) desc {
+  return result.desc;
+}
+- (PBClass_Builder*) setDesc:(NSString*) value {
+  result.hasDesc = YES;
+  result.desc = value;
+  return self;
+}
+- (PBClass_Builder*) clearDesc {
+  result.hasDesc = NO;
+  result.desc = @"";
+  return self;
+}
+- (BOOL) hasIsTopClass {
+  return result.hasIsTopClass;
+}
+- (BOOL) isTopClass {
+  return result.isTopClass;
+}
+- (PBClass_Builder*) setIsTopClass:(BOOL) value {
+  result.hasIsTopClass = YES;
+  result.isTopClass = value;
+  return self;
+}
+- (PBClass_Builder*) clearIsTopClass {
+  result.hasIsTopClass = NO;
+  result.isTopClass = NO;
+  return self;
+}
+@end
+

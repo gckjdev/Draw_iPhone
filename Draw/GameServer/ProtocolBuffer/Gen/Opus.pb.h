@@ -13,6 +13,8 @@
 @class PBAskPsOpus;
 @class PBAskPsOpus_Builder;
 @class PBAskPs_Builder;
+@class PBClass;
+@class PBClass_Builder;
 @class PBColor;
 @class PBColor_Builder;
 @class PBCommentInfo;

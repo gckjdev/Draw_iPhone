@@ -77,6 +77,8 @@
     cell.timeLabel.font = CELL_REPLY_SOURCE_FONT;
     cell.drawToButton.titleLabel.font = CELL_REPLY_SOURCE_FONT;
     
+    [cell createReplayButton];
+    
     return cell;
 }
 
@@ -90,7 +92,30 @@
     return cell;
 }
 
+- (void)createReplayButton
+{
+    // create PLAY button
+    UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
+    CGRect buttonFrame = self.frame;
+    buttonFrame.size = ISIPAD ? CGSizeMake(120, 120) : CGSizeMake(50, 50);
+    [button setBackgroundImage:[UIImage imageNamed:@"play3.png"] forState:UIControlStateNormal];
+    [button setFrame:buttonFrame];
+    [button setCenter:self.drawImage.center];
+    [button setAlpha:0.0];
+    [button addTarget:self action:@selector(replay) forControlEvents:UIControlEventTouchUpInside];
+    [self.contentView addSubview:button];
+    [UIView animateWithDuration:0.8 delay:0.8 options:UIViewAnimationOptionCurveEaseIn animations:^{
+        button.alpha = 0.8;
+    } completion:^(BOOL finished) {
+    }];
+}
 
+- (void)replay
+{
+    if (_delegate && [_delegate respondsToSelector:@selector(didClickPlayButton)]) {
+        [_delegate didClickPlayButton];
+    }
+}
 
 + (NSString*)getCellIdentifier
 {

@@ -9,7 +9,7 @@
 #import "OpusImageBrower.h"
 #import "UIImageView+WebCache.h"
 #import "UIButton+WebCache.h"
-
+#import "ShowFeedController.h"
 
 #define PAGE_WIDTH CGRectGetWidth([[UIScreen mainScreen] bounds])//(ISIPAD ? 768 : 320)
 #define PAGE_HEIGHT (CGRectGetHeight([[UIScreen mainScreen] applicationFrame]) + STATUSBAR_DELTA)//(ISIPAD ? 1004 : 460)
@@ -40,10 +40,8 @@
 - (void)dealloc {
     [_feedList release];
     [_pageScroller release];
+    PPRelease(_superViewController);
     [super dealloc];
-    
-
-
 }
 
 
@@ -81,6 +79,7 @@
                                 desc:desc];
 }
 
+// 左右滑动也可以退出
 - (void)handleSwipe:(UISwipeGestureRecognizer *)swipe
 {
     [self.pageScroller handleTap:nil];
@@ -98,8 +97,6 @@
             [UIView animateWithDuration:0.5 animations:^{
                 
                 [pinch.view updateOriginX:(pinch.view.frame.origin.x + PAGE_WIDTH)];
-//                [pinch.view updateWidth:0];
-//                [pinch.view updateHeight:0];
 
             } completion:^(BOOL finished) {
                 [self removeFromSuperview];
@@ -150,11 +147,6 @@
         [view addSubview:thumbImageView];
         [thumbImageView release];
         
-//        [thumbImageView setImageWithURL:thumbUrl placeholderImage:nil success:^(UIImage *image, BOOL cached) {
-//        } failure:^(NSError *error) {
-//            
-//        }];
-        
         [thumbImageView setImageWithURL:thumbUrl placeholderImage:nil completed:NULL];
         
         indicator = [[[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite] autorelease];
@@ -164,30 +156,6 @@
     }
     
     if (url != nil) {
-        
-//        [opusImageView setImageWithURL:url placeholderImage:nil success:^(UIImage *image, BOOL cached) {
-//            [opusImageView updateWidth:MIN(image.size.width, PAGE_WIDTH)];
-//            [opusImageView updateHeight:MIN(image.size.height, PAGE_HEIGHT)];
-//            opusImageView.center = CGRectGetCenter(view.bounds);//CGPointMake(PAGE_WIDTH/2, PAGE_HEIGHT/2);
-//            [indicator stopAnimating];
-//            
-//            if (!cached) {
-//                opusImageView.alpha = 0;
-//                
-//                [UIView animateWithDuration:0.5 delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
-//                    thumbImageView.frame = opusImageView.frame;
-//                    //                thumbImageView.alpha = 0;
-//                } completion:^(BOOL finished) {
-//                    [thumbImageView removeFromSuperview];
-//                    opusImageView.alpha = 1;
-//                }];
-//            }else{
-//                [thumbImageView removeFromSuperview];
-//            }
-//            
-//        } failure:^(NSError *error) {
-//            [indicator stopAnimating];
-//        }];
         
         [opusImageView setImageWithURL:url placeholderImage:nil completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType) {
            
@@ -229,7 +197,22 @@
     descLabel.numberOfLines = 2;
     descLabel.text = desc;
     [view addSubview:descLabel];
-    
+
+    // create PLAY button
+    UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
+    CGRect buttonFrame = self.frame;
+    buttonFrame.size = ISIPAD ? CGSizeMake(180, 180) : CGSizeMake(80, 80);
+    [button setBackgroundImage:[UIImage imageNamed:@"play3.png"] forState:UIControlStateNormal];
+    [button setFrame:buttonFrame];
+    [button setCenter:self.center];
+    [button setAlpha:0.0];
+    [button addTarget:self action:@selector(replay) forControlEvents:UIControlEventTouchUpInside];
+    [view addSubview:button];
+    [UIView animateWithDuration:0.8 delay:0.8 options:UIViewAnimationOptionCurveEaseIn animations:^{
+        button.alpha = 0.8;
+    } completion:^(BOOL finished) {
+    }];
+
     
     CGRect frame = CGRectMake(PAGE_WIDTH - PAGE_INDICATOR_WIDTH - 20, descLabel.frame.origin.y, PAGE_INDICATOR_WIDTH, DESC_LABEL_HEIGHT);
     UILabel *pageIndicator = [[[UILabel alloc] initWithFrame:frame] autorelease];
@@ -247,6 +230,15 @@
     return view;
 }
 
+- (void)replay
+{
+    if ([self.feedList count] == 0)
+        return;
+    
+    DrawFeed* drawFeed = [self.feedList objectAtIndex:0];
+    [ShowFeedController replayDraw:drawFeed viewController:self.superViewController];
+}
+
 //- (void)clickOpusImageButton:(UIButton *)button{
 //    
 //    if ([_delegate respondsToSelector:@selector(brower:didSelecteFeed:)]) {
@@ -258,6 +250,12 @@
 
 #define OPUS_VIEW_ANMIATION_SECONDS 0.8f
 #define MOVE_OFFSET [[UIScreen mainScreen] bounds].size.width
+
+- (void)showInViewController:(PPViewController *)viewController
+{
+    self.superViewController = viewController;
+    [self showInView:viewController.view];
+}
 
 - (void)showInView:(UIView *)view{
     
@@ -273,7 +271,6 @@
     [UIView animateWithDuration:0.8 delay:0 options:UIViewAnimationOptionCurveEaseIn animations:^{
         bself.alpha = 1;
     } completion:^(BOOL finished) {
-        
     }];
     
 //    self.frame = view.bounds;
@@ -340,6 +337,7 @@
         }completion:^(BOOL finished) {
             [_delegate brower:self didSelecteFeed:feed];
             [self removeFromSuperview];
+            self.superViewController = nil;
         }];
     }
 }

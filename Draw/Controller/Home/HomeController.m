@@ -879,6 +879,7 @@ static NSDictionary* DRAW_MENU_IMAGE_DICT = nil;
     UseItemScene *scene = [UseItemScene createSceneByType:UseSceneTypeShowFeedDetail feed:drawFeed];
     ShowFeedController *sf = [[ShowFeedController alloc] initWithFeed:drawFeed
                                                                 scene:scene];
+    [sf showOpusImageBrower];
     [self.navigationController pushViewController:sf animated:YES];
     [sf release];
 }

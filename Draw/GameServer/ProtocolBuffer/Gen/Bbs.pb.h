@@ -24,6 +24,8 @@
 @class PBBBSReward_Builder;
 @class PBBBSUser;
 @class PBBBSUser_Builder;
+@class PBClass;
+@class PBClass_Builder;
 @class PBDrawAction;
 @class PBDrawAction_Builder;
 @class PBDrawBg;

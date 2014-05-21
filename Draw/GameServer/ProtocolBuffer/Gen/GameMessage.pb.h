@@ -107,6 +107,8 @@
 @class PBBBSReward_Builder;
 @class PBBBSUser;
 @class PBBBSUser_Builder;
+@class PBClass;
+@class PBClass_Builder;
 @class PBColor;
 @class PBColor_Builder;
 @class PBCommentInfo;

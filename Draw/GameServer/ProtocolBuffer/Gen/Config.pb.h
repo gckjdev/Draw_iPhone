@@ -9,6 +9,8 @@
 @class PBAppReward;
 @class PBAppReward_Builder;
 @class PBApp_Builder;
+@class PBClass;
+@class PBClass_Builder;
 @class PBConfig;
 @class PBConfig_Builder;
 @class PBDiceConfig;

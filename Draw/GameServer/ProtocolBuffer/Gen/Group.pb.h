@@ -26,6 +26,8 @@
 @class PBBBSReward_Builder;
 @class PBBBSUser;
 @class PBBBSUser_Builder;
+@class PBClass;
+@class PBClass_Builder;
 @class PBContest;
 @class PBContestList;
 @class PBContestList_Builder;

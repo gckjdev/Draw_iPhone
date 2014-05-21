@@ -48,6 +48,8 @@
 + (void)enterWithFeedId:(NSString *)feedId
          fromController:(UIViewController *)controller;
 
++ (void)replayDraw:(DrawFeed*)drawFeed viewController:(PPViewController*)viewController;
+
 @property (nonatomic, retain) NSObject<ShowFeedSceneProtocol>* feedScene;
 
 @end

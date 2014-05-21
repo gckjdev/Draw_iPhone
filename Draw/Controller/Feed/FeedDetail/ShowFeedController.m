@@ -724,6 +724,35 @@ typedef enum{
      downloadDelegate:self];
 }
 
++ (void)loadDrawData:(DrawFeed*)feed viewController:(PPViewController*)viewController handler:(dispatch_block_t)handler
+{
+    
+    if (handler == NULL)
+        return;
+    
+    [viewController showProgressViewWithMessage:NSLS(@"kLoading")];
+    if (feed.pbDrawData){
+        [viewController hideProgressView];
+        handler();
+        return;
+    }
+    
+    [[FeedService defaultService] getPBDrawByFeed:feed
+                                          handler:
+     ^(int resultCode, NSData *pbDrawData, DrawFeed *drawFeed, BOOL fromCache)
+     {
+         if(resultCode == 0 && pbDrawData != nil){
+             feed.pbDrawData = pbDrawData;
+             handler();
+         }else{
+             POSTMSG(NSLS(@"kFailLoad"));
+         }
+         
+         [viewController hideProgressView];
+     }
+                                 downloadDelegate:viewController];
+}
+
 #pragma mark - Click Actions
 
 - (void)performGuess
@@ -799,9 +828,66 @@ typedef enum{
 }
 
 - (void)performReplaySing{
-    
     [self didClickFullScreenButton];
 }
+
++ (void)replayDraw:(DrawFeed*)drawFeed viewController:(PPViewController*)viewController
+{
+    // report play times
+    [[FeedService defaultService] playOpus:drawFeed.feedId contestId:drawFeed.contestId resultBlock:^(int resultCode) {
+    }];
+    
+    __block PPViewController * cp = viewController;
+    
+//    _isDownloadingData = YES;
+    [self loadDrawData:drawFeed viewController:viewController handler:^{
+        
+//        _isDownloadingData = NO;
+        
+        [viewController registerNotificationWithName:NOTIFICATION_DATA_PARSING usingBlock:^(NSNotification *note) {
+            float progress = [[[note userInfo] objectForKey:KEY_DATA_PARSING_PROGRESS] floatValue];
+            NSString* progressText = @"";
+            if (progress == 1.0f){
+                progress = 0.99f;
+                progressText = [NSString stringWithFormat:NSLS(@"kDisplayProgress"), progress*100];
+            }
+            else{
+                progressText = [NSString stringWithFormat:NSLS(@"kParsingProgress"), progress*100];
+            }
+            [viewController showProgressViewWithMessage:progressText progress:progress];
+        }];
+        
+        [viewController showProgressViewWithMessage:NSLS(@"kParsingProgress") progress:0.01f];
+        dispatch_async([viewController getWorkingQueue], ^{
+            if (drawFeed.drawData == nil) {
+                [drawFeed parseDrawData];
+                drawFeed.pbDrawData = nil;   // add by Benson to clear the data for memory usage
+            }
+            
+            dispatch_async(dispatch_get_main_queue(), ^{
+                
+                [viewController unregisterNotificationWithName:NOTIFICATION_DATA_PARSING];
+                
+                NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
+                
+                ReplayObject *obj = [ReplayObject obj];
+                obj.actionList = drawFeed.drawData.drawActionList;
+                obj.isNewVersion = [drawFeed.drawData isNewVersion];
+                obj.canvasSize = drawFeed.drawData.canvasSize;
+                obj.layers = drawFeed.drawData.layers;
+                
+                DrawPlayer *player = [DrawPlayer playerWithReplayObj:obj];
+                [player showInController:cp];
+                
+                [pool drain];
+                
+                [viewController hideActivity];
+            });
+        });
+    }];
+    
+}
+
 
 - (void)performReplayDraw
 {
@@ -1106,10 +1192,14 @@ typedef enum{
 
 - (void)showOpusImageBrower{
     
+    if (isDrawApp() == NO && isLittleGeeAPP() == NO) {
+        return;
+    }
+    
     if ([self.feed isDrawCategory]) {
         OpusImageBrower *brower = [[[OpusImageBrower alloc] initWithFeedList:@[self.feed]] autorelease];
         brower.delegate = self;
-        [brower showInView:self.view];
+        [brower showInViewController:self];
     }
 }
 
@@ -1188,6 +1278,11 @@ typedef enum{
                                    successMessage:NSLS(@"kShareWeiboSucc")
                                    failureMessage:NSLS(@"kShareWeiboFailure")];
     
+}
+
+- (void)didClickPlayButton
+{
+    [self performSelector:@selector(performReplay) withObject:nil afterDelay:0.1f];
 }
 
 - (void)didClickDrawImageMaskView

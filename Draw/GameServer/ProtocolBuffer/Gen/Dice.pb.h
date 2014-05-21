@@ -6,6 +6,8 @@
 
 @class PBApp;
 @class PBApp_Builder;
+@class PBClass;
+@class PBClass_Builder;
 @class PBDice;
 @class PBDiceAction;
 @class PBDiceAction_Builder;

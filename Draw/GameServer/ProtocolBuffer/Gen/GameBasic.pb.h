@@ -6,6 +6,8 @@
 
 @class PBApp;
 @class PBApp_Builder;
+@class PBClass;
+@class PBClass_Builder;
 @class PBDrawAction;
 @class PBDrawAction_Builder;
 @class PBDrawBg;
@@ -3616,5 +3618,101 @@ BOOL PBTaskIdTypeIsValidValue(PBTaskIdType value);
 - (int32_t) award;
 - (PBTask_Builder*) setAward:(int32_t) value;
 - (PBTask_Builder*) clearAward;
+@end
+
+@interface PBClass : PBGeneratedMessage {
+@private
+  BOOL hasIsTopClass_:1;
+  BOOL hasClassId_:1;
+  BOOL hasDesc_:1;
+  BOOL isTopClass_:1;
+  int32_t classId;
+  NSString* desc;
+  NSMutableArray* mutableKeywordsList;
+  NSMutableArray* mutableNamesList;
+  NSMutableArray* mutableSubClassesList;
+}
+- (BOOL) hasClassId;
+- (BOOL) hasDesc;
+- (BOOL) hasIsTopClass;
+@property (readonly) int32_t classId;
+@property (readonly, retain) NSString* desc;
+- (BOOL) isTopClass;
+- (NSArray*) namesList;
+- (PBLocalizeString*) namesAtIndex:(int32_t) index;
+- (NSArray*) subClassesList;
+- (PBClass*) subClassesAtIndex:(int32_t) index;
+- (NSArray*) keywordsList;
+- (NSString*) keywordsAtIndex:(int32_t) index;
+
++ (PBClass*) defaultInstance;
+- (PBClass*) defaultInstance;
+
+- (BOOL) isInitialized;
+- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
+- (PBClass_Builder*) builder;
++ (PBClass_Builder*) builder;
++ (PBClass_Builder*) builderWithPrototype:(PBClass*) prototype;
+
++ (PBClass*) parseFromData:(NSData*) data;
++ (PBClass*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
++ (PBClass*) parseFromInputStream:(NSInputStream*) input;
++ (PBClass*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
++ (PBClass*) parseFromCodedInputStream:(PBCodedInputStream*) input;
++ (PBClass*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+@end
+
+@interface PBClass_Builder : PBGeneratedMessage_Builder {
+@private
+  PBClass* result;
+}
+
+- (PBClass*) defaultInstance;
+
+- (PBClass_Builder*) clear;
+- (PBClass_Builder*) clone;
+
+- (PBClass*) build;
+- (PBClass*) buildPartial;
+
+- (PBClass_Builder*) mergeFrom:(PBClass*) other;
+- (PBClass_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
+- (PBClass_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+
+- (BOOL) hasClassId;
+- (int32_t) classId;
+- (PBClass_Builder*) setClassId:(int32_t) value;
+- (PBClass_Builder*) clearClassId;
+
+- (NSArray*) namesList;
+- (PBLocalizeString*) namesAtIndex:(int32_t) index;
+- (PBClass_Builder*) replaceNamesAtIndex:(int32_t) index with:(PBLocalizeString*) value;
+- (PBClass_Builder*) addNames:(PBLocalizeString*) value;
+- (PBClass_Builder*) addAllNames:(NSArray*) values;
+- (PBClass_Builder*) clearNamesList;
+
+- (NSArray*) subClassesList;
+- (PBClass*) subClassesAtIndex:(int32_t) index;
+- (PBClass_Builder*) replaceSubClassesAtIndex:(int32_t) index with:(PBClass*) value;
+- (PBClass_Builder*) addSubClasses:(PBClass*) value;
+- (PBClass_Builder*) addAllSubClasses:(NSArray*) values;
+- (PBClass_Builder*) clearSubClassesList;
+
+- (NSArray*) keywordsList;
+- (NSString*) keywordsAtIndex:(int32_t) index;
+- (PBClass_Builder*) replaceKeywordsAtIndex:(int32_t) index with:(NSString*) value;
+- (PBClass_Builder*) addKeywords:(NSString*) value;
+- (PBClass_Builder*) addAllKeywords:(NSArray*) values;
+- (PBClass_Builder*) clearKeywordsList;
+
+- (BOOL) hasDesc;
+- (NSString*) desc;
+- (PBClass_Builder*) setDesc:(NSString*) value;
+- (PBClass_Builder*) clearDesc;
+
+- (BOOL) hasIsTopClass;
+- (BOOL) isTopClass;
+- (PBClass_Builder*) setIsTopClass:(BOOL) value;
+- (PBClass_Builder*) clearIsTopClass;
 @end
 

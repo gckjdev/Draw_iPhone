@@ -496,6 +496,7 @@
 {
     DrawFeed *opus = [sender opus];
     ShowFeedController *sc = [[ShowFeedController alloc] initWithFeed:opus scene:[UseItemScene createSceneByType:UseSceneTypeShowFeedDetail feed:opus]];
+    [sc showOpusImageBrower];
     [[[self theViewController] navigationController] pushViewController:sc animated:YES];
     [sc release];
 }

@@ -22,9 +22,12 @@
 @interface OpusImageBrower : UIView<UIGestureRecognizerDelegate, PageScrollViewDatasource, PageScrollViewDelegate>
 
 @property (assign, nonatomic) id<OpusImageBrowerDelegate> delegate;
+@property (retain, nonatomic) PPViewController *superViewController;
 
 - (id)initWithFeedList:(NSArray *)feedList;
 - (void)setIndex:(int)index;
 - (void)showInView:(UIView *)view;
+
+- (void)showInViewController:(PPViewController *)viewController;
 
 @end

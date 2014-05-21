@@ -23,6 +23,7 @@
 - (void)didClickDrawImageMaskView;
 - (void)didClickFullScreenButton;
 - (void)didClickNonFullScreenButton;
+- (void)didClickPlayButton;
 
 @end
 

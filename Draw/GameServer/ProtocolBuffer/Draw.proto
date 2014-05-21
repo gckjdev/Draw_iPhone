@@ -150,6 +150,11 @@ message PBFeed {
 
   optional PBLabelInfo descLabelInfo = 200;
   optional PBSize canvasSize = 201;
+  optional int64 strokes = 202;                 // 画画的笔画数目
+  
+  // for class info
+  repeated PBClass class = 210;                 // 分类信息，一个作品可以属于一个或者多个分类
+
   
 
 }
