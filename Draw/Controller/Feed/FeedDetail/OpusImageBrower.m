@@ -117,6 +117,8 @@
     [_pageScroller scrollToPageIndex:index];
 }
 
+#define PLAY_BUTTON_TAG 2014052101
+
 - (UIView *)createViewWithIndex:(int)index
                        imageUrl:(NSURL *)url
                   thumbImageUrl:(NSURL *)thumbUrl
@@ -206,6 +208,7 @@
     [button setFrame:buttonFrame];
     [button setCenter:self.center];
     [button setAlpha:0.0];
+    [button setTag:PLAY_BUTTON_TAG];
     [button addTarget:self action:@selector(replay) forControlEvents:UIControlEventTouchUpInside];
     [view addSubview:button];
     [UIView animateWithDuration:0.8 delay:0.8 options:UIViewAnimationOptionCurveEaseIn animations:^{
@@ -235,6 +238,10 @@
     if ([self.feedList count] == 0)
         return;
     
+//    if (_isReplaying)
+//        return;
+    
+    _isReplaying = YES;
     DrawFeed* drawFeed = [self.feedList objectAtIndex:0];
     [ShowFeedController replayDraw:drawFeed viewController:self.superViewController];
 }
@@ -287,6 +294,11 @@
 
 - (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch
 {
+    if (touch.view.tag == PLAY_BUTTON_TAG){
+        if ([DeviceDetection isOS6] == NO){
+            [self replay];
+        }
+    }
     return YES;
 }
 

@@ -20,6 +20,9 @@
 @end
 
 @interface OpusImageBrower : UIView<UIGestureRecognizerDelegate, PageScrollViewDatasource, PageScrollViewDelegate>
+{
+    BOOL _isReplaying;
+}
 
 @property (assign, nonatomic) id<OpusImageBrowerDelegate> delegate;
 @property (retain, nonatomic) PPViewController *superViewController;
