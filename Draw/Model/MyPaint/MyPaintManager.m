@@ -892,6 +892,10 @@ pbNoCompressDrawData:(PBNoCompressDrawData*)pbNoCompressDrawData
                 paint.layers = [DrawLayer defaultOldLayersWithFrame:CGRectFromCGSize(paint.canvasSize)];
             }
 
+            // set strokes, spend time, and complete date (added by Benson, 2014-05-22)
+            paint.strokes = nDrawC->strokes;
+            paint.spendTime = nDrawC->spendtime;
+            paint.completeDate = nDrawC->completedate;
             
             NSMutableArray* list = [DrawAction pbNoCompressDrawDataCToDrawActionList:nDrawC
                                                                           canvasSize:paint.canvasSize];
@@ -916,7 +920,15 @@ pbNoCompressDrawData:(PBNoCompressDrawData*)pbNoCompressDrawData
                     
                     Draw* draw = [[[Draw alloc] initWithPBDrawC:pbDrawC] autorelease];
                     
+                    // set version
                     paint.drawDataVersion = pbDrawC->version;
+                    
+                    // set strokes, spend time, and complete date (added by Benson, 2014-05-22)
+                    paint.strokes = pbDrawC->strokes;
+                    paint.spendTime = pbDrawC->spendtime;
+                    paint.completeDate = pbDrawC->completedate;
+                    
+                    // set canvas size
                     if (pbDrawC->canvassize == NULL) {
                         if (paint.draft.intValue == 1) {
                             paint.canvasSize = [CanvasRect deprecatedRect].size;
@@ -928,6 +940,7 @@ pbNoCompressDrawData:(PBNoCompressDrawData*)pbNoCompressDrawData
                         paint.canvasSize = CGSizeFromPBSizeC(pbDrawC->canvassize);
                     }
                     
+                    // set layer info
                     paint.layers = [DrawLayer layersFromPBLayers:pbDrawC->layer number:pbDrawC->n_layer];
                     
                     //create layer for old datas

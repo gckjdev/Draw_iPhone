@@ -3,7 +3,7 @@
 #ifndef PROTOBUF_C_Opus_2eproto__INCLUDED
 #define PROTOBUF_C_Opus_2eproto__INCLUDED
 
-#include "google/protobuf-c/protobuf-c.h"
+#include <google/protobuf-c/protobuf-c.h>
 
 PROTOBUF_C_BEGIN_DECLS
 
@@ -24,11 +24,6 @@ typedef struct _Game__PBGuessContest Game__PBGuessContest;
 
 /* --- enums --- */
 
-typedef enum _Game__PBOpusCategoryType {
-  GAME__PBOPUS_CATEGORY_TYPE__DRAW_CATEGORY = 0,
-  GAME__PBOPUS_CATEGORY_TYPE__SING_CATEGORY = 1,
-  GAME__PBOPUS_CATEGORY_TYPE__ASK_PS_CATEGORY = 2
-} Game__PBOpusCategoryType;
 typedef enum _Game__PBLanguage {
   GAME__PBLANGUAGE__CHINESE = 1,
   GAME__PBLANGUAGE__ENGLISH = 2
@@ -144,6 +139,10 @@ struct  _Game__PBOpus
   int32_t createdate;
   protobuf_c_boolean has_status;
   int32_t status;
+  size_t n_tags;
+  char **tags;
+  protobuf_c_boolean has_spendtime;
+  int32_t spendtime;
   protobuf_c_boolean has_devicetype;
   int32_t devicetype;
   char *devicename;
@@ -164,11 +163,13 @@ struct  _Game__PBOpus
   protobuf_c_boolean isrecovery;
   protobuf_c_boolean has_storetype;
   Game__PBOpusStoreType storetype;
+  Game__PBLabelInfo *desclabelinfo;
+  Game__PBSize *canvassize;
   Game__PBOpusGuess *guessinfo;
 };
 #define GAME__PBOPUS__INIT \
  { PROTOBUF_C_MESSAGE_INIT (&game__pbopus__descriptor) \
-    , NULL, 0,0, NULL, NULL, NULL, NULL, NULL, 0,0, 0,0, 0,0, 0,0, 0,0, NULL, NULL, NULL, NULL, NULL, 0,NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0,0, 0,0, NULL }
+    , NULL, 0,0, NULL, NULL, NULL, NULL, NULL, 0,0, 0,0, 0,0, 0,0, 0,NULL, 0,0, 0,0, NULL, NULL, NULL, NULL, NULL, 0,NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0,0, 0,0, NULL, NULL, NULL }
 
 
 struct  _Game__PBOpusList
@@ -422,7 +423,6 @@ typedef void (*Game__PBGuessContest_Closure)
 
 /* --- descriptors --- */
 
-extern const ProtobufCEnumDescriptor    game__pbopus_category_type__descriptor;
 extern const ProtobufCEnumDescriptor    game__pblanguage__descriptor;
 extern const ProtobufCEnumDescriptor    game__pbopus_type__descriptor;
 extern const ProtobufCEnumDescriptor    game__pbopus_store_type__descriptor;

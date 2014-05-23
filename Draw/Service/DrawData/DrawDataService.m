@@ -247,7 +247,7 @@ static DrawDataService* _defaultDrawDataService = nil;
                      desc:(NSString *)desc
                      size:(CGSize)size
                    layers:(NSArray *)layers
-                     info:(NSDictionary *)info
+                       draft:(MyPaint *)draft
                  delegate:(PPViewController<DrawDataServiceDelegate>*)viewController;
 {
     
@@ -278,7 +278,7 @@ static DrawDataService* _defaultDrawDataService = nil;
                                               size:size
                                       isCompressed:isCompressed
                                             layers:layers
-                                              info:info];
+                                             draft:draft];
     
     if ([drawData length] == 0){
         if ([viewController respondsToSelector:@selector(didCreateDraw:)]){
@@ -311,6 +311,7 @@ static DrawDataService* _defaultDrawDataService = nil;
                                                            targetUid:targetUid
                                                            contestId:contestId
                                                                 desc:desc
+                                                               draft:draft
                                                         isCompressed:isCompressed
                                                     progressDelegate:viewController];
         
@@ -337,7 +338,7 @@ static DrawDataService* _defaultDrawDataService = nil;
                      desc:(NSString *)desc
                      size:(CGSize)size
                    layers:(NSArray *)layers
-                     info:(NSDictionary *)info
+                    draft:(MyPaint *)draft
                  delegate:(PPViewController<DrawDataServiceDelegate>*)viewController;
 {
 
@@ -358,8 +359,8 @@ static DrawDataService* _defaultDrawDataService = nil;
                             language:language
                                 size:size
                         isCompressed:isCompressed
-                                            layers:layers
-                                              info:nil];
+                                layers:layers
+                                 draft:draft];
     
     if ([drawData length] == 0){
         if ([viewController respondsToSelector:@selector(didCreateDraw:)]){
@@ -392,6 +393,7 @@ static DrawDataService* _defaultDrawDataService = nil;
                                                            targetUid:targetUid 
                                                            contestId:contestId
                                                                 desc:desc
+                                                               draft:draft
                                                         isCompressed:isCompressed
                                                     progressDelegate:viewController];
 

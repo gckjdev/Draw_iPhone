@@ -561,3 +561,33 @@ const ProtobufCEnumDescriptor game__pbcontest_status__descriptor =
   game__pbcontest_status__value_ranges,
   NULL,NULL,NULL,NULL   /* reserved[1234] */
 };
+const ProtobufCEnumValue game__pbopus_category_type__enum_values_by_number[3] =
+{
+  { "DRAW_CATEGORY", "GAME__PBOPUS_CATEGORY_TYPE__DRAW_CATEGORY", 0 },
+  { "SING_CATEGORY", "GAME__PBOPUS_CATEGORY_TYPE__SING_CATEGORY", 1 },
+  { "ASK_PS_CATEGORY", "GAME__PBOPUS_CATEGORY_TYPE__ASK_PS_CATEGORY", 2 },
+};
+static const ProtobufCIntRange game__pbopus_category_type__value_ranges[] = {
+{0, 0},{0, 3}
+};
+const ProtobufCEnumValueIndex game__pbopus_category_type__enum_values_by_name[3] =
+{
+  { "ASK_PS_CATEGORY", 2 },
+  { "DRAW_CATEGORY", 0 },
+  { "SING_CATEGORY", 1 },
+};
+const ProtobufCEnumDescriptor game__pbopus_category_type__descriptor =
+{
+  PROTOBUF_C_ENUM_DESCRIPTOR_MAGIC,
+  "game.PBOpusCategoryType",
+  "PBOpusCategoryType",
+  "Game__PBOpusCategoryType",
+  "game",
+  3,
+  game__pbopus_category_type__enum_values_by_number,
+  3,
+  game__pbopus_category_type__enum_values_by_name,
+  1,
+  game__pbopus_category_type__value_ranges,
+  NULL,NULL,NULL,NULL   /* reserved[1234] */
+};

@@ -65,7 +65,18 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(DrawRecoveryService)
     }
 }
 
-- (void)start
+- (void)start:(NSArray*)drawActionList
+    targetUid:(NSString*)targetUid
+         word:(Word*)word
+         desc:(NSString*)desc
+   canvasSize:(CGSize)canvasSize
+  bgImageName:(NSString*)bgImageName
+      bgImage:(UIImage*)bgImage
+    contestId:(NSString*)contestId
+      strokes:(int64_t)strokes
+    spendTime:(int)spendTime
+ completeDate:(int)completeDate
+       layers:(NSArray *)layers
 {
     if (_currentPaint != nil){
         [self stop];
@@ -80,6 +91,16 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(DrawRecoveryService)
     }    
     
     @try {
+        
+        // init basic info
+        self.nickName = [[UserManager defaultManager] nickName];
+        self.userId = [[UserManager defaultManager] userId];
+        self.contestId = contestId;
+        self.word = word;
+        self.targetUid = targetUid;
+        self.bgImageName = bgImageName;
+        self.language = ChineseType;
+        
         self.currentPaint = [[MyPaintManager defaultManager] createDraftForRecovery:self.targetUid
                                                                       contestId:self.contestId
                                                                          userId:self.userId
@@ -89,8 +110,22 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(DrawRecoveryService)
                                                                         bgImageName:self.bgImageName];
 
         PPDebug(@"<start> file name=%@ size=%@", _currentPaint.dataFilePath, NSStringFromCGSize(_canvasSize));
-        [self backup];        
-        [[MyPaintManager defaultManager] saveBgImage:_bgImage name:_currentPaint.bgImageName];
+        
+        [self backup:drawActionList
+           targetUid:targetUid
+                word:word
+                desc:desc
+          canvasSize:canvasSize
+         bgImageName:bgImageName
+             bgImage:bgImage
+           contestId:contestId
+             strokes:strokes
+           spendTime:spendTime
+        completeDate:completeDate
+              layers:layers];
+        
+        [[MyPaintManager defaultManager] saveBgImage:_bgImage
+                                                name:_currentPaint.bgImageName];
     }
     @catch (NSException *exception) {
         PPDebug(@"<start> but catch exception=%@", [exception description]);
@@ -100,13 +135,48 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(DrawRecoveryService)
     
 }
 
-- (void)backup
+- (void)backup:(NSArray*)drawActionList
+     targetUid:(NSString*)targetUid
+          word:(Word*)word
+          desc:(NSString*)desc
+    canvasSize:(CGSize)canvasSize
+   bgImageName:(NSString*)bgImageName
+       bgImage:(UIImage*)bgImage
+     contestId:(NSString*)contestId
+       strokes:(int64_t)strokes
+     spendTime:(int)spendTime
+  completeDate:(int)completeDate
+        layers:(NSArray *)layers
 {
     // add by Benson 2013-08-20 for protection
-    if (self.currentPaint == nil || CGSizeEqualToSize(self.canvasSize, CGSizeZero)){
-        PPDebug(@"<backup> but current paint is nil or canvas size is zero");
+    if (self.currentPaint == nil){
+        PPDebug(@"<backup> but current paint is nil");
         return;
     }
+    
+    // set and check canvas size
+    self.canvasSize = canvasSize;
+    if (CGSizeEqualToSize(self.canvasSize, CGSizeZero)){
+        PPDebug(@"<backup> but canvas size is zero");
+        return;
+    }
+    
+    // set draw action list
+    self.drawActionList = drawActionList;
+    
+    // set basic data
+    BOOL hasChangeOnPaint = [self setDataWithTargetUid:targetUid
+                                                  word:word
+                                                  desc:desc
+                                            canvasSize:canvasSize
+                                           bgImageName:bgImageName
+                                               bgImage:bgImage
+                                             contestId:contestId
+                                               strokes:strokes
+                                             spendTime:spendTime
+                                          completeDate:completeDate
+                                                layers:layers];
+    [self saveData:hasChangeOnPaint];
     
     NSString* dataFileName = [_currentPaint.dataFilePath copy];
     NSString* dataPath = [[[MyPaintManager defaultManager] fullDataPath:dataFileName] copy];
@@ -116,7 +186,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(DrawRecoveryService)
         snapshotList = [[NSMutableArray alloc] init]; 
     }else{
         snapshotList = [[NSMutableArray alloc] initWithArray:_drawActionList copyItems:NO];
-    // remove last paint to make it safe
+        // remove last paint to make it safe
         [snapshotList removeLastObject];
     }
     __block DrawRecoveryService *cp = self;
@@ -125,6 +195,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(DrawRecoveryService)
 
         NSAutoreleasePool *subPool = [[NSAutoreleasePool alloc] init];
         
+        int backupCount = [snapshotList count];
         NSArray* copyLayers = [cp.layers mutableCopy];
         
         // TODO check difference of two methods
@@ -133,14 +204,19 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(DrawRecoveryService)
                                                                   opusDesc:cp.desc
                                                                 drawToUser:cp.drawToUser
                                                            bgImageFileName:cp.currentPaint.bgImageName
-                                                                    layers:copyLayers];
+                                                                    layers:copyLayers
+                                                                   strokes:strokes
+                                                                 spendTime:spendTime
+                                                              completeDate:completeDate];
         [copyLayers release];
-
-        PPDebug(@"<backup> file path=%@", dataPath);
         
         // backup data to file
         if ([data length] > 0){
+            PPDebug(@"<backup> total %d actions backup, file path=%@", backupCount, dataPath);
             [data writeToFile:dataPath atomically:YES];
+        }
+        else{
+            PPDebug(@"<backup> no data for backup, total %d actions", backupCount);
         }
 
         // release temp objects
@@ -217,12 +293,99 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(DrawRecoveryService)
     }
 }
 
+- (BOOL)setDataWithTargetUid:(NSString*)targetUid
+                        word:(Word*)word
+                        desc:(NSString*)desc
+                  canvasSize:(CGSize)canvasSize
+                 bgImageName:(NSString*)bgImageName
+                     bgImage:(UIImage*)bgImage
+                   contestId:(NSString*)contestId
+                     strokes:(int64_t)strokes
+                   spendTime:(int)spendTime
+                completeDate:(int)completeDate
+                      layers:(NSArray *)layers
+{
+    self.canvasSize = canvasSize;
+    self.word = word;
+    self.desc = desc;
+    self.bgImage = bgImage;
+    
+    if (bgImageName){
+        self.bgImageName = bgImageName;
+    }
+    
+    if (layers){
+        self.layers = [[[NSMutableArray arrayWithArray:layers] mutableCopy] autorelease];
+    }
+    
+    BOOL hasChangeOnPaint = NO;
+    
+    if (targetUid && [self.currentPaint.targetUserId isEqualToString:targetUid] == NO){
+        hasChangeOnPaint = YES;
+    }
+    if (contestId && [self.currentPaint.contestId isEqualToString:contestId] == NO){
+        hasChangeOnPaint = YES;
+    }
+//    if (self.currentPaint.strokes != strokes){
+//        hasChangeOnPaint = YES;
+//    }
+//    if (self.currentPaint.spendTime != spendTime){
+//        hasChangeOnPaint = YES;
+//    }
+//    if (self.currentPaint.completeDate != completeDate){
+//        hasChangeOnPaint = YES;
+//    }
+    
+    self.currentPaint.targetUserId = targetUid;
+    self.currentPaint.contestId = contestId;
+    self.currentPaint.strokes = strokes;
+    self.currentPaint.spendTime = spendTime;
+    self.currentPaint.completeDate = completeDate;
+    
+    return hasChangeOnPaint;
+}
+
+- (void)saveData:(BOOL)needSave
+{
+    if (needSave){
+        PPDebug(@"<hasChangeOnPaint> yes, save paint data");
+        CoreDataManager* dataManager = GlobalGetCoreDataManager();
+        [dataManager save];
+    }
+}
+
 - (void)handleNewPaintDrawed:(NSArray*)drawActionList
+                   targetUid:(NSString*)targetUid
+                        word:(Word*)word
+                        desc:(NSString*)desc
+                  canvasSize:(CGSize)canvasSize
+                 bgImageName:(NSString*)bgImageName
+                     bgImage:(UIImage*)bgImage
+                   contestId:(NSString*)contestId
+                     strokes:(int64_t)strokes
+                   spendTime:(int)spendTime
+                completeDate:(int)completeDate
+                      layers:(NSArray *)layers
 {
 //    PPDebug(@"<handleNewPaintDrawed> accumulate paint count =%d", _newPaintCount+1);
+    
     self.drawActionList = drawActionList;
+    
+    
     if ([self needBackup]){
-        [self backup];
+        
+        [self backup:drawActionList
+           targetUid:targetUid
+                word:word
+                desc:desc
+          canvasSize:canvasSize
+         bgImageName:bgImageName
+             bgImage:bgImage
+           contestId:contestId
+             strokes:strokes
+           spendTime:spendTime
+        completeDate:completeDate
+              layers:layers];
     }
     else{
         _newPaintCount ++;
@@ -230,10 +393,34 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(DrawRecoveryService)
 }
 
 - (void)handleTimer:(NSArray*)drawActionList
+          targetUid:(NSString*)targetUid
+               word:(Word*)word
+               desc:(NSString*)desc
+         canvasSize:(CGSize)canvasSize
+        bgImageName:(NSString*)bgImageName
+            bgImage:(UIImage*)bgImage
+          contestId:(NSString*)contestId
+            strokes:(int64_t)strokes
+          spendTime:(int)spendTime
+       completeDate:(int)completeDate
+             layers:(NSArray *)layers
+
 {
 //    PPDebug(@"<handleTimer> accumulate paint count =%d", _newPaintCount);
     if ([self needBackup]){
-        [self backup];
+        
+        [self backup:drawActionList
+           targetUid:targetUid
+                word:word
+                desc:desc
+          canvasSize:canvasSize
+         bgImageName:bgImageName
+             bgImage:bgImage
+           contestId:contestId
+             strokes:strokes
+           spendTime:spendTime
+        completeDate:completeDate
+              layers:layers];
     }
 }
 
@@ -258,15 +445,16 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(DrawRecoveryService)
         return;
     }
     _canvasSize = canvasSize;
-    [self backup];
+//    [self backup];
 }
+
 - (void)setDesc:(NSString *)desc
 {
     if (_desc != desc) {
         PPRelease(_desc);
         _desc = desc;
         [_desc retain];
-        [self backup];
+//        [self backup];
     }
 }
 

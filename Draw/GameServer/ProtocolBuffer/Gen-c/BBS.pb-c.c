@@ -393,7 +393,7 @@ void   game__pbbbsboard__free_unpacked
   PROTOBUF_C_ASSERT (message->base.descriptor == &game__pbbbsboard__descriptor);
   protobuf_c_message_free_unpacked ((ProtobufCMessage*)message, allocator);
 }
-static const ProtobufCFieldDescriptor game__pbbbsuser__field_descriptors[4] =
+static const ProtobufCFieldDescriptor game__pbbbsuser__field_descriptors[5] =
 {
   {
     "userId",
@@ -443,17 +443,30 @@ static const ProtobufCFieldDescriptor game__pbbbsuser__field_descriptors[4] =
     0,            /* packed */
     0,NULL,NULL    /* reserved1,reserved2, etc */
   },
+  {
+    "vip",
+    5,
+    PROTOBUF_C_LABEL_OPTIONAL,
+    PROTOBUF_C_TYPE_INT32,
+    PROTOBUF_C_OFFSETOF(Game__PBBBSUser, has_vip),
+    PROTOBUF_C_OFFSETOF(Game__PBBBSUser, vip),
+    NULL,
+    NULL,
+    0,            /* packed */
+    0,NULL,NULL    /* reserved1,reserved2, etc */
+  },
 };
 static const unsigned game__pbbbsuser__field_indices_by_name[] = {
   2,   /* field[2] = avatar */
   3,   /* field[3] = gender */
   1,   /* field[1] = nickName */
   0,   /* field[0] = userId */
+  4,   /* field[4] = vip */
 };
 static const ProtobufCIntRange game__pbbbsuser__number_ranges[1 + 1] =
 {
   { 1, 0 },
-  { 0, 4 }
+  { 0, 5 }
 };
 const ProtobufCMessageDescriptor game__pbbbsuser__descriptor =
 {
@@ -463,7 +476,7 @@ const ProtobufCMessageDescriptor game__pbbbsuser__descriptor =
   "Game__PBBBSUser",
   "game",
   sizeof(Game__PBBBSUser),
-  4,
+  5,
   game__pbbbsuser__field_descriptors,
   game__pbbbsuser__field_indices_by_name,
   1,  game__pbbbsuser__number_ranges,
@@ -535,7 +548,7 @@ const ProtobufCMessageDescriptor game__pbbbsdraw__descriptor =
   (ProtobufCMessageInit) game__pbbbsdraw__init,
   NULL,NULL,NULL    /* reserved[123] */
 };
-static const ProtobufCFieldDescriptor game__pbbbscontent__field_descriptors[7] =
+static const ProtobufCFieldDescriptor game__pbbbscontent__field_descriptors[9] =
 {
   {
     "type",
@@ -621,22 +634,49 @@ static const ProtobufCFieldDescriptor game__pbbbscontent__field_descriptors[7] =
     0,            /* packed */
     0,NULL,NULL    /* reserved1,reserved2, etc */
   },
+  {
+    "opusId",
+    30,
+    PROTOBUF_C_LABEL_OPTIONAL,
+    PROTOBUF_C_TYPE_STRING,
+    0,   /* quantifier_offset */
+    PROTOBUF_C_OFFSETOF(Game__PBBBSContent, opusid),
+    NULL,
+    NULL,
+    0,            /* packed */
+    0,NULL,NULL    /* reserved1,reserved2, etc */
+  },
+  {
+    "opusCategory",
+    31,
+    PROTOBUF_C_LABEL_OPTIONAL,
+    PROTOBUF_C_TYPE_INT32,
+    PROTOBUF_C_OFFSETOF(Game__PBBBSContent, has_opuscategory),
+    PROTOBUF_C_OFFSETOF(Game__PBBBSContent, opuscategory),
+    NULL,
+    NULL,
+    0,            /* packed */
+    0,NULL,NULL    /* reserved1,reserved2, etc */
+  },
 };
 static const unsigned game__pbbbscontent__field_indices_by_name[] = {
   6,   /* field[6] = drawData */
   5,   /* field[5] = drawImageUrl */
   4,   /* field[4] = drawThumbUrl */
   3,   /* field[3] = imageUrl */
+  8,   /* field[8] = opusCategory */
+  7,   /* field[7] = opusId */
   1,   /* field[1] = text */
   2,   /* field[2] = thumbImageUrl */
   0,   /* field[0] = type */
 };
-static const ProtobufCIntRange game__pbbbscontent__number_ranges[3 + 1] =
+static const ProtobufCIntRange game__pbbbscontent__number_ranges[4 + 1] =
 {
   { 1, 0 },
   { 10, 2 },
   { 20, 4 },
-  { 0, 7 }
+  { 30, 7 },
+  { 0, 9 }
 };
 const ProtobufCMessageDescriptor game__pbbbscontent__descriptor =
 {
@@ -646,10 +686,10 @@ const ProtobufCMessageDescriptor game__pbbbscontent__descriptor =
   "Game__PBBBSContent",
   "game",
   sizeof(Game__PBBBSContent),
-  7,
+  9,
   game__pbbbscontent__field_descriptors,
   game__pbbbscontent__field_indices_by_name,
-  3,  game__pbbbscontent__number_ranges,
+  4,  game__pbbbscontent__number_ranges,
   (ProtobufCMessageInit) game__pbbbscontent__init,
   NULL,NULL,NULL    /* reserved[123] */
 };
@@ -743,7 +783,7 @@ const ProtobufCMessageDescriptor game__pbbbsreward__descriptor =
   (ProtobufCMessageInit) game__pbbbsreward__init,
   NULL,NULL,NULL    /* reserved[123] */
 };
-static const ProtobufCFieldDescriptor game__pbbbspost__field_descriptors[13] =
+static const ProtobufCFieldDescriptor game__pbbbspost__field_descriptors[15] =
 {
   {
     "postId",
@@ -901,6 +941,30 @@ static const ProtobufCFieldDescriptor game__pbbbspost__field_descriptors[13] =
     0,            /* packed */
     0,NULL,NULL    /* reserved1,reserved2, etc */
   },
+  {
+    "marked",
+    14,
+    PROTOBUF_C_LABEL_OPTIONAL,
+    PROTOBUF_C_TYPE_BOOL,
+    PROTOBUF_C_OFFSETOF(Game__PBBBSPost, has_marked),
+    PROTOBUF_C_OFFSETOF(Game__PBBBSPost, marked),
+    NULL,
+    NULL,
+    0,            /* packed */
+    0,NULL,NULL    /* reserved1,reserved2, etc */
+  },
+  {
+    "isPrivate",
+    15,
+    PROTOBUF_C_LABEL_OPTIONAL,
+    PROTOBUF_C_TYPE_BOOL,
+    PROTOBUF_C_OFFSETOF(Game__PBBBSPost, has_isprivate),
+    PROTOBUF_C_OFFSETOF(Game__PBBBSPost, isprivate),
+    NULL,
+    NULL,
+    0,            /* packed */
+    0,NULL,NULL    /* reserved1,reserved2, etc */
+  },
 };
 static const unsigned game__pbbbspost__field_indices_by_name[] = {
   2,   /* field[2] = appId */
@@ -910,6 +974,8 @@ static const unsigned game__pbbbspost__field_indices_by_name[] = {
   6,   /* field[6] = createDate */
   8,   /* field[8] = createUser */
   3,   /* field[3] = deviceType */
+  14,   /* field[14] = isPrivate */
+  13,   /* field[13] = marked */
   7,   /* field[7] = modifyDate */
   0,   /* field[0] = postId */
   4,   /* field[4] = replyCount */
@@ -920,7 +986,7 @@ static const unsigned game__pbbbspost__field_indices_by_name[] = {
 static const ProtobufCIntRange game__pbbbspost__number_ranges[1 + 1] =
 {
   { 1, 0 },
-  { 0, 13 }
+  { 0, 15 }
 };
 const ProtobufCMessageDescriptor game__pbbbspost__descriptor =
 {
@@ -930,7 +996,7 @@ const ProtobufCMessageDescriptor game__pbbbspost__descriptor =
   "Game__PBBBSPost",
   "game",
   sizeof(Game__PBBBSPost),
-  13,
+  15,
   game__pbbbspost__field_descriptors,
   game__pbbbspost__field_indices_by_name,
   1,  game__pbbbspost__number_ranges,
@@ -1234,7 +1300,7 @@ const ProtobufCMessageDescriptor game__pbbbsaction__descriptor =
   (ProtobufCMessageInit) game__pbbbsaction__init,
   NULL,NULL,NULL    /* reserved[123] */
 };
-static const ProtobufCFieldDescriptor game__pbbbsboard__field_descriptors[10] =
+static const ProtobufCFieldDescriptor game__pbbbsboard__field_descriptors[11] =
 {
   {
     "boardId",
@@ -1356,6 +1422,18 @@ static const ProtobufCFieldDescriptor game__pbbbsboard__field_descriptors[10] =
     0,            /* packed */
     0,NULL,NULL    /* reserved1,reserved2, etc */
   },
+  {
+    "index",
+    11,
+    PROTOBUF_C_LABEL_OPTIONAL,
+    PROTOBUF_C_TYPE_INT32,
+    PROTOBUF_C_OFFSETOF(Game__PBBBSBoard, has_index),
+    PROTOBUF_C_OFFSETOF(Game__PBBBSBoard, index),
+    NULL,
+    NULL,
+    0,            /* packed */
+    0,NULL,NULL    /* reserved1,reserved2, etc */
+  },
 };
 static const unsigned game__pbbbsboard__field_indices_by_name[] = {
   4,   /* field[4] = actionCount */
@@ -1363,6 +1441,7 @@ static const unsigned game__pbbbsboard__field_indices_by_name[] = {
   0,   /* field[0] = boardId */
   8,   /* field[8] = desc */
   3,   /* field[3] = icon */
+  10,   /* field[10] = index */
   7,   /* field[7] = lastPost */
   2,   /* field[2] = name */
   6,   /* field[6] = parentBoardId */
@@ -1372,7 +1451,7 @@ static const unsigned game__pbbbsboard__field_indices_by_name[] = {
 static const ProtobufCIntRange game__pbbbsboard__number_ranges[1 + 1] =
 {
   { 1, 0 },
-  { 0, 10 }
+  { 0, 11 }
 };
 const ProtobufCMessageDescriptor game__pbbbsboard__descriptor =
 {
@@ -1382,7 +1461,7 @@ const ProtobufCMessageDescriptor game__pbbbsboard__descriptor =
   "Game__PBBBSBoard",
   "game",
   sizeof(Game__PBBBSBoard),
-  10,
+  11,
   game__pbbbsboard__field_descriptors,
   game__pbbbsboard__field_indices_by_name,
   1,  game__pbbbsboard__number_ranges,

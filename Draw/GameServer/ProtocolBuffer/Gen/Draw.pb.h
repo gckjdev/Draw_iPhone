@@ -215,31 +215,37 @@
 
 @interface PBDraw : PBGeneratedMessage {
 @private
-  BOOL hasGender_:1;
   BOOL hasIsCompressed_:1;
+  BOOL hasGender_:1;
+  BOOL hasStrokes_:1;
+  BOOL hasCompleteDate_:1;
+  BOOL hasSpendTime_:1;
   BOOL hasLevel_:1;
   BOOL hasLanguage_:1;
   BOOL hasCreateDate_:1;
   BOOL hasVersion_:1;
   BOOL hasScore_:1;
-  BOOL hasUserId_:1;
-  BOOL hasWord_:1;
-  BOOL hasNickName_:1;
-  BOOL hasAvatar_:1;
   BOOL hasOpusId_:1;
+  BOOL hasAvatar_:1;
+  BOOL hasNickName_:1;
+  BOOL hasWord_:1;
+  BOOL hasUserId_:1;
   BOOL hasCanvasSize_:1;
-  BOOL gender_:1;
   BOOL isCompressed_:1;
+  BOOL gender_:1;
+  int64_t strokes;
+  int32_t completeDate;
+  int32_t spendTime;
   int32_t level;
   int32_t language;
   int32_t createDate;
   int32_t version;
   int32_t score;
-  NSString* userId;
-  NSString* word;
-  NSString* nickName;
-  NSString* avatar;
   NSString* opusId;
+  NSString* avatar;
+  NSString* nickName;
+  NSString* word;
+  NSString* userId;
   PBSize* canvasSize;
   NSMutableArray* mutableDrawDataList;
   NSMutableArray* mutableLayerList;
@@ -257,6 +263,9 @@
 - (BOOL) hasScore;
 - (BOOL) hasIsCompressed;
 - (BOOL) hasCanvasSize;
+- (BOOL) hasStrokes;
+- (BOOL) hasSpendTime;
+- (BOOL) hasCompleteDate;
 @property (readonly, retain) NSString* userId;
 @property (readonly, retain) NSString* word;
 @property (readonly) int32_t level;
@@ -270,6 +279,9 @@
 @property (readonly) int32_t score;
 - (BOOL) isCompressed;
 @property (readonly, retain) PBSize* canvasSize;
+@property (readonly) int64_t strokes;
+@property (readonly) int32_t spendTime;
+@property (readonly) int32_t completeDate;
 - (NSArray*) drawDataList;
 - (PBDrawAction*) drawDataAtIndex:(int32_t) index;
 - (NSArray*) layerList;
@@ -389,6 +401,21 @@
 - (PBDraw_Builder*) addLayer:(PBLayer*) value;
 - (PBDraw_Builder*) addAllLayer:(NSArray*) values;
 - (PBDraw_Builder*) clearLayerList;
+
+- (BOOL) hasStrokes;
+- (int64_t) strokes;
+- (PBDraw_Builder*) setStrokes:(int64_t) value;
+- (PBDraw_Builder*) clearStrokes;
+
+- (BOOL) hasSpendTime;
+- (int32_t) spendTime;
+- (PBDraw_Builder*) setSpendTime:(int32_t) value;
+- (PBDraw_Builder*) clearSpendTime;
+
+- (BOOL) hasCompleteDate;
+- (int32_t) completeDate;
+- (PBDraw_Builder*) setCompleteDate:(int32_t) value;
+- (PBDraw_Builder*) clearCompleteDate;
 @end
 
 @interface PBFeedTimes : PBGeneratedMessage {
@@ -709,12 +736,11 @@
   BOOL hasOpusCreatorGender_:1;
   BOOL hasContestScore_:1;
   BOOL hasHistoryScore_:1;
-  BOOL hasStrokes_:1;
   BOOL hasOpusStatus_:1;
-  BOOL hasMatchTimes_:1;
   BOOL hasScore_:1;
-  BOOL hasCorrectTimes_:1;
+  BOOL hasMatchTimes_:1;
   BOOL hasSpendTime_:1;
+  BOOL hasCorrectTimes_:1;
   BOOL hasGuessTimes_:1;
   BOOL hasCommentTimes_:1;
   BOOL hasVip_:1;
@@ -724,43 +750,42 @@
   BOOL hasRankInTop_:1;
   BOOL hasOpusCreatorAvatar_:1;
   BOOL hasOpusCreatorNickName_:1;
-  BOOL hasOpusWord_:1;
   BOOL hasOpusCreatorUserId_:1;
+  BOOL hasOpusWord_:1;
   BOOL hasOpusImage_:1;
   BOOL hasOpusThumbImage_:1;
   BOOL hasDataUrl_:1;
   BOOL hasContestId_:1;
-  BOOL hasFeedId_:1;
-  BOOL hasUserId_:1;
-  BOOL hasDeviceName_:1;
-  BOOL hasGameId_:1;
-  BOOL hasNickName_:1;
-  BOOL hasAvatar_:1;
-  BOOL hasSignature_:1;
-  BOOL hasTargetUserId_:1;
-  BOOL hasTargetUserNickName_:1;
-  BOOL hasOpusDesc_:1;
   BOOL hasComment_:1;
-  BOOL hasDrawDataUrl_:1;
+  BOOL hasFeedId_:1;
   BOOL hasOpusId_:1;
-  BOOL hasDrawData_:1;
-  BOOL hasCanvasSize_:1;
-  BOOL hasDescLabelInfo_:1;
-  BOOL hasSing_:1;
-  BOOL hasCommentInfo_:1;
+  BOOL hasUserId_:1;
+  BOOL hasDrawDataUrl_:1;
+  BOOL hasOpusDesc_:1;
+  BOOL hasDeviceName_:1;
+  BOOL hasTargetUserNickName_:1;
+  BOOL hasTargetUserId_:1;
+  BOOL hasGameId_:1;
+  BOOL hasSignature_:1;
+  BOOL hasAvatar_:1;
+  BOOL hasNickName_:1;
   BOOL hasLearnDraw_:1;
+  BOOL hasDrawData_:1;
+  BOOL hasSing_:1;
+  BOOL hasDescLabelInfo_:1;
+  BOOL hasCommentInfo_:1;
+  BOOL hasCanvasSize_:1;
   BOOL hasCategory_:1;
   BOOL isCorrect_:1;
   BOOL gender_:1;
   BOOL opusCreatorGender_:1;
   Float64 contestScore;
   Float64 historyScore;
-  int64_t strokes;
   int32_t opusStatus;
-  int32_t matchTimes;
   int32_t score;
-  int32_t correctTimes;
+  int32_t matchTimes;
   int32_t spendTime;
+  int32_t correctTimes;
   int32_t guessTimes;
   int32_t commentTimes;
   int32_t vip;
@@ -770,34 +795,34 @@
   int32_t rankInTop;
   NSString* opusCreatorAvatar;
   NSString* opusCreatorNickName;
-  NSString* opusWord;
   NSString* opusCreatorUserId;
+  NSString* opusWord;
   NSString* opusImage;
   NSString* opusThumbImage;
   NSString* dataUrl;
   NSString* contestId;
-  NSString* feedId;
-  NSString* userId;
-  NSString* deviceName;
-  NSString* gameId;
-  NSString* nickName;
-  NSString* avatar;
-  NSString* signature;
-  NSString* targetUserId;
-  NSString* targetUserNickName;
-  NSString* opusDesc;
   NSString* comment;
-  NSString* drawDataUrl;
+  NSString* feedId;
   NSString* opusId;
-  PBDraw* drawData;
-  PBSize* canvasSize;
-  PBLabelInfo* descLabelInfo;
-  PBSingOpus* sing;
-  PBCommentInfo* commentInfo;
+  NSString* userId;
+  NSString* drawDataUrl;
+  NSString* opusDesc;
+  NSString* deviceName;
+  NSString* targetUserNickName;
+  NSString* targetUserId;
+  NSString* gameId;
+  NSString* signature;
+  NSString* avatar;
+  NSString* nickName;
   PBLearnDraw* learnDraw;
+  PBDraw* drawData;
+  PBSingOpus* sing;
+  PBLabelInfo* descLabelInfo;
+  PBCommentInfo* commentInfo;
+  PBSize* canvasSize;
   PBOpusCategoryType category;
-  NSMutableArray* mutableGuessWordsList;
   NSMutableArray* mutableTagsList;
+  NSMutableArray* mutableGuessWordsList;
   NSMutableArray* mutableRankInfoList;
   NSMutableArray* mutableFeedTimesList;
   NSMutableArray* mutableClassList;
@@ -847,7 +872,6 @@
 - (BOOL) hasSing;
 - (BOOL) hasDescLabelInfo;
 - (BOOL) hasCanvasSize;
-- (BOOL) hasStrokes;
 @property (readonly, retain) NSString* feedId;
 @property (readonly, retain) NSString* userId;
 @property (readonly) int32_t actionType;
@@ -893,7 +917,6 @@
 @property (readonly, retain) PBSingOpus* sing;
 @property (readonly, retain) PBLabelInfo* descLabelInfo;
 @property (readonly, retain) PBSize* canvasSize;
-@property (readonly) int64_t strokes;
 - (NSArray*) tagsList;
 - (NSString*) tagsAtIndex:(int32_t) index;
 - (NSArray*) guessWordsList;
@@ -1203,11 +1226,6 @@
 - (PBFeed_Builder*) setCanvasSizeBuilder:(PBSize_Builder*) builderForValue;
 - (PBFeed_Builder*) mergeCanvasSize:(PBSize*) value;
 - (PBFeed_Builder*) clearCanvasSize;
-
-- (BOOL) hasStrokes;
-- (int64_t) strokes;
-- (PBFeed_Builder*) setStrokes:(int64_t) value;
-- (PBFeed_Builder*) clearStrokes;
 
 - (NSArray*) classList;
 - (PBClass*) classAtIndex:(int32_t) index;
@@ -1533,12 +1551,18 @@
 
 @interface PBNoCompressDrawData : PBGeneratedMessage {
 @private
+  BOOL hasStrokes_:1;
   BOOL hasVersion_:1;
+  BOOL hasSpendTime_:1;
+  BOOL hasCompleteDate_:1;
   BOOL hasOpusDesc_:1;
   BOOL hasBgImageName_:1;
   BOOL hasCanvasSize_:1;
   BOOL hasDrawToUser_:1;
+  int64_t strokes;
   int32_t version;
+  int32_t spendTime;
+  int32_t completeDate;
   NSString* opusDesc;
   NSString* bgImageName;
   PBSize* canvasSize;
@@ -1552,11 +1576,17 @@
 - (BOOL) hasDrawToUser;
 - (BOOL) hasOpusDesc;
 - (BOOL) hasBgImageName;
+- (BOOL) hasStrokes;
+- (BOOL) hasSpendTime;
+- (BOOL) hasCompleteDate;
 @property (readonly) int32_t version;
 @property (readonly, retain) PBSize* canvasSize;
 @property (readonly, retain) PBUserBasicInfo* drawToUser;
 @property (readonly, retain) NSString* opusDesc;
 @property (readonly, retain) NSString* bgImageName;
+@property (readonly) int64_t strokes;
+@property (readonly) int32_t spendTime;
+@property (readonly) int32_t completeDate;
 - (NSArray*) drawActionListList;
 - (PBNoCompressDrawAction*) drawActionListAtIndex:(int32_t) index;
 - (NSArray*) drawActionList2List;
@@ -1647,6 +1677,21 @@
 - (PBNoCompressDrawData_Builder*) addLayer:(PBLayer*) value;
 - (PBNoCompressDrawData_Builder*) addAllLayer:(NSArray*) values;
 - (PBNoCompressDrawData_Builder*) clearLayerList;
+
+- (BOOL) hasStrokes;
+- (int64_t) strokes;
+- (PBNoCompressDrawData_Builder*) setStrokes:(int64_t) value;
+- (PBNoCompressDrawData_Builder*) clearStrokes;
+
+- (BOOL) hasSpendTime;
+- (int32_t) spendTime;
+- (PBNoCompressDrawData_Builder*) setSpendTime:(int32_t) value;
+- (PBNoCompressDrawData_Builder*) clearSpendTime;
+
+- (BOOL) hasCompleteDate;
+- (int32_t) completeDate;
+- (PBNoCompressDrawData_Builder*) setCompleteDate:(int32_t) value;
+- (PBNoCompressDrawData_Builder*) clearCompleteDate;
 @end
 
 @interface PBDrawBgGroup : PBGeneratedMessage {

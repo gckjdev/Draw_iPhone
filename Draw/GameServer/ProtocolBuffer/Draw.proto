@@ -35,9 +35,13 @@ message PBDraw {
 
   optional bool isCompressed = 19[default=true];    // is draw data points compressed, default is TRUE (old data)
 
-  optional PBSize canvasSize = 21;                        // draw rect size
+  optional PBSize canvasSize = 21;                  // draw rect size
   repeated PBLayer layer = 22;
-  
+
+  optional int64 strokes = 23;                      // 画画的笔画数目
+  optional int32 spendTime = 24;                    // 制作耗时（秒）
+  optional int32 completeDate = 25;                 // 制作完成时间
+
 }
 
 message PBFeedTimes{
@@ -150,8 +154,7 @@ message PBFeed {
 
   optional PBLabelInfo descLabelInfo = 200;
   optional PBSize canvasSize = 201;
-  optional int64 strokes = 202;                 // 画画的笔画数目
-  
+
   // for class info
   repeated PBClass class = 210;                 // 分类信息，一个作品可以属于一个或者多个分类
 
@@ -228,6 +231,11 @@ message PBNoCompressDrawData
     optional string bgImageName = 8;
 
     repeated PBLayer layer = 9; // used after version 7.0
+    
+    optional int64 strokes = 31;                      // 画画的笔画数目
+    optional int32 spendTime = 32;                    // 制作耗时（秒）
+    optional int32 completeDate = 33;                 // 制作完成时间
+
 }
 
 

@@ -3,7 +3,7 @@
 #ifndef PROTOBUF_C_GameConstants_2eproto__INCLUDED
 #define PROTOBUF_C_GameConstants_2eproto__INCLUDED
 
-#include "google/protobuf-c/protobuf-c.h"
+#include <google/protobuf-c/protobuf-c.h>
 
 PROTOBUF_C_BEGIN_DECLS
 
@@ -200,6 +200,11 @@ typedef enum _Game__PBContestStatus {
   GAME__PBCONTEST_STATUS__Passed = 3,
   GAME__PBCONTEST_STATUS__Deleted = 4
 } Game__PBContestStatus;
+typedef enum _Game__PBOpusCategoryType {
+  GAME__PBOPUS_CATEGORY_TYPE__DRAW_CATEGORY = 0,
+  GAME__PBOPUS_CATEGORY_TYPE__SING_CATEGORY = 1,
+  GAME__PBOPUS_CATEGORY_TYPE__ASK_PS_CATEGORY = 2
+} Game__PBOpusCategoryType;
 
 /* --- messages --- */
 
@@ -220,6 +225,7 @@ extern const ProtobufCEnumDescriptor    game__pbword_type__descriptor;
 extern const ProtobufCEnumDescriptor    game__pbwall_type__descriptor;
 extern const ProtobufCEnumDescriptor    game__pbmessage_type__descriptor;
 extern const ProtobufCEnumDescriptor    game__pbcontest_status__descriptor;
+extern const ProtobufCEnumDescriptor    game__pbopus_category_type__descriptor;
 
 PROTOBUF_C_END_DECLS
 

@@ -25,6 +25,7 @@ typedef enum {
 - (id)initWithTime:(int)time;
 - (void)start;
 - (void)pause;
+- (void)resume;
 - (void)stop;
 
 @end

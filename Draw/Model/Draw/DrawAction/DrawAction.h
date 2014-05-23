@@ -15,6 +15,7 @@
 @class PBMessage;
 @class Word;
 @class ClipAction;
+@class MyPaint;
 //@class Shadow;
 
 typedef enum {
@@ -66,7 +67,10 @@ typedef enum {
                                            opusDesc:(NSString *)opusDesc
                                          drawToUser:(PBUserBasicInfo *)drawToUser
                                     bgImageFileName:(NSString *)bgImageFileName
-                                             layers:(NSArray *)layers;
+                                             layers:(NSArray *)layers
+                                            strokes:(int64_t *)strokes
+                                          spendTime:(int)spendTime
+                                       completeDate:(int)completeDate;
 
 //info for more attributes
 + (NSData*)buildPBDrawData:(NSString*)userId
@@ -78,7 +82,7 @@ typedef enum {
                       size:(CGSize)size
               isCompressed:(BOOL)isCompressed
                     layers:(NSArray *)layers
-                    info:(NSDictionary *)info;
+                     draft:(MyPaint *)draft;
 
 
 + (void)freePBDrawActionC:(Game__PBDrawAction**)pbDrawActionC count:(int)count;

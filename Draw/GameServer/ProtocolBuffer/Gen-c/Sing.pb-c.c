@@ -311,7 +311,7 @@ const ProtobufCMessageDescriptor game__pbsong_category_list__descriptor =
   (ProtobufCMessageInit) game__pbsong_category_list__init,
   NULL,NULL,NULL    /* reserved[123] */
 };
-static const ProtobufCFieldDescriptor game__pbsong__field_descriptors[5] =
+static const ProtobufCFieldDescriptor game__pbsong__field_descriptors[6] =
 {
   {
     "songId",
@@ -362,6 +362,18 @@ static const ProtobufCFieldDescriptor game__pbsong__field_descriptors[5] =
     0,NULL,NULL    /* reserved1,reserved2, etc */
   },
   {
+    "lyricUrl",
+    5,
+    PROTOBUF_C_LABEL_OPTIONAL,
+    PROTOBUF_C_TYPE_STRING,
+    0,   /* quantifier_offset */
+    PROTOBUF_C_OFFSETOF(Game__PBSong, lyricurl),
+    NULL,
+    NULL,
+    0,            /* packed */
+    0,NULL,NULL    /* reserved1,reserved2, etc */
+  },
+  {
     "tag",
     20,
     PROTOBUF_C_LABEL_REPEATED,
@@ -377,15 +389,16 @@ static const ProtobufCFieldDescriptor game__pbsong__field_descriptors[5] =
 static const unsigned game__pbsong__field_indices_by_name[] = {
   2,   /* field[2] = author */
   3,   /* field[3] = lyric */
+  4,   /* field[4] = lyricUrl */
   1,   /* field[1] = name */
   0,   /* field[0] = songId */
-  4,   /* field[4] = tag */
+  5,   /* field[5] = tag */
 };
 static const ProtobufCIntRange game__pbsong__number_ranges[2 + 1] =
 {
   { 1, 0 },
-  { 20, 4 },
-  { 0, 5 }
+  { 20, 5 },
+  { 0, 6 }
 };
 const ProtobufCMessageDescriptor game__pbsong__descriptor =
 {
@@ -395,7 +408,7 @@ const ProtobufCMessageDescriptor game__pbsong__descriptor =
   "Game__PBSong",
   "game",
   sizeof(Game__PBSong),
-  5,
+  6,
   game__pbsong__field_descriptors,
   game__pbsong__field_indices_by_name,
   2,  game__pbsong__number_ranges,
@@ -443,7 +456,7 @@ const ProtobufCMessageDescriptor game__pbsong_list__descriptor =
 static const float game__pbsing_opus__duration__default_value = 1;
 static const float game__pbsing_opus__pitch__default_value = 1;
 static const float game__pbsing_opus__formant__default_value = 1;
-static const ProtobufCFieldDescriptor game__pbsing_opus__field_descriptors[6] =
+static const ProtobufCFieldDescriptor game__pbsing_opus__field_descriptors[7] =
 {
   {
     "song",
@@ -506,6 +519,18 @@ static const ProtobufCFieldDescriptor game__pbsing_opus__field_descriptors[6] =
     0,NULL,NULL    /* reserved1,reserved2, etc */
   },
   {
+    "voiceDuration",
+    20,
+    PROTOBUF_C_LABEL_OPTIONAL,
+    PROTOBUF_C_TYPE_FLOAT,
+    PROTOBUF_C_OFFSETOF(Game__PBSingOpus, has_voiceduration),
+    PROTOBUF_C_OFFSETOF(Game__PBSingOpus, voiceduration),
+    NULL,
+    NULL,
+    0,            /* packed */
+    0,NULL,NULL    /* reserved1,reserved2, etc */
+  },
+  {
     "localNativeDataURL",
     100,
     PROTOBUF_C_LABEL_OPTIONAL,
@@ -521,16 +546,18 @@ static const ProtobufCFieldDescriptor game__pbsing_opus__field_descriptors[6] =
 static const unsigned game__pbsing_opus__field_indices_by_name[] = {
   2,   /* field[2] = duration */
   4,   /* field[4] = formant */
-  5,   /* field[5] = localNativeDataURL */
+  6,   /* field[6] = localNativeDataURL */
   3,   /* field[3] = pitch */
   0,   /* field[0] = song */
+  5,   /* field[5] = voiceDuration */
   1,   /* field[1] = voiceType */
 };
-static const ProtobufCIntRange game__pbsing_opus__number_ranges[2 + 1] =
+static const ProtobufCIntRange game__pbsing_opus__number_ranges[3 + 1] =
 {
   { 1, 0 },
-  { 100, 5 },
-  { 0, 6 }
+  { 20, 5 },
+  { 100, 6 },
+  { 0, 7 }
 };
 const ProtobufCMessageDescriptor game__pbsing_opus__descriptor =
 {
@@ -540,10 +567,10 @@ const ProtobufCMessageDescriptor game__pbsing_opus__descriptor =
   "Game__PBSingOpus",
   "game",
   sizeof(Game__PBSingOpus),
-  6,
+  7,
   game__pbsing_opus__field_descriptors,
   game__pbsing_opus__field_indices_by_name,
-  2,  game__pbsing_opus__number_ranges,
+  3,  game__pbsing_opus__number_ranges,
   (ProtobufCMessageInit) game__pbsing_opus__init,
   NULL,NULL,NULL    /* reserved[123] */
 };
@@ -551,20 +578,20 @@ const ProtobufCEnumValue game__pbvoice_type__enum_values_by_number[6] =
 {
   { "VoiceTypeOrigin", "GAME__PBVOICE_TYPE__VOICETYPEORIGIN", 0 },
   { "VoiceTypeTomCat", "GAME__PBVOICE_TYPE__VOICETYPETOMCAT", 1 },
-  { "VoiceTypeDuck", "GAME__PBVOICE_TYPE__VOICETYPEDUCK", 2 },
-  { "VoiceTypeMale", "GAME__PBVOICE_TYPE__VOICETYPEMALE", 3 },
-  { "VoiceTypeChild", "GAME__PBVOICE_TYPE__VOICETYPECHILD", 4 },
-  { "VoiceTypeFemale", "GAME__PBVOICE_TYPE__VOICETYPEFEMALE", 5 },
+  { "VoiceTypeMale", "GAME__PBVOICE_TYPE__VOICETYPEMALE", 2 },
+  { "VoiceTypeFemale", "GAME__PBVOICE_TYPE__VOICETYPEFEMALE", 3 },
+  { "VoiceTypeDuck", "GAME__PBVOICE_TYPE__VOICETYPEDUCK", 4 },
+  { "VoiceTypeChild", "GAME__PBVOICE_TYPE__VOICETYPECHILD", 5 },
 };
 static const ProtobufCIntRange game__pbvoice_type__value_ranges[] = {
 {0, 0},{0, 6}
 };
 const ProtobufCEnumValueIndex game__pbvoice_type__enum_values_by_name[6] =
 {
-  { "VoiceTypeChild", 4 },
-  { "VoiceTypeDuck", 2 },
-  { "VoiceTypeFemale", 5 },
-  { "VoiceTypeMale", 3 },
+  { "VoiceTypeChild", 5 },
+  { "VoiceTypeDuck", 4 },
+  { "VoiceTypeFemale", 3 },
+  { "VoiceTypeMale", 2 },
   { "VoiceTypeOrigin", 0 },
   { "VoiceTypeTomCat", 1 },
 };

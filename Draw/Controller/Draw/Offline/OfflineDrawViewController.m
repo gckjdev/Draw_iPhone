@@ -70,6 +70,8 @@
 #import "TaskManager.h"
 #import "BBSActionSheet.h"
 
+#import "OpusDesignTime.h"
+
 @interface OfflineDrawViewController()
 {
     DrawView *drawView;
@@ -220,6 +222,7 @@
 //    PPRelease(_copyPaintImage);
     PPRelease(_layerPanelPopView);
     PPRelease(_upPanelPopView);
+    PPRelease(_designTime);
     [_upPanelButton release];
     [_titleView release];
     [_layerButton release];
@@ -355,6 +358,11 @@
     DrawHolderView *holder = [DrawHolderView defaultDrawHolderViewWithContentView:drawView];
     [self.view insertSubview:holder aboveSubview:self.draftButton];
     PPDebug(@"DrawView Rect = %@",NSStringFromCGRect(drawView.frame));
+    
+    // set opus design time, the value is store in PBDraw data so need to get it after drawActionList is read
+    int initTime = (self.draft == nil) ? 0 : self.draft.spendTime;
+    self.designTime = [[OpusDesignTime alloc] initWithTime:initTime];
+    [self.designTime start];
 }
 
 - (void)initWordLabel
@@ -444,6 +452,8 @@
     drs.drawActionList = drawView.drawActionList;
     drs.targetUid = self.targetUid;
     drs.desc = self.opusDesc;
+    drs.word = self.word;
+    drs.bgImage = self.bgImage;
     drs.layers = [[[drawView layers] mutableCopy] autorelease];
 }
 
@@ -453,15 +463,27 @@
         return;
     
     DrawRecoveryService *drs = [DrawRecoveryService defaultService];
-    drs.userId = [[UserManager defaultManager] userId];
-    drs.nickName = [[UserManager defaultManager] nickName];
-    drs.contestId = self.contest.contestId;
-    drs.word = self.word;
-    drs.language = languageType;
-    drs.bgImageName = [NSString stringWithFormat:@"%@.png", [NSString GetUUID]];
-    drs.bgImage = self.bgImage;
-    [self updateDrawRecoveryService];    
-    [drs start];
+//    drs.userId = [[UserManager defaultManager] userId];
+//    drs.nickName = [[UserManager defaultManager] nickName];
+//    drs.contestId = self.contest.contestId;
+//    drs.word = self.word;
+//    drs.language = languageType;
+//    drs.bgImageName = [NSString stringWithFormat:@"%@.png", [NSString GetUUID]];
+//    drs.bgImage = self.bgImage;
+//    [self updateDrawRecoveryService];    
+
+    [drs start:drawView.drawActionList
+     targetUid:self.targetUid
+          word:self.word
+          desc:self.opusDesc
+    canvasSize:drawView.bounds.size
+   bgImageName:[NSString stringWithFormat:@"%@.png", [NSString GetUUID]]
+       bgImage:self.bgImage
+     contestId:self.contest.contestId
+       strokes:self.draft.strokes
+     spendTime:self.draft.spendTime
+  completeDate:time(0)
+        layers:[drawView layers]];
 }
 
 - (void)stopRecovery
@@ -480,7 +502,18 @@
     
     [self updateDrawRecoveryService];
     if ([[DrawRecoveryService defaultService] needBackup]) {
-        [[DrawRecoveryService defaultService] backup];
+        [[DrawRecoveryService defaultService] backup:drawView.drawActionList
+                                           targetUid:self.targetUid
+                                                word:self.word
+                                                desc:self.opusDesc
+                                          canvasSize:drawView.bounds.size
+                                         bgImageName:nil
+                                             bgImage:self.bgImage
+                                           contestId:self.contest.contestId
+                                             strokes:self.draft.strokes
+                                           spendTime:self.draft.spendTime
+                                        completeDate:time(0)
+                                              layers:[drawView layers]];
     }
 }
 
@@ -554,7 +587,9 @@
     [UIApplication sharedApplication].idleTimerDisabled = YES; // disable lock screen while in drawing
     
     [super viewDidLoad];
+    [self registerUIApplicationNotification];
 
+    // set default draw word
     if ([self.word.text length] == 0) {
         self.word = [Word cusWordWithText:[PPConfigManager defaultDrawWord]];   //@""]; // NSLS(@"kDefaultDrawWord")];
     }
@@ -616,6 +651,16 @@
     [self startBackupTimer];
 }
 
+- (void)registerUIApplicationNotification
+{
+    [self registerNotificationWithName:UIApplicationDidEnterBackgroundNotification usingBlock:^(NSNotification *note) {
+        [self.designTime pause];
+    }];
+    
+    [self registerNotificationWithName:UIApplicationWillEnterForegroundNotification usingBlock:^(NSNotification *note) {
+        [self.designTime resume];
+    }];
+}
 
 
 #define ESCAPE_DEDUT_COIN 1
@@ -747,8 +792,21 @@
         return;
     }
     
-    [[DrawRecoveryService defaultService] handleNewPaintDrawed:view.drawActionList];
+//    [[DrawRecoveryService defaultService] handleNewPaintDrawed:view.drawActionList];
 
+    [[DrawRecoveryService defaultService] handleNewPaintDrawed:view.drawActionList
+                                                   targetUid:self.targetUid
+                                                        word:self.word
+                                                        desc:self.opusDesc
+                                                  canvasSize:drawView.bounds.size
+                                                 bgImageName:nil
+                                                     bgImage:self.bgImage
+                                                   contestId:self.contest.contestId
+                                                     strokes:self.draft.strokes
+                                                   spendTime:self.draft.spendTime
+                                                completeDate:time(0)
+                                                      layers:[drawView layers]];
+    
     return;
 }
 
@@ -861,7 +919,7 @@
                                           size:drawView.bounds.size
                                   isCompressed:NO
                                         layers:[[drawView.layers mutableCopy] autorelease]
-                                          info:nil];
+                                          draft:self.draft];
 
     PBDraw *pbDraw = [PBDraw parseFromData:data];
     data = nil;
@@ -875,13 +933,21 @@
 - (NSData *)newDrawDataSnapshot
 {
     NSArray* copyLayers = [drawView.layers mutableCopy];
+    int64_t strokes = 0;
     NSData* data = [DrawAction pbNoCompressDrawDataCFromDrawActionList:drawView.drawActionList
                                                                   size:drawView.bounds.size
                                                               opusDesc:self.opusDesc
                                                             drawToUser:nil
                                                        bgImageFileName:_bgImageName
-                                                                layers:copyLayers];
+                                                                layers:copyLayers
+                                                               strokes:&strokes
+                                                             spendTime:_designTime.totalTime
+                                                          completeDate:time(0)];
     [copyLayers release];
+    
+    // set stroke in draft for usage
+    _totalStroke = strokes;
+    
     return data;
 }
 
@@ -922,6 +988,9 @@
     UIImage *image = [drawView createImage];
     
     BOOL result = NO;
+
+    // pause design calculation
+    [self.designTime pause];
     
     @try {
         MyPaintManager *pManager = [MyPaintManager defaultManager];
@@ -944,6 +1013,10 @@
                     [self.draft setDrawWord:self.word.text];
                 }
 
+                [self.draft setStrokes:_totalStroke];
+                [self.draft setSpendTime:_designTime.totalTime];
+                [self.draft setCompleteDate:time(0)];
+                
                 result = [pManager updateDraft:self.draft
                                          image:image
                                       drawData:data
@@ -973,6 +1046,11 @@
                 }else{
                     result = NO;
                 }
+
+                [self.draft setStrokes:_totalStroke];
+                [self.draft setSpendTime:_designTime.totalTime];
+                [self.draft setCompleteDate:time(0)];
+                
             }
                         
         }
@@ -989,6 +1067,9 @@
     @finally {
         
     }
+    
+    // restart calculation
+    [self.designTime resume];
     
     [subPool drain];        
 }
@@ -1153,10 +1234,10 @@
                                                language:languageType
                                               targetUid:self.targetUid
                                               contestId:contestId
-                                                   desc:text//@"元芳，你怎么看？"
+                                                   desc:text                    //@"元芳，你怎么看？"
                                                    size:drawView.bounds.size
                                                  layers:[[drawView.layers mutableCopy] autorelease]
-                                                   info:nil
+                                                  draft:self.draft
                                                delegate:self];
     
     if (self.submitOpusDrawData == nil){

@@ -3,7 +3,7 @@
 #ifndef PROTOBUF_C_BBS_2eproto__INCLUDED
 #define PROTOBUF_C_BBS_2eproto__INCLUDED
 
-#include "google/protobuf-c/protobuf-c.h"
+#include <google/protobuf-c/protobuf-c.h>
 
 PROTOBUF_C_BEGIN_DECLS
 
@@ -33,10 +33,12 @@ struct  _Game__PBBBSUser
   char *avatar;
   protobuf_c_boolean has_gender;
   protobuf_c_boolean gender;
+  protobuf_c_boolean has_vip;
+  int32_t vip;
 };
 #define GAME__PBBBSUSER__INIT \
  { PROTOBUF_C_MESSAGE_INIT (&game__pbbbsuser__descriptor) \
-    , NULL, NULL, NULL, 0,0 }
+    , NULL, NULL, NULL, 0,0, 0,0 }
 
 
 struct  _Game__PBBBSDraw
@@ -63,10 +65,13 @@ struct  _Game__PBBBSContent
   char *drawthumburl;
   char *drawimageurl;
   Game__PBBBSDraw *drawdata;
+  char *opusid;
+  protobuf_c_boolean has_opuscategory;
+  int32_t opuscategory;
 };
 #define GAME__PBBBSCONTENT__INIT \
  { PROTOBUF_C_MESSAGE_INIT (&game__pbbbscontent__descriptor) \
-    , 0, NULL, NULL, NULL, NULL, NULL, NULL }
+    , 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0,0 }
 
 
 struct  _Game__PBBBSReward
@@ -102,10 +107,14 @@ struct  _Game__PBBBSPost
   int32_t status;
   size_t n_boardadminlist;
   Game__PBBBSUser **boardadminlist;
+  protobuf_c_boolean has_marked;
+  protobuf_c_boolean marked;
+  protobuf_c_boolean has_isprivate;
+  protobuf_c_boolean isprivate;
 };
 #define GAME__PBBBSPOST__INIT \
  { PROTOBUF_C_MESSAGE_INIT (&game__pbbbspost__descriptor) \
-    , NULL, NULL, NULL, 0, 0, 0, 0, 0, NULL, NULL, NULL, 0,0, 0,NULL }
+    , NULL, NULL, NULL, 0, 0, 0, 0, 0, NULL, NULL, NULL, 0,0, 0,NULL, 0,0, 0,0 }
 
 
 struct  _Game__PBBBSPrivilege
@@ -168,10 +177,12 @@ struct  _Game__PBBBSBoard
   char *desc;
   size_t n_adminlist;
   Game__PBBBSUser **adminlist;
+  protobuf_c_boolean has_index;
+  int32_t index;
 };
 #define GAME__PBBBSBOARD__INIT \
  { PROTOBUF_C_MESSAGE_INIT (&game__pbbbsboard__descriptor) \
-    , NULL, 0, NULL, 0, 0, NULL, NULL, NULL, NULL, 0,NULL }
+    , NULL, 0, NULL, 0, 0, NULL, NULL, NULL, NULL, 0,NULL, 0,0 }
 
 
 /* Game__PBBBSUser methods */

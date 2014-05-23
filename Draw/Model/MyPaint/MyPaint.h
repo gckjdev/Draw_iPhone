@@ -49,6 +49,11 @@
 @property (nonatomic, retain) NSString *bgImageName;
 @property (nonatomic, retain) UIImage *bgImage;
 
+@property (nonatomic, assign) int spendTime;
+@property (nonatomic, assign) int64_t strokes;
+@property (nonatomic, assign) int completeDate;
+
+
 - (void)updateDrawData;
 
 @end

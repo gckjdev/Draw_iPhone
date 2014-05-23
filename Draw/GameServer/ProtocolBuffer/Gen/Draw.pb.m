@@ -355,6 +355,9 @@ static PBLayer* defaultPBLayerInstance = nil;
 @property BOOL isCompressed;
 @property (retain) PBSize* canvasSize;
 @property (retain) NSMutableArray* mutableLayerList;
+@property int64_t strokes;
+@property int32_t spendTime;
+@property int32_t completeDate;
 @end
 
 @implementation PBDraw
@@ -462,6 +465,27 @@ static PBLayer* defaultPBLayerInstance = nil;
 }
 @synthesize canvasSize;
 @synthesize mutableLayerList;
+- (BOOL) hasStrokes {
+  return !!hasStrokes_;
+}
+- (void) setHasStrokes:(BOOL) value {
+  hasStrokes_ = !!value;
+}
+@synthesize strokes;
+- (BOOL) hasSpendTime {
+  return !!hasSpendTime_;
+}
+- (void) setHasSpendTime:(BOOL) value {
+  hasSpendTime_ = !!value;
+}
+@synthesize spendTime;
+- (BOOL) hasCompleteDate {
+  return !!hasCompleteDate_;
+}
+- (void) setHasCompleteDate:(BOOL) value {
+  hasCompleteDate_ = !!value;
+}
+@synthesize completeDate;
 - (void) dealloc {
   self.userId = nil;
   self.word = nil;
@@ -488,6 +512,9 @@ static PBLayer* defaultPBLayerInstance = nil;
     self.score = 0;
     self.isCompressed = YES;
     self.canvasSize = [PBSize defaultInstance];
+    self.strokes = 0L;
+    self.spendTime = 0;
+    self.completeDate = 0;
   }
   return self;
 }
@@ -588,6 +615,15 @@ static PBDraw* defaultPBDrawInstance = nil;
   for (PBLayer* element in self.layerList) {
     [output writeMessage:22 value:element];
   }
+  if (self.hasStrokes) {
+    [output writeInt64:23 value:self.strokes];
+  }
+  if (self.hasSpendTime) {
+    [output writeInt32:24 value:self.spendTime];
+  }
+  if (self.hasCompleteDate) {
+    [output writeInt32:25 value:self.completeDate];
+  }
   [self.unknownFields writeToCodedOutputStream:output];
 }
 - (int32_t) serializedSize {
@@ -641,6 +677,15 @@ static PBDraw* defaultPBDrawInstance = nil;
   }
   for (PBLayer* element in self.layerList) {
     size += computeMessageSize(22, element);
+  }
+  if (self.hasStrokes) {
+    size += computeInt64Size(23, self.strokes);
+  }
+  if (self.hasSpendTime) {
+    size += computeInt32Size(24, self.spendTime);
+  }
+  if (self.hasCompleteDate) {
+    size += computeInt32Size(25, self.completeDate);
   }
   size += self.unknownFields.serializedSize;
   memoizedSerializedSize = size;
@@ -768,6 +813,15 @@ static PBDraw* defaultPBDrawInstance = nil;
     }
     [result.mutableLayerList addObjectsFromArray:other.mutableLayerList];
   }
+  if (other.hasStrokes) {
+    [self setStrokes:other.strokes];
+  }
+  if (other.hasSpendTime) {
+    [self setSpendTime:other.spendTime];
+  }
+  if (other.hasCompleteDate) {
+    [self setCompleteDate:other.completeDate];
+  }
   [self mergeUnknownFields:other.unknownFields];
   return self;
 }
@@ -856,6 +910,18 @@ static PBDraw* defaultPBDrawInstance = nil;
         PBLayer_Builder* subBuilder = [PBLayer builder];
         [input readMessage:subBuilder extensionRegistry:extensionRegistry];
         [self addLayer:[subBuilder buildPartial]];
+        break;
+      }
+      case 184: {
+        [self setStrokes:[input readInt64]];
+        break;
+      }
+      case 192: {
+        [self setSpendTime:[input readInt32]];
+        break;
+      }
+      case 200: {
+        [self setCompleteDate:[input readInt32]];
         break;
       }
     }
@@ -1139,6 +1205,54 @@ static PBDraw* defaultPBDrawInstance = nil;
     result.mutableLayerList = [NSMutableArray array];
   }
   [result.mutableLayerList addObject:value];
+  return self;
+}
+- (BOOL) hasStrokes {
+  return result.hasStrokes;
+}
+- (int64_t) strokes {
+  return result.strokes;
+}
+- (PBDraw_Builder*) setStrokes:(int64_t) value {
+  result.hasStrokes = YES;
+  result.strokes = value;
+  return self;
+}
+- (PBDraw_Builder*) clearStrokes {
+  result.hasStrokes = NO;
+  result.strokes = 0L;
+  return self;
+}
+- (BOOL) hasSpendTime {
+  return result.hasSpendTime;
+}
+- (int32_t) spendTime {
+  return result.spendTime;
+}
+- (PBDraw_Builder*) setSpendTime:(int32_t) value {
+  result.hasSpendTime = YES;
+  result.spendTime = value;
+  return self;
+}
+- (PBDraw_Builder*) clearSpendTime {
+  result.hasSpendTime = NO;
+  result.spendTime = 0;
+  return self;
+}
+- (BOOL) hasCompleteDate {
+  return result.hasCompleteDate;
+}
+- (int32_t) completeDate {
+  return result.completeDate;
+}
+- (PBDraw_Builder*) setCompleteDate:(int32_t) value {
+  result.hasCompleteDate = YES;
+  result.completeDate = value;
+  return self;
+}
+- (PBDraw_Builder*) clearCompleteDate {
+  result.hasCompleteDate = NO;
+  result.completeDate = 0;
   return self;
 }
 @end
@@ -2439,7 +2553,6 @@ static PBLabelInfo* defaultPBLabelInfoInstance = nil;
 @property (retain) PBSingOpus* sing;
 @property (retain) PBLabelInfo* descLabelInfo;
 @property (retain) PBSize* canvasSize;
-@property int64_t strokes;
 @property (retain) NSMutableArray* mutableClassList;
 @end
 
@@ -2779,13 +2892,6 @@ static PBLabelInfo* defaultPBLabelInfoInstance = nil;
   hasCanvasSize_ = !!value;
 }
 @synthesize canvasSize;
-- (BOOL) hasStrokes {
-  return !!hasStrokes_;
-}
-- (void) setHasStrokes:(BOOL) value {
-  hasStrokes_ = !!value;
-}
-@synthesize strokes;
 @synthesize mutableClassList;
 - (void) dealloc {
   self.feedId = nil;
@@ -2869,7 +2975,6 @@ static PBLabelInfo* defaultPBLabelInfoInstance = nil;
     self.sing = [PBSingOpus defaultInstance];
     self.descLabelInfo = [PBLabelInfo defaultInstance];
     self.canvasSize = [PBSize defaultInstance];
-    self.strokes = 0L;
   }
   return self;
 }
@@ -3118,9 +3223,6 @@ static PBFeed* defaultPBFeedInstance = nil;
   if (self.hasCanvasSize) {
     [output writeMessage:201 value:self.canvasSize];
   }
-  if (self.hasStrokes) {
-    [output writeInt64:202 value:self.strokes];
-  }
   for (PBClass* element in self.classList) {
     [output writeMessage:210 value:element];
   }
@@ -3289,9 +3391,6 @@ static PBFeed* defaultPBFeedInstance = nil;
   }
   if (self.hasCanvasSize) {
     size += computeMessageSize(201, self.canvasSize);
-  }
-  if (self.hasStrokes) {
-    size += computeInt64Size(202, self.strokes);
   }
   for (PBClass* element in self.classList) {
     size += computeMessageSize(210, element);
@@ -3529,9 +3628,6 @@ static PBFeed* defaultPBFeedInstance = nil;
   }
   if (other.hasCanvasSize) {
     [self mergeCanvasSize:other.canvasSize];
-  }
-  if (other.hasStrokes) {
-    [self setStrokes:other.strokes];
   }
   if (other.mutableClassList.count > 0) {
     if (result.mutableClassList == nil) {
@@ -3793,10 +3889,6 @@ static PBFeed* defaultPBFeedInstance = nil;
         }
         [input readMessage:subBuilder extensionRegistry:extensionRegistry];
         [self setCanvasSize:[subBuilder buildPartial]];
-        break;
-      }
-      case 1616: {
-        [self setStrokes:[input readInt64]];
         break;
       }
       case 1682: {
@@ -4730,22 +4822,6 @@ static PBFeed* defaultPBFeedInstance = nil;
 - (PBFeed_Builder*) clearCanvasSize {
   result.hasCanvasSize = NO;
   result.canvasSize = [PBSize defaultInstance];
-  return self;
-}
-- (BOOL) hasStrokes {
-  return result.hasStrokes;
-}
-- (int64_t) strokes {
-  return result.strokes;
-}
-- (PBFeed_Builder*) setStrokes:(int64_t) value {
-  result.hasStrokes = YES;
-  result.strokes = value;
-  return self;
-}
-- (PBFeed_Builder*) clearStrokes {
-  result.hasStrokes = NO;
-  result.strokes = 0L;
   return self;
 }
 - (NSArray*) classList {
@@ -6159,6 +6235,9 @@ static PBNoCompressDrawAction* defaultPBNoCompressDrawActionInstance = nil;
 @property (retain) NSString* opusDesc;
 @property (retain) NSString* bgImageName;
 @property (retain) NSMutableArray* mutableLayerList;
+@property int64_t strokes;
+@property int32_t spendTime;
+@property int32_t completeDate;
 @end
 
 @implementation PBNoCompressDrawData
@@ -6201,6 +6280,27 @@ static PBNoCompressDrawAction* defaultPBNoCompressDrawActionInstance = nil;
 }
 @synthesize bgImageName;
 @synthesize mutableLayerList;
+- (BOOL) hasStrokes {
+  return !!hasStrokes_;
+}
+- (void) setHasStrokes:(BOOL) value {
+  hasStrokes_ = !!value;
+}
+@synthesize strokes;
+- (BOOL) hasSpendTime {
+  return !!hasSpendTime_;
+}
+- (void) setHasSpendTime:(BOOL) value {
+  hasSpendTime_ = !!value;
+}
+@synthesize spendTime;
+- (BOOL) hasCompleteDate {
+  return !!hasCompleteDate_;
+}
+- (void) setHasCompleteDate:(BOOL) value {
+  hasCompleteDate_ = !!value;
+}
+@synthesize completeDate;
 - (void) dealloc {
   self.mutableDrawActionListList = nil;
   self.canvasSize = nil;
@@ -6218,6 +6318,9 @@ static PBNoCompressDrawAction* defaultPBNoCompressDrawActionInstance = nil;
     self.drawToUser = [PBUserBasicInfo defaultInstance];
     self.opusDesc = @"";
     self.bgImageName = @"";
+    self.strokes = 0L;
+    self.spendTime = 0;
+    self.completeDate = 0;
   }
   return self;
 }
@@ -6302,6 +6405,15 @@ static PBNoCompressDrawData* defaultPBNoCompressDrawDataInstance = nil;
   for (PBLayer* element in self.layerList) {
     [output writeMessage:9 value:element];
   }
+  if (self.hasStrokes) {
+    [output writeInt64:31 value:self.strokes];
+  }
+  if (self.hasSpendTime) {
+    [output writeInt32:32 value:self.spendTime];
+  }
+  if (self.hasCompleteDate) {
+    [output writeInt32:33 value:self.completeDate];
+  }
   [self.unknownFields writeToCodedOutputStream:output];
 }
 - (int32_t) serializedSize {
@@ -6334,6 +6446,15 @@ static PBNoCompressDrawData* defaultPBNoCompressDrawDataInstance = nil;
   }
   for (PBLayer* element in self.layerList) {
     size += computeMessageSize(9, element);
+  }
+  if (self.hasStrokes) {
+    size += computeInt64Size(31, self.strokes);
+  }
+  if (self.hasSpendTime) {
+    size += computeInt32Size(32, self.spendTime);
+  }
+  if (self.hasCompleteDate) {
+    size += computeInt32Size(33, self.completeDate);
   }
   size += self.unknownFields.serializedSize;
   memoizedSerializedSize = size;
@@ -6443,6 +6564,15 @@ static PBNoCompressDrawData* defaultPBNoCompressDrawDataInstance = nil;
     }
     [result.mutableLayerList addObjectsFromArray:other.mutableLayerList];
   }
+  if (other.hasStrokes) {
+    [self setStrokes:other.strokes];
+  }
+  if (other.hasSpendTime) {
+    [self setSpendTime:other.spendTime];
+  }
+  if (other.hasCompleteDate) {
+    [self setCompleteDate:other.completeDate];
+  }
   [self mergeUnknownFields:other.unknownFields];
   return self;
 }
@@ -6510,6 +6640,18 @@ static PBNoCompressDrawData* defaultPBNoCompressDrawDataInstance = nil;
         PBLayer_Builder* subBuilder = [PBLayer builder];
         [input readMessage:subBuilder extensionRegistry:extensionRegistry];
         [self addLayer:[subBuilder buildPartial]];
+        break;
+      }
+      case 248: {
+        [self setStrokes:[input readInt64]];
+        break;
+      }
+      case 256: {
+        [self setSpendTime:[input readInt32]];
+        break;
+      }
+      case 264: {
+        [self setCompleteDate:[input readInt32]];
         break;
       }
     }
@@ -6708,6 +6850,54 @@ static PBNoCompressDrawData* defaultPBNoCompressDrawDataInstance = nil;
     result.mutableLayerList = [NSMutableArray array];
   }
   [result.mutableLayerList addObject:value];
+  return self;
+}
+- (BOOL) hasStrokes {
+  return result.hasStrokes;
+}
+- (int64_t) strokes {
+  return result.strokes;
+}
+- (PBNoCompressDrawData_Builder*) setStrokes:(int64_t) value {
+  result.hasStrokes = YES;
+  result.strokes = value;
+  return self;
+}
+- (PBNoCompressDrawData_Builder*) clearStrokes {
+  result.hasStrokes = NO;
+  result.strokes = 0L;
+  return self;
+}
+- (BOOL) hasSpendTime {
+  return result.hasSpendTime;
+}
+- (int32_t) spendTime {
+  return result.spendTime;
+}
+- (PBNoCompressDrawData_Builder*) setSpendTime:(int32_t) value {
+  result.hasSpendTime = YES;
+  result.spendTime = value;
+  return self;
+}
+- (PBNoCompressDrawData_Builder*) clearSpendTime {
+  result.hasSpendTime = NO;
+  result.spendTime = 0;
+  return self;
+}
+- (BOOL) hasCompleteDate {
+  return result.hasCompleteDate;
+}
+- (int32_t) completeDate {
+  return result.completeDate;
+}
+- (PBNoCompressDrawData_Builder*) setCompleteDate:(int32_t) value {
+  result.hasCompleteDate = YES;
+  result.completeDate = value;
+  return self;
+}
+- (PBNoCompressDrawData_Builder*) clearCompleteDate {
+  result.hasCompleteDate = NO;
+  result.completeDate = 0;
   return self;
 }
 @end

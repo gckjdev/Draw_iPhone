@@ -23,6 +23,7 @@
 #import "Draw.h"
 #import "GradientAction.h"
 #import "ClipAction.h"
+#import "MyPaint.h"
 
 @implementation DrawAction
 
@@ -369,10 +370,14 @@
     free(pblayers);
 }
 
-+ (BOOL)createPBDrawActionC:(Game__PBDrawAction**)pbDrawActionC drawActionList:(NSArray*)drawActionList
++ (BOOL)createPBDrawActionC:(Game__PBDrawAction**)pbDrawActionC drawActionList:(NSArray*)drawActionList strokes:(int64_t*)strokes
 {
-    int i=0;
+    int i = 0;
+    int64_t addedStorkes = 0;
     for (DrawAction *drawAction in drawActionList) {
+        
+        addedStorkes += (drawAction.type == DrawActionTypePaint) ? 1 : 0;
+        
         pbDrawActionC[i] = malloc (sizeof(Game__PBDrawAction));
         if (pbDrawActionC[i] == NULL) {
             PPDebug(@"<createPBDrawActionC> malloc pbDrawActionC[%d] is NULL", i);
@@ -382,6 +387,13 @@
         [drawAction toPBDrawActionC:pbDrawActionC[i]];
         i++;
     }
+    
+    PPDebug(@"<createPBDrawActionC> add strokes is %ld", addedStorkes);
+    if (strokes != NULL){
+        *strokes += addedStorkes;
+        PPDebug(@"<createPBDrawActionC> total strokes is %ld", *strokes);
+    }
+    
     return YES;
 }
 
@@ -448,7 +460,7 @@
     }
     
     // set data
-    [DrawAction createPBDrawActionC:pbBBSDrawC.drawactionlist drawActionList:drawActionList];
+    [DrawAction createPBDrawActionC:pbBBSDrawC.drawactionlist drawActionList:drawActionList strokes:NULL];
     
     void *buf = NULL;
     unsigned len = 0;
@@ -482,7 +494,7 @@
                       size:(CGSize)size
               isCompressed:(BOOL)isCompressed
                     layers:(NSArray *)layers
-                      info:(NSDictionary *)info
+                     draft:(MyPaint *)draft
 {
     Game__PBDraw pbDrawC = GAME__PBDRAW__INIT;
     
@@ -509,6 +521,15 @@
     pbDrawC.iscompressed = isCompressed;
     pbDrawC.has_iscompressed = 1;
     
+    pbDrawC.strokes = 0;            // to be set later by calling createPBDrawActionC
+    pbDrawC.has_strokes = 1;
+    
+    pbDrawC.completedate = draft.completeDate;
+    pbDrawC.has_completedate = 1;
+    
+    pbDrawC.spendtime = draft.spendTime;
+    pbDrawC.has_spendtime = 1;
+    
     //update layers
     int layerNum = [layers count];
     if (layerNum > 0) {
@@ -525,7 +546,8 @@
     }
     
     // set data
-    [DrawAction createPBDrawActionC:pbDrawC.drawdata drawActionList:drawActionList];
+    [DrawAction createPBDrawActionC:pbDrawC.drawdata drawActionList:drawActionList strokes:&(pbDrawC.strokes)];
+    PPDebug(@"<buildPBDrawData> total strokes is %ld", pbDrawC.strokes);
     
     void *buf = NULL;
     unsigned len = 0;
@@ -559,6 +581,10 @@
                                          drawToUser:(PBUserBasicInfo *)drawToUser
                                     bgImageFileName:(NSString *)bgImageFileName
                                              layers:(NSArray *)layers
+                                            strokes:(int64_t *)strokes
+                                          spendTime:(int)spendTime
+                                       completeDate:(int)completeDate
+
 {
     if (drawActionList != nil || [GameApp forceSaveDraft]) {
         
@@ -596,7 +622,7 @@
         // set version
         pbNoCompressDrawDataC.version = [PPConfigManager currentDrawDataVersion];
         pbNoCompressDrawDataC.has_version = 1;
-
+        
         // set bg image name
         pbNoCompressDrawDataC.bgimagename = (char*)[bgImageFileName UTF8String];
 
@@ -611,12 +637,21 @@
                 return nil;
             }
             
-            BOOL flag = [DrawAction createPBDrawActionC:pbNoCompressDrawDataC.drawactionlist2 drawActionList:drawActionList];
+            BOOL flag = [DrawAction createPBDrawActionC:pbNoCompressDrawDataC.drawactionlist2
+                                         drawActionList:drawActionList
+                                                strokes:&(pbNoCompressDrawDataC.strokes)];
             if (!flag) {
                 PPDebug(@"<createPBDrawActionC> failed!!!");
                 return nil;
             }
         }
+        
+        // set spend time, complete date, and strokes 2014-05-20
+        pbNoCompressDrawDataC.has_strokes = 1;
+        pbNoCompressDrawDataC.spendtime = spendTime;
+        pbNoCompressDrawDataC.has_spendtime = 1;
+        pbNoCompressDrawDataC.completedate = completeDate;
+        pbNoCompressDrawDataC.has_completedate = 1;
         
         void *buf = NULL;
         unsigned len = 0;

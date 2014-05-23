@@ -40,11 +40,49 @@
 
 + (DrawRecoveryService*)defaultService;
 - (int)recoveryDrawCount;
-- (void)backup;
-- (void)start;
+
+- (void)backup:(NSArray*)drawActionList
+     targetUid:(NSString*)targetUid
+          word:(Word*)word
+          desc:(NSString*)desc
+    canvasSize:(CGSize)canvasSize
+   bgImageName:(NSString*)bgImageName
+       bgImage:(UIImage*)bgImage
+     contestId:(NSString*)contestId
+       strokes:(int64_t)strokes
+     spendTime:(int)spendTime
+  completeDate:(int)completeDate
+        layers:(NSArray *)layers;
+
+- (void)start:(NSArray*)drawActionList
+    targetUid:(NSString*)targetUid
+         word:(Word*)word
+         desc:(NSString*)desc
+   canvasSize:(CGSize)canvasSize
+  bgImageName:(NSString*)bgImageName
+      bgImage:(UIImage*)bgImage
+    contestId:(NSString*)contestId
+      strokes:(int64_t)strokes
+    spendTime:(int)spendTime
+ completeDate:(int)completeDate
+       layers:(NSArray *)layers;
+
 - (void)stop;
 - (int)backupInterval;
-- (void)handleNewPaintDrawed:(NSArray*)drawActionList;
+
+- (void)handleNewPaintDrawed:(NSArray*)drawActionList
+                   targetUid:(NSString*)targetUid
+                        word:(Word*)word
+                        desc:(NSString*)desc
+                  canvasSize:(CGSize)canvasSize
+                 bgImageName:(NSString*)bgImageName
+                     bgImage:(UIImage*)bgImage
+                   contestId:(NSString*)contestId
+                     strokes:(int64_t)strokes
+                   spendTime:(int)spendTime
+                completeDate:(int)completeDate
+                      layers:(NSArray *)layers;
+
 - (BOOL)needBackup;
 
 //- (void)changeCanvasSize:(CGSize)canvasSize;

@@ -520,7 +520,7 @@ const ProtobufCMessageDescriptor game__pbask_ps_opus__descriptor =
 };
 static const int32_t game__pbopus__status__default_value = 0;
 static const protobuf_c_boolean game__pbopus__is_recovery__default_value = 0;
-static const ProtobufCFieldDescriptor game__pbopus__field_descriptors[28] =
+static const ProtobufCFieldDescriptor game__pbopus__field_descriptors[32] =
 {
   {
     "opusId",
@@ -651,6 +651,30 @@ static const ProtobufCFieldDescriptor game__pbopus__field_descriptors[28] =
     PROTOBUF_C_OFFSETOF(Game__PBOpus, status),
     NULL,
     &game__pbopus__status__default_value,
+    0,            /* packed */
+    0,NULL,NULL    /* reserved1,reserved2, etc */
+  },
+  {
+    "tags",
+    21,
+    PROTOBUF_C_LABEL_REPEATED,
+    PROTOBUF_C_TYPE_STRING,
+    PROTOBUF_C_OFFSETOF(Game__PBOpus, n_tags),
+    PROTOBUF_C_OFFSETOF(Game__PBOpus, tags),
+    NULL,
+    NULL,
+    0,            /* packed */
+    0,NULL,NULL    /* reserved1,reserved2, etc */
+  },
+  {
+    "spendTime",
+    22,
+    PROTOBUF_C_LABEL_OPTIONAL,
+    PROTOBUF_C_TYPE_INT32,
+    PROTOBUF_C_OFFSETOF(Game__PBOpus, has_spendtime),
+    PROTOBUF_C_OFFSETOF(Game__PBOpus, spendtime),
+    NULL,
+    NULL,
     0,            /* packed */
     0,NULL,NULL    /* reserved1,reserved2, etc */
   },
@@ -847,6 +871,30 @@ static const ProtobufCFieldDescriptor game__pbopus__field_descriptors[28] =
     0,NULL,NULL    /* reserved1,reserved2, etc */
   },
   {
+    "descLabelInfo",
+    201,
+    PROTOBUF_C_LABEL_OPTIONAL,
+    PROTOBUF_C_TYPE_MESSAGE,
+    0,   /* quantifier_offset */
+    PROTOBUF_C_OFFSETOF(Game__PBOpus, desclabelinfo),
+    &game__pblabel_info__descriptor,
+    NULL,
+    0,            /* packed */
+    0,NULL,NULL    /* reserved1,reserved2, etc */
+  },
+  {
+    "canvasSize",
+    202,
+    PROTOBUF_C_LABEL_OPTIONAL,
+    PROTOBUF_C_TYPE_MESSAGE,
+    0,   /* quantifier_offset */
+    PROTOBUF_C_OFFSETOF(Game__PBOpus, canvassize),
+    &game__pbsize__descriptor,
+    NULL,
+    0,            /* packed */
+    0,NULL,NULL    /* reserved1,reserved2, etc */
+  },
+  {
     "guessInfo",
     250,
     PROTOBUF_C_LABEL_OPTIONAL,
@@ -860,32 +908,36 @@ static const ProtobufCFieldDescriptor game__pbopus__field_descriptors[28] =
   },
 };
 static const unsigned game__pbopus__field_indices_by_name[] = {
-  13,   /* field[13] = appId */
-  20,   /* field[20] = askPs */
-  21,   /* field[21] = askPsOpus */
-  14,   /* field[14] = author */
+  15,   /* field[15] = appId */
+  22,   /* field[22] = askPs */
+  23,   /* field[23] = askPsOpus */
+  16,   /* field[16] = author */
+  30,   /* field[30] = canvasSize */
   8,   /* field[8] = category */
-  16,   /* field[16] = contestId */
+  18,   /* field[18] = contestId */
   9,   /* field[9] = createDate */
   6,   /* field[6] = dataUrl */
   3,   /* field[3] = desc */
-  12,   /* field[12] = deviceName */
-  11,   /* field[11] = deviceType */
-  18,   /* field[18] = draw */
-  17,   /* field[17] = feedTimes */
-  27,   /* field[27] = guessInfo */
+  29,   /* field[29] = descLabelInfo */
+  14,   /* field[14] = deviceName */
+  13,   /* field[13] = deviceType */
+  20,   /* field[20] = draw */
+  19,   /* field[19] = feedTimes */
+  31,   /* field[31] = guessInfo */
   4,   /* field[4] = image */
-  25,   /* field[25] = isRecovery */
+  27,   /* field[27] = isRecovery */
   7,   /* field[7] = language */
-  22,   /* field[22] = localDataUrl */
-  23,   /* field[23] = localImageUrl */
-  24,   /* field[24] = localThumbImageUrl */
+  24,   /* field[24] = localDataUrl */
+  25,   /* field[25] = localImageUrl */
+  26,   /* field[26] = localThumbImageUrl */
   2,   /* field[2] = name */
   0,   /* field[0] = opusId */
-  19,   /* field[19] = sing */
+  21,   /* field[21] = sing */
+  12,   /* field[12] = spendTime */
   10,   /* field[10] = status */
-  26,   /* field[26] = storeType */
-  15,   /* field[15] = targetUser */
+  28,   /* field[28] = storeType */
+  11,   /* field[11] = tags */
+  17,   /* field[17] = targetUser */
   5,   /* field[5] = thumbImage */
   1,   /* field[1] = type */
 };
@@ -895,16 +947,16 @@ static const ProtobufCIntRange game__pbopus__number_ranges[13 + 1] =
   { 9, 6 },
   { 15, 9 },
   { 20, 10 },
-  { 25, 11 },
-  { 28, 13 },
-  { 35, 14 },
-  { 41, 15 },
-  { 45, 17 },
-  { 101, 18 },
-  { 150, 22 },
-  { 200, 26 },
-  { 250, 27 },
-  { 0, 28 }
+  { 25, 13 },
+  { 28, 15 },
+  { 35, 16 },
+  { 41, 17 },
+  { 45, 19 },
+  { 101, 20 },
+  { 150, 24 },
+  { 200, 28 },
+  { 250, 31 },
+  { 0, 32 }
 };
 const ProtobufCMessageDescriptor game__pbopus__descriptor =
 {
@@ -914,7 +966,7 @@ const ProtobufCMessageDescriptor game__pbopus__descriptor =
   "Game__PBOpus",
   "game",
   sizeof(Game__PBOpus),
-  28,
+  32,
   game__pbopus__field_descriptors,
   game__pbopus__field_indices_by_name,
   13,  game__pbopus__number_ranges,
@@ -1248,36 +1300,6 @@ const ProtobufCMessageDescriptor game__pbguess_contest__descriptor =
   2,  game__pbguess_contest__number_ranges,
   (ProtobufCMessageInit) game__pbguess_contest__init,
   NULL,NULL,NULL    /* reserved[123] */
-};
-const ProtobufCEnumValue game__pbopus_category_type__enum_values_by_number[3] =
-{
-  { "DRAW_CATEGORY", "GAME__PBOPUS_CATEGORY_TYPE__DRAW_CATEGORY", 0 },
-  { "SING_CATEGORY", "GAME__PBOPUS_CATEGORY_TYPE__SING_CATEGORY", 1 },
-  { "ASK_PS_CATEGORY", "GAME__PBOPUS_CATEGORY_TYPE__ASK_PS_CATEGORY", 2 },
-};
-static const ProtobufCIntRange game__pbopus_category_type__value_ranges[] = {
-{0, 0},{0, 3}
-};
-const ProtobufCEnumValueIndex game__pbopus_category_type__enum_values_by_name[3] =
-{
-  { "ASK_PS_CATEGORY", 2 },
-  { "DRAW_CATEGORY", 0 },
-  { "SING_CATEGORY", 1 },
-};
-const ProtobufCEnumDescriptor game__pbopus_category_type__descriptor =
-{
-  PROTOBUF_C_ENUM_DESCRIPTOR_MAGIC,
-  "game.PBOpusCategoryType",
-  "PBOpusCategoryType",
-  "Game__PBOpusCategoryType",
-  "game",
-  3,
-  game__pbopus_category_type__enum_values_by_number,
-  3,
-  game__pbopus_category_type__enum_values_by_name,
-  1,
-  game__pbopus_category_type__value_ranges,
-  NULL,NULL,NULL,NULL   /* reserved[1234] */
 };
 const ProtobufCEnumValue game__pblanguage__enum_values_by_number[2] =
 {

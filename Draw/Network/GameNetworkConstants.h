@@ -327,6 +327,11 @@
 #define PARA_SIGNATURE @"sig"
 #define PARA_AUTO_REG @"are"
 
+#define PARA_STROKES @"stro"
+#define PARA_DRAFT_CREATE_DATE @"dcrd"
+#define PARA_COMPLETE_DATE @"coda"
+#define PARA_SPEND_TIME @"spti"
+
 #define PARA_MOBILE @"mb"
 #define PARA_EMAIL @"em"
 #define PARA_NEW_APPID  @"napp"

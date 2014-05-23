@@ -6388,7 +6388,7 @@ const ProtobufCMessageDescriptor game__game_message__descriptor =
   (ProtobufCMessageInit) game__game_message__init,
   NULL,NULL,NULL    /* reserved[123] */
 };
-static const ProtobufCFieldDescriptor game__data_query_response__field_descriptors[28] =
+static const ProtobufCFieldDescriptor game__data_query_response__field_descriptors[37] =
 {
   {
     "resultCode",
@@ -6481,6 +6481,18 @@ static const ProtobufCFieldDescriptor game__data_query_response__field_descripto
     PROTOBUF_C_TYPE_MESSAGE,
     PROTOBUF_C_OFFSETOF(Game__DataQueryResponse, n_contestlist),
     PROTOBUF_C_OFFSETOF(Game__DataQueryResponse, contestlist),
+    &game__pbcontest__descriptor,
+    NULL,
+    0,            /* packed */
+    0,NULL,NULL    /* reserved1,reserved2, etc */
+  },
+  {
+    "contest",
+    43,
+    PROTOBUF_C_LABEL_OPTIONAL,
+    PROTOBUF_C_TYPE_MESSAGE,
+    0,   /* quantifier_offset */
+    PROTOBUF_C_OFFSETOF(Game__DataQueryResponse, contest),
     &game__pbcontest__descriptor,
     NULL,
     0,            /* packed */
@@ -6607,6 +6619,18 @@ static const ProtobufCFieldDescriptor game__data_query_response__field_descripto
     0,NULL,NULL    /* reserved1,reserved2, etc */
   },
   {
+    "userList",
+    84,
+    PROTOBUF_C_LABEL_REPEATED,
+    PROTOBUF_C_TYPE_MESSAGE,
+    PROTOBUF_C_OFFSETOF(Game__DataQueryResponse, n_userlist),
+    PROTOBUF_C_OFFSETOF(Game__DataQueryResponse, userlist),
+    &game__pbgame_user__descriptor,
+    NULL,
+    0,            /* packed */
+    0,NULL,NULL    /* reserved1,reserved2, etc */
+  },
+  {
     "user",
     85,
     PROTOBUF_C_LABEL_OPTIONAL,
@@ -6726,50 +6750,144 @@ static const ProtobufCFieldDescriptor game__data_query_response__field_descripto
     0,            /* packed */
     0,NULL,NULL    /* reserved1,reserved2, etc */
   },
+  {
+    "group",
+    150,
+    PROTOBUF_C_LABEL_OPTIONAL,
+    PROTOBUF_C_TYPE_MESSAGE,
+    0,   /* quantifier_offset */
+    PROTOBUF_C_OFFSETOF(Game__DataQueryResponse, group),
+    &game__pbgroup__descriptor,
+    NULL,
+    0,            /* packed */
+    0,NULL,NULL    /* reserved1,reserved2, etc */
+  },
+  {
+    "groupList",
+    151,
+    PROTOBUF_C_LABEL_REPEATED,
+    PROTOBUF_C_TYPE_MESSAGE,
+    PROTOBUF_C_OFFSETOF(Game__DataQueryResponse, n_grouplist),
+    PROTOBUF_C_OFFSETOF(Game__DataQueryResponse, grouplist),
+    &game__pbgroup__descriptor,
+    NULL,
+    0,            /* packed */
+    0,NULL,NULL    /* reserved1,reserved2, etc */
+  },
+  {
+    "groupMemberList",
+    152,
+    PROTOBUF_C_LABEL_REPEATED,
+    PROTOBUF_C_TYPE_MESSAGE,
+    PROTOBUF_C_OFFSETOF(Game__DataQueryResponse, n_groupmemberlist),
+    PROTOBUF_C_OFFSETOF(Game__DataQueryResponse, groupmemberlist),
+    &game__pbgroup_users_by_title__descriptor,
+    NULL,
+    0,            /* packed */
+    0,NULL,NULL    /* reserved1,reserved2, etc */
+  },
+  {
+    "noticeList",
+    153,
+    PROTOBUF_C_LABEL_REPEATED,
+    PROTOBUF_C_TYPE_MESSAGE,
+    PROTOBUF_C_OFFSETOF(Game__DataQueryResponse, n_noticelist),
+    PROTOBUF_C_OFFSETOF(Game__DataQueryResponse, noticelist),
+    &game__pbgroup_notice__descriptor,
+    NULL,
+    0,            /* packed */
+    0,NULL,NULL    /* reserved1,reserved2, etc */
+  },
+  {
+    "badges",
+    155,
+    PROTOBUF_C_LABEL_REPEATED,
+    PROTOBUF_C_TYPE_MESSAGE,
+    PROTOBUF_C_OFFSETOF(Game__DataQueryResponse, n_badges),
+    PROTOBUF_C_OFFSETOF(Game__DataQueryResponse, badges),
+    &game__pbint_key_int_value__descriptor,
+    NULL,
+    0,            /* packed */
+    0,NULL,NULL    /* reserved1,reserved2, etc */
+  },
+  {
+    "url",
+    156,
+    PROTOBUF_C_LABEL_OPTIONAL,
+    PROTOBUF_C_TYPE_STRING,
+    0,   /* quantifier_offset */
+    PROTOBUF_C_OFFSETOF(Game__DataQueryResponse, url),
+    NULL,
+    NULL,
+    0,            /* packed */
+    0,NULL,NULL    /* reserved1,reserved2, etc */
+  },
+  {
+    "groupRole",
+    157,
+    PROTOBUF_C_LABEL_REPEATED,
+    PROTOBUF_C_TYPE_MESSAGE,
+    PROTOBUF_C_OFFSETOF(Game__DataQueryResponse, n_grouprole),
+    PROTOBUF_C_OFFSETOF(Game__DataQueryResponse, grouprole),
+    &game__pbgroup_user_role__descriptor,
+    NULL,
+    0,            /* packed */
+    0,NULL,NULL    /* reserved1,reserved2, etc */
+  },
 };
 static const unsigned game__data_query_response__field_indices_by_name[] = {
-  10,   /* field[10] = bbsAction */
-  8,   /* field[8] = bbsBoard */
-  11,   /* field[11] = bbsDrawData */
-  9,   /* field[9] = bbsPost */
-  12,   /* field[12] = bbsPrivilegeList */
-  13,   /* field[13] = bbsUserList */
+  34,   /* field[34] = badges */
+  11,   /* field[11] = bbsAction */
+  9,   /* field[9] = bbsBoard */
+  12,   /* field[12] = bbsDrawData */
+  10,   /* field[10] = bbsPost */
+  13,   /* field[13] = bbsPrivilegeList */
+  14,   /* field[14] = bbsUserList */
+  8,   /* field[8] = contest */
   7,   /* field[7] = contestList */
   3,   /* field[3] = drawData */
   6,   /* field[6] = feed */
-  26,   /* field[26] = guessContest */
-  27,   /* field[27] = guessContestList */
-  24,   /* field[24] = guessRank */
-  25,   /* field[25] = guessRankList */
-  22,   /* field[22] = idList */
+  30,   /* field[30] = group */
+  31,   /* field[31] = groupList */
+  32,   /* field[32] = groupMemberList */
+  36,   /* field[36] = groupRole */
+  28,   /* field[28] = guessContest */
+  29,   /* field[29] = guessContestList */
+  26,   /* field[26] = guessRank */
+  27,   /* field[27] = guessRankList */
+  24,   /* field[24] = idList */
   4,   /* field[4] = message */
   5,   /* field[5] = messageStat */
-  20,   /* field[20] = opus */
-  21,   /* field[21] = opusList */
+  33,   /* field[33] = noticeList */
+  22,   /* field[22] = opus */
+  23,   /* field[23] = opusList */
   0,   /* field[0] = resultCode */
-  23,   /* field[23] = songs */
+  25,   /* field[25] = songs */
   1,   /* field[1] = totalCount */
-  18,   /* field[18] = user */
-  16,   /* field[16] = userPhoto */
-  17,   /* field[17] = userPhotoList */
-  19,   /* field[19] = userRelation */
+  35,   /* field[35] = url */
+  20,   /* field[20] = user */
+  19,   /* field[19] = userList */
+  17,   /* field[17] = userPhoto */
+  18,   /* field[18] = userPhotoList */
+  21,   /* field[21] = userRelation */
   2,   /* field[2] = version */
-  15,   /* field[15] = wall */
-  14,   /* field[14] = wallList */
+  16,   /* field[16] = wall */
+  15,   /* field[15] = wallList */
 };
-static const ProtobufCIntRange game__data_query_response__number_ranges[10 + 1] =
+static const ProtobufCIntRange game__data_query_response__number_ranges[11 + 1] =
 {
   { 1, 0 },
   { 21, 3 },
   { 32, 4 },
   { 41, 6 },
-  { 51, 8 },
-  { 80, 14 },
-  { 85, 18 },
-  { 90, 22 },
-  { 101, 23 },
-  { 120, 24 },
-  { 0, 28 }
+  { 51, 9 },
+  { 80, 15 },
+  { 90, 24 },
+  { 101, 25 },
+  { 120, 26 },
+  { 150, 30 },
+  { 155, 34 },
+  { 0, 37 }
 };
 const ProtobufCMessageDescriptor game__data_query_response__descriptor =
 {
@@ -6779,10 +6897,10 @@ const ProtobufCMessageDescriptor game__data_query_response__descriptor =
   "Game__DataQueryResponse",
   "game",
   sizeof(Game__DataQueryResponse),
-  28,
+  37,
   game__data_query_response__field_descriptors,
   game__data_query_response__field_indices_by_name,
-  10,  game__data_query_response__number_ranges,
+  11,  game__data_query_response__number_ranges,
   (ProtobufCMessageInit) game__data_query_response__init,
   NULL,NULL,NULL    /* reserved[123] */
 };

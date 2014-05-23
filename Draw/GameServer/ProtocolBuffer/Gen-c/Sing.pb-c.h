@@ -3,7 +3,7 @@
 #ifndef PROTOBUF_C_Sing_2eproto__INCLUDED
 #define PROTOBUF_C_Sing_2eproto__INCLUDED
 
-#include "google/protobuf-c/protobuf-c.h"
+#include <google/protobuf-c/protobuf-c.h>
 
 PROTOBUF_C_BEGIN_DECLS
 
@@ -20,10 +20,10 @@ typedef struct _Game__PBSingOpus Game__PBSingOpus;
 typedef enum _Game__PBVoiceType {
   GAME__PBVOICE_TYPE__VoiceTypeOrigin = 0,
   GAME__PBVOICE_TYPE__VoiceTypeTomCat = 1,
-  GAME__PBVOICE_TYPE__VoiceTypeDuck = 2,
-  GAME__PBVOICE_TYPE__VoiceTypeMale = 3,
-  GAME__PBVOICE_TYPE__VoiceTypeChild = 4,
-  GAME__PBVOICE_TYPE__VoiceTypeFemale = 5
+  GAME__PBVOICE_TYPE__VoiceTypeMale = 2,
+  GAME__PBVOICE_TYPE__VoiceTypeFemale = 3,
+  GAME__PBVOICE_TYPE__VoiceTypeDuck = 4,
+  GAME__PBVOICE_TYPE__VoiceTypeChild = 5
 } Game__PBVoiceType;
 
 /* --- messages --- */
@@ -58,12 +58,13 @@ struct  _Game__PBSong
   char *name;
   char *author;
   char *lyric;
+  char *lyricurl;
   size_t n_tag;
   char **tag;
 };
 #define GAME__PBSONG__INIT \
  { PROTOBUF_C_MESSAGE_INIT (&game__pbsong__descriptor) \
-    , NULL, NULL, NULL, NULL, 0,NULL }
+    , NULL, NULL, NULL, NULL, NULL, 0,NULL }
 
 
 struct  _Game__PBSongList
@@ -89,11 +90,13 @@ struct  _Game__PBSingOpus
   float pitch;
   protobuf_c_boolean has_formant;
   float formant;
+  protobuf_c_boolean has_voiceduration;
+  float voiceduration;
   char *localnativedataurl;
 };
 #define GAME__PBSING_OPUS__INIT \
  { PROTOBUF_C_MESSAGE_INIT (&game__pbsing_opus__descriptor) \
-    , NULL, 0,0, 0,1, 0,1, 0,1, NULL }
+    , NULL, 0,0, 0,1, 0,1, 0,1, 0,0, NULL }
 
 
 /* Game__PBSongCategory methods */

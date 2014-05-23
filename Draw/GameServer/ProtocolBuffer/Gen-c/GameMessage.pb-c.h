@@ -3,7 +3,7 @@
 #ifndef PROTOBUF_C_GameMessage_2eproto__INCLUDED
 #define PROTOBUF_C_GameMessage_2eproto__INCLUDED
 
-#include "google/protobuf-c/protobuf-c.h"
+#include <google/protobuf-c/protobuf-c.h>
 
 PROTOBUF_C_BEGIN_DECLS
 
@@ -16,6 +16,7 @@ PROTOBUF_C_BEGIN_DECLS
 #include "Opus.pb-c.h"
 #include "Photo.pb-c.h"
 #include "Sing.pb-c.h"
+#include "Group.pb-c.h"
 
 typedef struct _Game__GetRoomsRequest Game__GetRoomsRequest;
 typedef struct _Game__GetRoomsResponse Game__GetRoomsResponse;
@@ -896,6 +897,7 @@ struct  _Game__DataQueryResponse
   Game__PBFeed **feed;
   size_t n_contestlist;
   Game__PBContest **contestlist;
+  Game__PBContest *contest;
   size_t n_bbsboard;
   Game__PBBBSBoard **bbsboard;
   size_t n_bbspost;
@@ -913,6 +915,8 @@ struct  _Game__DataQueryResponse
   Game__PBUserPhoto *userphoto;
   size_t n_userphotolist;
   Game__PBUserPhoto **userphotolist;
+  size_t n_userlist;
+  Game__PBGameUser **userlist;
   Game__PBGameUser *user;
   protobuf_c_boolean has_userrelation;
   int32_t userrelation;
@@ -928,10 +932,22 @@ struct  _Game__DataQueryResponse
   Game__PBGuessContest *guesscontest;
   size_t n_guesscontestlist;
   Game__PBGuessContest **guesscontestlist;
+  Game__PBGroup *group;
+  size_t n_grouplist;
+  Game__PBGroup **grouplist;
+  size_t n_groupmemberlist;
+  Game__PBGroupUsersByTitle **groupmemberlist;
+  size_t n_noticelist;
+  Game__PBGroupNotice **noticelist;
+  size_t n_badges;
+  Game__PBIntKeyIntValue **badges;
+  char *url;
+  size_t n_grouprole;
+  Game__PBGroupUserRole **grouprole;
 };
 #define GAME__DATA_QUERY_RESPONSE__INIT \
  { PROTOBUF_C_MESSAGE_INIT (&game__data_query_response__descriptor) \
-    , 0, 0,0, 0,0, 0,NULL, 0,NULL, 0,NULL, 0,NULL, 0,NULL, 0,NULL, 0,NULL, 0,NULL, NULL, 0,NULL, 0,NULL, 0,NULL, NULL, NULL, 0,NULL, NULL, 0,0, NULL, 0,NULL, 0,NULL, NULL, NULL, 0,NULL, NULL, 0,NULL }
+    , 0, 0,0, 0,0, 0,NULL, 0,NULL, 0,NULL, 0,NULL, 0,NULL, NULL, 0,NULL, 0,NULL, 0,NULL, NULL, 0,NULL, 0,NULL, 0,NULL, NULL, NULL, 0,NULL, 0,NULL, NULL, 0,0, NULL, 0,NULL, 0,NULL, NULL, NULL, 0,NULL, NULL, 0,NULL, NULL, 0,NULL, 0,NULL, 0,NULL, 0,NULL, NULL, 0,NULL }
 
 
 /* Game__GetRoomsRequest methods */

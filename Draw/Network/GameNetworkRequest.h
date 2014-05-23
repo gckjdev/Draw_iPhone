@@ -14,7 +14,7 @@
 #import "PPNetworkRequest.h"
 #import "PPGameNetworkRequest.h"
 
-
+@class MyPaint;
 
 @interface GameNetworkRequest : NSObject
 
@@ -299,6 +299,7 @@
                          targetUid:(NSString *)targetUid
                          contestId:(NSString *)contestId
                               desc:(NSString *)desc
+                             draft:(MyPaint *)draft
                       isCompressed:(BOOL)isCompressed
                   progressDelegate:(id)progressDelegate;
 

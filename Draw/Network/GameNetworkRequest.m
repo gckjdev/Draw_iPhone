@@ -22,6 +22,7 @@
 #import "PPMessage.h"
 #import "UserManager.h"
 #import "GroupManager.h"
+#import "MyPaint.h"
 
 #define DEVICE_INFO_SEPERATOR   @"_"
 
@@ -1574,6 +1575,7 @@
                          targetUid:(NSString *)targetUid
                          contestId:(NSString *)contestId
                               desc:(NSString *)desc
+                             draft:(MyPaint *)draft
                       isCompressed:(BOOL)isCompressed
                   progressDelegate:(id)progressDelegate;
 {
@@ -1603,6 +1605,13 @@
         str = [str stringByAddQueryParameter:PARA_LANGUAGE intValue:lang];
         str = [str stringByAddQueryParameter:PARA_DESC value:desc];
         str = [str stringByAddQueryParameter:PARA_DEVICETYPE intValue:[DeviceDetection deviceType]];
+        
+        str = [str stringByAddQueryParameter:PARA_STROKES intValue:draft.strokes];
+        str = [str stringByAddQueryParameter:PARA_DRAFT_CREATE_DATE intValue:[draft.createDate timeIntervalSince1970]];
+        str = [str stringByAddQueryParameter:PARA_COMPLETE_DATE intValue:draft.completeDate];
+        str = [str stringByAddQueryParameter:PARA_SPEND_TIME intValue:draft.spendTime];
+        
+        
         str = [str stringByAddQueryParameter:PARA_IS_DATA_COMPRESSED boolValue:isCompressed];
         
         if ([targetUid length] != 0) {

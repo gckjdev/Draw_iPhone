@@ -27,6 +27,7 @@
 @class MyPaint;
 @class Contest;
 @class OfflineDrawViewController;
+@class OpusDesignTime;
 
 @protocol OfflineDrawDelegate <NSObject>
 
@@ -54,6 +55,8 @@
 - (void)showCopyPaint;
 
 @property (retain, nonatomic) Word *word;
+@property (retain, nonatomic) OpusDesignTime *designTime;
+@property (assign, nonatomic) int64_t totalStroke;
 
 @property (assign, nonatomic) id<OfflineDrawDelegate> delegate;
 @property (retain, nonatomic) NSString *targetUid;

@@ -3,7 +3,7 @@
 #ifndef PROTOBUF_C_Draw_2eproto__INCLUDED
 #define PROTOBUF_C_Draw_2eproto__INCLUDED
 
-#include "protobuf-c.h"
+#include <google/protobuf-c/protobuf-c.h>
 
 PROTOBUF_C_BEGIN_DECLS
 
@@ -16,6 +16,7 @@ typedef struct _Game__PBDraw Game__PBDraw;
 typedef struct _Game__PBFeedTimes Game__PBFeedTimes;
 typedef struct _Game__PBCommentInfo Game__PBCommentInfo;
 typedef struct _Game__PBLearnDraw Game__PBLearnDraw;
+typedef struct _Game__PBLabelInfo Game__PBLabelInfo;
 typedef struct _Game__PBFeed Game__PBFeed;
 typedef struct _Game__PBPoint Game__PBPoint;
 typedef struct _Game__PBColor Game__PBColor;
@@ -81,10 +82,16 @@ struct  _Game__PBDraw
   Game__PBSize *canvassize;
   size_t n_layer;
   Game__PBLayer **layer;
+  protobuf_c_boolean has_strokes;
+  int64_t strokes;
+  protobuf_c_boolean has_spendtime;
+  int32_t spendtime;
+  protobuf_c_boolean has_completedate;
+  int32_t completedate;
 };
 #define GAME__PBDRAW__INIT \
  { PROTOBUF_C_MESSAGE_INIT (&game__pbdraw__descriptor) \
-    , NULL, NULL, 0, 0, 0,0, NULL, NULL, 0,0, 0,0, 0,NULL, NULL, 0,0, 0,1, NULL, 0,NULL }
+    , NULL, NULL, 0, 0, 0,0, NULL, NULL, 0,0, 0,0, 0,NULL, NULL, 0,0, 0,1, NULL, 0,NULL, 0,0, 0,0, 0,0 }
 
 
 struct  _Game__PBFeedTimes
@@ -129,6 +136,24 @@ struct  _Game__PBLearnDraw
     , NULL, 0,0, 0,0, 0,0 }
 
 
+struct  _Game__PBLabelInfo
+{
+  ProtobufCMessage base;
+  Game__PBRect *frame;
+  protobuf_c_boolean has_textcolor;
+  int32_t textcolor;
+  protobuf_c_boolean has_textfont;
+  float textfont;
+  protobuf_c_boolean has_style;
+  int32_t style;
+  protobuf_c_boolean has_textstrokecolor;
+  int32_t textstrokecolor;
+};
+#define GAME__PBLABEL_INFO__INIT \
+ { PROTOBUF_C_MESSAGE_INIT (&game__pblabel_info__descriptor) \
+    , NULL, 0,0, 0,0, 0,0, 0,0 }
+
+
 struct  _Game__PBFeed
 {
   ProtobufCMessage base;
@@ -140,11 +165,15 @@ struct  _Game__PBFeed
   int32_t devicetype;
   char *devicename;
   char *gameid;
+  protobuf_c_boolean has_category;
+  Game__PBOpusCategoryType category;
   char *nickname;
   char *avatar;
   protobuf_c_boolean has_gender;
   protobuf_c_boolean gender;
   char *signature;
+  protobuf_c_boolean has_vip;
+  int32_t vip;
   Game__PBDraw *drawdata;
   char *targetuserid;
   char *targetusernickname;
@@ -152,6 +181,10 @@ struct  _Game__PBFeed
   double historyscore;
   char *opusdesc;
   char *drawdataurl;
+  size_t n_tags;
+  char **tags;
+  protobuf_c_boolean has_spendtime;
+  int32_t spendtime;
   char *opusid;
   protobuf_c_boolean has_iscorrect;
   protobuf_c_boolean iscorrect;
@@ -187,11 +220,18 @@ struct  _Game__PBFeed
   double contestscore;
   size_t n_rankinfo;
   Game__PBOpusRank **rankinfo;
+  protobuf_c_boolean has_rankintop;
+  int32_t rankintop;
   Game__PBLearnDraw *learndraw;
+  Game__PBSingOpus *sing;
+  Game__PBLabelInfo *desclabelinfo;
+  Game__PBSize *canvassize;
+  size_t n_class_;
+  Game__PBClass **class_;
 };
 #define GAME__PBFEED__INIT \
  { PROTOBUF_C_MESSAGE_INIT (&game__pbfeed__descriptor) \
-    , NULL, NULL, 0, 0, 0,0, NULL, NULL, NULL, NULL, 0,0, NULL, NULL, NULL, NULL, 0,0, NULL, NULL, NULL, 0,0, 0,0, 0,NULL, 0,0, NULL, NULL, 0,0, 0,0, 0,0, 0,0, 0,NULL, NULL, NULL, 0,0, NULL, NULL, NULL, NULL, NULL, NULL, 0,0, 0,NULL, NULL }
+    , NULL, NULL, 0, 0, 0,0, NULL, NULL, 0,0, NULL, NULL, 0,0, NULL, 0,0, NULL, NULL, NULL, 0,0, NULL, NULL, 0,NULL, 0,0, NULL, 0,0, 0,0, 0,NULL, 0,0, NULL, NULL, 0,0, 0,0, 0,0, 0,0, 0,NULL, NULL, NULL, 0,0, NULL, NULL, NULL, NULL, NULL, NULL, 0,0, 0,NULL, 0,0, NULL, NULL, NULL, NULL, 0,NULL }
 
 
 struct  _Game__PBPoint
@@ -269,10 +309,16 @@ struct  _Game__PBNoCompressDrawData
   char *bgimagename;
   size_t n_layer;
   Game__PBLayer **layer;
+  protobuf_c_boolean has_strokes;
+  int64_t strokes;
+  protobuf_c_boolean has_spendtime;
+  int32_t spendtime;
+  protobuf_c_boolean has_completedate;
+  int32_t completedate;
 };
 #define GAME__PBNO_COMPRESS_DRAW_DATA__INIT \
  { PROTOBUF_C_MESSAGE_INIT (&game__pbno_compress_draw_data__descriptor) \
-    , 0,NULL, 0,0, NULL, 0,NULL, NULL, NULL, NULL, 0,NULL }
+    , 0,NULL, 0,0, NULL, 0,NULL, NULL, NULL, NULL, 0,NULL, 0,0, 0,0, 0,0 }
 
 
 struct  _Game__PBDrawBgGroup
@@ -545,6 +591,25 @@ Game__PBLearnDraw *
                       const uint8_t       *data);
 void   game__pblearn_draw__free_unpacked
                      (Game__PBLearnDraw *message,
+                      ProtobufCAllocator *allocator);
+/* Game__PBLabelInfo methods */
+void   game__pblabel_info__init
+                     (Game__PBLabelInfo         *message);
+size_t game__pblabel_info__get_packed_size
+                     (const Game__PBLabelInfo   *message);
+size_t game__pblabel_info__pack
+                     (const Game__PBLabelInfo   *message,
+                      uint8_t             *out);
+size_t game__pblabel_info__pack_to_buffer
+                     (const Game__PBLabelInfo   *message,
+                      ProtobufCBuffer     *buffer);
+Game__PBLabelInfo *
+       game__pblabel_info__unpack
+                     (ProtobufCAllocator  *allocator,
+                      size_t               len,
+                      const uint8_t       *data);
+void   game__pblabel_info__free_unpacked
+                     (Game__PBLabelInfo *message,
                       ProtobufCAllocator *allocator);
 /* Game__PBFeed methods */
 void   game__pbfeed__init
@@ -905,6 +970,9 @@ typedef void (*Game__PBCommentInfo_Closure)
 typedef void (*Game__PBLearnDraw_Closure)
                  (const Game__PBLearnDraw *message,
                   void *closure_data);
+typedef void (*Game__PBLabelInfo_Closure)
+                 (const Game__PBLabelInfo *message,
+                  void *closure_data);
 typedef void (*Game__PBFeed_Closure)
                  (const Game__PBFeed *message,
                   void *closure_data);
@@ -970,6 +1038,7 @@ extern const ProtobufCMessageDescriptor game__pbdraw__descriptor;
 extern const ProtobufCMessageDescriptor game__pbfeed_times__descriptor;
 extern const ProtobufCMessageDescriptor game__pbcomment_info__descriptor;
 extern const ProtobufCMessageDescriptor game__pblearn_draw__descriptor;
+extern const ProtobufCMessageDescriptor game__pblabel_info__descriptor;
 extern const ProtobufCMessageDescriptor game__pbfeed__descriptor;
 extern const ProtobufCMessageDescriptor game__pbpoint__descriptor;
 extern const ProtobufCMessageDescriptor game__pbcolor__descriptor;

@@ -4820,6 +4820,10 @@
 		CA7DE7A3192BAD3200EED067 /* play3.png in Resources */ = {isa = PBXBuildFile; fileRef = CA7DE799192BAD3200EED067 /* play3.png */; };
 		CA7DE7A4192BAD3200EED067 /* play3.png in Resources */ = {isa = PBXBuildFile; fileRef = CA7DE799192BAD3200EED067 /* play3.png */; };
 		CA7DE7A5192BAD3200EED067 /* play3.png in Resources */ = {isa = PBXBuildFile; fileRef = CA7DE799192BAD3200EED067 /* play3.png */; };
+		CA7DE7AC192C72FD00EED067 /* Group.pb-c.c in Sources */ = {isa = PBXBuildFile; fileRef = CA7DE7A9192C72FC00EED067 /* Group.pb-c.c */; };
+		CA7DE7AD192C72FE00EED067 /* Group.pb-c.c in Sources */ = {isa = PBXBuildFile; fileRef = CA7DE7A9192C72FC00EED067 /* Group.pb-c.c */; };
+		CA7DE7AE192C72FE00EED067 /* Group.pb-c.c in Sources */ = {isa = PBXBuildFile; fileRef = CA7DE7A9192C72FC00EED067 /* Group.pb-c.c */; };
+		CA7DE7AF192C72FE00EED067 /* Group.pb-c.c in Sources */ = {isa = PBXBuildFile; fileRef = CA7DE7A9192C72FC00EED067 /* Group.pb-c.c */; };
 		CA837C2B166CDFAD005718AA /* bbs_refresh@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA837C2A166CDFAD005718AA /* bbs_refresh@2x.png */; };
 		CA853BFC16B3830B006FC155 /* bbs_post_detail_untop@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA853BFB16B3830B006FC155 /* bbs_post_detail_untop@2x.png */; };
 		CA853C0216B3A45A006FC155 /* BoardAdminListView.m in Sources */ = {isa = PBXBuildFile; fileRef = CA853C0116B3A45A006FC155 /* BoardAdminListView.m */; };
@@ -9463,6 +9467,9 @@
 		CA7DE797192BAD3200EED067 /* play1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = play1.png; sourceTree = "<group>"; };
 		CA7DE798192BAD3200EED067 /* play2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = play2.png; sourceTree = "<group>"; };
 		CA7DE799192BAD3200EED067 /* play3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = play3.png; sourceTree = "<group>"; };
+		CA7DE7A9192C72FC00EED067 /* Group.pb-c.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = "Group.pb-c.c"; sourceTree = "<group>"; };
+		CA7DE7AA192C72FD00EED067 /* Group.pb-c.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Group.pb-c.h"; sourceTree = "<group>"; };
+		CA7DE7AB192C72FD00EED067 /* Photo.pb-c.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Photo.pb-c.h"; sourceTree = "<group>"; };
 		CA837C2A166CDFAD005718AA /* bbs_refresh@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bbs_refresh@2x.png"; sourceTree = "<group>"; };
 		CA853BFB16B3830B006FC155 /* bbs_post_detail_untop@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bbs_post_detail_untop@2x.png"; sourceTree = "<group>"; };
 		CA853C0016B3A45A006FC155 /* BoardAdminListView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BoardAdminListView.h; sourceTree = "<group>"; };
@@ -12430,6 +12437,9 @@
 		C20030A7172F9E1D00FD6AE1 /* Gen-c */ = {
 			isa = PBXGroup;
 			children = (
+				CA7DE7A9192C72FC00EED067 /* Group.pb-c.c */,
+				CA7DE7AA192C72FD00EED067 /* Group.pb-c.h */,
+				CA7DE7AB192C72FD00EED067 /* Photo.pb-c.h */,
 				CA33F67717E94B67005950EF /* Photo.pb-c.c */,
 				CAE58A00175EF45E009149E9 /* Opus.pb-c.c */,
 				CAE58A01175EF45E009149E9 /* Opus.pb-c.h */,
@@ -22489,6 +22499,7 @@
 				A4997207177831E100B01EBE /* CommonGuessController.m in Sources */,
 				A4997217177832EA00B01EBE /* OpusManageController.m in Sources */,
 				A499721A177832EA00B01EBE /* OpusView.m in Sources */,
+				CA7DE7AE192C72FE00EED067 /* Group.pb-c.c in Sources */,
 				A49972CA1778365000B01EBE /* OfflineGuessDrawController.m in Sources */,
 				A49972CD1778365000B01EBE /* OfflineDrawViewController.m in Sources */,
 				A49972D01778365000B01EBE /* OnlineDrawViewController.m in Sources */,
@@ -23513,6 +23524,7 @@
 				EA038981183B122900516952 /* GroupDetailCell.m in Sources */,
 				CACD6D2418E03C40003F97C0 /* DiracAudioPlayerBase.mm in Sources */,
 				EA038996183B14C200516952 /* GroupInfoView.m in Sources */,
+				CA7DE7AD192C72FE00EED067 /* Group.pb-c.c in Sources */,
 				CA5D9D52183E3C0200BD820C /* DOUAudioAnalyzer+Default.m in Sources */,
 				CA5D9D56183E3C0200BD820C /* DOUAudioAnalyzer.m in Sources */,
 				CA5D9D5A183E3C0200BD820C /* DOUAudioDecoder.m in Sources */,
@@ -24327,6 +24339,7 @@
 				EA038980183B122900516952 /* GroupDetailCell.m in Sources */,
 				CACD6D2318E03C40003F97C0 /* DiracAudioPlayerBase.mm in Sources */,
 				EA038995183B14C200516952 /* GroupInfoView.m in Sources */,
+				CA7DE7AC192C72FD00EED067 /* Group.pb-c.c in Sources */,
 				CA5D9D51183E3C0200BD820C /* DOUAudioAnalyzer+Default.m in Sources */,
 				CA5D9D55183E3C0200BD820C /* DOUAudioAnalyzer.m in Sources */,
 				CA5D9D59183E3C0200BD820C /* DOUAudioDecoder.m in Sources */,
@@ -24869,6 +24882,7 @@
 				EA411AB7176066F500DA72D0 /* ChatCommand.m in Sources */,
 				EA411AB8176066F500DA72D0 /* ReflectionView.m in Sources */,
 				EA411AB9176066F500DA72D0 /* FeedCarousel.m in Sources */,
+				CA7DE7AF192C72FE00EED067 /* Group.pb-c.c in Sources */,
 				EA411ABA176066F500DA72D0 /* StrawCommand.m in Sources */,
 				EA411ABB176066F500DA72D0 /* GridCommand.m in Sources */,
 				EA411ABC176066F500DA72D0 /* CanvasRectBox.m in Sources */,

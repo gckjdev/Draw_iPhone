@@ -221,6 +221,49 @@ void   game__pblearn_draw__free_unpacked
   PROTOBUF_C_ASSERT (message->base.descriptor == &game__pblearn_draw__descriptor);
   protobuf_c_message_free_unpacked ((ProtobufCMessage*)message, allocator);
 }
+void   game__pblabel_info__init
+                     (Game__PBLabelInfo         *message)
+{
+  static Game__PBLabelInfo init_value = GAME__PBLABEL_INFO__INIT;
+  *message = init_value;
+}
+size_t game__pblabel_info__get_packed_size
+                     (const Game__PBLabelInfo *message)
+{
+  PROTOBUF_C_ASSERT (message->base.descriptor == &game__pblabel_info__descriptor);
+  return protobuf_c_message_get_packed_size ((const ProtobufCMessage*)(message));
+}
+size_t game__pblabel_info__pack
+                     (const Game__PBLabelInfo *message,
+                      uint8_t       *out)
+{
+  PROTOBUF_C_ASSERT (message->base.descriptor == &game__pblabel_info__descriptor);
+  return protobuf_c_message_pack ((const ProtobufCMessage*)message, out);
+}
+size_t game__pblabel_info__pack_to_buffer
+                     (const Game__PBLabelInfo *message,
+                      ProtobufCBuffer *buffer)
+{
+  PROTOBUF_C_ASSERT (message->base.descriptor == &game__pblabel_info__descriptor);
+  return protobuf_c_message_pack_to_buffer ((const ProtobufCMessage*)message, buffer);
+}
+Game__PBLabelInfo *
+       game__pblabel_info__unpack
+                     (ProtobufCAllocator  *allocator,
+                      size_t               len,
+                      const uint8_t       *data)
+{
+  return (Game__PBLabelInfo *)
+     protobuf_c_message_unpack (&game__pblabel_info__descriptor,
+                                allocator, len, data);
+}
+void   game__pblabel_info__free_unpacked
+                     (Game__PBLabelInfo *message,
+                      ProtobufCAllocator *allocator)
+{
+  PROTOBUF_C_ASSERT (message->base.descriptor == &game__pblabel_info__descriptor);
+  protobuf_c_message_free_unpacked ((ProtobufCMessage*)message, allocator);
+}
 void   game__pbfeed__init
                      (Game__PBFeed         *message)
 {
@@ -1075,7 +1118,7 @@ const ProtobufCMessageDescriptor game__pblayer__descriptor =
 };
 static const int32_t game__pbdraw__version__default_value = 0;
 static const protobuf_c_boolean game__pbdraw__is_compressed__default_value = 1;
-static const ProtobufCFieldDescriptor game__pbdraw__field_descriptors[15] =
+static const ProtobufCFieldDescriptor game__pbdraw__field_descriptors[18] =
 {
   {
     "userId",
@@ -1257,10 +1300,47 @@ static const ProtobufCFieldDescriptor game__pbdraw__field_descriptors[15] =
     0,            /* packed */
     0,NULL,NULL    /* reserved1,reserved2, etc */
   },
+  {
+    "strokes",
+    23,
+    PROTOBUF_C_LABEL_OPTIONAL,
+    PROTOBUF_C_TYPE_INT64,
+    PROTOBUF_C_OFFSETOF(Game__PBDraw, has_strokes),
+    PROTOBUF_C_OFFSETOF(Game__PBDraw, strokes),
+    NULL,
+    NULL,
+    0,            /* packed */
+    0,NULL,NULL    /* reserved1,reserved2, etc */
+  },
+  {
+    "spendTime",
+    24,
+    PROTOBUF_C_LABEL_OPTIONAL,
+    PROTOBUF_C_TYPE_INT32,
+    PROTOBUF_C_OFFSETOF(Game__PBDraw, has_spendtime),
+    PROTOBUF_C_OFFSETOF(Game__PBDraw, spendtime),
+    NULL,
+    NULL,
+    0,            /* packed */
+    0,NULL,NULL    /* reserved1,reserved2, etc */
+  },
+  {
+    "completeDate",
+    25,
+    PROTOBUF_C_LABEL_OPTIONAL,
+    PROTOBUF_C_TYPE_INT32,
+    PROTOBUF_C_OFFSETOF(Game__PBDraw, has_completedate),
+    PROTOBUF_C_OFFSETOF(Game__PBDraw, completedate),
+    NULL,
+    NULL,
+    0,            /* packed */
+    0,NULL,NULL    /* reserved1,reserved2, etc */
+  },
 };
 static const unsigned game__pbdraw__field_indices_by_name[] = {
   6,   /* field[6] = avatar */
   13,   /* field[13] = canvasSize */
+  17,   /* field[17] = completeDate */
   4,   /* field[4] = createDate */
   9,   /* field[9] = drawData */
   7,   /* field[7] = gender */
@@ -1271,6 +1351,8 @@ static const unsigned game__pbdraw__field_indices_by_name[] = {
   5,   /* field[5] = nickName */
   10,   /* field[10] = opusId */
   11,   /* field[11] = score */
+  16,   /* field[16] = spendTime */
+  15,   /* field[15] = strokes */
   0,   /* field[0] = userId */
   8,   /* field[8] = version */
   1,   /* field[1] = word */
@@ -1280,7 +1362,7 @@ static const ProtobufCIntRange game__pbdraw__number_ranges[3 + 1] =
   { 1, 0 },
   { 19, 12 },
   { 21, 13 },
-  { 0, 15 }
+  { 0, 18 }
 };
 const ProtobufCMessageDescriptor game__pbdraw__descriptor =
 {
@@ -1290,7 +1372,7 @@ const ProtobufCMessageDescriptor game__pbdraw__descriptor =
   "Game__PBDraw",
   "game",
   sizeof(Game__PBDraw),
-  15,
+  18,
   game__pbdraw__field_descriptors,
   game__pbdraw__field_indices_by_name,
   3,  game__pbdraw__number_ranges,
@@ -1528,7 +1610,99 @@ const ProtobufCMessageDescriptor game__pblearn_draw__descriptor =
   (ProtobufCMessageInit) game__pblearn_draw__init,
   NULL,NULL,NULL    /* reserved[123] */
 };
-static const ProtobufCFieldDescriptor game__pbfeed__field_descriptors[41] =
+static const ProtobufCFieldDescriptor game__pblabel_info__field_descriptors[5] =
+{
+  {
+    "frame",
+    1,
+    PROTOBUF_C_LABEL_OPTIONAL,
+    PROTOBUF_C_TYPE_MESSAGE,
+    0,   /* quantifier_offset */
+    PROTOBUF_C_OFFSETOF(Game__PBLabelInfo, frame),
+    &game__pbrect__descriptor,
+    NULL,
+    0,            /* packed */
+    0,NULL,NULL    /* reserved1,reserved2, etc */
+  },
+  {
+    "textColor",
+    4,
+    PROTOBUF_C_LABEL_OPTIONAL,
+    PROTOBUF_C_TYPE_INT32,
+    PROTOBUF_C_OFFSETOF(Game__PBLabelInfo, has_textcolor),
+    PROTOBUF_C_OFFSETOF(Game__PBLabelInfo, textcolor),
+    NULL,
+    NULL,
+    0,            /* packed */
+    0,NULL,NULL    /* reserved1,reserved2, etc */
+  },
+  {
+    "textFont",
+    5,
+    PROTOBUF_C_LABEL_OPTIONAL,
+    PROTOBUF_C_TYPE_FLOAT,
+    PROTOBUF_C_OFFSETOF(Game__PBLabelInfo, has_textfont),
+    PROTOBUF_C_OFFSETOF(Game__PBLabelInfo, textfont),
+    NULL,
+    NULL,
+    0,            /* packed */
+    0,NULL,NULL    /* reserved1,reserved2, etc */
+  },
+  {
+    "style",
+    20,
+    PROTOBUF_C_LABEL_OPTIONAL,
+    PROTOBUF_C_TYPE_INT32,
+    PROTOBUF_C_OFFSETOF(Game__PBLabelInfo, has_style),
+    PROTOBUF_C_OFFSETOF(Game__PBLabelInfo, style),
+    NULL,
+    NULL,
+    0,            /* packed */
+    0,NULL,NULL    /* reserved1,reserved2, etc */
+  },
+  {
+    "textStrokeColor",
+    21,
+    PROTOBUF_C_LABEL_OPTIONAL,
+    PROTOBUF_C_TYPE_INT32,
+    PROTOBUF_C_OFFSETOF(Game__PBLabelInfo, has_textstrokecolor),
+    PROTOBUF_C_OFFSETOF(Game__PBLabelInfo, textstrokecolor),
+    NULL,
+    NULL,
+    0,            /* packed */
+    0,NULL,NULL    /* reserved1,reserved2, etc */
+  },
+};
+static const unsigned game__pblabel_info__field_indices_by_name[] = {
+  0,   /* field[0] = frame */
+  3,   /* field[3] = style */
+  1,   /* field[1] = textColor */
+  2,   /* field[2] = textFont */
+  4,   /* field[4] = textStrokeColor */
+};
+static const ProtobufCIntRange game__pblabel_info__number_ranges[3 + 1] =
+{
+  { 1, 0 },
+  { 4, 1 },
+  { 20, 3 },
+  { 0, 5 }
+};
+const ProtobufCMessageDescriptor game__pblabel_info__descriptor =
+{
+  PROTOBUF_C_MESSAGE_DESCRIPTOR_MAGIC,
+  "game.PBLabelInfo",
+  "PBLabelInfo",
+  "Game__PBLabelInfo",
+  "game",
+  sizeof(Game__PBLabelInfo),
+  5,
+  game__pblabel_info__field_descriptors,
+  game__pblabel_info__field_indices_by_name,
+  3,  game__pblabel_info__number_ranges,
+  (ProtobufCMessageInit) game__pblabel_info__init,
+  NULL,NULL,NULL    /* reserved[123] */
+};
+static const ProtobufCFieldDescriptor game__pbfeed__field_descriptors[50] =
 {
   {
     "feedId",
@@ -1615,6 +1789,18 @@ static const ProtobufCFieldDescriptor game__pbfeed__field_descriptors[41] =
     0,NULL,NULL    /* reserved1,reserved2, etc */
   },
   {
+    "category",
+    8,
+    PROTOBUF_C_LABEL_OPTIONAL,
+    PROTOBUF_C_TYPE_ENUM,
+    PROTOBUF_C_OFFSETOF(Game__PBFeed, has_category),
+    PROTOBUF_C_OFFSETOF(Game__PBFeed, category),
+    &game__pbopus_category_type__descriptor,
+    NULL,
+    0,            /* packed */
+    0,NULL,NULL    /* reserved1,reserved2, etc */
+  },
+  {
     "nickName",
     21,
     PROTOBUF_C_LABEL_OPTIONAL,
@@ -1657,6 +1843,18 @@ static const ProtobufCFieldDescriptor game__pbfeed__field_descriptors[41] =
     PROTOBUF_C_TYPE_STRING,
     0,   /* quantifier_offset */
     PROTOBUF_C_OFFSETOF(Game__PBFeed, signature),
+    NULL,
+    NULL,
+    0,            /* packed */
+    0,NULL,NULL    /* reserved1,reserved2, etc */
+  },
+  {
+    "vip",
+    25,
+    PROTOBUF_C_LABEL_OPTIONAL,
+    PROTOBUF_C_TYPE_INT32,
+    PROTOBUF_C_OFFSETOF(Game__PBFeed, has_vip),
+    PROTOBUF_C_OFFSETOF(Game__PBFeed, vip),
     NULL,
     NULL,
     0,            /* packed */
@@ -1729,6 +1927,30 @@ static const ProtobufCFieldDescriptor game__pbfeed__field_descriptors[41] =
     PROTOBUF_C_TYPE_STRING,
     0,   /* quantifier_offset */
     PROTOBUF_C_OFFSETOF(Game__PBFeed, drawdataurl),
+    NULL,
+    NULL,
+    0,            /* packed */
+    0,NULL,NULL    /* reserved1,reserved2, etc */
+  },
+  {
+    "tags",
+    37,
+    PROTOBUF_C_LABEL_REPEATED,
+    PROTOBUF_C_TYPE_STRING,
+    PROTOBUF_C_OFFSETOF(Game__PBFeed, n_tags),
+    PROTOBUF_C_OFFSETOF(Game__PBFeed, tags),
+    NULL,
+    NULL,
+    0,            /* packed */
+    0,NULL,NULL    /* reserved1,reserved2, etc */
+  },
+  {
+    "spendTime",
+    38,
+    PROTOBUF_C_LABEL_OPTIONAL,
+    PROTOBUF_C_TYPE_INT32,
+    PROTOBUF_C_OFFSETOF(Game__PBFeed, has_spendtime),
+    PROTOBUF_C_OFFSETOF(Game__PBFeed, spendtime),
     NULL,
     NULL,
     0,            /* packed */
@@ -2011,6 +2233,18 @@ static const ProtobufCFieldDescriptor game__pbfeed__field_descriptors[41] =
     0,NULL,NULL    /* reserved1,reserved2, etc */
   },
   {
+    "rankInTop",
+    94,
+    PROTOBUF_C_LABEL_OPTIONAL,
+    PROTOBUF_C_TYPE_INT32,
+    PROTOBUF_C_OFFSETOF(Game__PBFeed, has_rankintop),
+    PROTOBUF_C_OFFSETOF(Game__PBFeed, rankintop),
+    NULL,
+    NULL,
+    0,            /* packed */
+    0,NULL,NULL    /* reserved1,reserved2, etc */
+  },
+  {
     "learnDraw",
     100,
     PROTOBUF_C_LABEL_OPTIONAL,
@@ -2022,63 +2256,122 @@ static const ProtobufCFieldDescriptor game__pbfeed__field_descriptors[41] =
     0,            /* packed */
     0,NULL,NULL    /* reserved1,reserved2, etc */
   },
+  {
+    "sing",
+    101,
+    PROTOBUF_C_LABEL_OPTIONAL,
+    PROTOBUF_C_TYPE_MESSAGE,
+    0,   /* quantifier_offset */
+    PROTOBUF_C_OFFSETOF(Game__PBFeed, sing),
+    &game__pbsing_opus__descriptor,
+    NULL,
+    0,            /* packed */
+    0,NULL,NULL    /* reserved1,reserved2, etc */
+  },
+  {
+    "descLabelInfo",
+    200,
+    PROTOBUF_C_LABEL_OPTIONAL,
+    PROTOBUF_C_TYPE_MESSAGE,
+    0,   /* quantifier_offset */
+    PROTOBUF_C_OFFSETOF(Game__PBFeed, desclabelinfo),
+    &game__pblabel_info__descriptor,
+    NULL,
+    0,            /* packed */
+    0,NULL,NULL    /* reserved1,reserved2, etc */
+  },
+  {
+    "canvasSize",
+    201,
+    PROTOBUF_C_LABEL_OPTIONAL,
+    PROTOBUF_C_TYPE_MESSAGE,
+    0,   /* quantifier_offset */
+    PROTOBUF_C_OFFSETOF(Game__PBFeed, canvassize),
+    &game__pbsize__descriptor,
+    NULL,
+    0,            /* packed */
+    0,NULL,NULL    /* reserved1,reserved2, etc */
+  },
+  {
+    "class",
+    210,
+    PROTOBUF_C_LABEL_REPEATED,
+    PROTOBUF_C_TYPE_MESSAGE,
+    PROTOBUF_C_OFFSETOF(Game__PBFeed, n_class_),
+    PROTOBUF_C_OFFSETOF(Game__PBFeed, class_),
+    &game__pbclass__descriptor,
+    NULL,
+    0,            /* packed */
+    0,NULL,NULL    /* reserved1,reserved2, etc */
+  },
 };
 static const unsigned game__pbfeed__field_indices_by_name[] = {
   2,   /* field[2] = actionType */
-  8,   /* field[8] = avatar */
-  22,   /* field[22] = comment */
-  23,   /* field[23] = commentInfo */
-  27,   /* field[27] = commentTimes */
-  37,   /* field[37] = contestId */
-  38,   /* field[38] = contestScore */
-  25,   /* field[25] = correctTimes */
+  9,   /* field[9] = avatar */
+  48,   /* field[48] = canvasSize */
+  7,   /* field[7] = category */
+  49,   /* field[49] = class */
+  26,   /* field[26] = comment */
+  27,   /* field[27] = commentInfo */
+  31,   /* field[31] = commentTimes */
+  41,   /* field[41] = contestId */
+  42,   /* field[42] = contestScore */
+  29,   /* field[29] = correctTimes */
   3,   /* field[3] = createDate */
-  36,   /* field[36] = dataUrl */
+  40,   /* field[40] = dataUrl */
+  47,   /* field[47] = descLabelInfo */
   5,   /* field[5] = deviceName */
   4,   /* field[4] = deviceType */
-  11,   /* field[11] = drawData */
-  16,   /* field[16] = drawDataUrl */
+  13,   /* field[13] = drawData */
+  18,   /* field[18] = drawDataUrl */
   0,   /* field[0] = feedId */
-  28,   /* field[28] = feedTimes */
+  32,   /* field[32] = feedTimes */
   6,   /* field[6] = gameId */
-  9,   /* field[9] = gender */
-  26,   /* field[26] = guessTimes */
-  20,   /* field[20] = guessWords */
-  14,   /* field[14] = historyScore */
-  18,   /* field[18] = isCorrect */
-  40,   /* field[40] = learnDraw */
-  24,   /* field[24] = matchTimes */
-  7,   /* field[7] = nickName */
-  32,   /* field[32] = opusCreatorAvatar */
-  31,   /* field[31] = opusCreatorGender */
-  30,   /* field[30] = opusCreatorNickName */
-  29,   /* field[29] = opusCreatorUserId */
-  15,   /* field[15] = opusDesc */
-  17,   /* field[17] = opusId */
-  34,   /* field[34] = opusImage */
-  21,   /* field[21] = opusStatus */
-  35,   /* field[35] = opusThumbImage */
-  33,   /* field[33] = opusWord */
-  39,   /* field[39] = rankInfo */
-  19,   /* field[19] = score */
-  10,   /* field[10] = signature */
-  12,   /* field[12] = targetUserId */
-  13,   /* field[13] = targetUserNickName */
+  10,   /* field[10] = gender */
+  30,   /* field[30] = guessTimes */
+  24,   /* field[24] = guessWords */
+  16,   /* field[16] = historyScore */
+  22,   /* field[22] = isCorrect */
+  45,   /* field[45] = learnDraw */
+  28,   /* field[28] = matchTimes */
+  8,   /* field[8] = nickName */
+  36,   /* field[36] = opusCreatorAvatar */
+  35,   /* field[35] = opusCreatorGender */
+  34,   /* field[34] = opusCreatorNickName */
+  33,   /* field[33] = opusCreatorUserId */
+  17,   /* field[17] = opusDesc */
+  21,   /* field[21] = opusId */
+  38,   /* field[38] = opusImage */
+  25,   /* field[25] = opusStatus */
+  39,   /* field[39] = opusThumbImage */
+  37,   /* field[37] = opusWord */
+  44,   /* field[44] = rankInTop */
+  43,   /* field[43] = rankInfo */
+  23,   /* field[23] = score */
+  11,   /* field[11] = signature */
+  46,   /* field[46] = sing */
+  20,   /* field[20] = spendTime */
+  19,   /* field[19] = tags */
+  14,   /* field[14] = targetUserId */
+  15,   /* field[15] = targetUserNickName */
   1,   /* field[1] = userId */
+  12,   /* field[12] = vip */
 };
-static const ProtobufCIntRange game__pbfeed__number_ranges[10 + 1] =
+static const ProtobufCIntRange game__pbfeed__number_ranges[12 + 1] =
 {
   { 1, 0 },
-  { 21, 7 },
-  { 31, 11 },
-  { 41, 17 },
-  { 51, 22 },
-  { 61, 24 },
-  { 71, 29 },
-  { 81, 33 },
-  { 91, 37 },
-  { 100, 40 },
-  { 0, 41 }
+  { 21, 8 },
+  { 31, 13 },
+  { 41, 21 },
+  { 51, 26 },
+  { 61, 28 },
+  { 71, 33 },
+  { 81, 37 },
+  { 91, 41 },
+  { 100, 45 },
+  { 200, 47 },
+  { 210, 49 },
+  { 0, 50 }
 };
 const ProtobufCMessageDescriptor game__pbfeed__descriptor =
 {
@@ -2088,10 +2381,10 @@ const ProtobufCMessageDescriptor game__pbfeed__descriptor =
   "Game__PBFeed",
   "game",
   sizeof(Game__PBFeed),
-  41,
+  50,
   game__pbfeed__field_descriptors,
   game__pbfeed__field_indices_by_name,
-  10,  game__pbfeed__number_ranges,
+  12,  game__pbfeed__number_ranges,
   (ProtobufCMessageInit) game__pbfeed__init,
   NULL,NULL,NULL    /* reserved[123] */
 };
@@ -2446,7 +2739,7 @@ const ProtobufCMessageDescriptor game__pbno_compress_draw_action__descriptor =
   NULL,NULL,NULL    /* reserved[123] */
 };
 static const int32_t game__pbno_compress_draw_data__version__default_value = 0;
-static const ProtobufCFieldDescriptor game__pbno_compress_draw_data__field_descriptors[8] =
+static const ProtobufCFieldDescriptor game__pbno_compress_draw_data__field_descriptors[11] =
 {
   {
     "drawActionList",
@@ -2544,22 +2837,62 @@ static const ProtobufCFieldDescriptor game__pbno_compress_draw_data__field_descr
     0,            /* packed */
     0,NULL,NULL    /* reserved1,reserved2, etc */
   },
+  {
+    "strokes",
+    31,
+    PROTOBUF_C_LABEL_OPTIONAL,
+    PROTOBUF_C_TYPE_INT64,
+    PROTOBUF_C_OFFSETOF(Game__PBNoCompressDrawData, has_strokes),
+    PROTOBUF_C_OFFSETOF(Game__PBNoCompressDrawData, strokes),
+    NULL,
+    NULL,
+    0,            /* packed */
+    0,NULL,NULL    /* reserved1,reserved2, etc */
+  },
+  {
+    "spendTime",
+    32,
+    PROTOBUF_C_LABEL_OPTIONAL,
+    PROTOBUF_C_TYPE_INT32,
+    PROTOBUF_C_OFFSETOF(Game__PBNoCompressDrawData, has_spendtime),
+    PROTOBUF_C_OFFSETOF(Game__PBNoCompressDrawData, spendtime),
+    NULL,
+    NULL,
+    0,            /* packed */
+    0,NULL,NULL    /* reserved1,reserved2, etc */
+  },
+  {
+    "completeDate",
+    33,
+    PROTOBUF_C_LABEL_OPTIONAL,
+    PROTOBUF_C_TYPE_INT32,
+    PROTOBUF_C_OFFSETOF(Game__PBNoCompressDrawData, has_completedate),
+    PROTOBUF_C_OFFSETOF(Game__PBNoCompressDrawData, completedate),
+    NULL,
+    NULL,
+    0,            /* packed */
+    0,NULL,NULL    /* reserved1,reserved2, etc */
+  },
 };
 static const unsigned game__pbno_compress_draw_data__field_indices_by_name[] = {
   6,   /* field[6] = bgImageName */
   2,   /* field[2] = canvasSize */
+  10,   /* field[10] = completeDate */
   0,   /* field[0] = drawActionList */
   3,   /* field[3] = drawActionList2 */
   4,   /* field[4] = drawToUser */
   7,   /* field[7] = layer */
   5,   /* field[5] = opusDesc */
+  9,   /* field[9] = spendTime */
+  8,   /* field[8] = strokes */
   1,   /* field[1] = version */
 };
-static const ProtobufCIntRange game__pbno_compress_draw_data__number_ranges[2 + 1] =
+static const ProtobufCIntRange game__pbno_compress_draw_data__number_ranges[3 + 1] =
 {
   { 1, 0 },
   { 4, 2 },
-  { 0, 8 }
+  { 31, 8 },
+  { 0, 11 }
 };
 const ProtobufCMessageDescriptor game__pbno_compress_draw_data__descriptor =
 {
@@ -2569,10 +2902,10 @@ const ProtobufCMessageDescriptor game__pbno_compress_draw_data__descriptor =
   "Game__PBNoCompressDrawData",
   "game",
   sizeof(Game__PBNoCompressDrawData),
-  8,
+  11,
   game__pbno_compress_draw_data__field_descriptors,
   game__pbno_compress_draw_data__field_indices_by_name,
-  2,  game__pbno_compress_draw_data__number_ranges,
+  3,  game__pbno_compress_draw_data__number_ranges,
   (ProtobufCMessageInit) game__pbno_compress_draw_data__init,
   NULL,NULL,NULL    /* reserved[123] */
 };

@@ -92,6 +92,49 @@ void   game__pbint_key_value__free_unpacked
   PROTOBUF_C_ASSERT (message->base.descriptor == &game__pbint_key_value__descriptor);
   protobuf_c_message_free_unpacked ((ProtobufCMessage*)message, allocator);
 }
+void   game__pbint_key_int_value__init
+                     (Game__PBIntKeyIntValue         *message)
+{
+  static Game__PBIntKeyIntValue init_value = GAME__PBINT_KEY_INT_VALUE__INIT;
+  *message = init_value;
+}
+size_t game__pbint_key_int_value__get_packed_size
+                     (const Game__PBIntKeyIntValue *message)
+{
+  PROTOBUF_C_ASSERT (message->base.descriptor == &game__pbint_key_int_value__descriptor);
+  return protobuf_c_message_get_packed_size ((const ProtobufCMessage*)(message));
+}
+size_t game__pbint_key_int_value__pack
+                     (const Game__PBIntKeyIntValue *message,
+                      uint8_t       *out)
+{
+  PROTOBUF_C_ASSERT (message->base.descriptor == &game__pbint_key_int_value__descriptor);
+  return protobuf_c_message_pack ((const ProtobufCMessage*)message, out);
+}
+size_t game__pbint_key_int_value__pack_to_buffer
+                     (const Game__PBIntKeyIntValue *message,
+                      ProtobufCBuffer *buffer)
+{
+  PROTOBUF_C_ASSERT (message->base.descriptor == &game__pbint_key_int_value__descriptor);
+  return protobuf_c_message_pack_to_buffer ((const ProtobufCMessage*)message, buffer);
+}
+Game__PBIntKeyIntValue *
+       game__pbint_key_int_value__unpack
+                     (ProtobufCAllocator  *allocator,
+                      size_t               len,
+                      const uint8_t       *data)
+{
+  return (Game__PBIntKeyIntValue *)
+     protobuf_c_message_unpack (&game__pbint_key_int_value__descriptor,
+                                allocator, len, data);
+}
+void   game__pbint_key_int_value__free_unpacked
+                     (Game__PBIntKeyIntValue *message,
+                      ProtobufCAllocator *allocator)
+{
+  PROTOBUF_C_ASSERT (message->base.descriptor == &game__pbint_key_int_value__descriptor);
+  protobuf_c_message_free_unpacked ((ProtobufCMessage*)message, allocator);
+}
 void   game__pbsnsuser__init
                      (Game__PBSNSUser         *message)
 {
@@ -133,6 +176,49 @@ void   game__pbsnsuser__free_unpacked
                       ProtobufCAllocator *allocator)
 {
   PROTOBUF_C_ASSERT (message->base.descriptor == &game__pbsnsuser__descriptor);
+  protobuf_c_message_free_unpacked ((ProtobufCMessage*)message, allocator);
+}
+void   game__pbsnsuser_credential__init
+                     (Game__PBSNSUserCredential         *message)
+{
+  static Game__PBSNSUserCredential init_value = GAME__PBSNSUSER_CREDENTIAL__INIT;
+  *message = init_value;
+}
+size_t game__pbsnsuser_credential__get_packed_size
+                     (const Game__PBSNSUserCredential *message)
+{
+  PROTOBUF_C_ASSERT (message->base.descriptor == &game__pbsnsuser_credential__descriptor);
+  return protobuf_c_message_get_packed_size ((const ProtobufCMessage*)(message));
+}
+size_t game__pbsnsuser_credential__pack
+                     (const Game__PBSNSUserCredential *message,
+                      uint8_t       *out)
+{
+  PROTOBUF_C_ASSERT (message->base.descriptor == &game__pbsnsuser_credential__descriptor);
+  return protobuf_c_message_pack ((const ProtobufCMessage*)message, out);
+}
+size_t game__pbsnsuser_credential__pack_to_buffer
+                     (const Game__PBSNSUserCredential *message,
+                      ProtobufCBuffer *buffer)
+{
+  PROTOBUF_C_ASSERT (message->base.descriptor == &game__pbsnsuser_credential__descriptor);
+  return protobuf_c_message_pack_to_buffer ((const ProtobufCMessage*)message, buffer);
+}
+Game__PBSNSUserCredential *
+       game__pbsnsuser_credential__unpack
+                     (ProtobufCAllocator  *allocator,
+                      size_t               len,
+                      const uint8_t       *data)
+{
+  return (Game__PBSNSUserCredential *)
+     protobuf_c_message_unpack (&game__pbsnsuser_credential__descriptor,
+                                allocator, len, data);
+}
+void   game__pbsnsuser_credential__free_unpacked
+                     (Game__PBSNSUserCredential *message,
+                      ProtobufCAllocator *allocator)
+{
+  PROTOBUF_C_ASSERT (message->base.descriptor == &game__pbsnsuser_credential__descriptor);
   protobuf_c_message_free_unpacked ((ProtobufCMessage*)message, allocator);
 }
 void   game__pbuser_level__init
@@ -219,6 +305,49 @@ void   game__pbgame_user__free_unpacked
                       ProtobufCAllocator *allocator)
 {
   PROTOBUF_C_ASSERT (message->base.descriptor == &game__pbgame_user__descriptor);
+  protobuf_c_message_free_unpacked ((ProtobufCMessage*)message, allocator);
+}
+void   game__pbsimple_group__init
+                     (Game__PBSimpleGroup         *message)
+{
+  static Game__PBSimpleGroup init_value = GAME__PBSIMPLE_GROUP__INIT;
+  *message = init_value;
+}
+size_t game__pbsimple_group__get_packed_size
+                     (const Game__PBSimpleGroup *message)
+{
+  PROTOBUF_C_ASSERT (message->base.descriptor == &game__pbsimple_group__descriptor);
+  return protobuf_c_message_get_packed_size ((const ProtobufCMessage*)(message));
+}
+size_t game__pbsimple_group__pack
+                     (const Game__PBSimpleGroup *message,
+                      uint8_t       *out)
+{
+  PROTOBUF_C_ASSERT (message->base.descriptor == &game__pbsimple_group__descriptor);
+  return protobuf_c_message_pack ((const ProtobufCMessage*)message, out);
+}
+size_t game__pbsimple_group__pack_to_buffer
+                     (const Game__PBSimpleGroup *message,
+                      ProtobufCBuffer *buffer)
+{
+  PROTOBUF_C_ASSERT (message->base.descriptor == &game__pbsimple_group__descriptor);
+  return protobuf_c_message_pack_to_buffer ((const ProtobufCMessage*)message, buffer);
+}
+Game__PBSimpleGroup *
+       game__pbsimple_group__unpack
+                     (ProtobufCAllocator  *allocator,
+                      size_t               len,
+                      const uint8_t       *data)
+{
+  return (Game__PBSimpleGroup *)
+     protobuf_c_message_unpack (&game__pbsimple_group__descriptor,
+                                allocator, len, data);
+}
+void   game__pbsimple_group__free_unpacked
+                     (Game__PBSimpleGroup *message,
+                      ProtobufCAllocator *allocator)
+{
+  PROTOBUF_C_ASSERT (message->base.descriptor == &game__pbsimple_group__descriptor);
   protobuf_c_message_free_unpacked ((ProtobufCMessage*)message, allocator);
 }
 void   game__pbgame_session__init
@@ -1210,90 +1339,90 @@ void   game__pbuser_award__free_unpacked
   PROTOBUF_C_ASSERT (message->base.descriptor == &game__pbuser_award__descriptor);
   protobuf_c_message_free_unpacked ((ProtobufCMessage*)message, allocator);
 }
-void   game__pbcontest__init
-                     (Game__PBContest         *message)
+void   game__pbtask__init
+                     (Game__PBTask         *message)
 {
-  static Game__PBContest init_value = GAME__PBCONTEST__INIT;
+  static Game__PBTask init_value = GAME__PBTASK__INIT;
   *message = init_value;
 }
-size_t game__pbcontest__get_packed_size
-                     (const Game__PBContest *message)
+size_t game__pbtask__get_packed_size
+                     (const Game__PBTask *message)
 {
-  PROTOBUF_C_ASSERT (message->base.descriptor == &game__pbcontest__descriptor);
+  PROTOBUF_C_ASSERT (message->base.descriptor == &game__pbtask__descriptor);
   return protobuf_c_message_get_packed_size ((const ProtobufCMessage*)(message));
 }
-size_t game__pbcontest__pack
-                     (const Game__PBContest *message,
+size_t game__pbtask__pack
+                     (const Game__PBTask *message,
                       uint8_t       *out)
 {
-  PROTOBUF_C_ASSERT (message->base.descriptor == &game__pbcontest__descriptor);
+  PROTOBUF_C_ASSERT (message->base.descriptor == &game__pbtask__descriptor);
   return protobuf_c_message_pack ((const ProtobufCMessage*)message, out);
 }
-size_t game__pbcontest__pack_to_buffer
-                     (const Game__PBContest *message,
+size_t game__pbtask__pack_to_buffer
+                     (const Game__PBTask *message,
                       ProtobufCBuffer *buffer)
 {
-  PROTOBUF_C_ASSERT (message->base.descriptor == &game__pbcontest__descriptor);
+  PROTOBUF_C_ASSERT (message->base.descriptor == &game__pbtask__descriptor);
   return protobuf_c_message_pack_to_buffer ((const ProtobufCMessage*)message, buffer);
 }
-Game__PBContest *
-       game__pbcontest__unpack
+Game__PBTask *
+       game__pbtask__unpack
                      (ProtobufCAllocator  *allocator,
                       size_t               len,
                       const uint8_t       *data)
 {
-  return (Game__PBContest *)
-     protobuf_c_message_unpack (&game__pbcontest__descriptor,
+  return (Game__PBTask *)
+     protobuf_c_message_unpack (&game__pbtask__descriptor,
                                 allocator, len, data);
 }
-void   game__pbcontest__free_unpacked
-                     (Game__PBContest *message,
+void   game__pbtask__free_unpacked
+                     (Game__PBTask *message,
                       ProtobufCAllocator *allocator)
 {
-  PROTOBUF_C_ASSERT (message->base.descriptor == &game__pbcontest__descriptor);
+  PROTOBUF_C_ASSERT (message->base.descriptor == &game__pbtask__descriptor);
   protobuf_c_message_free_unpacked ((ProtobufCMessage*)message, allocator);
 }
-void   game__pbcontest_list__init
-                     (Game__PBContestList         *message)
+void   game__pbclass__init
+                     (Game__PBClass         *message)
 {
-  static Game__PBContestList init_value = GAME__PBCONTEST_LIST__INIT;
+  static Game__PBClass init_value = GAME__PBCLASS__INIT;
   *message = init_value;
 }
-size_t game__pbcontest_list__get_packed_size
-                     (const Game__PBContestList *message)
+size_t game__pbclass__get_packed_size
+                     (const Game__PBClass *message)
 {
-  PROTOBUF_C_ASSERT (message->base.descriptor == &game__pbcontest_list__descriptor);
+  PROTOBUF_C_ASSERT (message->base.descriptor == &game__pbclass__descriptor);
   return protobuf_c_message_get_packed_size ((const ProtobufCMessage*)(message));
 }
-size_t game__pbcontest_list__pack
-                     (const Game__PBContestList *message,
+size_t game__pbclass__pack
+                     (const Game__PBClass *message,
                       uint8_t       *out)
 {
-  PROTOBUF_C_ASSERT (message->base.descriptor == &game__pbcontest_list__descriptor);
+  PROTOBUF_C_ASSERT (message->base.descriptor == &game__pbclass__descriptor);
   return protobuf_c_message_pack ((const ProtobufCMessage*)message, out);
 }
-size_t game__pbcontest_list__pack_to_buffer
-                     (const Game__PBContestList *message,
+size_t game__pbclass__pack_to_buffer
+                     (const Game__PBClass *message,
                       ProtobufCBuffer *buffer)
 {
-  PROTOBUF_C_ASSERT (message->base.descriptor == &game__pbcontest_list__descriptor);
+  PROTOBUF_C_ASSERT (message->base.descriptor == &game__pbclass__descriptor);
   return protobuf_c_message_pack_to_buffer ((const ProtobufCMessage*)message, buffer);
 }
-Game__PBContestList *
-       game__pbcontest_list__unpack
+Game__PBClass *
+       game__pbclass__unpack
                      (ProtobufCAllocator  *allocator,
                       size_t               len,
                       const uint8_t       *data)
 {
-  return (Game__PBContestList *)
-     protobuf_c_message_unpack (&game__pbcontest_list__descriptor,
+  return (Game__PBClass *)
+     protobuf_c_message_unpack (&game__pbclass__descriptor,
                                 allocator, len, data);
 }
-void   game__pbcontest_list__free_unpacked
-                     (Game__PBContestList *message,
+void   game__pbclass__free_unpacked
+                     (Game__PBClass *message,
                       ProtobufCAllocator *allocator)
 {
-  PROTOBUF_C_ASSERT (message->base.descriptor == &game__pbcontest_list__descriptor);
+  PROTOBUF_C_ASSERT (message->base.descriptor == &game__pbclass__descriptor);
   protobuf_c_message_free_unpacked ((ProtobufCMessage*)message, allocator);
 }
 static const ProtobufCFieldDescriptor game__pbkey_value__field_descriptors[2] =
@@ -1398,7 +1527,58 @@ const ProtobufCMessageDescriptor game__pbint_key_value__descriptor =
   (ProtobufCMessageInit) game__pbint_key_value__init,
   NULL,NULL,NULL    /* reserved[123] */
 };
-static const ProtobufCFieldDescriptor game__pbsnsuser__field_descriptors[8] =
+static const ProtobufCFieldDescriptor game__pbint_key_int_value__field_descriptors[2] =
+{
+  {
+    "key",
+    1,
+    PROTOBUF_C_LABEL_REQUIRED,
+    PROTOBUF_C_TYPE_INT32,
+    0,   /* quantifier_offset */
+    PROTOBUF_C_OFFSETOF(Game__PBIntKeyIntValue, key),
+    NULL,
+    NULL,
+    0,            /* packed */
+    0,NULL,NULL    /* reserved1,reserved2, etc */
+  },
+  {
+    "value",
+    2,
+    PROTOBUF_C_LABEL_REQUIRED,
+    PROTOBUF_C_TYPE_INT32,
+    0,   /* quantifier_offset */
+    PROTOBUF_C_OFFSETOF(Game__PBIntKeyIntValue, value),
+    NULL,
+    NULL,
+    0,            /* packed */
+    0,NULL,NULL    /* reserved1,reserved2, etc */
+  },
+};
+static const unsigned game__pbint_key_int_value__field_indices_by_name[] = {
+  0,   /* field[0] = key */
+  1,   /* field[1] = value */
+};
+static const ProtobufCIntRange game__pbint_key_int_value__number_ranges[1 + 1] =
+{
+  { 1, 0 },
+  { 0, 2 }
+};
+const ProtobufCMessageDescriptor game__pbint_key_int_value__descriptor =
+{
+  PROTOBUF_C_MESSAGE_DESCRIPTOR_MAGIC,
+  "game.PBIntKeyIntValue",
+  "PBIntKeyIntValue",
+  "Game__PBIntKeyIntValue",
+  "game",
+  sizeof(Game__PBIntKeyIntValue),
+  2,
+  game__pbint_key_int_value__field_descriptors,
+  game__pbint_key_int_value__field_indices_by_name,
+  1,  game__pbint_key_int_value__number_ranges,
+  (ProtobufCMessageInit) game__pbint_key_int_value__init,
+  NULL,NULL,NULL    /* reserved[123] */
+};
+static const ProtobufCFieldDescriptor game__pbsnsuser__field_descriptors[9] =
 {
   {
     "type",
@@ -1496,10 +1676,23 @@ static const ProtobufCFieldDescriptor game__pbsnsuser__field_descriptors[8] =
     0,            /* packed */
     0,NULL,NULL    /* reserved1,reserved2, etc */
   },
+  {
+    "credential",
+    20,
+    PROTOBUF_C_LABEL_OPTIONAL,
+    PROTOBUF_C_TYPE_STRING,
+    0,   /* quantifier_offset */
+    PROTOBUF_C_OFFSETOF(Game__PBSNSUser, credential),
+    NULL,
+    NULL,
+    0,            /* packed */
+    0,NULL,NULL    /* reserved1,reserved2, etc */
+  },
 };
 static const unsigned game__pbsnsuser__field_indices_by_name[] = {
   3,   /* field[3] = accessToken */
   4,   /* field[4] = accessTokenSecret */
+  8,   /* field[8] = credential */
   6,   /* field[6] = expireTime */
   2,   /* field[2] = nickName */
   7,   /* field[7] = qqOpenId */
@@ -1507,10 +1700,11 @@ static const unsigned game__pbsnsuser__field_indices_by_name[] = {
   0,   /* field[0] = type */
   1,   /* field[1] = userId */
 };
-static const ProtobufCIntRange game__pbsnsuser__number_ranges[1 + 1] =
+static const ProtobufCIntRange game__pbsnsuser__number_ranges[2 + 1] =
 {
   { 1, 0 },
-  { 0, 8 }
+  { 20, 8 },
+  { 0, 9 }
 };
 const ProtobufCMessageDescriptor game__pbsnsuser__descriptor =
 {
@@ -1520,11 +1714,63 @@ const ProtobufCMessageDescriptor game__pbsnsuser__descriptor =
   "Game__PBSNSUser",
   "game",
   sizeof(Game__PBSNSUser),
-  8,
+  9,
   game__pbsnsuser__field_descriptors,
   game__pbsnsuser__field_indices_by_name,
-  1,  game__pbsnsuser__number_ranges,
+  2,  game__pbsnsuser__number_ranges,
   (ProtobufCMessageInit) game__pbsnsuser__init,
+  NULL,NULL,NULL    /* reserved[123] */
+};
+static const ProtobufCFieldDescriptor game__pbsnsuser_credential__field_descriptors[2] =
+{
+  {
+    "type",
+    1,
+    PROTOBUF_C_LABEL_REQUIRED,
+    PROTOBUF_C_TYPE_INT32,
+    0,   /* quantifier_offset */
+    PROTOBUF_C_OFFSETOF(Game__PBSNSUserCredential, type),
+    NULL,
+    NULL,
+    0,            /* packed */
+    0,NULL,NULL    /* reserved1,reserved2, etc */
+  },
+  {
+    "credential",
+    20,
+    PROTOBUF_C_LABEL_OPTIONAL,
+    PROTOBUF_C_TYPE_STRING,
+    0,   /* quantifier_offset */
+    PROTOBUF_C_OFFSETOF(Game__PBSNSUserCredential, credential),
+    NULL,
+    NULL,
+    0,            /* packed */
+    0,NULL,NULL    /* reserved1,reserved2, etc */
+  },
+};
+static const unsigned game__pbsnsuser_credential__field_indices_by_name[] = {
+  1,   /* field[1] = credential */
+  0,   /* field[0] = type */
+};
+static const ProtobufCIntRange game__pbsnsuser_credential__number_ranges[2 + 1] =
+{
+  { 1, 0 },
+  { 20, 1 },
+  { 0, 2 }
+};
+const ProtobufCMessageDescriptor game__pbsnsuser_credential__descriptor =
+{
+  PROTOBUF_C_MESSAGE_DESCRIPTOR_MAGIC,
+  "game.PBSNSUserCredential",
+  "PBSNSUserCredential",
+  "Game__PBSNSUserCredential",
+  "game",
+  sizeof(Game__PBSNSUserCredential),
+  2,
+  game__pbsnsuser_credential__field_descriptors,
+  game__pbsnsuser_credential__field_indices_by_name,
+  2,  game__pbsnsuser_credential__number_ranges,
+  (ProtobufCMessageInit) game__pbsnsuser_credential__init,
   NULL,NULL,NULL    /* reserved[123] */
 };
 static const int32_t game__pbuser_level__level__default_value = 1;
@@ -1601,8 +1847,11 @@ static const Game__PBOpenInfoType game__pbgame_user__open_info_type__default_val
 static const protobuf_c_boolean game__pbgame_user__can_shake_number__default_value = 0;
 static const int32_t game__pbgame_user__shake_number_times__default_value = 0;
 static const int32_t game__pbgame_user__take_coins__default_value = 0;
+static const int32_t game__pbgame_user__vip__default_value = 0;
+static const int32_t game__pbgame_user__vip_expire_date__default_value = 0;
+static const int32_t game__pbgame_user__vip_last_pay_date__default_value = 0;
 static const int32_t game__pbgame_user__sing_record_limit__default_value = 30;
-static const ProtobufCFieldDescriptor game__pbgame_user__field_descriptors[49] =
+static const ProtobufCFieldDescriptor game__pbgame_user__field_descriptors[57] =
 {
   {
     "userId",
@@ -1720,6 +1969,18 @@ static const ProtobufCFieldDescriptor game__pbgame_user__field_descriptors[49] =
     0,   /* quantifier_offset */
     PROTOBUF_C_OFFSETOF(Game__PBGameUser, xiaojinumber),
     NULL,
+    NULL,
+    0,            /* packed */
+    0,NULL,NULL    /* reserved1,reserved2, etc */
+  },
+  {
+    "snsCredentials",
+    11,
+    PROTOBUF_C_LABEL_REPEATED,
+    PROTOBUF_C_TYPE_MESSAGE,
+    PROTOBUF_C_OFFSETOF(Game__PBGameUser, n_snscredentials),
+    PROTOBUF_C_OFFSETOF(Game__PBGameUser, snscredentials),
+    &game__pbsnsuser_credential__descriptor,
     NULL,
     0,            /* packed */
     0,NULL,NULL    /* reserved1,reserved2, etc */
@@ -2181,6 +2442,90 @@ static const ProtobufCFieldDescriptor game__pbgame_user__field_descriptors[49] =
     0,NULL,NULL    /* reserved1,reserved2, etc */
   },
   {
+    "awardApps",
+    107,
+    PROTOBUF_C_LABEL_REPEATED,
+    PROTOBUF_C_TYPE_STRING,
+    PROTOBUF_C_OFFSETOF(Game__PBGameUser, n_awardapps),
+    PROTOBUF_C_OFFSETOF(Game__PBGameUser, awardapps),
+    NULL,
+    NULL,
+    0,            /* packed */
+    0,NULL,NULL    /* reserved1,reserved2, etc */
+  },
+  {
+    "vip",
+    110,
+    PROTOBUF_C_LABEL_OPTIONAL,
+    PROTOBUF_C_TYPE_INT32,
+    PROTOBUF_C_OFFSETOF(Game__PBGameUser, has_vip),
+    PROTOBUF_C_OFFSETOF(Game__PBGameUser, vip),
+    NULL,
+    &game__pbgame_user__vip__default_value,
+    0,            /* packed */
+    0,NULL,NULL    /* reserved1,reserved2, etc */
+  },
+  {
+    "vipExpireDate",
+    111,
+    PROTOBUF_C_LABEL_OPTIONAL,
+    PROTOBUF_C_TYPE_INT32,
+    PROTOBUF_C_OFFSETOF(Game__PBGameUser, has_vipexpiredate),
+    PROTOBUF_C_OFFSETOF(Game__PBGameUser, vipexpiredate),
+    NULL,
+    &game__pbgame_user__vip_expire_date__default_value,
+    0,            /* packed */
+    0,NULL,NULL    /* reserved1,reserved2, etc */
+  },
+  {
+    "vipLastPayDate",
+    112,
+    PROTOBUF_C_LABEL_OPTIONAL,
+    PROTOBUF_C_TYPE_INT32,
+    PROTOBUF_C_OFFSETOF(Game__PBGameUser, has_viplastpaydate),
+    PROTOBUF_C_OFFSETOF(Game__PBGameUser, viplastpaydate),
+    NULL,
+    &game__pbgame_user__vip_last_pay_date__default_value,
+    0,            /* packed */
+    0,NULL,NULL    /* reserved1,reserved2, etc */
+  },
+  {
+    "groupInfo",
+    150,
+    PROTOBUF_C_LABEL_OPTIONAL,
+    PROTOBUF_C_TYPE_MESSAGE,
+    0,   /* quantifier_offset */
+    PROTOBUF_C_OFFSETOF(Game__PBGameUser, groupinfo),
+    &game__pbsimple_group__descriptor,
+    NULL,
+    0,            /* packed */
+    0,NULL,NULL    /* reserved1,reserved2, etc */
+  },
+  {
+    "offGroupIds",
+    151,
+    PROTOBUF_C_LABEL_REPEATED,
+    PROTOBUF_C_TYPE_STRING,
+    PROTOBUF_C_OFFSETOF(Game__PBGameUser, n_offgroupids),
+    PROTOBUF_C_OFFSETOF(Game__PBGameUser, offgroupids),
+    NULL,
+    NULL,
+    0,            /* packed */
+    0,NULL,NULL    /* reserved1,reserved2, etc */
+  },
+  {
+    "permissions",
+    152,
+    PROTOBUF_C_LABEL_REPEATED,
+    PROTOBUF_C_TYPE_STRING,
+    PROTOBUF_C_OFFSETOF(Game__PBGameUser, n_permissions),
+    PROTOBUF_C_OFFSETOF(Game__PBGameUser, permissions),
+    NULL,
+    NULL,
+    0,            /* packed */
+    0,NULL,NULL    /* reserved1,reserved2, etc */
+  },
+  {
     "singRecordLimit",
     200,
     PROTOBUF_C_LABEL_OPTIONAL,
@@ -2194,70 +2539,80 @@ static const ProtobufCFieldDescriptor game__pbgame_user__field_descriptors[49] =
   },
 };
 static const unsigned game__pbgame_user__field_indices_by_name[] = {
-  12,   /* field[12] = attributes */
+  13,   /* field[13] = attributes */
   2,   /* field[2] = avatar */
-  18,   /* field[18] = backgroundURL */
-  15,   /* field[15] = birthday */
-  32,   /* field[32] = blockDeviceIds */
-  33,   /* field[33] = bloodGroup */
-  45,   /* field[45] = canShakeNumber */
-  24,   /* field[24] = coinBalance */
-  20,   /* field[20] = countryCode */
-  30,   /* field[30] = deviceId */
-  28,   /* field[28] = deviceModel */
-  29,   /* field[29] = deviceOS */
-  19,   /* field[19] = deviceToken */
-  31,   /* field[31] = deviceType */
-  25,   /* field[25] = diamondBalance */
-  13,   /* field[13] = email */
-  44,   /* field[44] = emailVerifyStatus */
-  23,   /* field[23] = experience */
+  49,   /* field[49] = awardApps */
+  19,   /* field[19] = backgroundURL */
+  16,   /* field[16] = birthday */
+  33,   /* field[33] = blockDeviceIds */
+  34,   /* field[34] = bloodGroup */
+  46,   /* field[46] = canShakeNumber */
+  25,   /* field[25] = coinBalance */
+  21,   /* field[21] = countryCode */
+  31,   /* field[31] = deviceId */
+  29,   /* field[29] = deviceModel */
+  30,   /* field[30] = deviceOS */
+  20,   /* field[20] = deviceToken */
+  32,   /* field[32] = deviceType */
+  26,   /* field[26] = diamondBalance */
+  14,   /* field[14] = email */
+  45,   /* field[45] = emailVerifyStatus */
+  24,   /* field[24] = experience */
   7,   /* field[7] = facetimeId */
-  34,   /* field[34] = fanCount */
-  42,   /* field[42] = featureOpus */
-  35,   /* field[35] = followCount */
-  43,   /* field[43] = friendMemo */
+  35,   /* field[35] = fanCount */
+  43,   /* field[43] = featureOpus */
+  36,   /* field[36] = followCount */
+  44,   /* field[44] = friendMemo */
   3,   /* field[3] = gender */
-  17,   /* field[17] = guessWordLanguage */
-  26,   /* field[26] = ingotBalance */
-  38,   /* field[38] = isJailBroken */
-  10,   /* field[10] = isPlaying */
-  11,   /* field[11] = isTakenOver */
-  27,   /* field[27] = items */
-  21,   /* field[21] = language */
-  37,   /* field[37] = latitude */
-  22,   /* field[22] = level */
+  53,   /* field[53] = groupInfo */
+  18,   /* field[18] = guessWordLanguage */
+  27,   /* field[27] = ingotBalance */
+  39,   /* field[39] = isJailBroken */
+  11,   /* field[11] = isPlaying */
+  12,   /* field[12] = isTakenOver */
+  28,   /* field[28] = items */
+  22,   /* field[22] = language */
+  38,   /* field[38] = latitude */
+  23,   /* field[23] = level */
   5,   /* field[5] = location */
-  36,   /* field[36] = longitude */
+  37,   /* field[37] = longitude */
   1,   /* field[1] = nickName */
-  39,   /* field[39] = openInfoType */
-  40,   /* field[40] = opusCoverflowType */
-  14,   /* field[14] = password */
+  54,   /* field[54] = offGroupIds */
+  40,   /* field[40] = openInfoType */
+  41,   /* field[41] = opusCoverflowType */
+  15,   /* field[15] = password */
+  55,   /* field[55] = permissions */
   8,   /* field[8] = seatId */
-  46,   /* field[46] = shakeNumberTimes */
-  41,   /* field[41] = signature */
-  48,   /* field[48] = singRecordLimit */
+  47,   /* field[47] = shakeNumberTimes */
+  42,   /* field[42] = signature */
+  56,   /* field[56] = singRecordLimit */
+  10,   /* field[10] = snsCredentials */
   4,   /* field[4] = snsUsers */
-  47,   /* field[47] = takeCoins */
+  48,   /* field[48] = takeCoins */
   0,   /* field[0] = userId */
   6,   /* field[6] = userLevel */
+  50,   /* field[50] = vip */
+  51,   /* field[51] = vipExpireDate */
+  52,   /* field[52] = vipLastPayDate */
   9,   /* field[9] = xiaojiNumber */
-  16,   /* field[16] = zodiac */
+  17,   /* field[17] = zodiac */
 };
-static const ProtobufCIntRange game__pbgame_user__number_ranges[11 + 1] =
+static const ProtobufCIntRange game__pbgame_user__number_ranges[13 + 1] =
 {
   { 1, 0 },
-  { 20, 10 },
-  { 31, 13 },
-  { 41, 22 },
-  { 51, 24 },
-  { 61, 27 },
-  { 71, 28 },
-  { 81, 33 },
-  { 91, 39 },
-  { 100, 41 },
-  { 200, 48 },
-  { 0, 49 }
+  { 20, 11 },
+  { 31, 14 },
+  { 41, 23 },
+  { 51, 25 },
+  { 61, 28 },
+  { 71, 29 },
+  { 81, 34 },
+  { 91, 40 },
+  { 100, 42 },
+  { 110, 50 },
+  { 150, 53 },
+  { 200, 56 },
+  { 0, 57 }
 };
 const ProtobufCMessageDescriptor game__pbgame_user__descriptor =
 {
@@ -2267,11 +2622,75 @@ const ProtobufCMessageDescriptor game__pbgame_user__descriptor =
   "Game__PBGameUser",
   "game",
   sizeof(Game__PBGameUser),
-  49,
+  57,
   game__pbgame_user__field_descriptors,
   game__pbgame_user__field_indices_by_name,
-  11,  game__pbgame_user__number_ranges,
+  13,  game__pbgame_user__number_ranges,
   (ProtobufCMessageInit) game__pbgame_user__init,
+  NULL,NULL,NULL    /* reserved[123] */
+};
+static const ProtobufCFieldDescriptor game__pbsimple_group__field_descriptors[3] =
+{
+  {
+    "groupId",
+    1,
+    PROTOBUF_C_LABEL_REQUIRED,
+    PROTOBUF_C_TYPE_STRING,
+    0,   /* quantifier_offset */
+    PROTOBUF_C_OFFSETOF(Game__PBSimpleGroup, groupid),
+    NULL,
+    NULL,
+    0,            /* packed */
+    0,NULL,NULL    /* reserved1,reserved2, etc */
+  },
+  {
+    "groupName",
+    2,
+    PROTOBUF_C_LABEL_REQUIRED,
+    PROTOBUF_C_TYPE_STRING,
+    0,   /* quantifier_offset */
+    PROTOBUF_C_OFFSETOF(Game__PBSimpleGroup, groupname),
+    NULL,
+    NULL,
+    0,            /* packed */
+    0,NULL,NULL    /* reserved1,reserved2, etc */
+  },
+  {
+    "groupMedal",
+    3,
+    PROTOBUF_C_LABEL_REQUIRED,
+    PROTOBUF_C_TYPE_STRING,
+    0,   /* quantifier_offset */
+    PROTOBUF_C_OFFSETOF(Game__PBSimpleGroup, groupmedal),
+    NULL,
+    NULL,
+    0,            /* packed */
+    0,NULL,NULL    /* reserved1,reserved2, etc */
+  },
+};
+static const unsigned game__pbsimple_group__field_indices_by_name[] = {
+  0,   /* field[0] = groupId */
+  2,   /* field[2] = groupMedal */
+  1,   /* field[1] = groupName */
+};
+static const ProtobufCIntRange game__pbsimple_group__number_ranges[1 + 1] =
+{
+  { 1, 0 },
+  { 0, 3 }
+};
+const ProtobufCMessageDescriptor game__pbsimple_group__descriptor =
+{
+  PROTOBUF_C_MESSAGE_DESCRIPTOR_MAGIC,
+  "game.PBSimpleGroup",
+  "PBSimpleGroup",
+  "Game__PBSimpleGroup",
+  "game",
+  sizeof(Game__PBSimpleGroup),
+  3,
+  game__pbsimple_group__field_descriptors,
+  game__pbsimple_group__field_indices_by_name,
+  1,  game__pbsimple_group__number_ranges,
+  (ProtobufCMessageInit) game__pbsimple_group__init,
   NULL,NULL,NULL    /* reserved[123] */
 };
 static const int32_t game__pbgame_session__rule_type__default_value = 0;
@@ -3007,8 +3426,9 @@ const ProtobufCMessageDescriptor game__pbdraw_action__descriptor =
   NULL,NULL,NULL    /* reserved[123] */
 };
 static const int32_t game__pbmessage__type__default_value = 0;
+static const protobuf_c_boolean game__pbmessage__is_group__default_value = 0;
 static const int32_t game__pbmessage__draw_data_version__default_value = 0;
-static const ProtobufCFieldDescriptor game__pbmessage__field_descriptors[16] =
+static const ProtobufCFieldDescriptor game__pbmessage__field_descriptors[19] =
 {
   {
     "messageId",
@@ -3067,6 +3487,42 @@ static const ProtobufCFieldDescriptor game__pbmessage__field_descriptors[16] =
     PROTOBUF_C_OFFSETOF(Game__PBMessage, type),
     NULL,
     &game__pbmessage__type__default_value,
+    0,            /* packed */
+    0,NULL,NULL    /* reserved1,reserved2, etc */
+  },
+  {
+    "isGroup",
+    6,
+    PROTOBUF_C_LABEL_OPTIONAL,
+    PROTOBUF_C_TYPE_BOOL,
+    PROTOBUF_C_OFFSETOF(Game__PBMessage, has_isgroup),
+    PROTOBUF_C_OFFSETOF(Game__PBMessage, isgroup),
+    NULL,
+    &game__pbmessage__is_group__default_value,
+    0,            /* packed */
+    0,NULL,NULL    /* reserved1,reserved2, etc */
+  },
+  {
+    "fromUser",
+    7,
+    PROTOBUF_C_LABEL_OPTIONAL,
+    PROTOBUF_C_TYPE_MESSAGE,
+    0,   /* quantifier_offset */
+    PROTOBUF_C_OFFSETOF(Game__PBMessage, fromuser),
+    &game__pbgame_user__descriptor,
+    NULL,
+    0,            /* packed */
+    0,NULL,NULL    /* reserved1,reserved2, etc */
+  },
+  {
+    "toUser",
+    8,
+    PROTOBUF_C_LABEL_OPTIONAL,
+    PROTOBUF_C_TYPE_MESSAGE,
+    0,   /* quantifier_offset */
+    PROTOBUF_C_OFFSETOF(Game__PBMessage, touser),
+    &game__pbgame_user__descriptor,
+    NULL,
     0,            /* packed */
     0,NULL,NULL    /* reserved1,reserved2, etc */
   },
@@ -3204,30 +3660,33 @@ static const ProtobufCFieldDescriptor game__pbmessage__field_descriptors[16] =
   },
 };
 static const unsigned game__pbmessage__field_indices_by_name[] = {
-  9,   /* field[9] = canvasSize */
-  7,   /* field[7] = createDate */
-  6,   /* field[6] = drawData */
-  8,   /* field[8] = drawDataVersion */
+  12,   /* field[12] = canvasSize */
+  10,   /* field[10] = createDate */
+  9,   /* field[9] = drawData */
+  11,   /* field[11] = drawDataVersion */
   1,   /* field[1] = from */
-  14,   /* field[14] = imageURL */
-  11,   /* field[11] = latitude */
-  10,   /* field[10] = longitude */
+  6,   /* field[6] = fromUser */
+  17,   /* field[17] = imageURL */
+  5,   /* field[5] = isGroup */
+  14,   /* field[14] = latitude */
+  13,   /* field[13] = longitude */
   0,   /* field[0] = messageId */
-  13,   /* field[13] = replyResult */
-  12,   /* field[12] = reqMessageId */
+  16,   /* field[16] = replyResult */
+  15,   /* field[15] = reqMessageId */
   3,   /* field[3] = status */
-  5,   /* field[5] = text */
-  15,   /* field[15] = thumbImageURL */
+  8,   /* field[8] = text */
+  18,   /* field[18] = thumbImageURL */
   2,   /* field[2] = to */
+  7,   /* field[7] = toUser */
   4,   /* field[4] = type */
 };
 static const ProtobufCIntRange game__pbmessage__number_ranges[4 + 1] =
 {
   { 1, 0 },
-  { 20, 5 },
-  { 31, 10 },
-  { 41, 14 },
-  { 0, 16 }
+  { 20, 8 },
+  { 31, 13 },
+  { 41, 17 },
+  { 0, 19 }
 };
 const ProtobufCMessageDescriptor game__pbmessage__descriptor =
 {
@@ -3237,14 +3696,16 @@ const ProtobufCMessageDescriptor game__pbmessage__descriptor =
   "Game__PBMessage",
   "game",
   sizeof(Game__PBMessage),
-  16,
+  19,
   game__pbmessage__field_descriptors,
   game__pbmessage__field_indices_by_name,
   4,  game__pbmessage__number_ranges,
   (ProtobufCMessageInit) game__pbmessage__init,
   NULL,NULL,NULL    /* reserved[123] */
 };
-static const ProtobufCFieldDescriptor game__pbmessage_stat__field_descriptors[15] =
+static const protobuf_c_boolean game__pbmessage_stat__is_group__default_value = 0;
+static const int32_t game__pbmessage_stat__is_vip__default_value = 0;
+static const ProtobufCFieldDescriptor game__pbmessage_stat__field_descriptors[18] =
 {
   {
     "userId",
@@ -3303,6 +3764,30 @@ static const ProtobufCFieldDescriptor game__pbmessage_stat__field_descriptors[15
     PROTOBUF_C_OFFSETOF(Game__PBMessageStat, friendgender),
     NULL,
     NULL,
+    0,            /* packed */
+    0,NULL,NULL    /* reserved1,reserved2, etc */
+  },
+  {
+    "isGroup",
+    6,
+    PROTOBUF_C_LABEL_OPTIONAL,
+    PROTOBUF_C_TYPE_BOOL,
+    PROTOBUF_C_OFFSETOF(Game__PBMessageStat, has_isgroup),
+    PROTOBUF_C_OFFSETOF(Game__PBMessageStat, isgroup),
+    NULL,
+    &game__pbmessage_stat__is_group__default_value,
+    0,            /* packed */
+    0,NULL,NULL    /* reserved1,reserved2, etc */
+  },
+  {
+    "isVip",
+    7,
+    PROTOBUF_C_LABEL_OPTIONAL,
+    PROTOBUF_C_TYPE_INT32,
+    PROTOBUF_C_OFFSETOF(Game__PBMessageStat, has_isvip),
+    PROTOBUF_C_OFFSETOF(Game__PBMessageStat, isvip),
+    NULL,
+    &game__pbmessage_stat__is_vip__default_value,
     0,            /* packed */
     0,NULL,NULL    /* reserved1,reserved2, etc */
   },
@@ -3426,30 +3911,45 @@ static const ProtobufCFieldDescriptor game__pbmessage_stat__field_descriptors[15
     0,            /* packed */
     0,NULL,NULL    /* reserved1,reserved2, etc */
   },
+  {
+    "newGroupMessageCount",
+    34,
+    PROTOBUF_C_LABEL_OPTIONAL,
+    PROTOBUF_C_TYPE_INT32,
+    PROTOBUF_C_OFFSETOF(Game__PBMessageStat, has_newgroupmessagecount),
+    PROTOBUF_C_OFFSETOF(Game__PBMessageStat, newgroupmessagecount),
+    NULL,
+    NULL,
+    0,            /* packed */
+    0,NULL,NULL    /* reserved1,reserved2, etc */
+  },
 };
 static const unsigned game__pbmessage_stat__field_indices_by_name[] = {
-  10,   /* field[10] = createDate */
-  9,   /* field[9] = drawData */
+  12,   /* field[12] = createDate */
+  11,   /* field[11] = drawData */
   3,   /* field[3] = friendAvatar */
   4,   /* field[4] = friendGender */
   2,   /* field[2] = friendNickName */
   1,   /* field[1] = friendUserId */
-  6,   /* field[6] = from */
-  5,   /* field[5] = messageId */
-  12,   /* field[12] = modifiedDate */
-  14,   /* field[14] = newMessageCount */
-  8,   /* field[8] = text */
-  7,   /* field[7] = to */
-  13,   /* field[13] = totalMessageCount */
-  11,   /* field[11] = type */
+  8,   /* field[8] = from */
+  5,   /* field[5] = isGroup */
+  6,   /* field[6] = isVip */
+  7,   /* field[7] = messageId */
+  14,   /* field[14] = modifiedDate */
+  17,   /* field[17] = newGroupMessageCount */
+  16,   /* field[16] = newMessageCount */
+  10,   /* field[10] = text */
+  9,   /* field[9] = to */
+  15,   /* field[15] = totalMessageCount */
+  13,   /* field[13] = type */
   0,   /* field[0] = userId */
 };
 static const ProtobufCIntRange game__pbmessage_stat__number_ranges[3 + 1] =
 {
   { 1, 0 },
-  { 10, 5 },
-  { 31, 12 },
-  { 0, 15 }
+  { 10, 7 },
+  { 31, 14 },
+  { 0, 18 }
 };
 const ProtobufCMessageDescriptor game__pbmessage_stat__descriptor =
 {
@@ -3459,7 +3959,7 @@ const ProtobufCMessageDescriptor game__pbmessage_stat__descriptor =
   "Game__PBMessageStat",
   "game",
   sizeof(Game__PBMessageStat),
-  15,
+  18,
   game__pbmessage_stat__field_descriptors,
   game__pbmessage_stat__field_indices_by_name,
   3,  game__pbmessage_stat__number_ranges,
@@ -4813,55 +5313,39 @@ const ProtobufCMessageDescriptor game__pbuser_award__descriptor =
   (ProtobufCMessageInit) game__pbuser_award__init,
   NULL,NULL,NULL    /* reserved[123] */
 };
-static const int32_t game__pbcontest__can_submit_count__default_value = 1;
-static const int32_t game__pbcontest__max_flower_per_contest__default_value = 20;
-static const int32_t game__pbcontest__max_flower_per_opus__default_value = 3;
-static const protobuf_c_boolean game__pbcontest__contestants_only__default_value = 0;
-static const ProtobufCFieldDescriptor game__pbcontest__field_descriptors[26] =
+static const ProtobufCFieldDescriptor game__pbtask__field_descriptors[6] =
 {
   {
-    "contestId",
+    "taskId",
     1,
+    PROTOBUF_C_LABEL_REQUIRED,
+    PROTOBUF_C_TYPE_INT32,
+    0,   /* quantifier_offset */
+    PROTOBUF_C_OFFSETOF(Game__PBTask, taskid),
+    NULL,
+    NULL,
+    0,            /* packed */
+    0,NULL,NULL    /* reserved1,reserved2, etc */
+  },
+  {
+    "name",
+    2,
     PROTOBUF_C_LABEL_REQUIRED,
     PROTOBUF_C_TYPE_STRING,
     0,   /* quantifier_offset */
-    PROTOBUF_C_OFFSETOF(Game__PBContest, contestid),
+    PROTOBUF_C_OFFSETOF(Game__PBTask, name),
     NULL,
     NULL,
     0,            /* packed */
     0,NULL,NULL    /* reserved1,reserved2, etc */
   },
   {
-    "startDate",
-    2,
-    PROTOBUF_C_LABEL_OPTIONAL,
-    PROTOBUF_C_TYPE_INT32,
-    PROTOBUF_C_OFFSETOF(Game__PBContest, has_startdate),
-    PROTOBUF_C_OFFSETOF(Game__PBContest, startdate),
-    NULL,
-    NULL,
-    0,            /* packed */
-    0,NULL,NULL    /* reserved1,reserved2, etc */
-  },
-  {
-    "endDate",
+    "desc",
     3,
     PROTOBUF_C_LABEL_OPTIONAL,
-    PROTOBUF_C_TYPE_INT32,
-    PROTOBUF_C_OFFSETOF(Game__PBContest, has_enddate),
-    PROTOBUF_C_OFFSETOF(Game__PBContest, enddate),
-    NULL,
-    NULL,
-    0,            /* packed */
-    0,NULL,NULL    /* reserved1,reserved2, etc */
-  },
-  {
-    "type",
-    4,
-    PROTOBUF_C_LABEL_OPTIONAL,
-    PROTOBUF_C_TYPE_INT32,
-    PROTOBUF_C_OFFSETOF(Game__PBContest, has_type),
-    PROTOBUF_C_OFFSETOF(Game__PBContest, type),
+    PROTOBUF_C_TYPE_STRING,
+    0,   /* quantifier_offset */
+    PROTOBUF_C_OFFSETOF(Game__PBTask, desc),
     NULL,
     NULL,
     0,            /* packed */
@@ -4869,356 +5353,170 @@ static const ProtobufCFieldDescriptor game__pbcontest__field_descriptors[26] =
   },
   {
     "status",
+    4,
+    PROTOBUF_C_LABEL_OPTIONAL,
+    PROTOBUF_C_TYPE_ENUM,
+    PROTOBUF_C_OFFSETOF(Game__PBTask, has_status),
+    PROTOBUF_C_OFFSETOF(Game__PBTask, status),
+    &game__pbtask_status__descriptor,
+    NULL,
+    0,            /* packed */
+    0,NULL,NULL    /* reserved1,reserved2, etc */
+  },
+  {
+    "badge",
     5,
     PROTOBUF_C_LABEL_OPTIONAL,
     PROTOBUF_C_TYPE_INT32,
-    PROTOBUF_C_OFFSETOF(Game__PBContest, has_status),
-    PROTOBUF_C_OFFSETOF(Game__PBContest, status),
+    PROTOBUF_C_OFFSETOF(Game__PBTask, has_badge),
+    PROTOBUF_C_OFFSETOF(Game__PBTask, badge),
     NULL,
     NULL,
     0,            /* packed */
     0,NULL,NULL    /* reserved1,reserved2, etc */
   },
   {
-    "participantCount",
+    "award",
     6,
     PROTOBUF_C_LABEL_OPTIONAL,
     PROTOBUF_C_TYPE_INT32,
-    PROTOBUF_C_OFFSETOF(Game__PBContest, has_participantcount),
-    PROTOBUF_C_OFFSETOF(Game__PBContest, participantcount),
+    PROTOBUF_C_OFFSETOF(Game__PBTask, has_award),
+    PROTOBUF_C_OFFSETOF(Game__PBTask, award),
     NULL,
-    NULL,
-    0,            /* packed */
-    0,NULL,NULL    /* reserved1,reserved2, etc */
-  },
-  {
-    "opusCount",
-    7,
-    PROTOBUF_C_LABEL_OPTIONAL,
-    PROTOBUF_C_TYPE_INT32,
-    PROTOBUF_C_OFFSETOF(Game__PBContest, has_opuscount),
-    PROTOBUF_C_OFFSETOF(Game__PBContest, opuscount),
-    NULL,
-    NULL,
-    0,            /* packed */
-    0,NULL,NULL    /* reserved1,reserved2, etc */
-  },
-  {
-    "title",
-    8,
-    PROTOBUF_C_LABEL_OPTIONAL,
-    PROTOBUF_C_TYPE_STRING,
-    0,   /* quantifier_offset */
-    PROTOBUF_C_OFFSETOF(Game__PBContest, title),
-    NULL,
-    NULL,
-    0,            /* packed */
-    0,NULL,NULL    /* reserved1,reserved2, etc */
-  },
-  {
-    "contestUrl",
-    9,
-    PROTOBUF_C_LABEL_OPTIONAL,
-    PROTOBUF_C_TYPE_STRING,
-    0,   /* quantifier_offset */
-    PROTOBUF_C_OFFSETOF(Game__PBContest, contesturl),
-    NULL,
-    NULL,
-    0,            /* packed */
-    0,NULL,NULL    /* reserved1,reserved2, etc */
-  },
-  {
-    "statementUrl",
-    10,
-    PROTOBUF_C_LABEL_OPTIONAL,
-    PROTOBUF_C_TYPE_STRING,
-    0,   /* quantifier_offset */
-    PROTOBUF_C_OFFSETOF(Game__PBContest, statementurl),
-    NULL,
-    NULL,
-    0,            /* packed */
-    0,NULL,NULL    /* reserved1,reserved2, etc */
-  },
-  {
-    "voteStartDate",
-    11,
-    PROTOBUF_C_LABEL_OPTIONAL,
-    PROTOBUF_C_TYPE_INT32,
-    PROTOBUF_C_OFFSETOF(Game__PBContest, has_votestartdate),
-    PROTOBUF_C_OFFSETOF(Game__PBContest, votestartdate),
-    NULL,
-    NULL,
-    0,            /* packed */
-    0,NULL,NULL    /* reserved1,reserved2, etc */
-  },
-  {
-    "voteEndDate",
-    12,
-    PROTOBUF_C_LABEL_OPTIONAL,
-    PROTOBUF_C_TYPE_INT32,
-    PROTOBUF_C_OFFSETOF(Game__PBContest, has_voteenddate),
-    PROTOBUF_C_OFFSETOF(Game__PBContest, voteenddate),
-    NULL,
-    NULL,
-    0,            /* packed */
-    0,NULL,NULL    /* reserved1,reserved2, etc */
-  },
-  {
-    "isAnounymous",
-    13,
-    PROTOBUF_C_LABEL_OPTIONAL,
-    PROTOBUF_C_TYPE_BOOL,
-    PROTOBUF_C_OFFSETOF(Game__PBContest, has_isanounymous),
-    PROTOBUF_C_OFFSETOF(Game__PBContest, isanounymous),
-    NULL,
-    NULL,
-    0,            /* packed */
-    0,NULL,NULL    /* reserved1,reserved2, etc */
-  },
-  {
-    "canSubmitCount",
-    31,
-    PROTOBUF_C_LABEL_OPTIONAL,
-    PROTOBUF_C_TYPE_INT32,
-    PROTOBUF_C_OFFSETOF(Game__PBContest, has_cansubmitcount),
-    PROTOBUF_C_OFFSETOF(Game__PBContest, cansubmitcount),
-    NULL,
-    &game__pbcontest__can_submit_count__default_value,
-    0,            /* packed */
-    0,NULL,NULL    /* reserved1,reserved2, etc */
-  },
-  {
-    "maxFlowerPerContest",
-    32,
-    PROTOBUF_C_LABEL_OPTIONAL,
-    PROTOBUF_C_TYPE_INT32,
-    PROTOBUF_C_OFFSETOF(Game__PBContest, has_maxflowerpercontest),
-    PROTOBUF_C_OFFSETOF(Game__PBContest, maxflowerpercontest),
-    NULL,
-    &game__pbcontest__max_flower_per_contest__default_value,
-    0,            /* packed */
-    0,NULL,NULL    /* reserved1,reserved2, etc */
-  },
-  {
-    "maxFlowerPerOpus",
-    33,
-    PROTOBUF_C_LABEL_OPTIONAL,
-    PROTOBUF_C_TYPE_INT32,
-    PROTOBUF_C_OFFSETOF(Game__PBContest, has_maxflowerperopus),
-    PROTOBUF_C_OFFSETOF(Game__PBContest, maxflowerperopus),
-    NULL,
-    &game__pbcontest__max_flower_per_opus__default_value,
-    0,            /* packed */
-    0,NULL,NULL    /* reserved1,reserved2, etc */
-  },
-  {
-    "judgeRankWeight",
-    34,
-    PROTOBUF_C_LABEL_OPTIONAL,
-    PROTOBUF_C_TYPE_INT32,
-    PROTOBUF_C_OFFSETOF(Game__PBContest, has_judgerankweight),
-    PROTOBUF_C_OFFSETOF(Game__PBContest, judgerankweight),
-    NULL,
-    NULL,
-    0,            /* packed */
-    0,NULL,NULL    /* reserved1,reserved2, etc */
-  },
-  {
-    "canSubmit",
-    41,
-    PROTOBUF_C_LABEL_OPTIONAL,
-    PROTOBUF_C_TYPE_BOOL,
-    PROTOBUF_C_OFFSETOF(Game__PBContest, has_cansubmit),
-    PROTOBUF_C_OFFSETOF(Game__PBContest, cansubmit),
-    NULL,
-    NULL,
-    0,            /* packed */
-    0,NULL,NULL    /* reserved1,reserved2, etc */
-  },
-  {
-    "canVote",
-    42,
-    PROTOBUF_C_LABEL_OPTIONAL,
-    PROTOBUF_C_TYPE_BOOL,
-    PROTOBUF_C_OFFSETOF(Game__PBContest, has_canvote),
-    PROTOBUF_C_OFFSETOF(Game__PBContest, canvote),
-    NULL,
-    NULL,
-    0,            /* packed */
-    0,NULL,NULL    /* reserved1,reserved2, etc */
-  },
-  {
-    "contestantsOnly",
-    49,
-    PROTOBUF_C_LABEL_OPTIONAL,
-    PROTOBUF_C_TYPE_BOOL,
-    PROTOBUF_C_OFFSETOF(Game__PBContest, has_contestantsonly),
-    PROTOBUF_C_OFFSETOF(Game__PBContest, contestantsonly),
-    NULL,
-    &game__pbcontest__contestants_only__default_value,
-    0,            /* packed */
-    0,NULL,NULL    /* reserved1,reserved2, etc */
-  },
-  {
-    "contestants",
-    50,
-    PROTOBUF_C_LABEL_REPEATED,
-    PROTOBUF_C_TYPE_MESSAGE,
-    PROTOBUF_C_OFFSETOF(Game__PBContest, n_contestants),
-    PROTOBUF_C_OFFSETOF(Game__PBContest, contestants),
-    &game__pbgame_user__descriptor,
-    NULL,
-    0,            /* packed */
-    0,NULL,NULL    /* reserved1,reserved2, etc */
-  },
-  {
-    "judges",
-    51,
-    PROTOBUF_C_LABEL_REPEATED,
-    PROTOBUF_C_TYPE_MESSAGE,
-    PROTOBUF_C_OFFSETOF(Game__PBContest, n_judges),
-    PROTOBUF_C_OFFSETOF(Game__PBContest, judges),
-    &game__pbgame_user__descriptor,
-    NULL,
-    0,            /* packed */
-    0,NULL,NULL    /* reserved1,reserved2, etc */
-  },
-  {
-    "reporters",
-    52,
-    PROTOBUF_C_LABEL_REPEATED,
-    PROTOBUF_C_TYPE_MESSAGE,
-    PROTOBUF_C_OFFSETOF(Game__PBContest, n_reporters),
-    PROTOBUF_C_OFFSETOF(Game__PBContest, reporters),
-    &game__pbgame_user__descriptor,
-    NULL,
-    0,            /* packed */
-    0,NULL,NULL    /* reserved1,reserved2, etc */
-  },
-  {
-    "winnerUsers",
-    53,
-    PROTOBUF_C_LABEL_REPEATED,
-    PROTOBUF_C_TYPE_MESSAGE,
-    PROTOBUF_C_OFFSETOF(Game__PBContest, n_winnerusers),
-    PROTOBUF_C_OFFSETOF(Game__PBContest, winnerusers),
-    &game__pbuser_award__descriptor,
-    NULL,
-    0,            /* packed */
-    0,NULL,NULL    /* reserved1,reserved2, etc */
-  },
-  {
-    "awardUsers",
-    54,
-    PROTOBUF_C_LABEL_REPEATED,
-    PROTOBUF_C_TYPE_MESSAGE,
-    PROTOBUF_C_OFFSETOF(Game__PBContest, n_awardusers),
-    PROTOBUF_C_OFFSETOF(Game__PBContest, awardusers),
-    &game__pbuser_award__descriptor,
-    NULL,
-    0,            /* packed */
-    0,NULL,NULL    /* reserved1,reserved2, etc */
-  },
-  {
-    "rankTypes",
-    55,
-    PROTOBUF_C_LABEL_REPEATED,
-    PROTOBUF_C_TYPE_MESSAGE,
-    PROTOBUF_C_OFFSETOF(Game__PBContest, n_ranktypes),
-    PROTOBUF_C_OFFSETOF(Game__PBContest, ranktypes),
-    &game__pbint_key_value__descriptor,
     NULL,
     0,            /* packed */
     0,NULL,NULL    /* reserved1,reserved2, etc */
   },
 };
-static const unsigned game__pbcontest__field_indices_by_name[] = {
-  24,   /* field[24] = awardUsers */
-  17,   /* field[17] = canSubmit */
-  13,   /* field[13] = canSubmitCount */
-  18,   /* field[18] = canVote */
-  0,   /* field[0] = contestId */
-  8,   /* field[8] = contestUrl */
-  20,   /* field[20] = contestants */
-  19,   /* field[19] = contestantsOnly */
-  2,   /* field[2] = endDate */
-  12,   /* field[12] = isAnounymous */
-  16,   /* field[16] = judgeRankWeight */
-  21,   /* field[21] = judges */
-  14,   /* field[14] = maxFlowerPerContest */
-  15,   /* field[15] = maxFlowerPerOpus */
-  6,   /* field[6] = opusCount */
-  5,   /* field[5] = participantCount */
-  25,   /* field[25] = rankTypes */
-  22,   /* field[22] = reporters */
-  1,   /* field[1] = startDate */
-  9,   /* field[9] = statementUrl */
-  4,   /* field[4] = status */
-  7,   /* field[7] = title */
-  3,   /* field[3] = type */
-  11,   /* field[11] = voteEndDate */
-  10,   /* field[10] = voteStartDate */
-  23,   /* field[23] = winnerUsers */
+static const unsigned game__pbtask__field_indices_by_name[] = {
+  5,   /* field[5] = award */
+  4,   /* field[4] = badge */
+  2,   /* field[2] = desc */
+  1,   /* field[1] = name */
+  3,   /* field[3] = status */
+  0,   /* field[0] = taskId */
 };
-static const ProtobufCIntRange game__pbcontest__number_ranges[4 + 1] =
+static const ProtobufCIntRange game__pbtask__number_ranges[1 + 1] =
 {
   { 1, 0 },
-  { 31, 13 },
-  { 41, 17 },
-  { 49, 19 },
-  { 0, 26 }
+  { 0, 6 }
 };
-const ProtobufCMessageDescriptor game__pbcontest__descriptor =
+const ProtobufCMessageDescriptor game__pbtask__descriptor =
 {
   PROTOBUF_C_MESSAGE_DESCRIPTOR_MAGIC,
-  "game.PBContest",
-  "PBContest",
-  "Game__PBContest",
+  "game.PBTask",
+  "PBTask",
+  "Game__PBTask",
   "game",
-  sizeof(Game__PBContest),
-  26,
-  game__pbcontest__field_descriptors,
-  game__pbcontest__field_indices_by_name,
-  4,  game__pbcontest__number_ranges,
-  (ProtobufCMessageInit) game__pbcontest__init,
+  sizeof(Game__PBTask),
+  6,
+  game__pbtask__field_descriptors,
+  game__pbtask__field_indices_by_name,
+  1,  game__pbtask__number_ranges,
+  (ProtobufCMessageInit) game__pbtask__init,
   NULL,NULL,NULL    /* reserved[123] */
 };
-static const ProtobufCFieldDescriptor game__pbcontest_list__field_descriptors[1] =
+static const ProtobufCFieldDescriptor game__pbclass__field_descriptors[6] =
 {
   {
-    "contests",
+    "classId",
     1,
+    PROTOBUF_C_LABEL_REQUIRED,
+    PROTOBUF_C_TYPE_INT32,
+    0,   /* quantifier_offset */
+    PROTOBUF_C_OFFSETOF(Game__PBClass, classid),
+    NULL,
+    NULL,
+    0,            /* packed */
+    0,NULL,NULL    /* reserved1,reserved2, etc */
+  },
+  {
+    "names",
+    2,
     PROTOBUF_C_LABEL_REPEATED,
     PROTOBUF_C_TYPE_MESSAGE,
-    PROTOBUF_C_OFFSETOF(Game__PBContestList, n_contests),
-    PROTOBUF_C_OFFSETOF(Game__PBContestList, contests),
-    &game__pbcontest__descriptor,
+    PROTOBUF_C_OFFSETOF(Game__PBClass, n_names),
+    PROTOBUF_C_OFFSETOF(Game__PBClass, names),
+    &game__pblocalize_string__descriptor,
+    NULL,
+    0,            /* packed */
+    0,NULL,NULL    /* reserved1,reserved2, etc */
+  },
+  {
+    "subClasses",
+    3,
+    PROTOBUF_C_LABEL_REPEATED,
+    PROTOBUF_C_TYPE_MESSAGE,
+    PROTOBUF_C_OFFSETOF(Game__PBClass, n_subclasses),
+    PROTOBUF_C_OFFSETOF(Game__PBClass, subclasses),
+    &game__pbclass__descriptor,
+    NULL,
+    0,            /* packed */
+    0,NULL,NULL    /* reserved1,reserved2, etc */
+  },
+  {
+    "keywords",
+    4,
+    PROTOBUF_C_LABEL_REPEATED,
+    PROTOBUF_C_TYPE_STRING,
+    PROTOBUF_C_OFFSETOF(Game__PBClass, n_keywords),
+    PROTOBUF_C_OFFSETOF(Game__PBClass, keywords),
+    NULL,
+    NULL,
+    0,            /* packed */
+    0,NULL,NULL    /* reserved1,reserved2, etc */
+  },
+  {
+    "desc",
+    5,
+    PROTOBUF_C_LABEL_OPTIONAL,
+    PROTOBUF_C_TYPE_STRING,
+    0,   /* quantifier_offset */
+    PROTOBUF_C_OFFSETOF(Game__PBClass, desc),
+    NULL,
+    NULL,
+    0,            /* packed */
+    0,NULL,NULL    /* reserved1,reserved2, etc */
+  },
+  {
+    "isTopClass",
+    6,
+    PROTOBUF_C_LABEL_OPTIONAL,
+    PROTOBUF_C_TYPE_BOOL,
+    PROTOBUF_C_OFFSETOF(Game__PBClass, has_istopclass),
+    PROTOBUF_C_OFFSETOF(Game__PBClass, istopclass),
+    NULL,
     NULL,
     0,            /* packed */
     0,NULL,NULL    /* reserved1,reserved2, etc */
   },
 };
-static const unsigned game__pbcontest_list__field_indices_by_name[] = {
-  0,   /* field[0] = contests */
+static const unsigned game__pbclass__field_indices_by_name[] = {
+  0,   /* field[0] = classId */
+  4,   /* field[4] = desc */
+  5,   /* field[5] = isTopClass */
+  3,   /* field[3] = keywords */
+  1,   /* field[1] = names */
+  2,   /* field[2] = subClasses */
 };
-static const ProtobufCIntRange game__pbcontest_list__number_ranges[1 + 1] =
+static const ProtobufCIntRange game__pbclass__number_ranges[1 + 1] =
 {
   { 1, 0 },
-  { 0, 1 }
+  { 0, 6 }
 };
-const ProtobufCMessageDescriptor game__pbcontest_list__descriptor =
+const ProtobufCMessageDescriptor game__pbclass__descriptor =
 {
   PROTOBUF_C_MESSAGE_DESCRIPTOR_MAGIC,
-  "game.PBContestList",
-  "PBContestList",
-  "Game__PBContestList",
+  "game.PBClass",
+  "PBClass",
+  "Game__PBClass",
   "game",
-  sizeof(Game__PBContestList),
-  1,
-  game__pbcontest_list__field_descriptors,
-  game__pbcontest_list__field_indices_by_name,
-  1,  game__pbcontest_list__number_ranges,
-  (ProtobufCMessageInit) game__pbcontest_list__init,
+  sizeof(Game__PBClass),
+  6,
+  game__pbclass__field_descriptors,
+  game__pbclass__field_indices_by_name,
+  1,  game__pbclass__number_ranges,
+  (ProtobufCMessageInit) game__pbclass__init,
   NULL,NULL,NULL    /* reserved[123] */
 };
 const ProtobufCEnumValue game__pbopen_info_type__enum_values_by_number[3] =
@@ -5423,5 +5721,101 @@ const ProtobufCEnumDescriptor game__pbiapproduct_type__descriptor =
   game__pbiapproduct_type__enum_values_by_name,
   1,
   game__pbiapproduct_type__value_ranges,
+  NULL,NULL,NULL,NULL   /* reserved[1234] */
+};
+const ProtobufCEnumValue game__pbtask_status__enum_values_by_number[6] =
+{
+  { "TASK_STATUS_CAN_TAKE", "GAME__PBTASK_STATUS__TASK_STATUS_CAN_TAKE", 0 },
+  { "TASK_STATUS_DONE", "GAME__PBTASK_STATUS__TASK_STATUS_DONE", 1 },
+  { "TASK_STATUS_AWARD", "GAME__PBTASK_STATUS__TASK_STATUS_AWARD", 2 },
+  { "TASK_STATUS_EXPIRED", "GAME__PBTASK_STATUS__TASK_STATUS_EXPIRED", 3 },
+  { "TASK_STATUS_WAIT_FOR_START", "GAME__PBTASK_STATUS__TASK_STATUS_WAIT_FOR_START", 4 },
+  { "TASK_STATUS_ALWAYS_OPEN", "GAME__PBTASK_STATUS__TASK_STATUS_ALWAYS_OPEN", 5 },
+};
+static const ProtobufCIntRange game__pbtask_status__value_ranges[] = {
+{0, 0},{0, 6}
+};
+const ProtobufCEnumValueIndex game__pbtask_status__enum_values_by_name[6] =
+{
+  { "TASK_STATUS_ALWAYS_OPEN", 5 },
+  { "TASK_STATUS_AWARD", 2 },
+  { "TASK_STATUS_CAN_TAKE", 0 },
+  { "TASK_STATUS_DONE", 1 },
+  { "TASK_STATUS_EXPIRED", 3 },
+  { "TASK_STATUS_WAIT_FOR_START", 4 },
+};
+const ProtobufCEnumDescriptor game__pbtask_status__descriptor =
+{
+  PROTOBUF_C_ENUM_DESCRIPTOR_MAGIC,
+  "game.PBTaskStatus",
+  "PBTaskStatus",
+  "Game__PBTaskStatus",
+  "game",
+  6,
+  game__pbtask_status__enum_values_by_number,
+  6,
+  game__pbtask_status__enum_values_by_name,
+  1,
+  game__pbtask_status__value_ranges,
+  NULL,NULL,NULL,NULL   /* reserved[1234] */
+};
+const ProtobufCEnumValue game__pbtask_id_type__enum_values_by_number[18] =
+{
+  { "TASK_NONE", "GAME__PBTASK_ID_TYPE__TASK_NONE", 0 },
+  { "TASK_CHECK_IN", "GAME__PBTASK_ID_TYPE__TASK_CHECK_IN", 1 },
+  { "TASK_BIND_SINA", "GAME__PBTASK_ID_TYPE__TASK_BIND_SINA", 2 },
+  { "TASK_BIND_QQ", "GAME__PBTASK_ID_TYPE__TASK_BIND_QQ", 3 },
+  { "TASK_SHARE_SINA", "GAME__PBTASK_ID_TYPE__TASK_SHARE_SINA", 4 },
+  { "TASK_SHARE_WEIXIN_TIMELINE", "GAME__PBTASK_ID_TYPE__TASK_SHARE_WEIXIN_TIMELINE", 5 },
+  { "TASK_SHARE_QQ_SPACE", "GAME__PBTASK_ID_TYPE__TASK_SHARE_QQ_SPACE", 6 },
+  { "TASK_APP_REVIEW", "GAME__PBTASK_ID_TYPE__TASK_APP_REVIEW", 7 },
+  { "TASK_CREATE_OPUS", "GAME__PBTASK_ID_TYPE__TASK_CREATE_OPUS", 8 },
+  { "TASK_GUESS_OPUS", "GAME__PBTASK_ID_TYPE__TASK_GUESS_OPUS", 9 },
+  { "TASK_SHARE_OPUS", "GAME__PBTASK_ID_TYPE__TASK_SHARE_OPUS", 10 },
+  { "TASK_SHARE_QQ_WEIBO", "GAME__PBTASK_ID_TYPE__TASK_SHARE_QQ_WEIBO", 11 },
+  { "TASK_APP_UPGRADE", "GAME__PBTASK_ID_TYPE__TASK_APP_UPGRADE", 12 },
+  { "TASK_VIP", "GAME__PBTASK_ID_TYPE__TASK_VIP", 13 },
+  { "TASK_APP_VIEW_WEB", "GAME__PBTASK_ID_TYPE__TASK_APP_VIEW_WEB", 14 },
+  { "TASK_LINGQIAN", "GAME__PBTASK_ID_TYPE__TASK_LINGQIAN", 15 },
+  { "TASK_APP_WALL", "GAME__PBTASK_ID_TYPE__TASK_APP_WALL", 100 },
+  { "TASK_APP_DOWNLOAD", "GAME__PBTASK_ID_TYPE__TASK_APP_DOWNLOAD", 200 },
+};
+static const ProtobufCIntRange game__pbtask_id_type__value_ranges[] = {
+{0, 0},{100, 16},{200, 17},{0, 18}
+};
+const ProtobufCEnumValueIndex game__pbtask_id_type__enum_values_by_name[18] =
+{
+  { "TASK_APP_DOWNLOAD", 17 },
+  { "TASK_APP_REVIEW", 7 },
+  { "TASK_APP_UPGRADE", 12 },
+  { "TASK_APP_VIEW_WEB", 14 },
+  { "TASK_APP_WALL", 16 },
+  { "TASK_BIND_QQ", 3 },
+  { "TASK_BIND_SINA", 2 },
+  { "TASK_CHECK_IN", 1 },
+  { "TASK_CREATE_OPUS", 8 },
+  { "TASK_GUESS_OPUS", 9 },
+  { "TASK_LINGQIAN", 15 },
+  { "TASK_NONE", 0 },
+  { "TASK_SHARE_OPUS", 10 },
+  { "TASK_SHARE_QQ_SPACE", 6 },
+  { "TASK_SHARE_QQ_WEIBO", 11 },
+  { "TASK_SHARE_SINA", 4 },
+  { "TASK_SHARE_WEIXIN_TIMELINE", 5 },
+  { "TASK_VIP", 13 },
+};
+const ProtobufCEnumDescriptor game__pbtask_id_type__descriptor =
+{
+  PROTOBUF_C_ENUM_DESCRIPTOR_MAGIC,
+  "game.PBTaskIdType",
+  "PBTaskIdType",
+  "Game__PBTaskIdType",
+  "game",
+  18,
+  game__pbtask_id_type__enum_values_by_number,
+  18,
+  game__pbtask_id_type__enum_values_by_name,
+  3,
+  game__pbtask_id_type__value_ranges,
   NULL,NULL,NULL,NULL   /* reserved[1234] */
 };

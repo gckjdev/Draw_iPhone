@@ -3,7 +3,7 @@
 #ifndef PROTOBUF_C_GameBasic_2eproto__INCLUDED
 #define PROTOBUF_C_GameBasic_2eproto__INCLUDED
 
-#include "protobuf-c.h"
+#include <google/protobuf-c/protobuf-c.h>
 
 PROTOBUF_C_BEGIN_DECLS
 
@@ -11,9 +11,12 @@ PROTOBUF_C_BEGIN_DECLS
 
 typedef struct _Game__PBKeyValue Game__PBKeyValue;
 typedef struct _Game__PBIntKeyValue Game__PBIntKeyValue;
+typedef struct _Game__PBIntKeyIntValue Game__PBIntKeyIntValue;
 typedef struct _Game__PBSNSUser Game__PBSNSUser;
+typedef struct _Game__PBSNSUserCredential Game__PBSNSUserCredential;
 typedef struct _Game__PBUserLevel Game__PBUserLevel;
 typedef struct _Game__PBGameUser Game__PBGameUser;
+typedef struct _Game__PBSimpleGroup Game__PBSimpleGroup;
 typedef struct _Game__PBGameSession Game__PBGameSession;
 typedef struct _Game__PBGameSessionChanged Game__PBGameSessionChanged;
 typedef struct _Game__PBDrawBg Game__PBDrawBg;
@@ -37,8 +40,8 @@ typedef struct _Game__PBApp Game__PBApp;
 typedef struct _Game__PBSize Game__PBSize;
 typedef struct _Game__PBOpusRank Game__PBOpusRank;
 typedef struct _Game__PBUserAward Game__PBUserAward;
-typedef struct _Game__PBContest Game__PBContest;
-typedef struct _Game__PBContestList Game__PBContestList;
+typedef struct _Game__PBTask Game__PBTask;
+typedef struct _Game__PBClass Game__PBClass;
 
 
 /* --- enums --- */
@@ -75,6 +78,34 @@ typedef enum _Game__PBIAPProductType {
   GAME__PBIAPPRODUCT_TYPE__IAPCoin = 1,
   GAME__PBIAPPRODUCT_TYPE__IAPIngot = 2
 } Game__PBIAPProductType;
+typedef enum _Game__PBTaskStatus {
+  GAME__PBTASK_STATUS__TASK_STATUS_CAN_TAKE = 0,
+  GAME__PBTASK_STATUS__TASK_STATUS_DONE = 1,
+  GAME__PBTASK_STATUS__TASK_STATUS_AWARD = 2,
+  GAME__PBTASK_STATUS__TASK_STATUS_EXPIRED = 3,
+  GAME__PBTASK_STATUS__TASK_STATUS_WAIT_FOR_START = 4,
+  GAME__PBTASK_STATUS__TASK_STATUS_ALWAYS_OPEN = 5
+} Game__PBTaskStatus;
+typedef enum _Game__PBTaskIdType {
+  GAME__PBTASK_ID_TYPE__TASK_NONE = 0,
+  GAME__PBTASK_ID_TYPE__TASK_CHECK_IN = 1,
+  GAME__PBTASK_ID_TYPE__TASK_BIND_SINA = 2,
+  GAME__PBTASK_ID_TYPE__TASK_BIND_QQ = 3,
+  GAME__PBTASK_ID_TYPE__TASK_SHARE_SINA = 4,
+  GAME__PBTASK_ID_TYPE__TASK_SHARE_WEIXIN_TIMELINE = 5,
+  GAME__PBTASK_ID_TYPE__TASK_SHARE_QQ_SPACE = 6,
+  GAME__PBTASK_ID_TYPE__TASK_APP_REVIEW = 7,
+  GAME__PBTASK_ID_TYPE__TASK_CREATE_OPUS = 8,
+  GAME__PBTASK_ID_TYPE__TASK_GUESS_OPUS = 9,
+  GAME__PBTASK_ID_TYPE__TASK_SHARE_OPUS = 10,
+  GAME__PBTASK_ID_TYPE__TASK_SHARE_QQ_WEIBO = 11,
+  GAME__PBTASK_ID_TYPE__TASK_APP_UPGRADE = 12,
+  GAME__PBTASK_ID_TYPE__TASK_VIP = 13,
+  GAME__PBTASK_ID_TYPE__TASK_APP_VIEW_WEB = 14,
+  GAME__PBTASK_ID_TYPE__TASK_LINGQIAN = 15,
+  GAME__PBTASK_ID_TYPE__TASK_APP_WALL = 100,
+  GAME__PBTASK_ID_TYPE__TASK_APP_DOWNLOAD = 200
+} Game__PBTaskIdType;
 
 /* --- messages --- */
 
@@ -100,6 +131,17 @@ struct  _Game__PBIntKeyValue
     , 0, NULL }
 
 
+struct  _Game__PBIntKeyIntValue
+{
+  ProtobufCMessage base;
+  int32_t key;
+  int32_t value;
+};
+#define GAME__PBINT_KEY_INT_VALUE__INIT \
+ { PROTOBUF_C_MESSAGE_INIT (&game__pbint_key_int_value__descriptor) \
+    , 0, 0 }
+
+
 struct  _Game__PBSNSUser
 {
   ProtobufCMessage base;
@@ -112,10 +154,22 @@ struct  _Game__PBSNSUser
   protobuf_c_boolean has_expiretime;
   int32_t expiretime;
   char *qqopenid;
+  char *credential;
 };
 #define GAME__PBSNSUSER__INIT \
  { PROTOBUF_C_MESSAGE_INIT (&game__pbsnsuser__descriptor) \
-    , 0, NULL, NULL, NULL, NULL, NULL, 0,0, NULL }
+    , 0, NULL, NULL, NULL, NULL, NULL, 0,0, NULL, NULL }
+
+
+struct  _Game__PBSNSUserCredential
+{
+  ProtobufCMessage base;
+  int32_t type;
+  char *credential;
+};
+#define GAME__PBSNSUSER_CREDENTIAL__INIT \
+ { PROTOBUF_C_MESSAGE_INIT (&game__pbsnsuser_credential__descriptor) \
+    , 0, NULL }
 
 
 struct  _Game__PBUserLevel
@@ -149,6 +203,8 @@ struct  _Game__PBGameUser
   protobuf_c_boolean has_seatid;
   int32_t seatid;
   char *xiaojinumber;
+  size_t n_snscredentials;
+  Game__PBSNSUserCredential **snscredentials;
   protobuf_c_boolean has_isplaying;
   protobuf_c_boolean isplaying;
   protobuf_c_boolean has_istakenover;
@@ -211,12 +267,37 @@ struct  _Game__PBGameUser
   int32_t shakenumbertimes;
   protobuf_c_boolean has_takecoins;
   int32_t takecoins;
+  size_t n_awardapps;
+  char **awardapps;
+  protobuf_c_boolean has_vip;
+  int32_t vip;
+  protobuf_c_boolean has_vipexpiredate;
+  int32_t vipexpiredate;
+  protobuf_c_boolean has_viplastpaydate;
+  int32_t viplastpaydate;
+  Game__PBSimpleGroup *groupinfo;
+  size_t n_offgroupids;
+  char **offgroupids;
+  size_t n_permissions;
+  char **permissions;
   protobuf_c_boolean has_singrecordlimit;
   int32_t singrecordlimit;
 };
 #define GAME__PBGAME_USER__INIT \
  { PROTOBUF_C_MESSAGE_INIT (&game__pbgame_user__descriptor) \
-    , NULL, NULL, NULL, 0,0, 0,NULL, NULL, 0,0, NULL, 0,0, NULL, 0,1, 0,0, 0,NULL, NULL, NULL, NULL, 0,0, 0,1, NULL, NULL, NULL, NULL, 0,0, 0,0, 0,0, 0,0, 0,0, 0,NULL, NULL, NULL, NULL, NULL, 0,NULL, NULL, 0,0, 0,0, 0,0, 0,0, 0,0, 0,GAME__PBOPEN_INFO_TYPE__OPEN_TO_FRIEND, 0,0, NULL, 0,0, NULL, 0,0, 0,0, 0,0, 0,0, 0,30 }
+    , NULL, NULL, NULL, 0,0, 0,NULL, NULL, 0,0, NULL, 0,0, NULL, 0,NULL, 0,1, 0,0, 0,NULL, NULL, NULL, NULL, 0,0, 0,1, NULL, NULL, NULL, NULL, 0,0, 0,0, 0,0, 0,0, 0,0, 0,NULL, NULL, NULL, NULL, NULL, 0,NULL, NULL, 0,0, 0,0, 0,0, 0,0, 0,0, 0,GAME__PBOPEN_INFO_TYPE__OPEN_TO_FRIEND, 0,0, NULL, 0,0, NULL, 0,0, 0,0, 0,0, 0,0, 0,NULL, 0,0, 0,0, 0,0, NULL, 0,NULL, 0,NULL, 0,30 }
+
+
+struct  _Game__PBSimpleGroup
+{
+  ProtobufCMessage base;
+  char *groupid;
+  char *groupname;
+  char *groupmedal;
+};
+#define GAME__PBSIMPLE_GROUP__INIT \
+ { PROTOBUF_C_MESSAGE_INIT (&game__pbsimple_group__descriptor) \
+    , NULL, NULL, NULL }
 
 
 struct  _Game__PBGameSession
@@ -350,6 +431,10 @@ struct  _Game__PBMessage
   int32_t status;
   protobuf_c_boolean has_type;
   int32_t type;
+  protobuf_c_boolean has_isgroup;
+  protobuf_c_boolean isgroup;
+  Game__PBGameUser *fromuser;
+  Game__PBGameUser *touser;
   char *text;
   size_t n_drawdata;
   Game__PBDrawAction **drawdata;
@@ -370,7 +455,7 @@ struct  _Game__PBMessage
 };
 #define GAME__PBMESSAGE__INIT \
  { PROTOBUF_C_MESSAGE_INIT (&game__pbmessage__descriptor) \
-    , NULL, NULL, NULL, 0,0, 0,0, NULL, 0,NULL, 0,0, 0,0, NULL, 0,0, 0,0, NULL, 0,0, NULL, NULL }
+    , NULL, NULL, NULL, 0,0, 0,0, 0,0, NULL, NULL, NULL, 0,NULL, 0,0, 0,0, NULL, 0,0, 0,0, NULL, 0,0, NULL, NULL }
 
 
 struct  _Game__PBMessageStat
@@ -382,6 +467,10 @@ struct  _Game__PBMessageStat
   char *friendavatar;
   protobuf_c_boolean has_friendgender;
   protobuf_c_boolean friendgender;
+  protobuf_c_boolean has_isgroup;
+  protobuf_c_boolean isgroup;
+  protobuf_c_boolean has_isvip;
+  int32_t isvip;
   char *messageid;
   char *from;
   char *to;
@@ -398,10 +487,12 @@ struct  _Game__PBMessageStat
   int32_t totalmessagecount;
   protobuf_c_boolean has_newmessagecount;
   int32_t newmessagecount;
+  protobuf_c_boolean has_newgroupmessagecount;
+  int32_t newgroupmessagecount;
 };
 #define GAME__PBMESSAGE_STAT__INIT \
  { PROTOBUF_C_MESSAGE_INIT (&game__pbmessage_stat__descriptor) \
-    , NULL, NULL, NULL, NULL, 0,0, NULL, NULL, NULL, NULL, 0,NULL, 0,0, 0,0, 0,0, 0,0, 0,0 }
+    , NULL, NULL, NULL, NULL, 0,0, 0,0, 0,0, NULL, NULL, NULL, NULL, 0,NULL, 0,0, 0,0, 0,0, 0,0, 0,0, 0,0 }
 
 
 struct  _Game__PBUserBasicInfo
@@ -644,72 +735,41 @@ struct  _Game__PBUserAward
     , NULL, NULL, 0,0, 0,0, 0,0, NULL, 0,0, NULL }
 
 
-struct  _Game__PBContest
+struct  _Game__PBTask
 {
   ProtobufCMessage base;
-  char *contestid;
-  protobuf_c_boolean has_startdate;
-  int32_t startdate;
-  protobuf_c_boolean has_enddate;
-  int32_t enddate;
-  protobuf_c_boolean has_type;
-  int32_t type;
+  int32_t taskid;
+  char *name;
+  char *desc;
   protobuf_c_boolean has_status;
-  int32_t status;
-  protobuf_c_boolean has_participantcount;
-  int32_t participantcount;
-  protobuf_c_boolean has_opuscount;
-  int32_t opuscount;
-  char *title;
-  char *contesturl;
-  char *statementurl;
-  protobuf_c_boolean has_votestartdate;
-  int32_t votestartdate;
-  protobuf_c_boolean has_voteenddate;
-  int32_t voteenddate;
-  protobuf_c_boolean has_isanounymous;
-  protobuf_c_boolean isanounymous;
-  protobuf_c_boolean has_cansubmitcount;
-  int32_t cansubmitcount;
-  protobuf_c_boolean has_maxflowerpercontest;
-  int32_t maxflowerpercontest;
-  protobuf_c_boolean has_maxflowerperopus;
-  int32_t maxflowerperopus;
-  protobuf_c_boolean has_judgerankweight;
-  int32_t judgerankweight;
-  protobuf_c_boolean has_cansubmit;
-  protobuf_c_boolean cansubmit;
-  protobuf_c_boolean has_canvote;
-  protobuf_c_boolean canvote;
-  protobuf_c_boolean has_contestantsonly;
-  protobuf_c_boolean contestantsonly;
-  size_t n_contestants;
-  Game__PBGameUser **contestants;
-  size_t n_judges;
-  Game__PBGameUser **judges;
-  size_t n_reporters;
-  Game__PBGameUser **reporters;
-  size_t n_winnerusers;
-  Game__PBUserAward **winnerusers;
-  size_t n_awardusers;
-  Game__PBUserAward **awardusers;
-  size_t n_ranktypes;
-  Game__PBIntKeyValue **ranktypes;
+  Game__PBTaskStatus status;
+  protobuf_c_boolean has_badge;
+  int32_t badge;
+  protobuf_c_boolean has_award;
+  int32_t award;
 };
-#define GAME__PBCONTEST__INIT \
- { PROTOBUF_C_MESSAGE_INIT (&game__pbcontest__descriptor) \
-    , NULL, 0,0, 0,0, 0,0, 0,0, 0,0, 0,0, NULL, NULL, NULL, 0,0, 0,0, 0,0, 0,1, 0,20, 0,3, 0,0, 0,0, 0,0, 0,0, 0,NULL, 0,NULL, 0,NULL, 0,NULL, 0,NULL, 0,NULL }
+#define GAME__PBTASK__INIT \
+ { PROTOBUF_C_MESSAGE_INIT (&game__pbtask__descriptor) \
+    , 0, NULL, NULL, 0,0, 0,0, 0,0 }
 
 
-struct  _Game__PBContestList
+struct  _Game__PBClass
 {
   ProtobufCMessage base;
-  size_t n_contests;
-  Game__PBContest **contests;
+  int32_t classid;
+  size_t n_names;
+  Game__PBLocalizeString **names;
+  size_t n_subclasses;
+  Game__PBClass **subclasses;
+  size_t n_keywords;
+  char **keywords;
+  char *desc;
+  protobuf_c_boolean has_istopclass;
+  protobuf_c_boolean istopclass;
 };
-#define GAME__PBCONTEST_LIST__INIT \
- { PROTOBUF_C_MESSAGE_INIT (&game__pbcontest_list__descriptor) \
-    , 0,NULL }
+#define GAME__PBCLASS__INIT \
+ { PROTOBUF_C_MESSAGE_INIT (&game__pbclass__descriptor) \
+    , 0, 0,NULL, 0,NULL, 0,NULL, NULL, 0,0 }
 
 
 /* Game__PBKeyValue methods */
@@ -750,6 +810,25 @@ Game__PBIntKeyValue *
 void   game__pbint_key_value__free_unpacked
                      (Game__PBIntKeyValue *message,
                       ProtobufCAllocator *allocator);
+/* Game__PBIntKeyIntValue methods */
+void   game__pbint_key_int_value__init
+                     (Game__PBIntKeyIntValue         *message);
+size_t game__pbint_key_int_value__get_packed_size
+                     (const Game__PBIntKeyIntValue   *message);
+size_t game__pbint_key_int_value__pack
+                     (const Game__PBIntKeyIntValue   *message,
+                      uint8_t             *out);
+size_t game__pbint_key_int_value__pack_to_buffer
+                     (const Game__PBIntKeyIntValue   *message,
+                      ProtobufCBuffer     *buffer);
+Game__PBIntKeyIntValue *
+       game__pbint_key_int_value__unpack
+                     (ProtobufCAllocator  *allocator,
+                      size_t               len,
+                      const uint8_t       *data);
+void   game__pbint_key_int_value__free_unpacked
+                     (Game__PBIntKeyIntValue *message,
+                      ProtobufCAllocator *allocator);
 /* Game__PBSNSUser methods */
 void   game__pbsnsuser__init
                      (Game__PBSNSUser         *message);
@@ -768,6 +847,25 @@ Game__PBSNSUser *
                       const uint8_t       *data);
 void   game__pbsnsuser__free_unpacked
                      (Game__PBSNSUser *message,
+                      ProtobufCAllocator *allocator);
+/* Game__PBSNSUserCredential methods */
+void   game__pbsnsuser_credential__init
+                     (Game__PBSNSUserCredential         *message);
+size_t game__pbsnsuser_credential__get_packed_size
+                     (const Game__PBSNSUserCredential   *message);
+size_t game__pbsnsuser_credential__pack
+                     (const Game__PBSNSUserCredential   *message,
+                      uint8_t             *out);
+size_t game__pbsnsuser_credential__pack_to_buffer
+                     (const Game__PBSNSUserCredential   *message,
+                      ProtobufCBuffer     *buffer);
+Game__PBSNSUserCredential *
+       game__pbsnsuser_credential__unpack
+                     (ProtobufCAllocator  *allocator,
+                      size_t               len,
+                      const uint8_t       *data);
+void   game__pbsnsuser_credential__free_unpacked
+                     (Game__PBSNSUserCredential *message,
                       ProtobufCAllocator *allocator);
 /* Game__PBUserLevel methods */
 void   game__pbuser_level__init
@@ -806,6 +904,25 @@ Game__PBGameUser *
                       const uint8_t       *data);
 void   game__pbgame_user__free_unpacked
                      (Game__PBGameUser *message,
+                      ProtobufCAllocator *allocator);
+/* Game__PBSimpleGroup methods */
+void   game__pbsimple_group__init
+                     (Game__PBSimpleGroup         *message);
+size_t game__pbsimple_group__get_packed_size
+                     (const Game__PBSimpleGroup   *message);
+size_t game__pbsimple_group__pack
+                     (const Game__PBSimpleGroup   *message,
+                      uint8_t             *out);
+size_t game__pbsimple_group__pack_to_buffer
+                     (const Game__PBSimpleGroup   *message,
+                      ProtobufCBuffer     *buffer);
+Game__PBSimpleGroup *
+       game__pbsimple_group__unpack
+                     (ProtobufCAllocator  *allocator,
+                      size_t               len,
+                      const uint8_t       *data);
+void   game__pbsimple_group__free_unpacked
+                     (Game__PBSimpleGroup *message,
                       ProtobufCAllocator *allocator);
 /* Game__PBGameSession methods */
 void   game__pbgame_session__init
@@ -1244,43 +1361,43 @@ Game__PBUserAward *
 void   game__pbuser_award__free_unpacked
                      (Game__PBUserAward *message,
                       ProtobufCAllocator *allocator);
-/* Game__PBContest methods */
-void   game__pbcontest__init
-                     (Game__PBContest         *message);
-size_t game__pbcontest__get_packed_size
-                     (const Game__PBContest   *message);
-size_t game__pbcontest__pack
-                     (const Game__PBContest   *message,
+/* Game__PBTask methods */
+void   game__pbtask__init
+                     (Game__PBTask         *message);
+size_t game__pbtask__get_packed_size
+                     (const Game__PBTask   *message);
+size_t game__pbtask__pack
+                     (const Game__PBTask   *message,
                       uint8_t             *out);
-size_t game__pbcontest__pack_to_buffer
-                     (const Game__PBContest   *message,
+size_t game__pbtask__pack_to_buffer
+                     (const Game__PBTask   *message,
                       ProtobufCBuffer     *buffer);
-Game__PBContest *
-       game__pbcontest__unpack
+Game__PBTask *
+       game__pbtask__unpack
                      (ProtobufCAllocator  *allocator,
                       size_t               len,
                       const uint8_t       *data);
-void   game__pbcontest__free_unpacked
-                     (Game__PBContest *message,
+void   game__pbtask__free_unpacked
+                     (Game__PBTask *message,
                       ProtobufCAllocator *allocator);
-/* Game__PBContestList methods */
-void   game__pbcontest_list__init
-                     (Game__PBContestList         *message);
-size_t game__pbcontest_list__get_packed_size
-                     (const Game__PBContestList   *message);
-size_t game__pbcontest_list__pack
-                     (const Game__PBContestList   *message,
+/* Game__PBClass methods */
+void   game__pbclass__init
+                     (Game__PBClass         *message);
+size_t game__pbclass__get_packed_size
+                     (const Game__PBClass   *message);
+size_t game__pbclass__pack
+                     (const Game__PBClass   *message,
                       uint8_t             *out);
-size_t game__pbcontest_list__pack_to_buffer
-                     (const Game__PBContestList   *message,
+size_t game__pbclass__pack_to_buffer
+                     (const Game__PBClass   *message,
                       ProtobufCBuffer     *buffer);
-Game__PBContestList *
-       game__pbcontest_list__unpack
+Game__PBClass *
+       game__pbclass__unpack
                      (ProtobufCAllocator  *allocator,
                       size_t               len,
                       const uint8_t       *data);
-void   game__pbcontest_list__free_unpacked
-                     (Game__PBContestList *message,
+void   game__pbclass__free_unpacked
+                     (Game__PBClass *message,
                       ProtobufCAllocator *allocator);
 /* --- per-message closures --- */
 
@@ -1290,14 +1407,23 @@ typedef void (*Game__PBKeyValue_Closure)
 typedef void (*Game__PBIntKeyValue_Closure)
                  (const Game__PBIntKeyValue *message,
                   void *closure_data);
+typedef void (*Game__PBIntKeyIntValue_Closure)
+                 (const Game__PBIntKeyIntValue *message,
+                  void *closure_data);
 typedef void (*Game__PBSNSUser_Closure)
                  (const Game__PBSNSUser *message,
+                  void *closure_data);
+typedef void (*Game__PBSNSUserCredential_Closure)
+                 (const Game__PBSNSUserCredential *message,
                   void *closure_data);
 typedef void (*Game__PBUserLevel_Closure)
                  (const Game__PBUserLevel *message,
                   void *closure_data);
 typedef void (*Game__PBGameUser_Closure)
                  (const Game__PBGameUser *message,
+                  void *closure_data);
+typedef void (*Game__PBSimpleGroup_Closure)
+                 (const Game__PBSimpleGroup *message,
                   void *closure_data);
 typedef void (*Game__PBGameSession_Closure)
                  (const Game__PBGameSession *message,
@@ -1368,11 +1494,11 @@ typedef void (*Game__PBOpusRank_Closure)
 typedef void (*Game__PBUserAward_Closure)
                  (const Game__PBUserAward *message,
                   void *closure_data);
-typedef void (*Game__PBContest_Closure)
-                 (const Game__PBContest *message,
+typedef void (*Game__PBTask_Closure)
+                 (const Game__PBTask *message,
                   void *closure_data);
-typedef void (*Game__PBContestList_Closure)
-                 (const Game__PBContestList *message,
+typedef void (*Game__PBClass_Closure)
+                 (const Game__PBClass *message,
                   void *closure_data);
 
 /* --- services --- */
@@ -1387,11 +1513,16 @@ extern const ProtobufCEnumDescriptor    game__pbdice_item_type__descriptor;
 extern const ProtobufCEnumDescriptor    game__pbgame_item_consume_type__descriptor;
 extern const ProtobufCEnumDescriptor    game__pbgame_time_unit__descriptor;
 extern const ProtobufCEnumDescriptor    game__pbiapproduct_type__descriptor;
+extern const ProtobufCEnumDescriptor    game__pbtask_status__descriptor;
+extern const ProtobufCEnumDescriptor    game__pbtask_id_type__descriptor;
 extern const ProtobufCMessageDescriptor game__pbkey_value__descriptor;
 extern const ProtobufCMessageDescriptor game__pbint_key_value__descriptor;
+extern const ProtobufCMessageDescriptor game__pbint_key_int_value__descriptor;
 extern const ProtobufCMessageDescriptor game__pbsnsuser__descriptor;
+extern const ProtobufCMessageDescriptor game__pbsnsuser_credential__descriptor;
 extern const ProtobufCMessageDescriptor game__pbuser_level__descriptor;
 extern const ProtobufCMessageDescriptor game__pbgame_user__descriptor;
+extern const ProtobufCMessageDescriptor game__pbsimple_group__descriptor;
 extern const ProtobufCMessageDescriptor game__pbgame_session__descriptor;
 extern const ProtobufCMessageDescriptor game__pbgame_session_changed__descriptor;
 extern const ProtobufCMessageDescriptor game__pbdraw_bg__descriptor;
@@ -1415,8 +1546,8 @@ extern const ProtobufCMessageDescriptor game__pbapp__descriptor;
 extern const ProtobufCMessageDescriptor game__pbsize__descriptor;
 extern const ProtobufCMessageDescriptor game__pbopus_rank__descriptor;
 extern const ProtobufCMessageDescriptor game__pbuser_award__descriptor;
-extern const ProtobufCMessageDescriptor game__pbcontest__descriptor;
-extern const ProtobufCMessageDescriptor game__pbcontest_list__descriptor;
+extern const ProtobufCMessageDescriptor game__pbtask__descriptor;
+extern const ProtobufCMessageDescriptor game__pbclass__descriptor;
 
 PROTOBUF_C_END_DECLS
 

@@ -12,14 +12,16 @@
 
 - (void)printInfo:(NSString*)stateStr
 {
-    PPDebug(@"<%@> design state(%d) begin(%d) lastPause(%d) total(%d)", stateStr,
-            self.state, self.beginTime, self.lastPauseTime, self.totalTime);
+    PPDebug(@"<%@> 作品花费时间%d秒 design state(%d) begin(%d) lastPause(%d) total(%d)", stateStr,
+            self.totalTime, self.state, self.beginTime, self.lastPauseTime, self.totalTime);
 }
 
-- (id)initWithTime:(int)time
+- (id)initWithTime:(int)initTime
 {
     self = [super init];
-    self.totalTime = time;
+    self.totalTime = initTime;
+    self.beginTime = time(0);
+    
     [self printInfo:@"init"];
     return self;
 }
@@ -31,11 +33,8 @@
     }
     
     self.state = OPUS_DESIGN_START;
-
-    if (self.state != OPUS_DESIGN_PAUSE){
-        self.beginTime = time(0);
-        self.lastPauseTime = time(0);
-    }
+    self.beginTime = time(0);
+    self.lastPauseTime = time(0);
     
     [self printInfo:@"start"];
 }
@@ -53,8 +52,21 @@
     
     PPDebug(@"<pause> add %d seconds", addTime);
     self.lastPauseTime = time(0);
+    self.beginTime = time(0);
     
     [self printInfo:@"pause"];
+}
+
+- (void)resume
+{
+    if (self.state != OPUS_DESIGN_PAUSE){
+        return;
+    }
+    
+    self.state = OPUS_DESIGN_START;
+    
+    self.beginTime = time(0);
+    [self printInfo:@"resume"];
 }
 
 - (void)stop
@@ -65,12 +77,10 @@
     
     self.state = OPUS_DESIGN_END;
 
-    self.totalTime = self.totalTime + (time(0) - self.lastPauseTime);
+    self.totalTime = self.totalTime + (time(0) - self.beginTime);
     self.lastPauseTime = time(0);   // this is the end time
     
     [self printInfo:@"stop"];
-    
-    
 }
 
 @end

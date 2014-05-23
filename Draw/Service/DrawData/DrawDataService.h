@@ -51,7 +51,7 @@
                      desc:(NSString *)desc
                      size:(CGSize)size
                    layers:(NSArray *)layers
-                     info:(NSDictionary *)info
+                    draft:(MyPaint *)draft
                  delegate:(PPViewController<DrawDataServiceDelegate>*)viewController;
 
 - (void)matchDraw:(PPViewController<DrawDataServiceDelegate>*)viewController;

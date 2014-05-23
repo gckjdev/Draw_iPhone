@@ -29,7 +29,6 @@
 @dynamic drawWordData;
 @dynamic isRecovery;
 
-
 @synthesize thumbImage = _thumbImage;
 @synthesize paintImage = _paintImage;
 @synthesize drawActionList = _drawActionList;
@@ -40,6 +39,9 @@
 @synthesize bgImageName = _bgImageName;
 @synthesize bgImage = _bgImage;
 @synthesize layers = _layers;
+@synthesize completeDate;
+@synthesize spendTime;
+@synthesize strokes;
 
 #define IMAGE_SUFFIX @".png"
 #define THUMB_IMAGE_SUFFIX @"_m.png"
