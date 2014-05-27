@@ -2554,6 +2554,9 @@ static PBLabelInfo* defaultPBLabelInfoInstance = nil;
 @property (retain) PBLabelInfo* descLabelInfo;
 @property (retain) PBSize* canvasSize;
 @property (retain) NSMutableArray* mutableClassList;
+@property int64_t strokes;
+@property int32_t draftCompleteDate;
+@property int32_t draftCreateDate;
 @end
 
 @implementation PBFeed
@@ -2893,6 +2896,27 @@ static PBLabelInfo* defaultPBLabelInfoInstance = nil;
 }
 @synthesize canvasSize;
 @synthesize mutableClassList;
+- (BOOL) hasStrokes {
+  return !!hasStrokes_;
+}
+- (void) setHasStrokes:(BOOL) value {
+  hasStrokes_ = !!value;
+}
+@synthesize strokes;
+- (BOOL) hasDraftCompleteDate {
+  return !!hasDraftCompleteDate_;
+}
+- (void) setHasDraftCompleteDate:(BOOL) value {
+  hasDraftCompleteDate_ = !!value;
+}
+@synthesize draftCompleteDate;
+- (BOOL) hasDraftCreateDate {
+  return !!hasDraftCreateDate_;
+}
+- (void) setHasDraftCreateDate:(BOOL) value {
+  hasDraftCreateDate_ = !!value;
+}
+@synthesize draftCreateDate;
 - (void) dealloc {
   self.feedId = nil;
   self.userId = nil;
@@ -2975,6 +2999,9 @@ static PBLabelInfo* defaultPBLabelInfoInstance = nil;
     self.sing = [PBSingOpus defaultInstance];
     self.descLabelInfo = [PBLabelInfo defaultInstance];
     self.canvasSize = [PBSize defaultInstance];
+    self.strokes = 0L;
+    self.draftCompleteDate = 0;
+    self.draftCreateDate = 0;
   }
   return self;
 }
@@ -3226,6 +3253,15 @@ static PBFeed* defaultPBFeedInstance = nil;
   for (PBClass* element in self.classList) {
     [output writeMessage:210 value:element];
   }
+  if (self.hasStrokes) {
+    [output writeInt64:211 value:self.strokes];
+  }
+  if (self.hasDraftCompleteDate) {
+    [output writeInt32:212 value:self.draftCompleteDate];
+  }
+  if (self.hasDraftCreateDate) {
+    [output writeInt32:213 value:self.draftCreateDate];
+  }
   [self.unknownFields writeToCodedOutputStream:output];
 }
 - (int32_t) serializedSize {
@@ -3394,6 +3430,15 @@ static PBFeed* defaultPBFeedInstance = nil;
   }
   for (PBClass* element in self.classList) {
     size += computeMessageSize(210, element);
+  }
+  if (self.hasStrokes) {
+    size += computeInt64Size(211, self.strokes);
+  }
+  if (self.hasDraftCompleteDate) {
+    size += computeInt32Size(212, self.draftCompleteDate);
+  }
+  if (self.hasDraftCreateDate) {
+    size += computeInt32Size(213, self.draftCreateDate);
   }
   size += self.unknownFields.serializedSize;
   memoizedSerializedSize = size;
@@ -3634,6 +3679,15 @@ static PBFeed* defaultPBFeedInstance = nil;
       result.mutableClassList = [NSMutableArray array];
     }
     [result.mutableClassList addObjectsFromArray:other.mutableClassList];
+  }
+  if (other.hasStrokes) {
+    [self setStrokes:other.strokes];
+  }
+  if (other.hasDraftCompleteDate) {
+    [self setDraftCompleteDate:other.draftCompleteDate];
+  }
+  if (other.hasDraftCreateDate) {
+    [self setDraftCreateDate:other.draftCreateDate];
   }
   [self mergeUnknownFields:other.unknownFields];
   return self;
@@ -3895,6 +3949,18 @@ static PBFeed* defaultPBFeedInstance = nil;
         PBClass_Builder* subBuilder = [PBClass builder];
         [input readMessage:subBuilder extensionRegistry:extensionRegistry];
         [self addClass:[subBuilder buildPartial]];
+        break;
+      }
+      case 1688: {
+        [self setStrokes:[input readInt64]];
+        break;
+      }
+      case 1696: {
+        [self setDraftCompleteDate:[input readInt32]];
+        break;
+      }
+      case 1704: {
+        [self setDraftCreateDate:[input readInt32]];
         break;
       }
     }
@@ -4851,6 +4917,54 @@ static PBFeed* defaultPBFeedInstance = nil;
     result.mutableClassList = [NSMutableArray array];
   }
   [result.mutableClassList addObject:value];
+  return self;
+}
+- (BOOL) hasStrokes {
+  return result.hasStrokes;
+}
+- (int64_t) strokes {
+  return result.strokes;
+}
+- (PBFeed_Builder*) setStrokes:(int64_t) value {
+  result.hasStrokes = YES;
+  result.strokes = value;
+  return self;
+}
+- (PBFeed_Builder*) clearStrokes {
+  result.hasStrokes = NO;
+  result.strokes = 0L;
+  return self;
+}
+- (BOOL) hasDraftCompleteDate {
+  return result.hasDraftCompleteDate;
+}
+- (int32_t) draftCompleteDate {
+  return result.draftCompleteDate;
+}
+- (PBFeed_Builder*) setDraftCompleteDate:(int32_t) value {
+  result.hasDraftCompleteDate = YES;
+  result.draftCompleteDate = value;
+  return self;
+}
+- (PBFeed_Builder*) clearDraftCompleteDate {
+  result.hasDraftCompleteDate = NO;
+  result.draftCompleteDate = 0;
+  return self;
+}
+- (BOOL) hasDraftCreateDate {
+  return result.hasDraftCreateDate;
+}
+- (int32_t) draftCreateDate {
+  return result.draftCreateDate;
+}
+- (PBFeed_Builder*) setDraftCreateDate:(int32_t) value {
+  result.hasDraftCreateDate = YES;
+  result.draftCreateDate = value;
+  return self;
+}
+- (PBFeed_Builder*) clearDraftCreateDate {
+  result.hasDraftCreateDate = NO;
+  result.draftCreateDate = 0;
   return self;
 }
 @end

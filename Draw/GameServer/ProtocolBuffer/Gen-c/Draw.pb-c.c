@@ -1702,7 +1702,7 @@ const ProtobufCMessageDescriptor game__pblabel_info__descriptor =
   (ProtobufCMessageInit) game__pblabel_info__init,
   NULL,NULL,NULL    /* reserved[123] */
 };
-static const ProtobufCFieldDescriptor game__pbfeed__field_descriptors[50] =
+static const ProtobufCFieldDescriptor game__pbfeed__field_descriptors[53] =
 {
   {
     "feedId",
@@ -2304,6 +2304,42 @@ static const ProtobufCFieldDescriptor game__pbfeed__field_descriptors[50] =
     0,            /* packed */
     0,NULL,NULL    /* reserved1,reserved2, etc */
   },
+  {
+    "strokes",
+    211,
+    PROTOBUF_C_LABEL_OPTIONAL,
+    PROTOBUF_C_TYPE_INT64,
+    PROTOBUF_C_OFFSETOF(Game__PBFeed, has_strokes),
+    PROTOBUF_C_OFFSETOF(Game__PBFeed, strokes),
+    NULL,
+    NULL,
+    0,            /* packed */
+    0,NULL,NULL    /* reserved1,reserved2, etc */
+  },
+  {
+    "draftCompleteDate",
+    212,
+    PROTOBUF_C_LABEL_OPTIONAL,
+    PROTOBUF_C_TYPE_INT32,
+    PROTOBUF_C_OFFSETOF(Game__PBFeed, has_draftcompletedate),
+    PROTOBUF_C_OFFSETOF(Game__PBFeed, draftcompletedate),
+    NULL,
+    NULL,
+    0,            /* packed */
+    0,NULL,NULL    /* reserved1,reserved2, etc */
+  },
+  {
+    "draftCreateDate",
+    213,
+    PROTOBUF_C_LABEL_OPTIONAL,
+    PROTOBUF_C_TYPE_INT32,
+    PROTOBUF_C_OFFSETOF(Game__PBFeed, has_draftcreatedate),
+    PROTOBUF_C_OFFSETOF(Game__PBFeed, draftcreatedate),
+    NULL,
+    NULL,
+    0,            /* packed */
+    0,NULL,NULL    /* reserved1,reserved2, etc */
+  },
 };
 static const unsigned game__pbfeed__field_indices_by_name[] = {
   2,   /* field[2] = actionType */
@@ -2322,6 +2358,8 @@ static const unsigned game__pbfeed__field_indices_by_name[] = {
   47,   /* field[47] = descLabelInfo */
   5,   /* field[5] = deviceName */
   4,   /* field[4] = deviceType */
+  51,   /* field[51] = draftCompleteDate */
+  52,   /* field[52] = draftCreateDate */
   13,   /* field[13] = drawData */
   18,   /* field[18] = drawDataUrl */
   0,   /* field[0] = feedId */
@@ -2351,6 +2389,7 @@ static const unsigned game__pbfeed__field_indices_by_name[] = {
   11,   /* field[11] = signature */
   46,   /* field[46] = sing */
   20,   /* field[20] = spendTime */
+  50,   /* field[50] = strokes */
   19,   /* field[19] = tags */
   14,   /* field[14] = targetUserId */
   15,   /* field[15] = targetUserNickName */
@@ -2371,7 +2410,7 @@ static const ProtobufCIntRange game__pbfeed__number_ranges[12 + 1] =
   { 100, 45 },
   { 200, 47 },
   { 210, 49 },
-  { 0, 50 }
+  { 0, 53 }
 };
 const ProtobufCMessageDescriptor game__pbfeed__descriptor =
 {
@@ -2381,7 +2420,7 @@ const ProtobufCMessageDescriptor game__pbfeed__descriptor =
   "Game__PBFeed",
   "game",
   sizeof(Game__PBFeed),
-  50,
+  53,
   game__pbfeed__field_descriptors,
   game__pbfeed__field_indices_by_name,
   12,  game__pbfeed__number_ranges,

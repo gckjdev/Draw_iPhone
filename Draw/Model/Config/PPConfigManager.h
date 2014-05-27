@@ -376,5 +376,7 @@ typedef enum{
 
 + (NSString*)defaultDrawWord;
 
++ (int)maxDisplaySpendTime;
++ (int)maxDisplayStrokes;
 
 @end

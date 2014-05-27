@@ -1228,6 +1228,16 @@
     
     self.submitOpusFinalImage = image;
     
+    [self.designTime pause];
+    
+    MyPaint* draft = self.draft;
+    if (draft == nil){
+        draft = [[DrawRecoveryService defaultService] currentPaint]; // use this to carry data
+    }
+    
+    [draft setSpendTime:_designTime.totalTime];
+    [draft setCompleteDate:time(0)];
+    
     self.submitOpusDrawData = [[DrawDataService defaultService] createOfflineDraw:drawView.drawActionList
                                                   image:image
                                                drawWord:self.word
@@ -1237,13 +1247,14 @@
                                                    desc:text                    //@"元芳，你怎么看？"
                                                    size:drawView.bounds.size
                                                  layers:[[drawView.layers mutableCopy] autorelease]
-                                                  draft:self.draft
+                                                  draft:draft
                                                delegate:self];
     
     if (self.submitOpusDrawData == nil){
         self.submitOpusFinalImage = nil;
     }
-
+    
+    [self.designTime resume];
 }
 
 
@@ -1261,6 +1272,7 @@
         if (confirm) {
             [self commitOpus:subject desc:content share:shareSet];
         }else{
+            self.word.text = subject;
             [self setOpusDesc:content];
         }
     }];

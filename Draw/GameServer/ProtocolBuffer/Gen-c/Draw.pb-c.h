@@ -228,10 +228,16 @@ struct  _Game__PBFeed
   Game__PBSize *canvassize;
   size_t n_class_;
   Game__PBClass **class_;
+  protobuf_c_boolean has_strokes;
+  int64_t strokes;
+  protobuf_c_boolean has_draftcompletedate;
+  int32_t draftcompletedate;
+  protobuf_c_boolean has_draftcreatedate;
+  int32_t draftcreatedate;
 };
 #define GAME__PBFEED__INIT \
  { PROTOBUF_C_MESSAGE_INIT (&game__pbfeed__descriptor) \
-    , NULL, NULL, 0, 0, 0,0, NULL, NULL, 0,0, NULL, NULL, 0,0, NULL, 0,0, NULL, NULL, NULL, 0,0, NULL, NULL, 0,NULL, 0,0, NULL, 0,0, 0,0, 0,NULL, 0,0, NULL, NULL, 0,0, 0,0, 0,0, 0,0, 0,NULL, NULL, NULL, 0,0, NULL, NULL, NULL, NULL, NULL, NULL, 0,0, 0,NULL, 0,0, NULL, NULL, NULL, NULL, 0,NULL }
+    , NULL, NULL, 0, 0, 0,0, NULL, NULL, 0,0, NULL, NULL, 0,0, NULL, 0,0, NULL, NULL, NULL, 0,0, NULL, NULL, 0,NULL, 0,0, NULL, 0,0, 0,0, 0,NULL, 0,0, NULL, NULL, 0,0, 0,0, 0,0, 0,0, 0,NULL, NULL, NULL, 0,0, NULL, NULL, NULL, NULL, NULL, NULL, 0,0, 0,NULL, 0,0, NULL, NULL, NULL, NULL, 0,NULL, 0,0, 0,0, 0,0 }
 
 
 struct  _Game__PBPoint

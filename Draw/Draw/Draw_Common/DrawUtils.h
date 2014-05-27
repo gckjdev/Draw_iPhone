@@ -48,6 +48,10 @@
 
 @class DrawColor;
 @interface DrawUtils : NSObject
+
++ (NSString*)strokesString:(int64_t)strokes;
++ (NSString*)spendTimeString:(int)spendTime;
+
 + (CGPoint)illegalPoint;
 + (BOOL)isIllegalPoint:(CGPoint)point;
 + (CGRect)constructWithPoint1:(CGPoint)point1 point2:(CGPoint)point2;

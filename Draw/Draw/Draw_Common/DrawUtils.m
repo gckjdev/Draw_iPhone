@@ -7,12 +7,96 @@
 //
 
 #import "DrawUtils.h"
+#import "StringUtil.h"
 #import "DrawColor.h"
 #import "Draw.pb-c.h"
+#import "PPConfigManager.h"
 
 @implementation DrawUtils
 
 #define RECT_SPAN_WIDTH 10
+
++ (NSString*)strokesString:(int64_t)strokes
+{
+    int64_t max = [PPConfigManager maxDisplayStrokes];
+    int64_t display = strokes;
+    if (strokes > max){
+        display = max;
+        return [NSString stringWithFormat:@"%lld+", max];
+    }
+    else{
+        return [NSString stringWithInt:display];
+    }
+    
+}
+
++ (void)testSpendTime
+{
+    NSString* str = [self spendTimeString:0];
+    str = [self spendTimeString:59];
+    PPDebug(@"test spend time : %@", str);
+    str = [self spendTimeString:60];
+    PPDebug(@"test spend time : %@", str);
+    str = [self spendTimeString:67];
+    PPDebug(@"test spend time : %@", str);
+    str = [self spendTimeString:130];
+    PPDebug(@"test spend time : %@", str);
+    str = [self spendTimeString:1800];
+    PPDebug(@"test spend time : %@", str);
+    str = [self spendTimeString:3500];
+    PPDebug(@"test spend time : %@", str);
+    str = [self spendTimeString:3600];
+    PPDebug(@"test spend time : %@", str);
+    str = [self spendTimeString:3900];
+    PPDebug(@"test spend time : %@", str);
+    str = [self spendTimeString:9000];
+    PPDebug(@"test spend time : %@", str);
+    str = [self spendTimeString:8*3600];
+    PPDebug(@"test spend time : %@", str);
+    str = [self spendTimeString:8*3600+1];
+    PPDebug(@"test spend time : %@", str);
+    str = [self spendTimeString:9*3600];
+    PPDebug(@"test spend time : %@", str);
+    
+    str = [self strokesString:0];
+    PPDebug(@"test strokes : %@", str);
+    str = [self strokesString:88888];
+    PPDebug(@"test strokes : %@", str);
+    str = [self strokesString:999999];
+    PPDebug(@"test strokes : %@", str);
+    str = [self strokesString:1000000];
+    PPDebug(@"test strokes : %@", str);
+    str = [self strokesString:1000001];
+    PPDebug(@"test strokes : %@", str);
+    str = [self strokesString:1500000];
+    PPDebug(@"test strokes : %@", str);
+}
+
++ (NSString*)spendTimeString:(int)spendTime
+{
+    int display = spendTime;
+    if (spendTime < 60){
+        // seconds
+        display = spendTime;
+        return [NSString stringWithFormat:NSLS(@"kDrawSpendTimeSeconds"), display];
+    }
+    else if (spendTime >= 60 && spendTime < 3600){
+        // minutes
+        display = spendTime/60;
+        return [NSString stringWithFormat:NSLS(@"kDrawSpendTimeMinutes"), display];
+    }
+    else{
+        // hours
+        display = spendTime/3600;
+        if (display >= [PPConfigManager maxDisplaySpendTime]){
+            display = [PPConfigManager maxDisplaySpendTime];
+            return [NSString stringWithFormat:NSLS(@"kDrawSpendTimeHoursPlus"), display];
+        }
+        else{
+            return [NSString stringWithFormat:NSLS(@"kDrawSpendTimeHours"), display];
+        }
+    }
+}
 
 + (BOOL)spanRect:(CGRect)rect ContainsPoint:(CGPoint)point
 {
@@ -657,3 +741,6 @@ void calGradientPoints(CGRect rect, CGFloat degree, CGPoint *startPoint, CGPoint
     endPoint->x = center.x - x;
     endPoint->y = center.y + y;
 }
+
+
+

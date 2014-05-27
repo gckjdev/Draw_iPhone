@@ -595,6 +595,11 @@
 - (void)updateSignLabel{
     
     NSString *text = @"";
+
+    if ([[[_detail getUser] location] length] > 0) {
+        text = [text stringByAppendingString:[[_detail getUser] location]];
+        text = [text stringByAppendingString:@"  "];
+    }
     
     if ([[[_detail getUser] xiaojiNumber] length] > 0) {
         text = [text stringByAppendingString:[NSString stringWithFormat:@"%@:%@", NSLS(@"kXiaoji"), [[_detail getUser] xiaojiNumber]]];
@@ -677,8 +682,13 @@
         [dialog showInView:self];
         
     }else{
+
+        NSString* message = @"";
+        message = [message stringByAppendingString:[NSString stringWithFormat:@"%@ : %@", NSLS(@"kXiaoji"), [[_detail getUser] xiaojiNumber]]];
+        message = [message stringByAppendingString:@"\n\n"];
+        message = [message stringByAppendingString:[NSString stringWithFormat:@"%@ : %@", NSLS(@"kNickname"), [[_detail getUser] nickName]]];
         
-        CommonDialog *dialog = [CommonDialog createDialogWithTitle:NSLS(@"kNickname") message:[[self.detail getUser] nickName] style:CommonDialogStyleCross];
+        CommonDialog *dialog = [CommonDialog createDialogWithTitle:NSLS(@"kNickname") message:message style:CommonDialogStyleCross];
         
         [dialog showInView:self];
     }

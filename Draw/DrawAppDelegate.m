@@ -138,7 +138,7 @@ NSString* GlobalGetTrafficServerURL()
 //    return @"http://192.168.1.8:8100/api/i?";
     
     
-//    return @"http://58.215.184.18:8699/api/i?";
+    return @"http://58.215.184.18:8699/api/i?";
 
 //    return @"http://58.215.184.18:8037/api/i?";
 //    return @"http://192.168.1.198:8100/api/i?";
@@ -276,6 +276,8 @@ NSString* GlobalGetBoardServerURL()
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    [DrawUtils testSpendTime];
+    
     //Enabling keyboard manager(Use this line to enable managing distance between keyboard & textField/textView).
     [IQKeyBoardManager installKeyboardManager];
     [IQKeyBoardManager disableKeyboardManager];

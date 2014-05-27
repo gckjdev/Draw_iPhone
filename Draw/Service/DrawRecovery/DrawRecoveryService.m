@@ -198,6 +198,8 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(DrawRecoveryService)
         int backupCount = [snapshotList count];
         NSArray* copyLayers = [cp.layers mutableCopy];
         
+        int64_t outputStrokes = 0;
+        
         // TODO check difference of two methods
         NSData* data = [DrawAction pbNoCompressDrawDataCFromDrawActionList:snapshotList
                                                                       size:cp.canvasSize
@@ -205,7 +207,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(DrawRecoveryService)
                                                                 drawToUser:cp.drawToUser
                                                            bgImageFileName:cp.currentPaint.bgImageName
                                                                     layers:copyLayers
-                                                                   strokes:strokes
+                                                                   strokes:&outputStrokes
                                                                  spendTime:spendTime
                                                               completeDate:completeDate];
         [copyLayers release];

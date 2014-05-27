@@ -2429,7 +2429,7 @@
 "kMainLayer" = "上色层";
 "kNumLayerName" = "图层 %d";
 "kLayerExplain" = "图层简单用法";
-"kLayerExplainContent" = "\n1. 描边层：用于打草稿的描边，上色完毕可擦除；也可作为绘画背景。\n\n2. 上色层：不解释。\n\n3. 特别提示：按住拖动可变换图层的顺序。\n\n\n以上为简单用法，复杂用法请自行摸索。\n";
+"kLayerExplainContent" = "\n1. 描边层：用于打草稿的描边，上色完毕可擦除；也可作为绘画背景。\n\n2. 上色层：不解释。\n\n3. 特别提示：1) 按住图层名字拖动可变换图层之间顺序; 2) 双击图层名字可修改名字\n\n\n以上为简单用法，复杂用法请自行摸索。\n";
 
 "kNewLayerName" = "图层";
 "kEditLayerName" = "修改图层名字";
@@ -2717,3 +2717,9 @@
 "kSubmitShareText" = "看看我画的【%@】";
 "kSubmittingWeibo" = "作品已经保存到草稿箱，正在发送中...";
 
+"kDrawDevice" = "%@";
+"kDrawStrokes" = "%@笔";
+"kDrawSpendTimeSeconds" = "%d秒";
+"kDrawSpendTimeMinutes" = "%d分钟";
+"kDrawSpendTimeHours" = "%d小时";
+"kDrawSpendTimeHoursPlus" = "%d+小时";

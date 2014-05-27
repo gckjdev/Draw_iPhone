@@ -124,6 +124,8 @@
                   thumbImageUrl:(NSURL *)thumbUrl
                            desc:(NSString *)desc{
     
+    DrawFeed *feed = [_feedList objectAtIndex:index];
+    
     UIButton *view = [[[UIButton alloc] initWithFrame:FRAME] autorelease];
     view.tag = index;
     
@@ -197,7 +199,40 @@
     descLabel.shadowOffset = DESC_LABEL_SHADOW_OFFSET;
     descLabel.font = DESC_LABEL_FONT;
     descLabel.numberOfLines = 2;
-    descLabel.text = desc;
+    if (feed.pbFeed.spendTime || feed.pbFeed.strokes){
+        // 有时间和笔画数目，显示附加信息
+        NSString* str = @"";
+        if ([feed.pbFeed.deviceName length] > 0){
+            str = [str stringByAppendingFormat:NSLS(@"kDrawDevice"), [DeviceDetection deviceNameByModel:feed.pbFeed.deviceName]];
+            str = [str stringByAppendingString:@"\t"];
+        }
+
+        if (feed.pbFeed.strokes > 0){
+            NSString* strokesString = [DrawUtils strokesString:feed.pbFeed.strokes];
+            str = [str stringByAppendingFormat:NSLS(@"kDrawStrokes"), strokesString];
+            str = [str stringByAppendingString:@"\t"];
+        }
+        
+        if (feed.pbFeed.spendTime > 0){
+            NSString* spendTimeString = [DrawUtils spendTimeString:feed.pbFeed.spendTime];
+            str = [str stringByAppendingString:spendTimeString];
+        }
+        
+        if ([str length] > 0){
+            descLabel.text = str;
+            
+            // center display label
+            descLabel.textAlignment = NSTextAlignmentCenter;
+            CGPoint center = CGPointMake(self.center.x, descLabel.center.y);
+            [descLabel setCenter:center];
+        }
+        else{
+            descLabel.text = desc;
+        }
+    }
+    else{
+        descLabel.text = desc;
+    }
     [view addSubview:descLabel];
 
     // create PLAY button

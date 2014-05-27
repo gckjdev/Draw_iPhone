@@ -1527,5 +1527,15 @@
     }
 }
 
++ (int)maxDisplaySpendTime
+{
+    return GET_UMENG_INTVAL(@"MAX_DIS_SPEND_TIME", 8); // unit is hours
+}
+
++ (int)maxDisplayStrokes
+{
+    return GET_UMENG_INTVAL(@"MAX_DIS_STROKES", 1000000); // 1,000,000 strokes for max
+}
+
 
 @end

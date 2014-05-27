@@ -561,6 +561,9 @@
         data = [NSData dataWithBytesNoCopy:buf length:len];
     }
     
+    // set strokes in draft
+    [draft setStrokes:pbDrawC.strokes];
+    
     // free memory
     [DrawAction freePBDrawActionC:pbDrawC.drawdata count:pbDrawC.n_drawdata];
     //Free layers
@@ -652,6 +655,11 @@
         pbNoCompressDrawDataC.has_spendtime = 1;
         pbNoCompressDrawDataC.completedate = completeDate;
         pbNoCompressDrawDataC.has_completedate = 1;
+        
+        // return storkes
+        if (strokes != NULL){
+            *strokes = pbNoCompressDrawDataC.strokes;
+        }
         
         void *buf = NULL;
         unsigned len = 0;
