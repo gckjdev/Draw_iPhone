@@ -2723,3 +2723,5 @@
 "kDrawSpendTimeMinutes" = "%d分钟";
 "kDrawSpendTimeHours" = "%d小时";
 "kDrawSpendTimeHoursPlus" = "%d+小时";
+
+"kEnableReplay" = "作品详情显示[播放]按钮";

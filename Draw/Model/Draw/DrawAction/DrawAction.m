@@ -376,7 +376,7 @@
     int64_t addedStorkes = 0;
     for (DrawAction *drawAction in drawActionList) {
         
-        addedStorkes += (drawAction.type == DrawActionTypePaint) ? 1 : 0;
+        addedStorkes += DRAWACTION_AS_STROKE(drawAction.type) ? 1 : 0;
         
         pbDrawActionC[i] = malloc (sizeof(Game__PBDrawAction));
         if (pbDrawActionC[i] == NULL) {

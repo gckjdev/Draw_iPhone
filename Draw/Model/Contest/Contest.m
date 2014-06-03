@@ -584,6 +584,10 @@
     
     NSString *desc = @"";
     
+    if ([_pbContestBuilder.awardRulesList count] < 4){
+        return desc;
+    }
+    
     for (int i = 0; i < 4; i ++) {
         int award = ((NSNumber *)[_pbContestBuilder.awardRulesList objectAtIndex:i]).intValue;
         

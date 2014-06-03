@@ -236,20 +236,22 @@
     [view addSubview:descLabel];
 
     // create PLAY button
-    UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
-    CGRect buttonFrame = self.frame;
-    buttonFrame.size = ISIPAD ? CGSizeMake(180, 180) : CGSizeMake(80, 80);
-    [button setBackgroundImage:[UIImage imageNamed:@"play3.png"] forState:UIControlStateNormal];
-    [button setFrame:buttonFrame];
-    [button setCenter:self.center];
-    [button setAlpha:0.0];
-    [button setTag:PLAY_BUTTON_TAG];
-    [button addTarget:self action:@selector(replay) forControlEvents:UIControlEventTouchUpInside];
-    [view addSubview:button];
-    [UIView animateWithDuration:0.8 delay:0.8 options:UIViewAnimationOptionCurveEaseIn animations:^{
-        button.alpha = 0.8;
-    } completion:^(BOOL finished) {
-    }];
+    if ([[UserManager defaultManager] isEnableReplay]){
+        UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
+        CGRect buttonFrame = self.frame;
+        buttonFrame.size = ISIPAD ? CGSizeMake(180, 180) : CGSizeMake(80, 80);
+        [button setBackgroundImage:[UIImage imageNamed:@"play3.png"] forState:UIControlStateNormal];
+        [button setFrame:buttonFrame];
+        [button setCenter:self.center];
+        [button setAlpha:0.0];
+        [button setTag:PLAY_BUTTON_TAG];
+        [button addTarget:self action:@selector(replay) forControlEvents:UIControlEventTouchUpInside];
+        [view addSubview:button];
+        [UIView animateWithDuration:0.8 delay:0.8 options:UIViewAnimationOptionCurveEaseIn animations:^{
+            button.alpha = 0.8;
+        } completion:^(BOOL finished) {
+        }];
+    }
 
     
     CGRect frame = CGRectMake(PAGE_WIDTH - PAGE_INDICATOR_WIDTH - 20, descLabel.frame.origin.y, PAGE_INDICATOR_WIDTH, DESC_LABEL_HEIGHT);

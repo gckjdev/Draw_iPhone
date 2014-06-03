@@ -63,6 +63,7 @@
 }
 - (id)initWithFrame:(CGRect)frame
 {
+    PPDebug(@"init frame=%@", NSStringFromCGRect(frame));
     self = [super initWithFrame:frame];
     if (self) {
         self.backgroundColor = [UIColor whiteColor];
@@ -156,6 +157,7 @@
 
 - (void)changeRect:(CGRect)rect
 {
+    PPDebug(@"<changeRect> frame=%@", NSStringFromCGRect(rect));
     if (CGRectEqualToRect(rect, self.bounds)) {
         return;
     }

@@ -31,6 +31,8 @@ typedef enum {
     
 } DrawActionType;
 
+#define DRAWACTION_AS_STROKE(t) (t != DrawActionTypeClean && t != DrawActionTypeClip)
+
 //#define BACK_GROUND_WIDTH 5000
 
 

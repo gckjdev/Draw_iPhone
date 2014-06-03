@@ -295,6 +295,10 @@ qqAccessTokenSecret:(NSString*)accessTokenSecret
 - (BOOL)canBlackUser;
 - (void)setUserPermissions:(NSArray*)persmissions;
 
+- (BOOL)isEnableReplay;
+- (void)setEnableReplay:(BOOL)value;
+
+
 @end
 
 @interface CheckInManager : NSObject{
@@ -323,6 +327,7 @@ qqAccessTokenSecret:(NSString*)accessTokenSecret
 
 - (void)registerNotification;
 - (void)clearNotification;
+
 
 @end
 

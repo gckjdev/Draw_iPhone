@@ -77,7 +77,9 @@
     cell.timeLabel.font = CELL_REPLY_SOURCE_FONT;
     cell.drawToButton.titleLabel.font = CELL_REPLY_SOURCE_FONT;
     
-    [cell createReplayButton];
+    if ([[UserManager defaultManager] isEnableReplay]){
+        [cell createReplayButton];
+    }
     
     return cell;
 }

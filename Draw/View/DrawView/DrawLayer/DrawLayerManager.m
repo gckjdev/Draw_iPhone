@@ -278,6 +278,7 @@
 - (UIImage *)createImageWithBGImage:(UIImage *)bg
 {
     UIImage *image;
+    PPDebug(@"<createImageWithBGImage> size=%@", NSStringFromCGSize(self.view.bounds.size));
     UIGraphicsBeginImageContext(self.view.bounds.size);
     CGContextRef ctx = UIGraphicsGetCurrentContext();
     [[UIColor whiteColor] setFill];

@@ -30,6 +30,7 @@
     NSInteger rowOfZodiac;
     NSInteger rowOfSignature;
     NSInteger rowOfPrivacy;
+    NSInteger rowOfEnableReplay;
     NSInteger rowOfCustomBg;
     NSInteger rowOfCustomHomeBg;
     NSInteger rowOfCustomBBSBg;
@@ -65,6 +66,7 @@
     UserManager *_userManager;
     int _currentLoginType;
     
+    BOOL isEnableReplay;
     BOOL isSoundOn;
     BOOL isMusicOn;
     BOOL avatarChanged;

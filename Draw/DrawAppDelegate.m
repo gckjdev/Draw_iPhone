@@ -276,7 +276,7 @@ NSString* GlobalGetBoardServerURL()
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    [DrawUtils testSpendTime];
+//    [DrawUtils testSpendTime];
     
     //Enabling keyboard manager(Use this line to enable managing distance between keyboard & textField/textView).
     [IQKeyBoardManager installKeyboardManager];

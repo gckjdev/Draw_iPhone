@@ -2695,3 +2695,12 @@
 "kSubmitWeiboFailure" = "Fail to share or share is cancelled.";
 "kSubmitShareText" = "Look at my drawing【%@】";
 "kSubmittingWeibo" = "Draft saved and sending...";
+
+"kDrawDevice" = "%@";
+"kDrawStrokes" = "%@ strokes";
+"kDrawSpendTimeSeconds" = "%d seconds";
+"kDrawSpendTimeMinutes" = "%d minutes";
+"kDrawSpendTimeHours" = "%d hours";
+"kDrawSpendTimeHoursPlus" = "%d+ hours";
+
+"kEnableReplay" = "Show Replay Button";

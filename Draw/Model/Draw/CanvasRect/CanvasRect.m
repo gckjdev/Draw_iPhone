@@ -6,33 +6,33 @@
 //
 //
 
-#define IPHONE_DEFAULT_RECT CGRectMake(0, 0, 300, 300)
-#define IPAD_DEFAULT_RECT CGRectMake(0, 0, 700, 700)
+#define IPHONE_DEFAULT_RECT CGRectMake(0.0f, 0.0f, 300.0f, 300.0f)
+#define IPAD_DEFAULT_RECT CGRectMake(0.0f, 0.0f, 700.0f, 700.0f)
 
-#define IPAD_HORIZONTAL_RECT CGRectMake(0, 0, 700, 432)
-#define IPAD_VERTICAL_RECT CGRectMake(0, 0, 432, 700)
+#define IPAD_HORIZONTAL_RECT CGRectMake(0.0f, 0.0f, 700.0f, 432.0f)
+#define IPAD_VERTICAL_RECT CGRectMake(0.0f, 0.0f, 432.0f, 700.0f)
 
-#define IPAD_LARGE_RECT CGRectMake(0, 0, 1024, 1024)
-#define IPAD_SCREEN_HORIZONTAL_RECT CGRectMake(0, 0, 1024, 768)
+#define IPAD_LARGE_RECT CGRectMake(0.0f, 0.0f, 1024.0f, 1024.0f)
+#define IPAD_SCREEN_HORIZONTAL_RECT CGRectMake(0.0f, 0.0f, 1024.0f, 768.0f)
 
-#define IPAD_SCREEN_VERTICAL_RECT CGRectMake(0, 0, 768, 1024)
-
-
-#define IPHONE5_HORIZONTAL_RECT CGRectMake(0, 0, 1136, 640)
-#define IPHONE5_VERTICAL_RECT CGRectMake(0, 0, 640, 1136)
+#define IPAD_SCREEN_VERTICAL_RECT CGRectMake(0.0f, 0.0f, 768.0f, 1024.0f)
 
 
-#define ANDROID_HORIZONTAL_RECT CGRectMake(0, 0, 800, 480)
-#define ANDROID_VERTICAL_RECT CGRectMake(0, 0, 480, 800)
+#define IPHONE5_HORIZONTAL_RECT CGRectMake(0.0f, 0.0f, 1136.0f, 640.0f)
+#define IPHONE5_VERTICAL_RECT CGRectMake(0.0f, 0.0f, 640.0f, 1136.0f)
 
 
-#define IPHONE_DEPRECATED_RECT CGRectMake(0, 0, 304, 320)
-#define IPAD_DEPRECATED_RECT CGRectMake(0, 0, 730, 698)
-
-#define CONTEST_BILLBOARD_RECT CGRectMake(0, 0, 700, 268)
+#define ANDROID_HORIZONTAL_RECT CGRectMake(0.0f, 0.0f, 800.0f, 480.0f)
+#define ANDROID_VERTICAL_RECT CGRectMake(0.0f, 0.0f, 480.0f, 800.0f)
 
 
-#define MAX_WIDTH 1024
+#define IPHONE_DEPRECATED_RECT CGRectMake(0.0f, 0.0f, 304.0f, 320.0f)
+#define IPAD_DEPRECATED_RECT CGRectMake(0.0f, 0.0f, 730.0f, 698.0f)
+
+#define CONTEST_BILLBOARD_RECT CGRectMake(0.0f, 0.0f, 700.0f, 268.0f)
+
+
+#define MAX_WIDTH 1024.0f
 
 #import "CanvasRect.h"
 #import <QuartzCore/QuartzCore.h>

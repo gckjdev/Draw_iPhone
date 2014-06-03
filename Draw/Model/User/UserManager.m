@@ -29,6 +29,7 @@
 #import "LocalNotificationUtil.h"
 //#import "ZeroQianManager.h"
 
+#define KEY_ENABLE_REPLAY               @"KEY_ENABLE_REPLAY"
 #define KEY_ALL_USER_PB_DATA            @"KEY_ALL_USER_PB_DATA"
 #define KEY_USERID                      @"USER_KEY_USERID"
 #define KEY_NICKNAME                    @"USER_KEY_NICKNAME"
@@ -1988,6 +1989,25 @@ qqAccessTokenSecret:(NSString*)accessTokenSecret
     self.pbUser = [builder build];
 }
 
+- (BOOL)isEnableReplay
+{
+    NSUserDefaults* ud = [NSUserDefaults standardUserDefaults];
+    NSNumber* value = [ud objectForKey:KEY_ENABLE_REPLAY];
+    if (value == nil){
+        return YES; // default value
+    }
+    else{
+        return ([value intValue] == 1);
+    }
+}
+
+- (void)setEnableReplay:(BOOL)value
+{
+    NSUserDefaults* ud = [NSUserDefaults standardUserDefaults];
+    [ud setObject:@(value) forKey:KEY_ENABLE_REPLAY];
+    [ud synchronize];
+}
+
 @end
 
 
@@ -2211,6 +2231,7 @@ static ComebackManager* _defaultLoginManager;
     [LocalNotificationUtil cancelLocalNotification:self.notification];
     self.notification = nil;
 }
+
 
 
 @end

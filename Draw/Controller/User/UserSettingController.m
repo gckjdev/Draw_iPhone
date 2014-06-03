@@ -138,6 +138,7 @@ enum {
     rowOfZodiac = index++;
     rowOfSignature = index++;
     rowOfPrivacy = index++;
+    rowOfEnableReplay = index++;
     rowOfCustomHomeBg = index++;
     rowOfCustomBg = index++;
     rowOfCustomBBSBg = index++;
@@ -270,6 +271,7 @@ SET_CELL_BG_IN_CONTROLLER;
     self.pbUserBuilder = [PBGameUser builderWithPrototype:[_userManager pbUser]];
     isSoundOn = [AudioManager defaultManager].isSoundOn;
     isMusicOn = [AudioManager defaultManager].isMusicOn;
+    isEnableReplay = [[UserManager defaultManager] isEnableReplay];
     
     [super viewDidLoad];
     
@@ -369,9 +371,24 @@ SET_CELL_BG_IN_CONTROLLER;
         return 0;
     }
 }
-#define SOUND_SWITCHER_TAG 20120505
-#define MUSIC_SWITCHER_TAG 20120528
-#define DRAW_AUTOSAVE_TAG 20120926
+
+#define SOUND_SWITCHER_TAG          20120505
+#define MUSIC_SWITCHER_TAG          20120528
+#define DRAW_AUTOSAVE_TAG           20120926
+#define ENABLE_REPLAY_SWITCHER_TAG  20140603
+
+- (void)clickEnableReplay:(id)sender
+{
+    UIButton* btn = (UIButton*)sender;
+    btn.selected = !btn.selected;
+    isEnableReplay = !btn.selected;
+
+    [[UserManager defaultManager] setEnableReplay:isEnableReplay];
+    
+//    [[AudioManager defaultManager] setIsSoundOn:isSoundOn];
+//    [[AudioManager defaultManager] saveSoundSettings];
+}
+
 - (void)clickSoundSwitcher:(id)sender
 {
     UIButton* btn = (UIButton*)sender;
@@ -604,10 +621,19 @@ SET_CELL_BG_IN_CONTROLLER;
         } else if (row == rowOfSignature) {
             [cell.customTextLabel setText:NSLS(@"kSignature")];
             [cell.customDetailLabel setText:_pbUserBuilder.signature];
-        } else if (row == rowOfPrivacy) {
+        }
+        else if (row == rowOfPrivacy) {
             [cell.customTextLabel setText:NSLS(@"kPrivacy")];
             [cell.customDetailLabel setText:[self nameForPrivacyPublicType:_pbUserBuilder.openInfoType]];
-        } else if (row == rowOfCustomBg) {
+        }
+        else if (row == rowOfEnableReplay) {
+            [cell.customTextLabel setText:NSLS(@"kEnableReplay")];
+            [cell.customDetailLabel setText:nil];
+            UIButton *btn = [self addSwitchButtonWithTag:ENABLE_REPLAY_SWITCHER_TAG toCell:cell];
+            [btn addTarget:self action:@selector(clickEnableReplay:) forControlEvents:UIControlEventTouchUpInside];
+            [btn setSelected:!isEnableReplay];
+        }
+        else if (row == rowOfCustomBg) {
             [cell.customTextLabel setText:NSLS(@"kCustomBg")];
         } else if (row == rowOfCustomBBSBg) {
             [cell.customTextLabel setText:NSLS(@"kCustomBBSBg")];
@@ -987,9 +1013,14 @@ SET_CELL_BG_IN_CONTROLLER;
             [dialog showInView:self.view];
             dialog.tag = DIALOG_TAG_SIGNATURE;
             
-        }else if (row == rowOfPrivacy) {
+        }
+        else if (row == rowOfPrivacy) {
             [self askSetPrivacy];
-        }else if (row == rowOfCustomBg) {
+        }
+        else if (row == rowOfEnableReplay) {
+            // TODO
+        }
+        else if (row == rowOfCustomBg) {
             __block UserSettingController* uc = self;
             [[self backgroundPicker] showSelectionView:self selectedImageBlock:^(UIImage *image) {
                 [uc uploadCustomBg:image];

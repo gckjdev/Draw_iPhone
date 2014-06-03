@@ -2727,3 +2727,12 @@
 "kSubmitWeiboFailure" = "分享失敗或者被取消了";
 "kSubmitShareText" = "看看我畫的【%@】";
 "kSubmittingWeibo" = "作品已經保存到草稿箱，正在發送中...";
+
+"kDrawDevice" = "%@";
+"kDrawStrokes" = "%@筆";
+"kDrawSpendTimeSeconds" = "%d秒";
+"kDrawSpendTimeMinutes" = "%d分鍾";
+"kDrawSpendTimeHours" = "%d小時";
+"kDrawSpendTimeHoursPlus" = "%d+小時";
+
+"kEnableReplay" = "作品詳情顯示[播放]按鈕";
