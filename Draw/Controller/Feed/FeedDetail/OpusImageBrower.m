@@ -199,7 +199,12 @@
     descLabel.shadowOffset = DESC_LABEL_SHADOW_OFFSET;
     descLabel.font = DESC_LABEL_FONT;
     descLabel.numberOfLines = 2;
-    if (feed.pbFeed.spendTime || feed.pbFeed.strokes){
+
+#ifdef DEBUG
+    if (feed.pbFeed.spendTime || feed.pbFeed.strokes){ // 注释以便未来使用，目前不使用
+#else
+    if (NO){
+#endif
         // 有时间和笔画数目，显示附加信息
         NSString* str = @"";
         if ([feed.pbFeed.deviceName length] > 0){

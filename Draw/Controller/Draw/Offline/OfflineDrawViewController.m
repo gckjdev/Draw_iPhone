@@ -361,7 +361,7 @@
     
     // set opus design time, the value is store in PBDraw data so need to get it after drawActionList is read
     int initTime = (self.draft == nil) ? 0 : self.draft.spendTime;
-    self.designTime = [[OpusDesignTime alloc] initWithTime:initTime];
+    self.designTime = [[[OpusDesignTime alloc] initWithTime:initTime] autorelease];
     [self.designTime start];
 }
 
