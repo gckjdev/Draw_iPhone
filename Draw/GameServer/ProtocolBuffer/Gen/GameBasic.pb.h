@@ -3625,21 +3625,34 @@ BOOL PBTaskIdTypeIsValidValue(PBTaskIdType value);
   BOOL hasIsTopClass_:1;
   BOOL hasClassId_:1;
   BOOL hasDesc_:1;
+  BOOL hasCnName_:1;
+  BOOL hasEnName_:1;
+  BOOL hasTcnName_:1;
+  BOOL hasParentClass_:1;
   BOOL isTopClass_:1;
-  int32_t classId;
+  NSString* classId;
   NSString* desc;
+  NSString* cnName;
+  NSString* enName;
+  NSString* tcnName;
+  PBClass* parentClass;
   NSMutableArray* mutableKeywordsList;
-  NSMutableArray* mutableNamesList;
   NSMutableArray* mutableSubClassesList;
 }
 - (BOOL) hasClassId;
 - (BOOL) hasDesc;
 - (BOOL) hasIsTopClass;
-@property (readonly) int32_t classId;
+- (BOOL) hasParentClass;
+- (BOOL) hasCnName;
+- (BOOL) hasEnName;
+- (BOOL) hasTcnName;
+@property (readonly, retain) NSString* classId;
 @property (readonly, retain) NSString* desc;
 - (BOOL) isTopClass;
-- (NSArray*) namesList;
-- (PBLocalizeString*) namesAtIndex:(int32_t) index;
+@property (readonly, retain) PBClass* parentClass;
+@property (readonly, retain) NSString* cnName;
+@property (readonly, retain) NSString* enName;
+@property (readonly, retain) NSString* tcnName;
 - (NSArray*) subClassesList;
 - (PBClass*) subClassesAtIndex:(int32_t) index;
 - (NSArray*) keywordsList;
@@ -3680,16 +3693,9 @@ BOOL PBTaskIdTypeIsValidValue(PBTaskIdType value);
 - (PBClass_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 
 - (BOOL) hasClassId;
-- (int32_t) classId;
-- (PBClass_Builder*) setClassId:(int32_t) value;
+- (NSString*) classId;
+- (PBClass_Builder*) setClassId:(NSString*) value;
 - (PBClass_Builder*) clearClassId;
-
-- (NSArray*) namesList;
-- (PBLocalizeString*) namesAtIndex:(int32_t) index;
-- (PBClass_Builder*) replaceNamesAtIndex:(int32_t) index with:(PBLocalizeString*) value;
-- (PBClass_Builder*) addNames:(PBLocalizeString*) value;
-- (PBClass_Builder*) addAllNames:(NSArray*) values;
-- (PBClass_Builder*) clearNamesList;
 
 - (NSArray*) subClassesList;
 - (PBClass*) subClassesAtIndex:(int32_t) index;
@@ -3714,5 +3720,27 @@ BOOL PBTaskIdTypeIsValidValue(PBTaskIdType value);
 - (BOOL) isTopClass;
 - (PBClass_Builder*) setIsTopClass:(BOOL) value;
 - (PBClass_Builder*) clearIsTopClass;
+
+- (BOOL) hasParentClass;
+- (PBClass*) parentClass;
+- (PBClass_Builder*) setParentClass:(PBClass*) value;
+- (PBClass_Builder*) setParentClassBuilder:(PBClass_Builder*) builderForValue;
+- (PBClass_Builder*) mergeParentClass:(PBClass*) value;
+- (PBClass_Builder*) clearParentClass;
+
+- (BOOL) hasCnName;
+- (NSString*) cnName;
+- (PBClass_Builder*) setCnName:(NSString*) value;
+- (PBClass_Builder*) clearCnName;
+
+- (BOOL) hasEnName;
+- (NSString*) enName;
+- (PBClass_Builder*) setEnName:(NSString*) value;
+- (PBClass_Builder*) clearEnName;
+
+- (BOOL) hasTcnName;
+- (NSString*) tcnName;
+- (PBClass_Builder*) setTcnName:(NSString*) value;
+- (PBClass_Builder*) clearTcnName;
 @end
 

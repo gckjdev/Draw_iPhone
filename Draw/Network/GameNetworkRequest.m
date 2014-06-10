@@ -2338,6 +2338,7 @@
 + (CommonNetworkOutput*)getFeedListWithProtocolBuffer:(NSString*)baseURL 
                                                userId:(NSString *)userId 
                                          feedListType:(NSInteger)feedListType
+                                              classId:(NSString *)classId
                                                offset:(NSInteger)offset
                                                 limit:(NSInteger)limit 
                                                  lang:(NSInteger)lang
@@ -2357,7 +2358,12 @@
         str = [str stringByAddQueryParameter:PARA_LANGUAGE intValue:lang];
         str = [str stringByAddQueryParameter:PARA_FORMAT value:FINDDRAW_FORMAT_PROTOCOLBUFFER];
         str = [str stringByAddQueryParameter:PARA_APPID value:[PPConfigManager appId]];                
-        str = [str stringByAddQueryParameter:PARA_IMAGE intValue:1];                
+        str = [str stringByAddQueryParameter:PARA_IMAGE intValue:1];
+        
+        if ([classId length] > 0){
+            str = [str stringByAddQueryParameter:PARA_CLASS value:classId];
+        }
+        
         return str;
     };
     

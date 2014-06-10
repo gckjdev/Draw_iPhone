@@ -517,6 +517,7 @@
 //response parameters
 #define PARA_LOC @"loc"
 #define PARA_IMAGE @"img"
+#define PARA_CLASS @"class"
 #define PARA_TITLE @"tt"
 #define PARA_ROLE @"role"
 #define PARA_START_DATE @"sd"
@@ -627,6 +628,9 @@
 
 #define METHOD_GET_WONDERFUL_CONTEST_LIST @"gwcl"
 #define METHOD_SET_OPUS_TARGET_USER @"setOpusTargetUser"
+#define METHOD_SET_OPUS_CLASS @"setOpusClass"
+
+#define PARA_DEFAULT_SEPERATOR @"$"
 
 //for draw contest
 #define METHOD_GET_CONTEST_LIST @"gcl"

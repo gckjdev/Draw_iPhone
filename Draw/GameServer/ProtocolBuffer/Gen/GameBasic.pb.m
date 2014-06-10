@@ -14898,12 +14898,15 @@ static PBTask* defaultPBTaskInstance = nil;
 @end
 
 @interface PBClass ()
-@property int32_t classId;
-@property (retain) NSMutableArray* mutableNamesList;
+@property (retain) NSString* classId;
 @property (retain) NSMutableArray* mutableSubClassesList;
 @property (retain) NSMutableArray* mutableKeywordsList;
 @property (retain) NSString* desc;
 @property BOOL isTopClass;
+@property (retain) PBClass* parentClass;
+@property (retain) NSString* cnName;
+@property (retain) NSString* enName;
+@property (retain) NSString* tcnName;
 @end
 
 @implementation PBClass
@@ -14915,7 +14918,6 @@ static PBTask* defaultPBTaskInstance = nil;
   hasClassId_ = !!value;
 }
 @synthesize classId;
-@synthesize mutableNamesList;
 @synthesize mutableSubClassesList;
 @synthesize mutableKeywordsList;
 - (BOOL) hasDesc {
@@ -14937,18 +14939,54 @@ static PBTask* defaultPBTaskInstance = nil;
 - (void) setIsTopClass:(BOOL) value {
   isTopClass_ = !!value;
 }
+- (BOOL) hasParentClass {
+  return !!hasParentClass_;
+}
+- (void) setHasParentClass:(BOOL) value {
+  hasParentClass_ = !!value;
+}
+@synthesize parentClass;
+- (BOOL) hasCnName {
+  return !!hasCnName_;
+}
+- (void) setHasCnName:(BOOL) value {
+  hasCnName_ = !!value;
+}
+@synthesize cnName;
+- (BOOL) hasEnName {
+  return !!hasEnName_;
+}
+- (void) setHasEnName:(BOOL) value {
+  hasEnName_ = !!value;
+}
+@synthesize enName;
+- (BOOL) hasTcnName {
+  return !!hasTcnName_;
+}
+- (void) setHasTcnName:(BOOL) value {
+  hasTcnName_ = !!value;
+}
+@synthesize tcnName;
 - (void) dealloc {
-  self.mutableNamesList = nil;
+  self.classId = nil;
   self.mutableSubClassesList = nil;
   self.mutableKeywordsList = nil;
   self.desc = nil;
+  self.parentClass = nil;
+  self.cnName = nil;
+  self.enName = nil;
+  self.tcnName = nil;
   [super dealloc];
 }
 - (id) init {
   if ((self = [super init])) {
-    self.classId = 0;
+    self.classId = @"";
     self.desc = @"";
     self.isTopClass = NO;
+    self.parentClass = [PBClass defaultInstance];
+    self.cnName = @"";
+    self.enName = @"";
+    self.tcnName = @"";
   }
   return self;
 }
@@ -14963,13 +15001,6 @@ static PBClass* defaultPBClassInstance = nil;
 }
 - (PBClass*) defaultInstance {
   return defaultPBClassInstance;
-}
-- (NSArray*) namesList {
-  return mutableNamesList;
-}
-- (PBLocalizeString*) namesAtIndex:(int32_t) index {
-  id value = [mutableNamesList objectAtIndex:index];
-  return value;
 }
 - (NSArray*) subClassesList {
   return mutableSubClassesList;
@@ -14989,13 +15020,13 @@ static PBClass* defaultPBClassInstance = nil;
   if (!self.hasClassId) {
     return NO;
   }
-  for (PBLocalizeString* element in self.namesList) {
+  for (PBClass* element in self.subClassesList) {
     if (!element.isInitialized) {
       return NO;
     }
   }
-  for (PBClass* element in self.subClassesList) {
-    if (!element.isInitialized) {
+  if (self.hasParentClass) {
+    if (!self.parentClass.isInitialized) {
       return NO;
     }
   }
@@ -15003,10 +15034,7 @@ static PBClass* defaultPBClassInstance = nil;
 }
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
   if (self.hasClassId) {
-    [output writeInt32:1 value:self.classId];
-  }
-  for (PBLocalizeString* element in self.namesList) {
-    [output writeMessage:2 value:element];
+    [output writeString:1 value:self.classId];
   }
   for (PBClass* element in self.subClassesList) {
     [output writeMessage:3 value:element];
@@ -15020,6 +15048,18 @@ static PBClass* defaultPBClassInstance = nil;
   if (self.hasIsTopClass) {
     [output writeBool:6 value:self.isTopClass];
   }
+  if (self.hasParentClass) {
+    [output writeMessage:7 value:self.parentClass];
+  }
+  if (self.hasCnName) {
+    [output writeString:20 value:self.cnName];
+  }
+  if (self.hasEnName) {
+    [output writeString:21 value:self.enName];
+  }
+  if (self.hasTcnName) {
+    [output writeString:22 value:self.tcnName];
+  }
   [self.unknownFields writeToCodedOutputStream:output];
 }
 - (int32_t) serializedSize {
@@ -15030,10 +15070,7 @@ static PBClass* defaultPBClassInstance = nil;
 
   size = 0;
   if (self.hasClassId) {
-    size += computeInt32Size(1, self.classId);
-  }
-  for (PBLocalizeString* element in self.namesList) {
-    size += computeMessageSize(2, element);
+    size += computeStringSize(1, self.classId);
   }
   for (PBClass* element in self.subClassesList) {
     size += computeMessageSize(3, element);
@@ -15051,6 +15088,18 @@ static PBClass* defaultPBClassInstance = nil;
   }
   if (self.hasIsTopClass) {
     size += computeBoolSize(6, self.isTopClass);
+  }
+  if (self.hasParentClass) {
+    size += computeMessageSize(7, self.parentClass);
+  }
+  if (self.hasCnName) {
+    size += computeStringSize(20, self.cnName);
+  }
+  if (self.hasEnName) {
+    size += computeStringSize(21, self.enName);
+  }
+  if (self.hasTcnName) {
+    size += computeStringSize(22, self.tcnName);
   }
   size += self.unknownFields.serializedSize;
   memoizedSerializedSize = size;
@@ -15130,12 +15179,6 @@ static PBClass* defaultPBClassInstance = nil;
   if (other.hasClassId) {
     [self setClassId:other.classId];
   }
-  if (other.mutableNamesList.count > 0) {
-    if (result.mutableNamesList == nil) {
-      result.mutableNamesList = [NSMutableArray array];
-    }
-    [result.mutableNamesList addObjectsFromArray:other.mutableNamesList];
-  }
   if (other.mutableSubClassesList.count > 0) {
     if (result.mutableSubClassesList == nil) {
       result.mutableSubClassesList = [NSMutableArray array];
@@ -15153,6 +15196,18 @@ static PBClass* defaultPBClassInstance = nil;
   }
   if (other.hasIsTopClass) {
     [self setIsTopClass:other.isTopClass];
+  }
+  if (other.hasParentClass) {
+    [self mergeParentClass:other.parentClass];
+  }
+  if (other.hasCnName) {
+    [self setCnName:other.cnName];
+  }
+  if (other.hasEnName) {
+    [self setEnName:other.enName];
+  }
+  if (other.hasTcnName) {
+    [self setTcnName:other.tcnName];
   }
   [self mergeUnknownFields:other.unknownFields];
   return self;
@@ -15175,14 +15230,8 @@ static PBClass* defaultPBClassInstance = nil;
         }
         break;
       }
-      case 8: {
-        [self setClassId:[input readInt32]];
-        break;
-      }
-      case 18: {
-        PBLocalizeString_Builder* subBuilder = [PBLocalizeString builder];
-        [input readMessage:subBuilder extensionRegistry:extensionRegistry];
-        [self addNames:[subBuilder buildPartial]];
+      case 10: {
+        [self setClassId:[input readString]];
         break;
       }
       case 26: {
@@ -15203,52 +15252,44 @@ static PBClass* defaultPBClassInstance = nil;
         [self setIsTopClass:[input readBool]];
         break;
       }
+      case 58: {
+        PBClass_Builder* subBuilder = [PBClass builder];
+        if (self.hasParentClass) {
+          [subBuilder mergeFrom:self.parentClass];
+        }
+        [input readMessage:subBuilder extensionRegistry:extensionRegistry];
+        [self setParentClass:[subBuilder buildPartial]];
+        break;
+      }
+      case 162: {
+        [self setCnName:[input readString]];
+        break;
+      }
+      case 170: {
+        [self setEnName:[input readString]];
+        break;
+      }
+      case 178: {
+        [self setTcnName:[input readString]];
+        break;
+      }
     }
   }
 }
 - (BOOL) hasClassId {
   return result.hasClassId;
 }
-- (int32_t) classId {
+- (NSString*) classId {
   return result.classId;
 }
-- (PBClass_Builder*) setClassId:(int32_t) value {
+- (PBClass_Builder*) setClassId:(NSString*) value {
   result.hasClassId = YES;
   result.classId = value;
   return self;
 }
 - (PBClass_Builder*) clearClassId {
   result.hasClassId = NO;
-  result.classId = 0;
-  return self;
-}
-- (NSArray*) namesList {
-  if (result.mutableNamesList == nil) { return [NSArray array]; }
-  return result.mutableNamesList;
-}
-- (PBLocalizeString*) namesAtIndex:(int32_t) index {
-  return [result namesAtIndex:index];
-}
-- (PBClass_Builder*) replaceNamesAtIndex:(int32_t) index with:(PBLocalizeString*) value {
-  [result.mutableNamesList replaceObjectAtIndex:index withObject:value];
-  return self;
-}
-- (PBClass_Builder*) addAllNames:(NSArray*) values {
-  if (result.mutableNamesList == nil) {
-    result.mutableNamesList = [NSMutableArray array];
-  }
-  [result.mutableNamesList addObjectsFromArray:values];
-  return self;
-}
-- (PBClass_Builder*) clearNamesList {
-  result.mutableNamesList = nil;
-  return self;
-}
-- (PBClass_Builder*) addNames:(PBLocalizeString*) value {
-  if (result.mutableNamesList == nil) {
-    result.mutableNamesList = [NSMutableArray array];
-  }
-  [result.mutableNamesList addObject:value];
+  result.classId = @"";
   return self;
 }
 - (NSArray*) subClassesList {
@@ -15341,6 +15382,84 @@ static PBClass* defaultPBClassInstance = nil;
 - (PBClass_Builder*) clearIsTopClass {
   result.hasIsTopClass = NO;
   result.isTopClass = NO;
+  return self;
+}
+- (BOOL) hasParentClass {
+  return result.hasParentClass;
+}
+- (PBClass*) parentClass {
+  return result.parentClass;
+}
+- (PBClass_Builder*) setParentClass:(PBClass*) value {
+  result.hasParentClass = YES;
+  result.parentClass = value;
+  return self;
+}
+- (PBClass_Builder*) setParentClassBuilder:(PBClass_Builder*) builderForValue {
+  return [self setParentClass:[builderForValue build]];
+}
+- (PBClass_Builder*) mergeParentClass:(PBClass*) value {
+  if (result.hasParentClass &&
+      result.parentClass != [PBClass defaultInstance]) {
+    result.parentClass =
+      [[[PBClass builderWithPrototype:result.parentClass] mergeFrom:value] buildPartial];
+  } else {
+    result.parentClass = value;
+  }
+  result.hasParentClass = YES;
+  return self;
+}
+- (PBClass_Builder*) clearParentClass {
+  result.hasParentClass = NO;
+  result.parentClass = [PBClass defaultInstance];
+  return self;
+}
+- (BOOL) hasCnName {
+  return result.hasCnName;
+}
+- (NSString*) cnName {
+  return result.cnName;
+}
+- (PBClass_Builder*) setCnName:(NSString*) value {
+  result.hasCnName = YES;
+  result.cnName = value;
+  return self;
+}
+- (PBClass_Builder*) clearCnName {
+  result.hasCnName = NO;
+  result.cnName = @"";
+  return self;
+}
+- (BOOL) hasEnName {
+  return result.hasEnName;
+}
+- (NSString*) enName {
+  return result.enName;
+}
+- (PBClass_Builder*) setEnName:(NSString*) value {
+  result.hasEnName = YES;
+  result.enName = value;
+  return self;
+}
+- (PBClass_Builder*) clearEnName {
+  result.hasEnName = NO;
+  result.enName = @"";
+  return self;
+}
+- (BOOL) hasTcnName {
+  return result.hasTcnName;
+}
+- (NSString*) tcnName {
+  return result.tcnName;
+}
+- (PBClass_Builder*) setTcnName:(NSString*) value {
+  result.hasTcnName = YES;
+  result.tcnName = value;
+  return self;
+}
+- (PBClass_Builder*) clearTcnName {
+  result.hasTcnName = NO;
+  result.tcnName = @"";
   return self;
 }
 @end

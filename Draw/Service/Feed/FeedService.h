@@ -122,6 +122,13 @@ typedef void (^ GetFeedListCompleteBlock)(int resultCode, NSArray* feedList);
 
 - (NSArray *)getCachedFeedList:(FeedListType)feedListType;
 
+- (void)getFeedListByClass:(FeedListType)feedListType
+                   classId:(NSString*)classId
+                    offset:(NSInteger)offset
+                     limit:(NSInteger)limit
+                  delegate:(id<FeedServiceDelegate>)delegate;
+
+
 - (void)getFeedList:(FeedListType)feedListType 
              offset:(NSInteger)offset 
               limit:(NSInteger)limit 
@@ -262,5 +269,9 @@ typedef void (^ GetFeedListCompleteBlock)(int resultCode, NSArray* feedList);
                  nickName:(NSString*)targetUserNick
                    opusId:(NSString*)opusId
               resultBlock:(FeedActionResultBlock)resultBlock;
+
+- (void)setOpusClass:(NSString*)opusId
+           classList:(NSArray*)classList
+         resultBlock:(FeedActionResultBlock)resultBlock;
 
 @end

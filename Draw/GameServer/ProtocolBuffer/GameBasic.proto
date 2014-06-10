@@ -509,12 +509,17 @@ message PBTask
 
 message PBClass
 {
-    required int32 classId = 1;             // 分类ID，唯一
-    repeated PBLocalizeString names = 2;    // 分类描述字符串
+    required string classId = 1;             // 分类ID，唯一
     repeated PBClass subClasses = 3;        // 子分类列表
     repeated string keywords = 4;           // 关键字
     optional string desc = 5;               // 描述
     optional bool isTopClass = 6;           // 是否是一级分类，默认为否
+    optional PBClass parentClass = 7;       // 父分类
+    
+    optional string cnName = 20;            // 分类名字，简体中文
+    optional string enName = 21;            // 分类名字，英文
+    optional string tcnName = 22;           // 分类名字，繁体中文
+
 }
 
 

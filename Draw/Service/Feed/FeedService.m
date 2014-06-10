@@ -47,10 +47,28 @@ static FeedService *_staticFeedService = nil;
     return [[FeedManager defaultManager] loadFeedListForKey:[self cachedKeyForFeedListType:feedListType]];
 }
 
+- (void)getFeedListByClass:(FeedListType)feedListType
+                   classId:(NSString*)classId
+                    offset:(NSInteger)offset
+                     limit:(NSInteger)limit
+                  delegate:(id<FeedServiceDelegate>)delegate
+{
+    [self getFeedList:feedListType classId:classId offset:offset limit:limit delegate:delegate];
+}
+
 #define GET_FEEDLIST_QUEUE @"GET_FEEDLIST_QUEUE"
 
+- (void)getFeedList:(FeedListType)feedListType
+             offset:(NSInteger)offset
+              limit:(NSInteger)limit
+           delegate:(id<FeedServiceDelegate>)delegate
+{
+    [self getFeedList:feedListType classId:nil offset:offset limit:limit delegate:delegate];
+}
+
 - (void)getFeedList:(FeedListType)feedListType 
-             offset:(NSInteger)offset 
+            classId:(NSString*)classId
+             offset:(NSInteger)offset
               limit:(NSInteger)limit 
            delegate:(id<FeedServiceDelegate>)delegate
 {
@@ -82,8 +100,9 @@ static FeedService *_staticFeedService = nil;
         CommonNetworkOutput* output = [GameNetworkRequest 
                                        getFeedListWithProtocolBuffer:TRAFFIC_SERVER_URL 
                                        userId:userId 
-                                       feedListType:feedListType 
-                                       offset:offset 
+                                       feedListType:feedListType
+                                       classId:classId
+                                       offset:offset
                                        limit:limit 
                                        lang:lang];
         NSArray *list = nil;
@@ -323,6 +342,7 @@ static FeedService *_staticFeedService = nil;
                                        getFeedListWithProtocolBuffer:TRAFFIC_SERVER_URL 
                                        userId:userId 
                                        feedListType:type
+                                       classId:nil
                                        offset:offset 
                                        limit:limit 
                                        lang:UnknowType];
@@ -397,6 +417,7 @@ static FeedService *_staticFeedService = nil;
                                        getFeedListWithProtocolBuffer:TRAFFIC_SERVER_URL
                                        userId:userId
                                        feedListType:type
+                                       classId:nil
                                        offset:offset
                                        limit:limit
                                        lang:UnknowType];
@@ -1317,6 +1338,42 @@ static FeedService *_staticFeedService = nil;
         
         dispatch_async(dispatch_get_main_queue(), ^{
             
+            
+            NSInteger resultCode = output.resultCode;
+            dispatch_async(dispatch_get_main_queue(), ^{
+                EXECUTE_BLOCK(resultBlock, resultCode);
+            });
+        });
+        
+        [subPool drain];
+    });
+    
+}
+
+
+- (void)setOpusClass:(NSString*)opusId
+           classList:(NSArray*)classList
+         resultBlock:(FeedActionResultBlock)resultBlock
+{
+    if (opusId == nil || classList == nil){
+        return;
+    }
+    
+    NSString* classListString = [classList componentsJoinedByString:PARA_DEFAULT_SEPERATOR];
+    
+    dispatch_async(workingQueue, ^{
+        
+        NSAutoreleasePool *subPool = [[NSAutoreleasePool alloc] init];
+        
+        NSDictionary* para = @{ PARA_OPUS_ID : opusId,
+                                PARA_CLASS : classListString
+                                };
+        
+        GameNetworkOutput* output = [PPGameNetworkRequest trafficApiServerGetAndResponseJSON:METHOD_SET_OPUS_CLASS
+                                                                                  parameters:para
+                                                                               isReturnArray:NO];
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
             
             NSInteger resultCode = output.resultCode;
             dispatch_async(dispatch_get_main_queue(), ^{

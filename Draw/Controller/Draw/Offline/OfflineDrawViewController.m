@@ -1311,8 +1311,8 @@
             [self commitContestOpus];
         } else {
             // change by Benson 2014-03-24
-            [self showSubmitActionList];
-//            [self showInputAlertView];
+            // [self showSubmitActionList];  // disable again on 2014-06-10
+            [self showInputAlertView];
         }
     }
 }

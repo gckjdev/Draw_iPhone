@@ -4168,6 +4168,22 @@
 		C2FE574A175DED3000AFD6AA /* GoogleCustomSearchService.m in Sources */ = {isa = PBXBuildFile; fileRef = C2FE5739175DED3000AFD6AA /* GoogleCustomSearchService.m */; };
 		C2FE574E175DED3000AFD6AA /* GoogleCustomSearchNetworkRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = C2FE573A175DED3000AFD6AA /* GoogleCustomSearchNetworkRequest.m */; };
 		C2FE575B175DED3000AFD6AA /* GoogleCustomSearchNetworkRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = C2FE573A175DED3000AFD6AA /* GoogleCustomSearchNetworkRequest.m */; };
+		CA0174EA19405306005E4390 /* OpusClassInfoManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CA0174E919405306005E4390 /* OpusClassInfoManager.m */; };
+		CA0174EB19405306005E4390 /* OpusClassInfoManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CA0174E919405306005E4390 /* OpusClassInfoManager.m */; };
+		CA0174EC19405306005E4390 /* OpusClassInfoManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CA0174E919405306005E4390 /* OpusClassInfoManager.m */; };
+		CA0174ED19405306005E4390 /* OpusClassInfoManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CA0174E919405306005E4390 /* OpusClassInfoManager.m */; };
+		CA0174EF19405360005E4390 /* opusclass.json in Resources */ = {isa = PBXBuildFile; fileRef = CA0174EE19405360005E4390 /* opusclass.json */; };
+		CA0174F019405360005E4390 /* opusclass.json in Resources */ = {isa = PBXBuildFile; fileRef = CA0174EE19405360005E4390 /* opusclass.json */; };
+		CA0174F119405360005E4390 /* opusclass.json in Resources */ = {isa = PBXBuildFile; fileRef = CA0174EE19405360005E4390 /* opusclass.json */; };
+		CA0174F219405360005E4390 /* opusclass.json in Resources */ = {isa = PBXBuildFile; fileRef = CA0174EE19405360005E4390 /* opusclass.json */; };
+		CA0174F419405503005E4390 /* opusclass_version.txt in Resources */ = {isa = PBXBuildFile; fileRef = CA0174F319405503005E4390 /* opusclass_version.txt */; };
+		CA0174F519405503005E4390 /* opusclass_version.txt in Resources */ = {isa = PBXBuildFile; fileRef = CA0174F319405503005E4390 /* opusclass_version.txt */; };
+		CA0174F619405503005E4390 /* opusclass_version.txt in Resources */ = {isa = PBXBuildFile; fileRef = CA0174F319405503005E4390 /* opusclass_version.txt */; };
+		CA0174F719405503005E4390 /* opusclass_version.txt in Resources */ = {isa = PBXBuildFile; fileRef = CA0174F319405503005E4390 /* opusclass_version.txt */; };
+		CA0174FA194055FD005E4390 /* OpusClassInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = CA0174F9194055FD005E4390 /* OpusClassInfo.m */; };
+		CA0174FB194055FD005E4390 /* OpusClassInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = CA0174F9194055FD005E4390 /* OpusClassInfo.m */; };
+		CA0174FC194055FD005E4390 /* OpusClassInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = CA0174F9194055FD005E4390 /* OpusClassInfo.m */; };
+		CA0174FD194055FD005E4390 /* OpusClassInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = CA0174F9194055FD005E4390 /* OpusClassInfo.m */; };
 		CA02CB6C1785581A00B6910D /* GradientSettingView.m in Sources */ = {isa = PBXBuildFile; fileRef = CA02CB691785581A00B6910D /* GradientSettingView.m */; };
 		CA02CB791785581A00B6910D /* GradientSettingView.m in Sources */ = {isa = PBXBuildFile; fileRef = CA02CB691785581A00B6910D /* GradientSettingView.m */; };
 		CA02CB7C1785581A00B6910D /* GradientSettingView.m in Sources */ = {isa = PBXBuildFile; fileRef = CA02CB691785581A00B6910D /* GradientSettingView.m */; };
@@ -8733,6 +8749,12 @@
 		C2FE573A175DED3000AFD6AA /* GoogleCustomSearchNetworkRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GoogleCustomSearchNetworkRequest.m; sourceTree = "<group>"; };
 		C2FE573B175DED3000AFD6AA /* GoogleCustomSearchNetworkRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GoogleCustomSearchNetworkRequest.h; sourceTree = "<group>"; };
 		C2FE573C175DED3000AFD6AA /* GoogleCustomSearchService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GoogleCustomSearchService.h; sourceTree = "<group>"; };
+		CA0174E819405306005E4390 /* OpusClassInfoManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OpusClassInfoManager.h; sourceTree = "<group>"; };
+		CA0174E919405306005E4390 /* OpusClassInfoManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OpusClassInfoManager.m; sourceTree = "<group>"; };
+		CA0174EE19405360005E4390 /* opusclass.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = opusclass.json; sourceTree = "<group>"; };
+		CA0174F319405503005E4390 /* opusclass_version.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = opusclass_version.txt; sourceTree = "<group>"; };
+		CA0174F8194055FD005E4390 /* OpusClassInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OpusClassInfo.h; sourceTree = "<group>"; };
+		CA0174F9194055FD005E4390 /* OpusClassInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OpusClassInfo.m; sourceTree = "<group>"; };
 		CA02CB681785581A00B6910D /* GradientSettingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GradientSettingView.h; sourceTree = "<group>"; };
 		CA02CB691785581A00B6910D /* GradientSettingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GradientSettingView.m; sourceTree = "<group>"; };
 		CA02CB6A1785581A00B6910D /* GradientSettingView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GradientSettingView.xib; sourceTree = "<group>"; };
@@ -13086,6 +13108,51 @@
 			path = Images;
 			sourceTree = "<group>";
 		};
+		CA0174E01940524E005E4390 /* OpusClass */ = {
+			isa = PBXGroup;
+			children = (
+				CA0174E419405289005E4390 /* Controller */,
+				CA0174E519405289005E4390 /* Model */,
+				CA0174E619405289005E4390 /* Resource */,
+				CA0174E719405289005E4390 /* Service */,
+			);
+			path = OpusClass;
+			sourceTree = "<group>";
+		};
+		CA0174E419405289005E4390 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		CA0174E519405289005E4390 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				CA0174E819405306005E4390 /* OpusClassInfoManager.h */,
+				CA0174E919405306005E4390 /* OpusClassInfoManager.m */,
+				CA0174F8194055FD005E4390 /* OpusClassInfo.h */,
+				CA0174F9194055FD005E4390 /* OpusClassInfo.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		CA0174E619405289005E4390 /* Resource */ = {
+			isa = PBXGroup;
+			children = (
+				CA0174EE19405360005E4390 /* opusclass.json */,
+				CA0174F319405503005E4390 /* opusclass_version.txt */,
+			);
+			path = Resource;
+			sourceTree = "<group>";
+		};
+		CA0174E719405289005E4390 /* Service */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Service;
+			sourceTree = "<group>";
+		};
 		CA02B52515AC240700B2A3E2 /* Item */ = {
 			isa = PBXGroup;
 			children = (
@@ -15122,6 +15189,7 @@
 		CA745D281503B1B500600024 /* Draw */ = {
 			isa = PBXGroup;
 			children = (
+				CA0174E01940524E005E4390 /* OpusClass */,
 				CA1162511834A84F00FDD3A9 /* Task */,
 				EA8CADD618288C4D003149FE /* Group */,
 				A4B78823179E2E3C0008E21B /* Theme */,
@@ -18393,6 +18461,7 @@
 				A4D8FB3717DB08170085061F /* round_dot_7@2x.png in Resources */,
 				A4D8FB3B17DB08170085061F /* round_dot_8@2x.png in Resources */,
 				A4D8FB3F17DB08170085061F /* round_dot_9@2x.png in Resources */,
+				CA0174F119405360005E4390 /* opusclass.json in Resources */,
 				A4D8FB4317DB08170085061F /* round_dot_no@2x.png in Resources */,
 				A4D8FB4717DB08170085061F /* shoes@2x.png in Resources */,
 				A4D8FB4B17DB08170085061F /* spend_time@2x.png in Resources */,
@@ -18596,6 +18665,7 @@
 				A4D8FFB917DB089C0085061F /* learndraw_mark@2x.png in Resources */,
 				A4D8FFBD17DB089C0085061F /* learndraw_more@2x.png in Resources */,
 				A4D8FFC117DB089C0085061F /* learndraw_shop@2x.png in Resources */,
+				CA0174F619405503005E4390 /* opusclass_version.txt in Resources */,
 				A4D8FFC517DB089C0085061F /* line.svg in Resources */,
 				A4D8FFC917DB089C0085061F /* path.svg in Resources */,
 				A4D8FFCD17DB089C0085061F /* rect.svg in Resources */,
@@ -19242,6 +19312,7 @@
 				C214553C1778279E007D44C7 /* OpusView.xib in Resources */,
 				C2CA7E5617782BC30086D0FD /* CommonRoomListController.xib in Resources */,
 				C2CA7E5C17782BC30086D0FD /* CommonRoomListController~ipad.xib in Resources */,
+				CA0174F019405360005E4390 /* opusclass.json in Resources */,
 				A499721D1778343A00B01EBE /* ResultController~ipad.xib in Resources */,
 				A499721F1778343A00B01EBE /* ResultController.xib in Resources */,
 				A49972421778349000B01EBE /* HomeController.xib in Resources */,
@@ -19546,6 +19617,7 @@
 				A4D8FE1C17DB089C0085061F /* draw_grid_selected@2x.png in Resources */,
 				A4D8FE2017DB089C0085061F /* draw_line@2x.png in Resources */,
 				A4D8FE2417DB089C0085061F /* draw_oil@2x.png in Resources */,
+				CA0174F519405503005E4390 /* opusclass_version.txt in Resources */,
 				A4D8FE2817DB089C0085061F /* draw_palette@2x.png in Resources */,
 				A4D8FE2C17DB089C0085061F /* draw_palette_unbuy@2x.png in Resources */,
 				A4D8FE3017DB089C0085061F /* draw_redo_normal@2x.png in Resources */,
@@ -19903,6 +19975,7 @@
 				CA103EB81509A56200F60C03 /* ReviewRequest.strings in Resources */,
 				CA10410D1509A9FF00F60C03 /* Documentation.html in Resources */,
 				CA10416E1509A9FF00F60C03 /* LICENSE.txt in Resources */,
+				CA0174F419405503005E4390 /* opusclass_version.txt in Resources */,
 				CA10416F1509A9FF00F60C03 /* README.txt in Resources */,
 				CA10417A1509A9FF00F60C03 /* Source.zip in Resources */,
 				CA1041F91509BC9700F60C03 /* HomeController.xib in Resources */,
@@ -20270,6 +20343,7 @@
 				A489C01417B5D942003E5150 /* JDFlipNumberView.bundle in Resources */,
 				A440355717C5C6CF00301EDD /* GuessModesController~ipad.xib in Resources */,
 				A440355D17C5C96B00301EDD /* GuessSelectCell~ipad.xib in Resources */,
+				CA0174EF19405360005E4390 /* opusclass.json in Resources */,
 				A440356117C5C96B00301EDD /* GuessSelectController~ipad.xib in Resources */,
 				A440356817C5CC9800301EDD /* DrawGuessController~ipad.xib in Resources */,
 				A440356C17C5CC9800301EDD /* GuessRankCell~ipad.xib in Resources */,
@@ -20962,6 +21036,7 @@
 				EA411BAB176066F500DA72D0 /* grayArrow.png in Resources */,
 				EA411BAC176066F500DA72D0 /* grayArrow@2x.png in Resources */,
 				EA411BAD176066F500DA72D0 /* whiteArrow.png in Resources */,
+				CA0174F219405360005E4390 /* opusclass.json in Resources */,
 				EA411BAE176066F500DA72D0 /* whiteArrow@2x.png in Resources */,
 				EA411BAF176066F500DA72D0 /* SelectChatFriendController.xib in Resources */,
 				EA411BB0176066F500DA72D0 /* SelectChatFriendController~ipad.xib in Resources */,
@@ -21612,6 +21687,7 @@
 				A4D8FFFE17DB089C0085061F /* inputbg@2x.png in Resources */,
 				A4D8000217DB089C0085061F /* locate@2x.png in Resources */,
 				A4D8000617DB089C0085061F /* maleImage.png in Resources */,
+				CA0174F719405503005E4390 /* opusclass_version.txt in Resources */,
 				A4D8001217DB089C0085061F /* messagebg@2x.png in Resources */,
 				A4D8001617DB089C0085061F /* number@2x.png in Resources */,
 				A4D8001A17DB089C0085061F /* orange_button@2x.png in Resources */,
@@ -22352,6 +22428,7 @@
 				A461B31C174CBAA70088B061 /* iCarousel.m in Sources */,
 				A461B31D174CBAA70088B061 /* SuperUserManageAction.m in Sources */,
 				A461B31E174CBAA70088B061 /* CustomUITextField.m in Sources */,
+				CA0174FC194055FD005E4390 /* OpusClassInfo.m in Sources */,
 				A461B31F174CBAA70088B061 /* DrawPenFactory.m in Sources */,
 				A461B320174CBAA70088B061 /* DashPen.m in Sources */,
 				A461B321174CBAA70088B061 /* BlurPen.m in Sources */,
@@ -22597,6 +22674,7 @@
 				EA433E2B17CDE500006E6FA7 /* DJQRateView.m in Sources */,
 				CACD6CC018E03BCD003F97C0 /* NSObject+SBJSON.m in Sources */,
 				EA433E2F17CDE500006E6FA7 /* DJQStartView.m in Sources */,
+				CA0174EC19405306005E4390 /* OpusClassInfoManager.m in Sources */,
 				EA7100AC17D04B2C00451A38 /* CustomSlider.m in Sources */,
 				EA7100B717D05FB000451A38 /* DrawPlayer.m in Sources */,
 				EA7100D217D197DA00451A38 /* MLNavigationController.m in Sources */,
@@ -22881,6 +22959,7 @@
 				C28A9A151738F04B007A819F /* AccountService.m in Sources */,
 				C28A9A161738F04B007A819F /* ReportController.m in Sources */,
 				C28A9A171738F04B007A819F /* SKProduct+LocalizedPrice.m in Sources */,
+				CA0174FB194055FD005E4390 /* OpusClassInfo.m in Sources */,
 				C28A9A181738F04B007A819F /* ShareController.m in Sources */,
 				C28A9A1B1738F04B007A819F /* MainDataModel.xcdatamodeld in Sources */,
 				C28A9A1C1738F04B007A819F /* MyPaint.m in Sources */,
@@ -23419,6 +23498,7 @@
 				EA7100D117D197DA00451A38 /* MLNavigationController.m in Sources */,
 				EA46AD5817D5E6CD0066E914 /* ReportFeedCell.m in Sources */,
 				A42BB02B17D9735A007FB11B /* TwoInputFieldView.m in Sources */,
+				CA0174EB19405306005E4390 /* OpusClassInfoManager.m in Sources */,
 				EAD13B8B17DECFE300764FFB /* OrangeLoadingView.m in Sources */,
 				A44F32E917E16C3500AF9B26 /* ContestRankView.m in Sources */,
 				EA8EF66817E55F0D003F1AF8 /* DrawHomeHeaderPanel.m in Sources */,
@@ -23696,6 +23776,7 @@
 				C2E5241915218E21008913CC /* AnimationManager.m in Sources */,
 				CA421601152196B900FAA008 /* AccountService.m in Sources */,
 				C2E662611521B91900487601 /* ReportController.m in Sources */,
+				CA0174FA194055FD005E4390 /* OpusClassInfo.m in Sources */,
 				CA4216281522A0F400FAA008 /* SKProduct+LocalizedPrice.m in Sources */,
 				C2E6628215230B3F00487601 /* ShareController.m in Sources */,
 				CA1377291524598700B5790B /* MainDataModel.xcdatamodeld in Sources */,
@@ -24234,6 +24315,7 @@
 				CAFC03C417C887C200A11DE3 /* PPPopTableView.m in Sources */,
 				CA51419417CB419F00883CAA /* ContestPrizeCell.m in Sources */,
 				EA433E1617CDDA2F006E6FA7 /* JudgerScoreView.m in Sources */,
+				CA0174EA19405306005E4390 /* OpusClassInfoManager.m in Sources */,
 				EA433E2917CDE500006E6FA7 /* DJQRateView.m in Sources */,
 				EA433E2D17CDE500006E6FA7 /* DJQStartView.m in Sources */,
 				EA7100AA17D04B2C00451A38 /* CustomSlider.m in Sources */,
@@ -24483,6 +24565,7 @@
 				EA4118A5176066F500DA72D0 /* GameSessionManager.m in Sources */,
 				EA4118A6176066F500DA72D0 /* GameBasic.pb.m in Sources */,
 				EA4118A7176066F500DA72D0 /* GameMessage.pb.m in Sources */,
+				CA0174FD194055FD005E4390 /* OpusClassInfo.m in Sources */,
 				EA4118A8176066F500DA72D0 /* GameConstants.pb.m in Sources */,
 				EA4118A9176066F500DA72D0 /* GameNetworkClient.m in Sources */,
 				EA4118AA176066F500DA72D0 /* DrawGameService.m in Sources */,
@@ -24911,6 +24994,7 @@
 				EA411AF1176066F500DA72D0 /* DrawGameApp.m in Sources */,
 				EA411AF3176066F500DA72D0 /* BBS.pb-c.c in Sources */,
 				EA411AF4176066F500DA72D0 /* Config.pb-c.c in Sources */,
+				CA0174ED19405306005E4390 /* OpusClassInfoManager.m in Sources */,
 				EA411AF5176066F500DA72D0 /* Dice.pb-c.c in Sources */,
 				EA411AF6176066F500DA72D0 /* Draw.pb-c.c in Sources */,
 				EA411AF7176066F500DA72D0 /* GameBasic.pb-c.c in Sources */,

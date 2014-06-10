@@ -756,9 +756,7 @@ struct  _Game__PBTask
 struct  _Game__PBClass
 {
   ProtobufCMessage base;
-  int32_t classid;
-  size_t n_names;
-  Game__PBLocalizeString **names;
+  char *classid;
   size_t n_subclasses;
   Game__PBClass **subclasses;
   size_t n_keywords;
@@ -766,10 +764,14 @@ struct  _Game__PBClass
   char *desc;
   protobuf_c_boolean has_istopclass;
   protobuf_c_boolean istopclass;
+  Game__PBClass *parentclass;
+  char *cnname;
+  char *enname;
+  char *tcnname;
 };
 #define GAME__PBCLASS__INIT \
  { PROTOBUF_C_MESSAGE_INIT (&game__pbclass__descriptor) \
-    , 0, 0,NULL, 0,NULL, 0,NULL, NULL, 0,0 }
+    , NULL, 0,NULL, 0,NULL, NULL, 0,0, NULL, NULL, NULL, NULL }
 
 
 /* Game__PBKeyValue methods */
