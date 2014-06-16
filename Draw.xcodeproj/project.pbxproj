@@ -4888,6 +4888,14 @@
 		CA8C471B17C3175C00BA6A15 /* PanelUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = CA8C471917C3175C00BA6A15 /* PanelUtil.m */; };
 		CA8C471C17C3175C00BA6A15 /* PanelUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = CA8C471917C3175C00BA6A15 /* PanelUtil.m */; };
 		CA8C471D17C3175C00BA6A15 /* PanelUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = CA8C471917C3175C00BA6A15 /* PanelUtil.m */; };
+		CA90050A194EE775003389FD /* ClassTagView.m in Sources */ = {isa = PBXBuildFile; fileRef = CA900502194EE774003389FD /* ClassTagView.m */; };
+		CA90050B194EE775003389FD /* ClassTagView.m in Sources */ = {isa = PBXBuildFile; fileRef = CA900502194EE774003389FD /* ClassTagView.m */; };
+		CA90050C194EE775003389FD /* ClassTagView.m in Sources */ = {isa = PBXBuildFile; fileRef = CA900502194EE774003389FD /* ClassTagView.m */; };
+		CA90050D194EE775003389FD /* ClassTagView.m in Sources */ = {isa = PBXBuildFile; fileRef = CA900502194EE774003389FD /* ClassTagView.m */; };
+		CA90050E194EE775003389FD /* SelectOpusClassViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA900504194EE775003389FD /* SelectOpusClassViewController.m */; };
+		CA90050F194EE775003389FD /* SelectOpusClassViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA900504194EE775003389FD /* SelectOpusClassViewController.m */; };
+		CA900510194EE775003389FD /* SelectOpusClassViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA900504194EE775003389FD /* SelectOpusClassViewController.m */; };
+		CA900511194EE775003389FD /* SelectOpusClassViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA900504194EE775003389FD /* SelectOpusClassViewController.m */; };
 		CA913A521653532000B6387F /* Bbs.pb.m in Sources */ = {isa = PBXBuildFile; fileRef = CA913A511653532000B6387F /* Bbs.pb.m */; };
 		CA91FC7F15C27BE700E9C1CD /* CommonGameNetworkClient.m in Sources */ = {isa = PBXBuildFile; fileRef = CA91FC7E15C27BE700E9C1CD /* CommonGameNetworkClient.m */; };
 		CA91FC8215C27BF700E9C1CD /* CommonGameNetworkService.m in Sources */ = {isa = PBXBuildFile; fileRef = CA91FC8115C27BF700E9C1CD /* CommonGameNetworkService.m */; };
@@ -9558,6 +9566,11 @@
 		CA8A6ACB16E5AE0C0052BFFA /* FeedDownloadService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FeedDownloadService.m; sourceTree = "<group>"; };
 		CA8C471817C3175C00BA6A15 /* PanelUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PanelUtil.h; sourceTree = "<group>"; };
 		CA8C471917C3175C00BA6A15 /* PanelUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PanelUtil.m; sourceTree = "<group>"; };
+		CA900501194EE774003389FD /* ClassTagView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClassTagView.h; sourceTree = "<group>"; };
+		CA900502194EE774003389FD /* ClassTagView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClassTagView.m; sourceTree = "<group>"; };
+		CA900503194EE774003389FD /* SelectOpusClassViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectOpusClassViewController.h; sourceTree = "<group>"; };
+		CA900504194EE775003389FD /* SelectOpusClassViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectOpusClassViewController.m; sourceTree = "<group>"; };
+		CA900505194EE775003389FD /* SelectTagHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectTagHeader.h; sourceTree = "<group>"; };
 		CA913A2F1653432C00B6387F /* GameResource.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GameResource.h; sourceTree = "<group>"; };
 		CA913A501653532000B6387F /* Bbs.pb.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = Bbs.pb.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		CA913A511653532000B6387F /* Bbs.pb.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Bbs.pb.m; sourceTree = "<group>"; };
@@ -13122,6 +13135,11 @@
 		CA0174E419405289005E4390 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				CA900501194EE774003389FD /* ClassTagView.h */,
+				CA900502194EE774003389FD /* ClassTagView.m */,
+				CA900503194EE774003389FD /* SelectOpusClassViewController.h */,
+				CA900504194EE775003389FD /* SelectOpusClassViewController.m */,
+				CA900505194EE775003389FD /* SelectTagHeader.h */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -22296,6 +22314,7 @@
 				A461B23C174CBAA70088B061 /* CreatePostController.m in Sources */,
 				A461B240174CBAA70088B061 /* RRSGlowLabel.m in Sources */,
 				A461B241174CBAA70088B061 /* BBSPostDetailController.m in Sources */,
+				CA900510194EE775003389FD /* SelectOpusClassViewController.m in Sources */,
 				A461B242174CBAA70088B061 /* BBSPostListController.m in Sources */,
 				A461B243174CBAA70088B061 /* BBSPostCell.m in Sources */,
 				A461B244174CBAA70088B061 /* PPResourceCacheService.m in Sources */,
@@ -22529,6 +22548,7 @@
 				A461B38C174CBAA70088B061 /* UserSettingCell.m in Sources */,
 				A461B38F174CBAA70088B061 /* PBGameItem+Extend.m in Sources */,
 				A461B390174CBAA70088B061 /* BuyItemSpecialHandler.m in Sources */,
+				CA90050C194EE775003389FD /* ClassTagView.m in Sources */,
 				A461B3A9174CBAA70088B061 /* UIImage+fixOrientation.m in Sources */,
 				A461B3AA174CBAA70088B061 /* SKProductService.m in Sources */,
 				CACD6D2D18E03C40003F97C0 /* EAFRead.mm in Sources */,
@@ -23305,6 +23325,7 @@
 				C28A9C411738F04B007A819F /* ShapeAction.m in Sources */,
 				C28A9C421738F04B007A819F /* CanvasRect.m in Sources */,
 				C28A9C431738F04B007A819F /* YoumiAdWallService.m in Sources */,
+				CA90050B194EE775003389FD /* ClassTagView.m in Sources */,
 				C28A9C451738F04B007A819F /* UserDetailCell.m in Sources */,
 				C28A9C461738F04B007A819F /* BBSController.m in Sources */,
 				C28A9C471738F04B007A819F /* BalanceNotEnoughAlertView.m in Sources */,
@@ -23537,6 +23558,7 @@
 				EA0C5536180B9203008069C1 /* InfColorSquarePicker.m in Sources */,
 				EA0C553A180B9203008069C1 /* InfHSBSupport.m in Sources */,
 				EA0C553E180B9203008069C1 /* InfSourceColorView.m in Sources */,
+				CA90050F194EE775003389FD /* SelectOpusClassViewController.m in Sources */,
 				EA0C5547180BECEB008069C1 /* PainterController.m in Sources */,
 				A40B59A1180E6AB800F68A81 /* ImagePlayer.m in Sources */,
 				EADC02561817CF8C0038B6A8 /* SearchPostController.m in Sources */,
@@ -24122,6 +24144,7 @@
 				CA35FF3316F8672200D8E05D /* DrawAction.m in Sources */,
 				CA35FF3716F8672200D8E05D /* PaintAction.m in Sources */,
 				CA35FF3B16F8672200D8E05D /* ShapeAction.m in Sources */,
+				CA90050A194EE775003389FD /* ClassTagView.m in Sources */,
 				CA35FF4716F867AC00D8E05D /* CanvasRect.m in Sources */,
 				CAADF65416F977870097CFA1 /* YoumiAdWallService.m in Sources */,
 				C2B97A2B16F999200037B15B /* UserDetailCell.m in Sources */,
@@ -24354,6 +24377,7 @@
 				A421517C1803EA2A007F2EFD /* DACircularProgressView.m in Sources */,
 				A421517F1803EA2A007F2EFD /* MBProgressHUD.m in Sources */,
 				A44D658D18043E9C00DD6B48 /* UIImageView+ProgressView.m in Sources */,
+				CA90050E194EE775003389FD /* SelectOpusClassViewController.m in Sources */,
 				CA1FF8991804F986003CEAD6 /* NSDate+TKCategory.m in Sources */,
 				EA8500DC1807A0430000DE3E /* ShareUIManager.m in Sources */,
 				EA0C5525180B9203008069C1 /* InfColorBarPicker.m in Sources */,
@@ -24794,6 +24818,7 @@
 				EA4119DB176066F500DA72D0 /* DrawGameAnimationManager.m in Sources */,
 				EA4119DC176066F500DA72D0 /* BBSTableViewCell.m in Sources */,
 				EA4119DE176066F500DA72D0 /* BBSImageManager.m in Sources */,
+				CA900511194EE775003389FD /* SelectOpusClassViewController.m in Sources */,
 				EA4119DF176066F500DA72D0 /* BBSFontManager.m in Sources */,
 				EA4119E0176066F500DA72D0 /* BBSColorManager.m in Sources */,
 				EA4119E1176066F500DA72D0 /* BBSViewManager.m in Sources */,
@@ -24816,6 +24841,7 @@
 				EA4119F4176066F500DA72D0 /* HomeHeaderPanel.m in Sources */,
 				EA4119F5176066F500DA72D0 /* HomeMainMenuPanel.m in Sources */,
 				EA4119F6176066F500DA72D0 /* HomeBottomMenuPanel.m in Sources */,
+				CA90050D194EE775003389FD /* ClassTagView.m in Sources */,
 				EA4119F7176066F500DA72D0 /* HomeCommonView.m in Sources */,
 				EA4119F8176066F500DA72D0 /* HomeMenuView.m in Sources */,
 				EA4119FB176066F500DA72D0 /* CommonImageManager.m in Sources */,

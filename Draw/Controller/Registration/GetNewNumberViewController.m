@@ -403,6 +403,14 @@
 
 - (IBAction)clickBgButton:(id)sender
 {
+    if ([[UserManager defaultManager] hasXiaojiNumber]){
+        [[UserService defaultService] dismissGetNumberView];
+        return;
+    }
+    
+    [self clickTakeNumber:nil];
+    
+    /*
     CommonDialog* dialog = [CommonDialog createDialogWithTitle:NSLS(@"kMessage")
                                                        message:NSLS(@"kEasyTakeNumber")
                                                          style:CommonDialogStyleDoubleButton];
@@ -416,6 +424,7 @@
     }];
     
     [dialog showInView:self.view];
+     */
 }
 
 @end

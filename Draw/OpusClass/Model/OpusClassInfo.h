@@ -24,5 +24,6 @@
 - (NSString*)name;
 - (void)clearSubClasses;
 
+- (NSString*)title;     // for display
 
 @end

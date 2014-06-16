@@ -21,6 +21,7 @@
 #import "StableView.h"
 #import "ShareImageManager.h"
 #import "CommonMessageCenter.h"
+#import "SelectOpusClassViewController.h"
 
 #import "UseItemScene.h"
 
@@ -1293,6 +1294,7 @@ typedef enum{
     int indexOfGuess = -1;
     int indexOfPlay = -1;
     int indexOfPhoto = -1;
+    int indexOfSetClass = -1;
     int indexOfFeature = -1;
     int indexOfUnfeature = -1;
     int indexOfSetScore = -1;
@@ -1307,13 +1309,14 @@ typedef enum{
                                                  delegate:nil
                                         cancelButtonTitle:NSLS(@"kCancel")
                                    destructiveButtonTitle:NSLS(@"kGuess")
-                                        otherButtonTitles:NSLS(@"kPlay"), NSLS(@"kLargeImage"), NSLS(@"分数处理"), NSLS(@"kRecommend"), NSLS(@"kUnfeature"), NSLS(@"删除作品"),
+                                        otherButtonTitles:NSLS(@"kPlay"), NSLS(@"kLargeImage"), NSLS(@"分数处理"), NSLS(@"设置分类"), NSLS(@"kRecommend"),  NSLS(@"kUnfeature"), NSLS(@"删除作品"),
                  NSLS(@"kShareSinaWeibo"), NSLS(@"kShareWeixinSession"), NSLS(@"kShareWeixinTimeline"), NSLS(@"kShareQQWeibo"), // NSLS(@"kShareQQSpace"),                 
                  nil];
         indexOfGuess = index++;
         indexOfPlay = index++;
         indexOfPhoto = index++;
         indexOfSetScore = index++;
+        indexOfSetClass = index++;
         indexOfFeature = index++;
         indexOfUnfeature = index++;
         indexOfDelete = index++;
@@ -1387,7 +1390,13 @@ typedef enum{
             [self showPhotoBrower];
         }else if (buttonIndex == indexOfPlay){
             [self performSelector:@selector(performReplay) withObject:nil afterDelay:0.1f];
-        }else if (buttonIndex == indexOfFeature){
+        }
+        else if (buttonIndex == indexOfSetClass){
+            SelectOpusClassViewController* vc = [[SelectOpusClassViewController alloc] initWithSelectedTags:nil arrayForSelection:nil];
+            [self.navigationController presentModalViewController:vc animated:YES];
+            [vc release];
+        }
+        else if (buttonIndex == indexOfFeature){
             [[FeedService defaultService] recommendOpus:self.feed.feedId
                                               contestId:self.feed.contestId
                                             resultBlock:^(int resultCode) {

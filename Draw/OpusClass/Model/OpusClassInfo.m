@@ -93,4 +93,9 @@
     }
 }
 
+- (NSString*)title     // for display
+{
+    return [self name];
+}
+
 @end

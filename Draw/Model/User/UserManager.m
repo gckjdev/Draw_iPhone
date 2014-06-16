@@ -1994,7 +1994,7 @@ qqAccessTokenSecret:(NSString*)accessTokenSecret
     NSUserDefaults* ud = [NSUserDefaults standardUserDefaults];
     NSNumber* value = [ud objectForKey:KEY_ENABLE_REPLAY];
     if (value == nil){
-        return YES; // default value
+        return NO; // default value
     }
     else{
         return ([value intValue] == 1);
