@@ -92,6 +92,7 @@
 #import "GroupHomeController.h"
 #import "DrawImageManager.h"
 #import "StringUtil.h"
+#import "ShowOpusClassListController.h"
 
 static NSDictionary* DRAW_MENU_TITLE_DICT = nil;
 static NSDictionary* DRAW_MENU_IMAGE_DICT = nil;
@@ -735,8 +736,13 @@ static NSDictionary* DRAW_MENU_IMAGE_DICT = nil;
             [self.navigationController pushViewController:vc animated:YES];
         } break;
         case HomeMenuTypeDrawPhoto: {
-            GalleryController* gallery = [[[GalleryController alloc] init] autorelease];
-            [self.navigationController pushViewController:gallery animated:YES];
+//            GalleryController* gallery = [[[GalleryController alloc] init] autorelease];
+//            [self.navigationController pushViewController:gallery animated:YES];
+
+            ShowOpusClassListController* vc = [[ShowOpusClassListController alloc] init];
+            [self.navigationController pushViewController:vc animated:YES];
+            [vc release];
+            
         } break;
         case HomeMenuTypeDrawPainter:{
             PainterController *pc = [[PainterController alloc] init];

@@ -2293,18 +2293,6 @@ static const ProtobufCFieldDescriptor game__pbfeed__field_descriptors[53] =
     0,NULL,NULL    /* reserved1,reserved2, etc */
   },
   {
-    "class",
-    210,
-    PROTOBUF_C_LABEL_REPEATED,
-    PROTOBUF_C_TYPE_MESSAGE,
-    PROTOBUF_C_OFFSETOF(Game__PBFeed, n_class_),
-    PROTOBUF_C_OFFSETOF(Game__PBFeed, class_),
-    &game__pbclass__descriptor,
-    NULL,
-    0,            /* packed */
-    0,NULL,NULL    /* reserved1,reserved2, etc */
-  },
-  {
     "strokes",
     211,
     PROTOBUF_C_LABEL_OPTIONAL,
@@ -2340,13 +2328,24 @@ static const ProtobufCFieldDescriptor game__pbfeed__field_descriptors[53] =
     0,            /* packed */
     0,NULL,NULL    /* reserved1,reserved2, etc */
   },
+  {
+    "opusClass",
+    214,
+    PROTOBUF_C_LABEL_REPEATED,
+    PROTOBUF_C_TYPE_MESSAGE,
+    PROTOBUF_C_OFFSETOF(Game__PBFeed, n_opusclass),
+    PROTOBUF_C_OFFSETOF(Game__PBFeed, opusclass),
+    &game__pbclass__descriptor,
+    NULL,
+    0,            /* packed */
+    0,NULL,NULL    /* reserved1,reserved2, etc */
+  },
 };
 static const unsigned game__pbfeed__field_indices_by_name[] = {
   2,   /* field[2] = actionType */
   9,   /* field[9] = avatar */
   48,   /* field[48] = canvasSize */
   7,   /* field[7] = category */
-  49,   /* field[49] = class */
   26,   /* field[26] = comment */
   27,   /* field[27] = commentInfo */
   31,   /* field[31] = commentTimes */
@@ -2358,8 +2357,8 @@ static const unsigned game__pbfeed__field_indices_by_name[] = {
   47,   /* field[47] = descLabelInfo */
   5,   /* field[5] = deviceName */
   4,   /* field[4] = deviceType */
-  51,   /* field[51] = draftCompleteDate */
-  52,   /* field[52] = draftCreateDate */
+  50,   /* field[50] = draftCompleteDate */
+  51,   /* field[51] = draftCreateDate */
   13,   /* field[13] = drawData */
   18,   /* field[18] = drawDataUrl */
   0,   /* field[0] = feedId */
@@ -2373,6 +2372,7 @@ static const unsigned game__pbfeed__field_indices_by_name[] = {
   45,   /* field[45] = learnDraw */
   28,   /* field[28] = matchTimes */
   8,   /* field[8] = nickName */
+  52,   /* field[52] = opusClass */
   36,   /* field[36] = opusCreatorAvatar */
   35,   /* field[35] = opusCreatorGender */
   34,   /* field[34] = opusCreatorNickName */
@@ -2389,7 +2389,7 @@ static const unsigned game__pbfeed__field_indices_by_name[] = {
   11,   /* field[11] = signature */
   46,   /* field[46] = sing */
   20,   /* field[20] = spendTime */
-  50,   /* field[50] = strokes */
+  49,   /* field[49] = strokes */
   19,   /* field[19] = tags */
   14,   /* field[14] = targetUserId */
   15,   /* field[15] = targetUserNickName */
@@ -2409,7 +2409,7 @@ static const ProtobufCIntRange game__pbfeed__number_ranges[12 + 1] =
   { 91, 41 },
   { 100, 45 },
   { 200, 47 },
-  { 210, 49 },
+  { 211, 49 },
   { 0, 53 }
 };
 const ProtobufCMessageDescriptor game__pbfeed__descriptor =

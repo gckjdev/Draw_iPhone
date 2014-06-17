@@ -22,6 +22,8 @@
 #import "FriendController.h"
 #import "PurchaseVipController.h"
 #import "OfflineDrawViewController.h"
+#import "SelectOpusClassViewController.h"
+#import "OpusClassInfo.h"
 
 typedef enum{
     UserTypeFeed = FeedListTypeUserFeed,
@@ -692,6 +694,32 @@ typedef enum{
                 break;
             }
           */
+            [SelectOpusClassViewController showInViewController:self
+                                                   selectedTags:nil
+                                              arrayForSelection:nil
+                                                       callback:^(int resultCode, NSArray *selectedArray, NSArray *arrayForSelection) {
+                                                           
+                                                           NSMutableArray* classList = [NSMutableArray array];
+                                                           for (OpusClassInfo* classInfo in selectedArray){
+                                                               if (classInfo.classId){
+                                                                   [classList addObject:classInfo.classId];
+                                                               }
+                                                           }
+                                                           
+                                                           [[FeedService defaultService] setOpusClass:feed.feedId
+                                                                                            classList:classList
+                                                                                          resultBlock:^(int resultCode) {
+                                                                                              
+                                                                                              if (resultCode == 0){
+                                                                                                  POSTMSG2(NSLS(@"设置作品分类成功"), 2);
+                                                                                              }
+                                                                                              else{
+                                                                                                  POSTMSG2(NSLS(@"设置作品分类失败"), 2);
+                                                                                              }
+                                                                                          }];
+                                                       }];
+
+            
             break;
         }
         case SuperActionSheetIndexAddToRecommend: {
@@ -898,7 +926,7 @@ typedef enum{
                                               delegate:self
                                               cancelButtonTitle:NSLS(@"kCancel")
                                               destructiveButtonTitle:NSLS(@"kOpusDetail")
-                                              otherButtonTitles:NSLS(@"kEditOpusToUser"), NSLS(@"kDelete"), NSLS(@"kAddLearnDraw"), NSLS(@"kRecommend"), @"取消推荐", nil];
+                                              otherButtonTitles:NSLS(@"kEditOpusToUser"), NSLS(@"kDelete"), NSLS(@"设置作品分类"), NSLS(@"kRecommend"), @"取消推荐", nil];
                 
             __block typeof (self) bself  = self;
             [sheet setActionBlock:^(NSInteger buttonIndex){

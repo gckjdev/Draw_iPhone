@@ -4896,6 +4896,22 @@
 		CA90050F194EE775003389FD /* SelectOpusClassViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA900504194EE775003389FD /* SelectOpusClassViewController.m */; };
 		CA900510194EE775003389FD /* SelectOpusClassViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA900504194EE775003389FD /* SelectOpusClassViewController.m */; };
 		CA900511194EE775003389FD /* SelectOpusClassViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA900504194EE775003389FD /* SelectOpusClassViewController.m */; };
+		CA90051719501FF9003389FD /* ShowOpusClassListController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA90051619501FF8003389FD /* ShowOpusClassListController.m */; };
+		CA90051819502000003389FD /* ShowOpusClassListController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA90051619501FF8003389FD /* ShowOpusClassListController.m */; };
+		CA90051919502000003389FD /* ShowOpusClassListController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA90051619501FF8003389FD /* ShowOpusClassListController.m */; };
+		CA90051A19502000003389FD /* ShowOpusClassListController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA90051619501FF8003389FD /* ShowOpusClassListController.m */; };
+		CA9005201950209B003389FD /* THGridMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = CA90051D1950209B003389FD /* THGridMenu.m */; };
+		CA9005211950209B003389FD /* THGridMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = CA90051D1950209B003389FD /* THGridMenu.m */; };
+		CA9005221950209B003389FD /* THGridMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = CA90051D1950209B003389FD /* THGridMenu.m */; };
+		CA9005231950209B003389FD /* THGridMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = CA90051D1950209B003389FD /* THGridMenu.m */; };
+		CA9005241950209B003389FD /* THGridMenuItem.m in Sources */ = {isa = PBXBuildFile; fileRef = CA90051F1950209B003389FD /* THGridMenuItem.m */; };
+		CA9005251950209B003389FD /* THGridMenuItem.m in Sources */ = {isa = PBXBuildFile; fileRef = CA90051F1950209B003389FD /* THGridMenuItem.m */; };
+		CA9005261950209B003389FD /* THGridMenuItem.m in Sources */ = {isa = PBXBuildFile; fileRef = CA90051F1950209B003389FD /* THGridMenuItem.m */; };
+		CA9005271950209B003389FD /* THGridMenuItem.m in Sources */ = {isa = PBXBuildFile; fileRef = CA90051F1950209B003389FD /* THGridMenuItem.m */; };
+		CA90052A195021F8003389FD /* OpusClassMenuItem.m in Sources */ = {isa = PBXBuildFile; fileRef = CA900529195021F8003389FD /* OpusClassMenuItem.m */; };
+		CA90052B195021F8003389FD /* OpusClassMenuItem.m in Sources */ = {isa = PBXBuildFile; fileRef = CA900529195021F8003389FD /* OpusClassMenuItem.m */; };
+		CA90052C195021F8003389FD /* OpusClassMenuItem.m in Sources */ = {isa = PBXBuildFile; fileRef = CA900529195021F8003389FD /* OpusClassMenuItem.m */; };
+		CA90052D195021F8003389FD /* OpusClassMenuItem.m in Sources */ = {isa = PBXBuildFile; fileRef = CA900529195021F8003389FD /* OpusClassMenuItem.m */; };
 		CA913A521653532000B6387F /* Bbs.pb.m in Sources */ = {isa = PBXBuildFile; fileRef = CA913A511653532000B6387F /* Bbs.pb.m */; };
 		CA91FC7F15C27BE700E9C1CD /* CommonGameNetworkClient.m in Sources */ = {isa = PBXBuildFile; fileRef = CA91FC7E15C27BE700E9C1CD /* CommonGameNetworkClient.m */; };
 		CA91FC8215C27BF700E9C1CD /* CommonGameNetworkService.m in Sources */ = {isa = PBXBuildFile; fileRef = CA91FC8115C27BF700E9C1CD /* CommonGameNetworkService.m */; };
@@ -9571,6 +9587,14 @@
 		CA900503194EE774003389FD /* SelectOpusClassViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectOpusClassViewController.h; sourceTree = "<group>"; };
 		CA900504194EE775003389FD /* SelectOpusClassViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectOpusClassViewController.m; sourceTree = "<group>"; };
 		CA900505194EE775003389FD /* SelectTagHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectTagHeader.h; sourceTree = "<group>"; };
+		CA90051519501FF8003389FD /* ShowOpusClassListController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShowOpusClassListController.h; sourceTree = "<group>"; };
+		CA90051619501FF8003389FD /* ShowOpusClassListController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShowOpusClassListController.m; sourceTree = "<group>"; };
+		CA90051C1950209B003389FD /* THGridMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THGridMenu.h; sourceTree = "<group>"; };
+		CA90051D1950209B003389FD /* THGridMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THGridMenu.m; sourceTree = "<group>"; };
+		CA90051E1950209B003389FD /* THGridMenuItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THGridMenuItem.h; sourceTree = "<group>"; };
+		CA90051F1950209B003389FD /* THGridMenuItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THGridMenuItem.m; sourceTree = "<group>"; };
+		CA900528195021F8003389FD /* OpusClassMenuItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OpusClassMenuItem.h; sourceTree = "<group>"; };
+		CA900529195021F8003389FD /* OpusClassMenuItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OpusClassMenuItem.m; sourceTree = "<group>"; };
 		CA913A2F1653432C00B6387F /* GameResource.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GameResource.h; sourceTree = "<group>"; };
 		CA913A501653532000B6387F /* Bbs.pb.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = Bbs.pb.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		CA913A511653532000B6387F /* Bbs.pb.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Bbs.pb.m; sourceTree = "<group>"; };
@@ -13140,6 +13164,10 @@
 				CA900503194EE774003389FD /* SelectOpusClassViewController.h */,
 				CA900504194EE775003389FD /* SelectOpusClassViewController.m */,
 				CA900505194EE775003389FD /* SelectTagHeader.h */,
+				CA90051519501FF8003389FD /* ShowOpusClassListController.h */,
+				CA90051619501FF8003389FD /* ShowOpusClassListController.m */,
+				CA900528195021F8003389FD /* OpusClassMenuItem.h */,
+				CA900529195021F8003389FD /* OpusClassMenuItem.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -15559,6 +15587,17 @@
 			path = Contest;
 			sourceTree = "<group>";
 		};
+		CA90051B1950209B003389FD /* THGridMenuView */ = {
+			isa = PBXGroup;
+			children = (
+				CA90051C1950209B003389FD /* THGridMenu.h */,
+				CA90051D1950209B003389FD /* THGridMenu.m */,
+				CA90051E1950209B003389FD /* THGridMenuItem.h */,
+				CA90051F1950209B003389FD /* THGridMenuItem.m */,
+			);
+			path = THGridMenuView;
+			sourceTree = "<group>";
+		};
 		CA913A2E1653431900B6387F /* Resource */ = {
 			isa = PBXGroup;
 			children = (
@@ -17434,6 +17473,7 @@
 		CAFEFDB316606FC100441D77 /* Component-View */ = {
 			isa = PBXGroup;
 			children = (
+				CA90051B1950209B003389FD /* THGridMenuView */,
 				CA9AB0CC18321AFE002DBAA5 /* HGQuadCurveMenu */,
 				CAEEC197181A5D96007FD75F /* ScreenCaptureView */,
 				EA0C5516180B9203008069C1 /* InfColorPicker */,
@@ -22194,6 +22234,7 @@
 				A461B152174CBAA70088B061 /* Friend.m in Sources */,
 				A461B153174CBAA70088B061 /* FriendManager.m in Sources */,
 				A461B154174CBAA70088B061 /* FriendService.m in Sources */,
+				CA90052C195021F8003389FD /* OpusClassMenuItem.m in Sources */,
 				A461B155174CBAA70088B061 /* ChatController.m in Sources */,
 				A461B156174CBAA70088B061 /* SearchUserController.m in Sources */,
 				A461B157174CBAA70088B061 /* MessageCell.m in Sources */,
@@ -22433,6 +22474,7 @@
 				A461B301174CBAA70088B061 /* SmoothQuadCurvePen.m in Sources */,
 				A461B302174CBAA70088B061 /* CurvePen.m in Sources */,
 				A461B303174CBAA70088B061 /* PenFactory.m in Sources */,
+				CA9005221950209B003389FD /* THGridMenu.m in Sources */,
 				A461B304174CBAA70088B061 /* DrawRoomListCell.m in Sources */,
 				A461B305174CBAA70088B061 /* DrawRoomListController.m in Sources */,
 				A461B306174CBAA70088B061 /* BBSPostCommand.m in Sources */,
@@ -22649,6 +22691,7 @@
 				A4EC5A9D178FDF6D0085031F /* OpusImageBrower.m in Sources */,
 				CAC85C061791179100827C20 /* TextCommand.m in Sources */,
 				CAC85C1F179117B100827C20 /* FXCommand.m in Sources */,
+				CA90051919502000003389FD /* ShowOpusClassListController.m in Sources */,
 				CA2614ED1793B0FF007D5462 /* WordFilterService.m in Sources */,
 				CABEC69A1796505A006F89BB /* DiceImageManager.m in Sources */,
 				CABEC6A217965093006F89BB /* CommonHelpManager.m in Sources */,
@@ -22777,6 +22820,7 @@
 				CA9AB01618321621002DBAA5 /* ItemUseRecorder.m in Sources */,
 				CA9AB01A18321621002DBAA5 /* OpusGuessRecorder.m in Sources */,
 				CA9AB01E18321621002DBAA5 /* SongService.m in Sources */,
+				CA9005261950209B003389FD /* THGridMenuItem.m in Sources */,
 				CA9AB02218321621002DBAA5 /* NameAndDescEditView.m in Sources */,
 				CA9AB02A18321621002DBAA5 /* SingInfoCell.m in Sources */,
 				CA9AB03618321621002DBAA5 /* SingPlayView.m in Sources */,
@@ -22966,6 +23010,7 @@
 				C28A9A091738F04B007A819F /* Item.m in Sources */,
 				C28A9A0A1738F04B007A819F /* GameNetworkRequest.m in Sources */,
 				C28A9A0B1738F04B007A819F /* UserService.m in Sources */,
+				CA9005211950209B003389FD /* THGridMenu.m in Sources */,
 				C28A9A0D1738F04B007A819F /* AccountManager.m in Sources */,
 				C28A9A0E1738F04B007A819F /* ItemManager.m in Sources */,
 				CACD6D2C18E03C40003F97C0 /* EAFRead.mm in Sources */,
@@ -22973,6 +23018,7 @@
 				C28A9A101738F04B007A819F /* FeedbackController.m in Sources */,
 				C28A9A111738F04B007A819F /* UserSettingController.m in Sources */,
 				C28A9A121738F04B007A819F /* PriceService.m in Sources */,
+				CA90051819502000003389FD /* ShowOpusClassListController.m in Sources */,
 				C28A9A131738F04B007A819F /* ShoppingManager.m in Sources */,
 				CACD6CE718E03BCD003F97C0 /* NotificationCenterManager.m in Sources */,
 				C28A9A141738F04B007A819F /* AnimationManager.m in Sources */,
@@ -23504,6 +23550,7 @@
 				A467892C17BB1CEF007C546A /* UIButton+Sound.m in Sources */,
 				A467893217BB21FE007C546A /* UISoundButton.m in Sources */,
 				A467894117BC7782007C546A /* UILabel+Extend.m in Sources */,
+				CA9005251950209B003389FD /* THGridMenuItem.m in Sources */,
 				CA8C471B17C3175C00BA6A15 /* PanelUtil.m in Sources */,
 				CAFC036E17C4CAA100A11DE3 /* ChangePageBGCommand.m in Sources */,
 				A440354E17C5A9C900301EDD /* LocalNotificationUtil.m in Sources */,
@@ -23592,6 +23639,7 @@
 				CACD6D2018E03C40003F97C0 /* DiracAudioPlayer.mm in Sources */,
 				CA9AB01D18321621002DBAA5 /* SongService.m in Sources */,
 				CA9AB02118321621002DBAA5 /* NameAndDescEditView.m in Sources */,
+				CA90052B195021F8003389FD /* OpusClassMenuItem.m in Sources */,
 				CA9AB02918321621002DBAA5 /* SingInfoCell.m in Sources */,
 				CA9AB03518321621002DBAA5 /* SingPlayView.m in Sources */,
 				CA9AB03D18321621002DBAA5 /* SongCategoryView.m in Sources */,
@@ -23785,6 +23833,7 @@
 				CAE2CABE151B2ECA0062ED37 /* Account.m in Sources */,
 				CAE2CAC1151B2F7C0062ED37 /* Item.m in Sources */,
 				CA322102151B6A670039A384 /* GameNetworkRequest.m in Sources */,
+				CA9005201950209B003389FD /* THGridMenu.m in Sources */,
 				CA322105151B6BE60039A384 /* UserService.m in Sources */,
 				CAF10AFB151C665D008C4512 /* AccountManager.m in Sources */,
 				CACD6D2B18E03C40003F97C0 /* EAFRead.mm in Sources */,
@@ -23792,6 +23841,7 @@
 				CA32213D151DEDE10039A384 /* ChangeAvatar.m in Sources */,
 				CA3221A4151F657F0039A384 /* FeedbackController.m in Sources */,
 				CA3221A9151F65AE0039A384 /* UserSettingController.m in Sources */,
+				CA90051719501FF9003389FD /* ShowOpusClassListController.m in Sources */,
 				CA41C9501520608D00013DC8 /* PriceService.m in Sources */,
 				CACD6CE618E03BCD003F97C0 /* NotificationCenterManager.m in Sources */,
 				CA41C95B15206C1100013DC8 /* ShoppingManager.m in Sources */,
@@ -24323,6 +24373,7 @@
 				A4E1D21917B2236800E13728 /* GuessSelectCell.m in Sources */,
 				CAC9022017B2331C009AF8E1 /* NSArray+Ext.m in Sources */,
 				A489C01017B5D942003E5150 /* JDDateCountdownFlipView.m in Sources */,
+				CA9005241950209B003389FD /* THGridMenuItem.m in Sources */,
 				A489C01817B5D942003E5150 /* JDFlipNumberView.m in Sources */,
 				A489C01C17B5D942003E5150 /* JDGroupedFlipNumberView.m in Sources */,
 				A489C02317B5E46A003E5150 /* GuessManager.m in Sources */,
@@ -24411,6 +24462,7 @@
 				CACD6D1F18E03C40003F97C0 /* DiracAudioPlayer.mm in Sources */,
 				CA9AAF4018321621002DBAA5 /* SongCell.m in Sources */,
 				CA9AAF4C18321621002DBAA5 /* SongSearchController.m in Sources */,
+				CA90052A195021F8003389FD /* OpusClassMenuItem.m in Sources */,
 				CA9AAF6818321621002DBAA5 /* SingImageManager.m in Sources */,
 				CA9AAF6C18321621002DBAA5 /* SingOpusManager.m in Sources */,
 				CA9AAF7018321621002DBAA5 /* SongCategoryManager.m in Sources */,
@@ -24538,6 +24590,7 @@
 				EA411845176066F500DA72D0 /* UIFontExt.m in Sources */,
 				EA411846176066F500DA72D0 /* UIImageExt.m in Sources */,
 				EA411847176066F500DA72D0 /* UIImageUtil.m in Sources */,
+				CA9005231950209B003389FD /* THGridMenu.m in Sources */,
 				EA411848176066F500DA72D0 /* LocaleUtils.m in Sources */,
 				EA411849176066F500DA72D0 /* LogUtil.m in Sources */,
 				EA41184A176066F500DA72D0 /* NumberUtil.m in Sources */,
@@ -24776,6 +24829,7 @@
 				EA411990176066F500DA72D0 /* BBSPostCell.m in Sources */,
 				EA411991176066F500DA72D0 /* PPResourceCacheService.m in Sources */,
 				EA411992176066F500DA72D0 /* BBSPostActionCell.m in Sources */,
+				CA90052D195021F8003389FD /* OpusClassMenuItem.m in Sources */,
 				EA411993176066F500DA72D0 /* BBSPostDetailCell.m in Sources */,
 				EA411994176066F500DA72D0 /* BBSPostActionHeaderView.m in Sources */,
 				EA411995176066F500DA72D0 /* BBSModelExt.m in Sources */,
@@ -24896,6 +24950,7 @@
 				EA411A40176066F500DA72D0 /* DrawRoomListCell.m in Sources */,
 				EA411A41176066F500DA72D0 /* DrawRoomListController.m in Sources */,
 				EA411A42176066F500DA72D0 /* BBSPostCommand.m in Sources */,
+				CA90051A19502000003389FD /* ShowOpusClassListController.m in Sources */,
 				EA411A43176066F500DA72D0 /* BBSPostCommandPanel.m in Sources */,
 				EA411A44176066F500DA72D0 /* BBSPostCommandView.m in Sources */,
 				EA411A45176066F500DA72D0 /* PointNode.m in Sources */,
@@ -24989,6 +25044,7 @@
 				EA411AB5176066F500DA72D0 /* DrawToCommand.m in Sources */,
 				EA411AB6176066F500DA72D0 /* HelpCommand.m in Sources */,
 				EA411AB7176066F500DA72D0 /* ChatCommand.m in Sources */,
+				CA9005271950209B003389FD /* THGridMenuItem.m in Sources */,
 				EA411AB8176066F500DA72D0 /* ReflectionView.m in Sources */,
 				EA411AB9176066F500DA72D0 /* FeedCarousel.m in Sources */,
 				CA7DE7AF192C72FE00EED067 /* Group.pb-c.c in Sources */,

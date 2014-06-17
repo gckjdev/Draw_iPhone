@@ -25,6 +25,7 @@
 
 @property (nonatomic,retain) UILabel * label;
 @property (nonatomic,retain) UILabel * moreChannelsLabel;
+@property (nonatomic,retain) UILabel * selectedChannelsLabel;
 @property (nonatomic,retain) OpusClassInfo * touchViewModel;
 
 @end

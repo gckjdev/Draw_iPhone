@@ -27,19 +27,19 @@
 //默认订阅频道数
 
 //按钮之间的间距
-#define BUTTON_LABEL_INDENT (ISIPAD ? 8 : 4)
+#define BUTTON_LABEL_INDENT (ISIPAD ? 8 : 3)
 
 //按钮的大小
-#define KButtonWidth  (ISIPAD ? 160 : 80)
+#define KButtonWidth  (ISIPAD ? 160 : 75)
 #define KButtonHeight (ISIPAD ? 80 : 40)
 
 #define COLUMN_PER_ROW 4
 
-#define LABEL_WIDTH             (ISIPAD ? 400 : 200)
+#define LABEL_WIDTH             (ISIPAD ? 800 : 300)
 #define LABEL_HEIGHT            (ISIPAD ? 80 : 40)
-#define TAG_LABEL_START_Y       (COMMON_TITLE_VIEW_HEIGHT + STATUS_BAR_HEIGHT + 25)
-#define SELECT_LABEL_START_Y    (COMMON_TITLE_VIEW_HEIGHT + STATUS_BAR_HEIGHT + 5)
-#define LIST_LABEL_SPACE        20
+#define TAG_LABEL_START_Y       (COMMON_TITLE_VIEW_HEIGHT)
+#define SELECT_LABEL_START_Y    (COMMON_TITLE_VIEW_HEIGHT + 15)
+#define LIST_LABEL_SPACE        (ISIPAD ? 20 : 0)
 
 #define KTableStartPointX (([UIScreen mainScreen].bounds.size.width - KButtonWidth*COLUMN_PER_ROW)/2)
 #define KTableStartPointY (SELECT_LABEL_START_Y + LABEL_HEIGHT + LIST_LABEL_SPACE) //120

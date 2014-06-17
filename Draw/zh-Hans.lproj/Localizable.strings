@@ -2725,3 +2725,13 @@
 "kDrawSpendTimeHoursPlus" = "%d+小时";
 
 "kEnableReplay" = "作品详情显示[播放]按钮";
+
+// new for opus class
+"kSelectOpusClassTitle" = "设置分类";
+"kSubmitOpusClass" = "完成";
+"kSelectedClass" = "已选择分类/标签";
+"kNoSelectedClass" = "已选择分类/标签 : (无)";
+"kClassForSelection" = "可选择分类/标签(可多选)";
+"kOpusClassCountZero" = "未选择任何作品分类，请至少选择一个分类/标签";
+"kExceedMaxOpusClass" = "最多只能选择%d个作品分类或标签，请减少当前选择";
+

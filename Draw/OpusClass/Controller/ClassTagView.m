@@ -16,6 +16,7 @@
     [_label release];
     [_moreChannelsLabel release];
     [_touchViewModel release];
+    [_selectedChannelsLabel release];
     [super dealloc];
 }
 
@@ -42,6 +43,16 @@
     [self.label setTextColor:TAG_BUTTON_TEXT_COLOR];
     [self.label setFont:TAG_BUTTON_FONT_SIZE];
     [self setImage:nil];
+    
+    if ([_viewArr11 count] == 0){
+//        self.moreChannelsLabel.hidden = YES;
+        self.selectedChannelsLabel.text = NSLS(@"kNoSelectedClass");
+    }
+    else{
+//        self.moreChannelsLabel.hidden = NO;
+        self.selectedChannelsLabel.text = NSLS(@"kSelectedClass");
+    }
+    
 }
 
 - (void)layoutSubviews{
@@ -298,6 +309,8 @@
     } completion:^(BOOL finished){
         
     }];
+    
+
     
     
 }

@@ -759,24 +759,24 @@
   BOOL hasOpusCreatorUserId_:1;
   BOOL hasDataUrl_:1;
   BOOL hasContestId_:1;
-  BOOL hasFeedId_:1;
-  BOOL hasUserId_:1;
-  BOOL hasDeviceName_:1;
   BOOL hasGameId_:1;
   BOOL hasNickName_:1;
   BOOL hasAvatar_:1;
   BOOL hasSignature_:1;
   BOOL hasTargetUserId_:1;
-  BOOL hasComment_:1;
-  BOOL hasOpusId_:1;
-  BOOL hasDrawDataUrl_:1;
-  BOOL hasOpusDesc_:1;
   BOOL hasTargetUserNickName_:1;
-  BOOL hasDrawData_:1;
-  BOOL hasLearnDraw_:1;
-  BOOL hasSing_:1;
-  BOOL hasDescLabelInfo_:1;
+  BOOL hasOpusDesc_:1;
+  BOOL hasDrawDataUrl_:1;
+  BOOL hasDeviceName_:1;
+  BOOL hasOpusId_:1;
+  BOOL hasUserId_:1;
+  BOOL hasComment_:1;
+  BOOL hasFeedId_:1;
   BOOL hasCanvasSize_:1;
+  BOOL hasDescLabelInfo_:1;
+  BOOL hasSing_:1;
+  BOOL hasLearnDraw_:1;
+  BOOL hasDrawData_:1;
   BOOL hasCommentInfo_:1;
   BOOL hasCategory_:1;
   BOOL isCorrect_:1;
@@ -807,31 +807,31 @@
   NSString* opusCreatorUserId;
   NSString* dataUrl;
   NSString* contestId;
-  NSString* feedId;
-  NSString* userId;
-  NSString* deviceName;
   NSString* gameId;
   NSString* nickName;
   NSString* avatar;
   NSString* signature;
   NSString* targetUserId;
-  NSString* comment;
-  NSString* opusId;
-  NSString* drawDataUrl;
-  NSString* opusDesc;
   NSString* targetUserNickName;
-  PBDraw* drawData;
-  PBLearnDraw* learnDraw;
-  PBSingOpus* sing;
-  PBLabelInfo* descLabelInfo;
+  NSString* opusDesc;
+  NSString* drawDataUrl;
+  NSString* deviceName;
+  NSString* opusId;
+  NSString* userId;
+  NSString* comment;
+  NSString* feedId;
   PBSize* canvasSize;
+  PBLabelInfo* descLabelInfo;
+  PBSingOpus* sing;
+  PBLearnDraw* learnDraw;
+  PBDraw* drawData;
   PBCommentInfo* commentInfo;
   PBOpusCategoryType category;
   NSMutableArray* mutableTagsList;
   NSMutableArray* mutableGuessWordsList;
-  NSMutableArray* mutableFeedTimesList;
   NSMutableArray* mutableRankInfoList;
-  NSMutableArray* mutableClassList;
+  NSMutableArray* mutableFeedTimesList;
+  NSMutableArray* mutableOpusClassList;
 }
 - (BOOL) hasFeedId;
 - (BOOL) hasUserId;
@@ -937,8 +937,8 @@
 - (PBFeedTimes*) feedTimesAtIndex:(int32_t) index;
 - (NSArray*) rankInfoList;
 - (PBOpusRank*) rankInfoAtIndex:(int32_t) index;
-- (NSArray*) classList;
-- (PBClass*) classAtIndex:(int32_t) index;
+- (NSArray*) opusClassList;
+- (PBClass*) opusClassAtIndex:(int32_t) index;
 
 + (PBFeed*) defaultInstance;
 - (PBFeed*) defaultInstance;
@@ -1239,13 +1239,6 @@
 - (PBFeed_Builder*) mergeCanvasSize:(PBSize*) value;
 - (PBFeed_Builder*) clearCanvasSize;
 
-- (NSArray*) classList;
-- (PBClass*) classAtIndex:(int32_t) index;
-- (PBFeed_Builder*) replaceClassAtIndex:(int32_t) index with:(PBClass*) value;
-- (PBFeed_Builder*) addClass:(PBClass*) value;
-- (PBFeed_Builder*) addAllClass:(NSArray*) values;
-- (PBFeed_Builder*) clearClassList;
-
 - (BOOL) hasStrokes;
 - (int64_t) strokes;
 - (PBFeed_Builder*) setStrokes:(int64_t) value;
@@ -1260,6 +1253,13 @@
 - (int32_t) draftCreateDate;
 - (PBFeed_Builder*) setDraftCreateDate:(int32_t) value;
 - (PBFeed_Builder*) clearDraftCreateDate;
+
+- (NSArray*) opusClassList;
+- (PBClass*) opusClassAtIndex:(int32_t) index;
+- (PBFeed_Builder*) replaceOpusClassAtIndex:(int32_t) index with:(PBClass*) value;
+- (PBFeed_Builder*) addOpusClass:(PBClass*) value;
+- (PBFeed_Builder*) addAllOpusClass:(NSArray*) values;
+- (PBFeed_Builder*) clearOpusClassList;
 @end
 
 @interface PBPoint : PBGeneratedMessage {

@@ -22,6 +22,7 @@
 #import "ShareImageManager.h"
 #import "CommonMessageCenter.h"
 #import "SelectOpusClassViewController.h"
+#import "OpusClassInfo.h"
 
 #import "UseItemScene.h"
 
@@ -1392,9 +1393,30 @@ typedef enum{
             [self performSelector:@selector(performReplay) withObject:nil afterDelay:0.1f];
         }
         else if (buttonIndex == indexOfSetClass){
-            SelectOpusClassViewController* vc = [[SelectOpusClassViewController alloc] initWithSelectedTags:nil arrayForSelection:nil];
-            [self.navigationController presentModalViewController:vc animated:YES];
-            [vc release];
+            [SelectOpusClassViewController showInViewController:self
+                                                   selectedTags:nil
+                                              arrayForSelection:nil
+                                                       callback:^(int resultCode, NSArray *selectedArray, NSArray *arrayForSelection) {
+                
+                                                           NSMutableArray* classList = [NSMutableArray array];
+                                                           for (OpusClassInfo* classInfo in selectedArray){
+                                                               if (classInfo.classId){
+                                                                   [classList addObject:classInfo.classId];
+                                                               }
+                                                           }
+                                                           
+                                                           [[FeedService defaultService] setOpusClass:self.feed.feedId
+                                                                                            classList:classList
+                                                                                          resultBlock:^(int resultCode) {
+                                                                                              
+                                                                                              if (resultCode == 0){
+                                                                                                  POSTMSG2(NSLS(@"设置作品分类成功"), 2);
+                                                                                              }
+                                                                                              else{
+                                                                                                  POSTMSG2(NSLS(@"设置作品分类失败"), 2);
+                                                                                              }
+                                                       }];
+            }];
         }
         else if (buttonIndex == indexOfFeature){
             [[FeedService defaultService] recommendOpus:self.feed.feedId

@@ -2553,10 +2553,10 @@ static PBLabelInfo* defaultPBLabelInfoInstance = nil;
 @property (retain) PBSingOpus* sing;
 @property (retain) PBLabelInfo* descLabelInfo;
 @property (retain) PBSize* canvasSize;
-@property (retain) NSMutableArray* mutableClassList;
 @property int64_t strokes;
 @property int32_t draftCompleteDate;
 @property int32_t draftCreateDate;
+@property (retain) NSMutableArray* mutableOpusClassList;
 @end
 
 @implementation PBFeed
@@ -2895,7 +2895,6 @@ static PBLabelInfo* defaultPBLabelInfoInstance = nil;
   hasCanvasSize_ = !!value;
 }
 @synthesize canvasSize;
-@synthesize mutableClassList;
 - (BOOL) hasStrokes {
   return !!hasStrokes_;
 }
@@ -2917,6 +2916,7 @@ static PBLabelInfo* defaultPBLabelInfoInstance = nil;
   hasDraftCreateDate_ = !!value;
 }
 @synthesize draftCreateDate;
+@synthesize mutableOpusClassList;
 - (void) dealloc {
   self.feedId = nil;
   self.userId = nil;
@@ -2949,7 +2949,7 @@ static PBLabelInfo* defaultPBLabelInfoInstance = nil;
   self.sing = nil;
   self.descLabelInfo = nil;
   self.canvasSize = nil;
-  self.mutableClassList = nil;
+  self.mutableOpusClassList = nil;
   [super dealloc];
 }
 - (id) init {
@@ -3045,11 +3045,11 @@ static PBFeed* defaultPBFeedInstance = nil;
   id value = [mutableRankInfoList objectAtIndex:index];
   return value;
 }
-- (NSArray*) classList {
-  return mutableClassList;
+- (NSArray*) opusClassList {
+  return mutableOpusClassList;
 }
-- (PBClass*) classAtIndex:(int32_t) index {
-  id value = [mutableClassList objectAtIndex:index];
+- (PBClass*) opusClassAtIndex:(int32_t) index {
+  id value = [mutableOpusClassList objectAtIndex:index];
   return value;
 }
 - (BOOL) isInitialized {
@@ -3095,7 +3095,7 @@ static PBFeed* defaultPBFeedInstance = nil;
       return NO;
     }
   }
-  for (PBClass* element in self.classList) {
+  for (PBClass* element in self.opusClassList) {
     if (!element.isInitialized) {
       return NO;
     }
@@ -3250,9 +3250,6 @@ static PBFeed* defaultPBFeedInstance = nil;
   if (self.hasCanvasSize) {
     [output writeMessage:201 value:self.canvasSize];
   }
-  for (PBClass* element in self.classList) {
-    [output writeMessage:210 value:element];
-  }
   if (self.hasStrokes) {
     [output writeInt64:211 value:self.strokes];
   }
@@ -3261,6 +3258,9 @@ static PBFeed* defaultPBFeedInstance = nil;
   }
   if (self.hasDraftCreateDate) {
     [output writeInt32:213 value:self.draftCreateDate];
+  }
+  for (PBClass* element in self.opusClassList) {
+    [output writeMessage:214 value:element];
   }
   [self.unknownFields writeToCodedOutputStream:output];
 }
@@ -3428,9 +3428,6 @@ static PBFeed* defaultPBFeedInstance = nil;
   if (self.hasCanvasSize) {
     size += computeMessageSize(201, self.canvasSize);
   }
-  for (PBClass* element in self.classList) {
-    size += computeMessageSize(210, element);
-  }
   if (self.hasStrokes) {
     size += computeInt64Size(211, self.strokes);
   }
@@ -3439,6 +3436,9 @@ static PBFeed* defaultPBFeedInstance = nil;
   }
   if (self.hasDraftCreateDate) {
     size += computeInt32Size(213, self.draftCreateDate);
+  }
+  for (PBClass* element in self.opusClassList) {
+    size += computeMessageSize(214, element);
   }
   size += self.unknownFields.serializedSize;
   memoizedSerializedSize = size;
@@ -3674,12 +3674,6 @@ static PBFeed* defaultPBFeedInstance = nil;
   if (other.hasCanvasSize) {
     [self mergeCanvasSize:other.canvasSize];
   }
-  if (other.mutableClassList.count > 0) {
-    if (result.mutableClassList == nil) {
-      result.mutableClassList = [NSMutableArray array];
-    }
-    [result.mutableClassList addObjectsFromArray:other.mutableClassList];
-  }
   if (other.hasStrokes) {
     [self setStrokes:other.strokes];
   }
@@ -3688,6 +3682,12 @@ static PBFeed* defaultPBFeedInstance = nil;
   }
   if (other.hasDraftCreateDate) {
     [self setDraftCreateDate:other.draftCreateDate];
+  }
+  if (other.mutableOpusClassList.count > 0) {
+    if (result.mutableOpusClassList == nil) {
+      result.mutableOpusClassList = [NSMutableArray array];
+    }
+    [result.mutableOpusClassList addObjectsFromArray:other.mutableOpusClassList];
   }
   [self mergeUnknownFields:other.unknownFields];
   return self;
@@ -3945,12 +3945,6 @@ static PBFeed* defaultPBFeedInstance = nil;
         [self setCanvasSize:[subBuilder buildPartial]];
         break;
       }
-      case 1682: {
-        PBClass_Builder* subBuilder = [PBClass builder];
-        [input readMessage:subBuilder extensionRegistry:extensionRegistry];
-        [self addClass:[subBuilder buildPartial]];
-        break;
-      }
       case 1688: {
         [self setStrokes:[input readInt64]];
         break;
@@ -3961,6 +3955,12 @@ static PBFeed* defaultPBFeedInstance = nil;
       }
       case 1704: {
         [self setDraftCreateDate:[input readInt32]];
+        break;
+      }
+      case 1714: {
+        PBClass_Builder* subBuilder = [PBClass builder];
+        [input readMessage:subBuilder extensionRegistry:extensionRegistry];
+        [self addOpusClass:[subBuilder buildPartial]];
         break;
       }
     }
@@ -4890,35 +4890,6 @@ static PBFeed* defaultPBFeedInstance = nil;
   result.canvasSize = [PBSize defaultInstance];
   return self;
 }
-- (NSArray*) classList {
-  if (result.mutableClassList == nil) { return [NSArray array]; }
-  return result.mutableClassList;
-}
-- (PBClass*) classAtIndex:(int32_t) index {
-  return [result classAtIndex:index];
-}
-- (PBFeed_Builder*) replaceClassAtIndex:(int32_t) index with:(PBClass*) value {
-  [result.mutableClassList replaceObjectAtIndex:index withObject:value];
-  return self;
-}
-- (PBFeed_Builder*) addAllClass:(NSArray*) values {
-  if (result.mutableClassList == nil) {
-    result.mutableClassList = [NSMutableArray array];
-  }
-  [result.mutableClassList addObjectsFromArray:values];
-  return self;
-}
-- (PBFeed_Builder*) clearClassList {
-  result.mutableClassList = nil;
-  return self;
-}
-- (PBFeed_Builder*) addClass:(PBClass*) value {
-  if (result.mutableClassList == nil) {
-    result.mutableClassList = [NSMutableArray array];
-  }
-  [result.mutableClassList addObject:value];
-  return self;
-}
 - (BOOL) hasStrokes {
   return result.hasStrokes;
 }
@@ -4965,6 +4936,35 @@ static PBFeed* defaultPBFeedInstance = nil;
 - (PBFeed_Builder*) clearDraftCreateDate {
   result.hasDraftCreateDate = NO;
   result.draftCreateDate = 0;
+  return self;
+}
+- (NSArray*) opusClassList {
+  if (result.mutableOpusClassList == nil) { return [NSArray array]; }
+  return result.mutableOpusClassList;
+}
+- (PBClass*) opusClassAtIndex:(int32_t) index {
+  return [result opusClassAtIndex:index];
+}
+- (PBFeed_Builder*) replaceOpusClassAtIndex:(int32_t) index with:(PBClass*) value {
+  [result.mutableOpusClassList replaceObjectAtIndex:index withObject:value];
+  return self;
+}
+- (PBFeed_Builder*) addAllOpusClass:(NSArray*) values {
+  if (result.mutableOpusClassList == nil) {
+    result.mutableOpusClassList = [NSMutableArray array];
+  }
+  [result.mutableOpusClassList addObjectsFromArray:values];
+  return self;
+}
+- (PBFeed_Builder*) clearOpusClassList {
+  result.mutableOpusClassList = nil;
+  return self;
+}
+- (PBFeed_Builder*) addOpusClass:(PBClass*) value {
+  if (result.mutableOpusClassList == nil) {
+    result.mutableOpusClassList = [NSMutableArray array];
+  }
+  [result.mutableOpusClassList addObject:value];
   return self;
 }
 @end

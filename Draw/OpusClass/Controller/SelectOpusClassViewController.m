@@ -29,14 +29,64 @@
     return self;
 }
 
-- (id)initWithSelectedTags:(NSArray*)selectedTags arrayForSelection:(NSArray*)arrayForSelection
+- (id)initWithSelectedTags:(NSArray*)selectedTags
+         arrayForSelection:(NSArray*)arrayForSelection
+                  callback:(SelectOpusClassResultHandler)callback;
 {
     self = [self initWithNibName:nil bundle:nil];
     if (self) {
         self.modelArr1 = selectedTags;
         self.modelArrayForSelect = arrayForSelection;
+        self.callback = callback;
     }
     return self;
+}
+
++ (void)showInViewController:(PPViewController*)viewController
+                selectedTags:(NSArray*)selectedTags
+           arrayForSelection:(NSArray*)arrayForSelection
+                    callback:(SelectOpusClassResultHandler)callback
+{
+    SelectOpusClassViewController* vc = [[SelectOpusClassViewController alloc] initWithSelectedTags:selectedTags
+                                                                                  arrayForSelection:arrayForSelection
+                                                                                           callback:callback];
+    [viewController.navigationController pushViewController:vc animated:YES];
+    [vc release];
+}
+
+- (void)clickBack:(id)sender
+{
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
+#define MAX_SELECT_CLASS_COUNT  4
+
+
+
+- (void)clickSubmit:(id)sender
+{
+    NSMutableArray* selected = [NSMutableArray array];
+    for (ClassTagView* view in _viewArr1){
+        [selected addObject:view.touchViewModel];
+        PPDebug(@"<submit opus class> name=%@, id=%@", view.touchViewModel.name, view.touchViewModel.classId);
+    }
+
+    if ([selected count] == 0){
+        POSTMSG2(NSLS(@"kOpusClassCountZero"), 3);
+        return;
+    }
+    else if ([selected count] > MAX_SELECT_CLASS_COUNT){
+        NSString* msg = [NSString stringWithFormat:NSLS(@"kExceedMaxOpusClass"), MAX_SELECT_CLASS_COUNT];
+        POSTMSG2(msg, 3);
+        return;
+    }
+    
+    [self.navigationController popViewControllerAnimated:YES];
+    
+    if (self.callback){
+        _callback(0, selected, self.modelArrayForSelect);
+        self.callback = nil;
+    }
 }
 
 - (NSMutableArray*)getTagsForSelection:(NSArray*)selectedArray
@@ -68,13 +118,19 @@
     return retArray;
 }
 
+
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
 
     [CommonTitleView createTitleView:self.view];
-    [[CommonTitleView titleView:self.view] setTitle:NSLS(@"设置分类")];
+    [[CommonTitleView titleView:self.view] setTitle:NSLS(@"kSelectOpusClassTitle")];
+    [[CommonTitleView titleView:self.view] setTarget:self];
+    [[CommonTitleView titleView:self.view] setBackButtonSelector:@selector(clickBack:)];
+    [[CommonTitleView titleView:self.view] setRightButtonSelector:@selector(clickSubmit:)];
+    [[CommonTitleView titleView:self.view] setRightButtonTitle:NSLS(@"kSubmitOpusClass")];
     
     [self setDefaultBGImage];
     
@@ -87,7 +143,7 @@
     CGPoint center;
     
     _titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(110, TAG_LABEL_START_Y, LABEL_WIDTH, LABEL_HEIGHT)];
-    _titleLabel.text = @"已选择标签";
+    _titleLabel.text = NSLS(@"kSelectedClass");
     [_titleLabel setTextAlignment:NSTextAlignmentCenter];
     [_titleLabel setTextColor:TAG_LABEL_TEXT_COLOR];
     [_titleLabel setBackgroundColor:TAG_LABEL_BG_COLOR];
@@ -103,7 +159,7 @@
 
     
     _titleLabel2 = [[UILabel alloc] initWithFrame:CGRectMake(110, KTableStartPointY + KButtonHeight * (array2StartY - 1), LABEL_WIDTH, LABEL_HEIGHT)];
-    _titleLabel2.text = @"请选择作品分类";
+    _titleLabel2.text = NSLS(@"kClassForSelection");
     [_titleLabel2 setTextAlignment:NSTextAlignmentCenter];
     [_titleLabel2 setTextColor:TAG_LABEL_TEXT_COLOR];
     [_titleLabel2 setBackgroundColor:TAG_LABEL_BG_COLOR];
@@ -135,6 +191,7 @@
         touchView.label.text = [[_modelArr1 objectAtIndex:i] title];
         [touchView.label setTextAlignment:NSTextAlignmentCenter];
         [touchView setMoreChannelsLabel:_titleLabel2];
+        [touchView setSelectedChannelsLabel:_titleLabel];
         touchView->_viewArr11 = _viewArr1;
         touchView->_viewArr22 = _viewArr2;
         [touchView setTouchViewModel:[_modelArr1 objectAtIndex:i]];
@@ -156,6 +213,8 @@
 //        [touchView.label setTextColor:TAG_BUTTON_TEXT_COLOR];
         [touchView.label setTextAlignment:NSTextAlignmentCenter];
         [touchView setMoreChannelsLabel:_titleLabel2];
+        [touchView setSelectedChannelsLabel:_titleLabel];
+        
         touchView->_viewArr11 = _viewArr1;
         touchView->_viewArr22 = _viewArr2;
         [touchView setTouchViewModel:[modelArr2 objectAtIndex:i]];
@@ -178,6 +237,7 @@
 }
 
 - (void)dealloc{
+
     [_backButton release];
     [_titleArr release];
     [_urlStringArr release];
@@ -185,6 +245,11 @@
     [_titleLabel release];
     [_viewArr1 release];
     [_viewArr2 release];
+    
+    PPRelease(_modelArr1);
+    PPRelease(_modelArrayForSelect);
+    self.callback = nil;
+
     [super dealloc];
 }
 
