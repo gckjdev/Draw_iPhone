@@ -180,7 +180,8 @@ typedef enum{
     [self initTabButtons];
     PPDebug(@"initTabButtons done!");
     
-    NSString* title = isDrawApp() ? NSLS(@"kRank") : NSLS(@"kSingTop");
+    NSString* defaultTitle = isDrawApp() ? NSLS(@"kRank") : NSLS(@"kSingTop");
+    NSString* title = _opusClassInfo ? _opusClassInfo.name : defaultTitle;
     self.titleView = [CommonTitleView createTitleView:self.view];
     
     [self.titleView setTitle:title];
