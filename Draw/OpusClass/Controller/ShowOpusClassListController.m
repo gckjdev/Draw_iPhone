@@ -11,6 +11,7 @@
 #import "OpusClassInfo.h"
 #import "OpusClassMenuItem.h"
 #import "UIViewController+BGImage.h"
+#import "HotController.h"
 
 @interface ShowOpusClassListController ()
 
@@ -79,6 +80,10 @@
                  clickHandler:^(NSObject *menuItemRefObject) {
                      OpusClassInfo* info = (OpusClassInfo*)menuItemRefObject;
                      PPDebug(@"click menu %@", info.name);
+                     
+                     HotController* hotController = [[HotController alloc] initWithOpusClass:info];
+                     [self.navigationController pushViewController:hotController animated:YES];
+                     [hotController release];
                  }];
     
     //Do any customization of the grid container

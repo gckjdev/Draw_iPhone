@@ -12,6 +12,7 @@
 //#import "TopPlayerView.h"
 #import "UserService.h"
 #import "OpusImageBrower.h"
+#import "OpusClassInfo.h"
 
 @interface HotController : CommonTabController<FeedServiceDelegate,RankViewDelegate,UserServiceDelegate, UIActionSheetDelegate, OpusImageBrowerDelegate>
 {
@@ -19,7 +20,10 @@
 }
 
 @property (nonatomic, retain) IBOutlet UIButton *hotRankSettingButton;
+@property (nonatomic, retain) OpusClassInfo* opusClassInfo;
 
 - (IBAction)clickSetHot:(id)sender;
+
+- (id)initWithOpusClass:(OpusClassInfo*)opusClassInfo;
 
 @end

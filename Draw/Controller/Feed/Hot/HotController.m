@@ -33,6 +33,11 @@ typedef enum{
     RankTypeRecommend = FeedListTypeRecommend,
     RankTypeVIP = FeedListTypeVIP,
     
+//    RankTypeOpusClassHistory = FeedListTypeClassAlltimeTop,
+//    RankTypeOpusClassHot = FeedListTypeClassHotTop,
+//    RankTypeOpusClassNew = FeedListTypeClassLatest,
+//    RankTypeOpusClassRecommend = FeedListTypeClassFeature,
+    
 }RankType;
 
 
@@ -60,6 +65,16 @@ typedef enum{
             _defaultTabIndex = 1;            
         }
         
+    }
+    return self;
+}
+
+- (id)initWithOpusClass:(OpusClassInfo*)opusClassInfo
+{
+    self = [self init];
+    if (self){
+        _defaultTabIndex = 1;   // default is hot top
+        self.opusClassInfo = opusClassInfo;
     }
     return self;
 }
@@ -112,6 +127,7 @@ typedef enum{
 
 - (void)dealloc
 {
+    PPRelease(_opusClassInfo);
     PPRelease(_hotRankSettingButton);
     [super dealloc];
 }
@@ -469,9 +485,19 @@ typedef enum{
 
 #pragma mark common tab controller
 
+static NSInteger tabIdForOpusClass[] = {RankTypeHistory, RankTypeHot, RankTypeNew};
+static NSInteger tabIdForNormal[] = {RankTypeHistory, RankTypeHot, RankTypeRecommend, RankTypeNew, RankTypeVIP};
+
+
+
 - (NSInteger)tabCount
 {
-    return 5;
+    if (_opusClassInfo){
+        return sizeof(tabIdForOpusClass)/sizeof(NSInteger);
+    }
+    else{
+        return sizeof(tabIdForNormal)/sizeof(NSInteger);
+    }
 }
 - (NSInteger)fetchDataLimitForTabIndex:(NSInteger)index
 {
@@ -479,36 +505,88 @@ typedef enum{
 }
 - (NSInteger)tabIDforIndex:(NSInteger)index
 {
-    NSInteger tabId[] = {RankTypeHistory, RankTypeHot, RankTypeRecommend, RankTypeNew, RankTypeVIP};
-    return tabId[index];
+    if (_opusClassInfo){
+        return tabIdForOpusClass[index];
+    }
+    else{
+//        NSInteger tabId[] = {RankTypeHistory, RankTypeHot, RankTypeRecommend, RankTypeNew, RankTypeVIP};
+        return tabIdForNormal[index];
+    }
 }
 
 - (NSString *)tabNoDataTipsforIndex:(NSInteger)index
 {
-    NSString *tabDesc[] = {NSLS(@"kNoRankHistory"),NSLS(@"kNoRankHot"), NSLS(@"kNoRecommend"),NSLS(@"kNoRankNew"),NSLS(@"kNoRankVip")};
+    NSString *tabDescOpusClass[] = { NSLS(@"kNoRankHistory"),NSLS(@"kNoRankHot"), NSLS(@"kNoRankNew")};
+    NSString *tabDescNormal[] = {NSLS(@"kNoRankHistory"),NSLS(@"kNoRankHot"), NSLS(@"kNoRecommend"),NSLS(@"kNoRankNew"),NSLS(@"kNoRankVip")};
     
-    return tabDesc[index];
+    if (_opusClassInfo){
+        return tabDescOpusClass[index];
+    }
+    else{
+        return tabDescNormal[index];
+    }
 }
 
 - (NSString *)tabTitleforIndex:(NSInteger)index
 {
+    NSString *tabTitleOpusClass[] = {NSLS(@"kRankHistory"),NSLS(@"kRankHot"), NSLS(@"kRankNew")};
     NSString *tabTitle[] = {NSLS(@"kRankHistory"),NSLS(@"kRankHot"), NSLS(@"kLittleGeeRecommend"),NSLS(@"kRankNew"),NSLS(@"kRankVip")};
     
-    return tabTitle[index];
+    if (_opusClassInfo){
+        return tabTitleOpusClass[index];
+    }
+    else{
+        return tabTitle[index];
+    }
 
+}
+
+- (int)getFeedTypeForOpusClass:(int)tabID
+{
+    switch (tabID){
+        case RankTypeNew:
+            return FeedListTypeClassLatest;
+        case RankTypeRecommend:
+            return FeedListTypeClassFeature;
+        case RankTypeHistory:
+            return FeedListTypeClassAlltimeTop;
+        case RankTypeHot:
+        default:
+            return FeedListTypeClassHotTop;
+    }
+}
+
+- (int)getTabIDByType:(int)type
+{
+    switch (type){
+        case FeedListTypeClassLatest:
+            return RankTypeNew;
+        case FeedListTypeClassFeature:
+            return RankTypeRecommend;
+        case FeedListTypeClassAlltimeTop:
+            return RankTypeHistory;
+        case FeedListTypeClassHotTop:
+        default:
+            return RankTypeHot;
+    }
 }
 
 - (void)serviceLoadDataForTabID:(NSInteger)tabID
 {
-    
     [self showActivityWithText:NSLS(@"kLoading")];
     TableTab *tab = [_tabManager tabForID:tabID];
     if (tab) {
-        if (tabID == RankTypeNew) {
-            [[FeedService defaultService] getFeedList:FeedListTypeLatest offset:tab.offset limit:tab.limit delegate:self];        
+        if (_opusClassInfo){
+            int feedType = [self getFeedTypeForOpusClass:tabID];
+            [[FeedService defaultService] getFeedList:feedType classId:_opusClassInfo.classId offset:tab.offset limit:tab.limit delegate:self];
         }
-        else {
-            [[FeedService defaultService] getFeedList:tabID offset:tab.offset limit:tab.limit delegate:self];        
+        else{
+            if (tabID == RankTypeNew) {
+                [[FeedService defaultService] getFeedList:FeedListTypeLatest classId:_opusClassInfo.classId offset:tab.offset limit:tab.limit delegate:self];
+            }
+            else {
+                [[FeedService defaultService] getFeedList:tabID classId:_opusClassInfo.classId  offset:tab.offset limit:tab.limit delegate:self];
+            }
         }
     }
 }
@@ -521,11 +599,17 @@ typedef enum{
             resultCode:(NSInteger)resultCode
 {
     PPDebug(@"<didGetFeedList> list count = %d ", [feedList count]);
+    
+    int tabID = type;
+    if (_opusClassInfo){
+        tabID = [self getTabIDByType:type];
+    }
+    
     [self hideActivity];
     if (resultCode == 0) {
-        [self finishLoadDataForTabID:type resultList:feedList];
+        [self finishLoadDataForTabID:tabID resultList:feedList];
     }else{
-        [self failLoadDataForTabID:type];
+        [self failLoadDataForTabID:tabID];
     }
 }
 
