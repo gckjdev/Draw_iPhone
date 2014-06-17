@@ -218,7 +218,7 @@ typedef enum{
 
 - (void)setRightButtonRefresh
 {
-    [self.hotRankSettingButton setHidden:NO];
+    [self.hotRankSettingButton setHidden:YES];
     [self.titleView setRightButtonAsRefresh];
     [self.titleView setRightButtonSelector:@selector(clickRefreshButton:)];
 }

@@ -15,6 +15,8 @@
 #import "Draw.pb-c.h"
 #import "GameBasic.pb-c.h"
 #import "ContestManager.h"
+#import "OpusClassInfo.h"
+#import "OpusClassInfoManager.h"
 
 @implementation DrawFeed
 
@@ -495,6 +497,21 @@
         }
     }
     return [NSURL URLWithString:url];
+}
+
+- (NSArray*)opusClassInfoList
+{
+    NSMutableArray* retArray = [NSMutableArray array];
+    NSArray* allOpusClassList = [[OpusClassInfoManager defaultManager] opusClassList];
+    for (PBClass* opusClass in self.pbFeed.opusClassList){
+        for (OpusClassInfo* info in allOpusClassList){
+            if ([info.classId isEqualToString:opusClass.classId]){
+                [retArray addObject:info];
+            }
+        }
+    }
+    
+    return retArray;
 }
 
 //- (BOOL)hasDrawActions

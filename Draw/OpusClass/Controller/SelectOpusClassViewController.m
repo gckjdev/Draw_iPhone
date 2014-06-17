@@ -35,6 +35,18 @@
 {
     self = [self initWithNibName:nil bundle:nil];
     if (self) {
+        
+//        // do this to make sure that all data from selection array
+//        NSMutableArray* arr = [NSMutableArray array];
+//        for (OpusClassInfo* selected in selectedTags){
+//            for (OpusClassInfo* classInfo in arrayForSelection){
+//                if ([selected.classId isEqualToString:classInfo.classId]){
+//                    [arr addObject:classInfo];
+//                }
+//            }
+//        }
+//        self.modelArr1 = arr;
+        
         self.modelArr1 = selectedTags;
         self.modelArrayForSelect = arrayForSelection;
         self.callback = callback;

@@ -736,18 +736,19 @@ static NSDictionary* DRAW_MENU_IMAGE_DICT = nil;
             [self.navigationController pushViewController:vc animated:YES];
         } break;
         case HomeMenuTypeDrawPhoto: {
-//            GalleryController* gallery = [[[GalleryController alloc] init] autorelease];
-//            [self.navigationController pushViewController:gallery animated:YES];
+            GalleryController* gallery = [[[GalleryController alloc] init] autorelease];
+            [self.navigationController pushViewController:gallery animated:YES];
 
-            ShowOpusClassListController* vc = [[ShowOpusClassListController alloc] init];
-            [self.navigationController pushViewController:vc animated:YES];
-            [vc release];
             
         } break;
         case HomeMenuTypeDrawPainter:{
             PainterController *pc = [[PainterController alloc] init];
             [self.navigationController pushViewController:pc animated:YES];
             [pc release];
+            break;
+        }
+        case HomeMenuTypeOpusClass:{
+            [self enterOpusClass];
             break;
         }
         
@@ -949,11 +950,12 @@ int *getDrawMainMenuTypeListHasNewContest()
         HomeMenuTypeGroup,
         HomeMenuTypeDrawBBS,
         HomeMenuTypeDrawRank,
-        HomeMenuTypeDrawFreeCoins,
+        HomeMenuTypeOpusClass,
         HomeMenuTypeDrawContest,
         
         HomeMenuTypeDrawBigShop,
-        HomeMenuTypeDrawPhoto,
+        HomeMenuTypeDrawFreeCoins,
+//        HomeMenuTypeDrawPhoto,
         HomeMenuTypeDrawMore,
         HomeMenuTypeDrawPainter,
         HomeMenuTypeDrawGame,
@@ -972,11 +974,12 @@ int *getDrawMainMenuTypeListWithoutFreeCoins()
         HomeMenuTypeGroup,
         HomeMenuTypeDrawBBS,
         HomeMenuTypeDrawRank,
-        HomeMenuTypeDrawFreeCoins,
+        HomeMenuTypeOpusClass,
         HomeMenuTypeDrawContest,
         
         HomeMenuTypeDrawBigShop,
-        HomeMenuTypeDrawPhoto,
+        HomeMenuTypeDrawFreeCoins,
+//        HomeMenuTypeDrawPhoto,
         HomeMenuTypeDrawMore,
         HomeMenuTypeDrawPainter,
         HomeMenuTypeDrawGame,

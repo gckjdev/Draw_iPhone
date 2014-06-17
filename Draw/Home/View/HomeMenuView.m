@@ -128,6 +128,9 @@
         case HomeMenuTypeDrawPhoto: {
             return NSLS(@"kGallery");
         }
+        case HomeMenuTypeOpusClass: {
+            return NSLS(@"kHomeMenuOpusClass");
+        }
         case HomeMenuTypeDrawPainter: {
             return NSLS(@"kPainter");
         }
@@ -261,7 +264,9 @@
         case HomeMenuTypeDrawPlayWithFriend:{
             return [imageManager drawPlayWithFriend];
         }
-        case HomeMenuTypeDrawPhoto: {
+        case HomeMenuTypeDrawPhoto:
+        case HomeMenuTypeOpusClass:
+        {
             return [imageManager userPhoto];
         }
             

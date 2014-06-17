@@ -1394,19 +1394,12 @@ typedef enum{
         }
         else if (buttonIndex == indexOfSetClass){
             [SelectOpusClassViewController showInViewController:self
-                                                   selectedTags:nil
+                                                   selectedTags:[self.feed opusClassInfoList]
                                               arrayForSelection:nil
                                                        callback:^(int resultCode, NSArray *selectedArray, NSArray *arrayForSelection) {
-                
-                                                           NSMutableArray* classList = [NSMutableArray array];
-                                                           for (OpusClassInfo* classInfo in selectedArray){
-                                                               if (classInfo.classId){
-                                                                   [classList addObject:classInfo.classId];
-                                                               }
-                                                           }
                                                            
                                                            [[FeedService defaultService] setOpusClass:self.feed.feedId
-                                                                                            classList:classList
+                                                                                            classList:selectedArray
                                                                                           resultBlock:^(int resultCode) {
                                                                                               
                                                                                               if (resultCode == 0){

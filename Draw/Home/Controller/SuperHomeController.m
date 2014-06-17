@@ -39,6 +39,7 @@
 #import "PainterController.h"
 #import "GroupHomeController.h"
 #import "FreeIngotController.h"
+#import "ShowOpusClassListController.h"
 
 static NSDictionary* DEFAULT_MENU_TITLE_DICT = nil;
 static NSDictionary* DEFAULT_MENU_IMAGE_DICT = nil;
@@ -624,6 +625,12 @@ static NSDictionary* DEFAULT_MENU_IMAGE_DICT = nil;
     [self.navigationController pushViewController:vc animated:YES];
 }
 
+- (void)enterOpusClass{
+    ShowOpusClassListController* vc = [[ShowOpusClassListController alloc] init];
+    [self.navigationController pushViewController:vc animated:YES];
+    [vc release];
+}
+
 - (void)enterMore
 {
     [[AnalyticsManager sharedAnalyticsManager] reportClickHomeElements:HOME_BOTTOM_MORE];
@@ -889,6 +896,7 @@ static NSDictionary* DEFAULT_MENU_IMAGE_DICT = nil;
                                  @(HomeMenuTypeDrawShop) : NSLS(@"kHomeMenuTypeDrawShop"),
                                  @(HomeMenuTypeDrawPainter) : NSLS(@"kPainter"),
                                  @(HomeMenuTypeDrawPhoto) : NSLS(@"kGallery"),
+                                 @(HomeMenuTypeOpusClass) : NSLS(@"kHomeMenuOpusClass"),
                                  @(HomeMenuTypeDrawApps) : NSLS(@"kMore_apps"),
                                  @(HomeMenuTypeDrawCharge) : NSLS(@"kChargeTitle"),
                                  @(HomeMenuTypeDrawFreeCoins) : NSLS(@"kCheckIn"), //NSLS(@"kFreeIngots"),
@@ -927,6 +935,7 @@ static NSDictionary* DEFAULT_MENU_IMAGE_DICT = nil;
                                  @(HomeMenuTypeDrawBigShop) : [imageManager drawHomeBigShop],
                                  @(HomeMenuTypeDrawPainter) : [imageManager drawHomePainter],
                                  @(HomeMenuTypeDrawPhoto) : [imageManager userPhoto],
+                                 @(HomeMenuTypeOpusClass) : [imageManager userPhoto],
                                  @(HomeMenuTypeDrawFreeCoins) : [imageManager drawFreeCoins],
                                  
                                  // bottom

@@ -19,7 +19,7 @@
 #import "UIImageExt.h"
 #import "FeedDownloadService.h"
 #import "PPGameNetworkRequest.h"
-
+#import "OpusClassInfo.h"
 
 
 #define GET_FEED_DETAIL_QUEUE   @"GET_FEED_DETAIL_QUEUE"
@@ -1352,13 +1352,32 @@ static FeedService *_staticFeedService = nil;
 
 
 - (void)setOpusClass:(NSString*)opusId
-           classList:(NSArray*)classList
+           classList:(NSArray*)opusClassInfoList
          resultBlock:(FeedActionResultBlock)resultBlock
 {
-    if (opusId == nil || classList == nil){
+    if (opusId == nil || opusClassInfoList == nil){
         return;
     }
     
+    NSMutableSet* classSet = [NSMutableSet set];
+    for (OpusClassInfo* classInfo in opusClassInfoList){
+        
+        // add classId
+        if ([classInfo.classId length] > 0){
+            [classSet addObject:classInfo.classId];
+        }
+
+        // add parent class
+        if ([classInfo.parentClassInfo.classId length] > 0){
+            [classSet addObject:classInfo.parentClassInfo.classId];
+        }
+    }
+
+    // move from set to array
+    NSMutableArray* classList = [NSMutableArray array];
+    for (NSString* classId in classSet){
+        [classList addObject:classId];
+    }
     NSString* classListString = [classList componentsJoinedByString:PARA_DEFAULT_SEPERATOR];
     
     dispatch_async(workingQueue, ^{

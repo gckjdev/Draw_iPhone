@@ -102,4 +102,6 @@ typedef enum{
 - (BOOL)canThrowTomato;
 - (BOOL)canSave;
 
+- (NSArray*)opusClassInfoList;
+
 @end
