@@ -59,49 +59,9 @@
     // Dispose of any resources that can be recreated.
 }
 
-
-//- (CGFloat) gridView:(UIGridView *)grid widthForColumnAt:(int)columnIndex
-//{
-//	return 80;
-//}
-//
-//- (CGFloat) gridView:(UIGridView *)grid heightForRowAt:(int)rowIndex
-//{
-//	return 80;
-//}
-//
-//- (NSInteger) numberOfColumnsOfGridView:(UIGridView *) grid
-//{
-//	return 4;
-//}
-//
-//
-//- (NSInteger) numberOfCellsOfGridView:(UIGridView *) grid
-//{
-//	return 33;
-//}
-//
-//- (UIGridViewCell *) gridView:(UIGridView *)grid cellForRowAt:(int)rowIndex AndColumnAt:(int)columnIndex
-//{
-//	Cell *cell = (Cell *)[grid dequeueReusableCell];
-//	
-//	if (cell == nil) {
-//		cell = [[Cell alloc] init];
-//	}
-//	
-//	cell.label.text = [NSString stringWithFormat:@"(%d,%d)", rowIndex, columnIndex];
-//	
-//	return cell;
-//}
-//
-//- (void) gridView:(UIGridView *)grid didSelectRowAt:(int)rowIndex AndColumnAt:(int)colIndex
-//{
-//	NSLog(@"%d, %d clicked", rowIndex, colIndex);
-//}
-
 #define COLUMN_COUNT        4
-#define COLUMN_MARGIN       15
-#define COLUMN_HEIGHT       80
+#define COLUMN_MARGIN       (ISIPAD ? 15 : 7)
+#define COLUMN_HEIGHT       (ISIPAD ? 80 : 35)
 
 #define MENU_VIEW_TAG       20140617
 
@@ -114,7 +74,7 @@
     //Set your grid options here. If this is a universal app, consider different settings for iPhone/iPad
     _menuView = [[THGridMenu alloc] initWithColumns:COLUMN_COUNT
                                          marginSize:COLUMN_MARGIN
-                                         gutterSize:30
+                                         gutterSize:(ISIPAD ? 30 : 15)
                                           rowHeight:COLUMN_HEIGHT
                  clickHandler:^(NSObject *menuItemRefObject) {
                      OpusClassInfo* info = (OpusClassInfo*)menuItemRefObject;
