@@ -23,6 +23,7 @@
 #import "UserManager.h"
 #import "GroupManager.h"
 #import "MyPaint.h"
+#import "FeedService.h"
 
 #define DEVICE_INFO_SEPERATOR   @"_"
 
@@ -1611,7 +1612,6 @@
         str = [str stringByAddQueryParameter:PARA_COMPLETE_DATE intValue:draft.completeDate];
         str = [str stringByAddQueryParameter:PARA_SPEND_TIME intValue:draft.spendTime];
         
-        
         str = [str stringByAddQueryParameter:PARA_IS_DATA_COMPRESSED boolValue:isCompressed];
         
         if ([targetUid length] != 0) {
@@ -1625,6 +1625,11 @@
         // add device model
         NSString* deviceModel = [DeviceDetection platform];
         str = [str stringByAddQueryParameter:PARA_DEVICEMODEL value:deviceModel];
+        
+        if ([draft.selectedClassList count] > 0){
+            NSString* classListString = [FeedService opusClassStringList:draft.selectedClassList];
+            str = [str stringByAddQueryParameter:PARA_CLASS value:classListString];
+        }
         
 //        if (isZipData){
 //            str = [str stringByAddQueryParameter:PARA_IS_DATA_ZIP intValue:1];

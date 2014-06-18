@@ -280,4 +280,6 @@ typedef void (^ GetFeedListCompleteBlock)(int resultCode, NSArray* feedList);
            classList:(NSArray*)classList
          resultBlock:(FeedActionResultBlock)resultBlock;
 
++ (NSString*)opusClassStringList:(NSArray*)opusClassInfoList;
+
 @end

@@ -219,6 +219,8 @@ typedef void (^ URLResultBlock) (NSURL *url, NSError *error);
                icon:(UIImage *)icon
            callback:(URLResultBlock)callback;
 
+- (void)dismissGroup:(NSString *)groupId
+           callback:(SimpleResultBlock)callback;
 
 - (void)syncGroupRoles;
 

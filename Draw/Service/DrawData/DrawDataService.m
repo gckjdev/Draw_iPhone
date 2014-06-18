@@ -281,8 +281,8 @@ static DrawDataService* _defaultDrawDataService = nil;
                                              draft:draft];
     
     if ([drawData length] == 0){
-        if ([viewController respondsToSelector:@selector(didCreateDraw:)]){
-            [viewController didCreateDraw:ERROR_MEMORY];
+        if ([viewController respondsToSelector:@selector(didCreateDraw:opusId:)]){
+            [viewController didCreateDraw:ERROR_MEMORY opusId:nil];
         }
         return;
     }
@@ -316,14 +316,14 @@ static DrawDataService* _defaultDrawDataService = nil;
                                                     progressDelegate:viewController];
         
         dispatch_async(dispatch_get_main_queue(), ^{
-            if ([viewController respondsToSelector:@selector(didCreateDraw:)]){
-                [viewController didCreateDraw: output.resultCode];
+            if ([viewController respondsToSelector:@selector(didCreateDraw:opusId:)]){
+                NSString* opusId = [output.jsonDataDict objectForKey:PARA_FEED_ID];
+                [viewController didCreateDraw: output.resultCode opusId:opusId];
             }
         });
         NSString *actionId = [output.jsonDataDict objectForKey:PARA_FEED_ID];
         if ([actionId length] != 0) {
             //store the draw action.
-            
         }
     });
 }
@@ -363,8 +363,8 @@ static DrawDataService* _defaultDrawDataService = nil;
                                  draft:draft];
     
     if ([drawData length] == 0){
-        if ([viewController respondsToSelector:@selector(didCreateDraw:)]){
-            [viewController didCreateDraw:ERROR_MEMORY];  
+        if ([viewController respondsToSelector:@selector(didCreateDraw:opusId:)]){
+            [viewController didCreateDraw:ERROR_MEMORY opusId:nil];
         }        
         return nil;
     }
@@ -398,15 +398,11 @@ static DrawDataService* _defaultDrawDataService = nil;
                                                     progressDelegate:viewController];
 
         dispatch_async(dispatch_get_main_queue(), ^{
-            if ([viewController respondsToSelector:@selector(didCreateDraw:)]){
-                [viewController didCreateDraw: output.resultCode];
+            NSString *actionId = [output.jsonDataDict objectForKey:PARA_FEED_ID];
+            if ([viewController respondsToSelector:@selector(didCreateDraw:opusId:)]){
+                [viewController didCreateDraw: output.resultCode opusId:actionId];
             }
         });
-        NSString *actionId = [output.jsonDataDict objectForKey:PARA_FEED_ID];
-        if ([actionId length] != 0) {
-            //store the draw action.
-            
-        }
     });
     
     return drawData;

@@ -27,7 +27,7 @@
 - (void)didFindRecentDraw:(NSArray *)remoteDrawDataList result:(int)resultCode;
 - (void)didMatchDraw:(DrawFeed *)feed result:(int)resultCode;
 
-- (void)didCreateDraw:(int)resultCode;
+- (void)didCreateDraw:(int)resultCode opusId:(NSString*)opusId;
 - (void)didGuessOfflineDraw:(int)resultCode;
 
 - (void)didSaveOpus:(BOOL)succ;

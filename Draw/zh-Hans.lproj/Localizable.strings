@@ -2736,3 +2736,10 @@
 "kExceedMaxOpusClass" = "最多只能选择%d个作品分类或标签，请减少当前选择";
 "kOpusClassTitle" = "作品分类浏览";
 "kHomeMenuOpusClass" = "分类";
+
+"kSubmitOpusSuccess" = "作品提交成功，请继续设置作品分类/标签";
+"kSetOpusClassSucc" = "分类设置成功";
+"kSetOpusClassFail" = "分类设置失败";
+"kDismissGroup" = "解散家族";
+"kCannotDismissGroupWhileHavingMember" = "家族内还有成员或者嘉宾的时候，不能解散家族，请先移除所有嘉宾和成员";
+"kDeleteGroupSucc" = "请求成功，家族已解散";

@@ -18,6 +18,6 @@
 + (OpusClassInfoManager*)defaultManager;
 - (void)autoUpdate;
 
-- (NSArray*)defaultSelectedClass;
+//- (NSArray*)defaultSelectedClass;
 
 @end

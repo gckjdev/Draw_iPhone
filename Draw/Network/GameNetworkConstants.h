@@ -747,6 +747,7 @@
 
 #define METHOD_HANDLE_JOIN_REQUEST @"handelJoinGroupRequest"
 #define METHOD_EDIT_GROUP @"editGroup"
+#define METHOD_DISMISS_GROUP @"dismissGroup"
 #define METHOD_INVITE_GROUPMEMBERS @"inviteGroupUser"
 #define METHOD_GET_GROUP_MEMBERS @"getGroupMembers"
 #define METHOD_EXPEL_GROUPUSER @"expelGroupUser"

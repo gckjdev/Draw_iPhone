@@ -1350,13 +1350,10 @@ static FeedService *_staticFeedService = nil;
     
 }
 
-
-- (void)setOpusClass:(NSString*)opusId
-           classList:(NSArray*)opusClassInfoList
-         resultBlock:(FeedActionResultBlock)resultBlock
++ (NSString*)opusClassStringList:(NSArray*)opusClassInfoList
 {
-    if (opusId == nil || opusClassInfoList == nil){
-        return;
+    if ([opusClassInfoList count] == 0){
+        return @"";
     }
     
     NSMutableSet* classSet = [NSMutableSet set];
@@ -1366,20 +1363,36 @@ static FeedService *_staticFeedService = nil;
         if ([classInfo.classId length] > 0){
             [classSet addObject:classInfo.classId];
         }
-
+        
         // add parent class
         if ([classInfo.parentClassInfo.classId length] > 0){
             [classSet addObject:classInfo.parentClassInfo.classId];
         }
     }
-
+    
     // move from set to array
     NSMutableArray* classList = [NSMutableArray array];
     for (NSString* classId in classSet){
         [classList addObject:classId];
     }
-    NSString* classListString = [classList componentsJoinedByString:PARA_DEFAULT_SEPERATOR];
     
+    NSString* classListString = [classList componentsJoinedByString:PARA_DEFAULT_SEPERATOR];
+    if ([classList count] == 0){
+        return @"";
+    }
+    
+    return classListString;
+}
+
+- (void)setOpusClass:(NSString*)opusId
+           classList:(NSArray*)opusClassInfoList
+         resultBlock:(FeedActionResultBlock)resultBlock
+{
+    if (opusId == nil || opusClassInfoList == nil){
+        return;
+    }
+    
+    NSString* classListString = [FeedService opusClassStringList:opusClassInfoList];
     dispatch_async(workingQueue, ^{
         
         NSAutoreleasePool *subPool = [[NSAutoreleasePool alloc] init];

@@ -71,6 +71,7 @@
 #import "BBSActionSheet.h"
 
 #import "OpusDesignTime.h"
+#import "SelectOpusClassViewController.h"
 
 @interface OfflineDrawViewController()
 {
@@ -201,6 +202,7 @@
     self.delegate = nil;
     _draft.drawActionList = nil;
 //    PPRelease(_copyPaintImageURL);
+    PPRelease(_selectedClassList);
     PPRelease(_submitOpusFinalImage);
     PPRelease(_submitOpusDrawData);
     PPRelease(_shareWeiboSet);
@@ -436,6 +438,16 @@
             [[DrawRecoveryService defaultService] setDesc:opusDesc];
         }
     }
+}
+
+- (void)setOpusWord:(NSString*)word desc:(NSString *)opusDesc
+{
+    if(_opusDesc != opusDesc){
+        PPRelease(_opusDesc);
+        _opusDesc = [opusDesc retain];
+    }
+    
+    self.word.text = word;
 }
 
 #pragma mark - Auto Recovery Service Methods
@@ -824,7 +836,7 @@
     }];
 }
 
-- (void)didCreateDraw:(int)resultCode
+- (void)didCreateDraw:(int)resultCode opusId:(NSString *)opusId
 {
     [self hideActivity];
     [self hideProgressView];
@@ -847,6 +859,9 @@
                 [[MyPaintManager defaultManager] deleteMyPaint:self.draft];
                 self.draft = nil;
             }
+            
+            self.selectedClassList = nil;
+            
         }else{
             POSTMSG(NSLS(@"kSaveImageFail"));
         }
@@ -858,6 +873,9 @@
         // clean data
         self.submitOpusFinalImage = nil;
         self.submitOpusDrawData = nil;
+        
+        [[LevelService defaultService] addExp:OFFLINE_DRAW_EXP delegate:self];
+        [self shareToWeibo];    // TODO add opusId
         
         CommonDialog *dialog = nil;
         if (self.contest) {
@@ -879,19 +897,20 @@
                                                        style:CommonDialogStyleDoubleButton 
                                                     delegate:self];
             }
+            
+            dialog.tag = DIALOG_TAG_SUBMIT;
+            [dialog showInView:self.view];
+
         }else{
             dialog = [CommonDialog createDialogWithTitle:NSLS(@"kSubmitSuccTitle")
                                                  message:NSLS(@"kSubmitSuccMsg") 
                                                    style:CommonDialogStyleDoubleButton 
                                                 delegate:self];
+             
+             dialog.tag = DIALOG_TAG_SUBMIT;
+             [dialog showInView:self.view];
         }
         
-        dialog.tag = DIALOG_TAG_SUBMIT;
-        [dialog showInView:self.view];
-        
-        [[LevelService defaultService] addExp:OFFLINE_DRAW_EXP delegate:self];
-
-        [self shareToWeibo];
 
     }else if(resultCode == ERROR_CONTEST_END){
         [self alertCommitContestOpusAsNormalOpus:NSLS(@"kContestEnd")];
@@ -1188,7 +1207,7 @@
 }
 
 
-- (void)commitOpus:(NSString *)opusName desc:(NSString *)desc share:(NSSet *)share
+- (void)commitOpus:(NSString *)opusName desc:(NSString *)desc share:(NSSet *)share classList:(NSArray*)classList
 {
     self.submitOpusDrawData = nil;
     self.submitOpusFinalImage = nil;
@@ -1237,6 +1256,7 @@
     
     [draft setSpendTime:_designTime.totalTime];
     [draft setCompleteDate:time(0)];
+    [draft setSelectedClassList:self.selectedClassList];
     
     self.submitOpusDrawData = [[DrawDataService defaultService] createOfflineDraw:drawView.drawActionList
                                                   image:image
@@ -1270,7 +1290,22 @@
                           block:^(BOOL confirm, NSString *subject, NSString *content, NSSet *shareSet) {
        
         if (confirm) {
-            [self commitOpus:subject desc:content share:shareSet];
+            
+            [self setOpusWord:subject desc:content];
+            
+            // show set opus class
+            [SelectOpusClassViewController showInViewController:self
+                                                   selectedTags:self.selectedClassList
+                                              arrayForSelection:nil
+                                                       callback:^(int resultCode, NSArray *selectedArray, NSArray *arrayForSelection) {
+
+                                                           self.selectedClassList = selectedArray;
+                                                           [self commitOpus:subject desc:content share:shareSet classList:selectedArray];
+
+                                                       }];
+                
+            
+            
         }else{
             self.word.text = subject;
             [self setOpusDesc:content];

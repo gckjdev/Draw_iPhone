@@ -62,8 +62,8 @@ typedef enum{
 #define TITLE_ADD_TITLE NSLS(@"kAddTitle")
 #define TITLE_CHANGE_BG NSLS(@"kChangeBG")
 #define TITLE_UPGRADE NSLS(@"kUpgradeGroup")
+#define TITLE_DISMISS NSLS(@"kDismissGroup")
 #define TITLE_QUIT_GROUP NSLS(@"kQuitGroup")
-#define TITLE_DISMISSAL NSLS(@"kDissolveGroup")
 
 #define TITLE_RM_TITLE NSLS(@"kRemoveTitle")
 #define TITLE_EDIT_TITLE NSLS(@"kEditTitle")
@@ -290,6 +290,27 @@ typedef enum{
     
 }
 
+- (void)dismissGroup
+{
+    int memberCount = [[[GroupManager defaultManager] tempMemberList] count];
+    int guestCount = self.group.guestSize;
+    PPDebug(@"group fan count = %d, guest count = %d", memberCount, guestCount);
+    
+    if (memberCount > 1 || guestCount > 0){
+        POSTMSG2(NSLS(@"kCannotDismissGroupWhileHavingMember"), 3);
+        return;
+    }
+    
+    [[GroupService defaultService] dismissGroup:self.group.groupId
+                                      callback:^(NSError *error) {
+                                          if (error == nil){
+                                              // success
+                                              POSTMSG2(NSLS(@"kDeleteGroupSucc"), 3);
+                                              [self.navigationController popToRootViewControllerAnimated:YES];
+                                          }
+                                      }];
+}
+
 - (void)clickManage:(id)sender
 {
     NSMutableArray *titles = [NSMutableArray array];
@@ -302,9 +323,9 @@ typedef enum{
     if ([_groupPermission canQuitGroup]) {
         [titles addObject:TITLE_QUIT_GROUP];
     }
-//    if ([_groupPermission canDismissalGroup]) {
-//        [titles addObject:TITLE_DISMISSAL];
-//    }
+    if ([_groupPermission canDismissalGroup]) {
+        [titles addObject:TITLE_DISMISS];
+    }
 
     BBSActionSheet* sheet = [[BBSActionSheet alloc] initWithTitles:titles callback:^(NSInteger index) {
         NSString *title = titles[index];
@@ -314,10 +335,11 @@ typedef enum{
             [self showAddTitleView];
         }else if([title isEqualToString:TITLE_QUIT_GROUP]){
             [self clickQuit:self.titleView.rightButton];
-        }else if([title isEqualToString:TITLE_DISMISSAL]){
-            //TODO dismissal            
         }else if ([title isEqualToString:TITLE_UPGRADE]){
             [self showUpgradeGroupView];
+        }
+        else if ([title isEqualToString:TITLE_DISMISS]){
+            [self dismissGroup];
         }
     }];
     [sheet showInView:self.view showAtPoint:self.view.center animated:YES];

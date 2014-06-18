@@ -42,6 +42,7 @@
 @synthesize completeDate;
 @synthesize spendTime;
 @synthesize strokes;
+@synthesize selectedClassList = _selectedClassList;
 
 #define IMAGE_SUFFIX @".png"
 #define THUMB_IMAGE_SUFFIX @"_m.png"
@@ -127,6 +128,7 @@
 
 - (void)dealloc
 {
+    PPRelease(_selectedClassList);
     PPRelease(_paintImage);
     PPRelease(_thumbImage);
     PPRelease(_drawActionList);

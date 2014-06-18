@@ -57,6 +57,7 @@
 @property (retain, nonatomic) Word *word;
 @property (retain, nonatomic) OpusDesignTime *designTime;
 @property (assign, nonatomic) int64_t totalStroke;
+@property (retain, nonatomic) NSArray *selectedClassList;
 
 @property (assign, nonatomic) id<OfflineDrawDelegate> delegate;
 @property (retain, nonatomic) NSString *targetUid;

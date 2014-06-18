@@ -52,7 +52,7 @@
 @property (nonatomic, assign) int spendTime;
 @property (nonatomic, assign) int64_t strokes;
 @property (nonatomic, assign) int completeDate;
-
+@property (nonatomic, retain) NSArray *selectedClassList;
 
 - (void)updateDrawData;
 

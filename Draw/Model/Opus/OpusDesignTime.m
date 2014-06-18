@@ -48,7 +48,9 @@
     self.state = OPUS_DESIGN_PAUSE;
 
     int addTime = (time(0) - self.lastPauseTime);
-    self.totalTime = self.totalTime + addTime;
+    if (addTime > 0){
+        self.totalTime = self.totalTime + addTime;
+    }
     
     PPDebug(@"<pause> add %d seconds", addTime);
     self.lastPauseTime = time(0);
@@ -77,7 +79,12 @@
     
     self.state = OPUS_DESIGN_END;
 
-    self.totalTime = self.totalTime + (time(0) - self.beginTime);
+    int addTime = (time(0) - self.beginTime);
+    
+    if (addTime > 0){
+        self.totalTime = self.totalTime + addTime;
+    }
+    
     self.lastPauseTime = time(0);   // this is the end time
     
     [self printInfo:@"stop"];
