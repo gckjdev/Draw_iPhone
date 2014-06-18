@@ -136,6 +136,10 @@ typedef enum{
 {
     FeedListType type = tabID;
     if (type != FeedListTypeUnknow) {
+        if (_opusClassInfo){
+            type = [self getFeedTypeForOpusClass:type];
+        }
+        
         NSArray *feedList = [[FeedService defaultService] getCachedFeedList:type];
         if ([feedList count] != 0) {
             [self finishLoadDataForTabID:tabID resultList:feedList];
@@ -150,6 +154,11 @@ typedef enum{
 {
     int tabID = [(UIButton *)sender tag];
     TableTab *tab = [_tabManager tabForID:tabID];
+    if (tab == nil){
+        PPDebug(@"<clickTabButton> but tab not found");
+        return;
+    }
+    
     if ([tab.dataList count] == 0) {
         [self showCachedFeedList:tabID];
     }
@@ -574,9 +583,9 @@ static NSInteger tabIdForNormal[] = {RankTypeHistory, RankTypeHot, RankTypeRecom
 
 - (void)serviceLoadDataForTabID:(NSInteger)tabID
 {
-    [self showActivityWithText:NSLS(@"kLoading")];
     TableTab *tab = [_tabManager tabForID:tabID];
     if (tab) {
+        [self showActivityWithText:NSLS(@"kLoading")];
         if (_opusClassInfo){
             int feedType = [self getFeedTypeForOpusClass:tabID];
             [[FeedService defaultService] getFeedList:feedType classId:_opusClassInfo.classId offset:tab.offset limit:tab.limit delegate:self];
@@ -589,6 +598,10 @@ static NSInteger tabIdForNormal[] = {RankTypeHistory, RankTypeHot, RankTypeRecom
                 [[FeedService defaultService] getFeedList:tabID classId:_opusClassInfo.classId  offset:tab.offset limit:tab.limit delegate:self];
             }
         }
+    }
+    else{
+        PPDebug(@"<serviceLoadDataForTabID> but tab not found");
+        return;
     }
 }
 
