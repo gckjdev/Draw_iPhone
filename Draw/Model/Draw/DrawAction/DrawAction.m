@@ -524,10 +524,10 @@
     pbDrawC.strokes = 0;            // to be set later by calling createPBDrawActionC
     pbDrawC.has_strokes = 1;
     
-    pbDrawC.completedate = draft.completeDate;
+    pbDrawC.completedate = [draft.opusCompleteDate timeIntervalSince1970];
     pbDrawC.has_completedate = 1;
     
-    pbDrawC.spendtime = draft.spendTime;
+    pbDrawC.spendtime = [draft.opusSpendTime intValue];
     pbDrawC.has_spendtime = 1;
     
     //update layers
@@ -562,7 +562,7 @@
     }
     
     // set strokes in draft
-    [draft setStrokes:pbDrawC.strokes];
+    [draft setTotalStrokes:@(pbDrawC.strokes)];
     
     // free memory
     [DrawAction freePBDrawActionC:pbDrawC.drawdata count:pbDrawC.n_drawdata];

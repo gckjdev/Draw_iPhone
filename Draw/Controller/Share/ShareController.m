@@ -116,6 +116,7 @@ typedef enum{
 - (void)didGetAllPaints:(NSArray *)paints
 {
     [self finishLoadDataForTabID:TabTypeAll resultList:paints];
+    [[MyPaintManager defaultManager] addDraftId:paints];
     
     [self hideActivity];
     [self reloadView];
@@ -124,6 +125,7 @@ typedef enum{
 - (void)didGetMyPaints:(NSArray *)paints
 {
     [self finishLoadDataForTabID:TabTypeMine resultList:paints];
+    [[MyPaintManager defaultManager] addDraftId:paints];
     
     [self hideActivity];
     [self reloadView];
@@ -133,6 +135,7 @@ typedef enum{
 - (void)didGetAllDrafts:(NSArray *)paints
 {
     [self finishLoadDataForTabID:TabTypeDraft resultList:paints];
+    [[MyPaintManager defaultManager] addDraftId:paints];
     
     [self hideActivity];
     [self reloadView];

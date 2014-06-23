@@ -1607,10 +1607,10 @@
         str = [str stringByAddQueryParameter:PARA_DESC value:desc];
         str = [str stringByAddQueryParameter:PARA_DEVICETYPE intValue:[DeviceDetection deviceType]];
         
-        str = [str stringByAddQueryParameter:PARA_STROKES intValue:draft.strokes];
+        str = [str stringByAddQueryParameter:PARA_STROKES intValue:[draft.totalStrokes intValue]];
         str = [str stringByAddQueryParameter:PARA_DRAFT_CREATE_DATE intValue:[draft.createDate timeIntervalSince1970]];
-        str = [str stringByAddQueryParameter:PARA_COMPLETE_DATE intValue:draft.completeDate];
-        str = [str stringByAddQueryParameter:PARA_SPEND_TIME intValue:draft.spendTime];
+        str = [str stringByAddQueryParameter:PARA_COMPLETE_DATE intValue:[draft.opusCompleteDate timeIntervalSince1970]];
+        str = [str stringByAddQueryParameter:PARA_SPEND_TIME intValue:[draft.opusSpendTime intValue]];
         
         str = [str stringByAddQueryParameter:PARA_IS_DATA_COMPRESSED boolValue:isCompressed];
         
@@ -2717,7 +2717,10 @@
         str = [str stringByAddQueryParameter:METHOD value:METHOD_REPORT_STATUS];        
         str = [str stringByAddQueryParameter:PARA_APPID value:appId];   
         str = [str stringByAddQueryParameter:PARA_USERID value:userId];   
-        str = [str stringByAddQueryParameter:PARA_STATUS intValue:status];           
+        str = [str stringByAddQueryParameter:PARA_STATUS intValue:status];
+        str = [str stringByAddQueryParameter:PARA_DEVICETYPE intValue:[DeviceDetection deviceType]];
+        str = [str stringByAddQueryParameter:PARA_DEVICEMODEL value:[DeviceDetection platform]];
+        
         return str;
     };
     

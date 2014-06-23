@@ -4506,6 +4506,10 @@
 		CA27B569176DF27800310651 /* LevelDBManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CA27B567176DF27800310651 /* LevelDBManager.m */; };
 		CA27B56A176DF27800310651 /* LevelDBManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CA27B567176DF27800310651 /* LevelDBManager.m */; };
 		CA29EB0616A69E7D003B1434 /* DrawRecoveryService.m in Sources */ = {isa = PBXBuildFile; fileRef = CA29EB0516A69E7D003B1434 /* DrawRecoveryService.m */; };
+		CA2A289419586E7900A97478 /* SPUserResizableView.m in Sources */ = {isa = PBXBuildFile; fileRef = CA2A289319586E7900A97478 /* SPUserResizableView.m */; };
+		CA2A289519586E9800A97478 /* SPUserResizableView.m in Sources */ = {isa = PBXBuildFile; fileRef = CA2A289319586E7900A97478 /* SPUserResizableView.m */; };
+		CA2A289619586E9800A97478 /* SPUserResizableView.m in Sources */ = {isa = PBXBuildFile; fileRef = CA2A289319586E7900A97478 /* SPUserResizableView.m */; };
+		CA2A289719586E9800A97478 /* SPUserResizableView.m in Sources */ = {isa = PBXBuildFile; fileRef = CA2A289319586E7900A97478 /* SPUserResizableView.m */; };
 		CA322102151B6A670039A384 /* GameNetworkRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = CA322101151B6A670039A384 /* GameNetworkRequest.m */; };
 		CA322105151B6BE60039A384 /* UserService.m in Sources */ = {isa = PBXBuildFile; fileRef = CA322104151B6BE60039A384 /* UserService.m */; };
 		CA32213D151DEDE10039A384 /* ChangeAvatar.m in Sources */ = {isa = PBXBuildFile; fileRef = CA32213C151DEDE10039A384 /* ChangeAvatar.m */; };
@@ -9191,6 +9195,10 @@
 		CA29EB0216A6941E003B1434 /* MainDataModel 14.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "MainDataModel 14.xcdatamodel"; sourceTree = "<group>"; };
 		CA29EB0416A69E7D003B1434 /* DrawRecoveryService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DrawRecoveryService.h; sourceTree = "<group>"; };
 		CA29EB0516A69E7D003B1434 /* DrawRecoveryService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DrawRecoveryService.m; sourceTree = "<group>"; };
+		CA2A288C1957FCB800A97478 /* MainDataModel 15.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = file; path = "MainDataModel 15.xcdatamodel"; sourceTree = "<group>"; };
+		CA2A28901958500900A97478 /* MainDataModel 16.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = file; path = "MainDataModel 16.xcdatamodel"; sourceTree = "<group>"; };
+		CA2A289219586E7900A97478 /* SPUserResizableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPUserResizableView.h; sourceTree = "<group>"; };
+		CA2A289319586E7900A97478 /* SPUserResizableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPUserResizableView.m; sourceTree = "<group>"; };
 		CA322100151B6A670039A384 /* GameNetworkRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameNetworkRequest.h; sourceTree = "<group>"; };
 		CA322101151B6A670039A384 /* GameNetworkRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameNetworkRequest.m; sourceTree = "<group>"; };
 		CA322103151B6BE60039A384 /* UserService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserService.h; sourceTree = "<group>"; };
@@ -14720,6 +14728,15 @@
 			path = DrawRecovery;
 			sourceTree = "<group>";
 		};
+		CA2A289119586E7900A97478 /* SPUserResizableView */ = {
+			isa = PBXGroup;
+			children = (
+				CA2A289219586E7900A97478 /* SPUserResizableView.h */,
+				CA2A289319586E7900A97478 /* SPUserResizableView.m */,
+			);
+			path = SPUserResizableView;
+			sourceTree = "<group>";
+		};
 		CA3220FF151B6A490039A384 /* Network */ = {
 			isa = PBXGroup;
 			children = (
@@ -17473,6 +17490,7 @@
 		CAFEFDB316606FC100441D77 /* Component-View */ = {
 			isa = PBXGroup;
 			children = (
+				CA2A289119586E7900A97478 /* SPUserResizableView */,
 				CA90051B1950209B003389FD /* THGridMenuView */,
 				CA9AB0CC18321AFE002DBAA5 /* HGQuadCurveMenu */,
 				CAEEC197181A5D96007FD75F /* ScreenCaptureView */,
@@ -22269,6 +22287,7 @@
 				A461B181174CBAA70088B061 /* ShareService.m in Sources */,
 				A461B182174CBAA70088B061 /* LmWallService.m in Sources */,
 				A461B183174CBAA70088B061 /* AdService.m in Sources */,
+				CA2A289619586E9800A97478 /* SPUserResizableView.m in Sources */,
 				A461B184174CBAA70088B061 /* UIManager.m in Sources */,
 				A461B185174CBAA70088B061 /* CustomStatueBar.m in Sources */,
 				A461B186174CBAA70088B061 /* UserStatusService.m in Sources */,
@@ -22906,6 +22925,7 @@
 			files = (
 				C28A99661738F04B007A819F /* main.m in Sources */,
 				C28A99671738F04B007A819F /* DrawAppDelegate.m in Sources */,
+				CA2A289519586E9800A97478 /* SPUserResizableView.m in Sources */,
 				C28A99681738F04B007A819F /* CommonService.m in Sources */,
 				C28A99691738F04B007A819F /* EnhanceUIApplication.m in Sources */,
 				C28A996A1738F04B007A819F /* PPApplication.m in Sources */,
@@ -23729,6 +23749,7 @@
 			files = (
 				CA745D301503B1B500600024 /* main.m in Sources */,
 				CA745D331503B1B500600024 /* DrawAppDelegate.m in Sources */,
+				CA2A289419586E7900A97478 /* SPUserResizableView.m in Sources */,
 				CA103EA01509A56200F60C03 /* CommonService.m in Sources */,
 				CA103EA11509A56200F60C03 /* EnhanceUIApplication.m in Sources */,
 				CA103EA21509A56200F60C03 /* PPApplication.m in Sources */,
@@ -25108,6 +25129,7 @@
 				CAF7DCAE17685238001596C0 /* ShapeGroup.m in Sources */,
 				EA6FE5CD176B32C300AB4E56 /* AskPsListController.m in Sources */,
 				EA6FE5D6176B332900AB4E56 /* AskPsManager.m in Sources */,
+				CA2A289719586E9800A97478 /* SPUserResizableView.m in Sources */,
 				EA6FE5DA176B334500AB4E56 /* AskPsService.m in Sources */,
 				CAE49C80176C4FF7005743F2 /* UIBezierPath+Ext.m in Sources */,
 				CA27B565176DF0D200310651 /* APLevelDB.mm in Sources */,
@@ -26488,6 +26510,8 @@
 				CA427055161FE05C00C6CCAE /* MainDataModel 11.xcdatamodel */,
 				CAA791C21627B58A00AEA6E5 /* MainDataModel 12.xcdatamodel */,
 				CA29EB0216A6941E003B1434 /* MainDataModel 14.xcdatamodel */,
+				CA2A288C1957FCB800A97478 /* MainDataModel 15.xcdatamodel */,
+				CA2A28901958500900A97478 /* MainDataModel 16.xcdatamodel */,
 				CAE32603160199AA00AD77C3 /* MainDataModel 10.xcdatamodel */,
 				CAEECCD215DBB0B000FA5A2A /* MainDataModel 9.xcdatamodel */,
 				CAEECCD115DB46AD00FA5A2A /* MainDataModel 8.xcdatamodel */,
@@ -26499,7 +26523,7 @@
 				CAE23C6E153E9E9A00F52497 /* MainDataModel 2.xcdatamodel */,
 				CA1377281524598700B5790B /* MainDataModel.xcdatamodel */,
 			);
-			currentVersion = CA29EB0216A6941E003B1434 /* MainDataModel 14.xcdatamodel */;
+			currentVersion = CA2A28901958500900A97478 /* MainDataModel 16.xcdatamodel */;
 			path = MainDataModel.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;

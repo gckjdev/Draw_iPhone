@@ -340,9 +340,9 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(DrawRecoveryService)
     
     self.currentPaint.targetUserId = targetUid;
     self.currentPaint.contestId = contestId;
-    self.currentPaint.strokes = strokes;
-    self.currentPaint.spendTime = spendTime;
-    self.currentPaint.completeDate = completeDate;
+    [self.currentPaint setTotalStrokes:@(strokes)];
+    [self.currentPaint setOpusSpendTime:@(spendTime)];
+    [self.currentPaint setOpusCompleteDate:[NSDate dateWithTimeIntervalSince1970:completeDate]];
     
     return hasChangeOnPaint;
 }

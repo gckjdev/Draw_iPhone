@@ -113,6 +113,13 @@
                     language:(NSInteger)language
                  bgImageName:(NSString *)bgImageName;
 
+- (BOOL)createMyPaintWithImage:(UIImage*)image
+                    pbDrawData:(NSData*)pbDrawData
+                          feed:(DrawFeed*)feed;
+
+- (MyPaint*)createDraftPaintWithImage:(UIImage*)image
+                           pbDrawData:(NSData*)pbDrawData
+                                 feed:(DrawFeed*)feed;
 
 - (BOOL)updateDraft:(MyPaint *)draft
               image:(UIImage *)image
@@ -127,17 +134,12 @@
 
 - (NSString*)fullDataPath:(NSString*)dataFileName;
 
-- (BOOL)createMyPaintWithImage:(UIImage*)image
-                    pbDrawData:(NSData*)pbDrawData
-                          feed:(DrawFeed*)feed;
+
 
 - (void)countAllPaintsAndDrafts:(id<MyPaintManagerDelegate>)delegate;
 - (int)countAllDrafts;
 - (void)removeAllDraft;
 
-- (MyPaint*)createDraftPaintWithImage:(UIImage*)image
-                           pbDrawData:(NSData*)pbDrawData
-                                 feed:(DrawFeed*)feed;
-
+- (void)addDraftId:(NSArray*)paintList;
 
 @end

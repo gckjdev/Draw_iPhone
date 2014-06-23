@@ -24,7 +24,8 @@
     titleLabel.backgroundColor = MENU_BACKGROUND;
     SET_VIEW_ROUND_CORNER_RADIUS(titleLabel, BUTTON_CORNER_RADIUS);
     titleLabel.textColor = MENU_TEXT_COLOR;
-    titleLabel.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:MENU_TEXT_FONT_SIZE];
+    titleLabel.font = [UIFont systemFontOfSize:MENU_TEXT_FONT_SIZE];
+    titleLabel.numberOfLines = 1;
     titleLabel.adjustsFontSizeToFitWidth = YES;
     titleLabel.contentMode = UIViewContentModeScaleAspectFit;
     titleLabel.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight|UIViewAutoresizingFlexibleBottomMargin|UIViewAutoresizingFlexibleRightMargin;

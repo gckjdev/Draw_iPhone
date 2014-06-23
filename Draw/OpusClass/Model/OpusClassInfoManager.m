@@ -56,7 +56,8 @@ static OpusClassInfoManager* _defaultOpusClassInfoManager;
                                               bundlePath:bundleName
                                          initDataVersion:version];
     
-    _opusClassList = [[NSMutableArray alloc] init];
+    self.opusClassList = [[[NSMutableArray alloc] init] autorelease];
+    self.homeDisplayClassList = [[[NSMutableArray alloc] init] autorelease];
     
     // read data from file
     [self readConfigData];
@@ -65,7 +66,9 @@ static OpusClassInfoManager* _defaultOpusClassInfoManager;
 
 - (void)dealloc
 {
-    [_smartData release];
+    PPRelease(_homeDisplayClassList);
+    PPRelease(_opusClassList);
+    PPRelease(_smartData);
     [super dealloc];
 }
 
@@ -129,17 +132,33 @@ static OpusClassInfoManager* _defaultOpusClassInfoManager;
             data = [data stringByReplacingOccurrencesOfString:@"\t" withString:@""];
             data = [data stringByReplacingOccurrencesOfString:@"\n" withString:@""];
             
-            NSArray* jsonArray = [data JSONValue];
-            for (NSDictionary* dict in jsonArray){
-                OpusClassInfo* classInfo = [OpusClassInfo objectWithDictionary:dict];
-                if (classInfo){
-                    [_opusClassList addObject:classInfo];
+            NSArray* jsonArray = [[data JSONValue] objectForKey:@"class_list"];
+            if ([jsonArray count] > 0){
+                for (NSDictionary* dict in jsonArray){
+                    OpusClassInfo* classInfo = [OpusClassInfo objectWithDictionary:dict];
+                    if (classInfo){
+                        [_opusClassList addObject:classInfo];
+                    }
                 }
+                
+                [self setParentAndSubclass:_opusClassList];
+                
+                PPDebug(@"<readConfigData> parse data %@ successfully, total %d opus classes added", _smartData.name, [_opusClassList count]);
+                
+                [self.homeDisplayClassList removeAllObjects];
+                NSArray* displayStringList = [[data JSONValue] objectForKey:@"home_list"];
+                for (NSString* classId in displayStringList){
+                    OpusClassInfo* info = [self getOpusClassInfoById:classId inList:self.opusClassList];
+                    if (info){
+                        [self.homeDisplayClassList addObject:info];
+                    }
+                }
+                PPDebug(@"total %d opus home display classes added", [_homeDisplayClassList count]);
+                
             }
-            
-            [self setParentAndSubclass:_opusClassList];
-            
-            PPDebug(@"<readConfigData> parse data %@ successfully, total %d opus classes added", _smartData.name, [_opusClassList count]);
+            else{
+                PPDebug(@"<readConfigData> parse JSON data %@ error", _smartData.name);
+            }
         }
         else{
             PPDebug(@"[WARN] Init config data %@ data file empty", dataPath);

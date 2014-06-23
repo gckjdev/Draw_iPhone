@@ -82,9 +82,6 @@
     ShareImageManager *shareImageManager;
     MyPaint *_draft;
     
-//    NSInteger _unDraftPaintCount;
-//    time_t    _lastSaveTime;
-
     Word *_word;
     LanguageType languageType;
     TargetType targetType;
@@ -98,7 +95,6 @@
     
     BOOL _isAutoSave;
     
-//    BOOL _userSaved;
     BOOL _isNewDraft;
 
     BOOL _commitAsNormal;
@@ -107,7 +103,7 @@
     
 }
 
-@property(nonatomic, retain)MyPaint *draft;
+@property(nonatomic, retain) MyPaint *draft;
 @property (retain, nonatomic) IBOutlet UILabel *wordLabel;
 @property (retain, nonatomic) IBOutlet UIButton *draftButton;
 @property (retain, nonatomic) IBOutlet UIButton *submitButton;
@@ -125,7 +121,6 @@
 @property (retain, nonatomic) CommonDialog* currentDialog;
 @property (retain, nonatomic) CMPopTipView *layerPanelPopView;
 @property (retain, nonatomic) CMPopTipView *upPanelPopView;
-//@property (assign, nonatomic) CGRect canvasRect;
 
 - (void)initDrawView;
 
@@ -145,7 +140,6 @@
 @synthesize draftButton;
 @synthesize delegate;
 @synthesize targetUid = _targetUid;
-//@synthesize bgColor = _bgColor;
 @synthesize contest = _contest;
 @synthesize startController = _startController;
 @synthesize opusDesc = _opusDesc;
@@ -286,7 +280,6 @@
             self.targetUid = [NSString stringWithFormat:@"%@",draft.targetUserId];    
         }
         if ([draft.contestId length] != 0) {
-            
             self.contest = [[ContestManager defaultManager] ongoingContestById:draft.contestId];
         }
         self.opusDesc = draft.opusDesc;
@@ -362,7 +355,7 @@
     PPDebug(@"DrawView Rect = %@",NSStringFromCGRect(drawView.frame));
     
     // set opus design time, the value is store in PBDraw data so need to get it after drawActionList is read
-    int initTime = (self.draft == nil) ? 0 : self.draft.spendTime;
+    int initTime = (self.draft == nil) ? 0 : [self.draft.opusSpendTime intValue];
     self.designTime = [[[OpusDesignTime alloc] initWithTime:initTime] autorelease];
     [self.designTime start];
 }
@@ -492,8 +485,8 @@
    bgImageName:[NSString stringWithFormat:@"%@.png", [NSString GetUUID]]
        bgImage:self.bgImage
      contestId:self.contest.contestId
-       strokes:self.draft.strokes
-     spendTime:self.draft.spendTime
+       strokes:[self.draft.totalStrokes intValue]
+     spendTime:[self.draft.opusSpendTime intValue]
   completeDate:time(0)
         layers:[drawView layers]];
 }
@@ -522,8 +515,8 @@
                                          bgImageName:nil
                                              bgImage:self.bgImage
                                            contestId:self.contest.contestId
-                                             strokes:self.draft.strokes
-                                           spendTime:self.draft.spendTime
+                                             strokes:[self.draft.totalStrokes longValue]
+                                           spendTime:[self.draft.opusSpendTime intValue]
                                         completeDate:time(0)
                                               layers:[drawView layers]];
     }
@@ -814,8 +807,8 @@
                                                  bgImageName:nil
                                                      bgImage:self.bgImage
                                                    contestId:self.contest.contestId
-                                                     strokes:self.draft.strokes
-                                                   spendTime:self.draft.spendTime
+                                                     strokes:[self.draft.totalStrokes intValue]
+                                                   spendTime:[self.draft.opusSpendTime intValue]
                                                 completeDate:time(0)
                                                       layers:[drawView layers]];
     
@@ -849,9 +842,9 @@
         [self stopRecovery];
 
         // save as normal opus in draft box
-        BOOL result = [[DrawDataService defaultService]
-                       savePaintWithPBDrawData:self.submitOpusDrawData                                                                          image:self.submitOpusFinalImage
-                       word:self.word.text];
+        BOOL result = [[DrawDataService defaultService] savePaintWithPBDrawData:self.submitOpusDrawData
+                                                                          image:self.submitOpusFinalImage
+                                                                           word:self.word.text];
         
         if (result) {
             POSTMSG(NSLS(@"kSaveOpusOK"));
@@ -1032,9 +1025,9 @@
                     [self.draft setDrawWord:self.word.text];
                 }
 
-                [self.draft setStrokes:_totalStroke];
-                [self.draft setSpendTime:_designTime.totalTime];
-                [self.draft setCompleteDate:time(0)];
+                [self.draft setTotalStrokes:@(_totalStroke)];
+                [self.draft setOpusSpendTime:@(_designTime.totalTime)];
+                [self.draft setOpusCompleteDate:[NSDate date]];
                 
                 result = [pManager updateDraft:self.draft
                                          image:image
@@ -1066,10 +1059,9 @@
                     result = NO;
                 }
 
-                [self.draft setStrokes:_totalStroke];
-                [self.draft setSpendTime:_designTime.totalTime];
-                [self.draft setCompleteDate:time(0)];
-                
+                [self.draft setTotalStrokes:@(_totalStroke)];
+                [self.draft setOpusSpendTime:@(_designTime.totalTime)];
+                [self.draft setOpusCompleteDate:[NSDate date]];
             }
                         
         }
@@ -1254,8 +1246,8 @@
         draft = [[DrawRecoveryService defaultService] currentPaint]; // use this to carry data
     }
     
-    [draft setSpendTime:_designTime.totalTime];
-    [draft setCompleteDate:time(0)];
+    [draft setOpusSpendTime:@(_designTime.totalTime)];
+    [draft setOpusCompleteDate:[NSDate date]];
     [draft setSelectedClassList:self.selectedClassList];
     
     self.submitOpusDrawData = [[DrawDataService defaultService] createOfflineDraw:drawView.drawActionList

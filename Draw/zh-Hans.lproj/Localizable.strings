@@ -2743,3 +2743,5 @@
 "kDismissGroup" = "解散家族";
 "kCannotDismissGroupWhileHavingMember" = "家族内还有成员或者嘉宾的时候，不能解散家族，请先移除所有嘉宾和成员";
 "kDeleteGroupSucc" = "请求成功，家族已解散";
+
+"kEditOpusClass" = "设置作品分类/标签";

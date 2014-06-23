@@ -58,16 +58,15 @@
 @property (retain, nonatomic) OpusDesignTime *designTime;
 @property (assign, nonatomic) int64_t totalStroke;
 @property (retain, nonatomic) NSArray *selectedClassList;
-
-@property (assign, nonatomic) id<OfflineDrawDelegate> delegate;
 @property (retain, nonatomic) NSString *targetUid;
-@property (retain, nonatomic) Contest *contest;
-@property (assign, nonatomic) UIViewController *startController;
 @property (retain, nonatomic) NSString *opusDesc;
 @property (retain, nonatomic) UIImage *bgImage;
 @property (retain, nonatomic) NSString *bgImageName;
-//@property (retain, nonatomic) UIImage* copyPaintImage;
-//@property (retain, nonatomic) NSString* copyPaintImageURL;
+
+@property (assign, nonatomic) id<OfflineDrawDelegate> delegate;
+@property (retain, nonatomic) Contest *contest;
+@property (assign, nonatomic) UIViewController *startController;
+
 @property (retain, nonatomic) UIImage *submitOpusFinalImage;
 @property (retain, nonatomic) NSData *submitOpusDrawData;
 

@@ -39,10 +39,17 @@
 @synthesize bgImageName = _bgImageName;
 @synthesize bgImage = _bgImage;
 @synthesize layers = _layers;
-@synthesize completeDate;
-@synthesize spendTime;
-@synthesize strokes;
+//@synthesize completeDate;
+//@synthesize spendTime;
+//@synthesize strokes;
 @synthesize selectedClassList = _selectedClassList;
+
+@dynamic draftId;
+@dynamic opusId;         // opusId returned from Server
+@dynamic opusCompleteDate;
+@dynamic totalStrokes;
+@dynamic opusSpendTime;
+@dynamic attributes;
 
 #define IMAGE_SUFFIX @".png"
 #define THUMB_IMAGE_SUFFIX @"_m.png"

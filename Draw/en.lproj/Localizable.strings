@@ -2704,3 +2704,22 @@
 "kDrawSpendTimeHoursPlus" = "%d+ hours";
 
 "kEnableReplay" = "Show Replay Button";
+
+"kSelectOpusClassTitle" = "Set Category";
+"kSubmitOpusClass" = "Done";
+"kSelectedClass" = "Selected Categories";
+"kNoSelectedClass" = "Selected Categories:(None)";
+"kClassForSelection" = "All Categories";
+"kOpusClassCountZero" = "No category is selected. Please select at least one";
+"kExceedMaxOpusClass" = "Maximum %d categories";
+"kOpusClassTitle" = "Categories";
+"kHomeMenuOpusClass" = "Gallery";
+
+"kSubmitOpusSuccess" = "作品提交成功，請繼續設置作品分類/標籤";
+"kSetOpusClassSucc" = "Set category successfully";
+"kSetOpusClassFail" = "Fail to set category";
+"kDismissGroup" = "Dismiss Group";
+"kCannotDismissGroupWhileHavingMember" = "Cannot dismiss group while having members or guests in the group. Please dismiss members/guests in the group";
+"kDeleteGroupSucc" = "Group dismissed";
+
+"kEditOpusClass" = "Edit Opus Category";

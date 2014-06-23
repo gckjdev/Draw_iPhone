@@ -2736,3 +2736,22 @@
 "kDrawSpendTimeHoursPlus" = "%d+小時";
 
 "kEnableReplay" = "作品詳情顯示[播放]按鈕";
+
+"kSelectOpusClassTitle" = "設置分類";
+"kSubmitOpusClass" = "完成";
+"kSelectedClass" = "已選擇分類/標​​籤";
+"kNoSelectedClass" = "已選擇分類/標​​籤: (無)";
+"kClassForSelection" = "可選擇分類/標​​籤(可多選)";
+"kOpusClassCountZero" = "未選擇任何作品分​​類，請至少選擇一個分類/標籤";
+"kExceedMaxOpusClass" = "最多只能選擇%d個作品分類或標籤，請減少當前選擇";
+"kOpusClassTitle" = "作品分類瀏覽";
+"kHomeMenuOpusClass" = "分類";
+
+"kSubmitOpusSuccess" = "作品提交成功，請繼續設置作品分類/標籤";
+"kSetOpusClassSucc" = "分類設置成功";
+"kSetOpusClassFail" = "分類設置失敗";
+"kDismissGroup" = "解散家族";
+"kCannotDismissGroupWhileHavingMember" = "家族內還有成員或者嘉賓的時候，不能解散家族，請先移除所有嘉賓和成員";
+"kDeleteGroupSucc" = "請求成功，家族已解散";
+
+"kEditOpusClass" = "設置作品分類/標籤";

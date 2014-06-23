@@ -37,7 +37,6 @@
 
 @property(nonatomic, retain) UIImage *thumbImage;
 
-
 @property (nonatomic, retain) NSNumber *isRecovery;
 @property (nonatomic, retain) NSData * drawWordData;
 
@@ -49,10 +48,19 @@
 @property (nonatomic, retain) NSString *bgImageName;
 @property (nonatomic, retain) UIImage *bgImage;
 
-@property (nonatomic, assign) int spendTime;
-@property (nonatomic, assign) int64_t strokes;
-@property (nonatomic, assign) int completeDate;
+//@property (nonatomic, assign) int spendTime;
+//@property (nonatomic, assign) int64_t strokes;
+//@property (nonatomic, assign) int completeDate;
 @property (nonatomic, retain) NSArray *selectedClassList;
+
+@property (nonatomic, retain) NSString *draftId;
+@property (nonatomic, retain) NSString *opusId;         // opusId returned from Server
+@property (nonatomic, retain) NSDate *opusCompleteDate;
+@property (nonatomic, retain) NSNumber *totalStrokes;
+@property (nonatomic, retain) NSNumber *opusSpendTime;
+@property (nonatomic, retain) NSData *attributes;
+
+
 
 - (void)updateDrawData;
 

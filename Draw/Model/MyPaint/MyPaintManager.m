@@ -23,6 +23,7 @@
 #import "CanvasRect.h"
 #import "TimeUtils.h"
 #import "UIImageUtil.h"
+#import "StringUtil.h"
 
 #define SUFFIX_NUMBER 100
 @interface MyPaintManager()
@@ -137,12 +138,28 @@ static MyPaintManager* _defaultManager;
     if (needSave) {
         PPDebug(@"<transferDrawDataToPath> save data.");
         [self save];
-//        [[CoreDataManager defaultManager] save];        
     }
     PPDebug(@"<transferDrawDataToPath> end");
 }
 
-- (void)findMyPaintsFrom:(NSInteger)offset 
+- (void)addDraftId:(NSArray*)paintList
+{
+    BOOL hasDraftIdAdded = NO;
+    for (MyPaint* paint in paintList){
+        if ([paint.draftId length] == 0){
+            hasDraftIdAdded = YES;
+            NSString* draftId = [NSString GetUUID];
+            [paint setDraftId:draftId];
+            PPDebug(@"<addDraftId> %@ for paint %@", draftId, paint.drawWord);
+        }
+    }
+
+    if (hasDraftIdAdded){
+        [self save];
+    }
+}
+
+- (void)findMyPaintsFrom:(NSInteger)offset
                        limit:(NSInteger)limit 
                     delegate:(id<MyPaintManagerDelegate>)delegate
 {
@@ -153,16 +170,6 @@ static MyPaintManager* _defaultManager;
         [delegate didGetMyPaints:array];
     }
 }
-
-//- (void)countMyPaints:(id<MyPaintManagerDelegate>)delegate
-//{
-//    CoreDataManager* dataManager = GlobalGetCoreDataManager();
-//    NSArray *array = [dataManager execute:@"findOnlyMyPaints" sortBy:@"createDate" returnFields:nil ascending:NO offset:0 limit:HUGE_VAL];
-//
-//    if (delegate && [delegate respondsToSelector:@selector(didCountMyPaints::)]) {
-//        [delegate didCountMyPaints:[array count]];
-//    }
-//}
 
 - (NSArray*)findAllDraftForRecovery
 {
@@ -185,16 +192,6 @@ static MyPaintManager* _defaultManager;
     }
 }
 
-//- (void)countAllPaints:(id<MyPaintManagerDelegate>)delegate
-//{
-//    CoreDataManager* dataManager = GlobalGetCoreDataManager();
-//    NSArray *array = [dataManager execute:@"findAllMyPaints" sortBy:@"createDate" returnFields:nil ascending:NO offset:0 limit:HUGE_VAL];
-//    
-//    if (delegate && [delegate respondsToSelector:@selector(didCountAllPaints:)]) {
-//        [delegate didCountAllPaints:[array count]];
-//    }
-//}
-
 - (void)findAllDraftsFrom:(NSInteger)offset 
                     limit:(NSInteger)limit 
                  delegate:(id<MyPaintManagerDelegate>)delegate
@@ -207,15 +204,6 @@ static MyPaintManager* _defaultManager;
         [delegate didGetAllDrafts:array];
     } 
 }
-
-//- (void)countAllDrafts:(id<MyPaintManagerDelegate>)delegate
-//{
-//    CoreDataManager* dataManager = GlobalGetCoreDataManager();
-//    NSArray *array = [dataManager execute:@"findAllDrafts" sortBy:@"createDate" returnFields:nil ascending:NO offset:0 limit:HUGE_VAL];
-//    if (delegate && [delegate respondsToSelector:@selector(didCountAllDrafts:)]) {
-//        [delegate didCountAllDrafts:[array count]];
-//    }
-//}
 
 - (void)countAllPaintsAndDrafts:(id<MyPaintManagerDelegate>)delegate
 {
@@ -406,20 +394,12 @@ static MyPaintManager* _defaultManager;
               image:(UIImage*)image
          pbDrawData:(NSData*)pbDrawData
                feed:(DrawFeed*)feed
-
-//             userId:(NSString*)userId
-//           nickName:(NSString*)nickName
-//               word:(NSString*)word
-//           language:(int)language
-//              level:(int)level
 {
     NSString *imageFileName = [self imageFileName];
     NSString *pbDataFileName = [self pbDataFileName];
     
     [_imageManager saveImage:image forKey:imageFileName];
     [_drawDataManager saveData:pbDrawData forKey:pbDataFileName];
-    //    [_drawDataManager saveData:[pbDrawData data] forKey:pbDataFileName];
-    
     
     [newMyPaint setDataFilePath:pbDataFileName];
     [newMyPaint setImage:imageFileName];
@@ -431,16 +411,10 @@ static MyPaintManager* _defaultManager;
     [newMyPaint setDrawUserNickName:feed.feedUser.nickName];
     [newMyPaint setDrawWord:feed.wordText];
     [newMyPaint setCreateDate:[NSDate date]];
-    /*
-    if (isSimpleDrawApp()) {
-        NSString *word = dateToLocaleStringWithFormat([NSDate date], DATE_FORMAT);
-        [newMyPaint setDrawWord:word];
-    }else{
-        [newMyPaint setDrawWord:feed.wordText];
-    }
-     */
     [newMyPaint setLanguage:[NSNumber numberWithInt:ChineseType]];      // hard code here, some risk?
     [newMyPaint setLevel:[NSNumber numberWithInt:1]];                   // hard code here, some risk?
+
+    [newMyPaint setDraftId:[NSString GetUUID]];
 
 }
 
@@ -455,8 +429,6 @@ static MyPaintManager* _defaultManager;
     [self saveImageAsThumb:image path:[self thumbPathFromImagePath:imageFileName]];
     
     [_drawDataManager saveData:[pbDraw data] forKey:pbDataFileName];
-    //    [_drawDataManager saveData:[pbDrawData data] forKey:pbDataFileName];
-    
     
     [newMyPaint setDataFilePath:pbDataFileName];
     [newMyPaint setImage:imageFileName];
@@ -475,7 +447,8 @@ static MyPaintManager* _defaultManager;
     // hard code here, some risk?
     [newMyPaint setLevel:[NSNumber numberWithInt:pbDraw.level]];
     
-    
+    [newMyPaint setDraftId:[NSString GetUUID]];
+
 }
 
 - (void)initMyPaint:(MyPaint *)newMyPaint
@@ -510,10 +483,13 @@ static MyPaintManager* _defaultManager;
     // hard code here, some risk?
     [newMyPaint setLanguage:@(language)];
     
+    [newMyPaint setDraftId:[NSString GetUUID]];
+    
     // hard code here, some risk?
     [newMyPaint setLevel:@(level)];
     
-    
+    [newMyPaint setDraftId:[NSString GetUUID]];
+
 }
 
 - (void)initMyPaint:(MyPaint *)newMyPaint
@@ -539,7 +515,6 @@ static MyPaintManager* _defaultManager;
     }
     
     if (bgImage != nil) {
-        //        [_bgImgeManager saveData:[bgImage data] forKey:pbNoCompressDrawData.bgImageName];
         [_bgImgeManager saveImage:bgImage forKey:bgImageName];
     }
     
@@ -556,6 +531,9 @@ static MyPaintManager* _defaultManager;
     [newMyPaint setLevel:[NSNumber numberWithInt:word.level]];
     [newMyPaint setLanguage:[NSNumber numberWithInt:language]];
     [newMyPaint setBgImageName:bgImageName];
+    
+    [newMyPaint setDraftId:[NSString GetUUID]];
+
 }
 
 
@@ -577,35 +555,6 @@ pbNoCompressDrawData:(PBNoCompressDrawData*)pbNoCompressDrawData
              language:language
               bgImage:bgImage
           bgImageName:pbNoCompressDrawData.bgImageName];
-    
-//    NSString *imageFileName = [self imageFileName];
-//    NSString *pbDataFileName = [self pbNoCompressDrawDataFileName];
-//    
-//    if (image != nil){
-//        [_imageManager saveImage:image forKey:imageFileName];
-//    }
-//        
-//    if (pbNoCompressDrawData != nil){
-//        [_drawDataManager saveData:[pbNoCompressDrawData data] forKey:pbDataFileName];
-//    }    
-//    
-//    if (bgImage != nil) {
-//        [_bgImgeManager saveImage:bgImage forKey:pbNoCompressDrawData.bgImageName];
-//    }
-//    
-//    [newMyPaint setDataFilePath:pbDataFileName];
-//    [newMyPaint setImage:imageFileName];
-//    
-//    BOOL drawByMe = [[UserManager defaultManager] isMe:userId];
-//    
-//    [newMyPaint setDrawByMe:[NSNumber numberWithBool:drawByMe]];
-//    [newMyPaint setDrawUserId:userId];
-//    [newMyPaint setDrawUserNickName:nickName];
-//    [newMyPaint setCreateDate:[NSDate date]];
-//    [newMyPaint setDrawWord:word.text];
-//    [newMyPaint setLevel:[NSNumber numberWithInt:word.level]];
-//    [newMyPaint setLanguage:[NSNumber numberWithInt:language]];
-//    [newMyPaint setBgImageName:pbNoCompressDrawData.bgImageName];
 }
 
 - (BOOL)createMyPaintWithImage:(UIImage*)image
@@ -893,9 +842,9 @@ pbNoCompressDrawData:(PBNoCompressDrawData*)pbNoCompressDrawData
             }
 
             // set strokes, spend time, and complete date (added by Benson, 2014-05-22)
-            paint.strokes = nDrawC->strokes;
-            paint.spendTime = nDrawC->spendtime;
-            paint.completeDate = nDrawC->completedate;
+            paint.totalStrokes = @(nDrawC->strokes);
+            paint.opusSpendTime = @(nDrawC->spendtime);
+            paint.opusCompleteDate = [NSDate dateWithTimeIntervalSince1970:nDrawC->completedate];
             
             NSMutableArray* list = [DrawAction pbNoCompressDrawDataCToDrawActionList:nDrawC
                                                                           canvasSize:paint.canvasSize];
@@ -924,9 +873,9 @@ pbNoCompressDrawData:(PBNoCompressDrawData*)pbNoCompressDrawData
                     paint.drawDataVersion = pbDrawC->version;
                     
                     // set strokes, spend time, and complete date (added by Benson, 2014-05-22)
-                    paint.strokes = pbDrawC->strokes;
-                    paint.spendTime = pbDrawC->spendtime;
-                    paint.completeDate = pbDrawC->completedate;
+                    [paint setTotalStrokes:@(pbDrawC->strokes)];
+                    [paint setOpusSpendTime:@(pbDrawC->spendtime)];
+                    [paint setOpusCompleteDate:[NSDate dateWithTimeIntervalSince1970:pbDrawC->completedate]];
                     
                     // set canvas size
                     if (pbDrawC->canvassize == NULL) {

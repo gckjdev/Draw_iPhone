@@ -474,6 +474,28 @@ typedef enum{
     [_shareAction saveToLocalDraft:self];
 }
 
+- (void)editOpusClass:(DrawFeed*)feed
+{
+    [SelectOpusClassViewController showInViewController:self
+                                           selectedTags:[feed opusClassInfoList]
+                                      arrayForSelection:nil
+                                               callback:^(int resultCode, NSArray *selectedArray, NSArray *arrayForSelection) {
+                                                   
+                                                   [[FeedService defaultService] setOpusClass:feed.feedId
+                                                                                    classList:selectedArray
+                                                                                  resultBlock:^(int resultCode) {
+                                                                                      
+                                                                                      if (resultCode == 0){
+                                                                                          POSTMSG2(NSLS(@"设置作品分类成功"), 2);
+                                                                                      }
+                                                                                      else{
+                                                                                          POSTMSG2(NSLS(@"设置作品分类失败"), 2);
+                                                                                      }
+                                                                                  }];
+                                               }];
+    
+}
+
 - (void)editOpusAgain:(DrawFeed*)feed
 {
     if ([feed isSingCategory]){
@@ -590,6 +612,7 @@ typedef enum{
     ActionSheetIndexDetail = 0,
     ActionSheetIndexEditDesc,
     ActionSheetIndexEditOpusToUser,
+    ActionSheetIndexEditOpusClass,
     ActionSheetIndexEditOpusAgain,
     ActionSheetIndexDelete,
     ActionSheetIndexCancel,
@@ -605,7 +628,7 @@ typedef enum{
     SuperActionSheetIndexDetail = 0,
     SuperActionSheetIndexEditOpusToUser,
     SuperActionSheetIndexDelete,
-    SuperActionSheetIndexAddToCell,
+    SuperActionSheetIndexEditOpusClass,
     SuperActionSheetIndexAddToRecommend,
     SuperActionSheetIndexRemoveFromRecommend,
     SuperActionSheetIndexCancel,
@@ -634,14 +657,19 @@ typedef enum{
             break;
         case ActionSheetIndexDetail:
         {
-            PPDebug(@"Detail");
             [self enterDetailFeed:feed showOpusImageBrowser:YES];
-        } break;
+            break;
+        }
         case ActionSheetIndexEditDesc: {
             [self editDescOfFeed:feed];
-        } break;
+            break;
+        }
         case ActionSheetIndexEditOpusToUser:{
             [self editOpusToUser:feed];
+            break;
+        }
+        case ActionSheetIndexEditOpusClass:{
+            [self editOpusClass:feed];
             break;
         }
         case ActionSheetIndexEditOpusAgain:{
@@ -685,7 +713,7 @@ typedef enum{
             break;
         }
             
-        case SuperActionSheetIndexAddToCell:
+        case SuperActionSheetIndexEditOpusClass:
         {/*
             if (canSellOpus) {
                 PPDebug(@"<handleActionSheet> ActionSheetIndexAddToCell" );
@@ -694,25 +722,8 @@ typedef enum{
                 break;
             }
           */
-            [SelectOpusClassViewController showInViewController:self
-                                                   selectedTags:[feed opusClassInfoList]
-                                              arrayForSelection:nil
-                                                       callback:^(int resultCode, NSArray *selectedArray, NSArray *arrayForSelection) {
-                                                           
-                                                           [[FeedService defaultService] setOpusClass:feed.feedId
-                                                                                            classList:selectedArray
-                                                                                          resultBlock:^(int resultCode) {
-                                                                                              
-                                                                                              if (resultCode == 0){
-                                                                                                  POSTMSG2(NSLS(@"设置作品分类成功"), 2);
-                                                                                              }
-                                                                                              else{
-                                                                                                  POSTMSG2(NSLS(@"设置作品分类失败"), 2);
-                                                                                              }
-                                                                                          }];
-                                                       }];
 
-            
+            [self editOpusClass:feed];
             break;
         }
         case SuperActionSheetIndexAddToRecommend: {
@@ -905,7 +916,7 @@ typedef enum{
     BOOL isMyFavor = [[UserManager defaultManager] isMe:self.userId];
     if(tab.tabID == UserTypeOpus ){
         if ([rankView.feed isMyOpus]) {
-            sheet = [[[MKBlockActionSheet alloc] initWithTitle:nil delegate:nil cancelButtonTitle:NSLS(@"kCancel") destructiveButtonTitle:NSLS(@"kOpusDetail") otherButtonTitles:NSLS(@"kEditOpusDesc"), NSLS(@"kEditOpusToUser"), NSLS(@"kEditOpusAgain"), NSLS(@"kDelete"), nil] autorelease];
+            sheet = [[[MKBlockActionSheet alloc] initWithTitle:nil delegate:nil cancelButtonTitle:NSLS(@"kCancel") destructiveButtonTitle:NSLS(@"kOpusDetail") otherButtonTitles:NSLS(@"kEditOpusDesc"), NSLS(@"kEditOpusToUser"), NSLS(@"kEditOpusClass"), NSLS(@"kEditOpusAgain"), NSLS(@"kDelete"), nil] autorelease];
             sheet.cancelButtonIndex = ActionSheetIndexCancel;
             [sheet showInView:self.view];
             __block typeof (self) bself  = self;
@@ -919,7 +930,7 @@ typedef enum{
                                               delegate:self
                                               cancelButtonTitle:NSLS(@"kCancel")
                                               destructiveButtonTitle:NSLS(@"kOpusDetail")
-                                              otherButtonTitles:NSLS(@"kEditOpusToUser"), NSLS(@"kDelete"), NSLS(@"设置作品分类"), NSLS(@"kRecommend"), @"取消推荐", nil];
+                                              otherButtonTitles:NSLS(@"kEditOpusToUser"), NSLS(@"kDelete"), NSLS(@"kEditOpusClass"), NSLS(@"kRecommend"), @"取消推荐", nil];
                 
             __block typeof (self) bself  = self;
             [sheet setActionBlock:^(NSInteger buttonIndex){

@@ -109,7 +109,7 @@
 // You need a method like this that can iterate through your data source and create the menu items
 -(void)populateMenu {
     
-    NSArray* classList = [[OpusClassInfoManager defaultManager] opusClassList];
+    NSArray* classList = [[OpusClassInfoManager defaultManager] homeDisplayClassList];
     
     //Iterate through the data source
     for (OpusClassInfo *classInfo in classList) {

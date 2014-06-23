@@ -14,6 +14,7 @@
 
 @property (nonatomic, retain) PPSmartUpdateData* smartData;
 @property (nonatomic, retain) NSMutableArray* opusClassList;
+@property (nonatomic, retain) NSMutableArray* homeDisplayClassList;
 
 + (OpusClassInfoManager*)defaultManager;
 - (void)autoUpdate;

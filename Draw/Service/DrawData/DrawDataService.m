@@ -464,7 +464,11 @@ static DrawDataService* _defaultDrawDataService = nil;
                       image:(UIImage*)image
                    delegate:(id<DrawDataServiceDelegate>)delegate
 {
-    [self savePaintWithPBDraw:feed pbDrawData:pbDrawData image:image isDraft:NO delegate:delegate];
+    [self savePaintWithPBDraw:feed
+                   pbDrawData:pbDrawData
+                        image:image
+                      isDraft:NO
+                     delegate:delegate];
 }
 
 - (void)savePaintWithPBDraw:(DrawFeed*)feed
