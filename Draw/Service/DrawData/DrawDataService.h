@@ -93,6 +93,7 @@
 
 - (BOOL)savePaintWithPBDrawData:(NSData*)pbDrawData
                           image:(UIImage*)image
-                           word:(NSString*)word;
+                           word:(NSString*)word
+                         opusId:(NSString*)opusId;
 
 @end

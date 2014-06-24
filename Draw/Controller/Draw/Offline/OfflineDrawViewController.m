@@ -191,11 +191,10 @@
 - (void)dealloc
 {
     [UIApplication sharedApplication].idleTimerDisabled = NO; // disable lock screen while in drawing
-    
     [self stopRecovery];
+    
     self.delegate = nil;
     _draft.drawActionList = nil;
-//    PPRelease(_copyPaintImageURL);
     PPRelease(_selectedClassList);
     PPRelease(_submitOpusFinalImage);
     PPRelease(_submitOpusDrawData);
@@ -697,6 +696,9 @@
 
 - (void)quit
 {
+    [self unregisterAllNotifications];
+    [self stopRecovery];
+    
     if (_startController) {
         [self.navigationController popToViewController:_startController animated:YES];
     }else {
@@ -797,8 +799,6 @@
         return;
     }
     
-//    [[DrawRecoveryService defaultService] handleNewPaintDrawed:view.drawActionList];
-
     [[DrawRecoveryService defaultService] handleNewPaintDrawed:view.drawActionList
                                                    targetUid:self.targetUid
                                                         word:self.word
@@ -807,7 +807,7 @@
                                                  bgImageName:nil
                                                      bgImage:self.bgImage
                                                    contestId:self.contest.contestId
-                                                     strokes:[self.draft.totalStrokes intValue]
+                                                     strokes:[self.draft.totalStrokes longValue]
                                                    spendTime:[self.draft.opusSpendTime intValue]
                                                 completeDate:time(0)
                                                       layers:[drawView layers]];
@@ -844,7 +844,8 @@
         // save as normal opus in draft box
         BOOL result = [[DrawDataService defaultService] savePaintWithPBDrawData:self.submitOpusDrawData
                                                                           image:self.submitOpusFinalImage
-                                                                           word:self.word.text];
+                                                                           word:self.word.text
+                                                                         opusId:opusId];
         
         if (result) {
             POSTMSG(NSLS(@"kSaveOpusOK"));
@@ -868,7 +869,7 @@
         self.submitOpusDrawData = nil;
         
         [[LevelService defaultService] addExp:OFFLINE_DRAW_EXP delegate:self];
-        [self shareToWeibo];    // TODO add opusId
+        [self shareToWeibo:opusId];
         
         CommonDialog *dialog = nil;
         if (self.contest) {
@@ -1127,14 +1128,14 @@
 //    [self.progressView setProgress:progress];        
 }
 
-- (void)shareViaSNS:(SnsType)type imagePath:(NSString*)imagePath
+- (void)shareViaSNS:(SnsType)type imagePath:(NSString*)imagePath opusId:(NSString*)opusId
 {    
     NSString* text = [ShareAction createShareText:self.word.text
                                              desc:[self getOpusComment]
                                        opusUserId:[[UserManager defaultManager] userId]
                                        userGender:[[UserManager defaultManager] isUserMale]
                                           snsType:type
-                                           opusId:nil];
+                                           opusId:opusId];
     
     if (imagePath != nil) {
         
@@ -1184,10 +1185,10 @@
     [pool drain];
 }
 
-- (void)shareToWeibo
+- (void)shareToWeibo:(NSString*)opusId
 {
     for (NSNumber *value in self.shareWeiboSet) {
-        [self shareViaSNS:[value integerValue] imagePath:self.tempImageFilePath];
+        [self shareViaSNS:[value integerValue] imagePath:self.tempImageFilePath opusId:opusId];
     }
     
     self.shareWeiboSet = nil;
@@ -1295,9 +1296,6 @@
                                                            [self commitOpus:subject desc:content share:shareSet classList:selectedArray];
 
                                                        }];
-                
-            
-            
         }else{
             self.word.text = subject;
             [self setOpusDesc:content];

@@ -81,7 +81,8 @@
 
 - (BOOL)createMyPaintWithImage:(UIImage*)image
                     pbDrawData:(NSData*)pbDrawData
-                          word:(NSString*)word;
+                          word:(NSString*)word
+                        opusId:(NSString*)opusId;
 
 - (MyPaint *)createDraft:(UIImage *)image
     pbNoCompressDrawData:(PBNoCompressDrawData *)pbNoCompressDrawData

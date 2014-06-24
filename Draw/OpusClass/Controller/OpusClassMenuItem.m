@@ -31,6 +31,7 @@
     titleLabel.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight|UIViewAutoresizingFlexibleBottomMargin|UIViewAutoresizingFlexibleRightMargin;
     titleLabel.textAlignment = NSTextAlignmentCenter;
     [self addSubview:titleLabel];
+    [titleLabel release];
 }
 
 @end

@@ -533,6 +533,7 @@ static DrawDataService* _defaultDrawDataService = nil;
 - (BOOL)savePaintWithPBDrawData:(NSData*)pbDrawData
                           image:(UIImage*)image
                            word:(NSString*)word
+                         opusId:(NSString*)opusId
 {
     if (pbDrawData == nil) {
         PPDebug(@"<savePaintWithPBDrawData>:pbDrawData is nil");
@@ -545,7 +546,8 @@ static DrawDataService* _defaultDrawDataService = nil;
     PPDebug(@"<savePaintWithPBDrawData>");
     BOOL result = [[MyPaintManager defaultManager] createMyPaintWithImage:image
                                                                pbDrawData:pbDrawData
-                                                                     word:word];
+                                                                     word:word
+                                                                   opusId:opusId];
     
     return result;
 }

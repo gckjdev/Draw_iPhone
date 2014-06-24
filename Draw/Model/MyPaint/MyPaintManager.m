@@ -414,6 +414,10 @@ static MyPaintManager* _defaultManager;
     [newMyPaint setLanguage:[NSNumber numberWithInt:ChineseType]];      // hard code here, some risk?
     [newMyPaint setLevel:[NSNumber numberWithInt:1]];                   // hard code here, some risk?
 
+    [newMyPaint setOpusId:feed.feedId];
+    [newMyPaint setTotalStrokes:@(feed.pbFeed.strokes)];
+    [newMyPaint setOpusSpendTime:@(feed.pbFeed.spendTime)];
+    
     [newMyPaint setDraftId:[NSString GetUUID]];
 
 }
@@ -613,7 +617,8 @@ pbNoCompressDrawData:(PBNoCompressDrawData*)pbNoCompressDrawData
 
 - (BOOL)createMyPaintWithImage:(UIImage*)image
                     pbDrawData:(NSData*)pbDrawData
-                          word:(NSString *)word
+                          word:(NSString*)word
+                        opusId:(NSString*)opusId
 {
     CoreDataManager* dataManager = GlobalGetCoreDataManager();
     MyPaint* newMyPaint = [dataManager insert:@"MyPaint"];
@@ -623,6 +628,7 @@ pbNoCompressDrawData:(PBNoCompressDrawData*)pbNoCompressDrawData
            pbDrawData:pbDrawData
                  word:word];
     
+    [newMyPaint setOpusId:opusId];
     [newMyPaint setDraft:[NSNumber numberWithBool:NO]];
     
     PPDebug(@"<createMyPaintWithImage> %@", [newMyPaint description]);
