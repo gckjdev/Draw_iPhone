@@ -4510,6 +4510,10 @@
 		CA2A289519586E9800A97478 /* SPUserResizableView.m in Sources */ = {isa = PBXBuildFile; fileRef = CA2A289319586E7900A97478 /* SPUserResizableView.m */; };
 		CA2A289619586E9800A97478 /* SPUserResizableView.m in Sources */ = {isa = PBXBuildFile; fileRef = CA2A289319586E7900A97478 /* SPUserResizableView.m */; };
 		CA2A289719586E9800A97478 /* SPUserResizableView.m in Sources */ = {isa = PBXBuildFile; fileRef = CA2A289319586E7900A97478 /* SPUserResizableView.m */; };
+		CA2A289B19596ACB00A97478 /* CopyView.m in Sources */ = {isa = PBXBuildFile; fileRef = CA2A289A19596ACB00A97478 /* CopyView.m */; };
+		CA2A289C19596ACB00A97478 /* CopyView.m in Sources */ = {isa = PBXBuildFile; fileRef = CA2A289A19596ACB00A97478 /* CopyView.m */; };
+		CA2A289D19596ACB00A97478 /* CopyView.m in Sources */ = {isa = PBXBuildFile; fileRef = CA2A289A19596ACB00A97478 /* CopyView.m */; };
+		CA2A289E19596ACB00A97478 /* CopyView.m in Sources */ = {isa = PBXBuildFile; fileRef = CA2A289A19596ACB00A97478 /* CopyView.m */; };
 		CA322102151B6A670039A384 /* GameNetworkRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = CA322101151B6A670039A384 /* GameNetworkRequest.m */; };
 		CA322105151B6BE60039A384 /* UserService.m in Sources */ = {isa = PBXBuildFile; fileRef = CA322104151B6BE60039A384 /* UserService.m */; };
 		CA32213D151DEDE10039A384 /* ChangeAvatar.m in Sources */ = {isa = PBXBuildFile; fileRef = CA32213C151DEDE10039A384 /* ChangeAvatar.m */; };
@@ -9199,6 +9203,8 @@
 		CA2A28901958500900A97478 /* MainDataModel 16.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = file; path = "MainDataModel 16.xcdatamodel"; sourceTree = "<group>"; };
 		CA2A289219586E7900A97478 /* SPUserResizableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPUserResizableView.h; sourceTree = "<group>"; };
 		CA2A289319586E7900A97478 /* SPUserResizableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPUserResizableView.m; sourceTree = "<group>"; };
+		CA2A289919596ACB00A97478 /* CopyView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CopyView.h; sourceTree = "<group>"; };
+		CA2A289A19596ACB00A97478 /* CopyView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CopyView.m; sourceTree = "<group>"; };
 		CA322100151B6A670039A384 /* GameNetworkRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameNetworkRequest.h; sourceTree = "<group>"; };
 		CA322101151B6A670039A384 /* GameNetworkRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameNetworkRequest.m; sourceTree = "<group>"; };
 		CA322103151B6BE60039A384 /* UserService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserService.h; sourceTree = "<group>"; };
@@ -13229,6 +13235,7 @@
 		CA051DAE1546802D00D0A00A /* DrawView */ = {
 			isa = PBXGroup;
 			children = (
+				CA2A289819596AA600A97478 /* CopyView */,
 				CA4FB81A179E23E600A57387 /* DrawLayer */,
 				CAB5325C16F0232B008FD307 /* GestureRecognizer */,
 				CA881A4016EB278A0085F57B /* OffScreen */,
@@ -14735,6 +14742,15 @@
 				CA2A289319586E7900A97478 /* SPUserResizableView.m */,
 			);
 			path = SPUserResizableView;
+			sourceTree = "<group>";
+		};
+		CA2A289819596AA600A97478 /* CopyView */ = {
+			isa = PBXGroup;
+			children = (
+				CA2A289919596ACB00A97478 /* CopyView.h */,
+				CA2A289A19596ACB00A97478 /* CopyView.m */,
+			);
+			path = CopyView;
 			sourceTree = "<group>";
 		};
 		CA3220FF151B6A490039A384 /* Network */ = {
@@ -22112,6 +22128,7 @@
 				A461B086174CBAA70088B061 /* PPTableViewController.m in Sources */,
 				CACD6CE018E03BCD003F97C0 /* AliPayManager.m in Sources */,
 				A461B087174CBAA70088B061 /* PPViewController.m in Sources */,
+				CA2A289D19596ACB00A97478 /* CopyView.m in Sources */,
 				A461B088174CBAA70088B061 /* TestPPViewController.m in Sources */,
 				A461B095174CBAA70088B061 /* ReviewRequest.m in Sources */,
 				A461B096174CBAA70088B061 /* SearchHistoryManager.m in Sources */,
@@ -23586,6 +23603,7 @@
 				EA7100D117D197DA00451A38 /* MLNavigationController.m in Sources */,
 				EA46AD5817D5E6CD0066E914 /* ReportFeedCell.m in Sources */,
 				A42BB02B17D9735A007FB11B /* TwoInputFieldView.m in Sources */,
+				CA2A289C19596ACB00A97478 /* CopyView.m in Sources */,
 				CA0174EB19405306005E4390 /* OpusClassInfoManager.m in Sources */,
 				EAD13B8B17DECFE300764FFB /* OrangeLoadingView.m in Sources */,
 				A44F32E917E16C3500AF9B26 /* ContestRankView.m in Sources */,
@@ -24410,6 +24428,7 @@
 				CAFC03C417C887C200A11DE3 /* PPPopTableView.m in Sources */,
 				CA51419417CB419F00883CAA /* ContestPrizeCell.m in Sources */,
 				EA433E1617CDDA2F006E6FA7 /* JudgerScoreView.m in Sources */,
+				CA2A289B19596ACB00A97478 /* CopyView.m in Sources */,
 				CA0174EA19405306005E4390 /* OpusClassInfoManager.m in Sources */,
 				EA433E2917CDE500006E6FA7 /* DJQRateView.m in Sources */,
 				EA433E2D17CDE500006E6FA7 /* DJQStartView.m in Sources */,
@@ -24684,6 +24703,7 @@
 				EA4118B9176066F500DA72D0 /* AccountManager.m in Sources */,
 				EA4118BA176066F500DA72D0 /* ItemManager.m in Sources */,
 				EA4118BB176066F500DA72D0 /* ChangeAvatar.m in Sources */,
+				CA2A289E19596ACB00A97478 /* CopyView.m in Sources */,
 				CACD6CE518E03BCD003F97C0 /* AlixPayOrderManager.m in Sources */,
 				EA4118BC176066F500DA72D0 /* FeedbackController.m in Sources */,
 				EA4118BD176066F500DA72D0 /* UserSettingController.m in Sources */,

@@ -234,10 +234,12 @@ struct  _Game__PBFeed
   int32_t draftcreatedate;
   size_t n_opusclass;
   Game__PBClass **opusclass;
+  size_t n_opusclassids;
+  char **opusclassids;
 };
 #define GAME__PBFEED__INIT \
  { PROTOBUF_C_MESSAGE_INIT (&game__pbfeed__descriptor) \
-    , NULL, NULL, 0, 0, 0,0, NULL, NULL, 0,0, NULL, NULL, 0,0, NULL, 0,0, NULL, NULL, NULL, 0,0, NULL, NULL, 0,NULL, 0,0, NULL, 0,0, 0,0, 0,NULL, 0,0, NULL, NULL, 0,0, 0,0, 0,0, 0,0, 0,NULL, NULL, NULL, 0,0, NULL, NULL, NULL, NULL, NULL, NULL, 0,0, 0,NULL, 0,0, NULL, NULL, NULL, NULL, 0,0, 0,0, 0,0, 0,NULL }
+    , NULL, NULL, 0, 0, 0,0, NULL, NULL, 0,0, NULL, NULL, 0,0, NULL, 0,0, NULL, NULL, NULL, 0,0, NULL, NULL, 0,NULL, 0,0, NULL, 0,0, 0,0, 0,NULL, 0,0, NULL, NULL, 0,0, 0,0, 0,0, 0,0, 0,NULL, NULL, NULL, 0,0, NULL, NULL, NULL, NULL, NULL, NULL, 0,0, 0,NULL, 0,0, NULL, NULL, NULL, NULL, 0,0, 0,0, 0,0, 0,NULL, 0,NULL }
 
 
 struct  _Game__PBPoint

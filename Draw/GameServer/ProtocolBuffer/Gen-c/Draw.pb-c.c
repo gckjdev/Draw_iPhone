@@ -1702,7 +1702,7 @@ const ProtobufCMessageDescriptor game__pblabel_info__descriptor =
   (ProtobufCMessageInit) game__pblabel_info__init,
   NULL,NULL,NULL    /* reserved[123] */
 };
-static const ProtobufCFieldDescriptor game__pbfeed__field_descriptors[53] =
+static const ProtobufCFieldDescriptor game__pbfeed__field_descriptors[54] =
 {
   {
     "feedId",
@@ -2340,6 +2340,18 @@ static const ProtobufCFieldDescriptor game__pbfeed__field_descriptors[53] =
     0,            /* packed */
     0,NULL,NULL    /* reserved1,reserved2, etc */
   },
+  {
+    "opusClassIds",
+    215,
+    PROTOBUF_C_LABEL_REPEATED,
+    PROTOBUF_C_TYPE_STRING,
+    PROTOBUF_C_OFFSETOF(Game__PBFeed, n_opusclassids),
+    PROTOBUF_C_OFFSETOF(Game__PBFeed, opusclassids),
+    NULL,
+    NULL,
+    0,            /* packed */
+    0,NULL,NULL    /* reserved1,reserved2, etc */
+  },
 };
 static const unsigned game__pbfeed__field_indices_by_name[] = {
   2,   /* field[2] = actionType */
@@ -2373,6 +2385,7 @@ static const unsigned game__pbfeed__field_indices_by_name[] = {
   28,   /* field[28] = matchTimes */
   8,   /* field[8] = nickName */
   52,   /* field[52] = opusClass */
+  53,   /* field[53] = opusClassIds */
   36,   /* field[36] = opusCreatorAvatar */
   35,   /* field[35] = opusCreatorGender */
   34,   /* field[34] = opusCreatorNickName */
@@ -2410,7 +2423,7 @@ static const ProtobufCIntRange game__pbfeed__number_ranges[12 + 1] =
   { 100, 45 },
   { 200, 47 },
   { 211, 49 },
-  { 0, 53 }
+  { 0, 54 }
 };
 const ProtobufCMessageDescriptor game__pbfeed__descriptor =
 {
@@ -2420,7 +2433,7 @@ const ProtobufCMessageDescriptor game__pbfeed__descriptor =
   "Game__PBFeed",
   "game",
   sizeof(Game__PBFeed),
-  53,
+  54,
   game__pbfeed__field_descriptors,
   game__pbfeed__field_indices_by_name,
   12,  game__pbfeed__number_ranges,

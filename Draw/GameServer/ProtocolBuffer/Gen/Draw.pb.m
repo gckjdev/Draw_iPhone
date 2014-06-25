@@ -2557,6 +2557,7 @@ static PBLabelInfo* defaultPBLabelInfoInstance = nil;
 @property int32_t draftCompleteDate;
 @property int32_t draftCreateDate;
 @property (retain) NSMutableArray* mutableOpusClassList;
+@property (retain) NSMutableArray* mutableOpusClassIdsList;
 @end
 
 @implementation PBFeed
@@ -2917,6 +2918,7 @@ static PBLabelInfo* defaultPBLabelInfoInstance = nil;
 }
 @synthesize draftCreateDate;
 @synthesize mutableOpusClassList;
+@synthesize mutableOpusClassIdsList;
 - (void) dealloc {
   self.feedId = nil;
   self.userId = nil;
@@ -2950,6 +2952,7 @@ static PBLabelInfo* defaultPBLabelInfoInstance = nil;
   self.descLabelInfo = nil;
   self.canvasSize = nil;
   self.mutableOpusClassList = nil;
+  self.mutableOpusClassIdsList = nil;
   [super dealloc];
 }
 - (id) init {
@@ -3050,6 +3053,13 @@ static PBFeed* defaultPBFeedInstance = nil;
 }
 - (PBClass*) opusClassAtIndex:(int32_t) index {
   id value = [mutableOpusClassList objectAtIndex:index];
+  return value;
+}
+- (NSArray*) opusClassIdsList {
+  return mutableOpusClassIdsList;
+}
+- (NSString*) opusClassIdsAtIndex:(int32_t) index {
+  id value = [mutableOpusClassIdsList objectAtIndex:index];
   return value;
 }
 - (BOOL) isInitialized {
@@ -3262,6 +3272,9 @@ static PBFeed* defaultPBFeedInstance = nil;
   for (PBClass* element in self.opusClassList) {
     [output writeMessage:214 value:element];
   }
+  for (NSString* element in self.mutableOpusClassIdsList) {
+    [output writeString:215 value:element];
+  }
   [self.unknownFields writeToCodedOutputStream:output];
 }
 - (int32_t) serializedSize {
@@ -3439,6 +3452,14 @@ static PBFeed* defaultPBFeedInstance = nil;
   }
   for (PBClass* element in self.opusClassList) {
     size += computeMessageSize(214, element);
+  }
+  {
+    int32_t dataSize = 0;
+    for (NSString* element in self.mutableOpusClassIdsList) {
+      dataSize += computeStringSizeNoTag(element);
+    }
+    size += dataSize;
+    size += 2 * self.mutableOpusClassIdsList.count;
   }
   size += self.unknownFields.serializedSize;
   memoizedSerializedSize = size;
@@ -3688,6 +3709,12 @@ static PBFeed* defaultPBFeedInstance = nil;
       result.mutableOpusClassList = [NSMutableArray array];
     }
     [result.mutableOpusClassList addObjectsFromArray:other.mutableOpusClassList];
+  }
+  if (other.mutableOpusClassIdsList.count > 0) {
+    if (result.mutableOpusClassIdsList == nil) {
+      result.mutableOpusClassIdsList = [NSMutableArray array];
+    }
+    [result.mutableOpusClassIdsList addObjectsFromArray:other.mutableOpusClassIdsList];
   }
   [self mergeUnknownFields:other.unknownFields];
   return self;
@@ -3961,6 +3988,10 @@ static PBFeed* defaultPBFeedInstance = nil;
         PBClass_Builder* subBuilder = [PBClass builder];
         [input readMessage:subBuilder extensionRegistry:extensionRegistry];
         [self addOpusClass:[subBuilder buildPartial]];
+        break;
+      }
+      case 1722: {
+        [self addOpusClassIds:[input readString]];
         break;
       }
     }
@@ -4965,6 +4996,37 @@ static PBFeed* defaultPBFeedInstance = nil;
     result.mutableOpusClassList = [NSMutableArray array];
   }
   [result.mutableOpusClassList addObject:value];
+  return self;
+}
+- (NSArray*) opusClassIdsList {
+  if (result.mutableOpusClassIdsList == nil) {
+    return [NSArray array];
+  }
+  return result.mutableOpusClassIdsList;
+}
+- (NSString*) opusClassIdsAtIndex:(int32_t) index {
+  return [result opusClassIdsAtIndex:index];
+}
+- (PBFeed_Builder*) replaceOpusClassIdsAtIndex:(int32_t) index with:(NSString*) value {
+  [result.mutableOpusClassIdsList replaceObjectAtIndex:index withObject:value];
+  return self;
+}
+- (PBFeed_Builder*) addOpusClassIds:(NSString*) value {
+  if (result.mutableOpusClassIdsList == nil) {
+    result.mutableOpusClassIdsList = [NSMutableArray array];
+  }
+  [result.mutableOpusClassIdsList addObject:value];
+  return self;
+}
+- (PBFeed_Builder*) addAllOpusClassIds:(NSArray*) values {
+  if (result.mutableOpusClassIdsList == nil) {
+    result.mutableOpusClassIdsList = [NSMutableArray array];
+  }
+  [result.mutableOpusClassIdsList addObjectsFromArray:values];
+  return self;
+}
+- (PBFeed_Builder*) clearOpusClassIdsList {
+  result.mutableOpusClassIdsList = nil;
   return self;
 }
 @end

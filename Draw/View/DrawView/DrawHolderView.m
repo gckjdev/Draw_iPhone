@@ -80,11 +80,11 @@
 {
     CGRect frame = [CanvasRect defaultRect];
     if (ISIPAD) {
-        frame.origin = CGPointMake((768-frame.size.width)/2, 98);
+        frame.origin = CGPointMake((768.0f-frame.size.width)/2.0, 98);
     }else if(ISIPHONE5){
-        frame.origin = CGPointMake((320-frame.size.width)/2, 50);
+        frame.origin = CGPointMake((320.0f-frame.size.width)/2.0, 50);
     }else{
-        frame.origin = CGPointMake((320-frame.size.width)/2, 42);
+        frame.origin = CGPointMake((320.0f-frame.size.width)/2.0, 42);
     }
     frame.origin.y += +STATUSBAR_DELTA;
 

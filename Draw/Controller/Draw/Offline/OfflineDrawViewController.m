@@ -72,6 +72,8 @@
 
 #import "OpusDesignTime.h"
 #import "SelectOpusClassViewController.h"
+#import "SPUserResizableView.h"
+#import "CopyView.h"
 
 @interface OfflineDrawViewController()
 {
@@ -121,6 +123,7 @@
 @property (retain, nonatomic) CommonDialog* currentDialog;
 @property (retain, nonatomic) CMPopTipView *layerPanelPopView;
 @property (retain, nonatomic) CMPopTipView *upPanelPopView;
+@property (retain, nonatomic) SPUserResizableView *copyView;
 
 - (void)initDrawView;
 
@@ -195,6 +198,7 @@
     
     self.delegate = nil;
     _draft.drawActionList = nil;
+    PPRelease(_copyView);
     PPRelease(_selectedClassList);
     PPRelease(_submitOpusFinalImage);
     PPRelease(_submitOpusDrawData);
@@ -357,6 +361,22 @@
     int initTime = (self.draft == nil) ? 0 : [self.draft.opusSpendTime intValue];
     self.designTime = [[[OpusDesignTime alloc] initWithTime:initTime] autorelease];
     [self.designTime start];
+
+//    CGRect frame = CGRectMake(drawView.frame.origin.x, drawView.frame.origin.y, 200, 200);
+//    SPUserResizableView *userResizableView = [[SPUserResizableView alloc] initWithFrame:frame];
+//    UIView *contentView = [[UIView alloc] initWithFrame:frame];
+//    [contentView setBackgroundColor:[UIColor clearColor]];
+//    userResizableView.contentView = contentView;
+//    [holder addSubview:userResizableView];
+////    userResizableView.layer.borderColor = COLOR_GREEN.CGColor;
+//    [contentView release];
+//    [userResizableView release];
+
+    [CopyView createCopyView:self superView:holder atPoint:drawView.frame.origin];
+}
+
+- (void)initCopyView
+{
 }
 
 - (void)initWordLabel
