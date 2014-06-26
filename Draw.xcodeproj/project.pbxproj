@@ -4526,6 +4526,10 @@
 		CA2A28B3195C12A500A97478 /* TutorialService.m in Sources */ = {isa = PBXBuildFile; fileRef = CA2A28B1195C12A400A97478 /* TutorialService.m */; };
 		CA2A28B4195C12A600A97478 /* TutorialService.m in Sources */ = {isa = PBXBuildFile; fileRef = CA2A28B1195C12A400A97478 /* TutorialService.m */; };
 		CA2A28B5195C12A600A97478 /* TutorialService.m in Sources */ = {isa = PBXBuildFile; fileRef = CA2A28B1195C12A400A97478 /* TutorialService.m */; };
+		CA2A28B8195C135600A97478 /* Tutorial.pb.m in Sources */ = {isa = PBXBuildFile; fileRef = CA2A28B7195C135600A97478 /* Tutorial.pb.m */; };
+		CA2A28B9195C135600A97478 /* Tutorial.pb.m in Sources */ = {isa = PBXBuildFile; fileRef = CA2A28B7195C135600A97478 /* Tutorial.pb.m */; };
+		CA2A28BA195C135600A97478 /* Tutorial.pb.m in Sources */ = {isa = PBXBuildFile; fileRef = CA2A28B7195C135600A97478 /* Tutorial.pb.m */; };
+		CA2A28BB195C135600A97478 /* Tutorial.pb.m in Sources */ = {isa = PBXBuildFile; fileRef = CA2A28B7195C135600A97478 /* Tutorial.pb.m */; };
 		CA322102151B6A670039A384 /* GameNetworkRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = CA322101151B6A670039A384 /* GameNetworkRequest.m */; };
 		CA322105151B6BE60039A384 /* UserService.m in Sources */ = {isa = PBXBuildFile; fileRef = CA322104151B6BE60039A384 /* UserService.m */; };
 		CA32213D151DEDE10039A384 /* ChangeAvatar.m in Sources */ = {isa = PBXBuildFile; fileRef = CA32213C151DEDE10039A384 /* ChangeAvatar.m */; };
@@ -9222,6 +9226,8 @@
 		CA2A28AB195C125400A97478 /* TutorialCoreManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TutorialCoreManager.m; sourceTree = "<group>"; };
 		CA2A28B0195C12A400A97478 /* TutorialService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TutorialService.h; sourceTree = "<group>"; };
 		CA2A28B1195C12A400A97478 /* TutorialService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TutorialService.m; sourceTree = "<group>"; };
+		CA2A28B6195C135600A97478 /* Tutorial.pb.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Tutorial.pb.h; sourceTree = "<group>"; };
+		CA2A28B7195C135600A97478 /* Tutorial.pb.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Tutorial.pb.m; sourceTree = "<group>"; };
 		CA322100151B6A670039A384 /* GameNetworkRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameNetworkRequest.h; sourceTree = "<group>"; };
 		CA322101151B6A670039A384 /* GameNetworkRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameNetworkRequest.m; sourceTree = "<group>"; };
 		CA322103151B6BE60039A384 /* UserService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserService.h; sourceTree = "<group>"; };
@@ -15898,6 +15904,8 @@
 		CA96E274150DE87A00292335 /* Gen */ = {
 			isa = PBXGroup;
 			children = (
+				CA2A28B6195C135600A97478 /* Tutorial.pb.h */,
+				CA2A28B7195C135600A97478 /* Tutorial.pb.m */,
 				EA1BD64B182E26A6000E5364 /* Group.pb.h */,
 				EA1BD64C182E26A6000E5364 /* Group.pb.m */,
 				C2C18AAC176191AC00DE933B /* Photo.pb.h */,
@@ -22654,6 +22662,7 @@
 				A461B355174CBAA70088B061 /* ChangeBackAction.m in Sources */,
 				A461B356174CBAA70088B061 /* CleanAction.m in Sources */,
 				A461B357174CBAA70088B061 /* DrawAction.m in Sources */,
+				CA2A28BA195C135600A97478 /* Tutorial.pb.m in Sources */,
 				A461B358174CBAA70088B061 /* PaintAction.m in Sources */,
 				A461B359174CBAA70088B061 /* ShapeAction.m in Sources */,
 				A461B35A174CBAA70088B061 /* CanvasRect.m in Sources */,
@@ -23620,6 +23629,7 @@
 				A4EC5AC1178FFE820085031F /* UIImageView+Extend.m in Sources */,
 				CAC85C031791179100827C20 /* TextCommand.m in Sources */,
 				CAC85C1C179117B100827C20 /* FXCommand.m in Sources */,
+				CA2A28B9195C135600A97478 /* Tutorial.pb.m in Sources */,
 				A4ECE9C01792A036006DD933 /* CyclePageScrollView.m in Sources */,
 				A4ECE9C21792A036006DD933 /* NonCyclePageScrollView.m in Sources */,
 				A4ECE9C41792A036006DD933 /* PageScrollView.m in Sources */,
@@ -24447,6 +24457,7 @@
 				CAA75C9B178A64CF0041C019 /* PathClipTouchHandler.m in Sources */,
 				CAA75CAE178A65020041C019 /* PolygonClipTouchHandler.m in Sources */,
 				CACEC2BC178BA7AD00D88643 /* SelectorBox.m in Sources */,
+				CA2A28B8195C135600A97478 /* Tutorial.pb.m in Sources */,
 				CACEC35D178BCD1600D88643 /* SelectorCommand.m in Sources */,
 				CA0FC07C178EA13E00A72B79 /* JumpHandler.m in Sources */,
 				A4EC5A90178FB24C0085031F /* CommonShareAction.m in Sources */,
@@ -25259,6 +25270,7 @@
 				EA46F3A61778588800D8D349 /* SearchResultView.m in Sources */,
 				EA46F3A7177859F000D8D349 /* TagPackage.m in Sources */,
 				CA3D4AF417794748000A8FC7 /* ShadowBox.m in Sources */,
+				CA2A28BB195C135600A97478 /* Tutorial.pb.m in Sources */,
 				A467BBCF17798E0F00455E3A /* OpusDownloadService.m in Sources */,
 				EA1176AF1779B840008678AC /* DrawToolUpPanel.m in Sources */,
 				CA13B83D177BDB57003B7368 /* Shadow.m in Sources */,
