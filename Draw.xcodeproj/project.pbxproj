@@ -4514,6 +4514,10 @@
 		CA2A289C19596ACB00A97478 /* CopyView.m in Sources */ = {isa = PBXBuildFile; fileRef = CA2A289A19596ACB00A97478 /* CopyView.m */; };
 		CA2A289D19596ACB00A97478 /* CopyView.m in Sources */ = {isa = PBXBuildFile; fileRef = CA2A289A19596ACB00A97478 /* CopyView.m */; };
 		CA2A289E19596ACB00A97478 /* CopyView.m in Sources */ = {isa = PBXBuildFile; fileRef = CA2A289A19596ACB00A97478 /* CopyView.m */; };
+		CA2A28A0195B095D00A97478 /* Tutorial.proto in Resources */ = {isa = PBXBuildFile; fileRef = CA2A289F195B095B00A97478 /* Tutorial.proto */; };
+		CA2A28A1195B09A000A97478 /* Tutorial.proto in Resources */ = {isa = PBXBuildFile; fileRef = CA2A289F195B095B00A97478 /* Tutorial.proto */; };
+		CA2A28A2195B09A100A97478 /* Tutorial.proto in Resources */ = {isa = PBXBuildFile; fileRef = CA2A289F195B095B00A97478 /* Tutorial.proto */; };
+		CA2A28A3195B09A200A97478 /* Tutorial.proto in Resources */ = {isa = PBXBuildFile; fileRef = CA2A289F195B095B00A97478 /* Tutorial.proto */; };
 		CA322102151B6A670039A384 /* GameNetworkRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = CA322101151B6A670039A384 /* GameNetworkRequest.m */; };
 		CA322105151B6BE60039A384 /* UserService.m in Sources */ = {isa = PBXBuildFile; fileRef = CA322104151B6BE60039A384 /* UserService.m */; };
 		CA32213D151DEDE10039A384 /* ChangeAvatar.m in Sources */ = {isa = PBXBuildFile; fileRef = CA32213C151DEDE10039A384 /* ChangeAvatar.m */; };
@@ -9205,6 +9209,7 @@
 		CA2A289319586E7900A97478 /* SPUserResizableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPUserResizableView.m; sourceTree = "<group>"; };
 		CA2A289919596ACB00A97478 /* CopyView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CopyView.h; sourceTree = "<group>"; };
 		CA2A289A19596ACB00A97478 /* CopyView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CopyView.m; sourceTree = "<group>"; };
+		CA2A289F195B095B00A97478 /* Tutorial.proto */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Tutorial.proto; sourceTree = "<group>"; };
 		CA322100151B6A670039A384 /* GameNetworkRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameNetworkRequest.h; sourceTree = "<group>"; };
 		CA322101151B6A670039A384 /* GameNetworkRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameNetworkRequest.m; sourceTree = "<group>"; };
 		CA322103151B6BE60039A384 /* UserService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserService.h; sourceTree = "<group>"; };
@@ -15806,6 +15811,7 @@
 		CA96E273150DE87A00292335 /* ProtocolBuffer */ = {
 			isa = PBXGroup;
 			children = (
+				CA2A289F195B095B00A97478 /* Tutorial.proto */,
 				A44AC48C187561F200927649 /* Group.proto */,
 				CAA62CC01744C54F00C376BA /* google */,
 				C20030A7172F9E1D00FD6AE1 /* Gen-c */,
@@ -18460,6 +18466,7 @@
 				A4D8F9C717DB08170085061F /* normal@2x.png in Resources */,
 				A4D8F9CB17DB08170085061F /* print_tip@2x.png in Resources */,
 				A4D8F9CF17DB08170085061F /* print_tipbig@2x.png in Resources */,
+				CA2A28A2195B09A100A97478 /* Tutorial.proto in Resources */,
 				A4D8F9D317DB08170085061F /* reply_bg@2x.png in Resources */,
 				A4D8F9D717DB08170085061F /* round@2x.png in Resources */,
 				A4D8F9DB17DB08170085061F /* round_mask@2x.png in Resources */,
@@ -19742,6 +19749,7 @@
 				A4D8FE9C17DB089C0085061F /* face_embarrass@2x.png in Resources */,
 				A4D8FEA017DB089C0085061F /* face_happy@2x.png in Resources */,
 				A4D8FEA417DB089C0085061F /* face_lovely@2x.png in Resources */,
+				CA2A28A1195B09A000A97478 /* Tutorial.proto in Resources */,
 				A4D8FEA817DB089C0085061F /* face_proud@2x.png in Resources */,
 				A4D8FEAC17DB089C0085061F /* face_randy@2x.png in Resources */,
 				A4D8FEB017DB089C0085061F /* face_shock@2x.png in Resources */,
@@ -21019,6 +21027,7 @@
 				EA716B95186C373F005CC0F0 /* group_add@2x.png in Resources */,
 				A434172218711AFB008D0A2B /* ContestCell.xib in Resources */,
 				EA481CC2187162E000177423 /* default_group_medal@2x.png in Resources */,
+				CA2A28A0195B095D00A97478 /* Tutorial.proto in Resources */,
 				A44AC4881875528D00927649 /* CreateContestController.xib in Resources */,
 				A44AC48D187561F200927649 /* Group.proto in Resources */,
 				EA62853918768F4600478502 /* bbs_post_detail_favor@2x.png in Resources */,
@@ -21851,6 +21860,7 @@
 				EA5FE1CD17E843F60099754C /* common_home_bullitin@2x.png in Resources */,
 				EA5FE1D217E949C10099754C /* draw_home_avatar_bg@2x.png in Resources */,
 				EA2A7CE517F676AB00ED508D /* AccountManageController.xib in Resources */,
+				CA2A28A3195B09A200A97478 /* Tutorial.proto in Resources */,
 				EA2A7CEF17F6958600ED508D /* AccountCell.xib in Resources */,
 				CA1FF8941804F986003CEAD6 /* NSDate+TKCategory.strings in Resources */,
 				EA0C550D180B89A5008069C1 /* bubble_bg_red@2x.png in Resources */,

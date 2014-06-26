@@ -1,0 +1,108 @@
+
+import "GameConstants.proto";
+import "GameBasic.proto";
+import "BBS.proto";
+
+package game;
+
+option java_package = "com.orange.network.game.protocol.model";
+option java_outer_classname = "TutorialProtos";
+
+enum PBTutorialLevel{
+    TUTORIAL_LEVEL_ENTRY = 0;
+    TUTORIAL_LEVEL_EASY = 1;
+    TUTORIAL_LEVEL_NORMAL = 2;
+    TUTORIAL_LEVEL_HARD = 3;
+}
+
+// 关卡
+message PBStage
+{
+    required string stageId = 1;
+
+    optional string cnName = 2;                     // 简体中文名称
+    optional string enName = 3;                     // 英文名称
+    optional string tcnName = 4;                    // 繁体中文名称
+
+    optional string cnDesc = 10;
+    optional string enDesc = 11;
+    optional string tcnDesc = 12;
+
+    optional string image = 20;
+    optional string thumbImage = 21;
+}
+
+// 教程
+message PBTutorial
+{
+    required string tutorialId = 1;
+    
+    optional string cnName = 2;                     // 简体中文名称
+    optional string enName = 3;                     // 英文名称
+    optional string tcnName = 4;                    // 繁体中文名称
+
+    optional string cnDesc = 10;
+    optional string enDesc = 11;
+    optional string tcnDesc = 12;
+
+    optional int32  level = 20;                     // 参考PBTutorialLevel
+    repeated int32  categories = 21;                // 分类列表，暂时不用
+    optional bool   isFeature = 22;                 // 是否推荐
+    optional string image = 23;                     // 大图片
+    optional string thumbImage = 24;                // 小图片
+    optional string dataUrl = 25;                   // 教程包的下载文件名
+    
+    optional bool   isFree = 30[default=true];
+    optional int32  price = 31;
+    optional int32  priceUnit = 32;
+    
+    optional int32  createDate = 40;
+    optional int32  modifyDate = 41;
+
+}
+
+// 用户闯关的作品
+message PBUserStageOpus
+{
+    required string localOpusId = 1;
+    optional string remoteOpusId = 2;
+
+    optional int32  score = 4;
+    optional int32  createDate = 5;
+    optional string localUrl = 6;
+    optional string remoteUrl = 7;
+}
+
+// 用户和关卡的关系
+message PBUserStage
+{
+    required string userId = 1;
+    required string tutorialId = 2;
+    required string stageId = 3;
+    
+    optional int32  bestScore = 4;          // 最好成绩
+    optional int32  bestScoreDate = 5;      // 最好成绩时间
+    optional int32  lastScoreDate = 6;      // 最后一次闯关时间
+    
+    repeated PBUserStageOpus opus = 7;      // 闯关记录信息
+}
+
+// 用户和教程的关系，用于保存到本地
+message PBUserTutorial
+{
+    required string userId = 1;
+    required PBTutorial tutorial = 2;
+
+    optional bool isStudy = 3;
+    optional bool isDownload = 4;
+    optional bool isPurchase = 5;
+
+    optional int32  createDate = 10;
+    optional int32  lastPlayDate = 11;
+    optional int32  modifyDate = 12;            // 下载、购买、开始闯关、修炼都可以修改该时间
+
+    optional int32  currentStageIndex = 20;     // 当前玩到第几关
+    optional string currentStageId = 21;        // 当前关的ID
+    repeated PBUserStage userStages = 22;       // 每一关的具体信息
+}
+

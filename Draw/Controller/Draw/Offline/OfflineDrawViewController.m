@@ -372,7 +372,7 @@
 //    [contentView release];
 //    [userResizableView release];
 
-    [CopyView createCopyView:self superView:holder atPoint:drawView.frame.origin];
+//    [CopyView createCopyView:self superView:holder atPoint:drawView.frame.origin];
 }
 
 - (void)initCopyView

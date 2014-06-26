@@ -10,8 +10,8 @@
 #import "SPUserResizableView.h"
 #import "MKBlockActionSheet.h"
 
-#define COPY_VIEW_DEFAULT_WIDTH     200
-#define COPY_VIEW_DEFAULT_HEIGHT    200
+#define COPY_VIEW_DEFAULT_WIDTH     100
+#define COPY_VIEW_DEFAULT_HEIGHT    100
 
 @interface CopyView()
 
@@ -83,9 +83,41 @@
     PPDebug(@"userResizableViewDidEndEditing");
 }
 
+#define COPY_VIEW_SET_IMAGE NSLS(@"kCopyViewSetImage")
+#define COPY_VIEW_PLAY      NSLS(@"kPlayCopyView")
+#define COPY_VIEW_HIDE      NSLS(@"kHideCopyView")
+#define COPY_VIEW_HELP      NSLS(@"kCopyViewHelp")
+
 - (void)userResizableViewDidTap:(SPUserResizableView*)userResizableView
 {
     PPDebug(@"userResizableViewDidTap");
+    
+    
+    
+    MKBlockActionSheet* actionSheet = [[MKBlockActionSheet alloc] initWithTitle:NSLS(@"kCopyViewActionTitle")
+                                                                       delegate:nil
+                                                              cancelButtonTitle:NSLS(@"Cancel")
+                                                         destructiveButtonTitle:COPY_VIEW_SET_IMAGE
+                                                              otherButtonTitles:COPY_VIEW_PLAY, COPY_VIEW_HIDE, COPY_VIEW_HELP, nil];
+    
+    [actionSheet setActionBlock:^(NSInteger buttonIndex){
+        NSString* title = [actionSheet buttonTitleAtIndex:buttonIndex];
+        if ([title isEqualToString:COPY_VIEW_SET_IMAGE]){
+            PPDebug(@"click COPY_VIEW_SET_IMAGE");
+        }
+        else if ([title isEqualToString:COPY_VIEW_PLAY]){
+            PPDebug(@"click COPY_VIEW_PLAY");
+        }
+        else if ([title isEqualToString:COPY_VIEW_HIDE]){
+            PPDebug(@"click COPY_VIEW_HIDE");
+            [self setHidden:YES];
+        }
+        else if ([title isEqualToString:COPY_VIEW_HELP]){
+            PPDebug(@"click COPY_VIEW_HELP");
+        }
+    }];
+    
+    [actionSheet showInView:self.superViewController.view];
 }
 
 #pragma mark - UIGestureRecognizerDelegate
