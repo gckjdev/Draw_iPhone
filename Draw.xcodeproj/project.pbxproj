@@ -4518,6 +4518,14 @@
 		CA2A28A1195B09A000A97478 /* Tutorial.proto in Resources */ = {isa = PBXBuildFile; fileRef = CA2A289F195B095B00A97478 /* Tutorial.proto */; };
 		CA2A28A2195B09A100A97478 /* Tutorial.proto in Resources */ = {isa = PBXBuildFile; fileRef = CA2A289F195B095B00A97478 /* Tutorial.proto */; };
 		CA2A28A3195B09A200A97478 /* Tutorial.proto in Resources */ = {isa = PBXBuildFile; fileRef = CA2A289F195B095B00A97478 /* Tutorial.proto */; };
+		CA2A28AC195C125500A97478 /* TutorialCoreManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CA2A28AB195C125400A97478 /* TutorialCoreManager.m */; };
+		CA2A28AD195C125500A97478 /* TutorialCoreManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CA2A28AB195C125400A97478 /* TutorialCoreManager.m */; };
+		CA2A28AE195C125600A97478 /* TutorialCoreManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CA2A28AB195C125400A97478 /* TutorialCoreManager.m */; };
+		CA2A28AF195C125600A97478 /* TutorialCoreManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CA2A28AB195C125400A97478 /* TutorialCoreManager.m */; };
+		CA2A28B2195C12A400A97478 /* TutorialService.m in Sources */ = {isa = PBXBuildFile; fileRef = CA2A28B1195C12A400A97478 /* TutorialService.m */; };
+		CA2A28B3195C12A500A97478 /* TutorialService.m in Sources */ = {isa = PBXBuildFile; fileRef = CA2A28B1195C12A400A97478 /* TutorialService.m */; };
+		CA2A28B4195C12A600A97478 /* TutorialService.m in Sources */ = {isa = PBXBuildFile; fileRef = CA2A28B1195C12A400A97478 /* TutorialService.m */; };
+		CA2A28B5195C12A600A97478 /* TutorialService.m in Sources */ = {isa = PBXBuildFile; fileRef = CA2A28B1195C12A400A97478 /* TutorialService.m */; };
 		CA322102151B6A670039A384 /* GameNetworkRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = CA322101151B6A670039A384 /* GameNetworkRequest.m */; };
 		CA322105151B6BE60039A384 /* UserService.m in Sources */ = {isa = PBXBuildFile; fileRef = CA322104151B6BE60039A384 /* UserService.m */; };
 		CA32213D151DEDE10039A384 /* ChangeAvatar.m in Sources */ = {isa = PBXBuildFile; fileRef = CA32213C151DEDE10039A384 /* ChangeAvatar.m */; };
@@ -9210,6 +9218,10 @@
 		CA2A289919596ACB00A97478 /* CopyView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CopyView.h; sourceTree = "<group>"; };
 		CA2A289A19596ACB00A97478 /* CopyView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CopyView.m; sourceTree = "<group>"; };
 		CA2A289F195B095B00A97478 /* Tutorial.proto */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Tutorial.proto; sourceTree = "<group>"; };
+		CA2A28AA195C125400A97478 /* TutorialCoreManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TutorialCoreManager.h; sourceTree = "<group>"; };
+		CA2A28AB195C125400A97478 /* TutorialCoreManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TutorialCoreManager.m; sourceTree = "<group>"; };
+		CA2A28B0195C12A400A97478 /* TutorialService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TutorialService.h; sourceTree = "<group>"; };
+		CA2A28B1195C12A400A97478 /* TutorialService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TutorialService.m; sourceTree = "<group>"; };
 		CA322100151B6A670039A384 /* GameNetworkRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameNetworkRequest.h; sourceTree = "<group>"; };
 		CA322101151B6A670039A384 /* GameNetworkRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameNetworkRequest.m; sourceTree = "<group>"; };
 		CA322103151B6BE60039A384 /* UserService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserService.h; sourceTree = "<group>"; };
@@ -14758,6 +14770,57 @@
 			path = CopyView;
 			sourceTree = "<group>";
 		};
+		CA2A28A4195C120600A97478 /* Tutorial */ = {
+			isa = PBXGroup;
+			children = (
+				CA2A28A5195C120600A97478 /* Controller */,
+				CA2A28A6195C120600A97478 /* Model */,
+				CA2A28A7195C120600A97478 /* Resource */,
+				CA2A28A8195C120600A97478 /* Service */,
+				CA2A28A9195C120600A97478 /* View */,
+			);
+			path = Tutorial;
+			sourceTree = "<group>";
+		};
+		CA2A28A5195C120600A97478 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		CA2A28A6195C120600A97478 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				CA2A28AA195C125400A97478 /* TutorialCoreManager.h */,
+				CA2A28AB195C125400A97478 /* TutorialCoreManager.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		CA2A28A7195C120600A97478 /* Resource */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Resource;
+			sourceTree = "<group>";
+		};
+		CA2A28A8195C120600A97478 /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				CA2A28B0195C12A400A97478 /* TutorialService.h */,
+				CA2A28B1195C12A400A97478 /* TutorialService.m */,
+			);
+			path = Service;
+			sourceTree = "<group>";
+		};
+		CA2A28A9195C120600A97478 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		CA3220FF151B6A490039A384 /* Network */ = {
 			isa = PBXGroup;
 			children = (
@@ -15273,6 +15336,7 @@
 		CA745D281503B1B500600024 /* Draw */ = {
 			isa = PBXGroup;
 			children = (
+				CA2A28A4195C120600A97478 /* Tutorial */,
 				CA0174E01940524E005E4390 /* OpusClass */,
 				CA1162511834A84F00FDD3A9 /* Task */,
 				EA8CADD618288C4D003149FE /* Group */,
@@ -22158,6 +22222,7 @@
 				A461B0A6174CBAA70088B061 /* CoreDataUtil.m in Sources */,
 				A461B0A7174CBAA70088B061 /* PPDataManager.m in Sources */,
 				A461B0A8174CBAA70088B061 /* AddressBookUtils.m in Sources */,
+				CA2A28AE195C125600A97478 /* TutorialCoreManager.m in Sources */,
 				A461B0A9174CBAA70088B061 /* NSAutoExtendMutableArray.m in Sources */,
 				A461B0AA174CBAA70088B061 /* TimeUtils.m in Sources */,
 				A461B0AB174CBAA70088B061 /* DeviceDetection.m in Sources */,
@@ -22415,6 +22480,7 @@
 				A461B24B174CBAA70088B061 /* GameSNSService.m in Sources */,
 				A461B25F174CBAA70088B061 /* ANGifEncoder.m in Sources */,
 				A461B260174CBAA70088B061 /* ANGifGraphicControlExt.m in Sources */,
+				CA2A28B4195C12A600A97478 /* TutorialService.m in Sources */,
 				A461B261174CBAA70088B061 /* ANGifLogicalScreenDesc.m in Sources */,
 				A461B262174CBAA70088B061 /* ANGifAppExtension.m in Sources */,
 				A461B263174CBAA70088B061 /* ANGifNetscapeAppExtension.m in Sources */,
@@ -23091,6 +23157,7 @@
 				C28A9A2F1738F04B007A819F /* DrawView.m in Sources */,
 				C28A9A301738F04B007A819F /* ShowDrawView.m in Sources */,
 				C28A9A311738F04B007A819F /* ColorView.m in Sources */,
+				CA2A28B3195C12A500A97478 /* TutorialService.m in Sources */,
 				C28A9A321738F04B007A819F /* PenView.m in Sources */,
 				C28A9A331738F04B007A819F /* StableView.m in Sources */,
 				C28A9A341738F04B007A819F /* WidthView.m in Sources */,
@@ -23465,6 +23532,7 @@
 				C28A9C781738F04B007A819F /* BuyItemSpecialHandler.m in Sources */,
 				C28A9C911738F04B007A819F /* UIImage+fixOrientation.m in Sources */,
 				C28A9C921738F04B007A819F /* SKProductService.m in Sources */,
+				CA2A28AD195C125500A97478 /* TutorialCoreManager.m in Sources */,
 				C28A9C931738F04B007A819F /* SKProductManager.m in Sources */,
 				C28A9C941738F04B007A819F /* PBIAPProduct+Utils.m in Sources */,
 				C28A9C9C1738F04B007A819F /* FeedSceneDetailGuessResult.m in Sources */,
@@ -23916,6 +23984,7 @@
 				CAC4DCEB154542A200A42CF2 /* TransactionReceipt.m in Sources */,
 				CA051DC31546802D00D0A00A /* DrawView.m in Sources */,
 				CA051DC41546802D00D0A00A /* ShowDrawView.m in Sources */,
+				CA2A28B2195C12A400A97478 /* TutorialService.m in Sources */,
 				CA051DC61546802D00D0A00A /* ColorView.m in Sources */,
 				CA051DC71546802D00D0A00A /* PenView.m in Sources */,
 				CA051DC81546802D00D0A00A /* StableView.m in Sources */,
@@ -24290,6 +24359,7 @@
 				C2BD7A5017165D790079B7F6 /* UserSettingCell.m in Sources */,
 				A4B1C4A617168125002C83C1 /* PBGameItem+Extend.m in Sources */,
 				A4B1C4AB171688BE002C83C1 /* BuyItemSpecialHandler.m in Sources */,
+				CA2A28AC195C125500A97478 /* TutorialCoreManager.m in Sources */,
 				EAC81C0D172B983200ED78DE /* UIImage+fixOrientation.m in Sources */,
 				A49D82BA172BD53F00C4001F /* SKProductService.m in Sources */,
 				A49D82CA172BD58800C4001F /* SKProductManager.m in Sources */,
@@ -24728,6 +24798,7 @@
 				EA4118C8176066F500DA72D0 /* MyPaint.m in Sources */,
 				EA4118C9176066F500DA72D0 /* MyPaintManager.m in Sources */,
 				EA4118CB176066F500DA72D0 /* ShareImageManager.m in Sources */,
+				CA2A28AF195C125600A97478 /* TutorialCoreManager.m in Sources */,
 				EA4118CE176066F500DA72D0 /* ShareCell.m in Sources */,
 				EA4118CF176066F500DA72D0 /* ColorGroup.m in Sources */,
 				EA4118D0176066F500DA72D0 /* UserItem.m in Sources */,
@@ -24912,6 +24983,7 @@
 				EA4119C2176066F500DA72D0 /* BitmapRotationManipulator.m in Sources */,
 				EA4119C3176066F500DA72D0 /* BitmapScaleManipulator.m in Sources */,
 				EA4119C4176066F500DA72D0 /* GifManager.m in Sources */,
+				CA2A28B5195C12A600A97478 /* TutorialService.m in Sources */,
 				EA4119C5176066F500DA72D0 /* GifView.m in Sources */,
 				EA4119C6176066F500DA72D0 /* UIImagePixelSource.m in Sources */,
 				EA4119D1176066F500DA72D0 /* ioapi.c in Sources */,
