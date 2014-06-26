@@ -8,6 +8,13 @@
 
 #import <Foundation/Foundation.h>
 
+// 管理所有教程的核心类，包括自动从服务器更新所有教程数据和保存到本地
 @interface TutorialCoreManager : NSObject
+
++ (TutorialCoreManager*)defaultManager;
+- (void)autoUpdate;
+
+// 返回教程列表
+- (NSArray*)allTutorials;
 
 @end
