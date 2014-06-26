@@ -92,6 +92,49 @@ void   game__pbtutorial__free_unpacked
   PROTOBUF_C_ASSERT (message->base.descriptor == &game__pbtutorial__descriptor);
   protobuf_c_message_free_unpacked ((ProtobufCMessage*)message, allocator);
 }
+void   game__pbtutorial_core__init
+                     (Game__PBTutorialCore         *message)
+{
+  static Game__PBTutorialCore init_value = GAME__PBTUTORIAL_CORE__INIT;
+  *message = init_value;
+}
+size_t game__pbtutorial_core__get_packed_size
+                     (const Game__PBTutorialCore *message)
+{
+  PROTOBUF_C_ASSERT (message->base.descriptor == &game__pbtutorial_core__descriptor);
+  return protobuf_c_message_get_packed_size ((const ProtobufCMessage*)(message));
+}
+size_t game__pbtutorial_core__pack
+                     (const Game__PBTutorialCore *message,
+                      uint8_t       *out)
+{
+  PROTOBUF_C_ASSERT (message->base.descriptor == &game__pbtutorial_core__descriptor);
+  return protobuf_c_message_pack ((const ProtobufCMessage*)message, out);
+}
+size_t game__pbtutorial_core__pack_to_buffer
+                     (const Game__PBTutorialCore *message,
+                      ProtobufCBuffer *buffer)
+{
+  PROTOBUF_C_ASSERT (message->base.descriptor == &game__pbtutorial_core__descriptor);
+  return protobuf_c_message_pack_to_buffer ((const ProtobufCMessage*)message, buffer);
+}
+Game__PBTutorialCore *
+       game__pbtutorial_core__unpack
+                     (ProtobufCAllocator  *allocator,
+                      size_t               len,
+                      const uint8_t       *data)
+{
+  return (Game__PBTutorialCore *)
+     protobuf_c_message_unpack (&game__pbtutorial_core__descriptor,
+                                allocator, len, data);
+}
+void   game__pbtutorial_core__free_unpacked
+                     (Game__PBTutorialCore *message,
+                      ProtobufCAllocator *allocator)
+{
+  PROTOBUF_C_ASSERT (message->base.descriptor == &game__pbtutorial_core__descriptor);
+  protobuf_c_message_free_unpacked ((ProtobufCMessage*)message, allocator);
+}
 void   game__pbuser_stage_opus__init
                      (Game__PBUserStageOpus         *message)
 {
@@ -627,6 +670,57 @@ const ProtobufCMessageDescriptor game__pbtutorial__descriptor =
   game__pbtutorial__field_indices_by_name,
   5,  game__pbtutorial__number_ranges,
   (ProtobufCMessageInit) game__pbtutorial__init,
+  NULL,NULL,NULL    /* reserved[123] */
+};
+static const ProtobufCFieldDescriptor game__pbtutorial_core__field_descriptors[2] =
+{
+  {
+    "tutorials",
+    1,
+    PROTOBUF_C_LABEL_REPEATED,
+    PROTOBUF_C_TYPE_MESSAGE,
+    PROTOBUF_C_OFFSETOF(Game__PBTutorialCore, n_tutorials),
+    PROTOBUF_C_OFFSETOF(Game__PBTutorialCore, tutorials),
+    &game__pbtutorial__descriptor,
+    NULL,
+    0,            /* packed */
+    0,NULL,NULL    /* reserved1,reserved2, etc */
+  },
+  {
+    "version",
+    2,
+    PROTOBUF_C_LABEL_OPTIONAL,
+    PROTOBUF_C_TYPE_INT32,
+    PROTOBUF_C_OFFSETOF(Game__PBTutorialCore, has_version),
+    PROTOBUF_C_OFFSETOF(Game__PBTutorialCore, version),
+    NULL,
+    NULL,
+    0,            /* packed */
+    0,NULL,NULL    /* reserved1,reserved2, etc */
+  },
+};
+static const unsigned game__pbtutorial_core__field_indices_by_name[] = {
+  0,   /* field[0] = tutorials */
+  1,   /* field[1] = version */
+};
+static const ProtobufCIntRange game__pbtutorial_core__number_ranges[1 + 1] =
+{
+  { 1, 0 },
+  { 0, 2 }
+};
+const ProtobufCMessageDescriptor game__pbtutorial_core__descriptor =
+{
+  PROTOBUF_C_MESSAGE_DESCRIPTOR_MAGIC,
+  "game.PBTutorialCore",
+  "PBTutorialCore",
+  "Game__PBTutorialCore",
+  "game",
+  sizeof(Game__PBTutorialCore),
+  2,
+  game__pbtutorial_core__field_descriptors,
+  game__pbtutorial_core__field_indices_by_name,
+  1,  game__pbtutorial_core__number_ranges,
+  (ProtobufCMessageInit) game__pbtutorial_core__init,
   NULL,NULL,NULL    /* reserved[123] */
 };
 static const ProtobufCFieldDescriptor game__pbuser_stage_opus__field_descriptors[6] =

@@ -17,4 +17,10 @@
 // 返回教程列表
 - (NSArray*)allTutorials;
 
+// 内存清理
+- (void)cleanData;
+
+// 创建测试数据
+- (void)createTestData;
+
 @end

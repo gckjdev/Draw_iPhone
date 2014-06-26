@@ -58,7 +58,12 @@ message PBTutorial
     
     optional int32  createDate = 40;
     optional int32  modifyDate = 41;
+}
 
+message PBTutorialCore
+{
+    repeated PBTutorial tutorials = 1;
+    optional int32 version = 2;
 }
 
 // 用户闯关的作品

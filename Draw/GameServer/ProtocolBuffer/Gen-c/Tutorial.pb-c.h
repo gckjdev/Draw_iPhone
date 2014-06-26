@@ -13,6 +13,7 @@ PROTOBUF_C_BEGIN_DECLS
 
 typedef struct _Game__PBStage Game__PBStage;
 typedef struct _Game__PBTutorial Game__PBTutorial;
+typedef struct _Game__PBTutorialCore Game__PBTutorialCore;
 typedef struct _Game__PBUserStageOpus Game__PBUserStageOpus;
 typedef struct _Game__PBUserStage Game__PBUserStage;
 typedef struct _Game__PBUserTutorial Game__PBUserTutorial;
@@ -80,6 +81,19 @@ struct  _Game__PBTutorial
 #define GAME__PBTUTORIAL__INIT \
  { PROTOBUF_C_MESSAGE_INIT (&game__pbtutorial__descriptor) \
     , NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0,0, 0,NULL, 0,0, NULL, NULL, NULL, 0,1, 0,0, 0,0, 0,0, 0,0 }
+
+
+struct  _Game__PBTutorialCore
+{
+  ProtobufCMessage base;
+  size_t n_tutorials;
+  Game__PBTutorial **tutorials;
+  protobuf_c_boolean has_version;
+  int32_t version;
+};
+#define GAME__PBTUTORIAL_CORE__INIT \
+ { PROTOBUF_C_MESSAGE_INIT (&game__pbtutorial_core__descriptor) \
+    , 0,NULL, 0,0 }
 
 
 struct  _Game__PBUserStageOpus
@@ -185,6 +199,25 @@ Game__PBTutorial *
 void   game__pbtutorial__free_unpacked
                      (Game__PBTutorial *message,
                       ProtobufCAllocator *allocator);
+/* Game__PBTutorialCore methods */
+void   game__pbtutorial_core__init
+                     (Game__PBTutorialCore         *message);
+size_t game__pbtutorial_core__get_packed_size
+                     (const Game__PBTutorialCore   *message);
+size_t game__pbtutorial_core__pack
+                     (const Game__PBTutorialCore   *message,
+                      uint8_t             *out);
+size_t game__pbtutorial_core__pack_to_buffer
+                     (const Game__PBTutorialCore   *message,
+                      ProtobufCBuffer     *buffer);
+Game__PBTutorialCore *
+       game__pbtutorial_core__unpack
+                     (ProtobufCAllocator  *allocator,
+                      size_t               len,
+                      const uint8_t       *data);
+void   game__pbtutorial_core__free_unpacked
+                     (Game__PBTutorialCore *message,
+                      ProtobufCAllocator *allocator);
 /* Game__PBUserStageOpus methods */
 void   game__pbuser_stage_opus__init
                      (Game__PBUserStageOpus         *message);
@@ -250,6 +283,9 @@ typedef void (*Game__PBStage_Closure)
 typedef void (*Game__PBTutorial_Closure)
                  (const Game__PBTutorial *message,
                   void *closure_data);
+typedef void (*Game__PBTutorialCore_Closure)
+                 (const Game__PBTutorialCore *message,
+                  void *closure_data);
 typedef void (*Game__PBUserStageOpus_Closure)
                  (const Game__PBUserStageOpus *message,
                   void *closure_data);
@@ -268,6 +304,7 @@ typedef void (*Game__PBUserTutorial_Closure)
 extern const ProtobufCEnumDescriptor    game__pbtutorial_level__descriptor;
 extern const ProtobufCMessageDescriptor game__pbstage__descriptor;
 extern const ProtobufCMessageDescriptor game__pbtutorial__descriptor;
+extern const ProtobufCMessageDescriptor game__pbtutorial_core__descriptor;
 extern const ProtobufCMessageDescriptor game__pbuser_stage_opus__descriptor;
 extern const ProtobufCMessageDescriptor game__pbuser_stage__descriptor;
 extern const ProtobufCMessageDescriptor game__pbuser_tutorial__descriptor;

@@ -7,6 +7,7 @@
 //
 
 #import "TutorialCoreManager.h"
+#import "Tutorial.pb.h"
 
 @interface TutorialCoreManager()
 
@@ -39,9 +40,6 @@ static TutorialCoreManager* _defaultTutorialCoreManager;
 + (NSString*)appTaskDefaultConfigFileName
 {
     return @"tutorial_core.pb";
-    //    NSString* config = [NSString stringWithFormat:@"opus_class.json", [GameApp appId]];
-    //    PPDebug(@"appTaskConfigFileName:%@", config);
-    //    return config;
 }
 
 - (void)loadData:(NSString*)bundleName
@@ -80,16 +78,16 @@ static TutorialCoreManager* _defaultTutorialCoreManager;
     
     NSString* dataPath = [_smartData dataFilePath];
     @try {
-        NSError* error = nil;
-        NSString* data = [NSString stringWithContentsOfFile:dataPath encoding:NSUTF8StringEncoding error:&error];
-        if (error != nil){
-            PPDebug(@"<readConfigData> but error=%@", [error description]);
-        }
-        else{
-        }
         
+        NSData* data = [NSData dataWithContentsOfFile:dataPath];
         if (data != nil){
-            [_tutorialList removeAllObjects];
+            
+            PBTutorialCore* core = [PBTutorialCore parseFromData:data];
+            if (core != nil && core.tutorialsList != nil){
+                [_tutorialList removeAllObjects];
+                [_tutorialList addObjectsFromArray:core.tutorialsList];
+            }
+            PPDebug(@"<readConfigData> parse config data %@ successfully, total %d added", _smartData.name, [core.tutorialsList count]);
         }
         else{
             PPDebug(@"[WARN] Init config data %@ data file empty", dataPath);
@@ -126,6 +124,29 @@ static TutorialCoreManager* _defaultTutorialCoreManager;
 - (void)cleanData
 {
     self.tutorialList = nil;
+}
+
+// 创建测试数据
+- (void)createTestData
+{
+    NSString* root = @"/gitdata/Draw_iPhone/Draw/CommonResource/Config/";
+    NSString* path = [root stringByAppendingString:[TutorialCoreManager appTaskDefaultConfigFileName]];
+    NSString* versionPath = [root stringByAppendingString:[PPSmartUpdateDataUtils getVersionFileName:[TutorialCoreManager appTaskDefaultConfigFileName]]];
+    
+    PBTutorialCore_Builder* builder = [PBTutorialCore builder];
+
+    // TODO add test tutorials
+    
+    PBTutorialCore* core = [builder build];
+    NSData* data = [core data];
+    
+    BOOL result = [data writeToFile:path atomically:YES];
+    PPDebug(@"<createTestData> data file result=%d, file=%@", result, path);
+    
+    NSString* version = @"1.0";
+    NSError* error = nil;
+    result = [version writeToFile:versionPath atomically:YES encoding:NSUTF8StringEncoding error:&error];
+    PPDebug(@"<createTestData> version txt file result=%d error=%@ file=%@", result, [error description], versionPath);
 }
 
 @end

@@ -1396,6 +1396,245 @@ static PBTutorial* defaultPBTutorialInstance = nil;
 }
 @end
 
+@interface PBTutorialCore ()
+@property (retain) NSMutableArray* mutableTutorialsList;
+@property int32_t version;
+@end
+
+@implementation PBTutorialCore
+
+@synthesize mutableTutorialsList;
+- (BOOL) hasVersion {
+  return !!hasVersion_;
+}
+- (void) setHasVersion:(BOOL) value {
+  hasVersion_ = !!value;
+}
+@synthesize version;
+- (void) dealloc {
+  self.mutableTutorialsList = nil;
+  [super dealloc];
+}
+- (id) init {
+  if ((self = [super init])) {
+    self.version = 0;
+  }
+  return self;
+}
+static PBTutorialCore* defaultPBTutorialCoreInstance = nil;
++ (void) initialize {
+  if (self == [PBTutorialCore class]) {
+    defaultPBTutorialCoreInstance = [[PBTutorialCore alloc] init];
+  }
+}
++ (PBTutorialCore*) defaultInstance {
+  return defaultPBTutorialCoreInstance;
+}
+- (PBTutorialCore*) defaultInstance {
+  return defaultPBTutorialCoreInstance;
+}
+- (NSArray*) tutorialsList {
+  return mutableTutorialsList;
+}
+- (PBTutorial*) tutorialsAtIndex:(int32_t) index {
+  id value = [mutableTutorialsList objectAtIndex:index];
+  return value;
+}
+- (BOOL) isInitialized {
+  for (PBTutorial* element in self.tutorialsList) {
+    if (!element.isInitialized) {
+      return NO;
+    }
+  }
+  return YES;
+}
+- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
+  for (PBTutorial* element in self.tutorialsList) {
+    [output writeMessage:1 value:element];
+  }
+  if (self.hasVersion) {
+    [output writeInt32:2 value:self.version];
+  }
+  [self.unknownFields writeToCodedOutputStream:output];
+}
+- (int32_t) serializedSize {
+  int32_t size = memoizedSerializedSize;
+  if (size != -1) {
+    return size;
+  }
+
+  size = 0;
+  for (PBTutorial* element in self.tutorialsList) {
+    size += computeMessageSize(1, element);
+  }
+  if (self.hasVersion) {
+    size += computeInt32Size(2, self.version);
+  }
+  size += self.unknownFields.serializedSize;
+  memoizedSerializedSize = size;
+  return size;
+}
++ (PBTutorialCore*) parseFromData:(NSData*) data {
+  return (PBTutorialCore*)[[[PBTutorialCore builder] mergeFromData:data] build];
+}
++ (PBTutorialCore*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (PBTutorialCore*)[[[PBTutorialCore builder] mergeFromData:data extensionRegistry:extensionRegistry] build];
+}
++ (PBTutorialCore*) parseFromInputStream:(NSInputStream*) input {
+  return (PBTutorialCore*)[[[PBTutorialCore builder] mergeFromInputStream:input] build];
+}
++ (PBTutorialCore*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (PBTutorialCore*)[[[PBTutorialCore builder] mergeFromInputStream:input extensionRegistry:extensionRegistry] build];
+}
++ (PBTutorialCore*) parseFromCodedInputStream:(PBCodedInputStream*) input {
+  return (PBTutorialCore*)[[[PBTutorialCore builder] mergeFromCodedInputStream:input] build];
+}
++ (PBTutorialCore*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (PBTutorialCore*)[[[PBTutorialCore builder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] build];
+}
++ (PBTutorialCore_Builder*) builder {
+  return [[[PBTutorialCore_Builder alloc] init] autorelease];
+}
++ (PBTutorialCore_Builder*) builderWithPrototype:(PBTutorialCore*) prototype {
+  return [[PBTutorialCore builder] mergeFrom:prototype];
+}
+- (PBTutorialCore_Builder*) builder {
+  return [PBTutorialCore builder];
+}
+@end
+
+@interface PBTutorialCore_Builder()
+@property (retain) PBTutorialCore* result;
+@end
+
+@implementation PBTutorialCore_Builder
+@synthesize result;
+- (void) dealloc {
+  self.result = nil;
+  [super dealloc];
+}
+- (id) init {
+  if ((self = [super init])) {
+    self.result = [[[PBTutorialCore alloc] init] autorelease];
+  }
+  return self;
+}
+- (PBGeneratedMessage*) internalGetResult {
+  return result;
+}
+- (PBTutorialCore_Builder*) clear {
+  self.result = [[[PBTutorialCore alloc] init] autorelease];
+  return self;
+}
+- (PBTutorialCore_Builder*) clone {
+  return [PBTutorialCore builderWithPrototype:result];
+}
+- (PBTutorialCore*) defaultInstance {
+  return [PBTutorialCore defaultInstance];
+}
+- (PBTutorialCore*) build {
+  [self checkInitialized];
+  return [self buildPartial];
+}
+- (PBTutorialCore*) buildPartial {
+  PBTutorialCore* returnMe = [[result retain] autorelease];
+  self.result = nil;
+  return returnMe;
+}
+- (PBTutorialCore_Builder*) mergeFrom:(PBTutorialCore*) other {
+  if (other == [PBTutorialCore defaultInstance]) {
+    return self;
+  }
+  if (other.mutableTutorialsList.count > 0) {
+    if (result.mutableTutorialsList == nil) {
+      result.mutableTutorialsList = [NSMutableArray array];
+    }
+    [result.mutableTutorialsList addObjectsFromArray:other.mutableTutorialsList];
+  }
+  if (other.hasVersion) {
+    [self setVersion:other.version];
+  }
+  [self mergeUnknownFields:other.unknownFields];
+  return self;
+}
+- (PBTutorialCore_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input {
+  return [self mergeFromCodedInputStream:input extensionRegistry:[PBExtensionRegistry emptyRegistry]];
+}
+- (PBTutorialCore_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  PBUnknownFieldSet_Builder* unknownFields = [PBUnknownFieldSet builderWithUnknownFields:self.unknownFields];
+  while (YES) {
+    int32_t tag = [input readTag];
+    switch (tag) {
+      case 0:
+        [self setUnknownFields:[unknownFields build]];
+        return self;
+      default: {
+        if (![self parseUnknownField:input unknownFields:unknownFields extensionRegistry:extensionRegistry tag:tag]) {
+          [self setUnknownFields:[unknownFields build]];
+          return self;
+        }
+        break;
+      }
+      case 10: {
+        PBTutorial_Builder* subBuilder = [PBTutorial builder];
+        [input readMessage:subBuilder extensionRegistry:extensionRegistry];
+        [self addTutorials:[subBuilder buildPartial]];
+        break;
+      }
+      case 16: {
+        [self setVersion:[input readInt32]];
+        break;
+      }
+    }
+  }
+}
+- (NSArray*) tutorialsList {
+  if (result.mutableTutorialsList == nil) { return [NSArray array]; }
+  return result.mutableTutorialsList;
+}
+- (PBTutorial*) tutorialsAtIndex:(int32_t) index {
+  return [result tutorialsAtIndex:index];
+}
+- (PBTutorialCore_Builder*) replaceTutorialsAtIndex:(int32_t) index with:(PBTutorial*) value {
+  [result.mutableTutorialsList replaceObjectAtIndex:index withObject:value];
+  return self;
+}
+- (PBTutorialCore_Builder*) addAllTutorials:(NSArray*) values {
+  if (result.mutableTutorialsList == nil) {
+    result.mutableTutorialsList = [NSMutableArray array];
+  }
+  [result.mutableTutorialsList addObjectsFromArray:values];
+  return self;
+}
+- (PBTutorialCore_Builder*) clearTutorialsList {
+  result.mutableTutorialsList = nil;
+  return self;
+}
+- (PBTutorialCore_Builder*) addTutorials:(PBTutorial*) value {
+  if (result.mutableTutorialsList == nil) {
+    result.mutableTutorialsList = [NSMutableArray array];
+  }
+  [result.mutableTutorialsList addObject:value];
+  return self;
+}
+- (BOOL) hasVersion {
+  return result.hasVersion;
+}
+- (int32_t) version {
+  return result.version;
+}
+- (PBTutorialCore_Builder*) setVersion:(int32_t) value {
+  result.hasVersion = YES;
+  result.version = value;
+  return self;
+}
+- (PBTutorialCore_Builder*) clearVersion {
+  result.hasVersion = NO;
+  result.version = 0;
+  return self;
+}
+@end
+
 @interface PBUserStageOpus ()
 @property (retain) NSString* localOpusId;
 @property (retain) NSString* remoteOpusId;

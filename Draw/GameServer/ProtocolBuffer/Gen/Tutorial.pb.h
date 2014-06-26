@@ -81,6 +81,8 @@
 @class PBTask;
 @class PBTask_Builder;
 @class PBTutorial;
+@class PBTutorialCore;
+@class PBTutorialCore_Builder;
 @class PBTutorial_Builder;
 @class PBUserAward;
 @class PBUserAward_Builder;
@@ -436,6 +438,64 @@ BOOL PBTutorialLevelIsValidValue(PBTutorialLevel value);
 - (int32_t) modifyDate;
 - (PBTutorial_Builder*) setModifyDate:(int32_t) value;
 - (PBTutorial_Builder*) clearModifyDate;
+@end
+
+@interface PBTutorialCore : PBGeneratedMessage {
+@private
+  BOOL hasVersion_:1;
+  int32_t version;
+  NSMutableArray* mutableTutorialsList;
+}
+- (BOOL) hasVersion;
+@property (readonly) int32_t version;
+- (NSArray*) tutorialsList;
+- (PBTutorial*) tutorialsAtIndex:(int32_t) index;
+
++ (PBTutorialCore*) defaultInstance;
+- (PBTutorialCore*) defaultInstance;
+
+- (BOOL) isInitialized;
+- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
+- (PBTutorialCore_Builder*) builder;
++ (PBTutorialCore_Builder*) builder;
++ (PBTutorialCore_Builder*) builderWithPrototype:(PBTutorialCore*) prototype;
+
++ (PBTutorialCore*) parseFromData:(NSData*) data;
++ (PBTutorialCore*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
++ (PBTutorialCore*) parseFromInputStream:(NSInputStream*) input;
++ (PBTutorialCore*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
++ (PBTutorialCore*) parseFromCodedInputStream:(PBCodedInputStream*) input;
++ (PBTutorialCore*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+@end
+
+@interface PBTutorialCore_Builder : PBGeneratedMessage_Builder {
+@private
+  PBTutorialCore* result;
+}
+
+- (PBTutorialCore*) defaultInstance;
+
+- (PBTutorialCore_Builder*) clear;
+- (PBTutorialCore_Builder*) clone;
+
+- (PBTutorialCore*) build;
+- (PBTutorialCore*) buildPartial;
+
+- (PBTutorialCore_Builder*) mergeFrom:(PBTutorialCore*) other;
+- (PBTutorialCore_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
+- (PBTutorialCore_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+
+- (NSArray*) tutorialsList;
+- (PBTutorial*) tutorialsAtIndex:(int32_t) index;
+- (PBTutorialCore_Builder*) replaceTutorialsAtIndex:(int32_t) index with:(PBTutorial*) value;
+- (PBTutorialCore_Builder*) addTutorials:(PBTutorial*) value;
+- (PBTutorialCore_Builder*) addAllTutorials:(NSArray*) values;
+- (PBTutorialCore_Builder*) clearTutorialsList;
+
+- (BOOL) hasVersion;
+- (int32_t) version;
+- (PBTutorialCore_Builder*) setVersion:(int32_t) value;
+- (PBTutorialCore_Builder*) clearVersion;
 @end
 
 @interface PBUserStageOpus : PBGeneratedMessage {
