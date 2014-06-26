@@ -4530,6 +4530,46 @@
 		CA2A28B9195C135600A97478 /* Tutorial.pb.m in Sources */ = {isa = PBXBuildFile; fileRef = CA2A28B7195C135600A97478 /* Tutorial.pb.m */; };
 		CA2A28BA195C135600A97478 /* Tutorial.pb.m in Sources */ = {isa = PBXBuildFile; fileRef = CA2A28B7195C135600A97478 /* Tutorial.pb.m */; };
 		CA2A28BB195C135600A97478 /* Tutorial.pb.m in Sources */ = {isa = PBXBuildFile; fileRef = CA2A28B7195C135600A97478 /* Tutorial.pb.m */; };
+		CA2A28BF195C1DC400A97478 /* UserTutorialMainController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA2A28BD195C1DC400A97478 /* UserTutorialMainController.m */; };
+		CA2A28C0195C1DC400A97478 /* UserTutorialMainController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA2A28BD195C1DC400A97478 /* UserTutorialMainController.m */; };
+		CA2A28C1195C1DC400A97478 /* UserTutorialMainController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA2A28BD195C1DC400A97478 /* UserTutorialMainController.m */; };
+		CA2A28C2195C1DC400A97478 /* UserTutorialMainController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA2A28BD195C1DC400A97478 /* UserTutorialMainController.m */; };
+		CA2A28C3195C1DC400A97478 /* UserTutorialMainController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA2A28BE195C1DC400A97478 /* UserTutorialMainController.xib */; };
+		CA2A28C4195C1DC400A97478 /* UserTutorialMainController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA2A28BE195C1DC400A97478 /* UserTutorialMainController.xib */; };
+		CA2A28C5195C1DC400A97478 /* UserTutorialMainController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA2A28BE195C1DC400A97478 /* UserTutorialMainController.xib */; };
+		CA2A28C6195C1DC400A97478 /* UserTutorialMainController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA2A28BE195C1DC400A97478 /* UserTutorialMainController.xib */; };
+		CA2A28CA195C1E1C00A97478 /* TutorialStageController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA2A28C8195C1E1C00A97478 /* TutorialStageController.m */; };
+		CA2A28CB195C1E1C00A97478 /* TutorialStageController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA2A28C8195C1E1C00A97478 /* TutorialStageController.m */; };
+		CA2A28CC195C1E1C00A97478 /* TutorialStageController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA2A28C8195C1E1C00A97478 /* TutorialStageController.m */; };
+		CA2A28CD195C1E1C00A97478 /* TutorialStageController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA2A28C8195C1E1C00A97478 /* TutorialStageController.m */; };
+		CA2A28CE195C1E1C00A97478 /* TutorialStageController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA2A28C9195C1E1C00A97478 /* TutorialStageController.xib */; };
+		CA2A28CF195C1E1C00A97478 /* TutorialStageController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA2A28C9195C1E1C00A97478 /* TutorialStageController.xib */; };
+		CA2A28D0195C1E1C00A97478 /* TutorialStageController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA2A28C9195C1E1C00A97478 /* TutorialStageController.xib */; };
+		CA2A28D1195C1E1C00A97478 /* TutorialStageController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA2A28C9195C1E1C00A97478 /* TutorialStageController.xib */; };
+		CA2A28D5195C1E3A00A97478 /* TutorialInfoController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA2A28D3195C1E3A00A97478 /* TutorialInfoController.m */; };
+		CA2A28D6195C1E3A00A97478 /* TutorialInfoController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA2A28D3195C1E3A00A97478 /* TutorialInfoController.m */; };
+		CA2A28D7195C1E3A00A97478 /* TutorialInfoController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA2A28D3195C1E3A00A97478 /* TutorialInfoController.m */; };
+		CA2A28D8195C1E3A00A97478 /* TutorialInfoController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA2A28D3195C1E3A00A97478 /* TutorialInfoController.m */; };
+		CA2A28D9195C1E3A00A97478 /* TutorialInfoController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA2A28D4195C1E3A00A97478 /* TutorialInfoController.xib */; };
+		CA2A28DA195C1E3A00A97478 /* TutorialInfoController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA2A28D4195C1E3A00A97478 /* TutorialInfoController.xib */; };
+		CA2A28DB195C1E3A00A97478 /* TutorialInfoController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA2A28D4195C1E3A00A97478 /* TutorialInfoController.xib */; };
+		CA2A28DC195C1E3A00A97478 /* TutorialInfoController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA2A28D4195C1E3A00A97478 /* TutorialInfoController.xib */; };
+		CA2A28E0195C1E6200A97478 /* AllTutorialController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA2A28DE195C1E6200A97478 /* AllTutorialController.m */; };
+		CA2A28E1195C1E6200A97478 /* AllTutorialController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA2A28DE195C1E6200A97478 /* AllTutorialController.m */; };
+		CA2A28E2195C1E6200A97478 /* AllTutorialController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA2A28DE195C1E6200A97478 /* AllTutorialController.m */; };
+		CA2A28E3195C1E6200A97478 /* AllTutorialController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA2A28DE195C1E6200A97478 /* AllTutorialController.m */; };
+		CA2A28E4195C1E6200A97478 /* AllTutorialController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA2A28DF195C1E6200A97478 /* AllTutorialController.xib */; };
+		CA2A28E5195C1E6200A97478 /* AllTutorialController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA2A28DF195C1E6200A97478 /* AllTutorialController.xib */; };
+		CA2A28E6195C1E6200A97478 /* AllTutorialController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA2A28DF195C1E6200A97478 /* AllTutorialController.xib */; };
+		CA2A28E7195C1E6200A97478 /* AllTutorialController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA2A28DF195C1E6200A97478 /* AllTutorialController.xib */; };
+		CA2A28EA195C1EC000A97478 /* UserTutorialManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CA2A28E9195C1EC000A97478 /* UserTutorialManager.m */; };
+		CA2A28EB195C1EC000A97478 /* UserTutorialManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CA2A28E9195C1EC000A97478 /* UserTutorialManager.m */; };
+		CA2A28EC195C1EC000A97478 /* UserTutorialManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CA2A28E9195C1EC000A97478 /* UserTutorialManager.m */; };
+		CA2A28ED195C1EC000A97478 /* UserTutorialManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CA2A28E9195C1EC000A97478 /* UserTutorialManager.m */; };
+		CA2A28F0195C1EEA00A97478 /* UserTutorialService.m in Sources */ = {isa = PBXBuildFile; fileRef = CA2A28EF195C1EEA00A97478 /* UserTutorialService.m */; };
+		CA2A28F1195C1EEA00A97478 /* UserTutorialService.m in Sources */ = {isa = PBXBuildFile; fileRef = CA2A28EF195C1EEA00A97478 /* UserTutorialService.m */; };
+		CA2A28F2195C1EEA00A97478 /* UserTutorialService.m in Sources */ = {isa = PBXBuildFile; fileRef = CA2A28EF195C1EEA00A97478 /* UserTutorialService.m */; };
+		CA2A28F3195C1EEA00A97478 /* UserTutorialService.m in Sources */ = {isa = PBXBuildFile; fileRef = CA2A28EF195C1EEA00A97478 /* UserTutorialService.m */; };
 		CA322102151B6A670039A384 /* GameNetworkRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = CA322101151B6A670039A384 /* GameNetworkRequest.m */; };
 		CA322105151B6BE60039A384 /* UserService.m in Sources */ = {isa = PBXBuildFile; fileRef = CA322104151B6BE60039A384 /* UserService.m */; };
 		CA32213D151DEDE10039A384 /* ChangeAvatar.m in Sources */ = {isa = PBXBuildFile; fileRef = CA32213C151DEDE10039A384 /* ChangeAvatar.m */; };
@@ -9228,6 +9268,22 @@
 		CA2A28B1195C12A400A97478 /* TutorialService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TutorialService.m; sourceTree = "<group>"; };
 		CA2A28B6195C135600A97478 /* Tutorial.pb.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Tutorial.pb.h; sourceTree = "<group>"; };
 		CA2A28B7195C135600A97478 /* Tutorial.pb.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Tutorial.pb.m; sourceTree = "<group>"; };
+		CA2A28BC195C1DC400A97478 /* UserTutorialMainController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserTutorialMainController.h; sourceTree = "<group>"; };
+		CA2A28BD195C1DC400A97478 /* UserTutorialMainController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserTutorialMainController.m; sourceTree = "<group>"; };
+		CA2A28BE195C1DC400A97478 /* UserTutorialMainController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserTutorialMainController.xib; sourceTree = "<group>"; };
+		CA2A28C7195C1E1C00A97478 /* TutorialStageController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TutorialStageController.h; sourceTree = "<group>"; };
+		CA2A28C8195C1E1C00A97478 /* TutorialStageController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TutorialStageController.m; sourceTree = "<group>"; };
+		CA2A28C9195C1E1C00A97478 /* TutorialStageController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TutorialStageController.xib; sourceTree = "<group>"; };
+		CA2A28D2195C1E3900A97478 /* TutorialInfoController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TutorialInfoController.h; sourceTree = "<group>"; };
+		CA2A28D3195C1E3A00A97478 /* TutorialInfoController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TutorialInfoController.m; sourceTree = "<group>"; };
+		CA2A28D4195C1E3A00A97478 /* TutorialInfoController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TutorialInfoController.xib; sourceTree = "<group>"; };
+		CA2A28DD195C1E6200A97478 /* AllTutorialController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AllTutorialController.h; sourceTree = "<group>"; };
+		CA2A28DE195C1E6200A97478 /* AllTutorialController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AllTutorialController.m; sourceTree = "<group>"; };
+		CA2A28DF195C1E6200A97478 /* AllTutorialController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AllTutorialController.xib; sourceTree = "<group>"; };
+		CA2A28E8195C1EC000A97478 /* UserTutorialManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserTutorialManager.h; sourceTree = "<group>"; };
+		CA2A28E9195C1EC000A97478 /* UserTutorialManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserTutorialManager.m; sourceTree = "<group>"; };
+		CA2A28EE195C1EEA00A97478 /* UserTutorialService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserTutorialService.h; sourceTree = "<group>"; };
+		CA2A28EF195C1EEA00A97478 /* UserTutorialService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserTutorialService.m; sourceTree = "<group>"; };
 		CA322100151B6A670039A384 /* GameNetworkRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameNetworkRequest.h; sourceTree = "<group>"; };
 		CA322101151B6A670039A384 /* GameNetworkRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameNetworkRequest.m; sourceTree = "<group>"; };
 		CA322103151B6BE60039A384 /* UserService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserService.h; sourceTree = "<group>"; };
@@ -14791,6 +14847,18 @@
 		CA2A28A5195C120600A97478 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				CA2A28BC195C1DC400A97478 /* UserTutorialMainController.h */,
+				CA2A28BD195C1DC400A97478 /* UserTutorialMainController.m */,
+				CA2A28BE195C1DC400A97478 /* UserTutorialMainController.xib */,
+				CA2A28C7195C1E1C00A97478 /* TutorialStageController.h */,
+				CA2A28C8195C1E1C00A97478 /* TutorialStageController.m */,
+				CA2A28C9195C1E1C00A97478 /* TutorialStageController.xib */,
+				CA2A28D2195C1E3900A97478 /* TutorialInfoController.h */,
+				CA2A28D3195C1E3A00A97478 /* TutorialInfoController.m */,
+				CA2A28D4195C1E3A00A97478 /* TutorialInfoController.xib */,
+				CA2A28DD195C1E6200A97478 /* AllTutorialController.h */,
+				CA2A28DE195C1E6200A97478 /* AllTutorialController.m */,
+				CA2A28DF195C1E6200A97478 /* AllTutorialController.xib */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -14800,6 +14868,8 @@
 			children = (
 				CA2A28AA195C125400A97478 /* TutorialCoreManager.h */,
 				CA2A28AB195C125400A97478 /* TutorialCoreManager.m */,
+				CA2A28E8195C1EC000A97478 /* UserTutorialManager.h */,
+				CA2A28E9195C1EC000A97478 /* UserTutorialManager.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -14816,6 +14886,8 @@
 			children = (
 				CA2A28B0195C12A400A97478 /* TutorialService.h */,
 				CA2A28B1195C12A400A97478 /* TutorialService.m */,
+				CA2A28EE195C1EEA00A97478 /* UserTutorialService.h */,
+				CA2A28EF195C1EEA00A97478 /* UserTutorialService.m */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -18503,6 +18575,7 @@
 				A4DDD14B17CDFD7B0029E562 /* iap_product_513819630_old.pb in Resources */,
 				A4DDD14F17CDFD7B0029E562 /* iap_product_Draw.pb in Resources */,
 				A4DDD15317CDFD7B0029E562 /* image_shape.zip in Resources */,
+				CA2A28DB195C1E3A00A97478 /* TutorialInfoController.xib in Resources */,
 				A4DDD15717CDFD7B0029E562 /* shop_item_513819630.pb in Resources */,
 				A4DDD15B17CDFD7B0029E562 /* shop_item_Draw.pb in Resources */,
 				A4DDD15F17CDFD7B0029E562 /* TraditionalChineseWord.strings in Resources */,
@@ -18882,6 +18955,7 @@
 				A4D8007117DB089C0085061F /* webview_go_back@2x.png in Resources */,
 				A4D8007517DB089C0085061F /* webview_go_forward@2x.png in Resources */,
 				A4D8007917DB089C0085061F /* webview_refresh@2x.png in Resources */,
+				CA2A28C5195C1DC400A97478 /* UserTutorialMainController.xib in Resources */,
 				A4D8007D17DB089C0085061F /* wechat@2x.png in Resources */,
 				A4D8008117DB089C0085061F /* wechat_friend@2x.png in Resources */,
 				A4D8008517DB089C0085061F /* wood_pallets@2x.png in Resources */,
@@ -18963,6 +19037,7 @@
 				CA9AAF4618321621002DBAA5 /* SongCell.xib in Resources */,
 				CA9AAF4A18321621002DBAA5 /* SongCell~ipad.xib in Resources */,
 				CA9AAF5218321621002DBAA5 /* SongSearchController.xib in Resources */,
+				CA2A28E6195C1E6200A97478 /* AllTutorialController.xib in Resources */,
 				CA9AAF5618321621002DBAA5 /* SongSearchController~ipad.xib in Resources */,
 				CA9AAF7A18321621002DBAA5 /* shop_item_660557448.pb in Resources */,
 				CA9AAF7E18321621002DBAA5 /* songCategory.txt in Resources */,
@@ -19039,6 +19114,7 @@
 				A4088BDB183F3B790037861A /* SingDefault-568h@2x.png in Resources */,
 				A4088BDF183F3B790037861A /* sing_icon_114.png in Resources */,
 				A4088BE3183F3B790037861A /* sing_icon_120.png in Resources */,
+				CA2A28D0195C1E1C00A97478 /* TutorialStageController.xib in Resources */,
 				A4088BE7183F3B790037861A /* sing_icon_152.png in Resources */,
 				A4088BEB183F3B790037861A /* sing_icon_50.png in Resources */,
 				A4088BEF183F3B790037861A /* sing_icon_57.png in Resources */,
@@ -19296,6 +19372,7 @@
 				C28A9E1E1738F04B007A819F /* CreatePostController~ipad.xib in Resources */,
 				C28A9E1F1738F04B007A819F /* BBSUserActionCell~ipad.xib in Resources */,
 				C28A9E201738F04B007A819F /* BBSPostActionCell~ipad.xib in Resources */,
+				CA2A28DA195C1E3A00A97478 /* TutorialInfoController.xib in Resources */,
 				C28A9E211738F04B007A819F /* BBSPostActionHeaderView~ipad.xib in Resources */,
 				C28A9E221738F04B007A819F /* BBSPostDetailCell~ipad.xib in Resources */,
 				C28A9E231738F04B007A819F /* bbs_refresh@2x.png in Resources */,
@@ -19437,6 +19514,7 @@
 				C216B3731742355C001DD46E /* little_gee_home_split@2x.png in Resources */,
 				C2E5834D174369A8003C1946 /* little_gee_pop_options_self@2x.png in Resources */,
 				C2A403861744D5E3006C689F /* little_gee_icon_114.png in Resources */,
+				CA2A28CF195C1E1C00A97478 /* TutorialStageController.xib in Resources */,
 				C2A403941744D5E3006C689F /* little_gee_icon_50.png in Resources */,
 				C2A403A21744D5E3006C689F /* little_gee_icon_57.png in Resources */,
 				C2A403B01744D5E3006C689F /* little_gee_icon_72.png in Resources */,
@@ -19856,6 +19934,8 @@
 				A4D8FF3C17DB089C0085061F /* dice_home_header_bg@2x.png in Resources */,
 				A4D8FF4017DB089C0085061F /* dice_home_header_foot@2x.png in Resources */,
 				CA93D11D18F008FA002BB805 /* GooglePlus.bundle in Resources */,
+				CA2A28C4195C1DC400A97478 /* UserTutorialMainController.xib in Resources */,
+				CA2A28E5195C1E6200A97478 /* AllTutorialController.xib in Resources */,
 				A4D8FF4417DB089C0085061F /* dice_home_header_man@2x.png in Resources */,
 				A4D8FFA017DB089C0085061F /* learndraw_bg@2x.png in Resources */,
 				A4D8FFA417DB089C0085061F /* learndraw_bottom_bar@2x.png in Resources */,
@@ -20318,6 +20398,7 @@
 				CA659791166C7D0300A239E1 /* BBSUserActionCell~ipad.xib in Resources */,
 				CA659793166C7D2400A239E1 /* BBSPostActionCell~ipad.xib in Resources */,
 				CA659795166C7D3800A239E1 /* BBSPostActionHeaderView~ipad.xib in Resources */,
+				CA2A28C3195C1DC400A97478 /* UserTutorialMainController.xib in Resources */,
 				CA659797166C7DAD00A239E1 /* BBSPostDetailCell~ipad.xib in Resources */,
 				CA837C2B166CDFAD005718AA /* bbs_refresh@2x.png in Resources */,
 				CAA27FB5166E083500513F58 /* bbs_board_comment@2x.png in Resources */,
@@ -20802,6 +20883,7 @@
 				A4D8FE5B17DB089C0085061F /* draw_tool_bg@2x.png in Resources */,
 				A4D8FE5F17DB089C0085061F /* draw_undo_normal@2x.png in Resources */,
 				A4D8FE6317DB089C0085061F /* draw_up_panel_accessory@2x.png in Resources */,
+				CA2A28CE195C1E1C00A97478 /* TutorialStageController.xib in Resources */,
 				A4D8FE6717DB089C0085061F /* draw_up_panel_background@2x.png in Resources */,
 				A4D8FE6B17DB089C0085061F /* draw_up_panel_blocks@2x.png in Resources */,
 				CA93D0F918EFF137002BB805 /* WeiboSDK.bundle in Resources */,
@@ -20925,6 +21007,7 @@
 				EAD13B7117DDAF4000764FFB /* contest_prize_custom@2x.png in Resources */,
 				A457BAE517DECA5A00964088 /* self_detail_balance_btn_bg@2x.png in Resources */,
 				A457BAE917DECA5B00964088 /* self_detail_exp_btn_bg@2x.png in Resources */,
+				CA2A28D9195C1E3A00A97478 /* TutorialInfoController.xib in Resources */,
 				A457BAED17DECA5B00964088 /* self_detail_ingot_btn_bg@2x.png in Resources */,
 				A457BAF117DECA5B00964088 /* user_detail_edit1@2x.png in Resources */,
 				A457BAF517DECA5B00964088 /* user_detail_unfollow_bg@2x.png in Resources */,
@@ -20941,6 +21024,7 @@
 				EA8EF63817E55D3B003F1AF8 /* draw_home_light_rope@2x.png in Resources */,
 				EA8EF63C17E55D3B003F1AF8 /* draw_home_sling@2x.png in Resources */,
 				EA8EF64017E55D3B003F1AF8 /* draw_home_contest@2x.png in Resources */,
+				CA2A28E4195C1E6200A97478 /* AllTutorialController.xib in Resources */,
 				EA8EF64417E55D3B003F1AF8 /* draw_home_default_avatar@2x.png in Resources */,
 				EA8EF64817E55D3B003F1AF8 /* draw_home_draw@2x.png in Resources */,
 				EA8EF64C17E55D3B003F1AF8 /* draw_home_free_coins@2x.png in Resources */,
@@ -21373,6 +21457,7 @@
 				EA411D8A176066F500DA72D0 /* DraftsView~ipad.xib in Resources */,
 				EA411D91176066F500DA72D0 /* ColorBox.xib in Resources */,
 				EA411D92176066F500DA72D0 /* ColorBox~ipad.xib in Resources */,
+				CA2A28C6195C1DC400A97478 /* UserTutorialMainController.xib in Resources */,
 				EA411D96176066F500DA72D0 /* Palette.xib in Resources */,
 				EA411D97176066F500DA72D0 /* Palette~ipad.xib in Resources */,
 				EA411D98176066F500DA72D0 /* PenBox.xib in Resources */,
@@ -21481,6 +21566,7 @@
 				CABEC6F217969462006F89BB /* FreeIngotCell.xib in Resources */,
 				CABEC6F717969462006F89BB /* FreeIngotCell~ipad.xib in Resources */,
 				CABEC70117969462006F89BB /* FreeIngotController.xib in Resources */,
+				CA2A28D1195C1E1C00A97478 /* TutorialStageController.xib in Resources */,
 				CABEC70617969462006F89BB /* FreeIngotController~ipad.xib in Resources */,
 				A4B78828179E2E3C0008E21B /* Theme in Resources */,
 				CA518352179F79570033AA95 /* GetNewNumberViewController.xib in Resources */,
@@ -21637,6 +21723,7 @@
 				A4D8FB3417DB08170085061F /* round_dot_6@2x.png in Resources */,
 				A4D8FB3817DB08170085061F /* round_dot_7@2x.png in Resources */,
 				A4D8FB3C17DB08170085061F /* round_dot_8@2x.png in Resources */,
+				CA2A28DC195C1E3A00A97478 /* TutorialInfoController.xib in Resources */,
 				A4D8FB4017DB08170085061F /* round_dot_9@2x.png in Resources */,
 				A4D8FB4417DB08170085061F /* round_dot_no@2x.png in Resources */,
 				A4D8FB4817DB08170085061F /* shoes@2x.png in Resources */,
@@ -21932,6 +22019,7 @@
 				EA5FE1CD17E843F60099754C /* common_home_bullitin@2x.png in Resources */,
 				EA5FE1D217E949C10099754C /* draw_home_avatar_bg@2x.png in Resources */,
 				EA2A7CE517F676AB00ED508D /* AccountManageController.xib in Resources */,
+				CA2A28E7195C1E6200A97478 /* AllTutorialController.xib in Resources */,
 				CA2A28A3195B09A200A97478 /* Tutorial.proto in Resources */,
 				EA2A7CEF17F6958600ED508D /* AccountCell.xib in Resources */,
 				CA1FF8941804F986003CEAD6 /* NSDate+TKCategory.strings in Resources */,
@@ -22206,6 +22294,7 @@
 				A461B082174CBAA70088B061 /* PPApplication.m in Sources */,
 				A461B083174CBAA70088B061 /* PPNetworkRequest.m in Sources */,
 				A461B084174CBAA70088B061 /* PPTabBarController.m in Sources */,
+				CA2A28C1195C1DC400A97478 /* UserTutorialMainController.m in Sources */,
 				A461B085174CBAA70088B061 /* PPTableViewCell.m in Sources */,
 				A461B086174CBAA70088B061 /* PPTableViewController.m in Sources */,
 				CACD6CE018E03BCD003F97C0 /* AliPayManager.m in Sources */,
@@ -22308,6 +22397,7 @@
 				A461B11D174CBAA70088B061 /* GamePlayResult.m in Sources */,
 				A461B11E174CBAA70088B061 /* GameUserComment.m in Sources */,
 				A461B11F174CBAA70088B061 /* SelectWordCell.m in Sources */,
+				CA2A28E2195C1E6200A97478 /* AllTutorialController.m in Sources */,
 				A461B120174CBAA70088B061 /* Account.m in Sources */,
 				A461B121174CBAA70088B061 /* Item.m in Sources */,
 				A461B122174CBAA70088B061 /* GameNetworkRequest.m in Sources */,
@@ -22315,6 +22405,7 @@
 				A461B125174CBAA70088B061 /* AccountManager.m in Sources */,
 				A461B126174CBAA70088B061 /* ItemManager.m in Sources */,
 				A461B127174CBAA70088B061 /* ChangeAvatar.m in Sources */,
+				CA2A28EC195C1EC000A97478 /* UserTutorialManager.m in Sources */,
 				A461B128174CBAA70088B061 /* FeedbackController.m in Sources */,
 				A461B129174CBAA70088B061 /* UserSettingController.m in Sources */,
 				A461B12A174CBAA70088B061 /* PriceService.m in Sources */,
@@ -22424,6 +22515,7 @@
 				A461B1DA174CBAA70088B061 /* HotController.m in Sources */,
 				A461B1DB174CBAA70088B061 /* MyFeedController.m in Sources */,
 				A461B1DC174CBAA70088B061 /* UserFeedController.m in Sources */,
+				CA2A28CC195C1E1C00A97478 /* TutorialStageController.m in Sources */,
 				A461B1DF174CBAA70088B061 /* ContestService.m in Sources */,
 				A461B1E0174CBAA70088B061 /* ContestController.m in Sources */,
 				A461B1E1174CBAA70088B061 /* ContestView.m in Sources */,
@@ -22941,6 +23033,7 @@
 				CA9AB01618321621002DBAA5 /* ItemUseRecorder.m in Sources */,
 				CA9AB01A18321621002DBAA5 /* OpusGuessRecorder.m in Sources */,
 				CA9AB01E18321621002DBAA5 /* SongService.m in Sources */,
+				CA2A28F2195C1EEA00A97478 /* UserTutorialService.m in Sources */,
 				CA9005261950209B003389FD /* THGridMenuItem.m in Sources */,
 				CA9AB02218321621002DBAA5 /* NameAndDescEditView.m in Sources */,
 				CA9AB02A18321621002DBAA5 /* SingInfoCell.m in Sources */,
@@ -22978,6 +23071,7 @@
 				CA5D9D5F183E3C0200BD820C /* DOUAudioEventLoop.m in Sources */,
 				CA5D9D63183E3C0200BD820C /* DOUAudioFilePreprocessor.m in Sources */,
 				CA5D9D67183E3C0200BD820C /* DOUAudioFileProvider.m in Sources */,
+				CA2A28D7195C1E3A00A97478 /* TutorialInfoController.m in Sources */,
 				CA5D9D6B183E3C0200BD820C /* DOUAudioFrequencyAnalyzer.m in Sources */,
 				CA5D9D6F183E3C0200BD820C /* DOUAudioLPCM.m in Sources */,
 				CA5D9D73183E3C0200BD820C /* DOUAudioPlaybackItem.m in Sources */,
@@ -23036,6 +23130,7 @@
 				C28A996D1738F04B007A819F /* PPTableViewCell.m in Sources */,
 				C28A996E1738F04B007A819F /* PPTableViewController.m in Sources */,
 				C28A996F1738F04B007A819F /* PPViewController.m in Sources */,
+				CA2A28E1195C1E6200A97478 /* AllTutorialController.m in Sources */,
 				C28A99701738F04B007A819F /* TestPPViewController.m in Sources */,
 				C28A997D1738F04B007A819F /* ReviewRequest.m in Sources */,
 				C28A997E1738F04B007A819F /* SearchHistoryManager.m in Sources */,
@@ -23240,6 +23335,7 @@
 				C28A9AAC1738F04B007A819F /* GCServer.m in Sources */,
 				C28A9AAE1738F04B007A819F /* TableTab.m in Sources */,
 				C28A9AAF1738F04B007A819F /* TableTabManager.m in Sources */,
+				CA2A28D6195C1E3A00A97478 /* TutorialInfoController.m in Sources */,
 				C28A9AB01738F04B007A819F /* SuperDrawView.m in Sources */,
 				C28A9AB91738F04B007A819F /* Contest.m in Sources */,
 				C28A9ABA1738F04B007A819F /* ContestManager.m in Sources */,
@@ -23270,6 +23366,7 @@
 				C28A9AE11738F04B007A819F /* SuperHomeController.m in Sources */,
 				C28A9AE21738F04B007A819F /* UserAnnotation.m in Sources */,
 				C28A9AE31738F04B007A819F /* UserLocationController.m in Sources */,
+				CA2A28C0195C1DC400A97478 /* UserTutorialMainController.m in Sources */,
 				C28A9AEC1738F04B007A819F /* UseItemScene.m in Sources */,
 				C28A9AED1738F04B007A819F /* UIPlaceholderTextView.m in Sources */,
 				C28A9AEE1738F04B007A819F /* ZhaJinHua.pb.m in Sources */,
@@ -23308,6 +23405,7 @@
 				C28A9B2B1738F04B007A819F /* BBSPostCell.m in Sources */,
 				C28A9B2C1738F04B007A819F /* PPResourceCacheService.m in Sources */,
 				C28A9B2D1738F04B007A819F /* BBSPostActionCell.m in Sources */,
+				CA2A28EB195C1EC000A97478 /* UserTutorialManager.m in Sources */,
 				C28A9B2E1738F04B007A819F /* BBSPostDetailCell.m in Sources */,
 				C28A9B2F1738F04B007A819F /* BBSPostActionHeaderView.m in Sources */,
 				C28A9B301738F04B007A819F /* BBSModelExt.m in Sources */,
@@ -23429,6 +23527,7 @@
 				C28A9BEE1738F04B007A819F /* BBSPostCommand.m in Sources */,
 				C28A9BEF1738F04B007A819F /* BBSPostCommandPanel.m in Sources */,
 				C28A9BF01738F04B007A819F /* BBSPostCommandView.m in Sources */,
+				CA2A28F1195C1EEA00A97478 /* UserTutorialService.m in Sources */,
 				C28A9BF11738F04B007A819F /* PointNode.m in Sources */,
 				C28A9BF21738F04B007A819F /* BBSPermissionManager.m in Sources */,
 				C28A9BF51738F04B007A819F /* BoardAdminListView.m in Sources */,
@@ -23568,6 +23667,7 @@
 				C23ED5F8175A511F00263FB7 /* ImageSearchResult.m in Sources */,
 				C23ED5FB175A51BA00263FB7 /* LocalSearchResult.m in Sources */,
 				CACD6D3C18E03C40003F97C0 /* DiracUtilities.mm in Sources */,
+				CA2A28CB195C1E1C00A97478 /* TutorialStageController.m in Sources */,
 				C23ED5FC175A51C100263FB7 /* LocalSearch.m in Sources */,
 				C23ED5FD175A51CA00263FB7 /* BasicSearch.m in Sources */,
 				C2FE574A175DED3000AFD6AA /* GoogleCustomSearchService.m in Sources */,
@@ -23864,6 +23964,7 @@
 				CA103EA51509A56200F60C03 /* PPTableViewCell.m in Sources */,
 				CA103EA61509A56200F60C03 /* PPTableViewController.m in Sources */,
 				CA103EA71509A56200F60C03 /* PPViewController.m in Sources */,
+				CA2A28E0195C1E6200A97478 /* AllTutorialController.m in Sources */,
 				CA103EAA1509A56200F60C03 /* TestPPViewController.m in Sources */,
 				CA103EB91509A56200F60C03 /* ReviewRequest.m in Sources */,
 				CA103EBA1509A56200F60C03 /* SearchHistoryManager.m in Sources */,
@@ -24068,6 +24169,7 @@
 				C20D4B2515E1D78800074885 /* CommonInfoView.m in Sources */,
 				CA67B87D15E89FB0002050DB /* GameApp.m in Sources */,
 				C225866E15EF5AA4009D686D /* GCServer.m in Sources */,
+				CA2A28D5195C1E3A00A97478 /* TutorialInfoController.m in Sources */,
 				CA42E3CA15F4617A00790B3C /* TableTab.m in Sources */,
 				CA42E3CB15F4617A00790B3C /* TableTabManager.m in Sources */,
 				CAACE19915F499E6002EB53A /* SuperDrawView.m in Sources */,
@@ -24098,6 +24200,7 @@
 				EAAFC5471615A4AB00C72BAB /* StatisticManager.m in Sources */,
 				CA9D5F4D161700A70082E258 /* ContestFeed.m in Sources */,
 				CA42706D1620028E00C6CCAE /* SuperHomeController.m in Sources */,
+				CA2A28BF195C1DC400A97478 /* UserTutorialMainController.m in Sources */,
 				EA72B4C1162026480022D82D /* UserAnnotation.m in Sources */,
 				EA72B4C3162028260022D82D /* UserLocationController.m in Sources */,
 				C2E7401F1629500A0037E7F6 /* UseItemScene.m in Sources */,
@@ -24136,6 +24239,7 @@
 				CAA7992A1659D28700429611 /* BBSPostDetailController.m in Sources */,
 				CAA7992C1659D28700429611 /* BBSPostListController.m in Sources */,
 				CAA79942165A178700429611 /* BBSPostCell.m in Sources */,
+				CA2A28EA195C1EC000A97478 /* UserTutorialManager.m in Sources */,
 				CAAFBEB5165B70DC00E5E1C0 /* PPResourceCacheService.m in Sources */,
 				CAE51896165CCB33006157CC /* BBSPostActionCell.m in Sources */,
 				CA42FE02165DCCDB0097453A /* BBSPostDetailCell.m in Sources */,
@@ -24257,6 +24361,7 @@
 				C2F310B316AE2CBF0076064D /* DrawRoomListCell.m in Sources */,
 				C2DA092F16AE8EBA003BBE2D /* DrawRoomListController.m in Sources */,
 				CA507F4516AE9D2D00CCB00F /* BBSPostCommand.m in Sources */,
+				CA2A28F0195C1EEA00A97478 /* UserTutorialService.m in Sources */,
 				CA507F4E16AE9D5400CCB00F /* BBSPostCommandPanel.m in Sources */,
 				CA507F5216AE9D5400CCB00F /* BBSPostCommandView.m in Sources */,
 				CA507F5816AF923700CCB00F /* PointNode.m in Sources */,
@@ -24396,6 +24501,7 @@
 				C23ED5E61759A5B500263FB7 /* BasicSearch.m in Sources */,
 				C23ED5E71759A5B500263FB7 /* ImageSearch.m in Sources */,
 				CACD6D3B18E03C40003F97C0 /* DiracUtilities.mm in Sources */,
+				CA2A28CA195C1E1C00A97478 /* TutorialStageController.m in Sources */,
 				C23ED5E81759A5B500263FB7 /* ImageSearchResult.m in Sources */,
 				C23ED5E91759A5B600263FB7 /* LocalSearch.m in Sources */,
 				C23ED5EA1759A5B600263FB7 /* LocalSearchResult.m in Sources */,
@@ -24744,6 +24850,7 @@
 				EA41185B176066F500DA72D0 /* TextViewExt.m in Sources */,
 				EA41185C176066F500DA72D0 /* UINavigationBarExt.m in Sources */,
 				EA41185D176066F500DA72D0 /* UINavigationItemExt.m in Sources */,
+				CA2A28C2195C1DC400A97478 /* UserTutorialMainController.m in Sources */,
 				EA41185E176066F500DA72D0 /* UIViewUtils.m in Sources */,
 				EA41185F176066F500DA72D0 /* UIWebViewUtil.m in Sources */,
 				EA411860176066F500DA72D0 /* ASIAuthenticationDialog.m in Sources */,
@@ -24845,6 +24952,7 @@
 				EA4118F1176066F500DA72D0 /* RoomManager.m in Sources */,
 				EA4118F7176066F500DA72D0 /* ExpressionManager.m in Sources */,
 				EA4118F8176066F500DA72D0 /* MessageManager.m in Sources */,
+				CA2A28E3195C1E6200A97478 /* AllTutorialController.m in Sources */,
 				EA4118F9176066F500DA72D0 /* FriendCell.m in Sources */,
 				EA4118FA176066F500DA72D0 /* DrawDataService.m in Sources */,
 				EA4118FB176066F500DA72D0 /* Draw.m in Sources */,
@@ -24867,6 +24975,7 @@
 				CACD6D3218E03C40003F97C0 /* EAFWrite.mm in Sources */,
 				EA411911176066F500DA72D0 /* ChatMessage.m in Sources */,
 				EA411912176066F500DA72D0 /* SelectChatFriendController.m in Sources */,
+				CA2A28F3195C1EEA00A97478 /* UserTutorialService.m in Sources */,
 				EA411913176066F500DA72D0 /* ChatDetailCell.m in Sources */,
 				EA411914176066F500DA72D0 /* NotificationManager.m in Sources */,
 				EA411915176066F500DA72D0 /* ShareService.m in Sources */,
@@ -24926,6 +25035,7 @@
 				EA41196B176066F500DA72D0 /* UseItemScene.m in Sources */,
 				EA41196C176066F500DA72D0 /* UIPlaceholderTextView.m in Sources */,
 				EA41196D176066F500DA72D0 /* ZhaJinHua.pb.m in Sources */,
+				CA2A28CD195C1E1C00A97478 /* TutorialStageController.m in Sources */,
 				EA411970176066F500DA72D0 /* NSMutableArray+Queue.m in Sources */,
 				EA411971176066F500DA72D0 /* NSMutableArray+Stack.m in Sources */,
 				EA411972176066F500DA72D0 /* MyFriend.m in Sources */,
@@ -25058,6 +25168,7 @@
 				EA411A17176066F500DA72D0 /* ILSaturationBrightnessPickerView.m in Sources */,
 				EA411A18176066F500DA72D0 /* ILView.m in Sources */,
 				EA411A19176066F500DA72D0 /* AnalyticsManager.m in Sources */,
+				CA2A28D8195C1E3A00A97478 /* TutorialInfoController.m in Sources */,
 				EA411A1A176066F500DA72D0 /* HotWordManager.m in Sources */,
 				EA411A1B176066F500DA72D0 /* DrawColorManager.m in Sources */,
 				EA411A1C176066F500DA72D0 /* PickToolView.m in Sources */,
@@ -25129,6 +25240,7 @@
 				EA411A7B176066F500DA72D0 /* DrawTouchHandler.m in Sources */,
 				EA411A7C176066F500DA72D0 /* ShapeTouchHandler.m in Sources */,
 				EA411A7D176066F500DA72D0 /* StrawTouchHandler.m in Sources */,
+				CA2A28ED195C1EC000A97478 /* UserTutorialManager.m in Sources */,
 				EA411A7E176066F500DA72D0 /* TouchHandler.m in Sources */,
 				EA411A7F176066F500DA72D0 /* CacheService.m in Sources */,
 				EA411A82176066F500DA72D0 /* GestureRecognizerManager.m in Sources */,
