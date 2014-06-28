@@ -111,6 +111,14 @@ typedef enum {
 
 BOOL PBTutorialLevelIsValidValue(PBTutorialLevel value);
 
+typedef enum {
+  PBUserTutorialStatusUtStatusNotStart = 0,
+  PBUserTutorialStatusUtStatusStart = 1,
+  PBUserTutorialStatusUtStatusComplete = 2,
+} PBUserTutorialStatus;
+
+BOOL PBUserTutorialStatusIsValidValue(PBUserTutorialStatus value);
+
 
 @interface TutorialRoot : NSObject {
 }
@@ -129,6 +137,7 @@ BOOL PBTutorialLevelIsValidValue(PBTutorialLevel value);
   BOOL hasTcnDesc_:1;
   BOOL hasImage_:1;
   BOOL hasThumbImage_:1;
+  BOOL hasDataUrl_:1;
   NSString* stageId;
   NSString* cnName;
   NSString* enName;
@@ -138,6 +147,7 @@ BOOL PBTutorialLevelIsValidValue(PBTutorialLevel value);
   NSString* tcnDesc;
   NSString* image;
   NSString* thumbImage;
+  NSString* dataUrl;
 }
 - (BOOL) hasStageId;
 - (BOOL) hasCnName;
@@ -148,6 +158,7 @@ BOOL PBTutorialLevelIsValidValue(PBTutorialLevel value);
 - (BOOL) hasTcnDesc;
 - (BOOL) hasImage;
 - (BOOL) hasThumbImage;
+- (BOOL) hasDataUrl;
 @property (readonly, retain) NSString* stageId;
 @property (readonly, retain) NSString* cnName;
 @property (readonly, retain) NSString* enName;
@@ -157,6 +168,7 @@ BOOL PBTutorialLevelIsValidValue(PBTutorialLevel value);
 @property (readonly, retain) NSString* tcnDesc;
 @property (readonly, retain) NSString* image;
 @property (readonly, retain) NSString* thumbImage;
+@property (readonly, retain) NSString* dataUrl;
 
 + (PBStage*) defaultInstance;
 - (PBStage*) defaultInstance;
@@ -236,42 +248,49 @@ BOOL PBTutorialLevelIsValidValue(PBTutorialLevel value);
 - (NSString*) thumbImage;
 - (PBStage_Builder*) setThumbImage:(NSString*) value;
 - (PBStage_Builder*) clearThumbImage;
+
+- (BOOL) hasDataUrl;
+- (NSString*) dataUrl;
+- (PBStage_Builder*) setDataUrl:(NSString*) value;
+- (PBStage_Builder*) clearDataUrl;
 @end
 
 @interface PBTutorial : PBGeneratedMessage {
 @private
+  BOOL hasIsNew_:1;
   BOOL hasIsFree_:1;
   BOOL hasIsFeature_:1;
-  BOOL hasModifyDate_:1;
-  BOOL hasCreateDate_:1;
-  BOOL hasPriceUnit_:1;
-  BOOL hasPrice_:1;
   BOOL hasLevel_:1;
-  BOOL hasTcnDesc_:1;
+  BOOL hasPrice_:1;
+  BOOL hasPriceUnit_:1;
+  BOOL hasCreateDate_:1;
+  BOOL hasModifyDate_:1;
+  BOOL hasTcnName_:1;
+  BOOL hasCnDesc_:1;
   BOOL hasEnDesc_:1;
+  BOOL hasTcnDesc_:1;
+  BOOL hasEnName_:1;
   BOOL hasImage_:1;
   BOOL hasThumbImage_:1;
   BOOL hasDataUrl_:1;
-  BOOL hasCnDesc_:1;
-  BOOL hasTcnName_:1;
-  BOOL hasEnName_:1;
   BOOL hasCnName_:1;
   BOOL hasTutorialId_:1;
+  BOOL isNew_:1;
   BOOL isFree_:1;
   BOOL isFeature_:1;
-  int32_t modifyDate;
-  int32_t createDate;
-  int32_t priceUnit;
-  int32_t price;
   int32_t level;
-  NSString* tcnDesc;
+  int32_t price;
+  int32_t priceUnit;
+  int32_t createDate;
+  int32_t modifyDate;
+  NSString* tcnName;
+  NSString* cnDesc;
   NSString* enDesc;
+  NSString* tcnDesc;
+  NSString* enName;
   NSString* image;
   NSString* thumbImage;
   NSString* dataUrl;
-  NSString* cnDesc;
-  NSString* tcnName;
-  NSString* enName;
   NSString* cnName;
   NSString* tutorialId;
   NSMutableArray* mutableCategoriesList;
@@ -293,6 +312,7 @@ BOOL PBTutorialLevelIsValidValue(PBTutorialLevel value);
 - (BOOL) hasPriceUnit;
 - (BOOL) hasCreateDate;
 - (BOOL) hasModifyDate;
+- (BOOL) hasIsNew;
 @property (readonly, retain) NSString* tutorialId;
 @property (readonly, retain) NSString* cnName;
 @property (readonly, retain) NSString* enName;
@@ -310,6 +330,7 @@ BOOL PBTutorialLevelIsValidValue(PBTutorialLevel value);
 @property (readonly) int32_t priceUnit;
 @property (readonly) int32_t createDate;
 @property (readonly) int32_t modifyDate;
+- (BOOL) isNew;
 - (NSArray*) categoriesList;
 - (int32_t) categoriesAtIndex:(int32_t) index;
 
@@ -438,6 +459,11 @@ BOOL PBTutorialLevelIsValidValue(PBTutorialLevel value);
 - (int32_t) modifyDate;
 - (PBTutorial_Builder*) setModifyDate:(int32_t) value;
 - (PBTutorial_Builder*) clearModifyDate;
+
+- (BOOL) hasIsNew;
+- (BOOL) isNew;
+- (PBTutorial_Builder*) setIsNew:(BOOL) value;
+- (PBTutorial_Builder*) clearIsNew;
 @end
 
 @interface PBTutorialCore : PBGeneratedMessage {
@@ -696,31 +722,35 @@ BOOL PBTutorialLevelIsValidValue(PBTutorialLevel value);
 
 @interface PBUserTutorial : PBGeneratedMessage {
 @private
-  BOOL hasIsStudy_:1;
   BOOL hasIsDownload_:1;
   BOOL hasIsPurchase_:1;
+  BOOL hasSyncServer_:1;
+  BOOL hasStatus_:1;
   BOOL hasCreateDate_:1;
   BOOL hasLastPlayDate_:1;
   BOOL hasModifyDate_:1;
   BOOL hasCurrentStageIndex_:1;
   BOOL hasUserId_:1;
   BOOL hasCurrentStageId_:1;
+  BOOL hasLocalId_:1;
   BOOL hasTutorial_:1;
-  BOOL isStudy_:1;
   BOOL isDownload_:1;
   BOOL isPurchase_:1;
+  BOOL syncServer_:1;
+  int32_t status;
   int32_t createDate;
   int32_t lastPlayDate;
   int32_t modifyDate;
   int32_t currentStageIndex;
   NSString* userId;
   NSString* currentStageId;
+  NSString* localId;
   PBTutorial* tutorial;
   NSMutableArray* mutableUserStagesList;
 }
 - (BOOL) hasUserId;
 - (BOOL) hasTutorial;
-- (BOOL) hasIsStudy;
+- (BOOL) hasStatus;
 - (BOOL) hasIsDownload;
 - (BOOL) hasIsPurchase;
 - (BOOL) hasCreateDate;
@@ -728,9 +758,11 @@ BOOL PBTutorialLevelIsValidValue(PBTutorialLevel value);
 - (BOOL) hasModifyDate;
 - (BOOL) hasCurrentStageIndex;
 - (BOOL) hasCurrentStageId;
+- (BOOL) hasSyncServer;
+- (BOOL) hasLocalId;
 @property (readonly, retain) NSString* userId;
 @property (readonly, retain) PBTutorial* tutorial;
-- (BOOL) isStudy;
+@property (readonly) int32_t status;
 - (BOOL) isDownload;
 - (BOOL) isPurchase;
 @property (readonly) int32_t createDate;
@@ -738,6 +770,8 @@ BOOL PBTutorialLevelIsValidValue(PBTutorialLevel value);
 @property (readonly) int32_t modifyDate;
 @property (readonly) int32_t currentStageIndex;
 @property (readonly, retain) NSString* currentStageId;
+- (BOOL) syncServer;
+@property (readonly, retain) NSString* localId;
 - (NSArray*) userStagesList;
 - (PBUserStage*) userStagesAtIndex:(int32_t) index;
 
@@ -787,10 +821,10 @@ BOOL PBTutorialLevelIsValidValue(PBTutorialLevel value);
 - (PBUserTutorial_Builder*) mergeTutorial:(PBTutorial*) value;
 - (PBUserTutorial_Builder*) clearTutorial;
 
-- (BOOL) hasIsStudy;
-- (BOOL) isStudy;
-- (PBUserTutorial_Builder*) setIsStudy:(BOOL) value;
-- (PBUserTutorial_Builder*) clearIsStudy;
+- (BOOL) hasStatus;
+- (int32_t) status;
+- (PBUserTutorial_Builder*) setStatus:(int32_t) value;
+- (PBUserTutorial_Builder*) clearStatus;
 
 - (BOOL) hasIsDownload;
 - (BOOL) isDownload;
@@ -833,5 +867,15 @@ BOOL PBTutorialLevelIsValidValue(PBTutorialLevel value);
 - (PBUserTutorial_Builder*) addUserStages:(PBUserStage*) value;
 - (PBUserTutorial_Builder*) addAllUserStages:(NSArray*) values;
 - (PBUserTutorial_Builder*) clearUserStagesList;
+
+- (BOOL) hasSyncServer;
+- (BOOL) syncServer;
+- (PBUserTutorial_Builder*) setSyncServer:(BOOL) value;
+- (PBUserTutorial_Builder*) clearSyncServer;
+
+- (BOOL) hasLocalId;
+- (NSString*) localId;
+- (PBUserTutorial_Builder*) setLocalId:(NSString*) value;
+- (PBUserTutorial_Builder*) clearLocalId;
 @end
 

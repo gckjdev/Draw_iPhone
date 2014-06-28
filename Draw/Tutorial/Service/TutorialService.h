@@ -7,6 +7,12 @@
 //
 
 #import "CommonService.h"
+#import "PPConfigManager.h"
+#import "DrawError.h"
+
+#define TUTORIAL_HOST        [PPConfigManager getTutorialServerURL]
+
+typedef void(^TutorialServiceResultBlock)(int resultCode);
 
 @interface TutorialService : CommonService
 

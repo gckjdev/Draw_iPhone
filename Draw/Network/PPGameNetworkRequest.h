@@ -15,6 +15,8 @@
 #import "PPGameNetworkRequest.h"
 #import "GameNetworkConstants.h"
 
+typedef void (^ PBResponseResultBlock) (DataQueryResponse *response, NSError* error);
+
 @interface GameNetworkOutput : CommonNetworkOutput
 
 @property (nonatomic, retain) DataQueryResponse* pbResponse;
@@ -71,5 +73,21 @@
                                      parameters:(NSDictionary *)parameters
                                        returnPB:(BOOL)returnPB
                                 returnJSONArray:(BOOL)returnJSONArray;
+
++ (void)loadPBData:(dispatch_queue_t)queue
+           hostURL:(NSString*)hostURL
+            method:(NSString *)method
+        parameters:(NSDictionary *)parameters
+          callback:(PBResponseResultBlock)callback
+       isPostError:(BOOL)isPostError;
+
++ (void)loadPBData:(dispatch_queue_t)queue
+           hostURL:(NSString*)hostURL
+            method:(NSString *)method
+          postData:(NSData *)postData
+        parameters:(NSDictionary *)parameters
+          callback:(PBResponseResultBlock)callback
+       isPostError:(BOOL)isPostError;
+
 
 @end

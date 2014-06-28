@@ -33,6 +33,16 @@ BOOL PBTutorialLevelIsValidValue(PBTutorialLevel value) {
       return NO;
   }
 }
+BOOL PBUserTutorialStatusIsValidValue(PBUserTutorialStatus value) {
+  switch (value) {
+    case PBUserTutorialStatusUtStatusNotStart:
+    case PBUserTutorialStatusUtStatusStart:
+    case PBUserTutorialStatusUtStatusComplete:
+      return YES;
+    default:
+      return NO;
+  }
+}
 @interface PBStage ()
 @property (retain) NSString* stageId;
 @property (retain) NSString* cnName;
@@ -43,6 +53,7 @@ BOOL PBTutorialLevelIsValidValue(PBTutorialLevel value) {
 @property (retain) NSString* tcnDesc;
 @property (retain) NSString* image;
 @property (retain) NSString* thumbImage;
+@property (retain) NSString* dataUrl;
 @end
 
 @implementation PBStage
@@ -110,6 +121,13 @@ BOOL PBTutorialLevelIsValidValue(PBTutorialLevel value) {
   hasThumbImage_ = !!value;
 }
 @synthesize thumbImage;
+- (BOOL) hasDataUrl {
+  return !!hasDataUrl_;
+}
+- (void) setHasDataUrl:(BOOL) value {
+  hasDataUrl_ = !!value;
+}
+@synthesize dataUrl;
 - (void) dealloc {
   self.stageId = nil;
   self.cnName = nil;
@@ -120,6 +138,7 @@ BOOL PBTutorialLevelIsValidValue(PBTutorialLevel value) {
   self.tcnDesc = nil;
   self.image = nil;
   self.thumbImage = nil;
+  self.dataUrl = nil;
   [super dealloc];
 }
 - (id) init {
@@ -133,6 +152,7 @@ BOOL PBTutorialLevelIsValidValue(PBTutorialLevel value) {
     self.tcnDesc = @"";
     self.image = @"";
     self.thumbImage = @"";
+    self.dataUrl = @"";
   }
   return self;
 }
@@ -182,6 +202,9 @@ static PBStage* defaultPBStageInstance = nil;
   if (self.hasThumbImage) {
     [output writeString:21 value:self.thumbImage];
   }
+  if (self.hasDataUrl) {
+    [output writeString:30 value:self.dataUrl];
+  }
   [self.unknownFields writeToCodedOutputStream:output];
 }
 - (int32_t) serializedSize {
@@ -217,6 +240,9 @@ static PBStage* defaultPBStageInstance = nil;
   }
   if (self.hasThumbImage) {
     size += computeStringSize(21, self.thumbImage);
+  }
+  if (self.hasDataUrl) {
+    size += computeStringSize(30, self.dataUrl);
   }
   size += self.unknownFields.serializedSize;
   memoizedSerializedSize = size;
@@ -320,6 +346,9 @@ static PBStage* defaultPBStageInstance = nil;
   if (other.hasThumbImage) {
     [self setThumbImage:other.thumbImage];
   }
+  if (other.hasDataUrl) {
+    [self setDataUrl:other.dataUrl];
+  }
   [self mergeUnknownFields:other.unknownFields];
   return self;
 }
@@ -375,6 +404,10 @@ static PBStage* defaultPBStageInstance = nil;
       }
       case 170: {
         [self setThumbImage:[input readString]];
+        break;
+      }
+      case 242: {
+        [self setDataUrl:[input readString]];
         break;
       }
     }
@@ -524,6 +557,22 @@ static PBStage* defaultPBStageInstance = nil;
   result.thumbImage = @"";
   return self;
 }
+- (BOOL) hasDataUrl {
+  return result.hasDataUrl;
+}
+- (NSString*) dataUrl {
+  return result.dataUrl;
+}
+- (PBStage_Builder*) setDataUrl:(NSString*) value {
+  result.hasDataUrl = YES;
+  result.dataUrl = value;
+  return self;
+}
+- (PBStage_Builder*) clearDataUrl {
+  result.hasDataUrl = NO;
+  result.dataUrl = @"";
+  return self;
+}
 @end
 
 @interface PBTutorial ()
@@ -545,6 +594,7 @@ static PBStage* defaultPBStageInstance = nil;
 @property int32_t priceUnit;
 @property int32_t createDate;
 @property int32_t modifyDate;
+@property BOOL isNew;
 @end
 
 @implementation PBTutorial
@@ -679,6 +729,18 @@ static PBStage* defaultPBStageInstance = nil;
   hasModifyDate_ = !!value;
 }
 @synthesize modifyDate;
+- (BOOL) hasIsNew {
+  return !!hasIsNew_;
+}
+- (void) setHasIsNew:(BOOL) value {
+  hasIsNew_ = !!value;
+}
+- (BOOL) isNew {
+  return !!isNew_;
+}
+- (void) setIsNew:(BOOL) value {
+  isNew_ = !!value;
+}
 - (void) dealloc {
   self.tutorialId = nil;
   self.cnName = nil;
@@ -712,6 +774,7 @@ static PBStage* defaultPBStageInstance = nil;
     self.priceUnit = 0;
     self.createDate = 0;
     self.modifyDate = 0;
+    self.isNew = NO;
   }
   return self;
 }
@@ -795,6 +858,9 @@ static PBTutorial* defaultPBTutorialInstance = nil;
   if (self.hasModifyDate) {
     [output writeInt32:41 value:self.modifyDate];
   }
+  if (self.hasIsNew) {
+    [output writeBool:50 value:self.isNew];
+  }
   [self.unknownFields writeToCodedOutputStream:output];
 }
 - (int32_t) serializedSize {
@@ -862,6 +928,9 @@ static PBTutorial* defaultPBTutorialInstance = nil;
   }
   if (self.hasModifyDate) {
     size += computeInt32Size(41, self.modifyDate);
+  }
+  if (self.hasIsNew) {
+    size += computeBoolSize(50, self.isNew);
   }
   size += self.unknownFields.serializedSize;
   memoizedSerializedSize = size;
@@ -995,6 +1064,9 @@ static PBTutorial* defaultPBTutorialInstance = nil;
   if (other.hasModifyDate) {
     [self setModifyDate:other.modifyDate];
   }
+  if (other.hasIsNew) {
+    [self setIsNew:other.isNew];
+  }
   [self mergeUnknownFields:other.unknownFields];
   return self;
 }
@@ -1086,6 +1158,10 @@ static PBTutorial* defaultPBTutorialInstance = nil;
       }
       case 328: {
         [self setModifyDate:[input readInt32]];
+        break;
+      }
+      case 400: {
+        [self setIsNew:[input readBool]];
         break;
       }
     }
@@ -1392,6 +1468,22 @@ static PBTutorial* defaultPBTutorialInstance = nil;
 - (PBTutorial_Builder*) clearModifyDate {
   result.hasModifyDate = NO;
   result.modifyDate = 0;
+  return self;
+}
+- (BOOL) hasIsNew {
+  return result.hasIsNew;
+}
+- (BOOL) isNew {
+  return result.isNew;
+}
+- (PBTutorial_Builder*) setIsNew:(BOOL) value {
+  result.hasIsNew = YES;
+  result.isNew = value;
+  return self;
+}
+- (PBTutorial_Builder*) clearIsNew {
+  result.hasIsNew = NO;
+  result.isNew = NO;
   return self;
 }
 @end
@@ -2453,7 +2545,7 @@ static PBUserStage* defaultPBUserStageInstance = nil;
 @interface PBUserTutorial ()
 @property (retain) NSString* userId;
 @property (retain) PBTutorial* tutorial;
-@property BOOL isStudy;
+@property int32_t status;
 @property BOOL isDownload;
 @property BOOL isPurchase;
 @property int32_t createDate;
@@ -2462,6 +2554,8 @@ static PBUserStage* defaultPBUserStageInstance = nil;
 @property int32_t currentStageIndex;
 @property (retain) NSString* currentStageId;
 @property (retain) NSMutableArray* mutableUserStagesList;
+@property BOOL syncServer;
+@property (retain) NSString* localId;
 @end
 
 @implementation PBUserTutorial
@@ -2480,18 +2574,13 @@ static PBUserStage* defaultPBUserStageInstance = nil;
   hasTutorial_ = !!value;
 }
 @synthesize tutorial;
-- (BOOL) hasIsStudy {
-  return !!hasIsStudy_;
+- (BOOL) hasStatus {
+  return !!hasStatus_;
 }
-- (void) setHasIsStudy:(BOOL) value {
-  hasIsStudy_ = !!value;
+- (void) setHasStatus:(BOOL) value {
+  hasStatus_ = !!value;
 }
-- (BOOL) isStudy {
-  return !!isStudy_;
-}
-- (void) setIsStudy:(BOOL) value {
-  isStudy_ = !!value;
-}
+@synthesize status;
 - (BOOL) hasIsDownload {
   return !!hasIsDownload_;
 }
@@ -2552,18 +2641,38 @@ static PBUserStage* defaultPBUserStageInstance = nil;
 }
 @synthesize currentStageId;
 @synthesize mutableUserStagesList;
+- (BOOL) hasSyncServer {
+  return !!hasSyncServer_;
+}
+- (void) setHasSyncServer:(BOOL) value {
+  hasSyncServer_ = !!value;
+}
+- (BOOL) syncServer {
+  return !!syncServer_;
+}
+- (void) setSyncServer:(BOOL) value {
+  syncServer_ = !!value;
+}
+- (BOOL) hasLocalId {
+  return !!hasLocalId_;
+}
+- (void) setHasLocalId:(BOOL) value {
+  hasLocalId_ = !!value;
+}
+@synthesize localId;
 - (void) dealloc {
   self.userId = nil;
   self.tutorial = nil;
   self.currentStageId = nil;
   self.mutableUserStagesList = nil;
+  self.localId = nil;
   [super dealloc];
 }
 - (id) init {
   if ((self = [super init])) {
     self.userId = @"";
     self.tutorial = [PBTutorial defaultInstance];
-    self.isStudy = NO;
+    self.status = 0;
     self.isDownload = NO;
     self.isPurchase = NO;
     self.createDate = 0;
@@ -2571,6 +2680,8 @@ static PBUserStage* defaultPBUserStageInstance = nil;
     self.modifyDate = 0;
     self.currentStageIndex = 0;
     self.currentStageId = @"";
+    self.syncServer = NO;
+    self.localId = @"";
   }
   return self;
 }
@@ -2617,8 +2728,8 @@ static PBUserTutorial* defaultPBUserTutorialInstance = nil;
   if (self.hasTutorial) {
     [output writeMessage:2 value:self.tutorial];
   }
-  if (self.hasIsStudy) {
-    [output writeBool:3 value:self.isStudy];
+  if (self.hasStatus) {
+    [output writeInt32:3 value:self.status];
   }
   if (self.hasIsDownload) {
     [output writeBool:4 value:self.isDownload];
@@ -2644,6 +2755,12 @@ static PBUserTutorial* defaultPBUserTutorialInstance = nil;
   for (PBUserStage* element in self.userStagesList) {
     [output writeMessage:22 value:element];
   }
+  if (self.hasSyncServer) {
+    [output writeBool:30 value:self.syncServer];
+  }
+  if (self.hasLocalId) {
+    [output writeString:31 value:self.localId];
+  }
   [self.unknownFields writeToCodedOutputStream:output];
 }
 - (int32_t) serializedSize {
@@ -2659,8 +2776,8 @@ static PBUserTutorial* defaultPBUserTutorialInstance = nil;
   if (self.hasTutorial) {
     size += computeMessageSize(2, self.tutorial);
   }
-  if (self.hasIsStudy) {
-    size += computeBoolSize(3, self.isStudy);
+  if (self.hasStatus) {
+    size += computeInt32Size(3, self.status);
   }
   if (self.hasIsDownload) {
     size += computeBoolSize(4, self.isDownload);
@@ -2685,6 +2802,12 @@ static PBUserTutorial* defaultPBUserTutorialInstance = nil;
   }
   for (PBUserStage* element in self.userStagesList) {
     size += computeMessageSize(22, element);
+  }
+  if (self.hasSyncServer) {
+    size += computeBoolSize(30, self.syncServer);
+  }
+  if (self.hasLocalId) {
+    size += computeStringSize(31, self.localId);
   }
   size += self.unknownFields.serializedSize;
   memoizedSerializedSize = size;
@@ -2767,8 +2890,8 @@ static PBUserTutorial* defaultPBUserTutorialInstance = nil;
   if (other.hasTutorial) {
     [self mergeTutorial:other.tutorial];
   }
-  if (other.hasIsStudy) {
-    [self setIsStudy:other.isStudy];
+  if (other.hasStatus) {
+    [self setStatus:other.status];
   }
   if (other.hasIsDownload) {
     [self setIsDownload:other.isDownload];
@@ -2796,6 +2919,12 @@ static PBUserTutorial* defaultPBUserTutorialInstance = nil;
       result.mutableUserStagesList = [NSMutableArray array];
     }
     [result.mutableUserStagesList addObjectsFromArray:other.mutableUserStagesList];
+  }
+  if (other.hasSyncServer) {
+    [self setSyncServer:other.syncServer];
+  }
+  if (other.hasLocalId) {
+    [self setLocalId:other.localId];
   }
   [self mergeUnknownFields:other.unknownFields];
   return self;
@@ -2832,7 +2961,7 @@ static PBUserTutorial* defaultPBUserTutorialInstance = nil;
         break;
       }
       case 24: {
-        [self setIsStudy:[input readBool]];
+        [self setStatus:[input readInt32]];
         break;
       }
       case 32: {
@@ -2867,6 +2996,14 @@ static PBUserTutorial* defaultPBUserTutorialInstance = nil;
         PBUserStage_Builder* subBuilder = [PBUserStage builder];
         [input readMessage:subBuilder extensionRegistry:extensionRegistry];
         [self addUserStages:[subBuilder buildPartial]];
+        break;
+      }
+      case 240: {
+        [self setSyncServer:[input readBool]];
+        break;
+      }
+      case 250: {
+        [self setLocalId:[input readString]];
         break;
       }
     }
@@ -2918,20 +3055,20 @@ static PBUserTutorial* defaultPBUserTutorialInstance = nil;
   result.tutorial = [PBTutorial defaultInstance];
   return self;
 }
-- (BOOL) hasIsStudy {
-  return result.hasIsStudy;
+- (BOOL) hasStatus {
+  return result.hasStatus;
 }
-- (BOOL) isStudy {
-  return result.isStudy;
+- (int32_t) status {
+  return result.status;
 }
-- (PBUserTutorial_Builder*) setIsStudy:(BOOL) value {
-  result.hasIsStudy = YES;
-  result.isStudy = value;
+- (PBUserTutorial_Builder*) setStatus:(int32_t) value {
+  result.hasStatus = YES;
+  result.status = value;
   return self;
 }
-- (PBUserTutorial_Builder*) clearIsStudy {
-  result.hasIsStudy = NO;
-  result.isStudy = NO;
+- (PBUserTutorial_Builder*) clearStatus {
+  result.hasStatus = NO;
+  result.status = 0;
   return self;
 }
 - (BOOL) hasIsDownload {
@@ -3073,6 +3210,38 @@ static PBUserTutorial* defaultPBUserTutorialInstance = nil;
     result.mutableUserStagesList = [NSMutableArray array];
   }
   [result.mutableUserStagesList addObject:value];
+  return self;
+}
+- (BOOL) hasSyncServer {
+  return result.hasSyncServer;
+}
+- (BOOL) syncServer {
+  return result.syncServer;
+}
+- (PBUserTutorial_Builder*) setSyncServer:(BOOL) value {
+  result.hasSyncServer = YES;
+  result.syncServer = value;
+  return self;
+}
+- (PBUserTutorial_Builder*) clearSyncServer {
+  result.hasSyncServer = NO;
+  result.syncServer = NO;
+  return self;
+}
+- (BOOL) hasLocalId {
+  return result.hasLocalId;
+}
+- (NSString*) localId {
+  return result.localId;
+}
+- (PBUserTutorial_Builder*) setLocalId:(NSString*) value {
+  result.hasLocalId = YES;
+  result.localId = value;
+  return self;
+}
+- (PBUserTutorial_Builder*) clearLocalId {
+  result.hasLocalId = NO;
+  result.localId = @"";
   return self;
 }
 @end

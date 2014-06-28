@@ -30,6 +30,8 @@ message PBStage
 
     optional string image = 20;
     optional string thumbImage = 21;
+    
+    optional string dataURL = 30;                   // 下载的zip包URL，待定
 }
 
 // 教程
@@ -58,6 +60,8 @@ message PBTutorial
     
     optional int32  createDate = 40;
     optional int32  modifyDate = 41;
+    
+    optional bool   isNew = 50;                     // 是否最近推出
 }
 
 message PBTutorialCore
@@ -92,15 +96,22 @@ message PBUserStage
     repeated PBUserStageOpus opus = 7;      // 闯关记录信息
 }
 
+enum PBUserTutorialStatus
+{
+    UT_STATUS_NOT_START = 0;                // 未开始学习
+    UT_STATUS_START = 1;                    // 开始学习中
+    UT_STATUS_COMPLETE = 2;                 // 已经完成学习
+}
+
 // 用户和教程的关系，用于保存到本地
 message PBUserTutorial
 {
     required string userId = 1;
     required PBTutorial tutorial = 2;
 
-    optional bool isStudy = 3;
-    optional bool isDownload = 4;
-    optional bool isPurchase = 5;
+    optional int32 status = 3;                  // 是否正在学习，取值参考PBUserTutorialStatus
+    optional bool isDownload = 4;               // 是否已经下载
+    optional bool isPurchase = 5;               // 是否已经购买，仅适用于付费教程
 
     optional int32  createDate = 10;
     optional int32  lastPlayDate = 11;
@@ -109,5 +120,9 @@ message PBUserTutorial
     optional int32  currentStageIndex = 20;     // 当前玩到第几关
     optional string currentStageId = 21;        // 当前关的ID
     repeated PBUserStage userStages = 22;       // 每一关的具体信息
+    
+    optional bool   syncServer = 30;            // 本数据是否已经同步到服务器
+    optional string localId = 31;               // 保存到本地的ID
 }
+
 

@@ -20,7 +20,7 @@
 
 
 
-typedef void (^ PBResponseResultBlock) (DataQueryResponse *response, NSError* error);
+
 
 static GroupService *_staticGroupService = nil;
 

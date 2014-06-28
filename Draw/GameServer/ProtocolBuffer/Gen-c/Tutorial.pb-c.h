@@ -27,6 +27,11 @@ typedef enum _Game__PBTutorialLevel {
   GAME__PBTUTORIAL_LEVEL__TUTORIAL_LEVEL_NORMAL = 2,
   GAME__PBTUTORIAL_LEVEL__TUTORIAL_LEVEL_HARD = 3
 } Game__PBTutorialLevel;
+typedef enum _Game__PBUserTutorialStatus {
+  GAME__PBUSER_TUTORIAL_STATUS__UT_STATUS_NOT_START = 0,
+  GAME__PBUSER_TUTORIAL_STATUS__UT_STATUS_START = 1,
+  GAME__PBUSER_TUTORIAL_STATUS__UT_STATUS_COMPLETE = 2
+} Game__PBUserTutorialStatus;
 
 /* --- messages --- */
 
@@ -42,10 +47,11 @@ struct  _Game__PBStage
   char *tcndesc;
   char *image;
   char *thumbimage;
+  char *dataurl;
 };
 #define GAME__PBSTAGE__INIT \
  { PROTOBUF_C_MESSAGE_INIT (&game__pbstage__descriptor) \
-    , NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL }
+    , NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL }
 
 
 struct  _Game__PBTutorial
@@ -77,10 +83,12 @@ struct  _Game__PBTutorial
   int32_t createdate;
   protobuf_c_boolean has_modifydate;
   int32_t modifydate;
+  protobuf_c_boolean has_isnew;
+  protobuf_c_boolean isnew;
 };
 #define GAME__PBTUTORIAL__INIT \
  { PROTOBUF_C_MESSAGE_INIT (&game__pbtutorial__descriptor) \
-    , NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0,0, 0,NULL, 0,0, NULL, NULL, NULL, 0,1, 0,0, 0,0, 0,0, 0,0 }
+    , NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0,0, 0,NULL, 0,0, NULL, NULL, NULL, 0,1, 0,0, 0,0, 0,0, 0,0, 0,0 }
 
 
 struct  _Game__PBTutorialCore
@@ -138,8 +146,8 @@ struct  _Game__PBUserTutorial
   ProtobufCMessage base;
   char *userid;
   Game__PBTutorial *tutorial;
-  protobuf_c_boolean has_isstudy;
-  protobuf_c_boolean isstudy;
+  protobuf_c_boolean has_status;
+  int32_t status;
   protobuf_c_boolean has_isdownload;
   protobuf_c_boolean isdownload;
   protobuf_c_boolean has_ispurchase;
@@ -155,10 +163,13 @@ struct  _Game__PBUserTutorial
   char *currentstageid;
   size_t n_userstages;
   Game__PBUserStage **userstages;
+  protobuf_c_boolean has_syncserver;
+  protobuf_c_boolean syncserver;
+  char *localid;
 };
 #define GAME__PBUSER_TUTORIAL__INIT \
  { PROTOBUF_C_MESSAGE_INIT (&game__pbuser_tutorial__descriptor) \
-    , NULL, NULL, 0,0, 0,0, 0,0, 0,0, 0,0, 0,0, 0,0, NULL, 0,NULL }
+    , NULL, NULL, 0,0, 0,0, 0,0, 0,0, 0,0, 0,0, 0,0, NULL, 0,NULL, 0,0, NULL }
 
 
 /* Game__PBStage methods */
@@ -302,6 +313,7 @@ typedef void (*Game__PBUserTutorial_Closure)
 /* --- descriptors --- */
 
 extern const ProtobufCEnumDescriptor    game__pbtutorial_level__descriptor;
+extern const ProtobufCEnumDescriptor    game__pbuser_tutorial_status__descriptor;
 extern const ProtobufCMessageDescriptor game__pbstage__descriptor;
 extern const ProtobufCMessageDescriptor game__pbtutorial__descriptor;
 extern const ProtobufCMessageDescriptor game__pbtutorial_core__descriptor;
