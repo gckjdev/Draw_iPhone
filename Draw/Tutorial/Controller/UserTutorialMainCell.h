@@ -11,5 +11,6 @@
 @interface UserTutorialMainCell : UITableViewCell
 
 @property (retain, nonatomic) IBOutlet UILabel *tutorialNameLabel;
+@property (retain, nonatomic) IBOutlet UIImageView *tutorialImageView;
 
 @end

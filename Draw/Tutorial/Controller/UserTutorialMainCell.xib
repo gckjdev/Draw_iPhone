@@ -13,27 +13,33 @@
                 <rect key="frame" x="0.0" y="0.0" width="320" height="79"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="LWl-3k-Pwp">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="54"/>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="LWl-3k-Pwp">
+                        <rect key="frame" x="10" y="0.0" width="300" height="54"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                     </imageView>
                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="简笔画" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AVB-UF-Fo1">
-                        <rect key="frame" x="20" y="58" width="51" height="21"/>
+                        <rect key="frame" x="10" y="58" width="132" height="21"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="2天前" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="e2n-cV-Vob">
-                        <rect key="frame" x="271" y="58" width="42" height="21"/>
+                        <rect key="frame" x="172" y="58" width="138" height="21"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                 </subviews>
+                <constraints>
+                    <constraint firstAttribute="trailing" secondItem="LWl-3k-Pwp" secondAttribute="trailing" constant="10" id="Dzt-gg-BGF"/>
+                    <constraint firstItem="LWl-3k-Pwp" firstAttribute="leading" secondItem="dB4-Ko-gd6" secondAttribute="leading" constant="10" id="PVg-qt-fct"/>
+                    <constraint firstItem="LWl-3k-Pwp" firstAttribute="top" secondItem="dB4-Ko-gd6" secondAttribute="top" id="j2o-fT-qIB"/>
+                </constraints>
             </tableViewCellContentView>
             <connections>
+                <outlet property="tutorialImageView" destination="LWl-3k-Pwp" id="DwR-DH-f6y"/>
                 <outlet property="tutorialNameLabel" destination="AVB-UF-Fo1" id="2Ml-gs-FRW"/>
             </connections>
         </tableViewCell>
