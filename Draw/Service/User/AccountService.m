@@ -213,7 +213,7 @@ static AccountService* _defaultAccountService;
                     if ([user.blockDeviceIdsList count] > 0){
                         NSString* deviceId = [[UIDevice currentDevice] uniqueGlobalDeviceIdentifier];
                         int index = [user.blockDeviceIdsList indexOfObject:deviceId];
-                        if (index == -1){
+                        if (index == NSNotFound){
                             // not found
                             PPDebug(@"deviceId not %@ in user block device list, do nothing");
                         }
