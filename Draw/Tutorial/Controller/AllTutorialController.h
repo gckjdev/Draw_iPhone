@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "PPTableViewController.h"
 
-@interface AllTutorialController : UIViewController
+@interface AllTutorialController : PPTableViewController
 
 @end

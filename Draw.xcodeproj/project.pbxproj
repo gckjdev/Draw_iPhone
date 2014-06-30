@@ -6072,6 +6072,14 @@
 		CAE9AA5A16D71FFA008392F9 /* MarkPen.m in Sources */ = {isa = PBXBuildFile; fileRef = CAE9AA5916D71FFA008392F9 /* MarkPen.m */; };
 		CAE9AA6C16D72725008392F9 /* DefaultPen.m in Sources */ = {isa = PBXBuildFile; fileRef = CAE9AA6B16D72725008392F9 /* DefaultPen.m */; };
 		CAE9AA7A16D72F17008392F9 /* SuperPen.m in Sources */ = {isa = PBXBuildFile; fileRef = CAE9AA7916D72F15008392F9 /* SuperPen.m */; };
+		CAEAB553196160D10065847C /* UserTutorialMainCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CAEAB552196160D10065847C /* UserTutorialMainCell.m */; };
+		CAEAB554196160D10065847C /* UserTutorialMainCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CAEAB552196160D10065847C /* UserTutorialMainCell.m */; };
+		CAEAB555196160D10065847C /* UserTutorialMainCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CAEAB552196160D10065847C /* UserTutorialMainCell.m */; };
+		CAEAB556196160D10065847C /* UserTutorialMainCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CAEAB552196160D10065847C /* UserTutorialMainCell.m */; };
+		CAEAB55D196164110065847C /* UserTutorialMainCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAEAB55C196164110065847C /* UserTutorialMainCell.xib */; };
+		CAEAB55E196164110065847C /* UserTutorialMainCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAEAB55C196164110065847C /* UserTutorialMainCell.xib */; };
+		CAEAB55F196164110065847C /* UserTutorialMainCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAEAB55C196164110065847C /* UserTutorialMainCell.xib */; };
+		CAEAB560196164110065847C /* UserTutorialMainCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAEAB55C196164110065847C /* UserTutorialMainCell.xib */; };
 		CAEE45E5165F5590001E02F1 /* GameSNSService.m in Sources */ = {isa = PBXBuildFile; fileRef = CAEE45E4165F5590001E02F1 /* GameSNSService.m */; };
 		CAEEC196181A484F007FD75F /* OpusService.m in Sources */ = {isa = PBXBuildFile; fileRef = A4C8D563175EDFC6007ED7E4 /* OpusService.m */; };
 		CAEEC19A181A5DAC007FD75F /* ScreenCaptureView.m in Sources */ = {isa = PBXBuildFile; fileRef = CAEEC199181A5DAC007FD75F /* ScreenCaptureView.m */; };
@@ -10267,6 +10275,9 @@
 		CAE9AA6B16D72725008392F9 /* DefaultPen.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DefaultPen.m; sourceTree = "<group>"; };
 		CAE9AA7816D72F14008392F9 /* SuperPen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SuperPen.h; sourceTree = "<group>"; };
 		CAE9AA7916D72F15008392F9 /* SuperPen.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SuperPen.m; sourceTree = "<group>"; };
+		CAEAB551196160D10065847C /* UserTutorialMainCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserTutorialMainCell.h; sourceTree = "<group>"; };
+		CAEAB552196160D10065847C /* UserTutorialMainCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserTutorialMainCell.m; sourceTree = "<group>"; };
+		CAEAB55C196164110065847C /* UserTutorialMainCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserTutorialMainCell.xib; sourceTree = "<group>"; };
 		CAEE45E3165F5590001E02F1 /* GameSNSService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameSNSService.h; sourceTree = "<group>"; };
 		CAEE45E4165F5590001E02F1 /* GameSNSService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameSNSService.m; sourceTree = "<group>"; };
 		CAEE48EB171D32BD00EF2380 /* default_config_Learndraw_version.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = default_config_Learndraw_version.txt; sourceTree = "<group>"; };
@@ -14856,6 +14867,9 @@
 				CA2A28BC195C1DC400A97478 /* UserTutorialMainController.h */,
 				CA2A28BD195C1DC400A97478 /* UserTutorialMainController.m */,
 				CA2A28BE195C1DC400A97478 /* UserTutorialMainController.xib */,
+				CAEAB551196160D10065847C /* UserTutorialMainCell.h */,
+				CAEAB552196160D10065847C /* UserTutorialMainCell.m */,
+				CAEAB55C196164110065847C /* UserTutorialMainCell.xib */,
 				CA2A28C7195C1E1C00A97478 /* TutorialStageController.h */,
 				CA2A28C8195C1E1C00A97478 /* TutorialStageController.m */,
 				CA2A28C9195C1E1C00A97478 /* TutorialStageController.xib */,
@@ -19009,6 +19023,7 @@
 				EA5FE1D117E949C10099754C /* draw_home_avatar_bg@2x.png in Resources */,
 				EA2A7CE417F676AB00ED508D /* AccountManageController.xib in Resources */,
 				EA2A7CEE17F6958600ED508D /* AccountCell.xib in Resources */,
+				CAEAB55F196164110065847C /* UserTutorialMainCell.xib in Resources */,
 				A42151841803EA2B007F2EFD /* README.mdown in Resources */,
 				A42151CD18040C5F007F2EFD /* MWPhotoBrowser.strings in Resources */,
 				CA1FF8931804F986003CEAD6 /* NSDate+TKCategory.strings in Resources */,
@@ -19882,6 +19897,7 @@
 				A4D8FE3817DB089C0085061F /* draw_selector_selected@2x.png in Resources */,
 				A4D8FE3C17DB089C0085061F /* draw_shadow@2x.png in Resources */,
 				A4D8FE4017DB089C0085061F /* draw_shape_default@2x.png in Resources */,
+				CAEAB55E196164110065847C /* UserTutorialMainCell.xib in Resources */,
 				A4D8FE4417DB089C0085061F /* draw_shape_image@2x.png in Resources */,
 				A4D8FE4817DB089C0085061F /* draw_shape_selected@2x.png in Resources */,
 				A4D8FE4C17DB089C0085061F /* draw_straw@2x.png in Resources */,
@@ -20245,6 +20261,7 @@
 				CA96E350150DFBFA00292335 /* GameMessage.proto in Resources */,
 				CADD7FCF1510DC530075C739 /* GameConstants.proto in Resources */,
 				CAB3DBDE1516DACD00E7DBC4 /* SelectWordCell.xib in Resources */,
+				CAEAB55D196164110065847C /* UserTutorialMainCell.xib in Resources */,
 				CA3221A5151F657F0039A384 /* FeedbackController.xib in Resources */,
 				CA3221AA151F65AE0039A384 /* UserSettingController.xib in Resources */,
 				C2E662621521B91900487601 /* ReportController.xib in Resources */,
@@ -22061,6 +22078,7 @@
 				CA9AAF7F18321621002DBAA5 /* songCategory.txt in Resources */,
 				CA9AAF8318321621002DBAA5 /* sing_home_badge@2x.png in Resources */,
 				CA9AAF8718321621002DBAA5 /* sing_home_bbs@2x.png in Resources */,
+				CAEAB560196164110065847C /* UserTutorialMainCell.xib in Resources */,
 				CA9AAF8B18321621002DBAA5 /* sing_home_chat@2x.png in Resources */,
 				CA9AAF8F18321621002DBAA5 /* sing_home_contest@2x.png in Resources */,
 				CA9AAF9318321621002DBAA5 /* sing_home_draft@2x.png in Resources */,
@@ -22677,6 +22695,7 @@
 				A461B2DF174CBAA70088B061 /* DrawColorManager.m in Sources */,
 				A461B2E0174CBAA70088B061 /* PickToolView.m in Sources */,
 				A461B2E1174CBAA70088B061 /* PickView.m in Sources */,
+				CAEAB555196160D10065847C /* UserTutorialMainCell.m in Sources */,
 				A461B2E2174CBAA70088B061 /* SelectHotWordController.m in Sources */,
 				A461B2E3174CBAA70088B061 /* WordSelectCell.m in Sources */,
 				A461B2E4174CBAA70088B061 /* SelectCustomWordCell.m in Sources */,
@@ -23367,6 +23386,7 @@
 				C28A9AD21738F04B007A819F /* RankView.m in Sources */,
 				C28A9AD61738F04B007A819F /* TopPlayer.m in Sources */,
 				C28A9AD81738F04B007A819F /* TopPlayerView.m in Sources */,
+				CAEAB554196160D10065847C /* UserTutorialMainCell.m in Sources */,
 				C28A9AD91738F04B007A819F /* AnimationPlayer.m in Sources */,
 				CACD6CD318E03BCD003F97C0 /* SBJsonWriter.m in Sources */,
 				C28A9ADA1738F04B007A819F /* MyCommentCell.m in Sources */,
@@ -24202,6 +24222,7 @@
 				CA3F2ED81609BCFB0059667B /* ContestOpusController.m in Sources */,
 				CA3F2F1F1609BDCA0059667B /* CommonTabController.m in Sources */,
 				CA1656FF160C032800E433BE /* RankView.m in Sources */,
+				CAEAB553196160D10065847C /* UserTutorialMainCell.m in Sources */,
 				CA9B4EC016103726008C6A97 /* TopPlayer.m in Sources */,
 				CACD6CD218E03BCD003F97C0 /* SBJsonWriter.m in Sources */,
 				CA0A2CAE1610473800F66400 /* TopPlayerView.m in Sources */,
@@ -25139,6 +25160,7 @@
 				EA4119E6176066F500DA72D0 /* PPSmartDataTest.m in Sources */,
 				EA4119E7176066F500DA72D0 /* BBSPopupSelectionView.m in Sources */,
 				EA4119E8176066F500DA72D0 /* GameConfigData.m in Sources */,
+				CAEAB556196160D10065847C /* UserTutorialMainCell.m in Sources */,
 				EA4119E9176066F500DA72D0 /* GameConfigDataManager.m in Sources */,
 				EA4119EA176066F500DA72D0 /* GameConfigDataUtils.m in Sources */,
 				EA4119EB176066F500DA72D0 /* Config.pb.m in Sources */,
@@ -26226,7 +26248,7 @@
 					"../Common_iPhone_20/3PP-SDK/QWeiboSDK4iOS/**",
 					"./Draw/GameServer/ProtocolBuffer/**",
 				);
-				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = "-ObjC";
 				PROVISIONING_PROFILE = "24E88A41-CC4E-4714-AA97-845A82B78813";
@@ -26258,7 +26280,7 @@
 					"../Common_iPhone_20/3PP-SDK/QWeiboSDK4iOS/**",
 					"./Draw/GameServer/ProtocolBuffer/**",
 				);
-				IPHONEOS_DEPLOYMENT_TARGET = 5.1.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				OTHER_LDFLAGS = "-ObjC";
 				PROVISIONING_PROFILE = "2DFA37DA-4AF3-4537-AEAE-76216B3A2502";
@@ -26318,7 +26340,7 @@
 					"${SRCROOT}/**",
 				);
 				INFOPLIST_FILE = "Draw/Draw-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\\\\\\\\\\\\\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/MobClick\\\\\\\\\\\\\\\"",
@@ -26424,7 +26446,7 @@
 					"${SRCROOT}/**",
 				);
 				INFOPLIST_FILE = "Draw/Draw-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\\\\\\\\\\\\\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/MobClick\\\\\\\\\\\\\\\"",
