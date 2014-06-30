@@ -18,4 +18,6 @@
 
 - (void)syncUserTutorial:(NSString*)utLocalId syncStatus:(BOOL)syncStatus;
 
+- (NSArray*)allUserTutorials;
+
 @end

@@ -285,6 +285,24 @@
                                               progressDelegate:progressDelegate];
 }
 
++ (void)handlePBResponse:(GameNetworkOutput*)output
+                  method:(NSString *)method
+                callback:(PBResponseResultBlock)callback
+             isPostError:(BOOL)isPostError
+{
+    dispatch_async(dispatch_get_main_queue(), ^{
+        
+        NSError *error = DRAW_ERROR(output.resultCode);
+        if (error) {
+            PPDebug(@"<loadPBData> error = %@, method = %@", error, method);
+            if (isPostError){
+                [DrawError postError:error];
+            }
+        }
+        EXECUTE_BLOCK(callback, output.pbResponse, error);
+    });
+}
+
 + (void)loadPBData:(dispatch_queue_t)queue
            hostURL:(NSString*)hostURL
             method:(NSString *)method
@@ -300,17 +318,20 @@
                                      parameters:parameters
                                      returnPB:YES
                                      returnJSONArray:NO];
-        dispatch_async(dispatch_get_main_queue(), ^{
-            
-            NSError *error = DRAW_ERROR(output.resultCode);
-            if (error) {
-                PPDebug(@"<loadPBData> error = %@, method = %@", error, method);
-                if (isPostError){
-                    [DrawError postError:error];
-                }
-            }
-            EXECUTE_BLOCK(callback, output.pbResponse, error);
-        });
+        
+        [self handlePBResponse:output method:method callback:callback isPostError:isPostError];
+        
+//        dispatch_async(dispatch_get_main_queue(), ^{
+//            
+//            NSError *error = DRAW_ERROR(output.resultCode);
+//            if (error) {
+//                PPDebug(@"<loadPBData> error = %@, method = %@", error, method);
+//                if (isPostError){
+//                    [DrawError postError:error];
+//                }
+//            }
+//            EXECUTE_BLOCK(callback, output.pbResponse, error);
+//        });
     });
 }
 
@@ -332,17 +353,19 @@
                                      returnPB:YES
                                      returnJSONArray:NO];
 
-        dispatch_async(dispatch_get_main_queue(), ^{
-            
-            NSError *error = DRAW_ERROR(output.resultCode);
-            if (error) {
-                PPDebug(@"<loadPBData> post mode, error = %@, method = %@", error, method);
-                if (isPostError){
-                    [DrawError postError:error];
-                }
-            }
-            EXECUTE_BLOCK(callback, output.pbResponse, error);
-        });
+        [self handlePBResponse:output method:method callback:callback isPostError:isPostError];
+        
+//        dispatch_async(dispatch_get_main_queue(), ^{
+//            
+//            NSError *error = DRAW_ERROR(output.resultCode);
+//            if (error) {
+//                PPDebug(@"<loadPBData> post mode, error = %@, method = %@", error, method);
+//                if (isPostError){
+//                    [DrawError postError:error];
+//                }
+//            }
+//            EXECUTE_BLOCK(callback, output.pbResponse, error);
+//        });
     });
 }
 

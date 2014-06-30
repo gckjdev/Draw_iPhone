@@ -799,6 +799,8 @@
 
 #define METHOD_UPDATE_USER_CREDENTIAL @"updateUserCredential"
 
+// tutorial
+#define METHOD_SYNC_USER_TUTORIAL @"METHOD_SYNC_USER_TUTORIAL"
 
 #define REGISTER_TYPE_EMAIL     1
 #define REGISTER_TYPE_SINA      2

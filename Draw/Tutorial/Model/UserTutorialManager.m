@@ -171,11 +171,13 @@ static UserTutorialManager* _defaultManager;
     
     PBUserTutorial* ut = [self findUserTutorialByLocalId:utLocalId];
     if (ut == nil){
+        PPDebug(@"<syncUserTutorial> but localId(%@) not found", utLocalId);
         return;
     }
     
     if (syncStatus == ut.syncServer){
         // status the same, no need to update
+        PPDebug(@"<syncUserTutorial> localId(%@) but status the same, skip", utLocalId);
         return;
     }
     
@@ -183,6 +185,11 @@ static UserTutorialManager* _defaultManager;
     [builder setSyncServer:syncStatus];
     PBUserTutorial* newUt = [builder build];
     [self save:newUt];
+}
+
+- (NSArray*)allUserTutorials
+{
+    return [[self getDb] allObjects];
 }
 
 @end

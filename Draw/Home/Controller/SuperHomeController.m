@@ -40,6 +40,7 @@
 #import "GroupHomeController.h"
 #import "FreeIngotController.h"
 #import "ShowOpusClassListController.h"
+#import "UserTutorialMainController.h"
 
 static NSDictionary* DEFAULT_MENU_TITLE_DICT = nil;
 static NSDictionary* DEFAULT_MENU_IMAGE_DICT = nil;
@@ -621,6 +622,15 @@ static NSDictionary* DEFAULT_MENU_IMAGE_DICT = nil;
 }
 
 - (void)enterTask{
+    
+#ifdef DEBUG
+    // for test user tutorial
+    UserTutorialMainController* ut = [[UserTutorialMainController alloc] init];
+    [self.navigationController pushViewController:ut animated:YES];
+    [ut release];
+    return;
+#endif
+    
     TaskController *vc = [[[TaskController alloc] init] autorelease];
     [self.navigationController pushViewController:vc animated:YES];
 }
