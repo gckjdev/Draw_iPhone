@@ -15139,6 +15139,7 @@
 		CA427065161FFF4A00C6CCAE /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				CAC37316196246BA00ADEE9C /* NewHome */,
 				CA1DA94B16732CDF0078B5A9 /* View */,
 				CA427066161FFF7800C6CCAE /* Controller */,
 			);
@@ -16572,6 +16573,13 @@
 				CA1250EB1669EDD800AFCC04 /* Config */,
 			);
 			path = CommonResource;
+			sourceTree = "<group>";
+		};
+		CAC37316196246BA00ADEE9C /* NewHome */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = NewHome;
 			sourceTree = "<group>";
 		};
 		CAC448FC168C4DCC004441EB /* ILColorPicker */ = {
