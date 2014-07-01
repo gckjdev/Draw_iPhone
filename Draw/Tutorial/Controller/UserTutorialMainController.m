@@ -9,6 +9,9 @@
 #import "UserTutorialMainController.h"
 #import "UIViewController+BGImage.h"
 #import "UserTutorialMainCell.h"
+#import "UserTutorialManager.h"
+#import "Tutorial.pb.h"
+#import "AllTutorialController.h"
 
 @interface UserTutorialMainController ()
 
@@ -53,13 +56,20 @@
     // set background
     [self setDefaultBGImage];
     
-    self.dataList = @[@"hello"];
+    self.dataList = [[UserTutorialManager defaultManager] allUserTutorials];
 }
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)clickAdd:(id)sender
+{
+    AllTutorialController* vc = [[AllTutorialController alloc] init];
+    [self.navigationController pushViewController:vc animated:YES];
+    [vc release];
 }
 
 #pragma mark -
@@ -75,7 +85,9 @@
     }
     
     NSUInteger row = [indexPath row];
-    [cell.tutorialNameLabel setText:[self.dataList objectAtIndex:row]];
+    PBUserTutorial* ut = [self.dataList objectAtIndex:row];
+    [cell updateCellInfo:ut];
+    
     return cell;
 }
 

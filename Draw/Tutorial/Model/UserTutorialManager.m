@@ -163,6 +163,14 @@ static UserTutorialManager* _defaultManager;
     return nil;
 }
 
+- (PBTutorial*)createTestTutorial
+{
+    PBTutorial_Builder* builder = [PBTutorial builder];
+    [builder setTutorialId:@"testId1"];
+    [builder setCnName:@"测试教程1"];
+    return [builder build];
+}
+
 - (void)syncUserTutorial:(NSString*)utLocalId syncStatus:(BOOL)syncStatus
 {
     if (utLocalId == nil){
@@ -189,7 +197,31 @@ static UserTutorialManager* _defaultManager;
 
 - (NSArray*)allUserTutorials
 {
-    return [[self getDb] allObjects];
+    NSArray* list = [[self getDb] allObjects];
+
+#ifdef DEBUG
+    // for test
+    if ([list count] == 0){
+        PBTutorial* tutorial = [self createTestTutorial];
+        [self addTutorial:tutorial];
+        
+        list = [[self getDb] allObjects];
+    }
+#endif
+    
+    NSMutableArray* retList = [[[NSMutableArray alloc] init] autorelease];
+    for (NSData* data in list){
+        @try {
+            PBUserTutorial* ut = [PBUserTutorial parseFromData:data];
+            [retList addObject:ut];
+        }
+        @catch (NSException *exception) {
+        }
+        @finally {
+        }
+    }
+    
+    return retList;
 }
 
 @end
