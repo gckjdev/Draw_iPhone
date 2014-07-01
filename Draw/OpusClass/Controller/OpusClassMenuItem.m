@@ -22,7 +22,7 @@
     UILabel *titleLabel = [[UILabel alloc] initWithFrame:titleFrame];
     titleLabel.text = title;
     titleLabel.backgroundColor = MENU_BACKGROUND;
-    SET_VIEW_ROUND_CORNER_RADIUS(titleLabel, BUTTON_CORNER_RADIUS);
+    SET_VIEW_ROUND_CORNER_RADIUS(titleLabel, (ISIPAD ? 8 : 4));
     titleLabel.textColor = MENU_TEXT_COLOR;
     titleLabel.font = [UIFont systemFontOfSize:MENU_TEXT_FONT_SIZE];
     titleLabel.numberOfLines = 1;

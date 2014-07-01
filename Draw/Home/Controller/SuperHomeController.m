@@ -41,6 +41,7 @@
 #import "FreeIngotController.h"
 #import "ShowOpusClassListController.h"
 #import "UserTutorialMainController.h"
+#import "FeedListController.h"
 
 static NSDictionary* DEFAULT_MENU_TITLE_DICT = nil;
 static NSDictionary* DEFAULT_MENU_IMAGE_DICT = nil;
@@ -636,9 +637,14 @@ static NSDictionary* DEFAULT_MENU_IMAGE_DICT = nil;
 }
 
 - (void)enterOpusClass{
-    ShowOpusClassListController* vc = [[ShowOpusClassListController alloc] init];
+//    ShowOpusClassListController* vc = [[ShowOpusClassListController alloc] init];
+//    [self.navigationController pushViewController:vc animated:YES];
+//    [vc release];
+
+    FeedListController* vc = [[FeedListController alloc] init];
     [self.navigationController pushViewController:vc animated:YES];
     [vc release];
+
 }
 
 - (void)enterMore

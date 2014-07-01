@@ -2745,3 +2745,5 @@
 "kDeleteGroupSucc" = "请求成功，家族已解散";
 
 "kEditOpusClass" = "设置作品分类/标签";
+"kSetCategory" = "分类";
+"kNoOpus" = "暂无作品，请检查网络或者重新刷新";

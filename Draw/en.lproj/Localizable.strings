@@ -2723,3 +2723,5 @@
 "kDeleteGroupSucc" = "Group dismissed";
 
 "kEditOpusClass" = "Edit Opus Category";
+"kSetCategory" = "Category";
+"kNoOpus" = "No Data";

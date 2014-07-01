@@ -5502,6 +5502,10 @@
 		CA9C8CBD15E0D94A006E447B /* XQueryComponents.m in Sources */ = {isa = PBXBuildFile; fileRef = CA9C8CBC15E0D94A006E447B /* XQueryComponents.m */; };
 		CA9D5F4A1616F2040082E258 /* HotController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA9D5F491616F2040082E258 /* HotController~ipad.xib */; };
 		CA9D5F4D161700A70082E258 /* ContestFeed.m in Sources */ = {isa = PBXBuildFile; fileRef = CA9D5F4C161700A50082E258 /* ContestFeed.m */; };
+		CAA024711962A0BF005F18A0 /* FeedListController.m in Sources */ = {isa = PBXBuildFile; fileRef = CAA024701962A0BE005F18A0 /* FeedListController.m */; };
+		CAA024721962A0CB005F18A0 /* FeedListController.m in Sources */ = {isa = PBXBuildFile; fileRef = CAA024701962A0BE005F18A0 /* FeedListController.m */; };
+		CAA024731962A0CB005F18A0 /* FeedListController.m in Sources */ = {isa = PBXBuildFile; fileRef = CAA024701962A0BE005F18A0 /* FeedListController.m */; };
+		CAA024741962A0CB005F18A0 /* FeedListController.m in Sources */ = {isa = PBXBuildFile; fileRef = CAA024701962A0BE005F18A0 /* FeedListController.m */; };
 		CAA0E6A615147DFF00FD8C3E /* Word.m in Sources */ = {isa = PBXBuildFile; fileRef = CAA0E6A515147DFF00FD8C3E /* Word.m */; };
 		CAA0E6A915147F6E00FD8C3E /* WordManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CAA0E6A815147F6E00FD8C3E /* WordManager.m */; };
 		CAA1AA3F159D78C200504C98 /* AdService.m in Sources */ = {isa = PBXBuildFile; fileRef = CAA1AA3E159D78C200504C98 /* AdService.m */; };
@@ -9889,6 +9893,8 @@
 		CA9D5F491616F2040082E258 /* HotController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "HotController~ipad.xib"; sourceTree = "<group>"; };
 		CA9D5F4B161700A40082E258 /* ContestFeed.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContestFeed.h; sourceTree = "<group>"; };
 		CA9D5F4C161700A50082E258 /* ContestFeed.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContestFeed.m; sourceTree = "<group>"; };
+		CAA0246F1962A0BE005F18A0 /* FeedListController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FeedListController.h; sourceTree = "<group>"; };
+		CAA024701962A0BE005F18A0 /* FeedListController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FeedListController.m; sourceTree = "<group>"; };
 		CAA0E6A415147DFF00FD8C3E /* Word.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Word.h; sourceTree = "<group>"; };
 		CAA0E6A515147DFF00FD8C3E /* Word.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Word.m; sourceTree = "<group>"; };
 		CAA0E6A715147F6E00FD8C3E /* WordManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WordManager.h; sourceTree = "<group>"; };
@@ -15716,6 +15722,8 @@
 				EA0C5545180BECEB008069C1 /* PainterController.xib */,
 				A4BE2261186550CE00FE2997 /* CellManager.h */,
 				A4BE2262186550CF00FE2997 /* CellManager.m */,
+				CAA0246F1962A0BE005F18A0 /* FeedListController.h */,
+				CAA024701962A0BE005F18A0 /* FeedListController.m */,
 			);
 			path = Hot;
 			sourceTree = "<group>";
@@ -23104,6 +23112,7 @@
 				CA5D9D53183E3C0200BD820C /* DOUAudioAnalyzer+Default.m in Sources */,
 				CA5D9D57183E3C0200BD820C /* DOUAudioAnalyzer.m in Sources */,
 				CA5D9D5B183E3C0200BD820C /* DOUAudioDecoder.m in Sources */,
+				CAA024731962A0CB005F18A0 /* FeedListController.m in Sources */,
 				CA5D9D5F183E3C0200BD820C /* DOUAudioEventLoop.m in Sources */,
 				CA5D9D63183E3C0200BD820C /* DOUAudioFilePreprocessor.m in Sources */,
 				CA5D9D67183E3C0200BD820C /* DOUAudioFileProvider.m in Sources */,
@@ -23726,6 +23735,7 @@
 				C2C18ADC1762C2C400DE933B /* UserPhotoView.m in Sources */,
 				C2C18AE31763372400DE933B /* AutocompletionTableView.m in Sources */,
 				CADE53661764285A00F35373 /* PPGameNetworkRequest.m in Sources */,
+				CAA024721962A0CB005F18A0 /* FeedListController.m in Sources */,
 				CAF7DCAA17685238001596C0 /* ShapeGroup.m in Sources */,
 				EA6FE5AE1769B9C700AB4E56 /* AskPs.m in Sources */,
 				C23C3356176AB0ED004BE236 /* PhotoTagManager.m in Sources */,
@@ -24562,6 +24572,7 @@
 				C2C18A971760A7B400DE933B /* SearchResultView.m in Sources */,
 				C2C18AA51761873500DE933B /* GalleryController.m in Sources */,
 				C2C18AAE176191AC00DE933B /* Photo.pb.m in Sources */,
+				CAA024711962A0BF005F18A0 /* FeedListController.m in Sources */,
 				CA922B4C1761C5F00051D9F2 /* ImageShapeManager.m in Sources */,
 				C2C18AD71762C2C400DE933B /* PhotoEditView.m in Sources */,
 				C2C18ADB1762C2C400DE933B /* UserPhotoView.m in Sources */,
@@ -25526,6 +25537,7 @@
 				CA9AAF4318321621002DBAA5 /* SongCell.m in Sources */,
 				CA9AAF4F18321621002DBAA5 /* SongSearchController.m in Sources */,
 				CA9AAF6B18321621002DBAA5 /* SingImageManager.m in Sources */,
+				CAA024741962A0CB005F18A0 /* FeedListController.m in Sources */,
 				CA9AAF6F18321621002DBAA5 /* SingOpusManager.m in Sources */,
 				CA9AAF7318321621002DBAA5 /* SongCategoryManager.m in Sources */,
 				CA9AAF7718321621002DBAA5 /* SongManager.m in Sources */,
