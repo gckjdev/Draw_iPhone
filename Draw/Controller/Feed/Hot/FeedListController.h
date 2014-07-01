@@ -22,5 +22,6 @@ enum{
 @property (nonatomic, retain) OpusClassInfo* opusClassInfo;
 @property (nonatomic, assign) int displayStyle;
 @property (nonatomic, assign) FeedListType feedType;
+@property (nonatomic, assign) UIViewController* superViewController;
 
 @end

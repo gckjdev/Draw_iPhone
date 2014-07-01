@@ -42,6 +42,7 @@
 #import "ShowOpusClassListController.h"
 #import "UserTutorialMainController.h"
 #import "FeedListController.h"
+#import "NewHotController.h"
 
 static NSDictionary* DEFAULT_MENU_TITLE_DICT = nil;
 static NSDictionary* DEFAULT_MENU_IMAGE_DICT = nil;
@@ -641,10 +642,14 @@ static NSDictionary* DEFAULT_MENU_IMAGE_DICT = nil;
 //    [self.navigationController pushViewController:vc animated:YES];
 //    [vc release];
 
-    FeedListController* vc = [[FeedListController alloc] init];
+//    FeedListController* vc = [[FeedListController alloc] init];
+//    [self.navigationController pushViewController:vc animated:YES];
+//    [vc release];
+
+    NewHotController* vc = [[NewHotController alloc] init];
     [self.navigationController pushViewController:vc animated:YES];
     [vc release];
-
+    
 }
 
 - (void)enterMore

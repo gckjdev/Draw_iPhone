@@ -4397,6 +4397,22 @@
 		CA165700160C032800E433BE /* RankView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA1656FE160C032700E433BE /* RankView.xib */; };
 		CA165704160C037800E433BE /* RankFirstView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA165703160C037600E433BE /* RankFirstView.xib */; };
 		CA165706160C044800E433BE /* RankSecondView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA165705160C044700E433BE /* RankSecondView.xib */; };
+		CA1782691962D2480068883A /* DAPageIndicatorView.m in Sources */ = {isa = PBXBuildFile; fileRef = CA1782641962D2480068883A /* DAPageIndicatorView.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
+		CA17826A1962D2480068883A /* DAPageIndicatorView.m in Sources */ = {isa = PBXBuildFile; fileRef = CA1782641962D2480068883A /* DAPageIndicatorView.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
+		CA17826B1962D2480068883A /* DAPageIndicatorView.m in Sources */ = {isa = PBXBuildFile; fileRef = CA1782641962D2480068883A /* DAPageIndicatorView.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
+		CA17826C1962D2480068883A /* DAPageIndicatorView.m in Sources */ = {isa = PBXBuildFile; fileRef = CA1782641962D2480068883A /* DAPageIndicatorView.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
+		CA17826D1962D2480068883A /* DAPagesContainer.m in Sources */ = {isa = PBXBuildFile; fileRef = CA1782661962D2480068883A /* DAPagesContainer.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
+		CA17826E1962D2480068883A /* DAPagesContainer.m in Sources */ = {isa = PBXBuildFile; fileRef = CA1782661962D2480068883A /* DAPagesContainer.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
+		CA17826F1962D2480068883A /* DAPagesContainer.m in Sources */ = {isa = PBXBuildFile; fileRef = CA1782661962D2480068883A /* DAPagesContainer.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
+		CA1782701962D2480068883A /* DAPagesContainer.m in Sources */ = {isa = PBXBuildFile; fileRef = CA1782661962D2480068883A /* DAPagesContainer.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
+		CA1782711962D2480068883A /* DAPagesContainerTopBar.m in Sources */ = {isa = PBXBuildFile; fileRef = CA1782681962D2480068883A /* DAPagesContainerTopBar.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
+		CA1782721962D2480068883A /* DAPagesContainerTopBar.m in Sources */ = {isa = PBXBuildFile; fileRef = CA1782681962D2480068883A /* DAPagesContainerTopBar.m */; };
+		CA1782731962D2480068883A /* DAPagesContainerTopBar.m in Sources */ = {isa = PBXBuildFile; fileRef = CA1782681962D2480068883A /* DAPagesContainerTopBar.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
+		CA1782741962D2480068883A /* DAPagesContainerTopBar.m in Sources */ = {isa = PBXBuildFile; fileRef = CA1782681962D2480068883A /* DAPagesContainerTopBar.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
+		CA17827A1962D2780068883A /* NewHotController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA1782791962D2780068883A /* NewHotController.m */; };
+		CA17827B1962D2780068883A /* NewHotController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA1782791962D2780068883A /* NewHotController.m */; };
+		CA17827C1962D2780068883A /* NewHotController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA1782791962D2780068883A /* NewHotController.m */; };
+		CA17827D1962D2780068883A /* NewHotController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA1782791962D2780068883A /* NewHotController.m */; };
 		CA1882A81648C7B4000942D6 /* MyFriend.m in Sources */ = {isa = PBXBuildFile; fileRef = CA1882A61648C7B4000942D6 /* MyFriend.m */; };
 		CA1882AC1648C7C7000942D6 /* StorageManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CA1882AB1648C7C7000942D6 /* StorageManager.m */; };
 		CA1882B11648C7EE000942D6 /* FriendController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA1882AD1648C7EE000942D6 /* FriendController~ipad.xib */; };
@@ -9165,6 +9181,14 @@
 		CA1656FE160C032700E433BE /* RankView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RankView.xib; sourceTree = "<group>"; };
 		CA165703160C037600E433BE /* RankFirstView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RankFirstView.xib; sourceTree = "<group>"; };
 		CA165705160C044700E433BE /* RankSecondView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RankSecondView.xib; sourceTree = "<group>"; };
+		CA1782631962D2480068883A /* DAPageIndicatorView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DAPageIndicatorView.h; sourceTree = "<group>"; };
+		CA1782641962D2480068883A /* DAPageIndicatorView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DAPageIndicatorView.m; sourceTree = "<group>"; };
+		CA1782651962D2480068883A /* DAPagesContainer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DAPagesContainer.h; sourceTree = "<group>"; };
+		CA1782661962D2480068883A /* DAPagesContainer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DAPagesContainer.m; sourceTree = "<group>"; };
+		CA1782671962D2480068883A /* DAPagesContainerTopBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DAPagesContainerTopBar.h; sourceTree = "<group>"; };
+		CA1782681962D2480068883A /* DAPagesContainerTopBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DAPagesContainerTopBar.m; sourceTree = "<group>"; };
+		CA1782781962D2780068883A /* NewHotController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewHotController.h; sourceTree = "<group>"; };
+		CA1782791962D2780068883A /* NewHotController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewHotController.m; sourceTree = "<group>"; };
 		CA1882A61648C7B4000942D6 /* MyFriend.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyFriend.m; sourceTree = "<group>"; };
 		CA1882A71648C7B4000942D6 /* MyFriend.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyFriend.h; sourceTree = "<group>"; };
 		CA1882AA1648C7C7000942D6 /* StorageManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StorageManager.h; sourceTree = "<group>"; };
@@ -13284,6 +13308,8 @@
 				CA90051619501FF8003389FD /* ShowOpusClassListController.m */,
 				CA900528195021F8003389FD /* OpusClassMenuItem.h */,
 				CA900529195021F8003389FD /* OpusClassMenuItem.m */,
+				CA1782781962D2780068883A /* NewHotController.h */,
+				CA1782791962D2780068883A /* NewHotController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -14656,6 +14682,19 @@
 				A49D82F5172E355600C4001F /* PBIAPProduct+Utils.m */,
 			);
 			path = GameItem;
+			sourceTree = "<group>";
+		};
+		CA1782621962D2480068883A /* DAPagesContainer */ = {
+			isa = PBXGroup;
+			children = (
+				CA1782631962D2480068883A /* DAPageIndicatorView.h */,
+				CA1782641962D2480068883A /* DAPageIndicatorView.m */,
+				CA1782651962D2480068883A /* DAPagesContainer.h */,
+				CA1782661962D2480068883A /* DAPagesContainer.m */,
+				CA1782671962D2480068883A /* DAPagesContainerTopBar.h */,
+				CA1782681962D2480068883A /* DAPagesContainerTopBar.m */,
+			);
+			path = DAPagesContainer;
 			sourceTree = "<group>";
 		};
 		CA1882A91648C7C7000942D6 /* Storage */ = {
@@ -17694,6 +17733,7 @@
 		CAFEFDB316606FC100441D77 /* Component-View */ = {
 			isa = PBXGroup;
 			children = (
+				CA1782621962D2480068883A /* DAPagesContainer */,
 				CA2A289119586E7900A97478 /* SPUserResizableView */,
 				CA90051B1950209B003389FD /* THGridMenuView */,
 				CA9AB0CC18321AFE002DBAA5 /* HGQuadCurveMenu */,
@@ -22393,6 +22433,7 @@
 				A461B0C4174CBAA70088B061 /* UICustomPageControl.m in Sources */,
 				A461B0C5174CBAA70088B061 /* UITableViewUtil.m in Sources */,
 				A461B0C6174CBAA70088B061 /* UITableViewCellUtil.m in Sources */,
+				CA17826B1962D2480068883A /* DAPageIndicatorView.m in Sources */,
 				A461B0C7174CBAA70088B061 /* TextViewExt.m in Sources */,
 				A461B0C8174CBAA70088B061 /* UINavigationBarExt.m in Sources */,
 				A461B0C9174CBAA70088B061 /* UINavigationItemExt.m in Sources */,
@@ -22476,6 +22517,7 @@
 				A461B148174CBAA70088B061 /* ShowDrawView.m in Sources */,
 				A461B149174CBAA70088B061 /* ColorView.m in Sources */,
 				A461B14A174CBAA70088B061 /* PenView.m in Sources */,
+				CA1782731962D2480068883A /* DAPagesContainerTopBar.m in Sources */,
 				A461B14B174CBAA70088B061 /* StableView.m in Sources */,
 				A461B14C174CBAA70088B061 /* WidthView.m in Sources */,
 				A461B14D174CBAA70088B061 /* SynthesisView.m in Sources */,
@@ -22493,6 +22535,7 @@
 				A461B15A174CBAA70088B061 /* RoomCell.m in Sources */,
 				A461B15B174CBAA70088B061 /* RoomService.m in Sources */,
 				A461B15C174CBAA70088B061 /* Room.m in Sources */,
+				CA17827C1962D2780068883A /* NewHotController.m in Sources */,
 				A461B15D174CBAA70088B061 /* RoomManager.m in Sources */,
 				A461B163174CBAA70088B061 /* ExpressionManager.m in Sources */,
 				A461B164174CBAA70088B061 /* MessageManager.m in Sources */,
@@ -22507,6 +22550,7 @@
 				A461B172174CBAA70088B061 /* SelectCustomWordView.m in Sources */,
 				A461B174174CBAA70088B061 /* ChatCell.m in Sources */,
 				A461B175174CBAA70088B061 /* ChatDetailController.m in Sources */,
+				CA17826F1962D2480068883A /* DAPagesContainer.m in Sources */,
 				A461B176174CBAA70088B061 /* ChatListController.m in Sources */,
 				A461B177174CBAA70088B061 /* ChatService.m in Sources */,
 				A461B178174CBAA70088B061 /* EGORefreshTableFooterView.m in Sources */,
@@ -23320,6 +23364,7 @@
 				C28A9A3C1738F04B007A819F /* FriendService.m in Sources */,
 				C28A9A3D1738F04B007A819F /* ChatController.m in Sources */,
 				C28A9A3E1738F04B007A819F /* SearchUserController.m in Sources */,
+				CA17827B1962D2780068883A /* NewHotController.m in Sources */,
 				C28A9A3F1738F04B007A819F /* MessageCell.m in Sources */,
 				C28A9A421738F04B007A819F /* RoomCell.m in Sources */,
 				C28A9A431738F04B007A819F /* RoomService.m in Sources */,
@@ -23419,6 +23464,7 @@
 				C28A9AFB1738F04B007A819F /* NSMutableArray+Queue.m in Sources */,
 				C28A9AFC1738F04B007A819F /* NSMutableArray+Stack.m in Sources */,
 				C28A9B031738F04B007A819F /* MyFriend.m in Sources */,
+				CA17826A1962D2480068883A /* DAPageIndicatorView.m in Sources */,
 				C28A9B041738F04B007A819F /* StorageManager.m in Sources */,
 				C28A9B051738F04B007A819F /* FriendController.m in Sources */,
 				C28A9B061738F04B007A819F /* PPMessageManager.m in Sources */,
@@ -23552,6 +23598,7 @@
 				C28A9BCA1738F04B007A819F /* SelectHotWordController.m in Sources */,
 				C28A9BCB1738F04B007A819F /* WordSelectCell.m in Sources */,
 				CACD6CCB18E03BCD003F97C0 /* SBJsonBase.m in Sources */,
+				CA17826E1962D2480068883A /* DAPagesContainer.m in Sources */,
 				C28A9BCC1738F04B007A819F /* SelectCustomWordCell.m in Sources */,
 				C28A9BCD1738F04B007A819F /* DraftCell.m in Sources */,
 				C28A9BCE1738F04B007A819F /* DraftsView.m in Sources */,
@@ -23927,6 +23974,7 @@
 				CA9AB07F18321738002DBAA5 /* SingOpus.m in Sources */,
 				CA9AB08018321738002DBAA5 /* PBGuessRank+Extend.m in Sources */,
 				CA9AB08118321738002DBAA5 /* OpusManagerFactory.m in Sources */,
+				CA1782721962D2480068883A /* DAPagesContainerTopBar.m in Sources */,
 				CA9AB08218321738002DBAA5 /* OpusDesignTime.m in Sources */,
 				CA9AB0C318321820002DBAA5 /* VoiceChanger.m in Sources */,
 				CA9AB0C418321820002DBAA5 /* VoiceRecorder.m in Sources */,
@@ -24157,6 +24205,7 @@
 				CAA362451558C3400081D3EB /* FriendManager.m in Sources */,
 				CAA362481558C3780081D3EB /* FriendService.m in Sources */,
 				A454CB6F1558F5CE00896761 /* ChatController.m in Sources */,
+				CA17827A1962D2780068883A /* NewHotController.m in Sources */,
 				A329333115591D4D00621789 /* SearchUserController.m in Sources */,
 				A454CBC4155A181500896761 /* MessageCell.m in Sources */,
 				CA0CB759155CB064009C8EE6 /* RoomCell.m in Sources */,
@@ -24256,6 +24305,7 @@
 				A45AA839162FC0150030D668 /* UIPlaceholderTextView.m in Sources */,
 				CA7ACA6C16367548001B273C /* ZhaJinHua.pb.m in Sources */,
 				C2C54CFE1640F85C005561DA /* NSMutableArray+Queue.m in Sources */,
+				CA1782691962D2480068883A /* DAPageIndicatorView.m in Sources */,
 				C2C54D011640F878005561DA /* NSMutableArray+Stack.m in Sources */,
 				CA1882A81648C7B4000942D6 /* MyFriend.m in Sources */,
 				CA1882AC1648C7C7000942D6 /* StorageManager.m in Sources */,
@@ -24389,6 +24439,7 @@
 				CA1BF4751697CB19004ABCFA /* PickToolView.m in Sources */,
 				CA1BF4781697CB19004ABCFA /* PickView.m in Sources */,
 				CACD6CCA18E03BCD003F97C0 /* SBJsonBase.m in Sources */,
+				CA17826D1962D2480068883A /* DAPagesContainer.m in Sources */,
 				A4DE142C1697DBC000841940 /* SelectHotWordController.m in Sources */,
 				A4DE142F1697DBC000841940 /* WordSelectCell.m in Sources */,
 				A4DE148B169AB1B600841940 /* SelectCustomWordCell.m in Sources */,
@@ -24764,6 +24815,7 @@
 				CA9AB03C18321621002DBAA5 /* SongCategoryView.m in Sources */,
 				CA9AB04818321621002DBAA5 /* SongTagCell.m in Sources */,
 				CA9AB05418321621002DBAA5 /* VoiceTypeSelectView.m in Sources */,
+				CA1782711962D2480068883A /* DAPagesContainerTopBar.m in Sources */,
 				CA9AB06018321621002DBAA5 /* WordInputView.m in Sources */,
 				CA9AB06418321710002DBAA5 /* SingOpus.m in Sources */,
 				CA9AB0C618321821002DBAA5 /* VoiceChanger.m in Sources */,
@@ -24996,6 +25048,7 @@
 				EA4118E8176066F500DA72D0 /* FriendService.m in Sources */,
 				EA4118E9176066F500DA72D0 /* ChatController.m in Sources */,
 				EA4118EA176066F500DA72D0 /* SearchUserController.m in Sources */,
+				CA17826C1962D2480068883A /* DAPageIndicatorView.m in Sources */,
 				EA4118EB176066F500DA72D0 /* MessageCell.m in Sources */,
 				EA4118EE176066F500DA72D0 /* RoomCell.m in Sources */,
 				EA4118EF176066F500DA72D0 /* RoomService.m in Sources */,
@@ -25186,6 +25239,7 @@
 				EA4119EC176066F500DA72D0 /* BBSActionSheet.m in Sources */,
 				EA4119ED176066F500DA72D0 /* BBSOptionView.m in Sources */,
 				EA4119F1176066F500DA72D0 /* DrawFontManager.m in Sources */,
+				CA1782741962D2480068883A /* DAPagesContainerTopBar.m in Sources */,
 				EA4119F2176066F500DA72D0 /* DrawImageManager.m in Sources */,
 				EA4119F3176066F500DA72D0 /* DrawViewManager.m in Sources */,
 				EA4119F4176066F500DA72D0 /* HomeHeaderPanel.m in Sources */,
@@ -25562,6 +25616,7 @@
 				CA9AB07A1832171B002DBAA5 /* OpusDesignTime.m in Sources */,
 				CA9AB0C918321822002DBAA5 /* VoiceChanger.m in Sources */,
 				CA9AB0CA18321822002DBAA5 /* VoiceRecorder.m in Sources */,
+				CA17827D1962D2780068883A /* NewHotController.m in Sources */,
 				CA9AB0CB18321822002DBAA5 /* VoiceProcessor.mm in Sources */,
 				CA9AB0D418321AFE002DBAA5 /* HGQuadCurveMenu.m in Sources */,
 				CA9AB0D818321AFE002DBAA5 /* HGQuadCurveMenuItem.m in Sources */,
@@ -25618,6 +25673,7 @@
 				CACD6CE118E03BCD003F97C0 /* AliPayManager.m in Sources */,
 				A44AC4871875528D00927649 /* CreateContestController.m in Sources */,
 				A40DF8831876A29200C1A307 /* ContestAwardEditController.m in Sources */,
+				CA1782701962D2480068883A /* DAPagesContainer.m in Sources */,
 				A40DF8901876A3EF00C1A307 /* ContestAwardEditCell.m in Sources */,
 				A49DF8BD187D305F00634196 /* StatementCell.m in Sources */,
 				EAEE5511188E5E61004A0907 /* SingleTabController.m in Sources */,

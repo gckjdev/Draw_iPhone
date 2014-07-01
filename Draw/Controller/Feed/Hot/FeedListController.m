@@ -30,6 +30,8 @@
 
 @interface FeedListController ()
 
+@property (nonatomic, assign) dispatch_once_t onceToken;
+
 @end
 
 @implementation FeedListController
@@ -47,6 +49,7 @@
 - (void)dealloc
 {
     PPRelease(_opusClassInfo);
+    PPRelease(_superViewController);
     [super dealloc];
 }
 
@@ -54,25 +57,34 @@
 {
     [self setPullRefreshType:PullRefreshTypeBoth];
     
-    UITableView* tableView = [[UITableView alloc] initWithFrame:self.view.bounds style:UITableViewStylePlain];
+    CGFloat height = ([UIScreen mainScreen].bounds.size.height - COMMON_TAB_BUTTON_HEIGHT - COMMON_TITLE_VIEW_HEIGHT - STATUS_BAR_HEIGHT);
+    CGRect frame = CGRectMake(0, 0, self.view.bounds.size.width, height);
+    UITableView* tableView = [[UITableView alloc] initWithFrame:frame style:UITableViewStylePlain];
     self.dataTableView = tableView;
     [self.view addSubview:tableView];
     [tableView release];
 
     [super viewDidLoad];
 
-    //use local data
-    [self initListWithLocalData];
     
     self.canDragBack = NO;
-    TableTab *tab = [self currentTab];
-    [self clickTab:tab.tabID];
 
 	// Do any additional setup after loading the view.
 }
 
 - (void)viewDidAppear:(BOOL)animated
 {
+    dispatch_once(&_onceToken, ^{
+        
+        PPDebug(@"viewDidAppear local local data and call remote");
+        //use local data
+        [self initListWithLocalData];
+        
+        TableTab *tab = [self currentTab];
+        [self clickTab:tab.tabID];
+    });
+    
+    PPDebug(@"viewDidAppear");
     [self.dataTableView reloadData];
     [super viewDidAppear:animated];
 }
@@ -194,16 +206,16 @@
 {
     ShowFeedController *sc = [[ShowFeedController alloc] initWithFeed:feed scene:[UseItemScene createSceneByType:UseSceneTypeShowFeedDetail feed:feed]];
     [sc showOpusImageBrower];
-    sc.feedList = [self dataList];
-    [self.navigationController pushViewController:sc animated:YES];
+    sc.feedList = [self tabDataList];
+    [self.superViewController.navigationController pushViewController:sc animated:YES];
     [sc release];
 }
 
 - (void)showFeed:(DrawFeed *)feed animatedWithTransition:(UIViewAnimationTransition)transition
 {
     ShowFeedController *sc = [[ShowFeedController alloc] initWithFeed:feed scene:[UseItemScene createSceneByType:UseSceneTypeShowFeedDetail feed:feed]];
-    sc.feedList = [self dataList];
-    [self.navigationController pushViewController:sc animatedWithTransition:transition duration:1];
+    sc.feedList = [self tabDataList];
+    [self.superViewController.navigationController pushViewController:sc animatedWithTransition:transition duration:1];
     [sc release];
     
     
