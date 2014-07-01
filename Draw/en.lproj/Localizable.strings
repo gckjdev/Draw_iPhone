@@ -2725,3 +2725,6 @@
 "kEditOpusClass" = "Edit Opus Category";
 "kSetCategory" = "Category";
 "kNoOpus" = "No Data";
+
+"kUserTutorialMainTitle" = "Tutorial";
+"kAddTutorial" = "Add";
