@@ -2745,3 +2745,8 @@
 "kDeleteGroupSucc" = "请求成功，家族已解散";
 
 "kEditOpusClass" = "设置作品分类/标签";
+
+// 教程
+"kUserTutorialMainTitle" = "学画画";
+"kAddTutorial" = "添加";
+

@@ -7,6 +7,7 @@
 //
 
 #import "UserTutorialMainCell.h"
+#import "TimeUtils.h"
 
 #define TUTORIAL_IMAGE_HEIGHT       (ISIPAD ? 100 : 45)
 
@@ -40,9 +41,17 @@
     // Configure the view for the selected state
 }
 
+- (void)updateCellInfo:(PBUserTutorial*)ut
+{
+    [self.tutorialNameLabel setText:ut.tutorial.cnName];    // TODO 国际化
+    NSDate* createDate = [NSDate dateWithTimeIntervalSince1970:ut.createDate];
+    self.tutorialDateLabel.text = dateToLocaleString(createDate);
+}
+
 - (void)dealloc {
     [_tutorialNameLabel release];
     [_tutorialImageView release];
+    [_tutorialDateLabel release];
     [super dealloc];
 }
 @end

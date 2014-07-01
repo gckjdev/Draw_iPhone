@@ -2723,3 +2723,6 @@
 "kDeleteGroupSucc" = "Group dismissed";
 
 "kEditOpusClass" = "Edit Opus Category";
+
+"kUserTutorialMainTitle" = "Tutorial";
+"kAddTutorial" = "Add";
