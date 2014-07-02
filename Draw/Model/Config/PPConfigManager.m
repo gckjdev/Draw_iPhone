@@ -1537,6 +1537,11 @@
     return GET_UMENG_INTVAL(@"MAX_DIS_STROKES", 1000000); // 1,000,000 strokes for max
 }
 
++ (int)maxOpusClassSelectCount
+{
+    return GET_UMENG_INTVAL(@"MAX_CLASS_PER_OPUS", 2); // 1,000,000 strokes for max
+}
+
 + (NSString*)getTutorialServerURL
 {
 #ifdef DEBUG

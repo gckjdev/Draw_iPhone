@@ -46,10 +46,30 @@
     return self;
 }
 
+- (id)initWithFeedType:(FeedListType)feedType
+         opusClassInfo:(OpusClassInfo*)opusClassInfo
+          displayStyle:(int)displayStyle
+   superViewController:(UIViewController*)superViewController
+                 title:(NSString*)title
+{
+    self = [super init];
+    if (self){
+        self.superViewController = superViewController;
+        self.displayStyle = displayStyle;
+        self.opusClassInfo = opusClassInfo;
+        self.feedType = feedType;
+        self.title = title;
+        if (title == nil){
+            self.title = @"";
+        }
+    }
+    return self;
+}
+
 - (void)dealloc
 {
     PPRelease(_opusClassInfo);
-    PPRelease(_superViewController);
+    self.superViewController = nil;
     [super dealloc];
 }
 
@@ -63,6 +83,9 @@
     self.dataTableView = tableView;
     [self.view addSubview:tableView];
     [tableView release];
+    
+    self.dataTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    self.dataTableView.separatorColor = [UIColor clearColor];
 
     [super viewDidLoad];
 

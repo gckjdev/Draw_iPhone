@@ -13,6 +13,7 @@
 #import "SelectTagHeader.h"
 #import "OpusClassInfoManager.h"
 #import "UIViewController+BGImage.h"
+#import "PPConfigManager.h"
 
 @interface SelectOpusClassViewController ()
 
@@ -25,6 +26,7 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
+        _maxSelectCount = [PPConfigManager maxOpusClassSelectCount];
     }
     return self;
 }
@@ -57,6 +59,21 @@
 + (void)showInViewController:(PPViewController*)viewController
                 selectedTags:(NSArray*)selectedTags
            arrayForSelection:(NSArray*)arrayForSelection
+              maxSelectCount:(int)maxSelectCount
+                    callback:(SelectOpusClassResultHandler)callback
+{
+    SelectOpusClassViewController* vc = [[SelectOpusClassViewController alloc] initWithSelectedTags:selectedTags
+                                                                                  arrayForSelection:arrayForSelection
+                                                                                           callback:callback];
+    
+    [vc setMaxSelectCount:maxSelectCount];
+    [viewController.navigationController pushViewController:vc animated:YES];
+    [vc release];
+}
+
++ (void)showInViewController:(PPViewController*)viewController
+                selectedTags:(NSArray*)selectedTags
+           arrayForSelection:(NSArray*)arrayForSelection
                     callback:(SelectOpusClassResultHandler)callback
 {
     SelectOpusClassViewController* vc = [[SelectOpusClassViewController alloc] initWithSelectedTags:selectedTags
@@ -71,7 +88,7 @@
     [self.navigationController popViewControllerAnimated:YES];
 }
 
-#define MAX_SELECT_CLASS_COUNT  4
+//#define MAX_SELECT_CLASS_COUNT  4
 
 
 
@@ -87,8 +104,8 @@
         POSTMSG2(NSLS(@"kOpusClassCountZero"), 3);
         return;
     }
-    else if ([selected count] > MAX_SELECT_CLASS_COUNT){
-        NSString* msg = [NSString stringWithFormat:NSLS(@"kExceedMaxOpusClass"), MAX_SELECT_CLASS_COUNT];
+    else if ([selected count] > _maxSelectCount){
+        NSString* msg = [NSString stringWithFormat:NSLS(@"kExceedMaxOpusClass"), _maxSelectCount];
         POSTMSG2(msg, 3);
         return;
     }
