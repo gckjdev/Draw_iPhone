@@ -195,12 +195,11 @@ typedef enum{
     [self.titleView setTarget:self];
     [self.titleView setBackButtonSelector:@selector(clickBackButton:)];
     [self.titleView setRightButtonSelector:@selector(clickRefreshButton:)];
-    
-    
-#ifdef DEBUG
-    [self.titleView setRightButtonTitle:NSLS(@"kSetCategory")];
-    [self.titleView setRightButtonSelector:@selector(clickSelectCategory:)];
-#endif
+        
+//#ifdef DEBUG
+//    [self.titleView setRightButtonTitle:NSLS(@"kSetCategory")];
+//    [self.titleView setRightButtonSelector:@selector(clickSelectCategory:)];
+//#endif
     
     SET_COMMON_TAB_TABLE_VIEW_Y(self.dataTableView);
     CGFloat height = CGRectGetMaxY(self.view.bounds) - CGRectGetMinY(self.dataTableView.frame);
@@ -240,10 +239,10 @@ typedef enum{
     [self.titleView setRightButtonAsRefresh];
     [self.titleView setRightButtonSelector:@selector(clickRefreshButton:)];
     
-#ifdef DEBUG
-    [self.titleView setRightButtonTitle:NSLS(@"kSetCategory")];
-    [self.titleView setRightButtonSelector:@selector(clickSelectCategory:)];
-#endif
+//#ifdef DEBUG
+//    [self.titleView setRightButtonTitle:NSLS(@"kSetCategory")];
+//    [self.titleView setRightButtonSelector:@selector(clickSelectCategory:)];
+//#endif
 }
 
 - (void)viewDidUnload
