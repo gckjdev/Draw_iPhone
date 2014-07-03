@@ -52,8 +52,11 @@
     [super viewDidLoad];
 
     // Do any additional setup after loading the view from its nib.
-    
+
+#ifdef DEBUG
     [[TutorialCoreManager defaultManager] createTestData];
+#endif
+    
     //返回所有教程
     NSArray *allTutorials = [[TutorialCoreManager defaultManager] allTutorials];
     
@@ -66,6 +69,16 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+- (PBTutorial*)getTutorialByRow:(NSUInteger)row
+{
+    if (row >= [self.dataList count]){
+        return nil;
+    }
+    
+    return [self.dataList objectAtIndex:row];
+}
+
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     
     static NSString *CustomCellIdentifier = @"AllTutorialCell";
@@ -76,19 +89,19 @@
         [tableView registerNib:nib forCellReuseIdentifier:CustomCellIdentifier];
         cell = [tableView dequeueReusableCellWithIdentifier:CustomCellIdentifier];
     }
+    
     cell.backgroundColor = [UIColor brownColor];
     NSUInteger row = [indexPath row];
-    NSUInteger section = [indexPath section];
-        cell.tutorialName.text =[NSString stringWithFormat:@"表格的文件哦亲降低我全家都ijwqodi-%i",section];
-        cell.tutorialDesc.text=[NSString stringWithFormat:@"你好吗奇偶到家哦我去叫都叫我去的加我旗舰店"];
+
+    PBTutorial* pbTutorial = [self getTutorialByRow:row];
+    [cell updateCellInfo:pbTutorial];
+    
+//        cell.tutorialName.text =[NSString stringWithFormat:@"表格的文件哦亲降低我全家都ijwqodi-%i",section];
+//        cell.tutorialDesc.text=[NSString stringWithFormat:@"你好吗奇偶到家哦我去叫都叫我去的加我旗舰店"];
     
     //图片名称
-        NSString *imageToLoad = [NSString stringWithFormat:@"dialogue@2x"];
-  
-    cell.tutorialImage.image = [UIImage imageNamed:imageToLoad];
-    
-    
-    
+//    NSString *imageToLoad = [NSString stringWithFormat:@"dialogue@2x"];
+//    cell.tutorialImage.image = [UIImage imageNamed:imageToLoad];
     
     return cell;
     

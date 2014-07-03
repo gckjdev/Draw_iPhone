@@ -6220,7 +6220,14 @@
 		D81962581962AA8700B4FBAF /* TaskInfoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D81962521962AA8700B4FBAF /* TaskInfoCell.xib */; };
 		D81962591962AA8700B4FBAF /* TaskInfoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D81962521962AA8700B4FBAF /* TaskInfoCell.xib */; };
 		D819625A1962AA8700B4FBAF /* TaskInfoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D81962521962AA8700B4FBAF /* TaskInfoCell.xib */; };
-		D89191EE1962FE04006B616A /* macbook_pro.jpg in Resources */ = {isa = PBXBuildFile; fileRef = D89191ED1962FE04006B616A /* macbook_pro.jpg */; };
+		D82540F419650A1C00C876C3 /* tutorial_core_version.txt in Resources */ = {isa = PBXBuildFile; fileRef = D82540F219650A1C00C876C3 /* tutorial_core_version.txt */; };
+		D82540F519650A1C00C876C3 /* tutorial_core_version.txt in Resources */ = {isa = PBXBuildFile; fileRef = D82540F219650A1C00C876C3 /* tutorial_core_version.txt */; };
+		D82540F619650A1C00C876C3 /* tutorial_core_version.txt in Resources */ = {isa = PBXBuildFile; fileRef = D82540F219650A1C00C876C3 /* tutorial_core_version.txt */; };
+		D82540F719650A1C00C876C3 /* tutorial_core_version.txt in Resources */ = {isa = PBXBuildFile; fileRef = D82540F219650A1C00C876C3 /* tutorial_core_version.txt */; };
+		D82540F819650A1C00C876C3 /* tutorial_core.pb in Resources */ = {isa = PBXBuildFile; fileRef = D82540F319650A1C00C876C3 /* tutorial_core.pb */; };
+		D82540F919650A1C00C876C3 /* tutorial_core.pb in Resources */ = {isa = PBXBuildFile; fileRef = D82540F319650A1C00C876C3 /* tutorial_core.pb */; };
+		D82540FA19650A1C00C876C3 /* tutorial_core.pb in Resources */ = {isa = PBXBuildFile; fileRef = D82540F319650A1C00C876C3 /* tutorial_core.pb */; };
+		D82540FB19650A1C00C876C3 /* tutorial_core.pb in Resources */ = {isa = PBXBuildFile; fileRef = D82540F319650A1C00C876C3 /* tutorial_core.pb */; };
 		D89191F11963163B006B616A /* StageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D89191F01963163B006B616A /* StageCell.m */; };
 		D89191F21963163B006B616A /* StageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D89191F01963163B006B616A /* StageCell.m */; };
 		D89191F31963163B006B616A /* StageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D89191F01963163B006B616A /* StageCell.m */; };
@@ -10502,7 +10509,8 @@
 		D81962501962AA8700B4FBAF /* TaskInfoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TaskInfoCell.h; sourceTree = "<group>"; };
 		D81962511962AA8700B4FBAF /* TaskInfoCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TaskInfoCell.m; sourceTree = "<group>"; };
 		D81962521962AA8700B4FBAF /* TaskInfoCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TaskInfoCell.xib; sourceTree = "<group>"; };
-		D89191ED1962FE04006B616A /* macbook_pro.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = macbook_pro.jpg; path = "../../../../../../Downloads/igridview-master/igridviewdemo/igridviewdemo/macbook_pro.jpg"; sourceTree = "<group>"; };
+		D82540F219650A1C00C876C3 /* tutorial_core_version.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = tutorial_core_version.txt; sourceTree = "<group>"; };
+		D82540F319650A1C00C876C3 /* tutorial_core.pb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = tutorial_core.pb; sourceTree = "<group>"; };
 		D89191EF1963163B006B616A /* StageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StageCell.h; sourceTree = "<group>"; };
 		D89191F01963163B006B616A /* StageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StageCell.m; sourceTree = "<group>"; };
 		D89191FA196316C2006B616A /* StageCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = StageCell.xib; sourceTree = "<group>"; };
@@ -15002,7 +15010,8 @@
 		CA2A28A7195C120600A97478 /* Resource */ = {
 			isa = PBXGroup;
 			children = (
-				D89191ED1962FE04006B616A /* macbook_pro.jpg */,
+				D82540F219650A1C00C876C3 /* tutorial_core_version.txt */,
+				D82540F319650A1C00C876C3 /* tutorial_core.pb */,
 			);
 			path = Resource;
 			sourceTree = "<group>";
@@ -18597,6 +18606,7 @@
 				A461B733174CBAA70088B061 /* StoreController.xib in Resources */,
 				A461B734174CBAA70088B061 /* ColorShopCell.xib in Resources */,
 				A461B735174CBAA70088B061 /* ColorShopCell~ipad.xib in Resources */,
+				D82540F619650A1C00C876C3 /* tutorial_core_version.txt in Resources */,
 				A461B736174CBAA70088B061 /* GameItemDetailView.xib in Resources */,
 				A461B737174CBAA70088B061 /* ChargeController.xib in Resources */,
 				A461B738174CBAA70088B061 /* ChargeCell.xib in Resources */,
@@ -19027,6 +19037,7 @@
 				A4D8FF0117DB089C0085061F /* common_home_badge@2x.png in Resources */,
 				A4D8FF0517DB089C0085061F /* common_home_bbs@2x.png in Resources */,
 				A4D8FF0D17DB089C0085061F /* common_home_friend@2x.png in Resources */,
+				D82540FA19650A1C00C876C3 /* tutorial_core.pb in Resources */,
 				A4D8FF1117DB089C0085061F /* common_home_front_page@2x.png in Resources */,
 				A4D8FF1517DB089C0085061F /* common_home_home@2x.png in Resources */,
 				A4D8FF1917DB089C0085061F /* common_home_me@2x.png in Resources */,
@@ -19537,6 +19548,7 @@
 				C28A9E4B1738F04B007A819F /* CommonMessageView~ipad.xib in Resources */,
 				C28A9E4C1738F04B007A819F /* CommonStarryDialog.xib in Resources */,
 				C28A9E4D1738F04B007A819F /* CommonStarryDialog~ipad.xib in Resources */,
+				D82540F519650A1C00C876C3 /* tutorial_core_version.txt in Resources */,
 				C28A9E4E1738F04B007A819F /* CommonUserInfoView.xib in Resources */,
 				C28A9E4F1738F04B007A819F /* CommonUserInfoView~ipad.xib in Resources */,
 				C28A9E501738F04B007A819F /* CommonZJHDialog.xib in Resources */,
@@ -20348,6 +20360,7 @@
 				EA68D5151893C4A5003EB69A /* pen_show_fun4@2x.png in Resources */,
 				EA68D5191893C4A5003EB69A /* pen_show_fun5@2x.png in Resources */,
 				D81962421962677B00B4FBAF /* AllTutorialCell.xib in Resources */,
+				D82540F919650A1C00C876C3 /* tutorial_core.pb in Resources */,
 				EA68D5221893C503003EB69A /* pen_fun1@2x.png in Resources */,
 				EA68D5261893C503003EB69A /* pen_fun2@2x.png in Resources */,
 				EA68D52A1893C503003EB69A /* pen_fun3@2x.png in Resources */,
@@ -20726,6 +20739,7 @@
 				CA2614C41793ACD0007D5462 /* filter.txt in Resources */,
 				CABEC6B917968F0B006F89BB /* CommonSearchView.xib in Resources */,
 				CABEC6BE17968F0B006F89BB /* CommonSearchView~ipad.xib in Resources */,
+				D82540F419650A1C00C876C3 /* tutorial_core_version.txt in Resources */,
 				CABEC6EE17969462006F89BB /* FreeIngotCell.xib in Resources */,
 				CABEC6F317969462006F89BB /* FreeIngotCell~ipad.xib in Resources */,
 				CABEC6FD17969462006F89BB /* FreeIngotController.xib in Resources */,
@@ -20736,6 +20750,7 @@
 				A4B789B3179E2F120008E21B /* GuessSelectController.xib in Resources */,
 				CA51834F179F79570033AA95 /* GetNewNumberViewController.xib in Resources */,
 				A4B78A6D179FA6F10008E21B /* GuessRankListController.xib in Resources */,
+				D82540F819650A1C00C876C3 /* tutorial_core.pb in Resources */,
 				CA518384179FB6340033AA95 /* ShakeNumberController.xib in Resources */,
 				A4C9E03917A61B4200DE982F /* GuessRankCell.xib in Resources */,
 				CAF4897917AA736900F015AB /* ToolPanel.xib in Resources */,
@@ -20932,7 +20947,6 @@
 				A4D8FBD517DB08170085061F /* tomato_result@2x.png in Resources */,
 				A4D8FBD917DB08170085061F /* toolbox@2x.png in Resources */,
 				A4D8FBDD17DB08170085061F /* tools_cart@2x.png in Resources */,
-				D89191EE1962FE04006B616A /* macbook_pro.jpg in Resources */,
 				A4D8FBED17DB08170085061F /* user_detail_avatar_bg_ipad@2x.png in Resources */,
 				A4D8FBF117DB08170085061F /* user_detail_btn_bg@2x.png in Resources */,
 				A4D8FBF517DB08170085061F /* user_detail_button@2x.png in Resources */,
@@ -21513,6 +21527,7 @@
 				EA411C44176066F500DA72D0 /* bbs_board_line@2x.png in Resources */,
 				EA411C47176066F500DA72D0 /* bbs_section_bg@2x.png in Resources */,
 				EA411C48176066F500DA72D0 /* bbs_switch_bg@2x.png in Resources */,
+				D82540F719650A1C00C876C3 /* tutorial_core_version.txt in Resources */,
 				EA411C49176066F500DA72D0 /* bbs_switch_down@2x.png in Resources */,
 				EA411C4A176066F500DA72D0 /* bbs_switch_right@2x.png in Resources */,
 				EA411C4B176066F500DA72D0 /* bbs_back@2x.png in Resources */,
@@ -21521,6 +21536,7 @@
 				EA411C4F176066F500DA72D0 /* bbs_post_comment@2x.png in Resources */,
 				EA411C50176066F500DA72D0 /* bbs_post_content_bg@2x.png in Resources */,
 				EA411C51176066F500DA72D0 /* bbs_post_edit@2x.png in Resources */,
+				D82540FB19650A1C00C876C3 /* tutorial_core.pb in Resources */,
 				EA411C52176066F500DA72D0 /* bbs_post_hot@2x.png in Resources */,
 				EA411C53176066F500DA72D0 /* bbs_post_reward@2x.png in Resources */,
 				EA411C54176066F500DA72D0 /* bbs_post_support@2x.png in Resources */,

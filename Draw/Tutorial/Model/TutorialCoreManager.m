@@ -134,7 +134,8 @@ static TutorialCoreManager* _defaultTutorialCoreManager;
 // 创建测试数据
 - (void)createTestData
 {
-    NSString* root = @"/gitdata/Draw_iPhone/Draw/CommonResource/Config/";
+//    NSString* root = @"/gitdata/Draw_iPhone/Draw/CommonResource/Config/";
+    NSString* root = @"/Users/chaoso/Desktop/gitdata/Draw_iPhone/Draw/Tutorial/Resource/";
     NSString* path = [root stringByAppendingString:[TutorialCoreManager appTaskDefaultConfigFileName]];
     NSString* versionPath = [root stringByAppendingString:[PPSmartUpdateDataUtils getVersionFileName:[TutorialCoreManager appTaskDefaultConfigFileName]]];
     
@@ -142,11 +143,20 @@ static TutorialCoreManager* _defaultTutorialCoreManager;
     
     
     // TODO add test tutorials
+    
     //测试数据
-//    PBTutorial_Builder* builder2 = [PBTutorial builder];
-//    [builder2 setTcnName:@"test!!!!!"];
-//    [builder2 setTcnDesc:@"this is a test tutorial"];
-//    builder = builder2 ;
+    for (int i=0; i<3; i++){
+        PBTutorial_Builder* tb = [PBTutorial builder];
+        NSString* name = [NSString stringWithFormat:@"教程[%d]", i];
+        NSString* tutorialId = [NSString stringWithFormat:@"id-%d", i];
+        [tb setCnDesc:name];
+        [tb setTcnName:@"test!!!!!"];
+        [tb setTcnDesc:@"this is a test tutorial"];
+        [tb setTutorialId:tutorialId];
+        
+        PBTutorial* tutorial = [tb build];
+        [builder addTutorials:tutorial];
+    }
     
     
     
