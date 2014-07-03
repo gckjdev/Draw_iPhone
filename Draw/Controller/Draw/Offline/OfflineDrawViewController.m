@@ -77,58 +77,48 @@
 
 @interface OfflineDrawViewController()
 {
-    DrawView *drawView;
-    
-    NSInteger penWidth;
-    PenView *_willBuyPen;
+    DrawView *drawView;                     // 绘画视图
     ShareImageManager *shareImageManager;
-    MyPaint *_draft;
     
-    Word *_word;
-    LanguageType languageType;
-    TargetType targetType;
+    LanguageType languageType;              // 绘画主题单词语言（可废弃）
+    TargetType targetType;                  // 绘画作品目的
     
-    NSString*_targetUid;
-    
-
-    CGFloat _alpha;
-    
-    Contest *_contest;
-    
-    BOOL _isAutoSave;
-    
-    BOOL _isNewDraft;
-
-    BOOL _commitAsNormal;
-    
-
-    
+    BOOL _isNewDraft;                       // 是否是全新草稿，含义模糊，待定
+    BOOL _commitAsNormal;                   // 比赛作品转为普通作品提交
 }
 
-@property(nonatomic, retain) MyPaint *draft;
+@property(nonatomic, retain) MyPaint *draft;                                // 草稿
+
 @property (retain, nonatomic) IBOutlet UILabel *wordLabel;
+
+// 顶部工具栏按钮
 @property (retain, nonatomic) IBOutlet UIButton *draftButton;
 @property (retain, nonatomic) IBOutlet UIButton *submitButton;
 @property (retain, nonatomic) IBOutlet UIButton *upPanelButton;
 @property (retain, nonatomic) IBOutlet UIButton *layerButton;
 
+// 工具栏点击弹出控制面板和视图
 @property (retain, nonatomic) DrawToolPanel *drawToolPanel;
 @property (retain, nonatomic) DrawToolUpPanel *drawToolUpPanel;
+@property (retain, nonatomic) CMPopTipView *layerPanelPopView;
+@property (retain, nonatomic) CMPopTipView *upPanelPopView;
 
+// 微博分享，图片和路径
 @property (retain, nonatomic) NSString *tempImageFilePath;
 @property (retain, nonatomic) NSSet *shareWeiboSet;
 
+// 自动备份定时器
 @property (assign, nonatomic) NSTimer* backupTimer;         // backup recovery timer
 
+// 对话框
 @property (retain, nonatomic) CommonDialog* currentDialog;
-@property (retain, nonatomic) CMPopTipView *layerPanelPopView;
-@property (retain, nonatomic) CMPopTipView *upPanelPopView;
+
+// 临摹框
 @property (retain, nonatomic) SPUserResizableView *copyView;
 
-- (void)initDrawView;
-
-- (void)saveDraft:(BOOL)showResult;
-- (PBDraw *)createPBDraw;
+//- (void)initDrawView;
+//- (void)saveDraft:(BOOL)showResult;
+//- (PBDraw *)createPBDraw;
 
 @end
 
@@ -136,19 +126,6 @@
 #define BUTTON_FONT_SIZE_ENGLISH (ISIPAD ? 25 : 12)
 
 @implementation OfflineDrawViewController
-
-@synthesize draft = _draft;
-@synthesize wordLabel;
-@synthesize word = _word;
-@synthesize draftButton;
-@synthesize delegate;
-@synthesize targetUid = _targetUid;
-@synthesize contest = _contest;
-@synthesize startController = _startController;
-@synthesize opusDesc = _opusDesc;
-
-//#define PAPER_VIEW_TAG 20120403 
-
 
 #pragma mark - Static Method
 
@@ -206,13 +183,13 @@
     PPRelease(_tempImageFilePath);
     PPRelease(_drawToolPanel);
     PPRelease(_drawToolUpPanel);
-    PPRelease(wordLabel);
+    PPRelease(_wordLabel);
     PPRelease(drawView);
     PPRelease(_word);
     PPRelease(_targetUid);
     PPRelease(_draft);
     PPRelease(_contest);
-    PPRelease(draftButton);
+    PPRelease(_draftButton);
     PPRelease(_submitButton);
     PPRelease(_opusDesc);
     PPRelease(_bgImage);
@@ -252,7 +229,6 @@
 
 - (id)initWithContest:(Contest *)contest
 {
- 
     self = [super init];
     if (self) {
         self.contest = contest;
@@ -316,6 +292,8 @@
             self.bgImage = photo;
             self.bgImageName = [NSString stringWithFormat:@"%@.png", [NSString GetUUID]];
         }
+        
+        [self createEmptyDraft];
     }
     return self;
 }
@@ -326,7 +304,7 @@
     self = [super init];
     if (self) {
         targetType = aTargetType;
-        delegate = aDelegate;
+        self.delegate = aDelegate;
         shareImageManager = [ShareImageManager defaultManager];
     }
     return self;
@@ -361,16 +339,6 @@
     int initTime = (self.draft == nil) ? 0 : [self.draft.opusSpendTime intValue];
     self.designTime = [[[OpusDesignTime alloc] initWithTime:initTime] autorelease];
     [self.designTime start];
-
-//    CGRect frame = CGRectMake(drawView.frame.origin.x, drawView.frame.origin.y, 200, 200);
-//    SPUserResizableView *userResizableView = [[SPUserResizableView alloc] initWithFrame:frame];
-//    UIView *contentView = [[UIView alloc] initWithFrame:frame];
-//    [contentView setBackgroundColor:[UIColor clearColor]];
-//    userResizableView.contentView = contentView;
-//    [holder addSubview:userResizableView];
-////    userResizableView.layer.borderColor = COLOR_GREEN.CGColor;
-//    [contentView release];
-//    [userResizableView release];
 
 //    [CopyView createCopyView:self superView:holder atPoint:drawView.frame.origin];
 }
@@ -415,6 +383,7 @@
     
 }
 
+// 是否是绘画作品模式（聊天涂鸦、论坛涂鸦都不属于该模式）
 - (BOOL)isBriefStyle
 {
     return (targetType == TypeGraffiti || targetType == TypePhoto);
@@ -466,7 +435,7 @@
 
 - (BOOL)supportRecovery
 {
-    return ![self isBriefStyle];
+    return (targetType == TypeDraw || targetType == TypeContest);
 }
 
 - (void)updateDrawRecoveryService
@@ -481,20 +450,13 @@
     drs.layers = [[[drawView layers] mutableCopy] autorelease];
 }
 
+// 初始化备份服务
 - (void)initRecovery
 {
     if (![self supportRecovery])
         return;
     
     DrawRecoveryService *drs = [DrawRecoveryService defaultService];
-//    drs.userId = [[UserManager defaultManager] userId];
-//    drs.nickName = [[UserManager defaultManager] nickName];
-//    drs.contestId = self.contest.contestId;
-//    drs.word = self.word;
-//    drs.language = languageType;
-//    drs.bgImageName = [NSString stringWithFormat:@"%@.png", [NSString GetUUID]];
-//    drs.bgImage = self.bgImage;
-//    [self updateDrawRecoveryService];    
 
     [drs start:drawView.drawActionList
      targetUid:self.targetUid
@@ -510,6 +472,7 @@
         layers:[drawView layers]];
 }
 
+// 停止自动备份
 - (void)stopRecovery
 {
     if (![self supportRecovery])
@@ -519,6 +482,7 @@
     [[DrawRecoveryService defaultService] stop];
 }
 
+// 执行备份操作
 - (void)backup:(id)timer
 {
     if (![self supportRecovery])
@@ -541,6 +505,7 @@
     }
 }
 
+// 开始备份定时器
 - (void)startBackupTimer
 {
     if (![self supportRecovery])
@@ -557,6 +522,7 @@
                                                    repeats:YES];
 }
 
+// 停止备份定时器
 - (void)stopBackupTimer
 {
     if (![self supportRecovery])
@@ -570,6 +536,7 @@
 
 #pragma mark - View lifecycle
 
+// 获取用户好友数据的delegate回调方法
 - (void)didGetUserInfo:(MyFriend *)user resultCode:(NSInteger)resultCode
 {
     if (resultCode == 0 && user) {
@@ -577,9 +544,10 @@
     }
 }
 
+// 根据“画给好友”ID获取用户数据
 - (void)updateTargetFriend
 {
-    if (self.targetUid) {
+    if ([self.targetUid length] > 0) {
         [[UserService defaultService] getUserSimpleInfoByUserId:self.targetUid delegate:self];
     }
 }
@@ -605,9 +573,19 @@
     [self setPageBGImage:image];
 }
 
+- (void)initTitleView
+{
+    [self.titleView setTarget:self];
+    [self.titleView setBackButtonSelector:@selector(clickBackButton:)];
+    [self.titleView setLeftButtonImage:[shareImageManager drawBackImage]];
+    [self.titleView setBgImage:nil];
+    [self.titleView setBackgroundColor:[UIColor clearColor]];
+}
+
 
 - (void)viewDidLoad
 {
+    // 禁止自动锁屏
     [UIApplication sharedApplication].idleTimerDisabled = YES; // disable lock screen while in drawing
     
     [super viewDidLoad];
@@ -623,20 +601,13 @@
     [self initWordLabel];
     [self initSubmitButton];
 
-    _isAutoSave = NO;               // set by Benson, disable this due to complicate multi-thread issue
-
     [self updateTargetFriend];
 
     [self initBgImage];
     [self initPageBG];
 
     [self initRecovery];
-
-    [self.titleView setTarget:self];
-    [self.titleView setBackButtonSelector:@selector(clickBackButton:)];
-    [self.titleView setLeftButtonImage:[shareImageManager drawBackImage]];
-    [self.titleView setBgImage:nil];
-    [self.titleView setBackgroundColor:[UIColor clearColor]];
+    [self initTitleView];
     [self setCanDragBack:NO];
 }
 
@@ -713,11 +684,14 @@
     return nil;
 }
 
-
+// 退出方法，所有退出必须调用本方法以保证正常释放
 - (void)quit
 {
     [self unregisterAllNotifications];
     [self stopRecovery];
+    
+    // save draft before quit
+    [[MyPaintManager defaultManager] save];
     
     if (_startController) {
         [self.navigationController popToViewController:_startController animated:YES];
@@ -725,6 +699,7 @@
         [HomeController returnRoom:self];
     }
 }
+
 - (void)didClickOk:(CommonDialog *)dialog infoView:(id)infoView
 {
     if (dialog.tag == DIALOG_TAG_ESCAPE ){
@@ -997,6 +972,35 @@
         if ([self supportRecovery]){
             [[DrawRecoveryService defaultService] setTargetUid:targetUid];
         }
+    }
+}
+
+// 创建一个空草稿
+- (void)createEmptyDraft
+{
+    MyPaintManager *pManager = [MyPaintManager defaultManager];
+    UserManager *userManager = [UserManager defaultManager];
+    self.draft = [pManager createDraft:nil
+                              drawData:nil
+                             targetUid:_targetUid
+                             contestId:self.contest.contestId
+                                userId:[userManager userId]
+                              nickName:[userManager nickName]
+                                  word:_word
+                              language:languageType
+                               bgImage:_bgImage
+                           bgImageName:_bgImageName];
+    
+    _isNewDraft = YES;
+}
+
+// 删除空草稿
+- (void)deleteEmptyDraft
+{
+    if (self.draft && [self isEmptyNewDraft]){
+        MyPaintManager *pManager = [MyPaintManager defaultManager];
+        [pManager deleteMyPaint:self.draft];
+        self.draft = nil;
     }
 }
 
@@ -1320,17 +1324,17 @@
     }
     
     if (targetType == TypeGraffiti) {
-        if (delegate && [delegate respondsToSelector:@selector(didController:submitActionList:canvasSize:drawImage:)]) {
+        if (_delegate && [_delegate respondsToSelector:@selector(didController:submitActionList:canvasSize:drawImage:)]) {
             UIImage *image = [drawView createImage];
-            [delegate didController:self
+            [_delegate didController:self
                    submitActionList:drawView.drawActionList
                          canvasSize:drawView.bounds.size
                           drawImage:image];
         }
     }else if (targetType == TypePhoto) {
-        if ([delegate respondsToSelector:@selector(didController:submitImage:)]) {
+        if ([_delegate respondsToSelector:@selector(didController:submitImage:)]) {
             UIImage *image = [drawView createImage];
-            [delegate didController:self submitImage:image];
+            [_delegate didController:self submitImage:image];
         }
     }else {
         if(self.contest){
@@ -1444,7 +1448,7 @@
 }
 
 
-
+// 点击画画设置按钮
 - (IBAction)clickUpPanel:(id)sender
 {
     [self.layerPanelPopView dismissAnimated:YES];
@@ -1463,6 +1467,7 @@
     }
 }
 
+// 点击图层按钮
 - (IBAction)clickLayerButton:(id)sender {
     [self.upPanelPopView dismissAnimated:YES];
     if (self.layerPanelPopView) {
@@ -1477,15 +1482,22 @@
     }
 }
 
+// 是否是新建草稿（而不是从已有草稿加载），并且当前没有任何笔画
+- (BOOL)isEmptyNewDraft
+{
+    return (_isNewDraft && [drawView.drawActionList count] == 0);
+}
 
 - (void)alertExit
 {
     CommonDialog *dialog = nil;
     
     if (_isNewDraft || [drawView.drawActionList count] == 0) {
+        // 新建草稿，并且没有画任何一笔，只询问是否退出
         dialog = [CommonDialog createDialogWithTitle:NSLS(@"kQuitGameAlertTitle") message:NSLS(@"kQuitGameAlertMessage") style:CommonDialogStyleDoubleButton delegate:self];
         dialog.tag = DIALOG_TAG_ESCAPE;
     }else{
+        // 询问是否保存后退出
         dialog = [CommonDialog createDialogWithTitle:NSLS(@"kQuitDrawAlertTitle") message:NSLS(@"kQuitDrawAlertMessage") style:CommonDialogStyleDoubleButtonWithCross delegate:self];
         [dialog.cancelButton setTitle:NSLS(@"kDonotSave") forState:UIControlStateNormal];
         [dialog.oKButton setTitle:NSLS(@"kSave") forState:UIControlStateNormal];
@@ -1497,18 +1509,23 @@
 
 - (void)clickBackButton:(id)sender
 {
+    // 关闭弹窗
     [self.upPanelPopView dismissAnimated:YES];
     [self.layerPanelPopView dismissAnimated:YES];
+    
     if ([[UserManager defaultManager] hasUser] == NO){
+        // 没有注册过，直接退出
         [self quit];
         return;
     }    
     
     if (targetType == TypeGraffiti || targetType == TypePhoto) {
-        if (delegate && [delegate respondsToSelector:@selector(didControllerClickBack:)]) {
-            [delegate didControllerClickBack:self];
+        // 聊天涂鸦或者是在照片上画画，调用回调方法
+        if (_delegate && [_delegate respondsToSelector:@selector(didControllerClickBack:)]) {
+            [_delegate didControllerClickBack:self];
         }
     }else {
+        // 正常画画，询问是否退出
         [self alertExit];
     }
 }

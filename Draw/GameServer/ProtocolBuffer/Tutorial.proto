@@ -53,7 +53,8 @@ message PBTutorial
     optional string image = 23;                     // 大图片
     optional string thumbImage = 24;                // 小图片
     optional string dataUrl = 25;                   // 教程包的下载文件名
-    
+    repeated PBStage stages = 26;                   // 教程的关卡的基础信息
+
     optional bool   isFree = 30[default=true];
     optional int32  price = 31;
     optional int32  priceUnit = 32;

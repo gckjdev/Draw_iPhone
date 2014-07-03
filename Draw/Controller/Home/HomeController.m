@@ -710,6 +710,10 @@ static NSDictionary* DRAW_MENU_IMAGE_DICT = nil;
             
         case HomeMenuTypeDrawFreeCoins:
         {
+#ifdef DEBUG
+            [self enterOpusClass];
+            break;
+#endif
             [self enterCheckIn];
         }
             break;

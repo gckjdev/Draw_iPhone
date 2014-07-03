@@ -423,7 +423,7 @@ const ProtobufCMessageDescriptor game__pbstage__descriptor =
   NULL,NULL,NULL    /* reserved[123] */
 };
 static const protobuf_c_boolean game__pbtutorial__is_free__default_value = 1;
-static const ProtobufCFieldDescriptor game__pbtutorial__field_descriptors[19] =
+static const ProtobufCFieldDescriptor game__pbtutorial__field_descriptors[20] =
 {
   {
     "tutorialId",
@@ -582,6 +582,18 @@ static const ProtobufCFieldDescriptor game__pbtutorial__field_descriptors[19] =
     0,NULL,NULL    /* reserved1,reserved2, etc */
   },
   {
+    "stages",
+    26,
+    PROTOBUF_C_LABEL_REPEATED,
+    PROTOBUF_C_TYPE_MESSAGE,
+    PROTOBUF_C_OFFSETOF(Game__PBTutorial, n_stages),
+    PROTOBUF_C_OFFSETOF(Game__PBTutorial, stages),
+    &game__pbstage__descriptor,
+    NULL,
+    0,            /* packed */
+    0,NULL,NULL    /* reserved1,reserved2, etc */
+  },
+  {
     "isFree",
     30,
     PROTOBUF_C_LABEL_OPTIONAL,
@@ -658,18 +670,19 @@ static const unsigned game__pbtutorial__field_indices_by_name[] = {
   8,   /* field[8] = categories */
   4,   /* field[4] = cnDesc */
   1,   /* field[1] = cnName */
-  16,   /* field[16] = createDate */
+  17,   /* field[17] = createDate */
   12,   /* field[12] = dataUrl */
   5,   /* field[5] = enDesc */
   2,   /* field[2] = enName */
   10,   /* field[10] = image */
   9,   /* field[9] = isFeature */
-  13,   /* field[13] = isFree */
-  18,   /* field[18] = isNew */
+  14,   /* field[14] = isFree */
+  19,   /* field[19] = isNew */
   7,   /* field[7] = level */
-  17,   /* field[17] = modifyDate */
-  14,   /* field[14] = price */
-  15,   /* field[15] = priceUnit */
+  18,   /* field[18] = modifyDate */
+  15,   /* field[15] = price */
+  16,   /* field[16] = priceUnit */
+  13,   /* field[13] = stages */
   6,   /* field[6] = tcnDesc */
   3,   /* field[3] = tcnName */
   11,   /* field[11] = thumbImage */
@@ -680,10 +693,10 @@ static const ProtobufCIntRange game__pbtutorial__number_ranges[6 + 1] =
   { 1, 0 },
   { 10, 4 },
   { 20, 7 },
-  { 30, 13 },
-  { 40, 16 },
-  { 50, 18 },
-  { 0, 19 }
+  { 30, 14 },
+  { 40, 17 },
+  { 50, 19 },
+  { 0, 20 }
 };
 const ProtobufCMessageDescriptor game__pbtutorial__descriptor =
 {
@@ -693,7 +706,7 @@ const ProtobufCMessageDescriptor game__pbtutorial__descriptor =
   "Game__PBTutorial",
   "game",
   sizeof(Game__PBTutorial),
-  19,
+  20,
   game__pbtutorial__field_descriptors,
   game__pbtutorial__field_indices_by_name,
   6,  game__pbtutorial__number_ranges,
