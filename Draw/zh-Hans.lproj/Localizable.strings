@@ -2745,9 +2745,13 @@
 "kDeleteGroupSucc" = "请求成功，家族已解散";
 
 "kEditOpusClass" = "设置作品分类/标签";
+"kSetCategory" = "分类";
+"kNoOpus" = "暂无作品";
 
 // 教程
 "kUserTutorialMainTitle" = "学画画";
 "kAddTutorial" = "添加";
 "AllTutorial" = "添加教程";
 
+"kNewHotTitle" = "精彩作品";
+"kConfigNewHot" = "订阅";

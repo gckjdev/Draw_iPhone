@@ -31,6 +31,7 @@ typedef void (^ SelectOpusClassResultHandler) (int resultCode, NSArray *selected
 @property (nonatomic,retain) NSArray * urlStringArr;
 @property (nonatomic,retain) UIButton * backButton;
 @property (nonatomic,copy) SelectOpusClassResultHandler callback;
+@property (nonatomic,assign) int maxSelectCount;
 
 - (id)initWithSelectedTags:(NSArray*)selectedTags
          arrayForSelection:(NSArray*)arrayForSelection
@@ -41,5 +42,10 @@ typedef void (^ SelectOpusClassResultHandler) (int resultCode, NSArray *selected
            arrayForSelection:(NSArray*)arrayForSelection
                     callback:(SelectOpusClassResultHandler)callback;
 
++ (void)showInViewController:(PPViewController*)viewController
+                selectedTags:(NSArray*)selectedTags
+           arrayForSelection:(NSArray*)arrayForSelection
+              maxSelectCount:(int)maxSelectCount
+                    callback:(SelectOpusClassResultHandler)callback;
 
 @end

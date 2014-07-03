@@ -5,4 +5,4 @@ link_with ['Draw', 'Sing', 'LittleGeeDraw']
 pod 'GPUImage'
 pod 'PEPhotoCropEditor'
 pod 'CKCalendar'
-
+pod 'DAPagesContainer'

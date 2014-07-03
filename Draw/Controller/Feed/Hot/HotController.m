@@ -24,6 +24,8 @@
 //#import "SingHotCell.h"
 //#import "NSArray+Ext.h"
 #import "CellManager.h"
+#import "OpusClassInfoManager.h"
+#import "ShowOpusClassListController.h"
 
 typedef enum{
 
@@ -32,11 +34,6 @@ typedef enum{
     RankTypeNew = FeedListTypeLatest,
     RankTypeRecommend = FeedListTypeRecommend,
     RankTypeVIP = FeedListTypeVIP,
-    
-//    RankTypeOpusClassHistory = FeedListTypeClassAlltimeTop,
-//    RankTypeOpusClassHot = FeedListTypeClassHotTop,
-//    RankTypeOpusClassNew = FeedListTypeClassLatest,
-//    RankTypeOpusClassRecommend = FeedListTypeClassFeature,
     
 }RankType;
 
@@ -198,6 +195,11 @@ typedef enum{
     [self.titleView setTarget:self];
     [self.titleView setBackButtonSelector:@selector(clickBackButton:)];
     [self.titleView setRightButtonSelector:@selector(clickRefreshButton:)];
+        
+//#ifdef DEBUG
+//    [self.titleView setRightButtonTitle:NSLS(@"kSetCategory")];
+//    [self.titleView setRightButtonSelector:@selector(clickSelectCategory:)];
+//#endif
     
     SET_COMMON_TAB_TABLE_VIEW_Y(self.dataTableView);
     CGFloat height = CGRectGetMaxY(self.view.bounds) - CGRectGetMinY(self.dataTableView.frame);
@@ -212,6 +214,12 @@ typedef enum{
  
 }
 
+- (void)clickSelectCategory:(id)sender
+{
+    ShowOpusClassListController* vc = [[ShowOpusClassListController alloc] init];
+    [self.navigationController pushViewController:vc animated:YES];
+    [vc release];
+}
 
 - (void)clickVipInfo:(id)sender
 {
@@ -230,13 +238,16 @@ typedef enum{
     [self.hotRankSettingButton setHidden:YES];
     [self.titleView setRightButtonAsRefresh];
     [self.titleView setRightButtonSelector:@selector(clickRefreshButton:)];
+    
+//#ifdef DEBUG
+//    [self.titleView setRightButtonTitle:NSLS(@"kSetCategory")];
+//    [self.titleView setRightButtonSelector:@selector(clickSelectCategory:)];
+//#endif
 }
 
 - (void)viewDidUnload
 {
     [super viewDidUnload];
-    // Release any retained subviews of the main view.
-    // e.g. self.myOutlet = nil;
 }
 
 #pragma mark - table view delegate
@@ -255,106 +266,7 @@ typedef enum{
         default:
             return [CellManager getLastStyleCellHeightWithIndexPath:indexPath];
     }
-    
-//    if (isSingApp()){
-//        return [SingHotCell getCellHeight];
-//    }
-//    
-//    NSInteger type = self.currentTab.tabID;
-//    
-//    if (type == RankTypeHot || type == RankTypeHistory) {
-//        
-//        if (isDrawApp() || isLittleGeeAPP()) {
-//            if (indexPath.row == 0) {
-//                return [RankView heightForRankViewType:RankViewTypeFirst]+1;
-//            }else if(indexPath.row == 1){
-//                return [RankView heightForRankViewType:RankViewTypeSecond]+1;
-//            }
-//        }
-//    }
-//        
-//    return [RankView heightForRankViewType:RankViewTypeNormal]+1;
 }
-
-//- (void)clearCellSubViews:(UITableViewCell *)cell{
-//    for (UIView *view in cell.contentView.subviews) {
-//        if ([view isKindOfClass:[RankView class]]) {
-//            [view removeFromSuperview];
-//        }
-//    }    
-//}
-
-//- (void)setFirstRankCell:(UITableViewCell *)cell WithFeed:(DrawFeed *)feed
-//{
-//    RankView *view = [RankView createRankView:self type:RankViewTypeFirst];
-//    [view setViewInfo:feed];
-//    [cell.contentView addSubview:view];
-//}
-
-//#define NORMAL_CELL_VIEW_NUMBER 3
-
-//#define WIDTH_SPACE 1
-
-//- (void)setSencodRankCell:(UITableViewCell *)cell
-//                WithFeed1:(DrawFeed *)feed1 
-//                    feed2:(DrawFeed *)feed2
-//{
-//    RankView *view1 = [RankView createRankView:self type:RankViewTypeSecond];
-//    [view1 setViewInfo:feed1];
-//    RankView *view2 = [RankView createRankView:self type:RankViewTypeSecond];
-//    [view2 setViewInfo:feed2];
-//    [cell.contentView addSubview:view1];
-//    [cell.contentView addSubview:view2];
-//    
-//    CGFloat x2 = WIDTH_SPACE + [RankView widthForRankViewType:RankViewTypeSecond];
-//    view2.frame = CGRectMake(x2, 0, view2.frame.size.width, view2.frame.size.height);
-//}
-
-
-//- (void)setNormalRankCell:(UITableViewCell *)cell 
-//                WithFeeds:(NSArray *)feeds
-//{
-//    CGFloat width = [RankView widthForRankViewType:RankViewTypeNormal];
-//    CGFloat height = [RankView heightForRankViewType:RankViewTypeNormal];
-//    CGFloat space = WIDTH_SPACE;
-//    CGFloat x = 0;
-//    CGFloat y = 0;
-//    for (DrawFeed *feed in feeds) {
-//        RankView *rankView = [RankView createRankView:self type:RankViewTypeNormal];
-//        [rankView setViewInfo:feed];
-//        [cell.contentView addSubview:rankView];
-//        rankView.frame = CGRectMake(x, y, width, height);
-//        x += width + space;
-//    }
-//}
-
-//#define WIDTH_SPACE 1
-//- (void)setTopPlayerCell:(UITableViewCell *)cell
-//             WithPlayers:(NSArray *)players isFirstRow:(BOOL)isFirstRow
-//{
-//    CGFloat width = [TopPlayerView getHeight];
-//    CGFloat height = [TopPlayerView getHeight];
-//    CGFloat space = WIDTH_SPACE;;
-//    CGFloat x = 0;
-//    CGFloat y = 0;
-//    for (TopPlayer *player in players) {
-//        TopPlayerView *playerView = [TopPlayerView createTopPlayerView:self];
-//        [playerView setViewInfo:player];
-//
-//        [cell.contentView addSubview:playerView];
-//        playerView.frame = CGRectMake(x, y, width, height);
-//        x += width + space;
-//    }
-//}
-
-//- (NSObject *)saveGetObjectForIndex:(NSInteger)index
-//{
-//    NSArray *list = [self tabDataList];
-//    if (index < 0 || index >= [list count]) {
-//        return nil;
-//    }
-//    return [list objectAtIndex:index];
-//}
 
 - (UITableViewCell *)tableView:(UITableView *)theTableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
@@ -378,98 +290,6 @@ typedef enum{
             break;
     }
     
-//    if (isSingApp()) {
-//        
-//        return [CellManager getHotStyleCell:theTableView
-//                                  indexPath:indexPath
-//                                   delegate:self
-//                                   dataList:[self tabDataList]];
-//    }
-//    
-//    
-//    NSString *CellIdentifier = @"RankCell";//[RankFirstCell getCellIdentifier];
-//    UITableViewCell *cell = [theTableView dequeueReusableCellWithIdentifier:CellIdentifier];
-//    
-//    if (cell == nil) {
-//        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
-//    }else{
-//        [self clearCellSubViews:cell];
-//    }
-//
-//    cell.selectionStyle = UITableViewCellSelectionStyleNone;
-//    cell.accessoryType = UITableViewCellAccessoryNone;
-//    TableTab *tab = [self currentTab];
-//    
-//    if (isDrawApp() || isLittleGeeAPP()) {
-//        
-//        if (tab.tabID == RankTypeHot || tab.tabID == RankTypeHistory) {
-//            
-//            if (indexPath.row == 0) {
-//                DrawFeed *feed = (DrawFeed *)[self saveGetObjectForIndex:0];
-//                [self setFirstRankCell:cell WithFeed:feed];
-//            }else if(indexPath.row == 1){
-//                DrawFeed *feed1 = (DrawFeed *)[self saveGetObjectForIndex:1];
-//                DrawFeed *feed2 = (DrawFeed *)[self saveGetObjectForIndex:2];
-//                [self setSencodRankCell:cell WithFeed1:feed1 feed2:feed2];
-//            }else{
-////                NSMutableArray *list = [NSMutableArray array];
-////                for (NSInteger i = startIndex; i < startIndex+NORMAL_CELL_VIEW_NUMBER; ++ i) {
-////                    NSObject *object = [self saveGetObjectForIndex:i];
-////                    if (object) {
-////                        [list addObject:object];
-////                    }
-////                }
-//                
-//                NSInteger startIndex = (indexPath.row - 1) * NORMAL_CELL_VIEW_NUMBER;
-//                NSArray *list = [[self tabDataList] subarrayWithRangeSafe:NSMakeRange(startIndex, NORMAL_CELL_VIEW_NUMBER)];
-//                [self setNormalRankCell:cell WithFeeds:list];
-//            }
-//            
-//        }else if(tab.tabID == RankTypeNew){
-////            NSInteger startIndex = (indexPath.row * NORMAL_CELL_VIEW_NUMBER);
-////            NSMutableArray *list = [NSMutableArray array];
-////            for (NSInteger i = startIndex; i < startIndex+NORMAL_CELL_VIEW_NUMBER; ++ i) {
-////                NSObject *object = [self saveGetObjectForIndex:i];
-////                if (object) {
-////                    [list addObject:object];
-////                }
-////            }
-////            [self setNormalRankCell:cell WithFeeds:list];
-//            
-//            
-//            NSInteger startIndex = indexPath.row * NORMAL_CELL_VIEW_NUMBER;
-//            NSArray *list = [[self tabDataList] subarrayWithRangeSafe:NSMakeRange(startIndex, NORMAL_CELL_VIEW_NUMBER)];
-//            [self setNormalRankCell:cell WithFeeds:list];
-//            
-//        }
-////        else if(tab.tabID == RankTypePlayer){
-////            NSInteger startIndex = (indexPath.row * NORMAL_CELL_VIEW_NUMBER);
-////            NSMutableArray *list = [NSMutableArray array];
-////            for (NSInteger i = startIndex; i < startIndex+NORMAL_CELL_VIEW_NUMBER; ++ i) {
-////                NSObject *object = [self saveGetObjectForIndex:i];
-////                if (object) {
-////                    [list addObject:object];
-////                }
-////            }
-////            [self setTopPlayerCell:cell WithPlayers:list isFirstRow:(indexPath.row == 0)];
-////        }
-//        else if(tab.tabID == RankTypeRecommend){
-////            NSInteger startIndex = (indexPath.row * NORMAL_CELL_VIEW_NUMBER);
-////            NSMutableArray *list = [NSMutableArray array];
-////            for (NSInteger i = startIndex; i < startIndex+NORMAL_CELL_VIEW_NUMBER; ++ i) {
-////                NSObject *object = [self saveGetObjectForIndex:i];
-////                if (object) {
-////                    [list addObject:object];
-////                }
-////            }
-//            
-//            NSInteger startIndex = indexPath.row * NORMAL_CELL_VIEW_NUMBER;
-//            NSArray *list = [[self tabDataList] subarrayWithRangeSafe:NSMakeRange(startIndex, NORMAL_CELL_VIEW_NUMBER)];
-//            [self setNormalRankCell:cell WithFeeds:list];
-//        }
-//    }
-//    
-//    return cell;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section

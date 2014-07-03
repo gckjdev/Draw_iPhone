@@ -2723,7 +2723,12 @@
 "kDeleteGroupSucc" = "Group dismissed";
 
 "kEditOpusClass" = "Edit Opus Category";
+"kSetCategory" = "Category";
+"kNoOpus" = "No Data";
 
 "kUserTutorialMainTitle" = "Tutorial";
 "kAddTutorial" = "Add";
 "AllTutorial" = "AddTurorial";
+
+"kNewHotTitle" = "Gallery";
+"kConfigNewHot" = "Setttings";

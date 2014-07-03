@@ -1166,31 +1166,6 @@
                                                    successMessage:NSLS(@"kSentWeiboSucc")
                                                    failureMessage:NSLS(@"kSentWeiboFailure")];
         
-        
-//        [snsService publishWeibo:text imageFilePath:imagePath successBlock:^(NSDictionary *userInfo) {
-//            
-//            PPDebug(@"%@ publish weibo succ", [snsService snsName]);
-//                int earnCoins = [[AccountService defaultService] rewardForShareWeibo];
-//                if (earnCoins > 0){
-//
-//            
-//            
-//        } failureBlock:^(NSError *error) {
-//            PPDebug(@"%@ publish weibo failure", [snsService snsName]);
-//        }];
-        
-//        // follow weibo if NOT followed
-//        if ([GameSNSService hasFollowOfficialWeibo:snsService] == NO){
-//            [snsService followUser:[snsService officialWeiboId]
-//                         userId:[snsService officialWeiboId]
-//                   successBlock:^(NSDictionary *userInfo) {
-//                       PPDebug(@"follow official weibo success");
-//                       [GameSNSService updateFollowOfficialWeibo:snsService];
-//                   } failureBlock:^(NSError *error) {
-//                       PPDebug(@"follow weibo but error=%@", [error description]);
-//                   }];
-//        }
-        
     }
     
     return;
@@ -1305,8 +1280,12 @@
         if (confirm) {
             
             [self setOpusWord:subject desc:content];
+
+            // TODO need to disable for release
+            [self commitOpus:subject desc:content share:shareSet classList:nil];
             
             // show set opus class
+            /* TODO need to enable for release!!!!!!
             [SelectOpusClassViewController showInViewController:self
                                                    selectedTags:self.selectedClassList
                                               arrayForSelection:nil
@@ -1316,6 +1295,8 @@
                                                            [self commitOpus:subject desc:content share:shareSet classList:selectedArray];
 
                                                        }];
+             */
+             
         }else{
             self.word.text = subject;
             [self setOpusDesc:content];

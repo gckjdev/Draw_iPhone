@@ -28,6 +28,7 @@ static OpusClassInfoManager* _defaultOpusClassInfoManager;
 - (id)init
 {
     self = [super init];
+    self.userDisplayClassList = [NSMutableArray array];
     [self loadData:[OpusClassInfoManager appTaskDefaultConfigFileName]];
     return self;
 }
@@ -69,6 +70,7 @@ static OpusClassInfoManager* _defaultOpusClassInfoManager;
     PPRelease(_homeDisplayClassList);
     PPRelease(_opusClassList);
     PPRelease(_smartData);
+    PPRelease(_userDisplayClassList);
     [super dealloc];
 }
 
@@ -154,7 +156,8 @@ static OpusClassInfoManager* _defaultOpusClassInfoManager;
                     }
                 }
                 PPDebug(@"total %d opus home display classes added", [_homeDisplayClassList count]);
-                
+             
+                [self loadUserDisplayList];
             }
             else{
                 PPDebug(@"<readConfigData> parse JSON data %@ error", _smartData.name);
@@ -180,6 +183,51 @@ static OpusClassInfoManager* _defaultOpusClassInfoManager;
     } failureBlock:^(NSError *error) {
         PPDebug(@"<autoUpdate> failure due to error(%@)", [error description]);
     }];
+}
+
+- (NSString*)userDisplayListKey
+{
+    return @"USER_DISPLAY_OPUS_CLASS_KEY";
+}
+
+- (void)saveUserDisplayList:(NSArray*)opusInfoClassList
+{
+    NSUserDefaults* ud = [NSUserDefaults standardUserDefaults];
+    NSMutableArray* list = [NSMutableArray array];
+    for (OpusClassInfo* opusClassInfo in opusInfoClassList){
+        if (opusClassInfo.classId){
+            [list addObject:opusClassInfo.classId];
+        }
+    }
+    [ud setObject:list forKey:[self userDisplayListKey]];
+    [ud synchronize];
+    
+    if (opusInfoClassList){
+        [self.userDisplayClassList removeAllObjects];
+        [self.userDisplayClassList addObjectsFromArray:opusInfoClassList];
+    }
+}
+
+- (void)loadUserDisplayList
+{
+    NSUserDefaults* ud = [NSUserDefaults standardUserDefaults];
+    NSArray* list = [ud objectForKey:[self userDisplayListKey]];
+    if (list){
+        [self.userDisplayClassList removeAllObjects];
+        for (NSString* classId in list){
+            OpusClassInfo* info = [self getOpusClassInfoById:classId inList:self.opusClassList];
+            if (info){
+                [self.userDisplayClassList addObject:info];
+                PPDebug(@"<loadUserDisplayList> add %@,%@", info.classId, info.name);
+            }
+        }
+    }
+    else{
+        // use default
+        [self.userDisplayClassList removeAllObjects];
+        [self.userDisplayClassList addObjectsFromArray:self.homeDisplayClassList];
+        PPDebug(@"<loadUserDisplayList> use default");
+    }
 }
 
 @end

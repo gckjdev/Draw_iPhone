@@ -378,6 +378,7 @@ typedef enum{
 
 + (int)maxDisplaySpendTime;
 + (int)maxDisplayStrokes;
++ (int)maxOpusClassSelectCount;
 
 + (NSString*)getTutorialServerURL;
 
