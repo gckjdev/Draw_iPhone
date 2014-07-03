@@ -54,21 +54,21 @@
 - (IBAction)clickLayerButton:(id)sender;
 - (void)showCopyPaint;
 
-@property (retain, nonatomic) Word *word;
-@property (retain, nonatomic) OpusDesignTime *designTime;
-@property (assign, nonatomic) int64_t totalStroke;
-@property (retain, nonatomic) NSArray *selectedClassList;
-@property (retain, nonatomic) NSString *targetUid;
-@property (retain, nonatomic) NSString *opusDesc;
-@property (retain, nonatomic) UIImage *bgImage;
-@property (retain, nonatomic) NSString *bgImageName;
+@property (retain, nonatomic) Word *word;                       // 画画主题单词 CAN REMOVE
+@property (retain, nonatomic) OpusDesignTime *designTime;       // 画画耗费时间
+@property (assign, nonatomic) int64_t totalStroke;              // 画画笔画数目 CAN REMOVE
+@property (retain, nonatomic) NSArray *selectedClassList;       // 画画分类 CAN REMOVE
+@property (retain, nonatomic) NSString *targetUid;              // 画给谁 CAN REMOVE
+@property (retain, nonatomic) NSString *opusDesc;               // 画画描述 CAN REMOVE
+@property (retain, nonatomic) UIImage *bgImage;                 // 画画底部背景图片 CAN REMOVE
+@property (retain, nonatomic) NSString *bgImageName;            // 画画背景图片的名称 CAN REMOVE
 
 @property (assign, nonatomic) id<OfflineDrawDelegate> delegate;
-@property (retain, nonatomic) Contest *contest;
-@property (assign, nonatomic) UIViewController *startController;
+@property (retain, nonatomic) Contest *contest;                 // 比赛对象
+@property (assign, nonatomic) UIViewController *startController;// 来自哪个控制器
 
-@property (retain, nonatomic) UIImage *submitOpusFinalImage;
-@property (retain, nonatomic) NSData *submitOpusDrawData;
+@property (retain, nonatomic) UIImage *submitOpusFinalImage;    // 提交作品的图片（临时）
+@property (retain, nonatomic) NSData *submitOpusDrawData;       // 提交作品的数据（临时）
 
 @property (retain, nonatomic) IBOutlet CommonTitleView *titleView;
 

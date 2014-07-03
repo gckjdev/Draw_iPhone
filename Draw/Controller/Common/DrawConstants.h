@@ -17,8 +17,7 @@ typedef enum {
     GAME_WIN,
     RUN_AWAY,
     QUICK_QUICK,
-    WAIT_WAIT,
-    
+    WAIT_WAIT,    
     
 }Draw_sound_index;
 
@@ -26,7 +25,9 @@ typedef enum{
     TypeDraw = 0,       //画画给别人猜
     TypeGraffiti = 1,   //涂鸦
     TypeContest = 2,    //参赛
-    TypePhoto = 3       //照片
+    TypePhoto = 3,      //照片
+    TypeLearnDraw = 4,  //学画画修炼
+    TypePassDraw = 5    //学画画闯关
 }TargetType;
 
 #define YOUMI_APP_ID    @"c278f8dc80295b18"
