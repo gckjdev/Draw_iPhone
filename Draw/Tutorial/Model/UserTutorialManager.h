@@ -15,6 +15,7 @@
 
 // 用户添加/开始学习某个教程
 - (PBUserTutorial*)addTutorial:(PBTutorial*)tutorial;
+- (BOOL)isTutorialLearned:(NSString*)tutorialId;
 
 - (void)syncUserTutorial:(NSString*)utLocalId syncStatus:(BOOL)syncStatus;
 

@@ -150,7 +150,7 @@ static TutorialCoreManager* _defaultTutorialCoreManager;
         NSString* name = [NSString stringWithFormat:@"教程[%d]", i];
         NSString* tutorialId = [NSString stringWithFormat:@"id-%d", i];
         [tb setCnDesc:name];
-        [tb setTcnName:@"test!!!!!"];
+        [tb setTcnName:name];
         [tb setTcnDesc:@"this is a test tutorial"];
         [tb setTutorialId:tutorialId];
         
@@ -167,7 +167,7 @@ static TutorialCoreManager* _defaultTutorialCoreManager;
     BOOL result = [data writeToFile:path atomically:YES];
     PPDebug(@"<createTestData> data file result=%d, file=%@", result, path);
     
-    NSString* version = @"1.0";
+    NSString* version = @"1.1";
     NSError* error = nil;
     result = [version writeToFile:versionPath atomically:YES encoding:NSUTF8StringEncoding error:&error];
     PPDebug(@"<createTestData> version txt file result=%d error=%@ file=%@", result, [error description], versionPath);

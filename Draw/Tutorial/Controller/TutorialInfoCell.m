@@ -7,6 +7,7 @@
 //
 
 #import "TutorialInfoCell.h"
+#import "PBTutorial+Extend.h"
 
 @implementation TutorialInfoCell
 #define Task_IMAGE_HEIGHT       (ISIPAD ? 100 : 45)
@@ -55,7 +56,11 @@
     
 }
 
-
+- (void)updateCellInfo:(PBTutorial*)pbTutorial
+{
+    self.tutorialDesc.text = pbTutorial.name;
+    self.tutorialDescInfo.text = pbTutorial.desc;
+}
 
 
 - (void)dealloc {

@@ -199,17 +199,17 @@ static UserTutorialManager* _defaultManager;
 {
     NSArray* list = [[self getDb] allObjects];
 
-#ifdef DEBUG
-    // for test
-    if ([list count] == 0){
-        for (int i=0; i<20; i++) {
-            PBTutorial* tutorial = [self createTestTutorial];
-            [self addTutorial:tutorial];
-        }
-        
-        list = [[self getDb] allObjects];
-    }
-#endif
+//#ifdef DEBUG
+//    // for test
+//    if ([list count] == 0){
+//        for (int i=0; i<20; i++) {
+//            PBTutorial* tutorial = [self createTestTutorial];
+//            [self addTutorial:tutorial];
+//        }
+//        
+//        list = [[self getDb] allObjects];
+//    }
+//#endif
     
     NSMutableArray* retList = [[[NSMutableArray alloc] init] autorelease];
     for (NSData* data in list){
@@ -224,6 +224,18 @@ static UserTutorialManager* _defaultManager;
     }
     
     return retList;
+}
+
+- (BOOL)isTutorialLearned:(NSString*)tutorialId
+{
+    NSArray* list = [self allUserTutorials];
+    for (PBUserTutorial* ut in list){
+        if ([ut.tutorial.tutorialId isEqualToString:tutorialId]){
+            return YES;
+        }
+    }
+    
+    return NO;
 }
 
 @end

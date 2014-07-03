@@ -10,4 +10,7 @@
 
 @interface PBTutorial (Extend)
 
+- (NSString*)name;
+- (NSString*)desc;
+
 @end

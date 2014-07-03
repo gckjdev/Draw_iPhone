@@ -64,6 +64,14 @@
 
 }
 
+- (void)viewDidAppear:(BOOL)animated
+{
+    self.dataList = [[UserTutorialManager defaultManager] allUserTutorials];
+    [self.dataTableView reloadData];
+    
+    [super viewDidAppear:animated];
+}
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];

@@ -7,7 +7,38 @@
 //
 
 #import "PBTutorial+Extend.h"
+#import "LocaleUtils.h"
 
 @implementation PBTutorial (Extend)
+
+- (NSString*)name
+{
+    if ([LocaleUtils isChina]){
+        return self.cnName;
+    }
+    
+    if ([LocaleUtils isChinese]){
+        if ([self.tcnName length] == 0){
+            return self.cnName;
+        }
+        else{
+            return self.tcnName;
+        }
+    }
+    
+    if ([self.enName length] == 0){
+        return self.cnName;
+    }
+    else{
+        return self.enName;
+    }
+}
+
+- (NSString*)desc
+{
+    // TODO, refer to name
+    return self.cnDesc;
+}
+
 
 @end

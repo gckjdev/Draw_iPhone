@@ -6,9 +6,9 @@
 //
 //
 
-#import "TaskInfoCell.h"
+#import "StageBasicInfoCell.h"
 
-@implementation TaskInfoCell
+@implementation StageBasicInfoCell
 #define Task_IMAGE_HEIGHT       (ISIPAD ? 100 : 45)
 
 - (void)awakeFromNib

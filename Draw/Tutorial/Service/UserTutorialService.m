@@ -62,6 +62,11 @@ static UserTutorialService* _defaultService;
     [self syncUserTutorial:ut];
 }
 
+- (void)deleteUserTutorial:(PBUserTutorial*)ut resultBlock:(UserTutorialServiceResultBlock)resultBlock
+{
+    // TODO
+}
+
 // 用户下载教程所有关卡数据
 - (void)downloadTutorial:(PBTutorial*)tutorial resultBlock:(UserTutorialServiceResultBlock)resultBlock
 {

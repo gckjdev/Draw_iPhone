@@ -8,13 +8,42 @@
 
 #import "TutorialInfoController.h"
 #import "TutorialInfoCell.h"
-#import "TaskInfoCell.h"
+#import "StageBasicInfoCell.h"
 #import "UIViewController+BGImage.h"
+#import "PBTutorial+Extend.h"
+#import "UserTutorialService.h"
+#import "UserTutorialManager.h"
+
+enum{
+    SECTION_BASIC_INFO = 0,
+    SECTION_STAGE_INFO,
+    SECTION_NUM
+};
+
 @interface TutorialInfoController ()
+
+@property (nonatomic, retain) PBTutorial* pbTutorial;
 
 @end
 
 @implementation TutorialInfoController
+
++ (TutorialInfoController*)enter:(PPViewController*)superViewController
+                      pbTutorial:(PBTutorial*)pbTutorial
+{
+    TutorialInfoController* vc = [[TutorialInfoController alloc] init];
+    vc.pbTutorial = pbTutorial;
+    [superViewController.navigationController pushViewController:vc animated:YES];
+    [vc release];
+    return vc;
+}
+
+- (void)dealloc
+{
+    PPRelease(_pbTutorial);
+    [super dealloc];
+}
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -24,6 +53,19 @@
     return self;
 }
 
+- (void)updateRightButton
+{
+    id titleView = [CommonTitleView titleView:self.view];
+    if ([[UserTutorialManager defaultManager] isTutorialLearned:_pbTutorial.tutorialId]){
+        [titleView setRightButtonTitle:NSLS(@"kOpenToLearn")];
+        [titleView setRightButtonSelector:@selector(clickOpen:)];
+    }
+    else{
+        [titleView setRightButtonTitle:NSLS(@"kAddToLearn")];
+        [titleView setRightButtonSelector:@selector(clickAdd:)];
+    }
+}
+
 - (void)viewDidLoad
 {
     self.sectionTitle = @[@"简介",@"关卡列表"];
@@ -31,10 +73,10 @@
     [CommonTitleView createTitleView:self.view];
     
     id titleView = [CommonTitleView titleView:self.view];
-    [titleView setTitle:NSLS(@"TaskName")];
+    [titleView setTitle:_pbTutorial.name]; //NSLS(@"kTutorialInfoTitle")];
     [titleView setTarget:self];
     [[CommonTitleView titleView:self.view] setBackButtonSelector:@selector(clickBack:)];
-    
+    [self updateRightButton];
     
     NSLayoutConstraint* constraint = [NSLayoutConstraint constraintWithItem:self.dataTableView
                                                                   attribute:NSLayoutAttributeTop
@@ -49,19 +91,26 @@
     [super viewDidLoad];
     
     // Do any additional setup after loading the view from its nib.
-    self.dataList = @[@"a",@"b",@"c",@"d"];
+    
+    // TODO
+//    self.dataList = self.pbTutorial.
    
     
 }
 
 #pragma mark 分区个数
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
-    return 2;
+    return SECTION_NUM;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section;
 {
-    return [[self.numberRowsSection objectAtIndex:section] intValue];
+    if (section == SECTION_BASIC_INFO){
+        return 1;
+    }
+    else{
+        return [self.dataList count];
+    }
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
@@ -75,27 +124,25 @@
     NSUInteger row = [indexPath row];
     //section数
     NSUInteger section = [indexPath section];
+    
     //新建Infocell
     static NSString *CustomCellIdentifier = @"TutorialInfoCell";
-      static NSString *CustomCellIdentifier2 = @"TaskInfoCell";
-    
+    static NSString *CustomCellIdentifier2 = @"StageBasicInfoCell";
     
     //当section等于0时候出现简介
-    if(section==0){
+    if (section == SECTION_BASIC_INFO){
         TutorialInfoCell *cell = [tableView dequeueReusableCellWithIdentifier:CustomCellIdentifier];
         if(cell == nil){
             UINib *nib = [UINib nibWithNibName:CustomCellIdentifier bundle:nil];
             [tableView registerNib:nib forCellReuseIdentifier:CustomCellIdentifier];
             cell = [tableView dequeueReusableCellWithIdentifier:CustomCellIdentifier];
         }
-        cell.tutorialDesc.text = @"test1";
-        cell.tutorialDescInfo.text = @"test1";
-        cell.userInteractionEnabled = YES;
-       
         
+        [cell updateCellInfo:_pbTutorial];
         return cell;
+        
     }else{
-        TaskInfoCell *cell = [tableView dequeueReusableCellWithIdentifier:CustomCellIdentifier2];
+        StageBasicInfoCell *cell = [tableView dequeueReusableCellWithIdentifier:CustomCellIdentifier2];
         if(cell == nil){
             UINib *nib = [UINib nibWithNibName:CustomCellIdentifier2 bundle:nil];
             [tableView registerNib:nib forCellReuseIdentifier:CustomCellIdentifier2];
@@ -108,8 +155,6 @@
         return cell;
 
     }
-    return nil;
-
 }
 -(NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section{
     if (section == 0) {
@@ -139,9 +184,24 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
 #pragma mark addTutorial
+
 -(void)clickButton{
     NSLog(@"test");
 }
+
+- (void)clickAdd:(id)sender
+{
+    [[UserTutorialService defaultService] addTutorial:_pbTutorial resultBlock:^(int resultCode) {
+        [self updateRightButton];
+    }];
+}
+
+- (void)clickOpen:(id)sender
+{
+    // TODO goto Tutorial Stage Controller
+}
+
 
 @end

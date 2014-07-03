@@ -6212,14 +6212,14 @@
 		D819624D19629D4C00B4FBAF /* TutorialInfoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D819624719629D4C00B4FBAF /* TutorialInfoCell.xib */; };
 		D819624E19629D4C00B4FBAF /* TutorialInfoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D819624719629D4C00B4FBAF /* TutorialInfoCell.xib */; };
 		D819624F19629D4C00B4FBAF /* TutorialInfoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D819624719629D4C00B4FBAF /* TutorialInfoCell.xib */; };
-		D81962531962AA8700B4FBAF /* TaskInfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D81962511962AA8700B4FBAF /* TaskInfoCell.m */; };
-		D81962541962AA8700B4FBAF /* TaskInfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D81962511962AA8700B4FBAF /* TaskInfoCell.m */; };
-		D81962551962AA8700B4FBAF /* TaskInfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D81962511962AA8700B4FBAF /* TaskInfoCell.m */; };
-		D81962561962AA8700B4FBAF /* TaskInfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D81962511962AA8700B4FBAF /* TaskInfoCell.m */; };
-		D81962571962AA8700B4FBAF /* TaskInfoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D81962521962AA8700B4FBAF /* TaskInfoCell.xib */; };
-		D81962581962AA8700B4FBAF /* TaskInfoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D81962521962AA8700B4FBAF /* TaskInfoCell.xib */; };
-		D81962591962AA8700B4FBAF /* TaskInfoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D81962521962AA8700B4FBAF /* TaskInfoCell.xib */; };
-		D819625A1962AA8700B4FBAF /* TaskInfoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D81962521962AA8700B4FBAF /* TaskInfoCell.xib */; };
+		D81962531962AA8700B4FBAF /* StageBasicInfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D81962511962AA8700B4FBAF /* StageBasicInfoCell.m */; };
+		D81962541962AA8700B4FBAF /* StageBasicInfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D81962511962AA8700B4FBAF /* StageBasicInfoCell.m */; };
+		D81962551962AA8700B4FBAF /* StageBasicInfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D81962511962AA8700B4FBAF /* StageBasicInfoCell.m */; };
+		D81962561962AA8700B4FBAF /* StageBasicInfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D81962511962AA8700B4FBAF /* StageBasicInfoCell.m */; };
+		D81962571962AA8700B4FBAF /* StageBasicInfoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D81962521962AA8700B4FBAF /* StageBasicInfoCell.xib */; };
+		D81962581962AA8700B4FBAF /* StageBasicInfoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D81962521962AA8700B4FBAF /* StageBasicInfoCell.xib */; };
+		D81962591962AA8700B4FBAF /* StageBasicInfoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D81962521962AA8700B4FBAF /* StageBasicInfoCell.xib */; };
+		D819625A1962AA8700B4FBAF /* StageBasicInfoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D81962521962AA8700B4FBAF /* StageBasicInfoCell.xib */; };
 		D82540F419650A1C00C876C3 /* tutorial_core_version.txt in Resources */ = {isa = PBXBuildFile; fileRef = D82540F219650A1C00C876C3 /* tutorial_core_version.txt */; };
 		D82540F519650A1C00C876C3 /* tutorial_core_version.txt in Resources */ = {isa = PBXBuildFile; fileRef = D82540F219650A1C00C876C3 /* tutorial_core_version.txt */; };
 		D82540F619650A1C00C876C3 /* tutorial_core_version.txt in Resources */ = {isa = PBXBuildFile; fileRef = D82540F219650A1C00C876C3 /* tutorial_core_version.txt */; };
@@ -10506,9 +10506,9 @@
 		D819624519629D4C00B4FBAF /* TutorialInfoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TutorialInfoCell.h; sourceTree = "<group>"; };
 		D819624619629D4C00B4FBAF /* TutorialInfoCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TutorialInfoCell.m; sourceTree = "<group>"; };
 		D819624719629D4C00B4FBAF /* TutorialInfoCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TutorialInfoCell.xib; sourceTree = "<group>"; };
-		D81962501962AA8700B4FBAF /* TaskInfoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TaskInfoCell.h; sourceTree = "<group>"; };
-		D81962511962AA8700B4FBAF /* TaskInfoCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TaskInfoCell.m; sourceTree = "<group>"; };
-		D81962521962AA8700B4FBAF /* TaskInfoCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TaskInfoCell.xib; sourceTree = "<group>"; };
+		D81962501962AA8700B4FBAF /* StageBasicInfoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StageBasicInfoCell.h; sourceTree = "<group>"; };
+		D81962511962AA8700B4FBAF /* StageBasicInfoCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StageBasicInfoCell.m; sourceTree = "<group>"; };
+		D81962521962AA8700B4FBAF /* StageBasicInfoCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = StageBasicInfoCell.xib; sourceTree = "<group>"; };
 		D82540F219650A1C00C876C3 /* tutorial_core_version.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = tutorial_core_version.txt; sourceTree = "<group>"; };
 		D82540F319650A1C00C876C3 /* tutorial_core.pb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = tutorial_core.pb; sourceTree = "<group>"; };
 		D89191EF1963163B006B616A /* StageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StageCell.h; sourceTree = "<group>"; };
@@ -14984,9 +14984,9 @@
 				D819624519629D4C00B4FBAF /* TutorialInfoCell.h */,
 				D819624619629D4C00B4FBAF /* TutorialInfoCell.m */,
 				D819624719629D4C00B4FBAF /* TutorialInfoCell.xib */,
-				D81962501962AA8700B4FBAF /* TaskInfoCell.h */,
-				D81962511962AA8700B4FBAF /* TaskInfoCell.m */,
-				D81962521962AA8700B4FBAF /* TaskInfoCell.xib */,
+				D81962501962AA8700B4FBAF /* StageBasicInfoCell.h */,
+				D81962511962AA8700B4FBAF /* StageBasicInfoCell.m */,
+				D81962521962AA8700B4FBAF /* StageBasicInfoCell.xib */,
 				D89191EF1963163B006B616A /* StageCell.h */,
 				D89191F01963163B006B616A /* StageCell.m */,
 				D89191FA196316C2006B616A /* StageCell.xib */,
@@ -18898,7 +18898,7 @@
 				A4D8FBDB17DB08170085061F /* toolbox@2x.png in Resources */,
 				A4D8FBDF17DB08170085061F /* tools_cart@2x.png in Resources */,
 				A4D8FBEF17DB08170085061F /* user_detail_avatar_bg_ipad@2x.png in Resources */,
-				D81962591962AA8700B4FBAF /* TaskInfoCell.xib in Resources */,
+				D81962591962AA8700B4FBAF /* StageBasicInfoCell.xib in Resources */,
 				A4D8FBF317DB08170085061F /* user_detail_btn_bg@2x.png in Resources */,
 				A4D8FBF717DB08170085061F /* user_detail_button@2x.png in Resources */,
 				A4D8FBFB17DB08170085061F /* user_detail_draw_to@2x.png in Resources */,
@@ -19492,7 +19492,7 @@
 				C28A9DF91738F04B007A819F /* bbs_switch_right@2x.png in Resources */,
 				C28A9DFA1738F04B007A819F /* bbs_back@2x.png in Resources */,
 				C28A9DFC1738F04B007A819F /* BBSBoardCell~ipad.xib in Resources */,
-				D81962581962AA8700B4FBAF /* TaskInfoCell.xib in Resources */,
+				D81962581962AA8700B4FBAF /* StageBasicInfoCell.xib in Resources */,
 				C28A9DFD1738F04B007A819F /* BBSBoardSection~ipad.xib in Resources */,
 				C28A9DFE1738F04B007A819F /* bbs_post_comment@2x.png in Resources */,
 				C28A9DFF1738F04B007A819F /* bbs_post_content_bg@2x.png in Resources */,
@@ -20697,7 +20697,7 @@
 				C2C18ADD1762C2C400DE933B /* UserPhotoView.xib in Resources */,
 				CACD6B0118E03A2D003F97C0 /* ShareSDKiPadDefaultShareViewUI.bundle in Resources */,
 				A4364368176706A4006B6946 /* Opus.proto in Resources */,
-				D81962571962AA8700B4FBAF /* TaskInfoCell.xib in Resources */,
+				D81962571962AA8700B4FBAF /* StageBasicInfoCell.xib in Resources */,
 				C2773FDE176998E300929AE3 /* GalleryController~ipad.xib in Resources */,
 				C2773FEB176998F200929AE3 /* UserPhotoView~ipad.xib in Resources */,
 				C2773FEF176998F200929AE3 /* PhotoEditView~ipad.xib in Resources */,
@@ -21813,7 +21813,7 @@
 				CA7DE79D192BAD3200EED067 /* play1.png in Resources */,
 				A4D8FA0017DB08170085061F /* contest_detail@2x.png in Resources */,
 				A4D8FA0417DB08170085061F /* contest_join@2x.png in Resources */,
-				D819625A1962AA8700B4FBAF /* TaskInfoCell.xib in Resources */,
+				D819625A1962AA8700B4FBAF /* StageBasicInfoCell.xib in Resources */,
 				A4D8FA0817DB08170085061F /* contest_line@2x.png in Resources */,
 				A4D8FA0C17DB08170085061F /* contest_opus@2x.png in Resources */,
 				A4D8FA1017DB08170085061F /* contest_prize_1@2x.png in Resources */,
@@ -22965,7 +22965,7 @@
 				A461B378174CBAA70088B061 /* CanvasSizeCommand.m in Sources */,
 				A461B379174CBAA70088B061 /* EditDescCommand.m in Sources */,
 				A461B37A174CBAA70088B061 /* DrawToCommand.m in Sources */,
-				D81962551962AA8700B4FBAF /* TaskInfoCell.m in Sources */,
+				D81962551962AA8700B4FBAF /* StageBasicInfoCell.m in Sources */,
 				A461B37B174CBAA70088B061 /* HelpCommand.m in Sources */,
 				A461B37C174CBAA70088B061 /* ChatCommand.m in Sources */,
 				A461B37D174CBAA70088B061 /* ReflectionView.m in Sources */,
@@ -23571,7 +23571,7 @@
 				C28A9B0B1738F04B007A819F /* PPResourcePackage.m in Sources */,
 				C28A9B0C1738F04B007A819F /* PPResourcePackageDownloadRequest.m in Sources */,
 				C28A9B0D1738F04B007A819F /* PPResourcePackageManager.m in Sources */,
-				D81962541962AA8700B4FBAF /* TaskInfoCell.m in Sources */,
+				D81962541962AA8700B4FBAF /* StageBasicInfoCell.m in Sources */,
 				C28A9B0E1738F04B007A819F /* PPResourceSearchService.m in Sources */,
 				C28A9B0F1738F04B007A819F /* PPResourceService.m in Sources */,
 				C28A9B101738F04B007A819F /* PPResourceTestViewController.m in Sources */,
@@ -24416,7 +24416,7 @@
 				CA1882C41648C94B000942D6 /* MessageStat.m in Sources */,
 				CA7AFD04164E05A10039E07F /* ImplicitDownloadService.m in Sources */,
 				CA7AFD05164E05A10039E07F /* PPResourcePackage.m in Sources */,
-				D81962531962AA8700B4FBAF /* TaskInfoCell.m in Sources */,
+				D81962531962AA8700B4FBAF /* StageBasicInfoCell.m in Sources */,
 				CA7AFD06164E05A10039E07F /* PPResourcePackageDownloadRequest.m in Sources */,
 				CA7AFD07164E05A10039E07F /* PPResourcePackageManager.m in Sources */,
 				CA7AFD08164E05A10039E07F /* PPResourceSearchService.m in Sources */,
@@ -25743,7 +25743,7 @@
 				CA5D9D54183E3C0200BD820C /* DOUAudioAnalyzer+Default.m in Sources */,
 				CA5D9D58183E3C0200BD820C /* DOUAudioAnalyzer.m in Sources */,
 				CA5D9D5C183E3C0200BD820C /* DOUAudioDecoder.m in Sources */,
-				D81962561962AA8700B4FBAF /* TaskInfoCell.m in Sources */,
+				D81962561962AA8700B4FBAF /* StageBasicInfoCell.m in Sources */,
 				CA5D9D60183E3C0200BD820C /* DOUAudioEventLoop.m in Sources */,
 				CA5D9D64183E3C0200BD820C /* DOUAudioFilePreprocessor.m in Sources */,
 				CA5D9D68183E3C0200BD820C /* DOUAudioFileProvider.m in Sources */,
