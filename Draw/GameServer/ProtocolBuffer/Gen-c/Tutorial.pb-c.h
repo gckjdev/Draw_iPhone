@@ -73,6 +73,8 @@ struct  _Game__PBTutorial
   char *image;
   char *thumbimage;
   char *dataurl;
+  size_t n_stages;
+  Game__PBStage **stages;
   protobuf_c_boolean has_isfree;
   protobuf_c_boolean isfree;
   protobuf_c_boolean has_price;
@@ -88,7 +90,7 @@ struct  _Game__PBTutorial
 };
 #define GAME__PBTUTORIAL__INIT \
  { PROTOBUF_C_MESSAGE_INIT (&game__pbtutorial__descriptor) \
-    , NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0,0, 0,NULL, 0,0, NULL, NULL, NULL, 0,1, 0,0, 0,0, 0,0, 0,0, 0,0 }
+    , NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0,0, 0,NULL, 0,0, NULL, NULL, NULL, 0,NULL, 0,1, 0,0, 0,0, 0,0, 0,0, 0,0 }
 
 
 struct  _Game__PBTutorialCore

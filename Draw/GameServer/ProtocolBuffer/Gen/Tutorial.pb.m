@@ -589,6 +589,7 @@ static PBStage* defaultPBStageInstance = nil;
 @property (retain) NSString* image;
 @property (retain) NSString* thumbImage;
 @property (retain) NSString* dataUrl;
+@property (retain) NSMutableArray* mutableStagesList;
 @property BOOL isFree;
 @property int32_t price;
 @property int32_t priceUnit;
@@ -689,6 +690,7 @@ static PBStage* defaultPBStageInstance = nil;
   hasDataUrl_ = !!value;
 }
 @synthesize dataUrl;
+@synthesize mutableStagesList;
 - (BOOL) hasIsFree {
   return !!hasIsFree_;
 }
@@ -753,6 +755,7 @@ static PBStage* defaultPBStageInstance = nil;
   self.image = nil;
   self.thumbImage = nil;
   self.dataUrl = nil;
+  self.mutableStagesList = nil;
   [super dealloc];
 }
 - (id) init {
@@ -797,9 +800,21 @@ static PBTutorial* defaultPBTutorialInstance = nil;
   id value = [mutableCategoriesList objectAtIndex:index];
   return [value intValue];
 }
+- (NSArray*) stagesList {
+  return mutableStagesList;
+}
+- (PBStage*) stagesAtIndex:(int32_t) index {
+  id value = [mutableStagesList objectAtIndex:index];
+  return value;
+}
 - (BOOL) isInitialized {
   if (!self.hasTutorialId) {
     return NO;
+  }
+  for (PBStage* element in self.stagesList) {
+    if (!element.isInitialized) {
+      return NO;
+    }
   }
   return YES;
 }
@@ -842,6 +857,9 @@ static PBTutorial* defaultPBTutorialInstance = nil;
   }
   if (self.hasDataUrl) {
     [output writeString:25 value:self.dataUrl];
+  }
+  for (PBStage* element in self.stagesList) {
+    [output writeMessage:26 value:element];
   }
   if (self.hasIsFree) {
     [output writeBool:30 value:self.isFree];
@@ -913,6 +931,9 @@ static PBTutorial* defaultPBTutorialInstance = nil;
   }
   if (self.hasDataUrl) {
     size += computeStringSize(25, self.dataUrl);
+  }
+  for (PBStage* element in self.stagesList) {
+    size += computeMessageSize(26, element);
   }
   if (self.hasIsFree) {
     size += computeBoolSize(30, self.isFree);
@@ -1049,6 +1070,12 @@ static PBTutorial* defaultPBTutorialInstance = nil;
   if (other.hasDataUrl) {
     [self setDataUrl:other.dataUrl];
   }
+  if (other.mutableStagesList.count > 0) {
+    if (result.mutableStagesList == nil) {
+      result.mutableStagesList = [NSMutableArray array];
+    }
+    [result.mutableStagesList addObjectsFromArray:other.mutableStagesList];
+  }
   if (other.hasIsFree) {
     [self setIsFree:other.isFree];
   }
@@ -1138,6 +1165,12 @@ static PBTutorial* defaultPBTutorialInstance = nil;
       }
       case 202: {
         [self setDataUrl:[input readString]];
+        break;
+      }
+      case 210: {
+        PBStage_Builder* subBuilder = [PBStage builder];
+        [input readMessage:subBuilder extensionRegistry:extensionRegistry];
+        [self addStages:[subBuilder buildPartial]];
         break;
       }
       case 240: {
@@ -1388,6 +1421,35 @@ static PBTutorial* defaultPBTutorialInstance = nil;
 - (PBTutorial_Builder*) clearDataUrl {
   result.hasDataUrl = NO;
   result.dataUrl = @"";
+  return self;
+}
+- (NSArray*) stagesList {
+  if (result.mutableStagesList == nil) { return [NSArray array]; }
+  return result.mutableStagesList;
+}
+- (PBStage*) stagesAtIndex:(int32_t) index {
+  return [result stagesAtIndex:index];
+}
+- (PBTutorial_Builder*) replaceStagesAtIndex:(int32_t) index with:(PBStage*) value {
+  [result.mutableStagesList replaceObjectAtIndex:index withObject:value];
+  return self;
+}
+- (PBTutorial_Builder*) addAllStages:(NSArray*) values {
+  if (result.mutableStagesList == nil) {
+    result.mutableStagesList = [NSMutableArray array];
+  }
+  [result.mutableStagesList addObjectsFromArray:values];
+  return self;
+}
+- (PBTutorial_Builder*) clearStagesList {
+  result.mutableStagesList = nil;
+  return self;
+}
+- (PBTutorial_Builder*) addStages:(PBStage*) value {
+  if (result.mutableStagesList == nil) {
+    result.mutableStagesList = [NSMutableArray array];
+  }
+  [result.mutableStagesList addObject:value];
   return self;
 }
 - (BOOL) hasIsFree {
