@@ -2733,7 +2733,7 @@
 "kNoSelectedClass" = "已选择分类/标签 : (无)";
 "kClassForSelection" = "可选择分类/标签(可多选)";
 "kOpusClassCountZero" = "未选择任何作品分类，请至少选择一个分类/标签";
-"kExceedMaxOpusClass" = "最多只能选择%d个作品分类或标签，请减少当前选择";
+"kExceedMaxOpusClass" = "最多只能选择%d个作品分类或标签，请减少当前选择"; 
 "kOpusClassTitle" = "作品分类浏览";
 "kHomeMenuOpusClass" = "分类";
 
@@ -2749,4 +2749,5 @@
 // 教程
 "kUserTutorialMainTitle" = "学画画";
 "kAddTutorial" = "添加";
+"AllTutorial" = "添加教程";
 

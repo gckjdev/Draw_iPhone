@@ -16,5 +16,4 @@
 @property (retain, nonatomic) IBOutlet UILabel *tutorialDateLabel;
 
 - (void)updateCellInfo:(PBUserTutorial*)ut;
-
 @end

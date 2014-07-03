@@ -166,8 +166,8 @@ static UserTutorialManager* _defaultManager;
 - (PBTutorial*)createTestTutorial
 {
     PBTutorial_Builder* builder = [PBTutorial builder];
-    [builder setTutorialId:@"testId1"];
-    [builder setCnName:@"测试教程1"];
+    [builder setTutorialId:@"testId2"];
+    [builder setCnName:@"测试教程2"];
     return [builder build];
 }
 
@@ -202,8 +202,10 @@ static UserTutorialManager* _defaultManager;
 #ifdef DEBUG
     // for test
     if ([list count] == 0){
-        PBTutorial* tutorial = [self createTestTutorial];
-        [self addTutorial:tutorial];
+        for (int i=0; i<20; i++) {
+            PBTutorial* tutorial = [self createTestTutorial];
+            [self addTutorial:tutorial];
+        }
         
         list = [[self getDb] allObjects];
     }

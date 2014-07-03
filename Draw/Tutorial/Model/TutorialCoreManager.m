@@ -126,6 +126,11 @@ static TutorialCoreManager* _defaultTutorialCoreManager;
     self.tutorialList = nil;
 }
 
+-(PBTutorial *)createTest{
+   
+    
+}
+
 // 创建测试数据
 - (void)createTestData
 {
@@ -134,11 +139,20 @@ static TutorialCoreManager* _defaultTutorialCoreManager;
     NSString* versionPath = [root stringByAppendingString:[PPSmartUpdateDataUtils getVersionFileName:[TutorialCoreManager appTaskDefaultConfigFileName]]];
     
     PBTutorialCore_Builder* builder = [PBTutorialCore builder];
-
+    
+    
     // TODO add test tutorials
+    //测试数据
+//    PBTutorial_Builder* builder2 = [PBTutorial builder];
+//    [builder2 setTcnName:@"test!!!!!"];
+//    [builder2 setTcnDesc:@"this is a test tutorial"];
+//    builder = builder2 ;
+    
+    
     
     PBTutorialCore* core = [builder build];
     NSData* data = [core data];
+//    NSData* data = [test data];
     
     BOOL result = [data writeToFile:path atomically:YES];
     PPDebug(@"<createTestData> data file result=%d, file=%@", result, path);
