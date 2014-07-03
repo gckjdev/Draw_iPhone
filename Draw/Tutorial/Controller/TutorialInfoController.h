@@ -8,7 +8,18 @@
 
 #import <UIKit/UIKit.h>
 #import "PPTableViewController.h"
+#import "TutorialInfoCell.h"
+#import "Tutorial.pb.h"
 
-@interface TutorialInfoController : PPTableViewController
+@interface TutorialInfoController : PPTableViewController<AddButtonDelegate>
+
+@property(nonatomic,retain) NSArray *sectionTitle;
+@property(nonatomic,retain) NSArray *numberRowsSection;
+
++ (TutorialInfoController*)enter:(PPViewController*)superViewController
+                      pbTutorial:(PBTutorial*)pbTutorial;
 
 @end
+
+
+

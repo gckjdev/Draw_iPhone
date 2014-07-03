@@ -12,6 +12,7 @@
 #import "UserTutorialManager.h"
 #import "Tutorial.pb.h"
 #import "AllTutorialController.h"
+#import "TutorialStageController.h"
 
 @interface UserTutorialMainController ()
 
@@ -30,6 +31,7 @@
 
 - (void)viewDidLoad
 {
+    [super viewDidLoad];
     // set title view
     [CommonTitleView createTitleView:self.view];
     [[CommonTitleView titleView:self.view] setTitle:NSLS(@"kUserTutorialMainTitle")];
@@ -49,7 +51,7 @@
     [self.view addConstraint:constraint];
 
     
-    [super viewDidLoad];
+    
     
 	// Do any additional setup after loading the view.
     
@@ -57,6 +59,17 @@
     [self setDefaultBGImage];
     
     self.dataList = [[UserTutorialManager defaultManager] allUserTutorials];
+    
+   
+
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    self.dataList = [[UserTutorialManager defaultManager] allUserTutorials];
+    [self.dataTableView reloadData];
+    
+    [super viewDidAppear:animated];
 }
 
 - (void)didReceiveMemoryWarning
@@ -79,6 +92,7 @@
     static NSString *CustomCellIdentifier = @"UserTutorialMainCell";
     UserTutorialMainCell *cell = [tableView dequeueReusableCellWithIdentifier:CustomCellIdentifier];
     if (cell == nil){
+        //类名
         UINib *nib = [UINib nibWithNibName:CustomCellIdentifier bundle:nil];
         [tableView registerNib:nib forCellReuseIdentifier:CustomCellIdentifier];
         cell = [tableView dequeueReusableCellWithIdentifier:CustomCellIdentifier];
@@ -88,17 +102,30 @@
     PBUserTutorial* ut = [self.dataList objectAtIndex:row];
     [cell updateCellInfo:ut];
     
+    cell.selectionStyle = UITableViewCellSelectionStyleBlue;
+    
     return cell;
 }
 
-#pragma mark Table Delegate Methods
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return ISIPAD ? 160.0f : 80.0f;
+#pragma mark 当点击cell 时候的事件
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    NSLog(@"click了 %i",indexPath.row);
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
+    TutorialStageController* vc = [[TutorialStageController alloc] init];
+    [self.navigationController pushViewController:vc animated:YES];
+    [vc release];
 }
 
-- (NSIndexPath *)tableView:(UITableView *)tableView
-  willSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    return nil;
+
+#pragma mark Table Delegate Methods
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return ISIPAD ? 230.0f : 150.0f;
 }
+
+//- (NSIndexPath *)tableView:(UITableView *)tableView
+//  willSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+//    return nil;
+//}
 
 @end

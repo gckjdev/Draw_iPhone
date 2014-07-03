@@ -1,18 +1,17 @@
 //
-//  UserTutorialMainCell.m
+//  AllTutorialCell.m
 //  Draw
 //
-//  Created by qqn_pipi on 14-6-30.
+//  Created by ChaoSo on 14-7-1.
 //
 //
 
-#import "UserTutorialMainCell.h"
-#import "TimeUtils.h"
-#import "PBTutorial+Extend.h"
+#import "AllTutorialCell.h"
+#import "Tutorial.pb.h"
+#import "UIImageView+Extend.h"
 
 #define TUTORIAL_IMAGE_HEIGHT       (ISIPAD ? 100 : 45)
-
-@implementation UserTutorialMainCell
+@implementation AllTutorialCell
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
@@ -21,7 +20,7 @@
         // Initialization code
         SET_VIEW_ROUND_CORNER(self.contentView);
         
-        NSLayoutConstraint* constraint = [NSLayoutConstraint constraintWithItem:self.tutorialImageView
+        NSLayoutConstraint* constraint = [NSLayoutConstraint constraintWithItem:self.tutorialImage
                                                                       attribute:NSLayoutAttributeBottom
                                                                       relatedBy:NSLayoutRelationEqual
                                                                          toItem:nil
@@ -35,6 +34,11 @@
     return self;
 }
 
+- (void)awakeFromNib
+{
+    // Initialization code
+}
+
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated
 {
     [super setSelected:selected animated:animated];
@@ -42,18 +46,25 @@
     // Configure the view for the selected state
 }
 
-- (void)updateCellInfo:(PBUserTutorial*)ut
+- (void)updateCellInfo:(PBTutorial*)pbTutorial
 {
-    [self.tutorialNameLabel setText:ut.tutorial.name];    // TODO 国际化
-    NSDate* createDate = [NSDate dateWithTimeIntervalSince1970:ut.createDate];
-    self.tutorialDateLabel.text = dateToLocaleString(createDate);
+    // TODO localize tutorial name
+    self.tutorialName.text = pbTutorial.cnName;
+    self.tutorialDesc.text = pbTutorial.cnDesc;
+    
+    UIImage *placeHolderImage = [UIImage imageNamed:@"dialogue@2x"];
+
+    NSString* urlString = @"http://avatar.csdn.net/2/C/D/1_totogo2010.jpg"; //pbTutorial.thumbImage;
+    [_tutorialImage setImageWithUrl:[NSURL URLWithString:urlString]
+                   placeholderImage:placeHolderImage
+                        showLoading:YES
+                           animated:YES];
 }
 
 - (void)dealloc {
-    [_tutorialNameLabel release];
-    [_tutorialImageView release];
-    [_tutorialDateLabel release];
+    [_tutorialName release];
+    [_tutorialDesc release];
+    [_tutorialImage release];
     [super dealloc];
 }
-
 @end

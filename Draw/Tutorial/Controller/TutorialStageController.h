@@ -7,8 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "PPTableViewController.h"
 
-@interface TutorialStageController : PPTableViewController
+@interface TutorialStageController : UIViewController<UICollectionViewDataSource,UICollectionViewDelegate> 
+
+@property (retain, nonatomic) IBOutlet UICollectionView *collectionView;
+
 
 @end

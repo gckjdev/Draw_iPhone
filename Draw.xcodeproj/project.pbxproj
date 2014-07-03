@@ -6196,6 +6196,46 @@
 		CAFEFE8316606FC200441D77 /* zip.c in Sources */ = {isa = PBXBuildFile; fileRef = CAFEFD2416606FC100441D77 /* zip.c */; };
 		CAFEFFB4166072AB00441D77 /* DrawColor.m in Sources */ = {isa = PBXBuildFile; fileRef = CAFEFEF8166072AB00441D77 /* DrawColor.m */; };
 		CAFEFFB5166072AB00441D77 /* DrawUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = CAFEFEFA166072AB00441D77 /* DrawUtils.m */; };
+		D81962391962675600B4FBAF /* AllTutorialCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D81962381962675600B4FBAF /* AllTutorialCell.m */; };
+		D819623A1962675600B4FBAF /* AllTutorialCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D81962381962675600B4FBAF /* AllTutorialCell.m */; };
+		D819623B1962675600B4FBAF /* AllTutorialCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D81962381962675600B4FBAF /* AllTutorialCell.m */; };
+		D819623C1962675600B4FBAF /* AllTutorialCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D81962381962675600B4FBAF /* AllTutorialCell.m */; };
+		D81962411962677B00B4FBAF /* AllTutorialCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D81962401962677B00B4FBAF /* AllTutorialCell.xib */; };
+		D81962421962677B00B4FBAF /* AllTutorialCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D81962401962677B00B4FBAF /* AllTutorialCell.xib */; };
+		D81962431962677B00B4FBAF /* AllTutorialCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D81962401962677B00B4FBAF /* AllTutorialCell.xib */; };
+		D81962441962677B00B4FBAF /* AllTutorialCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D81962401962677B00B4FBAF /* AllTutorialCell.xib */; };
+		D819624819629D4C00B4FBAF /* TutorialInfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D819624619629D4C00B4FBAF /* TutorialInfoCell.m */; };
+		D819624919629D4C00B4FBAF /* TutorialInfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D819624619629D4C00B4FBAF /* TutorialInfoCell.m */; };
+		D819624A19629D4C00B4FBAF /* TutorialInfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D819624619629D4C00B4FBAF /* TutorialInfoCell.m */; };
+		D819624B19629D4C00B4FBAF /* TutorialInfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D819624619629D4C00B4FBAF /* TutorialInfoCell.m */; };
+		D819624C19629D4C00B4FBAF /* TutorialInfoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D819624719629D4C00B4FBAF /* TutorialInfoCell.xib */; };
+		D819624D19629D4C00B4FBAF /* TutorialInfoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D819624719629D4C00B4FBAF /* TutorialInfoCell.xib */; };
+		D819624E19629D4C00B4FBAF /* TutorialInfoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D819624719629D4C00B4FBAF /* TutorialInfoCell.xib */; };
+		D819624F19629D4C00B4FBAF /* TutorialInfoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D819624719629D4C00B4FBAF /* TutorialInfoCell.xib */; };
+		D81962531962AA8700B4FBAF /* StageBasicInfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D81962511962AA8700B4FBAF /* StageBasicInfoCell.m */; };
+		D81962541962AA8700B4FBAF /* StageBasicInfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D81962511962AA8700B4FBAF /* StageBasicInfoCell.m */; };
+		D81962551962AA8700B4FBAF /* StageBasicInfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D81962511962AA8700B4FBAF /* StageBasicInfoCell.m */; };
+		D81962561962AA8700B4FBAF /* StageBasicInfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D81962511962AA8700B4FBAF /* StageBasicInfoCell.m */; };
+		D81962571962AA8700B4FBAF /* StageBasicInfoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D81962521962AA8700B4FBAF /* StageBasicInfoCell.xib */; };
+		D81962581962AA8700B4FBAF /* StageBasicInfoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D81962521962AA8700B4FBAF /* StageBasicInfoCell.xib */; };
+		D81962591962AA8700B4FBAF /* StageBasicInfoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D81962521962AA8700B4FBAF /* StageBasicInfoCell.xib */; };
+		D819625A1962AA8700B4FBAF /* StageBasicInfoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D81962521962AA8700B4FBAF /* StageBasicInfoCell.xib */; };
+		D82540F419650A1C00C876C3 /* tutorial_core_version.txt in Resources */ = {isa = PBXBuildFile; fileRef = D82540F219650A1C00C876C3 /* tutorial_core_version.txt */; };
+		D82540F519650A1C00C876C3 /* tutorial_core_version.txt in Resources */ = {isa = PBXBuildFile; fileRef = D82540F219650A1C00C876C3 /* tutorial_core_version.txt */; };
+		D82540F619650A1C00C876C3 /* tutorial_core_version.txt in Resources */ = {isa = PBXBuildFile; fileRef = D82540F219650A1C00C876C3 /* tutorial_core_version.txt */; };
+		D82540F719650A1C00C876C3 /* tutorial_core_version.txt in Resources */ = {isa = PBXBuildFile; fileRef = D82540F219650A1C00C876C3 /* tutorial_core_version.txt */; };
+		D82540F819650A1C00C876C3 /* tutorial_core.pb in Resources */ = {isa = PBXBuildFile; fileRef = D82540F319650A1C00C876C3 /* tutorial_core.pb */; };
+		D82540F919650A1C00C876C3 /* tutorial_core.pb in Resources */ = {isa = PBXBuildFile; fileRef = D82540F319650A1C00C876C3 /* tutorial_core.pb */; };
+		D82540FA19650A1C00C876C3 /* tutorial_core.pb in Resources */ = {isa = PBXBuildFile; fileRef = D82540F319650A1C00C876C3 /* tutorial_core.pb */; };
+		D82540FB19650A1C00C876C3 /* tutorial_core.pb in Resources */ = {isa = PBXBuildFile; fileRef = D82540F319650A1C00C876C3 /* tutorial_core.pb */; };
+		D89191F11963163B006B616A /* StageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D89191F01963163B006B616A /* StageCell.m */; };
+		D89191F21963163B006B616A /* StageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D89191F01963163B006B616A /* StageCell.m */; };
+		D89191F31963163B006B616A /* StageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D89191F01963163B006B616A /* StageCell.m */; };
+		D89191F41963163B006B616A /* StageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D89191F01963163B006B616A /* StageCell.m */; };
+		D89191FB196316C2006B616A /* StageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D89191FA196316C2006B616A /* StageCell.xib */; };
+		D89191FC196316C2006B616A /* StageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D89191FA196316C2006B616A /* StageCell.xib */; };
+		D89191FD196316C2006B616A /* StageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D89191FA196316C2006B616A /* StageCell.xib */; };
+		D89191FE196316C2006B616A /* StageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D89191FA196316C2006B616A /* StageCell.xib */; };
 		EA038975183B06D300516952 /* GroupTopicController.m in Sources */ = {isa = PBXBuildFile; fileRef = EA038973183B06D300516952 /* GroupTopicController.m */; };
 		EA038976183B06D300516952 /* GroupTopicController.m in Sources */ = {isa = PBXBuildFile; fileRef = EA038973183B06D300516952 /* GroupTopicController.m */; };
 		EA038977183B06D300516952 /* GroupTopicController.m in Sources */ = {isa = PBXBuildFile; fileRef = EA038973183B06D300516952 /* GroupTopicController.m */; };
@@ -10460,6 +10500,20 @@
 		CAFEFEF8166072AB00441D77 /* DrawColor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DrawColor.m; sourceTree = "<group>"; };
 		CAFEFEF9166072AB00441D77 /* DrawUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DrawUtils.h; sourceTree = "<group>"; };
 		CAFEFEFA166072AB00441D77 /* DrawUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DrawUtils.m; sourceTree = "<group>"; };
+		D81962371962675600B4FBAF /* AllTutorialCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AllTutorialCell.h; sourceTree = "<group>"; };
+		D81962381962675600B4FBAF /* AllTutorialCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AllTutorialCell.m; sourceTree = "<group>"; };
+		D81962401962677B00B4FBAF /* AllTutorialCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AllTutorialCell.xib; sourceTree = "<group>"; };
+		D819624519629D4C00B4FBAF /* TutorialInfoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TutorialInfoCell.h; sourceTree = "<group>"; };
+		D819624619629D4C00B4FBAF /* TutorialInfoCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TutorialInfoCell.m; sourceTree = "<group>"; };
+		D819624719629D4C00B4FBAF /* TutorialInfoCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TutorialInfoCell.xib; sourceTree = "<group>"; };
+		D81962501962AA8700B4FBAF /* StageBasicInfoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StageBasicInfoCell.h; sourceTree = "<group>"; };
+		D81962511962AA8700B4FBAF /* StageBasicInfoCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StageBasicInfoCell.m; sourceTree = "<group>"; };
+		D81962521962AA8700B4FBAF /* StageBasicInfoCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = StageBasicInfoCell.xib; sourceTree = "<group>"; };
+		D82540F219650A1C00C876C3 /* tutorial_core_version.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = tutorial_core_version.txt; sourceTree = "<group>"; };
+		D82540F319650A1C00C876C3 /* tutorial_core.pb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = tutorial_core.pb; sourceTree = "<group>"; };
+		D89191EF1963163B006B616A /* StageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StageCell.h; sourceTree = "<group>"; };
+		D89191F01963163B006B616A /* StageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StageCell.m; sourceTree = "<group>"; };
+		D89191FA196316C2006B616A /* StageCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = StageCell.xib; sourceTree = "<group>"; };
 		EA038972183B06D300516952 /* GroupTopicController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GroupTopicController.h; sourceTree = "<group>"; };
 		EA038973183B06D300516952 /* GroupTopicController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GroupTopicController.m; sourceTree = "<group>"; };
 		EA038974183B06D300516952 /* GroupTopicController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GroupTopicController.xib; sourceTree = "<group>"; };
@@ -14924,6 +14978,18 @@
 				CA2A28DD195C1E6200A97478 /* AllTutorialController.h */,
 				CA2A28DE195C1E6200A97478 /* AllTutorialController.m */,
 				CA2A28DF195C1E6200A97478 /* AllTutorialController.xib */,
+				D81962371962675600B4FBAF /* AllTutorialCell.h */,
+				D81962381962675600B4FBAF /* AllTutorialCell.m */,
+				D81962401962677B00B4FBAF /* AllTutorialCell.xib */,
+				D819624519629D4C00B4FBAF /* TutorialInfoCell.h */,
+				D819624619629D4C00B4FBAF /* TutorialInfoCell.m */,
+				D819624719629D4C00B4FBAF /* TutorialInfoCell.xib */,
+				D81962501962AA8700B4FBAF /* StageBasicInfoCell.h */,
+				D81962511962AA8700B4FBAF /* StageBasicInfoCell.m */,
+				D81962521962AA8700B4FBAF /* StageBasicInfoCell.xib */,
+				D89191EF1963163B006B616A /* StageCell.h */,
+				D89191F01963163B006B616A /* StageCell.m */,
+				D89191FA196316C2006B616A /* StageCell.xib */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -14944,6 +15010,8 @@
 		CA2A28A7195C120600A97478 /* Resource */ = {
 			isa = PBXGroup;
 			children = (
+				D82540F219650A1C00C876C3 /* tutorial_core_version.txt */,
+				D82540F319650A1C00C876C3 /* tutorial_core.pb */,
 			);
 			path = Resource;
 			sourceTree = "<group>";
@@ -18458,6 +18526,7 @@
 				A461B559174CBAA70088B061 /* DrawHomeHeaderPanel.xib in Resources */,
 				A461B567174CBAA70088B061 /* CommonDialog.xib in Resources */,
 				A461B568174CBAA70088B061 /* CommonDialog~ipad.xib in Resources */,
+				D89191FD196316C2006B616A /* StageCell.xib in Resources */,
 				A461B569174CBAA70088B061 /* CommonDiceDialog.xib in Resources */,
 				A461B56A174CBAA70088B061 /* CommonDiceDialog~ipad.xib in Resources */,
 				A461B56B174CBAA70088B061 /* CommonMessageView.xib in Resources */,
@@ -18537,6 +18606,7 @@
 				A461B733174CBAA70088B061 /* StoreController.xib in Resources */,
 				A461B734174CBAA70088B061 /* ColorShopCell.xib in Resources */,
 				A461B735174CBAA70088B061 /* ColorShopCell~ipad.xib in Resources */,
+				D82540F619650A1C00C876C3 /* tutorial_core_version.txt in Resources */,
 				A461B736174CBAA70088B061 /* GameItemDetailView.xib in Resources */,
 				A461B737174CBAA70088B061 /* ChargeController.xib in Resources */,
 				A461B738174CBAA70088B061 /* ChargeCell.xib in Resources */,
@@ -18739,6 +18809,7 @@
 				A4D8FA8B17DB08170085061F /* room_title_bg@2x.png in Resources */,
 				A4D8FA8F17DB08170085061F /* face_anger@2x.png in Resources */,
 				A4D8FA9317DB08170085061F /* face_embarrass@2x.png in Resources */,
+				D81962431962677B00B4FBAF /* AllTutorialCell.xib in Resources */,
 				A4D8FA9717DB08170085061F /* face_proud@2x.png in Resources */,
 				A4D8FA9B17DB08170085061F /* guessed@2x.png in Resources */,
 				A4D8FA9F17DB08170085061F /* my_paint_tag@2x.png in Resources */,
@@ -18827,6 +18898,7 @@
 				A4D8FBDB17DB08170085061F /* toolbox@2x.png in Resources */,
 				A4D8FBDF17DB08170085061F /* tools_cart@2x.png in Resources */,
 				A4D8FBEF17DB08170085061F /* user_detail_avatar_bg_ipad@2x.png in Resources */,
+				D81962591962AA8700B4FBAF /* StageBasicInfoCell.xib in Resources */,
 				A4D8FBF317DB08170085061F /* user_detail_btn_bg@2x.png in Resources */,
 				A4D8FBF717DB08170085061F /* user_detail_button@2x.png in Resources */,
 				A4D8FBFB17DB08170085061F /* user_detail_draw_to@2x.png in Resources */,
@@ -18858,6 +18930,7 @@
 				A4D8FD4D17DB089C0085061F /* common_dialog_close_btn@2x.png_bak.png in Resources */,
 				A4D8FD5117DB089C0085061F /* dialogue@2x.png in Resources */,
 				A4D8FD5517DB089C0085061F /* color_box_button@2x.png in Resources */,
+				D819624E19629D4C00B4FBAF /* TutorialInfoCell.xib in Resources */,
 				A4D8FD5917DB089C0085061F /* color_box_split@2x.png in Resources */,
 				A4D8FD5D17DB089C0085061F /* drawlayer_delete@2x.png in Resources */,
 				CACD6B0318E03A2D003F97C0 /* ShareSDKiPadDefaultShareViewUI.bundle in Resources */,
@@ -18964,6 +19037,7 @@
 				A4D8FF0117DB089C0085061F /* common_home_badge@2x.png in Resources */,
 				A4D8FF0517DB089C0085061F /* common_home_bbs@2x.png in Resources */,
 				A4D8FF0D17DB089C0085061F /* common_home_friend@2x.png in Resources */,
+				D82540FA19650A1C00C876C3 /* tutorial_core.pb in Resources */,
 				A4D8FF1117DB089C0085061F /* common_home_front_page@2x.png in Resources */,
 				A4D8FF1517DB089C0085061F /* common_home_home@2x.png in Resources */,
 				A4D8FF1917DB089C0085061F /* common_home_me@2x.png in Resources */,
@@ -19359,6 +19433,7 @@
 				C28A9D921738F04B007A819F /* FeedCell~ipad.xib in Resources */,
 				CA926BAB18A8C950002C73B4 /* disable_notice_on.png in Resources */,
 				C28A9D931738F04B007A819F /* UserInfoCell.xib in Resources */,
+				D819624D19629D4C00B4FBAF /* TutorialInfoCell.xib in Resources */,
 				C28A9D941738F04B007A819F /* UserInfoCell~ipad.xib in Resources */,
 				C28A9D951738F04B007A819F /* CommentController.xib in Resources */,
 				C28A9D961738F04B007A819F /* CommentController~ipad.xib in Resources */,
@@ -19417,6 +19492,7 @@
 				C28A9DF91738F04B007A819F /* bbs_switch_right@2x.png in Resources */,
 				C28A9DFA1738F04B007A819F /* bbs_back@2x.png in Resources */,
 				C28A9DFC1738F04B007A819F /* BBSBoardCell~ipad.xib in Resources */,
+				D81962581962AA8700B4FBAF /* StageBasicInfoCell.xib in Resources */,
 				C28A9DFD1738F04B007A819F /* BBSBoardSection~ipad.xib in Resources */,
 				C28A9DFE1738F04B007A819F /* bbs_post_comment@2x.png in Resources */,
 				C28A9DFF1738F04B007A819F /* bbs_post_content_bg@2x.png in Resources */,
@@ -19472,6 +19548,7 @@
 				C28A9E4B1738F04B007A819F /* CommonMessageView~ipad.xib in Resources */,
 				C28A9E4C1738F04B007A819F /* CommonStarryDialog.xib in Resources */,
 				C28A9E4D1738F04B007A819F /* CommonStarryDialog~ipad.xib in Resources */,
+				D82540F519650A1C00C876C3 /* tutorial_core_version.txt in Resources */,
 				C28A9E4E1738F04B007A819F /* CommonUserInfoView.xib in Resources */,
 				C28A9E4F1738F04B007A819F /* CommonUserInfoView~ipad.xib in Resources */,
 				C28A9E501738F04B007A819F /* CommonZJHDialog.xib in Resources */,
@@ -19512,6 +19589,7 @@
 				CA93D12D18F008FA002BB805 /* RennSDK.bundle in Resources */,
 				C28A9F421738F04B007A819F /* DraftsView~ipad.xib in Resources */,
 				C28A9F491738F04B007A819F /* ColorBox.xib in Resources */,
+				D89191FC196316C2006B616A /* StageCell.xib in Resources */,
 				C28A9F4A1738F04B007A819F /* ColorBox~ipad.xib in Resources */,
 				C28A9F4E1738F04B007A819F /* Palette.xib in Resources */,
 				C28A9F4F1738F04B007A819F /* Palette~ipad.xib in Resources */,
@@ -20281,6 +20359,8 @@
 				EA68D5111893C4A5003EB69A /* pen_show_fun3@2x.png in Resources */,
 				EA68D5151893C4A5003EB69A /* pen_show_fun4@2x.png in Resources */,
 				EA68D5191893C4A5003EB69A /* pen_show_fun5@2x.png in Resources */,
+				D81962421962677B00B4FBAF /* AllTutorialCell.xib in Resources */,
+				D82540F919650A1C00C876C3 /* tutorial_core.pb in Resources */,
 				EA68D5221893C503003EB69A /* pen_fun1@2x.png in Resources */,
 				EA68D5261893C503003EB69A /* pen_fun2@2x.png in Resources */,
 				EA68D52A1893C503003EB69A /* pen_fun3@2x.png in Resources */,
@@ -20617,6 +20697,7 @@
 				C2C18ADD1762C2C400DE933B /* UserPhotoView.xib in Resources */,
 				CACD6B0118E03A2D003F97C0 /* ShareSDKiPadDefaultShareViewUI.bundle in Resources */,
 				A4364368176706A4006B6946 /* Opus.proto in Resources */,
+				D81962571962AA8700B4FBAF /* StageBasicInfoCell.xib in Resources */,
 				C2773FDE176998E300929AE3 /* GalleryController~ipad.xib in Resources */,
 				C2773FEB176998F200929AE3 /* UserPhotoView~ipad.xib in Resources */,
 				C2773FEF176998F200929AE3 /* PhotoEditView~ipad.xib in Resources */,
@@ -20658,6 +20739,7 @@
 				CA2614C41793ACD0007D5462 /* filter.txt in Resources */,
 				CABEC6B917968F0B006F89BB /* CommonSearchView.xib in Resources */,
 				CABEC6BE17968F0B006F89BB /* CommonSearchView~ipad.xib in Resources */,
+				D82540F419650A1C00C876C3 /* tutorial_core_version.txt in Resources */,
 				CABEC6EE17969462006F89BB /* FreeIngotCell.xib in Resources */,
 				CABEC6F317969462006F89BB /* FreeIngotCell~ipad.xib in Resources */,
 				CABEC6FD17969462006F89BB /* FreeIngotController.xib in Resources */,
@@ -20668,6 +20750,7 @@
 				A4B789B3179E2F120008E21B /* GuessSelectController.xib in Resources */,
 				CA51834F179F79570033AA95 /* GetNewNumberViewController.xib in Resources */,
 				A4B78A6D179FA6F10008E21B /* GuessRankListController.xib in Resources */,
+				D82540F819650A1C00C876C3 /* tutorial_core.pb in Resources */,
 				CA518384179FB6340033AA95 /* ShakeNumberController.xib in Resources */,
 				A4C9E03917A61B4200DE982F /* GuessRankCell.xib in Resources */,
 				CAF4897917AA736900F015AB /* ToolPanel.xib in Resources */,
@@ -20680,6 +20763,7 @@
 				CA0174EF19405360005E4390 /* opusclass.json in Resources */,
 				A440356117C5C96B00301EDD /* GuessSelectController~ipad.xib in Resources */,
 				A440356817C5CC9800301EDD /* DrawGuessController~ipad.xib in Resources */,
+				D81962411962677B00B4FBAF /* AllTutorialCell.xib in Resources */,
 				A440356C17C5CC9800301EDD /* GuessRankCell~ipad.xib in Resources */,
 				A440357017C5CC9800301EDD /* GuessRankListController~ipad.xib in Resources */,
 				A440357517C5FD3000301EDD /* WordSelectCell~ipad.xib in Resources */,
@@ -20795,6 +20879,7 @@
 				A4D8FACD17DB08170085061F /* guess_rank@2x.png in Resources */,
 				A4D8FAD117DB08170085061F /* guess_rank_bg@2x.jpg in Resources */,
 				CA926BAE18A8C950002C73B4 /* disable_notice_off.png in Resources */,
+				D89191FB196316C2006B616A /* StageCell.xib in Resources */,
 				A4D8FAD517DB08170085061F /* guess_rank_list@2x.png in Resources */,
 				A4D8FAD917DB08170085061F /* guess_rules@2x.png in Resources */,
 				A4D8FADD17DB08170085061F /* guess_select_bg@2x.jpg in Resources */,
@@ -21282,6 +21367,7 @@
 				CAD8EE3A189222930057EC30 /* PurchaseVipController.xib in Resources */,
 				CAD8EE4618922F840057EC30 /* vip_buy_button@2x.png in Resources */,
 				CAD8EE4A18922F840057EC30 /* vip_title_ipad@2x.png in Resources */,
+				D819624C19629D4C00B4FBAF /* TutorialInfoCell.xib in Resources */,
 				CAD8EE4E18922F840057EC30 /* vip_title_iphone@2x.png in Resources */,
 				CAD8EE5218922F840057EC30 /* vip_v@2x.png in Resources */,
 				EA68D4F71893B600003EB69A /* PurchaseVipController~ipad.xib in Resources */,
@@ -21441,6 +21527,7 @@
 				EA411C44176066F500DA72D0 /* bbs_board_line@2x.png in Resources */,
 				EA411C47176066F500DA72D0 /* bbs_section_bg@2x.png in Resources */,
 				EA411C48176066F500DA72D0 /* bbs_switch_bg@2x.png in Resources */,
+				D82540F719650A1C00C876C3 /* tutorial_core_version.txt in Resources */,
 				EA411C49176066F500DA72D0 /* bbs_switch_down@2x.png in Resources */,
 				EA411C4A176066F500DA72D0 /* bbs_switch_right@2x.png in Resources */,
 				EA411C4B176066F500DA72D0 /* bbs_back@2x.png in Resources */,
@@ -21449,6 +21536,7 @@
 				EA411C4F176066F500DA72D0 /* bbs_post_comment@2x.png in Resources */,
 				EA411C50176066F500DA72D0 /* bbs_post_content_bg@2x.png in Resources */,
 				EA411C51176066F500DA72D0 /* bbs_post_edit@2x.png in Resources */,
+				D82540FB19650A1C00C876C3 /* tutorial_core.pb in Resources */,
 				EA411C52176066F500DA72D0 /* bbs_post_hot@2x.png in Resources */,
 				EA411C53176066F500DA72D0 /* bbs_post_reward@2x.png in Resources */,
 				EA411C54176066F500DA72D0 /* bbs_post_support@2x.png in Resources */,
@@ -21725,6 +21813,7 @@
 				CA7DE79D192BAD3200EED067 /* play1.png in Resources */,
 				A4D8FA0017DB08170085061F /* contest_detail@2x.png in Resources */,
 				A4D8FA0417DB08170085061F /* contest_join@2x.png in Resources */,
+				D819625A1962AA8700B4FBAF /* StageBasicInfoCell.xib in Resources */,
 				A4D8FA0817DB08170085061F /* contest_line@2x.png in Resources */,
 				A4D8FA0C17DB08170085061F /* contest_opus@2x.png in Resources */,
 				A4D8FA1017DB08170085061F /* contest_prize_1@2x.png in Resources */,
@@ -21856,6 +21945,7 @@
 				A4D8FC0C17DB08170085061F /* user_detail_follow@2x.png in Resources */,
 				A4D8FC1017DB08170085061F /* user_detail_follow_bg@2x.png in Resources */,
 				A4D8FC1417DB08170085061F /* user_detail_followandfan@2x.png in Resources */,
+				D81962441962677B00B4FBAF /* AllTutorialCell.xib in Resources */,
 				A4D8FC1817DB08180085061F /* user_detail_gender_female@2x.png in Resources */,
 				A4D8FC1C17DB08180085061F /* user_detail_gender_male@2x.png in Resources */,
 				A4D8FC2017DB08180085061F /* user_detail_message@2x.png in Resources */,
@@ -22078,9 +22168,11 @@
 				EAD13B8217DECFB700764FFB /* orange_loading_full@2x.png in Resources */,
 				A44F32F017E16C5000AF9B26 /* ContestRankView.xib in Resources */,
 				A4D410C717E1945600DE07C6 /* ContestRankView~ipad.xib in Resources */,
+				D89191FE196316C2006B616A /* StageCell.xib in Resources */,
 				EA8EF62317E55D3B003F1AF8 /* draw_home_bottom_split@2x.png in Resources */,
 				EA8EF62717E55D3B003F1AF8 /* draw_home_opus@2x.png in Resources */,
 				EA8EF62B17E55D3B003F1AF8 /* draw_home_shop@2x.png in Resources */,
+				D819624F19629D4C00B4FBAF /* TutorialInfoCell.xib in Resources */,
 				EA8EF62F17E55D3B003F1AF8 /* draw_home_timeline@2x.png in Resources */,
 				EA8EF63317E55D3B003F1AF8 /* draw_home_avatar_bg@2x.png in Resources */,
 				EA8EF63717E55D3B003F1AF8 /* draw_home_displaybg@2x.png in Resources */,
@@ -22553,6 +22645,7 @@
 				CA17826F1962D2480068883A /* DAPagesContainer.m in Sources */,
 				A461B176174CBAA70088B061 /* ChatListController.m in Sources */,
 				A461B177174CBAA70088B061 /* ChatService.m in Sources */,
+				D819624A19629D4C00B4FBAF /* TutorialInfoCell.m in Sources */,
 				A461B178174CBAA70088B061 /* EGORefreshTableFooterView.m in Sources */,
 				A461B179174CBAA70088B061 /* EGORefreshTableHeaderView.m in Sources */,
 				A461B17A174CBAA70088B061 /* Feed.m in Sources */,
@@ -22674,6 +22767,7 @@
 				A461B264174CBAA70088B061 /* ANAvgColorTable.m in Sources */,
 				A461B265174CBAA70088B061 /* ANColorTable.m in Sources */,
 				A461B266174CBAA70088B061 /* ANCutColorTable.m in Sources */,
+				D819623B1962675600B4FBAF /* AllTutorialCell.m in Sources */,
 				A461B267174CBAA70088B061 /* ANMutableColorArray.m in Sources */,
 				A461B268174CBAA70088B061 /* ANGifDataSubblock.m in Sources */,
 				A461B269174CBAA70088B061 /* ANGifImageDescriptor.m in Sources */,
@@ -22871,6 +22965,7 @@
 				A461B378174CBAA70088B061 /* CanvasSizeCommand.m in Sources */,
 				A461B379174CBAA70088B061 /* EditDescCommand.m in Sources */,
 				A461B37A174CBAA70088B061 /* DrawToCommand.m in Sources */,
+				D81962551962AA8700B4FBAF /* StageBasicInfoCell.m in Sources */,
 				A461B37B174CBAA70088B061 /* HelpCommand.m in Sources */,
 				A461B37C174CBAA70088B061 /* ChatCommand.m in Sources */,
 				A461B37D174CBAA70088B061 /* ReflectionView.m in Sources */,
@@ -22913,6 +23008,7 @@
 				CA62C7071756FB8E00C9EF56 /* GameConstants.pb-c.c in Sources */,
 				CA62C7081756FB8E00C9EF56 /* GameMessage.pb-c.c in Sources */,
 				CA62C7091756FB8E00C9EF56 /* Sing.pb-c.c in Sources */,
+				D89191F31963163B006B616A /* StageCell.m in Sources */,
 				CA62C70A1756FB8E00C9EF56 /* ZhaJinHua.pb-c.c in Sources */,
 				CA62C7B817570AF600C9EF56 /* PocketSVG.m in Sources */,
 				A4C8D565175EDFC6007ED7E4 /* OpusService.m in Sources */,
@@ -23411,6 +23507,7 @@
 				C28A9A7B1738F04B007A819F /* Dice.pb.m in Sources */,
 				C28A9A801738F04B007A819F /* CMPopTipView.m in Sources */,
 				C28A9A811738F04B007A819F /* CommonGameSession.m in Sources */,
+				D89191F21963163B006B616A /* StageCell.m in Sources */,
 				C28A9A861738F04B007A819F /* FeedClasses.m in Sources */,
 				C28A9A871738F04B007A819F /* DrawFeed.m in Sources */,
 				C28A9A881738F04B007A819F /* GuessFeed.m in Sources */,
@@ -23474,6 +23571,7 @@
 				C28A9B0B1738F04B007A819F /* PPResourcePackage.m in Sources */,
 				C28A9B0C1738F04B007A819F /* PPResourcePackageDownloadRequest.m in Sources */,
 				C28A9B0D1738F04B007A819F /* PPResourcePackageManager.m in Sources */,
+				D81962541962AA8700B4FBAF /* StageBasicInfoCell.m in Sources */,
 				C28A9B0E1738F04B007A819F /* PPResourceSearchService.m in Sources */,
 				C28A9B0F1738F04B007A819F /* PPResourceService.m in Sources */,
 				C28A9B101738F04B007A819F /* PPResourceTestViewController.m in Sources */,
@@ -23573,6 +23671,7 @@
 				C28A9BA51738F04B007A819F /* CommonUserInfoView.m in Sources */,
 				C28A9BA61738F04B007A819F /* DrawUserInfoView.m in Sources */,
 				C28A9BA81738F04B007A819F /* PassWordDialog.m in Sources */,
+				D819623A1962675600B4FBAF /* AllTutorialCell.m in Sources */,
 				C28A9BA91738F04B007A819F /* RoomPasswordDialog.m in Sources */,
 				C28A9BB01738F04B007A819F /* CommonSettingView.m in Sources */,
 				C28A9BB41738F04B007A819F /* BulletinCell.m in Sources */,
@@ -23957,6 +24056,7 @@
 				CA9AB01518321621002DBAA5 /* ItemUseRecorder.m in Sources */,
 				CACD6CE318E03BCD003F97C0 /* AlixPayOrderManager.m in Sources */,
 				CA9AB01918321621002DBAA5 /* OpusGuessRecorder.m in Sources */,
+				D819624919629D4C00B4FBAF /* TutorialInfoCell.m in Sources */,
 				CACD6D2018E03C40003F97C0 /* DiracAudioPlayer.mm in Sources */,
 				CA9AB01D18321621002DBAA5 /* SongService.m in Sources */,
 				CA9AB02118321621002DBAA5 /* NameAndDescEditView.m in Sources */,
@@ -24252,6 +24352,7 @@
 				CA91FC7F15C27BE700E9C1CD /* CommonGameNetworkClient.m in Sources */,
 				CA91FC8215C27BF700E9C1CD /* CommonGameNetworkService.m in Sources */,
 				A44DDF4415C669E0005609F6 /* Dice.pb.m in Sources */,
+				D89191F11963163B006B616A /* StageCell.m in Sources */,
 				A45E8CE315C780570089E240 /* CMPopTipView.m in Sources */,
 				CA963A5615C7C5A8007ACFB9 /* CommonGameSession.m in Sources */,
 				CA18D3FF15CFACD3001B421A /* FeedClasses.m in Sources */,
@@ -24315,6 +24416,7 @@
 				CA1882C41648C94B000942D6 /* MessageStat.m in Sources */,
 				CA7AFD04164E05A10039E07F /* ImplicitDownloadService.m in Sources */,
 				CA7AFD05164E05A10039E07F /* PPResourcePackage.m in Sources */,
+				D81962531962AA8700B4FBAF /* StageBasicInfoCell.m in Sources */,
 				CA7AFD06164E05A10039E07F /* PPResourcePackageDownloadRequest.m in Sources */,
 				CA7AFD07164E05A10039E07F /* PPResourcePackageManager.m in Sources */,
 				CA7AFD08164E05A10039E07F /* PPResourceSearchService.m in Sources */,
@@ -24414,6 +24516,7 @@
 				C2B5382C1677712300725802 /* CommonRoundAvatarView.m in Sources */,
 				C2B5382D1677712300725802 /* CommonSnsInfoView.m in Sources */,
 				C2B538301677712300725802 /* CommonUserInfoView.m in Sources */,
+				D81962391962675600B4FBAF /* AllTutorialCell.m in Sources */,
 				C2B5383B1677712300725802 /* DrawUserInfoView.m in Sources */,
 				C2B538411677712300725802 /* PassWordDialog.m in Sources */,
 				C2B538441677712300725802 /* RoomPasswordDialog.m in Sources */,
@@ -24798,6 +24901,7 @@
 				CA9AAF2818321621002DBAA5 /* SingController.m in Sources */,
 				CACD6CE218E03BCD003F97C0 /* AlixPayOrderManager.m in Sources */,
 				CA9AAF3418321621002DBAA5 /* SingInfoEditController.m in Sources */,
+				D819624819629D4C00B4FBAF /* TutorialInfoCell.m in Sources */,
 				CACD6D1F18E03C40003F97C0 /* DiracAudioPlayer.mm in Sources */,
 				CA9AAF4018321621002DBAA5 /* SongCell.m in Sources */,
 				CA9AAF4C18321621002DBAA5 /* SongSearchController.m in Sources */,
@@ -24981,6 +25085,7 @@
 				EA4118A3176066F500DA72D0 /* SelectWordController.m in Sources */,
 				EA4118A4176066F500DA72D0 /* GameSession.m in Sources */,
 				EA4118A5176066F500DA72D0 /* GameSessionManager.m in Sources */,
+				D819623C1962675600B4FBAF /* AllTutorialCell.m in Sources */,
 				EA4118A6176066F500DA72D0 /* GameBasic.pb.m in Sources */,
 				EA4118A7176066F500DA72D0 /* GameMessage.pb.m in Sources */,
 				CA0174FD194055FD005E4390 /* OpusClassInfo.m in Sources */,
@@ -25042,6 +25147,7 @@
 				EA4118E3176066F500DA72D0 /* PPConfigManager.m in Sources */,
 				EA4118E4176066F500DA72D0 /* SuperGameViewController.m in Sources */,
 				EA4118E5176066F500DA72D0 /* AudioManager.m in Sources */,
+				D89191F41963163B006B616A /* StageCell.m in Sources */,
 				CACD6CB918E03BCD003F97C0 /* AlixPayOrder.m in Sources */,
 				EA4118E6176066F500DA72D0 /* Friend.m in Sources */,
 				EA4118E7176066F500DA72D0 /* FriendManager.m in Sources */,
@@ -25096,6 +25202,7 @@
 				EA411926176066F500DA72D0 /* CommonGameSession.m in Sources */,
 				EA411929176066F500DA72D0 /* FeedClasses.m in Sources */,
 				EA41192A176066F500DA72D0 /* DrawFeed.m in Sources */,
+				D819624B19629D4C00B4FBAF /* TutorialInfoCell.m in Sources */,
 				EA41192B176066F500DA72D0 /* GuessFeed.m in Sources */,
 				EA41192C176066F500DA72D0 /* CommentFeed.m in Sources */,
 				EA41192D176066F500DA72D0 /* DrawToUserFeed.m in Sources */,
@@ -25636,6 +25743,7 @@
 				CA5D9D54183E3C0200BD820C /* DOUAudioAnalyzer+Default.m in Sources */,
 				CA5D9D58183E3C0200BD820C /* DOUAudioAnalyzer.m in Sources */,
 				CA5D9D5C183E3C0200BD820C /* DOUAudioDecoder.m in Sources */,
+				D81962561962AA8700B4FBAF /* StageBasicInfoCell.m in Sources */,
 				CA5D9D60183E3C0200BD820C /* DOUAudioEventLoop.m in Sources */,
 				CA5D9D64183E3C0200BD820C /* DOUAudioFilePreprocessor.m in Sources */,
 				CA5D9D68183E3C0200BD820C /* DOUAudioFileProvider.m in Sources */,

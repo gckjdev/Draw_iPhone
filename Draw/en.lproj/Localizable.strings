@@ -2728,5 +2728,12 @@
 
 "kUserTutorialMainTitle" = "Tutorial";
 "kAddTutorial" = "Add";
+"AllTutorial" = "AddTurorial";
+"kTutorialInfoTitle" = "Tutorial Details";
+"kLearnNow" = "Learn";
+"kAddToLearn" = "Add";
+"kOpenToLearn" = "Play";
+
+
 "kNewHotTitle" = "Gallery";
 "kConfigNewHot" = "Setttings";

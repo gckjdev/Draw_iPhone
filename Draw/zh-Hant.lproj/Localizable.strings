@@ -2757,3 +2757,6 @@
 "kEditOpusClass" = "設置作品分類/標籤";
 
 // TODO 繁体
+"kUserTutorialMainTitle" = "學畫畫";
+"kAddTutorial" = "添加";
+"AllTutorial" = "添加教程";
