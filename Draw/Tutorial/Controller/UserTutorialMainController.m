@@ -99,6 +99,8 @@
     }
     
     NSUInteger row = [indexPath row];
+    
+    
     PBUserTutorial* ut = [self.dataList objectAtIndex:row];
     [cell updateCellInfo:ut];
     

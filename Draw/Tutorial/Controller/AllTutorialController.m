@@ -92,7 +92,6 @@
         cell = [tableView dequeueReusableCellWithIdentifier:CustomCellIdentifier];
     }
     
-    cell.backgroundColor = [UIColor brownColor];
     NSUInteger row = [indexPath row];
 
     PBTutorial* pbTutorial = [self getTutorialByRow:row];

@@ -13,13 +13,16 @@
                 <rect key="frame" x="0.0" y="0.0" width="320" height="78"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="LWl-3k-Pwp">
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="LWl-3k-Pwp">
                         <rect key="frame" x="20" y="0.0" width="280" height="58"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                     </imageView>
-                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="简笔画" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AVB-UF-Fo1">
+                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="简笔画" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AVB-UF-Fo1">
                         <rect key="frame" x="20" y="57" width="132" height="21"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="132" id="xE2-wU-vcu"/>
+                        </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                         <nil key="highlightedColor"/>
@@ -33,11 +36,17 @@
                     </label>
                 </subviews>
                 <constraints>
+                    <constraint firstItem="AVB-UF-Fo1" firstAttribute="leading" secondItem="LWl-3k-Pwp" secondAttribute="leading" id="42D-M6-pjY"/>
                     <constraint firstAttribute="trailing" secondItem="LWl-3k-Pwp" secondAttribute="trailing" id="Dzt-gg-BGF"/>
                     <constraint firstItem="e2n-cV-Vob" firstAttribute="trailing" secondItem="LWl-3k-Pwp" secondAttribute="trailing" id="Exe-dh-j6T"/>
                     <constraint firstItem="LWl-3k-Pwp" firstAttribute="leading" secondItem="dB4-Ko-gd6" secondAttribute="leading" id="PVg-qt-fct"/>
+                    <constraint firstAttribute="bottom" secondItem="LWl-3k-Pwp" secondAttribute="bottom" constant="20" symbolic="YES" id="VQX-Rk-kTf"/>
+                    <constraint firstItem="AVB-UF-Fo1" firstAttribute="baseline" secondItem="e2n-cV-Vob" secondAttribute="baseline" id="Xz9-Rm-9Ah"/>
+                    <constraint firstItem="e2n-cV-Vob" firstAttribute="leading" secondItem="AVB-UF-Fo1" secondAttribute="trailing" constant="10" id="dHg-7V-mca"/>
+                    <constraint firstItem="e2n-cV-Vob" firstAttribute="top" secondItem="AVB-UF-Fo1" secondAttribute="top" id="eOe-B9-Pwa"/>
                     <constraint firstItem="LWl-3k-Pwp" firstAttribute="top" secondItem="dB4-Ko-gd6" secondAttribute="top" id="j2o-fT-qIB"/>
                     <constraint firstAttribute="bottom" secondItem="e2n-cV-Vob" secondAttribute="bottom" id="lLh-Mo-tF6"/>
+                    <constraint firstItem="AVB-UF-Fo1" firstAttribute="top" secondItem="dB4-Ko-gd6" secondAttribute="top" constant="57" id="wXH-2Z-KCV"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>

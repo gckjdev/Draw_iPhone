@@ -163,13 +163,19 @@ static UserTutorialManager* _defaultManager;
     return nil;
 }
 
-- (PBTutorial*)createTestTutorial
-{
-    PBTutorial_Builder* builder = [PBTutorial builder];
-    [builder setTutorialId:@"testId2"];
-    [builder setCnName:@"测试教程2"];
-    return [builder build];
-}
+//- (PBTutorial*)createTestTutorial
+//{
+//    PBTutorial_Builder* builder = [PBTutorial builder];
+//    [builder setTutorialId:@"testId2"];
+//    [builder setCnName:@"测试教程2"];
+//    
+//    //默认的小图片
+//    NSString *imageUrl = @"http://image226-c.poco.cn/mypoco/myphoto/20140312/20/5274901820140312205602029_640.jpg";
+//    [builder setThumbImage:imageUrl];
+//    
+//    
+//    return [builder build];
+//}
 
 - (void)syncUserTutorial:(NSString*)utLocalId syncStatus:(BOOL)syncStatus
 {
@@ -202,10 +208,8 @@ static UserTutorialManager* _defaultManager;
 //#ifdef DEBUG
 //    // for test
 //    if ([list count] == 0){
-//        for (int i=0; i<20; i++) {
 //            PBTutorial* tutorial = [self createTestTutorial];
 //            [self addTutorial:tutorial];
-//        }
 //        
 //        list = [[self getDb] allObjects];
 //    }

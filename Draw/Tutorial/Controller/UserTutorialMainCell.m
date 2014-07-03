@@ -9,6 +9,8 @@
 #import "UserTutorialMainCell.h"
 #import "TimeUtils.h"
 #import "PBTutorial+Extend.h"
+#import "UIImageView+Extend.h"
+#import "Tutorial.pb.h"
 
 #define TUTORIAL_IMAGE_HEIGHT       (ISIPAD ? 100 : 45)
 
@@ -47,6 +49,13 @@
     [self.tutorialNameLabel setText:ut.tutorial.name];    // TODO 国际化
     NSDate* createDate = [NSDate dateWithTimeIntervalSince1970:ut.createDate];
     self.tutorialDateLabel.text = dateToLocaleString(createDate);
+    
+    UIImage *placeHolderImage = [UIImage imageNamed:@"dialogue@2x"];
+    [_tutorialImageView setImageWithUrl:[NSURL URLWithString:ut.tutorial.image]
+                   placeholderImage:placeHolderImage
+                        showLoading:YES
+                           animated:YES];
+
 }
 
 - (void)dealloc {

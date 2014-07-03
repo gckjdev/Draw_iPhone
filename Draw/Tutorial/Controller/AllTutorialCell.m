@@ -51,11 +51,9 @@
     // TODO localize tutorial name
     self.tutorialName.text = pbTutorial.cnName;
     self.tutorialDesc.text = pbTutorial.cnDesc;
-    
     UIImage *placeHolderImage = [UIImage imageNamed:@"dialogue@2x"];
 
-    NSString* urlString = @"http://avatar.csdn.net/2/C/D/1_totogo2010.jpg"; //pbTutorial.thumbImage;
-    [_tutorialImage setImageWithUrl:[NSURL URLWithString:urlString]
+    [_tutorialImage setImageWithUrl:[NSURL URLWithString:pbTutorial.thumbImage]
                    placeholderImage:placeHolderImage
                         showLoading:YES
                            animated:YES];
