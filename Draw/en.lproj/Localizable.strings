@@ -2737,3 +2737,6 @@
 
 "kNewHotTitle" = "Gallery";
 "kConfigNewHot" = "Setttings";
+
+"kTutorialDesc" = "TutorialDescription";
+"kTutorialStageList" = "StageList";

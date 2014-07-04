@@ -61,11 +61,18 @@ static UserTutorialService* _defaultService;
     // 再同步到服务器
     [self syncUserTutorial:ut];
 }
-
+//删除教程
 - (void)deleteUserTutorial:(PBUserTutorial*)ut resultBlock:(UserTutorialServiceResultBlock)resultBlock
 {
-    // TODO
+   
+     [[UserTutorialManager defaultManager] delete:ut];
+    
+    EXECUTE_BLOCK(resultBlock, 0);
+    [self syncUserTutorial:ut];
+    
 }
+
+
 
 // 用户下载教程所有关卡数据
 - (void)downloadTutorial:(PBTutorial*)tutorial resultBlock:(UserTutorialServiceResultBlock)resultBlock

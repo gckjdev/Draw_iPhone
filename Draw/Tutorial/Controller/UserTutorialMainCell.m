@@ -21,17 +21,17 @@
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
         // Initialization code
-        SET_VIEW_ROUND_CORNER(self.contentView);
+        SET_VIEW_ROUND_CORNER(self);
         
-        NSLayoutConstraint* constraint = [NSLayoutConstraint constraintWithItem:self.tutorialImageView
-                                                                      attribute:NSLayoutAttributeBottom
-                                                                      relatedBy:NSLayoutRelationEqual
-                                                                         toItem:nil
-                                                                      attribute:nil
-                                                                     multiplier:1.0
-                                                                       constant:TUTORIAL_IMAGE_HEIGHT];
-        
-        [self.contentView addConstraint:constraint];
+//        NSLayoutConstraint* constraint = [NSLayoutConstraint constraintWithItem:self.tutorialImageView
+//                                                                      attribute:NSLayoutAttributeBottom
+//                                                                      relatedBy:NSLayoutRelationEqual
+//                                                                         toItem:nil
+//                                                                      attribute:nil
+//                                                                     multiplier:1.0
+//                                                                       constant:TUTORIAL_IMAGE_HEIGHT];
+//        
+//        [self.contentView addConstraint:constraint];
         
     }
     return self;
@@ -46,15 +46,21 @@
 
 - (void)updateCellInfo:(PBUserTutorial*)ut
 {
+    SET_BUTTON_ROUND_STYLE_ORANGE(self.tutorialStartBtn);
+    self.contentView.backgroundColor = [UIColor clearColor];
+    
     [self.tutorialNameLabel setText:ut.tutorial.name];    // TODO 国际化
     NSDate* createDate = [NSDate dateWithTimeIntervalSince1970:ut.createDate];
     self.tutorialDateLabel.text = dateToLocaleString(createDate);
     
     UIImage *placeHolderImage = [UIImage imageNamed:@"dialogue@2x"];
+//    _tutorialImageView.contentMode = UIViewContentModeScaleAspectFit;
     [_tutorialImageView setImageWithUrl:[NSURL URLWithString:ut.tutorial.image]
                    placeholderImage:placeHolderImage
                         showLoading:YES
                            animated:YES];
+    
+    SET_VIEW_ROUND_CORNER(self.tutorialImageView);
 
 }
 
@@ -62,6 +68,8 @@
     [_tutorialNameLabel release];
     [_tutorialImageView release];
     [_tutorialDateLabel release];
+    [_tutorialStartBtn release];
+    [_UIImageViewUpView release];
     [super dealloc];
 }
 

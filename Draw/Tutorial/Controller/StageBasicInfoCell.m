@@ -7,6 +7,7 @@
 //
 
 #import "StageBasicInfoCell.h"
+#import "UIImageView+Extend.h"
 
 @implementation StageBasicInfoCell
 #define Task_IMAGE_HEIGHT       (ISIPAD ? 100 : 45)
@@ -27,21 +28,49 @@
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
         // Initialization code
-        SET_VIEW_ROUND_CORNER(self.contentView);
         
-        NSLayoutConstraint* constraint = [NSLayoutConstraint constraintWithItem:self.taskImage
-                                                                      attribute: NSLayoutAttributeBottom
-                                                                      relatedBy:NSLayoutRelationEqual
-                                                                         toItem:nil
-                                                                      attribute:nil
-                                                                     multiplier:1.0
-                                                                       constant:Task_IMAGE_HEIGHT];
-        
-        [self.contentView addConstraint:constraint];
+//        NSLayoutConstraint* constraint = [NSLayoutConstraint constraintWithItem:self.taskImage
+//                                                                      attribute: NSLayoutAttributeBottom
+//                                                                      relatedBy:NSLayoutRelationEqual
+//                                                                         toItem:nil
+//                                                                      attribute:nil
+//                                                                     multiplier:1.0
+//                                                                       constant:Task_IMAGE_HEIGHT];
+//        
+//        [self.contentView addConstraint:constraint];
         
     }
     return self;
 }
+
+-(void)updateStageCellInfo:(PBStage*)pbStage WithRow:(NSInteger)row{
+    
+    self.taskName.font = AD_BOLD_FONT(25, 13);
+    self.taskName.textColor = COLOR_BROWN;
+    
+    self.taskDesc.font = AD_FONT(20, 10);
+    self.taskDesc.textColor = COLOR_GRAY_TEXT;
+    
+    self.taskNumber.font = AD_BOLD_FONT(50, 26);
+    self.taskNumber.textColor = COLOR_GRAY_AVATAR;
+    
+    self.taskName.text = pbStage.cnName;
+    self.taskDesc.text = pbStage.cnDesc;
+    self.taskNumber.text = [NSString stringWithFormat:@"%d", row+1];
+    UIImage *placeHolderImage = [UIImage imageNamed:@"dialogue@2x"];
+    
+    
+    [_taskImage setImageWithUrl:[NSURL URLWithString:pbStage.thumbImage]
+                   placeholderImage:placeHolderImage
+                        showLoading:YES
+                           animated:YES];
+
+    
+    
+    
+}
+
+
 - (void)dealloc {
     [_taskNumber release];
     [_taskImage release];

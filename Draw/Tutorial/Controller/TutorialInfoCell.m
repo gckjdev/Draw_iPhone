@@ -30,15 +30,15 @@
         // Initialization code
         SET_VIEW_ROUND_CORNER(self.contentView);
         
-        NSLayoutConstraint* constraint = [NSLayoutConstraint constraintWithItem:self.tutorialDescInfo
-                                         attribute: NSLayoutAttributeBottom
-                                                                      relatedBy:NSLayoutRelationEqual
-                                                                         toItem:nil
-                                                                      attribute:nil
-                                                                     multiplier:1.0
-                                                                       constant:Task_IMAGE_HEIGHT];
-        
-        [self.contentView addConstraint:constraint];
+//        NSLayoutConstraint* constraint = [NSLayoutConstraint constraintWithItem:self.tutorialDescInfo
+//                                         attribute: NSLayoutAttributeBottom
+//                                                                      relatedBy:NSLayoutRelationEqual
+//                                                                         toItem:nil
+//                                                                      attribute:nil
+//                                                                     multiplier:1.0
+//                                                                       constant:Task_IMAGE_HEIGHT];
+//        
+//        [self.contentView addConstraint:constraint];
         
     }
     return self;

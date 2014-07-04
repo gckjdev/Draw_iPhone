@@ -242,4 +242,15 @@ static UserTutorialManager* _defaultManager;
     return NO;
 }
 
+-(PBUserTutorial *)getUserTutorialByTutorialId:(NSString*)tutorialId{
+    NSArray* list = [self allUserTutorials];
+    for(PBUserTutorial* ut in list){
+        if([ut.tutorial.tutorialId isEqualToString:tutorialId]){
+            return ut;
+        }
+        
+    }
+    return nil;
+}
+
 @end

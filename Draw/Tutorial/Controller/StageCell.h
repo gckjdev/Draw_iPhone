@@ -7,9 +7,15 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Tutorial.pb.h"
 
+
+@class PBUserTutorial;
 @interface StageCell : UICollectionViewCell
 @property (retain, nonatomic) IBOutlet UIImageView *stageCellImage;
 @property (retain, nonatomic) IBOutlet UILabel *cellName;
+
+-(void)updateStageCellInfo:(PBUserTutorial *)pbUserTutorial withRow:(NSInteger)row;
+@property (retain, nonatomic) IBOutlet UIButton *stageListStarBtn;
 
 @end

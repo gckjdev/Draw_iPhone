@@ -7,35 +7,55 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="TutorialInfoCell" rowHeight="157" id="KGk-i7-Jjw" customClass="TutorialInfoCell">
-            <rect key="frame" x="0.0" y="0.0" width="371" height="90"/>
+            <rect key="frame" x="0.0" y="0.0" width="320" height="150"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="371" height="89"/>
+                <rect key="frame" x="0.0" y="0.0" width="320" height="149"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zAf-cE-cn5">
-                        <rect key="frame" x="9" y="3" width="210" height="25"/>
+                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zAf-cE-cn5">
+                        <rect key="frame" x="20" y="20" width="215" height="25"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="25" id="CY7-Lt-0GV"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="215" translatesAutoresizingMaskIntoConstraints="NO" id="cdc-xu-cA5">
+                        <rect key="frame" x="20" y="46" width="215" height="53"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cdc-xu-cA5">
-                        <rect key="frame" x="9" y="36" width="215" height="53"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                        <nil key="highlightedColor"/>
-                    </label>
-                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="f4G-dN-t7L">
-                        <rect key="frame" x="220" y="3" width="113" height="30"/>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="f4G-dN-t7L">
+                        <rect key="frame" x="187" y="15" width="113" height="30"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="lightTextColor"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="113" id="hP2-KO-54V"/>
+                        </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                        <state key="normal" title="Button"/>
+                        <state key="normal" title="添加教程">
+                            <color key="titleShadowColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                        </state>
                         <connections>
                             <action selector="clickAddBtn:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="6fO-WE-Neg"/>
                         </connections>
                     </button>
                 </subviews>
+                <constraints>
+                    <constraint firstItem="zAf-cE-cn5" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="20" symbolic="YES" id="0cZ-oe-TvP"/>
+                    <constraint firstAttribute="trailing" secondItem="zAf-cE-cn5" secondAttribute="trailing" constant="85" id="5vb-o2-zhp"/>
+                    <constraint firstItem="cdc-xu-cA5" firstAttribute="leading" secondItem="zAf-cE-cn5" secondAttribute="leading" id="8Yw-Ir-cTg"/>
+                    <constraint firstItem="cdc-xu-cA5" firstAttribute="top" secondItem="zAf-cE-cn5" secondAttribute="bottom" constant="1" id="DbJ-0e-h9K"/>
+                    <constraint firstItem="f4G-dN-t7L" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="15" id="GMM-Ns-DZS"/>
+                    <constraint firstItem="zAf-cE-cn5" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" symbolic="YES" id="QuE-Zp-oGc"/>
+                    <constraint firstAttribute="bottom" secondItem="cdc-xu-cA5" secondAttribute="bottom" constant="50" id="SH0-4u-cNA"/>
+                    <constraint firstAttribute="trailing" secondItem="f4G-dN-t7L" secondAttribute="trailing" constant="20" symbolic="YES" id="fOC-1j-fDe"/>
+                    <constraint firstItem="f4G-dN-t7L" firstAttribute="bottom" secondItem="zAf-cE-cn5" secondAttribute="bottom" id="fWi-Uj-k0a"/>
+                    <constraint firstItem="zAf-cE-cn5" firstAttribute="trailing" secondItem="cdc-xu-cA5" secondAttribute="trailing" id="pvi-LP-o4C"/>
+                </constraints>
             </tableViewCellContentView>
             <connections>
                 <outlet property="tutorialAddBtn" destination="f4G-dN-t7L" id="cGT-6C-KUg"/>
