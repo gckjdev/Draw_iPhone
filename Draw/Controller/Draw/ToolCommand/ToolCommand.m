@@ -107,8 +107,10 @@
 - (void)hidePopTipView
 {
     _showing = NO;
-    [self.popTipView dismissAnimated:YES];
-    self.popTipView = nil;
+    if (_popTipView){
+        [self.popTipView dismissAnimated:YES];
+        self.popTipView = nil;
+    }
 }
 
 //need to be override by the sub classes

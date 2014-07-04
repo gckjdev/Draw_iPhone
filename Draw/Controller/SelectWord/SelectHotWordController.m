@@ -218,8 +218,8 @@
 {
     [[AnalyticsManager sharedAnalyticsManager] reportSelectWord:SELECT_WORD_CLICK_TYPE_DRAFT];
 
-    OfflineDrawViewController *vc = [[[OfflineDrawViewController alloc] initWithDraft:draft] autorelease];
-    vc.targetUid = _targetUid;
+    OfflineDrawViewController *vc = [[[OfflineDrawViewController alloc] initWithDraft:draft startController:self] autorelease];
+    draft.targetUserId = _targetUid;
     vc.startController = self.superController;
     [self.navigationController pushViewController:vc animated:YES];
 }

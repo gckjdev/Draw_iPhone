@@ -565,7 +565,9 @@
 
 - (void)showGraffitiView
 {
-    OfflineDrawViewController *odc = [[OfflineDrawViewController alloc] initWithTargetType:TypeGraffiti delegate:self];
+    OfflineDrawViewController *odc = [[OfflineDrawViewController alloc] initWithTargetType:TypeGraffiti
+                                                                                  delegate:self
+                                                                           startController:nil];
     [self presentModalViewController:odc animated:YES];
     [odc release];
 }
@@ -1302,11 +1304,15 @@
 #pragma mark -PhotoDrawSheetDelegate
 - (void)didSelectImage:(UIImage *)image
 {
-    OfflineDrawViewController *odc = [[OfflineDrawViewController alloc] initWithTargetType:TypePhoto delegate:self];
-    odc.bgImage = image;
-    odc.bgImageName = [NSString stringWithFormat:@"%@.png", [NSString GetUUID]];
+    OfflineDrawViewController *odc = [[OfflineDrawViewController alloc] initWithTargetType:TypePhoto
+                                                                                  delegate:self
+                                                                           startController:nil
+                                                                                   Contest:nil
+                                                                              targetUserId:nil
+                                                                                   bgImage:image];
+//    odc.bgImage = image;
+//    odc.bgImageName = [NSString stringWithFormat:@"%@.png", [NSString GetUUID]];
     [self presentModalViewController:odc animated:YES];
-    //[self.navigationController pushViewController:odc animated:YES];
     [odc release];
 }
 

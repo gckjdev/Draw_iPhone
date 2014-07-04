@@ -8,6 +8,8 @@
 
 #import "MyPaint.h"
 #import "MyPaintManager.h"
+#import "CanvasRect.h"
+#import "DrawLayer.h"
 
 @implementation MyPaint
 
@@ -124,6 +126,12 @@
         if (_drawActionList == nil) {
             _drawActionList = [[MyPaintManager defaultManager] drawActionListForPaint:self];
             [_drawActionList retain];
+            
+            if (_drawActionList == nil){
+                self.canvasSize = [CanvasRect deprecatedRect].size;
+                self.layers = [DrawLayer defaultLayersWithFrame:CGRectFromCGSize(self.canvasSize)];
+                _drawActionList = [[NSMutableArray alloc] init];
+            }
         }
         return _drawActionList;
     }

@@ -703,6 +703,11 @@ pbNoCompressDrawData:(PBNoCompressDrawData*)pbNoCompressDrawData
                                word:(Word *)word
                            language:(NSInteger)language
                         bgImageName:(NSString *)bgImageName
+                               desc:(NSString*)desc
+                            strokes:(int64_t)strokes
+                          spendTime:(int)spendTime
+                       completeDate:(int)completeDate
+
 {
     CoreDataManager* dataManager = GlobalGetCoreDataManager();
     MyPaint* newMyPaint = [dataManager insert:@"MyPaint"];
@@ -720,6 +725,13 @@ pbNoCompressDrawData:(PBNoCompressDrawData*)pbNoCompressDrawData
     [newMyPaint setDrawWordData:[word data]];
     [newMyPaint setIsRecovery:[NSNumber numberWithBool:YES]];
     [newMyPaint setBgImageName:bgImageName];
+    [newMyPaint setOpusDesc:desc];
+    [newMyPaint setOpusSpendTime:@(spendTime)];
+    [newMyPaint setTotalStrokes:@(strokes)];
+    if (completeDate){
+        [newMyPaint setOpusCompleteDate:[NSDate dateWithTimeIntervalSince1970:completeDate]];
+    }
+    
     PPDebug(@"<createDraftForRecovery> %@", [newMyPaint description]);
     [dataManager save];
     return newMyPaint;
@@ -847,10 +859,18 @@ pbNoCompressDrawData:(PBNoCompressDrawData*)pbNoCompressDrawData
                 paint.layers = [DrawLayer defaultOldLayersWithFrame:CGRectFromCGSize(paint.canvasSize)];
             }
 
-            // set strokes, spend time, and complete date (added by Benson, 2014-05-22)
-            paint.totalStrokes = @(nDrawC->strokes);
-            paint.opusSpendTime = @(nDrawC->spendtime);
-            paint.opusCompleteDate = [NSDate dateWithTimeIntervalSince1970:nDrawC->completedate];
+            // set strokes, spend time, and complete date while they doesn't exist in draft model (added by Benson, 2014-05-22)
+            if (nDrawC->strokes > 0 && [paint.totalStrokes intValue] == 0){
+                paint.totalStrokes = @(nDrawC->strokes);
+            }
+            
+            if (nDrawC->spendtime > 0 && [paint.opusSpendTime intValue] == 0){
+                paint.opusSpendTime = @(nDrawC->spendtime);
+            }
+            
+            if (nDrawC->completedate > 0 && paint.opusCompleteDate == nil){
+                paint.opusCompleteDate = [NSDate dateWithTimeIntervalSince1970:nDrawC->completedate];
+            }
             
             NSMutableArray* list = [DrawAction pbNoCompressDrawDataCToDrawActionList:nDrawC
                                                                           canvasSize:paint.canvasSize];

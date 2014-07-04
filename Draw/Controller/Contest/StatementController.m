@@ -130,7 +130,9 @@
     }else if (isDrawApp() || isLittleGeeAPP()){
         
         [OfflineDrawViewController startDrawWithContest:self.contest
-                                         fromController:self startController:self.superController animated:YES];
+                                         fromController:self
+                                        startController:self.superController
+                                               animated:YES];
     }
 }
 

@@ -372,8 +372,9 @@ typedef enum{
         case FromWeixinOptionShareOpus: {
         } break;
         case FromWeixinOptionDrawAPicture: {
-            OfflineDrawViewController *odc = [[OfflineDrawViewController alloc] initWithTargetType:TypeGraffiti delegate:self];
-            odc.startController = self;
+            OfflineDrawViewController *odc = [[OfflineDrawViewController alloc] initWithTargetType:TypeGraffiti
+                                                                                          delegate:self
+                                                                                   startController:self];
             [self.navigationController pushViewController:odc animated:YES];
             [odc release];
         } break;
@@ -411,8 +412,9 @@ typedef enum{
     
     [UIApplication sharedApplication].idleTimerDisabled = YES; // disable lock screen while in drawing
     
-    OfflineDrawViewController *od = [[OfflineDrawViewController alloc] initWithDraft:currentPaint];
-    od.startController = self;
+    OfflineDrawViewController *od = [[OfflineDrawViewController alloc] initWithDraft:currentPaint
+                                                                     startController:self];
+//    od.startController = self;
     [self.navigationController pushViewController:od animated:YES];
     [od release];
    

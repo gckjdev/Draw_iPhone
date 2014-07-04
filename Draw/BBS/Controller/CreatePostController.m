@@ -555,7 +555,9 @@
 - (void)startToDraw
 {
     OfflineDrawViewController *odc = [[[OfflineDrawViewController alloc]
-                                      initWithTargetType:TypeGraffiti delegate:self] autorelease];
+                                       initWithTargetType:TypeGraffiti
+                                       delegate:self
+                                       startController:nil] autorelease];
     [self presentModalViewController:odc animated:YES];
 }
 

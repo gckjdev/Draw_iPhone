@@ -54,12 +54,8 @@
 - (IBAction)clickLayerButton:(id)sender;
 - (void)showCopyPaint;
 
-@property (retain, nonatomic) Word *word;                       // 画画主题单词 CAN REMOVE
 @property (retain, nonatomic) OpusDesignTime *designTime;       // 画画耗费时间
-@property (assign, nonatomic) int64_t totalStroke;              // 画画笔画数目 CAN REMOVE
-@property (retain, nonatomic) NSArray *selectedClassList;       // 画画分类 CAN REMOVE
-@property (retain, nonatomic) NSString *targetUid;              // 画给谁 CAN REMOVE
-@property (retain, nonatomic) NSString *opusDesc;               // 画画描述 CAN REMOVE
+@property (retain, nonatomic) NSArray *selectedClassList;       // 画画分类
 @property (retain, nonatomic) UIImage *bgImage;                 // 画画底部背景图片 CAN REMOVE
 @property (retain, nonatomic) NSString *bgImageName;            // 画画背景图片的名称 CAN REMOVE
 
@@ -73,18 +69,11 @@
 @property (retain, nonatomic) IBOutlet CommonTitleView *titleView;
 
 - (id)initWithTargetType:(TargetType)aTargetType 
-                delegate:(id<OfflineDrawDelegate>)aDelegate;
+                delegate:(id<OfflineDrawDelegate>)aDelegate
+         startController:(UIViewController*)startController;
 
-- (id)initWithWord:(Word *)word 
-              lang:(LanguageType)lang;
-
-- (id)initWithDraft:(MyPaint *)draft;
-
-- (id)initWithWord:(Word *)word
-              lang:(LanguageType)lang 
-         targetUid:(NSString *)targetUid;
-
-- (id)initWithContest:(Contest *)contest;
+- (id)initWithDraft:(MyPaint *)draft
+    startController:(UIViewController*)startController;
 
 //static method
 + (OfflineDrawViewController *)startDrawWithContest:(Contest *)contest
@@ -103,10 +92,22 @@
                                targetUid:(NSString *)targetUid
                                    photo:(UIImage *)photo;
 
+- (id)initWithTargetType:(TargetType)aTargetType
+                delegate:(id<OfflineDrawDelegate>)aDelegate
+         startController:(UIViewController*)startController
+                 Contest:(Contest*)contest
+            targetUserId:(NSString*)targetUserId
+                 bgImage:(UIImage*)bgImage;
+
 - (void)setPageBGImage:(UIImage *)image;
 - (void)saveCopyPaintImage:(UIImage*)image;
 - (UIImage*)getCopyPaintImage;
 + (UIImage*)getDefaultCopyPaintImage;
+
+- (NSString*)opusSubject;
+- (NSString*)opusDesc;
+- (void)setOpusDesc:(NSString *)opusDesc;
+- (void)setOpusSubject:(NSString *)opusSubject;
 
 @end
 

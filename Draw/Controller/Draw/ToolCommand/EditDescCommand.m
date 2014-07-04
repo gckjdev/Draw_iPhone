@@ -59,7 +59,7 @@
 
     if (isDrawApp()) {
         
-        NSString *subject = oc.word.text;
+        NSString *subject = [oc opusSubject];
         NSString *content = oc.opusDesc;
         [InputAlert showWithSubjectWithoutSNS:subject
                                       content:content
@@ -114,13 +114,13 @@
 - (void)changeDesc:(NSString *)desc
 {
     OfflineDrawViewController *oc = (OfflineDrawViewController *)[self controller];
-    oc.opusDesc = desc;
+    [oc setOpusDesc:desc];
 }
 
 - (void)changeDrawWord:(NSString*)wordText
 {
     OfflineDrawViewController *oc = (OfflineDrawViewController *)[self controller];
-    oc.word = [Word wordWithText:wordText level:0];
+    [oc setOpusSubject:wordText];
 }
 
 @end

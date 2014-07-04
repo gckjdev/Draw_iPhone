@@ -80,10 +80,10 @@
     DrawView *drawView;                     // 绘画视图
     ShareImageManager *shareImageManager;
     
-    LanguageType languageType;              // 绘画主题单词语言（可废弃）
     TargetType targetType;                  // 绘画作品目的
     
-    BOOL _isNewDraft;                       // 是否是全新草稿，含义模糊，待定
+    BOOL _isNewDraft;                       // draft是否是全新草稿，还是从草稿箱加载的
+    BOOL _hasNewStroke;                     // 当前是否新绘制的笔画没有保存，默认为否，增加一笔后为是，保存后重置为否
     BOOL _commitAsNormal;                   // 比赛作品转为普通作品提交
 }
 
@@ -110,15 +110,11 @@
 // 自动备份定时器
 @property (assign, nonatomic) NSTimer* backupTimer;         // backup recovery timer
 
-// 对话框
-@property (retain, nonatomic) CommonDialog* currentDialog;
+//// 对话框
+//@property (retain, nonatomic) CommonDialog* currentDialog;
 
 // 临摹框
 @property (retain, nonatomic) SPUserResizableView *copyView;
-
-//- (void)initDrawView;
-//- (void)saveDraft:(BOOL)showResult;
-//- (PBDraw *)createPBDraw;
 
 @end
 
@@ -141,7 +137,6 @@
     return [vc autorelease];
 }
 
-
 + (OfflineDrawViewController *)startDraw:(Word *)word
                           fromController:(UIViewController*)fromController
                          startController:(UIViewController*)startController
@@ -151,8 +146,36 @@
                                  fromController:fromController
                                 startController:startController
                                       targetUid:targetUid
-                                          photo:nil];
+                                          photo:nil
+                                       animated:YES];
 }
+
++ (OfflineDrawViewController *)startDraw:(Word *)word
+                          fromController:(UIViewController*)fromController
+                         startController:(UIViewController*)startController
+                               targetUid:(NSString *)targetUid
+                                animated:(BOOL)animated
+{
+    return [OfflineDrawViewController startDraw:word
+                                 fromController:fromController
+                                startController:startController
+                                      targetUid:targetUid
+                                          photo:nil
+                                       animated:animated];
+}
+
+
+//+ (OfflineDrawViewController *)startDraw:(Word *)word
+//                          fromController:(UIViewController*)fromController
+//                         startController:(UIViewController*)startController
+//                               targetUid:(NSString *)targetUid
+//{
+//    return [OfflineDrawViewController startDraw:word
+//                                 fromController:fromController
+//                                startController:startController
+//                                      targetUid:targetUid
+//                                          photo:nil];
+//}
 
 + (OfflineDrawViewController *)startDraw:(Word *)word
                           fromController:(UIViewController*)fromController
@@ -160,9 +183,29 @@
                                targetUid:(NSString *)targetUid
                                    photo:(UIImage *)photo
 {
-    LanguageType language = [[UserManager defaultManager] getLanguageType];
-    OfflineDrawViewController *vc = [[OfflineDrawViewController alloc] initWithWord:word lang:language targetUid:targetUid photo:photo];
-    [fromController.navigationController pushViewController:vc animated:YES];
+    return [self startDraw:word
+            fromController:fromController
+           startController:startController
+                 targetUid:targetUid
+                     photo:photo
+                  animated:YES];
+}
+
++ (OfflineDrawViewController *)startDraw:(Word *)word
+                          fromController:(UIViewController*)fromController
+                         startController:(UIViewController*)startController
+                               targetUid:(NSString *)targetUid
+                                   photo:(UIImage *)photo
+                                animated:(BOOL)animated
+{
+    OfflineDrawViewController *vc = [[OfflineDrawViewController alloc] initWithTargetType:TypeDraw
+                                                                                 delegate:nil
+                                                                          startController:startController
+                                                                                  Contest:nil
+                                                                             targetUserId:targetUid
+                                                                                  bgImage:photo];
+    
+    [fromController.navigationController pushViewController:vc animated:animated];
     vc.startController = startController;
     PPDebug(@"<StartDraw>: word = %@, targetUid = %@", word.text, targetUid);
     return [vc autorelease];
@@ -185,17 +228,13 @@
     PPRelease(_drawToolUpPanel);
     PPRelease(_wordLabel);
     PPRelease(drawView);
-    PPRelease(_word);
-    PPRelease(_targetUid);
     PPRelease(_draft);
     PPRelease(_contest);
     PPRelease(_draftButton);
     PPRelease(_submitButton);
-    PPRelease(_opusDesc);
     PPRelease(_bgImage);
     PPRelease(_bgImageName);
-    PPRelease(_currentDialog);
-//    PPRelease(_copyPaintImage);
+//    PPRelease(_currentDialog);
     PPRelease(_layerPanelPopView);
     PPRelease(_upPanelPopView);
     PPRelease(_designTime);
@@ -217,11 +256,42 @@
 #define ERASER_WIDTH ([DeviceDetection isIPAD] ? 15 * 2 : 15)
 #define PEN_WIDTH ([DeviceDetection isIPAD] ? 2 * 2 : 2)
 
-- (id)initWithWord:(Word *)word lang:(LanguageType)lang{
+- (id)initWithTargetType:(TargetType)aTargetType
+                delegate:(id<OfflineDrawDelegate>)aDelegate
+         startController:(UIViewController*)startController
+                 Contest:(Contest*)contest
+            targetUserId:(NSString*)targetUserId
+                 bgImage:(UIImage*)bgImage
+{
     self = [super init];
-    if (self) {
-        self.word = word;
-        languageType = lang;
+    if (self){
+        
+        // background image for draw
+        if (bgImage) {
+            self.bgImage = bgImage;
+            self.bgImageName = [NSString stringWithFormat:@"%@.png", [NSString GetUUID]];
+        }
+        
+        // create an empty draft
+        MyPaintManager *pManager = [MyPaintManager defaultManager];
+        UserManager *userManager = [UserManager defaultManager];
+        self.draft = [pManager createDraft:nil
+                               drawData:nil
+                              targetUid:targetUserId
+                              contestId:contest.contestId
+                                 userId:[userManager userId]
+                               nickName:[userManager nickName]
+                                   word:[Word wordWithText:@"" level:WordLeveLMedium]
+                               language:ChineseType
+                                bgImage:_bgImage
+                                bgImageName:_bgImageName];
+        
+        self.startController = startController;
+        self.delegate = aDelegate;
+        self.contest = contest;
+        targetType = aTargetType;
+        _isNewDraft = YES;
+                        
         shareImageManager = [ShareImageManager defaultManager];
     }
     return self;
@@ -229,86 +299,61 @@
 
 - (id)initWithContest:(Contest *)contest
 {
-    self = [super init];
-    if (self) {
-        self.contest = contest;
-        self.word = [Word wordWithText:NSLS(@"kContestOpus") level:WordLeveLMedium score:0];
-        shareImageManager = [ShareImageManager defaultManager];
-        languageType = [[UserManager defaultManager] getLanguageType];
-        shareImageManager = [ShareImageManager defaultManager];
-        targetType = TypeContest;
-    }
-    return self;
-    
+    return [self initWithTargetType:TypeContest
+                           delegate:nil
+                    startController:nil
+                            Contest:contest
+                       targetUserId:nil
+                            bgImage:nil];
 }
-
+ 
 - (id)initWithDraft:(MyPaint *)draft
+    startController:(UIViewController*)startController
 {
     self = [super init];
     if (self) {
         self.draft = draft;
-        if (draft.drawWordData != nil){
-            self.word = [Word wordFromData:draft.drawWordData];
+        
+        // background image for draw
+        if (self.draft.bgImageName) {
+            self.bgImage = self.draft.bgImage;
+            self.bgImageName = self.draft.bgImageName;
+        }
+        
+        self.startController = startController;
+        self.delegate = nil;
+        if ([self.draft.contestId length] > 0){
+            targetType = TypeContest;
         }
         else{
-            self.word = [Word wordWithText:draft.drawWord level:draft.level.intValue];
+            targetType = TypeDraw;
         }
-        shareImageManager = [ShareImageManager defaultManager];
-        languageType = draft.language.intValue;
-        if ([draft.targetUserId length] != 0) {
-            self.targetUid = [NSString stringWithFormat:@"%@",draft.targetUserId];    
-        }
+
+        _isNewDraft = NO;
+
         if ([draft.contestId length] != 0) {
             self.contest = [[ContestManager defaultManager] ongoingContestById:draft.contestId];
         }
-        self.opusDesc = draft.opusDesc;
         
-        PPDebug(@"draft word = %@", [self.word description]);
-    }
-    return self;
-}
-
-- (id)initWithWord:(Word *)word
-              lang:(LanguageType)lang
-        targetUid:(NSString *)targetUid
-{
-    self = [self initWithWord:word lang:lang targetUid:targetUid photo:nil];
-    return self;
-}
-
-- (id)initWithWord:(Word *)word
-              lang:(LanguageType)lang
-         targetUid:(NSString *)targetUid
-             photo:(UIImage *)photo
-{
-    self = [super init];
-    if (self) {
-        self.word = word;
-        languageType = lang;
         shareImageManager = [ShareImageManager defaultManager];
-        self.targetUid = targetUid;
         
-        if (photo) {
-            self.bgImage = photo;
-            self.bgImageName = [NSString stringWithFormat:@"%@.png", [NSString GetUUID]];
-        }
-        
-        [self createEmptyDraft];
+        PPDebug(@"<loadDraft> draft=%@", [_draft description]);
     }
     return self;
 }
 
-
-- (id)initWithTargetType:(TargetType)aTargetType delegate:(id<OfflineDrawDelegate>)aDelegate
+- (id)initWithTargetType:(TargetType)aTargetType
+                delegate:(id<OfflineDrawDelegate>)aDelegate
+         startController:(UIViewController*)startController;
 {
-    self = [super init];
-    if (self) {
-        targetType = aTargetType;
-        self.delegate = aDelegate;
-        shareImageManager = [ShareImageManager defaultManager];
-    }
-    return self;
+    return [self initWithTargetType:aTargetType
+                           delegate:aDelegate
+                    startController:startController
+                            Contest:nil
+                       targetUserId:nil
+                            bgImage:nil];
 }
+
 
 - (void)initDrawView
 {
@@ -318,7 +363,6 @@
 
     [drawView setDrawEnabled:YES];
     drawView.delegate = self;
-    _isNewDraft = YES;
     if (self.draft) {
         
         [self.draft drawActionList];
@@ -347,16 +391,48 @@
 {
 }
 
+- (NSString*)opusDesc
+{
+    return self.draft.opusDesc;
+}
+
+- (NSString*)opusSubject
+{
+    NSString *wordText = self.draft.drawWord;
+    if (targetType == TypeContest && [wordText length] == 0) {
+        wordText = NSLS(@"kContestOpus");
+    }
+    
+    if (wordText == nil){
+        return @"";
+    }
+    
+    return wordText;
+}
+
+- (Word*)opusWord
+{
+    return [Word wordWithText:[self opusSubject] level:WordLeveLMedium];
+}
+
+// 草稿是否设置过一些信息
+- (BOOL)hasSetOpusInfo
+{
+    return ([self.draft.opusDesc length] > 0) || ([self.draft.drawWord length] > 0) || ([self.draft.targetUserId length] > 0);
+}
+
 - (void)initWordLabel
 {
     if (targetType == TypeGraffiti || targetType == TypePhoto) {
         self.wordLabel.hidden = YES;
     }else {
         self.wordLabel.hidden = NO;
-        NSString *wordText = self.word.text;
-        if (targetType == TypeContest) {
+        
+        NSString *wordText = self.draft.drawWord;
+        if (targetType == TypeContest && [wordText length] == 0) {
             wordText = NSLS(@"kContestOpus");
         }
+        
         [self.wordLabel setText:wordText];
     }
 }
@@ -412,23 +488,21 @@
 
 - (void)setOpusDesc:(NSString *)opusDesc
 {
-    if(_opusDesc != opusDesc){
-        PPRelease(_opusDesc);
-        _opusDesc = [opusDesc retain];
-        if ([self supportRecovery]) {
-            [[DrawRecoveryService defaultService] setDesc:opusDesc];
-        }
+    [self.draft setOpusDesc:opusDesc];
+    if ([self supportRecovery]) {
+        [[DrawRecoveryService defaultService] setDesc:opusDesc];
     }
+}
+
+- (void)setOpusSubject:(NSString *)opusSubject
+{
+    [self.draft setDrawWord:opusSubject];
 }
 
 - (void)setOpusWord:(NSString*)word desc:(NSString *)opusDesc
 {
-    if(_opusDesc != opusDesc){
-        PPRelease(_opusDesc);
-        _opusDesc = [opusDesc retain];
-    }
-    
-    self.word.text = word;
+    [self.draft setDrawWord:word];
+    [self.draft setOpusDesc:opusDesc];
 }
 
 #pragma mark - Auto Recovery Service Methods
@@ -443,9 +517,9 @@
     DrawRecoveryService *drs = [DrawRecoveryService defaultService];
     drs.canvasSize = drawView.bounds.size;
     drs.drawActionList = drawView.drawActionList;
-    drs.targetUid = self.targetUid;
-    drs.desc = self.opusDesc;
-    drs.word = self.word;
+    drs.targetUid = self.draft.targetUserId;
+    drs.desc = self.draft.opusDesc;
+    drs.word = [self opusWord]; // self.word;
     drs.bgImage = self.bgImage;
     drs.layers = [[[drawView layers] mutableCopy] autorelease];
 }
@@ -459,9 +533,9 @@
     DrawRecoveryService *drs = [DrawRecoveryService defaultService];
 
     [drs start:drawView.drawActionList
-     targetUid:self.targetUid
-          word:self.word
-          desc:self.opusDesc
+     targetUid:self.draft.targetUserId
+          word:[self opusWord]
+          desc:self.draft.opusDesc
     canvasSize:drawView.bounds.size
    bgImageName:[NSString stringWithFormat:@"%@.png", [NSString GetUUID]]
        bgImage:self.bgImage
@@ -491,9 +565,9 @@
     [self updateDrawRecoveryService];
     if ([[DrawRecoveryService defaultService] needBackup]) {
         [[DrawRecoveryService defaultService] backup:drawView.drawActionList
-                                           targetUid:self.targetUid
-                                                word:self.word
-                                                desc:self.opusDesc
+                                           targetUid:self.draft.targetUserId
+                                                word:[self opusWord]
+                                                desc:self.draft.opusDesc
                                           canvasSize:drawView.bounds.size
                                          bgImageName:nil
                                              bgImage:self.bgImage
@@ -547,8 +621,8 @@
 // 根据“画给好友”ID获取用户数据
 - (void)updateTargetFriend
 {
-    if ([self.targetUid length] > 0) {
-        [[UserService defaultService] getUserSimpleInfoByUserId:self.targetUid delegate:self];
+    if ([self.draft.targetUserId length] > 0) {
+        [[UserService defaultService] getUserSimpleInfoByUserId:self.draft.targetUserId delegate:self];
     }
 }
 
@@ -592,8 +666,8 @@
     [self registerUIApplicationNotification];
 
     // set default draw word
-    if ([self.word.text length] == 0) {
-        self.word = [Word cusWordWithText:[PPConfigManager defaultDrawWord]];   //@""]; // NSLS(@"kDefaultDrawWord")];
+    if ([self.draft.drawWord length] == 0) {
+        self.draft.drawWord = [PPConfigManager defaultDrawWord];   // NSLS(@"kDefaultDrawWord")];
     }
     
     [self initDrawView];
@@ -624,7 +698,6 @@
 {
     drawView.delegate = nil;
     
-    [self setWord:nil];
     [self setWordLabel:nil];
     [self setSubmitButton:nil];
     [self setDraftButton:nil];
@@ -658,16 +731,16 @@
 }
 
 
-#define ESCAPE_DEDUT_COIN 1
-#define DIALOG_TAG_CLEAN_DRAW 201204081
-#define DIALOG_TAG_ESCAPE 201204082
-#define DIALOG_TAG_SAVETIP 201204083
-#define DIALOG_TAG_SUBMIT 201206071
-#define DIALOG_TAG_CHANGE_BACK 201207281
-#define DIALOG_TAG_COMMIT_OPUS 201208111
-
-
-#define NO_COIN_TAG 201204271
+//#define ESCAPE_DEDUT_COIN 1
+//#define DIALOG_TAG_CLEAN_DRAW 201204081
+//#define DIALOG_TAG_ESCAPE 201204082
+//#define DIALOG_TAG_SAVETIP 201204083
+//#define DIALOG_TAG_SUBMIT 201206071
+//#define DIALOG_TAG_CHANGE_BACK 201207281
+//#define DIALOG_TAG_COMMIT_OPUS 201208111
+//
+//
+//#define NO_COIN_TAG 201204271
 
 
 #pragma mark - Common Dialog Delegate
@@ -684,14 +757,20 @@
     return nil;
 }
 
-// 退出方法，所有退出必须调用本方法以保证正常释放
-- (void)quit
+- (void)actionsBeforeQuit
 {
+    [self deleteEmptyDraft];
     [self unregisterAllNotifications];
     [self stopRecovery];
     
     // save draft before quit
     [[MyPaintManager defaultManager] save];
+}
+
+// 退出方法，所有退出必须调用本方法以保证正常释放
+- (void)quit
+{
+    [self actionsBeforeQuit];
     
     if (_startController) {
         [self.navigationController popToViewController:_startController animated:YES];
@@ -700,15 +779,55 @@
     }
 }
 
+- (void)drawAnotherOpusForContest
+{
+    ContestController *contestController =  [self superContestController];
+    
+    // quit to contest controller
+    [self.navigationController popToViewController:contestController
+                                          animated:NO];
+    
+    // re-enter
+    [contestController enterDrawControllerWithContest:self.contest
+                                             animated:NO];
+}
+
+- (void)drawAnotherOpus
+{
+    [self actionsBeforeQuit];
+    if (_startController != nil) {
+        
+        [_startController retain];
+        [self.navigationController popToViewController:_startController animated:NO];
+        [OfflineDrawViewController startDraw:nil
+                              fromController:_startController
+                             startController:_startController
+                                   targetUid:nil
+                                    animated:NO];
+        
+        [_startController release];
+
+    }else{
+
+        [self.navigationController popToRootViewControllerAnimated:NO];
+        [OfflineDrawViewController startDraw:nil
+                              fromController:nil
+                             startController:nil
+                                   targetUid:nil
+                                    animated:NO];
+    }
+}
+
+/*
 - (void)didClickOk:(CommonDialog *)dialog infoView:(id)infoView
 {
     if (dialog.tag == DIALOG_TAG_ESCAPE ){
-        [self quit];
+//        [self quit];
     }
     else if (dialog.tag == DIALOG_TAG_SAVETIP)
     {
-        [self saveDraft:NO];
-        [self quit];
+//        [self saveDraft:NO];
+//        [self quit];
     }
     else if(dialog.tag == DIALOG_TAG_SUBMIT){
 
@@ -728,23 +847,24 @@
                                                      animated:NO];
             return;
         }
+        
         //if come from feed detail controller
         if (_startController != nil) {
             [self.navigationController popToViewController:_startController animated:NO];
             SelectHotWordController *sc = nil;
-            if ([_targetUid length] == 0) {
+            if ([self.draft.targetUserId length] == 0) {
                 sc = [[[SelectHotWordController alloc] init] autorelease];
             }else{
-                sc = [[[SelectHotWordController alloc] initWithTargetUid:self.targetUid] autorelease];
+                sc = [[[SelectHotWordController alloc] initWithTargetUid:self.draft.targetUserId] autorelease];
             }
             sc.superController = self.startController;
             [_startController.navigationController pushViewController:sc animated:NO];
         }else{
             //if come from home controller
-            if ([_targetUid length] == 0) {
+            if ([self.draft.targetUserId length] == 0) {
                 [HomeController startOfflineDrawFrom:self];
             }else{
-                [HomeController startOfflineDrawFrom:self uid:self.targetUid];
+                [HomeController startOfflineDrawFrom:self uid:self.draft.targetUserId];
             }
         }
         
@@ -757,6 +877,7 @@
         [self quit];
     }
 }
+ */
 
 
 - (void)didSaveOpus:(BOOL)succ
@@ -777,13 +898,16 @@
 
 - (void)drawView:(DrawView *)aDrawView didStartTouchWithAction:(DrawAction *)action
 {
-    [self.layerPanelPopView dismissAnimated:YES];
-    [self.upPanelPopView dismissAnimated:YES];
+    [_layerPanelPopView dismissAnimated:YES];
+    [_upPanelPopView dismissAnimated:YES];
 
     [[ToolCommandManager defaultManager] hideAllPopTipViews];
-    [self.layerPanelPopView dismissAnimated:YES];
-    [self.upPanelPopView dismissAnimated:YES];    
-    _isNewDraft = NO;
+    [_layerPanelPopView dismissAnimated:YES];
+    [_upPanelPopView dismissAnimated:YES];
+
+    _hasNewStroke = YES;
+    
+//    _isNewDraft = NO;
 
 }
 
@@ -795,9 +919,9 @@
     }
     
     [[DrawRecoveryService defaultService] handleNewPaintDrawed:view.drawActionList
-                                                   targetUid:self.targetUid
-                                                        word:self.word
-                                                        desc:self.opusDesc
+                                                   targetUid:self.draft.targetUserId
+                                                        word:[self opusWord]
+                                                        desc:self.draft.opusDesc
                                                   canvasSize:drawView.bounds.size
                                                  bgImageName:nil
                                                      bgImage:self.bgImage
@@ -812,16 +936,15 @@
 
 - (void)alertCommitContestOpusAsNormalOpus:(NSString *)message
 {
-    //TODO alert: Submit as the normal opus
     CommonDialog *dialog = [CommonDialog createDialogWithTitle:NSLS(@"kTips")
                                          message:message
                                            style:CommonDialogStyleDoubleButton];
-    [dialog showInView:self.view];
     _commitAsNormal = YES;
-    
     [dialog setClickOkBlock:^(id infoView){
         [self showInputAlertView];
     }];
+    
+    [dialog showInView:self.view];
 }
 
 - (void)didCreateDraw:(int)resultCode opusId:(NSString *)opusId
@@ -839,7 +962,7 @@
         // save as normal opus in draft box
         BOOL result = [[DrawDataService defaultService] savePaintWithPBDrawData:self.submitOpusDrawData
                                                                           image:self.submitOpusFinalImage
-                                                                           word:self.word.text
+                                                                           word:self.draft.drawWord
                                                                          opusId:opusId];
         
         if (result) {
@@ -869,14 +992,21 @@
         CommonDialog *dialog = nil;
         if (self.contest) {
             if (!_commitAsNormal) {
+                // 增加比赛提交作品次数
                 [self.contest incCommitCount];
             }
             
             if ([self.contest commitCountEnough] || _commitAsNormal) {
+                // 已经达到比赛提交最大作品数目，提示后退出
                 dialog = [CommonDialog createDialogWithTitle:NSLS(@"kSubmitSuccTitle") 
                                                      message:NSLS(@"kContestSubmitSuccQuitMsg") 
                                                        style:CommonDialogStyleSingleButton 
-                                                    delegate:self];
+                                                    delegate:nil];
+                
+                [dialog setClickOkBlock:^(id infoView){
+                    [self quit];
+                }];
+                
             }else{
                 NSString *title = [NSString stringWithFormat:NSLS(@"kContestSubmitSuccMsg"),
                                    self.contest.retainCommitChance];
@@ -884,20 +1014,36 @@
                 dialog = [CommonDialog createDialogWithTitle:NSLS(@"kSubmitSuccTitle") 
                                                      message:title 
                                                        style:CommonDialogStyleDoubleButton 
-                                                    delegate:self];
+                                                    delegate:nil];
+                
+                [dialog setClickOkBlock:^(id infoView){
+                    [self drawAnotherOpusForContest];
+                }];
+                
+                [dialog setClickCancelBlock:^(id infoView){
+                    [self quit];
+                }];
             }
             
-            dialog.tag = DIALOG_TAG_SUBMIT;
+//            dialog.tag = DIALOG_TAG_SUBMIT;
             [dialog showInView:self.view];
 
         }else{
             dialog = [CommonDialog createDialogWithTitle:NSLS(@"kSubmitSuccTitle")
                                                  message:NSLS(@"kSubmitSuccMsg") 
                                                    style:CommonDialogStyleDoubleButton 
-                                                delegate:self];
+                                                delegate:nil];
              
-             dialog.tag = DIALOG_TAG_SUBMIT;
-             [dialog showInView:self.view];
+//            dialog.tag = DIALOG_TAG_SUBMIT;
+            [dialog setClickOkBlock:^(id infoView){
+                [self drawAnotherOpus];
+            }];
+            
+            [dialog setClickCancelBlock:^(id infoView){
+                [self quit];
+            }];
+            
+            [dialog showInView:self.view];
         }
         
 
@@ -922,8 +1068,8 @@
                                           nick:[userManager nickName]
                                         avatar:[userManager avatarURL]
                                 drawActionList:drawView.drawActionList
-                                      drawWord:self.word
-                                      language:languageType
+                                      drawWord:[self opusWord]
+                                      language:ChineseType
                                           size:drawView.bounds.size
                                   isCompressed:NO
                                         layers:[[drawView.layers mutableCopy] autorelease]
@@ -944,7 +1090,7 @@
     int64_t strokes = 0;
     NSData* data = [DrawAction pbNoCompressDrawDataCFromDrawActionList:drawView.drawActionList
                                                                   size:drawView.bounds.size
-                                                              opusDesc:self.opusDesc
+                                                              opusDesc:self.draft.opusDesc
                                                             drawToUser:nil
                                                        bgImageFileName:_bgImageName
                                                                 layers:copyLayers
@@ -954,7 +1100,7 @@
     [copyLayers release];
     
     // set stroke in draft for usage
-    _totalStroke = strokes;
+    [self.draft setTotalStrokes:@(strokes)];
     
     return data;
 }
@@ -962,36 +1108,10 @@
 
 - (void)setTargetUid:(NSString *)targetUid
 {
-    if(_targetUid != targetUid){
-        PPRelease(_targetUid);
-        _targetUid = [targetUid retain];
-        if (self.draft) {
-            [self.draft setTargetUserId:targetUid];
-        }
-        
-        if ([self supportRecovery]){
-            [[DrawRecoveryService defaultService] setTargetUid:targetUid];
-        }
+    [self.draft setTargetUserId:targetUid];
+    if ([self supportRecovery]){
+        [[DrawRecoveryService defaultService] setTargetUid:targetUid];
     }
-}
-
-// 创建一个空草稿
-- (void)createEmptyDraft
-{
-    MyPaintManager *pManager = [MyPaintManager defaultManager];
-    UserManager *userManager = [UserManager defaultManager];
-    self.draft = [pManager createDraft:nil
-                              drawData:nil
-                             targetUid:_targetUid
-                             contestId:self.contest.contestId
-                                userId:[userManager userId]
-                              nickName:[userManager nickName]
-                                  word:_word
-                              language:languageType
-                               bgImage:_bgImage
-                           bgImageName:_bgImageName];
-    
-    _isNewDraft = YES;
 }
 
 // 删除空草稿
@@ -1019,8 +1139,10 @@
     }
     
     PPDebug(@"<OfflineDrawViewController> start to save draft. show result = %d",showResult);
-    _isNewDraft = YES;
+//    _isNewDraft = YES;
 
+    _hasNewStroke = NO;
+    
     NSAutoreleasePool *subPool = [[NSAutoreleasePool alloc] init];
     UIImage *image = [drawView createImage];
     
@@ -1040,24 +1162,15 @@
             else{
                 result = YES;
                 [self.draft setIsRecovery:@(NO)];
-                BOOL forceSave = NO;
-                if (![[self.draft opusDesc] isEqualToString:self.opusDesc]) {
-                    forceSave = YES;
-                    [self.draft setOpusDesc:self.opusDesc];
-                }
-                if ((![[self.draft drawWord] isEqualToString:self.word.text])) {
-                    forceSave = YES;
-                    [self.draft setDrawWord:self.word.text];
-                }
-
-                [self.draft setTotalStrokes:@(_totalStroke)];
                 [self.draft setOpusSpendTime:@(_designTime.totalTime)];
                 [self.draft setOpusCompleteDate:[NSDate date]];
                 
                 result = [pManager updateDraft:self.draft
                                          image:image
                                       drawData:data
-                                     forceSave:forceSave];
+                                     forceSave:YES];
+                
+                PPDebug(@"<saveDraft> draft=%@", [_draft description]);
             }
         }else{
             PPDebug(@"<saveDraft> create core data draft");
@@ -1069,12 +1182,12 @@
                 UserManager *userManager = [UserManager defaultManager];
                 self.draft = [pManager createDraft:image
                                           drawData:data
-                                         targetUid:_targetUid
+                                         targetUid:self.draft.targetUserId
                                          contestId:self.contest.contestId
                                             userId:[userManager userId]
                                           nickName:[userManager nickName]
-                                              word:_word
-                                          language:languageType
+                                              word:[self opusWord]
+                                          language:ChineseType
                                            bgImage:_bgImage
                                        bgImageName:_bgImageName];
 
@@ -1084,7 +1197,6 @@
                     result = NO;
                 }
 
-                [self.draft setTotalStrokes:@(_totalStroke)];
                 [self.draft setOpusSpendTime:@(_designTime.totalTime)];
                 [self.draft setOpusCompleteDate:[NSDate date]];
             }
@@ -1117,12 +1229,6 @@
     [self hideActivity];
 }
 
-//- (void)saveDraftAndShowResult
-//{
-//    [self showActivityWithText:NSLS(@"kSaving")];
-//    [self performSelector:@selector(performSaveDraft) withObject:nil afterDelay:0.1f];
-//}
-
 - (IBAction)clickDraftButton:(id)sender {
     [self.layerPanelPopView dismissAnimated:YES];
     [self.upPanelPopView dismissAnimated:YES];
@@ -1146,15 +1252,11 @@
     
     NSString* progressText = [NSString stringWithFormat:NSLS(@"kSendingProgress"), progress*100];
     [self showProgressViewWithMessage:progressText progress:progress];
-    
-//    [self.progressView setLabelText:progressText];
-//    
-//    [self.progressView setProgress:progress];        
 }
 
 - (void)shareViaSNS:(SnsType)type imagePath:(NSString*)imagePath opusId:(NSString*)opusId
 {    
-    NSString* text = [ShareAction createShareText:self.word.text
+    NSString* text = [ShareAction createShareText:[self opusSubject]
                                              desc:[self getOpusComment]
                                        opusUserId:[[UserManager defaultManager] userId]
                                        userGender:[[UserManager defaultManager] isUserMale]
@@ -1195,7 +1297,7 @@
 
 - (NSString*)getOpusComment
 {
-    return self.opusDesc;
+    return self.draft.opusDesc;
 }
 
 
@@ -1220,22 +1322,13 @@
     [self writeTempFile:image];
     [self setShareWeiboSet:share];    
 
-    NSString *text = self.opusDesc;
+    NSString *text = self.draft.opusDesc;
     
     if (opusName != nil) {
-        [self.word setText:opusName];
+        [self.draft setDrawWord:opusName];
     }
     
     NSString *contestId = (_commitAsNormal ? nil : _contest.contestId);
-    
-    if ([GameApp forceChineseOpus]) {
-        languageType = ChineseType;
-        
-        if ([[UserManager defaultManager] getLanguageType] != ChineseType) {
-            self.word = [Word cusWordWithText:@"画"];
-            PPDebug(@"You are playing little gee in english, so auto create title");
-        }
-    }
     
     self.submitOpusFinalImage = image;
     
@@ -1252,11 +1345,11 @@
     
     self.submitOpusDrawData = [[DrawDataService defaultService] createOfflineDraw:drawView.drawActionList
                                                   image:image
-                                               drawWord:self.word
-                                               language:languageType
-                                              targetUid:self.targetUid
+                                               drawWord:[self opusWord]
+                                               language:ChineseType
+                                              targetUid:self.draft.targetUserId
                                               contestId:contestId
-                                                   desc:text                    //@"元芳，你怎么看？"
+                                                   desc:text
                                                    size:drawView.bounds.size
                                                  layers:[[drawView.layers mutableCopy] autorelease]
                                                   draft:draft
@@ -1274,8 +1367,8 @@
 
 - (void)showInputAlertView
 {
-    NSString *subject = self.word.text;
-    NSString *content = self.opusDesc;
+    NSString *subject = [self opusSubject];
+    NSString *content = self.draft.opusDesc;
     [InputAlert showWithSubject:subject
                         content:content
                          inView:self.view
@@ -1286,10 +1379,10 @@
             [self setOpusWord:subject desc:content];
 
             // TODO need to disable for release
-            [self commitOpus:subject desc:content share:shareSet classList:nil];
+//            [self commitOpus:subject desc:content share:shareSet classList:nil];
             
             // show set opus class
-            /* TODO need to enable for release!!!!!!
+//            /* TODO need to enable for release!!!!!!
             [SelectOpusClassViewController showInViewController:self
                                                    selectedTags:self.selectedClassList
                                               arrayForSelection:nil
@@ -1299,11 +1392,10 @@
                                                            [self commitOpus:subject desc:content share:shareSet classList:selectedArray];
 
                                                        }];
-             */
-             
+//             */
+            
         }else{
-            self.word.text = subject;
-            [self setOpusDesc:content];
+            [self setOpusWord:subject desc:content];
         }
     }];
 }
@@ -1353,7 +1445,6 @@
     
     NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
     NSString* text = [NSString stringWithFormat:NSLS(@"kSubmitShareText"), self.draft.drawWord];
-//    NSString* title = self.draft.drawWord;
     int award = [PPConfigManager getShareWeiboReward];
     
     UIImage *image = [drawView createImage];
@@ -1363,8 +1454,6 @@
     }
     // create temp file for weibo sharing
     [self writeTempFile:image];
-    
-//    POSTMSG2(NSLS(@"kSubmittingWeibo"), 2.5);
     
     [[GameSNSService defaultService] publishWeibo:snsType
                                              text:text
@@ -1459,8 +1548,8 @@
         self.upPanelPopView = [[[CMPopTipView alloc] initWithCustomView:self.drawToolUpPanel] autorelease];
         [self.upPanelPopView setBackgroundColor:COLOR_YELLOW];
         self.upPanelPopView.cornerRadius = (ISIPAD ? 8 :4);        
-        if ([[self.word text] length] != 0) {
-            [self.drawToolUpPanel updateSubject:self.word.text];
+        if ([self.draft.drawWord length] != 0) {
+            [self.drawToolUpPanel updateSubject:self.draft.drawWord];
         }
         [self.upPanelPopView presentPointingAtView:sender inView:self.view animated:YES];
         self.upPanelPopView.delegate = self;
@@ -1488,20 +1577,39 @@
     return (_isNewDraft && [drawView.drawActionList count] == 0);
 }
 
+// 退出询问
 - (void)alertExit
 {
     CommonDialog *dialog = nil;
     
-    if (_isNewDraft || [drawView.drawActionList count] == 0) {
-        // 新建草稿，并且没有画任何一笔，只询问是否退出
-        dialog = [CommonDialog createDialogWithTitle:NSLS(@"kQuitGameAlertTitle") message:NSLS(@"kQuitGameAlertMessage") style:CommonDialogStyleDoubleButton delegate:self];
-        dialog.tag = DIALOG_TAG_ESCAPE;
-    }else{
+    if ((_hasNewStroke == NO) || ([drawView.drawActionList count] == 0)) {
+        // 没有画任何新笔画，或者画画内容为空，只询问是否退出
+        dialog = [CommonDialog createDialogWithTitle:NSLS(@"kQuitGameAlertTitle")
+                                             message:NSLS(@"kQuitGameAlertMessage")
+                                               style:CommonDialogStyleDoubleButton
+                                            delegate:nil];
+//        dialog.tag = DIALOG_TAG_ESCAPE;
+        [dialog setClickOkBlock:^(id infoView){
+            [self quit];
+        }];
+        
+    }
+    else
+    {
         // 询问是否保存后退出
         dialog = [CommonDialog createDialogWithTitle:NSLS(@"kQuitDrawAlertTitle") message:NSLS(@"kQuitDrawAlertMessage") style:CommonDialogStyleDoubleButtonWithCross delegate:self];
         [dialog.cancelButton setTitle:NSLS(@"kDonotSave") forState:UIControlStateNormal];
         [dialog.oKButton setTitle:NSLS(@"kSave") forState:UIControlStateNormal];
-        dialog.tag = DIALOG_TAG_SAVETIP;
+//        dialog.tag = DIALOG_TAG_SAVETIP;
+        [dialog setClickOkBlock:^(id infoView){
+            [self saveDraft:NO];
+            [self quit];
+        }];
+
+        [dialog setClickCancelBlock:^(id infoView){
+            [self quit];
+        }];
+
     }
     
     [dialog showInView:self.view];

@@ -451,7 +451,8 @@ typedef enum{
 {
     if (draft){
         // enter draw
-        OfflineDrawViewController* vc = [[OfflineDrawViewController alloc] initWithDraft:draft];
+        OfflineDrawViewController* vc = [[OfflineDrawViewController alloc] initWithDraft:draft
+                                                                         startController:nil];
         [self.navigationController pushViewController:vc animated:YES];
         [vc release];
     }

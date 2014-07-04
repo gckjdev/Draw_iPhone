@@ -112,7 +112,11 @@
                     nickName:(NSString *)nickName
                         word:(Word *)word
                     language:(NSInteger)language
-                 bgImageName:(NSString *)bgImageName;
+                 bgImageName:(NSString *)bgImageName
+                       desc:(NSString*)desc
+                    strokes:(int64_t)strokes
+                  spendTime:(int)spendTime
+               completeDate:(int)completeDate;
 
 - (BOOL)createMyPaintWithImage:(UIImage*)image
                     pbDrawData:(NSData*)pbDrawData

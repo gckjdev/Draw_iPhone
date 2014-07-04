@@ -107,7 +107,10 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(DrawRecoveryService)
                                                                        nickName:self.nickName
                                                                            word:self.word
                                                                        language:self.language
-                                                                        bgImageName:self.bgImageName];
+                                                                    bgImageName:self.bgImageName
+                                                                           desc:desc strokes:strokes
+                                                                      spendTime:spendTime
+                                                                   completeDate:completeDate];
 
         PPDebug(@"<start> file name=%@ size=%@", _currentPaint.dataFilePath, NSStringFromCGSize(_canvasSize));
         
