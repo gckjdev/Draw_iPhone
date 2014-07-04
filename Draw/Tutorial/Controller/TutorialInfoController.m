@@ -13,6 +13,8 @@
 #import "PBTutorial+Extend.h"
 #import "UserTutorialService.h"
 #import "UserTutorialManager.h"
+#import "TutorialStageController.h"
+#import "TutorialStageController.h"
 
 enum{
     SECTION_BASIC_INFO = 0,
@@ -23,7 +25,6 @@ enum{
 @interface TutorialInfoController ()
 
 @property (nonatomic, retain) PBTutorial* pbTutorial;
-
 @end
 
 @implementation TutorialInfoController
@@ -68,7 +69,7 @@ enum{
 
 - (void)viewDidLoad
 {
-    self.sectionTitle = @[@"简介",@"关卡列表"];
+    self.sectionTitle = @[NSLS(@"kTutorialDesc"), NSLS(@"kTutorialStageList")];
     self.numberRowsSection = @[@1,@4];
     [CommonTitleView createTitleView:self.view];
     
@@ -92,8 +93,7 @@ enum{
     
     // Do any additional setup after loading the view from its nib.
     
-    // TODO
-//    self.dataList = self.pbTutorial.
+    self.dataList = self.pbTutorial.stagesList;
    
     
 }
@@ -116,6 +116,23 @@ enum{
 -(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
     return 0;
 }
+
+- (void)tableView:(UITableView *)tableView
+  willDisplayCell:(UITableViewCell *)cell
+forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (indexPath.section == SECTION_STAGE_INFO){
+        if (indexPath.row % 2 == 0) {
+            cell.backgroundColor = COLOR_WHITE;
+        }else{
+            cell.backgroundColor = COLOR_GRAY;
+        }
+    }
+    else{
+        cell.backgroundColor = COLOR_WHITE;
+    }
+}
+
 
 #pragma mark 初始化每一行要显示内容
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -148,31 +165,64 @@ enum{
             [tableView registerNib:nib forCellReuseIdentifier:CustomCellIdentifier2];
             cell = [tableView dequeueReusableCellWithIdentifier:CustomCellIdentifier2];
         }
-        cell.taskNumber.text=@"1";
-        cell.taskName.text = @"2";
-        cell.taskDesc.text = @"3";
+        
+        NSArray* _pbSage = _pbTutorial.stagesList;
+        [cell updateStageCellInfo:[_pbSage objectAtIndex:row] WithRow:row];
+        
         cell.userInteractionEnabled = NO;
+        
         return cell;
 
     }
 }
--(NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section{
-    if (section == 0) {
-        return @"简介";
+
+- (NSString*)getSectionTitle:(NSUInteger)section
+{
+    if (section < [self.sectionTitle count]){
+        NSString* title = [self.sectionTitle objectAtIndex:section];
+        return title;
     }
-    else
-        return @"关卡说明";
+    else{
+        return @"";
+    }
 }
+
+-(NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section{
+    return [self getSectionTitle:section];
+}
+
+#define SECTION_HEADER_HEIGHT (ISIPAD ? 45 : 25)
+#define SECTION_HEADER_LEADING (ISIPAD ? 20 : 10)
+
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
+    
+    UIView* myView = [[[UIView alloc] init] autorelease];
+    myView.backgroundColor = COLOR_GRAY;
+
+    UILabel *titleLabel  = [[UILabel alloc] initWithFrame:CGRectMake(SECTION_HEADER_LEADING, 0,
+                                                                     tableView.bounds.size.width - SECTION_HEADER_LEADING, SECTION_HEADER_HEIGHT)];
+    titleLabel.textColor = COLOR_BROWN;
+    titleLabel.backgroundColor = [UIColor clearColor];
+    titleLabel.text = [self getSectionTitle:section];
+    titleLabel.font = AD_BOLD_FONT(24, 13);
+
+    [myView addSubview:titleLabel];
+    [titleLabel release];
+    
+    return myView;
+}
+
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
     
     return 25;
 }
+
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     NSInteger section = indexPath.section;
     if(section==0){
-        return 150;
+        return ISIPAD ? 300 : 150;
     }
-        return 60;
+    return ISIPAD ? 100.0f : 50.0f;
     
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -185,22 +235,20 @@ enum{
     // Dispose of any resources that can be recreated.
 }
 
-#pragma mark addTutorial
-
--(void)clickButton{
-    NSLog(@"test");
-}
-
 - (void)clickAdd:(id)sender
 {
     [[UserTutorialService defaultService] addTutorial:_pbTutorial resultBlock:^(int resultCode) {
         [self updateRightButton];
+        
     }];
 }
 
 - (void)clickOpen:(id)sender
 {
-    // TODO goto Tutorial Stage Controller
+    PBUserTutorial* ut = [[UserTutorialManager defaultManager] getUserTutorialByTutorialId:_pbTutorial.tutorialId];
+    if (ut != nil){
+        [TutorialStageController enter:self pbTutorial:ut];
+    }
 }
 
 

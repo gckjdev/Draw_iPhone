@@ -19,16 +19,16 @@
     if (self) {
         // Initialization code
         SET_VIEW_ROUND_CORNER(self.contentView);
-        
-        NSLayoutConstraint* constraint = [NSLayoutConstraint constraintWithItem:self.tutorialImage
-                                                                      attribute:NSLayoutAttributeBottom
-                                                                      relatedBy:NSLayoutRelationEqual
-                                                                         toItem:nil
-                                                                      attribute:nil
-                                                                     multiplier:1.0
-                                                                       constant:TUTORIAL_IMAGE_HEIGHT];
-        
-        [self.contentView addConstraint:constraint];
+//        
+//        NSLayoutConstraint* constraint = [NSLayoutConstraint constraintWithItem:self.tutorialImage
+//                                                                      attribute:NSLayoutAttributeBottom
+//                                                                      relatedBy:NSLayoutRelationEqual
+//                                                                         toItem:nil
+//                                                                      attribute:nil
+//                                                                     multiplier:1.0
+//                                                                       constant:TUTORIAL_IMAGE_HEIGHT];
+//        
+//        [self.contentView addConstraint:constraint];
         
     }
     return self;
@@ -48,14 +48,20 @@
 
 - (void)updateCellInfo:(PBTutorial*)pbTutorial
 {
+    self.tutorialName.font = AD_BOLD_FONT(28, 16);
+    self.tutorialName.textColor = COLOR_BROWN;
+    
+    self.tutorialDesc.font = AD_FONT(22, 11);
+    self.tutorialDesc.textColor = COLOR_RED;
+    
     // TODO localize tutorial name
     self.tutorialName.text = pbTutorial.cnName;
     self.tutorialDesc.text = pbTutorial.cnDesc;
-    
     UIImage *placeHolderImage = [UIImage imageNamed:@"dialogue@2x"];
 
-    NSString* urlString = @"http://avatar.csdn.net/2/C/D/1_totogo2010.jpg"; //pbTutorial.thumbImage;
-    [_tutorialImage setImageWithUrl:[NSURL URLWithString:urlString]
+    SET_VIEW_ROUND_CORNER(self.tutorialImage);
+    
+    [_tutorialImage setImageWithUrl:[NSURL URLWithString:pbTutorial.thumbImage]
                    placeholderImage:placeHolderImage
                         showLoading:YES
                            animated:YES];

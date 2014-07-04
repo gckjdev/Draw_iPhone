@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Tutorial.pb.h"
 
 @interface StageBasicInfoCell : UITableViewCell
 
@@ -15,4 +16,6 @@
 @property (retain, nonatomic) IBOutlet UILabel *taskName;
 @property (retain, nonatomic) IBOutlet UILabel *taskDesc;
 
+
+-(void)updateStageCellInfo:(PBStage*)pbStage WithRow:(NSInteger)row;
 @end

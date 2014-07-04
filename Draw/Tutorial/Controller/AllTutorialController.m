@@ -56,7 +56,7 @@
 #ifdef DEBUG
     [[TutorialCoreManager defaultManager] createTestData];
 #endif
-    
+   
     //返回所有教程
     NSArray *allTutorials = [[TutorialCoreManager defaultManager] allTutorials];
     self.dataList = allTutorials;
@@ -81,6 +81,8 @@
 
 #pragma mark - table view delegate
 
+SET_CELL_BG_IN_VIEW
+
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     
     static NSString *CustomCellIdentifier = @"AllTutorialCell";
@@ -92,7 +94,6 @@
         cell = [tableView dequeueReusableCellWithIdentifier:CustomCellIdentifier];
     }
     
-    cell.backgroundColor = [UIColor brownColor];
     NSUInteger row = [indexPath row];
 
     PBTutorial* pbTutorial = [self getTutorialByRow:row];
@@ -101,9 +102,10 @@
     return cell;
 }
 
+
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-   return ISIPAD ? 160.0f : 80.0f;
+   return ISIPAD ? 160.0f : 75.0f;
 }
 
 // 当点击cell 时候的事件

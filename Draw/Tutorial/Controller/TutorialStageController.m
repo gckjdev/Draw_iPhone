@@ -9,10 +9,14 @@
 #import "TutorialStageController.h"
 #import "StageCell.h"
 #import "UIViewController+BGImage.h"
+#import "UserTutorialMainController.h"
+#import "UIImageView+Extend.h"
+
 
 @interface TutorialStageController ()
 @property(nonatomic,strong)UITableView *tableView;
 @property(nonatomic,strong)UIImage *image;
+@property (nonatomic,retain)PBUserTutorial* pbUserTutorial;
 @end
 
 @implementation TutorialStageController
@@ -29,16 +33,18 @@
 
 
 -(void)viewDidLoad{
+    
+    NSString *title = [[self.pbUserTutorial tutorial]cnName];
+    
     [super viewDidLoad];
     [CommonTitleView createTitleView:self.view];
-    [[CommonTitleView titleView:self.view] setTitle:NSLS(@"tutorialName")];
+    [[CommonTitleView titleView:self.view] setTitle:title];
     [[CommonTitleView titleView:self.view] setTarget:self];
     [[CommonTitleView titleView:self.view] setBackButtonSelector:@selector(clickBack:)];
     
     UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc] init];
-    [flowLayout setItemSize:CGSizeMake(150, 100)];
+    [flowLayout setItemSize:CGSizeMake(140, 100)];
     [flowLayout setScrollDirection:UICollectionViewScrollDirectionVertical];
-    flowLayout.sectionInset = UIEdgeInsetsMake(0, 1, 0, 0);
    
     [self.collectionView setCollectionViewLayout:flowLayout];
     
@@ -53,7 +59,7 @@
                                      toItem:[CommonTitleView titleView:self.view]
                                   attribute:NSLayoutAttributeBottom
                                  multiplier:1.0
-                                   constant:0.0];
+                                   constant:5.0];
     [self.view addConstraint:constraint];
     
     
@@ -70,20 +76,14 @@
 //每个section的item个数
 -(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
-    return 30;
+        return [[[self.pbUserTutorial tutorial] stagesList] count];
 }
 
 -(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    
     StageCell *cell = (StageCell *)[collectionView dequeueReusableCellWithReuseIdentifier:@"StageCell" forIndexPath:indexPath];
-    
-    //图片名称
-    NSString *imageToLoad = [NSString stringWithFormat:@"disable_notice_on"];
-    //加载图片
-    cell.stageCellImage.image = [UIImage imageNamed:imageToLoad];
-    //设置label文字
-    cell.cellName.text = [NSString stringWithFormat:@"{%ld,%ld}",(long)indexPath.row,(long)indexPath.section];
+    //更新cell
+    [cell updateStageCellInfo:self.pbUserTutorial withRow:indexPath.row];
     
     return cell;
 }
@@ -94,14 +94,11 @@
 {
     return 1;
 }
-#pragma mark --UICollectionViewDelegateFlowLayout
-////定义每个UICollectionView 的大小
-//- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
-//{
-//    CGFloat windowWidth = self.view.bounds.size.width;
-////    CGFloat windowHeight = self.view.bounds.size.height;
-//    return CGSizeMake(100,120);
-//}
+-(UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section
+{
+    return UIEdgeInsetsMake(5, 8, 5, 8);
+}
+
 #pragma mark --UICollectionViewDelegate
 //UICollectionView被选中时调用的方法
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
@@ -122,10 +119,9 @@
 //{
 //    return YES;
 //}
-//-(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
-//    return 4;
-//}
+
 - (void)dealloc {
+     PPRelease(_pbUserTutorial);
     [_collectionView release];
     [super dealloc];
 }
@@ -133,5 +129,13 @@
     [self setCollectionView:nil];
     [super viewDidUnload];
 }
++(TutorialStageController *)enter:(PPViewController *)superViewController pbTutorial:(PBUserTutorial *)pbUserTutorial{
+    TutorialStageController *tc = [[TutorialStageController alloc] init];
+    tc.pbUserTutorial = pbUserTutorial;
+    [superViewController.navigationController pushViewController:tc animated:YES];
+    [tc release];
+    return tc;
+}
+
 
 @end

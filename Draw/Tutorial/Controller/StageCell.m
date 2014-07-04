@@ -7,60 +7,43 @@
 //
 
 #import "StageCell.h"
+#import "UIImageView+Extend.h"
 
 @implementation StageCell
 #define TUTORIAL_IMAGE_HEIGHT       (ISIPAD ? 100 : 45)
-//- (id)initWithFrame:(CGRect)frame
-//{
-//    self = [super initWithFrame:frame];
-//    if (self) {
-//        // Initialization code
-//        // 初始化时加载StageCell。xib文件
-//        NSArray *arrayOfViews = [[NSBundle mainBundle] loadNibNamed:@"StageCell" owner:self options:nil];
-//        if (arrayOfViews.count < 1)
-//        {
-//            return nil;
-//        }
-//        // 如果xib中view不属于UICollectionViewCell类，return nil
-//        if (![[arrayOfViews objectAtIndex:0] isKindOfClass:[UICollectionViewCell class]])
-//        {
-//            return nil;
-//        }
-//        // 加载nib
-//        self = [arrayOfViews objectAtIndex:0];
-//        
-//    }
-//    return self;
-//}
-
-
-
 
 - (id)initWithCoder:(NSCoder *)aDecoder
 {
     self = [super initWithCoder:aDecoder];
     if (self)
     {
-        // change to our custom selected background view
-//        CustomCellBackground *backgroundView = [[CustomCellBackground alloc] initWithFrame:CGRectZero];
-//        self.selectedBackgroundView = backgroundView;
+            //TODO
         
             }
     return self;
 }
-
-/*
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-- (void)drawRect:(CGRect)rect
-{
-    // Drawing code
+-(void)updateStageCellInfo:(PBUserTutorial *)pbUserTutorial withRow:(NSInteger)row{
+    
+        SET_BUTTON_ROUND_STYLE_ORANGE(self.stageListStarBtn);
+            
+        NSArray *stageList = [[pbUserTutorial tutorial] stagesList];
+        //加载图片
+        UIImage *placeHolderImage = [UIImage imageNamed:@"dialogue@2x"];
+        SET_VIEW_ROUND_CORNER(self.stageCellImage);
+        [self.stageCellImage
+         setImageWithUrl:[NSURL URLWithString:[[stageList objectAtIndex:row] thumbImage]]
+         placeholderImage:placeHolderImage
+         showLoading:YES
+         animated:YES];
+        //设置label文字
+        self.cellName.text = [[stageList objectAtIndex:row] cnName];
+    
 }
-*/
 
 - (void)dealloc {
     [_stageCellImage release];
     [_cellName release];
+    [_stageListStarBtn release];
     [super dealloc];
 }
 @end

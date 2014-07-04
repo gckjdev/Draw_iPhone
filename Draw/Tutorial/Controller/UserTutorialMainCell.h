@@ -14,6 +14,8 @@
 @property (retain, nonatomic) IBOutlet UILabel *tutorialNameLabel;
 @property (retain, nonatomic) IBOutlet UIImageView *tutorialImageView;
 @property (retain, nonatomic) IBOutlet UILabel *tutorialDateLabel;
+@property (retain, nonatomic) IBOutlet UIButton *tutorialStartBtn;
+@property (retain, nonatomic) IBOutlet UIView *UIImageViewUpView;
 
 - (void)updateCellInfo:(PBUserTutorial*)ut;
 @end

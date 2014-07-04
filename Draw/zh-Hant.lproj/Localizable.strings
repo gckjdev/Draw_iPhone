@@ -2760,3 +2760,6 @@
 "kUserTutorialMainTitle" = "學畫畫";
 "kAddTutorial" = "添加";
 "AllTutorial" = "添加教程";
+
+"kTutorialDesc" = "教程簡介";
+"kTutorialStageList" = "關卡列表";

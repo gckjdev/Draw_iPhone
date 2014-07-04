@@ -16,7 +16,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <collectionView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" minimumZoomScale="0.0" maximumZoomScale="0.0" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="aUz-1Q-JfL">
-                    <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                    <rect key="frame" x="5" y="0.0" width="310" height="568"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                     <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Xlh-gs-B0R">
                         <size key="itemSize" width="95" height="116"/>
@@ -33,9 +33,9 @@
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstAttribute="bottom" secondItem="aUz-1Q-JfL" secondAttribute="bottom" id="5L4-eR-ZUT"/>
-                <constraint firstAttribute="trailing" secondItem="aUz-1Q-JfL" secondAttribute="trailing" id="HHv-hB-cg7"/>
-                <constraint firstItem="aUz-1Q-JfL" firstAttribute="leading" secondItem="1" secondAttribute="leading" id="sLF-Wf-SNT"/>
+                <constraint firstItem="aUz-1Q-JfL" firstAttribute="centerX" secondItem="1" secondAttribute="centerX" id="Eue-yp-Tah"/>
+                <constraint firstItem="aUz-1Q-JfL" firstAttribute="leading" secondItem="1" secondAttribute="leading" constant="5" id="gEt-Oj-grD"/>
+                <constraint firstAttribute="bottom" secondItem="aUz-1Q-JfL" secondAttribute="bottom" id="v37-wp-DWb"/>
             </constraints>
             <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>

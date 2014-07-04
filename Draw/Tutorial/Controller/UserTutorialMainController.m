@@ -40,26 +40,43 @@
     [[CommonTitleView titleView:self.view] setRightButtonSelector:@selector(clickAdd:)];
     [[CommonTitleView titleView:self.view] setRightButtonTitle:NSLS(@"kAddTutorial")];
     
+    int TOP_LEADING = (ISIPAD ? 15.0 : 15.0);
+    int LEFT_RIGHT_LEADING = (ISIPAD ? 15 : 15.0);
+    
     NSLayoutConstraint* constraint = [NSLayoutConstraint constraintWithItem:self.dataTableView
                                                                   attribute:NSLayoutAttributeTop
                                                                   relatedBy:NSLayoutRelationEqual
                                                                      toItem:[CommonTitleView titleView:self.view]
                                                                   attribute:NSLayoutAttributeBottom
                                                                  multiplier:1.0
-                                                                   constant:0.0];
+                                                                   constant:TOP_LEADING];
+    
+    NSLayoutConstraint* leftConstraint = [NSLayoutConstraint constraintWithItem:self.dataTableView
+                                                                  attribute:NSLayoutAttributeLeading
+                                                                  relatedBy:NSLayoutRelationEqual
+                                                                     toItem:self.view
+                                                                  attribute:NSLayoutAttributeLeft
+                                                                 multiplier:1.0
+                                                                   constant:LEFT_RIGHT_LEADING];
+    
+    NSLayoutConstraint* rightConstraint = [NSLayoutConstraint constraintWithItem:self.dataTableView
+                                                                  attribute:NSLayoutAttributeTrailing
+                                                                  relatedBy:NSLayoutRelationEqual
+                                                                     toItem:self.view
+                                                                  attribute:NSLayoutAttributeTrailing
+                                                                 multiplier:1.0
+                                                                   constant:LEFT_RIGHT_LEADING];
     
     [self.view addConstraint:constraint];
-
-    
-    
+    [self.view addConstraint:leftConstraint];
+//    [self.view addConstraint:rightConstraint];
     
 	// Do any additional setup after loading the view.
-    
     // set background
     [self setDefaultBGImage];
     
     self.dataList = [[UserTutorialManager defaultManager] allUserTutorials];
-    
+
    
 
 }
@@ -107,25 +124,38 @@
     return cell;
 }
 
+-(NSInteger)getTutorialByRow:(NSInteger)row{
+    if (row >= [self.dataList count]){
+        return nil;
+    }
+    return [self.dataList objectAtIndex:row];
+}
+
 #pragma mark 当点击cell 时候的事件
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    NSLog(@"click了 %i",indexPath.row);
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    PBUserTutorial *pbUserTutorial = [self getTutorialByRow:indexPath.row];
+    [TutorialStageController enter:self pbTutorial:pbUserTutorial];
     
-    TutorialStageController* vc = [[TutorialStageController alloc] init];
-    [self.navigationController pushViewController:vc animated:YES];
-    [vc release];
 }
-
-
 #pragma mark Table Delegate Methods
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return ISIPAD ? 230.0f : 150.0f;
+    return ISIPAD ? 300.0f : 160.0f;
 }
+-(UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return UITableViewCellEditingStyleDelete;
+}
+- (void)tableView:(UITableView *)tableView willBeginEditingRowAtIndexPath:(NSIndexPath *)indexPath {
 
-//- (NSIndexPath *)tableView:(UITableView *)tableView
-//  willSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-//    return nil;
-//}
+}
+- (void)tableView:(UITableView *)tableView didEndEditingRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+}
+-(void)dealloc{
+   
+    [super dealloc];
+    
+}
 
 @end
