@@ -115,7 +115,10 @@ SET_CELL_BG_IN_VIEW
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 
     PBTutorial* pbTutorial = [self getTutorialByRow:indexPath.row];
-    [TutorialInfoController enter:self pbTutorial:pbTutorial];
+    if(nil!=pbTutorial){
+         [TutorialInfoController enter:self pbTutorial:pbTutorial];
+    }
+   
     
 }
 @end

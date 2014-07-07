@@ -19,7 +19,7 @@
 @end
 
 
-#define HEIGHT_FOR_ROW ISIPAD ? 300.0f : 160.0f
+#define HEIGHT_FOR_ROW ISIPAD ? 250.0f : 160.0f
 @implementation UserTutorialMainController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -42,8 +42,8 @@
     [[CommonTitleView titleView:self.view] setRightButtonSelector:@selector(clickAdd:)];
     [[CommonTitleView titleView:self.view] setRightButtonTitle:NSLS(@"kAddTutorial")];
     
-    int TOP_LEADING = (ISIPAD ? 15.0 : 15.0);
-    int LEFT_RIGHT_LEADING = (ISIPAD ? 15 : 15.0);
+    int TOP_LEADING = (ISIPAD ? 25.0 : 15.0);
+    int LEFT_RIGHT_LEADING = (ISIPAD ? 15.0 : 15.0);
     
     NSLayoutConstraint* constraint = [NSLayoutConstraint constraintWithItem:self.dataTableView
                                                                   attribute:NSLayoutAttributeTop
@@ -71,7 +71,7 @@
     
     [self.view addConstraint:constraint];
     [self.view addConstraint:leftConstraint];
-//    [self.view addConstraint:rightConstraint];
+    [self.view addConstraint:rightConstraint];
     
 	// Do any additional setup after loading the view.
     // set background
@@ -121,8 +121,10 @@
 #pragma mark Table Data Source Methods
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    
     static NSString *CustomCellIdentifier = @"UserTutorialMainCell";
     UserTutorialMainCell *cell = [tableView dequeueReusableCellWithIdentifier:CustomCellIdentifier];
+    //cell
     if (cell == nil){
         //类名
         UINib *nib = [UINib nibWithNibName:CustomCellIdentifier bundle:nil];
@@ -130,8 +132,9 @@
         cell = [tableView dequeueReusableCellWithIdentifier:CustomCellIdentifier];
     }
     
+    //行数
     NSUInteger row = [indexPath row];
-    PBUserTutorial* ut = [self getTutorialByRow:row];  // TODO 调用get方法
+    PBUserTutorial* ut = [self getTutorialByRow:row];
     if(ut!=nil){
         [cell updateCellInfo:ut];
         cell.selectionStyle = UITableViewCellSelectionStyleBlue;
@@ -157,7 +160,7 @@
 
 #pragma mark Table Delegate Methods
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return  HEIGHT_FOR_ROW;// TODO 高度修改为宏定义
+    return  HEIGHT_FOR_ROW;
 }
 
 -(UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath

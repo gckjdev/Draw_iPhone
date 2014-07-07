@@ -13,7 +13,6 @@
 #import "Tutorial.pb.h"
 
 #define TUTORIAL_IMAGE_HEIGHT       (ISIPAD ? 100 : 45)
-#define DEFAUT_IMAGE_NAME "dialogue@2x"
 @implementation UserTutorialMainCell
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
@@ -44,25 +43,31 @@
     // Configure the view for the selected state
 }
 
+
+#define DEFAUT_IMAGE_NAME "dialogue@2x"
 - (void)updateCellInfo:(PBUserTutorial*)ut
 {
-    SET_BUTTON_ROUND_STYLE_ORANGE(self.tutorialStartBtn);
+    //圆角
+    SET_BUTTON_ROUND_STYLE_YELLOW(self.tutorialStartBtn);
+    SET_VIEW_ROUND_CORNER(self.tutorialImageView);
+    
+    //contentView background
     self.contentView.backgroundColor = [UIColor clearColor];
     
-    [self.tutorialNameLabel setText:ut.tutorial.name];    // TODO 国际化
+    //实现国际化
+    [self.tutorialNameLabel setText:ut.tutorial.name];
     
     
     NSDate* createDate = [NSDate dateWithTimeIntervalSince1970:ut.createDate];  // TODO 调用正确方法显示时间
     self.tutorialDateLabel.text = dateToLocaleString(createDate);
     
-    UIImage *placeHolderImage = [UIImage imageNamed:@DEFAUT_IMAGE_NAME]; 
-//    _tutorialImageView.contentMode = UIViewContentModeScaleAspectFit;
+    UIImage *placeHolderImage = [UIImage imageNamed:@DEFAUT_IMAGE_NAME];
     [_tutorialImageView setImageWithUrl:[NSURL URLWithString:ut.tutorial.image]
                    placeholderImage:placeHolderImage
                         showLoading:YES
                            animated:YES];
     
-    SET_VIEW_ROUND_CORNER(self.tutorialImageView);
+    
 
 }
 

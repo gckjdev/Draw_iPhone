@@ -56,7 +56,6 @@
     self.tutorialDesc.font = AD_FONT(22, 11);
     self.tutorialDesc.textColor = COLOR_RED;
     
-    // TODO localize tutorial name
     //实现国际化
     self.tutorialName.text = pbTutorial.name;
     self.tutorialDesc.text = pbTutorial.desc;
@@ -65,9 +64,9 @@
     SET_VIEW_ROUND_CORNER(self.tutorialImage);
     
     [_tutorialImage setImageWithUrl:[NSURL URLWithString:pbTutorial.thumbImage]
-                   placeholderImage:placeHolderImage
-                        showLoading:YES
-                           animated:YES];
+                    placeholderImage:placeHolderImage
+                    showLoading:YES
+                    animated:YES];
 }
 
 - (void)dealloc {

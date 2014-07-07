@@ -23,8 +23,8 @@
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstAttribute="trailing" secondItem="1pA-kP-2zp" secondAttribute="trailing" constant="15" id="Kbj-B1-5y9"/>
                 <constraint firstAttribute="bottom" secondItem="1pA-kP-2zp" secondAttribute="bottom" id="L3e-wN-gHk"/>
+                <constraint firstAttribute="trailing" secondItem="1pA-kP-2zp" secondAttribute="trailing" constant="15" id="yrH-QL-rTO"/>
             </constraints>
             <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>

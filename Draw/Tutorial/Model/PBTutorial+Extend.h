@@ -14,3 +14,11 @@
 - (NSString*)desc;
 
 @end
+
+
+@interface PBStage (Extend2)
+
+-(NSString *) name;
+-(NSString *) desc;
+
+@end

@@ -55,13 +55,14 @@
                         </constraints>
                     </view>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LR0-YB-7ux">
-                        <rect key="frame" x="115" y="42" width="60" height="30"/>
+                        <rect key="frame" x="105" y="42" width="80" height="30"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="30" id="5Ci-Jm-Q2S"/>
-                            <constraint firstAttribute="width" constant="60" id="6sJ-dx-GLq"/>
+                            <constraint firstAttribute="width" constant="80" id="6sJ-dx-GLq"/>
                         </constraints>
-                        <state key="normal" title="Button">
+                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                        <state key="normal" title="开始教程">
                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                         </state>
                     </button>

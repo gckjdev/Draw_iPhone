@@ -71,7 +71,6 @@ enum{
 - (void)viewDidLoad
 {
     self.sectionTitle = @[NSLS(@"kTutorialDesc"), NSLS(@"kTutorialStageList")];
-    self.numberRowsSection = @[@1,@4];
     [CommonTitleView createTitleView:self.view];
     
     id titleView = [CommonTitleView titleView:self.view];
@@ -91,8 +90,6 @@ enum{
     [self.view addConstraint:constraint];
     [self setDefaultBGImage];
     [super viewDidLoad];
-    
-    // Do any additional setup after loading the view from its nib.
     
     self.dataList = self.pbTutorial.stagesList;
    
@@ -167,13 +164,12 @@ forRowAtIndexPath:(NSIndexPath *)indexPath
             cell = [tableView dequeueReusableCellWithIdentifier:CustomCellIdentifier2];
         }
         
-        // TODO 命名，数组越界保护
         if(_pbTutorial!=nil){
-              NSArray* _pbStage = _pbTutorial.stagesList;
+              NSArray* pbStageList = _pbTutorial.stagesList;
         
         //数组越界保护
-        if(row<[_pbStage count]){
-            [cell updateStageCellInfo:[_pbStage objectAtIndex:row] WithRow:row];
+        if(pbStageList!=nil && row<[pbStageList count] && row >= 0.00){
+            [cell updateStageCellInfo:[pbStageList objectAtIndex:row] WithRow:row];
             
             cell.userInteractionEnabled = NO;
         }
@@ -200,9 +196,11 @@ forRowAtIndexPath:(NSIndexPath *)indexPath
     return [self getSectionTitle:section];
 }
 
-#define SECTION_HEADER_HEIGHT (ISIPAD ? 45 : 25)
+#define SECTION_HEADER_HEIGHT (ISIPAD ? 40 : 25)
 #define SECTION_HEADER_LEADING (ISIPAD ? 20 : 10)
 
+
+//重写表头
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
     
     UIView* myView = [[[UIView alloc] init] autorelease];
@@ -223,15 +221,15 @@ forRowAtIndexPath:(NSIndexPath *)indexPath
 
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
     
-    return 25;
+    return SECTION_HEADER_HEIGHT;
 }
 
 #define HEIGHT_FOR_ROW_IN_SECTION_ONE (ISIPAD ? 300 : 150)
 #define HEIGHT_FOR_ROW (ISIPAD ? 100.0f : 50.0f)
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     NSInteger section = indexPath.section;
-    if(section==0){ // TODO macro
-        return HEIGHT_FOR_ROW_IN_SECTION_ONE; 
+    if(section==0){
+        return HEIGHT_FOR_ROW_IN_SECTION_ONE;
     }
     return HEIGHT_FOR_ROW;
     

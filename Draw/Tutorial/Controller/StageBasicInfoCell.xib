@@ -14,7 +14,7 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="9" translatesAutoresizingMaskIntoConstraints="NO" id="962-10-ArV">
-                        <rect key="frame" x="6" y="5" width="50" height="49"/>
+                        <rect key="frame" x="5" y="5" width="50" height="50"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="50" id="35x-7H-rpv"/>
@@ -23,7 +23,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ceE-0k-Ckl">
-                        <rect key="frame" x="59" y="3" width="60" height="53"/>
+                        <rect key="frame" x="60" y="3" width="60" height="53"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="60" id="UxS-3t-1D1"/>
@@ -47,25 +47,25 @@
                 </subviews>
                 <constraints>
                     <constraint firstItem="ceE-0k-Ckl" firstAttribute="top" secondItem="xQM-VF-dCa" secondAttribute="top" constant="-2" id="1Xk-hY-Jlx"/>
-                    <constraint firstItem="962-10-ArV" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="6" id="JQq-DF-YbN"/>
+                    <constraint firstItem="962-10-ArV" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="5" id="JQq-DF-YbN"/>
                     <constraint firstItem="962-10-ArV" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="5" id="L4q-wi-bWy"/>
                     <constraint firstItem="ceE-0k-Ckl" firstAttribute="centerY" secondItem="962-10-ArV" secondAttribute="centerY" id="U9c-pb-b6u"/>
                     <constraint firstItem="ceE-0k-Ckl" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="3" id="byR-7V-epM"/>
-                    <constraint firstItem="ceE-0k-Ckl" firstAttribute="leading" secondItem="962-10-ArV" secondAttribute="trailing" constant="3" id="fID-CL-Ub4"/>
+                    <constraint firstItem="ceE-0k-Ckl" firstAttribute="leading" secondItem="962-10-ArV" secondAttribute="trailing" constant="5" id="fID-CL-Ub4"/>
                     <constraint firstItem="JGt-VS-zKW" firstAttribute="top" secondItem="xQM-VF-dCa" secondAttribute="bottom" constant="-2" id="glB-tB-2oP"/>
                     <constraint firstItem="JGt-VS-zKW" firstAttribute="leading" secondItem="xQM-VF-dCa" secondAttribute="leading" id="hOw-xD-6wZ"/>
                     <constraint firstAttribute="trailing" secondItem="JGt-VS-zKW" secondAttribute="trailing" constant="52" id="j6Z-uv-8z4"/>
-                    <constraint firstItem="962-10-ArV" firstAttribute="bottom" secondItem="JGt-VS-zKW" secondAttribute="bottom" constant="1" id="l72-fE-Ycb"/>
+                    <constraint firstItem="962-10-ArV" firstAttribute="bottom" secondItem="JGt-VS-zKW" secondAttribute="bottom" constant="2" id="l72-fE-Ycb"/>
                     <constraint firstAttribute="trailing" secondItem="xQM-VF-dCa" secondAttribute="trailing" constant="47" id="mWK-Ec-1qr"/>
                     <constraint firstItem="962-10-ArV" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="svO-dx-h3p"/>
-                    <constraint firstItem="xQM-VF-dCa" firstAttribute="leading" secondItem="ceE-0k-Ckl" secondAttribute="trailing" constant="6" id="wSX-yP-Z1F"/>
+                    <constraint firstItem="xQM-VF-dCa" firstAttribute="leading" secondItem="ceE-0k-Ckl" secondAttribute="trailing" constant="5" id="wSX-yP-Z1F"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>
-                <outlet property="taskDesc" destination="JGt-VS-zKW" id="2Ef-UD-41g"/>
-                <outlet property="taskImage" destination="ceE-0k-Ckl" id="IyF-SV-n2i"/>
-                <outlet property="taskName" destination="xQM-VF-dCa" id="xlz-Qi-bxs"/>
-                <outlet property="taskNumber" destination="962-10-ArV" id="pxw-sS-eos"/>
+                <outlet property="stageBasicInfoDesc" destination="JGt-VS-zKW" id="hFJ-GL-AfP"/>
+                <outlet property="stageBasicInfoImageView" destination="ceE-0k-Ckl" id="xkH-UK-6sp"/>
+                <outlet property="stageBasicInfoName" destination="xQM-VF-dCa" id="8MD-TN-ihr"/>
+                <outlet property="stageBasicInfoNum" destination="962-10-ArV" id="Y3W-0B-tCC"/>
             </connections>
         </tableViewCell>
     </objects>
