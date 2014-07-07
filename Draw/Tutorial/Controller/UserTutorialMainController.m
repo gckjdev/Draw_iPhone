@@ -18,6 +18,8 @@
 
 @end
 
+
+#define HEIGHT_FOR_ROW ISIPAD ? 300.0f : 160.0f
 @implementation UserTutorialMainController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -102,6 +104,19 @@
     [vc release];
 }
 
+-(PBUserTutorial *)getDataListAtRow:(NSInteger)row {
+    if(row>[self.dataList count]){
+        return nil;
+    }
+    else return [self.dataList objectAtIndex:row];
+}
+
+-(NSInteger)getTutorialByRow:(NSInteger)row{
+    if (row >= [self.dataList count]){
+        return nil;
+    }
+    return [self.dataList objectAtIndex:row];
+}
 #pragma mark -
 #pragma mark Table Data Source Methods
 
@@ -116,20 +131,21 @@
     }
     
     NSUInteger row = [indexPath row];
-    PBUserTutorial* ut = [self.dataList objectAtIndex:row];  // TODO 调用get方法
-    [cell updateCellInfo:ut];
-    
-    cell.selectionStyle = UITableViewCellSelectionStyleBlue;
-    
-    return cell;
-}
+    PBUserTutorial* ut = [self getTutorialByRow:row];  // TODO 调用get方法
+    if(ut!=nil){
+        [cell updateCellInfo:ut];
+        cell.selectionStyle = UITableViewCellSelectionStyleBlue;
+        
+        return cell;
 
--(NSInteger)getTutorialByRow:(NSInteger)row{
-    if (row >= [self.dataList count]){
+    }
+    else{
         return nil;
     }
-    return [self.dataList objectAtIndex:row];
+    
 }
+
+
 
 #pragma mark 当点击cell 时候的事件
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -141,7 +157,7 @@
 
 #pragma mark Table Delegate Methods
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return ISIPAD ? 300.0f : 160.0f; // TODO 高度修改为宏定义
+    return  HEIGHT_FOR_ROW;// TODO 高度修改为宏定义
 }
 
 -(UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath

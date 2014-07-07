@@ -9,6 +9,7 @@
 #import "AllTutorialCell.h"
 #import "Tutorial.pb.h"
 #import "UIImageView+Extend.h"
+#import "PBTutorial+Extend.h"
 
 #define TUTORIAL_IMAGE_HEIGHT       (ISIPAD ? 100 : 45)
 @implementation AllTutorialCell
@@ -46,6 +47,7 @@
     // Configure the view for the selected state
 }
 
+#define DEFAUT_IMAGE "dialogue@2x"
 - (void)updateCellInfo:(PBTutorial*)pbTutorial
 {
     self.tutorialName.font = AD_BOLD_FONT(28, 16);
@@ -55,9 +57,10 @@
     self.tutorialDesc.textColor = COLOR_RED;
     
     // TODO localize tutorial name
-    self.tutorialName.text = pbTutorial.cnName;
-    self.tutorialDesc.text = pbTutorial.cnDesc;
-    UIImage *placeHolderImage = [UIImage imageNamed:@"dialogue@2x"];
+    //实现国际化
+    self.tutorialName.text = pbTutorial.name;
+    self.tutorialDesc.text = pbTutorial.desc;
+    UIImage *placeHolderImage = [UIImage imageNamed:@DEFAUT_IMAGE];
 
     SET_VIEW_ROUND_CORNER(self.tutorialImage);
     

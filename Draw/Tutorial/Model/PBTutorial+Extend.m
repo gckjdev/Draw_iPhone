@@ -36,8 +36,21 @@
 
 - (NSString*)desc
 {
-    // TODO, refer to name
-    return self.cnDesc;
+    if([LocaleUtils isChina]){
+        return self.cnDesc;
+    }
+    if([LocaleUtils isChinese]){
+        if([self.tcnDesc length] == 0){
+            return self.cnDesc;
+        }
+        else{
+            return self.tcnName;
+        }
+    }
+    else {
+            return self.cnDesc;
+    }
+    
 }
 
 

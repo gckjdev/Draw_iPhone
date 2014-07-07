@@ -11,6 +11,7 @@
 #import "UIViewController+BGImage.h"
 #import "UserTutorialMainController.h"
 #import "UIImageView+Extend.h"
+#import "PBTutorial+Extend.h"
 
 
 @interface TutorialStageController ()
@@ -34,7 +35,7 @@
 
 -(void)viewDidLoad{
     
-    NSString *title = [[self.pbUserTutorial tutorial]cnName]; // TODO 国际化
+    NSString *title = [[self.pbUserTutorial tutorial] name]; // TODO 国际化
     
     [super viewDidLoad];
     [CommonTitleView createTitleView:self.view];
@@ -42,7 +43,7 @@
     [[CommonTitleView titleView:self.view] setTarget:self];
     [[CommonTitleView titleView:self.view] setBackButtonSelector:@selector(clickBack:)];
     
-    UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc] init]; // TODO release
+    UICollectionViewFlowLayout *flowLayout = [[[UICollectionViewFlowLayout alloc] init] autorelease]; // TODO release
     [flowLayout setItemSize:CGSizeMake(140, 100)];
     [flowLayout setScrollDirection:UICollectionViewScrollDirectionVertical];
    

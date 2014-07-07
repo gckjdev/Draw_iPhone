@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "Tutorial.pb.h"
-
+#import "PBTutorial+Extend.h"
 @interface StageBasicInfoCell : UITableViewCell
 
 @property (retain, nonatomic) IBOutlet UILabel *taskNumber;

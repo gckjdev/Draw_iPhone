@@ -95,9 +95,10 @@ SET_CELL_BG_IN_VIEW
     }
     
     NSUInteger row = [indexPath row];
-
     PBTutorial* pbTutorial = [self getTutorialByRow:row];
-    [cell updateCellInfo:pbTutorial];
+    if(nil != pbTutorial){
+        [cell updateCellInfo:pbTutorial];
+    }
     
     return cell;
 }

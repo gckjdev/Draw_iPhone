@@ -11,7 +11,7 @@
 #import "TutorialInfoCell.h"
 #import "Tutorial.pb.h"
 
-@interface TutorialInfoController : PPTableViewController<AddButtonDelegate>
+@interface TutorialInfoController : PPTableViewController
 
 @property(nonatomic,retain) NSArray *sectionTitle;
 @property(nonatomic,retain) NSArray *numberRowsSection;

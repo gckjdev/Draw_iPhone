@@ -11,7 +11,6 @@
 
 @implementation TutorialInfoCell
 #define Task_IMAGE_HEIGHT       (ISIPAD ? 100 : 45)
-@synthesize delegate;
 - (void)awakeFromNib
 {
     // Initialization code
@@ -44,22 +43,14 @@
     return self;
 }
 
-- (IBAction)clickAddBtn:(id)sender {
-    
-    
-//    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"请输入新数据" message:nil delegate:self cancelButtonTitle:@"关闭" otherButtonTitles:@"添加", nil];
-//    alert.alertViewStyle = UIAlertViewStylePlainTextInput;
-//    [alert textFieldAtIndex:0].placeholder = @"请输入新数据";
-//    [alert show];
-//    [alert release];
-    [delegate clickButton];
-    
-}
 
 - (void)updateCellInfo:(PBTutorial*)pbTutorial
 {
-    self.tutorialDesc.text = pbTutorial.name;
-    self.tutorialDescInfo.text = pbTutorial.desc;
+    //实现国际化
+    if(pbTutorial!=nil){
+        self.tutorialDesc.text = pbTutorial.name;
+        self.tutorialDescInfo.text = pbTutorial.desc;
+    }
 }
 
 

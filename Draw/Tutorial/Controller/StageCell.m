@@ -22,15 +22,20 @@
             }
     return self;
 }
+
+#define DEFAUT_IMAGE "dialogue@2x"
 -(void)updateStageCellInfo:(PBUserTutorial *)pbUserTutorial withRow:(NSInteger)row{
     
         SET_BUTTON_ROUND_STYLE_ORANGE(self.stageListStarBtn);
     
     // TODO 数组越界保护
+  
         NSArray *stageList = [[pbUserTutorial tutorial] stagesList];
         //加载图片
-        UIImage *placeHolderImage = [UIImage imageNamed:@"dialogue@2x"];
+        UIImage *placeHolderImage = [UIImage imageNamed:@DEFAUT_IMAGE];
         SET_VIEW_ROUND_CORNER(self.stageCellImage);
+    //数组越界保护
+    if (stageList!=nil && row < [stageList count]) {
         [self.stageCellImage
          setImageWithUrl:[NSURL URLWithString:[[stageList objectAtIndex:row] thumbImage]]
          placeholderImage:placeHolderImage
@@ -38,6 +43,11 @@
          animated:YES];
         //设置label文字
         self.cellName.text = [[stageList objectAtIndex:row] cnName];
+    }
+    //否则返回
+    else {
+        return;
+    }
     
 }
 

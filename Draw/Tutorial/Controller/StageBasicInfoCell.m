@@ -46,6 +46,8 @@
 
 // TODO 方法命名
 // TODO 变量命名
+
+#define DEFAUT_IMAGE "dialogue@2x"
 -(void)updateStageCellInfo:(PBStage*)pbStage WithRow:(NSInteger)row{
     
     self.taskName.font = AD_BOLD_FONT(25, 13);
@@ -61,7 +63,7 @@
     self.taskName.text = pbStage.cnName;
     self.taskDesc.text = pbStage.cnDesc;
     self.taskNumber.text = [NSString stringWithFormat:@"%d", row+1];
-    UIImage *placeHolderImage = [UIImage imageNamed:@"dialogue@2x"];
+    UIImage *placeHolderImage = [UIImage imageNamed:@DEFAUT_IMAGE];
     
     
     [_taskImage setImageWithUrl:[NSURL URLWithString:pbStage.thumbImage]

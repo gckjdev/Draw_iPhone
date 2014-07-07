@@ -9,13 +9,11 @@
 #import <UIKit/UIKit.h>
 #import "Tutorial.pb.h"
 
-@protocol AddButtonDelegate;
 
-@interface TutorialInfoCell :UITableViewCell<AddButtonDelegate,UIAlertViewDelegate>
+@interface TutorialInfoCell :UITableViewCell<UIAlertViewDelegate>
 {
 }
 
-@property (nonatomic, retain) id <AddButtonDelegate> delegate;
 @property (retain, nonatomic) IBOutlet UILabel *tutorialDesc;
 @property (retain, nonatomic) IBOutlet UILabel *tutorialDescInfo;
 @property (retain, nonatomic) IBOutlet UIButton *tutorialAddBtn;
@@ -26,9 +24,3 @@
 
 @end
 
-
-@protocol AddButtonDelegate<NSObject>
-
--(void)clickButton;
-
-@end

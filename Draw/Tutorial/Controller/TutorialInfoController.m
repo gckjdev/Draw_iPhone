@@ -27,6 +27,7 @@ enum{
 @property (nonatomic, retain) PBTutorial* pbTutorial;
 @end
 
+
 @implementation TutorialInfoController
 
 + (TutorialInfoController*)enter:(PPViewController*)superViewController
@@ -167,12 +168,19 @@ forRowAtIndexPath:(NSIndexPath *)indexPath
         }
         
         // TODO 命名，数组越界保护
-        NSArray* _pbSage = _pbTutorial.stagesList;
-        [cell updateStageCellInfo:[_pbSage objectAtIndex:row] WithRow:row];
+        if(_pbTutorial!=nil){
+              NSArray* _pbStage = _pbTutorial.stagesList;
         
-        cell.userInteractionEnabled = NO;
-        
+        //数组越界保护
+        if(row<[_pbStage count]){
+            [cell updateStageCellInfo:[_pbStage objectAtIndex:row] WithRow:row];
+            
+            cell.userInteractionEnabled = NO;
+        }
+        }
         return cell;
+
+       
 
     }
 }
@@ -218,12 +226,14 @@ forRowAtIndexPath:(NSIndexPath *)indexPath
     return 25;
 }
 
+#define HEIGHT_FOR_ROW_IN_SECTION_ONE (ISIPAD ? 300 : 150)
+#define HEIGHT_FOR_ROW (ISIPAD ? 100.0f : 50.0f)
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     NSInteger section = indexPath.section;
     if(section==0){ // TODO macro
-        return ISIPAD ? 300 : 150; // TODO macro
+        return HEIGHT_FOR_ROW_IN_SECTION_ONE; 
     }
-    return ISIPAD ? 100.0f : 50.0f; // TODO macro
+    return HEIGHT_FOR_ROW;
     
 }
 

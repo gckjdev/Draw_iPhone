@@ -13,7 +13,7 @@
 #import "Tutorial.pb.h"
 
 #define TUTORIAL_IMAGE_HEIGHT       (ISIPAD ? 100 : 45)
-
+#define DEFAUT_IMAGE_NAME "dialogue@2x"
 @implementation UserTutorialMainCell
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
@@ -50,10 +50,12 @@
     self.contentView.backgroundColor = [UIColor clearColor];
     
     [self.tutorialNameLabel setText:ut.tutorial.name];    // TODO 国际化
+    
+    
     NSDate* createDate = [NSDate dateWithTimeIntervalSince1970:ut.createDate];  // TODO 调用正确方法显示时间
     self.tutorialDateLabel.text = dateToLocaleString(createDate);
     
-    UIImage *placeHolderImage = [UIImage imageNamed:@"dialogue@2x"]; // TODO 修改为宏
+    UIImage *placeHolderImage = [UIImage imageNamed:@DEFAUT_IMAGE_NAME]; 
 //    _tutorialImageView.contentMode = UIViewContentModeScaleAspectFit;
     [_tutorialImageView setImageWithUrl:[NSURL URLWithString:ut.tutorial.image]
                    placeholderImage:placeHolderImage
