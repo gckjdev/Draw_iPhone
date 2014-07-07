@@ -384,7 +384,7 @@
     self.designTime = [[[OpusDesignTime alloc] initWithTime:initTime] autorelease];
     [self.designTime start];
 
-//    [CopyView createCopyView:self superView:holder atPoint:drawView.frame.origin];
+    [CopyView createCopyView:self superView:holder atPoint:drawView.frame.origin];
 }
 
 - (void)initCopyView

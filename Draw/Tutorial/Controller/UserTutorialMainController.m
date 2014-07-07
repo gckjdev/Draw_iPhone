@@ -116,7 +116,7 @@
     }
     
     NSUInteger row = [indexPath row];
-    PBUserTutorial* ut = [self.dataList objectAtIndex:row];
+    PBUserTutorial* ut = [self.dataList objectAtIndex:row];  // TODO 调用get方法
     [cell updateCellInfo:ut];
     
     cell.selectionStyle = UITableViewCellSelectionStyleBlue;
@@ -138,10 +138,12 @@
     [TutorialStageController enter:self pbTutorial:pbUserTutorial];
     
 }
+
 #pragma mark Table Delegate Methods
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return ISIPAD ? 300.0f : 160.0f;
+    return ISIPAD ? 300.0f : 160.0f; // TODO 高度修改为宏定义
 }
+
 -(UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     return UITableViewCellEditingStyleDelete;

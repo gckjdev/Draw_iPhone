@@ -50,10 +50,10 @@
     self.contentView.backgroundColor = [UIColor clearColor];
     
     [self.tutorialNameLabel setText:ut.tutorial.name];    // TODO 国际化
-    NSDate* createDate = [NSDate dateWithTimeIntervalSince1970:ut.createDate];
+    NSDate* createDate = [NSDate dateWithTimeIntervalSince1970:ut.createDate];  // TODO 调用正确方法显示时间
     self.tutorialDateLabel.text = dateToLocaleString(createDate);
     
-    UIImage *placeHolderImage = [UIImage imageNamed:@"dialogue@2x"];
+    UIImage *placeHolderImage = [UIImage imageNamed:@"dialogue@2x"]; // TODO 修改为宏
 //    _tutorialImageView.contentMode = UIViewContentModeScaleAspectFit;
     [_tutorialImageView setImageWithUrl:[NSURL URLWithString:ut.tutorial.image]
                    placeholderImage:placeHolderImage

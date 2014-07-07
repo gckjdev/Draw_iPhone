@@ -105,7 +105,7 @@ SET_CELL_BG_IN_VIEW
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-   return ISIPAD ? 160.0f : 75.0f;
+    return PPSIZE(160.f, 75.0f); //  ISIPAD ? 160.0f : 75.0f;
 }
 
 // 当点击cell 时候的事件

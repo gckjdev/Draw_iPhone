@@ -25,7 +25,8 @@
 -(void)updateStageCellInfo:(PBUserTutorial *)pbUserTutorial withRow:(NSInteger)row{
     
         SET_BUTTON_ROUND_STYLE_ORANGE(self.stageListStarBtn);
-            
+    
+    // TODO 数组越界保护
         NSArray *stageList = [[pbUserTutorial tutorial] stagesList];
         //加载图片
         UIImage *placeHolderImage = [UIImage imageNamed:@"dialogue@2x"];

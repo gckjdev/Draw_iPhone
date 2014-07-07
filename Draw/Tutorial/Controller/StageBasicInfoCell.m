@@ -10,6 +10,7 @@
 #import "UIImageView+Extend.h"
 
 @implementation StageBasicInfoCell
+
 #define Task_IMAGE_HEIGHT       (ISIPAD ? 100 : 45)
 
 - (void)awakeFromNib
@@ -43,6 +44,8 @@
     return self;
 }
 
+// TODO 方法命名
+// TODO 变量命名
 -(void)updateStageCellInfo:(PBStage*)pbStage WithRow:(NSInteger)row{
     
     self.taskName.font = AD_BOLD_FONT(25, 13);
@@ -54,6 +57,7 @@
     self.taskNumber.font = AD_BOLD_FONT(50, 26);
     self.taskNumber.textColor = COLOR_GRAY_AVATAR;
     
+    // TODO 名字/描述国际化
     self.taskName.text = pbStage.cnName;
     self.taskDesc.text = pbStage.cnDesc;
     self.taskNumber.text = [NSString stringWithFormat:@"%d", row+1];

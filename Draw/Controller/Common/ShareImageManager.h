@@ -20,6 +20,8 @@
 
 #define SIM [ShareImageManager defaultManager]
 
+#define PPSIZE(x,y) (ISIPAD ? x : y)
+
 #define CONTENT_VIEW_INSERT (ISIPAD ? 10 : 5)
 
 #define TEXT_VIEW_BORDER_WIDTH   (ISIPAD ? 6  : 3)

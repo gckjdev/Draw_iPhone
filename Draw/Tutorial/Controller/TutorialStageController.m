@@ -15,7 +15,7 @@
 
 @interface TutorialStageController ()
 @property(nonatomic,strong)UITableView *tableView;
-@property(nonatomic,strong)UIImage *image;
+@property(nonatomic,strong)UIImage *image; // TODO dealloc方法释放
 @property (nonatomic,retain)PBUserTutorial* pbUserTutorial;
 @end
 
@@ -34,7 +34,7 @@
 
 -(void)viewDidLoad{
     
-    NSString *title = [[self.pbUserTutorial tutorial]cnName];
+    NSString *title = [[self.pbUserTutorial tutorial]cnName]; // TODO 国际化
     
     [super viewDidLoad];
     [CommonTitleView createTitleView:self.view];
@@ -42,7 +42,7 @@
     [[CommonTitleView titleView:self.view] setTarget:self];
     [[CommonTitleView titleView:self.view] setBackButtonSelector:@selector(clickBack:)];
     
-    UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc] init];
+    UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc] init]; // TODO release
     [flowLayout setItemSize:CGSizeMake(140, 100)];
     [flowLayout setScrollDirection:UICollectionViewScrollDirectionVertical];
    

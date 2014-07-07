@@ -166,6 +166,7 @@ forRowAtIndexPath:(NSIndexPath *)indexPath
             cell = [tableView dequeueReusableCellWithIdentifier:CustomCellIdentifier2];
         }
         
+        // TODO 命名，数组越界保护
         NSArray* _pbSage = _pbTutorial.stagesList;
         [cell updateStageCellInfo:[_pbSage objectAtIndex:row] WithRow:row];
         
@@ -219,16 +220,17 @@ forRowAtIndexPath:(NSIndexPath *)indexPath
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     NSInteger section = indexPath.section;
-    if(section==0){
-        return ISIPAD ? 300 : 150;
+    if(section==0){ // TODO macro
+        return ISIPAD ? 300 : 150; // TODO macro
     }
-    return ISIPAD ? 100.0f : 50.0f;
+    return ISIPAD ? 100.0f : 50.0f; // TODO macro
     
 }
+
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    NSLog(@"你好你好！");
 }
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
