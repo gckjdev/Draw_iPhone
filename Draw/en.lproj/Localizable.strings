@@ -2744,3 +2744,10 @@
 "kClassicalStyle" = "Classical";
 "kHomeStyle" = "Home Style";
 "kSetHomeStyleSucc" = "Set home style successfully! Please restart app to enable the change";
+
+"kCopyViewActionTitle" = "Actions";
+"kCopyViewSetImage" = "Set Image";
+"kPlayCopyView" = "Play";
+"kHideCopyView" = "Hide";
+"kCopyViewHelp" = "Help";
+

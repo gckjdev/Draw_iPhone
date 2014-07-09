@@ -29,6 +29,12 @@
 
 @end
 
+@interface DrawPlayer ()
+{
+    BOOL superControllerCanDragBack;
+}
+
+@end
 
 @implementation DrawPlayer
 
@@ -110,6 +116,7 @@
     }
     [self start];
     [self performSelector:@selector(autoHidePanel) withObject:nil afterDelay:4];
+    superControllerCanDragBack = controller.canDragBack;
     [controller setCanDragBack:NO];
 }
 
@@ -127,7 +134,7 @@
 
 - (IBAction)close:(id)sender {
 //    [[UIApplication sharedApplication] setStatusBarHidden:NO];
-    [(PPViewController *)[self theViewController] setCanDragBack:YES];
+    [(PPViewController *)[self theViewController] setCanDragBack:superControllerCanDragBack];
     self.showView.delegate = nil;
     [self.showView stop];
     [self.showView removeFromSuperview];

@@ -108,6 +108,7 @@
 - (NSString*)opusDesc;
 - (void)setOpusDesc:(NSString *)opusDesc;
 - (void)setOpusSubject:(NSString *)opusSubject;
+- (void)setTargetUid:(NSString *)targetUid;
 
 @end
 

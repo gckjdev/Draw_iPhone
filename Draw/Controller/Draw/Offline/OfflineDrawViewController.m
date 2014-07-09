@@ -716,6 +716,7 @@
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
+    [self setCanDragBack:NO];
     [self startBackupTimer];
 }
 
