@@ -19,12 +19,13 @@
  { "class_id" : "2007", "cn_name":"名车", "tcn_name":"名车", "en_name":"名车", "keywords":"漫画 动漫", "sub_classes":[], "parent_class" : "" },
  
  { "class_id" : "3000", "cn_name":"动漫", "tcn_name":"动漫", "en_name":"动漫", "keywords":"漫画 动漫", "sub_classes":["3001", "3002", "3003", "3004", "3006", "3007"], "parent_class" : "" },
- { "class_id" : "3001", "cn_name":"动漫-少年", "tcn_name":"动漫-少年", "en_name":"动漫-少年", "keywords":"漫画 动漫", "sub_classes":[], "parent_class" : "3000" },
+ { "class_id" : "3001", "cn_name":"动漫-少男", "tcn_name":"动漫-少年", "en_name":"动漫-少年", "keywords":"漫画 动漫", "sub_classes":[], "parent_class" : "3000" },
  { "class_id" : "3002", "cn_name":"动漫-少女", "tcn_name":"动漫-少女", "en_name":"动漫-少女", "keywords":"漫画 动漫", "sub_classes":[], "parent_class" : "3000" },
  { "class_id" : "3003", "cn_name":"动漫-耽美", "tcn_name":"动漫-耽美", "en_name":"动漫-耽美", "keywords":"漫画 动漫", "sub_classes":[], "parent_class" : "3000" },
  { "class_id" : "3004", "cn_name":"动漫-萌系", "tcn_name":"动漫-萌系", "en_name":"动漫-萌系", "keywords":"漫画 动漫", "sub_classes":[], "parent_class" : "3000" },
  { "class_id" : "3006", "cn_name":"动漫-同人", "tcn_name":"动漫-同人", "en_name":"动漫-同人", "keywords":"漫画 动漫", "sub_classes":[], "parent_class" : "3000" },
  { "class_id" : "3007", "cn_name":"四格漫画", "tcn_name":"四格漫画", "en_name":"四格漫画", "keywords":"漫画 动漫", "sub_classes":[], "parent_class" : "3000" },
+ { "class_id" : "3008", "cn_name":"知名动漫", "tcn_name":"知名动漫", "en_name":"知名动漫", "keywords":"漫画 动漫", "sub_classes":[], "parent_class" : "3000" },
 
  { "class_id" : "4001", "cn_name":"绘本", "tcn_name":"绘本", "en_name":"绘本", "keywords":"漫画 动漫", "sub_classes":[], "parent_class" : "" },
  { "class_id" : "4002", "cn_name":"中国风", "tcn_name":"中国风", "en_name":"中国风", "keywords":"漫画 动漫", "sub_classes":[], "parent_class" : "" },
@@ -32,8 +33,11 @@
  { "class_id" : "4004", "cn_name":"书法", "tcn_name":"书法", "en_name":"书法", "keywords":"漫画 动漫", "sub_classes":[], "parent_class" : "" },
  { "class_id" : "4005", "cn_name":"动画", "tcn_name":"动画", "en_name":"动画", "keywords":"漫画 动漫", "sub_classes":[], "parent_class" : "" },
  { "class_id" : "4006", "cn_name":"黑白", "tcn_name":"黑白", "en_name":"黑白", "keywords":"漫画 动漫", "sub_classes":[], "parent_class" : "" },
- { "class_id" : "4007", "cn_name":"游戏", "tcn_name":"游戏", "en_name":"游戏", "keywords":"漫画 动漫", "sub_classes":[], "parent_class" : "" }
+ { "class_id" : "4007", "cn_name":"游戏", "tcn_name":"游戏", "en_name":"游戏", "keywords":"漫画 动漫", "sub_classes":[], "parent_class" : "" },
+ { "class_id" : "4008", "cn_name":"治愈系", "tcn_name":"治愈系", "en_name":"治愈系", "keywords":"漫画 动漫", "sub_classes":[], "parent_class" : "" },
+ { "class_id" : "4009", "cn_name":"暗黑系", "tcn_name":"暗黑系", "en_name":"暗黑系", "keywords":"漫画 动漫", "sub_classes":[], "parent_class" : "" },
+ { "class_id" : "4010", "cn_name":"情侣", "tcn_name":"情侣", "en_name":"情侣", "keywords":"漫画 动漫", "sub_classes":[], "parent_class" : "" }
 ],
 "home_list":
-["1002", "1003", "1004", "1005", "2001", "2002", "2003", "2004", "2005", "2006", "2007", "3000", "3007", "4002", "4003", "4004", "4006"]
+["1002", "1003", "1004", "1005", "2001", "2002", "2003", "2004", "2005", "2006", "2007", "3000", "3008", "3007", "4002", "4003", "4004", "4006"]
 }
