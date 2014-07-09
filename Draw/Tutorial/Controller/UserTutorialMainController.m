@@ -14,6 +14,7 @@
 #import "AllTutorialController.h"
 #import "TutorialStageController.h"
 
+
 @interface UserTutorialMainController ()
 
 @end
@@ -60,18 +61,20 @@
                                                                   attribute:NSLayoutAttributeLeft
                                                                  multiplier:1.0
                                                                    constant:LEFT_RIGHT_LEADING];
-    
-    NSLayoutConstraint* rightConstraint = [NSLayoutConstraint constraintWithItem:self.dataTableView
-                                                                  attribute:NSLayoutAttributeTrailing
-                                                                  relatedBy:NSLayoutRelationEqual
-                                                                     toItem:self.view
-                                                                  attribute:NSLayoutAttributeTrailing
-                                                                 multiplier:1.0
-                                                                   constant:LEFT_RIGHT_LEADING];
+//    
+//    NSLayoutConstraint* rightConstraint = [NSLayoutConstraint constraintWithItem:self.dataTableView
+//                                                                  attribute:NSLayoutAttributeTrailing
+//                                                                  relatedBy:NSLayoutRelationEqual
+//                                                                     toItem:self.view
+//                                                                  attribute:NSLayoutAttributeTrailing
+//                                                                 multiplier:1.0
+//                                                                   constant:LEFT_RIGHT_LEADING];
     
     [self.view addConstraint:constraint];
     [self.view addConstraint:leftConstraint];
-    [self.view addConstraint:rightConstraint];
+//    [self.view addConstraint:rightConstraint];
+    
+    
     
 	// Do any additional setup after loading the view.
     // set background
@@ -79,15 +82,13 @@
 
     self.view.backgroundColor = COLOR_GRAY;
     
-    self.dataList = [[UserTutorialManager defaultManager] allUserTutorials];
-
-   
-
+//    self.dataList = [[data reverseObjectEnumerator] allObjects];
 }
 
 - (void)viewDidAppear:(BOOL)animated
 {
-    self.dataList = [[UserTutorialManager defaultManager] allUserTutorials];
+    NSArray* list = [[UserTutorialManager defaultManager] allUserTutorials];
+    self.dataList = [[list reverseObjectEnumerator] allObjects];
     [self.dataTableView reloadData];
     
     [super viewDidAppear:animated];

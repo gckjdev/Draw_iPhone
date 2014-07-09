@@ -42,10 +42,10 @@
     [contentView release];
     [copyView release];
     
-    UITapGestureRecognizer *gestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:copyView action:@selector(hideBorder)];
-    [gestureRecognizer setDelegate:copyView];
-    [superView addGestureRecognizer:gestureRecognizer];
-    [gestureRecognizer release];
+//    UITapGestureRecognizer *gestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:copyView action:@selector(hideBorder)];
+//    [gestureRecognizer setDelegate:copyView];
+//    [superView addGestureRecognizer:gestureRecognizer];
+//    [gestureRecognizer release];
     
     [copyView showEditingHandles];
     [copyView loadLatestOpus];

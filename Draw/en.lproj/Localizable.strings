@@ -2751,3 +2751,7 @@
 "kHideCopyView" = "Hide";
 "kCopyViewHelp" = "Help";
 
+"kTutorialCategoryNewer" = "New Comer";
+"kTutorialCategoryHigherLevel" = "Medium";
+"kTutorialCategoryTopLevel" = "Advance";
+

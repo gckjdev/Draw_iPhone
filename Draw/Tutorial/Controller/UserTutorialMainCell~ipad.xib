@@ -14,11 +14,11 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="aDL-UJ-wjW">
-                        <rect key="frame" x="0.0" y="0.0" width="750" height="210"/>
+                        <rect key="frame" x="0.0" y="0.0" width="750" height="225"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                     </imageView>
-                    <view alpha="0.89999997615814209" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gtJ-OB-Z57">
-                        <rect key="frame" x="0.0" y="171" width="750" height="41"/>
+                    <view alpha="0.40000000000000002" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gtJ-OB-Z57">
+                        <rect key="frame" x="0.0" y="183" width="750" height="41"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="简笔画" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2hH-O2-dY3">
@@ -29,7 +29,7 @@
                                     <constraint firstAttribute="width" constant="141" id="vN6-Ch-wyz"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2天前" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5Sf-m5-ZSF">
@@ -40,11 +40,11 @@
                                     <constraint firstAttribute="width" constant="195" id="pln-gT-Qg2"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
-                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" cocoaTouchSystemColor="viewFlipsideBackgroundColor"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="5Sf-m5-ZSF" secondAttribute="trailing" constant="20" id="AHd-YV-ElC"/>
                             <constraint firstAttribute="bottom" secondItem="2hH-O2-dY3" secondAttribute="bottom" id="KqB-EH-tVu"/>
@@ -54,7 +54,7 @@
                             <constraint firstAttribute="bottom" secondItem="5Sf-m5-ZSF" secondAttribute="bottom" constant="-2" id="mLq-di-1Sz"/>
                         </constraints>
                     </view>
-                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="d8V-Vh-Gn2">
+                    <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="d8V-Vh-Gn2">
                         <rect key="frame" x="321" y="65" width="120" height="45"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <constraints>
@@ -70,15 +70,15 @@
                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                 <constraints>
                     <constraint firstItem="gtJ-OB-Z57" firstAttribute="leading" secondItem="cZu-cC-HCm" secondAttribute="leading" id="1Ex-o1-6ig"/>
-                    <constraint firstItem="gtJ-OB-Z57" firstAttribute="top" secondItem="d8V-Vh-Gn2" secondAttribute="bottom" constant="61" id="EuQ-5C-K7l"/>
-                    <constraint firstAttribute="bottom" secondItem="gtJ-OB-Z57" secondAttribute="bottom" constant="37" id="LlT-AP-PbN"/>
+                    <constraint firstItem="gtJ-OB-Z57" firstAttribute="top" secondItem="d8V-Vh-Gn2" secondAttribute="bottom" constant="73" id="EuQ-5C-K7l"/>
+                    <constraint firstAttribute="bottom" secondItem="gtJ-OB-Z57" secondAttribute="bottom" constant="25" id="LlT-AP-PbN"/>
                     <constraint firstItem="aDL-UJ-wjW" firstAttribute="top" secondItem="cZu-cC-HCm" secondAttribute="top" id="SAo-F3-cw6"/>
                     <constraint firstItem="d8V-Vh-Gn2" firstAttribute="top" secondItem="cZu-cC-HCm" secondAttribute="top" constant="65" id="eJn-fG-Gre"/>
                     <constraint firstItem="aDL-UJ-wjW" firstAttribute="trailing" secondItem="gtJ-OB-Z57" secondAttribute="trailing" id="flI-w9-IjT"/>
                     <constraint firstAttribute="trailing" secondItem="aDL-UJ-wjW" secondAttribute="trailing" id="lar-Lu-kOL"/>
                     <constraint firstItem="d8V-Vh-Gn2" firstAttribute="leading" secondItem="cZu-cC-HCm" secondAttribute="leading" constant="321" id="nXy-ne-9Oc"/>
                     <constraint firstItem="aDL-UJ-wjW" firstAttribute="leading" secondItem="gtJ-OB-Z57" secondAttribute="leading" id="pvf-hb-04Z"/>
-                    <constraint firstAttribute="bottom" secondItem="aDL-UJ-wjW" secondAttribute="bottom" constant="39" id="t5n-DY-8GZ"/>
+                    <constraint firstAttribute="bottom" secondItem="aDL-UJ-wjW" secondAttribute="bottom" constant="24" id="t5n-DY-8GZ"/>
                 </constraints>
             </tableViewCellContentView>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>

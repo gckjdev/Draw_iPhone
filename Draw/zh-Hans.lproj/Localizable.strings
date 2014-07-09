@@ -2775,3 +2775,6 @@
 "kHideCopyView" = "隐藏";
 "kCopyViewHelp" = "帮助";
 
+"kTutorialCategoryNewer" = "新手";
+"kTutorialCategoryHigherLevel" = "进阶";
+"kTutorialCategoryTopLevel" = "高级";

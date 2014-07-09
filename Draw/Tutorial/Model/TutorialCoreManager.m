@@ -127,13 +127,14 @@ static TutorialCoreManager* _defaultTutorialCoreManager;
 }
 
 //赋值PBTutorial_Builder
--(PBTutorial_Builder *) evaluateTutorialTestDataName:(NSString *)name WithDesc:(NSString *)desc WithTutorialId:(NSString *)tutorialId WithImage:(NSString *)imageUrl IsAdd:(BOOL)isAdd WithBuilder:(PBTutorialCore_Builder *)builder{
+-(PBTutorial_Builder *) evaluateTutorialTestDataName:(NSString *)name WithDesc:(NSString *)desc WithTutorialId:(NSString *)tutorialId WithImage:(NSString *)imageUrl IsAdd:(BOOL)isAdd WithBuilder:(PBTutorialCore_Builder *)builder WithCategory:(NSArray *)categoryList{
      PBTutorial_Builder* tb = [PBTutorial builder];
     [tb setCnName:name];
     [tb setCnDesc:desc];
     [tb setTutorialId:tutorialId];
     [tb setThumbImage:imageUrl];
     [tb setImage:imageUrl];
+    [tb addAllCategories:categoryList];
     if(isAdd){
         if(builder!=nil){
              PBTutorial* tutorial = [tb build];
@@ -172,13 +173,22 @@ static TutorialCoreManager* _defaultTutorialCoreManager;
 
     
     NSArray* testTutorialName = @[@"初识三次元",@"疯狂的线条",@"识色配图",@"旺星人大集合",@"一起动动动",@"易容速成"];
-    NSArray* testTutorialDesc = @[@"突破二次元的界限",@"帮助你更好的熟练工具",@"这里将把你打造成用达人",@"属于旺星人的趴",@"燃烧你的卡路里吧",@"你想易容成什么人"];
+    NSArray* testTutorialDesc = @[@"突破二次元的界限",@"帮助你更好的熟练工具",@"这里将把你打造成用色达人",@"属于旺星人的趴",@"燃烧你的卡路里吧",@"你想易容成什么人"];
     NSArray* tutorialImageUrl = @[@"http://58.215.184.18:8080/tutorial/image/1titlecopy.png",
                           @"http://58.215.184.18:8080/tutorial/image/2-titlenew.png",
                           @"http://58.215.184.18:8080/tutorial/image/3-titlenew.png",
                           @"http://58.215.184.18:8080/tutorial/image/4-titlenew.png",
                           @"http://58.215.184.18:8080/tutorial/image/5-titlenew.png",
                           @"http://58.215.184.18:8080/tutorial/image/6-titlenew.png"];
+    NSArray* tutorialCategory =
+                                @[
+                                  @[@(2)],
+                                  @[@(0)],
+                                  @[@(1)],
+                                  @[@(0)],
+                                  @[@(0)],
+                                  @[@(1)],
+                                  ];
     
     NSArray* testStageName = @[
                                @[@"石头",@"陶瓷",@"亚克力塑料",@"金属",@"皮肤",@"橡胶", @"玻璃",@"材质集合"],
@@ -275,7 +285,8 @@ static TutorialCoreManager* _defaultTutorialCoreManager;
                             WithTutorialId:ID
                                  WithImage:[tutorialImageUrl objectAtIndex:i]
                                      IsAdd:NO
-                               WithBuilder:nil];
+                               WithBuilder:nil
+                                WithCategory:[tutorialCategory objectAtIndex:i]];
         for(int j=0;j<[[testStageName objectAtIndex:i]  count];j++){
             NSString* stageID = [NSString stringWithFormat:@"stageId-%d-%d",i,j];
             

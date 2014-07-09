@@ -57,6 +57,37 @@
     
 }
 
+- (NSString*)singleCategoryName:(int)value
+{
+    switch (value) {
+            
+        case 0:
+            return NSLS(@"kTutorialCategoryNewer");
+        case 1:
+            return NSLS(@"kTutorialCategoryHigherLevel");
+        case 2:
+            return NSLS(@"kTutorialCategoryTopLevel");
+        default:
+            return @"";
+    }
+}
+
+- (NSString*)categoryName
+{
+    NSString* retName = @"";
+    for (NSNumber* category in self.categoriesList){
+        int value = category.intValue;
+        NSString* name = [self singleCategoryName:value];
+        if ([name length] > 0){
+            retName = [retName stringByAppendingString:name];
+            if ([self.categoriesList lastObject] != category){
+                retName = [retName stringByAppendingString:@", "];
+            }
+        }
+    }
+    
+    return retName;
+}
 
 @end
 

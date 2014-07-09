@@ -13,6 +13,8 @@
 - (NSString*)name;
 - (NSString*)desc;
 
+- (NSString*)categoryName;
+
 @end
 
 

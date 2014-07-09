@@ -6266,6 +6266,10 @@
 		D8C669D7196CE42F0002B975 /* TutorialInfoCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = D8C669D5196CE42F0002B975 /* TutorialInfoCell~ipad.xib */; };
 		D8C669D8196CE42F0002B975 /* TutorialInfoCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = D8C669D5196CE42F0002B975 /* TutorialInfoCell~ipad.xib */; };
 		D8C669D9196CE42F0002B975 /* TutorialInfoCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = D8C669D5196CE42F0002B975 /* TutorialInfoCell~ipad.xib */; };
+		D8C669E5196D3D1E0002B975 /* lock2.png in Resources */ = {isa = PBXBuildFile; fileRef = D8C669E4196D3D1E0002B975 /* lock2.png */; };
+		D8C669E6196D3D1E0002B975 /* lock2.png in Resources */ = {isa = PBXBuildFile; fileRef = D8C669E4196D3D1E0002B975 /* lock2.png */; };
+		D8C669E7196D3D1E0002B975 /* lock2.png in Resources */ = {isa = PBXBuildFile; fileRef = D8C669E4196D3D1E0002B975 /* lock2.png */; };
+		D8C669E8196D3D1E0002B975 /* lock2.png in Resources */ = {isa = PBXBuildFile; fileRef = D8C669E4196D3D1E0002B975 /* lock2.png */; };
 		D8C784B2196A4E2600323712 /* UserTutorialMainCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = D8C784B1196A4E2600323712 /* UserTutorialMainCell~ipad.xib */; };
 		D8C784B3196A4E2600323712 /* UserTutorialMainCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = D8C784B1196A4E2600323712 /* UserTutorialMainCell~ipad.xib */; };
 		D8C784B4196A4E2600323712 /* UserTutorialMainCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = D8C784B1196A4E2600323712 /* UserTutorialMainCell~ipad.xib */; };
@@ -10577,6 +10581,7 @@
 		D89191F01963163B006B616A /* StageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StageCell.m; sourceTree = "<group>"; };
 		D89191FA196316C2006B616A /* StageCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = StageCell.xib; sourceTree = "<group>"; };
 		D8C669D5196CE42F0002B975 /* TutorialInfoCell~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "TutorialInfoCell~ipad.xib"; sourceTree = "<group>"; };
+		D8C669E4196D3D1E0002B975 /* lock2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = lock2.png; sourceTree = "<group>"; };
 		D8C784B1196A4E2600323712 /* UserTutorialMainCell~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "UserTutorialMainCell~ipad.xib"; sourceTree = "<group>"; };
 		D8C784B9196A541C00323712 /* AllTutorialCell~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "AllTutorialCell~ipad.xib"; sourceTree = "<group>"; };
 		D8C784BE196A559F00323712 /* StageCell~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "StageCell~ipad.xib"; sourceTree = "<group>"; };
@@ -15082,6 +15087,7 @@
 		CA2A28A7195C120600A97478 /* Resource */ = {
 			isa = PBXGroup;
 			children = (
+				D8C669E4196D3D1E0002B975 /* lock2.png */,
 				D82540F219650A1C00C876C3 /* tutorial_core_version.txt */,
 				D82540F319650A1C00C876C3 /* tutorial_core.pb */,
 			);
@@ -18964,6 +18970,7 @@
 				A4D8FB6317DB08170085061F /* shop_item_straw@2x.png in Resources */,
 				A4D8FB6717DB08170085061F /* line@2x.png in Resources */,
 				A4D8FB6B17DB08170085061F /* logo@2x.png in Resources */,
+				D8C669E7196D3D1E0002B975 /* lock2.png in Resources */,
 				A4D8FB6F17DB08170085061F /* pad@2x.png in Resources */,
 				A4D8FB7317DB08170085061F /* shake@2x.png in Resources */,
 				A4D8FB7717DB08170085061F /* room_seat_bg_1@2x.png in Resources */,
@@ -19786,6 +19793,7 @@
 				C2A403B01744D5E3006C689F /* little_gee_icon_72.png in Resources */,
 				C2385E391753396700A6B19E /* iap_product_645475970.pb in Resources */,
 				CA2488D81753450B00848A5F /* default_config_645475970_version.txt in Resources */,
+				D8C669E6196D3D1E0002B975 /* lock2.png in Resources */,
 				CA2488D91753450B00848A5F /* default_config_645475970.pb in Resources */,
 				CA2488E01753452000848A5F /* shop_item_645475970.pb in Resources */,
 				CA2489081753B97300848A5F /* LittleGeeDefault-568h@2x.png in Resources */,
@@ -21191,6 +21199,7 @@
 				A4D8FE9F17DB089C0085061F /* face_happy@2x.png in Resources */,
 				A4D8FEA317DB089C0085061F /* face_lovely@2x.png in Resources */,
 				A4D8FEA717DB089C0085061F /* face_proud@2x.png in Resources */,
+				D8C669E5196D3D1E0002B975 /* lock2.png in Resources */,
 				A4D8FEAB17DB089C0085061F /* face_randy@2x.png in Resources */,
 				A4D8FEAF17DB089C0085061F /* face_shock@2x.png in Resources */,
 				A4D8FEB317DB089C0085061F /* face_shy@2x.png in Resources */,
@@ -21623,6 +21632,7 @@
 				EA411C18176066F500DA72D0 /* TopPlayerView~ipad.xib in Resources */,
 				EA411C19176066F500DA72D0 /* MyFeedController~ipad.xib in Resources */,
 				CACD6B5018E03B7F003F97C0 /* README.txt in Resources */,
+				D8C669E8196D3D1E0002B975 /* lock2.png in Resources */,
 				EA411C1A176066F500DA72D0 /* ContestOpusController~ipad.xib in Resources */,
 				EA411C1B176066F500DA72D0 /* ContestController~ipad.xib in Resources */,
 				EA411C1C176066F500DA72D0 /* ContestView~ipad.xib in Resources */,
