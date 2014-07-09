@@ -140,12 +140,12 @@
 
 - (void)enterContest{
     
-#ifdef DEBUG
-    MetroHomeController *mc = [[MetroHomeController alloc] init];
-    [self.navigationController pushViewController:mc animated:YES];
-    [mc release];
-    return;
-#endif
+//#ifdef DEBUG
+//    MetroHomeController *mc = [[MetroHomeController alloc] init];
+//    [self.navigationController pushViewController:mc animated:YES];
+//    [mc release];
+//    return;
+//#endif
     
     [[AnalyticsManager sharedAnalyticsManager] reportClickHomeMenu:HOME_ACTION_CONTEST];
     

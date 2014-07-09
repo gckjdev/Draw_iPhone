@@ -16,6 +16,7 @@
 #import "DrawBgManager.h"
 #import "IAPProductService.h"
 #import "ImageShapeManager.h"
+#import "MetroHomeController.h"
 
 @implementation DrawGameApp
 
@@ -439,6 +440,10 @@
 
 - (PPViewController *)homeController;
 {
+#ifdef DEBUG
+    return [[[MetroHomeController alloc] init] autorelease];
+#endif
+    
     return [[[HomeController alloc] init] autorelease];
 }
 
