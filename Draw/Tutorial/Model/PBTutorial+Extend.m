@@ -44,7 +44,7 @@
             return self.cnDesc;
         }
         else{
-            return self.tcnName;
+            return self.tcnDesc;
         }
     }
     if ([self.enName length] == 0){
@@ -66,7 +66,7 @@
 
 -(NSString *) name {
     if ([LocaleUtils isChina]){
-        return self.name;
+        return self.cnName;
     }
     
     if ([LocaleUtils isChinese]){

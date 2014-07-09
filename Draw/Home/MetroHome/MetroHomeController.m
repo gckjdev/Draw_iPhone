@@ -27,7 +27,7 @@
 }
 
 #define DEFAUT_IMAGE_NAME "dialogue@2x"
-#define TEST_DATA_GALLERYIMAGE "http://58.215.184.18:8080/tutorial/image/GalleryImage.jpg"
+#define TEST_DATA_GALLERYIMAGE "http://58.215.184.18:8080/tutorial/image/GalleryImage2.jpg"
 - (void)viewDidLoad
 {
     [super viewDidLoad];

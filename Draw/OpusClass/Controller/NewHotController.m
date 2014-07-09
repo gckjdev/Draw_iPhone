@@ -82,7 +82,7 @@
     
     NSArray* classList = [[OpusClassInfoManager defaultManager] userDisplayClassList];
     for (OpusClassInfo *classInfo in classList) {
-        FeedListController* vc = [[FeedListController alloc] initWithFeedType:FeedListTypeClassHotTop
+        FeedListController* vc = [[FeedListController alloc] initWithFeedType:FeedListTypeClassAlltimeTop
                                                                 opusClassInfo:classInfo
                                                                  displayStyle:FEED_DISPLAY_NORMAL
                                                           superViewController:self
