@@ -17,6 +17,7 @@
 @property (retain, nonatomic) IBOutlet UIButton *tutorialStartBtn;
 @property (retain, nonatomic) IBOutlet UIView *UIImageViewUpView;
 @property (retain, nonatomic) IBOutlet UIView *vagueTopImageView;
+@property (retain, nonatomic) IBOutlet UIView *labelBottomView;
 
 - (void)updateCellInfo:(PBUserTutorial*)ut;
 @end

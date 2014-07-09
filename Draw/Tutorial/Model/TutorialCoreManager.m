@@ -127,14 +127,19 @@ static TutorialCoreManager* _defaultTutorialCoreManager;
 }
 
 //赋值PBTutorial_Builder
--(PBTutorial_Builder *) evaluateTutorialTestDataName:(NSString *)name WithDesc:(NSString *)desc WithTutorialId:(NSString *)tutorialId WithImage:(NSString *)imageUrl{
+-(PBTutorial_Builder *) evaluateTutorialTestDataName:(NSString *)name WithDesc:(NSString *)desc WithTutorialId:(NSString *)tutorialId WithImage:(NSString *)imageUrl IsAdd:(BOOL)isAdd WithBuilder:(PBTutorialCore_Builder *)builder{
      PBTutorial_Builder* tb = [PBTutorial builder];
     [tb setCnName:name];
     [tb setCnDesc:desc];
     [tb setTutorialId:tutorialId];
     [tb setThumbImage:imageUrl];
     [tb setImage:imageUrl];
-    
+    if(isAdd){
+        if(builder!=nil){
+             PBTutorial* tutorial = [tb build];
+             [builder addTutorials:tutorial];
+        }
+    }
     return tb;
 }
 
@@ -149,6 +154,14 @@ static TutorialCoreManager* _defaultTutorialCoreManager;
     [pb setImage:imageUrl];
     return pb;
 }
+//build PB测试数据
+-(PBTutorialCore_Builder *)buildTestData:(PBTutorial_Builder *)pb{
+    PBTutorialCore_Builder* builder = [PBTutorialCore builder];
+    
+    PBTutorial* tutorial = [pb build];
+    return builder;
+}
+
 
 
 
@@ -207,16 +220,18 @@ static TutorialCoreManager* _defaultTutorialCoreManager;
     
     
     //模拟测试数据
-//    PBTutorial_Builder* tb = [self evaluateTutorialTestDataName:@"初识三次元" WithDesc:@"初识三次元" WithTutorialId:@"id--01" WithImage:@"http://58.215.184.18:8080/tutorial/image/know3D.png"];
-//    PBTutorial* tutorial = [tb build];
-//    [builder addTutorials:tutorial];
+    PBTutorial_Builder* tb = [self evaluateTutorialTestDataName:@"一起来运动" WithDesc:@"一起来运动" WithTutorialId:@"id--01" WithImage:@"http://58.215.184.18:8080/tutorial/image/togetherrun.png" IsAdd:YES WithBuilder:builder];
     
+
     
-    PBTutorial_Builder* tb = [self evaluateTutorialTestDataName:@"一起来运动" WithDesc:@"一起来运动" WithTutorialId:@"id--02" WithImage:@"http://58.215.184.18:8080/tutorial/image/togetherrun.png"];
-    PBTutorial* tutorial = [tb build];
-    [builder addTutorials:tutorial];
+    PBTutorial_Builder* tb2 = [self evaluateTutorialTestDataName:@"疯狂的线条" WithDesc:@"疯狂的线条" WithTutorialId:@"id--02" WithImage:@"http://58.215.184.18:8080/tutorial/image/crazyLines.png" IsAdd:YES WithBuilder:builder];
+  
     
+    PBTutorial_Builder* tb3 = [self evaluateTutorialTestDataName:@"易容速成" WithDesc:@"易容速成" WithTutorialId:@"id--03" WithImage:@"http://58.215.184.18:8080/tutorial/image/quickdisguise.png" IsAdd:YES WithBuilder:builder];
     
+    PBTutorial_Builder* tb4 = [self evaluateTutorialTestDataName:@"识色配图" WithDesc:@"识色配图" WithTutorialId:@"id--04" WithImage:@"http://58.215.184.18:8080/tutorial/image/coloranddraw.png" IsAdd:YES WithBuilder:builder];
+    
+    [self evaluateTutorialTestDataName:@"初识三次元" WithDesc:@"初识三次元" WithTutorialId:@"id--05" WithImage:@"http://58.215.184.18:8080/tutorial/image/know3D.png" IsAdd:YES WithBuilder:builder];
     
     
     PBTutorialCore* core = [builder build];

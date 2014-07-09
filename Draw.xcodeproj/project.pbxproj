@@ -6262,10 +6262,6 @@
 		D8C669D7196CE42F0002B975 /* TutorialInfoCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = D8C669D5196CE42F0002B975 /* TutorialInfoCell~ipad.xib */; };
 		D8C669D8196CE42F0002B975 /* TutorialInfoCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = D8C669D5196CE42F0002B975 /* TutorialInfoCell~ipad.xib */; };
 		D8C669D9196CE42F0002B975 /* TutorialInfoCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = D8C669D5196CE42F0002B975 /* TutorialInfoCell~ipad.xib */; };
-		D8C669DF196CE7080002B975 /* XmlDataParser.m in Sources */ = {isa = PBXBuildFile; fileRef = D8C669DE196CE7080002B975 /* XmlDataParser.m */; };
-		D8C669E0196CE7080002B975 /* XmlDataParser.m in Sources */ = {isa = PBXBuildFile; fileRef = D8C669DE196CE7080002B975 /* XmlDataParser.m */; };
-		D8C669E1196CE7080002B975 /* XmlDataParser.m in Sources */ = {isa = PBXBuildFile; fileRef = D8C669DE196CE7080002B975 /* XmlDataParser.m */; };
-		D8C669E2196CE7080002B975 /* XmlDataParser.m in Sources */ = {isa = PBXBuildFile; fileRef = D8C669DE196CE7080002B975 /* XmlDataParser.m */; };
 		D8C784B2196A4E2600323712 /* UserTutorialMainCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = D8C784B1196A4E2600323712 /* UserTutorialMainCell~ipad.xib */; };
 		D8C784B3196A4E2600323712 /* UserTutorialMainCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = D8C784B1196A4E2600323712 /* UserTutorialMainCell~ipad.xib */; };
 		D8C784B4196A4E2600323712 /* UserTutorialMainCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = D8C784B1196A4E2600323712 /* UserTutorialMainCell~ipad.xib */; };
@@ -10579,8 +10575,6 @@
 		D89191F01963163B006B616A /* StageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StageCell.m; sourceTree = "<group>"; };
 		D89191FA196316C2006B616A /* StageCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = StageCell.xib; sourceTree = "<group>"; };
 		D8C669D5196CE42F0002B975 /* TutorialInfoCell~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "TutorialInfoCell~ipad.xib"; sourceTree = "<group>"; };
-		D8C669DD196CE7080002B975 /* XmlDataParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XmlDataParser.h; sourceTree = "<group>"; };
-		D8C669DE196CE7080002B975 /* XmlDataParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XmlDataParser.m; sourceTree = "<group>"; };
 		D8C784B1196A4E2600323712 /* UserTutorialMainCell~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "UserTutorialMainCell~ipad.xib"; sourceTree = "<group>"; };
 		D8C784B9196A541C00323712 /* AllTutorialCell~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "AllTutorialCell~ipad.xib"; sourceTree = "<group>"; };
 		D8C784BE196A559F00323712 /* StageCell~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "StageCell~ipad.xib"; sourceTree = "<group>"; };
@@ -15080,8 +15074,6 @@
 				CA2A28E9195C1EC000A97478 /* UserTutorialManager.m */,
 				CA315B40195E5EB700AB800D /* PBTutorial+Extend.h */,
 				CA315B41195E5EB700AB800D /* PBTutorial+Extend.m */,
-				D8C669DD196CE7080002B975 /* XmlDataParser.h */,
-				D8C669DE196CE7080002B975 /* XmlDataParser.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -23357,7 +23349,6 @@
 				CA9AAF4E18321621002DBAA5 /* SongSearchController.m in Sources */,
 				CA9AAF6A18321621002DBAA5 /* SingImageManager.m in Sources */,
 				CA9AAF6E18321621002DBAA5 /* SingOpusManager.m in Sources */,
-				D8C669E1196CE7080002B975 /* XmlDataParser.m in Sources */,
 				CA9AAF7218321621002DBAA5 /* SongCategoryManager.m in Sources */,
 				CA9AAF7618321621002DBAA5 /* SongManager.m in Sources */,
 				CA9AB01618321621002DBAA5 /* ItemUseRecorder.m in Sources */,
@@ -24012,7 +24003,6 @@
 				C2FE574A175DED3000AFD6AA /* GoogleCustomSearchService.m in Sources */,
 				C2FE575B175DED3000AFD6AA /* GoogleCustomSearchNetworkRequest.m in Sources */,
 				CA244A84175EE48D002C0A37 /* Opus.pb.m in Sources */,
-				D8C669E0196CE7080002B975 /* XmlDataParser.m in Sources */,
 				CAE58A0F175EF45E009149E9 /* Opus.pb-c.c in Sources */,
 				CA244AED175F4574002C0A37 /* ClipAction.m in Sources */,
 				CA244B08176071F2002C0A37 /* PolygenPen.m in Sources */,
@@ -24859,7 +24849,6 @@
 				C23ED5EA1759A5B600263FB7 /* LocalSearchResult.m in Sources */,
 				C2FE573D175DED3000AFD6AA /* GoogleCustomSearchService.m in Sources */,
 				C2FE574E175DED3000AFD6AA /* GoogleCustomSearchNetworkRequest.m in Sources */,
-				D8C669DF196CE7080002B975 /* XmlDataParser.m in Sources */,
 				A4C8D564175EDFC6007ED7E4 /* OpusService.m in Sources */,
 				A4C8D56F175EE027007ED7E4 /* DrawOpus.m in Sources */,
 				A4C8D571175EE027007ED7E4 /* Opus.m in Sources */,
@@ -25670,7 +25659,6 @@
 				EA411AC4176066F500DA72D0 /* TomatoItem.m in Sources */,
 				EA411AC5176066F500DA72D0 /* GeographyService.m in Sources */,
 				EA411AC6176066F500DA72D0 /* GoogleAddressComponent.m in Sources */,
-				D8C669E2196CE7080002B975 /* XmlDataParser.m in Sources */,
 				EA411AC7176066F500DA72D0 /* UserSettingCell.m in Sources */,
 				EA411ACA176066F500DA72D0 /* PBGameItem+Extend.m in Sources */,
 				EA411ACB176066F500DA72D0 /* BuyItemSpecialHandler.m in Sources */,
