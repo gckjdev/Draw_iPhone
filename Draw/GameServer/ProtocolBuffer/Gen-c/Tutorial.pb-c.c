@@ -1213,6 +1213,36 @@ const ProtobufCEnumDescriptor game__pbtutorial_level__descriptor =
   game__pbtutorial_level__value_ranges,
   NULL,NULL,NULL,NULL   /* reserved[1234] */
 };
+const ProtobufCEnumValue game__pbtutorial_category__enum_values_by_number[3] =
+{
+  { "TUTORIAL_CATEGORY_NEW", "GAME__PBTUTORIAL_CATEGORY__TUTORIAL_CATEGORY_NEW", 0 },
+  { "TUTORIAL_CATEGORY_MEDIUM", "GAME__PBTUTORIAL_CATEGORY__TUTORIAL_CATEGORY_MEDIUM", 1 },
+  { "TUTORIAL_CATEGORY_ADVANCE", "GAME__PBTUTORIAL_CATEGORY__TUTORIAL_CATEGORY_ADVANCE", 2 },
+};
+static const ProtobufCIntRange game__pbtutorial_category__value_ranges[] = {
+{0, 0},{0, 3}
+};
+const ProtobufCEnumValueIndex game__pbtutorial_category__enum_values_by_name[3] =
+{
+  { "TUTORIAL_CATEGORY_ADVANCE", 2 },
+  { "TUTORIAL_CATEGORY_MEDIUM", 1 },
+  { "TUTORIAL_CATEGORY_NEW", 0 },
+};
+const ProtobufCEnumDescriptor game__pbtutorial_category__descriptor =
+{
+  PROTOBUF_C_ENUM_DESCRIPTOR_MAGIC,
+  "game.PBTutorialCategory",
+  "PBTutorialCategory",
+  "Game__PBTutorialCategory",
+  "game",
+  3,
+  game__pbtutorial_category__enum_values_by_number,
+  3,
+  game__pbtutorial_category__enum_values_by_name,
+  1,
+  game__pbtutorial_category__value_ranges,
+  NULL,NULL,NULL,NULL   /* reserved[1234] */
+};
 const ProtobufCEnumValue game__pbuser_tutorial_status__enum_values_by_number[3] =
 {
   { "UT_STATUS_NOT_START", "GAME__PBUSER_TUTORIAL_STATUS__UT_STATUS_NOT_START", 0 },

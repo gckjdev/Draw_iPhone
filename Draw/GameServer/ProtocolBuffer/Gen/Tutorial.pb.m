@@ -33,6 +33,16 @@ BOOL PBTutorialLevelIsValidValue(PBTutorialLevel value) {
       return NO;
   }
 }
+BOOL PBTutorialCategoryIsValidValue(PBTutorialCategory value) {
+  switch (value) {
+    case PBTutorialCategoryTutorialCategoryNew:
+    case PBTutorialCategoryTutorialCategoryMedium:
+    case PBTutorialCategoryTutorialCategoryAdvance:
+      return YES;
+    default:
+      return NO;
+  }
+}
 BOOL PBUserTutorialStatusIsValidValue(PBUserTutorialStatus value) {
   switch (value) {
     case PBUserTutorialStatusUtStatusNotStart:
