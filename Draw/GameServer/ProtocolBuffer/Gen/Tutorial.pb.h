@@ -112,6 +112,14 @@ typedef enum {
 BOOL PBTutorialLevelIsValidValue(PBTutorialLevel value);
 
 typedef enum {
+  PBTutorialCategoryTutorialCategoryNew = 0,
+  PBTutorialCategoryTutorialCategoryMedium = 1,
+  PBTutorialCategoryTutorialCategoryAdvance = 2,
+} PBTutorialCategory;
+
+BOOL PBTutorialCategoryIsValidValue(PBTutorialCategory value);
+
+typedef enum {
   PBUserTutorialStatusUtStatusNotStart = 0,
   PBUserTutorialStatusUtStatusStart = 1,
   PBUserTutorialStatusUtStatusComplete = 2,

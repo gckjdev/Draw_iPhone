@@ -15,6 +15,12 @@ enum PBTutorialLevel{
     TUTORIAL_LEVEL_HARD = 3;
 }
 
+enum PBTutorialCategory{
+    TUTORIAL_CATEGORY_NEW = 0;
+    TUTORIAL_CATEGORY_MEDIUM = 1;
+    TUTORIAL_CATEGORY_ADVANCE = 2;
+}
+
 // 关卡
 message PBStage
 {

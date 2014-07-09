@@ -27,6 +27,11 @@ typedef enum _Game__PBTutorialLevel {
   GAME__PBTUTORIAL_LEVEL__TUTORIAL_LEVEL_NORMAL = 2,
   GAME__PBTUTORIAL_LEVEL__TUTORIAL_LEVEL_HARD = 3
 } Game__PBTutorialLevel;
+typedef enum _Game__PBTutorialCategory {
+  GAME__PBTUTORIAL_CATEGORY__TUTORIAL_CATEGORY_NEW = 0,
+  GAME__PBTUTORIAL_CATEGORY__TUTORIAL_CATEGORY_MEDIUM = 1,
+  GAME__PBTUTORIAL_CATEGORY__TUTORIAL_CATEGORY_ADVANCE = 2
+} Game__PBTutorialCategory;
 typedef enum _Game__PBUserTutorialStatus {
   GAME__PBUSER_TUTORIAL_STATUS__UT_STATUS_NOT_START = 0,
   GAME__PBUSER_TUTORIAL_STATUS__UT_STATUS_START = 1,
@@ -315,6 +320,7 @@ typedef void (*Game__PBUserTutorial_Closure)
 /* --- descriptors --- */
 
 extern const ProtobufCEnumDescriptor    game__pbtutorial_level__descriptor;
+extern const ProtobufCEnumDescriptor    game__pbtutorial_category__descriptor;
 extern const ProtobufCEnumDescriptor    game__pbuser_tutorial_status__descriptor;
 extern const ProtobufCMessageDescriptor game__pbstage__descriptor;
 extern const ProtobufCMessageDescriptor game__pbtutorial__descriptor;
