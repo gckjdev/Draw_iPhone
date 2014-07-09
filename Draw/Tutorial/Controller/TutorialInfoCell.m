@@ -45,7 +45,7 @@
 
 - (void)updateCellInfo:(PBTutorial*)pbTutorial
 {
-        NSString *tutorialSortedText = @"新手级";
+    NSString *tutorialSortedText = pbTutorial.categoryName;
     UILabel* label =  [[UILabel alloc] initWithFrame:CGRectMake(97, 21, 0, 0)];
     [label setLineBreakMode:NSLineBreakByWordWrapping];
     UIFont * tfont = AD_FONT(19, 12);

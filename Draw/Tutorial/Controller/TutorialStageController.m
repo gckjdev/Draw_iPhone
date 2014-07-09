@@ -108,12 +108,20 @@
 //UICollectionView被选中时调用的方法
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
+    NSUInteger row = indexPath.row;
+    if (row <= self.pbUserTutorial.currentStageIndex){
+        POSTMSG(@"闯关修炼正在开发中");
+    }
+    else{
+    }
+    
+    
     [collectionView deselectItemAtIndexPath:indexPath animated:YES];
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"请输入新数据" message:nil delegate:self cancelButtonTitle:@"关闭" otherButtonTitles:@"添加", nil];
-    alert.alertViewStyle = UIAlertViewStylePlainTextInput;
-    [alert textFieldAtIndex:0].placeholder = @"请输入新数据";
-    [alert show];
-    [alert release];
+//    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"请输入新数据" message:nil delegate:self cancelButtonTitle:@"关闭" otherButtonTitles:@"添加", nil];
+//    alert.alertViewStyle = UIAlertViewStylePlainTextInput;
+//    [alert textFieldAtIndex:0].placeholder = @"请输入新数据";
+//    [alert show];
+//    [alert release];
 }
 
 
