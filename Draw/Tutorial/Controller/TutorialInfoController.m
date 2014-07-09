@@ -229,7 +229,7 @@ forRowAtIndexPath:(NSIndexPath *)indexPath
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     NSInteger section = indexPath.section;
     if(section==0){
-        return HEIGHT_FOR_ROW_IN_SECTION_ONE;
+//        return HEIGHT_FOR_ROW_IN_SECTION_ONE;
     }
     return HEIGHT_FOR_ROW;
     

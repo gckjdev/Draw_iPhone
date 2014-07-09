@@ -144,7 +144,7 @@ static TutorialCoreManager* _defaultTutorialCoreManager;
 }
 
 //赋值PBStage_Builder
--(PBStage_Builder *)evaluateStageTestDataName:(NSString *)name WithDesc:(NSString *)desc WithStageId:(NSString *)stageId WithImage:(NSString *)imageUrl{
+-(void)evaluateStageTestDataName:(NSString *)name WithDesc:(NSString *)desc WithStageId:(NSString *)stageId WithImage:(NSString *)imageUrl WithTutorial:(PBTutorial_Builder*) tb WithIndex:(NSInteger)index{
     
     PBStage_Builder* pb = [PBStage builder];
     [pb setCnName:name];
@@ -152,17 +152,9 @@ static TutorialCoreManager* _defaultTutorialCoreManager;
     [pb setStageId:stageId];
     [pb setThumbImage:imageUrl];
     [pb setImage:imageUrl];
-    return pb;
+    PBStage* stage = [pb build];
+    [tb addStages:stage];
 }
-//build PB测试数据
--(PBTutorialCore_Builder *)buildTestData:(PBTutorial_Builder *)pb{
-    PBTutorialCore_Builder* builder = [PBTutorialCore builder];
-    
-    PBTutorial* tutorial = [pb build];
-    return builder;
-}
-
-
 
 
 // 创建测试数据
@@ -177,61 +169,128 @@ static TutorialCoreManager* _defaultTutorialCoreManager;
     
     
     // TODO add test tutorials
-//    
-//    //测试数据
-//    for (int i=0; i<10; i++){
-//        PBTutorial_Builder* tb = [PBTutorial builder];
-//        NSString* name = [NSString stringWithFormat:@"教程[%d]", i];
-//        NSString* tutorialId = [NSString stringWithFormat:@"id-%d", i];
-//        NSString* desc = [NSString stringWithFormat:@"这是一个教程--%d",i];
-//        [tb setCnDesc:desc];
-//        [tb setCnName:name];
-//        [tb setTutorialId:tutorialId];
-//        //默认的小图片
-//        NSString* urlString = @"http://ww1.sinaimg.cn/bmiddle/94a7a958jw1ehzjdqx7fij20c80850tc.jpg";
-//        [tb setThumbImage:urlString];
-//        [tb setImage:urlString];
-//        
-//        
-//        //生成stage
-//        NSMutableArray* stageList = [NSMutableArray array];
-//        for(int j=0;j<10;j++){
-//        
-//            PBStage_Builder* stage = [PBStage builder];
-//            NSString* name2 = [NSString stringWithFormat:@"关卡[%d]",j];
-//            NSString* desc2 = [NSString stringWithFormat:@"我是一个关卡---%d",j];
-//
-//            [stage setStageId:[NSString stringWithFormat: @"stage-%d",j]];
-//            [stage setCnName:name2];
-//            [stage setCnDesc:desc2];
-//            //默认的小图片
-//            NSString* urlString2 = @"http://ww2.sinaimg.cn/bmiddle/bf9e8c17jw1ehya0z14p1j20e708gweu.jpg";
-//            [stage setThumbImage:urlString2];
-//            [stage setImage:urlString2];
-//            [stageList addObject:[stage build]];
-//        }
-//        
-//        [tb addAllStages:stageList];
-//        
-//        PBTutorial* tutorial = [tb build];
-//        [builder addTutorials:tutorial];
-//    }
+
+    
+    NSArray* testTutorialName = @[@"初识三次元",@"疯狂的线条",@"识色配图",@"旺星人大集合",@"一起动动动",@"易容速成"];
+    NSArray* testTutorialDesc = @[@"突破二次元的界限",@"帮助你更好的熟练工具",@"这里将把你打造成用达人",@"属于旺星人的趴",@"燃烧你的卡路里吧",@"你想易容成什么人"];
+    NSArray* tutorialImageUrl = @[@"http://58.215.184.18:8080/tutorial/image/1titlecopy.png",
+                          @"http://58.215.184.18:8080/tutorial/image/2-titlenew.png",
+                          @"http://58.215.184.18:8080/tutorial/image/3-titlenew.png",
+                          @"http://58.215.184.18:8080/tutorial/image/4-titlenew.png",
+                          @"http://58.215.184.18:8080/tutorial/image/5-titlenew.png",
+                          @"http://58.215.184.18:8080/tutorial/image/6-titlenew.png"];
+    
+    NSArray* testStageName = @[
+                               @[@"石头",@"陶瓷",@"亚克力塑料",@"金属",@"皮肤",@"橡胶", @"玻璃",@"材质集合"],
+                              @[@"整齐的直线",@"横纵直线",@"巧画直线条",@"很浪的波浪线",@"巧画波浪线",@"几何形", @"圈圈君",@"实践测试"],
+                              @[@"十二色环",@"二十四色环",@"互补色色环",@"渐变色",@"经典互补色",@"渐变构成", @"冷暖对比",@"同色系渐变构成"],
+                              @[@"比熊先生",@"博美小姐",@"马尔济斯绅士",@"哈士奇骑士",@"约克夏伯爵",@"吉娃娃公主", @"泰迪女王",@"萨摩王子"],
+                              @[@"花样滑冰",@"艺术体操",@"赛马",@"高尔夫",@"体操",@"击剑",@"滑雪",@"足球"],
+                              @[@"美少女奈儿",@"美少女纪子",@"小妹妹",@"帅哥",@"小毛孩",@"经理",@"妇女",@"老者"]
+                              ];
+    
+    NSArray* testStageDesc = @[@[@"石头",@"陶瓷",@"亚克力塑料",@"金属",@"皮肤",@"橡胶", @"玻璃",@"材质集合"],
+                              @[@"整齐的直线",@"横纵直线",@"巧画直线条",@"很浪的波浪线",@"巧画波浪线",@"几何形", @"圈圈君",@"实践测试"],
+                              @[@"十二色环",@"二十四色环",@"互补色色环",@"渐变色",@"经典互补色",@"渐变构成", @"冷暖对比",@"同色系渐变构成"],
+                              @[@"比熊先生",@"博美小姐",@"马尔济斯绅士",@"哈士奇骑士",@"约克夏伯爵",@"吉娃娃公主", @"泰迪女王",@"萨摩王子"],
+                              @[@"没有翅膀也一样可以飞翔",@"展现身体的柔性美",@"人与动物最佳拍档",@"在运动中享受大自然的乐趣",@"干净利落的身姿",@"协调性与灵活性的考验",@"像鸟一样在雪地里飞舞",@"只为射门那一刻的欢呼"],
+                              @[@"美少女奈儿",@"美少女纪子",@"小妹妹",@"帅哥",@"小毛孩",@"经理",@"妇女",@"老者"]
+                              ];
+  
+    NSArray* stageImageUrl = @[
+                                    @[
+                                        @"http://58.215.184.18:8080/tutorial/image/1-1.png",
+                                        @"http://58.215.184.18:8080/tutorial/image/1-2.png",
+                                        @"http://58.215.184.18:8080/tutorial/image/1-3.png",
+                                        @"http://58.215.184.18:8080/tutorial/image/1-4.png",
+                                        @"http://58.215.184.18:8080/tutorial/image/1-5.png",
+                                        @"http://58.215.184.18:8080/tutorial/image/1-6.png",
+                                        @"http://58.215.184.18:8080/tutorial/image/1-7.png",
+                                        @"http://58.215.184.18:8080/tutorial/image/1-8.png"
+                                     ],
+                                    @[
+                                        @"http://58.215.184.18:8080/tutorial/image/2-1.png",
+                                        @"http://58.215.184.18:8080/tutorial/image/2-2.png",
+                                        @"http://58.215.184.18:8080/tutorial/image/2-3.png",
+                                        @"http://58.215.184.18:8080/tutorial/image/2-4.png",
+                                        @"http://58.215.184.18:8080/tutorial/image/2-5.png",
+                                        @"http://58.215.184.18:8080/tutorial/image/2-6.png",
+                                        @"http://58.215.184.18:8080/tutorial/image/2-7.png",
+                                        @"http://58.215.184.18:8080/tutorial/image/2-8.png"
+                                    ],
+                                    @[
+                                         @"http://58.215.184.18:8080/tutorial/image/3-1.png",
+                                         @"http://58.215.184.18:8080/tutorial/image/3-2.png",
+                                         @"http://58.215.184.18:8080/tutorial/image/3-3.png",
+                                         @"http://58.215.184.18:8080/tutorial/image/3-4.png",
+                                         @"http://58.215.184.18:8080/tutorial/image/3-5.png",
+                                         @"http://58.215.184.18:8080/tutorial/image/3-6.png",
+                                         @"http://58.215.184.18:8080/tutorial/image/3-7.png",
+                                         @"http://58.215.184.18:8080/tutorial/image/3-8.png"
+                                    ],
+                                    @[
+                                        @"http://58.215.184.18:8080/tutorial/image/4-1.png",
+                                        @"http://58.215.184.18:8080/tutorial/image/4-2.png",
+                                        @"http://58.215.184.18:8080/tutorial/image/4-3.png",
+                                        @"http://58.215.184.18:8080/tutorial/image/4-4.png",
+                                        @"http://58.215.184.18:8080/tutorial/image/4-5.png",
+                                        @"http://58.215.184.18:8080/tutorial/image/4-6.png",
+                                        @"http://58.215.184.18:8080/tutorial/image/4-7.png",
+                                        @"http://58.215.184.18:8080/tutorial/image/4-8.png"
+                                        ],
+
+                              
+                                    @[
+                                        @"http://58.215.184.18:8080/tutorial/image/5-1.png",
+                                        @"http://58.215.184.18:8080/tutorial/image/5-2.png",
+                                        @"http://58.215.184.18:8080/tutorial/image/5-3.png",
+                                        @"http://58.215.184.18:8080/tutorial/image/5-4.png",
+                                        @"http://58.215.184.18:8080/tutorial/image/5-5.png",
+                                        @"http://58.215.184.18:8080/tutorial/image/5-6.png",
+                                        @"http://58.215.184.18:8080/tutorial/image/5-7.png",
+                                        @"http://58.215.184.18:8080/tutorial/image/5-8.png"
+                                        ],
+
+                                    @[
+                                        @"http://58.215.184.18:8080/tutorial/image/6-1.png",
+                                        @"http://58.215.184.18:8080/tutorial/image/6-2.png",
+                                        @"http://58.215.184.18:8080/tutorial/image/6-3.png",
+                                        @"http://58.215.184.18:8080/tutorial/image/6-4.png",
+                                        @"http://58.215.184.18:8080/tutorial/image/6-5.png",
+                                        @"http://58.215.184.18:8080/tutorial/image/6-6.png",
+                                        @"http://58.215.184.18:8080/tutorial/image/6-7.png",
+                                        @"http://58.215.184.18:8080/tutorial/image/6-8.png"
+                                    ]
+
+                              ];
+  
     
     
     
     //模拟测试数据
-    PBTutorial_Builder* tb = [self evaluateTutorialTestDataName:@"一起来运动" WithDesc:@"一起来运动" WithTutorialId:@"id--01" WithImage:@"http://58.215.184.18:8080/tutorial/image/togetherrun.png" IsAdd:YES WithBuilder:builder];
-    
-
-    
-    PBTutorial_Builder* tb2 = [self evaluateTutorialTestDataName:@"疯狂的线条" WithDesc:@"疯狂的线条" WithTutorialId:@"id--02" WithImage:@"http://58.215.184.18:8080/tutorial/image/crazyLines.png" IsAdd:YES WithBuilder:builder];
-  
-    
-    PBTutorial_Builder* tb3 = [self evaluateTutorialTestDataName:@"易容速成" WithDesc:@"易容速成" WithTutorialId:@"id--03" WithImage:@"http://58.215.184.18:8080/tutorial/image/quickdisguise.png" IsAdd:YES WithBuilder:builder];
-    
-    PBTutorial_Builder* tb4 = [self evaluateTutorialTestDataName:@"识色配图" WithDesc:@"识色配图" WithTutorialId:@"id--04" WithImage:@"http://58.215.184.18:8080/tutorial/image/coloranddraw.png" IsAdd:YES WithBuilder:builder];
-    
-    [self evaluateTutorialTestDataName:@"初识三次元" WithDesc:@"初识三次元" WithTutorialId:@"id--05" WithImage:@"http://58.215.184.18:8080/tutorial/image/know3D.png" IsAdd:YES WithBuilder:builder];
+    for(int i=0;i<testTutorialName.count;i++){
+        NSString* ID = [NSString stringWithFormat:@"tutorialId-%d",i];
+      PBTutorial_Builder* tb = [self evaluateTutorialTestDataName:[testTutorialName objectAtIndex:i]
+                                  WithDesc:[testTutorialDesc objectAtIndex:i]
+                            WithTutorialId:ID
+                                 WithImage:[tutorialImageUrl objectAtIndex:i]
+                                     IsAdd:NO
+                               WithBuilder:nil];
+        for(int j=0;j<[[testStageName objectAtIndex:i]  count];j++){
+            NSString* stageID = [NSString stringWithFormat:@"stageId-%d-%d",i,j];
+            
+            [self evaluateStageTestDataName:[[testStageName objectAtIndex:i] objectAtIndex:j]
+                                   WithDesc:[[testStageDesc objectAtIndex:i] objectAtIndex:j]
+                                   WithStageId:stageID
+                                   WithImage:[[stageImageUrl objectAtIndex:i]objectAtIndex:j]
+                                   WithTutorial:tb
+                                   WithIndex:i];
+        }
+        
+        PBTutorial* tutorial = [tb build];
+        [builder addTutorials:tutorial];
+        
+    }
     
     
     PBTutorialCore* core = [builder build];

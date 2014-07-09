@@ -45,11 +45,12 @@
 
 - (void)updateCellInfo:(PBTutorial*)pbTutorial
 {
-        NSString *tutorialSortedText = @"新手级aaaaaaaaaaaaaaaaaa";
+        NSString *tutorialSortedText = @"新手级";
     UILabel* label =  [[UILabel alloc] initWithFrame:CGRectMake(97, 21, 0, 0)];
     [label setLineBreakMode:NSLineBreakByWordWrapping];
     UIFont * tfont = AD_FONT(19, 12);
     NSDictionary * tdic = [NSDictionary dictionaryWithObjectsAndKeys:tfont,NSFontAttributeName,nil];
+    [label setTextColor:COLOR_BROWN];
     label.text = tutorialSortedText;
     [self addSubview:label];
     CGSize  actualsize =[tutorialSortedText boundingRectWithSize:label.bounds.size
@@ -73,8 +74,24 @@
         self.tutorialDescLabel.text = pbTutorial.desc;
         [self.tutorialDescLabel setTextColor:COLOR_BROWN];
         [self.tutorialDescLabel setFont:AD_FONT(19, 12)];
-    }
+        
+          }
 }
+-(CGFloat)autoContentViewHeight{
+    //tableview自适应高度
+    CGRect txtFrame = self.tutorialDescLabel.frame;
+    CGFloat  textViewContentHeight =
+    txtFrame.size.height =[[NSString stringWithFormat:@"%@\n ",self.tutorialDescLabel.text]
+                           boundingRectWithSize:CGSizeMake(txtFrame.size.width, CGFLOAT_MAX)
+                           options:NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading
+                           attributes:[NSDictionary dictionaryWithObjectsAndKeys:self.tutorialDescLabel.font,NSFontAttributeName, nil] context:nil].size.height;
+    
+//    [self setFrame:CGRectMake(0, 0, 768, textViewContentHeight)];
+    return textViewContentHeight;
+    
+    
+}
+
 -(void) adaptLabelWidth:(UILabel *)label WithStringText:(NSString *)text{
     
    

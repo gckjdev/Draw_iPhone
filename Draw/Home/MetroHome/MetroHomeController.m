@@ -27,6 +27,7 @@
 }
 
 #define DEFAUT_IMAGE_NAME "dialogue@2x"
+#define TEST_DATA_GALLERYIMAGE "http://58.215.184.18:8080/tutorial/image/GalleryImage.jpg"
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -38,7 +39,7 @@
     
     
     //读取网上图片
-    NSString *galleryImage = @"http://www.xiaoji.fm/draw_image/20140706/8b3b55e0-04b9-11e4-b96f-00163e017d23.jpg";
+    NSString *galleryImage = @TEST_DATA_GALLERYIMAGE;
     NSURL *galleryUrl = [NSURL URLWithString:galleryImage];
     [_galleryImageView setImageWithUrl:galleryUrl
                        placeholderImage:placeHolderImage
