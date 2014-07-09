@@ -27,6 +27,8 @@ typedef enum
     SuperUserManageActionIndexBlackDevice,
     SuperUserManageActionIndexUnblackUserId,
     SuperUserManageActionIndexUnblackDevice,
+    SuperUserManageActionIndexFixEmptyUserById,
+    SuperUserManageActionIndexFixEmptyUserByXiaoji,
     SuperUserManageActionIndexRecoverOpus,
     SuperUserManageActionIndexExportOpusImage,
     SuperUserManageActionIndexChargeIngot,
@@ -63,7 +65,7 @@ typedef enum
 
 - (void)showInController:(UIViewController*)controller
 {
-    UIActionSheet* actionSheet = [[[UIActionSheet alloc] initWithTitle:[NSString stringWithFormat:@"%@(userId:%@,金币:%d 元宝:%d)", _targetUserNickName, _targetUserId, _targetUserCurrentBalance, _targetUserCurrentIngot] delegate:self cancelButtonTitle:@"cancel" destructiveButtonTitle:@"金币充值" otherButtonTitles:@"VIP购买", @"用户作品推荐设置", @"重置用户密码", @"加入用户黑名单", @"加入设备黑名单", @"从用户黑名单解禁", @"从设备黑名单解禁", @"恢复用户作品", @"导出用户作品图片", @"元宝充值" , nil] autorelease];
+    UIActionSheet* actionSheet = [[[UIActionSheet alloc] initWithTitle:[NSString stringWithFormat:@"%@(userId:%@,金币:%d 元宝:%d)", _targetUserNickName, _targetUserId, _targetUserCurrentBalance, _targetUserCurrentIngot] delegate:self cancelButtonTitle:@"cancel" destructiveButtonTitle:@"金币充值" otherButtonTitles:@"VIP购买", @"用户作品推荐设置", @"重置用户密码", @"加入用户黑名单", @"加入设备黑名单", @"从用户黑名单解禁", @"从设备黑名单解禁", @"用户数据修复 by ID", @"用户数据修复 by 小吉", @"恢复用户作品", @"导出用户作品图片", @"元宝充值" , nil] autorelease];
     
     [actionSheet showInView:controller.view];
     _superController = controller;
@@ -308,6 +310,32 @@ typedef enum
             
             [dialog showInView:_superController.view];
         } break;
+            
+        case SuperUserManageActionIndexFixEmptyUserById: {
+            [[UserService defaultService] fixEmptyUserByUserId:_targetUserId successBlock:^{
+                [[CommonMessageCenter defaultCenter] postMessageWithText:@"成功恢复用户" delayTime:1.5];
+            }];
+            
+        }
+            break;
+
+        case SuperUserManageActionIndexFixEmptyUserByXiaoji: {
+            
+            CommonDialog* inputDialog = [CommonDialog createInputFieldDialogWith:@"请输入要封禁的天数"];
+            [inputDialog setClickOkBlock:^(UITextField *tf) {
+                NSString* xiaoji = tf.text;
+                [[UserService defaultService] fixEmptyUserByXiaoji:xiaoji successBlock:^{
+                    [[CommonMessageCenter defaultCenter] postMessageWithText:@"成功恢复用户" delayTime:1.5];
+                }];
+            }];
+            
+            [inputDialog.inputTextField setPlaceholder:@"请输入要回复用户的小吉号码"];
+            [inputDialog showInView:_superController.view];
+            
+            
+        }
+            break;
+            
         case SuperUserManageActionIndexRecoverOpus: {
             [[UserService defaultService] recoverUserOpus:_targetUserId successBlock:^{
                 [[CommonMessageCenter defaultCenter] postMessageWithText:@"成功恢复用户作品" delayTime:1.5];

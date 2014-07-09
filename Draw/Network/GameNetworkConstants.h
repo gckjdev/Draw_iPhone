@@ -25,6 +25,7 @@
 
 #define PARA_SUB_CATEGORY @"subCategory"
 #define METHOD_RECOVERY_OPUS @"constructIndex"
+#define METHOD_FIX_EMPTY_USER @"fixEmptyUser"
 #define METHOD_GET_OPUS @"getOpus"
 #define METHOD_RANK_OPUS @"rankOpus"
 #define METHOD_SET_OPUS_HOT_SCORE @"setOpusHotScore"
@@ -181,6 +182,7 @@
 #define PARA_REMOVE_OLD_NUMBER          @"removeOldNumber"
 #define PARA_SET_USER_NUMBER            @"setUserNumber"
 #define PARA_XIAOJI_NUMBER              @"xn"
+#define PARA_TEST                       @"test"
 
 
 //contest

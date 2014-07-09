@@ -192,6 +192,12 @@ typedef void(^UploadImageResultBlock)(int resultCode, NSString* imageRemoteURL);
 - (void)recoverUserOpus:(NSString*)targetUserId
            successBlock:(void (^)(void))successBlock;
 
+- (void)fixEmptyUserByXiaoji:(NSString*)xiaoji
+                successBlock:(void (^)(void))successBlock;
+
+- (void)fixEmptyUserByUserId:(NSString*)userId
+                successBlock:(void (^)(void))successBlock;
+
 - (void)exportUserOpusImage:(NSString*)targetUserId
                successBlock:(void (^)(void))successBlock;
 

@@ -13,6 +13,7 @@
 #import "HomeBottomMenuPanel.h"
 #import "UserService.h"
 #import "StatisticManager.h"
+#import "UIViewController+CommonHome.h"
 
 #define UPDATE_HOME_BG_NOTIFICATION_KEY @"UPDATE_HOME_BG"
 
@@ -44,12 +45,7 @@
 - (void)homeMainMenuPanel:(HomeMainMenuPanel *)mainMenuPanel
        didClickAvatarView:(AvatarView *)avatarView;
 
-- (void)enterFriend;
-- (void)enterTopOpus;
-- (void)enterTask;
-- (void)enterOpusClass;
-- (void)enterGroup;
-- (void)enterBBS;
+
 + (NSDictionary*)defaultMenuTitleDictionary;
 + (NSDictionary*)defaultMenuImageDictionary;
 
