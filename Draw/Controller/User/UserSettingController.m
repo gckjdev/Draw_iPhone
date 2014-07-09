@@ -138,6 +138,7 @@ enum {
     rowOfZodiac = index++;
     rowOfSignature = index++;
     rowOfPrivacy = index++;
+    rowOfHomeStyle = index++;
     rowOfEnableReplay = index++;
     rowOfCustomHomeBg = index++;
     rowOfCustomBg = index++;
@@ -633,6 +634,10 @@ SET_CELL_BG_IN_CONTROLLER;
             [btn addTarget:self action:@selector(clickEnableReplay:) forControlEvents:UIControlEventTouchUpInside];
             [btn setSelected:!isEnableReplay];
         }
+        else if (row == rowOfHomeStyle){
+            [cell.customTextLabel setText:NSLS(@"kHomeStyle")];
+            [cell.customDetailLabel setText:[[UserManager defaultManager] homeStyleString]];
+        }
         else if (row == rowOfCustomBg) {
             [cell.customTextLabel setText:NSLS(@"kCustomBg")];
         } else if (row == rowOfCustomBBSBg) {
@@ -1017,6 +1022,9 @@ SET_CELL_BG_IN_CONTROLLER;
         else if (row == rowOfPrivacy) {
             [self askSetPrivacy];
         }
+        else if (row == rowOfHomeStyle) {
+            [self askSetHomeStyle];
+        }
         else if (row == rowOfEnableReplay) {
             // TODO
         }
@@ -1274,6 +1282,28 @@ SET_CELL_BG_IN_CONTROLLER;
         [actionSheet setDestructiveButtonIndex:_pbUserBuilder.openInfoType];
     }
     [actionSheet showInView:self.view];
+}
+
+- (void)askSetHomeStyle
+{
+    MKBlockActionSheet* actionSheet = [[[MKBlockActionSheet alloc] initWithTitle:NSLS(@"kOption") delegate:nil cancelButtonTitle:NSLS(@"Cancel") destructiveButtonTitle:nil otherButtonTitles:NSLS(@"kMetroStyle"), NSLS(@"kClassicalStyle"), nil] autorelease];
+    
+    [actionSheet setActionBlock:^(NSInteger buttonIndex) {
+        if (buttonIndex != actionSheet.cancelButtonIndex && buttonIndex != actionSheet.destructiveButtonIndex){
+            
+            if (buttonIndex == 0){
+                [[UserManager defaultManager] setHomeStyle:HOME_STYLE_METRO];
+                POSTMSG2(NSLS(@"kSetHomeStyleSucc"), 3);
+            }
+            else if (buttonIndex == 1){
+                [[UserManager defaultManager] setHomeStyle:HOME_STYLE_CLASSICAL];
+                POSTMSG2(NSLS(@"kSetHomeStyleSucc"), 3);
+            }
+        }
+    }];
+    
+    [actionSheet showInView:self.view];
+
 }
 
 #define FOLLOW_SINA_KEY @"FOLLOW_SINA_KEY"

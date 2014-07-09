@@ -2763,3 +2763,9 @@
 
 "kTutorialDesc" = "教程简介";
 "kTutorialStageList" = "关卡列表";
+
+"kMetroStyle" = "四格";
+"kClassicalStyle" = "经典";
+"kHomeStyle" = "首页风格";
+"kSetHomeStyleSucc" = "首页风格设置已经修改，重新启动应用才生效";
+

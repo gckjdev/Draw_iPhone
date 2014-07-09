@@ -22,5 +22,6 @@
 - (void)enterDraftBox;
 - (void)enterChat;
 - (void)enterMore;
+- (void)enterUserDetail;
 
 @end

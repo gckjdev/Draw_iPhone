@@ -31,6 +31,7 @@
     NSInteger rowOfSignature;
     NSInteger rowOfPrivacy;
     NSInteger rowOfEnableReplay;
+    NSInteger rowOfHomeStyle;
     NSInteger rowOfCustomBg;
     NSInteger rowOfCustomHomeBg;
     NSInteger rowOfCustomBBSBg;

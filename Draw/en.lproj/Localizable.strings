@@ -2740,3 +2740,7 @@
 
 "kTutorialDesc" = "TutorialDescription";
 "kTutorialStageList" = "StageList";
+"kMetroStyle" = "Metro";
+"kClassicalStyle" = "Classical";
+"kHomeStyle" = "Home Style";
+"kSetHomeStyleSucc" = "Set home style successfully! Please restart app to enable the change";

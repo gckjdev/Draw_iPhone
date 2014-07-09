@@ -202,4 +202,72 @@
     [share release];
 }
 
+- (BOOL)isRegistered
+{
+    if ([[UserManager defaultManager] hasXiaojiNumber]){
+        return YES;
+    }
+    
+    if ([[UserManager defaultManager] isOldUserWithoutXiaoji]){
+        return YES;
+    }
+    
+    return NO;
+}
+
+- (BOOL)toRegister
+{
+    // change by Benson for new xiaoji number login and logout
+    return [[UserService defaultService] checkAndAskLogin:self.view];
+}
+
+- (void)enterUserDetail
+{
+    if ([self toRegister]){
+        return;
+    }
+    if ([[UserManager defaultManager] isOldUserWithoutXiaoji]){
+        [self askShake];
+        return;
+    }
+    
+    UserDetailViewController* us = [[UserDetailViewController alloc] initWithUserDetail:[SelfUserDetail createDetail]];
+    [self.navigationController pushViewController:us animated:YES];
+    [us release];
+}
+
+- (void)enterFreeCoins
+{
+    [[AnalyticsManager sharedAnalyticsManager] reportClickHomeMenu:HOME_ACTION_FREE_COINS];
+    FreeIngotController* fc = [[[FreeIngotController alloc] init] autorelease];
+    [self.navigationController pushViewController:fc animated:YES];
+}
+
+- (void)askShake
+{
+    CommonDialog* dialog = [CommonDialog createDialogWithTitle:NSLS(@"kMessage")
+                                                       message:NSLS(@"kTryShakeXiaoji")
+                                                         style:CommonDialogStyleDoubleButtonWithCross];
+    
+    [dialog.oKButton setTitle:NSLS(@"kTryTakeNumber") forState:UIControlStateNormal];
+    [dialog.cancelButton setTitle:NSLS(@"kViewMyProfile") forState:UIControlStateNormal];
+    
+    [dialog setClickOkBlock:^(id infoView){
+        [[UserService defaultService] showXiaojiNumberView:self.view];
+    }];
+    
+    [dialog setClickCancelBlock:^(id infoView){
+        [self gotoMyDetail];
+    }];
+    
+    [dialog showInView:self.view];
+}
+
+- (void)gotoMyDetail
+{
+    UserDetailViewController* us = [[UserDetailViewController alloc] initWithUserDetail:[SelfUserDetail createDetail]];
+    [self.navigationController pushViewController:us animated:YES];
+    [us release];
+}
+
 @end
