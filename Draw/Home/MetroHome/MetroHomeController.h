@@ -8,7 +8,6 @@
 
 #import <UIKit/UIKit.h>
 #import "StableView.h"
-#import "SuperHomeController.h"
 
 @interface MetroHomeController : PPViewController{
     UIButton *LearningViewButton;

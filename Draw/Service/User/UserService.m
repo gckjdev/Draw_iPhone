@@ -1690,6 +1690,40 @@ POSTMSG(NSLS(@"kLoginFailure"));
     });
 }
 
+#define IS_TEST_FIX 0
+
+- (void)fixEmptyUserByXiaoji:(NSString*)xiaoji
+           successBlock:(void (^)(void))successBlock
+{
+    dispatch_async(workingQueue, ^{
+        CommonNetworkOutput* output = [PPGameNetworkRequest apiServerGetAndResponseJSON:METHOD_FIX_EMPTY_USER
+                                                                             parameters:@{PARA_XIAOJI_NUMBER:xiaoji, PARA_TEST:@(IS_TEST_FIX)}
+                                                                          isReturnArray:NO];
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if (output.resultCode == ERROR_SUCCESS) {
+                EXECUTE_BLOCK(successBlock);
+            }
+        });
+    });
+}
+
+- (void)fixEmptyUserByUserId:(NSString*)userId
+                successBlock:(void (^)(void))successBlock
+{
+    dispatch_async(workingQueue, ^{
+        CommonNetworkOutput* output = [PPGameNetworkRequest apiServerGetAndResponseJSON:METHOD_FIX_EMPTY_USER
+                                                                             parameters:@{PARA_TARGETUSERID:userId, PARA_TEST:@(IS_TEST_FIX)}
+                                                                          isReturnArray:NO];
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if (output.resultCode == ERROR_SUCCESS) {
+                EXECUTE_BLOCK(successBlock);
+            }
+        });
+    });
+}
+
 - (void)exportUserOpusImage:(NSString*)targetUserId
                successBlock:(void (^)(void))successBlock
 {

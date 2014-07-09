@@ -9,6 +9,7 @@
 #import "MetroHomeController.h"
 #import "UserManager.h"
 #import "UserTutorialMainController.h"
+#import "UIViewController+CommonHome.h"
 
 @interface MetroHomeController ()
 
@@ -129,20 +130,19 @@
 }
 
 - (IBAction)goToIndexController:(id)sender{
-        //TODO
-    PPDebug(@"goToIndex");
+    [self enterTimeline];
 }
+
 - (IBAction)goToDocumentController:(id)sender{
-    //TODO
-    PPDebug(@"goToDocumentController");
+    [self enterDraftBox];
 }
+
 - (IBAction)goToMessageController:(id)sender{
-    //TODO
-    PPDebug(@"goToMessageController");
+    [self enterChat];
 }
+
 - (IBAction)goToMoreController:(id)sender{
-    //TODO
-    PPDebug(@"goToMoreController");
+    [self enterMore];
 }
 
 
