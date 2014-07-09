@@ -43,6 +43,8 @@
 #import "UserTutorialMainController.h"
 #import "FeedListController.h"
 #import "NewHotController.h"
+#import "MetroHomeController.h"
+
 
 static NSDictionary* DEFAULT_MENU_TITLE_DICT = nil;
 static NSDictionary* DEFAULT_MENU_IMAGE_DICT = nil;
@@ -637,6 +639,14 @@ static NSDictionary* DEFAULT_MENU_IMAGE_DICT = nil;
     [self.navigationController pushViewController:vc animated:YES];
 }
 
+- (void)enterOfflineDraw
+{
+    [[AnalyticsManager sharedAnalyticsManager] reportClickHomeMenu:HOME_ACTION_DRAW];
+    
+    [OfflineDrawViewController startDraw:[Word cusWordWithText:@""] fromController:self startController:self targetUid:nil];
+}
+
+
 - (void)enterOpusClass{
 //    ShowOpusClassListController* vc = [[ShowOpusClassListController alloc] init];
 //    [self.navigationController pushViewController:vc animated:YES];
@@ -670,6 +680,13 @@ static NSDictionary* DEFAULT_MENU_IMAGE_DICT = nil;
 }
 
 - (void)enterContest{
+    
+#ifdef DEBUG
+    MetroHomeController *mc = [[MetroHomeController alloc] init];
+    [self.navigationController pushViewController:mc animated:YES];
+    [mc release];
+    return;
+#endif
     
     [[AnalyticsManager sharedAnalyticsManager] reportClickHomeMenu:HOME_ACTION_CONTEST];
     

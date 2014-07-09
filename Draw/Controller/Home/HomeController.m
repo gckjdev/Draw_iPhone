@@ -673,11 +673,12 @@ static NSDictionary* DRAW_MENU_IMAGE_DICT = nil;
 #endif
             
         {
-            [[AnalyticsManager sharedAnalyticsManager] reportClickHomeMenu:HOME_ACTION_CONTEST];
-            
-            ContestController *cc = [[ContestController alloc] init];
-            [self.navigationController pushViewController:cc animated:YES];
-            [cc release];
+            [self enterContest];
+//            [[AnalyticsManager sharedAnalyticsManager] reportClickHomeMenu:HOME_ACTION_CONTEST];
+//            
+//            ContestController *cc = [[ContestController alloc] init];
+//            [self.navigationController pushViewController:cc animated:YES];
+//            [cc release];
         }
             break;
         case HomeMenuTypeDrawBBS:{

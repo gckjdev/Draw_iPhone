@@ -62,7 +62,7 @@
                             <constraint firstAttribute="width" constant="80" id="6sJ-dx-GLq"/>
                         </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                        <state key="normal" title="开始教程">
+                        <state key="normal" title="开始学习">
                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                         </state>
                     </button>

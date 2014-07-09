@@ -13,10 +13,13 @@
 @interface TutorialInfoCell :UITableViewCell<UIAlertViewDelegate>
 {
 }
+@property (retain, nonatomic) IBOutlet UILabel *tutorialSortedLabel;
+@property (retain, nonatomic) IBOutlet UILabel *tutorialDescLabel;
+@property (retain, nonatomic) IBOutlet UILabel *tutorialSortedNameLabel;
+@property (retain, nonatomic) IBOutlet UILabel *tutorialDescNameLabel;
 
-@property (retain, nonatomic) IBOutlet UILabel *tutorialDesc;
-@property (retain, nonatomic) IBOutlet UILabel *tutorialDescInfo;
-@property (retain, nonatomic) IBOutlet UIButton *tutorialAddBtn;
+
+
 
 - (void)updateCellInfo:(PBTutorial*)pbTutorial;
 

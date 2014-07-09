@@ -6196,6 +6196,28 @@
 		CAFEFE8316606FC200441D77 /* zip.c in Sources */ = {isa = PBXBuildFile; fileRef = CAFEFD2416606FC100441D77 /* zip.c */; };
 		CAFEFFB4166072AB00441D77 /* DrawColor.m in Sources */ = {isa = PBXBuildFile; fileRef = CAFEFEF8166072AB00441D77 /* DrawColor.m */; };
 		CAFEFFB5166072AB00441D77 /* DrawUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = CAFEFEFA166072AB00441D77 /* DrawUtils.m */; };
+		D80518B0196BD12200D350B3 /* beijing.png in Resources */ = {isa = PBXBuildFile; fileRef = D80518A6196BD12200D350B3 /* beijing.png */; };
+		D80518B1196BD12200D350B3 /* caogao.png in Resources */ = {isa = PBXBuildFile; fileRef = D80518A7196BD12200D350B3 /* caogao.png */; };
+		D80518B2196BD12200D350B3 /* dongtai.png in Resources */ = {isa = PBXBuildFile; fileRef = D80518A8196BD12200D350B3 /* dongtai.png */; };
+		D80518B3196BD12200D350B3 /* gengduo.png in Resources */ = {isa = PBXBuildFile; fileRef = D80518A9196BD12200D350B3 /* gengduo.png */; };
+		D80518B4196BD12200D350B3 /* huahua.png in Resources */ = {isa = PBXBuildFile; fileRef = D80518AA196BD12200D350B3 /* huahua.png */; };
+		D80518B5196BD12200D350B3 /* jingcaizuopin.png in Resources */ = {isa = PBXBuildFile; fileRef = D80518AB196BD12200D350B3 /* jingcaizuopin.png */; };
+		D80518B6196BD12200D350B3 /* laba.png in Resources */ = {isa = PBXBuildFile; fileRef = D80518AC196BD12200D350B3 /* laba.png */; };
+		D80518B7196BD12200D350B3 /* luntan.png in Resources */ = {isa = PBXBuildFile; fileRef = D80518AD196BD12200D350B3 /* luntan.png */; };
+		D80518B8196BD12200D350B3 /* xuehuahua.png in Resources */ = {isa = PBXBuildFile; fileRef = D80518AE196BD12200D350B3 /* xuehuahua.png */; };
+		D80518B9196BD12200D350B3 /* zhuye.png in Resources */ = {isa = PBXBuildFile; fileRef = D80518AF196BD12200D350B3 /* zhuye.png */; };
+		D80EB34C196B90DB0087EBBD /* MetroHomeController.m in Sources */ = {isa = PBXBuildFile; fileRef = D80EB34A196B90DB0087EBBD /* MetroHomeController.m */; };
+		D80EB34D196B90DB0087EBBD /* MetroHomeController.m in Sources */ = {isa = PBXBuildFile; fileRef = D80EB34A196B90DB0087EBBD /* MetroHomeController.m */; };
+		D80EB34E196B90DB0087EBBD /* MetroHomeController.m in Sources */ = {isa = PBXBuildFile; fileRef = D80EB34A196B90DB0087EBBD /* MetroHomeController.m */; };
+		D80EB34F196B90DB0087EBBD /* MetroHomeController.m in Sources */ = {isa = PBXBuildFile; fileRef = D80EB34A196B90DB0087EBBD /* MetroHomeController.m */; };
+		D80EB350196B90DB0087EBBD /* MetroHomeController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D80EB34B196B90DB0087EBBD /* MetroHomeController.xib */; };
+		D80EB351196B90DB0087EBBD /* MetroHomeController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D80EB34B196B90DB0087EBBD /* MetroHomeController.xib */; };
+		D80EB352196B90DB0087EBBD /* MetroHomeController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D80EB34B196B90DB0087EBBD /* MetroHomeController.xib */; };
+		D80EB353196B90DB0087EBBD /* MetroHomeController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D80EB34B196B90DB0087EBBD /* MetroHomeController.xib */; };
+		D80EB355196B90FB0087EBBD /* MetroHomeController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = D80EB354196B90FB0087EBBD /* MetroHomeController~ipad.xib */; };
+		D80EB356196B90FB0087EBBD /* MetroHomeController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = D80EB354196B90FB0087EBBD /* MetroHomeController~ipad.xib */; };
+		D80EB357196B90FB0087EBBD /* MetroHomeController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = D80EB354196B90FB0087EBBD /* MetroHomeController~ipad.xib */; };
+		D80EB358196B90FB0087EBBD /* MetroHomeController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = D80EB354196B90FB0087EBBD /* MetroHomeController~ipad.xib */; };
 		D81962391962675600B4FBAF /* AllTutorialCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D81962381962675600B4FBAF /* AllTutorialCell.m */; };
 		D819623A1962675600B4FBAF /* AllTutorialCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D81962381962675600B4FBAF /* AllTutorialCell.m */; };
 		D819623B1962675600B4FBAF /* AllTutorialCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D81962381962675600B4FBAF /* AllTutorialCell.m */; };
@@ -10520,6 +10542,20 @@
 		CAFEFEF8166072AB00441D77 /* DrawColor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DrawColor.m; sourceTree = "<group>"; };
 		CAFEFEF9166072AB00441D77 /* DrawUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DrawUtils.h; sourceTree = "<group>"; };
 		CAFEFEFA166072AB00441D77 /* DrawUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DrawUtils.m; sourceTree = "<group>"; };
+		D80518A6196BD12200D350B3 /* beijing.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = beijing.png; sourceTree = "<group>"; };
+		D80518A7196BD12200D350B3 /* caogao.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = caogao.png; sourceTree = "<group>"; };
+		D80518A8196BD12200D350B3 /* dongtai.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dongtai.png; sourceTree = "<group>"; };
+		D80518A9196BD12200D350B3 /* gengduo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = gengduo.png; sourceTree = "<group>"; };
+		D80518AA196BD12200D350B3 /* huahua.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = huahua.png; sourceTree = "<group>"; };
+		D80518AB196BD12200D350B3 /* jingcaizuopin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = jingcaizuopin.png; sourceTree = "<group>"; };
+		D80518AC196BD12200D350B3 /* laba.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = laba.png; sourceTree = "<group>"; };
+		D80518AD196BD12200D350B3 /* luntan.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = luntan.png; sourceTree = "<group>"; };
+		D80518AE196BD12200D350B3 /* xuehuahua.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = xuehuahua.png; sourceTree = "<group>"; };
+		D80518AF196BD12200D350B3 /* zhuye.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = zhuye.png; sourceTree = "<group>"; };
+		D80EB349196B90DB0087EBBD /* MetroHomeController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MetroHomeController.h; sourceTree = "<group>"; };
+		D80EB34A196B90DB0087EBBD /* MetroHomeController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MetroHomeController.m; sourceTree = "<group>"; };
+		D80EB34B196B90DB0087EBBD /* MetroHomeController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MetroHomeController.xib; sourceTree = "<group>"; };
+		D80EB354196B90FB0087EBBD /* MetroHomeController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "MetroHomeController~ipad.xib"; sourceTree = "<group>"; };
 		D81962371962675600B4FBAF /* AllTutorialCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AllTutorialCell.h; sourceTree = "<group>"; };
 		D81962381962675600B4FBAF /* AllTutorialCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AllTutorialCell.m; sourceTree = "<group>"; };
 		D81962401962677B00B4FBAF /* AllTutorialCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AllTutorialCell.xib; sourceTree = "<group>"; };
@@ -15282,7 +15318,8 @@
 		CA427065161FFF4A00C6CCAE /* Home */ = {
 			isa = PBXGroup;
 			children = (
-				CAC37316196246BA00ADEE9C /* NewHome */,
+				D80518A5196BD12200D350B3 /* Resource */,
+				D80EB348196B90C80087EBBD /* MetroHome */,
 				CA1DA94B16732CDF0078B5A9 /* View */,
 				CA427066161FFF7800C6CCAE /* Controller */,
 			);
@@ -16720,13 +16757,6 @@
 			path = CommonResource;
 			sourceTree = "<group>";
 		};
-		CAC37316196246BA00ADEE9C /* NewHome */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = NewHome;
-			sourceTree = "<group>";
-		};
 		CAC448FC168C4DCC004441EB /* ILColorPicker */ = {
 			isa = PBXGroup;
 			children = (
@@ -17866,6 +17896,34 @@
 			path = Draw_Common;
 			sourceTree = "<group>";
 		};
+		D80518A5196BD12200D350B3 /* Resource */ = {
+			isa = PBXGroup;
+			children = (
+				D80518A6196BD12200D350B3 /* beijing.png */,
+				D80518A7196BD12200D350B3 /* caogao.png */,
+				D80518A8196BD12200D350B3 /* dongtai.png */,
+				D80518A9196BD12200D350B3 /* gengduo.png */,
+				D80518AA196BD12200D350B3 /* huahua.png */,
+				D80518AB196BD12200D350B3 /* jingcaizuopin.png */,
+				D80518AC196BD12200D350B3 /* laba.png */,
+				D80518AD196BD12200D350B3 /* luntan.png */,
+				D80518AE196BD12200D350B3 /* xuehuahua.png */,
+				D80518AF196BD12200D350B3 /* zhuye.png */,
+			);
+			path = Resource;
+			sourceTree = "<group>";
+		};
+		D80EB348196B90C80087EBBD /* MetroHome */ = {
+			isa = PBXGroup;
+			children = (
+				D80EB354196B90FB0087EBBD /* MetroHomeController~ipad.xib */,
+				D80EB349196B90DB0087EBBD /* MetroHomeController.h */,
+				D80EB34A196B90DB0087EBBD /* MetroHomeController.m */,
+				D80EB34B196B90DB0087EBBD /* MetroHomeController.xib */,
+			);
+			path = MetroHome;
+			sourceTree = "<group>";
+		};
 		EA0C5516180B9203008069C1 /* InfColorPicker */ = {
 			isa = PBXGroup;
 			children = (
@@ -18457,6 +18515,7 @@
 				A461B4BB174CBAA70088B061 /* MyFeedController.xib in Resources */,
 				A461B4BC174CBAA70088B061 /* UserFeedController.xib in Resources */,
 				A461B4BD174CBAA70088B061 /* UserFeedController~ipad.xib in Resources */,
+				D80EB352196B90DB0087EBBD /* MetroHomeController.xib in Resources */,
 				A461B4BF174CBAA70088B061 /* ContestController.xib in Resources */,
 				A461B4C1174CBAA70088B061 /* ContestView.xib in Resources */,
 				A461B4C5174CBAA70088B061 /* StatementController.xib in Resources */,
@@ -18928,6 +18987,7 @@
 				A4D8FBD317DB08170085061F /* tomato@2x.png in Resources */,
 				A4D8FBD717DB08170085061F /* tomato_result@2x.png in Resources */,
 				A4D8FBDB17DB08170085061F /* toolbox@2x.png in Resources */,
+				D80EB357196B90FB0087EBBD /* MetroHomeController~ipad.xib in Resources */,
 				A4D8FBDF17DB08170085061F /* tools_cart@2x.png in Resources */,
 				A4D8FBEF17DB08170085061F /* user_detail_avatar_bg_ipad@2x.png in Resources */,
 				D81962591962AA8700B4FBAF /* StageBasicInfoCell.xib in Resources */,
@@ -19676,6 +19736,7 @@
 				C28AA02B1738F04B007A819F /* ShoppingCell.xib in Resources */,
 				C28AA02C1738F04B007A819F /* ShoppingCell~ipad.xib in Resources */,
 				C28AA02D1738F04B007A819F /* UserDetailViewController.xib in Resources */,
+				D80EB356196B90FB0087EBBD /* MetroHomeController~ipad.xib in Resources */,
 				C28AA02E1738F04B007A819F /* UserDetailCell.xib in Resources */,
 				C28AA0691738F04B007A819F /* GCDatePickerView.xib in Resources */,
 				D8C784D9196A803C00323712 /* lock2.png in Resources */,
@@ -19689,6 +19750,7 @@
 				C28AA0811738F04B007A819F /* default_config_Draw_version.txt in Resources */,
 				C28AA0821738F04B007A819F /* default_config_Draw.pb in Resources */,
 				C28AA0861738F04B007A819F /* DrawBgCell.xib in Resources */,
+				D80EB351196B90DB0087EBBD /* MetroHomeController.xib in Resources */,
 				C28AA0871738F04B007A819F /* DrawBgCell~ipad.xib in Resources */,
 				C28AA0881738F04B007A819F /* TaoBaoController.xib in Resources */,
 				C28AA0891738F04B007A819F /* TaoBaoController~ipad.xib in Resources */,
@@ -20444,6 +20506,7 @@
 				C2E6628315230B3F00487601 /* ShareController.xib in Resources */,
 				CA1377F21525A7CB00B5790B /* Localizable.strings in Resources */,
 				C29C12DE152AE23E009B9E5F /* ShareCell.xib in Resources */,
+				D80518B9196BD12200D350B3 /* zhuye.png in Resources */,
 				C284E8801531D89800DD5B77 /* AboutUsController.xib in Resources */,
 				C2FA6E721535358100EEB530 /* PaintButton.xib in Resources */,
 				CA051DCF1546808500D0A00A /* ColorShopView.xib in Resources */,
@@ -20471,6 +20534,7 @@
 				CAD9C7131574CCFA00F2C8E1 /* fireworks2.png in Resources */,
 				CAD9C7151574D02A00F2C8E1 /* snow.png in Resources */,
 				CA22DCD3157CAFFD009C95CB /* ResultController.xib in Resources */,
+				D80518B0196BD12200D350B3 /* beijing.png in Resources */,
 				CA22DCEE157CB00A009C95CB /* OnlineDrawViewController.xib in Resources */,
 				CA22DCEF157CB00A009C95CB /* OnlineDrawViewController~ipad.xib in Resources */,
 				CA22DCF1157CB00A009C95CB /* OnlineGuessDrawController.xib in Resources */,
@@ -20597,6 +20661,7 @@
 				CA65978E166C7C3600A239E1 /* BBSPostDetailController~ipad.xib in Resources */,
 				CA65978F166C7C3600A239E1 /* CreatePostController~ipad.xib in Resources */,
 				CA659791166C7D0300A239E1 /* BBSUserActionCell~ipad.xib in Resources */,
+				D80518B3196BD12200D350B3 /* gengduo.png in Resources */,
 				CA659793166C7D2400A239E1 /* BBSPostActionCell~ipad.xib in Resources */,
 				CA659795166C7D3800A239E1 /* BBSPostActionHeaderView~ipad.xib in Resources */,
 				CA2A28C3195C1DC400A97478 /* UserTutorialMainController.xib in Resources */,
@@ -20634,6 +20699,7 @@
 				C2B5383D1677712300725802 /* DrawUserInfoView~ipad.xib in Resources */,
 				C2B538421677712300725802 /* PassWordDialog.xib in Resources */,
 				C2B538431677712300725802 /* PassWordDialog~ipad.xib in Resources */,
+				D80518B8196BD12200D350B3 /* xuehuahua.png in Resources */,
 				C2B538451677712300725802 /* RoomPasswordDialog.xib in Resources */,
 				C2B538461677712300725802 /* RoomPasswordDialog~ipad.xib in Resources */,
 				C2B538481677712300725802 /* ZJHInputDialog.xib in Resources */,
@@ -20665,6 +20731,7 @@
 				CA53292116A3E1E000E9E96B /* PenBox.xib in Resources */,
 				CA53292516A3E1E000E9E96B /* PenBox~ipad.xib in Resources */,
 				CA53293116A3E50E00E9E96B /* InputAlertView.xib in Resources */,
+				D80EB350196B90DB0087EBBD /* MetroHomeController.xib in Resources */,
 				CA53293616A3E51F00E9E96B /* InputAlertView~ipad.xib in Resources */,
 				CA335D5216A90DC400D3BFF2 /* bbs_reward_action_content_bg@2x.png in Resources */,
 				CACD6AC118E03A29003F97C0 /* Resource.bundle in Resources */,
@@ -20799,6 +20866,7 @@
 				A4E1D21D17B2236800E13728 /* GuessSelectCell.xib in Resources */,
 				A489BFE617B4F100003E5150 /* Themes.plist in Resources */,
 				A489C01417B5D942003E5150 /* JDFlipNumberView.bundle in Resources */,
+				D80518B2196BD12200D350B3 /* dongtai.png in Resources */,
 				A440355717C5C6CF00301EDD /* GuessModesController~ipad.xib in Resources */,
 				A440355D17C5C96B00301EDD /* GuessSelectCell~ipad.xib in Resources */,
 				CA0174EF19405360005E4390 /* opusclass.json in Resources */,
@@ -21032,6 +21100,7 @@
 				A4D8FD7B17DB089C0085061F /* draw_page_back@2x.png in Resources */,
 				A4D8FD7F17DB089C0085061F /* old_draw_bg@2x.jpg in Resources */,
 				A4D8FD8317DB089C0085061F /* selected_pen_brush@2x.png in Resources */,
+				D80518B4196BD12200D350B3 /* huahua.png in Resources */,
 				A4D8FD8717DB089C0085061F /* selected_pen_feather@2x.png in Resources */,
 				D8C784B2196A4E2600323712 /* UserTutorialMainCell~ipad.xib in Resources */,
 				A4D8FD8B17DB089C0085061F /* selected_pen_ice-cream@2x.png in Resources */,
@@ -21042,6 +21111,7 @@
 				A4D8FD9B17DB089C0085061F /* eraser_show@2x.png in Resources */,
 				A4D8FD9F17DB089C0085061F /* pen_show_brush@2x.png in Resources */,
 				CA926BAA18A8C94F002C73B4 /* disable_notice_on.png in Resources */,
+				D80518B5196BD12200D350B3 /* jingcaizuopin.png in Resources */,
 				A4D8FDA317DB089C0085061F /* pen_show_feather@2x.png in Resources */,
 				A4D8FDA717DB089C0085061F /* pen_show_ice@2x.png in Resources */,
 				A4D8FDAB17DB089C0085061F /* pen_show_mark@2x.png in Resources */,
@@ -21160,6 +21230,7 @@
 				A4D8FFCF17DB089C0085061F /* zjh_home_charge@2x.png in Resources */,
 				A4D8FFD317DB089C0085061F /* zjh_home_charge_bg@2x.png in Resources */,
 				A4D8FFD717DB089C0085061F /* zjh_home_freecoin_bg@2x.png in Resources */,
+				D80518B1196BD12200D350B3 /* caogao.png in Resources */,
 				A4D8FFDB17DB089C0085061F /* zjh_home_header_bg@2x.png in Resources */,
 				A4D8FFDF17DB089C0085061F /* zjh_home_header_foot@2x.png in Resources */,
 				A4D8FFE317DB089C0085061F /* zjh_home_header_man@2x.png in Resources */,
@@ -21182,6 +21253,7 @@
 				A4D8002B17DB089C0085061F /* draw_player_pause@2x.png in Resources */,
 				A4D8002F17DB089C0085061F /* draw_player_play@2x.png in Resources */,
 				A4D8003317DB089C0085061F /* draw_player_plus@2x.png in Resources */,
+				D80518B6196BD12200D350B3 /* laba.png in Resources */,
 				A4D8003717DB089C0085061F /* draw_player_progress_point@2x.png in Resources */,
 				A4D8003B17DB089C0085061F /* draw_player_speed_button@2x.png in Resources */,
 				A4D8003F17DB089C0085061F /* point_pic3@2x.png in Resources */,
@@ -21194,6 +21266,7 @@
 				A4D8005B17DB089C0085061F /* sina@2x.png in Resources */,
 				A4D8005F17DB089C0085061F /* split_photo@2x.png in Resources */,
 				A4D8006317DB089C0085061F /* tool@2x.png in Resources */,
+				D80518B7196BD12200D350B3 /* luntan.png in Resources */,
 				CACD6A6918E03A28003F97C0 /* InstapaperResource.bundle in Resources */,
 				A4D8006717DB089C0085061F /* volume_off@2x.png in Resources */,
 				A4D8006B17DB089C0085061F /* volume_on@2x.png in Resources */,
@@ -21207,6 +21280,7 @@
 				A4D8008F17DB0B370085061F /* gray_coin@2x.png in Resources */,
 				A4D8009317DB0B370085061F /* gray_ingot@2x.png in Resources */,
 				CA7DE79A192BAD3200EED067 /* play1.png in Resources */,
+				D80EB355196B90FB0087EBBD /* MetroHomeController~ipad.xib in Resources */,
 				A4D8009717DB0B370085061F /* ingot@2x.png in Resources */,
 				A49C9CB717DB2D0700C9F39F /* gallary_filter@2x.png in Resources */,
 				A49C9CBB17DB2D0700C9F39F /* gallary_search@2x.png in Resources */,
@@ -21921,6 +21995,7 @@
 				A4D8FAEC17DB08170085061F /* little_triangle@2x.png_bak.png in Resources */,
 				A4D8FAF017DB08170085061F /* pine_tree@2x.png in Resources */,
 				A4D8FAF417DB08170085061F /* round_dot_10@2x.png in Resources */,
+				D80EB358196B90FB0087EBBD /* MetroHomeController~ipad.xib in Resources */,
 				A4D8FAF817DB08170085061F /* round_dot_11@2x.png in Resources */,
 				A4D8FAFC17DB08170085061F /* round_dot_12@2x.png in Resources */,
 				A4D8FB0017DB08170085061F /* round_dot_13@2x.png in Resources */,
@@ -22069,6 +22144,7 @@
 				A4D8FE1E17DB089C0085061F /* draw_grid_selected@2x.png in Resources */,
 				A4D8FE2217DB089C0085061F /* draw_line@2x.png in Resources */,
 				A4D8FE2617DB089C0085061F /* draw_oil@2x.png in Resources */,
+				D80EB353196B90DB0087EBBD /* MetroHomeController.xib in Resources */,
 				A4D8FE2A17DB089C0085061F /* draw_palette@2x.png in Resources */,
 				A4D8FE2E17DB089C0085061F /* draw_palette_unbuy@2x.png in Resources */,
 				A4D8FE3217DB089C0085061F /* draw_redo_normal@2x.png in Resources */,
@@ -23117,6 +23193,7 @@
 				CA3D4AF317794748000A8FC7 /* ShadowBox.m in Sources */,
 				A467BBCB17798DC900455E3A /* DrawToolUpPanel.m in Sources */,
 				CACD6CD418E03BCD003F97C0 /* SBJsonWriter.m in Sources */,
+				D80EB34E196B90DB0087EBBD /* MetroHomeController.m in Sources */,
 				C2C09E7F177A85F7009408EB /* CopyPaintCommand.m in Sources */,
 				C2C09E8A177AA71D009408EB /* ShowCopyPaintCommand.m in Sources */,
 				CA13B83C177BDB57003B7368 /* Shadow.m in Sources */,
@@ -23857,6 +23934,7 @@
 				C28A9C5D1738F04B007A819F /* WidthSliderCommand.m in Sources */,
 				C28A9C5E1738F04B007A819F /* AlphaSliderCommand.m in Sources */,
 				C28A9C5F1738F04B007A819F /* DrawBgCommand.m in Sources */,
+				D80EB34D196B90DB0087EBBD /* MetroHomeController.m in Sources */,
 				C28A9C601738F04B007A819F /* CanvasSizeCommand.m in Sources */,
 				C28A9C611738F04B007A819F /* EditDescCommand.m in Sources */,
 				C28A9C621738F04B007A819F /* DrawToCommand.m in Sources */,
@@ -24702,6 +24780,7 @@
 				CAEFC561170003B700D799B7 /* ShapeCommand.m in Sources */,
 				CAEFC5731700044E00D799B7 /* WidthPickCommand.m in Sources */,
 				CAEFC5791700047500D799B7 /* WidthSliderCommand.m in Sources */,
+				D80EB34C196B90DB0087EBBD /* MetroHomeController.m in Sources */,
 				CAEFC57F1700049300D799B7 /* AlphaSliderCommand.m in Sources */,
 				CAEFC585170004B600D799B7 /* DrawBgCommand.m in Sources */,
 				CAEFC58B170004E600D799B7 /* CanvasSizeCommand.m in Sources */,
@@ -25803,6 +25882,7 @@
 				CA5D9D78183E3C0200BD820C /* DOUAudioRenderer.m in Sources */,
 				CA5D9D7C183E3C0200BD820C /* DOUAudioSpatialAnalyzer.m in Sources */,
 				CA5D9D80183E3C0200BD820C /* DOUAudioStreamer+Options.m in Sources */,
+				D80EB34F196B90DB0087EBBD /* MetroHomeController.m in Sources */,
 				CA5D9D84183E3C0200BD820C /* DOUAudioStreamer.m in Sources */,
 				CA5D9D88183E3C0200BD820C /* DOUAudioVisualizer.m in Sources */,
 				CA5D9D8C183E3C0200BD820C /* DOUEAGL1View.m in Sources */,

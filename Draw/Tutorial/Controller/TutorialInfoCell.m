@@ -43,23 +43,48 @@
     return self;
 }
 
-
 - (void)updateCellInfo:(PBTutorial*)pbTutorial
 {
+        NSString *tutorialSortedText = @"新手级aaaaaaaaaaaaaaaaaa";
+    
     //实现国际化
     if(pbTutorial!=nil){
-        self.tutorialDesc.text = pbTutorial.name;
-        self.tutorialDescInfo.text = pbTutorial.desc;
+        self.tutorialSortedLabel.text = tutorialSortedText;
+        [self adaptLabelWidth:self.tutorialSortedLabel WithStringText:tutorialSortedText];
+      
+        
+       
+//        [self.tutorialSortedLabel setTextColor:COLOR_BROWN];
+//        [self.tutorialSortedLabel setFont:AD_FONT(19, 12)];
+//        [self adaptLabelWidth:self.tutorialSortedLabel];
+        
+        
+        self.tutorialDescLabel.text = pbTutorial.desc;
+        [self.tutorialDescLabel setTextColor:COLOR_BROWN];
+        [self.tutorialDescLabel setFont:AD_FONT(19, 12)];
     }
 }
+-(void) adaptLabelWidth:(UILabel *)label WithStringText:(NSString *)text{
+    
+   
+    UIFont * tfont = [UIFont systemFontOfSize:14];
+    [label setFont:tfont];
+    [label setLineBreakMode:NSLineBreakByWordWrapping];
+    NSDictionary * tdic = [NSDictionary dictionaryWithObjectsAndKeys:tfont,NSFontAttributeName,nil];
+    CGSize  actualsize =[text boundingRectWithSize:label.bounds.size
+                         options:NSStringDrawingUsesLineFragmentOrigin
+                         attributes:tdic
+                         context:nil].size;
+     [label setFrame:CGRectMake(82, 21,actualsize.width, actualsize.height)];
 
+}
 
 - (void)dealloc {
     
-    
-    [_tutorialDesc release];
-    [_tutorialDescInfo release];
-    [_tutorialAddBtn release];
+    [_tutorialSortedLabel release];
+    [_tutorialDescLabel release];
+    [_tutorialSortedNameLabel release];
+    [_tutorialDescNameLabel release];
     [super dealloc];
 }
 @end

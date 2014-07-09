@@ -47,6 +47,7 @@
     UICollectionViewFlowLayout *flowLayout = [[[UICollectionViewFlowLayout alloc] init] autorelease];
     [flowLayout setItemSize:CGSizeMake(COLLECTION_CELL_WIDTH,COLLECTION_CELL_HEIGHT)];
     [flowLayout setScrollDirection:UICollectionViewScrollDirectionVertical];
+    [flowLayout setMinimumLineSpacing:20];
     [self.collectionView setCollectionViewLayout:flowLayout];
     
     //指定xib文件
@@ -97,11 +98,11 @@
 }
 
 #define UI_EDGE_INSERTS_MAKE (ISIPAD ? 20 : 8)
-#define UI_EDGE_INSERTS_MAKE_2 (UI_EDGE_INSERTS_MAKE,UI_EDGE_INSERTS_MAKE,UI_EDGE_INSERTS_MAKE,UI_EDGE_INSERTS_MAKE)
 -(UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section
 {
     return UIEdgeInsetsMake(UI_EDGE_INSERTS_MAKE, UI_EDGE_INSERTS_MAKE, UI_EDGE_INSERTS_MAKE, UI_EDGE_INSERTS_MAKE);
 }
+
 
 #pragma mark --UICollectionViewDelegate
 //UICollectionView被选中时调用的方法

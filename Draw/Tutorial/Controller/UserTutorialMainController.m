@@ -75,7 +75,9 @@
     
 	// Do any additional setup after loading the view.
     // set background
-    [self setDefaultBGImage];
+//    [self setDefaultBGImage];
+
+    self.view.backgroundColor = COLOR_GRAY;
     
     self.dataList = [[UserTutorialManager defaultManager] allUserTutorials];
 
@@ -104,6 +106,7 @@
     [vc release];
 }
 
+//取出每一行的数据
 -(PBUserTutorial *)getDataListAtRow:(NSInteger)row {
     if(row>[self.dataList count]){
         return nil;

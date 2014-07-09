@@ -49,6 +49,7 @@
 - (void)enterTask;
 - (void)enterOpusClass;
 - (void)enterGroup;
+- (void)enterBBS;
 + (NSDictionary*)defaultMenuTitleDictionary;
 + (NSDictionary*)defaultMenuImageDictionary;
 

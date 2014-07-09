@@ -445,7 +445,7 @@
         placeHolderImage = [[ShareImageManager defaultManager] homeDefaultAvatar];
     }
     else{
-        [[ShareImageManager defaultManager] avatarImageByGender:gender];
+        placeHolderImage = [[ShareImageManager defaultManager] avatarImageByGender:gender];
     }
     [imageView setImageWithUrl:[NSURL URLWithString:urlString] placeholderImage:placeHolderImage showLoading:YES animated:YES];
 }

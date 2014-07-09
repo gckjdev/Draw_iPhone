@@ -49,17 +49,19 @@
 {
     //圆角
     SET_BUTTON_ROUND_STYLE_YELLOW(self.tutorialStartBtn);
+    [self.tutorialStartBtn.titleLabel setFont:AD_FONT(24, 12)];
     SET_VIEW_ROUND_CORNER(self.tutorialImageView);
     
     //contentView background
     self.contentView.backgroundColor = [UIColor clearColor];
+    self.backgroundColor = [UIColor clearColor];
     
     //实现国际化
     [self.tutorialNameLabel setText:ut.tutorial.name];
     
     
     NSDate* createDate = [NSDate dateWithTimeIntervalSince1970:ut.createDate];  // TODO 调用正确方法显示时间
-    self.tutorialDateLabel.text = dateToLocaleString(createDate);
+    self.tutorialDateLabel.text = dateToTimeLineString(createDate);
     
     UIImage *placeHolderImage = [UIImage imageNamed:@DEFAUT_IMAGE_NAME];
     [_tutorialImageView setImageWithUrl:[NSURL URLWithString:ut.tutorial.image]

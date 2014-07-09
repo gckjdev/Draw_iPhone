@@ -27,7 +27,11 @@
 #define DEFAUT_LOCK_IMAGE "lock2"
 -(void)updateStageCellInfo:(PBUserTutorial *)pbUserTutorial withRow:(NSInteger)row{
     
+    
+    
         SET_BUTTON_ROUND_STYLE_ORANGE(self.stageListStarBtn);
+        [[self.stageListStarBtn titleLabel] setFont:AD_FONT(24, 14)];
+    
         NSArray *stageList = [[pbUserTutorial tutorial] stagesList];
         //加载图片
         UIImage *placeHolderImage = [UIImage imageNamed:@DEFAUT_IMAGE];
