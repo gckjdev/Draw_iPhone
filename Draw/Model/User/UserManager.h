@@ -39,6 +39,10 @@ typedef enum {
     HotLatestIndex = 2,
 } HotIndexType;
 
+typedef enum{
+    HOME_STYLE_METRO = 0,
+    HOME_STYLE_CLASSICAL = 1
+} HomeStyleType;
 
 #define MALE @"m"
 #define FEMALE @"f"
@@ -298,6 +302,9 @@ qqAccessTokenSecret:(NSString*)accessTokenSecret
 - (BOOL)isEnableReplay;
 - (void)setEnableReplay:(BOOL)value;
 
+- (NSString*)homeStyleString;
+- (int)homeStyle;
+- (void)setHomeStyle:(int)style;
 
 @end
 

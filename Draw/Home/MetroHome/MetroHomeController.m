@@ -54,7 +54,7 @@
     [self.avatarView setAvatarUrl:[userManager avatarURL]
                      gender:[userManager gender]
                      useDefaultLogo:NO];
-    
+    self.avatarView.delegate = self;    
     
     //用户名字（赋值）
     NSString *name = [userManager nickName];
@@ -146,6 +146,12 @@
     [self enterMore];
 }
 
+#pragma mark - Avatart View Delegate
+
+- (void)didClickOnAvatar:(NSString *)userId
+{
+    [self enterUserDetail];
+}
 
 
 

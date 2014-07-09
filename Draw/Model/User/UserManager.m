@@ -29,6 +29,7 @@
 #import "LocalNotificationUtil.h"
 //#import "ZeroQianManager.h"
 
+#define KEY_HOME_STYLE                  @"KEY_HOME_STYLE"
 #define KEY_ENABLE_REPLAY               @"KEY_ENABLE_REPLAY"
 #define KEY_ALL_USER_PB_DATA            @"KEY_ALL_USER_PB_DATA"
 #define KEY_USERID                      @"USER_KEY_USERID"
@@ -2007,6 +2008,33 @@ qqAccessTokenSecret:(NSString*)accessTokenSecret
     [ud setObject:@(value) forKey:KEY_ENABLE_REPLAY];
     [ud synchronize];
 }
+
+
+- (NSString*)homeStyleString
+{
+    NSArray* homeStyleArray = @[NSLS(@"kMetroStyle"), NSLS(@"kClassicalStyle")];
+    int style = [self homeStyle];
+    if (style >= 0 && style < [homeStyleArray count]){
+        return [homeStyleArray objectAtIndex:style];
+    }
+    else{
+        return [homeStyleArray objectAtIndex:0];
+    }
+}
+
+- (int)homeStyle
+{
+    NSUserDefaults* ud = [NSUserDefaults standardUserDefaults];
+    return [[ud objectForKey:KEY_HOME_STYLE] integerValue];
+}
+
+- (void)setHomeStyle:(int)style
+{
+    NSUserDefaults* ud = [NSUserDefaults standardUserDefaults];
+    [ud setObject:@(style) forKey:KEY_HOME_STYLE];
+    [ud synchronize];
+}
+
 
 @end
 

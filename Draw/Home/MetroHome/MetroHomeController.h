@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "StableView.h"
 
-@interface MetroHomeController : PPViewController{
+@interface MetroHomeController : PPViewController<AvatarViewDelegate>{
     UIButton *LearningViewButton;
     
 }
