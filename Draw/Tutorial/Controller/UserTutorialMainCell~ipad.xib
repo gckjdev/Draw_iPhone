@@ -18,7 +18,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                     </imageView>
                     <view alpha="0.89999997615814209" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gtJ-OB-Z57">
-                        <rect key="frame" x="0.0" y="170" width="750" height="40"/>
+                        <rect key="frame" x="0.0" y="163" width="750" height="40"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="简笔画" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2hH-O2-dY3">
@@ -66,17 +66,17 @@
                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                         </state>
                     </button>
-                    <view alpha="0.30000001192092896" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JnO-If-T8Q">
-                        <rect key="frame" x="0.0" y="0.0" width="750" height="210"/>
+                    <view alpha="0.20000000000000001" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JnO-If-T8Q">
+                        <rect key="frame" x="0.0" y="0.0" width="750" height="165"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                 </subviews>
                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                 <constraints>
                     <constraint firstItem="d8V-Vh-Gn2" firstAttribute="top" secondItem="cZu-cC-HCm" secondAttribute="top" constant="65" id="3bX-Kp-kVw"/>
-                    <constraint firstItem="gtJ-OB-Z57" firstAttribute="bottom" secondItem="JnO-If-T8Q" secondAttribute="bottom" id="8cK-4Z-ge3"/>
-                    <constraint firstItem="aDL-UJ-wjW" firstAttribute="bottom" secondItem="gtJ-OB-Z57" secondAttribute="bottom" id="8eh-2H-JeC"/>
+                    <constraint firstItem="gtJ-OB-Z57" firstAttribute="bottom" secondItem="JnO-If-T8Q" secondAttribute="bottom" constant="38" id="8cK-4Z-ge3"/>
+                    <constraint firstItem="aDL-UJ-wjW" firstAttribute="bottom" secondItem="gtJ-OB-Z57" secondAttribute="bottom" constant="7" id="8eh-2H-JeC"/>
                     <constraint firstItem="aDL-UJ-wjW" firstAttribute="leading" secondItem="gtJ-OB-Z57" secondAttribute="leading" id="NIK-8H-tjj"/>
                     <constraint firstItem="aDL-UJ-wjW" firstAttribute="trailing" secondItem="JnO-If-T8Q" secondAttribute="trailing" id="Qd4-uh-5nd"/>
                     <constraint firstAttribute="trailing" secondItem="JnO-If-T8Q" secondAttribute="trailing" id="RIq-nG-3DB"/>
@@ -84,8 +84,8 @@
                     <constraint firstItem="JnO-If-T8Q" firstAttribute="leading" secondItem="aDL-UJ-wjW" secondAttribute="leading" id="W49-4T-nOp"/>
                     <constraint firstItem="d8V-Vh-Gn2" firstAttribute="leading" secondItem="cZu-cC-HCm" secondAttribute="leading" constant="321" id="XKp-Ta-Bwt"/>
                     <constraint firstItem="aDL-UJ-wjW" firstAttribute="leading" secondItem="cZu-cC-HCm" secondAttribute="leading" id="aCA-XW-9uG"/>
-                    <constraint firstItem="gtJ-OB-Z57" firstAttribute="top" secondItem="d8V-Vh-Gn2" secondAttribute="bottom" constant="60" id="agB-lr-cI4"/>
-                    <constraint firstAttribute="bottom" secondItem="JnO-If-T8Q" secondAttribute="bottom" constant="39" id="fzH-lN-1Cs"/>
+                    <constraint firstItem="gtJ-OB-Z57" firstAttribute="top" secondItem="d8V-Vh-Gn2" secondAttribute="bottom" constant="53" id="agB-lr-cI4"/>
+                    <constraint firstAttribute="bottom" secondItem="JnO-If-T8Q" secondAttribute="bottom" constant="84" id="fzH-lN-1Cs"/>
                     <constraint firstItem="aDL-UJ-wjW" firstAttribute="trailing" secondItem="gtJ-OB-Z57" secondAttribute="trailing" id="ris-7w-4na"/>
                     <constraint firstItem="aDL-UJ-wjW" firstAttribute="top" secondItem="cZu-cC-HCm" secondAttribute="top" id="zXk-Z0-Mkr"/>
                 </constraints>
@@ -97,6 +97,7 @@
                 <outlet property="tutorialImageView" destination="aDL-UJ-wjW" id="yMz-XK-nHW"/>
                 <outlet property="tutorialNameLabel" destination="2hH-O2-dY3" id="3fo-fd-hir"/>
                 <outlet property="tutorialStartBtn" destination="d8V-Vh-Gn2" id="Mpx-U3-crq"/>
+                <outlet property="vagueTopImageView" destination="JnO-If-T8Q" id="WNh-Su-Utv"/>
             </connections>
         </tableViewCell>
     </objects>

@@ -51,6 +51,7 @@
     SET_BUTTON_ROUND_STYLE_YELLOW(self.tutorialStartBtn);
     [self.tutorialStartBtn.titleLabel setFont:AD_FONT(24, 12)];
     SET_VIEW_ROUND_CORNER(self.tutorialImageView);
+    SET_VIEW_ROUND_CORNER(self.vagueTopImageView);
     
     //contentView background
     self.contentView.backgroundColor = [UIColor clearColor];
@@ -79,6 +80,7 @@
     [_tutorialDateLabel release];
     [_tutorialStartBtn release];
     [_UIImageViewUpView release];
+    [_vagueTopImageView release];
     [super dealloc];
 }
 

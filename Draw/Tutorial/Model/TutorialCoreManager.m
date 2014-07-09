@@ -126,6 +126,30 @@ static TutorialCoreManager* _defaultTutorialCoreManager;
     self.tutorialList = nil;
 }
 
+//赋值PBTutorial_Builder
+-(PBTutorial_Builder *) evaluateTutorialTestDataName:(NSString *)name WithDesc:(NSString *)desc WithTutorialId:(NSString *)tutorialId WithImage:(NSString *)imageUrl{
+     PBTutorial_Builder* tb = [PBTutorial builder];
+    [tb setCnName:name];
+    [tb setCnDesc:desc];
+    [tb setTutorialId:tutorialId];
+    [tb setThumbImage:imageUrl];
+    [tb setImage:imageUrl];
+    
+    return tb;
+}
+
+//赋值PBStage_Builder
+-(PBStage_Builder *)evaluateStageTestDataName:(NSString *)name WithDesc:(NSString *)desc WithStageId:(NSString *)stageId WithImage:(NSString *)imageUrl{
+    
+    PBStage_Builder* pb = [PBStage builder];
+    [pb setCnName:name];
+    [pb setCnDesc:desc];
+    [pb setStageId:stageId];
+    [pb setThumbImage:imageUrl];
+    [pb setImage:imageUrl];
+    return pb;
+}
+
 
 
 // 创建测试数据
@@ -140,45 +164,58 @@ static TutorialCoreManager* _defaultTutorialCoreManager;
     
     
     // TODO add test tutorials
+//    
+//    //测试数据
+//    for (int i=0; i<10; i++){
+//        PBTutorial_Builder* tb = [PBTutorial builder];
+//        NSString* name = [NSString stringWithFormat:@"教程[%d]", i];
+//        NSString* tutorialId = [NSString stringWithFormat:@"id-%d", i];
+//        NSString* desc = [NSString stringWithFormat:@"这是一个教程--%d",i];
+//        [tb setCnDesc:desc];
+//        [tb setCnName:name];
+//        [tb setTutorialId:tutorialId];
+//        //默认的小图片
+//        NSString* urlString = @"http://ww1.sinaimg.cn/bmiddle/94a7a958jw1ehzjdqx7fij20c80850tc.jpg";
+//        [tb setThumbImage:urlString];
+//        [tb setImage:urlString];
+//        
+//        
+//        //生成stage
+//        NSMutableArray* stageList = [NSMutableArray array];
+//        for(int j=0;j<10;j++){
+//        
+//            PBStage_Builder* stage = [PBStage builder];
+//            NSString* name2 = [NSString stringWithFormat:@"关卡[%d]",j];
+//            NSString* desc2 = [NSString stringWithFormat:@"我是一个关卡---%d",j];
+//
+//            [stage setStageId:[NSString stringWithFormat: @"stage-%d",j]];
+//            [stage setCnName:name2];
+//            [stage setCnDesc:desc2];
+//            //默认的小图片
+//            NSString* urlString2 = @"http://ww2.sinaimg.cn/bmiddle/bf9e8c17jw1ehya0z14p1j20e708gweu.jpg";
+//            [stage setThumbImage:urlString2];
+//            [stage setImage:urlString2];
+//            [stageList addObject:[stage build]];
+//        }
+//        
+//        [tb addAllStages:stageList];
+//        
+//        PBTutorial* tutorial = [tb build];
+//        [builder addTutorials:tutorial];
+//    }
     
-    //测试数据
-    for (int i=0; i<10; i++){
-        PBTutorial_Builder* tb = [PBTutorial builder];
-        NSString* name = [NSString stringWithFormat:@"教程[%d]", i];
-        NSString* tutorialId = [NSString stringWithFormat:@"id-%d", i];
-        NSString* desc = [NSString stringWithFormat:@"这是一个教程--%d",i];
-        [tb setCnDesc:desc];
-        [tb setCnName:name];
-        [tb setTutorialId:tutorialId];
-        //默认的小图片
-        NSString* urlString = @"http://ww1.sinaimg.cn/bmiddle/94a7a958jw1ehzjdqx7fij20c80850tc.jpg";
-        [tb setThumbImage:urlString];
-        [tb setImage:urlString];
-        
-        
-        //生成stage
-        NSMutableArray* stageList = [NSMutableArray array];
-        for(int j=0;j<10;j++){
-        
-            PBStage_Builder* stage = [PBStage builder];
-            NSString* name2 = [NSString stringWithFormat:@"关卡[%d]",j];
-            NSString* desc2 = [NSString stringWithFormat:@"我是一个关卡---%d",j];
-
-            [stage setStageId:[NSString stringWithFormat: @"stage-%d",j]];
-            [stage setCnName:name2];
-            [stage setCnDesc:desc2];
-            //默认的小图片
-            NSString* urlString2 = @"http://ww2.sinaimg.cn/bmiddle/bf9e8c17jw1ehya0z14p1j20e708gweu.jpg";
-            [stage setThumbImage:urlString2];
-            [stage setImage:urlString2];
-            [stageList addObject:[stage build]];
-        }
-        
-        [tb addAllStages:stageList];
-        
-        PBTutorial* tutorial = [tb build];
-        [builder addTutorials:tutorial];
-    }
+    
+    
+    //模拟测试数据
+//    PBTutorial_Builder* tb = [self evaluateTutorialTestDataName:@"初识三次元" WithDesc:@"初识三次元" WithTutorialId:@"id--01" WithImage:@"http://58.215.184.18:8080/tutorial/image/know3D.png"];
+//    PBTutorial* tutorial = [tb build];
+//    [builder addTutorials:tutorial];
+    
+    
+    PBTutorial_Builder* tb = [self evaluateTutorialTestDataName:@"一起来运动" WithDesc:@"一起来运动" WithTutorialId:@"id--02" WithImage:@"http://58.215.184.18:8080/tutorial/image/togetherrun.png"];
+    PBTutorial* tutorial = [tb build];
+    [builder addTutorials:tutorial];
+    
     
     
     

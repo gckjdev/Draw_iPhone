@@ -46,11 +46,22 @@
 - (void)updateCellInfo:(PBTutorial*)pbTutorial
 {
         NSString *tutorialSortedText = @"新手级aaaaaaaaaaaaaaaaaa";
+    UILabel* label =  [[UILabel alloc] initWithFrame:CGRectMake(97, 21, 0, 0)];
+    [label setLineBreakMode:NSLineBreakByWordWrapping];
+    UIFont * tfont = AD_FONT(19, 12);
+    NSDictionary * tdic = [NSDictionary dictionaryWithObjectsAndKeys:tfont,NSFontAttributeName,nil];
+    label.text = tutorialSortedText;
+    [self addSubview:label];
+    CGSize  actualsize =[tutorialSortedText boundingRectWithSize:label.bounds.size
+                                           options:NSStringDrawingUsesLineFragmentOrigin
+                                        attributes:tdic
+                                           context:nil].size;
+    [label setFrame:CGRectMake(97, 21,actualsize.width, actualsize.height)];
     
     //实现国际化
     if(pbTutorial!=nil){
         self.tutorialSortedLabel.text = tutorialSortedText;
-        [self adaptLabelWidth:self.tutorialSortedLabel WithStringText:tutorialSortedText];
+//        [self adaptLabelWidth:self.tutorialSortedLabel WithStringText:tutorialSortedText];
       
         
        
