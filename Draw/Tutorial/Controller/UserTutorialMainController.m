@@ -61,14 +61,6 @@
                                                                   attribute:NSLayoutAttributeLeft
                                                                  multiplier:1.0
                                                                    constant:LEFT_RIGHT_LEADING];
-//    
-//    NSLayoutConstraint* rightConstraint = [NSLayoutConstraint constraintWithItem:self.dataTableView
-//                                                                  attribute:NSLayoutAttributeTrailing
-//                                                                  relatedBy:NSLayoutRelationEqual
-//                                                                     toItem:self.view
-//                                                                  attribute:NSLayoutAttributeTrailing
-//                                                                 multiplier:1.0
-//                                                                   constant:LEFT_RIGHT_LEADING];
     
     [self.view addConstraint:constraint];
     [self.view addConstraint:leftConstraint];

@@ -20,17 +20,6 @@
     if (self) {
         // Initialization code
         SET_VIEW_ROUND_CORNER(self.contentView);
-//        
-//        NSLayoutConstraint* constraint = [NSLayoutConstraint constraintWithItem:self.tutorialImage
-//                                                                      attribute:NSLayoutAttributeBottom
-//                                                                      relatedBy:NSLayoutRelationEqual
-//                                                                         toItem:nil
-//                                                                      attribute:nil
-//                                                                     multiplier:1.0
-//                                                                       constant:TUTORIAL_IMAGE_HEIGHT];
-//        
-//        [self.contentView addConstraint:constraint];
-        
     }
     return self;
 }
@@ -47,7 +36,8 @@
     // Configure the view for the selected state
 }
 
-#define DEFAUT_IMAGE "dialogue@2x"
+#define DEFAUT_IMAGE "dialogue@2x" // TODO move to ShareImageManager
+
 - (void)updateCellInfo:(PBTutorial*)pbTutorial
 {
     self.tutorialName.font = AD_BOLD_FONT(28, 16);
