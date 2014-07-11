@@ -116,7 +116,20 @@ static UserTutorialManager* _defaultManager;
     [super dealloc];
 }
 
+
+
 #pragma mark - for external operation
+
+//用户删除教程
+- (BOOL)deleteUserTutorial:(PBUserTutorial *)userTutorial{
+    
+    if(userTutorial == nil){
+        return nil;
+    }
+    
+    PPDebug(@"<deleteUserTutorial> tutorialId=%@, localId=%@", userTutorial.tutorial.tutorialId, userTutorial.localId);
+    return [[self getDb] removeKey:userTutorial.localId];
+}
 
 // 用户添加/开始学习某个教程
 - (PBUserTutorial*)addTutorial:(PBTutorial*)tutorial

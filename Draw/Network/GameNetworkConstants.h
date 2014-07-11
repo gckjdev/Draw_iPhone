@@ -601,6 +601,12 @@
 #define FRIENDS_TYPE_FOLLOW 0
 #define FRIENDS_TYPE_FAN    1
 
+// Tutorial
+#define PARA_TUTORIAL_ID                @"tuid"
+#define PARA_REMOTE_USER_TUTORIAL_ID    @"ruti"
+#define PARA_LOCAL_USER_TUTORIAL_ID     @"luti"
+
+#define METHOD_USER_TUTORIAL_ACTION     @"userTutorialAction"
 
 //new words
 #define PARA_NEW_WORDS  @"nw"

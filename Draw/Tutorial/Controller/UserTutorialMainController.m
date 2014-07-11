@@ -10,6 +10,7 @@
 #import "UIViewController+BGImage.h"
 #import "UserTutorialMainCell.h"
 #import "UserTutorialManager.h"
+#import "UserTutorialService.h"
 #import "Tutorial.pb.h"
 #import "AllTutorialController.h"
 #import "TutorialStageController.h"
@@ -81,16 +82,21 @@
 //    [self setDefaultBGImage];
 
     self.view.backgroundColor = COLOR_GRAY;
+    [self setCanDragBack:NO];
     
 //    self.dataList = [[data reverseObjectEnumerator] allObjects];
 }
 
-- (void)viewDidAppear:(BOOL)animated
+- (void)reloadData
 {
     NSArray* list = [[UserTutorialManager defaultManager] allUserTutorials];
     self.dataList = [[list reverseObjectEnumerator] allObjects];
     [self.dataTableView reloadData];
-    
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [self reloadData];
     [super viewDidAppear:animated];
 }
 
@@ -167,16 +173,27 @@
     return  HEIGHT_FOR_ROW;
 }
 
+//删除tableviewcell
 -(UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return UITableViewCellEditingStyleDelete;
-}
-- (void)tableView:(UITableView *)tableView willBeginEditingRowAtIndexPath:(NSIndexPath *)indexPath {
-
-}
-- (void)tableView:(UITableView *)tableView didEndEditingRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+     return UITableViewCellEditingStyleDelete;
     
 }
+
+-(void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath{
+    if(editingStyle == UITableViewCellEditingStyleDelete){
+        
+        UserTutorialService* userTutorialService = [UserTutorialService defaultService];
+        
+        [userTutorialService deleteUserTutorial:[self getDataListAtRow:indexPath.row]
+                             resultBlock:^(int resultCode) {
+                                 
+                                 [self reloadData];
+                                }];
+    }
+}
+
 -(void)dealloc{
    
     [super dealloc];

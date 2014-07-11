@@ -270,4 +270,13 @@
     [us release];
 }
 
+- (void)showBulletinView
+{
+    [[AnalyticsManager sharedAnalyticsManager] reportClickHomeElements:HOME_TOP_BULLETIN];
+    
+    BulletinView *v = [BulletinView createWithSuperController:(PPViewController*)self];
+    CommonDialog *dialog = [CommonDialog createDialogWithTitle:NSLS(@"kBulletin") customView:v style:CommonDialogStyleCross];
+    [dialog showInView:self.view];
+}
+
 @end

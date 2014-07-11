@@ -315,11 +315,7 @@ static NSDictionary* DEFAULT_MENU_IMAGE_DICT = nil;
 - (void)homeHeaderPanel:(HomeHeaderPanel *)headerPanel
    didClickBulletinButton:(UIButton *)button
 {
-    [[AnalyticsManager sharedAnalyticsManager] reportClickHomeElements:HOME_TOP_BULLETIN];
-    
-    BulletinView *v = [BulletinView createWithSuperController:self];
-    CommonDialog *dialog = [CommonDialog createDialogWithTitle:NSLS(@"kBulletin") customView:v style:CommonDialogStyleCross];
-    [dialog showInView:self.view];
+    [self showBulletinView];
 }
 
 

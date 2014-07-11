@@ -30,6 +30,7 @@
 @property (retain, nonatomic) IBOutlet UIButton *documentButton;
 @property (retain, nonatomic) IBOutlet UIButton *messageButton;
 @property (retain, nonatomic) IBOutlet UIButton *moreButton;
+@property (retain, nonatomic) IBOutlet UIButton *topNameButton;
 
 
 - (UIView *)createShadow:(UIView *)view;
@@ -37,5 +38,4 @@
 - (IBAction)goToBBS:(id)sender;
 - (IBAction)goToDraw:(id)sender;
 - (IBAction)goToOpus:(id)sender;
-
 @end

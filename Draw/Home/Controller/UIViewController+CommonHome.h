@@ -23,5 +23,6 @@
 - (void)enterChat;
 - (void)enterMore;
 - (void)enterUserDetail;
+- (void)showBulletinView;
 
 @end

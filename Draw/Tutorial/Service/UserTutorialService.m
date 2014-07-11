@@ -38,7 +38,6 @@ static UserTutorialService* _defaultService;
     [PPGameNetworkRequest loadPBData:workingQueue
                              hostURL:TUTORIAL_HOST
                              method:METHOD_SYNC_USER_TUTORIAL
-                            postData:postData
                          parameters:para
                            callback:^(DataQueryResponse *response, NSError *error) {
                 
@@ -51,6 +50,67 @@ static UserTutorialService* _defaultService;
                         isPostError:NO];
 }
 
+
+- (void)addUserTutorial:(PBUserTutorial*)ut
+{
+    [self actionOnUserTutorial:ut action:ACTION_ADD_USER_TUTORIAL];
+}
+
+- (void)deleteUserTutorial:(PBUserTutorial*)ut
+{
+    [self actionOnUserTutorial:ut action:ACTION_DELETE_USER_TUTORIAL];
+}
+
+//取得remoteId
+-(NSString *)getremoteUserTutorialId{
+    //TODO
+    
+}
+
+//用户学习某个教程的信息到服务器
+- (void)actionOnUserTutorial:(PBUserTutorial*)ut action:(UserTutorialActionType)action
+{
+    if (ut == nil || ut.tutorial.tutorialId == nil || ut.localId == nil){
+        PPDebug(@"<actionOnUserTutorial> but key parameters is nil");
+        return;
+    }
+    
+    NSMutableDictionary* para = [[[NSMutableDictionary alloc] init] autorelease];
+    [para setObject:ut.tutorial.tutorialId forKey:PARA_TUTORIAL_ID];
+    [para setObject:ut.localId forKey:PARA_LOCAL_USER_TUTORIAL_ID];
+    [para setObject:@(action) forKey:PARA_ACTION_TYPE];
+    
+  
+//  @{ PARA_TUTORIAL_ID : ut.tutorial.tutorialId,
+//                            PARA_LOCAL_USER_TUTORIAL_ID : ut.localId,
+//                            PARA_ACTION_TYPE : @(action)
+//                            };
+    
+    
+    //set remotedId when delete action
+    if(action == ACTION_DELETE_USER_TUTORIAL){
+        NSString* remoteUserTutorialId = [self getremoteUserTutorialId];
+        
+    }
+    
+    [PPGameNetworkRequest loadPBData:workingQueue
+                             hostURL:TUTORIAL_HOST
+                              method:METHOD_USER_TUTORIAL_ACTION
+                          parameters:para
+                            callback:^(DataQueryResponse *response, NSError *error) {
+                                
+                                if (error == nil){
+                                    // success
+                                    // update user tutorial SYNC status
+                                    [[UserTutorialManager defaultManager] syncUserTutorial:ut.localId syncStatus:YES];
+                                }
+                            }
+                         isPostError:NO];
+}
+
+
+
+
 // 用户添加/开始学习某个教程
 - (void)addTutorial:(PBTutorial*)tutorial resultBlock:(UserTutorialServiceResultBlock)resultBlock
 {
@@ -59,17 +119,19 @@ static UserTutorialService* _defaultService;
     EXECUTE_BLOCK(resultBlock, 0);
     
     // 再同步到服务器
-    [self syncUserTutorial:ut];
+    [self addUserTutorial:ut];
 }
 //删除教程
 - (void)deleteUserTutorial:(PBUserTutorial*)ut resultBlock:(UserTutorialServiceResultBlock)resultBlock
 {
-   
-     [[UserTutorialManager defaultManager] delete:ut];
+    NSString * userId = ut.userId;
     
+    
+    [[UserTutorialManager defaultManager] deleteUserTutorial:ut];
     EXECUTE_BLOCK(resultBlock, 0);
-    [self syncUserTutorial:ut];
     
+    // TODO check how to sync later
+//    [self syncUserTutorial:ut];
 }
 
 

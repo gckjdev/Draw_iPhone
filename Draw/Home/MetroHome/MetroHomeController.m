@@ -26,15 +26,35 @@
     return self;
 }
 
+#define BOTTOM_BUTTON_TITLE_EDGEINSETS (ISIPAD ? -47 : -34)
+-(void)setButtonTitleBottom{
+    [self.indexButton  setTitleEdgeInsets:UIEdgeInsetsMake(50, BOTTOM_BUTTON_TITLE_EDGEINSETS, 0, 0)];
+    [self.documentButton  setTitleEdgeInsets:UIEdgeInsetsMake(50, BOTTOM_BUTTON_TITLE_EDGEINSETS, 0, 0)];
+    [self.messageButton  setTitleEdgeInsets:UIEdgeInsetsMake(50, BOTTOM_BUTTON_TITLE_EDGEINSETS, 0, 0)];
+    [self.moreButton  setTitleEdgeInsets:UIEdgeInsetsMake(50, BOTTOM_BUTTON_TITLE_EDGEINSETS, 0, 0)];
+    
+    //title label font
+//    [self.indexButton.titleLabel setFont:AD_FONT(8, 11)];
+//    
+//    [self.documentButton.titleLabel setFont:AD_FONT(8, 11)];
+//    
+//    [self.messageButton.titleLabel setFont:AD_FONT(8, 11)];
+//    
+//    [self.moreButton.titleLabel setFont:AD_FONT(8, 11)];
+
+    
+    
+}
+
+
 #define DEFAUT_IMAGE_NAME "dialogue@2x"
 #define TEST_DATA_GALLERYIMAGE "http://58.215.184.18:8080/tutorial/image/GalleryImage2.jpg"
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     
-    [self setBackground];
-    
-    // Do any additional setup after loading the view from its nib.
+//    [self setBackground];
+        // Do any additional setup after loading the view from its nib.
     UIImage *placeHolderImage = [UIImage imageNamed:@DEFAUT_IMAGE_NAME];
     
     
@@ -61,11 +81,17 @@
     [_topNameLable setText:name];
     [_topNameLable setFont:AD_FONT(20, 15)];
     [_topNameLable setTextColor:COLOR_BROWN];
-
+    [_topNameButton setTitle:name forState:UIControlStateNormal];
+    [_topNameButton setTitleColor:COLOR_BROWN forState:UIControlStateNormal];
+    [_topNameButton.titleLabel setFont:AD_FONT(20, 15)];
+    
+    
 //    //加阴影
 //    UIView *shadowView = [self createShadow:self.paintingView];
 //    [self.paintingView addSubview:shadowView];
-    
+    [self setButtonTitleBottom];
+    [self goToUserDetail];
+
 }
 
 -(IBAction)goToLearning:(id)sender{
@@ -115,6 +141,8 @@
     [bg release];
 }
 
+#pragma -mark
+#pragma mark click
 - (IBAction)goTolearning:(id)sender {
 }
 
@@ -146,19 +174,42 @@
     [self enterMore];
 }
 
+
+-(IBAction)goToAnnounce:(id)sender{
+    [self showBulletinView];
+}
+
+-(IBAction)goToUserDetail:(id)sender{
+    [self enterUserDetail];
+}
+
 #pragma mark - Avatart View Delegate
 
 - (void)didClickOnAvatar:(NSString *)userId
 {
     [self enterUserDetail];
 }
-
-
-
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+//点击事件
+-(void)labelClicked{
+    PPDebug(@"click the label");
+    
+}
+//创造手势
+
+-(void)goToUserDetail{
+    UITapGestureRecognizer *singleFingerOne = [[UITapGestureRecognizer alloc] initWithTarget:self
+                                                action:@selector(labelClicked:)];
+         singleFingerOne.numberOfTouchesRequired = 1; //手指数
+        singleFingerOne.numberOfTapsRequired = 1; //tap次数
+    
+    [_topNameLable addGestureRecognizer:singleFingerOne];
+    
 }
 
 - (void)dealloc {
@@ -179,6 +230,7 @@
     [_documentButton release];
     [_messageButton release];
     [_moreButton release];
+    [_topNameButton release];
     [super dealloc];
 }
 - (void)viewDidUnload {
@@ -201,6 +253,7 @@
     [self setDocumentButton:nil];
     [self setMessageButton:nil];
     [self setMoreButton:nil];
+    [self setTopNameButton:nil];
     [super viewDidUnload];
 }
 @end
