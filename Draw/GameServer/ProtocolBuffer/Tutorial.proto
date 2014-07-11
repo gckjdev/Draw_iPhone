@@ -21,6 +21,27 @@ enum PBTutorialCategory{
     TUTORIAL_CATEGORY_ADVANCE = 2;
 }
 
+message PBChapter
+{
+    required int32  index = 1;                      // 索引，唯一
+
+    optional string cnName = 2;                     // 简体中文名称
+    optional string enName = 3;                     // 英文名称
+    optional string tcnName = 4;                    // 繁体中文名称
+
+    optional string cnDesc = 10;
+    optional string enDesc = 11;
+    optional string tcnDesc = 12;
+
+    optional string opus = 20;                       // 回放作品包URL
+    optional string image = 21;                      // 作品图片URL
+    optional string background = 22;                 // 绘画底图URL
+
+    optional string opusName = 30;                   // 回放作品包文件名
+    optional string imageName = 31;                  // 作品图片文件名
+    optional string backgroundName = 32;             // 绘画底图文件名
+}
+
 // 关卡
 message PBStage
 {
@@ -38,9 +59,15 @@ message PBStage
     optional string thumbImage = 21;
     
     optional string dataURL = 30;                   // 下载的zip包URL，待定
+
+    repeated PBChapter chapter = 40;                // 教程章节
+
 }
 
 // 教程
+// 一个教程zip包里面包含信息如下
+// 1) tutorial.pb 文件，包括完整的教程、关卡和章节信息
+// 2) 
 message PBTutorial
 {
     required string tutorialId = 1;
@@ -130,6 +157,7 @@ message PBUserTutorial
     
     optional bool   syncServer = 30;            // 本数据是否已经同步到服务器
     optional string localId = 31;               // 保存到本地的ID
+    optional string remoteId = 32;              // 服务器返回的ID
 }
 
 

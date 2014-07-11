@@ -11,6 +11,7 @@ PROTOBUF_C_BEGIN_DECLS
 #include "GameBasic.pb-c.h"
 #include "BBS.pb-c.h"
 
+typedef struct _Game__PBChapter Game__PBChapter;
 typedef struct _Game__PBStage Game__PBStage;
 typedef struct _Game__PBTutorial Game__PBTutorial;
 typedef struct _Game__PBTutorialCore Game__PBTutorialCore;
@@ -40,6 +41,28 @@ typedef enum _Game__PBUserTutorialStatus {
 
 /* --- messages --- */
 
+struct  _Game__PBChapter
+{
+  ProtobufCMessage base;
+  int32_t index;
+  char *cnname;
+  char *enname;
+  char *tcnname;
+  char *cndesc;
+  char *endesc;
+  char *tcndesc;
+  char *opus;
+  char *image;
+  char *background;
+  char *opusname;
+  char *imagename;
+  char *backgroundname;
+};
+#define GAME__PBCHAPTER__INIT \
+ { PROTOBUF_C_MESSAGE_INIT (&game__pbchapter__descriptor) \
+    , 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL }
+
+
 struct  _Game__PBStage
 {
   ProtobufCMessage base;
@@ -53,10 +76,12 @@ struct  _Game__PBStage
   char *image;
   char *thumbimage;
   char *dataurl;
+  size_t n_chapter;
+  Game__PBChapter **chapter;
 };
 #define GAME__PBSTAGE__INIT \
  { PROTOBUF_C_MESSAGE_INIT (&game__pbstage__descriptor) \
-    , NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL }
+    , NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0,NULL }
 
 
 struct  _Game__PBTutorial
@@ -173,12 +198,32 @@ struct  _Game__PBUserTutorial
   protobuf_c_boolean has_syncserver;
   protobuf_c_boolean syncserver;
   char *localid;
+  char *remoteid;
 };
 #define GAME__PBUSER_TUTORIAL__INIT \
  { PROTOBUF_C_MESSAGE_INIT (&game__pbuser_tutorial__descriptor) \
-    , NULL, NULL, 0,0, 0,0, 0,0, 0,0, 0,0, 0,0, 0,0, NULL, 0,NULL, 0,0, NULL }
+    , NULL, NULL, 0,0, 0,0, 0,0, 0,0, 0,0, 0,0, 0,0, NULL, 0,NULL, 0,0, NULL, NULL }
 
 
+/* Game__PBChapter methods */
+void   game__pbchapter__init
+                     (Game__PBChapter         *message);
+size_t game__pbchapter__get_packed_size
+                     (const Game__PBChapter   *message);
+size_t game__pbchapter__pack
+                     (const Game__PBChapter   *message,
+                      uint8_t             *out);
+size_t game__pbchapter__pack_to_buffer
+                     (const Game__PBChapter   *message,
+                      ProtobufCBuffer     *buffer);
+Game__PBChapter *
+       game__pbchapter__unpack
+                     (ProtobufCAllocator  *allocator,
+                      size_t               len,
+                      const uint8_t       *data);
+void   game__pbchapter__free_unpacked
+                     (Game__PBChapter *message,
+                      ProtobufCAllocator *allocator);
 /* Game__PBStage methods */
 void   game__pbstage__init
                      (Game__PBStage         *message);
@@ -295,6 +340,9 @@ void   game__pbuser_tutorial__free_unpacked
                       ProtobufCAllocator *allocator);
 /* --- per-message closures --- */
 
+typedef void (*Game__PBChapter_Closure)
+                 (const Game__PBChapter *message,
+                  void *closure_data);
 typedef void (*Game__PBStage_Closure)
                  (const Game__PBStage *message,
                   void *closure_data);
@@ -322,6 +370,7 @@ typedef void (*Game__PBUserTutorial_Closure)
 extern const ProtobufCEnumDescriptor    game__pbtutorial_level__descriptor;
 extern const ProtobufCEnumDescriptor    game__pbtutorial_category__descriptor;
 extern const ProtobufCEnumDescriptor    game__pbuser_tutorial_status__descriptor;
+extern const ProtobufCMessageDescriptor game__pbchapter__descriptor;
 extern const ProtobufCMessageDescriptor game__pbstage__descriptor;
 extern const ProtobufCMessageDescriptor game__pbtutorial__descriptor;
 extern const ProtobufCMessageDescriptor game__pbtutorial_core__descriptor;

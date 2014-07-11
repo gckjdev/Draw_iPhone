@@ -53,6 +53,654 @@ BOOL PBUserTutorialStatusIsValidValue(PBUserTutorialStatus value) {
       return NO;
   }
 }
+@interface PBChapter ()
+@property int32_t index;
+@property (retain) NSString* cnName;
+@property (retain) NSString* enName;
+@property (retain) NSString* tcnName;
+@property (retain) NSString* cnDesc;
+@property (retain) NSString* enDesc;
+@property (retain) NSString* tcnDesc;
+@property (retain) NSString* opus;
+@property (retain) NSString* image;
+@property (retain) NSString* background;
+@property (retain) NSString* opusName;
+@property (retain) NSString* imageName;
+@property (retain) NSString* backgroundName;
+@end
+
+@implementation PBChapter
+
+- (BOOL) hasIndex {
+  return !!hasIndex_;
+}
+- (void) setHasIndex:(BOOL) value {
+  hasIndex_ = !!value;
+}
+@synthesize index;
+- (BOOL) hasCnName {
+  return !!hasCnName_;
+}
+- (void) setHasCnName:(BOOL) value {
+  hasCnName_ = !!value;
+}
+@synthesize cnName;
+- (BOOL) hasEnName {
+  return !!hasEnName_;
+}
+- (void) setHasEnName:(BOOL) value {
+  hasEnName_ = !!value;
+}
+@synthesize enName;
+- (BOOL) hasTcnName {
+  return !!hasTcnName_;
+}
+- (void) setHasTcnName:(BOOL) value {
+  hasTcnName_ = !!value;
+}
+@synthesize tcnName;
+- (BOOL) hasCnDesc {
+  return !!hasCnDesc_;
+}
+- (void) setHasCnDesc:(BOOL) value {
+  hasCnDesc_ = !!value;
+}
+@synthesize cnDesc;
+- (BOOL) hasEnDesc {
+  return !!hasEnDesc_;
+}
+- (void) setHasEnDesc:(BOOL) value {
+  hasEnDesc_ = !!value;
+}
+@synthesize enDesc;
+- (BOOL) hasTcnDesc {
+  return !!hasTcnDesc_;
+}
+- (void) setHasTcnDesc:(BOOL) value {
+  hasTcnDesc_ = !!value;
+}
+@synthesize tcnDesc;
+- (BOOL) hasOpus {
+  return !!hasOpus_;
+}
+- (void) setHasOpus:(BOOL) value {
+  hasOpus_ = !!value;
+}
+@synthesize opus;
+- (BOOL) hasImage {
+  return !!hasImage_;
+}
+- (void) setHasImage:(BOOL) value {
+  hasImage_ = !!value;
+}
+@synthesize image;
+- (BOOL) hasBackground {
+  return !!hasBackground_;
+}
+- (void) setHasBackground:(BOOL) value {
+  hasBackground_ = !!value;
+}
+@synthesize background;
+- (BOOL) hasOpusName {
+  return !!hasOpusName_;
+}
+- (void) setHasOpusName:(BOOL) value {
+  hasOpusName_ = !!value;
+}
+@synthesize opusName;
+- (BOOL) hasImageName {
+  return !!hasImageName_;
+}
+- (void) setHasImageName:(BOOL) value {
+  hasImageName_ = !!value;
+}
+@synthesize imageName;
+- (BOOL) hasBackgroundName {
+  return !!hasBackgroundName_;
+}
+- (void) setHasBackgroundName:(BOOL) value {
+  hasBackgroundName_ = !!value;
+}
+@synthesize backgroundName;
+- (void) dealloc {
+  self.cnName = nil;
+  self.enName = nil;
+  self.tcnName = nil;
+  self.cnDesc = nil;
+  self.enDesc = nil;
+  self.tcnDesc = nil;
+  self.opus = nil;
+  self.image = nil;
+  self.background = nil;
+  self.opusName = nil;
+  self.imageName = nil;
+  self.backgroundName = nil;
+  [super dealloc];
+}
+- (id) init {
+  if ((self = [super init])) {
+    self.index = 0;
+    self.cnName = @"";
+    self.enName = @"";
+    self.tcnName = @"";
+    self.cnDesc = @"";
+    self.enDesc = @"";
+    self.tcnDesc = @"";
+    self.opus = @"";
+    self.image = @"";
+    self.background = @"";
+    self.opusName = @"";
+    self.imageName = @"";
+    self.backgroundName = @"";
+  }
+  return self;
+}
+static PBChapter* defaultPBChapterInstance = nil;
++ (void) initialize {
+  if (self == [PBChapter class]) {
+    defaultPBChapterInstance = [[PBChapter alloc] init];
+  }
+}
++ (PBChapter*) defaultInstance {
+  return defaultPBChapterInstance;
+}
+- (PBChapter*) defaultInstance {
+  return defaultPBChapterInstance;
+}
+- (BOOL) isInitialized {
+  if (!self.hasIndex) {
+    return NO;
+  }
+  return YES;
+}
+- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
+  if (self.hasIndex) {
+    [output writeInt32:1 value:self.index];
+  }
+  if (self.hasCnName) {
+    [output writeString:2 value:self.cnName];
+  }
+  if (self.hasEnName) {
+    [output writeString:3 value:self.enName];
+  }
+  if (self.hasTcnName) {
+    [output writeString:4 value:self.tcnName];
+  }
+  if (self.hasCnDesc) {
+    [output writeString:10 value:self.cnDesc];
+  }
+  if (self.hasEnDesc) {
+    [output writeString:11 value:self.enDesc];
+  }
+  if (self.hasTcnDesc) {
+    [output writeString:12 value:self.tcnDesc];
+  }
+  if (self.hasOpus) {
+    [output writeString:20 value:self.opus];
+  }
+  if (self.hasImage) {
+    [output writeString:21 value:self.image];
+  }
+  if (self.hasBackground) {
+    [output writeString:22 value:self.background];
+  }
+  if (self.hasOpusName) {
+    [output writeString:30 value:self.opusName];
+  }
+  if (self.hasImageName) {
+    [output writeString:31 value:self.imageName];
+  }
+  if (self.hasBackgroundName) {
+    [output writeString:32 value:self.backgroundName];
+  }
+  [self.unknownFields writeToCodedOutputStream:output];
+}
+- (int32_t) serializedSize {
+  int32_t size = memoizedSerializedSize;
+  if (size != -1) {
+    return size;
+  }
+
+  size = 0;
+  if (self.hasIndex) {
+    size += computeInt32Size(1, self.index);
+  }
+  if (self.hasCnName) {
+    size += computeStringSize(2, self.cnName);
+  }
+  if (self.hasEnName) {
+    size += computeStringSize(3, self.enName);
+  }
+  if (self.hasTcnName) {
+    size += computeStringSize(4, self.tcnName);
+  }
+  if (self.hasCnDesc) {
+    size += computeStringSize(10, self.cnDesc);
+  }
+  if (self.hasEnDesc) {
+    size += computeStringSize(11, self.enDesc);
+  }
+  if (self.hasTcnDesc) {
+    size += computeStringSize(12, self.tcnDesc);
+  }
+  if (self.hasOpus) {
+    size += computeStringSize(20, self.opus);
+  }
+  if (self.hasImage) {
+    size += computeStringSize(21, self.image);
+  }
+  if (self.hasBackground) {
+    size += computeStringSize(22, self.background);
+  }
+  if (self.hasOpusName) {
+    size += computeStringSize(30, self.opusName);
+  }
+  if (self.hasImageName) {
+    size += computeStringSize(31, self.imageName);
+  }
+  if (self.hasBackgroundName) {
+    size += computeStringSize(32, self.backgroundName);
+  }
+  size += self.unknownFields.serializedSize;
+  memoizedSerializedSize = size;
+  return size;
+}
++ (PBChapter*) parseFromData:(NSData*) data {
+  return (PBChapter*)[[[PBChapter builder] mergeFromData:data] build];
+}
++ (PBChapter*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (PBChapter*)[[[PBChapter builder] mergeFromData:data extensionRegistry:extensionRegistry] build];
+}
++ (PBChapter*) parseFromInputStream:(NSInputStream*) input {
+  return (PBChapter*)[[[PBChapter builder] mergeFromInputStream:input] build];
+}
++ (PBChapter*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (PBChapter*)[[[PBChapter builder] mergeFromInputStream:input extensionRegistry:extensionRegistry] build];
+}
++ (PBChapter*) parseFromCodedInputStream:(PBCodedInputStream*) input {
+  return (PBChapter*)[[[PBChapter builder] mergeFromCodedInputStream:input] build];
+}
++ (PBChapter*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (PBChapter*)[[[PBChapter builder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] build];
+}
++ (PBChapter_Builder*) builder {
+  return [[[PBChapter_Builder alloc] init] autorelease];
+}
++ (PBChapter_Builder*) builderWithPrototype:(PBChapter*) prototype {
+  return [[PBChapter builder] mergeFrom:prototype];
+}
+- (PBChapter_Builder*) builder {
+  return [PBChapter builder];
+}
+@end
+
+@interface PBChapter_Builder()
+@property (retain) PBChapter* result;
+@end
+
+@implementation PBChapter_Builder
+@synthesize result;
+- (void) dealloc {
+  self.result = nil;
+  [super dealloc];
+}
+- (id) init {
+  if ((self = [super init])) {
+    self.result = [[[PBChapter alloc] init] autorelease];
+  }
+  return self;
+}
+- (PBGeneratedMessage*) internalGetResult {
+  return result;
+}
+- (PBChapter_Builder*) clear {
+  self.result = [[[PBChapter alloc] init] autorelease];
+  return self;
+}
+- (PBChapter_Builder*) clone {
+  return [PBChapter builderWithPrototype:result];
+}
+- (PBChapter*) defaultInstance {
+  return [PBChapter defaultInstance];
+}
+- (PBChapter*) build {
+  [self checkInitialized];
+  return [self buildPartial];
+}
+- (PBChapter*) buildPartial {
+  PBChapter* returnMe = [[result retain] autorelease];
+  self.result = nil;
+  return returnMe;
+}
+- (PBChapter_Builder*) mergeFrom:(PBChapter*) other {
+  if (other == [PBChapter defaultInstance]) {
+    return self;
+  }
+  if (other.hasIndex) {
+    [self setIndex:other.index];
+  }
+  if (other.hasCnName) {
+    [self setCnName:other.cnName];
+  }
+  if (other.hasEnName) {
+    [self setEnName:other.enName];
+  }
+  if (other.hasTcnName) {
+    [self setTcnName:other.tcnName];
+  }
+  if (other.hasCnDesc) {
+    [self setCnDesc:other.cnDesc];
+  }
+  if (other.hasEnDesc) {
+    [self setEnDesc:other.enDesc];
+  }
+  if (other.hasTcnDesc) {
+    [self setTcnDesc:other.tcnDesc];
+  }
+  if (other.hasOpus) {
+    [self setOpus:other.opus];
+  }
+  if (other.hasImage) {
+    [self setImage:other.image];
+  }
+  if (other.hasBackground) {
+    [self setBackground:other.background];
+  }
+  if (other.hasOpusName) {
+    [self setOpusName:other.opusName];
+  }
+  if (other.hasImageName) {
+    [self setImageName:other.imageName];
+  }
+  if (other.hasBackgroundName) {
+    [self setBackgroundName:other.backgroundName];
+  }
+  [self mergeUnknownFields:other.unknownFields];
+  return self;
+}
+- (PBChapter_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input {
+  return [self mergeFromCodedInputStream:input extensionRegistry:[PBExtensionRegistry emptyRegistry]];
+}
+- (PBChapter_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  PBUnknownFieldSet_Builder* unknownFields = [PBUnknownFieldSet builderWithUnknownFields:self.unknownFields];
+  while (YES) {
+    int32_t tag = [input readTag];
+    switch (tag) {
+      case 0:
+        [self setUnknownFields:[unknownFields build]];
+        return self;
+      default: {
+        if (![self parseUnknownField:input unknownFields:unknownFields extensionRegistry:extensionRegistry tag:tag]) {
+          [self setUnknownFields:[unknownFields build]];
+          return self;
+        }
+        break;
+      }
+      case 8: {
+        [self setIndex:[input readInt32]];
+        break;
+      }
+      case 18: {
+        [self setCnName:[input readString]];
+        break;
+      }
+      case 26: {
+        [self setEnName:[input readString]];
+        break;
+      }
+      case 34: {
+        [self setTcnName:[input readString]];
+        break;
+      }
+      case 82: {
+        [self setCnDesc:[input readString]];
+        break;
+      }
+      case 90: {
+        [self setEnDesc:[input readString]];
+        break;
+      }
+      case 98: {
+        [self setTcnDesc:[input readString]];
+        break;
+      }
+      case 162: {
+        [self setOpus:[input readString]];
+        break;
+      }
+      case 170: {
+        [self setImage:[input readString]];
+        break;
+      }
+      case 178: {
+        [self setBackground:[input readString]];
+        break;
+      }
+      case 242: {
+        [self setOpusName:[input readString]];
+        break;
+      }
+      case 250: {
+        [self setImageName:[input readString]];
+        break;
+      }
+      case 258: {
+        [self setBackgroundName:[input readString]];
+        break;
+      }
+    }
+  }
+}
+- (BOOL) hasIndex {
+  return result.hasIndex;
+}
+- (int32_t) index {
+  return result.index;
+}
+- (PBChapter_Builder*) setIndex:(int32_t) value {
+  result.hasIndex = YES;
+  result.index = value;
+  return self;
+}
+- (PBChapter_Builder*) clearIndex {
+  result.hasIndex = NO;
+  result.index = 0;
+  return self;
+}
+- (BOOL) hasCnName {
+  return result.hasCnName;
+}
+- (NSString*) cnName {
+  return result.cnName;
+}
+- (PBChapter_Builder*) setCnName:(NSString*) value {
+  result.hasCnName = YES;
+  result.cnName = value;
+  return self;
+}
+- (PBChapter_Builder*) clearCnName {
+  result.hasCnName = NO;
+  result.cnName = @"";
+  return self;
+}
+- (BOOL) hasEnName {
+  return result.hasEnName;
+}
+- (NSString*) enName {
+  return result.enName;
+}
+- (PBChapter_Builder*) setEnName:(NSString*) value {
+  result.hasEnName = YES;
+  result.enName = value;
+  return self;
+}
+- (PBChapter_Builder*) clearEnName {
+  result.hasEnName = NO;
+  result.enName = @"";
+  return self;
+}
+- (BOOL) hasTcnName {
+  return result.hasTcnName;
+}
+- (NSString*) tcnName {
+  return result.tcnName;
+}
+- (PBChapter_Builder*) setTcnName:(NSString*) value {
+  result.hasTcnName = YES;
+  result.tcnName = value;
+  return self;
+}
+- (PBChapter_Builder*) clearTcnName {
+  result.hasTcnName = NO;
+  result.tcnName = @"";
+  return self;
+}
+- (BOOL) hasCnDesc {
+  return result.hasCnDesc;
+}
+- (NSString*) cnDesc {
+  return result.cnDesc;
+}
+- (PBChapter_Builder*) setCnDesc:(NSString*) value {
+  result.hasCnDesc = YES;
+  result.cnDesc = value;
+  return self;
+}
+- (PBChapter_Builder*) clearCnDesc {
+  result.hasCnDesc = NO;
+  result.cnDesc = @"";
+  return self;
+}
+- (BOOL) hasEnDesc {
+  return result.hasEnDesc;
+}
+- (NSString*) enDesc {
+  return result.enDesc;
+}
+- (PBChapter_Builder*) setEnDesc:(NSString*) value {
+  result.hasEnDesc = YES;
+  result.enDesc = value;
+  return self;
+}
+- (PBChapter_Builder*) clearEnDesc {
+  result.hasEnDesc = NO;
+  result.enDesc = @"";
+  return self;
+}
+- (BOOL) hasTcnDesc {
+  return result.hasTcnDesc;
+}
+- (NSString*) tcnDesc {
+  return result.tcnDesc;
+}
+- (PBChapter_Builder*) setTcnDesc:(NSString*) value {
+  result.hasTcnDesc = YES;
+  result.tcnDesc = value;
+  return self;
+}
+- (PBChapter_Builder*) clearTcnDesc {
+  result.hasTcnDesc = NO;
+  result.tcnDesc = @"";
+  return self;
+}
+- (BOOL) hasOpus {
+  return result.hasOpus;
+}
+- (NSString*) opus {
+  return result.opus;
+}
+- (PBChapter_Builder*) setOpus:(NSString*) value {
+  result.hasOpus = YES;
+  result.opus = value;
+  return self;
+}
+- (PBChapter_Builder*) clearOpus {
+  result.hasOpus = NO;
+  result.opus = @"";
+  return self;
+}
+- (BOOL) hasImage {
+  return result.hasImage;
+}
+- (NSString*) image {
+  return result.image;
+}
+- (PBChapter_Builder*) setImage:(NSString*) value {
+  result.hasImage = YES;
+  result.image = value;
+  return self;
+}
+- (PBChapter_Builder*) clearImage {
+  result.hasImage = NO;
+  result.image = @"";
+  return self;
+}
+- (BOOL) hasBackground {
+  return result.hasBackground;
+}
+- (NSString*) background {
+  return result.background;
+}
+- (PBChapter_Builder*) setBackground:(NSString*) value {
+  result.hasBackground = YES;
+  result.background = value;
+  return self;
+}
+- (PBChapter_Builder*) clearBackground {
+  result.hasBackground = NO;
+  result.background = @"";
+  return self;
+}
+- (BOOL) hasOpusName {
+  return result.hasOpusName;
+}
+- (NSString*) opusName {
+  return result.opusName;
+}
+- (PBChapter_Builder*) setOpusName:(NSString*) value {
+  result.hasOpusName = YES;
+  result.opusName = value;
+  return self;
+}
+- (PBChapter_Builder*) clearOpusName {
+  result.hasOpusName = NO;
+  result.opusName = @"";
+  return self;
+}
+- (BOOL) hasImageName {
+  return result.hasImageName;
+}
+- (NSString*) imageName {
+  return result.imageName;
+}
+- (PBChapter_Builder*) setImageName:(NSString*) value {
+  result.hasImageName = YES;
+  result.imageName = value;
+  return self;
+}
+- (PBChapter_Builder*) clearImageName {
+  result.hasImageName = NO;
+  result.imageName = @"";
+  return self;
+}
+- (BOOL) hasBackgroundName {
+  return result.hasBackgroundName;
+}
+- (NSString*) backgroundName {
+  return result.backgroundName;
+}
+- (PBChapter_Builder*) setBackgroundName:(NSString*) value {
+  result.hasBackgroundName = YES;
+  result.backgroundName = value;
+  return self;
+}
+- (PBChapter_Builder*) clearBackgroundName {
+  result.hasBackgroundName = NO;
+  result.backgroundName = @"";
+  return self;
+}
+@end
+
 @interface PBStage ()
 @property (retain) NSString* stageId;
 @property (retain) NSString* cnName;
@@ -64,6 +712,7 @@ BOOL PBUserTutorialStatusIsValidValue(PBUserTutorialStatus value) {
 @property (retain) NSString* image;
 @property (retain) NSString* thumbImage;
 @property (retain) NSString* dataUrl;
+@property (retain) NSMutableArray* mutableChapterList;
 @end
 
 @implementation PBStage
@@ -138,6 +787,7 @@ BOOL PBUserTutorialStatusIsValidValue(PBUserTutorialStatus value) {
   hasDataUrl_ = !!value;
 }
 @synthesize dataUrl;
+@synthesize mutableChapterList;
 - (void) dealloc {
   self.stageId = nil;
   self.cnName = nil;
@@ -149,6 +799,7 @@ BOOL PBUserTutorialStatusIsValidValue(PBUserTutorialStatus value) {
   self.image = nil;
   self.thumbImage = nil;
   self.dataUrl = nil;
+  self.mutableChapterList = nil;
   [super dealloc];
 }
 - (id) init {
@@ -178,9 +829,21 @@ static PBStage* defaultPBStageInstance = nil;
 - (PBStage*) defaultInstance {
   return defaultPBStageInstance;
 }
+- (NSArray*) chapterList {
+  return mutableChapterList;
+}
+- (PBChapter*) chapterAtIndex:(int32_t) index {
+  id value = [mutableChapterList objectAtIndex:index];
+  return value;
+}
 - (BOOL) isInitialized {
   if (!self.hasStageId) {
     return NO;
+  }
+  for (PBChapter* element in self.chapterList) {
+    if (!element.isInitialized) {
+      return NO;
+    }
   }
   return YES;
 }
@@ -214,6 +877,9 @@ static PBStage* defaultPBStageInstance = nil;
   }
   if (self.hasDataUrl) {
     [output writeString:30 value:self.dataUrl];
+  }
+  for (PBChapter* element in self.chapterList) {
+    [output writeMessage:40 value:element];
   }
   [self.unknownFields writeToCodedOutputStream:output];
 }
@@ -253,6 +919,9 @@ static PBStage* defaultPBStageInstance = nil;
   }
   if (self.hasDataUrl) {
     size += computeStringSize(30, self.dataUrl);
+  }
+  for (PBChapter* element in self.chapterList) {
+    size += computeMessageSize(40, element);
   }
   size += self.unknownFields.serializedSize;
   memoizedSerializedSize = size;
@@ -359,6 +1028,12 @@ static PBStage* defaultPBStageInstance = nil;
   if (other.hasDataUrl) {
     [self setDataUrl:other.dataUrl];
   }
+  if (other.mutableChapterList.count > 0) {
+    if (result.mutableChapterList == nil) {
+      result.mutableChapterList = [NSMutableArray array];
+    }
+    [result.mutableChapterList addObjectsFromArray:other.mutableChapterList];
+  }
   [self mergeUnknownFields:other.unknownFields];
   return self;
 }
@@ -418,6 +1093,12 @@ static PBStage* defaultPBStageInstance = nil;
       }
       case 242: {
         [self setDataUrl:[input readString]];
+        break;
+      }
+      case 322: {
+        PBChapter_Builder* subBuilder = [PBChapter builder];
+        [input readMessage:subBuilder extensionRegistry:extensionRegistry];
+        [self addChapter:[subBuilder buildPartial]];
         break;
       }
     }
@@ -581,6 +1262,35 @@ static PBStage* defaultPBStageInstance = nil;
 - (PBStage_Builder*) clearDataUrl {
   result.hasDataUrl = NO;
   result.dataUrl = @"";
+  return self;
+}
+- (NSArray*) chapterList {
+  if (result.mutableChapterList == nil) { return [NSArray array]; }
+  return result.mutableChapterList;
+}
+- (PBChapter*) chapterAtIndex:(int32_t) index {
+  return [result chapterAtIndex:index];
+}
+- (PBStage_Builder*) replaceChapterAtIndex:(int32_t) index with:(PBChapter*) value {
+  [result.mutableChapterList replaceObjectAtIndex:index withObject:value];
+  return self;
+}
+- (PBStage_Builder*) addAllChapter:(NSArray*) values {
+  if (result.mutableChapterList == nil) {
+    result.mutableChapterList = [NSMutableArray array];
+  }
+  [result.mutableChapterList addObjectsFromArray:values];
+  return self;
+}
+- (PBStage_Builder*) clearChapterList {
+  result.mutableChapterList = nil;
+  return self;
+}
+- (PBStage_Builder*) addChapter:(PBChapter*) value {
+  if (result.mutableChapterList == nil) {
+    result.mutableChapterList = [NSMutableArray array];
+  }
+  [result.mutableChapterList addObject:value];
   return self;
 }
 @end
@@ -2628,6 +3338,7 @@ static PBUserStage* defaultPBUserStageInstance = nil;
 @property (retain) NSMutableArray* mutableUserStagesList;
 @property BOOL syncServer;
 @property (retain) NSString* localId;
+@property (retain) NSString* remoteId;
 @end
 
 @implementation PBUserTutorial
@@ -2732,12 +3443,20 @@ static PBUserStage* defaultPBUserStageInstance = nil;
   hasLocalId_ = !!value;
 }
 @synthesize localId;
+- (BOOL) hasRemoteId {
+  return !!hasRemoteId_;
+}
+- (void) setHasRemoteId:(BOOL) value {
+  hasRemoteId_ = !!value;
+}
+@synthesize remoteId;
 - (void) dealloc {
   self.userId = nil;
   self.tutorial = nil;
   self.currentStageId = nil;
   self.mutableUserStagesList = nil;
   self.localId = nil;
+  self.remoteId = nil;
   [super dealloc];
 }
 - (id) init {
@@ -2754,6 +3473,7 @@ static PBUserStage* defaultPBUserStageInstance = nil;
     self.currentStageId = @"";
     self.syncServer = NO;
     self.localId = @"";
+    self.remoteId = @"";
   }
   return self;
 }
@@ -2833,6 +3553,9 @@ static PBUserTutorial* defaultPBUserTutorialInstance = nil;
   if (self.hasLocalId) {
     [output writeString:31 value:self.localId];
   }
+  if (self.hasRemoteId) {
+    [output writeString:32 value:self.remoteId];
+  }
   [self.unknownFields writeToCodedOutputStream:output];
 }
 - (int32_t) serializedSize {
@@ -2880,6 +3603,9 @@ static PBUserTutorial* defaultPBUserTutorialInstance = nil;
   }
   if (self.hasLocalId) {
     size += computeStringSize(31, self.localId);
+  }
+  if (self.hasRemoteId) {
+    size += computeStringSize(32, self.remoteId);
   }
   size += self.unknownFields.serializedSize;
   memoizedSerializedSize = size;
@@ -2998,6 +3724,9 @@ static PBUserTutorial* defaultPBUserTutorialInstance = nil;
   if (other.hasLocalId) {
     [self setLocalId:other.localId];
   }
+  if (other.hasRemoteId) {
+    [self setRemoteId:other.remoteId];
+  }
   [self mergeUnknownFields:other.unknownFields];
   return self;
 }
@@ -3076,6 +3805,10 @@ static PBUserTutorial* defaultPBUserTutorialInstance = nil;
       }
       case 250: {
         [self setLocalId:[input readString]];
+        break;
+      }
+      case 258: {
+        [self setRemoteId:[input readString]];
         break;
       }
     }
@@ -3314,6 +4047,22 @@ static PBUserTutorial* defaultPBUserTutorialInstance = nil;
 - (PBUserTutorial_Builder*) clearLocalId {
   result.hasLocalId = NO;
   result.localId = @"";
+  return self;
+}
+- (BOOL) hasRemoteId {
+  return result.hasRemoteId;
+}
+- (NSString*) remoteId {
+  return result.remoteId;
+}
+- (PBUserTutorial_Builder*) setRemoteId:(NSString*) value {
+  result.hasRemoteId = YES;
+  result.remoteId = value;
+  return self;
+}
+- (PBUserTutorial_Builder*) clearRemoteId {
+  result.hasRemoteId = NO;
+  result.remoteId = @"";
   return self;
 }
 @end

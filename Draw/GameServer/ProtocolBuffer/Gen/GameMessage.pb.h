@@ -12,6 +12,7 @@
 #import "Photo.pb.h"
 #import "Sing.pb.h"
 #import "Group.pb.h"
+#import "Tutorial.pb.h"
 
 @class BetDiceRequest;
 @class BetDiceRequest_Builder;
@@ -107,6 +108,8 @@
 @class PBBBSReward_Builder;
 @class PBBBSUser;
 @class PBBBSUser_Builder;
+@class PBChapter;
+@class PBChapter_Builder;
 @class PBClass;
 @class PBClass_Builder;
 @class PBColor;
@@ -249,8 +252,14 @@
 @class PBSongList;
 @class PBSongList_Builder;
 @class PBSong_Builder;
+@class PBStage;
+@class PBStage_Builder;
 @class PBTask;
 @class PBTask_Builder;
+@class PBTutorial;
+@class PBTutorialCore;
+@class PBTutorialCore_Builder;
+@class PBTutorial_Builder;
 @class PBUserAward;
 @class PBUserAward_Builder;
 @class PBUserBasicInfo;
@@ -269,6 +278,12 @@
 @class PBUserPhoto_Builder;
 @class PBUserResult;
 @class PBUserResult_Builder;
+@class PBUserStage;
+@class PBUserStageOpus;
+@class PBUserStageOpus_Builder;
+@class PBUserStage_Builder;
+@class PBUserTutorial;
+@class PBUserTutorial_Builder;
 @class PBWall;
 @class PBWallOpus;
 @class PBWallOpus_Builder;
@@ -4506,39 +4521,42 @@ BOOL BetTypeIsValidValue(BetType value);
   BOOL hasVersion_:1;
   BOOL hasUserRelation_:1;
   BOOL hasUrl_:1;
+  BOOL hasSongs_:1;
   BOOL hasOpus_:1;
   BOOL hasUser_:1;
-  BOOL hasSongs_:1;
+  BOOL hasGuessRank_:1;
   BOOL hasUserPhoto_:1;
   BOOL hasWall_:1;
-  BOOL hasGuessRank_:1;
   BOOL hasGuessContest_:1;
-  BOOL hasBbsDrawData_:1;
   BOOL hasGroup_:1;
+  BOOL hasBbsDrawData_:1;
   BOOL hasContest_:1;
+  BOOL hasTutorial_:1;
   int32_t resultCode;
   int32_t totalCount;
   int32_t version;
   int32_t userRelation;
   NSString* url;
+  PBSongList* songs;
   PBOpus* opus;
   PBGameUser* user;
-  PBSongList* songs;
+  PBGuessRank* guessRank;
   PBUserPhoto* userPhoto;
   PBWall* wall;
-  PBGuessRank* guessRank;
   PBGuessContest* guessContest;
-  PBBBSDraw* bbsDrawData;
   PBGroup* group;
+  PBBBSDraw* bbsDrawData;
   PBContest* contest;
+  PBUserTutorial* tutorial;
   NSMutableArray* mutableIdListList;
   NSMutableArray* mutableGuessContestListList;
-  NSMutableArray* mutableGuessRankListList;
   NSMutableArray* mutableGroupListList;
   NSMutableArray* mutableGroupMemberListList;
   NSMutableArray* mutableNoticeListList;
+  NSMutableArray* mutableGuessRankListList;
   NSMutableArray* mutableBadgesList;
   NSMutableArray* mutableGroupRoleList;
+  NSMutableArray* mutableTutorialsList;
   NSMutableArray* mutableOpusListList;
   NSMutableArray* mutableUserListList;
   NSMutableArray* mutableUserPhotoListList;
@@ -4569,6 +4587,7 @@ BOOL BetTypeIsValidValue(BetType value);
 - (BOOL) hasGuessContest;
 - (BOOL) hasGroup;
 - (BOOL) hasUrl;
+- (BOOL) hasTutorial;
 @property (readonly) int32_t resultCode;
 @property (readonly) int32_t totalCount;
 @property (readonly) int32_t version;
@@ -4584,6 +4603,7 @@ BOOL BetTypeIsValidValue(BetType value);
 @property (readonly, retain) PBGuessContest* guessContest;
 @property (readonly, retain) PBGroup* group;
 @property (readonly, retain) NSString* url;
+@property (readonly, retain) PBUserTutorial* tutorial;
 - (NSArray*) drawDataList;
 - (PBDraw*) drawDataAtIndex:(int32_t) index;
 - (NSArray*) messageList;
@@ -4628,6 +4648,8 @@ BOOL BetTypeIsValidValue(BetType value);
 - (PBIntKeyIntValue*) badgesAtIndex:(int32_t) index;
 - (NSArray*) groupRoleList;
 - (PBGroupUserRole*) groupRoleAtIndex:(int32_t) index;
+- (NSArray*) tutorialsList;
+- (PBUserTutorial*) tutorialsAtIndex:(int32_t) index;
 
 + (DataQueryResponse*) defaultInstance;
 - (DataQueryResponse*) defaultInstance;
@@ -4911,5 +4933,19 @@ BOOL BetTypeIsValidValue(BetType value);
 - (DataQueryResponse_Builder*) addGroupRole:(PBGroupUserRole*) value;
 - (DataQueryResponse_Builder*) addAllGroupRole:(NSArray*) values;
 - (DataQueryResponse_Builder*) clearGroupRoleList;
+
+- (BOOL) hasTutorial;
+- (PBUserTutorial*) tutorial;
+- (DataQueryResponse_Builder*) setTutorial:(PBUserTutorial*) value;
+- (DataQueryResponse_Builder*) setTutorialBuilder:(PBUserTutorial_Builder*) builderForValue;
+- (DataQueryResponse_Builder*) mergeTutorial:(PBUserTutorial*) value;
+- (DataQueryResponse_Builder*) clearTutorial;
+
+- (NSArray*) tutorialsList;
+- (PBUserTutorial*) tutorialsAtIndex:(int32_t) index;
+- (DataQueryResponse_Builder*) replaceTutorialsAtIndex:(int32_t) index with:(PBUserTutorial*) value;
+- (DataQueryResponse_Builder*) addTutorials:(PBUserTutorial*) value;
+- (DataQueryResponse_Builder*) addAllTutorials:(NSArray*) values;
+- (DataQueryResponse_Builder*) clearTutorialsList;
 @end
 
