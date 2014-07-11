@@ -214,6 +214,24 @@ static UserTutorialManager* _defaultManager;
     [self save:newUt];
 }
 
+- (void)saveUserTutorial:(NSString*)utLocalId remoteId:(NSString*)remoteId
+{
+    if (utLocalId == nil || remoteId == nil){
+        return;
+    }
+    
+    PBUserTutorial* ut = [self findUserTutorialByLocalId:utLocalId];
+    if (ut == nil){
+        PPDebug(@"<syncUserTutorial> but localId(%@) not found", utLocalId);
+        return;
+    }
+    
+    PBUserTutorial_Builder* builder = [PBUserTutorial builderWithPrototype:ut];
+    [builder setRemoteId:remoteId];
+    PBUserTutorial* newUt = [builder build];
+    [self save:newUt];
+}
+
 - (NSArray*)allUserTutorials
 {
     NSArray* list = [[self getDb] allObjects];

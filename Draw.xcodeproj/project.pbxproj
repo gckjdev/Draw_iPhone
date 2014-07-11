@@ -4600,10 +4600,6 @@
 		CA32E63018F00AC70076959B /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA93D13818F00994002BB805 /* CoreMotion.framework */; };
 		CA32E63418F00ACE0076959B /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA93D13818F00994002BB805 /* CoreMotion.framework */; };
 		CA335D5216A90DC400D3BFF2 /* bbs_reward_action_content_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA335D5116A90DC300D3BFF2 /* bbs_reward_action_content_bg@2x.png */; };
-		CA33F67817E94B69005950EF /* Photo.pb-c.c in Sources */ = {isa = PBXBuildFile; fileRef = CA33F67717E94B67005950EF /* Photo.pb-c.c */; };
-		CA33F67917E94B69005950EF /* Photo.pb-c.c in Sources */ = {isa = PBXBuildFile; fileRef = CA33F67717E94B67005950EF /* Photo.pb-c.c */; };
-		CA33F67A17E94B69005950EF /* Photo.pb-c.c in Sources */ = {isa = PBXBuildFile; fileRef = CA33F67717E94B67005950EF /* Photo.pb-c.c */; };
-		CA33F67B17E94B69005950EF /* Photo.pb-c.c in Sources */ = {isa = PBXBuildFile; fileRef = CA33F67717E94B67005950EF /* Photo.pb-c.c */; };
 		CA346CC118618B280098DE00 /* user_detail_set_homebg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA346CC018618B280098DE00 /* user_detail_set_homebg@2x.png */; };
 		CA346CC218618B280098DE00 /* user_detail_set_homebg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA346CC018618B280098DE00 /* user_detail_set_homebg@2x.png */; };
 		CA346CC318618B280098DE00 /* user_detail_set_homebg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA346CC018618B280098DE00 /* user_detail_set_homebg@2x.png */; };
@@ -4828,31 +4824,19 @@
 		CA5D9D98183E3C0200BD820C /* NSData+DOUMappedFile.m in Sources */ = {isa = PBXBuildFile; fileRef = CA5D9D50183E3C0200BD820C /* NSData+DOUMappedFile.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
 		CA62C6DE1756FB6200C9EF56 /* BBS.pb-c.c in Sources */ = {isa = PBXBuildFile; fileRef = CA62C6D51756FB1800C9EF56 /* BBS.pb-c.c */; };
 		CA62C6E21756FB6200C9EF56 /* Config.pb-c.c in Sources */ = {isa = PBXBuildFile; fileRef = CA62C6D61756FB1A00C9EF56 /* Config.pb-c.c */; };
-		CA62C6E61756FB6200C9EF56 /* Dice.pb-c.c in Sources */ = {isa = PBXBuildFile; fileRef = CA62C6D71756FB1E00C9EF56 /* Dice.pb-c.c */; };
 		CA62C6EA1756FB6200C9EF56 /* Draw.pb-c.c in Sources */ = {isa = PBXBuildFile; fileRef = CA62C6D81756FB2300C9EF56 /* Draw.pb-c.c */; };
 		CA62C6EE1756FB6200C9EF56 /* GameBasic.pb-c.c in Sources */ = {isa = PBXBuildFile; fileRef = CA62C6D91756FB2A00C9EF56 /* GameBasic.pb-c.c */; };
-		CA62C6F21756FB6200C9EF56 /* GameConstants.pb-c.c in Sources */ = {isa = PBXBuildFile; fileRef = CA62C6DA1756FB3300C9EF56 /* GameConstants.pb-c.c */; };
-		CA62C6F61756FB6200C9EF56 /* GameMessage.pb-c.c in Sources */ = {isa = PBXBuildFile; fileRef = CA62C6DB1756FB3E00C9EF56 /* GameMessage.pb-c.c */; };
 		CA62C6FA1756FB6200C9EF56 /* Sing.pb-c.c in Sources */ = {isa = PBXBuildFile; fileRef = CA62C6DC1756FB4900C9EF56 /* Sing.pb-c.c */; };
-		CA62C6FE1756FB6200C9EF56 /* ZhaJinHua.pb-c.c in Sources */ = {isa = PBXBuildFile; fileRef = CA62C6DD1756FB5500C9EF56 /* ZhaJinHua.pb-c.c */; };
 		CA62C7021756FB8E00C9EF56 /* BBS.pb-c.c in Sources */ = {isa = PBXBuildFile; fileRef = CA62C6D51756FB1800C9EF56 /* BBS.pb-c.c */; };
 		CA62C7031756FB8E00C9EF56 /* Config.pb-c.c in Sources */ = {isa = PBXBuildFile; fileRef = CA62C6D61756FB1A00C9EF56 /* Config.pb-c.c */; };
-		CA62C7041756FB8E00C9EF56 /* Dice.pb-c.c in Sources */ = {isa = PBXBuildFile; fileRef = CA62C6D71756FB1E00C9EF56 /* Dice.pb-c.c */; };
 		CA62C7051756FB8E00C9EF56 /* Draw.pb-c.c in Sources */ = {isa = PBXBuildFile; fileRef = CA62C6D81756FB2300C9EF56 /* Draw.pb-c.c */; };
 		CA62C7061756FB8E00C9EF56 /* GameBasic.pb-c.c in Sources */ = {isa = PBXBuildFile; fileRef = CA62C6D91756FB2A00C9EF56 /* GameBasic.pb-c.c */; };
-		CA62C7071756FB8E00C9EF56 /* GameConstants.pb-c.c in Sources */ = {isa = PBXBuildFile; fileRef = CA62C6DA1756FB3300C9EF56 /* GameConstants.pb-c.c */; };
-		CA62C7081756FB8E00C9EF56 /* GameMessage.pb-c.c in Sources */ = {isa = PBXBuildFile; fileRef = CA62C6DB1756FB3E00C9EF56 /* GameMessage.pb-c.c */; };
 		CA62C7091756FB8E00C9EF56 /* Sing.pb-c.c in Sources */ = {isa = PBXBuildFile; fileRef = CA62C6DC1756FB4900C9EF56 /* Sing.pb-c.c */; };
-		CA62C70A1756FB8E00C9EF56 /* ZhaJinHua.pb-c.c in Sources */ = {isa = PBXBuildFile; fileRef = CA62C6DD1756FB5500C9EF56 /* ZhaJinHua.pb-c.c */; };
 		CA62C7651756FBB900C9EF56 /* BBS.pb-c.c in Sources */ = {isa = PBXBuildFile; fileRef = CA62C6D51756FB1800C9EF56 /* BBS.pb-c.c */; };
 		CA62C7661756FBB900C9EF56 /* Config.pb-c.c in Sources */ = {isa = PBXBuildFile; fileRef = CA62C6D61756FB1A00C9EF56 /* Config.pb-c.c */; };
-		CA62C7671756FBB900C9EF56 /* Dice.pb-c.c in Sources */ = {isa = PBXBuildFile; fileRef = CA62C6D71756FB1E00C9EF56 /* Dice.pb-c.c */; };
 		CA62C7681756FBB900C9EF56 /* Draw.pb-c.c in Sources */ = {isa = PBXBuildFile; fileRef = CA62C6D81756FB2300C9EF56 /* Draw.pb-c.c */; };
 		CA62C7691756FBB900C9EF56 /* GameBasic.pb-c.c in Sources */ = {isa = PBXBuildFile; fileRef = CA62C6D91756FB2A00C9EF56 /* GameBasic.pb-c.c */; };
-		CA62C76A1756FBB900C9EF56 /* GameConstants.pb-c.c in Sources */ = {isa = PBXBuildFile; fileRef = CA62C6DA1756FB3300C9EF56 /* GameConstants.pb-c.c */; };
-		CA62C76B1756FBB900C9EF56 /* GameMessage.pb-c.c in Sources */ = {isa = PBXBuildFile; fileRef = CA62C6DB1756FB3E00C9EF56 /* GameMessage.pb-c.c */; };
 		CA62C76C1756FBB900C9EF56 /* Sing.pb-c.c in Sources */ = {isa = PBXBuildFile; fileRef = CA62C6DC1756FB4900C9EF56 /* Sing.pb-c.c */; };
-		CA62C76D1756FBB900C9EF56 /* ZhaJinHua.pb-c.c in Sources */ = {isa = PBXBuildFile; fileRef = CA62C6DD1756FB5500C9EF56 /* ZhaJinHua.pb-c.c */; };
 		CA62C7811756FC5A00C9EF56 /* protolCLib.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CA62C7801756FC5A00C9EF56 /* protolCLib.a */; };
 		CA62C78E1756FC5B00C9EF56 /* protolCLib.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CA62C7801756FC5A00C9EF56 /* protolCLib.a */; };
 		CA62C7911756FC5B00C9EF56 /* protolCLib.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CA62C7801756FC5A00C9EF56 /* protolCLib.a */; };
@@ -4920,10 +4904,6 @@
 		CA7DE7A3192BAD3200EED067 /* play3.png in Resources */ = {isa = PBXBuildFile; fileRef = CA7DE799192BAD3200EED067 /* play3.png */; };
 		CA7DE7A4192BAD3200EED067 /* play3.png in Resources */ = {isa = PBXBuildFile; fileRef = CA7DE799192BAD3200EED067 /* play3.png */; };
 		CA7DE7A5192BAD3200EED067 /* play3.png in Resources */ = {isa = PBXBuildFile; fileRef = CA7DE799192BAD3200EED067 /* play3.png */; };
-		CA7DE7AC192C72FD00EED067 /* Group.pb-c.c in Sources */ = {isa = PBXBuildFile; fileRef = CA7DE7A9192C72FC00EED067 /* Group.pb-c.c */; };
-		CA7DE7AD192C72FE00EED067 /* Group.pb-c.c in Sources */ = {isa = PBXBuildFile; fileRef = CA7DE7A9192C72FC00EED067 /* Group.pb-c.c */; };
-		CA7DE7AE192C72FE00EED067 /* Group.pb-c.c in Sources */ = {isa = PBXBuildFile; fileRef = CA7DE7A9192C72FC00EED067 /* Group.pb-c.c */; };
-		CA7DE7AF192C72FE00EED067 /* Group.pb-c.c in Sources */ = {isa = PBXBuildFile; fileRef = CA7DE7A9192C72FC00EED067 /* Group.pb-c.c */; };
 		CA837C2B166CDFAD005718AA /* bbs_refresh@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA837C2A166CDFAD005718AA /* bbs_refresh@2x.png */; };
 		CA853BFC16B3830B006FC155 /* bbs_post_detail_untop@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA853BFB16B3830B006FC155 /* bbs_post_detail_untop@2x.png */; };
 		CA853C0216B3A45A006FC155 /* BoardAdminListView.m in Sources */ = {isa = PBXBuildFile; fileRef = CA853C0116B3A45A006FC155 /* BoardAdminListView.m */; };
@@ -6073,9 +6053,6 @@
 		CAE4B0E31709643200B4AB90 /* ChangeBGImageAction.m in Sources */ = {isa = PBXBuildFile; fileRef = CAE4B0E21709643100B4AB90 /* ChangeBGImageAction.m */; };
 		CAE51896165CCB33006157CC /* BBSPostActionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CAE51895165CCB33006157CC /* BBSPostActionCell.m */; };
 		CAE51898165CCB55006157CC /* BBSPostActionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAE51897165CCB55006157CC /* BBSPostActionCell.xib */; };
-		CAE58A02175EF45E009149E9 /* Opus.pb-c.c in Sources */ = {isa = PBXBuildFile; fileRef = CAE58A00175EF45E009149E9 /* Opus.pb-c.c */; };
-		CAE58A0F175EF45E009149E9 /* Opus.pb-c.c in Sources */ = {isa = PBXBuildFile; fileRef = CAE58A00175EF45E009149E9 /* Opus.pb-c.c */; };
-		CAE58A12175EF45E009149E9 /* Opus.pb-c.c in Sources */ = {isa = PBXBuildFile; fileRef = CAE58A00175EF45E009149E9 /* Opus.pb-c.c */; };
 		CAE5AD641717EAE9009BFDC1 /* DrawOnCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAE5AD631717EAE8009BFDC1 /* DrawOnCell.xib */; };
 		CAE5AD681717EB0F009BFDC1 /* DrawOnCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAE5AD671717EB0E009BFDC1 /* DrawOnCell~ipad.xib */; };
 		CAE74B7017AF834D00E73875 /* DrawLayerPanel.m in Sources */ = {isa = PBXBuildFile; fileRef = CAE74B6F17AF834D00E73875 /* DrawLayerPanel.m */; };
@@ -6954,13 +6931,9 @@
 		EA411AF1176066F500DA72D0 /* DrawGameApp.m in Sources */ = {isa = PBXBuildFile; fileRef = CA67B87015E89B09002050DB /* DrawGameApp.m */; };
 		EA411AF3176066F500DA72D0 /* BBS.pb-c.c in Sources */ = {isa = PBXBuildFile; fileRef = CA62C6D51756FB1800C9EF56 /* BBS.pb-c.c */; };
 		EA411AF4176066F500DA72D0 /* Config.pb-c.c in Sources */ = {isa = PBXBuildFile; fileRef = CA62C6D61756FB1A00C9EF56 /* Config.pb-c.c */; };
-		EA411AF5176066F500DA72D0 /* Dice.pb-c.c in Sources */ = {isa = PBXBuildFile; fileRef = CA62C6D71756FB1E00C9EF56 /* Dice.pb-c.c */; };
 		EA411AF6176066F500DA72D0 /* Draw.pb-c.c in Sources */ = {isa = PBXBuildFile; fileRef = CA62C6D81756FB2300C9EF56 /* Draw.pb-c.c */; };
 		EA411AF7176066F500DA72D0 /* GameBasic.pb-c.c in Sources */ = {isa = PBXBuildFile; fileRef = CA62C6D91756FB2A00C9EF56 /* GameBasic.pb-c.c */; };
-		EA411AF8176066F500DA72D0 /* GameConstants.pb-c.c in Sources */ = {isa = PBXBuildFile; fileRef = CA62C6DA1756FB3300C9EF56 /* GameConstants.pb-c.c */; };
-		EA411AF9176066F500DA72D0 /* GameMessage.pb-c.c in Sources */ = {isa = PBXBuildFile; fileRef = CA62C6DB1756FB3E00C9EF56 /* GameMessage.pb-c.c */; };
 		EA411AFA176066F500DA72D0 /* Sing.pb-c.c in Sources */ = {isa = PBXBuildFile; fileRef = CA62C6DC1756FB4900C9EF56 /* Sing.pb-c.c */; };
-		EA411AFB176066F500DA72D0 /* ZhaJinHua.pb-c.c in Sources */ = {isa = PBXBuildFile; fileRef = CA62C6DD1756FB5500C9EF56 /* ZhaJinHua.pb-c.c */; };
 		EA411AFD176066F500DA72D0 /* PocketSVG.m in Sources */ = {isa = PBXBuildFile; fileRef = CA62C7A717570AF600C9EF56 /* PocketSVG.m */; };
 		EA411AFE176066F500DA72D0 /* BasicSearch.m in Sources */ = {isa = PBXBuildFile; fileRef = C23ED5DD1759A5B500263FB7 /* BasicSearch.m */; };
 		EA411AFF176066F500DA72D0 /* ImageSearch.m in Sources */ = {isa = PBXBuildFile; fileRef = C23ED5DF1759A5B500263FB7 /* ImageSearch.m */; };
@@ -6971,7 +6944,6 @@
 		EA411B05176066F500DA72D0 /* GoogleCustomSearchNetworkRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = C2FE573A175DED3000AFD6AA /* GoogleCustomSearchNetworkRequest.m */; };
 		EA411B06176066F500DA72D0 /* OpusService.m in Sources */ = {isa = PBXBuildFile; fileRef = A4C8D563175EDFC6007ED7E4 /* OpusService.m */; };
 		EA411B0B176066F500DA72D0 /* Opus.pb.m in Sources */ = {isa = PBXBuildFile; fileRef = CA244A76175EE48D002C0A37 /* Opus.pb.m */; };
-		EA411B11176066F500DA72D0 /* Opus.pb-c.c in Sources */ = {isa = PBXBuildFile; fileRef = CAE58A00175EF45E009149E9 /* Opus.pb-c.c */; };
 		EA411B14176066F500DA72D0 /* ClipAction.m in Sources */ = {isa = PBXBuildFile; fileRef = CA244ADF175F4574002C0A37 /* ClipAction.m */; };
 		EA411B17176066F500DA72D0 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A499076F174DBC61005AF334 /* Accelerate.framework */; };
 		EA411B18176066F500DA72D0 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A499076B174DBB72005AF334 /* CoreMedia.framework */; };
@@ -8624,12 +8596,8 @@
 		A4F04B9618068466007274BE /* beep-timber.aif */ = {isa = PBXFileReference; lastKnownFileType = file; path = "beep-timber.aif"; sourceTree = "<group>"; };
 		C20030A9172F9E1D00FD6AE1 /* BBS.pb-c.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "BBS.pb-c.h"; sourceTree = "<group>"; };
 		C20030AB172F9E1D00FD6AE1 /* Config.pb-c.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Config.pb-c.h"; sourceTree = "<group>"; };
-		C20030AD172F9E1D00FD6AE1 /* Dice.pb-c.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Dice.pb-c.h"; sourceTree = "<group>"; };
 		C20030AF172F9E1D00FD6AE1 /* Draw.pb-c.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Draw.pb-c.h"; sourceTree = "<group>"; };
 		C20030B1172F9E1D00FD6AE1 /* GameBasic.pb-c.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "GameBasic.pb-c.h"; sourceTree = "<group>"; };
-		C20030B3172F9E1D00FD6AE1 /* GameConstants.pb-c.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "GameConstants.pb-c.h"; sourceTree = "<group>"; };
-		C20030B5172F9E1D00FD6AE1 /* GameMessage.pb-c.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "GameMessage.pb-c.h"; sourceTree = "<group>"; };
-		C20030B7172F9E1D00FD6AE1 /* ZhaJinHua.pb-c.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ZhaJinHua.pb-c.h"; sourceTree = "<group>"; };
 		C203C47516F309A50028A065 /* RoundPercentageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RoundPercentageView.h; sourceTree = "<group>"; };
 		C203C47616F309A50028A065 /* RoundPercentageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RoundPercentageView.m; sourceTree = "<group>"; };
 		C206FFAA178032D10033CF63 /* CommonWaterFlowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommonWaterFlowController.h; sourceTree = "<group>"; };
@@ -9430,7 +9398,6 @@
 		CA3221A7151F65AD0039A384 /* UserSettingController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserSettingController.m; sourceTree = "<group>"; };
 		CA3221A8151F65AE0039A384 /* UserSettingController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserSettingController.xib; sourceTree = "<group>"; };
 		CA335D5116A90DC300D3BFF2 /* bbs_reward_action_content_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bbs_reward_action_content_bg@2x.png"; sourceTree = "<group>"; };
-		CA33F67717E94B67005950EF /* Photo.pb-c.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = "Photo.pb-c.c"; sourceTree = "<group>"; };
 		CA346CC018618B280098DE00 /* user_detail_set_homebg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "user_detail_set_homebg@2x.png"; sourceTree = "<group>"; };
 		CA346CC818618DC60098DE00 /* button_rank@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "button_rank@2x.png"; sourceTree = "<group>"; };
 		CA346CCD1861A96D0098DE00 /* bottom_home_task@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bottom_home_task@2x.png"; sourceTree = "<group>"; };
@@ -9646,13 +9613,9 @@
 		CA62C6CF1756F98400C9EF56 /* Sing.pb-c.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Sing.pb-c.h"; sourceTree = "<group>"; };
 		CA62C6D51756FB1800C9EF56 /* BBS.pb-c.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = "BBS.pb-c.c"; sourceTree = "<group>"; };
 		CA62C6D61756FB1A00C9EF56 /* Config.pb-c.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = "Config.pb-c.c"; sourceTree = "<group>"; };
-		CA62C6D71756FB1E00C9EF56 /* Dice.pb-c.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = "Dice.pb-c.c"; sourceTree = "<group>"; };
 		CA62C6D81756FB2300C9EF56 /* Draw.pb-c.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = "Draw.pb-c.c"; sourceTree = "<group>"; };
 		CA62C6D91756FB2A00C9EF56 /* GameBasic.pb-c.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = "GameBasic.pb-c.c"; sourceTree = "<group>"; };
-		CA62C6DA1756FB3300C9EF56 /* GameConstants.pb-c.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = "GameConstants.pb-c.c"; sourceTree = "<group>"; };
-		CA62C6DB1756FB3E00C9EF56 /* GameMessage.pb-c.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = "GameMessage.pb-c.c"; sourceTree = "<group>"; };
 		CA62C6DC1756FB4900C9EF56 /* Sing.pb-c.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = "Sing.pb-c.c"; sourceTree = "<group>"; };
-		CA62C6DD1756FB5500C9EF56 /* ZhaJinHua.pb-c.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = "ZhaJinHua.pb-c.c"; sourceTree = "<group>"; };
 		CA62C7801756FC5A00C9EF56 /* protolCLib.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = protolCLib.a; sourceTree = "<group>"; };
 		CA62C7A617570AF600C9EF56 /* PocketSVG.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PocketSVG.h; sourceTree = "<group>"; };
 		CA62C7A717570AF600C9EF56 /* PocketSVG.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PocketSVG.m; sourceTree = "<group>"; };
@@ -9738,9 +9701,6 @@
 		CA7DE797192BAD3200EED067 /* play1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = play1.png; sourceTree = "<group>"; };
 		CA7DE798192BAD3200EED067 /* play2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = play2.png; sourceTree = "<group>"; };
 		CA7DE799192BAD3200EED067 /* play3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = play3.png; sourceTree = "<group>"; };
-		CA7DE7A9192C72FC00EED067 /* Group.pb-c.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = "Group.pb-c.c"; sourceTree = "<group>"; };
-		CA7DE7AA192C72FD00EED067 /* Group.pb-c.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Group.pb-c.h"; sourceTree = "<group>"; };
-		CA7DE7AB192C72FD00EED067 /* Photo.pb-c.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Photo.pb-c.h"; sourceTree = "<group>"; };
 		CA837C2A166CDFAD005718AA /* bbs_refresh@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bbs_refresh@2x.png"; sourceTree = "<group>"; };
 		CA853BFB16B3830B006FC155 /* bbs_post_detail_untop@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bbs_post_detail_untop@2x.png"; sourceTree = "<group>"; };
 		CA853C0016B3A45A006FC155 /* BoardAdminListView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BoardAdminListView.h; sourceTree = "<group>"; };
@@ -10375,8 +10335,6 @@
 		CAE51897165CCB55006157CC /* BBSPostActionCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BBSPostActionCell.xib; sourceTree = "<group>"; };
 		CAE57D27153BD77F00C4C63A /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		CAE57D2B153BD7B000C4C63A /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
-		CAE58A00175EF45E009149E9 /* Opus.pb-c.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = "Opus.pb-c.c"; sourceTree = "<group>"; };
-		CAE58A01175EF45E009149E9 /* Opus.pb-c.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Opus.pb-c.h"; sourceTree = "<group>"; };
 		CAE5AD631717EAE8009BFDC1 /* DrawOnCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DrawOnCell.xib; sourceTree = "<group>"; };
 		CAE5AD671717EB0E009BFDC1 /* DrawOnCell~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "DrawOnCell~ipad.xib"; sourceTree = "<group>"; };
 		CAE74B6E17AF834D00E73875 /* DrawLayerPanel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DrawLayerPanel.h; sourceTree = "<group>"; };
@@ -12762,30 +12720,16 @@
 		C20030A7172F9E1D00FD6AE1 /* Gen-c */ = {
 			isa = PBXGroup;
 			children = (
-				CA7DE7A9192C72FC00EED067 /* Group.pb-c.c */,
-				CA7DE7AA192C72FD00EED067 /* Group.pb-c.h */,
-				CA7DE7AB192C72FD00EED067 /* Photo.pb-c.h */,
-				CA33F67717E94B67005950EF /* Photo.pb-c.c */,
-				CAE58A00175EF45E009149E9 /* Opus.pb-c.c */,
-				CAE58A01175EF45E009149E9 /* Opus.pb-c.h */,
 				CA62C6D51756FB1800C9EF56 /* BBS.pb-c.c */,
 				CA62C6D61756FB1A00C9EF56 /* Config.pb-c.c */,
-				CA62C6D71756FB1E00C9EF56 /* Dice.pb-c.c */,
 				CA62C6D81756FB2300C9EF56 /* Draw.pb-c.c */,
 				CA62C6D91756FB2A00C9EF56 /* GameBasic.pb-c.c */,
-				CA62C6DA1756FB3300C9EF56 /* GameConstants.pb-c.c */,
-				CA62C6DB1756FB3E00C9EF56 /* GameMessage.pb-c.c */,
 				CA62C6DC1756FB4900C9EF56 /* Sing.pb-c.c */,
-				CA62C6DD1756FB5500C9EF56 /* ZhaJinHua.pb-c.c */,
 				CA62C6CF1756F98400C9EF56 /* Sing.pb-c.h */,
 				C20030A9172F9E1D00FD6AE1 /* BBS.pb-c.h */,
 				C20030AB172F9E1D00FD6AE1 /* Config.pb-c.h */,
-				C20030AD172F9E1D00FD6AE1 /* Dice.pb-c.h */,
 				C20030AF172F9E1D00FD6AE1 /* Draw.pb-c.h */,
 				C20030B1172F9E1D00FD6AE1 /* GameBasic.pb-c.h */,
-				C20030B3172F9E1D00FD6AE1 /* GameConstants.pb-c.h */,
-				C20030B5172F9E1D00FD6AE1 /* GameMessage.pb-c.h */,
-				C20030B7172F9E1D00FD6AE1 /* ZhaJinHua.pb-c.h */,
 			);
 			path = "Gen-c";
 			sourceTree = "<group>";
@@ -23147,18 +23091,13 @@
 				A499EEB2174DAE70005AF334 /* SingApp.m in Sources */,
 				CA62C7021756FB8E00C9EF56 /* BBS.pb-c.c in Sources */,
 				CA62C7031756FB8E00C9EF56 /* Config.pb-c.c in Sources */,
-				CA62C7041756FB8E00C9EF56 /* Dice.pb-c.c in Sources */,
 				CA62C7051756FB8E00C9EF56 /* Draw.pb-c.c in Sources */,
 				CA62C7061756FB8E00C9EF56 /* GameBasic.pb-c.c in Sources */,
-				CA62C7071756FB8E00C9EF56 /* GameConstants.pb-c.c in Sources */,
-				CA62C7081756FB8E00C9EF56 /* GameMessage.pb-c.c in Sources */,
 				CA62C7091756FB8E00C9EF56 /* Sing.pb-c.c in Sources */,
 				D89191F31963163B006B616A /* StageCell.m in Sources */,
-				CA62C70A1756FB8E00C9EF56 /* ZhaJinHua.pb-c.c in Sources */,
 				CA62C7B817570AF600C9EF56 /* PocketSVG.m in Sources */,
 				A4C8D565175EDFC6007ED7E4 /* OpusService.m in Sources */,
 				CA244A87175EE48D002C0A37 /* Opus.pb.m in Sources */,
-				CAE58A12175EF45E009149E9 /* Opus.pb-c.c in Sources */,
 				CA244AF0175F4574002C0A37 /* ClipAction.m in Sources */,
 				CA244B0B176071F2002C0A37 /* PolygenPen.m in Sources */,
 				CA922B5C1761C5F00051D9F2 /* ImageShapeManager.m in Sources */,
@@ -23180,7 +23119,6 @@
 				A4997207177831E100B01EBE /* CommonGuessController.m in Sources */,
 				A4997217177832EA00B01EBE /* OpusManageController.m in Sources */,
 				A499721A177832EA00B01EBE /* OpusView.m in Sources */,
-				CA7DE7AE192C72FE00EED067 /* Group.pb-c.c in Sources */,
 				A49972CA1778365000B01EBE /* OfflineGuessDrawController.m in Sources */,
 				A49972CD1778365000B01EBE /* OfflineDrawViewController.m in Sources */,
 				A49972D01778365000B01EBE /* OnlineDrawViewController.m in Sources */,
@@ -23292,7 +23230,6 @@
 				EA8EF66917E55F0D003F1AF8 /* DrawHomeHeaderPanel.m in Sources */,
 				EA8EF66F17E593CA003F1AF8 /* DrawMainMenuPanel.m in Sources */,
 				EA5FE1BD17E7F5050099754C /* RopeView.m in Sources */,
-				CA33F67A17E94B69005950EF /* Photo.pb-c.c in Sources */,
 				CA76134717F57420007A251E /* HPointList.mm in Sources */,
 				EA2A7CE017F676AB00ED508D /* AccountManageController.m in Sources */,
 				A4214DD31803AA4D007F2EFD /* MKAnnotationView+WebCache.m in Sources */,
@@ -23994,14 +23931,10 @@
 				EAB19CE4174E2A44001126FA /* DrawGameApp.m in Sources */,
 				CA62C7651756FBB900C9EF56 /* BBS.pb-c.c in Sources */,
 				CA62C7661756FBB900C9EF56 /* Config.pb-c.c in Sources */,
-				CA62C7671756FBB900C9EF56 /* Dice.pb-c.c in Sources */,
 				CA62C7681756FBB900C9EF56 /* Draw.pb-c.c in Sources */,
 				CACD6CC718E03BCD003F97C0 /* SBJSON.m in Sources */,
 				CA62C7691756FBB900C9EF56 /* GameBasic.pb-c.c in Sources */,
-				CA62C76A1756FBB900C9EF56 /* GameConstants.pb-c.c in Sources */,
-				CA62C76B1756FBB900C9EF56 /* GameMessage.pb-c.c in Sources */,
 				CA62C76C1756FBB900C9EF56 /* Sing.pb-c.c in Sources */,
-				CA62C76D1756FBB900C9EF56 /* ZhaJinHua.pb-c.c in Sources */,
 				CA62C7B517570AF600C9EF56 /* PocketSVG.m in Sources */,
 				C23ED5F7175A511500263FB7 /* ImageSearch.m in Sources */,
 				C23ED5F8175A511F00263FB7 /* ImageSearchResult.m in Sources */,
@@ -24013,7 +23946,6 @@
 				C2FE574A175DED3000AFD6AA /* GoogleCustomSearchService.m in Sources */,
 				C2FE575B175DED3000AFD6AA /* GoogleCustomSearchNetworkRequest.m in Sources */,
 				CA244A84175EE48D002C0A37 /* Opus.pb.m in Sources */,
-				CAE58A0F175EF45E009149E9 /* Opus.pb-c.c in Sources */,
 				CA244AED175F4574002C0A37 /* ClipAction.m in Sources */,
 				CA244B08176071F2002C0A37 /* PolygenPen.m in Sources */,
 				C2C18A881760A7B400DE933B /* GalleryManager.m in Sources */,
@@ -24139,7 +24071,6 @@
 				EA8EF66817E55F0D003F1AF8 /* DrawHomeHeaderPanel.m in Sources */,
 				EA8EF66E17E593CA003F1AF8 /* DrawMainMenuPanel.m in Sources */,
 				EA5FE1BC17E7F5050099754C /* RopeView.m in Sources */,
-				CA33F67917E94B69005950EF /* Photo.pb-c.c in Sources */,
 				CA76134617F57420007A251E /* HPointList.mm in Sources */,
 				EA2A7CDF17F676AB00ED508D /* AccountManageController.m in Sources */,
 				A4214DD21803AA4D007F2EFD /* MKAnnotationView+WebCache.m in Sources */,
@@ -24244,7 +24175,6 @@
 				EA038981183B122900516952 /* GroupDetailCell.m in Sources */,
 				CACD6D2418E03C40003F97C0 /* DiracAudioPlayerBase.mm in Sources */,
 				EA038996183B14C200516952 /* GroupInfoView.m in Sources */,
-				CA7DE7AD192C72FE00EED067 /* Group.pb-c.c in Sources */,
 				CA5D9D52183E3C0200BD820C /* DOUAudioAnalyzer+Default.m in Sources */,
 				CA5D9D56183E3C0200BD820C /* DOUAudioAnalyzer.m in Sources */,
 				CA5D9D5A183E3C0200BD820C /* DOUAudioDecoder.m in Sources */,
@@ -24842,14 +24772,10 @@
 				EA59DF6D174DFF3E0039B441 /* DrawGameApp.m in Sources */,
 				CA62C6DE1756FB6200C9EF56 /* BBS.pb-c.c in Sources */,
 				CA62C6E21756FB6200C9EF56 /* Config.pb-c.c in Sources */,
-				CA62C6E61756FB6200C9EF56 /* Dice.pb-c.c in Sources */,
 				CACD6CC618E03BCD003F97C0 /* SBJSON.m in Sources */,
 				CA62C6EA1756FB6200C9EF56 /* Draw.pb-c.c in Sources */,
 				CA62C6EE1756FB6200C9EF56 /* GameBasic.pb-c.c in Sources */,
-				CA62C6F21756FB6200C9EF56 /* GameConstants.pb-c.c in Sources */,
-				CA62C6F61756FB6200C9EF56 /* GameMessage.pb-c.c in Sources */,
 				CA62C6FA1756FB6200C9EF56 /* Sing.pb-c.c in Sources */,
-				CA62C6FE1756FB6200C9EF56 /* ZhaJinHua.pb-c.c in Sources */,
 				CA62C7A817570AF600C9EF56 /* PocketSVG.m in Sources */,
 				C23ED5E61759A5B500263FB7 /* BasicSearch.m in Sources */,
 				C23ED5E71759A5B500263FB7 /* ImageSearch.m in Sources */,
@@ -24865,7 +24791,6 @@
 				A4C8D571175EE027007ED7E4 /* Opus.m in Sources */,
 				A4C8D573175EE027007ED7E4 /* OpusManager.m in Sources */,
 				CA244A77175EE48D002C0A37 /* Opus.pb.m in Sources */,
-				CAE58A02175EF45E009149E9 /* Opus.pb-c.c in Sources */,
 				CA244AE0175F4574002C0A37 /* ClipAction.m in Sources */,
 				CA244AFB176071F2002C0A37 /* PolygenPen.m in Sources */,
 				C2C18A871760A7B400DE933B /* GalleryManager.m in Sources */,
@@ -24993,7 +24918,6 @@
 				EA8EF66717E55F0D003F1AF8 /* DrawHomeHeaderPanel.m in Sources */,
 				EA8EF66D17E593CA003F1AF8 /* DrawMainMenuPanel.m in Sources */,
 				EA5FE1BB17E7F5050099754C /* RopeView.m in Sources */,
-				CA33F67817E94B69005950EF /* Photo.pb-c.c in Sources */,
 				CA76134517F57420007A251E /* HPointList.mm in Sources */,
 				EA2A7CDE17F676AB00ED508D /* AccountManageController.m in Sources */,
 				A4214DD11803AA4D007F2EFD /* MKAnnotationView+WebCache.m in Sources */,
@@ -25091,7 +25015,6 @@
 				EA038980183B122900516952 /* GroupDetailCell.m in Sources */,
 				CACD6D2318E03C40003F97C0 /* DiracAudioPlayerBase.mm in Sources */,
 				EA038995183B14C200516952 /* GroupInfoView.m in Sources */,
-				CA7DE7AC192C72FD00EED067 /* Group.pb-c.c in Sources */,
 				CA5D9D51183E3C0200BD820C /* DOUAudioAnalyzer+Default.m in Sources */,
 				CA5D9D55183E3C0200BD820C /* DOUAudioAnalyzer.m in Sources */,
 				CA5D9D59183E3C0200BD820C /* DOUAudioDecoder.m in Sources */,
@@ -25657,7 +25580,6 @@
 				CA9005271950209B003389FD /* THGridMenuItem.m in Sources */,
 				EA411AB8176066F500DA72D0 /* ReflectionView.m in Sources */,
 				EA411AB9176066F500DA72D0 /* FeedCarousel.m in Sources */,
-				CA7DE7AF192C72FE00EED067 /* Group.pb-c.c in Sources */,
 				EA411ABA176066F500DA72D0 /* StrawCommand.m in Sources */,
 				EA411ABB176066F500DA72D0 /* GridCommand.m in Sources */,
 				EA411ABC176066F500DA72D0 /* CanvasRectBox.m in Sources */,
@@ -25687,13 +25609,9 @@
 				EA411AF3176066F500DA72D0 /* BBS.pb-c.c in Sources */,
 				EA411AF4176066F500DA72D0 /* Config.pb-c.c in Sources */,
 				CA0174ED19405306005E4390 /* OpusClassInfoManager.m in Sources */,
-				EA411AF5176066F500DA72D0 /* Dice.pb-c.c in Sources */,
 				EA411AF6176066F500DA72D0 /* Draw.pb-c.c in Sources */,
 				EA411AF7176066F500DA72D0 /* GameBasic.pb-c.c in Sources */,
-				EA411AF8176066F500DA72D0 /* GameConstants.pb-c.c in Sources */,
-				EA411AF9176066F500DA72D0 /* GameMessage.pb-c.c in Sources */,
 				EA411AFA176066F500DA72D0 /* Sing.pb-c.c in Sources */,
-				EA411AFB176066F500DA72D0 /* ZhaJinHua.pb-c.c in Sources */,
 				EA411AFD176066F500DA72D0 /* PocketSVG.m in Sources */,
 				EA411AFE176066F500DA72D0 /* BasicSearch.m in Sources */,
 				EA411AFF176066F500DA72D0 /* ImageSearch.m in Sources */,
@@ -25704,7 +25622,6 @@
 				EA411B05176066F500DA72D0 /* GoogleCustomSearchNetworkRequest.m in Sources */,
 				EA411B06176066F500DA72D0 /* OpusService.m in Sources */,
 				EA411B0B176066F500DA72D0 /* Opus.pb.m in Sources */,
-				EA411B11176066F500DA72D0 /* Opus.pb-c.c in Sources */,
 				EA411B14176066F500DA72D0 /* ClipAction.m in Sources */,
 				EA411F3117606CD800DA72D0 /* AskPsApp.m in Sources */,
 				CA922B5D1761C5F00051D9F2 /* ImageShapeManager.m in Sources */,
@@ -25818,7 +25735,6 @@
 				EA8EF66A17E55F0D003F1AF8 /* DrawHomeHeaderPanel.m in Sources */,
 				EA8EF67017E593CA003F1AF8 /* DrawMainMenuPanel.m in Sources */,
 				EA5FE1BE17E7F5050099754C /* RopeView.m in Sources */,
-				CA33F67B17E94B69005950EF /* Photo.pb-c.c in Sources */,
 				CA76134817F57420007A251E /* HPointList.mm in Sources */,
 				EA2A7CE117F676AB00ED508D /* AccountManageController.m in Sources */,
 				CACD6CE918E03BCD003F97C0 /* NotificationCenterManager.m in Sources */,

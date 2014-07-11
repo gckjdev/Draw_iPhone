@@ -61,12 +61,6 @@ static UserTutorialService* _defaultService;
     [self actionOnUserTutorial:ut action:ACTION_DELETE_USER_TUTORIAL];
 }
 
-//取得remoteId
--(NSString *)getremoteUserTutorialId{
-    //TODO
-    
-}
-
 //用户学习某个教程的信息到服务器
 - (void)actionOnUserTutorial:(PBUserTutorial*)ut action:(UserTutorialActionType)action
 {
@@ -80,17 +74,9 @@ static UserTutorialService* _defaultService;
     [para setObject:ut.localId forKey:PARA_LOCAL_USER_TUTORIAL_ID];
     [para setObject:@(action) forKey:PARA_ACTION_TYPE];
     
-  
-//  @{ PARA_TUTORIAL_ID : ut.tutorial.tutorialId,
-//                            PARA_LOCAL_USER_TUTORIAL_ID : ut.localId,
-//                            PARA_ACTION_TYPE : @(action)
-//                            };
-    
-    
-    //set remotedId when delete action
-    if(action == ACTION_DELETE_USER_TUTORIAL){
-        NSString* remoteUserTutorialId = [self getremoteUserTutorialId];
-        
+    // set remotedId when update/delete action when needed
+    if (ut.remoteId != nil){
+        [para setObject:ut.remoteId forKey:PARA_REMOTE_USER_TUTORIAL_ID];
     }
     
     [PPGameNetworkRequest loadPBData:workingQueue
@@ -100,8 +86,13 @@ static UserTutorialService* _defaultService;
                             callback:^(DataQueryResponse *response, NSError *error) {
                                 
                                 if (error == nil){
+                                    
                                     // success
-                                    PBUserTutorial* retUserTutorial = response.
+                                    PBUserTutorial* retUserTutorial = response.userTutorial;
+                                    if (action == ACTION_ADD_USER_TUTORIAL){
+                                        [[UserTutorialManager defaultManager] saveUserTutorial:ut.localId
+                                                                                      remoteId:retUserTutorial.remoteId];
+                                    }
                                     
                                     // update user tutorial SYNC status
                                     [[UserTutorialManager defaultManager] syncUserTutorial:ut.localId syncStatus:YES];
