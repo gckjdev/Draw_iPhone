@@ -607,6 +607,11 @@
 #define PARA_LOCAL_USER_TUTORIAL_ID     @"luti"
 
 #define METHOD_USER_TUTORIAL_ACTION     @"userTutorialAction"
+#define PARA_USER_TUTORIAL_DEVICE_OS    @"userTutorialDeviceOs"
+#define PARA_USER_TUTORIAL_DEVICE_MODEL    @"userTutorialDeviceModel"
+#define PARA_USER_TUTORIAL_DEVICE_TYPE    @"userTutorialDeviceType"
+
+
 
 //new words
 #define PARA_NEW_WORDS  @"nw"

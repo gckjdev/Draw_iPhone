@@ -6243,6 +6243,10 @@
 		D8A2709B196FC07F006DDF20 /* GameConstants.pb-c.c in Sources */ = {isa = PBXBuildFile; fileRef = D8A27098196FC07F006DDF20 /* GameConstants.pb-c.c */; };
 		D8A2709C196FC07F006DDF20 /* GameConstants.pb-c.c in Sources */ = {isa = PBXBuildFile; fileRef = D8A27098196FC07F006DDF20 /* GameConstants.pb-c.c */; };
 		D8A2709D196FC07F006DDF20 /* GameConstants.pb-c.c in Sources */ = {isa = PBXBuildFile; fileRef = D8A27098196FC07F006DDF20 /* GameConstants.pb-c.c */; };
+		D8A2709F196FD432006DDF20 /* lock_new.png in Resources */ = {isa = PBXBuildFile; fileRef = D8A2709E196FD432006DDF20 /* lock_new.png */; };
+		D8A270A0196FD432006DDF20 /* lock_new.png in Resources */ = {isa = PBXBuildFile; fileRef = D8A2709E196FD432006DDF20 /* lock_new.png */; };
+		D8A270A1196FD432006DDF20 /* lock_new.png in Resources */ = {isa = PBXBuildFile; fileRef = D8A2709E196FD432006DDF20 /* lock_new.png */; };
+		D8A270A2196FD432006DDF20 /* lock_new.png in Resources */ = {isa = PBXBuildFile; fileRef = D8A2709E196FD432006DDF20 /* lock_new.png */; };
 		D8C669D6196CE42F0002B975 /* TutorialInfoCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = D8C669D5196CE42F0002B975 /* TutorialInfoCell~ipad.xib */; };
 		D8C669D7196CE42F0002B975 /* TutorialInfoCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = D8C669D5196CE42F0002B975 /* TutorialInfoCell~ipad.xib */; };
 		D8C669D8196CE42F0002B975 /* TutorialInfoCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = D8C669D5196CE42F0002B975 /* TutorialInfoCell~ipad.xib */; };
@@ -10544,6 +10548,7 @@
 		D89191FA196316C2006B616A /* StageCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = StageCell.xib; sourceTree = "<group>"; };
 		D8A27098196FC07F006DDF20 /* GameConstants.pb-c.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = "GameConstants.pb-c.c"; sourceTree = "<group>"; };
 		D8A27099196FC07F006DDF20 /* GameConstants.pb-c.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "GameConstants.pb-c.h"; sourceTree = "<group>"; };
+		D8A2709E196FD432006DDF20 /* lock_new.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = lock_new.png; sourceTree = "<group>"; };
 		D8C669D5196CE42F0002B975 /* TutorialInfoCell~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "TutorialInfoCell~ipad.xib"; sourceTree = "<group>"; };
 		D8C669E4196D3D1E0002B975 /* lock2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = lock2.png; sourceTree = "<group>"; };
 		D8C784B1196A4E2600323712 /* UserTutorialMainCell~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "UserTutorialMainCell~ipad.xib"; sourceTree = "<group>"; };
@@ -15039,6 +15044,7 @@
 		CA2A28A7195C120600A97478 /* Resource */ = {
 			isa = PBXGroup;
 			children = (
+				D8A2709E196FD432006DDF20 /* lock_new.png */,
 				D8C669E4196D3D1E0002B975 /* lock2.png */,
 				D82540F219650A1C00C876C3 /* tutorial_core_version.txt */,
 				D82540F319650A1C00C876C3 /* tutorial_core.pb */,
@@ -19121,6 +19127,7 @@
 				A4D8FFB917DB089C0085061F /* learndraw_mark@2x.png in Resources */,
 				A4D8FFBD17DB089C0085061F /* learndraw_more@2x.png in Resources */,
 				A4D8FFC117DB089C0085061F /* learndraw_shop@2x.png in Resources */,
+				D8A270A1196FD432006DDF20 /* lock_new.png in Resources */,
 				CA0174F619405503005E4390 /* opusclass_version.txt in Resources */,
 				A4D8FFC517DB089C0085061F /* line.svg in Resources */,
 				A4D8FFC917DB089C0085061F /* path.svg in Resources */,
@@ -19681,6 +19688,7 @@
 				C28AA00A1738F04B007A819F /* DrawBgBox.xib in Resources */,
 				C28AA00B1738F04B007A819F /* DrawBgBox~ipad.xib in Resources */,
 				C28AA0121738F04B007A819F /* CustomInfoView.xib in Resources */,
+				D8A270A0196FD432006DDF20 /* lock_new.png in Resources */,
 				C28AA0131738F04B007A819F /* PriceView.xib in Resources */,
 				C28AA0141738F04B007A819F /* StoreCell.xib in Resources */,
 				C28AA0151738F04B007A819F /* StoreController.xib in Resources */,
@@ -20762,6 +20770,7 @@
 				C2BD7A5A17165D9D0079B7F6 /* UserSettingCell.xib in Resources */,
 				C2BD7A6417165E250079B7F6 /* UserSettingCell~ipad.xib in Resources */,
 				CAE5AD641717EAE9009BFDC1 /* DrawOnCell.xib in Resources */,
+				D8A2709F196FD432006DDF20 /* lock_new.png in Resources */,
 				CAE5AD681717EB0F009BFDC1 /* DrawOnCell~ipad.xib in Resources */,
 				A461B075174CAE050088B061 /* Sing.proto in Resources */,
 				CA2488E71753562800848A5F /* default_config_513819630_version.txt in Resources */,
@@ -21864,6 +21873,7 @@
 				A4DDD17017CDFD7B0029E562 /* wordbase.zip in Resources */,
 				A4DDD19417CDFD7B0029E562 /* new_icon.png in Resources */,
 				A4DDD19817CDFD7B0029E562 /* new_icon@2x.png in Resources */,
+				D8A270A2196FD432006DDF20 /* lock_new.png in Resources */,
 				A4DDD19C17CDFD7B0029E562 /* new_icon_ipad1.png in Resources */,
 				A4DDD1A017CDFD7B0029E562 /* new_icon_ipad2.png in Resources */,
 				A4DDD56417CDFD7B0029E562 /* button_down.wav in Resources */,

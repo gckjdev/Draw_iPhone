@@ -53,7 +53,7 @@
         
         // set input parameters
         NSString* str = [NSString stringWithString:baseURL];  
-        NSString* deviceOS = [DeviceDetection deviceOS];        
+        NSString* deviceOS = [DeviceDetection deviceOS];
 
         str = [str stringByAddQueryParameter:METHOD value:METHOD_REGISTERUSER];
         str = [str stringByAddQueryParameter:PARA_APPID value:appId];
@@ -63,6 +63,7 @@
         str = [str stringByAddQueryParameter:PARA_DEVICETOKEN value:deviceToken];
         str = [str stringByAddQueryParameter:PARA_COUNTRYCODE value:[LocaleUtils getCountryCode]];
         str = [str stringByAddQueryParameter:PARA_LANGUAGE value:[LocaleUtils getLanguageCode]];
+        
         str = [str stringByAddQueryParameter:PARA_DEVICEMODEL value:[UIDevice currentDevice].model];
         str = [str stringByAddQueryParameter:PARA_DEVICEOS value:deviceOS];
         str = [str stringByAddQueryParameter:PARA_DEVICETYPE intValue:DEVICE_TYPE_IOS];

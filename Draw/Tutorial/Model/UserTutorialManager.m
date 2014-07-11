@@ -104,9 +104,6 @@ static UserTutorialManager* _defaultManager;
         PPDebug(@"<findUserTutorialByLocalId> id=%@, but catch exception=%@", localId, [exception description]);
         return nil;
     }
-    @finally {
-        return nil;
-    }
 }
 
 - (void)dealloc
@@ -222,7 +219,7 @@ static UserTutorialManager* _defaultManager;
     
     PBUserTutorial* ut = [self findUserTutorialByLocalId:utLocalId];
     if (ut == nil){
-        PPDebug(@"<syncUserTutorial> but localId(%@) not found", utLocalId);
+        PPDebug(@"<saveUserTutorial> but localId(%@) not found", utLocalId);
         return;
     }
     

@@ -50,15 +50,22 @@ static UserTutorialService* _defaultService;
                         isPostError:NO];
 }
 
-
-- (void)addUserTutorial:(PBUserTutorial*)ut
+//add server
+- (void)addUserTutorialToServer:(PBUserTutorial*)ut
 {
     [self actionOnUserTutorial:ut action:ACTION_ADD_USER_TUTORIAL];
 }
-
-- (void)deleteUserTutorial:(PBUserTutorial*)ut
+//delete  server
+- (void)deleteUserTutorialToServer:(PBUserTutorial*)ut
 {
     [self actionOnUserTutorial:ut action:ACTION_DELETE_USER_TUTORIAL];
+}
+//set device info
+- (void)setDeviceInfo:(NSMutableDictionary*)para{
+    PPDebug(@"<setDeviceInfo>");
+    [para setObject:[DeviceDetection deviceOS] forKey:PARA_DEVICEOS];
+    [para setObject:[UIDevice currentDevice].model forKey:PARA_DEVICEMODEL];
+    [para setObject:[UIDevice currentDevice].model forKey:PARA_DEVICETYPE];
 }
 
 //用户学习某个教程的信息到服务器
@@ -68,11 +75,13 @@ static UserTutorialService* _defaultService;
         PPDebug(@"<actionOnUserTutorial> but key parameters is nil");
         return;
     }
-    
     NSMutableDictionary* para = [[[NSMutableDictionary alloc] init] autorelease];
     [para setObject:ut.tutorial.tutorialId forKey:PARA_TUTORIAL_ID];
     [para setObject:ut.localId forKey:PARA_LOCAL_USER_TUTORIAL_ID];
     [para setObject:@(action) forKey:PARA_ACTION_TYPE];
+    
+    //set device
+    [self setDeviceInfo:para];
     
     // set remotedId when update/delete action when needed
     if (ut.remoteId != nil){
@@ -95,7 +104,7 @@ static UserTutorialService* _defaultService;
                                     }
                                     
                                     // update user tutorial SYNC status
-                                    [[UserTutorialManager defaultManager] syncUserTutorial:ut.localId syncStatus:YES];
+//                                    [[UserTutorialManager defaultManager] syncUserTutorial:ut.localId syncStatus:YES];
                                 }
                             }
                          isPostError:NO];
@@ -112,19 +121,22 @@ static UserTutorialService* _defaultService;
     EXECUTE_BLOCK(resultBlock, 0);
     
     // 再同步到服务器
-    [self addUserTutorial:ut];
+    [self addUserTutorialToServer:ut];
 }
+
 //删除教程
 - (void)deleteUserTutorial:(PBUserTutorial*)ut resultBlock:(UserTutorialServiceResultBlock)resultBlock
 {
-    NSString * userId = ut.userId;
+    PBUserTutorial* utForDelete = [[UserTutorialManager defaultManager] getUserTutorialByTutorialId:ut.tutorial.tutorialId];
+    [utForDelete retain];
     
-    
+    // delete locally
     [[UserTutorialManager defaultManager] deleteUserTutorial:ut];
     EXECUTE_BLOCK(resultBlock, 0);
-    
-    // TODO check how to sync later
-//    [self syncUserTutorial:ut];
+
+    // delete in server
+    [self deleteUserTutorialToServer:utForDelete];
+    [utForDelete release];
 }
 
 
