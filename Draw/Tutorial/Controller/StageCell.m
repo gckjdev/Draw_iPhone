@@ -23,6 +23,8 @@
     return self;
 }
 
+// TODO move image name to ShareImageManager
+// TODO format/refactor the code below
 #define DEFAUT_IMAGE "dialogue@2x"
 #define DEFAUT_LOCK_IMAGE "lock2"
 -(void)updateStageCellInfo:(PBUserTutorial *)pbUserTutorial withRow:(NSInteger)row{

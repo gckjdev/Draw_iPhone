@@ -9,6 +9,7 @@ import "Opus.proto";
 import "Photo.proto";
 import "Sing.proto";
 import "Group.proto";
+import "Tutorial.proto";
 
 package game;
 
@@ -527,5 +528,10 @@ message DataQueryResponse {
   optional string url = 156;
 
   repeated PBGroupUserRole groupRole = 157;
+  
+  //for tutorial
+  optional PBUserTutorial tutorial = 160;
+  repeated PBUserTutorial tutorials = 161;
+
 }
 

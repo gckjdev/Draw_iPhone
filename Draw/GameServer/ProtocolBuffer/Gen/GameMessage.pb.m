@@ -22,6 +22,7 @@ static PBExtensionRegistry* extensionRegistry = nil;
     [PhotoRoot registerAllExtensions:registry];
     [SingRoot registerAllExtensions:registry];
     [GroupRoot registerAllExtensions:registry];
+    [TutorialRoot registerAllExtensions:registry];
     extensionRegistry = [registry retain];
   }
 }
@@ -17708,6 +17709,8 @@ static GameMessage* defaultGameMessageInstance = nil;
 @property (retain) NSMutableArray* mutableBadgesList;
 @property (retain) NSString* url;
 @property (retain) NSMutableArray* mutableGroupRoleList;
+@property (retain) PBUserTutorial* tutorial;
+@property (retain) NSMutableArray* mutableTutorialsList;
 @end
 
 @implementation DataQueryResponse
@@ -17839,6 +17842,14 @@ static GameMessage* defaultGameMessageInstance = nil;
 }
 @synthesize url;
 @synthesize mutableGroupRoleList;
+- (BOOL) hasTutorial {
+  return !!hasTutorial_;
+}
+- (void) setHasTutorial:(BOOL) value {
+  hasTutorial_ = !!value;
+}
+@synthesize tutorial;
+@synthesize mutableTutorialsList;
 - (void) dealloc {
   self.mutableDrawDataList = nil;
   self.mutableMessageList = nil;
@@ -17873,6 +17884,8 @@ static GameMessage* defaultGameMessageInstance = nil;
   self.mutableBadgesList = nil;
   self.url = nil;
   self.mutableGroupRoleList = nil;
+  self.tutorial = nil;
+  self.mutableTutorialsList = nil;
   [super dealloc];
 }
 - (id) init {
@@ -17892,6 +17905,7 @@ static GameMessage* defaultGameMessageInstance = nil;
     self.guessContest = [PBGuessContest defaultInstance];
     self.group = [PBGroup defaultInstance];
     self.url = @"";
+    self.tutorial = [PBUserTutorial defaultInstance];
   }
   return self;
 }
@@ -18061,6 +18075,13 @@ static DataQueryResponse* defaultDataQueryResponseInstance = nil;
   id value = [mutableGroupRoleList objectAtIndex:index];
   return value;
 }
+- (NSArray*) tutorialsList {
+  return mutableTutorialsList;
+}
+- (PBUserTutorial*) tutorialsAtIndex:(int32_t) index {
+  id value = [mutableTutorialsList objectAtIndex:index];
+  return value;
+}
 - (BOOL) isInitialized {
   if (!self.hasResultCode) {
     return NO;
@@ -18220,6 +18241,16 @@ static DataQueryResponse* defaultDataQueryResponseInstance = nil;
       return NO;
     }
   }
+  if (self.hasTutorial) {
+    if (!self.tutorial.isInitialized) {
+      return NO;
+    }
+  }
+  for (PBUserTutorial* element in self.tutorialsList) {
+    if (!element.isInitialized) {
+      return NO;
+    }
+  }
   return YES;
 }
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
@@ -18333,6 +18364,12 @@ static DataQueryResponse* defaultDataQueryResponseInstance = nil;
   }
   for (PBGroupUserRole* element in self.groupRoleList) {
     [output writeMessage:157 value:element];
+  }
+  if (self.hasTutorial) {
+    [output writeMessage:160 value:self.tutorial];
+  }
+  for (PBUserTutorial* element in self.tutorialsList) {
+    [output writeMessage:161 value:element];
   }
   [self.unknownFields writeToCodedOutputStream:output];
 }
@@ -18458,6 +18495,12 @@ static DataQueryResponse* defaultDataQueryResponseInstance = nil;
   }
   for (PBGroupUserRole* element in self.groupRoleList) {
     size += computeMessageSize(157, element);
+  }
+  if (self.hasTutorial) {
+    size += computeMessageSize(160, self.tutorial);
+  }
+  for (PBUserTutorial* element in self.tutorialsList) {
+    size += computeMessageSize(161, element);
   }
   size += self.unknownFields.serializedSize;
   memoizedSerializedSize = size;
@@ -18710,6 +18753,15 @@ static DataQueryResponse* defaultDataQueryResponseInstance = nil;
       result.mutableGroupRoleList = [NSMutableArray array];
     }
     [result.mutableGroupRoleList addObjectsFromArray:other.mutableGroupRoleList];
+  }
+  if (other.hasTutorial) {
+    [self mergeTutorial:other.tutorial];
+  }
+  if (other.mutableTutorialsList.count > 0) {
+    if (result.mutableTutorialsList == nil) {
+      result.mutableTutorialsList = [NSMutableArray array];
+    }
+    [result.mutableTutorialsList addObjectsFromArray:other.mutableTutorialsList];
   }
   [self mergeUnknownFields:other.unknownFields];
   return self;
@@ -18970,6 +19022,21 @@ static DataQueryResponse* defaultDataQueryResponseInstance = nil;
         PBGroupUserRole_Builder* subBuilder = [PBGroupUserRole builder];
         [input readMessage:subBuilder extensionRegistry:extensionRegistry];
         [self addGroupRole:[subBuilder buildPartial]];
+        break;
+      }
+      case 1282: {
+        PBUserTutorial_Builder* subBuilder = [PBUserTutorial builder];
+        if (self.hasTutorial) {
+          [subBuilder mergeFrom:self.tutorial];
+        }
+        [input readMessage:subBuilder extensionRegistry:extensionRegistry];
+        [self setTutorial:[subBuilder buildPartial]];
+        break;
+      }
+      case 1290: {
+        PBUserTutorial_Builder* subBuilder = [PBUserTutorial builder];
+        [input readMessage:subBuilder extensionRegistry:extensionRegistry];
+        [self addTutorials:[subBuilder buildPartial]];
         break;
       }
     }
@@ -19993,6 +20060,65 @@ static DataQueryResponse* defaultDataQueryResponseInstance = nil;
     result.mutableGroupRoleList = [NSMutableArray array];
   }
   [result.mutableGroupRoleList addObject:value];
+  return self;
+}
+- (BOOL) hasTutorial {
+  return result.hasTutorial;
+}
+- (PBUserTutorial*) tutorial {
+  return result.tutorial;
+}
+- (DataQueryResponse_Builder*) setTutorial:(PBUserTutorial*) value {
+  result.hasTutorial = YES;
+  result.tutorial = value;
+  return self;
+}
+- (DataQueryResponse_Builder*) setTutorialBuilder:(PBUserTutorial_Builder*) builderForValue {
+  return [self setTutorial:[builderForValue build]];
+}
+- (DataQueryResponse_Builder*) mergeTutorial:(PBUserTutorial*) value {
+  if (result.hasTutorial &&
+      result.tutorial != [PBUserTutorial defaultInstance]) {
+    result.tutorial =
+      [[[PBUserTutorial builderWithPrototype:result.tutorial] mergeFrom:value] buildPartial];
+  } else {
+    result.tutorial = value;
+  }
+  result.hasTutorial = YES;
+  return self;
+}
+- (DataQueryResponse_Builder*) clearTutorial {
+  result.hasTutorial = NO;
+  result.tutorial = [PBUserTutorial defaultInstance];
+  return self;
+}
+- (NSArray*) tutorialsList {
+  if (result.mutableTutorialsList == nil) { return [NSArray array]; }
+  return result.mutableTutorialsList;
+}
+- (PBUserTutorial*) tutorialsAtIndex:(int32_t) index {
+  return [result tutorialsAtIndex:index];
+}
+- (DataQueryResponse_Builder*) replaceTutorialsAtIndex:(int32_t) index with:(PBUserTutorial*) value {
+  [result.mutableTutorialsList replaceObjectAtIndex:index withObject:value];
+  return self;
+}
+- (DataQueryResponse_Builder*) addAllTutorials:(NSArray*) values {
+  if (result.mutableTutorialsList == nil) {
+    result.mutableTutorialsList = [NSMutableArray array];
+  }
+  [result.mutableTutorialsList addObjectsFromArray:values];
+  return self;
+}
+- (DataQueryResponse_Builder*) clearTutorialsList {
+  result.mutableTutorialsList = nil;
+  return self;
+}
+- (DataQueryResponse_Builder*) addTutorials:(PBUserTutorial*) value {
+  if (result.mutableTutorialsList == nil) {
+    result.mutableTutorialsList = [NSMutableArray array];
+  }
+  [result.mutableTutorialsList addObject:value];
   return self;
 }
 @end

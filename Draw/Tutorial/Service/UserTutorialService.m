@@ -101,6 +101,8 @@ static UserTutorialService* _defaultService;
                                 
                                 if (error == nil){
                                     // success
+                                    PBUserTutorial* retUserTutorial = response.
+                                    
                                     // update user tutorial SYNC status
                                     [[UserTutorialManager defaultManager] syncUserTutorial:ut.localId syncStatus:YES];
                                 }

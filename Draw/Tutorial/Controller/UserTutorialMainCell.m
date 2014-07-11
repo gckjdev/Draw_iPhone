@@ -21,17 +21,6 @@
     if (self) {
         // Initialization code
         SET_VIEW_ROUND_CORNER(self);
-        
-//        NSLayoutConstraint* constraint = [NSLayoutConstraint constraintWithItem:self.tutorialImageView
-//                                                                      attribute:NSLayoutAttributeBottom
-//                                                                      relatedBy:NSLayoutRelationEqual
-//                                                                         toItem:nil
-//                                                                      attribute:nil
-//                                                                     multiplier:1.0
-//                                                                       constant:TUTORIAL_IMAGE_HEIGHT];
-//        
-//        [self.contentView addConstraint:constraint];
-        
     }
     return self;
 }
@@ -44,7 +33,8 @@
 }
 
 
-#define DEFAUT_IMAGE_NAME "dialogue@2x"
+#define DEFAUT_IMAGE_NAME @"dialogue@2x"    // TODO　change
+
 - (void)updateCellInfo:(PBUserTutorial*)ut
 {
     //圆角
@@ -59,11 +49,10 @@
     //实现国际化
     [self.tutorialNameLabel setText:ut.tutorial.name];
     
-    
-    NSDate* createDate = [NSDate dateWithTimeIntervalSince1970:ut.createDate];  // TODO 调用正确方法显示时间
+    NSDate* createDate = [NSDate dateWithTimeIntervalSince1970:ut.createDate];
     self.tutorialDateLabel.text = dateToTimeLineString(createDate);
     
-    UIImage *placeHolderImage = [UIImage imageNamed:@DEFAUT_IMAGE_NAME];
+    UIImage *placeHolderImage = [UIImage imageNamed:DEFAUT_IMAGE_NAME];
     [_tutorialImageView setImageWithUrl:[NSURL URLWithString:ut.tutorial.image]
                    placeholderImage:placeHolderImage
                         showLoading:YES

@@ -38,6 +38,8 @@
     
     NSString *title = [[self.pbUserTutorial tutorial] name]; // 实现 国际化
     [super viewDidLoad];
+    
+    // set title view
     [CommonTitleView createTitleView:self.view];
     [[CommonTitleView titleView:self.view] setTitle:title];
     [[CommonTitleView titleView:self.view] setTarget:self];
@@ -115,13 +117,8 @@
     else{
     }
     
-    
     [collectionView deselectItemAtIndexPath:indexPath animated:YES];
-//    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"请输入新数据" message:nil delegate:self cancelButtonTitle:@"关闭" otherButtonTitles:@"添加", nil];
-//    alert.alertViewStyle = UIAlertViewStylePlainTextInput;
-//    [alert textFieldAtIndex:0].placeholder = @"请输入新数据";
-//    [alert show];
-//    [alert release];
+
 }
 
 

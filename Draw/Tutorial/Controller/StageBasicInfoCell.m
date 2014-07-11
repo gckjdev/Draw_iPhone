@@ -28,18 +28,7 @@
 {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
-        // Initialization code
-        
-//        NSLayoutConstraint* constraint = [NSLayoutConstraint constraintWithItem:self.taskImage
-//                                                                      attribute: NSLayoutAttributeBottom
-//                                                                      relatedBy:NSLayoutRelationEqual
-//                                                                         toItem:nil
-//                                                                      attribute:nil
-//                                                                     multiplier:1.0
-//                                                                       constant:Task_IMAGE_HEIGHT];
-//        
-//        [self.contentView addConstraint:constraint];
-        
+        // Initialization code        
     }
     return self;
 }

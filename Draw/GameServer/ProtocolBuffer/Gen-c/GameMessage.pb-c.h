@@ -17,6 +17,7 @@ PROTOBUF_C_BEGIN_DECLS
 #include "Photo.pb-c.h"
 #include "Sing.pb-c.h"
 #include "Group.pb-c.h"
+#include "Tutorial.pb-c.h"
 
 typedef struct _Game__GetRoomsRequest Game__GetRoomsRequest;
 typedef struct _Game__GetRoomsResponse Game__GetRoomsResponse;
@@ -944,10 +945,13 @@ struct  _Game__DataQueryResponse
   char *url;
   size_t n_grouprole;
   Game__PBGroupUserRole **grouprole;
+  Game__PBUserTutorial *tutorial;
+  size_t n_tutorials;
+  Game__PBUserTutorial **tutorials;
 };
 #define GAME__DATA_QUERY_RESPONSE__INIT \
  { PROTOBUF_C_MESSAGE_INIT (&game__data_query_response__descriptor) \
-    , 0, 0,0, 0,0, 0,NULL, 0,NULL, 0,NULL, 0,NULL, 0,NULL, NULL, 0,NULL, 0,NULL, 0,NULL, NULL, 0,NULL, 0,NULL, 0,NULL, NULL, NULL, 0,NULL, 0,NULL, NULL, 0,0, NULL, 0,NULL, 0,NULL, NULL, NULL, 0,NULL, NULL, 0,NULL, NULL, 0,NULL, 0,NULL, 0,NULL, 0,NULL, NULL, 0,NULL }
+    , 0, 0,0, 0,0, 0,NULL, 0,NULL, 0,NULL, 0,NULL, 0,NULL, NULL, 0,NULL, 0,NULL, 0,NULL, NULL, 0,NULL, 0,NULL, 0,NULL, NULL, NULL, 0,NULL, 0,NULL, NULL, 0,0, NULL, 0,NULL, 0,NULL, NULL, NULL, 0,NULL, NULL, 0,NULL, NULL, 0,NULL, 0,NULL, 0,NULL, 0,NULL, NULL, 0,NULL, NULL, 0,NULL }
 
 
 /* Game__GetRoomsRequest methods */

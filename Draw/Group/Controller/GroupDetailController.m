@@ -290,13 +290,28 @@ typedef enum{
     
 }
 
+- (BOOL)canDismiss:(NSArray*)list
+{
+    NSString* myUserId = [[UserManager defaultManager] userId];
+    for (PBGroupUsersByTitle* groups in list){
+        for (PBGameUser* user in groups.usersList){
+            if ([user.userId length] > 0 && [user.userId isEqualToString:myUserId] == NO){
+                // exist one user who is not the same as current user
+                return NO;
+            }
+        }
+    }
+    
+    return YES;
+}
+
 - (void)dismissGroup
 {
-    int memberCount = [[[GroupManager defaultManager] tempMemberList] count];
+    BOOL canDismiss = [self canDismiss:[[GroupManager defaultManager] tempMemberList]];
     int guestCount = self.group.guestSize;
-    PPDebug(@"group fan count = %d, guest count = %d", memberCount, guestCount);
+    PPDebug(@"group guest count = %d", guestCount);
     
-    if (memberCount > 1 || guestCount > 0){
+    if (canDismiss == NO || guestCount > 0){
         POSTMSG2(NSLS(@"kCannotDismissGroupWhileHavingMember"), 3);
         return;
     }
