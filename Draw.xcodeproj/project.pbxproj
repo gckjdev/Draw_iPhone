@@ -6247,6 +6247,10 @@
 		D8A270A0196FD432006DDF20 /* lock_new.png in Resources */ = {isa = PBXBuildFile; fileRef = D8A2709E196FD432006DDF20 /* lock_new.png */; };
 		D8A270A1196FD432006DDF20 /* lock_new.png in Resources */ = {isa = PBXBuildFile; fileRef = D8A2709E196FD432006DDF20 /* lock_new.png */; };
 		D8A270A2196FD432006DDF20 /* lock_new.png in Resources */ = {isa = PBXBuildFile; fileRef = D8A2709E196FD432006DDF20 /* lock_new.png */; };
+		D8A270A4196FE1E6006DDF20 /* lock_new2.png in Resources */ = {isa = PBXBuildFile; fileRef = D8A270A3196FE1E6006DDF20 /* lock_new2.png */; };
+		D8A270A5196FE1E6006DDF20 /* lock_new2.png in Resources */ = {isa = PBXBuildFile; fileRef = D8A270A3196FE1E6006DDF20 /* lock_new2.png */; };
+		D8A270A6196FE1E6006DDF20 /* lock_new2.png in Resources */ = {isa = PBXBuildFile; fileRef = D8A270A3196FE1E6006DDF20 /* lock_new2.png */; };
+		D8A270A7196FE1E6006DDF20 /* lock_new2.png in Resources */ = {isa = PBXBuildFile; fileRef = D8A270A3196FE1E6006DDF20 /* lock_new2.png */; };
 		D8C669D6196CE42F0002B975 /* TutorialInfoCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = D8C669D5196CE42F0002B975 /* TutorialInfoCell~ipad.xib */; };
 		D8C669D7196CE42F0002B975 /* TutorialInfoCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = D8C669D5196CE42F0002B975 /* TutorialInfoCell~ipad.xib */; };
 		D8C669D8196CE42F0002B975 /* TutorialInfoCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = D8C669D5196CE42F0002B975 /* TutorialInfoCell~ipad.xib */; };
@@ -10549,6 +10553,7 @@
 		D8A27098196FC07F006DDF20 /* GameConstants.pb-c.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = "GameConstants.pb-c.c"; sourceTree = "<group>"; };
 		D8A27099196FC07F006DDF20 /* GameConstants.pb-c.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "GameConstants.pb-c.h"; sourceTree = "<group>"; };
 		D8A2709E196FD432006DDF20 /* lock_new.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = lock_new.png; sourceTree = "<group>"; };
+		D8A270A3196FE1E6006DDF20 /* lock_new2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = lock_new2.png; sourceTree = "<group>"; };
 		D8C669D5196CE42F0002B975 /* TutorialInfoCell~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "TutorialInfoCell~ipad.xib"; sourceTree = "<group>"; };
 		D8C669E4196D3D1E0002B975 /* lock2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = lock2.png; sourceTree = "<group>"; };
 		D8C784B1196A4E2600323712 /* UserTutorialMainCell~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "UserTutorialMainCell~ipad.xib"; sourceTree = "<group>"; };
@@ -15044,6 +15049,7 @@
 		CA2A28A7195C120600A97478 /* Resource */ = {
 			isa = PBXGroup;
 			children = (
+				D8A270A3196FE1E6006DDF20 /* lock_new2.png */,
 				D8A2709E196FD432006DDF20 /* lock_new.png */,
 				D8C669E4196D3D1E0002B975 /* lock2.png */,
 				D82540F219650A1C00C876C3 /* tutorial_core_version.txt */,
@@ -18980,6 +18986,7 @@
 				A4D8FC2317DB08180085061F /* user_detail_message_bg@2x.png in Resources */,
 				A4D8FC2717DB08180085061F /* user_detail_more@2x.png in Resources */,
 				A4D8FC2B17DB08180085061F /* user_detail_pull_down@2x.png in Resources */,
+				D8A270A6196FE1E6006DDF20 /* lock_new2.png in Resources */,
 				A4D8FC2F17DB08180085061F /* user_detail_qq@2x.png in Resources */,
 				A4D8FC3317DB08180085061F /* user_detail_round_avatar_bg@2x.png in Resources */,
 				A4D8FC3717DB08180085061F /* user_detail_round_avatar_bg@2x.png_bak1.png in Resources */,
@@ -20267,6 +20274,7 @@
 				EA8EF66117E55D3B003F1AF8 /* draw_home_user_photo@2x.png in Resources */,
 				EA8EF67817E6AB9F003F1AF8 /* draw_home_bottom_bg@2x.png in Resources */,
 				EA5FE1C617E827EF0099754C /* common_home_join_line@2x.png in Resources */,
+				D8A270A5196FE1E6006DDF20 /* lock_new2.png in Resources */,
 				EA5FE1CB17E843F60099754C /* common_home_bullitin@2x.png in Resources */,
 				EA5FE1D017E949C10099754C /* draw_home_avatar_bg@2x.png in Resources */,
 				CADB1EF417EDDACA0048698F /* little_gee_icon_76.png in Resources */,
@@ -21148,6 +21156,7 @@
 				CACD6ABD18E03A29003F97C0 /* ShareSDKLocalizable.strings in Resources */,
 				A4D8FE7317DB089C0085061F /* draw_up_panel_copy_paint_btn@2x.png in Resources */,
 				A4D8FE7717DB089C0085061F /* draw_up_panel_draw_to_btn@2x.png in Resources */,
+				D8A270A4196FE1E6006DDF20 /* lock_new2.png in Resources */,
 				A4D8FE7B17DB089C0085061F /* draw_up_panel_edit_btn@2x.png in Resources */,
 				A4D8FE7F17DB089C0085061F /* draw_up_panel_help_btn_@2x.png in Resources */,
 				A4D8FE8317DB089C0085061F /* draw_up_panel_page_bg_btn@2x.png in Resources */,
@@ -22358,6 +22367,7 @@
 				CA9AAFE318321621002DBAA5 /* sing_voice@2x.png in Resources */,
 				CA9AAFE718321621002DBAA5 /* candidate_bg@2x.png in Resources */,
 				CA9AAFEB18321621002DBAA5 /* category_bg@2x.png in Resources */,
+				D8A270A7196FE1E6006DDF20 /* lock_new2.png in Resources */,
 				CA9AAFEF18321621002DBAA5 /* category_seperator@2x.png in Resources */,
 				CA9AAFF318321621002DBAA5 /* change_song@2x.png in Resources */,
 				CA9AAFF718321621002DBAA5 /* custom_song@2x.png in Resources */,

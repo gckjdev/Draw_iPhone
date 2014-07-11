@@ -62,10 +62,20 @@ static UserTutorialService* _defaultService;
 }
 //set device info
 - (void)setDeviceInfo:(NSMutableDictionary*)para{
-    PPDebug(@"<setDeviceInfo>");
-    [para setObject:[DeviceDetection deviceOS] forKey:PARA_DEVICEOS];
-    [para setObject:[UIDevice currentDevice].model forKey:PARA_DEVICEMODEL];
-    [para setObject:[UIDevice currentDevice].model forKey:PARA_DEVICETYPE];
+    NSString * deviceOs = [DeviceDetection deviceOS];
+    NSString * deviceModel = [UIDevice currentDevice].model;
+    NSInteger deviceType = DEVICE_TYPE_IOS;
+    
+    if (deviceOs){
+        [para setObject:deviceOs forKey:PARA_DEVICEOS];
+    }
+    
+    if (deviceModel){
+        [para setObject:deviceModel forKey:PARA_DEVICEMODEL];
+    }
+    
+    [para setObject:@(deviceType) forKey:PARA_DEVICETYPE];
+    PPDebug(@"<setDeviceInfo> para=%@", [para description]);
 }
 
 //用户学习某个教程的信息到服务器
