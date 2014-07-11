@@ -6239,6 +6239,10 @@
 		D89191FC196316C2006B616A /* StageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D89191FA196316C2006B616A /* StageCell.xib */; };
 		D89191FD196316C2006B616A /* StageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D89191FA196316C2006B616A /* StageCell.xib */; };
 		D89191FE196316C2006B616A /* StageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D89191FA196316C2006B616A /* StageCell.xib */; };
+		D8A2709A196FC07F006DDF20 /* GameConstants.pb-c.c in Sources */ = {isa = PBXBuildFile; fileRef = D8A27098196FC07F006DDF20 /* GameConstants.pb-c.c */; };
+		D8A2709B196FC07F006DDF20 /* GameConstants.pb-c.c in Sources */ = {isa = PBXBuildFile; fileRef = D8A27098196FC07F006DDF20 /* GameConstants.pb-c.c */; };
+		D8A2709C196FC07F006DDF20 /* GameConstants.pb-c.c in Sources */ = {isa = PBXBuildFile; fileRef = D8A27098196FC07F006DDF20 /* GameConstants.pb-c.c */; };
+		D8A2709D196FC07F006DDF20 /* GameConstants.pb-c.c in Sources */ = {isa = PBXBuildFile; fileRef = D8A27098196FC07F006DDF20 /* GameConstants.pb-c.c */; };
 		D8C669D6196CE42F0002B975 /* TutorialInfoCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = D8C669D5196CE42F0002B975 /* TutorialInfoCell~ipad.xib */; };
 		D8C669D7196CE42F0002B975 /* TutorialInfoCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = D8C669D5196CE42F0002B975 /* TutorialInfoCell~ipad.xib */; };
 		D8C669D8196CE42F0002B975 /* TutorialInfoCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = D8C669D5196CE42F0002B975 /* TutorialInfoCell~ipad.xib */; };
@@ -10538,6 +10542,8 @@
 		D89191EF1963163B006B616A /* StageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StageCell.h; sourceTree = "<group>"; };
 		D89191F01963163B006B616A /* StageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StageCell.m; sourceTree = "<group>"; };
 		D89191FA196316C2006B616A /* StageCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = StageCell.xib; sourceTree = "<group>"; };
+		D8A27098196FC07F006DDF20 /* GameConstants.pb-c.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = "GameConstants.pb-c.c"; sourceTree = "<group>"; };
+		D8A27099196FC07F006DDF20 /* GameConstants.pb-c.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "GameConstants.pb-c.h"; sourceTree = "<group>"; };
 		D8C669D5196CE42F0002B975 /* TutorialInfoCell~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "TutorialInfoCell~ipad.xib"; sourceTree = "<group>"; };
 		D8C669E4196D3D1E0002B975 /* lock2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = lock2.png; sourceTree = "<group>"; };
 		D8C784B1196A4E2600323712 /* UserTutorialMainCell~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "UserTutorialMainCell~ipad.xib"; sourceTree = "<group>"; };
@@ -12720,6 +12726,8 @@
 		C20030A7172F9E1D00FD6AE1 /* Gen-c */ = {
 			isa = PBXGroup;
 			children = (
+				D8A27098196FC07F006DDF20 /* GameConstants.pb-c.c */,
+				D8A27099196FC07F006DDF20 /* GameConstants.pb-c.h */,
 				CA62C6D51756FB1800C9EF56 /* BBS.pb-c.c */,
 				CA62C6D61756FB1A00C9EF56 /* Config.pb-c.c */,
 				CA62C6D81756FB2300C9EF56 /* Draw.pb-c.c */,
@@ -22977,6 +22985,7 @@
 				A461B320174CBAA70088B061 /* DashPen.m in Sources */,
 				A461B321174CBAA70088B061 /* BlurPen.m in Sources */,
 				A461B322174CBAA70088B061 /* MarkPen.m in Sources */,
+				D8A2709C196FC07F006DDF20 /* GameConstants.pb-c.c in Sources */,
 				A461B323174CBAA70088B061 /* GameItemService.m in Sources */,
 				A461B324174CBAA70088B061 /* GameItem.m in Sources */,
 				A461B325174CBAA70088B061 /* GameItemManager.m in Sources */,
@@ -23403,6 +23412,7 @@
 				C28A997D1738F04B007A819F /* ReviewRequest.m in Sources */,
 				C28A997E1738F04B007A819F /* SearchHistoryManager.m in Sources */,
 				C28A997F1738F04B007A819F /* UIBackgroundView.m in Sources */,
+				D8A2709B196FC07F006DDF20 /* GameConstants.pb-c.c in Sources */,
 				C28A99801738F04B007A819F /* UICustomeBackGroundView.m in Sources */,
 				C28A99811738F04B007A819F /* UIBadgeView.m in Sources */,
 				C28A99821738F04B007A819F /* UIHideButton.m in Sources */,
@@ -24243,6 +24253,7 @@
 				CA103EB91509A56200F60C03 /* ReviewRequest.m in Sources */,
 				CA103EBA1509A56200F60C03 /* SearchHistoryManager.m in Sources */,
 				CA103EBB1509A56200F60C03 /* UIBackgroundView.m in Sources */,
+				D8A2709A196FC07F006DDF20 /* GameConstants.pb-c.c in Sources */,
 				CA103EBC1509A56200F60C03 /* UICustomeBackGroundView.m in Sources */,
 				CA103EBD1509A56200F60C03 /* UIBadgeView.m in Sources */,
 				CA103EC61509A56200F60C03 /* UIHideButton.m in Sources */,
@@ -25447,6 +25458,7 @@
 				EA411A0F176066F500DA72D0 /* DrawGameJumpHandler.m in Sources */,
 				CACD6CC518E03BCD003F97C0 /* NSString+SBJSON.m in Sources */,
 				EA411A11176066F500DA72D0 /* PPStack.m in Sources */,
+				D8A2709D196FC07F006DDF20 /* GameConstants.pb-c.c in Sources */,
 				EA411A13176066F500DA72D0 /* CustomActionSheet.m in Sources */,
 				EA411A14176066F500DA72D0 /* UIColor+GetHSB.m in Sources */,
 				EA411A15176066F500DA72D0 /* ILColorPickerView.m in Sources */,
