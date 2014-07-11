@@ -17709,8 +17709,8 @@ static GameMessage* defaultGameMessageInstance = nil;
 @property (retain) NSMutableArray* mutableBadgesList;
 @property (retain) NSString* url;
 @property (retain) NSMutableArray* mutableGroupRoleList;
-@property (retain) PBUserTutorial* tutorial;
-@property (retain) NSMutableArray* mutableTutorialsList;
+@property (retain) PBUserTutorial* userTutorial;
+@property (retain) NSMutableArray* mutableUserTutorialsList;
 @end
 
 @implementation DataQueryResponse
@@ -17842,14 +17842,14 @@ static GameMessage* defaultGameMessageInstance = nil;
 }
 @synthesize url;
 @synthesize mutableGroupRoleList;
-- (BOOL) hasTutorial {
-  return !!hasTutorial_;
+- (BOOL) hasUserTutorial {
+  return !!hasUserTutorial_;
 }
-- (void) setHasTutorial:(BOOL) value {
-  hasTutorial_ = !!value;
+- (void) setHasUserTutorial:(BOOL) value {
+  hasUserTutorial_ = !!value;
 }
-@synthesize tutorial;
-@synthesize mutableTutorialsList;
+@synthesize userTutorial;
+@synthesize mutableUserTutorialsList;
 - (void) dealloc {
   self.mutableDrawDataList = nil;
   self.mutableMessageList = nil;
@@ -17884,8 +17884,8 @@ static GameMessage* defaultGameMessageInstance = nil;
   self.mutableBadgesList = nil;
   self.url = nil;
   self.mutableGroupRoleList = nil;
-  self.tutorial = nil;
-  self.mutableTutorialsList = nil;
+  self.userTutorial = nil;
+  self.mutableUserTutorialsList = nil;
   [super dealloc];
 }
 - (id) init {
@@ -17905,7 +17905,7 @@ static GameMessage* defaultGameMessageInstance = nil;
     self.guessContest = [PBGuessContest defaultInstance];
     self.group = [PBGroup defaultInstance];
     self.url = @"";
-    self.tutorial = [PBUserTutorial defaultInstance];
+    self.userTutorial = [PBUserTutorial defaultInstance];
   }
   return self;
 }
@@ -18075,11 +18075,11 @@ static DataQueryResponse* defaultDataQueryResponseInstance = nil;
   id value = [mutableGroupRoleList objectAtIndex:index];
   return value;
 }
-- (NSArray*) tutorialsList {
-  return mutableTutorialsList;
+- (NSArray*) userTutorialsList {
+  return mutableUserTutorialsList;
 }
-- (PBUserTutorial*) tutorialsAtIndex:(int32_t) index {
-  id value = [mutableTutorialsList objectAtIndex:index];
+- (PBUserTutorial*) userTutorialsAtIndex:(int32_t) index {
+  id value = [mutableUserTutorialsList objectAtIndex:index];
   return value;
 }
 - (BOOL) isInitialized {
@@ -18241,12 +18241,12 @@ static DataQueryResponse* defaultDataQueryResponseInstance = nil;
       return NO;
     }
   }
-  if (self.hasTutorial) {
-    if (!self.tutorial.isInitialized) {
+  if (self.hasUserTutorial) {
+    if (!self.userTutorial.isInitialized) {
       return NO;
     }
   }
-  for (PBUserTutorial* element in self.tutorialsList) {
+  for (PBUserTutorial* element in self.userTutorialsList) {
     if (!element.isInitialized) {
       return NO;
     }
@@ -18365,10 +18365,10 @@ static DataQueryResponse* defaultDataQueryResponseInstance = nil;
   for (PBGroupUserRole* element in self.groupRoleList) {
     [output writeMessage:157 value:element];
   }
-  if (self.hasTutorial) {
-    [output writeMessage:160 value:self.tutorial];
+  if (self.hasUserTutorial) {
+    [output writeMessage:160 value:self.userTutorial];
   }
-  for (PBUserTutorial* element in self.tutorialsList) {
+  for (PBUserTutorial* element in self.userTutorialsList) {
     [output writeMessage:161 value:element];
   }
   [self.unknownFields writeToCodedOutputStream:output];
@@ -18496,10 +18496,10 @@ static DataQueryResponse* defaultDataQueryResponseInstance = nil;
   for (PBGroupUserRole* element in self.groupRoleList) {
     size += computeMessageSize(157, element);
   }
-  if (self.hasTutorial) {
-    size += computeMessageSize(160, self.tutorial);
+  if (self.hasUserTutorial) {
+    size += computeMessageSize(160, self.userTutorial);
   }
-  for (PBUserTutorial* element in self.tutorialsList) {
+  for (PBUserTutorial* element in self.userTutorialsList) {
     size += computeMessageSize(161, element);
   }
   size += self.unknownFields.serializedSize;
@@ -18754,14 +18754,14 @@ static DataQueryResponse* defaultDataQueryResponseInstance = nil;
     }
     [result.mutableGroupRoleList addObjectsFromArray:other.mutableGroupRoleList];
   }
-  if (other.hasTutorial) {
-    [self mergeTutorial:other.tutorial];
+  if (other.hasUserTutorial) {
+    [self mergeUserTutorial:other.userTutorial];
   }
-  if (other.mutableTutorialsList.count > 0) {
-    if (result.mutableTutorialsList == nil) {
-      result.mutableTutorialsList = [NSMutableArray array];
+  if (other.mutableUserTutorialsList.count > 0) {
+    if (result.mutableUserTutorialsList == nil) {
+      result.mutableUserTutorialsList = [NSMutableArray array];
     }
-    [result.mutableTutorialsList addObjectsFromArray:other.mutableTutorialsList];
+    [result.mutableUserTutorialsList addObjectsFromArray:other.mutableUserTutorialsList];
   }
   [self mergeUnknownFields:other.unknownFields];
   return self;
@@ -19026,17 +19026,17 @@ static DataQueryResponse* defaultDataQueryResponseInstance = nil;
       }
       case 1282: {
         PBUserTutorial_Builder* subBuilder = [PBUserTutorial builder];
-        if (self.hasTutorial) {
-          [subBuilder mergeFrom:self.tutorial];
+        if (self.hasUserTutorial) {
+          [subBuilder mergeFrom:self.userTutorial];
         }
         [input readMessage:subBuilder extensionRegistry:extensionRegistry];
-        [self setTutorial:[subBuilder buildPartial]];
+        [self setUserTutorial:[subBuilder buildPartial]];
         break;
       }
       case 1290: {
         PBUserTutorial_Builder* subBuilder = [PBUserTutorial builder];
         [input readMessage:subBuilder extensionRegistry:extensionRegistry];
-        [self addTutorials:[subBuilder buildPartial]];
+        [self addUserTutorials:[subBuilder buildPartial]];
         break;
       }
     }
@@ -20062,63 +20062,63 @@ static DataQueryResponse* defaultDataQueryResponseInstance = nil;
   [result.mutableGroupRoleList addObject:value];
   return self;
 }
-- (BOOL) hasTutorial {
-  return result.hasTutorial;
+- (BOOL) hasUserTutorial {
+  return result.hasUserTutorial;
 }
-- (PBUserTutorial*) tutorial {
-  return result.tutorial;
+- (PBUserTutorial*) userTutorial {
+  return result.userTutorial;
 }
-- (DataQueryResponse_Builder*) setTutorial:(PBUserTutorial*) value {
-  result.hasTutorial = YES;
-  result.tutorial = value;
+- (DataQueryResponse_Builder*) setUserTutorial:(PBUserTutorial*) value {
+  result.hasUserTutorial = YES;
+  result.userTutorial = value;
   return self;
 }
-- (DataQueryResponse_Builder*) setTutorialBuilder:(PBUserTutorial_Builder*) builderForValue {
-  return [self setTutorial:[builderForValue build]];
+- (DataQueryResponse_Builder*) setUserTutorialBuilder:(PBUserTutorial_Builder*) builderForValue {
+  return [self setUserTutorial:[builderForValue build]];
 }
-- (DataQueryResponse_Builder*) mergeTutorial:(PBUserTutorial*) value {
-  if (result.hasTutorial &&
-      result.tutorial != [PBUserTutorial defaultInstance]) {
-    result.tutorial =
-      [[[PBUserTutorial builderWithPrototype:result.tutorial] mergeFrom:value] buildPartial];
+- (DataQueryResponse_Builder*) mergeUserTutorial:(PBUserTutorial*) value {
+  if (result.hasUserTutorial &&
+      result.userTutorial != [PBUserTutorial defaultInstance]) {
+    result.userTutorial =
+      [[[PBUserTutorial builderWithPrototype:result.userTutorial] mergeFrom:value] buildPartial];
   } else {
-    result.tutorial = value;
+    result.userTutorial = value;
   }
-  result.hasTutorial = YES;
+  result.hasUserTutorial = YES;
   return self;
 }
-- (DataQueryResponse_Builder*) clearTutorial {
-  result.hasTutorial = NO;
-  result.tutorial = [PBUserTutorial defaultInstance];
+- (DataQueryResponse_Builder*) clearUserTutorial {
+  result.hasUserTutorial = NO;
+  result.userTutorial = [PBUserTutorial defaultInstance];
   return self;
 }
-- (NSArray*) tutorialsList {
-  if (result.mutableTutorialsList == nil) { return [NSArray array]; }
-  return result.mutableTutorialsList;
+- (NSArray*) userTutorialsList {
+  if (result.mutableUserTutorialsList == nil) { return [NSArray array]; }
+  return result.mutableUserTutorialsList;
 }
-- (PBUserTutorial*) tutorialsAtIndex:(int32_t) index {
-  return [result tutorialsAtIndex:index];
+- (PBUserTutorial*) userTutorialsAtIndex:(int32_t) index {
+  return [result userTutorialsAtIndex:index];
 }
-- (DataQueryResponse_Builder*) replaceTutorialsAtIndex:(int32_t) index with:(PBUserTutorial*) value {
-  [result.mutableTutorialsList replaceObjectAtIndex:index withObject:value];
+- (DataQueryResponse_Builder*) replaceUserTutorialsAtIndex:(int32_t) index with:(PBUserTutorial*) value {
+  [result.mutableUserTutorialsList replaceObjectAtIndex:index withObject:value];
   return self;
 }
-- (DataQueryResponse_Builder*) addAllTutorials:(NSArray*) values {
-  if (result.mutableTutorialsList == nil) {
-    result.mutableTutorialsList = [NSMutableArray array];
+- (DataQueryResponse_Builder*) addAllUserTutorials:(NSArray*) values {
+  if (result.mutableUserTutorialsList == nil) {
+    result.mutableUserTutorialsList = [NSMutableArray array];
   }
-  [result.mutableTutorialsList addObjectsFromArray:values];
+  [result.mutableUserTutorialsList addObjectsFromArray:values];
   return self;
 }
-- (DataQueryResponse_Builder*) clearTutorialsList {
-  result.mutableTutorialsList = nil;
+- (DataQueryResponse_Builder*) clearUserTutorialsList {
+  result.mutableUserTutorialsList = nil;
   return self;
 }
-- (DataQueryResponse_Builder*) addTutorials:(PBUserTutorial*) value {
-  if (result.mutableTutorialsList == nil) {
-    result.mutableTutorialsList = [NSMutableArray array];
+- (DataQueryResponse_Builder*) addUserTutorials:(PBUserTutorial*) value {
+  if (result.mutableUserTutorialsList == nil) {
+    result.mutableUserTutorialsList = [NSMutableArray array];
   }
-  [result.mutableTutorialsList addObject:value];
+  [result.mutableUserTutorialsList addObject:value];
   return self;
 }
 @end

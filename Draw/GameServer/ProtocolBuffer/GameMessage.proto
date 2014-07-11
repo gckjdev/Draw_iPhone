@@ -530,8 +530,8 @@ message DataQueryResponse {
   repeated PBGroupUserRole groupRole = 157;
   
   //for tutorial
-  optional PBUserTutorial tutorial = 160;
-  repeated PBUserTutorial tutorials = 161;
+  optional PBUserTutorial userTutorial = 160;
+  repeated PBUserTutorial userTutorials = 161;
 
 }
 
