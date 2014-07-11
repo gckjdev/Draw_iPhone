@@ -6835,24 +6835,24 @@ static const ProtobufCFieldDescriptor game__data_query_response__field_descripto
     0,NULL,NULL    /* reserved1,reserved2, etc */
   },
   {
-    "tutorial",
+    "userTutorial",
     160,
     PROTOBUF_C_LABEL_OPTIONAL,
     PROTOBUF_C_TYPE_MESSAGE,
     0,   /* quantifier_offset */
-    PROTOBUF_C_OFFSETOF(Game__DataQueryResponse, tutorial),
+    PROTOBUF_C_OFFSETOF(Game__DataQueryResponse, usertutorial),
     &game__pbuser_tutorial__descriptor,
     NULL,
     0,            /* packed */
     0,NULL,NULL    /* reserved1,reserved2, etc */
   },
   {
-    "tutorials",
+    "userTutorials",
     161,
     PROTOBUF_C_LABEL_REPEATED,
     PROTOBUF_C_TYPE_MESSAGE,
-    PROTOBUF_C_OFFSETOF(Game__DataQueryResponse, n_tutorials),
-    PROTOBUF_C_OFFSETOF(Game__DataQueryResponse, tutorials),
+    PROTOBUF_C_OFFSETOF(Game__DataQueryResponse, n_usertutorials),
+    PROTOBUF_C_OFFSETOF(Game__DataQueryResponse, usertutorials),
     &game__pbuser_tutorial__descriptor,
     NULL,
     0,            /* packed */
@@ -6888,14 +6888,14 @@ static const unsigned game__data_query_response__field_indices_by_name[] = {
   0,   /* field[0] = resultCode */
   25,   /* field[25] = songs */
   1,   /* field[1] = totalCount */
-  37,   /* field[37] = tutorial */
-  38,   /* field[38] = tutorials */
   35,   /* field[35] = url */
   20,   /* field[20] = user */
   19,   /* field[19] = userList */
   17,   /* field[17] = userPhoto */
   18,   /* field[18] = userPhotoList */
   21,   /* field[21] = userRelation */
+  37,   /* field[37] = userTutorial */
+  38,   /* field[38] = userTutorials */
   2,   /* field[2] = version */
   16,   /* field[16] = wall */
   15,   /* field[15] = wallList */

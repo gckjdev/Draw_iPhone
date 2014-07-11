@@ -945,9 +945,9 @@ struct  _Game__DataQueryResponse
   char *url;
   size_t n_grouprole;
   Game__PBGroupUserRole **grouprole;
-  Game__PBUserTutorial *tutorial;
-  size_t n_tutorials;
-  Game__PBUserTutorial **tutorials;
+  Game__PBUserTutorial *usertutorial;
+  size_t n_usertutorials;
+  Game__PBUserTutorial **usertutorials;
 };
 #define GAME__DATA_QUERY_RESPONSE__INIT \
  { PROTOBUF_C_MESSAGE_INIT (&game__data_query_response__descriptor) \
