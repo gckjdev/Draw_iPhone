@@ -21,6 +21,7 @@
                 <outlet property="paintingViewButton" destination="mrA-qa-UIz" id="una-aG-bmH"/>
                 <outlet property="topAnnounceButton" destination="eWd-ih-RBa" id="mmU-Ke-Oko"/>
                 <outlet property="topAnnounceView" destination="VZ6-Vt-6Fm" id="Yxb-zO-Loj"/>
+                <outlet property="topNameButton" destination="Jj4-dJ-jmS" id="KOB-3a-rDL"/>
                 <outlet property="topNameLable" destination="vKM-xx-Gxz" id="dnc-SC-WLK"/>
                 <outlet property="topView" destination="Sdz-be-ymP" id="hnA-5Y-717"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
@@ -38,11 +39,8 @@
                         <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="jQS-qv-H8k" userLabel="Index Button">
                             <rect key="frame" x="107" y="-3" width="55" height="55"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <constraints>
-                                <constraint firstAttribute="width" constant="70" id="6oa-9E-OGd"/>
-                            </constraints>
                             <fontDescription key="fontDescription" style="UICTFontTextStyleCaption1"/>
-                            <state key="normal" title="首页" image="zhuye.png">
+                            <state key="normal" title="动态" image="dongtai.png">
                                 <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
                             <connections>
@@ -70,7 +68,7 @@
                                 <constraint firstAttribute="width" constant="55" id="tav-WD-HhQ"/>
                             </constraints>
                             <fontDescription key="fontDescription" style="UICTFontTextStyleCaption1"/>
-                            <state key="normal" title="消息" image="dongtai.png">
+                            <state key="normal" title="聊天" image="xiaoxi.png">
                                 <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
@@ -331,6 +329,9 @@
                                 <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
+                            <connections>
+                                <action selector="goToUserDetail:" destination="-1" eventType="touchUpInside" id="w6G-DH-6sp"/>
+                            </connections>
                         </button>
                         <label hidden="YES" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vKM-xx-Gxz">
                             <rect key="frame" x="93" y="22" width="150" height="21"/>
@@ -352,6 +353,9 @@
                                     <state key="normal" image="laba.png">
                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                     </state>
+                                    <connections>
+                                        <action selector="goToAnnounce:" destination="-1" eventType="touchUpInside" id="tx2-HT-V4s"/>
+                                    </connections>
                                 </button>
                             </subviews>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
@@ -400,12 +404,19 @@
                         <constraint firstItem="N0J-Bo-dK4" firstAttribute="centerX" secondItem="6QK-jc-Xhh" secondAttribute="centerX" id="xci-Mb-MNn"/>
                     </constraints>
                 </view>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" image="neironglan yu caidanlan.png" translatesAutoresizingMaskIntoConstraints="NO" id="Hs1-gF-V6b">
+                    <rect key="frame" x="0.0" y="941" width="768" height="18"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                </imageView>
             </subviews>
             <color key="backgroundColor" red="0.94901960784313721" green="0.94901960784313721" blue="0.94901960784313721" alpha="1" colorSpace="deviceRGB"/>
             <constraints>
                 <constraint firstItem="6QK-jc-Xhh" firstAttribute="trailing" secondItem="Sdz-be-ymP" secondAttribute="trailing" id="0s2-nE-hwk"/>
+                <constraint firstItem="cos-MQ-YkX" firstAttribute="top" secondItem="Hs1-gF-V6b" secondAttribute="bottom" id="2Jn-zR-K0C"/>
                 <constraint firstAttribute="trailing" secondItem="Sdz-be-ymP" secondAttribute="trailing" id="2YB-jH-4l8"/>
                 <constraint firstItem="cos-MQ-YkX" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="959" id="9wv-9i-DCg"/>
+                <constraint firstItem="Hs1-gF-V6b" firstAttribute="top" secondItem="GTc-Sg-gSW" secondAttribute="bottom" id="A9c-pz-4Vx"/>
                 <constraint firstItem="6QK-jc-Xhh" firstAttribute="trailing" secondItem="GTc-Sg-gSW" secondAttribute="trailing" id="C5W-U5-j5E"/>
                 <constraint firstItem="GTc-Sg-gSW" firstAttribute="leading" secondItem="6QK-jc-Xhh" secondAttribute="leading" id="Dj7-ik-pT2"/>
                 <constraint firstItem="cos-MQ-YkX" firstAttribute="top" secondItem="GTc-Sg-gSW" secondAttribute="bottom" constant="26" id="FW9-zl-7pS"/>
@@ -426,13 +437,14 @@
     </objects>
     <resources>
         <image name="caogao.png" width="34" height="34"/>
-        <image name="dongtai.png" width="34" height="34"/>
+        <image name="dongtai.png" width="28" height="28"/>
         <image name="gengduo.png" width="34" height="34"/>
         <image name="huahua.png" width="80" height="76"/>
         <image name="jingcaizuopin.png" width="80" height="76"/>
         <image name="laba.png" width="24" height="24"/>
         <image name="luntan.png" width="80" height="76"/>
+        <image name="neironglan yu caidanlan.png" width="768" height="20"/>
+        <image name="xiaoxi.png" width="34" height="34"/>
         <image name="xuehuahua.png" width="80" height="76"/>
-        <image name="zhuye.png" width="34" height="34"/>
     </resources>
 </document>

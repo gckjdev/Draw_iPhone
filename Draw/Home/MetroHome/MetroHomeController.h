@@ -31,6 +31,7 @@
 @property (retain, nonatomic) IBOutlet UIButton *messageButton;
 @property (retain, nonatomic) IBOutlet UIButton *moreButton;
 @property (retain, nonatomic) IBOutlet UIButton *topNameButton;
+@property (retain, nonatomic) IBOutlet UIImageView *bottomBackground;
 
 
 - (UIView *)createShadow:(UIView *)view;

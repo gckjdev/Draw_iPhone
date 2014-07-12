@@ -34,7 +34,7 @@
 }
 
 
-#define DEFAUT_IMAGE "dialogue@2x"
+#define DEFAUT_IMAGE "xiaoguanka"
 -(void)updateStageCellInfo:(PBStage*)pbStage WithRow:(NSInteger)row{
     
     //设置stageBasicInfo

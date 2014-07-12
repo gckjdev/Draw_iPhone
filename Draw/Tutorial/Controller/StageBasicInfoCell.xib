@@ -23,7 +23,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ceE-0k-Ckl">
-                        <rect key="frame" x="60" y="3" width="60" height="53"/>
+                        <rect key="frame" x="57" y="3" width="60" height="53"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="60" id="Rdk-Oj-nyq"/>
@@ -45,11 +45,11 @@
                 <constraints>
                     <constraint firstItem="962-10-ArV" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="5" id="5jZ-RW-6RC"/>
                     <constraint firstItem="ceE-0k-Ckl" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="3" id="99w-FG-QHx"/>
-                    <constraint firstItem="ceE-0k-Ckl" firstAttribute="leading" secondItem="962-10-ArV" secondAttribute="trailing" constant="5" id="BKX-ny-DAb"/>
+                    <constraint firstItem="ceE-0k-Ckl" firstAttribute="leading" secondItem="962-10-ArV" secondAttribute="trailing" constant="2" id="BKX-ny-DAb"/>
                     <constraint firstAttribute="bottom" secondItem="xQM-VF-dCa" secondAttribute="bottom" constant="25" id="BOB-GB-Vog"/>
                     <constraint firstItem="JGt-VS-zKW" firstAttribute="leading" secondItem="xQM-VF-dCa" secondAttribute="leading" id="FRm-ZS-Z38"/>
                     <constraint firstItem="ceE-0k-Ckl" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="Hzi-do-ziN"/>
-                    <constraint firstItem="xQM-VF-dCa" firstAttribute="leading" secondItem="ceE-0k-Ckl" secondAttribute="trailing" constant="5" id="KDw-MY-it4"/>
+                    <constraint firstItem="xQM-VF-dCa" firstAttribute="leading" secondItem="ceE-0k-Ckl" secondAttribute="trailing" constant="8" id="KDw-MY-it4"/>
                     <constraint firstAttribute="trailing" secondItem="xQM-VF-dCa" secondAttribute="trailing" constant="20" id="Kex-ya-uF3"/>
                     <constraint firstItem="962-10-ArV" firstAttribute="top" secondItem="xQM-VF-dCa" secondAttribute="top" id="Lwl-G8-dXt"/>
                     <constraint firstAttribute="trailing" secondItem="JGt-VS-zKW" secondAttribute="trailing" constant="20" id="Nxg-IB-jPN"/>

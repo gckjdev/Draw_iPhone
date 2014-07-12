@@ -26,12 +26,16 @@
     return self;
 }
 
-#define BOTTOM_BUTTON_TITLE_EDGEINSETS (ISIPAD ? -47 : -34)
+#define TRENDS_BUTTON_TITLE_EDGEINSETS   (ISIPAD ? -52 : -30)
+#define DOCUMENT_BUTTON_TITLE_EDGEINSETS (ISIPAD ? -46 : -34)
+#define MESSAGE_BUTTON_TITLE_EDGEINSET   (ISIPAD ? -46 : -34)
+#define MORE_BUTTON_TITLE_EDGEINSETS     (ISIPAD ? -42 : -34)
+#define BOTTOM_BUTTON_HEIGHT (ISIPAD ? 52 : 43)
 -(void)setButtonTitleBottom{
-    [self.indexButton  setTitleEdgeInsets:UIEdgeInsetsMake(50, BOTTOM_BUTTON_TITLE_EDGEINSETS, 0, 0)];
-    [self.documentButton  setTitleEdgeInsets:UIEdgeInsetsMake(50, BOTTOM_BUTTON_TITLE_EDGEINSETS, 0, 0)];
-    [self.messageButton  setTitleEdgeInsets:UIEdgeInsetsMake(50, BOTTOM_BUTTON_TITLE_EDGEINSETS, 0, 0)];
-    [self.moreButton  setTitleEdgeInsets:UIEdgeInsetsMake(50, BOTTOM_BUTTON_TITLE_EDGEINSETS, 0, 0)];
+    [self.indexButton  setTitleEdgeInsets:UIEdgeInsetsMake(BOTTOM_BUTTON_HEIGHT, TRENDS_BUTTON_TITLE_EDGEINSETS, 0, 0)];
+    [self.documentButton  setTitleEdgeInsets:UIEdgeInsetsMake(BOTTOM_BUTTON_HEIGHT, DOCUMENT_BUTTON_TITLE_EDGEINSETS, 0, 0)];
+    [self.messageButton  setTitleEdgeInsets:UIEdgeInsetsMake(BOTTOM_BUTTON_HEIGHT, MESSAGE_BUTTON_TITLE_EDGEINSET, 0, 0)];
+    [self.moreButton  setTitleEdgeInsets:UIEdgeInsetsMake(BOTTOM_BUTTON_HEIGHT,                        MORE_BUTTON_TITLE_EDGEINSETS, 0, 0)];
     
     //title label font
 //    [self.indexButton.titleLabel setFont:AD_FONT(8, 11)];
@@ -51,9 +55,14 @@
 #define TEST_DATA_GALLERYIMAGE "http://58.215.184.18:8080/tutorial/image/GalleryImage2.jpg"
 - (void)viewDidLoad
 {
+    
+    [CommonTitleView createTitleView:self.view];
+    [[CommonTitleView titleView:self.view] setTitle:NSLS(@"kMetroMainHome")];
+    
+    
     [super viewDidLoad];
     
-//    [self setBackground];
+    [self setBackground];
         // Do any additional setup after loading the view from its nib.
     UIImage *placeHolderImage = [UIImage imageNamed:@DEFAUT_IMAGE_NAME];
     
@@ -85,6 +94,7 @@
     [_topNameButton setTitleColor:COLOR_BROWN forState:UIControlStateNormal];
     [_topNameButton.titleLabel setFont:AD_FONT(20, 15)];
     
+//    [[UINavigationBar appearance] setBarTintColor:[UIColor yellowColor]];
     
 //    //加阴影
 //    UIView *shadowView = [self createShadow:self.paintingView];
@@ -93,6 +103,7 @@
     [self goToUserDetail];
 
 }
+
 
 -(IBAction)goToLearning:(id)sender{
     UserTutorialMainController* uc = [[UserTutorialMainController alloc] init];
@@ -125,20 +136,37 @@
     return shadowView;
     
 }
-
+#define GALLERY_BACKGROUND_Y (ISIPAD ? 69:41)
 - (void)setBackground
 {
-    UIImage *bgImg = [UIImage imageNamed:@"beijing.png"];
-    UIColor *color = [[UIColor alloc] initWithPatternImage:bgImg];
+    UIImage *galleryBackground = [UIImage imageNamed:@"gonggaolan.png"];
+    UIColor *color = [[UIColor alloc] initWithPatternImage:galleryBackground];
     
-    CGRect frame = CGRectMake(0, STATUSBAR_DELTA, self.view.frame.size.width, self.view.frame.size.height - STATUSBAR_DELTA);
+    CGRect frame = CGRectMake(0, GALLERY_BACKGROUND_Y, self.galleryView.frame.size.width, self.galleryView.frame.size.height);
     UIView *bg = [[UIView alloc] initWithFrame:frame];
     [bg setBackgroundColor:color];
     [color release];
-
-    self.view.backgroundColor = [UIColor clearColor];
-    [self.view insertSubview:bg atIndex:0];
+    
+    self.galleryView.backgroundColor = [UIColor clearColor];
+    [self.topView insertSubview:bg atIndex:0];
     [bg release];
+    
+    
+    
+    
+    UIImage *bottomBackground = [UIImage imageNamed:@"neironglan yu caidanlan.png"];
+    [self.bottomBackground setBackgroundColor:[UIColor clearColor]];
+    [self.bottomBackground setImage:bottomBackground];
+//    UIColor *color2 = [[UIColor alloc] initWithPatternImage:bottomBackground];
+//    
+//    CGRect frame2 = CGRectMake(0, 10, self.bottomBackground.frame.size.width, self.bottomBackground.frame.size.height);
+//    UIView *bg2 = [[UIView alloc] initWithFrame:frame2];
+//    [bg2 setBackgroundColor:color2];
+//    [color2 release];
+//    
+//    self.bottomBackground.backgroundColor = [UIColor clearColor];
+//    [self.bottomBackground insertSubview:bg2 atIndex:0];
+//    [bg2 release];
 }
 
 #pragma -mark
@@ -231,6 +259,7 @@
     [_messageButton release];
     [_moreButton release];
     [_topNameButton release];
+    [_bottomBackground release];
     [super dealloc];
 }
 - (void)viewDidUnload {
@@ -254,6 +283,7 @@
     [self setMessageButton:nil];
     [self setMoreButton:nil];
     [self setTopNameButton:nil];
+    [self setBottomBackground:nil];
     [super viewDidUnload];
 }
 @end

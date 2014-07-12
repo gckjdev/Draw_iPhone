@@ -36,7 +36,7 @@
     // Configure the view for the selected state
 }
 
-#define DEFAUT_IMAGE "dialogue@2x" // TODO move to ShareImageManager
+#define DEFAUT_IMAGE "daguanka" 
 
 - (void)updateCellInfo:(PBTutorial*)pbTutorial
 {

@@ -276,11 +276,16 @@ NSString* GlobalGetBoardServerURL()
     
 }
 
+
+
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
 //    [DrawUtils testSpendTime];
-    
     //Enabling keyboard manager(Use this line to enable managing distance between keyboard & textField/textView).
+    
+    // 2014-07-12 chaoso add
+    [[UINavigationBar appearance] setBarTintColor:[UIColor colorWithRed:181 green:261 blue:245 alpha:1.0]];
+    
     [IQKeyBoardManager installKeyboardManager];
     [IQKeyBoardManager disableKeyboardManager];
     

@@ -33,7 +33,7 @@
 }
 
 
-#define DEFAUT_IMAGE_NAME @"dialogue@2x"    // TODO　change
+#define DEFAUT_IMAGE_NAME @"daguanka"    // TODO　change
 
 - (void)updateCellInfo:(PBUserTutorial*)ut
 {
