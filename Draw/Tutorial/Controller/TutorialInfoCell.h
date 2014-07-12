@@ -20,10 +20,10 @@
 
 
 
-
 - (void)updateCellInfo:(PBTutorial*)pbTutorial;
 
 -(IBAction)clickAddBtn:(id)sender;
 
+-(CGFloat)autoContentViewHeight;
 @end
 

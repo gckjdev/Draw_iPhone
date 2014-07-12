@@ -29,7 +29,7 @@ enum{
 
 
 @implementation TutorialInfoController
-
+@synthesize tutorialCellInfoHeight;
 + (TutorialInfoController*)enter:(PPViewController*)superViewController
                       pbTutorial:(PBTutorial*)pbTutorial
 {
@@ -42,6 +42,7 @@ enum{
 
 - (void)dealloc
 {
+
     PPRelease(_pbTutorial);
     [super dealloc];
 }
@@ -198,8 +199,6 @@ forRowAtIndexPath:(NSIndexPath *)indexPath
 
 #define SECTION_HEADER_HEIGHT (ISIPAD ? 40 : 25)
 #define SECTION_HEADER_LEADING (ISIPAD ? 20 : 10)
-
-
 //重写表头
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
     
@@ -229,7 +228,9 @@ forRowAtIndexPath:(NSIndexPath *)indexPath
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     NSInteger section = indexPath.section;
     if(section==0){
-//        return HEIGHT_FOR_ROW_IN_SECTION_ONE;
+        static NSString *CustomCellIdentifier = @"TutorialInfoCell";
+        TutorialInfoCell *cell = [tableView dequeueReusableCellWithIdentifier:CustomCellIdentifier];
+       return [cell autoContentViewHeight];
     }
     return HEIGHT_FOR_ROW;
     
