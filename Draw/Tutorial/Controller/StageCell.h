@@ -18,5 +18,6 @@
 -(void)updateStageCellInfo:(PBUserTutorial *)pbUserTutorial withRow:(NSInteger)row;
 @property (retain, nonatomic) IBOutlet UIButton *stageListStarBtn;
 @property (retain, nonatomic) IBOutlet UIImageView *stageListHiddenLockImageView;
+@property (retain, nonatomic) IBOutlet UILabel *hiddenNumberLabel;
 
 @end

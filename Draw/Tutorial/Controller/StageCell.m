@@ -34,15 +34,15 @@
 //    [[self.stageListStarBtn titleLabel] setFont:AD_FONT(24, 14)];
     
     NSArray *stageList = [[pbUserTutorial tutorial] stagesList];
-   
+    NSString* name = [[stageList objectAtIndex:row] name];
     //设置隐藏锁图片
     [self.stageListHiddenLockImageView setImage:[UIImage imageNamed:@DEFAUT_LOCK_IMAGE]];
-
+    [self.cellName setText:[NSString stringWithFormat:@"%d.%@",row+1,name]];
+    [self.hiddenNumberLabel setText:[NSString stringWithFormat:@"%d",row+1]];
     //闯关的关卡数
     if(row<= pbUserTutorial.currentStageIndex){
-        
         self.stageListHiddenLockImageView.hidden = YES;
-        
+        self.hiddenNumberLabel.hidden = YES;
     }
     //数组越界保护
     if(stageList==nil || row >= [stageList count]){
@@ -60,9 +60,6 @@
             placeholderImage:placeHolderImage
             showLoading:YES
             animated:YES];
-    
-    //设置关卡名字
-    self.cellName.text = [[stageList objectAtIndex:row] cnName];
 }
 
 - (void)dealloc {
@@ -70,6 +67,7 @@
         [_cellName release];
         [_stageListStarBtn release];
         [_stageListHiddenLockImageView release];
+    [_hiddenNumberLabel release];
         [super dealloc];
 }
 @end

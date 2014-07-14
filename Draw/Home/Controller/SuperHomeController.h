@@ -48,7 +48,7 @@
 
 + (NSDictionary*)defaultMenuTitleDictionary;
 + (NSDictionary*)defaultMenuImageDictionary;
-
++ (NSDictionary*)defaultMenuSelectorDictionary;
 
 // the follow is to be implemented by sub class
 

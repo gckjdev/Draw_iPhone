@@ -1083,6 +1083,7 @@
 "kI" = "我";
 "kSendMeFlower" = "给我赠送了一朵鲜花！";
 "kThrowMeTomato" = "给我丢了个番茄！";
+
 "kCommentMyDraw" = "评论我的画。";
 "kCommentMyOpus" = "评论我的作品。";
 
@@ -2780,3 +2781,5 @@
 "kTutorialCategoryTopLevel" = "高级";
 
 "kMetroMainHome" = "首页";
+
+"kMoreView" = "更多小吉";

@@ -44,6 +44,7 @@
     [[CommonTitleView titleView:self.view] setTitle:title];
     [[CommonTitleView titleView:self.view] setTarget:self];
     [[CommonTitleView titleView:self.view] setBackButtonSelector:@selector(clickBack:)];
+    [[CommonTitleView titleView:self.view] setRightButtonSelector:@selector(clickOkBlock)];
     
     //流布局
     UICollectionViewFlowLayout *flowLayout = [[[UICollectionViewFlowLayout alloc] init] autorelease];

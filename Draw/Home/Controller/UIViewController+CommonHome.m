@@ -45,6 +45,9 @@
 #import "NewHotController.h"
 #import "MetroHomeController.h"
 #import "ShareController.h"
+#import "OnlineGuessDrawController.h"
+#import "GuessModesController.h"
+#import "DrawRoomListController.h"
 
 @implementation UIViewController (CommonHome)
 
@@ -241,6 +244,18 @@
     [[AnalyticsManager sharedAnalyticsManager] reportClickHomeMenu:HOME_ACTION_FREE_COINS];
     FreeIngotController* fc = [[[FreeIngotController alloc] init] autorelease];
     [self.navigationController pushViewController:fc animated:YES];
+}
+
+-(void)enterGuess{
+    
+    GuessModesController *vc =[[[GuessModesController alloc] init] autorelease];
+    [self.navigationController pushViewController:vc animated:YES];
+    
+}
+-(void)enterOnlineDraw{
+    [[AnalyticsManager sharedAnalyticsManager] reportClickHomeMenu:HOME_ACTION_ONLINE];
+    UIViewController* rc = [[[DrawRoomListController alloc] init] autorelease];
+    [self.navigationController pushViewController:rc animated:YES];
 }
 
 - (void)askShake

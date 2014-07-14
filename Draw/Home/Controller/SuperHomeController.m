@@ -48,6 +48,7 @@
 
 static NSDictionary* DEFAULT_MENU_TITLE_DICT = nil;
 static NSDictionary* DEFAULT_MENU_IMAGE_DICT = nil;
+static NSDictionary* DEFAULT_MENU_SELECTOR_DICT = nil;
 
 @interface SuperHomeController ()
 {
@@ -723,6 +724,9 @@ static NSDictionary* DEFAULT_MENU_IMAGE_DICT = nil;
     static dispatch_once_t deafaultMenuOnceToken;
     dispatch_once(&deafaultMenuOnceToken, ^{
         DEFAULT_MENU_TITLE_DICT = @{
+                                 @(HomeMenuTypeDrawDraw) : NSLS(@"kHomeMenuTypeDrawDraw"),
+                                 @(HomeMenuTypeDrawGuess) : NSLS(@"kHomeMenuTypeDrawGuess"),
+                                 @(HomeMenuTypeDrawGame) : NSLS(@"kHomeMenuTypeDrawGame"),
                                  @(HomeMenuTypeDrawContest) : NSLS(@"kHomeMenuTypeDrawContest"),
                                  @(HomeMenuTypeTask) : NSLS(@"kHomeMenuTypeTask"),
                                  @(HomeMenuTypeDrawBBS) : NSLS(@"kHomeMenuTypeDrawBBS"),
@@ -746,6 +750,37 @@ static NSDictionary* DEFAULT_MENU_IMAGE_DICT = nil;
     return DEFAULT_MENU_TITLE_DICT;
 }
 
+
++ (NSDictionary*)defaultMenuSelectorDictionary
+{
+    static dispatch_once_t deafaultMenuSelectorOnceToken;
+    dispatch_once(&deafaultMenuSelectorOnceToken, ^{
+        DEFAULT_MENU_SELECTOR_DICT = @{
+                                    @(HomeMenuTypeDrawDraw) : @"enterOfflineDraw",
+                                    @(HomeMenuTypeDrawGuess) : @"enterGuess", //todo
+                                    @(HomeMenuTypeDrawGame) : @"enterOnlineDraw",//todo
+                                    @(HomeMenuTypeDrawContest) : @"enterContest",
+                                    @(HomeMenuTypeTask) : @"enterTask", // @selector(enterTask),
+                                    @(HomeMenuTypeDrawBBS) : @"enterBBS",//@selector(enterBBS)
+                                    @(HomeMenuTypeDrawBigShop) :@"enterShop", //todo
+                                    @(HomeMenuTypeDrawShop) : NSLS(@"kHomeMenuTypeDrawShop"),
+                                    @(HomeMenuTypeDrawPainter) : @"enterBBS",//todo
+                                    @(HomeMenuTypeDrawPhoto) : @"enterBBS",//TODO
+                                    @(HomeMenuTypeOpusClass) : @"enterOputClass",//@selector(enterOpusClass)
+                                    @(HomeMenuTypeDrawApps) : @"enterBBS",//TODO
+                                    @(HomeMenuTypeDrawCharge) : @"enterBBS",//TODO
+                                    @(HomeMenuTypeDrawFreeCoins) : @"enterFreeCoins",//@selector(enterCheckIn),
+                                    @(HomeMenuTypeDrawApps) :  @"enterBBS",//TODO
+                                    @(HomeMenuTypeDrawMore) : @"enterMore",//@selector(enterMore);
+                                    @(HomeMenuTypeGroup) : @"enterGroup"//@selector(enterGroup)
+                                    };
+        
+        [DEFAULT_MENU_SELECTOR_DICT retain];  // make sure you retain the dictionary here for futher usage
+        
+    });
+    
+    return DEFAULT_MENU_SELECTOR_DICT;
+}
 
 + (NSDictionary*)defaultMenuImageDictionary
 {
