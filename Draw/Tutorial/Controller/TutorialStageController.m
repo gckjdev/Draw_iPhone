@@ -12,6 +12,8 @@
 #import "UserTutorialMainController.h"
 #import "UIImageView+Extend.h"
 #import "PBTutorial+Extend.h"
+#import "TutorialInfoController.h"
+#import "TutorialCoreManager.h"
 
 
 @interface TutorialStageController ()
@@ -44,7 +46,8 @@
     [[CommonTitleView titleView:self.view] setTitle:title];
     [[CommonTitleView titleView:self.view] setTarget:self];
     [[CommonTitleView titleView:self.view] setBackButtonSelector:@selector(clickBack:)];
-    [[CommonTitleView titleView:self.view] setRightButtonSelector:@selector(clickOkBlock)];
+    [[CommonTitleView titleView:self.view] setRightButtonSelector:@selector(clickEnterInfo:)];
+    [[CommonTitleView titleView:self.view] setRightButtonTitle:NSLS(@"kUserTutorialInfo")];
     
     //流布局
     UICollectionViewFlowLayout *flowLayout = [[[UICollectionViewFlowLayout alloc] init] autorelease];
@@ -140,6 +143,18 @@
     [superViewController.navigationController pushViewController:tc animated:YES];
     [tc release];
     return tc;
+}
+
+
+
+
+
+-(void)clickEnterInfo:(id)sender{
+    
+    PBTutorial *pbTutorial = [[TutorialCoreManager defaultManager]findTutorialByUserTutorialId:self.pbUserTutorial];
+    TutorialInfoController *tc = [[[TutorialInfoController alloc] init] autorelease];
+    [TutorialInfoController enter:tc pbTutorial:pbTutorial];
+    
 }
 
 

@@ -157,6 +157,32 @@ static TutorialCoreManager* _defaultTutorialCoreManager;
     [tb addStages:stage];
 }
 
+- (PBTutorial*)findTutorialByUserTutorialId:(PBUserTutorial*)userTutorial
+{
+    if (userTutorial==nil){
+        return nil;
+    }
+    
+    NSString* userTutorialId = userTutorial.tutorial.tutorialId;
+    NSArray* all = [[TutorialCoreManager defaultManager] allTutorials];
+    for (NSData* data in all){
+        @try
+        {
+            PBTutorial* ut = [PBTutorial parseFromData:data];
+            if ([ut.tutorialId isEqualToString:userTutorialId]){
+                return ut;
+            }
+        }
+        @catch (NSException *exception) {
+            PPDebug(@"<findTutorialByUserTutorialId> id=%@, but catch exception=%@", userTutorialId, [exception description]);
+        }
+        @finally {
+        }
+    }
+    
+    return nil;
+}
+
 
 // 创建测试数据
 - (void)createTestData

@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-
+#import "Tutorial.pb.h"
 // 管理所有教程的核心类，包括自动从服务器更新所有教程数据和保存到本地
 @interface TutorialCoreManager : NSObject
 
@@ -23,4 +23,6 @@
 // 创建测试数据
 - (void)createTestData;
 
+
+-(PBTutorial*)findTutorialByUserTutorialId:(PBUserTutorial*)userTutorial;
 @end
