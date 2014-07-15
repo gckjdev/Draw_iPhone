@@ -2756,3 +2756,9 @@
 "kTutorialCategoryTopLevel" = "Advance";
 
 "kMetroMainHome" = "MainHome";
+
+"kAskPracticeOrPassTitle" = "Take Actions";
+"kAskPracticeOrPassMsg" = "Practice Or Conquer?";
+"kPractice" = "Practice";
+"kPass" = "Conquer";
+

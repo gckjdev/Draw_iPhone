@@ -37,9 +37,9 @@
 - (void)initPageContainer
 {
     self.pagesContainer.topBarHeight = COMMON_TAB_BUTTON_HEIGHT;
-    self.pagesContainer.topBarBackgroundColor = COLOR_YELLOW;
+    self.pagesContainer.topBarBackgroundColor = COLOR_RED;
     self.pagesContainer.pageItemsTitleColor = COLOR_WHITE;
-    self.pagesContainer.selectedPageItemTitleColor = COLOR_BROWN;
+    self.pagesContainer.selectedPageItemTitleColor = COLOR_YELLOW;
     self.pagesContainer.topBarItemLabelsFont = BUTTON_FONT;
     
     CGRect frame = CGRectMake(0, COMMON_TAB_BUTTON_Y, self.view.bounds.size.width, self.view.bounds.size.height - COMMON_TAB_BUTTON_Y);

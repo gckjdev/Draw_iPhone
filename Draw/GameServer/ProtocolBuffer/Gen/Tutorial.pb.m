@@ -53,6 +53,498 @@ BOOL PBUserTutorialStatusIsValidValue(PBUserTutorialStatus value) {
       return NO;
   }
 }
+@interface PBTip ()
+@property int32_t index;
+@property (retain) NSString* cnName;
+@property (retain) NSString* enName;
+@property (retain) NSString* tcnName;
+@property (retain) NSString* cnDesc;
+@property (retain) NSString* enDesc;
+@property (retain) NSString* tcnDesc;
+@property (retain) NSString* image;
+@property (retain) NSString* imageName;
+@end
+
+@implementation PBTip
+
+- (BOOL) hasIndex {
+  return !!hasIndex_;
+}
+- (void) setHasIndex:(BOOL) value {
+  hasIndex_ = !!value;
+}
+@synthesize index;
+- (BOOL) hasCnName {
+  return !!hasCnName_;
+}
+- (void) setHasCnName:(BOOL) value {
+  hasCnName_ = !!value;
+}
+@synthesize cnName;
+- (BOOL) hasEnName {
+  return !!hasEnName_;
+}
+- (void) setHasEnName:(BOOL) value {
+  hasEnName_ = !!value;
+}
+@synthesize enName;
+- (BOOL) hasTcnName {
+  return !!hasTcnName_;
+}
+- (void) setHasTcnName:(BOOL) value {
+  hasTcnName_ = !!value;
+}
+@synthesize tcnName;
+- (BOOL) hasCnDesc {
+  return !!hasCnDesc_;
+}
+- (void) setHasCnDesc:(BOOL) value {
+  hasCnDesc_ = !!value;
+}
+@synthesize cnDesc;
+- (BOOL) hasEnDesc {
+  return !!hasEnDesc_;
+}
+- (void) setHasEnDesc:(BOOL) value {
+  hasEnDesc_ = !!value;
+}
+@synthesize enDesc;
+- (BOOL) hasTcnDesc {
+  return !!hasTcnDesc_;
+}
+- (void) setHasTcnDesc:(BOOL) value {
+  hasTcnDesc_ = !!value;
+}
+@synthesize tcnDesc;
+- (BOOL) hasImage {
+  return !!hasImage_;
+}
+- (void) setHasImage:(BOOL) value {
+  hasImage_ = !!value;
+}
+@synthesize image;
+- (BOOL) hasImageName {
+  return !!hasImageName_;
+}
+- (void) setHasImageName:(BOOL) value {
+  hasImageName_ = !!value;
+}
+@synthesize imageName;
+- (void) dealloc {
+  self.cnName = nil;
+  self.enName = nil;
+  self.tcnName = nil;
+  self.cnDesc = nil;
+  self.enDesc = nil;
+  self.tcnDesc = nil;
+  self.image = nil;
+  self.imageName = nil;
+  [super dealloc];
+}
+- (id) init {
+  if ((self = [super init])) {
+    self.index = 0;
+    self.cnName = @"";
+    self.enName = @"";
+    self.tcnName = @"";
+    self.cnDesc = @"";
+    self.enDesc = @"";
+    self.tcnDesc = @"";
+    self.image = @"";
+    self.imageName = @"";
+  }
+  return self;
+}
+static PBTip* defaultPBTipInstance = nil;
++ (void) initialize {
+  if (self == [PBTip class]) {
+    defaultPBTipInstance = [[PBTip alloc] init];
+  }
+}
++ (PBTip*) defaultInstance {
+  return defaultPBTipInstance;
+}
+- (PBTip*) defaultInstance {
+  return defaultPBTipInstance;
+}
+- (BOOL) isInitialized {
+  if (!self.hasIndex) {
+    return NO;
+  }
+  return YES;
+}
+- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
+  if (self.hasIndex) {
+    [output writeInt32:1 value:self.index];
+  }
+  if (self.hasCnName) {
+    [output writeString:2 value:self.cnName];
+  }
+  if (self.hasEnName) {
+    [output writeString:3 value:self.enName];
+  }
+  if (self.hasTcnName) {
+    [output writeString:4 value:self.tcnName];
+  }
+  if (self.hasCnDesc) {
+    [output writeString:10 value:self.cnDesc];
+  }
+  if (self.hasEnDesc) {
+    [output writeString:11 value:self.enDesc];
+  }
+  if (self.hasTcnDesc) {
+    [output writeString:12 value:self.tcnDesc];
+  }
+  if (self.hasImage) {
+    [output writeString:21 value:self.image];
+  }
+  if (self.hasImageName) {
+    [output writeString:31 value:self.imageName];
+  }
+  [self.unknownFields writeToCodedOutputStream:output];
+}
+- (int32_t) serializedSize {
+  int32_t size = memoizedSerializedSize;
+  if (size != -1) {
+    return size;
+  }
+
+  size = 0;
+  if (self.hasIndex) {
+    size += computeInt32Size(1, self.index);
+  }
+  if (self.hasCnName) {
+    size += computeStringSize(2, self.cnName);
+  }
+  if (self.hasEnName) {
+    size += computeStringSize(3, self.enName);
+  }
+  if (self.hasTcnName) {
+    size += computeStringSize(4, self.tcnName);
+  }
+  if (self.hasCnDesc) {
+    size += computeStringSize(10, self.cnDesc);
+  }
+  if (self.hasEnDesc) {
+    size += computeStringSize(11, self.enDesc);
+  }
+  if (self.hasTcnDesc) {
+    size += computeStringSize(12, self.tcnDesc);
+  }
+  if (self.hasImage) {
+    size += computeStringSize(21, self.image);
+  }
+  if (self.hasImageName) {
+    size += computeStringSize(31, self.imageName);
+  }
+  size += self.unknownFields.serializedSize;
+  memoizedSerializedSize = size;
+  return size;
+}
++ (PBTip*) parseFromData:(NSData*) data {
+  return (PBTip*)[[[PBTip builder] mergeFromData:data] build];
+}
++ (PBTip*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (PBTip*)[[[PBTip builder] mergeFromData:data extensionRegistry:extensionRegistry] build];
+}
++ (PBTip*) parseFromInputStream:(NSInputStream*) input {
+  return (PBTip*)[[[PBTip builder] mergeFromInputStream:input] build];
+}
++ (PBTip*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (PBTip*)[[[PBTip builder] mergeFromInputStream:input extensionRegistry:extensionRegistry] build];
+}
++ (PBTip*) parseFromCodedInputStream:(PBCodedInputStream*) input {
+  return (PBTip*)[[[PBTip builder] mergeFromCodedInputStream:input] build];
+}
++ (PBTip*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (PBTip*)[[[PBTip builder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] build];
+}
++ (PBTip_Builder*) builder {
+  return [[[PBTip_Builder alloc] init] autorelease];
+}
++ (PBTip_Builder*) builderWithPrototype:(PBTip*) prototype {
+  return [[PBTip builder] mergeFrom:prototype];
+}
+- (PBTip_Builder*) builder {
+  return [PBTip builder];
+}
+@end
+
+@interface PBTip_Builder()
+@property (retain) PBTip* result;
+@end
+
+@implementation PBTip_Builder
+@synthesize result;
+- (void) dealloc {
+  self.result = nil;
+  [super dealloc];
+}
+- (id) init {
+  if ((self = [super init])) {
+    self.result = [[[PBTip alloc] init] autorelease];
+  }
+  return self;
+}
+- (PBGeneratedMessage*) internalGetResult {
+  return result;
+}
+- (PBTip_Builder*) clear {
+  self.result = [[[PBTip alloc] init] autorelease];
+  return self;
+}
+- (PBTip_Builder*) clone {
+  return [PBTip builderWithPrototype:result];
+}
+- (PBTip*) defaultInstance {
+  return [PBTip defaultInstance];
+}
+- (PBTip*) build {
+  [self checkInitialized];
+  return [self buildPartial];
+}
+- (PBTip*) buildPartial {
+  PBTip* returnMe = [[result retain] autorelease];
+  self.result = nil;
+  return returnMe;
+}
+- (PBTip_Builder*) mergeFrom:(PBTip*) other {
+  if (other == [PBTip defaultInstance]) {
+    return self;
+  }
+  if (other.hasIndex) {
+    [self setIndex:other.index];
+  }
+  if (other.hasCnName) {
+    [self setCnName:other.cnName];
+  }
+  if (other.hasEnName) {
+    [self setEnName:other.enName];
+  }
+  if (other.hasTcnName) {
+    [self setTcnName:other.tcnName];
+  }
+  if (other.hasCnDesc) {
+    [self setCnDesc:other.cnDesc];
+  }
+  if (other.hasEnDesc) {
+    [self setEnDesc:other.enDesc];
+  }
+  if (other.hasTcnDesc) {
+    [self setTcnDesc:other.tcnDesc];
+  }
+  if (other.hasImage) {
+    [self setImage:other.image];
+  }
+  if (other.hasImageName) {
+    [self setImageName:other.imageName];
+  }
+  [self mergeUnknownFields:other.unknownFields];
+  return self;
+}
+- (PBTip_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input {
+  return [self mergeFromCodedInputStream:input extensionRegistry:[PBExtensionRegistry emptyRegistry]];
+}
+- (PBTip_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  PBUnknownFieldSet_Builder* unknownFields = [PBUnknownFieldSet builderWithUnknownFields:self.unknownFields];
+  while (YES) {
+    int32_t tag = [input readTag];
+    switch (tag) {
+      case 0:
+        [self setUnknownFields:[unknownFields build]];
+        return self;
+      default: {
+        if (![self parseUnknownField:input unknownFields:unknownFields extensionRegistry:extensionRegistry tag:tag]) {
+          [self setUnknownFields:[unknownFields build]];
+          return self;
+        }
+        break;
+      }
+      case 8: {
+        [self setIndex:[input readInt32]];
+        break;
+      }
+      case 18: {
+        [self setCnName:[input readString]];
+        break;
+      }
+      case 26: {
+        [self setEnName:[input readString]];
+        break;
+      }
+      case 34: {
+        [self setTcnName:[input readString]];
+        break;
+      }
+      case 82: {
+        [self setCnDesc:[input readString]];
+        break;
+      }
+      case 90: {
+        [self setEnDesc:[input readString]];
+        break;
+      }
+      case 98: {
+        [self setTcnDesc:[input readString]];
+        break;
+      }
+      case 170: {
+        [self setImage:[input readString]];
+        break;
+      }
+      case 250: {
+        [self setImageName:[input readString]];
+        break;
+      }
+    }
+  }
+}
+- (BOOL) hasIndex {
+  return result.hasIndex;
+}
+- (int32_t) index {
+  return result.index;
+}
+- (PBTip_Builder*) setIndex:(int32_t) value {
+  result.hasIndex = YES;
+  result.index = value;
+  return self;
+}
+- (PBTip_Builder*) clearIndex {
+  result.hasIndex = NO;
+  result.index = 0;
+  return self;
+}
+- (BOOL) hasCnName {
+  return result.hasCnName;
+}
+- (NSString*) cnName {
+  return result.cnName;
+}
+- (PBTip_Builder*) setCnName:(NSString*) value {
+  result.hasCnName = YES;
+  result.cnName = value;
+  return self;
+}
+- (PBTip_Builder*) clearCnName {
+  result.hasCnName = NO;
+  result.cnName = @"";
+  return self;
+}
+- (BOOL) hasEnName {
+  return result.hasEnName;
+}
+- (NSString*) enName {
+  return result.enName;
+}
+- (PBTip_Builder*) setEnName:(NSString*) value {
+  result.hasEnName = YES;
+  result.enName = value;
+  return self;
+}
+- (PBTip_Builder*) clearEnName {
+  result.hasEnName = NO;
+  result.enName = @"";
+  return self;
+}
+- (BOOL) hasTcnName {
+  return result.hasTcnName;
+}
+- (NSString*) tcnName {
+  return result.tcnName;
+}
+- (PBTip_Builder*) setTcnName:(NSString*) value {
+  result.hasTcnName = YES;
+  result.tcnName = value;
+  return self;
+}
+- (PBTip_Builder*) clearTcnName {
+  result.hasTcnName = NO;
+  result.tcnName = @"";
+  return self;
+}
+- (BOOL) hasCnDesc {
+  return result.hasCnDesc;
+}
+- (NSString*) cnDesc {
+  return result.cnDesc;
+}
+- (PBTip_Builder*) setCnDesc:(NSString*) value {
+  result.hasCnDesc = YES;
+  result.cnDesc = value;
+  return self;
+}
+- (PBTip_Builder*) clearCnDesc {
+  result.hasCnDesc = NO;
+  result.cnDesc = @"";
+  return self;
+}
+- (BOOL) hasEnDesc {
+  return result.hasEnDesc;
+}
+- (NSString*) enDesc {
+  return result.enDesc;
+}
+- (PBTip_Builder*) setEnDesc:(NSString*) value {
+  result.hasEnDesc = YES;
+  result.enDesc = value;
+  return self;
+}
+- (PBTip_Builder*) clearEnDesc {
+  result.hasEnDesc = NO;
+  result.enDesc = @"";
+  return self;
+}
+- (BOOL) hasTcnDesc {
+  return result.hasTcnDesc;
+}
+- (NSString*) tcnDesc {
+  return result.tcnDesc;
+}
+- (PBTip_Builder*) setTcnDesc:(NSString*) value {
+  result.hasTcnDesc = YES;
+  result.tcnDesc = value;
+  return self;
+}
+- (PBTip_Builder*) clearTcnDesc {
+  result.hasTcnDesc = NO;
+  result.tcnDesc = @"";
+  return self;
+}
+- (BOOL) hasImage {
+  return result.hasImage;
+}
+- (NSString*) image {
+  return result.image;
+}
+- (PBTip_Builder*) setImage:(NSString*) value {
+  result.hasImage = YES;
+  result.image = value;
+  return self;
+}
+- (PBTip_Builder*) clearImage {
+  result.hasImage = NO;
+  result.image = @"";
+  return self;
+}
+- (BOOL) hasImageName {
+  return result.hasImageName;
+}
+- (NSString*) imageName {
+  return result.imageName;
+}
+- (PBTip_Builder*) setImageName:(NSString*) value {
+  result.hasImageName = YES;
+  result.imageName = value;
+  return self;
+}
+- (PBTip_Builder*) clearImageName {
+  result.hasImageName = NO;
+  result.imageName = @"";
+  return self;
+}
+@end
+
 @interface PBChapter ()
 @property int32_t index;
 @property (retain) NSString* cnName;
@@ -67,6 +559,7 @@ BOOL PBUserTutorialStatusIsValidValue(PBUserTutorialStatus value) {
 @property (retain) NSString* opusName;
 @property (retain) NSString* imageName;
 @property (retain) NSString* backgroundName;
+@property (retain) NSMutableArray* mutableTipsList;
 @end
 
 @implementation PBChapter
@@ -162,6 +655,7 @@ BOOL PBUserTutorialStatusIsValidValue(PBUserTutorialStatus value) {
   hasBackgroundName_ = !!value;
 }
 @synthesize backgroundName;
+@synthesize mutableTipsList;
 - (void) dealloc {
   self.cnName = nil;
   self.enName = nil;
@@ -175,6 +669,7 @@ BOOL PBUserTutorialStatusIsValidValue(PBUserTutorialStatus value) {
   self.opusName = nil;
   self.imageName = nil;
   self.backgroundName = nil;
+  self.mutableTipsList = nil;
   [super dealloc];
 }
 - (id) init {
@@ -207,9 +702,21 @@ static PBChapter* defaultPBChapterInstance = nil;
 - (PBChapter*) defaultInstance {
   return defaultPBChapterInstance;
 }
+- (NSArray*) tipsList {
+  return mutableTipsList;
+}
+- (PBTip*) tipsAtIndex:(int32_t) index {
+  id value = [mutableTipsList objectAtIndex:index];
+  return value;
+}
 - (BOOL) isInitialized {
   if (!self.hasIndex) {
     return NO;
+  }
+  for (PBTip* element in self.tipsList) {
+    if (!element.isInitialized) {
+      return NO;
+    }
   }
   return YES;
 }
@@ -252,6 +759,9 @@ static PBChapter* defaultPBChapterInstance = nil;
   }
   if (self.hasBackgroundName) {
     [output writeString:32 value:self.backgroundName];
+  }
+  for (PBTip* element in self.tipsList) {
+    [output writeMessage:33 value:element];
   }
   [self.unknownFields writeToCodedOutputStream:output];
 }
@@ -300,6 +810,9 @@ static PBChapter* defaultPBChapterInstance = nil;
   }
   if (self.hasBackgroundName) {
     size += computeStringSize(32, self.backgroundName);
+  }
+  for (PBTip* element in self.tipsList) {
+    size += computeMessageSize(33, element);
   }
   size += self.unknownFields.serializedSize;
   memoizedSerializedSize = size;
@@ -415,6 +928,12 @@ static PBChapter* defaultPBChapterInstance = nil;
   if (other.hasBackgroundName) {
     [self setBackgroundName:other.backgroundName];
   }
+  if (other.mutableTipsList.count > 0) {
+    if (result.mutableTipsList == nil) {
+      result.mutableTipsList = [NSMutableArray array];
+    }
+    [result.mutableTipsList addObjectsFromArray:other.mutableTipsList];
+  }
   [self mergeUnknownFields:other.unknownFields];
   return self;
 }
@@ -486,6 +1005,12 @@ static PBChapter* defaultPBChapterInstance = nil;
       }
       case 258: {
         [self setBackgroundName:[input readString]];
+        break;
+      }
+      case 266: {
+        PBTip_Builder* subBuilder = [PBTip builder];
+        [input readMessage:subBuilder extensionRegistry:extensionRegistry];
+        [self addTips:[subBuilder buildPartial]];
         break;
       }
     }
@@ -697,6 +1222,35 @@ static PBChapter* defaultPBChapterInstance = nil;
 - (PBChapter_Builder*) clearBackgroundName {
   result.hasBackgroundName = NO;
   result.backgroundName = @"";
+  return self;
+}
+- (NSArray*) tipsList {
+  if (result.mutableTipsList == nil) { return [NSArray array]; }
+  return result.mutableTipsList;
+}
+- (PBTip*) tipsAtIndex:(int32_t) index {
+  return [result tipsAtIndex:index];
+}
+- (PBChapter_Builder*) replaceTipsAtIndex:(int32_t) index with:(PBTip*) value {
+  [result.mutableTipsList replaceObjectAtIndex:index withObject:value];
+  return self;
+}
+- (PBChapter_Builder*) addAllTips:(NSArray*) values {
+  if (result.mutableTipsList == nil) {
+    result.mutableTipsList = [NSMutableArray array];
+  }
+  [result.mutableTipsList addObjectsFromArray:values];
+  return self;
+}
+- (PBChapter_Builder*) clearTipsList {
+  result.mutableTipsList = nil;
+  return self;
+}
+- (PBChapter_Builder*) addTips:(PBTip*) value {
+  if (result.mutableTipsList == nil) {
+    result.mutableTipsList = [NSMutableArray array];
+  }
+  [result.mutableTipsList addObject:value];
   return self;
 }
 @end
@@ -1316,6 +1870,7 @@ static PBStage* defaultPBStageInstance = nil;
 @property int32_t createDate;
 @property int32_t modifyDate;
 @property BOOL isNew;
+@property int32_t version;
 @end
 
 @implementation PBTutorial
@@ -1463,6 +2018,13 @@ static PBStage* defaultPBStageInstance = nil;
 - (void) setIsNew:(BOOL) value {
   isNew_ = !!value;
 }
+- (BOOL) hasVersion {
+  return !!hasVersion_;
+}
+- (void) setHasVersion:(BOOL) value {
+  hasVersion_ = !!value;
+}
+@synthesize version;
 - (void) dealloc {
   self.tutorialId = nil;
   self.cnName = nil;
@@ -1498,6 +2060,7 @@ static PBStage* defaultPBStageInstance = nil;
     self.createDate = 0;
     self.modifyDate = 0;
     self.isNew = NO;
+    self.version = 0;
   }
   return self;
 }
@@ -1599,6 +2162,9 @@ static PBTutorial* defaultPBTutorialInstance = nil;
   if (self.hasIsNew) {
     [output writeBool:50 value:self.isNew];
   }
+  if (self.hasVersion) {
+    [output writeInt32:100 value:self.version];
+  }
   [self.unknownFields writeToCodedOutputStream:output];
 }
 - (int32_t) serializedSize {
@@ -1672,6 +2238,9 @@ static PBTutorial* defaultPBTutorialInstance = nil;
   }
   if (self.hasIsNew) {
     size += computeBoolSize(50, self.isNew);
+  }
+  if (self.hasVersion) {
+    size += computeInt32Size(100, self.version);
   }
   size += self.unknownFields.serializedSize;
   memoizedSerializedSize = size;
@@ -1814,6 +2383,9 @@ static PBTutorial* defaultPBTutorialInstance = nil;
   if (other.hasIsNew) {
     [self setIsNew:other.isNew];
   }
+  if (other.hasVersion) {
+    [self setVersion:other.version];
+  }
   [self mergeUnknownFields:other.unknownFields];
   return self;
 }
@@ -1915,6 +2487,10 @@ static PBTutorial* defaultPBTutorialInstance = nil;
       }
       case 400: {
         [self setIsNew:[input readBool]];
+        break;
+      }
+      case 800: {
+        [self setVersion:[input readInt32]];
         break;
       }
     }
@@ -2266,6 +2842,22 @@ static PBTutorial* defaultPBTutorialInstance = nil;
 - (PBTutorial_Builder*) clearIsNew {
   result.hasIsNew = NO;
   result.isNew = NO;
+  return self;
+}
+- (BOOL) hasVersion {
+  return result.hasVersion;
+}
+- (int32_t) version {
+  return result.version;
+}
+- (PBTutorial_Builder*) setVersion:(int32_t) value {
+  result.hasVersion = YES;
+  result.version = value;
+  return self;
+}
+- (PBTutorial_Builder*) clearVersion {
+  result.hasVersion = NO;
+  result.version = 0;
   return self;
 }
 @end

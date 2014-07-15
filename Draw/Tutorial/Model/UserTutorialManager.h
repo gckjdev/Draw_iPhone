@@ -27,4 +27,8 @@
 // return all user tutorial in local
 - (NSArray*)allUserTutorials;
 
+- (PBUserTutorial*)practiceTutorialStage:(NSString*)userTutorialLocalId
+                                 stageId:(NSString*)stageId
+                              stageIndex:(int)stageIndex;
+
 @end

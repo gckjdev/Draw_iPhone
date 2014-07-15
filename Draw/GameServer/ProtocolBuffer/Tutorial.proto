@@ -21,6 +21,23 @@ enum PBTutorialCategory{
     TUTORIAL_CATEGORY_ADVANCE = 2;
 }
 
+message PBTip
+{
+    required int32  index = 1;
+
+    optional string cnName = 2;                     // 简体中文名称
+    optional string enName = 3;                     // 英文名称
+    optional string tcnName = 4;                    // 繁体中文名称
+
+    optional string cnDesc = 10;
+    optional string enDesc = 11;
+    optional string tcnDesc = 12;
+    
+    optional string image = 21;                      // 提示图片URL（远程的）
+
+    optional string imageName = 31;                  // 提示图片文件名（在zip包中的）
+}
+
 message PBChapter
 {
     required int32  index = 1;                      // 索引，唯一
@@ -40,9 +57,14 @@ message PBChapter
     optional string opusName = 30;                   // 回放作品包文件名
     optional string imageName = 31;                  // 作品图片文件名
     optional string backgroundName = 32;             // 绘画底图文件名
+    
+    repeated PBTip  tips = 33;                       // 每个小节的提示
 }
 
 // 关卡
+// 一个关卡zip包里面包含信息如下
+// 1) tutorial.pb 文件，包括完整的教程、关卡和章节信息
+// 2) 关卡作品图片、关卡底图、关卡回放作品
 message PBStage
 {
     required string stageId = 1;
@@ -67,7 +89,7 @@ message PBStage
 // 教程
 // 一个教程zip包里面包含信息如下
 // 1) tutorial.pb 文件，包括完整的教程、关卡和章节信息
-// 2) 
+// 2) 关卡作品图片、关卡底图、关卡回放作品
 message PBTutorial
 {
     required string tutorialId = 1;
@@ -96,6 +118,8 @@ message PBTutorial
     optional int32  modifyDate = 41;
     
     optional bool   isNew = 50;                     // 是否最近推出
+    
+    optional int32  version = 100;                  // 教程文件版本
 }
 
 message PBTutorialCore

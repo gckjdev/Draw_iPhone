@@ -92,6 +92,9 @@
                                targetUid:(NSString *)targetUid
                                    photo:(UIImage *)photo;
 
++ (OfflineDrawViewController*)practice:(UIViewController*)startController
+                               bgImage:(UIImage*)bgImage;
+
 - (id)initWithTargetType:(TargetType)aTargetType
                 delegate:(id<OfflineDrawDelegate>)aDelegate
          startController:(UIViewController*)startController

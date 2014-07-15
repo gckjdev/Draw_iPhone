@@ -24,3 +24,9 @@
 -(NSString *) desc;
 
 @end
+
+@interface PBUserTutorial (Extend3)
+
+- (BOOL)isStageLock:(int)stageIndex;
+
+@end

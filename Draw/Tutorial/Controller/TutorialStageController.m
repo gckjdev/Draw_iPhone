@@ -12,7 +12,8 @@
 #import "UserTutorialMainController.h"
 #import "UIImageView+Extend.h"
 #import "PBTutorial+Extend.h"
-
+#import "OfflineDrawViewController.h"
+#import "UserTutorialService.h"
 
 @interface TutorialStageController ()
 @property(nonatomic,strong)UITableView *tableView;
@@ -107,20 +108,57 @@
 
 
 #pragma mark --UICollectionViewDelegate
+
 //UICollectionView被选中时调用的方法
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
     NSUInteger row = indexPath.row;
-    if (row <= self.pbUserTutorial.currentStageIndex){
-        POSTMSG(@"闯关修炼正在开发中");
+    if ([self.pbUserTutorial isStageLock:row] == NO){
+        [self askPracticeOrPass:row];
     }
     else{
     }
     
     [collectionView deselectItemAtIndexPath:indexPath animated:YES];
-
 }
 
+- (void)askPracticeOrPass:(NSUInteger)stageIndex
+{
+    NSArray  *stageList = [[_pbUserTutorial tutorial] stagesList];
+    PBStage* pbStage = [stageList objectAtIndex:stageIndex];
+    NSString* stageId = pbStage.stageId;
+    
+    CommonDialog* dialog = [CommonDialog createDialogWithTitle:NSLS(@"kAskPracticeOrPassTitle")
+                                                       message:NSLS(@"kAskPracticeOrPassMsg")
+                                                         style:CommonDialogStyleDoubleButtonWithCross];
+    
+    [dialog.oKButton setTitle:NSLS(@"kPass") forState:UIControlStateNormal];
+    [dialog.cancelButton setTitle:NSLS(@"kPractice") forState:UIControlStateNormal];
+    
+    [dialog setClickOkBlock:^(id view){
+        // Conquer
+    }];
+
+    [dialog setClickCancelBlock:^(id view){
+        // Practice
+        PBUserTutorial* newUT = [[UserTutorialService defaultService] startPracticeTutorialStage:self.pbUserTutorial.localId
+                                                                                         stageId:stageId
+                                                                                      stageIndex:stageIndex];
+
+        if (newUT){
+
+            self.pbUserTutorial = newUT;
+            PBUserStage* userStage = [_pbUserTutorial.userStagesList objectAtIndex:stageIndex];
+
+            UIImage* image = nil; // TODO load bg image
+            
+            // enter offline draw view controller
+            [OfflineDrawViewController practice:self bgImage:image ];
+        }
+    }];
+    
+    [dialog showInView:self.view];
+}
 
 - (void)dealloc {
      PPRelease(_pbUserTutorial);

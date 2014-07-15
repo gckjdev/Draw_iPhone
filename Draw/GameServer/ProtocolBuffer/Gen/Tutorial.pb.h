@@ -82,6 +82,8 @@
 @class PBStage_Builder;
 @class PBTask;
 @class PBTask_Builder;
+@class PBTip;
+@class PBTip_Builder;
 @class PBTutorial;
 @class PBTutorialCore;
 @class PBTutorialCore_Builder;
@@ -136,6 +138,126 @@ BOOL PBUserTutorialStatusIsValidValue(PBUserTutorialStatus value);
 + (void) registerAllExtensions:(PBMutableExtensionRegistry*) registry;
 @end
 
+@interface PBTip : PBGeneratedMessage {
+@private
+  BOOL hasIndex_:1;
+  BOOL hasCnName_:1;
+  BOOL hasEnName_:1;
+  BOOL hasTcnName_:1;
+  BOOL hasCnDesc_:1;
+  BOOL hasEnDesc_:1;
+  BOOL hasTcnDesc_:1;
+  BOOL hasImage_:1;
+  BOOL hasImageName_:1;
+  int32_t index;
+  NSString* cnName;
+  NSString* enName;
+  NSString* tcnName;
+  NSString* cnDesc;
+  NSString* enDesc;
+  NSString* tcnDesc;
+  NSString* image;
+  NSString* imageName;
+}
+- (BOOL) hasIndex;
+- (BOOL) hasCnName;
+- (BOOL) hasEnName;
+- (BOOL) hasTcnName;
+- (BOOL) hasCnDesc;
+- (BOOL) hasEnDesc;
+- (BOOL) hasTcnDesc;
+- (BOOL) hasImage;
+- (BOOL) hasImageName;
+@property (readonly) int32_t index;
+@property (readonly, retain) NSString* cnName;
+@property (readonly, retain) NSString* enName;
+@property (readonly, retain) NSString* tcnName;
+@property (readonly, retain) NSString* cnDesc;
+@property (readonly, retain) NSString* enDesc;
+@property (readonly, retain) NSString* tcnDesc;
+@property (readonly, retain) NSString* image;
+@property (readonly, retain) NSString* imageName;
+
++ (PBTip*) defaultInstance;
+- (PBTip*) defaultInstance;
+
+- (BOOL) isInitialized;
+- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
+- (PBTip_Builder*) builder;
++ (PBTip_Builder*) builder;
++ (PBTip_Builder*) builderWithPrototype:(PBTip*) prototype;
+
++ (PBTip*) parseFromData:(NSData*) data;
++ (PBTip*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
++ (PBTip*) parseFromInputStream:(NSInputStream*) input;
++ (PBTip*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
++ (PBTip*) parseFromCodedInputStream:(PBCodedInputStream*) input;
++ (PBTip*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+@end
+
+@interface PBTip_Builder : PBGeneratedMessage_Builder {
+@private
+  PBTip* result;
+}
+
+- (PBTip*) defaultInstance;
+
+- (PBTip_Builder*) clear;
+- (PBTip_Builder*) clone;
+
+- (PBTip*) build;
+- (PBTip*) buildPartial;
+
+- (PBTip_Builder*) mergeFrom:(PBTip*) other;
+- (PBTip_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
+- (PBTip_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+
+- (BOOL) hasIndex;
+- (int32_t) index;
+- (PBTip_Builder*) setIndex:(int32_t) value;
+- (PBTip_Builder*) clearIndex;
+
+- (BOOL) hasCnName;
+- (NSString*) cnName;
+- (PBTip_Builder*) setCnName:(NSString*) value;
+- (PBTip_Builder*) clearCnName;
+
+- (BOOL) hasEnName;
+- (NSString*) enName;
+- (PBTip_Builder*) setEnName:(NSString*) value;
+- (PBTip_Builder*) clearEnName;
+
+- (BOOL) hasTcnName;
+- (NSString*) tcnName;
+- (PBTip_Builder*) setTcnName:(NSString*) value;
+- (PBTip_Builder*) clearTcnName;
+
+- (BOOL) hasCnDesc;
+- (NSString*) cnDesc;
+- (PBTip_Builder*) setCnDesc:(NSString*) value;
+- (PBTip_Builder*) clearCnDesc;
+
+- (BOOL) hasEnDesc;
+- (NSString*) enDesc;
+- (PBTip_Builder*) setEnDesc:(NSString*) value;
+- (PBTip_Builder*) clearEnDesc;
+
+- (BOOL) hasTcnDesc;
+- (NSString*) tcnDesc;
+- (PBTip_Builder*) setTcnDesc:(NSString*) value;
+- (PBTip_Builder*) clearTcnDesc;
+
+- (BOOL) hasImage;
+- (NSString*) image;
+- (PBTip_Builder*) setImage:(NSString*) value;
+- (PBTip_Builder*) clearImage;
+
+- (BOOL) hasImageName;
+- (NSString*) imageName;
+- (PBTip_Builder*) setImageName:(NSString*) value;
+- (PBTip_Builder*) clearImageName;
+@end
+
 @interface PBChapter : PBGeneratedMessage {
 @private
   BOOL hasIndex_:1;
@@ -164,6 +286,7 @@ BOOL PBUserTutorialStatusIsValidValue(PBUserTutorialStatus value);
   NSString* opusName;
   NSString* imageName;
   NSString* backgroundName;
+  NSMutableArray* mutableTipsList;
 }
 - (BOOL) hasIndex;
 - (BOOL) hasCnName;
@@ -191,6 +314,8 @@ BOOL PBUserTutorialStatusIsValidValue(PBUserTutorialStatus value);
 @property (readonly, retain) NSString* opusName;
 @property (readonly, retain) NSString* imageName;
 @property (readonly, retain) NSString* backgroundName;
+- (NSArray*) tipsList;
+- (PBTip*) tipsAtIndex:(int32_t) index;
 
 + (PBChapter*) defaultInstance;
 - (PBChapter*) defaultInstance;
@@ -290,6 +415,13 @@ BOOL PBUserTutorialStatusIsValidValue(PBUserTutorialStatus value);
 - (NSString*) backgroundName;
 - (PBChapter_Builder*) setBackgroundName:(NSString*) value;
 - (PBChapter_Builder*) clearBackgroundName;
+
+- (NSArray*) tipsList;
+- (PBTip*) tipsAtIndex:(int32_t) index;
+- (PBChapter_Builder*) replaceTipsAtIndex:(int32_t) index with:(PBTip*) value;
+- (PBChapter_Builder*) addTips:(PBTip*) value;
+- (PBChapter_Builder*) addAllTips:(NSArray*) values;
+- (PBChapter_Builder*) clearTipsList;
 @end
 
 @interface PBStage : PBGeneratedMessage {
@@ -436,6 +568,7 @@ BOOL PBUserTutorialStatusIsValidValue(PBUserTutorialStatus value);
   BOOL hasIsNew_:1;
   BOOL hasIsFree_:1;
   BOOL hasIsFeature_:1;
+  BOOL hasVersion_:1;
   BOOL hasModifyDate_:1;
   BOOL hasCreateDate_:1;
   BOOL hasPriceUnit_:1;
@@ -454,6 +587,7 @@ BOOL PBUserTutorialStatusIsValidValue(PBUserTutorialStatus value);
   BOOL isNew_:1;
   BOOL isFree_:1;
   BOOL isFeature_:1;
+  int32_t version;
   int32_t modifyDate;
   int32_t createDate;
   int32_t priceUnit;
@@ -490,6 +624,7 @@ BOOL PBUserTutorialStatusIsValidValue(PBUserTutorialStatus value);
 - (BOOL) hasCreateDate;
 - (BOOL) hasModifyDate;
 - (BOOL) hasIsNew;
+- (BOOL) hasVersion;
 @property (readonly, retain) NSString* tutorialId;
 @property (readonly, retain) NSString* cnName;
 @property (readonly, retain) NSString* enName;
@@ -508,6 +643,7 @@ BOOL PBUserTutorialStatusIsValidValue(PBUserTutorialStatus value);
 @property (readonly) int32_t createDate;
 @property (readonly) int32_t modifyDate;
 - (BOOL) isNew;
+@property (readonly) int32_t version;
 - (NSArray*) categoriesList;
 - (int32_t) categoriesAtIndex:(int32_t) index;
 - (NSArray*) stagesList;
@@ -650,6 +786,11 @@ BOOL PBUserTutorialStatusIsValidValue(PBUserTutorialStatus value);
 - (BOOL) isNew;
 - (PBTutorial_Builder*) setIsNew:(BOOL) value;
 - (PBTutorial_Builder*) clearIsNew;
+
+- (BOOL) hasVersion;
+- (int32_t) version;
+- (PBTutorial_Builder*) setVersion:(int32_t) value;
+- (PBTutorial_Builder*) clearVersion;
 @end
 
 @interface PBTutorialCore : PBGeneratedMessage {

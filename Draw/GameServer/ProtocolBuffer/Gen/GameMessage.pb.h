@@ -256,6 +256,8 @@
 @class PBStage_Builder;
 @class PBTask;
 @class PBTask_Builder;
+@class PBTip;
+@class PBTip_Builder;
 @class PBTutorial;
 @class PBTutorialCore;
 @class PBTutorialCore_Builder;
