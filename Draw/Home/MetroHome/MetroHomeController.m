@@ -10,6 +10,7 @@
 #import "UserManager.h"
 #import "UserTutorialMainController.h"
 #import "UIViewController+CommonHome.h"
+#import "MoreViewController.h"
 
 @interface MetroHomeController ()
 
@@ -55,9 +56,10 @@
 #define TEST_DATA_GALLERYIMAGE "http://58.215.184.18:8080/tutorial/image/GalleryImage2.jpg"
 - (void)viewDidLoad
 {
+//    
+//    [CommonTitleView createTitleView:self.view];
+//    [[CommonTitleView titleView:self.view] setTitle:NSLS(@"kMetroMainHome")];
     
-    [CommonTitleView createTitleView:self.view];
-    [[CommonTitleView titleView:self.view] setTitle:NSLS(@"kMetroMainHome")];
     
     
     [super viewDidLoad];
@@ -199,7 +201,11 @@
 }
 
 - (IBAction)goToMoreController:(id)sender{
-    [self enterMore];
+//    [self enterMore];
+    
+    MoreViewController *more = [[MoreViewController alloc] init];
+    [self.navigationController pushViewController:more animated:YES];
+    [more release];
 }
 
 

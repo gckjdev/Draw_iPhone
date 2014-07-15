@@ -6251,6 +6251,22 @@
 		D8A270A5196FE1E6006DDF20 /* lock_new2.png in Resources */ = {isa = PBXBuildFile; fileRef = D8A270A3196FE1E6006DDF20 /* lock_new2.png */; };
 		D8A270A6196FE1E6006DDF20 /* lock_new2.png in Resources */ = {isa = PBXBuildFile; fileRef = D8A270A3196FE1E6006DDF20 /* lock_new2.png */; };
 		D8A270A7196FE1E6006DDF20 /* lock_new2.png in Resources */ = {isa = PBXBuildFile; fileRef = D8A270A3196FE1E6006DDF20 /* lock_new2.png */; };
+		D8B6E0BC1973946D00B89048 /* MoreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D8B6E0BA1973946D00B89048 /* MoreViewController.m */; };
+		D8B6E0BD1973946D00B89048 /* MoreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D8B6E0BA1973946D00B89048 /* MoreViewController.m */; };
+		D8B6E0BE1973946D00B89048 /* MoreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D8B6E0BA1973946D00B89048 /* MoreViewController.m */; };
+		D8B6E0BF1973946D00B89048 /* MoreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D8B6E0BA1973946D00B89048 /* MoreViewController.m */; };
+		D8B6E0C01973946D00B89048 /* MoreViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D8B6E0BB1973946D00B89048 /* MoreViewController.xib */; };
+		D8B6E0C11973946D00B89048 /* MoreViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D8B6E0BB1973946D00B89048 /* MoreViewController.xib */; };
+		D8B6E0C21973946D00B89048 /* MoreViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D8B6E0BB1973946D00B89048 /* MoreViewController.xib */; };
+		D8B6E0C31973946D00B89048 /* MoreViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D8B6E0BB1973946D00B89048 /* MoreViewController.xib */; };
+		D8B6E0C91973961300B89048 /* MoreViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D8B6E0C81973961300B89048 /* MoreViewCell.m */; };
+		D8B6E0CA1973961300B89048 /* MoreViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D8B6E0C81973961300B89048 /* MoreViewCell.m */; };
+		D8B6E0CB1973961300B89048 /* MoreViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D8B6E0C81973961300B89048 /* MoreViewCell.m */; };
+		D8B6E0CC1973961300B89048 /* MoreViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D8B6E0C81973961300B89048 /* MoreViewCell.m */; };
+		D8B6E0CE1973962900B89048 /* MoreViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D8B6E0CD1973962900B89048 /* MoreViewCell.xib */; };
+		D8B6E0CF1973962900B89048 /* MoreViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D8B6E0CD1973962900B89048 /* MoreViewCell.xib */; };
+		D8B6E0D01973962900B89048 /* MoreViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D8B6E0CD1973962900B89048 /* MoreViewCell.xib */; };
+		D8B6E0D11973962900B89048 /* MoreViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D8B6E0CD1973962900B89048 /* MoreViewCell.xib */; };
 		D8BF37141971053F00ACEFCA /* xiaoxi.png in Resources */ = {isa = PBXBuildFile; fileRef = D8BF37131971053F00ACEFCA /* xiaoxi.png */; };
 		D8BF371D1971068100ACEFCA /* caidanlan.png in Resources */ = {isa = PBXBuildFile; fileRef = D8BF37181971068100ACEFCA /* caidanlan.png */; };
 		D8BF371E1971068100ACEFCA /* daohanglan.png in Resources */ = {isa = PBXBuildFile; fileRef = D8BF37191971068100ACEFCA /* daohanglan.png */; };
@@ -10572,6 +10588,12 @@
 		D8A27099196FC07F006DDF20 /* GameConstants.pb-c.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "GameConstants.pb-c.h"; sourceTree = "<group>"; };
 		D8A2709E196FD432006DDF20 /* lock_new.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = lock_new.png; sourceTree = "<group>"; };
 		D8A270A3196FE1E6006DDF20 /* lock_new2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = lock_new2.png; sourceTree = "<group>"; };
+		D8B6E0B91973946D00B89048 /* MoreViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MoreViewController.h; path = ../Controller/MoreViewController.h; sourceTree = "<group>"; };
+		D8B6E0BA1973946D00B89048 /* MoreViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MoreViewController.m; path = ../Controller/MoreViewController.m; sourceTree = "<group>"; };
+		D8B6E0BB1973946D00B89048 /* MoreViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = MoreViewController.xib; path = ../Controller/MoreViewController.xib; sourceTree = "<group>"; };
+		D8B6E0C71973961300B89048 /* MoreViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MoreViewCell.h; path = ../Controller/MoreViewCell.h; sourceTree = "<group>"; };
+		D8B6E0C81973961300B89048 /* MoreViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MoreViewCell.m; path = ../Controller/MoreViewCell.m; sourceTree = "<group>"; };
+		D8B6E0CD1973962900B89048 /* MoreViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = MoreViewCell.xib; path = ../Controller/MoreViewCell.xib; sourceTree = "<group>"; };
 		D8BF37131971053F00ACEFCA /* xiaoxi.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = xiaoxi.png; sourceTree = "<group>"; };
 		D8BF37181971068100ACEFCA /* caidanlan.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = caidanlan.png; sourceTree = "<group>"; };
 		D8BF37191971068100ACEFCA /* daohanglan.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = daohanglan.png; sourceTree = "<group>"; };
@@ -15324,6 +15346,7 @@
 		CA427065161FFF4A00C6CCAE /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				D8B6E0D21973C84800B89048 /* More */,
 				D80518A5196BD12200D350B3 /* Resource */,
 				D80EB348196B90C80087EBBD /* MetroHome */,
 				CA1DA94B16732CDF0078B5A9 /* View */,
@@ -17938,6 +17961,19 @@
 			path = MetroHome;
 			sourceTree = "<group>";
 		};
+		D8B6E0D21973C84800B89048 /* More */ = {
+			isa = PBXGroup;
+			children = (
+				D8B6E0B91973946D00B89048 /* MoreViewController.h */,
+				D8B6E0BA1973946D00B89048 /* MoreViewController.m */,
+				D8B6E0BB1973946D00B89048 /* MoreViewController.xib */,
+				D8B6E0C71973961300B89048 /* MoreViewCell.h */,
+				D8B6E0C81973961300B89048 /* MoreViewCell.m */,
+				D8B6E0CD1973962900B89048 /* MoreViewCell.xib */,
+			);
+			path = More;
+			sourceTree = "<group>";
+		};
 		EA0C5516180B9203008069C1 /* InfColorPicker */ = {
 			isa = PBXGroup;
 			children = (
@@ -18631,6 +18667,7 @@
 				A461B559174CBAA70088B061 /* DrawHomeHeaderPanel.xib in Resources */,
 				A461B567174CBAA70088B061 /* CommonDialog.xib in Resources */,
 				A461B568174CBAA70088B061 /* CommonDialog~ipad.xib in Resources */,
+				D8B6E0C21973946D00B89048 /* MoreViewController.xib in Resources */,
 				D89191FD196316C2006B616A /* StageCell.xib in Resources */,
 				A461B569174CBAA70088B061 /* CommonDiceDialog.xib in Resources */,
 				A461B56A174CBAA70088B061 /* CommonDiceDialog~ipad.xib in Resources */,
@@ -18699,6 +18736,7 @@
 				A461B6B7174CBAA70088B061 /* bbs_post_detail_untop@2x.png in Resources */,
 				A461B6B8174CBAA70088B061 /* BoardAdminListView.xib in Resources */,
 				A461B6B9174CBAA70088B061 /* BoardAdminListView~ipad.xib in Resources */,
+				D8B6E0D01973962900B89048 /* MoreViewCell.xib in Resources */,
 				A461B701174CBAA70088B061 /* DrawSlider.xib in Resources */,
 				A461B702174CBAA70088B061 /* DrawSlider~ipad.xib in Resources */,
 				A461B715174CBAA70088B061 /* ShapeBox.xib in Resources */,
@@ -19983,6 +20021,7 @@
 				A4D8FA9217DB08170085061F /* face_embarrass@2x.png in Resources */,
 				A4D8FA9617DB08170085061F /* face_proud@2x.png in Resources */,
 				A4D8FA9A17DB08170085061F /* guessed@2x.png in Resources */,
+				D8B6E0CF1973962900B89048 /* MoreViewCell.xib in Resources */,
 				A4D8FA9E17DB08170085061F /* my_paint_tag@2x.png in Resources */,
 				A4D8FAA217DB08170085061F /* new_bulletin@2x.png in Resources */,
 				A4D8FAA617DB08170085061F /* no_s@2x.png in Resources */,
@@ -20286,6 +20325,7 @@
 				A49C9CBC17DB2D0700C9F39F /* gallary_search@2x.png in Resources */,
 				A49C9CC717DB2F4600C9F39F /* gallary_filter2@2x.png in Resources */,
 				A49C9CCB17DB2F4600C9F39F /* gallary_search2@2x.png in Resources */,
+				D8B6E0C11973946D00B89048 /* MoreViewController.xib in Resources */,
 				EAD13B6817DDAF0700764FFB /* right@2x.png in Resources */,
 				EAD13B7217DDAF4000764FFB /* contest_prize_custom@2x.png in Resources */,
 				A457BAE617DECA5A00964088 /* self_detail_balance_btn_bg@2x.png in Resources */,
@@ -20627,6 +20667,7 @@
 				CAC3714B1611E856002CB837 /* ContestOpusController~ipad.xib in Resources */,
 				CAC371501611E86B002CB837 /* ContestController~ipad.xib in Resources */,
 				CAC371511611E86B002CB837 /* ContestView~ipad.xib in Resources */,
+				D8B6E0CE1973962900B89048 /* MoreViewCell.xib in Resources */,
 				CAC371521611E86B002CB837 /* StatementController~ipad.xib in Resources */,
 				CA65C0651615A01700EE1C1C /* MyCommentCell.xib in Resources */,
 				CA65C0661615A01700EE1C1C /* MyCommentCell~ipad.xib in Resources */,
@@ -21150,6 +21191,7 @@
 				A4D8FDA717DB089C0085061F /* pen_show_ice@2x.png in Resources */,
 				A4D8FDAB17DB089C0085061F /* pen_show_mark@2x.png in Resources */,
 				A4D8FDAF17DB089C0085061F /* pen_show_pencil@2x.png in Resources */,
+				D8B6E0C01973946D00B89048 /* MoreViewController.xib in Resources */,
 				A4D8FDB317DB089C0085061F /* draw_rubber@2x.png in Resources */,
 				A4D8FDB717DB089C0085061F /* pen_brush@2x.png in Resources */,
 				A4D8FDBB17DB089C0085061F /* pen_feather@2x.png in Resources */,
@@ -21661,6 +21703,7 @@
 				EA411C1F176066F500DA72D0 /* MyCommentCell.xib in Resources */,
 				EA411C20176066F500DA72D0 /* MyCommentCell~ipad.xib in Resources */,
 				EA411C21176066F500DA72D0 /* HotController~ipad.xib in Resources */,
+				D8B6E0C31973946D00B89048 /* MoreViewController.xib in Resources */,
 				EA411C22176066F500DA72D0 /* UserLocationController.xib in Resources */,
 				EA411C23176066F500DA72D0 /* UserLocationController~ipad.xib in Resources */,
 				EA411C28176066F500DA72D0 /* ZhaJinHua.proto in Resources */,
@@ -21923,6 +21966,7 @@
 				A4DDD14817CDFD7B0029E562 /* iap_product_513819630.pb in Resources */,
 				A4DDD14C17CDFD7B0029E562 /* iap_product_513819630_old.pb in Resources */,
 				A4DDD15017CDFD7B0029E562 /* iap_product_Draw.pb in Resources */,
+				D8B6E0D11973962900B89048 /* MoreViewCell.xib in Resources */,
 				A4DDD15417CDFD7B0029E562 /* image_shape.zip in Resources */,
 				A4DDD15817CDFD7B0029E562 /* shop_item_513819630.pb in Resources */,
 				A4DDD15C17CDFD7B0029E562 /* shop_item_Draw.pb in Resources */,
@@ -22658,6 +22702,7 @@
 				A461B0A1174CBAA70088B061 /* UITextFieldForCell.m in Sources */,
 				A461B0A2174CBAA70088B061 /* UITextTableViewCell.m in Sources */,
 				A461B0A3174CBAA70088B061 /* UIToolBarCell.m in Sources */,
+				D8B6E0CB1973961300B89048 /* MoreViewCell.m in Sources */,
 				A461B0A4174CBAA70088B061 /* PPViewController+NumPadReturn.m in Sources */,
 				A461B0A5174CBAA70088B061 /* ViewControllerUtils.m in Sources */,
 				A461B0A6174CBAA70088B061 /* CoreDataUtil.m in Sources */,
@@ -23014,6 +23059,7 @@
 				A461B2D9174CBAA70088B061 /* ILColorPickerView.m in Sources */,
 				A461B2DA174CBAA70088B061 /* ILHuePickerView.m in Sources */,
 				A461B2DB174CBAA70088B061 /* ILSaturationBrightnessPickerView.m in Sources */,
+				D8B6E0BE1973946D00B89048 /* MoreViewController.m in Sources */,
 				A461B2DC174CBAA70088B061 /* ILView.m in Sources */,
 				A461B2DD174CBAA70088B061 /* AnalyticsManager.m in Sources */,
 				A461B2DE174CBAA70088B061 /* HotWordManager.m in Sources */,
@@ -23773,6 +23819,7 @@
 				C28A9B471738F04B007A819F /* ANGifEncoder.m in Sources */,
 				C28A9B481738F04B007A819F /* ANGifGraphicControlExt.m in Sources */,
 				C28A9B491738F04B007A819F /* ANGifLogicalScreenDesc.m in Sources */,
+				D8B6E0CA1973961300B89048 /* MoreViewCell.m in Sources */,
 				C28A9B4A1738F04B007A819F /* ANGifAppExtension.m in Sources */,
 				C28A9B4B1738F04B007A819F /* ANGifNetscapeAppExtension.m in Sources */,
 				C28A9B4C1738F04B007A819F /* ANAvgColorTable.m in Sources */,
@@ -23874,6 +23921,7 @@
 				C28A9BDA1738F04B007A819F /* ColorPoint.m in Sources */,
 				C28A9BDB1738F04B007A819F /* DrawSlider.m in Sources */,
 				C28A9BDC1738F04B007A819F /* DrawToolPanel.m in Sources */,
+				D8B6E0BD1973946D00B89048 /* MoreViewController.m in Sources */,
 				C28A9BDD1738F04B007A819F /* Palette.m in Sources */,
 				C28A9BDE1738F04B007A819F /* PenBox.m in Sources */,
 				C28A9BDF1738F04B007A819F /* InputAlertView.m in Sources */,
@@ -24614,6 +24662,7 @@
 				CA42FE4B165F2FF30097453A /* BBSUserActionCell.m in Sources */,
 				CAEE45E5165F5590001E02F1 /* GameSNSService.m in Sources */,
 				CAFEFE2816606FC200441D77 /* ANGifEncoder.m in Sources */,
+				D8B6E0C91973961300B89048 /* MoreViewCell.m in Sources */,
 				CAFEFE2916606FC200441D77 /* ANGifGraphicControlExt.m in Sources */,
 				CAFEFE2A16606FC200441D77 /* ANGifLogicalScreenDesc.m in Sources */,
 				CAFEFE2B16606FC200441D77 /* ANGifAppExtension.m in Sources */,
@@ -24715,6 +24764,7 @@
 				C297004E16A1363500A61521 /* RoundLineLabel.m in Sources */,
 				CA5328ED16A3E1E000E9E96B /* ColorBox.m in Sources */,
 				CA5328F916A3E1E000E9E96B /* ColorPoint.m in Sources */,
+				D8B6E0BC1973946D00B89048 /* MoreViewController.m in Sources */,
 				CA5328FD16A3E1E000E9E96B /* DrawSlider.m in Sources */,
 				CA53290116A3E1E000E9E96B /* DrawToolPanel.m in Sources */,
 				CA53291116A3E1E000E9E96B /* Palette.m in Sources */,
@@ -25290,6 +25340,7 @@
 				EA4118D3176066F500DA72D0 /* AboutUsController.m in Sources */,
 				EA4118D5176066F500DA72D0 /* ShareAction.m in Sources */,
 				EA4118D7176066F500DA72D0 /* MyPaintButton.m in Sources */,
+				D8B6E0BF1973946D00B89048 /* MoreViewController.m in Sources */,
 				EA4118D8176066F500DA72D0 /* StoreKitUtils.m in Sources */,
 				CACD6CC118E03BCD003F97C0 /* NSObject+SBJSON.m in Sources */,
 				EA4118D9176066F500DA72D0 /* TransactionReceiptManager.m in Sources */,
@@ -25454,6 +25505,7 @@
 				EA4119AF176066F500DA72D0 /* ANGifAppExtension.m in Sources */,
 				EA4119B0176066F500DA72D0 /* ANGifNetscapeAppExtension.m in Sources */,
 				EA4119B1176066F500DA72D0 /* ANAvgColorTable.m in Sources */,
+				D8B6E0CC1973961300B89048 /* MoreViewCell.m in Sources */,
 				EA4119B2176066F500DA72D0 /* ANColorTable.m in Sources */,
 				EA4119B3176066F500DA72D0 /* ANCutColorTable.m in Sources */,
 				EA4119B4176066F500DA72D0 /* ANMutableColorArray.m in Sources */,

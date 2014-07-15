@@ -1083,6 +1083,7 @@
 "kI" = "我";
 "kSendMeFlower" = "给我赠送了一朵鲜花！";
 "kThrowMeTomato" = "给我丢了个番茄！";
+
 "kCommentMyDraw" = "评论我的画。";
 "kCommentMyOpus" = "评论我的作品。";
 
@@ -2780,9 +2781,11 @@
 "kTutorialCategoryTopLevel" = "高级";
 
 "kMetroMainHome" = "首页";
+
 "kAskPracticeOrPassTitle" = "关卡选项";
 "kAskPracticeOrPassMsg" = "先进行【修炼】还是【闯关】？";
 "kPractice" = "修炼";
 "kPass" = "闯关";
 
-
+"kMoreView" = "更多小吉";
+"kUserTutorialInfo" = "教程信息";
