@@ -27,6 +27,7 @@
 // TODO format/refactor the code below
 #define DEFAUT_IMAGE "zuixiaoguanka"
 #define DEFAUT_LOCK_IMAGE "lock_new2"
+
 -(void)updateStageCellInfo:(PBUserTutorial *)pbUserTutorial withRow:(NSInteger)row{
    
         //隐藏了BUTTON
@@ -38,6 +39,15 @@
     //设置隐藏锁图片
     [self.stageListHiddenLockImageView setImage:[UIImage imageNamed:@DEFAUT_LOCK_IMAGE]];
     [self.cellName setText:[NSString stringWithFormat:@"%d.%@",row+1,name]];
+    [self.cellName setShadowColor:[UIColor blackColor]];
+    [self.cellName setShadowOffset:CGSizeMake(1, 1)];
+    
+    UIImage* starButtonBgImage = [[ShareImageManager defaultManager] startButtonBgImage];
+    
+    [self.stageListStarBtn setBackgroundImage:starButtonBgImage forState:UIControlStateNormal];
+    [self.stageListStarBtn setTitleColor:COLOR_BROWN forState:UIControlStateNormal];
+    [self.stageListStarBtn.titleLabel setFont:AD_FONT(20, 14)];
+    
     [self.hiddenNumberLabel setText:[NSString stringWithFormat:@"%d",row+1]];
     //闯关的关卡数
     if(row<= pbUserTutorial.currentStageIndex){
@@ -60,6 +70,7 @@
             placeholderImage:placeHolderImage
             showLoading:YES
             animated:YES];
+
 }
 
 - (void)dealloc {

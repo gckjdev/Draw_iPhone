@@ -103,9 +103,19 @@
 //    [self.paintingView addSubview:shadowView];
     [self setButtonTitleBottom];
     [self goToUserDetail];
+    
+    //TEST
+    [self setBadgeView];
 
 }
-
+#define TEST_DATA 5
+-(void)setBadgeView{
+    [self.indexBadge setNumber:TEST_DATA];
+    [self.documentBadge setNumber:TEST_DATA];
+    [self.messageBadge setNumber:TEST_DATA];
+    [self.moreBadge setNumber:TEST_DATA];
+    [self.anounceBadge setNumber:TEST_DATA];
+}
 
 -(IBAction)goToLearning:(id)sender{
     UserTutorialMainController* uc = [[UserTutorialMainController alloc] init];
@@ -266,6 +276,11 @@
     [_moreButton release];
     [_topNameButton release];
     [_bottomBackground release];
+    [_indexBadge release];
+    [_documentBadge release];
+    [_messageBadge release];
+    [_moreBadge release];
+    [_anounceBadge release];
     [super dealloc];
 }
 - (void)viewDidUnload {
@@ -290,6 +305,11 @@
     [self setMoreButton:nil];
     [self setTopNameButton:nil];
     [self setBottomBackground:nil];
+    [self setIndexBadge:nil];
+    [self setDocumentBadge:nil];
+    [self setMessageBadge:nil];
+    [self setMoreBadge:nil];
+    [self setAnounceBadge:nil];
     [super viewDidUnload];
 }
 @end

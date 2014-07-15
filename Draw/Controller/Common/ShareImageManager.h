@@ -491,5 +491,8 @@ typedef enum{
 - (UIImage *)disableGroupMessageNoticeOff;
 - (UIImage *)disableGroupMessageNoticeOn;
 
+- (UIImage *)startButtonBgImage;
+-(UIImage *)tutorialStartButtonBgImage;
+
 
 @end

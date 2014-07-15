@@ -25,17 +25,20 @@ enum{
 @interface TutorialInfoController ()
 
 @property (nonatomic, retain) PBTutorial* pbTutorial;
-@end
+@property (nonatomic, assign) BOOL infoOnly;
 
+@end
 
 @implementation TutorialInfoController
 @synthesize tutorialCellInfoHeight;
+//unable click yes为不可点击，no为可以点击
 + (TutorialInfoController*)enter:(PPViewController*)superViewController
-                      pbTutorial:(PBTutorial*)pbTutorial
+                      pbTutorial:(PBTutorial*)pbTutorial infoOnly:(BOOL)infoOnly
 {
     TutorialInfoController* vc = [[TutorialInfoController alloc] init];
     vc.pbTutorial = pbTutorial;
     [superViewController.navigationController pushViewController:vc animated:YES];
+    vc.infoOnly = infoOnly;
     [vc release];
     return vc;
 }
@@ -59,14 +62,22 @@ enum{
 - (void)updateRightButton
 {
     id titleView = [CommonTitleView titleView:self.view];
-    if ([[UserTutorialManager defaultManager] isTutorialLearned:_pbTutorial.tutorialId]){
+    if (self.infoOnly==NO) {
+        if ([[UserTutorialManager defaultManager] isTutorialLearned:_pbTutorial.tutorialId]){
+            [titleView setRightButtonTitle:NSLS(@"kOpenToLearn")];
+            [titleView setRightButtonSelector:@selector(clickOpen:)];
+        }
+        else{
+            [titleView setRightButtonTitle:NSLS(@"kAddToLearn")];
+            [titleView setRightButtonSelector:@selector(clickAdd:)];
+        }
+    }else{
         [titleView setRightButtonTitle:NSLS(@"kOpenToLearn")];
         [titleView setRightButtonSelector:@selector(clickOpen:)];
+        [titleView hideRightButton];
     }
-    else{
-        [titleView setRightButtonTitle:NSLS(@"kAddToLearn")];
-        [titleView setRightButtonSelector:@selector(clickAdd:)];
-    }
+    
+    
 }
 
 - (void)viewDidLoad

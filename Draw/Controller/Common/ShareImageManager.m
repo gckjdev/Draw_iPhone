@@ -1638,5 +1638,16 @@ static NSMutableDictionary *boundImageDict = nil;
     }
 }
 
+- (UIImage *)startButtonBgImage
+{
+    UIImage* image = [UIImage imageNamed:@"beginPlayGame(little).png"];
+    return [image stretchableImageWithLeftCapWidth:image.size.width/2 topCapHeight:0];
+}
+
+-(UIImage *)tutorialStartButtonBgImage{
+    UIImage* image = [UIImage imageNamed:@"beginPlayGame(big).png"];
+    return [image stretchableImageWithLeftCapWidth:image.size.width/2 topCapHeight:0];
+}
+
 @end
 

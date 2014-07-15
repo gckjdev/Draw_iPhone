@@ -7,15 +7,20 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MetroHomeController">
             <connections>
+                <outlet property="anounceBadge" destination="b9t-rK-0c7" id="Eix-6a-htC"/>
                 <outlet property="avatarView" destination="6J7-uC-rRl" id="JLA-El-e3G"/>
                 <outlet property="bottomBackground" destination="PYb-tm-iTt" id="68I-F1-qs7"/>
                 <outlet property="bottomView" destination="3Np-wi-VeX" id="vl8-64-bqw"/>
+                <outlet property="documentBadge" destination="YOe-kB-vRR" id="kjA-gP-OPA"/>
                 <outlet property="documentButton" destination="gJU-xy-Fyl" id="0mX-e1-DfG"/>
                 <outlet property="galleryImageView" destination="nfA-cC-aWZ" id="NV7-EQ-YG2"/>
                 <outlet property="galleryView" destination="gQX-WC-OJs" id="hob-IF-ig7"/>
+                <outlet property="indexBadge" destination="mkZ-sO-mRC" id="uhc-ar-DTA"/>
                 <outlet property="indexButton" destination="Kt0-Ju-jY9" id="PFH-dR-UDD"/>
                 <outlet property="mainView" destination="q7e-KX-Zd0" id="KXw-s4-Gs2"/>
+                <outlet property="messageBadge" destination="AIb-cr-Jf6" id="8So-hL-Mmb"/>
                 <outlet property="messageButton" destination="JtE-sS-KtO" id="pGu-zK-8za"/>
+                <outlet property="moreBadge" destination="eay-f6-S6o" id="FQF-HM-Omf"/>
                 <outlet property="moreButton" destination="WaA-Op-fht" id="C0v-l0-Uc9"/>
                 <outlet property="topAnnounceView" destination="L7U-LC-3CY" id="hf6-be-wFa"/>
                 <outlet property="topNameButton" destination="dZN-sX-z5c" id="VRD-D1-Y4e"/>
@@ -241,23 +246,6 @@
                                 <action selector="goToUserDetail:" destination="-1" eventType="touchUpInside" id="q5v-Ih-Dlt"/>
                             </connections>
                         </button>
-                        <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="L7U-LC-3CY">
-                            <rect key="frame" x="280" y="8" width="25" height="25"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <subviews>
-                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ENf-IZ-9dj">
-                                    <rect key="frame" x="0.0" y="0.0" width="25" height="25"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    <state key="normal" image="laba.png">
-                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                    </state>
-                                    <connections>
-                                        <action selector="goToAnnounce:" destination="-1" eventType="touchUpInside" id="Ggb-Ls-Ywb"/>
-                                    </connections>
-                                </button>
-                            </subviews>
-                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                        </view>
                         <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6J7-uC-rRl" userLabel="Avatar View" customClass="AvatarView">
                             <rect key="frame" x="9" y="7" width="25" height="25"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -288,7 +276,7 @@
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <subviews>
                         <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="Kt0-Ju-jY9" userLabel="Index Button">
-                            <rect key="frame" x="37" y="6" width="30" height="30"/>
+                            <rect key="frame" x="37" y="6" width="35" height="35"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <fontDescription key="fontDescription" type="system" pointSize="8"/>
                             <state key="normal" title="动态" image="dongtai.png">
@@ -298,8 +286,13 @@
                                 <action selector="goToIndexController:" destination="-1" eventType="touchUpInside" id="SeY-XO-rwB"/>
                             </connections>
                         </button>
+                        <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mkZ-sO-mRC" userLabel="Index Badge" customClass="BadgeView">
+                            <rect key="frame" x="52" y="6" width="20" height="20"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        </view>
                         <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="gJU-xy-Fyl" userLabel="Document Button">
-                            <rect key="frame" x="107" y="6" width="30" height="30"/>
+                            <rect key="frame" x="107" y="6" width="35" height="35"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <fontDescription key="fontDescription" type="system" pointSize="8"/>
                             <state key="normal" title="草稿" image="caogao.png">
@@ -309,8 +302,13 @@
                                 <action selector="goToDocumentController:" destination="-1" eventType="touchUpInside" id="5gm-cI-s5f"/>
                             </connections>
                         </button>
+                        <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="YOe-kB-vRR" userLabel="Document Badge" customClass="BadgeView">
+                            <rect key="frame" x="122" y="6" width="20" height="20"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        </view>
                         <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="JtE-sS-KtO" userLabel="Message Button">
-                            <rect key="frame" x="180" y="6" width="30" height="30"/>
+                            <rect key="frame" x="180" y="6" width="35" height="35"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <fontDescription key="fontDescription" type="system" pointSize="8"/>
                             <state key="normal" title="消息" image="xiaoxi.png">
@@ -321,8 +319,13 @@
                                 <action selector="goToMessageController:" destination="-1" eventType="touchUpInside" id="FxN-Rk-cY4"/>
                             </connections>
                         </button>
+                        <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="AIb-cr-Jf6" userLabel="Message Badge" customClass="BadgeView">
+                            <rect key="frame" x="195" y="6" width="20" height="20"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        </view>
                         <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="WaA-Op-fht" userLabel="More Button">
-                            <rect key="frame" x="254" y="6" width="30" height="30"/>
+                            <rect key="frame" x="254" y="6" width="35" height="35"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <fontDescription key="fontDescription" type="system" pointSize="8"/>
                             <state key="normal" title="更多" image="gengduo.png">
@@ -333,6 +336,11 @@
                                 <action selector="goToMoreController:" destination="-1" eventType="touchUpInside" id="Ubu-9f-Atg"/>
                             </connections>
                         </button>
+                        <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="eay-f6-S6o" userLabel="More Badge" customClass="BadgeView">
+                            <rect key="frame" x="269" y="6" width="20" height="20"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        </view>
                     </subviews>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     <constraints>
@@ -344,6 +352,28 @@
                     <rect key="frame" x="0.0" y="497" width="320" height="18"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 </imageView>
+                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="L7U-LC-3CY">
+                    <rect key="frame" x="265" y="25" width="35" height="35"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <subviews>
+                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ENf-IZ-9dj">
+                            <rect key="frame" x="0.0" y="5" width="25" height="25"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <state key="normal" image="laba.png">
+                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <connections>
+                                <action selector="goToAnnounce:" destination="-1" eventType="touchUpInside" id="Ggb-Ls-Ywb"/>
+                            </connections>
+                        </button>
+                        <view hidden="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="b9t-rK-0c7" userLabel="announceBadge" customClass="BadgeView">
+                            <rect key="frame" x="15" y="0.0" width="20" height="18"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        </view>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                </view>
             </subviews>
             <color key="backgroundColor" red="0.94901960780000005" green="0.94901960780000005" blue="0.94901960780000005" alpha="1" colorSpace="deviceRGB"/>
             <constraints>
