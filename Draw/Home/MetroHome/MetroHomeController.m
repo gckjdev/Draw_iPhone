@@ -61,13 +61,11 @@
 //    [[CommonTitleView titleView:self.view] setTitle:NSLS(@"kMetroMainHome")];
     
     
-    
     [super viewDidLoad];
     
     [self setBackground];
         // Do any additional setup after loading the view from its nib.
     UIImage *placeHolderImage = [UIImage imageNamed:@DEFAUT_IMAGE_NAME];
-    
     
     //读取网上图片
     NSString *galleryImage = @TEST_DATA_GALLERYIMAGE;
@@ -169,17 +167,14 @@
     UIImage *bottomBackground = [UIImage imageNamed:@"neironglan yu caidanlan.png"];
     [self.bottomBackground setBackgroundColor:[UIColor clearColor]];
     [self.bottomBackground setImage:bottomBackground];
-//    UIColor *color2 = [[UIColor alloc] initWithPatternImage:bottomBackground];
-//    
-//    CGRect frame2 = CGRectMake(0, 10, self.bottomBackground.frame.size.width, self.bottomBackground.frame.size.height);
-//    UIView *bg2 = [[UIView alloc] initWithFrame:frame2];
-//    [bg2 setBackgroundColor:color2];
-//    [color2 release];
-//    
-//    self.bottomBackground.backgroundColor = [UIColor clearColor];
-//    [self.bottomBackground insertSubview:bg2 atIndex:0];
-//    [bg2 release];
 }
+
+
+
+
+
+
+
 
 #pragma -mark
 #pragma mark click
