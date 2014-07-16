@@ -173,6 +173,10 @@
 		A42151CD18040C5F007F2EFD /* MWPhotoBrowser.strings in Resources */ = {isa = PBXBuildFile; fileRef = A42151CF18040C5F007F2EFD /* MWPhotoBrowser.strings */; };
 		A422DB931693DD0D00914A48 /* HotWordManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A422DB921693DD0D00914A48 /* HotWordManager.m */; };
 		A427459E171267CE00E43037 /* GoogleAddressComponent.m in Sources */ = {isa = PBXBuildFile; fileRef = A427459D171267CE00E43037 /* GoogleAddressComponent.m */; };
+		A4284CE719766A9100B2C785 /* OpenCVUtils.mm in Sources */ = {isa = PBXBuildFile; fileRef = A4284CE619766A9100B2C785 /* OpenCVUtils.mm */; };
+		A4284CE819766A9100B2C785 /* OpenCVUtils.mm in Sources */ = {isa = PBXBuildFile; fileRef = A4284CE619766A9100B2C785 /* OpenCVUtils.mm */; };
+		A4284CE919766A9100B2C785 /* OpenCVUtils.mm in Sources */ = {isa = PBXBuildFile; fileRef = A4284CE619766A9100B2C785 /* OpenCVUtils.mm */; };
+		A4284CEA19766A9100B2C785 /* OpenCVUtils.mm in Sources */ = {isa = PBXBuildFile; fileRef = A4284CE619766A9100B2C785 /* OpenCVUtils.mm */; };
 		A42AB81316E83A65007AD01E /* IAPProductService.m in Sources */ = {isa = PBXBuildFile; fileRef = A42AB81216E83A65007AD01E /* IAPProductService.m */; };
 		A42BB02A17D9735A007FB11B /* TwoInputFieldView.m in Sources */ = {isa = PBXBuildFile; fileRef = A42BB02717D9735A007FB11B /* TwoInputFieldView.m */; };
 		A42BB02B17D9735A007FB11B /* TwoInputFieldView.m in Sources */ = {isa = PBXBuildFile; fileRef = A42BB02717D9735A007FB11B /* TwoInputFieldView.m */; };
@@ -1446,6 +1450,10 @@
 		A4C9E04917A61E8000DE982F /* KxMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = A4C9E04417A61B6500DE982F /* KxMenu.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
 		A4C9E05217A651C800DE982F /* PBGuessRank+Extend.m in Sources */ = {isa = PBXBuildFile; fileRef = A4C9E05117A651C800DE982F /* PBGuessRank+Extend.m */; };
 		A4CD501116F9B56400BE6694 /* BalanceNotEnoughAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = A4CD501016F9B56300BE6694 /* BalanceNotEnoughAlertView.m */; };
+		A4D2C5E81976696200D03A5E /* opencv2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A4D2C5E71976696200D03A5E /* opencv2.framework */; };
+		A4D2C5E91976696200D03A5E /* opencv2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A4D2C5E71976696200D03A5E /* opencv2.framework */; };
+		A4D2C5EA1976696300D03A5E /* opencv2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A4D2C5E71976696200D03A5E /* opencv2.framework */; };
+		A4D2C5EB1976696300D03A5E /* opencv2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A4D2C5E71976696200D03A5E /* opencv2.framework */; };
 		A4D3B15B1560E4B50013C882 /* ExpressionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A4D3B1591560E4B50013C882 /* ExpressionManager.m */; };
 		A4D3B15E1560E4F80013C882 /* MessageManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A4D3B15D1560E4F80013C882 /* MessageManager.m */; };
 		A4D410C417E1945600DE07C6 /* ContestRankView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4D410C317E1945500DE07C6 /* ContestRankView~ipad.xib */; };
@@ -7958,6 +7966,7 @@
 		A422DB921693DD0D00914A48 /* HotWordManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HotWordManager.m; sourceTree = "<group>"; };
 		A427459C171267CE00E43037 /* GoogleAddressComponent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GoogleAddressComponent.h; sourceTree = "<group>"; };
 		A427459D171267CE00E43037 /* GoogleAddressComponent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GoogleAddressComponent.m; sourceTree = "<group>"; };
+		A4284CE619766A9100B2C785 /* OpenCVUtils.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = OpenCVUtils.mm; sourceTree = "<group>"; };
 		A42AB80716E8364B007AD01E /* ChargeController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChargeController.h; sourceTree = "<group>"; };
 		A42AB80816E8364B007AD01E /* ChargeController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChargeController.m; sourceTree = "<group>"; };
 		A42AB80916E8364C007AD01E /* ChargeController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ChargeController.xib; sourceTree = "<group>"; };
@@ -8224,6 +8233,8 @@
 		A4C9E05117A651C800DE982F /* PBGuessRank+Extend.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "PBGuessRank+Extend.m"; sourceTree = "<group>"; };
 		A4CD500F16F9B56200BE6694 /* BalanceNotEnoughAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BalanceNotEnoughAlertView.h; sourceTree = "<group>"; };
 		A4CD501016F9B56300BE6694 /* BalanceNotEnoughAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BalanceNotEnoughAlertView.m; sourceTree = "<group>"; };
+		A4D2C5E71976696200D03A5E /* opencv2.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = opencv2.framework; sourceTree = "<group>"; };
+		A4D2C5EF197669B200D03A5E /* OpenCVUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OpenCVUtils.h; sourceTree = "<group>"; };
 		A4D3B1581560E4B50013C882 /* ExpressionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExpressionManager.h; sourceTree = "<group>"; };
 		A4D3B1591560E4B50013C882 /* ExpressionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExpressionManager.m; sourceTree = "<group>"; };
 		A4D3B15C1560E4F80013C882 /* MessageManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageManager.h; sourceTree = "<group>"; };
@@ -10933,6 +10944,7 @@
 				A461B3D9174CBAA70088B061 /* libProtocolBuffers.a in Frameworks */,
 				CACD6D3518E03C40003F97C0 /* libDIRAC_iOS-fat.a in Frameworks */,
 				A461B3DA174CBAA70088B061 /* libz.1.1.3.dylib in Frameworks */,
+				A4D2C5EA1976696300D03A5E /* opencv2.framework in Frameworks */,
 				A461B3DB174CBAA70088B061 /* MessageUI.framework in Frameworks */,
 				A461B3DC174CBAA70088B061 /* MapKit.framework in Frameworks */,
 				CACD6A7F18E03A28003F97C0 /* PocketConnection.framework in Frameworks */,
@@ -11035,6 +11047,7 @@
 				C28A9CB71738F04B007A819F /* StoreKit.framework in Frameworks */,
 				CACD6A5A18E03A28003F97C0 /* FacebookConnection.framework in Frameworks */,
 				CACD6AA618E03A29003F97C0 /* TencentWeiboConnection.framework in Frameworks */,
+				A4D2C5E91976696200D03A5E /* opencv2.framework in Frameworks */,
 				CA93D12118F008FA002BB805 /* GooglePlus.framework in Frameworks */,
 				CACD6A8218E03A28003F97C0 /* PrintConnection.framework in Frameworks */,
 				C28A9CB81738F04B007A819F /* libProtocolBuffers.a in Frameworks */,
@@ -11140,6 +11153,7 @@
 				CA96E363150E10D600292335 /* libProtocolBuffers.a in Frameworks */,
 				CACD6D3318E03C40003F97C0 /* libDIRAC_iOS-fat.a in Frameworks */,
 				CA103F381509A71A00F60C03 /* libz.1.1.3.dylib in Frameworks */,
+				A4D2C5E81976696200D03A5E /* opencv2.framework in Frameworks */,
 				CA103F341509A70800F60C03 /* MessageUI.framework in Frameworks */,
 				CA103F321509A6EE00F60C03 /* MapKit.framework in Frameworks */,
 				CACD6A7D18E03A28003F97C0 /* PocketConnection.framework in Frameworks */,
@@ -11268,6 +11282,7 @@
 				CACD6A8418E03A28003F97C0 /* PrintConnection.framework in Frameworks */,
 				EA411B39176066F500DA72D0 /* UIKit.framework in Frameworks */,
 				CACD6A9418E03A28003F97C0 /* SinaWeiboConnection.framework in Frameworks */,
+				A4D2C5EB1976696300D03A5E /* opencv2.framework in Frameworks */,
 				CACD6ABC18E03A29003F97C0 /* AGCommon.framework in Frameworks */,
 				CACD6B0018E03A2D003F97C0 /* ShareSDK.framework in Frameworks */,
 				EA411B3A176066F500DA72D0 /* Foundation.framework in Frameworks */,
@@ -11909,6 +11924,16 @@
 				A4C9E04417A61B6500DE982F /* KxMenu.m */,
 			);
 			path = KxMenu;
+			sourceTree = "<group>";
+		};
+		A4D2C5E61976696200D03A5E /* OpenCV */ = {
+			isa = PBXGroup;
+			children = (
+				A4D2C5EF197669B200D03A5E /* OpenCVUtils.h */,
+				A4284CE619766A9100B2C785 /* OpenCVUtils.mm */,
+				A4D2C5E71976696200D03A5E /* opencv2.framework */,
+			);
+			path = OpenCV;
 			sourceTree = "<group>";
 		};
 		A4D3B1561560E4B50013C882 /* Chat */ = {
@@ -17865,6 +17890,7 @@
 		CAFEFCE416606FC100441D77 /* Component-Service */ = {
 			isa = PBXGroup;
 			children = (
+				A4D2C5E61976696200D03A5E /* OpenCV */,
 				CA766D5417A15EB600D60E3D /* CPMotionRecognizer */,
 				C23ED5DB1759A5B500263FB7 /* GoogleSearch */,
 				CAADF60A16F444C20097CFA1 /* AdWallService */,
@@ -23136,6 +23162,7 @@
 				A461B320174CBAA70088B061 /* DashPen.m in Sources */,
 				A461B321174CBAA70088B061 /* BlurPen.m in Sources */,
 				A461B322174CBAA70088B061 /* MarkPen.m in Sources */,
+				A4284CE919766A9100B2C785 /* OpenCVUtils.mm in Sources */,
 				D8A2709C196FC07F006DDF20 /* GameConstants.pb-c.c in Sources */,
 				A461B323174CBAA70088B061 /* GameItemService.m in Sources */,
 				A461B324174CBAA70088B061 /* GameItem.m in Sources */,
@@ -23953,6 +23980,7 @@
 				C28A9BDA1738F04B007A819F /* ColorPoint.m in Sources */,
 				C28A9BDB1738F04B007A819F /* DrawSlider.m in Sources */,
 				C28A9BDC1738F04B007A819F /* DrawToolPanel.m in Sources */,
+				A4284CE819766A9100B2C785 /* OpenCVUtils.mm in Sources */,
 				C28A9BDD1738F04B007A819F /* Palette.m in Sources */,
 				C28A9BDE1738F04B007A819F /* PenBox.m in Sources */,
 				C28A9BDF1738F04B007A819F /* InputAlertView.m in Sources */,
@@ -24796,6 +24824,7 @@
 				C297004E16A1363500A61521 /* RoundLineLabel.m in Sources */,
 				CA5328ED16A3E1E000E9E96B /* ColorBox.m in Sources */,
 				CA5328F916A3E1E000E9E96B /* ColorPoint.m in Sources */,
+				A4284CE719766A9100B2C785 /* OpenCVUtils.mm in Sources */,
 				CA5328FD16A3E1E000E9E96B /* DrawSlider.m in Sources */,
 				CA53290116A3E1E000E9E96B /* DrawToolPanel.m in Sources */,
 				CA53291116A3E1E000E9E96B /* Palette.m in Sources */,
@@ -25275,6 +25304,7 @@
 				EA411847176066F500DA72D0 /* UIImageUtil.m in Sources */,
 				CA9005231950209B003389FD /* THGridMenu.m in Sources */,
 				EA411848176066F500DA72D0 /* LocaleUtils.m in Sources */,
+				A4284CEA19766A9100B2C785 /* OpenCVUtils.mm in Sources */,
 				EA411849176066F500DA72D0 /* LogUtil.m in Sources */,
 				EA41184A176066F500DA72D0 /* NumberUtil.m in Sources */,
 				EA41184B176066F500DA72D0 /* ArrayOfCharacters.m in Sources */,
@@ -26252,6 +26282,7 @@
 					"../Common_iPhone_20/3PP-SDK/ShareSDK/UI",
 					"../Common_iPhone_20/3PP-SDK/LmmobSDK",
 					"../Common_iPhone_20/3PP-SDK/ShareSDK/Extend/QQConnectSDK",
+					"/Users/Linruin/gitdata/Common_iPhone_20/Components/Component-Service/OpenCV",
 				);
 				GCC_C_LANGUAGE_STANDARD = "compiler-default";
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -26360,6 +26391,7 @@
 					"../Common_iPhone_20/3PP-SDK/ShareSDK/UI",
 					"../Common_iPhone_20/3PP-SDK/LmmobSDK",
 					"../Common_iPhone_20/3PP-SDK/ShareSDK/Extend/QQConnectSDK",
+					"/Users/Linruin/gitdata/Common_iPhone_20/Components/Component-Service/OpenCV",
 				);
 				GCC_C_LANGUAGE_STANDARD = "compiler-default";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -26468,6 +26500,7 @@
 					"../Common_iPhone_20/3PP-SDK/ShareSDK/UI",
 					"../Common_iPhone_20/3PP-SDK/LmmobSDK",
 					"../Common_iPhone_20/3PP-SDK/ShareSDK/Extend/QQConnectSDK",
+					"/Users/Linruin/gitdata/Common_iPhone_20/Components/Component-Service/OpenCV",
 				);
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -26575,6 +26608,7 @@
 					"../Common_iPhone_20/3PP-SDK/ShareSDK/UI",
 					"../Common_iPhone_20/3PP-SDK/LmmobSDK",
 					"../Common_iPhone_20/3PP-SDK/ShareSDK/Extend/QQConnectSDK",
+					"/Users/Linruin/gitdata/Common_iPhone_20/Components/Component-Service/OpenCV",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Draw/Draw-Prefix.pch";
@@ -26653,6 +26687,8 @@
 					armv7,
 					armv6,
 				);
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
 				CODE_SIGN_IDENTITY = "iPhone Developer: Lingzhe Peng (9WG829Y3AG)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Lingzhe Peng (9WG829Y3AG)";
 				COMPRESS_PNG_FILES = YES;
@@ -26688,6 +26724,8 @@
 					armv7,
 					armv6,
 				);
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Lingzhe Peng (LPN7A567X3)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Lingzhe Peng (LPN7A567X3)";
 				COMPRESS_PNG_FILES = YES;
@@ -26748,6 +26786,7 @@
 					"../Common_iPhone_20/3PP-SDK/ShareSDK/UI",
 					"../Common_iPhone_20/3PP-SDK/LmmobSDK",
 					"../Common_iPhone_20/3PP-SDK/ShareSDK/Extend/QQConnectSDK",
+					"/Users/Linruin/gitdata/Common_iPhone_20/Components/Component-Service/OpenCV",
 				);
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -26856,6 +26895,7 @@
 					"../Common_iPhone_20/3PP-SDK/ShareSDK/UI",
 					"../Common_iPhone_20/3PP-SDK/LmmobSDK",
 					"../Common_iPhone_20/3PP-SDK/ShareSDK/Extend/QQConnectSDK",
+					"/Users/Linruin/gitdata/Common_iPhone_20/Components/Component-Service/OpenCV",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Draw/Draw-Prefix.pch";
@@ -26962,6 +27002,7 @@
 					"../Common_iPhone_20/3PP-SDK/ShareSDK/UI",
 					"../Common_iPhone_20/3PP-SDK/LmmobSDK",
 					"../Common_iPhone_20/3PP-SDK/ShareSDK/Extend/QQConnectSDK",
+					"/Users/Linruin/gitdata/Common_iPhone_20/Components/Component-Service/OpenCV",
 				);
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -27066,6 +27107,7 @@
 					"../Common_iPhone_20/3PP-SDK/ShareSDK/UI",
 					"../Common_iPhone_20/3PP-SDK/LmmobSDK",
 					"../Common_iPhone_20/3PP-SDK/ShareSDK/Extend/QQConnectSDK",
+					"/Users/Linruin/gitdata/Common_iPhone_20/Components/Component-Service/OpenCV",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Draw/Draw-Prefix.pch";
