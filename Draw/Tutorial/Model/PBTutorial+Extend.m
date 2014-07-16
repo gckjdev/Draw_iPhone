@@ -170,6 +170,10 @@
 
 - (NSString*)getCurrentChapterOpusId
 {
+#ifdef DEBUG
+    return @"53c4dc42e4b089b4ff460ed3";
+#endif
+    
     PBTutorial* tutorial = [[TutorialCoreManager defaultManager] findTutorialByTutorialId:self.tutorialId];
     if (self.stageIndex >= [tutorial.stagesList count]){
         return nil;

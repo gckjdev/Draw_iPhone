@@ -337,4 +337,28 @@ static UserTutorialManager* _defaultManager;
     return newUT;
 }
 
+- (void)updateUserStage:(PBUserStage*)userStage
+{
+    if (userStage == nil){
+        PPDebug(@"<updateUserStage> but userStage is nil");
+        return;
+    }
+    
+    PBUserTutorial* ut = [self findUserTutorialByTutorialId:userStage.tutorialId];
+    if (ut == nil){
+        PPDebug(@"<updateUserStage> but tutorialId=%@ not found for user", userStage.tutorialId);
+        return;
+    }
+    
+    if (userStage.stageIndex >= [ut.userStagesList count]){
+        PPDebug(@"<updateUserStage> but stageIndex=%@ out of bound for current user stage list count(%d)",
+                userStage.stageIndex, [ut.userStagesList count]);
+        return;
+    }
+    
+    PBUserTutorial_Builder* builder = [PBUserTutorial builderWithPrototype:ut];
+    [builder replaceUserStagesAtIndex:userStage.stageIndex with:userStage];
+    [self save:[builder build]];
+}
+
 @end

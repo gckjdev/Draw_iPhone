@@ -20,6 +20,6 @@
 
 - (void)enableMenu;
 - (void)disableMenu;
-
+- (UIImage*)image;
 
 @end

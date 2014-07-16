@@ -31,4 +31,6 @@
                                  stageId:(NSString*)stageId
                               stageIndex:(int)stageIndex;
 
+- (void)updateUserStage:(PBUserStage*)userStage;
+
 @end

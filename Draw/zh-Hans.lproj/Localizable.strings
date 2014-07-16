@@ -2790,3 +2790,9 @@
 "kMoreView" = "更多小吉";
 
 "kUserTutorialInfo" = "简介";
+"kPracticeResult" = "修炼结果";
+"kPracticePass" = "本次修炼得分为【%d】，可以闯关了！";
+"kPracticeFail" = "本次修炼得分为【%d】，再接再励，重新修炼一次吗？";
+"kTryConquer" = "闯关";
+"kPracticeAgain" = "重新修炼";
+
