@@ -1195,7 +1195,7 @@ const ProtobufCMessageDescriptor game__pbtutorial__descriptor =
   (ProtobufCMessageInit) game__pbtutorial__init,
   NULL,NULL,NULL    /* reserved[123] */
 };
-static const ProtobufCFieldDescriptor game__pbtutorial_core__field_descriptors[2] =
+static const ProtobufCFieldDescriptor game__pbtutorial_core__field_descriptors[3] =
 {
   {
     "tutorials",
@@ -1221,15 +1221,29 @@ static const ProtobufCFieldDescriptor game__pbtutorial_core__field_descriptors[2
     0,            /* packed */
     0,NULL,NULL    /* reserved1,reserved2, etc */
   },
+  {
+    "stepByStepTutorialId",
+    10,
+    PROTOBUF_C_LABEL_REPEATED,
+    PROTOBUF_C_TYPE_STRING,
+    PROTOBUF_C_OFFSETOF(Game__PBTutorialCore, n_stepbysteptutorialid),
+    PROTOBUF_C_OFFSETOF(Game__PBTutorialCore, stepbysteptutorialid),
+    NULL,
+    NULL,
+    0,            /* packed */
+    0,NULL,NULL    /* reserved1,reserved2, etc */
+  },
 };
 static const unsigned game__pbtutorial_core__field_indices_by_name[] = {
+  2,   /* field[2] = stepByStepTutorialId */
   0,   /* field[0] = tutorials */
   1,   /* field[1] = version */
 };
-static const ProtobufCIntRange game__pbtutorial_core__number_ranges[1 + 1] =
+static const ProtobufCIntRange game__pbtutorial_core__number_ranges[2 + 1] =
 {
   { 1, 0 },
-  { 0, 2 }
+  { 10, 2 },
+  { 0, 3 }
 };
 const ProtobufCMessageDescriptor game__pbtutorial_core__descriptor =
 {
@@ -1239,10 +1253,10 @@ const ProtobufCMessageDescriptor game__pbtutorial_core__descriptor =
   "Game__PBTutorialCore",
   "game",
   sizeof(Game__PBTutorialCore),
-  2,
+  3,
   game__pbtutorial_core__field_descriptors,
   game__pbtutorial_core__field_indices_by_name,
-  1,  game__pbtutorial_core__number_ranges,
+  2,  game__pbtutorial_core__number_ranges,
   (ProtobufCMessageInit) game__pbtutorial_core__init,
   NULL,NULL,NULL    /* reserved[123] */
 };

@@ -26,4 +26,7 @@
 -(PBTutorial*)findTutorialByUserTutorialId:(PBUserTutorial*)userTutorial;
 -(PBTutorial*)findTutorialByTutorialId:(NSString*)tutorialId;
 
+-(PBTutorial*)defaultFirstTutorial;
+
+
 @end

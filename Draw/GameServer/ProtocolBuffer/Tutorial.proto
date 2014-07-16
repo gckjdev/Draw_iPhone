@@ -127,6 +127,8 @@ message PBTutorialCore
 {
     repeated PBTutorial tutorials = 1;
     optional int32 version = 2;
+
+    repeated string stepByStepTutorialId = 10;          // 默认开始学习的教程ID线索
 }
 
 // 用户闯关的作品
