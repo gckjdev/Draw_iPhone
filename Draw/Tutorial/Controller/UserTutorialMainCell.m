@@ -52,6 +52,17 @@
    //    [self.tutorialStartBtn setTitle:@"开始" forState:UIControlStateNormal];
     
     
+    
+    UILabel *difficultyLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 8, 50, 30)];
+    [difficultyLabel setText:ut.tutorial.categoryName];
+    [difficultyLabel setShadowColor:[UIColor whiteColor]];
+    [difficultyLabel setTextColor:COLOR_BROWN];
+    [difficultyLabel setShadowOffset:CGSizeMake(1, 1)];
+    [difficultyLabel setFont:AD_FONT(18, 12)];
+    [self addSubview:difficultyLabel];
+    [difficultyLabel release];
+    
+    
     int i = arc4random() % 100;
     float progress = i/100.0;
 

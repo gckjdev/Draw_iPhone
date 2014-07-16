@@ -28,19 +28,23 @@
                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <button opaque="NO" contentMode="scaleAspectFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cpc-SX-J4c">
-                        <rect key="frame" x="40" y="37" width="60" height="25"/>
+                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Hpq-Ak-kCV" userLabel="Star and StartBtn View">
+                        <rect key="frame" x="20" y="25" width="100" height="50"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleAspectFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cpc-SX-J4c">
+                                <rect key="frame" x="20" y="13" width="60" height="25"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <state key="normal" title="开始" backgroundImage="beginPlayGame(little).png">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="titleShadowColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                        </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstAttribute="height" constant="25" id="npE-nx-eq0"/>
-                        </constraints>
-                        <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <state key="normal" title="开始" backgroundImage="beginPlayGame(little).png">
-                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            <color key="titleShadowColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        </state>
-                    </button>
+                    </view>
                     <view alpha="0.29999999999999999" contentMode="scaleAspectFill" translatesAutoresizingMaskIntoConstraints="NO" id="wwL-3j-7Cd">
                         <rect key="frame" x="0.0" y="0.0" width="140" height="100"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -73,22 +77,17 @@
             </view>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstAttribute="centerY" secondItem="cpc-SX-J4c" secondAttribute="centerY" id="2pd-25-vhV"/>
                 <constraint firstItem="a6K-Gs-lob" firstAttribute="top" secondItem="wwL-3j-7Cd" secondAttribute="top" id="4He-dt-Tl1"/>
                 <constraint firstItem="KMq-Yf-omz" firstAttribute="trailing" secondItem="a6K-Gs-lob" secondAttribute="trailing" constant="-20" id="4SK-Co-HXX"/>
                 <constraint firstItem="a6K-Gs-lob" firstAttribute="top" secondItem="ycJ-7c-W4m" secondAttribute="top" id="6Kz-fj-ceI"/>
-                <constraint firstItem="cpc-SX-J4c" firstAttribute="top" secondItem="KMq-Yf-omz" secondAttribute="bottom" constant="12" id="8TU-5e-GbX"/>
                 <constraint firstItem="wwL-3j-7Cd" firstAttribute="leading" secondItem="a6K-Gs-lob" secondAttribute="leading" id="8bs-kj-tqO"/>
                 <constraint firstAttribute="bottom" secondItem="wwL-3j-7Cd" secondAttribute="bottom" id="ANf-Lw-O39"/>
-                <constraint firstAttribute="centerX" secondItem="cpc-SX-J4c" secondAttribute="centerX" id="EOl-R5-iWM"/>
                 <constraint firstItem="a6K-Gs-lob" firstAttribute="trailing" secondItem="wwL-3j-7Cd" secondAttribute="trailing" id="IsS-Pk-0y5"/>
-                <constraint firstAttribute="trailing" secondItem="cpc-SX-J4c" secondAttribute="trailing" constant="42" id="Krh-x6-g1O"/>
                 <constraint firstAttribute="trailing" secondItem="a6K-Gs-lob" secondAttribute="trailing" id="aIy-1d-goj"/>
                 <constraint firstItem="wwL-3j-7Cd" firstAttribute="bottom" secondItem="a6K-Gs-lob" secondAttribute="bottom" id="b46-q7-R7U"/>
                 <constraint firstItem="wwL-3j-7Cd" firstAttribute="leading" secondItem="ycJ-7c-W4m" secondAttribute="leading" id="dFX-O4-FYw"/>
                 <constraint firstItem="KMq-Yf-omz" firstAttribute="top" secondItem="a6K-Gs-lob" secondAttribute="top" id="mq5-ra-u2F"/>
                 <constraint firstItem="KMq-Yf-omz" firstAttribute="leading" secondItem="ycJ-7c-W4m" secondAttribute="leading" constant="10" id="pOY-Qz-H2n"/>
-                <constraint firstItem="cpc-SX-J4c" firstAttribute="leading" secondItem="ycJ-7c-W4m" secondAttribute="leading" constant="38" id="x7t-Tz-bDI"/>
             </constraints>
             <size key="customSize" width="127" height="70"/>
             <connections>
