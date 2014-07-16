@@ -33,7 +33,7 @@
 
  { "class_id" : "4001", "cn_name":"绘本", "tcn_name":"绘本", "en_name":"绘本", "keywords":"漫画 动漫", "sub_classes":[], "parent_class" : "" },
  { "class_id" : "4002", "cn_name":"中国风", "tcn_name":"中国风", "en_name":"中国风", "keywords":"漫画 动漫", "sub_classes":[], "parent_class" : "" },
- { "class_id" : "4003", "cn_name":"影视作品", "tcn_name":"影视作品", "en_name":"影视作品", "keywords":"漫画 动漫", "sub_classes":[], "parent_class" : "" },
+ { "class_id" : "4003", "cn_name":"影视", "tcn_name":"影视", "en_name":"影视", "keywords":"漫画 动漫", "sub_classes":[], "parent_class" : "" },
  { "class_id" : "4004", "cn_name":"书法", "tcn_name":"书法", "en_name":"书法", "keywords":"漫画 动漫", "sub_classes":[], "parent_class" : "" },
  { "class_id" : "4005", "cn_name":"动画", "tcn_name":"动画", "en_name":"动画", "keywords":"漫画 动漫", "sub_classes":[], "parent_class" : "" },
  { "class_id" : "4006", "cn_name":"黑白", "tcn_name":"黑白", "en_name":"黑白", "keywords":"漫画 动漫", "sub_classes":[], "parent_class" : "" },
