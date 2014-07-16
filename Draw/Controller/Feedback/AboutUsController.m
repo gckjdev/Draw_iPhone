@@ -44,17 +44,16 @@
     
     NSString *infoString =  @"\nProgram By\n\
 -------------------------------\n\
-PIPI Peng\n\
+Benson Peng\n\
 Gamy Huang\n\
-Kira Ou\n\
-Xiaotao\n\
-Haodong\n\
+Xiaotao Wang\n\
+Guanchao Su\n\
 \n\
 \n\
 Designed By\n\
 -------------------------------\n\
-Old\n\
-\n\
+Old13\n\
+Shenghui Luo\n\
 \n\
 ";
  

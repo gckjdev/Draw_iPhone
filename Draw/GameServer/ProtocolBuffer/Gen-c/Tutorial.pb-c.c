@@ -6,6 +6,49 @@
 #endif
 
 #include "Tutorial.pb-c.h"
+void   game__pbtip__init
+                     (Game__PBTip         *message)
+{
+  static Game__PBTip init_value = GAME__PBTIP__INIT;
+  *message = init_value;
+}
+size_t game__pbtip__get_packed_size
+                     (const Game__PBTip *message)
+{
+  PROTOBUF_C_ASSERT (message->base.descriptor == &game__pbtip__descriptor);
+  return protobuf_c_message_get_packed_size ((const ProtobufCMessage*)(message));
+}
+size_t game__pbtip__pack
+                     (const Game__PBTip *message,
+                      uint8_t       *out)
+{
+  PROTOBUF_C_ASSERT (message->base.descriptor == &game__pbtip__descriptor);
+  return protobuf_c_message_pack ((const ProtobufCMessage*)message, out);
+}
+size_t game__pbtip__pack_to_buffer
+                     (const Game__PBTip *message,
+                      ProtobufCBuffer *buffer)
+{
+  PROTOBUF_C_ASSERT (message->base.descriptor == &game__pbtip__descriptor);
+  return protobuf_c_message_pack_to_buffer ((const ProtobufCMessage*)message, buffer);
+}
+Game__PBTip *
+       game__pbtip__unpack
+                     (ProtobufCAllocator  *allocator,
+                      size_t               len,
+                      const uint8_t       *data)
+{
+  return (Game__PBTip *)
+     protobuf_c_message_unpack (&game__pbtip__descriptor,
+                                allocator, len, data);
+}
+void   game__pbtip__free_unpacked
+                     (Game__PBTip *message,
+                      ProtobufCAllocator *allocator)
+{
+  PROTOBUF_C_ASSERT (message->base.descriptor == &game__pbtip__descriptor);
+  protobuf_c_message_free_unpacked ((ProtobufCMessage*)message, allocator);
+}
 void   game__pbchapter__init
                      (Game__PBChapter         *message)
 {
@@ -307,7 +350,152 @@ void   game__pbuser_tutorial__free_unpacked
   PROTOBUF_C_ASSERT (message->base.descriptor == &game__pbuser_tutorial__descriptor);
   protobuf_c_message_free_unpacked ((ProtobufCMessage*)message, allocator);
 }
-static const ProtobufCFieldDescriptor game__pbchapter__field_descriptors[13] =
+static const ProtobufCFieldDescriptor game__pbtip__field_descriptors[9] =
+{
+  {
+    "index",
+    1,
+    PROTOBUF_C_LABEL_REQUIRED,
+    PROTOBUF_C_TYPE_INT32,
+    0,   /* quantifier_offset */
+    PROTOBUF_C_OFFSETOF(Game__PBTip, index),
+    NULL,
+    NULL,
+    0,            /* packed */
+    0,NULL,NULL    /* reserved1,reserved2, etc */
+  },
+  {
+    "cnName",
+    2,
+    PROTOBUF_C_LABEL_OPTIONAL,
+    PROTOBUF_C_TYPE_STRING,
+    0,   /* quantifier_offset */
+    PROTOBUF_C_OFFSETOF(Game__PBTip, cnname),
+    NULL,
+    NULL,
+    0,            /* packed */
+    0,NULL,NULL    /* reserved1,reserved2, etc */
+  },
+  {
+    "enName",
+    3,
+    PROTOBUF_C_LABEL_OPTIONAL,
+    PROTOBUF_C_TYPE_STRING,
+    0,   /* quantifier_offset */
+    PROTOBUF_C_OFFSETOF(Game__PBTip, enname),
+    NULL,
+    NULL,
+    0,            /* packed */
+    0,NULL,NULL    /* reserved1,reserved2, etc */
+  },
+  {
+    "tcnName",
+    4,
+    PROTOBUF_C_LABEL_OPTIONAL,
+    PROTOBUF_C_TYPE_STRING,
+    0,   /* quantifier_offset */
+    PROTOBUF_C_OFFSETOF(Game__PBTip, tcnname),
+    NULL,
+    NULL,
+    0,            /* packed */
+    0,NULL,NULL    /* reserved1,reserved2, etc */
+  },
+  {
+    "cnDesc",
+    10,
+    PROTOBUF_C_LABEL_OPTIONAL,
+    PROTOBUF_C_TYPE_STRING,
+    0,   /* quantifier_offset */
+    PROTOBUF_C_OFFSETOF(Game__PBTip, cndesc),
+    NULL,
+    NULL,
+    0,            /* packed */
+    0,NULL,NULL    /* reserved1,reserved2, etc */
+  },
+  {
+    "enDesc",
+    11,
+    PROTOBUF_C_LABEL_OPTIONAL,
+    PROTOBUF_C_TYPE_STRING,
+    0,   /* quantifier_offset */
+    PROTOBUF_C_OFFSETOF(Game__PBTip, endesc),
+    NULL,
+    NULL,
+    0,            /* packed */
+    0,NULL,NULL    /* reserved1,reserved2, etc */
+  },
+  {
+    "tcnDesc",
+    12,
+    PROTOBUF_C_LABEL_OPTIONAL,
+    PROTOBUF_C_TYPE_STRING,
+    0,   /* quantifier_offset */
+    PROTOBUF_C_OFFSETOF(Game__PBTip, tcndesc),
+    NULL,
+    NULL,
+    0,            /* packed */
+    0,NULL,NULL    /* reserved1,reserved2, etc */
+  },
+  {
+    "image",
+    21,
+    PROTOBUF_C_LABEL_OPTIONAL,
+    PROTOBUF_C_TYPE_STRING,
+    0,   /* quantifier_offset */
+    PROTOBUF_C_OFFSETOF(Game__PBTip, image),
+    NULL,
+    NULL,
+    0,            /* packed */
+    0,NULL,NULL    /* reserved1,reserved2, etc */
+  },
+  {
+    "imageName",
+    31,
+    PROTOBUF_C_LABEL_OPTIONAL,
+    PROTOBUF_C_TYPE_STRING,
+    0,   /* quantifier_offset */
+    PROTOBUF_C_OFFSETOF(Game__PBTip, imagename),
+    NULL,
+    NULL,
+    0,            /* packed */
+    0,NULL,NULL    /* reserved1,reserved2, etc */
+  },
+};
+static const unsigned game__pbtip__field_indices_by_name[] = {
+  4,   /* field[4] = cnDesc */
+  1,   /* field[1] = cnName */
+  5,   /* field[5] = enDesc */
+  2,   /* field[2] = enName */
+  7,   /* field[7] = image */
+  8,   /* field[8] = imageName */
+  0,   /* field[0] = index */
+  6,   /* field[6] = tcnDesc */
+  3,   /* field[3] = tcnName */
+};
+static const ProtobufCIntRange game__pbtip__number_ranges[4 + 1] =
+{
+  { 1, 0 },
+  { 10, 4 },
+  { 21, 7 },
+  { 31, 8 },
+  { 0, 9 }
+};
+const ProtobufCMessageDescriptor game__pbtip__descriptor =
+{
+  PROTOBUF_C_MESSAGE_DESCRIPTOR_MAGIC,
+  "game.PBTip",
+  "PBTip",
+  "Game__PBTip",
+  "game",
+  sizeof(Game__PBTip),
+  9,
+  game__pbtip__field_descriptors,
+  game__pbtip__field_indices_by_name,
+  4,  game__pbtip__number_ranges,
+  (ProtobufCMessageInit) game__pbtip__init,
+  NULL,NULL,NULL    /* reserved[123] */
+};
+static const ProtobufCFieldDescriptor game__pbchapter__field_descriptors[14] =
 {
   {
     "index",
@@ -465,6 +653,18 @@ static const ProtobufCFieldDescriptor game__pbchapter__field_descriptors[13] =
     0,            /* packed */
     0,NULL,NULL    /* reserved1,reserved2, etc */
   },
+  {
+    "tips",
+    33,
+    PROTOBUF_C_LABEL_REPEATED,
+    PROTOBUF_C_TYPE_MESSAGE,
+    PROTOBUF_C_OFFSETOF(Game__PBChapter, n_tips),
+    PROTOBUF_C_OFFSETOF(Game__PBChapter, tips),
+    &game__pbtip__descriptor,
+    NULL,
+    0,            /* packed */
+    0,NULL,NULL    /* reserved1,reserved2, etc */
+  },
 };
 static const unsigned game__pbchapter__field_indices_by_name[] = {
   9,   /* field[9] = background */
@@ -480,6 +680,7 @@ static const unsigned game__pbchapter__field_indices_by_name[] = {
   10,   /* field[10] = opusName */
   6,   /* field[6] = tcnDesc */
   3,   /* field[3] = tcnName */
+  13,   /* field[13] = tips */
 };
 static const ProtobufCIntRange game__pbchapter__number_ranges[4 + 1] =
 {
@@ -487,7 +688,7 @@ static const ProtobufCIntRange game__pbchapter__number_ranges[4 + 1] =
   { 10, 4 },
   { 20, 7 },
   { 30, 10 },
-  { 0, 13 }
+  { 0, 14 }
 };
 const ProtobufCMessageDescriptor game__pbchapter__descriptor =
 {
@@ -497,7 +698,7 @@ const ProtobufCMessageDescriptor game__pbchapter__descriptor =
   "Game__PBChapter",
   "game",
   sizeof(Game__PBChapter),
-  13,
+  14,
   game__pbchapter__field_descriptors,
   game__pbchapter__field_indices_by_name,
   4,  game__pbchapter__number_ranges,
@@ -677,7 +878,7 @@ const ProtobufCMessageDescriptor game__pbstage__descriptor =
   NULL,NULL,NULL    /* reserved[123] */
 };
 static const protobuf_c_boolean game__pbtutorial__is_free__default_value = 1;
-static const ProtobufCFieldDescriptor game__pbtutorial__field_descriptors[20] =
+static const ProtobufCFieldDescriptor game__pbtutorial__field_descriptors[21] =
 {
   {
     "tutorialId",
@@ -919,6 +1120,18 @@ static const ProtobufCFieldDescriptor game__pbtutorial__field_descriptors[20] =
     0,            /* packed */
     0,NULL,NULL    /* reserved1,reserved2, etc */
   },
+  {
+    "version",
+    100,
+    PROTOBUF_C_LABEL_OPTIONAL,
+    PROTOBUF_C_TYPE_INT32,
+    PROTOBUF_C_OFFSETOF(Game__PBTutorial, has_version),
+    PROTOBUF_C_OFFSETOF(Game__PBTutorial, version),
+    NULL,
+    NULL,
+    0,            /* packed */
+    0,NULL,NULL    /* reserved1,reserved2, etc */
+  },
 };
 static const unsigned game__pbtutorial__field_indices_by_name[] = {
   8,   /* field[8] = categories */
@@ -941,8 +1154,9 @@ static const unsigned game__pbtutorial__field_indices_by_name[] = {
   3,   /* field[3] = tcnName */
   11,   /* field[11] = thumbImage */
   0,   /* field[0] = tutorialId */
+  20,   /* field[20] = version */
 };
-static const ProtobufCIntRange game__pbtutorial__number_ranges[6 + 1] =
+static const ProtobufCIntRange game__pbtutorial__number_ranges[7 + 1] =
 {
   { 1, 0 },
   { 10, 4 },
@@ -950,7 +1164,8 @@ static const ProtobufCIntRange game__pbtutorial__number_ranges[6 + 1] =
   { 30, 14 },
   { 40, 17 },
   { 50, 19 },
-  { 0, 20 }
+  { 100, 20 },
+  { 0, 21 }
 };
 const ProtobufCMessageDescriptor game__pbtutorial__descriptor =
 {
@@ -960,10 +1175,10 @@ const ProtobufCMessageDescriptor game__pbtutorial__descriptor =
   "Game__PBTutorial",
   "game",
   sizeof(Game__PBTutorial),
-  20,
+  21,
   game__pbtutorial__field_descriptors,
   game__pbtutorial__field_indices_by_name,
-  6,  game__pbtutorial__number_ranges,
+  7,  game__pbtutorial__number_ranges,
   (ProtobufCMessageInit) game__pbtutorial__init,
   NULL,NULL,NULL    /* reserved[123] */
 };

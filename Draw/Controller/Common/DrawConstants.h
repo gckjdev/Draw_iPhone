@@ -26,8 +26,8 @@ typedef enum{
     TypeGraffiti = 1,   //涂鸦
     TypeContest = 2,    //参赛
     TypePhoto = 3,      //照片
-    TypeLearnDraw = 4,  //学画画修炼
-    TypePassDraw = 5    //学画画闯关
+    TypePracticeDraw = 4,  //学画画修炼
+    TypeConquerDraw = 5    //学画画闯关
 }TargetType;
 
 #define YOUMI_APP_ID    @"c278f8dc80295b18"

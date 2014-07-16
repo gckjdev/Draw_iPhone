@@ -2782,5 +2782,11 @@
 
 "kMetroMainHome" = "首页";
 
+"kAskPracticeOrPassTitle" = "关卡选项";
+"kAskPracticeOrPassMsg" = "先进行【修炼】还是【闯关】？";
+"kPractice" = "修炼";
+"kPass" = "闯关";
+
 "kMoreView" = "更多小吉";
+
 "kUserTutorialInfo" = "简介";

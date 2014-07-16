@@ -211,6 +211,21 @@
     return [vc autorelease];
 }
 
++ (OfflineDrawViewController*)practice:(UIViewController*)startController
+                               bgImage:(UIImage*)bgImage
+{
+    OfflineDrawViewController *vc = [[OfflineDrawViewController alloc] initWithTargetType:TypePracticeDraw
+                                                                                 delegate:nil
+                                                                          startController:startController
+                                                                                  Contest:nil
+                                                                             targetUserId:nil
+                                                                                  bgImage:bgImage];
+    
+    [startController.navigationController pushViewController:vc animated:YES];
+    PPDebug(@"<StartDraw>: practice");
+    return [vc autorelease];
+}
+
 - (void)dealloc
 {
     [UIApplication sharedApplication].idleTimerDisabled = NO; // disable lock screen while in drawing
@@ -285,6 +300,9 @@
                                language:ChineseType
                                 bgImage:_bgImage
                                 bgImageName:_bgImageName];
+        
+        // for delete flag so that it will not show while crash
+        [self.draft setDeleteFlag:@(YES)];
         
         self.startController = startController;
         self.delegate = aDelegate;
@@ -457,6 +475,11 @@
         [self.upPanelButton setCenter:self.draftButton.center];
     }
     
+    if ([self isLearnType]){
+        self.draftButton.hidden = YES;
+        self.upPanelButton.hidden = YES;
+        [self.layerButton setCenter:self.draftButton.center];
+    }    
 }
 
 // 是否是绘画作品模式（聊天涂鸦、论坛涂鸦都不属于该模式）
@@ -464,6 +487,13 @@
 {
     return (targetType == TypeGraffiti || targetType == TypePhoto);
 }
+
+// 是否是学画画的闯关或者修炼
+- (BOOL)isLearnType
+{
+    return (targetType == TypePracticeDraw || targetType == TypeConquerDraw);
+}
+
 
 #define STATUSBAR_HEIGHT 20.0
 
@@ -1155,6 +1185,10 @@
     @try {
         MyPaintManager *pManager = [MyPaintManager defaultManager];
         if (self.draft) {
+            
+            // clear delete flag
+            [self.draft setDeleteFlag:@(NO)];
+
             PPDebug(@"<saveDraft> save draft");
             NSData* data = [self newDrawDataSnapshot];
             if ([data length] == 0){

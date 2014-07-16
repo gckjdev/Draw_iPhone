@@ -169,5 +169,29 @@ static UserTutorialService* _defaultService;
     EXECUTE_BLOCK(resultBlock, 0);
 }
 
+// 用户尝试修炼
+- (PBUserTutorial*)startPracticeTutorialStage:(NSString*)userTutorialLocalId
+                                      stageId:(NSString*)stageId
+                                   stageIndex:(int)stageIndex
+{
+    PBUserTutorial* ut = [[UserTutorialManager defaultManager] practiceTutorialStage:userTutorialLocalId
+                                                                             stageId:stageId
+                                                                          stageIndex:stageIndex];
+    
+    if (ut != nil){
+        // report to server
+    }
+
+    return ut;
+}
+
+// 用户尝试闯关
+- (PBUserTutorial*)startConquerTutorialStage:(NSString*)userTutorialLocalId
+                                     stageId:(NSString*)stageId
+                                  stageIndex:(int)stageIndex
+{
+    // TODO
+    return nil;
+}
 
 @end

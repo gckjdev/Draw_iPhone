@@ -36,4 +36,15 @@ typedef void(^UserTutorialServiceResultBlock)(int resultCode);
 // 获取用户当前正在学习的所有教程列表
 - (void)getAllUserTutorials:(UserTutorialServiceResultBlock)resultBlock;
 
+// 用户尝试修炼
+- (PBUserTutorial*)startPracticeTutorialStage:(NSString*)userTutorialLocalId
+                                      stageId:(NSString*)stageId
+                                   stageIndex:(int)stageIndex;
+
+// 用户尝试闯关
+- (PBUserTutorial*)startConquerTutorialStage:(NSString*)userTutorialLocalId
+                                      stageId:(NSString*)stageId
+                                   stageIndex:(int)stageIndex;
+
+
 @end

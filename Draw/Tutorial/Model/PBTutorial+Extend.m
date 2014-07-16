@@ -146,3 +146,12 @@
 
 
 @end
+
+@implementation PBUserTutorial (Extend3)
+
+- (BOOL)isStageLock:(int)stageIndex
+{
+    return (stageIndex > self.currentStageIndex);
+}
+
+@end
