@@ -8,6 +8,7 @@
 
 #import "PBTutorial+Extend.h"
 #import "LocaleUtils.h"
+#import "TutorialCoreManager.h"
 
 @implementation PBTutorial (Extend)
 
@@ -89,6 +90,15 @@
     return retName;
 }
 
+- (PBStage*)getStageByIndex:(NSUInteger)index
+{
+    if (index >= [self.stagesList count]){
+        return nil;
+    }
+    
+    return [self.stagesList objectAtIndex:index];
+}
+
 @end
 
 
@@ -155,3 +165,56 @@
 }
 
 @end
+
+@implementation PBUserStage (Extend4)
+
+- (NSString*)getCurrentChapterOpusId
+{
+    PBTutorial* tutorial = [[TutorialCoreManager defaultManager] findTutorialByTutorialId:self.tutorialId];
+    if (self.stageIndex >= [tutorial.stagesList count]){
+        return nil;
+    }
+    
+    PBStage* stage = [tutorial.stagesList objectAtIndex:self.stageIndex];
+    if (stage == nil){
+        return nil;
+    }
+    
+    if (self.currentChapterIndex >= [stage.chapterList count]){
+        return nil;
+    }
+    
+    PBChapter* chapter = [stage.chapterList objectAtIndex:self.currentChapterIndex];
+    return chapter.opusId;
+}
+
+@end
+
+@implementation PBUserStage_Builder (Extend5)
+
+- (NSString*)getCurrentChapterOpusId
+{
+#ifdef DEBUG
+    return @"53c4dc42e4b089b4ff460ed3";
+#endif
+    
+    PBTutorial* tutorial = [[TutorialCoreManager defaultManager] findTutorialByTutorialId:self.tutorialId];
+    if (self.stageIndex >= [tutorial.stagesList count]){
+        return nil;
+    }
+    
+    PBStage* stage = [tutorial.stagesList objectAtIndex:self.stageIndex];
+    if (stage == nil){
+        return nil;
+    }
+    
+    if (self.currentChapterIndex >= [stage.chapterList count]){
+        return nil;
+    }
+    
+    PBChapter* chapter = [stage.chapterList objectAtIndex:self.currentChapterIndex];
+    return chapter.opusId;
+}
+
+@end
+

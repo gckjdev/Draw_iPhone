@@ -20,19 +20,22 @@
 
 @property (nonatomic, retain) PPViewController *superViewController;
 @property (nonatomic, retain) DrawFeed *drawFeed;
+@property (nonatomic, assign) BOOL hasMenu;
 
 @end
 
 @implementation CopyView
 
-+ (CopyView*)createCopyView:(PPViewController*)superViewController superView:(UIView*)superView atPoint:(CGPoint)point
++ (CopyView*)createCopyView:(PPViewController*)superViewController
+                  superView:(UIView*)superView
+                    atPoint:(CGPoint)point
+                     opusId:(NSString*)opusId
 {
     CGRect frame = CGRectMake(point.x, point.y, COPY_VIEW_DEFAULT_WIDTH, COPY_VIEW_DEFAULT_HEIGHT);
     CopyView *copyView = [[CopyView alloc] initWithFrame:frame];
     UIImageView *contentView = [[UIImageView alloc] initWithFrame:frame];
-//    [contentView setContentMode:UIViewContentModeScaleAspectFill];
     [contentView setBackgroundColor:[UIColor clearColor]];
-    contentView.alpha = 0.9;
+    contentView.alpha = 0.8;
     copyView.contentView = contentView;
 
     [superView addSubview:copyView];
@@ -42,13 +45,10 @@
     [contentView release];
     [copyView release];
     
-//    UITapGestureRecognizer *gestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:copyView action:@selector(hideBorder)];
-//    [gestureRecognizer setDelegate:copyView];
-//    [superView addGestureRecognizer:gestureRecognizer];
-//    [gestureRecognizer release];
-    
     [copyView showEditingHandles];
-    [copyView loadLatestOpus];
+    [copyView loadOpus:opusId];
+    
+    copyView.hasMenu = YES;
     
     return copyView;
 }
@@ -70,6 +70,13 @@
 }
 
 #define KEY_COPY_VIEW_LATEST_OPUS_ID    @"KEY_COPY_VIEW_LATEST_OPUS_ID"
+
+- (void)loadOpus:(NSString*)opusId
+{
+    if (opusId){
+        [self loadAndUpdate:opusId updateImage:YES];
+    }
+}
 
 - (void)setLatestOpusId:(NSString*)opusId
 {
@@ -176,8 +183,11 @@
 - (void)userResizableViewDidTap:(SPUserResizableView*)userResizableView
 {
     PPDebug(@"userResizableViewDidTap");
-    
-    
+    if (_hasMenu == NO){
+        // tap to play opus directly
+        [ShowFeedController replayDraw:self.drawFeed viewController:self.superViewController];
+        return;
+    }
     
     MKBlockActionSheet* actionSheet = [[MKBlockActionSheet alloc] initWithTitle:NSLS(@"kCopyViewActionTitle")
                                                                        delegate:nil
@@ -231,5 +241,16 @@
     // edited view. We wouldn't want to dismiss an editing session in progress.
     [self hideEditingHandles];
 }
+
+- (void)enableMenu
+{
+    _hasMenu = YES;
+}
+
+- (void)disableMenu
+{
+    _hasMenu = NO;
+}
+
 
 @end

@@ -28,6 +28,7 @@
 @class Contest;
 @class OfflineDrawViewController;
 @class OpusDesignTime;
+@class PBUserStage;
 
 @protocol OfflineDrawDelegate <NSObject>
 
@@ -93,7 +94,7 @@
                                    photo:(UIImage *)photo;
 
 + (OfflineDrawViewController*)practice:(UIViewController*)startController
-                               bgImage:(UIImage*)bgImage;
+                             userStage:(PBUserStage*)userStage;
 
 - (id)initWithTargetType:(TargetType)aTargetType
                 delegate:(id<OfflineDrawDelegate>)aDelegate

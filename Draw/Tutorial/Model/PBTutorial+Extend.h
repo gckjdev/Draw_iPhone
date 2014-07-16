@@ -14,6 +14,7 @@
 - (NSString*)desc;
 
 - (NSString*)categoryName;
+- (PBStage*)getStageByIndex:(NSUInteger)index;
 
 @end
 
@@ -28,5 +29,17 @@
 @interface PBUserTutorial (Extend3)
 
 - (BOOL)isStageLock:(int)stageIndex;
+
+@end
+
+@interface PBUserStage (Extend4)
+
+- (NSString*)getCurrentChapterOpusId;
+
+@end
+
+@interface PBUserStage_Builder (Extend5)
+
+- (NSString*)getCurrentChapterOpusId;
 
 @end

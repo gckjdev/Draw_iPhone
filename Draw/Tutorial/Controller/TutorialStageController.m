@@ -154,11 +154,9 @@
 
             self.pbUserTutorial = newUT;
             PBUserStage* userStage = [_pbUserTutorial.userStagesList objectAtIndex:stageIndex];
-
-            UIImage* image = nil; // TODO load bg image
             
             // enter offline draw view controller
-            [OfflineDrawViewController practice:self bgImage:image ];
+            [OfflineDrawViewController practice:self userStage:userStage];
         }
     }];
     

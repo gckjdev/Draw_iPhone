@@ -324,6 +324,7 @@ static UserTutorialManager* _defaultManager;
         [userStageBuilder setStageId:stageId];
         [userStageBuilder setTutorialId:ut.tutorial.tutorialId];
         [userStageBuilder setUserId:ut.userId];
+        [userStageBuilder setStageIndex:stageIndex];
 
         PBUserStage* userStage = [userStageBuilder build];
         [builder addUserStages:userStage];

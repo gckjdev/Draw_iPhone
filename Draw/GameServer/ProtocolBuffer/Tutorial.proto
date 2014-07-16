@@ -50,9 +50,10 @@ message PBChapter
     optional string enDesc = 11;
     optional string tcnDesc = 12;
 
-    optional string opus = 20;                       // 回放作品包URL
-    optional string image = 21;                      // 作品图片URL
-    optional string background = 22;                 // 绘画底图URL
+    optional string opusId = 20;                     // 回放作品ID（可以直接从ID获得URL、Image等信息）
+    optional string opusData = 21;                   // 回放作品包URL
+    optional string image = 22;                      // 作品图片URL
+    optional string background = 23;                 // 绘画底图URL
 
     optional string opusName = 30;                   // 回放作品包文件名
     optional string imageName = 31;                  // 作品图片文件名
@@ -138,6 +139,7 @@ message PBUserStageOpus
     optional int32  createDate = 5;
     optional string localUrl = 6;
     optional string remoteUrl = 7;
+    
 }
 
 // 用户和关卡的关系
@@ -146,12 +148,17 @@ message PBUserStage
     required string userId = 1;
     required string tutorialId = 2;
     required string stageId = 3;
-    
-    optional int32  bestScore = 4;          // 最好成绩
-    optional int32  bestScoreDate = 5;      // 最好成绩时间
-    optional int32  lastScoreDate = 6;      // 最后一次闯关时间
-    
-    repeated PBUserStageOpus opus = 7;      // 闯关记录信息
+    optional int32  stageIndex = 4;
+
+    optional int32  bestScore = 5;                  // 最好成绩
+    optional int32  bestScoreDate = 6;              // 最好成绩时间
+    optional int32  lastScoreDate = 7;              // 最后一次闯关时间
+
+    repeated PBUserStageOpus opus = 8;              // 闯关记录信息
+    optional int32  currentChapterIndex = 10;       // 当前修炼的章节索引，从0开始
+
+    optional string practiceLocalOpusId = 20;       // 当前修炼的作品ID
+    optional string conquerLocalOpusId = 30;        // 当前闯关的作品ID
 }
 
 enum PBUserTutorialStatus

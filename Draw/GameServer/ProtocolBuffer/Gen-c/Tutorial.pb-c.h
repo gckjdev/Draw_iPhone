@@ -70,7 +70,8 @@ struct  _Game__PBChapter
   char *cndesc;
   char *endesc;
   char *tcndesc;
-  char *opus;
+  char *opusid;
+  char *opusdata;
   char *image;
   char *background;
   char *opusname;
@@ -81,7 +82,7 @@ struct  _Game__PBChapter
 };
 #define GAME__PBCHAPTER__INIT \
  { PROTOBUF_C_MESSAGE_INIT (&game__pbchapter__descriptor) \
-    , 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0,NULL }
+    , 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0,NULL }
 
 
 struct  _Game__PBStage
@@ -182,6 +183,8 @@ struct  _Game__PBUserStage
   char *userid;
   char *tutorialid;
   char *stageid;
+  protobuf_c_boolean has_stageindex;
+  int32_t stageindex;
   protobuf_c_boolean has_bestscore;
   int32_t bestscore;
   protobuf_c_boolean has_bestscoredate;
@@ -190,10 +193,14 @@ struct  _Game__PBUserStage
   int32_t lastscoredate;
   size_t n_opus;
   Game__PBUserStageOpus **opus;
+  protobuf_c_boolean has_currentchapterindex;
+  int32_t currentchapterindex;
+  char *practicelocalopusid;
+  char *conquerlocalopusid;
 };
 #define GAME__PBUSER_STAGE__INIT \
  { PROTOBUF_C_MESSAGE_INIT (&game__pbuser_stage__descriptor) \
-    , NULL, NULL, NULL, 0,0, 0,0, 0,0, 0,NULL }
+    , NULL, NULL, NULL, 0,0, 0,0, 0,0, 0,0, 0,NULL, 0,0, NULL, NULL }
 
 
 struct  _Game__PBUserTutorial

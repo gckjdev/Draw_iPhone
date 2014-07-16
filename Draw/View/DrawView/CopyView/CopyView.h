@@ -13,6 +13,13 @@
 
 @interface CopyView : SPUserResizableView<SPUserResizableViewDelegate, UIGestureRecognizerDelegate>
 
-+ (CopyView*)createCopyView:(PPViewController*)superViewController superView:(UIView*)superView atPoint:(CGPoint)point;
++ (CopyView*)createCopyView:(PPViewController*)superViewController
+                  superView:(UIView*)superView
+                    atPoint:(CGPoint)point
+                     opusId:(NSString*)opusId;
+
+- (void)enableMenu;
+- (void)disableMenu;
+
 
 @end
