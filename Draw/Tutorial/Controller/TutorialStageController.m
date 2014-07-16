@@ -183,15 +183,10 @@
 }
 
 
-
-
-
 -(void)clickEnterInfo:(id)sender{
     
     PBTutorial *pbTutorial = [[TutorialCoreManager defaultManager]findTutorialByUserTutorialId:self.pbUserTutorial];
-    TutorialInfoController *tc = [[[TutorialInfoController alloc] init] autorelease];
-    [TutorialInfoController enter:tc pbTutorial:pbTutorial];
-    
+    [TutorialInfoController enter:self pbTutorial:pbTutorial infoOnly:YES];
 }
 
 

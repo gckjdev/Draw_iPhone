@@ -181,18 +181,9 @@ static TutorialCoreManager* _defaultTutorialCoreManager;
     
     NSString* userTutorialId = userTutorial.tutorial.tutorialId;
     NSArray* all = [[TutorialCoreManager defaultManager] allTutorials];
-    for (NSData* data in all){
-        @try
-        {
-            PBTutorial* ut = [PBTutorial parseFromData:data];
-            if ([ut.tutorialId isEqualToString:userTutorialId]){
-                return ut;
-            }
-        }
-        @catch (NSException *exception) {
-            PPDebug(@"<findTutorialByUserTutorialId> id=%@, but catch exception=%@", userTutorialId, [exception description]);
-        }
-        @finally {
+    for (PBTutorial* pbTutorial in all){
+        if ([pbTutorial.tutorialId isEqualToString:userTutorialId]){
+            return pbTutorial;
         }
     }
     

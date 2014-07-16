@@ -15,9 +15,10 @@
 @property CGFloat tutorialCellInfoHeight;
 @property(nonatomic,retain) NSArray *sectionTitle;
 @property(nonatomic,retain) NSArray *numberRowsSection;
+@property BOOL unable;
 
 + (TutorialInfoController*)enter:(PPViewController*)superViewController
-                      pbTutorial:(PBTutorial*)pbTutorial;
+                      pbTutorial:(PBTutorial*)pbTutorial infoOnly:(BOOL)infoOnly;
 
 @end
 

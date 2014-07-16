@@ -8,7 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import "Tutorial.pb.h"
-@interface TutorialStageController : UIViewController<UICollectionViewDataSource,UICollectionViewDelegate> 
+#import "PPViewController.h"
+
+@interface TutorialStageController : PPViewController<UICollectionViewDataSource,UICollectionViewDelegate>
 
 @property (retain, nonatomic) IBOutlet UICollectionView *collectionView;
 

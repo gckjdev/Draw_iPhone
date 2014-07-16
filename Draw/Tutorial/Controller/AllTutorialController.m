@@ -116,7 +116,7 @@ SET_CELL_BG_IN_VIEW
 
     PBTutorial* pbTutorial = [self getTutorialByRow:indexPath.row];
     if(nil!=pbTutorial){
-         [TutorialInfoController enter:self pbTutorial:pbTutorial];
+         [TutorialInfoController enter:self pbTutorial:pbTutorial infoOnly:NO];
     }
    
     

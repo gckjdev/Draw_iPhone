@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "StableView.h"
+#import "MoreViewController.h"
 
 @interface MetroHomeController : PPViewController<AvatarViewDelegate>{
     UIButton *LearningViewButton;
@@ -32,6 +33,12 @@
 @property (retain, nonatomic) IBOutlet UIButton *moreButton;
 @property (retain, nonatomic) IBOutlet UIButton *topNameButton;
 @property (retain, nonatomic) IBOutlet UIImageView *bottomBackground;
+
+@property (retain, nonatomic) IBOutlet BadgeView *indexBadge;
+@property (retain, nonatomic) IBOutlet BadgeView *documentBadge;
+@property (retain, nonatomic) IBOutlet BadgeView *messageBadge;
+@property (retain, nonatomic) IBOutlet BadgeView *moreBadge;
+@property (retain, nonatomic) IBOutlet BadgeView *anounceBadge;
 
 
 - (UIView *)createShadow:(UIView *)view;
