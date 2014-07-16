@@ -74,6 +74,9 @@
 #import "SelectOpusClassViewController.h"
 #import "SPUserResizableView.h"
 #import "CopyView.h"
+#import "Tutorial.pb.h"
+#import "PBTutorial+Extend.h"
+#import "TutorialCoreManager.h"
 
 @interface OfflineDrawViewController()
 {
@@ -114,7 +117,9 @@
 //@property (retain, nonatomic) CommonDialog* currentDialog;
 
 // 临摹框
-@property (retain, nonatomic) SPUserResizableView *copyView;
+@property (retain, nonatomic) CopyView *copyView;
+@property (retain, nonatomic) PBUserStage_Builder *userStageBuilder;
+@property (retain, nonatomic) PBUserTutorial_Builder *userTutorialBuilder;
 
 @end
 
@@ -211,15 +216,50 @@
     return [vc autorelease];
 }
 
-+ (OfflineDrawViewController*)practice:(UIViewController*)startController
-                               bgImage:(UIImage*)bgImage
+- (void)setDraftTutorialInfo:(PBUserStage*)userStage
 {
-    OfflineDrawViewController *vc = [[OfflineDrawViewController alloc] initWithTargetType:TypePracticeDraw
-                                                                                 delegate:nil
-                                                                          startController:startController
-                                                                                  Contest:nil
-                                                                             targetUserId:nil
-                                                                                  bgImage:bgImage];
+    if (userStage == nil)
+        return;
+    
+    [self.draft setTutorialId:userStage.tutorialId];
+    [self.draft setStageId:userStage.stageId];
+    [self.draft setStageIndex:@(userStage.stageIndex)];
+    [self.draft setChapterIndex:@(userStage.currentChapterIndex)];
+    [self.draft setIsForLearn:@(YES)];
+    
+    NSString* opusIdForLearn = [userStage getCurrentChapterOpusId];
+    [self.draft setChapterOpusId:opusIdForLearn];
+}
+
++ (OfflineDrawViewController*)practice:(UIViewController*)startController
+                             userStage:(PBUserStage*)userStage
+{
+    UIImage* image = nil; // TODO , read from PBUserStage
+    
+    NSString* draftId = userStage.practiceLocalOpusId;
+    MyPaint* draft = [[MyPaintManager defaultManager] findDraftById:draftId];
+    
+    OfflineDrawViewController *vc = nil;
+    if (draft){
+        // load from draft
+        vc = [[OfflineDrawViewController alloc] initWithDraft:draft startController:startController];
+    }
+    else{
+        vc = [[OfflineDrawViewController alloc] initWithTargetType:TypePracticeDraw
+                                                         delegate:nil
+                                                  startController:startController
+                                                          Contest:nil
+                                                     targetUserId:nil
+                                                          bgImage:image];
+
+        // set draft tutorial info
+        [vc setDraftTutorialInfo:userStage];
+    }
+
+    if (userStage){
+        vc.userStageBuilder = [PBUserStage builderWithPrototype:userStage];
+        [vc.userStageBuilder setPracticeLocalOpusId:vc.draft.draftId];
+    }
     
     [startController.navigationController pushViewController:vc animated:YES];
     PPDebug(@"<StartDraw>: practice");
@@ -230,6 +270,9 @@
 {
     [UIApplication sharedApplication].idleTimerDisabled = NO; // disable lock screen while in drawing
     [self stopRecovery];
+    
+    PPRelease(_userStageBuilder);
+    PPRelease(_userTutorialBuilder);
     
     self.delegate = nil;
     _draft.drawActionList = nil;
@@ -340,13 +383,8 @@
         
         self.startController = startController;
         self.delegate = nil;
-        if ([self.draft.contestId length] > 0){
-            targetType = TypeContest;
-        }
-        else{
-            targetType = TypeDraw;
-        }
 
+        targetType = [self.draft getTargetType];
         _isNewDraft = NO;
 
         if ([draft.contestId length] != 0) {
@@ -402,11 +440,23 @@
     self.designTime = [[[OpusDesignTime alloc] initWithTime:initTime] autorelease];
     [self.designTime start];
 
-    [CopyView createCopyView:self superView:holder atPoint:drawView.frame.origin];
+    NSString* opusId = self.draft.chapterOpusId;
+    
+    self.copyView = [CopyView createCopyView:self
+                                   superView:holder
+                                     atPoint:drawView.frame.origin
+                                      opusId:opusId];
 }
 
-- (void)initCopyView
+- (void)setCopyViewInfo
 {
+    // copy is created in initDrawView, here is just to set the info of copy view
+    if ([self isLearnType]){
+        [_copyView disableMenu];
+    }
+    else{
+        [_copyView enableMenu];
+    }
 }
 
 - (NSString*)opusDesc
@@ -684,6 +734,24 @@
     [self.titleView setLeftButtonImage:[shareImageManager drawBackImage]];
     [self.titleView setBgImage:nil];
     [self.titleView setBackgroundColor:[UIColor clearColor]];
+    
+    if (self.userStageBuilder){
+        [self.titleView.titleLabel setTextColor:COLOR_BROWN];
+        NSString* title = nil;
+        if (targetType == TypeConquerDraw){
+            title = NSLS(@"kConquer");
+        }
+        else{
+            title = NSLS(@"kPractice");
+        }
+        
+        PBTutorial* tutorial = [[TutorialCoreManager defaultManager] findTutorialByTutorialId:_userStageBuilder.tutorialId];
+        PBStage* stage = [tutorial getStageByIndex:self.userStageBuilder.stageIndex];
+        
+        NSString* stageName = stage.name;
+        title = [title stringByAppendingFormat:@" - %@", stageName];
+        [self.titleView setTitle:title];
+    }
 }
 
 
@@ -704,6 +772,7 @@
     [self initDrawToolPanel];
     [self initWordLabel];
     [self initSubmitButton];
+    [self setCopyViewInfo];
 
     [self updateTargetFriend];
 

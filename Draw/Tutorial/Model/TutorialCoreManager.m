@@ -157,6 +157,22 @@ static TutorialCoreManager* _defaultTutorialCoreManager;
     [tb addStages:stage];
 }
 
+-(PBTutorial*)findTutorialByTutorialId:(NSString*)tutorialId
+{
+    if ([tutorialId length] == 0){
+        return nil;
+    }
+    
+    NSArray* all = [[TutorialCoreManager defaultManager] allTutorials];
+    for (PBTutorial* tutorial in all){
+        if ([tutorial.tutorialId isEqualToString:tutorialId]){
+            return tutorial;
+        }
+    }
+    
+    return nil;
+}
+
 - (PBTutorial*)findTutorialByUserTutorialId:(PBUserTutorial*)userTutorial
 {
     if (userTutorial==nil){

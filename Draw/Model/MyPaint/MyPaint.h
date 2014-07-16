@@ -37,6 +37,19 @@
 
 @property(nonatomic, retain) UIImage *thumbImage;
 
+// add for tutorial
+@property (nonatomic, retain) NSNumber *chapterIndex;
+@property (nonatomic, retain) NSString *chapterOpusId;
+@property (nonatomic, retain) NSNumber *isForLearn;
+@property (nonatomic, retain) NSNumber *score;
+@property (nonatomic, retain) NSDate *scoreDate;
+@property (nonatomic, retain) NSString *stageId;
+@property (nonatomic, retain) NSNumber *stageIndex;
+@property (nonatomic, retain) NSNumber *targetType;
+@property (nonatomic, retain) NSString *tutorialId;
+
+
+
 @property (nonatomic, retain) NSNumber *isRecovery;
 @property (nonatomic, retain) NSData * drawWordData;
 
@@ -61,7 +74,7 @@
 @property (nonatomic, retain) NSData *attributes;
 
 
-
+- (int)getTargetType;
 - (void)updateDrawData;
 
 @end

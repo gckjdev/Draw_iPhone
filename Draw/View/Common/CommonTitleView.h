@@ -17,6 +17,8 @@
 @property (assign, nonatomic) SEL backButtonSelector;
 @property (assign, nonatomic) SEL titleLabelSelector;
 @property (retain, nonatomic) UIButton *rightButton;
+@property (retain, nonatomic) UILabel *titleLabel;
+
 
 - (void)setTitle:(NSString *)title;
 - (void)setRightButtonAsRefresh;

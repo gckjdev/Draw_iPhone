@@ -10,6 +10,7 @@
 #import "MyPaintManager.h"
 #import "CanvasRect.h"
 #import "DrawLayer.h"
+#import "DrawConstants.h"
 
 @implementation MyPaint
 
@@ -30,6 +31,16 @@
 @dynamic targetUserId;
 @dynamic drawWordData;
 @dynamic isRecovery;
+
+@dynamic chapterIndex;
+@dynamic chapterOpusId;
+@dynamic isForLearn;
+@dynamic score;
+@dynamic scoreDate;
+@dynamic stageId;
+@dynamic stageIndex;
+@dynamic targetType;
+@dynamic tutorialId;
 
 @synthesize thumbImage = _thumbImage;
 @synthesize paintImage = _paintImage;
@@ -152,6 +163,24 @@
     PPRelease(_bgImage);
     PPRelease(_layers);
     [super dealloc];
+}
+
+- (int)getTargetType
+{
+    int type = TypeDraw;
+    if (self.targetType){
+        type = [self.targetType intValue];
+    }
+    else{
+        if ([self.contestId length] > 0){
+            type = TypeContest;
+        }
+        else{
+            type = TypeDraw;
+        }
+    }
+    
+    return type;
 }
 
 @end

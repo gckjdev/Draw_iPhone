@@ -146,5 +146,6 @@
 - (void)removeAllDraft;
 
 - (void)addDraftId:(NSArray*)paintList;
+- (MyPaint*)findDraftById:(NSString*)draftId;
 
 @end

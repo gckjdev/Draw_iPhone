@@ -120,8 +120,6 @@ static MyPaintManager* _defaultManager;
     return _defaultManager;
 }
 
-
-
 - (void)transferDrawDataToPath:(NSArray *)paints
 {
     PPDebug(@"<transferDrawDataToPath> start");
@@ -157,6 +155,17 @@ static MyPaintManager* _defaultManager;
     if (hasDraftIdAdded){
         [self save];
     }
+}
+
+- (MyPaint*)findDraftById:(NSString*)draftId
+{
+    if ([draftId length] == 0){
+        return nil;
+    }
+    
+    CoreDataManager* dataManager = GlobalGetCoreDataManager();
+    MyPaint* draft = (MyPaint*)[dataManager execute:@"findMyPaintByDraftId" forKey:@"DRAFT_ID" value:draftId];
+    return draft;
 }
 
 - (void)findMyPaintsFrom:(NSInteger)offset

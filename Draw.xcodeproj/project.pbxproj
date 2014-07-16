@@ -9555,6 +9555,7 @@
 		CA485F5216E440E300AEE725 /* DrawBgBox.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DrawBgBox.xib; sourceTree = "<group>"; };
 		CA485F5316E440E300AEE725 /* DrawBgBox~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "DrawBgBox~ipad.xib"; sourceTree = "<group>"; };
 		CA4AF8C015D23A4E00734FAC /* MainDataModel 7.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "MainDataModel 7.xcdatamodel"; sourceTree = "<group>"; };
+		CA4CA5E21975283400ED1534 /* MainDataModel 17.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "MainDataModel 17.xcdatamodel"; sourceTree = "<group>"; };
 		CA4F066F1546F66500A38C84 /* MainDataModel 3.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "MainDataModel 3.xcdatamodel"; sourceTree = "<group>"; };
 		CA4FB820179E240B00A57387 /* DrawLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DrawLayer.h; sourceTree = "<group>"; };
 		CA4FB821179E240B00A57387 /* DrawLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DrawLayer.m; sourceTree = "<group>"; };
@@ -27164,6 +27165,7 @@
 				CA29EB0216A6941E003B1434 /* MainDataModel 14.xcdatamodel */,
 				CA2A288C1957FCB800A97478 /* MainDataModel 15.xcdatamodel */,
 				CA2A28901958500900A97478 /* MainDataModel 16.xcdatamodel */,
+				CA4CA5E21975283400ED1534 /* MainDataModel 17.xcdatamodel */,
 				CAE32603160199AA00AD77C3 /* MainDataModel 10.xcdatamodel */,
 				CAEECCD215DBB0B000FA5A2A /* MainDataModel 9.xcdatamodel */,
 				CAEECCD115DB46AD00FA5A2A /* MainDataModel 8.xcdatamodel */,
@@ -27175,7 +27177,7 @@
 				CAE23C6E153E9E9A00F52497 /* MainDataModel 2.xcdatamodel */,
 				CA1377281524598700B5790B /* MainDataModel.xcdatamodel */,
 			);
-			currentVersion = CA2A28901958500900A97478 /* MainDataModel 16.xcdatamodel */;
+			currentVersion = CA4CA5E21975283400ED1534 /* MainDataModel 17.xcdatamodel */;
 			path = MainDataModel.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
