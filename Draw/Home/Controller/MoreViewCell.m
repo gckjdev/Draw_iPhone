@@ -25,8 +25,8 @@
     return self;
 }
 
-#define BUTTON_TITLE_EDGEINSETS     (ISIPAD ? -42 : -99)
-#define BOTTOM_BUTTON_HEIGHT (ISIPAD ? 52 : 90)
+#define BUTTON_TITLE_EDGEINSETS     (ISIPAD ? -195 : -99)
+#define BOTTOM_BUTTON_HEIGHT (ISIPAD ? 160 : 90)
 
 -(void)updateMoreCollectionCell:(NSInteger)row{
     [self.itemButton setBackgroundColor:[UIColor clearColor]];
