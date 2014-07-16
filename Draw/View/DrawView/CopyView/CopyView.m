@@ -20,6 +20,7 @@
 
 @property (nonatomic, retain) PPViewController *superViewController;
 @property (nonatomic, retain) DrawFeed *drawFeed;
+@property (nonatomic, retain) UIImage *displayImage;
 @property (nonatomic, assign) BOOL hasMenu;
 
 @end
@@ -53,10 +54,16 @@
     return copyView;
 }
 
+- (UIImage*)image
+{
+    return _displayImage;
+}
+
 - (void)dealloc
 {
     PPRelease(_drawFeed);
     PPRelease(_superViewController);
+    PPRelease(_displayImage);
     [super dealloc];
 }
 
@@ -108,6 +115,7 @@
             placeholderImage = [[ShareImageManager defaultManager] unloadBg];
         }else{
             placeholderImage = feed.largeImage;
+            self.displayImage = feed.largeImage;
         }
         
         UIImageView* imageView = (UIImageView*)(self.contentView);
@@ -116,6 +124,7 @@
             feed.largeImage = image;
             if (image) {
                 [imageView setImage:image];
+                self.displayImage = image;
             }
         }];
         

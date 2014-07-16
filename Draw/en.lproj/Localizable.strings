@@ -2764,3 +2764,10 @@
 
 "kMoreView" = "MoreLittleGee";
 "kUserTutorialInfo" = "TutorialInfo";
+
+"kPracticeResult" = "Result";
+"kPracticePass" = "Congratulations! Your score is %d. PASS!";
+"kPracticeFail" = "Sorry... Your score is %d. FAIL!";
+"kTryConquer" = "Conquer";
+"kPracticeAgain" = "Retry";
+

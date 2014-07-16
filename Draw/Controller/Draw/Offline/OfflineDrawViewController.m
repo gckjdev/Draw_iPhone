@@ -77,6 +77,8 @@
 #import "Tutorial.pb.h"
 #import "PBTutorial+Extend.h"
 #import "TutorialCoreManager.h"
+#import "UserTutorialService.h"
+#import "UserTutorialManager.h"
 
 @interface OfflineDrawViewController()
 {
@@ -120,6 +122,8 @@
 @property (retain, nonatomic) CopyView *copyView;
 @property (retain, nonatomic) PBUserStage_Builder *userStageBuilder;
 @property (retain, nonatomic) PBUserTutorial_Builder *userTutorialBuilder;
+@property (retain, nonatomic) PBTutorial *tutorial;
+@property (retain, nonatomic) PBStage *stage;
 
 @end
 
@@ -216,7 +220,7 @@
     return [vc autorelease];
 }
 
-- (void)setDraftTutorialInfo:(PBUserStage*)userStage
+- (void)setDraftTutorialInfo:(PBUserStage*)userStage targetType:(int)type
 {
     if (userStage == nil)
         return;
@@ -226,6 +230,8 @@
     [self.draft setStageIndex:@(userStage.stageIndex)];
     [self.draft setChapterIndex:@(userStage.currentChapterIndex)];
     [self.draft setIsForLearn:@(YES)];
+    [self.draft setTargetType:@(type)];
+    [self.draft setDrawWord:self.stage.name];
     
     NSString* opusIdForLearn = [userStage getCurrentChapterOpusId];
     [self.draft setChapterOpusId:opusIdForLearn];
@@ -240,20 +246,28 @@
     MyPaint* draft = [[MyPaintManager defaultManager] findDraftById:draftId];
     
     OfflineDrawViewController *vc = nil;
+    int targetType = TypePracticeDraw;
     if (draft){
         // load from draft
         vc = [[OfflineDrawViewController alloc] initWithDraft:draft startController:startController];
+        
+        vc.tutorial = [[TutorialCoreManager defaultManager] findTutorialByTutorialId:userStage.tutorialId];
+        vc.stage = [vc.tutorial getStageByIndex:userStage.stageIndex];
+        
     }
     else{
-        vc = [[OfflineDrawViewController alloc] initWithTargetType:TypePracticeDraw
+        vc = [[OfflineDrawViewController alloc] initWithTargetType:targetType
                                                          delegate:nil
                                                   startController:startController
                                                           Contest:nil
                                                      targetUserId:nil
                                                           bgImage:image];
 
+        vc.tutorial = [[TutorialCoreManager defaultManager] findTutorialByTutorialId:userStage.tutorialId];
+        vc.stage = [vc.tutorial getStageByIndex:userStage.stageIndex];
+
         // set draft tutorial info
-        [vc setDraftTutorialInfo:userStage];
+        [vc setDraftTutorialInfo:userStage targetType:targetType];
     }
 
     if (userStage){
@@ -273,6 +287,8 @@
     
     PPRelease(_userStageBuilder);
     PPRelease(_userTutorialBuilder);
+    PPRelease(_tutorial);
+    PPRelease(_stage);
     
     self.delegate = nil;
     _draft.drawActionList = nil;
@@ -281,6 +297,7 @@
     PPRelease(_submitOpusFinalImage);
     PPRelease(_submitOpusDrawData);
     PPRelease(_shareWeiboSet);
+    
     PPRelease(_tempImageFilePath);
     PPRelease(_drawToolPanel);
     PPRelease(_drawToolUpPanel);
@@ -735,7 +752,9 @@
     [self.titleView setBgImage:nil];
     [self.titleView setBackgroundColor:[UIColor clearColor]];
     
-    if (self.userStageBuilder){
+    if (self.userStageBuilder && [self isLearnType]){
+        
+        // set title
         [self.titleView.titleLabel setTextColor:COLOR_BROWN];
         NSString* title = nil;
         if (targetType == TypeConquerDraw){
@@ -745,10 +764,7 @@
             title = NSLS(@"kPractice");
         }
         
-        PBTutorial* tutorial = [[TutorialCoreManager defaultManager] findTutorialByTutorialId:_userStageBuilder.tutorialId];
-        PBStage* stage = [tutorial getStageByIndex:self.userStageBuilder.stageIndex];
-        
-        NSString* stageName = stage.name;
+        NSString* stageName = self.stage.name;
         title = [title stringByAppendingFormat:@" - %@", stageName];
         [self.titleView setTitle:title];
     }
@@ -830,22 +846,7 @@
     }];
 }
 
-
-//#define ESCAPE_DEDUT_COIN 1
-//#define DIALOG_TAG_CLEAN_DRAW 201204081
-//#define DIALOG_TAG_ESCAPE 201204082
-//#define DIALOG_TAG_SAVETIP 201204083
-//#define DIALOG_TAG_SUBMIT 201206071
-//#define DIALOG_TAG_CHANGE_BACK 201207281
-//#define DIALOG_TAG_COMMIT_OPUS 201208111
-//
-//
-//#define NO_COIN_TAG 201204271
-
-
 #pragma mark - Common Dialog Delegate
-
-
 
 - (ContestController *)superContestController
 {
@@ -857,11 +858,23 @@
     return nil;
 }
 
+- (void)deleteTempImageFile
+{
+    if (self.tempImageFilePath){
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
+            [FileUtil removeFile:self.tempImageFilePath];
+        });
+        
+        self.tempImageFilePath = nil;
+    }
+}
+
 - (void)actionsBeforeQuit
 {
     [self deleteEmptyDraft];
     [self unregisterAllNotifications];
     [self stopRecovery];
+//    [self deleteTempImageFile];
     
     // save draft before quit
     [[MyPaintManager defaultManager] save];
@@ -1232,7 +1245,7 @@
     }
     
     BOOL isBlank = ([drawView.drawActionList count] == 0);
-    if (isBlank && targetType != TypePhoto) {
+    if (isBlank && targetType != TypePhoto && [self isLearnType] == NO) {
         CommonDialog *dialog = [CommonDialog createDialogWithTitle:NSLS(@"kBlankDrawTitle") message:NSLS(@"kBlankDraftMessage") style:CommonDialogStyleSingleButton];
         [dialog showInView:self.view];
         return;
@@ -1276,7 +1289,16 @@
                 
                 PPDebug(@"<saveDraft> draft=%@", [_draft description]);
             }
+            
+            if ([self isLearnType]){
+                [[UserTutorialManager defaultManager] updateUserStage:[_userStageBuilder build]];
+            }
+            
         }else{
+            PPDebug(@"<saveDraft> but draft is nil");
+            
+            // 以下代码理论上已经不可能执行了，因为所有初始化时候一定会创建一个草稿，暂时保留
+            /*
             PPDebug(@"<saveDraft> create core data draft");
             NSData* data = [self newDrawDataSnapshot];
             if ([data length] == 0){
@@ -1304,6 +1326,7 @@
                 [self.draft setOpusSpendTime:@(_designTime.totalTime)];
                 [self.draft setOpusCompleteDate:[NSDate date]];
             }
+            */
                         
         }
         if (showResult) {
@@ -1387,6 +1410,14 @@
     NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
     self.tempImageFilePath = [[ShareService defaultService] synthesisImageWithImage:image
                                                                       waterMarkText:[PPConfigManager getShareImageWaterMark]];
+    [pool drain];
+}
+
+- (void)writeTempFile:(UIImage*)image hasWaterMark:(BOOL)hasWaterMark
+{
+    NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
+    self.tempImageFilePath = [[ShareService defaultService] synthesisImageWithImage:image
+                                                                      waterMarkText:(hasWaterMark ? [PPConfigManager getShareImageWaterMark] : @"")];
     [pool drain];
 }
 
@@ -1504,6 +1535,111 @@
     }];
 }
 
+- (int)scoreSourceImage:(UIImage*)source destImage:(UIImage*)dest
+{
+    return 0;
+}
+
+- (BOOL)isPassPractice:(int)score
+{
+    return (score >= 60);
+}
+
+- (void)handleSubmitForPractice
+{
+    self.submitOpusDrawData = nil;
+    self.submitOpusFinalImage = nil;
+    
+    UIImage *image = [drawView createImage];
+    if(image == nil){
+        [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kImageNull") delayTime:1.5 isHappy:NO];
+        return;
+    }
+    
+    self.submitButton.userInteractionEnabled = NO;
+    
+    // create temp image file for weibo sharing
+    [self writeTempFile:image hasWaterMark:NO];
+    self.submitOpusFinalImage = image;
+    
+    [self.designTime pause];
+    
+    MyPaint* draft = self.draft;
+    [draft setOpusSpendTime:@(_designTime.totalTime)];
+    [draft setOpusCompleteDate:[NSDate date]];
+    [draft setSelectedClassList:self.selectedClassList];
+
+    [self saveDraft:NO];
+    
+    /*
+    NSData *drawData = [DrawAction buildPBDrawData:[[UserManager defaultManager] userId]
+                                              nick:[[UserManager defaultManager] nickName]
+                                            avatar:[[UserManager defaultManager] avatarURL]
+                                    drawActionList:drawView.drawActionList
+                                          drawWord:[self opusWord]
+                                          language:ChineseType
+                                              size:drawView.bounds.size
+                                      isCompressed:NO
+                                            layers:[[drawView.layers mutableCopy] autorelease]
+                                             draft:draft];
+    
+    self.submitOpusDrawData = drawData;
+    PPDebug(@"<handleSubmitForPractice> create draw data length=%d", [drawData length]);
+    
+    if (self.submitOpusDrawData == nil){
+        // clear image if create data failure
+        self.submitOpusFinalImage = nil;
+    }
+     */
+    
+    [self.designTime resume];
+    self.submitButton.userInteractionEnabled = YES;
+    
+    // 评分
+    int score = [self scoreSourceImage:_copyView.image destImage:self.submitOpusFinalImage];
+    if ([self isPassPractice:score]){
+        // 修炼及格，提示闯关
+        NSString* message = [NSString stringWithFormat:NSLS(@"kPracticePass"), score];
+        CommonDialog* dialog = [CommonDialog createDialogWithTitle:NSLS(@"kPracticeResult")
+                                                           message:message
+                                                             style:CommonDialogStyleDoubleButton];
+
+        [dialog.oKButton setTitle:NSLS(@"kTryConquer") forState:UIControlStateNormal];
+        [dialog.cancelButton setTitle:NSLS(@"Back") forState:UIControlStateNormal];
+        
+        [dialog setClickCancelBlock:^(id view){
+            [self quit];
+        }];
+        
+        [dialog setClickOkBlock:^(id view){
+            // TODO 闯关
+        }];
+        
+        [dialog showInView:self.view];
+    }
+    else{
+        // 修炼不及格，建议再来一次
+        NSString* message = [NSString stringWithFormat:NSLS(@"kPracticeFail"), score];
+        CommonDialog* dialog = [CommonDialog createDialogWithTitle:NSLS(@"kPracticeResult")
+                                                           message:message
+                                                             style:CommonDialogStyleDoubleButton];
+        
+        [dialog.oKButton setTitle:NSLS(@"kPracticeAgain") forState:UIControlStateNormal];
+        [dialog.cancelButton setTitle:NSLS(@"Back") forState:UIControlStateNormal];
+        
+        [dialog setClickCancelBlock:^(id view){
+            [self quit];
+        }];
+        
+        [dialog setClickOkBlock:^(id view){
+            // TODO 再来一次
+        }];
+        
+        [dialog showInView:self.view];
+    }
+    
+}
+
 - (IBAction)clickSubmitButton:(id)sender {
     [self.layerPanelPopView dismissAnimated:YES];
     [self.upPanelPopView dismissAnimated:YES];
@@ -1532,7 +1668,12 @@
             UIImage *image = [drawView createImage];
             [_delegate didController:self submitImage:image];
         }
-    }else {
+    }
+    else if ([self isLearnType]){
+        // 学画画闯关或者修炼
+        [self handleSubmitForPractice];
+    }
+    else {
         if(self.contest){
             [self commitContestOpus];
         } else {
@@ -1721,6 +1862,7 @@
 
 - (void)clickBackButton:(id)sender
 {
+    
     // 关闭弹窗
     [self.upPanelPopView dismissAnimated:YES];
     [self.layerPanelPopView dismissAnimated:YES];
@@ -1731,7 +1873,11 @@
         return;
     }    
     
-    if (targetType == TypeGraffiti || targetType == TypePhoto) {
+    if ([self isLearnType]){
+        [self saveDraft:NO];
+        [self quit];
+    }
+    else if (targetType == TypeGraffiti || targetType == TypePhoto) {
         // 聊天涂鸦或者是在照片上画画，调用回调方法
         if (_delegate && [_delegate respondsToSelector:@selector(didControllerClickBack:)]) {
             [_delegate didControllerClickBack:self];
