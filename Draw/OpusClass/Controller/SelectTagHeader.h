@@ -30,13 +30,13 @@
 #define BUTTON_LABEL_INDENT (ISIPAD ? 8 : 3)
 
 //按钮的大小
-#define KButtonWidth  (ISIPAD ? 160 : 75)
-#define KButtonHeight (ISIPAD ? 80 : 40)
+#define KButtonWidth  (ISIPAD ? 130 : 60)
+#define KButtonHeight (ISIPAD ? 70 : 35)
 
 #define COLUMN_PER_ROW 4
 
 #define LABEL_WIDTH             (ISIPAD ? 800 : 300)
-#define LABEL_HEIGHT            (ISIPAD ? 80 : 40)
+#define LABEL_HEIGHT            (ISIPAD ? 70 : 30)
 #define TAG_LABEL_START_Y       (COMMON_TITLE_VIEW_HEIGHT)
 #define SELECT_LABEL_START_Y    (COMMON_TITLE_VIEW_HEIGHT + 15)
 #define LIST_LABEL_SPACE        (ISIPAD ? 20 : 0)
@@ -54,6 +54,6 @@
 //#define CLASS_BUTTON_TEXT_COLOR         ([UIColor grayColor])
 
 #define TAG_LABEL_FONT_SIZE             (ISIPAD ? [UIFont systemFontOfSize:28] : [UIFont systemFontOfSize:14])
-#define TAG_BUTTON_FONT_SIZE            (ISIPAD ? [UIFont systemFontOfSize:24] : [UIFont systemFontOfSize:12])
+#define TAG_BUTTON_FONT_SIZE            (ISIPAD ? [UIFont systemFontOfSize:20] : [UIFont systemFontOfSize:11])
 
 #endif

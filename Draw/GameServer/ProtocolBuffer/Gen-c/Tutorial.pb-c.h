@@ -154,10 +154,12 @@ struct  _Game__PBTutorialCore
   Game__PBTutorial **tutorials;
   protobuf_c_boolean has_version;
   int32_t version;
+  size_t n_stepbysteptutorialid;
+  char **stepbysteptutorialid;
 };
 #define GAME__PBTUTORIAL_CORE__INIT \
  { PROTOBUF_C_MESSAGE_INIT (&game__pbtutorial_core__descriptor) \
-    , 0,NULL, 0,0 }
+    , 0,NULL, 0,0, 0,NULL }
 
 
 struct  _Game__PBUserStageOpus

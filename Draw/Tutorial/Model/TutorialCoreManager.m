@@ -350,4 +350,10 @@ static TutorialCoreManager* _defaultTutorialCoreManager;
     PPDebug(@"<createTestData> version txt file result=%d error=%@ file=%@", result, [error description], versionPath);
 }
 
+-(PBTutorial*)defaultFirstTutorial
+{
+    // TODO
+    return nil;
+}
+
 @end

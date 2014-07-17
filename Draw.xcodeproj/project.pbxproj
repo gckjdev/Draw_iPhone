@@ -4685,6 +4685,14 @@
 		CA485F5416E440E300AEE725 /* DrawBgBox.m in Sources */ = {isa = PBXBuildFile; fileRef = CA485F5116E440E300AEE725 /* DrawBgBox.m */; };
 		CA485F5616E440E300AEE725 /* DrawBgBox.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA485F5216E440E300AEE725 /* DrawBgBox.xib */; };
 		CA485F5816E440E300AEE725 /* DrawBgBox~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA485F5316E440E300AEE725 /* DrawBgBox~ipad.xib */; };
+		CA4CA5F5197680AA00ED1534 /* opencv2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA4CA5F2197680AA00ED1534 /* opencv2.framework */; };
+		CA4CA5F6197680AB00ED1534 /* opencv2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA4CA5F2197680AA00ED1534 /* opencv2.framework */; };
+		CA4CA5F7197680AB00ED1534 /* opencv2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA4CA5F2197680AA00ED1534 /* opencv2.framework */; };
+		CA4CA5F8197680AB00ED1534 /* opencv2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA4CA5F2197680AA00ED1534 /* opencv2.framework */; };
+		CA4CA5F9197680AB00ED1534 /* OpenCVUtils.mm in Sources */ = {isa = PBXBuildFile; fileRef = CA4CA5F4197680AA00ED1534 /* OpenCVUtils.mm */; };
+		CA4CA5FA197680AB00ED1534 /* OpenCVUtils.mm in Sources */ = {isa = PBXBuildFile; fileRef = CA4CA5F4197680AA00ED1534 /* OpenCVUtils.mm */; };
+		CA4CA5FB197680AB00ED1534 /* OpenCVUtils.mm in Sources */ = {isa = PBXBuildFile; fileRef = CA4CA5F4197680AA00ED1534 /* OpenCVUtils.mm */; };
+		CA4CA5FC197680AB00ED1534 /* OpenCVUtils.mm in Sources */ = {isa = PBXBuildFile; fileRef = CA4CA5F4197680AA00ED1534 /* OpenCVUtils.mm */; };
 		CA4CD8CE1840759A00BF70D9 /* LittleGeeDraw-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C28AA0C21738F0ED007A819F /* LittleGeeDraw-Info.plist */; };
 		CA4FB822179E240B00A57387 /* DrawLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = CA4FB821179E240B00A57387 /* DrawLayer.m */; };
 		CA4FB824179E240B00A57387 /* DrawLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = CA4FB821179E240B00A57387 /* DrawLayer.m */; };
@@ -9592,6 +9600,9 @@
 		CA485F5316E440E300AEE725 /* DrawBgBox~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "DrawBgBox~ipad.xib"; sourceTree = "<group>"; };
 		CA4AF8C015D23A4E00734FAC /* MainDataModel 7.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "MainDataModel 7.xcdatamodel"; sourceTree = "<group>"; };
 		CA4CA5E21975283400ED1534 /* MainDataModel 17.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "MainDataModel 17.xcdatamodel"; sourceTree = "<group>"; };
+		CA4CA5F2197680AA00ED1534 /* opencv2.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = opencv2.framework; sourceTree = "<group>"; };
+		CA4CA5F3197680AA00ED1534 /* OpenCVUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OpenCVUtils.h; sourceTree = "<group>"; };
+		CA4CA5F4197680AA00ED1534 /* OpenCVUtils.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = OpenCVUtils.mm; sourceTree = "<group>"; };
 		CA4F066F1546F66500A38C84 /* MainDataModel 3.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "MainDataModel 3.xcdatamodel"; sourceTree = "<group>"; };
 		CA4FB820179E240B00A57387 /* DrawLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DrawLayer.h; sourceTree = "<group>"; };
 		CA4FB821179E240B00A57387 /* DrawLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DrawLayer.m; sourceTree = "<group>"; };
@@ -10967,6 +10978,7 @@
 				A461B3D9174CBAA70088B061 /* libProtocolBuffers.a in Frameworks */,
 				CACD6D3518E03C40003F97C0 /* libDIRAC_iOS-fat.a in Frameworks */,
 				A461B3DA174CBAA70088B061 /* libz.1.1.3.dylib in Frameworks */,
+				CA4CA5F7197680AB00ED1534 /* opencv2.framework in Frameworks */,
 				A461B3DB174CBAA70088B061 /* MessageUI.framework in Frameworks */,
 				A461B3DC174CBAA70088B061 /* MapKit.framework in Frameworks */,
 				CACD6A7F18E03A28003F97C0 /* PocketConnection.framework in Frameworks */,
@@ -11069,6 +11081,7 @@
 				C28A9CB71738F04B007A819F /* StoreKit.framework in Frameworks */,
 				CACD6A5A18E03A28003F97C0 /* FacebookConnection.framework in Frameworks */,
 				CACD6AA618E03A29003F97C0 /* TencentWeiboConnection.framework in Frameworks */,
+				CA4CA5F6197680AB00ED1534 /* opencv2.framework in Frameworks */,
 				CA93D12118F008FA002BB805 /* GooglePlus.framework in Frameworks */,
 				CACD6A8218E03A28003F97C0 /* PrintConnection.framework in Frameworks */,
 				C28A9CB81738F04B007A819F /* libProtocolBuffers.a in Frameworks */,
@@ -11174,6 +11187,7 @@
 				CA96E363150E10D600292335 /* libProtocolBuffers.a in Frameworks */,
 				CACD6D3318E03C40003F97C0 /* libDIRAC_iOS-fat.a in Frameworks */,
 				CA103F381509A71A00F60C03 /* libz.1.1.3.dylib in Frameworks */,
+				CA4CA5F5197680AA00ED1534 /* opencv2.framework in Frameworks */,
 				CA103F341509A70800F60C03 /* MessageUI.framework in Frameworks */,
 				CA103F321509A6EE00F60C03 /* MapKit.framework in Frameworks */,
 				CACD6A7D18E03A28003F97C0 /* PocketConnection.framework in Frameworks */,
@@ -11302,6 +11316,7 @@
 				CACD6A8418E03A28003F97C0 /* PrintConnection.framework in Frameworks */,
 				EA411B39176066F500DA72D0 /* UIKit.framework in Frameworks */,
 				CACD6A9418E03A28003F97C0 /* SinaWeiboConnection.framework in Frameworks */,
+				CA4CA5F8197680AB00ED1534 /* opencv2.framework in Frameworks */,
 				CACD6ABC18E03A29003F97C0 /* AGCommon.framework in Frameworks */,
 				CACD6B0018E03A2D003F97C0 /* ShareSDK.framework in Frameworks */,
 				EA411B3A176066F500DA72D0 /* Foundation.framework in Frameworks */,
@@ -15481,6 +15496,16 @@
 			path = DrawBg;
 			sourceTree = "<group>";
 		};
+		CA4CA5F1197680AA00ED1534 /* OpenCV */ = {
+			isa = PBXGroup;
+			children = (
+				CA4CA5F2197680AA00ED1534 /* opencv2.framework */,
+				CA4CA5F3197680AA00ED1534 /* OpenCVUtils.h */,
+				CA4CA5F4197680AA00ED1534 /* OpenCVUtils.mm */,
+			);
+			path = OpenCV;
+			sourceTree = "<group>";
+		};
 		CA4FB81A179E23E600A57387 /* DrawLayer */ = {
 			isa = PBXGroup;
 			children = (
@@ -17900,6 +17925,7 @@
 		CAFEFCE416606FC100441D77 /* Component-Service */ = {
 			isa = PBXGroup;
 			children = (
+				CA4CA5F1197680AA00ED1534 /* OpenCV */,
 				CA766D5417A15EB600D60E3D /* CPMotionRecognizer */,
 				C23ED5DB1759A5B500263FB7 /* GoogleSearch */,
 				CAADF60A16F444C20097CFA1 /* AdWallService */,
@@ -23215,6 +23241,7 @@
 				A461B320174CBAA70088B061 /* DashPen.m in Sources */,
 				A461B321174CBAA70088B061 /* BlurPen.m in Sources */,
 				A461B322174CBAA70088B061 /* MarkPen.m in Sources */,
+				CA4CA5FB197680AB00ED1534 /* OpenCVUtils.mm in Sources */,
 				D8A2709C196FC07F006DDF20 /* GameConstants.pb-c.c in Sources */,
 				A461B323174CBAA70088B061 /* GameItemService.m in Sources */,
 				A461B324174CBAA70088B061 /* GameItem.m in Sources */,
@@ -24036,6 +24063,7 @@
 				C28A9BDA1738F04B007A819F /* ColorPoint.m in Sources */,
 				C28A9BDB1738F04B007A819F /* DrawSlider.m in Sources */,
 				C28A9BDC1738F04B007A819F /* DrawToolPanel.m in Sources */,
+				CA4CA5FA197680AB00ED1534 /* OpenCVUtils.mm in Sources */,
 				C28A9BDD1738F04B007A819F /* Palette.m in Sources */,
 				C28A9BDE1738F04B007A819F /* PenBox.m in Sources */,
 				C28A9BDF1738F04B007A819F /* InputAlertView.m in Sources */,
@@ -24883,6 +24911,7 @@
 				C297004E16A1363500A61521 /* RoundLineLabel.m in Sources */,
 				CA5328ED16A3E1E000E9E96B /* ColorBox.m in Sources */,
 				CA5328F916A3E1E000E9E96B /* ColorPoint.m in Sources */,
+				CA4CA5F9197680AB00ED1534 /* OpenCVUtils.mm in Sources */,
 				CA5328FD16A3E1E000E9E96B /* DrawSlider.m in Sources */,
 				CA53290116A3E1E000E9E96B /* DrawToolPanel.m in Sources */,
 				CA53291116A3E1E000E9E96B /* Palette.m in Sources */,
@@ -25363,6 +25392,7 @@
 				EA411847176066F500DA72D0 /* UIImageUtil.m in Sources */,
 				CA9005231950209B003389FD /* THGridMenu.m in Sources */,
 				EA411848176066F500DA72D0 /* LocaleUtils.m in Sources */,
+				CA4CA5FC197680AB00ED1534 /* OpenCVUtils.mm in Sources */,
 				EA411849176066F500DA72D0 /* LogUtil.m in Sources */,
 				EA41184A176066F500DA72D0 /* NumberUtil.m in Sources */,
 				EA41184B176066F500DA72D0 /* ArrayOfCharacters.m in Sources */,
@@ -26344,6 +26374,8 @@
 					"../Common_iPhone_20/3PP-SDK/ShareSDK/UI",
 					"../Common_iPhone_20/3PP-SDK/LmmobSDK",
 					"../Common_iPhone_20/3PP-SDK/ShareSDK/Extend/QQConnectSDK",
+					"/Users/Linruin/gitdata/Common_iPhone_20/Components/Component-Service/OpenCV",
+					"/gitdata/Common_iPhone_20/Components/Component-Service/OpenCV",
 				);
 				GCC_C_LANGUAGE_STANDARD = "compiler-default";
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -26452,6 +26484,8 @@
 					"../Common_iPhone_20/3PP-SDK/ShareSDK/UI",
 					"../Common_iPhone_20/3PP-SDK/LmmobSDK",
 					"../Common_iPhone_20/3PP-SDK/ShareSDK/Extend/QQConnectSDK",
+					"/Users/Linruin/gitdata/Common_iPhone_20/Components/Component-Service/OpenCV",
+					"/gitdata/Common_iPhone_20/Components/Component-Service/OpenCV",
 				);
 				GCC_C_LANGUAGE_STANDARD = "compiler-default";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -26560,6 +26594,8 @@
 					"../Common_iPhone_20/3PP-SDK/ShareSDK/UI",
 					"../Common_iPhone_20/3PP-SDK/LmmobSDK",
 					"../Common_iPhone_20/3PP-SDK/ShareSDK/Extend/QQConnectSDK",
+					"/Users/Linruin/gitdata/Common_iPhone_20/Components/Component-Service/OpenCV",
+					"/gitdata/Common_iPhone_20/Components/Component-Service/OpenCV",
 				);
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -26667,6 +26703,8 @@
 					"../Common_iPhone_20/3PP-SDK/ShareSDK/UI",
 					"../Common_iPhone_20/3PP-SDK/LmmobSDK",
 					"../Common_iPhone_20/3PP-SDK/ShareSDK/Extend/QQConnectSDK",
+					"/Users/Linruin/gitdata/Common_iPhone_20/Components/Component-Service/OpenCV",
+					"/gitdata/Common_iPhone_20/Components/Component-Service/OpenCV",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Draw/Draw-Prefix.pch";
@@ -26745,6 +26783,8 @@
 					armv7,
 					armv6,
 				);
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
 				CODE_SIGN_IDENTITY = "iPhone Developer: Lingzhe Peng (9WG829Y3AG)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Lingzhe Peng (9WG829Y3AG)";
 				COMPRESS_PNG_FILES = YES;
@@ -26780,6 +26820,8 @@
 					armv7,
 					armv6,
 				);
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Lingzhe Peng (LPN7A567X3)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Lingzhe Peng (LPN7A567X3)";
 				COMPRESS_PNG_FILES = YES;
@@ -26840,6 +26882,8 @@
 					"../Common_iPhone_20/3PP-SDK/ShareSDK/UI",
 					"../Common_iPhone_20/3PP-SDK/LmmobSDK",
 					"../Common_iPhone_20/3PP-SDK/ShareSDK/Extend/QQConnectSDK",
+					"/Users/Linruin/gitdata/Common_iPhone_20/Components/Component-Service/OpenCV",
+					"/gitdata/Common_iPhone_20/Components/Component-Service/OpenCV",
 				);
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -26948,6 +26992,8 @@
 					"../Common_iPhone_20/3PP-SDK/ShareSDK/UI",
 					"../Common_iPhone_20/3PP-SDK/LmmobSDK",
 					"../Common_iPhone_20/3PP-SDK/ShareSDK/Extend/QQConnectSDK",
+					"/Users/Linruin/gitdata/Common_iPhone_20/Components/Component-Service/OpenCV",
+					"/gitdata/Common_iPhone_20/Components/Component-Service/OpenCV",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Draw/Draw-Prefix.pch";
@@ -27054,6 +27100,8 @@
 					"../Common_iPhone_20/3PP-SDK/ShareSDK/UI",
 					"../Common_iPhone_20/3PP-SDK/LmmobSDK",
 					"../Common_iPhone_20/3PP-SDK/ShareSDK/Extend/QQConnectSDK",
+					"/Users/Linruin/gitdata/Common_iPhone_20/Components/Component-Service/OpenCV",
+					"/gitdata/Common_iPhone_20/Components/Component-Service/OpenCV",
 				);
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -27158,6 +27206,8 @@
 					"../Common_iPhone_20/3PP-SDK/ShareSDK/UI",
 					"../Common_iPhone_20/3PP-SDK/LmmobSDK",
 					"../Common_iPhone_20/3PP-SDK/ShareSDK/Extend/QQConnectSDK",
+					"/Users/Linruin/gitdata/Common_iPhone_20/Components/Component-Service/OpenCV",
+					"/gitdata/Common_iPhone_20/Components/Component-Service/OpenCV",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Draw/Draw-Prefix.pch";

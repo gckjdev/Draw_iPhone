@@ -232,6 +232,7 @@
     [self.draft setIsForLearn:@(YES)];
     [self.draft setTargetType:@(type)];
     [self.draft setDrawWord:self.stage.name];
+    [self.draft setStageName:self.stage.name];
     
     NSString* opusIdForLearn = [userStage getCurrentChapterOpusId];
     [self.draft setChapterOpusId:opusIdForLearn];
@@ -1569,6 +1570,11 @@
     [draft setOpusCompleteDate:[NSDate date]];
     [draft setSelectedClassList:self.selectedClassList];
 
+    // 评分
+    int score = [self scoreSourceImage:_copyView.image destImage:self.submitOpusFinalImage];
+    [self.draft setScore:score];
+    [self.draft setScoreDate:[NSDate date]];
+    
     [self saveDraft:NO];
     
     /*
@@ -1595,8 +1601,7 @@
     [self.designTime resume];
     self.submitButton.userInteractionEnabled = YES;
     
-    // 评分
-    int score = [self scoreSourceImage:_copyView.image destImage:self.submitOpusFinalImage];
+    // 根据评分结果跳转
     if ([self isPassPractice:score]){
         // 修炼及格，提示闯关
         NSString* message = [NSString stringWithFormat:NSLS(@"kPracticePass"), score];

@@ -2904,6 +2904,7 @@ static PBTutorial* defaultPBTutorialInstance = nil;
 @interface PBTutorialCore ()
 @property (retain) NSMutableArray* mutableTutorialsList;
 @property int32_t version;
+@property (retain) NSMutableArray* mutableStepByStepTutorialIdList;
 @end
 
 @implementation PBTutorialCore
@@ -2916,8 +2917,10 @@ static PBTutorial* defaultPBTutorialInstance = nil;
   hasVersion_ = !!value;
 }
 @synthesize version;
+@synthesize mutableStepByStepTutorialIdList;
 - (void) dealloc {
   self.mutableTutorialsList = nil;
+  self.mutableStepByStepTutorialIdList = nil;
   [super dealloc];
 }
 - (id) init {
@@ -2945,6 +2948,13 @@ static PBTutorialCore* defaultPBTutorialCoreInstance = nil;
   id value = [mutableTutorialsList objectAtIndex:index];
   return value;
 }
+- (NSArray*) stepByStepTutorialIdList {
+  return mutableStepByStepTutorialIdList;
+}
+- (NSString*) stepByStepTutorialIdAtIndex:(int32_t) index {
+  id value = [mutableStepByStepTutorialIdList objectAtIndex:index];
+  return value;
+}
 - (BOOL) isInitialized {
   for (PBTutorial* element in self.tutorialsList) {
     if (!element.isInitialized) {
@@ -2960,6 +2970,9 @@ static PBTutorialCore* defaultPBTutorialCoreInstance = nil;
   if (self.hasVersion) {
     [output writeInt32:2 value:self.version];
   }
+  for (NSString* element in self.mutableStepByStepTutorialIdList) {
+    [output writeString:10 value:element];
+  }
   [self.unknownFields writeToCodedOutputStream:output];
 }
 - (int32_t) serializedSize {
@@ -2974,6 +2987,14 @@ static PBTutorialCore* defaultPBTutorialCoreInstance = nil;
   }
   if (self.hasVersion) {
     size += computeInt32Size(2, self.version);
+  }
+  {
+    int32_t dataSize = 0;
+    for (NSString* element in self.mutableStepByStepTutorialIdList) {
+      dataSize += computeStringSizeNoTag(element);
+    }
+    size += dataSize;
+    size += 1 * self.mutableStepByStepTutorialIdList.count;
   }
   size += self.unknownFields.serializedSize;
   memoizedSerializedSize = size;
@@ -3059,6 +3080,12 @@ static PBTutorialCore* defaultPBTutorialCoreInstance = nil;
   if (other.hasVersion) {
     [self setVersion:other.version];
   }
+  if (other.mutableStepByStepTutorialIdList.count > 0) {
+    if (result.mutableStepByStepTutorialIdList == nil) {
+      result.mutableStepByStepTutorialIdList = [NSMutableArray array];
+    }
+    [result.mutableStepByStepTutorialIdList addObjectsFromArray:other.mutableStepByStepTutorialIdList];
+  }
   [self mergeUnknownFields:other.unknownFields];
   return self;
 }
@@ -3088,6 +3115,10 @@ static PBTutorialCore* defaultPBTutorialCoreInstance = nil;
       }
       case 16: {
         [self setVersion:[input readInt32]];
+        break;
+      }
+      case 82: {
+        [self addStepByStepTutorialId:[input readString]];
         break;
       }
     }
@@ -3136,6 +3167,37 @@ static PBTutorialCore* defaultPBTutorialCoreInstance = nil;
 - (PBTutorialCore_Builder*) clearVersion {
   result.hasVersion = NO;
   result.version = 0;
+  return self;
+}
+- (NSArray*) stepByStepTutorialIdList {
+  if (result.mutableStepByStepTutorialIdList == nil) {
+    return [NSArray array];
+  }
+  return result.mutableStepByStepTutorialIdList;
+}
+- (NSString*) stepByStepTutorialIdAtIndex:(int32_t) index {
+  return [result stepByStepTutorialIdAtIndex:index];
+}
+- (PBTutorialCore_Builder*) replaceStepByStepTutorialIdAtIndex:(int32_t) index with:(NSString*) value {
+  [result.mutableStepByStepTutorialIdList replaceObjectAtIndex:index withObject:value];
+  return self;
+}
+- (PBTutorialCore_Builder*) addStepByStepTutorialId:(NSString*) value {
+  if (result.mutableStepByStepTutorialIdList == nil) {
+    result.mutableStepByStepTutorialIdList = [NSMutableArray array];
+  }
+  [result.mutableStepByStepTutorialIdList addObject:value];
+  return self;
+}
+- (PBTutorialCore_Builder*) addAllStepByStepTutorialId:(NSArray*) values {
+  if (result.mutableStepByStepTutorialIdList == nil) {
+    result.mutableStepByStepTutorialIdList = [NSMutableArray array];
+  }
+  [result.mutableStepByStepTutorialIdList addObjectsFromArray:values];
+  return self;
+}
+- (PBTutorialCore_Builder*) clearStepByStepTutorialIdList {
+  result.mutableStepByStepTutorialIdList = nil;
   return self;
 }
 @end

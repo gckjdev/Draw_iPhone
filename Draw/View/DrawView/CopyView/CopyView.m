@@ -83,6 +83,11 @@
     if (opusId){
         [self loadAndUpdate:opusId updateImage:YES];
     }
+    else{
+#ifdef DEBUG
+        [self loadLatestOpus];
+#endif
+    }
 }
 
 - (void)setLatestOpusId:(NSString*)opusId
@@ -192,11 +197,14 @@
 - (void)userResizableViewDidTap:(SPUserResizableView*)userResizableView
 {
     PPDebug(@"userResizableViewDidTap");
+    
+#ifndef DEBUG
     if (_hasMenu == NO){
         // tap to play opus directly
         [ShowFeedController replayDraw:self.drawFeed viewController:self.superViewController];
         return;
     }
+#endif
     
     MKBlockActionSheet* actionSheet = [[MKBlockActionSheet alloc] initWithTitle:NSLS(@"kCopyViewActionTitle")
                                                                        delegate:nil

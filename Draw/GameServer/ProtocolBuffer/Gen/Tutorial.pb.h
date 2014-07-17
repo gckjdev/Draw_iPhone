@@ -806,12 +806,15 @@ BOOL PBUserTutorialStatusIsValidValue(PBUserTutorialStatus value);
 @private
   BOOL hasVersion_:1;
   int32_t version;
+  NSMutableArray* mutableStepByStepTutorialIdList;
   NSMutableArray* mutableTutorialsList;
 }
 - (BOOL) hasVersion;
 @property (readonly) int32_t version;
 - (NSArray*) tutorialsList;
 - (PBTutorial*) tutorialsAtIndex:(int32_t) index;
+- (NSArray*) stepByStepTutorialIdList;
+- (NSString*) stepByStepTutorialIdAtIndex:(int32_t) index;
 
 + (PBTutorialCore*) defaultInstance;
 - (PBTutorialCore*) defaultInstance;
@@ -858,6 +861,13 @@ BOOL PBUserTutorialStatusIsValidValue(PBUserTutorialStatus value);
 - (int32_t) version;
 - (PBTutorialCore_Builder*) setVersion:(int32_t) value;
 - (PBTutorialCore_Builder*) clearVersion;
+
+- (NSArray*) stepByStepTutorialIdList;
+- (NSString*) stepByStepTutorialIdAtIndex:(int32_t) index;
+- (PBTutorialCore_Builder*) replaceStepByStepTutorialIdAtIndex:(int32_t) index with:(NSString*) value;
+- (PBTutorialCore_Builder*) addStepByStepTutorialId:(NSString*) value;
+- (PBTutorialCore_Builder*) addAllStepByStepTutorialId:(NSArray*) values;
+- (PBTutorialCore_Builder*) clearStepByStepTutorialIdList;
 @end
 
 @interface PBUserStageOpus : PBGeneratedMessage {

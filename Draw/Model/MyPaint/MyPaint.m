@@ -41,6 +41,7 @@
 @dynamic stageIndex;
 @dynamic targetType;
 @dynamic tutorialId;
+@dynamic stageName;
 
 @synthesize thumbImage = _thumbImage;
 @synthesize paintImage = _paintImage;
