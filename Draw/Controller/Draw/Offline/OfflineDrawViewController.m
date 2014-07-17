@@ -79,6 +79,7 @@
 #import "TutorialCoreManager.h"
 #import "UserTutorialService.h"
 #import "UserTutorialManager.h"
+#import "OpenCVUtils.h"
 
 @interface OfflineDrawViewController()
 {
@@ -1576,6 +1577,18 @@
     }];
 }
 
+- (NSString*)writeImageToFile:(UIImage*)sourceImage filePath:(NSString*)fileName
+{
+    NSString* path = [NSString stringWithFormat:@"%@/%@.jpg", NSTemporaryDirectory(), fileName];
+    PPDebug(@"<writeImageToFile> path=%@", path);
+    UIImage* image = sourceImage;
+    BOOL result=[[image data] writeToFile:path atomically:YES];
+    if (result) {
+        return path;
+    }
+    return nil;
+}
+
 - (int)scoreSourceImage:(UIImage*)source destImage:(UIImage*)dest
 {
     return 0;
@@ -1611,7 +1624,10 @@
     [draft setSelectedClassList:self.selectedClassList];
 
     // 评分
-    int score = [self scoreSourceImage:_copyView.image destImage:self.submitOpusFinalImage];
+    NSString* sourcePath = [self writeImageToFile:_copyView.image filePath:self.draft.draftId];
+    NSString* destPath = self.tempImageFilePath;
+    int score = [OpenCVUtils hashScoreSourceImagePath:sourcePath destImagePath:destPath];
+    
     [self.draft setScore:score];
     [self.draft setScoreDate:[NSDate date]];
     
