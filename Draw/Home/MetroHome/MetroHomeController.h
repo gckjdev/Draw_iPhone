@@ -9,8 +9,12 @@
 #import <UIKit/UIKit.h>
 #import "StableView.h"
 #import "MoreViewController.h"
+#import "Billboard.h"
+#import "SGFocusImageFrame.h"
+#import "SGFocusImageItem.h"
 
-@interface MetroHomeController : PPViewController<AvatarViewDelegate>{
+
+@interface MetroHomeController : PPViewController<AvatarViewDelegate,SGFocusImageFrameDelegate>{
     UIButton *LearningViewButton;
     
 }
@@ -39,7 +43,9 @@
 @property (retain, nonatomic) IBOutlet BadgeView *messageBadge;
 @property (retain, nonatomic) IBOutlet BadgeView *moreBadge;
 @property (retain, nonatomic) IBOutlet BadgeView *anounceBadge;
+@property (retain, nonatomic) IBOutlet UIButton *galleryButton;
 
+@property (nonatomic, retain) NSArray *bbList;
 
 - (UIView *)createShadow:(UIView *)view;
 - (IBAction)goToLearning:(id)sender;

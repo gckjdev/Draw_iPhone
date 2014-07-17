@@ -11,10 +11,11 @@
 #import "UserTutorialMainController.h"
 #import "UIViewController+CommonHome.h"
 #import "MoreViewController.h"
-
+#import "BillboardManager.h"
 @interface MetroHomeController ()
 
 @end
+
 
 @implementation MetroHomeController
 
@@ -65,18 +66,18 @@
     
     [self setBackground];
         // Do any additional setup after loading the view from its nib.
-    UIImage *placeHolderImage = [UIImage imageNamed:@DEFAUT_IMAGE_NAME];
+   
     
-    //读取网上图片
-    NSString *galleryImage = @TEST_DATA_GALLERYIMAGE;
-    NSURL *galleryUrl = [NSURL URLWithString:galleryImage];
-    [_galleryImageView setImageWithUrl:galleryUrl
-                       placeholderImage:placeHolderImage
-                            showLoading:YES
-                               animated:YES];
-    
-
-
+//    //读取网上图片
+//    NSString *galleryImage = @TEST_DATA_GALLERYIMAGE;
+//    NSURL *galleryUrl = [NSURL URLWithString:galleryImage];
+//    [_galleryImageView setImageWithUrl:galleryUrl
+//                       placeholderImage:placeHolderImage
+//                            showLoading:YES
+//                               animated:YES];
+    [self setGalleryView];
+//    [self setGalleryImageForModel];
+   
     //用户头像
     UserManager* userManager = [UserManager defaultManager];
     
@@ -106,6 +107,50 @@
     [self setBadgeView];
 
 }
+
+-(void)setGalleryImageForModel{
+    
+    [self setCanDragBack:NO];
+     UIImage *placeHolderImage = [UIImage imageNamed:@DEFAUT_IMAGE_NAME];
+    BillboardManager *bbManager = [BillboardManager defaultManager];
+    self.bbList = bbManager.bbList;
+    CGRect bound=CGRectMake(26,15, 268, 120);
+    for(Billboard *bb in self.bbList){
+        UIImageView *imageView =[[[UIImageView alloc]initWithFrame:CGRectMake(26, 15, 268, 120)] autorelease];
+        
+        NSString *galleryImage = bb.image;
+        
+        NSURL *galleryUrl = [NSURL URLWithString:galleryImage];
+        [imageView setImageWithUrl:galleryUrl
+                  placeholderImage:placeHolderImage
+                       showLoading:YES
+                          animated:YES];
+    
+        
+//        UITapGestureRecognizer *singleTap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(galleryClick:)];
+//        
+//        singleTap.view.tag = 1;
+//        singleTap.numberOfTapsRequired=1;
+//        singleTap.numberOfTouchesRequired = 1;
+//        
+//        [imageView addGestureRecognizer:singleTap];
+
+//        [self.galleryView addSubview:imageView];
+//        
+//        [self.galleryView bringSubviewToFront:imageView];
+//                [singleTap release];
+    }
+   
+   
+}
+
+-(void)galleryClick:(id)sender{
+    [[self.bbList objectAtIndex:0] clickAction:self];
+    PPDebug(@"<click_gallery_image>button_tag=%d",index);
+}
+
+
+
 #define TEST_DATA 5
 -(void)setBadgeView{
     [self.indexBadge setNumber:TEST_DATA];
@@ -160,10 +205,6 @@
     self.galleryView.backgroundColor = [UIColor clearColor];
     [self.topView insertSubview:bg atIndex:0];
     [bg release];
-    
-    
-    
-    
     UIImage *bottomBackground = [UIImage imageNamed:@"neironglan yu caidanlan.png"];
     [self.bottomBackground setBackgroundColor:[UIColor clearColor]];
     [self.bottomBackground setImage:bottomBackground];
@@ -237,7 +278,6 @@
 //点击事件
 -(void)labelClicked{
     PPDebug(@"click the label");
-    
 }
 //创造手势
 
@@ -250,6 +290,53 @@
     [_topNameLable addGestureRecognizer:singleFingerOne];
     
 }
+
+
+#pragma mark -
+
+#define IMAGE_FRAME_X (ISIPAD ? 26:11)
+#define IMAGE_FRAME_Y (ISIPAD ? 20:15)
+#define IMAGE_FRAME_WIDTH (ISIPAD ? 716:298)
+#define IMAGE_FRAME_HEIGHT (ISIPAD ? 250:120)
+-(void)setGalleryView{
+    BillboardManager *bbManager = [BillboardManager defaultManager];
+    self.bbList = bbManager.bbList;
+
+    NSMutableArray *itemList = [[[NSMutableArray alloc] init] autorelease];
+    for(Billboard *bb in _bbList){
+        NSString *galleryImage = bb.image;
+        NSURL *galleryUrl = [NSURL URLWithString:galleryImage];
+        NSData* data = [NSData dataWithContentsOfURL:galleryUrl];
+        if(data==nil){
+            return;
+        }
+        UIImage *image = [[[UIImage alloc] initWithData:data] autorelease];
+
+        
+        SGFocusImageItem *item = [[[SGFocusImageItem alloc] initWithTitle:@"" image:image tag:bb.index] autorelease];
+        
+        [itemList addObject:item];
+    }
+    
+    SGFocusImageFrame *imageFrame = [[SGFocusImageFrame alloc] initWithFrame:CGRectMake(IMAGE_FRAME_X, IMAGE_FRAME_Y, IMAGE_FRAME_WIDTH ,IMAGE_FRAME_HEIGHT)
+                                                                    delegate:self
+                                                             focusImageItems:itemList, nil];
+    [self.galleryView addSubview:imageFrame];
+    [self.galleryView bringSubviewToFront:imageFrame];
+    [imageFrame release];
+
+}
+-(void)foucusImageFrame:(SGFocusImageFrame *)imageFrame didSelectItem:(SGFocusImageItem *)item{
+    NSLog(@"%@", item.title);
+}
+-(void)clickActionDelegate:(int)index{
+    NSInteger *count = [self.bbList count];
+    if(index >= count){
+        return;
+    }
+    [[self.bbList objectAtIndex:index] clickAction:self];
+}
+
 
 - (void)dealloc {
     [_galleryView release];
@@ -276,6 +363,7 @@
     [_messageBadge release];
     [_moreBadge release];
     [_anounceBadge release];
+    [_galleryButton release];
     [super dealloc];
 }
 - (void)viewDidUnload {
@@ -305,6 +393,7 @@
     [self setMessageBadge:nil];
     [self setMoreBadge:nil];
     [self setAnounceBadge:nil];
+    [self setGalleryButton:nil];
     [super viewDidUnload];
 }
 @end

@@ -174,19 +174,6 @@
                                        animated:animated];
 }
 
-
-//+ (OfflineDrawViewController *)startDraw:(Word *)word
-//                          fromController:(UIViewController*)fromController
-//                         startController:(UIViewController*)startController
-//                               targetUid:(NSString *)targetUid
-//{
-//    return [OfflineDrawViewController startDraw:word
-//                                 fromController:fromController
-//                                startController:startController
-//                                      targetUid:targetUid
-//                                          photo:nil];
-//}
-
 + (OfflineDrawViewController *)startDraw:(Word *)word
                           fromController:(UIViewController*)fromController
                          startController:(UIViewController*)startController
@@ -1239,6 +1226,16 @@
     }
 }
 
+- (PBUserStage*)buildUserStage
+{
+    PBUserStage* userStage = [self.userStageBuilder build];
+    if (userStage){
+        self.userStageBuilder = [PBUserStage builderWithPrototype:userStage];
+    }
+    
+    return userStage;
+}
+
 - (void)saveDraft:(BOOL)showResult
 {
     if ([self isBriefStyle]) {
@@ -1293,7 +1290,7 @@
             }
             
             if ([self isLearnType]){
-                [[UserTutorialManager defaultManager] updateUserStage:[_userStageBuilder build]];
+                [[UserTutorialManager defaultManager] updateUserStage:[self buildUserStage]];
             }
             
         }else{
@@ -1653,7 +1650,15 @@
         }];
         
         [dialog setClickOkBlock:^(id view){
-            // TODO 再来一次
+            // 再来一次
+            [self.draft setDeleteFlag:@(YES)]; // delete current draft
+            [self.userStageBuilder setPracticeLocalOpusId:nil];
+            PBUserStage* userStage = [self buildUserStage];
+
+            [self actionsBeforeQuit];
+            [self.navigationController popViewControllerAnimated:NO];
+            
+            [OfflineDrawViewController practice:self.startController userStage:userStage];
         }];
         
         [dialog showInView:self.view];
