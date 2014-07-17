@@ -268,6 +268,49 @@
     return [vc autorelease];
 }
 
++ (OfflineDrawViewController*)conquer:(UIViewController*)startController
+                            userStage:(PBUserStage*)userStage
+{
+    UIImage* image = nil; // TODO , read from PBUserStage
+    
+    NSString* draftId = userStage.conquerLocalOpusId;
+    MyPaint* draft = [[MyPaintManager defaultManager] findDraftById:draftId];
+    
+    OfflineDrawViewController *vc = nil;
+    int targetType = TypeConquerDraw;
+    if (draft){
+        // load from draft
+        vc = [[OfflineDrawViewController alloc] initWithDraft:draft startController:startController];
+        
+        vc.tutorial = [[TutorialCoreManager defaultManager] findTutorialByTutorialId:userStage.tutorialId];
+        vc.stage = [vc.tutorial getStageByIndex:userStage.stageIndex];
+        
+    }
+    else{
+        vc = [[OfflineDrawViewController alloc] initWithTargetType:targetType
+                                                          delegate:nil
+                                                   startController:startController
+                                                           Contest:nil
+                                                      targetUserId:nil
+                                                           bgImage:image];
+        
+        vc.tutorial = [[TutorialCoreManager defaultManager] findTutorialByTutorialId:userStage.tutorialId];
+        vc.stage = [vc.tutorial getStageByIndex:userStage.stageIndex];
+        
+        // set draft tutorial info
+        [vc setDraftTutorialInfo:userStage targetType:targetType];
+    }
+    
+    if (userStage){
+        vc.userStageBuilder = [PBUserStage builderWithPrototype:userStage];
+        [vc.userStageBuilder setPracticeLocalOpusId:vc.draft.draftId];
+    }
+    
+    [startController.navigationController pushViewController:vc animated:YES];
+    PPDebug(@"<StartDraw>: practice");
+    return [vc autorelease];
+}
+
 - (void)dealloc
 {
     [UIApplication sharedApplication].idleTimerDisabled = NO; // disable lock screen while in drawing

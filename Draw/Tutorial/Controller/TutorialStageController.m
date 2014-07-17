@@ -142,6 +142,19 @@
     
     [dialog setClickOkBlock:^(id view){
         // Conquer
+        PBUserTutorial* newUT = [[UserTutorialService defaultService] startConquerTutorialStage:self.pbUserTutorial.localId
+                                                                                         stageId:stageId
+                                                                                      stageIndex:stageIndex];
+        
+        if (newUT){
+            
+            self.pbUserTutorial = newUT;
+            PBUserStage* userStage = [_pbUserTutorial.userStagesList objectAtIndex:stageIndex];
+            
+            // enter offline draw view controller
+            [OfflineDrawViewController conquer:self userStage:userStage];
+        }
+        
     }];
 
     [dialog setClickCancelBlock:^(id view){
