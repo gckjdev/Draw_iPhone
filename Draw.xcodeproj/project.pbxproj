@@ -6247,6 +6247,22 @@
 		D82C0D6F19763BBF0088539F /* MoreViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D82C0D6919763BBF0088539F /* MoreViewCell.xib */; };
 		D82C0D7019763BBF0088539F /* MoreViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D82C0D6919763BBF0088539F /* MoreViewCell.xib */; };
 		D82C0D7119763BBF0088539F /* MoreViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D82C0D6919763BBF0088539F /* MoreViewCell.xib */; };
+		D82C0D7519764FC30088539F /* BillboardManager.m in Sources */ = {isa = PBXBuildFile; fileRef = D82C0D7419764FC30088539F /* BillboardManager.m */; };
+		D82C0D7619764FC30088539F /* BillboardManager.m in Sources */ = {isa = PBXBuildFile; fileRef = D82C0D7419764FC30088539F /* BillboardManager.m */; };
+		D82C0D7719764FC30088539F /* BillboardManager.m in Sources */ = {isa = PBXBuildFile; fileRef = D82C0D7419764FC30088539F /* BillboardManager.m */; };
+		D82C0D7819764FC30088539F /* BillboardManager.m in Sources */ = {isa = PBXBuildFile; fileRef = D82C0D7419764FC30088539F /* BillboardManager.m */; };
+		D82C0D7B19764FFF0088539F /* home_bb.json in Resources */ = {isa = PBXBuildFile; fileRef = D82C0D7A19764FFF0088539F /* home_bb.json */; };
+		D82C0D7C19764FFF0088539F /* home_bb.json in Resources */ = {isa = PBXBuildFile; fileRef = D82C0D7A19764FFF0088539F /* home_bb.json */; };
+		D82C0D7D19764FFF0088539F /* home_bb.json in Resources */ = {isa = PBXBuildFile; fileRef = D82C0D7A19764FFF0088539F /* home_bb.json */; };
+		D82C0D7E19764FFF0088539F /* home_bb.json in Resources */ = {isa = PBXBuildFile; fileRef = D82C0D7A19764FFF0088539F /* home_bb.json */; };
+		D82C0D801976500E0088539F /* home_bb_version.txt in Resources */ = {isa = PBXBuildFile; fileRef = D82C0D7F1976500E0088539F /* home_bb_version.txt */; };
+		D82C0D811976500E0088539F /* home_bb_version.txt in Resources */ = {isa = PBXBuildFile; fileRef = D82C0D7F1976500E0088539F /* home_bb_version.txt */; };
+		D82C0D821976500E0088539F /* home_bb_version.txt in Resources */ = {isa = PBXBuildFile; fileRef = D82C0D7F1976500E0088539F /* home_bb_version.txt */; };
+		D82C0D831976500E0088539F /* home_bb_version.txt in Resources */ = {isa = PBXBuildFile; fileRef = D82C0D7F1976500E0088539F /* home_bb_version.txt */; };
+		D82C0D861976518F0088539F /* Billboard.m in Sources */ = {isa = PBXBuildFile; fileRef = D82C0D851976518F0088539F /* Billboard.m */; };
+		D82C0D871976518F0088539F /* Billboard.m in Sources */ = {isa = PBXBuildFile; fileRef = D82C0D851976518F0088539F /* Billboard.m */; };
+		D82C0D881976518F0088539F /* Billboard.m in Sources */ = {isa = PBXBuildFile; fileRef = D82C0D851976518F0088539F /* Billboard.m */; };
+		D82C0D891976518F0088539F /* Billboard.m in Sources */ = {isa = PBXBuildFile; fileRef = D82C0D851976518F0088539F /* Billboard.m */; };
 		D89191F11963163B006B616A /* StageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D89191F01963163B006B616A /* StageCell.m */; };
 		D89191F21963163B006B616A /* StageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D89191F01963163B006B616A /* StageCell.m */; };
 		D89191F31963163B006B616A /* StageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D89191F01963163B006B616A /* StageCell.m */; };
@@ -6329,6 +6345,14 @@
 		D8C784C5196A55C600323712 /* StageBasicInfoCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = D8C784C3196A55C600323712 /* StageBasicInfoCell~ipad.xib */; };
 		D8C784C6196A55C600323712 /* StageBasicInfoCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = D8C784C3196A55C600323712 /* StageBasicInfoCell~ipad.xib */; };
 		D8C784C7196A55C600323712 /* StageBasicInfoCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = D8C784C3196A55C600323712 /* StageBasicInfoCell~ipad.xib */; };
+		D8CF8A89197769370044E305 /* SGFocusImageFrame.m in Sources */ = {isa = PBXBuildFile; fileRef = D8CF8A86197769370044E305 /* SGFocusImageFrame.m */; };
+		D8CF8A8A197769370044E305 /* SGFocusImageFrame.m in Sources */ = {isa = PBXBuildFile; fileRef = D8CF8A86197769370044E305 /* SGFocusImageFrame.m */; };
+		D8CF8A8B197769370044E305 /* SGFocusImageFrame.m in Sources */ = {isa = PBXBuildFile; fileRef = D8CF8A86197769370044E305 /* SGFocusImageFrame.m */; };
+		D8CF8A8C197769370044E305 /* SGFocusImageFrame.m in Sources */ = {isa = PBXBuildFile; fileRef = D8CF8A86197769370044E305 /* SGFocusImageFrame.m */; };
+		D8CF8A8D197769370044E305 /* SGFocusImageItem.m in Sources */ = {isa = PBXBuildFile; fileRef = D8CF8A88197769370044E305 /* SGFocusImageItem.m */; };
+		D8CF8A8E197769370044E305 /* SGFocusImageItem.m in Sources */ = {isa = PBXBuildFile; fileRef = D8CF8A88197769370044E305 /* SGFocusImageItem.m */; };
+		D8CF8A8F197769370044E305 /* SGFocusImageItem.m in Sources */ = {isa = PBXBuildFile; fileRef = D8CF8A88197769370044E305 /* SGFocusImageItem.m */; };
+		D8CF8A90197769370044E305 /* SGFocusImageItem.m in Sources */ = {isa = PBXBuildFile; fileRef = D8CF8A88197769370044E305 /* SGFocusImageItem.m */; };
 		EA038975183B06D300516952 /* GroupTopicController.m in Sources */ = {isa = PBXBuildFile; fileRef = EA038973183B06D300516952 /* GroupTopicController.m */; };
 		EA038976183B06D300516952 /* GroupTopicController.m in Sources */ = {isa = PBXBuildFile; fileRef = EA038973183B06D300516952 /* GroupTopicController.m */; };
 		EA038977183B06D300516952 /* GroupTopicController.m in Sources */ = {isa = PBXBuildFile; fileRef = EA038973183B06D300516952 /* GroupTopicController.m */; };
@@ -10608,6 +10632,12 @@
 		D82C0D6719763BBF0088539F /* MoreViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MoreViewCell.h; sourceTree = "<group>"; };
 		D82C0D6819763BBF0088539F /* MoreViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MoreViewCell.m; sourceTree = "<group>"; };
 		D82C0D6919763BBF0088539F /* MoreViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MoreViewCell.xib; sourceTree = "<group>"; };
+		D82C0D7319764FC30088539F /* BillboardManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BillboardManager.h; sourceTree = "<group>"; };
+		D82C0D7419764FC30088539F /* BillboardManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BillboardManager.m; sourceTree = "<group>"; };
+		D82C0D7A19764FFF0088539F /* home_bb.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = home_bb.json; sourceTree = "<group>"; };
+		D82C0D7F1976500E0088539F /* home_bb_version.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = home_bb_version.txt; sourceTree = "<group>"; };
+		D82C0D841976518F0088539F /* Billboard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Billboard.h; sourceTree = "<group>"; };
+		D82C0D851976518F0088539F /* Billboard.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Billboard.m; sourceTree = "<group>"; };
 		D89191EF1963163B006B616A /* StageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StageCell.h; sourceTree = "<group>"; };
 		D89191F01963163B006B616A /* StageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StageCell.m; sourceTree = "<group>"; };
 		D89191FA196316C2006B616A /* StageCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = StageCell.xib; sourceTree = "<group>"; };
@@ -10636,6 +10666,10 @@
 		D8C784B9196A541C00323712 /* AllTutorialCell~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "AllTutorialCell~ipad.xib"; sourceTree = "<group>"; };
 		D8C784BE196A559F00323712 /* StageCell~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "StageCell~ipad.xib"; sourceTree = "<group>"; };
 		D8C784C3196A55C600323712 /* StageBasicInfoCell~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "StageBasicInfoCell~ipad.xib"; sourceTree = "<group>"; };
+		D8CF8A85197769370044E305 /* SGFocusImageFrame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SGFocusImageFrame.h; sourceTree = "<group>"; };
+		D8CF8A86197769370044E305 /* SGFocusImageFrame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SGFocusImageFrame.m; sourceTree = "<group>"; };
+		D8CF8A87197769370044E305 /* SGFocusImageItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SGFocusImageItem.h; sourceTree = "<group>"; };
+		D8CF8A88197769370044E305 /* SGFocusImageItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SGFocusImageItem.m; sourceTree = "<group>"; };
 		EA038972183B06D300516952 /* GroupTopicController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GroupTopicController.h; sourceTree = "<group>"; };
 		EA038973183B06D300516952 /* GroupTopicController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GroupTopicController.m; sourceTree = "<group>"; };
 		EA038974183B06D300516952 /* GroupTopicController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GroupTopicController.xib; sourceTree = "<group>"; };
@@ -15379,6 +15413,7 @@
 		CA427065161FFF4A00C6CCAE /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				D82C0D7219764F950088539F /* Model */,
 				D8B6E0D21973C84800B89048 /* More */,
 				D80518A5196BD12200D350B3 /* Resource */,
 				D80EB348196B90C80087EBBD /* MetroHome */,
@@ -17974,6 +18009,7 @@
 		D80518A5196BD12200D350B3 /* Resource */ = {
 			isa = PBXGroup;
 			children = (
+				D82C0D7919764FE40088539F /* billboard */,
 				D8BF37181971068100ACEFCA /* caidanlan.png */,
 				D8BF37191971068100ACEFCA /* daohanglan.png */,
 				D8BF371A1971068100ACEFCA /* gonggaolan.png */,
@@ -17997,12 +18033,33 @@
 		D80EB348196B90C80087EBBD /* MetroHome */ = {
 			isa = PBXGroup;
 			children = (
+				D8CF8A84197769370044E305 /* SGFocusImageFrame */,
 				D80EB354196B90FB0087EBBD /* MetroHomeController~ipad.xib */,
 				D80EB349196B90DB0087EBBD /* MetroHomeController.h */,
 				D80EB34A196B90DB0087EBBD /* MetroHomeController.m */,
 				D80EB34B196B90DB0087EBBD /* MetroHomeController.xib */,
 			);
 			path = MetroHome;
+			sourceTree = "<group>";
+		};
+		D82C0D7219764F950088539F /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				D82C0D7319764FC30088539F /* BillboardManager.h */,
+				D82C0D7419764FC30088539F /* BillboardManager.m */,
+				D82C0D841976518F0088539F /* Billboard.h */,
+				D82C0D851976518F0088539F /* Billboard.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		D82C0D7919764FE40088539F /* billboard */ = {
+			isa = PBXGroup;
+			children = (
+				D82C0D7A19764FFF0088539F /* home_bb.json */,
+				D82C0D7F1976500E0088539F /* home_bb_version.txt */,
+			);
+			path = billboard;
 			sourceTree = "<group>";
 		};
 		D8B6E0D21973C84800B89048 /* More */ = {
@@ -18017,6 +18074,17 @@
 				D8A1E9BC197612B200F32735 /* MoreViewCell~ipad.xib */,
 			);
 			path = More;
+			sourceTree = "<group>";
+		};
+		D8CF8A84197769370044E305 /* SGFocusImageFrame */ = {
+			isa = PBXGroup;
+			children = (
+				D8CF8A85197769370044E305 /* SGFocusImageFrame.h */,
+				D8CF8A86197769370044E305 /* SGFocusImageFrame.m */,
+				D8CF8A87197769370044E305 /* SGFocusImageItem.h */,
+				D8CF8A88197769370044E305 /* SGFocusImageItem.m */,
+			);
+			path = SGFocusImageFrame;
 			sourceTree = "<group>";
 		};
 		EA0C5516180B9203008069C1 /* InfColorPicker */ = {
@@ -19263,6 +19331,7 @@
 				CA0174F619405503005E4390 /* opusclass_version.txt in Resources */,
 				A4D8FFC517DB089C0085061F /* line.svg in Resources */,
 				A4D8FFC917DB089C0085061F /* path.svg in Resources */,
+				D82C0D821976500E0088539F /* home_bb_version.txt in Resources */,
 				A4D8FFCD17DB089C0085061F /* rect.svg in Resources */,
 				A4D8FFD117DB089C0085061F /* zjh_home_charge@2x.png in Resources */,
 				CA926BB018A8C950002C73B4 /* disable_notice_off.png in Resources */,
@@ -19445,6 +19514,7 @@
 				A4E59C961832208D003578CA /* WhisperStyleView.xib in Resources */,
 				EA8D93C41833630500780B63 /* GroupDetailController.xib in Resources */,
 				EA8D93C91833632800780B63 /* GroupCell.xib in Resources */,
+				D82C0D7D19764FFF0088539F /* home_bb.json in Resources */,
 				CA1162611834A88F00FDD3A9 /* TaskController.xib in Resources */,
 				CA1162781834A91100FDD3A9 /* TaskCell.xib in Resources */,
 				EA11A4191839EA1200F73D64 /* group_footer_at@2x.png in Resources */,
@@ -20115,6 +20185,7 @@
 				A4D8FB4617DB08170085061F /* shoes@2x.png in Resources */,
 				A4D8FB4A17DB08170085061F /* spend_time@2x.png in Resources */,
 				A4D8FB4E17DB08170085061F /* input_alert_check@2x.png in Resources */,
+				D82C0D811976500E0088539F /* home_bb_version.txt in Resources */,
 				A4D8FB5217DB08170085061F /* input_alert_uncheck@2x.png in Resources */,
 				A4D8FB5617DB08170085061F /* shop_item_alpha@2x.png in Resources */,
 				A4D8FB5A17DB08170085061F /* shop_item_paint_player@2x.png in Resources */,
@@ -20197,6 +20268,7 @@
 				A4D8FD8C17DB089C0085061F /* selected_pen_ice-cream@2x.png in Resources */,
 				A4D8FD9017DB089C0085061F /* selected_pen_mark@2x.png in Resources */,
 				A4D8FD9417DB089C0085061F /* selected_pen_pencil@2x.png in Resources */,
+				D82C0D7C19764FFF0088539F /* home_bb.json in Resources */,
 				A4D8FD9817DB089C0085061F /* selected_pen_rubber@2x.png in Resources */,
 				A4D8FD9C17DB089C0085061F /* eraser_show@2x.png in Resources */,
 				A4D8FDA017DB089C0085061F /* pen_show_brush@2x.png in Resources */,
@@ -21314,6 +21386,7 @@
 				A4D8FEAB17DB089C0085061F /* face_randy@2x.png in Resources */,
 				A4D8FEAF17DB089C0085061F /* face_shock@2x.png in Resources */,
 				A4D8FEB317DB089C0085061F /* face_shy@2x.png in Resources */,
+				D82C0D7B19764FFF0088539F /* home_bb.json in Resources */,
 				A4D8FEB717DB089C0085061F /* face_sleep@2x.png in Resources */,
 				A4D8FEBB17DB089C0085061F /* face_smile@2x.png in Resources */,
 				A4D8FEBF17DB089C0085061F /* face_wry@2x.png in Resources */,
@@ -21344,6 +21417,7 @@
 				A4D8FF3B17DB089C0085061F /* dice_home_header_bg@2x.png in Resources */,
 				A4D8FF3F17DB089C0085061F /* dice_home_header_foot@2x.png in Resources */,
 				A4D8FF4317DB089C0085061F /* dice_home_header_man@2x.png in Resources */,
+				D82C0D801976500E0088539F /* home_bb_version.txt in Resources */,
 				A4D8FF9F17DB089C0085061F /* learndraw_bg@2x.png in Resources */,
 				A4D8FFA317DB089C0085061F /* learndraw_bottom_bar@2x.png in Resources */,
 				A4D8FFA717DB089C0085061F /* learndraw_bottom_split@2x.png in Resources */,
@@ -22369,6 +22443,7 @@
 				A4D8FFC217DB089C0085061F /* learndraw_shop@2x.png in Resources */,
 				A4D8FFC617DB089C0085061F /* line.svg in Resources */,
 				A4D8FFCA17DB089C0085061F /* path.svg in Resources */,
+				D82C0D831976500E0088539F /* home_bb_version.txt in Resources */,
 				A4D8FFCE17DB089C0085061F /* rect.svg in Resources */,
 				A4D8FFD217DB089C0085061F /* zjh_home_charge@2x.png in Resources */,
 				A4D8FFD617DB089C0085061F /* zjh_home_charge_bg@2x.png in Resources */,
@@ -22376,6 +22451,7 @@
 				A4D8FFDE17DB089C0085061F /* zjh_home_header_bg@2x.png in Resources */,
 				A4D8FFE217DB089C0085061F /* zjh_home_header_foot@2x.png in Resources */,
 				A4D8FFE617DB089C0085061F /* zjh_home_header_man@2x.png in Resources */,
+				D82C0D7E19764FFF0088539F /* home_bb.json in Resources */,
 				A4D8FFEA17DB089C0085061F /* zjh_home_help@2x.png in Resources */,
 				A4D8FFEE17DB089C0085061F /* zjh_home_normal_site@2x.png in Resources */,
 				A4D8FFF217DB089C0085061F /* zjh_home_rich_site@2x.png in Resources */,
@@ -22780,6 +22856,7 @@
 				A461B0B3174CBAA70088B061 /* UIImageUtil.m in Sources */,
 				A461B0B4174CBAA70088B061 /* LocaleUtils.m in Sources */,
 				A461B0B5174CBAA70088B061 /* LogUtil.m in Sources */,
+				D8CF8A8B197769370044E305 /* SGFocusImageFrame.m in Sources */,
 				A461B0B6174CBAA70088B061 /* NumberUtil.m in Sources */,
 				A461B0B7174CBAA70088B061 /* ArrayOfCharacters.m in Sources */,
 				A461B0B8174CBAA70088B061 /* GroupDataAZ.m in Sources */,
@@ -22981,6 +23058,7 @@
 				A461B1F0174CBAA70088B061 /* TopPlayerView.m in Sources */,
 				A461B1F1174CBAA70088B061 /* AnimationPlayer.m in Sources */,
 				A461B1F2174CBAA70088B061 /* MyCommentCell.m in Sources */,
+				D82C0D881976518F0088539F /* Billboard.m in Sources */,
 				A461B1F3174CBAA70088B061 /* StatisticManager.m in Sources */,
 				A461B1F4174CBAA70088B061 /* ContestFeed.m in Sources */,
 				A461B1F9174CBAA70088B061 /* SuperHomeController.m in Sources */,
@@ -23023,6 +23101,7 @@
 				CA900510194EE775003389FD /* SelectOpusClassViewController.m in Sources */,
 				A461B242174CBAA70088B061 /* BBSPostListController.m in Sources */,
 				A461B243174CBAA70088B061 /* BBSPostCell.m in Sources */,
+				D8CF8A8F197769370044E305 /* SGFocusImageItem.m in Sources */,
 				A461B244174CBAA70088B061 /* PPResourceCacheService.m in Sources */,
 				A461B245174CBAA70088B061 /* BBSPostActionCell.m in Sources */,
 				A461B246174CBAA70088B061 /* BBSPostDetailCell.m in Sources */,
@@ -23419,6 +23498,7 @@
 				EA5FE1BD17E7F5050099754C /* RopeView.m in Sources */,
 				CA76134717F57420007A251E /* HPointList.mm in Sources */,
 				EA2A7CE017F676AB00ED508D /* AccountManageController.m in Sources */,
+				D82C0D7719764FC30088539F /* BillboardManager.m in Sources */,
 				A4214DD31803AA4D007F2EFD /* MKAnnotationView+WebCache.m in Sources */,
 				CACD6B3B18E03B4B003F97C0 /* MobClickUtils.m in Sources */,
 				A4214DD61803AA4D007F2EFD /* NSData+GIF.m in Sources */,
@@ -23635,6 +23715,7 @@
 				C28A99AC1738F04B007A819F /* UICustomPageControl.m in Sources */,
 				C28A99AD1738F04B007A819F /* UITableViewUtil.m in Sources */,
 				C28A99AE1738F04B007A819F /* UITableViewCellUtil.m in Sources */,
+				D82C0D871976518F0088539F /* Billboard.m in Sources */,
 				C28A99AF1738F04B007A819F /* TextViewExt.m in Sources */,
 				C28A99B01738F04B007A819F /* UINavigationBarExt.m in Sources */,
 				C28A99B11738F04B007A819F /* UINavigationItemExt.m in Sources */,
@@ -23893,6 +23974,7 @@
 				C28A9B551738F04B007A819F /* BitmapContextRep.m in Sources */,
 				D8A1E9C3197612B200F32735 /* MoreViewController.m in Sources */,
 				C28A9B561738F04B007A819F /* NSImage+ANImageBitmapRep.m in Sources */,
+				D8CF8A8A197769370044E305 /* SGFocusImageFrame.m in Sources */,
 				C28A9B571738F04B007A819F /* OSCommonImage.m in Sources */,
 				C28A9B581738F04B007A819F /* UIImage+ANImageBitmapRep.m in Sources */,
 				C28A9B591738F04B007A819F /* CGContextCreator.m in Sources */,
@@ -23973,6 +24055,7 @@
 				CACD6CCB18E03BCD003F97C0 /* SBJsonBase.m in Sources */,
 				CA17826E1962D2480068883A /* DAPagesContainer.m in Sources */,
 				C28A9BCC1738F04B007A819F /* SelectCustomWordCell.m in Sources */,
+				D8CF8A8E197769370044E305 /* SGFocusImageItem.m in Sources */,
 				C28A9BCD1738F04B007A819F /* DraftCell.m in Sources */,
 				C28A9BCE1738F04B007A819F /* DraftsView.m in Sources */,
 				C28A9BD81738F04B007A819F /* RoundLineLabel.m in Sources */,
@@ -24411,6 +24494,7 @@
 				EAEE5518188E644F004A0907 /* GroupFeedController.m in Sources */,
 				EAEE551E188F7902004A0907 /* ChargeHistoryController.m in Sources */,
 				CAD8EE37189222930057EC30 /* PurchaseVipController.m in Sources */,
+				D82C0D7619764FC30088539F /* BillboardManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -24479,6 +24563,7 @@
 				CA103EF61509A56200F60C03 /* UICustomPageControl.m in Sources */,
 				CA103EF71509A56200F60C03 /* UITableViewUtil.m in Sources */,
 				CA103EF81509A56200F60C03 /* UITableViewCellUtil.m in Sources */,
+				D82C0D861976518F0088539F /* Billboard.m in Sources */,
 				CA103EF91509A56200F60C03 /* TextViewExt.m in Sources */,
 				CA103EFA1509A56200F60C03 /* UINavigationBarExt.m in Sources */,
 				CA103EFB1509A56200F60C03 /* UINavigationItemExt.m in Sources */,
@@ -24737,6 +24822,7 @@
 				CAFEFE3416606FC200441D77 /* LZWSpoof.m in Sources */,
 				D8A1E9C2197612B200F32735 /* MoreViewController.m in Sources */,
 				CAFEFE3516606FC200441D77 /* ANImageBitmapRep.m in Sources */,
+				D8CF8A89197769370044E305 /* SGFocusImageFrame.m in Sources */,
 				CAFEFE3616606FC200441D77 /* BitmapContextRep.m in Sources */,
 				CAFEFE3716606FC200441D77 /* NSImage+ANImageBitmapRep.m in Sources */,
 				CAFEFE3816606FC200441D77 /* OSCommonImage.m in Sources */,
@@ -24817,6 +24903,7 @@
 				CACD6CCA18E03BCD003F97C0 /* SBJsonBase.m in Sources */,
 				CA17826D1962D2480068883A /* DAPagesContainer.m in Sources */,
 				A4DE142C1697DBC000841940 /* SelectHotWordController.m in Sources */,
+				D8CF8A8D197769370044E305 /* SGFocusImageItem.m in Sources */,
 				A4DE142F1697DBC000841940 /* WordSelectCell.m in Sources */,
 				A4DE148B169AB1B600841940 /* SelectCustomWordCell.m in Sources */,
 				A4C1E919169BE85E00644682 /* DraftCell.m in Sources */,
@@ -25255,6 +25342,7 @@
 				EAEE5517188E644F004A0907 /* GroupFeedController.m in Sources */,
 				EAEE551D188F7902004A0907 /* ChargeHistoryController.m in Sources */,
 				CAD8EE36189222930057EC30 /* PurchaseVipController.m in Sources */,
+				D82C0D7519764FC30088539F /* BillboardManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -25497,6 +25585,7 @@
 				EA41194F176066F500DA72D0 /* MyFeedController.m in Sources */,
 				EA411950176066F500DA72D0 /* UserFeedController.m in Sources */,
 				EA411951176066F500DA72D0 /* ContestService.m in Sources */,
+				D8CF8A8C197769370044E305 /* SGFocusImageFrame.m in Sources */,
 				EA411952176066F500DA72D0 /* ContestController.m in Sources */,
 				EA411953176066F500DA72D0 /* ContestView.m in Sources */,
 				EA411956176066F500DA72D0 /* StatementController.m in Sources */,
@@ -25646,6 +25735,7 @@
 				EA411A11176066F500DA72D0 /* PPStack.m in Sources */,
 				D8A2709D196FC07F006DDF20 /* GameConstants.pb-c.c in Sources */,
 				EA411A13176066F500DA72D0 /* CustomActionSheet.m in Sources */,
+				D82C0D7819764FC30088539F /* BillboardManager.m in Sources */,
 				EA411A14176066F500DA72D0 /* UIColor+GetHSB.m in Sources */,
 				EA411A15176066F500DA72D0 /* ILColorPickerView.m in Sources */,
 				EA411A16176066F500DA72D0 /* ILHuePickerView.m in Sources */,
@@ -25694,6 +25784,7 @@
 				EA411A5B176066F500DA72D0 /* DrawPenFactory.m in Sources */,
 				EA411A5C176066F500DA72D0 /* DashPen.m in Sources */,
 				EA411A5D176066F500DA72D0 /* BlurPen.m in Sources */,
+				D8CF8A90197769370044E305 /* SGFocusImageItem.m in Sources */,
 				EA411A5E176066F500DA72D0 /* MarkPen.m in Sources */,
 				EA411A5F176066F500DA72D0 /* GameItemService.m in Sources */,
 				EA411A60176066F500DA72D0 /* GameItem.m in Sources */,
@@ -25779,6 +25870,7 @@
 				EA411AB8176066F500DA72D0 /* ReflectionView.m in Sources */,
 				EA411AB9176066F500DA72D0 /* FeedCarousel.m in Sources */,
 				EA411ABA176066F500DA72D0 /* StrawCommand.m in Sources */,
+				D82C0D891976518F0088539F /* Billboard.m in Sources */,
 				EA411ABB176066F500DA72D0 /* GridCommand.m in Sources */,
 				EA411ABC176066F500DA72D0 /* CanvasRectBox.m in Sources */,
 				EA411ABD176066F500DA72D0 /* UIColor+UIColorExt.m in Sources */,
