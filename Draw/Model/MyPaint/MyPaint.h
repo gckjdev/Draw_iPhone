@@ -47,6 +47,7 @@
 @property (nonatomic, retain) NSNumber *stageIndex;
 @property (nonatomic, retain) NSNumber *targetType;
 @property (nonatomic, retain) NSString *tutorialId;
+@property (nonatomic, retain) NSString *stageName;
 
 
 
