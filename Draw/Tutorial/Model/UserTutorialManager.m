@@ -406,7 +406,7 @@ static UserTutorialManager* _defaultManager;
     }
     
     if (userStage.stageIndex >= [ut.userStagesList count]){
-        PPDebug(@"<updateUserStage> but stageIndex=%@ out of bound for current user stage list count(%d)",
+        PPDebug(@"<updateUserStage> but stageIndex=%d out of bound for current user stage list count(%d)",
                 userStage.stageIndex, [ut.userStagesList count]);
         return;
     }
@@ -414,6 +414,31 @@ static UserTutorialManager* _defaultManager;
     PBUserTutorial_Builder* builder = [PBUserTutorial builderWithPrototype:ut];
     [builder replaceUserStagesAtIndex:userStage.stageIndex with:userStage];
     [self save:[builder build]];
+}
+
+- (BOOL)isLastStage:(PBUserStage*)userStage
+{
+    if (userStage == nil){
+        PPDebug(@"<isLastStage> but userStage is nil");
+        return NO;
+    }
+    
+    PBUserTutorial* ut = [self findUserTutorialByTutorialId:userStage.tutorialId];
+    if (ut == nil){
+        PPDebug(@"<isLastStage> but tutorialId=%@ not found for user", userStage.tutorialId);
+        return NO;
+    }
+    
+    PPDebug(@"<isLastStage> stageIndex=%d, user stage list count(%d)",
+            userStage.stageIndex, [ut.userStagesList count]);
+
+    if (userStage.stageIndex >= ([ut.userStagesList count] - 1)){
+        return YES;
+    }
+    else{
+        return NO;
+    }
+    
 }
 
 @end

@@ -222,7 +222,8 @@
                     
                     [self setLatestOpusId:opusId];
                     [self updateCopyImageView:opusImage];
-                    [self loadAndUpdate:opusId updateImage:NO];
+                    self.displayImage = opusImage;
+                    [self loadAndUpdate:opusId updateImage:YES]; // TODO change to NO?
                 }
                 else{
                 }

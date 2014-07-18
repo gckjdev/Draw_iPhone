@@ -32,5 +32,6 @@
                               stageIndex:(int)stageIndex;
 
 - (void)updateUserStage:(PBUserStage*)userStage;
+- (BOOL)isLastStage:(PBUserStage*)userStage;
 
 @end

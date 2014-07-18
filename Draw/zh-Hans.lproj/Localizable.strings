@@ -376,8 +376,8 @@
 "kContentNull" = "搜索条件不能为空";
 
 "kNoDrawings" = "暂无作品";
-"kAll" = "所有";
-"kMine" = "我的";
+"kAll" = "已提交/收藏";
+"kMine" = "已提交";
 "kDraft" = "草稿";
 "kNone" = "无";
 "kGifNotice" = "生成的动态图片大小为%.2fMB,上传该图片将会消耗好些时间，对于部分微博（如新浪）不可上传大于5MB的图片。";
@@ -2786,13 +2786,22 @@
 "kAskPracticeOrPassMsg" = "先进行【修炼】还是【闯关】？";
 "kPractice" = "修炼";
 "kPass" = "闯关";
+"kConquer" = "闯关";
 
 "kMoreView" = "更多小吉";
 
 "kUserTutorialInfo" = "简介";
+
 "kPracticeResult" = "修炼结果";
 "kPracticePass" = "本次修炼得分为【%d】，可以闯关了！";
-"kPracticeFail" = "本次修炼得分为【%d】，再接再励，重新修炼一次吗？";
+"kPracticeFail" = "本次修炼得分为【%d】，可能是你姿势不对，重新修炼一次吗？";
 "kTryConquer" = "闯关";
 "kPracticeAgain" = "重新修炼";
+
+"kConquerPass" = "本次修炼得分为【%d】，祝贺你成功通过本关！";
+"kConquerPassWithComplete" = "本次修炼得分为【%d】，祝贺你成功通过本关！这是最后一关了，你已经完美学完本教程！";
+"kConquerResult" = "闯关结果";
+"kTryConquerNext" = "下一关";
+"kConquerFail" = "本次修炼得分为【%d】，未能达到通关标准，再接再励，重新来一次吗？";
+"kConquerAgain" = "重来";
 

@@ -304,11 +304,11 @@
     
     if (userStage){
         vc.userStageBuilder = [PBUserStage builderWithPrototype:userStage];
-        [vc.userStageBuilder setPracticeLocalOpusId:vc.draft.draftId];
+        [vc.userStageBuilder setConquerLocalOpusId:vc.draft.draftId];
     }
     
     [startController.navigationController pushViewController:vc animated:YES];
-    PPDebug(@"<StartDraw>: practice");
+    PPDebug(@"<StartDraw>: conquer");
     return [vc autorelease];
 }
 
@@ -1599,7 +1599,12 @@
     return (score >= 60);
 }
 
-- (void)handleSubmitForPractice
+- (BOOL)isPassConquer:(int)score
+{
+    return (score >= 60);
+}
+
+- (void)handleSubmitForLearnDraw
 {
     self.submitOpusDrawData = nil;
     self.submitOpusFinalImage = nil;
@@ -1626,9 +1631,11 @@
     // 评分
     NSString* sourcePath = [self writeImageToFile:_copyView.image filePath:self.draft.draftId];
     NSString* destPath = self.tempImageFilePath;
-    int score = [OpenCVUtils hashScoreSourceImagePath:sourcePath destImagePath:destPath];
+    int score = [OpenCVUtils hashScoreSourceImagePath:sourcePath destImagePath:destPath]
+                +[OpenCVUtils histScoreSourceImagePath:sourcePath destImagePath:destPath];
+//    score = [OpenCVUtils cosScoreSourceImagePath:sourcePath destImagePath:destPath];
     
-    [self.draft setScore:score];
+    [self.draft setScore:@(score)];
     [self.draft setScoreDate:[NSDate date]];
     
     [self saveDraft:NO];
@@ -1657,6 +1664,101 @@
     [self.designTime resume];
     self.submitButton.userInteractionEnabled = YES;
     
+    if (targetType == TypeConquerDraw){
+        [self showResultOptionForConquer];
+    }
+    else{
+        [self showResultOptionForPractice];
+    }
+    
+
+    
+}
+
+- (void)showResultOptionForConquer
+{
+    int score = [self.draft.score intValue];
+    
+    // 根据评分结果跳转
+    if ([self isPassPractice:score]){
+        
+        BOOL isTutorialComplete = [[UserTutorialManager defaultManager] isLastStage:[self buildUserStage]];
+        if (isTutorialComplete){
+            // 及格，最后一关
+            NSString* message = [NSString stringWithFormat:NSLS(@"kConquerPassWithComplete"), score];
+            CommonDialog* dialog = [CommonDialog createDialogWithTitle:NSLS(@"kConquerResult")
+                                                               message:message
+                                                                 style:CommonDialogStyleSingleButton];
+            
+            [dialog setClickOkBlock:^(id view){
+                [self quit];
+            }];
+            
+            [dialog showInView:self.view];
+            return;
+        }
+        
+        // 及格，提示闯下一关
+        NSString* message = [NSString stringWithFormat:NSLS(@"kConquerPass"), score];
+        CommonDialog* dialog = [CommonDialog createDialogWithTitle:NSLS(@"kConquerResult")
+                                                           message:message
+                                                             style:CommonDialogStyleDoubleButton];
+        
+        [dialog.oKButton setTitle:NSLS(@"kTryConquerNext") forState:UIControlStateNormal];
+        [dialog.cancelButton setTitle:NSLS(@"Back") forState:UIControlStateNormal];
+        
+        [dialog setClickCancelBlock:^(id view){
+            [self quit];
+        }];
+        
+        [dialog setClickOkBlock:^(id view){
+            // 下一关
+            [self.userStageBuilder setConquerLocalOpusId:nil];
+            PBUserStage* userStage = [self buildUserStage];
+            
+            [self actionsBeforeQuit];
+            [self.navigationController popViewControllerAnimated:NO];
+            
+            [OfflineDrawViewController conquer:self.startController userStage:userStage];
+
+        }];
+        
+        [dialog showInView:self.view];
+    }
+    else{
+        // 闯关失败，建议再来一次
+        NSString* message = [NSString stringWithFormat:NSLS(@"kConquerFail"), score];
+        CommonDialog* dialog = [CommonDialog createDialogWithTitle:NSLS(@"kConquerResult")
+                                                           message:message
+                                                             style:CommonDialogStyleDoubleButton];
+        
+        [dialog.oKButton setTitle:NSLS(@"kConquerAgain") forState:UIControlStateNormal];
+        [dialog.cancelButton setTitle:NSLS(@"Back") forState:UIControlStateNormal];
+        
+        [dialog setClickCancelBlock:^(id view){
+            [self quit];
+        }];
+        
+        [dialog setClickOkBlock:^(id view){
+            // 再来一次
+            [self.draft setDeleteFlag:@(YES)]; // delete current draft
+            [self.userStageBuilder setConquerLocalOpusId:nil];
+            PBUserStage* userStage = [self buildUserStage];
+            
+            [self actionsBeforeQuit];
+            [self.navigationController popViewControllerAnimated:NO];
+            
+            [OfflineDrawViewController conquer:self.startController userStage:userStage];
+        }];
+        
+        [dialog showInView:self.view];
+    }
+}
+
+- (void)showResultOptionForPractice
+{
+    int score = [self.draft.score intValue];
+    
     // 根据评分结果跳转
     if ([self isPassPractice:score]){
         // 修炼及格，提示闯关
@@ -1664,7 +1766,7 @@
         CommonDialog* dialog = [CommonDialog createDialogWithTitle:NSLS(@"kPracticeResult")
                                                            message:message
                                                              style:CommonDialogStyleDoubleButton];
-
+        
         [dialog.oKButton setTitle:NSLS(@"kTryConquer") forState:UIControlStateNormal];
         [dialog.cancelButton setTitle:NSLS(@"Back") forState:UIControlStateNormal];
         
@@ -1697,7 +1799,7 @@
             [self.draft setDeleteFlag:@(YES)]; // delete current draft
             [self.userStageBuilder setPracticeLocalOpusId:nil];
             PBUserStage* userStage = [self buildUserStage];
-
+            
             [self actionsBeforeQuit];
             [self.navigationController popViewControllerAnimated:NO];
             
@@ -1706,7 +1808,6 @@
         
         [dialog showInView:self.view];
     }
-    
 }
 
 - (IBAction)clickSubmitButton:(id)sender {
@@ -1740,7 +1841,7 @@
     }
     else if ([self isLearnType]){
         // 学画画闯关或者修炼
-        [self handleSubmitForPractice];
+        [self handleSubmitForLearnDraw];
     }
     else {
         if(self.contest){
