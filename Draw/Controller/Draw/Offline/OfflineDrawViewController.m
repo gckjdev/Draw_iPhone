@@ -1631,9 +1631,7 @@
     // 评分
     NSString* sourcePath = [self writeImageToFile:_copyView.image filePath:self.draft.draftId];
     NSString* destPath = self.tempImageFilePath;
-    int score = [OpenCVUtils hashScoreSourceImagePath:sourcePath destImagePath:destPath]
-                +[OpenCVUtils histScoreSourceImagePath:sourcePath destImagePath:destPath];
-//    score = [OpenCVUtils cosScoreSourceImagePath:sourcePath destImagePath:destPath];
+    int score = [OpenCVUtils simpleDrawScoreSourceImagePath:sourcePath destImagePath:destPath];
     
     [self.draft setScore:@(score)];
     [self.draft setScoreDate:[NSDate date]];
