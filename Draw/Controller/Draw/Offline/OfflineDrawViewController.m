@@ -1633,6 +1633,9 @@
     NSString* destPath = self.tempImageFilePath;
     int score = [OpenCVUtils simpleDrawScoreSourceImagePath:sourcePath destImagePath:destPath];
     
+//    [OpenCVUtils testSourceImagePath:sourcePath destImagePath:destPath];
+    
+    
     [self.draft setScore:@(score)];
     [self.draft setScoreDate:[NSDate date]];
     

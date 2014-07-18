@@ -97,6 +97,8 @@
 
 #import "DMSplashAdController.h"
 
+#import "OpenCVUtils.h"
+
 NSString* GlobalGetServerURL()
 {
 
@@ -419,6 +421,11 @@ NSString* GlobalGetBoardServerURL()
     }
     
     [self loadSplashAd];
+    
+//#ifdef DEBUG
+//    [OpenCVUtils testSourceImagePath: @"/Users/Linruin/Desktop/images/51.png"
+//                       destImagePath: @"/Users/Linruin/Desktop/images/61.png"];
+//#endif
     
     
 //    [[ZeroQianManager defaultManager] start];    
