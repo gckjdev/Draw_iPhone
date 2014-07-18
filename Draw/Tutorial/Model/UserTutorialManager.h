@@ -33,4 +33,6 @@
 
 - (void)updateUserStage:(PBUserStage*)userStage;
 
+-(void)addNewUserTutorialFromServer:(PBUserTutorial *)userTutorial WithRemoteId:(NSString *)remoteId;
+
 @end
