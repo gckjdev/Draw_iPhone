@@ -148,8 +148,6 @@
     PBUserTutorial* ut = [self getTutorialByRow:row];
     if(ut!=nil){
         [cell updateCellInfo:ut WithRow:indexPath.row];
-        cell.selectionStyle = UITableViewCellSelectionStyleBlue;
-        
         return cell;
 
     }

@@ -308,8 +308,15 @@ static UserTutorialService* _defaultService;
                                      stageId:(NSString*)stageId
                                   stageIndex:(int)stageIndex
 {
-    // TODO
-    return nil;
+    PBUserTutorial* ut = [[UserTutorialManager defaultManager] conquerTutorialStage:userTutorialLocalId
+                                                                             stageId:stageId
+                                                                          stageIndex:stageIndex];
+    
+    if (ut != nil){
+        // report to server
+    }
+    
+    return ut;
 }
 
 @end

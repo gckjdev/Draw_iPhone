@@ -32,6 +32,7 @@
                               stageIndex:(int)stageIndex;
 
 - (void)updateUserStage:(PBUserStage*)userStage;
+- (BOOL)isLastStage:(PBUserStage*)userStage;
 
 -(void)addNewUserTutorialFromServer:(PBUserTutorial *)userTutorial WithRemoteId:(NSString *)remoteId;
 
