@@ -1012,7 +1012,7 @@ typedef enum{
 
 - (NSString *)tabTitleforIndex:(NSInteger)index
 {
-    NSString *tabTitle[] = {NSLS(@"kMine"),NSLS(@"kAll"),NSLS(@"kDraft")};
+    NSString *tabTitle[] = {NSLS(@"kMine"),NSLS(@"kAllLocalDraft"),NSLS(@"kDraft")};
     return tabTitle[index];
     
 }

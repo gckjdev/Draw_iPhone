@@ -13,7 +13,7 @@
 
 @property (nonatomic, retain) PPSmartUpdateData* smartData;
 @property (nonatomic, retain) NSMutableArray* tutorialList;
-
+@property (nonatomic ,retain) NSMutableArray* stepByStepTutorialIdList;
 @end
 
 static TutorialCoreManager* _defaultTutorialCoreManager;
@@ -84,6 +84,11 @@ static TutorialCoreManager* _defaultTutorialCoreManager;
             
             PBTutorialCore* core = [PBTutorialCore parseFromData:data];
             if (core != nil && core.tutorialsList != nil){
+                
+                //chaoso 2014-07-17  
+                [_stepByStepTutorialIdList removeAllObjects];
+                [_stepByStepTutorialIdList addObjectsFromArray:core.stepByStepTutorialIdList];
+                
                 [_tutorialList removeAllObjects];
                 [_tutorialList addObjectsFromArray:core.tutorialsList];
             }
@@ -350,9 +355,22 @@ static TutorialCoreManager* _defaultTutorialCoreManager;
     PPDebug(@"<createTestData> version txt file result=%d error=%@ file=%@", result, [error description], versionPath);
 }
 
+#define GET_THE_DEFAULT_NUM 0
 -(PBTutorial*)defaultFirstTutorial
 {
-    // TODO
+#ifdef DEBUG
+    
+    NSString *stepId = @"tutorialId-3";
+    [self.stepByStepTutorialIdList addObject:stepId];
+    return [self findTutorialByTutorialId:stepId];
+    
+#endif
+    if([self.stepByStepTutorialIdList count]>0 && self.stepByStepTutorialIdList !=nil){
+        //先取第一个元素,以后根据需求需要修改 TODO
+        NSString *stepId = [self.stepByStepTutorialIdList objectAtIndex:GET_THE_DEFAULT_NUM];
+        return [self findTutorialByTutorialId:stepId];
+    }
+    PPDebug(@"<defaultFirstTutorial> but the stepByStepTutorialIdList is nil or empty");
     return nil;
 }
 

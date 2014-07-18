@@ -10,6 +10,7 @@
 #import "UserTutorialManager.h"
 #import "PPGameNetworkRequest.h"
 #import "TutorialService.h"
+#import "TutorialCoreManager.h"
 
 @interface UserTutorialService ()
 
@@ -60,6 +61,39 @@ static UserTutorialService* _defaultService;
 {
     [self actionOnUserTutorial:ut action:ACTION_DELETE_USER_TUTORIAL];
 }
+
+//取得服务器用户教程列表
+-(void)getAllUserTutorialFromServer:(UserTutorialActionType)action resultBlock:(UserTutorialServiceGetListResultBlock)resultBlock{
+    NSMutableDictionary* para = [[[NSMutableDictionary alloc] init] autorelease];
+    [para setObject:@(action) forKey:PARA_ACTION_TYPE];
+
+    [para setObject:@(0) forKey:PARA_OFFSET];
+    [para setObject:@(10) forKey:PARA_LIMIT];
+    
+    [PPGameNetworkRequest loadPBData:workingQueue
+                             hostURL:TUTORIAL_HOST
+                              method:METHOD_USER_TUTORIAL_ACTION
+                          parameters:para
+                            callback:^(DataQueryResponse *response, NSError *error) {
+                                
+                                NSArray* retUserTutorialList = response.userTutorialsList;
+                                if (error == nil){
+                                    // success
+                                    if(retUserTutorialList!=nil){
+                                        for(PBUserTutorial *retUserTutorial in retUserTutorialList){
+                                            [[UserTutorialManager defaultManager] addNewUserTutorialFromServer:retUserTutorial WithRemoteId:retUserTutorial.remoteId];
+                                        }
+                                        
+                                    }
+                                }
+                                
+                                EXECUTE_BLOCK(resultBlock, 0, retUserTutorialList);
+                            }
+                         isPostError:NO];
+    
+}
+
+
 //set device info
 - (void)setDeviceInfo:(NSMutableDictionary*)para{
     NSString * deviceOs = [DeviceDetection deviceOS];
@@ -78,7 +112,7 @@ static UserTutorialService* _defaultService;
     PPDebug(@"<setDeviceInfo> para=%@", [para description]);
 }
 
-//用户学习某个教程的信息到服务器
+//用户学习某个教程的信息到服务器动作
 - (void)actionOnUserTutorial:(PBUserTutorial*)ut action:(UserTutorialActionType)action
 {
     if (ut == nil || ut.tutorial.tutorialId == nil || ut.localId == nil){
@@ -109,6 +143,11 @@ static UserTutorialService* _defaultService;
                                     // success
                                     PBUserTutorial* retUserTutorial = response.userTutorial;
                                     if (action == ACTION_ADD_USER_TUTORIAL){
+                                        [[UserTutorialManager defaultManager] saveUserTutorial:ut.localId
+                                                                                      remoteId:retUserTutorial.remoteId];
+                                    }
+                                    //2014-07-17
+                                    if(action == ACTION_GET_ALL_USER_TUTORIAL){
                                         [[UserTutorialManager defaultManager] saveUserTutorial:ut.localId
                                                                                       remoteId:retUserTutorial.remoteId];
                                     }
@@ -151,22 +190,101 @@ static UserTutorialService* _defaultService;
 
 
 
+
 // 用户下载教程所有关卡数据
 - (void)downloadTutorial:(PBTutorial*)tutorial resultBlock:(UserTutorialServiceResultBlock)resultBlock
 {
     
 }
 
+#define KEY_SYNC_USER_TUTORIAL_FROM_SERVER @"KEY_SYNC_USER_TUTORIAL_FROM_SERVER"
+
+// 是否已经从服务器同步过教程列表
+- (BOOL)hasSyncFromServer
+{
+//#ifdef DEBUG
+//    return NO;
+//#endif
+    return [UD_GET(KEY_SYNC_USER_TUTORIAL_FROM_SERVER) boolValue];
+}
+
+- (void)setSyncFromServer
+{
+    UD_SET(KEY_SYNC_USER_TUTORIAL_FROM_SERVER, @(YES));
+}
+
+#define KEY_THE_FIRST_LEARNING @"KEY_THE_FIRST_LEARNING"
+
+- (BOOL)hasTheFirstLearningKey
+{
+//#ifdef DEBUG
+//    return NO;
+//#endif
+    return [UD_GET(KEY_THE_FIRST_LEARNING) boolValue];
+}
+
+- (void)setTheFirstLearningKey
+{
+    UD_SET(KEY_THE_FIRST_LEARNING, @(YES));
+}
+
+
+- (void)addDefaultTutorial
+{
+    if ([self hasTheFirstLearningKey]){
+        return;
+    }
+    
+    PBTutorial *pb = [[TutorialCoreManager defaultManager] defaultFirstTutorial];
+    if (pb == nil){
+        return;
+    }
+    
+    PPDebug(@"add default tutorial, tutorialId=%@", pb.tutorialId);
+    [self addTutorial:pb resultBlock:nil];
+    
+    // update flag
+    [self setTheFirstLearningKey];
+}
+
+
+
 // 获取用户当前正在学习的所有教程列表
-- (void)getAllUserTutorials:(UserTutorialServiceResultBlock)resultBlock
+- (void)getAllUserTutorials:(UserTutorialServiceGetListResultBlock)resultBlock
 {
     NSArray* list = [[UserTutorialManager defaultManager] allUserTutorials];
-    if (list == nil){
-        // TODO, try to sync from server
-        
+    if ([list count] == 0){
+        // list is empty try to sync from server
+        if([self hasSyncFromServer] == NO){
+            [self getAllUserTutorialFromServer:ACTION_GET_ALL_USER_TUTORIAL resultBlock:^(int resultCode, NSArray *retList) {
+                if (resultCode == 0){
+                    if([retList count] == 0){
+                        PPDebug(@"<getAllUserTutorials> no data, try add default tutorial");
+                        [self addDefaultTutorial];
+                    }
+
+                    // sync from server success, set the SYNC flag
+                    [self setSyncFromServer];
+                }
+                
+                NSArray* list = [[UserTutorialManager defaultManager] allUserTutorials];
+                EXECUTE_BLOCK(resultBlock, 0, list);
+            }];
+            return;
+        }
+        else{
+            //没有用户教程列表时候，添加默认教程
+            [self addDefaultTutorial];
+            list = [[UserTutorialManager defaultManager] allUserTutorials];
+
+            EXECUTE_BLOCK(resultBlock, 0, list);
+        }
+    }
+    else{
+        EXECUTE_BLOCK(resultBlock, 0, list);
     }
 
-    EXECUTE_BLOCK(resultBlock, 0);
+    
 }
 
 // 用户尝试修炼

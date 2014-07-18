@@ -367,7 +367,8 @@
 "kContentNull" = "搜索條件不能為空";
 
 "kNoDrawings" = "暫無作品";
-"kAll" = "已提交/收藏";
+"kAllLocalDraft" = "提交 & 收藏";
+"kAll" = "所有";
 "kMine" = "已提交";
 "kDraft" = "草稿";
 "kNone" = "無";

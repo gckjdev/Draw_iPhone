@@ -870,6 +870,11 @@
 - (void)registerUIApplicationNotification
 {
     [self registerNotificationWithName:UIApplicationDidEnterBackgroundNotification usingBlock:^(NSNotification *note) {
+
+        if ([self isLearnType]){
+            [self saveDraft:NO];
+        }
+        
         [self.designTime pause];
     }];
     
@@ -1634,6 +1639,7 @@
     int score = [OpenCVUtils simpleDrawScoreSourceImagePath:sourcePath destImagePath:destPath];
     
 //    [OpenCVUtils testSourceImagePath:sourcePath destImagePath:destPath];
+    score = [OpenCVUtils hausdorffScoreSourceImagePath:sourcePath destImagePath:destPath];
     
     
     [self.draft setScore:@(score)];

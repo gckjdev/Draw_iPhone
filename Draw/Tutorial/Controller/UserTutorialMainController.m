@@ -81,10 +81,19 @@
 
 - (void)reloadData
 {
-    NSArray* list = [[UserTutorialManager defaultManager] allUserTutorials];
-    self.dataList = [[list reverseObjectEnumerator] allObjects];
-    [self.dataTableView reloadData];
+    [[UserTutorialService defaultService] getAllUserTutorials:^(int resultCode, NSArray* retList) {
+        if(resultCode==0){
+            PPDebug(@"<reloadData resultCode=%d>",resultCode);
+            self.dataList = [[retList reverseObjectEnumerator] allObjects];
+            [self.dataTableView reloadData];
+        }else{
+            PPDebug(@"<reloadData has error resultCode=%d>",resultCode);
+        }
+       
+    }];
+
 }
+
 
 - (void)viewDidAppear:(BOOL)animated
 {
@@ -139,8 +148,6 @@
     PBUserTutorial* ut = [self getTutorialByRow:row];
     if(ut!=nil){
         [cell updateCellInfo:ut WithRow:indexPath.row];
-        cell.selectionStyle = UITableViewCellSelectionStyleBlue;
-        
         return cell;
 
     }
