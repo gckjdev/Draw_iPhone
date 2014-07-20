@@ -43,6 +43,26 @@ BOOL PBTutorialCategoryIsValidValue(PBTutorialCategory value) {
       return NO;
   }
 }
+BOOL PBTutorialImageStyleIsValidValue(PBTutorialImageStyle value) {
+  switch (value) {
+    case PBTutorialImageStyleTutorialImageColor:
+    case PBTutorialImageStyleTutorialImageBlackWhite:
+      return YES;
+    default:
+      return NO;
+  }
+}
+BOOL PBScoreEngineTypeIsValidValue(PBScoreEngineType value) {
+  switch (value) {
+    case PBScoreEngineTypeScoreEngineAuto:
+    case PBScoreEngineTypeScoreEngineAvgHash:
+    case PBScoreEngineTypeScoreEngineAvgHashColorHist:
+    case PBScoreEngineTypeScoreEngineAvgHashColorHistHu:
+      return YES;
+    default:
+      return NO;
+  }
+}
 BOOL PBUserTutorialStatusIsValidValue(PBUserTutorialStatus value) {
   switch (value) {
     case PBUserTutorialStatusUtStatusNotStart:
@@ -1306,6 +1326,8 @@ static PBChapter* defaultPBChapterInstance = nil;
 @property (retain) NSString* thumbImage;
 @property (retain) NSString* dataUrl;
 @property (retain) NSMutableArray* mutableChapterList;
+@property int32_t imageStyle;
+@property int32_t scoreEngine;
 @end
 
 @implementation PBStage
@@ -1381,6 +1403,20 @@ static PBChapter* defaultPBChapterInstance = nil;
 }
 @synthesize dataUrl;
 @synthesize mutableChapterList;
+- (BOOL) hasImageStyle {
+  return !!hasImageStyle_;
+}
+- (void) setHasImageStyle:(BOOL) value {
+  hasImageStyle_ = !!value;
+}
+@synthesize imageStyle;
+- (BOOL) hasScoreEngine {
+  return !!hasScoreEngine_;
+}
+- (void) setHasScoreEngine:(BOOL) value {
+  hasScoreEngine_ = !!value;
+}
+@synthesize scoreEngine;
 - (void) dealloc {
   self.stageId = nil;
   self.cnName = nil;
@@ -1407,6 +1443,8 @@ static PBChapter* defaultPBChapterInstance = nil;
     self.image = @"";
     self.thumbImage = @"";
     self.dataUrl = @"";
+    self.imageStyle = 0;
+    self.scoreEngine = 0;
   }
   return self;
 }
@@ -1474,6 +1512,12 @@ static PBStage* defaultPBStageInstance = nil;
   for (PBChapter* element in self.chapterList) {
     [output writeMessage:40 value:element];
   }
+  if (self.hasImageStyle) {
+    [output writeInt32:50 value:self.imageStyle];
+  }
+  if (self.hasScoreEngine) {
+    [output writeInt32:51 value:self.scoreEngine];
+  }
   [self.unknownFields writeToCodedOutputStream:output];
 }
 - (int32_t) serializedSize {
@@ -1515,6 +1559,12 @@ static PBStage* defaultPBStageInstance = nil;
   }
   for (PBChapter* element in self.chapterList) {
     size += computeMessageSize(40, element);
+  }
+  if (self.hasImageStyle) {
+    size += computeInt32Size(50, self.imageStyle);
+  }
+  if (self.hasScoreEngine) {
+    size += computeInt32Size(51, self.scoreEngine);
   }
   size += self.unknownFields.serializedSize;
   memoizedSerializedSize = size;
@@ -1627,6 +1677,12 @@ static PBStage* defaultPBStageInstance = nil;
     }
     [result.mutableChapterList addObjectsFromArray:other.mutableChapterList];
   }
+  if (other.hasImageStyle) {
+    [self setImageStyle:other.imageStyle];
+  }
+  if (other.hasScoreEngine) {
+    [self setScoreEngine:other.scoreEngine];
+  }
   [self mergeUnknownFields:other.unknownFields];
   return self;
 }
@@ -1692,6 +1748,14 @@ static PBStage* defaultPBStageInstance = nil;
         PBChapter_Builder* subBuilder = [PBChapter builder];
         [input readMessage:subBuilder extensionRegistry:extensionRegistry];
         [self addChapter:[subBuilder buildPartial]];
+        break;
+      }
+      case 400: {
+        [self setImageStyle:[input readInt32]];
+        break;
+      }
+      case 408: {
+        [self setScoreEngine:[input readInt32]];
         break;
       }
     }
@@ -1884,6 +1948,38 @@ static PBStage* defaultPBStageInstance = nil;
     result.mutableChapterList = [NSMutableArray array];
   }
   [result.mutableChapterList addObject:value];
+  return self;
+}
+- (BOOL) hasImageStyle {
+  return result.hasImageStyle;
+}
+- (int32_t) imageStyle {
+  return result.imageStyle;
+}
+- (PBStage_Builder*) setImageStyle:(int32_t) value {
+  result.hasImageStyle = YES;
+  result.imageStyle = value;
+  return self;
+}
+- (PBStage_Builder*) clearImageStyle {
+  result.hasImageStyle = NO;
+  result.imageStyle = 0;
+  return self;
+}
+- (BOOL) hasScoreEngine {
+  return result.hasScoreEngine;
+}
+- (int32_t) scoreEngine {
+  return result.scoreEngine;
+}
+- (PBStage_Builder*) setScoreEngine:(int32_t) value {
+  result.hasScoreEngine = YES;
+  result.scoreEngine = value;
+  return self;
+}
+- (PBStage_Builder*) clearScoreEngine {
+  result.hasScoreEngine = NO;
+  result.scoreEngine = 0;
   return self;
 }
 @end

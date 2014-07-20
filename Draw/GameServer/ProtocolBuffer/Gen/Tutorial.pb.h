@@ -124,6 +124,22 @@ typedef enum {
 BOOL PBTutorialCategoryIsValidValue(PBTutorialCategory value);
 
 typedef enum {
+  PBTutorialImageStyleTutorialImageColor = 0,
+  PBTutorialImageStyleTutorialImageBlackWhite = 1,
+} PBTutorialImageStyle;
+
+BOOL PBTutorialImageStyleIsValidValue(PBTutorialImageStyle value);
+
+typedef enum {
+  PBScoreEngineTypeScoreEngineAuto = 0,
+  PBScoreEngineTypeScoreEngineAvgHash = 1,
+  PBScoreEngineTypeScoreEngineAvgHashColorHist = 2,
+  PBScoreEngineTypeScoreEngineAvgHashColorHistHu = 3,
+} PBScoreEngineType;
+
+BOOL PBScoreEngineTypeIsValidValue(PBScoreEngineType value);
+
+typedef enum {
   PBUserTutorialStatusUtStatusNotStart = 0,
   PBUserTutorialStatusUtStatusStart = 1,
   PBUserTutorialStatusUtStatusComplete = 2,
@@ -435,6 +451,8 @@ BOOL PBUserTutorialStatusIsValidValue(PBUserTutorialStatus value);
 
 @interface PBStage : PBGeneratedMessage {
 @private
+  BOOL hasImageStyle_:1;
+  BOOL hasScoreEngine_:1;
   BOOL hasStageId_:1;
   BOOL hasCnName_:1;
   BOOL hasEnName_:1;
@@ -445,6 +463,8 @@ BOOL PBUserTutorialStatusIsValidValue(PBUserTutorialStatus value);
   BOOL hasImage_:1;
   BOOL hasThumbImage_:1;
   BOOL hasDataUrl_:1;
+  int32_t imageStyle;
+  int32_t scoreEngine;
   NSString* stageId;
   NSString* cnName;
   NSString* enName;
@@ -467,6 +487,8 @@ BOOL PBUserTutorialStatusIsValidValue(PBUserTutorialStatus value);
 - (BOOL) hasImage;
 - (BOOL) hasThumbImage;
 - (BOOL) hasDataUrl;
+- (BOOL) hasImageStyle;
+- (BOOL) hasScoreEngine;
 @property (readonly, retain) NSString* stageId;
 @property (readonly, retain) NSString* cnName;
 @property (readonly, retain) NSString* enName;
@@ -477,6 +499,8 @@ BOOL PBUserTutorialStatusIsValidValue(PBUserTutorialStatus value);
 @property (readonly, retain) NSString* image;
 @property (readonly, retain) NSString* thumbImage;
 @property (readonly, retain) NSString* dataUrl;
+@property (readonly) int32_t imageStyle;
+@property (readonly) int32_t scoreEngine;
 - (NSArray*) chapterList;
 - (PBChapter*) chapterAtIndex:(int32_t) index;
 
@@ -570,6 +594,16 @@ BOOL PBUserTutorialStatusIsValidValue(PBUserTutorialStatus value);
 - (PBStage_Builder*) addChapter:(PBChapter*) value;
 - (PBStage_Builder*) addAllChapter:(NSArray*) values;
 - (PBStage_Builder*) clearChapterList;
+
+- (BOOL) hasImageStyle;
+- (int32_t) imageStyle;
+- (PBStage_Builder*) setImageStyle:(int32_t) value;
+- (PBStage_Builder*) clearImageStyle;
+
+- (BOOL) hasScoreEngine;
+- (int32_t) scoreEngine;
+- (PBStage_Builder*) setScoreEngine:(int32_t) value;
+- (PBStage_Builder*) clearScoreEngine;
 @end
 
 @interface PBTutorial : PBGeneratedMessage {

@@ -96,6 +96,7 @@
 #import "OpusClassInfoManager.h"
 
 #import "DMSplashAdController.h"
+#import "OpenCVUtils.h"
 
 NSString* GlobalGetServerURL()
 {
@@ -420,8 +421,7 @@ NSString* GlobalGetBoardServerURL()
     
     [self loadSplashAd];
     
-    
-//    [[ZeroQianManager defaultManager] start];    
+//    [[ZeroQianManager defaultManager] start];
     return YES;
 }
 

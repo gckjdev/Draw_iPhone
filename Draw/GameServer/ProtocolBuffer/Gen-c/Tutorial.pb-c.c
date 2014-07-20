@@ -718,7 +718,7 @@ const ProtobufCMessageDescriptor game__pbchapter__descriptor =
   (ProtobufCMessageInit) game__pbchapter__init,
   NULL,NULL,NULL    /* reserved[123] */
 };
-static const ProtobufCFieldDescriptor game__pbstage__field_descriptors[11] =
+static const ProtobufCFieldDescriptor game__pbstage__field_descriptors[13] =
 {
   {
     "stageId",
@@ -852,6 +852,30 @@ static const ProtobufCFieldDescriptor game__pbstage__field_descriptors[11] =
     0,            /* packed */
     0,NULL,NULL    /* reserved1,reserved2, etc */
   },
+  {
+    "imageStyle",
+    50,
+    PROTOBUF_C_LABEL_OPTIONAL,
+    PROTOBUF_C_TYPE_INT32,
+    PROTOBUF_C_OFFSETOF(Game__PBStage, has_imagestyle),
+    PROTOBUF_C_OFFSETOF(Game__PBStage, imagestyle),
+    NULL,
+    NULL,
+    0,            /* packed */
+    0,NULL,NULL    /* reserved1,reserved2, etc */
+  },
+  {
+    "scoreEngine",
+    51,
+    PROTOBUF_C_LABEL_OPTIONAL,
+    PROTOBUF_C_TYPE_INT32,
+    PROTOBUF_C_OFFSETOF(Game__PBStage, has_scoreengine),
+    PROTOBUF_C_OFFSETOF(Game__PBStage, scoreengine),
+    NULL,
+    NULL,
+    0,            /* packed */
+    0,NULL,NULL    /* reserved1,reserved2, etc */
+  },
 };
 static const unsigned game__pbstage__field_indices_by_name[] = {
   10,   /* field[10] = chapter */
@@ -861,19 +885,22 @@ static const unsigned game__pbstage__field_indices_by_name[] = {
   5,   /* field[5] = enDesc */
   2,   /* field[2] = enName */
   7,   /* field[7] = image */
+  11,   /* field[11] = imageStyle */
+  12,   /* field[12] = scoreEngine */
   0,   /* field[0] = stageId */
   6,   /* field[6] = tcnDesc */
   3,   /* field[3] = tcnName */
   8,   /* field[8] = thumbImage */
 };
-static const ProtobufCIntRange game__pbstage__number_ranges[5 + 1] =
+static const ProtobufCIntRange game__pbstage__number_ranges[6 + 1] =
 {
   { 1, 0 },
   { 10, 4 },
   { 20, 7 },
   { 30, 9 },
   { 40, 10 },
-  { 0, 11 }
+  { 50, 11 },
+  { 0, 13 }
 };
 const ProtobufCMessageDescriptor game__pbstage__descriptor =
 {
@@ -883,10 +910,10 @@ const ProtobufCMessageDescriptor game__pbstage__descriptor =
   "Game__PBStage",
   "game",
   sizeof(Game__PBStage),
-  11,
+  13,
   game__pbstage__field_descriptors,
   game__pbstage__field_indices_by_name,
-  5,  game__pbstage__number_ranges,
+  6,  game__pbstage__number_ranges,
   (ProtobufCMessageInit) game__pbstage__init,
   NULL,NULL,NULL    /* reserved[123] */
 };
@@ -1805,6 +1832,66 @@ const ProtobufCEnumDescriptor game__pbtutorial_category__descriptor =
   game__pbtutorial_category__enum_values_by_name,
   1,
   game__pbtutorial_category__value_ranges,
+  NULL,NULL,NULL,NULL   /* reserved[1234] */
+};
+const ProtobufCEnumValue game__pbtutorial_image_style__enum_values_by_number[2] =
+{
+  { "TUTORIAL_IMAGE_COLOR", "GAME__PBTUTORIAL_IMAGE_STYLE__TUTORIAL_IMAGE_COLOR", 0 },
+  { "TUTORIAL_IMAGE_BLACK_WHITE", "GAME__PBTUTORIAL_IMAGE_STYLE__TUTORIAL_IMAGE_BLACK_WHITE", 1 },
+};
+static const ProtobufCIntRange game__pbtutorial_image_style__value_ranges[] = {
+{0, 0},{0, 2}
+};
+const ProtobufCEnumValueIndex game__pbtutorial_image_style__enum_values_by_name[2] =
+{
+  { "TUTORIAL_IMAGE_BLACK_WHITE", 1 },
+  { "TUTORIAL_IMAGE_COLOR", 0 },
+};
+const ProtobufCEnumDescriptor game__pbtutorial_image_style__descriptor =
+{
+  PROTOBUF_C_ENUM_DESCRIPTOR_MAGIC,
+  "game.PBTutorialImageStyle",
+  "PBTutorialImageStyle",
+  "Game__PBTutorialImageStyle",
+  "game",
+  2,
+  game__pbtutorial_image_style__enum_values_by_number,
+  2,
+  game__pbtutorial_image_style__enum_values_by_name,
+  1,
+  game__pbtutorial_image_style__value_ranges,
+  NULL,NULL,NULL,NULL   /* reserved[1234] */
+};
+const ProtobufCEnumValue game__pbscore_engine_type__enum_values_by_number[4] =
+{
+  { "SCORE_ENGINE_AUTO", "GAME__PBSCORE_ENGINE_TYPE__SCORE_ENGINE_AUTO", 0 },
+  { "SCORE_ENGINE_AVG_HASH", "GAME__PBSCORE_ENGINE_TYPE__SCORE_ENGINE_AVG_HASH", 1 },
+  { "SCORE_ENGINE_AVG_HASH_COLOR_HIST", "GAME__PBSCORE_ENGINE_TYPE__SCORE_ENGINE_AVG_HASH_COLOR_HIST", 2 },
+  { "SCORE_ENGINE_AVG_HASH_COLOR_HIST_HU", "GAME__PBSCORE_ENGINE_TYPE__SCORE_ENGINE_AVG_HASH_COLOR_HIST_HU", 3 },
+};
+static const ProtobufCIntRange game__pbscore_engine_type__value_ranges[] = {
+{0, 0},{0, 4}
+};
+const ProtobufCEnumValueIndex game__pbscore_engine_type__enum_values_by_name[4] =
+{
+  { "SCORE_ENGINE_AUTO", 0 },
+  { "SCORE_ENGINE_AVG_HASH", 1 },
+  { "SCORE_ENGINE_AVG_HASH_COLOR_HIST", 2 },
+  { "SCORE_ENGINE_AVG_HASH_COLOR_HIST_HU", 3 },
+};
+const ProtobufCEnumDescriptor game__pbscore_engine_type__descriptor =
+{
+  PROTOBUF_C_ENUM_DESCRIPTOR_MAGIC,
+  "game.PBScoreEngineType",
+  "PBScoreEngineType",
+  "Game__PBScoreEngineType",
+  "game",
+  4,
+  game__pbscore_engine_type__enum_values_by_number,
+  4,
+  game__pbscore_engine_type__enum_values_by_name,
+  1,
+  game__pbscore_engine_type__value_ranges,
   NULL,NULL,NULL,NULL   /* reserved[1234] */
 };
 const ProtobufCEnumValue game__pbuser_tutorial_status__enum_values_by_number[3] =

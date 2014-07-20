@@ -21,6 +21,18 @@ enum PBTutorialCategory{
     TUTORIAL_CATEGORY_ADVANCE = 2;
 }
 
+enum PBTutorialImageStyle{
+    TUTORIAL_IMAGE_COLOR = 0;
+    TUTORIAL_IMAGE_BLACK_WHITE = 1;
+}
+
+enum PBScoreEngineType{
+    SCORE_ENGINE_AUTO = 0;
+    SCORE_ENGINE_AVG_HASH = 1;
+    SCORE_ENGINE_AVG_HASH_COLOR_HIST = 2;
+    SCORE_ENGINE_AVG_HASH_COLOR_HIST_HU = 3;
+}
+
 message PBTip
 {
     required int32  index = 1;
@@ -85,6 +97,8 @@ message PBStage
 
     repeated PBChapter chapter = 40;                // 教程章节
 
+    optional int32  imageStyle = 50;                // 闯关图片类型，取值参考PBTutorialImageStyle
+    optional int32  scoreEngine = 51;               // 评分引擎，取值参考PBScoreEngineType
 }
 
 // 教程

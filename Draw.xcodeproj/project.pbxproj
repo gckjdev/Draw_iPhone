@@ -5517,6 +5517,26 @@
 		CAA362421558C3090081D3EB /* Friend.m in Sources */ = {isa = PBXBuildFile; fileRef = CAA362411558C3090081D3EB /* Friend.m */; };
 		CAA362451558C3400081D3EB /* FriendManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CAA362441558C3400081D3EB /* FriendManager.m */; };
 		CAA362481558C3780081D3EB /* FriendService.m in Sources */ = {isa = PBXBuildFile; fileRef = CAA362471558C3780081D3EB /* FriendService.m */; };
+		CAA581A7197BAF6A00599740 /* ImageSimilarity.mm in Sources */ = {isa = PBXBuildFile; fileRef = CAA581A6197BAF6700599740 /* ImageSimilarity.mm */; };
+		CAA581A8197BAFAD00599740 /* ImageSimilarity.mm in Sources */ = {isa = PBXBuildFile; fileRef = CAA581A6197BAF6700599740 /* ImageSimilarity.mm */; };
+		CAA581A9197BAFAE00599740 /* ImageSimilarity.mm in Sources */ = {isa = PBXBuildFile; fileRef = CAA581A6197BAF6700599740 /* ImageSimilarity.mm */; };
+		CAA581AA197BAFAF00599740 /* ImageSimilarity.mm in Sources */ = {isa = PBXBuildFile; fileRef = CAA581A6197BAF6700599740 /* ImageSimilarity.mm */; };
+		CAA581B0197BB0BA00599740 /* HashImageSimilarity.mm in Sources */ = {isa = PBXBuildFile; fileRef = CAA581AF197BB0BA00599740 /* HashImageSimilarity.mm */; };
+		CAA581B1197BB0BA00599740 /* HashImageSimilarity.mm in Sources */ = {isa = PBXBuildFile; fileRef = CAA581AF197BB0BA00599740 /* HashImageSimilarity.mm */; };
+		CAA581B2197BB0BA00599740 /* HashImageSimilarity.mm in Sources */ = {isa = PBXBuildFile; fileRef = CAA581AF197BB0BA00599740 /* HashImageSimilarity.mm */; };
+		CAA581B3197BB0BA00599740 /* HashImageSimilarity.mm in Sources */ = {isa = PBXBuildFile; fileRef = CAA581AF197BB0BA00599740 /* HashImageSimilarity.mm */; };
+		CAA581C1197BC24800599740 /* ImageSimilarityEngine.mm in Sources */ = {isa = PBXBuildFile; fileRef = CAA581C0197BC24800599740 /* ImageSimilarityEngine.mm */; };
+		CAA581C2197BC24800599740 /* ImageSimilarityEngine.mm in Sources */ = {isa = PBXBuildFile; fileRef = CAA581C0197BC24800599740 /* ImageSimilarityEngine.mm */; };
+		CAA581C3197BC24800599740 /* ImageSimilarityEngine.mm in Sources */ = {isa = PBXBuildFile; fileRef = CAA581C0197BC24800599740 /* ImageSimilarityEngine.mm */; };
+		CAA581C4197BC24800599740 /* ImageSimilarityEngine.mm in Sources */ = {isa = PBXBuildFile; fileRef = CAA581C0197BC24800599740 /* ImageSimilarityEngine.mm */; };
+		CAA581C7197BF78B00599740 /* HistogramImageSimilarity.mm in Sources */ = {isa = PBXBuildFile; fileRef = CAA581C6197BF78B00599740 /* HistogramImageSimilarity.mm */; };
+		CAA581C8197BF78C00599740 /* HistogramImageSimilarity.mm in Sources */ = {isa = PBXBuildFile; fileRef = CAA581C6197BF78B00599740 /* HistogramImageSimilarity.mm */; };
+		CAA581C9197BF78C00599740 /* HistogramImageSimilarity.mm in Sources */ = {isa = PBXBuildFile; fileRef = CAA581C6197BF78B00599740 /* HistogramImageSimilarity.mm */; };
+		CAA581CA197BF78C00599740 /* HistogramImageSimilarity.mm in Sources */ = {isa = PBXBuildFile; fileRef = CAA581C6197BF78B00599740 /* HistogramImageSimilarity.mm */; };
+		CAA581CD197C009B00599740 /* ShapeImageSimilarity.mm in Sources */ = {isa = PBXBuildFile; fileRef = CAA581CC197C009B00599740 /* ShapeImageSimilarity.mm */; };
+		CAA581CE197C009B00599740 /* ShapeImageSimilarity.mm in Sources */ = {isa = PBXBuildFile; fileRef = CAA581CC197C009B00599740 /* ShapeImageSimilarity.mm */; };
+		CAA581CF197C009B00599740 /* ShapeImageSimilarity.mm in Sources */ = {isa = PBXBuildFile; fileRef = CAA581CC197C009B00599740 /* ShapeImageSimilarity.mm */; };
+		CAA581D0197C009B00599740 /* ShapeImageSimilarity.mm in Sources */ = {isa = PBXBuildFile; fileRef = CAA581CC197C009B00599740 /* ShapeImageSimilarity.mm */; };
 		CAA754BD150A02EA00B9391E /* SelectWordController.m in Sources */ = {isa = PBXBuildFile; fileRef = CAA754BB150A02EA00B9391E /* SelectWordController.m */; };
 		CAA754BE150A02EA00B9391E /* SelectWordController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAA754BC150A02EA00B9391E /* SelectWordController.xib */; };
 		CAA75C83178A57EE0041C019 /* ShapeClipTouchHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = CAA75C82178A57EE0041C019 /* ShapeClipTouchHandler.m */; };
@@ -10080,6 +10100,16 @@
 		CAA362441558C3400081D3EB /* FriendManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FriendManager.m; sourceTree = "<group>"; };
 		CAA362461558C3780081D3EB /* FriendService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FriendService.h; sourceTree = "<group>"; };
 		CAA362471558C3780081D3EB /* FriendService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FriendService.m; sourceTree = "<group>"; };
+		CAA581A5197BAF6600599740 /* ImageSimilarity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageSimilarity.h; sourceTree = "<group>"; };
+		CAA581A6197BAF6700599740 /* ImageSimilarity.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ImageSimilarity.mm; sourceTree = "<group>"; };
+		CAA581AE197BB0BA00599740 /* HashImageSimilarity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HashImageSimilarity.h; sourceTree = "<group>"; };
+		CAA581AF197BB0BA00599740 /* HashImageSimilarity.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = HashImageSimilarity.mm; sourceTree = "<group>"; };
+		CAA581BF197BC24800599740 /* ImageSimilarityEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageSimilarityEngine.h; sourceTree = "<group>"; };
+		CAA581C0197BC24800599740 /* ImageSimilarityEngine.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ImageSimilarityEngine.mm; sourceTree = "<group>"; };
+		CAA581C5197BF78B00599740 /* HistogramImageSimilarity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HistogramImageSimilarity.h; sourceTree = "<group>"; };
+		CAA581C6197BF78B00599740 /* HistogramImageSimilarity.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = HistogramImageSimilarity.mm; sourceTree = "<group>"; };
+		CAA581CB197C009B00599740 /* ShapeImageSimilarity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShapeImageSimilarity.h; sourceTree = "<group>"; };
+		CAA581CC197C009B00599740 /* ShapeImageSimilarity.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ShapeImageSimilarity.mm; sourceTree = "<group>"; };
 		CAA62CC21744C54F00C376BA /* protobuf-c-private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "protobuf-c-private.h"; sourceTree = "<group>"; };
 		CAA62CC31744C54F00C376BA /* protobuf-c.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "protobuf-c.h"; sourceTree = "<group>"; };
 		CAA754BA150A02EA00B9391E /* SelectWordController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectWordController.h; sourceTree = "<group>"; };
@@ -15502,6 +15532,16 @@
 				D8CF8A9F1977981E0044E305 /* opencv2.framework */,
 				CA4CA5F3197680AA00ED1534 /* OpenCVUtils.h */,
 				CA4CA5F4197680AA00ED1534 /* OpenCVUtils.mm */,
+				CAA581BF197BC24800599740 /* ImageSimilarityEngine.h */,
+				CAA581C0197BC24800599740 /* ImageSimilarityEngine.mm */,
+				CAA581A5197BAF6600599740 /* ImageSimilarity.h */,
+				CAA581A6197BAF6700599740 /* ImageSimilarity.mm */,
+				CAA581AE197BB0BA00599740 /* HashImageSimilarity.h */,
+				CAA581AF197BB0BA00599740 /* HashImageSimilarity.mm */,
+				CAA581C5197BF78B00599740 /* HistogramImageSimilarity.h */,
+				CAA581C6197BF78B00599740 /* HistogramImageSimilarity.mm */,
+				CAA581CB197C009B00599740 /* ShapeImageSimilarity.h */,
+				CAA581CC197C009B00599740 /* ShapeImageSimilarity.mm */,
 			);
 			path = OpenCV;
 			sourceTree = "<group>";
@@ -23000,6 +23040,7 @@
 				A461B178174CBAA70088B061 /* EGORefreshTableFooterView.m in Sources */,
 				A461B179174CBAA70088B061 /* EGORefreshTableHeaderView.m in Sources */,
 				A461B17A174CBAA70088B061 /* Feed.m in Sources */,
+				CAA581C9197BF78C00599740 /* HistogramImageSimilarity.mm in Sources */,
 				A461B17B174CBAA70088B061 /* FeedManager.m in Sources */,
 				A461B17C174CBAA70088B061 /* FeedService.m in Sources */,
 				A461B17D174CBAA70088B061 /* ChatMessage.m in Sources */,
@@ -23034,6 +23075,7 @@
 				A461B1C4174CBAA70088B061 /* GCServer.m in Sources */,
 				A461B1C6174CBAA70088B061 /* TableTab.m in Sources */,
 				A461B1C7174CBAA70088B061 /* TableTabManager.m in Sources */,
+				CAA581B2197BB0BA00599740 /* HashImageSimilarity.mm in Sources */,
 				A461B1C8174CBAA70088B061 /* SuperDrawView.m in Sources */,
 				A461B1D1174CBAA70088B061 /* Contest.m in Sources */,
 				A461B1D2174CBAA70088B061 /* ContestManager.m in Sources */,
@@ -23195,6 +23237,7 @@
 				A461B2D8174CBAA70088B061 /* UIColor+GetHSB.m in Sources */,
 				A461B2D9174CBAA70088B061 /* ILColorPickerView.m in Sources */,
 				A461B2DA174CBAA70088B061 /* ILHuePickerView.m in Sources */,
+				CAA581C3197BC24800599740 /* ImageSimilarityEngine.mm in Sources */,
 				A461B2DB174CBAA70088B061 /* ILSaturationBrightnessPickerView.m in Sources */,
 				A461B2DC174CBAA70088B061 /* ILView.m in Sources */,
 				A461B2DD174CBAA70088B061 /* AnalyticsManager.m in Sources */,
@@ -23243,6 +23286,7 @@
 				A461B322174CBAA70088B061 /* MarkPen.m in Sources */,
 				CA4CA5FB197680AB00ED1534 /* OpenCVUtils.mm in Sources */,
 				D8A2709C196FC07F006DDF20 /* GameConstants.pb-c.c in Sources */,
+				CAA581CF197C009B00599740 /* ShapeImageSimilarity.mm in Sources */,
 				A461B323174CBAA70088B061 /* GameItemService.m in Sources */,
 				A461B324174CBAA70088B061 /* GameItem.m in Sources */,
 				A461B325174CBAA70088B061 /* GameItemManager.m in Sources */,
@@ -23510,6 +23554,7 @@
 				A4214DE81803AA4D007F2EFD /* SDWebImageManager.m in Sources */,
 				A4214DEB1803AA4D007F2EFD /* SDWebImagePrefetcher.m in Sources */,
 				A4214DEE1803AA4D007F2EFD /* UIButton+WebCache.m in Sources */,
+				CAA581A9197BAFAE00599740 /* ImageSimilarity.mm in Sources */,
 				A4214DF11803AA4D007F2EFD /* UIImage+GIF.m in Sources */,
 				A4214DF41803AA4D007F2EFD /* UIImage+MultiFormat.m in Sources */,
 				A4214DF71803AA4D007F2EFD /* UIImage+WebP.m in Sources */,
@@ -23785,6 +23830,7 @@
 				C28A9A1C1738F04B007A819F /* MyPaint.m in Sources */,
 				C28A9A1D1738F04B007A819F /* MyPaintManager.m in Sources */,
 				C28A9A1F1738F04B007A819F /* ShareImageManager.m in Sources */,
+				CAA581C2197BC24800599740 /* ImageSimilarityEngine.mm in Sources */,
 				C28A9A221738F04B007A819F /* ShareCell.m in Sources */,
 				C28A9A231738F04B007A819F /* ColorGroup.m in Sources */,
 				C28A9A241738F04B007A819F /* UserItem.m in Sources */,
@@ -24269,6 +24315,7 @@
 				CAA75CA7178A64CF0041C019 /* PathClipTouchHandler.m in Sources */,
 				CAA75CBA178A65020041C019 /* PolygonClipTouchHandler.m in Sources */,
 				CACEC2C9178BA7AD00D88643 /* SelectorBox.m in Sources */,
+				CAA581B1197BB0BA00599740 /* HashImageSimilarity.mm in Sources */,
 				CACEC36A178BCD1600D88643 /* SelectorCommand.m in Sources */,
 				CA0FC088178EA13E00A72B79 /* JumpHandler.m in Sources */,
 				A4EC5A9C178FDF6D0085031F /* OpusImageBrower.m in Sources */,
@@ -24281,6 +24328,7 @@
 				A4ECE9C21792A036006DD933 /* NonCyclePageScrollView.m in Sources */,
 				A4ECE9C41792A036006DD933 /* PageScrollView.m in Sources */,
 				CA2614EA1793B0FF007D5462 /* WordFilterService.m in Sources */,
+				CAA581CE197C009B00599740 /* ShapeImageSimilarity.mm in Sources */,
 				CABEC6991796505A006F89BB /* DiceImageManager.m in Sources */,
 				CABEC6A117965093006F89BB /* CommonHelpManager.m in Sources */,
 				CACD6D4518E03C86003F97C0 /* AudioFormatConverter.m in Sources */,
@@ -24342,6 +24390,7 @@
 				CA0174EB19405306005E4390 /* OpusClassInfoManager.m in Sources */,
 				EAD13B8B17DECFE300764FFB /* OrangeLoadingView.m in Sources */,
 				A44F32E917E16C3500AF9B26 /* ContestRankView.m in Sources */,
+				CAA581A8197BAFAD00599740 /* ImageSimilarity.mm in Sources */,
 				EA8EF66817E55F0D003F1AF8 /* DrawHomeHeaderPanel.m in Sources */,
 				EA8EF66E17E593CA003F1AF8 /* DrawMainMenuPanel.m in Sources */,
 				EA5FE1BC17E7F5050099754C /* RopeView.m in Sources */,
@@ -24481,6 +24530,7 @@
 				A4572D7518570B0F0076ADF7 /* UIView+Pan.m in Sources */,
 				EA5A2EA818584D6E00CABC71 /* UILabel+Touchable.m in Sources */,
 				A4EA9357185B0144004BB69D /* SingHotCell.m in Sources */,
+				CAA581C8197BF78C00599740 /* HistogramImageSimilarity.mm in Sources */,
 				EA9289B61864360F0064A1AC /* UIViewController+BGImage.m in Sources */,
 				A4BE2264186550D000FE2997 /* CellManager.m in Sources */,
 				A4BE226D18657D9700FE2997 /* NormalHotCell.m in Sources */,
@@ -24633,6 +24683,7 @@
 				CA1377291524598700B5790B /* MainDataModel.xcdatamodeld in Sources */,
 				CA13772D15245AAB00B5790B /* MyPaint.m in Sources */,
 				CA13773015245AE700B5790B /* MyPaintManager.m in Sources */,
+				CAA581C1197BC24800599740 /* ImageSimilarityEngine.mm in Sources */,
 				CA1377EF1525A2D700B5790B /* ShareImageManager.m in Sources */,
 				C29C12E1152AE2A7009B9E5F /* ShareCell.m in Sources */,
 				CA4FF001152AEFDF00F0AC88 /* ColorGroup.m in Sources */,
@@ -25117,6 +25168,7 @@
 				C206FFC6178034450033CF63 /* PSCollectionView.m in Sources */,
 				C206FFD8178034450033CF63 /* PSCollectionViewCell.m in Sources */,
 				CA9C11C0178135E0004372B6 /* GradientAction.m in Sources */,
+				CAA581B0197BB0BA00599740 /* HashImageSimilarity.mm in Sources */,
 				A4E64919178426310063F393 /* PBOpus+Extend.m in Sources */,
 				CA02CB6C1785581A00B6910D /* GradientSettingView.m in Sources */,
 				CA02CBA41785619300B6910D /* GradientCommand.m in Sources */,
@@ -25129,6 +25181,7 @@
 				CA0FC07C178EA13E00A72B79 /* JumpHandler.m in Sources */,
 				A4EC5A90178FB24C0085031F /* CommonShareAction.m in Sources */,
 				A4EC5A9B178FDF6D0085031F /* OpusImageBrower.m in Sources */,
+				CAA581CD197C009B00599740 /* ShapeImageSimilarity.mm in Sources */,
 				CA0FC098178FFA6700A72B79 /* UserDeviceService.m in Sources */,
 				A4EC5AC0178FFE820085031F /* UIImageView+Extend.m in Sources */,
 				CACD6D4418E03C86003F97C0 /* AudioFormatConverter.m in Sources */,
@@ -25190,6 +25243,7 @@
 				CA0174EA19405306005E4390 /* OpusClassInfoManager.m in Sources */,
 				EA433E2917CDE500006E6FA7 /* DJQRateView.m in Sources */,
 				EA433E2D17CDE500006E6FA7 /* DJQStartView.m in Sources */,
+				CAA581A7197BAF6A00599740 /* ImageSimilarity.mm in Sources */,
 				EA7100AA17D04B2C00451A38 /* CustomSlider.m in Sources */,
 				EA7100B517D05FB000451A38 /* DrawPlayer.m in Sources */,
 				EA7100D017D197DA00451A38 /* MLNavigationController.m in Sources */,
@@ -25329,6 +25383,7 @@
 				A4572D7418570B0F0076ADF7 /* UIView+Pan.m in Sources */,
 				EA5A2EA718584D6E00CABC71 /* UILabel+Touchable.m in Sources */,
 				A4EA9356185B0144004BB69D /* SingHotCell.m in Sources */,
+				CAA581C7197BF78B00599740 /* HistogramImageSimilarity.mm in Sources */,
 				EA9289B51864360F0064A1AC /* UIViewController+BGImage.m in Sources */,
 				A4BE2263186550D000FE2997 /* CellManager.m in Sources */,
 				A4BE226C18657D9700FE2997 /* NormalHotCell.m in Sources */,
@@ -25358,6 +25413,7 @@
 				EA411816176066F500DA72D0 /* PPApplication.m in Sources */,
 				EA411817176066F500DA72D0 /* PPNetworkRequest.m in Sources */,
 				EA411818176066F500DA72D0 /* PPTabBarController.m in Sources */,
+				CAA581C4197BC24800599740 /* ImageSimilarityEngine.mm in Sources */,
 				EA411819176066F500DA72D0 /* PPTableViewCell.m in Sources */,
 				EA41181A176066F500DA72D0 /* PPTableViewController.m in Sources */,
 				EA41181B176066F500DA72D0 /* PPViewController.m in Sources */,
@@ -25685,6 +25741,7 @@
 				EA4119DA176066F500DA72D0 /* DrawUtils.m in Sources */,
 				EA4119DB176066F500DA72D0 /* DrawGameAnimationManager.m in Sources */,
 				EA4119DC176066F500DA72D0 /* BBSTableViewCell.m in Sources */,
+				CAA581B3197BB0BA00599740 /* HashImageSimilarity.mm in Sources */,
 				EA4119DE176066F500DA72D0 /* BBSImageManager.m in Sources */,
 				CA900511194EE775003389FD /* SelectOpusClassViewController.m in Sources */,
 				EA4119DF176066F500DA72D0 /* BBSFontManager.m in Sources */,
@@ -25758,6 +25815,7 @@
 				EA411A2E176066F500DA72D0 /* ColorPoint.m in Sources */,
 				EA411A2F176066F500DA72D0 /* DrawSlider.m in Sources */,
 				EA411A30176066F500DA72D0 /* DrawToolPanel.m in Sources */,
+				CAA581AA197BAFAF00599740 /* ImageSimilarity.mm in Sources */,
 				EA411A31176066F500DA72D0 /* Palette.m in Sources */,
 				EA411A32176066F500DA72D0 /* PenBox.m in Sources */,
 				EA411A33176066F500DA72D0 /* InputAlertView.m in Sources */,
@@ -25792,6 +25850,7 @@
 				EA411A62176066F500DA72D0 /* UserGameItemManager.m in Sources */,
 				EA411A63176066F500DA72D0 /* UserGameItemService.m in Sources */,
 				EA411A64176066F500DA72D0 /* DefaultPen.m in Sources */,
+				CAA581CA197BF78C00599740 /* HistogramImageSimilarity.mm in Sources */,
 				EA411A65176066F500DA72D0 /* SuperPen.m in Sources */,
 				EA411A67176066F500DA72D0 /* ShapeBox.m in Sources */,
 				EA411A68176066F500DA72D0 /* DrawBgManager.m in Sources */,
@@ -25964,6 +26023,7 @@
 				C206FFE9178034460033CF63 /* PSCollectionViewCell.m in Sources */,
 				CA9C11D1178135E0004372B6 /* GradientAction.m in Sources */,
 				CA02CB7D1785581A00B6910D /* GradientSettingView.m in Sources */,
+				CAA581D0197C009B00599740 /* ShapeImageSimilarity.mm in Sources */,
 				CA02CBB51785619300B6910D /* GradientCommand.m in Sources */,
 				CAA75C93178A57EE0041C019 /* ShapeClipTouchHandler.m in Sources */,
 				CAA75CAB178A64CF0041C019 /* PathClipTouchHandler.m in Sources */,

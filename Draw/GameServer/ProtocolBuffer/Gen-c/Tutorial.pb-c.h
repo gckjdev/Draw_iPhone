@@ -34,6 +34,16 @@ typedef enum _Game__PBTutorialCategory {
   GAME__PBTUTORIAL_CATEGORY__TUTORIAL_CATEGORY_MEDIUM = 1,
   GAME__PBTUTORIAL_CATEGORY__TUTORIAL_CATEGORY_ADVANCE = 2
 } Game__PBTutorialCategory;
+typedef enum _Game__PBTutorialImageStyle {
+  GAME__PBTUTORIAL_IMAGE_STYLE__TUTORIAL_IMAGE_COLOR = 0,
+  GAME__PBTUTORIAL_IMAGE_STYLE__TUTORIAL_IMAGE_BLACK_WHITE = 1
+} Game__PBTutorialImageStyle;
+typedef enum _Game__PBScoreEngineType {
+  GAME__PBSCORE_ENGINE_TYPE__SCORE_ENGINE_AUTO = 0,
+  GAME__PBSCORE_ENGINE_TYPE__SCORE_ENGINE_AVG_HASH = 1,
+  GAME__PBSCORE_ENGINE_TYPE__SCORE_ENGINE_AVG_HASH_COLOR_HIST = 2,
+  GAME__PBSCORE_ENGINE_TYPE__SCORE_ENGINE_AVG_HASH_COLOR_HIST_HU = 3
+} Game__PBScoreEngineType;
 typedef enum _Game__PBUserTutorialStatus {
   GAME__PBUSER_TUTORIAL_STATUS__UT_STATUS_NOT_START = 0,
   GAME__PBUSER_TUTORIAL_STATUS__UT_STATUS_START = 1,
@@ -100,10 +110,14 @@ struct  _Game__PBStage
   char *dataurl;
   size_t n_chapter;
   Game__PBChapter **chapter;
+  protobuf_c_boolean has_imagestyle;
+  int32_t imagestyle;
+  protobuf_c_boolean has_scoreengine;
+  int32_t scoreengine;
 };
 #define GAME__PBSTAGE__INIT \
  { PROTOBUF_C_MESSAGE_INIT (&game__pbstage__descriptor) \
-    , NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0,NULL }
+    , NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0,NULL, 0,0, 0,0 }
 
 
 struct  _Game__PBTutorial
@@ -423,6 +437,8 @@ typedef void (*Game__PBUserTutorial_Closure)
 
 extern const ProtobufCEnumDescriptor    game__pbtutorial_level__descriptor;
 extern const ProtobufCEnumDescriptor    game__pbtutorial_category__descriptor;
+extern const ProtobufCEnumDescriptor    game__pbtutorial_image_style__descriptor;
+extern const ProtobufCEnumDescriptor    game__pbscore_engine_type__descriptor;
 extern const ProtobufCEnumDescriptor    game__pbuser_tutorial_status__descriptor;
 extern const ProtobufCMessageDescriptor game__pbtip__descriptor;
 extern const ProtobufCMessageDescriptor game__pbchapter__descriptor;
