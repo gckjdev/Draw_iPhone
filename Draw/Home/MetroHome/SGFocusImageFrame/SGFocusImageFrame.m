@@ -102,8 +102,6 @@ static CGFloat SWITCH_FOCUS_PICTURE_INTERVAL = 3.0; //switch interval time
         imageView.tag = i;
         //添加点击事件
         [imageView addTarget:self action:@selector(clickPageImage:) forControlEvents:UIControlEventTouchUpInside];
-//        UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(i * _scrollView.frame.size.width, 0, _scrollView.frame.size.width, _scrollView.frame.size.height)];
-//        imageView.image = item.image;
         //添加标题栏
         UILabel * lbltitle = [[UILabel alloc] initWithFrame:CGRectMake(i * _scrollView.frame.size.width, _scrollView.frame.size.height-22.0, _scrollView.frame.size.width, 22.0)];
         lbltitle.text = item.title;

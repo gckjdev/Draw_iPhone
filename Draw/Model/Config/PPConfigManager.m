@@ -1495,9 +1495,9 @@
 
 + (BOOL)enableSplashAd
 {
-#ifdef DEBUG
-    return YES;
-#endif
+//#ifdef DEBUG
+//    return YES;
+//#endif
     
     return GET_UMENG_BOOLVALUE(@"SPLASH_AD", NO);
 }

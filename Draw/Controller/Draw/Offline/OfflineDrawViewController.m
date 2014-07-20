@@ -1643,7 +1643,7 @@
     
     score = [OpenCVUtils hausdorffScoreSourceImagePath:sourcePath destImagePath:destPath];
 //    score = [OpenCVUtils cosineScoreSourceImagePath:sourcePath destImagePath:destPath];
-    
+//    [OpenCVUtils testSourceImagePath:sourcePath destImagePath:destPath];
     
     [self.draft setScore:@(score)];
     [self.draft setScoreDate:[NSDate date]];

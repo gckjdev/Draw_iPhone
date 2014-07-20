@@ -9,6 +9,7 @@
 #import "UserTutorialManager.h"
 #import "LevelDBManager.h"
 #import "PBTutorial+Extend.h"
+#import "TutorialCoreManager.h"
 
 @interface UserTutorialManager()
 
@@ -187,6 +188,40 @@ static UserTutorialManager* _defaultManager;
 //    
 //    return [builder build];
 //}
+
+
+-(void)addNewUserTutorialFromServer:(PBUserTutorial *)userTutorial WithRemoteId:(NSString *)remoteId{
+    
+    if (userTutorial == nil || userTutorial.tutorial == nil){
+        return;
+    }
+    
+    NSString* localId = [self createLocalId];
+    
+    PBUserTutorial_Builder* builder = [PBUserTutorial builderWithPrototype:userTutorial];
+    
+    PBTutorial* tutorial = [[TutorialCoreManager defaultManager] findTutorialByTutorialId:userTutorial.tutorial.tutorialId];
+    [builder setTutorial:tutorial];
+    [builder setLocalId:localId];
+    
+    if(userTutorial == nil){
+        PPDebug(@"<syncUserTutorial> but userTutorial not found");
+        return;
+    }
+    if(remoteId == nil){
+        PPDebug(@"<syncUserTutorial> but remoteId(%@) not found",remoteId);
+        return;
+    }
+
+    PBUserTutorial* utToSave = [builder build];
+    if (utToSave == nil){
+        return;
+    }
+    
+    [[self getDb] setObject:[utToSave data] forKey:localId];
+    
+    // TODO report new localId to server????
+}
 
 - (void)syncUserTutorial:(NSString*)utLocalId syncStatus:(BOOL)syncStatus
 {
