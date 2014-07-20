@@ -1640,10 +1640,6 @@
     
 //    [OpenCVUtils testSourceImagePath:sourcePath destImagePath:destPath];
     
-    
-//    score = [OpenCVUtils hausdorffScoreSourceImagePath:sourcePath destImagePath:destPath];
-    
-    
     [self.draft setScore:@(score)];
     [self.draft setScoreDate:[NSDate date]];
     

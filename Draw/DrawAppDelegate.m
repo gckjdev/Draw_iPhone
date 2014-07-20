@@ -421,11 +421,13 @@ NSString* GlobalGetBoardServerURL()
     }
     
     [self loadSplashAd];
+
     
 //#ifdef DEBUG
-//    [OpenCVUtils testSourceImagePath: @"/Users/Linruin/Desktop/images/51.png"
-//                       destImagePath: @"/Users/Linruin/Desktop/images/61.png"];
+//    [OpenCVUtils testSourceImagePath: @"/Users/Linruin/Desktop/tmp/head1.jpg"
+//                       destImagePath: @"/Users/Linruin/Desktop/tmp/head7.jpg"];
 //#endif
+//
     
     
 //    [[ZeroQianManager defaultManager] start];    
