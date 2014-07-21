@@ -151,7 +151,7 @@ static TutorialCoreManager* _defaultTutorialCoreManager;
 }
 
 //赋值PBStage_Builder
--(void)evaluateStageTestDataName:(NSString *)name WithDesc:(NSString *)desc WithStageId:(NSString *)stageId WithImage:(NSString *)imageUrl WithTutorial:(PBTutorial_Builder*) tb WithIndex:(NSInteger)index WithChapterList:(NSArray*)chapterList{
+-(void)evaluateStageTestDataName:(NSString *)name WithDesc:(NSString *)desc WithStageId:(NSString *)stageId WithImage:(NSString *)imageUrl WithTutorial:(PBTutorial_Builder*) tb WithIndex:(NSInteger)index WithChapterList:(NSArray*)chapterList WithChapterIndex:(int32_t)chapterIndex{
     
     PBStage_Builder* pb = [PBStage builder];
     PBChapter_Builder* pbChapterBuilder = [PBChapter builder];
@@ -164,7 +164,7 @@ static TutorialCoreManager* _defaultTutorialCoreManager;
     [pb setThumbImage:imageUrl];
     [pb setImage:imageUrl];
     [pbChapterBuilder setOpusId:[chapterList objectAtIndex:0]];
-    [pbChapterBuilder setIndex:(arc4random() % 15)];
+    [pbChapterBuilder setIndex:chapterIndex];
     PBChapter* chapter = [pbChapterBuilder build];
     [pb addChapter:chapter];
     PBStage* stage = [pb build];
@@ -410,7 +410,8 @@ static TutorialCoreManager* _defaultTutorialCoreManager;
                                    WithImage:[[stageImageUrl objectAtIndex:i]objectAtIndex:j]
                                    WithTutorial:tb
                                    WithIndex:i
-                                   WithChapterList:[chapterOpusIdList objectAtIndex:j]];
+                                   WithChapterList:[chapterOpusIdList objectAtIndex:j]
+                                   WithChapterIndex:i];
         }
         
         PBTutorial* tutorial = [tb build];
