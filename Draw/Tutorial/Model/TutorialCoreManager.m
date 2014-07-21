@@ -132,7 +132,8 @@ static TutorialCoreManager* _defaultTutorialCoreManager;
 }
 
 //赋值PBTutorial_Builder
--(PBTutorial_Builder *) evaluateTutorialTestDataName:(NSString *)name WithDesc:(NSString *)desc WithTutorialId:(NSString *)tutorialId WithImage:(NSString *)imageUrl IsAdd:(BOOL)isAdd WithBuilder:(PBTutorialCore_Builder *)builder WithCategory:(NSArray *)categoryList{
+-(PBTutorial_Builder *) evaluateTutorialTestDataName:(NSString *)name WithDesc:(NSString *)desc WithTutorialId:(NSString *)tutorialId WithImage:(NSString *)imageUrl IsAdd:(BOOL)isAdd WithBuilder:(PBTutorialCore_Builder *)builder WithCategory:(NSArray *)categoryList
+    {
      PBTutorial_Builder* tb = [PBTutorial builder];
     [tb setCnName:name];
     [tb setCnDesc:desc];
@@ -150,15 +151,24 @@ static TutorialCoreManager* _defaultTutorialCoreManager;
 }
 
 //赋值PBStage_Builder
--(void)evaluateStageTestDataName:(NSString *)name WithDesc:(NSString *)desc WithStageId:(NSString *)stageId WithImage:(NSString *)imageUrl WithTutorial:(PBTutorial_Builder*) tb WithIndex:(NSInteger)index{
+-(void)evaluateStageTestDataName:(NSString *)name WithDesc:(NSString *)desc WithStageId:(NSString *)stageId WithImage:(NSString *)imageUrl WithTutorial:(PBTutorial_Builder*) tb WithIndex:(NSInteger)index WithChapterList:(NSArray*)chapterList WithChapterIndex:(int32_t)chapterIndex{
     
     PBStage_Builder* pb = [PBStage builder];
+    PBChapter_Builder* pbChapterBuilder = [PBChapter builder];
+
+    
+    
     [pb setCnName:name];
     [pb setCnDesc:desc];
     [pb setStageId:stageId];
     [pb setThumbImage:imageUrl];
     [pb setImage:imageUrl];
+    [pbChapterBuilder setOpusId:[chapterList objectAtIndex:0]];
+    [pbChapterBuilder setIndex:chapterIndex];
+    PBChapter* chapter = [pbChapterBuilder build];
+    [pb addChapter:chapter];
     PBStage* stage = [pb build];
+    
     [tb addStages:stage];
 }
 
@@ -210,14 +220,18 @@ static TutorialCoreManager* _defaultTutorialCoreManager;
     // TODO add test tutorials
 
     
-    NSArray* testTutorialName = @[@"初识三次元",@"疯狂的线条",@"识色配图",@"旺星人大集合",@"一起动动动",@"易容速成"];
-    NSArray* testTutorialDesc = @[@"突破二次元的界限",@"帮助你更好的熟练工具",@"这里将把你打造成用色达人",@"属于旺星人的趴",@"燃烧你的卡路里吧",@"你想易容成什么人"];
+    NSArray* testTutorialName = @[@"初识三次元",@"疯狂的线条",@"识色配图",@"旺星人大集合",@"一起动动动",@"易容速成",@"测试一",@"测试二",@"测试三"];
+    NSArray* testTutorialDesc = @[@"突破二次元的界限",@"帮助你更好的熟练工具",@"这里将把你打造成用色达人",@"属于旺星人的趴",@"燃烧你的卡路里吧",@"你想易容成什么人",@"测试一",@"测试二",@"测试三"];
     NSArray* tutorialImageUrl = @[@"http://58.215.184.18:8080/tutorial/image/1titlecopy.png",
                           @"http://58.215.184.18:8080/tutorial/image/2-titlenew.png",
                           @"http://58.215.184.18:8080/tutorial/image/3-titlenew.png",
                           @"http://58.215.184.18:8080/tutorial/image/4-titlenew.png",
                           @"http://58.215.184.18:8080/tutorial/image/5-titlenew.png",
-                          @"http://58.215.184.18:8080/tutorial/image/6-titlenew.png"];
+                          @"http://58.215.184.18:8080/tutorial/image/6-titlenew.png",
+                          @"http://58.215.184.18:8080/tutorial/image/2-titlenew.png",
+                          @"http://58.215.184.18:8080/tutorial/image/2-titlenew.png",
+                          @"http://58.215.184.18:8080/tutorial/image/2-titlenew.png"
+                                  ];
     NSArray* tutorialCategory =
                                 @[
                                   @[@(2)],
@@ -226,6 +240,9 @@ static TutorialCoreManager* _defaultTutorialCoreManager;
                                   @[@(0)],
                                   @[@(0)],
                                   @[@(1)],
+                                  @[@(0)],
+                                  @[@(0)],
+                                  @[@(0)]
                                   ];
     
     NSArray* testStageName = @[
@@ -234,7 +251,10 @@ static TutorialCoreManager* _defaultTutorialCoreManager;
                               @[@"十二色环",@"二十四色环",@"互补色色环",@"渐变色",@"经典互补色",@"渐变构成", @"冷暖对比",@"同色系渐变构成"],
                               @[@"比熊先生",@"博美小姐",@"马尔济斯绅士",@"哈士奇骑士",@"约克夏伯爵",@"吉娃娃公主", @"泰迪女王",@"萨摩王子"],
                               @[@"花样滑冰",@"艺术体操",@"赛马",@"高尔夫",@"体操",@"击剑",@"滑雪",@"足球"],
-                              @[@"美少女奈儿",@"美少女纪子",@"小妹妹",@"帅哥",@"小毛孩",@"经理",@"妇女",@"老者"]
+                              @[@"美少女奈儿",@"美少女纪子",@"小妹妹",@"帅哥",@"小毛孩",@"经理",@"妇女",@"老者"],
+                              @[@"关卡1-1",@"关卡1-2",@"关卡1-3"],
+                              @[@"关卡2-1",@"关卡2-2",@"关卡2-3"],
+                              @[@"关卡3-1",@"关卡3-2",@"关卡3-3"]
                               ];
     
     NSArray* testStageDesc = @[@[@"石头",@"陶瓷",@"亚克力塑料",@"金属",@"皮肤",@"橡胶", @"玻璃",@"材质集合"],
@@ -242,7 +262,10 @@ static TutorialCoreManager* _defaultTutorialCoreManager;
                               @[@"十二色环",@"二十四色环",@"互补色色环",@"渐变色",@"经典互补色",@"渐变构成", @"冷暖对比",@"同色系渐变构成"],
                               @[@"比熊先生",@"博美小姐",@"马尔济斯绅士",@"哈士奇骑士",@"约克夏伯爵",@"吉娃娃公主", @"泰迪女王",@"萨摩王子"],
                               @[@"没有翅膀也一样可以飞翔",@"展现身体的柔性美",@"人与动物最佳拍档",@"在运动中享受大自然的乐趣",@"干净利落的身姿",@"协调性与灵活性的考验",@"像鸟一样在雪地里飞舞",@"只为射门那一刻的欢呼"],
-                              @[@"美少女奈儿",@"美少女纪子",@"小妹妹",@"帅哥",@"小毛孩",@"经理",@"妇女",@"老者"]
+                              @[@"美少女奈儿",@"美少女纪子",@"小妹妹",@"帅哥",@"小毛孩",@"经理",@"妇女",@"老者"],
+                              @[@"关卡1-1",@"关卡1-2",@"关卡1-3"],
+                              @[@"关卡2-1",@"关卡2-2",@"关卡2-3"],
+                              @[@"关卡3-1",@"关卡3-2",@"关卡3-3"]
                               ];
   
     NSArray* stageImageUrl = @[
@@ -308,10 +331,63 @@ static TutorialCoreManager* _defaultTutorialCoreManager;
                                         @"http://58.215.184.18:8080/tutorial/image/6-6.png",
                                         @"http://58.215.184.18:8080/tutorial/image/6-7.png",
                                         @"http://58.215.184.18:8080/tutorial/image/6-8.png"
+                                    ],
+                                    @[
+                                        @"http://58.215.184.18:8080/tutorial/image/4-1.png",
+                                        @"http://58.215.184.18:8080/tutorial/image/4-2.png",
+                                        @"http://58.215.184.18:8080/tutorial/image/4-3.png"
+                                    ],
+                                    @[
+                                        @"http://58.215.184.18:8080/tutorial/image/1-1.png",
+                                        @"http://58.215.184.18:8080/tutorial/image/1-2.png",
+                                        @"http://58.215.184.18:8080/tutorial/image/1-3.png"
+                                    ],
+                                    @[
+                                        @"http://58.215.184.18:8080/tutorial/image/5-1.png",
+                                        @"http://58.215.184.18:8080/tutorial/image/5-2.png",
+                                        @"http://58.215.184.18:8080/tutorial/image/5-3.png"
                                     ]
 
                               ];
-  
+    
+    
+    NSArray *chapterOpusIdList = @[@[
+                                   @"51564194e4b0d84d3151da6b"
+                                   
+                                ],
+                               @[
+                                   @"53cbd1b8e4b06d2c3a123cdc"
+                                   
+                                   
+                                ],
+                               @[
+                                   @"53cbd889e4b06d2c3a124080"
+                                   
+                                ],
+                               @[
+                                   @"53cbd889e4b06d2c3a124080"
+                                  
+                                ],
+                               @[
+                                   @"53cbd1b8e4b06d2c3a123cdc"
+                                  
+                                ],
+                               @[
+                                   @"53cbd1b8e4b06d2c3a123cdc"
+                                   
+                                   
+                                ],
+                               @[
+                                   @"51564194e4b0d84d3151da6b"
+                                   
+                                ],
+                               @[
+                                   @"53cbd889e4b06d2c3a124080"
+                                ],
+                               @[
+                                   @"53cbd1b8e4b06d2c3a123cdc"
+                                ]
+                               ];
     
     
     
@@ -333,7 +409,9 @@ static TutorialCoreManager* _defaultTutorialCoreManager;
                                    WithStageId:stageID
                                    WithImage:[[stageImageUrl objectAtIndex:i]objectAtIndex:j]
                                    WithTutorial:tb
-                                   WithIndex:i];
+                                   WithIndex:i
+                                   WithChapterList:[chapterOpusIdList objectAtIndex:j]
+                                   WithChapterIndex:i];
         }
         
         PBTutorial* tutorial = [tb build];
