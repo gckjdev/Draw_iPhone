@@ -1637,11 +1637,13 @@
     // 评分
     NSString* sourcePath = [self writeImageToFile:_copyView.image filePath:self.draft.draftId];
     NSString* destPath = self.tempImageFilePath;
-    [ImageSimilarityEngine score1SrcPath:sourcePath destPath:destPath];
 
-    int score = [OpenCVUtils simpleDrawScoreSourceImagePath:sourcePath destImagePath:destPath];
+    //从关卡传入difficulty
+    int score = [ImageSimilarityEngine score1SrcPath:sourcePath destPath:destPath difficulty:1.0];
     
-    score = [OpenCVUtils hausdorffScoreSourceImagePath:sourcePath destImagePath:destPath];
+
+//    int score = [OpenCVUtils simpleDrawScoreSourceImagePath:sourcePath destImagePath:destPath];
+//    score = [OpenCVUtils hausdorffScoreSourceImagePath:sourcePath destImagePath:destPath];
 //    score = [OpenCVUtils cosineScoreSourceImagePath:sourcePath destImagePath:destPath];
 //    [OpenCVUtils testSourceImagePath:sourcePath destImagePath:destPath];
     
