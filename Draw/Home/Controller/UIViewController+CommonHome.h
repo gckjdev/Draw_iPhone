@@ -24,5 +24,6 @@
 - (void)enterMore;
 - (void)enterUserDetail;
 - (void)showBulletinView;
-
+- (void)goToGuidePage;
+- (void)enterMetroHome;
 @end

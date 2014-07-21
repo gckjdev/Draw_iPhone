@@ -48,6 +48,8 @@
 #import "OnlineGuessDrawController.h"
 #import "GuessModesController.h"
 #import "DrawRoomListController.h"
+#import "ICETutorialController.h"
+#import "GuidePageController.h"
 
 @implementation UIViewController (CommonHome)
 
@@ -293,5 +295,21 @@
     CommonDialog *dialog = [CommonDialog createDialogWithTitle:NSLS(@"kBulletin") customView:v style:CommonDialogStyleCross];
     [dialog showInView:self.view];
 }
+
+//ChaoSo 7.21 2014
+//test
+-(void)goToGuidePage{
+
+    
+    ICETutorialController* guidePage = [[GuidePageController alloc] initGuidePage];
+    [self.navigationController pushViewController:guidePage animated:YES];
+    
+}
+-(void)enterMetroHome{
+    MetroHomeController *mc = [[MetroHomeController alloc] init];
+    [self.navigationController pushViewController:mc animated:YES];
+    [mc release];
+}
+
 
 @end

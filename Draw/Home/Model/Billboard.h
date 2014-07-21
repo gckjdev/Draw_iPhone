@@ -18,6 +18,8 @@
 - (int)index;
 - (NSString*)image;
 - (NSString*)function;
+- (NSMutableArray *) para;
+- (int32_t)type;
 
 - (void)clickAction:(PPViewController*) pc;
 

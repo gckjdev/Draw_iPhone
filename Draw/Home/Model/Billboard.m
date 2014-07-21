@@ -41,17 +41,44 @@
     return [_dataDict objectForKey:@"function"];
 }
 
+-(NSArray *)paraList{
+    return [_dataDict objectForKey:@"parameters"];
+}
 - (void)clickAction
 {
     // TODO click action here
 }
 
+//Gallery 点击事件
 - (void)clickAction:(PPViewController*) pc{
     
-    SEL selector = NSSelectorFromString(self.function);
-    if (selector && [pc respondsToSelector:selector]){
-        [pc performSelector:selector withObject:nil];
+    NSArray* paraArray = [self paraList];
+    
+    int paraCount = [paraArray count];
+    if (paraCount == 0){
+        // no parameter
+        SEL selector = NSSelectorFromString(self.function);
+        if (selector && [pc respondsToSelector:selector]){
+            [pc performSelector:selector withObject:nil];
+        }
     }
+    else if (paraCount == 1){
+        // 1 parameter
+        SEL selector = NSSelectorFromString(self.function);
+        if (selector && [pc respondsToSelector:selector]){
+            [pc performSelector:selector withObject:[paraArray objectAtIndex:0]];
+        }
+    }
+    else if (paraCount >= 2){
+        // 2 parameter
+        SEL selector = NSSelectorFromString(self.function);
+        if (selector && [pc respondsToSelector:selector]){
+            [pc performSelector:selector
+                     withObject:[paraArray objectAtIndex:0]
+                     withObject:[paraArray objectAtIndex:1]];
+        }
+    }
+    
     
 }
 

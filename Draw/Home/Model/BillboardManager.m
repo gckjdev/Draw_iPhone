@@ -112,6 +112,9 @@ static BillboardManager* _defaultBillboardManager;
     }
 }
 
+
+
+
 - (void)autoUpdate
 {
     [_smartData checkUpdateAndDownload:^(BOOL isAlreadyExisted, NSString *dataFilePath) {
