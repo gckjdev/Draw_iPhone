@@ -37,15 +37,6 @@
     
     //更新页面
     [self updateViewWidget];
-    
-//    NSLayoutConstraint* constraint = [NSLayoutConstraint constraintWithItem:self.opusImageView
-//                                                                  attribute:NSLayoutAttributeTop
-//                                                                  relatedBy:NSLayoutRelationEqual
-//                                                                     toItem:[CommonTitleView titleView:self.view]
-//                                                                  attribute:NSLayoutAttributeBottom
-//                                                                 multiplier:1.0
-//                                                                   constant:10.0];
-//    [self.view addConstraint:constraint];
 }
 
 - (void)didReceiveMemoryWarning
@@ -95,9 +86,9 @@
     
 }
 
+//取得Label描述
 -(NSMutableAttributedString *)getDesc{
     NSMutableAttributedString *attriString = [[[NSMutableAttributedString alloc] initWithString:@"本次作品得分為78分,耗時58秒\n闖關成功！\n"]autorelease];
-    //把this的字体颜色变为红色
     [attriString addAttribute:NSForegroundColorAttributeName
                         value:COLOR_RED
                         range:NSMakeRange(7, 2)];
@@ -118,6 +109,7 @@
 //                        range:NSMakeRange(5, 11)];
     return attriString;
 }
+//监控ShareBtn
 -(IBAction)clickShareBtn:(id)sender{
     PPDebug(@"This is ShareButton");
 }
