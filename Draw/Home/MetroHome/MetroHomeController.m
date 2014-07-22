@@ -15,7 +15,8 @@
 #import "ICETutorialController.h"
 #import "GuidePageManager.h"
 #import "ICETutorialController.h"
-
+#import "ResultSharePageViewController.h"
+#import "ResultShareAlertPageViewController.h"
 
 @interface MetroHomeController ()
 
@@ -65,6 +66,7 @@
 //    
 //    [CommonTitleView createTitleView:self.view];
 //    [[CommonTitleView titleView:self.view] setTitle:NSLS(@"kMetroMainHome")];
+    
     
     
     [super viewDidLoad];
@@ -232,7 +234,11 @@
 }
 
 - (IBAction)goToBBS:(id)sender {
-    [self enterBBS];
+//    [self enterBBS];
+    
+    ResultShareAlertPageViewController *rspc = [[ResultShareAlertPageViewController alloc] init];
+    CommonDialog *dialog = [CommonDialog createDialogWithTitle:NSLS(@"kResultSharePage") customView:rspc.view style:CommonDialogStyleCross];
+    [dialog showInView:self.view];
 }
 
 - (IBAction)goToDraw:(id)sender {

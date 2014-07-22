@@ -2779,3 +2779,6 @@
 "kConquerFail" = "Sorry... Your score is %d. FAIL!";
 "kConquerAgain" = "Try Again";
 
+//new分享页面
+"kResultSharePage" = "ResultShare";
+
