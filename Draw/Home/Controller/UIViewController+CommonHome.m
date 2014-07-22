@@ -49,7 +49,7 @@
 #import "GuessModesController.h"
 #import "DrawRoomListController.h"
 #import "ICETutorialController.h"
-#import "GuidePageController.h"
+#import "GuidePageManager.h"
 
 @implementation UIViewController (CommonHome)
 
@@ -299,9 +299,7 @@
 //ChaoSo 7.21 2014
 //test
 -(void)goToGuidePage{
-
-    
-    ICETutorialController* guidePage = [[GuidePageController alloc] initGuidePage];
+    ICETutorialController* guidePage = [[GuidePageManager alloc] initGuidePage];
     [self.navigationController pushViewController:guidePage animated:YES];
     
 }

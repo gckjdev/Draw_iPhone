@@ -6387,10 +6387,10 @@
 		D8B58B2A197CEE090088E5F7 /* SGFocusImageItem.m in Sources */ = {isa = PBXBuildFile; fileRef = D8B58B24197CEE090088E5F7 /* SGFocusImageItem.m */; };
 		D8B58B2B197CEE090088E5F7 /* SGFocusImageItem.m in Sources */ = {isa = PBXBuildFile; fileRef = D8B58B24197CEE090088E5F7 /* SGFocusImageItem.m */; };
 		D8B58B2C197CEE090088E5F7 /* SGFocusImageItem.m in Sources */ = {isa = PBXBuildFile; fileRef = D8B58B24197CEE090088E5F7 /* SGFocusImageItem.m */; };
-		D8B58B42197CF6560088E5F7 /* GuidePageController.m in Sources */ = {isa = PBXBuildFile; fileRef = D8B58B41197CF6560088E5F7 /* GuidePageController.m */; };
-		D8B58B43197CF6560088E5F7 /* GuidePageController.m in Sources */ = {isa = PBXBuildFile; fileRef = D8B58B41197CF6560088E5F7 /* GuidePageController.m */; };
-		D8B58B44197CF6560088E5F7 /* GuidePageController.m in Sources */ = {isa = PBXBuildFile; fileRef = D8B58B41197CF6560088E5F7 /* GuidePageController.m */; };
-		D8B58B45197CF6560088E5F7 /* GuidePageController.m in Sources */ = {isa = PBXBuildFile; fileRef = D8B58B41197CF6560088E5F7 /* GuidePageController.m */; };
+		D8B58B42197CF6560088E5F7 /* GuidePageManager.m in Sources */ = {isa = PBXBuildFile; fileRef = D8B58B41197CF6560088E5F7 /* GuidePageManager.m */; };
+		D8B58B43197CF6560088E5F7 /* GuidePageManager.m in Sources */ = {isa = PBXBuildFile; fileRef = D8B58B41197CF6560088E5F7 /* GuidePageManager.m */; };
+		D8B58B44197CF6560088E5F7 /* GuidePageManager.m in Sources */ = {isa = PBXBuildFile; fileRef = D8B58B41197CF6560088E5F7 /* GuidePageManager.m */; };
+		D8B58B45197CF6560088E5F7 /* GuidePageManager.m in Sources */ = {isa = PBXBuildFile; fileRef = D8B58B41197CF6560088E5F7 /* GuidePageManager.m */; };
 		D8BF37141971053F00ACEFCA /* xiaoxi.png in Resources */ = {isa = PBXBuildFile; fileRef = D8BF37131971053F00ACEFCA /* xiaoxi.png */; };
 		D8BF371D1971068100ACEFCA /* caidanlan.png in Resources */ = {isa = PBXBuildFile; fileRef = D8BF37181971068100ACEFCA /* caidanlan.png */; };
 		D8BF371E1971068100ACEFCA /* daohanglan.png in Resources */ = {isa = PBXBuildFile; fileRef = D8BF37191971068100ACEFCA /* daohanglan.png */; };
@@ -10766,8 +10766,8 @@
 		D8B58B22197CEE090088E5F7 /* SGFocusImageFrame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SGFocusImageFrame.m; sourceTree = "<group>"; };
 		D8B58B23197CEE090088E5F7 /* SGFocusImageItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SGFocusImageItem.h; sourceTree = "<group>"; };
 		D8B58B24197CEE090088E5F7 /* SGFocusImageItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SGFocusImageItem.m; sourceTree = "<group>"; };
-		D8B58B40197CF6560088E5F7 /* GuidePageController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GuidePageController.h; sourceTree = "<group>"; };
-		D8B58B41197CF6560088E5F7 /* GuidePageController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GuidePageController.m; sourceTree = "<group>"; };
+		D8B58B40197CF6560088E5F7 /* GuidePageManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GuidePageManager.h; sourceTree = "<group>"; };
+		D8B58B41197CF6560088E5F7 /* GuidePageManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GuidePageManager.m; sourceTree = "<group>"; };
 		D8BF37131971053F00ACEFCA /* xiaoxi.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = xiaoxi.png; sourceTree = "<group>"; };
 		D8BF37181971068100ACEFCA /* caidanlan.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = caidanlan.png; sourceTree = "<group>"; };
 		D8BF37191971068100ACEFCA /* daohanglan.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = daohanglan.png; sourceTree = "<group>"; };
@@ -18235,8 +18235,8 @@
 		D8B58B2D197CF1C70088E5F7 /* GuidePage */ = {
 			isa = PBXGroup;
 			children = (
-				D8B58B40197CF6560088E5F7 /* GuidePageController.h */,
-				D8B58B41197CF6560088E5F7 /* GuidePageController.m */,
+				D8B58B40197CF6560088E5F7 /* GuidePageManager.h */,
+				D8B58B41197CF6560088E5F7 /* GuidePageManager.m */,
 			);
 			path = GuidePage;
 			sourceTree = "<group>";
@@ -23839,7 +23839,7 @@
 				CA5D9D7F183E3C0200BD820C /* DOUAudioStreamer+Options.m in Sources */,
 				CA5D9D83183E3C0200BD820C /* DOUAudioStreamer.m in Sources */,
 				CA5D9D87183E3C0200BD820C /* DOUAudioVisualizer.m in Sources */,
-				D8B58B44197CF6560088E5F7 /* GuidePageController.m in Sources */,
+				D8B58B44197CF6560088E5F7 /* GuidePageManager.m in Sources */,
 				CA5D9D8B183E3C0200BD820C /* DOUEAGL1View.m in Sources */,
 				CA5D9D8F183E3C0200BD820C /* DOUEAGLView.m in Sources */,
 				CA5D9D93183E3C0200BD820C /* DOUSimpleHTTPRequest.m in Sources */,
@@ -23910,7 +23910,7 @@
 				C28A998C1738F04B007A819F /* PPViewController+NumPadReturn.m in Sources */,
 				C28A998D1738F04B007A819F /* ViewControllerUtils.m in Sources */,
 				C28A998E1738F04B007A819F /* CoreDataUtil.m in Sources */,
-				D8B58B43197CF6560088E5F7 /* GuidePageController.m in Sources */,
+				D8B58B43197CF6560088E5F7 /* GuidePageManager.m in Sources */,
 				C28A998F1738F04B007A819F /* PPDataManager.m in Sources */,
 				C28A99901738F04B007A819F /* AddressBookUtils.m in Sources */,
 				C28A99911738F04B007A819F /* NSAutoExtendMutableArray.m in Sources */,
@@ -24767,7 +24767,7 @@
 				CA103ED01509A56200F60C03 /* PPViewController+NumPadReturn.m in Sources */,
 				CA103ED11509A56200F60C03 /* ViewControllerUtils.m in Sources */,
 				CA103ED21509A56200F60C03 /* CoreDataUtil.m in Sources */,
-				D8B58B42197CF6560088E5F7 /* GuidePageController.m in Sources */,
+				D8B58B42197CF6560088E5F7 /* GuidePageManager.m in Sources */,
 				CA103ED31509A56200F60C03 /* PPDataManager.m in Sources */,
 				CA103ED41509A56200F60C03 /* AddressBookUtils.m in Sources */,
 				CA103ED51509A56200F60C03 /* NSAutoExtendMutableArray.m in Sources */,
@@ -26274,7 +26274,7 @@
 				A42BB02D17D9735A007FB11B /* TwoInputFieldView.m in Sources */,
 				EAD13B8D17DECFE300764FFB /* OrangeLoadingView.m in Sources */,
 				A44F32EB17E16C3500AF9B26 /* ContestRankView.m in Sources */,
-				D8B58B45197CF6560088E5F7 /* GuidePageController.m in Sources */,
+				D8B58B45197CF6560088E5F7 /* GuidePageManager.m in Sources */,
 				EA8EF66A17E55F0D003F1AF8 /* DrawHomeHeaderPanel.m in Sources */,
 				EA8EF67017E593CA003F1AF8 /* DrawMainMenuPanel.m in Sources */,
 				EA5FE1BE17E7F5050099754C /* RopeView.m in Sources */,

@@ -13,7 +13,7 @@
 #import "MoreViewController.h"
 #import "BillboardManager.h"
 #import "ICETutorialController.h"
-#import "GuidePageController.h"
+#import "GuidePageManager.h"
 #import "ICETutorialController.h"
 
 
@@ -199,6 +199,7 @@
     return shadowView;
     
 }
+//主页背景
 #define GALLERY_BACKGROUND_Y (ISIPAD ? 69:41)
 - (void)setBackground
 {
