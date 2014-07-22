@@ -140,7 +140,7 @@
             [_drawActionList retain];
             
             if (_drawActionList == nil){
-                self.canvasSize = [CanvasRect deprecatedRect].size;
+                self.canvasSize = [CanvasRect defaultRect].size;
                 self.layers = [DrawLayer defaultLayersWithFrame:CGRectFromCGSize(self.canvasSize)];
                 _drawActionList = [[NSMutableArray alloc] init];
             }
