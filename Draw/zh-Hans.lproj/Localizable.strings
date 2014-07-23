@@ -2806,3 +2806,5 @@
 "kConquerFail" = "本次闯关得分为【%d】，击败了宇宙三次元中%d%%的用户，未能达到通关标准，再接再励，重新来一次吗？";
 "kConquerAgain" = "重来";
 
+//new分享页面
+"kResultSharePage" = "最后结果";

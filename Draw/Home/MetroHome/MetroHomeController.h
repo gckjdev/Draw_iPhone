@@ -12,9 +12,11 @@
 #import "Billboard.h"
 #import "SGFocusImageFrame.h"
 #import "SGFocusImageItem.h"
+#import "ICETutorialController.h"
 
 
-@interface MetroHomeController : PPViewController<AvatarViewDelegate,SGFocusImageFrameDelegate>{
+
+@interface MetroHomeController : PPViewController<AvatarViewDelegate,SGFocusImageFrameDelegate,ICETutorialControllerDelegate>{
     UIButton *LearningViewButton;
     
 }

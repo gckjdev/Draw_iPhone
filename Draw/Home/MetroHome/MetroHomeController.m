@@ -12,6 +12,12 @@
 #import "UIViewController+CommonHome.h"
 #import "MoreViewController.h"
 #import "BillboardManager.h"
+#import "ICETutorialController.h"
+#import "GuidePageManager.h"
+#import "ICETutorialController.h"
+#import "ResultSharePageViewController.h"
+#import "ResultShareAlertPageViewController.h"
+
 @interface MetroHomeController ()
 
 @end
@@ -62,7 +68,11 @@
 //    [[CommonTitleView titleView:self.view] setTitle:NSLS(@"kMetroMainHome")];
     
     
+    
     [super viewDidLoad];
+//    
+//    //test
+//    [self goToGuidePage];
     
     [self setBackground];
         // Do any additional setup after loading the view from its nib.
@@ -191,6 +201,7 @@
     return shadowView;
     
 }
+//主页背景
 #define GALLERY_BACKGROUND_Y (ISIPAD ? 69:41)
 - (void)setBackground
 {
@@ -223,7 +234,11 @@
 }
 
 - (IBAction)goToBBS:(id)sender {
-    [self enterBBS];
+//    [self enterBBS];
+    
+    ResultShareAlertPageViewController *rspc = [[ResultShareAlertPageViewController alloc] init];
+    CommonDialog *dialog = [CommonDialog createDialogWithTitle:NSLS(@"kResultSharePage") customView:rspc.view style:CommonDialogStyleCross];
+    [dialog showInView:self.view];
 }
 
 - (IBAction)goToDraw:(id)sender {
@@ -263,6 +278,10 @@
     [self enterUserDetail];
 }
 
+
+
+
+
 #pragma mark - Avatart View Delegate
 
 - (void)didClickOnAvatar:(NSString *)userId
@@ -294,10 +313,12 @@
 
 #pragma mark -
 
+// 设置Gallery
 #define IMAGE_FRAME_X (ISIPAD ? 26:11)
 #define IMAGE_FRAME_Y (ISIPAD ? 20:15)
 #define IMAGE_FRAME_WIDTH (ISIPAD ? 716:298)
 #define IMAGE_FRAME_HEIGHT (ISIPAD ? 250:120)
+#define DEFAULT_GALLERY_IMAGE @"daguanka"
 -(void)setGalleryView{
     BillboardManager *bbManager = [BillboardManager defaultManager];
     self.bbList = bbManager.bbList;
@@ -306,18 +327,34 @@
     for(Billboard *bb in _bbList){
         NSString *galleryImage = bb.image;
         NSURL *galleryUrl = [NSURL URLWithString:galleryImage];
+        
+        UIImage *image = nil;
+        //设置默认图片
+        if(galleryUrl==nil||[galleryUrl isEqual:@""]){
+            
+            image = [UIImage imageNamed:DEFAULT_GALLERY_IMAGE] ;
+            
+        }
+        //读取网上的图片数据
         NSData* data = [NSData dataWithContentsOfURL:galleryUrl];
         if(data==nil){
-            return;
+            image = [UIImage imageNamed:DEFAULT_GALLERY_IMAGE] ;
+            
         }
-        UIImage *image = [[[UIImage alloc] initWithData:data] autorelease];
+         image = [[[UIImage alloc] initWithData:data] autorelease];
 
+        if(image==nil){
+             image = [UIImage imageNamed:DEFAULT_GALLERY_IMAGE] ;
+        }
         
+        //添加到第三方框架
         SGFocusImageItem *item = [[[SGFocusImageItem alloc] initWithTitle:@"" image:image tag:bb.index] autorelease];
+        
         
         [itemList addObject:item];
     }
     
+    //新建滚动展览
     SGFocusImageFrame *imageFrame = [[SGFocusImageFrame alloc] initWithFrame:CGRectMake(IMAGE_FRAME_X, IMAGE_FRAME_Y, IMAGE_FRAME_WIDTH ,IMAGE_FRAME_HEIGHT)
                                                                     delegate:self
                                                              focusImageItems:itemList, nil];
@@ -329,6 +366,8 @@
 -(void)foucusImageFrame:(SGFocusImageFrame *)imageFrame didSelectItem:(SGFocusImageItem *)item{
     NSLog(@"%@", item.title);
 }
+
+//根据字符串反射到方法
 -(void)clickActionDelegate:(int)index{
     NSInteger *count = [self.bbList count];
     if(index >= count){
@@ -336,7 +375,6 @@
     }
     [[self.bbList objectAtIndex:index] clickAction:self];
 }
-
 
 - (void)dealloc {
     [_galleryView release];
