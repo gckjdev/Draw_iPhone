@@ -1328,6 +1328,7 @@ static PBChapter* defaultPBChapterInstance = nil;
 @property (retain) NSMutableArray* mutableChapterList;
 @property int32_t imageStyle;
 @property int32_t scoreEngine;
+@property Float64 difficulty;
 @end
 
 @implementation PBStage
@@ -1417,6 +1418,13 @@ static PBChapter* defaultPBChapterInstance = nil;
   hasScoreEngine_ = !!value;
 }
 @synthesize scoreEngine;
+- (BOOL) hasDifficulty {
+  return !!hasDifficulty_;
+}
+- (void) setHasDifficulty:(BOOL) value {
+  hasDifficulty_ = !!value;
+}
+@synthesize difficulty;
 - (void) dealloc {
   self.stageId = nil;
   self.cnName = nil;
@@ -1445,6 +1453,7 @@ static PBChapter* defaultPBChapterInstance = nil;
     self.dataUrl = @"";
     self.imageStyle = 0;
     self.scoreEngine = 0;
+    self.difficulty = 1;
   }
   return self;
 }
@@ -1518,6 +1527,9 @@ static PBStage* defaultPBStageInstance = nil;
   if (self.hasScoreEngine) {
     [output writeInt32:51 value:self.scoreEngine];
   }
+  if (self.hasDifficulty) {
+    [output writeDouble:52 value:self.difficulty];
+  }
   [self.unknownFields writeToCodedOutputStream:output];
 }
 - (int32_t) serializedSize {
@@ -1565,6 +1577,9 @@ static PBStage* defaultPBStageInstance = nil;
   }
   if (self.hasScoreEngine) {
     size += computeInt32Size(51, self.scoreEngine);
+  }
+  if (self.hasDifficulty) {
+    size += computeDoubleSize(52, self.difficulty);
   }
   size += self.unknownFields.serializedSize;
   memoizedSerializedSize = size;
@@ -1683,6 +1698,9 @@ static PBStage* defaultPBStageInstance = nil;
   if (other.hasScoreEngine) {
     [self setScoreEngine:other.scoreEngine];
   }
+  if (other.hasDifficulty) {
+    [self setDifficulty:other.difficulty];
+  }
   [self mergeUnknownFields:other.unknownFields];
   return self;
 }
@@ -1756,6 +1774,10 @@ static PBStage* defaultPBStageInstance = nil;
       }
       case 408: {
         [self setScoreEngine:[input readInt32]];
+        break;
+      }
+      case 417: {
+        [self setDifficulty:[input readDouble]];
         break;
       }
     }
@@ -1980,6 +2002,22 @@ static PBStage* defaultPBStageInstance = nil;
 - (PBStage_Builder*) clearScoreEngine {
   result.hasScoreEngine = NO;
   result.scoreEngine = 0;
+  return self;
+}
+- (BOOL) hasDifficulty {
+  return result.hasDifficulty;
+}
+- (Float64) difficulty {
+  return result.difficulty;
+}
+- (PBStage_Builder*) setDifficulty:(Float64) value {
+  result.hasDifficulty = YES;
+  result.difficulty = value;
+  return self;
+}
+- (PBStage_Builder*) clearDifficulty {
+  result.hasDifficulty = NO;
+  result.difficulty = 1;
   return self;
 }
 @end

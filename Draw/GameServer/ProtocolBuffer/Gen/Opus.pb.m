@@ -44,6 +44,8 @@ BOOL PBOpusTypeIsValidValue(PBOpusType value) {
     case PBOpusTypeTomato:
     case PBOpusTypeOnlyComment:
     case PBOpusTypeDrawContest:
+    case PBOpusTypeDrawPractice:
+    case PBOpusTypeDrawConquer:
     case PBOpusTypeSing:
     case PBOpusTypeSingToUser:
     case PBOpusTypeSingContest:

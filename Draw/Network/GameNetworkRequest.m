@@ -1578,6 +1578,7 @@
                          contestId:(NSString *)contestId
                               desc:(NSString *)desc
                              draft:(MyPaint *)draft
+                         userStage:(PBUserStage *)userStage
                       isCompressed:(BOOL)isCompressed
                   progressDelegate:(id)progressDelegate;
 {
@@ -1614,6 +1615,19 @@
         str = [str stringByAddQueryParameter:PARA_SPEND_TIME intValue:[draft.opusSpendTime intValue]];
         
         str = [str stringByAddQueryParameter:PARA_IS_DATA_COMPRESSED boolValue:isCompressed];
+        
+        if (userStage){
+            
+            str = [str stringByAddQueryParameter:PARA_TYPE intValue:PBOpusTypeDrawConquer];
+            str = [str stringByAddQueryParameter:PARA_TUTORIAL_ID value:userStage.tutorialId];
+            str = [str stringByAddQueryParameter:PARA_STAGE_ID value:userStage.stageId];
+            str = [str stringByAddQueryParameter:PARA_STAGE_INDEX intValue:userStage.stageIndex];
+            str = [str stringByAddQueryParameter:PARA_CHAPTER_INDEX intValue:userStage.currentChapterIndex];
+//            str = [str stringByAddQueryParameter:PARA_REMOTE_USER_TUTORIAL_ID value:desc];
+//            str = [str stringByAddQueryParameter:PARA_LOCAL_USER_TUTORIAL_ID value:desc];
+//            str = [str stringByAddQueryParameter:PARA_CHAPTER_OPUS_ID value:userStage.currnet];
+            str = [str stringByAddQueryParameter:PARA_STAGE_SCORE intValue:[draft.score intValue]];
+        }
         
         if ([targetUid length] != 0) {
             str = [str stringByAddQueryParameter:PARA_TARGETUSERID value:targetUid];            

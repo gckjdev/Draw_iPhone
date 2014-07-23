@@ -165,6 +165,8 @@ typedef enum {
   PBOpusTypeTomato = 7,
   PBOpusTypeOnlyComment = 8,
   PBOpusTypeDrawContest = 9,
+  PBOpusTypeDrawPractice = 10,
+  PBOpusTypeDrawConquer = 11,
   PBOpusTypeSing = 1000,
   PBOpusTypeSingToUser = 1001,
   PBOpusTypeSingContest = 1002,

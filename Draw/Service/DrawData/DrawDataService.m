@@ -23,6 +23,7 @@
 #import "UIImageExt.h"
 #import "FeedDownloadService.h"
 #import "DrawFeed.h"
+#import "Tutorial.pb.h"
 
 static DrawDataService* _defaultDrawDataService = nil;
 
@@ -312,10 +313,12 @@ static DrawDataService* _defaultDrawDataService = nil;
                                                            contestId:contestId
                                                                 desc:desc
                                                                draft:draft
+                                                           userStage:nil
                                                         isCompressed:isCompressed
                                                     progressDelegate:viewController];
         
         dispatch_async(dispatch_get_main_queue(), ^{
+            
             if ([viewController respondsToSelector:@selector(didCreateDraw:opusId:)]){
                 NSString* opusId = [output.jsonDataDict objectForKey:PARA_FEED_ID];
                 [viewController didCreateDraw: output.resultCode opusId:opusId];
@@ -339,6 +342,7 @@ static DrawDataService* _defaultDrawDataService = nil;
                      size:(CGSize)size
                    layers:(NSArray *)layers
                     draft:(MyPaint *)draft
+                   userStage:(PBUserStage*)userStage
                  delegate:(PPViewController<DrawDataServiceDelegate>*)viewController;
 {
 
@@ -394,13 +398,26 @@ static DrawDataService* _defaultDrawDataService = nil;
                                                            contestId:contestId
                                                                 desc:desc
                                                                draft:draft
+                                                           userStage:userStage
                                                         isCompressed:isCompressed
                                                     progressDelegate:viewController];
 
         dispatch_async(dispatch_get_main_queue(), ^{
             NSString *actionId = [output.jsonDataDict objectForKey:PARA_FEED_ID];
-            if ([viewController respondsToSelector:@selector(didCreateDraw:opusId:)]){
-                [viewController didCreateDraw: output.resultCode opusId:actionId];
+            int totalCount = [[output.jsonDataDict objectForKey:PARA_TOTAL_COUNT] intValue];
+            int defeatCount = [[output.jsonDataDict objectForKey:PARA_TOTAL_DEFEAT] intValue];
+            if (userStage){
+                if ([viewController respondsToSelector:@selector(didCreateLearnDraw:opusId:totalCount:defeatCount:)]){
+                    [viewController didCreateLearnDraw:output.resultCode
+                                                opusId:actionId
+                                            totalCount:totalCount
+                                           defeatCount:defeatCount];
+                }
+            }
+            else{
+                if ([viewController respondsToSelector:@selector(didCreateDraw:opusId:)]){
+                    [viewController didCreateDraw: output.resultCode opusId:actionId];
+                }
             }
         });
     });

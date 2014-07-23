@@ -49,6 +49,8 @@ enum PBOpusType{
 	TOMATO = 7;                         // align with ItemTypeTomato
     ONLY_COMMENT = 8;                   // TODO check what it is
     DRAW_CONTEST = 9;
+    DRAW_PRACTICE = 10;                 // 学画画修炼
+    DRAW_CONQUER = 11;                  // 学画画闯关
     
     SING = 1000;
     SING_TO_USER = 1001;

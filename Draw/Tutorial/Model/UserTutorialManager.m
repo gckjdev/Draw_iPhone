@@ -458,16 +458,16 @@ static UserTutorialManager* _defaultManager;
         return NO;
     }
     
-    PBUserTutorial* ut = [self findUserTutorialByTutorialId:userStage.tutorialId];
-    if (ut == nil){
+    PBTutorial* tutorial = [[TutorialCoreManager defaultManager] findTutorialByTutorialId:userStage.tutorialId];
+    if (tutorial == nil){
         PPDebug(@"<isLastStage> but tutorialId=%@ not found for user", userStage.tutorialId);
         return NO;
     }
     
-    PPDebug(@"<isLastStage> stageIndex=%d, user stage list count(%d)",
-            userStage.stageIndex, [ut.userStagesList count]);
+    PPDebug(@"<isLastStage> stageIndex=%d, tutorial stage list count(%d)",
+            userStage.stageIndex, [tutorial.stagesList count]);
 
-    if (userStage.stageIndex >= ([ut.userStagesList count] - 1)){
+    if (userStage.stageIndex >= ([tutorial.stagesList count] - 1)){
         return YES;
     }
     else{

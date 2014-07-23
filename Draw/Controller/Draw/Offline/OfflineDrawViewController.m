@@ -1098,6 +1098,22 @@
     [dialog showInView:self.view];
 }
 
+- (void)didCreateLearnDraw:(int)resultCode
+                    opusId:(NSString *)opusId
+                totalCount:(int)totalCount
+               defeatCount:(int)defeatCount
+{
+    [self hideActivity];
+    [self hideProgressView];
+
+    if (resultCode == 0){
+        [self showResultOptionForConquer:totalCount defeatCount:defeatCount];
+    }
+    else{
+        [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kSubmitFailure") delayTime:1.5 isSuccessful:NO];
+    }
+}
+
 - (void)didCreateDraw:(int)resultCode opusId:(NSString *)opusId
 {
     [self hideActivity];
@@ -1536,6 +1552,7 @@
                                                    size:drawView.bounds.size
                                                  layers:[[drawView.layers mutableCopy] autorelease]
                                                   draft:draft
+                                              userStage:nil
                                                delegate:self];
     
     if (self.submitOpusDrawData == nil){
@@ -1652,34 +1669,49 @@
     
     [self saveDraft:NO];
     
-    /*
-    NSData *drawData = [DrawAction buildPBDrawData:[[UserManager defaultManager] userId]
-                                              nick:[[UserManager defaultManager] nickName]
-                                            avatar:[[UserManager defaultManager] avatarURL]
-                                    drawActionList:drawView.drawActionList
-                                          drawWord:[self opusWord]
-                                          language:ChineseType
-                                              size:drawView.bounds.size
-                                      isCompressed:NO
-                                            layers:[[drawView.layers mutableCopy] autorelease]
-                                             draft:draft];
-    
-    self.submitOpusDrawData = drawData;
-    PPDebug(@"<handleSubmitForPractice> create draw data length=%d", [drawData length]);
+//    NSData *drawData = [DrawAction buildPBDrawData:[[UserManager defaultManager] userId]
+//                                              nick:[[UserManager defaultManager] nickName]
+//                                            avatar:[[UserManager defaultManager] avatarURL]
+//                                    drawActionList:drawView.drawActionList
+//                                          drawWord:[self opusWord]
+//                                          language:ChineseType
+//                                              size:drawView.bounds.size
+//                                      isCompressed:NO
+//                                            layers:[[drawView.layers mutableCopy] autorelease]
+//                                             draft:draft];
+//    
+//    self.submitOpusDrawData = drawData;
+//    PPDebug(@"<handleSubmitForPractice> create draw data length=%d", [drawData length]);
+//    
+//    if (self.submitOpusDrawData == nil){
+//        // clear image if create data failure
+//        self.submitOpusFinalImage = nil;
+//    }
+
+    if (targetType == TypeConquerDraw){
+        self.submitOpusDrawData = [[DrawDataService defaultService] createOfflineDraw:drawView.drawActionList
+                                                                                image:image
+                                                                             drawWord:[self opusWord]
+                                                                             language:ChineseType
+                                                                            targetUid:nil
+                                                                            contestId:nil
+                                                                                 desc:self.draft.opusDesc
+                                                                                 size:drawView.bounds.size
+                                                                               layers:[[drawView.layers mutableCopy] autorelease]
+                                                                                draft:draft
+                                                                            userStage:[self buildUserStage]
+                                                                             delegate:self];
+    }
     
     if (self.submitOpusDrawData == nil){
-        // clear image if create data failure
         self.submitOpusFinalImage = nil;
     }
-     */
+
     
     [self.designTime resume];
     self.submitButton.userInteractionEnabled = YES;
     
-    if (targetType == TypeConquerDraw){
-        [self showResultOptionForConquer];
-    }
-    else{
+    if (targetType == TypePracticeDraw){
         [self showResultOptionForPractice];
     }
     
@@ -1687,9 +1719,10 @@
     
 }
 
-- (void)showResultOptionForConquer
+- (void)showResultOptionForConquer:(int)totalCount defeatCount:(int)defeatCount
 {
     int score = [self.draft.score intValue];
+    int defeatPercent = ((defeatCount*1.0f) / (totalCount*1.0f)) * 100;
     
     // 根据评分结果跳转
     if ([self isPassPractice:score]){
@@ -1697,7 +1730,7 @@
         BOOL isTutorialComplete = [[UserTutorialManager defaultManager] isLastStage:[self buildUserStage]];
         if (isTutorialComplete){
             // 及格，最后一关
-            NSString* message = [NSString stringWithFormat:NSLS(@"kConquerPassWithComplete"), score];
+            NSString* message = [NSString stringWithFormat:NSLS(@"kConquerPassWithComplete"), score, defeatPercent];
             CommonDialog* dialog = [CommonDialog createDialogWithTitle:NSLS(@"kConquerResult")
                                                                message:message
                                                                  style:CommonDialogStyleSingleButton];
@@ -1711,7 +1744,7 @@
         }
         
         // 及格，提示闯下一关
-        NSString* message = [NSString stringWithFormat:NSLS(@"kConquerPass"), score];
+        NSString* message = [NSString stringWithFormat:NSLS(@"kConquerPass"), score, defeatPercent];
         CommonDialog* dialog = [CommonDialog createDialogWithTitle:NSLS(@"kConquerResult")
                                                            message:message
                                                              style:CommonDialogStyleDoubleButton];
@@ -1739,7 +1772,7 @@
     }
     else{
         // 闯关失败，建议再来一次
-        NSString* message = [NSString stringWithFormat:NSLS(@"kConquerFail"), score];
+        NSString* message = [NSString stringWithFormat:NSLS(@"kConquerFail"), score, defeatPercent];
         CommonDialog* dialog = [CommonDialog createDialogWithTitle:NSLS(@"kConquerResult")
                                                            message:message
                                                              style:CommonDialogStyleDoubleButton];

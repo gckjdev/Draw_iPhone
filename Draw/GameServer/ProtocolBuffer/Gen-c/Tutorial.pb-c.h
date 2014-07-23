@@ -114,10 +114,12 @@ struct  _Game__PBStage
   int32_t imagestyle;
   protobuf_c_boolean has_scoreengine;
   int32_t scoreengine;
+  protobuf_c_boolean has_difficulty;
+  double difficulty;
 };
 #define GAME__PBSTAGE__INIT \
  { PROTOBUF_C_MESSAGE_INIT (&game__pbstage__descriptor) \
-    , NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0,NULL, 0,0, 0,0 }
+    , NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0,NULL, 0,0, 0,0, 0,1 }
 
 
 struct  _Game__PBTutorial
