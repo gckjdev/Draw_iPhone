@@ -1405,7 +1405,7 @@ const ProtobufCMessageDescriptor game__pbuser_stage_opus__descriptor =
   (ProtobufCMessageInit) game__pbuser_stage_opus__init,
   NULL,NULL,NULL    /* reserved[123] */
 };
-static const ProtobufCFieldDescriptor game__pbuser_stage__field_descriptors[11] =
+static const ProtobufCFieldDescriptor game__pbuser_stage__field_descriptors[16] =
 {
   {
     "userId",
@@ -1450,42 +1450,6 @@ static const ProtobufCFieldDescriptor game__pbuser_stage__field_descriptors[11] 
     PROTOBUF_C_TYPE_INT32,
     PROTOBUF_C_OFFSETOF(Game__PBUserStage, has_stageindex),
     PROTOBUF_C_OFFSETOF(Game__PBUserStage, stageindex),
-    NULL,
-    NULL,
-    0,            /* packed */
-    0,NULL,NULL    /* reserved1,reserved2, etc */
-  },
-  {
-    "bestScore",
-    5,
-    PROTOBUF_C_LABEL_OPTIONAL,
-    PROTOBUF_C_TYPE_INT32,
-    PROTOBUF_C_OFFSETOF(Game__PBUserStage, has_bestscore),
-    PROTOBUF_C_OFFSETOF(Game__PBUserStage, bestscore),
-    NULL,
-    NULL,
-    0,            /* packed */
-    0,NULL,NULL    /* reserved1,reserved2, etc */
-  },
-  {
-    "bestScoreDate",
-    6,
-    PROTOBUF_C_LABEL_OPTIONAL,
-    PROTOBUF_C_TYPE_INT32,
-    PROTOBUF_C_OFFSETOF(Game__PBUserStage, has_bestscoredate),
-    PROTOBUF_C_OFFSETOF(Game__PBUserStage, bestscoredate),
-    NULL,
-    NULL,
-    0,            /* packed */
-    0,NULL,NULL    /* reserved1,reserved2, etc */
-  },
-  {
-    "lastScoreDate",
-    7,
-    PROTOBUF_C_LABEL_OPTIONAL,
-    PROTOBUF_C_TYPE_INT32,
-    PROTOBUF_C_OFFSETOF(Game__PBUserStage, has_lastscoredate),
-    PROTOBUF_C_OFFSETOF(Game__PBUserStage, lastscoredate),
     NULL,
     NULL,
     0,            /* packed */
@@ -1539,27 +1503,131 @@ static const ProtobufCFieldDescriptor game__pbuser_stage__field_descriptors[11] 
     0,            /* packed */
     0,NULL,NULL    /* reserved1,reserved2, etc */
   },
+  {
+    "bestOpusId",
+    50,
+    PROTOBUF_C_LABEL_OPTIONAL,
+    PROTOBUF_C_TYPE_STRING,
+    0,   /* quantifier_offset */
+    PROTOBUF_C_OFFSETOF(Game__PBUserStage, bestopusid),
+    NULL,
+    NULL,
+    0,            /* packed */
+    0,NULL,NULL    /* reserved1,reserved2, etc */
+  },
+  {
+    "bestScore",
+    51,
+    PROTOBUF_C_LABEL_OPTIONAL,
+    PROTOBUF_C_TYPE_INT32,
+    PROTOBUF_C_OFFSETOF(Game__PBUserStage, has_bestscore),
+    PROTOBUF_C_OFFSETOF(Game__PBUserStage, bestscore),
+    NULL,
+    NULL,
+    0,            /* packed */
+    0,NULL,NULL    /* reserved1,reserved2, etc */
+  },
+  {
+    "bestScoreDate",
+    52,
+    PROTOBUF_C_LABEL_OPTIONAL,
+    PROTOBUF_C_TYPE_INT32,
+    PROTOBUF_C_OFFSETOF(Game__PBUserStage, has_bestscoredate),
+    PROTOBUF_C_OFFSETOF(Game__PBUserStage, bestscoredate),
+    NULL,
+    NULL,
+    0,            /* packed */
+    0,NULL,NULL    /* reserved1,reserved2, etc */
+  },
+  {
+    "lastOpusId",
+    60,
+    PROTOBUF_C_LABEL_OPTIONAL,
+    PROTOBUF_C_TYPE_STRING,
+    0,   /* quantifier_offset */
+    PROTOBUF_C_OFFSETOF(Game__PBUserStage, lastopusid),
+    NULL,
+    NULL,
+    0,            /* packed */
+    0,NULL,NULL    /* reserved1,reserved2, etc */
+  },
+  {
+    "lastScore",
+    61,
+    PROTOBUF_C_LABEL_OPTIONAL,
+    PROTOBUF_C_TYPE_INT32,
+    PROTOBUF_C_OFFSETOF(Game__PBUserStage, has_lastscore),
+    PROTOBUF_C_OFFSETOF(Game__PBUserStage, lastscore),
+    NULL,
+    NULL,
+    0,            /* packed */
+    0,NULL,NULL    /* reserved1,reserved2, etc */
+  },
+  {
+    "lastScoreDate",
+    62,
+    PROTOBUF_C_LABEL_OPTIONAL,
+    PROTOBUF_C_TYPE_INT32,
+    PROTOBUF_C_OFFSETOF(Game__PBUserStage, has_lastscoredate),
+    PROTOBUF_C_OFFSETOF(Game__PBUserStage, lastscoredate),
+    NULL,
+    NULL,
+    0,            /* packed */
+    0,NULL,NULL    /* reserved1,reserved2, etc */
+  },
+  {
+    "totalCount",
+    63,
+    PROTOBUF_C_LABEL_OPTIONAL,
+    PROTOBUF_C_TYPE_INT32,
+    PROTOBUF_C_OFFSETOF(Game__PBUserStage, has_totalcount),
+    PROTOBUF_C_OFFSETOF(Game__PBUserStage, totalcount),
+    NULL,
+    NULL,
+    0,            /* packed */
+    0,NULL,NULL    /* reserved1,reserved2, etc */
+  },
+  {
+    "defeatCount",
+    64,
+    PROTOBUF_C_LABEL_OPTIONAL,
+    PROTOBUF_C_TYPE_INT32,
+    PROTOBUF_C_OFFSETOF(Game__PBUserStage, has_defeatcount),
+    PROTOBUF_C_OFFSETOF(Game__PBUserStage, defeatcount),
+    NULL,
+    NULL,
+    0,            /* packed */
+    0,NULL,NULL    /* reserved1,reserved2, etc */
+  },
 };
 static const unsigned game__pbuser_stage__field_indices_by_name[] = {
-  4,   /* field[4] = bestScore */
-  5,   /* field[5] = bestScoreDate */
-  10,   /* field[10] = conquerLocalOpusId */
-  8,   /* field[8] = currentChapterIndex */
-  6,   /* field[6] = lastScoreDate */
-  7,   /* field[7] = opus */
-  9,   /* field[9] = practiceLocalOpusId */
+  8,   /* field[8] = bestOpusId */
+  9,   /* field[9] = bestScore */
+  10,   /* field[10] = bestScoreDate */
+  7,   /* field[7] = conquerLocalOpusId */
+  5,   /* field[5] = currentChapterIndex */
+  15,   /* field[15] = defeatCount */
+  11,   /* field[11] = lastOpusId */
+  12,   /* field[12] = lastScore */
+  13,   /* field[13] = lastScoreDate */
+  4,   /* field[4] = opus */
+  6,   /* field[6] = practiceLocalOpusId */
   2,   /* field[2] = stageId */
   3,   /* field[3] = stageIndex */
+  14,   /* field[14] = totalCount */
   1,   /* field[1] = tutorialId */
   0,   /* field[0] = userId */
 };
-static const ProtobufCIntRange game__pbuser_stage__number_ranges[4 + 1] =
+static const ProtobufCIntRange game__pbuser_stage__number_ranges[7 + 1] =
 {
   { 1, 0 },
-  { 10, 8 },
-  { 20, 9 },
-  { 30, 10 },
-  { 0, 11 }
+  { 8, 4 },
+  { 10, 5 },
+  { 20, 6 },
+  { 30, 7 },
+  { 50, 8 },
+  { 60, 11 },
+  { 0, 16 }
 };
 const ProtobufCMessageDescriptor game__pbuser_stage__descriptor =
 {
@@ -1569,10 +1637,10 @@ const ProtobufCMessageDescriptor game__pbuser_stage__descriptor =
   "Game__PBUserStage",
   "game",
   sizeof(Game__PBUserStage),
-  11,
+  16,
   game__pbuser_stage__field_descriptors,
   game__pbuser_stage__field_indices_by_name,
-  4,  game__pbuser_stage__number_ranges,
+  7,  game__pbuser_stage__number_ranges,
   (ProtobufCMessageInit) game__pbuser_stage__init,
   NULL,NULL,NULL    /* reserved[123] */
 };

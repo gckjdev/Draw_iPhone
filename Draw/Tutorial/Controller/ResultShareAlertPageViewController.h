@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface ResultShareAlertPageViewController : UIViewController
+
 @property (retain, nonatomic) IBOutlet UIImageView *opusImageView;
 @property (retain, nonatomic) IBOutlet UIImageView *avatarImageView;
 @property (retain, nonatomic) IBOutlet UILabel *nameLabel;

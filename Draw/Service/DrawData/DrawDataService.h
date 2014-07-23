@@ -21,6 +21,7 @@
 @class PBDrawBg;
 @class MyPaint;
 @class PBUserStage;
+@class PBUserTutorial;
 
 @protocol  DrawDataServiceDelegate<NSObject>
 
@@ -32,8 +33,9 @@
 
 - (void)didCreateLearnDraw:(int)resultCode
                     opusId:(NSString *)opusId
-                totalCount:(int)totalCount
-               defeatCount:(int)defeatCount;
+                 userStage:(PBUserStage*)userStage
+              userTutorial:(PBUserTutorial*)userTutorial
+;
 
 - (void)didGuessOfflineDraw:(int)resultCode;
 
@@ -60,6 +62,7 @@
                    layers:(NSArray *)layers
                     draft:(MyPaint *)draft
                    userStage:(PBUserStage*)userStage
+                userTutorial:(PBUserTutorial*)userTutorial
                  delegate:(PPViewController<DrawDataServiceDelegate>*)viewController;
 
 - (void)matchDraw:(PPViewController<DrawDataServiceDelegate>*)viewController;

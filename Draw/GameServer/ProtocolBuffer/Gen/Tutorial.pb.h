@@ -1009,47 +1009,67 @@ BOOL PBUserTutorialStatusIsValidValue(PBUserTutorialStatus value);
 @interface PBUserStage : PBGeneratedMessage {
 @private
   BOOL hasStageIndex_:1;
+  BOOL hasCurrentChapterIndex_:1;
   BOOL hasBestScore_:1;
   BOOL hasBestScoreDate_:1;
+  BOOL hasLastScore_:1;
   BOOL hasLastScoreDate_:1;
-  BOOL hasCurrentChapterIndex_:1;
+  BOOL hasTotalCount_:1;
+  BOOL hasDefeatCount_:1;
   BOOL hasUserId_:1;
   BOOL hasTutorialId_:1;
   BOOL hasStageId_:1;
   BOOL hasPracticeLocalOpusId_:1;
   BOOL hasConquerLocalOpusId_:1;
+  BOOL hasBestOpusId_:1;
+  BOOL hasLastOpusId_:1;
   int32_t stageIndex;
+  int32_t currentChapterIndex;
   int32_t bestScore;
   int32_t bestScoreDate;
+  int32_t lastScore;
   int32_t lastScoreDate;
-  int32_t currentChapterIndex;
+  int32_t totalCount;
+  int32_t defeatCount;
   NSString* userId;
   NSString* tutorialId;
   NSString* stageId;
   NSString* practiceLocalOpusId;
   NSString* conquerLocalOpusId;
+  NSString* bestOpusId;
+  NSString* lastOpusId;
   NSMutableArray* mutableOpusList;
 }
 - (BOOL) hasUserId;
 - (BOOL) hasTutorialId;
 - (BOOL) hasStageId;
 - (BOOL) hasStageIndex;
-- (BOOL) hasBestScore;
-- (BOOL) hasBestScoreDate;
-- (BOOL) hasLastScoreDate;
 - (BOOL) hasCurrentChapterIndex;
 - (BOOL) hasPracticeLocalOpusId;
 - (BOOL) hasConquerLocalOpusId;
+- (BOOL) hasBestOpusId;
+- (BOOL) hasBestScore;
+- (BOOL) hasBestScoreDate;
+- (BOOL) hasLastOpusId;
+- (BOOL) hasLastScore;
+- (BOOL) hasLastScoreDate;
+- (BOOL) hasTotalCount;
+- (BOOL) hasDefeatCount;
 @property (readonly, retain) NSString* userId;
 @property (readonly, retain) NSString* tutorialId;
 @property (readonly, retain) NSString* stageId;
 @property (readonly) int32_t stageIndex;
-@property (readonly) int32_t bestScore;
-@property (readonly) int32_t bestScoreDate;
-@property (readonly) int32_t lastScoreDate;
 @property (readonly) int32_t currentChapterIndex;
 @property (readonly, retain) NSString* practiceLocalOpusId;
 @property (readonly, retain) NSString* conquerLocalOpusId;
+@property (readonly, retain) NSString* bestOpusId;
+@property (readonly) int32_t bestScore;
+@property (readonly) int32_t bestScoreDate;
+@property (readonly, retain) NSString* lastOpusId;
+@property (readonly) int32_t lastScore;
+@property (readonly) int32_t lastScoreDate;
+@property (readonly) int32_t totalCount;
+@property (readonly) int32_t defeatCount;
 - (NSArray*) opusList;
 - (PBUserStageOpus*) opusAtIndex:(int32_t) index;
 
@@ -1107,21 +1127,6 @@ BOOL PBUserTutorialStatusIsValidValue(PBUserTutorialStatus value);
 - (PBUserStage_Builder*) setStageIndex:(int32_t) value;
 - (PBUserStage_Builder*) clearStageIndex;
 
-- (BOOL) hasBestScore;
-- (int32_t) bestScore;
-- (PBUserStage_Builder*) setBestScore:(int32_t) value;
-- (PBUserStage_Builder*) clearBestScore;
-
-- (BOOL) hasBestScoreDate;
-- (int32_t) bestScoreDate;
-- (PBUserStage_Builder*) setBestScoreDate:(int32_t) value;
-- (PBUserStage_Builder*) clearBestScoreDate;
-
-- (BOOL) hasLastScoreDate;
-- (int32_t) lastScoreDate;
-- (PBUserStage_Builder*) setLastScoreDate:(int32_t) value;
-- (PBUserStage_Builder*) clearLastScoreDate;
-
 - (NSArray*) opusList;
 - (PBUserStageOpus*) opusAtIndex:(int32_t) index;
 - (PBUserStage_Builder*) replaceOpusAtIndex:(int32_t) index with:(PBUserStageOpus*) value;
@@ -1143,6 +1148,46 @@ BOOL PBUserTutorialStatusIsValidValue(PBUserTutorialStatus value);
 - (NSString*) conquerLocalOpusId;
 - (PBUserStage_Builder*) setConquerLocalOpusId:(NSString*) value;
 - (PBUserStage_Builder*) clearConquerLocalOpusId;
+
+- (BOOL) hasBestOpusId;
+- (NSString*) bestOpusId;
+- (PBUserStage_Builder*) setBestOpusId:(NSString*) value;
+- (PBUserStage_Builder*) clearBestOpusId;
+
+- (BOOL) hasBestScore;
+- (int32_t) bestScore;
+- (PBUserStage_Builder*) setBestScore:(int32_t) value;
+- (PBUserStage_Builder*) clearBestScore;
+
+- (BOOL) hasBestScoreDate;
+- (int32_t) bestScoreDate;
+- (PBUserStage_Builder*) setBestScoreDate:(int32_t) value;
+- (PBUserStage_Builder*) clearBestScoreDate;
+
+- (BOOL) hasLastOpusId;
+- (NSString*) lastOpusId;
+- (PBUserStage_Builder*) setLastOpusId:(NSString*) value;
+- (PBUserStage_Builder*) clearLastOpusId;
+
+- (BOOL) hasLastScore;
+- (int32_t) lastScore;
+- (PBUserStage_Builder*) setLastScore:(int32_t) value;
+- (PBUserStage_Builder*) clearLastScore;
+
+- (BOOL) hasLastScoreDate;
+- (int32_t) lastScoreDate;
+- (PBUserStage_Builder*) setLastScoreDate:(int32_t) value;
+- (PBUserStage_Builder*) clearLastScoreDate;
+
+- (BOOL) hasTotalCount;
+- (int32_t) totalCount;
+- (PBUserStage_Builder*) setTotalCount:(int32_t) value;
+- (PBUserStage_Builder*) clearTotalCount;
+
+- (BOOL) hasDefeatCount;
+- (int32_t) defeatCount;
+- (PBUserStage_Builder*) setDefeatCount:(int32_t) value;
+- (PBUserStage_Builder*) clearDefeatCount;
 @end
 
 @interface PBUserTutorial : PBGeneratedMessage {

@@ -1579,6 +1579,7 @@
                               desc:(NSString *)desc
                              draft:(MyPaint *)draft
                          userStage:(PBUserStage *)userStage
+                      userTutorial:(PBUserTutorial *)userTutorial
                       isCompressed:(BOOL)isCompressed
                   progressDelegate:(id)progressDelegate;
 {
@@ -1623,8 +1624,8 @@
             str = [str stringByAddQueryParameter:PARA_STAGE_ID value:userStage.stageId];
             str = [str stringByAddQueryParameter:PARA_STAGE_INDEX intValue:userStage.stageIndex];
             str = [str stringByAddQueryParameter:PARA_CHAPTER_INDEX intValue:userStage.currentChapterIndex];
-//            str = [str stringByAddQueryParameter:PARA_REMOTE_USER_TUTORIAL_ID value:desc];
-//            str = [str stringByAddQueryParameter:PARA_LOCAL_USER_TUTORIAL_ID value:desc];
+            str = [str stringByAddQueryParameter:PARA_REMOTE_USER_TUTORIAL_ID value:userTutorial.remoteId];
+            str = [str stringByAddQueryParameter:PARA_LOCAL_USER_TUTORIAL_ID value:userTutorial.localId];
 //            str = [str stringByAddQueryParameter:PARA_CHAPTER_OPUS_ID value:userStage.currnet];
             str = [str stringByAddQueryParameter:PARA_STAGE_SCORE intValue:[draft.score intValue]];
         }
@@ -1640,7 +1641,11 @@
         // add device model
         NSString* deviceModel = [DeviceDetection platform];
         str = [str stringByAddQueryParameter:PARA_DEVICEMODEL value:deviceModel];
-        
+
+        // add device model
+        NSString* deviceOs = [DeviceDetection deviceOS];
+        str = [str stringByAddQueryParameter:PARA_DEVICEOS value:deviceOs];
+
         if ([draft.selectedClassList count] > 0){
             NSString* classListString = [FeedService opusClassStringList:draft.selectedClassList];
             str = [str stringByAddQueryParameter:PARA_CLASS value:classListString];

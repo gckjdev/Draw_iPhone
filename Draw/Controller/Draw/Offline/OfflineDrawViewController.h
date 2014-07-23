@@ -29,6 +29,7 @@
 @class OfflineDrawViewController;
 @class OpusDesignTime;
 @class PBUserStage;
+@class PBUserTutorial;
 
 @protocol OfflineDrawDelegate <NSObject>
 
@@ -94,7 +95,12 @@
                                    photo:(UIImage *)photo;
 
 + (OfflineDrawViewController*)practice:(UIViewController*)startController
-                             userStage:(PBUserStage*)userStage;
+                             userStage:(PBUserStage*)userStage
+                          userTutorial:(PBUserTutorial*)userTutorial;
+
++ (OfflineDrawViewController*)conquer:(UIViewController*)startController
+                            userStage:(PBUserStage*)userStage
+                         userTutorial:(PBUserTutorial*)userTutorial;
 
 - (id)initWithTargetType:(TargetType)aTargetType
                 delegate:(id<OfflineDrawDelegate>)aDelegate

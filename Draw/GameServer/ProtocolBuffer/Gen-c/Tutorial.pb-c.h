@@ -203,22 +203,30 @@ struct  _Game__PBUserStage
   char *stageid;
   protobuf_c_boolean has_stageindex;
   int32_t stageindex;
-  protobuf_c_boolean has_bestscore;
-  int32_t bestscore;
-  protobuf_c_boolean has_bestscoredate;
-  int32_t bestscoredate;
-  protobuf_c_boolean has_lastscoredate;
-  int32_t lastscoredate;
   size_t n_opus;
   Game__PBUserStageOpus **opus;
   protobuf_c_boolean has_currentchapterindex;
   int32_t currentchapterindex;
   char *practicelocalopusid;
   char *conquerlocalopusid;
+  char *bestopusid;
+  protobuf_c_boolean has_bestscore;
+  int32_t bestscore;
+  protobuf_c_boolean has_bestscoredate;
+  int32_t bestscoredate;
+  char *lastopusid;
+  protobuf_c_boolean has_lastscore;
+  int32_t lastscore;
+  protobuf_c_boolean has_lastscoredate;
+  int32_t lastscoredate;
+  protobuf_c_boolean has_totalcount;
+  int32_t totalcount;
+  protobuf_c_boolean has_defeatcount;
+  int32_t defeatcount;
 };
 #define GAME__PBUSER_STAGE__INIT \
  { PROTOBUF_C_MESSAGE_INIT (&game__pbuser_stage__descriptor) \
-    , NULL, NULL, NULL, 0,0, 0,0, 0,0, 0,0, 0,NULL, 0,0, NULL, NULL }
+    , NULL, NULL, NULL, 0,0, 0,NULL, 0,0, NULL, NULL, NULL, 0,0, 0,0, NULL, 0,0, 0,0, 0,0, 0,0 }
 
 
 struct  _Game__PBUserTutorial

@@ -3715,13 +3715,18 @@ static PBUserStageOpus* defaultPBUserStageOpusInstance = nil;
 @property (retain) NSString* tutorialId;
 @property (retain) NSString* stageId;
 @property int32_t stageIndex;
-@property int32_t bestScore;
-@property int32_t bestScoreDate;
-@property int32_t lastScoreDate;
 @property (retain) NSMutableArray* mutableOpusList;
 @property int32_t currentChapterIndex;
 @property (retain) NSString* practiceLocalOpusId;
 @property (retain) NSString* conquerLocalOpusId;
+@property (retain) NSString* bestOpusId;
+@property int32_t bestScore;
+@property int32_t bestScoreDate;
+@property (retain) NSString* lastOpusId;
+@property int32_t lastScore;
+@property int32_t lastScoreDate;
+@property int32_t totalCount;
+@property int32_t defeatCount;
 @end
 
 @implementation PBUserStage
@@ -3754,27 +3759,6 @@ static PBUserStageOpus* defaultPBUserStageOpusInstance = nil;
   hasStageIndex_ = !!value;
 }
 @synthesize stageIndex;
-- (BOOL) hasBestScore {
-  return !!hasBestScore_;
-}
-- (void) setHasBestScore:(BOOL) value {
-  hasBestScore_ = !!value;
-}
-@synthesize bestScore;
-- (BOOL) hasBestScoreDate {
-  return !!hasBestScoreDate_;
-}
-- (void) setHasBestScoreDate:(BOOL) value {
-  hasBestScoreDate_ = !!value;
-}
-@synthesize bestScoreDate;
-- (BOOL) hasLastScoreDate {
-  return !!hasLastScoreDate_;
-}
-- (void) setHasLastScoreDate:(BOOL) value {
-  hasLastScoreDate_ = !!value;
-}
-@synthesize lastScoreDate;
 @synthesize mutableOpusList;
 - (BOOL) hasCurrentChapterIndex {
   return !!hasCurrentChapterIndex_;
@@ -3797,6 +3781,62 @@ static PBUserStageOpus* defaultPBUserStageOpusInstance = nil;
   hasConquerLocalOpusId_ = !!value;
 }
 @synthesize conquerLocalOpusId;
+- (BOOL) hasBestOpusId {
+  return !!hasBestOpusId_;
+}
+- (void) setHasBestOpusId:(BOOL) value {
+  hasBestOpusId_ = !!value;
+}
+@synthesize bestOpusId;
+- (BOOL) hasBestScore {
+  return !!hasBestScore_;
+}
+- (void) setHasBestScore:(BOOL) value {
+  hasBestScore_ = !!value;
+}
+@synthesize bestScore;
+- (BOOL) hasBestScoreDate {
+  return !!hasBestScoreDate_;
+}
+- (void) setHasBestScoreDate:(BOOL) value {
+  hasBestScoreDate_ = !!value;
+}
+@synthesize bestScoreDate;
+- (BOOL) hasLastOpusId {
+  return !!hasLastOpusId_;
+}
+- (void) setHasLastOpusId:(BOOL) value {
+  hasLastOpusId_ = !!value;
+}
+@synthesize lastOpusId;
+- (BOOL) hasLastScore {
+  return !!hasLastScore_;
+}
+- (void) setHasLastScore:(BOOL) value {
+  hasLastScore_ = !!value;
+}
+@synthesize lastScore;
+- (BOOL) hasLastScoreDate {
+  return !!hasLastScoreDate_;
+}
+- (void) setHasLastScoreDate:(BOOL) value {
+  hasLastScoreDate_ = !!value;
+}
+@synthesize lastScoreDate;
+- (BOOL) hasTotalCount {
+  return !!hasTotalCount_;
+}
+- (void) setHasTotalCount:(BOOL) value {
+  hasTotalCount_ = !!value;
+}
+@synthesize totalCount;
+- (BOOL) hasDefeatCount {
+  return !!hasDefeatCount_;
+}
+- (void) setHasDefeatCount:(BOOL) value {
+  hasDefeatCount_ = !!value;
+}
+@synthesize defeatCount;
 - (void) dealloc {
   self.userId = nil;
   self.tutorialId = nil;
@@ -3804,6 +3844,8 @@ static PBUserStageOpus* defaultPBUserStageOpusInstance = nil;
   self.mutableOpusList = nil;
   self.practiceLocalOpusId = nil;
   self.conquerLocalOpusId = nil;
+  self.bestOpusId = nil;
+  self.lastOpusId = nil;
   [super dealloc];
 }
 - (id) init {
@@ -3812,12 +3854,17 @@ static PBUserStageOpus* defaultPBUserStageOpusInstance = nil;
     self.tutorialId = @"";
     self.stageId = @"";
     self.stageIndex = 0;
-    self.bestScore = 0;
-    self.bestScoreDate = 0;
-    self.lastScoreDate = 0;
     self.currentChapterIndex = 0;
     self.practiceLocalOpusId = @"";
     self.conquerLocalOpusId = @"";
+    self.bestOpusId = @"";
+    self.bestScore = 0;
+    self.bestScoreDate = 0;
+    self.lastOpusId = @"";
+    self.lastScore = 0;
+    self.lastScoreDate = 0;
+    self.totalCount = 0;
+    self.defeatCount = 0;
   }
   return self;
 }
@@ -3870,15 +3917,6 @@ static PBUserStage* defaultPBUserStageInstance = nil;
   if (self.hasStageIndex) {
     [output writeInt32:4 value:self.stageIndex];
   }
-  if (self.hasBestScore) {
-    [output writeInt32:5 value:self.bestScore];
-  }
-  if (self.hasBestScoreDate) {
-    [output writeInt32:6 value:self.bestScoreDate];
-  }
-  if (self.hasLastScoreDate) {
-    [output writeInt32:7 value:self.lastScoreDate];
-  }
   for (PBUserStageOpus* element in self.opusList) {
     [output writeMessage:8 value:element];
   }
@@ -3890,6 +3928,30 @@ static PBUserStage* defaultPBUserStageInstance = nil;
   }
   if (self.hasConquerLocalOpusId) {
     [output writeString:30 value:self.conquerLocalOpusId];
+  }
+  if (self.hasBestOpusId) {
+    [output writeString:50 value:self.bestOpusId];
+  }
+  if (self.hasBestScore) {
+    [output writeInt32:51 value:self.bestScore];
+  }
+  if (self.hasBestScoreDate) {
+    [output writeInt32:52 value:self.bestScoreDate];
+  }
+  if (self.hasLastOpusId) {
+    [output writeString:60 value:self.lastOpusId];
+  }
+  if (self.hasLastScore) {
+    [output writeInt32:61 value:self.lastScore];
+  }
+  if (self.hasLastScoreDate) {
+    [output writeInt32:62 value:self.lastScoreDate];
+  }
+  if (self.hasTotalCount) {
+    [output writeInt32:63 value:self.totalCount];
+  }
+  if (self.hasDefeatCount) {
+    [output writeInt32:64 value:self.defeatCount];
   }
   [self.unknownFields writeToCodedOutputStream:output];
 }
@@ -3912,15 +3974,6 @@ static PBUserStage* defaultPBUserStageInstance = nil;
   if (self.hasStageIndex) {
     size += computeInt32Size(4, self.stageIndex);
   }
-  if (self.hasBestScore) {
-    size += computeInt32Size(5, self.bestScore);
-  }
-  if (self.hasBestScoreDate) {
-    size += computeInt32Size(6, self.bestScoreDate);
-  }
-  if (self.hasLastScoreDate) {
-    size += computeInt32Size(7, self.lastScoreDate);
-  }
   for (PBUserStageOpus* element in self.opusList) {
     size += computeMessageSize(8, element);
   }
@@ -3932,6 +3985,30 @@ static PBUserStage* defaultPBUserStageInstance = nil;
   }
   if (self.hasConquerLocalOpusId) {
     size += computeStringSize(30, self.conquerLocalOpusId);
+  }
+  if (self.hasBestOpusId) {
+    size += computeStringSize(50, self.bestOpusId);
+  }
+  if (self.hasBestScore) {
+    size += computeInt32Size(51, self.bestScore);
+  }
+  if (self.hasBestScoreDate) {
+    size += computeInt32Size(52, self.bestScoreDate);
+  }
+  if (self.hasLastOpusId) {
+    size += computeStringSize(60, self.lastOpusId);
+  }
+  if (self.hasLastScore) {
+    size += computeInt32Size(61, self.lastScore);
+  }
+  if (self.hasLastScoreDate) {
+    size += computeInt32Size(62, self.lastScoreDate);
+  }
+  if (self.hasTotalCount) {
+    size += computeInt32Size(63, self.totalCount);
+  }
+  if (self.hasDefeatCount) {
+    size += computeInt32Size(64, self.defeatCount);
   }
   size += self.unknownFields.serializedSize;
   memoizedSerializedSize = size;
@@ -4020,15 +4097,6 @@ static PBUserStage* defaultPBUserStageInstance = nil;
   if (other.hasStageIndex) {
     [self setStageIndex:other.stageIndex];
   }
-  if (other.hasBestScore) {
-    [self setBestScore:other.bestScore];
-  }
-  if (other.hasBestScoreDate) {
-    [self setBestScoreDate:other.bestScoreDate];
-  }
-  if (other.hasLastScoreDate) {
-    [self setLastScoreDate:other.lastScoreDate];
-  }
   if (other.mutableOpusList.count > 0) {
     if (result.mutableOpusList == nil) {
       result.mutableOpusList = [NSMutableArray array];
@@ -4043,6 +4111,30 @@ static PBUserStage* defaultPBUserStageInstance = nil;
   }
   if (other.hasConquerLocalOpusId) {
     [self setConquerLocalOpusId:other.conquerLocalOpusId];
+  }
+  if (other.hasBestOpusId) {
+    [self setBestOpusId:other.bestOpusId];
+  }
+  if (other.hasBestScore) {
+    [self setBestScore:other.bestScore];
+  }
+  if (other.hasBestScoreDate) {
+    [self setBestScoreDate:other.bestScoreDate];
+  }
+  if (other.hasLastOpusId) {
+    [self setLastOpusId:other.lastOpusId];
+  }
+  if (other.hasLastScore) {
+    [self setLastScore:other.lastScore];
+  }
+  if (other.hasLastScoreDate) {
+    [self setLastScoreDate:other.lastScoreDate];
+  }
+  if (other.hasTotalCount) {
+    [self setTotalCount:other.totalCount];
+  }
+  if (other.hasDefeatCount) {
+    [self setDefeatCount:other.defeatCount];
   }
   [self mergeUnknownFields:other.unknownFields];
   return self;
@@ -4081,18 +4173,6 @@ static PBUserStage* defaultPBUserStageInstance = nil;
         [self setStageIndex:[input readInt32]];
         break;
       }
-      case 40: {
-        [self setBestScore:[input readInt32]];
-        break;
-      }
-      case 48: {
-        [self setBestScoreDate:[input readInt32]];
-        break;
-      }
-      case 56: {
-        [self setLastScoreDate:[input readInt32]];
-        break;
-      }
       case 66: {
         PBUserStageOpus_Builder* subBuilder = [PBUserStageOpus builder];
         [input readMessage:subBuilder extensionRegistry:extensionRegistry];
@@ -4109,6 +4189,38 @@ static PBUserStage* defaultPBUserStageInstance = nil;
       }
       case 242: {
         [self setConquerLocalOpusId:[input readString]];
+        break;
+      }
+      case 402: {
+        [self setBestOpusId:[input readString]];
+        break;
+      }
+      case 408: {
+        [self setBestScore:[input readInt32]];
+        break;
+      }
+      case 416: {
+        [self setBestScoreDate:[input readInt32]];
+        break;
+      }
+      case 482: {
+        [self setLastOpusId:[input readString]];
+        break;
+      }
+      case 488: {
+        [self setLastScore:[input readInt32]];
+        break;
+      }
+      case 496: {
+        [self setLastScoreDate:[input readInt32]];
+        break;
+      }
+      case 504: {
+        [self setTotalCount:[input readInt32]];
+        break;
+      }
+      case 512: {
+        [self setDefeatCount:[input readInt32]];
         break;
       }
     }
@@ -4176,54 +4288,6 @@ static PBUserStage* defaultPBUserStageInstance = nil;
 - (PBUserStage_Builder*) clearStageIndex {
   result.hasStageIndex = NO;
   result.stageIndex = 0;
-  return self;
-}
-- (BOOL) hasBestScore {
-  return result.hasBestScore;
-}
-- (int32_t) bestScore {
-  return result.bestScore;
-}
-- (PBUserStage_Builder*) setBestScore:(int32_t) value {
-  result.hasBestScore = YES;
-  result.bestScore = value;
-  return self;
-}
-- (PBUserStage_Builder*) clearBestScore {
-  result.hasBestScore = NO;
-  result.bestScore = 0;
-  return self;
-}
-- (BOOL) hasBestScoreDate {
-  return result.hasBestScoreDate;
-}
-- (int32_t) bestScoreDate {
-  return result.bestScoreDate;
-}
-- (PBUserStage_Builder*) setBestScoreDate:(int32_t) value {
-  result.hasBestScoreDate = YES;
-  result.bestScoreDate = value;
-  return self;
-}
-- (PBUserStage_Builder*) clearBestScoreDate {
-  result.hasBestScoreDate = NO;
-  result.bestScoreDate = 0;
-  return self;
-}
-- (BOOL) hasLastScoreDate {
-  return result.hasLastScoreDate;
-}
-- (int32_t) lastScoreDate {
-  return result.lastScoreDate;
-}
-- (PBUserStage_Builder*) setLastScoreDate:(int32_t) value {
-  result.hasLastScoreDate = YES;
-  result.lastScoreDate = value;
-  return self;
-}
-- (PBUserStage_Builder*) clearLastScoreDate {
-  result.hasLastScoreDate = NO;
-  result.lastScoreDate = 0;
   return self;
 }
 - (NSArray*) opusList {
@@ -4301,6 +4365,134 @@ static PBUserStage* defaultPBUserStageInstance = nil;
 - (PBUserStage_Builder*) clearConquerLocalOpusId {
   result.hasConquerLocalOpusId = NO;
   result.conquerLocalOpusId = @"";
+  return self;
+}
+- (BOOL) hasBestOpusId {
+  return result.hasBestOpusId;
+}
+- (NSString*) bestOpusId {
+  return result.bestOpusId;
+}
+- (PBUserStage_Builder*) setBestOpusId:(NSString*) value {
+  result.hasBestOpusId = YES;
+  result.bestOpusId = value;
+  return self;
+}
+- (PBUserStage_Builder*) clearBestOpusId {
+  result.hasBestOpusId = NO;
+  result.bestOpusId = @"";
+  return self;
+}
+- (BOOL) hasBestScore {
+  return result.hasBestScore;
+}
+- (int32_t) bestScore {
+  return result.bestScore;
+}
+- (PBUserStage_Builder*) setBestScore:(int32_t) value {
+  result.hasBestScore = YES;
+  result.bestScore = value;
+  return self;
+}
+- (PBUserStage_Builder*) clearBestScore {
+  result.hasBestScore = NO;
+  result.bestScore = 0;
+  return self;
+}
+- (BOOL) hasBestScoreDate {
+  return result.hasBestScoreDate;
+}
+- (int32_t) bestScoreDate {
+  return result.bestScoreDate;
+}
+- (PBUserStage_Builder*) setBestScoreDate:(int32_t) value {
+  result.hasBestScoreDate = YES;
+  result.bestScoreDate = value;
+  return self;
+}
+- (PBUserStage_Builder*) clearBestScoreDate {
+  result.hasBestScoreDate = NO;
+  result.bestScoreDate = 0;
+  return self;
+}
+- (BOOL) hasLastOpusId {
+  return result.hasLastOpusId;
+}
+- (NSString*) lastOpusId {
+  return result.lastOpusId;
+}
+- (PBUserStage_Builder*) setLastOpusId:(NSString*) value {
+  result.hasLastOpusId = YES;
+  result.lastOpusId = value;
+  return self;
+}
+- (PBUserStage_Builder*) clearLastOpusId {
+  result.hasLastOpusId = NO;
+  result.lastOpusId = @"";
+  return self;
+}
+- (BOOL) hasLastScore {
+  return result.hasLastScore;
+}
+- (int32_t) lastScore {
+  return result.lastScore;
+}
+- (PBUserStage_Builder*) setLastScore:(int32_t) value {
+  result.hasLastScore = YES;
+  result.lastScore = value;
+  return self;
+}
+- (PBUserStage_Builder*) clearLastScore {
+  result.hasLastScore = NO;
+  result.lastScore = 0;
+  return self;
+}
+- (BOOL) hasLastScoreDate {
+  return result.hasLastScoreDate;
+}
+- (int32_t) lastScoreDate {
+  return result.lastScoreDate;
+}
+- (PBUserStage_Builder*) setLastScoreDate:(int32_t) value {
+  result.hasLastScoreDate = YES;
+  result.lastScoreDate = value;
+  return self;
+}
+- (PBUserStage_Builder*) clearLastScoreDate {
+  result.hasLastScoreDate = NO;
+  result.lastScoreDate = 0;
+  return self;
+}
+- (BOOL) hasTotalCount {
+  return result.hasTotalCount;
+}
+- (int32_t) totalCount {
+  return result.totalCount;
+}
+- (PBUserStage_Builder*) setTotalCount:(int32_t) value {
+  result.hasTotalCount = YES;
+  result.totalCount = value;
+  return self;
+}
+- (PBUserStage_Builder*) clearTotalCount {
+  result.hasTotalCount = NO;
+  result.totalCount = 0;
+  return self;
+}
+- (BOOL) hasDefeatCount {
+  return result.hasDefeatCount;
+}
+- (int32_t) defeatCount {
+  return result.defeatCount;
+}
+- (PBUserStage_Builder*) setDefeatCount:(int32_t) value {
+  result.hasDefeatCount = YES;
+  result.defeatCount = value;
+  return self;
+}
+- (PBUserStage_Builder*) clearDefeatCount {
+  result.hasDefeatCount = NO;
+  result.defeatCount = 0;
   return self;
 }
 @end

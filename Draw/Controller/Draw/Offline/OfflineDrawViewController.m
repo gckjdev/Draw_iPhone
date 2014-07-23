@@ -81,6 +81,7 @@
 #import "UserTutorialManager.h"
 #import "OpenCVUtils.h"
 #import "ImageSimilarityEngine.h"
+#import "PBTutorial+Extend.h"
 
 @interface OfflineDrawViewController()
 {
@@ -229,6 +230,7 @@
 
 + (OfflineDrawViewController*)practice:(UIViewController*)startController
                              userStage:(PBUserStage*)userStage
+                          userTutorial:(PBUserTutorial*)userTutorial
 {
     UIImage* image = nil; // TODO , read from PBUserStage
     
@@ -265,6 +267,10 @@
         [vc.userStageBuilder setPracticeLocalOpusId:vc.draft.draftId];
     }
     
+    if (userTutorial){
+        vc.userTutorialBuilder = [PBUserTutorial builderWithPrototype:userTutorial];
+    }
+    
     [startController.navigationController pushViewController:vc animated:YES];
     PPDebug(@"<StartDraw>: practice");
     return [vc autorelease];
@@ -272,6 +278,7 @@
 
 + (OfflineDrawViewController*)conquer:(UIViewController*)startController
                             userStage:(PBUserStage*)userStage
+                         userTutorial:(PBUserTutorial*)userTutorial
 {
     UIImage* image = nil; // TODO , read from PBUserStage
     
@@ -306,6 +313,10 @@
     if (userStage){
         vc.userStageBuilder = [PBUserStage builderWithPrototype:userStage];
         [vc.userStageBuilder setConquerLocalOpusId:vc.draft.draftId];
+    }
+    
+    if (userTutorial){
+        vc.userTutorialBuilder = [PBUserTutorial builderWithPrototype:userTutorial];
     }
     
     [startController.navigationController pushViewController:vc animated:YES];
@@ -1100,14 +1111,24 @@
 
 - (void)didCreateLearnDraw:(int)resultCode
                     opusId:(NSString *)opusId
-                totalCount:(int)totalCount
-               defeatCount:(int)defeatCount
+                 userStage:(PBUserStage*)userStage
+              userTutorial:(PBUserTutorial*)userTutorial
 {
     [self hideActivity];
     [self hideProgressView];
 
+    
     if (resultCode == 0){
-        [self showResultOptionForConquer:totalCount defeatCount:defeatCount];
+
+        if (userStage){
+            self.userStageBuilder = [PBUserStage builderWithPrototype:userStage];
+        }
+        
+        if (userTutorial){
+            self.userTutorialBuilder = [PBUserTutorial builderWithPrototype:userTutorial];
+        }
+        
+        [self showResultOptionForConquer];
     }
     else{
         [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kSubmitFailure") delayTime:1.5 isSuccessful:NO];
@@ -1299,6 +1320,16 @@
     }
     
     return userStage;
+}
+
+- (PBUserTutorial*)buildUserTutorial
+{
+    PBUserTutorial* ut = [self.userTutorialBuilder build];
+    if (ut){
+        self.userTutorialBuilder = [PBUserTutorial builderWithPrototype:ut];
+    }
+    
+    return ut;
 }
 
 - (void)saveDraft:(BOOL)showResult
@@ -1553,6 +1584,7 @@
                                                  layers:[[drawView.layers mutableCopy] autorelease]
                                                   draft:draft
                                               userStage:nil
+                                           userTutorial:nil
                                                delegate:self];
     
     if (self.submitOpusDrawData == nil){
@@ -1700,6 +1732,7 @@
                                                                                layers:[[drawView.layers mutableCopy] autorelease]
                                                                                 draft:draft
                                                                             userStage:[self buildUserStage]
+                                                                         userTutorial:[self buildUserTutorial]
                                                                              delegate:self];
     }
     
@@ -1719,10 +1752,13 @@
     
 }
 
-- (void)showResultOptionForConquer:(int)totalCount defeatCount:(int)defeatCount
+- (void)showResultOptionForConquer
 {
+    int totalCount = [_userStageBuilder totalCount];
+    int defeatCount = [_userStageBuilder defeatCount];
+    
     int score = [self.draft.score intValue];
-    int defeatPercent = ((defeatCount*1.0f) / (totalCount*1.0f)) * 100;
+    int defeatPercent = (totalCount > 0) ? ((defeatCount*1.0f) / (totalCount*1.0f)) * 100 : 0;
     
     // 根据评分结果跳转
     if ([self isPassPractice:score]){
@@ -1757,15 +1793,7 @@
         }];
         
         [dialog setClickOkBlock:^(id view){
-            // 下一关
-            [self.userStageBuilder setConquerLocalOpusId:nil];
-            PBUserStage* userStage = [self buildUserStage];
-            
-            [self actionsBeforeQuit];
-            [self.navigationController popViewControllerAnimated:NO];
-            
-            [OfflineDrawViewController conquer:self.startController userStage:userStage];
-
+            [self tryConquerNext];
         }];
         
         [dialog showInView:self.view];
@@ -1785,15 +1813,7 @@
         }];
         
         [dialog setClickOkBlock:^(id view){
-            // 再来一次
-            [self.draft setDeleteFlag:@(YES)]; // delete current draft
-            [self.userStageBuilder setConquerLocalOpusId:nil];
-            PBUserStage* userStage = [self buildUserStage];
-            
-            [self actionsBeforeQuit];
-            [self.navigationController popViewControllerAnimated:NO];
-            
-            [OfflineDrawViewController conquer:self.startController userStage:userStage];
+            [self conquerAgain];
         }];
         
         [dialog showInView:self.view];
@@ -1805,7 +1825,7 @@
     int score = [self.draft.score intValue];
     
     // 根据评分结果跳转
-    if ([self isPassPractice:score]){
+    if ([[UserTutorialManager defaultManager] isPass:score]){
         // 修炼及格，提示闯关
         NSString* message = [NSString stringWithFormat:NSLS(@"kPracticePass"), score];
         CommonDialog* dialog = [CommonDialog createDialogWithTitle:NSLS(@"kPracticeResult")
@@ -1820,7 +1840,7 @@
         }];
         
         [dialog setClickOkBlock:^(id view){
-            // TODO 闯关
+            [self tryConquer];
         }];
         
         [dialog showInView:self.view];
@@ -1840,19 +1860,92 @@
         }];
         
         [dialog setClickOkBlock:^(id view){
-            // 再来一次
-            [self.draft setDeleteFlag:@(YES)]; // delete current draft
-            [self.userStageBuilder setPracticeLocalOpusId:nil];
-            PBUserStage* userStage = [self buildUserStage];
-            
-            [self actionsBeforeQuit];
-            [self.navigationController popViewControllerAnimated:NO];
-            
-            [OfflineDrawViewController practice:self.startController userStage:userStage];
+            [self practiceAgain];
         }];
         
         [dialog showInView:self.view];
     }
+}
+
+- (void)conquerAgain
+{
+    // 再来一次
+    [self.draft setDeleteFlag:@(YES)]; // delete current draft
+    [self.userStageBuilder setConquerLocalOpusId:nil];              // TODO clear local opus Id
+    PBUserStage* userStage = [self buildUserStage];
+    PBUserTutorial* userTutorial = [self buildUserTutorial];
+    
+    [self actionsBeforeQuit];
+    [self.navigationController popViewControllerAnimated:NO];
+    
+    [[UserTutorialService defaultService] enterConquerDraw:self.startController
+                                              userTutorial:userTutorial
+                                                   stageId:userStage.stageId
+                                                stageIndex:userStage.stageIndex];
+    
+//    [OfflineDrawViewController conquer:self.startController userStage:userStage userTutorial:userTutorial];
+}
+
+// 闯关模式下，尝试下一关
+- (void)tryConquerNext
+{
+    [self.draft setDeleteFlag:@(YES)]; // delete current draft
+    
+    PBUserStage* userStage = [self buildUserStage];
+    PBUserTutorial* userTutorial = [self buildUserTutorial];
+    
+    PBStage* nextStage = [self.tutorial nextStage:userStage.stageIndex];
+    if (nextStage == nil){
+        // no next stage, end.
+        return;
+    }
+    
+    [self actionsBeforeQuit];
+    [self.navigationController popViewControllerAnimated:NO];
+    
+    [[UserTutorialService defaultService] enterConquerDraw:self.startController
+                                              userTutorial:userTutorial
+                                                   stageId:nextStage.stageId
+                                                stageIndex:userStage.stageIndex + 1];
+}
+
+// 修炼模式下，尝试闯关
+- (void)tryConquer
+{
+    [self.draft setDeleteFlag:@(YES)]; // delete current draft
+
+    PBUserStage* userStage = [self buildUserStage];
+    PBUserTutorial* userTutorial = [self buildUserTutorial];
+    
+    [self actionsBeforeQuit];
+    [self.navigationController popViewControllerAnimated:NO];
+    
+    [[UserTutorialService defaultService] enterConquerDraw:self.startController
+                                              userTutorial:userTutorial
+                                                   stageId:userStage.stageId
+                                                stageIndex:userStage.stageIndex];
+}
+
+// 修炼模式下，重新修炼
+- (void)practiceAgain
+{
+    // 再来一次
+    [self.draft setDeleteFlag:@(YES)]; // delete current draft
+    [self.userStageBuilder setPracticeLocalOpusId:nil];            // TODO clear local opus Id
+    PBUserStage* userStage = [self buildUserStage];
+    PBUserTutorial* userTutorial = [self buildUserTutorial];
+
+    // quit current
+    [self actionsBeforeQuit];
+    [self.navigationController popViewControllerAnimated:NO];
+    
+    // start new
+    [[UserTutorialService defaultService] enterPracticeDraw:self.startController
+                                               userTutorial:userTutorial
+                                                    stageId:userStage.stageId
+                                                 stageIndex:userStage.stageIndex];
+    
+//    [OfflineDrawViewController practice:self.startController userStage:userStage userTutorial:userTutorial];
 }
 
 - (IBAction)clickSubmitButton:(id)sender {

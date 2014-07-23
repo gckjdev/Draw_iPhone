@@ -31,9 +31,12 @@
                                  stageId:(NSString*)stageId
                               stageIndex:(int)stageIndex;
 
-- (void)updateUserStage:(PBUserStage*)userStage;
+- (PBUserTutorial*)updateUserStage:(PBUserStage*)userStage;
 - (BOOL)isLastStage:(PBUserStage*)userStage;
 
--(void)addNewUserTutorialFromServer:(PBUserTutorial *)userTutorial WithRemoteId:(NSString *)remoteId;
+- (void)addNewUserTutorialFromServer:(PBUserTutorial *)userTutorial WithRemoteId:(NSString *)remoteId;
+- (BOOL)isPass:(int)score;
+- (void)save:(PBUserTutorial*)ut;
+
 
 @end
