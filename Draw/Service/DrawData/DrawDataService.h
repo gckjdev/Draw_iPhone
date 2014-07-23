@@ -20,6 +20,7 @@
 @class PBDraw;
 @class PBDrawBg;
 @class MyPaint;
+@class PBUserStage;
 
 @protocol  DrawDataServiceDelegate<NSObject>
 
@@ -28,6 +29,12 @@
 - (void)didMatchDraw:(DrawFeed *)feed result:(int)resultCode;
 
 - (void)didCreateDraw:(int)resultCode opusId:(NSString*)opusId;
+
+- (void)didCreateLearnDraw:(int)resultCode
+                    opusId:(NSString *)opusId
+                totalCount:(int)totalCount
+               defeatCount:(int)defeatCount;
+
 - (void)didGuessOfflineDraw:(int)resultCode;
 
 - (void)didSaveOpus:(BOOL)succ;
@@ -52,6 +59,7 @@
                      size:(CGSize)size
                    layers:(NSArray *)layers
                     draft:(MyPaint *)draft
+                   userStage:(PBUserStage*)userStage
                  delegate:(PPViewController<DrawDataServiceDelegate>*)viewController;
 
 - (void)matchDraw:(PPViewController<DrawDataServiceDelegate>*)viewController;

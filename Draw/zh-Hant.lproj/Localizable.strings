@@ -2766,3 +2766,6 @@
 "kTutorialStageList" = "關卡列表";
 
 "kMetroMainHome" = "首頁";
+
+//分享頁面
+"kResultSharePage" = "最終結果";

@@ -1,16 +1,18 @@
 //
-//  GuidePageController.m
+//  GuidePageManager
 //  Draw
 //
 //  Created by ChaoSo on 14-7-21.
 //
 //
 
-#import "GuidePageController.h"
+#import "GuidePageManager.h"
 #import "UIViewController+CommonHome.h"
 #import "MetroHomeController.h"
 
-@implementation GuidePageController
+@implementation GuidePageManager
+
+//初始化指导页
 -(ICETutorialController *)initGuidePage{
     
     ICETutorialPage *layer1 = [[ICETutorialPage alloc] initWithTitle:@"Picture 4"

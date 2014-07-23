@@ -300,6 +300,7 @@
                          contestId:(NSString *)contestId
                               desc:(NSString *)desc
                              draft:(MyPaint *)draft
+                         userStage:(PBUserStage *)userStage
                       isCompressed:(BOOL)isCompressed
                   progressDelegate:(id)progressDelegate;
 

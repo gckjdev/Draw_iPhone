@@ -13,9 +13,10 @@
 #import "MoreViewController.h"
 #import "BillboardManager.h"
 #import "ICETutorialController.h"
-#import "GuidePageController.h"
+#import "GuidePageManager.h"
 #import "ICETutorialController.h"
-
+#import "ResultSharePageViewController.h"
+#import "ResultShareAlertPageViewController.h"
 
 @interface MetroHomeController ()
 
@@ -65,6 +66,7 @@
 //    
 //    [CommonTitleView createTitleView:self.view];
 //    [[CommonTitleView titleView:self.view] setTitle:NSLS(@"kMetroMainHome")];
+    
     
     
     [super viewDidLoad];
@@ -199,6 +201,7 @@
     return shadowView;
     
 }
+//主页背景
 #define GALLERY_BACKGROUND_Y (ISIPAD ? 69:41)
 - (void)setBackground
 {
@@ -231,7 +234,11 @@
 }
 
 - (IBAction)goToBBS:(id)sender {
-    [self enterBBS];
+//    [self enterBBS];
+    
+    ResultShareAlertPageViewController *rspc = [[ResultShareAlertPageViewController alloc] init];
+    CommonDialog *dialog = [CommonDialog createDialogWithTitle:NSLS(@"kResultSharePage") customView:rspc.view style:CommonDialogStyleCross];
+    [dialog showInView:self.view];
 }
 
 - (IBAction)goToDraw:(id)sender {

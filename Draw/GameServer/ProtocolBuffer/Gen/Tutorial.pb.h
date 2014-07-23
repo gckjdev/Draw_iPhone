@@ -451,6 +451,7 @@ BOOL PBUserTutorialStatusIsValidValue(PBUserTutorialStatus value);
 
 @interface PBStage : PBGeneratedMessage {
 @private
+  BOOL hasDifficulty_:1;
   BOOL hasImageStyle_:1;
   BOOL hasScoreEngine_:1;
   BOOL hasStageId_:1;
@@ -463,6 +464,7 @@ BOOL PBUserTutorialStatusIsValidValue(PBUserTutorialStatus value);
   BOOL hasImage_:1;
   BOOL hasThumbImage_:1;
   BOOL hasDataUrl_:1;
+  Float64 difficulty;
   int32_t imageStyle;
   int32_t scoreEngine;
   NSString* stageId;
@@ -489,6 +491,7 @@ BOOL PBUserTutorialStatusIsValidValue(PBUserTutorialStatus value);
 - (BOOL) hasDataUrl;
 - (BOOL) hasImageStyle;
 - (BOOL) hasScoreEngine;
+- (BOOL) hasDifficulty;
 @property (readonly, retain) NSString* stageId;
 @property (readonly, retain) NSString* cnName;
 @property (readonly, retain) NSString* enName;
@@ -501,6 +504,7 @@ BOOL PBUserTutorialStatusIsValidValue(PBUserTutorialStatus value);
 @property (readonly, retain) NSString* dataUrl;
 @property (readonly) int32_t imageStyle;
 @property (readonly) int32_t scoreEngine;
+@property (readonly) Float64 difficulty;
 - (NSArray*) chapterList;
 - (PBChapter*) chapterAtIndex:(int32_t) index;
 
@@ -604,6 +608,11 @@ BOOL PBUserTutorialStatusIsValidValue(PBUserTutorialStatus value);
 - (int32_t) scoreEngine;
 - (PBStage_Builder*) setScoreEngine:(int32_t) value;
 - (PBStage_Builder*) clearScoreEngine;
+
+- (BOOL) hasDifficulty;
+- (Float64) difficulty;
+- (PBStage_Builder*) setDifficulty:(Float64) value;
+- (PBStage_Builder*) clearDifficulty;
 @end
 
 @interface PBTutorial : PBGeneratedMessage {
