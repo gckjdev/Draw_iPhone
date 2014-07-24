@@ -2811,3 +2811,8 @@
 
 //
 "kAddSuccess" = "添加成功!";
+
+"kDownloadTutorialFailure" = "下载教程数据失败，请检查网络或者稍后再试";
+"kDownloadTutorialSuccess" = "下载成功";
+"kLoadingStage" = "加载关卡中...";
+"kLoadingStageWithProgress" = "加载关卡中...(%d%%)";

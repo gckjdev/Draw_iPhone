@@ -2784,3 +2784,8 @@
 
 //
 "kAddSuccess" = "Add Success!";
+
+"kDownloadTutorialFailure" = "Fail to download tutorial, please check netowrk availability.";
+"kDownloadTutorialSuccess" = "Download successfully.";
+"kLoadingStage" = "Loading...";
+"kLoadingStageWithProgress" = "Loading...(%d%%)";
