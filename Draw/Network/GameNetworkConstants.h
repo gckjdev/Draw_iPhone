@@ -608,10 +608,25 @@
 
 #define METHOD_USER_TUTORIAL_ACTION     @"userTutorialAction"
 #define PARA_USER_TUTORIAL_DEVICE_OS    @"userTutorialDeviceOs"
-#define PARA_USER_TUTORIAL_DEVICE_MODEL    @"userTutorialDeviceModel"
-#define PARA_USER_TUTORIAL_DEVICE_TYPE    @"userTutorialDeviceType"
+#define PARA_USER_TUTORIAL_DEVICE_MODEL @"userTutorialDeviceModel"
+#define PARA_USER_TUTORIAL_DEVICE_TYPE  @"userTutorialDeviceType"
 
+#define PARA_STAGE_ID                   @"stageId"
+#define PARA_STAGE_INDEX                @"stageIndex"
+#define PARA_CHAPTER_INDEX              @"chapterIndex"
+#define PARA_CHAPTER_OPUS_ID            @"chapterOpusId"
+#define PARA_STAGE_SCORE                @"stageScore"
 
+#define PARA_TOTAL_COUNT                @"total_count"
+#define PARA_TOTAL_DEFEAT               @"total_defeat"
+
+#define PARA_BEST_SCORE                    @"best_score"
+#define PARA_BEST_OPUS_ID                  @"best_opus_id"
+#define PARA_BEST_CREATE_DATE              @"best_c_date"
+
+#define PARA_LATEST_SCORE                  @"l_score"
+#define PARA_LATEST_OPUS_ID                @"l_opus_id"
+#define PARA_LATEST_CREATE_DATE            @"l_c_date"
 
 //new words
 #define PARA_NEW_WORDS  @"nw"

@@ -11,6 +11,7 @@
 #import "PPGameNetworkRequest.h"
 #import "TutorialService.h"
 #import "TutorialCoreManager.h"
+#import "OfflineDrawViewController.h"
 
 @interface UserTutorialService ()
 
@@ -124,6 +125,11 @@ static UserTutorialService* _defaultService;
     [para setObject:ut.localId forKey:PARA_LOCAL_USER_TUTORIAL_ID];
     [para setObject:@(action) forKey:PARA_ACTION_TYPE];
     
+    if (ut.currentStageId){
+        [para setObject:ut.currentStageId forKey:PARA_STAGE_ID];
+        [para setObject:@(ut.currentStageIndex) forKey:PARA_STAGE_INDEX];
+    }
+    
     //set device
     [self setDeviceInfo:para];
     
@@ -155,6 +161,38 @@ static UserTutorialService* _defaultService;
                                     // update user tutorial SYNC status
 //                                    [[UserTutorialManager defaultManager] syncUserTutorial:ut.localId syncStatus:YES];
                                 }
+                            }
+                         isPostError:NO];
+}
+
+- (void)reportUserTutorialStatus:(PBUserTutorial*)ut action:(UserTutorialActionType)action
+{
+    if (ut == nil || ut.tutorial.tutorialId == nil || ut.localId == nil || ut.remoteId == nil){
+        PPDebug(@"<reportUserTutorialStatus> but key parameters is nil");
+        return;
+    }
+    
+    NSMutableDictionary* para = [[[NSMutableDictionary alloc] init] autorelease];
+    [para setObject:ut.tutorial.tutorialId forKey:PARA_TUTORIAL_ID];
+    [para setObject:ut.localId forKey:PARA_LOCAL_USER_TUTORIAL_ID];
+    [para setObject:@(action) forKey:PARA_ACTION_TYPE];
+    [para setObject:ut.remoteId forKey:PARA_REMOTE_USER_TUTORIAL_ID];
+    
+    if (ut.currentStageId){
+        [para setObject:ut.currentStageId forKey:PARA_STAGE_ID];
+        [para setObject:@(ut.currentStageIndex) forKey:PARA_STAGE_INDEX];
+    }
+    
+    //set device
+    [self setDeviceInfo:para];
+    
+    PPDebug(@"<reportUserTutorialStatus> report user status, para=%@", [para description]);
+    [PPGameNetworkRequest loadPBData:workingQueue
+                             hostURL:TUTORIAL_HOST
+                              method:METHOD_USER_TUTORIAL_ACTION
+                          parameters:para
+                            callback:^(DataQueryResponse *response, NSError *error) {
+                                PPDebug(@"<reportUserTutorialStatus> report user status, error=%@", [error description]);
                             }
                          isPostError:NO];
 }
@@ -298,6 +336,7 @@ static UserTutorialService* _defaultService;
     
     if (ut != nil){
         // report to server
+        [self reportUserTutorialStatus:ut action:ACTION_PRACTICE_USER_TUTORIAL];
     }
 
     return ut;
@@ -314,9 +353,88 @@ static UserTutorialService* _defaultService;
     
     if (ut != nil){
         // report to server
+        [self reportUserTutorialStatus:ut action:ACTION_CONQUER_USER_TUTORIAL];
     }
     
     return ut;
+}
+
+- (PBUserTutorial*)passCurrentStage:(PBUserTutorial*)userTutorial
+{
+    if (userTutorial == nil){
+        return nil;
+    }
+    
+    PBTutorial* tutorial = [[TutorialCoreManager defaultManager] findTutorialByTutorialId:userTutorial.tutorial.tutorialId];
+    if (tutorial == nil){
+        return userTutorial;
+    }
+
+    PBUserTutorial_Builder* builder = [PBUserTutorial builderWithPrototype:userTutorial];
+    int newStageIndex = userTutorial.currentStageIndex + 1;
+    if (newStageIndex >= [tutorial.stagesList count]){
+        // reach final stage, set status to COMPLETE
+        [builder setStatus:PBUserTutorialStatusUtStatusComplete];
+    }
+    else{
+        // increase stage index, and set stageId
+        PBStage* stage = [tutorial.stagesList objectAtIndex:newStageIndex];
+        [builder setCurrentStageId:stage.stageId];
+        [builder setCurrentStageIndex:newStageIndex];
+    }
+    
+    PBUserTutorial* newUT = [builder build];
+    [[UserTutorialManager defaultManager] save:newUT];
+
+    // report to server
+    [self reportUserTutorialStatus:newUT action:ACTION_UPDATE_USER_TUTORIAL];
+    
+    return newUT;
+}
+
+- (PBUserTutorial*)enterConquerDraw:(UIViewController*)fromController
+                       userTutorial:(PBUserTutorial*)userTutorial
+                            stageId:(NSString*)stageId
+                         stageIndex:(int)stageIndex
+{
+    PBUserTutorial* newUT = [[UserTutorialService defaultService] startConquerTutorialStage:userTutorial.localId
+                                                                                    stageId:stageId
+                                                                                 stageIndex:stageIndex];
+
+    if (newUT && stageIndex < [newUT.userStagesList count]){
+        PBUserStage* userStage = [newUT.userStagesList objectAtIndex:stageIndex];
+        
+        // enter offline draw view controller
+        [OfflineDrawViewController conquer:fromController userStage:userStage userTutorial:newUT];
+        return newUT;
+    }
+    else{
+        return userTutorial;
+    }
+}
+
+// 进入修炼界面
+- (PBUserTutorial*)enterPracticeDraw:(UIViewController*)fromController
+                        userTutorial:(PBUserTutorial*)userTutorial
+                             stageId:(NSString*)stageId
+                          stageIndex:(int)stageIndex
+{
+    // Practice
+    PBUserTutorial* newUT = [[UserTutorialService defaultService] startPracticeTutorialStage:userTutorial.localId
+                                                                                     stageId:stageId
+                                                                                  stageIndex:stageIndex];
+    
+    if (newUT && stageIndex < [newUT.userStagesList count]){
+        
+        PBUserStage* userStage = [newUT.userStagesList objectAtIndex:stageIndex];
+        
+        // enter offline draw view controller
+        [OfflineDrawViewController practice:fromController userStage:userStage userTutorial:newUT];
+        return newUT;
+    }
+    else{
+        return userTutorial;
+    }
 }
 
 @end

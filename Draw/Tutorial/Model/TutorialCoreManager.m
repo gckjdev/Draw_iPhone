@@ -369,23 +369,23 @@ static TutorialCoreManager* _defaultTutorialCoreManager;
                                   
                                 ],
                                @[
-                                   @"53cbd1b8e4b06d2c3a123cdc"
+                                   @"53c770dae4b07ab22e742bf6"
                                   
                                 ],
                                @[
-                                   @"53cbd1b8e4b06d2c3a123cdc"
+                                   @"53c770a7e4b07ab22e742bf4"
                                    
                                    
                                 ],
                                @[
-                                   @"51564194e4b0d84d3151da6b"
+                                   @"53c770e8e4b07ab22e742bf7"
                                    
                                 ],
                                @[
-                                   @"53cbd889e4b06d2c3a124080"
+                                   @"53c770c1e4b07ab22e742bf5"
                                 ],
                                @[
-                                   @"53cbd1b8e4b06d2c3a123cdc"
+                                   @"53c77079e4b07ab22e742bf3"
                                 ]
                                ];
     

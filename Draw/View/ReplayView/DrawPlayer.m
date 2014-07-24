@@ -143,6 +143,12 @@
     [self removeFromSuperview];
 }
 
+- (UIImage*)gotoCreateImageAtIndex:(NSNumber *) index
+{//追寻到index位置的图，并利用createImage返回一个UIImage对象
+    [self.showView showToIndex:[index integerValue]];
+    return [self.showView createImage];
+}
+
 - (void)playToIndex:(NSNumber *)index
 {
     [(PPViewController *)[self theViewController] hideActivity];

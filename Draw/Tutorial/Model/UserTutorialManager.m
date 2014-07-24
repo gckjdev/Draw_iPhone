@@ -154,6 +154,13 @@ static UserTutorialManager* _defaultManager;
     // set status
     [builder setStatus:PBUserTutorialStatusUtStatusNotStart];
     
+    // set init stage info
+    if ([tutorial.stagesList count] > 0){
+        PBStage* stage = [tutorial.stagesList objectAtIndex:0];
+        [builder setCurrentStageIndex:0];
+        [builder setCurrentStageId:stage.stageId];
+    }
+    
     // update time stamp
     [builder setCreateDate:time(0)];
     [builder setModifyDate:time(0)];
@@ -427,28 +434,30 @@ static UserTutorialManager* _defaultManager;
     return newUT;
 }
 
-- (void)updateUserStage:(PBUserStage*)userStage
+- (PBUserTutorial*)updateUserStage:(PBUserStage*)userStage
 {
     if (userStage == nil){
         PPDebug(@"<updateUserStage> but userStage is nil");
-        return;
+        return nil;
     }
     
     PBUserTutorial* ut = [self findUserTutorialByTutorialId:userStage.tutorialId];
     if (ut == nil){
         PPDebug(@"<updateUserStage> but tutorialId=%@ not found for user", userStage.tutorialId);
-        return;
+        return nil;
     }
     
     if (userStage.stageIndex >= [ut.userStagesList count]){
         PPDebug(@"<updateUserStage> but stageIndex=%d out of bound for current user stage list count(%d)",
                 userStage.stageIndex, [ut.userStagesList count]);
-        return;
+        return nil;
     }
     
     PBUserTutorial_Builder* builder = [PBUserTutorial builderWithPrototype:ut];
     [builder replaceUserStagesAtIndex:userStage.stageIndex with:userStage];
-    [self save:[builder build]];
+    PBUserTutorial* finalUT = [builder build];
+    [self save:finalUT];
+    return finalUT;
 }
 
 - (BOOL)isLastStage:(PBUserStage*)userStage
@@ -458,22 +467,27 @@ static UserTutorialManager* _defaultManager;
         return NO;
     }
     
-    PBUserTutorial* ut = [self findUserTutorialByTutorialId:userStage.tutorialId];
-    if (ut == nil){
+    PBTutorial* tutorial = [[TutorialCoreManager defaultManager] findTutorialByTutorialId:userStage.tutorialId];
+    if (tutorial == nil){
         PPDebug(@"<isLastStage> but tutorialId=%@ not found for user", userStage.tutorialId);
         return NO;
     }
     
-    PPDebug(@"<isLastStage> stageIndex=%d, user stage list count(%d)",
-            userStage.stageIndex, [ut.userStagesList count]);
+    PPDebug(@"<isLastStage> stageIndex=%d, tutorial stage list count(%d)",
+            userStage.stageIndex, [tutorial.stagesList count]);
 
-    if (userStage.stageIndex >= ([ut.userStagesList count] - 1)){
+    if (userStage.stageIndex >= ([tutorial.stagesList count] - 1)){
         return YES;
     }
     else{
         return NO;
     }
     
+}
+
+- (BOOL)isPass:(int)score
+{
+    return (score >= 60);
 }
 
 @end

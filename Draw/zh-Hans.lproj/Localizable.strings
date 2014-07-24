@@ -2799,11 +2799,11 @@
 "kTryConquer" = "闯关";
 "kPracticeAgain" = "重新修炼";
 
-"kConquerPass" = "本次修炼得分为【%d】，祝贺你成功通过本关！";
-"kConquerPassWithComplete" = "本次修炼得分为【%d】，祝贺你成功通过本关！这是最后一关了，你已经完美学完本教程！";
+"kConquerPass" = "本次闯关得分为【%d】，击败了宇宙三次元中%d%%的用户，祝贺你成功通过本关！";
+"kConquerPassWithComplete" = "本次闯关得分为【%d】，击败了宇宙三次元中%d%%的用户，祝贺你成功通过本关！这是最后一关了，你已经完美学完本教程！";
 "kConquerResult" = "闯关结果";
 "kTryConquerNext" = "下一关";
-"kConquerFail" = "本次修炼得分为【%d】，未能达到通关标准，再接再励，重新来一次吗？";
+"kConquerFail" = "本次闯关得分为【%d】，击败了宇宙三次元中%d%%的用户，未能达到通关标准，再接再励，重新来一次吗？";
 "kConquerAgain" = "重来";
 
 //new分享页面

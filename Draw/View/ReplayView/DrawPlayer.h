@@ -53,4 +53,6 @@
 - (void)stop;
 - (void)start;
 
+- (UIImage*) gotoCreateImageAtIndex:(NSNumber*) index;
+
 @end

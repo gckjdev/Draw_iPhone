@@ -99,6 +99,7 @@ message PBStage
 
     optional int32  imageStyle = 50;                // 闯关图片类型，取值参考PBTutorialImageStyle
     optional int32  scoreEngine = 51;               // 评分引擎，取值参考PBScoreEngineType
+    optional double difficulty = 52[default=1.0];   // 本关作品难度系数，默认为1.0（for简笔画，其他可能要取0.8-0.9）
 }
 
 // 教程
@@ -166,15 +167,21 @@ message PBUserStage
     required string stageId = 3;
     optional int32  stageIndex = 4;
 
-    optional int32  bestScore = 5;                  // 最好成绩
-    optional int32  bestScoreDate = 6;              // 最好成绩时间
-    optional int32  lastScoreDate = 7;              // 最后一次闯关时间
-
     repeated PBUserStageOpus opus = 8;              // 闯关记录信息
     optional int32  currentChapterIndex = 10;       // 当前修炼的章节索引，从0开始
 
     optional string practiceLocalOpusId = 20;       // 当前修炼的作品ID
     optional string conquerLocalOpusId = 30;        // 当前闯关的作品ID
+    
+    optional string bestOpusId = 50;                // 最好闯关的作品ID
+    optional int32  bestScore = 51;                 // 最好成绩
+    optional int32  bestScoreDate = 52;             // 最好成绩时间
+
+    optional string lastOpusId = 60;                // 最后一次闯关作品ID
+    optional int32  lastScore = 61;                 // 最后一次闯关成绩
+    optional int32  lastScoreDate = 62;             // 最后一次闯关时间
+    optional int32  totalCount = 63;                // 最后一次闯关时候作品总数
+    optional int32  defeatCount = 64;               // 最后一次闯关时候击败用户总数
 }
 
 enum PBUserTutorialStatus

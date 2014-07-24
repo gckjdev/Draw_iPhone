@@ -2772,11 +2772,11 @@
 "kTryConquer" = "Conquer";
 "kPracticeAgain" = "Retry";
 
-"kConquerPass" = "Congratulations! Your score is %d. PASS!";
-"kConquerPassWithComplete" = "Congratulations! Your score is %d. PASS! This tutorial is completed!";
+"kConquerPass" = "Congratulations! Your score is %d, and you defeated %d%% people in the world. PASS!";
+"kConquerPassWithComplete" = "Congratulations! Your score is %d, and you defeated %d%% people in the world. PASS! This tutorial is completed!";
 "kConquerResult" = "Result";
 "kTryConquerNext" = "Next Stage";
-"kConquerFail" = "Sorry... Your score is %d. FAIL!";
+"kConquerFail" = "Sorry... Your score is %d, and you defeated %d%% people in the world. FAIL!";
 "kConquerAgain" = "Try Again";
 
 //new分享页面

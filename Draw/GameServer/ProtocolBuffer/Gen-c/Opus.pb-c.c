@@ -1329,7 +1329,7 @@ const ProtobufCEnumDescriptor game__pblanguage__descriptor =
   game__pblanguage__value_ranges,
   NULL,NULL,NULL,NULL   /* reserved[1234] */
 };
-const ProtobufCEnumValue game__pbopus_type__enum_values_by_number[15] =
+const ProtobufCEnumValue game__pbopus_type__enum_values_by_number[17] =
 {
   { "UNKNOWN", "GAME__PBOPUS_TYPE__UNKNOWN", 0 },
   { "DRAW", "GAME__PBOPUS_TYPE__DRAW", 1 },
@@ -1341,6 +1341,8 @@ const ProtobufCEnumValue game__pbopus_type__enum_values_by_number[15] =
   { "TOMATO", "GAME__PBOPUS_TYPE__TOMATO", 7 },
   { "ONLY_COMMENT", "GAME__PBOPUS_TYPE__ONLY_COMMENT", 8 },
   { "DRAW_CONTEST", "GAME__PBOPUS_TYPE__DRAW_CONTEST", 9 },
+  { "DRAW_PRACTICE", "GAME__PBOPUS_TYPE__DRAW_PRACTICE", 10 },
+  { "DRAW_CONQUER", "GAME__PBOPUS_TYPE__DRAW_CONQUER", 11 },
   { "SING", "GAME__PBOPUS_TYPE__SING", 1000 },
   { "SING_TO_USER", "GAME__PBOPUS_TYPE__SING_TO_USER", 1001 },
   { "SING_CONTEST", "GAME__PBOPUS_TYPE__SING_CONTEST", 1002 },
@@ -1348,23 +1350,25 @@ const ProtobufCEnumValue game__pbopus_type__enum_values_by_number[15] =
   { "ASK_PS_OPUS", "GAME__PBOPUS_TYPE__ASK_PS_OPUS", 1501 },
 };
 static const ProtobufCIntRange game__pbopus_type__value_ranges[] = {
-{0, 0},{1000, 10},{1500, 13},{0, 15}
+{0, 0},{1000, 12},{1500, 15},{0, 17}
 };
-const ProtobufCEnumValueIndex game__pbopus_type__enum_values_by_name[15] =
+const ProtobufCEnumValueIndex game__pbopus_type__enum_values_by_name[17] =
 {
-  { "ASK_PS", 13 },
-  { "ASK_PS_OPUS", 14 },
+  { "ASK_PS", 15 },
+  { "ASK_PS_OPUS", 16 },
   { "COMMENT", 3 },
   { "DRAW", 1 },
+  { "DRAW_CONQUER", 11 },
   { "DRAW_CONTEST", 9 },
+  { "DRAW_PRACTICE", 10 },
   { "DRAW_TO_USER", 5 },
   { "FLOWER", 6 },
   { "GUESS", 2 },
   { "ONLY_COMMENT", 8 },
   { "REPOST", 4 },
-  { "SING", 10 },
-  { "SING_CONTEST", 12 },
-  { "SING_TO_USER", 11 },
+  { "SING", 12 },
+  { "SING_CONTEST", 14 },
+  { "SING_TO_USER", 13 },
   { "TOMATO", 7 },
   { "UNKNOWN", 0 },
 };
@@ -1375,9 +1379,9 @@ const ProtobufCEnumDescriptor game__pbopus_type__descriptor =
   "PBOpusType",
   "Game__PBOpusType",
   "game",
-  15,
+  17,
   game__pbopus_type__enum_values_by_number,
-  15,
+  17,
   game__pbopus_type__enum_values_by_name,
   3,
   game__pbopus_type__value_ranges,

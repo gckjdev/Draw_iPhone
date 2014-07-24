@@ -23,6 +23,9 @@
 #import "UIImageExt.h"
 #import "FeedDownloadService.h"
 #import "DrawFeed.h"
+#import "Tutorial.pb.h"
+#import "UserTutorialManager.h"
+#import "UserTutorialService.h"
 
 static DrawDataService* _defaultDrawDataService = nil;
 
@@ -312,10 +315,13 @@ static DrawDataService* _defaultDrawDataService = nil;
                                                            contestId:contestId
                                                                 desc:desc
                                                                draft:draft
+                                                           userStage:nil
+                                                        userTutorial:nil
                                                         isCompressed:isCompressed
                                                     progressDelegate:viewController];
         
         dispatch_async(dispatch_get_main_queue(), ^{
+            
             if ([viewController respondsToSelector:@selector(didCreateDraw:opusId:)]){
                 NSString* opusId = [output.jsonDataDict objectForKey:PARA_FEED_ID];
                 [viewController didCreateDraw: output.resultCode opusId:opusId];
@@ -339,6 +345,8 @@ static DrawDataService* _defaultDrawDataService = nil;
                      size:(CGSize)size
                    layers:(NSArray *)layers
                     draft:(MyPaint *)draft
+                   userStage:(PBUserStage*)userStage
+                userTutorial:(PBUserTutorial *)userTutorial
                  delegate:(PPViewController<DrawDataServiceDelegate>*)viewController;
 {
 
@@ -374,6 +382,8 @@ static DrawDataService* _defaultDrawDataService = nil;
         imageData = [image data];
     }
     
+    int opusScore = draft.score;
+    
     dispatch_async(workingQueue, ^{
         CommonNetworkOutput* output = [GameNetworkRequest createOpus:TRAFFIC_SERVER_URL
                                                                appId:appId 
@@ -394,13 +404,65 @@ static DrawDataService* _defaultDrawDataService = nil;
                                                            contestId:contestId
                                                                 desc:desc
                                                                draft:draft
+                                                           userStage:userStage
+                                                        userTutorial:userTutorial
                                                         isCompressed:isCompressed
                                                     progressDelegate:viewController];
 
         dispatch_async(dispatch_get_main_queue(), ^{
             NSString *actionId = [output.jsonDataDict objectForKey:PARA_FEED_ID];
-            if ([viewController respondsToSelector:@selector(didCreateDraw:opusId:)]){
-                [viewController didCreateDraw: output.resultCode opusId:actionId];
+            
+            int totalCount = [[output.jsonDataDict objectForKey:PARA_TOTAL_COUNT] intValue];
+            int defeatCount = [[output.jsonDataDict objectForKey:PARA_TOTAL_DEFEAT] intValue];
+            
+            NSString* bestOpusId = [output.jsonDataDict objectForKey:PARA_BEST_OPUS_ID];
+            int bestOpusScore = [[output.jsonDataDict objectForKey:PARA_BEST_SCORE] intValue];
+
+            NSString* lastOpusId = [output.jsonDataDict objectForKey:PARA_LATEST_OPUS_ID];
+            int lastOpusScore = [[output.jsonDataDict objectForKey:PARA_LATEST_SCORE] intValue];
+            
+            if (userStage){
+
+                PBUserStage* newUserStage = userStage;
+                PBUserTutorial* newUserTutorial = userTutorial;
+                if (output.resultCode == 0){
+                    
+                    // update current user stage status
+                    PBUserStage_Builder* userStageBuilder = [PBUserStage builderWithPrototype:userStage];
+                    [userStageBuilder setLastOpusId:lastOpusId];
+                    [userStageBuilder setLastScore:lastOpusScore];
+                    [userStageBuilder setBestOpusId:bestOpusId];
+                    [userStageBuilder setBestScore:bestOpusScore];
+                    [userStageBuilder setTotalCount:totalCount];
+                    [userStageBuilder setDefeatCount:defeatCount];
+                    
+                    newUserStage = [userStageBuilder build];
+                    PBUserTutorial* retUT = [[UserTutorialManager defaultManager] updateUserStage:newUserStage]; // update local user stage status
+                    if (retUT){
+                        newUserTutorial = retUT;
+                    }
+                    
+                    // for conquer draw result update
+                    if ([[UserTutorialManager defaultManager] isPass:opusScore]){
+                        // pass this stage, need to update user tutorial to next stage index
+                        retUT = [[UserTutorialService defaultService] passCurrentStage:newUserTutorial];
+                        if (retUT){
+                            newUserTutorial = retUT;
+                        }
+                    }
+                }
+                
+                if ([viewController respondsToSelector:@selector(didCreateLearnDraw:opusId:userStage:userTutorial:)]){
+                    [viewController didCreateLearnDraw:output.resultCode
+                                                opusId:actionId
+                                             userStage:newUserStage
+                                          userTutorial:newUserTutorial];
+                }
+            }
+            else{
+                if ([viewController respondsToSelector:@selector(didCreateDraw:opusId:)]){
+                    [viewController didCreateDraw: output.resultCode opusId:actionId];
+                }
             }
         });
     });
