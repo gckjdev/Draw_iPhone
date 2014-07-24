@@ -45,17 +45,6 @@
     [self.messageButton  setTitleEdgeInsets:UIEdgeInsetsMake(BOTTOM_BUTTON_HEIGHT, MESSAGE_BUTTON_TITLE_EDGEINSET, 0, 0)];
     [self.moreButton  setTitleEdgeInsets:UIEdgeInsetsMake(BOTTOM_BUTTON_HEIGHT,                        MORE_BUTTON_TITLE_EDGEINSETS, 0, 0)];
     
-    //title label font
-//    [self.indexButton.titleLabel setFont:AD_FONT(8, 11)];
-//    
-//    [self.documentButton.titleLabel setFont:AD_FONT(8, 11)];
-//    
-//    [self.messageButton.titleLabel setFont:AD_FONT(8, 11)];
-//    
-//    [self.moreButton.titleLabel setFont:AD_FONT(8, 11)];
-
-    
-    
 }
 
 
@@ -70,21 +59,15 @@
     
     
     [super viewDidLoad];
+    
 //    
 //    //test
 //    [self goToGuidePage];
     
     [self setBackground];
         // Do any additional setup after loading the view from its nib.
-   
+
     
-//    //读取网上图片
-//    NSString *galleryImage = @TEST_DATA_GALLERYIMAGE;
-//    NSURL *galleryUrl = [NSURL URLWithString:galleryImage];
-//    [_galleryImageView setImageWithUrl:galleryUrl
-//                       placeholderImage:placeHolderImage
-//                            showLoading:YES
-//                               animated:YES];
     [self setGalleryView];
 //    [self setGalleryImageForModel];
    
@@ -115,7 +98,16 @@
     
     //TEST
     [self setBadgeView];
-
+//    [self adapt_iOS6];
+}
+-(void)viewWillAppear:(BOOL)animated{
+    //适配IOS7
+    if([DeviceDetection isOS7]){
+        PPDebug(@"self.view.bounds.y1==%d",self.view.bounds.origin.y);
+        self.view.bounds = CGRectMake(0, 20, self.view.frame.size.width, self.view.frame.size.height);
+        PPDebug(@"self.view.bounds.y2==%d",self.view.bounds.origin.y);
+    }
+    
 }
 
 -(void)setGalleryImageForModel{
@@ -124,7 +116,7 @@
      UIImage *placeHolderImage = [UIImage imageNamed:@DEFAUT_IMAGE_NAME];
     BillboardManager *bbManager = [BillboardManager defaultManager];
     self.bbList = bbManager.bbList;
-    CGRect bound=CGRectMake(26,15, 268, 120);
+//    CGRect bound=CGRectMake(26,15, 268, 120);
     for(Billboard *bb in self.bbList){
         UIImageView *imageView =[[[UIImageView alloc]initWithFrame:CGRectMake(26, 15, 268, 120)] autorelease];
         
@@ -135,20 +127,7 @@
                   placeholderImage:placeHolderImage
                        showLoading:YES
                           animated:YES];
-    
-        
-//        UITapGestureRecognizer *singleTap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(galleryClick:)];
-//        
-//        singleTap.view.tag = 1;
-//        singleTap.numberOfTapsRequired=1;
-//        singleTap.numberOfTouchesRequired = 1;
-//        
-//        [imageView addGestureRecognizer:singleTap];
 
-//        [self.galleryView addSubview:imageView];
-//        
-//        [self.galleryView bringSubviewToFront:imageView];
-//                [singleTap release];
     }
    
    
@@ -176,35 +155,11 @@
     [uc release];    
 }
 
-
--(UIView *)createShadow:(UIView *)view{
-    
-    UIView *shadowView = [[[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height)] autorelease];
-    shadowView.backgroundColor = [UIColor clearColor];
-    
-    CAGradientLayer *shadow = [CAGradientLayer layer];
-    UIColor *color = [UIColor colorWithRed:(0.0) green:(0.0) blue:(0.0) alpha:0.5];
-    
-    
-    shadow.frame = CGRectMake(0, 0, self.view.bounds.size.width, 5);
-    [shadow setStartPoint:CGPointMake(0.5, 1.0)];
-    [shadow setEndPoint:CGPointMake(0.5, 3.0)];
-    
-    shadow.frame = CGRectMake(0, 0, 3, self.view.bounds.size.height);
-    PPDebug(@"%i",self.view.bounds.size.height);
-    [shadow setStartPoint:CGPointMake(0.0, 0.5)];
-    [shadow setEndPoint:CGPointMake(1.0, 0.5)];
-    
-    shadow.colors = [NSArray arrayWithObjects:(id)[color CGColor], (id)[[UIColor clearColor] CGColor], nil];
-    [shadowView.layer insertSublayer:shadow atIndex:0];
-    
-    return shadowView;
-    
-}
 //主页背景
 #define GALLERY_BACKGROUND_Y (ISIPAD ? 69:41)
 - (void)setBackground
 {
+    
     UIImage *galleryBackground = [UIImage imageNamed:@"gonggaolan.png"];
     UIColor *color = [[UIColor alloc] initWithPatternImage:galleryBackground];
     
@@ -220,7 +175,6 @@
     [self.bottomBackground setBackgroundColor:[UIColor clearColor]];
     [self.bottomBackground setImage:bottomBackground];
 }
-
 
 
 
@@ -374,6 +328,13 @@
         return;
     }
     [[self.bbList objectAtIndex:index] clickAction:self];
+}
+-(void)adapt_iOS6{
+    if([DeviceDetection isOS6]){
+        [self.galleryButton setBackgroundColor:COLOR_YELLOW];
+        [self.view setFrame:CGRectMake(self.view.frame.origin.x, self.view.frame.origin.y-20, self.view.frame.size.width, self.view.frame.size.height)];
+        
+    }
 }
 
 - (void)dealloc {

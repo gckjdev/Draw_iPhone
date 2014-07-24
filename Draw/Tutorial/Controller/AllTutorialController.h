@@ -9,11 +9,16 @@
 #import <UIKit/UIKit.h>
 #import "PPTableViewController.h"
 
+@class TutorialInfoController;
+@class TutorialInfoCell;
+@protocol AddButtonDelegate
 
-    
+- (void)clickAddButton:(UIButton*)button;
 
+@end
 @interface AllTutorialController : PPTableViewController
 
+@property (retain, nonatomic) TutorialInfoController* infoController;
 @end
 
 

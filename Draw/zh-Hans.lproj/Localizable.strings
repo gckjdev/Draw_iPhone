@@ -2808,3 +2808,6 @@
 
 //new分享页面
 "kResultSharePage" = "最后结果";
+
+//
+"kAddSuccess" = "添加成功!";

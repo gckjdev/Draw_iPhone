@@ -7,28 +7,21 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="TutorialInfoController">
             <connections>
                 <outlet property="dataTableView" destination="Mjw-Lo-URr" id="Z0b-5C-c72"/>
-                <outlet property="view" destination="1" id="9Jl-VM-1nB"/>
+                <outlet property="view" destination="J09-nP-MfC" id="y9D-qT-Aab"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <view contentMode="scaleToFill" id="1">
-            <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+        <view contentMode="scaleToFill" id="J09-nP-MfC">
+            <rect key="frame" x="0.0" y="0.0" width="266" height="350"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
-                <tableView clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" alwaysBounceVertical="YES" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="Mjw-Lo-URr">
-                    <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="Mjw-Lo-URr">
+                    <rect key="frame" x="0.0" y="0.0" width="266" height="350"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                 </tableView>
             </subviews>
-            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-            <constraints>
-                <constraint firstItem="Mjw-Lo-URr" firstAttribute="leading" secondItem="1" secondAttribute="leading" id="5sz-iP-adW"/>
-                <constraint firstAttribute="trailing" secondItem="Mjw-Lo-URr" secondAttribute="trailing" id="NoL-Id-BJN"/>
-                <constraint firstAttribute="bottom" secondItem="Mjw-Lo-URr" secondAttribute="bottom" id="l3s-XU-vww"/>
-            </constraints>
-            <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
-            <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+            <color key="backgroundColor" red="0.2784313725" green="0.38823529410000002" blue="0.1058823529" alpha="0.0" colorSpace="calibratedRGB"/>
         </view>
     </objects>
 </document>
