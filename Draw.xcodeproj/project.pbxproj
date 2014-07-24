@@ -6211,6 +6211,10 @@
 		D80518B7196BD12200D350B3 /* luntan.png in Resources */ = {isa = PBXBuildFile; fileRef = D80518AD196BD12200D350B3 /* luntan.png */; };
 		D80518B8196BD12200D350B3 /* xuehuahua.png in Resources */ = {isa = PBXBuildFile; fileRef = D80518AE196BD12200D350B3 /* xuehuahua.png */; };
 		D80518B9196BD12200D350B3 /* zhuye.png in Resources */ = {isa = PBXBuildFile; fileRef = D80518AF196BD12200D350B3 /* zhuye.png */; };
+		D80BB5E61980C26000BFC4A7 /* THProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = D80BB5E51980C26000BFC4A7 /* THProgressView.m */; };
+		D80BB5E71980C26000BFC4A7 /* THProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = D80BB5E51980C26000BFC4A7 /* THProgressView.m */; };
+		D80BB5E81980C26000BFC4A7 /* THProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = D80BB5E51980C26000BFC4A7 /* THProgressView.m */; };
+		D80BB5E91980C26000BFC4A7 /* THProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = D80BB5E51980C26000BFC4A7 /* THProgressView.m */; };
 		D80EB34C196B90DB0087EBBD /* MetroHomeController.m in Sources */ = {isa = PBXBuildFile; fileRef = D80EB34A196B90DB0087EBBD /* MetroHomeController.m */; };
 		D80EB34D196B90DB0087EBBD /* MetroHomeController.m in Sources */ = {isa = PBXBuildFile; fileRef = D80EB34A196B90DB0087EBBD /* MetroHomeController.m */; };
 		D80EB34E196B90DB0087EBBD /* MetroHomeController.m in Sources */ = {isa = PBXBuildFile; fileRef = D80EB34A196B90DB0087EBBD /* MetroHomeController.m */; };
@@ -6279,6 +6283,14 @@
 		D82C0D871976518F0088539F /* Billboard.m in Sources */ = {isa = PBXBuildFile; fileRef = D82C0D851976518F0088539F /* Billboard.m */; };
 		D82C0D881976518F0088539F /* Billboard.m in Sources */ = {isa = PBXBuildFile; fileRef = D82C0D851976518F0088539F /* Billboard.m */; };
 		D82C0D891976518F0088539F /* Billboard.m in Sources */ = {isa = PBXBuildFile; fileRef = D82C0D851976518F0088539F /* Billboard.m */; };
+		D86542151980A941007D60E7 /* ResultShareAlertPageViewController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = D86542141980A941007D60E7 /* ResultShareAlertPageViewController~ipad.xib */; };
+		D86542161980A941007D60E7 /* ResultShareAlertPageViewController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = D86542141980A941007D60E7 /* ResultShareAlertPageViewController~ipad.xib */; };
+		D86542171980A941007D60E7 /* ResultShareAlertPageViewController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = D86542141980A941007D60E7 /* ResultShareAlertPageViewController~ipad.xib */; };
+		D86542181980A941007D60E7 /* ResultShareAlertPageViewController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = D86542141980A941007D60E7 /* ResultShareAlertPageViewController~ipad.xib */; };
+		D865421D1980B0FA007D60E7 /* TutorialInfoController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = D865421C1980B0FA007D60E7 /* TutorialInfoController~ipad.xib */; };
+		D865421E1980B0FA007D60E7 /* TutorialInfoController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = D865421C1980B0FA007D60E7 /* TutorialInfoController~ipad.xib */; };
+		D865421F1980B0FA007D60E7 /* TutorialInfoController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = D865421C1980B0FA007D60E7 /* TutorialInfoController~ipad.xib */; };
+		D86542201980B0FA007D60E7 /* TutorialInfoController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = D865421C1980B0FA007D60E7 /* TutorialInfoController~ipad.xib */; };
 		D89191F11963163B006B616A /* StageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D89191F01963163B006B616A /* StageCell.m */; };
 		D89191F21963163B006B616A /* StageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D89191F01963163B006B616A /* StageCell.m */; };
 		D89191F31963163B006B616A /* StageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D89191F01963163B006B616A /* StageCell.m */; };
@@ -10723,6 +10735,8 @@
 		D80518AD196BD12200D350B3 /* luntan.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = luntan.png; sourceTree = "<group>"; };
 		D80518AE196BD12200D350B3 /* xuehuahua.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = xuehuahua.png; sourceTree = "<group>"; };
 		D80518AF196BD12200D350B3 /* zhuye.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = zhuye.png; sourceTree = "<group>"; };
+		D80BB5E41980C26000BFC4A7 /* THProgressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THProgressView.h; sourceTree = "<group>"; };
+		D80BB5E51980C26000BFC4A7 /* THProgressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THProgressView.m; sourceTree = "<group>"; };
 		D80EB349196B90DB0087EBBD /* MetroHomeController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MetroHomeController.h; sourceTree = "<group>"; };
 		D80EB34A196B90DB0087EBBD /* MetroHomeController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MetroHomeController.m; sourceTree = "<group>"; };
 		D80EB34B196B90DB0087EBBD /* MetroHomeController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MetroHomeController.xib; sourceTree = "<group>"; };
@@ -10747,6 +10761,8 @@
 		D82C0D7F1976500E0088539F /* home_bb_version.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = home_bb_version.txt; sourceTree = "<group>"; };
 		D82C0D841976518F0088539F /* Billboard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Billboard.h; sourceTree = "<group>"; };
 		D82C0D851976518F0088539F /* Billboard.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Billboard.m; sourceTree = "<group>"; };
+		D86542141980A941007D60E7 /* ResultShareAlertPageViewController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "ResultShareAlertPageViewController~ipad.xib"; sourceTree = "<group>"; };
+		D865421C1980B0FA007D60E7 /* TutorialInfoController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "TutorialInfoController~ipad.xib"; sourceTree = "<group>"; };
 		D89191EF1963163B006B616A /* StageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StageCell.h; sourceTree = "<group>"; };
 		D89191F01963163B006B616A /* StageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StageCell.m; sourceTree = "<group>"; };
 		D89191FA196316C2006B616A /* StageCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = StageCell.xib; sourceTree = "<group>"; };
@@ -18090,6 +18106,7 @@
 		CAFEFDB316606FC100441D77 /* Component-View */ = {
 			isa = PBXGroup;
 			children = (
+				D80BB5E31980C26000BFC4A7 /* THProgressView */,
 				D8B58B20197CEE090088E5F7 /* SGFocusImageFrame */,
 				D8B58AF8197CE8E60088E5F7 /* ICETutorial */,
 				CA1782621962D2480068883A /* DAPagesContainer */,
@@ -18152,6 +18169,15 @@
 			path = Resource;
 			sourceTree = "<group>";
 		};
+		D80BB5E31980C26000BFC4A7 /* THProgressView */ = {
+			isa = PBXGroup;
+			children = (
+				D80BB5E41980C26000BFC4A7 /* THProgressView.h */,
+				D80BB5E51980C26000BFC4A7 /* THProgressView.m */,
+			);
+			path = THProgressView;
+			sourceTree = "<group>";
+		};
 		D80EB348196B90C80087EBBD /* MetroHome */ = {
 			isa = PBXGroup;
 			children = (
@@ -18203,6 +18229,7 @@
 				CA2A28D2195C1E3900A97478 /* TutorialInfoController.h */,
 				CA2A28D3195C1E3A00A97478 /* TutorialInfoController.m */,
 				CA2A28D4195C1E3A00A97478 /* TutorialInfoController.xib */,
+				D865421C1980B0FA007D60E7 /* TutorialInfoController~ipad.xib */,
 				D819624519629D4C00B4FBAF /* TutorialInfoCell.h */,
 				D819624619629D4C00B4FBAF /* TutorialInfoCell.m */,
 				D819624719629D4C00B4FBAF /* TutorialInfoCell.xib */,
@@ -18311,6 +18338,7 @@
 				D8B8418F197E639A00B6FB5C /* ResultShareAlertPageViewController.h */,
 				D8B84190197E639A00B6FB5C /* ResultShareAlertPageViewController.m */,
 				D8B84195197E65C500B6FB5C /* ResultShareAlertPageViewController.xib */,
+				D86542141980A941007D60E7 /* ResultShareAlertPageViewController~ipad.xib */,
 			);
 			name = ResultSharePage;
 			sourceTree = "<group>";
@@ -19019,6 +19047,7 @@
 				A461B56F174CBAA70088B061 /* CommonUserInfoView.xib in Resources */,
 				A461B570174CBAA70088B061 /* CommonUserInfoView~ipad.xib in Resources */,
 				A461B571174CBAA70088B061 /* CommonZJHDialog.xib in Resources */,
+				D865421F1980B0FA007D60E7 /* TutorialInfoController~ipad.xib in Resources */,
 				CA93D12A18F008FA002BB805 /* PinterestSDKResources.bundle in Resources */,
 				A461B572174CBAA70088B061 /* CommonZJHDialog~ipad.xib in Resources */,
 				A461B573174CBAA70088B061 /* DiceInputDialog.xib in Resources */,
@@ -19171,6 +19200,7 @@
 				CA3D4B1717794748000A8FC7 /* ShadowBox~ipad.xib in Resources */,
 				A467BBCA17798DC900455E3A /* ToolUpPanel.xib in Resources */,
 				C2C09E94177BD8C8009408EB /* gallery_search_btn@2x.png in Resources */,
+				D86542171980A941007D60E7 /* ResultShareAlertPageViewController~ipad.xib in Resources */,
 				C2EAA87F178270D8007E2BA4 /* CommonSearchImageFilterView~ipad.xib in Resources */,
 				CA02CB8E1785581A00B6910D /* GradientSettingView.xib in Resources */,
 				CA02CBA01785581A00B6910D /* GradientSettingView~ipad.xib in Resources */,
@@ -20843,6 +20873,7 @@
 				EA11A42C1839EA1200F73D64 /* group_footer_unfollowing@2x.png in Resources */,
 				EA03897A183B06D300516952 /* GroupTopicController.xib in Resources */,
 				D8B58A34197CCEC10088E5F7 /* button-background.png in Resources */,
+				D865421E1980B0FA007D60E7 /* TutorialInfoController~ipad.xib in Resources */,
 				EA038985183B122900516952 /* GroupDetailCell.xib in Resources */,
 				CA93D0EA18EFF136002BB805 /* TencentOpenApi_IOS_Bundle.bundle in Resources */,
 				EA0389A0183B151A00516952 /* GroupInfoView.xib in Resources */,
@@ -20857,6 +20888,7 @@
 				CA9C3FF4184341B50041F332 /* 645475970_app_task_version.txt in Resources */,
 				CA9C3FF8184341B50041F332 /* 645475970_app_task.json in Resources */,
 				CA9C3FFC184341B50041F332 /* 660557448_app_task_version.txt in Resources */,
+				D86542161980A941007D60E7 /* ResultShareAlertPageViewController~ipad.xib in Resources */,
 				CA9C4000184341B50041F332 /* 660557448_app_task.json in Resources */,
 				A4BD463E1843513F0016E62C /* button_click.wav in Resources */,
 				EAA8D11B18443CE200B3720B /* SearchController.xib in Resources */,
@@ -21480,6 +21512,7 @@
 				A4D8FB4517DB08170085061F /* shoes@2x.png in Resources */,
 				A4D8FB4917DB08170085061F /* spend_time@2x.png in Resources */,
 				A4D8FB4D17DB08170085061F /* input_alert_check@2x.png in Resources */,
+				D86542151980A941007D60E7 /* ResultShareAlertPageViewController~ipad.xib in Resources */,
 				A4D8FB5117DB08170085061F /* input_alert_uncheck@2x.png in Resources */,
 				A4D8FB5517DB08170085061F /* shop_item_alpha@2x.png in Resources */,
 				A4D8FB5917DB08170085061F /* shop_item_paint_player@2x.png in Resources */,
@@ -21893,6 +21926,7 @@
 				CA9AB05818321621002DBAA5 /* VoiceTypeSelectView.xib in Resources */,
 				CA9AB05C18321621002DBAA5 /* VoiceTypeSelectView~ipad.xib in Resources */,
 				A4E59C941832208D003578CA /* WhisperStyleView.xib in Resources */,
+				D865421D1980B0FA007D60E7 /* TutorialInfoController~ipad.xib in Resources */,
 				EA8D93C21833630500780B63 /* GroupDetailController.xib in Resources */,
 				EA8D93C71833632800780B63 /* GroupCell.xib in Resources */,
 				CA11625F1834A88F00FDD3A9 /* TaskController.xib in Resources */,
@@ -22022,6 +22056,7 @@
 				EA411B70176066F500DA72D0 /* RoomController~ipad.xib in Resources */,
 				EA411B71176066F500DA72D0 /* UserSettingController~ipad.xib in Resources */,
 				EA411B74176066F500DA72D0 /* FeedbackController~ipad.xib in Resources */,
+				D86542201980B0FA007D60E7 /* TutorialInfoController~ipad.xib in Resources */,
 				EA411B75176066F500DA72D0 /* ReportController~ipad.xib in Resources */,
 				EA411B76176066F500DA72D0 /* AboutUsController~ipad.xib in Resources */,
 				D8AA042E1974CA6400083651 /* beginPlayGame(little).png in Resources */,
@@ -22532,6 +22567,7 @@
 				A4D8FB9017DB08170085061F /* balance_bg@2x.png in Resources */,
 				A4D8FB9817DB08170085061F /* item_promotion_bg@2x.png in Resources */,
 				A4D8FB9C17DB08170085061F /* give_item_detail_bg@2x.png in Resources */,
+				D86542181980A941007D60E7 /* ResultShareAlertPageViewController~ipad.xib in Resources */,
 				A4D8FBA417DB08170085061F /* item_add@2x.png in Resources */,
 				A4D8FBA817DB08170085061F /* item_delete@2x.png in Resources */,
 				A4D8FBAC17DB08170085061F /* item_detail_bg@2x.png in Resources */,
@@ -23783,6 +23819,7 @@
 				A42BB02C17D9735A007FB11B /* TwoInputFieldView.m in Sources */,
 				EAD13B8C17DECFE300764FFB /* OrangeLoadingView.m in Sources */,
 				A4AFB7F317E032D60079B165 /* GuessRankListController.m in Sources */,
+				D80BB5E81980C26000BFC4A7 /* THProgressView.m in Sources */,
 				A44F32EA17E16C3500AF9B26 /* ContestRankView.m in Sources */,
 				EA8EF66917E55F0D003F1AF8 /* DrawHomeHeaderPanel.m in Sources */,
 				EA8EF66F17E593CA003F1AF8 /* DrawMainMenuPanel.m in Sources */,
@@ -24796,6 +24833,7 @@
 				A40DF8811876A29200C1A307 /* ContestAwardEditController.m in Sources */,
 				A40DF88E1876A3EF00C1A307 /* ContestAwardEditCell.m in Sources */,
 				A49DF8BB187D305F00634196 /* StatementCell.m in Sources */,
+				D80BB5E71980C26000BFC4A7 /* THProgressView.m in Sources */,
 				EAEE550F188E5E61004A0907 /* SingleTabController.m in Sources */,
 				EAEE5518188E644F004A0907 /* GroupFeedController.m in Sources */,
 				EAEE551E188F7902004A0907 /* ChargeHistoryController.m in Sources */,
@@ -25655,6 +25693,7 @@
 				A40DF8801876A29200C1A307 /* ContestAwardEditController.m in Sources */,
 				A40DF88D1876A3EF00C1A307 /* ContestAwardEditCell.m in Sources */,
 				A49DF8BA187D305F00634196 /* StatementCell.m in Sources */,
+				D80BB5E61980C26000BFC4A7 /* THProgressView.m in Sources */,
 				EAEE550E188E5E61004A0907 /* SingleTabController.m in Sources */,
 				EAEE5517188E644F004A0907 /* GroupFeedController.m in Sources */,
 				EAEE551D188F7902004A0907 /* ChargeHistoryController.m in Sources */,
@@ -25968,6 +26007,7 @@
 				EA411996176066F500DA72D0 /* BBSActionListController.m in Sources */,
 				EA411997176066F500DA72D0 /* BBSUserActionCell.m in Sources */,
 				EA411998176066F500DA72D0 /* GameSNSService.m in Sources */,
+				D80BB5E91980C26000BFC4A7 /* THProgressView.m in Sources */,
 				EA4119AC176066F500DA72D0 /* ANGifEncoder.m in Sources */,
 				EA4119AD176066F500DA72D0 /* ANGifGraphicControlExt.m in Sources */,
 				EA4119AE176066F500DA72D0 /* ANGifLogicalScreenDesc.m in Sources */,

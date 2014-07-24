@@ -387,22 +387,10 @@ typedef enum{
 
 - (void)performReplay
 {
-#ifdef DEBUG
-
-    [ShareController createGIF:24
-                     delayTime:0.3f
-                drawActionList:_selectedPaint.drawActionList
-                       bgImage:[[MyPaintManager defaultManager] bgImageForPaint:_selectedPaint]
-                        layers:_selectedPaint.layers
-                    canvasSize:_selectedPaint.canvasSize
-                    outputPath:@"/Users/Linruin/Desktop/test.gif"];
-    
-    return;
-#endif
-    
     [self performLoadOpus:@selector(gotoReplayView)];
     return;
 }
+
 
 - (void)gotoReplayView
 {    
@@ -421,155 +409,6 @@ typedef enum{
     [player showInController:self];
     
 }
-
-+ (void) createGIF:(NSInteger)frameNumber
-         delayTime:(double) delayTime
-    drawActionList:(NSMutableArray*)drawActionList
-           bgImage:(UIImage*)bgImage
-            layers:(NSArray*)layers
-        canvasSize:(CGSize)canvasSize
-        outputPath:(NSString*)outputPath
-{
-    //gif的制作
-    //利用参数获取源数据image
-    NSMutableArray *srcImgList = [self createImagesForGIF:frameNumber
-                                           drawActionList:drawActionList
-                                                  bgImage:bgImage
-                                                   layers:layers
-                                               canvasSize:canvasSize];
-    
-    //图像目标
-    CGImageDestinationRef destImg;
-    
-    //创建输出路径
-    NSString *path = outputPath;
-    
-    //创建CFURL对象
-    /*
-     CFURLCreateWithFileSystemPath(CFAllocatorRef allocator, CFStringRef filePath, CFURLPathStyle pathStyle, Boolean isDirectory)
-     
-     allocator : 分配器,通常使用kCFAllocatorDefault
-     filePath : 路径
-     pathStyle : 路径风格,我们就填写kCFURLPOSIXPathStyle 更多请打问号自己进去帮助看
-     isDirectory : 一个布尔值,用于指定是否filePath被当作一个目录路径解决时相对路径组件
-     */
-    CFURLRef url = CFURLCreateWithFileSystemPath (
-                                                  kCFAllocatorDefault,
-                                                  (CFStringRef)path,
-                                                  kCFURLPOSIXPathStyle,
-                                                  false);
-    
-    //通过一个url返回图像目标
-    destImg = CGImageDestinationCreateWithURL(url, kUTTypeGIF, srcImgList.count, NULL);
-    
-    //设置gif的信息,播放间隔时间,基本数据,和delay时间
-    NSDictionary *frameProperties = [NSDictionary
-                                     dictionaryWithObject:[NSMutableDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithFloat:delayTime], (NSString *)kCGImagePropertyGIFDelayTime, nil]
-                                     forKey:(NSString *)kCGImagePropertyGIFDictionary];
-    
-    //设置gif信息
-    NSMutableDictionary *dict = [NSMutableDictionary dictionaryWithCapacity:2];
-    
-    [dict setObject:@(YES) forKey:(NSString*)kCGImagePropertyGIFHasGlobalColorMap];
-    [dict setObject:(NSString *)kCGImagePropertyColorModelRGB forKey:(NSString *)kCGImagePropertyColorModel];
-    [dict setObject:@(frameNumber) forKey:(NSString*)kCGImagePropertyDepth];
-    [dict setObject:@(0) forKey:(NSString *)kCGImagePropertyGIFLoopCount];
-    NSDictionary *gifProperties = [NSDictionary dictionaryWithObject:dict
-                                                              forKey:(NSString *)kCGImagePropertyGIFDictionary];
-    //合成gif
-    for (UIImage* image in srcImgList)
-    {
-        CGImageDestinationAddImage(destImg, image.CGImage, (__bridge CFDictionaryRef)frameProperties);
-    }
-    CGImageDestinationSetProperties(destImg, (__bridge CFDictionaryRef)gifProperties);
-    CGImageDestinationFinalize(destImg);
-    CFRelease(destImg);
-    return;
-}
-
-+ (NSMutableArray*)createImagesForGIF:(NSInteger)frameNumber
-                       drawActionList:(NSMutableArray*)drawActionList
-                              bgImage:(UIImage*)bgImage
-                               layers:(NSArray*)layers
-                           canvasSize:(CGSize)canvasSize
-
-{
-    // 获取 UIImages from ReplayObject的actionList
-//    MyPaint* currentPaint = _selectedPaint;
-
-//    if ([obj.actionList count] <= frameNumber){
-//        // TODO
-//        return nil;//需要添加笔画控制！！！！！！！比如弹出窗口之类的！！
-//    }
-    
-    ReplayObject *obj = [ReplayObject obj];
-    obj.actionList = drawActionList;
-    obj.isNewVersion = NO;
-    obj.bgImage = bgImage;
-    obj.layers = layers;
-    obj.canvasSize = canvasSize;
-    
-    DrawPlayer *player =[DrawPlayer playerWithReplayObj:obj];
-    
-    NSMutableArray *cuttingList = [NSMutableArray arrayWithCapacity:frameNumber];//mark the cutting list
-    NSMutableArray *gifFrames = [NSMutableArray arrayWithCapacity:frameNumber];//input the images
-    for(NSInteger i = 1;i < frameNumber;i++)
-    {
-        [cuttingList addObject:@(i * [obj.actionList count] / frameNumber)];
-        NSNumber* playIndex = [cuttingList objectAtIndex:(i-1)];
-        UIImage* image = [player gotoCreateImageAtIndex:playIndex];
-        [gifFrames addObject:image];
-        PPDebug(@"<createImagesForGIF> create %d frame, index=%d", i, [playIndex intValue]);
-    }
-
-    // add last frame
-    UIImage *lastImage = [player gotoCreateImageAtIndex: @([obj.actionList count])];
-    [gifFrames addObject:lastImage];
-    
-    return gifFrames;
-}
-
-
-- (NSMutableArray*) gotoGifReplayViewWithFrameNumber:(NSInteger)frameNumber
-{
-    // 获取 UIImages from ReplayObject的actionList
-    MyPaint* currentPaint = _selectedPaint;
-    
-    BOOL isNewVersion = [PPConfigManager currentDrawDataVersion] < [currentPaint drawDataVersion];
-    
-    ReplayObject *obj = [ReplayObject obj];
-    obj.actionList = [currentPaint drawActionList];
-    obj.isNewVersion = isNewVersion;
-    obj.bgImage = [[MyPaintManager defaultManager] bgImageForPaint:currentPaint];
-    obj.layers = currentPaint.layers;
-    obj.canvasSize = [currentPaint canvasSize];
-    
-    DrawPlayer *player =[DrawPlayer playerWithReplayObj:obj];
-  
-    if([obj.actionList count]<=frameNumber) return nil;//需要添加笔画控制！！！！！！！比如弹出窗口之类的！！
-
-    NSMutableArray *cuttingList=[NSMutableArray arrayWithCapacity:frameNumber];//mark the cutting list
-    NSMutableArray *gifFrames=[NSMutableArray arrayWithCapacity:frameNumber];//input the images
-    for(NSInteger i=1;i < frameNumber;i++)
-    {
-        UIImage *tem = nil;
-        [cuttingList addObject:@(i * [obj.actionList count] / frameNumber)];
-        NSNumber* playIndex = [cuttingList objectAtIndex:(i-1)];
-        tem = [player gotoCreateImageAtIndex:playIndex];
-        [gifFrames addObject:tem];
-
-        
-        PPDebug(@"this is the %d frame showing", i);
-    }
-    UIImage *tem=nil;
-    tem = [player gotoCreateImageAtIndex: @([obj.actionList count])];
-    [gifFrames addObject:tem];
-
-//    [gifFrames[14] saveImageToFile:@"/Users/Linruin/Desktop/gifTest/test14.jpg"];
-    
-    return gifFrames;
-}
-
 - (void)gotoEditConroller
 {
     MyPaint* currentPaint = _selectedPaint;    
@@ -623,6 +462,25 @@ typedef enum{
 {
     [self performLoadOpus:@selector(gotoEditConroller)];
     return;
+}
+
+- (void)performGif
+{
+    //testing gif function
+#ifdef DEBUG
+    
+    [ShowDrawView createGIF:24
+                  delayTime:0.3f
+             drawActionList:_selectedPaint.drawActionList
+                    bgImage:[[MyPaintManager defaultManager] bgImageForPaint:_selectedPaint]
+                     layers:_selectedPaint.layers
+                 canvasSize:_selectedPaint.canvasSize
+                 outputPath:@"/Users/Linruin/Desktop/test.gif"];
+    
+    [self hideActivity];
+    
+    return;
+#endif
 }
 
 - (void)share:(PPSNSType)type

@@ -30,7 +30,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
 //    [CommonTitleView createTitleView:self.view];
-    [self setDefaultBGImage];
+//    [self setDefaultBGImage];
     
     //更新页面
     [self updateViewWidget];
@@ -55,12 +55,12 @@
 //更新本页面控件
 -(void)updateViewWidget{
     //button
-    [self.shareButton setTitle:@"分享" forState:UIControlStateNormal];
-    [self.shareButton.titleLabel setFont:AD_BOLD_FONT(20, 15)];
+    [self.shareButton setTitle:NSLS(@"kShare") forState:UIControlStateNormal];
+    [self.shareButton.titleLabel setFont:AD_BOLD_FONT(18, 15)];
     [self.shareButton setFrame:(CGRectMake((ISIPAD ? 75:75),(ISIPAD ? 533:533),110,30))];
     SET_BUTTON_ROUND_STYLE_ORANGE(self.shareButton);
-    [self.continueButton setTitle:@"继续闯关" forState:UIControlStateNormal];
-    [self.continueButton.titleLabel setFont:AD_BOLD_FONT(20, 15)];
+    [self.continueButton setTitle:NSLS(@"kContinue") forState:UIControlStateNormal];
+    [self.continueButton.titleLabel setFont:AD_BOLD_FONT(18, 15)];
     [self.continueButton setFrame:(CGRectMake((ISIPAD ? 265:260),(ISIPAD ? 533:533),110,30))];
     SET_BUTTON_ROUND_STYLE_ORANGE(self.continueButton);
     
@@ -85,31 +85,36 @@
     
 }
 -(NSMutableAttributedString *)getDesc{
-    NSMutableAttributedString *attriString = [[[NSMutableAttributedString alloc] initWithString:@"本次作品得分為78分,耗時58秒\n闖關成功！\n"]autorelease];
+    NSMutableAttributedString *attriString = [[[NSMutableAttributedString alloc]                  initWithString:@"恭喜皮皮彭！\n本次作品得分為78分,\n耗時58秒\n闖關成功！\n"]    autorelease];
     //所有字体
     [attriString addAttribute:NSFontAttributeName
                         value:AD_FONT(20, 13)
                         range:NSMakeRange(0,22)];
     
+    //人名
+    [attriString addAttribute:NSForegroundColorAttributeName
+                        value:COLOR_RED
+                        range:NSMakeRange(2, 3)];
+    [attriString addAttribute:NSFontAttributeName
+                        value:AD_FONT(30, 20)
+                        range:NSMakeRange(2,3)];
+    
     //分数
     [attriString addAttribute:NSForegroundColorAttributeName
                         value:COLOR_RED
-                        range:NSMakeRange(7, 2)];
+                        range:NSMakeRange(14, 2)];
     [attriString addAttribute:NSFontAttributeName
-                        value:AD_FONT(20, 20)
-                        range:NSMakeRange(7,2)];
+                        value:AD_FONT(30, 20)
+                        range:NSMakeRange(14,2)];
     //时间
     [attriString addAttribute:NSForegroundColorAttributeName
                         value:COLOR_ORANGE
-                        range:NSMakeRange(13,2)];
+                        range:NSMakeRange(21,2)];
     [attriString addAttribute:NSFontAttributeName
-                        value:AD_FONT(20, 20)
-                        range:NSMakeRange(13,2)];
+                        value:AD_FONT(30, 20)
+                        range:NSMakeRange(21,2)];
     
     
-    //    [attriString addAttribute:NSForegroundColorAttributeName
-    //                        value:(id)[UIColor yellowColor].CGColor
-    //                        range:NSMakeRange(5, 11)];
     return attriString;
 }
 

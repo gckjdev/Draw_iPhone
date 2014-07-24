@@ -33,7 +33,7 @@
     [COMMONTITLE_VIEW setTitle:NSLS(@"kResultSharePage")];
     [COMMONTITLE_VIEW setTarget:self];
     [COMMONTITLE_VIEW setBackButtonSelector:@selector(clickBack:)];
-    [self setDefaultBGImage];
+//    [self setDefaultBGImage];
     
     //更新页面
     [self updateViewWidget];

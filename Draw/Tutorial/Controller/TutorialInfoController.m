@@ -88,11 +88,10 @@ enum{
                                                                    constant:0.0];
     
     [self.view addConstraint:constraint];
-    [self setDefaultBGImage];
+//    [self setDefaultBGImage];
     [super viewDidLoad];
-    
-    self.dataList = self.pbTutorial.stagesList;
     self.tutorialCellInfoHeight = [self insertTheCellHeight];
+    self.dataList = self.pbTutorial.stagesList;
     
 }
 -(void)viewWillAppear:(BOOL)animated{
@@ -179,6 +178,8 @@ forRowAtIndexPath:(NSIndexPath *)indexPath
             cell.userInteractionEnabled = NO;
         }
         }
+        
+        
         return cell;
 
        

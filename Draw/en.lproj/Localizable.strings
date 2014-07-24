@@ -2789,3 +2789,5 @@
 "kDownloadTutorialSuccess" = "Download successfully.";
 "kLoadingStage" = "Loading...";
 "kLoadingStageWithProgress" = "Loading...(%d%%)";
+
+"kContinue" = "continue";
