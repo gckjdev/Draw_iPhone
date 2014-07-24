@@ -350,6 +350,11 @@ static TutorialCoreManager* _defaultTutorialCoreManager;
 
                               ];
     
+    /*
+    http://58.215.184.18:8080/draw_data/20140716/f0262460-0c86-11e4-9049-00163e017d23.zip
+    http://58.215.184.18:8080/draw_image/20140716/f01bc420-0c86-11e4-9049-00163e017d23.jpg
+    tutorialId-7__stageId-7-0
+     */
     
     NSArray *chapterOpusIdList = @[@[
                                    @"51564194e4b0d84d3151da6b"

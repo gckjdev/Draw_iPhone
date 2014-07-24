@@ -18,9 +18,9 @@
 @property (retain, nonatomic) IBOutlet UIView *UIImageViewUpView;
 @property (retain, nonatomic) IBOutlet UIView *vagueTopImageView;
 @property (retain, nonatomic) IBOutlet UIView *labelBottomView;
-@property (retain, nonatomic) IBOutlet UIProgressView *tutorialProgressView;
 @property (retain, nonatomic) IBOutlet UILabel *progressInfoLabel;
 @property (retain, nonatomic) IBOutlet UILabel *othersProgressInfoLabel;
+@property (retain, nonatomic) IBOutlet UIView *progressAndLabelView;
 
 - (void)updateCellInfo:(PBUserTutorial*)ut WithRow:(NSInteger)row;
 @end

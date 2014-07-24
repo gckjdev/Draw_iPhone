@@ -6211,6 +6211,10 @@
 		D80518B7196BD12200D350B3 /* luntan.png in Resources */ = {isa = PBXBuildFile; fileRef = D80518AD196BD12200D350B3 /* luntan.png */; };
 		D80518B8196BD12200D350B3 /* xuehuahua.png in Resources */ = {isa = PBXBuildFile; fileRef = D80518AE196BD12200D350B3 /* xuehuahua.png */; };
 		D80518B9196BD12200D350B3 /* zhuye.png in Resources */ = {isa = PBXBuildFile; fileRef = D80518AF196BD12200D350B3 /* zhuye.png */; };
+		D80BB5E61980C26000BFC4A7 /* THProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = D80BB5E51980C26000BFC4A7 /* THProgressView.m */; };
+		D80BB5E71980C26000BFC4A7 /* THProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = D80BB5E51980C26000BFC4A7 /* THProgressView.m */; };
+		D80BB5E81980C26000BFC4A7 /* THProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = D80BB5E51980C26000BFC4A7 /* THProgressView.m */; };
+		D80BB5E91980C26000BFC4A7 /* THProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = D80BB5E51980C26000BFC4A7 /* THProgressView.m */; };
 		D80EB34C196B90DB0087EBBD /* MetroHomeController.m in Sources */ = {isa = PBXBuildFile; fileRef = D80EB34A196B90DB0087EBBD /* MetroHomeController.m */; };
 		D80EB34D196B90DB0087EBBD /* MetroHomeController.m in Sources */ = {isa = PBXBuildFile; fileRef = D80EB34A196B90DB0087EBBD /* MetroHomeController.m */; };
 		D80EB34E196B90DB0087EBBD /* MetroHomeController.m in Sources */ = {isa = PBXBuildFile; fileRef = D80EB34A196B90DB0087EBBD /* MetroHomeController.m */; };
@@ -10731,6 +10735,8 @@
 		D80518AD196BD12200D350B3 /* luntan.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = luntan.png; sourceTree = "<group>"; };
 		D80518AE196BD12200D350B3 /* xuehuahua.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = xuehuahua.png; sourceTree = "<group>"; };
 		D80518AF196BD12200D350B3 /* zhuye.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = zhuye.png; sourceTree = "<group>"; };
+		D80BB5E41980C26000BFC4A7 /* THProgressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THProgressView.h; sourceTree = "<group>"; };
+		D80BB5E51980C26000BFC4A7 /* THProgressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THProgressView.m; sourceTree = "<group>"; };
 		D80EB349196B90DB0087EBBD /* MetroHomeController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MetroHomeController.h; sourceTree = "<group>"; };
 		D80EB34A196B90DB0087EBBD /* MetroHomeController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MetroHomeController.m; sourceTree = "<group>"; };
 		D80EB34B196B90DB0087EBBD /* MetroHomeController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MetroHomeController.xib; sourceTree = "<group>"; };
@@ -18100,6 +18106,7 @@
 		CAFEFDB316606FC100441D77 /* Component-View */ = {
 			isa = PBXGroup;
 			children = (
+				D80BB5E31980C26000BFC4A7 /* THProgressView */,
 				D8B58B20197CEE090088E5F7 /* SGFocusImageFrame */,
 				D8B58AF8197CE8E60088E5F7 /* ICETutorial */,
 				CA1782621962D2480068883A /* DAPagesContainer */,
@@ -18160,6 +18167,15 @@
 				D80518AF196BD12200D350B3 /* zhuye.png */,
 			);
 			path = Resource;
+			sourceTree = "<group>";
+		};
+		D80BB5E31980C26000BFC4A7 /* THProgressView */ = {
+			isa = PBXGroup;
+			children = (
+				D80BB5E41980C26000BFC4A7 /* THProgressView.h */,
+				D80BB5E51980C26000BFC4A7 /* THProgressView.m */,
+			);
+			path = THProgressView;
 			sourceTree = "<group>";
 		};
 		D80EB348196B90C80087EBBD /* MetroHome */ = {
@@ -23803,6 +23819,7 @@
 				A42BB02C17D9735A007FB11B /* TwoInputFieldView.m in Sources */,
 				EAD13B8C17DECFE300764FFB /* OrangeLoadingView.m in Sources */,
 				A4AFB7F317E032D60079B165 /* GuessRankListController.m in Sources */,
+				D80BB5E81980C26000BFC4A7 /* THProgressView.m in Sources */,
 				A44F32EA17E16C3500AF9B26 /* ContestRankView.m in Sources */,
 				EA8EF66917E55F0D003F1AF8 /* DrawHomeHeaderPanel.m in Sources */,
 				EA8EF66F17E593CA003F1AF8 /* DrawMainMenuPanel.m in Sources */,
@@ -24816,6 +24833,7 @@
 				A40DF8811876A29200C1A307 /* ContestAwardEditController.m in Sources */,
 				A40DF88E1876A3EF00C1A307 /* ContestAwardEditCell.m in Sources */,
 				A49DF8BB187D305F00634196 /* StatementCell.m in Sources */,
+				D80BB5E71980C26000BFC4A7 /* THProgressView.m in Sources */,
 				EAEE550F188E5E61004A0907 /* SingleTabController.m in Sources */,
 				EAEE5518188E644F004A0907 /* GroupFeedController.m in Sources */,
 				EAEE551E188F7902004A0907 /* ChargeHistoryController.m in Sources */,
@@ -25675,6 +25693,7 @@
 				A40DF8801876A29200C1A307 /* ContestAwardEditController.m in Sources */,
 				A40DF88D1876A3EF00C1A307 /* ContestAwardEditCell.m in Sources */,
 				A49DF8BA187D305F00634196 /* StatementCell.m in Sources */,
+				D80BB5E61980C26000BFC4A7 /* THProgressView.m in Sources */,
 				EAEE550E188E5E61004A0907 /* SingleTabController.m in Sources */,
 				EAEE5517188E644F004A0907 /* GroupFeedController.m in Sources */,
 				EAEE551D188F7902004A0907 /* ChargeHistoryController.m in Sources */,
@@ -25988,6 +26007,7 @@
 				EA411996176066F500DA72D0 /* BBSActionListController.m in Sources */,
 				EA411997176066F500DA72D0 /* BBSUserActionCell.m in Sources */,
 				EA411998176066F500DA72D0 /* GameSNSService.m in Sources */,
+				D80BB5E91980C26000BFC4A7 /* THProgressView.m in Sources */,
 				EA4119AC176066F500DA72D0 /* ANGifEncoder.m in Sources */,
 				EA4119AD176066F500DA72D0 /* ANGifGraphicControlExt.m in Sources */,
 				EA4119AE176066F500DA72D0 /* ANGifLogicalScreenDesc.m in Sources */,
