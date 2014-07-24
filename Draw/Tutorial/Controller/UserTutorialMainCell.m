@@ -55,15 +55,14 @@
     [difficultyLabel release];
     
     
-    int i = arc4random() % 100;
-    float progress = i/100.0;
-
+//    int i = arc4random() % 100;
+    float progress = [ut progress]*1.0f/100.0f;
     [self setProgressView:row WithProgress:progress];
     
     //实现国际化
     [self.tutorialNameLabel setText:ut.tutorial.name];
     
-    NSDate* createDate = [NSDate dateWithTimeIntervalSince1970:ut.createDate];
+    NSDate* createDate = [NSDate dateWithTimeIntervalSince1970:ut.modifyDate];
     self.tutorialDateLabel.text = dateToTimeLineString(createDate);
     UIImage *placeHolderImage = [UIImage imageNamed:DEFAUT_IMAGE_NAME];
     [_tutorialImageView setImageWithUrl:[NSURL URLWithString:ut.tutorial.image]
@@ -81,6 +80,7 @@
         [self.tutorialStartBtn.titleLabel setFont:AD_FONT(25, 15)];
         self.tutorialStartBtn.hidden = NO;
         self.tutorialProgressView.hidden = YES;
+        self.othersProgressInfoLabel.hidden = YES;
         if(progress <= 0.0f)
         {
             [self.tutorialStartBtn setTitle:@"开始" forState:UIControlStateNormal];

@@ -374,6 +374,8 @@ static UserTutorialManager* _defaultManager;
         PPDebug(@"<conquerTutorialStage> add new user stage");
     }
     
+    [builder setModifyDate:time(0)];
+    
     PBUserTutorial* newUT = [builder build];
     [self save:newUT];
     return newUT;
@@ -429,6 +431,8 @@ static UserTutorialManager* _defaultManager;
         PPDebug(@"<practiceTutorialStage> add new user stage");
     }
 
+    [builder setModifyDate:time(0)];
+    
     PBUserTutorial* newUT = [builder build];
     [self save:newUT];
     return newUT;

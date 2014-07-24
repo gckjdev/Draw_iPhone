@@ -37,6 +37,7 @@
 @interface PBUserStage (Extend4)
 
 - (NSString*)getCurrentChapterOpusId;
+- (int)defeatPercent;
 
 @end
 

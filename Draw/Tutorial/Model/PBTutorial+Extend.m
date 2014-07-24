@@ -210,6 +210,16 @@
     return chapter.opusId;
 }
 
+- (int)defeatPercent
+{
+    if (self.totalCount > 0){
+        return (((self.defeatCount+1)*1.0f) / (self.totalCount*1.0f))*100;
+    }
+    else{
+        return 0;
+    }
+}
+
 @end
 
 @implementation PBUserStage_Builder (Extend5)
