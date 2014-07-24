@@ -1754,11 +1754,12 @@
 
 - (void)showResultOptionForConquer
 {
-    int totalCount = [_userStageBuilder totalCount];
-    int defeatCount = [_userStageBuilder defeatCount];
+    PBUserStage* userStage = [self buildUserStage];
     
     int score = [self.draft.score intValue];
-    int defeatPercent = (totalCount > 0) ? ((defeatCount*1.0f) / (totalCount*1.0f)) * 100 : 0;
+    int defeatPercent = [userStage defeatPercent];
+    
+    // TODO invoke show result view here, pass user stage, image as parameter
     
     // 根据评分结果跳转
     if ([self isPassPractice:score]){
