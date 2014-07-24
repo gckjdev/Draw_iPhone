@@ -90,7 +90,6 @@
 -(CGFloat)autoContentViewHeight{
     //tableview自适应高度
     CGRect txtFrame = self.tutorialDescLabel.frame;
-    
     CGFloat textViewContentHeight;
     CGFloat labelContentHeight;
     if(IOS_VERSION_7_OR_ABOVE){
@@ -126,7 +125,7 @@
         
     }
     
-    CGFloat tableviewCellHeight = labelContentHeight + textViewContentHeight+(ISIPAD ? 0:25);
+    CGFloat tableviewCellHeight = labelContentHeight + textViewContentHeight+(ISIPAD ? 50:25);
     
 //    [self setFrame:CGRectMake(0, 0, SCREEN_WIDTH, tableviewCellHeight)];
     return tableviewCellHeight;
@@ -134,6 +133,7 @@
     
 }
 
+//適應文字大小
 -(void) adaptLabelWidth:(UILabel *)label WithStringText:(NSString *)text{
     
    
