@@ -11,11 +11,13 @@
 #import "AllTutorialCell.h"
 #import "TutorialInfoController.h"
 #import "TutorialCoreManager.h"
+#import "UserTutorialService.h"
+#import "UserTutorialManager.h"
+#import "TutorialStageController.h"
 @interface AllTutorialController ()
 @end
 
 @implementation AllTutorialController
-
 
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -29,8 +31,8 @@
 
 - (void)viewDidLoad
 {
+
     [CommonTitleView createTitleView:self.view];
-    
     id titleView = [CommonTitleView titleView:self.view];
     [titleView setTitle:NSLS(@"AllTutorial")];
     [titleView setTarget:self];
@@ -109,16 +111,56 @@ SET_CELL_BG_IN_VIEW
     return PPSIZE(160.f, 75.0f); //  ISIPAD ? 160.0f : 75.0f;
 }
 
+
+
 // 当点击cell 时候的事件
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-
+    UserTutorialManager *um = [UserTutorialManager defaultManager];
     PBTutorial* pbTutorial = [self getTutorialByRow:indexPath.row];
     if(nil!=pbTutorial){
-         [TutorialInfoController enter:self pbTutorial:pbTutorial infoOnly:NO];
+        self.infoController = [TutorialInfoController createController:pbTutorial infoOnly:NO];
+        
+        //打开自定义对话框
+        CommonDialog *dialog = [CommonDialog createDialogWithTitle:pbTutorial.cnName
+                                                        customView:_infoController.view
+                                                             style:CommonDialogStyleSingleButtonWithCross];
+        
+        //如果该课程已经添加
+        if([um isTutorialLearned:pbTutorial.tutorialId]){
+            [dialog.oKButton setTitle:@"打开" forState:UIControlStateNormal];
+            [dialog setClickOkBlock:^(id infoView){
+                [self addTutorial:pbTutorial];
+            }];
+            [dialog setClickOkBlock:^(id infoView){
+                PBUserTutorial* ut = [[UserTutorialManager defaultManager] getUserTutorialByTutorialId:pbTutorial.tutorialId];
+                if (ut != nil){
+                    [TutorialStageController enter:self pbTutorial:ut];
+                }
+            }];
+           
+        //没有添加的时候
+        }else{
+            
+            [dialog.oKButton setTitle:@"添加" forState:UIControlStateNormal];
+            [dialog setClickOkBlock:^(id infoView){
+                [self addTutorial:pbTutorial];
+            }];
+        }
+        
+        [dialog showInView:self.view];
     }
-   
+}
+
+
+
+- (void)addTutorial:(PBTutorial*)tutorial
+{
+    [[UserTutorialService defaultService] addTutorial:tutorial resultBlock:^(int resultCode) {
+        POSTMSG(NSLS(@"kAddSuccess"));
+    }];
     
 }
+
 @end

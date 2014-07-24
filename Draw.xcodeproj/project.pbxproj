@@ -15247,26 +15247,10 @@
 		CA2A28A5195C120600A97478 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				D8A87CAA197F9E7B00972B2E /* TutorialInfo */,
+				D8A87CA6197F9E5F00972B2E /* AllTutorial */,
 				D8B84166197DF7B300B6FB5C /* ResultSharePage */,
 				D8B84162197DF78300B6FB5C /* UserTutorial */,
-				CA2A28D2195C1E3900A97478 /* TutorialInfoController.h */,
-				CA2A28D3195C1E3A00A97478 /* TutorialInfoController.m */,
-				CA2A28D4195C1E3A00A97478 /* TutorialInfoController.xib */,
-				CA2A28DD195C1E6200A97478 /* AllTutorialController.h */,
-				CA2A28DE195C1E6200A97478 /* AllTutorialController.m */,
-				CA2A28DF195C1E6200A97478 /* AllTutorialController.xib */,
-				D81962371962675600B4FBAF /* AllTutorialCell.h */,
-				D81962381962675600B4FBAF /* AllTutorialCell.m */,
-				D81962401962677B00B4FBAF /* AllTutorialCell.xib */,
-				D8C784B9196A541C00323712 /* AllTutorialCell~ipad.xib */,
-				D819624519629D4C00B4FBAF /* TutorialInfoCell.h */,
-				D819624619629D4C00B4FBAF /* TutorialInfoCell.m */,
-				D819624719629D4C00B4FBAF /* TutorialInfoCell.xib */,
-				D8C669D5196CE42F0002B975 /* TutorialInfoCell~ipad.xib */,
-				D81962501962AA8700B4FBAF /* StageBasicInfoCell.h */,
-				D81962511962AA8700B4FBAF /* StageBasicInfoCell.m */,
-				D81962521962AA8700B4FBAF /* StageBasicInfoCell.xib */,
-				D8C784C3196A55C600323712 /* StageBasicInfoCell~ipad.xib */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -18197,6 +18181,38 @@
 				D82C0D7F1976500E0088539F /* home_bb_version.txt */,
 			);
 			path = billboard;
+			sourceTree = "<group>";
+		};
+		D8A87CA6197F9E5F00972B2E /* AllTutorial */ = {
+			isa = PBXGroup;
+			children = (
+				CA2A28DD195C1E6200A97478 /* AllTutorialController.h */,
+				CA2A28DE195C1E6200A97478 /* AllTutorialController.m */,
+				CA2A28DF195C1E6200A97478 /* AllTutorialController.xib */,
+				D81962371962675600B4FBAF /* AllTutorialCell.h */,
+				D81962381962675600B4FBAF /* AllTutorialCell.m */,
+				D81962401962677B00B4FBAF /* AllTutorialCell.xib */,
+				D8C784B9196A541C00323712 /* AllTutorialCell~ipad.xib */,
+			);
+			name = AllTutorial;
+			sourceTree = "<group>";
+		};
+		D8A87CAA197F9E7B00972B2E /* TutorialInfo */ = {
+			isa = PBXGroup;
+			children = (
+				CA2A28D2195C1E3900A97478 /* TutorialInfoController.h */,
+				CA2A28D3195C1E3A00A97478 /* TutorialInfoController.m */,
+				CA2A28D4195C1E3A00A97478 /* TutorialInfoController.xib */,
+				D819624519629D4C00B4FBAF /* TutorialInfoCell.h */,
+				D819624619629D4C00B4FBAF /* TutorialInfoCell.m */,
+				D819624719629D4C00B4FBAF /* TutorialInfoCell.xib */,
+				D8C669D5196CE42F0002B975 /* TutorialInfoCell~ipad.xib */,
+				D81962501962AA8700B4FBAF /* StageBasicInfoCell.h */,
+				D81962511962AA8700B4FBAF /* StageBasicInfoCell.m */,
+				D81962521962AA8700B4FBAF /* StageBasicInfoCell.xib */,
+				D8C784C3196A55C600323712 /* StageBasicInfoCell~ipad.xib */,
+			);
+			name = TutorialInfo;
 			sourceTree = "<group>";
 		};
 		D8B58A1E197CCEC10088E5F7 /* GuidePage */ = {

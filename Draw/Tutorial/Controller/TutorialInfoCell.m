@@ -10,7 +10,6 @@
 #import "PBTutorial+Extend.h"
 
 @implementation TutorialInfoCell
-
 #define Task_IMAGE_HEIGHT       (ISIPAD ? 100 : 45)
 - (void)awakeFromNib
 {
@@ -35,6 +34,7 @@
 
 
 //label 的 自适应长度
+#define IOS_VERSION_7_OR_ABOVE (([[[UIDevice currentDevice] systemVersion] floatValue] >= 7.0)? (YES):(NO))
 -(void)setAutoWithAndHeightLabel:(NSString *)text WithLabel:(UILabel *)label WithX:(CGFloat)x WithY:(CGFloat)y{
     //高度和宽度
 
@@ -45,13 +45,20 @@
 //    [label setLineBreakMode:UILineBreakModeWordWrap];
     [label setNumberOfLines:0];
     NSDictionary * tdic = [NSDictionary dictionaryWithObjectsAndKeys:tfont,NSFontAttributeName,nil];
-    CGSize  actualsize =[text boundingRectWithSize:size
+    
+    CGSize  actualsize;
+    if(IOS_VERSION_7_OR_ABOVE){
+    actualsize = [text boundingRectWithSize:size
                               options:NSStringDrawingUsesLineFragmentOrigin
                               attributes:tdic
                               context:nil].size;
     
+    }
+    else{
+        actualsize = [text sizeWithFont:tfont constrainedToSize:size lineBreakMode:NSLineBreakByCharWrapping];
+    }
+
     [label setTextColor:COLOR_BROWN];
-    
     [label setFrame:CGRectMake(x, y,actualsize.width, actualsize.height)];
     [label setText:text];
 }
@@ -64,7 +71,7 @@
 {
     //实现国际化
     if(pbTutorial!=nil){
-        
+        //text
         NSString *tutorialCategoryText = pbTutorial.categoryName;
         NSString *tutorialDescText = pbTutorial.desc;
     
@@ -73,7 +80,8 @@
         
         [self.tutorialDescNameLabel setFont:AD_FONT(19, 12)];
         [self.tutorialSortedNameLabel setFont:AD_FONT(19, 12)];
-
+        
+      
         
     }
 }
@@ -82,18 +90,42 @@
 -(CGFloat)autoContentViewHeight{
     //tableview自适应高度
     CGRect txtFrame = self.tutorialDescLabel.frame;
-    CGFloat  textViewContentHeight =
-    txtFrame.size.height =[[NSString stringWithFormat:@"%@\n ",self.tutorialDescLabel.text]
-                           boundingRectWithSize:CGSizeMake(txtFrame.size.width, CGFLOAT_MAX)
-                           options:NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading
-                           attributes:[NSDictionary dictionaryWithObjectsAndKeys:self.tutorialDescLabel.font,NSFontAttributeName, nil] context:nil].size.height;
     
-    CGRect labelFrame = self.tutorialSortedLabel.frame;
-    CGFloat labelContentHeight =
-    txtFrame.size.height =[[NSString stringWithFormat:@"%@\n ",self.tutorialDescLabel.text]
-                                                       boundingRectWithSize:CGSizeMake(labelFrame.size.width, CGFLOAT_MAX)
-                                                       options:NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading
-                                                       attributes:[NSDictionary dictionaryWithObjectsAndKeys:self.tutorialSortedLabel.font,NSFontAttributeName, nil] context:nil].size.height;
+    CGFloat textViewContentHeight;
+    CGFloat labelContentHeight;
+    if(IOS_VERSION_7_OR_ABOVE){
+        textViewContentHeight =
+        txtFrame.size.height =[[NSString stringWithFormat:@"%@\n ",self.tutorialDescLabel.text]
+                               boundingRectWithSize:CGSizeMake(txtFrame.size.width, CGFLOAT_MAX)
+                               options:NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading
+                               attributes:[NSDictionary dictionaryWithObjectsAndKeys:self.tutorialDescLabel.font,NSFontAttributeName, nil] context:nil].size.height;
+        
+        CGRect labelFrame = self.tutorialSortedLabel.frame;
+        labelContentHeight =
+        txtFrame.size.height =[[NSString stringWithFormat:@"%@\n ",self.tutorialDescLabel.text]
+                               boundingRectWithSize:CGSizeMake(labelFrame.size.width, CGFLOAT_MAX)
+                               options:NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading
+                               attributes:[NSDictionary dictionaryWithObjectsAndKeys:self.tutorialSortedLabel.font,NSFontAttributeName, nil] context:nil].size.height;
+        
+        
+    }
+    else{
+        textViewContentHeight = [[NSString stringWithFormat:@"%@\n ",self.tutorialDescLabel.text]
+                                 
+                                 sizeWithFont:self.tutorialSortedLabel.font
+                                 constrainedToSize:CGSizeMake(txtFrame.size.width, CGFLOAT_MAX)
+                                 lineBreakMode:NSLineBreakByCharWrapping].height;
+        
+        labelContentHeight = [[NSString stringWithFormat:@"%@\n ",self.tutorialDescLabel.text]
+                              
+                              sizeWithFont:self.tutorialSortedLabel.font
+                              constrainedToSize:CGSizeMake(self.tutorialSortedLabel.frame.size.width, CGFLOAT_MAX)
+                              lineBreakMode:NSLineBreakByCharWrapping].height;
+        
+        
+        
+    }
+    
     CGFloat tableviewCellHeight = labelContentHeight + textViewContentHeight+(ISIPAD ? 0:25);
     
 //    [self setFrame:CGRectMake(0, 0, SCREEN_WIDTH, tableviewCellHeight)];
@@ -117,11 +149,14 @@
 
 }
 
+
+
 - (void)dealloc {
     [_tutorialSortedLabel release];
     [_tutorialDescLabel release];
     [_tutorialSortedNameLabel release];
     [_tutorialDescNameLabel release];
+    [_addButton release];
     [super dealloc];
 }
 @end

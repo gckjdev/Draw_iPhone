@@ -73,7 +73,7 @@
 }
 
 -(void)setProgressView:(NSInteger)row WithProgress:(float)progress{
-    
+    //row == 0 特殊情況
     if(row <= 0){
         UIImage* starButtonBgImage = [[ShareImageManager defaultManager] tutorialStartButtonBgImage];
         [self.tutorialStartBtn setBackgroundImage:starButtonBgImage forState:UIControlStateNormal];
@@ -94,7 +94,7 @@
             
         }
         
-        
+    // row>=1時候就是普通情況
     }else{
         CGAffineTransform transform = CGAffineTransformMakeScale(PROGRESS_VIEW_HEIGHT, PROGRESS_VIEW_HEIGHT);
         self.tutorialProgressView.transform = transform;

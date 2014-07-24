@@ -194,9 +194,11 @@
     
     if (_style == CommonDialogStyleSingleButton) {
         [self.oKButton updateCenterX:centerX];
-    }else{
+    }else if(_style == CommonDialogStyleSingleButtonWithCross){
+        [self.oKButton updateCenterX:centerX];
+    }
+    else{
         CGFloat gapX = (self.contentView.frame.size.width - 2 * BUTTON_WIDTH) / 4;
-        
         [self.cancelButton updateOriginX:gapX];
         [self.oKButton updateOriginX:(gapX * 3 + BUTTON_WIDTH)];
     }
@@ -291,7 +293,6 @@
     switch (style) {
         case CommonDialogStyleSingleButton:
             [self.oKButton updateCenterX:self.contentView.frame.size.width/2];
-            
             [_cancelButton removeFromSuperview];
             self.cancelButton = nil;
             [_closeButton removeFromSuperview];
@@ -309,6 +310,11 @@
             [_cancelButton removeFromSuperview];
             self.cancelButton = nil;
             break;
+            
+        case CommonDialogStyleSingleButtonWithCross:
+            [self.oKButton updateCenterX:self.contentView.frame.size.width/2];
+            [_cancelButton removeFromSuperview];
+            self.cancelButton = nil;
             
         default:
             break;

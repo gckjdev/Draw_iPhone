@@ -9,7 +9,6 @@
 #import <UIKit/UIKit.h>
 #import "Tutorial.pb.h"
 
-
 @interface TutorialInfoCell :UITableViewCell<UIAlertViewDelegate>
 {
 }
@@ -18,12 +17,13 @@
 @property (retain, nonatomic) IBOutlet UILabel *tutorialSortedNameLabel;
 @property (retain, nonatomic) IBOutlet UILabel *tutorialDescNameLabel;
 
+@property (retain, nonatomic) IBOutlet UIButton *addButton;
 
 
+//
+//-(IBAction)clickAddBtn:(id)sender;
 - (void)updateCellInfo:(PBTutorial*)pbTutorial;
-
--(IBAction)clickAddBtn:(id)sender;
-
 -(CGFloat)autoContentViewHeight;
 @end
+
 
