@@ -314,8 +314,8 @@
     [self.navigationController pushViewController:rspc
                                          animated:YES];
     [rspc release];
-    
 }
+
 
 
 

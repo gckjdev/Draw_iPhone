@@ -188,10 +188,11 @@
 }
 
 - (void)dealloc {
-     PPRelease(_pbUserTutorial);
-     PPRelease(_image);
-     [_collectionView release];
-     [super dealloc];
+    PPRelease(_pbUserTutorial);
+    PPRelease(_image);
+    PPRelease(_infoController);
+    [_collectionView release];
+    [super dealloc];
 }
 - (void)viewDidUnload {
     [self setCollectionView:nil];
@@ -210,7 +211,15 @@
 -(void)clickEnterInfo:(id)sender{
     
     PBTutorial *pbTutorial = [[TutorialCoreManager defaultManager]findTutorialByUserTutorialId:self.pbUserTutorial];
-    [TutorialInfoController enter:self pbTutorial:pbTutorial infoOnly:YES];
+    
+    self.infoController = [TutorialInfoController createController:pbTutorial infoOnly:YES];
+    
+    CommonDialog *dialog = [CommonDialog createDialogWithTitle:pbTutorial.cnName
+                                                    customView:_infoController.view
+                                                         style:CommonDialogStyleCross];
+    
+    [dialog showInView:self.view];
+
 }
 
 

@@ -31,6 +31,7 @@ enum{
 
 @implementation TutorialInfoController
 @synthesize tutorialCellInfoHeight;
+
 //unable click yes为不可点击，no为可以点击
 + (TutorialInfoController*)enter:(PPViewController*)superViewController
                       pbTutorial:(PBTutorial*)pbTutorial infoOnly:(BOOL)infoOnly
@@ -42,6 +43,15 @@ enum{
     [vc release];
     return vc;
 }
+
++(TutorialInfoController *)createController:(PBTutorial*)pbTutorial infoOnly:(BOOL)infoOnly
+{
+    TutorialInfoController* vc = [[[TutorialInfoController alloc] init] autorelease];
+    vc.pbTutorial = pbTutorial;
+    vc.infoOnly = infoOnly;
+    return vc;
+}
+
 
 - (void)dealloc
 {
@@ -59,38 +69,16 @@ enum{
     return self;
 }
 
-- (void)updateRightButton
-{
-    id titleView = [CommonTitleView titleView:self.view];
-    if (self.infoOnly==NO) {
-        if ([[UserTutorialManager defaultManager] isTutorialLearned:_pbTutorial.tutorialId]){
-            [titleView setRightButtonTitle:NSLS(@"kOpenToLearn")];
-            [titleView setRightButtonSelector:@selector(clickOpen:)];
-        }
-        else{
-            [titleView setRightButtonTitle:NSLS(@"kAddToLearn")];
-            [titleView setRightButtonSelector:@selector(clickAdd:)];
-        }
-    }else{
-        [titleView setRightButtonTitle:NSLS(@"kOpenToLearn")];
-        [titleView setRightButtonSelector:@selector(clickOpen:)];
-        [titleView hideRightButton];
-    }
-    
-    
-}
 
 - (void)viewDidLoad
 {
     self.sectionTitle = @[NSLS(@"kTutorialDesc"), NSLS(@"kTutorialStageList")];
-    [CommonTitleView createTitleView:self.view];
-    
+        //加载标题
     id titleView = [CommonTitleView titleView:self.view];
-    [titleView setTitle:_pbTutorial.name]; //NSLS(@"kTutorialInfoTitle")];
+    [titleView setTitle:_pbTutorial.name];
     [titleView setTarget:self];
-    [[CommonTitleView titleView:self.view] setBackButtonSelector:@selector(clickBack:)];
-    [self updateRightButton];
     
+    //autolayout
     NSLayoutConstraint* constraint = [NSLayoutConstraint constraintWithItem:self.dataTableView
                                                                   attribute:NSLayoutAttributeTop
                                                                   relatedBy:NSLayoutRelationEqual
@@ -100,11 +88,14 @@ enum{
                                                                    constant:0.0];
     
     [self.view addConstraint:constraint];
-    [self setDefaultBGImage];
+//    [self setDefaultBGImage];
     [super viewDidLoad];
-    
+    self.tutorialCellInfoHeight = [self insertTheCellHeight];
     self.dataList = self.pbTutorial.stagesList;
-   
+    
+}
+-(void)viewWillAppear:(BOOL)animated{
+//        self.tutorialCellInfoHeight = [self insertTheCellHeight];
     
 }
 
@@ -164,8 +155,9 @@ forRowAtIndexPath:(NSIndexPath *)indexPath
             [tableView registerNib:nib forCellReuseIdentifier:CustomCellIdentifier];
             cell = [tableView dequeueReusableCellWithIdentifier:CustomCellIdentifier];
         }
-        
-        [cell updateCellInfo:_pbTutorial];
+        if(_pbTutorial!=nil){
+            [cell updateCellInfo:_pbTutorial];
+        }
         return cell;
         
     }else{
@@ -186,6 +178,8 @@ forRowAtIndexPath:(NSIndexPath *)indexPath
             cell.userInteractionEnabled = NO;
         }
         }
+        
+        
         return cell;
 
        
@@ -239,12 +233,22 @@ forRowAtIndexPath:(NSIndexPath *)indexPath
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     NSInteger section = indexPath.section;
     if(section==0){
-        static NSString *CustomCellIdentifier = @"TutorialInfoCell";
-        TutorialInfoCell *cell = [tableView dequeueReusableCellWithIdentifier:CustomCellIdentifier];
-       return [cell autoContentViewHeight];
+        return self.tutorialCellInfoHeight;
     }
     return HEIGHT_FOR_ROW;
     
+}
+-(CGFloat)insertTheCellHeight{
+    static NSString *CustomCellIdentifier = @"TutorialInfoCell";
+    UINib *nib = [UINib nibWithNibName:CustomCellIdentifier bundle:nil];
+    [self.dataTableView registerNib:nib forCellReuseIdentifier:CustomCellIdentifier];
+    TutorialInfoCell *cell = [self.dataTableView dequeueReusableCellWithIdentifier:CustomCellIdentifier];
+    if(cell==nil){
+        PPDebug(@"<insertTheCellHeight> but the cell is nil");
+        return 100;
+    }
+    return [cell autoContentViewHeight];
+ 
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -256,14 +260,34 @@ forRowAtIndexPath:(NSIndexPath *)indexPath
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
-- (void)clickAdd:(id)sender
-{
+//protocol
+-(void)clickAddButton:(UIButton *)button{
     [[UserTutorialService defaultService] addTutorial:_pbTutorial resultBlock:^(int resultCode) {
-        [self updateRightButton];
-        
+        [self updateRightButton:button];
+
     }];
 }
+//点击之后更新添加控件
+-(void)updateRightButton:(UIButton *)button
+{
+    
+    if ([[UserTutorialManager defaultManager] isTutorialLearned:_pbTutorial.tutorialId]){
+        [button setTitle:NSLS(@"kAddToOpen") forState:UIControlStateNormal];
+    }
+    else{
+        [button setTitle:NSLS(@"kAddToLearning") forState:UIControlStateNormal];
+
+    }
+}
+
+
+//- (void)clickAdd:(id)sender
+//{
+//    [[UserTutorialService defaultService] addTutorial:_pbTutorial resultBlock:^(int resultCode) {
+//        [self updateRightButton];
+//        
+//    }];
+//}
 
 - (void)clickOpen:(id)sender
 {

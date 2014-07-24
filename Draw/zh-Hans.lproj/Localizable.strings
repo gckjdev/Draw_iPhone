@@ -2808,3 +2808,7 @@
 
 //new分享页面
 "kResultSharePage" = "最后结果";
+
+//
+"kAddSuccess" = "添加成功!";
+"kContinue" = "继续闯关";

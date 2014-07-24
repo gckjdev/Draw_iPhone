@@ -10,7 +10,7 @@
 #import "PPTableViewController.h"
 #import "TutorialInfoCell.h"
 #import "Tutorial.pb.h"
-
+#import "AllTutorialController.h"
 @interface TutorialInfoController : PPTableViewController
 @property CGFloat tutorialCellInfoHeight;
 @property(nonatomic,retain) NSArray *sectionTitle;
@@ -19,6 +19,8 @@
 
 + (TutorialInfoController*)enter:(PPViewController*)superViewController
                       pbTutorial:(PBTutorial*)pbTutorial infoOnly:(BOOL)infoOnly;
+
++(TutorialInfoController *)createController:(PBTutorial*)pbTutorial infoOnly:(BOOL)infoOnly;
 
 @end
 

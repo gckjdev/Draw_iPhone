@@ -2769,3 +2769,6 @@
 
 //分享頁面
 "kResultSharePage" = "最終結果";
+//
+"kAddSuccess" = "添加成功!";
+"kContinue" = "繼續闖關";

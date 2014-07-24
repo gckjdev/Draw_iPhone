@@ -10,10 +10,12 @@
 #import "Tutorial.pb.h"
 #import "PPViewController.h"
 
+@class TutorialInfoController;
+
 @interface TutorialStageController : PPViewController<UICollectionViewDataSource,UICollectionViewDelegate>
 
 @property (retain, nonatomic) IBOutlet UICollectionView *collectionView;
-
+@property (retain, nonatomic) TutorialInfoController* infoController;
 
 + (TutorialStageController*)enter:(PPViewController*)superViewController
                           pbTutorial:(PBUserTutorial*)pbUserTutorial;
