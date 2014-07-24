@@ -67,6 +67,15 @@ typedef enum{
 
 + (BOOL)canPlayDrawVersion:(NSInteger)version;
 
+
++ (void) createGIF:(NSInteger)frameNumber
+         delayTime:(double) delayTime
+    drawActionList:(NSMutableArray*)drawActionList
+           bgImage:(UIImage*)bgImage
+            layers:(NSArray*)layers
+        canvasSize:(CGSize)canvasSize
+        outputPath:(NSString*)outputPath;
+
 @end
 
 
