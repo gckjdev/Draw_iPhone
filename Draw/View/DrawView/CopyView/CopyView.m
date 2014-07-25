@@ -12,6 +12,7 @@
 #import "UserFeedController.h"
 #import "DrawPlayer.h"
 #import "ShowFeedController.h"
+#import "UserTutorialService.h"
 
 #define COPY_VIEW_DEFAULT_WIDTH     (ISIPAD ? 250 : 100)
 #define COPY_VIEW_DEFAULT_HEIGHT    (ISIPAD ? 250 : 100)
@@ -31,6 +32,8 @@
                   superView:(UIView*)superView
                     atPoint:(CGPoint)point
                      opusId:(NSString*)opusId
+                  userStage:(PBUserStage*)userStage
+                      stage:(PBStage*)stage
 {
     CGRect frame = CGRectMake(point.x, point.y, COPY_VIEW_DEFAULT_WIDTH, COPY_VIEW_DEFAULT_HEIGHT);
     CopyView *copyView = [[CopyView alloc] initWithFrame:frame];
@@ -47,7 +50,7 @@
     [copyView release];
     
     [copyView showEditingHandles];
-    [copyView loadOpus:opusId];
+    [copyView loadOpus:opusId userStage:userStage stage:stage];
     
     copyView.hasMenu = YES;
     
@@ -78,15 +81,19 @@
 
 #define KEY_COPY_VIEW_LATEST_OPUS_ID    @"KEY_COPY_VIEW_LATEST_OPUS_ID"
 
-- (void)loadOpus:(NSString*)opusId
+- (void)loadOpus:(NSString*)opusId userStage:(PBUserStage*)userStage stage:(PBStage*)stage
 {
-    if (opusId){
-        [self loadAndUpdate:opusId updateImage:YES];
+    if (userStage){
+        // for learn draw
+        [self loadData:userStage stage:stage];
     }
     else{
-#ifdef DEBUG
-        [self loadLatestOpus];
-#endif
+        if (opusId){
+            [self loadAndUpdate:opusId updateImage:YES];
+        }
+        else{
+            [self loadLatestOpus];
+        }
     }
 }
 
@@ -153,6 +160,19 @@
             }
         }];
     }
+}
+
+- (void)loadData:(PBUserStage*)userStage stage:(PBStage*)stage
+{
+    /*
+    NSString* imagePath = [[UserTutorialService defaultService] getImagePath:userStage.tutorialId stageId:stage.stageId];
+    NSString* bgImagePath = [[UserTutorialService defaultService] getBgImagePath:userStage.tutorialId stageId:stage.stageId];
+    NSString* opusDataPath = [[UserTutorialService defaultService] getOpusDataPath:userStage.tutorialId stageId:stage.stageId];
+
+    UIImage* image = [[UIImage alloc] initWithContentsOfFile:imagePath];
+    self.displayImage = image;
+    [image release];
+     */
 }
 
 /*

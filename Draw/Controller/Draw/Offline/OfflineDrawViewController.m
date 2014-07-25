@@ -506,7 +506,9 @@
     self.copyView = [CopyView createCopyView:self
                                    superView:holder
                                      atPoint:drawView.frame.origin
-                                      opusId:opusId];
+                                      opusId:opusId
+                                   userStage:[self buildUserStage]
+                                       stage:self.stage];
 }
 
 - (void)setCopyViewInfo
@@ -1661,10 +1663,16 @@
 
 - (void)handleSubmitForLearnDraw
 {
-    if([drawView.drawActionList count]<=10)
+    NSInteger effetiveAction=[drawView.drawActionList count];
+    for(DrawAction *da in drawView.drawActionList)
+    {
+        if(20 > [da pointCount])
+            effetiveAction--;
+    }
+    if(effetiveAction<=10)
     {
         PPDebug(@"too few strokes!");
-        POSTMSG(@"客官，不够认真哦！");
+        POSTMSG(@"客官，不够认真哦！多添几笔吧 ：）");
         return;
     }
     
@@ -1694,8 +1702,8 @@
     NSString* sourcePath = [self writeImageToFile:_copyView.image filePath:self.draft.draftId];
     NSString* destPath = self.tempImageFilePath;
 
-    //从关卡传入difficulty
-    int score = [ImageSimilarityEngine score1SrcPath:sourcePath destPath:destPath difficulty:1.2];
+    //从关卡传入difficulty，TODO
+    int score = [ImageSimilarityEngine score1SrcPath:sourcePath destPath:destPath difficulty:1.0];
     
 
 //    int score = [OpenCVUtils simpleDrawScoreSourceImagePath:sourcePath destImagePath:destPath];

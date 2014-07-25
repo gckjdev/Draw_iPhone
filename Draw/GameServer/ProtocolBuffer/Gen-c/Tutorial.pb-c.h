@@ -89,10 +89,14 @@ struct  _Game__PBChapter
   char *backgroundname;
   size_t n_tips;
   Game__PBTip **tips;
+  protobuf_c_boolean has_startindex;
+  int32_t startindex;
+  protobuf_c_boolean has_endindex;
+  int32_t endindex;
 };
 #define GAME__PBCHAPTER__INIT \
  { PROTOBUF_C_MESSAGE_INIT (&game__pbchapter__descriptor) \
-    , 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0,NULL }
+    , 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0,NULL, 0,0, 0,0 }
 
 
 struct  _Game__PBStage
@@ -105,9 +109,15 @@ struct  _Game__PBStage
   char *cndesc;
   char *endesc;
   char *tcndesc;
+  char *opusid;
   char *image;
   char *thumbimage;
+  char *opusdata;
+  char *bgimage;
   char *dataurl;
+  char *imagename;
+  char *opusname;
+  char *bgimagename;
   size_t n_chapter;
   Game__PBChapter **chapter;
   protobuf_c_boolean has_imagestyle;
@@ -119,7 +129,7 @@ struct  _Game__PBStage
 };
 #define GAME__PBSTAGE__INIT \
  { PROTOBUF_C_MESSAGE_INIT (&game__pbstage__descriptor) \
-    , NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0,NULL, 0,0, 0,0, 0,1 }
+    , NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0,NULL, 0,0, 0,0, 0,1 }
 
 
 struct  _Game__PBTutorial

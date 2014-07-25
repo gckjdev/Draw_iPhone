@@ -276,8 +276,9 @@ BOOL PBUserTutorialStatusIsValidValue(PBUserTutorialStatus value);
 
 @interface PBChapter : PBGeneratedMessage {
 @private
+  BOOL hasEndIndex_:1;
+  BOOL hasStartIndex_:1;
   BOOL hasIndex_:1;
-  BOOL hasCnName_:1;
   BOOL hasEnName_:1;
   BOOL hasTcnName_:1;
   BOOL hasCnDesc_:1;
@@ -290,8 +291,10 @@ BOOL PBUserTutorialStatusIsValidValue(PBUserTutorialStatus value);
   BOOL hasOpusName_:1;
   BOOL hasImageName_:1;
   BOOL hasBackgroundName_:1;
+  BOOL hasCnName_:1;
+  int32_t endIndex;
+  int32_t startIndex;
   int32_t index;
-  NSString* cnName;
   NSString* enName;
   NSString* tcnName;
   NSString* cnDesc;
@@ -304,6 +307,7 @@ BOOL PBUserTutorialStatusIsValidValue(PBUserTutorialStatus value);
   NSString* opusName;
   NSString* imageName;
   NSString* backgroundName;
+  NSString* cnName;
   NSMutableArray* mutableTipsList;
 }
 - (BOOL) hasIndex;
@@ -320,6 +324,8 @@ BOOL PBUserTutorialStatusIsValidValue(PBUserTutorialStatus value);
 - (BOOL) hasOpusName;
 - (BOOL) hasImageName;
 - (BOOL) hasBackgroundName;
+- (BOOL) hasStartIndex;
+- (BOOL) hasEndIndex;
 @property (readonly) int32_t index;
 @property (readonly, retain) NSString* cnName;
 @property (readonly, retain) NSString* enName;
@@ -334,6 +340,8 @@ BOOL PBUserTutorialStatusIsValidValue(PBUserTutorialStatus value);
 @property (readonly, retain) NSString* opusName;
 @property (readonly, retain) NSString* imageName;
 @property (readonly, retain) NSString* backgroundName;
+@property (readonly) int32_t startIndex;
+@property (readonly) int32_t endIndex;
 - (NSArray*) tipsList;
 - (PBTip*) tipsAtIndex:(int32_t) index;
 
@@ -447,36 +455,58 @@ BOOL PBUserTutorialStatusIsValidValue(PBUserTutorialStatus value);
 - (PBChapter_Builder*) addTips:(PBTip*) value;
 - (PBChapter_Builder*) addAllTips:(NSArray*) values;
 - (PBChapter_Builder*) clearTipsList;
+
+- (BOOL) hasStartIndex;
+- (int32_t) startIndex;
+- (PBChapter_Builder*) setStartIndex:(int32_t) value;
+- (PBChapter_Builder*) clearStartIndex;
+
+- (BOOL) hasEndIndex;
+- (int32_t) endIndex;
+- (PBChapter_Builder*) setEndIndex:(int32_t) value;
+- (PBChapter_Builder*) clearEndIndex;
 @end
 
 @interface PBStage : PBGeneratedMessage {
 @private
   BOOL hasDifficulty_:1;
-  BOOL hasImageStyle_:1;
   BOOL hasScoreEngine_:1;
-  BOOL hasStageId_:1;
-  BOOL hasCnName_:1;
-  BOOL hasEnName_:1;
-  BOOL hasTcnName_:1;
-  BOOL hasCnDesc_:1;
-  BOOL hasEnDesc_:1;
-  BOOL hasTcnDesc_:1;
-  BOOL hasImage_:1;
-  BOOL hasThumbImage_:1;
+  BOOL hasImageStyle_:1;
+  BOOL hasBgImageName_:1;
+  BOOL hasOpusName_:1;
+  BOOL hasImageName_:1;
   BOOL hasDataUrl_:1;
+  BOOL hasBgImage_:1;
+  BOOL hasOpusData_:1;
+  BOOL hasThumbImage_:1;
+  BOOL hasImage_:1;
+  BOOL hasOpusId_:1;
+  BOOL hasTcnDesc_:1;
+  BOOL hasEnDesc_:1;
+  BOOL hasCnDesc_:1;
+  BOOL hasTcnName_:1;
+  BOOL hasEnName_:1;
+  BOOL hasCnName_:1;
+  BOOL hasStageId_:1;
   Float64 difficulty;
-  int32_t imageStyle;
   int32_t scoreEngine;
-  NSString* stageId;
-  NSString* cnName;
-  NSString* enName;
-  NSString* tcnName;
-  NSString* cnDesc;
-  NSString* enDesc;
-  NSString* tcnDesc;
-  NSString* image;
-  NSString* thumbImage;
+  int32_t imageStyle;
+  NSString* bgImageName;
+  NSString* opusName;
+  NSString* imageName;
   NSString* dataUrl;
+  NSString* bgImage;
+  NSString* opusData;
+  NSString* thumbImage;
+  NSString* image;
+  NSString* opusId;
+  NSString* tcnDesc;
+  NSString* enDesc;
+  NSString* cnDesc;
+  NSString* tcnName;
+  NSString* enName;
+  NSString* cnName;
+  NSString* stageId;
   NSMutableArray* mutableChapterList;
 }
 - (BOOL) hasStageId;
@@ -486,9 +516,15 @@ BOOL PBUserTutorialStatusIsValidValue(PBUserTutorialStatus value);
 - (BOOL) hasCnDesc;
 - (BOOL) hasEnDesc;
 - (BOOL) hasTcnDesc;
+- (BOOL) hasOpusId;
 - (BOOL) hasImage;
 - (BOOL) hasThumbImage;
+- (BOOL) hasOpusData;
+- (BOOL) hasBgImage;
 - (BOOL) hasDataUrl;
+- (BOOL) hasImageName;
+- (BOOL) hasOpusName;
+- (BOOL) hasBgImageName;
 - (BOOL) hasImageStyle;
 - (BOOL) hasScoreEngine;
 - (BOOL) hasDifficulty;
@@ -499,9 +535,15 @@ BOOL PBUserTutorialStatusIsValidValue(PBUserTutorialStatus value);
 @property (readonly, retain) NSString* cnDesc;
 @property (readonly, retain) NSString* enDesc;
 @property (readonly, retain) NSString* tcnDesc;
+@property (readonly, retain) NSString* opusId;
 @property (readonly, retain) NSString* image;
 @property (readonly, retain) NSString* thumbImage;
+@property (readonly, retain) NSString* opusData;
+@property (readonly, retain) NSString* bgImage;
 @property (readonly, retain) NSString* dataUrl;
+@property (readonly, retain) NSString* imageName;
+@property (readonly, retain) NSString* opusName;
+@property (readonly, retain) NSString* bgImageName;
 @property (readonly) int32_t imageStyle;
 @property (readonly) int32_t scoreEngine;
 @property (readonly) Float64 difficulty;
@@ -577,6 +619,11 @@ BOOL PBUserTutorialStatusIsValidValue(PBUserTutorialStatus value);
 - (PBStage_Builder*) setTcnDesc:(NSString*) value;
 - (PBStage_Builder*) clearTcnDesc;
 
+- (BOOL) hasOpusId;
+- (NSString*) opusId;
+- (PBStage_Builder*) setOpusId:(NSString*) value;
+- (PBStage_Builder*) clearOpusId;
+
 - (BOOL) hasImage;
 - (NSString*) image;
 - (PBStage_Builder*) setImage:(NSString*) value;
@@ -587,10 +634,35 @@ BOOL PBUserTutorialStatusIsValidValue(PBUserTutorialStatus value);
 - (PBStage_Builder*) setThumbImage:(NSString*) value;
 - (PBStage_Builder*) clearThumbImage;
 
+- (BOOL) hasOpusData;
+- (NSString*) opusData;
+- (PBStage_Builder*) setOpusData:(NSString*) value;
+- (PBStage_Builder*) clearOpusData;
+
+- (BOOL) hasBgImage;
+- (NSString*) bgImage;
+- (PBStage_Builder*) setBgImage:(NSString*) value;
+- (PBStage_Builder*) clearBgImage;
+
 - (BOOL) hasDataUrl;
 - (NSString*) dataUrl;
 - (PBStage_Builder*) setDataUrl:(NSString*) value;
 - (PBStage_Builder*) clearDataUrl;
+
+- (BOOL) hasImageName;
+- (NSString*) imageName;
+- (PBStage_Builder*) setImageName:(NSString*) value;
+- (PBStage_Builder*) clearImageName;
+
+- (BOOL) hasOpusName;
+- (NSString*) opusName;
+- (PBStage_Builder*) setOpusName:(NSString*) value;
+- (PBStage_Builder*) clearOpusName;
+
+- (BOOL) hasBgImageName;
+- (NSString*) bgImageName;
+- (PBStage_Builder*) setBgImageName:(NSString*) value;
+- (PBStage_Builder*) clearBgImageName;
 
 - (NSArray*) chapterList;
 - (PBChapter*) chapterAtIndex:(int32_t) index;

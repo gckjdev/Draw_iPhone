@@ -13,6 +13,7 @@
 #import "TutorialCoreManager.h"
 #import "OfflineDrawViewController.h"
 #import "PBTutorial+Extend.h"
+#import "Reachability.h"
 
 @interface UserTutorialService ()
 {
@@ -467,49 +468,49 @@ static UserTutorialService* _defaultService;
     return newUT;
 }
 
-- (PBUserTutorial*)enterConquerDraw:(PPViewController*)fromController
-                       userTutorial:(PBUserTutorial*)userTutorial
-                            stageId:(NSString*)stageId
-                         stageIndex:(int)stageIndex
-{
-
-    [fromController showProgressViewWithMessage:NSLS(@"kLoadingStage")];
-    PPSmartUpdateData* smartData = [self getSmartData:userTutorial.tutorial.tutorialId stageId:stageId];
-    [self registerNotification:smartData viewController:fromController];
-    
-    [smartData checkUpdateAndDownload:^(BOOL isAlreadyExisted, NSString *dataFilePath) {
-        
-        [fromController hideProgressView];
-        [self unregisterNotification:smartData viewController:fromController];
-        
-        // download success
-        PBUserTutorial* newUT = [[UserTutorialService defaultService] startConquerTutorialStage:userTutorial.localId
-                                                                                        stageId:stageId
-                                                                                     stageIndex:stageIndex];
-        
-        if (newUT && stageIndex < [newUT.userStagesList count]){
-            PBUserStage* userStage = [newUT.userStagesList objectAtIndex:stageIndex];
-            
-            // enter offline draw view controller
-            [OfflineDrawViewController conquer:fromController userStage:userStage userTutorial:newUT];
-            return;
-        }
-        else{
-            return;
-        }
-        
-    } failureBlock:^(NSError *error) {
-        
-        // download failure
-        [fromController hideProgressView];
-        [self unregisterNotification:smartData viewController:fromController];
-
-        POSTMSG(NSLS(@"kDownloadTutorialFailure"));
-        
-    }];
-    
-    return userTutorial;
-}
+//- (PBUserTutorial*)enterConquerDraw:(PPViewController*)fromController
+//                       userTutorial:(PBUserTutorial*)userTutorial
+//                            stageId:(NSString*)stageId
+//                         stageIndex:(int)stageIndex
+//{
+//
+//    [fromController showProgressViewWithMessage:NSLS(@"kLoadingStage")];
+//    PPSmartUpdateData* smartData = [self getSmartData:userTutorial.tutorial.tutorialId stageId:stageId];
+//    [self registerNotification:smartData viewController:fromController];
+//    
+//    [smartData checkUpdateAndDownload:^(BOOL isAlreadyExisted, NSString *dataFilePath) {
+//        
+//        [fromController hideProgressView];
+//        [self unregisterNotification:smartData viewController:fromController];
+//        
+//        // download success
+//        PBUserTutorial* newUT = [[UserTutorialService defaultService] startConquerTutorialStage:userTutorial.localId
+//                                                                                        stageId:stageId
+//                                                                                     stageIndex:stageIndex];
+//        
+//        if (newUT && stageIndex < [newUT.userStagesList count]){
+//            PBUserStage* userStage = [newUT.userStagesList objectAtIndex:stageIndex];
+//            
+//            // enter offline draw view controller
+//            [OfflineDrawViewController conquer:fromController userStage:userStage userTutorial:newUT];
+//            return;
+//        }
+//        else{
+//            return;
+//        }
+//        
+//    } failureBlock:^(NSError *error) {
+//        
+//        // download failure
+//        [fromController hideProgressView];
+//        [self unregisterNotification:smartData viewController:fromController];
+//
+//        POSTMSG(NSLS(@"kDownloadTutorialFailure"));
+//        
+//    }];
+//    
+//    return userTutorial;
+//}
 
 - (void)registerNotification:(PPSmartUpdateData*)smartData viewController:(PPViewController*)viewController
 {
@@ -531,50 +532,179 @@ static UserTutorialService* _defaultService;
 }
 
 
-// 进入修炼界面
-- (PBUserTutorial*)enterPracticeDraw:(PPViewController*)fromController
+// 显示
+- (void)showPracticeDraw:(PPViewController*)fromController
                         userTutorial:(PBUserTutorial*)userTutorial
                              stageId:(NSString*)stageId
                           stageIndex:(int)stageIndex
 {
     
-    [fromController showProgressViewWithMessage:NSLS(@"kLoadingStage")];
+    // download success
+    // Practice
+    PBUserTutorial* newUT = [[UserTutorialService defaultService] startPracticeTutorialStage:userTutorial.localId
+                                                                                     stageId:stageId
+                                                                                  stageIndex:stageIndex];
+    
+    if (newUT && stageIndex < [newUT.userStagesList count]){
+        
+        PBUserStage* userStage = [newUT.userStagesList objectAtIndex:stageIndex];
+        
+        // enter offline draw view controller
+        [OfflineDrawViewController practice:fromController userStage:userStage userTutorial:newUT];
+        return;
+    }
+    else{
+        return;
+    }
+
+}
+
+- (void)showConquerDraw:(PPViewController*)fromController
+            userTutorial:(PBUserTutorial*)userTutorial
+                 stageId:(NSString*)stageId
+              stageIndex:(int)stageIndex
+{
+    // download success
+    PBUserTutorial* newUT = [[UserTutorialService defaultService] startConquerTutorialStage:userTutorial.localId
+                                                                                    stageId:stageId
+                                                                                 stageIndex:stageIndex];
+    
+    if (newUT && stageIndex < [newUT.userStagesList count]){
+        PBUserStage* userStage = [newUT.userStagesList objectAtIndex:stageIndex];
+        
+        // enter offline draw view controller
+        [OfflineDrawViewController conquer:fromController userStage:userStage userTutorial:newUT];
+        return;
+    }
+    else{
+        return;
+    }
+
+}
+
+- (void)showLearnDraw:(PPViewController*)fromController
+            userTutorial:(PBUserTutorial*)userTutorial
+                 stageId:(NSString*)stageId
+              stageIndex:(int)stageIndex
+                    type:(int)type
+{
+    if (type == PBOpusTypeDrawPractice){
+        [self showPracticeDraw:fromController userTutorial:userTutorial stageId:stageId stageIndex:stageIndex];
+    }
+    else{
+        [self showConquerDraw:fromController userTutorial:userTutorial stageId:stageId stageIndex:stageIndex];
+    }
+
+}
+
+
+
+- (PBUserTutorial*)enterLearnDraw:(PPViewController*)fromController
+                        userTutorial:(PBUserTutorial*)userTutorial
+                             stageId:(NSString*)stageId
+                          stageIndex:(int)stageIndex
+                             type:(int)type
+{
     PPSmartUpdateData* smartData = [self getSmartData:userTutorial.tutorial.tutorialId stageId:stageId];
+    
+    if ([Reachability isNetworkOK] == NO){
+        // network not available, try local data
+        if ([smartData isDataExist]){
+            [self showLearnDraw:fromController userTutorial:userTutorial stageId:stageId stageIndex:stageIndex type:type];
+        }
+        else{
+            POSTMSG(NSLS(@"kDownloadTutorialFailure"));
+        }
+        
+        return userTutorial;
+    }
+    
+    [fromController showProgressViewWithMessage:NSLS(@"kLoadingStage")];
     [self registerNotification:smartData viewController:fromController];
     
     [smartData checkUpdateAndDownload:^(BOOL isAlreadyExisted, NSString *dataFilePath) {
         
         [fromController hideProgressView];
         [self unregisterNotification:smartData viewController:fromController];
+
+        [self showLearnDraw:fromController userTutorial:userTutorial stageId:stageId stageIndex:stageIndex type:type];
         
-        // download success
-        // Practice
-        PBUserTutorial* newUT = [[UserTutorialService defaultService] startPracticeTutorialStage:userTutorial.localId
-                                                                                         stageId:stageId
-                                                                                      stageIndex:stageIndex];
-        
-        if (newUT && stageIndex < [newUT.userStagesList count]){
-            
-            PBUserStage* userStage = [newUT.userStagesList objectAtIndex:stageIndex];
-            
-            // enter offline draw view controller
-            [OfflineDrawViewController practice:fromController userStage:userStage userTutorial:newUT];
-            return;
-        }
-        else{
-            return;
-        }
         
     } failureBlock:^(NSError *error) {
         
         [fromController hideProgressView];
         [self unregisterNotification:smartData viewController:fromController];
-
-        POSTMSG(NSLS(@"kDownloadTutorialFailure"));
+        
+        if ([smartData isDataExist]){
+            // access latest failure, just use local data
+            [self showLearnDraw:fromController userTutorial:userTutorial stageId:stageId stageIndex:stageIndex type:type];
+        }
+        else{
+            POSTMSG(NSLS(@"kDownloadTutorialFailure"));
+        }
         
     }];
-
+    
     return userTutorial;
 }
+
+- (PBUserTutorial*)enterPracticeDraw:(PPViewController*)fromController
+                        userTutorial:(PBUserTutorial*)userTutorial
+                             stageId:(NSString*)stageId
+                          stageIndex:(int)stageIndex
+{
+    return [self enterLearnDraw:fromController
+                   userTutorial:userTutorial
+                        stageId:stageId
+                     stageIndex:stageIndex
+                           type:PBOpusTypeDrawPractice];
+}
+
+- (PBUserTutorial*)enterConquerDraw:(PPViewController*)fromController
+                       userTutorial:(PBUserTutorial*)userTutorial
+                            stageId:(NSString*)stageId
+                         stageIndex:(int)stageIndex
+{
+    return [self enterLearnDraw:fromController
+                   userTutorial:userTutorial
+                        stageId:stageId
+                     stageIndex:stageIndex
+                           type:PBOpusTypeDrawConquer];
+}
+
+// 进入修炼界面
+//- (PBUserTutorial*)enterPracticeDraw:(PPViewController*)fromController
+//                        userTutorial:(PBUserTutorial*)userTutorial
+//                             stageId:(NSString*)stageId
+//                          stageIndex:(int)stageIndex
+//{
+//    
+//    [fromController showProgressViewWithMessage:NSLS(@"kLoadingStage")];
+//    PPSmartUpdateData* smartData = [self getSmartData:userTutorial.tutorial.tutorialId stageId:stageId];
+//    [self registerNotification:smartData viewController:fromController];
+//    
+//    [smartData checkUpdateAndDownload:^(BOOL isAlreadyExisted, NSString *dataFilePath) {
+//        
+//        [fromController hideProgressView];
+//        [self unregisterNotification:smartData viewController:fromController];
+//        
+//        [self showPracticeDraw:fromController userTutorial:userTutorial stageId:stageId stageIndex:stageIndex];
+//        
+//    } failureBlock:^(NSError *error) {
+//        
+//        [fromController hideProgressView];
+//        [self unregisterNotification:smartData viewController:fromController];
+//
+//        if ([smartData isDataExist]){
+//            [self showPracticeDraw:fromController userTutorial:userTutorial stageId:stageId stageIndex:stageIndex];
+//        }
+//        else{
+//            POSTMSG(NSLS(@"kDownloadTutorialFailure"));
+//        }
+//        
+//    }];
+//
+//    return userTutorial;
+//}
 
 @end
