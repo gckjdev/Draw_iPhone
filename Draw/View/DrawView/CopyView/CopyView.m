@@ -164,6 +164,7 @@
 
 - (void)loadData:(PBUserStage*)userStage stage:(PBStage*)stage
 {
+    /*
     NSString* imagePath = [[UserTutorialService defaultService] getImagePath:userStage.tutorialId stageId:stage.stageId];
     NSString* bgImagePath = [[UserTutorialService defaultService] getBgImagePath:userStage.tutorialId stageId:stage.stageId];
     NSString* opusDataPath = [[UserTutorialService defaultService] getOpusDataPath:userStage.tutorialId stageId:stage.stageId];
@@ -171,6 +172,7 @@
     UIImage* image = [[UIImage alloc] initWithContentsOfFile:imagePath];
     self.displayImage = image;
     [image release];
+     */
 }
 
 /*
