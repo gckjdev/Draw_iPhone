@@ -143,4 +143,40 @@
 {
     return [PPConfigManager currentDrawDataVersion] < self.version;
 }
+
++ (Draw*)parseDrawData:(NSData*)pbDrawData
+{
+    Draw* draw = nil;
+    
+    NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
+    
+    PPDebug(@"<parseDrawData> start to parse DrawData......");
+    int start = time(0);
+    
+    // refactor by using C lib
+    Game__PBDraw* pbDrawC = NULL;
+    int dataLen = [pbDrawData length];
+    if (dataLen > 0){
+        uint8_t* buf = malloc(dataLen);
+        if (buf != NULL){
+            
+            [pbDrawData getBytes:buf length:dataLen];
+            pbDrawC = game__pbdraw__unpack(NULL, dataLen, buf);
+            free(buf);
+            
+            draw = [[Draw alloc] initWithPBDrawC:pbDrawC];
+            
+            game__pbdraw__free_unpacked(pbDrawC, NULL);
+        }
+    }
+    
+    
+    int end = time(0);
+    PPDebug(@"<parseDrawData> parse draw data complete, take %d seconds", end - start);
+    
+    [pool drain];
+    
+    return [draw autorelease];
+}
+
 @end
