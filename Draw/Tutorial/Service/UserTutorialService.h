@@ -24,9 +24,17 @@ typedef enum{
 typedef void(^UserTutorialServiceResultBlock)(int resultCode);
 typedef void(^UserTutorialServiceGetListResultBlock)(int resultCode, NSArray* retList);
 
+@class PPViewController;
+
 @interface UserTutorialService : CommonService
 
 + (UserTutorialService*)defaultService;
+
+// 下载数据的目录、文件名和存储方法
++ (NSString*)getTutorialDataDir:(NSString*)tutorialId;
++ (NSString*)getStageDataFileName:(NSString*)tutorialId stageId:(NSString*)stageId;
++ (NSString*)getLocalStageDataPath:(NSString*)tutorialId stageId:(NSString*)stageId;
+
 
 // 用户添加/开始学习某个教程
 - (void)addTutorial:(PBTutorial*)tutorial resultBlock:(UserTutorialServiceResultBlock)resultBlock;
@@ -35,6 +43,10 @@ typedef void(^UserTutorialServiceGetListResultBlock)(int resultCode, NSArray* re
 
 // 用户下载教程所有关卡数据
 - (void)downloadTutorial:(PBTutorial*)tutorial resultBlock:(UserTutorialServiceResultBlock)resultBlock;
+
+// 用户下载某个关卡数据
+- (void)downloadStage:(PBUserTutorial*)userTutorial resultBlock:(UserTutorialServiceResultBlock)resultBlock;
+
 
 // 获取用户当前正在学习的所有教程列表
 - (void)getAllUserTutorials:(UserTutorialServiceGetListResultBlock)resultBlock;
@@ -55,13 +67,13 @@ typedef void(^UserTutorialServiceGetListResultBlock)(int resultCode, NSArray* re
 //从服务器取得用户教程列表
 
 // 进入闯关界面
-- (PBUserTutorial*)enterConquerDraw:(UIViewController*)fromController
+- (PBUserTutorial*)enterConquerDraw:(PPViewController*)fromController
                        userTutorial:(PBUserTutorial*)userTutorial
                             stageId:(NSString*)stageId
                          stageIndex:(int)stageIndex;
 
 // 进入修炼界面
-- (PBUserTutorial*)enterPracticeDraw:(UIViewController*)fromController
+- (PBUserTutorial*)enterPracticeDraw:(PPViewController*)fromController
                        userTutorial:(PBUserTutorial*)userTutorial
                             stageId:(NSString*)stageId
                          stageIndex:(int)stageIndex;

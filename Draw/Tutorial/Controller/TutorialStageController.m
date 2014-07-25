@@ -155,10 +155,10 @@
 //            [OfflineDrawViewController conquer:self userStage:userStage userTutorial:newUT];
 //        }
 
-        self.pbUserTutorial = [[UserTutorialService defaultService] enterConquerDraw:self
-                                                                        userTutorial:_pbUserTutorial
-                                                                             stageId:stageId
-                                                                          stageIndex:stageIndex];
+        [[UserTutorialService defaultService] enterConquerDraw:self
+                                                userTutorial:_pbUserTutorial
+                                                     stageId:stageId
+                                                  stageIndex:stageIndex];
         
     }];
 
@@ -177,10 +177,10 @@
 //            [OfflineDrawViewController practice:self userStage:userStage userTutorial:newUT];
 //        }
         
-        self.pbUserTutorial = [[UserTutorialService defaultService] enterPracticeDraw:self
-                                                                         userTutorial:_pbUserTutorial
-                                                                              stageId:stageId
-                                                                           stageIndex:stageIndex];
+        [[UserTutorialService defaultService] enterPracticeDraw:self
+                                                 userTutorial:_pbUserTutorial
+                                                      stageId:stageId
+                                                   stageIndex:stageIndex];
 
     }];
     

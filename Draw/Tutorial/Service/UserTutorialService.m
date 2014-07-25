@@ -12,10 +12,15 @@
 #import "TutorialService.h"
 #import "TutorialCoreManager.h"
 #import "OfflineDrawViewController.h"
+#import "PBTutorial+Extend.h"
 
 @interface UserTutorialService ()
+{
+    
+}
 
 @property (nonatomic, assign) BOOL isTestMode;
+@property (nonatomic, retain) NSMutableDictionary* smartDataDict;
 
 @end
 
@@ -25,8 +30,10 @@ static UserTutorialService* _defaultService;
 
 + (UserTutorialService*)defaultService
 {
-    if (_defaultService == nil)
+    if (_defaultService == nil){
         _defaultService = [[UserTutorialService alloc] init];
+        _defaultService.smartDataDict = [NSMutableDictionary dictionary];
+    }
     
     return _defaultService;
 }
@@ -227,12 +234,80 @@ static UserTutorialService* _defaultService;
 }
 
 
++ (NSString*)getTutorialDataDir:(NSString*)tutorialId
+{
+    NSString* dir = [NSString stringWithFormat:@"%@", tutorialId];
+    //    PPDebug(@"tutorial data dir is %@");
+    return dir;
+}
 
++ (NSString*)getStageDataFileName:(NSString*)tutorialId stageId:(NSString*)stageId
+{
+    NSString* name = [NSString stringWithFormat:@"%@__%@.zip", tutorialId, stageId];
+    //    PPDebug(@"stage file name is %@");
+    return name;
+}
+
++ (NSString*)getLocalStageDataPath:(NSString*)tutorialId stageId:(NSString*)stageId
+{
+    NSString* subDir = [self getTutorialDataDir:tutorialId];
+    NSString* name = [self getStageDataFileName:tutorialId stageId:stageId];
+    NSString* path = [PPSmartUpdateDataUtils pathBySubDir:subDir name:name type:SMART_UPDATE_DATA_TYPE_ZIP];
+    PPDebug(@"local data file path for stage is %@");
+    return path;
+}
 
 // 用户下载教程所有关卡数据
 - (void)downloadTutorial:(PBTutorial*)tutorial resultBlock:(UserTutorialServiceResultBlock)resultBlock
 {
     
+}
+
+- (PPSmartUpdateData*)getSmartData:(NSString*)tutorialId stageId:(NSString*)stageId
+{
+    NSString* dir = [UserTutorialService getTutorialDataDir:tutorialId];
+    NSString* name = [UserTutorialService getStageDataFileName:tutorialId stageId:stageId];
+
+    PPSmartUpdateData* smartData = [self.smartDataDict objectForKey:name];
+    if (smartData == nil){
+        // init smart data here and set config data here
+        smartData = [[PPSmartUpdateData alloc] initWithName:name
+                                                       type:SMART_UPDATE_DATA_TYPE_ZIP
+                                             originDataPath:nil
+                                            initDataVersion:nil
+                                                  serverURL:TUTORIAL_FILE_SERVER_URL
+                                                localSubDir:dir];
+        
+        [self.smartDataDict setObject:smartData forKey:name];
+        [smartData release];
+    }
+    
+    return smartData;
+}
+
+- (PPSmartUpdateData*)getSmartData:(PBUserTutorial*)userTutorial
+{
+    NSString* tutorialId = userTutorial.tutorial.tutorialId;
+    NSString* stageId = userTutorial.currentStageId;
+    PPSmartUpdateData* smartData = [self getSmartData:tutorialId stageId:stageId];
+    return smartData;
+}
+
+// 用户下载某个关卡数据
+- (void)downloadStage:(PBUserTutorial*)userTutorial resultBlock:(UserTutorialServiceResultBlock)resultBlock
+{
+    PPSmartUpdateData* smartData = [self getSmartData:userTutorial];
+    [smartData checkUpdateAndDownload:^(BOOL isAlreadyExisted, NSString *dataFilePath) {
+        
+        // download success
+        POSTMSG(NSLS(@"kDownloadTutorialSuccess"));
+         
+    } failureBlock:^(NSError *error) {
+
+        // download failure
+        POSTMSG(NSLS(@"kDownloadTutorialFailure"));
+
+    }];
 }
 
 #define KEY_SYNC_USER_TUTORIAL_FROM_SERVER @"KEY_SYNC_USER_TUTORIAL_FROM_SERVER"
@@ -392,49 +467,114 @@ static UserTutorialService* _defaultService;
     return newUT;
 }
 
-- (PBUserTutorial*)enterConquerDraw:(UIViewController*)fromController
+- (PBUserTutorial*)enterConquerDraw:(PPViewController*)fromController
                        userTutorial:(PBUserTutorial*)userTutorial
                             stageId:(NSString*)stageId
                          stageIndex:(int)stageIndex
 {
-    PBUserTutorial* newUT = [[UserTutorialService defaultService] startConquerTutorialStage:userTutorial.localId
-                                                                                    stageId:stageId
-                                                                                 stageIndex:stageIndex];
 
-    if (newUT && stageIndex < [newUT.userStagesList count]){
-        PBUserStage* userStage = [newUT.userStagesList objectAtIndex:stageIndex];
+    [fromController showProgressViewWithMessage:NSLS(@"kLoadingStage")];
+    PPSmartUpdateData* smartData = [self getSmartData:userTutorial.tutorial.tutorialId stageId:stageId];
+    [self registerNotification:smartData viewController:fromController];
+    
+    [smartData checkUpdateAndDownload:^(BOOL isAlreadyExisted, NSString *dataFilePath) {
         
-        // enter offline draw view controller
-        [OfflineDrawViewController conquer:fromController userStage:userStage userTutorial:newUT];
-        return newUT;
-    }
-    else{
-        return userTutorial;
-    }
+        [fromController hideProgressView];
+        [self unregisterNotification:smartData viewController:fromController];
+        
+        // download success
+        PBUserTutorial* newUT = [[UserTutorialService defaultService] startConquerTutorialStage:userTutorial.localId
+                                                                                        stageId:stageId
+                                                                                     stageIndex:stageIndex];
+        
+        if (newUT && stageIndex < [newUT.userStagesList count]){
+            PBUserStage* userStage = [newUT.userStagesList objectAtIndex:stageIndex];
+            
+            // enter offline draw view controller
+            [OfflineDrawViewController conquer:fromController userStage:userStage userTutorial:newUT];
+            return;
+        }
+        else{
+            return;
+        }
+        
+    } failureBlock:^(NSError *error) {
+        
+        // download failure
+        [fromController hideProgressView];
+        [self unregisterNotification:smartData viewController:fromController];
+
+        POSTMSG(NSLS(@"kDownloadTutorialFailure"));
+        
+    }];
+    
+    return userTutorial;
 }
 
+- (void)registerNotification:(PPSmartUpdateData*)smartData viewController:(PPViewController*)viewController
+{
+    [viewController registerNotificationWithName:[smartData progressNotificationName]
+                                      usingBlock:^(NSNotification *note) {
+                                          
+                                          NSDictionary* userInfo = note.userInfo;
+                                          float newProgress = [[userInfo objectForKey:SMART_DATA_PROGRESS] floatValue];
+                                          NSString* message = [NSString stringWithFormat:NSLS(@"kLoadingStageWithProgress"), (int)(newProgress*100)];
+                                          [viewController showProgressViewWithMessage:message progress:newProgress];
+                                          
+                                      }];
+
+}
+
+- (void)unregisterNotification:(PPSmartUpdateData*)smartData viewController:(PPViewController*)viewController
+{
+    [viewController unregisterNotificationWithName:[smartData progressNotificationName]];
+}
+
+
 // 进入修炼界面
-- (PBUserTutorial*)enterPracticeDraw:(UIViewController*)fromController
+- (PBUserTutorial*)enterPracticeDraw:(PPViewController*)fromController
                         userTutorial:(PBUserTutorial*)userTutorial
                              stageId:(NSString*)stageId
                           stageIndex:(int)stageIndex
 {
-    // Practice
-    PBUserTutorial* newUT = [[UserTutorialService defaultService] startPracticeTutorialStage:userTutorial.localId
-                                                                                     stageId:stageId
-                                                                                  stageIndex:stageIndex];
     
-    if (newUT && stageIndex < [newUT.userStagesList count]){
+    [fromController showProgressViewWithMessage:NSLS(@"kLoadingStage")];
+    PPSmartUpdateData* smartData = [self getSmartData:userTutorial.tutorial.tutorialId stageId:stageId];
+    [self registerNotification:smartData viewController:fromController];
+    
+    [smartData checkUpdateAndDownload:^(BOOL isAlreadyExisted, NSString *dataFilePath) {
         
-        PBUserStage* userStage = [newUT.userStagesList objectAtIndex:stageIndex];
+        [fromController hideProgressView];
+        [self unregisterNotification:smartData viewController:fromController];
         
-        // enter offline draw view controller
-        [OfflineDrawViewController practice:fromController userStage:userStage userTutorial:newUT];
-        return newUT;
-    }
-    else{
-        return userTutorial;
-    }
+        // download success
+        // Practice
+        PBUserTutorial* newUT = [[UserTutorialService defaultService] startPracticeTutorialStage:userTutorial.localId
+                                                                                         stageId:stageId
+                                                                                      stageIndex:stageIndex];
+        
+        if (newUT && stageIndex < [newUT.userStagesList count]){
+            
+            PBUserStage* userStage = [newUT.userStagesList objectAtIndex:stageIndex];
+            
+            // enter offline draw view controller
+            [OfflineDrawViewController practice:fromController userStage:userStage userTutorial:newUT];
+            return;
+        }
+        else{
+            return;
+        }
+        
+    } failureBlock:^(NSError *error) {
+        
+        [fromController hideProgressView];
+        [self unregisterNotification:smartData viewController:fromController];
+
+        POSTMSG(NSLS(@"kDownloadTutorialFailure"));
+        
+    }];
+
+    return userTutorial;
 }
 
 @end
