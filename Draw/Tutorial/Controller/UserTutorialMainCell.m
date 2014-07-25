@@ -98,7 +98,7 @@
                                                               )
                                             ];
     
-    tutorialProgressView.borderTintColor = COLOR_ORANGE;
+    tutorialProgressView.borderTintColor = COLOR_WHITE;
     tutorialProgressView.progressTintColor = COLOR_YELLOW;
     
     
@@ -114,12 +114,13 @@
         self.othersProgressInfoLabel.hidden = YES;
         if(progress <= 0.0f)
         {
-            [self.tutorialStartBtn setTitle:@"开始" forState:UIControlStateNormal];
+            [self.tutorialStartBtn setTitle:@"kStartStage" forState:UIControlStateNormal];
         }else{
             
-            [self.tutorialStartBtn setTitle:@"继续闯关" forState:UIControlStateNormal];
+            [self.tutorialStartBtn setTitle:NSLS(@"kContinueStage")forState:UIControlStateNormal];
             [self.progressInfoLabel setHidden:NO];
-            [self.progressInfoLabel setText:[NSString stringWithFormat:@"%.0f%%完成",100.0f]];
+            NSString * progressString = [NSString stringWithFormat:@"%.0f%%",progress*100];
+            [self.progressInfoLabel setText:[NSLS(@"kProgress") stringByAppendingString:progressString]];
             [self.progressInfoLabel setFont:AD_FONT(18, 12)];
             [self.progressInfoLabel setTextColor:COLOR_BROWN];
             
@@ -130,7 +131,7 @@
 //        SET_VIEW_ROUND_CORNER(self.tutorialProgressView);
         self.othersProgressInfoLabel.hidden = YES;
         tutorialProgressView.hidden = NO;
-        [tutorialProgressView setProgress:1 animated:YES];
+        [tutorialProgressView setProgress:progress animated:YES];
         [tutorialProgressView setProgressLabelColor:COLOR_BROWN];
         [tutorialProgressView setProgressLabelFont:AD_FONT(20, 13)];
         self.tutorialStartBtn.hidden = YES;

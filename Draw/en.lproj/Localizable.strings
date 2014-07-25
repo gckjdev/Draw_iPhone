@@ -2785,3 +2785,6 @@
 //
 "kAddSuccess" = "Add Success!";
 "kContinue" = "continue";
+"kProgress" = "Progress";
+"kStartStage" = "Start!";
+"kContinueStage" = "Continue";
