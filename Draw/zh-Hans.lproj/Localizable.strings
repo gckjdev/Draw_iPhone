@@ -2811,6 +2811,11 @@
 
 //
 "kAddSuccess" = "添加成功!";
+"kContinue" = "继续闯关";
+"kProgress" = "已完成";
+"kStartStage" = "开始闯关";
+"kContinueStage" = "继续闯关";
+
 
 "kDownloadTutorialFailure" = "下载教程数据失败，请检查网络或者稍后再试";
 "kDownloadTutorialSuccess" = "下载成功";

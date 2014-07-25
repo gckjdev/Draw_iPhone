@@ -1663,6 +1663,13 @@
 
 - (void)handleSubmitForLearnDraw
 {
+    if([drawView.drawActionList count]<=10)
+    {
+        PPDebug(@"too few strokes!");
+        POSTMSG(@"客官，不够认真哦！");
+        return;
+    }
+    
     self.submitOpusDrawData = nil;
     self.submitOpusFinalImage = nil;
     
@@ -1684,13 +1691,13 @@
     [draft setOpusSpendTime:@(_designTime.totalTime)];
     [draft setOpusCompleteDate:[NSDate date]];
     [draft setSelectedClassList:self.selectedClassList];
-
+    
     // 评分
     NSString* sourcePath = [self writeImageToFile:_copyView.image filePath:self.draft.draftId];
     NSString* destPath = self.tempImageFilePath;
 
     //从关卡传入difficulty
-    int score = [ImageSimilarityEngine score1SrcPath:sourcePath destPath:destPath difficulty:1.0];
+    int score = [ImageSimilarityEngine score1SrcPath:sourcePath destPath:destPath difficulty:1.2];
     
 
 //    int score = [OpenCVUtils simpleDrawScoreSourceImagePath:sourcePath destImagePath:destPath];
