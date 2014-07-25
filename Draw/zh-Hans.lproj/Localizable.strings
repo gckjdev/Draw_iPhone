@@ -2824,3 +2824,4 @@
 "kLoadingStageWithProgress" = "加载关卡中...(%d%%)";
 
 "kContinue" = "继续闯关";
+"kConquerDraw" = "闯关";

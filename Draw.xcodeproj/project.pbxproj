@@ -6299,6 +6299,26 @@
 		D89191FC196316C2006B616A /* StageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D89191FA196316C2006B616A /* StageCell.xib */; };
 		D89191FD196316C2006B616A /* StageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D89191FA196316C2006B616A /* StageCell.xib */; };
 		D89191FE196316C2006B616A /* StageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D89191FA196316C2006B616A /* StageCell.xib */; };
+		D89B27AF1981FAC80035BE5F /* TipsPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D89B27AD1981FAC80035BE5F /* TipsPageViewController.m */; };
+		D89B27B01981FAC80035BE5F /* TipsPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D89B27AD1981FAC80035BE5F /* TipsPageViewController.m */; };
+		D89B27B11981FAC80035BE5F /* TipsPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D89B27AD1981FAC80035BE5F /* TipsPageViewController.m */; };
+		D89B27B21981FAC80035BE5F /* TipsPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D89B27AD1981FAC80035BE5F /* TipsPageViewController.m */; };
+		D89B27B31981FAC80035BE5F /* TipsPageViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D89B27AE1981FAC80035BE5F /* TipsPageViewController.xib */; };
+		D89B27B41981FAC80035BE5F /* TipsPageViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D89B27AE1981FAC80035BE5F /* TipsPageViewController.xib */; };
+		D89B27B51981FAC80035BE5F /* TipsPageViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D89B27AE1981FAC80035BE5F /* TipsPageViewController.xib */; };
+		D89B27B61981FAC80035BE5F /* TipsPageViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D89B27AE1981FAC80035BE5F /* TipsPageViewController.xib */; };
+		D89B27B8198219010035BE5F /* square.png in Resources */ = {isa = PBXBuildFile; fileRef = D89B27B7198219010035BE5F /* square.png */; };
+		D89B27B9198219010035BE5F /* square.png in Resources */ = {isa = PBXBuildFile; fileRef = D89B27B7198219010035BE5F /* square.png */; };
+		D89B27BA198219010035BE5F /* square.png in Resources */ = {isa = PBXBuildFile; fileRef = D89B27B7198219010035BE5F /* square.png */; };
+		D89B27BB198219010035BE5F /* square.png in Resources */ = {isa = PBXBuildFile; fileRef = D89B27B7198219010035BE5F /* square.png */; };
+		D89B27BD198233780035BE5F /* TipsPageViewController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = D89B27BC198233780035BE5F /* TipsPageViewController~ipad.xib */; };
+		D89B27BE198233780035BE5F /* TipsPageViewController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = D89B27BC198233780035BE5F /* TipsPageViewController~ipad.xib */; };
+		D89B27BF198233780035BE5F /* TipsPageViewController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = D89B27BC198233780035BE5F /* TipsPageViewController~ipad.xib */; };
+		D89B27C0198233780035BE5F /* TipsPageViewController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = D89B27BC198233780035BE5F /* TipsPageViewController~ipad.xib */; };
+		D89B27C7198255790035BE5F /* square2.png in Resources */ = {isa = PBXBuildFile; fileRef = D89B27C6198255790035BE5F /* square2.png */; };
+		D89B27C8198255790035BE5F /* square2.png in Resources */ = {isa = PBXBuildFile; fileRef = D89B27C6198255790035BE5F /* square2.png */; };
+		D89B27C9198255790035BE5F /* square2.png in Resources */ = {isa = PBXBuildFile; fileRef = D89B27C6198255790035BE5F /* square2.png */; };
+		D89B27CA198255790035BE5F /* square2.png in Resources */ = {isa = PBXBuildFile; fileRef = D89B27C6198255790035BE5F /* square2.png */; };
 		D8A1E9BE197612B200F32735 /* MoreViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D8A1E9BA197612B200F32735 /* MoreViewController.xib */; };
 		D8A1E9BF197612B200F32735 /* MoreViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D8A1E9BA197612B200F32735 /* MoreViewController.xib */; };
 		D8A1E9C0197612B200F32735 /* MoreViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D8A1E9BA197612B200F32735 /* MoreViewController.xib */; };
@@ -10766,6 +10786,12 @@
 		D89191EF1963163B006B616A /* StageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StageCell.h; sourceTree = "<group>"; };
 		D89191F01963163B006B616A /* StageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StageCell.m; sourceTree = "<group>"; };
 		D89191FA196316C2006B616A /* StageCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = StageCell.xib; sourceTree = "<group>"; };
+		D89B27AC1981FAC80035BE5F /* TipsPageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TipsPageViewController.h; sourceTree = "<group>"; };
+		D89B27AD1981FAC80035BE5F /* TipsPageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TipsPageViewController.m; sourceTree = "<group>"; };
+		D89B27AE1981FAC80035BE5F /* TipsPageViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TipsPageViewController.xib; sourceTree = "<group>"; };
+		D89B27B7198219010035BE5F /* square.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = square.png; sourceTree = "<group>"; };
+		D89B27BC198233780035BE5F /* TipsPageViewController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "TipsPageViewController~ipad.xib"; sourceTree = "<group>"; };
+		D89B27C6198255790035BE5F /* square2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = square2.png; sourceTree = "<group>"; };
 		D8A1E9BA197612B200F32735 /* MoreViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MoreViewController.xib; sourceTree = "<group>"; };
 		D8A1E9BB197612B200F32735 /* MoreViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MoreViewController.m; sourceTree = "<group>"; };
 		D8A1E9BC197612B200F32735 /* MoreViewCell~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "MoreViewCell~ipad.xib"; sourceTree = "<group>"; };
@@ -15263,6 +15289,7 @@
 		CA2A28A5195C120600A97478 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				D89B27A81981F4240035BE5F /* TipsPage */,
 				D8A87CAA197F9E7B00972B2E /* TutorialInfo */,
 				D8A87CA6197F9E5F00972B2E /* AllTutorial */,
 				D8B84166197DF7B300B6FB5C /* ResultSharePage */,
@@ -15287,6 +15314,8 @@
 		CA2A28A7195C120600A97478 /* Resource */ = {
 			isa = PBXGroup;
 			children = (
+				D89B27C6198255790035BE5F /* square2.png */,
+				D89B27B7198219010035BE5F /* square.png */,
 				D8AA04251974CA6400083651 /* beginPlayGame(big).png */,
 				D8AA04261974CA6400083651 /* beginPlayGame(little).png */,
 				D8BF373519713A5900ACEFCA /* daguanka.png */,
@@ -18209,6 +18238,17 @@
 			path = billboard;
 			sourceTree = "<group>";
 		};
+		D89B27A81981F4240035BE5F /* TipsPage */ = {
+			isa = PBXGroup;
+			children = (
+				D89B27AC1981FAC80035BE5F /* TipsPageViewController.h */,
+				D89B27AD1981FAC80035BE5F /* TipsPageViewController.m */,
+				D89B27AE1981FAC80035BE5F /* TipsPageViewController.xib */,
+				D89B27BC198233780035BE5F /* TipsPageViewController~ipad.xib */,
+			);
+			name = TipsPage;
+			sourceTree = "<group>";
+		};
 		D8A87CA6197F9E5F00972B2E /* AllTutorial */ = {
 			isa = PBXGroup;
 			children = (
@@ -18997,6 +19037,7 @@
 				A461B524174CBAA70088B061 /* bbs_post_support@2x.png in Resources */,
 				A461B525174CBAA70088B061 /* bbs_post_new@2x.png in Resources */,
 				A461B526174CBAA70088B061 /* BBSPostListController~ipad.xib in Resources */,
+				D89B27BF198233780035BE5F /* TipsPageViewController~ipad.xib in Resources */,
 				A461B527174CBAA70088B061 /* BBSPostCell~ipad.xib in Resources */,
 				A461B528174CBAA70088B061 /* bbs_post_rewarded@2x.png in Resources */,
 				A461B52A174CBAA70088B061 /* bbs_detail_option_up@2x.png in Resources */,
@@ -19336,6 +19377,7 @@
 				A4D8FA9317DB08170085061F /* face_embarrass@2x.png in Resources */,
 				D81962431962677B00B4FBAF /* AllTutorialCell.xib in Resources */,
 				A4D8FA9717DB08170085061F /* face_proud@2x.png in Resources */,
+				D89B27BA198219010035BE5F /* square.png in Resources */,
 				A4D8FA9B17DB08170085061F /* guessed@2x.png in Resources */,
 				A4D8FA9F17DB08170085061F /* my_paint_tag@2x.png in Resources */,
 				A4D8FAA317DB08170085061F /* new_bulletin@2x.png in Resources */,
@@ -19484,6 +19526,7 @@
 				A4D8FDA117DB089C0085061F /* pen_show_brush@2x.png in Resources */,
 				A4D8FDA517DB089C0085061F /* pen_show_feather@2x.png in Resources */,
 				A4D8FDA917DB089C0085061F /* pen_show_ice@2x.png in Resources */,
+				D89B27B51981FAC80035BE5F /* TipsPageViewController.xib in Resources */,
 				A4D8FDAD17DB089C0085061F /* pen_show_mark@2x.png in Resources */,
 				A4D8FDB117DB089C0085061F /* pen_show_pencil@2x.png in Resources */,
 				A4D8FDB517DB089C0085061F /* draw_rubber@2x.png in Resources */,
@@ -19541,6 +19584,7 @@
 				A4D8FE7D17DB089C0085061F /* draw_up_panel_edit_btn@2x.png in Resources */,
 				A4D8FE8117DB089C0085061F /* draw_up_panel_help_btn_@2x.png in Resources */,
 				A4D8FE8517DB089C0085061F /* draw_up_panel_page_bg_btn@2x.png in Resources */,
+				D89B27C9198255790035BE5F /* square2.png in Resources */,
 				A4D8FE8917DB089C0085061F /* email@2x.png in Resources */,
 				A4D8FE8D17DB089C0085061F /* clean_ad@2x.png in Resources */,
 				A4D8FE9117DB089C0085061F /* face_anger@2x.png in Resources */,
@@ -20068,6 +20112,7 @@
 				C28A9E191738F04B007A819F /* bbs_create_reward_option@2x.png in Resources */,
 				C28A9E1A1738F04B007A819F /* bbs_create_submit_bg@2x.png in Resources */,
 				C28A9E1B1738F04B007A819F /* bbs_action_sheet_bg@2x.png in Resources */,
+				D89B27C8198255790035BE5F /* square2.png in Resources */,
 				C28A9E1C1738F04B007A819F /* BBSActionListController~ipad.xib in Resources */,
 				C28A9E1D1738F04B007A819F /* BBSPostDetailController~ipad.xib in Resources */,
 				C28A9E1E1738F04B007A819F /* CreatePostController~ipad.xib in Resources */,
@@ -20087,6 +20132,7 @@
 				C28A9E341738F04B007A819F /* HomeMainMenu~ipad.xib in Resources */,
 				C28A9E361738F04B007A819F /* HomeMainMenuPanel~ipad.xib in Resources */,
 				C28A9E381738F04B007A819F /* DrawHomeHeaderPanel.xib in Resources */,
+				D89B27B41981FAC80035BE5F /* TipsPageViewController.xib in Resources */,
 				C28A9E461738F04B007A819F /* CommonDialog.xib in Resources */,
 				C28A9E471738F04B007A819F /* CommonDialog~ipad.xib in Resources */,
 				C28A9E481738F04B007A819F /* CommonDiceDialog.xib in Resources */,
@@ -20303,6 +20349,7 @@
 				A4C9E03A17A61B4200DE982F /* GuessRankCell.xib in Resources */,
 				CAF4897A17AA736900F015AB /* ToolPanel.xib in Resources */,
 				CAE74B7B17AF83D500E73875 /* DrawLayerPanel.xib in Resources */,
+				D89B27BE198233780035BE5F /* TipsPageViewController~ipad.xib in Resources */,
 				A4E1D21E17B2236800E13728 /* GuessSelectCell.xib in Resources */,
 				A489C01517B5D942003E5150 /* JDFlipNumberView.bundle in Resources */,
 				A4ADB61917B9FA0C00EBF418 /* Themes.plist in Resources */,
@@ -20923,6 +20970,7 @@
 				A49DF8C3187D311600634196 /* StatementCell.xib in Resources */,
 				A49DF8C9187D3FA100634196 /* statement_cell_bg2@2x.png in Resources */,
 				A49DF8CD187D3FA100634196 /* statement_cell_bg1@2x.png in Resources */,
+				D89B27B9198219010035BE5F /* square.png in Resources */,
 				EAFA051F1880ECA700B0CF61 /* CreateContestController~ipad.xib in Resources */,
 				CAD8EE3B189222930057EC30 /* PurchaseVipController.xib in Resources */,
 				CAD8EE4718922F840057EC30 /* vip_buy_button@2x.png in Resources */,
@@ -21393,6 +21441,7 @@
 				A4DDD56D17CDFD7B0029E562 /* congratulations.mp3 in Resources */,
 				A4DDD57117CDFD7B0029E562 /* correct.mp3 in Resources */,
 				A4DDD57517CDFD7B0029E562 /* ding.m4a in Resources */,
+				D89B27B8198219010035BE5F /* square.png in Resources */,
 				A4DDD57917CDFD7B0029E562 /* dingding.mp3 in Resources */,
 				A4DDD57D17CDFD7B0029E562 /* oowrong.mp3 in Resources */,
 				A4DDD58117CDFD7B0029E562 /* pushMessage.mp3 in Resources */,
@@ -21469,6 +21518,7 @@
 				A4D8FAA917DB08170085061F /* wrong@2x.png in Resources */,
 				A4D8FAAD17DB08170085061F /* angel@2x.png in Resources */,
 				A4D8FAB117DB08170085061F /* award_coin@2x.png in Resources */,
+				D89B27BD198233780035BE5F /* TipsPageViewController~ipad.xib in Resources */,
 				A4D8FAB517DB08170085061F /* foot@2x.png in Resources */,
 				A4D8FAB917DB08170085061F /* guess_contest_mode@2x.png in Resources */,
 				A4D8FABD17DB08170085061F /* guess_contest_time@2x.png in Resources */,
@@ -21691,6 +21741,7 @@
 				A4D8FEBB17DB089C0085061F /* face_smile@2x.png in Resources */,
 				A4D8FEBF17DB089C0085061F /* face_wry@2x.png in Resources */,
 				A4D8FEC317DB089C0085061F /* super_face_cry@2x.png in Resources */,
+				D89B27B31981FAC80035BE5F /* TipsPageViewController.xib in Resources */,
 				A4D8FEC717DB089C0085061F /* super_face_smile@2x.png in Resources */,
 				A4D8FECB17DB089C0085061F /* face_smile@2x.png in Resources */,
 				A4D8FECF17DB089C0085061F /* face_wry@2x.png in Resources */,
@@ -21755,6 +21806,7 @@
 				A4D8002717DB089C0085061F /* draw_player_minus@2x.png in Resources */,
 				A4D8002B17DB089C0085061F /* draw_player_pause@2x.png in Resources */,
 				A4D8002F17DB089C0085061F /* draw_player_play@2x.png in Resources */,
+				D89B27C7198255790035BE5F /* square2.png in Resources */,
 				A4D8003317DB089C0085061F /* draw_player_plus@2x.png in Resources */,
 				D80518B6196BD12200D350B3 /* laba.png in Resources */,
 				A4D8003717DB089C0085061F /* draw_player_progress_point@2x.png in Resources */,
@@ -22536,6 +22588,7 @@
 				A4D8FB1C17DB08170085061F /* round_dot_1@2x.png in Resources */,
 				A4D8FB2017DB08170085061F /* round_dot_20@2x.png in Resources */,
 				A4D8FB2417DB08170085061F /* round_dot_2@2x.png in Resources */,
+				D89B27BB198219010035BE5F /* square.png in Resources */,
 				A4D8FB2817DB08170085061F /* round_dot_3@2x.png in Resources */,
 				A4D8FB2C17DB08170085061F /* round_dot_4@2x.png in Resources */,
 				A4D8FB3017DB08170085061F /* round_dot_5@2x.png in Resources */,
@@ -22577,6 +22630,7 @@
 				A4D8FBBC17DB08170085061F /* correct@2x.png in Resources */,
 				A4D8FBC017DB08170085061F /* question@2x.png in Resources */,
 				A4D8FBC417DB08170085061F /* flower@2x.png in Resources */,
+				D89B27B61981FAC80035BE5F /* TipsPageViewController.xib in Resources */,
 				A4D8FBC817DB08170085061F /* flower_result@2x.png in Resources */,
 				A4D8FBCC17DB08170085061F /* item_shadow@2x.png in Resources */,
 				A4D8FBD017DB08170085061F /* tipbag@2x.png in Resources */,
@@ -22685,6 +22739,7 @@
 				A4D8FE3E17DB089C0085061F /* draw_shadow@2x.png in Resources */,
 				A4D8FE4217DB089C0085061F /* draw_shape_default@2x.png in Resources */,
 				CACD6B1818E03A2D003F97C0 /* ShareSDKiPhoneDefaultShareViewUI.bundle in Resources */,
+				D89B27CA198255790035BE5F /* square2.png in Resources */,
 				A4D8FE4617DB089C0085061F /* draw_shape_image@2x.png in Resources */,
 				A4D8FE4A17DB089C0085061F /* draw_shape_selected@2x.png in Resources */,
 				A4D8FE4E17DB089C0085061F /* draw_straw@2x.png in Resources */,
@@ -22766,6 +22821,7 @@
 				A4D8FFCE17DB089C0085061F /* rect.svg in Resources */,
 				A4D8FFD217DB089C0085061F /* zjh_home_charge@2x.png in Resources */,
 				A4D8FFD617DB089C0085061F /* zjh_home_charge_bg@2x.png in Resources */,
+				D89B27C0198233780035BE5F /* TipsPageViewController~ipad.xib in Resources */,
 				A4D8FFDA17DB089C0085061F /* zjh_home_freecoin_bg@2x.png in Resources */,
 				A4D8FFDE17DB089C0085061F /* zjh_home_header_bg@2x.png in Resources */,
 				A4D8FFE217DB089C0085061F /* zjh_home_header_foot@2x.png in Resources */,
@@ -23847,6 +23903,7 @@
 				A421516C1803EA2A007F2EFD /* MWCaptionView.m in Sources */,
 				A421516F1803EA2A007F2EFD /* MWPhoto.m in Sources */,
 				A42151721803EA2A007F2EFD /* MWPhotoBrowser.m in Sources */,
+				D89B27B11981FAC80035BE5F /* TipsPageViewController.m in Sources */,
 				A42151751803EA2A007F2EFD /* MWTapDetectingImageView.m in Sources */,
 				A42151781803EA2A007F2EFD /* MWTapDetectingView.m in Sources */,
 				A421517B1803EA2A007F2EFD /* MWZoomingScrollView.m in Sources */,
@@ -24435,6 +24492,7 @@
 				C28A9C0E1738F04B007A819F /* UserGameItemManager.m in Sources */,
 				C28A9C0F1738F04B007A819F /* UserGameItemService.m in Sources */,
 				C28A9C101738F04B007A819F /* DefaultPen.m in Sources */,
+				D89B27B01981FAC80035BE5F /* TipsPageViewController.m in Sources */,
 				C28A9C111738F04B007A819F /* SuperPen.m in Sources */,
 				C28A9C131738F04B007A819F /* ShapeBox.m in Sources */,
 				C28A9C151738F04B007A819F /* DrawBgManager.m in Sources */,
@@ -25295,6 +25353,7 @@
 				CA16412116D724CA001C615F /* GameItem.m in Sources */,
 				CA16412716D724DF001C615F /* GameItemManager.m in Sources */,
 				CA16413316D724FD001C615F /* UserGameItemManager.m in Sources */,
+				D89B27AF1981FAC80035BE5F /* TipsPageViewController.m in Sources */,
 				CA16413916D7255E001C615F /* UserGameItemService.m in Sources */,
 				CAE9AA6C16D72725008392F9 /* DefaultPen.m in Sources */,
 				CAE9AA7A16D72F17008392F9 /* SuperPen.m in Sources */,
@@ -26239,6 +26298,7 @@
 				EA411ABC176066F500DA72D0 /* CanvasRectBox.m in Sources */,
 				EA411ABD176066F500DA72D0 /* UIColor+UIColorExt.m in Sources */,
 				EA411ABE176066F500DA72D0 /* IAPProductManager.m in Sources */,
+				D89B27B21981FAC80035BE5F /* TipsPageViewController.m in Sources */,
 				EA411ABF176066F500DA72D0 /* RedoCommand.m in Sources */,
 				EA411AC0176066F500DA72D0 /* UndoCommand.m in Sources */,
 				EA411AC1176066F500DA72D0 /* UserDetailRoundButton.m in Sources */,

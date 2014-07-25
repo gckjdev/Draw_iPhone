@@ -69,6 +69,7 @@
     [self.nameLabel setText:@"皮皮彭"];
     [self.nameLabel setFont:AD_FONT(20, 13)];
     self.decsLabel.attributedText = desc;
+
     
     //head
     //TODO

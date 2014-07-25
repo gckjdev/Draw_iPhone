@@ -17,6 +17,8 @@
 #import "ICETutorialController.h"
 #import "ResultSharePageViewController.h"
 #import "ResultShareAlertPageViewController.h"
+#import "TipsPageViewController.h"
+#import "SDWebImageManager.h"
 
 @interface MetroHomeController ()
 
@@ -190,8 +192,12 @@
 - (IBAction)goToBBS:(id)sender {
 //    [self enterBBS];
     
-    ResultShareAlertPageViewController *rspc = [[ResultShareAlertPageViewController alloc] init];
-    CommonDialog *dialog = [CommonDialog createDialogWithTitle:NSLS(@"kResultSharePage") customView:rspc.view style:CommonDialogStyleCross];
+//    ResultShareAlertPageViewController *rspc = [[ResultShareAlertPageViewController alloc] init];
+//    CommonDialog *dialog = [CommonDialog createDialogWithTitle:NSLS(@"kResultSharePage") customView:rspc.view style:CommonDialogStyleCross];
+//    [dialog showInView:self.view];
+    
+    TipsPageViewController *rspc = [[TipsPageViewController alloc] init];
+    CommonDialog *dialog = [CommonDialog createDialogWithTitle:NSLS(@"提示") customView:rspc.view style:CommonSquareDialogStyleCross];
     [dialog showInView:self.view];
 }
 
@@ -276,45 +282,57 @@
 -(void)setGalleryView{
     BillboardManager *bbManager = [BillboardManager defaultManager];
     self.bbList = bbManager.bbList;
-
-    NSMutableArray *itemList = [[[NSMutableArray alloc] init] autorelease];
-    for(Billboard *bb in _bbList){
-        NSString *galleryImage = bb.image;
-        NSURL *galleryUrl = [NSURL URLWithString:galleryImage];
-        
-        UIImage *image = nil;
-        //设置默认图片
-        if(galleryUrl==nil||[galleryUrl isEqual:@""]){
-            
-            image = [UIImage imageNamed:DEFAULT_GALLERY_IMAGE] ;
-            
-        }
-        //读取网上的图片数据
-        NSData* data = [NSData dataWithContentsOfURL:galleryUrl];
-        if(data==nil){
-            image = [UIImage imageNamed:DEFAULT_GALLERY_IMAGE] ;
-            
-        }
-         image = [[[UIImage alloc] initWithData:data] autorelease];
-
-        if(image==nil){
-             image = [UIImage imageNamed:DEFAULT_GALLERY_IMAGE] ;
-        }
-        
-        //添加到第三方框架
-        SGFocusImageItem *item = [[[SGFocusImageItem alloc] initWithTitle:@"" image:image tag:bb.index] autorelease];
-        
-        
-        [itemList addObject:item];
-    }
+    //默认图片
+    UIImage *image = [UIImage imageNamed:DEFAULT_GALLERY_IMAGE];
+    [self.galleryImageView initWithImage:image];
     
-    //新建滚动展览
-    SGFocusImageFrame *imageFrame = [[SGFocusImageFrame alloc] initWithFrame:CGRectMake(IMAGE_FRAME_X, IMAGE_FRAME_Y, IMAGE_FRAME_WIDTH ,IMAGE_FRAME_HEIGHT)
-                                                                    delegate:self
-                                                             focusImageItems:itemList, nil];
-    [self.galleryView addSubview:imageFrame];
-    [self.galleryView bringSubviewToFront:imageFrame];
-    [imageFrame release];
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
+        
+        NSMutableArray *itemList = [[[NSMutableArray alloc] init] autorelease];
+        for(Billboard *bb in _bbList){
+            NSString *galleryImage = bb.image;
+            NSURL *galleryUrl = [NSURL URLWithString:galleryImage];
+            
+            UIImage *image = nil;
+            //设置默认图片
+            if(galleryUrl==nil||[galleryUrl isEqual:@""]){
+                
+                image = [UIImage imageNamed:DEFAULT_GALLERY_IMAGE] ;
+                
+            }
+            //读取网上的图片数据
+            //TODO 异步
+            NSData* data = [NSData dataWithContentsOfURL:galleryUrl];
+            
+            if(data==nil){
+                image = [UIImage imageNamed:DEFAULT_GALLERY_IMAGE] ;
+                
+            }
+            image = [[[UIImage alloc] initWithData:data] autorelease];
+            
+            if(image==nil){
+                image = [UIImage imageNamed:DEFAULT_GALLERY_IMAGE] ;
+            }
+            
+            //添加到第三方框架
+            SGFocusImageItem *item = [[[SGFocusImageItem alloc] initWithTitle:@"" image:image tag:bb.index] autorelease];
+            
+            
+            [itemList addObject:item];
+            
+        }
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            //新建滚动展览
+            SGFocusImageFrame *imageFrame = [[SGFocusImageFrame alloc] initWithFrame:CGRectMake(IMAGE_FRAME_X, IMAGE_FRAME_Y, IMAGE_FRAME_WIDTH ,IMAGE_FRAME_HEIGHT)
+                                                                            delegate:self
+                                                                     focusImageItems:itemList, nil];
+            [self.galleryView addSubview:imageFrame];
+            [self.galleryView bringSubviewToFront:imageFrame];
+            [imageFrame release];
+        });
+    });
+    
 
 }
 -(void)foucusImageFrame:(SGFocusImageFrame *)imageFrame didSelectItem:(SGFocusImageItem *)item{
