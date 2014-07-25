@@ -33,6 +33,7 @@ typedef enum{
     MyTypeTimelineGuess = FeedListTypeTimelineGuess,
     MyTypeComment = FeedListTypeComment,
     MyTypeDrawToMe = FeedListTypeDrawToMe,
+    MyTypeTimeLineDraw = FeedListTypeTimeLineConquerDraw,
     
 }MyType;
 

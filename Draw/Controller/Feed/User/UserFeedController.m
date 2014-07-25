@@ -29,6 +29,7 @@ typedef enum{
     UserTypeFeed = FeedListTypeUserFeed,
     UserTypeOpus = FeedListTypeUserOpus,
     UserTypeFavorite = FeedListTypeUserFavorite,
+    UserTypeConquerDraw = FeedListTypeUserConquerDraw,
 }UserFeedType;
 
 @interface UserFeedController () {
@@ -256,6 +257,7 @@ typedef enum{
                                         dataList:[self tabDataList]];
             break;
             
+        case UserTypeConquerDraw:
         case UserTypeFeed:
             
            return [CellManager getTimelineStyleCell:theTableView
@@ -264,7 +266,6 @@ typedef enum{
                                            dataList:self.tabDataList];
             
             break;
-            
         default:
             return nil;
             break;
@@ -767,7 +768,7 @@ typedef enum{
 
 - (NSInteger)tabCount
 {
-    return 3;
+    return 4;
 }
 - (NSInteger)fetchDataLimitForTabIndex:(NSInteger)index
 {
@@ -775,7 +776,7 @@ typedef enum{
 }
 - (NSInteger)tabIDforIndex:(NSInteger)index
 {
-        NSInteger tabId[] = {UserTypeOpus, UserTypeFavorite, UserTypeFeed};
+        NSInteger tabId[] = {UserTypeOpus, UserTypeFavorite, UserTypeFeed,UserTypeConquerDraw};
         return tabId[index];
 }
 
@@ -785,14 +786,15 @@ typedef enum{
     NSString *noOpus = [NSString stringWithFormat:NSLS(@"kNoOpus"),self.nickName];
     NSString *noFavor= [NSString stringWithFormat:NSLS(@"kNoFavorite"),self.nickName];
     NSString *noFeed = [NSString stringWithFormat:NSLS(@"kUserNoFeed"),self.nickName];
-    NSString *tabDesc[] = {noOpus,noFavor, noFeed};
+    NSString *noConquerDraw = [NSString stringWithFormat:NSLS(@"kConquerDraw"),self.nickName];
+    NSString *tabDesc[] = {noOpus,noFavor, noFeed,noConquerDraw};
     return tabDesc[index];
     
 }
 
 - (NSString *)tabTitleforIndex:(NSInteger)index
 {
-    NSString *tabTitle[] = {NSLS(@"kUserOpus"), NSLS(@"kUserFavorite"),NSLS(@"kUserGuess")};
+    NSString *tabTitle[] = {NSLS(@"kUserOpus"), NSLS(@"kUserFavorite"),NSLS(@"kUserGuess"),NSLS(@"kConquerDraw")};
     return tabTitle[index];
 }
 
@@ -817,6 +819,10 @@ typedef enum{
             case UserTypeFavorite:
             {
                 [feedService getUserFavoriteOpusList:_userId offset:offset limit:limit delegate:self];
+            }
+            case UserTypeConquerDraw:
+            {
+                [feedService getUserOpusList:_userId offset:offset limit:limit type:FeedListTypeUserConquerDraw delegate:self];
             }
             default:
                 break;
