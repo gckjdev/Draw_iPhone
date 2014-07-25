@@ -74,7 +74,8 @@ typedef enum{
            bgImage:(UIImage*)bgImage
             layers:(NSArray*)layers
         canvasSize:(CGSize)canvasSize
-        outputPath:(NSString*)outputPath;
+        outputPath:(NSString*)outputPath
+         scaleSize:(double)scaleSize;
 
 @end
 

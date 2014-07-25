@@ -387,6 +387,13 @@ typedef enum{
 
 - (void)performReplay
 {
+    
+#ifdef DEBUG
+    [self performGif];
+    
+    return;
+#endif
+    
     [self performLoadOpus:@selector(gotoReplayView)];
     return;
 }
@@ -470,12 +477,13 @@ typedef enum{
 #ifdef DEBUG
     
     [ShowDrawView createGIF:24
-                  delayTime:0.3f
+                  delayTime:0.5f
              drawActionList:_selectedPaint.drawActionList
                     bgImage:[[MyPaintManager defaultManager] bgImageForPaint:_selectedPaint]
                      layers:_selectedPaint.layers
                  canvasSize:_selectedPaint.canvasSize
-                 outputPath:@"/Users/Linruin/Desktop/test.gif"];
+                 outputPath:@"/Users/Linruin/Desktop/test.gif"
+                  scaleSize:0.5];
     
     [self hideActivity];
     

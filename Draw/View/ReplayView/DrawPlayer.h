@@ -53,6 +53,4 @@
 - (void)stop;
 - (void)start;
 
-- (UIImage*)createImageAtIndex:(NSUInteger)index;
-
 @end

@@ -559,6 +559,7 @@ typedef enum {
     return [self createImage];
 }
 
+//gif的制作
 + (void) createGIF:(NSInteger)frameNumber
          delayTime:(double) delayTime
     drawActionList:(NSMutableArray*)drawActionList
@@ -566,14 +567,15 @@ typedef enum {
             layers:(NSArray*)layers
         canvasSize:(CGSize)canvasSize
         outputPath:(NSString*)outputPath
+        scaleSize:(double)scaleSize
 {
-    //gif的制作
     //利用参数获取源数据image
     NSMutableArray *srcImgList = [self createImagesForGIF:frameNumber
                                            drawActionList:drawActionList
                                                   bgImage:bgImage
                                                    layers:layers
-                                               canvasSize:canvasSize];
+                                               canvasSize:canvasSize
+                                                scaleSize:scaleSize];
     //图像目标
     CGImageDestinationRef destImg;
     
@@ -627,24 +629,8 @@ typedef enum {
                               bgImage:(UIImage*)bgImage
                                layers:(NSArray*)layers
                            canvasSize:(CGSize)canvasSize
-
+                            scaleSize:(double) scaleSize
 {
-    //    MyPaint* currentPaint = _selectedPaint;
-    
-    //    if ([obj.actionList count] <= frameNumber){
-    //        // TODO
-    //        return nil;//需要添加笔画控制！！！！！！！比如弹出窗口之类的！！
-    //    }
-    
-    //    ReplayObject *obj = [ReplayObject obj];
-    //    obj.actionList = drawActionList;
-    //    obj.isNewVersion = NO;
-    //    obj.bgImage = bgImage;
-    //    obj.layers = layers;
-    //    obj.canvasSize = canvasSize;
-    
-    //    DrawPlayer *player =[DrawPlayer playerWithReplayObj:obj];
-    
     //update showview
     ShowDrawView* showView = [ShowDrawView showViewWithFrame:CGRectFromCGSize(canvasSize)
                                               drawActionList:nil
@@ -659,18 +645,24 @@ typedef enum {
     
     NSMutableArray *cuttingList = [NSMutableArray arrayWithCapacity:frameNumber];//mark the cutting list
     NSMutableArray *gifFrames = [NSMutableArray arrayWithCapacity:frameNumber];//input the images
+    
+    // add last frame
+    for(NSInteger i=0;i<6;i++){
+        UIImage *lastImage = [showView createImageAtIndex:[drawActionList count]];
+        //resize the image scale according to requirement
+        lastImage = [lastImage scaleImage:lastImage toScale:scaleSize];
+        [gifFrames addObject:lastImage];
+    }
+    // add several frames
     for(NSInteger i = 1;i < frameNumber;i++)
     {
         [cuttingList addObject:@(i * [drawActionList count] / frameNumber)];
         NSNumber* playIndex = [cuttingList objectAtIndex:(i-1)];
         UIImage* image = [showView createImageAtIndex:[playIndex intValue]];
+        image = [image scaleImage:image toScale:scaleSize];
         [gifFrames addObject:image];
         PPDebug(@"<createImagesForGIF> create %d frame, index=%d", i, [playIndex intValue]);
     }
-    
-    // add last frame
-    UIImage *lastImage = [showView createImageAtIndex:[drawActionList count]];
-    [gifFrames addObject:lastImage];
     
     return gifFrames;
 }
