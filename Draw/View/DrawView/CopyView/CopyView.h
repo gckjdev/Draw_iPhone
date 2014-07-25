@@ -10,13 +10,17 @@
 #import "SPUserResizableView.h"
 
 @class PPViewController;
+@class PBStage;
+@class PBUserStage;
 
 @interface CopyView : SPUserResizableView<SPUserResizableViewDelegate, UIGestureRecognizerDelegate>
 
 + (CopyView*)createCopyView:(PPViewController*)superViewController
                   superView:(UIView*)superView
                     atPoint:(CGPoint)point
-                     opusId:(NSString*)opusId;
+                     opusId:(NSString*)opusId
+                  userStage:(PBUserStage*)userStage
+                      stage:(PBStage*)stage;
 
 - (void)enableMenu;
 - (void)disableMenu;

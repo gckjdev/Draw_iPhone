@@ -62,16 +62,19 @@ message PBChapter
     optional string enDesc = 11;
     optional string tcnDesc = 12;
 
-    optional string opusId = 20;                     // 回放作品ID（可以直接从ID获得URL、Image等信息）
-    optional string opusData = 21;                   // 回放作品包URL
-    optional string image = 22;                      // 作品图片URL
-    optional string background = 23;                 // 绘画底图URL
+    optional string opusId = 20;                     // 回放作品ID（可以直接从ID获得URL、Image等信息），废弃
+    optional string opusData = 21;                   // 回放作品包URL，废弃
+    optional string image = 22;                      // 作品图片URL，废弃
+    optional string background = 23;                 // 绘画底图URL，废弃
 
-    optional string opusName = 30;                   // 回放作品包文件名
-    optional string imageName = 31;                  // 作品图片文件名
-    optional string backgroundName = 32;             // 绘画底图文件名
+    optional string opusName = 30;                   // 回放作品包文件名，废弃
+    optional string imageName = 31;                  // 作品图片文件名，废弃
+    optional string backgroundName = 32;             // 绘画底图文件名，废弃
     
     repeated PBTip  tips = 33;                       // 每个小节的提示
+
+    optional int32  startIndex = 50;                 // 作品播放起始点，为0表示开始
+    optional int32  endIndex = 51;                   // 作品播放结束点，为-1表示到最后
 }
 
 // 关卡
@@ -90,10 +93,16 @@ message PBStage
     optional string enDesc = 11;
     optional string tcnDesc = 12;
 
-    optional string image = 20;
-    optional string thumbImage = 21;
-    
-    optional string dataURL = 30;                   // 下载的zip包URL，待定
+    optional string opusId = 19;                    // 本关卡作品的ID
+    optional string image = 20;                     // 本关卡的作品图片URL
+    optional string thumbImage = 21;                // 本关卡的作品小图片URL
+    optional string opusData = 22;                  // 本关卡的作品图片URL
+    optional string bgImage = 23;                   // 本关卡的作品图片URL
+
+    optional string dataURL = 30;                   // 下载的zip包URL，格式为 <tutorialId>__<stageId>.zip
+    optional string imageName = 31;                 // 本关卡的作品图片名称
+    optional string opusName = 32;                  // 本关卡的作品图片名称
+    optional string bgImageName = 33;               // 本关卡的作品图片名称
 
     repeated PBChapter chapter = 40;                // 教程章节
 

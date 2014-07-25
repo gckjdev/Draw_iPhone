@@ -506,7 +506,9 @@
     self.copyView = [CopyView createCopyView:self
                                    superView:holder
                                      atPoint:drawView.frame.origin
-                                      opusId:opusId];
+                                      opusId:opusId
+                                   userStage:[self buildUserStage]
+                                       stage:self.stage];
 }
 
 - (void)setCopyViewInfo

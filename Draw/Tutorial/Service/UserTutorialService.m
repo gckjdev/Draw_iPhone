@@ -531,6 +531,36 @@ static UserTutorialService* _defaultService;
 }
 
 
+// 显示
+- (void)showPracticeDraw:(PPViewController*)fromController
+                        userTutorial:(PBUserTutorial*)userTutorial
+                             stageId:(NSString*)stageId
+                          stageIndex:(int)stageIndex
+{
+    
+    // download success
+    // Practice
+    PBUserTutorial* newUT = [[UserTutorialService defaultService] startPracticeTutorialStage:userTutorial.localId
+                                                                                     stageId:stageId
+                                                                                  stageIndex:stageIndex];
+    
+    if (newUT && stageIndex < [newUT.userStagesList count]){
+        
+        PBUserStage* userStage = [newUT.userStagesList objectAtIndex:stageIndex];
+        
+        // enter offline draw view controller
+        [OfflineDrawViewController practice:fromController userStage:userStage userTutorial:newUT];
+        return;
+    }
+    else{
+        return;
+    }
+
+}
+
+
+
+
 // 进入修炼界面
 - (PBUserTutorial*)enterPracticeDraw:(PPViewController*)fromController
                         userTutorial:(PBUserTutorial*)userTutorial
@@ -547,30 +577,19 @@ static UserTutorialService* _defaultService;
         [fromController hideProgressView];
         [self unregisterNotification:smartData viewController:fromController];
         
-        // download success
-        // Practice
-        PBUserTutorial* newUT = [[UserTutorialService defaultService] startPracticeTutorialStage:userTutorial.localId
-                                                                                         stageId:stageId
-                                                                                      stageIndex:stageIndex];
-        
-        if (newUT && stageIndex < [newUT.userStagesList count]){
-            
-            PBUserStage* userStage = [newUT.userStagesList objectAtIndex:stageIndex];
-            
-            // enter offline draw view controller
-            [OfflineDrawViewController practice:fromController userStage:userStage userTutorial:newUT];
-            return;
-        }
-        else{
-            return;
-        }
+        [self showPracticeDraw:fromController userTutorial:userTutorial stageId:stageId stageIndex:stageIndex];
         
     } failureBlock:^(NSError *error) {
         
         [fromController hideProgressView];
         [self unregisterNotification:smartData viewController:fromController];
 
-        POSTMSG(NSLS(@"kDownloadTutorialFailure"));
+        if ([smartData isDataExist]){
+            [self showPracticeDraw:fromController userTutorial:userTutorial stageId:stageId stageIndex:stageIndex];
+        }
+        else{
+            POSTMSG(NSLS(@"kDownloadTutorialFailure"));
+        }
         
     }];
 
