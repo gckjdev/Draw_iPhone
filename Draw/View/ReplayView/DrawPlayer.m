@@ -94,6 +94,19 @@
     return player;
 }
 
++ (DrawPlayer *)playerWithReplayObj:(ReplayObject *)obj WithSliderBegin:(NSInteger)begin End:(NSInteger)end
+{
+    DrawPlayer *player = [DrawPlayer createViewWithXibIdentifier:@"DrawPlayer" ofViewIndex:ISIPAD];
+    player.replayObj = obj;
+    [player updateView];
+   
+    player.playSlider.minValue = begin;
+    player.playSlider.maxValue = end;
+    [player.playSlider setValue:begin];
+    
+    return player;
+}
+
 
 
 - (void)showInController:(PPViewController *)controller
@@ -119,6 +132,32 @@
     superControllerCanDragBack = controller.canDragBack;
     [controller setCanDragBack:NO];
 }
+
+- (void)showInController:(PPViewController *)controller
+               FromBegin:(NSInteger)begin
+{
+    DrawHolderView *holderView = (id)self.showView.superview;
+    holderView.autoresizingMask = (1<<6)-1;
+    if (holderView == nil) {
+        holderView = [DrawHolderView drawHolderViewWithFrame:self.bounds contentView:self.showView];
+        [holderView addTarget:self action:@selector(clickHolderView:) forControlEvents:UIControlEventTouchUpInside];
+        [holderView updateOriginY:STATUSBAR_DELTA];
+    }
+    [self insertSubview:holderView atIndex:0];
+    [controller.view addSubview:self];
+    self.frame = controller.view.bounds;
+    
+    if (_replayObj.isNewVersion) {
+        POSTMSG(NSLS(@"kNewDrawVersionTip"));
+    }
+    
+    [self startFromIndex:begin];
+    
+    [self performSelector:@selector(autoHidePanel) withObject:nil afterDelay:4];
+    superControllerCanDragBack = controller.canDragBack;
+    [controller setCanDragBack:NO];
+}
+
 
 
 - (void)dealloc {
@@ -209,6 +248,15 @@
     
     [self.showView play];
     [self.playButton setSelected:YES];    
+}
+- (void)startFromIndex:(NSInteger)index
+{
+    [self.showView setStatus:Playing];
+    
+    [self playToIndex:@(index)];
+    [self.showView playFromDrawActionIndex:index];
+//    [self performSelector:@selector(playToIndex:) withObject:@(index)];
+    [self.playButton setSelected:YES];
 }
 
 

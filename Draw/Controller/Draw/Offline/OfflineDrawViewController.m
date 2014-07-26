@@ -1666,7 +1666,7 @@
     NSInteger effetiveAction=[drawView.drawActionList count];
     for(DrawAction *da in drawView.drawActionList)
     {
-        if(20 > [da pointCount])
+        if(10 > [da pointCount])
             effetiveAction--;
     }
     if(effetiveAction<=10)
