@@ -52,6 +52,7 @@
 
 #define DEFAUT_IMAGE_NAME "dialogue@2x"
 #define TEST_DATA_GALLERYIMAGE "http://58.215.184.18:8080/tutorial/image/GalleryImage2.jpg"
+#define IS_IOS7_OR_LATER [[UIDevice currentDevice] systemVersion]>=7 ? YES:NO
 - (void)viewDidLoad
 {
 //    
@@ -89,18 +90,37 @@
     [_topNameButton setTitle:name forState:UIControlStateNormal];
     [_topNameButton setTitleColor:COLOR_BROWN forState:UIControlStateNormal];
     [_topNameButton.titleLabel setFont:AD_FONT(20, 15)];
-    
-//    [[UINavigationBar appearance] setBarTintColor:[UIColor yellowColor]];
-    
-//    //加阴影
-//    UIView *shadowView = [self createShadow:self.paintingView];
-//    [self.paintingView addSubview:shadowView];
     [self setButtonTitleBottom];
     [self goToUserDetail];
     
     //TEST
     [self setBadgeView];
-//    [self adapt_iOS6];
+    
+    //autolayout 适配ios6 ios7
+    NSLayoutConstraint* constraint = [NSLayoutConstraint constraintWithItem:self.galleryView
+                                                                  attribute:NSLayoutAttributeTop
+                                                                  relatedBy:NSLayoutRelationEqual
+                                                                     toItem:self.topView
+                                                                  attribute:NSLayoutAttributeBottom
+                                                                 multiplier:1.0
+                                                                   constant:0];
+    
+    int constant = 0;
+    if(ISIOS7){
+        constant = 20;
+        
+    }
+    NSLayoutConstraint* constraint2 = [NSLayoutConstraint constraintWithItem:self.topView
+                                                                  attribute:NSLayoutAttributeTop
+                                                                  relatedBy:NSLayoutRelationEqual
+                                                                     toItem:self.view
+                                                                  attribute:NSLayoutAttributeTop
+                                                                 multiplier:1.0
+                                                                   constant:constant];
+    [self.view addConstraint:constraint2];
+    [self.view addConstraint:constraint];
+    
+    
 }
 -(void)viewWillAppear:(BOOL)animated{
     //适配IOS7
