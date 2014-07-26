@@ -74,7 +74,7 @@
 }
 
 #define PROGRESS_VIEW_SIZE_WIDTH (ISIPAD ? 200.0f : 120.0f)
-#define PROGRESS_VIEW_SIZE_HEIGHT (ISIPAD ? 30.0f : 30.0f)
+#define PROGRESS_VIEW_SIZE_HEIGHT (ISIPAD ? 40.0f : 30.0f)
 -(void)setProgressView:(NSInteger)row WithProgress:(float)progress{
     const CGSize progressViewSize = { PROGRESS_VIEW_SIZE_WIDTH, PROGRESS_VIEW_SIZE_HEIGHT};
     //調用THprogressview
@@ -84,7 +84,7 @@
                                             initWithFrame:
                                                               CGRectMake
                                                              (5.0f,
-                                                              0.0f,
+                                                              10.0f,
                                                               progressViewSize.width,
                                                               progressViewSize.height
                                                              )
