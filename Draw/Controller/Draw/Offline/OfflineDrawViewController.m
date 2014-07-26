@@ -1612,6 +1612,23 @@
 
 - (void)handleSubmitForLearnDraw
 {
+    
+    //  预处理
+    NSInteger effetiveAction=[drawView.drawActionList count];
+    for(DrawAction *da in drawView.drawActionList)
+    {
+        PPDebug(@"当前笔划点数：%d",[da pointCount]);
+        if(20 > [da pointCount])
+            effetiveAction--;
+    }
+    if(effetiveAction<=10)
+    {
+        PPDebug(@"too few strokes!");
+        POSTMSG(@"客官，不够认真哦！");
+        return;
+    }
+    
+    
     self.submitOpusDrawData = nil;
     self.submitOpusFinalImage = nil;
     
