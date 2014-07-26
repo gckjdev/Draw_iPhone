@@ -2776,3 +2776,4 @@
 "kStartStage" = "開始闖關";
 "kContinueStage" = "继续闖關";
 "kConquerDraw" = "闖關";
+"kNoTimelineDraw" = "闖關";
