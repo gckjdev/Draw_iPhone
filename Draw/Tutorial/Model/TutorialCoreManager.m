@@ -155,16 +155,22 @@ static TutorialCoreManager* _defaultTutorialCoreManager;
     
     PBStage_Builder* pb = [PBStage builder];
     PBChapter_Builder* pbChapterBuilder = [PBChapter builder];
-
-    
     
     [pb setCnName:name];
     [pb setCnDesc:desc];
     [pb setStageId:stageId];
     [pb setThumbImage:imageUrl];
     [pb setImage:imageUrl];
+    
+    [pb setImageName:@"image.jpg"];                 // image for compare
+    [pb setBgImage:@"bg_image.jpg"];                // image for background
+    [pb setOpusName:@"data"];                       // opus data file name
+    [pb setOpusId:[chapterList objectAtIndex:0]];   // opus ID
+    
     [pbChapterBuilder setOpusId:[chapterList objectAtIndex:0]];
     [pbChapterBuilder setIndex:chapterIndex];
+    [pbChapterBuilder setImageName:@"image.jpg"];
+    
     PBChapter* chapter = [pbChapterBuilder build];
     [pb addChapter:chapter];
     PBStage* stage = [pb build];
@@ -209,8 +215,8 @@ static TutorialCoreManager* _defaultTutorialCoreManager;
 // 创建测试数据
 - (void)createTestData
 {
-//    NSString* root = @"/gitdata/Draw_iPhone/Draw/CommonResource/Config/";
-    NSString* root = @"/Users/chaoso/Desktop/gitdata/Draw_iPhone/Draw/Tutorial/Resource/";
+    NSString* root = @"/gitdata/Draw_iPhone/Draw/Tutorial/Resource/";
+//    NSString* root = @"/Users/chaoso/Desktop/gitdata/Draw_iPhone/Draw/Tutorial/Resource/";
     NSString* path = [root stringByAppendingString:[TutorialCoreManager appTaskDefaultConfigFileName]];
     NSString* versionPath = [root stringByAppendingString:[PPSmartUpdateDataUtils getVersionFileName:[TutorialCoreManager appTaskDefaultConfigFileName]]];
     
@@ -432,10 +438,10 @@ static TutorialCoreManager* _defaultTutorialCoreManager;
     BOOL result = [data writeToFile:path atomically:YES];
     PPDebug(@"<createTestData> data file result=%d, file=%@", result, path);
     
-    NSString* version = @"1.1";
-    NSError* error = nil;
-    result = [version writeToFile:versionPath atomically:YES encoding:NSUTF8StringEncoding error:&error];
-    PPDebug(@"<createTestData> version txt file result=%d error=%@ file=%@", result, [error description], versionPath);
+//    NSString* version = @"1.1";
+//    NSError* error = nil;
+//    result = [version writeToFile:versionPath atomically:YES encoding:NSUTF8StringEncoding error:&error];
+//    PPDebug(@"<createTestData> version txt file result=%d error=%@ file=%@", result, [error description], versionPath);
 }
 
 #define GET_THE_DEFAULT_NUM 0

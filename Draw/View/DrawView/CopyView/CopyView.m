@@ -13,6 +13,7 @@
 #import "DrawPlayer.h"
 #import "ShowFeedController.h"
 #import "UserTutorialService.h"
+#import "Draw.h"
 
 #define COPY_VIEW_DEFAULT_WIDTH     (ISIPAD ? 250 : 100)
 #define COPY_VIEW_DEFAULT_HEIGHT    (ISIPAD ? 250 : 100)
@@ -23,6 +24,17 @@
 @property (nonatomic, retain) DrawFeed *drawFeed;
 @property (nonatomic, retain) UIImage *displayImage;
 @property (nonatomic, assign) BOOL hasMenu;
+
+@property (nonatomic, retain) NSString *opusBgImagePath;
+@property (nonatomic, retain) NSString *opusDataPath;
+
+@property (nonatomic, retain) UIImage *opusBgImage;
+@property (nonatomic, retain) NSData *opusData;
+@property (nonatomic, retain) Draw *draw;
+
+@property (nonatomic, retain) PBUserStage *userStage;
+@property (nonatomic, retain) PBStage *stage;
+
 
 @end
 
@@ -64,6 +76,15 @@
 
 - (void)dealloc
 {
+    PPRelease(_opusBgImagePath);
+    PPRelease(_opusDataPath);
+    PPRelease(_opusBgImage);
+    PPRelease(_opusData);
+    
+    PPRelease(_userStage);
+    PPRelease(_stage);
+    
+    PPRelease(_draw);
     PPRelease(_drawFeed);
     PPRelease(_superViewController);
     PPRelease(_displayImage);
@@ -162,18 +183,32 @@
     }
 }
 
+- (void)setImage:(UIImage*)image
+{
+    self.displayImage = image;
+    UIImageView* imageView = (UIImageView*)(self.contentView);
+    [imageView setImage:image];
+}
+
 - (void)loadData:(PBUserStage*)userStage stage:(PBStage*)stage
 {
-    /*
-    NSString* imagePath = [[UserTutorialService defaultService] getImagePath:userStage.tutorialId stageId:stage.stageId];
-    NSString* bgImagePath = [[UserTutorialService defaultService] getBgImagePath:userStage.tutorialId stageId:stage.stageId];
-    NSString* opusDataPath = [[UserTutorialService defaultService] getOpusDataPath:userStage.tutorialId stageId:stage.stageId];
+    NSString* imagePath = [[UserTutorialService defaultService] getChapterImagePath:userStage.tutorialId stage:stage chapterIndex:userStage.currentChapterIndex];
+    
+    NSString* bgImagePath = [[UserTutorialService defaultService] getBgImagePath:userStage.tutorialId stage:stage];
+    NSString* opusDataPath = [[UserTutorialService defaultService] getOpusDataPath:userStage.tutorialId stage:stage];
 
+    // set display image
     UIImage* image = [[UIImage alloc] initWithContentsOfFile:imagePath];
-    self.displayImage = image;
+    [self setImage:image];
     [image release];
-     */
+    
+    self.opusDataPath = opusDataPath;
+    self.opusBgImagePath = bgImagePath;
+    
+    self.userStage = userStage;
+    self.stage = stage;
 }
+
 
 /*
 // Only override drawRect: if you perform custom drawing.
@@ -251,7 +286,17 @@
         }
         else if ([title isEqualToString:COPY_VIEW_PLAY]){
             PPDebug(@"click COPY_VIEW_PLAY");
-            [ShowFeedController replayDraw:self.drawFeed viewController:self.superViewController];
+            if (self.userStage){
+                if (_draw == nil){
+                    // load opus data
+                    self.opusData = [[[NSData alloc] initWithContentsOfFile:self.opusDataPath] autorelease];
+                }
+                
+                [DrawPlayer playDrawData:&_opusData draw:&_draw viewController:self.superViewController];
+            }
+            else{
+                [ShowFeedController replayDraw:self.drawFeed viewController:self.superViewController];
+            }
         }
         else if ([title isEqualToString:COPY_VIEW_HIDE]){
             PPDebug(@"click COPY_VIEW_HIDE");

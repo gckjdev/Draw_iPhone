@@ -390,7 +390,7 @@
             [self.oKButton updateCenterX:self.contentView.frame.size.width/2];
             [_cancelButton removeFromSuperview];
             self.cancelButton = nil;
-            
+            break;
         case CommonSquareDialogStyleCross:
             [_oKButton removeFromSuperview];
             self.oKButton = nil;

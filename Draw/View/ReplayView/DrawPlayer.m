@@ -10,7 +10,7 @@
 #import "DrawHolderView.h"
 #import "ShowDrawView.h"
 #import "PPConfigManager.h"
-
+#import "Draw.h"
 
 @implementation ReplayObject
 
@@ -322,6 +322,62 @@
 - (void)autoHidePanel
 {
     [self hidePanel:YES animated:YES];    
+}
+
++ (void)playDrawData:(NSData**)drawData draw:(Draw**)retDraw viewController:(PPViewController*)viewController
+{
+    __block PPViewController * cp = viewController;
+    
+    [viewController registerNotificationWithName:NOTIFICATION_DATA_PARSING usingBlock:^(NSNotification *note) {
+        float progress = [[[note userInfo] objectForKey:KEY_DATA_PARSING_PROGRESS] floatValue];
+        NSString* progressText = @"";
+        if (progress == 1.0f){
+            progress = 0.99f;
+            progressText = [NSString stringWithFormat:NSLS(@"kDisplayProgress"), progress*100];
+        }
+        else{
+            progressText = [NSString stringWithFormat:NSLS(@"kParsingProgress"), progress*100];
+        }
+        [viewController showProgressViewWithMessage:progressText progress:progress];
+    }];
+    
+    [viewController showProgressViewWithMessage:NSLS(@"kParsingProgress") progress:0.01f];
+    dispatch_async([viewController getWorkingQueue], ^{
+        if (*retDraw == nil) {
+            *retDraw = [Draw parseDrawData:*drawData];
+            if (*retDraw != nil){
+                *drawData = nil;
+            }
+            [(*retDraw) retain];
+        }
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+        
+            Draw* draw = (*retDraw);
+            if (draw == nil){
+                [viewController hideActivity];
+                return;
+            }
+            
+            [viewController unregisterNotificationWithName:NOTIFICATION_DATA_PARSING];
+            
+            NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
+            
+            ReplayObject *obj = [ReplayObject obj];
+            obj.actionList = draw.drawActionList;
+            obj.isNewVersion = [draw isNewVersion];
+            obj.canvasSize = draw.canvasSize;
+            obj.layers = draw.layers;
+            
+            DrawPlayer *player = [DrawPlayer playerWithReplayObj:obj];
+            [player showInController:cp];
+            
+            [pool drain];
+            
+            [viewController hideActivity];
+        });
+    });
+    
 }
 
 @end

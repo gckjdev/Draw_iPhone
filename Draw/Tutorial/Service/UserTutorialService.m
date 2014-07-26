@@ -258,6 +258,41 @@ static UserTutorialService* _defaultService;
     return path;
 }
 
+- (NSString*)getChapterImagePath:(NSString*)tutorialId stage:(PBStage*)stage chapterIndex:(int)currentChapterIndex
+{
+    PPSmartUpdateData* smartData = [self getSmartData:tutorialId stageId:stage.stageId];
+    NSString* imageName = nil;
+    if (currentChapterIndex >= [stage.chapterList count]){
+        // TODO use stage image name by default?
+        return nil;
+    }
+    else{
+        PBChapter* chapter = [stage.chapterList objectAtIndex:currentChapterIndex];
+        imageName = chapter.imageName;
+    }
+    
+    NSString* imagePath = [[smartData currentDataPath] stringByAppendingPathComponent:imageName];
+    return imagePath;
+}
+
+- (NSString*)getBgImagePath:(NSString*)tutorialId stage:(PBStage*)stage
+{
+    PPSmartUpdateData* smartData = [self getSmartData:tutorialId stageId:stage.stageId];
+    NSString* imageName = stage.bgImageName;
+    NSString* imagePath = [[smartData currentDataPath] stringByAppendingPathComponent:imageName];
+    return imagePath;
+    
+}
+
+- (NSString*)getOpusDataPath:(NSString*)tutorialId stage:(PBStage*)stage
+{
+    PPSmartUpdateData* smartData = [self getSmartData:tutorialId stageId:stage.stageId];
+    NSString* opusDataName = stage.opusName;
+    NSString* opusDataPath = [[smartData currentDataPath] stringByAppendingPathComponent:opusDataName];
+    return opusDataPath;
+}
+
+
 // 用户下载教程所有关卡数据
 - (void)downloadTutorial:(PBTutorial*)tutorial resultBlock:(UserTutorialServiceResultBlock)resultBlock
 {

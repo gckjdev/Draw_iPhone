@@ -78,4 +78,8 @@ typedef void(^UserTutorialServiceGetListResultBlock)(int resultCode, NSArray* re
                             stageId:(NSString*)stageId
                          stageIndex:(int)stageIndex;
 
+- (NSString*)getChapterImagePath:(NSString*)tutorialId stage:(PBStage*)stage chapterIndex:(int)currentChapterIndex;
+- (NSString*)getBgImagePath:(NSString*)tutorialId stage:(PBStage*)stage;
+- (NSString*)getOpusDataPath:(NSString*)tutorialId stage:(PBStage*)stage;
+
 @end
