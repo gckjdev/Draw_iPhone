@@ -68,7 +68,7 @@ message PBChapter
     optional string background = 23;                 // 绘画底图URL，废弃
 
     optional string opusName = 30;                   // 回放作品包文件名，废弃
-    optional string imageName = 31;                  // 作品图片文件名，废弃
+    optional string imageName = 31;                  // 本小节图片文件名
     optional string backgroundName = 32;             // 绘画底图文件名，废弃
     
     repeated PBTip  tips = 33;                       // 每个小节的提示
@@ -100,9 +100,9 @@ message PBStage
     optional string bgImage = 23;                   // 本关卡的作品图片URL
 
     optional string dataURL = 30;                   // 下载的zip包URL，格式为 <tutorialId>__<stageId>.zip
-    optional string imageName = 31;                 // 本关卡的作品图片名称
-    optional string opusName = 32;                  // 本关卡的作品图片名称
-    optional string bgImageName = 33;               // 本关卡的作品图片名称
+    optional string imageName = 31;                 // 本关卡的作品图片名称，用于最后闯关比对
+    optional string opusName = 32;                  // 本关卡的作品数据名称
+    optional string bgImageName = 33;               // 本关卡的作品图片名称，作品回放时候将画在该底图上
 
     repeated PBChapter chapter = 40;                // 教程章节
 
