@@ -2766,3 +2766,14 @@
 "kTutorialStageList" = "關卡列表";
 
 "kMetroMainHome" = "首頁";
+
+//分享頁面
+"kResultSharePage" = "最終結果";
+//
+"kAddSuccess" = "添加成功!";
+"kContinue" = "繼續闖關";
+"kProgress" = "已完成";
+"kStartStage" = "開始闖關";
+"kContinueStage" = "继续闖關";
+"kConquerDraw" = "闖關";
+"kNoTimelineDraw" = "闖關";

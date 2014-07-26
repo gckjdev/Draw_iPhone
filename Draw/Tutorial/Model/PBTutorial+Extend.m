@@ -99,6 +99,12 @@
     return [self.stagesList objectAtIndex:index];
 }
 
+- (PBStage*)nextStage:(NSUInteger)index
+{
+    int nextIndex = index++;
+    return [self getStageByIndex:nextIndex];
+}
+
 @end
 
 
@@ -164,15 +170,27 @@
     return (stageIndex > self.currentStageIndex);
 }
 
+- (int)progress
+{
+    PBTutorial* pbTutorial = [[TutorialCoreManager defaultManager] findTutorialByTutorialId:self.tutorial.tutorialId];
+    int totalStageCount = [pbTutorial.stagesList count];
+    if (totalStageCount > 0){
+        return (((self.currentStageIndex+1)*1.0f) / (totalStageCount*1.0f))*100;
+    }
+    else{
+        return 100;
+    }
+}
+
 @end
 
 @implementation PBUserStage (Extend4)
 
 - (NSString*)getCurrentChapterOpusId
 {
-#ifdef DEBUG
-    return @"53c4dc42e4b089b4ff460ed3";
-#endif
+//#ifdef DEBUG
+//    return @"53c4dc42e4b089b4ff460ed3";
+//#endif
     
     PBTutorial* tutorial = [[TutorialCoreManager defaultManager] findTutorialByTutorialId:self.tutorialId];
     if (self.stageIndex >= [tutorial.stagesList count]){
@@ -190,6 +208,16 @@
     
     PBChapter* chapter = [stage.chapterList objectAtIndex:self.currentChapterIndex];
     return chapter.opusId;
+}
+
+- (int)defeatPercent
+{
+    if (self.totalCount > 0){
+        return (((self.defeatCount+1)*1.0f) / (self.totalCount*1.0f))*100;
+    }
+    else{
+        return 0;
+    }
 }
 
 @end

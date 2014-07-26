@@ -50,7 +50,7 @@
 #import "DrawRoomListController.h"
 #import "ICETutorialController.h"
 #import "GuidePageManager.h"
-
+#import "ResultSharePageViewController.h"
 @implementation UIViewController (CommonHome)
 
 - (void)enterUserTimeline
@@ -301,13 +301,22 @@
 -(void)goToGuidePage{
     ICETutorialController* guidePage = [[GuidePageManager alloc] initGuidePage];
     [self.navigationController pushViewController:guidePage animated:YES];
-    
+ 
 }
 -(void)enterMetroHome{
     MetroHomeController *mc = [[MetroHomeController alloc] init];
     [self.navigationController pushViewController:mc animated:YES];
     [mc release];
+    
 }
+-(void)enterResultSharePage{
+    ResultSharePageViewController *rspc = [[ResultSharePageViewController alloc] init];
+    [self.navigationController pushViewController:rspc
+                                         animated:YES];
+    [rspc release];
+}
+
+
 
 
 @end

@@ -495,7 +495,7 @@ const ProtobufCMessageDescriptor game__pbtip__descriptor =
   (ProtobufCMessageInit) game__pbtip__init,
   NULL,NULL,NULL    /* reserved[123] */
 };
-static const ProtobufCFieldDescriptor game__pbchapter__field_descriptors[15] =
+static const ProtobufCFieldDescriptor game__pbchapter__field_descriptors[17] =
 {
   {
     "index",
@@ -677,6 +677,30 @@ static const ProtobufCFieldDescriptor game__pbchapter__field_descriptors[15] =
     0,            /* packed */
     0,NULL,NULL    /* reserved1,reserved2, etc */
   },
+  {
+    "startIndex",
+    50,
+    PROTOBUF_C_LABEL_OPTIONAL,
+    PROTOBUF_C_TYPE_INT32,
+    PROTOBUF_C_OFFSETOF(Game__PBChapter, has_startindex),
+    PROTOBUF_C_OFFSETOF(Game__PBChapter, startindex),
+    NULL,
+    NULL,
+    0,            /* packed */
+    0,NULL,NULL    /* reserved1,reserved2, etc */
+  },
+  {
+    "endIndex",
+    51,
+    PROTOBUF_C_LABEL_OPTIONAL,
+    PROTOBUF_C_TYPE_INT32,
+    PROTOBUF_C_OFFSETOF(Game__PBChapter, has_endindex),
+    PROTOBUF_C_OFFSETOF(Game__PBChapter, endindex),
+    NULL,
+    NULL,
+    0,            /* packed */
+    0,NULL,NULL    /* reserved1,reserved2, etc */
+  },
 };
 static const unsigned game__pbchapter__field_indices_by_name[] = {
   10,   /* field[10] = background */
@@ -685,23 +709,26 @@ static const unsigned game__pbchapter__field_indices_by_name[] = {
   1,   /* field[1] = cnName */
   5,   /* field[5] = enDesc */
   2,   /* field[2] = enName */
+  16,   /* field[16] = endIndex */
   9,   /* field[9] = image */
   12,   /* field[12] = imageName */
   0,   /* field[0] = index */
   8,   /* field[8] = opusData */
   7,   /* field[7] = opusId */
   11,   /* field[11] = opusName */
+  15,   /* field[15] = startIndex */
   6,   /* field[6] = tcnDesc */
   3,   /* field[3] = tcnName */
   14,   /* field[14] = tips */
 };
-static const ProtobufCIntRange game__pbchapter__number_ranges[4 + 1] =
+static const ProtobufCIntRange game__pbchapter__number_ranges[5 + 1] =
 {
   { 1, 0 },
   { 10, 4 },
   { 20, 7 },
   { 30, 11 },
-  { 0, 15 }
+  { 50, 15 },
+  { 0, 17 }
 };
 const ProtobufCMessageDescriptor game__pbchapter__descriptor =
 {
@@ -711,14 +738,15 @@ const ProtobufCMessageDescriptor game__pbchapter__descriptor =
   "Game__PBChapter",
   "game",
   sizeof(Game__PBChapter),
-  15,
+  17,
   game__pbchapter__field_descriptors,
   game__pbchapter__field_indices_by_name,
-  4,  game__pbchapter__number_ranges,
+  5,  game__pbchapter__number_ranges,
   (ProtobufCMessageInit) game__pbchapter__init,
   NULL,NULL,NULL    /* reserved[123] */
 };
-static const ProtobufCFieldDescriptor game__pbstage__field_descriptors[13] =
+static const double game__pbstage__difficulty__default_value = 1;
+static const ProtobufCFieldDescriptor game__pbstage__field_descriptors[20] =
 {
   {
     "stageId",
@@ -805,6 +833,18 @@ static const ProtobufCFieldDescriptor game__pbstage__field_descriptors[13] =
     0,NULL,NULL    /* reserved1,reserved2, etc */
   },
   {
+    "opusId",
+    19,
+    PROTOBUF_C_LABEL_OPTIONAL,
+    PROTOBUF_C_TYPE_STRING,
+    0,   /* quantifier_offset */
+    PROTOBUF_C_OFFSETOF(Game__PBStage, opusid),
+    NULL,
+    NULL,
+    0,            /* packed */
+    0,NULL,NULL    /* reserved1,reserved2, etc */
+  },
+  {
     "image",
     20,
     PROTOBUF_C_LABEL_OPTIONAL,
@@ -829,12 +869,72 @@ static const ProtobufCFieldDescriptor game__pbstage__field_descriptors[13] =
     0,NULL,NULL    /* reserved1,reserved2, etc */
   },
   {
+    "opusData",
+    22,
+    PROTOBUF_C_LABEL_OPTIONAL,
+    PROTOBUF_C_TYPE_STRING,
+    0,   /* quantifier_offset */
+    PROTOBUF_C_OFFSETOF(Game__PBStage, opusdata),
+    NULL,
+    NULL,
+    0,            /* packed */
+    0,NULL,NULL    /* reserved1,reserved2, etc */
+  },
+  {
+    "bgImage",
+    23,
+    PROTOBUF_C_LABEL_OPTIONAL,
+    PROTOBUF_C_TYPE_STRING,
+    0,   /* quantifier_offset */
+    PROTOBUF_C_OFFSETOF(Game__PBStage, bgimage),
+    NULL,
+    NULL,
+    0,            /* packed */
+    0,NULL,NULL    /* reserved1,reserved2, etc */
+  },
+  {
     "dataURL",
     30,
     PROTOBUF_C_LABEL_OPTIONAL,
     PROTOBUF_C_TYPE_STRING,
     0,   /* quantifier_offset */
     PROTOBUF_C_OFFSETOF(Game__PBStage, dataurl),
+    NULL,
+    NULL,
+    0,            /* packed */
+    0,NULL,NULL    /* reserved1,reserved2, etc */
+  },
+  {
+    "imageName",
+    31,
+    PROTOBUF_C_LABEL_OPTIONAL,
+    PROTOBUF_C_TYPE_STRING,
+    0,   /* quantifier_offset */
+    PROTOBUF_C_OFFSETOF(Game__PBStage, imagename),
+    NULL,
+    NULL,
+    0,            /* packed */
+    0,NULL,NULL    /* reserved1,reserved2, etc */
+  },
+  {
+    "opusName",
+    32,
+    PROTOBUF_C_LABEL_OPTIONAL,
+    PROTOBUF_C_TYPE_STRING,
+    0,   /* quantifier_offset */
+    PROTOBUF_C_OFFSETOF(Game__PBStage, opusname),
+    NULL,
+    NULL,
+    0,            /* packed */
+    0,NULL,NULL    /* reserved1,reserved2, etc */
+  },
+  {
+    "bgImageName",
+    33,
+    PROTOBUF_C_LABEL_OPTIONAL,
+    PROTOBUF_C_TYPE_STRING,
+    0,   /* quantifier_offset */
+    PROTOBUF_C_OFFSETOF(Game__PBStage, bgimagename),
     NULL,
     NULL,
     0,            /* packed */
@@ -876,31 +976,50 @@ static const ProtobufCFieldDescriptor game__pbstage__field_descriptors[13] =
     0,            /* packed */
     0,NULL,NULL    /* reserved1,reserved2, etc */
   },
+  {
+    "difficulty",
+    52,
+    PROTOBUF_C_LABEL_OPTIONAL,
+    PROTOBUF_C_TYPE_DOUBLE,
+    PROTOBUF_C_OFFSETOF(Game__PBStage, has_difficulty),
+    PROTOBUF_C_OFFSETOF(Game__PBStage, difficulty),
+    NULL,
+    &game__pbstage__difficulty__default_value,
+    0,            /* packed */
+    0,NULL,NULL    /* reserved1,reserved2, etc */
+  },
 };
 static const unsigned game__pbstage__field_indices_by_name[] = {
-  10,   /* field[10] = chapter */
+  11,   /* field[11] = bgImage */
+  15,   /* field[15] = bgImageName */
+  16,   /* field[16] = chapter */
   4,   /* field[4] = cnDesc */
   1,   /* field[1] = cnName */
-  9,   /* field[9] = dataURL */
+  12,   /* field[12] = dataURL */
+  19,   /* field[19] = difficulty */
   5,   /* field[5] = enDesc */
   2,   /* field[2] = enName */
-  7,   /* field[7] = image */
-  11,   /* field[11] = imageStyle */
-  12,   /* field[12] = scoreEngine */
+  8,   /* field[8] = image */
+  13,   /* field[13] = imageName */
+  17,   /* field[17] = imageStyle */
+  10,   /* field[10] = opusData */
+  7,   /* field[7] = opusId */
+  14,   /* field[14] = opusName */
+  18,   /* field[18] = scoreEngine */
   0,   /* field[0] = stageId */
   6,   /* field[6] = tcnDesc */
   3,   /* field[3] = tcnName */
-  8,   /* field[8] = thumbImage */
+  9,   /* field[9] = thumbImage */
 };
 static const ProtobufCIntRange game__pbstage__number_ranges[6 + 1] =
 {
   { 1, 0 },
   { 10, 4 },
-  { 20, 7 },
-  { 30, 9 },
-  { 40, 10 },
-  { 50, 11 },
-  { 0, 13 }
+  { 19, 7 },
+  { 30, 12 },
+  { 40, 16 },
+  { 50, 17 },
+  { 0, 20 }
 };
 const ProtobufCMessageDescriptor game__pbstage__descriptor =
 {
@@ -910,7 +1029,7 @@ const ProtobufCMessageDescriptor game__pbstage__descriptor =
   "Game__PBStage",
   "game",
   sizeof(Game__PBStage),
-  13,
+  20,
   game__pbstage__field_descriptors,
   game__pbstage__field_indices_by_name,
   6,  game__pbstage__number_ranges,
@@ -1391,7 +1510,7 @@ const ProtobufCMessageDescriptor game__pbuser_stage_opus__descriptor =
   (ProtobufCMessageInit) game__pbuser_stage_opus__init,
   NULL,NULL,NULL    /* reserved[123] */
 };
-static const ProtobufCFieldDescriptor game__pbuser_stage__field_descriptors[11] =
+static const ProtobufCFieldDescriptor game__pbuser_stage__field_descriptors[16] =
 {
   {
     "userId",
@@ -1436,42 +1555,6 @@ static const ProtobufCFieldDescriptor game__pbuser_stage__field_descriptors[11] 
     PROTOBUF_C_TYPE_INT32,
     PROTOBUF_C_OFFSETOF(Game__PBUserStage, has_stageindex),
     PROTOBUF_C_OFFSETOF(Game__PBUserStage, stageindex),
-    NULL,
-    NULL,
-    0,            /* packed */
-    0,NULL,NULL    /* reserved1,reserved2, etc */
-  },
-  {
-    "bestScore",
-    5,
-    PROTOBUF_C_LABEL_OPTIONAL,
-    PROTOBUF_C_TYPE_INT32,
-    PROTOBUF_C_OFFSETOF(Game__PBUserStage, has_bestscore),
-    PROTOBUF_C_OFFSETOF(Game__PBUserStage, bestscore),
-    NULL,
-    NULL,
-    0,            /* packed */
-    0,NULL,NULL    /* reserved1,reserved2, etc */
-  },
-  {
-    "bestScoreDate",
-    6,
-    PROTOBUF_C_LABEL_OPTIONAL,
-    PROTOBUF_C_TYPE_INT32,
-    PROTOBUF_C_OFFSETOF(Game__PBUserStage, has_bestscoredate),
-    PROTOBUF_C_OFFSETOF(Game__PBUserStage, bestscoredate),
-    NULL,
-    NULL,
-    0,            /* packed */
-    0,NULL,NULL    /* reserved1,reserved2, etc */
-  },
-  {
-    "lastScoreDate",
-    7,
-    PROTOBUF_C_LABEL_OPTIONAL,
-    PROTOBUF_C_TYPE_INT32,
-    PROTOBUF_C_OFFSETOF(Game__PBUserStage, has_lastscoredate),
-    PROTOBUF_C_OFFSETOF(Game__PBUserStage, lastscoredate),
     NULL,
     NULL,
     0,            /* packed */
@@ -1525,27 +1608,131 @@ static const ProtobufCFieldDescriptor game__pbuser_stage__field_descriptors[11] 
     0,            /* packed */
     0,NULL,NULL    /* reserved1,reserved2, etc */
   },
+  {
+    "bestOpusId",
+    50,
+    PROTOBUF_C_LABEL_OPTIONAL,
+    PROTOBUF_C_TYPE_STRING,
+    0,   /* quantifier_offset */
+    PROTOBUF_C_OFFSETOF(Game__PBUserStage, bestopusid),
+    NULL,
+    NULL,
+    0,            /* packed */
+    0,NULL,NULL    /* reserved1,reserved2, etc */
+  },
+  {
+    "bestScore",
+    51,
+    PROTOBUF_C_LABEL_OPTIONAL,
+    PROTOBUF_C_TYPE_INT32,
+    PROTOBUF_C_OFFSETOF(Game__PBUserStage, has_bestscore),
+    PROTOBUF_C_OFFSETOF(Game__PBUserStage, bestscore),
+    NULL,
+    NULL,
+    0,            /* packed */
+    0,NULL,NULL    /* reserved1,reserved2, etc */
+  },
+  {
+    "bestScoreDate",
+    52,
+    PROTOBUF_C_LABEL_OPTIONAL,
+    PROTOBUF_C_TYPE_INT32,
+    PROTOBUF_C_OFFSETOF(Game__PBUserStage, has_bestscoredate),
+    PROTOBUF_C_OFFSETOF(Game__PBUserStage, bestscoredate),
+    NULL,
+    NULL,
+    0,            /* packed */
+    0,NULL,NULL    /* reserved1,reserved2, etc */
+  },
+  {
+    "lastOpusId",
+    60,
+    PROTOBUF_C_LABEL_OPTIONAL,
+    PROTOBUF_C_TYPE_STRING,
+    0,   /* quantifier_offset */
+    PROTOBUF_C_OFFSETOF(Game__PBUserStage, lastopusid),
+    NULL,
+    NULL,
+    0,            /* packed */
+    0,NULL,NULL    /* reserved1,reserved2, etc */
+  },
+  {
+    "lastScore",
+    61,
+    PROTOBUF_C_LABEL_OPTIONAL,
+    PROTOBUF_C_TYPE_INT32,
+    PROTOBUF_C_OFFSETOF(Game__PBUserStage, has_lastscore),
+    PROTOBUF_C_OFFSETOF(Game__PBUserStage, lastscore),
+    NULL,
+    NULL,
+    0,            /* packed */
+    0,NULL,NULL    /* reserved1,reserved2, etc */
+  },
+  {
+    "lastScoreDate",
+    62,
+    PROTOBUF_C_LABEL_OPTIONAL,
+    PROTOBUF_C_TYPE_INT32,
+    PROTOBUF_C_OFFSETOF(Game__PBUserStage, has_lastscoredate),
+    PROTOBUF_C_OFFSETOF(Game__PBUserStage, lastscoredate),
+    NULL,
+    NULL,
+    0,            /* packed */
+    0,NULL,NULL    /* reserved1,reserved2, etc */
+  },
+  {
+    "totalCount",
+    63,
+    PROTOBUF_C_LABEL_OPTIONAL,
+    PROTOBUF_C_TYPE_INT32,
+    PROTOBUF_C_OFFSETOF(Game__PBUserStage, has_totalcount),
+    PROTOBUF_C_OFFSETOF(Game__PBUserStage, totalcount),
+    NULL,
+    NULL,
+    0,            /* packed */
+    0,NULL,NULL    /* reserved1,reserved2, etc */
+  },
+  {
+    "defeatCount",
+    64,
+    PROTOBUF_C_LABEL_OPTIONAL,
+    PROTOBUF_C_TYPE_INT32,
+    PROTOBUF_C_OFFSETOF(Game__PBUserStage, has_defeatcount),
+    PROTOBUF_C_OFFSETOF(Game__PBUserStage, defeatcount),
+    NULL,
+    NULL,
+    0,            /* packed */
+    0,NULL,NULL    /* reserved1,reserved2, etc */
+  },
 };
 static const unsigned game__pbuser_stage__field_indices_by_name[] = {
-  4,   /* field[4] = bestScore */
-  5,   /* field[5] = bestScoreDate */
-  10,   /* field[10] = conquerLocalOpusId */
-  8,   /* field[8] = currentChapterIndex */
-  6,   /* field[6] = lastScoreDate */
-  7,   /* field[7] = opus */
-  9,   /* field[9] = practiceLocalOpusId */
+  8,   /* field[8] = bestOpusId */
+  9,   /* field[9] = bestScore */
+  10,   /* field[10] = bestScoreDate */
+  7,   /* field[7] = conquerLocalOpusId */
+  5,   /* field[5] = currentChapterIndex */
+  15,   /* field[15] = defeatCount */
+  11,   /* field[11] = lastOpusId */
+  12,   /* field[12] = lastScore */
+  13,   /* field[13] = lastScoreDate */
+  4,   /* field[4] = opus */
+  6,   /* field[6] = practiceLocalOpusId */
   2,   /* field[2] = stageId */
   3,   /* field[3] = stageIndex */
+  14,   /* field[14] = totalCount */
   1,   /* field[1] = tutorialId */
   0,   /* field[0] = userId */
 };
-static const ProtobufCIntRange game__pbuser_stage__number_ranges[4 + 1] =
+static const ProtobufCIntRange game__pbuser_stage__number_ranges[7 + 1] =
 {
   { 1, 0 },
-  { 10, 8 },
-  { 20, 9 },
-  { 30, 10 },
-  { 0, 11 }
+  { 8, 4 },
+  { 10, 5 },
+  { 20, 6 },
+  { 30, 7 },
+  { 50, 8 },
+  { 60, 11 },
+  { 0, 16 }
 };
 const ProtobufCMessageDescriptor game__pbuser_stage__descriptor =
 {
@@ -1555,10 +1742,10 @@ const ProtobufCMessageDescriptor game__pbuser_stage__descriptor =
   "Game__PBUserStage",
   "game",
   sizeof(Game__PBUserStage),
-  11,
+  16,
   game__pbuser_stage__field_descriptors,
   game__pbuser_stage__field_indices_by_name,
-  4,  game__pbuser_stage__number_ranges,
+  7,  game__pbuser_stage__number_ranges,
   (ProtobufCMessageInit) game__pbuser_stage__init,
   NULL,NULL,NULL    /* reserved[123] */
 };

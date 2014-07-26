@@ -11,6 +11,8 @@
 #import "ShowDrawView.h"
 #import "ScreenCaptureView.h"
 
+@class Draw;
+
 @interface ReplayObject : NSObject
 {
     
@@ -46,11 +48,15 @@
 
 
 + (DrawPlayer *)playerWithReplayObj:(ReplayObject *)obj;
++ (DrawPlayer *)playerWithReplayObj:(ReplayObject *)obj WithSliderBegin:(NSInteger)begin End:(NSInteger)end;
 - (void)showInController:(PPViewController *)controller;
+- (void)showInController:(PPViewController *)controller FromBegin:(NSInteger)begin;
 
 - (void)play;
 - (void)pause;
 - (void)stop;
 - (void)start;
+
++ (void)playDrawData:(NSData**)drawData draw:(Draw**)retDraw viewController:(PPViewController*)viewController;
 
 @end

@@ -59,6 +59,8 @@ typedef enum{
 
 - (void)resetFrameSize:(CGSize)size;
 
+- (UIImage*)createImageAtIndex:(NSUInteger)index;
+
 + (ShowDrawView *)showView;
 + (ShowDrawView *)showViewWithFrame:(CGRect)frame
                 drawActionList:(NSArray *)actionList
@@ -66,6 +68,16 @@ typedef enum{
 
 
 + (BOOL)canPlayDrawVersion:(NSInteger)version;
+
+
++ (void) createGIF:(NSInteger)frameNumber
+         delayTime:(double) delayTime
+    drawActionList:(NSMutableArray*)drawActionList
+           bgImage:(UIImage*)bgImage
+            layers:(NSArray*)layers
+        canvasSize:(CGSize)canvasSize
+        outputPath:(NSString*)outputPath
+         scaleSize:(double)scaleSize;
 
 @end
 

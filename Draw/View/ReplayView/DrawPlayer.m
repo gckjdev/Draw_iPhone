@@ -10,7 +10,7 @@
 #import "DrawHolderView.h"
 #import "ShowDrawView.h"
 #import "PPConfigManager.h"
-
+#import "Draw.h"
 
 @implementation ReplayObject
 
@@ -94,6 +94,19 @@
     return player;
 }
 
++ (DrawPlayer *)playerWithReplayObj:(ReplayObject *)obj WithSliderBegin:(NSInteger)begin End:(NSInteger)end
+{
+    DrawPlayer *player = [DrawPlayer createViewWithXibIdentifier:@"DrawPlayer" ofViewIndex:ISIPAD];
+    player.replayObj = obj;
+    [player updateView];
+   
+    player.playSlider.minValue = begin;
+    player.playSlider.maxValue = end;
+    [player.playSlider setValue:begin];
+    
+    return player;
+}
+
 
 
 - (void)showInController:(PPViewController *)controller
@@ -120,6 +133,32 @@
     [controller setCanDragBack:NO];
 }
 
+- (void)showInController:(PPViewController *)controller
+               FromBegin:(NSInteger)begin
+{
+    DrawHolderView *holderView = (id)self.showView.superview;
+    holderView.autoresizingMask = (1<<6)-1;
+    if (holderView == nil) {
+        holderView = [DrawHolderView drawHolderViewWithFrame:self.bounds contentView:self.showView];
+        [holderView addTarget:self action:@selector(clickHolderView:) forControlEvents:UIControlEventTouchUpInside];
+        [holderView updateOriginY:STATUSBAR_DELTA];
+    }
+    [self insertSubview:holderView atIndex:0];
+    [controller.view addSubview:self];
+    self.frame = controller.view.bounds;
+    
+    if (_replayObj.isNewVersion) {
+        POSTMSG(NSLS(@"kNewDrawVersionTip"));
+    }
+    
+    [self startFromIndex:begin];
+    
+    [self performSelector:@selector(autoHidePanel) withObject:nil afterDelay:4];
+    superControllerCanDragBack = controller.canDragBack;
+    [controller setCanDragBack:NO];
+}
+
+
 
 - (void)dealloc {
     [_playPanel release];
@@ -142,6 +181,7 @@
     [self removeAllSubviews];
     [self removeFromSuperview];
 }
+
 
 - (void)playToIndex:(NSNumber *)index
 {
@@ -209,6 +249,15 @@
     [self.showView play];
     [self.playButton setSelected:YES];    
 }
+- (void)startFromIndex:(NSInteger)index
+{
+    [self.showView setStatus:Playing];
+    
+    [self playToIndex:@(index)];
+    [self.showView playFromDrawActionIndex:index];
+//    [self performSelector:@selector(playToIndex:) withObject:@(index)];
+    [self.playButton setSelected:YES];
+}
 
 
 - (void)hidePanel:(BOOL)hidden animated:(BOOL)animated
@@ -273,6 +322,62 @@
 - (void)autoHidePanel
 {
     [self hidePanel:YES animated:YES];    
+}
+
++ (void)playDrawData:(NSData**)drawData draw:(Draw**)retDraw viewController:(PPViewController*)viewController
+{
+    __block PPViewController * cp = viewController;
+    
+    [viewController registerNotificationWithName:NOTIFICATION_DATA_PARSING usingBlock:^(NSNotification *note) {
+        float progress = [[[note userInfo] objectForKey:KEY_DATA_PARSING_PROGRESS] floatValue];
+        NSString* progressText = @"";
+        if (progress == 1.0f){
+            progress = 0.99f;
+            progressText = [NSString stringWithFormat:NSLS(@"kDisplayProgress"), progress*100];
+        }
+        else{
+            progressText = [NSString stringWithFormat:NSLS(@"kParsingProgress"), progress*100];
+        }
+        [viewController showProgressViewWithMessage:progressText progress:progress];
+    }];
+    
+    [viewController showProgressViewWithMessage:NSLS(@"kParsingProgress") progress:0.01f];
+    dispatch_async([viewController getWorkingQueue], ^{
+        if (*retDraw == nil) {
+            *retDraw = [Draw parseDrawData:*drawData];
+            if (*retDraw != nil){
+                *drawData = nil;
+            }
+            [(*retDraw) retain];
+        }
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+        
+            Draw* draw = (*retDraw);
+            if (draw == nil){
+                [viewController hideActivity];
+                return;
+            }
+            
+            [viewController unregisterNotificationWithName:NOTIFICATION_DATA_PARSING];
+            
+            NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
+            
+            ReplayObject *obj = [ReplayObject obj];
+            obj.actionList = draw.drawActionList;
+            obj.isNewVersion = [draw isNewVersion];
+            obj.canvasSize = draw.canvasSize;
+            obj.layers = draw.layers;
+            
+            DrawPlayer *player = [DrawPlayer playerWithReplayObj:obj];
+            [player showInController:cp];
+            
+            [pool drain];
+            
+            [viewController hideActivity];
+        });
+    });
+    
 }
 
 @end

@@ -140,7 +140,12 @@
     view.type = CommonDialogTypeCustomView;
     view.customView = customView;
     [view.contentView addSubview:view.customView];
-    [view layout];
+    if(style == CommonSquareDialogStyleCross){
+        [view squareLayout];
+    }
+    else{
+        [view layout];
+    }
     
     return view;
 }
@@ -194,9 +199,11 @@
     
     if (_style == CommonDialogStyleSingleButton) {
         [self.oKButton updateCenterX:centerX];
-    }else{
+    }else if(_style == CommonDialogStyleSingleButtonWithCross){
+        [self.oKButton updateCenterX:centerX];
+    }
+    else{
         CGFloat gapX = (self.contentView.frame.size.width - 2 * BUTTON_WIDTH) / 4;
-        
         [self.cancelButton updateOriginX:gapX];
         [self.oKButton updateOriginX:(gapX * 3 + BUTTON_WIDTH)];
     }
@@ -210,6 +217,76 @@
     [self.contentView updateHeight:height];
     [self.contentView setNeedsDisplay];
 }
+
+
+- (void)squareLayout
+{
+    UIView *infoView = [self infoView];
+    
+    // update content view height
+    //    CGFloat height = CONTENT_VIEW_INSERT + TITLE_LABEL_HEIGHT
+    //    + GAP_Y_BETWEEN_TITLE_LABEL_AND_INFO_VIEW
+    //    + infoView.frame.size.height
+    //    + GAP_Y_BETWEEN_INFO_VIEW_AND_BUTTON
+    //    + self.oKButton.frame.size.height
+    //    + GAP_Y_BETWEEN_BUTTON_AND_BOTTOM + CONTENT_VIEW_INSERT;
+    
+    
+    
+    if (_type == CommonDialogTypeCustomView &&
+        infoView.frame.size.width > (self.contentView.frame.size.width - 2 * (ISIPAD ? 8 : 4) - CONTENT_VIEW_INSERT)) {
+        
+        CGFloat width = infoView.frame.size.width + 2 * (ISIPAD ? 16 : 8) + CONTENT_VIEW_INSERT;
+        [self.contentView updateWidth:width];
+        [self.contentView updateCenterX:self.center.x];
+        [self.contentView setNeedsDisplay];
+    }
+    
+    CGFloat centerX = self.contentView.frame.size.width/2;
+    
+    CGFloat originY = CONTENT_VIEW_INSERT;
+    
+    [_titleLabel updateCenterX:centerX];
+    [_titleLabel updateOriginY:originY];
+    [_titleLabel updateHeight:TITLE_LABEL_HEIGHT];
+    
+    [_closeButton updateOriginY:originY];
+    
+    //    originY += _titleLabel.frame.size.height + GAP_Y_BETWEEN_TITLE_LABEL_AND_INFO_VIEW;
+    originY = CGRectGetMaxY(_titleLabel.frame) + GAP_Y_BETWEEN_TITLE_LABEL_AND_INFO_VIEW;
+    
+    [infoView updateCenterX:centerX];
+    [infoView updateOriginY:(originY)];
+    
+    //    originY += infoView.frame.size.height + GAP_Y_BETWEEN_INFO_VIEW_AND_BUTTON;
+    originY = CGRectGetMaxY(infoView.frame) + GAP_Y_BETWEEN_INFO_VIEW_AND_BUTTON;
+    
+    
+    [self.oKButton updateOriginY:originY];
+    [self.cancelButton updateOriginY:(originY)];
+    
+    if (_style == CommonDialogStyleSingleButton) {
+        [self.oKButton updateCenterX:centerX];
+    }else if(_style == CommonDialogStyleSingleButtonWithCross){
+        [self.oKButton updateCenterX:centerX];
+    }
+    else{
+        CGFloat gapX = (self.contentView.frame.size.width - 2 * BUTTON_WIDTH) / 4;
+        [self.cancelButton updateOriginX:gapX];
+        [self.oKButton updateOriginX:(gapX * 3 + BUTTON_WIDTH)];
+    }
+    
+    // update content view height
+    // 用高度來適應寬度。使得高度與寬度一樣
+    CGFloat height = CGRectGetMaxX(infoView.frame)
+    + GAP_Y_BETWEEN_INFO_VIEW_AND_BUTTON
+    + self.oKButton.frame.size.height
+    + GAP_Y_BETWEEN_BUTTON_AND_BOTTOM + CONTENT_VIEW_INSERT;
+    
+    [self.contentView updateHeight:height];
+    [self.contentView setNeedsDisplay];
+}
+
 
 - (UIView *)infoView{
     
@@ -291,7 +368,6 @@
     switch (style) {
         case CommonDialogStyleSingleButton:
             [self.oKButton updateCenterX:self.contentView.frame.size.width/2];
-            
             [_cancelButton removeFromSuperview];
             self.cancelButton = nil;
             [_closeButton removeFromSuperview];
@@ -304,6 +380,18 @@
             break;
                         
         case CommonDialogStyleCross:
+            [_oKButton removeFromSuperview];
+            self.oKButton = nil;
+            [_cancelButton removeFromSuperview];
+            self.cancelButton = nil;
+            break;
+            
+        case CommonDialogStyleSingleButtonWithCross:
+            [self.oKButton updateCenterX:self.contentView.frame.size.width/2];
+            [_cancelButton removeFromSuperview];
+            self.cancelButton = nil;
+            break;
+        case CommonSquareDialogStyleCross:
             [_oKButton removeFromSuperview];
             self.oKButton = nil;
             [_cancelButton removeFromSuperview];

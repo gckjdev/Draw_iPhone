@@ -142,45 +142,57 @@
     
     [dialog setClickOkBlock:^(id view){
         // Conquer
-        PBUserTutorial* newUT = [[UserTutorialService defaultService] startConquerTutorialStage:self.pbUserTutorial.localId
-                                                                                         stageId:stageId
-                                                                                      stageIndex:stageIndex];
-        
-        if (newUT){
-            
-            self.pbUserTutorial = newUT;
-            PBUserStage* userStage = [_pbUserTutorial.userStagesList objectAtIndex:stageIndex];
-            
-            // enter offline draw view controller
-            [OfflineDrawViewController conquer:self userStage:userStage];
-        }
+//        PBUserTutorial* newUT = [[UserTutorialService defaultService] startConquerTutorialStage:self.pbUserTutorial.localId
+//                                                                                         stageId:stageId
+//                                                                                      stageIndex:stageIndex];
+//        
+//        if (newUT){
+//            
+//            self.pbUserTutorial = newUT;
+//            PBUserStage* userStage = [_pbUserTutorial.userStagesList objectAtIndex:stageIndex];
+//            
+//            // enter offline draw view controller
+//            [OfflineDrawViewController conquer:self userStage:userStage userTutorial:newUT];
+//        }
+
+        [[UserTutorialService defaultService] enterConquerDraw:self
+                                                userTutorial:_pbUserTutorial
+                                                     stageId:stageId
+                                                  stageIndex:stageIndex];
         
     }];
 
     [dialog setClickCancelBlock:^(id view){
-        // Practice
-        PBUserTutorial* newUT = [[UserTutorialService defaultService] startPracticeTutorialStage:self.pbUserTutorial.localId
-                                                                                         stageId:stageId
-                                                                                      stageIndex:stageIndex];
+//        // Practice
+//        PBUserTutorial* newUT = [[UserTutorialService defaultService] startPracticeTutorialStage:self.pbUserTutorial.localId
+//                                                                                         stageId:stageId
+//                                                                                      stageIndex:stageIndex];
+//
+//        if (newUT){
+//
+//            self.pbUserTutorial = newUT;
+//            PBUserStage* userStage = [_pbUserTutorial.userStagesList objectAtIndex:stageIndex];
+//            
+//            // enter offline draw view controller
+//            [OfflineDrawViewController practice:self userStage:userStage userTutorial:newUT];
+//        }
+        
+        [[UserTutorialService defaultService] enterPracticeDraw:self
+                                                 userTutorial:_pbUserTutorial
+                                                      stageId:stageId
+                                                   stageIndex:stageIndex];
 
-        if (newUT){
-
-            self.pbUserTutorial = newUT;
-            PBUserStage* userStage = [_pbUserTutorial.userStagesList objectAtIndex:stageIndex];
-            
-            // enter offline draw view controller
-            [OfflineDrawViewController practice:self userStage:userStage];
-        }
     }];
     
     [dialog showInView:self.view];
 }
 
 - (void)dealloc {
-     PPRelease(_pbUserTutorial);
-     PPRelease(_image);
-     [_collectionView release];
-     [super dealloc];
+    PPRelease(_pbUserTutorial);
+    PPRelease(_image);
+    PPRelease(_infoController);
+    [_collectionView release];
+    [super dealloc];
 }
 - (void)viewDidUnload {
     [self setCollectionView:nil];
@@ -199,7 +211,15 @@
 -(void)clickEnterInfo:(id)sender{
     
     PBTutorial *pbTutorial = [[TutorialCoreManager defaultManager]findTutorialByUserTutorialId:self.pbUserTutorial];
-    [TutorialInfoController enter:self pbTutorial:pbTutorial infoOnly:YES];
+    
+    self.infoController = [TutorialInfoController createController:pbTutorial infoOnly:YES];
+    
+    CommonDialog *dialog = [CommonDialog createDialogWithTitle:pbTutorial.cnName
+                                                    customView:_infoController.view
+                                                         style:CommonDialogStyleCross];
+    
+    [dialog showInView:self.view];
+
 }
 
 

@@ -89,10 +89,14 @@ struct  _Game__PBChapter
   char *backgroundname;
   size_t n_tips;
   Game__PBTip **tips;
+  protobuf_c_boolean has_startindex;
+  int32_t startindex;
+  protobuf_c_boolean has_endindex;
+  int32_t endindex;
 };
 #define GAME__PBCHAPTER__INIT \
  { PROTOBUF_C_MESSAGE_INIT (&game__pbchapter__descriptor) \
-    , 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0,NULL }
+    , 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0,NULL, 0,0, 0,0 }
 
 
 struct  _Game__PBStage
@@ -105,19 +109,27 @@ struct  _Game__PBStage
   char *cndesc;
   char *endesc;
   char *tcndesc;
+  char *opusid;
   char *image;
   char *thumbimage;
+  char *opusdata;
+  char *bgimage;
   char *dataurl;
+  char *imagename;
+  char *opusname;
+  char *bgimagename;
   size_t n_chapter;
   Game__PBChapter **chapter;
   protobuf_c_boolean has_imagestyle;
   int32_t imagestyle;
   protobuf_c_boolean has_scoreengine;
   int32_t scoreengine;
+  protobuf_c_boolean has_difficulty;
+  double difficulty;
 };
 #define GAME__PBSTAGE__INIT \
  { PROTOBUF_C_MESSAGE_INIT (&game__pbstage__descriptor) \
-    , NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0,NULL, 0,0, 0,0 }
+    , NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0,NULL, 0,0, 0,0, 0,1 }
 
 
 struct  _Game__PBTutorial
@@ -201,22 +213,30 @@ struct  _Game__PBUserStage
   char *stageid;
   protobuf_c_boolean has_stageindex;
   int32_t stageindex;
-  protobuf_c_boolean has_bestscore;
-  int32_t bestscore;
-  protobuf_c_boolean has_bestscoredate;
-  int32_t bestscoredate;
-  protobuf_c_boolean has_lastscoredate;
-  int32_t lastscoredate;
   size_t n_opus;
   Game__PBUserStageOpus **opus;
   protobuf_c_boolean has_currentchapterindex;
   int32_t currentchapterindex;
   char *practicelocalopusid;
   char *conquerlocalopusid;
+  char *bestopusid;
+  protobuf_c_boolean has_bestscore;
+  int32_t bestscore;
+  protobuf_c_boolean has_bestscoredate;
+  int32_t bestscoredate;
+  char *lastopusid;
+  protobuf_c_boolean has_lastscore;
+  int32_t lastscore;
+  protobuf_c_boolean has_lastscoredate;
+  int32_t lastscoredate;
+  protobuf_c_boolean has_totalcount;
+  int32_t totalcount;
+  protobuf_c_boolean has_defeatcount;
+  int32_t defeatcount;
 };
 #define GAME__PBUSER_STAGE__INIT \
  { PROTOBUF_C_MESSAGE_INIT (&game__pbuser_stage__descriptor) \
-    , NULL, NULL, NULL, 0,0, 0,0, 0,0, 0,0, 0,NULL, 0,0, NULL, NULL }
+    , NULL, NULL, NULL, 0,0, 0,NULL, 0,0, NULL, NULL, NULL, 0,0, 0,0, NULL, 0,0, 0,0, 0,0, 0,0 }
 
 
 struct  _Game__PBUserTutorial

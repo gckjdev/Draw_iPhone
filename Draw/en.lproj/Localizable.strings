@@ -2772,10 +2772,27 @@
 "kTryConquer" = "Conquer";
 "kPracticeAgain" = "Retry";
 
-"kConquerPass" = "Congratulations! Your score is %d. PASS!";
-"kConquerPassWithComplete" = "Congratulations! Your score is %d. PASS! This tutorial is completed!";
+"kConquerPass" = "Congratulations! Your score is %d, and you defeated %d%% people in the world. PASS!";
+"kConquerPassWithComplete" = "Congratulations! Your score is %d, and you defeated %d%% people in the world. PASS! This tutorial is completed!";
 "kConquerResult" = "Result";
 "kTryConquerNext" = "Next Stage";
-"kConquerFail" = "Sorry... Your score is %d. FAIL!";
+"kConquerFail" = "Sorry... Your score is %d, and you defeated %d%% people in the world. FAIL!";
 "kConquerAgain" = "Try Again";
 
+//new分享页面
+"kResultSharePage" = "ResultShare";
+
+//
+"kAddSuccess" = "Add Success!";
+
+"kDownloadTutorialFailure" = "Fail to download tutorial, please check netowrk availability.";
+"kDownloadTutorialSuccess" = "Download successfully.";
+"kLoadingStage" = "Loading...";
+"kLoadingStageWithProgress" = "Loading...(%d%%)";
+
+"kContinue" = "continue";
+"kProgress" = "Progress";
+"kStartStage" = "Start!";
+"kContinueStage" = "Continue";
+"kConquerDraw" = "ConquerDraw";
+"kNoTimelineDraw" = "ConquerDraw";

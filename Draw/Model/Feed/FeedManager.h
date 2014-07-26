@@ -40,9 +40,13 @@ typedef enum{
 
     FeedListTypeTimelineGroup = 30,
     FeedListTypeTimelineGroupAll = 31,
+    //add 2014.07.25
+    FeedListTypeTimeLineConquerDraw = 32,
 
     FeedListTypeVIP = 41,
-
+    //add 2014.07.25
+    FeedListTypeUserConquerDraw = 42,
+    
     FeedListTypeClassHotTop = 51,
     FeedListTypeClassAlltimeTop = 52,
     FeedListTypeClassLatest = 53,
@@ -50,6 +54,8 @@ typedef enum{
     FeedListTypeClassOriginal = 55,
     
     FeedListTypeUserFavorite = 100,
+    
+    
     
 }FeedListType;
 

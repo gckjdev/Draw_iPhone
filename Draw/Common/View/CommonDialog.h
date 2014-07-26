@@ -16,6 +16,8 @@ typedef enum {
     CommonDialogStyleDoubleButton,
     CommonDialogStyleDoubleButtonWithCross,
     CommonDialogStyleCross,
+    CommonDialogStyleSingleButtonWithCross,
+    CommonSquareDialogStyleCross,
 }CommonDialogStyle;
 
 typedef enum {

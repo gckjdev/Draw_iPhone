@@ -33,6 +33,7 @@ typedef enum{
     MyTypeTimelineGuess = FeedListTypeTimelineGuess,
     MyTypeComment = FeedListTypeComment,
     MyTypeDrawToMe = FeedListTypeDrawToMe,
+    MyTypeTimeLineDraw = FeedListTypeTimeLineConquerDraw,
     
 }MyType;
 
@@ -481,7 +482,7 @@ typedef enum{
 
 - (NSInteger)tabCount
 {
-    return 4;
+    return 5;
 }
 - (NSInteger)fetchDataLimitForTabIndex:(NSInteger)index
 {
@@ -489,21 +490,21 @@ typedef enum{
 }
 - (NSInteger)tabIDforIndex:(NSInteger)index
 {
-    NSInteger tabId[] = {MyTypeTimelineOpus,MyTypeTimelineGuess,MyTypeComment,MyTypeDrawToMe};
+    NSInteger tabId[] = {MyTypeTimelineOpus,MyTypeTimelineGuess,MyTypeComment,MyTypeDrawToMe,MyTypeTimeLineDraw};
 
     return tabId[index];
 }
 
 - (NSString *)tabNoDataTipsforIndex:(NSInteger)index
 {
-    NSString *tabDesc[] = {NSLS(@"kNoMyFeed"),NSLS(@"kNoTimelineGuess"),NSLS(@"kNoMyComment"),NSLS(@"kNoDrawToMe")};
+    NSString *tabDesc[] = {NSLS(@"kNoMyFeed"),NSLS(@"kNoTimelineGuess"),NSLS(@"kNoMyComment"),NSLS(@"kNoDrawToMe"),NSLS(@"kNoTimelineDraw")};
     
     return tabDesc[index];
 }
 
 - (NSString *)tabTitleforIndex:(NSInteger)index
 {
-    NSString *tabTitle[] = {NSLS(@"kUserFeed"),NSLS(@"kUserGuess"),NSLS(@"kComment"),NSLS(@"kDrawToMe")};
+    NSString *tabTitle[] = {NSLS(@"kUserFeed"),NSLS(@"kUserGuess"),NSLS(@"kComment"),NSLS(@"kDrawToMe"),NSLS(@"kNoTimelineDraw")};
 
     return tabTitle[index];
 }
@@ -550,8 +551,19 @@ typedef enum{
                 
             {
                 [feedService getMyCommentList:offset limit:limit delegate:self];
-            }
+            
                 break;
+            }
+            case MyTypeTimeLineDraw:
+            {
+                NSString *userId = [[UserManager defaultManager] userId];
+                [feedService getUserOpusList:userId
+                                      offset:offset
+                                       limit:limit
+                                        type:FeedListTypeTimeLineConquerDraw
+                                    delegate:self];
+                break;
+            }
             default:
                 
                 [self hideActivity];

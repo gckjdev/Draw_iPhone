@@ -15,6 +15,7 @@
 
 - (NSString*)categoryName;
 - (PBStage*)getStageByIndex:(NSUInteger)index;
+- (PBStage*)nextStage:(NSUInteger)index;
 
 @end
 
@@ -29,12 +30,14 @@
 @interface PBUserTutorial (Extend3)
 
 - (BOOL)isStageLock:(int)stageIndex;
+- (int)progress;
 
 @end
 
 @interface PBUserStage (Extend4)
 
 - (NSString*)getCurrentChapterOpusId;
+- (int)defeatPercent;
 
 @end
 

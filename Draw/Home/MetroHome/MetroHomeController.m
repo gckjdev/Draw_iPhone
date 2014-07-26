@@ -15,7 +15,10 @@
 #import "ICETutorialController.h"
 #import "GuidePageManager.h"
 #import "ICETutorialController.h"
-
+#import "ResultSharePageViewController.h"
+#import "ResultShareAlertPageViewController.h"
+#import "TipsPageViewController.h"
+#import "SDWebImageManager.h"
 
 @interface MetroHomeController ()
 
@@ -44,22 +47,12 @@
     [self.messageButton  setTitleEdgeInsets:UIEdgeInsetsMake(BOTTOM_BUTTON_HEIGHT, MESSAGE_BUTTON_TITLE_EDGEINSET, 0, 0)];
     [self.moreButton  setTitleEdgeInsets:UIEdgeInsetsMake(BOTTOM_BUTTON_HEIGHT,                        MORE_BUTTON_TITLE_EDGEINSETS, 0, 0)];
     
-    //title label font
-//    [self.indexButton.titleLabel setFont:AD_FONT(8, 11)];
-//    
-//    [self.documentButton.titleLabel setFont:AD_FONT(8, 11)];
-//    
-//    [self.messageButton.titleLabel setFont:AD_FONT(8, 11)];
-//    
-//    [self.moreButton.titleLabel setFont:AD_FONT(8, 11)];
-
-    
-    
 }
 
 
 #define DEFAUT_IMAGE_NAME "dialogue@2x"
 #define TEST_DATA_GALLERYIMAGE "http://58.215.184.18:8080/tutorial/image/GalleryImage2.jpg"
+#define IS_IOS7_OR_LATER [[UIDevice currentDevice] systemVersion]>=7 ? YES:NO
 - (void)viewDidLoad
 {
 //    
@@ -67,22 +60,17 @@
 //    [[CommonTitleView titleView:self.view] setTitle:NSLS(@"kMetroMainHome")];
     
     
+    
     [super viewDidLoad];
+    
 //    
 //    //test
 //    [self goToGuidePage];
     
     [self setBackground];
         // Do any additional setup after loading the view from its nib.
-   
+
     
-//    //读取网上图片
-//    NSString *galleryImage = @TEST_DATA_GALLERYIMAGE;
-//    NSURL *galleryUrl = [NSURL URLWithString:galleryImage];
-//    [_galleryImageView setImageWithUrl:galleryUrl
-//                       placeholderImage:placeHolderImage
-//                            showLoading:YES
-//                               animated:YES];
     [self setGalleryView];
 //    [self setGalleryImageForModel];
    
@@ -102,18 +90,46 @@
     [_topNameButton setTitle:name forState:UIControlStateNormal];
     [_topNameButton setTitleColor:COLOR_BROWN forState:UIControlStateNormal];
     [_topNameButton.titleLabel setFont:AD_FONT(20, 15)];
-    
-//    [[UINavigationBar appearance] setBarTintColor:[UIColor yellowColor]];
-    
-//    //加阴影
-//    UIView *shadowView = [self createShadow:self.paintingView];
-//    [self.paintingView addSubview:shadowView];
     [self setButtonTitleBottom];
     [self goToUserDetail];
     
     //TEST
     [self setBadgeView];
-
+    
+    //autolayout 适配ios6 ios7
+    NSLayoutConstraint* constraint = [NSLayoutConstraint constraintWithItem:self.galleryView
+                                                                  attribute:NSLayoutAttributeTop
+                                                                  relatedBy:NSLayoutRelationEqual
+                                                                     toItem:self.topView
+                                                                  attribute:NSLayoutAttributeBottom
+                                                                 multiplier:1.0
+                                                                   constant:0];
+    
+    int constant = 0;
+    if(ISIOS7){
+        constant = 20;
+        
+    }
+    NSLayoutConstraint* constraint2 = [NSLayoutConstraint constraintWithItem:self.topView
+                                                                  attribute:NSLayoutAttributeTop
+                                                                  relatedBy:NSLayoutRelationEqual
+                                                                     toItem:self.view
+                                                                  attribute:NSLayoutAttributeTop
+                                                                 multiplier:1.0
+                                                                   constant:constant];
+    [self.view addConstraint:constraint2];
+    [self.view addConstraint:constraint];
+    
+    
+}
+-(void)viewWillAppear:(BOOL)animated{
+    //适配IOS7
+    if([DeviceDetection isOS7]){
+        PPDebug(@"self.view.bounds.y1==%d",self.view.bounds.origin.y);
+        self.view.bounds = CGRectMake(0, 20, self.view.frame.size.width, self.view.frame.size.height);
+        PPDebug(@"self.view.bounds.y2==%d",self.view.bounds.origin.y);
+    }
+    
 }
 
 -(void)setGalleryImageForModel{
@@ -122,7 +138,7 @@
      UIImage *placeHolderImage = [UIImage imageNamed:@DEFAUT_IMAGE_NAME];
     BillboardManager *bbManager = [BillboardManager defaultManager];
     self.bbList = bbManager.bbList;
-    CGRect bound=CGRectMake(26,15, 268, 120);
+//    CGRect bound=CGRectMake(26,15, 268, 120);
     for(Billboard *bb in self.bbList){
         UIImageView *imageView =[[[UIImageView alloc]initWithFrame:CGRectMake(26, 15, 268, 120)] autorelease];
         
@@ -133,20 +149,7 @@
                   placeholderImage:placeHolderImage
                        showLoading:YES
                           animated:YES];
-    
-        
-//        UITapGestureRecognizer *singleTap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(galleryClick:)];
-//        
-//        singleTap.view.tag = 1;
-//        singleTap.numberOfTapsRequired=1;
-//        singleTap.numberOfTouchesRequired = 1;
-//        
-//        [imageView addGestureRecognizer:singleTap];
 
-//        [self.galleryView addSubview:imageView];
-//        
-//        [self.galleryView bringSubviewToFront:imageView];
-//                [singleTap release];
     }
    
    
@@ -174,35 +177,11 @@
     [uc release];    
 }
 
-
--(UIView *)createShadow:(UIView *)view{
-    
-    UIView *shadowView = [[[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height)] autorelease];
-    shadowView.backgroundColor = [UIColor clearColor];
-    
-    CAGradientLayer *shadow = [CAGradientLayer layer];
-    UIColor *color = [UIColor colorWithRed:(0.0) green:(0.0) blue:(0.0) alpha:0.5];
-    
-    
-    shadow.frame = CGRectMake(0, 0, self.view.bounds.size.width, 5);
-    [shadow setStartPoint:CGPointMake(0.5, 1.0)];
-    [shadow setEndPoint:CGPointMake(0.5, 3.0)];
-    
-    shadow.frame = CGRectMake(0, 0, 3, self.view.bounds.size.height);
-    PPDebug(@"%i",self.view.bounds.size.height);
-    [shadow setStartPoint:CGPointMake(0.0, 0.5)];
-    [shadow setEndPoint:CGPointMake(1.0, 0.5)];
-    
-    shadow.colors = [NSArray arrayWithObjects:(id)[color CGColor], (id)[[UIColor clearColor] CGColor], nil];
-    [shadowView.layer insertSublayer:shadow atIndex:0];
-    
-    return shadowView;
-    
-}
 //主页背景
 #define GALLERY_BACKGROUND_Y (ISIPAD ? 69:41)
 - (void)setBackground
 {
+    
     UIImage *galleryBackground = [UIImage imageNamed:@"gonggaolan.png"];
     UIColor *color = [[UIColor alloc] initWithPatternImage:galleryBackground];
     
@@ -225,14 +204,21 @@
 
 
 
-
 #pragma -mark
 #pragma mark click
 - (IBAction)goTolearning:(id)sender {
 }
 
 - (IBAction)goToBBS:(id)sender {
-    [self enterBBS];
+//    [self enterBBS];
+    
+//    ResultShareAlertPageViewController *rspc = [[ResultShareAlertPageViewController alloc] init];
+//    CommonDialog *dialog = [CommonDialog createDialogWithTitle:NSLS(@"kResultSharePage") customView:rspc.view style:CommonDialogStyleCross];
+//    [dialog showInView:self.view];
+    
+    TipsPageViewController *rspc = [[TipsPageViewController alloc] init];
+    CommonDialog *dialog = [CommonDialog createDialogWithTitle:NSLS(@"提示") customView:rspc.view style:CommonSquareDialogStyleCross];
+    [dialog showInView:self.view];
 }
 
 - (IBAction)goToDraw:(id)sender {
@@ -316,45 +302,57 @@
 -(void)setGalleryView{
     BillboardManager *bbManager = [BillboardManager defaultManager];
     self.bbList = bbManager.bbList;
-
-    NSMutableArray *itemList = [[[NSMutableArray alloc] init] autorelease];
-    for(Billboard *bb in _bbList){
-        NSString *galleryImage = bb.image;
-        NSURL *galleryUrl = [NSURL URLWithString:galleryImage];
-        
-        UIImage *image = nil;
-        //设置默认图片
-        if(galleryUrl==nil||[galleryUrl isEqual:@""]){
-            
-            image = [UIImage imageNamed:DEFAULT_GALLERY_IMAGE] ;
-            
-        }
-        //读取网上的图片数据
-        NSData* data = [NSData dataWithContentsOfURL:galleryUrl];
-        if(data==nil){
-            image = [UIImage imageNamed:DEFAULT_GALLERY_IMAGE] ;
-            
-        }
-         image = [[[UIImage alloc] initWithData:data] autorelease];
-
-        if(image==nil){
-             image = [UIImage imageNamed:DEFAULT_GALLERY_IMAGE] ;
-        }
-        
-        //添加到第三方框架
-        SGFocusImageItem *item = [[[SGFocusImageItem alloc] initWithTitle:@"" image:image tag:bb.index] autorelease];
-        
-        
-        [itemList addObject:item];
-    }
+    //默认图片
+    UIImage *image = [UIImage imageNamed:DEFAULT_GALLERY_IMAGE];
+    [self.galleryImageView initWithImage:image];
     
-    //新建滚动展览
-    SGFocusImageFrame *imageFrame = [[SGFocusImageFrame alloc] initWithFrame:CGRectMake(IMAGE_FRAME_X, IMAGE_FRAME_Y, IMAGE_FRAME_WIDTH ,IMAGE_FRAME_HEIGHT)
-                                                                    delegate:self
-                                                             focusImageItems:itemList, nil];
-    [self.galleryView addSubview:imageFrame];
-    [self.galleryView bringSubviewToFront:imageFrame];
-    [imageFrame release];
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
+        
+        NSMutableArray *itemList = [[[NSMutableArray alloc] init] autorelease];
+        for(Billboard *bb in _bbList){
+            NSString *galleryImage = bb.image;
+            NSURL *galleryUrl = [NSURL URLWithString:galleryImage];
+            
+            UIImage *image = nil;
+            //设置默认图片
+            if(galleryUrl==nil||[galleryUrl isEqual:@""]){
+                
+                image = [UIImage imageNamed:DEFAULT_GALLERY_IMAGE] ;
+                
+            }
+            //读取网上的图片数据
+            //TODO 异步
+            NSData* data = [NSData dataWithContentsOfURL:galleryUrl];
+            
+            if(data==nil){
+                image = [UIImage imageNamed:DEFAULT_GALLERY_IMAGE] ;
+                
+            }
+            image = [[[UIImage alloc] initWithData:data] autorelease];
+            
+            if(image==nil){
+                image = [UIImage imageNamed:DEFAULT_GALLERY_IMAGE] ;
+            }
+            
+            //添加到第三方框架
+            SGFocusImageItem *item = [[[SGFocusImageItem alloc] initWithTitle:@"" image:image tag:bb.index] autorelease];
+            
+            
+            [itemList addObject:item];
+            
+        }
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            //新建滚动展览
+            SGFocusImageFrame *imageFrame = [[SGFocusImageFrame alloc] initWithFrame:CGRectMake(IMAGE_FRAME_X, IMAGE_FRAME_Y, IMAGE_FRAME_WIDTH ,IMAGE_FRAME_HEIGHT)
+                                                                            delegate:self
+                                                                     focusImageItems:itemList, nil];
+            [self.galleryView addSubview:imageFrame];
+            [self.galleryView bringSubviewToFront:imageFrame];
+            [imageFrame release];
+        });
+    });
+    
 
 }
 -(void)foucusImageFrame:(SGFocusImageFrame *)imageFrame didSelectItem:(SGFocusImageItem *)item{
@@ -368,6 +366,13 @@
         return;
     }
     [[self.bbList objectAtIndex:index] clickAction:self];
+}
+-(void)adapt_iOS6{
+    if([DeviceDetection isOS6]){
+        [self.galleryButton setBackgroundColor:COLOR_YELLOW];
+        [self.view setFrame:CGRectMake(self.view.frame.origin.x, self.view.frame.origin.y-20, self.view.frame.size.width, self.view.frame.size.height)];
+        
+    }
 }
 
 - (void)dealloc {

@@ -276,8 +276,9 @@ BOOL PBUserTutorialStatusIsValidValue(PBUserTutorialStatus value);
 
 @interface PBChapter : PBGeneratedMessage {
 @private
+  BOOL hasEndIndex_:1;
+  BOOL hasStartIndex_:1;
   BOOL hasIndex_:1;
-  BOOL hasCnName_:1;
   BOOL hasEnName_:1;
   BOOL hasTcnName_:1;
   BOOL hasCnDesc_:1;
@@ -290,8 +291,10 @@ BOOL PBUserTutorialStatusIsValidValue(PBUserTutorialStatus value);
   BOOL hasOpusName_:1;
   BOOL hasImageName_:1;
   BOOL hasBackgroundName_:1;
+  BOOL hasCnName_:1;
+  int32_t endIndex;
+  int32_t startIndex;
   int32_t index;
-  NSString* cnName;
   NSString* enName;
   NSString* tcnName;
   NSString* cnDesc;
@@ -304,6 +307,7 @@ BOOL PBUserTutorialStatusIsValidValue(PBUserTutorialStatus value);
   NSString* opusName;
   NSString* imageName;
   NSString* backgroundName;
+  NSString* cnName;
   NSMutableArray* mutableTipsList;
 }
 - (BOOL) hasIndex;
@@ -320,6 +324,8 @@ BOOL PBUserTutorialStatusIsValidValue(PBUserTutorialStatus value);
 - (BOOL) hasOpusName;
 - (BOOL) hasImageName;
 - (BOOL) hasBackgroundName;
+- (BOOL) hasStartIndex;
+- (BOOL) hasEndIndex;
 @property (readonly) int32_t index;
 @property (readonly, retain) NSString* cnName;
 @property (readonly, retain) NSString* enName;
@@ -334,6 +340,8 @@ BOOL PBUserTutorialStatusIsValidValue(PBUserTutorialStatus value);
 @property (readonly, retain) NSString* opusName;
 @property (readonly, retain) NSString* imageName;
 @property (readonly, retain) NSString* backgroundName;
+@property (readonly) int32_t startIndex;
+@property (readonly) int32_t endIndex;
 - (NSArray*) tipsList;
 - (PBTip*) tipsAtIndex:(int32_t) index;
 
@@ -447,34 +455,58 @@ BOOL PBUserTutorialStatusIsValidValue(PBUserTutorialStatus value);
 - (PBChapter_Builder*) addTips:(PBTip*) value;
 - (PBChapter_Builder*) addAllTips:(NSArray*) values;
 - (PBChapter_Builder*) clearTipsList;
+
+- (BOOL) hasStartIndex;
+- (int32_t) startIndex;
+- (PBChapter_Builder*) setStartIndex:(int32_t) value;
+- (PBChapter_Builder*) clearStartIndex;
+
+- (BOOL) hasEndIndex;
+- (int32_t) endIndex;
+- (PBChapter_Builder*) setEndIndex:(int32_t) value;
+- (PBChapter_Builder*) clearEndIndex;
 @end
 
 @interface PBStage : PBGeneratedMessage {
 @private
-  BOOL hasImageStyle_:1;
+  BOOL hasDifficulty_:1;
   BOOL hasScoreEngine_:1;
-  BOOL hasStageId_:1;
-  BOOL hasCnName_:1;
-  BOOL hasEnName_:1;
-  BOOL hasTcnName_:1;
-  BOOL hasCnDesc_:1;
-  BOOL hasEnDesc_:1;
-  BOOL hasTcnDesc_:1;
-  BOOL hasImage_:1;
-  BOOL hasThumbImage_:1;
+  BOOL hasImageStyle_:1;
+  BOOL hasBgImageName_:1;
+  BOOL hasOpusName_:1;
+  BOOL hasImageName_:1;
   BOOL hasDataUrl_:1;
-  int32_t imageStyle;
+  BOOL hasBgImage_:1;
+  BOOL hasOpusData_:1;
+  BOOL hasThumbImage_:1;
+  BOOL hasImage_:1;
+  BOOL hasOpusId_:1;
+  BOOL hasTcnDesc_:1;
+  BOOL hasEnDesc_:1;
+  BOOL hasCnDesc_:1;
+  BOOL hasTcnName_:1;
+  BOOL hasEnName_:1;
+  BOOL hasCnName_:1;
+  BOOL hasStageId_:1;
+  Float64 difficulty;
   int32_t scoreEngine;
-  NSString* stageId;
-  NSString* cnName;
-  NSString* enName;
-  NSString* tcnName;
-  NSString* cnDesc;
-  NSString* enDesc;
-  NSString* tcnDesc;
-  NSString* image;
-  NSString* thumbImage;
+  int32_t imageStyle;
+  NSString* bgImageName;
+  NSString* opusName;
+  NSString* imageName;
   NSString* dataUrl;
+  NSString* bgImage;
+  NSString* opusData;
+  NSString* thumbImage;
+  NSString* image;
+  NSString* opusId;
+  NSString* tcnDesc;
+  NSString* enDesc;
+  NSString* cnDesc;
+  NSString* tcnName;
+  NSString* enName;
+  NSString* cnName;
+  NSString* stageId;
   NSMutableArray* mutableChapterList;
 }
 - (BOOL) hasStageId;
@@ -484,11 +516,18 @@ BOOL PBUserTutorialStatusIsValidValue(PBUserTutorialStatus value);
 - (BOOL) hasCnDesc;
 - (BOOL) hasEnDesc;
 - (BOOL) hasTcnDesc;
+- (BOOL) hasOpusId;
 - (BOOL) hasImage;
 - (BOOL) hasThumbImage;
+- (BOOL) hasOpusData;
+- (BOOL) hasBgImage;
 - (BOOL) hasDataUrl;
+- (BOOL) hasImageName;
+- (BOOL) hasOpusName;
+- (BOOL) hasBgImageName;
 - (BOOL) hasImageStyle;
 - (BOOL) hasScoreEngine;
+- (BOOL) hasDifficulty;
 @property (readonly, retain) NSString* stageId;
 @property (readonly, retain) NSString* cnName;
 @property (readonly, retain) NSString* enName;
@@ -496,11 +535,18 @@ BOOL PBUserTutorialStatusIsValidValue(PBUserTutorialStatus value);
 @property (readonly, retain) NSString* cnDesc;
 @property (readonly, retain) NSString* enDesc;
 @property (readonly, retain) NSString* tcnDesc;
+@property (readonly, retain) NSString* opusId;
 @property (readonly, retain) NSString* image;
 @property (readonly, retain) NSString* thumbImage;
+@property (readonly, retain) NSString* opusData;
+@property (readonly, retain) NSString* bgImage;
 @property (readonly, retain) NSString* dataUrl;
+@property (readonly, retain) NSString* imageName;
+@property (readonly, retain) NSString* opusName;
+@property (readonly, retain) NSString* bgImageName;
 @property (readonly) int32_t imageStyle;
 @property (readonly) int32_t scoreEngine;
+@property (readonly) Float64 difficulty;
 - (NSArray*) chapterList;
 - (PBChapter*) chapterAtIndex:(int32_t) index;
 
@@ -573,6 +619,11 @@ BOOL PBUserTutorialStatusIsValidValue(PBUserTutorialStatus value);
 - (PBStage_Builder*) setTcnDesc:(NSString*) value;
 - (PBStage_Builder*) clearTcnDesc;
 
+- (BOOL) hasOpusId;
+- (NSString*) opusId;
+- (PBStage_Builder*) setOpusId:(NSString*) value;
+- (PBStage_Builder*) clearOpusId;
+
 - (BOOL) hasImage;
 - (NSString*) image;
 - (PBStage_Builder*) setImage:(NSString*) value;
@@ -583,10 +634,35 @@ BOOL PBUserTutorialStatusIsValidValue(PBUserTutorialStatus value);
 - (PBStage_Builder*) setThumbImage:(NSString*) value;
 - (PBStage_Builder*) clearThumbImage;
 
+- (BOOL) hasOpusData;
+- (NSString*) opusData;
+- (PBStage_Builder*) setOpusData:(NSString*) value;
+- (PBStage_Builder*) clearOpusData;
+
+- (BOOL) hasBgImage;
+- (NSString*) bgImage;
+- (PBStage_Builder*) setBgImage:(NSString*) value;
+- (PBStage_Builder*) clearBgImage;
+
 - (BOOL) hasDataUrl;
 - (NSString*) dataUrl;
 - (PBStage_Builder*) setDataUrl:(NSString*) value;
 - (PBStage_Builder*) clearDataUrl;
+
+- (BOOL) hasImageName;
+- (NSString*) imageName;
+- (PBStage_Builder*) setImageName:(NSString*) value;
+- (PBStage_Builder*) clearImageName;
+
+- (BOOL) hasOpusName;
+- (NSString*) opusName;
+- (PBStage_Builder*) setOpusName:(NSString*) value;
+- (PBStage_Builder*) clearOpusName;
+
+- (BOOL) hasBgImageName;
+- (NSString*) bgImageName;
+- (PBStage_Builder*) setBgImageName:(NSString*) value;
+- (PBStage_Builder*) clearBgImageName;
 
 - (NSArray*) chapterList;
 - (PBChapter*) chapterAtIndex:(int32_t) index;
@@ -604,6 +680,11 @@ BOOL PBUserTutorialStatusIsValidValue(PBUserTutorialStatus value);
 - (int32_t) scoreEngine;
 - (PBStage_Builder*) setScoreEngine:(int32_t) value;
 - (PBStage_Builder*) clearScoreEngine;
+
+- (BOOL) hasDifficulty;
+- (Float64) difficulty;
+- (PBStage_Builder*) setDifficulty:(Float64) value;
+- (PBStage_Builder*) clearDifficulty;
 @end
 
 @interface PBTutorial : PBGeneratedMessage {
@@ -1000,47 +1081,67 @@ BOOL PBUserTutorialStatusIsValidValue(PBUserTutorialStatus value);
 @interface PBUserStage : PBGeneratedMessage {
 @private
   BOOL hasStageIndex_:1;
+  BOOL hasCurrentChapterIndex_:1;
   BOOL hasBestScore_:1;
   BOOL hasBestScoreDate_:1;
+  BOOL hasLastScore_:1;
   BOOL hasLastScoreDate_:1;
-  BOOL hasCurrentChapterIndex_:1;
+  BOOL hasTotalCount_:1;
+  BOOL hasDefeatCount_:1;
   BOOL hasUserId_:1;
   BOOL hasTutorialId_:1;
   BOOL hasStageId_:1;
   BOOL hasPracticeLocalOpusId_:1;
   BOOL hasConquerLocalOpusId_:1;
+  BOOL hasBestOpusId_:1;
+  BOOL hasLastOpusId_:1;
   int32_t stageIndex;
+  int32_t currentChapterIndex;
   int32_t bestScore;
   int32_t bestScoreDate;
+  int32_t lastScore;
   int32_t lastScoreDate;
-  int32_t currentChapterIndex;
+  int32_t totalCount;
+  int32_t defeatCount;
   NSString* userId;
   NSString* tutorialId;
   NSString* stageId;
   NSString* practiceLocalOpusId;
   NSString* conquerLocalOpusId;
+  NSString* bestOpusId;
+  NSString* lastOpusId;
   NSMutableArray* mutableOpusList;
 }
 - (BOOL) hasUserId;
 - (BOOL) hasTutorialId;
 - (BOOL) hasStageId;
 - (BOOL) hasStageIndex;
-- (BOOL) hasBestScore;
-- (BOOL) hasBestScoreDate;
-- (BOOL) hasLastScoreDate;
 - (BOOL) hasCurrentChapterIndex;
 - (BOOL) hasPracticeLocalOpusId;
 - (BOOL) hasConquerLocalOpusId;
+- (BOOL) hasBestOpusId;
+- (BOOL) hasBestScore;
+- (BOOL) hasBestScoreDate;
+- (BOOL) hasLastOpusId;
+- (BOOL) hasLastScore;
+- (BOOL) hasLastScoreDate;
+- (BOOL) hasTotalCount;
+- (BOOL) hasDefeatCount;
 @property (readonly, retain) NSString* userId;
 @property (readonly, retain) NSString* tutorialId;
 @property (readonly, retain) NSString* stageId;
 @property (readonly) int32_t stageIndex;
-@property (readonly) int32_t bestScore;
-@property (readonly) int32_t bestScoreDate;
-@property (readonly) int32_t lastScoreDate;
 @property (readonly) int32_t currentChapterIndex;
 @property (readonly, retain) NSString* practiceLocalOpusId;
 @property (readonly, retain) NSString* conquerLocalOpusId;
+@property (readonly, retain) NSString* bestOpusId;
+@property (readonly) int32_t bestScore;
+@property (readonly) int32_t bestScoreDate;
+@property (readonly, retain) NSString* lastOpusId;
+@property (readonly) int32_t lastScore;
+@property (readonly) int32_t lastScoreDate;
+@property (readonly) int32_t totalCount;
+@property (readonly) int32_t defeatCount;
 - (NSArray*) opusList;
 - (PBUserStageOpus*) opusAtIndex:(int32_t) index;
 
@@ -1098,21 +1199,6 @@ BOOL PBUserTutorialStatusIsValidValue(PBUserTutorialStatus value);
 - (PBUserStage_Builder*) setStageIndex:(int32_t) value;
 - (PBUserStage_Builder*) clearStageIndex;
 
-- (BOOL) hasBestScore;
-- (int32_t) bestScore;
-- (PBUserStage_Builder*) setBestScore:(int32_t) value;
-- (PBUserStage_Builder*) clearBestScore;
-
-- (BOOL) hasBestScoreDate;
-- (int32_t) bestScoreDate;
-- (PBUserStage_Builder*) setBestScoreDate:(int32_t) value;
-- (PBUserStage_Builder*) clearBestScoreDate;
-
-- (BOOL) hasLastScoreDate;
-- (int32_t) lastScoreDate;
-- (PBUserStage_Builder*) setLastScoreDate:(int32_t) value;
-- (PBUserStage_Builder*) clearLastScoreDate;
-
 - (NSArray*) opusList;
 - (PBUserStageOpus*) opusAtIndex:(int32_t) index;
 - (PBUserStage_Builder*) replaceOpusAtIndex:(int32_t) index with:(PBUserStageOpus*) value;
@@ -1134,6 +1220,46 @@ BOOL PBUserTutorialStatusIsValidValue(PBUserTutorialStatus value);
 - (NSString*) conquerLocalOpusId;
 - (PBUserStage_Builder*) setConquerLocalOpusId:(NSString*) value;
 - (PBUserStage_Builder*) clearConquerLocalOpusId;
+
+- (BOOL) hasBestOpusId;
+- (NSString*) bestOpusId;
+- (PBUserStage_Builder*) setBestOpusId:(NSString*) value;
+- (PBUserStage_Builder*) clearBestOpusId;
+
+- (BOOL) hasBestScore;
+- (int32_t) bestScore;
+- (PBUserStage_Builder*) setBestScore:(int32_t) value;
+- (PBUserStage_Builder*) clearBestScore;
+
+- (BOOL) hasBestScoreDate;
+- (int32_t) bestScoreDate;
+- (PBUserStage_Builder*) setBestScoreDate:(int32_t) value;
+- (PBUserStage_Builder*) clearBestScoreDate;
+
+- (BOOL) hasLastOpusId;
+- (NSString*) lastOpusId;
+- (PBUserStage_Builder*) setLastOpusId:(NSString*) value;
+- (PBUserStage_Builder*) clearLastOpusId;
+
+- (BOOL) hasLastScore;
+- (int32_t) lastScore;
+- (PBUserStage_Builder*) setLastScore:(int32_t) value;
+- (PBUserStage_Builder*) clearLastScore;
+
+- (BOOL) hasLastScoreDate;
+- (int32_t) lastScoreDate;
+- (PBUserStage_Builder*) setLastScoreDate:(int32_t) value;
+- (PBUserStage_Builder*) clearLastScoreDate;
+
+- (BOOL) hasTotalCount;
+- (int32_t) totalCount;
+- (PBUserStage_Builder*) setTotalCount:(int32_t) value;
+- (PBUserStage_Builder*) clearTotalCount;
+
+- (BOOL) hasDefeatCount;
+- (int32_t) defeatCount;
+- (PBUserStage_Builder*) setDefeatCount:(int32_t) value;
+- (PBUserStage_Builder*) clearDefeatCount;
 @end
 
 @interface PBUserTutorial : PBGeneratedMessage {

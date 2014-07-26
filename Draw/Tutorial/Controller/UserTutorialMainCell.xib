@@ -54,11 +54,11 @@
                             <constraint firstItem="AVB-UF-Fo1" firstAttribute="top" secondItem="l6U-8P-Mme" secondAttribute="top" constant="7" id="fuK-3p-a06"/>
                         </constraints>
                     </view>
-                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sql-Ey-6EW" userLabel="button and label View">
+                    <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="sql-Ey-6EW" userLabel="button and label View">
                         <rect key="frame" x="72" y="29" width="145" height="80"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LR0-YB-7ux">
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LR0-YB-7ux">
                                 <rect key="frame" x="16" y="25" width="113" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -72,7 +72,7 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                             </button>
-                            <label hidden="YES" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fhu-Ld-yTS">
+                            <label hidden="YES" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fhu-Ld-yTS">
                                 <rect key="frame" x="42" y="54" width="60" height="25"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -80,6 +80,28 @@
                                 <color key="shadowColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <size key="shadowOffset" width="1" height="1"/>
                             </label>
+                            <view contentMode="scaleAspectFit" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="nnc-fz-v4X" userLabel="progress and label View">
+                                <rect key="frame" x="0.0" y="10" width="145" height="60"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <label hidden="YES" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hpc-rY-RGp">
+                                        <rect key="frame" x="22" y="38" width="100" height="21"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstItem="hpc-rY-RGp" firstAttribute="leading" secondItem="nnc-fz-v4X" secondAttribute="leading" constant="22" id="epp-dq-CzA"/>
+                                    <constraint firstItem="hpc-rY-RGp" firstAttribute="centerX" secondItem="nnc-fz-v4X" secondAttribute="centerX" id="hN8-lz-yoB"/>
+                                    <constraint firstItem="hpc-rY-RGp" firstAttribute="top" secondItem="nnc-fz-v4X" secondAttribute="top" constant="41" id="lp9-0A-Em7"/>
+                                </constraints>
+                                <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -92,65 +114,30 @@
                             <constraint firstAttribute="bottom" secondItem="fhu-Ld-yTS" secondAttribute="bottom" constant="1" id="wK6-lz-Ez2"/>
                         </constraints>
                     </view>
-                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nnc-fz-v4X" userLabel="progress and label View">
-                        <rect key="frame" x="72" y="20" width="145" height="80"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <subviews>
-                            <progressView hidden="YES" opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="06J-fr-Djw">
-                                <rect key="frame" x="0.0" y="40" width="150" height="2"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="tintColor" red="0.0" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                            </progressView>
-                            <label hidden="YES" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hpc-rY-RGp">
-                                <rect key="frame" x="22" y="41" width="100" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                        </subviews>
-                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="hpc-rY-RGp" firstAttribute="top" secondItem="06J-fr-Djw" secondAttribute="top" constant="1" id="KaB-qm-YPC"/>
-                            <constraint firstAttribute="trailing" secondItem="06J-fr-Djw" secondAttribute="trailing" constant="-5" id="eAj-fh-TsF"/>
-                            <constraint firstItem="hpc-rY-RGp" firstAttribute="leading" secondItem="nnc-fz-v4X" secondAttribute="leading" constant="22" id="epp-dq-CzA"/>
-                            <constraint firstItem="06J-fr-Djw" firstAttribute="leading" secondItem="nnc-fz-v4X" secondAttribute="leading" id="gCt-oo-f9E"/>
-                            <constraint firstItem="hpc-rY-RGp" firstAttribute="centerX" secondItem="nnc-fz-v4X" secondAttribute="centerX" id="hN8-lz-yoB"/>
-                            <constraint firstItem="hpc-rY-RGp" firstAttribute="top" secondItem="nnc-fz-v4X" secondAttribute="top" constant="41" id="lp9-0A-Em7"/>
-                        </constraints>
-                        <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
-                    </view>
                 </subviews>
                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                 <constraints>
                     <constraint firstItem="LWl-3k-Pwp" firstAttribute="leading" secondItem="l6U-8P-Mme" secondAttribute="leading" id="Cdi-z1-FGN"/>
-                    <constraint firstItem="sql-Ey-6EW" firstAttribute="leading" secondItem="nnc-fz-v4X" secondAttribute="leading" id="Cvl-t0-cIg"/>
                     <constraint firstItem="l6U-8P-Mme" firstAttribute="top" secondItem="sql-Ey-6EW" secondAttribute="bottom" constant="11" id="Dgj-WT-ebE"/>
                     <constraint firstItem="l6U-8P-Mme" firstAttribute="leading" secondItem="dB4-Ko-gd6" secondAttribute="leading" id="GG0-4r-B3D"/>
                     <constraint firstAttribute="bottom" secondItem="l6U-8P-Mme" secondAttribute="bottom" constant="14" id="H5x-51-kGS"/>
                     <constraint firstItem="LWl-3k-Pwp" firstAttribute="top" secondItem="dB4-Ko-gd6" secondAttribute="top" id="L5V-e1-PVy"/>
                     <constraint firstItem="sql-Ey-6EW" firstAttribute="leading" secondItem="dB4-Ko-gd6" secondAttribute="leading" constant="72" id="R2I-8j-EhE"/>
-                    <constraint firstItem="nnc-fz-v4X" firstAttribute="trailing" secondItem="sql-Ey-6EW" secondAttribute="trailing" id="XiS-38-Q3O"/>
                     <constraint firstItem="l6U-8P-Mme" firstAttribute="trailing" secondItem="LWl-3k-Pwp" secondAttribute="trailing" id="bLM-PN-9Sr"/>
                     <constraint firstItem="sql-Ey-6EW" firstAttribute="top" secondItem="dB4-Ko-gd6" secondAttribute="top" constant="29" id="d6I-GG-35q"/>
                     <constraint firstAttribute="trailing" secondItem="LWl-3k-Pwp" secondAttribute="trailing" id="grl-02-Spd"/>
-                    <constraint firstItem="nnc-fz-v4X" firstAttribute="bottom" secondItem="sql-Ey-6EW" secondAttribute="bottom" constant="-9" id="iHQ-Mj-vTk"/>
                     <constraint firstAttribute="bottom" secondItem="LWl-3k-Pwp" secondAttribute="bottom" constant="14" id="oVC-iS-y4Z"/>
-                    <constraint firstItem="nnc-fz-v4X" firstAttribute="top" secondItem="sql-Ey-6EW" secondAttribute="top" constant="-9" id="pUz-tb-6tQ"/>
-                    <constraint firstAttribute="trailing" secondItem="nnc-fz-v4X" secondAttribute="trailing" constant="73" id="yZ6-Ni-tFF"/>
                 </constraints>
             </tableViewCellContentView>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             <connections>
                 <outlet property="labelBottomView" destination="l6U-8P-Mme" id="p8A-de-om6"/>
                 <outlet property="othersProgressInfoLabel" destination="hpc-rY-RGp" id="tLM-eX-ny2"/>
+                <outlet property="progressAndLabelView" destination="nnc-fz-v4X" id="3oy-yS-K09"/>
                 <outlet property="progressInfoLabel" destination="fhu-Ld-yTS" id="WDx-sO-Zgp"/>
                 <outlet property="tutorialDateLabel" destination="e2n-cV-Vob" id="xPv-E8-PKZ"/>
                 <outlet property="tutorialImageView" destination="LWl-3k-Pwp" id="DwR-DH-f6y"/>
                 <outlet property="tutorialNameLabel" destination="AVB-UF-Fo1" id="2Ml-gs-FRW"/>
-                <outlet property="tutorialProgressView" destination="06J-fr-Djw" id="Xo7-Gc-iE6"/>
                 <outlet property="tutorialStartBtn" destination="LR0-YB-7ux" id="F8V-yK-4hA"/>
             </connections>
         </tableViewCell>

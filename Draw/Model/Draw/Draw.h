@@ -50,5 +50,6 @@
 - (id)initWithPBDrawC:(Game__PBDraw*)pbDrawC;
 
 - (BOOL)isNewVersion;
++ (Draw*)parseDrawData:(NSData*)pbDrawData;
 
 @end

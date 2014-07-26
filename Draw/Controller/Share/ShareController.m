@@ -28,6 +28,7 @@
 #import "DrawPlayer.h"
 #import "GameSNSService.h"
 #import "PurchaseVipController.h"
+#import "UIImageUtil.h"
 
 #define BUTTON_INDEX_OFFSET 20120229
 #define IMAGE_WIDTH 93
@@ -288,6 +289,7 @@ typedef enum{
                                  destructiveButtonTitle:editString 
                                       otherButtonTitles:NSLS(@"kReplay"), NSLS(@"kDelete"),
                     NSLS(@"kSaveAsPhoto"), NSLS(@"kShareSinaWeibo"),  // NSLS(@"kShareQQSpace"),
+                    NSLS(@"kSaveGif"),
                     NSLS(@"kShareWeixinSession"), NSLS(@"kShareWeixinTimeline"),
                     NSLS(@"kShareQQWeibo"), NSLS(@"kShareFacebook"),
                     nil];
@@ -385,9 +387,21 @@ typedef enum{
 
 - (void)performReplay
 {
+    //总是占用人家回放按钮来测试，我都不好意思了。。记得最终要还原
+
+#ifdef DEBUG
+//    [self performGif];
+
+//    [self gotoReplayView];
+    [self gotoPeriodReplayViewBegin:10 End:210];
+    
+    return;
+#endif
+    
     [self performLoadOpus:@selector(gotoReplayView)];
     return;
 }
+
 
 - (void)gotoReplayView
 {    
@@ -404,7 +418,49 @@ typedef enum{
     
     DrawPlayer *player =[DrawPlayer playerWithReplayObj:obj];
     [player showInController:self];
+    
 }
+
+- (void)gotoPeriodReplayViewBegin:(NSInteger)begin
+                              End:(NSInteger)end
+{
+    if(end<=begin)
+    {
+        PPDebug(@"end less than begin, fail to play period!");
+        return;
+    }
+    DrawPlayer *player;
+
+    MyPaint* currentPaint = _selectedPaint;
+    BOOL isNewVersion = [PPConfigManager currentDrawDataVersion] < [currentPaint drawDataVersion];
+    
+    if(end>[[currentPaint drawActionList] count] || begin < 0)
+    {
+        PPDebug(@"end > all action count, fail to play period!");
+        return;
+    }
+    
+    ReplayObject *obj = [ReplayObject obj];
+    obj.actionList = [currentPaint drawActionList];
+    obj.isNewVersion = isNewVersion;
+    obj.bgImage = [[MyPaintManager defaultManager] bgImageForPaint:currentPaint];
+    obj.layers = currentPaint.layers;
+    obj.canvasSize = [currentPaint canvasSize];
+    
+    player=[DrawPlayer playerWithReplayObj:obj];
+    UIImage *img = [player.showView createImageAtIndex:begin];
+    
+    NSMutableArray *subActionList;
+    NSRange range=NSMakeRange(begin, (end-begin));
+    subActionList =[[NSMutableArray alloc]initWithArray:[[currentPaint drawActionList] subarrayWithRange:range]];
+    obj.actionList = subActionList;
+    [subActionList release];
+    obj.bgImage=img;
+    player=[DrawPlayer playerWithReplayObj:obj];
+
+    [player showInController:self];
+}
+
 
 - (void)gotoEditConroller
 {
@@ -459,6 +515,26 @@ typedef enum{
 {
     [self performLoadOpus:@selector(gotoEditConroller)];
     return;
+}
+
+- (void)performGif
+{
+    //testing gif function
+#ifdef DEBUG
+    
+    [ShowDrawView createGIF:24
+                  delayTime:0.5f
+             drawActionList:_selectedPaint.drawActionList
+                    bgImage:[[MyPaintManager defaultManager] bgImageForPaint:_selectedPaint]
+                     layers:_selectedPaint.layers
+                 canvasSize:_selectedPaint.canvasSize
+                 outputPath:@"/Users/Linruin/Desktop/test.gif"
+                  scaleSize:0.5];
+    
+    [self hideActivity];
+    
+    return;
+#endif
 }
 
 - (void)share:(PPSNSType)type
