@@ -48,7 +48,9 @@
 
 
 + (DrawPlayer *)playerWithReplayObj:(ReplayObject *)obj;
++ (DrawPlayer *)playerWithReplayObj:(ReplayObject *)obj WithSliderBegin:(NSInteger)begin End:(NSInteger)end;
 - (void)showInController:(PPViewController *)controller;
+- (void)showInController:(PPViewController *)controller FromBegin:(NSInteger)begin;
 
 - (void)play;
 - (void)pause;
