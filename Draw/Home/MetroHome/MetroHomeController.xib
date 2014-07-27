@@ -221,7 +221,7 @@
                         <constraint firstItem="80U-QB-rwc" firstAttribute="top" secondItem="GIX-e7-Vaq" secondAttribute="bottom" constant="7" id="vpd-B4-a8y"/>
                     </constraints>
                 </view>
-                <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="y3N-hx-IGf" userLabel="Top View">
+                <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="y3N-hx-IGf" userLabel="Top View">
                     <rect key="frame" x="0.0" y="0.0" width="320" height="40"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                     <subviews>
@@ -292,7 +292,7 @@
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <subviews>
                         <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="Kt0-Ju-jY9" userLabel="Index Button">
-                            <rect key="frame" x="37" y="5" width="22" height="22"/>
+                            <rect key="frame" x="37" y="5" width="24" height="24"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <fontDescription key="fontDescription" type="system" pointSize="10"/>
                             <state key="normal" title="动态" image="dongtai.png">
@@ -365,7 +365,7 @@
                     </constraints>
                 </view>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="PYb-tm-iTt">
-                    <rect key="frame" x="0.0" y="497" width="320" height="18"/>
+                    <rect key="frame" x="0.0" y="501" width="320" height="18"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 </imageView>
             </subviews>
@@ -373,9 +373,8 @@
             <constraints>
                 <constraint firstItem="3Np-wi-VeX" firstAttribute="trailing" secondItem="y3N-hx-IGf" secondAttribute="trailing" id="34F-jZ-4ok"/>
                 <constraint firstItem="3Np-wi-VeX" firstAttribute="leading" secondItem="q7e-KX-Zd0" secondAttribute="leading" id="HlZ-wC-yj4"/>
-                <constraint firstItem="3Np-wi-VeX" firstAttribute="top" secondItem="PYb-tm-iTt" secondAttribute="bottom" constant="3" id="JIV-Vv-Scx"/>
-                <constraint firstItem="PYb-tm-iTt" firstAttribute="top" secondItem="q7e-KX-Zd0" secondAttribute="bottom" constant="-11" id="PVT-U7-OBv"/>
-                <constraint firstItem="gQX-WC-OJs" firstAttribute="top" secondItem="y3N-hx-IGf" secondAttribute="bottom" id="QB7-zD-8NR"/>
+                <constraint firstItem="3Np-wi-VeX" firstAttribute="top" secondItem="PYb-tm-iTt" secondAttribute="bottom" constant="-1" id="JIV-Vv-Scx"/>
+                <constraint firstItem="PYb-tm-iTt" firstAttribute="top" secondItem="q7e-KX-Zd0" secondAttribute="bottom" constant="-7" id="PVT-U7-OBv"/>
                 <constraint firstItem="3Np-wi-VeX" firstAttribute="trailing" secondItem="gQX-WC-OJs" secondAttribute="trailing" id="Qsp-5J-dMe"/>
                 <constraint firstAttribute="bottom" secondItem="3Np-wi-VeX" secondAttribute="bottom" id="UCJ-Hp-TF4"/>
                 <constraint firstItem="3Np-wi-VeX" firstAttribute="leading" secondItem="gQX-WC-OJs" secondAttribute="leading" id="Yw4-R2-ld2"/>
@@ -391,7 +390,7 @@
     </objects>
     <resources>
         <image name="caogao.png" width="34" height="34"/>
-        <image name="dongtai.png" width="28" height="28"/>
+        <image name="dongtai.png" width="34" height="34"/>
         <image name="gengduo.png" width="34" height="34"/>
         <image name="huahua.png" width="80" height="76"/>
         <image name="jingcaizuopin.png" width="80" height="76"/>
