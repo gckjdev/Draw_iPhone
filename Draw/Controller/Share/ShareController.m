@@ -525,6 +525,9 @@ typedef enum{
 #ifdef DEBUG
     [self showActivityWithText:@"kSaving"];
     
+    dispatch_queue_attr_t queue;
+    
+    
     [ShowDrawView createGIF:24
                   delayTime:0.5f
              drawActionList:_selectedPaint.drawActionList

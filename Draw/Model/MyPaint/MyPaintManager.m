@@ -382,7 +382,7 @@ static MyPaintManager* _defaultManager;
         UIImage* image = [[UIImage alloc] initWithContentsOfFile:filePath];
         
         UIImageWriteToSavedPhotosAlbum(image,
-                                       self, 
+                                       self,
                                        @selector(image:didFinishSavingWithError:contextInfo:),
                                        nil);
         _savePhotoToAlbumDelegate = delegate;
