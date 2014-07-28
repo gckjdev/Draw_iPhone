@@ -170,8 +170,10 @@ static TutorialCoreManager* _defaultTutorialCoreManager;
     [pbChapterBuilder setOpusId:[chapterList objectAtIndex:0]];
     [pbChapterBuilder setIndex:chapterIndex];
     [pbChapterBuilder setImageName:@"image.jpg"];
+    // TODO add tips image
     
     PBChapter* chapter = [pbChapterBuilder build];
+    
     [pb addChapter:chapter];
     PBStage* stage = [pb build];
     

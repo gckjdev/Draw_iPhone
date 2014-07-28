@@ -190,15 +190,15 @@
 }
 
 - (IBAction)goToBBS:(id)sender {
-//    [self enterBBS];
+    [self enterBBS];
     
 //    ResultShareAlertPageViewController *rspc = [[ResultShareAlertPageViewController alloc] init];
 //    CommonDialog *dialog = [CommonDialog createDialogWithTitle:NSLS(@"kResultSharePage") customView:rspc.view style:CommonDialogStyleCross];
 //    [dialog showInView:self.view];
     
-    TipsPageViewController *rspc = [[TipsPageViewController alloc] init];
-    CommonDialog *dialog = [CommonDialog createDialogWithTitle:NSLS(@"提示") customView:rspc.view style:CommonSquareDialogStyleCross];
-    [dialog showInView:self.view];
+//    TipsPageViewController *rspc = [[TipsPageViewController alloc] init];
+//    CommonDialog *dialog = [CommonDialog createDialogWithTitle:NSLS(@"提示") customView:rspc.view style:CommonSquareDialogStyleCross];
+//    [dialog showInView:self.view];
 }
 
 - (IBAction)goToDraw:(id)sender {
