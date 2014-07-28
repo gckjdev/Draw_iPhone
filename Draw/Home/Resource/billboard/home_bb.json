@@ -1,0 +1,27 @@
+{
+    "bb_list":
+    [
+    {
+     "index" : 1,
+     "function" : "goToGuidePage",
+     "image" : "http://58.215.184.18:8080/tutorial/image/GalleryImage2.jpg",
+     "text" : "测试海报",
+     "parameters" : []
+    },
+    {
+     "index" : 2,
+     "function" : "enterBBSPost:",
+     "image" : "http://58.215.184.18:8080/tutorial/image/3-4.png",
+     "text" : "测试海报",
+     "parameters" : ["postId-1234"]
+    }
+     {
+     "index" : 3,
+     "function" : "enterResultSharePage",
+     "image" : "http://58.215.184.18:8080/tutorial/image/5-4.png",
+     "text" : "测试海报",
+     "parameters" : []
+     }
+
+    ]
+}
