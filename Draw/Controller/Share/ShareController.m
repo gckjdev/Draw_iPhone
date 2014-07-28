@@ -387,9 +387,13 @@ typedef enum{
 
 - (void)performReplay
 {
-    
+    //总是占用人家回放按钮来测试，我都不好意思了。。记得最终要还原
+
 #ifdef DEBUG
-    [self performGif];
+//    [self performGif];
+
+//    [self gotoReplayView];
+    [self gotoPeriodReplayViewBegin:10 End:210];
     
     return;
 #endif
@@ -416,6 +420,48 @@ typedef enum{
     [player showInController:self];
     
 }
+
+- (void)gotoPeriodReplayViewBegin:(NSInteger)begin
+                              End:(NSInteger)end
+{
+    if(end<=begin)
+    {
+        PPDebug(@"end less than begin, fail to play period!");
+        return;
+    }
+    DrawPlayer *player;
+
+    MyPaint* currentPaint = _selectedPaint;
+    BOOL isNewVersion = [PPConfigManager currentDrawDataVersion] < [currentPaint drawDataVersion];
+    
+    if(end>[[currentPaint drawActionList] count] || begin < 0)
+    {
+        PPDebug(@"end > all action count, fail to play period!");
+        return;
+    }
+    
+    ReplayObject *obj = [ReplayObject obj];
+    obj.actionList = [currentPaint drawActionList];
+    obj.isNewVersion = isNewVersion;
+    obj.bgImage = [[MyPaintManager defaultManager] bgImageForPaint:currentPaint];
+    obj.layers = currentPaint.layers;
+    obj.canvasSize = [currentPaint canvasSize];
+    
+    player=[DrawPlayer playerWithReplayObj:obj];
+    UIImage *img = [player.showView createImageAtIndex:begin];
+    
+    NSMutableArray *subActionList;
+    NSRange range=NSMakeRange(begin, (end-begin));
+    subActionList =[[NSMutableArray alloc]initWithArray:[[currentPaint drawActionList] subarrayWithRange:range]];
+    obj.actionList = subActionList;
+    [subActionList release];
+    obj.bgImage=img;
+    player=[DrawPlayer playerWithReplayObj:obj];
+
+    [player showInController:self];
+}
+
+
 - (void)gotoEditConroller
 {
     MyPaint* currentPaint = _selectedPaint;    

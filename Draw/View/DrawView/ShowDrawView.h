@@ -59,6 +59,8 @@ typedef enum{
 
 - (void)resetFrameSize:(CGSize)size;
 
+- (UIImage*)createImageAtIndex:(NSUInteger)index;
+
 + (ShowDrawView *)showView;
 + (ShowDrawView *)showViewWithFrame:(CGRect)frame
                 drawActionList:(NSArray *)actionList

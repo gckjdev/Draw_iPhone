@@ -141,6 +141,7 @@ typedef enum {
     [self playFromDrawActionIndex:0];
 
 }
+
 - (void)stop
 {
     PPDebug(@"<ShowDrawView> stop");
@@ -557,6 +558,7 @@ typedef enum {
     //追寻到index位置的图，并利用createImage返回一个UIImage对象
     [self showToIndex:index];
     return [self createImage];
+    PPDebug(@"create an image at index: %d", index);
 }
 
 //gif的制作

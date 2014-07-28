@@ -2796,3 +2796,4 @@
 "kStartStage" = "Start!";
 "kContinueStage" = "Continue";
 "kConquerDraw" = "ConquerDraw";
+"kNoTimelineDraw" = "ConquerDraw";

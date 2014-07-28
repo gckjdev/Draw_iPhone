@@ -27236,9 +27236,10 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = "-ObjC";
-				PROVISIONING_PROFILE = "24E88A41-CC4E-4714-AA97-845A82B78813";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "24E88A41-CC4E-4714-AA97-845A82B78813";
+				PROVISIONING_PROFILE = "3BA88DD2-AD22-4DA4-99BC-85358024A548";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "3BA88DD2-AD22-4DA4-99BC-85358024A548";
 				SDKROOT = iphoneos;
+				STRIP_INSTALLED_PRODUCT = YES;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				USER_HEADER_SEARCH_PATHS = "./Draw/GameServer/ProtocolBuffer/**";
 				VALID_ARCHS = "arm64 armv7 armv7s";
@@ -27273,6 +27274,7 @@
 				PROVISIONING_PROFILE = "2DFA37DA-4AF3-4537-AEAE-76216B3A2502";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "2DFA37DA-4AF3-4537-AEAE-76216B3A2502";
 				SDKROOT = iphoneos;
+				STRIP_INSTALLED_PRODUCT = YES;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				USER_HEADER_SEARCH_PATHS = "./Draw/GameServer/ProtocolBuffer/**";
 				VALID_ARCHS = "arm64 armv7 armv7s";
@@ -27284,9 +27286,9 @@
 			baseConfigurationReference = 5F5CBE3EAF724F1A9042D44B /* Pods.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Lingzhe Peng (9WG829Y3AG)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Lingzhe Peng (9WG829Y3AG)";
-				COPY_PHASE_STRIP = NO;
+				COPY_PHASE_STRIP = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\\\\\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/iFly\\\\\\\"",
@@ -27381,8 +27383,8 @@
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "E91A656D-93F7-498E-BA1A-193F65D5247E";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "E91A656D-93F7-498E-BA1A-193F65D5247E";
+				PROVISIONING_PROFILE = "3BA88DD2-AD22-4DA4-99BC-85358024A548";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "3BA88DD2-AD22-4DA4-99BC-85358024A548";
 				VALID_ARCHS = "arm64 armv7 armv7s";
 				WRAPPER_EXTENSION = app;
 			};
@@ -27393,8 +27395,8 @@
 			baseConfigurationReference = 5F5CBE3EAF724F1A9042D44B /* Pods.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Lingzhe Peng (LPN7A567X3)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Lingzhe Peng (LPN7A567X3)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Lingzhe Peng (9WG829Y3AG)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Lingzhe Peng (9WG829Y3AG)";
 				COPY_PHASE_STRIP = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -27488,8 +27490,8 @@
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "2DFA37DA-4AF3-4537-AEAE-76216B3A2502";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "2DFA37DA-4AF3-4537-AEAE-76216B3A2502";
+				PROVISIONING_PROFILE = "";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				VALIDATE_PRODUCT = YES;
 				VALID_ARCHS = "arm64 armv7 armv7s";
 				WRAPPER_EXTENSION = app;

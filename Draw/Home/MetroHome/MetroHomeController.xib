@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="5056" systemVersion="12F45" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="5056" systemVersion="13D65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
@@ -33,11 +33,11 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="q7e-KX-Zd0" userLabel="Button View">
-                    <rect key="frame" x="0.0" y="195" width="320" height="313"/>
+                <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="q7e-KX-Zd0" userLabel="Button View">
+                    <rect key="frame" x="0.0" y="175" width="320" height="333"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <subviews>
-                        <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="80U-QB-rwc" userLabel="Gallery Button View">
+                        <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="80U-QB-rwc" userLabel="Gallery Button View">
                             <rect key="frame" x="120" y="185" width="190" height="80"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
@@ -81,7 +81,7 @@
                                 <constraint firstItem="YEB-pd-Lyq" firstAttribute="centerY" secondItem="80U-QB-rwc" secondAttribute="centerY" constant="-2" id="NTe-8G-0Xd"/>
                             </constraints>
                         </view>
-                        <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="PU5-qV-kv3" userLabel="Forum Button View">
+                        <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="PU5-qV-kv3" userLabel="Forum Button View">
                             <rect key="frame" x="10" y="185" width="100" height="80"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
@@ -125,7 +125,7 @@
                             </constraints>
                         </view>
                         <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="GIX-e7-Vaq" userLabel="Learning Button View">
-                            <rect key="frame" x="120" y="10" width="190" height="168"/>
+                            <rect key="frame" x="120" y="10" width="190" height="188"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             <subviews>
                                 <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="WXW-NN-1mM">
@@ -221,7 +221,7 @@
                         <constraint firstItem="80U-QB-rwc" firstAttribute="top" secondItem="GIX-e7-Vaq" secondAttribute="bottom" constant="7" id="vpd-B4-a8y"/>
                     </constraints>
                 </view>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="y3N-hx-IGf" userLabel="Top View">
+                <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="y3N-hx-IGf" userLabel="Top View">
                     <rect key="frame" x="0.0" y="0.0" width="320" height="40"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                     <subviews>
@@ -272,8 +272,8 @@
                         <constraint firstAttribute="height" constant="40" id="qds-Kl-NaN"/>
                     </constraints>
                 </view>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gQX-WC-OJs" userLabel="Gallery View">
-                    <rect key="frame" x="0.0" y="60" width="320" height="135"/>
+                <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gQX-WC-OJs" userLabel="Gallery View">
+                    <rect key="frame" x="0.0" y="40" width="320" height="135"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <subviews>
                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="nfA-cC-aWZ">
@@ -375,13 +375,12 @@
                 <constraint firstItem="3Np-wi-VeX" firstAttribute="leading" secondItem="q7e-KX-Zd0" secondAttribute="leading" id="HlZ-wC-yj4"/>
                 <constraint firstItem="3Np-wi-VeX" firstAttribute="top" secondItem="PYb-tm-iTt" secondAttribute="bottom" constant="3" id="JIV-Vv-Scx"/>
                 <constraint firstItem="PYb-tm-iTt" firstAttribute="top" secondItem="q7e-KX-Zd0" secondAttribute="bottom" constant="-11" id="PVT-U7-OBv"/>
-                <constraint firstItem="gQX-WC-OJs" firstAttribute="top" secondItem="y3N-hx-IGf" secondAttribute="bottom" constant="20" id="QB7-zD-8NR"/>
+                <constraint firstItem="gQX-WC-OJs" firstAttribute="top" secondItem="y3N-hx-IGf" secondAttribute="bottom" id="QB7-zD-8NR"/>
                 <constraint firstItem="3Np-wi-VeX" firstAttribute="trailing" secondItem="gQX-WC-OJs" secondAttribute="trailing" id="Qsp-5J-dMe"/>
                 <constraint firstAttribute="bottom" secondItem="3Np-wi-VeX" secondAttribute="bottom" id="UCJ-Hp-TF4"/>
                 <constraint firstItem="3Np-wi-VeX" firstAttribute="leading" secondItem="gQX-WC-OJs" secondAttribute="leading" id="Yw4-R2-ld2"/>
                 <constraint firstAttribute="bottom" secondItem="q7e-KX-Zd0" secondAttribute="bottom" constant="60" id="YxF-du-GEP"/>
                 <constraint firstItem="3Np-wi-VeX" firstAttribute="trailing" secondItem="q7e-KX-Zd0" secondAttribute="trailing" id="ase-4t-ilZ"/>
-                <constraint firstItem="q7e-KX-Zd0" firstAttribute="top" secondItem="Fbj-gT-7I9" secondAttribute="top" constant="195" id="c1t-IT-irX"/>
                 <constraint firstItem="3Np-wi-VeX" firstAttribute="leading" secondItem="y3N-hx-IGf" secondAttribute="leading" id="uo5-Wv-Vka"/>
                 <constraint firstItem="3Np-wi-VeX" firstAttribute="leading" secondItem="Fbj-gT-7I9" secondAttribute="leading" id="xhH-tY-bDa"/>
                 <constraint firstItem="q7e-KX-Zd0" firstAttribute="top" secondItem="gQX-WC-OJs" secondAttribute="bottom" id="zWE-7D-iMD"/>
