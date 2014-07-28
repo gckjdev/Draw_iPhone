@@ -57,8 +57,10 @@
 #define IMAGE_FRAME_X (ISIPAD ? 26:11)
 #define IMAGE_FRAME_Y (ISIPAD ? 20:15)
 #define IMAGE_FRAME_WIDTH (ISIPAD ? 500:265)
-#define IMAGE_FRAME_HEIGHT (ISIPAD ? 450:240)
-#define DEFAULT_GALLERY_IMAGE @"square2"
+//#define IMAGE_FRAME_HEIGHT (ISIPAD ? 450:240)
+//#define DEFAULT_GALLERY_IMAGE @"square2"
+#define IMAGE_FRAME_HEIGHT (ISIPAD ? 500:265)
+#define DEFAULT_GALLERY_IMAGE @"square3"
 
 -(void)initTipsSGFousImage:(NSString*)gallerUrlString{
     

@@ -17,11 +17,11 @@
     
     ICETutorialPage *layer1 = [[ICETutorialPage alloc] initWithTitle:@"Picture 4"
                                                             subTitle:@"The Louvre's Museum Pyramide"
-                                                         pictureName:@"tutorial_background_04@2x.jpg"
+                                                         pictureName:@"tutorial_background_02@2x.jpg"
                                                             duration:3.0];
     ICETutorialPage *layer2 = [[ICETutorialPage alloc] initWithTitle:@"Picture 4"
                                                             subTitle:@"The Louvre's Museum Pyramide"
-                                                         pictureName:@"tutorial_background_04@2x.jpg"
+                                                         pictureName:@"tutorial_background_01@2x.jpg"
                                                             duration:3.0];
     ICETutorialPage *layer3 = [[ICETutorialPage alloc] initWithTitle:@"Picture 4"
                                                             subTitle:@"The Louvre's Museum Pyramide"
@@ -30,7 +30,7 @@
     
     ICETutorialPage *layer4 = [[ICETutorialPage alloc] initWithTitle:@"Picture 4"
                                                             subTitle:@"The Louvre's Museum Pyramide"
-                                                         pictureName:@"tutorial_background_04@2x.jpg"
+                                                         pictureName:@"tutorial_background_03@2x.jpg"
                                                             duration:3.0];
     
     ICETutorialPage *layer5 = [[ICETutorialPage alloc] initWithTitle:@"Picture 4"
@@ -38,7 +38,7 @@
                                                          pictureName:@"tutorial_background_04@2x.jpg"
                                                             duration:3.0];
     
-    ICETutorialLabelStyle *titleStyle = [[ICETutorialLabelStyle alloc] init];
+    ICETutorialLabelStyle *titleStyle = [[[ICETutorialLabelStyle alloc] init] autorelease];
     [titleStyle setFont:[UIFont fontWithName:@"Helvetica-Bold" size:17.0f]];
     [titleStyle setTextColor:[UIColor whiteColor]];
     [titleStyle setLinesNumber:1];
