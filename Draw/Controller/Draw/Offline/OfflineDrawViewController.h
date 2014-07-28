@@ -21,6 +21,7 @@
 #import "UserService.h"
 #import "CMPopTipView.h"
 #import "DrawToolPanel.h"
+#import "PPConfigManager.h"
 
 @class Word;
 @class ShareImageManager;

@@ -2475,7 +2475,7 @@
 "kShareQQWeibo" = "分享到腾讯微博";
 "kShareFacebook" = "分享到Facebook";
 "kSaveAsPhoto" = "保存到相册";
-
+"kSaveAsGif" = "保存成为Gif图片";
 
 /*********************小吉画画国际化字符串结束 ************************/
 
@@ -2826,3 +2826,5 @@
 "kContinue" = "继续闯关";
 "kConquerDraw" = "闯关";
 "kNoTimelineDraw" = "闯关";
+
+"kStrokeNumberNotEnough" = "客官，不够认真哦！多画一下下吧！";

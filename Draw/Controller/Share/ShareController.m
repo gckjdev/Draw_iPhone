@@ -288,8 +288,8 @@ typedef enum{
                                       cancelButtonTitle:NSLS(@"kCancel") 
                                  destructiveButtonTitle:editString 
                                       otherButtonTitles:NSLS(@"kReplay"), NSLS(@"kDelete"),
-                    NSLS(@"kSaveAsPhoto"), NSLS(@"kShareSinaWeibo"),  // NSLS(@"kShareQQSpace"),
-                    NSLS(@"kSaveGif"),
+                    NSLS(@"kSaveAsPhoto"),
+                    NSLS(@"kShareSinaWeibo"),  // NSLS(@"kShareQQSpace"),
                     NSLS(@"kShareWeixinSession"), NSLS(@"kShareWeixinTimeline"),
                     NSLS(@"kShareQQWeibo"), NSLS(@"kShareFacebook"),
                     nil];
@@ -301,7 +301,8 @@ typedef enum{
                                  destructiveButtonTitle:NSLS(@"kReplay")
                                       otherButtonTitles:
                      NSLS(@"kDelete"), NSLS(@"kEdit"),
-                    NSLS(@"kSaveAsPhoto"), NSLS(@"kShareSinaWeibo"),  // NSLS(@"kShareQQSpace"),
+                    NSLS(@"kSaveAsPhoto"),NSLS(@"kSaveAsGif"),
+                    NSLS(@"kShareSinaWeibo"),  // NSLS(@"kShareQQSpace"),
                     NSLS(@"kShareWeixinSession"), NSLS(@"kShareWeixinTimeline"),
                     NSLS(@"kShareQQWeibo"), NSLS(@"kShareFacebook"),
 
@@ -393,8 +394,8 @@ typedef enum{
 //    [self performGif];
 
 //    [self gotoReplayView];
-    [self gotoPeriodReplayViewBegin:10 End:210];
-    
+    [self gotoPeriodReplayViewBegin:100 End:600];
+    [self hideActivity];
     return;
 #endif
     
@@ -459,6 +460,7 @@ typedef enum{
     player=[DrawPlayer playerWithReplayObj:obj];
 
     [player showInController:self];
+    
 }
 
 
@@ -517,10 +519,11 @@ typedef enum{
     return;
 }
 
-- (void)performGif
+- (void)saveGif
 {
     //testing gif function
 #ifdef DEBUG
+    [self showActivityWithText:@"kSaving"];
     
     [ShowDrawView createGIF:24
                   delayTime:0.5f
@@ -528,7 +531,8 @@ typedef enum{
                     bgImage:[[MyPaintManager defaultManager] bgImageForPaint:_selectedPaint]
                      layers:_selectedPaint.layers
                  canvasSize:_selectedPaint.canvasSize
-                 outputPath:@"/Users/Linruin/Desktop/test.gif"
+//                 outputPath:@"/Users/Linruin/Desktop/test.gif"
+                 outputPath: _selectedPaint.imageFilePath
                   scaleSize:0.5];
     
     [self hideActivity];
@@ -597,6 +601,10 @@ typedef enum{
     }
     else if (buttonIndex == SAVE_INTO_PHOTO){
         [self saveAlbum];
+    }
+    else if (buttonIndex == SAVE_INTO_GIF)
+    {
+        [self saveGif];
     }
     else if (buttonIndex == SHARE_SINA_WEIBO){
         [self share:TYPE_SINA];
@@ -921,6 +929,7 @@ typedef enum{
 //#endif
     
     SAVE_INTO_PHOTO = index++;
+    SAVE_INTO_GIF = index++;
     SHARE_SINA_WEIBO = index++;
 //    SHARE_QQ_ZONE = index++;
     SHARE_WEIXIN_SESSION = index++;

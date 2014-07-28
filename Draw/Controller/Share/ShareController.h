@@ -33,6 +33,7 @@ typedef enum {
     int DELETE;
 
     int SAVE_INTO_PHOTO;
+    int SAVE_INTO_GIF;
     int SHARE_SINA_WEIBO;
     int SHARE_QQ_ZONE;
     int SHARE_WEIXIN_SESSION;

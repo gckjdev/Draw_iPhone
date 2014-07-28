@@ -1554,4 +1554,16 @@
     return [MobClickUtils getStringValueByKey:@"TUTORIAL_SERVER_URL" defaultValue:@"http://www.place100.com:8300/api/i?"];
 }
 
++(NSInteger)getMinStrokeNum
+{
+    //限制用户提交时的笔画数量，需要测试
+    return 5;
+}
+
++(NSInteger)getMinPointNum
+{
+    //计算笔画是否过短，需要测试
+    return 10;
+}
+
 @end

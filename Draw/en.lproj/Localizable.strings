@@ -2440,7 +2440,6 @@
 "kAuthorizeCancel" = "Authorization cancelled";
 
 
-
 "kShareSinaWeibo" = "Share Sina Weibo";
 "kShareWeixinSession" = "Share WeChat Friend";
 "kShareWeixinTimeline" = "Share WeChat Timeline";
@@ -2448,7 +2447,7 @@
 "kShareQQWeibo" = "Share QQ Weibo";
 "kShareFacebook" = "Share Facebook";
 "kSaveAsPhoto" = "Save As Photo";
-
+"kSaveAsGif" = "Save As Gif";
 
 /*********************小吉画画国际化字符串结束 ************************/
 
@@ -2796,3 +2795,6 @@
 "kContinueStage" = "Continue";
 "kConquerDraw" = "ConquerDraw";
 "kNoTimelineDraw" = "ConquerDraw";
+
+"kStrokeNumberNotEnough" = "Hey buddy, draw a bit more please!";
+"kAllLocalDraft" = "All Opus";

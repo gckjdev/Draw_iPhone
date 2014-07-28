@@ -583,7 +583,7 @@ typedef enum {
     
     //创建输出路径
     NSString *path = outputPath;
-    
+    PPDebug(@"output gif to: %@",path);
     //创建CFURL对象
     /*
      CFURLCreateWithFileSystemPath(CFAllocatorRef allocator, CFStringRef filePath, CFURLPathStyle pathStyle, Boolean isDirectory)
