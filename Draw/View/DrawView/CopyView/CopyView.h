@@ -25,5 +25,8 @@
 - (void)enableMenu;
 - (void)disableMenu;
 - (UIImage*)image;
+- (UIImage*)imageForCompare;
+
+- (void)loadData:(PBUserStage*)userStage stage:(PBStage*)stage;
 
 @end
