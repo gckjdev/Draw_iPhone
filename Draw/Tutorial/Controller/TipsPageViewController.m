@@ -8,11 +8,35 @@
 
 #import "TipsPageViewController.h"
 #import "SGFocusImageItem.h"
+
 @interface TipsPageViewController ()
+
+@property (nonatomic, retain) NSString* dialogTitle;
+@property (nonatomic, retain) NSArray* imagePathArray;
 
 @end
 
 @implementation TipsPageViewController
+
++ (void)show:(PPViewController*)superController title:(NSString*)title imagePathArray:(NSArray*)imagePathArray
+{
+    TipsPageViewController *rspc = [[TipsPageViewController alloc] init];
+    rspc.dialogTitle = title;
+    rspc.imagePathArray = imagePathArray;
+    
+    CommonDialog *dialog = [CommonDialog createDialogWithTitle:title customView:rspc.view style:CommonSquareDialogStyleCross];
+    [dialog showInView:superController.view];
+
+    [superController addChildViewController:rspc];
+    [rspc release];
+}
+
+- (void)dealloc
+{
+    PPRelease(_dialogTitle);
+    PPRelease(_imagePathArray);
+    [super dealloc];
+}
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -29,11 +53,15 @@
     // Do any additional setup after loading the view from its nib.
     [self initTipsSGFousImage:nil];
 }
+
 #define IMAGE_FRAME_X (ISIPAD ? 26:11)
 #define IMAGE_FRAME_Y (ISIPAD ? 20:15)
 #define IMAGE_FRAME_WIDTH (ISIPAD ? 500:265)
+//#define IMAGE_FRAME_HEIGHT (ISIPAD ? 450:240)
+//#define DEFAULT_GALLERY_IMAGE @"square2"
 #define IMAGE_FRAME_HEIGHT (ISIPAD ? 500:265)
 #define DEFAULT_GALLERY_IMAGE @"square3"
+
 -(void)initTipsSGFousImage:(NSString*)gallerUrlString{
     
     
@@ -82,6 +110,7 @@
     
     
 }
+
 -(void)clickActionDelegate:(int)index{
     PPDebug(@"Tips");
     

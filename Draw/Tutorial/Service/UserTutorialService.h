@@ -78,8 +78,16 @@ typedef void(^UserTutorialServiceGetListResultBlock)(int resultCode, NSArray* re
                             stageId:(NSString*)stageId
                          stageIndex:(int)stageIndex;
 
+// 获得某个小节显示图片的路径（该图片用于界面显示）
 - (NSString*)getChapterImagePath:(NSString*)tutorialId stage:(PBStage*)stage chapterIndex:(int)currentChapterIndex;
+
+// 获得某个小节显示图片的路径（该图片用于界面显示）
+- (NSArray*)getChapterTipsImagePath:(NSString*)tutorialId stage:(PBStage*)stage chapterIndex:(int)chapterIndex;
+
+// 获得当前背景图片的路径（该图片用于界面显示）
 - (NSString*)getBgImagePath:(NSString*)tutorialId stage:(PBStage*)stage;
+
+// 获得作品数据文件的路径（该图片用于界面显示）
 - (NSString*)getOpusDataPath:(NSString*)tutorialId stage:(PBStage*)stage;
 
 @end

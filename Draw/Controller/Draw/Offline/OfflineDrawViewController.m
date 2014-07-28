@@ -82,6 +82,7 @@
 #import "OpenCVUtils.h"
 #import "ImageSimilarityEngine.h"
 #import "PBTutorial+Extend.h"
+#import "ResultShareAlertPageViewController.h"
 
 @interface OfflineDrawViewController()
 {
@@ -1668,10 +1669,11 @@
     NSInteger effetiveAction=[drawView.drawActionList count];
     for(DrawAction *da in drawView.drawActionList)
     {
-        if(10 > [da pointCount])
+        if (3 > [da pointCount])
             effetiveAction--;
     }
-    if(effetiveAction<=10)
+    
+    if(effetiveAction<=5)
     {
         PPDebug(@"too few strokes!");
         POSTMSG(@"客官，不够认真哦！");
@@ -1707,12 +1709,6 @@
 
     //从关卡传入difficulty，TODO
     int score = [ImageSimilarityEngine score1SrcPath:sourcePath destPath:destPath difficulty:1.0];
-    
-
-//    int score = [OpenCVUtils simpleDrawScoreSourceImagePath:sourcePath destImagePath:destPath];
-//    score = [OpenCVUtils hausdorffScoreSourceImagePath:sourcePath destImagePath:destPath];
-//    score = [OpenCVUtils cosineScoreSourceImagePath:sourcePath destImagePath:destPath];
-//    [OpenCVUtils testSourceImagePath:sourcePath destImagePath:destPath];
     
     [self.draft setScore:@(score)];
     [self.draft setScoreDate:[NSDate date]];
@@ -1773,13 +1769,28 @@
 - (void)showResultOptionForConquer
 {
     PBUserStage* userStage = [self buildUserStage];
-    
     int score = [self.draft.score intValue];
-    int defeatPercent = [userStage defeatPercent];
     
-    // TODO invoke show result view here, pass user stage, image as parameter
+    // invoke show result view here, pass user stage, image as parameter
+    [ResultShareAlertPageViewController show:self
+                                       image:self.submitOpusFinalImage
+                                   userStage:[self buildUserStage]
+                                       score:score
+                                   nextBlock:^{
+                                       
+                                       [self tryConquerNext];
+                                       
+                                   } retryBlock:^{
+                                       
+                                       [self conquerAgain];
+                                       
+                                   } backBlock:^{
+                                       
+                                       [self quit];
+                                   }];
     
     // 根据评分结果跳转
+    int defeatPercent = [userStage defeatPercent];
     if ([self isPassPractice:score]){
         
         BOOL isTutorialComplete = [[UserTutorialManager defaultManager] isLastStage:[self buildUserStage]];

@@ -9,11 +9,45 @@
 #import "ResultShareAlertPageViewController.h"
 #import "UserManager.h"
 #import "UIViewController+BGImage.h"
+#import "Tutorial.pb.h"
+#import "UserTutorialService.h"
+
 @interface ResultShareAlertPageViewController ()
+
+@property (nonatomic, retain) UIImage* resultImage;
+@property (nonatomic, retain) PBUserStage* userStage;
+@property (nonatomic, assign) int score;
+@property (nonatomic, copy) ResultShareAlertPageViewResultBlock nextBlock;
+@property (nonatomic, copy) ResultShareAlertPageViewResultBlock retryBlock;
+@property (nonatomic, copy) ResultShareAlertPageViewResultBlock backBlock;
 
 @end
 
 @implementation ResultShareAlertPageViewController
+
++ (void)show:(PPViewController*)superController
+       image:(UIImage*)resultImage
+   userStage:(PBUserStage*)userStage
+       score:(int)score
+   nextBlock:(ResultShareAlertPageViewResultBlock)nextBlock
+  retryBlock:(ResultShareAlertPageViewResultBlock)retryBlock
+   backBlock:(ResultShareAlertPageViewResultBlock)backBlock
+{
+    ResultShareAlertPageViewController *rspc = [[ResultShareAlertPageViewController alloc] init];
+    rspc.nextBlock = nextBlock;
+    rspc.retryBlock = retryBlock;
+    rspc.backBlock = backBlock;
+    rspc.userStage = userStage;
+    rspc.score = score;
+    rspc.resultImage = resultImage;
+    
+    CommonDialog *dialog = [CommonDialog createDialogWithTitle:NSLS(@"kResultSharePage") customView:rspc.view style:CommonDialogStyleCross];
+    [dialog showInView:superController.view];
+    
+    [superController addChildViewController:superController];
+    [rspc release];
+}
+
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -132,6 +166,14 @@
 */
 
 - (void)dealloc {
+    
+    self.nextBlock = nil;
+    self.retryBlock = nil;
+    self.backBlock = nil;
+    
+    PPRelease(_userStage);
+    PPRelease(_resultImage);
+    
     [_opusImageView release];
     [_avatarImageView release];
     [_nameLabel release];
@@ -140,7 +182,9 @@
     [_continueButton release];
     [super dealloc];
 }
-- (void)viewDidUnload {
+
+- (void)viewDidUnload
+{
     [self setOpusImageView:nil];
     [self setAvatarImageView:nil];
     [self setNameLabel:nil];
@@ -149,4 +193,5 @@
     [self setContinueButton:nil];
     [super viewDidUnload];
 }
+
 @end

@@ -14,6 +14,7 @@
 #import "ShowFeedController.h"
 #import "UserTutorialService.h"
 #import "Draw.h"
+#import "TipsPageViewController.h"
 
 #define COPY_VIEW_DEFAULT_WIDTH     (ISIPAD ? 250 : 100)
 #define COPY_VIEW_DEFAULT_HEIGHT    (ISIPAD ? 250 : 100)
@@ -303,7 +304,13 @@
             [self setHidden:YES];
         }
         else if ([title isEqualToString:COPY_VIEW_HELP]){
-            PPDebug(@"click COPY_VIEW_HELP");
+            // view tips
+            if (self.userStage){
+                NSArray* tipsPaths = [[UserTutorialService defaultService] getChapterTipsImagePath:_userStage.tutorialId
+                                                                                             stage:self.stage
+                                                                                      chapterIndex:_userStage.currentChapterIndex];
+                [TipsPageViewController show:self.superViewController imagePathArray:tipsPaths];
+            }
         }
     }];
     

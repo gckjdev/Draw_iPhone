@@ -348,6 +348,7 @@
 "kContentNull" = "Search keyword can not be empty.";
 
 "kNoDrawings" = "No Drawing";
+"kAllLocalDraft" = "All";
 "kAll" = "  All";
 "kMine" = "Mine";
 "kDraft" = "Draft";

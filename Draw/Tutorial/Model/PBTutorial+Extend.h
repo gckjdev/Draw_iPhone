@@ -22,8 +22,9 @@
 
 @interface PBStage (Extend2)
 
--(NSString *) name;
--(NSString *) desc;
+- (NSString *) name;
+- (NSString *) desc;
+- (NSArray*)tipsImageList:(NSUInteger)chapterIndex;
 
 @end
 
