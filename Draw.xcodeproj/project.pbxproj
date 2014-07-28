@@ -6485,6 +6485,18 @@
 		D8CF8AA11977981E0044E305 /* opencv2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D8CF8A9F1977981E0044E305 /* opencv2.framework */; };
 		D8CF8AA21977981F0044E305 /* opencv2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D8CF8A9F1977981E0044E305 /* opencv2.framework */; };
 		D8CF8AA31977981F0044E305 /* opencv2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D8CF8A9F1977981E0044E305 /* opencv2.framework */; };
+		D8D54F581985EC2A00E5050F /* square3.png in Resources */ = {isa = PBXBuildFile; fileRef = D8D54F571985EC2A00E5050F /* square3.png */; };
+		D8D54F591985EC2A00E5050F /* square3.png in Resources */ = {isa = PBXBuildFile; fileRef = D8D54F571985EC2A00E5050F /* square3.png */; };
+		D8D54F5A1985EC2A00E5050F /* square3.png in Resources */ = {isa = PBXBuildFile; fileRef = D8D54F571985EC2A00E5050F /* square3.png */; };
+		D8D54F5B1985EC2A00E5050F /* square3.png in Resources */ = {isa = PBXBuildFile; fileRef = D8D54F571985EC2A00E5050F /* square3.png */; };
+		D8D54F641986009F00E5050F /* LDProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = D8D54F611986009F00E5050F /* LDProgressView.m */; };
+		D8D54F651986009F00E5050F /* LDProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = D8D54F611986009F00E5050F /* LDProgressView.m */; };
+		D8D54F661986009F00E5050F /* LDProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = D8D54F611986009F00E5050F /* LDProgressView.m */; };
+		D8D54F671986009F00E5050F /* LDProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = D8D54F611986009F00E5050F /* LDProgressView.m */; };
+		D8D54F681986009F00E5050F /* UIColor+RGBValues.m in Sources */ = {isa = PBXBuildFile; fileRef = D8D54F631986009F00E5050F /* UIColor+RGBValues.m */; };
+		D8D54F691986009F00E5050F /* UIColor+RGBValues.m in Sources */ = {isa = PBXBuildFile; fileRef = D8D54F631986009F00E5050F /* UIColor+RGBValues.m */; };
+		D8D54F6A1986009F00E5050F /* UIColor+RGBValues.m in Sources */ = {isa = PBXBuildFile; fileRef = D8D54F631986009F00E5050F /* UIColor+RGBValues.m */; };
+		D8D54F6B1986009F00E5050F /* UIColor+RGBValues.m in Sources */ = {isa = PBXBuildFile; fileRef = D8D54F631986009F00E5050F /* UIColor+RGBValues.m */; };
 		EA038975183B06D300516952 /* GroupTopicController.m in Sources */ = {isa = PBXBuildFile; fileRef = EA038973183B06D300516952 /* GroupTopicController.m */; };
 		EA038976183B06D300516952 /* GroupTopicController.m in Sources */ = {isa = PBXBuildFile; fileRef = EA038973183B06D300516952 /* GroupTopicController.m */; };
 		EA038977183B06D300516952 /* GroupTopicController.m in Sources */ = {isa = PBXBuildFile; fileRef = EA038973183B06D300516952 /* GroupTopicController.m */; };
@@ -10848,6 +10860,11 @@
 		D8C784BE196A559F00323712 /* StageCell~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "StageCell~ipad.xib"; sourceTree = "<group>"; };
 		D8C784C3196A55C600323712 /* StageBasicInfoCell~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "StageBasicInfoCell~ipad.xib"; sourceTree = "<group>"; };
 		D8CF8A9F1977981E0044E305 /* opencv2.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = opencv2.framework; sourceTree = "<group>"; };
+		D8D54F571985EC2A00E5050F /* square3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = square3.png; sourceTree = "<group>"; };
+		D8D54F601986009F00E5050F /* LDProgressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LDProgressView.h; sourceTree = "<group>"; };
+		D8D54F611986009F00E5050F /* LDProgressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LDProgressView.m; sourceTree = "<group>"; };
+		D8D54F621986009F00E5050F /* UIColor+RGBValues.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+RGBValues.h"; sourceTree = "<group>"; };
+		D8D54F631986009F00E5050F /* UIColor+RGBValues.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+RGBValues.m"; sourceTree = "<group>"; };
 		EA038972183B06D300516952 /* GroupTopicController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GroupTopicController.h; sourceTree = "<group>"; };
 		EA038973183B06D300516952 /* GroupTopicController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GroupTopicController.m; sourceTree = "<group>"; };
 		EA038974183B06D300516952 /* GroupTopicController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GroupTopicController.xib; sourceTree = "<group>"; };
@@ -15314,6 +15331,7 @@
 		CA2A28A7195C120600A97478 /* Resource */ = {
 			isa = PBXGroup;
 			children = (
+				D8D54F571985EC2A00E5050F /* square3.png */,
 				D89B27C6198255790035BE5F /* square2.png */,
 				D89B27B7198219010035BE5F /* square.png */,
 				D8AA04251974CA6400083651 /* beginPlayGame(big).png */,
@@ -18135,6 +18153,7 @@
 		CAFEFDB316606FC100441D77 /* Component-View */ = {
 			isa = PBXGroup;
 			children = (
+				D8D54F5F1986009F00E5050F /* LHProgressView */,
 				D80BB5E31980C26000BFC4A7 /* THProgressView */,
 				D8B58B20197CEE090088E5F7 /* SGFocusImageFrame */,
 				D8B58AF8197CE8E60088E5F7 /* ICETutorial */,
@@ -18381,6 +18400,17 @@
 				D86542141980A941007D60E7 /* ResultShareAlertPageViewController~ipad.xib */,
 			);
 			name = ResultSharePage;
+			sourceTree = "<group>";
+		};
+		D8D54F5F1986009F00E5050F /* LHProgressView */ = {
+			isa = PBXGroup;
+			children = (
+				D8D54F601986009F00E5050F /* LDProgressView.h */,
+				D8D54F611986009F00E5050F /* LDProgressView.m */,
+				D8D54F621986009F00E5050F /* UIColor+RGBValues.h */,
+				D8D54F631986009F00E5050F /* UIColor+RGBValues.m */,
+			);
+			path = LHProgressView;
 			sourceTree = "<group>";
 		};
 		EA0C5516180B9203008069C1 /* InfColorPicker */ = {
@@ -19773,6 +19803,7 @@
 				CA9AAF3E18321621002DBAA5 /* SingInfoEditController~ipad.xib in Resources */,
 				CA9AAF4618321621002DBAA5 /* SongCell.xib in Resources */,
 				CA9AAF4A18321621002DBAA5 /* SongCell~ipad.xib in Resources */,
+				D8D54F5A1985EC2A00E5050F /* square3.png in Resources */,
 				CA9AAF5218321621002DBAA5 /* SongSearchController.xib in Resources */,
 				CA2A28E6195C1E6200A97478 /* AllTutorialController.xib in Resources */,
 				CA9AAF5618321621002DBAA5 /* SongSearchController~ipad.xib in Resources */,
@@ -20445,6 +20476,7 @@
 				A4D8FA5617DB08170085061F /* draw_layer_btn@2x.png in Resources */,
 				A4D8FA5A17DB08170085061F /* draw_save_btn@2x.png in Resources */,
 				A4D8FA5E17DB08170085061F /* draw_setting_btn@2x.png in Resources */,
+				D8D54F591985EC2A00E5050F /* square3.png in Resources */,
 				A4D8FA6217DB08170085061F /* draw_share@2x.png in Resources */,
 				A4D8FA6617DB08170085061F /* experience@2x.png in Resources */,
 				CA93D12918F008FA002BB805 /* PinterestSDKResources.bundle in Resources */,
@@ -21222,6 +21254,7 @@
 				C2B538331677712300725802 /* CommonZJHDialog.xib in Resources */,
 				C2B538341677712300725802 /* CommonZJHDialog~ipad.xib in Resources */,
 				C2B538351677712300725802 /* DiceInputDialog.xib in Resources */,
+				D8D54F581985EC2A00E5050F /* square3.png in Resources */,
 				C2B538361677712300725802 /* DiceInputDialog~ipad.xib in Resources */,
 				C2B538371677712300725802 /* DicePassWordDialog.xib in Resources */,
 				C2B538381677712300725802 /* DicePassWordDialog~ipad.xib in Resources */,
@@ -22840,6 +22873,7 @@
 				A4D8001617DB089C0085061F /* number@2x.png in Resources */,
 				A4D8001A17DB089C0085061F /* orange_button@2x.png in Resources */,
 				A4D8001E17DB089C0085061F /* photo@2x.png in Resources */,
+				D8D54F5B1985EC2A00E5050F /* square3.png in Resources */,
 				A4D8002217DB089C0085061F /* placeholder_photo@2x.png in Resources */,
 				A4D8002617DB089C0085061F /* draw_player_close@2x.png in Resources */,
 				A4D8002A17DB089C0085061F /* draw_player_minus@2x.png in Resources */,
@@ -23475,6 +23509,7 @@
 				A461B23B174CBAA70088B061 /* FXLabel.m in Sources */,
 				A461B23C174CBAA70088B061 /* CreatePostController.m in Sources */,
 				A461B240174CBAA70088B061 /* RRSGlowLabel.m in Sources */,
+				D8D54F661986009F00E5050F /* LDProgressView.m in Sources */,
 				A461B241174CBAA70088B061 /* BBSPostDetailController.m in Sources */,
 				CA900510194EE775003389FD /* SelectOpusClassViewController.m in Sources */,
 				A461B242174CBAA70088B061 /* BBSPostListController.m in Sources */,
@@ -23904,6 +23939,7 @@
 				A421516F1803EA2A007F2EFD /* MWPhoto.m in Sources */,
 				A42151721803EA2A007F2EFD /* MWPhotoBrowser.m in Sources */,
 				D89B27B11981FAC80035BE5F /* TipsPageViewController.m in Sources */,
+				D8D54F6A1986009F00E5050F /* UIColor+RGBValues.m in Sources */,
 				A42151751803EA2A007F2EFD /* MWTapDetectingImageView.m in Sources */,
 				A42151781803EA2A007F2EFD /* MWTapDetectingView.m in Sources */,
 				A421517B1803EA2A007F2EFD /* MWZoomingScrollView.m in Sources */,
@@ -24068,6 +24104,7 @@
 				D8B58B26197CEE090088E5F7 /* SGFocusImageFrame.m in Sources */,
 				C28A99871738F04B007A819F /* StatusView.m in Sources */,
 				C28A99881738F04B007A819F /* UISwitchCell.m in Sources */,
+				D8D54F691986009F00E5050F /* UIColor+RGBValues.m in Sources */,
 				C28A99891738F04B007A819F /* UITextFieldForCell.m in Sources */,
 				C28A998A1738F04B007A819F /* UITextTableViewCell.m in Sources */,
 				C28A998B1738F04B007A819F /* UIToolBarCell.m in Sources */,
@@ -24426,6 +24463,7 @@
 				C28A9BA91738F04B007A819F /* RoomPasswordDialog.m in Sources */,
 				C28A9BB01738F04B007A819F /* CommonSettingView.m in Sources */,
 				C28A9BB41738F04B007A819F /* BulletinCell.m in Sources */,
+				D8D54F651986009F00E5050F /* LDProgressView.m in Sources */,
 				C28A9BB51738F04B007A819F /* BulletinView.m in Sources */,
 				C28A9BB61738F04B007A819F /* BulletinService.m in Sources */,
 				C28A9BB71738F04B007A819F /* Bulletin.m in Sources */,
@@ -24929,6 +24967,7 @@
 				D8B58B25197CEE090088E5F7 /* SGFocusImageFrame.m in Sources */,
 				CA103ECB1509A56200F60C03 /* StatusView.m in Sources */,
 				CA103ECC1509A56200F60C03 /* UISwitchCell.m in Sources */,
+				D8D54F681986009F00E5050F /* UIColor+RGBValues.m in Sources */,
 				CA103ECD1509A56200F60C03 /* UITextFieldForCell.m in Sources */,
 				CA103ECE1509A56200F60C03 /* UITextTableViewCell.m in Sources */,
 				CA103ECF1509A56200F60C03 /* UIToolBarCell.m in Sources */,
@@ -25287,6 +25326,7 @@
 				C2B5383B1677712300725802 /* DrawUserInfoView.m in Sources */,
 				C2B538411677712300725802 /* PassWordDialog.m in Sources */,
 				C2B538441677712300725802 /* RoomPasswordDialog.m in Sources */,
+				D8D54F641986009F00E5050F /* LDProgressView.m in Sources */,
 				C2F1DEC416786E1C002D8408 /* CommonSettingView.m in Sources */,
 				C2974D05167F1BB200E012FC /* BulletinCell.m in Sources */,
 				C2974D08167F1BB200E012FC /* BulletinView.m in Sources */,
@@ -25786,6 +25826,7 @@
 				EA41182C176066F500DA72D0 /* UICustomeBackGroundView.m in Sources */,
 				EA41182D176066F500DA72D0 /* UIBadgeView.m in Sources */,
 				EA41182E176066F500DA72D0 /* UIHideButton.m in Sources */,
+				D8D54F6B1986009F00E5050F /* UIColor+RGBValues.m in Sources */,
 				EA41182F176066F500DA72D0 /* UIBlankView.m in Sources */,
 				EA411830176066F500DA72D0 /* UINumberAccessoryView.m in Sources */,
 				EA411833176066F500DA72D0 /* StatusView.m in Sources */,
@@ -26470,6 +26511,7 @@
 				CACD6CD118E03BCD003F97C0 /* SBJsonParser.m in Sources */,
 				EADC02581817CF8C0038B6A8 /* SearchPostController.m in Sources */,
 				CAEEC19D181A5DAC007FD75F /* ScreenCaptureView.m in Sources */,
+				D8D54F671986009F00E5050F /* LDProgressView.m in Sources */,
 				EA8CADE418288CAF003149FE /* GroupService.m in Sources */,
 				EA8CADEB18288D32003149FE /* DrawError.m in Sources */,
 				EA8CADF11828A646003149FE /* GroupPermission.m in Sources */,

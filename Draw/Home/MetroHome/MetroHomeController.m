@@ -128,7 +128,7 @@
 //        self.view.bounds = CGRectMake(0, 20, self.view.frame.size.width, self.view.frame.size.height);
 //        PPDebug(@"self.view.bounds.y2==%d",self.view.bounds.origin.y);
 //    }
-    
+     
 }
 
 -(void)setGalleryImageForModel{
@@ -195,8 +195,29 @@
     UIImage *bottomBackground = [UIImage imageNamed:@"neironglan yu caidanlan.png"];
     [self.bottomBackground setBackgroundColor:[UIColor clearColor]];
     [self.bottomBackground setImage:bottomBackground];
+    CGFloat mainScreenHeight = [[UIScreen mainScreen] bounds].size.height;
+    if(!ISIPAD){
+        NSLayoutConstraint* constraint = nil;
+        if(mainScreenHeight == 480){
+            constraint = [NSLayoutConstraint constraintWithItem:self.bottomBackground
+                                                      attribute:NSLayoutAttributeTop
+                                                      relatedBy:NSLayoutRelationEqual
+                                                         toItem:self.mainView
+                                                      attribute:NSLayoutAttributeBottom
+                                                     multiplier:1.0
+                                                       constant:-5];
+        }else{
+            constraint = [NSLayoutConstraint constraintWithItem:self.bottomBackground
+                                                      attribute:NSLayoutAttributeTop
+                                                      relatedBy:NSLayoutRelationEqual
+                                                         toItem:self.mainView
+                                                      attribute:NSLayoutAttributeBottom
+                                                     multiplier:1.0
+                                                       constant:-10];
+        }
+        [self.view addConstraint:constraint];
+    }
 }
-
 
 
 
@@ -221,7 +242,10 @@
 }
 
 - (IBAction)goToDraw:(id)sender {
-    [self enterOfflineDraw];
+//    [self enterOfflineDraw];
+    ResultShareAlertPageViewController *rspc = [[[ResultShareAlertPageViewController alloc] init] autorelease];
+        CommonDialog *dialog = [CommonDialog createDialogWithTitle:NSLS(@"kResultSharePage") customView:rspc.view style:CommonDialogStyleCross];
+        [dialog showInView:self.view];
 }
 
 - (IBAction)goToOpus:(id)sender {

@@ -283,7 +283,7 @@
     + self.oKButton.frame.size.height
     + GAP_Y_BETWEEN_BUTTON_AND_BOTTOM + CONTENT_VIEW_INSERT;
     
-    [self.contentView updateHeight:height];
+    [self.contentView updateHeight:height+30];
     [self.contentView setNeedsDisplay];
 }
 
