@@ -1653,12 +1653,12 @@
 
 - (BOOL)isPassPractice:(int)score
 {
-    return (score >= 60);
+    return [[UserTutorialManager defaultManager] isPass:score];
 }
 
 - (BOOL)isPassConquer:(int)score
 {
-    return (score >= 60);
+    return [[UserTutorialManager defaultManager] isPass:score];
 }
 
 - (void)handleSubmitForLearnDraw
@@ -1911,6 +1911,7 @@
     [self.draft setDeleteFlag:@(YES)]; // delete current draft
     
     PBUserStage* userStage = [self buildUserStage];
+    
     PBUserTutorial* userTutorial = [self buildUserTutorial];
     
     PBStage* nextStage = [self.tutorial nextStage:userStage.stageIndex];

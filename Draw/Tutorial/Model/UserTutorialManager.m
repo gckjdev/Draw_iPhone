@@ -491,6 +491,11 @@ static UserTutorialManager* _defaultManager;
 
 - (BOOL)isPass:(int)score
 {
+#ifdef DEBUG
+    return YES;
+#endif
+    
+    
     return (score >= 60);
 }
 
