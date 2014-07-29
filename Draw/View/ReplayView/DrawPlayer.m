@@ -94,19 +94,6 @@
     return player;
 }
 
-+ (DrawPlayer *)playerWithReplayObj:(ReplayObject *)obj WithSliderBegin:(NSInteger)begin End:(NSInteger)end
-{
-    PPDebug(@"<playerWithReplayObj> begin=%d, end=%d", begin, end);
-    DrawPlayer *player = [DrawPlayer createViewWithXibIdentifier:@"DrawPlayer" ofViewIndex:ISIPAD];
-    player.replayObj = obj;
-    [player updateView];
-   
-    player.playSlider.minValue = begin;
-    player.playSlider.maxValue = end;
-    [player.playSlider setValue:begin];
-    
-    return player;
-}
 
 
 
@@ -374,7 +361,7 @@
             obj.canvasSize = draw.canvasSize;
             obj.layers = draw.layers;
             
-            DrawPlayer *player = [DrawPlayer playerWithReplayObj:obj WithSliderBegin:startIndex End:endIndex];
+            DrawPlayer *player = [DrawPlayer playerWithReplayObj:obj]; //[DrawPlayer playerWithReplayObj:obj WithSliderBegin:startIndex End:endIndex];
             [player showInController:cp];
             
             [pool drain];
@@ -383,6 +370,102 @@
         });
     });
     
+}
+
++ (void)updateReplayObjectPlayIndex:(ReplayObject *)obj
+                              begin:(NSUInteger)begin
+                                end:(NSUInteger)end
+{
+    NSMutableArray* drawActionList = obj.actionList;
+    
+    if (end < begin)
+    {
+        PPDebug(@"end less than begin, fail to play period!");
+        return;
+    }
+    
+    if (end >= [drawActionList count] || begin >= [drawActionList count])
+    {
+        PPDebug(@"end > all action count, fail to play period!");
+        return;
+    }
+    
+    if (begin == 0 && (end >= ([drawActionList count] - 1))){
+        // begin and end is the whole list, no need to do any extra actions
+        obj.actionList = drawActionList;
+        return;
+    }
+    
+    
+    // create sub action by [begin, end]
+    NSMutableArray *subActionList;
+    NSRange range = NSMakeRange(begin, (end-begin));
+    subActionList = [[NSMutableArray alloc] initWithArray:[drawActionList subarrayWithRange:range]];
+    obj.actionList = subActionList;
+    [subActionList release];
+    
+
+}
+
+- (void)updateBgImageByIndex:(NSMutableArray*)origActionList
+                       begin:(int)begin
+                         end:(int)end
+{
+    NSMutableArray* drawActionList = origActionList;
+    
+    if (end < begin)
+    {
+        PPDebug(@"end less than begin, fail to play period!");
+        return;
+    }
+    
+    if (end >= [drawActionList count] || begin >= [drawActionList count])
+    {
+        PPDebug(@"end > all action count, fail to play period!");
+        return;
+    }
+    
+    if (begin == 0 && (end >= ([drawActionList count] - 1))){
+        // begin and end is the whole list, no need to do any extra actions
+        return;
+    }
+    
+    // update background image
+    UIImage *img = nil; // create bg image
+    if (begin > 0){
+        // if begin from 0, means no background image needed
+        [self.showView createImageAtIndex:begin];
+    }
+    
+    if (img != nil){
+        if (self.replayObj.bgImage == nil){
+            self.replayObj.bgImage = img;
+        }
+        else{
+            // TODO if current bg image is not nil, need to merge it
+        }
+    }
+    
+}
+
++ (DrawPlayer*)playerWithReplayObj:(ReplayObject *)obj
+                             begin:(NSUInteger)begin
+                               end:(NSUInteger)end
+{
+
+    // backup list for update background image
+    NSMutableArray* orignActionList = obj.actionList;
+    
+    // split draw action list
+    PPDebug(@"<playerWithReplayObj> begin=%d, end=%d", begin, end);
+    [DrawPlayer updateReplayObjectPlayIndex:obj begin:begin end:end];
+    
+    DrawPlayer *player = [DrawPlayer playerWithReplayObj:obj];
+
+    // update background image
+    [player updateBgImageByIndex:orignActionList begin:begin end:end];
+    
+    return player;
 }
 
 @end

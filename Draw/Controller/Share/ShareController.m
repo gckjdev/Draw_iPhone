@@ -423,21 +423,21 @@ typedef enum{
 - (void)gotoPeriodReplayViewBegin:(NSInteger)begin
                               End:(NSInteger)end
 {
-    if(end<=begin)
-    {
-        PPDebug(@"end less than begin, fail to play period!");
-        return;
-    }
-    DrawPlayer *player;
+//    if(end<=begin)
+//    {
+//        PPDebug(@"end less than begin, fail to play period!");
+//        return;
+//    }
 
+    DrawPlayer *player;
     MyPaint* currentPaint = _selectedPaint;
     BOOL isNewVersion = [PPConfigManager currentDrawDataVersion] < [currentPaint drawDataVersion];
     
-    if(end>[[currentPaint drawActionList] count] || begin < 0)
-    {
-        PPDebug(@"end > all action count, fail to play period!");
-        return;
-    }
+//    if(end>[[currentPaint drawActionList] count] || begin < 0)
+//    {
+//        PPDebug(@"end > all action count, fail to play period!");
+//        return;
+//    }
     
     ReplayObject *obj = [ReplayObject obj];
     obj.actionList = [currentPaint drawActionList];
@@ -446,16 +446,17 @@ typedef enum{
     obj.layers = currentPaint.layers;
     obj.canvasSize = [currentPaint canvasSize];
     
-    player=[DrawPlayer playerWithReplayObj:obj];
-    UIImage *img = [player.showView createImageAtIndex:begin];
+    player = [DrawPlayer playerWithReplayObj:obj begin:begin end:end];
     
-    NSMutableArray *subActionList;
-    NSRange range=NSMakeRange(begin, (end-begin));
-    subActionList =[[NSMutableArray alloc]initWithArray:[[currentPaint drawActionList] subarrayWithRange:range]];
-    obj.actionList = subActionList;
-    [subActionList release];
-    obj.bgImage=img;
-    player=[DrawPlayer playerWithReplayObj:obj];
+//    UIImage *img = [player.showView createImageAtIndex:begin];
+//    
+//    NSMutableArray *subActionList;
+//    NSRange range=NSMakeRange(begin, (end-begin));
+//    subActionList =[[NSMutableArray alloc]initWithArray:[[currentPaint drawActionList] subarrayWithRange:range]];
+//    obj.actionList = subActionList;
+//    [subActionList release];
+//    obj.bgImage=img;
+//    player=[DrawPlayer playerWithReplayObj:obj];
 
     [player showInController:self];
     
