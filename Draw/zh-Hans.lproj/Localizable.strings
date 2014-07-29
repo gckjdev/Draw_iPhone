@@ -2826,3 +2826,7 @@
 "kContinue" = "继续闯关";
 "kConquerDraw" = "闯关";
 "kNoTimelineDraw" = "闯关";
+
+"kMenuLearnDraw" = "学画";
+"kSetRanTypeButtonYear" = "年榜";
+"kSetRanTypeButtonWeek" = "周榜";

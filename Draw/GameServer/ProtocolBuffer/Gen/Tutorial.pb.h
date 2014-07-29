@@ -488,7 +488,7 @@ BOOL PBUserTutorialStatusIsValidValue(PBUserTutorialStatus value);
   BOOL hasEnName_:1;
   BOOL hasCnName_:1;
   BOOL hasStageId_:1;
-  Float64 difficulty;
+  Float32 difficulty;
   int32_t scoreEngine;
   int32_t imageStyle;
   NSString* bgImageName;
@@ -546,7 +546,7 @@ BOOL PBUserTutorialStatusIsValidValue(PBUserTutorialStatus value);
 @property (readonly, retain) NSString* bgImageName;
 @property (readonly) int32_t imageStyle;
 @property (readonly) int32_t scoreEngine;
-@property (readonly) Float64 difficulty;
+@property (readonly) Float32 difficulty;
 - (NSArray*) chapterList;
 - (PBChapter*) chapterAtIndex:(int32_t) index;
 
@@ -682,8 +682,8 @@ BOOL PBUserTutorialStatusIsValidValue(PBUserTutorialStatus value);
 - (PBStage_Builder*) clearScoreEngine;
 
 - (BOOL) hasDifficulty;
-- (Float64) difficulty;
-- (PBStage_Builder*) setDifficulty:(Float64) value;
+- (Float32) difficulty;
+- (PBStage_Builder*) setDifficulty:(Float32) value;
 - (PBStage_Builder*) clearDifficulty;
 @end
 

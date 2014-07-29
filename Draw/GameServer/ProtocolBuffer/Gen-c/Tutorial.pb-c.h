@@ -125,7 +125,7 @@ struct  _Game__PBStage
   protobuf_c_boolean has_scoreengine;
   int32_t scoreengine;
   protobuf_c_boolean has_difficulty;
-  double difficulty;
+  float difficulty;
 };
 #define GAME__PBSTAGE__INIT \
  { PROTOBUF_C_MESSAGE_INIT (&game__pbstage__descriptor) \

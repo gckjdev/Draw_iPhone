@@ -275,22 +275,16 @@ static UserTutorialManager* _defaultManager;
 - (NSArray*)allUserTutorials
 {
     NSArray* list = [[self getDb] allObjects];
-
-//#ifdef DEBUG
-//    // for test
-//    if ([list count] == 0){
-//            PBTutorial* tutorial = [self createTestTutorial];
-//            [self addTutorial:tutorial];
-//        
-//        list = [[self getDb] allObjects];
-//    }
-//#endif
+    if ([list count] == 0){
+        PPDebug(@"<allUserTutorials> no item");
+        return nil;
+    }
     
-    NSMutableArray* retList = [[[NSMutableArray alloc] init] autorelease];
+    NSMutableArray* retList = [[[NSMutableArray alloc] initWithCapacity:[list count]] autorelease];
     for (NSData* data in list){
         @try {
             PBUserTutorial* ut = [PBUserTutorial parseFromData:data];
-            [retList addObject:ut];
+            [retList insertObject:ut atIndex:0]; // insert from first
         }
         @catch (NSException *exception) {
         }
@@ -298,6 +292,7 @@ static UserTutorialManager* _defaultManager;
         }
     }
     
+    PPDebug(@"<allUserTutorials> return %d items", [retList count]);
     return retList;
 }
 

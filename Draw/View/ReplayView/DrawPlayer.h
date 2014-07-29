@@ -57,6 +57,10 @@
 - (void)stop;
 - (void)start;
 
-+ (void)playDrawData:(NSData**)drawData draw:(Draw**)retDraw viewController:(PPViewController*)viewController;
++ (void)playDrawData:(NSData**)drawData
+                draw:(Draw**)retDraw
+      viewController:(PPViewController*)viewController
+          startIndex:(int)startIndex
+            endIndex:(int)endIndex;
 
 @end

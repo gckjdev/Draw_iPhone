@@ -2260,6 +2260,4 @@ static ComebackManager* _defaultLoginManager;
     self.notification = nil;
 }
 
-
-
 @end
