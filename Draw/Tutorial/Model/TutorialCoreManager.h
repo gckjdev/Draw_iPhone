@@ -23,10 +23,10 @@
 // 创建测试数据
 - (void)createTestData;
 
--(PBTutorial*)findTutorialByUserTutorialId:(PBUserTutorial*)userTutorial;
--(PBTutorial*)findTutorialByTutorialId:(NSString*)tutorialId;
+- (PBTutorial*)findTutorialByUserTutorialId:(PBUserTutorial*)userTutorial;
+- (PBTutorial*)findTutorialByTutorialId:(NSString*)tutorialId;
 
--(PBTutorial*)defaultFirstTutorial;
+- (PBTutorial*)defaultFirstTutorial;
 
 
 @end

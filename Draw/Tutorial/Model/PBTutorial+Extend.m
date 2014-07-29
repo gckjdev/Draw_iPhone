@@ -158,7 +158,30 @@
     
 }
 
-
+- (NSArray*)tipsImageList:(NSUInteger)chapterIndex
+{
+    if ([self.chapterList count] == 0){
+        return nil;
+    }
+    
+    if (chapterIndex >= [self.chapterList count]){
+        return nil;
+    }
+    
+    PBChapter* chapter = [self.chapterList objectAtIndex:chapterIndex];
+    if ([chapter.tipsList count] == 0){
+        return nil;
+    }
+    
+    NSMutableArray* retList = [NSMutableArray array];
+    for (PBTip* tip in self.chapterList){
+        if (tip.imageName){
+            [retList addObject:tip.imageName];
+        }
+    }
+    
+    return retList;
+}
 
 
 @end

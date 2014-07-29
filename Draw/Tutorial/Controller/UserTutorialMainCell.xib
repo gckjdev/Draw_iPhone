@@ -55,16 +55,16 @@
                         </constraints>
                     </view>
                     <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="sql-Ey-6EW" userLabel="button and label View">
-                        <rect key="frame" x="72" y="29" width="145" height="80"/>
+                        <rect key="frame" x="72" y="30" width="145" height="80"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <button hidden="YES" opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LR0-YB-7ux">
-                                <rect key="frame" x="16" y="25" width="113" height="30"/>
+                                <rect key="frame" x="5" y="25" width="120" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="L09-KT-hgW"/>
-                                    <constraint firstAttribute="width" constant="113" id="eza-dx-7iO"/>
+                                    <constraint firstAttribute="width" constant="120" id="eza-dx-7iO"/>
                                 </constraints>
                                 <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <state key="normal" title="开始" backgroundImage="beginPlayGame(big).png">
@@ -81,7 +81,7 @@
                                 <size key="shadowOffset" width="1" height="1"/>
                             </label>
                             <view contentMode="scaleAspectFit" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="nnc-fz-v4X" userLabel="progress and label View">
-                                <rect key="frame" x="0.0" y="10" width="145" height="60"/>
+                                <rect key="frame" x="0.0" y="0.0" width="145" height="80"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                     <label hidden="YES" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hpc-rY-RGp">
@@ -98,7 +98,7 @@
                                 <constraints>
                                     <constraint firstItem="hpc-rY-RGp" firstAttribute="leading" secondItem="nnc-fz-v4X" secondAttribute="leading" constant="22" id="epp-dq-CzA"/>
                                     <constraint firstItem="hpc-rY-RGp" firstAttribute="centerX" secondItem="nnc-fz-v4X" secondAttribute="centerX" id="hN8-lz-yoB"/>
-                                    <constraint firstItem="hpc-rY-RGp" firstAttribute="top" secondItem="nnc-fz-v4X" secondAttribute="top" constant="41" id="lp9-0A-Em7"/>
+                                    <constraint firstItem="hpc-rY-RGp" firstAttribute="top" secondItem="nnc-fz-v4X" secondAttribute="top" constant="38" id="lp9-0A-Em7"/>
                                 </constraints>
                                 <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                             </view>
@@ -106,7 +106,7 @@
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="LR0-YB-7ux" firstAttribute="top" secondItem="sql-Ey-6EW" secondAttribute="top" constant="25" id="3fv-5p-DAc"/>
-                            <constraint firstItem="LR0-YB-7ux" firstAttribute="centerX" secondItem="fhu-Ld-yTS" secondAttribute="centerX" id="AEy-RP-fbU"/>
+                            <constraint firstItem="LR0-YB-7ux" firstAttribute="centerX" secondItem="fhu-Ld-yTS" secondAttribute="centerX" constant="-7" id="AEy-RP-fbU"/>
                             <constraint firstItem="fhu-Ld-yTS" firstAttribute="centerX" secondItem="sql-Ey-6EW" secondAttribute="centerX" id="ZpL-sW-qHt"/>
                             <constraint firstItem="fhu-Ld-yTS" firstAttribute="top" secondItem="sql-Ey-6EW" secondAttribute="top" constant="54" id="bXO-Ya-idY"/>
                             <constraint firstItem="fhu-Ld-yTS" firstAttribute="leading" secondItem="sql-Ey-6EW" secondAttribute="leading" constant="42" id="g6b-Ea-aN0"/>
@@ -118,13 +118,13 @@
                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                 <constraints>
                     <constraint firstItem="LWl-3k-Pwp" firstAttribute="leading" secondItem="l6U-8P-Mme" secondAttribute="leading" id="Cdi-z1-FGN"/>
-                    <constraint firstItem="l6U-8P-Mme" firstAttribute="top" secondItem="sql-Ey-6EW" secondAttribute="bottom" constant="11" id="Dgj-WT-ebE"/>
+                    <constraint firstItem="l6U-8P-Mme" firstAttribute="top" secondItem="sql-Ey-6EW" secondAttribute="bottom" constant="10" id="Dgj-WT-ebE"/>
                     <constraint firstItem="l6U-8P-Mme" firstAttribute="leading" secondItem="dB4-Ko-gd6" secondAttribute="leading" id="GG0-4r-B3D"/>
                     <constraint firstAttribute="bottom" secondItem="l6U-8P-Mme" secondAttribute="bottom" constant="14" id="H5x-51-kGS"/>
                     <constraint firstItem="LWl-3k-Pwp" firstAttribute="top" secondItem="dB4-Ko-gd6" secondAttribute="top" id="L5V-e1-PVy"/>
                     <constraint firstItem="sql-Ey-6EW" firstAttribute="leading" secondItem="dB4-Ko-gd6" secondAttribute="leading" constant="72" id="R2I-8j-EhE"/>
                     <constraint firstItem="l6U-8P-Mme" firstAttribute="trailing" secondItem="LWl-3k-Pwp" secondAttribute="trailing" id="bLM-PN-9Sr"/>
-                    <constraint firstItem="sql-Ey-6EW" firstAttribute="top" secondItem="dB4-Ko-gd6" secondAttribute="top" constant="29" id="d6I-GG-35q"/>
+                    <constraint firstItem="sql-Ey-6EW" firstAttribute="top" secondItem="dB4-Ko-gd6" secondAttribute="top" constant="30" id="d6I-GG-35q"/>
                     <constraint firstAttribute="trailing" secondItem="LWl-3k-Pwp" secondAttribute="trailing" id="grl-02-Spd"/>
                     <constraint firstAttribute="bottom" secondItem="LWl-3k-Pwp" secondAttribute="bottom" constant="14" id="oVC-iS-y4Z"/>
                 </constraints>

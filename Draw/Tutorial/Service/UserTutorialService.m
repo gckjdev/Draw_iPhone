@@ -258,6 +258,30 @@ static UserTutorialService* _defaultService;
     return path;
 }
 
+- (NSArray*)getChapterTipsImagePath:(NSString*)tutorialId stage:(PBStage*)stage chapterIndex:(int)chapterIndex
+{
+    NSArray* tipsImageList = [stage tipsImageList:chapterIndex];
+    if ([tipsImageList count] == 0){
+        PPDebug(@"<getChapterTipsImagePath> chapterIndex=%d, but no tips image", chapterIndex);
+        return nil;
+    }
+    
+    NSMutableArray* retList = [NSMutableArray array];
+    PPSmartUpdateData* smartData = [self getSmartData:tutorialId stageId:stage.stageId];
+    for (NSString* tipsName in tipsImageList){
+        if ([tipsName length] > 0){
+            NSString* imagePath = [[smartData currentDataPath] stringByAppendingPathComponent:tipsName];
+            [retList addObject:imagePath];
+            PPDebug(@"<getChapterTipsImagePath> chapterIndex=%d, add tips path(%@) ", chapterIndex, imagePath);
+        }
+        else{
+            PPDebug(@"<getChapterTipsImagePath> chapterIndex=%d, tipsName empty", chapterIndex);
+        }
+    }
+    
+    return retList;
+}
+
 - (NSString*)getChapterImagePath:(NSString*)tutorialId stage:(PBStage*)stage chapterIndex:(int)currentChapterIndex
 {
     PPSmartUpdateData* smartData = [self getSmartData:tutorialId stageId:stage.stageId];

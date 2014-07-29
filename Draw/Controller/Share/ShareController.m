@@ -391,9 +391,7 @@ typedef enum{
     //总是占用人家回放按钮来测试，我都不好意思了。。记得最终要还原
 
 #ifdef DEBUG
-//    [self performGif];
 
-//    [self gotoReplayView];
     [self gotoPeriodReplayViewBegin:100 End:600];
     [self hideActivity];
     return;
@@ -524,20 +522,21 @@ typedef enum{
     //testing gif function
 #ifdef DEBUG
     [self showActivityWithText:@"kSaving"];
-    
-    dispatch_queue_attr_t queue;
-    
-    
-    [ShowDrawView createGIF:24
+//    BOOL flag=NO;
+    dispatch_queue_t queue=dispatch_queue_create("Gif Making",NULL);
+    dispatch_async(queue,
+                   ^(void){
+                [ShowDrawView createGIF:24
                   delayTime:0.5f
              drawActionList:_selectedPaint.drawActionList
                     bgImage:[[MyPaintManager defaultManager] bgImageForPaint:_selectedPaint]
                      layers:_selectedPaint.layers
                  canvasSize:_selectedPaint.canvasSize
-//                 outputPath:@"/Users/Linruin/Desktop/test.gif"
-                 outputPath: _selectedPaint.imageFilePath
+                 outputPath: _selectedPaint.imageFilePath// Local test use: @"/Users/Linruin/Desktop/test.gif"
                   scaleSize:0.5];
-    
+                    
+                   });
+                   
     [self hideActivity];
     
     return;
