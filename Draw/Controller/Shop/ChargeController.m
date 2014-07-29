@@ -25,6 +25,7 @@
 #import "PPNetworkConstants.h"
 #import "CommonDialog.h"
 #import "PBIAPProduct+Utils.h"
+#import "SKProductService.h"
 
 #define ALIPAY_EXTRA_PARAM_KEY_IAP_PRODUCT @"ALIPAY_EXTRA_PARAM_KEY_IAP_PRODUCT"
 

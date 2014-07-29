@@ -73,6 +73,25 @@
         
         [viewControllers addObject:hot];
         [hot release];
+        
+        FeedListController* recommend = [[FeedListController alloc] initWithFeedType:FeedListTypeRecommend
+                                                                       opusClassInfo:nil
+                                                                        displayStyle:FEED_DISPLAY_NORMAL
+                                                                 superViewController:self
+                                                                               title:NSLS(@"kLittleGeeRecommend")];
+        
+        [viewControllers addObject:recommend];
+        [recommend release];
+        
+        FeedListController* latest = [[FeedListController alloc] initWithFeedType:FeedListTypeLatest
+                                                                    opusClassInfo:nil
+                                                                     displayStyle:FEED_DISPLAY_NORMAL
+                                                              superViewController:self
+                                                                            title:NSLS(@"kRankNew")];
+        
+        [viewControllers addObject:latest];
+        [latest release];
+        
     }
     else{
         FeedListController* alltime = [[FeedListController alloc] initWithFeedType:FeedListTypeHistoryRank
@@ -84,24 +103,6 @@
         [viewControllers addObject:alltime];
         [alltime release];
     }
-
-    FeedListController* recommend = [[FeedListController alloc] initWithFeedType:FeedListTypeRecommend
-                                                                   opusClassInfo:nil
-                                                                    displayStyle:FEED_DISPLAY_NORMAL
-                                                             superViewController:self
-                                                                           title:NSLS(@"kLittleGeeRecommend")];
-    
-    [viewControllers addObject:recommend];
-    [recommend release];
-
-    FeedListController* latest = [[FeedListController alloc] initWithFeedType:FeedListTypeLatest
-                                                                opusClassInfo:nil
-                                                                 displayStyle:FEED_DISPLAY_NORMAL
-                                                          superViewController:self
-                                                                        title:NSLS(@"kRankNew")];
-    
-    [viewControllers addObject:latest];
-    [latest release];
     
     int feedListTypeForClass = FeedListTypeClassAlltimeTop;
     if (_currentRankType == FeedListTypeHot){
