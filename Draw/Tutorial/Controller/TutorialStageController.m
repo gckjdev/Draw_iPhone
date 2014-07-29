@@ -82,6 +82,17 @@
     
 }
 
+- (void)reload
+{
+    self.pbUserTutorial = [[UserTutorialManager defaultManager] findUserTutorialByLocalId:self.pbUserTutorial.localId];
+    [self.collectionView reloadData];
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [self reload];
+    [super viewDidAppear:animated];
+}
 
 //每个section的item个数
 -(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section

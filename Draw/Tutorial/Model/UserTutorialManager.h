@@ -39,5 +39,6 @@
 - (void)save:(PBUserTutorial*)ut;
 
 - (PBUserTutorial*)updateLatestTutorial:(PBUserTutorial*)ut;
+- (PBUserTutorial*)findUserTutorialByLocalId:(NSString*)localId;
 
 @end
