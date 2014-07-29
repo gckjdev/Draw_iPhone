@@ -145,10 +145,10 @@
 - (NSString*)getRankTypeTitle
 {
     if (_currentRankType == FeedListTypeHistoryRank){
-        return NSLS(@"kSetRanTypeButtonYear");
+        return NSLS(@"kSetRanTypeButtonWeek");
     }
     else{
-        return NSLS(@"kSetRanTypeButtonWeek");
+        return NSLS(@"kSetRanTypeButtonYear");
     }
 }
 
@@ -169,6 +169,12 @@
     
     [[CommonTitleView titleView:self.view] addSubview:button];
     self.rankTypeButton = button;
+}
+
+- (void)updateRankTypeButtonTitle
+{
+    NSString* title = [self getRankTypeTitle];
+    [self.rankTypeButton setTitle:title forState:UIControlStateNormal];
 }
 
 - (void)viewDidLoad
@@ -192,6 +198,12 @@
 
 	// Do any additional setup after loading the view.
     [self initPageContainerData:0];
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [self updateRankTypeButtonTitle];
+    [super viewDidAppear:animated];
 }
 
 - (void)clickAdd:(id)sender
@@ -227,7 +239,8 @@
     else{
         self.currentRankType = FeedListTypeHistoryRank;
     }
-
+    [self updateRankTypeButtonTitle];
+    
     int currentSelectIndex = self.pagesContainer.selectedIndex;
     [self reloadPageContainer:currentSelectIndex];
     
