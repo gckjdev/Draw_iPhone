@@ -24,6 +24,7 @@
     rspc.dialogTitle = title;
     rspc.imagePathArray = imagePathArray;
     
+    
     CommonDialog *dialog = [CommonDialog createDialogWithTitle:title customView:rspc.view style:CommonSquareDialogStyleCross];
     [dialog showInView:superController.view];
 
@@ -51,7 +52,7 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-    [self initTipsSGFousImage:nil];
+    [self initTipsSGFousImage:self.imagePathArray];
 }
 
 #define IMAGE_FRAME_X (ISIPAD ? 26:11)
@@ -60,42 +61,22 @@
 //#define IMAGE_FRAME_HEIGHT (ISIPAD ? 450:240)
 //#define DEFAULT_GALLERY_IMAGE @"square2"
 #define IMAGE_FRAME_HEIGHT (ISIPAD ? 500:265)
-#define DEFAULT_GALLERY_IMAGE @"square3"
+#define DEFAULT_GALLERY_IMAGE @"daguanka"
 
--(void)initTipsSGFousImage:(NSString*)gallerUrlString{
-    
-    
-    NSString *galleryImage = gallerUrlString;
-    NSURL *galleryUrl = [NSURL URLWithString:galleryImage];
+-(void)initTipsSGFousImage:(NSArray*)imagePathArray{
     
     NSMutableArray *itemList = [[[NSMutableArray alloc] init] autorelease];
-    UIImage *image = nil;
-    //设置默认图片
-    if(galleryUrl==nil||[galleryUrl isEqual:@""]){
-        
-        image = [UIImage imageNamed:DEFAULT_GALLERY_IMAGE] ;
-        
-    }
-    //读取网上的图片数据
-    NSData* data = [NSData dataWithContentsOfURL:galleryUrl];
-    if(data==nil){
-        image = [UIImage imageNamed:DEFAULT_GALLERY_IMAGE] ;
-    }
-    image = [[[UIImage alloc] initWithData:data] autorelease];
+    for(NSString *gallerUrlString in imagePathArray){
+        int i= 0;
+    UIImage *image = [[[UIImage alloc] initWithContentsOfFile:gallerUrlString] autorelease];
     
     if(image==nil){
         image = [UIImage imageNamed:DEFAULT_GALLERY_IMAGE] ;
     }
-    
-    image = [UIImage imageNamed:DEFAULT_GALLERY_IMAGE];
-
-    SGFocusImageItem *item = [[[SGFocusImageItem alloc] initWithTitle:@"" image:image tag:1] autorelease];
-    SGFocusImageItem *item2 = [[[SGFocusImageItem alloc] initWithTitle:@"" image:image tag:2] autorelease];
-    
+    SGFocusImageItem *item = [[[SGFocusImageItem alloc] initWithTitle:@"" image:image tag:i] autorelease];
     [itemList addObject:item];
-    [itemList addObject:item2];
-
-    
+        i++;
+    }
     SGFocusImageFrame *imageFrame = [[SGFocusImageFrame alloc] initWithFrameAndIntervalTime:CGRectMake(0, 0, IMAGE_FRAME_WIDTH,IMAGE_FRAME_HEIGHT)
                                                                     delegate:self
                                                                     intervalTime:0.0f

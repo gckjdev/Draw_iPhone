@@ -1767,6 +1767,7 @@
 //    }
 
     if (targetType == TypeConquerDraw){
+        [self showProgressViewWithMessage:NSLS(@"kSending")];
         self.submitOpusDrawData = [[DrawDataService defaultService] createOfflineDraw:drawView.drawActionList
                                                                                 image:image
                                                                              drawWord:[self opusWord]
@@ -1822,6 +1823,10 @@
                                        [self quit];
                                    }];
      */
+    
+    return;
+    
+    // the following code is just used for reference.
     
     // 根据评分结果跳转
     int defeatPercent = [userStage defeatPercent];

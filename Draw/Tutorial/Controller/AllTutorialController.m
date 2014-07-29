@@ -137,7 +137,7 @@ SET_CELL_BG_IN_VIEW
                 PBUserTutorial* ut = [[UserTutorialManager defaultManager] getUserTutorialByTutorialId:pbTutorial.tutorialId];
                 if (ut != nil){
                     [TutorialStageController enter:self pbTutorial:ut];
-                } 
+                }
             }];
            
         //没有添加的时候
