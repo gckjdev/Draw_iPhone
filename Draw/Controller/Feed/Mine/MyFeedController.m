@@ -33,7 +33,7 @@ typedef enum{
     MyTypeTimelineGuess = FeedListTypeTimelineGuess,
     MyTypeComment = FeedListTypeComment,
     MyTypeDrawToMe = FeedListTypeDrawToMe,
-    MyTypeTimeLineDraw = FeedListTypeTimeLineConquerDraw,
+    MyTypeTimeLineConquerDraw = FeedListTypeTimeLineConquerDraw,
     
 }MyType;
 
@@ -202,6 +202,7 @@ typedef enum{
         
         case MyTypeTimelineOpus:
         case MyTypeTimelineGuess:
+        case MyTypeTimeLineConquerDraw:
 //            return [FeedCell getCellHeight];
             return [CellManager getTimelineStyleCellHeight];
         case MyTypeComment:
@@ -298,6 +299,7 @@ typedef enum{
     switch ([[self currentTab] tabID]) {
         case MyTypeTimelineOpus:
         case MyTypeTimelineGuess:
+        case MyTypeTimeLineConquerDraw:
             return [CellManager getTimelineStyleCell:theTableView indexPath:indexPath delegate:self dataList:self.tabDataList];
             break;
             
@@ -409,6 +411,7 @@ typedef enum{
             
         case MyTypeTimelineOpus:
         case MyTypeTimelineGuess:
+        case MyTypeTimeLineConquerDraw:
             return [CellManager getTimelineStyleCellCountWithDataCount:count];
             
         case MyTypeComment:
@@ -435,7 +438,8 @@ typedef enum{
         return;
     }
     
-    if ((type != MyTypeTimelineOpus && type != MyTypeTimelineGuess) || indexPath.row > [self.tabDataList count])
+    if ((type != MyTypeTimelineOpus && type != MyTypeTimelineGuess && type != MyTypeTimeLineConquerDraw)
+        || indexPath.row > [self.tabDataList count])
         return;
     
     Feed *feed = [self.tabDataList objectAtIndex:indexPath.row];
@@ -490,22 +494,21 @@ typedef enum{
 }
 - (NSInteger)tabIDforIndex:(NSInteger)index
 {
-    NSInteger tabId[] = {MyTypeTimelineOpus,MyTypeTimelineGuess,MyTypeComment,MyTypeDrawToMe,MyTypeTimeLineDraw};
-
+    NSInteger tabId[] = {MyTypeTimelineOpus,MyTypeTimelineGuess,MyTypeTimeLineConquerDraw,MyTypeComment,MyTypeDrawToMe};
     return tabId[index];
 }
 
 - (NSString *)tabNoDataTipsforIndex:(NSInteger)index
 {
-    NSString *tabDesc[] = {NSLS(@"kNoMyFeed"),NSLS(@"kNoTimelineGuess"),NSLS(@"kNoMyComment"),NSLS(@"kNoDrawToMe"),NSLS(@"kNoTimelineDraw")};
+    NSString *tabDesc[] = {NSLS(@"kNoMyFeed"),NSLS(@"kNoTimelineGuess"),NSLS(@"kNoTimelineConquerDraw"),NSLS(@"kNoMyComment"),NSLS(@"kNoDrawToMe")};
+//    NSString *tabDesc[] = {NSLS(@"kNoMyFeed"),NSLS(@"kNoTimelineGuess"),NSLS(@"kNoMyComment"),NSLS(@"kNoDrawToMe")};
     
     return tabDesc[index];
 }
 
 - (NSString *)tabTitleforIndex:(NSInteger)index
 {
-    NSString *tabTitle[] = {NSLS(@"kUserFeed"),NSLS(@"kUserGuess"),NSLS(@"kComment"),NSLS(@"kDrawToMe"),NSLS(@"kNoTimelineDraw")};
-
+    NSString *tabTitle[] = {NSLS(@"kUserFeed"),NSLS(@"kUserGuess"),NSLS(@"kTimelineConquerDraw"),NSLS(@"kComment"),NSLS(@"kDrawToMe")};
     return tabTitle[index];
 }
 
@@ -554,7 +557,7 @@ typedef enum{
             
                 break;
             }
-            case MyTypeTimeLineDraw:
+            case MyTypeTimeLineConquerDraw:
             {
                 NSString *userId = [[UserManager defaultManager] userId];
                 [feedService getUserOpusList:userId
@@ -581,6 +584,9 @@ typedef enum{
     [self setBadge:manager.timelineGuessCount onTab:MyTypeTimelineGuess];
     [self setBadge:manager.commentCount onTab:MyTypeComment];
     [self setBadge:manager.drawToMeCount onTab:MyTypeDrawToMe];
+
+    // TODO timeline badge
+//    [self setBadge:manager.timelineConquerDraw onTab:MyTypeTimeLineConquerDraw];
 }
 
 - (void)clearBadge:(FeedListType)type

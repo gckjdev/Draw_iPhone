@@ -62,6 +62,8 @@ FeedManager *_staticFeedManager = nil;
         switch (pbFeed.actionType) {
             case FeedTypeDraw:
             case FeedTypeSing:
+            case FeedTypeConquerDraw:
+            case FeedTypePracticeDraw:
                 feed = [[[DrawFeed alloc] initWithPBFeed:pbFeed] autorelease];
                 break;
             case FeedTypeGuess:

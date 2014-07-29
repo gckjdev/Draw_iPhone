@@ -1623,7 +1623,6 @@
 //            [self commitOpus:subject desc:content share:shareSet classList:nil];
             
             // show set opus class
-//            /* TODO need to enable for release!!!!!!
             [SelectOpusClassViewController showInViewController:self
                                                    selectedTags:self.selectedClassList
                                               arrayForSelection:nil
@@ -1633,7 +1632,6 @@
                                                            [self commitOpus:subject desc:content share:shareSet classList:selectedArray];
 
                                                        }];
-//             */
             
         }else{
             [self setOpusWord:subject desc:content];
@@ -1673,7 +1671,7 @@
                        MinPointNum:(NSInteger)minPointNum;
 {
     //  提交按钮的预处理
-    NSInteger effetiveAction=[drawView.drawActionList count];
+    NSInteger effetiveAction = [drawView.drawActionList count];
     for(DrawAction *da in drawView.drawActionList)
     {
         if(minPointNum > [da pointCount])
@@ -1693,8 +1691,8 @@
 - (void)handleSubmitForLearnDraw
 {
     //  预处理
-    BOOL isEnough=[self strokeControlInSubmissionWithMinStrokeNum:[PPConfigManager getMinStrokeNum]
-                                                 MinPointNum:[PPConfigManager getMinPointNum]];
+    BOOL isEnough = [self strokeControlInSubmissionWithMinStrokeNum:[PPConfigManager getMinStrokeNum]
+                                                        MinPointNum:[PPConfigManager getMinPointNum]];
     if(NO==isEnough) return;
     
 //    NSInteger effetiveAction=[drawView.drawActionList count];
@@ -1767,6 +1765,7 @@
 //    }
 
     if (targetType == TypeConquerDraw){
+        [self showProgressViewWithMessage:NSLS(@"kSending")];
         self.submitOpusDrawData = [[DrawDataService defaultService] createOfflineDraw:drawView.drawActionList
                                                                                 image:image
                                                                              drawWord:[self opusWord]
@@ -1821,9 +1820,9 @@
                                        
                                        [self quit];
                                    }];
+     return;
      */
     
-    return;
     
     // the following code is just used for reference.
     
