@@ -84,17 +84,15 @@
 }
 
 - (void)enterTask{
-    
-#ifdef DEBUG
-    // for test user tutorial
+    TaskController *vc = [[[TaskController alloc] init] autorelease];
+    [self.navigationController pushViewController:vc animated:YES];
+}
+
+- (void)enterLearnDraw{
     UserTutorialMainController* ut = [[UserTutorialMainController alloc] init];
     [self.navigationController pushViewController:ut animated:YES];
     [ut release];
     return;
-#endif
-    
-    TaskController *vc = [[[TaskController alloc] init] autorelease];
-    [self.navigationController pushViewController:vc animated:YES];
 }
 
 - (void)enterOfflineDraw

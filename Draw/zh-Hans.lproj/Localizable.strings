@@ -2827,6 +2827,8 @@
 "kConquerDraw" = "闯关";
 "kNoTimelineDraw" = "闯关";
 
-
 "kStrokeNumberNotEnough" = "客官，不够认真哦！多画一下下吧！";
 
+"kMenuLearnDraw" = "学画";
+"kSetRanTypeButtonYear" = "年榜";
+"kSetRanTypeButtonWeek" = "周榜";

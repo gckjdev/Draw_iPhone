@@ -96,6 +96,7 @@
 
 + (DrawPlayer *)playerWithReplayObj:(ReplayObject *)obj WithSliderBegin:(NSInteger)begin End:(NSInteger)end
 {
+    PPDebug(@"<playerWithReplayObj> begin=%d, end=%d", begin, end);
     DrawPlayer *player = [DrawPlayer createViewWithXibIdentifier:@"DrawPlayer" ofViewIndex:ISIPAD];
     player.replayObj = obj;
     [player updateView];
@@ -324,7 +325,11 @@
     [self hidePanel:YES animated:YES];    
 }
 
-+ (void)playDrawData:(NSData**)drawData draw:(Draw**)retDraw viewController:(PPViewController*)viewController
++ (void)playDrawData:(NSData**)drawData
+                draw:(Draw**)retDraw
+      viewController:(PPViewController*)viewController
+          startIndex:(int)startIndex
+            endIndex:(int)endIndex
 {
     __block PPViewController * cp = viewController;
     
@@ -369,7 +374,7 @@
             obj.canvasSize = draw.canvasSize;
             obj.layers = draw.layers;
             
-            DrawPlayer *player = [DrawPlayer playerWithReplayObj:obj];
+            DrawPlayer *player = [DrawPlayer playerWithReplayObj:obj WithSliderBegin:startIndex End:endIndex];
             [player showInController:cp];
             
             [pool drain];

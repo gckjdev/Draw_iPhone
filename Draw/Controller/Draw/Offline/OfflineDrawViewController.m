@@ -823,6 +823,9 @@
     // 禁止自动锁屏
     [UIApplication sharedApplication].idleTimerDisabled = YES; // disable lock screen while in drawing
     
+    // 设置当前用户作画模式（用于能否使用道具判别）
+    [[UserManager defaultManager] setIsLearning:[self isLearnType]];
+    
     [super viewDidLoad];
     [self registerUIApplicationNotification];
 
@@ -845,6 +848,9 @@
     [self initRecovery];
     [self initTitleView];
     [self setCanDragBack:NO];
+    
+    // TODO update submit/next button status for learn draw (practice only)
+    
 }
 
 
@@ -1654,12 +1660,12 @@
 
 - (BOOL)isPassPractice:(int)score
 {
-    return (score >= 60);
+    return [[UserTutorialManager defaultManager] isPass:score];
 }
 
 - (BOOL)isPassConquer:(int)score
 {
-    return (score >= 60);
+    return [[UserTutorialManager defaultManager] isPass:score];
 }
 
 
@@ -1727,12 +1733,14 @@
     [draft setOpusCompleteDate:[NSDate date]];
     [draft setSelectedClassList:self.selectedClassList];
     
+    UIImage* imageForCompare = [_copyView imageForCompare];
+    
     // 评分
-    NSString* sourcePath = [self writeImageToFile:_copyView.image filePath:self.draft.draftId];
+    NSString* sourcePath = [self writeImageToFile:imageForCompare filePath:self.draft.draftId];
     NSString* destPath = self.tempImageFilePath;
 
     //从关卡传入difficulty，TODO
-    int score = [ImageSimilarityEngine score1SrcPath:sourcePath destPath:destPath difficulty:1.0];
+    int score = [ImageSimilarityEngine score1SrcPath:sourcePath destPath:destPath difficulty:_stage.difficulty];
     
     [self.draft setScore:@(score)];
     [self.draft setScoreDate:[NSDate date]];
@@ -1946,6 +1954,7 @@
     [self.draft setDeleteFlag:@(YES)]; // delete current draft
     
     PBUserStage* userStage = [self buildUserStage];
+    
     PBUserTutorial* userTutorial = [self buildUserTutorial];
     
     PBStage* nextStage = [self.tutorial nextStage:userStage.stageIndex];
@@ -2000,6 +2009,30 @@
                                                  stageIndex:userStage.stageIndex];
     
 //    [OfflineDrawViewController practice:self.startController userStage:userStage userTutorial:userTutorial];
+}
+
+- (IBAction)clickNextChapterButton:(id)sender
+{
+    // for learn draw practice mode
+    if (targetType != TypePracticeDraw){
+        PPDebug(@"<clickNextChapterButton> NOT IN PRACTICE MODE!!!!!");
+        return;
+    }
+
+    // next chapter
+    PBUserStage* newUserStage = [[UserTutorialService defaultService] nextChapter:[self buildUserStage]];
+    if (newUserStage == nil){
+        // no new user stage, next failure!!!
+        return;
+    }
+
+    // update user stage here
+    self.userStageBuilder = [PBUserStage builderWithPrototype:newUserStage];
+    
+    // update copy view
+    [_copyView loadData:[self buildUserStage] stage:self.stage];
+    
+    // TODO update submit/next button status
 }
 
 - (IBAction)clickSubmitButton:(id)sender {

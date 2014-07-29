@@ -108,7 +108,7 @@ message PBStage
 
     optional int32  imageStyle = 50;                // 闯关图片类型，取值参考PBTutorialImageStyle
     optional int32  scoreEngine = 51;               // 评分引擎，取值参考PBScoreEngineType
-    optional double difficulty = 52[default=1.0];   // 本关作品难度系数，默认为1.0（for简笔画，其他可能要取0.8-0.9）
+    optional float difficulty = 52[default=1.0];    // 本关作品难度系数，默认为1.0（for简笔画，其他可能要取0.8-0.9）
 }
 
 // 教程

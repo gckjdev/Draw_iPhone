@@ -694,9 +694,11 @@ static NSDictionary* DRAW_MENU_IMAGE_DICT = nil;
         case HomeMenuTypeDrawRank:
         {
             [[AnalyticsManager sharedAnalyticsManager] reportClickHomeMenu:HOME_ACTION_TOP];
-            HotController *hc = [[HotController alloc] init];
-            [self.navigationController pushViewController:hc animated:YES];
-            [hc release];
+            [self enterOpusClass];
+            
+//            HotController *hc = [[HotController alloc] init];
+//            [self.navigationController pushViewController:hc animated:YES];
+//            [hc release];
         }
             break;
             
@@ -711,10 +713,6 @@ static NSDictionary* DRAW_MENU_IMAGE_DICT = nil;
             
         case HomeMenuTypeDrawFreeCoins:
         {
-#ifdef DEBUG
-            [self enterOpusClass];
-            break;
-#endif
             [self enterCheckIn];
         }
             break;
@@ -768,6 +766,13 @@ static NSDictionary* DRAW_MENU_IMAGE_DICT = nil;
             [self enterGroup];
             break;
         }
+            
+        case HomeMenuTypeLearnDraw:
+        {
+            [self enterLearnDraw];
+        }
+            break;
+            
             
         default:
             break;
@@ -864,6 +869,13 @@ static NSDictionary* DRAW_MENU_IMAGE_DICT = nil;
             [[StatisticManager defaultManager] setTimelineOpusCount:0];
         }
             break;
+            
+        case HomeMenuTypeLearnDraw:
+        {
+            [self enterLearnDraw];
+        }
+            break;
+            
         case HomeMenuTypeDrawShop:
         {
             [[AnalyticsManager sharedAnalyticsManager] reportClickHomeMenu:HOME_ACTION_SHOP];
@@ -955,13 +967,14 @@ int *getDrawMainMenuTypeListHasNewContest()
         HomeMenuTypeGroup,
         HomeMenuTypeDrawBBS,
         HomeMenuTypeDrawRank,
-        HomeMenuTypeDrawFreeCoins,
+        HomeMenuTypeLearnDraw,
+//        HomeMenuTypeDrawFreeCoins,
 //        HomeMenuTypeOpusClass,
         HomeMenuTypeDrawContest,
         
         HomeMenuTypeDrawBigShop,
-//        HomeMenuTypeDrawFreeCoins,
-        HomeMenuTypeDrawPhoto,
+        HomeMenuTypeDrawFreeCoins,
+//        HomeMenuTypeDrawPhoto,
         HomeMenuTypeDrawMore,
         HomeMenuTypeDrawPainter,
         HomeMenuTypeDrawGame,
@@ -980,16 +993,16 @@ int *getDrawMainMenuTypeListWithoutFreeCoins()
         HomeMenuTypeGroup,
         HomeMenuTypeDrawBBS,
         HomeMenuTypeDrawRank,
-        HomeMenuTypeDrawFreeCoins,
-//        HomeMenuTypeOpusClass,
+        HomeMenuTypeLearnDraw,
+//        HomeMenuTypeDrawNewHot,
         HomeMenuTypeDrawContest,
         
         HomeMenuTypeDrawBigShop,
 //        HomeMenuTypeDrawFreeCoins,
-        HomeMenuTypeDrawPhoto,
+        HomeMenuTypeDrawFreeCoins,
+//        HomeMenuTypeDrawPhoto,
         HomeMenuTypeDrawMore,
         HomeMenuTypeDrawPainter,
-        HomeMenuTypeDrawGame,
         HomeMenuTypeDrawGuess,
         
         HomeMenuTypeEnd

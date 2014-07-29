@@ -219,12 +219,6 @@
     }
 }
 
-
-
-
-
-
-#pragma -mark
 #pragma mark click
 - (IBAction)goTolearning:(id)sender {
 }

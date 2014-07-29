@@ -26,4 +26,10 @@
 - (void)showBulletinView;
 - (void)goToGuidePage;
 - (void)enterMetroHome;
+- (void)enterUserSetting;
+- (void)enterPainter;
+- (void)enterUserTimeline;
+- (void)enterShop;
+- (void)enterLearnDraw;
+
 @end

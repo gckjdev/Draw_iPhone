@@ -2738,8 +2738,8 @@
 "kNewHotTitle" = "Gallery";
 "kConfigNewHot" = "Setttings";
 
-"kTutorialDesc" = "TutorialDescription";
-"kTutorialStageList" = "StageList";
+"kTutorialDesc" = "Details";
+"kTutorialStageList" = "All Stages";
 "kMetroStyle" = "Metro";
 "kClassicalStyle" = "Classical";
 "kHomeStyle" = "Home Style";
@@ -2763,8 +2763,8 @@
 "kPass" = "Conquer";
 "kConquer" = "Conquer";
 
-"kMoreView" = "MoreLittleGee";
-"kUserTutorialInfo" = "TutorialInfo";
+"kMoreView" = "More Littlegee";
+"kUserTutorialInfo" = "Info";
 
 "kPracticeResult" = "Result";
 "kPracticePass" = "Congratulations! Your score is %d. What a great practice!";
@@ -2780,7 +2780,7 @@
 "kConquerAgain" = "Try Again";
 
 //new分享页面
-"kResultSharePage" = "ResultShare";
+"kResultSharePage" = "Result";
 
 //
 "kAddSuccess" = "Add Success!";
@@ -2792,8 +2792,9 @@
 
 "kContinue" = "continue";
 "kProgress" = "Progress";
-"kStartStage" = "Start!";
+"kStartStage" = "Start";
 "kContinueStage" = "Continue";
+
 "kConquerDraw" = "ConquerDraw";
 "kNoTimelineDraw" = "ConquerDraw";
 
@@ -2801,3 +2802,9 @@
 "kStrokeNumberNotEnough" = "Hey buddy, draw a bit more please!";
 "kAllLocalDraft" = "All Opus";
 
+"kConquerDraw" = "Conquer Draw";
+"kNoTimelineDraw" = "Conquer Draw";
+
+"kMenuLearnDraw" = "Learn";
+"kSetRanTypeButtonYear" = "Alltime";
+"kSetRanTypeButtonWeek" = "Weekly";

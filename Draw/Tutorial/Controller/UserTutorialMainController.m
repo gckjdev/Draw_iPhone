@@ -36,6 +36,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
     // set title view
     [CommonTitleView createTitleView:self.view];
     [[CommonTitleView titleView:self.view] setTitle:NSLS(@"kUserTutorialMainTitle")];
@@ -65,18 +66,13 @@
     
     [self.view addConstraint:constraint];
     [self.view addConstraint:leftConstraint];
-//    [self.view addConstraint:rightConstraint];
-    
-    
     
 	// Do any additional setup after loading the view.
     // set background
-//    [self setDefaultBGImage];
 
     self.view.backgroundColor = COLOR_GRAY;
     [self setCanDragBack:NO];
     
-//    self.dataList = [[data reverseObjectEnumerator] allObjects];
 }
 
 - (void)reloadData
@@ -84,7 +80,7 @@
     [[UserTutorialService defaultService] getAllUserTutorials:^(int resultCode, NSArray* retList) {
         if(resultCode==0){
             PPDebug(@"<reloadData resultCode=%d>",resultCode);
-            self.dataList = [[retList reverseObjectEnumerator] allObjects];
+            self.dataList = retList;
             [self.dataTableView reloadData];
         }else{
             PPDebug(@"<reloadData has error resultCode=%d>",resultCode);
@@ -175,9 +171,7 @@
 //删除tableviewcell
 -(UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    
-     return UITableViewCellEditingStyleDelete;
-    
+    return UITableViewCellEditingStyleDelete;
 }
 
 -(void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath{

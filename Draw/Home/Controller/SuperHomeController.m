@@ -733,6 +733,7 @@ static NSDictionary* DEFAULT_MENU_SELECTOR_DICT = nil;
                                  @(HomeMenuTypeDrawBigShop) : NSLS(@"kHomeMenuTypeDrawShop"),
                                  @(HomeMenuTypeDrawShop) : NSLS(@"kHomeMenuTypeDrawShop"),
                                  @(HomeMenuTypeDrawPainter) : NSLS(@"kPainter"),
+                                 @(HomeMenuTypeLearnDraw) : NSLS(@"kMenuLearnDraw"),
                                  @(HomeMenuTypeDrawPhoto) : NSLS(@"kGallery"),
                                  @(HomeMenuTypeOpusClass) : NSLS(@"kHomeMenuOpusClass"),
                                  @(HomeMenuTypeDrawApps) : NSLS(@"kMore_apps"),
@@ -772,7 +773,8 @@ static NSDictionary* DEFAULT_MENU_SELECTOR_DICT = nil;
                                     @(HomeMenuTypeDrawFreeCoins) : @"enterFreeCoins",//@selector(enterCheckIn),
                                     @(HomeMenuTypeDrawApps) :  @"enterBBS",//TODO
                                     @(HomeMenuTypeDrawMore) : @"enterMore",//@selector(enterMore);
-                                    @(HomeMenuTypeGroup) : @"enterGroup"//@selector(enterGroup)
+                                    @(HomeMenuTypeGroup) : @"enterGroup",//@selector(enterGroup)
+                                    @(HomeMenuTypeLearnDraw) : @"enterLearnDraw",
                                     };
         
         [DEFAULT_MENU_SELECTOR_DICT retain];  // make sure you retain the dictionary here for futher usage
@@ -805,6 +807,7 @@ static NSDictionary* DEFAULT_MENU_SELECTOR_DICT = nil;
                                  @(HomeMenuTypeDrawPainter) : [imageManager drawHomePainter],
                                  @(HomeMenuTypeDrawPhoto) : [imageManager userPhoto],
                                  @(HomeMenuTypeOpusClass) : [imageManager userPhoto],
+                                 @(HomeMenuTypeLearnDraw) : [imageManager userPhoto],
                                  @(HomeMenuTypeDrawFreeCoins) : [imageManager drawFreeCoins],
                                  
                                  // bottom
