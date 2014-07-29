@@ -494,4 +494,22 @@ static UserTutorialManager* _defaultManager;
     return (score >= 60);
 }
 
+- (PBUserTutorial*)updateLatestTutorial:(PBUserTutorial*)ut
+{
+    if (ut == nil){
+        return ut;
+    }
+    
+    PBUserTutorial_Builder* builder = [PBUserTutorial builderWithPrototype:ut];
+    PBTutorial* tutorial = [[TutorialCoreManager defaultManager] findTutorialByTutorialId:ut.tutorial.tutorialId];
+    if (tutorial == nil){
+        return ut;;
+    }
+    
+    [builder setTutorial:tutorial];
+    PBUserTutorial* newUT = [builder build];
+    [[UserTutorialManager defaultManager] save:newUT];
+    return newUT;
+}
+
 @end

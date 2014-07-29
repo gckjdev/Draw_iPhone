@@ -94,19 +94,6 @@
     return player;
 }
 
-+ (DrawPlayer *)playerWithReplayObj:(ReplayObject *)obj WithSliderBegin:(NSInteger)begin End:(NSInteger)end
-{
-    PPDebug(@"<playerWithReplayObj> begin=%d, end=%d", begin, end);
-    DrawPlayer *player = [DrawPlayer createViewWithXibIdentifier:@"DrawPlayer" ofViewIndex:ISIPAD];
-    player.replayObj = obj;
-    [player updateView];
-   
-    player.playSlider.minValue = begin;
-    player.playSlider.maxValue = end;
-    [player.playSlider setValue:begin];
-    
-    return player;
-}
 
 
 
@@ -374,7 +361,7 @@
             obj.canvasSize = draw.canvasSize;
             obj.layers = draw.layers;
             
-            DrawPlayer *player = [DrawPlayer playerWithReplayObj:obj WithSliderBegin:startIndex End:endIndex];
+            DrawPlayer *player = [DrawPlayer playerWithReplayObj:obj]; //[DrawPlayer playerWithReplayObj:obj WithSliderBegin:startIndex End:endIndex];
             [player showInController:cp];
             
             [pool drain];
@@ -383,6 +370,112 @@
         });
     });
     
+}
+
+#pragma mark - Period Replay
+
++ (void)updateReplayObjectPlayIndex:(ReplayObject *)obj
+                              begin:(NSUInteger)begin
+                                end:(NSUInteger)end
+{
+    NSMutableArray* drawActionList = obj.actionList;
+    
+    if (end < begin)
+    {
+        PPDebug(@"end less than begin, fail to play period!");
+        return;
+    }
+    
+    if (end >= [drawActionList count] || begin >= [drawActionList count])
+    {
+        PPDebug(@"end > all action count, fail to play period!");
+        return;
+    }
+    
+    if (begin == 0 && (end >= ([drawActionList count] - 1))){
+        // begin and end is the whole list, no need to do any extra actions
+        obj.actionList = drawActionList;
+        return;
+    }
+    
+    
+    // create sub action by [begin, end]
+    NSMutableArray *subActionList;
+    NSRange range = NSMakeRange(begin, (end-begin));
+    subActionList = [[NSMutableArray alloc] initWithArray:[drawActionList subarrayWithRange:range]];
+    obj.actionList = subActionList;
+    [subActionList release];
+    
+}
+
+- (UIImage*)createBgImageByObj:(ReplayObject*)obj
+                         begin:(NSUInteger)begin
+                           end:(NSUInteger)end
+{
+    NSMutableArray* drawActionList = obj.actionList;
+    
+    if (end < begin)
+    {
+        PPDebug(@"<createBgImageByObj> end < begin, fail to play period!");
+        return obj.bgImage;
+    }
+    
+    if (end >= [drawActionList count] || begin >= [drawActionList count])
+    {
+        PPDebug(@"<createBgImageByObj> end >  total action count, fail to play period!");
+        return obj.bgImage;
+    }
+    
+    if (begin == 0 && (end >= ([drawActionList count] - 1))){
+        // begin and end is the whole list, no need to do any extra actions
+        return obj.bgImage;
+    }
+    
+    UIImage *retImg = nil;
+    
+    // update background image
+    UIImage *img = nil; // create bg image
+    if (begin > 0){
+        // if begin from 0, means no background image needed
+        img = [self.showView createImageAtIndex:begin];
+    }
+    
+    if (img != nil){
+        //用户木有使用背景图，返回index==begin时候的image;否则合并图片
+        if (obj.bgImage == nil){
+            retImg = img;
+        }
+        else{
+            // 将obj生成的image放到用户使用的bgImage上面合并成新的UIImage
+            retImg = [ShowDrawView addImage:img toImage:obj.bgImage];
+        }
+    }
+
+    return retImg;
+}
+
++ (DrawPlayer*)playerWithReplayObj:(ReplayObject *)obj
+                             begin:(NSUInteger)begin
+                               end:(NSUInteger)end
+{
+    PPDebug(@"<playerWithReplayObj> begin=%d, end=%d", begin, end);
+
+    // create background image, using the whole replay object
+    DrawPlayer *playerForBgImage=[DrawPlayer playerWithReplayObj:obj];
+    UIImage* bgImage = [playerForBgImage createBgImageByObj:obj begin:begin end:end];
+    
+    //赋值到obj
+    obj.bgImage = bgImage;
+    
+    //using another player to update replay object
+    DrawPlayer *player = [DrawPlayer createViewWithXibIdentifier:@"DrawPlayer" ofViewIndex:ISIPAD];
+    [DrawPlayer updateReplayObjectPlayIndex:obj begin:begin end:end];
+    
+    //把已经upadate的obj属性赋值到player
+    player.replayObj = obj;
+    [player updateView];
+
+    return player;
 }
 
 @end

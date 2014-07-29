@@ -8,6 +8,7 @@
 
 #import "StageCell.h"
 #import "UIImageView+Extend.h"
+#import "PBTutorial+Extend.h"
 
 @implementation StageCell
 #define TUTORIAL_IMAGE_HEIGHT       (ISIPAD ? 100 : 45)
@@ -30,11 +31,12 @@
 
 -(void)updateStageCellInfo:(PBUserTutorial *)pbUserTutorial withRow:(NSInteger)row{
    
-        //隐藏了BUTTON
-//    SET_BUTTON_ROUND_STYLE_ORANGE(self.stageListStarBtn);
-//    [[self.stageListStarBtn titleLabel] setFont:AD_FONT(24, 14)];
-    
+    //数组越界保护
     NSArray *stageList = [[pbUserTutorial tutorial] stagesList];
+    if (stageList==nil || row >= [stageList count]){
+        return ;
+    }
+    
     NSString* name = [[stageList objectAtIndex:row] name];
     //设置隐藏锁图片
     [self.stageListHiddenLockImageView setImage:[UIImage imageNamed:@DEFAUT_LOCK_IMAGE]];
@@ -49,16 +51,16 @@
     [self.stageListStarBtn.titleLabel setFont:AD_FONT(20, 14)];
     
     [self.hiddenNumberLabel setText:[NSString stringWithFormat:@"%d",row+1]];
+
     //闯关的关卡数
-    if(row<= pbUserTutorial.currentStageIndex){
+    if ([pbUserTutorial isStageLock:row] == NO){
         self.stageListHiddenLockImageView.hidden = YES;
         self.hiddenNumberLabel.hidden = YES;
     }
-    //数组越界保护
-    if(stageList==nil || row >= [stageList count]){
-        return ;
+    else{
+        self.stageListHiddenLockImageView.hidden = NO;
+        self.hiddenNumberLabel.hidden = NO;
     }
-    
     
     //设置图片圆角
     SET_VIEW_ROUND_CORNER(self.stageCellImage);

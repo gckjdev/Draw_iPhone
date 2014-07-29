@@ -549,16 +549,30 @@ typedef enum {
     [super changeRect:rect];
 }
 
-
++(UIImage*)addImage:(UIImage*)image1 toImage:(UIImage*)image2
+{
+    UIGraphicsBeginImageContext(image2.size);
+    
+    // Draw image1
+    [image1 drawInRect:CGRectMake(0, 0, image1.size.width, image1.size.height)];
+    
+    // Draw image2
+    [image2 drawInRect:CGRectMake(0, 0, image2.size.width, image2.size.height)];
+    
+    UIImage *resultingImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return resultingImage;
+}
 
 #pragma mark - GIF methods
 
 - (UIImage*)createImageAtIndex:(NSUInteger)index
 {
     //追寻到index位置的图，并利用createImage返回一个UIImage对象
+    PPDebug(@"create an image at index: %d", index);
     [self showToIndex:index];
     return [self createImage];
-    PPDebug(@"create an image at index: %d", index);
+   
 }
 
 //gif的制作
@@ -583,7 +597,7 @@ typedef enum {
     
     //创建输出路径
     NSString *path = outputPath;
-    
+    PPDebug(@"output gif to: %@",path);
     //创建CFURL对象
     /*
      CFURLCreateWithFileSystemPath(CFAllocatorRef allocator, CFStringRef filePath, CFURLPathStyle pathStyle, Boolean isDirectory)

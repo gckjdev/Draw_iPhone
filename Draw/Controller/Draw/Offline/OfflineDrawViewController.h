@@ -21,6 +21,7 @@
 #import "UserService.h"
 #import "CMPopTipView.h"
 #import "DrawToolPanel.h"
+#import "PPConfigManager.h"
 
 @class Word;
 @class ShareImageManager;
@@ -63,7 +64,7 @@
 
 @property (assign, nonatomic) id<OfflineDrawDelegate> delegate;
 @property (retain, nonatomic) Contest *contest;                 // 比赛对象
-@property (assign, nonatomic) UIViewController *startController;// 来自哪个控制器
+@property (assign, nonatomic) PPViewController *startController;// 来自哪个控制器
 
 @property (retain, nonatomic) UIImage *submitOpusFinalImage;    // 提交作品的图片（临时）
 @property (retain, nonatomic) NSData *submitOpusDrawData;       // 提交作品的数据（临时）

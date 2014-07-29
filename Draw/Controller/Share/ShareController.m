@@ -288,8 +288,8 @@ typedef enum{
                                       cancelButtonTitle:NSLS(@"kCancel") 
                                  destructiveButtonTitle:editString 
                                       otherButtonTitles:NSLS(@"kReplay"), NSLS(@"kDelete"),
-                    NSLS(@"kSaveAsPhoto"), NSLS(@"kShareSinaWeibo"),  // NSLS(@"kShareQQSpace"),
-                    NSLS(@"kSaveGif"),
+                    NSLS(@"kSaveAsPhoto"),
+                    NSLS(@"kShareSinaWeibo"),  // NSLS(@"kShareQQSpace"),
                     NSLS(@"kShareWeixinSession"), NSLS(@"kShareWeixinTimeline"),
                     NSLS(@"kShareQQWeibo"), NSLS(@"kShareFacebook"),
                     nil];
@@ -301,7 +301,8 @@ typedef enum{
                                  destructiveButtonTitle:NSLS(@"kReplay")
                                       otherButtonTitles:
                      NSLS(@"kDelete"), NSLS(@"kEdit"),
-                    NSLS(@"kSaveAsPhoto"), NSLS(@"kShareSinaWeibo"),  // NSLS(@"kShareQQSpace"),
+                    NSLS(@"kSaveAsPhoto"),NSLS(@"kSaveAsGif"),
+                    NSLS(@"kShareSinaWeibo"),  // NSLS(@"kShareQQSpace"),
                     NSLS(@"kShareWeixinSession"), NSLS(@"kShareWeixinTimeline"),
                     NSLS(@"kShareQQWeibo"), NSLS(@"kShareFacebook"),
 
@@ -390,11 +391,9 @@ typedef enum{
     //总是占用人家回放按钮来测试，我都不好意思了。。记得最终要还原
 
 #ifdef DEBUG
-//    [self performGif];
 
-//    [self gotoReplayView];
-    [self gotoPeriodReplayViewBegin:10 End:210];
-    
+    [self gotoPeriodReplayViewBegin:1000 End:2000];
+    [self hideActivity];
     return;
 #endif
     
@@ -424,22 +423,11 @@ typedef enum{
 - (void)gotoPeriodReplayViewBegin:(NSInteger)begin
                               End:(NSInteger)end
 {
-    if(end<=begin)
-    {
-        PPDebug(@"end less than begin, fail to play period!");
-        return;
-    }
     DrawPlayer *player;
-
     MyPaint* currentPaint = _selectedPaint;
     BOOL isNewVersion = [PPConfigManager currentDrawDataVersion] < [currentPaint drawDataVersion];
-    
-    if(end>[[currentPaint drawActionList] count] || begin < 0)
-    {
-        PPDebug(@"end > all action count, fail to play period!");
-        return;
-    }
-    
+
+    //记录当前的replay对象的属性
     ReplayObject *obj = [ReplayObject obj];
     obj.actionList = [currentPaint drawActionList];
     obj.isNewVersion = isNewVersion;
@@ -447,18 +435,12 @@ typedef enum{
     obj.layers = currentPaint.layers;
     obj.canvasSize = [currentPaint canvasSize];
     
-    player=[DrawPlayer playerWithReplayObj:obj];
-    UIImage *img = [player.showView createImageAtIndex:begin];
-    
-    NSMutableArray *subActionList;
-    NSRange range=NSMakeRange(begin, (end-begin));
-    subActionList =[[NSMutableArray alloc]initWithArray:[[currentPaint drawActionList] subarrayWithRange:range]];
-    obj.actionList = subActionList;
-    [subActionList release];
-    obj.bgImage=img;
-    player=[DrawPlayer playerWithReplayObj:obj];
+    //把带有索引begin和end的replay对象关联到播放器
+    player = [DrawPlayer playerWithReplayObj:obj begin:begin end:end];
 
+    //播放
     [player showInController:self];
+    
 }
 
 
@@ -517,20 +499,26 @@ typedef enum{
     return;
 }
 
-- (void)performGif
+- (void)saveGif
 {
     //testing gif function
 #ifdef DEBUG
-    
-    [ShowDrawView createGIF:24
+    [self showActivityWithText:@"kSaving"];
+//    BOOL flag=NO;
+    dispatch_queue_t queue=dispatch_queue_create("Gif Making",NULL);
+    dispatch_async(queue,
+                   ^(void){
+                [ShowDrawView createGIF:24
                   delayTime:0.5f
              drawActionList:_selectedPaint.drawActionList
                     bgImage:[[MyPaintManager defaultManager] bgImageForPaint:_selectedPaint]
                      layers:_selectedPaint.layers
                  canvasSize:_selectedPaint.canvasSize
-                 outputPath:@"/Users/Linruin/Desktop/test.gif"
+                 outputPath: _selectedPaint.imageFilePath// Local test use: @"/Users/Linruin/Desktop/test.gif"
                   scaleSize:0.5];
-    
+                    
+                   });
+                   
     [self hideActivity];
     
     return;
@@ -597,6 +585,10 @@ typedef enum{
     }
     else if (buttonIndex == SAVE_INTO_PHOTO){
         [self saveAlbum];
+    }
+    else if (buttonIndex == SAVE_INTO_GIF)
+    {
+        [self saveGif];
     }
     else if (buttonIndex == SHARE_SINA_WEIBO){
         [self share:TYPE_SINA];
@@ -921,6 +913,7 @@ typedef enum{
 //#endif
     
     SAVE_INTO_PHOTO = index++;
+    SAVE_INTO_GIF = index++;
     SHARE_SINA_WEIBO = index++;
 //    SHARE_QQ_ZONE = index++;
     SHARE_WEIXIN_SESSION = index++;

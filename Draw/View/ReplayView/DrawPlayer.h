@@ -27,6 +27,8 @@
 @property(nonatomic, retain) UIImage *bgImage;
 @property(nonatomic, retain) NSArray *layers;
 
+
+
 @end
 
 
@@ -40,6 +42,9 @@
 @property (retain, nonatomic) IBOutlet UIButton *playButton;
 @property (retain, nonatomic) IBOutlet UIButton *closeButton;
 
+@property (assign, nonatomic) NSUInteger begin;
+@property (assign, nonatomic) NSUInteger end;
+
 - (IBAction)close:(id)sender;
 
 - (IBAction)changeProcess:(CustomSlider *)sender;
@@ -48,7 +53,10 @@
 
 
 + (DrawPlayer *)playerWithReplayObj:(ReplayObject *)obj;
-+ (DrawPlayer *)playerWithReplayObj:(ReplayObject *)obj WithSliderBegin:(NSInteger)begin End:(NSInteger)end;
++ (DrawPlayer*)playerWithReplayObj:(ReplayObject *)obj
+                             begin:(NSUInteger)begin
+                               end:(NSUInteger)end;
+
 - (void)showInController:(PPViewController *)controller;
 - (void)showInController:(PPViewController *)controller FromBegin:(NSInteger)begin;
 

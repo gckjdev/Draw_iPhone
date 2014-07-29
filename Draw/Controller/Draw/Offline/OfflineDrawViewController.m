@@ -1668,23 +1668,47 @@
     return [[UserTutorialManager defaultManager] isPass:score];
 }
 
-- (void)handleSubmitForLearnDraw
+
+- (BOOL) strokeControlInSubmissionWithMinStrokeNum:(NSInteger)minStrokeNum
+                       MinPointNum:(NSInteger)minPointNum;
 {
-    
-    //  预处理
+    //  提交按钮的预处理
     NSInteger effetiveAction=[drawView.drawActionList count];
     for(DrawAction *da in drawView.drawActionList)
     {
-        if (3 > [da pointCount])
+        if(minPointNum > [da pointCount])
             effetiveAction--;
     }
-    
-    if(effetiveAction<=5)
+    if(effetiveAction<=minStrokeNum)
     {
         PPDebug(@"too few strokes!");
-        POSTMSG(@"客官，不够认真哦！");
-        return;
-    }    
+        POSTMSG(NSLS(@"kStrokeNumberNotEnough"));
+        return NO;
+    }
+    else
+        return YES;
+}
+
+
+- (void)handleSubmitForLearnDraw
+{
+    //  预处理
+    BOOL isEnough=[self strokeControlInSubmissionWithMinStrokeNum:[PPConfigManager getMinStrokeNum]
+                                                 MinPointNum:[PPConfigManager getMinPointNum]];
+    if(NO==isEnough) return;
+    
+//    NSInteger effetiveAction=[drawView.drawActionList count];
+//    for(DrawAction *da in drawView.drawActionList)
+//    {
+//        if(10 > [da pointCount])
+//            effetiveAction--;
+//    }
+//    if(effetiveAction<=10)
+//    {
+//        PPDebug(@"too few strokes!");
+//        POSTMSG(@"客官，不够认真哦！");
+//        return;
+//    }    
 
     
     self.submitOpusDrawData = nil;
@@ -1780,6 +1804,7 @@
     int score = [self.draft.score intValue];
     
     // invoke show result view here, pass user stage, image as parameter
+    /*
     [ResultShareAlertPageViewController show:self
                                        image:self.submitOpusFinalImage
                                    userStage:[self buildUserStage]
@@ -1796,6 +1821,7 @@
                                        
                                        [self quit];
                                    }];
+     */
     
     return;
     

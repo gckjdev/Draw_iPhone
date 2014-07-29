@@ -101,7 +101,7 @@
 
 - (PBStage*)nextStage:(NSUInteger)index
 {
-    int nextIndex = index++;
+    int nextIndex = index+1;
     return [self getStageByIndex:nextIndex];
 }
 
