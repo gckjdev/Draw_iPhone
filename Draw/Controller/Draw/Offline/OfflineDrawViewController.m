@@ -1623,7 +1623,6 @@
 //            [self commitOpus:subject desc:content share:shareSet classList:nil];
             
             // show set opus class
-//            /* TODO need to enable for release!!!!!!
             [SelectOpusClassViewController showInViewController:self
                                                    selectedTags:self.selectedClassList
                                               arrayForSelection:nil
@@ -1633,7 +1632,6 @@
                                                            [self commitOpus:subject desc:content share:shareSet classList:selectedArray];
 
                                                        }];
-//             */
             
         }else{
             [self setOpusWord:subject desc:content];

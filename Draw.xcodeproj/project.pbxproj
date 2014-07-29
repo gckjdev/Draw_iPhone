@@ -5557,6 +5557,14 @@
 		CAA7992D1659D28700429611 /* BBSPostListController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAA799291659D28700429611 /* BBSPostListController.xib */; };
 		CAA79942165A178700429611 /* BBSPostCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CAA79941165A178700429611 /* BBSPostCell.m */; };
 		CAA79944165A18DA00429611 /* BBSPostCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAA79943165A18DA00429611 /* BBSPostCell.xib */; };
+		CAA7DA8C1987D39F00408FB1 /* draw_help@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CAA7DA8A1987D39F00408FB1 /* draw_help@2x.png */; };
+		CAA7DA8D1987D39F00408FB1 /* draw_help@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CAA7DA8A1987D39F00408FB1 /* draw_help@2x.png */; };
+		CAA7DA8E1987D39F00408FB1 /* draw_help@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CAA7DA8A1987D39F00408FB1 /* draw_help@2x.png */; };
+		CAA7DA8F1987D3A000408FB1 /* draw_help@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CAA7DA8A1987D39F00408FB1 /* draw_help@2x.png */; };
+		CAA7DA901987D3A000408FB1 /* draw_next@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CAA7DA8B1987D39F00408FB1 /* draw_next@2x.png */; };
+		CAA7DA911987D3A000408FB1 /* draw_next@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CAA7DA8B1987D39F00408FB1 /* draw_next@2x.png */; };
+		CAA7DA921987D3A000408FB1 /* draw_next@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CAA7DA8B1987D39F00408FB1 /* draw_next@2x.png */; };
+		CAA7DA931987D3A000408FB1 /* draw_next@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CAA7DA8B1987D39F00408FB1 /* draw_next@2x.png */; };
 		CAA9C427159BF41B00398EC5 /* ShareService.m in Sources */ = {isa = PBXBuildFile; fileRef = CAA9C426159BF41B00398EC5 /* ShareService.m */; };
 		CAA9C435159CA97100398EC5 /* LmWallService.m in Sources */ = {isa = PBXBuildFile; fileRef = CAA9C434159CA97100398EC5 /* LmWallService.m */; };
 		CAABB89316F99C41007DCC58 /* BBSController.m in Sources */ = {isa = PBXBuildFile; fileRef = CAABB89216F99C41007DCC58 /* BBSController.m */; };
@@ -10255,6 +10263,8 @@
 		CAA79940165A178700429611 /* BBSPostCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBSPostCell.h; sourceTree = "<group>"; };
 		CAA79941165A178700429611 /* BBSPostCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBSPostCell.m; sourceTree = "<group>"; };
 		CAA79943165A18DA00429611 /* BBSPostCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BBSPostCell.xib; sourceTree = "<group>"; };
+		CAA7DA8A1987D39F00408FB1 /* draw_help@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "draw_help@2x.png"; sourceTree = "<group>"; };
+		CAA7DA8B1987D39F00408FB1 /* draw_next@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "draw_next@2x.png"; sourceTree = "<group>"; };
 		CAA9C425159BF41B00398EC5 /* ShareService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShareService.h; sourceTree = "<group>"; };
 		CAA9C426159BF41B00398EC5 /* ShareService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShareService.m; sourceTree = "<group>"; };
 		CAA9C433159CA97100398EC5 /* LmWallService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LmWallService.h; sourceTree = "<group>"; };
@@ -12278,6 +12288,8 @@
 		A4D8F92617DB08160085061F /* draw */ = {
 			isa = PBXGroup;
 			children = (
+				CAA7DA8A1987D39F00408FB1 /* draw_help@2x.png */,
+				CAA7DA8B1987D39F00408FB1 /* draw_next@2x.png */,
 				A4D8F92717DB08160085061F /* auto_recovery@2x.png */,
 				A4D8F92817DB08160085061F /* draw_commit_btn@2x.png */,
 				A4D8F92917DB08160085061F /* draw_guess2@2x.png */,
@@ -18966,6 +18978,7 @@
 				A461B435174CBAA70088B061 /* MessageCell~ipad.xib in Resources */,
 				A461B438174CBAA70088B061 /* fireworks1.png in Resources */,
 				A461B439174CBAA70088B061 /* fireworks2.png in Resources */,
+				CAA7DA8E1987D39F00408FB1 /* draw_help@2x.png in Resources */,
 				A461B43A174CBAA70088B061 /* snow.png in Resources */,
 				A461B444174CBAA70088B061 /* MyWordsController.xib in Resources */,
 				A461B445174CBAA70088B061 /* MyWordsController~ipad.xib in Resources */,
@@ -19263,6 +19276,7 @@
 				A499732B17783E3F00B01EBE /* EditTagCell.xib in Resources */,
 				A499732C17783E3F00B01EBE /* EditTagCell~ipad.xib in Resources */,
 				A499732D17783E3F00B01EBE /* PhotoEditView.xib in Resources */,
+				CAA7DA921987D3A000408FB1 /* draw_next@2x.png in Resources */,
 				A499732F17783E3F00B01EBE /* UserPhotoView.xib in Resources */,
 				A499733117783E3F00B01EBE /* CommonSearchImageFilterView.xib in Resources */,
 				D8B58A49197CCEC10088E5F7 /* tutorial_background_00@2x.jpg in Resources */,
@@ -20259,6 +20273,7 @@
 				C28AA0261738F04B007A819F /* ChargeCell~ipad.xib in Resources */,
 				C28AA0271738F04B007A819F /* PriceView~ipad.xib in Resources */,
 				C28AA0281738F04B007A819F /* GameItemDetailView~ipad.xib in Resources */,
+				CAA7DA911987D3A000408FB1 /* draw_next@2x.png in Resources */,
 				C28AA0291738F04B007A819F /* BuyItemView~ipad.xib in Resources */,
 				C28AA02A1738F04B007A819F /* GiftDetailView~ipad.xib in Resources */,
 				C28AA02B1738F04B007A819F /* ShoppingCell.xib in Resources */,
@@ -21003,6 +21018,7 @@
 				A49DF8C9187D3FA100634196 /* statement_cell_bg2@2x.png in Resources */,
 				A49DF8CD187D3FA100634196 /* statement_cell_bg1@2x.png in Resources */,
 				D89B27B9198219010035BE5F /* square.png in Resources */,
+				CAA7DA8D1987D39F00408FB1 /* draw_help@2x.png in Resources */,
 				EAFA051F1880ECA700B0CF61 /* CreateContestController~ipad.xib in Resources */,
 				CAD8EE3B189222930057EC30 /* PurchaseVipController.xib in Resources */,
 				CAD8EE4718922F840057EC30 /* vip_buy_button@2x.png in Resources */,
@@ -21667,6 +21683,7 @@
 				A4D8FD5717DB089C0085061F /* color_box_split@2x.png in Resources */,
 				A4D8FD5B17DB089C0085061F /* drawlayer_delete@2x.png in Resources */,
 				A4D8FD5F17DB089C0085061F /* drawlayer_flag_hide@2x.png in Resources */,
+				CAA7DA901987D3A000408FB1 /* draw_next@2x.png in Resources */,
 				A4D8FD6317DB089C0085061F /* drawlayer_flag_show@2x.png in Resources */,
 				A4D8FD6717DB089C0085061F /* gradient_bg_left@2x.png in Resources */,
 				A4D8FD6B17DB089C0085061F /* gradient_bg_mid@2x.png in Resources */,
@@ -21851,6 +21868,7 @@
 				A4D8004F17DB089C0085061F /* receive_message@2x.png in Resources */,
 				A4D8005317DB089C0085061F /* run@2x.png in Resources */,
 				A4D8005717DB089C0085061F /* sent_message@2x.png in Resources */,
+				CAA7DA8C1987D39F00408FB1 /* draw_help@2x.png in Resources */,
 				A4D8005B17DB089C0085061F /* sina@2x.png in Resources */,
 				A4D8005F17DB089C0085061F /* split_photo@2x.png in Resources */,
 				A4D8006317DB089C0085061F /* tool@2x.png in Resources */,
@@ -22406,6 +22424,7 @@
 				EA411EAF176066F500DA72D0 /* GCDatePickerView~ipad.xib in Resources */,
 				D8B58A56197CCEC10088E5F7 /* tutorial_background_03@2x.jpg in Resources */,
 				EA411EBF176066F500DA72D0 /* FeedCarousel.xib in Resources */,
+				CAA7DA8F1987D3A000408FB1 /* draw_help@2x.png in Resources */,
 				EA411EC0176066F500DA72D0 /* UserDetailCell~ipad.xib in Resources */,
 				EA411EC1176066F500DA72D0 /* UserDetailViewController~ipad.xib in Resources */,
 				EA411EC2176066F500DA72D0 /* CanvasRectBox.xib in Resources */,
@@ -22867,6 +22886,7 @@
 				A4D8FFFA17DB089C0085061F /* zjh_home_vs_site@2x.png in Resources */,
 				A4D8FFFE17DB089C0085061F /* inputbg@2x.png in Resources */,
 				A4D8000217DB089C0085061F /* locate@2x.png in Resources */,
+				CAA7DA931987D3A000408FB1 /* draw_next@2x.png in Resources */,
 				A4D8000617DB089C0085061F /* maleImage.png in Resources */,
 				CA0174F719405503005E4390 /* opusclass_version.txt in Resources */,
 				A4D8001217DB089C0085061F /* messagebg@2x.png in Resources */,
