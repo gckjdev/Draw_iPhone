@@ -16,7 +16,7 @@
 #import "UserTutorialService.h"
 #import "TutorialInfoController.h"
 #import "TutorialCoreManager.h"
-
+#import "UserTutorialManager.h"
 
 @interface TutorialStageController ()
 @property(nonatomic,strong)UITableView *tableView;
@@ -201,7 +201,10 @@
 //跳转
 +(TutorialStageController *)enter:(PPViewController *)superViewController pbTutorial:(PBUserTutorial *)pbUserTutorial{
     TutorialStageController *tc = [[TutorialStageController alloc] init];
-    tc.pbUserTutorial = pbUserTutorial;
+    
+    // update tutorial in pb user tutorial here
+    PBUserTutorial* newUT = [[UserTutorialManager defaultManager] updateLatestTutorial:pbUserTutorial];
+    tc.pbUserTutorial = newUT;
     [superViewController.navigationController pushViewController:tc animated:YES];
     [tc release];
     return tc;

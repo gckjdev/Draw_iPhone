@@ -38,5 +38,6 @@
 - (BOOL)isPass:(int)score;
 - (void)save:(PBUserTutorial*)ut;
 
+- (PBUserTutorial*)updateLatestTutorial:(PBUserTutorial*)ut;
 
 @end
