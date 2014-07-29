@@ -123,7 +123,8 @@
 {
     return (self.feedType == FeedTypeDraw) || (self.feedType == FeedTypeDrawToUser)
     || (self.feedType == FeedTypeSing) || (self.feedType == FeedTypeSingToUser)
-    || (self.feedType == FeedTypeSingContest) || (self.feedType == FeedTypeDrawToContest);
+    || (self.feedType == FeedTypeSingContest) || (self.feedType == FeedTypeDrawToContest
+    || (self.feedType == FeedTypePracticeDraw) || (self.feedType == FeedTypeConquerDraw));
 }
 
 - (BOOL)isDrawCategory

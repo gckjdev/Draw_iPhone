@@ -1673,7 +1673,7 @@
                        MinPointNum:(NSInteger)minPointNum;
 {
     //  提交按钮的预处理
-    NSInteger effetiveAction=[drawView.drawActionList count];
+    NSInteger effetiveAction = [drawView.drawActionList count];
     for(DrawAction *da in drawView.drawActionList)
     {
         if(minPointNum > [da pointCount])
@@ -1693,8 +1693,8 @@
 - (void)handleSubmitForLearnDraw
 {
     //  预处理
-    BOOL isEnough=[self strokeControlInSubmissionWithMinStrokeNum:[PPConfigManager getMinStrokeNum]
-                                                 MinPointNum:[PPConfigManager getMinPointNum]];
+    BOOL isEnough = [self strokeControlInSubmissionWithMinStrokeNum:[PPConfigManager getMinStrokeNum]
+                                                        MinPointNum:[PPConfigManager getMinPointNum]];
     if(NO==isEnough) return;
     
 //    NSInteger effetiveAction=[drawView.drawActionList count];
@@ -1822,9 +1822,9 @@
                                        
                                        [self quit];
                                    }];
+     return;
      */
     
-    return;
     
     // the following code is just used for reference.
     

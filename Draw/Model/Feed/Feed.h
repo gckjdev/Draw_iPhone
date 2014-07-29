@@ -33,6 +33,9 @@ typedef enum{
     FeedTypeSing = PBOpusTypeSing,
     FeedTypeSingToUser = PBOpusTypeSingToUser,
     FeedTypeSingContest = PBOpusTypeSingContest,
+    
+    FeedTypeConquerDraw = PBOpusTypeDrawConquer,
+    FeedTypePracticeDraw = PBOpusTypeDrawPractice,
 
 }FeedType;
 

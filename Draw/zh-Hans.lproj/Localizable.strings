@@ -2832,3 +2832,7 @@
 "kMenuLearnDraw" = "学画";
 "kSetRanTypeButtonYear" = "年榜";
 "kSetRanTypeButtonWeek" = "周榜";
+
+"kNoConquerDraw" = "没有学习闯关记录";
+"kTimelineConquerDraw" = "闯关";
+"kNoTimelineConquerDraw" = "暂无好友闯关动态";

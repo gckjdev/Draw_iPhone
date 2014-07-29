@@ -2808,3 +2808,7 @@
 "kMenuLearnDraw" = "Learn";
 "kSetRanTypeButtonYear" = "Yearly";
 "kSetRanTypeButtonWeek" = "Weekly";
+
+"kNoConquerDraw" = "No data";
+"kTimelineConquerDraw" = "Conquer";
+"kNoTimelineConquerDraw" = "No data";

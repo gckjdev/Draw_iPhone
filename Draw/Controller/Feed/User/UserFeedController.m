@@ -170,15 +170,10 @@ typedef enum{
     switch (self.currentTab.tabID) {
         case UserTypeOpus:
         case UserTypeFavorite:
-//            if (isDrawApp()) {
-//                return [RankView heightForRankViewType:RankViewTypeNormal]+1;
-//            }else if(isSingApp()){
-//                return [RankView heightForRankViewType:RankViewTypeWhisper]+1;
-//            }
             return [CellManager getLastStyleCellHeightWithIndexPath:indexPath];
             
         case UserTypeFeed:
-//            return [FeedCell getCellHeight];
+        case UserTypeConquerDraw:
             return [CellManager getTimelineStyleCellHeight];
 
         default:
@@ -250,16 +245,14 @@ typedef enum{
     switch ([[self currentTab] tabID]) {
         case UserTypeOpus:
         case UserTypeFavorite:
-            
             return [CellManager getLastStyleCell:theTableView
                                        indexPath:indexPath
                                         delegate:self
                                         dataList:[self tabDataList]];
             break;
             
-        case UserTypeConquerDraw:
         case UserTypeFeed:
-            
+        case UserTypeConquerDraw:
            return [CellManager getTimelineStyleCell:theTableView
                                           indexPath:indexPath
                                            delegate:self
@@ -271,62 +264,6 @@ typedef enum{
             break;
     }
     
-    
-    
-//    
-//    TableTab *tab = [self currentTab];
-//    
-//    if (tab.tabID == UserTypeFeed) {
-//        
-//        NSString *CellIdentifier = [FeedCell getCellIdentifier];
-//        FeedCell *cell = [theTableView dequeueReusableCellWithIdentifier:CellIdentifier];
-//        if (cell == nil) {
-//            cell = [FeedCell createCell:self];
-//        }
-//        cell.indexPath = indexPath;
-//        cell.accessoryType = UITableViewCellAccessoryNone;
-//        Feed *feed = [self.tabDataList objectAtIndex:indexPath.row];
-//        [feed updateDesc];
-//        [cell setCellInfo:feed];
-//        return cell;
-//        
-//    }else if(tab.tabID == UserTypeOpus || tab.tabID == UserTypeFavorite){
-//        
-//        if (isDrawApp()) {
-//            NSString *CellIdentifier = @"RankCell";
-//            UITableViewCell *cell = [theTableView dequeueReusableCellWithIdentifier:CellIdentifier];
-//            
-//            if (cell == nil) {
-//                cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
-//            }else{
-//                [self clearCellSubViews:cell];
-//            }
-//            
-//            cell.selectionStyle = UITableViewCellSelectionStyleNone;
-//            cell.accessoryType = UITableViewCellAccessoryNone;
-//            
-//            NSInteger startIndex = (indexPath.row * NORMAL_CELL_VIEW_NUMBER);
-//            NSMutableArray *list = [NSMutableArray array];
-//            for (NSInteger i = startIndex; i < startIndex+NORMAL_CELL_VIEW_NUMBER; ++ i) {
-//                NSObject *object = [self saveGetObjectForIndex:i];
-//                if (object) {
-//                    [list addObject:object];
-//                }
-//            }
-//            [self setNormalRankCell:cell WithFeeds:list];
-//            
-//            return cell;
-//            
-//        }else if (isSingApp()){
-//            
-//            return [CellManager getLastStyleCell:theTableView
-//                                       indexPath:indexPath
-//                                        delegate:self
-//                                        dataList:[self tabDataList]];
-//        }
-//    }
-//    
-//    return nil;
 }
 
 - (void)updateSeparator:(NSInteger)dataCount
@@ -354,6 +291,7 @@ typedef enum{
             return [CellManager getLastStyleCellCountWithDataCount:count roundingUp:YES];
             
         case UserTypeFeed:
+        case UserTypeConquerDraw:
             return [CellManager getTimelineStyleCellCountWithDataCount:count];
 
         default:
@@ -364,7 +302,7 @@ typedef enum{
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     
-    if (self.currentTab.tabID != UserTypeFeed ||
+    if ((self.currentTab.tabID != UserTypeFeed && self.currentTab.tabID != UserTypeConquerDraw) ||
         indexPath.row > [self.tabDataList count])
     {
         return;
@@ -776,7 +714,7 @@ typedef enum{
 }
 - (NSInteger)tabIDforIndex:(NSInteger)index
 {
-        NSInteger tabId[] = {UserTypeOpus, UserTypeFavorite, UserTypeFeed,UserTypeConquerDraw};
+        NSInteger tabId[] = {UserTypeOpus, UserTypeFavorite, UserTypeFeed, UserTypeConquerDraw};
         return tabId[index];
 }
 
@@ -786,8 +724,8 @@ typedef enum{
     NSString *noOpus = [NSString stringWithFormat:NSLS(@"kNoOpus"),self.nickName];
     NSString *noFavor= [NSString stringWithFormat:NSLS(@"kNoFavorite"),self.nickName];
     NSString *noFeed = [NSString stringWithFormat:NSLS(@"kUserNoFeed"),self.nickName];
-    NSString *noConquerDraw = [NSString stringWithFormat:NSLS(@"kConquerDraw"),self.nickName];
-    NSString *tabDesc[] = {noOpus,noFavor, noFeed,noConquerDraw};
+    NSString *noConquerDraw = [NSString stringWithFormat:NSLS(@"kNoConquerDraw"),self.nickName];
+    NSString *tabDesc[] = {noOpus,noFavor, noFeed, noConquerDraw};
     return tabDesc[index];
     
 }
@@ -809,21 +747,29 @@ typedef enum{
         NSInteger limit = tab.limit;
         switch (tabID) {
             case UserTypeFeed:
+            {
                 [feedService getUserFeedList:_userId offset:offset limit:limit delegate:self];
                 break;
+            }
+                
             case UserTypeOpus:
             {
                 [feedService getUserOpusList:_userId offset:offset limit:limit type:FeedListTypeUserOpus delegate:self];
                 break;
             }
+                
             case UserTypeFavorite:
             {
                 [feedService getUserFavoriteOpusList:_userId offset:offset limit:limit delegate:self];
+                break;
             }
+                
             case UserTypeConquerDraw:
             {
                 [feedService getUserOpusList:_userId offset:offset limit:limit type:FeedListTypeUserConquerDraw delegate:self];
+                break;
             }
+                
             default:
                 break;
         }
