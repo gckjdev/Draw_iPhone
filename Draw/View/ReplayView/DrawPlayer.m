@@ -361,7 +361,7 @@
             obj.canvasSize = draw.canvasSize;
             obj.layers = draw.layers;
             
-            DrawPlayer *player = [DrawPlayer playerWithReplayObj:obj]; //[DrawPlayer playerWithReplayObj:obj WithSliderBegin:startIndex End:endIndex];
+            DrawPlayer *player = [DrawPlayer playerWithReplayObj:obj begin:startIndex end:endIndex];
             [player showInController:cp];
             
             [pool drain];
@@ -380,7 +380,7 @@
 {
     NSMutableArray* drawActionList = obj.actionList;
     
-    if (end < begin)
+    if (end <= begin)
     {
         PPDebug(@"end less than begin, fail to play period!");
         return;
@@ -397,7 +397,6 @@
         obj.actionList = drawActionList;
         return;
     }
-    
     
     // create sub action by [begin, end]
     NSMutableArray *subActionList;
@@ -431,13 +430,14 @@
         return obj.bgImage;
     }
     
-    UIImage *retImg = nil;
+    UIImage *retImg = obj.bgImage;
     
     // update background image
     UIImage *img = nil; // create bg image
     if (begin > 0){
         // if begin from 0, means no background image needed
         img = [self.showView createImageAtIndex:begin];
+        PPDebug(@"<createBgImageByObj> image size=%@", NSStringFromCGSize(img.size));
     }
     
     if (img != nil){
@@ -474,7 +474,7 @@
     //把已经upadate的obj属性赋值到player
     player.replayObj = obj;
     [player updateView];
-
+    
     return player;
 }
 

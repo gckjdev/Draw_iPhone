@@ -2736,7 +2736,7 @@
 
 
 "kNewHotTitle" = "Gallery";
-"kConfigNewHot" = "Setttings";
+"kConfigNewHot" = "More";
 
 "kTutorialDesc" = "Details";
 "kTutorialStageList" = "All Stages";
@@ -2806,5 +2806,5 @@
 "kNoTimelineDraw" = "Conquer Draw";
 
 "kMenuLearnDraw" = "Learn";
-"kSetRanTypeButtonYear" = "Alltime";
+"kSetRanTypeButtonYear" = "Yearly";
 "kSetRanTypeButtonWeek" = "Weekly";

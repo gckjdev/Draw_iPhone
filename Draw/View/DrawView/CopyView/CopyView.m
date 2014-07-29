@@ -317,7 +317,8 @@
                 }
                 
                 [DrawPlayer playDrawData:&_opusData
-                                    draw:&_draw viewController:self.superViewController
+                                    draw:&_draw
+                          viewController:self.superViewController
                               startIndex:_opusStartIndex
                                 endIndex:_opusEndIndex];
             }
