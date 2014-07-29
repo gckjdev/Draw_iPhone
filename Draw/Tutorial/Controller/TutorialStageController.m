@@ -16,7 +16,7 @@
 #import "UserTutorialService.h"
 #import "TutorialInfoController.h"
 #import "TutorialCoreManager.h"
-
+#import "UserTutorialManager.h"
 
 @interface TutorialStageController ()
 @property(nonatomic,strong)UITableView *tableView;
@@ -82,6 +82,17 @@
     
 }
 
+- (void)reload
+{
+    self.pbUserTutorial = [[UserTutorialManager defaultManager] findUserTutorialByLocalId:self.pbUserTutorial.localId];
+    [self.collectionView reloadData];
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [self reload];
+    [super viewDidAppear:animated];
+}
 
 //每个section的item个数
 -(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
@@ -201,7 +212,10 @@
 //跳转
 +(TutorialStageController *)enter:(PPViewController *)superViewController pbTutorial:(PBUserTutorial *)pbUserTutorial{
     TutorialStageController *tc = [[TutorialStageController alloc] init];
-    tc.pbUserTutorial = pbUserTutorial;
+    
+    // update tutorial in pb user tutorial here
+    PBUserTutorial* newUT = [[UserTutorialManager defaultManager] updateLatestTutorial:pbUserTutorial];
+    tc.pbUserTutorial = newUT;
     [superViewController.navigationController pushViewController:tc animated:YES];
     [tc release];
     return tc;
