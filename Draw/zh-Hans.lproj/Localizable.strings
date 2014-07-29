@@ -2776,7 +2776,7 @@
 "kCopyViewSetImage" = "设置作品";
 "kPlayCopyView" = "播放";
 "kHideCopyView" = "隐藏";
-"kCopyViewHelp" = "帮助";
+"kCopyViewHelp" = "查看提示";
 
 "kTutorialCategoryNewer" = "新手";
 "kTutorialCategoryHigherLevel" = "进阶";
@@ -2826,3 +2826,7 @@
 "kContinue" = "继续闯关";
 "kConquerDraw" = "闯关";
 "kNoTimelineDraw" = "闯关";
+
+"kMenuLearnDraw" = "学画";
+"kSetRanTypeButtonYear" = "年榜";
+"kSetRanTypeButtonWeek" = "周榜";

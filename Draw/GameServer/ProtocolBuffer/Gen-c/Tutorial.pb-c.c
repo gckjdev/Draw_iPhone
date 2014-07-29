@@ -745,7 +745,7 @@ const ProtobufCMessageDescriptor game__pbchapter__descriptor =
   (ProtobufCMessageInit) game__pbchapter__init,
   NULL,NULL,NULL    /* reserved[123] */
 };
-static const double game__pbstage__difficulty__default_value = 1;
+static const float game__pbstage__difficulty__default_value = 1;
 static const ProtobufCFieldDescriptor game__pbstage__field_descriptors[20] =
 {
   {
@@ -980,7 +980,7 @@ static const ProtobufCFieldDescriptor game__pbstage__field_descriptors[20] =
     "difficulty",
     52,
     PROTOBUF_C_LABEL_OPTIONAL,
-    PROTOBUF_C_TYPE_DOUBLE,
+    PROTOBUF_C_TYPE_FLOAT,
     PROTOBUF_C_OFFSETOF(Game__PBStage, has_difficulty),
     PROTOBUF_C_OFFSETOF(Game__PBStage, difficulty),
     NULL,

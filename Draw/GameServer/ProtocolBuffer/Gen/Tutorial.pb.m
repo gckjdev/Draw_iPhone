@@ -1410,7 +1410,7 @@ static PBChapter* defaultPBChapterInstance = nil;
 @property (retain) NSMutableArray* mutableChapterList;
 @property int32_t imageStyle;
 @property int32_t scoreEngine;
-@property Float64 difficulty;
+@property Float32 difficulty;
 @end
 
 @implementation PBStage
@@ -1682,7 +1682,7 @@ static PBStage* defaultPBStageInstance = nil;
     [output writeInt32:51 value:self.scoreEngine];
   }
   if (self.hasDifficulty) {
-    [output writeDouble:52 value:self.difficulty];
+    [output writeFloat:52 value:self.difficulty];
   }
   [self.unknownFields writeToCodedOutputStream:output];
 }
@@ -1751,7 +1751,7 @@ static PBStage* defaultPBStageInstance = nil;
     size += computeInt32Size(51, self.scoreEngine);
   }
   if (self.hasDifficulty) {
-    size += computeDoubleSize(52, self.difficulty);
+    size += computeFloatSize(52, self.difficulty);
   }
   size += self.unknownFields.serializedSize;
   memoizedSerializedSize = size;
@@ -1990,8 +1990,8 @@ static PBStage* defaultPBStageInstance = nil;
         [self setScoreEngine:[input readInt32]];
         break;
       }
-      case 417: {
-        [self setDifficulty:[input readDouble]];
+      case 421: {
+        [self setDifficulty:[input readFloat]];
         break;
       }
     }
@@ -2317,10 +2317,10 @@ static PBStage* defaultPBStageInstance = nil;
 - (BOOL) hasDifficulty {
   return result.hasDifficulty;
 }
-- (Float64) difficulty {
+- (Float32) difficulty {
   return result.difficulty;
 }
-- (PBStage_Builder*) setDifficulty:(Float64) value {
+- (PBStage_Builder*) setDifficulty:(Float32) value {
   result.hasDifficulty = YES;
   result.difficulty = value;
   return self;

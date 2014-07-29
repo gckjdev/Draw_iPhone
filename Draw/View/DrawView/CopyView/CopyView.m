@@ -14,6 +14,7 @@
 #import "ShowFeedController.h"
 #import "UserTutorialService.h"
 #import "Draw.h"
+#import "TipsPageViewController.h"
 
 #define COPY_VIEW_DEFAULT_WIDTH     (ISIPAD ? 250 : 100)
 #define COPY_VIEW_DEFAULT_HEIGHT    (ISIPAD ? 250 : 100)
@@ -30,6 +31,8 @@
 
 @property (nonatomic, retain) UIImage *opusBgImage;
 @property (nonatomic, retain) NSData *opusData;
+@property (nonatomic, assign) int opusStartIndex;
+@property (nonatomic, assign) int opusEndIndex;
 @property (nonatomic, retain) Draw *draw;
 
 @property (nonatomic, retain) PBUserStage *userStage;
@@ -72,6 +75,27 @@
 - (UIImage*)image
 {
     return _displayImage;
+}
+
+- (UIImage*)imageForCompare
+{
+    UIImage* retImage = nil;
+    if (self.userStage){
+        // TODO create image from opus data
+        
+        // support with bgImage or no bg image
+        
+    }
+    else{
+        return _displayImage;
+    }
+    
+    if (retImage == nil){
+        return _displayImage;
+    }
+    else{
+        return retImage;
+    }
 }
 
 - (void)dealloc
@@ -292,7 +316,10 @@
                     self.opusData = [[[NSData alloc] initWithContentsOfFile:self.opusDataPath] autorelease];
                 }
                 
-                [DrawPlayer playDrawData:&_opusData draw:&_draw viewController:self.superViewController];
+                [DrawPlayer playDrawData:&_opusData
+                                    draw:&_draw viewController:self.superViewController
+                              startIndex:_opusStartIndex
+                                endIndex:_opusEndIndex];
             }
             else{
                 [ShowFeedController replayDraw:self.drawFeed viewController:self.superViewController];
@@ -303,7 +330,14 @@
             [self setHidden:YES];
         }
         else if ([title isEqualToString:COPY_VIEW_HELP]){
-            PPDebug(@"click COPY_VIEW_HELP");
+            // view tips
+            if (self.userStage){
+                NSArray* tipsPaths = [[UserTutorialService defaultService] getChapterTipsImagePath:_userStage.tutorialId
+                                                                                             stage:self.stage
+                                                                                      chapterIndex:_userStage.currentChapterIndex];
+                NSString* title = @"";
+                [TipsPageViewController show:self.superViewController title:title imagePathArray:tipsPaths];
+            }
         }
     }];
     

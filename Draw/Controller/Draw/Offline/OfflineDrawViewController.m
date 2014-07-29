@@ -82,6 +82,7 @@
 #import "OpenCVUtils.h"
 #import "ImageSimilarityEngine.h"
 #import "PBTutorial+Extend.h"
+#import "ResultShareAlertPageViewController.h"
 
 @interface OfflineDrawViewController()
 {
@@ -822,6 +823,9 @@
     // 禁止自动锁屏
     [UIApplication sharedApplication].idleTimerDisabled = YES; // disable lock screen while in drawing
     
+    // 设置当前用户作画模式（用于能否使用道具判别）
+    [[UserManager defaultManager] setIsLearning:[self isLearnType]];
+    
     [super viewDidLoad];
     [self registerUIApplicationNotification];
 
@@ -844,6 +848,9 @@
     [self initRecovery];
     [self initTitleView];
     [self setCanDragBack:NO];
+    
+    // TODO update submit/next button status for learn draw (practice only)
+    
 }
 
 
@@ -1653,12 +1660,12 @@
 
 - (BOOL)isPassPractice:(int)score
 {
-    return (score >= 60);
+    return [[UserTutorialManager defaultManager] isPass:score];
 }
 
 - (BOOL)isPassConquer:(int)score
 {
-    return (score >= 60);
+    return [[UserTutorialManager defaultManager] isPass:score];
 }
 
 - (void)handleSubmitForLearnDraw
@@ -1668,10 +1675,11 @@
     NSInteger effetiveAction=[drawView.drawActionList count];
     for(DrawAction *da in drawView.drawActionList)
     {
-        if(10 > [da pointCount])
+        if (3 > [da pointCount])
             effetiveAction--;
     }
-    if(effetiveAction<=10)
+    
+    if(effetiveAction<=5)
     {
         PPDebug(@"too few strokes!");
         POSTMSG(@"客官，不够认真哦！");
@@ -1701,18 +1709,14 @@
     [draft setOpusCompleteDate:[NSDate date]];
     [draft setSelectedClassList:self.selectedClassList];
     
+    UIImage* imageForCompare = [_copyView imageForCompare];
+    
     // 评分
-    NSString* sourcePath = [self writeImageToFile:_copyView.image filePath:self.draft.draftId];
+    NSString* sourcePath = [self writeImageToFile:imageForCompare filePath:self.draft.draftId];
     NSString* destPath = self.tempImageFilePath;
 
     //从关卡传入difficulty，TODO
-    int score = [ImageSimilarityEngine score1SrcPath:sourcePath destPath:destPath difficulty:1.0];
-    
-
-//    int score = [OpenCVUtils simpleDrawScoreSourceImagePath:sourcePath destImagePath:destPath];
-//    score = [OpenCVUtils hausdorffScoreSourceImagePath:sourcePath destImagePath:destPath];
-//    score = [OpenCVUtils cosineScoreSourceImagePath:sourcePath destImagePath:destPath];
-//    [OpenCVUtils testSourceImagePath:sourcePath destImagePath:destPath];
+    int score = [ImageSimilarityEngine score1SrcPath:sourcePath destPath:destPath difficulty:_stage.difficulty];
     
     [self.draft setScore:@(score)];
     [self.draft setScoreDate:[NSDate date]];
@@ -1773,13 +1777,28 @@
 - (void)showResultOptionForConquer
 {
     PBUserStage* userStage = [self buildUserStage];
-    
     int score = [self.draft.score intValue];
-    int defeatPercent = [userStage defeatPercent];
     
-    // TODO invoke show result view here, pass user stage, image as parameter
+    // invoke show result view here, pass user stage, image as parameter
+    [ResultShareAlertPageViewController show:self
+                                       image:self.submitOpusFinalImage
+                                   userStage:[self buildUserStage]
+                                       score:score
+                                   nextBlock:^{
+                                       
+                                       [self tryConquerNext];
+                                       
+                                   } retryBlock:^{
+                                       
+                                       [self conquerAgain];
+                                       
+                                   } backBlock:^{
+                                       
+                                       [self quit];
+                                   }];
     
     // 根据评分结果跳转
+    int defeatPercent = [userStage defeatPercent];
     if ([self isPassPractice:score]){
         
         BOOL isTutorialComplete = [[UserTutorialManager defaultManager] isLastStage:[self buildUserStage]];
@@ -1911,6 +1930,7 @@
     [self.draft setDeleteFlag:@(YES)]; // delete current draft
     
     PBUserStage* userStage = [self buildUserStage];
+    
     PBUserTutorial* userTutorial = [self buildUserTutorial];
     
     PBStage* nextStage = [self.tutorial nextStage:userStage.stageIndex];
@@ -1965,6 +1985,30 @@
                                                  stageIndex:userStage.stageIndex];
     
 //    [OfflineDrawViewController practice:self.startController userStage:userStage userTutorial:userTutorial];
+}
+
+- (IBAction)clickNextChapterButton:(id)sender
+{
+    // for learn draw practice mode
+    if (targetType != TypePracticeDraw){
+        PPDebug(@"<clickNextChapterButton> NOT IN PRACTICE MODE!!!!!");
+        return;
+    }
+
+    // next chapter
+    PBUserStage* newUserStage = [[UserTutorialService defaultService] nextChapter:[self buildUserStage]];
+    if (newUserStage == nil){
+        // no new user stage, next failure!!!
+        return;
+    }
+
+    // update user stage here
+    self.userStageBuilder = [PBUserStage builderWithPrototype:newUserStage];
+    
+    // update copy view
+    [_copyView loadData:[self buildUserStage] stage:self.stage];
+    
+    // TODO update submit/next button status
 }
 
 - (IBAction)clickSubmitButton:(id)sender {

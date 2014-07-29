@@ -115,6 +115,10 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(UserGameItemManager);
     if ([[UserManager defaultManager] isVip]){
         return YES;
     }
+
+    if ([[UserManager defaultManager] isLearning]){
+        return YES;
+    }
     
     if ([self isDefaultItem:itemId]) {
         return YES;

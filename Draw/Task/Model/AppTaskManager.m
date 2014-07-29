@@ -17,8 +17,8 @@ static AppTaskManager* _defaultAppTaskManager;
 
 + (AppTaskManager*)defaultManager
 {
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
+    static dispatch_once_t appTaskOnceToken;
+    dispatch_once(&appTaskOnceToken, ^{
         _defaultAppTaskManager = [[AppTaskManager alloc] init];
     });
     

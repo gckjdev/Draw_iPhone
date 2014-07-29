@@ -11,7 +11,7 @@
 #import "PBTutorial+Extend.h"
 #import "UIImageView+Extend.h"
 #import "Tutorial.pb.h"
-#import "THProgressView.h"
+#import "LDProgressView.h"
 
 #define TUTORIAL_IMAGE_HEIGHT       (ISIPAD ? 100 : 45)
 @implementation UserTutorialMainCell
@@ -80,29 +80,14 @@
     //調用THprogressview
     UIView *view = self.progressAndLabelView;
     [view removeAllSubviews];
-        THProgressView *tutorialProgressView = [[THProgressView alloc]
-                                            initWithFrame:
-                                                              CGRectMake
-                                                             (5.0f,
-                                                              10.0f,
-                                                              progressViewSize.width,
-                                                              progressViewSize.height
-                                                             )
-                                            
-                                            WithProgressLabelFrame:
-                                                              CGRectMake
-                                                              (10,
-                                                              0.0f,
-                                                              progressViewSize.width-20,
-                                                              progressViewSize.height
-                                                              )
-                                            ];
+
+    //调用LDProgressView
+     const CGFloat progressX = (self.progressAndLabelView.frame.size.width - progressViewSize.width)/2.0f;
+    LDProgressView *tutorialProgressView = [[LDProgressView alloc] initWithFrame:
+                                                            CGRectMake(progressX,25.0f,progressViewSize.width,progressViewSize.height)];
     
-    tutorialProgressView.borderTintColor = COLOR_WHITE;
-    tutorialProgressView.progressTintColor = COLOR_YELLOW;
-    
-    
-    
+    tutorialProgressView.type = LDProgressSolid;
+    tutorialProgressView.color = [UIColor yellowColor];
     //row == 0 特殊情況
     if(row <= 0){
         UIImage* starButtonBgImage = [[ShareImageManager defaultManager] tutorialStartButtonBgImage];
@@ -112,9 +97,11 @@
         self.tutorialStartBtn.hidden = NO;
         tutorialProgressView.hidden = YES;
         self.othersProgressInfoLabel.hidden = YES;
+        //row == 0 并且progress =0
         if(progress <= 0.0f)
         {
             [self.tutorialStartBtn setTitle:@"kStartStage" forState:UIControlStateNormal];
+            
         }else{
             
             [self.tutorialStartBtn setTitle:NSLS(@"kContinueStage")forState:UIControlStateNormal];
@@ -131,14 +118,13 @@
 //        SET_VIEW_ROUND_CORNER(self.tutorialProgressView);
         self.othersProgressInfoLabel.hidden = YES;
         tutorialProgressView.hidden = NO;
-        [tutorialProgressView setProgress:progress animated:YES];
-        [tutorialProgressView setProgressLabelColor:COLOR_BROWN];
-        [tutorialProgressView setProgressLabelFont:AD_FONT(20, 13)];
+        tutorialProgressView.progress = progress;
         self.tutorialStartBtn.hidden = YES;
         
     }
     
     [view addSubview:tutorialProgressView];
+    [tutorialProgressView release];
     
     
     

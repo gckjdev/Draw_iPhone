@@ -17,8 +17,8 @@ static BillboardManager* _defaultBillboardManager;
 
 + (BillboardManager*)defaultManager
 {
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
+    static dispatch_once_t bbOnceToken;
+    dispatch_once(&bbOnceToken, ^{
         _defaultBillboardManager = [[BillboardManager alloc] init];
     });
     

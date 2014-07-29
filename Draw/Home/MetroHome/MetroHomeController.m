@@ -36,11 +36,11 @@
     return self;
 }
 
-#define TRENDS_BUTTON_TITLE_EDGEINSETS   (ISIPAD ? -52 : -28)
-#define DOCUMENT_BUTTON_TITLE_EDGEINSETS (ISIPAD ? -46 : -32)
-#define MESSAGE_BUTTON_TITLE_EDGEINSET   (ISIPAD ? -46 : -32)
-#define MORE_BUTTON_TITLE_EDGEINSETS     (ISIPAD ? -42 : -32)
-#define BOTTOM_BUTTON_HEIGHT (ISIPAD ? 52 : 44)
+#define TRENDS_BUTTON_TITLE_EDGEINSETS   (ISIPAD ? -35 : -35)
+#define DOCUMENT_BUTTON_TITLE_EDGEINSETS (ISIPAD ? -39 : -32)
+#define MESSAGE_BUTTON_TITLE_EDGEINSET   (ISIPAD ? -39 : -32)
+#define MORE_BUTTON_TITLE_EDGEINSETS     (ISIPAD ? -33 : -32)
+#define BOTTOM_BUTTON_HEIGHT (ISIPAD ? 55 : 37)
 -(void)setButtonTitleBottom{
     [self.indexButton  setTitleEdgeInsets:UIEdgeInsetsMake(BOTTOM_BUTTON_HEIGHT, TRENDS_BUTTON_TITLE_EDGEINSETS, 0, 0)];
     [self.documentButton  setTitleEdgeInsets:UIEdgeInsetsMake(BOTTOM_BUTTON_HEIGHT, DOCUMENT_BUTTON_TITLE_EDGEINSETS, 0, 0)];
@@ -91,7 +91,6 @@
     [_topNameButton setTitleColor:COLOR_BROWN forState:UIControlStateNormal];
     [_topNameButton.titleLabel setFont:AD_FONT(20, 15)];
     [self setButtonTitleBottom];
-    [self goToUserDetail];
     
     //TEST
     [self setBadgeView];
@@ -108,7 +107,6 @@
     int constant = 0;
     if(ISIOS7){
         constant = 20;
-        
     }
     NSLayoutConstraint* constraint2 = [NSLayoutConstraint constraintWithItem:self.topView
                                                                   attribute:NSLayoutAttributeTop
@@ -117,19 +115,20 @@
                                                                   attribute:NSLayoutAttributeTop
                                                                  multiplier:1.0
                                                                    constant:constant];
-    [self.view addConstraint:constraint2];
+    
     [self.view addConstraint:constraint];
     
+    [self.view addConstraint:constraint2];
     
 }
 -(void)viewWillAppear:(BOOL)animated{
     //适配IOS7
-    if([DeviceDetection isOS7]){
-        PPDebug(@"self.view.bounds.y1==%d",self.view.bounds.origin.y);
-        self.view.bounds = CGRectMake(0, 20, self.view.frame.size.width, self.view.frame.size.height);
-        PPDebug(@"self.view.bounds.y2==%d",self.view.bounds.origin.y);
-    }
-    
+//    if([DeviceDetection isOS7]){
+//        PPDebug(@"self.view.bounds.y1==%d",self.view.bounds.origin.y);
+//        self.view.bounds = CGRectMake(0, 20, self.view.frame.size.width, self.view.frame.size.height);
+//        PPDebug(@"self.view.bounds.y2==%d",self.view.bounds.origin.y);
+//    }
+     
 }
 
 -(void)setGalleryImageForModel{
@@ -196,33 +195,51 @@
     UIImage *bottomBackground = [UIImage imageNamed:@"neironglan yu caidanlan.png"];
     [self.bottomBackground setBackgroundColor:[UIColor clearColor]];
     [self.bottomBackground setImage:bottomBackground];
+    CGFloat mainScreenHeight = [[UIScreen mainScreen] bounds].size.height;
+    if(!ISIPAD){
+        NSLayoutConstraint* constraint = nil;
+        if(mainScreenHeight == 480){
+            constraint = [NSLayoutConstraint constraintWithItem:self.bottomBackground
+                                                      attribute:NSLayoutAttributeTop
+                                                      relatedBy:NSLayoutRelationEqual
+                                                         toItem:self.mainView
+                                                      attribute:NSLayoutAttributeBottom
+                                                     multiplier:1.0
+                                                       constant:-5];
+        }else{
+            constraint = [NSLayoutConstraint constraintWithItem:self.bottomBackground
+                                                      attribute:NSLayoutAttributeTop
+                                                      relatedBy:NSLayoutRelationEqual
+                                                         toItem:self.mainView
+                                                      attribute:NSLayoutAttributeBottom
+                                                     multiplier:1.0
+                                                       constant:-10];
+        }
+        [self.view addConstraint:constraint];
+    }
 }
 
-
-
-
-
-
-
-#pragma - mark
 #pragma mark click
 - (IBAction)goTolearning:(id)sender {
 }
 
 - (IBAction)goToBBS:(id)sender {
-//    [self enterBBS];
+    [self enterBBS];
     
 //    ResultShareAlertPageViewController *rspc = [[ResultShareAlertPageViewController alloc] init];
 //    CommonDialog *dialog = [CommonDialog createDialogWithTitle:NSLS(@"kResultSharePage") customView:rspc.view style:CommonDialogStyleCross];
 //    [dialog showInView:self.view];
     
-    TipsPageViewController *rspc = [[TipsPageViewController alloc] init];
-    CommonDialog *dialog = [CommonDialog createDialogWithTitle:NSLS(@"提示") customView:rspc.view style:CommonSquareDialogStyleCross];
-    [dialog showInView:self.view];
+//    TipsPageViewController *rspc = [[TipsPageViewController alloc] init];
+//    CommonDialog *dialog = [CommonDialog createDialogWithTitle:NSLS(@"提示") customView:rspc.view style:CommonSquareDialogStyleCross];
+//    [dialog showInView:self.view];
 }
 
 - (IBAction)goToDraw:(id)sender {
-    [self enterOfflineDraw];
+//    [self enterOfflineDraw];
+    ResultShareAlertPageViewController *rspc = [[[ResultShareAlertPageViewController alloc] init] autorelease];
+        CommonDialog *dialog = [CommonDialog createDialogWithTitle:NSLS(@"kResultSharePage") customView:rspc.view style:CommonDialogStyleCross];
+        [dialog showInView:self.view];
 }
 
 - (IBAction)goToOpus:(id)sender {
@@ -279,23 +296,23 @@
     PPDebug(@"click the label");
 }
 //创造手势
-
--(void)goToUserDetail{
-    UITapGestureRecognizer *singleFingerOne = [[UITapGestureRecognizer alloc] initWithTarget:self
-                                                action:@selector(labelClicked:)];
-         singleFingerOne.numberOfTouchesRequired = 1; //手指数
-        singleFingerOne.numberOfTapsRequired = 1; //tap次数
-    
-    [_topNameLable addGestureRecognizer:singleFingerOne];
-    
-}
+//
+//-(void)goToUserDetail{
+//    UITapGestureRecognizer *singleFingerOne = [[UITapGestureRecognizer alloc] initWithTarget:self
+//                                                action:@selector(labelClicked:)];
+//         singleFingerOne.numberOfTouchesRequired = 1; //手指数
+//        singleFingerOne.numberOfTapsRequired = 1; //tap次数
+//    
+//    [_topNameLable addGestureRecognizer:singleFingerOne];
+//    
+//}
 
 
 #pragma mark -
 
 // 设置Gallery
 #define IMAGE_FRAME_X (ISIPAD ? 26:11)
-#define IMAGE_FRAME_Y (ISIPAD ? 20:15)
+#define IMAGE_FRAME_Y (ISIPAD ? 24:15)
 #define IMAGE_FRAME_WIDTH (ISIPAD ? 716:298)
 #define IMAGE_FRAME_HEIGHT (ISIPAD ? 250:120)
 #define DEFAULT_GALLERY_IMAGE @"daguanka"

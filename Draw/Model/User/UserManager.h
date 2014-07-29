@@ -63,7 +63,7 @@ typedef enum{
 
 @property (nonatomic, retain) UIImage *avatarImage;
 @property (nonatomic, retain) PBGameUser *pbUser;
-
+@property (nonatomic, assign) BOOL isLearning;
 
 - (NSUserDefaults *)userDefaults;
 - (NSString*)userId;
