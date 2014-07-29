@@ -130,6 +130,89 @@ static TutorialCoreManager* _defaultTutorialCoreManager;
 {
     self.tutorialList = nil;
 }
+//重写TutorialBuilder
+-(PBTutorial *) evaluateTutorialpbName:(NSString *)name WithDesc:(NSString *)desc WithTutorialId:(NSString *)tutorialId WithImage:(NSString *)imageUrl WithCategory:(NSArray *)categoryList WithStage:(NSArray*)stageList{
+    
+    PBTutorial_Builder* tb = [PBTutorial builder];
+    
+    //required
+    [tb setTutorialId:tutorialId];
+    
+    //optional
+    [tb setCnName:name];
+    [tb setCnDesc:desc];
+    [tb setThumbImage:imageUrl];
+    [tb setImage:imageUrl];
+
+    //repeat
+    //难度
+    [tb addAllCategories:categoryList];
+    //stage
+    [tb addAllStages:stageList];
+    
+    return [tb build];
+}
+
+
+/*@[@[@"石头",@"陶瓷",@"亚克力塑料",@"金属",@"皮肤",@"橡胶", @"玻璃",@"材质集合"],
+ @[@"整齐的直线",@"横纵直线",@"巧画直线条",@"很浪的波浪线",@"巧画波浪线",@"几何形", @"圈圈君",@"实践测试"],
+ @[@"十二色环",@"二十四色环",@"互补色色环",@"渐变色",@"经典互补色",@"渐变构成", @"冷暖对比",@"同色系渐变构成"],
+ @[@"比熊先生",@"博美小姐",@"马尔济斯绅士",@"哈士奇骑士",@"约克夏伯爵",@"吉娃娃公主", @"泰迪女王",@"萨摩王子"],
+ @[@"没有翅膀也一样可以飞翔",@"展现身体的柔性美",@"人与动物最佳拍档",@"在运动中享受大自然的乐趣",@"干净利落的身姿",@"协调性与灵活性的考验",@"像鸟一样在雪地里飞舞",@"只为射门那一刻的欢呼"],
+ @[@"美少女奈儿",@"美少女纪子",@"小妹妹",@"帅哥",@"小毛孩",@"经理",@"妇女",@"老者"],
+ @[@"关卡1-1",@"关卡1-2",@"关卡1-3",@"关卡1-4",@"关卡1-5",@"关卡1-6",@"1-7",@"1-8",@"1-9",@"1-10"],
+ @[@"关卡2-1",@"关卡2-2",@"关卡2-3",@"关卡2-4",@"关卡2-5",@"关卡2-6"],
+ @[@"关卡3-1",@"关卡3-2",@"关卡3-3",@"关卡2-4",@"关卡3-5",@"关卡3-6"]
+ */
+
+
+//重写Stage
+-(PBStage*) evaluateStageDataName:(NSString *)name WithDesc:(NSString *)desc WithStageId:(NSString *)stageId WithImage:(NSString *)imageUrl tipList:(NSArray*)tipsList tipsIndex:(int32_t)tipsIndex opusId:(NSString*)opusId chapterList:(NSArray*)chapterList{
+    
+    PBStage_Builder* stageBuilder = [PBStage builder];
+    //required
+    [stageBuilder setStageId:stageId];
+    
+    //optional
+    [stageBuilder setCnName:name];
+    [stageBuilder setCnDesc:desc];
+    [stageBuilder setStageId:stageId];
+    [stageBuilder setThumbImage:imageUrl];
+    [stageBuilder setImage:imageUrl];
+    [stageBuilder setImageName:@"image.jpg"];                 // image for compare
+    [stageBuilder setBgImage:@"bg_image.jpg"];                // image for background
+    [stageBuilder setOpusName:@"data"];                       // opus data file name
+    [stageBuilder setOpusId:opusId];
+
+    //repeated
+    [stageBuilder addAllChapter:chapterList];
+    
+    return [stageBuilder build];
+}
+
+//重写Chapter
+-(PBChapter *) evalueteChapterDataChapterIndex:(int32_t)chapterIndex tipList:(NSArray*)tipsList tipsIndex:(int32_t)tipsIndex{
+    PBChapter_Builder *pbChapterBuilder = [PBChapter builder];
+    //required
+    [pbChapterBuilder setIndex:chapterIndex];
+    //optional
+    [pbChapterBuilder setImageName:@"image.jpg"];
+    // TODO add tips image
+    NSArray *list = [tipsList objectAtIndex:tipsIndex];
+    if([list count]>0){
+        for(int j=0;j<[list count];j++){
+            
+            PBTip_Builder* pbTipsBuilder = [PBTip builder];
+            NSString *name = [list objectAtIndex:j];
+            [pbTipsBuilder setIndex:j];
+            [pbTipsBuilder setImageName:name];
+            PBTip *tips = [pbTipsBuilder build];
+            [pbChapterBuilder addTips:tips];
+        }
+        
+    }
+    return [pbChapterBuilder build];
+}
 
 //赋值PBTutorial_Builder
 -(PBTutorial_Builder *) evaluateTutorialTestDataName:(NSString *)name WithDesc:(NSString *)desc WithTutorialId:(NSString *)tutorialId WithImage:(NSString *)imageUrl IsAdd:(BOOL)isAdd WithBuilder:(PBTutorialCore_Builder *)builder WithCategory:(NSArray *)categoryList
@@ -151,7 +234,7 @@ static TutorialCoreManager* _defaultTutorialCoreManager;
 }
 
 //赋值PBStage_Builder
--(void)evaluateStageTestDataName:(NSString *)name WithDesc:(NSString *)desc WithStageId:(NSString *)stageId WithImage:(NSString *)imageUrl WithTutorial:(PBTutorial_Builder*) tb WithIndex:(NSInteger)index WithChapterList:(NSArray*)chapterList WithChapterIndex:(int32_t)chapterIndex{
+-(void)evaluateStageTestDataName:(NSString *)name WithDesc:(NSString *)desc WithStageId:(NSString *)stageId WithImage:(NSString *)imageUrl WithTutorial:(PBTutorial_Builder*)  WithChapterList:(NSArray*)chapterList WithChapterIndex:(int32_t)chapterIndex tipList:(NSArray*)tipsList tipsIndex:(int32_t)tipsIndex{
     
     PBStage_Builder* pb = [PBStage builder];
     PBChapter_Builder* pbChapterBuilder = [PBChapter builder];
@@ -170,14 +253,32 @@ static TutorialCoreManager* _defaultTutorialCoreManager;
     [pbChapterBuilder setOpusId:[chapterList objectAtIndex:0]];
     [pbChapterBuilder setIndex:chapterIndex];
     [pbChapterBuilder setImageName:@"image.jpg"];
-    // TODO add tips image
+    
+    
+
+    // add tips image
+   
+        NSArray *list = [tipsList objectAtIndex:tipsIndex];
+        if([list count]>0){
+            for(int j=0;j<[list count];j++){
+                
+                PBTip_Builder* pbTipsBuilder = [PBTip builder];
+                NSString *name = [list objectAtIndex:j];
+                [pbTipsBuilder setIndex:j];
+                [pbTipsBuilder setImageName:name];
+                PBTip *tips = [pbTipsBuilder build];
+                [pbChapterBuilder addTips:tips];
+            }
+            
+        }
+    
+   
     
     PBChapter* chapter = [pbChapterBuilder build];
     
     [pb addChapter:chapter];
     PBStage* stage = [pb build];
     
-    [tb addStages:stage];
 }
 
 -(PBTutorial*)findTutorialByTutorialId:(NSString*)tutorialId
@@ -416,46 +517,98 @@ static TutorialCoreManager* _defaultTutorialCoreManager;
                                 ],
                                @[
                                    @"53c77079e4b07ab22e742bf3"
+                                ],
+                               @[
+                                   @"53c77079e4b07ab22e742bf3"
                                 ]
                                ];
     
-    
+    NSArray *tipsList = @[@[],@[],@[],@[],@[@"tips1.png"],@[@"tips1.png",@"tips2.png"],@[@"tips1.png",@"tips2.png",@"tips3.png"],@[],@[],@[]];
     
     //模拟测试数据
-    for(int i=0;i<testTutorialName.count;i++){
-        NSString* ID = [NSString stringWithFormat:@"tutorialId-%d",i];
-        PPDebug(@"tutorial count==%d",[testTutorialName count]);
-
-      PBTutorial_Builder* tb = [self evaluateTutorialTestDataName:[testTutorialName objectAtIndex:i]
-                                  WithDesc:[testTutorialDesc objectAtIndex:i]
-                            WithTutorialId:ID
-                                 WithImage:[tutorialImageUrl objectAtIndex:i]
-                                     IsAdd:NO
-                               WithBuilder:nil
-                                WithCategory:[tutorialCategory objectAtIndex:i]];
-        for(int j=0;j<[[testStageName objectAtIndex:i]  count];j++){
-            //TODO chapter
+//    for(int i=0;i<testTutorialName.count;i++){
+//        NSString* ID = [NSString stringWithFormat:@"tutorialId-%d",i];
+//        PPDebug(@"tutorial count==%d",[testTutorialName count]);
+//
+//      PBTutorial_Builder* tb = [self evaluateTutorialTestDataName:[testTutorialName objectAtIndex:i]
+//                                  WithDesc:[testTutorialDesc objectAtIndex:i]
+//                            WithTutorialId:ID
+//                                 WithImage:[tutorialImageUrl objectAtIndex:i]
+//                                     IsAdd:NO
+//                               WithBuilder:nil
+//                                WithCategory:[tutorialCategory objectAtIndex:i]];
+//        for(int j=0;j<[[testStageName objectAtIndex:i]  count];j++){
+//            //TODO chapter
+//            
+//            NSString* stageID = [NSString stringWithFormat:@"stageId-%d-%d",j,j];
+//            if(i==6){
+//            PPDebug(@"stageList count==%d",[[testStageName objectAtIndex:i]  count]);
+//            }
+//            [self evaluateStageTestDataName:[[testStageName objectAtIndex:i] objectAtIndex:j]
+//                                   WithDesc:[[testStageDesc objectAtIndex:i] objectAtIndex:j]
+//                                   WithStageId:stageID
+//                                   WithImage:[[stageImageUrl objectAtIndex:i]objectAtIndex:j]
+//                                   WithTutorial:tb
+//                                   WithIndex:i
+//                                   WithChapterList:[chapterOpusIdList objectAtIndex:j]
+//                                   WithChapterIndex:i
+//                                   tipList:tipsList
+//                                   tipsIndex:j];
+//        }
+//        
+//        PBTutorial* tutorial = [tb build];
+//        [builder addTutorials:tutorial];
+//        
+//    }
+    
+    NSMutableArray *tutorialList = [[NSMutableArray alloc] init];
+    
+    NSString* stageID = @"";
+    //外层为tuturoial
+    for(int tutorialSum=0;tutorialSum<[testTutorialName count];tutorialSum++){
+        //中层为stage
+        NSMutableArray *stageList = [[NSMutableArray alloc] init];
+        for(int stageSum=0;stageSum<[[testStageName objectAtIndex:tutorialSum] count];stageSum++){
             
-            NSString* stageID = [NSString stringWithFormat:@"stageId-%d-%d",j,j];
-            if(i==6){
-            PPDebug(@"stageList count==%d",[[testStageName objectAtIndex:i]  count]);
+            NSMutableArray *chapterList = [[NSMutableArray alloc] init];
+            //内层为chapter
+            for(int chapterSum=0;chapterSum<[[chapterOpusIdList objectAtIndex:stageSum] count];chapterSum++){
+                // 添加chapter
+                PBChapter *chapter = [self evalueteChapterDataChapterIndex:chapterSum
+                                                                   tipList:tipsList
+                                                                 tipsIndex:chapterSum
+                                     ];
+                
+
+                [chapterList addObject:chapter];
+                stageID = [NSString stringWithFormat:@"stageId-%d-%d",stageSum,chapterSum];
             }
-            [self evaluateStageTestDataName:[[testStageName objectAtIndex:i] objectAtIndex:j]
-                                   WithDesc:[[testStageDesc objectAtIndex:i] objectAtIndex:j]
-                                   WithStageId:stageID
-                                   WithImage:[[stageImageUrl objectAtIndex:i]objectAtIndex:j]
-                                   WithTutorial:tb
-                                   WithIndex:i
-                                   WithChapterList:[chapterOpusIdList objectAtIndex:j]
-                                   WithChapterIndex:i];
+            //添加stage
+            PBStage *stage = [self evaluateStageDataName:
+                                                         [[testStageName objectAtIndex:tutorialSum] objectAtIndex:stageSum]
+                                                WithDesc:[[testStageDesc objectAtIndex:tutorialSum] objectAtIndex:stageSum]
+                                             WithStageId:stageID
+                                               WithImage:[[stageImageUrl objectAtIndex:tutorialSum]objectAtIndex:stageSum]
+                                                 tipList:tipsList
+                                               tipsIndex:stageSum
+                                              opusId:[[chapterOpusIdList objectAtIndex:stageSum] objectAtIndex:0]
+                                             chapterList:chapterList
+                              ];
+
+            [stageList addObject:stage];
         }
         
-        PBTutorial* tutorial = [tb build];
-        [builder addTutorials:tutorial];
-        
+         NSString* ID = [NSString stringWithFormat:@"tutorialId-%d",tutorialSum];
+         PBTutorial *tutorial = [self evaluateTutorialpbName:[testTutorialName objectAtIndex:tutorialSum]
+                                                    WithDesc:[testTutorialDesc objectAtIndex:tutorialSum]
+                                              WithTutorialId:ID
+                                                   WithImage:[tutorialImageUrl objectAtIndex:tutorialSum]
+                                                WithCategory:[tutorialCategory objectAtIndex:tutorialSum]
+                                                   WithStage:stageList];
+
+         [tutorialList addObject:tutorial];
     }
-    
-    
+    [builder addAllTutorials:tutorialList];
     PBTutorialCore* core = [builder build];
     NSData* data = [core data];
 //    NSData* data = [test data];

@@ -1797,6 +1797,10 @@
                                        [self quit];
                                    }];
     
+    return;
+    
+    // the following code is just used for reference.
+    
     // 根据评分结果跳转
     int defeatPercent = [userStage defeatPercent];
     if ([self isPassPractice:score]){

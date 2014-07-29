@@ -174,7 +174,7 @@
     }
     
     NSMutableArray* retList = [NSMutableArray array];
-    for (PBTip* tip in self.chapterList){
+    for (PBTip* tip in chapter.tipsList){
         if (tip.imageName){
             [retList addObject:tip.imageName];
         }
