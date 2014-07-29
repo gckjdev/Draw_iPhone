@@ -1767,6 +1767,7 @@
 //    }
 
     if (targetType == TypeConquerDraw){
+        [self showProgressViewWithMessage:NSLS(@"kSending")];
         self.submitOpusDrawData = [[DrawDataService defaultService] createOfflineDraw:drawView.drawActionList
                                                                                 image:image
                                                                              drawWord:[self opusWord]
