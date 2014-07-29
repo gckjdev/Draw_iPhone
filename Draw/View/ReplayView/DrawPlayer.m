@@ -372,6 +372,8 @@
     
 }
 
+#pragma mark - Period Replay
+
 + (void)updateReplayObjectPlayIndex:(ReplayObject *)obj
                               begin:(NSUInteger)begin
                                 end:(NSUInteger)end
@@ -404,67 +406,75 @@
     obj.actionList = subActionList;
     [subActionList release];
     
-
 }
 
-- (void)updateBgImageByIndex:(NSMutableArray*)origActionList
-                       begin:(int)begin
-                         end:(int)end
+- (UIImage*)createBgImageByObj:(ReplayObject*)obj
+                         begin:(NSUInteger)begin
+                           end:(NSUInteger)end
 {
-    NSMutableArray* drawActionList = origActionList;
+    NSMutableArray* drawActionList = obj.actionList;
     
     if (end < begin)
     {
-        PPDebug(@"end less than begin, fail to play period!");
-        return;
+        PPDebug(@"<createBgImageByObj> end < begin, fail to play period!");
+        return obj.bgImage;
     }
     
     if (end >= [drawActionList count] || begin >= [drawActionList count])
     {
-        PPDebug(@"end > all action count, fail to play period!");
-        return;
+        PPDebug(@"<createBgImageByObj> end >  total action count, fail to play period!");
+        return obj.bgImage;
     }
     
     if (begin == 0 && (end >= ([drawActionList count] - 1))){
         // begin and end is the whole list, no need to do any extra actions
-        return;
+        return obj.bgImage;
     }
+    
+    UIImage *retImg = nil;
     
     // update background image
     UIImage *img = nil; // create bg image
     if (begin > 0){
         // if begin from 0, means no background image needed
-        [self.showView createImageAtIndex:begin];
+        img = [self.showView createImageAtIndex:begin];
     }
     
     if (img != nil){
-        if (self.replayObj.bgImage == nil){
-            self.replayObj.bgImage = img;
+        //用户木有使用背景图，返回index==begin时候的image;否则合并图片
+        if (obj.bgImage == nil){
+            retImg = img;
         }
         else{
-            // TODO if current bg image is not nil, need to merge it
+            // 将obj生成的image放到用户使用的bgImage上面合并成新的UIImage
+            retImg = [ShowDrawView addImage:img toImage:obj.bgImage];
         }
     }
-    
+
+    return retImg;
 }
 
 + (DrawPlayer*)playerWithReplayObj:(ReplayObject *)obj
                              begin:(NSUInteger)begin
                                end:(NSUInteger)end
 {
-
-    // backup list for update background image
-    NSMutableArray* orignActionList = obj.actionList;
-    
-    // split draw action list
     PPDebug(@"<playerWithReplayObj> begin=%d, end=%d", begin, end);
+
+    // create background image, using the whole replay object
+    DrawPlayer *playerForBgImage=[DrawPlayer playerWithReplayObj:obj];
+    UIImage* bgImage = [playerForBgImage createBgImageByObj:obj begin:begin end:end];
+    
+    //赋值到obj
+    obj.bgImage = bgImage;
+    
+    //using another player to update replay object
+    DrawPlayer *player = [DrawPlayer createViewWithXibIdentifier:@"DrawPlayer" ofViewIndex:ISIPAD];
     [DrawPlayer updateReplayObjectPlayIndex:obj begin:begin end:end];
     
-    DrawPlayer *player = [DrawPlayer playerWithReplayObj:obj];
+    //把已经upadate的obj属性赋值到player
+    player.replayObj = obj;
+    [player updateView];
 
-    // update background image
-    [player updateBgImageByIndex:orignActionList begin:begin end:end];
-    
     return player;
 }
 

@@ -79,6 +79,8 @@ typedef enum{
         outputPath:(NSString*)outputPath
          scaleSize:(double)scaleSize;
 
++(UIImage*)addImage:(UIImage*)img1 toImage:(UIImage*)img2;
+
 @end
 
 

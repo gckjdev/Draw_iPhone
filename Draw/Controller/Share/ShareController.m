@@ -392,7 +392,7 @@ typedef enum{
 
 #ifdef DEBUG
 
-    [self gotoPeriodReplayViewBegin:100 End:600];
+    [self gotoPeriodReplayViewBegin:1000 End:2000];
     [self hideActivity];
     return;
 #endif
@@ -423,22 +423,11 @@ typedef enum{
 - (void)gotoPeriodReplayViewBegin:(NSInteger)begin
                               End:(NSInteger)end
 {
-//    if(end<=begin)
-//    {
-//        PPDebug(@"end less than begin, fail to play period!");
-//        return;
-//    }
-
     DrawPlayer *player;
     MyPaint* currentPaint = _selectedPaint;
     BOOL isNewVersion = [PPConfigManager currentDrawDataVersion] < [currentPaint drawDataVersion];
-    
-//    if(end>[[currentPaint drawActionList] count] || begin < 0)
-//    {
-//        PPDebug(@"end > all action count, fail to play period!");
-//        return;
-//    }
-    
+
+    //记录当前的replay对象的属性
     ReplayObject *obj = [ReplayObject obj];
     obj.actionList = [currentPaint drawActionList];
     obj.isNewVersion = isNewVersion;
@@ -446,18 +435,10 @@ typedef enum{
     obj.layers = currentPaint.layers;
     obj.canvasSize = [currentPaint canvasSize];
     
+    //把带有索引begin和end的replay对象关联到播放器
     player = [DrawPlayer playerWithReplayObj:obj begin:begin end:end];
-    
-//    UIImage *img = [player.showView createImageAtIndex:begin];
-//    
-//    NSMutableArray *subActionList;
-//    NSRange range=NSMakeRange(begin, (end-begin));
-//    subActionList =[[NSMutableArray alloc]initWithArray:[[currentPaint drawActionList] subarrayWithRange:range]];
-//    obj.actionList = subActionList;
-//    [subActionList release];
-//    obj.bgImage=img;
-//    player=[DrawPlayer playerWithReplayObj:obj];
 
+    //播放
     [player showInController:self];
     
 }
