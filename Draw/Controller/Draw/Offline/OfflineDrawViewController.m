@@ -504,12 +504,14 @@
 
     NSString* opusId = self.draft.chapterOpusId;
     
-    self.copyView = [CopyView createCopyView:self
-                                   superView:holder
-                                     atPoint:drawView.frame.origin
-                                      opusId:opusId
-                                   userStage:[self buildUserStage]
-                                       stage:self.stage];
+    if ([self isLearnType]){
+        self.copyView = [CopyView createCopyView:self
+                                       superView:holder
+                                         atPoint:drawView.frame.origin
+                                          opusId:opusId
+                                       userStage:[self buildUserStage]
+                                           stage:self.stage];
+    }
 }
 
 - (void)setCopyViewInfo
