@@ -218,7 +218,7 @@
         [self.view addConstraint:constraint];
     }
 }
-
+    
 #pragma mark click
 - (IBAction)goTolearning:(id)sender {
 }
