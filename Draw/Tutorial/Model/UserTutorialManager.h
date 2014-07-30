@@ -31,6 +31,10 @@
                                  stageId:(NSString*)stageId
                               stageIndex:(int)stageIndex;
 
+- (PBUserTutorial*)conquerTutorialStage:(NSString*)userTutorialLocalId
+                                stageId:(NSString*)stageId
+                             stageIndex:(int)stageIndex;
+
 - (PBUserTutorial*)updateUserStage:(PBUserStage*)userStage;
 - (BOOL)isLastStage:(PBUserStage*)userStage;
 

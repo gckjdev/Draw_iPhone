@@ -2812,3 +2812,5 @@
 "kNoConquerDraw" = "No data";
 "kTimelineConquerDraw" = "Conquer";
 "kNoTimelineConquerDraw" = "No data";
+
+"kNoTipsForChapter" = "No tips";

@@ -44,7 +44,6 @@
     
    //    [self.tutorialStartBtn setTitle:@"开始" forState:UIControlStateNormal];
     
-    
     //自定义label右上角难度
     UILabel *difficultyLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 8, 100, 30)];
     [difficultyLabel setText:ut.tutorial.categoryName];

@@ -14,6 +14,9 @@
 #import "OfflineDrawViewController.h"
 #import "PBTutorial+Extend.h"
 #import "Reachability.h"
+#import "StorageManager.h"
+
+#define TUTORIAL_IMAGE_DIR  @"TutorialImage"
 
 @interface UserTutorialService ()
 {
@@ -22,6 +25,7 @@
 
 @property (nonatomic, assign) BOOL isTestMode;
 @property (nonatomic, retain) NSMutableDictionary* smartDataDict;
+@property (nonatomic, retain) StorageManager *imageManager;
 
 @end
 
@@ -34,6 +38,8 @@ static UserTutorialService* _defaultService;
     if (_defaultService == nil){
         _defaultService = [[UserTutorialService alloc] init];
         _defaultService.smartDataDict = [NSMutableDictionary dictionary];
+        _defaultService.imageManager = [[StorageManager alloc] initWithStoreType:StorageTypePersistent
+                                                                   directoryName:TUTORIAL_IMAGE_DIR];
     }
     
     return _defaultService;
@@ -43,7 +49,7 @@ static UserTutorialService* _defaultService;
 - (void)syncUserTutorial:(PBUserTutorial*)ut
 {
     NSDictionary* para = nil;
-    NSData* postData = [ut data];
+//    NSData* postData = [ut data];
     
     [PPGameNetworkRequest loadPBData:workingQueue
                              hostURL:TUTORIAL_HOST
@@ -317,6 +323,49 @@ static UserTutorialService* _defaultService;
     NSString* opusDataPath = [[smartData currentDataPath] stringByAppendingPathComponent:opusDataName];
     PPDebug(@"<getOpusDataPath> path=%@", opusDataPath);
     return opusDataPath;
+}
+
+- (NSString*)tutorialStageImageKey:(NSString*)tutorialId stageId:(NSString*)stageId type:(TargetType)type
+{
+    NSString* typeString = (type == TypeConquerDraw) ? @"conquer" : @"practice";
+    NSString* stageImageKey = [NSString stringWithFormat:@"%@__%@__%@.jpg", typeString, tutorialId, stageId];
+    return stageImageKey;
+}
+
+- (void)saveTutorialImage:(PBUserStage*)userStage image:(UIImage*)image type:(TargetType)type
+{
+    if (userStage == nil || image == nil){
+        return;
+    }
+    
+    NSString* stageImageKey = [self tutorialStageImageKey:userStage.tutorialId stageId:userStage.stageId type:type];
+    PPDebug(@"<saveTutorialImage> %@", stageImageKey);
+    [_imageManager saveImage:image forKey:stageImageKey];
+}
+
+- (UIImage*)stageDrawImage:(PBUserStage*)userStage type:(TargetType)type
+{
+    if (userStage == nil){
+        return nil;
+    }
+    
+    NSString* stageImageKey = [self tutorialStageImageKey:userStage.tutorialId stageId:userStage.stageId type:type];
+    return [_imageManager imageForKey:stageImageKey];
+}
+
+- (UIImage*)getBgImage:(PBUserStage*)userStage stage:(PBStage*)stage type:(TargetType)type
+{
+    if (stage.useBgFromPrev){
+        // 用上一关的作品作为背景底图
+        PPDebug(@"<getBgImage> use previous stage result as bg image");
+        return [self stageDrawImage:userStage type:type];
+    }
+    else{
+        // 用默认的指定背景底图
+        NSString* bgImagePath = [[UserTutorialService defaultService] getBgImagePath:userStage.tutorialId stage:stage];
+        UIImage* bgImage = [[[UIImage alloc] initWithContentsOfFile:bgImagePath] autorelease];
+        return bgImage;
+    }
 }
 
 

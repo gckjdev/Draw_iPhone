@@ -233,17 +233,19 @@
                              userStage:(PBUserStage*)userStage
                           userTutorial:(PBUserTutorial*)userTutorial
 {
+    int targetType = TypePracticeDraw;
     PBTutorial* tutorial = [[TutorialCoreManager defaultManager] findTutorialByTutorialId:userStage.tutorialId];
     PBStage* stage = [tutorial getStageByIndex:userStage.stageIndex];
     
-    NSString* bgImagePath = [[UserTutorialService defaultService] getBgImagePath:userStage.tutorialId stage:stage];
-    UIImage* bgImage = [[[UIImage alloc] initWithContentsOfFile:bgImagePath] autorelease];
+//    NSString* bgImagePath = [[UserTutorialService defaultService] getBgImagePath:userStage.tutorialId stage:stage];
+//    UIImage* bgImage = [[[UIImage alloc] initWithContentsOfFile:bgImagePath] autorelease];
+
+    UIImage* bgImage = [[UserTutorialService defaultService] getBgImage:userStage stage:stage type:targetType];
     
     NSString* draftId = userStage.practiceLocalOpusId;
     MyPaint* draft = [[MyPaintManager defaultManager] findDraftById:draftId];
     
     OfflineDrawViewController *vc = nil;
-    int targetType = TypePracticeDraw;
     if (draft){
         // load from draft
         vc = [[OfflineDrawViewController alloc] initWithDraft:draft startController:startController];
@@ -285,17 +287,20 @@
                             userStage:(PBUserStage*)userStage
                          userTutorial:(PBUserTutorial*)userTutorial
 {
+    int targetType = TypeConquerDraw;
+
     PBTutorial* tutorial = [[TutorialCoreManager defaultManager] findTutorialByTutorialId:userStage.tutorialId];
     PBStage* stage = [tutorial getStageByIndex:userStage.stageIndex];
     
-    NSString* bgImagePath = [[UserTutorialService defaultService] getBgImagePath:userStage.tutorialId stage:stage];
-    UIImage* bgImage = [[[UIImage alloc] initWithContentsOfFile:bgImagePath] autorelease];
+//    NSString* bgImagePath = [[UserTutorialService defaultService] getBgImagePath:userStage.tutorialId stage:stage];
+//    UIImage* bgImage = [[[UIImage alloc] initWithContentsOfFile:bgImagePath] autorelease];
+    
+    UIImage* bgImage = [[UserTutorialService defaultService] getBgImage:userStage stage:stage type:targetType];
     
     NSString* draftId = userStage.conquerLocalOpusId;
     MyPaint* draft = [[MyPaintManager defaultManager] findDraftById:draftId];
     
     OfflineDrawViewController *vc = nil;
-    int targetType = TypeConquerDraw;
     if (draft){
         // load from draft
         vc = [[OfflineDrawViewController alloc] initWithDraft:draft startController:startController];
@@ -1161,7 +1166,7 @@
 
     
     if (resultCode == 0){
-
+        
         if (userStage){
             self.userStageBuilder = [PBUserStage builderWithPrototype:userStage];
         }
@@ -1795,6 +1800,11 @@
     [self writeTempFile:image hasWaterMark:NO];
     self.submitOpusFinalImage = image;
     
+    // save last conquer opus image
+    [[UserTutorialService defaultService] saveTutorialImage:[self buildUserStage]
+                                                      image:self.submitOpusFinalImage
+                                                       type:targetType];
+    
     [self.designTime pause];
     
     MyPaint* draft = self.draft;
@@ -1807,7 +1817,7 @@
     // 评分
     NSString* sourcePath = [self writeImageToFile:imageForCompare filePath:self.draft.draftId];
     NSString* destPath = self.tempImageFilePath;
-
+    
     //从关卡传入difficulty，TODO
     int score = [ImageSimilarityEngine score1SrcPath:sourcePath destPath:destPath difficulty:_stage.difficulty];
     
