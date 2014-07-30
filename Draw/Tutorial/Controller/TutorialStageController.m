@@ -97,7 +97,8 @@
 //每个section的item个数
 -(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
-        return [[[self.pbUserTutorial tutorial] stagesList] count];
+    int count = [[[self.pbUserTutorial tutorial] stagesList] count];
+    return count;
 }
 
 -(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
