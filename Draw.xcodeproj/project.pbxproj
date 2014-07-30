@@ -13423,6 +13423,7 @@
 		C2B537E31677712300725802 /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				EA411F441763050300DA72D0 /* AskPs */,
 				C28C0A6B16EB31F800A29B6C /* Service */,
 				C2B537E91677712300725802 /* Model */,
 				C2B537EC1677712300725802 /* View */,
@@ -15925,7 +15926,6 @@
 				CA1162511834A84F00FDD3A9 /* Task */,
 				EA8CADD618288C4D003149FE /* Group */,
 				A4B78823179E2E3C0008E21B /* Theme */,
-				EA411F441763050300DA72D0 /* AskPs */,
 				C2C18A6B1760A7B400DE933B /* Gallery */,
 				C2051B441739E12900403DBD /* LittleGeeDraw */,
 				CA9AAE751832161E002DBAA5 /* Sing */,
@@ -18509,7 +18509,8 @@
 				EA411F4A17630DCF00DA72D0 /* Controller */,
 				EA411F4B17630DCF00DA72D0 /* Model */,
 			);
-			path = AskPs;
+			name = AskPs;
+			path = ../AskPs;
 			sourceTree = "<group>";
 		};
 		EA411F4A17630DCF00DA72D0 /* Controller */ = {
