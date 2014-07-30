@@ -27,7 +27,7 @@
 // TODO move image name to ShareImageManager
 // TODO format/refactor the code below
 #define DEFAUT_IMAGE "zuixiaoguanka"
-#define DEFAUT_LOCK_IMAGE "lock_new2"
+#define DEFAUT_LOCK_IMAGE "lock_new2.jpg"
 
 -(void)updateStageCellInfo:(PBUserTutorial *)pbUserTutorial withRow:(NSInteger)row{
    
@@ -63,10 +63,7 @@
         [self.stageListStarBtn setTitleColor:COLOR_BROWN forState:UIControlStateNormal];
         [self.stageListStarBtn.titleLabel setFont:AD_FONT(20, 14)];
 
-
         // stage image
-       
-        
         SET_VIEW_ROUND_CORNER(self.stageCellImage);
         UIImage *placeHolderImage = [UIImage imageNamed:@DEFAUT_IMAGE];
         [self.stageCellImage setImageWithUrl:[NSURL URLWithString:[[stageList objectAtIndex:row] thumbImage]]
@@ -91,7 +88,7 @@
         self.stageListHiddenLockImageView.hidden = NO;
         self.hiddenNumberLabel.hidden = NO;
         self.hiddenNumberHolderView.hidden = NO;
-        
+                
         // lock image
         SET_VIEW_ROUND_CORNER(self.stageListHiddenLockImageView);
         [self.stageListHiddenLockImageView setImage:[UIImage imageNamed:@DEFAUT_LOCK_IMAGE]];
