@@ -21,6 +21,7 @@
 @property (retain, nonatomic) IBOutlet UILabel *progressInfoLabel;
 @property (retain, nonatomic) IBOutlet UILabel *othersProgressInfoLabel;
 @property (retain, nonatomic) IBOutlet UIView *progressAndLabelView;
+@property (retain, nonatomic) IBOutlet UILabel *difficultyLabel;
 
 - (void)updateCellInfo:(PBUserTutorial*)ut WithRow:(NSInteger)row;
 @end

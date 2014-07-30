@@ -66,16 +66,17 @@
 -(void)initTipsSGFousImage:(NSArray*)imagePathArray{
     
     NSMutableArray *itemList = [[[NSMutableArray alloc] init] autorelease];
+    
     for(NSString *gallerUrlString in imagePathArray){
         int i= 0;
-    UIImage *image = [[[UIImage alloc] initWithContentsOfFile:gallerUrlString] autorelease];
-    
-    if(image==nil){
-        image = [UIImage imageNamed:DEFAULT_GALLERY_IMAGE] ;
-    }
-    SGFocusImageItem *item = [[[SGFocusImageItem alloc] initWithTitle:@"" image:image tag:i] autorelease];
-    [itemList addObject:item];
-        i++;
+        UIImage *image = [[[UIImage alloc] initWithContentsOfFile:gallerUrlString] autorelease];
+
+        if(image==nil){
+            image = [UIImage imageNamed:DEFAULT_GALLERY_IMAGE] ;
+        }
+        SGFocusImageItem *item = [[[SGFocusImageItem alloc] initWithTitle:@"" image:image tag:i] autorelease];
+        [itemList addObject:item];
+            i++;
     }
     SGFocusImageFrame *imageFrame = [[SGFocusImageFrame alloc] initWithFrameAndIntervalTime:CGRectMake(0, 0, IMAGE_FRAME_WIDTH,IMAGE_FRAME_HEIGHT)
                                                                     delegate:self
