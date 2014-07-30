@@ -296,6 +296,7 @@ static UserTutorialService* _defaultService;
     }
     
     NSString* imagePath = [[smartData currentDataPath] stringByAppendingPathComponent:imageName];
+    PPDebug(@"<getChapterImagePath> path=%@", imagePath);
     return imagePath;
 }
 
@@ -304,6 +305,7 @@ static UserTutorialService* _defaultService;
     PPSmartUpdateData* smartData = [self getSmartData:tutorialId stageId:stage.stageId];
     NSString* imageName = stage.bgImageName;
     NSString* imagePath = [[smartData currentDataPath] stringByAppendingPathComponent:imageName];
+    PPDebug(@"<getBgImagePath> path=%@", imagePath);
     return imagePath;
     
 }
@@ -313,6 +315,7 @@ static UserTutorialService* _defaultService;
     PPSmartUpdateData* smartData = [self getSmartData:tutorialId stageId:stage.stageId];
     NSString* opusDataName = stage.opusName;
     NSString* opusDataPath = [[smartData currentDataPath] stringByAppendingPathComponent:opusDataName];
+    PPDebug(@"<getOpusDataPath> path=%@", opusDataPath);
     return opusDataPath;
 }
 

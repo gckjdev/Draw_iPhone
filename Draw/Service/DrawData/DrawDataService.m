@@ -444,10 +444,12 @@ static DrawDataService* _defaultDrawDataService = nil;
                     
                     // for conquer draw result update
                     if ([[UserTutorialManager defaultManager] isPass:opusScore]){
-                        // pass this stage, need to update user tutorial to next stage index
-                        retUT = [[UserTutorialService defaultService] passCurrentStage:newUserTutorial];
-                        if (retUT){
-                            newUserTutorial = retUT;
+                        if (userStage.stageIndex == userTutorial.currentStageIndex){
+                            // pass this stage, need to update user tutorial to next stage index
+                            retUT = [[UserTutorialService defaultService] passCurrentStage:newUserTutorial];
+                            if (retUT){
+                                newUserTutorial = retUT;
+                            }
                         }
                     }
                 }
