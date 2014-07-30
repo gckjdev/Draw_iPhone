@@ -191,27 +191,26 @@ static TutorialCoreManager* _defaultTutorialCoreManager;
 }
 
 //重写Chapter
--(PBChapter *) evalueteChapterDataChapterIndex:(int32_t)chapterIndex tipList:(NSArray*)tipsList tipsIndex:(int32_t)tipsIndex{
+-(PBChapter *) evalueteChapterDataChapterIndex:(int32_t)chapterIndex tipList:(NSArray*)tipsList{
     PBChapter_Builder *pbChapterBuilder = [PBChapter builder];
     //required
     [pbChapterBuilder setIndex:chapterIndex];
     //optional
     [pbChapterBuilder setImageName:@"image.jpg"];
-    // TODO add tips image
-    NSArray *list = [tipsList objectAtIndex:tipsIndex];
-    if([list count]>0){
-        for(int j=0;j<[list count];j++){
-            
-            PBTip_Builder* pbTipsBuilder = [PBTip builder];
-            NSString *name = [list objectAtIndex:j];
-            [pbTipsBuilder setIndex:j];
-            [pbTipsBuilder setImageName:name];
-            PBTip *tips = [pbTipsBuilder build];
-            [pbChapterBuilder addTips:tips];
-        }
-        
+    // add tips image
+    if(tipsList!=nil&&[tipsList count]!=0){
+        [pbChapterBuilder addAllTips:tipsList];
     }
+    
     return [pbChapterBuilder build];
+}
+
+-(PBTip *) evalueteTipsDataName:(NSString *)tipsName WithIndex:(int32_t)tipsIndex{
+    PBTip_Builder *tipBuilder = [PBTip builder];
+    [tipBuilder setIndex:tipsIndex];
+    PPDebug(@"tipsName =====%@",tipsName);
+    [tipBuilder setImageName:tipsName];
+     return [tipBuilder build];
 }
 
 //赋值PBTutorial_Builder
@@ -315,6 +314,24 @@ static TutorialCoreManager* _defaultTutorialCoreManager;
 }
 
 
+//取得tipsInChapter count
+-(NSArray *)getTipsInChapterCountTutorialIndex:(int)tutorialIndex stageIndex:(int)stageInedx chapterIndex:(int)chapterIndex list:(NSArray*)list{
+    
+    NSArray *tutorialTips = [list objectAtIndex:tutorialIndex];
+    if(tutorialTips==nil||[tutorialTips count]==0){
+        return nil;
+    }
+    NSArray *stageTips = [tutorialTips  objectAtIndex:stageInedx];
+    if(stageTips==nil||[stageTips count]==0){
+        return nil;
+    }
+    NSArray *chapterTips = [stageTips objectAtIndex:chapterIndex];
+    if(chapterTips==nil||[chapterTips count]==0){
+        return nil;
+    }
+    return chapterTips;
+}
+
 // 创建测试数据
 - (void)createTestData
 {
@@ -356,6 +373,7 @@ static TutorialCoreManager* _defaultTutorialCoreManager;
                                   ];
     
     NSArray* testStageName = @[
+
                                @[@"石头",@"陶瓷",@"亚克力塑料",@"金属",@"皮肤",@"橡胶", @"玻璃",@"材质集合"],
                                @[@"整齐的直线",@"横纵直线",@"巧画直线条",@"很浪的波浪线",@"巧画波浪线",@"几何形", @"圈圈君",@"实践测试"],
                                @[@"十二色环",@"二十四色环",@"互补色色环",@"渐变色",@"经典互补色",@"渐变构成", @"冷暖对比",@"同色系渐变构成"],
@@ -372,16 +390,18 @@ static TutorialCoreManager* _defaultTutorialCoreManager;
                                @[@"十二色环",@"二十四色环",@"互补色色环",@"渐变色",@"经典互补色",@"渐变构成", @"冷暖对比",@"同色系渐变构成"],
                                @[@"比熊先生",@"博美小姐",@"马尔济斯绅士",@"哈士奇骑士",@"约克夏伯爵",@"吉娃娃公主", @"泰迪女王",@"萨摩王子"],
                                @[@"没有翅膀也一样可以飞翔",@"展现身体的柔性美",@"人与动物最佳拍档",@"在运动中享受大自然的乐趣",@"干净利落的身姿",@"协调性与灵活性的考验",@"像鸟一样在雪地里飞舞",@"只为射门那一刻的欢呼"],
+
                                
                                /* @[@"放松",@"微笑",@"惊恐",@"鄙视",@"纠结",@"开心",@"奸笑",@"无奈",@"享受",@"可爱"],
                                 @[@"皮划艇",@"拳击",@"棒球",@"铁人三项",@"射击",@"跆拳道",@"游泳",@"拳击",@"跳水",@"柔道"],
                                 @[@"江南小镇",@"卢浮宫金字塔",@"雷峰塔",@"美国白宫",@"古希腊神庙",@"巴黎铁塔",@"赵州桥",@"埃及金字塔"]*/
-                               
+
                                @[@"美少女奈儿",@"美少女纪子",@"小妹妹",@"帅哥",@"小毛孩",@"经理",@"妇女",@"老者"],
                                @[@"终于下课了",@"做好事受表扬",@"上厕所忘记带纸",@"看见行人闯红灯",@"我到底是男还是女",@"作品上榜了",@"想到坏点子",@"澡堂洗澡肥皂掉地上",@"雪地泡温泉",@"和帅哥打招呼"],
                                @[@"你的手臂够粗吗",@"一秒钟变猪头",@"米国人四大运动之一",@"游、跑、骑三部曲",@"要不要再来一发",@"再也不怕色狼了",@"旱鸭子一边去",@"一秒钟变猪头",@"森碟老爸是冠军",@"据说是小孩子把戏"],
                                @[@"文艺小资青年的挚爱",@"亮瞎你眼睛的玻璃建筑",@"法海不懂爱",@"爱爸妈发号施令的基地",@"住着美女雅典娜",@"土豪玩浪漫的约会圣地",@"没有比TA更老的古桥了",@"听说法老躺这里"]
                                ];
+
     NSArray* stageImageUrl = @[
                                     @[
                                         @"http://58.215.184.18:8080/tutorial/image/1-1.png",
@@ -529,12 +549,29 @@ static TutorialCoreManager* _defaultTutorialCoreManager;
                                @[
                                    @"53c77079e4b07ab22e742bf3"
                                 ],
-                               @[
-                                   @"53c77079e4b07ab22e742bf3"
-                                ]
                                ];
     
-    NSArray *tipsList = @[@[],@[],@[],@[],@[@"tips1.png"],@[@"tips1.png",@"tips2.png"],@[@"tips1.png",@"tips2.png",@"tips3.png"],@[],@[],@[]];
+    
+    
+    NSArray *stageTips = @[@[@"tips1.png"]];
+    //stageTipsList
+    NSArray *tutorial6Tips = @[stageTips,@[],@[],@[],@[],@[],@[],@[],@[],@[]];
+    NSArray *tutorial7Tips = @[@[],@[],@[],@[],@[],@[],@[],@[],@[],@[]];
+    NSArray *tutorial8Tips = @[@[],@[],@[],@[],@[],@[],@[],@[],@[],@[]];
+    //tutorialTipsList
+    NSArray *tipsList = @[
+                          @[],
+                          @[],
+                          @[],
+                          @[],
+                          @[],
+                          @[],
+                          tutorial6Tips,
+                          tutorial7Tips,
+                          tutorial8Tips,
+                          ];
+    
+    NSArray *difficulty = @[@0.5,@0.5,@0.5,@0.5,@0.5,@0.5,@0.5,@0.5,@0.5,@0.5];
     
     //模拟测试数据
 //    for(int i=0;i<testTutorialName.count;i++){
@@ -584,15 +621,21 @@ static TutorialCoreManager* _defaultTutorialCoreManager;
             NSMutableArray *chapterList = [[NSMutableArray alloc] init];
             //内层为chapter
             for(int chapterSum=0;chapterSum<[[chapterOpusIdList objectAtIndex:stageSum] count];chapterSum++){
-                // 添加chapter
-                PBChapter *chapter = [self evalueteChapterDataChapterIndex:chapterSum
-                                                                   tipList:tipsList
-                                                                 tipsIndex:chapterSum
-                                     ];
                 
-
+                NSArray *tipsInChapter = [self getTipsInChapterCountTutorialIndex:tutorialSum stageIndex:stageSum chapterIndex:chapterSum list:tipsList];
+                NSMutableArray *tipsArray = [[NSMutableArray alloc] init];
+                if(tipsInChapter!=nil){
+                    for(int tipsSum=0;tipsSum<[tipsInChapter count];tipsSum++){
+                        PBTip *tip = [self evalueteTipsDataName:[tipsInChapter objectAtIndex:tipsSum] WithIndex:tipsSum];
+                        [tipsArray addObject:tip];
+                    }
+                    
+                }
+                // 添加chapter
+                PBChapter *chapter = [self evalueteChapterDataChapterIndex:chapterSum tipList:tipsArray];
                 [chapterList addObject:chapter];
                 stageID = [NSString stringWithFormat:@"stageId-%d-%d",stageSum,chapterSum];
+                
             }
             //添加stage
             PBStage *stage = [self evaluateStageDataName:
