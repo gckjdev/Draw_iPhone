@@ -355,9 +355,9 @@ static TutorialCoreManager* _defaultTutorialCoreManager;
                                   @"http://58.215.184.18:8080/tutorial/image/4-titlenew.png",
                                   @"http://58.215.184.18:8080/tutorial/image/5-titlenew.png",
                                   @"http://58.215.184.18:8080/tutorial/image/6-titlenew.png",
-                                  @"http://58.215.160.100:8080/app_res/tutorial/image/6-1.jpg",
-                                  @"http://58.215.160.100:8080/app_res/tutorial/image/7-1.jpg",
-                                  @"http://58.215.160.100:8080/app_res/tutorial/image/8-1.jpg"
+                                  @"http://58.215.160.100:8080/app_res/tutorial/image/title-6.png",
+                                  @"http://58.215.160.100:8080/app_res/tutorial/image/title-8.png",
+                                  @"http://58.215.160.100:8080/app_res/tutorial/image/title-7.png"
                                   ];
     NSArray* tutorialCategory =
                                 @[

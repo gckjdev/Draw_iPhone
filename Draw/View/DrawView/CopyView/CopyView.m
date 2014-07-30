@@ -342,7 +342,7 @@
                 NSArray* tipsPaths = [[UserTutorialService defaultService] getChapterTipsImagePath:_userStage.tutorialId
                                                                                              stage:self.stage
                                                                                       chapterIndex:_userStage.currentChapterIndex];
-                NSString* title = @"";
+                NSString* title = @"提示";
                 [TipsPageViewController show:self.superViewController title:title imagePathArray:tipsPaths];
             }
         }
