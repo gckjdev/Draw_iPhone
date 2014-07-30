@@ -8,6 +8,7 @@
 
 #import "CommonService.h"
 #import "Tutorial.pb.h"
+#import "DrawConstants.h"
 
 typedef enum{
     
@@ -34,7 +35,6 @@ typedef void(^UserTutorialServiceGetListResultBlock)(int resultCode, NSArray* re
 + (NSString*)getTutorialDataDir:(NSString*)tutorialId;
 + (NSString*)getStageDataFileName:(NSString*)tutorialId stageId:(NSString*)stageId;
 + (NSString*)getLocalStageDataPath:(NSString*)tutorialId stageId:(NSString*)stageId;
-
 
 // 用户添加/开始学习某个教程
 - (void)addTutorial:(PBTutorial*)tutorial resultBlock:(UserTutorialServiceResultBlock)resultBlock;
@@ -89,5 +89,15 @@ typedef void(^UserTutorialServiceGetListResultBlock)(int resultCode, NSArray* re
 
 // 获得作品数据文件的路径（该图片用于界面显示）
 - (NSString*)getOpusDataPath:(NSString*)tutorialId stage:(PBStage*)stage;
+
+// 保存最近一次闯关作品图片
+- (void)saveTutorialImage:(PBUserStage*)userStage image:(UIImage*)image type:(TargetType)type;;
+
+// 获得最近一次闯关作品图片
+- (UIImage*)stageDrawImage:(PBUserStage*)userStage type:(TargetType)type;;
+
+// 获得画画时候的背景图
+- (UIImage*)getBgImage:(PBUserStage*)userStage stage:(PBStage*)stage type:(TargetType)type;
+
 
 @end

@@ -26,6 +26,7 @@
 #import "Tutorial.pb.h"
 #import "UserTutorialManager.h"
 #import "UserTutorialService.h"
+#import "UIImageUtil.h"
 
 static DrawDataService* _defaultDrawDataService = nil;
 

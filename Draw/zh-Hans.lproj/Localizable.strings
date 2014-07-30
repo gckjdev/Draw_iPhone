@@ -2836,4 +2836,8 @@
 "kNoConquerDraw" = "没有学习闯关记录";
 "kTimelineConquerDraw" = "闯关";
 "kNoTimelineConquerDraw" = "暂无好友闯关动态";
+
 "kHaveNotTips" = "该教程暂时没有提示信息";
+
+"kNoTipsForChapter" = "呃呃，暂无提示";
+

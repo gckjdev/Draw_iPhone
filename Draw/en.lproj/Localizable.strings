@@ -2813,4 +2813,7 @@
 "kTimelineConquerDraw" = "Conquer";
 "kNoTimelineConquerDraw" = "No data";
 
+
 "kHaveNotTips" = "Sorry,the tutorial has not tips!";
+
+"kNoTipsForChapter" = "No tips";
