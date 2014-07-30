@@ -46,7 +46,7 @@
     
     
     //自定义label右上角难度
-    UILabel *difficultyLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 8, 50, 30)];
+    UILabel *difficultyLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 8, 100, 30)];
     [difficultyLabel setText:ut.tutorial.categoryName];
     [difficultyLabel setShadowColor:[UIColor whiteColor]];
     [difficultyLabel setTextColor:COLOR_BROWN];
