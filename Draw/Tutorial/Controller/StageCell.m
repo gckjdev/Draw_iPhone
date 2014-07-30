@@ -45,7 +45,7 @@
         
     }
 
-    
+    self.stageListStarBtn.userInteractionEnabled = NO;
     
     //闯关的关卡数
     if (isLockStage == NO){
@@ -65,6 +65,8 @@
 
 
         // stage image
+       
+        
         SET_VIEW_ROUND_CORNER(self.stageCellImage);
         UIImage *placeHolderImage = [UIImage imageNamed:@DEFAUT_IMAGE];
         [self.stageCellImage setImageWithUrl:[NSURL URLWithString:[[stageList objectAtIndex:row] thumbImage]]
@@ -72,12 +74,13 @@
                                  showLoading:YES
                                     animated:YES];
         
-        self.stageListHiddenLockImageView.hidden = YES;
-        self.hiddenNumberLabel.hidden = YES;
-
         self.stageListStarBtn.hidden = NO;
         self.cellName.hidden = NO;
         self.stageCellImage.hidden = NO;
+        self.stageListHiddenLockImageView.hidden = YES;
+        self.hiddenNumberLabel.hidden = YES;
+//        self.hiddenNumberHolderView.hidden = YES;
+
     }
     else{
         
@@ -87,6 +90,7 @@
         
         self.stageListHiddenLockImageView.hidden = NO;
         self.hiddenNumberLabel.hidden = NO;
+//        self.hiddenNumberHolderView.hidden = NO;
         
         // lock image
         SET_VIEW_ROUND_CORNER(self.stageListHiddenLockImageView);
@@ -105,6 +109,7 @@
         [_stageListStarBtn release];
         [_stageListHiddenLockImageView release];
     [_hiddenNumberLabel release];
+    [_hiddenNumberHolderView release];
         [super dealloc];
 }
 @end
