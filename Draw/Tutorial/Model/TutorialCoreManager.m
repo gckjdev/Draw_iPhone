@@ -149,25 +149,13 @@ static TutorialCoreManager* _defaultTutorialCoreManager;
     [tb addAllCategories:categoryList];
     //stage
     [tb addAllStages:stageList];
-    
     return [tb build];
 }
 
 
-/*@[@[@"石头",@"陶瓷",@"亚克力塑料",@"金属",@"皮肤",@"橡胶", @"玻璃",@"材质集合"],
- @[@"整齐的直线",@"横纵直线",@"巧画直线条",@"很浪的波浪线",@"巧画波浪线",@"几何形", @"圈圈君",@"实践测试"],
- @[@"十二色环",@"二十四色环",@"互补色色环",@"渐变色",@"经典互补色",@"渐变构成", @"冷暖对比",@"同色系渐变构成"],
- @[@"比熊先生",@"博美小姐",@"马尔济斯绅士",@"哈士奇骑士",@"约克夏伯爵",@"吉娃娃公主", @"泰迪女王",@"萨摩王子"],
- @[@"没有翅膀也一样可以飞翔",@"展现身体的柔性美",@"人与动物最佳拍档",@"在运动中享受大自然的乐趣",@"干净利落的身姿",@"协调性与灵活性的考验",@"像鸟一样在雪地里飞舞",@"只为射门那一刻的欢呼"],
- @[@"美少女奈儿",@"美少女纪子",@"小妹妹",@"帅哥",@"小毛孩",@"经理",@"妇女",@"老者"],
- @[@"关卡1-1",@"关卡1-2",@"关卡1-3",@"关卡1-4",@"关卡1-5",@"关卡1-6",@"1-7",@"1-8",@"1-9",@"1-10"],
- @[@"关卡2-1",@"关卡2-2",@"关卡2-3",@"关卡2-4",@"关卡2-5",@"关卡2-6"],
- @[@"关卡3-1",@"关卡3-2",@"关卡3-3",@"关卡2-4",@"关卡3-5",@"关卡3-6"]
- */
-
 
 //重写Stage
--(PBStage*) evaluateStageDataName:(NSString *)name WithDesc:(NSString *)desc WithStageId:(NSString *)stageId WithImage:(NSString *)imageUrl tipList:(NSArray*)tipsList tipsIndex:(int32_t)tipsIndex opusId:(NSString*)opusId chapterList:(NSArray*)chapterList{
+-(PBStage*) evaluateStageDataName:(NSString *)name WithDesc:(NSString *)desc WithStageId:(NSString *)stageId WithImage:(NSString *)imageUrl tipList:(NSArray*)tipsList tipsIndex:(int32_t)tipsIndex opusId:(NSString*)opusId chapterList:(NSArray*)chapterList difficulty:(Float32)difficult{
     
     PBStage_Builder* stageBuilder = [PBStage builder];
     //required
@@ -183,6 +171,7 @@ static TutorialCoreManager* _defaultTutorialCoreManager;
     [stageBuilder setBgImage:@"bg_image.jpg"];                // image for background
     [stageBuilder setOpusName:@"data"];                       // opus data file name
     [stageBuilder setOpusId:opusId];
+    [stageBuilder setDifficulty:difficult];
 
     //repeated
     [stageBuilder addAllChapter:chapterList];
@@ -571,7 +560,7 @@ static TutorialCoreManager* _defaultTutorialCoreManager;
                           tutorial8Tips,
                           ];
     
-    NSArray *difficulty = @[@0.5,@0.5,@0.5,@0.5,@0.5,@0.5,@0.5,@0.5,@0.5,@0.5];
+    NSArray *difficulty = @[@0.5f,@0.5f,@0.5f,@0.5f,@0.5f,@0.5f,@0.5f,@0.5f,@0.5f,@0.5f];
     
     //模拟测试数据
 //    for(int i=0;i<testTutorialName.count;i++){
@@ -647,6 +636,7 @@ static TutorialCoreManager* _defaultTutorialCoreManager;
                                                tipsIndex:stageSum
                                               opusId:[[chapterOpusIdList objectAtIndex:stageSum] objectAtIndex:0]
                                              chapterList:chapterList
+                                                difficulty:[[difficulty objectAtIndex:tutorialSum] floatValue]
                               ];
 
             [stageList addObject:stage];
