@@ -328,7 +328,7 @@ NSString* GlobalGetBoardServerURL()
     
     // load item data
     [[GameItemService defaultService] syncData:NULL];
-    [[IAPProductService defaultService] syncData:NULL];
+//    [[IAPProductService defaultService] syncData:NULL];
     
 //    [DrawBgManager scaleImages];
 
@@ -395,13 +395,12 @@ NSString* GlobalGetBoardServerURL()
     [self.window makeKeyAndVisible];
     
     
-    [[SKProductService defaultService] syncDataFromIAPService];
     
     [[AccountService defaultService] retryVerifyReceiptAtBackground];
     
     // Detect Network Availability
-    self.networkDetector = [[[NetworkDetector alloc] initWithErrorTitle:NSLS(@"kNetworkErrorTitle") ErrorMsg:NSLS(@"kNetworkErrorMessage") detectInterval:2] autorelease];
-    [self.networkDetector start];
+//    self.networkDetector = [[[NetworkDetector alloc] initWithErrorTitle:NSLS(@"kNetworkErrorTitle") ErrorMsg:NSLS(@"kNetworkErrorMessage") detectInterval:2] autorelease];
+//    [self.networkDetector start];
 
     // Show News If Exists
     [self performSelector:@selector(showNews) withObject:nil afterDelay:1.5];
@@ -422,15 +421,6 @@ NSString* GlobalGetBoardServerURL()
     }
     
     [self loadSplashAd];
-
-    
-//#ifdef DEBUG
-//    [OpenCVUtils testSourceImagePath: @"/Users/Linruin/Desktop/tmp/head1.jpg"
-//                       destImagePath: @"/Users/Linruin/Desktop/tmp/head7.jpg"];
-//#endif
-//
-    
-//    [[ZeroQianManager defaultManager] start];
     return YES;
 }
 
@@ -612,6 +602,8 @@ NSString* GlobalGetBoardServerURL()
     // load item data
     [[GameItemService defaultService] syncData:NULL];
     [[IAPProductService defaultService] syncData:NULL];
+    [[SKProductService defaultService] syncDataFromIAPService];
+    
     
     if ([GameApp isAutoRegister]){
         [[UserService defaultService] autoRegisteration:nil];
@@ -628,6 +620,9 @@ NSString* GlobalGetBoardServerURL()
     // store user defaults
     NSUserDefaults* userDefaults = [NSUserDefaults standardUserDefaults];
     [userDefaults synchronize];
+    
+    [[GameAdWallService defaultService] queryWallScore];
+
     
 }
 
@@ -652,9 +647,7 @@ NSString* GlobalGetBoardServerURL()
      Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
      */
     PPDebug(@"<applicationDidBecomeActive>");
-    
-    [[GameAdWallService defaultService] queryWallScore];
-    
+        
     // Init Account Service and Sync Balance and Item
     [[AccountService defaultService] syncAccount:nil];
     

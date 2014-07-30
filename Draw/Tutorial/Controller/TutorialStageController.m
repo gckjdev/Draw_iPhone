@@ -144,8 +144,14 @@
     PBStage* pbStage = [stageList objectAtIndex:stageIndex];
     NSString* stageId = pbStage.stageId;
     
-    CommonDialog* dialog = [CommonDialog createDialogWithTitle:NSLS(@"kAskPracticeOrPassTitle")
-                                                       message:NSLS(@"kAskPracticeOrPassMsg")
+    NSString* title = nil;
+    NSString* message = nil;
+    
+    title = pbStage.name;
+    message = [NSString stringWithFormat:NSLS(@"%@"), pbStage.desc];
+    
+    CommonDialog* dialog = [CommonDialog createDialogWithTitle:title // NSLS(@"kAskPracticeOrPassTitle")
+                                                       message:message // NSLS(@"kAskPracticeOrPassMsg")
                                                          style:CommonDialogStyleDoubleButtonWithCross];
     
     [dialog.oKButton setTitle:NSLS(@"kPass") forState:UIControlStateNormal];

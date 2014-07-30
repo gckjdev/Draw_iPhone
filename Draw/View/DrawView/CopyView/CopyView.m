@@ -16,8 +16,8 @@
 #import "Draw.h"
 #import "TipsPageViewController.h"
 
-#define COPY_VIEW_DEFAULT_WIDTH     (ISIPAD ? 250 : 100)
-#define COPY_VIEW_DEFAULT_HEIGHT    (ISIPAD ? 250 : 100)
+#define COPY_VIEW_DEFAULT_WIDTH     (ISIPAD ? 180 : 80)
+#define COPY_VIEW_DEFAULT_HEIGHT    (ISIPAD ? 180 : 80)
 
 @interface CopyView()
 
@@ -231,6 +231,12 @@
     
     self.userStage = userStage;
     self.stage = stage;
+    
+    if (userStage.currentChapterIndex < [self.stage.chapterList count]){
+        PBChapter* chapter = [self.stage.chapterList objectAtIndex:userStage.currentChapterIndex];
+        self.opusStartIndex = chapter.startIndex;
+        self.opusEndIndex = chapter.endIndex;
+    }
 }
 
 

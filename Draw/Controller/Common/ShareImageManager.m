@@ -481,6 +481,20 @@ static NSMutableDictionary *colorImageDict;
     return [UIImage imageNamed:@"pen_show_pencil@2x"];
 }
 
+- (UIImage *)drawCommit
+{
+    return [UIImage imageNamed:@"draw_commit@2x"];
+}
+
+- (UIImage *)drawNext
+{
+    return [UIImage imageNamed:@"draw_next@2x"];
+}
+
+- (UIImage *)drawHelp
+{
+    return [UIImage imageNamed:@"draw_help@2x"];
+}
 
 - (UIImage *)friendDetailBgImage
 {

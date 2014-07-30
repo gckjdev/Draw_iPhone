@@ -593,7 +593,30 @@
         self.draftButton.hidden = YES;
         self.upPanelButton.hidden = YES;
         [self.layerButton setCenter:self.draftButton.center];
-    }    
+    }
+    
+    [self updateSubmitButtonForPracticeDraw];
+}
+
+- (void)updateSubmitButtonForPracticeDraw
+{
+    if (targetType != TypePracticeDraw){
+        return;
+    }
+    
+    if ([self.stage.chapterList count] <= 1){
+        // only one chapter, no "next" button
+        return;
+    }
+    
+    int lastChapterIndex = [self.stage.chapterList count] - 1;
+    if (self.userStageBuilder.currentChapterIndex >= lastChapterIndex){
+        // it's last chapter, use submit button
+        [self.submitButton setImage:[shareImageManager drawCommit] forState:UIControlStateNormal];
+    }
+    else{
+        [self.submitButton setImage:[shareImageManager drawNext] forState:UIControlStateNormal];
+    }
 }
 
 // 是否是绘画作品模式（聊天涂鸦、论坛涂鸦都不属于该模式）
@@ -1688,26 +1711,64 @@
 }
 
 
+- (BOOL)isGotoNextChapter
+{
+    if (targetType != TypePracticeDraw){
+        return NO;
+    }
+    
+    if ([self.stage.chapterList count] <= 1){
+        // only one chapter, no "next" button
+        return NO;
+    }
+    
+    int lastChapterIndex = [self.stage.chapterList count] - 1;
+    if (self.userStageBuilder.currentChapterIndex >= lastChapterIndex){
+        // it's last chapter, use submit button
+        return NO;
+    }
+    else{
+        return YES;
+    }
+}
+
+- (void)gotoNextChapter
+{
+    int nextChapterIndex = self.userStageBuilder.currentChapterIndex + 1;
+    
+    // update user stage (currentChapterIndex) and save user tutorial
+    [self.userStageBuilder setCurrentChapterIndex:nextChapterIndex];
+    
+    // save into DB
+    PBUserTutorial* newUT = [[UserTutorialManager defaultManager] updateUserStage:[self buildUserStage]];
+    if (newUT == nil){
+        return;
+    }
+    
+    // update user tutorial builder
+    self.userTutorialBuilder = [PBUserTutorial builderWithPrototype:newUT];
+    
+    // update copy view
+    [_copyView loadData:[self buildUserStage] stage:self.stage];
+    
+    // update button image
+    [self updateSubmitButtonForPracticeDraw];
+    
+    // TODO post a message?
+}
+
 - (void)handleSubmitForLearnDraw
 {
     //  预处理
     BOOL isEnough = [self strokeControlInSubmissionWithMinStrokeNum:[PPConfigManager getMinStrokeNum]
                                                         MinPointNum:[PPConfigManager getMinPointNum]];
-    if(NO==isEnough) return;
-    
-//    NSInteger effetiveAction=[drawView.drawActionList count];
-//    for(DrawAction *da in drawView.drawActionList)
-//    {
-//        if(10 > [da pointCount])
-//            effetiveAction--;
-//    }
-//    if(effetiveAction<=10)
-//    {
-//        PPDebug(@"too few strokes!");
-//        POSTMSG(@"客官，不够认真哦！");
-//        return;
-//    }    
+    if (NO == isEnough)
+        return;
 
+    if ([self isGotoNextChapter]){
+        [self gotoNextChapter];
+        return;
+    }
     
     self.submitOpusDrawData = nil;
     self.submitOpusFinalImage = nil;

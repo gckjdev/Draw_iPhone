@@ -218,7 +218,7 @@
         [self.view addConstraint:constraint];
     }
 }
-
+    
 #pragma mark click
 - (IBAction)goTolearning:(id)sender {
 }
@@ -236,10 +236,10 @@
 }
 
 - (IBAction)goToDraw:(id)sender {
-//    [self enterOfflineDraw];
-    ResultShareAlertPageViewController *rspc = [[[ResultShareAlertPageViewController alloc] init] autorelease];
-        CommonDialog *dialog = [CommonDialog createDialogWithTitle:NSLS(@"kResultSharePage") customView:rspc.view style:CommonDialogStyleCross];
-        [dialog showInView:self.view];
+    [self enterOfflineDraw];
+//    ResultShareAlertPageViewController *rspc = [[[ResultShareAlertPageViewController alloc] init] autorelease];
+//        CommonDialog *dialog = [CommonDialog createDialogWithTitle:NSLS(@"kResultSharePage") customView:rspc.view style:CommonDialogStyleCross];
+//        [dialog showInView:self.view];
 }
 
 - (IBAction)goToOpus:(id)sender {
