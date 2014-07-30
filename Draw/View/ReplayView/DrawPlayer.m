@@ -315,6 +315,7 @@
 + (void)playDrawData:(NSData**)drawData
                 draw:(Draw**)retDraw
       viewController:(PPViewController*)viewController
+             bgImage:(UIImage*)bgImage
           startIndex:(int)startIndex
             endIndex:(int)endIndex
 {
@@ -360,6 +361,7 @@
             obj.isNewVersion = [draw isNewVersion];
             obj.canvasSize = draw.canvasSize;
             obj.layers = draw.layers;
+            obj.bgImage = bgImage;
             
             DrawPlayer *player = [DrawPlayer playerWithReplayObj:obj begin:startIndex end:endIndex];
             [player showInController:cp];

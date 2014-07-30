@@ -322,11 +322,17 @@
                     self.opusData = [[[NSData alloc] initWithContentsOfFile:self.opusDataPath] autorelease];
                 }
                 
+                
+                UIImage* bgImage = [[UIImage alloc] initWithContentsOfFile:_opusBgImagePath];
+                
                 [DrawPlayer playDrawData:&_opusData
                                     draw:&_draw
                           viewController:self.superViewController
+                                 bgImage:bgImage
                               startIndex:_opusStartIndex
                                 endIndex:_opusEndIndex];
+                
+                [bgImage release];
             }
             else{
                 [ShowFeedController replayDraw:self.drawFeed viewController:self.superViewController];

@@ -233,7 +233,11 @@
                              userStage:(PBUserStage*)userStage
                           userTutorial:(PBUserTutorial*)userTutorial
 {
-    UIImage* image = nil; // TODO , read from PBUserStage
+    PBTutorial* tutorial = [[TutorialCoreManager defaultManager] findTutorialByTutorialId:userStage.tutorialId];
+    PBStage* stage = [tutorial getStageByIndex:userStage.stageIndex];
+    
+    NSString* bgImagePath = [[UserTutorialService defaultService] getBgImagePath:userStage.tutorialId stage:stage];
+    UIImage* bgImage = [[[UIImage alloc] initWithContentsOfFile:bgImagePath] autorelease];
     
     NSString* draftId = userStage.practiceLocalOpusId;
     MyPaint* draft = [[MyPaintManager defaultManager] findDraftById:draftId];
@@ -244,8 +248,8 @@
         // load from draft
         vc = [[OfflineDrawViewController alloc] initWithDraft:draft startController:startController];
         
-        vc.tutorial = [[TutorialCoreManager defaultManager] findTutorialByTutorialId:userStage.tutorialId];
-        vc.stage = [vc.tutorial getStageByIndex:userStage.stageIndex];
+        vc.tutorial = tutorial;
+        vc.stage = stage;
         
     }
     else{
@@ -254,10 +258,10 @@
                                                   startController:startController
                                                           Contest:nil
                                                      targetUserId:nil
-                                                          bgImage:image];
+                                                          bgImage:bgImage];
 
-        vc.tutorial = [[TutorialCoreManager defaultManager] findTutorialByTutorialId:userStage.tutorialId];
-        vc.stage = [vc.tutorial getStageByIndex:userStage.stageIndex];
+        vc.tutorial = tutorial;
+        vc.stage = stage;
 
         // set draft tutorial info
         [vc setDraftTutorialInfo:userStage targetType:targetType];
@@ -281,7 +285,11 @@
                             userStage:(PBUserStage*)userStage
                          userTutorial:(PBUserTutorial*)userTutorial
 {
-    UIImage* image = nil; // TODO , read from PBUserStage
+    PBTutorial* tutorial = [[TutorialCoreManager defaultManager] findTutorialByTutorialId:userStage.tutorialId];
+    PBStage* stage = [tutorial getStageByIndex:userStage.stageIndex];
+    
+    NSString* bgImagePath = [[UserTutorialService defaultService] getBgImagePath:userStage.tutorialId stage:stage];
+    UIImage* bgImage = [[[UIImage alloc] initWithContentsOfFile:bgImagePath] autorelease];
     
     NSString* draftId = userStage.conquerLocalOpusId;
     MyPaint* draft = [[MyPaintManager defaultManager] findDraftById:draftId];
@@ -292,8 +300,8 @@
         // load from draft
         vc = [[OfflineDrawViewController alloc] initWithDraft:draft startController:startController];
         
-        vc.tutorial = [[TutorialCoreManager defaultManager] findTutorialByTutorialId:userStage.tutorialId];
-        vc.stage = [vc.tutorial getStageByIndex:userStage.stageIndex];
+        vc.tutorial = tutorial;
+        vc.stage = stage;
         
     }
     else{
@@ -302,10 +310,10 @@
                                                    startController:startController
                                                            Contest:nil
                                                       targetUserId:nil
-                                                           bgImage:image];
+                                                           bgImage:bgImage];
         
-        vc.tutorial = [[TutorialCoreManager defaultManager] findTutorialByTutorialId:userStage.tutorialId];
-        vc.stage = [vc.tutorial getStageByIndex:userStage.stageIndex];
+        vc.tutorial = tutorial;
+        vc.stage = stage;
         
         // set draft tutorial info
         [vc setDraftTutorialInfo:userStage targetType:targetType];
