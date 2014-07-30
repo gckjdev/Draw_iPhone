@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="5056" systemVersion="13D65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="5056" systemVersion="12F45" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
     </dependencies>
@@ -13,7 +13,7 @@
                 <rect key="frame" x="0.0" y="0.0" width="140" height="100"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="a6K-Gs-lob">
+                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="a6K-Gs-lob">
                         <rect key="frame" x="0.0" y="0.0" width="140" height="100"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                     </imageView>
@@ -45,11 +45,6 @@
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     </view>
-                    <view alpha="0.29999999999999999" contentMode="scaleAspectFill" translatesAutoresizingMaskIntoConstraints="NO" id="wwL-3j-7Cd">
-                        <rect key="frame" x="0.0" y="0.0" width="140" height="100"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="120" verticalHuggingPriority="90" horizontalCompressionResistancePriority="120" verticalCompressionResistancePriority="90" fixedFrame="YES" image="lock_new2.png" translatesAutoresizingMaskIntoConstraints="NO" id="gGJ-ly-Ls2" userLabel="HiddenImageView">
                         <rect key="frame" x="0.0" y="0.0" width="140" height="100"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -77,15 +72,9 @@
             </view>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstItem="a6K-Gs-lob" firstAttribute="top" secondItem="wwL-3j-7Cd" secondAttribute="top" id="4He-dt-Tl1"/>
                 <constraint firstItem="KMq-Yf-omz" firstAttribute="trailing" secondItem="a6K-Gs-lob" secondAttribute="trailing" constant="-20" id="4SK-Co-HXX"/>
                 <constraint firstItem="a6K-Gs-lob" firstAttribute="top" secondItem="ycJ-7c-W4m" secondAttribute="top" id="6Kz-fj-ceI"/>
-                <constraint firstItem="wwL-3j-7Cd" firstAttribute="leading" secondItem="a6K-Gs-lob" secondAttribute="leading" id="8bs-kj-tqO"/>
-                <constraint firstAttribute="bottom" secondItem="wwL-3j-7Cd" secondAttribute="bottom" id="ANf-Lw-O39"/>
-                <constraint firstItem="a6K-Gs-lob" firstAttribute="trailing" secondItem="wwL-3j-7Cd" secondAttribute="trailing" id="IsS-Pk-0y5"/>
                 <constraint firstAttribute="trailing" secondItem="a6K-Gs-lob" secondAttribute="trailing" id="aIy-1d-goj"/>
-                <constraint firstItem="wwL-3j-7Cd" firstAttribute="bottom" secondItem="a6K-Gs-lob" secondAttribute="bottom" id="b46-q7-R7U"/>
-                <constraint firstItem="wwL-3j-7Cd" firstAttribute="leading" secondItem="ycJ-7c-W4m" secondAttribute="leading" id="dFX-O4-FYw"/>
                 <constraint firstItem="KMq-Yf-omz" firstAttribute="top" secondItem="a6K-Gs-lob" secondAttribute="top" id="mq5-ra-u2F"/>
                 <constraint firstItem="KMq-Yf-omz" firstAttribute="leading" secondItem="ycJ-7c-W4m" secondAttribute="leading" constant="10" id="pOY-Qz-H2n"/>
             </constraints>
