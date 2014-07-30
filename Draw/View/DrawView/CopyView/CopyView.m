@@ -231,6 +231,12 @@
     
     self.userStage = userStage;
     self.stage = stage;
+    
+    if (userStage.currentChapterIndex < [self.stage.chapterList count]){
+        PBChapter* chapter = [self.stage.chapterList objectAtIndex:userStage.currentChapterIndex];
+        self.opusStartIndex = chapter.startIndex;
+        self.opusEndIndex = chapter.endIndex;
+    }
 }
 
 
