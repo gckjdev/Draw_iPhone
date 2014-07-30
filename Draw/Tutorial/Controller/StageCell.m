@@ -79,7 +79,7 @@
         self.stageCellImage.hidden = NO;
         self.stageListHiddenLockImageView.hidden = YES;
         self.hiddenNumberLabel.hidden = YES;
-//        self.hiddenNumberHolderView.hidden = YES;
+        self.hiddenNumberHolderView.hidden = YES;
 
     }
     else{
@@ -90,7 +90,7 @@
         
         self.stageListHiddenLockImageView.hidden = NO;
         self.hiddenNumberLabel.hidden = NO;
-//        self.hiddenNumberHolderView.hidden = NO;
+        self.hiddenNumberHolderView.hidden = NO;
         
         // lock image
         SET_VIEW_ROUND_CORNER(self.stageListHiddenLockImageView);
