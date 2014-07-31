@@ -13,10 +13,9 @@
 #import "SGFocusImageFrame.h"
 #import "SGFocusImageItem.h"
 #import "ICETutorialController.h"
+#import "UserService.h"
 
-
-
-@interface MetroHomeController : PPViewController<AvatarViewDelegate,SGFocusImageFrameDelegate,ICETutorialControllerDelegate>{
+@interface MetroHomeController : PPViewController<AvatarViewDelegate,SGFocusImageFrameDelegate,ICETutorialControllerDelegate, UserServiceDelegate>{
     UIButton *LearningViewButton;
     
 }
@@ -49,9 +48,9 @@
 
 @property (nonatomic, retain) NSArray *bbList;
 
-- (UIView *)createShadow:(UIView *)view;
 - (IBAction)goToLearning:(id)sender;
 - (IBAction)goToBBS:(id)sender;
 - (IBAction)goToDraw:(id)sender;
 - (IBAction)goToOpus:(id)sender;
+
 @end

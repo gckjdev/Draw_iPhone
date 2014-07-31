@@ -258,7 +258,7 @@
             self.feedList = [NSMutableArray arrayWithArray:feedList];
         } 
     } else {
-        NSArray *list = [[FeedService defaultService] getCachedFeedList:FeedListTypeHot];
+        NSArray *list = [[FeedService defaultService] getCachedFeedList:FeedListTypeHot classId:nil];
         self.feedList = [NSMutableArray arrayWithArray:list];
     }
     

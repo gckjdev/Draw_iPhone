@@ -94,7 +94,7 @@
         //row == 0 并且progress =0
         if(progress <= 0.0f)
         {
-            [self.tutorialStartBtn setTitle:@"kStartStage" forState:UIControlStateNormal];
+            [self.tutorialStartBtn setTitle:NSLS(@"kStartStage") forState:UIControlStateNormal];
             
         }else{
             

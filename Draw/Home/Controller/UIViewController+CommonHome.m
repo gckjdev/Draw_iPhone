@@ -51,6 +51,8 @@
 #import "ICETutorialController.h"
 #import "GuidePageManager.h"
 #import "ResultSharePageViewController.h"
+#import "AudioManager.h"
+
 @implementation UIViewController (CommonHome)
 
 - (void)enterUserTimeline
@@ -109,19 +111,12 @@
     [[StatisticManager defaultManager] setTimelineOpusCount:0];    
 }
 
-- (void)enterOpusClass{
-    //    ShowOpusClassListController* vc = [[ShowOpusClassListController alloc] init];
-    //    [self.navigationController pushViewController:vc animated:YES];
-    //    [vc release];
-    
-    //    FeedListController* vc = [[FeedListController alloc] init];
-    //    [self.navigationController pushViewController:vc animated:YES];
-    //    [vc release];
-    
+- (void)enterOpusClass
+{
     NewHotController* vc = [[NewHotController alloc] init];
     [self.navigationController pushViewController:vc animated:YES];
     [vc release];
-    
+    return;
 }
 
 - (void)enterMore
@@ -314,7 +309,13 @@
     [rspc release];
 }
 
-
-
+- (void)startAudioManager
+{
+    [[AudioManager defaultManager] setBackGroundMusicWithName:[GameApp getBackgroundMusicName]];
+    [[AudioManager defaultManager] setVolume:[PPConfigManager getBGMVolume]];
+    if ([[AudioManager defaultManager] isMusicOn]) {
+        [[AudioManager defaultManager] backgroundMusicPlay];
+    }
+}
 
 @end

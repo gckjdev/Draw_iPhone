@@ -659,6 +659,7 @@ static TutorialCoreManager* _defaultTutorialCoreManager;
                 
             }
             Float32 difficulty;
+<<<<<<< HEAD
             if(stageSum < [[stageTypeList objectAtIndex:tutorialSum] count]){
                 if([[difficultyList objectAtIndex:tutorialSum] count]!=0&&[difficultyList objectAtIndex:tutorialSum]!=nil){
                         difficulty = [[[difficultyList objectAtIndex:tutorialSum] objectAtIndex:stageSum] floatValue];
@@ -671,6 +672,18 @@ static TutorialCoreManager* _defaultTutorialCoreManager;
                     
                 }
 
+=======
+            if([[difficultyList objectAtIndex:tutorialSum] count]!=0&&[difficultyList objectAtIndex:tutorialSum]!=nil){
+                 difficulty = [[[difficultyList objectAtIndex:tutorialSum] objectAtIndex:stageSum] floatValue];
+                
+            }
+            NSInteger stageType;
+            if([[stageTypeList objectAtIndex:tutorialSum] count]!=0&&[stageTypeList objectAtIndex:tutorialSum]!=nil){
+                if(stageSum<[[stageTypeList objectAtIndex:tutorialSum] count]){
+                    stageType = [[[stageTypeList objectAtIndex:tutorialSum] objectAtIndex:stageSum] integerValue];
+                }
+                
+>>>>>>> 10b9f78c57d1ac73ec27ae3d4d0e04885f44da9c
             }
                        //添加stage
             PBStage *stage = [self evaluateStageDataName:

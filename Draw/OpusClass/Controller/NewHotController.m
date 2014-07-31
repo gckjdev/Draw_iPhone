@@ -234,29 +234,32 @@
 
 - (void)clickRankType:(id)sender
 {
+    int currentSelectIndex = self.pagesContainer.selectedIndex;
     if (self.currentRankType == FeedListTypeHistoryRank){
         self.currentRankType = FeedListTypeHot;
+        
+        if (currentSelectIndex > 0){
+            currentSelectIndex = currentSelectIndex+2;
+        }
     }
     else{
         self.currentRankType = FeedListTypeHistoryRank;
+        
+        if (currentSelectIndex == 0){
+        }
+        else if (currentSelectIndex == 1 || currentSelectIndex == 2){
+            currentSelectIndex = 0;
+        }
+        else{
+            currentSelectIndex -= 2;
+        }
     }
+    
     [self updateRankTypeButtonTitle];
     
-    int currentSelectIndex = self.pagesContainer.selectedIndex;
+    currentSelectIndex = 0; // force to 0 use optimize performance?
     [self reloadPageContainer:currentSelectIndex];
     
-//    [self.navigationController popViewControllerAnimated:NO];
-//    
-//    NewHotController* vc = [[NewHotController alloc] init];
-//    if (self.currentRankType == FeedListTypeHistoryRank){
-//        vc.currentRankType = FeedListTypeHot;
-//    }
-//    else{
-//        vc.currentRankType = FeedListTypeHistoryRank;
-//    }
-//    
-//    [self.navigationController pushViewController:vc animated:YES];
-//    [vc release];
 }
 
 - (void)didReceiveMemoryWarning
