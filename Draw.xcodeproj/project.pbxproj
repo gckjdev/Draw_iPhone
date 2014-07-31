@@ -276,6 +276,7 @@
 		A44F32EE17E16C5000AF9B26 /* ContestRankView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A44F32EC17E16C5000AF9B26 /* ContestRankView.xib */; };
 		A44F32EF17E16C5000AF9B26 /* ContestRankView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A44F32EC17E16C5000AF9B26 /* ContestRankView.xib */; };
 		A44F32F017E16C5000AF9B26 /* ContestRankView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A44F32EC17E16C5000AF9B26 /* ContestRankView.xib */; };
+		A44F37891988F52C0022913B /* GifViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A44F37881988F52C0022913B /* GifViewController.m */; };
 		A454CB6F1558F5CE00896761 /* ChatController.m in Sources */ = {isa = PBXBuildFile; fileRef = A454CB6D1558F5CE00896761 /* ChatController.m */; };
 		A454CB701558F5CE00896761 /* ChatController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A454CB6E1558F5CE00896761 /* ChatController.xib */; };
 		A454CBC4155A181500896761 /* MessageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A454CBC2155A181500896761 /* MessageCell.m */; };
@@ -8204,6 +8205,8 @@
 		A44F32E617E16C3500AF9B26 /* ContestRankView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContestRankView.h; sourceTree = "<group>"; };
 		A44F32E717E16C3500AF9B26 /* ContestRankView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContestRankView.m; sourceTree = "<group>"; };
 		A44F32EC17E16C5000AF9B26 /* ContestRankView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ContestRankView.xib; sourceTree = "<group>"; };
+		A44F37871988F52C0022913B /* GifViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GifViewController.h; sourceTree = "<group>"; };
+		A44F37881988F52C0022913B /* GifViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GifViewController.m; sourceTree = "<group>"; };
 		A454CB6C1558F5CE00896761 /* ChatController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatController.h; sourceTree = "<group>"; };
 		A454CB6D1558F5CE00896761 /* ChatController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatController.m; sourceTree = "<group>"; };
 		A454CB6E1558F5CE00896761 /* ChatController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ChatController.xib; sourceTree = "<group>"; };
@@ -11832,6 +11835,15 @@
 				A44D658C18043E9C00DD6B48 /* UIImageView+ProgressView.m */,
 			);
 			path = "UIImageView+ProgressView";
+			sourceTree = "<group>";
+		};
+		A44F37771988E1350022913B /* GifPlayer */ = {
+			isa = PBXGroup;
+			children = (
+				A44F37871988F52C0022913B /* GifViewController.h */,
+				A44F37881988F52C0022913B /* GifViewController.m */,
+			);
+			name = GifPlayer;
 			sourceTree = "<group>";
 		};
 		A454CB6B1558F57E00896761 /* Chat */ = {
@@ -16527,6 +16539,7 @@
 		CA9AA963150F4071009D1CB6 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				A44F37771988E1350022913B /* GifPlayer */,
 				A4B78987179E2E890008E21B /* Common */,
 				CA3EB93A16B927B300660FE7 /* StrawView */,
 				CABEDD1B16B64C5900BB9060 /* ReplayView */,
@@ -24977,6 +24990,7 @@
 				CA103EAA1509A56200F60C03 /* TestPPViewController.m in Sources */,
 				CA103EB91509A56200F60C03 /* ReviewRequest.m in Sources */,
 				CA103EBA1509A56200F60C03 /* SearchHistoryManager.m in Sources */,
+				A44F37891988F52C0022913B /* GifViewController.m in Sources */,
 				CA103EBB1509A56200F60C03 /* UIBackgroundView.m in Sources */,
 				D8A2709A196FC07F006DDF20 /* GameConstants.pb-c.c in Sources */,
 				CA103EBC1509A56200F60C03 /* UICustomeBackGroundView.m in Sources */,

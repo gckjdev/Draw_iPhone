@@ -94,13 +94,23 @@
     return player;
 }
 
-
-
+//+ (DrawPlayer *)playerWithGifViewInSize:(CGSize)canvasSize
+//{
+//    DrawPlayer *player = [DrawPlayer createViewWithXibIdentifier:@"DrawPlayer" ofViewIndex:ISIPAD];
+//    
+//    player.showGifView=[[ShowGifView alloc]initWithFrame:
+//                              CGRectMake(0, 0, canvasSize.width, canvasSize.height)];
+//    [player.showGifView getGifDataFromPath:@"/Users/Linruin/Desktop/test.gif"];
+//    [player.showGifView displayGifImageInSize:canvasSize];
+//    
+//    return player;
+//}
 
 - (void)showInController:(PPViewController *)controller
 {
-//    [[UIApplication sharedApplication] setStatusBarHidden:YES];
-//    self.frame = CGRectOffset([[UIScreen mainScreen] bounds], 0, -20);
+    
+    //    [[UIApplication sharedApplication] setStatusBarHidden:YES];
+    //    self.frame = CGRectOffset([[UIScreen mainScreen] bounds], 0, -20);
     DrawHolderView *holderView = (id)self.showView.superview;
     holderView.autoresizingMask = (1<<6)-1;
     if (holderView == nil) {
@@ -111,7 +121,7 @@
     [self insertSubview:holderView atIndex:0];
     [controller.view addSubview:self];
     self.frame = controller.view.bounds;
-
+    
     if (_replayObj.isNewVersion) {
         POSTMSG(NSLS(@"kNewDrawVersionTip"));
     }
@@ -121,32 +131,6 @@
     [controller setCanDragBack:NO];
 }
 
-- (void)showInController:(PPViewController *)controller
-               FromBegin:(NSInteger)begin
-{
-    DrawHolderView *holderView = (id)self.showView.superview;
-    holderView.autoresizingMask = (1<<6)-1;
-    if (holderView == nil) {
-        holderView = [DrawHolderView drawHolderViewWithFrame:self.bounds contentView:self.showView];
-        [holderView addTarget:self action:@selector(clickHolderView:) forControlEvents:UIControlEventTouchUpInside];
-        [holderView updateOriginY:STATUSBAR_DELTA];
-    }
-    [self insertSubview:holderView atIndex:0];
-    [controller.view addSubview:self];
-    self.frame = controller.view.bounds;
-    
-    if (_replayObj.isNewVersion) {
-        POSTMSG(NSLS(@"kNewDrawVersionTip"));
-    }
-    
-    [self startFromIndex:begin];
-    
-    [self performSelector:@selector(autoHidePanel) withObject:nil afterDelay:4];
-    superControllerCanDragBack = controller.canDragBack;
-    [controller setCanDragBack:NO];
-}
-
-
 
 - (void)dealloc {
     [_playPanel release];
@@ -155,7 +139,8 @@
     [_playButton release];
     [_closeButton release];
     PPRelease(_replayObj);
-    PPRelease(_showView);    
+    PPRelease(_showView);
+    [_indexLabel release];
     [super dealloc];
 }
 
@@ -186,12 +171,18 @@
 //    [self.showView performSelector:@selector(setDelegate:) withObject:self afterDelay:0.2];
 }
 
+- (void)showCurrentIndexAtLabel:(NSInteger)index
+{
+    NSString *str=[NSString stringWithFormat:@"current index: %d"
+                   ,index];
+    self.indexLabel.text=str;
+
+}
+
 - (IBAction)changeProcess:(CustomSlider *)sender {
     [(PPViewController *)[self theViewController] showActivityWithText:NSLS(@"kBuffering")];
     NSInteger index = sender.value;
     [self performSelector:@selector(playToIndex:) withObject:@(index) afterDelay:0.01];
-
-//    [self playToIndex:index];
 }
 
 - (IBAction)changeSpeed:(CustomSlider *)sender {
@@ -237,15 +228,6 @@
     [self.showView play];
     [self.playButton setSelected:YES];    
 }
-- (void)startFromIndex:(NSInteger)index
-{
-    [self.showView setStatus:Playing];
-    
-    [self playToIndex:@(index)];
-    [self.showView playFromDrawActionIndex:index];
-//    [self performSelector:@selector(playToIndex:) withObject:@(index)];
-    [self.playButton setSelected:YES];
-}
 
 
 - (void)hidePanel:(BOOL)hidden animated:(BOOL)animated
@@ -277,6 +259,12 @@
 {
     if (![self.playSlider isOnTouch]) {
         [self.playSlider setValue:actionIndex];
+        
+        
+#ifdef DEBUG
+        [self showCurrentIndexAtLabel:actionIndex];
+#endif
+        
     }else{
 //        showDrawView.delegate = nil;
     }
