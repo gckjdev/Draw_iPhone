@@ -67,6 +67,7 @@ typedef void (^DialogTextChangedCallback)(NSString* currentText);
 @property (copy, nonatomic) DialogTextChangedCallback textChangedCallback;
 @property (assign, nonatomic) BOOL manualClose;
 
+
 - (void)setTitle:(NSString *)title;
 
 + (void)showSimpleDialog:(NSString*)msg inView:(UIView*)view;
