@@ -2840,4 +2840,6 @@
 "kHaveNotTips" = "该教程暂时没有提示信息";
 
 "kNoTipsForChapter" = "呃呃，暂无提示";
+"kStartLearnTutorial" = "打开";
+"kAddTutorialToLearn" = "添加";
 

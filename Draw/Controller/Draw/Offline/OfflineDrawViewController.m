@@ -624,7 +624,7 @@
     // update title view by buttons
     if ([self isLearnType]){
         CGPoint center = self.titleView.titleLabel.center;
-        center.x = self.helpButton.frame.size.width*3;
+        center.x -= (self.helpButton.frame.size.width*2)/2;
         [self.titleView.titleLabel setCenter:center];
     }
 }
@@ -863,10 +863,18 @@
         }
         else{
             title = NSLS(@"kPractice");
+
+            if ([self.stage hasMoreThanOneChapter]){
+                title = [title stringByAppendingFormat:@" (%d/%d)",
+                         self.userStageBuilder.currentChapterIndex+1,
+                         [self.stage.chapterList count]];
+            }
         }
         
-        NSString* stageName = self.stage.name;
-        title = [title stringByAppendingFormat:@" - %@", stageName];
+//        NSString* stageName = self.stage.name;
+//        title = [title stringByAppendingFormat:@" - %@", stageName];
+        
+        
         [self.titleView setTitle:title];
     }
 }
