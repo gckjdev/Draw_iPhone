@@ -56,7 +56,12 @@
 - (void)setInfo:(MyPaint *)paint
 {
     self.paint = paint;
-    [self.drawImage setImage:paint.thumbImage];
+    if (paint.thumbImage){
+        [self.drawImage setImage:paint.thumbImage];
+    }
+    else{
+        [self.drawImage setImage:[[ShareImageManager defaultManager] unloadBg]];
+    }
     NSString* word = paint.drawWord;
     if (paint.drawWord == nil || paint.drawWord.length == 0) {
         word = dateToString(paint.createDate);

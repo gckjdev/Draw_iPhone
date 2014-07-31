@@ -53,7 +53,7 @@
 - (IBAction)clickSubmitButton:(id)sender;
 - (IBAction)clickDraftButton:(id)sender;
 - (IBAction)clickUpPanel:(id)sender;
-
+- (IBAction)clickHelpButton:(id)sender;
 - (IBAction)clickLayerButton:(id)sender;
 - (void)showCopyPaint;
 

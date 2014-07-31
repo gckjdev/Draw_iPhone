@@ -10,20 +10,29 @@
 #import "SGFocusImageItem.h"
 
 @interface TipsPageViewController ()
+{
+}
 
 @property (nonatomic, retain) NSString* dialogTitle;
 @property (nonatomic, retain) NSArray* imagePathArray;
+@property (nonatomic, assign) int* returnIndex;
+@property (nonatomic, assign) int defaultIndex;
 
 @end
 
 @implementation TipsPageViewController
 
-+ (void)show:(PPViewController*)superController title:(NSString*)title imagePathArray:(NSArray*)imagePathArray
++ (void)show:(PPViewController*)superController
+       title:(NSString*)title
+imagePathArray:(NSArray*)imagePathArray
+defaultIndex:(int)defaultIndex
+ returnIndex:(int*)returnIndex
 {
     TipsPageViewController *rspc = [[TipsPageViewController alloc] init];
     rspc.dialogTitle = title;
     rspc.imagePathArray = imagePathArray;
-    
+    rspc.returnIndex = returnIndex;
+    rspc.defaultIndex = defaultIndex;
     
     CommonDialog *dialog = [CommonDialog createDialogWithTitle:title customView:rspc.view style:CommonSquareDialogStyleCross];
     [dialog showInView:superController.view];

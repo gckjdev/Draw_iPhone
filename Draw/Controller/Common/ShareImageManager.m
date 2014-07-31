@@ -306,7 +306,7 @@ static NSMutableDictionary *colorImageDict;
 
 - (UIImage *)drawingMarkSmallImage
 {
-    return [UIImage imageNamed:@"my_paint_tag.png"];        
+    return [UIImage imageNamed:@"my_paint_tag.png"];
 }
 - (UIImage *)drawingMarkLargeImage
 {
