@@ -51,6 +51,8 @@
 #import "ICETutorialController.h"
 #import "GuidePageManager.h"
 #import "ResultSharePageViewController.h"
+#import "AudioManager.h"
+
 @implementation UIViewController (CommonHome)
 
 - (void)enterUserTimeline
@@ -314,7 +316,13 @@
     [rspc release];
 }
 
-
-
+- (void)startAudioManager
+{
+    [[AudioManager defaultManager] setBackGroundMusicWithName:[GameApp getBackgroundMusicName]];
+    [[AudioManager defaultManager] setVolume:[PPConfigManager getBGMVolume]];
+    if ([[AudioManager defaultManager] isMusicOn]) {
+        [[AudioManager defaultManager] backgroundMusicPlay];
+    }
+}
 
 @end

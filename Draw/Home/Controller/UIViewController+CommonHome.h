@@ -32,4 +32,6 @@
 - (void)enterShop;
 - (void)enterLearnDraw;
 
+- (void)startAudioManager;
+
 @end

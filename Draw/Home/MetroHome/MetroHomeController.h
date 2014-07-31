@@ -13,10 +13,9 @@
 #import "SGFocusImageFrame.h"
 #import "SGFocusImageItem.h"
 #import "ICETutorialController.h"
+#import "UserService.h"
 
-
-
-@interface MetroHomeController : PPViewController<AvatarViewDelegate,SGFocusImageFrameDelegate,ICETutorialControllerDelegate>{
+@interface MetroHomeController : PPViewController<AvatarViewDelegate,SGFocusImageFrameDelegate,ICETutorialControllerDelegate, UserServiceDelegate>{
     UIButton *LearningViewButton;
     
 }

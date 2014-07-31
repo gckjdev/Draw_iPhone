@@ -77,9 +77,9 @@
     tutorialProgressView.color = [UIColor colorWithRed:0.99f green:0.85f blue:0.33f alpha:1.0f];
     tutorialProgressView.flat = @YES;
     tutorialProgressView.animate = @YES;
-    tutorialProgressView.showStroke = @NO;
+    tutorialProgressView.progressInset = @2;
     tutorialProgressView.showBackgroundInnerShadow = @NO;
-    tutorialProgressView.backgroundColor = COLOR_WHITE;
+    tutorialProgressView.outerStrokeColor = COLOR_WHITE;
     tutorialProgressView.outerStrokeWidth = @2;
     tutorialProgressView.type = LDProgressSolid;
     //row == 0 特殊情況

@@ -120,7 +120,8 @@
 
 - (void)initListWithLocalData
 {
-    NSArray* list = [[FeedService defaultService] getCachedFeedList:_feedType];
+    NSArray* list = [[FeedService defaultService] getCachedFeedList:_feedType
+                                                            classId:self.opusClassInfo.classId];
     PPDebug(@"<initListWithLocalData> list count = %d", [list count]);
     if ([list count] != 0) {
         [self.tabDataList addObjectsFromArray:list];
@@ -130,7 +131,8 @@
 - (void)showCachedFeedList:(int)tabID
 {
     // TODO set class ID
-    NSArray *feedList = [[FeedService defaultService] getCachedFeedList:_feedType];
+    NSArray *feedList = [[FeedService defaultService] getCachedFeedList:_feedType
+                                                                classId:_opusClassInfo.classId];
     self.dataList = feedList;
 
 //    FeedListType type = tabID;

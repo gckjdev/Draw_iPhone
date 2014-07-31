@@ -263,7 +263,7 @@
 - (void)reloadLocalCache
 {
     PPDebug(@"<reloadLocalCache>");
-    self.opusList = [[FeedService defaultService] getCachedFeedList:FeedListTypeHot];
+    self.opusList = [[FeedService defaultService] getCachedFeedList:FeedListTypeHot classId:nil];
     [self reloadView];
 }
 

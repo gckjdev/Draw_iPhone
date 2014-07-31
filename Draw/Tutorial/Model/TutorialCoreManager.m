@@ -155,7 +155,7 @@ static TutorialCoreManager* _defaultTutorialCoreManager;
 
 
 //重写Stage
--(PBStage*) evaluateStageDataName:(NSString *)name WithDesc:(NSString *)desc WithStageId:(NSString *)stageId WithImage:(NSString *)imageUrl tipList:(NSArray*)tipsList tipsIndex:(int32_t)tipsIndex opusId:(NSString*)opusId chapterList:(NSArray*)chapterList difficulty:(Float32)difficult{
+-(PBStage*) evaluateStageDataName:(NSString *)name WithDesc:(NSString *)desc WithStageId:(NSString *)stageId WithImage:(NSString *)imageUrl tipList:(NSArray*)tipsList tipsIndex:(int32_t)tipsIndex opusId:(NSString*)opusId chapterList:(NSArray*)chapterList difficulty:(Float32)difficult stageType:(int)stageType{
     
     PBStage_Builder* stageBuilder = [PBStage builder];
     //required
@@ -173,6 +173,11 @@ static TutorialCoreManager* _defaultTutorialCoreManager;
     [stageBuilder setOpusId:opusId];
     if(difficult!=0){
         [stageBuilder setDifficulty:difficult];
+    }
+    
+    
+    if(stageType!=0){
+        
     }
  
 
@@ -268,7 +273,7 @@ static TutorialCoreManager* _defaultTutorialCoreManager;
     PBChapter* chapter = [pbChapterBuilder build];
     
     [pb addChapter:chapter];
-    PBStage* stage = [pb build];
+//    PBStage* stage = [pb build];
     
 }
 
@@ -330,7 +335,7 @@ static TutorialCoreManager* _defaultTutorialCoreManager;
 //    NSString* root = @"/gitdata/Draw_iPhone/Draw/Tutorial/Resource/";
     NSString* root = @"/Users/chaoso/Desktop/gitdata/Draw_iPhone/Draw/Tutorial/Resource/";
     NSString* path = [root stringByAppendingString:[TutorialCoreManager appTaskDefaultConfigFileName]];
-    NSString* versionPath = [root stringByAppendingString:[PPSmartUpdateDataUtils getVersionFileName:[TutorialCoreManager appTaskDefaultConfigFileName]]];
+//    NSString* versionPath = [root stringByAppendingString:[PPSmartUpdateDataUtils getVersionFileName:[TutorialCoreManager appTaskDefaultConfigFileName]]];
     
     PBTutorialCore_Builder* builder = [PBTutorialCore builder];
     
@@ -545,9 +550,12 @@ static TutorialCoreManager* _defaultTutorialCoreManager;
     
     
     
-    NSArray *stageTips = @[@[@"tips1.png"]];
+    NSArray *stageTips = @[@[@"tips1.png"],@[@"tips1.png"]];
+    NSArray *stage6Tips = @[@[@"tips1.png"]];
+    NSArray *stage7Tips = @[@[@"tips1.png",@"tips2.png"]];
+    NSArray *stage8Tips = @[@[@"tips1.png",@"tips2.png",@"tips3.png"]];
     //stageTipsList
-    NSArray *tutorial6Tips = @[stageTips,@[],@[],@[],@[],@[],@[],@[],@[],@[]];
+    NSArray *tutorial6Tips = @[stageTips,@[],@[],@[],stage6Tips,stage7Tips,stage8Tips,@[],@[],@[]];
     NSArray *tutorial7Tips = @[@[],@[],@[],@[],@[],@[],@[],@[],@[],@[]];
     NSArray *tutorial8Tips = @[@[],@[],@[],@[],@[],@[],@[],@[],@[],@[]];
     //tutorialTipsList
@@ -563,7 +571,29 @@ static TutorialCoreManager* _defaultTutorialCoreManager;
                           tutorial8Tips,
                           ];
     
-    NSArray *difficulty = @[@1.0f,@1.0f,@1.0f,@1.0f,@1.0f,@1.0f,@1.0f,@1.0f,@1.0f,@1.0f];
+    NSArray *difficultyList = @[
+                            @[],
+                            @[],
+                            @[],
+                            @[],
+                            @[],
+                            @[],
+                            @[],
+                            @[],
+                           ];
+    
+    //画的类型
+    NSArray *stageTypeList = @[
+                                @[],
+                                @[],
+                                @[],
+                                @[],
+                                @[],
+                                @[@0,@0,@0,@0,@0,@0,@0,@0],
+                                @[@0,@0,@0,@0,@0,@0,@0,@0],
+                                @[@0,@0,@0,@0,@0,@0,@0,@0]
+                              ];
+    
     
     //模拟测试数据
 //    for(int i=0;i<testTutorialName.count;i++){
@@ -629,6 +659,16 @@ static TutorialCoreManager* _defaultTutorialCoreManager;
                 stageID = [NSString stringWithFormat:@"stageId-%d-%d",stageSum,chapterSum];
                 
             }
+            Float32 difficulty;
+            if([[difficultyList objectAtIndex:tutorialSum] count]==0||[difficultyList objectAtIndex:tutorialSum]==nil){
+                 difficulty = [[[difficultyList objectAtIndex:tutorialSum] objectAtIndex:stageSum] floatValue];
+                
+            }
+            NSInteger stageType;
+            if([[stageTypeList objectAtIndex:tutorialSum] count]==0||[stageTypeList objectAtIndex:tutorialSum]==nil){
+                stageTypeList = [[[stageTypeList objectAtIndex:tutorialSum] objectAtIndex:stageSum] integerValue];
+                
+            }
             //添加stage
             PBStage *stage = [self evaluateStageDataName:
                                                          [[testStageName objectAtIndex:tutorialSum] objectAtIndex:stageSum]
@@ -639,7 +679,8 @@ static TutorialCoreManager* _defaultTutorialCoreManager;
                                                tipsIndex:stageSum
                                               opusId:[[chapterOpusIdList objectAtIndex:stageSum] objectAtIndex:0]
                                              chapterList:chapterList
-                                                difficulty:[[difficulty objectAtIndex:tutorialSum] floatValue]
+                                                difficulty:difficulty
+                                                 stageType:stageType
                               ];
 
             [stageList addObject:stage];

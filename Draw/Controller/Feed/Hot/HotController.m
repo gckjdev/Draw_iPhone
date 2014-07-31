@@ -137,7 +137,7 @@ typedef enum{
             type = [self getFeedTypeForOpusClass:type];
         }
         
-        NSArray *feedList = [[FeedService defaultService] getCachedFeedList:type];
+        NSArray *feedList = [[FeedService defaultService] getCachedFeedList:type classId:_opusClassInfo.classId];
         if ([feedList count] != 0) {
             [self finishLoadDataForTabID:tabID resultList:feedList];
         }        

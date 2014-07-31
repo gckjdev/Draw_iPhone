@@ -156,51 +156,9 @@ static NSDictionary* DRAW_MENU_IMAGE_DICT = nil;
     }
 }
 
-//- (void)updateAnimation
-//{
-//    DrawHomeHeaderPanel *header = (id)self.homeHeaderPanel;
-//    DrawMainMenuPanel *mainPanel = (id)self.homeMainMenuPanel;
-//    HomeBottomMenuPanel *footer = (id)self.homeBottomMenuPanel;
-//    
-//    [header setClickRopeHandler:^(BOOL open)
-//    {
-//        if (open) {
-//            [mainPanel closeAnimated:YES completion:^(BOOL finished) {
-//                [mainPanel moveMenuTypeToBottom:HomeMenuTypeDrawDraw Animated:YES completion:NULL];
-//                [header openAnimated:YES completion:NULL];
-//                [footer hideAnimated:YES];
-//            }];
-//        }else{
-//            [mainPanel centerMenu:HomeMenuTypeDrawDraw Animated:YES completion:NULL];
-//            [footer showAnimated:YES];
-//            [header closeAnimated:YES completion:^(BOOL finished) {
-//                [mainPanel openAnimated:YES completion:NULL];
-//            }];
-//
-//        }
-//
-//        // TODO Benson later
-//    }];
-//    
-////#if DEBUG
-////    if (YES) {
-////#else
-//    if ([_userManager hasXiaojiNumber] == NO && [_userManager isOldUserWithoutXiaoji] == NO) {
-////#endif
-//        [mainPanel closeAnimated:NO completion:^(BOOL finished) {
-//            [mainPanel moveMenuTypeToBottom:HomeMenuTypeDrawDraw Animated:NO completion:NULL];
-//            [header openAnimated:NO completion:NULL];
-//            [footer hideAnimated:NO];
-//        }];        
-//    }
-//}
-
 - (void)viewDidLoad
 {        
     [super viewDidLoad];
-    
-    
-//    self.view.backgroundColor = OPAQUE_COLOR(0, 179, 118);
     
     // Start Game Service And Set User Id
     [[DrawGameService defaultService] setHomeDelegate:self];
@@ -211,12 +169,6 @@ static NSDictionary* DRAW_MENU_IMAGE_DICT = nil;
     
     [self performSelector:@selector(updateRecoveryDrawCount) withObject:nil afterDelay:0.5f];
     
-//    [self updateAnimation];
-    
-//    [self registerNotificationWithName:UPDATE_HOME_BG_NOTIFICATION_KEY usingBlock:^(NSNotification *note) {
-//        [self updateBGImageView];
-//    }];
-//    [self updateBGImageView];
     
     [[GuessService defaultService] getTodayGuessContestInfoWithDelegate:self];
 }
@@ -331,36 +283,8 @@ static NSDictionary* DRAW_MENU_IMAGE_DICT = nil;
     [[StatisticManager defaultManager] setRecoveryCount:count];
 }
 
-//#define HOME_BG_IMAGE_VIEW_TAG 123687
-//
-//- (void)updateBGImageView
-//{
-//    PPDebug(@"<update bg image view>");
-//    UIImage *homeImage = [[UserManager defaultManager] pageBgForKey:HOME_BG_KEY];
-//    if (homeImage) {
-//        [self.view setBackgroundColor:[UIColor clearColor]];
-//        UIImageView *imageView = (id)[self.view reuseViewWithTag:HOME_BG_IMAGE_VIEW_TAG viewClass:[UIImageView class] frame:self.view.bounds];
-//        [imageView setImage:homeImage];
-//        [self.view insertSubview:imageView atIndex:0];
-//    }else{
-//        [self.view setBackgroundColor:OPAQUE_COLOR(0, 191, 178)];
-//        UIImageView *imageView = (id)[self.view reuseViewWithTag:HOME_BG_IMAGE_VIEW_TAG viewClass:[UIImageView class] frame:self.view.bounds];
-//        [imageView removeFromSuperview];
-//    }
-//    [(DrawHomeHeaderPanel *)self.homeHeaderPanel updateBG];
-//}
-//
-//- (void)clearBGImageView
-//{
-//    [self.view setBackgroundColor:OPAQUE_COLOR(0, 191, 178)];
-//    UIImageView *imageView = (id)[self.view reuseViewWithTag:HOME_BG_IMAGE_VIEW_TAG viewClass:[UIImageView class] frame:self.view.bounds];
-//    [imageView setImage:nil];
-//    [imageView removeFromSuperview];
-//}
-
 - (void)viewDidAppear:(BOOL)animated
 {
-//    [self updateBGImageView];
     [self.homeHeaderPanel viewDidAppear];
     
     [UIApplication sharedApplication].idleTimerDisabled = NO;
@@ -377,21 +301,16 @@ static NSDictionary* DRAW_MENU_IMAGE_DICT = nil;
     [self hideActivity];
     [[DrawGameService defaultService] unregisterObserver:self];
     [super viewDidDisappear:animated];
-    
-//    [self clearBGImageView];    
 }
 
 - (void)viewDidUnload
 {
-    
     [self setRecommendButton:nil];
     [self setFacetimeButton:nil];
     [self setMenuPanel:nil];
     [self setTestBulletin:nil];
     [self setTestCreateWallBtn:nil];
     [super viewDidUnload];
-    // Release any retained subviews of the main view.
-    // e.g. self.myOutlet = nil;
 }
 
 
@@ -501,31 +420,6 @@ static NSDictionary* DRAW_MENU_IMAGE_DICT = nil;
     
     
 }
-
-//- (void)didServerListFetched:(int)result
-//{
-////    RouterTrafficServer* server = [[RouterService defaultService] assignTrafficServer];
-//    NSString* address = nil;
-//    int port = 9000;
-//
-//    // update by Benson, to avoid "server full/busy issue"
-//    if ([[UserManager defaultManager] getLanguageType] == ChineseType){
-//        address = [PPConfigManager defaultChineseServer];
-//        port = [PPConfigManager defaultChinesePort];
-//    }
-//    else{
-//        address = [PPConfigManager defaultEnglishServer];
-//        port = [PPConfigManager defaultEnglishPort];
-//    }
-//
-//
-//    [[DrawGameService defaultService] setServerAddress:address];
-//    [[DrawGameService defaultService] setServerPort:port];      
-//
-//    [[DrawGameService defaultService] connectServer:self];
-//    _isTryJoinGame = YES;
-//}
-
 
 + (HomeController*)defaultInstance
 {
@@ -906,24 +800,6 @@ static NSDictionary* DRAW_MENU_IMAGE_DICT = nil;
     [sf showOpusImageBrower];
     [self.navigationController pushViewController:sf animated:YES];
     [sf release];
-}
-
-- (IBAction)clickFacetime:(id)sender
-{
-//    [[BBSService defaultService] getBBSBoardList:nil];
-//    BBSBoardController *bbs = [[BBSBoardController alloc] init];
-//    [self.navigationController pushViewController:bbs animated:YES];
-//    [bbs release];
-//    FacetimeMainController* vc = [[[FacetimeMainController alloc] init] autorelease];
-//    [self.navigationController pushViewController:vc animated:YES];
-    
-//    [[DiceGameService defaultService] joinGameRequest];
-}
-
-- (IBAction)clickTestBulletin:(id)sender
-{
-    UIViewController* rc = [[[DrawRoomListController alloc] init] autorelease];
-    [self.navigationController pushViewController:rc animated:YES];
 }
 
 #pragma mark - handle network listen

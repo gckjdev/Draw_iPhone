@@ -19,8 +19,17 @@
 #import "ResultShareAlertPageViewController.h"
 #import "TipsPageViewController.h"
 #import "SDWebImageManager.h"
+#import "BulletinService.h"
+#import "AudioManager.h"
+#import "SuperHomeController.h"
+#import "PPConfigManager.h"
+#import "ContestService.h"
+#import "WordManager.h"
+#import "DrawRecoveryService.h"
 
 @interface MetroHomeController ()
+
+@property(nonatomic, retain) NSTimer *statisTimer;
 
 @end
 
@@ -41,6 +50,7 @@
 #define MESSAGE_BUTTON_TITLE_EDGEINSET   (ISIPAD ? -39 : -32)
 #define MORE_BUTTON_TITLE_EDGEINSETS     (ISIPAD ? -33 : -32)
 #define BOTTOM_BUTTON_HEIGHT (ISIPAD ? 55 : 37)
+
 -(void)setButtonTitleBottom{
     [self.indexButton  setTitleEdgeInsets:UIEdgeInsetsMake(BOTTOM_BUTTON_HEIGHT, TRENDS_BUTTON_TITLE_EDGEINSETS, 0, 0)];
     [self.documentButton  setTitleEdgeInsets:UIEdgeInsetsMake(BOTTOM_BUTTON_HEIGHT, DOCUMENT_BUTTON_TITLE_EDGEINSETS, 0, 0)];
@@ -49,6 +59,38 @@
     
 }
 
+- (void)startStatisticTimer
+{
+    if (self.statisTimer == nil){
+        PPDebug(@"<startStatisticTimer>");
+        self.statisTimer = [NSTimer scheduledTimerWithTimeInterval:300 target:self selector:@selector(handleStaticTimer:) userInfo:nil repeats:YES];
+    }
+}
+
+- (void)stopStatisticTimer
+{
+    if (self.statisTimer){
+        PPDebug(@"<stopStatisticTimer>");
+        if ([self.statisTimer isValid]){
+            [self.statisTimer invalidate];
+        }
+        self.statisTimer = nil;
+    }
+}
+
+#pragma mark - get && update statistic
+- (void)handleStaticTimer:(NSTimer *)theTimer
+{
+    PPDebug(@"<handleStaticTimer>: get static");
+    [[UserService defaultService] getStatistic:self];
+}
+
+- (void)didSyncStatisticWithResultCode:(int)resultCode
+{
+    if (resultCode == 0) {
+        [self updateAllBadge];
+    }
+}
 
 #define DEFAUT_IMAGE_NAME "dialogue@2x"
 #define TEST_DATA_GALLERYIMAGE "http://58.215.184.18:8080/tutorial/image/GalleryImage2.jpg"
@@ -59,39 +101,48 @@
     
     [super viewDidLoad];
     
-//    
-//    //test
-//    [self goToGuidePage];
+    [[BulletinService defaultService] syncBulletins:^(int resultCode) {
+        [self updateAllBadge];
+    }];
     
+    // update avatar view
+    [self registerNotificationWithName:NOTIFCATION_USER_DATA_CHANGE usingBlock:^(NSNotification *note) {
+        PPDebug(@"recv NOTIFCATION_USER_DATA_CHANGE, update header view panel");
+        [self updateAvatarView];
+        [self updateAllBadge];
+    }];
+    
+    // update background view
+    [self registerNotificationWithName:UPDATE_HOME_BG_NOTIFICATION_KEY usingBlock:^(NSNotification *note) {
+        [self updateBGImageView];
+    }];
+
+    [self updateBGImageView];
+    [self startAudioManager];
+    
+    [self registerUIApplicationNotification];
+    
+    [self performSelector:@selector(updateRecoveryDrawCount) withObject:nil afterDelay:0.5f];
+    
+    
+//    [[GuessService defaultService] getTodayGuessContestInfoWithDelegate:self];
+
     [self setBackground];
     // Do any additional setup after loading the view from its nib.
 
     
     [self setGalleryView];
-//    [self setGalleryImageForModel];
    
     //用户头像
-    UserManager* userManager = [UserManager defaultManager];
+    [self updateAvatarView];
+    self.avatarView.delegate = self;
     
-    [self.avatarView setAvatarUrl:[userManager avatarURL]
-                     gender:[userManager gender]
-                     useDefaultLogo:NO];
-    self.avatarView.delegate = self;    
-    
-    //用户名字（赋值）
-    NSString *name = [userManager nickName];
-    [_topNameLable setText:name];
-    [_topNameLable setFont:AD_FONT(20, 15)];
-    [_topNameLable setTextColor:COLOR_BROWN];
-    [_topNameButton setTitle:name forState:UIControlStateNormal];
-    [_topNameButton setTitleColor:COLOR_BROWN forState:UIControlStateNormal];
-    [_topNameButton.titleLabel setFont:AD_FONT(20, 15)];
     [self setButtonTitleBottom];
     
     //TEST
     [self setBadgeView];
     
-    //autolayout 适配ios6 ios7
+    //Autolayout 适配ios6 ios7
     NSLayoutConstraint* constraint = [NSLayoutConstraint constraintWithItem:self.galleryView
                                                                   attribute:NSLayoutAttributeTop
                                                                   relatedBy:NSLayoutRelationEqual
@@ -100,56 +151,70 @@
                                                                  multiplier:1.0
                                                                    constant:0];
     
-    int constant = 0;
-    if(ISIOS7){
-        constant = 20;
-    }
     NSLayoutConstraint* constraint2 = [NSLayoutConstraint constraintWithItem:self.topView
                                                                   attribute:NSLayoutAttributeTop
                                                                   relatedBy:NSLayoutRelationEqual
                                                                      toItem:self.view
                                                                   attribute:NSLayoutAttributeTop
                                                                  multiplier:1.0
-                                                                   constant:constant];
+                                                                   constant:STATUSBAR_DELTA];
     
     [self.view addConstraint:constraint];
-    
     [self.view addConstraint:constraint2];
     
 }
--(void)viewWillAppear:(BOOL)animated{
-    //适配IOS7
-//    if([DeviceDetection isOS7]){
-//        PPDebug(@"self.view.bounds.y1==%d",self.view.bounds.origin.y);
-//        self.view.bounds = CGRectMake(0, 20, self.view.frame.size.width, self.view.frame.size.height);
-//        PPDebug(@"self.view.bounds.y2==%d",self.view.bounds.origin.y);
-//    }
-     
+
+- (void)updateBGImageView
+{
+    
 }
 
-//-(void)setGalleryImageForModel{
-//    
-//    [self setCanDragBack:NO];
-//     UIImage *placeHolderImage = [UIImage imageNamed:@DEFAUT_IMAGE_NAME];
-//    BillboardManager *bbManager = [BillboardManager defaultManager];
-//    self.bbList = bbManager.bbList;
-//    for(Billboard *bb in self.bbList){
-//        UIImageView *imageView =[[[UIImageView alloc]initWithFrame:CGRectMake(26, 15, 268, 120)] autorelease];
-//        
-//        NSString *galleryImage = bb.image;
-//        
-//        NSURL *galleryUrl = [NSURL URLWithString:galleryImage];
-//        [imageView setImageWithUrl:galleryUrl
-//                  placeholderImage:placeHolderImage
-//                       showLoading:YES
-//                          animated:YES];
-//
-//    }
-//   
-//   
-//}
+- (void)updateAvatarView
+{
+    UserManager* userManager = [UserManager defaultManager];
+    
+    // set avatar
+    [self.avatarView setAvatarUrl:[userManager avatarURL]
+                           gender:[userManager gender]
+                   useDefaultLogo:NO];
+    
+    // set nick name
+    NSString *name = [userManager nickName];
+    [_topNameLable setText:name];
+    [_topNameLable setFont:AD_FONT(20, 15)];
+    [_topNameLable setTextColor:COLOR_BROWN];
+    [_topNameButton setTitle:name forState:UIControlStateNormal];
+    [_topNameButton setTitleColor:COLOR_BROWN forState:UIControlStateNormal];
+    [_topNameButton.titleLabel setFont:AD_FONT(20, 15)];
+    
+}
 
--(void)galleryClick:(id)sender{
+- (void)viewDidAppear:(BOOL)animated
+{
+    [[UserService defaultService] getStatistic:self];
+    [self startStatisticTimer];
+    
+    [UIApplication sharedApplication].idleTimerDisabled = NO;
+    [super viewDidAppear:animated];
+}
+
+- (void)viewDidDisappear:(BOOL)animated
+{
+    [self stopStatisticTimer];
+    
+    [self hideActivity];
+    [super viewDidDisappear:animated];
+}
+
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+}
+
+// TODO check
+- (void)galleryClick:(id)sender
+{
     [[self.bbList objectAtIndex:0] clickAction:self];
     PPDebug(@"<click_gallery_image>button_tag=%d",index);
 }
@@ -165,10 +230,38 @@
     [self.anounceBadge setNumber:TEST_DATA];
 }
 
--(IBAction)goToLearning:(id)sender{
-    UserTutorialMainController* uc = [[UserTutorialMainController alloc] init];
-    [self.navigationController pushViewController:uc animated:YES];
-    [uc release];    
+- (void)updateBadgeTimeline:(int)count
+{
+    [self.indexBadge setNumber:count];
+}
+
+- (void)updateBadgeChat:(int)count
+{
+    [self.messageBadge setNumber:count];
+}
+
+- (void)updateBadgeDraft:(int)count
+{
+    [self.documentBadge setNumber:count];
+}
+
+- (void)updateBadgeMore:(int)count
+{
+    [self.moreBadge setNumber:count];
+}
+
+- (void)updateBulletinBadge:(int)count
+{
+    [self.anounceBadge setNumber:count];
+}
+
+- (void)updateBadgeBBS:(int)count
+{
+    // TODO
+}
+
+- (IBAction)goToLearning:(id)sender{
+    [self enterLearnDraw];
 }
 
 //主页背景
@@ -279,12 +372,10 @@
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
+    
     // Dispose of any resources that can be recreated.
-}
-
-//点击事件
--(void)labelClicked{
-    PPDebug(@"click the label");
+    // Release any cached data, images, etc that aren't in use.
+    [[SDWebImageManager sharedManager].imageCache clearMemory];
 }
 
 #pragma mark -
@@ -334,6 +425,7 @@
             //新建滚动展览
             SGFocusImageFrame *imageFrame = [[SGFocusImageFrame alloc] initWithFrame:CGRectMake(IMAGE_FRAME_X, IMAGE_FRAME_Y, IMAGE_FRAME_WIDTH ,IMAGE_FRAME_HEIGHT)
                                                                             delegate:self
+                                                    hasPageControllerBackgroundColor:NO
                                                                      focusImageItems:itemList, nil];
             [self.galleryView addSubview:imageFrame];
             [self.galleryView bringSubviewToFront:imageFrame];
@@ -356,13 +448,29 @@
     [[self.bbList objectAtIndex:index] clickAction:self];
 }
 
--(void)adapt_iOS6{
-    if([DeviceDetection isOS6]){
-        [self.galleryButton setBackgroundColor:COLOR_YELLOW];
-        [self.view setFrame:CGRectMake(self.view.frame.origin.x, self.view.frame.origin.y-20, self.view.frame.size.width, self.view.frame.size.height)];
-        
-    }
+- (void)updateAllBadge
+{
+    StatisticManager *manager = [StatisticManager defaultManager];
+    
+    [self updateBadgeChat:manager.messageCount];
+    [self updateBadgeBBS:manager.bbsActionCount];
+    
+    long timelineCount = manager.timelineOpusCount +
+                            manager.timelineGuessCount +
+                            manager.commentCount +
+                            manager.drawToMeCount;
+    [self updateBadgeTimeline:timelineCount];
+    
+    int moreCount = [manager newContestCount] + [manager groupNoticeCount];
+    [self updateBadgeMore:moreCount];
+    
+    [self updateBulletinBadge:[manager bulletinCount]];
+    
+    // TODO
+    //    [self updateBadgeBBS:HomeMenuTypeDrawFriend badge:manager.fanCount];
 }
+
+
 
 - (void)dealloc {
     [_galleryView release];
@@ -422,4 +530,52 @@
     [self setGalleryButton:nil];
     [super viewDidUnload];
 }
+
+- (void)registerUIApplicationNotification
+{
+    
+    [self registerNotificationWithName:UIApplicationDidEnterBackgroundNotification
+                            usingBlock:^(NSNotification *note) {
+    }];
+    
+    [self registerNotificationWithName:UIApplicationWillEnterForegroundNotification
+                            usingBlock:^(NSNotification *note) {
+        
+        [[BulletinService defaultService] syncBulletins:^(int resultCode) {
+            PPDebug(@"sync bulletin done, update header view panel");
+            [self updateBulletinBadge];
+        }];
+    }];
+    
+    [self registerNotificationWithName:NOTIFCATION_CONTEST_DATA_CHANGE usingBlock:^(NSNotification *note) {
+        PPDebug(@"recv NOTIFCATION_CONTEST_DATA_CHANGE, update header view panel");
+        [self updateAllBadge];
+    }];
+}
+
+- (void)updateRecoveryDrawCount
+{
+    NSUInteger count = [[DrawRecoveryService defaultService] recoveryDrawCount];
+    [self updateBadgeDraft:count];
+    [[StatisticManager defaultManager] setRecoveryCount:count];
+}
+
+- (void)updateBulletinBadge
+{
+    StatisticManager *manager = [StatisticManager defaultManager];
+    [self updateBulletinBadge:[manager bulletinCount]];
+}
+
+- (void)enterShareFromWeixin
+{
+//    if ([self isRegistered] == NO) {
+//        [self toRegister];
+//    } else {
+//        ShareController* share = [[ShareController alloc] init ];
+//        [share setFromWeiXin:YES];
+//        [self.navigationController pushViewController:share animated:YES];
+//        [share release];
+//    }
+}
+
 @end
