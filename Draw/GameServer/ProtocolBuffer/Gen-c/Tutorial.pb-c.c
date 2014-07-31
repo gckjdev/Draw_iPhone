@@ -2077,22 +2077,18 @@ const ProtobufCEnumDescriptor game__pbtutorial_image_style__descriptor =
   game__pbtutorial_image_style__value_ranges,
   NULL,NULL,NULL,NULL   /* reserved[1234] */
 };
-const ProtobufCEnumValue game__pbscore_engine_type__enum_values_by_number[4] =
+const ProtobufCEnumValue game__pbscore_engine_type__enum_values_by_number[2] =
 {
-  { "SCORE_ENGINE_AUTO", "GAME__PBSCORE_ENGINE_TYPE__SCORE_ENGINE_AUTO", 0 },
-  { "SCORE_ENGINE_AVG_HASH", "GAME__PBSCORE_ENGINE_TYPE__SCORE_ENGINE_AVG_HASH", 1 },
-  { "SCORE_ENGINE_AVG_HASH_COLOR_HIST", "GAME__PBSCORE_ENGINE_TYPE__SCORE_ENGINE_AVG_HASH_COLOR_HIST", 2 },
-  { "SCORE_ENGINE_AVG_HASH_COLOR_HIST_HU", "GAME__PBSCORE_ENGINE_TYPE__SCORE_ENGINE_AVG_HASH_COLOR_HIST_HU", 3 },
+  { "SCORE_ENGINE_NORMAL", "GAME__PBSCORE_ENGINE_TYPE__SCORE_ENGINE_NORMAL", 0 },
+  { "SCORE_ENGINE_STICK_PICTURE", "GAME__PBSCORE_ENGINE_TYPE__SCORE_ENGINE_STICK_PICTURE", 1 },
 };
 static const ProtobufCIntRange game__pbscore_engine_type__value_ranges[] = {
-{0, 0},{0, 4}
+{0, 0},{0, 2}
 };
-const ProtobufCEnumValueIndex game__pbscore_engine_type__enum_values_by_name[4] =
+const ProtobufCEnumValueIndex game__pbscore_engine_type__enum_values_by_name[2] =
 {
-  { "SCORE_ENGINE_AUTO", 0 },
-  { "SCORE_ENGINE_AVG_HASH", 1 },
-  { "SCORE_ENGINE_AVG_HASH_COLOR_HIST", 2 },
-  { "SCORE_ENGINE_AVG_HASH_COLOR_HIST_HU", 3 },
+  { "SCORE_ENGINE_NORMAL", 0 },
+  { "SCORE_ENGINE_STICK_PICTURE", 1 },
 };
 const ProtobufCEnumDescriptor game__pbscore_engine_type__descriptor =
 {
@@ -2101,9 +2097,9 @@ const ProtobufCEnumDescriptor game__pbscore_engine_type__descriptor =
   "PBScoreEngineType",
   "Game__PBScoreEngineType",
   "game",
-  4,
+  2,
   game__pbscore_engine_type__enum_values_by_number,
-  4,
+  2,
   game__pbscore_engine_type__enum_values_by_name,
   1,
   game__pbscore_engine_type__value_ranges,

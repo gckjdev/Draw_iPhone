@@ -27,10 +27,8 @@ enum PBTutorialImageStyle{
 }
 
 enum PBScoreEngineType{
-    SCORE_ENGINE_AUTO = 0;
-    SCORE_ENGINE_AVG_HASH = 1;
-    SCORE_ENGINE_AVG_HASH_COLOR_HIST = 2;
-    SCORE_ENGINE_AVG_HASH_COLOR_HIST_HU = 3;
+    SCORE_ENGINE_NORMAL = 0;                        // 正常
+    SCORE_ENGINE_STICK_PICTURE   = 1;               // 简笔画
 }
 
 message PBTip

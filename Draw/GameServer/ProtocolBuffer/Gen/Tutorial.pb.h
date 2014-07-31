@@ -131,10 +131,8 @@ typedef enum {
 BOOL PBTutorialImageStyleIsValidValue(PBTutorialImageStyle value);
 
 typedef enum {
-  PBScoreEngineTypeScoreEngineAuto = 0,
-  PBScoreEngineTypeScoreEngineAvgHash = 1,
-  PBScoreEngineTypeScoreEngineAvgHashColorHist = 2,
-  PBScoreEngineTypeScoreEngineAvgHashColorHistHu = 3,
+  PBScoreEngineTypeScoreEngineNormal = 0,
+  PBScoreEngineTypeScoreEngineStickPicture = 1,
 } PBScoreEngineType;
 
 BOOL PBScoreEngineTypeIsValidValue(PBScoreEngineType value);
