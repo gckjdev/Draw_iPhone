@@ -48,9 +48,9 @@
 
 @property (nonatomic, retain) NSArray *bbList;
 
-- (UIView *)createShadow:(UIView *)view;
 - (IBAction)goToLearning:(id)sender;
 - (IBAction)goToBBS:(id)sender;
 - (IBAction)goToDraw:(id)sender;
 - (IBAction)goToOpus:(id)sender;
+
 @end

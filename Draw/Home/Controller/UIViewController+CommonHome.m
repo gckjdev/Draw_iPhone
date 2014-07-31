@@ -111,19 +111,12 @@
     [[StatisticManager defaultManager] setTimelineOpusCount:0];    
 }
 
-- (void)enterOpusClass{
-    //    ShowOpusClassListController* vc = [[ShowOpusClassListController alloc] init];
-    //    [self.navigationController pushViewController:vc animated:YES];
-    //    [vc release];
-    
-    //    FeedListController* vc = [[FeedListController alloc] init];
-    //    [self.navigationController pushViewController:vc animated:YES];
-    //    [vc release];
-    
+- (void)enterOpusClass
+{
     NewHotController* vc = [[NewHotController alloc] init];
     [self.navigationController pushViewController:vc animated:YES];
     [vc release];
-    
+    return;
 }
 
 - (void)enterMore

@@ -56,7 +56,6 @@
     [self.documentButton  setTitleEdgeInsets:UIEdgeInsetsMake(BOTTOM_BUTTON_HEIGHT, DOCUMENT_BUTTON_TITLE_EDGEINSETS, 0, 0)];
     [self.messageButton  setTitleEdgeInsets:UIEdgeInsetsMake(BOTTOM_BUTTON_HEIGHT, MESSAGE_BUTTON_TITLE_EDGEINSET, 0, 0)];
     [self.moreButton  setTitleEdgeInsets:UIEdgeInsetsMake(BOTTOM_BUTTON_HEIGHT,                        MORE_BUTTON_TITLE_EDGEINSETS, 0, 0)];
-    
 }
 
 - (void)startStatisticTimer
@@ -98,6 +97,7 @@
 - (void)viewDidLoad
 {
     self.view.backgroundColor = COLOR_GREEN;
+    [self.documentBadge setNumber:0];
     
     [super viewDidLoad];
     
@@ -122,7 +122,7 @@
     
     [self registerUIApplicationNotification];
     
-    [self performSelector:@selector(updateRecoveryDrawCount) withObject:nil afterDelay:0.5f];
+//    [self performSelector:@selector(updateRecoveryDrawCount) withObject:nil afterDelay:0.5f];
     
     
 //    [[GuessService defaultService] getTodayGuessContestInfoWithDelegate:self];
@@ -138,9 +138,6 @@
     self.avatarView.delegate = self;
     
     [self setButtonTitleBottom];
-    
-    //TEST
-    [self setBadgeView];
     
     //Autolayout 适配ios6 ios7
     NSLayoutConstraint* constraint = [NSLayoutConstraint constraintWithItem:self.galleryView
@@ -240,10 +237,10 @@
     [self.messageBadge setNumber:count];
 }
 
-- (void)updateBadgeDraft:(int)count
-{
-    [self.documentBadge setNumber:count];
-}
+//- (void)updateBadgeDraft:(int)count
+//{
+//    [self.documentBadge setNumber:count];
+//}
 
 - (void)updateBadgeMore:(int)count
 {
@@ -553,12 +550,12 @@
     }];
 }
 
-- (void)updateRecoveryDrawCount
-{
-    NSUInteger count = [[DrawRecoveryService defaultService] recoveryDrawCount];
-    [self updateBadgeDraft:count];
-    [[StatisticManager defaultManager] setRecoveryCount:count];
-}
+//- (void)updateRecoveryDrawCount
+//{
+//    NSUInteger count = [[DrawRecoveryService defaultService] recoveryDrawCount];
+//    [self updateBadgeDraft:count];
+//    [[StatisticManager defaultManager] setRecoveryCount:count];
+//}
 
 - (void)updateBulletinBadge
 {
