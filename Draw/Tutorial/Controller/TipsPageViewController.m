@@ -35,8 +35,8 @@ defaultIndex:(int)defaultIndex
     rspc.defaultIndex = defaultIndex;
     
     CommonDialog *dialog = [CommonDialog createDialogWithTitle:title customView:rspc.view style:CommonSquareDialogStyleCross];
+    
     [dialog showInView:superController.view];
-
     [superController addChildViewController:rspc];
     [rspc release];
 }
@@ -83,17 +83,19 @@ defaultIndex:(int)defaultIndex
         if(image==nil){
             image = [UIImage imageNamed:DEFAULT_GALLERY_IMAGE] ;
         }
-        SGFocusImageItem *item = [[[SGFocusImageItem alloc] initWithTitle:@"" image:image tag:i] autorelease];
+               SGFocusImageItem *item = [[[SGFocusImageItem alloc] initWithTitle:@"" image:image tag:i] autorelease];
         [itemList addObject:item];
-            i++;
+        //test
+        i++;
     }
     SGFocusImageFrame *imageFrame = [[SGFocusImageFrame alloc] initWithFrameAndIntervalTime:CGRectMake(0, 0, IMAGE_FRAME_WIDTH,IMAGE_FRAME_HEIGHT)
                                                                     delegate:self
                                                                     intervalTime:0.0f
-                                                             focusImageItems:itemList, nil
+                                                                    defaultPage:self.defaultIndex
+                                                                    hasPageControllerBackgroundColor:YES
+                                                                    focusImageItems:itemList, nil
                                                             ];
     imageFrame.userInteractionEnabled = YES;
-//    [imageFrame stopScoll];
     [self.view addSubview:imageFrame];
     [self.view bringSubviewToFront:imageFrame];
     [imageFrame release];
@@ -111,6 +113,19 @@ defaultIndex:(int)defaultIndex
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+#pragma mark Delegate
+-(void)foucusImageFrame:(SGFocusImageFrame *)imageFrame didSelectItem:(SGFocusImageItem *)item{
+    PPDebug(@"testing testing!!!");
+}
+-(void)setCurrentPage:(NSInteger)currentPage{
+    PPDebug(@"currentPage==%d",currentPage);
+    if (_returnIndex != NULL){
+        *_returnIndex = currentPage;
+    }
+    PPDebug(@"returnIndex==%d",self.returnIndex);
+    
 }
 
 @end

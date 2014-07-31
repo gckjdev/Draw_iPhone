@@ -363,6 +363,7 @@
             //新建滚动展览
             SGFocusImageFrame *imageFrame = [[SGFocusImageFrame alloc] initWithFrame:CGRectMake(IMAGE_FRAME_X, IMAGE_FRAME_Y, IMAGE_FRAME_WIDTH ,IMAGE_FRAME_HEIGHT)
                                                                             delegate:self
+                                                    hasPageControllerBackgroundColor:NO
                                                                      focusImageItems:itemList, nil];
             [self.galleryView addSubview:imageFrame];
             [self.galleryView bringSubviewToFront:imageFrame];
