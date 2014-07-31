@@ -37,14 +37,20 @@ static FeedService *_staticFeedService = nil;
     return _staticFeedService;
 }
 
-- (NSString *)cachedKeyForFeedListType:(FeedListType)type
+- (NSString *)cachedKeyForFeedListType:(FeedListType)type classId:(NSString*)classId
 {
-    return [NSString stringWithFormat:@"CACHED_FEED_LIST_%d",type];
+    if ([classId length] == 0){
+        return [NSString stringWithFormat:@"CACHED_FEED_LIST_%d",type];
+    }
+    else{
+        return [NSString stringWithFormat:@"CACHED_FEED_LIST_%d_%@",type,classId];
+    }
 }
 
-- (NSArray *)getCachedFeedList:(FeedListType)feedListType
+- (NSArray *)getCachedFeedList:(FeedListType)feedListType classId:(NSString*)classId
 {
-    return [[FeedManager defaultManager] loadFeedListForKey:[self cachedKeyForFeedListType:feedListType]];
+    NSString* key = [self cachedKeyForFeedListType:feedListType classId:classId];
+    return [[FeedManager defaultManager] loadFeedListForKey:key];
 }
 
 - (void)getFeedListByClass:(FeedListType)feedListType
@@ -116,7 +122,7 @@ static FeedService *_staticFeedService = nil;
                 NSArray *pbFeedList = [response feedList];
                 list = [FeedManager parsePbFeedList:pbFeedList];
                 if ([list count] != 0 && offset == 0) {
-                    [[FeedManager defaultManager] cacheFeedDataQueryResponse:response forKey:[self cachedKeyForFeedListType:feedListType]];
+                    [[FeedManager defaultManager] cacheFeedDataQueryResponse:response forKey:[self cachedKeyForFeedListType:feedListType classId:classId]];
                 }
             }
             @catch (NSException *exception) {
@@ -226,7 +232,7 @@ static FeedService *_staticFeedService = nil;
             list = [FeedManager parsePbFeedList:pbFeedList];
             if ([list count] != 0 && offset == 0) {
                 [[FeedManager defaultManager] cacheFeedDataQueryResponse:output.pbResponse
-                                                                  forKey:[self cachedKeyForFeedListType:FeedTypeContestComment]];
+                                                                  forKey:[self cachedKeyForFeedListType:FeedTypeContestComment classId:contestId]];
             }
         }
         

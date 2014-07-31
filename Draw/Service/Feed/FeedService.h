@@ -120,7 +120,8 @@ typedef void (^ GetFeedListCompleteBlock)(int resultCode, NSArray* feedList);
                    type:(FeedListType)type
               completed:(GetFeedListCompleteBlock)completed;
 
-- (NSArray *)getCachedFeedList:(FeedListType)feedListType;
+- (NSArray *)getCachedFeedList:(FeedListType)feedListType
+                       classId:(NSString*)classId;
 
 - (void)getFeedListByClass:(FeedListType)feedListType
                    classId:(NSString*)classId
