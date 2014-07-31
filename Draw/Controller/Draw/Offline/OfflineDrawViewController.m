@@ -1722,7 +1722,7 @@
 }
 
 
-- (BOOL) strokeControlInSubmissionWithMinStrokeNum:(NSInteger)minStrokeNum
+- (NSInteger) strokeControlInSubmissionWithMinStrokeNum:(NSInteger)minStrokeNum
                        MinPointNum:(NSInteger)minPointNum;
 {
     //  提交按钮的预处理
@@ -1735,11 +1735,13 @@
     if(effetiveAction<=minStrokeNum)
     {
         PPDebug(@"too few strokes!");
-        POSTMSG(NSLS(@"kStrokeNumberNotEnough"));
-        return NO;
+//        POSTMSG(NSLS(@"kStrokeNumberNotEnough"));
     }
+
+    if(effetiveAction<minStrokeNum)
+        return (minStrokeNum - effetiveAction);
     else
-        return YES;
+        return 0;
 }
 
 
@@ -1794,11 +1796,9 @@
 
 - (void)handleSubmitForLearnDraw
 {
-    //  预处理
-    BOOL isEnough = [self strokeControlInSubmissionWithMinStrokeNum:[PPConfigManager getMinStrokeNum]
+    //  笔画数预处理
+    NSInteger minus = [self strokeControlInSubmissionWithMinStrokeNum:[PPConfigManager getMinStrokeNum]
                                                         MinPointNum:[PPConfigManager getMinPointNum]];
-    if (NO == isEnough)
-        return;
 
     if ([self isGotoNextChapter]){
         [self gotoNextChapter];
@@ -1840,7 +1840,7 @@
     NSString* destPath = self.tempImageFilePath;
     
     //从关卡传入difficulty，TODO
-    int score = [ImageSimilarityEngine score1SrcPath:sourcePath destPath:destPath difficulty:_stage.difficulty];
+    int score = [ImageSimilarityEngine scoreSrcPath:sourcePath destPath:destPath difficulty:_stage.difficulty minus:minus];
     
     [self.draft setScore:@(score)];
     [self.draft setScoreDate:[NSDate date]];
