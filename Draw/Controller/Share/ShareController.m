@@ -29,6 +29,7 @@
 #import "GameSNSService.h"
 #import "PurchaseVipController.h"
 #import "UIImageUtil.h"
+#import "GifViewController.h"//TODO
 
 #define BUTTON_INDEX_OFFSET 20120229
 #define IMAGE_WIDTH 93
@@ -392,13 +393,20 @@ typedef enum{
 
 #ifdef DEBUG
 
-    [self gotoPeriodReplayViewBegin:1000 End:2000];
-    [self hideActivity];
-    return;
+//    [self gotoPeriodReplayViewBegin:1000 End:2000];
+//    [self hideActivity];
+//    [self gotoGif];
+//    return;
 #endif
     
     [self performLoadOpus:@selector(gotoReplayView)];
     return;
+}
+
+- (void)gotoGif
+{
+    GifViewController *gvc = [[GifViewController alloc]init];
+    [self.navigationController pushViewController:gvc animated:YES];
 }
 
 
@@ -419,6 +427,7 @@ typedef enum{
     [player showInController:self];
     
 }
+
 
 - (void)gotoPeriodReplayViewBegin:(NSInteger)begin
                               End:(NSInteger)end
@@ -515,7 +524,7 @@ typedef enum{
                              canvasSize:_selectedPaint.canvasSize
                              outputPath: //_selectedPaint.imageFilePath
                         @"/Users/Linruin/Desktop/test.gif"
-                              scaleSize:0.5];
+                              scaleSize:1.0];
                      
                        dispatch_async(dispatch_get_main_queue(),
                             ^(void){

@@ -45,6 +45,7 @@ typedef enum {
 }
 @property(nonatomic, assign) NSInteger speed; //default is Normal;
 @property (nonatomic, retain) PaintAction *tempAction;
+
 @end
 
 
@@ -52,7 +53,6 @@ typedef enum {
 @synthesize speed = _speed;
 @synthesize delegate = _delegate;
 @synthesize status = _status;
-
 
 #pragma mark Action Funtion
 
@@ -494,6 +494,12 @@ typedef enum {
 //        BOOL slow = ![_currentAction isKindOfClass:[PaintAction class]];
         
         [self updateNextPlayIndex];
+        
+#ifdef DEBUG
+       
+#endif
+        
+        
         [self playCurrentFrame];
         
 //        if (slow) {

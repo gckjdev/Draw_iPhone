@@ -183,6 +183,16 @@
     return retList;
 }
 
+- (BOOL)hasMoreThanOneChapter
+{
+    if ([self.chapterList count] > 1){
+        return YES;
+    }
+    else{
+        return NO;
+    }
+}
+
 
 @end
 
@@ -198,7 +208,7 @@
     PBTutorial* pbTutorial = [[TutorialCoreManager defaultManager] findTutorialByTutorialId:self.tutorial.tutorialId];
     int totalStageCount = [pbTutorial.stagesList count];
     if (totalStageCount > 0){
-        return (((self.currentStageIndex+1)*1.0f) / (totalStageCount*1.0f))*100;
+        return (((self.currentStageIndex)*1.0f) / (totalStageCount*1.0f))*100;
     }
     else{
         return 100;

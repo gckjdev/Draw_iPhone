@@ -2817,3 +2817,7 @@
 "kHaveNotTips" = "Sorry,the tutorial has not tips!";
 
 "kNoTipsForChapter" = "No tips";
+"kStartLearnTutorial" = "Add";
+"kAddTutorialToLearn" = "Open";
+
+

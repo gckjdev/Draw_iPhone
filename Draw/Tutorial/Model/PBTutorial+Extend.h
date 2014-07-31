@@ -25,6 +25,7 @@
 - (NSString *) name;
 - (NSString *) desc;
 - (NSArray*)tipsImageList:(NSUInteger)chapterIndex;
+- (BOOL)hasMoreThanOneChapter;
 
 @end
 

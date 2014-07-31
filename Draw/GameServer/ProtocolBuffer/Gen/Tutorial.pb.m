@@ -54,10 +54,8 @@ BOOL PBTutorialImageStyleIsValidValue(PBTutorialImageStyle value) {
 }
 BOOL PBScoreEngineTypeIsValidValue(PBScoreEngineType value) {
   switch (value) {
-    case PBScoreEngineTypeScoreEngineAuto:
-    case PBScoreEngineTypeScoreEngineAvgHash:
-    case PBScoreEngineTypeScoreEngineAvgHashColorHist:
-    case PBScoreEngineTypeScoreEngineAvgHashColorHistHu:
+    case PBScoreEngineTypeScoreEngineNormal:
+    case PBScoreEngineTypeScoreEngineStickPicture:
       return YES;
     default:
       return NO;

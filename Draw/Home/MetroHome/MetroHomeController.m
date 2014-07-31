@@ -52,14 +52,10 @@
 
 #define DEFAUT_IMAGE_NAME "dialogue@2x"
 #define TEST_DATA_GALLERYIMAGE "http://58.215.184.18:8080/tutorial/image/GalleryImage2.jpg"
-#define IS_IOS7_OR_LATER [[UIDevice currentDevice] systemVersion]>=7 ? YES:NO
+
 - (void)viewDidLoad
 {
-//    
-//    [CommonTitleView createTitleView:self.view];
-//    [[CommonTitleView titleView:self.view] setTitle:NSLS(@"kMetroMainHome")];
-    
-    
+    self.view.backgroundColor = COLOR_GREEN;
     
     [super viewDidLoad];
     
@@ -68,7 +64,7 @@
 //    [self goToGuidePage];
     
     [self setBackground];
-        // Do any additional setup after loading the view from its nib.
+    // Do any additional setup after loading the view from its nib.
 
     
     [self setGalleryView];
@@ -131,28 +127,27 @@
      
 }
 
--(void)setGalleryImageForModel{
-    
-    [self setCanDragBack:NO];
-     UIImage *placeHolderImage = [UIImage imageNamed:@DEFAUT_IMAGE_NAME];
-    BillboardManager *bbManager = [BillboardManager defaultManager];
-    self.bbList = bbManager.bbList;
-//    CGRect bound=CGRectMake(26,15, 268, 120);
-    for(Billboard *bb in self.bbList){
-        UIImageView *imageView =[[[UIImageView alloc]initWithFrame:CGRectMake(26, 15, 268, 120)] autorelease];
-        
-        NSString *galleryImage = bb.image;
-        
-        NSURL *galleryUrl = [NSURL URLWithString:galleryImage];
-        [imageView setImageWithUrl:galleryUrl
-                  placeholderImage:placeHolderImage
-                       showLoading:YES
-                          animated:YES];
-
-    }
-   
-   
-}
+//-(void)setGalleryImageForModel{
+//    
+//    [self setCanDragBack:NO];
+//     UIImage *placeHolderImage = [UIImage imageNamed:@DEFAUT_IMAGE_NAME];
+//    BillboardManager *bbManager = [BillboardManager defaultManager];
+//    self.bbList = bbManager.bbList;
+//    for(Billboard *bb in self.bbList){
+//        UIImageView *imageView =[[[UIImageView alloc]initWithFrame:CGRectMake(26, 15, 268, 120)] autorelease];
+//        
+//        NSString *galleryImage = bb.image;
+//        
+//        NSURL *galleryUrl = [NSURL URLWithString:galleryImage];
+//        [imageView setImageWithUrl:galleryUrl
+//                  placeholderImage:placeHolderImage
+//                       showLoading:YES
+//                          animated:YES];
+//
+//    }
+//   
+//   
+//}
 
 -(void)galleryClick:(id)sender{
     [[self.bbList objectAtIndex:0] clickAction:self];
@@ -223,55 +218,51 @@
 - (IBAction)goTolearning:(id)sender {
 }
 
-- (IBAction)goToBBS:(id)sender {
+- (IBAction)goToBBS:(id)sender
+{
     [self enterBBS];
-    
-//    ResultShareAlertPageViewController *rspc = [[ResultShareAlertPageViewController alloc] init];
-//    CommonDialog *dialog = [CommonDialog createDialogWithTitle:NSLS(@"kResultSharePage") customView:rspc.view style:CommonDialogStyleCross];
-//    [dialog showInView:self.view];
-    
-//    TipsPageViewController *rspc = [[TipsPageViewController alloc] init];
-//    CommonDialog *dialog = [CommonDialog createDialogWithTitle:NSLS(@"提示") customView:rspc.view style:CommonSquareDialogStyleCross];
-//    [dialog showInView:self.view];
 }
 
-- (IBAction)goToDraw:(id)sender {
+- (IBAction)goToDraw:(id)sender
+{
     [self enterOfflineDraw];
-//    ResultShareAlertPageViewController *rspc = [[[ResultShareAlertPageViewController alloc] init] autorelease];
-//        CommonDialog *dialog = [CommonDialog createDialogWithTitle:NSLS(@"kResultSharePage") customView:rspc.view style:CommonDialogStyleCross];
-//        [dialog showInView:self.view];
 }
 
-- (IBAction)goToOpus:(id)sender {
+- (IBAction)goToOpus:(id)sender
+{
     [self enterOpusClass];
 }
 
-- (IBAction)goToIndexController:(id)sender{
+- (IBAction)goToIndexController:(id)sender
+{
     [self enterTimeline];
 }
 
-- (IBAction)goToDocumentController:(id)sender{
+- (IBAction)goToDocumentController:(id)sender
+{
     [self enterDraftBox];
 }
 
-- (IBAction)goToMessageController:(id)sender{
+- (IBAction)goToMessageController:(id)sender
+{
     [self enterChat];
 }
 
-- (IBAction)goToMoreController:(id)sender{
-//    [self enterMore];
-    
+- (IBAction)goToMoreController:(id)sender
+{
     MoreViewController *more = [[MoreViewController alloc] init];
     [self.navigationController pushViewController:more animated:YES];
     [more release];
 }
 
 
--(IBAction)goToAnnounce:(id)sender{
+-(IBAction)goToAnnounce:(id)sender
+{
     [self showBulletinView];
 }
 
--(IBAction)goToUserDetail:(id)sender{
+-(IBAction)goToUserDetail:(id)sender
+{
     [self enterUserDetail];
 }
 
@@ -295,18 +286,6 @@
 -(void)labelClicked{
     PPDebug(@"click the label");
 }
-//创造手势
-//
-//-(void)goToUserDetail{
-//    UITapGestureRecognizer *singleFingerOne = [[UITapGestureRecognizer alloc] initWithTarget:self
-//                                                action:@selector(labelClicked:)];
-//         singleFingerOne.numberOfTouchesRequired = 1; //手指数
-//        singleFingerOne.numberOfTapsRequired = 1; //tap次数
-//    
-//    [_topNameLable addGestureRecognizer:singleFingerOne];
-//    
-//}
-
 
 #pragma mark -
 
@@ -316,47 +295,39 @@
 #define IMAGE_FRAME_WIDTH (ISIPAD ? 716:298)
 #define IMAGE_FRAME_HEIGHT (ISIPAD ? 250:120)
 #define DEFAULT_GALLERY_IMAGE @"daguanka"
+
 -(void)setGalleryView{
+    
     BillboardManager *bbManager = [BillboardManager defaultManager];
     self.bbList = bbManager.bbList;
+
     //默认图片
     UIImage *image = [UIImage imageNamed:DEFAULT_GALLERY_IMAGE];
-    [self.galleryImageView initWithImage:image];
+    [self.galleryImageView setImage:image];
     
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
         
         NSMutableArray *itemList = [[[NSMutableArray alloc] init] autorelease];
         for(Billboard *bb in _bbList){
-            NSString *galleryImage = bb.image;
-            NSURL *galleryUrl = [NSURL URLWithString:galleryImage];
-            
+
             UIImage *image = nil;
-            //设置默认图片
-            if(galleryUrl==nil||[galleryUrl isEqual:@""]){
-                
-                image = [UIImage imageNamed:DEFAULT_GALLERY_IMAGE] ;
-                
-            }
+            NSURL *galleryUrl = [NSURL URLWithString:bb.image];
+
             //读取网上的图片数据
-            //TODO 异步
             NSData* data = [NSData dataWithContentsOfURL:galleryUrl];
-            
-            if(data==nil){
-                image = [UIImage imageNamed:DEFAULT_GALLERY_IMAGE] ;
-                
+            if (data){
+                image = [[[UIImage alloc] initWithData:data] autorelease];
             }
-            image = [[[UIImage alloc] initWithData:data] autorelease];
             
+            //设置默认图片
             if(image==nil){
-                image = [UIImage imageNamed:DEFAULT_GALLERY_IMAGE] ;
+                image = [UIImage imageNamed:DEFAULT_GALLERY_IMAGE];
             }
             
             //添加到第三方框架
             SGFocusImageItem *item = [[[SGFocusImageItem alloc] initWithTitle:@"" image:image tag:bb.index] autorelease];
             
-            
-            [itemList addObject:item];
-            
+            [itemList addObject:item];            
         }
         
         dispatch_async(dispatch_get_main_queue(), ^{
@@ -379,12 +350,13 @@
 
 //根据字符串反射到方法
 -(void)clickActionDelegate:(int)index{
-    NSInteger *count = [self.bbList count];
+    NSInteger count = [self.bbList count];
     if(index >= count){
         return;
     }
     [[self.bbList objectAtIndex:index] clickAction:self];
 }
+
 -(void)adapt_iOS6{
     if([DeviceDetection isOS6]){
         [self.galleryButton setBackgroundColor:COLOR_YELLOW];

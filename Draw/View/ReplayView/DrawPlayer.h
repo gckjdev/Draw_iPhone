@@ -41,6 +41,8 @@
 @property (retain, nonatomic) IBOutlet CustomSlider *speedSlider;
 @property (retain, nonatomic) IBOutlet UIButton *playButton;
 @property (retain, nonatomic) IBOutlet UIButton *closeButton;
+@property (retain, nonatomic) IBOutlet UILabel *indexLabel;
+
 
 @property (assign, nonatomic) NSUInteger begin;
 @property (assign, nonatomic) NSUInteger end;
@@ -51,14 +53,14 @@
 - (IBAction)changeSpeed:(CustomSlider *)sender;
 - (IBAction)clickPlayButton:(id)sender;
 
-
+//+ (DrawPlayer *)playerWithGifViewInSize:(CGSize)canvasSize;//TODO
 + (DrawPlayer *)playerWithReplayObj:(ReplayObject *)obj;
 + (DrawPlayer*)playerWithReplayObj:(ReplayObject *)obj
                              begin:(NSUInteger)begin
                                end:(NSUInteger)end;
 
 - (void)showInController:(PPViewController *)controller;
-- (void)showInController:(PPViewController *)controller FromBegin:(NSInteger)begin;
+//- (void)showGifInController:(PPViewController *)controller;
 
 - (void)play;
 - (void)pause;
