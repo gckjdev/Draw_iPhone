@@ -1557,7 +1557,7 @@
 +(NSInteger)getMinStrokeNum
 {
     //限制用户提交时的笔画数量，需要测试
-    return GET_UMENG_INTVAL(@"MIN_L_STROKE", 5);
+    return GET_UMENG_INTVAL(@"MIN_L_STROKE", 10);
 }
 
 +(NSInteger)getMinPointNum
