@@ -114,6 +114,13 @@
                             <constraint firstAttribute="bottom" secondItem="fhu-Ld-yTS" secondAttribute="bottom" constant="1" id="wK6-lz-Ez2"/>
                         </constraints>
                     </view>
+                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fVC-qC-yrc" userLabel="difficultyLabel">
+                        <rect key="frame" x="20" y="12" width="122" height="21"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
                 </subviews>
                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                 <constraints>
@@ -131,6 +138,7 @@
             </tableViewCellContentView>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             <connections>
+                <outlet property="difficultyLabel" destination="fVC-qC-yrc" id="K2U-y2-lvE"/>
                 <outlet property="labelBottomView" destination="l6U-8P-Mme" id="p8A-de-om6"/>
                 <outlet property="othersProgressInfoLabel" destination="hpc-rY-RGp" id="tLM-eX-ny2"/>
                 <outlet property="progressAndLabelView" destination="nnc-fz-v4X" id="3oy-yS-K09"/>

@@ -171,7 +171,10 @@ static TutorialCoreManager* _defaultTutorialCoreManager;
     [stageBuilder setBgImage:@"bg_image.jpg"];                // image for background
     [stageBuilder setOpusName:@"data"];                       // opus data file name
     [stageBuilder setOpusId:opusId];
-    [stageBuilder setDifficulty:difficult];
+    if(difficult!=0){
+        [stageBuilder setDifficulty:difficult];
+    }
+ 
 
     //repeated
     [stageBuilder addAllChapter:chapterList];
@@ -370,8 +373,9 @@ static TutorialCoreManager* _defaultTutorialCoreManager;
                                @[@"花样滑冰",@"艺术体操",@"赛马",@"高尔夫",@"体操",@"击剑",@"滑雪",@"足球"],
                                @[@"美少女奈儿",@"美少女纪子",@"小妹妹",@"帅哥",@"小毛孩",@"经理",@"妇女",@"老者"],
                                @[@"放松",@"微笑",@"惊恐",@"鄙视",@"纠结",@"开心",@"奸笑",@"无奈",@"享受",@"可爱"],
-                               @[@"皮划艇",@"射箭",@"棒球",@"铁人三项",@"射击",@"跆拳道",@"游泳",@"拳击",@"跳水",@"柔道"],
-                               @[@"江南小镇",@"卢浮宫金字塔",@"雷峰塔",@"美国白宫",@"古希腊神庙",@"巴黎铁塔",@"赵州桥",@"埃及金字塔"]
+                               //@[@"皮划艇",@"射箭",@"棒球",@"铁人三项",@"射击",@"跆拳道",@"游泳",@"拳击",@"跳水",@"柔道"],
+                               @[@"射箭",@"拳击",@"铁人三项",@"跆拳道",@"射击",@"棒球",@"游泳",@"跳水",@"皮划艇",@"柔道"],
+                               @[@"埃及金字塔",@"埃菲尔铁塔",@"赵州桥",@"卢浮宫艺术馆",@"古希腊神庙",@"美国白宫",@"雷峰塔",@"江南小镇"]
                                ];
     
     NSArray* testStageDesc = @[@[@"石头",@"陶瓷",@"亚克力塑料",@"金属",@"皮肤",@"橡胶", @"玻璃",@"材质集合"],
@@ -380,15 +384,14 @@ static TutorialCoreManager* _defaultTutorialCoreManager;
                                @[@"比熊先生",@"博美小姐",@"马尔济斯绅士",@"哈士奇骑士",@"约克夏伯爵",@"吉娃娃公主", @"泰迪女王",@"萨摩王子"],
                                @[@"没有翅膀也一样可以飞翔",@"展现身体的柔性美",@"人与动物最佳拍档",@"在运动中享受大自然的乐趣",@"干净利落的身姿",@"协调性与灵活性的考验",@"像鸟一样在雪地里飞舞",@"只为射门那一刻的欢呼"],
 
+                               /* @[@"射箭",@"拳击",@"铁人三项",@"跆拳道",@"棒球",@"游泳",@"跳水",@"皮划艇",@"柔道"],
+                                @[@"埃及金字塔",@"埃菲尔铁塔",@"赵州桥",@"卢浮宫艺术馆",@"古希腊神庙",@"美国白宫",@"雷峰塔",@"江南小镇"]
+                                */
                                
-                               /* @[@"放松",@"微笑",@"惊恐",@"鄙视",@"纠结",@"开心",@"奸笑",@"无奈",@"享受",@"可爱"],
-                                @[@"皮划艇",@"拳击",@"棒球",@"铁人三项",@"射击",@"跆拳道",@"游泳",@"拳击",@"跳水",@"柔道"],
-                                @[@"江南小镇",@"卢浮宫金字塔",@"雷峰塔",@"美国白宫",@"古希腊神庙",@"巴黎铁塔",@"赵州桥",@"埃及金字塔"]*/
-
                                @[@"美少女奈儿",@"美少女纪子",@"小妹妹",@"帅哥",@"小毛孩",@"经理",@"妇女",@"老者"],
                                @[@"终于下课了",@"做好事受表扬",@"上厕所忘记带纸",@"看见行人闯红灯",@"我到底是男还是女",@"作品上榜了",@"想到坏点子",@"澡堂洗澡肥皂掉地上",@"雪地泡温泉",@"和帅哥打招呼"],
-                               @[@"你的手臂够粗吗",@"一秒钟变猪头",@"米国人四大运动之一",@"游、跑、骑三部曲",@"要不要再来一发",@"再也不怕色狼了",@"旱鸭子一边去",@"一秒钟变猪头",@"森碟老爸是冠军",@"据说是小孩子把戏"],
-                               @[@"文艺小资青年的挚爱",@"亮瞎你眼睛的玻璃建筑",@"法海不懂爱",@"爱爸妈发号施令的基地",@"住着美女雅典娜",@"土豪玩浪漫的约会圣地",@"没有比TA更老的古桥了",@"听说法老躺这里"]
+                               @[@"后羿射日，弓开得胜",@"一秒钟变猪头",@"游、跑、骑三部曲",@"再也不怕色狼了",@"要不要再来一发",@"米国人四大运动之一",@"旱鸭子一边去",@"森碟老爸是冠军",@"你的手臂够粗吗",@"据说是小孩子把戏"],
+                               @[@"听说法老躺这里",@"土豪玩浪漫的约会圣地",@"没有比TA更老的古桥了",@"亮瞎你眼睛的玻璃建筑",@"住着美女雅典娜",@"爱爸妈发号施令的基地",@"法海不懂爱",@"文艺小资青年的挚爱"]
                                ];
 
     NSArray* stageImageUrl = @[
@@ -468,26 +471,26 @@ static TutorialCoreManager* _defaultTutorialCoreManager;
                                         @"http://58.215.160.100:8080/app_res/tutorial/image/6-10.jpg"
                                     ],
                                     @[
-                                        @"http://58.215.160.100:8080/app_res/tutorial/image/7-1.jpg",
                                         @"http://58.215.160.100:8080/app_res/tutorial/image/7-2.jpg",
-                                        @"http://58.215.160.100:8080/app_res/tutorial/image/7-3.jpg",
-                                        @"http://58.215.160.100:8080/app_res/tutorial/image/7-4.jpg",
-                                        @"http://58.215.160.100:8080/app_res/tutorial/image/7-5.jpg",
-                                        @"http://58.215.160.100:8080/app_res/tutorial/image/7-6.jpg",
-                                        @"http://58.215.160.100:8080/app_res/tutorial/image/7-7.jpg",
                                         @"http://58.215.160.100:8080/app_res/tutorial/image/7-8.jpg",
+                                        @"http://58.215.160.100:8080/app_res/tutorial/image/7-4.jpg",
+                                        @"http://58.215.160.100:8080/app_res/tutorial/image/7-6.jpg",
+                                        @"http://58.215.160.100:8080/app_res/tutorial/image/7-5.jpg",
+                                        @"http://58.215.160.100:8080/app_res/tutorial/image/7-3.jpg",
+                                        @"http://58.215.160.100:8080/app_res/tutorial/image/7-7.jpg",
                                         @"http://58.215.160.100:8080/app_res/tutorial/image/7-9.jpg",
+                                        @"http://58.215.160.100:8080/app_res/tutorial/image/7-1.jpg",
                                         @"http://58.215.160.100:8080/app_res/tutorial/image/7-10.jpg"
                                     ],
                                     @[
-                                        @"http://58.215.160.100:8080/app_res/tutorial/image/8-1.jpg",
-                                        @"http://58.215.160.100:8080/app_res/tutorial/image/8-2.jpg",
-                                        @"http://58.215.160.100:8080/app_res/tutorial/image/8-3.jpg",
-                                        @"http://58.215.160.100:8080/app_res/tutorial/image/8-4.jpg",
-                                        @"http://58.215.160.100:8080/app_res/tutorial/image/8-5.jpg",
+                                        @"http://58.215.160.100:8080/app_res/tutorial/image/8-8.jpg",
                                         @"http://58.215.160.100:8080/app_res/tutorial/image/8-6.jpg",
                                         @"http://58.215.160.100:8080/app_res/tutorial/image/8-7.jpg",
-                                        @"http://58.215.160.100:8080/app_res/tutorial/image/8-8.jpg"
+                                        @"http://58.215.160.100:8080/app_res/tutorial/image/8-2.jpg",
+                                        @"http://58.215.160.100:8080/app_res/tutorial/image/8-5.jpg",
+                                        @"http://58.215.160.100:8080/app_res/tutorial/image/8-4.jpg",
+                                        @"http://58.215.160.100:8080/app_res/tutorial/image/8-3.jpg",
+                                        @"http://58.215.160.100:8080/app_res/tutorial/image/8-1.jpg"
                                     ]
 
                               ];
@@ -560,7 +563,7 @@ static TutorialCoreManager* _defaultTutorialCoreManager;
                           tutorial8Tips,
                           ];
     
-    NSArray *difficulty = @[@0.5f,@0.5f,@0.5f,@0.5f,@0.5f,@0.5f,@0.5f,@0.5f,@0.5f,@0.5f];
+    NSArray *difficulty = @[@1.0f,@1.0f,@1.0f,@1.0f,@1.0f,@1.0f,@1.0f,@1.0f,@1.0f,@1.0f];
     
     //模拟测试数据
 //    for(int i=0;i<testTutorialName.count;i++){

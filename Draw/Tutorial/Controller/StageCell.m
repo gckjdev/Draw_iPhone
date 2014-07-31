@@ -46,6 +46,7 @@
     }
 
     self.stageListStarBtn.userInteractionEnabled = NO;
+
     
     //闯关的关卡数
     if (isLockStage == NO){
@@ -62,6 +63,7 @@
         [self.stageListStarBtn setBackgroundImage:starButtonBgImage forState:UIControlStateNormal];
         [self.stageListStarBtn setTitleColor:COLOR_BROWN forState:UIControlStateNormal];
         [self.stageListStarBtn.titleLabel setFont:AD_FONT(20, 14)];
+        [self.stageListStarBtn.titleLabel setText:NSLS(@"kStart")];
 
         // stage image
         SET_VIEW_ROUND_CORNER(self.stageCellImage);

@@ -349,12 +349,13 @@
                                                                                              stage:self.stage
                                                                                       chapterIndex:_userStage.currentChapterIndex];
                 NSString* title = COPY_VIEW_HELP;
+
                 
                 if ([tipsPaths count] > 0){
                     [TipsPageViewController show:self.superViewController title:title imagePathArray:tipsPaths];
                 }
                 else{
-                    POSTMSG(NSLS(@"kNoTipsForChapter"));
+                    POSTMSG(NSLS(@"kHaveNotTips"));
                 }
             }
         }

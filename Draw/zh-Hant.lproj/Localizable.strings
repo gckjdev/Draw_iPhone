@@ -2778,3 +2778,4 @@
 "kContinueStage" = "继续闖關";
 "kConquerDraw" = "闖關";
 "kNoTimelineDraw" = "闖關";
+"kHaveNotTips" = "對不起，該教程暫時沒有提示消息";
