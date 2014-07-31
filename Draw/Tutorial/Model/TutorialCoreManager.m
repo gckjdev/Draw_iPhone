@@ -580,6 +580,7 @@ static TutorialCoreManager* _defaultTutorialCoreManager;
                             @[],
                             @[],
                             @[],
+                            @[]
                            ];
     
     //画的类型
@@ -589,9 +590,13 @@ static TutorialCoreManager* _defaultTutorialCoreManager;
                                 @[],
                                 @[],
                                 @[],
-                                @[@0,@0,@0,@0,@0,@0,@0,@0],
-                                @[@0,@0,@0,@0,@0,@0,@0,@0],
-                                @[@0,@0,@0,@0,@0,@0,@0,@0]
+                                @[],
+                                @[@(1)],
+                                
+                                @[],
+                                @[]
+//                                @[@1,@1,@1,@1,@1,@1,@1,@1,@1,@1],
+//                                @[@1,@1,@1,@1,@1,@1,@1,@1,@1,@1]
                               ];
     
     
@@ -660,13 +665,15 @@ static TutorialCoreManager* _defaultTutorialCoreManager;
                 
             }
             Float32 difficulty;
-            if([[difficultyList objectAtIndex:tutorialSum] count]==0||[difficultyList objectAtIndex:tutorialSum]==nil){
+            if([[difficultyList objectAtIndex:tutorialSum] count]!=0&&[difficultyList objectAtIndex:tutorialSum]!=nil){
                  difficulty = [[[difficultyList objectAtIndex:tutorialSum] objectAtIndex:stageSum] floatValue];
                 
             }
             NSInteger stageType;
-            if([[stageTypeList objectAtIndex:tutorialSum] count]==0||[stageTypeList objectAtIndex:tutorialSum]==nil){
-                stageTypeList = [[[stageTypeList objectAtIndex:tutorialSum] objectAtIndex:stageSum] integerValue];
+            if([[stageTypeList objectAtIndex:tutorialSum] count]!=0&&[stageTypeList objectAtIndex:tutorialSum]!=nil){
+                if(stageSum<[[stageTypeList objectAtIndex:tutorialSum] count]){
+                    stageType = [[[stageTypeList objectAtIndex:tutorialSum] objectAtIndex:stageSum] integerValue];
+                }
                 
             }
             //添加stage

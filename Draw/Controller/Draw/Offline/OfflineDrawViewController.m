@@ -1730,24 +1730,41 @@
 }
 
 
-- (NSInteger) strokeControlInSubmissionWithMinStrokeNum:(NSInteger)minStrokeNum
-                       MinPointNum:(NSInteger)minPointNum;
+- (NSInteger) strokeLimitWithMinStrokeNum:(NSInteger)minStrokeNum
+                              MinPointNum:(NSInteger)minPointNum;
 {
     //  提交按钮的预处理
-    NSInteger effetiveAction = [drawView.drawActionList count];
+    NSInteger effetiveAction = 0;
+
     for(DrawAction *da in drawView.drawActionList)
     {
-        if(minPointNum > [da pointCount])
-            effetiveAction--;
-    }
-    if(effetiveAction<=minStrokeNum)
-    {
-        PPDebug(@"too few strokes!");
-//        POSTMSG(NSLS(@"kStrokeNumberNotEnough"));
+        if ([da isPaintAction]){
+            PaintAction *pa=da;
+            if((pa.paint.color.red!=1.0 || pa.paint.color.green!=1.0
+                            || pa.paint.color.blue!=1.0)
+                    && [pa pointCount] > minPointNum)
+                effetiveAction++;
+        }
+        if ([da isChangeBGAction]) {
+            ChangeBackAction *cba=da;
+            if(cba.color.red==1.0 && cba.color.green==1.0 && cba.color.blue==1.0)
+                effetiveAction=0;
+            else
+                effetiveAction++;
+        }
+        if ([da isShapeAction]) {
+            ShapeAction *sa=da;
+            if (sa.shape.color.red == 1.0 && sa.shape.color.green == 1.0
+                && sa.shape.color.blue == 1.0);
+            else
+                effetiveAction++;
+            }
     }
 
-    if(effetiveAction<minStrokeNum)
+    if(effetiveAction<minStrokeNum){
         return (minStrokeNum - effetiveAction);
+        PPDebug(@"too few strokes!");
+    }
     else
         return 0;
 }
@@ -1805,8 +1822,9 @@
 - (void)handleSubmitForLearnDraw
 {
     //  笔画数预处理
-    NSInteger minus = [self strokeControlInSubmissionWithMinStrokeNum:[PPConfigManager getMinStrokeNum]
-                                                        MinPointNum:[PPConfigManager getMinPointNum]];
+    NSInteger minus =
+    [self strokeLimitWithMinStrokeNum:[PPConfigManager getMinStrokeNum]
+                          MinPointNum:[PPConfigManager getMinPointNum]];
 
     if ([self isGotoNextChapter]){
         [self gotoNextChapter];
@@ -1847,8 +1865,13 @@
     NSString* sourcePath = [self writeImageToFile:imageForCompare filePath:self.draft.draftId];
     NSString* destPath = self.tempImageFilePath;
     
-    //从关卡传入difficulty，TODO
-    int score = [ImageSimilarityEngine scoreSrcPath:sourcePath destPath:destPath difficulty:_stage.difficulty minus:minus];
+    //从关卡传入difficulty，stage.scoreEngine,区分一般画和简笔画;从预处理传入minus
+    //TODO
+    int score = [ImageSimilarityEngine scoreSrcPath:sourcePath
+                                           destPath:destPath
+                                         difficulty:_stage.difficulty
+                                              minus:minus
+                                               type:_stage.scoreEngine];
     
     [self.draft setScore:@(score)];
     [self.draft setScoreDate:[NSDate date]];

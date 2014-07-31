@@ -173,8 +173,7 @@
 
 - (void)showCurrentIndexAtLabel:(NSInteger)index
 {
-    NSString *str=[NSString stringWithFormat:@"current index: %d"
-                   ,index];
+    NSString *str=[NSString stringWithFormat:@"%d",index];
     self.indexLabel.text=str;
 
 }
@@ -183,6 +182,10 @@
     [(PPViewController *)[self theViewController] showActivityWithText:NSLS(@"kBuffering")];
     NSInteger index = sender.value;
     [self performSelector:@selector(playToIndex:) withObject:@(index) afterDelay:0.01];
+    
+#ifdef DEBUG
+    [self showCurrentIndexAtLabel:index];
+#endif
 }
 
 - (IBAction)changeSpeed:(CustomSlider *)sender {
