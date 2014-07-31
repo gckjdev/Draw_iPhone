@@ -17,10 +17,9 @@
 @property(nonatomic,retain) NSArray *numberRowsSection;
 @property BOOL unable;
 
-+ (TutorialInfoController*)enter:(PPViewController*)superViewController
-                      pbTutorial:(PBTutorial*)pbTutorial infoOnly:(BOOL)infoOnly;
-
-+(TutorialInfoController *)createController:(PBTutorial*)pbTutorial infoOnly:(BOOL)infoOnly;
++ (TutorialInfoController *)show:(PPViewController*)superController
+                        tutorial:(PBTutorial*)pbTutorial
+                        infoOnly:(BOOL)infoOnly;
 
 @end
 

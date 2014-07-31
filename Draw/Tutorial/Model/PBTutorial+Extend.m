@@ -183,6 +183,16 @@
     return retList;
 }
 
+- (BOOL)hasMoreThanOneChapter
+{
+    if ([self.chapterList count] > 1){
+        return YES;
+    }
+    else{
+        return NO;
+    }
+}
+
 
 @end
 

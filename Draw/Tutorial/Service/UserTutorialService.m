@@ -38,11 +38,18 @@ static UserTutorialService* _defaultService;
     if (_defaultService == nil){
         _defaultService = [[UserTutorialService alloc] init];
         _defaultService.smartDataDict = [NSMutableDictionary dictionary];
-        _defaultService.imageManager = [[StorageManager alloc] initWithStoreType:StorageTypePersistent
-                                                                   directoryName:TUTORIAL_IMAGE_DIR];
+        _defaultService.imageManager = [[[StorageManager alloc] initWithStoreType:StorageTypePersistent
+                                                                   directoryName:TUTORIAL_IMAGE_DIR] autorelease];
     }
     
     return _defaultService;
+}
+
+- (void)dealloc
+{
+    PPRelease(_imageManager);
+    PPRelease(_smartDataDict);
+    [super dealloc];
 }
 
 // 同步用户学习某个教程的信息到服务器

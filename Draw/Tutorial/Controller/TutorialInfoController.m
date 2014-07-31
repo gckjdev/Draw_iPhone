@@ -52,6 +52,58 @@ enum{
     return vc;
 }
 
++ (TutorialInfoController *)show:(PPViewController*)superController tutorial:(PBTutorial*)pbTutorial infoOnly:(BOOL)infoOnly
+{
+    TutorialInfoController* infoController = [TutorialInfoController createController:pbTutorial infoOnly:NO];
+    UserTutorialManager *um = [UserTutorialManager defaultManager];
+    
+    //打开自定义对话框
+    CommonDialog *dialog = [CommonDialog createDialogWithTitle:pbTutorial.name
+                                                    customView:infoController.view
+                                                         style:CommonDialogStyleSingleButtonWithCross];
+    
+    // manual close by caller
+    dialog.manualClose = YES;
+    
+    // dialog button title
+    if([um isTutorialLearned:pbTutorial.tutorialId]){
+        //如果该课程已经添加（正在学习）
+        [dialog.oKButton setTitle:NSLS(@"kStartLearnTutorial") forState:UIControlStateNormal];
+    }else{
+        //没有添加的时候，添加课程，弹出提示，变更按钮文字
+        [dialog.oKButton setTitle:NSLS(@"kAddTutorialToLearn") forState:UIControlStateNormal];
+    }
+    
+    [dialog setClickOkBlock:^(id infoView){
+        
+        if([um isTutorialLearned:pbTutorial.tutorialId]){
+            // close dialog
+            [dialog disappear];
+            
+            // enter learning
+            PBUserTutorial* ut = [[UserTutorialManager defaultManager] getUserTutorialByTutorialId:pbTutorial.tutorialId];
+            if (ut != nil){
+                [TutorialStageController enter:superController pbTutorial:ut];
+            }
+        }
+        else{
+            [[UserTutorialService defaultService] addTutorial:pbTutorial resultBlock:^(int resultCode) {
+                if (resultCode == 0){
+                    POSTMSG(NSLS(@"kAddSuccess"));
+                    [dialog.oKButton setTitle:NSLS(@"kStartLearnTutorial") forState:UIControlStateNormal];
+                }
+            }];
+        }
+    }];
+    
+    [dialog setClickCloseBlock:^(id infoView){
+        // close dialog
+        [dialog disappear];
+    }];
+    
+    [dialog showInView:superController.view];
+    return infoController;
+}
 
 - (void)dealloc
 {
@@ -260,6 +312,9 @@ forRowAtIndexPath:(NSIndexPath *)indexPath
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+
+
 //protocol
 -(void)clickAddButton:(UIButton *)button{
     [[UserTutorialService defaultService] addTutorial:_pbTutorial resultBlock:^(int resultCode) {
