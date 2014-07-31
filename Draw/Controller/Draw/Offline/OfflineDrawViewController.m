@@ -1914,13 +1914,14 @@
     int score = [self.draft.score intValue];
     
     // invoke show result view here, pass user stage, image as parameter
-    /*
+    
     [ResultShareAlertPageViewController show:self
                                        image:self.submitOpusFinalImage
                                    userStage:[self buildUserStage]
                                        score:score
                                    nextBlock:^{
                                        
+                                       PPDebug(@"next Block");
                                        [self tryConquerNext];
                                        
                                    } retryBlock:^{
@@ -1932,7 +1933,7 @@
                                        [self quit];
                                    }];
      return;
-     */
+    
     
     
     // the following code is just used for reference.
