@@ -126,10 +126,12 @@ struct  _Game__PBStage
   int32_t scoreengine;
   protobuf_c_boolean has_difficulty;
   float difficulty;
+  protobuf_c_boolean has_usebgfromprev;
+  protobuf_c_boolean usebgfromprev;
 };
 #define GAME__PBSTAGE__INIT \
  { PROTOBUF_C_MESSAGE_INIT (&game__pbstage__descriptor) \
-    , NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0,NULL, 0,0, 0,0, 0,1 }
+    , NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0,NULL, 0,0, 0,0, 0,1, 0,0 }
 
 
 struct  _Game__PBTutorial
@@ -219,6 +221,7 @@ struct  _Game__PBUserStage
   int32_t currentchapterindex;
   char *practicelocalopusid;
   char *conquerlocalopusid;
+  char *conquerlocalimage;
   char *bestopusid;
   protobuf_c_boolean has_bestscore;
   int32_t bestscore;
@@ -236,7 +239,7 @@ struct  _Game__PBUserStage
 };
 #define GAME__PBUSER_STAGE__INIT \
  { PROTOBUF_C_MESSAGE_INIT (&game__pbuser_stage__descriptor) \
-    , NULL, NULL, NULL, 0,0, 0,NULL, 0,0, NULL, NULL, NULL, 0,0, 0,0, NULL, 0,0, 0,0, 0,0, 0,0 }
+    , NULL, NULL, NULL, 0,0, 0,NULL, 0,0, NULL, NULL, NULL, NULL, 0,0, 0,0, NULL, 0,0, 0,0, 0,0, 0,0 }
 
 
 struct  _Game__PBUserTutorial

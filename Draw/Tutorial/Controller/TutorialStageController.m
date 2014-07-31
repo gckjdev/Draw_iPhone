@@ -97,7 +97,8 @@
 //每个section的item个数
 -(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
-        return [[[self.pbUserTutorial tutorial] stagesList] count];
+    int count = [[[self.pbUserTutorial tutorial] stagesList] count];
+    return count;
 }
 
 -(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
@@ -144,8 +145,14 @@
     PBStage* pbStage = [stageList objectAtIndex:stageIndex];
     NSString* stageId = pbStage.stageId;
     
-    CommonDialog* dialog = [CommonDialog createDialogWithTitle:NSLS(@"kAskPracticeOrPassTitle")
-                                                       message:NSLS(@"kAskPracticeOrPassMsg")
+    NSString* title = nil;
+    NSString* message = nil;
+    
+    title = pbStage.name;
+    message = [NSString stringWithFormat:NSLS(@"%@"), pbStage.desc];
+    
+    CommonDialog* dialog = [CommonDialog createDialogWithTitle:title // NSLS(@"kAskPracticeOrPassTitle")
+                                                       message:message // NSLS(@"kAskPracticeOrPassMsg")
                                                          style:CommonDialogStyleDoubleButtonWithCross];
     
     [dialog.oKButton setTitle:NSLS(@"kPass") forState:UIControlStateNormal];

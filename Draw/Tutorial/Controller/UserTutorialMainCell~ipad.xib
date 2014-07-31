@@ -111,6 +111,13 @@
                         </constraints>
                         <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     </view>
+                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KUl-fD-E3D" userLabel="difficultyLabel">
+                        <rect key="frame" x="20" y="13" width="153" height="21"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
                 </subviews>
                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                 <constraints>
@@ -134,6 +141,7 @@
             </tableViewCellContentView>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             <connections>
+                <outlet property="difficultyLabel" destination="KUl-fD-E3D" id="f8q-Ft-gI5"/>
                 <outlet property="labelBottomView" destination="gtJ-OB-Z57" id="Xns-ub-wCS"/>
                 <outlet property="othersProgressInfoLabel" destination="zHh-q4-KtD" id="KQg-w9-68M"/>
                 <outlet property="progressAndLabelView" destination="VnT-FM-OWX" id="aSE-w9-hU4"/>

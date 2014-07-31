@@ -40,6 +40,7 @@
 
     CGSize size =CGSizeMake(230,80);
     UIFont * tfont = AD_FONT(19, 12);
+
     [label setFont:tfont];
     //ios6 method
 //    [label setLineBreakMode:UILineBreakModeWordWrap];
@@ -78,9 +79,11 @@
         [self setAutoWithAndHeightLabel:tutorialCategoryText WithLabel:self.tutorialSortedLabel WithX:CATEGORY_NAME_X WithY:CATEGORY_NAME_Y];
         [self setAutoWithAndHeightLabel:tutorialDescText WithLabel:self.tutorialDescLabel WithX:DESC_X WithY:DESC_Y];
         
-        [self.tutorialDescNameLabel setFont:AD_FONT(19, 12)];
-        [self.tutorialSortedNameLabel setFont:AD_FONT(19, 12)];
+        [self.tutorialDescNameLabel setFont:AD_FONT(20, 12)];
+        [self.tutorialSortedNameLabel setFont:AD_FONT(20, 12)];
         
+        [self.tutorialDescNameLabel setFrame:CGRectMake(CATEGORY_NAME_X-(ISIPAD ? 97:60), CATEGORY_NAME_Y-6, (ISIPAD ? 97:60), 30)];
+        [self.tutorialSortedNameLabel setFrame:CGRectMake(DESC_X-(ISIPAD ? 97:60), DESC_Y-6, (ISIPAD ? 97:60), 30)];
       
         
     }
@@ -157,6 +160,7 @@
     [_tutorialSortedNameLabel release];
     [_tutorialDescNameLabel release];
     [_addButton release];
+    [_difficultyLabel release];
     [super dealloc];
 }
 @end

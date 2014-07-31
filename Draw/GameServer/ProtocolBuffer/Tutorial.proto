@@ -109,6 +109,8 @@ message PBStage
     optional int32  imageStyle = 50;                // 闯关图片类型，取值参考PBTutorialImageStyle
     optional int32  scoreEngine = 51;               // 评分引擎，取值参考PBScoreEngineType
     optional float difficulty = 52[default=1.0];    // 本关作品难度系数，默认为1.0（for简笔画，其他可能要取0.8-0.9）
+
+    optional bool useBgFromPrev = 60[default=false];// 本关作品是否使用上一关的背景图
 }
 
 // 教程
@@ -181,6 +183,7 @@ message PBUserStage
 
     optional string practiceLocalOpusId = 20;       // 当前修炼的作品ID
     optional string conquerLocalOpusId = 30;        // 当前闯关的作品ID
+    optional string conquerLocalImage = 31;         // 当前最近一次闯关成功的作品图片本地路径
     
     optional string bestOpusId = 50;                // 最好闯关的作品ID
     optional int32  bestScore = 51;                 // 最好成绩

@@ -27,51 +27,78 @@
 // TODO move image name to ShareImageManager
 // TODO format/refactor the code below
 #define DEFAUT_IMAGE "zuixiaoguanka"
-#define DEFAUT_LOCK_IMAGE "lock_new2"
+#define DEFAUT_LOCK_IMAGE "lock_new2.jpg"
 
 -(void)updateStageCellInfo:(PBUserTutorial *)pbUserTutorial withRow:(NSInteger)row{
    
     //数组越界保护
     NSArray *stageList = [[pbUserTutorial tutorial] stagesList];
-    if (stageList==nil || row >= [stageList count]){
+    if (stageList == nil || row >= [stageList count]){
         return ;
     }
     
+    BOOL isLockStage = [pbUserTutorial isStageLock:row];
+    
     NSString* name = [[stageList objectAtIndex:row] name];
-    //设置隐藏锁图片
-    [self.stageListHiddenLockImageView setImage:[UIImage imageNamed:@DEFAUT_LOCK_IMAGE]];
-    [self.cellName setText:[NSString stringWithFormat:@"%d.%@",row+1,name]];
-    [self.cellName setShadowColor:[UIColor blackColor]];
-    [self.cellName setShadowOffset:CGSizeMake(1, 1)];
-    
-    UIImage* starButtonBgImage = [[ShareImageManager defaultManager] startButtonBgImage];
-    
-    [self.stageListStarBtn setBackgroundImage:starButtonBgImage forState:UIControlStateNormal];
-    [self.stageListStarBtn setTitleColor:COLOR_BROWN forState:UIControlStateNormal];
-    [self.stageListStarBtn.titleLabel setFont:AD_FONT(20, 14)];
-    
-    [self.hiddenNumberLabel setText:[NSString stringWithFormat:@"%d",row+1]];
 
+    if (isLockStage){
+        
+    }
+
+    self.stageListStarBtn.userInteractionEnabled = NO;
+
+    
     //闯关的关卡数
-    if ([pbUserTutorial isStageLock:row] == NO){
+    if (isLockStage == NO){
+        
+        // stage name
+        [self.cellName setText:[NSString stringWithFormat:@"%d.%@",row+1,name]];
+        [self.cellName setShadowColor:[UIColor blackColor]];
+        [self.cellName setShadowOffset:CGSizeMake(1, 1)];
+        
+        // star button
+        UIImage* starButtonBgImage = [[ShareImageManager defaultManager] startButtonBgImage];
+        
+        // start button
+        [self.stageListStarBtn setBackgroundImage:starButtonBgImage forState:UIControlStateNormal];
+        [self.stageListStarBtn setTitleColor:COLOR_BROWN forState:UIControlStateNormal];
+        [self.stageListStarBtn.titleLabel setFont:AD_FONT(20, 14)];
+        [self.stageListStarBtn.titleLabel setText:NSLS(@"kStart")];
+
+        // stage image
+        SET_VIEW_ROUND_CORNER(self.stageCellImage);
+        UIImage *placeHolderImage = [UIImage imageNamed:@DEFAUT_IMAGE];
+        [self.stageCellImage setImageWithUrl:[NSURL URLWithString:[[stageList objectAtIndex:row] thumbImage]]
+                            placeholderImage:placeHolderImage
+                                 showLoading:YES
+                                    animated:YES];
+        
+        self.stageListStarBtn.hidden = NO;
+        self.cellName.hidden = NO;
+        self.stageCellImage.hidden = NO;
         self.stageListHiddenLockImageView.hidden = YES;
         self.hiddenNumberLabel.hidden = YES;
+        self.hiddenNumberHolderView.hidden = YES;
+
     }
     else{
+        
+        self.stageListStarBtn.hidden = YES;
+        self.cellName.hidden = YES;
+        self.stageCellImage.hidden = YES;
+        
         self.stageListHiddenLockImageView.hidden = NO;
         self.hiddenNumberLabel.hidden = NO;
+        self.hiddenNumberHolderView.hidden = NO;
+                
+        // lock image
+        SET_VIEW_ROUND_CORNER(self.stageListHiddenLockImageView);
+        [self.stageListHiddenLockImageView setImage:[UIImage imageNamed:@DEFAUT_LOCK_IMAGE]];
+        
+        // lock stage index number
+        [self.hiddenNumberLabel setText:[NSString stringWithFormat:@"%d",row+1]];
     }
     
-    //设置图片圆角
-    SET_VIEW_ROUND_CORNER(self.stageCellImage);
-    SET_VIEW_ROUND_CORNER(self.stageListHiddenLockImageView);
-    //加载默认图片图片
-    UIImage *placeHolderImage = [UIImage imageNamed:@DEFAUT_IMAGE];
-    [self.stageCellImage
-            setImageWithUrl:[NSURL URLWithString:[[stageList objectAtIndex:row] thumbImage]]
-            placeholderImage:placeHolderImage
-            showLoading:YES
-            animated:YES];
 
 }
 
@@ -81,6 +108,7 @@
         [_stageListStarBtn release];
         [_stageListHiddenLockImageView release];
     [_hiddenNumberLabel release];
+    [_hiddenNumberHolderView release];
         [super dealloc];
 }
 @end

@@ -209,6 +209,10 @@ typedef enum{
 - (UIImage *)toolImage;
 - (UIImage *)popupImage;
 
+- (UIImage *)drawCommit;
+- (UIImage *)drawNext;
+- (UIImage *)drawHelp;
+
 - (UIImage *)whitePaperImage;
 - (UIImage *)pickEasyWordCellImage;
 - (UIImage *)pickNormakWordCellImage;

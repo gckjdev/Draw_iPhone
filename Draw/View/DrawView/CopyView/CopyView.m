@@ -231,6 +231,12 @@
     
     self.userStage = userStage;
     self.stage = stage;
+    
+    if (userStage.currentChapterIndex < [self.stage.chapterList count]){
+        PBChapter* chapter = [self.stage.chapterList objectAtIndex:userStage.currentChapterIndex];
+        self.opusStartIndex = chapter.startIndex;
+        self.opusEndIndex = chapter.endIndex;
+    }
 }
 
 
@@ -316,11 +322,17 @@
                     self.opusData = [[[NSData alloc] initWithContentsOfFile:self.opusDataPath] autorelease];
                 }
                 
+                
+                UIImage* bgImage = [[UIImage alloc] initWithContentsOfFile:_opusBgImagePath];
+                
                 [DrawPlayer playDrawData:&_opusData
                                     draw:&_draw
                           viewController:self.superViewController
+                                 bgImage:bgImage
                               startIndex:_opusStartIndex
                                 endIndex:_opusEndIndex];
+                
+                [bgImage release];
             }
             else{
                 [ShowFeedController replayDraw:self.drawFeed viewController:self.superViewController];
@@ -336,8 +348,15 @@
                 NSArray* tipsPaths = [[UserTutorialService defaultService] getChapterTipsImagePath:_userStage.tutorialId
                                                                                              stage:self.stage
                                                                                       chapterIndex:_userStage.currentChapterIndex];
-                NSString* title = @"";
-                [TipsPageViewController show:self.superViewController title:title imagePathArray:tipsPaths];
+                NSString* title = COPY_VIEW_HELP;
+
+                
+                if ([tipsPaths count] > 0){
+                    [TipsPageViewController show:self.superViewController title:title imagePathArray:tipsPaths];
+                }
+                else{
+                    POSTMSG(NSLS(@"kHaveNotTips"));
+                }
             }
         }
     }];

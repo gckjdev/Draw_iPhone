@@ -16,6 +16,7 @@
 @property (retain, nonatomic) IBOutlet UILabel *tutorialDescLabel;
 @property (retain, nonatomic) IBOutlet UILabel *tutorialSortedNameLabel;
 @property (retain, nonatomic) IBOutlet UILabel *tutorialDescNameLabel;
+@property (retain, nonatomic) IBOutlet UILabel *difficultyLabel;
 
 @property (retain, nonatomic) IBOutlet UIButton *addButton;
 

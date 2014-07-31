@@ -19,5 +19,6 @@
 @property (retain, nonatomic) IBOutlet UIButton *stageListStarBtn;
 @property (retain, nonatomic) IBOutlet UIImageView *stageListHiddenLockImageView;
 @property (retain, nonatomic) IBOutlet UILabel *hiddenNumberLabel;
+@property (retain, nonatomic) IBOutlet UIView *hiddenNumberHolderView;
 
 @end

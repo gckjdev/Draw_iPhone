@@ -83,6 +83,7 @@
 #import "ImageSimilarityEngine.h"
 #import "PBTutorial+Extend.h"
 #import "ResultShareAlertPageViewController.h"
+#import "TipsPageViewController.h"
 
 @interface OfflineDrawViewController()
 {
@@ -94,6 +95,8 @@
     BOOL _isNewDraft;                       // draft是否是全新草稿，还是从草稿箱加载的
     BOOL _hasNewStroke;                     // 当前是否新绘制的笔画没有保存，默认为否，增加一笔后为是，保存后重置为否
     BOOL _commitAsNormal;                   // 比赛作品转为普通作品提交
+
+    int  _currentHelpIndex;
 }
 
 @property(nonatomic, retain) MyPaint *draft;                                // 草稿
@@ -105,6 +108,7 @@
 @property (retain, nonatomic) IBOutlet UIButton *submitButton;
 @property (retain, nonatomic) IBOutlet UIButton *upPanelButton;
 @property (retain, nonatomic) IBOutlet UIButton *layerButton;
+@property (retain, nonatomic) IBOutlet UIButton *helpButton;
 
 // 工具栏点击弹出控制面板和视图
 @property (retain, nonatomic) DrawToolPanel *drawToolPanel;
@@ -233,19 +237,25 @@
                              userStage:(PBUserStage*)userStage
                           userTutorial:(PBUserTutorial*)userTutorial
 {
-    UIImage* image = nil; // TODO , read from PBUserStage
+    int targetType = TypePracticeDraw;
+    PBTutorial* tutorial = [[TutorialCoreManager defaultManager] findTutorialByTutorialId:userStage.tutorialId];
+    PBStage* stage = [tutorial getStageByIndex:userStage.stageIndex];
+    
+//    NSString* bgImagePath = [[UserTutorialService defaultService] getBgImagePath:userStage.tutorialId stage:stage];
+//    UIImage* bgImage = [[[UIImage alloc] initWithContentsOfFile:bgImagePath] autorelease];
+
+    UIImage* bgImage = [[UserTutorialService defaultService] getBgImage:userStage stage:stage type:targetType];
     
     NSString* draftId = userStage.practiceLocalOpusId;
     MyPaint* draft = [[MyPaintManager defaultManager] findDraftById:draftId];
     
     OfflineDrawViewController *vc = nil;
-    int targetType = TypePracticeDraw;
     if (draft){
         // load from draft
         vc = [[OfflineDrawViewController alloc] initWithDraft:draft startController:startController];
         
-        vc.tutorial = [[TutorialCoreManager defaultManager] findTutorialByTutorialId:userStage.tutorialId];
-        vc.stage = [vc.tutorial getStageByIndex:userStage.stageIndex];
+        vc.tutorial = tutorial;
+        vc.stage = stage;
         
     }
     else{
@@ -254,10 +264,10 @@
                                                   startController:startController
                                                           Contest:nil
                                                      targetUserId:nil
-                                                          bgImage:image];
+                                                          bgImage:bgImage];
 
-        vc.tutorial = [[TutorialCoreManager defaultManager] findTutorialByTutorialId:userStage.tutorialId];
-        vc.stage = [vc.tutorial getStageByIndex:userStage.stageIndex];
+        vc.tutorial = tutorial;
+        vc.stage = stage;
 
         // set draft tutorial info
         [vc setDraftTutorialInfo:userStage targetType:targetType];
@@ -281,19 +291,26 @@
                             userStage:(PBUserStage*)userStage
                          userTutorial:(PBUserTutorial*)userTutorial
 {
-    UIImage* image = nil; // TODO , read from PBUserStage
+    int targetType = TypeConquerDraw;
+
+    PBTutorial* tutorial = [[TutorialCoreManager defaultManager] findTutorialByTutorialId:userStage.tutorialId];
+    PBStage* stage = [tutorial getStageByIndex:userStage.stageIndex];
+    
+//    NSString* bgImagePath = [[UserTutorialService defaultService] getBgImagePath:userStage.tutorialId stage:stage];
+//    UIImage* bgImage = [[[UIImage alloc] initWithContentsOfFile:bgImagePath] autorelease];
+    
+    UIImage* bgImage = [[UserTutorialService defaultService] getBgImage:userStage stage:stage type:targetType];
     
     NSString* draftId = userStage.conquerLocalOpusId;
     MyPaint* draft = [[MyPaintManager defaultManager] findDraftById:draftId];
     
     OfflineDrawViewController *vc = nil;
-    int targetType = TypeConquerDraw;
     if (draft){
         // load from draft
         vc = [[OfflineDrawViewController alloc] initWithDraft:draft startController:startController];
         
-        vc.tutorial = [[TutorialCoreManager defaultManager] findTutorialByTutorialId:userStage.tutorialId];
-        vc.stage = [vc.tutorial getStageByIndex:userStage.stageIndex];
+        vc.tutorial = tutorial;
+        vc.stage = stage;
         
     }
     else{
@@ -302,10 +319,10 @@
                                                    startController:startController
                                                            Contest:nil
                                                       targetUserId:nil
-                                                           bgImage:image];
+                                                           bgImage:bgImage];
         
-        vc.tutorial = [[TutorialCoreManager defaultManager] findTutorialByTutorialId:userStage.tutorialId];
-        vc.stage = [vc.tutorial getStageByIndex:userStage.stageIndex];
+        vc.tutorial = tutorial;
+        vc.stage = stage;
         
         // set draft tutorial info
         [vc setDraftTutorialInfo:userStage targetType:targetType];
@@ -358,6 +375,7 @@
     PPRelease(_layerPanelPopView);
     PPRelease(_upPanelPopView);
     PPRelease(_designTime);
+    PPRelease(_helpButton);
     [_upPanelButton release];
     [_titleView release];
     [_layerButton release];
@@ -504,12 +522,14 @@
 
     NSString* opusId = self.draft.chapterOpusId;
     
-    self.copyView = [CopyView createCopyView:self
-                                   superView:holder
-                                     atPoint:drawView.frame.origin
-                                      opusId:opusId
-                                   userStage:[self buildUserStage]
-                                       stage:self.stage];
+    if ([self isLearnType]){
+        self.copyView = [CopyView createCopyView:self
+                                       superView:holder
+                                         atPoint:drawView.frame.origin
+                                          opusId:opusId
+                                       userStage:[self buildUserStage]
+                                           stage:self.stage];
+    }
 }
 
 - (void)setCopyViewInfo
@@ -593,7 +613,41 @@
         self.draftButton.hidden = YES;
         self.upPanelButton.hidden = YES;
         [self.layerButton setCenter:self.draftButton.center];
-    }    
+        [self.helpButton setCenter:self.upPanelButton.center];
+    }
+    else{
+        [self.helpButton setHidden:YES];
+    }
+    
+    [self updateSubmitButtonForPracticeDraw];
+    
+    // update title view by buttons
+    if ([self isLearnType]){
+        CGPoint center = self.titleView.titleLabel.center;
+        center.x = self.helpButton.frame.size.width*3;
+        [self.titleView.titleLabel setCenter:center];
+    }
+}
+
+- (void)updateSubmitButtonForPracticeDraw
+{
+    if (targetType != TypePracticeDraw){
+        return;
+    }
+    
+    if ([self.stage.chapterList count] <= 1){
+        // only one chapter, no "next" button
+        return;
+    }
+    
+    int lastChapterIndex = [self.stage.chapterList count] - 1;
+    if (self.userStageBuilder.currentChapterIndex >= lastChapterIndex){
+        // it's last chapter, use submit button
+        [self.submitButton setImage:[shareImageManager drawCommit] forState:UIControlStateNormal];
+    }
+    else{
+        [self.submitButton setImage:[shareImageManager drawNext] forState:UIControlStateNormal];
+    }
 }
 
 // 是否是绘画作品模式（聊天涂鸦、论坛涂鸦都不属于该模式）
@@ -837,6 +891,7 @@
     [self initDrawView];
     [self initDrawToolPanel];
     [self initWordLabel];
+    [self initTitleView];
     [self initSubmitButton];
     [self setCopyViewInfo];
 
@@ -846,7 +901,6 @@
     [self initPageBG];
 
     [self initRecovery];
-    [self initTitleView];
     [self setCanDragBack:NO];
     
     // TODO update submit/next button status for learn draw (practice only)
@@ -866,6 +920,7 @@
 {
     drawView.delegate = nil;
     
+    [self setHelpButton:nil];
     [self setWordLabel:nil];
     [self setSubmitButton:nil];
     [self setDraftButton:nil];
@@ -1125,10 +1180,10 @@
 {
     [self hideActivity];
     [self hideProgressView];
-
+    self.submitButton.userInteractionEnabled = YES;
     
     if (resultCode == 0){
-
+        
         if (userStage){
             self.userStageBuilder = [PBUserStage builderWithPrototype:userStage];
         }
@@ -1688,26 +1743,67 @@
 }
 
 
+- (BOOL)isGotoNextChapter
+{
+    if (targetType != TypePracticeDraw){
+        return NO;
+    }
+    
+    if ([self.stage.chapterList count] <= 1){
+        // only one chapter, no "next" button
+        return NO;
+    }
+    
+    int lastChapterIndex = [self.stage.chapterList count] - 1;
+    if (self.userStageBuilder.currentChapterIndex >= lastChapterIndex){
+        // it's last chapter, use submit button
+        return NO;
+    }
+    else{
+        return YES;
+    }
+}
+
+- (void)gotoNextChapter
+{
+    int nextChapterIndex = self.userStageBuilder.currentChapterIndex + 1;
+    
+    // update user stage (currentChapterIndex) and save user tutorial
+    [self.userStageBuilder setCurrentChapterIndex:nextChapterIndex];
+    
+    // save into DB
+    PBUserTutorial* newUT = [[UserTutorialManager defaultManager] updateUserStage:[self buildUserStage]];
+    if (newUT == nil){
+        return;
+    }
+    
+    // update user tutorial builder
+    self.userTutorialBuilder = [PBUserTutorial builderWithPrototype:newUT];
+    
+    // reset tips index
+    _currentHelpIndex = 0;
+    
+    // update copy view
+    [_copyView loadData:[self buildUserStage] stage:self.stage];
+    
+    // update button image
+    [self updateSubmitButtonForPracticeDraw];
+    
+    // TODO post a message?
+}
+
 - (void)handleSubmitForLearnDraw
 {
     //  预处理
     BOOL isEnough = [self strokeControlInSubmissionWithMinStrokeNum:[PPConfigManager getMinStrokeNum]
                                                         MinPointNum:[PPConfigManager getMinPointNum]];
-    if(NO==isEnough) return;
-    
-//    NSInteger effetiveAction=[drawView.drawActionList count];
-//    for(DrawAction *da in drawView.drawActionList)
-//    {
-//        if(10 > [da pointCount])
-//            effetiveAction--;
-//    }
-//    if(effetiveAction<=10)
-//    {
-//        PPDebug(@"too few strokes!");
-//        POSTMSG(@"客官，不够认真哦！");
-//        return;
-//    }    
+    if (NO == isEnough)
+        return;
 
+    if ([self isGotoNextChapter]){
+        [self gotoNextChapter];
+        return;
+    }
     
     self.submitOpusDrawData = nil;
     self.submitOpusFinalImage = nil;
@@ -1718,11 +1814,17 @@
         return;
     }
     
+    // 如果下面代码有推出，记得这里配合处理... userInteractionEnabled=YES
     self.submitButton.userInteractionEnabled = NO;
     
     // create temp image file for weibo sharing
     [self writeTempFile:image hasWaterMark:NO];
     self.submitOpusFinalImage = image;
+    
+    // save last conquer opus image
+    [[UserTutorialService defaultService] saveTutorialImage:[self buildUserStage]
+                                                      image:self.submitOpusFinalImage
+                                                       type:targetType];
     
     [self.designTime pause];
     
@@ -1736,7 +1838,7 @@
     // 评分
     NSString* sourcePath = [self writeImageToFile:imageForCompare filePath:self.draft.draftId];
     NSString* destPath = self.tempImageFilePath;
-
+    
     //从关卡传入difficulty，TODO
     int score = [ImageSimilarityEngine score1SrcPath:sourcePath destPath:destPath difficulty:_stage.difficulty];
     
@@ -1780,14 +1882,15 @@
                                                                          userTutorial:[self buildUserTutorial]
                                                                              delegate:self];
     }
+    else{
+        self.submitButton.userInteractionEnabled = YES;
+    }
     
     if (self.submitOpusDrawData == nil){
         self.submitOpusFinalImage = nil;
     }
-
     
     [self.designTime resume];
-    self.submitButton.userInteractionEnabled = YES;
     
     if (targetType == TypePracticeDraw){
         [self showResultOptionForPractice];
@@ -2200,6 +2303,46 @@
         self.upPanelPopView.delegate = self;
     }
 }
+
+// 点击帮助按钮
+- (IBAction)clickHelpButton:(id)sender
+{
+    NSMutableArray* allTips = [NSMutableArray array];
+    int currentChapterTipsIndex = 0;
+    for (int i=0; i<=_userStageBuilder.currentChapterIndex && i<[self.stage.chapterList count]; i++){
+        NSArray* tipsPaths = [[UserTutorialService defaultService] getChapterTipsImagePath:_userStageBuilder.tutorialId
+                                                                                     stage:self.stage
+                                                                              chapterIndex:i];
+
+        if (tipsPaths){
+            if (i == _userStageBuilder.currentChapterIndex){
+                currentChapterTipsIndex = [allTips count];
+                [allTips addObjectsFromArray:tipsPaths];
+            }
+            else{
+                [allTips addObjectsFromArray:tipsPaths];
+            }
+        }
+    }
+    
+    if (_currentHelpIndex == 0){ // default
+        _currentHelpIndex = currentChapterTipsIndex;
+    }
+    
+    NSString* title = NSLS(@"kCopyViewHelp");
+    
+    if ([allTips count] > 0){
+        [TipsPageViewController show:self
+                               title:title
+                      imagePathArray:allTips
+                        defaultIndex:_currentHelpIndex
+                         returnIndex:&_currentHelpIndex];
+    }
+    else{
+        POSTMSG(NSLS(@"kNoTipsForChapter"));
+    }
+}
+
 
 // 点击图层按钮
 - (IBAction)clickLayerButton:(id)sender {

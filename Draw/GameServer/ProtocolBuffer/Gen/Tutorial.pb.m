@@ -1411,6 +1411,7 @@ static PBChapter* defaultPBChapterInstance = nil;
 @property int32_t imageStyle;
 @property int32_t scoreEngine;
 @property Float32 difficulty;
+@property BOOL useBgFromPrev;
 @end
 
 @implementation PBStage
@@ -1549,6 +1550,18 @@ static PBChapter* defaultPBChapterInstance = nil;
   hasDifficulty_ = !!value;
 }
 @synthesize difficulty;
+- (BOOL) hasUseBgFromPrev {
+  return !!hasUseBgFromPrev_;
+}
+- (void) setHasUseBgFromPrev:(BOOL) value {
+  hasUseBgFromPrev_ = !!value;
+}
+- (BOOL) useBgFromPrev {
+  return !!useBgFromPrev_;
+}
+- (void) setUseBgFromPrev:(BOOL) value {
+  useBgFromPrev_ = !!value;
+}
 - (void) dealloc {
   self.stageId = nil;
   self.cnName = nil;
@@ -1590,6 +1603,7 @@ static PBChapter* defaultPBChapterInstance = nil;
     self.imageStyle = 0;
     self.scoreEngine = 0;
     self.difficulty = 1;
+    self.useBgFromPrev = NO;
   }
   return self;
 }
@@ -1684,6 +1698,9 @@ static PBStage* defaultPBStageInstance = nil;
   if (self.hasDifficulty) {
     [output writeFloat:52 value:self.difficulty];
   }
+  if (self.hasUseBgFromPrev) {
+    [output writeBool:60 value:self.useBgFromPrev];
+  }
   [self.unknownFields writeToCodedOutputStream:output];
 }
 - (int32_t) serializedSize {
@@ -1752,6 +1769,9 @@ static PBStage* defaultPBStageInstance = nil;
   }
   if (self.hasDifficulty) {
     size += computeFloatSize(52, self.difficulty);
+  }
+  if (self.hasUseBgFromPrev) {
+    size += computeBoolSize(60, self.useBgFromPrev);
   }
   size += self.unknownFields.serializedSize;
   memoizedSerializedSize = size;
@@ -1891,6 +1911,9 @@ static PBStage* defaultPBStageInstance = nil;
   if (other.hasDifficulty) {
     [self setDifficulty:other.difficulty];
   }
+  if (other.hasUseBgFromPrev) {
+    [self setUseBgFromPrev:other.useBgFromPrev];
+  }
   [self mergeUnknownFields:other.unknownFields];
   return self;
 }
@@ -1992,6 +2015,10 @@ static PBStage* defaultPBStageInstance = nil;
       }
       case 421: {
         [self setDifficulty:[input readFloat]];
+        break;
+      }
+      case 480: {
+        [self setUseBgFromPrev:[input readBool]];
         break;
       }
     }
@@ -2328,6 +2355,22 @@ static PBStage* defaultPBStageInstance = nil;
 - (PBStage_Builder*) clearDifficulty {
   result.hasDifficulty = NO;
   result.difficulty = 1;
+  return self;
+}
+- (BOOL) hasUseBgFromPrev {
+  return result.hasUseBgFromPrev;
+}
+- (BOOL) useBgFromPrev {
+  return result.useBgFromPrev;
+}
+- (PBStage_Builder*) setUseBgFromPrev:(BOOL) value {
+  result.hasUseBgFromPrev = YES;
+  result.useBgFromPrev = value;
+  return self;
+}
+- (PBStage_Builder*) clearUseBgFromPrev {
+  result.hasUseBgFromPrev = NO;
+  result.useBgFromPrev = NO;
   return self;
 }
 @end
@@ -4029,6 +4072,7 @@ static PBUserStageOpus* defaultPBUserStageOpusInstance = nil;
 @property int32_t currentChapterIndex;
 @property (retain) NSString* practiceLocalOpusId;
 @property (retain) NSString* conquerLocalOpusId;
+@property (retain) NSString* conquerLocalImage;
 @property (retain) NSString* bestOpusId;
 @property int32_t bestScore;
 @property int32_t bestScoreDate;
@@ -4091,6 +4135,13 @@ static PBUserStageOpus* defaultPBUserStageOpusInstance = nil;
   hasConquerLocalOpusId_ = !!value;
 }
 @synthesize conquerLocalOpusId;
+- (BOOL) hasConquerLocalImage {
+  return !!hasConquerLocalImage_;
+}
+- (void) setHasConquerLocalImage:(BOOL) value {
+  hasConquerLocalImage_ = !!value;
+}
+@synthesize conquerLocalImage;
 - (BOOL) hasBestOpusId {
   return !!hasBestOpusId_;
 }
@@ -4154,6 +4205,7 @@ static PBUserStageOpus* defaultPBUserStageOpusInstance = nil;
   self.mutableOpusList = nil;
   self.practiceLocalOpusId = nil;
   self.conquerLocalOpusId = nil;
+  self.conquerLocalImage = nil;
   self.bestOpusId = nil;
   self.lastOpusId = nil;
   [super dealloc];
@@ -4167,6 +4219,7 @@ static PBUserStageOpus* defaultPBUserStageOpusInstance = nil;
     self.currentChapterIndex = 0;
     self.practiceLocalOpusId = @"";
     self.conquerLocalOpusId = @"";
+    self.conquerLocalImage = @"";
     self.bestOpusId = @"";
     self.bestScore = 0;
     self.bestScoreDate = 0;
@@ -4239,6 +4292,9 @@ static PBUserStage* defaultPBUserStageInstance = nil;
   if (self.hasConquerLocalOpusId) {
     [output writeString:30 value:self.conquerLocalOpusId];
   }
+  if (self.hasConquerLocalImage) {
+    [output writeString:31 value:self.conquerLocalImage];
+  }
   if (self.hasBestOpusId) {
     [output writeString:50 value:self.bestOpusId];
   }
@@ -4295,6 +4351,9 @@ static PBUserStage* defaultPBUserStageInstance = nil;
   }
   if (self.hasConquerLocalOpusId) {
     size += computeStringSize(30, self.conquerLocalOpusId);
+  }
+  if (self.hasConquerLocalImage) {
+    size += computeStringSize(31, self.conquerLocalImage);
   }
   if (self.hasBestOpusId) {
     size += computeStringSize(50, self.bestOpusId);
@@ -4422,6 +4481,9 @@ static PBUserStage* defaultPBUserStageInstance = nil;
   if (other.hasConquerLocalOpusId) {
     [self setConquerLocalOpusId:other.conquerLocalOpusId];
   }
+  if (other.hasConquerLocalImage) {
+    [self setConquerLocalImage:other.conquerLocalImage];
+  }
   if (other.hasBestOpusId) {
     [self setBestOpusId:other.bestOpusId];
   }
@@ -4499,6 +4561,10 @@ static PBUserStage* defaultPBUserStageInstance = nil;
       }
       case 242: {
         [self setConquerLocalOpusId:[input readString]];
+        break;
+      }
+      case 250: {
+        [self setConquerLocalImage:[input readString]];
         break;
       }
       case 402: {
@@ -4675,6 +4741,22 @@ static PBUserStage* defaultPBUserStageInstance = nil;
 - (PBUserStage_Builder*) clearConquerLocalOpusId {
   result.hasConquerLocalOpusId = NO;
   result.conquerLocalOpusId = @"";
+  return self;
+}
+- (BOOL) hasConquerLocalImage {
+  return result.hasConquerLocalImage;
+}
+- (NSString*) conquerLocalImage {
+  return result.conquerLocalImage;
+}
+- (PBUserStage_Builder*) setConquerLocalImage:(NSString*) value {
+  result.hasConquerLocalImage = YES;
+  result.conquerLocalImage = value;
+  return self;
+}
+- (PBUserStage_Builder*) clearConquerLocalImage {
+  result.hasConquerLocalImage = NO;
+  result.conquerLocalImage = @"";
   return self;
 }
 - (BOOL) hasBestOpusId {

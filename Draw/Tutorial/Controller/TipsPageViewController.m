@@ -10,20 +10,29 @@
 #import "SGFocusImageItem.h"
 
 @interface TipsPageViewController ()
+{
+}
 
 @property (nonatomic, retain) NSString* dialogTitle;
 @property (nonatomic, retain) NSArray* imagePathArray;
+@property (nonatomic, assign) int* returnIndex;
+@property (nonatomic, assign) int defaultIndex;
 
 @end
 
 @implementation TipsPageViewController
 
-+ (void)show:(PPViewController*)superController title:(NSString*)title imagePathArray:(NSArray*)imagePathArray
++ (void)show:(PPViewController*)superController
+       title:(NSString*)title
+imagePathArray:(NSArray*)imagePathArray
+defaultIndex:(int)defaultIndex
+ returnIndex:(int*)returnIndex
 {
     TipsPageViewController *rspc = [[TipsPageViewController alloc] init];
     rspc.dialogTitle = title;
     rspc.imagePathArray = imagePathArray;
-    
+    rspc.returnIndex = returnIndex;
+    rspc.defaultIndex = defaultIndex;
     
     CommonDialog *dialog = [CommonDialog createDialogWithTitle:title customView:rspc.view style:CommonSquareDialogStyleCross];
     [dialog showInView:superController.view];
@@ -66,16 +75,17 @@
 -(void)initTipsSGFousImage:(NSArray*)imagePathArray{
     
     NSMutableArray *itemList = [[[NSMutableArray alloc] init] autorelease];
+    
     for(NSString *gallerUrlString in imagePathArray){
         int i= 0;
-    UIImage *image = [[[UIImage alloc] initWithContentsOfFile:gallerUrlString] autorelease];
-    
-    if(image==nil){
-        image = [UIImage imageNamed:DEFAULT_GALLERY_IMAGE] ;
-    }
-    SGFocusImageItem *item = [[[SGFocusImageItem alloc] initWithTitle:@"" image:image tag:i] autorelease];
-    [itemList addObject:item];
-        i++;
+        UIImage *image = [[[UIImage alloc] initWithContentsOfFile:gallerUrlString] autorelease];
+
+        if(image==nil){
+            image = [UIImage imageNamed:DEFAULT_GALLERY_IMAGE] ;
+        }
+        SGFocusImageItem *item = [[[SGFocusImageItem alloc] initWithTitle:@"" image:image tag:i] autorelease];
+        [itemList addObject:item];
+            i++;
     }
     SGFocusImageFrame *imageFrame = [[SGFocusImageFrame alloc] initWithFrameAndIntervalTime:CGRectMake(0, 0, IMAGE_FRAME_WIDTH,IMAGE_FRAME_HEIGHT)
                                                                     delegate:self

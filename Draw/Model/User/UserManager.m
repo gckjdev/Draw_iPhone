@@ -2082,15 +2082,14 @@ qqAccessTokenSecret:(NSString*)accessTokenSecret
 
 @end
 
-@implementation CheckInManager
-
 static CheckInManager* _defaultCheckInManager;
-APLevelDB* _db;
+static dispatch_once_t checkInOnceToken;
+
+@implementation CheckInManager
 
 + (CheckInManager*)defaultManager
 {
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
+    dispatch_once(&checkInOnceToken, ^{
         if (_defaultCheckInManager == nil){
             _defaultCheckInManager = [[CheckInManager alloc] init];
             _defaultCheckInManager.db = [[LevelDBManager defaultManager] db:DB_USER_CONFIG];

@@ -70,6 +70,7 @@
 + (void)playDrawData:(NSData**)drawData
                 draw:(Draw**)retDraw
       viewController:(PPViewController*)viewController
+             bgImage:(UIImage*)bgImage
           startIndex:(int)startIndex
             endIndex:(int)endIndex;
 

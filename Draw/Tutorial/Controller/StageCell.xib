@@ -13,17 +13,14 @@
                 <rect key="frame" x="0.0" y="0.0" width="140" height="100"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="a6K-Gs-lob">
+                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="a6K-Gs-lob">
                         <rect key="frame" x="0.0" y="0.0" width="140" height="100"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                     </imageView>
-                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="top" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KMq-Yf-omz">
-                        <rect key="frame" x="10" y="0.0" width="110" height="25"/>
+                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="top" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KMq-Yf-omz">
+                        <rect key="frame" x="10" y="0.0" width="130" height="25"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstAttribute="height" constant="25" id="hMJ-if-9HM"/>
-                        </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="13"/>
                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <nil key="highlightedColor"/>
@@ -32,66 +29,47 @@
                         <rect key="frame" x="20" y="25" width="100" height="50"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleAspectFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cpc-SX-J4c">
+                            <button opaque="NO" contentMode="scaleAspectFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cpc-SX-J4c">
                                 <rect key="frame" x="20" y="13" width="60" height="25"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <state key="normal" title="开始" backgroundImage="beginPlayGame(little).png">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <state key="normal" backgroundImage="beginPlayGame(little).png">
+                                    <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
                                     <color key="titleShadowColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     </view>
-                    <view alpha="0.29999999999999999" contentMode="scaleAspectFill" translatesAutoresizingMaskIntoConstraints="NO" id="wwL-3j-7Cd">
-                        <rect key="frame" x="0.0" y="0.0" width="140" height="100"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="120" verticalHuggingPriority="90" horizontalCompressionResistancePriority="120" verticalCompressionResistancePriority="90" fixedFrame="YES" image="lock_new2.png" translatesAutoresizingMaskIntoConstraints="NO" id="gGJ-ly-Ls2" userLabel="HiddenImageView">
                         <rect key="frame" x="0.0" y="0.0" width="140" height="100"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     </imageView>
-                    <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="r2U-Bx-jx7">
+                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="r2U-Bx-jx7">
                         <rect key="frame" x="48" y="46" width="42" height="21"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="11" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uPu-6J-eAt" userLabel="HiddenLabel - Label">
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="11" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uPu-6J-eAt" userLabel="HiddenLabel - Label">
                                 <rect key="frame" x="1" y="5" width="42" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="uPu-6J-eAt" firstAttribute="centerX" secondItem="r2U-Bx-jx7" secondAttribute="centerX" constant="1" id="2qC-0U-7Ca"/>
-                            <constraint firstItem="uPu-6J-eAt" firstAttribute="centerY" secondItem="r2U-Bx-jx7" secondAttribute="centerY" constant="5" id="8jM-f3-rjh"/>
-                        </constraints>
                     </view>
                 </subviews>
                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             </view>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-            <constraints>
-                <constraint firstItem="a6K-Gs-lob" firstAttribute="top" secondItem="wwL-3j-7Cd" secondAttribute="top" id="4He-dt-Tl1"/>
-                <constraint firstItem="KMq-Yf-omz" firstAttribute="trailing" secondItem="a6K-Gs-lob" secondAttribute="trailing" constant="-20" id="4SK-Co-HXX"/>
-                <constraint firstItem="a6K-Gs-lob" firstAttribute="top" secondItem="ycJ-7c-W4m" secondAttribute="top" id="6Kz-fj-ceI"/>
-                <constraint firstItem="wwL-3j-7Cd" firstAttribute="leading" secondItem="a6K-Gs-lob" secondAttribute="leading" id="8bs-kj-tqO"/>
-                <constraint firstAttribute="bottom" secondItem="wwL-3j-7Cd" secondAttribute="bottom" id="ANf-Lw-O39"/>
-                <constraint firstItem="a6K-Gs-lob" firstAttribute="trailing" secondItem="wwL-3j-7Cd" secondAttribute="trailing" id="IsS-Pk-0y5"/>
-                <constraint firstAttribute="trailing" secondItem="a6K-Gs-lob" secondAttribute="trailing" id="aIy-1d-goj"/>
-                <constraint firstItem="wwL-3j-7Cd" firstAttribute="bottom" secondItem="a6K-Gs-lob" secondAttribute="bottom" id="b46-q7-R7U"/>
-                <constraint firstItem="wwL-3j-7Cd" firstAttribute="leading" secondItem="ycJ-7c-W4m" secondAttribute="leading" id="dFX-O4-FYw"/>
-                <constraint firstItem="KMq-Yf-omz" firstAttribute="top" secondItem="a6K-Gs-lob" secondAttribute="top" id="mq5-ra-u2F"/>
-                <constraint firstItem="KMq-Yf-omz" firstAttribute="leading" secondItem="ycJ-7c-W4m" secondAttribute="leading" constant="10" id="pOY-Qz-H2n"/>
-            </constraints>
             <size key="customSize" width="127" height="70"/>
             <connections>
                 <outlet property="cellName" destination="KMq-Yf-omz" id="NyG-Uu-o4Z"/>
+                <outlet property="hiddenNumberHolderView" destination="r2U-Bx-jx7" id="id2-wp-uhD"/>
                 <outlet property="hiddenNumberLabel" destination="uPu-6J-eAt" id="Ql2-h5-ytc"/>
                 <outlet property="stageCellImage" destination="a6K-Gs-lob" id="VTx-zc-a5b"/>
                 <outlet property="stageListHiddenLockImageView" destination="gGJ-ly-Ls2" id="bZB-VN-HQA"/>

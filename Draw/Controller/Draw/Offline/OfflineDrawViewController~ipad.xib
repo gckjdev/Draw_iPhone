@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="4514" systemVersion="13B3116" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="5056" systemVersion="12F45" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none">
     <dependencies>
-        <deployment defaultVersion="1280" identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3747"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="OfflineDrawViewController">
             <connections>
                 <outlet property="draftButton" destination="138" id="149"/>
+                <outlet property="helpButton" destination="8mZ-vG-3Hw" id="RIU-zY-ytX"/>
                 <outlet property="layerButton" destination="155" id="159"/>
                 <outlet property="submitButton" destination="77" id="134"/>
                 <outlet property="titleView" destination="157" id="158"/>
@@ -98,6 +98,25 @@
                                 <action selector="clickUpPanel:" destination="-1" eventType="touchUpInside" id="152"/>
                             </connections>
                         </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="8mZ-vG-3Hw" userLabel="Help">
+                            <rect key="frame" x="344" y="10" width="80" height="80"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <inset key="insetFor6xAndEarlier" minX="0.0" minY="20" maxX="0.0" maxY="-20"/>
+                            <fontDescription key="fontDescription" type="boldSystem" pointSize="34"/>
+                            <inset key="contentEdgeInsets" minX="4" minY="4" maxX="4" maxY="4"/>
+                            <size key="titleShadowOffset" width="0.0" height="1"/>
+                            <state key="normal" image="draw_help@2x.png">
+                                <color key="titleColor" red="0.24313725489999999" green="0.16862745100000001" blue="0.090196078430000007" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="titleShadowColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <state key="highlighted">
+                                <color key="titleColor" red="0.24313725489999999" green="0.16862745100000001" blue="0.090196078430000007" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="titleShadowColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <connections>
+                                <action selector="clickHelpButton:" destination="-1" eventType="touchUpInside" id="aP1-kb-RIY"/>
+                            </connections>
+                        </button>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                 </view>
@@ -107,6 +126,7 @@
     </objects>
     <resources>
         <image name="draw_commit_btn@2x.png" width="60" height="62"/>
+        <image name="draw_help@2x.png" width="60" height="62"/>
         <image name="draw_layer_btn@2x.png" width="60" height="62"/>
         <image name="draw_save_btn@2x.png" width="60" height="62"/>
         <image name="draw_setting_btn@2x.png" width="60" height="62"/>

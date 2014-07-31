@@ -41,7 +41,7 @@
 
 /*********************** Notification end *************************/
 
-"kStart" = "Start";
+"kStart" = "start";
 
 "kShop" = "Shop";
 
@@ -2812,3 +2812,8 @@
 "kNoConquerDraw" = "No data";
 "kTimelineConquerDraw" = "Conquer";
 "kNoTimelineConquerDraw" = "No data";
+
+
+"kHaveNotTips" = "Sorry,the tutorial has not tips!";
+
+"kNoTipsForChapter" = "No tips";

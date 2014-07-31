@@ -30,34 +30,22 @@
 #define PROGRESS_VIEW_HEIGHT (ISIPAD ? 2:2)
 - (void)updateCellInfo:(PBUserTutorial*)ut WithRow:(NSInteger)row
 {
-    //圆角
-//    SET_BUTTON_ROUND_STYLE_YELLOW(self.tutorialStartBtn);
-//    [self.tutorialStartBtn.titleLabel setFont:AD_FONT(24, 12)];
-    
-   
     
     SET_VIEW_ROUND_CORNER(self.tutorialImageView);
     SET_VIEW_ROUND_CORNER(self.labelBottomView);
     //contentView background
     self.contentView.backgroundColor = [UIColor clearColor];
     self.backgroundColor = [UIColor clearColor];
-    
-   //    [self.tutorialStartBtn setTitle:@"开始" forState:UIControlStateNormal];
-    
-    
+
     //自定义label右上角难度
-    UILabel *difficultyLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 8, 50, 30)];
-    [difficultyLabel setText:ut.tutorial.categoryName];
-    [difficultyLabel setShadowColor:[UIColor whiteColor]];
-    [difficultyLabel setTextColor:COLOR_BROWN];
-    [difficultyLabel setShadowOffset:CGSizeMake(1, 1)];
-    [difficultyLabel setFont:AD_FONT(18, 12)];
-    [difficultyLabel setBackgroundColor:[UIColor clearColor]];
-    [self addSubview:difficultyLabel];
-    [difficultyLabel release];
+    [_difficultyLabel setFrame:CGRectMake(10, 8, (ISIPAD?200:150), 50)];
+    [_difficultyLabel setText:ut.tutorial.categoryName];
+    [_difficultyLabel setShadowColor:[UIColor whiteColor]];
+    [_difficultyLabel setTextColor:COLOR_BROWN];
+    [_difficultyLabel setShadowOffset:CGSizeMake(1, 1)];
+    [_difficultyLabel setFont:AD_FONT(18, 12)];
+    [_difficultyLabel setBackgroundColor:[UIColor clearColor]];
     
-    
-//    int i = arc4random() % 100;
     float progress = [ut progress]*1.0f/100.0f;
     [self setProgressView:row WithProgress:progress];
     
@@ -86,8 +74,14 @@
     LDProgressView *tutorialProgressView = [[LDProgressView alloc] initWithFrame:
                                                             CGRectMake(progressX,25.0f,progressViewSize.width,progressViewSize.height)];
     
+    tutorialProgressView.color = [UIColor colorWithRed:0.99f green:0.85f blue:0.33f alpha:1.0f];
+    tutorialProgressView.flat = @YES;
+    tutorialProgressView.animate = @YES;
+    tutorialProgressView.showStroke = @NO;
+    tutorialProgressView.showBackgroundInnerShadow = @NO;
+    tutorialProgressView.backgroundColor = COLOR_WHITE;
+    tutorialProgressView.outerStrokeWidth = @2;
     tutorialProgressView.type = LDProgressSolid;
-    tutorialProgressView.color = [UIColor yellowColor];
     //row == 0 特殊情況
     if(row <= 0){
         UIImage* starButtonBgImage = [[ShareImageManager defaultManager] tutorialStartButtonBgImage];
@@ -142,6 +136,7 @@
     [_progressInfoLabel release];
     [_othersProgressInfoLabel release];
     [_progressAndLabelView release];
+    [_difficultyLabel release];
     [super dealloc];
 }
 
