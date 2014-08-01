@@ -34,7 +34,7 @@ defaultIndex:(int)defaultIndex
     rspc.returnIndex = returnIndex;
     rspc.defaultIndex = defaultIndex;
     
-    CommonDialog *dialog = [CommonDialog createDialogWithTitle:title customView:rspc.view style:CommonSquareDialogStyleCross];
+    CommonDialog *dialog = [CommonDialog createDialogWithTitle:title customView:rspc.view style:CommonDialogStyleSingleButton];
     
     [dialog showInView:superController.view];
     [superController addChildViewController:rspc];
