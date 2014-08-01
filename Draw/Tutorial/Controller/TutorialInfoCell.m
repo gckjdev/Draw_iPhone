@@ -128,7 +128,7 @@
         
     }
     
-    CGFloat tableviewCellHeight = labelContentHeight + textViewContentHeight+(ISIPAD ? 50:25);
+    CGFloat tableviewCellHeight = labelContentHeight + textViewContentHeight+(ISIPAD ? 60:25);
     
 //    [self setFrame:CGRectMake(0, 0, SCREEN_WIDTH, tableviewCellHeight)];
     return tableviewCellHeight;
