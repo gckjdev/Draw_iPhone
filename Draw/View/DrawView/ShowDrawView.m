@@ -669,7 +669,7 @@ typedef enum {
     NSMutableArray *gifFrames = [NSMutableArray arrayWithCapacity:frameNumber];//input the images
     
     // add last frame
-    for(NSInteger i=0;i<6;i++){
+    for(NSInteger i=0;i < 4;i++){
         UIImage *lastImage = [showView createImageAtIndex:[drawActionList count]];
         //resize the image scale according to requirement
         lastImage = [lastImage scaleImage:lastImage toScale:scaleSize];

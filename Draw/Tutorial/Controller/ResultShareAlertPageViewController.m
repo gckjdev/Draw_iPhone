@@ -159,15 +159,7 @@
     
     //更新页面
     [self updateViewWidget];
-    
-    //    NSLayoutConstraint* constraint = [NSLayoutConstraint constraintWithItem:self.opusImageView
-    //                                                                  attribute:NSLayoutAttributeTop
-    //                                                                  relatedBy:NSLayoutRelationEqual
-    //                                                                     toItem:[CommonTitleView titleView:self.view]
-    //                                                                  attribute:NSLayoutAttributeBottom
-    //                                                                 multiplier:1.0
-    //                                                                   constant:10.0];
-    //    [self.view addConstraint:constraint];
+
 }
 
 
@@ -183,19 +175,15 @@
 
 -(void)updateViewWidget{
     //button
-    [self.shareButton setTitle:NSLS(@"kShare") forState:UIControlStateNormal];
-    [self.shareButton.titleLabel setFont:AD_BOLD_FONT(18, 15)];
-    [self.shareButton setFrame:(CGRectMake((ISIPAD ? 75:75),(ISIPAD ? 533:533),110,30))];
-    SET_BUTTON_ROUND_STYLE_ORANGE(self.shareButton);
-    [self.continueButton setTitle:NSLS(@"kTryConquerNext") forState:UIControlStateNormal];
-    [self.continueButton.titleLabel setFont:AD_BOLD_FONT(18, 15)];
-    [self.continueButton setFrame:(CGRectMake((ISIPAD ? 265:260),(ISIPAD ? 533:533),110,30))];
-    SET_BUTTON_ROUND_STYLE_ORANGE(self.continueButton);
-    
-    //Label
-//    NSMutableAttributedString *desc = [self getDesc];
-//    [self.nameLabel setText:@"皮皮彭"];
-//    [self.nameLabel setFont:AD_FONT(18, 13)];
+//    [self.shareButton setTitle:NSLS(@"kShare") forState:UIControlStateNormal];
+//    [self.shareButton.titleLabel setFont:AD_BOLD_FONT(18, 15)];
+//    [self.shareButton setFrame:(CGRectMake((ISIPAD ? 75:75),(ISIPAD ? 533:533),110,30))];
+//    SET_BUTTON_ROUND_STYLE_ORANGE(self.shareButton);
+//    [self.continueButton setTitle:NSLS(@"kTryConquerNext") forState:UIControlStateNormal];
+//    [self.continueButton.titleLabel setFont:AD_BOLD_FONT(18, 15)];
+//    [self.continueButton setFrame:(CGRectMake((ISIPAD ? 265:260),(ISIPAD ? 533:533),110,30))];
+//    SET_BUTTON_ROUND_STYLE_ORANGE(self.continueButton);
+
 
     [self setDesc];
  
@@ -213,6 +201,15 @@
     [self.opusImageView setImage:opus];
     
 }
+//longsentent 为一
+-(NSRange)getRangeInNsstringLong:(NSString*)longSentence ShorterSentence:(NSString*)shortSentence{
+    if([shortSentence length]<=[longSentence length]){
+        return [longSentence rangeOfString:shortSentence];
+    }
+    return NSMakeRange(0, 1);
+}
+
+
 -(void)setDesc{
     
     //@"恭喜皮皮彭！\n本次作品得分為%@分,\n耗時58秒,击败了宇宙%%%@的用户,\n闖關成功！"
@@ -225,7 +222,8 @@
     
     
     NSString *name = user.nickName;
-    NSMutableAttributedString *nameMutableString = [[[NSMutableAttributedString alloc]                  initWithString:[NSString stringWithFormat:@"%@\n",name]]autorelease];
+    NSMutableAttributedString *nameMutableString = [[[NSMutableAttributedString alloc]
+                                                     initWithString:[NSString stringWithFormat:@"%@\n",name]]autorelease];
     //人名
     [nameMutableString addAttribute:NSForegroundColorAttributeName
                         value:COLOR_BROWN
@@ -236,42 +234,67 @@
     self.lineOneLabel.attributedText = nameMutableString;
     
     
-    NSString *score = [NSString stringWithFormat:@"%d",self.score];
-    NSMutableAttributedString *scoreMutableString = [[[NSMutableAttributedString alloc]                  initWithString:[NSString stringWithFormat:@"本次作品得分為%@分\n",score]]autorelease];
+    //检测NSSTRING 所在的位置
+    NSString *scoreString = [NSString stringWithFormat:@"%d",self.score];
+    NSString *sentenceOne = [NSString stringWithFormat:@"本次作品得分為%@分\n",scoreString];
+    NSMutableAttributedString *scoreMutableString = [[[NSMutableAttributedString alloc]
+                                                      initWithString:sentenceOne]autorelease];
     //人名
     [scoreMutableString addAttribute:NSForegroundColorAttributeName
                               value:COLOR_RED
-                              range:NSMakeRange(7, [score length]+1)];
+                              range:[self getRangeInNsstringLong:sentenceOne ShorterSentence:scoreString]];
     [scoreMutableString addAttribute:NSFontAttributeName
                               value:AD_FONT(30, 18)
-                              range:NSMakeRange(7,[score length]+1)];
+                              range:[self getRangeInNsstringLong:sentenceOne ShorterSentence:scoreString]];
+
     self.lineTwoLabel.attributedText = scoreMutableString;
     
     // TODO localization
     // TODO calculate length/location by code
-    NSString *result = NSLS(@"kConquerSuccessResult");
-    BOOL isPass = [[UserTutorialManager defaultManager] isPass:score];
-    if (isPass == NO){
-        result = NSLS(@"kConquerFailureResult");
-    }
-    NSMutableAttributedString *resultMutable = [[[NSMutableAttributedString alloc]initWithString:[NSString stringWithFormat:@"%@！",result]]autorelease];
-    [resultMutable addAttribute:NSForegroundColorAttributeName
-                         value:COLOR_RED
-                         range:NSMakeRange(0, [result length])];
-    [resultMutable addAttribute:NSFontAttributeName
-                         value:AD_FONT(30, 18)
-                         range:NSMakeRange(0,[result length])];
-    self.lineFourLabel.attributedText = resultMutable;
-    
-    NSString *count = [NSString stringWithFormat:@"%d",self.userStage.defeatCount];
-    NSMutableAttributedString *countMutable = [[[NSMutableAttributedString alloc]initWithString:[NSString stringWithFormat:@"击败了宇宙%@%%的用户！",count]]autorelease];
+    //位置
+    NSString *count = [NSString stringWithFormat:@"%d%%",self.userStage.defeatCount];
+    NSString *sentenceTwo = [NSString stringWithFormat:@"宇宙三次元%@的用户！",count];
+
+    NSMutableAttributedString *countMutable = [[[NSMutableAttributedString alloc]initWithString:sentenceTwo]autorelease];
     [countMutable addAttribute:NSForegroundColorAttributeName
                                value:COLOR_RED
-                               range:NSMakeRange(5, [count length]+1)];
+                               range:[self getRangeInNsstringLong:sentenceTwo ShorterSentence:count]];
     [countMutable addAttribute:NSFontAttributeName
                                value:AD_FONT(30, 18)
-                               range:NSMakeRange(5,[count length]+1)];
+                               range:[self getRangeInNsstringLong:sentenceTwo ShorterSentence:count]];
     
+    
+    //闯关结果
+    BOOL isTutorialComplete = [[UserTutorialManager defaultManager] isLastStage:self.userStage];
+    NSString *result = @"";
+    
+    //合格
+    BOOL isPass = [[UserTutorialManager defaultManager] isPass:self.score];
+    if (isPass == NO){
+        //课程完成
+        if(isTutorialComplete){
+            result = [NSString stringWithFormat:NSLS(@"kConquerResultPassComplete")];
+        }
+        //没有完成继续下一关
+        else{
+             result = [NSString stringWithFormat:NSLS(@"kConquerResultPassNext")];
+        }
+    }
+    //不合格
+    else{
+        result = [NSString stringWithFormat:NSLS(@"kConquerFailureResult")];
+    }
+    
+    NSMutableAttributedString *resultMutable = [[[NSMutableAttributedString alloc]
+                                                 initWithString:[NSString stringWithFormat:@"%@！",result]]autorelease];
+    [resultMutable addAttribute:NSForegroundColorAttributeName
+                          value:COLOR_RED
+                          range:NSMakeRange(0, [result length])];
+    [resultMutable addAttribute:NSFontAttributeName
+                          value:AD_FONT(20, 18)
+                          range:NSMakeRange(0,[result length])];
+    self.lineFourLabel.attributedText = resultMutable;
+
     self.lineThreeLabel.attributedText = countMutable;
 }
 

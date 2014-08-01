@@ -1772,7 +1772,7 @@
             }
     }
 
-    if(effetiveAction<minStrokeNum){
+    if(effetiveAction < minStrokeNum && effetiveAction){
         return (minStrokeNum - effetiveAction);
         PPDebug(@"too few strokes!");
     }
