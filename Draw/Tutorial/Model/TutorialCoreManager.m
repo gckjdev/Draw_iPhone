@@ -185,7 +185,7 @@ static TutorialCoreManager* _defaultTutorialCoreManager;
 }
 
 //重写Chapter
--(PBChapter *) evalueteChapterDataChapterIndex:(int32_t)chapterIndex tipList:(NSArray*)tipsList{
+-(PBChapter *) evalueteChapterDataChapterIndex:(int32_t)chapterIndex tipList:(NSArray*)tipsList chapterStart:(int32_t)statIdex{
     PBChapter_Builder *pbChapterBuilder = [PBChapter builder];
     //required
     [pbChapterBuilder setIndex:chapterIndex];
@@ -194,6 +194,9 @@ static TutorialCoreManager* _defaultTutorialCoreManager;
     // add tips image
     if(tipsList!=nil&&[tipsList count]!=0){
         [pbChapterBuilder addAllTips:tipsList];
+    }
+    if(statIdex!=0){
+        [pbChapterBuilder setStartIndex:statIdex];
     }
     
     return [pbChapterBuilder build];
@@ -343,7 +346,7 @@ static TutorialCoreManager* _defaultTutorialCoreManager;
     NSArray* testTutorialName = @[@"初识三次元",@"疯狂的线条",@"识色配图",@"旺星人大集合",@"一起动动动",@"易容速成",@"百态小吉萌翻天",@"爱生活爱运动",@"名建筑大集合"];
     NSArray* testTutorialDesc = @[@"教你怎么把物体从二次元转换成三次元",@"帮助你更好的熟练工具",@"这里将把你打造成用色达人",@"属于旺星人的趴",@"燃烧你的卡路里吧",@"你想易容成什么人",@"小吉闪亮登场，速来围观",@"童鞋们，一起来运动吧",@"你认识这些建筑吗？"];
     
-    NSArray* tutorialImageUrl = @[@"http://58.215.184.18:8080/tutorial/image/1titlecopy.png",
+    NSArray* tutorialImageUrl = @[@"http://58.215.160.100:8080/app_res/tutorial/image/title-0.png",
                                   @"http://58.215.184.18:8080/tutorial/image/2-titlenew.png",
                                   @"http://58.215.184.18:8080/tutorial/image/3-titlenew.png",
                                   @"http://58.215.184.18:8080/tutorial/image/4-titlenew.png",
@@ -398,8 +401,8 @@ static TutorialCoreManager* _defaultTutorialCoreManager;
 
     NSArray* stageImageUrl = @[
                                     @[
-                                        @"http://58.215.160.100:8080/app_res/tutorial/image/0-1.jpg",
                                         @"http://58.215.160.100:8080/app_res/tutorial/image/0-2.jpg",
+                                        @"http://58.215.160.100:8080/app_res/tutorial/image/0-1.jpg",
                                         @"http://58.215.160.100:8080/app_res/tutorial/image/0-3.jpg",
                                         @"http://58.215.160.100:8080/app_res/tutorial/image/0-4.jpg",
                                         @"http://58.215.160.100:8080/app_res/tutorial/image/0-5.jpg",
@@ -501,6 +504,8 @@ static TutorialCoreManager* _defaultTutorialCoreManager;
     http://58.215.184.18:8080/draw_image/20140716/f01bc420-0c86-11e4-9049-00163e017d23.jpg
     tutorialId-7__stageId-7-0
      */
+    
+
     
     NSArray *chapterOpusIdList = @[
                                @[
@@ -652,7 +657,11 @@ static TutorialCoreManager* _defaultTutorialCoreManager;
             
             NSMutableArray *chapterList = [[NSMutableArray alloc] init];
             //内层为chapter
+            
+            
             for(int chapterSum=0;chapterSum<[[chapterOpusIdList objectAtIndex:stageSum] count];chapterSum++){
+                
+                
                 
                 NSArray *tipsInChapter = [self getTipsInChapterCountTutorialIndex:tutorialSum stageIndex:stageSum chapterIndex:chapterSum list:tipsList];
                 NSMutableArray *tipsArray = [[NSMutableArray alloc] init];
@@ -664,9 +673,26 @@ static TutorialCoreManager* _defaultTutorialCoreManager;
                     
                 }
                 // 添加chapter
-                PBChapter *chapter = [self evalueteChapterDataChapterIndex:chapterSum tipList:tipsArray];
+                PBChapter *chapter = [self evalueteChapterDataChapterIndex:chapterSum tipList:tipsArray chapterStart:2];
                 [chapterList addObject:chapter];
                 stageID = [NSString stringWithFormat:@"stageId-%d-%d",stageSum,chapterSum];
+                
+                //hardCode
+                if(tutorialSum==0&&stageSum==6){
+                    NSArray *tipsInChapter = [self getTipsInChapterCountTutorialIndex:tutorialSum stageIndex:stageSum chapterIndex:chapterSum list:tipsList];
+                    NSMutableArray *tipsArray = [[NSMutableArray alloc] init];
+                    if(tipsInChapter!=nil){
+                        for(int tipsSum=0;tipsSum<[tipsInChapter count];tipsSum++){
+                            PBTip *tip = [self evalueteTipsDataName:[tipsInChapter objectAtIndex:tipsSum] WithIndex:tipsSum];
+                            [tipsArray addObject:tip];
+                        }
+                        
+                    }
+                    // 添加chapter
+                    PBChapter *chapter = [self evalueteChapterDataChapterIndex:chapterSum tipList:tipsArray chapterStart:2];
+                    [chapterList addObject:chapter];
+                }
+
                 
             }
             Float32 difficulty = -1;
