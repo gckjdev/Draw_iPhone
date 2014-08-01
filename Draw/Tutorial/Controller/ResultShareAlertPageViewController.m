@@ -236,21 +236,21 @@
     self.lineOneLabel.attributedText = nameMutableString;
     
     
-    NSString *score = [NSString stringWithFormat:@"%d",self.score];
-    NSMutableAttributedString *scoreMutableString = [[[NSMutableAttributedString alloc]                  initWithString:[NSString stringWithFormat:@"本次作品得分為%@分\n",score]]autorelease];
+    NSString *scoreString = [NSString stringWithFormat:@"%d",self.score];
+    NSMutableAttributedString *scoreMutableString = [[[NSMutableAttributedString alloc]                  initWithString:[NSString stringWithFormat:@"本次作品得分為%@分\n",scoreString]]autorelease];
     //人名
     [scoreMutableString addAttribute:NSForegroundColorAttributeName
                               value:COLOR_RED
-                              range:NSMakeRange(7, [score length]+1)];
+                              range:NSMakeRange(7, [scoreString length]+1)];
     [scoreMutableString addAttribute:NSFontAttributeName
                               value:AD_FONT(30, 18)
-                              range:NSMakeRange(7,[score length]+1)];
+                              range:NSMakeRange(7,[scoreString length]+1)];
     self.lineTwoLabel.attributedText = scoreMutableString;
     
     // TODO localization
     // TODO calculate length/location by code
     NSString *result = NSLS(@"kConquerSuccessResult");
-    BOOL isPass = [[UserTutorialManager defaultManager] isPass:score];
+    BOOL isPass = [[UserTutorialManager defaultManager] isPass:self.score];
     if (isPass == NO){
         result = NSLS(@"kConquerFailureResult");
     }
