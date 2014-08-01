@@ -250,7 +250,8 @@
     // TODO localization
     // TODO calculate length/location by code
     NSString *result = NSLS(@"kConquerSuccessResult");
-    if(self.score<60){
+    BOOL isPass = [[UserTutorialManager defaultManager] isPass:score];
+    if (isPass == NO){
         result = NSLS(@"kConquerFailureResult");
     }
     NSMutableAttributedString *resultMutable = [[[NSMutableAttributedString alloc]initWithString:[NSString stringWithFormat:@"%@！",result]]autorelease];
@@ -273,20 +274,6 @@
     
     self.lineThreeLabel.attributedText = countMutable;
 }
-
-//按分享button时候
-
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 - (void)dealloc {
     
@@ -322,22 +309,6 @@
     [self setLineFourLabel:nil];
     [super viewDidUnload];
 }
-//#pragma mark - Delegate
-//-(void)didClickCancel:(CommonDialog *)dialog{
-//    PPDebug(@"click Cancel");
-//    (void)(ResultShareAlertPageViewResultBlock) _retryBlock;
-//    
-//}
-//-(void)didClickOk:(CommonDialog *)dialog infoView:(id)infoView{
-//    
-//    PPDebug(@"click OK");
-//    (void)(ResultShareAlertPageViewResultBlock) _nextBlock;
-//}
-//-(void)didClickClose:(CommonDialog *)dialog{
-//    
-//    PPDebug(@"click Close");
-//    
-//}
 
 
 
