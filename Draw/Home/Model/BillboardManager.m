@@ -11,6 +11,9 @@
 #import "JSON.h"
 #import "Billboard.h"
 
+#define BILLBOARD_IMAGE_DIR     @"billboard_image"
+#define DEFAULT_GALLERY_IMAGE   @"daguanka"
+
 static BillboardManager* _defaultBillboardManager;
 
 @implementation BillboardManager
@@ -29,6 +32,8 @@ static BillboardManager* _defaultBillboardManager;
 {
     self = [super init];
     self.bbList = [NSMutableArray array];
+    self.imageManager = [[StorageManager alloc] initWithStoreType:StorageTypePersistent
+                                                    directoryName:BILLBOARD_IMAGE_DIR];
     [self loadData:[BillboardManager defaultConfigFileName]];
     return self;
 }
@@ -36,6 +41,32 @@ static BillboardManager* _defaultBillboardManager;
 + (NSString*)defaultConfigFileName
 {
     return @"home_bb.json";
+}
+
+- (UIImage*)getImage:(NSString*)url
+{
+    @synchronized(_imageManager){
+        UIImage* image = [_imageManager imageForKey:url];
+        if (image){
+            return image;
+        }
+        
+        //读取网上的图片数据
+        NSURL *galleryUrl = [NSURL URLWithString:url];
+        NSData* data = [NSData dataWithContentsOfURL:galleryUrl];
+        if (data){
+            // cache image
+            image = [[[UIImage alloc] initWithData:data] autorelease];
+            [_imageManager saveImage:image forKey:url];
+        }
+        
+        //设置默认图片
+        if(image == nil){
+            image = [UIImage imageNamed:DEFAULT_GALLERY_IMAGE];
+        }
+
+        return image;
+    }
 }
 
 - (void)loadData:(NSString*)bundleName

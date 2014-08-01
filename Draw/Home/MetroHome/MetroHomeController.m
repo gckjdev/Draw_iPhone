@@ -26,6 +26,7 @@
 #import "ContestService.h"
 #import "WordManager.h"
 #import "DrawRecoveryService.h"
+#import "SDWebImageManager.h"
 
 @interface MetroHomeController ()
 
@@ -398,19 +399,7 @@
         NSMutableArray *itemList = [[[NSMutableArray alloc] init] autorelease];
         for(Billboard *bb in _bbList){
 
-            UIImage *image = nil;
-            NSURL *galleryUrl = [NSURL URLWithString:bb.image];
-
-            //读取网上的图片数据
-            NSData* data = [NSData dataWithContentsOfURL:galleryUrl];
-            if (data){
-                image = [[[UIImage alloc] initWithData:data] autorelease];
-            }
-            
-            //设置默认图片
-            if(image==nil){
-                image = [UIImage imageNamed:DEFAULT_GALLERY_IMAGE];
-            }
+            UIImage *image = [bbManager getImage:bb.image];
             
             //添加到第三方框架
             SGFocusImageItem *item = [[[SGFocusImageItem alloc] initWithTitle:@"" image:image tag:bb.index] autorelease];
