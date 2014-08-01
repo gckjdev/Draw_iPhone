@@ -56,6 +56,7 @@ BOOL PBScoreEngineTypeIsValidValue(PBScoreEngineType value) {
   switch (value) {
     case PBScoreEngineTypeScoreEngineNormal:
     case PBScoreEngineTypeScoreEngineStickPicture:
+    case PBScoreEngineTypeScoreEngineFillColor:
       return YES;
     default:
       return NO;

@@ -29,6 +29,7 @@ enum PBTutorialImageStyle{
 enum PBScoreEngineType{
     SCORE_ENGINE_NORMAL = 0;                        // 正常
     SCORE_ENGINE_STICK_PICTURE   = 1;               // 简笔画
+    SCORE_ENGINE_FILL_COLOR = 2;                    // 涂色，用于在有背景形状的涂色练习
 }
 
 message PBTip

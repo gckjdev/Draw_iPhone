@@ -133,6 +133,7 @@ BOOL PBTutorialImageStyleIsValidValue(PBTutorialImageStyle value);
 typedef enum {
   PBScoreEngineTypeScoreEngineNormal = 0,
   PBScoreEngineTypeScoreEngineStickPicture = 1,
+  PBScoreEngineTypeScoreEngineFillColor = 2,
 } PBScoreEngineType;
 
 BOOL PBScoreEngineTypeIsValidValue(PBScoreEngineType value);

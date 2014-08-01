@@ -40,7 +40,8 @@ typedef enum _Game__PBTutorialImageStyle {
 } Game__PBTutorialImageStyle;
 typedef enum _Game__PBScoreEngineType {
   GAME__PBSCORE_ENGINE_TYPE__SCORE_ENGINE_NORMAL = 0,
-  GAME__PBSCORE_ENGINE_TYPE__SCORE_ENGINE_STICK_PICTURE = 1
+  GAME__PBSCORE_ENGINE_TYPE__SCORE_ENGINE_STICK_PICTURE = 1,
+  GAME__PBSCORE_ENGINE_TYPE__SCORE_ENGINE_FILL_COLOR = 2
 } Game__PBScoreEngineType;
 typedef enum _Game__PBUserTutorialStatus {
   GAME__PBUSER_TUTORIAL_STATUS__UT_STATUS_NOT_START = 0,
