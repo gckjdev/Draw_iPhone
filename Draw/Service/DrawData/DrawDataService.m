@@ -383,7 +383,7 @@ static DrawDataService* _defaultDrawDataService = nil;
         imageData = [image data];
     }
     
-    int opusScore = draft.score;
+    int opusScore = [draft.score intValue];
     
     dispatch_async(workingQueue, ^{
         CommonNetworkOutput* output = [GameNetworkRequest createOpus:TRAFFIC_SERVER_URL
