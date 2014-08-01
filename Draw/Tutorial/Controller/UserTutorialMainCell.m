@@ -61,7 +61,7 @@
                            animated:YES];
 }
 
-#define PROGRESS_VIEW_SIZE_WIDTH (ISIPAD ? 200.0f : 120.0f)
+#define PROGRESS_VIEW_SIZE_WIDTH (ISIPAD ? 350.0f : 200.0f)
 #define PROGRESS_VIEW_SIZE_HEIGHT (ISIPAD ? 40.0f : 30.0f)
 -(void)setProgressView:(NSInteger)row WithProgress:(float)progress{
     const CGSize progressViewSize = { PROGRESS_VIEW_SIZE_WIDTH, PROGRESS_VIEW_SIZE_HEIGHT};
@@ -75,6 +75,7 @@
                                                             CGRectMake(progressX,25.0f,progressViewSize.width,progressViewSize.height)];
     
     tutorialProgressView.color = [UIColor colorWithRed:0.99f green:0.85f blue:0.33f alpha:1.0f];
+    tutorialProgressView.labelTextColor = COLOR_BROWN;
     tutorialProgressView.flat = @YES;
     tutorialProgressView.animate = @YES;
     tutorialProgressView.progressInset = @2;

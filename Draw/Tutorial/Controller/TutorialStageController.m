@@ -157,7 +157,7 @@
     
     [dialog.oKButton setTitle:NSLS(@"kPass") forState:UIControlStateNormal];
     [dialog.cancelButton setTitle:NSLS(@"kPractice") forState:UIControlStateNormal];
-    
+  
     [dialog setClickOkBlock:^(id view){
         // Conquer
 //        PBUserTutorial* newUT = [[UserTutorialService defaultService] startConquerTutorialStage:self.pbUserTutorial.localId

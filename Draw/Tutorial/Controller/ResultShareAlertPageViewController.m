@@ -48,6 +48,11 @@
                                            style:CommonSquareDialogStyleCross
                                         delegate:rspc
             ];
+    [dialog.oKButton.titleLabel setText:NSLS(@"kGoOn")];
+//    [dialog.oKButton.titleLabel setFont:AD_FONT(20, 12)];
+    [dialog.cancelButton.titleLabel setText:NSLS(@"kShare")];
+//    [dialog.cancelButton.titleLabel setFont:AD_FONT(20, 12)];
+    
     [dialog showInView:superController.view];
     dialog.clickOkBlock = ^(id infoView){
         PPDebug(@"click OK");
@@ -127,15 +132,11 @@
     [self setDesc];
  
     //avatar
-//    UIImage *avatar = self.userStage.;
-//    if(self.resultImage!=nil){
-//        avatar = self.resultImage;
-//    }
-//    if(avatar==nil){
-//        PPDebug(@"<updateViewWidget> but the avatar is nil");
-//    }
-//    [self.avatarImageView setImage:avatar];
-//    [self.avatarImageView setBackgroundColor:COLOR_BROWN];
+    UserManager *user = [UserManager defaultManager];
+    [self.avatarImageView setAvatarUrl:user.avatarURL
+                                gender:user.gender
+                        useDefaultLogo:NO];
+    
     //opusImage
     UIImage *opus = [UIImage imageNamed:DEFAULT_OPUS];
     if(self.resultImage!=nil){
@@ -159,14 +160,14 @@
     
     
     NSString *name = user.nickName;
-    NSMutableAttributedString *nameMutableString = [[[NSMutableAttributedString alloc]                  initWithString:[NSString stringWithFormat:@"恭喜玩家%@！\n",name]]autorelease];
+    NSMutableAttributedString *nameMutableString = [[[NSMutableAttributedString alloc]                  initWithString:[NSString stringWithFormat:@"%@\n",name]]autorelease];
     //人名
     [nameMutableString addAttribute:NSForegroundColorAttributeName
-                        value:COLOR_RED
-                        range:NSMakeRange(4, [name length])];
+                        value:COLOR_BROWN
+                        range:NSMakeRange(0, [name length])];
     [nameMutableString addAttribute:NSFontAttributeName
-                        value:AD_FONT(30, 18)
-                        range:NSMakeRange(4,[name length])];
+                        value:AD_FONT(18, 12)
+                        range:NSMakeRange(0,[name length])];
     self.lineOneLabel.attributedText = nameMutableString;
     
     
