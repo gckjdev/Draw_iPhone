@@ -593,7 +593,7 @@ static TutorialCoreManager* _defaultTutorialCoreManager;
     
     //画的类型
     NSArray *stageTypeList = @[
-                                @[],
+                                @[@2,@2,@2,@2,@2,@2,@2,@2,@2,@2],
                                 @[],
                                 @[],
                                 @[],
