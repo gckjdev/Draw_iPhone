@@ -97,6 +97,15 @@
 
 - (void)viewDidAppear:(BOOL)animated
 {
+    if (self.view.hidden == YES){
+        return;
+    }
+    
+    [super viewDidAppear:animated];
+}
+
+- (void)firstLoadData
+{
     dispatch_once(&_onceToken, ^{
         
         PPDebug(@"viewDidAppear local local data and call remote");
@@ -109,13 +118,17 @@
     
     PPDebug(@"viewDidAppear");
     [self.dataTableView reloadData];
-    [super viewDidAppear:animated];
 }
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)cleanDataBeforeRemoveView
+{
+    self.view.hidden = YES;
 }
 
 - (void)initListWithLocalData

@@ -168,7 +168,7 @@ static TutorialCoreManager* _defaultTutorialCoreManager;
     [stageBuilder setThumbImage:imageUrl];
     [stageBuilder setImage:imageUrl];
     [stageBuilder setImageName:@"image.jpg"];                 // image for compare
-    [stageBuilder setBgImage:@"bg_image.jpg"];                // image for background
+    [stageBuilder setBgImageName:@"bg_image.jpg"];            // image for background
     [stageBuilder setOpusName:@"data"];                       // opus data file name
     [stageBuilder setOpusId:opusId];
     if(difficult!=-1){
@@ -341,7 +341,7 @@ static TutorialCoreManager* _defaultTutorialCoreManager;
 
     
     NSArray* testTutorialName = @[@"初识三次元",@"疯狂的线条",@"识色配图",@"旺星人大集合",@"一起动动动",@"易容速成",@"百态小吉萌翻天",@"爱生活爱运动",@"名建筑大集合"];
-    NSArray* testTutorialDesc = @[@"突破二次元的界限",@"帮助你更好的熟练工具",@"这里将把你打造成用色达人",@"属于旺星人的趴",@"燃烧你的卡路里吧",@"你想易容成什么人",@"小吉闪亮登场，速来围观",@"童鞋们，一起来运动吧",@"你认识这些建筑吗？"];
+    NSArray* testTutorialDesc = @[@"教你怎么把物体从二次元转换成三次元",@"帮助你更好的熟练工具",@"这里将把你打造成用色达人",@"属于旺星人的趴",@"燃烧你的卡路里吧",@"你想易容成什么人",@"小吉闪亮登场，速来围观",@"童鞋们，一起来运动吧",@"你认识这些建筑吗？"];
     
     NSArray* tutorialImageUrl = @[@"http://58.215.184.18:8080/tutorial/image/1titlecopy.png",
                                   @"http://58.215.184.18:8080/tutorial/image/2-titlenew.png",
@@ -368,7 +368,7 @@ static TutorialCoreManager* _defaultTutorialCoreManager;
     
     NSArray* testStageName = @[
 
-                               @[@"石头",@"陶瓷",@"亚克力塑料",@"金属",@"皮肤",@"橡胶", @"玻璃",@"材质集合"],
+                               @[@"正方体",@"牛奶盒",@"六棱柱",@"铅笔",@"圆柱",@"纸筒", @"苹果"],
                                @[@"整齐的直线",@"横纵直线",@"巧画直线条",@"很浪的波浪线",@"巧画波浪线",@"几何形", @"圈圈君",@"实践测试"],
                                @[@"十二色环",@"二十四色环",@"互补色色环",@"渐变色",@"经典互补色",@"渐变构成", @"冷暖对比",@"同色系渐变构成"],
                                @[@"比熊先生",@"博美小姐",@"马尔济斯绅士",@"哈士奇骑士",@"约克夏伯爵",@"吉娃娃公主", @"泰迪女王",@"萨摩王子"],
@@ -380,7 +380,7 @@ static TutorialCoreManager* _defaultTutorialCoreManager;
                                @[@"埃及金字塔",@"埃菲尔铁塔",@"赵州桥",@"卢浮宫艺术馆",@"古希腊神庙",@"美国白宫",@"雷峰塔",@"江南小镇"]
                                ];
     
-    NSArray* testStageDesc = @[@[@"石头",@"陶瓷",@"亚克力塑料",@"金属",@"皮肤",@"橡胶", @"玻璃",@"材质集合"],
+    NSArray* testStageDesc = @[@[@"初步认识传说中的五调子（亮、灰、暗、反光、投影）",@"学会了正方体，现在你可以尝试画下生活中类似的物体",@"怎样把物体画的更有立体感",@"结合前面的六棱柱，试试画一只铅笔",@"学习怎么让物体的明暗过渡的更加自然",@"运用前面学习的知识，试着画一个圆柱形纸筒", @"你是我的小呀小苹果······综合所学知识画个最流行的小苹果吧"],
                                @[@"整齐的直线",@"横纵直线",@"巧画直线条",@"很浪的波浪线",@"巧画波浪线",@"几何形", @"圈圈君",@"实践测试"],
                                @[@"十二色环",@"二十四色环",@"互补色色环",@"渐变色",@"经典互补色",@"渐变构成", @"冷暖对比",@"同色系渐变构成"],
                                @[@"比熊先生",@"博美小姐",@"马尔济斯绅士",@"哈士奇骑士",@"约克夏伯爵",@"吉娃娃公主", @"泰迪女王",@"萨摩王子"],
@@ -398,14 +398,13 @@ static TutorialCoreManager* _defaultTutorialCoreManager;
 
     NSArray* stageImageUrl = @[
                                     @[
-                                        @"http://58.215.184.18:8080/tutorial/image/1-1.png",
-                                        @"http://58.215.184.18:8080/tutorial/image/1-2.png",
-                                        @"http://58.215.184.18:8080/tutorial/image/1-3.png",
-                                        @"http://58.215.184.18:8080/tutorial/image/1-4.png",
-                                        @"http://58.215.184.18:8080/tutorial/image/1-5.png",
-                                        @"http://58.215.184.18:8080/tutorial/image/1-6.png",
-                                        @"http://58.215.184.18:8080/tutorial/image/1-7.png",
-                                        @"http://58.215.184.18:8080/tutorial/image/1-8.png"
+                                        @"http://58.215.160.100:8080/app_res/tutorial/image/0-1.jpg",
+                                        @"http://58.215.160.100:8080/app_res/tutorial/image/0-2.jpg",
+                                        @"http://58.215.160.100:8080/app_res/tutorial/image/0-3.jpg",
+                                        @"http://58.215.160.100:8080/app_res/tutorial/image/0-4.jpg",
+                                        @"http://58.215.160.100:8080/app_res/tutorial/image/0-5.jpg",
+                                        @"http://58.215.160.100:8080/app_res/tutorial/image/0-6.jpg",
+                                        @"http://58.215.160.100:8080/app_res/tutorial/image/0-7.jpg"
                                      ],
                                     @[
                                         @"http://58.215.184.18:8080/tutorial/image/2-1.png",
@@ -551,13 +550,25 @@ static TutorialCoreManager* _defaultTutorialCoreManager;
     NSArray *stage6Tips = @[@[@"tips1.png"]];
     NSArray *stage7Tips = @[@[@"tips1.png",@"tips2.png"]];
     NSArray *stage8Tips = @[@[@"tips1.png",@"tips2.png",@"tips3.png"]];
+    
+    //tutorial0 的stage
+    NSArray *stage1Tips_tutorial0 = @[@[@"tips1.png"]];
+    NSArray *stage2Tips_tutorial0 = @[@[@"tips1.png",@"tips2.png",@"tips3.png",@"tips4.png",@"tips5.png",@"tips6.png",@"tips7.png",@"tips8.png",@"tips9.png",@"tips10.png"]];
+    NSArray *stage3Tips_tutorial0 = @[@[@"tips1.png"]];
+    NSArray *stage4Tips_tutorial0 = @[@[@"tips1.png",@"tips2.png",@"tips3.png",@"tips4.png",@"tips5.png",@"tips6.png",@"tips7.png"]];
+    NSArray *stage5Tips_tutorial0 = @[@[@"tips1.png"]];
+    NSArray *stage6Tips_tutorial0 = @[@[@"tips1.png",@"tips2.png",@"tips3.png",@"tips4.png",@"tips5.png",@"tips6.png",@"tips7.png"]];
+    NSArray *stage7Tips_tutorial0 =@[@[@"tips1.png",@"tips2.png",@"tips3.png",@"tips4.png",@"tips5.png",@"tips6.png",@"tips7.png",@"tips8.png",@"tips9.png"]];
+    
     //stageTipsList
+    NSArray *tutorial0Tips = @[stage1Tips_tutorial0,stage2Tips_tutorial0,stage3Tips_tutorial0,stage4Tips_tutorial0,stage5Tips_tutorial0,stage6Tips_tutorial0,stage7Tips_tutorial0];
+    
     NSArray *tutorial6Tips = @[stageTips,@[],@[],@[],stage6Tips,stage7Tips,stage8Tips,@[],@[],@[]];
     NSArray *tutorial7Tips = @[@[],@[],@[],@[],@[],@[],@[],@[],@[],@[]];
     NSArray *tutorial8Tips = @[@[],@[],@[],@[],@[],@[],@[],@[],@[],@[]];
     //tutorialTipsList
     NSArray *tipsList = @[
-                          @[],
+                          tutorial0Tips,
                           @[],
                           @[],
                           @[],

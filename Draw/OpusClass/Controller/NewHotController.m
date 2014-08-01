@@ -139,8 +139,17 @@
 
 - (void)clearPageContainer
 {
+    for (UIViewController* vc in self.pagesContainer.viewControllers){
+        if ([vc isKindOfClass:[FeedListController class]]){
+            FeedListController* fvc = (FeedListController*)vc;
+            [fvc cleanDataBeforeRemoveView];
+        }
+    }
+    
+    [self.pagesContainer viewDidUnload];
     [self.pagesContainer.view removeFromSuperview];
     self.pagesContainer = nil;
+    
 }
 
 - (NSString*)getRankTypeTitle
@@ -257,7 +266,6 @@
     
     [self updateRankTypeButtonTitle];
     
-    currentSelectIndex = 0; // force to 0 use optimize performance?
     [self reloadPageContainer:currentSelectIndex];
     
 }
