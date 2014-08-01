@@ -30,4 +30,6 @@ enum{
    superViewController:(UIViewController*)superViewController
                  title:(NSString*)title;
 
+- (void)cleanDataBeforeRemoveView;
+
 @end
