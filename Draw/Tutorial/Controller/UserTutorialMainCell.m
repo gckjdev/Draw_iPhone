@@ -83,6 +83,8 @@
     tutorialProgressView.outerStrokeColor = COLOR_WHITE;
     tutorialProgressView.outerStrokeWidth = @2;
     tutorialProgressView.type = LDProgressSolid;
+//    [tutorialProgressView updateCenterX:[UIScreen mainScreen].bounds.size.width/2];
+    
     //row == 0 特殊情況
     if(row <= 0){
         UIImage* starButtonBgImage = [[ShareImageManager defaultManager] tutorialStartButtonBgImage];

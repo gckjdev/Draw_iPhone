@@ -235,22 +235,22 @@
     
     
     //检测NSSTRING 所在的位置
-    NSString *score = [NSString stringWithFormat:@"%d",self.score];
-    NSString *sentenceOne = [NSString stringWithFormat:@"本次作品得分為%@分\n",score];
+    NSString *scoreString = [NSString stringWithFormat:@"%d",self.score];
+    NSString *sentenceOne = [NSString stringWithFormat:@"本次作品得分為%@分\n",scoreString];
     NSMutableAttributedString *scoreMutableString = [[[NSMutableAttributedString alloc]
                                                       initWithString:sentenceOne]autorelease];
     //人名
     [scoreMutableString addAttribute:NSForegroundColorAttributeName
                               value:COLOR_RED
-                              range:[self getRangeInNsstringLong:sentenceOne ShorterSentence:score]];
+                              range:[self getRangeInNsstringLong:sentenceOne ShorterSentence:scoreString]];
     [scoreMutableString addAttribute:NSFontAttributeName
                               value:AD_FONT(30, 18)
-                              range:[self getRangeInNsstringLong:sentenceOne ShorterSentence:score]];
+                              range:[self getRangeInNsstringLong:sentenceOne ShorterSentence:scoreString]];
+
     self.lineTwoLabel.attributedText = scoreMutableString;
     
     // TODO localization
     // TODO calculate length/location by code
-    
     //位置
     NSString *count = [NSString stringWithFormat:@"%d%%",self.userStage.defeatCount];
     NSString *sentenceTwo = [NSString stringWithFormat:@"宇宙三次元%@的用户！",count];
@@ -267,8 +267,10 @@
     //闯关结果
     BOOL isTutorialComplete = [[UserTutorialManager defaultManager] isLastStage:self.userStage];
     NSString *result = @"";
+    
     //合格
-    if(self.score>=60){
+    BOOL isPass = [[UserTutorialManager defaultManager] isPass:self.score];
+    if (isPass == NO){
         //课程完成
         if(isTutorialComplete){
             result = [NSString stringWithFormat:NSLS(@"kConquerResultPassComplete")];
@@ -295,20 +297,6 @@
 
     self.lineThreeLabel.attributedText = countMutable;
 }
-
-//按分享button时候
-
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 - (void)dealloc {
     
@@ -344,22 +332,6 @@
     [self setLineFourLabel:nil];
     [super viewDidUnload];
 }
-//#pragma mark - Delegate
-//-(void)didClickCancel:(CommonDialog *)dialog{
-//    PPDebug(@"click Cancel");
-//    (void)(ResultShareAlertPageViewResultBlock) _retryBlock;
-//    
-//}
-//-(void)didClickOk:(CommonDialog *)dialog infoView:(id)infoView{
-//    
-//    PPDebug(@"click OK");
-//    (void)(ResultShareAlertPageViewResultBlock) _nextBlock;
-//}
-//-(void)didClickClose:(CommonDialog *)dialog{
-//    
-//    PPDebug(@"click Close");
-//    
-//}
 
 
 

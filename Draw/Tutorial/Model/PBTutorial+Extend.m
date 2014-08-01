@@ -9,6 +9,7 @@
 #import "PBTutorial+Extend.h"
 #import "LocaleUtils.h"
 #import "TutorialCoreManager.h"
+#import "UserTutorialManager.h"
 
 @implementation PBTutorial (Extend)
 
@@ -205,13 +206,27 @@
 
 - (int)progress
 {
+    int currentTryStageCount = [self.userStagesList count];
+    int passCount = currentTryStageCount-1;
+    if (self.currentStageIndex == (currentTryStageCount-1)){
+        // already try current stage index, check if passed
+        PBUserStage* userStage = [self.userStagesList objectAtIndex:self.currentStageIndex];
+        if ([[UserTutorialManager defaultManager] isPass:userStage.bestScore] ||
+            [[UserTutorialManager defaultManager] isPass:userStage.lastScore]){
+            
+            // current stage is passed
+            passCount++;
+        }
+    }
+    
     PBTutorial* pbTutorial = [[TutorialCoreManager defaultManager] findTutorialByTutorialId:self.tutorial.tutorialId];
     int totalStageCount = [pbTutorial.stagesList count];
+    
     if (totalStageCount > 0){
-        return (((self.currentStageIndex)*1.0f) / (totalStageCount*1.0f))*100;
+        return (((passCount)*1.0f) / (totalStageCount*1.0f))*100;
     }
     else{
-        return 100;
+        return 0;
     }
 }
 
