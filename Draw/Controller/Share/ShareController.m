@@ -516,15 +516,15 @@ typedef enum{
     //后台运行creategif,主线程显示小苹果进程。
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0),
                    ^(void){
-                [ShowDrawView createGIF:24
-                              delayTime:0.5f
+                [ShowDrawView createGIF:30
+                              delayTime:0.25f
                          drawActionList:_selectedPaint.drawActionList
                                 bgImage:[[MyPaintManager defaultManager] bgImageForPaint:_selectedPaint]
                                  layers:_selectedPaint.layers
                              canvasSize:_selectedPaint.canvasSize
                              outputPath: //_selectedPaint.imageFilePath
                         @"/Users/Linruin/Desktop/test.gif"
-                              scaleSize:1.0];
+                              scaleSize:0.5];
                      
                        dispatch_async(dispatch_get_main_queue(),
                             ^(void){

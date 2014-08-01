@@ -502,9 +502,15 @@
     if (self.draft) {
         
         [self.draft drawActionList];
-        if ([GameApp hasBGOffscreen]) {
-            [self setDrawBGImage:self.draft.bgImage];
+//        if ([GameApp hasBGOffscreen]) {
+//        }
+        if (targetType == TypePhoto){
+            [self setDrawBGImage:_bgImage useImageRect:YES];
         }
+        else{
+            [self setDrawBGImage:self.draft.bgImage useImageRect:NO];
+        }
+        
         
         [drawView showDraft:self.draft];
         self.draft.paintImage = nil;
@@ -824,17 +830,11 @@
     }
 }
 
-- (void)initBgImage
-{
-    if ([GameApp hasBGOffscreen] || targetType == TypePhoto) {
-        if (self.draft == nil && _bgImage) {
-            [self setDrawBGImage:_bgImage];
-        } else {
-            self.bgImageName = _draft.bgImageName;
-            self.bgImage = _draft.bgImage;
-        }
-    }
-}
+//- (void)initBgImage
+//{
+//    if ([GameApp hasBGOffscreen] || targetType == TypePhoto) {
+//    }
+//}
 
 - (void)initPageBG
 {
@@ -905,7 +905,7 @@
 
     [self updateTargetFriend];
 
-    [self initBgImage];
+//    [self initBgImage];
     [self initPageBG];
 
     [self initRecovery];
@@ -916,10 +916,21 @@
 }
 
 
-- (void)setDrawBGImage:(UIImage *)image
+- (void)setDrawBGImage:(UIImage *)image useImageRect:(BOOL)useImageRect
 {
-    CGRect rect = CGRectFromCGSize(image.size);
-    [drawView changeRect:rect];
+    if (image == nil){
+        return;
+    }
+    
+    if (useImageRect){
+        CGRect rect = CGRectFromCGSize(image.size);
+        [drawView changeRect:rect];
+    }
+    else{
+        // resize image to current rect TODO conquer
+        image = [image imageByScalingAndCroppingForSize:drawView.bounds.size];
+    }
+    
     [drawView setBGImage:image];
 }
 
@@ -1761,7 +1772,7 @@
             }
     }
 
-    if(effetiveAction<minStrokeNum){
+    if(effetiveAction < minStrokeNum && effetiveAction){
         return (minStrokeNum - effetiveAction);
         PPDebug(@"too few strokes!");
     }
