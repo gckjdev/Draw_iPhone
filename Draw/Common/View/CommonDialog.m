@@ -150,6 +150,27 @@
     return view;
 }
 
++ (CommonDialog *)createDialogWithTitle:(NSString *)title
+                             customView:(UIView *)customView
+                                  style:(CommonDialogStyle)style
+                               delegate:(id<CommonDialogDelegate>)delegate{
+    
+    CommonDialog *view = [CommonDialog createDialogWithStyle:style];
+    [view setTitle:title];
+    view.type = CommonDialogTypeCustomView;
+    view.customView = customView;
+    [view.contentView addSubview:view.customView];
+    if(style == CommonSquareDialogStyleCross){
+        [view squareLayout];
+    }
+    else{
+        [view layout];
+    }
+    view.delegate = delegate;
+    
+    return view;
+}
+
 
 - (void)layout
 {
@@ -283,7 +304,8 @@
     + self.oKButton.frame.size.height
     + GAP_Y_BETWEEN_BUTTON_AND_BOTTOM + CONTENT_VIEW_INSERT;
     
-    [self.contentView updateHeight:height+30];
+    CGFloat adpateHeight = (ISIPAD?200:50);
+    [self.contentView updateHeight:height+adpateHeight];
     [self.contentView setNeedsDisplay];
 }
 
@@ -392,10 +414,6 @@
             self.cancelButton = nil;
             break;
         case CommonSquareDialogStyleCross:
-            [_oKButton removeFromSuperview];
-            self.oKButton = nil;
-            [_cancelButton removeFromSuperview];
-            self.cancelButton = nil;
             break;
             
         default:

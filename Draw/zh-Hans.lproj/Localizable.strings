@@ -2842,3 +2842,6 @@
 "kNoTipsForChapter" = "呃呃，暂无提示";
 "kStartLearnTutorial" = "打开";
 "kAddTutorialToLearn" = "添加";
+
+"kConquerSuccessResult" = "闯关成功";
+"kConquerFailureResult" = "闯关失败";

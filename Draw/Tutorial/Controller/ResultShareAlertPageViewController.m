@@ -12,6 +12,7 @@
 #import "Tutorial.pb.h"
 #import "UserTutorialService.h"
 
+
 @interface ResultShareAlertPageViewController ()
 
 @property (nonatomic, retain) UIImage* resultImage;
@@ -41,8 +42,25 @@
     rspc.score = score;
     rspc.resultImage = resultImage;
     
-    CommonDialog *dialog = [CommonDialog createDialogWithTitle:NSLS(@"kResultSharePage") customView:rspc.view style:CommonDialogStyleCross];
+    CommonDialog *dialog = [CommonDialog
+                            createDialogWithTitle:NSLS(@"kResultSharePage")
+                                      customView:rspc.view
+                                           style:CommonSquareDialogStyleCross
+                                        delegate:rspc
+            ];
     [dialog showInView:superController.view];
+    dialog.clickOkBlock = ^(id infoView){
+        PPDebug(@"click OK");
+        rspc.nextBlock();
+    };
+    dialog.clickCancelBlock = ^(id infoView){
+        PPDebug(@"click cancel");
+        rspc.retryBlock();
+    };
+    dialog.clickCloseBlock = ^(id infoView){
+        PPDebug(@"click close");
+//        rspc.nextBlock();
+    };
     
     [superController addChildViewController:superController];
     [rspc release];
@@ -86,7 +104,10 @@
     // Dispose of any resources that can be recreated.
 }
 
+
 //更新本页面控件
+#define DEFAULT_AVATAR @"xiaoguanka"
+#define DEFAULT_OPUS @"xiaoguanka"
 -(void)updateViewWidget{
     //button
     [self.shareButton setTitle:NSLS(@"kShare") forState:UIControlStateNormal];
@@ -99,59 +120,95 @@
     SET_BUTTON_ROUND_STYLE_ORANGE(self.continueButton);
     
     //Label
-    NSMutableAttributedString *desc = [self getDesc];
-    [self.nameLabel setText:@"皮皮彭"];
-    [self.nameLabel setFont:AD_FONT(20, 13)];
-    self.decsLabel.attributedText = desc;
+//    NSMutableAttributedString *desc = [self getDesc];
+//    [self.nameLabel setText:@"皮皮彭"];
+//    [self.nameLabel setFont:AD_FONT(18, 13)];
 
-    
-    //head
-    //TODO
-    //    UserManager* userManager = [UserManager defaultManager];
-    //    [self.headImageView setAvatarUrl:[userManager avatarURL]
-    //                           gender:[userManager gender]
-    //                   useDefaultLogo:NO];
-    //    self.headImageView.delegate = self;
-    [self.avatarImageView setImage:[UIImage imageNamed:@"xiaoguanka"]];
-    [self.avatarImageView setBackgroundColor:COLOR_BROWN];
-    
+    [self setDesc];
+ 
+    //avatar
+//    UIImage *avatar = self.userStage.;
+//    if(self.resultImage!=nil){
+//        avatar = self.resultImage;
+//    }
+//    if(avatar==nil){
+//        PPDebug(@"<updateViewWidget> but the avatar is nil");
+//    }
+//    [self.avatarImageView setImage:avatar];
+//    [self.avatarImageView setBackgroundColor:COLOR_BROWN];
     //opusImage
-    [self.opusImageView setImage:[UIImage imageNamed:@"xiaoguanka"]];
+    UIImage *opus = [UIImage imageNamed:DEFAULT_OPUS];
+    if(self.resultImage!=nil){
+        opus = self.resultImage;
+    }
+    if(opus==nil){
+        PPDebug(@"<updateViewWidget> but the opus is nil");
+    }
+    [self.opusImageView setImage:opus];
     
 }
--(NSMutableAttributedString *)getDesc{
-    NSMutableAttributedString *attriString = [[[NSMutableAttributedString alloc]                  initWithString:@"恭喜皮皮彭！\n本次作品得分為78分,\n耗時58秒\n闖關成功！\n"]    autorelease];
-    //所有字体
-    [attriString addAttribute:NSFontAttributeName
-                        value:AD_FONT(20, 13)
-                        range:NSMakeRange(0,22)];
+-(void *)setDesc{
     
+    //@"恭喜皮皮彭！\n本次作品得分為%@分,\n耗時58秒,击败了宇宙%%%@的用户,\n闖關成功！"
+    
+    
+    UserManager *user = [UserManager defaultManager];
+    
+    
+    
+    
+    
+    NSString *name = user.nickName;
+    NSMutableAttributedString *nameMutableString = [[[NSMutableAttributedString alloc]                  initWithString:[NSString stringWithFormat:@"恭喜玩家%@！\n",name]]autorelease];
     //人名
-    [attriString addAttribute:NSForegroundColorAttributeName
+    [nameMutableString addAttribute:NSForegroundColorAttributeName
                         value:COLOR_RED
-                        range:NSMakeRange(2, 3)];
-    [attriString addAttribute:NSFontAttributeName
-                        value:AD_FONT(30, 20)
-                        range:NSMakeRange(2,3)];
-    
-    //分数
-    [attriString addAttribute:NSForegroundColorAttributeName
-                        value:COLOR_RED
-                        range:NSMakeRange(14, 2)];
-    [attriString addAttribute:NSFontAttributeName
-                        value:AD_FONT(30, 20)
-                        range:NSMakeRange(14,2)];
-    //时间
-    [attriString addAttribute:NSForegroundColorAttributeName
-                        value:COLOR_ORANGE
-                        range:NSMakeRange(21,2)];
-    [attriString addAttribute:NSFontAttributeName
-                        value:AD_FONT(30, 20)
-                        range:NSMakeRange(21,2)];
+                        range:NSMakeRange(4, [name length])];
+    [nameMutableString addAttribute:NSFontAttributeName
+                        value:AD_FONT(30, 18)
+                        range:NSMakeRange(4,[name length])];
+    self.lineOneLabel.attributedText = nameMutableString;
     
     
-    return attriString;
+    NSString *score = [NSString stringWithFormat:@"%d",self.score];
+    NSMutableAttributedString *scoreMutableString = [[[NSMutableAttributedString alloc]                  initWithString:[NSString stringWithFormat:@"本次作品得分為%@分,耗时58秒\n",score]]autorelease];
+    //人名
+    [scoreMutableString addAttribute:NSForegroundColorAttributeName
+                              value:COLOR_RED
+                              range:NSMakeRange(7, [score length]+1)];
+    [scoreMutableString addAttribute:NSFontAttributeName
+                              value:AD_FONT(30, 18)
+                              range:NSMakeRange(7,[score length]+1)];
+    self.lineTwoLabel.attributedText = scoreMutableString;
+    
+    
+    NSString *result = NSLS(@"kConquerSuccessResult");
+    if(self.score<60){
+        result = NSLS(@"kConquerFailureResult");
+    }
+    NSMutableAttributedString *resultMutable = [[[NSMutableAttributedString alloc]initWithString:[NSString stringWithFormat:@"%@！",result]]autorelease];
+    [resultMutable addAttribute:NSForegroundColorAttributeName
+                         value:COLOR_RED
+                         range:NSMakeRange(0, [result length])];
+    [resultMutable addAttribute:NSFontAttributeName
+                         value:AD_FONT(30, 18)
+                         range:NSMakeRange(0,[result length])];
+    self.lineFourLabel.attributedText = resultMutable;
+    
+    
+    NSString *count = [NSString stringWithFormat:@"%d",self.userStage.defeatCount];
+    NSMutableAttributedString *countMutable = [[[NSMutableAttributedString alloc]initWithString:[NSString stringWithFormat:@"击败了宇宙%%%@的用户！",count]]autorelease];
+    [countMutable addAttribute:NSForegroundColorAttributeName
+                               value:COLOR_RED
+                               range:NSMakeRange(5, [count length]+1)];
+    [countMutable addAttribute:NSFontAttributeName
+                               value:AD_FONT(30, 18)
+                               range:NSMakeRange(5,[count length]+1)];
+    
+    self.lineThreeLabel.attributedText = countMutable;
 }
+
+//按分享button时候
 
 
 /*
@@ -177,9 +234,12 @@
     [_opusImageView release];
     [_avatarImageView release];
     [_nameLabel release];
-    [_decsLabel release];
     [_shareButton release];
     [_continueButton release];
+    [_lineOneLabel release];
+    [_lineTwoLabel release];
+    [_lineThreeLabel release];
+    [_lineFourLabel release];
     [super dealloc];
 }
 
@@ -188,10 +248,31 @@
     [self setOpusImageView:nil];
     [self setAvatarImageView:nil];
     [self setNameLabel:nil];
-    [self setDecsLabel:nil];
     [self setShareButton:nil];
     [self setContinueButton:nil];
+    [self setLineOneLabel:nil];
+    [self setLineTwoLabel:nil];
+    [self setLineThreeLabel:nil];
+    [self setLineFourLabel:nil];
     [super viewDidUnload];
 }
+//#pragma mark - Delegate
+//-(void)didClickCancel:(CommonDialog *)dialog{
+//    PPDebug(@"click Cancel");
+//    (void)(ResultShareAlertPageViewResultBlock) _retryBlock;
+//    
+//}
+//-(void)didClickOk:(CommonDialog *)dialog infoView:(id)infoView{
+//    
+//    PPDebug(@"click OK");
+//    (void)(ResultShareAlertPageViewResultBlock) _nextBlock;
+//}
+//-(void)didClickClose:(CommonDialog *)dialog{
+//    
+//    PPDebug(@"click Close");
+//    
+//}
+
+
 
 @end

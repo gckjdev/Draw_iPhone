@@ -6260,6 +6260,14 @@
 		D81962581962AA8700B4FBAF /* StageBasicInfoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D81962521962AA8700B4FBAF /* StageBasicInfoCell.xib */; };
 		D81962591962AA8700B4FBAF /* StageBasicInfoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D81962521962AA8700B4FBAF /* StageBasicInfoCell.xib */; };
 		D819625A1962AA8700B4FBAF /* StageBasicInfoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D81962521962AA8700B4FBAF /* StageBasicInfoCell.xib */; };
+		D81AE781198A3B85001F3F14 /* ResultSharePageViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D81AE77F198A3B85001F3F14 /* ResultSharePageViewController.xib */; };
+		D81AE782198A3B85001F3F14 /* ResultSharePageViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D81AE77F198A3B85001F3F14 /* ResultSharePageViewController.xib */; };
+		D81AE783198A3B85001F3F14 /* ResultSharePageViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D81AE77F198A3B85001F3F14 /* ResultSharePageViewController.xib */; };
+		D81AE784198A3B85001F3F14 /* ResultSharePageViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D81AE77F198A3B85001F3F14 /* ResultSharePageViewController.xib */; };
+		D81AE785198A3B85001F3F14 /* ResultSharePageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D81AE780198A3B85001F3F14 /* ResultSharePageViewController.m */; };
+		D81AE786198A3B85001F3F14 /* ResultSharePageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D81AE780198A3B85001F3F14 /* ResultSharePageViewController.m */; };
+		D81AE787198A3B85001F3F14 /* ResultSharePageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D81AE780198A3B85001F3F14 /* ResultSharePageViewController.m */; };
+		D81AE788198A3B85001F3F14 /* ResultSharePageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D81AE780198A3B85001F3F14 /* ResultSharePageViewController.m */; };
 		D82540F419650A1C00C876C3 /* tutorial_core_version.txt in Resources */ = {isa = PBXBuildFile; fileRef = D82540F219650A1C00C876C3 /* tutorial_core_version.txt */; };
 		D82540F519650A1C00C876C3 /* tutorial_core_version.txt in Resources */ = {isa = PBXBuildFile; fileRef = D82540F219650A1C00C876C3 /* tutorial_core_version.txt */; };
 		D82540F619650A1C00C876C3 /* tutorial_core_version.txt in Resources */ = {isa = PBXBuildFile; fileRef = D82540F219650A1C00C876C3 /* tutorial_core_version.txt */; };
@@ -6440,14 +6448,6 @@
 		D8B58B43197CF6560088E5F7 /* GuidePageManager.m in Sources */ = {isa = PBXBuildFile; fileRef = D8B58B41197CF6560088E5F7 /* GuidePageManager.m */; };
 		D8B58B44197CF6560088E5F7 /* GuidePageManager.m in Sources */ = {isa = PBXBuildFile; fileRef = D8B58B41197CF6560088E5F7 /* GuidePageManager.m */; };
 		D8B58B45197CF6560088E5F7 /* GuidePageManager.m in Sources */ = {isa = PBXBuildFile; fileRef = D8B58B41197CF6560088E5F7 /* GuidePageManager.m */; };
-		D8B8416A197DF8F400B6FB5C /* ResultSharePageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D8B84168197DF8F400B6FB5C /* ResultSharePageViewController.m */; };
-		D8B8416B197DF8F400B6FB5C /* ResultSharePageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D8B84168197DF8F400B6FB5C /* ResultSharePageViewController.m */; };
-		D8B8416C197DF8F400B6FB5C /* ResultSharePageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D8B84168197DF8F400B6FB5C /* ResultSharePageViewController.m */; };
-		D8B8416D197DF8F400B6FB5C /* ResultSharePageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D8B84168197DF8F400B6FB5C /* ResultSharePageViewController.m */; };
-		D8B8416E197DF8F400B6FB5C /* ResultSharePageViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D8B84169197DF8F400B6FB5C /* ResultSharePageViewController.xib */; };
-		D8B8416F197DF8F400B6FB5C /* ResultSharePageViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D8B84169197DF8F400B6FB5C /* ResultSharePageViewController.xib */; };
-		D8B84170197DF8F400B6FB5C /* ResultSharePageViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D8B84169197DF8F400B6FB5C /* ResultSharePageViewController.xib */; };
-		D8B84171197DF8F400B6FB5C /* ResultSharePageViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D8B84169197DF8F400B6FB5C /* ResultSharePageViewController.xib */; };
 		D8B84172197E119500B6FB5C /* xiaoguanka.png in Resources */ = {isa = PBXBuildFile; fileRef = D8B84177197E119500B6FB5C /* xiaoguanka.png */; };
 		D8B84173197E119500B6FB5C /* xiaoguanka.png in Resources */ = {isa = PBXBuildFile; fileRef = D8B84177197E119500B6FB5C /* xiaoguanka.png */; };
 		D8B84174197E119500B6FB5C /* xiaoguanka.png in Resources */ = {isa = PBXBuildFile; fileRef = D8B84177197E119500B6FB5C /* xiaoguanka.png */; };
@@ -10791,6 +10791,9 @@
 		D81962501962AA8700B4FBAF /* StageBasicInfoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StageBasicInfoCell.h; sourceTree = "<group>"; };
 		D81962511962AA8700B4FBAF /* StageBasicInfoCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StageBasicInfoCell.m; sourceTree = "<group>"; };
 		D81962521962AA8700B4FBAF /* StageBasicInfoCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = StageBasicInfoCell.xib; sourceTree = "<group>"; };
+		D81AE77E198A3B84001F3F14 /* ResultSharePageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ResultSharePageViewController.h; sourceTree = "<group>"; };
+		D81AE77F198A3B85001F3F14 /* ResultSharePageViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ResultSharePageViewController.xib; sourceTree = "<group>"; };
+		D81AE780198A3B85001F3F14 /* ResultSharePageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ResultSharePageViewController.m; sourceTree = "<group>"; };
 		D82540F219650A1C00C876C3 /* tutorial_core_version.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = tutorial_core_version.txt; sourceTree = "<group>"; };
 		D82540F319650A1C00C876C3 /* tutorial_core.pb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = tutorial_core.pb; sourceTree = "<group>"; };
 		D82C0D6719763BBF0088539F /* MoreViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MoreViewCell.h; sourceTree = "<group>"; };
@@ -10851,9 +10854,6 @@
 		D8B58B24197CEE090088E5F7 /* SGFocusImageItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SGFocusImageItem.m; sourceTree = "<group>"; };
 		D8B58B40197CF6560088E5F7 /* GuidePageManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GuidePageManager.h; sourceTree = "<group>"; };
 		D8B58B41197CF6560088E5F7 /* GuidePageManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GuidePageManager.m; sourceTree = "<group>"; };
-		D8B84167197DF8F400B6FB5C /* ResultSharePageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ResultSharePageViewController.h; sourceTree = "<group>"; };
-		D8B84168197DF8F400B6FB5C /* ResultSharePageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ResultSharePageViewController.m; sourceTree = "<group>"; };
-		D8B84169197DF8F400B6FB5C /* ResultSharePageViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ResultSharePageViewController.xib; sourceTree = "<group>"; };
 		D8B84178197E11A900B6FB5C /* en */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = en; path = en.lproj/xiaoguanka.png; sourceTree = "<group>"; };
 		D8B8418F197E639A00B6FB5C /* ResultShareAlertPageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ResultShareAlertPageViewController.h; sourceTree = "<group>"; };
 		D8B84190197E639A00B6FB5C /* ResultShareAlertPageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ResultShareAlertPageViewController.m; sourceTree = "<group>"; };
@@ -18421,9 +18421,9 @@
 		D8B84166197DF7B300B6FB5C /* ResultSharePage */ = {
 			isa = PBXGroup;
 			children = (
-				D8B84167197DF8F400B6FB5C /* ResultSharePageViewController.h */,
-				D8B84168197DF8F400B6FB5C /* ResultSharePageViewController.m */,
-				D8B84169197DF8F400B6FB5C /* ResultSharePageViewController.xib */,
+				D81AE77E198A3B84001F3F14 /* ResultSharePageViewController.h */,
+				D81AE77F198A3B85001F3F14 /* ResultSharePageViewController.xib */,
+				D81AE780198A3B85001F3F14 /* ResultSharePageViewController.m */,
 				D8B8418F197E639A00B6FB5C /* ResultShareAlertPageViewController.h */,
 				D8B84190197E639A00B6FB5C /* ResultShareAlertPageViewController.m */,
 				D8B84195197E65C500B6FB5C /* ResultShareAlertPageViewController.xib */,
@@ -19268,6 +19268,7 @@
 				A49972D41778365000B01EBE /* OnlineGuessDrawController.xib in Resources */,
 				A49972D51778365000B01EBE /* OnlineGuessDrawController~ipad.xib in Resources */,
 				A49972F917783BA200B01EBE /* ResultController~ipad.xib in Resources */,
+				D81AE783198A3B85001F3F14 /* ResultSharePageViewController.xib in Resources */,
 				A49972FB17783BA200B01EBE /* ResultController.xib in Resources */,
 				A499730F17783BF200B01EBE /* ShowFeedController.xib in Resources */,
 				A499731017783BF200B01EBE /* ShowFeedController~ipad.xib in Resources */,
@@ -19732,7 +19733,6 @@
 				A4D8005917DB089C0085061F /* sent_message@2x.png in Resources */,
 				A4D8005D17DB089C0085061F /* sina@2x.png in Resources */,
 				A4D8006117DB089C0085061F /* split_photo@2x.png in Resources */,
-				D8B84170197DF8F400B6FB5C /* ResultSharePageViewController.xib in Resources */,
 				A4D8006517DB089C0085061F /* tool@2x.png in Resources */,
 				A4D8006917DB089C0085061F /* volume_off@2x.png in Resources */,
 				A4D8006D17DB089C0085061F /* volume_on@2x.png in Resources */,
@@ -20376,7 +20376,6 @@
 				A49972421778349000B01EBE /* HomeController.xib in Resources */,
 				A49972431778349000B01EBE /* HomeController~ipad.xib in Resources */,
 				CA3D4B0217794748000A8FC7 /* ShadowBox.xib in Resources */,
-				D8B8416F197DF8F400B6FB5C /* ResultSharePageViewController.xib in Resources */,
 				CA3D4B1417794748000A8FC7 /* ShadowBox~ipad.xib in Resources */,
 				C2C09DE317797EF3009408EB /* ToolUpPanel.xib in Resources */,
 				C2C09E93177BD8C8009408EB /* gallery_search_btn@2x.png in Resources */,
@@ -20855,6 +20854,7 @@
 				EA8EF65117E55D3B003F1AF8 /* draw_home_guess@2x.png in Resources */,
 				EA8EF65517E55D3B003F1AF8 /* draw_home_more@2x.png in Resources */,
 				EA8EF65917E55D3B003F1AF8 /* draw_home_online_guess@2x.png in Resources */,
+				D81AE782198A3B85001F3F14 /* ResultSharePageViewController.xib in Resources */,
 				EA8EF65D17E55D3B003F1AF8 /* draw_home_top@2x.png in Resources */,
 				EA8EF66117E55D3B003F1AF8 /* draw_home_user_photo@2x.png in Resources */,
 				EA8EF67817E6AB9F003F1AF8 /* draw_home_bottom_bg@2x.png in Resources */,
@@ -21143,7 +21143,6 @@
 				A455F8CA1585D21400CA5743 /* grayArrow.png in Resources */,
 				A455F8CB1585D21400CA5743 /* grayArrow@2x.png in Resources */,
 				A455F8CC1585D21400CA5743 /* whiteArrow.png in Resources */,
-				D8B8416E197DF8F400B6FB5C /* ResultSharePageViewController.xib in Resources */,
 				A455F8CD1585D21400CA5743 /* whiteArrow@2x.png in Resources */,
 				A387F098158853EF00DC7C5D /* SelectChatFriendController.xib in Resources */,
 				A387F099158853EF00DC7C5D /* SelectChatFriendController~ipad.xib in Resources */,
@@ -21210,6 +21209,7 @@
 				CAC791541664AD0B009B4053 /* bbs_section_bg@2x.png in Resources */,
 				CAC791551664AD0B009B4053 /* bbs_switch_bg@2x.png in Resources */,
 				CAC791561664AD0B009B4053 /* bbs_switch_down@2x.png in Resources */,
+				D81AE781198A3B85001F3F14 /* ResultSharePageViewController.xib in Resources */,
 				CAC791571664AD0B009B4053 /* bbs_switch_right@2x.png in Resources */,
 				CAC791581664AD0B009B4053 /* bbs_back@2x.png in Resources */,
 				CAC791C4166608AA009B4053 /* BBSBoardCell~ipad.xib in Resources */,
@@ -22236,7 +22236,6 @@
 				EA411C14176066F500DA72D0 /* TopPlayerView.xib in Resources */,
 				EA411C15176066F500DA72D0 /* RankFirstView~ipad.xib in Resources */,
 				EA411C16176066F500DA72D0 /* RankSecondView~ipad.xib in Resources */,
-				D8B84171197DF8F400B6FB5C /* ResultSharePageViewController.xib in Resources */,
 				EA411C17176066F500DA72D0 /* RankView~ipad.xib in Resources */,
 				EA411C18176066F500DA72D0 /* TopPlayerView~ipad.xib in Resources */,
 				EA411C19176066F500DA72D0 /* MyFeedController~ipad.xib in Resources */,
@@ -22740,6 +22739,7 @@
 				A4D8FD7617DB089C0085061F /* gradient_division@2x.png in Resources */,
 				A4D8FD7A17DB089C0085061F /* draw_main_bg@2x.jpg in Resources */,
 				A4D8FD7E17DB089C0085061F /* draw_page_back@2x.png in Resources */,
+				D81AE784198A3B85001F3F14 /* ResultSharePageViewController.xib in Resources */,
 				A4D8FD8217DB089C0085061F /* old_draw_bg@2x.jpg in Resources */,
 				A4D8FD8617DB089C0085061F /* selected_pen_brush@2x.png in Resources */,
 				A4D8FD8A17DB089C0085061F /* selected_pen_feather@2x.png in Resources */,
@@ -23565,7 +23565,6 @@
 				A461B26A174CBAA70088B061 /* ANGifImageFrame.m in Sources */,
 				A461B26B174CBAA70088B061 /* LZWSpoof.m in Sources */,
 				A461B26C174CBAA70088B061 /* ANImageBitmapRep.m in Sources */,
-				D8B8416C197DF8F400B6FB5C /* ResultSharePageViewController.m in Sources */,
 				A461B26D174CBAA70088B061 /* BitmapContextRep.m in Sources */,
 				A461B26E174CBAA70088B061 /* NSImage+ANImageBitmapRep.m in Sources */,
 				A461B26F174CBAA70088B061 /* OSCommonImage.m in Sources */,
@@ -23692,6 +23691,7 @@
 				A461B326174CBAA70088B061 /* UserGameItemManager.m in Sources */,
 				A461B327174CBAA70088B061 /* UserGameItemService.m in Sources */,
 				A461B328174CBAA70088B061 /* DefaultPen.m in Sources */,
+				D81AE787198A3B85001F3F14 /* ResultSharePageViewController.m in Sources */,
 				A461B329174CBAA70088B061 /* SuperPen.m in Sources */,
 				A461B32B174CBAA70088B061 /* ShapeBox.m in Sources */,
 				A461B32D174CBAA70088B061 /* DrawBgManager.m in Sources */,
@@ -24235,7 +24235,6 @@
 				C28A9A181738F04B007A819F /* ShareController.m in Sources */,
 				C28A9A1B1738F04B007A819F /* MainDataModel.xcdatamodeld in Sources */,
 				C28A9A1C1738F04B007A819F /* MyPaint.m in Sources */,
-				D8B8416B197DF8F400B6FB5C /* ResultSharePageViewController.m in Sources */,
 				C28A9A1D1738F04B007A819F /* MyPaintManager.m in Sources */,
 				C28A9A1F1738F04B007A819F /* ShareImageManager.m in Sources */,
 				CAA581C2197BC24800599740 /* ImageSimilarityEngine.mm in Sources */,
@@ -24489,6 +24488,7 @@
 				C28A9BB41738F04B007A819F /* BulletinCell.m in Sources */,
 				C28A9BB51738F04B007A819F /* BulletinView.m in Sources */,
 				C28A9BB61738F04B007A819F /* BulletinService.m in Sources */,
+				D81AE786198A3B85001F3F14 /* ResultSharePageViewController.m in Sources */,
 				C28A9BB71738F04B007A819F /* Bulletin.m in Sources */,
 				C28A9BB81738F04B007A819F /* BulletinNetwork.m in Sources */,
 				C28A9BB91738F04B007A819F /* BulletinManager.m in Sources */,
@@ -24976,6 +24976,7 @@
 				CA103EA31509A56200F60C03 /* PPNetworkRequest.m in Sources */,
 				CA103EA41509A56200F60C03 /* PPTabBarController.m in Sources */,
 				CA103EA51509A56200F60C03 /* PPTableViewCell.m in Sources */,
+				D81AE785198A3B85001F3F14 /* ResultSharePageViewController.m in Sources */,
 				CA103EA61509A56200F60C03 /* PPTableViewController.m in Sources */,
 				CA103EA71509A56200F60C03 /* PPViewController.m in Sources */,
 				CA2A28E0195C1E6200A97478 /* AllTutorialController.m in Sources */,
@@ -25099,7 +25100,6 @@
 				CA4216281522A0F400FAA008 /* SKProduct+LocalizedPrice.m in Sources */,
 				C2E6628215230B3F00487601 /* ShareController.m in Sources */,
 				CA1377291524598700B5790B /* MainDataModel.xcdatamodeld in Sources */,
-				D8B8416A197DF8F400B6FB5C /* ResultSharePageViewController.m in Sources */,
 				CA13772D15245AAB00B5790B /* MyPaint.m in Sources */,
 				CA13773015245AE700B5790B /* MyPaintManager.m in Sources */,
 				CAA581C1197BC24800599740 /* ImageSimilarityEngine.mm in Sources */,
@@ -25848,7 +25848,6 @@
 				EA411829176066F500DA72D0 /* ReviewRequest.m in Sources */,
 				EA41182A176066F500DA72D0 /* SearchHistoryManager.m in Sources */,
 				EA41182B176066F500DA72D0 /* UIBackgroundView.m in Sources */,
-				D8B8416D197DF8F400B6FB5C /* ResultSharePageViewController.m in Sources */,
 				EA41182C176066F500DA72D0 /* UICustomeBackGroundView.m in Sources */,
 				EA41182D176066F500DA72D0 /* UIBadgeView.m in Sources */,
 				EA41182E176066F500DA72D0 /* UIHideButton.m in Sources */,
@@ -26448,6 +26447,7 @@
 				CA3D4AF417794748000A8FC7 /* ShadowBox.m in Sources */,
 				CA2A28BB195C135600A97478 /* Tutorial.pb.m in Sources */,
 				A467BBCF17798E0F00455E3A /* OpusDownloadService.m in Sources */,
+				D81AE788198A3B85001F3F14 /* ResultSharePageViewController.m in Sources */,
 				EA1176AF1779B840008678AC /* DrawToolUpPanel.m in Sources */,
 				CA13B83D177BDB57003B7368 /* Shadow.m in Sources */,
 				CA315B45195E5ECA00AB800D /* PBTutorial+Extend.m in Sources */,

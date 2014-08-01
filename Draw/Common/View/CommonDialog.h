@@ -92,6 +92,12 @@ typedef void (^DialogTextChangedCallback)(NSString* currentText);
                              customView:(UIView *)customView
                                   style:(CommonDialogStyle)style;
 
++ (CommonDialog *)createDialogWithTitle:(NSString *)title
+                             customView:(UIView *)customView
+                                  style:(CommonDialogStyle)style
+                               delegate:(id<CommonDialogDelegate>)delegate;
+
+
 
 + (CGFloat)edgeWidth;
 

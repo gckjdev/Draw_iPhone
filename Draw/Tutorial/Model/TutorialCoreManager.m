@@ -171,14 +171,11 @@ static TutorialCoreManager* _defaultTutorialCoreManager;
     [stageBuilder setBgImage:@"bg_image.jpg"];                // image for background
     [stageBuilder setOpusName:@"data"];                       // opus data file name
     [stageBuilder setOpusId:opusId];
-    if(difficult!=0){
+    if(difficult!=-1){
         [stageBuilder setDifficulty:difficult];
     }
     
-    
-    if(stageType!=0){
-        
-    }
+    [stageBuilder setScoreEngine:stageType];
  
 
     //repeated
@@ -591,12 +588,9 @@ static TutorialCoreManager* _defaultTutorialCoreManager;
                                 @[],
                                 @[],
                                 @[],
-                                @[@(1)],
-                                
-                                @[],
-                                @[]
-//                                @[@1,@1,@1,@1,@1,@1,@1,@1,@1,@1],
-//                                @[@1,@1,@1,@1,@1,@1,@1,@1,@1,@1]
+                                @[@0,@0,@0,@0,@0,@0,@0,@0,@0,@0],
+                                @[@1,@1,@1,@1,@1,@1,@1,@1,@1,@1],
+                                @[@1,@1,@1,@1,@1,@1,@1,@1,@1,@1]
                               ];
     
     
@@ -664,19 +658,22 @@ static TutorialCoreManager* _defaultTutorialCoreManager;
                 stageID = [NSString stringWithFormat:@"stageId-%d-%d",stageSum,chapterSum];
                 
             }
-            Float32 difficulty;
-            if([[difficultyList objectAtIndex:tutorialSum] count]!=0&&[difficultyList objectAtIndex:tutorialSum]!=nil){
-                 difficulty = [[[difficultyList objectAtIndex:tutorialSum] objectAtIndex:stageSum] floatValue];
-                
-            }
-            NSInteger stageType;
-            if([[stageTypeList objectAtIndex:tutorialSum] count]!=0&&[stageTypeList objectAtIndex:tutorialSum]!=nil){
-                if(stageSum<[[stageTypeList objectAtIndex:tutorialSum] count]){
-                    stageType = [[[stageTypeList objectAtIndex:tutorialSum] objectAtIndex:stageSum] integerValue];
+            Float32 difficulty = -1;
+            if(difficulty < [[difficultyList objectAtIndex:tutorialSum] count]){
+                if([[difficultyList objectAtIndex:tutorialSum] count]!=0&&[difficultyList objectAtIndex:tutorialSum]!=nil){
+                        difficulty = [[[difficultyList objectAtIndex:tutorialSum] objectAtIndex:stageSum] floatValue];
                 }
-                
             }
-            //添加stage
+            NSInteger stageType = 0;
+            if(stageSum < [[stageTypeList objectAtIndex:tutorialSum] count]){
+                if([[stageTypeList objectAtIndex:tutorialSum] count]!=0&&[stageTypeList objectAtIndex:tutorialSum]!=nil){
+                    stageType = [[[stageTypeList objectAtIndex:tutorialSum] objectAtIndex:stageSum] integerValue];
+                    
+                }
+
+
+            }
+                       //添加stage
             PBStage *stage = [self evaluateStageDataName:
                                                          [[testStageName objectAtIndex:tutorialSum] objectAtIndex:stageSum]
                                                 WithDesc:[[testStageDesc objectAtIndex:tutorialSum] objectAtIndex:stageSum]
