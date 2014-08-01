@@ -43,21 +43,21 @@ static BillboardManager* _defaultBillboardManager;
     return @"home_bb.json";
 }
 
-- (UIImage*)getImage:(NSString*)url
+- (UIImage*)getImage:(Billboard*)bb
 {
     @synchronized(_imageManager){
-        UIImage* image = [_imageManager imageForKey:url];
+        UIImage* image = [_imageManager imageForKey:bb.imageId];
         if (image){
             return image;
         }
         
         //读取网上的图片数据
-        NSURL *galleryUrl = [NSURL URLWithString:url];
+        NSURL *galleryUrl = [NSURL URLWithString:bb.image];
         NSData* data = [NSData dataWithContentsOfURL:galleryUrl];
         if (data){
             // cache image
             image = [[[UIImage alloc] initWithData:data] autorelease];
-            [_imageManager saveImage:image forKey:url];
+            [_imageManager saveImage:image forKey:bb.imageId];
         }
         
         //设置默认图片

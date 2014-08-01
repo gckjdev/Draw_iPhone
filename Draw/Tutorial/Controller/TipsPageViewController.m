@@ -116,15 +116,17 @@ defaultIndex:(int)defaultIndex
 }
 
 #pragma mark Delegate
+
 -(void)foucusImageFrame:(SGFocusImageFrame *)imageFrame didSelectItem:(SGFocusImageItem *)item{
     PPDebug(@"testing testing!!!");
 }
+
 -(void)setCurrentPage:(NSInteger)currentPage{
     PPDebug(@"currentPage==%d",currentPage);
     if (_returnIndex != NULL){
         *_returnIndex = currentPage;
+        PPDebug(@"returnIndex==%d",self.returnIndex);
     }
-    PPDebug(@"returnIndex==%d",self.returnIndex);
     
 }
 

@@ -282,6 +282,10 @@
         vc.userTutorialBuilder = [PBUserTutorial builderWithPrototype:userTutorial];
     }
     
+    if (vc.draft.bgImage == nil){
+        vc.bgImage = bgImage;
+    }
+    
     [startController.navigationController pushViewController:vc animated:YES];
     PPDebug(@"<StartDraw>: practice");
     return [vc autorelease];
@@ -335,6 +339,10 @@
     
     if (userTutorial){
         vc.userTutorialBuilder = [PBUserTutorial builderWithPrototype:userTutorial];
+    }
+    
+    if (vc.draft.bgImage == nil){
+        vc.bgImage = bgImage;
     }
     
     [startController.navigationController pushViewController:vc animated:YES];
@@ -502,13 +510,17 @@
     if (self.draft) {
         
         [self.draft drawActionList];
-//        if ([GameApp hasBGOffscreen]) {
-//        }
+
+        // set bg image, to be refactor
         if (targetType == TypePhoto){
             [self setDrawBGImage:_bgImage useImageRect:YES];
         }
         else{
-            [self setDrawBGImage:self.draft.bgImage useImageRect:NO];
+            UIImage* draftBg = [[MyPaintManager defaultManager] bgImageForPaint:self.draft];
+            if (draftBg == nil){
+                draftBg = self.bgImage;
+            }
+            [self setDrawBGImage:draftBg useImageRect:NO];
         }
         
         
@@ -1877,7 +1889,6 @@
     NSString* destPath = self.tempImageFilePath;
     
     //从关卡传入difficulty，stage.scoreEngine,区分一般画和简笔画;从预处理传入minus
-    //TODO
     int score = [ImageSimilarityEngine scoreSrcPath:sourcePath
                                            destPath:destPath
                                          difficulty:_stage.difficulty
@@ -1889,25 +1900,6 @@
     
     [self saveDraft:NO];
     
-//    NSData *drawData = [DrawAction buildPBDrawData:[[UserManager defaultManager] userId]
-//                                              nick:[[UserManager defaultManager] nickName]
-//                                            avatar:[[UserManager defaultManager] avatarURL]
-//                                    drawActionList:drawView.drawActionList
-//                                          drawWord:[self opusWord]
-//                                          language:ChineseType
-//                                              size:drawView.bounds.size
-//                                      isCompressed:NO
-//                                            layers:[[drawView.layers mutableCopy] autorelease]
-//                                             draft:draft];
-//    
-//    self.submitOpusDrawData = drawData;
-//    PPDebug(@"<handleSubmitForPractice> create draw data length=%d", [drawData length]);
-//    
-//    if (self.submitOpusDrawData == nil){
-//        // clear image if create data failure
-//        self.submitOpusFinalImage = nil;
-//    }
-
     if (targetType == TypeConquerDraw){
         [self showProgressViewWithMessage:NSLS(@"kSending")];
         self.submitOpusDrawData = [[DrawDataService defaultService] createOfflineDraw:drawView.drawActionList
@@ -2347,8 +2339,7 @@
     }
 }
 
-// 点击帮助按钮
-- (IBAction)clickHelpButton:(id)sender
+- (void)showLearnDrawHelp
 {
     NSMutableArray* allTips = [NSMutableArray array];
     int currentChapterTipsIndex = 0;
@@ -2356,7 +2347,7 @@
         NSArray* tipsPaths = [[UserTutorialService defaultService] getChapterTipsImagePath:_userStageBuilder.tutorialId
                                                                                      stage:self.stage
                                                                               chapterIndex:i];
-
+        
         if (tipsPaths){
             if (i == _userStageBuilder.currentChapterIndex){
                 currentChapterTipsIndex = [allTips count];
@@ -2384,6 +2375,13 @@
     else{
         POSTMSG(NSLS(@"kNoTipsForChapter"));
     }
+    
+}
+
+// 点击帮助按钮
+- (IBAction)clickHelpButton:(id)sender
+{
+    [self showLearnDrawHelp];
 }
 
 

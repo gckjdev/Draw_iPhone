@@ -10007,6 +10007,7 @@
 		CA89748016087BE2003A95F7 /* ContestController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContestController.h; sourceTree = "<group>"; };
 		CA89748116087BE2003A95F7 /* ContestController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContestController.m; sourceTree = "<group>"; };
 		CA89748216087BE2003A95F7 /* ContestController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ContestController.xib; sourceTree = "<group>"; };
+		CA8A5B8F198BED9E00C5AF5D /* MainDataModel 18.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "MainDataModel 18.xcdatamodel"; sourceTree = "<group>"; };
 		CA8A6ACA16E5AE0C0052BFFA /* FeedDownloadService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FeedDownloadService.h; sourceTree = "<group>"; };
 		CA8A6ACB16E5AE0C0052BFFA /* FeedDownloadService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FeedDownloadService.m; sourceTree = "<group>"; };
 		CA8C471817C3175C00BA6A15 /* PanelUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PanelUtil.h; sourceTree = "<group>"; };
@@ -27834,6 +27835,7 @@
 		CA1377271524598700B5790B /* MainDataModel.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				CA8A5B8F198BED9E00C5AF5D /* MainDataModel 18.xcdatamodel */,
 				CA427055161FE05C00C6CCAE /* MainDataModel 11.xcdatamodel */,
 				CAA791C21627B58A00AEA6E5 /* MainDataModel 12.xcdatamodel */,
 				CA29EB0216A6941E003B1434 /* MainDataModel 14.xcdatamodel */,
@@ -27851,7 +27853,7 @@
 				CAE23C6E153E9E9A00F52497 /* MainDataModel 2.xcdatamodel */,
 				CA1377281524598700B5790B /* MainDataModel.xcdatamodel */,
 			);
-			currentVersion = CA4CA5E21975283400ED1534 /* MainDataModel 17.xcdatamodel */;
+			currentVersion = CA8A5B8F198BED9E00C5AF5D /* MainDataModel 18.xcdatamodel */;
 			path = MainDataModel.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;

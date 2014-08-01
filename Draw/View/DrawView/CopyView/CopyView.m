@@ -283,19 +283,20 @@
 {
     PPDebug(@"userResizableViewDidTap");
     
-#ifndef DEBUG
-    if (_hasMenu == NO){
-        // tap to play opus directly
-        [ShowFeedController replayDraw:self.drawFeed viewController:self.superViewController];
-        return;
-    }
-#endif
+//#ifndef DEBUG
+//    if (_hasMenu == NO){
+//        // tap to play opus directly
+//        [self play];
+//        [ShowFeedController replayDraw:self.drawFeed viewController:self.superViewController];
+//        return;
+//    }
+//#endif
     
     MKBlockActionSheet* actionSheet = [[MKBlockActionSheet alloc] initWithTitle:NSLS(@"kCopyViewActionTitle")
                                                                        delegate:nil
                                                               cancelButtonTitle:NSLS(@"Cancel")
-                                                         destructiveButtonTitle:COPY_VIEW_SET_IMAGE
-                                                              otherButtonTitles:COPY_VIEW_PLAY, COPY_VIEW_HIDE, COPY_VIEW_HELP, nil];
+                                                         destructiveButtonTitle:nil //COPY_VIEW_SET_IMAGE COPY_VIEW_HIDE,
+                                                              otherButtonTitles:COPY_VIEW_PLAY, COPY_VIEW_HELP, nil];
     
     [actionSheet setActionBlock:^(NSInteger buttonIndex){
         NSString* title = [actionSheet buttonTitleAtIndex:buttonIndex];
@@ -316,27 +317,7 @@
         }
         else if ([title isEqualToString:COPY_VIEW_PLAY]){
             PPDebug(@"click COPY_VIEW_PLAY");
-            if (self.userStage){
-                if (_draw == nil){
-                    // load opus data
-                    self.opusData = [[[NSData alloc] initWithContentsOfFile:self.opusDataPath] autorelease];
-                }
-                
-                
-                UIImage* bgImage = [[UIImage alloc] initWithContentsOfFile:_opusBgImagePath];
-                
-                [DrawPlayer playDrawData:&_opusData
-                                    draw:&_draw
-                          viewController:self.superViewController
-                                 bgImage:bgImage
-                              startIndex:_opusStartIndex
-                                endIndex:_opusEndIndex];
-                
-                [bgImage release];
-            }
-            else{
-                [ShowFeedController replayDraw:self.drawFeed viewController:self.superViewController];
-            }
+            [self play];
         }
         else if ([title isEqualToString:COPY_VIEW_HIDE]){
             PPDebug(@"click COPY_VIEW_HIDE");
@@ -352,7 +333,11 @@
 
                 
                 if ([tipsPaths count] > 0){
-                    [TipsPageViewController show:self.superViewController title:title imagePathArray:tipsPaths];
+                    [TipsPageViewController show:self.superViewController
+                                           title:title
+                                  imagePathArray:tipsPaths
+                                    defaultIndex:0
+                                     returnIndex:NULL];                    
                 }
                 else{
                     POSTMSG(NSLS(@"kHaveNotTips"));
@@ -362,6 +347,32 @@
     }];
     
     [actionSheet showInView:self.superViewController.view];
+}
+
+- (void)play
+{
+    if (self.userStage){
+        if (_draw == nil){
+            // load opus data
+            self.opusData = [[[NSData alloc] initWithContentsOfFile:self.opusDataPath] autorelease];
+        }
+        
+        
+        UIImage* bgImage = [[UIImage alloc] initWithContentsOfFile:_opusBgImagePath];
+        
+        [DrawPlayer playDrawData:&_opusData
+                            draw:&_draw
+                  viewController:self.superViewController
+                         bgImage:bgImage
+                      startIndex:_opusStartIndex
+                        endIndex:_opusEndIndex];
+        
+        [bgImage release];
+    }
+    else{
+        [ShowFeedController replayDraw:self.drawFeed viewController:self.superViewController];
+    }
+    
 }
 
 #pragma mark - UIGestureRecognizerDelegate

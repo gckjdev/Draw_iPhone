@@ -399,7 +399,7 @@
         NSMutableArray *itemList = [[[NSMutableArray alloc] init] autorelease];
         for(Billboard *bb in _bbList){
 
-            UIImage *image = [bbManager getImage:bb.image];
+            UIImage *image = [bbManager getImage:bb];
             
             //添加到第三方框架
             SGFocusImageItem *item = [[[SGFocusImageItem alloc] initWithTitle:@"" image:image tag:bb.index] autorelease];

@@ -345,7 +345,6 @@ static MyPaintManager* _defaultManager;
 
 - (BOOL)deleteMyPaint:(MyPaint*)paint
 {
-    [self deleteBgImage:paint.bgImageName];
     CoreDataManager* dataManager =[CoreDataManager defaultManager];
     [paint setDeleteFlag:[NSNumber numberWithBool:YES]];
     BOOL result = [dataManager save];
@@ -357,6 +356,7 @@ static MyPaintManager* _defaultManager;
 {
     CoreDataManager* dataManager =[CoreDataManager defaultManager];
     [dataManager del:paint];
+    [self deleteBgImage:paint.bgImageName];
     BOOL result = [dataManager save];
     
     return result;

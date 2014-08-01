@@ -36,6 +36,11 @@
     return [_dataDict objectForKey:@"image"];
 }
 
+- (NSString*)imageId
+{
+    return [_dataDict objectForKey:@"imageId"];    
+}
+
 - (NSString*)function
 {
     return [_dataDict objectForKey:@"function"];
