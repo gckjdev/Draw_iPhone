@@ -11,7 +11,16 @@
 #import "UIViewController+BGImage.h"
 #import "Tutorial.pb.h"
 #import "UserTutorialService.h"
-
+#import "PBTutorial+Extend.h"
+#import "UserTutorialManager.h"
+#import "GameSNSService.h"
+#import "BBSActionSheet.h"
+#import "MKBlockActionSheet.h"
+#import "PPSNSConstants.h"
+#import "PPConfigManager.h"
+#import "UIViewUtils.h"
+#import "UIImageUtil.h"
+#import "FileUtil.h"
 
 @interface ResultShareAlertPageViewController ()
 
@@ -25,6 +34,7 @@
 @end
 
 @implementation ResultShareAlertPageViewController
+
 
 + (void)show:(PPViewController*)superController
        image:(UIImage*)resultImage
@@ -46,29 +56,89 @@
                             createDialogWithTitle:NSLS(@"kResultSharePage")
                                       customView:rspc.view
                                            style:CommonSquareDialogStyleCross
-                                        delegate:rspc
-            ];
-    [dialog.oKButton.titleLabel setText:NSLS(@"kGoOn")];
-//    [dialog.oKButton.titleLabel setFont:AD_FONT(20, 12)];
-    [dialog.cancelButton.titleLabel setText:NSLS(@"kShare")];
+                                        delegate:rspc];
+    
+    dialog.manualClose = YES;
+    
+    
+    // 根据评分结果跳转
+    BOOL isPass = [[UserTutorialManager defaultManager] isPass:score];
+    NSString *resultMessage = @"";
+    
+    if (isPass){
+        
+        BOOL isTutorialComplete = [[UserTutorialManager defaultManager] isLastStage:userStage];
+        if (isTutorialComplete){
+
+            // 及格，最后一关
+            resultMessage = [NSString stringWithFormat:NSLS(@"kConquerResultPassComplete")];
+
+            // 左边按钮为【返回】
+            [dialog.oKButton setTitle:NSLS(@"Back") forState:UIControlStateNormal];
+            [dialog setClickOkBlock:^(id view){
+                
+                // close dialog
+                [dialog disappear];
+                
+                EXECUTE_BLOCK(rspc.backBlock)
+            }];
+            
+        }
+        else{
+        
+            // 及格，提示闯下一关
+            resultMessage = [NSString stringWithFormat:NSLS(@"kConquerResultPassNext")];
+            
+            // 左边按钮为【下一关】
+            [dialog.oKButton setTitle:NSLS(@"kTryConquerNext") forState:UIControlStateNormal];
+            [dialog setClickOkBlock:^(id view){
+                
+                // close dialog
+                [dialog disappear];
+
+                EXECUTE_BLOCK(rspc.nextBlock);
+            }];
+        
+        }
+    }
+    else{
+        
+        // 闯关失败，建议再来一次        
+        resultMessage = [NSString stringWithFormat:NSLS(@"kConquerFailureResult")];
+        
+        // 左边按钮为【下一关】
+        [dialog.oKButton setTitle:NSLS(@"kConquerAgain") forState:UIControlStateNormal];
+        [dialog setClickOkBlock:^(id view){
+            
+            // close dialog
+            [dialog disappear];
+
+            EXECUTE_BLOCK(rspc.retryBlock);
+        }];
+    }
+    
+    [dialog.cancelButton setTitle:NSLS(@"kShare") forState:UIControlStateNormal];
+    
 //    [dialog.cancelButton.titleLabel setFont:AD_FONT(20, 12)];
     
-    [dialog showInView:superController.view];
-    dialog.clickOkBlock = ^(id infoView){
-        PPDebug(@"click OK");
-        rspc.nextBlock();
-    };
     dialog.clickCancelBlock = ^(id infoView){
-        PPDebug(@"click cancel");
-        rspc.retryBlock();
+        [rspc shareSNS:superController.view];
     };
+
     dialog.clickCloseBlock = ^(id infoView){
-        PPDebug(@"click close");
-//        rspc.nextBlock();
+        
+        // close dialog
+        [dialog disappear];
+        
+        EXECUTE_BLOCK(rspc.backBlock);
     };
+
     
-    [superController addChildViewController:superController];
+    [dialog showInView:superController.view];
+    [superController addChildViewController:rspc];
     [rspc release];
+    
+
 }
 
 
@@ -86,8 +156,6 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-//    [CommonTitleView createTitleView:self.view];
-//    [self setDefaultBGImage];
     
     //更新页面
     [self updateViewWidget];
@@ -111,15 +179,15 @@
 
 
 //更新本页面控件
-#define DEFAULT_AVATAR @"xiaoguanka"
 #define DEFAULT_OPUS @"xiaoguanka"
+
 -(void)updateViewWidget{
     //button
     [self.shareButton setTitle:NSLS(@"kShare") forState:UIControlStateNormal];
     [self.shareButton.titleLabel setFont:AD_BOLD_FONT(18, 15)];
     [self.shareButton setFrame:(CGRectMake((ISIPAD ? 75:75),(ISIPAD ? 533:533),110,30))];
     SET_BUTTON_ROUND_STYLE_ORANGE(self.shareButton);
-    [self.continueButton setTitle:NSLS(@"kContinue") forState:UIControlStateNormal];
+    [self.continueButton setTitle:NSLS(@"kTryConquerNext") forState:UIControlStateNormal];
     [self.continueButton.titleLabel setFont:AD_BOLD_FONT(18, 15)];
     [self.continueButton setFrame:(CGRectMake((ISIPAD ? 265:260),(ISIPAD ? 533:533),110,30))];
     SET_BUTTON_ROUND_STYLE_ORANGE(self.continueButton);
@@ -138,17 +206,14 @@
                         useDefaultLogo:NO];
     
     //opusImage
-    UIImage *opus = [UIImage imageNamed:DEFAULT_OPUS];
+    UIImage *opus = [[ShareImageManager defaultManager] unloadBg];
     if(self.resultImage!=nil){
         opus = self.resultImage;
-    }
-    if(opus==nil){
-        PPDebug(@"<updateViewWidget> but the opus is nil");
     }
     [self.opusImageView setImage:opus];
     
 }
--(void *)setDesc{
+-(void)setDesc{
     
     //@"恭喜皮皮彭！\n本次作品得分為%@分,\n耗時58秒,击败了宇宙%%%@的用户,\n闖關成功！"
     
@@ -172,7 +237,7 @@
     
     
     NSString *score = [NSString stringWithFormat:@"%d",self.score];
-    NSMutableAttributedString *scoreMutableString = [[[NSMutableAttributedString alloc]                  initWithString:[NSString stringWithFormat:@"本次作品得分為%@分,耗时58秒\n",score]]autorelease];
+    NSMutableAttributedString *scoreMutableString = [[[NSMutableAttributedString alloc]                  initWithString:[NSString stringWithFormat:@"本次作品得分為%@分\n",score]]autorelease];
     //人名
     [scoreMutableString addAttribute:NSForegroundColorAttributeName
                               value:COLOR_RED
@@ -182,7 +247,8 @@
                               range:NSMakeRange(7,[score length]+1)];
     self.lineTwoLabel.attributedText = scoreMutableString;
     
-    
+    // TODO localization
+    // TODO calculate length/location by code
     NSString *result = NSLS(@"kConquerSuccessResult");
     if(self.score<60){
         result = NSLS(@"kConquerFailureResult");
@@ -196,9 +262,8 @@
                          range:NSMakeRange(0,[result length])];
     self.lineFourLabel.attributedText = resultMutable;
     
-    
     NSString *count = [NSString stringWithFormat:@"%d",self.userStage.defeatCount];
-    NSMutableAttributedString *countMutable = [[[NSMutableAttributedString alloc]initWithString:[NSString stringWithFormat:@"击败了宇宙%%%@的用户！",count]]autorelease];
+    NSMutableAttributedString *countMutable = [[[NSMutableAttributedString alloc]initWithString:[NSString stringWithFormat:@"击败了宇宙%@%%的用户！",count]]autorelease];
     [countMutable addAttribute:NSForegroundColorAttributeName
                                value:COLOR_RED
                                range:NSMakeRange(5, [count length]+1)];
@@ -275,5 +340,108 @@
 //}
 
 
+
+#define TITLE_SHARE_WEIXIN_FRIEND   NSLS(@"kConquerDrawShareWeixinFriend")
+#define TITLE_SHARE_WEIXIN_TIMELINE NSLS(@"kConquerDrawSharekWeixinTimeline")
+#define TITLE_SHARE_SINA_WEIBO      NSLS(@"kConquerDrawShareSinaWeibo")
+#define TITLE_SHARE_QQ_WEIBO        NSLS(@"kConquerDrawShareQQWeibo")
+
+- (int)defeatPercent
+{
+    return [self.userStage defeatPercent];
+}
+
+#define TEMP_SHARE_FILE_NAME        @"conquer_draw_share.png"
+
+- (NSString*)createShareImagePath
+{
+    UIImage* image = [self.view createSnapShotWithScale:1.0f];
+    NSString* path = nil;
+    if (image){
+        path = [[FileUtil getAppTempDir] stringByAppendingPathComponent:TEMP_SHARE_FILE_NAME];
+        BOOL result = [image saveImageToFile:path];
+        if (result == NO){
+            path = nil;
+        }
+    }
+
+    PPDebug(@"<createShareImagePath> path=%@", path);
+    return path;
+}
+
+- (NSString*)createShareText
+{
+    NSString* shareText = [NSString stringWithFormat:NSLS(@"kConquerDrawShareText"),
+                           [PPConfigManager shareAppName],
+                           self.score,
+                           [self defeatPercent]];
+    PPDebug(@"<createShareText> text=%@", shareText);
+    return shareText;
+}
+
+- (void)shareSNS:(UIView*)superView
+{
+    NSString* imageFilePath = [self createShareImagePath];
+    NSString* text = [self createShareText];
+    
+    if ([imageFilePath length] == 0){
+        POSTMSG(NSLS(@"kCreateImageShareFail"));
+        return;
+    }
+
+    NSArray *titles = @[TITLE_SHARE_WEIXIN_FRIEND,
+                        TITLE_SHARE_WEIXIN_TIMELINE,
+                        TITLE_SHARE_SINA_WEIBO,
+                        TITLE_SHARE_QQ_WEIBO];
+    
+    BBSActionSheet *sheet = [[BBSActionSheet alloc] initWithTitles:titles callback:^(NSInteger index) {
+        NSString *t = titles[index];
+        if ([t isEqualToString:TITLE_SHARE_WEIXIN_FRIEND]) {
+            
+            [[GameSNSService defaultService] publishWeibo:TYPE_WEIXIN_SESSION
+                                                     text:text
+                                            imageFilePath:imageFilePath
+                                                   inView:superView
+                                               awardCoins:0
+                                           successMessage:NSLS(@"kShareWeiboSucc")
+                                           failureMessage:NSLS(@"kShareWeiboFailure")];
+            
+        }else if([t isEqualToString:TITLE_SHARE_WEIXIN_TIMELINE]){
+
+            [[GameSNSService defaultService] publishWeibo:TYPE_WEIXIN_TIMELINE
+                                                     text:text
+                                            imageFilePath:imageFilePath
+                                                   inView:superView
+                                               awardCoins:0
+                                           successMessage:NSLS(@"kShareWeiboSucc")
+                                           failureMessage:NSLS(@"kShareWeiboFailure")];
+            
+        }
+        else if([t isEqualToString:TITLE_SHARE_SINA_WEIBO]){
+            
+            [[GameSNSService defaultService] publishWeibo:TYPE_SINA
+                                                     text:text
+                                            imageFilePath:imageFilePath
+                                                   inView:superView
+                                               awardCoins:0
+                                           successMessage:NSLS(@"kShareWeiboSucc")
+                                           failureMessage:NSLS(@"kShareWeiboFailure")];
+
+        }
+        else if([t isEqualToString:TITLE_SHARE_QQ_WEIBO]){
+
+            [[GameSNSService defaultService] publishWeibo:TYPE_QQ
+                                                     text:text
+                                            imageFilePath:imageFilePath
+                                                   inView:superView
+                                               awardCoins:0
+                                           successMessage:NSLS(@"kShareWeiboSucc")
+                                           failureMessage:NSLS(@"kShareWeiboFailure")];
+            
+        }
+    }];
+    [sheet showInView:superView showAtPoint:superView.center animated:YES];
+    [sheet release];
+}
 
 @end

@@ -1566,4 +1566,9 @@
     return GET_UMENG_INTVAL(@"MIN_L_POINT", 2);
 }
 
++ (NSString*)shareAppName
+{
+    return GET_UMENG_STRVALUE(@"SHARE_APP_NAME", [UIUtils getAppName]);
+}
+
 @end

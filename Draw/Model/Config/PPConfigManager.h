@@ -382,8 +382,9 @@ typedef enum{
 
 + (NSString*)getTutorialServerURL;
 
-+(NSInteger)getMinStrokeNum;
-+(NSInteger)getMinPointNum;
++ (NSInteger)getMinStrokeNum;
++ (NSInteger)getMinPointNum;
 
++ (NSString*)shareAppName;
 
 @end

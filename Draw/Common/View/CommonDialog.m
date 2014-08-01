@@ -539,9 +539,9 @@
     } else if (_delegate && [_delegate respondsToSelector:@selector(didClickCancel:)]) {
         [_delegate didClickCancel:self];
     }
-//    if (!_manualClose) {
+    if (!_manualClose) {
         [self disappear];
-//    }
+    }
 }
 
 - (IBAction)clickCloseButton:(id)sender {
