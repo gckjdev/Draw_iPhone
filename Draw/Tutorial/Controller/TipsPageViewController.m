@@ -34,7 +34,7 @@ defaultIndex:(int)defaultIndex
     rspc.returnIndex = returnIndex;
     rspc.defaultIndex = defaultIndex;
     
-    CommonDialog *dialog = [CommonDialog createDialogWithTitle:title customView:rspc.view style:CommonSquareDialogStyleCross];
+    CommonDialog *dialog = [CommonDialog createDialogWithTitle:title customView:rspc.view style:CommonDialogStyleSingleButton];
     
     [dialog showInView:superController.view];
     [superController addChildViewController:rspc];
@@ -116,15 +116,17 @@ defaultIndex:(int)defaultIndex
 }
 
 #pragma mark Delegate
+
 -(void)foucusImageFrame:(SGFocusImageFrame *)imageFrame didSelectItem:(SGFocusImageItem *)item{
     PPDebug(@"testing testing!!!");
 }
+
 -(void)setCurrentPage:(NSInteger)currentPage{
     PPDebug(@"currentPage==%d",currentPage);
     if (_returnIndex != NULL){
         *_returnIndex = currentPage;
+        PPDebug(@"returnIndex==%d",self.returnIndex);
     }
-    PPDebug(@"returnIndex==%d",self.returnIndex);
     
 }
 

@@ -55,7 +55,7 @@
     CommonDialog *dialog = [CommonDialog
                             createDialogWithTitle:NSLS(@"kResultSharePage")
                                       customView:rspc.view
-                                           style:CommonSquareDialogStyleCross
+                                           style:CommonDialogStyleDoubleButtonWithCross
                                         delegate:rspc];
     
     dialog.manualClose = YES;
@@ -270,7 +270,7 @@
     
     //合格
     BOOL isPass = [[UserTutorialManager defaultManager] isPass:self.score];
-    if (isPass == NO){
+    if (isPass == YES){
         //课程完成
         if(isTutorialComplete){
             result = [NSString stringWithFormat:NSLS(@"kConquerResultPassComplete")];

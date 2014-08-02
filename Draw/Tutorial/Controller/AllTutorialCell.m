@@ -48,7 +48,9 @@
     
     //实现国际化
     self.tutorialName.text = pbTutorial.name;
-    self.tutorialDesc.text = pbTutorial.desc;
+    
+    
+    self.tutorialDesc.text = pbTutorial.categoryName;
     UIImage *placeHolderImage = [UIImage imageNamed:@DEFAUT_IMAGE];
 
     SET_VIEW_ROUND_CORNER(self.tutorialImage);

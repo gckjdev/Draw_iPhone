@@ -26,6 +26,7 @@
 #import "ContestService.h"
 #import "WordManager.h"
 #import "DrawRecoveryService.h"
+#import "SDWebImageManager.h"
 
 @interface MetroHomeController ()
 
@@ -45,11 +46,11 @@
     return self;
 }
 
-#define TRENDS_BUTTON_TITLE_EDGEINSETS   (ISIPAD ? -36 : -32)
-#define DOCUMENT_BUTTON_TITLE_EDGEINSETS (ISIPAD ? -36 : -32)
-#define MESSAGE_BUTTON_TITLE_EDGEINSET   (ISIPAD ? -36 : -32)
-#define MORE_BUTTON_TITLE_EDGEINSETS     (ISIPAD ? -36 : -32)
-#define BOTTOM_BUTTON_HEIGHT (ISIPAD ? 50 : 40)
+#define TRENDS_BUTTON_TITLE_EDGEINSETS   (ISIPAD ? -40 : -32)
+#define DOCUMENT_BUTTON_TITLE_EDGEINSETS (ISIPAD ? -40:  -32)
+#define MESSAGE_BUTTON_TITLE_EDGEINSET   (ISIPAD ? -40 : -32)
+#define MORE_BUTTON_TITLE_EDGEINSETS     (ISIPAD ? -38 : -32)
+#define BOTTOM_BUTTON_HEIGHT (ISIPAD ? 60 : 40)
 
 -(void)setButtonTitleBottom{
     [self.indexButton  setTitleEdgeInsets:UIEdgeInsetsMake(BOTTOM_BUTTON_HEIGHT, TRENDS_BUTTON_TITLE_EDGEINSETS, 0, 0)];
@@ -398,19 +399,7 @@
         NSMutableArray *itemList = [[[NSMutableArray alloc] init] autorelease];
         for(Billboard *bb in _bbList){
 
-            UIImage *image = nil;
-            NSURL *galleryUrl = [NSURL URLWithString:bb.image];
-
-            //读取网上的图片数据
-            NSData* data = [NSData dataWithContentsOfURL:galleryUrl];
-            if (data){
-                image = [[[UIImage alloc] initWithData:data] autorelease];
-            }
-            
-            //设置默认图片
-            if(image==nil){
-                image = [UIImage imageNamed:DEFAULT_GALLERY_IMAGE];
-            }
+            UIImage *image = [bbManager getImage:bb];
             
             //添加到第三方框架
             SGFocusImageItem *item = [[[SGFocusImageItem alloc] initWithTitle:@"" image:image tag:bb.index] autorelease];
