@@ -55,7 +55,7 @@
     CommonDialog *dialog = [CommonDialog
                             createDialogWithTitle:NSLS(@"kResultSharePage")
                                       customView:rspc.view
-                                           style:CommonSquareDialogStyleCross
+                                           style:CommonDialogStyleDoubleButtonWithCross
                                         delegate:rspc];
     
     dialog.manualClose = YES;

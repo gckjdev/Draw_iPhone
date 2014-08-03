@@ -318,4 +318,15 @@
     }
 }
 
+- (void)enterBBSWithPostId:(NSString*)postId
+{
+    
+}
+
+- (void)enterContestWithContestId:(NSString*)contestId
+{
+    
+}
+
+
 @end

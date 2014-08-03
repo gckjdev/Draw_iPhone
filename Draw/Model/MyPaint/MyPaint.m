@@ -42,6 +42,7 @@
 @dynamic targetType;
 @dynamic tutorialId;
 @dynamic stageName;
+@dynamic bgImageName;
 
 @synthesize thumbImage = _thumbImage;
 @synthesize paintImage = _paintImage;
@@ -50,7 +51,6 @@
 @synthesize drawDataVersion = _drawDataVersion;
 @synthesize canvasSize = _canvasSize;
 @synthesize opusDesc = _opusDesc;
-@synthesize bgImageName = _bgImageName;
 @synthesize bgImage = _bgImage;
 @synthesize layers = _layers;
 //@synthesize completeDate;
@@ -160,7 +160,7 @@
     PPRelease(_thumbImage);
     PPRelease(_drawActionList);
     PPRelease(_imageFilePath);
-    PPRelease(_bgImageName);
+//    PPRelease(_bgImageName);
     PPRelease(_bgImage);
     PPRelease(_layers);
     [super dealloc];
