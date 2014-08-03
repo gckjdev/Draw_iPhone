@@ -219,6 +219,10 @@
         }
     }
     
+    if (passCount < 0){
+        passCount = 0;
+    }
+    
     PBTutorial* pbTutorial = [[TutorialCoreManager defaultManager] findTutorialByTutorialId:self.tutorial.tutorialId];
     int totalStageCount = [pbTutorial.stagesList count];
     

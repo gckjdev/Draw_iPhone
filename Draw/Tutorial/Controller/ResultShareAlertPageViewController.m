@@ -270,7 +270,7 @@
     
     //合格
     BOOL isPass = [[UserTutorialManager defaultManager] isPass:self.score];
-    if (isPass == NO){
+    if (isPass == YES){
         //课程完成
         if(isTutorialComplete){
             result = [NSString stringWithFormat:NSLS(@"kConquerResultPassComplete")];
