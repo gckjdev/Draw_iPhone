@@ -63,6 +63,7 @@
     </entity>
     <entity name="MyPaint" representedClassName="MyPaint" syncable="YES">
         <attribute name="attributes" optional="YES" attributeType="Binary" syncable="YES"/>
+        <attribute name="bgImageName" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="chapterIndex" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <attribute name="chapterOpusId" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="contestId" optional="YES" attributeType="String" indexed="YES" syncable="YES"/>
@@ -79,10 +80,15 @@
         <attribute name="drawUserNickName" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="drawWord" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="drawWordData" optional="YES" attributeType="Binary" syncable="YES"/>
+        <attribute name="gridLineNumber" optional="YES" attributeType="Integer 32" defaultValueString="0.0" syncable="YES"/>
         <attribute name="image" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="isForLearn" optional="YES" attributeType="Boolean" defaultValueString="NO" indexed="YES" syncable="YES"/>
         <attribute name="isRecovery" optional="YES" attributeType="Boolean" defaultValueString="NO" syncable="YES"/>
         <attribute name="language" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="lastEraserAlpha" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="lastEraserWidth" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="lastPenAlpha" optional="YES" attributeType="Float" defaultValueString="0" syncable="YES"/>
+        <attribute name="lastPenWidth" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
         <attribute name="level" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <attribute name="opusCompleteDate" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="opusId" optional="YES" attributeType="String" syncable="YES"/>
@@ -157,7 +163,7 @@
         <element name="CustomWord" positionX="0" positionY="0" width="128" height="135"/>
         <element name="Friend" positionX="0" positionY="0" width="128" height="300"/>
         <element name="MessageTotal" positionX="0" positionY="0" width="128" height="225"/>
-        <element name="MyPaint" positionX="0" positionY="0" width="128" height="555"/>
+        <element name="MyPaint" positionX="0" positionY="0" width="128" height="645"/>
         <element name="PriceModel" positionX="0" positionY="0" width="128" height="135"/>
         <element name="RouterTrafficServer" positionX="0" positionY="0" width="128" height="165"/>
         <element name="TransactionReceipt" positionX="0" positionY="0" width="128" height="195"/>
