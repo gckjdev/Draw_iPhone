@@ -1884,10 +1884,13 @@
     
     UIImage* imageForCompare = [_copyView imageForCompare];
     
-    // 评分
+    // 评分系统
     NSString* sourcePath = [self writeImageToFile:imageForCompare filePath:self.draft.draftId];
     NSString* destPath = self.tempImageFilePath;
     
+    //difficulty:从关卡传入，用于调整难度系数，主要是hash算法里面使用
+    //stage.scoreEngine：区分普通画,简笔画,填充画
+    //从预处理传入minus，态度不认真的扣分。。：）
     //从关卡传入difficulty，stage.scoreEngine,区分一般画和简笔画;从预处理传入minus
     int score = [ImageSimilarityEngine scoreSrcPath:sourcePath
                                            destPath:destPath
