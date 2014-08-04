@@ -21,6 +21,7 @@
     self=[super init];
     if(self)
     {
+        PPDebug(@"init billboard = %@", dictionary);
         self.dataDict = dictionary;
     }
     return self;
@@ -46,18 +47,15 @@
     return [_dataDict objectForKey:@"function"];
 }
 
--(NSArray *)paraList{
+- (NSArray *)paraList{
     return [_dataDict objectForKey:@"parameters"];
-}
-- (void)clickAction
-{
-    // TODO click action here
 }
 
 //Gallery 点击事件
 - (void)clickAction:(PPViewController*) pc{
     
     NSArray* paraArray = [self paraList];
+    PPDebug(@"click billboard action, func=%@, para=%@", self.function, paraArray);
     
     int paraCount = [paraArray count];
     if (paraCount == 0){
@@ -69,21 +67,33 @@
     }
     else if (paraCount == 1){
         // 1 parameter
-        SEL selector = NSSelectorFromString(self.function);
+        NSString* func = self.function;
+        if ([func hasSuffix:@":"] == NO){
+            // auto add : if needed
+            func = [func stringByAppendingString:@":"];
+        }
+        SEL selector = NSSelectorFromString(func);
         if (selector && [pc respondsToSelector:selector]){
             [pc performSelector:selector withObject:[paraArray objectAtIndex:0]];
         }
     }
     else if (paraCount >= 2){
         // 2 parameter
-        SEL selector = NSSelectorFromString(self.function);
+        NSString* func = self.function;
+        if ([func hasSuffix:@":"] == NO){
+            // auto add : if needed
+            func = [func stringByAppendingString:@":"];
+        }
+        SEL selector = NSSelectorFromString(func);
         if (selector && [pc respondsToSelector:selector]){
             [pc performSelector:selector
                      withObject:[paraArray objectAtIndex:0]
                      withObject:[paraArray objectAtIndex:1]];
         }
     }
-    
+    else{
+        PPDebug(@"click billboard, too many parameters! no action!");
+    }
     
 }
 

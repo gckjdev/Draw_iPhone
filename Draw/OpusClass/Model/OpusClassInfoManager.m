@@ -230,4 +230,19 @@ static OpusClassInfoManager* _defaultOpusClassInfoManager;
     }
 }
 
+- (OpusClassInfo*)findOpusClassInfo:(NSString*)opusClassId
+{
+    if ([opusClassId length] == 0){
+        return nil;
+    }
+    
+    for (OpusClassInfo* opusClassInfo in _opusClassList){
+        if ([opusClassInfo.classId isEqualToString:opusClassId]){
+            return opusClassInfo;
+        }
+    }
+    
+    return nil;
+}
+
 @end

@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 
 @class PPSmartUpdateData;
+@class OpusClassInfo;
 
 @interface OpusClassInfoManager : NSObject
 
@@ -21,6 +22,7 @@
 - (void)autoUpdate;
 
 - (void)saveUserDisplayList:(NSArray*)opusInfoClassList;
+- (OpusClassInfo*)findOpusClassInfo:(NSString*)opusClassId;
 
 //- (NSArray*)defaultSelectedClass;
 

@@ -258,9 +258,7 @@ static ContestService *_staticContestService;
     return [[ContestManager defaultManager] ongoingContestList];
 }
 
-
-
-- (void)syncOngoingContestList
+- (void)syncOngoingContestList:(SyncContestResultBlock)resultBlock
 {
     dispatch_async(workingQueue, ^{
         
@@ -272,18 +270,46 @@ static ContestService *_staticContestService;
         
         GameNetworkOutput* output = [PPGameNetworkRequest trafficApiServerGetAndResponsePB:METHOD_GET_CONTEST_LIST
                                                                                 parameters:para];
-
         
         dispatch_async(dispatch_get_main_queue(), ^{
             
             if (output.resultCode == 0){
-                [[ContestManager defaultManager] saveOngoingContestList:output.pbResponse.contestListList];                
+                [[ContestManager defaultManager] saveOngoingContestList:output.pbResponse.contestListList];
                 [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFCATION_CONTEST_DATA_CHANGE object:nil];
             }
             
+            EXECUTE_BLOCK(resultBlock, output.resultCode);
         });
         
     });
+}
+
+- (void)syncOngoingContestList
+{
+    [self syncOngoingContestList:nil];
+    
+//    dispatch_async(workingQueue, ^{
+//        
+//        NSDictionary* para = @{ PARA_LANGUAGE : @(ChineseType),
+//                                PARA_TYPE : @(ContestListTypeRunning),
+//                                PARA_OFFSET : @(0),
+//                                PARA_COUNT : @(0)
+//                                };
+//        
+//        GameNetworkOutput* output = [PPGameNetworkRequest trafficApiServerGetAndResponsePB:METHOD_GET_CONTEST_LIST
+//                                                                                parameters:para];
+//
+//        
+//        dispatch_async(dispatch_get_main_queue(), ^{
+//            
+//            if (output.resultCode == 0){
+//                [[ContestManager defaultManager] saveOngoingContestList:output.pbResponse.contestListList];                
+//                [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFCATION_CONTEST_DATA_CHANGE object:nil];
+//            }
+//            
+//        });
+//        
+//    });
 }
 
 - (NSString*)getAccpetContestsKey

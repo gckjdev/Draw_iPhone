@@ -78,7 +78,7 @@ enum{
         
         if([um isTutorialLearned:pbTutorial.tutorialId]){
             // close dialog
-            [dialog disappear];
+            [infoController close:dialog];
             
             // enter learning
             PBUserTutorial* ut = [[UserTutorialManager defaultManager] getUserTutorialByTutorialId:pbTutorial.tutorialId];
@@ -98,16 +98,27 @@ enum{
     
     [dialog setClickCloseBlock:^(id infoView){
         // close dialog
-        [dialog disappear];
+        [infoController close:dialog];
     }];
     
     [dialog showInView:superController.view];
+    [superController addChildViewController:infoController];
     return infoController;
+}
+
+- (void)close:(CommonDialog*)dialog
+{
+    [dialog disappear];
+    if (self.parentViewController){
+        [self removeFromParentViewController];
+    }
 }
 
 - (void)dealloc
 {
-
+    if (self.parentViewController){
+        [self removeFromParentViewController];
+    }
     PPRelease(_pbTutorial);
     [super dealloc];
 }
