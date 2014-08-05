@@ -62,6 +62,7 @@
 #import "TutorialCoreManager.h"
 #import "MKBlockActionSheet.h"
 #import "ChangeAvatar.h"
+#import "PhotoDrawSheet.h"
 
 @implementation UIViewController (CommonHome)
 
@@ -387,6 +388,41 @@
 
 - (void)enterOfflineDrawWithMenu
 {
+    ChangeAvatar* imagePicker = [[ChangeAvatar alloc] init];
+    imagePicker.autoRoundRect = NO;
+    [imagePicker showSelectionView:self
+                             title:NSLS(@"kDrawMode")
+                       otherTitles:@[NSLS(@"kBlankDraw")]
+                           handler:^(NSInteger index) {
+                               
+        if (index == 2) {
+            // blank draw
+            [self enterOfflineDraw];
+        }
+        else if(index == 3){
+            // not used yet
+        }
+                               
+                               [imagePicker release];
+                               
+                               
+                               
+    } selectImageHanlder:^(UIImage *image) {
+
+        // enter with bg image
+        [OfflineDrawViewController startDraw:self
+                             startController:self
+                                     bgImage:image];
+        
+        [imagePicker release];
+        
+        
+    } canTakePhoto:YES userOriginalImage:YES];
+}
+
+/*
+- (void)enterOfflineDrawWithMenu
+{
     MKBlockActionSheet* actionSheet = [[MKBlockActionSheet alloc] initWithTitle:@"请选择画画模式"
                                                                        delegate:nil
                                                               cancelButtonTitle:@"取消"
@@ -396,13 +432,15 @@
     [actionSheet setActionBlock:^(int buttonIndex){
         switch (buttonIndex) {
             case 0:
+                [self enterOfflineDraw];
                 break;
                 
             case 1:
-                [self enterOfflineDraw];
+                [self enterOfflineDrawWithPhoto];
                 break;
 
             case 2:
+                // cancel
                 break;
                 
             default:
@@ -413,5 +451,6 @@
     [actionSheet showInView:self.view];
     [actionSheet release];
 }
-
+*/
+ 
 @end

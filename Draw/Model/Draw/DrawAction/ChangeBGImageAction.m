@@ -38,6 +38,8 @@
     return self;
 }
 
+
+
 - (id)initWithPBDrawActionC:(Game__PBDrawAction *)action
 {
     self = [super initWithPBDrawActionC:action];
@@ -56,6 +58,30 @@
             
             if (action->drawbg->has_showstyle){
                 [builder setShowStyle:action->drawbg->showstyle];
+            }
+            
+            if (action->drawbg->has_type){
+                [builder setType:action->drawbg->type];
+            }
+            
+            if (action->drawbg->has_purpose){
+                [builder setPurpose:action->drawbg->purpose];
+            }
+
+            if (action->drawbg->has_layerposition){
+                [builder setLayerPosition:action->drawbg->layerposition];
+            }
+            
+            if (action->drawbg->tutorialbgimagename != NULL){
+                [builder setTutorialBgImageName:[NSString stringWithUTF8String:action->drawbg->tutorialbgimagename]];
+            }
+
+            if (action->drawbg->tutorialid != NULL){
+                [builder setTutorialId:[NSString stringWithUTF8String:action->drawbg->tutorialid]];
+            }
+
+            if (action->drawbg->stageid != NULL){
+                [builder setStageId:[NSString stringWithUTF8String:action->drawbg->stageid]];
             }
             
             self.drawBg = [builder build];
@@ -86,6 +112,7 @@
 {
     return nil;
 }
+
 
 
 - (PBDrawAction *)toPBDrawAction
@@ -120,7 +147,20 @@
         pbDrawActionC->drawbg->remoteurl = (char*)[self.drawBg.remoteUrl UTF8String];
         
         pbDrawActionC->drawbg->showstyle = self.drawBg.showStyle;
-        pbDrawActionC->drawbg->has_showstyle = 1;        
+        pbDrawActionC->drawbg->has_showstyle = 1;
+        
+        pbDrawActionC->drawbg->type = self.drawBg.type;
+        pbDrawActionC->drawbg->has_type = 1;
+        
+        pbDrawActionC->drawbg->layerposition = self.drawBg.layerPosition;
+        pbDrawActionC->drawbg->has_layerposition = 1;
+
+        pbDrawActionC->drawbg->purpose = self.drawBg.purpose;
+        pbDrawActionC->drawbg->has_purpose = 1;
+
+        pbDrawActionC->drawbg->tutorialid = (char*)[self.drawBg.tutorialId UTF8String];
+        pbDrawActionC->drawbg->stageid = (char*)[self.drawBg.stageId UTF8String];
+        pbDrawActionC->drawbg->tutorialbgimagename = (char*)[self.drawBg.tutorialBgImageName UTF8String];
     }
     return;
 
@@ -224,6 +264,47 @@ message PBDrawBg
     optional string tutorialBgImageName = 22;
 }
  */
+
++ (ChangeBGImageAction *)actionForNormalDrawBg:(PBDrawBgLayerType)layerPosition
+                                      bgImage:(UIImage*)bgImage
+                                  bgImageName:(NSString*)bgImageName
+                                     needSave:(BOOL)needSave
+{
+    if (bgImage == nil || [bgImageName length] == 0){
+        PPDebug(@"<actionForNormalDrawBg> no bg image or bgImageName(%@) nil", bgImageName);
+        return nil;
+    }
+    
+    //    NSString* key = [self bgImageNameForLearnDrawBgImage:tutorial.tutorialId stageId:stage.stageId];
+    if (needSave){
+        NSString* key = bgImageName;
+        BOOL result = [[DrawBgManager defaultManager] saveImage:bgImage forKey:key];
+        if (!result){
+            PPDebug(@"<actionForNormalDrawBg> save bg image for key %@ failure", key);
+            return nil;
+        }
+    }
+    
+    PBDrawBg_Builder* builder = [PBDrawBg builder];
+    [builder setBgId:bgImageName];
+    [builder setLocalUrl:bgImageName];
+    [builder setShowStyle:ShowStyleCenter];
+    [builder setType:PBDrawBgTypeDrawBgNormalDraw];
+    [builder setPurpose:PBDrawBgPurposeDrawBgPurposeNormalDraw];
+    [builder setLayerPosition:layerPosition];
+    
+    PBDrawBg* drawBg = [builder build];
+    
+    ChangeBGImageAction* action = [self actionWithDrawBG:drawBg];
+    if (layerPosition == PBDrawBgLayerTypeDrawBgLayerForeground){
+        [action setLayerTag:BG_LAYER_TAG];
+    }
+    else{
+        [action setLayerTag:MAIN_LAYER_TAG];
+    }
+    
+    return action;
+}
 
 + (ChangeBGImageAction *)actionForLearnDrawBg:(PBDrawBgLayerType)layerPosition
                                      tutorial:(PBTutorial*)tutorial

@@ -167,6 +167,18 @@
                                        animated:YES];
 }
 
++ (OfflineDrawViewController *)startDraw:(UIViewController*)fromController
+                         startController:(UIViewController*)startController
+                                 bgImage:(UIImage*)bgImage
+{
+    return [OfflineDrawViewController startDraw:nil
+                                 fromController:fromController
+                                startController:startController
+                                      targetUid:nil
+                                          photo:bgImage
+                                       animated:YES];
+}
+
 + (OfflineDrawViewController *)startDraw:(Word *)word
                           fromController:(UIViewController*)fromController
                          startController:(UIViewController*)startController
@@ -522,20 +534,30 @@
             
             if (self.bgImage && _isNewDraft){
                 PPDebug(@"create bg image action for new draft");
-                int layerPostion;
-                if (self.stage.useBgForFill){
-                    layerPostion = PBDrawBgLayerTypeDrawBgLayerForeground;
+                int layerPostion = PBDrawBgLayerTypeDrawBgLayerForeground;
+                ChangeBGImageAction* bgImageAction = nil;
+                if ([self isLearnType]){
+                    if (self.stage.useBgForFill){
+                        layerPostion = PBDrawBgLayerTypeDrawBgLayerForeground;
+                    }
+                    else{
+                        layerPostion = PBDrawBgLayerTypeDrawBgLayerBackground;
+                    }
+
+                    bgImageAction = [ChangeBGImageAction actionForLearnDrawBg:layerPostion
+                                                                     tutorial:self.tutorial
+                                                                     stage:self.stage
+                                                                   bgImage:self.bgImage
+                                                               bgImageName:self.bgImageName
+                                                                  needSave:NO]; // already save in draft
                 }
                 else{
-                    layerPostion = PBDrawBgLayerTypeDrawBgLayerBackground;
+                    bgImageAction = [ChangeBGImageAction actionForNormalDrawBg:layerPostion
+                                                                      bgImage:self.bgImage
+                                                                  bgImageName:self.bgImageName
+                                                                     needSave:NO]; // already save in draft
+                    
                 }
-                
-                ChangeBGImageAction* bgImageAction = [ChangeBGImageAction actionForLearnDrawBg:layerPostion
-                                                                                      tutorial:self.tutorial
-                                                                                         stage:self.stage
-                                                                                       bgImage:self.bgImage
-                                                                                   bgImageName:self.bgImageName
-                                                                                      needSave:NO]; // already save in draft
                 
                 if (bgImageAction){
                     [self.draft.drawActionList addObject:bgImageAction];

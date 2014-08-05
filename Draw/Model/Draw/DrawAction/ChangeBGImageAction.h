@@ -24,7 +24,9 @@
                                   bgImageName:(NSString*)bgImageName        // 背景图名字，唯一
                                      needSave:(BOOL)needSave;               // 是否需要保存背景图
 
-+ (NSString*)bgImageNameForLearnDrawBgImage:(NSString*)tutorialId
-                                    stageId:(NSString*)stageId;
++ (ChangeBGImageAction *)actionForNormalDrawBg:(PBDrawBgLayerType)layerPosition
+                                       bgImage:(UIImage*)bgImage
+                                   bgImageName:(NSString*)bgImageName
+                                      needSave:(BOOL)needSave;
 
 @end
