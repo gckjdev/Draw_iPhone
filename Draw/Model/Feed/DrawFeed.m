@@ -538,5 +538,8 @@
     [super dealloc];
 }
 
-
+- (BOOL)hasBgImage
+{
+    return ([self.pbFeed.bgImageName length] > 0);
+}
 @end

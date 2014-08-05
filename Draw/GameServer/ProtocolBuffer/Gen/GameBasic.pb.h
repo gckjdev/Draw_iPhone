@@ -79,6 +79,27 @@ typedef enum {
 BOOL PBOpenInfoTypeIsValidValue(PBOpenInfoType value);
 
 typedef enum {
+  PBDrawBgTypeDrawBgItem = 0,
+  PBDrawBgTypeDrawBgNormalDraw = 1,
+  PBDrawBgTypeDrawBgNormalShow = 2,
+} PBDrawBgType;
+
+BOOL PBDrawBgTypeIsValidValue(PBDrawBgType value);
+
+typedef enum {
+  PBDrawBgPurposeDrawBgPurposeLearnDraw = 1,
+} PBDrawBgPurpose;
+
+BOOL PBDrawBgPurposeIsValidValue(PBDrawBgPurpose value);
+
+typedef enum {
+  PBDrawBgLayerTypeDrawBgLayerBackground = 0,
+  PBDrawBgLayerTypeDrawBgLayerForeground = 1,
+} PBDrawBgLayerType;
+
+BOOL PBDrawBgLayerTypeIsValidValue(PBDrawBgLayerType value);
+
+typedef enum {
   PBGameCurrencyCoin = 0,
   PBGameCurrencyIngot = 1,
 } PBGameCurrency;
@@ -1453,22 +1474,46 @@ BOOL PBTaskIdTypeIsValidValue(PBTaskIdType value);
 @interface PBDrawBg : PBGeneratedMessage {
 @private
   BOOL hasShowStyle_:1;
+  BOOL hasType_:1;
+  BOOL hasPurpose_:1;
+  BOOL hasLayerPosition_:1;
   BOOL hasBgId_:1;
   BOOL hasLocalUrl_:1;
   BOOL hasRemoteUrl_:1;
+  BOOL hasTutorialId_:1;
+  BOOL hasStageId_:1;
+  BOOL hasTutorialBgImageName_:1;
   int32_t showStyle;
+  int32_t type;
+  int32_t purpose;
+  int32_t layerPosition;
   NSString* bgId;
   NSString* localUrl;
   NSString* remoteUrl;
+  NSString* tutorialId;
+  NSString* stageId;
+  NSString* tutorialBgImageName;
 }
 - (BOOL) hasBgId;
 - (BOOL) hasLocalUrl;
 - (BOOL) hasRemoteUrl;
 - (BOOL) hasShowStyle;
+- (BOOL) hasType;
+- (BOOL) hasPurpose;
+- (BOOL) hasLayerPosition;
+- (BOOL) hasTutorialId;
+- (BOOL) hasStageId;
+- (BOOL) hasTutorialBgImageName;
 @property (readonly, retain) NSString* bgId;
 @property (readonly, retain) NSString* localUrl;
 @property (readonly, retain) NSString* remoteUrl;
 @property (readonly) int32_t showStyle;
+@property (readonly) int32_t type;
+@property (readonly) int32_t purpose;
+@property (readonly) int32_t layerPosition;
+@property (readonly, retain) NSString* tutorialId;
+@property (readonly, retain) NSString* stageId;
+@property (readonly, retain) NSString* tutorialBgImageName;
 
 + (PBDrawBg*) defaultInstance;
 - (PBDrawBg*) defaultInstance;
@@ -1523,6 +1568,36 @@ BOOL PBTaskIdTypeIsValidValue(PBTaskIdType value);
 - (int32_t) showStyle;
 - (PBDrawBg_Builder*) setShowStyle:(int32_t) value;
 - (PBDrawBg_Builder*) clearShowStyle;
+
+- (BOOL) hasType;
+- (int32_t) type;
+- (PBDrawBg_Builder*) setType:(int32_t) value;
+- (PBDrawBg_Builder*) clearType;
+
+- (BOOL) hasPurpose;
+- (int32_t) purpose;
+- (PBDrawBg_Builder*) setPurpose:(int32_t) value;
+- (PBDrawBg_Builder*) clearPurpose;
+
+- (BOOL) hasLayerPosition;
+- (int32_t) layerPosition;
+- (PBDrawBg_Builder*) setLayerPosition:(int32_t) value;
+- (PBDrawBg_Builder*) clearLayerPosition;
+
+- (BOOL) hasTutorialId;
+- (NSString*) tutorialId;
+- (PBDrawBg_Builder*) setTutorialId:(NSString*) value;
+- (PBDrawBg_Builder*) clearTutorialId;
+
+- (BOOL) hasStageId;
+- (NSString*) stageId;
+- (PBDrawBg_Builder*) setStageId:(NSString*) value;
+- (PBDrawBg_Builder*) clearStageId;
+
+- (BOOL) hasTutorialBgImageName;
+- (NSString*) tutorialBgImageName;
+- (PBDrawBg_Builder*) setTutorialBgImageName:(NSString*) value;
+- (PBDrawBg_Builder*) clearTutorialBgImageName;
 @end
 
 @interface PBGradient : PBGeneratedMessage {

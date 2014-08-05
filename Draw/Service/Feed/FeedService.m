@@ -20,7 +20,7 @@
 #import "FeedDownloadService.h"
 #import "PPGameNetworkRequest.h"
 #import "OpusClassInfo.h"
-
+#import "DrawBgManager.h"
 
 #define GET_FEED_DETAIL_QUEUE   @"GET_FEED_DETAIL_QUEUE"
 #define GET_PBDRAW_QUEUE        @"GET_PBDRAW_QUEUE"
@@ -673,10 +673,28 @@ static FeedService *_staticFeedService = nil;
     
     NSOperationQueue *queue = [self getOperationQueue:GET_PBDRAW_QUEUE];
     [queue cancelAllOperations];
+
+    // download bg image firstly
+    BOOL needDownloadBgImage = NO;
+    if ([feed hasBgImage]){
+        if ([[DrawBgManager defaultManager] isImageExists:feed.pbFeed.bgImageName] == NO){
+            // bg image not exist, need download
+            needDownloadBgImage = YES;
+        }
+    }
     
     [queue addOperationWithBlock:^{
         
         NSAutoreleasePool *subPool = [[NSAutoreleasePool alloc] init];
+        if (needDownloadBgImage){
+            NSURL* bgImageUrl = [NSURL URLWithString:feed.pbFeed.bgImageUrl];
+            NSData* bgImageData = [NSData dataWithContentsOfURL:bgImageUrl];
+            PPDebug(@"download feed(%@) bg image from (%@) with bytes(%d) returned", feed.feedId, bgImageUrl, [bgImageData length]);
+            if (bgImageData){
+                [[DrawBgManager defaultManager] saveData:bgImageData forKey:feed.pbFeed.bgImageName];
+            }
+        }
+        
         BOOL fromCache = NO;
         NSInteger resultCode = 0;
         NSData* data = nil;

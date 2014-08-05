@@ -747,7 +747,8 @@ const ProtobufCMessageDescriptor game__pbchapter__descriptor =
 };
 static const float game__pbstage__difficulty__default_value = 1;
 static const protobuf_c_boolean game__pbstage__use_bg_from_prev__default_value = 0;
-static const ProtobufCFieldDescriptor game__pbstage__field_descriptors[21] =
+static const protobuf_c_boolean game__pbstage__use_bg_for_fill__default_value = 1;
+static const ProtobufCFieldDescriptor game__pbstage__field_descriptors[22] =
 {
   {
     "stageId",
@@ -1001,6 +1002,18 @@ static const ProtobufCFieldDescriptor game__pbstage__field_descriptors[21] =
     0,            /* packed */
     0,NULL,NULL    /* reserved1,reserved2, etc */
   },
+  {
+    "useBgForFill",
+    61,
+    PROTOBUF_C_LABEL_OPTIONAL,
+    PROTOBUF_C_TYPE_BOOL,
+    PROTOBUF_C_OFFSETOF(Game__PBStage, has_usebgforfill),
+    PROTOBUF_C_OFFSETOF(Game__PBStage, usebgforfill),
+    NULL,
+    &game__pbstage__use_bg_for_fill__default_value,
+    0,            /* packed */
+    0,NULL,NULL    /* reserved1,reserved2, etc */
+  },
 };
 static const unsigned game__pbstage__field_indices_by_name[] = {
   11,   /* field[11] = bgImage */
@@ -1023,6 +1036,7 @@ static const unsigned game__pbstage__field_indices_by_name[] = {
   6,   /* field[6] = tcnDesc */
   3,   /* field[3] = tcnName */
   9,   /* field[9] = thumbImage */
+  21,   /* field[21] = useBgForFill */
   20,   /* field[20] = useBgFromPrev */
 };
 static const ProtobufCIntRange game__pbstage__number_ranges[7 + 1] =
@@ -1034,7 +1048,7 @@ static const ProtobufCIntRange game__pbstage__number_ranges[7 + 1] =
   { 40, 16 },
   { 50, 17 },
   { 60, 20 },
-  { 0, 21 }
+  { 0, 22 }
 };
 const ProtobufCMessageDescriptor game__pbstage__descriptor =
 {
@@ -1044,7 +1058,7 @@ const ProtobufCMessageDescriptor game__pbstage__descriptor =
   "Game__PBStage",
   "game",
   sizeof(Game__PBStage),
-  21,
+  22,
   game__pbstage__field_descriptors,
   game__pbstage__field_indices_by_name,
   7,  game__pbstage__number_ranges,

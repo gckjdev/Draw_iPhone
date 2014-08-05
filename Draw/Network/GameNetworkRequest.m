@@ -1574,6 +1574,7 @@
                               lang:(NSInteger)lang
                               data:(NSData*)data
                          imageData:(NSData *)imageData
+                       bgImageData:(NSData *)bgImageData
                          targetUid:(NSString *)targetUid
                          contestId:(NSString *)contestId
                               desc:(NSString *)desc
@@ -1651,6 +1652,10 @@
             str = [str stringByAddQueryParameter:PARA_CLASS value:classListString];
         }
         
+        if ([draft.bgImageName length] > 0){
+            str = [str stringByAddQueryParameter:PARA_DRAW_BG_IMAGE value:draft.bgImageName];
+        }
+        
 //        if (isZipData){
 //            str = [str stringByAddQueryParameter:PARA_IS_DATA_ZIP intValue:1];
 //        }
@@ -1683,6 +1688,10 @@
         if (imageData) {
             imageDict = [NSMutableDictionary dictionary];
             [imageDict setObject:imageData forKey:PARA_DRAW_IMAGE];
+        }
+        
+        if (bgImageData){
+            [imageDict setObject:bgImageData forKey:PARA_DRAW_BG_IMAGE];
         }
 
         return [PPNetworkRequest uploadRequest:baseURL

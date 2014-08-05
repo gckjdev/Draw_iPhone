@@ -77,5 +77,6 @@
 
 - (int)getTargetType;
 - (void)updateDrawData;
+- (NSString *)bgImageFullPath;
 
 @end

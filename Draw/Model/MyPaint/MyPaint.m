@@ -131,6 +131,12 @@
     return _bgImage;
 }
 
+- (NSString *)bgImageFullPath
+{
+    NSString* path = [[MyPaintManager defaultManager] bgImageFullPath:self];
+    return path;
+}
+
 - (NSMutableArray *)drawActionList
 {
     //set draw action list and set the draw data version

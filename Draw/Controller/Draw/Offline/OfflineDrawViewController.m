@@ -240,11 +240,6 @@
     PBTutorial* tutorial = [[TutorialCoreManager defaultManager] findTutorialByTutorialId:userStage.tutorialId];
     PBStage* stage = [tutorial getStageByIndex:userStage.stageIndex];
     
-//    NSString* bgImagePath = [[UserTutorialService defaultService] getBgImagePath:userStage.tutorialId stage:stage];
-//    UIImage* bgImage = [[[UIImage alloc] initWithContentsOfFile:bgImagePath] autorelease];
-
-    UIImage* bgImage = [[UserTutorialService defaultService] getBgImage:userStage stage:stage type:targetType];
-    
     NSString* draftId = userStage.practiceLocalOpusId;
     MyPaint* draft = [[MyPaintManager defaultManager] findDraftById:draftId];
     
@@ -255,9 +250,11 @@
         
         vc.tutorial = tutorial;
         vc.stage = stage;
-        
     }
     else{
+        
+        UIImage* bgImage = [[UserTutorialService defaultService] getBgImage:userStage stage:stage type:targetType];
+        NSString* bgImageName = [ChangeBGImageAction bgImageNameForLearnDrawBgImage:tutorial.tutorialId stageId:stage.stageId];
         vc = [[OfflineDrawViewController alloc] initWithTargetType:targetType
                                                          delegate:nil
                                                   startController:startController
@@ -281,9 +278,9 @@
         vc.userTutorialBuilder = [PBUserTutorial builderWithPrototype:userTutorial];
     }
     
-    if (vc.draft.bgImage == nil){
-        vc.bgImage = bgImage;
-    }
+//    if (vc.draft.bgImage == nil){
+//        vc.bgImage = bgImage;
+//    }
     
     [startController.navigationController pushViewController:vc animated:YES];
     PPDebug(@"<StartDraw>: practice");
@@ -302,7 +299,6 @@
 //    NSString* bgImagePath = [[UserTutorialService defaultService] getBgImagePath:userStage.tutorialId stage:stage];
 //    UIImage* bgImage = [[[UIImage alloc] initWithContentsOfFile:bgImagePath] autorelease];
     
-    UIImage* bgImage = [[UserTutorialService defaultService] getBgImage:userStage stage:stage type:targetType];
     
     NSString* draftId = userStage.conquerLocalOpusId;
     MyPaint* draft = [[MyPaintManager defaultManager] findDraftById:draftId];
@@ -317,6 +313,7 @@
         
     }
     else{
+        UIImage* bgImage = [[UserTutorialService defaultService] getBgImage:userStage stage:stage type:targetType];
         vc = [[OfflineDrawViewController alloc] initWithTargetType:targetType
                                                           delegate:nil
                                                    startController:startController
@@ -340,9 +337,9 @@
         vc.userTutorialBuilder = [PBUserTutorial builderWithPrototype:userTutorial];
     }
     
-    if (vc.draft.bgImage == nil){
-        vc.bgImage = bgImage;
-    }
+//    if (vc.draft.bgImage == nil){
+//        vc.bgImage = bgImage;
+//    }
     
     [startController.navigationController pushViewController:vc animated:YES];
     PPDebug(@"<StartDraw>: conquer");
@@ -515,13 +512,35 @@
             [self setDrawBGImage:_bgImage useImageRect:YES];
         }
         else{
-            UIImage* draftBg = [[MyPaintManager defaultManager] bgImageForPaint:self.draft];
-            if (draftBg == nil){
-                draftBg = self.bgImage;
+            
+//            UIImage* draftBg = [[MyPaintManager defaultManager] bgImageForPaint:self.draft];
+//            if (draftBg == nil){
+//                draftBg = self.bgImage;
+//            }
+//            [self setDrawBGImage:draftBg useImageRect:NO];
+            
+            if (self.bgImage && _isNewDraft){
+                PPDebug(@"create bg image action for new draft");
+                int layerPostion;
+                if (self.stage.useBgForFill){
+                    layerPostion = PBDrawBgLayerTypeDrawBgLayerForeground;
+                }
+                else{
+                    layerPostion = PBDrawBgLayerTypeDrawBgLayerBackground;
+                }
+                
+                ChangeBGImageAction* bgImageAction = [ChangeBGImageAction actionForLearnDrawBg:layerPostion
+                                                                                      tutorial:self.tutorial
+                                                                                         stage:self.stage
+                                                                                       bgImage:self.bgImage
+                                                                                   bgImageName:self.bgImageName
+                                                                                      needSave:NO]; // already save in draft
+                
+                if (bgImageAction){
+                    [self.draft.drawActionList addObject:bgImageAction];
+                }
             }
-            [self setDrawBGImage:draftBg useImageRect:NO];
-        }
-        
+        }        
         
         [drawView showDraft:self.draft];
         self.draft.paintImage = nil;
@@ -1162,9 +1181,6 @@
     [_upPanelPopView dismissAnimated:YES];
 
     _hasNewStroke = YES;
-    
-//    _isNewDraft = NO;
-
 }
 
 - (void)drawView:(DrawView *)view didFinishDrawAction:(DrawAction *)action
@@ -1441,7 +1457,6 @@
     }
     
     PPDebug(@"<OfflineDrawViewController> start to save draft. show result = %d",showResult);
-//    _isNewDraft = YES;
 
     _hasNewStroke = NO;
     
