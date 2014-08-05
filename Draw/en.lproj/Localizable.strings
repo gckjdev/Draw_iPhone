@@ -2840,6 +2840,9 @@
 "kGuidePageRegister" = "Register";
 
 
+"kBlankDraw" = "Blank Draw";
+"kDrawMode" = "Select Draw Mode";
+
 "kResultPageCount" = "Beat %@%% Users";
 "kResultPageScore" = "Your opus score %@";
 
@@ -2847,3 +2850,4 @@
 "kMetroDocumentButton" = "DOC";
 "kMetroMessageButton" = "MG";
 "kMetroMoreButton" = "MR";
+
