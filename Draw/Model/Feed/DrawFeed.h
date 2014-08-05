@@ -101,7 +101,9 @@ typedef enum{
 - (BOOL)canSendFlower;
 - (BOOL)canThrowTomato;
 - (BOOL)canSave;
+- (BOOL)hasBgImage;
 
 - (NSArray*)opusClassInfoList;
+
 
 @end

@@ -234,9 +234,23 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(DrawBgManager);
     return [_imageManager saveImage:image forKey:key];
 }
 
+- (BOOL)saveData:(NSData*)data forKey:(NSString*)key
+{
+    return [_imageManager saveData:data forKey:key];
+}
+
 - (UIImage*)imageForKey:(NSString*)key
 {
     return [_imageManager imageForKey:key];
+}
+
+- (BOOL)isImageExists:(NSString*)key
+{
+    if ([key length] == 0){
+        return NO;
+    }
+    NSString* path = [_imageManager pathWithKey:key];
+    return [[NSFileManager defaultManager] fileExistsAtPath:path];
 }
 
 

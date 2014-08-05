@@ -39,7 +39,9 @@ typedef enum{
 - (NSString*)downloadProgressNotificationName;
 
 - (BOOL)saveImage:(UIImage*)image forKey:(NSString*)key;
+- (BOOL)saveData:(NSData*)data forKey:(NSString*)key;
 - (UIImage*)imageForKey:(NSString*)key;
+- (BOOL)isImageExists:(NSString*)key;
 
 @end
 
