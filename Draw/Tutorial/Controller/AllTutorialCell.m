@@ -47,10 +47,11 @@
     self.tutorialDesc.textColor = COLOR_RED;
     
     //实现国际化
-    self.tutorialName.text = pbTutorial.name;
-    
+//    PPDebug(@"cnName:%@; enName:%@,tcnName:%@",pbTutorial.cnName,pbTutorial.enName,pbTutorial.tcnName);
+    self.tutorialName.text = NSLS(pbTutorial.name);
     
     self.tutorialDesc.text = pbTutorial.categoryName;
+    
     UIImage *placeHolderImage = [UIImage imageNamed:@DEFAUT_IMAGE];
 
     SET_VIEW_ROUND_CORNER(self.tutorialImage);
