@@ -364,7 +364,8 @@
 #define PARA_UPLOAD_DATA_TYPE @"dataType"
 #define PARA_MAX_FLOWER_TIMES @"maxFlowerTimes"
 
-#define PARA_DRAW_IMAGE @"photo"
+#define PARA_DRAW_IMAGE         @"photo"
+#define PARA_DRAW_BG_IMAGE      @"bg_image"
 #define PARA_FEED_ID @"fid"
 
 #define PARA_WALL_DATA @"wall_data"

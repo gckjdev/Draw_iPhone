@@ -383,6 +383,11 @@ static DrawDataService* _defaultDrawDataService = nil;
         imageData = [image data];
     }
     
+    NSData* bgImageData = nil;
+    if (draft.bgImage){
+        bgImageData = [draft.bgImage data];
+    }
+    
     int opusScore = [draft.score intValue];
     
     dispatch_async(workingQueue, ^{
@@ -400,7 +405,8 @@ static DrawDataService* _defaultDrawDataService = nil;
                                                                score:drawWord.score
                                                                 lang:language                                      
                                                                 data:drawData
-                                                           imageData:imageData 
+                                                           imageData:imageData
+                                                         bgImageData:bgImageData
                                                            targetUid:targetUid 
                                                            contestId:contestId
                                                                 desc:desc

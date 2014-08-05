@@ -2981,7 +2981,8 @@ const ProtobufCMessageDescriptor game__pbgame_session_changed__descriptor =
   NULL,NULL,NULL    /* reserved[123] */
 };
 static const int32_t game__pbdraw_bg__show_style__default_value = 0;
-static const ProtobufCFieldDescriptor game__pbdraw_bg__field_descriptors[4] =
+static const int32_t game__pbdraw_bg__type__default_value = 0;
+static const ProtobufCFieldDescriptor game__pbdraw_bg__field_descriptors[10] =
 {
   {
     "bgId",
@@ -3031,17 +3032,96 @@ static const ProtobufCFieldDescriptor game__pbdraw_bg__field_descriptors[4] =
     0,            /* packed */
     0,NULL,NULL    /* reserved1,reserved2, etc */
   },
+  {
+    "type",
+    5,
+    PROTOBUF_C_LABEL_OPTIONAL,
+    PROTOBUF_C_TYPE_INT32,
+    PROTOBUF_C_OFFSETOF(Game__PBDrawBg, has_type),
+    PROTOBUF_C_OFFSETOF(Game__PBDrawBg, type),
+    NULL,
+    &game__pbdraw_bg__type__default_value,
+    0,            /* packed */
+    0,NULL,NULL    /* reserved1,reserved2, etc */
+  },
+  {
+    "purpose",
+    6,
+    PROTOBUF_C_LABEL_OPTIONAL,
+    PROTOBUF_C_TYPE_INT32,
+    PROTOBUF_C_OFFSETOF(Game__PBDrawBg, has_purpose),
+    PROTOBUF_C_OFFSETOF(Game__PBDrawBg, purpose),
+    NULL,
+    NULL,
+    0,            /* packed */
+    0,NULL,NULL    /* reserved1,reserved2, etc */
+  },
+  {
+    "layerPosition",
+    7,
+    PROTOBUF_C_LABEL_OPTIONAL,
+    PROTOBUF_C_TYPE_INT32,
+    PROTOBUF_C_OFFSETOF(Game__PBDrawBg, has_layerposition),
+    PROTOBUF_C_OFFSETOF(Game__PBDrawBg, layerposition),
+    NULL,
+    NULL,
+    0,            /* packed */
+    0,NULL,NULL    /* reserved1,reserved2, etc */
+  },
+  {
+    "tutorialId",
+    20,
+    PROTOBUF_C_LABEL_OPTIONAL,
+    PROTOBUF_C_TYPE_STRING,
+    0,   /* quantifier_offset */
+    PROTOBUF_C_OFFSETOF(Game__PBDrawBg, tutorialid),
+    NULL,
+    NULL,
+    0,            /* packed */
+    0,NULL,NULL    /* reserved1,reserved2, etc */
+  },
+  {
+    "stageId",
+    21,
+    PROTOBUF_C_LABEL_OPTIONAL,
+    PROTOBUF_C_TYPE_STRING,
+    0,   /* quantifier_offset */
+    PROTOBUF_C_OFFSETOF(Game__PBDrawBg, stageid),
+    NULL,
+    NULL,
+    0,            /* packed */
+    0,NULL,NULL    /* reserved1,reserved2, etc */
+  },
+  {
+    "tutorialBgImageName",
+    22,
+    PROTOBUF_C_LABEL_OPTIONAL,
+    PROTOBUF_C_TYPE_STRING,
+    0,   /* quantifier_offset */
+    PROTOBUF_C_OFFSETOF(Game__PBDrawBg, tutorialbgimagename),
+    NULL,
+    NULL,
+    0,            /* packed */
+    0,NULL,NULL    /* reserved1,reserved2, etc */
+  },
 };
 static const unsigned game__pbdraw_bg__field_indices_by_name[] = {
   0,   /* field[0] = bgId */
+  6,   /* field[6] = layerPosition */
   1,   /* field[1] = localUrl */
+  5,   /* field[5] = purpose */
   2,   /* field[2] = remoteUrl */
   3,   /* field[3] = showStyle */
+  8,   /* field[8] = stageId */
+  9,   /* field[9] = tutorialBgImageName */
+  7,   /* field[7] = tutorialId */
+  4,   /* field[4] = type */
 };
-static const ProtobufCIntRange game__pbdraw_bg__number_ranges[1 + 1] =
+static const ProtobufCIntRange game__pbdraw_bg__number_ranges[2 + 1] =
 {
   { 1, 0 },
-  { 0, 4 }
+  { 20, 7 },
+  { 0, 10 }
 };
 const ProtobufCMessageDescriptor game__pbdraw_bg__descriptor =
 {
@@ -3051,10 +3131,10 @@ const ProtobufCMessageDescriptor game__pbdraw_bg__descriptor =
   "Game__PBDrawBg",
   "game",
   sizeof(Game__PBDrawBg),
-  4,
+  10,
   game__pbdraw_bg__field_descriptors,
   game__pbdraw_bg__field_indices_by_name,
-  1,  game__pbdraw_bg__number_ranges,
+  2,  game__pbdraw_bg__number_ranges,
   (ProtobufCMessageInit) game__pbdraw_bg__init,
   NULL,NULL,NULL    /* reserved[123] */
 };
@@ -5588,6 +5668,90 @@ const ProtobufCEnumDescriptor game__pbopen_info_type__descriptor =
   game__pbopen_info_type__enum_values_by_name,
   1,
   game__pbopen_info_type__value_ranges,
+  NULL,NULL,NULL,NULL   /* reserved[1234] */
+};
+const ProtobufCEnumValue game__pbdraw_bg_type__enum_values_by_number[3] =
+{
+  { "DRAW_BG_ITEM", "GAME__PBDRAW_BG_TYPE__DRAW_BG_ITEM", 0 },
+  { "DRAW_BG_NORMAL_DRAW", "GAME__PBDRAW_BG_TYPE__DRAW_BG_NORMAL_DRAW", 1 },
+  { "DRAW_BG_NORMAL_SHOW", "GAME__PBDRAW_BG_TYPE__DRAW_BG_NORMAL_SHOW", 2 },
+};
+static const ProtobufCIntRange game__pbdraw_bg_type__value_ranges[] = {
+{0, 0},{0, 3}
+};
+const ProtobufCEnumValueIndex game__pbdraw_bg_type__enum_values_by_name[3] =
+{
+  { "DRAW_BG_ITEM", 0 },
+  { "DRAW_BG_NORMAL_DRAW", 1 },
+  { "DRAW_BG_NORMAL_SHOW", 2 },
+};
+const ProtobufCEnumDescriptor game__pbdraw_bg_type__descriptor =
+{
+  PROTOBUF_C_ENUM_DESCRIPTOR_MAGIC,
+  "game.PBDrawBgType",
+  "PBDrawBgType",
+  "Game__PBDrawBgType",
+  "game",
+  3,
+  game__pbdraw_bg_type__enum_values_by_number,
+  3,
+  game__pbdraw_bg_type__enum_values_by_name,
+  1,
+  game__pbdraw_bg_type__value_ranges,
+  NULL,NULL,NULL,NULL   /* reserved[1234] */
+};
+const ProtobufCEnumValue game__pbdraw_bg_purpose__enum_values_by_number[1] =
+{
+  { "DRAW_BG_PURPOSE_LEARN_DRAW", "GAME__PBDRAW_BG_PURPOSE__DRAW_BG_PURPOSE_LEARN_DRAW", 1 },
+};
+static const ProtobufCIntRange game__pbdraw_bg_purpose__value_ranges[] = {
+{1, 0},{0, 1}
+};
+const ProtobufCEnumValueIndex game__pbdraw_bg_purpose__enum_values_by_name[1] =
+{
+  { "DRAW_BG_PURPOSE_LEARN_DRAW", 0 },
+};
+const ProtobufCEnumDescriptor game__pbdraw_bg_purpose__descriptor =
+{
+  PROTOBUF_C_ENUM_DESCRIPTOR_MAGIC,
+  "game.PBDrawBgPurpose",
+  "PBDrawBgPurpose",
+  "Game__PBDrawBgPurpose",
+  "game",
+  1,
+  game__pbdraw_bg_purpose__enum_values_by_number,
+  1,
+  game__pbdraw_bg_purpose__enum_values_by_name,
+  1,
+  game__pbdraw_bg_purpose__value_ranges,
+  NULL,NULL,NULL,NULL   /* reserved[1234] */
+};
+const ProtobufCEnumValue game__pbdraw_bg_layer_type__enum_values_by_number[2] =
+{
+  { "DRAW_BG_LAYER_BACKGROUND", "GAME__PBDRAW_BG_LAYER_TYPE__DRAW_BG_LAYER_BACKGROUND", 0 },
+  { "DRAW_BG_LAYER_FOREGROUND", "GAME__PBDRAW_BG_LAYER_TYPE__DRAW_BG_LAYER_FOREGROUND", 1 },
+};
+static const ProtobufCIntRange game__pbdraw_bg_layer_type__value_ranges[] = {
+{0, 0},{0, 2}
+};
+const ProtobufCEnumValueIndex game__pbdraw_bg_layer_type__enum_values_by_name[2] =
+{
+  { "DRAW_BG_LAYER_BACKGROUND", 0 },
+  { "DRAW_BG_LAYER_FOREGROUND", 1 },
+};
+const ProtobufCEnumDescriptor game__pbdraw_bg_layer_type__descriptor =
+{
+  PROTOBUF_C_ENUM_DESCRIPTOR_MAGIC,
+  "game.PBDrawBgLayerType",
+  "PBDrawBgLayerType",
+  "Game__PBDrawBgLayerType",
+  "game",
+  2,
+  game__pbdraw_bg_layer_type__enum_values_by_number,
+  2,
+  game__pbdraw_bg_layer_type__enum_values_by_name,
+  1,
+  game__pbdraw_bg_layer_type__value_ranges,
   NULL,NULL,NULL,NULL   /* reserved[1234] */
 };
 const ProtobufCEnumValue game__pbgame_currency__enum_values_by_number[2] =

@@ -11,6 +11,10 @@
 #import "DrawProcessProtocol.h"
 #import "Offscreen.h"
 
+#define BG_LAYER_TAG 1
+#define MAIN_LAYER_TAG 2
+#define DEFAULT_LAYER_TAG 2
+
 @class DrawAction;
 @class ClipAction;
 

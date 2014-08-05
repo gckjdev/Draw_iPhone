@@ -30,6 +30,33 @@ BOOL PBOpenInfoTypeIsValidValue(PBOpenInfoType value) {
       return NO;
   }
 }
+BOOL PBDrawBgTypeIsValidValue(PBDrawBgType value) {
+  switch (value) {
+    case PBDrawBgTypeDrawBgItem:
+    case PBDrawBgTypeDrawBgNormalDraw:
+    case PBDrawBgTypeDrawBgNormalShow:
+      return YES;
+    default:
+      return NO;
+  }
+}
+BOOL PBDrawBgPurposeIsValidValue(PBDrawBgPurpose value) {
+  switch (value) {
+    case PBDrawBgPurposeDrawBgPurposeLearnDraw:
+      return YES;
+    default:
+      return NO;
+  }
+}
+BOOL PBDrawBgLayerTypeIsValidValue(PBDrawBgLayerType value) {
+  switch (value) {
+    case PBDrawBgLayerTypeDrawBgLayerBackground:
+    case PBDrawBgLayerTypeDrawBgLayerForeground:
+      return YES;
+    default:
+      return NO;
+  }
+}
 BOOL PBGameCurrencyIsValidValue(PBGameCurrency value) {
   switch (value) {
     case PBGameCurrencyCoin:
@@ -5678,6 +5705,12 @@ static PBGameSessionChanged* defaultPBGameSessionChangedInstance = nil;
 @property (retain) NSString* localUrl;
 @property (retain) NSString* remoteUrl;
 @property int32_t showStyle;
+@property int32_t type;
+@property int32_t purpose;
+@property int32_t layerPosition;
+@property (retain) NSString* tutorialId;
+@property (retain) NSString* stageId;
+@property (retain) NSString* tutorialBgImageName;
 @end
 
 @implementation PBDrawBg
@@ -5710,10 +5743,55 @@ static PBGameSessionChanged* defaultPBGameSessionChangedInstance = nil;
   hasShowStyle_ = !!value;
 }
 @synthesize showStyle;
+- (BOOL) hasType {
+  return !!hasType_;
+}
+- (void) setHasType:(BOOL) value {
+  hasType_ = !!value;
+}
+@synthesize type;
+- (BOOL) hasPurpose {
+  return !!hasPurpose_;
+}
+- (void) setHasPurpose:(BOOL) value {
+  hasPurpose_ = !!value;
+}
+@synthesize purpose;
+- (BOOL) hasLayerPosition {
+  return !!hasLayerPosition_;
+}
+- (void) setHasLayerPosition:(BOOL) value {
+  hasLayerPosition_ = !!value;
+}
+@synthesize layerPosition;
+- (BOOL) hasTutorialId {
+  return !!hasTutorialId_;
+}
+- (void) setHasTutorialId:(BOOL) value {
+  hasTutorialId_ = !!value;
+}
+@synthesize tutorialId;
+- (BOOL) hasStageId {
+  return !!hasStageId_;
+}
+- (void) setHasStageId:(BOOL) value {
+  hasStageId_ = !!value;
+}
+@synthesize stageId;
+- (BOOL) hasTutorialBgImageName {
+  return !!hasTutorialBgImageName_;
+}
+- (void) setHasTutorialBgImageName:(BOOL) value {
+  hasTutorialBgImageName_ = !!value;
+}
+@synthesize tutorialBgImageName;
 - (void) dealloc {
   self.bgId = nil;
   self.localUrl = nil;
   self.remoteUrl = nil;
+  self.tutorialId = nil;
+  self.stageId = nil;
+  self.tutorialBgImageName = nil;
   [super dealloc];
 }
 - (id) init {
@@ -5722,6 +5800,12 @@ static PBGameSessionChanged* defaultPBGameSessionChangedInstance = nil;
     self.localUrl = @"";
     self.remoteUrl = @"";
     self.showStyle = 0;
+    self.type = 0;
+    self.purpose = 0;
+    self.layerPosition = 0;
+    self.tutorialId = @"";
+    self.stageId = @"";
+    self.tutorialBgImageName = @"";
   }
   return self;
 }
@@ -5756,6 +5840,24 @@ static PBDrawBg* defaultPBDrawBgInstance = nil;
   if (self.hasShowStyle) {
     [output writeInt32:4 value:self.showStyle];
   }
+  if (self.hasType) {
+    [output writeInt32:5 value:self.type];
+  }
+  if (self.hasPurpose) {
+    [output writeInt32:6 value:self.purpose];
+  }
+  if (self.hasLayerPosition) {
+    [output writeInt32:7 value:self.layerPosition];
+  }
+  if (self.hasTutorialId) {
+    [output writeString:20 value:self.tutorialId];
+  }
+  if (self.hasStageId) {
+    [output writeString:21 value:self.stageId];
+  }
+  if (self.hasTutorialBgImageName) {
+    [output writeString:22 value:self.tutorialBgImageName];
+  }
   [self.unknownFields writeToCodedOutputStream:output];
 }
 - (int32_t) serializedSize {
@@ -5776,6 +5878,24 @@ static PBDrawBg* defaultPBDrawBgInstance = nil;
   }
   if (self.hasShowStyle) {
     size += computeInt32Size(4, self.showStyle);
+  }
+  if (self.hasType) {
+    size += computeInt32Size(5, self.type);
+  }
+  if (self.hasPurpose) {
+    size += computeInt32Size(6, self.purpose);
+  }
+  if (self.hasLayerPosition) {
+    size += computeInt32Size(7, self.layerPosition);
+  }
+  if (self.hasTutorialId) {
+    size += computeStringSize(20, self.tutorialId);
+  }
+  if (self.hasStageId) {
+    size += computeStringSize(21, self.stageId);
+  }
+  if (self.hasTutorialBgImageName) {
+    size += computeStringSize(22, self.tutorialBgImageName);
   }
   size += self.unknownFields.serializedSize;
   memoizedSerializedSize = size;
@@ -5864,6 +5984,24 @@ static PBDrawBg* defaultPBDrawBgInstance = nil;
   if (other.hasShowStyle) {
     [self setShowStyle:other.showStyle];
   }
+  if (other.hasType) {
+    [self setType:other.type];
+  }
+  if (other.hasPurpose) {
+    [self setPurpose:other.purpose];
+  }
+  if (other.hasLayerPosition) {
+    [self setLayerPosition:other.layerPosition];
+  }
+  if (other.hasTutorialId) {
+    [self setTutorialId:other.tutorialId];
+  }
+  if (other.hasStageId) {
+    [self setStageId:other.stageId];
+  }
+  if (other.hasTutorialBgImageName) {
+    [self setTutorialBgImageName:other.tutorialBgImageName];
+  }
   [self mergeUnknownFields:other.unknownFields];
   return self;
 }
@@ -5899,6 +6037,30 @@ static PBDrawBg* defaultPBDrawBgInstance = nil;
       }
       case 32: {
         [self setShowStyle:[input readInt32]];
+        break;
+      }
+      case 40: {
+        [self setType:[input readInt32]];
+        break;
+      }
+      case 48: {
+        [self setPurpose:[input readInt32]];
+        break;
+      }
+      case 56: {
+        [self setLayerPosition:[input readInt32]];
+        break;
+      }
+      case 162: {
+        [self setTutorialId:[input readString]];
+        break;
+      }
+      case 170: {
+        [self setStageId:[input readString]];
+        break;
+      }
+      case 178: {
+        [self setTutorialBgImageName:[input readString]];
         break;
       }
     }
@@ -5966,6 +6128,102 @@ static PBDrawBg* defaultPBDrawBgInstance = nil;
 - (PBDrawBg_Builder*) clearShowStyle {
   result.hasShowStyle = NO;
   result.showStyle = 0;
+  return self;
+}
+- (BOOL) hasType {
+  return result.hasType;
+}
+- (int32_t) type {
+  return result.type;
+}
+- (PBDrawBg_Builder*) setType:(int32_t) value {
+  result.hasType = YES;
+  result.type = value;
+  return self;
+}
+- (PBDrawBg_Builder*) clearType {
+  result.hasType = NO;
+  result.type = 0;
+  return self;
+}
+- (BOOL) hasPurpose {
+  return result.hasPurpose;
+}
+- (int32_t) purpose {
+  return result.purpose;
+}
+- (PBDrawBg_Builder*) setPurpose:(int32_t) value {
+  result.hasPurpose = YES;
+  result.purpose = value;
+  return self;
+}
+- (PBDrawBg_Builder*) clearPurpose {
+  result.hasPurpose = NO;
+  result.purpose = 0;
+  return self;
+}
+- (BOOL) hasLayerPosition {
+  return result.hasLayerPosition;
+}
+- (int32_t) layerPosition {
+  return result.layerPosition;
+}
+- (PBDrawBg_Builder*) setLayerPosition:(int32_t) value {
+  result.hasLayerPosition = YES;
+  result.layerPosition = value;
+  return self;
+}
+- (PBDrawBg_Builder*) clearLayerPosition {
+  result.hasLayerPosition = NO;
+  result.layerPosition = 0;
+  return self;
+}
+- (BOOL) hasTutorialId {
+  return result.hasTutorialId;
+}
+- (NSString*) tutorialId {
+  return result.tutorialId;
+}
+- (PBDrawBg_Builder*) setTutorialId:(NSString*) value {
+  result.hasTutorialId = YES;
+  result.tutorialId = value;
+  return self;
+}
+- (PBDrawBg_Builder*) clearTutorialId {
+  result.hasTutorialId = NO;
+  result.tutorialId = @"";
+  return self;
+}
+- (BOOL) hasStageId {
+  return result.hasStageId;
+}
+- (NSString*) stageId {
+  return result.stageId;
+}
+- (PBDrawBg_Builder*) setStageId:(NSString*) value {
+  result.hasStageId = YES;
+  result.stageId = value;
+  return self;
+}
+- (PBDrawBg_Builder*) clearStageId {
+  result.hasStageId = NO;
+  result.stageId = @"";
+  return self;
+}
+- (BOOL) hasTutorialBgImageName {
+  return result.hasTutorialBgImageName;
+}
+- (NSString*) tutorialBgImageName {
+  return result.tutorialBgImageName;
+}
+- (PBDrawBg_Builder*) setTutorialBgImageName:(NSString*) value {
+  result.hasTutorialBgImageName = YES;
+  result.tutorialBgImageName = value;
+  return self;
+}
+- (PBDrawBg_Builder*) clearTutorialBgImageName {
+  result.hasTutorialBgImageName = NO;
+  result.tutorialBgImageName = @"";
   return self;
 }
 @end

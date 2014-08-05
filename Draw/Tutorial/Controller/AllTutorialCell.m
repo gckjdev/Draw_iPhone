@@ -48,7 +48,7 @@
     
     //实现国际化
 //    PPDebug(@"cnName:%@; enName:%@,tcnName:%@",pbTutorial.cnName,pbTutorial.enName,pbTutorial.tcnName);
-    self.tutorialName.text = NSLS(pbTutorial.name);
+    self.tutorialName.text = pbTutorial.name;
     
     self.tutorialDesc.text = pbTutorial.categoryName;
     

@@ -113,6 +113,16 @@
     self.selectedLayer = layer;
 }
 
+- (void)selectLayerByTag:(int)layerTag
+{
+    for (DrawLayer *layer in _layerList) {
+        if (layer.layerTag == layerTag) {
+            [self selectLayer:layer];
+            return;
+        }
+    }
+}
+
 - (void)reload
 {
     NSMutableSet *set = [NSMutableSet set];
