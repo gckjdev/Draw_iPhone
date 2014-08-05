@@ -58,7 +58,7 @@ enum{
     UserTutorialManager *um = [UserTutorialManager defaultManager];
     
     //打开自定义对话框
-    CommonDialog *dialog = [CommonDialog createDialogWithTitle:NSLS(pbTutorial.name)
+    CommonDialog *dialog = [CommonDialog createDialogWithTitle:pbTutorial.name
                                                     customView:infoController.view
                                                          style:CommonDialogStyleSingleButtonWithCross];
     
@@ -138,7 +138,7 @@ enum{
     self.sectionTitle = @[NSLS(@"kTutorialDesc"), NSLS(@"kTutorialStageList")];
         //加载标题
     id titleView = [CommonTitleView titleView:self.view];
-    [titleView setTitle:NSLS(_pbTutorial.name)];
+    [titleView setTitle:_pbTutorial.name];
     [titleView setTarget:self];
     
     //autolayout

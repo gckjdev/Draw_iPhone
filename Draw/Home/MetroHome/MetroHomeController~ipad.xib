@@ -256,7 +256,7 @@
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
                                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eWd-ih-RBa">
-                                    <rect key="frame" x="13" y="13" width="24" height="24"/>
+                                    <rect key="frame" x="11" y="11" width="28" height="28"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <state key="normal" image="laba.png">
                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -312,15 +312,15 @@
         </view>
     </objects>
     <resources>
-        <image name="caogao.png" width="64" height="64"/>
-        <image name="dongtai.png" width="64" height="64"/>
-        <image name="gengduo.png" width="64" height="64"/>
+        <image name="caogao.png" width="32" height="32"/>
+        <image name="dongtai.png" width="32" height="32"/>
+        <image name="gengduo.png" width="32" height="32"/>
         <image name="huahua.png" width="80" height="76"/>
         <image name="jingcaizuopin.png" width="80" height="76"/>
-        <image name="laba.png" width="24" height="24"/>
+        <image name="laba.png" width="32" height="32"/>
         <image name="luntan.png" width="80" height="76"/>
         <image name="neironglan yu caidanlan.png" width="768" height="20"/>
-        <image name="xiaoxi.png" width="64" height="64"/>
+        <image name="xiaoxi.png" width="32" height="32"/>
         <image name="xuehuahua.png" width="80" height="76"/>
     </resources>
 </document>

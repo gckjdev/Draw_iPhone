@@ -2780,24 +2780,3 @@
 "kNoTimelineDraw" = "闖關";
 "kHaveNotTips" = "對不起，該教程暫時沒有提示消息";
 
-
-//tutorial name
-"kTutorialNameCubic" = "初試三次元";
-"kTutorialNameCrazyLines" = "瘋狂線條";
-"kTutorialNameColorFilling" = "識色配圖";
-"kTutorialNameDoggyDoggy" = "汪星人大作戰";
-"kTutorialNameMoveMoveMove" = "運動無極限";
-"kTutorialNameFaceChanging" = "易容速成";
-"kTutorialNameCuteLittleGee" = "百態小吉萌翻天";
-"kTutorialNameLoveLifeLoveSport" = "愛生活愛運動";
-"kTutorialNameFamousBuilding" = "名建築大集合";
-
-"KTutorialDescriptionCubic" = "教你怎樣把二次元學到三次元";
-"kTutorialDescriptionCrazyLines" = "幫助你更好熟悉工具";
-"kTutorialDescriptionColorFilling" = "这里将把你打造成用色达人";
-"kTutorialDescriptionDoggyDoggy" = "属于旺星人的趴";
-"kTutorialDescriptionMoveMoveMove" = "燃燒你的卡路里";
-"kTutorialDescriptionFaceChanging" = "你想易容成什麼樣的人";
-"kTutorialDescriptionCuteLittleGee" = "小吉閃亮登場速來圍觀";
-"kTutorialDescriptionLoveLifeLoveSport" = "童鞋們，一起來運動吧";
-"kTutorialDescriptionFamousBuilding" = "你認識這些建築嗎";

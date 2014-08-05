@@ -79,7 +79,6 @@
 #import "TutorialCoreManager.h"
 #import "UserTutorialService.h"
 #import "UserTutorialManager.h"
-#import "OpenCVUtils.h"
 #import "ImageSimilarityEngine.h"
 #import "PBTutorial+Extend.h"
 #import "ResultShareAlertPageViewController.h"
