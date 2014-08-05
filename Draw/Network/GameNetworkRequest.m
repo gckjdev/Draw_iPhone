@@ -1652,6 +1652,10 @@
             str = [str stringByAddQueryParameter:PARA_CLASS value:classListString];
         }
         
+        if ([draft.bgImageName length] > 0){
+            str = [str stringByAddQueryParameter:PARA_DRAW_BG_IMAGE value:draft.bgImageName];
+        }
+        
 //        if (isZipData){
 //            str = [str stringByAddQueryParameter:PARA_IS_DATA_ZIP intValue:1];
 //        }

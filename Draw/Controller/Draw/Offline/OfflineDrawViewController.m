@@ -541,8 +541,7 @@
                     [self.draft.drawActionList addObject:bgImageAction];
                 }
             }
-        }
-        
+        }        
         
         [drawView showDraft:self.draft];
         self.draft.paintImage = nil;

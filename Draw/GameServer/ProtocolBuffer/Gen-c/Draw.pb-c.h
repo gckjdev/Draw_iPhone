@@ -216,6 +216,7 @@ struct  _Game__PBFeed
   char *opusthumbimage;
   char *dataurl;
   char *bgimageurl;
+  char *bgimagename;
   char *contestid;
   protobuf_c_boolean has_contestscore;
   double contestscore;
@@ -244,7 +245,7 @@ struct  _Game__PBFeed
 };
 #define GAME__PBFEED__INIT \
  { PROTOBUF_C_MESSAGE_INIT (&game__pbfeed__descriptor) \
-    , NULL, NULL, 0, 0, 0,0, NULL, NULL, 0,0, NULL, NULL, 0,0, NULL, 0,0, NULL, NULL, NULL, 0,0, NULL, NULL, 0,NULL, 0,0, NULL, 0,0, 0,0, 0,NULL, 0,0, NULL, NULL, 0,0, 0,0, 0,0, 0,0, 0,NULL, NULL, NULL, 0,0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0,0, 0,NULL, 0,0, NULL, NULL, NULL, NULL, 0,0, 0,0, 0,0, 0,0, 0,0, 0,NULL, 0,NULL }
+    , NULL, NULL, 0, 0, 0,0, NULL, NULL, 0,0, NULL, NULL, 0,0, NULL, 0,0, NULL, NULL, NULL, 0,0, NULL, NULL, 0,NULL, 0,0, NULL, 0,0, 0,0, 0,NULL, 0,0, NULL, NULL, 0,0, 0,0, 0,0, 0,0, 0,NULL, NULL, NULL, 0,0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0,0, 0,NULL, 0,0, NULL, NULL, NULL, NULL, 0,0, 0,0, 0,0, 0,0, 0,0, 0,NULL, 0,NULL }
 
 
 struct  _Game__PBPoint

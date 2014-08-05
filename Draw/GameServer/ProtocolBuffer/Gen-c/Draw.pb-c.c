@@ -1702,7 +1702,7 @@ const ProtobufCMessageDescriptor game__pblabel_info__descriptor =
   (ProtobufCMessageInit) game__pblabel_info__init,
   NULL,NULL,NULL    /* reserved[123] */
 };
-static const ProtobufCFieldDescriptor game__pbfeed__field_descriptors[57] =
+static const ProtobufCFieldDescriptor game__pbfeed__field_descriptors[58] =
 {
   {
     "feedId",
@@ -2209,6 +2209,18 @@ static const ProtobufCFieldDescriptor game__pbfeed__field_descriptors[57] =
     0,NULL,NULL    /* reserved1,reserved2, etc */
   },
   {
+    "bgImageName",
+    86,
+    PROTOBUF_C_LABEL_OPTIONAL,
+    PROTOBUF_C_TYPE_STRING,
+    0,   /* quantifier_offset */
+    PROTOBUF_C_OFFSETOF(Game__PBFeed, bgimagename),
+    NULL,
+    NULL,
+    0,            /* packed */
+    0,NULL,NULL    /* reserved1,reserved2, etc */
+  },
+  {
     "contestId",
     91,
     PROTOBUF_C_LABEL_OPTIONAL,
@@ -2392,24 +2404,25 @@ static const ProtobufCFieldDescriptor game__pbfeed__field_descriptors[57] =
 static const unsigned game__pbfeed__field_indices_by_name[] = {
   2,   /* field[2] = actionType */
   9,   /* field[9] = avatar */
-  51,   /* field[51] = bgImageHeight */
+  52,   /* field[52] = bgImageHeight */
+  42,   /* field[42] = bgImageName */
   41,   /* field[41] = bgImageUrl */
-  50,   /* field[50] = bgImageWidth */
-  49,   /* field[49] = canvasSize */
+  51,   /* field[51] = bgImageWidth */
+  50,   /* field[50] = canvasSize */
   7,   /* field[7] = category */
   26,   /* field[26] = comment */
   27,   /* field[27] = commentInfo */
   31,   /* field[31] = commentTimes */
-  42,   /* field[42] = contestId */
-  43,   /* field[43] = contestScore */
+  43,   /* field[43] = contestId */
+  44,   /* field[44] = contestScore */
   29,   /* field[29] = correctTimes */
   3,   /* field[3] = createDate */
   40,   /* field[40] = dataUrl */
-  48,   /* field[48] = descLabelInfo */
+  49,   /* field[49] = descLabelInfo */
   5,   /* field[5] = deviceName */
   4,   /* field[4] = deviceType */
-  53,   /* field[53] = draftCompleteDate */
-  54,   /* field[54] = draftCreateDate */
+  54,   /* field[54] = draftCompleteDate */
+  55,   /* field[55] = draftCreateDate */
   13,   /* field[13] = drawData */
   18,   /* field[18] = drawDataUrl */
   0,   /* field[0] = feedId */
@@ -2420,11 +2433,11 @@ static const unsigned game__pbfeed__field_indices_by_name[] = {
   24,   /* field[24] = guessWords */
   16,   /* field[16] = historyScore */
   22,   /* field[22] = isCorrect */
-  46,   /* field[46] = learnDraw */
+  47,   /* field[47] = learnDraw */
   28,   /* field[28] = matchTimes */
   8,   /* field[8] = nickName */
-  55,   /* field[55] = opusClass */
-  56,   /* field[56] = opusClassIds */
+  56,   /* field[56] = opusClass */
+  57,   /* field[57] = opusClassIds */
   36,   /* field[36] = opusCreatorAvatar */
   35,   /* field[35] = opusCreatorGender */
   34,   /* field[34] = opusCreatorNickName */
@@ -2435,13 +2448,13 @@ static const unsigned game__pbfeed__field_indices_by_name[] = {
   25,   /* field[25] = opusStatus */
   39,   /* field[39] = opusThumbImage */
   37,   /* field[37] = opusWord */
-  45,   /* field[45] = rankInTop */
-  44,   /* field[44] = rankInfo */
+  46,   /* field[46] = rankInTop */
+  45,   /* field[45] = rankInfo */
   23,   /* field[23] = score */
   11,   /* field[11] = signature */
-  47,   /* field[47] = sing */
+  48,   /* field[48] = sing */
   20,   /* field[20] = spendTime */
-  52,   /* field[52] = strokes */
+  53,   /* field[53] = strokes */
   19,   /* field[19] = tags */
   14,   /* field[14] = targetUserId */
   15,   /* field[15] = targetUserNickName */
@@ -2458,11 +2471,11 @@ static const ProtobufCIntRange game__pbfeed__number_ranges[12 + 1] =
   { 61, 28 },
   { 71, 33 },
   { 81, 37 },
-  { 91, 42 },
-  { 100, 46 },
-  { 200, 48 },
-  { 211, 52 },
-  { 0, 57 }
+  { 91, 43 },
+  { 100, 47 },
+  { 200, 49 },
+  { 211, 53 },
+  { 0, 58 }
 };
 const ProtobufCMessageDescriptor game__pbfeed__descriptor =
 {
@@ -2472,7 +2485,7 @@ const ProtobufCMessageDescriptor game__pbfeed__descriptor =
   "Game__PBFeed",
   "game",
   sizeof(Game__PBFeed),
-  57,
+  58,
   game__pbfeed__field_descriptors,
   game__pbfeed__field_indices_by_name,
   12,  game__pbfeed__number_ranges,

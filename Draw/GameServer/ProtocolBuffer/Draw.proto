@@ -142,6 +142,7 @@ message PBFeed {
   
   optional string dataUrl = 84;                 // 作品数据URL，画画或者唱歌文件的绝对路径
   optional string bgImageUrl = 85;              // 作品背景图URL，画画或者唱歌文件的绝对路径
+  optional string bgImageName = 86;             // 作品背景图名字
 
   // for contest information
   optional string contestId = 91;               // 参与的比赛的Id
