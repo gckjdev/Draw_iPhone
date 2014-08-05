@@ -32,6 +32,7 @@ message PBDraw {
   repeated PBDrawAction drawData = 10;  
   optional string opusId = 11;
   optional int32 score = 12;                        // draw word score
+  optional repeated bgImageURL = 13;                // bg image list for download
 
   optional bool isCompressed = 19[default=true];    // is draw data points compressed, default is TRUE (old data)
 

@@ -45,6 +45,6 @@
 - (void)enterShopWithItemId:(NSString*)itemId;
 
 
-
+- (void)enterOfflineDrawWithMenu;
 
 @end
