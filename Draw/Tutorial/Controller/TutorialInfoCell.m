@@ -81,7 +81,7 @@
         
         [self.tutorialDescNameLabel setFont:AD_FONT(20, 12)];
         [self.tutorialSortedNameLabel setFont:AD_FONT(20, 12)];
-        
+ 
         [self.tutorialDescNameLabel setFrame:CGRectMake(CATEGORY_NAME_X-(ISIPAD ? 97:60), CATEGORY_NAME_Y-6, (ISIPAD ? 97:60), 30)];
         [self.tutorialSortedNameLabel setFrame:CGRectMake(DESC_X-(ISIPAD ? 97:60), DESC_Y-6, (ISIPAD ? 97:60), 30)];
       
