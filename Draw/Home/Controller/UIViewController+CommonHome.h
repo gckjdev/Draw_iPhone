@@ -36,6 +36,15 @@
 
 - (void)enterBBSWithPostId:(NSString*)postId;
 - (void)enterContestWithContestId:(NSString*)contestId;
+- (void)enterLearnDrawTutorialId:(NSString*)tutorialId;
+- (void)enterHotByOpusClass:(NSString*)opusClassId;
+- (void)openWebURL:(NSString*)url title:(NSString*)title;
+- (void)enterVIP;
 
+// TODO need to implement and test
+- (void)enterShopWithItemId:(NSString*)itemId;
+
+
+- (void)enterOfflineDrawWithMenu;
 
 @end

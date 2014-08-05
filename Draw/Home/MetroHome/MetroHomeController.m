@@ -323,7 +323,11 @@
 
 - (IBAction)goToDraw:(id)sender
 {
+#ifdef DEBUG
+    [self enterOfflineDrawWithMenu];
+#else
     [self enterOfflineDraw];
+#endif
 }
 
 - (IBAction)goToOpus:(id)sender

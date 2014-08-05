@@ -19,8 +19,6 @@
 - (NSString*)image;
 - (NSString*)imageId;
 - (NSString*)function;
-- (NSMutableArray *) para;
-- (int32_t)type;
 
 - (void)clickAction:(PPViewController*) pc;
 

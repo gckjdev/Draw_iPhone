@@ -52,6 +52,16 @@
 #import "GuidePageManager.h"
 #import "ResultSharePageViewController.h"
 #import "AudioManager.h"
+#import "BBSPostDetailController.h"
+#import "ContestOpusController.h"
+#import "ContestManager.h"
+#import "PurchaseVipController.h"
+#import "TaoBaoController.h"
+#import "OpusClassInfoManager.h"
+#import "TutorialInfoController.h"
+#import "TutorialCoreManager.h"
+#import "MKBlockActionSheet.h"
+#import "ChangeAvatar.h"
 
 @implementation UIViewController (CommonHome)
 
@@ -320,13 +330,88 @@
 
 - (void)enterBBSWithPostId:(NSString*)postId
 {
-    
+    [BBSPostDetailController enterPostDetailControllerWithPostID:postId
+                                                  fromController:self
+                                                        animated:YES];
 }
 
 - (void)enterContestWithContestId:(NSString*)contestId
+{    
+    __block Contest* contest = [[ContestManager defaultManager] ongoingContestById:contestId];
+    if (contest == nil){
+        return;
+    }
+    
+    ContestOpusController* vc = [[ContestOpusController alloc] initWithContest:contest];
+    [self.navigationController pushViewController:vc animated:YES];
+    [vc release];
+}
+
+- (void)enterLearnDrawTutorialId:(NSString*)tutorialId
+{
+    PBTutorial* pbTutorial = [[TutorialCoreManager defaultManager] findTutorialByTutorialId:tutorialId];
+    if (pbTutorial == nil){
+        return;
+    }
+
+    [TutorialInfoController show:(PPViewController*)self
+                        tutorial:pbTutorial
+                        infoOnly:NO];
+    
+}
+
+- (void)enterHotByOpusClass:(NSString*)opusClassId
+{
+    OpusClassInfo* opusClassInfo = [[OpusClassInfoManager defaultManager] findOpusClassInfo:opusClassId];
+    HotController* vc = [[HotController alloc] initWithOpusClass:opusClassInfo];
+    [self.navigationController pushViewController:vc animated:YES];
+    [vc release];
+}
+
+- (void)openWebURL:(NSString*)url title:(NSString*)title
+{
+    TaoBaoController *controller = [[TaoBaoController alloc] initWithURL:url title:title];
+    [self.navigationController pushViewController:controller animated:YES];
+    [controller release];
+}
+
+- (void)enterVIP
+{
+    [PurchaseVipController enter:(PPViewController*)self];
+}
+
+- (void)enterShopWithItemId:(NSString*)itemId
 {
     
 }
 
+- (void)enterOfflineDrawWithMenu
+{
+    MKBlockActionSheet* actionSheet = [[MKBlockActionSheet alloc] initWithTitle:@"请选择画画模式"
+                                                                       delegate:nil
+                                                              cancelButtonTitle:@"取消"
+                                                         destructiveButtonTitle:@"空白"
+                                                              otherButtonTitles:@"选择背景图片", nil];
+    
+    [actionSheet setActionBlock:^(int buttonIndex){
+        switch (buttonIndex) {
+            case 0:
+                break;
+                
+            case 1:
+                [self enterOfflineDraw];
+                break;
+
+            case 2:
+                break;
+                
+            default:
+                break;
+        }
+    }];
+    
+    [actionSheet showInView:self.view];
+    [actionSheet release];
+}
 
 @end

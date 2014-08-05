@@ -757,7 +757,11 @@ static NSDictionary* DEFAULT_MENU_SELECTOR_DICT = nil;
     static dispatch_once_t deafaultMenuSelectorOnceToken;
     dispatch_once(&deafaultMenuSelectorOnceToken, ^{
         DEFAULT_MENU_SELECTOR_DICT = @{
+#ifdef DEBUG
+                                    @(HomeMenuTypeDrawDraw) : @"enterOfflineDrawWithMenu",
+#else
                                     @(HomeMenuTypeDrawDraw) : @"enterOfflineDraw",
+#endif
                                     @(HomeMenuTypeDrawGuess) : @"enterGuess", //todo
                                     @(HomeMenuTypeDrawGame) : @"enterOnlineDraw",//todo
                                     @(HomeMenuTypeDrawContest) : @"enterContest",

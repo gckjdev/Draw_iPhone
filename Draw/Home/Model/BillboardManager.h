@@ -10,6 +10,7 @@
 #import "StorageManager.h"
 
 @class PPSmartUpdateData;
+@class Billboard;
 
 @interface BillboardManager : NSObject
 
@@ -19,6 +20,6 @@
 
 + (BillboardManager*)defaultManager;
 - (void)autoUpdate;
-- (UIImage*)getImage:(NSString*)url;
+- (UIImage*)getImage:(Billboard*)bb;
 
 @end

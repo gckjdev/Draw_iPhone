@@ -24,6 +24,7 @@ typedef enum{
 
 }ContestListType;
 
+typedef void (^ SyncContestResultBlock) (int resultCode);
 typedef void (^ CreateContestBlock) (int resultCode, Contest *contest);
 typedef void (^ GetContestListBlock) (int resultCode, ContestListType type, NSArray *contestList);
 
@@ -99,5 +100,6 @@ typedef void (^ GetContestListBlock) (int resultCode, ContestListType type, NSAr
                 image:(UIImage *)image
             completed:(CreateContestBlock)completed;
 
+- (void)syncOngoingContestList:(SyncContestResultBlock)resultBlock;
 
 @end

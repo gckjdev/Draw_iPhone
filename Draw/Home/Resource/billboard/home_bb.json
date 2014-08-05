@@ -3,19 +3,71 @@
     [
     {
      "index" : 1,
-     "function" : "enterContest",
+     "function" : "enterLearnDrawTutorialId:",
+     "imageId" : "image1",
+     "image" : "http://58.215.184.18:8080/tutorial/image/GalleryImage2.jpg",
+     "text" : "",
+     "parameters" : ["tutorialId-2"]
+    },
+    {
+     "index" : 2,
+<<<<<<< HEAD
+     "function" : "goToGuidePage",
+=======
+     "function" : "enterHotByOpusClass:",
+>>>>>>> ed6f04a8b6dc7fb032e9757bacef3b10c6488222
+     "imageId" : "image2",
+     "image" : "http://58.215.160.100:8080/app_res/tutorial/image/title-7.png",
+     "text" : "",
+     "parameters" : ["2006"]
+    },
+     {
+     "index" : 3,
+     "function" : "openWebURL:title:",
+     "imageId" : "image1",
+     "image" : "http://58.215.184.18:8080/tutorial/image/GalleryImage2.jpg",
+     "text" : "",
+     "parameters" : ["http://www.xiaoji.fm/m", "Hello, Littlegee"]
+     },
+     {
+     "index" : 4,
+     "function" : "enterVIP",
      "imageId" : "image1",
      "image" : "http://58.215.184.18:8080/tutorial/image/GalleryImage2.jpg",
      "text" : "",
      "parameters" : []
-    },
-    {
-     "index" : 2,
-     "function" : "goToGuidePage",
-     "imageId" : "image2",
-     "image" : "http://58.215.160.100:8080/app_res/tutorial/image/title-7.png",
+     },
+     {
+     "index" : 5,
+     "function" : "enterShopWithItemId:",
+     "imageId" : "image1",
+     "image" : "http://58.215.184.18:8080/tutorial/image/GalleryImage2.jpg",
      "text" : "",
-     "parameters" : []
-    }
+     "parameters" : [""]
+     },
+     {
+     "index" : 6,
+     "function" : "enterContestWithContestId:",
+     "imageId" : "image1",
+     "image" : "http://58.215.184.18:8080/tutorial/image/GalleryImage2.jpg",
+     "text" : "",
+     "parameters" : ["53dd0e21e4b018a896adce94"]
+     },
+     {
+     "index" : 7,
+     "function" : "enterContestWithContestId:",
+     "imageId" : "image1",
+     "image" : "http://58.215.184.18:8080/tutorial/image/GalleryImage2.jpg",
+     "text" : "",
+     "parameters" : ["53dd0e21e4b018a896adce94"]
+     },
+     {
+     "index" : 8,
+     "function" : "enterContestWithContestId:",
+     "imageId" : "image1",
+     "image" : "http://58.215.184.18:8080/tutorial/image/GalleryImage2.jpg",
+     "text" : "",
+     "parameters" : ["53dd0e21e4b018a896adce94"]
+     }
     ]
 }

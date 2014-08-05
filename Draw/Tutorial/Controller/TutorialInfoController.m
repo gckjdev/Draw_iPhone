@@ -58,7 +58,7 @@ enum{
     UserTutorialManager *um = [UserTutorialManager defaultManager];
     
     //打开自定义对话框
-    CommonDialog *dialog = [CommonDialog createDialogWithTitle:pbTutorial.name
+    CommonDialog *dialog = [CommonDialog createDialogWithTitle:NSLS(pbTutorial.name)
                                                     customView:infoController.view
                                                          style:CommonDialogStyleSingleButtonWithCross];
     
@@ -78,7 +78,7 @@ enum{
         
         if([um isTutorialLearned:pbTutorial.tutorialId]){
             // close dialog
-            [dialog disappear];
+            [infoController close:dialog];
             
             // enter learning
             PBUserTutorial* ut = [[UserTutorialManager defaultManager] getUserTutorialByTutorialId:pbTutorial.tutorialId];
@@ -98,16 +98,27 @@ enum{
     
     [dialog setClickCloseBlock:^(id infoView){
         // close dialog
-        [dialog disappear];
+        [infoController close:dialog];
     }];
     
     [dialog showInView:superController.view];
+    [superController addChildViewController:infoController];
     return infoController;
+}
+
+- (void)close:(CommonDialog*)dialog
+{
+    [dialog disappear];
+    if (self.parentViewController){
+        [self removeFromParentViewController];
+    }
 }
 
 - (void)dealloc
 {
-
+    if (self.parentViewController){
+        [self removeFromParentViewController];
+    }
     PPRelease(_pbTutorial);
     [super dealloc];
 }
@@ -127,7 +138,7 @@ enum{
     self.sectionTitle = @[NSLS(@"kTutorialDesc"), NSLS(@"kTutorialStageList")];
         //加载标题
     id titleView = [CommonTitleView titleView:self.view];
-    [titleView setTitle:_pbTutorial.name];
+    [titleView setTitle:NSLS(_pbTutorial.name)];
     [titleView setTarget:self];
     
     //autolayout

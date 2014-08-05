@@ -2025,7 +2025,19 @@ qqAccessTokenSecret:(NSString*)accessTokenSecret
 - (int)homeStyle
 {
     NSUserDefaults* ud = [NSUserDefaults standardUserDefaults];
-    return [[ud objectForKey:KEY_HOME_STYLE] integerValue];
+    NSNumber* value = [ud objectForKey:KEY_HOME_STYLE];
+    if (value == nil){
+        if ([[UserManager defaultManager] hasUser]){
+            // old user will use classical style
+            return HOME_STYLE_CLASSICAL;
+        }
+        else{
+            return HOME_STYLE_METRO;
+        }
+    }
+    else{
+        return [value integerValue];
+    }
 }
 
 - (void)setHomeStyle:(int)style

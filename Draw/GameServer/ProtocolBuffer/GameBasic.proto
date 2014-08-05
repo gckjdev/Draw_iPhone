@@ -166,12 +166,34 @@ message PBGameSessionChanged {
   repeated PBGameUser usersUpdated = 7;
 }
 
+enum PBDrawBgType{
+  DRAW_BG_ITEM = 0;         // 标准背景（来自道具商店）
+  DRAW_BG_NORMAL = 1;       // 普通背景
+}
+
+enum PBDrawBgPurpose{
+  DRAW_BG_PURPOSE_LEARN_DRAW = 1;           // 用于学画画的背景图线稿显示
+}
+
+enum PBDrawBgLayerType{
+  DRAW_BG_LAYER_BACKGROUND = 0;           // 背景的层指定位置，背景（底部）
+  DRAW_BG_LAYER_FOREGROUND = 1;           // 背景的层指定位置，前景（描边层、线稿、上色）
+}
+
 message PBDrawBg
 {
     required string bgId = 1;
     optional string localUrl  = 2;
     optional string remoteUrl  = 3;
     optional int32 showStyle = 4 [default=0]; // 0 for show in center, 1 for show in pattern
+
+    optional int32 type = 5[default=0];       // refer to PBDrawBgType
+    optional int32 purpose = 6;               // refer to PBDrawBgPurpose
+    optional int32 layerPosition = 7;         // refer to PBDrawBgLayerType
+
+    optional string tutorialId = 20;           // learn draw background's tutorial ID
+    optional string stageId = 21;
+    optional string tutorialBgImageName = 22;  
 }
 
 message PBGradient {
