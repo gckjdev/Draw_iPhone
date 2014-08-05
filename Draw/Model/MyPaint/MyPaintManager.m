@@ -24,6 +24,7 @@
 #import "TimeUtils.h"
 #import "UIImageUtil.h"
 #import "StringUtil.h"
+#import "DrawBgManager.h"
 
 #define SUFFIX_NUMBER 100
 @interface MyPaintManager()
@@ -98,7 +99,8 @@ static MyPaintManager* _defaultManager;
     if (self) {
         _imageManager = [[StorageManager alloc] initWithStoreType:StorageTypePersistent directoryName:PIANT_IMAGE_DIR];
         _drawDataManager = [[StorageManager alloc] initWithStoreType:StorageTypePersistent directoryName:PIANT_DATA_DIR];
-        _bgImgeManager = [[StorageManager alloc] initWithStoreType:StorageTypePersistent directoryName:PAINT_BG_IMAGE_DIR];
+        _bgImageManager = [[DrawBgManager defaultManager] imageManager];
+        //[[StorageManager alloc] initWithStoreType:StorageTypePersistent directoryName:PAINT_BG_IMAGE_DIR];
     }
     return self;
 }
@@ -107,7 +109,7 @@ static MyPaintManager* _defaultManager;
 {
     PPRelease(_imageManager);
     PPRelease(_drawDataManager);
-    PPRelease(_bgImgeManager);
+    PPRelease(_bgImageManager);
     [super dealloc];
 }
 
@@ -339,7 +341,7 @@ static MyPaintManager* _defaultManager;
 - (void)deleteBgImage:(NSString *)imageName
 {
     if (imageName) {
-        [_bgImgeManager removeDataForKey:imageName];
+        [_bgImageManager removeDataForKey:imageName];
     }
 }
 
@@ -528,7 +530,7 @@ static MyPaintManager* _defaultManager;
     }
     
     if (bgImage != nil) {
-        [_bgImgeManager saveImage:bgImage forKey:bgImageName];
+        [_bgImageManager saveImage:bgImage forKey:bgImageName];
     }
     
     [newMyPaint setDataFilePath:pbDataFileName];
@@ -988,13 +990,18 @@ pbNoCompressDrawData:(PBNoCompressDrawData*)pbNoCompressDrawData
 
 - (UIImage *)bgImageForPaint:(MyPaint *)paint
 {
-    return [_bgImgeManager imageForKey:paint.bgImageName];
+    return [_bgImageManager imageForKey:paint.bgImageName];
+}
+
+- (NSString *)bgImageFullPath:(MyPaint *)paint
+{
+    return [_bgImageManager pathWithKey:paint.bgImageName];
 }
 
 - (void)saveBgImage:(UIImage *)image name:(NSString *)name;
 {
     if (name && image) {
-        [_bgImgeManager saveImage:image forKey:name];
+        [_bgImageManager saveImage:image forKey:name];
         PPDebug(@"bgImagePath:%@", [_imageManager pathWithKey:name]);
     }
 }

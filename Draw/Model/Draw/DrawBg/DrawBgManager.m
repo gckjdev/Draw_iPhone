@@ -14,18 +14,23 @@
 #import "PPConfigManager.h"
 #import "UIImageExt.h"
 #import "UserGameItemManager.h"
+#import "StorageManager.h"
 
-#define DRAW_BG_ZIP_NAME @"draw_bg.zip"
-#define DRAW_BG_VERSION_KEY @"CFDrawBGVersion"
-#define DRAW_BG_META_FILE @"meta.pb"
-#define SUFFIX @".jpg"
-#define THUMB_SUFFIX @"_m.jpg"
+#define DRAW_NORMAL_BG_IMAGE_DIR        @"draw_bg_normal"
+#define DRAW_BG_ZIP_NAME                @"draw_bg.zip"
+#define DRAW_BG_VERSION_KEY             @"CFDrawBGVersion"
+#define DRAW_BG_META_FILE               @"meta.pb"
+#define SUFFIX                          @".jpg"
+#define THUMB_SUFFIX                    @"_m.jpg"
 
 @interface DrawBgManager()
 {
     PPSmartUpdateData *_smartData;
     NSArray *_drawBgGroupList;
+    
 }
+
+
 
 @end
 
@@ -35,6 +40,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(DrawBgManager);
 
 - (void)dealloc
 {
+    PPRelease(_imageManager);
     PPRelease(_smartData);
     PPRelease(_drawBgGroupList);
     [super dealloc];
@@ -58,11 +64,15 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(DrawBgManager);
     }    
 }
 
+
+
 - (id)init
 {
     self = [super init];
     if (self) {
 
+        _imageManager = [[StorageManager alloc] initWithStoreType:StorageTypePersistent directoryName:DRAW_NORMAL_BG_IMAGE_DIR];
+        
         _smartData = [[PPSmartUpdateData alloc] initWithName:DRAW_BG_ZIP_NAME
                                                         type:SMART_UPDATE_DATA_TYPE_ZIP
                                                   bundlePath:DRAW_BG_ZIP_NAME
@@ -219,6 +229,17 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(DrawBgManager);
     return [_smartData progressNotificationName];
 }
 
+- (BOOL)saveImage:(UIImage*)image forKey:(NSString*)key
+{
+    return [_imageManager saveImage:image forKey:key];
+}
+
+- (UIImage*)imageForKey:(NSString*)key
+{
+    return [_imageManager imageForKey:key];
+}
+
+
 @end
 
 
@@ -254,12 +275,19 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(DrawBgManager);
 
 - (UIImage *)localImage
 {
-    NSString *dir = [[DrawBgManager defaultManager] baseDir];
-    NSString *filePath = [dir stringByAppendingPathComponent:self.localUrl];
-    if (filePath) {
-        return [UIImage imageWithContentsOfFile:filePath];
+    if (self.type == PBDrawBgTypeDrawBgItem){
+        NSString *dir = [[DrawBgManager defaultManager] baseDir];
+        NSString *filePath = [dir stringByAppendingPathComponent:self.localUrl];
+        if (filePath) {
+            return [UIImage imageWithContentsOfFile:filePath];
+        }
+        return nil;
+        }
+    else{
+        DrawBgManager* bgManager = [DrawBgManager defaultManager];
+        UIImage* image = [bgManager imageForKey:self.bgId];
+        return image;
     }
-    return nil;
 }
 
 - (NSURL *)remoteURL

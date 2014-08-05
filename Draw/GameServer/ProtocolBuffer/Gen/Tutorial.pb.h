@@ -468,6 +468,7 @@ BOOL PBUserTutorialStatusIsValidValue(PBUserTutorialStatus value);
 
 @interface PBStage : PBGeneratedMessage {
 @private
+  BOOL hasUseBgForFill_:1;
   BOOL hasUseBgFromPrev_:1;
   BOOL hasDifficulty_:1;
   BOOL hasScoreEngine_:1;
@@ -488,6 +489,7 @@ BOOL PBUserTutorialStatusIsValidValue(PBUserTutorialStatus value);
   BOOL hasEnName_:1;
   BOOL hasCnName_:1;
   BOOL hasStageId_:1;
+  BOOL useBgForFill_:1;
   BOOL useBgFromPrev_:1;
   Float32 difficulty;
   int32_t scoreEngine;
@@ -530,6 +532,7 @@ BOOL PBUserTutorialStatusIsValidValue(PBUserTutorialStatus value);
 - (BOOL) hasScoreEngine;
 - (BOOL) hasDifficulty;
 - (BOOL) hasUseBgFromPrev;
+- (BOOL) hasUseBgForFill;
 @property (readonly, retain) NSString* stageId;
 @property (readonly, retain) NSString* cnName;
 @property (readonly, retain) NSString* enName;
@@ -550,6 +553,7 @@ BOOL PBUserTutorialStatusIsValidValue(PBUserTutorialStatus value);
 @property (readonly) int32_t scoreEngine;
 @property (readonly) Float32 difficulty;
 - (BOOL) useBgFromPrev;
+- (BOOL) useBgForFill;
 - (NSArray*) chapterList;
 - (PBChapter*) chapterAtIndex:(int32_t) index;
 
@@ -693,6 +697,11 @@ BOOL PBUserTutorialStatusIsValidValue(PBUserTutorialStatus value);
 - (BOOL) useBgFromPrev;
 - (PBStage_Builder*) setUseBgFromPrev:(BOOL) value;
 - (PBStage_Builder*) clearUseBgFromPrev;
+
+- (BOOL) hasUseBgForFill;
+- (BOOL) useBgForFill;
+- (PBStage_Builder*) setUseBgForFill:(BOOL) value;
+- (PBStage_Builder*) clearUseBgForFill;
 @end
 
 @interface PBTutorial : PBGeneratedMessage {

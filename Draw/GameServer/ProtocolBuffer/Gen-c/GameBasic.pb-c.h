@@ -51,6 +51,18 @@ typedef enum _Game__PBOpenInfoType {
   GAME__PBOPEN_INFO_TYPE__OPEN_NO = 1,
   GAME__PBOPEN_INFO_TYPE__OPEN_ALL = 2
 } Game__PBOpenInfoType;
+typedef enum _Game__PBDrawBgType {
+  GAME__PBDRAW_BG_TYPE__DRAW_BG_ITEM = 0,
+  GAME__PBDRAW_BG_TYPE__DRAW_BG_NORMAL_DRAW = 1,
+  GAME__PBDRAW_BG_TYPE__DRAW_BG_NORMAL_SHOW = 2
+} Game__PBDrawBgType;
+typedef enum _Game__PBDrawBgPurpose {
+  GAME__PBDRAW_BG_PURPOSE__DRAW_BG_PURPOSE_LEARN_DRAW = 1
+} Game__PBDrawBgPurpose;
+typedef enum _Game__PBDrawBgLayerType {
+  GAME__PBDRAW_BG_LAYER_TYPE__DRAW_BG_LAYER_BACKGROUND = 0,
+  GAME__PBDRAW_BG_LAYER_TYPE__DRAW_BG_LAYER_FOREGROUND = 1
+} Game__PBDrawBgLayerType;
 typedef enum _Game__PBGameCurrency {
   GAME__PBGAME_CURRENCY__Coin = 0,
   GAME__PBGAME_CURRENCY__Ingot = 1
@@ -353,10 +365,19 @@ struct  _Game__PBDrawBg
   char *remoteurl;
   protobuf_c_boolean has_showstyle;
   int32_t showstyle;
+  protobuf_c_boolean has_type;
+  int32_t type;
+  protobuf_c_boolean has_purpose;
+  int32_t purpose;
+  protobuf_c_boolean has_layerposition;
+  int32_t layerposition;
+  char *tutorialid;
+  char *stageid;
+  char *tutorialbgimagename;
 };
 #define GAME__PBDRAW_BG__INIT \
  { PROTOBUF_C_MESSAGE_INIT (&game__pbdraw_bg__descriptor) \
-    , NULL, NULL, NULL, 0,0 }
+    , NULL, NULL, NULL, 0,0, 0,0, 0,0, 0,0, NULL, NULL, NULL }
 
 
 struct  _Game__PBGradient
@@ -1509,6 +1530,9 @@ typedef void (*Game__PBClass_Closure)
 /* --- descriptors --- */
 
 extern const ProtobufCEnumDescriptor    game__pbopen_info_type__descriptor;
+extern const ProtobufCEnumDescriptor    game__pbdraw_bg_type__descriptor;
+extern const ProtobufCEnumDescriptor    game__pbdraw_bg_purpose__descriptor;
+extern const ProtobufCEnumDescriptor    game__pbdraw_bg_layer_type__descriptor;
 extern const ProtobufCEnumDescriptor    game__pbgame_currency__descriptor;
 extern const ProtobufCEnumDescriptor    game__pbdraw_item_type__descriptor;
 extern const ProtobufCEnumDescriptor    game__pbdice_item_type__descriptor;

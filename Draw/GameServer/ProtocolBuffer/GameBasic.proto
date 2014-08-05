@@ -167,8 +167,9 @@ message PBGameSessionChanged {
 }
 
 enum PBDrawBgType{
-  DRAW_BG_ITEM = 0;         // 标准背景（来自道具商店）
-  DRAW_BG_NORMAL = 1;       // 普通背景
+  DRAW_BG_ITEM = 0;              // 标准背景（来自道具商店）
+  DRAW_BG_NORMAL_DRAW = 1;       // 普通背景
+  DRAW_BG_NORMAL_SHOW = 2;       // 普通背景
 }
 
 enum PBDrawBgPurpose{

@@ -1574,6 +1574,7 @@
                               lang:(NSInteger)lang
                               data:(NSData*)data
                          imageData:(NSData *)imageData
+                       bgImageData:(NSData *)bgImageData
                          targetUid:(NSString *)targetUid
                          contestId:(NSString *)contestId
                               desc:(NSString *)desc
@@ -1683,6 +1684,10 @@
         if (imageData) {
             imageDict = [NSMutableDictionary dictionary];
             [imageDict setObject:imageData forKey:PARA_DRAW_IMAGE];
+        }
+        
+        if (bgImageData){
+            [imageDict setObject:bgImageData forKey:PARA_DRAW_BG_IMAGE];
         }
 
         return [PPNetworkRequest uploadRequest:baseURL

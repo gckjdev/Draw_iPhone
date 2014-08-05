@@ -127,10 +127,12 @@ struct  _Game__PBStage
   float difficulty;
   protobuf_c_boolean has_usebgfromprev;
   protobuf_c_boolean usebgfromprev;
+  protobuf_c_boolean has_usebgforfill;
+  protobuf_c_boolean usebgforfill;
 };
 #define GAME__PBSTAGE__INIT \
  { PROTOBUF_C_MESSAGE_INIT (&game__pbstage__descriptor) \
-    , NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0,NULL, 0,0, 0,0, 0,1, 0,0 }
+    , NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0,NULL, 0,0, 0,0, 0,1, 0,0, 0,1 }
 
 
 struct  _Game__PBTutorial

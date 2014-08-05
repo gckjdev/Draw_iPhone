@@ -32,7 +32,6 @@ message PBDraw {
   repeated PBDrawAction drawData = 10;  
   optional string opusId = 11;
   optional int32 score = 12;                        // draw word score
-  optional repeated bgImageURL = 13;                // bg image list for download
 
   optional bool isCompressed = 19[default=true];    // is draw data points compressed, default is TRUE (old data)
 
@@ -142,7 +141,8 @@ message PBFeed {
   optional string opusThumbImage = 83;          // 作品小图
   
   optional string dataUrl = 84;                 // 作品数据URL，画画或者唱歌文件的绝对路径
-  
+  optional string bgImageUrl = 85;              // 作品背景图URL，画画或者唱歌文件的绝对路径
+
   // for contest information
   optional string contestId = 91;               // 参与的比赛的Id
   optional double contestScore = 92;            // 参与的比赛的分数
@@ -155,6 +155,8 @@ message PBFeed {
 
   optional PBLabelInfo descLabelInfo = 200;
   optional PBSize canvasSize = 201;
+  optional float bgImageWidth = 202;
+  optional float bgImageHeight = 203;
 
   // for class info
 //  repeated PBClass class = 210;                 // 分类信息，一个作品可以属于一个或者多个分类，废弃，保留做兼容

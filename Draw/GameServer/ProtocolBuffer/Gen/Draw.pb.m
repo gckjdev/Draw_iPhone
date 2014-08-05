@@ -2545,6 +2545,7 @@ static PBLabelInfo* defaultPBLabelInfoInstance = nil;
 @property (retain) NSString* opusImage;
 @property (retain) NSString* opusThumbImage;
 @property (retain) NSString* dataUrl;
+@property (retain) NSString* bgImageUrl;
 @property (retain) NSString* contestId;
 @property Float64 contestScore;
 @property (retain) NSMutableArray* mutableRankInfoList;
@@ -2553,6 +2554,8 @@ static PBLabelInfo* defaultPBLabelInfoInstance = nil;
 @property (retain) PBSingOpus* sing;
 @property (retain) PBLabelInfo* descLabelInfo;
 @property (retain) PBSize* canvasSize;
+@property Float32 bgImageWidth;
+@property Float32 bgImageHeight;
 @property int64_t strokes;
 @property int32_t draftCompleteDate;
 @property int32_t draftCreateDate;
@@ -2846,6 +2849,13 @@ static PBLabelInfo* defaultPBLabelInfoInstance = nil;
   hasDataUrl_ = !!value;
 }
 @synthesize dataUrl;
+- (BOOL) hasBgImageUrl {
+  return !!hasBgImageUrl_;
+}
+- (void) setHasBgImageUrl:(BOOL) value {
+  hasBgImageUrl_ = !!value;
+}
+@synthesize bgImageUrl;
 - (BOOL) hasContestId {
   return !!hasContestId_;
 }
@@ -2896,6 +2906,20 @@ static PBLabelInfo* defaultPBLabelInfoInstance = nil;
   hasCanvasSize_ = !!value;
 }
 @synthesize canvasSize;
+- (BOOL) hasBgImageWidth {
+  return !!hasBgImageWidth_;
+}
+- (void) setHasBgImageWidth:(BOOL) value {
+  hasBgImageWidth_ = !!value;
+}
+@synthesize bgImageWidth;
+- (BOOL) hasBgImageHeight {
+  return !!hasBgImageHeight_;
+}
+- (void) setHasBgImageHeight:(BOOL) value {
+  hasBgImageHeight_ = !!value;
+}
+@synthesize bgImageHeight;
 - (BOOL) hasStrokes {
   return !!hasStrokes_;
 }
@@ -2945,6 +2969,7 @@ static PBLabelInfo* defaultPBLabelInfoInstance = nil;
   self.opusImage = nil;
   self.opusThumbImage = nil;
   self.dataUrl = nil;
+  self.bgImageUrl = nil;
   self.contestId = nil;
   self.mutableRankInfoList = nil;
   self.learnDraw = nil;
@@ -2995,6 +3020,7 @@ static PBLabelInfo* defaultPBLabelInfoInstance = nil;
     self.opusImage = @"";
     self.opusThumbImage = @"";
     self.dataUrl = @"";
+    self.bgImageUrl = @"";
     self.contestId = @"";
     self.contestScore = 0;
     self.rankInTop = 0;
@@ -3002,6 +3028,8 @@ static PBLabelInfo* defaultPBLabelInfoInstance = nil;
     self.sing = [PBSingOpus defaultInstance];
     self.descLabelInfo = [PBLabelInfo defaultInstance];
     self.canvasSize = [PBSize defaultInstance];
+    self.bgImageWidth = 0;
+    self.bgImageHeight = 0;
     self.strokes = 0L;
     self.draftCompleteDate = 0;
     self.draftCreateDate = 0;
@@ -3236,6 +3264,9 @@ static PBFeed* defaultPBFeedInstance = nil;
   if (self.hasDataUrl) {
     [output writeString:84 value:self.dataUrl];
   }
+  if (self.hasBgImageUrl) {
+    [output writeString:85 value:self.bgImageUrl];
+  }
   if (self.hasContestId) {
     [output writeString:91 value:self.contestId];
   }
@@ -3259,6 +3290,12 @@ static PBFeed* defaultPBFeedInstance = nil;
   }
   if (self.hasCanvasSize) {
     [output writeMessage:201 value:self.canvasSize];
+  }
+  if (self.hasBgImageWidth) {
+    [output writeFloat:202 value:self.bgImageWidth];
+  }
+  if (self.hasBgImageHeight) {
+    [output writeFloat:203 value:self.bgImageHeight];
   }
   if (self.hasStrokes) {
     [output writeInt64:211 value:self.strokes];
@@ -3417,6 +3454,9 @@ static PBFeed* defaultPBFeedInstance = nil;
   if (self.hasDataUrl) {
     size += computeStringSize(84, self.dataUrl);
   }
+  if (self.hasBgImageUrl) {
+    size += computeStringSize(85, self.bgImageUrl);
+  }
   if (self.hasContestId) {
     size += computeStringSize(91, self.contestId);
   }
@@ -3440,6 +3480,12 @@ static PBFeed* defaultPBFeedInstance = nil;
   }
   if (self.hasCanvasSize) {
     size += computeMessageSize(201, self.canvasSize);
+  }
+  if (self.hasBgImageWidth) {
+    size += computeFloatSize(202, self.bgImageWidth);
+  }
+  if (self.hasBgImageHeight) {
+    size += computeFloatSize(203, self.bgImageHeight);
   }
   if (self.hasStrokes) {
     size += computeInt64Size(211, self.strokes);
@@ -3668,6 +3714,9 @@ static PBFeed* defaultPBFeedInstance = nil;
   if (other.hasDataUrl) {
     [self setDataUrl:other.dataUrl];
   }
+  if (other.hasBgImageUrl) {
+    [self setBgImageUrl:other.bgImageUrl];
+  }
   if (other.hasContestId) {
     [self setContestId:other.contestId];
   }
@@ -3694,6 +3743,12 @@ static PBFeed* defaultPBFeedInstance = nil;
   }
   if (other.hasCanvasSize) {
     [self mergeCanvasSize:other.canvasSize];
+  }
+  if (other.hasBgImageWidth) {
+    [self setBgImageWidth:other.bgImageWidth];
+  }
+  if (other.hasBgImageHeight) {
+    [self setBgImageHeight:other.bgImageHeight];
   }
   if (other.hasStrokes) {
     [self setStrokes:other.strokes];
@@ -3918,6 +3973,10 @@ static PBFeed* defaultPBFeedInstance = nil;
         [self setDataUrl:[input readString]];
         break;
       }
+      case 682: {
+        [self setBgImageUrl:[input readString]];
+        break;
+      }
       case 730: {
         [self setContestId:[input readString]];
         break;
@@ -3970,6 +4029,14 @@ static PBFeed* defaultPBFeedInstance = nil;
         }
         [input readMessage:subBuilder extensionRegistry:extensionRegistry];
         [self setCanvasSize:[subBuilder buildPartial]];
+        break;
+      }
+      case 1621: {
+        [self setBgImageWidth:[input readFloat]];
+        break;
+      }
+      case 1629: {
+        [self setBgImageHeight:[input readFloat]];
         break;
       }
       case 1688: {
@@ -4724,6 +4791,22 @@ static PBFeed* defaultPBFeedInstance = nil;
   result.dataUrl = @"";
   return self;
 }
+- (BOOL) hasBgImageUrl {
+  return result.hasBgImageUrl;
+}
+- (NSString*) bgImageUrl {
+  return result.bgImageUrl;
+}
+- (PBFeed_Builder*) setBgImageUrl:(NSString*) value {
+  result.hasBgImageUrl = YES;
+  result.bgImageUrl = value;
+  return self;
+}
+- (PBFeed_Builder*) clearBgImageUrl {
+  result.hasBgImageUrl = NO;
+  result.bgImageUrl = @"";
+  return self;
+}
 - (BOOL) hasContestId {
   return result.hasContestId;
 }
@@ -4919,6 +5002,38 @@ static PBFeed* defaultPBFeedInstance = nil;
 - (PBFeed_Builder*) clearCanvasSize {
   result.hasCanvasSize = NO;
   result.canvasSize = [PBSize defaultInstance];
+  return self;
+}
+- (BOOL) hasBgImageWidth {
+  return result.hasBgImageWidth;
+}
+- (Float32) bgImageWidth {
+  return result.bgImageWidth;
+}
+- (PBFeed_Builder*) setBgImageWidth:(Float32) value {
+  result.hasBgImageWidth = YES;
+  result.bgImageWidth = value;
+  return self;
+}
+- (PBFeed_Builder*) clearBgImageWidth {
+  result.hasBgImageWidth = NO;
+  result.bgImageWidth = 0;
+  return self;
+}
+- (BOOL) hasBgImageHeight {
+  return result.hasBgImageHeight;
+}
+- (Float32) bgImageHeight {
+  return result.bgImageHeight;
+}
+- (PBFeed_Builder*) setBgImageHeight:(Float32) value {
+  result.hasBgImageHeight = YES;
+  result.bgImageHeight = value;
+  return self;
+}
+- (PBFeed_Builder*) clearBgImageHeight {
+  result.hasBgImageHeight = NO;
+  result.bgImageHeight = 0;
   return self;
 }
 - (BOOL) hasStrokes {

@@ -92,6 +92,7 @@ message PBStage
     optional string enDesc = 11;
     optional string tcnDesc = 12;
 
+//    optional string tutorialId = 18;                
     optional string opusId = 19;                    // 本关卡作品的ID
     optional string image = 20;                     // 本关卡的作品图片URL
     optional string thumbImage = 21;                // 本关卡的作品小图片URL
@@ -110,6 +111,7 @@ message PBStage
     optional float difficulty = 52[default=1.0];    // 本关作品难度系数，默认为1.0（for简笔画，其他可能要取0.8-0.9）
 
     optional bool useBgFromPrev = 60[default=false];// 本关作品是否使用上一关的背景图
+    optional bool useBgForFill = 61[default=true];  // 背景图是否用于上色，是则放在描边层（上面），否则放在底部
 }
 
 // 教程

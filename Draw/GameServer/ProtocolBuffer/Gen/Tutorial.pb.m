@@ -1411,6 +1411,7 @@ static PBChapter* defaultPBChapterInstance = nil;
 @property int32_t scoreEngine;
 @property Float32 difficulty;
 @property BOOL useBgFromPrev;
+@property BOOL useBgForFill;
 @end
 
 @implementation PBStage
@@ -1561,6 +1562,18 @@ static PBChapter* defaultPBChapterInstance = nil;
 - (void) setUseBgFromPrev:(BOOL) value {
   useBgFromPrev_ = !!value;
 }
+- (BOOL) hasUseBgForFill {
+  return !!hasUseBgForFill_;
+}
+- (void) setHasUseBgForFill:(BOOL) value {
+  hasUseBgForFill_ = !!value;
+}
+- (BOOL) useBgForFill {
+  return !!useBgForFill_;
+}
+- (void) setUseBgForFill:(BOOL) value {
+  useBgForFill_ = !!value;
+}
 - (void) dealloc {
   self.stageId = nil;
   self.cnName = nil;
@@ -1603,6 +1616,7 @@ static PBChapter* defaultPBChapterInstance = nil;
     self.scoreEngine = 0;
     self.difficulty = 1;
     self.useBgFromPrev = NO;
+    self.useBgForFill = YES;
   }
   return self;
 }
@@ -1700,6 +1714,9 @@ static PBStage* defaultPBStageInstance = nil;
   if (self.hasUseBgFromPrev) {
     [output writeBool:60 value:self.useBgFromPrev];
   }
+  if (self.hasUseBgForFill) {
+    [output writeBool:61 value:self.useBgForFill];
+  }
   [self.unknownFields writeToCodedOutputStream:output];
 }
 - (int32_t) serializedSize {
@@ -1771,6 +1788,9 @@ static PBStage* defaultPBStageInstance = nil;
   }
   if (self.hasUseBgFromPrev) {
     size += computeBoolSize(60, self.useBgFromPrev);
+  }
+  if (self.hasUseBgForFill) {
+    size += computeBoolSize(61, self.useBgForFill);
   }
   size += self.unknownFields.serializedSize;
   memoizedSerializedSize = size;
@@ -1913,6 +1933,9 @@ static PBStage* defaultPBStageInstance = nil;
   if (other.hasUseBgFromPrev) {
     [self setUseBgFromPrev:other.useBgFromPrev];
   }
+  if (other.hasUseBgForFill) {
+    [self setUseBgForFill:other.useBgForFill];
+  }
   [self mergeUnknownFields:other.unknownFields];
   return self;
 }
@@ -2018,6 +2041,10 @@ static PBStage* defaultPBStageInstance = nil;
       }
       case 480: {
         [self setUseBgFromPrev:[input readBool]];
+        break;
+      }
+      case 488: {
+        [self setUseBgForFill:[input readBool]];
         break;
       }
     }
@@ -2370,6 +2397,22 @@ static PBStage* defaultPBStageInstance = nil;
 - (PBStage_Builder*) clearUseBgFromPrev {
   result.hasUseBgFromPrev = NO;
   result.useBgFromPrev = NO;
+  return self;
+}
+- (BOOL) hasUseBgForFill {
+  return result.hasUseBgForFill;
+}
+- (BOOL) useBgForFill {
+  return result.useBgForFill;
+}
+- (PBStage_Builder*) setUseBgForFill:(BOOL) value {
+  result.hasUseBgForFill = YES;
+  result.useBgForFill = value;
+  return self;
+}
+- (PBStage_Builder*) clearUseBgForFill {
+  result.hasUseBgForFill = NO;
+  result.useBgForFill = YES;
   return self;
 }
 @end
