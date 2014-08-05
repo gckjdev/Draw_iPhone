@@ -54,6 +54,7 @@
 
 -(void)setButtonTitleBottom{
     
+    [self.indexButton.imageView setImage:[UIImage imageNamed:@"dongtai.jpg"]];
     [self.indexButton.titleLabel setFont:AD_FONT(13, 10)];
     [self.documentButton.titleLabel setFont:AD_FONT(13, 10)];
     [self.messageButton.titleLabel setFont:AD_FONT(13, 10)];

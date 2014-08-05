@@ -312,15 +312,15 @@
         </view>
     </objects>
     <resources>
-        <image name="caogao.png" width="128" height="128"/>
-        <image name="dongtai.png" width="128" height="128"/>
-        <image name="gengduo.png" width="128" height="128"/>
+        <image name="caogao.png" width="64" height="64"/>
+        <image name="dongtai.png" width="64" height="64"/>
+        <image name="gengduo.png" width="64" height="64"/>
         <image name="huahua.png" width="80" height="76"/>
         <image name="jingcaizuopin.png" width="80" height="76"/>
         <image name="laba.png" width="24" height="24"/>
         <image name="luntan.png" width="80" height="76"/>
         <image name="neironglan yu caidanlan.png" width="768" height="20"/>
-        <image name="xiaoxi.png" width="128" height="128"/>
+        <image name="xiaoxi.png" width="64" height="64"/>
         <image name="xuehuahua.png" width="80" height="76"/>
     </resources>
 </document>
