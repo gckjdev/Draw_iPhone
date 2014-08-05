@@ -2831,10 +2831,10 @@
 "kCreateImageShareFail" = "无法生成分享图片，分享失败";
 
 
-"kConquerDrawShareWeixinFriend" = "weChatFriends";
-"kConquerDrawSharekWeixinTimeline" = "weChatTimeline";
-"kConquerDrawShareSinaWeibo" = "SinaWeibo";
-"kConquerDrawShareQQWeibo" = "TencentWeibo";
+"kConquerDrawShareWeixinFriend" = "WeChat Friend";
+"kConquerDrawSharekWeixinTimeline" = "WeChat Timeline";
+"kConquerDrawShareSinaWeibo" = "Sina Weibo";
+"kConquerDrawShareQQWeibo" = "QQ Weibo";
 
 "kGuidePageLogin" = "Login";
 "kGuidePageRegister" = "Register";
