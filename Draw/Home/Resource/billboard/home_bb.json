@@ -11,7 +11,7 @@
     },
     {
      "index" : 2,
-     "function" : "enterBBS",
+     "function" : "goToGuidePage",
      "imageId" : "image2",
      "image" : "http://58.215.160.100:8080/app_res/tutorial/image/title-7.png",
      "text" : "",
