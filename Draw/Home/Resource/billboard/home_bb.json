@@ -11,7 +11,11 @@
     },
     {
      "index" : 2,
+<<<<<<< HEAD
+     "function" : "goToGuidePage",
+=======
      "function" : "enterHotByOpusClass:",
+>>>>>>> ed6f04a8b6dc7fb032e9757bacef3b10c6488222
      "imageId" : "image2",
      "image" : "http://58.215.160.100:8080/app_res/tutorial/image/title-7.png",
      "text" : "",
