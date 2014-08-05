@@ -42,8 +42,23 @@
 
 - (void)useCanvasRect:(CanvasRect *)canvasRect
 {
-    BOOL flag = [[self.drawView drawActionList] count] == 0;//CGRectEqualToRect(canvasRect.rect, self.drawView.bounds);
+//    BOOL empty = [[self.drawView drawActionList] count] == 0;//CGRectEqualToRect(canvasRect.rect, self.drawView.bounds);
+//    BOOL flag;
+//    
+//    if (!empty){
+//        DrawAction* drawAction = [[self.drawView drawActionList] objectAtIndex:0];
+//        if ([drawAction isKindOfClass:[ChangeBGImageAction class]]){
+//            flag = YES;
+//        }
+//        else{
+//            flag = NO;
+//        }
+//    }
+//    else{
+//        flag = YES;
+//    }
     
+    BOOL flag = [[self.drawView drawActionList] count] == 0;//CGRectEqualToRect(canvasRect.rect, self.drawView.bounds);
     if (flag) {
         [self.drawView changeRect:canvasRect.rect];
         [self hidePopTipView];
