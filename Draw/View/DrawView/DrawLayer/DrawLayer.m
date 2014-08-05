@@ -326,9 +326,7 @@
     _finalOpacity = opacity;
 }
 
-#define BG_LAYER_TAG 1
-#define MAIN_LAYER_TAG 2
-#define DEFAULT_LAYER_TAG 2
+
 
 - (BOOL)canBeRemoved
 {

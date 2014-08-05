@@ -46,17 +46,29 @@
     return self;
 }
 
-#define TRENDS_BUTTON_TITLE_EDGEINSETS   (ISIPAD ? -40 : -32)
-#define DOCUMENT_BUTTON_TITLE_EDGEINSETS (ISIPAD ? -40:  -32)
-#define MESSAGE_BUTTON_TITLE_EDGEINSET   (ISIPAD ? -40 : -32)
-#define MORE_BUTTON_TITLE_EDGEINSETS     (ISIPAD ? -38 : -32)
-#define BOTTOM_BUTTON_HEIGHT (ISIPAD ? 60 : 40)
+#define TRENDS_BUTTON_TITLE_EDGEINSETS   (ISIPAD ? .5 : .5)
+#define DOCUMENT_BUTTON_TITLE_EDGEINSETS (ISIPAD ? .5:  .5)
+#define MESSAGE_BUTTON_TITLE_EDGEINSET   (ISIPAD ? .5 : .5)
+#define MORE_BUTTON_TITLE_EDGEINSETS     (ISIPAD ? .5 : .5)
+#define BOTTOM_BUTTON_MARGIN_HEIGHT (ISIPAD ? 50 : 38)
 
 -(void)setButtonTitleBottom{
-    [self.indexButton  setTitleEdgeInsets:UIEdgeInsetsMake(BOTTOM_BUTTON_HEIGHT, TRENDS_BUTTON_TITLE_EDGEINSETS, 0, 0)];
-    [self.documentButton  setTitleEdgeInsets:UIEdgeInsetsMake(BOTTOM_BUTTON_HEIGHT, DOCUMENT_BUTTON_TITLE_EDGEINSETS, 0, 0)];
-    [self.messageButton  setTitleEdgeInsets:UIEdgeInsetsMake(BOTTOM_BUTTON_HEIGHT, MESSAGE_BUTTON_TITLE_EDGEINSET, 0, 0)];
-    [self.moreButton  setTitleEdgeInsets:UIEdgeInsetsMake(BOTTOM_BUTTON_HEIGHT,                        MORE_BUTTON_TITLE_EDGEINSETS, 0, 0)];
+    
+    [self.indexButton.imageView setImage:[UIImage imageNamed:@"dongtai.jpg"]];
+    [self.indexButton.titleLabel setFont:AD_FONT(13, 10)];
+    [self.documentButton.titleLabel setFont:AD_FONT(13, 10)];
+    [self.messageButton.titleLabel setFont:AD_FONT(13, 10)];
+    [self.moreButton.titleLabel setFont:AD_FONT(13,10)];
+    
+    [self.indexButton setTitle:NSLS(@"kMetroIndexButton") forState:UIControlStateNormal];
+    [self.documentButton setTitle:NSLS(@"kMetroDocumentButton") forState:UIControlStateNormal];
+    [self.messageButton setTitle:NSLS(@"kMetroMessageButton") forState:UIControlStateNormal];
+    [self.moreButton setTitle:NSLS(@"kMetroMoreButton") forState:UIControlStateNormal];
+   
+    [self.indexButton  setTitleEdgeInsets:UIEdgeInsetsMake(BOTTOM_BUTTON_MARGIN_HEIGHT, TRENDS_BUTTON_TITLE_EDGEINSETS, 0, 0)];
+    [self.documentButton  setTitleEdgeInsets:UIEdgeInsetsMake(BOTTOM_BUTTON_MARGIN_HEIGHT, DOCUMENT_BUTTON_TITLE_EDGEINSETS, 0, 0)];
+    [self.messageButton  setTitleEdgeInsets:UIEdgeInsetsMake(BOTTOM_BUTTON_MARGIN_HEIGHT, MESSAGE_BUTTON_TITLE_EDGEINSET, 0, 0)];
+    [self.moreButton  setTitleEdgeInsets:UIEdgeInsetsMake(BOTTOM_BUTTON_MARGIN_HEIGHT, MORE_BUTTON_TITLE_EDGEINSETS, 0, 0)];
 }
 
 - (void)startStatisticTimer
@@ -316,7 +328,11 @@
 
 - (IBAction)goToDraw:(id)sender
 {
+#ifdef DEBUG
+    [self enterOfflineDrawWithMenu];
+#else
     [self enterOfflineDraw];
+#endif
 }
 
 - (IBAction)goToOpus:(id)sender

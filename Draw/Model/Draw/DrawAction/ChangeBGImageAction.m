@@ -10,7 +10,8 @@
 #import "DrawBgManager.h"
 #import "SDWebImageManager.h"
 #import "ClipAction.h"
-
+#import "Tutorial.pb.h"
+#import "DrawLayer.h"
 
 @interface ChangeBGImageAction()
 
@@ -196,6 +197,83 @@
 {
     ChangeBGImageAction *changBG = [[[ChangeBGImageAction alloc] initWithDrawBg:drawBg] autorelease];
     return changBG;
+}
+
++ (NSString*)bgImageNameForLearnDrawBgImage:(NSString*)tutorialId
+                                    stageId:(NSString*)stageId
+{
+    NSString* key = [NSString stringWithFormat:@"%@__%@__bg.png", tutorialId, stageId];
+    PPDebug(@"<keyForLearnDrawBgImage> key=%@", key);
+    return key;
+}
+
+/*
+message PBDrawBg
+{
+    required string bgId = 1;
+    optional string localUrl  = 2;
+    optional string remoteUrl  = 3;
+    optional int32 showStyle = 4 [default=0]; // 0 for show in center, 1 for show in pattern
+    
+    optional int32 type = 5[default=0];       // refer to PBDrawBgType
+    optional int32 purpose = 6;               // refer to PBDrawBgPurpose
+    optional int32 layerPosition = 7;         // refer to PBDrawBgLayerType
+    
+    optional string tutorialId = 20;           // learn draw background's tutorial ID
+    optional string stageId = 21;
+    optional string tutorialBgImageName = 22;
+}
+ */
+
++ (ChangeBGImageAction *)actionForLearnDrawBg:(PBDrawBgLayerType)layerPosition
+                                     tutorial:(PBTutorial*)tutorial
+                                        stage:(PBStage*)stage
+                                      bgImage:(UIImage*)bgImage
+                                  bgImageName:(NSString*)bgImageName
+                                     needSave:(BOOL)needSave
+{
+    if (stage == nil){
+        PPDebug(@"<actionForLearnDrawBg> but stage nil");
+        return nil;
+    }
+    
+    if (bgImage == nil || [bgImageName length] == 0){
+        PPDebug(@"<actionForLearnDrawBg> no bg image or bgImageName(%@) nil", bgImageName);
+        return nil;
+    }
+    
+//    NSString* key = [self bgImageNameForLearnDrawBgImage:tutorial.tutorialId stageId:stage.stageId];
+    if (needSave){
+        NSString* key = bgImageName;
+        BOOL result = [[DrawBgManager defaultManager] saveImage:bgImage forKey:key];
+        if (!result){
+            PPDebug(@"<actionForLearnDrawBg> save bg image for key %@ failure", key);
+            return nil;
+        }
+    }
+
+    PBDrawBg_Builder* builder = [PBDrawBg builder];
+    [builder setBgId:bgImageName];
+    [builder setLocalUrl:bgImageName];
+    [builder setShowStyle:ShowStylePattern];
+    [builder setType:PBDrawBgTypeDrawBgNormalDraw];
+    [builder setPurpose:PBDrawBgPurposeDrawBgPurposeLearnDraw];
+    [builder setLayerPosition:layerPosition];
+    [builder setTutorialId:tutorial.tutorialId];
+    [builder setStageId:stage.stageId];
+    [builder setTutorialBgImageName:stage.bgImageName];
+    
+    PBDrawBg* drawBg = [builder build];
+
+    ChangeBGImageAction* action = [self actionWithDrawBG:drawBg];
+    if (layerPosition == PBDrawBgLayerTypeDrawBgLayerForeground){
+        [action setLayerTag:BG_LAYER_TAG];
+    }
+    else{
+        [action setLayerTag:MAIN_LAYER_TAG];
+    }
+    
+    return action;
 }
 
 @end

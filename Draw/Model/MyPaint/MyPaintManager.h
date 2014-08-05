@@ -36,7 +36,7 @@
 {
     StorageManager *_imageManager;
     StorageManager *_drawDataManager;
-    StorageManager *_bgImgeManager;
+    StorageManager *_bgImageManager;
 }
 
 
@@ -135,6 +135,7 @@
 - (NSMutableArray *)drawActionListForPaint:(MyPaint *)paint;
 - (NSString *)imagePathForPaint:(MyPaint *)paint;
 - (UIImage *)bgImageForPaint:(MyPaint *)paint;
+- (NSString *)bgImageFullPath:(MyPaint *)paint;
 - (void)saveBgImage:(UIImage *)image name:(NSString *)name;
 
 - (NSString*)fullDataPath:(NSString*)dataFileName;

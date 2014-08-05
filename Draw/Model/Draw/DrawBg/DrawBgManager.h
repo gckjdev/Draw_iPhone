@@ -10,6 +10,7 @@
 #import "Draw.pb.h"
 #import "SDWebImageManager.h"
 
+@class StorageManager;
 
 typedef enum{
     
@@ -22,6 +23,7 @@ typedef enum{
 
 @interface DrawBgManager : NSObject
 
+@property (nonatomic, retain) StorageManager *imageManager;
 
 + (id)defaultManager;
 //+ (void )imageForRemoteURL:(NSString *)url success:(SDWebImageSuccessBlock)success failure:(SDWebImageFailureBlock)failure;
@@ -35,6 +37,11 @@ typedef enum{
 + (void)scaleImages;
 
 - (NSString*)downloadProgressNotificationName;
+
+- (BOOL)saveImage:(UIImage*)image forKey:(NSString*)key;
+- (BOOL)saveData:(NSData*)data forKey:(NSString*)key;
+- (UIImage*)imageForKey:(NSString*)key;
+- (BOOL)isImageExists:(NSString*)key;
 
 @end
 

@@ -236,7 +236,8 @@
     
     //检测NSSTRING 所在的位置
     NSString *scoreString = [NSString stringWithFormat:@"%d",self.score];
-    NSString *sentenceOne = [NSString stringWithFormat:@"本次作品得分為%@分\n",scoreString];
+//    NSString *sentenceOne = [NSString stringWithFormat:@"本次作品得分為%@分\n",scoreString];
+    NSString *sentenceOne = [NSString stringWithFormat:NSLS(@"kResultPageScore"),scoreString];
     NSMutableAttributedString *scoreMutableString = [[[NSMutableAttributedString alloc]
                                                       initWithString:sentenceOne]autorelease];
     //人名
@@ -249,11 +250,10 @@
 
     self.lineTwoLabel.attributedText = scoreMutableString;
     
-    // TODO localization
-    // TODO calculate length/location by code
     //位置
     NSString *count = [NSString stringWithFormat:@"%d%%",self.userStage.defeatCount];
-    NSString *sentenceTwo = [NSString stringWithFormat:@"宇宙三次元%@的用户！",count];
+//    NSString *sentenceTwo = [NSString stringWithFormat:@"宇宙三次元%@的用户！",count];
+    NSString *sentenceTwo = [NSString stringWithFormat:NSLS(@"kResultPageCount"),count];
 
     NSMutableAttributedString *countMutable = [[[NSMutableAttributedString alloc]initWithString:sentenceTwo]autorelease];
     [countMutable addAttribute:NSForegroundColorAttributeName
@@ -291,7 +291,7 @@
                           value:COLOR_RED
                           range:NSMakeRange(0, [result length])];
     [resultMutable addAttribute:NSFontAttributeName
-                          value:AD_FONT(20, 18)
+                          value:AD_FONT(20, 13)
                           range:NSMakeRange(0,[result length])];
     self.lineFourLabel.attributedText = resultMutable;
 
@@ -350,16 +350,18 @@
 - (NSString*)createShareImagePath
 {
     UIImage* image = [self.view createSnapShotWithScale:1.0f];
+    
     NSString* path = nil;
     if (image){
         path = [[FileUtil getAppTempDir] stringByAppendingPathComponent:TEMP_SHARE_FILE_NAME];
-        BOOL result = [image saveImageToFile:path];
+        BOOL result = [image saveJPEGToFile:path compressQuality:1.0];
         if (result == NO){
             path = nil;
         }
     }
 
     PPDebug(@"<createShareImagePath> path=%@", path);
+    PPDebug(@"<createShareImagePath imagesize width ===%d  and height==%d>",image.size.width,image.size.height);
     return path;
 }
 

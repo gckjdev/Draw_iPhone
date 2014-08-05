@@ -60,6 +60,8 @@
 #import "OpusClassInfoManager.h"
 #import "TutorialInfoController.h"
 #import "TutorialCoreManager.h"
+#import "MKBlockActionSheet.h"
+#import "ChangeAvatar.h"
 
 @implementation UIViewController (CommonHome)
 
@@ -381,6 +383,35 @@
 - (void)enterShopWithItemId:(NSString*)itemId
 {
     
+}
+
+- (void)enterOfflineDrawWithMenu
+{
+    MKBlockActionSheet* actionSheet = [[MKBlockActionSheet alloc] initWithTitle:@"请选择画画模式"
+                                                                       delegate:nil
+                                                              cancelButtonTitle:@"取消"
+                                                         destructiveButtonTitle:@"空白"
+                                                              otherButtonTitles:@"选择背景图片", nil];
+    
+    [actionSheet setActionBlock:^(int buttonIndex){
+        switch (buttonIndex) {
+            case 0:
+                break;
+                
+            case 1:
+                [self enterOfflineDraw];
+                break;
+
+            case 2:
+                break;
+                
+            default:
+                break;
+        }
+    }];
+    
+    [actionSheet showInView:self.view];
+    [actionSheet release];
 }
 
 @end

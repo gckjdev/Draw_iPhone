@@ -14,29 +14,51 @@
 
 //初始化指导页
 -(ICETutorialController *)initGuidePage{
+    ICETutorialPage *layr1 = nil;
+    ICETutorialPage *layr2 = nil;
+    ICETutorialPage *layr3 = nil;
+    ICETutorialPage *layr4 = nil;
+//    if(ISIPAD){
+         layr1 = [[ICETutorialPage alloc] initWithTitle:@""
+                                                                subTitle:@""
+                                                             pictureName:@"iphone5-1.png"
+                                                                duration:3.0];
+        layr2 = [[ICETutorialPage alloc] initWithTitle:@""
+                                                                subTitle:@""
+                                                             pictureName:@"iphone5-2.png"
+                                                                duration:3.0];
+        layr3 = [[ICETutorialPage alloc] initWithTitle:@""
+                                                                subTitle:@""
+                                                             pictureName:@"iphone5-3.png"
+                                                                duration:2.0];
+        
+        layr4 = [[ICETutorialPage alloc] initWithTitle:@""
+                                                                subTitle:@""
+                                                             pictureName:@"iphone5-4.png"
+                                                                duration:3.0];
+        
+//    }else{
+//        layr1 = [[ICETutorialPage alloc] initWithTitle:@""
+//                                                                subTitle:@""
+//                                                             pictureName:@"1.png"
+//                                                                duration:3.0];
+//        layr2 = [[ICETutorialPage alloc] initWithTitle:@""
+//                                                                subTitle:@""
+//                                                             pictureName:@"2.png"
+//                                                                duration:3.0];
+//        layr3 = [[ICETutorialPage alloc] initWithTitle:@""
+//                                                                subTitle:@""
+//                                                             pictureName:@"3.png"
+//                                                                duration:2.0];
+//        
+//        layr4 = [[ICETutorialPage alloc] initWithTitle:@""
+//                                                                subTitle:@""
+//                                                             pictureName:@"4.png"
+//                                                                duration:3.0];
+//        
+//        
+//    }
     
-    ICETutorialPage *layer1 = [[ICETutorialPage alloc] initWithTitle:@"Picture 4"
-                                                            subTitle:@"The Louvre's Museum Pyramide"
-                                                         pictureName:@"tutorial_background_02@2x.jpg"
-                                                            duration:3.0];
-    ICETutorialPage *layer2 = [[ICETutorialPage alloc] initWithTitle:@"Picture 4"
-                                                            subTitle:@"The Louvre's Museum Pyramide"
-                                                         pictureName:@"tutorial_background_01@2x.jpg"
-                                                            duration:3.0];
-    ICETutorialPage *layer3 = [[ICETutorialPage alloc] initWithTitle:@"Picture 4"
-                                                            subTitle:@"The Louvre's Museum Pyramide"
-                                                         pictureName:@"tutorial_background_04@2x.jpg"
-                                                            duration:3.0];
-    
-    ICETutorialPage *layer4 = [[ICETutorialPage alloc] initWithTitle:@"Picture 4"
-                                                            subTitle:@"The Louvre's Museum Pyramide"
-                                                         pictureName:@"tutorial_background_03@2x.jpg"
-                                                            duration:3.0];
-    
-    ICETutorialPage *layer5 = [[ICETutorialPage alloc] initWithTitle:@"Picture 4"
-                                                            subTitle:@"The Louvre's Museum Pyramide"
-                                                         pictureName:@"tutorial_background_04@2x.jpg"
-                                                            duration:3.0];
     
     ICETutorialLabelStyle *titleStyle = [[[ICETutorialLabelStyle alloc] init] autorelease];
     [titleStyle setFont:[UIFont fontWithName:@"Helvetica-Bold" size:17.0f]];
@@ -49,7 +71,7 @@
     [[ICETutorialStyle sharedInstance] setSubTitleColor:[UIColor whiteColor]];
     [[ICETutorialStyle sharedInstance] setSubTitleOffset:150];
     // Load into an array.
-    NSArray *tutorialLayers = @[layer1,layer2,layer3,layer4,layer5];
+    NSArray *tutorialLayers = @[layr1,layr2,layr3,layr4];
     
     ICETutorialController *guidePage = [[[ICETutorialController alloc] initWithPages:tutorialLayers delegate:self] autorelease];
     return guidePage;
@@ -68,6 +90,7 @@
 //右键
 - (void)tutorialController:(ICETutorialController *)tutorialController didClickOnLeftButton:(UIButton *)sender {
     NSLog(@"Button 1 pressed.");
+    [self performSelector: @selector(clickBack:) withObject:nil afterDelay:0];
     //TODO
 }
 

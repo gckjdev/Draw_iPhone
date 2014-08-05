@@ -296,6 +296,7 @@
                               lang:(NSInteger)lang
                               data:(NSData*)data
                          imageData:(NSData *)imageData
+                       bgImageData:(NSData *)bgImageData
                          targetUid:(NSString *)targetUid
                          contestId:(NSString *)contestId
                               desc:(NSString *)desc
