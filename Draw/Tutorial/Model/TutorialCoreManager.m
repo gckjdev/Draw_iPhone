@@ -343,8 +343,8 @@ static TutorialCoreManager* _defaultTutorialCoreManager;
     // TODO add test tutorials
 
     
-    NSArray* testTutorialName = @[@"初识三次元",/*@"疯狂的线条",@"识色配图",@"旺星人大集合",@"一起动动动",@"易容速成",*/@"百态小吉萌翻天",@"爱生活爱运动",@"名建筑大集合"];
-    NSArray* testTutorialDesc = @[@"教你怎么把物体从二次元转换成三次元",/*@"帮助你更好的熟练工具",@"这里将把你打造成用色达人",@"属于旺星人的趴",@"燃烧你的卡路里吧",@"你想易容成什么人",*/@"小吉闪亮登场，速来围观",@"童鞋们，一起来运动吧",@"你认识这些建筑吗？"];
+    NSArray* testTutorialName = @[@"初识三次元",/*@"疯狂的线条",@"识色配图",@"旺星人大集合",@"一起动动动",@"易容速成",*/@"百态小吉萌翻天",@"爱生活爱运动",@"名建筑大集合",@"运动无极限"];
+    NSArray* testTutorialDesc = @[@"教你怎么把物体从二次元转换成三次元",/*@"帮助你更好的熟练工具",@"这里将把你打造成用色达人",@"属于旺星人的趴",@"燃烧你的卡路里吧",@"你想易容成什么人",*/@"小吉闪亮登场，速来围观",@"童鞋们，一起来运动吧",@"你认识这些建筑吗？",@"燃烧你的卡路里"];
     
     NSArray* tutorialImageUrl = @[@"http://58.215.160.100:8080/app_res/tutorial/image/title-0.png",
 //                                  @"http://58.215.184.18:8080/tutorial/image/2-titlenew.png",
@@ -354,7 +354,8 @@ static TutorialCoreManager* _defaultTutorialCoreManager;
 //                                  @"http://58.215.184.18:8080/tutorial/image/6-titlenew.png",
                                   @"http://58.215.160.100:8080/app_res/tutorial/image/title-6.png",
                                   @"http://58.215.160.100:8080/app_res/tutorial/image/title-7.png",
-                                  @"http://58.215.160.100:8080/app_res/tutorial/image/title-8.png"
+                                  @"http://58.215.160.100:8080/app_res/tutorial/image/title-8.png",
+                                  @"http://58.215.160.100:8080/app_res/tutorial/image/title-4.png"
                                   ];
     NSArray* tutorialCategory =
                                 @[
@@ -366,7 +367,8 @@ static TutorialCoreManager* _defaultTutorialCoreManager;
 //                                  @[@(1)],
                                   @[@(0)],
                                   @[@(0)],
-                                  @[@(0)]
+                                  @[@(0)],
+                                  @[@(1)]
                                   ];
     
     NSArray* testStageName = @[
@@ -379,7 +381,8 @@ static TutorialCoreManager* _defaultTutorialCoreManager;
 //                               @[@"美少女奈儿",@"美少女纪子",@"小妹妹",@"帅哥",@"小毛孩",@"经理",@"妇女",@"老者"],
                                @[@"放松",@"微笑",@"惊恐",@"鄙视",@"纠结",@"开心",@"奸笑",@"无奈",@"享受",@"可爱"],
                                @[@"射箭",@"拳击",@"铁人三项",@"跆拳道",@"射击",@"棒球",@"游泳",@"跳水",@"皮划艇",@"柔道"],
-                               @[@"埃及金字塔",@"埃菲尔铁塔",@"赵州桥",@"卢浮宫艺术馆",@"古希腊神庙",@"美国白宫",@"雷峰塔",@"江南小镇"]
+                               @[@"埃及金字塔",@"埃菲尔铁塔",@"赵州桥",@"卢浮宫艺术馆",@"古希腊神庙",@"美国白宫",@"雷峰塔",@"江南小镇"],
+                               @[@"花样滑冰",@"艺术体操",@"赛马",@"高尔夫",@"体操",@"击剑",@"滑雪",@"足球"],
                                ];
     
     NSArray* testStageDesc = @[@[@"初步认识传说中的五调子（亮、灰、暗、反光、投影）",@"学会了正方体，现在你可以尝试画下生活中类似的物体",@"怎样把物体画的更有立体感",@"结合前面的六棱柱，试试画一只铅笔",@"学习怎么让物体的明暗过渡的更加自然",@"运用前面学习的知识，试着画一个圆柱形纸筒", @"你是我的小呀小苹果······综合所学知识画个最流行的小苹果吧"],
@@ -390,7 +393,8 @@ static TutorialCoreManager* _defaultTutorialCoreManager;
 //                               @[@"美少女奈儿",@"美少女纪子",@"小妹妹",@"帅哥",@"小毛孩",@"经理",@"妇女",@"老者"],
                                @[@"终于下课了",@"做好事受表扬",@"上厕所忘记带纸",@"看见行人闯红灯",@"我到底是男还是女",@"作品上榜了",@"想到坏点子",@"澡堂洗澡肥皂掉地上",@"雪地泡温泉",@"和帅哥打招呼"],
                                @[@"后羿射日，弓开得胜",@"一秒钟变猪头",@"游、跑、骑三部曲",@"再也不怕色狼了",@"要不要再来一发",@"米国人四大运动之一",@"旱鸭子一边去",@"森碟老爸是冠军",@"你的手臂够粗吗",@"据说是小孩子把戏"],
-                               @[@"听说法老躺这里",@"土豪玩浪漫的约会圣地",@"没有比TA更老的古桥了",@"亮瞎你眼睛的玻璃建筑",@"住着美女雅典娜",@"爱爸妈发号施令的基地",@"法海不懂爱",@"文艺小资青年的挚爱"]
+                               @[@"听说法老躺这里",@"土豪玩浪漫的约会圣地",@"没有比TA更老的古桥了",@"亮瞎你眼睛的玻璃建筑",@"住着美女雅典娜",@"爱爸妈发号施令的基地",@"法海不懂爱",@"文艺小资青年的挚爱"],
+                               @[@"没有翅膀也一样可以飞翔",@"展现身体的柔性美",@"人与动物最佳拍档",@"在运动中享受大自然的乐趣",@"干净利落的身姿",@"协调性与灵活性的考验",@"像鸟一样在雪地里飞舞",@"只为射门那一刻的欢呼"]
                                ];
 
     NSArray* stageImageUrl = @[
@@ -489,7 +493,17 @@ static TutorialCoreManager* _defaultTutorialCoreManager;
                                         @"http://58.215.160.100:8080/app_res/tutorial/image/8-4.jpg",
                                         @"http://58.215.160.100:8080/app_res/tutorial/image/8-3.jpg",
                                         @"http://58.215.160.100:8080/app_res/tutorial/image/8-1.jpg"
-                                    ]
+                                    ],
+                                    @[
+                                        @"http://58.215.160.100:8080/app_res/tutorial/image/4-1.jpg",
+                                        @"http://58.215.160.100:8080/app_res/tutorial/image/4-2.jpg",
+                                        @"http://58.215.160.100:8080/app_res/tutorial/image/4-3.jpg",
+                                        @"http://58.215.160.100:8080/app_res/tutorial/image/4-4.jpg",
+                                        @"http://58.215.160.100:8080/app_res/tutorial/image/4-5.jpg",
+                                        @"http://58.215.160.100:8080/app_res/tutorial/image/4-6.jpg",
+                                        @"http://58.215.160.100:8080/app_res/tutorial/image/4-7.jpg",
+                                        @"http://58.215.160.100:8080/app_res/tutorial/image/4-8.jpg"
+                                        ]
 
                               ];
     
@@ -498,7 +512,46 @@ static TutorialCoreManager* _defaultTutorialCoreManager;
     http://58.215.184.18:8080/draw_image/20140716/f01bc420-0c86-11e4-9049-00163e017d23.jpg
     tutorialId-7__stageId-7-0
      */
-    
+    //tutorial0chapter
+    NSArray *tutorial6_chapterList =@[
+                                        @[
+                                            @"51564194e4b0d84d3151da6b"
+
+                                        ],
+                                        @[
+                                            @"53cbd1b8e4b06d2c3a123cdc",
+                                            @"53cbd1b8e4b06d2c3a123cdc",
+                                            @"53cbd1b8e4b06d2c3a123cdc",
+                                            @"53cbd1b8e4b06d2c3a123cdc",
+                                            @"53cbd1b8e4b06d2c3a123cdc"
+                                        ],
+                                        @[
+                                            @"53cbd889e4b06d2c3a124080"
+                                        ],
+                                        @[
+                                            @"53cbd889e4b06d2c3a124080",
+                                            @"53cbd889e4b06d2c3a124080",
+                                            @"53cbd889e4b06d2c3a124080",
+                                            @"53cbd889e4b06d2c3a124080",
+                                            @"53cbd889e4b06d2c3a124080",
+                                            @"53cbd889e4b06d2c3a124080"
+                                        ],
+                                        @[
+                                            @"53c770dae4b07ab22e742bf6"
+
+                                        ],
+                                        @[
+                                            @"53c770a7e4b07ab22e742bf4",
+                                            @"53cbd889e4b06d2c3a124080",
+                                            @"53cbd889e4b06d2c3a124080",
+                                            @"53cbd889e4b06d2c3a124080",
+                                            @"53cbd889e4b06d2c3a124080"
+                                        ],
+                                        @[
+                                            @"53c770e8e4b07ab22e742bf7",
+                                            @"53cbd889e4b06d2c3a124080"
+                                        ]
+                                      ];
 
     
     NSArray *chapterOpusIdList = @[
@@ -544,7 +597,7 @@ static TutorialCoreManager* _defaultTutorialCoreManager;
                                ];
     
     
-    
+    //tutorial6
     NSArray *stageTips = @[@[@"tips1.png"],@[@"tips1.png"]];
     NSArray *stage6Tips = @[@[@"tips1.png"]];
     NSArray *stage7Tips = @[@[@"tips1.png",@"tips2.png"]];
@@ -552,12 +605,15 @@ static TutorialCoreManager* _defaultTutorialCoreManager;
     
     //tutorial0 的stage
     NSArray *stage1Tips_tutorial0 = @[@[@"tips1.png"]];
-    NSArray *stage2Tips_tutorial0 = @[@[@"tips1.png",@"tips2.png",@"tips3.png",@"tips4.png",@"tips5.png",@"tips6.png",@"tips7.png",@"tips8.png",@"tips9.png",@"tips10.png"]];
+    NSArray *stage2Tips_tutorial0 = @[@[@"tips1.png"],@[@"tips2.png",@"tips3.png",@"tips4.png"],@[@"tips5.png",@"tips6.png",@"tips7.png",@"tips8.png"],@[@"tips9.png",@"tips10.png"],@[]];
     NSArray *stage3Tips_tutorial0 = @[@[@"tips1.png"]];
-    NSArray *stage4Tips_tutorial0 = @[@[@"tips1.png",@"tips2.png",@"tips3.png",@"tips4.png",@"tips5.png",@"tips6.png",@"tips7.png"]];
+    NSArray *stage4Tips_tutorial0 = @[@[@"tips1.png"],@[@"tips2.png"],@[@"tips3.png",@"tips4.png",@"tips5.png",@"tips6.png"],@[@"tips7.png"],@[],@[]];
     NSArray *stage5Tips_tutorial0 = @[@[@"tips1.png"]];
-    NSArray *stage6Tips_tutorial0 = @[@[@"tips1.png",@"tips2.png",@"tips3.png",@"tips4.png",@"tips5.png",@"tips6.png",@"tips7.png"]];
-    NSArray *stage7Tips_tutorial0 =@[@[@"tips1.png",@"tips2.png",@"tips3.png",@"tips4.png",@"tips5.png",@"tips6.png",@"tips7.png",@"tips8.png",@"tips9.png"]];
+    NSArray *stage6Tips_tutorial0 = @[@[@"tips1.png"],@[@"tips2.png"],@[@"tips3.png",@"tips4.png",@"tips5.png",@"tips6.png"],@[@"tips7.png"],@[]];
+    NSArray *stage7Tips_tutorial0 =@[@[@"tips1.png",@"tips2.png"],@[@"tips3.png",@"tips4.png",@"tips5.png",@"tips6.png",@"tips7.png",@"tips8.png",@"tips9.png"]];
+    
+    //tutorial4（运动无极限）
+     NSArray *stage4Tips_turoial4 = @[@[@"tips1.png",@"tips2.png"]];
     
     //stageTipsList
     NSArray *tutorial0Tips = @[stage1Tips_tutorial0,stage2Tips_tutorial0,stage3Tips_tutorial0,stage4Tips_tutorial0,stage5Tips_tutorial0,stage6Tips_tutorial0,stage7Tips_tutorial0];
@@ -565,6 +621,9 @@ static TutorialCoreManager* _defaultTutorialCoreManager;
     NSArray *tutorial6Tips = @[stageTips,@[],@[],@[],stage6Tips,stage7Tips,stage8Tips,@[],@[],@[]];
     NSArray *tutorial7Tips = @[@[],@[],@[],@[],@[],@[],@[],@[],@[],@[]];
     NSArray *tutorial8Tips = @[@[],@[],@[],@[],@[],@[],@[],@[],@[],@[]];
+    NSArray *tutorial4Tips = @[stage4Tips_turoial4,@[],@[],@[],@[],@[],@[],@[]];
+    
+    
     //tutorialTipsList
     NSArray *tipsList = @[
                           tutorial0Tips,
@@ -576,6 +635,7 @@ static TutorialCoreManager* _defaultTutorialCoreManager;
                           tutorial6Tips,
                           tutorial7Tips,
                           tutorial8Tips,
+                          tutorial4Tips
                           ];
     
     NSArray *difficultyList = @[
@@ -593,18 +653,35 @@ static TutorialCoreManager* _defaultTutorialCoreManager;
     //画的类型
     NSArray *stageTypeList = @[
                                 @[@2,@2,@2,@2,@2,@2,@2,@2,@2,@2],
-                                @[],
-
-                                @[],
-                                @[],
-                                @[],
-                                @[],
+//                                @[],
+//                                @[],
+//                                @[],
+//                                @[],
+//                                @[],
 
 
                                 @[@0,@0,@0,@0,@0,@0,@0,@0,@0,@0],
                                 @[@1,@1,@1,@1,@1,@1,@1,@1,@1,@1],
+                                @[@1,@1,@1,@1,@1,@1,@1,@1,@1,@1],
                                 @[@1,@1,@1,@1,@1,@1,@1,@1,@1,@1]
                               ];
+    
+    //三次元关卡stage的start Index
+    NSArray *tutorial6_startIndex =@[
+                                    @[],
+                                    @[
+                                        @132,
+                                        @281,
+                                        @492,
+                                        @620,
+                                        @1965
+                                     ],
+                                    @[],
+                                    @[@61,@450,@880,@1580,@1750,@2622],
+                                    @[],
+                                    @[@61,@344,@512,@1434,@2562],
+                                    @[@500]
+                                    ];
     
     
     //模拟测试数据
@@ -655,27 +732,11 @@ static TutorialCoreManager* _defaultTutorialCoreManager;
             NSMutableArray *chapterList = [[NSMutableArray alloc] init];
             //内层为chapter
             
-            
+            if(tutorialSum!=0){
             for(int chapterSum=0;chapterSum<[[chapterOpusIdList objectAtIndex:stageSum] count];chapterSum++){
                 
                 
                 
-                NSArray *tipsInChapter = [self getTipsInChapterCountTutorialIndex:tutorialSum stageIndex:stageSum chapterIndex:chapterSum list:tipsList];
-                NSMutableArray *tipsArray = [[NSMutableArray alloc] init];
-                if(tipsInChapter!=nil){
-                    for(int tipsSum=0;tipsSum<[tipsInChapter count];tipsSum++){
-                        PBTip *tip = [self evalueteTipsDataName:[tipsInChapter objectAtIndex:tipsSum] WithIndex:tipsSum];
-                        [tipsArray addObject:tip];
-                    }
-                    
-                }
-                // 添加chapter
-                PBChapter *chapter = [self evalueteChapterDataChapterIndex:chapterSum tipList:tipsArray chapterStart:2];
-                [chapterList addObject:chapter];
-                stageID = [NSString stringWithFormat:@"stageId-%d-%d",stageSum,chapterSum];
-                
-                //hardCode
-                if(tutorialSum==0&&stageSum==6){
                     NSArray *tipsInChapter = [self getTipsInChapterCountTutorialIndex:tutorialSum stageIndex:stageSum chapterIndex:chapterSum list:tipsList];
                     NSMutableArray *tipsArray = [[NSMutableArray alloc] init];
                     if(tipsInChapter!=nil){
@@ -686,12 +747,34 @@ static TutorialCoreManager* _defaultTutorialCoreManager;
                         
                     }
                     // 添加chapter
-                    PBChapter *chapter = [self evalueteChapterDataChapterIndex:chapterSum tipList:tipsArray chapterStart:2];
+                    PBChapter *chapter = [self evalueteChapterDataChapterIndex:chapterSum tipList:tipsArray chapterStart:0];
                     [chapterList addObject:chapter];
+                    stageID = [NSString stringWithFormat:@"stageId-%d-%d",stageSum,chapterSum];
+                
+                
                 }
-
                 
             }
+              if(tutorialSum==0){
+                  
+                for(int chapterSum=0;chapterSum<[[tutorial6_chapterList objectAtIndex:stageSum] count];chapterSum++){
+                  NSArray *tipsInChapter = [self getTipsInChapterCountTutorialIndex:tutorialSum stageIndex:stageSum chapterIndex:chapterSum list:tipsList];
+                  NSMutableArray *tipsArray = [[NSMutableArray alloc] init];
+                  if(tipsInChapter!=nil){
+                      for(int tipsSum=0;tipsSum<[tipsInChapter count];tipsSum++){
+                          PBTip *tip = [self evalueteTipsDataName:[tipsInChapter objectAtIndex:tipsSum] WithIndex:tipsSum];
+                          [tipsArray addObject:tip];
+                      }
+                }
+                  // 添加chapter
+                  PBChapter *chapter = [self evalueteChapterDataChapterIndex:chapterSum tipList:tipsArray chapterStart:[tutorial6_startIndex objectAtIndex:stageSum]];
+                  [chapterList addObject:chapter];
+                //hard code
+                  stageID = [NSString stringWithFormat:@"stageId-%d-%d",stageSum,0];
+                }
+                  
+                  
+              }
             Float32 difficulty = -1;
             if(difficulty < [[difficultyList objectAtIndex:tutorialSum] count]){
                 if([[difficultyList objectAtIndex:tutorialSum] count]!=0&&[difficultyList objectAtIndex:tutorialSum]!=nil){
