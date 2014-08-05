@@ -20,7 +20,7 @@
     {
             //TODO
         
-            }
+    }
     return self;
 }
 
@@ -63,7 +63,7 @@
         [self.stageListStarBtn setBackgroundImage:starButtonBgImage forState:UIControlStateNormal];
         [self.stageListStarBtn setTitleColor:COLOR_BROWN forState:UIControlStateNormal];
         [self.stageListStarBtn.titleLabel setFont:AD_FONT(20, 14)];
-        [self.stageListStarBtn.titleLabel setText:NSLS(@"kStart")];
+        [self.stageListStarBtn setTitle:NSLS(@"kStartStage") forState:UIControlStateNormal];
 
         // stage image
         SET_VIEW_ROUND_CORNER(self.stageCellImage);
@@ -103,12 +103,12 @@
 }
 
 - (void)dealloc {
-        [_stageCellImage release];
-        [_cellName release];
-        [_stageListStarBtn release];
-        [_stageListHiddenLockImageView release];
+    [_stageCellImage release];
+    [_cellName release];
+    [_stageListStarBtn release];
+    [_stageListHiddenLockImageView release];
     [_hiddenNumberLabel release];
     [_hiddenNumberHolderView release];
-        [super dealloc];
+    [super dealloc];
 }
 @end

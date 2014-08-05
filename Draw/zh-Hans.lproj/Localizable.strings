@@ -2859,6 +2859,10 @@
 "kCreateImageShareFail" = "无法生成分享图片，分享失败";
 
 
+"kGuidePageLogin" = "登陆";
+"kGuidePageRegister" = "注册";
+
+
 //tutorial name
 "kTutorialNameCubic" = "初识三次元";
 "kTutorialNameCrazyLines" = "疯狂的线条";
@@ -2879,3 +2883,4 @@
 "kTutorialDescriptionCuteLittleGee" = "小吉闪亮登场，速来围观";
 "kTutorialDescriptionLoveLifeLoveSport" = "童鞋们，一起来运动吧";
 "kTutorialDescriptionFamousBuilding" = "你认识这些建筑吗？";
+

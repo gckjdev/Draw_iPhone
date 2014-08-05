@@ -41,7 +41,7 @@
 
 /*********************** Notification end *************************/
 
-"kStart" = "start";
+"kStart" = "Start";
 
 "kShop" = "Shop";
 
@@ -2830,6 +2830,15 @@
 "kConquerDrawShareText" = "我在%@中学习画画，本次闯关得分为%d，击败了宇宙三次元中%d%%的用户，你看看喽";
 "kCreateImageShareFail" = "无法生成分享图片，分享失败";
 
+
+"kConquerDrawShareWeixinFriend" = "weChatFriends";
+"kConquerDrawSharekWeixinTimeline" = "weChatTimeline";
+"kConquerDrawShareSinaWeibo" = "SinaWeibo";
+"kConquerDrawShareQQWeibo" = "TencentWeibo";
+
+"kGuidePageLogin" = "Login";
+"kGuidePageRegister" = "Register";
+
 //tutorial name
 "kTutorialNameCubic" = "Meet the 3D World";
 "kTutorialNameCrazyLines" = "Crazy Lines";
@@ -2841,7 +2850,7 @@
 "kTutorialNameLoveLifeLoveSport" = "Life Lies in Motion";
 "kTutorialNameFamousBuilding" = "Building with Great Fame";
 
-"KTutorialDescriptionCubic" = "Teach you how to turn 2D picture into 3D";
+"kTutorialDescriptionCubic" = "Teach you how to turn 2D picture into 3D";
 "kTutorialDescriptionCrazyLines" = "Help you to get familiar with tools";
 "kTutorialDescriptionColorFilling" = "To become a color expert!";
 "kTutorialDescriptionDoggyDoggy" = "A Party of Mr & Ms Doggy";
@@ -2850,3 +2859,4 @@
 "kTutorialDescriptionCuteLittleGee" = "Let's welcome...Little Gee!";
 "kTutorialDescriptionLoveLifeLoveSport" = "Come on! Let's do sports!";
 "kTutorialDescriptionFamousBuilding" = "Do you know these buildings？";
+

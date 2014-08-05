@@ -37,47 +37,47 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cos-MQ-YkX" userLabel="Bottom View">
-                    <rect key="frame" x="0.0" y="964" width="768" height="60"/>
+                    <rect key="frame" x="0.0" y="975" width="768" height="49"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <subviews>
                         <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="jQS-qv-H8k" userLabel="Index Button">
-                            <rect key="frame" x="107" y="0.0" width="40" height="40"/>
+                            <rect key="frame" x="131" y="-2" width="28" height="28"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="11"/>
-                            <state key="normal" title="动态" image="dongtai.png">
-                                <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                            <state key="normal" title="动态" backgroundImage="dongtai.png">
+                                <color key="titleColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
                             <connections>
                                 <action selector="goToIndexController:" destination="-1" eventType="touchUpInside" id="ITO-t7-yGJ"/>
                             </connections>
                         </button>
                         <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ief-Ho-elD" userLabel="Index Badge" customClass="BadgeView">
-                            <rect key="frame" x="125" y="-8" width="30" height="30"/>
+                            <rect key="frame" x="157" y="-8" width="30" height="30"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         </view>
                         <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="2V5-T5-7k4" userLabel="Document Button">
-                            <rect key="frame" x="268" y="0.0" width="40" height="40"/>
+                            <rect key="frame" x="290" y="-2" width="28" height="28"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="11"/>
-                            <state key="normal" title="草稿" image="caogao.png">
-                                <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                            <state key="normal" title="草稿" backgroundImage="caogao.png">
+                                <color key="titleColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
                             <connections>
                                 <action selector="goToDocumentController:" destination="-1" eventType="touchUpInside" id="EbL-j7-619"/>
                             </connections>
                         </button>
                         <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4bq-SU-uOr" userLabel="Document Badge" customClass="BadgeView">
-                            <rect key="frame" x="288" y="-8" width="30" height="30"/>
+                            <rect key="frame" x="302" y="-8" width="30" height="30"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         </view>
                         <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="Trk-17-xPZ" userLabel="Message Button">
-                            <rect key="frame" x="444" y="0.0" width="40" height="40"/>
+                            <rect key="frame" x="447" y="-2" width="28" height="28"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="11"/>
-                            <state key="normal" title="聊天" image="xiaoxi.png">
-                                <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                            <state key="normal" title="聊天" backgroundImage="xiaoxi.png">
+                                <color key="titleColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
                             <connections>
@@ -90,11 +90,11 @@
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         </view>
                         <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="G1p-eF-mJo" userLabel="More Button">
-                            <rect key="frame" x="600" y="0.0" width="40" height="40"/>
+                            <rect key="frame" x="607" y="-2" width="28" height="28"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="11"/>
-                            <state key="normal" title="更多" image="gengduo.png">
-                                <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                            <state key="normal" title="更多" backgroundImage="gengduo.png">
+                                <color key="titleColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
                             <connections>
@@ -102,7 +102,7 @@
                             </connections>
                         </button>
                         <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="kUq-ur-3sk" userLabel="More Badge" customClass="BadgeView">
-                            <rect key="frame" x="626" y="-8" width="30" height="30"/>
+                            <rect key="frame" x="629" y="-8" width="30" height="30"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         </view>
@@ -141,7 +141,7 @@
                                     <nil key="highlightedColor"/>
                                 </label>
                             </subviews>
-                            <color key="backgroundColor" red="0.55294120311737061" green="0.61176472902297974" blue="0.9803922176361084" alpha="1" colorSpace="deviceRGB"/>
+                            <color key="backgroundColor" red="0.80000007152557373" green="0.60000002384185791" blue="0.98823535442352295" alpha="1" colorSpace="deviceRGB"/>
                         </view>
                         <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bN6-Lx-G2D" userLabel="Forum Button View">
                             <rect key="frame" x="25" y="407" width="245" height="165"/>
@@ -296,7 +296,7 @@
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                 </view>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" image="neironglan yu caidanlan.png" translatesAutoresizingMaskIntoConstraints="NO" id="Hs1-gF-V6b">
-                    <rect key="frame" x="0.0" y="931" width="768" height="25"/>
+                    <rect key="frame" x="0.0" y="947" width="768" height="25"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                 </imageView>
@@ -304,23 +304,23 @@
             <color key="backgroundColor" red="0.94901960784313721" green="0.94901960784313721" blue="0.94901960784313721" alpha="1" colorSpace="deviceRGB"/>
             <constraints>
                 <constraint firstItem="GTc-Sg-gSW" firstAttribute="top" secondItem="6QK-jc-Xhh" secondAttribute="bottom" id="lSK-7m-xNp"/>
-                <constraint firstAttribute="bottom" secondItem="cos-MQ-YkX" secondAttribute="top" constant="60" id="qNr-T5-d7f"/>
-                <constraint firstItem="Hs1-gF-V6b" firstAttribute="top" secondItem="GTc-Sg-gSW" secondAttribute="bottom" constant="8" id="y7D-Tb-Phs"/>
+                <constraint firstAttribute="bottom" secondItem="cos-MQ-YkX" secondAttribute="top" constant="49" id="qNr-T5-d7f"/>
+                <constraint firstItem="Hs1-gF-V6b" firstAttribute="top" secondItem="GTc-Sg-gSW" secondAttribute="bottom" constant="19" id="y7D-Tb-Phs"/>
             </constraints>
             <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
         </view>
     </objects>
     <resources>
-        <image name="caogao.png" width="34" height="34"/>
-        <image name="dongtai.png" width="34" height="34"/>
-        <image name="gengduo.png" width="34" height="34"/>
+        <image name="caogao.png" width="64" height="64"/>
+        <image name="dongtai.png" width="64" height="64"/>
+        <image name="gengduo.png" width="64" height="64"/>
         <image name="huahua.png" width="80" height="76"/>
         <image name="jingcaizuopin.png" width="80" height="76"/>
         <image name="laba.png" width="24" height="24"/>
         <image name="luntan.png" width="80" height="76"/>
         <image name="neironglan yu caidanlan.png" width="768" height="20"/>
-        <image name="xiaoxi.png" width="34" height="34"/>
+        <image name="xiaoxi.png" width="64" height="64"/>
         <image name="xuehuahua.png" width="80" height="76"/>
     </resources>
 </document>

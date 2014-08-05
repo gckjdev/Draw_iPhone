@@ -291,7 +291,7 @@
                           value:COLOR_RED
                           range:NSMakeRange(0, [result length])];
     [resultMutable addAttribute:NSFontAttributeName
-                          value:AD_FONT(20, 18)
+                          value:AD_FONT(20, 13)
                           range:NSMakeRange(0,[result length])];
     self.lineFourLabel.attributedText = resultMutable;
 
