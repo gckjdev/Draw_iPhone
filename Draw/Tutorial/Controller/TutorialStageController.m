@@ -20,7 +20,7 @@
 
 @interface TutorialStageController ()
 @property(nonatomic,strong)UITableView *tableView;
-@property(nonatomic,strong)UIImage *image; // TODO dealloc方法释放
+@property(nonatomic,strong)UIImage *image;
 @property (nonatomic,retain)PBUserTutorial* pbUserTutorial;
 @end
 
@@ -74,6 +74,7 @@
     
     //背景
     [self setDefaultBGImage];
+//    [self.view setBackgroundColor:CO]
     self.collectionView.backgroundColor = [UIColor clearColor];
     
     

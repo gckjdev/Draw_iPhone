@@ -59,6 +59,11 @@
     [self.documentButton.titleLabel setFont:AD_FONT(13, 10)];
     [self.messageButton.titleLabel setFont:AD_FONT(13, 10)];
     [self.moreButton.titleLabel setFont:AD_FONT(13,10)];
+    
+    [self.indexButton setTitle:NSLS(@"kMetroIndexButton") forState:UIControlStateNormal];
+    [self.documentButton setTitle:NSLS(@"kMetroDocumentButton") forState:UIControlStateNormal];
+    [self.messageButton setTitle:NSLS(@"kMetroMessageButton") forState:UIControlStateNormal];
+    [self.moreButton setTitle:NSLS(@"kMetroMoreButton") forState:UIControlStateNormal];
    
     [self.indexButton  setTitleEdgeInsets:UIEdgeInsetsMake(BOTTOM_BUTTON_MARGIN_HEIGHT, TRENDS_BUTTON_TITLE_EDGEINSETS, 0, 0)];
     [self.documentButton  setTitleEdgeInsets:UIEdgeInsetsMake(BOTTOM_BUTTON_MARGIN_HEIGHT, DOCUMENT_BUTTON_TITLE_EDGEINSETS, 0, 0)];

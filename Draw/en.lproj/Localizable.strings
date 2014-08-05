@@ -2860,3 +2860,10 @@
 "kTutorialDescriptionLoveLifeLoveSport" = "Come on! Let's do sports!";
 "kTutorialDescriptionFamousBuilding" = "Do you know these buildings？";
 
+"kResultPageCount" = "Beat %@%% Users";
+"kResultPageScore" = "Your opus score %@";
+
+"kMetroIndexButton" = "TL";
+"kMetroDocumentButton" = "DOC";
+"kMetroMessageButton" = "MG";
+"kMetroMoreButton" = "MR";

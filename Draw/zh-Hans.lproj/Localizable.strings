@@ -2859,8 +2859,8 @@
 "kCreateImageShareFail" = "无法生成分享图片，分享失败";
 
 
-"kGuidePageLogin" = "登陆";
-"kGuidePageRegister" = "注册";
+"kGuidePageLogin" = "登  陆";
+"kGuidePageRegister" = "注   册";
 
 
 //tutorial name
@@ -2883,4 +2883,13 @@
 "kTutorialDescriptionCuteLittleGee" = "小吉闪亮登场，速来围观";
 "kTutorialDescriptionLoveLifeLoveSport" = "童鞋们，一起来运动吧";
 "kTutorialDescriptionFamousBuilding" = "你认识这些建筑吗？";
+
+"kResultPageCount" = "宇宙三次元%@%%用户";
+"kResultPageScore" = "你的闯关成绩为%@";
+
+"kMetroIndexButton" = "动态";
+"kMetroDocumentButton" = "草稿";
+"kMetroMessageButton" = "消息";
+"kMetroMoreButton" = "更多";
+
 

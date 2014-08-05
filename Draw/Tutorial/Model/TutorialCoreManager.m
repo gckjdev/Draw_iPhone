@@ -169,7 +169,9 @@ static TutorialCoreManager* _defaultTutorialCoreManager;
     
     //optional
     [stageBuilder setCnName:name];
+    [stageBuilder setEnName:name];
     [stageBuilder setCnDesc:desc];
+    [stageBuilder setEnDesc:desc];
     [stageBuilder setStageId:stageId];
     [stageBuilder setThumbImage:imageUrl];
     [stageBuilder setImage:imageUrl];
