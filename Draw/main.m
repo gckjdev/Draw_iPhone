@@ -23,7 +23,7 @@ int main(int argc, char *argv[])
  － 检查所有URL是否正确设置为正式服务器的URL:wq
  
  － 检查广告是否被屏蔽
- 
+
  Info Plist
  － 修改Bundle ID
  － 修改URL Scheme

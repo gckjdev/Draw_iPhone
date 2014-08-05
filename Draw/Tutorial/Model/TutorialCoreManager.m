@@ -340,7 +340,8 @@ static TutorialCoreManager* _defaultTutorialCoreManager;
 {
 //    NSString* root = @"/gitdata/Draw_iPhone/Draw/Tutorial/Resource/";
 //    NSString* root = @"/Users/chaoso/Desktop/gitdata/Draw_iPhone/Draw/Tutorial/Resource/";
-    NSString *root = @"/Users/Linruin/gitdata/Draw_iPhone/Draw/Tutorial/Resource/";
+//    NSString *root = @"/Users/Linruin/gitdata/Draw_iPhone/Draw/Tutorial/Resource/";
+    NSString *root = @"/Users/jiandan/gitdata/Draw_iPhone/Draw/Tutorial/Resource/";
     NSString* path = [root stringByAppendingString:[TutorialCoreManager appTaskDefaultConfigFileName]];
     
 //    NSString* versionPath = [root stringByAppendingString:[PPSmartUpdateDataUtils getVersionFileName:[TutorialCoreManager appTaskDefaultConfigFileName]]];
