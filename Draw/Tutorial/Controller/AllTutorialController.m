@@ -121,9 +121,9 @@ SET_CELL_BG_IN_VIEW
 
     if(nil!=pbTutorial){
 
-        self.infoController = [TutorialInfoController show:self
-                                                  tutorial:pbTutorial
-                                                  infoOnly:NO];
+        [TutorialInfoController show:self
+                            tutorial:pbTutorial
+                            infoOnly:NO];
         
 //        self.infoController = [TutorialInfoController createController:pbTutorial infoOnly:NO];
 //        
