@@ -351,14 +351,10 @@ static TutorialCoreManager* _defaultTutorialCoreManager;
     // TODO add test tutorials
 
     
-<<<<<<< HEAD
-    NSArray* testTutorialName = @[@"初识三次元",/*@"疯狂的线条",@"识色配图",@"旺星人大集合",@"一起动动动",@"易容速成",*/@"百态小吉萌翻天",@"爱生活爱运动",@"名建筑大集合",@"运动无极限"];
-    NSArray* testTutorialDesc = @[@"教你怎么把物体从二次元转换成三次元",/*@"帮助你更好的熟练工具",@"这里将把你打造成用色达人",@"属于旺星人的趴",@"燃烧你的卡路里吧",@"你想易容成什么人",*/@"小吉闪亮登场，速来围观",@"童鞋们，一起来运动吧",@"你认识这些建筑吗？",@"燃烧你的卡路里"];
-=======
     NSArray* testTutorialName = @[NSLS(@"kTutorialNameCubic"),
-                                /*@"kTutorialNameCrazyLines",@"kTutorialNameColorFilling",@"kTutorialNameDoggyDoggy",@"kTutorialNameMoveMoveMove",@"kTutorialNameFaceChanging",*/NSLS(@"kTutorialNameCuteLittleGee"),NSLS(@"kTutorialNameLoveLifeLoveSport"),NSLS(@"kTutorialNameFamousBuilding")];
-    NSArray* testTutorialDesc = @[NSLS(@"kTutorialDescriptionCubic"),/*@"kTutorialDescriptionCrazyLines",@"kTutorialDescriptionColorFilling",@"kTutorialDescriptionDoggyDoggy",@"kTutorialDescriptionMoveMoveMove",@"kTutorialDescriptionFaceChange",*/NSLS(@"kTutorialDescriptionCuteLittleGee"),NSLS(@"kTutorialDescriptionLoveLifeLoveSport"),NSLS(@"kTutorialDescriptionFamousBuilding")];
->>>>>>> ed6f04a8b6dc7fb032e9757bacef3b10c6488222
+                                /*@"kTutorialNameCrazyLines",@"kTutorialNameColorFilling",@"kTutorialNameDoggyDoggy",@"kTutorialNameMoveMoveMove",@"kTutorialNameFaceChanging",*/NSLS(@"kTutorialNameCuteLittleGee"),NSLS(@"kTutorialNameLoveLifeLoveSport"),NSLS(@"kTutorialNameFamousBuilding"),NSLS(@"kTutorialNameMoveMoveMove")];
+    NSArray* testTutorialDesc = @[NSLS(@"kTutorialDescriptionCubic"),/*@"kTutorialDescriptionCrazyLines",@"kTutorialDescriptionColorFilling",@"kTutorialDescriptionDoggyDoggy",@"kTutorialDescriptionMoveMoveMove",@"kTutorialDescriptionFaceChange",*/NSLS(@"kTutorialDescriptionCuteLittleGee"),NSLS(@"kTutorialDescriptionLoveLifeLoveSport"),NSLS(@"kTutorialDescriptionFamousBuilding"),NSLS(@"kTutorialDescriptionMoveMoveMove")];
+
     
     NSArray* tutorialImageUrl = @[@"http://58.215.160.100:8080/app_res/tutorial/image/title-0.png",
 //                                  @"http://58.215.184.18:8080/tutorial/image/2-titlenew.png",
@@ -667,14 +663,13 @@ static TutorialCoreManager* _defaultTutorialCoreManager;
     //画的类型
     NSArray *stageTypeList = @[
                                 @[@2,@2,@2,@2,@2,@2,@2,@2,@2,@2],
+
 //                                @[],
+                                
 //                                @[],
-<<<<<<< HEAD
-=======
-//                                
->>>>>>> ed6f04a8b6dc7fb032e9757bacef3b10c6488222
+                                
 //                                @[],
-//                                @[],
+                                
 //                                @[],
 
 

@@ -2858,10 +2858,10 @@
 "kConquerDrawShareText" = "我在%@中学习画画，本次闯关得分为%d分，击败了宇宙三次元中%d%%的用户，你看看喽";
 "kCreateImageShareFail" = "无法生成分享图片，分享失败";
 
-<<<<<<< HEAD
+
 "kGuidePageLogin" = "登陆";
 "kGuidePageRegister" = "注册";
-=======
+
 
 //tutorial name
 "kTutorialNameCubic" = "初识三次元";
@@ -2883,4 +2883,4 @@
 "kTutorialDescriptionCuteLittleGee" = "小吉闪亮登场，速来围观";
 "kTutorialDescriptionLoveLifeLoveSport" = "童鞋们，一起来运动吧";
 "kTutorialDescriptionFamousBuilding" = "你认识这些建筑吗？";
->>>>>>> ed6f04a8b6dc7fb032e9757bacef3b10c6488222
+
