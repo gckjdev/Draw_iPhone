@@ -2851,3 +2851,5 @@
 "kMetroMessageButton" = "CHAT";
 "kMetroMoreButton" = "MORE";
 
+"kSealResultPass" = "PASS";
+"kSealResultFail" = "FAIL";

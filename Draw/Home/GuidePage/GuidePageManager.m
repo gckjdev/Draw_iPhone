@@ -9,103 +9,96 @@
 #import "GuidePageManager.h"
 #import "UIViewController+CommonHome.h"
 #import "MetroHomeController.h"
+#import "TwoInputFieldView.h"
+#import "PPNetworkConstants.h"
+#import "PPNetworkRequest.h"
+#import "GameNetworkConstants.h"
 
 @implementation GuidePageManager
 
-//初始化指导页
--(ICETutorialController *)initGuidePage{
++ (void)showGuidePage:(UIViewController*)superController
+{
+    
     ICETutorialPage *layr1 = nil;
     ICETutorialPage *layr2 = nil;
     ICETutorialPage *layr3 = nil;
     ICETutorialPage *layr4 = nil;
-//    if(ISIPAD){
-         layr1 = [[ICETutorialPage alloc] initWithTitle:@""
-                                                                subTitle:@""
-                                                             pictureName:@"iphone5-1.png"
-                                                                duration:3.0];
-        layr2 = [[ICETutorialPage alloc] initWithTitle:@""
-                                                                subTitle:@""
-                                                             pictureName:@"iphone5-2.png"
-                                                                duration:3.0];
-        layr3 = [[ICETutorialPage alloc] initWithTitle:@""
-                                                                subTitle:@""
-                                                             pictureName:@"iphone5-3.png"
-                                                                duration:2.0];
-        
-        layr4 = [[ICETutorialPage alloc] initWithTitle:@""
-                                                                subTitle:@""
-                                                             pictureName:@"iphone5-4.png"
-                                                                duration:3.0];
-        
-//    }else{
-//        layr1 = [[ICETutorialPage alloc] initWithTitle:@""
-//                                                                subTitle:@""
-//                                                             pictureName:@"1.png"
-//                                                                duration:3.0];
-//        layr2 = [[ICETutorialPage alloc] initWithTitle:@""
-//                                                                subTitle:@""
-//                                                             pictureName:@"2.png"
-//                                                                duration:3.0];
-//        layr3 = [[ICETutorialPage alloc] initWithTitle:@""
-//                                                                subTitle:@""
-//                                                             pictureName:@"3.png"
-//                                                                duration:2.0];
-//        
-//        layr4 = [[ICETutorialPage alloc] initWithTitle:@""
-//                                                                subTitle:@""
-//                                                             pictureName:@"4.png"
-//                                                                duration:3.0];
-//        
-//        
-//    }
+
+    layr1 = [[ICETutorialPage alloc] initWithTitle:@""
+                                          subTitle:@""
+                                       pictureName:@"iphone5-1.png"
+                                          duration:3.0];
     
+    layr2 = [[ICETutorialPage alloc] initWithTitle:@""
+                                          subTitle:@""
+                                       pictureName:@"iphone5-2.png"
+                                          duration:3.0];
+    
+    layr3 = [[ICETutorialPage alloc] initWithTitle:@""
+                                          subTitle:@""
+                                       pictureName:@"iphone5-3.png"
+                                          duration:2.0];
+
+    layr4 = [[ICETutorialPage alloc] initWithTitle:@""
+                                          subTitle:@""
+                                       pictureName:@"iphone5-4.png"
+                                          duration:3.0];
     
     ICETutorialLabelStyle *titleStyle = [[[ICETutorialLabelStyle alloc] init] autorelease];
+    
     [titleStyle setFont:[UIFont fontWithName:@"Helvetica-Bold" size:17.0f]];
     [titleStyle setTextColor:[UIColor whiteColor]];
     [titleStyle setLinesNumber:1];
     [titleStyle setOffset:180];
+    
     [[ICETutorialStyle sharedInstance] setTitleStyle:titleStyle];
     
     // Set the subTitles style with few properties and let the others by default.
     [[ICETutorialStyle sharedInstance] setSubTitleColor:[UIColor whiteColor]];
     [[ICETutorialStyle sharedInstance] setSubTitleOffset:150];
+    
     // Load into an array.
     NSArray *tutorialLayers = @[layr1,layr2,layr3,layr4];
     
-    ICETutorialController *guidePage = [[[ICETutorialController alloc] initWithPages:tutorialLayers delegate:self] autorelease];
-    return guidePage;
+    // create guide page
+    GuidePageManager *guidePage = [[[GuidePageManager alloc] initWithPages:tutorialLayers delegate:nil] autorelease];
+    guidePage.delegate = guidePage;
+
+    [superController.navigationController presentViewController:guidePage animated:NO completion:^{
+        
+    }];
+    
+    return;
 }
 
-
-- (void)tutorialController:(ICETutorialController *)tutorialController scrollingFromPageIndex:(NSUInteger)fromIndex toPageIndex:(NSUInteger)toIndex {
+- (void)tutorialController:(ICETutorialController *)tutorialController scrollingFromPageIndex:(NSUInteger)fromIndex toPageIndex:(NSUInteger)toIndex
+{
     NSLog(@"Scrolling from page %lu to page %lu.", (unsigned long)fromIndex, (unsigned long)toIndex);
 }
+
 //左键
-- (void)tutorialControllerDidReachLastPage:(ICETutorialController *)tutorialController {
+- (void)tutorialControllerDidReachLastPage:(ICETutorialController *)tutorialController
+{
     NSLog(@"Tutorial reached the last page.");
-    //TODO
 }
 
 //右键
-- (void)tutorialController:(ICETutorialController *)tutorialController didClickOnLeftButton:(UIButton *)sender {
-    NSLog(@"Button 1 pressed.");
-    [self performSelector: @selector(clickBack:) withObject:nil afterDelay:0];
-    //TODO
+- (void)tutorialController:(ICETutorialController *)tutorialController didClickOnLeftButton:(UIButton *)sender
+{
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
-- (void)tutorialController:(ICETutorialController *)tutorialController didClickOnRightButton:(UIButton *)sender {
-    
-    MetroHomeController *mc = [[MetroHomeController alloc] init];
-    [self.navigationController pushViewController:mc animated:YES];
-    [mc release];
-//    [self.viewController stopScrolling];
+- (void)tutorialController:(ICETutorialController *)tutorialController didClickOnRightButton:(UIButton *)sender
+{
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (void)dealloc
 {
-    [super dealloc];
+    PPRelease(_xiaojiNumber);
+    PPRelease(_password);
     PPRelease(_layerList);
+    [super dealloc];
 }
 
 -(void)addNewLayer:(NSString *)title WithSubTitle:(NSString *)subTitle WithPicName:(NSString *)picName WithDuration:(NSTimeInterval)duration{
@@ -116,4 +109,91 @@
 
     [self.layerList addObject:layer];
 }
+
+- (void)showLoginDialog
+{
+    TwoInputFieldView *rpDialog = [TwoInputFieldView create];
+    
+    rpDialog.textField1.placeholder = NSLS(@"kLoginXiaojiPlaceHolder");
+    rpDialog.textField2.placeholder = NSLS(@"kLoginPasswordPlaceHolder");
+    
+    rpDialog.textField1.text = self.xiaojiNumber;
+    rpDialog.textField2.text = self.password;
+    
+    rpDialog.textField2.secureTextEntry = YES;
+    
+    rpDialog.textField1.keyboardType = UIKeyboardTypeNumberPad;
+    
+    CommonDialog *dialog = [CommonDialog createDialogWithTitle:NSLS(@"kLoginXiaoji")
+                                                    customView:rpDialog
+                                                         style:CommonDialogStyleDoubleButtonWithCross];
+//    dialog.delegate = self;
+//    dialog.tag = LOGIN_DIALOG_TAG;
+    [dialog showInView:self.view];
+    
+    [dialog setClickOkBlock:^(TwoInputFieldView *infoView){
+        
+        [self processLogin:infoView.textField1.text password:infoView.textField2.text];
+    }];
+}
+
+- (void)processLogin:(NSString*)number password:(NSString*)password
+{
+    self.xiaojiNumber = number;
+    self.password = password;
+    
+    if ([number length] == 0){
+        POSTMSG(NSLS(@"kXiaojiNumberCannotEmpty"));
+        return;
+    }
+    
+    if ([password length] == 0){
+        POSTMSG(NSLS(@"kXiaojiPasswordCannotEmpty"));
+        return;
+    }
+    
+    [self showActivityWithText:NSLS(@"kLoading")];
+    [[UserNumberService defaultService] loginUser:number password:password block:^(int resultCode, NSString *number) {
+        [self hideActivity];
+        if (resultCode == ERROR_SUCCESS){
+            [self dismissWithMessage:NSLS(@"kLoginSuccess")];
+        }
+        else if (resultCode == ERROR_USERID_NOT_FOUND){
+            POSTMSG(NSLS(@"kXiaojiNumberNotFound"));
+        }
+        else if (resultCode == ERROR_PASSWORD_NOT_MATCH){
+            POSTMSG(NSLS(@"kXiaojiPasswordIncorrect"));
+        }
+        else{
+            POSTMSG(NSLS(@"kSystemFailure"));
+        }
+    }];
+}
+
+- (IBAction)dismissWithMessage:(NSString*)message
+{
+    [self dismissViewControllerAnimated:YES completion:^{
+        [CommonDialog showSimpleDialog:message inView:self.view.superview];
+    }];
+}
+
+- (IBAction)clickTakeNumber:(id)sender
+{
+    if ([[UserManager defaultManager] incAndCheckIsExceedMaxTakeNumber] == YES){
+        POSTMSG(NSLS(@"kExceedMaxTakeNumber"));
+        return;
+    }
+    
+    [self showActivityWithText:NSLS(@"kLoading")];
+    [[UserNumberService defaultService] getAndRegisterNumber:^(int resultCode, NSString *number) {
+        [self hideActivity];
+        if (resultCode == 0){
+//            [self showTakeNumberView];
+        }
+        else{
+            [CommonDialog showSimpleDialog:NSLS(@"kTakeNumberFail")  inView:self.view];
+        }
+    }];
+}
+
 @end

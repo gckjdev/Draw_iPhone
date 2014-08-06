@@ -77,7 +77,6 @@
     self.qqLoginButton.hidden = YES;
     self.sinaLoginButton.hidden = YES;
     
-    
     [self.view addSubview:self.getNumberMainView];
 
 //    UIButton* button = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -86,6 +85,7 @@
 //    
 //    [self.getNumberMainView addSubview:button];
 //    [self.getNumberMainView sendSubviewToBack:button];
+    
 }
 
 
@@ -317,21 +317,6 @@
 
 - (void)showLoginDialog
 {
-//    RoomPasswordDialog *rpDialog = [RoomPasswordDialog create];
-//    rpDialog.delegate = self;
-//    
-//    rpDialog.roomNameField.placeholder = NSLS(@"kLoginXiaojiPlaceHolder");
-//    rpDialog.passwordField.placeholder = NSLS(@"kLoginPasswordPlaceHolder");
-//    
-//    rpDialog.roomNameField.text = self.xiaojiNumber;
-//    rpDialog.passwordField.text = self.password;
-//    
-//    rpDialog.passwordField.secureTextEntry = YES;
-////    rpDialog.roomNameLabel.text = NSLS(@"kLoginXiaojiLabel");
-////    rpDialog.passwordLabel.text = NSLS(@"kLoginPasswordLabel");
-//    rpDialog.roomNameField.keyboardType = UIKeyboardTypeNumberPad;
-//    [rpDialog.roomNameField becomeFirstResponder];
-    
     TwoInputFieldView *rpDialog = [TwoInputFieldView create];
     
     rpDialog.textField1.placeholder = NSLS(@"kLoginXiaojiPlaceHolder");
@@ -354,13 +339,6 @@
         [self processLogin:infoView.textField1.text password:infoView.textField2.text];
     }];
 }
-
-- (void)roomNameIsIllegal
-{
-    
-}
-
-
 
 - (IBAction)dismissWithMessage:(NSString*)message
 {

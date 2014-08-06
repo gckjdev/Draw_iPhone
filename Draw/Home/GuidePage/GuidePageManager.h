@@ -8,8 +8,13 @@
 
 #import <Foundation/Foundation.h>
 #import "ICETutorialController.h"
-@interface GuidePageManager : PPViewController<ICETutorialControllerDelegate>
-@property(nonatomic,retain) NSMutableArray *layerList;
 
--(ICETutorialController *)initGuidePage;
+@interface GuidePageManager : ICETutorialController<ICETutorialControllerDelegate>
+
+@property(nonatomic,retain) NSMutableArray *layerList;
+@property (retain, nonatomic) NSString *xiaojiNumber;
+@property (retain, nonatomic) NSString *password;
+
++ (void)showGuidePage:(UIViewController*)superController;
+
 @end
