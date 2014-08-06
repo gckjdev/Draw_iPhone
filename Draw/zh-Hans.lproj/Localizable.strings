@@ -2895,3 +2895,5 @@
 "kBlankDraw" = "空白绘画";
 "kDrawMode" = "请选择画画模式";
 
+"kSealResultPass" = "成功";
+"kSealResultFail" = "失败";

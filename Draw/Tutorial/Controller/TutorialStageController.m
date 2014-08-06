@@ -17,6 +17,7 @@
 #import "TutorialInfoController.h"
 #import "TutorialCoreManager.h"
 #import "UserTutorialManager.h"
+#import "StageAlertViewController.h"
 
 @interface TutorialStageController ()
 @property(nonatomic,strong)UITableView *tableView;
@@ -130,9 +131,15 @@
 //UICollectionView被选中时调用的方法
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSUInteger row = indexPath.row;
+
+    NSInteger row = indexPath.row;
+    
+
     if ([self.pbUserTutorial isStageLock:row] == NO){
-        [self askPracticeOrPass:row];
+//        [self askPracticeOrPass:row];
+        
+        [StageAlertViewController show:self UseTutorial:_pbUserTutorial Row:row];
+        
     }
     else{
     }

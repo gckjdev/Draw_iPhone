@@ -21,6 +21,7 @@
 #import "UIViewUtils.h"
 #import "UIImageUtil.h"
 #import "FileUtil.h"
+#import "ResultSeal.h"
 
 @interface ResultShareAlertPageViewController ()
 
@@ -165,8 +166,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     
-    self.opusImageView.layer.borderWidth = 1;
-    [self.opusImageView.layer setBorderColor:COLOR_YELLOW.CGColor];
+   
     
     //更新页面
     [self updateViewWidget];
@@ -180,22 +180,21 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (void)startAnimation
+{
+    CGAffineTransform at = CGAffineTransformMakeRotation(-M_PI_4);
+    
+    at = CGAffineTransformTranslate(at, -10, -200);
+    
+    [self.resultView setTransform:at];
+    
+}
+
 
 //更新本页面控件
 #define DEFAULT_OPUS @"xiaoguanka"
-
+#define ISIPAD_BORDER (ISIPAD ? 5 : 1)
 -(void)updateViewWidget{
-    //button
-//    [self.shareButton setTitle:NSLS(@"kShare") forState:UIControlStateNormal];
-//    [self.shareButton.titleLabel setFont:AD_BOLD_FONT(18, 15)];
-//    [self.shareButton setFrame:(CGRectMake((ISIPAD ? 75:75),(ISIPAD ? 533:533),110,30))];
-//    SET_BUTTON_ROUND_STYLE_ORANGE(self.shareButton);
-//    [self.continueButton setTitle:NSLS(@"kTryConquerNext") forState:UIControlStateNormal];
-//    [self.continueButton.titleLabel setFont:AD_BOLD_FONT(18, 15)];
-//    [self.continueButton setFrame:(CGRectMake((ISIPAD ? 265:260),(ISIPAD ? 533:533),110,30))];
-//    SET_BUTTON_ROUND_STYLE_ORANGE(self.continueButton);
-
-
     [self setDesc];
  
     //avatar
@@ -210,8 +209,31 @@
         opus = self.resultImage;
     }
     [self.opusImageView setImage:opus];
+    //border
+    self.opusImageView.layer.borderWidth = ISIPAD_BORDER;
+    [self.opusImageView.layer setBorderColor:COLOR_YELLOW.CGColor];
+    
+//    //resultView
+//    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, self.resultView.frame.size.width, self.resultView.frame.size.height)];
+//    label.text = @"完成";
+//    label.backgroundColor = [UIColor clearColor];
+//    label.textColor = COLOR_RED;
+//    label.layer.borderWidth = 1.0;
+//    label.layer.borderColor = COLOR_RED.CGColor;
+//    [label setTextAlignment:NSTextAlignmentCenter];
+//    [self.resultView addSubview:label];
+//    self.resultView.layer.borderWidth = 1.0;
+//    self.resultView.layer.borderColor = COLOR_RED.CGColor;
+    
+    
+    
+//    [self startAnimation];
+    
+   
     
 }
+
+
 //longsentent 为一
 -(NSRange)getRangeInNsstringLong:(NSString*)longSentence ShorterSentence:(NSString*)shortSentence{
     if([shortSentence length]<=[longSentence length]){
@@ -219,7 +241,26 @@
     }
     return NSMakeRange(0, 1);
 }
-
+#define SEAL_POSITION_X (ISIPAD ? 380:178)
+#define SEAL_POSITION_Y (ISIPAD ? 320:150)
+#define SEAL_POSITION_WIDTH (ISIPAD ? 150:60)
+#define SEAL_POSITION_HEIGHT (ISIPAD ? 150:60)
+-(void)makeSeal:(NSString*)text{
+    //结果页面的印章
+    UIFont *font = AD_FONT(50, 20);
+    if([LocaleUtils isChina]||[LocaleUtils isChinese]){
+            font = AD_FONT(50, 20);
+    }
+    else{
+        font = AD_FONT(36, 16);
+    }
+    ResultSeal *circleView = [[ResultSeal alloc] initWithFrame:CGRectMake(SEAL_POSITION_X, SEAL_POSITION_Y, SEAL_POSITION_WIDTH, SEAL_POSITION_HEIGHT) borderColor:COLOR_RED font:font text:text];
+    circleView.backgroundColor = [UIColor clearColor];
+    circleView.borderWidth = 3.0f;
+    
+    [self.view addSubview:circleView];
+    [circleView release];
+}
 
 -(void)setDesc{
     
@@ -278,22 +319,26 @@
     //闯关结果
     BOOL isTutorialComplete = [[UserTutorialManager defaultManager] isLastStage:self.userStage];
     NSString *result = @"";
-    
+    NSString *sealResult = @"";
     //合格
     BOOL isPass = [[UserTutorialManager defaultManager] isPass:self.score];
     if (isPass == YES){
         //课程完成
         if(isTutorialComplete){
             result = [NSString stringWithFormat:NSLS(@"kConquerResultPassComplete")];
+            sealResult = NSLS(@"kSealResultPass");
+
         }
         //没有完成继续下一关
         else{
              result = [NSString stringWithFormat:NSLS(@"kConquerResultPassNext")];
+             sealResult = NSLS(@"kSealResultPass");
         }
     }
     //不合格
     else{
         result = [NSString stringWithFormat:NSLS(@"kConquerFailureResult")];
+        sealResult = NSLS(@"kSealResultFail");
     }
     
     NSMutableAttributedString *resultMutable = [[[NSMutableAttributedString alloc]
@@ -307,6 +352,8 @@
     self.lineFourLabel.attributedText = resultMutable;
 
     self.lineThreeLabel.attributedText = countMutable;
+    
+    [self makeSeal:sealResult];
 }
 
 - (void)dealloc {
@@ -327,6 +374,7 @@
     [_lineTwoLabel release];
     [_lineThreeLabel release];
     [_lineFourLabel release];
+    [_resultView release];
     [super dealloc];
 }
 
@@ -341,6 +389,7 @@
     [self setLineTwoLabel:nil];
     [self setLineThreeLabel:nil];
     [self setLineFourLabel:nil];
+    [self setResultView:nil];
     [super viewDidUnload];
 }
 

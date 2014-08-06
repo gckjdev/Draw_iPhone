@@ -13,6 +13,7 @@ typedef void(^ResultShareAlertPageViewResultBlock)();
 @class PBUserStage;
 
 @interface ResultShareAlertPageViewController : UIViewController<CommonDialogDelegate>
+@property (retain, nonatomic) IBOutlet AvatarView *resultView;
 
 @property (retain, nonatomic) IBOutlet UIImageView *opusImageView;
 @property (retain, nonatomic) IBOutlet AvatarView *avatarImageView;
