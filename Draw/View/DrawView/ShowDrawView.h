@@ -81,6 +81,9 @@ typedef enum{
 
 +(UIImage*)addImage:(UIImage*)img1 toImage:(UIImage*)img2;
 
+
+- (void) createImageOfLayer:(NSInteger)num
+                       Path:(NSString*)path;
 @end
 
 

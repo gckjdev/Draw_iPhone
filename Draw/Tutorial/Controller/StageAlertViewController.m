@@ -83,7 +83,7 @@
     NSString *imagePath = stageWithRow.thumbImage;
     NSString *stageDesc = stageWithRow.cnDesc;
     NSString *bestScore = @"100";
-    UIFont *textFont = AD_FONT(20, 12);
+    UIFont *textFont = AD_FONT(20, 10);
     
     // stage image
     UIImage *placeHolderImage = [UIImage imageNamed:@DEFAUT_IMAGE];
@@ -111,8 +111,8 @@
     
     
     
-    [self.bestScore setText:[NSString stringWithFormat:@" 最好成绩%@",bestScore]];
-    [self.bestScore setFont:AD_BOLD_FONT(20, 11)];
+    [self.bestScore setText:[NSString stringWithFormat:@" 最好成绩:%@",bestScore]];
+    [self.bestScore setFont:AD_FONT(20, 10)];
     [self.bestScore setTextColor:COLOR_BROWN];
     [self.bestScore setTextAlignment:NSTextAlignmentLeft];
     
