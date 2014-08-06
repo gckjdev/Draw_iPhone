@@ -2853,3 +2853,6 @@
 
 "kSealResultPass" = "PASS";
 "kSealResultFail" = "FAIL";
+
+"kTakeNumberSucc" = "Registration is completed! Your Littlegee Number is %@.";
+"kGotoNextChapterWelcome" = "Welcome to Chapter %d. Just Replay Tutorial or View Tips above.";

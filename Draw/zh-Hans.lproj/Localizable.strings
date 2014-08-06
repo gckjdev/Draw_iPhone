@@ -2776,7 +2776,7 @@
 "kCopyViewSetImage" = "设置作品";
 "kPlayCopyView" = "播放";
 "kHideCopyView" = "隐藏";
-"kCopyViewHelp" = "查看提示";
+"kCopyViewHelp" = "提示/知识点";
 
 "kTutorialCategoryNewer" = "新手";
 "kTutorialCategoryHigherLevel" = "进阶";
@@ -2897,3 +2897,6 @@
 
 "kSealResultPass" = "成功";
 "kSealResultFail" = "失败";
+
+"kTakeNumberSucc" = "注册完成，你的小吉号码是【%@】，请到个人资料设置昵称、密码等信息。";
+"kGotoNextChapterWelcome" = "欢迎进入第%d小节继续本关修炼\n\n点击左上角的临摹框可回放教程\n\n或点击右上角的【帮助】按钮查看提示/知识点\n";

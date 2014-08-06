@@ -33,7 +33,7 @@ static UserNumberService* _defaultUserService;
 {
     if ([[UserManager defaultManager] hasXiaojiNumber]){
         PPDebug(@"<getAndRegisterNumber> user already has xiaoji number, skip");
-        EXECUTE_BLOCK(block, 0, nil);
+        EXECUTE_BLOCK(block, 0, [[UserManager defaultManager] xiaojiNumber]);
         return;
     }
     

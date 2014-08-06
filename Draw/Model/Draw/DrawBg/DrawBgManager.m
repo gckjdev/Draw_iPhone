@@ -64,8 +64,6 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(DrawBgManager);
     }    
 }
 
-
-
 - (id)init
 {
     self = [super init];
