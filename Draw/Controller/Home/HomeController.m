@@ -514,8 +514,12 @@ static NSDictionary* DRAW_MENU_IMAGE_DICT = nil;
             break;
         case HomeMenuTypeDrawDraw:
         {
+#ifdef DEBUG
+            [self enterOfflineDrawWithMenu];
+            break;
+#endif
+            
             [[AnalyticsManager sharedAnalyticsManager] reportClickHomeMenu:HOME_ACTION_DRAW];
-
             [OfflineDrawViewController startDraw:[Word cusWordWithText:@""] fromController:self startController:self targetUid:nil];
         }
             break;
