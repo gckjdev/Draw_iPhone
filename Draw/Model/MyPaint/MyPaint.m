@@ -43,6 +43,7 @@
 @dynamic tutorialId;
 @dynamic stageName;
 @dynamic bgImageName;
+@dynamic lastLayerTag;
 
 @synthesize thumbImage = _thumbImage;
 @synthesize paintImage = _paintImage;

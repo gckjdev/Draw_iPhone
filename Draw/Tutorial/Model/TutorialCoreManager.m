@@ -338,7 +338,8 @@ static TutorialCoreManager* _defaultTutorialCoreManager;
 {
 //    NSString* root = @"/gitdata/Draw_iPhone/Draw/Tutorial/Resource/";
 //    NSString* root = @"/Users/chaoso/Desktop/gitdata/Draw_iPhone/Draw/Tutorial/Resource/";
-    NSString *root = @"/Users/Linruin/gitdata/Draw_iPhone/Draw/Tutorial/Resource/";
+//    NSString *root = @"/Users/Linruin/gitdata/Draw_iPhone/Draw/Tutorial/Resource/";
+    NSString *root = @"/Users/jiandan/gitdata/Draw_iPhone/Draw/Tutorial/Resource/";
     NSString* path = [root stringByAppendingString:[TutorialCoreManager appTaskDefaultConfigFileName]];
     
 //    NSString* versionPath = [root stringByAppendingString:[PPSmartUpdateDataUtils getVersionFileName:[TutorialCoreManager appTaskDefaultConfigFileName]]];
@@ -352,7 +353,7 @@ static TutorialCoreManager* _defaultTutorialCoreManager;
     NSArray* testTutorialName = @[@"初识三次元",
                                 /*@"疯狂的线条",@"识色配图",@"旺星人大集合",@"易容速成",*/@"百态小吉萌翻天",@"爱生活爱运动",@"名建筑大集合",@"一起来运动"];
     
-    NSArray* testTutorialDesc = @[@"教你;怎么把物体从二次元转换成三次元",/*@"帮助你更好的熟练工具",@"这里将把你打造成用色达人",@"属于旺星人的趴",@"你想易容成什么人",*/@"小吉闪亮登场，速来围观",@"童鞋们，一起来运动吧",@"你认识这些建筑吗？",@"燃烧你的卡路里吧"];
+    NSArray* testTutorialDesc = @[@"教你怎么把物体从二次元转换成三次元",/*@"帮助你更好的熟练工具",@"这里将把你打造成用色达人",@"属于旺星人的趴",@"你想易容成什么人",*/@"小吉闪亮登场，速来围观",@"童鞋们，一起来运动吧",@"你认识这些建筑吗？",@"燃烧你的卡路里吧"];
 
     
     NSArray* tutorialImageUrl = @[@"http://58.215.160.100:8080/app_res/tutorial/image/title-0.png",

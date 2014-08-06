@@ -100,7 +100,8 @@
         txtFrame.size.height =[[NSString stringWithFormat:@"%@\n ",self.tutorialDescLabel.text]
                                boundingRectWithSize:CGSizeMake(txtFrame.size.width, CGFLOAT_MAX)
                                options:NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading
-                               attributes:[NSDictionary dictionaryWithObjectsAndKeys:self.tutorialDescLabel.font,NSFontAttributeName, nil] context:nil].size.height;
+                               attributes:[NSDictionary dictionaryWithObjectsAndKeys:self.tutorialDescLabel.font,NSFontAttributeName, nil]
+                               context:nil].size.height;
         
         CGRect labelFrame = self.tutorialSortedLabel.frame;
         labelContentHeight =

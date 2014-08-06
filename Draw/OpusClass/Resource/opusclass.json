@@ -35,14 +35,24 @@
  { "class_id" : "4002", "cn_name":"中国风", "tcn_name":"中国风", "en_name":"Chinese", "keywords":"漫画 动漫", "sub_classes":[], "parent_class" : "" },
  { "class_id" : "4003", "cn_name":"影视", "tcn_name":"影视", "en_name":"Movie", "keywords":"漫画 动漫", "sub_classes":[], "parent_class" : "" },
  { "class_id" : "4004", "cn_name":"书法", "tcn_name":"书法", "en_name":"Writing", "keywords":"漫画 动漫", "sub_classes":[], "parent_class" : "" },
- { "class_id" : "4005", "cn_name":"动画", "tcn_name":"动画", "en_name":"Animation", "keywords":"漫画 动漫", "sub_classes":[], "parent_class" : "" },
+ { "class_id" : "4005", "cn_name":"动图", "tcn_name":"动图", "en_name":"Animation", "keywords":"漫画 动漫", "sub_classes":[], "parent_class" : "" },
  { "class_id" : "4006", "cn_name":"黑白", "tcn_name":"黑白", "en_name":"Black&White", "keywords":"漫画 动漫", "sub_classes":[], "parent_class" : "" },
  { "class_id" : "4007", "cn_name":"游戏", "tcn_name":"游戏", "en_name":"Game", "keywords":"漫画 动漫", "sub_classes":[], "parent_class" : "" },
  { "class_id" : "4008", "cn_name":"治愈系", "tcn_name":"治愈系", "en_name":"Healing", "keywords":"漫画 动漫", "sub_classes":[], "parent_class" : "" },
  { "class_id" : "4009", "cn_name":"暗黑系", "tcn_name":"暗黑系", "en_name":"Gothic", "keywords":"漫画 动漫", "sub_classes":[], "parent_class" : "" },
- { "class_id" : "4010", "cn_name":"情侣", "tcn_name":"情侣", "en_name":"Lovers", "keywords":"漫画 动漫", "sub_classes":[], "parent_class" : "" }
+ { "class_id" : "4010", "cn_name":"情侣", "tcn_name":"情侣", "en_name":"Lovers", "keywords":"漫画 动漫", "sub_classes":[], "parent_class" : "" },
+ 
+ { "class_id" : "80001", "cn_name":"编辑推荐", "tcn_name":"编辑推荐", "en_name":"Editor", "keywords":"漫画 动漫", "sub_classes":[], "parent_class" : "", "for_user":0 },
+ 
+ { "class_id" : "90001", "cn_name":"DS家族比赛", "tcn_name":"DS家族比赛", "en_name":"DS", "keywords":"漫画 动漫", "sub_classes":[], "parent_class" : "", "for_user":0, "contest":1 }
+ 
+ 
 ],
 "home_list":
-["1002", "1003", "1004", "1005", "2001", "2002", "2003", "2004", "2005", "2006", "2007", "3000", "3008", "3007", "4002", "4003", "4004", "4006"]
+["1002", "1003", "1004", "1005", "2001", "2002", "2003", "2004", "2005", "2006", "2007", "3000", "3008", "3007", "4002", "4003", "4004", "4006"],
+    
+    "user_set_list":
+    ["9000", "8000", "1001", "1002", "1003", "1004", "1005", "1006", "2001", "2002", "2003", "2004", "2005", "2006", "2007", "2008", "2009", "3000", "3001", "3002", "3003", "3004","3005","3006","3008", "3007","3020", "4001", "4002", "4003", "4004", "4006", "4007", "4008", "4009", "4010"]
+    
 
 }

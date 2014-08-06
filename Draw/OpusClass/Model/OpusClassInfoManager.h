@@ -15,6 +15,7 @@
 
 @property (nonatomic, retain) PPSmartUpdateData* smartData;
 @property (nonatomic, retain) NSMutableArray* opusClassList;
+@property (nonatomic, retain) NSMutableArray* defaultUserSetList;       // 可以用于用户设置分类的列表
 @property (nonatomic, retain) NSMutableArray* homeDisplayClassList;
 @property (nonatomic, retain) NSMutableArray* userDisplayClassList;
 
