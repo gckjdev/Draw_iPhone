@@ -443,7 +443,6 @@
 		A461B12E174CBAA70088B061 /* ReportController.m in Sources */ = {isa = PBXBuildFile; fileRef = C2E6625F1521B91900487601 /* ReportController.m */; };
 		A461B12F174CBAA70088B061 /* SKProduct+LocalizedPrice.m in Sources */ = {isa = PBXBuildFile; fileRef = CA4216271522A0F400FAA008 /* SKProduct+LocalizedPrice.m */; };
 		A461B130174CBAA70088B061 /* ShareController.m in Sources */ = {isa = PBXBuildFile; fileRef = C2E6628015230B3F00487601 /* ShareController.m */; };
-		A461B133174CBAA70088B061 /* MainDataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = CA1377271524598700B5790B /* MainDataModel.xcdatamodeld */; };
 		A461B134174CBAA70088B061 /* MyPaint.m in Sources */ = {isa = PBXBuildFile; fileRef = CA13772C15245AAB00B5790B /* MyPaint.m */; };
 		A461B135174CBAA70088B061 /* MyPaintManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CA13772F15245AE600B5790B /* MyPaintManager.m */; };
 		A461B137174CBAA70088B061 /* ShareImageManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CA1377EE1525A2D700B5790B /* ShareImageManager.m */; };
@@ -3267,7 +3266,6 @@
 		C28A9A161738F04B007A819F /* ReportController.m in Sources */ = {isa = PBXBuildFile; fileRef = C2E6625F1521B91900487601 /* ReportController.m */; };
 		C28A9A171738F04B007A819F /* SKProduct+LocalizedPrice.m in Sources */ = {isa = PBXBuildFile; fileRef = CA4216271522A0F400FAA008 /* SKProduct+LocalizedPrice.m */; };
 		C28A9A181738F04B007A819F /* ShareController.m in Sources */ = {isa = PBXBuildFile; fileRef = C2E6628015230B3F00487601 /* ShareController.m */; };
-		C28A9A1B1738F04B007A819F /* MainDataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = CA1377271524598700B5790B /* MainDataModel.xcdatamodeld */; };
 		C28A9A1C1738F04B007A819F /* MyPaint.m in Sources */ = {isa = PBXBuildFile; fileRef = CA13772C15245AAB00B5790B /* MyPaint.m */; };
 		C28A9A1D1738F04B007A819F /* MyPaintManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CA13772F15245AE600B5790B /* MyPaintManager.m */; };
 		C28A9A1F1738F04B007A819F /* ShareImageManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CA1377EE1525A2D700B5790B /* ShareImageManager.m */; };
@@ -4376,7 +4374,6 @@
 		CA1250CD1668BB6800AFCC04 /* GameConfigDataUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = CA1250CC1668BB6800AFCC04 /* GameConfigDataUtils.m */; };
 		CA1250D01668BCBD00AFCC04 /* Config.proto in Resources */ = {isa = PBXBuildFile; fileRef = CA1250CF1668BCBD00AFCC04 /* Config.proto */; };
 		CA1250D31668BD5200AFCC04 /* Config.pb.m in Sources */ = {isa = PBXBuildFile; fileRef = CA1250D21668BD5200AFCC04 /* Config.pb.m */; };
-		CA1377291524598700B5790B /* MainDataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = CA1377271524598700B5790B /* MainDataModel.xcdatamodeld */; };
 		CA13772D15245AAB00B5790B /* MyPaint.m in Sources */ = {isa = PBXBuildFile; fileRef = CA13772C15245AAB00B5790B /* MyPaint.m */; };
 		CA13773015245AE700B5790B /* MyPaintManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CA13772F15245AE600B5790B /* MyPaintManager.m */; };
 		CA1377EF1525A2D700B5790B /* ShareImageManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CA1377EE1525A2D700B5790B /* ShareImageManager.m */; };
@@ -4587,6 +4584,10 @@
 		CA2A28F1195C1EEA00A97478 /* UserTutorialService.m in Sources */ = {isa = PBXBuildFile; fileRef = CA2A28EF195C1EEA00A97478 /* UserTutorialService.m */; };
 		CA2A28F2195C1EEA00A97478 /* UserTutorialService.m in Sources */ = {isa = PBXBuildFile; fileRef = CA2A28EF195C1EEA00A97478 /* UserTutorialService.m */; };
 		CA2A28F3195C1EEA00A97478 /* UserTutorialService.m in Sources */ = {isa = PBXBuildFile; fileRef = CA2A28EF195C1EEA00A97478 /* UserTutorialService.m */; };
+		CA2F9F89199233FB00756AD7 /* MainDataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = CA2F9F75199233FB00756AD7 /* MainDataModel.xcdatamodeld */; };
+		CA2F9F8A199233FB00756AD7 /* MainDataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = CA2F9F75199233FB00756AD7 /* MainDataModel.xcdatamodeld */; };
+		CA2F9F8B199233FB00756AD7 /* MainDataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = CA2F9F75199233FB00756AD7 /* MainDataModel.xcdatamodeld */; };
+		CA2F9F8C199233FB00756AD7 /* MainDataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = CA2F9F75199233FB00756AD7 /* MainDataModel.xcdatamodeld */; };
 		CA315B42195E5EB800AB800D /* PBTutorial+Extend.m in Sources */ = {isa = PBXBuildFile; fileRef = CA315B41195E5EB700AB800D /* PBTutorial+Extend.m */; };
 		CA315B43195E5ECA00AB800D /* PBTutorial+Extend.m in Sources */ = {isa = PBXBuildFile; fileRef = CA315B41195E5EB700AB800D /* PBTutorial+Extend.m */; };
 		CA315B44195E5ECA00AB800D /* PBTutorial+Extend.m in Sources */ = {isa = PBXBuildFile; fileRef = CA315B41195E5EB700AB800D /* PBTutorial+Extend.m */; };
@@ -6821,7 +6822,6 @@
 		EA4118C2176066F500DA72D0 /* ReportController.m in Sources */ = {isa = PBXBuildFile; fileRef = C2E6625F1521B91900487601 /* ReportController.m */; };
 		EA4118C3176066F500DA72D0 /* SKProduct+LocalizedPrice.m in Sources */ = {isa = PBXBuildFile; fileRef = CA4216271522A0F400FAA008 /* SKProduct+LocalizedPrice.m */; };
 		EA4118C4176066F500DA72D0 /* ShareController.m in Sources */ = {isa = PBXBuildFile; fileRef = C2E6628015230B3F00487601 /* ShareController.m */; };
-		EA4118C7176066F500DA72D0 /* MainDataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = CA1377271524598700B5790B /* MainDataModel.xcdatamodeld */; };
 		EA4118C8176066F500DA72D0 /* MyPaint.m in Sources */ = {isa = PBXBuildFile; fileRef = CA13772C15245AAB00B5790B /* MyPaint.m */; };
 		EA4118C9176066F500DA72D0 /* MyPaintManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CA13772F15245AE600B5790B /* MyPaintManager.m */; };
 		EA4118CB176066F500DA72D0 /* ShareImageManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CA1377EE1525A2D700B5790B /* ShareImageManager.m */; };
@@ -8041,7 +8041,6 @@
 		A329332A15591D4D00621789 /* SearchUserController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchUserController.m; sourceTree = "<group>"; };
 		A3431E7C1587279D002E0E81 /* ChatMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatMessage.h; sourceTree = "<group>"; };
 		A3431E7D1587279D002E0E81 /* ChatMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatMessage.m; sourceTree = "<group>"; };
-		A3598486157C6B9800745BAB /* MainDataModel 6.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "MainDataModel 6.xcdatamodel"; sourceTree = "<group>"; };
 		A3598487157C7B2700745BAB /* CustomWordManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomWordManager.h; sourceTree = "<group>"; };
 		A3598488157C7B2700745BAB /* CustomWordManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomWordManager.m; sourceTree = "<group>"; };
 		A359848A157C977100745BAB /* CustomWord.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomWord.h; sourceTree = "<group>"; };
@@ -9491,7 +9490,6 @@
 		CA1250CF1668BCBD00AFCC04 /* Config.proto */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Config.proto; sourceTree = "<group>"; };
 		CA1250D11668BD5200AFCC04 /* Config.pb.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Config.pb.h; sourceTree = "<group>"; };
 		CA1250D21668BD5200AFCC04 /* Config.pb.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Config.pb.m; sourceTree = "<group>"; };
-		CA1377281524598700B5790B /* MainDataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = MainDataModel.xcdatamodel; sourceTree = "<group>"; };
 		CA13772B15245AAB00B5790B /* MyPaint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyPaint.h; sourceTree = "<group>"; };
 		CA13772C15245AAB00B5790B /* MyPaint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyPaint.m; sourceTree = "<group>"; };
 		CA13772E15245AE600B5790B /* MyPaintManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyPaintManager.h; sourceTree = "<group>"; };
@@ -9631,11 +9629,8 @@
 		CA27B562176DF0D200310651 /* APLevelDB.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = APLevelDB.mm; sourceTree = "<group>"; };
 		CA27B566176DF27700310651 /* LevelDBManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LevelDBManager.h; sourceTree = "<group>"; };
 		CA27B567176DF27800310651 /* LevelDBManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LevelDBManager.m; sourceTree = "<group>"; };
-		CA29EB0216A6941E003B1434 /* MainDataModel 14.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "MainDataModel 14.xcdatamodel"; sourceTree = "<group>"; };
 		CA29EB0416A69E7D003B1434 /* DrawRecoveryService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DrawRecoveryService.h; sourceTree = "<group>"; };
 		CA29EB0516A69E7D003B1434 /* DrawRecoveryService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DrawRecoveryService.m; sourceTree = "<group>"; };
-		CA2A288C1957FCB800A97478 /* MainDataModel 15.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "MainDataModel 15.xcdatamodel"; sourceTree = "<group>"; };
-		CA2A28901958500900A97478 /* MainDataModel 16.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "MainDataModel 16.xcdatamodel"; sourceTree = "<group>"; };
 		CA2A289219586E7900A97478 /* SPUserResizableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPUserResizableView.h; sourceTree = "<group>"; };
 		CA2A289319586E7900A97478 /* SPUserResizableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPUserResizableView.m; sourceTree = "<group>"; };
 		CA2A289919596ACB00A97478 /* CopyView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CopyView.h; sourceTree = "<group>"; };
@@ -9663,6 +9658,25 @@
 		CA2A28E9195C1EC000A97478 /* UserTutorialManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserTutorialManager.m; sourceTree = "<group>"; };
 		CA2A28EE195C1EEA00A97478 /* UserTutorialService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserTutorialService.h; sourceTree = "<group>"; };
 		CA2A28EF195C1EEA00A97478 /* UserTutorialService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserTutorialService.m; sourceTree = "<group>"; };
+		CA2F9F76199233FB00756AD7 /* MainDataModel 10.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "MainDataModel 10.xcdatamodel"; sourceTree = "<group>"; };
+		CA2F9F77199233FB00756AD7 /* MainDataModel 11.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "MainDataModel 11.xcdatamodel"; sourceTree = "<group>"; };
+		CA2F9F78199233FB00756AD7 /* MainDataModel 12.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "MainDataModel 12.xcdatamodel"; sourceTree = "<group>"; };
+		CA2F9F79199233FB00756AD7 /* MainDataModel 13.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "MainDataModel 13.xcdatamodel"; sourceTree = "<group>"; };
+		CA2F9F7A199233FB00756AD7 /* MainDataModel 14.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "MainDataModel 14.xcdatamodel"; sourceTree = "<group>"; };
+		CA2F9F7B199233FB00756AD7 /* MainDataModel 15.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "MainDataModel 15.xcdatamodel"; sourceTree = "<group>"; };
+		CA2F9F7C199233FB00756AD7 /* MainDataModel 16.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "MainDataModel 16.xcdatamodel"; sourceTree = "<group>"; };
+		CA2F9F7D199233FB00756AD7 /* MainDataModel 17.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "MainDataModel 17.xcdatamodel"; sourceTree = "<group>"; };
+		CA2F9F7E199233FB00756AD7 /* MainDataModel 18.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "MainDataModel 18.xcdatamodel"; sourceTree = "<group>"; };
+		CA2F9F7F199233FB00756AD7 /* MainDataModel 19.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "MainDataModel 19.xcdatamodel"; sourceTree = "<group>"; };
+		CA2F9F80199233FB00756AD7 /* MainDataModel 2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "MainDataModel 2.xcdatamodel"; sourceTree = "<group>"; };
+		CA2F9F81199233FB00756AD7 /* MainDataModel 3.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "MainDataModel 3.xcdatamodel"; sourceTree = "<group>"; };
+		CA2F9F82199233FB00756AD7 /* MainDataModel 4.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "MainDataModel 4.xcdatamodel"; sourceTree = "<group>"; };
+		CA2F9F83199233FB00756AD7 /* MainDataModel 5.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "MainDataModel 5.xcdatamodel"; sourceTree = "<group>"; };
+		CA2F9F84199233FB00756AD7 /* MainDataModel 6.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "MainDataModel 6.xcdatamodel"; sourceTree = "<group>"; };
+		CA2F9F85199233FB00756AD7 /* MainDataModel 7.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "MainDataModel 7.xcdatamodel"; sourceTree = "<group>"; };
+		CA2F9F86199233FB00756AD7 /* MainDataModel 8.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "MainDataModel 8.xcdatamodel"; sourceTree = "<group>"; };
+		CA2F9F87199233FB00756AD7 /* MainDataModel 9.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "MainDataModel 9.xcdatamodel"; sourceTree = "<group>"; };
+		CA2F9F88199233FB00756AD7 /* MainDataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = MainDataModel.xcdatamodel; sourceTree = "<group>"; };
 		CA315B40195E5EB700AB800D /* PBTutorial+Extend.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "PBTutorial+Extend.h"; sourceTree = "<group>"; };
 		CA315B41195E5EB700AB800D /* PBTutorial+Extend.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "PBTutorial+Extend.m"; sourceTree = "<group>"; };
 		CA322100151B6A670039A384 /* GameNetworkRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameNetworkRequest.h; sourceTree = "<group>"; };
@@ -9758,7 +9772,6 @@
 		CA4216021521973A00FAA008 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		CA4216261522A0F400FAA008 /* SKProduct+LocalizedPrice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SKProduct+LocalizedPrice.h"; sourceTree = "<group>"; };
 		CA4216271522A0F400FAA008 /* SKProduct+LocalizedPrice.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "SKProduct+LocalizedPrice.m"; sourceTree = "<group>"; };
-		CA427055161FE05C00C6CCAE /* MainDataModel 11.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "MainDataModel 11.xcdatamodel"; sourceTree = "<group>"; };
 		CA42706A1620028E00C6CCAE /* SuperHomeController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SuperHomeController.h; sourceTree = "<group>"; };
 		CA42706B1620028E00C6CCAE /* SuperHomeController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SuperHomeController.m; sourceTree = "<group>"; };
 		CA42E3C615F4617A00790B3C /* TableTab.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TableTab.h; sourceTree = "<group>"; };
@@ -9789,11 +9802,8 @@
 		CA485F5116E440E300AEE725 /* DrawBgBox.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DrawBgBox.m; sourceTree = "<group>"; };
 		CA485F5216E440E300AEE725 /* DrawBgBox.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DrawBgBox.xib; sourceTree = "<group>"; };
 		CA485F5316E440E300AEE725 /* DrawBgBox~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "DrawBgBox~ipad.xib"; sourceTree = "<group>"; };
-		CA4AF8C015D23A4E00734FAC /* MainDataModel 7.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "MainDataModel 7.xcdatamodel"; sourceTree = "<group>"; };
-		CA4CA5E21975283400ED1534 /* MainDataModel 17.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "MainDataModel 17.xcdatamodel"; sourceTree = "<group>"; };
 		CA4CA5F3197680AA00ED1534 /* OpenCVUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OpenCVUtils.h; sourceTree = "<group>"; };
 		CA4CA5F4197680AA00ED1534 /* OpenCVUtils.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = OpenCVUtils.mm; sourceTree = "<group>"; };
-		CA4F066F1546F66500A38C84 /* MainDataModel 3.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "MainDataModel 3.xcdatamodel"; sourceTree = "<group>"; };
 		CA4FB820179E240B00A57387 /* DrawLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DrawLayer.h; sourceTree = "<group>"; };
 		CA4FB821179E240B00A57387 /* DrawLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DrawLayer.m; sourceTree = "<group>"; };
 		CA4FB827179E24A100A57387 /* DrawLayerManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DrawLayerManager.h; sourceTree = "<group>"; };
@@ -10047,7 +10057,6 @@
 		CA89748016087BE2003A95F7 /* ContestController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContestController.h; sourceTree = "<group>"; };
 		CA89748116087BE2003A95F7 /* ContestController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContestController.m; sourceTree = "<group>"; };
 		CA89748216087BE2003A95F7 /* ContestController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ContestController.xib; sourceTree = "<group>"; };
-		CA8A5B8F198BED9E00C5AF5D /* MainDataModel 18.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "MainDataModel 18.xcdatamodel"; sourceTree = "<group>"; };
 		CA8A6ACA16E5AE0C0052BFFA /* FeedDownloadService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FeedDownloadService.h; sourceTree = "<group>"; };
 		CA8A6ACB16E5AE0C0052BFFA /* FeedDownloadService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FeedDownloadService.m; sourceTree = "<group>"; };
 		CA8C471817C3175C00BA6A15 /* PanelUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PanelUtil.h; sourceTree = "<group>"; };
@@ -10265,7 +10274,6 @@
 		CAA1AFC6159EAB1600504C98 /* libstdc++.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libstdc++.dylib"; path = "usr/lib/libstdc++.dylib"; sourceTree = SDKROOT; };
 		CAA27FB3166E083500513F58 /* bbs_board_comment@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bbs_board_comment@2x.png"; sourceTree = "<group>"; };
 		CAA361DA15529F530081D3EB /* HomeController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "HomeController~ipad.xib"; sourceTree = "<group>"; };
-		CAA361FF1553AAE00081D3EB /* MainDataModel 4.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "MainDataModel 4.xcdatamodel"; sourceTree = "<group>"; };
 		CAA362401558C3090081D3EB /* Friend.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Friend.h; sourceTree = "<group>"; };
 		CAA362411558C3090081D3EB /* Friend.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Friend.m; sourceTree = "<group>"; };
 		CAA362431558C33F0081D3EB /* FriendManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FriendManager.h; sourceTree = "<group>"; };
@@ -10293,7 +10301,6 @@
 		CAA75C9A178A64CF0041C019 /* PathClipTouchHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PathClipTouchHandler.m; sourceTree = "<group>"; };
 		CAA75CAC178A65010041C019 /* PolygonClipTouchHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PolygonClipTouchHandler.h; sourceTree = "<group>"; };
 		CAA75CAD178A65020041C019 /* PolygonClipTouchHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PolygonClipTouchHandler.m; sourceTree = "<group>"; };
-		CAA791C21627B58A00AEA6E5 /* MainDataModel 12.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "MainDataModel 12.xcdatamodel"; sourceTree = "<group>"; };
 		CAA799241659D28700429611 /* BBSPostDetailController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBSPostDetailController.h; sourceTree = "<group>"; };
 		CAA799251659D28700429611 /* BBSPostDetailController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBSPostDetailController.m; sourceTree = "<group>"; };
 		CAA799261659D28700429611 /* BBSPostDetailController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BBSPostDetailController.xib; sourceTree = "<group>"; };
@@ -10573,7 +10580,6 @@
 		CAD082F61676E0E7007B6B65 /* HomeMainMenu~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "HomeMainMenu~ipad.xib"; sourceTree = "<group>"; };
 		CAD082FA1676E0F7007B6B65 /* HomeMainMenuPanel~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "HomeMainMenuPanel~ipad.xib"; sourceTree = "<group>"; };
 		CAD082FF1676E123007B6B65 /* DrawHomeHeaderPanel.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DrawHomeHeaderPanel.xib; sourceTree = "<group>"; };
-		CAD18C83156B9125003ADDC0 /* MainDataModel 5.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "MainDataModel 5.xcdatamodel"; sourceTree = "<group>"; };
 		CAD8EE331892226E0057EC30 /* PurchaseVipController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PurchaseVipController.h; sourceTree = "<group>"; };
 		CAD8EE341892227A0057EC30 /* PurchaseVipController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PurchaseVipController.m; sourceTree = "<group>"; };
 		CAD8EE351892227E0057EC30 /* PurchaseVipController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PurchaseVipController.xib; sourceTree = "<group>"; };
@@ -10617,12 +10623,10 @@
 		CADECC9B16B11EF0001D414C /* bbs_post_top_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bbs_post_top_bg@2x.png"; sourceTree = "<group>"; };
 		CAE0C8951591A2ED008CDA62 /* NotificationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NotificationManager.h; sourceTree = "<group>"; };
 		CAE0C8961591A2ED008CDA62 /* NotificationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NotificationManager.m; sourceTree = "<group>"; };
-		CAE23C6E153E9E9A00F52497 /* MainDataModel 2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "MainDataModel 2.xcdatamodel"; sourceTree = "<group>"; };
 		CAE2CABC151B2ECA0062ED37 /* Account.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Account.h; sourceTree = "<group>"; };
 		CAE2CABD151B2ECA0062ED37 /* Account.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Account.m; sourceTree = "<group>"; };
 		CAE2CABF151B2F7C0062ED37 /* Item.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Item.h; sourceTree = "<group>"; };
 		CAE2CAC0151B2F7C0062ED37 /* Item.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Item.m; sourceTree = "<group>"; };
-		CAE32603160199AA00AD77C3 /* MainDataModel 10.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "MainDataModel 10.xcdatamodel"; sourceTree = "<group>"; };
 		CAE49C6D176C4FF7005743F2 /* UIBezierPath+Ext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIBezierPath+Ext.h"; sourceTree = "<group>"; };
 		CAE49C6E176C4FF7005743F2 /* UIBezierPath+Ext.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIBezierPath+Ext.m"; sourceTree = "<group>"; };
 		CAE4B0E11709643100B4AB90 /* ChangeBGImageAction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChangeBGImageAction.h; sourceTree = "<group>"; };
@@ -10660,8 +10664,6 @@
 		CAEEC198181A5DAC007FD75F /* ScreenCaptureView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScreenCaptureView.h; sourceTree = "<group>"; };
 		CAEEC199181A5DAC007FD75F /* ScreenCaptureView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScreenCaptureView.m; sourceTree = "<group>"; };
 		CAEEC19E181A5F18007FD75F /* CoreVideo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreVideo.framework; path = System/Library/Frameworks/CoreVideo.framework; sourceTree = SDKROOT; };
-		CAEECCD115DB46AD00FA5A2A /* MainDataModel 8.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "MainDataModel 8.xcdatamodel"; sourceTree = "<group>"; };
-		CAEECCD215DBB0B000FA5A2A /* MainDataModel 9.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "MainDataModel 9.xcdatamodel"; sourceTree = "<group>"; };
 		CAEFC49D16FD64DB00D799B7 /* ShapeInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShapeInfo.h; sourceTree = "<group>"; };
 		CAEFC49E16FD64DB00D799B7 /* ShapeInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShapeInfo.m; sourceTree = "<group>"; };
 		CAEFC5351700005400D799B7 /* ToolCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ToolCommand.h; sourceTree = "<group>"; };
@@ -15117,7 +15119,7 @@
 		CA1377231524591500B5790B /* CoreData */ = {
 			isa = PBXGroup;
 			children = (
-				CA1377271524598700B5790B /* MainDataModel.xcdatamodeld */,
+				CA2F9F75199233FB00756AD7 /* MainDataModel.xcdatamodeld */,
 			);
 			path = CoreData;
 			sourceTree = "<group>";
@@ -23481,7 +23483,6 @@
 				A461B12E174CBAA70088B061 /* ReportController.m in Sources */,
 				A461B12F174CBAA70088B061 /* SKProduct+LocalizedPrice.m in Sources */,
 				A461B130174CBAA70088B061 /* ShareController.m in Sources */,
-				A461B133174CBAA70088B061 /* MainDataModel.xcdatamodeld in Sources */,
 				A461B134174CBAA70088B061 /* MyPaint.m in Sources */,
 				A461B135174CBAA70088B061 /* MyPaintManager.m in Sources */,
 				A461B137174CBAA70088B061 /* ShareImageManager.m in Sources */,
@@ -23608,6 +23609,7 @@
 				A461B1F9174CBAA70088B061 /* SuperHomeController.m in Sources */,
 				A461B1FA174CBAA70088B061 /* UserAnnotation.m in Sources */,
 				A461B1FB174CBAA70088B061 /* UserLocationController.m in Sources */,
+				CA2F9F8B199233FB00756AD7 /* MainDataModel.xcdatamodeld in Sources */,
 				A461B204174CBAA70088B061 /* UseItemScene.m in Sources */,
 				A461B205174CBAA70088B061 /* UIPlaceholderTextView.m in Sources */,
 				A461B206174CBAA70088B061 /* ZhaJinHua.pb.m in Sources */,
@@ -24341,7 +24343,6 @@
 				C28A9A171738F04B007A819F /* SKProduct+LocalizedPrice.m in Sources */,
 				CA0174FB194055FD005E4390 /* OpusClassInfo.m in Sources */,
 				C28A9A181738F04B007A819F /* ShareController.m in Sources */,
-				C28A9A1B1738F04B007A819F /* MainDataModel.xcdatamodeld in Sources */,
 				C28A9A1C1738F04B007A819F /* MyPaint.m in Sources */,
 				C28A9A1D1738F04B007A819F /* MyPaintManager.m in Sources */,
 				C28A9A1F1738F04B007A819F /* ShareImageManager.m in Sources */,
@@ -24463,6 +24464,7 @@
 				C28A9AD81738F04B007A819F /* TopPlayerView.m in Sources */,
 				CAEAB554196160D10065847C /* UserTutorialMainCell.m in Sources */,
 				C28A9AD91738F04B007A819F /* AnimationPlayer.m in Sources */,
+				CA2F9F8A199233FB00756AD7 /* MainDataModel.xcdatamodeld in Sources */,
 				CACD6CD318E03BCD003F97C0 /* SBJsonWriter.m in Sources */,
 				C28A9ADA1738F04B007A819F /* MyCommentCell.m in Sources */,
 				C28A9ADB1738F04B007A819F /* StatisticManager.m in Sources */,
@@ -25208,7 +25210,6 @@
 				CA0174FA194055FD005E4390 /* OpusClassInfo.m in Sources */,
 				CA4216281522A0F400FAA008 /* SKProduct+LocalizedPrice.m in Sources */,
 				C2E6628215230B3F00487601 /* ShareController.m in Sources */,
-				CA1377291524598700B5790B /* MainDataModel.xcdatamodeld in Sources */,
 				CA13772D15245AAB00B5790B /* MyPaint.m in Sources */,
 				CA13773015245AE700B5790B /* MyPaintManager.m in Sources */,
 				CAA581C1197BC24800599740 /* ImageSimilarityEngine.mm in Sources */,
@@ -25426,6 +25427,7 @@
 				CAFEFFB5166072AB00441D77 /* DrawUtils.m in Sources */,
 				CA42FE861660B73A0097453A /* DrawGameAnimationManager.m in Sources */,
 				CAC790FB1663194F009B4053 /* BBSTableViewCell.m in Sources */,
+				CA2F9F89199233FB00756AD7 /* MainDataModel.xcdatamodeld in Sources */,
 				CAC7915C1664AD2C009B4053 /* BBSImageManager.m in Sources */,
 				CAC791711664BCF3009B4053 /* BBSFontManager.m in Sources */,
 				CAC791741664BD09009B4053 /* BBSColorManager.m in Sources */,
@@ -26071,7 +26073,6 @@
 				EA4118C2176066F500DA72D0 /* ReportController.m in Sources */,
 				EA4118C3176066F500DA72D0 /* SKProduct+LocalizedPrice.m in Sources */,
 				EA4118C4176066F500DA72D0 /* ShareController.m in Sources */,
-				EA4118C7176066F500DA72D0 /* MainDataModel.xcdatamodeld in Sources */,
 				EA4118C8176066F500DA72D0 /* MyPaint.m in Sources */,
 				EA4118C9176066F500DA72D0 /* MyPaintManager.m in Sources */,
 				D8B58B1F197CED320088E5F7 /* ICETutorialStyle.m in Sources */,
@@ -26717,6 +26718,7 @@
 				CA5D9D6C183E3C0200BD820C /* DOUAudioFrequencyAnalyzer.m in Sources */,
 				CA5D9D70183E3C0200BD820C /* DOUAudioLPCM.m in Sources */,
 				CA5D9D74183E3C0200BD820C /* DOUAudioPlaybackItem.m in Sources */,
+				CA2F9F8C199233FB00756AD7 /* MainDataModel.xcdatamodeld in Sources */,
 				CA5D9D78183E3C0200BD820C /* DOUAudioRenderer.m in Sources */,
 				CA5D9D7C183E3C0200BD820C /* DOUAudioSpatialAnalyzer.m in Sources */,
 				CA5D9D80183E3C0200BD820C /* DOUAudioStreamer+Options.m in Sources */,
@@ -27944,28 +27946,30 @@
 /* End XCConfigurationList section */
 
 /* Begin XCVersionGroup section */
-		CA1377271524598700B5790B /* MainDataModel.xcdatamodeld */ = {
+		CA2F9F75199233FB00756AD7 /* MainDataModel.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
-				CA8A5B8F198BED9E00C5AF5D /* MainDataModel 18.xcdatamodel */,
-				CA427055161FE05C00C6CCAE /* MainDataModel 11.xcdatamodel */,
-				CAA791C21627B58A00AEA6E5 /* MainDataModel 12.xcdatamodel */,
-				CA29EB0216A6941E003B1434 /* MainDataModel 14.xcdatamodel */,
-				CA2A288C1957FCB800A97478 /* MainDataModel 15.xcdatamodel */,
-				CA2A28901958500900A97478 /* MainDataModel 16.xcdatamodel */,
-				CA4CA5E21975283400ED1534 /* MainDataModel 17.xcdatamodel */,
-				CAE32603160199AA00AD77C3 /* MainDataModel 10.xcdatamodel */,
-				CAEECCD215DBB0B000FA5A2A /* MainDataModel 9.xcdatamodel */,
-				CAEECCD115DB46AD00FA5A2A /* MainDataModel 8.xcdatamodel */,
-				CA4AF8C015D23A4E00734FAC /* MainDataModel 7.xcdatamodel */,
-				A3598486157C6B9800745BAB /* MainDataModel 6.xcdatamodel */,
-				CAD18C83156B9125003ADDC0 /* MainDataModel 5.xcdatamodel */,
-				CAA361FF1553AAE00081D3EB /* MainDataModel 4.xcdatamodel */,
-				CA4F066F1546F66500A38C84 /* MainDataModel 3.xcdatamodel */,
-				CAE23C6E153E9E9A00F52497 /* MainDataModel 2.xcdatamodel */,
-				CA1377281524598700B5790B /* MainDataModel.xcdatamodel */,
+				CA2F9F76199233FB00756AD7 /* MainDataModel 10.xcdatamodel */,
+				CA2F9F77199233FB00756AD7 /* MainDataModel 11.xcdatamodel */,
+				CA2F9F78199233FB00756AD7 /* MainDataModel 12.xcdatamodel */,
+				CA2F9F79199233FB00756AD7 /* MainDataModel 13.xcdatamodel */,
+				CA2F9F7A199233FB00756AD7 /* MainDataModel 14.xcdatamodel */,
+				CA2F9F7B199233FB00756AD7 /* MainDataModel 15.xcdatamodel */,
+				CA2F9F7C199233FB00756AD7 /* MainDataModel 16.xcdatamodel */,
+				CA2F9F7D199233FB00756AD7 /* MainDataModel 17.xcdatamodel */,
+				CA2F9F7E199233FB00756AD7 /* MainDataModel 18.xcdatamodel */,
+				CA2F9F7F199233FB00756AD7 /* MainDataModel 19.xcdatamodel */,
+				CA2F9F80199233FB00756AD7 /* MainDataModel 2.xcdatamodel */,
+				CA2F9F81199233FB00756AD7 /* MainDataModel 3.xcdatamodel */,
+				CA2F9F82199233FB00756AD7 /* MainDataModel 4.xcdatamodel */,
+				CA2F9F83199233FB00756AD7 /* MainDataModel 5.xcdatamodel */,
+				CA2F9F84199233FB00756AD7 /* MainDataModel 6.xcdatamodel */,
+				CA2F9F85199233FB00756AD7 /* MainDataModel 7.xcdatamodel */,
+				CA2F9F86199233FB00756AD7 /* MainDataModel 8.xcdatamodel */,
+				CA2F9F87199233FB00756AD7 /* MainDataModel 9.xcdatamodel */,
+				CA2F9F88199233FB00756AD7 /* MainDataModel.xcdatamodel */,
 			);
-			currentVersion = CA8A5B8F198BED9E00C5AF5D /* MainDataModel 18.xcdatamodel */;
+			currentVersion = CA2F9F7F199233FB00756AD7 /* MainDataModel 19.xcdatamodel */;
 			path = MainDataModel.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;

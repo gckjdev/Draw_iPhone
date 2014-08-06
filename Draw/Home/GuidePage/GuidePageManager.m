@@ -188,7 +188,7 @@
     [[UserNumberService defaultService] getAndRegisterNumber:^(int resultCode, NSString *number) {
         [self hideActivity];
         if (resultCode == 0){
-            [self showTakeNumberView];
+//            [self showTakeNumberView];
         }
         else{
             [CommonDialog showSimpleDialog:NSLS(@"kTakeNumberFail")  inView:self.view];
