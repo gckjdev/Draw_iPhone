@@ -9,6 +9,10 @@
 #import "GuidePageManager.h"
 #import "UIViewController+CommonHome.h"
 #import "MetroHomeController.h"
+#import "TwoInputFieldView.h"
+#import "PPNetworkConstants.h"
+#import "PPNetworkRequest.h"
+#import "GameNetworkConstants.h"
 
 @implementation GuidePageManager
 
@@ -91,6 +95,8 @@
 
 - (void)dealloc
 {
+    PPRelease(_xiaojiNumber);
+    PPRelease(_password);
     PPRelease(_layerList);
     [super dealloc];
 }
@@ -103,4 +109,91 @@
 
     [self.layerList addObject:layer];
 }
+
+- (void)showLoginDialog
+{
+    TwoInputFieldView *rpDialog = [TwoInputFieldView create];
+    
+    rpDialog.textField1.placeholder = NSLS(@"kLoginXiaojiPlaceHolder");
+    rpDialog.textField2.placeholder = NSLS(@"kLoginPasswordPlaceHolder");
+    
+    rpDialog.textField1.text = self.xiaojiNumber;
+    rpDialog.textField2.text = self.password;
+    
+    rpDialog.textField2.secureTextEntry = YES;
+    
+    rpDialog.textField1.keyboardType = UIKeyboardTypeNumberPad;
+    
+    CommonDialog *dialog = [CommonDialog createDialogWithTitle:NSLS(@"kLoginXiaoji")
+                                                    customView:rpDialog
+                                                         style:CommonDialogStyleDoubleButtonWithCross];
+//    dialog.delegate = self;
+//    dialog.tag = LOGIN_DIALOG_TAG;
+    [dialog showInView:self.view];
+    
+    [dialog setClickOkBlock:^(TwoInputFieldView *infoView){
+        
+        [self processLogin:infoView.textField1.text password:infoView.textField2.text];
+    }];
+}
+
+- (void)processLogin:(NSString*)number password:(NSString*)password
+{
+    self.xiaojiNumber = number;
+    self.password = password;
+    
+    if ([number length] == 0){
+        POSTMSG(NSLS(@"kXiaojiNumberCannotEmpty"));
+        return;
+    }
+    
+    if ([password length] == 0){
+        POSTMSG(NSLS(@"kXiaojiPasswordCannotEmpty"));
+        return;
+    }
+    
+    [self showActivityWithText:NSLS(@"kLoading")];
+    [[UserNumberService defaultService] loginUser:number password:password block:^(int resultCode, NSString *number) {
+        [self hideActivity];
+        if (resultCode == ERROR_SUCCESS){
+            [self dismissWithMessage:NSLS(@"kLoginSuccess")];
+        }
+        else if (resultCode == ERROR_USERID_NOT_FOUND){
+            POSTMSG(NSLS(@"kXiaojiNumberNotFound"));
+        }
+        else if (resultCode == ERROR_PASSWORD_NOT_MATCH){
+            POSTMSG(NSLS(@"kXiaojiPasswordIncorrect"));
+        }
+        else{
+            POSTMSG(NSLS(@"kSystemFailure"));
+        }
+    }];
+}
+
+- (IBAction)dismissWithMessage:(NSString*)message
+{
+    [self dismissViewControllerAnimated:YES completion:^{
+        [CommonDialog showSimpleDialog:message inView:self.view.superview];
+    }];
+}
+
+- (IBAction)clickTakeNumber:(id)sender
+{
+    if ([[UserManager defaultManager] incAndCheckIsExceedMaxTakeNumber] == YES){
+        POSTMSG(NSLS(@"kExceedMaxTakeNumber"));
+        return;
+    }
+    
+    [self showActivityWithText:NSLS(@"kLoading")];
+    [[UserNumberService defaultService] getAndRegisterNumber:^(int resultCode, NSString *number) {
+        [self hideActivity];
+        if (resultCode == 0){
+            [self showTakeNumberView];
+        }
+        else{
+            [CommonDialog showSimpleDialog:NSLS(@"kTakeNumberFail")  inView:self.view];
+        }
+    }];
+}
+
 @end

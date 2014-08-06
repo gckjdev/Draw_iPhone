@@ -12,6 +12,8 @@
 @interface GuidePageManager : ICETutorialController<ICETutorialControllerDelegate>
 
 @property(nonatomic,retain) NSMutableArray *layerList;
+@property (retain, nonatomic) NSString *xiaojiNumber;
+@property (retain, nonatomic) NSString *password;
 
 + (void)showGuidePage:(UIViewController*)superController;
 
