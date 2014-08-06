@@ -59,6 +59,7 @@ static OpusClassInfoManager* _defaultOpusClassInfoManager;
     
     self.opusClassList = [[[NSMutableArray alloc] init] autorelease];
     self.homeDisplayClassList = [[[NSMutableArray alloc] init] autorelease];
+    self.defaultUserSetList = [[[NSMutableArray alloc] init] autorelease];
     
     // read data from file
     [self readConfigData];
@@ -67,6 +68,7 @@ static OpusClassInfoManager* _defaultOpusClassInfoManager;
 
 - (void)dealloc
 {
+    PPRelease(_defaultUserSetList);
     PPRelease(_homeDisplayClassList);
     PPRelease(_opusClassList);
     PPRelease(_smartData);
@@ -116,6 +118,19 @@ static OpusClassInfoManager* _defaultOpusClassInfoManager;
     }
 }
 
+- (void)writeList:(NSMutableArray*)sourceList dest:(NSMutableArray*)destList fromDictionary:(NSDictionary*)dictionary forKey:(NSString*)key
+{
+    [destList removeAllObjects];
+    NSArray* stringList = [dictionary objectForKey:key];
+    for (NSString* classId in stringList){
+        OpusClassInfo* info = [self getOpusClassInfoById:classId inList:sourceList];
+        if (info){
+            [destList addObject:info];
+        }
+    }
+    PPDebug(@"total %d classes added for key(%@)", [destList count], key);
+}
+
 - (void)readConfigData
 {
     NSString* dataPath = [_smartData dataFilePath];
@@ -147,16 +162,30 @@ static OpusClassInfoManager* _defaultOpusClassInfoManager;
                 
                 PPDebug(@"<readConfigData> parse data %@ successfully, total %d opus classes added", _smartData.name, [_opusClassList count]);
                 
-                [self.homeDisplayClassList removeAllObjects];
-                NSArray* displayStringList = [[data JSONValue] objectForKey:@"home_list"];
-                for (NSString* classId in displayStringList){
-                    OpusClassInfo* info = [self getOpusClassInfoById:classId inList:self.opusClassList];
-                    if (info){
-                        [self.homeDisplayClassList addObject:info];
-                    }
-                }
-                PPDebug(@"total %d opus home display classes added", [_homeDisplayClassList count]);
-             
+//                [self.homeDisplayClassList removeAllObjects];
+//                NSArray* displayStringList = [[data JSONValue] objectForKey:@"home_list"];
+//                for (NSString* classId in displayStringList){
+//                    OpusClassInfo* info = [self getOpusClassInfoById:classId inList:self.opusClassList];
+//                    if (info){
+//                        [self.homeDisplayClassList addObject:info];
+//                    }
+//                }
+//                PPDebug(@"total %d opus home display classes added", [_homeDisplayClassList count]);
+
+                NSDictionary* dict = [data JSONValue];
+                
+                // read home display
+                [self writeList:self.opusClassList
+                           dest:self.homeDisplayClassList
+                 fromDictionary:dict
+                         forKey:@"home_list"];
+                
+                // init default user set
+                [self writeList:self.opusClassList
+                           dest:self.defaultUserSetList
+                 fromDictionary:dict
+                         forKey:@"user_set_list"];
+                
                 [self loadUserDisplayList];
             }
             else{

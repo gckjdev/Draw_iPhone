@@ -1415,13 +1415,19 @@ static FeedService *_staticFeedService = nil;
         return;
     }
     
+    const int ACTION_ADD_OR_UPDATE = 1;
+    const int ACTION_DELETE = 2;
+    
+    int type = ([opusClassInfoList count] > 0) ? ACTION_ADD_OR_UPDATE : ACTION_DELETE;
+    
     NSString* classListString = [FeedService opusClassStringList:opusClassInfoList];
     dispatch_async(workingQueue, ^{
         
         NSAutoreleasePool *subPool = [[NSAutoreleasePool alloc] init];
         
         NSDictionary* para = @{ PARA_OPUS_ID : opusId,
-                                PARA_CLASS : classListString
+                                PARA_CLASS : classListString,
+                                PARA_TYPE : @(type)
                                 };
         
         GameNetworkOutput* output = [PPGameNetworkRequest trafficApiServerGetAndResponseJSON:METHOD_SET_OPUS_CLASS

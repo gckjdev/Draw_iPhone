@@ -336,7 +336,7 @@ message PBDrawBg
     PBDrawBg_Builder* builder = [PBDrawBg builder];
     [builder setBgId:bgImageName];
     [builder setLocalUrl:bgImageName];
-    [builder setShowStyle:ShowStylePattern];
+    [builder setShowStyle:ShowStyleCenter];
     [builder setType:PBDrawBgTypeDrawBgNormalDraw];
     [builder setPurpose:PBDrawBgPurposeDrawBgPurposeLearnDraw];
     [builder setLayerPosition:layerPosition];

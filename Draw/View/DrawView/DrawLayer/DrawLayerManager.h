@@ -34,7 +34,7 @@ didChangeSelectedLayer:(DrawLayer *)selectedLayer
 @property(nonatomic, assign)id<DrawLayerManagerDelegate> delegate;
 
 - (void)selectLayer:(DrawLayer *)layer;
-- (void)selectLayerByTag:(int)layerTag;
+- (BOOL)selectLayerByTag:(int)layerTag;
 - (id)initWithView:(UIView *)view;
 - (void)addLayer:(DrawLayer *)layer;
 - (void)removeLayer:(DrawLayer *)layer;

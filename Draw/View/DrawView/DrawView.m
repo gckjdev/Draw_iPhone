@@ -283,10 +283,20 @@
     [self changeRect:CGRectFromCGSize(draft.canvasSize)];
     [self show];
  
+    if (draft.lastLayerTag != nil){
+        PPDebug(@"<showDraft> select last layer (%d) as current", [draft.lastLayerTag intValue]);
+        BOOL hasSelectLayer = [dlManager selectLayerByTag:[draft.lastLayerTag intValue]];
+        if (hasSelectLayer){
+            return;
+        }
+    }
+    
+    // set default selected layer as last action's layer
     if ([self.drawActionList count] != 0) {
         DrawAction *action = [self.drawActionList lastObject];
         DrawLayer *layer = [dlManager layerWithTag:action.layerTag];
         if (layer) {
+            PPDebug(@"<showDraft> select last action's layer (%d) as current", [layer layerTag]);
             [dlManager setSelectedLayer:layer];
         }
     }

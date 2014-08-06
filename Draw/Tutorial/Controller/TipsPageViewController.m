@@ -36,6 +36,10 @@ defaultIndex:(int)defaultIndex
     
     CommonDialog *dialog = [CommonDialog createDialogWithTitle:title customView:rspc.view style:CommonDialogStyleSingleButton];
     
+    [dialog setClickOkBlock:^(id view){
+        [rspc removeFromParentViewController];
+    }];
+    
     [dialog showInView:superController.view];
     [superController addChildViewController:rspc];
     [rspc release];

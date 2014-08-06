@@ -302,11 +302,11 @@
 
 //ChaoSo 7.21 2014
 //test
--(void)goToGuidePage{
-    ICETutorialController* guidePage = [[GuidePageManager alloc] initGuidePage];
-    [self.navigationController pushViewController:guidePage animated:YES];
- 
+-(void)goToGuidePage
+{
+    [GuidePageManager showGuidePage:self];
 }
+
 -(void)enterMetroHome{
     MetroHomeController *mc = [[MetroHomeController alloc] init];
     [self.navigationController pushViewController:mc animated:YES];
