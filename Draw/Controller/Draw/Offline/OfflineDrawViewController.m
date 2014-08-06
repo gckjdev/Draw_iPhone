@@ -515,6 +515,9 @@
 
     [drawView setDrawEnabled:YES];
     drawView.delegate = self;
+    
+    BOOL fillDraftMode = NO;
+    
     if (self.draft) {
         
         [self.draft drawActionList];
@@ -524,13 +527,6 @@
             [self setDrawBGImage:_bgImage useImageRect:YES];
         }
         else{
-            
-//            UIImage* draftBg = [[MyPaintManager defaultManager] bgImageForPaint:self.draft];
-//            if (draftBg == nil){
-//                draftBg = self.bgImage;
-//            }
-//            [self setDrawBGImage:draftBg useImageRect:NO];
-            
             if (self.bgImage && _isNewDraft){
                 PPDebug(@"create bg image action for new draft");
                 int layerPostion = PBDrawBgLayerTypeDrawBgLayerForeground;
@@ -549,6 +545,17 @@
                                                                    bgImage:self.bgImage
                                                                bgImageName:self.bgImageName
                                                                   needSave:NO]; // already save in draft
+
+                    if (layerPostion == PBDrawBgLayerTypeDrawBgLayerForeground){
+                        // TODO check is UIImage has alpha channel
+                        fillDraftMode = YES;
+
+                        // 检查目前是否是上色模式，是的话切换到底部层来上色
+                        if (fillDraftMode){
+                            [self.draft setLastLayerTag:@(MAIN_LAYER_TAG)];
+                        }
+                    }
+                
                 }
                 else{
                     bgImageAction = [ChangeBGImageAction actionForNormalDrawBg:layerPostion
@@ -556,7 +563,15 @@
                                                                   bgImageName:self.bgImageName
                                                                      needSave:NO]; // already save in draft
                     
+                    // TODO check is UIImage has alpha channel
+                    fillDraftMode = YES;
+                    
+                    // 检查目前是否是上色模式，是的话切换到底部层来上色
+                    if (fillDraftMode){
+                        [self.draft setLastLayerTag:@(MAIN_LAYER_TAG)];
+                    }
                 }
+                
                 
                 if (bgImageAction){
                     [self.draft.drawActionList addObject:bgImageAction];
@@ -565,6 +580,7 @@
         }        
         
         [drawView showDraft:self.draft];
+        
         self.draft.paintImage = nil;
         self.draft.thumbImage = nil;
         self.opusDesc = self.draft.opusDesc;
@@ -680,11 +696,11 @@
     [self updateSubmitButtonForPracticeDraw];
     
     // update title view by buttons
-    if ([self isLearnType]){
-        CGPoint center = self.titleView.titleLabel.center;
-        center.x -= (self.helpButton.frame.size.width*2)/2;
-        [self.titleView.titleLabel setCenter:center];
-    }
+//    if ([self isLearnType]){
+//        CGPoint center = self.titleView.titleLabel.center;
+//        center.x -= (self.helpButton.frame.size.width*2)/2;
+//        [self.titleView.titleLabel setCenter:center];
+//    }
 }
 
 - (void)updateSubmitButtonForPracticeDraw
@@ -2558,6 +2574,9 @@ didChangeSelectedLayer:(DrawLayer *)selectedLayer
 {
     if (selectedLayer) {
         PPDebug(@"<didChangeSelectedLayer> tag = %d, name = %@",selectedLayer.layerTag, selectedLayer.layerName);
+        
+        // set draft value
+        [self.draft setLastLayerTag:@(selectedLayer.layerTag)];
         [self.drawToolPanel updateWithDrawInfo:selectedLayer.drawInfo];
     }
 }
