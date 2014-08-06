@@ -689,6 +689,13 @@ typedef enum {
     return gifFrames;
 }
 
+- (void) createImageOfLayer:(NSInteger)num
+                       Path:(NSString*)path
+{
+    UIImage* img = [self createImageAtIndex:([self.drawActionList count]-1)];
+    [img saveImageToFile:path];
+}
+
 @end
 
 
