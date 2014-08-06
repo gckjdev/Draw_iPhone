@@ -46,19 +46,29 @@
     return self;
 }
 
-#define TRENDS_BUTTON_TITLE_EDGEINSETS   (ISIPAD ? .5 : .5)
-#define DOCUMENT_BUTTON_TITLE_EDGEINSETS (ISIPAD ? .5:  .5)
-#define MESSAGE_BUTTON_TITLE_EDGEINSET   (ISIPAD ? .5 : .5)
-#define MORE_BUTTON_TITLE_EDGEINSETS     (ISIPAD ? .5 : .5)
+#define TRENDS_BUTTON_TITLE_EDGEINSETS   (ISIPAD ? .0 : .0)
+#define DOCUMENT_BUTTON_TITLE_EDGEINSETS (ISIPAD ? .0:  .0)
+#define MESSAGE_BUTTON_TITLE_EDGEINSET   (ISIPAD ? .0 : .0)
+#define MORE_BUTTON_TITLE_EDGEINSETS     (ISIPAD ? .0 : .0)
 #define BOTTOM_BUTTON_MARGIN_HEIGHT (ISIPAD ? 50 : 38)
 
 -(void)setButtonTitleBottom{
     
     [self.indexButton.imageView setImage:[UIImage imageNamed:@"dongtai.jpg"]];
-    [self.indexButton.titleLabel setFont:AD_FONT(13, 10)];
-    [self.documentButton.titleLabel setFont:AD_FONT(13, 10)];
-    [self.messageButton.titleLabel setFont:AD_FONT(13, 10)];
-    [self.moreButton.titleLabel setFont:AD_FONT(13,10)];
+    
+    if([LocaleUtils isChina]||[LocaleUtils isChinese]){
+        [self.indexButton.titleLabel setFont:AD_BOLD_FONT(13, 10)];
+        [self.documentButton.titleLabel setFont:AD_BOLD_FONT(13, 10)];
+        [self.messageButton.titleLabel setFont:AD_BOLD_FONT(13, 10)];
+        [self.moreButton.titleLabel setFont:AD_BOLD_FONT(13,10)];
+    }else{
+        [self.indexButton.titleLabel setFont:AD_BOLD_FONT(9, 7)];
+        [self.documentButton.titleLabel setFont:AD_BOLD_FONT(9, 7)];
+        [self.messageButton.titleLabel setFont:AD_BOLD_FONT(9, 7)];
+        [self.moreButton.titleLabel setFont:AD_BOLD_FONT(9,7)];
+    }
+    
+    
     
     [self.indexButton setTitle:NSLS(@"kMetroIndexButton") forState:UIControlStateNormal];
     [self.documentButton setTitle:NSLS(@"kMetroDocumentButton") forState:UIControlStateNormal];
