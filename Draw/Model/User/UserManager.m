@@ -2027,8 +2027,8 @@ qqAccessTokenSecret:(NSString*)accessTokenSecret
     NSUserDefaults* ud = [NSUserDefaults standardUserDefaults];
     NSNumber* value = [ud objectForKey:KEY_HOME_STYLE];
     if (value == nil){
-        if ([[UserManager defaultManager] hasUser]){
-            // old user will use classical style
+        if ([[UserManager defaultManager] hasXiaojiNumber]){
+            // old user will use classical style by default
             return HOME_STYLE_CLASSICAL;
         }
         else{
