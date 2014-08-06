@@ -81,13 +81,13 @@ BOOL PBOpenInfoTypeIsValidValue(PBOpenInfoType value);
 typedef enum {
   PBDrawBgTypeDrawBgItem = 0,
   PBDrawBgTypeDrawBgNormalDraw = 1,
-  PBDrawBgTypeDrawBgNormalShow = 2,
 } PBDrawBgType;
 
 BOOL PBDrawBgTypeIsValidValue(PBDrawBgType value);
 
 typedef enum {
   PBDrawBgPurposeDrawBgPurposeLearnDraw = 1,
+  PBDrawBgPurposeDrawBgPurposeNormalDraw = 2,
 } PBDrawBgPurpose;
 
 BOOL PBDrawBgPurposeIsValidValue(PBDrawBgPurpose value);

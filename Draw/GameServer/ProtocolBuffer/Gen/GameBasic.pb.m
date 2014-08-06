@@ -34,7 +34,6 @@ BOOL PBDrawBgTypeIsValidValue(PBDrawBgType value) {
   switch (value) {
     case PBDrawBgTypeDrawBgItem:
     case PBDrawBgTypeDrawBgNormalDraw:
-    case PBDrawBgTypeDrawBgNormalShow:
       return YES;
     default:
       return NO;
@@ -43,6 +42,7 @@ BOOL PBDrawBgTypeIsValidValue(PBDrawBgType value) {
 BOOL PBDrawBgPurposeIsValidValue(PBDrawBgPurpose value) {
   switch (value) {
     case PBDrawBgPurposeDrawBgPurposeLearnDraw:
+    case PBDrawBgPurposeDrawBgPurposeNormalDraw:
       return YES;
     default:
       return NO;

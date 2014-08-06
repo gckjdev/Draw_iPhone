@@ -142,7 +142,8 @@ static StorageManager *_staticStorageManager = nil;
 
 - (BOOL)saveImage:(UIImage *)image forKey:(NSString *)key
 {
-    NSData *imageData = [image data];
+//    NSData *imageData = [image data];
+    NSData *imageData = UIImagePNGRepresentation(image);
     BOOL flag =[self saveData:imageData forKey:key];
     imageData = nil;
     return flag;

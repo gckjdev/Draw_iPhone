@@ -2831,14 +2831,17 @@
 "kCreateImageShareFail" = "无法生成分享图片，分享失败";
 
 
-"kConquerDrawShareWeixinFriend" = "weChatFriends";
-"kConquerDrawSharekWeixinTimeline" = "weChatTimeline";
-"kConquerDrawShareSinaWeibo" = "SinaWeibo";
-"kConquerDrawShareQQWeibo" = "TencentWeibo";
+"kConquerDrawShareWeixinFriend" = "WeChat Friend";
+"kConquerDrawSharekWeixinTimeline" = "WeChat Timeline";
+"kConquerDrawShareSinaWeibo" = "Sina Weibo";
+"kConquerDrawShareQQWeibo" = "QQ Weibo";
 
 "kGuidePageLogin" = "Login";
 "kGuidePageRegister" = "Register";
 
+
+"kBlankDraw" = "Blank Draw";
+"kDrawMode" = "Select Draw Mode";
 
 "kResultPageCount" = "Beat %@%% Users";
 "kResultPageScore" = "Your opus score %@";
@@ -2847,3 +2850,4 @@
 "kMetroDocumentButton" = "DOC";
 "kMetroMessageButton" = "CHAT";
 "kMetroMoreButton" = "MORE";
+

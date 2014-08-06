@@ -5670,20 +5670,18 @@ const ProtobufCEnumDescriptor game__pbopen_info_type__descriptor =
   game__pbopen_info_type__value_ranges,
   NULL,NULL,NULL,NULL   /* reserved[1234] */
 };
-const ProtobufCEnumValue game__pbdraw_bg_type__enum_values_by_number[3] =
+const ProtobufCEnumValue game__pbdraw_bg_type__enum_values_by_number[2] =
 {
   { "DRAW_BG_ITEM", "GAME__PBDRAW_BG_TYPE__DRAW_BG_ITEM", 0 },
   { "DRAW_BG_NORMAL_DRAW", "GAME__PBDRAW_BG_TYPE__DRAW_BG_NORMAL_DRAW", 1 },
-  { "DRAW_BG_NORMAL_SHOW", "GAME__PBDRAW_BG_TYPE__DRAW_BG_NORMAL_SHOW", 2 },
 };
 static const ProtobufCIntRange game__pbdraw_bg_type__value_ranges[] = {
-{0, 0},{0, 3}
+{0, 0},{0, 2}
 };
-const ProtobufCEnumValueIndex game__pbdraw_bg_type__enum_values_by_name[3] =
+const ProtobufCEnumValueIndex game__pbdraw_bg_type__enum_values_by_name[2] =
 {
   { "DRAW_BG_ITEM", 0 },
   { "DRAW_BG_NORMAL_DRAW", 1 },
-  { "DRAW_BG_NORMAL_SHOW", 2 },
 };
 const ProtobufCEnumDescriptor game__pbdraw_bg_type__descriptor =
 {
@@ -5692,24 +5690,26 @@ const ProtobufCEnumDescriptor game__pbdraw_bg_type__descriptor =
   "PBDrawBgType",
   "Game__PBDrawBgType",
   "game",
-  3,
+  2,
   game__pbdraw_bg_type__enum_values_by_number,
-  3,
+  2,
   game__pbdraw_bg_type__enum_values_by_name,
   1,
   game__pbdraw_bg_type__value_ranges,
   NULL,NULL,NULL,NULL   /* reserved[1234] */
 };
-const ProtobufCEnumValue game__pbdraw_bg_purpose__enum_values_by_number[1] =
+const ProtobufCEnumValue game__pbdraw_bg_purpose__enum_values_by_number[2] =
 {
   { "DRAW_BG_PURPOSE_LEARN_DRAW", "GAME__PBDRAW_BG_PURPOSE__DRAW_BG_PURPOSE_LEARN_DRAW", 1 },
+  { "DRAW_BG_PURPOSE_NORMAL_DRAW", "GAME__PBDRAW_BG_PURPOSE__DRAW_BG_PURPOSE_NORMAL_DRAW", 2 },
 };
 static const ProtobufCIntRange game__pbdraw_bg_purpose__value_ranges[] = {
-{1, 0},{0, 1}
+{1, 0},{0, 2}
 };
-const ProtobufCEnumValueIndex game__pbdraw_bg_purpose__enum_values_by_name[1] =
+const ProtobufCEnumValueIndex game__pbdraw_bg_purpose__enum_values_by_name[2] =
 {
   { "DRAW_BG_PURPOSE_LEARN_DRAW", 0 },
+  { "DRAW_BG_PURPOSE_NORMAL_DRAW", 1 },
 };
 const ProtobufCEnumDescriptor game__pbdraw_bg_purpose__descriptor =
 {
@@ -5718,9 +5718,9 @@ const ProtobufCEnumDescriptor game__pbdraw_bg_purpose__descriptor =
   "PBDrawBgPurpose",
   "Game__PBDrawBgPurpose",
   "game",
-  1,
+  2,
   game__pbdraw_bg_purpose__enum_values_by_number,
-  1,
+  2,
   game__pbdraw_bg_purpose__enum_values_by_name,
   1,
   game__pbdraw_bg_purpose__value_ranges,

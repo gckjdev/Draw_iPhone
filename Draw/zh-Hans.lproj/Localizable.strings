@@ -2859,8 +2859,8 @@
 "kCreateImageShareFail" = "无法生成分享图片，分享失败";
 
 
-"kGuidePageLogin" = "登  陆";
-"kGuidePageRegister" = "注   册";
+"kGuidePageLogin"    = "登  陆";
+"kGuidePageRegister" = "注  册";
 
 
 ////tutorial name
@@ -2892,4 +2892,6 @@
 "kMetroMessageButton" = "消息";
 "kMetroMoreButton" = "更多";
 
+"kBlankDraw" = "空白绘画";
+"kDrawMode" = "请选择画画模式";
 

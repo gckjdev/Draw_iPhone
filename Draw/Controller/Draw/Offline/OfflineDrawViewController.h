@@ -121,5 +121,9 @@
 - (void)setOpusSubject:(NSString *)opusSubject;
 - (void)setTargetUid:(NSString *)targetUid;
 
++ (OfflineDrawViewController *)startDraw:(UIViewController*)fromController
+                         startController:(UIViewController*)startController
+                                 bgImage:(UIImage*)bgImage;
+
 @end
 
