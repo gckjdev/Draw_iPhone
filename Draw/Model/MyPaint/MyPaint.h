@@ -73,7 +73,7 @@
 @property (nonatomic, retain) NSNumber *totalStrokes;
 @property (nonatomic, retain) NSNumber *opusSpendTime;
 @property (nonatomic, retain) NSData *attributes;
-
+@property (nonatomic, retain) NSNumber *lastLayerTag;
 
 - (int)getTargetType;
 - (void)updateDrawData;

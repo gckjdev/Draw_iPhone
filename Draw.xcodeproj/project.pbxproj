@@ -9647,6 +9647,7 @@
 		CA2A28E9195C1EC000A97478 /* UserTutorialManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserTutorialManager.m; sourceTree = "<group>"; };
 		CA2A28EE195C1EEA00A97478 /* UserTutorialService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserTutorialService.h; sourceTree = "<group>"; };
 		CA2A28EF195C1EEA00A97478 /* UserTutorialService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserTutorialService.m; sourceTree = "<group>"; };
+		CA2F9F701991CAD000756AD7 /* MainDataModel 19.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "MainDataModel 19.xcdatamodel"; sourceTree = "<group>"; };
 		CA315B40195E5EB700AB800D /* PBTutorial+Extend.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "PBTutorial+Extend.h"; sourceTree = "<group>"; };
 		CA315B41195E5EB700AB800D /* PBTutorial+Extend.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "PBTutorial+Extend.m"; sourceTree = "<group>"; };
 		CA322100151B6A670039A384 /* GameNetworkRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameNetworkRequest.h; sourceTree = "<group>"; };
@@ -27896,6 +27897,7 @@
 			isa = XCVersionGroup;
 			children = (
 				CA8A5B8F198BED9E00C5AF5D /* MainDataModel 18.xcdatamodel */,
+				CA2F9F701991CAD000756AD7 /* MainDataModel 19.xcdatamodel */,
 				CA427055161FE05C00C6CCAE /* MainDataModel 11.xcdatamodel */,
 				CAA791C21627B58A00AEA6E5 /* MainDataModel 12.xcdatamodel */,
 				CA29EB0216A6941E003B1434 /* MainDataModel 14.xcdatamodel */,
@@ -27913,7 +27915,7 @@
 				CAE23C6E153E9E9A00F52497 /* MainDataModel 2.xcdatamodel */,
 				CA1377281524598700B5790B /* MainDataModel.xcdatamodel */,
 			);
-			currentVersion = CA8A5B8F198BED9E00C5AF5D /* MainDataModel 18.xcdatamodel */;
+			currentVersion = CA2F9F701991CAD000756AD7 /* MainDataModel 19.xcdatamodel */;
 			path = MainDataModel.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
