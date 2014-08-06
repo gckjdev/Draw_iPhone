@@ -84,6 +84,7 @@
 #import "ResultShareAlertPageViewController.h"
 #import "TipsPageViewController.h"
 #import "OpusClassInfoManager.h"
+#import "UIImageExt.h"
 
 @interface OfflineDrawViewController()
 {
@@ -548,8 +549,8 @@
                                                                   needSave:NO]; // already save in draft
 
                     if (layerPostion == PBDrawBgLayerTypeDrawBgLayerForeground){
-                        // TODO check is UIImage has alpha channel
-                        fillDraftMode = YES;
+                        // check is UIImage has alpha channel
+                        fillDraftMode = [self.bgImage hasAlpha];
 
                         // 检查目前是否是上色模式，是的话切换到底部层来上色
                         if (fillDraftMode){
@@ -564,8 +565,8 @@
                                                                   bgImageName:self.bgImageName
                                                                      needSave:NO]; // already save in draft
                     
-                    // TODO check is UIImage has alpha channel
-                    fillDraftMode = YES;
+                    // check is UIImage has alpha channel
+                    fillDraftMode = [self.bgImage hasAlpha];
                     
                     // 检查目前是否是上色模式，是的话切换到底部层来上色
                     if (fillDraftMode){
