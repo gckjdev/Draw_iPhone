@@ -6332,6 +6332,14 @@
 		D869F8FC19906D8B00E6756A /* iphone5-3.png in Resources */ = {isa = PBXBuildFile; fileRef = D869F8EE19906D8A00E6756A /* iphone5-3.png */; };
 		D869F8FD19906D8B00E6756A /* iphone5-3.png in Resources */ = {isa = PBXBuildFile; fileRef = D869F8EE19906D8A00E6756A /* iphone5-3.png */; };
 		D869F8FE19906D8B00E6756A /* iphone5-3.png in Resources */ = {isa = PBXBuildFile; fileRef = D869F8EE19906D8A00E6756A /* iphone5-3.png */; };
+		D869F9081990DF3000E6756A /* laba.png in Resources */ = {isa = PBXBuildFile; fileRef = D869F9071990DF3000E6756A /* laba.png */; };
+		D869F9091990DF3000E6756A /* laba.png in Resources */ = {isa = PBXBuildFile; fileRef = D869F9071990DF3000E6756A /* laba.png */; };
+		D869F90A1990DF3000E6756A /* laba.png in Resources */ = {isa = PBXBuildFile; fileRef = D869F9071990DF3000E6756A /* laba.png */; };
+		D869F90B1990DF3000E6756A /* laba.png in Resources */ = {isa = PBXBuildFile; fileRef = D869F9071990DF3000E6756A /* laba.png */; };
+		D869F90D1990DFD800E6756A /* dongtai.png in Resources */ = {isa = PBXBuildFile; fileRef = D869F90C1990DFD800E6756A /* dongtai.png */; };
+		D869F90E1990DFD800E6756A /* dongtai.png in Resources */ = {isa = PBXBuildFile; fileRef = D869F90C1990DFD800E6756A /* dongtai.png */; };
+		D869F90F1990DFD800E6756A /* dongtai.png in Resources */ = {isa = PBXBuildFile; fileRef = D869F90C1990DFD800E6756A /* dongtai.png */; };
+		D869F9101990DFD800E6756A /* dongtai.png in Resources */ = {isa = PBXBuildFile; fileRef = D869F90C1990DFD800E6756A /* dongtai.png */; };
 		D89191F11963163B006B616A /* StageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D89191F01963163B006B616A /* StageCell.m */; };
 		D89191F21963163B006B616A /* StageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D89191F01963163B006B616A /* StageCell.m */; };
 		D89191F31963163B006B616A /* StageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D89191F01963163B006B616A /* StageCell.m */; };
@@ -10832,6 +10840,8 @@
 		D869F8EC19906D8A00E6756A /* iphone5-1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iphone5-1.png"; sourceTree = "<group>"; };
 		D869F8ED19906D8A00E6756A /* iphone5-2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iphone5-2.png"; sourceTree = "<group>"; };
 		D869F8EE19906D8A00E6756A /* iphone5-3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iphone5-3.png"; sourceTree = "<group>"; };
+		D869F9071990DF3000E6756A /* laba.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = laba.png; sourceTree = "<group>"; };
+		D869F90C1990DFD800E6756A /* dongtai.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dongtai.png; sourceTree = "<group>"; };
 		D89191EF1963163B006B616A /* StageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StageCell.h; sourceTree = "<group>"; };
 		D89191F01963163B006B616A /* StageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StageCell.m; sourceTree = "<group>"; };
 		D89191FA196316C2006B616A /* StageCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = StageCell.xib; sourceTree = "<group>"; };
@@ -18235,6 +18245,8 @@
 		D80518A5196BD12200D350B3 /* Resource */ = {
 			isa = PBXGroup;
 			children = (
+				D869F90C1990DFD800E6756A /* dongtai.png */,
+				D869F9071990DF3000E6756A /* laba.png */,
 				D8B58A1E197CCEC10088E5F7 /* GuidePage */,
 				D82C0D7919764FE40088539F /* billboard */,
 				D8BF37181971068100ACEFCA /* caidanlan.png */,
@@ -19084,6 +19096,7 @@
 				A461B4F2174CBAA70088B061 /* BBSBoardController.xib in Resources */,
 				A461B4F3174CBAA70088B061 /* BBSBoardController~ipad.xib in Resources */,
 				A461B4F9174CBAA70088B061 /* BBSBoardCell.xib in Resources */,
+				D869F90A1990DF3000E6756A /* laba.png in Resources */,
 				A461B4FA174CBAA70088B061 /* BBSBoardSection.xib in Resources */,
 				A461B4FB174CBAA70088B061 /* CreatePostController.xib in Resources */,
 				A461B503174CBAA70088B061 /* BBSPostDetailController.xib in Resources */,
@@ -19138,6 +19151,7 @@
 				A461B53D174CBAA70088B061 /* BBSActionListController~ipad.xib in Resources */,
 				A461B53E174CBAA70088B061 /* BBSPostDetailController~ipad.xib in Resources */,
 				CA93D11E18F008FA002BB805 /* GooglePlus.bundle in Resources */,
+				D869F90F1990DFD800E6756A /* dongtai.png in Resources */,
 				A461B53F174CBAA70088B061 /* CreatePostController~ipad.xib in Resources */,
 				CACD6AC318E03A29003F97C0 /* Resource.bundle in Resources */,
 				A461B540174CBAA70088B061 /* BBSUserActionCell~ipad.xib in Resources */,
@@ -20424,6 +20438,7 @@
 				CA518350179F79570033AA95 /* GetNewNumberViewController.xib in Resources */,
 				A4B78A58179F7A2E0008E21B /* GuessModesController.xib in Resources */,
 				A4B78A60179F7C5E0008E21B /* GuessSelectController.xib in Resources */,
+				D869F9091990DF3000E6756A /* laba.png in Resources */,
 				A4B78A64179F7C660008E21B /* DrawGuessController.xib in Resources */,
 				A4B78A6E179FA6F10008E21B /* GuessRankListController.xib in Resources */,
 				CA518385179FB6340033AA95 /* ShakeNumberController.xib in Resources */,
@@ -21036,6 +21051,7 @@
 				CA346CCA18618DC70098DE00 /* button_rank@2x.png in Resources */,
 				CA346CCF1861A96D0098DE00 /* bottom_home_task@2x.png in Resources */,
 				A4BE227218657DEA00FE2997 /* NormalHotCell.xib in Resources */,
+				D869F90E1990DFD800E6756A /* dongtai.png in Resources */,
 				A4BE227718670D8800FE2997 /* NormalHotCell~ipad.xib in Resources */,
 				EA7E4F72186ADE8F00E0B20F /* CreateGroupController~ipad.xib in Resources */,
 				EA7E4F76186ADE8F00E0B20F /* GroupDetailController~ipad.xib in Resources */,
@@ -21233,6 +21249,7 @@
 				CAA7992B1659D28700429611 /* BBSPostDetailController.xib in Resources */,
 				CAA7992D1659D28700429611 /* BBSPostListController.xib in Resources */,
 				CAA79944165A18DA00429611 /* BBSPostCell.xib in Resources */,
+				D869F9081990DF3000E6756A /* laba.png in Resources */,
 				CAE51898165CCB55006157CC /* BBSPostActionCell.xib in Resources */,
 				CA42FE0A165DCDA30097453A /* BBSPostDetailCell.xib in Resources */,
 				CA42FE0C165DCDBC0097453A /* BBSPostActionHeaderView.xib in Resources */,
@@ -22005,6 +22022,7 @@
 				EAA4ADCA181A197A00B3A5DD /* bbs_post_search@2x.png in Resources */,
 				A4E4AA14182C9CAD0001AFFE /* WhisperView.xib in Resources */,
 				A4E4AA17182C9CAD0001AFFE /* WhisperView~ipad.xib in Resources */,
+				D869F90D1990DFD800E6756A /* dongtai.png in Resources */,
 				EA1BD632182DDCB1000E5364 /* GroupHomeController.xib in Resources */,
 				EA1BD640182DE6DD000E5364 /* CreateGroupController.xib in Resources */,
 				CA9AAF1418321621002DBAA5 /* SingGuessController.xib in Resources */,
@@ -22987,6 +23005,7 @@
 				A44F32F017E16C5000AF9B26 /* ContestRankView.xib in Resources */,
 				A4D410C717E1945600DE07C6 /* ContestRankView~ipad.xib in Resources */,
 				D89191FE196316C2006B616A /* StageCell.xib in Resources */,
+				D869F9101990DFD800E6756A /* dongtai.png in Resources */,
 				EA8EF62317E55D3B003F1AF8 /* draw_home_bottom_split@2x.png in Resources */,
 				EA8EF62717E55D3B003F1AF8 /* draw_home_opus@2x.png in Resources */,
 				EA8EF62B17E55D3B003F1AF8 /* draw_home_shop@2x.png in Resources */,
@@ -23083,6 +23102,7 @@
 				CA9AB00318321621002DBAA5 /* song_bg3@2x.png in Resources */,
 				CA9AB00718321621002DBAA5 /* song_bg4@2x.png in Resources */,
 				CA9AB00B18321621002DBAA5 /* song_bg5@2x.png in Resources */,
+				D869F90B1990DF3000E6756A /* laba.png in Resources */,
 				CA9AB00F18321621002DBAA5 /* song_category@2x.png in Resources */,
 				CA9AB01318321621002DBAA5 /* song_tag@2x.png in Resources */,
 				CA9AB02718321621002DBAA5 /* NameAndDescEditView.xib in Resources */,

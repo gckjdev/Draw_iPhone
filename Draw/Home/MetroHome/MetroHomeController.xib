@@ -291,8 +291,8 @@
                     <rect key="frame" x="0.0" y="519" width="320" height="49"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <subviews>
-                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="Kt0-Ju-jY9" userLabel="Index Button">
-                            <rect key="frame" x="45" y="6" width="24" height="24"/>
+                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="clip" translatesAutoresizingMaskIntoConstraints="NO" id="Kt0-Ju-jY9" userLabel="Index Button">
+                            <rect key="frame" x="45" y="8" width="24" height="24"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <fontDescription key="fontDescription" type="system" pointSize="10"/>
                             <state key="normal" title="动态" backgroundImage="dongtai.png">
@@ -308,7 +308,7 @@
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         </view>
                         <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="gJU-xy-Fyl" userLabel="Document Button">
-                            <rect key="frame" x="114" y="6" width="24" height="24"/>
+                            <rect key="frame" x="114" y="8" width="24" height="24"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <fontDescription key="fontDescription" type="system" pointSize="10"/>
                             <state key="normal" title="草稿" backgroundImage="caogao.png">
@@ -323,8 +323,8 @@
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         </view>
-                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="JtE-sS-KtO" userLabel="Message Button">
-                            <rect key="frame" x="182" y="6" width="24" height="24"/>
+                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="clip" translatesAutoresizingMaskIntoConstraints="NO" id="JtE-sS-KtO" userLabel="Message Button">
+                            <rect key="frame" x="182" y="8" width="24" height="24"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <fontDescription key="fontDescription" type="system" pointSize="10"/>
                             <state key="normal" title="消息" backgroundImage="xiaoxi.png">
@@ -341,7 +341,7 @@
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         </view>
                         <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="WaA-Op-fht" userLabel="More Button">
-                            <rect key="frame" x="250" y="6" width="24" height="24"/>
+                            <rect key="frame" x="250" y="8" width="24" height="24"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <fontDescription key="fontDescription" type="system" pointSize="10"/>
                             <state key="normal" title="更多" backgroundImage="gengduo.png">
@@ -393,7 +393,7 @@
         <image name="gengduo.png" width="32" height="32"/>
         <image name="huahua.png" width="80" height="76"/>
         <image name="jingcaizuopin.png" width="80" height="76"/>
-        <image name="laba.png" width="32" height="32"/>
+        <image name="laba.png" width="24" height="24"/>
         <image name="luntan.png" width="80" height="76"/>
         <image name="xiaoxi.png" width="32" height="32"/>
         <image name="xuehuahua.png" width="80" height="76"/>
