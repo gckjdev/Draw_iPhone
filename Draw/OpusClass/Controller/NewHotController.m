@@ -223,7 +223,7 @@
     // show set opus class
     [SelectOpusClassViewController showInViewController:self
                                            selectedTags:selectedList
-                                      arrayForSelection:nil
+                                      arrayForSelection:[[OpusClassInfoManager defaultManager] defaultUserSetList]
                                          maxSelectCount:100     // no limit
                                                callback:^(int resultCode, NSArray *selectedArray, NSArray *arrayForSelection) {
 

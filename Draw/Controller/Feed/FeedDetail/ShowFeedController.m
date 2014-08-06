@@ -23,7 +23,7 @@
 #import "CommonMessageCenter.h"
 #import "SelectOpusClassViewController.h"
 #import "OpusClassInfo.h"
-
+#import "OpusClassInfoManager.h"
 #import "UseItemScene.h"
 
 #import "MyFriend.h"
@@ -1296,6 +1296,7 @@ typedef enum{
     int indexOfPlay = -1;
     int indexOfPhoto = -1;
     int indexOfSetClass = -1;
+    int indexOfClearClass = -1;
     int indexOfFeature = -1;
     int indexOfUnfeature = -1;
     int indexOfSetScore = -1;
@@ -1310,7 +1311,7 @@ typedef enum{
                                                  delegate:nil
                                         cancelButtonTitle:NSLS(@"kCancel")
                                    destructiveButtonTitle:NSLS(@"kGuess")
-                                        otherButtonTitles:NSLS(@"kPlay"), NSLS(@"kLargeImage"), NSLS(@"分数处理"), NSLS(@"设置分类"), NSLS(@"kRecommend"),  NSLS(@"kUnfeature"), NSLS(@"删除作品"),
+                                        otherButtonTitles:NSLS(@"kPlay"), NSLS(@"kLargeImage"), NSLS(@"分数处理"), NSLS(@"设置分类"), NSLS(@"清除分类"),  NSLS(@"kRecommend"),  NSLS(@"kUnfeature"), NSLS(@"删除作品"),
                  NSLS(@"kShareSinaWeibo"), NSLS(@"kShareWeixinSession"), NSLS(@"kShareWeixinTimeline"), NSLS(@"kShareQQWeibo"), // NSLS(@"kShareQQSpace"),                 
                  nil];
         indexOfGuess = index++;
@@ -1318,6 +1319,7 @@ typedef enum{
         indexOfPhoto = index++;
         indexOfSetScore = index++;
         indexOfSetClass = index++;
+        indexOfClearClass = index++;
         indexOfFeature = index++;
         indexOfUnfeature = index++;
         indexOfDelete = index++;
@@ -1328,12 +1330,13 @@ typedef enum{
                                                      delegate:nil
                                             cancelButtonTitle:NSLS(@"kCancel")
                                        destructiveButtonTitle:NSLS(@"kGuess")
-                                            otherButtonTitles:NSLS(@"kPlay"), NSLS(@"kLargeImage"), NSLS(@"kRecommend"), NSLS(@"kUnfeature"),
+                                            otherButtonTitles:NSLS(@"kPlay"), NSLS(@"kLargeImage"), NSLS(@"kSelectOpusClassTitle"), NSLS(@"kRecommend"), NSLS(@"kUnfeature"),
                      NSLS(@"kShareSinaWeibo"), NSLS(@"kShareWeixinSession"), NSLS(@"kShareWeixinTimeline"), NSLS(@"kShareQQWeibo"), // NSLS(@"kShareQQSpace"),
                      nil];
             indexOfGuess = index++;
             indexOfPlay = index++;
             indexOfPhoto = index++;
+            indexOfSetClass = index++;
             indexOfFeature = index++;
             indexOfUnfeature = index++;
         }
@@ -1395,7 +1398,7 @@ typedef enum{
         else if (buttonIndex == indexOfSetClass){
             [SelectOpusClassViewController showInViewController:self
                                                    selectedTags:[self.feed opusClassInfoList]
-                                              arrayForSelection:nil
+                                              arrayForSelection:[[OpusClassInfoManager defaultManager] defaultUserSetList]
                                                        callback:^(int resultCode, NSArray *selectedArray, NSArray *arrayForSelection) {
                                                            
                                                            [[FeedService defaultService] setOpusClass:self.feed.feedId
@@ -1410,6 +1413,20 @@ typedef enum{
                                                                                               }
                                                        }];
             }];
+        }
+        else if (buttonIndex == indexOfClearClass){
+            
+           [[FeedService defaultService] setOpusClass:self.feed.feedId
+                                            classList:[NSArray array]           // empty class array
+                                          resultBlock:^(int resultCode) {
+                                              
+                                              if (resultCode == 0){
+                                                  POSTMSG2(NSLS(@"清除作品分类成功"), 2);
+                                              }
+                                              else{
+                                                  POSTMSG2(NSLS(@"清除作品分类失败"), 2);
+                                              }
+                                          }];
         }
         else if (buttonIndex == indexOfFeature){
             [[FeedService defaultService] recommendOpus:self.feed.feedId

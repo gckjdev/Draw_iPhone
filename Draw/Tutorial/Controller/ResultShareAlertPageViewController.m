@@ -78,7 +78,7 @@
             [dialog setClickOkBlock:^(id view){
                 
                 // close dialog
-                [dialog disappear];
+                [rspc close:dialog];
                 
                 EXECUTE_BLOCK(rspc.backBlock)
             }];
@@ -94,7 +94,7 @@
             [dialog setClickOkBlock:^(id view){
                 
                 // close dialog
-                [dialog disappear];
+                [rspc close:dialog];
 
                 EXECUTE_BLOCK(rspc.nextBlock);
             }];
@@ -111,7 +111,7 @@
         [dialog setClickOkBlock:^(id view){
             
             // close dialog
-            [dialog disappear];
+            [rspc close:dialog];
 
             EXECUTE_BLOCK(rspc.retryBlock);
         }];
@@ -128,7 +128,7 @@
     dialog.clickCloseBlock = ^(id infoView){
         
         // close dialog
-        [dialog disappear];
+        [rspc close:dialog];
         
         EXECUTE_BLOCK(rspc.backBlock);
     };
@@ -149,6 +149,14 @@
         // Custom initialization
     }
     return self;
+}
+
+- (void)close:(CommonDialog*)dialog
+{
+    [dialog disappear];
+    if (self.parentViewController){
+        [self removeFromParentViewController];
+    }
 }
 
 #define COMMONTITLE_VIEW [CommonTitleView titleView:self.view]
