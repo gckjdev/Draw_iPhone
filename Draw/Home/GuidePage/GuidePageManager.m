@@ -91,8 +91,8 @@
 
 - (void)dealloc
 {
-    [super dealloc];
     PPRelease(_layerList);
+    [super dealloc];
 }
 
 -(void)addNewLayer:(NSString *)title WithSubTitle:(NSString *)subTitle WithPicName:(NSString *)picName WithDuration:(NSTimeInterval)duration{
