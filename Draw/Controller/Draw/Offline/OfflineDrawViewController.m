@@ -83,6 +83,7 @@
 #import "PBTutorial+Extend.h"
 #import "ResultShareAlertPageViewController.h"
 #import "TipsPageViewController.h"
+#import "OpusClassInfoManager.h"
 
 @interface OfflineDrawViewController()
 {
@@ -1763,7 +1764,7 @@
             // show set opus class
             [SelectOpusClassViewController showInViewController:self
                                                    selectedTags:self.selectedClassList
-                                              arrayForSelection:nil
+                                              arrayForSelection:[[OpusClassInfoManager defaultManager] defaultUserSetList]
                                                        callback:^(int resultCode, NSArray *selectedArray, NSArray *arrayForSelection) {
 
                                                            self.selectedClassList = selectedArray;

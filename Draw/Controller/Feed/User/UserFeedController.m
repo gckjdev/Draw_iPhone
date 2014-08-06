@@ -24,6 +24,7 @@
 #import "OfflineDrawViewController.h"
 #import "SelectOpusClassViewController.h"
 #import "OpusClassInfo.h"
+#import "OpusClassInfoManager.h"
 
 typedef enum{
     UserTypeFeed = FeedListTypeUserFeed,
@@ -418,7 +419,7 @@ typedef enum{
 {
     [SelectOpusClassViewController showInViewController:self
                                            selectedTags:[feed opusClassInfoList]
-                                      arrayForSelection:nil
+                                      arrayForSelection:[[OpusClassInfoManager defaultManager] defaultUserSetList]
                                                callback:^(int resultCode, NSArray *selectedArray, NSArray *arrayForSelection) {
                                                    
                                                    [[FeedService defaultService] setOpusClass:feed.feedId
