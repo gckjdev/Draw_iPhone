@@ -2843,7 +2843,7 @@
 "kResultPageCount" = "Beat %@%% Users";
 "kResultPageScore" = "Your opus score %@";
 
-"kMetroIndexButton" = "TL";
+"kMetroIndexButton" = "TREND";
 "kMetroDocumentButton" = "DOC";
-"kMetroMessageButton" = "MG";
-"kMetroMoreButton" = "MR";
+"kMetroMessageButton" = "CHAT";
+"kMetroMoreButton" = "MORE";

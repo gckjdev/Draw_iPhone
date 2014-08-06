@@ -157,6 +157,9 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     
+    self.opusImageView.layer.borderWidth = 1;
+    [self.opusImageView.layer setBorderColor:COLOR_YELLOW.CGColor];
+    
     //更新页面
     [self updateViewWidget];
 
