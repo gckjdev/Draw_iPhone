@@ -189,7 +189,7 @@ static TutorialCoreManager* _defaultTutorialCoreManager;
 }
 
 //重写Chapter
--(PBChapter *) evalueteChapterDataChapterIndex:(int32_t)chapterIndex tipList:(NSArray*)tipsList chapterStart:(int32_t)statIdex{
+-(PBChapter *) evalueteChapterDataChapterIndex:(int32_t)chapterIndex tipList:(NSArray*)tipsList chapterStart:(NSArray *)statIdex endIndex:(NSArray *)endIndex{
     PBChapter_Builder *pbChapterBuilder = [PBChapter builder];
     //required
     [pbChapterBuilder setIndex:chapterIndex];
@@ -199,10 +199,16 @@ static TutorialCoreManager* _defaultTutorialCoreManager;
     if(tipsList!=nil&&[tipsList count]!=0){
         [pbChapterBuilder addAllTips:tipsList];
     }
-    if(statIdex!=0){
-        [pbChapterBuilder setStartIndex:statIdex];
-    }
     
+    
+    if(statIdex!=nil&&endIndex!=nil&&statIdex.count!=0&&endIndex.count!=0){
+        if(chapterIndex==0){
+            [pbChapterBuilder setStartIndex:0];
+        }else{
+            [pbChapterBuilder setStartIndex:[[statIdex objectAtIndex:chapterIndex-1] intValue]];
+        }
+        [pbChapterBuilder setEndIndex:[[endIndex objectAtIndex:chapterIndex] intValue]];
+    }
     return [pbChapterBuilder build];
 }
 
@@ -743,10 +749,11 @@ static TutorialCoreManager* _defaultTutorialCoreManager;
         for(int stageSum=0;stageSum<[[testStageName objectAtIndex:tutorialSum] count];stageSum++){
             
             NSMutableArray *chapterList = [[NSMutableArray alloc] init];
+            //记录上一个chapter的start
+            NSInteger endIndex = 0;
             //内层为chapter
-            
             if(tutorialSum!=0){
-            for(int chapterSum=0;chapterSum<[[chapterOpusIdList objectAtIndex:stageSum] count];chapterSum++){
+                for(int chapterSum=0;chapterSum<[[chapterOpusIdList objectAtIndex:stageSum] count];chapterSum++){
                 
                 
                 
@@ -760,7 +767,7 @@ static TutorialCoreManager* _defaultTutorialCoreManager;
                         
                     }
                     // 添加chapter
-                    PBChapter *chapter = [self evalueteChapterDataChapterIndex:chapterSum tipList:tipsArray chapterStart:0];
+                    PBChapter *chapter = [self evalueteChapterDataChapterIndex:chapterSum tipList:tipsArray chapterStart:nil endIndex:nil];
                     [chapterList addObject:chapter];
                     stageID = [NSString stringWithFormat:@"stageId-%d-%d",stageSum,chapterSum];
                 
@@ -780,8 +787,8 @@ static TutorialCoreManager* _defaultTutorialCoreManager;
                       }
                 }
                   // 添加chapter
-                  PBChapter *chapter = [self evalueteChapterDataChapterIndex:chapterSum tipList:tipsArray chapterStart:[tutorial6_startIndex objectAtIndex:stageSum]];
-                  [chapterList addObject:chapter];
+                    PBChapter *chapter = [self evalueteChapterDataChapterIndex:chapterSum tipList:tipsArray chapterStart:[tutorial6_startIndex objectAtIndex:stageSum] endIndex:[tutorial6_startIndex objectAtIndex:stageSum]];
+                    [chapterList addObject:chapter];
                 //hard code
                   stageID = [NSString stringWithFormat:@"stageId-%d-%d",stageSum,0];
                 }
