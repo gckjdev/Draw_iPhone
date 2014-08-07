@@ -42,7 +42,7 @@ static dispatch_once_t onceToken;
     // set title view
     [CommonTitleView createTitleView:self.view];
     [[CommonTitleView titleView:self.view] setTitle:NSLS(@"kMoreView")];
-    [[CommonTitleView titleView:self.view] setTarget:self];
+    [[CommonTitleView titleView:self.view] setTarget:self]; 
     [[CommonTitleView titleView:self.view] setBackButtonSelector:@selector(clickBack:)];
     
     //流布局

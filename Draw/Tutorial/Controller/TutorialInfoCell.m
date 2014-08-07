@@ -48,17 +48,19 @@
     [label setNumberOfLines:0];
     NSDictionary * tdic = [NSDictionary dictionaryWithObjectsAndKeys:tfont,NSFontAttributeName,nil];
     
-    CGSize  actualsize;
-    if(IOS_VERSION_7_OR_ABOVE){
-    actualsize = [text boundingRectWithSize:size
-                              options:NSStringDrawingUsesLineFragmentOrigin
-                              attributes:tdic
-                              context:nil].size;
-    
-    }
-    else{
-        actualsize = [text sizeWithFont:tfont constrainedToSize:size lineBreakMode:NSLineBreakByWordWrapping];
-    }
+
+    CGSize  actualsize = [text sizeWithMyFont:tfont constrainedToSize:size lineBreakMode:NSLineBreakByCharWrapping];;
+//    if(IOS_VERSION_7_OR_ABOVE){
+//    actualsize = [text boundingRectWithSize:size
+//                              options:NSStringDrawingUsesLineFragmentOrigin
+//                              attributes:tdic
+//                              context:nil].size;
+//    
+//    }
+//    else{
+//        actualsize = [text sizeWithFont:tfont constrainedToSize:size lineBreakMode:NSLineBreakByCharWrapping];
+//    }
+
 
     [label setTextColor:color];
     [label setFrame:CGRectMake(x, y,actualsize.width, actualsize.height)];
@@ -95,39 +97,37 @@
     CGRect txtFrame = self.tutorialDescLabel.frame;
     CGFloat textViewContentHeight;
     CGFloat labelContentHeight;
-    if(IOS_VERSION_7_OR_ABOVE){
-        textViewContentHeight =
-        txtFrame.size.height =[[NSString stringWithFormat:@"%@\n ",self.tutorialDescLabel.text]
-                               boundingRectWithSize:CGSizeMake(txtFrame.size.width, CGFLOAT_MAX)
-                               options:NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading
-                               attributes:[NSDictionary dictionaryWithObjectsAndKeys:self.tutorialDescLabel.font,NSFontAttributeName, nil]
-                               context:nil].size.height;
-        
-        CGRect labelFrame = self.tutorialSortedLabel.frame;
-        labelContentHeight =
-        txtFrame.size.height =[[NSString stringWithFormat:@"%@\n ",self.tutorialDescLabel.text]
-                               boundingRectWithSize:CGSizeMake(labelFrame.size.width, CGFLOAT_MAX)
-                               options:NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading
-                               attributes:[NSDictionary dictionaryWithObjectsAndKeys:self.tutorialSortedLabel.font,NSFontAttributeName, nil] context:nil].size.height;
-        
-        
-    }
-    else{
-        textViewContentHeight = [[NSString stringWithFormat:@"%@\n ",self.tutorialDescLabel.text]
-                                 
-                                 sizeWithFont:self.tutorialSortedLabel.font
-                                 constrainedToSize:CGSizeMake(txtFrame.size.width, CGFLOAT_MAX)
-                                 lineBreakMode:NSLineBreakByCharWrapping].height;
-        
-        labelContentHeight = [[NSString stringWithFormat:@"%@\n ",self.tutorialDescLabel.text]
-                              
-                              sizeWithFont:self.tutorialSortedLabel.font
-                              constrainedToSize:CGSizeMake(self.tutorialSortedLabel.frame.size.width, CGFLOAT_MAX)
-                              lineBreakMode:NSLineBreakByCharWrapping].height;
-        
-        
-        
-    }
+    
+    textViewContentHeight = [[NSString stringWithFormat:@"%@\n ",self.tutorialDescLabel.text] sizeWithMyFont:self.tutorialSortedLabel.font
+                                                                                           constrainedToSize:CGSizeMake(txtFrame.size.width,CGFLOAT_MAX)
+                                                                                               lineBreakMode:NSLineBreakByCharWrapping].height;
+    
+    labelContentHeight = [[NSString stringWithFormat:@"%@\n ",self.tutorialSortedLabel.text] sizeWithMyFont:self.tutorialSortedLabel.font
+                                                                                        constrainedToSize:CGSizeMake(self.tutorialSortedLabel.frame.size.width, CGFLOAT_MAX)
+                                                                                            lineBreakMode:NSLineBreakByCharWrapping].height;
+    
+//    if(IOS_VERSION_7_OR_ABOVE){
+//        textViewContentHeight =
+//        txtFrame.size.height =[[NSString stringWithFormat:@"%@\n ",self.tutorialDescLabel.text]
+//                               boundingRectWithSize:CGSizeMake(txtFrame.size.width, CGFLOAT_MAX)
+//                               options:NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading
+//                               attributes:[NSDictionary dictionaryWithObjectsAndKeys:self.tutorialDescLabel.font,NSFontAttributeName, nil]
+//                               context:nil].size.height;
+//        
+//        CGRect labelFrame = self.tutorialSortedLabel.frame;
+//        labelContentHeight =
+//        txtFrame.size.height =[[NSString stringWithFormat:@"%@\n ",self.tutorialDescLabel.text]
+//                               boundingRectWithSize:CGSizeMake(labelFrame.size.width, CGFLOAT_MAX)
+//                               options:NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading
+//                               attributes:[NSDictionary dictionaryWithObjectsAndKeys:self.tutorialSortedLabel.font,NSFontAttributeName, nil] context:nil].size.height;
+//        
+//        
+//    }
+//    else{
+//        
+//        
+//        
+//    }
     
     CGFloat tableviewCellHeight = labelContentHeight + textViewContentHeight+(ISIPAD ? 70:25);
     
