@@ -6543,6 +6543,10 @@
 		D8D54F591985EC2A00E5050F /* square3.png in Resources */ = {isa = PBXBuildFile; fileRef = D8D54F571985EC2A00E5050F /* square3.png */; };
 		D8D54F5A1985EC2A00E5050F /* square3.png in Resources */ = {isa = PBXBuildFile; fileRef = D8D54F571985EC2A00E5050F /* square3.png */; };
 		D8D54F5B1985EC2A00E5050F /* square3.png in Resources */ = {isa = PBXBuildFile; fileRef = D8D54F571985EC2A00E5050F /* square3.png */; };
+		D8F70B4B19935B0800B81795 /* BrickView.m in Sources */ = {isa = PBXBuildFile; fileRef = D8F70B4A19935B0800B81795 /* BrickView.m */; };
+		D8F70B4C19935B0800B81795 /* BrickView.m in Sources */ = {isa = PBXBuildFile; fileRef = D8F70B4A19935B0800B81795 /* BrickView.m */; };
+		D8F70B4D19935B0800B81795 /* BrickView.m in Sources */ = {isa = PBXBuildFile; fileRef = D8F70B4A19935B0800B81795 /* BrickView.m */; };
+		D8F70B4E19935B0800B81795 /* BrickView.m in Sources */ = {isa = PBXBuildFile; fileRef = D8F70B4A19935B0800B81795 /* BrickView.m */; };
 		EA038975183B06D300516952 /* GroupTopicController.m in Sources */ = {isa = PBXBuildFile; fileRef = EA038973183B06D300516952 /* GroupTopicController.m */; };
 		EA038976183B06D300516952 /* GroupTopicController.m in Sources */ = {isa = PBXBuildFile; fileRef = EA038973183B06D300516952 /* GroupTopicController.m */; };
 		EA038977183B06D300516952 /* GroupTopicController.m in Sources */ = {isa = PBXBuildFile; fileRef = EA038973183B06D300516952 /* GroupTopicController.m */; };
@@ -10928,6 +10932,8 @@
 		D8C784C3196A55C600323712 /* StageBasicInfoCell~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "StageBasicInfoCell~ipad.xib"; sourceTree = "<group>"; };
 		D8CF8A9F1977981E0044E305 /* opencv2.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = opencv2.framework; sourceTree = "<group>"; };
 		D8D54F571985EC2A00E5050F /* square3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = square3.png; sourceTree = "<group>"; };
+		D8F70B4919935B0800B81795 /* BrickView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BrickView.h; sourceTree = "<group>"; };
+		D8F70B4A19935B0800B81795 /* BrickView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BrickView.m; sourceTree = "<group>"; };
 		EA038972183B06D300516952 /* GroupTopicController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GroupTopicController.h; sourceTree = "<group>"; };
 		EA038973183B06D300516952 /* GroupTopicController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GroupTopicController.m; sourceTree = "<group>"; };
 		EA038974183B06D300516952 /* GroupTopicController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GroupTopicController.xib; sourceTree = "<group>"; };
@@ -18306,6 +18312,7 @@
 		D80EB348196B90C80087EBBD /* MetroHome */ = {
 			isa = PBXGroup;
 			children = (
+				D8F70B4819935AD100B81795 /* MainBox */,
 				D80EB354196B90FB0087EBBD /* MetroHomeController~ipad.xib */,
 				D80EB349196B90DB0087EBBD /* MetroHomeController.h */,
 				D80EB34A196B90DB0087EBBD /* MetroHomeController.m */,
@@ -18505,6 +18512,15 @@
 				D8B5393A19920B3E00BD3337 /* ResultSeal.m */,
 			);
 			name = ResultSharePage;
+			sourceTree = "<group>";
+		};
+		D8F70B4819935AD100B81795 /* MainBox */ = {
+			isa = PBXGroup;
+			children = (
+				D8F70B4919935B0800B81795 /* BrickView.h */,
+				D8F70B4A19935B0800B81795 /* BrickView.m */,
+			);
+			name = MainBox;
 			sourceTree = "<group>";
 		};
 		EA0C5516180B9203008069C1 /* InfColorPicker */ = {
@@ -24025,6 +24041,7 @@
 				A467892D17BB1CEF007C546A /* UIButton+Sound.m in Sources */,
 				A467893317BB21FE007C546A /* UISoundButton.m in Sources */,
 				A467894217BC7782007C546A /* UILabel+Extend.m in Sources */,
+				D8F70B4D19935B0800B81795 /* BrickView.m in Sources */,
 				CA8C471C17C3175C00BA6A15 /* PanelUtil.m in Sources */,
 				CAFC036F17C4CAA100A11DE3 /* ChangePageBGCommand.m in Sources */,
 				A440354F17C5A9C900301EDD /* LocalNotificationUtil.m in Sources */,
@@ -24432,6 +24449,7 @@
 				C28A9A8A1738F04B007A819F /* DrawToUserFeed.m in Sources */,
 				C28A9A8D1738F04B007A819F /* UIImage+Filtrr.m in Sources */,
 				C28A9A8E1738F04B007A819F /* UIImage+FiltrrCompositions.m in Sources */,
+				D8F70B4C19935B0800B81795 /* BrickView.m in Sources */,
 				C28A9A8F1738F04B007A819F /* UIImage+Scale.m in Sources */,
 				C28A9A9D1738F04B007A819F /* XQueryComponents.m in Sources */,
 				C28A9A9F1738F04B007A819F /* CommonInfoView.m in Sources */,
@@ -25790,6 +25808,7 @@
 				A44F32E817E16C3500AF9B26 /* ContestRankView.m in Sources */,
 				EA8EF66717E55F0D003F1AF8 /* DrawHomeHeaderPanel.m in Sources */,
 				EA8EF66D17E593CA003F1AF8 /* DrawMainMenuPanel.m in Sources */,
+				D8F70B4B19935B0800B81795 /* BrickView.m in Sources */,
 				EA5FE1BB17E7F5050099754C /* RopeView.m in Sources */,
 				CA76134517F57420007A251E /* HPointList.mm in Sources */,
 				EA2A7CDE17F676AB00ED508D /* AccountManageController.m in Sources */,
@@ -26216,6 +26235,7 @@
 				EA41197A176066F500DA72D0 /* PPResourcePackageDownloadRequest.m in Sources */,
 				EA41197B176066F500DA72D0 /* PPResourcePackageManager.m in Sources */,
 				EA41197C176066F500DA72D0 /* PPResourceSearchService.m in Sources */,
+				D8F70B4E19935B0800B81795 /* BrickView.m in Sources */,
 				EA41197D176066F500DA72D0 /* PPResourceService.m in Sources */,
 				EA41197E176066F500DA72D0 /* PPResourceTestViewController.m in Sources */,
 				EA41197F176066F500DA72D0 /* PPResourceUtils.m in Sources */,

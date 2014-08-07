@@ -33,7 +33,7 @@ static dispatch_once_t onceToken;
 
 #define COLLECTION_VIEW_CELL_HEIGHT (ISIPAD ? 170:100)
 #define COLLECTION_VIEW_CELL_WIDTH (ISIPAD ? 200:90)
-#define COLLECTION_VIEW_CELL_MINIMUM_LINE_SPACING (ISIPAD ? 20:0)
+#define COLLECTION_VIEW_CELL_MINIMUM_LINE_SPACING (ISIPAD ? 40:0)
 #define TOP_LEADING (ISIPAD ? 10:0)
 - (void)viewDidLoad
 {
@@ -99,7 +99,7 @@ static dispatch_once_t onceToken;
     return 1;
 }
 
-#define UI_EDGE_INSERTS_MAKE (ISIPAD ? 20 : 8)
+#define UI_EDGE_INSERTS_MAKE (ISIPAD ? 45 : 8)
 -(UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section
 {
     return UIEdgeInsetsMake(UI_EDGE_INSERTS_MAKE, UI_EDGE_INSERTS_MAKE, UI_EDGE_INSERTS_MAKE, UI_EDGE_INSERTS_MAKE);

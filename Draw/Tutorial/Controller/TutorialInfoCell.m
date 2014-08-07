@@ -36,11 +36,11 @@
 
 //label 的 自适应长度
 #define IOS_VERSION_7_OR_ABOVE (([[[UIDevice currentDevice] systemVersion] floatValue] >= 7.0)? (YES):(NO))
--(void)setAutoWithAndHeightLabel:(NSString *)text WithLabel:(UILabel *)label WithX:(CGFloat)x WithY:(CGFloat)y{
+-(void)setAutoWithAndHeightLabel:(NSString *)text WithLabel:(UILabel *)label WithX:(CGFloat)x WithY:(CGFloat)y Color:(UIColor *)color{
     //高度和宽度
 
-    CGSize size =CGSizeMake(230,80);
-    UIFont * tfont = AD_FONT(19, 12);
+    CGSize size =CGSizeMake(200,80);
+    UIFont * tfont = AD_FONT(18, 11);
 
     [label setFont:tfont];
     //ios6 method
@@ -57,18 +57,18 @@
     
     }
     else{
-        actualsize = [text sizeWithFont:tfont constrainedToSize:size lineBreakMode:NSLineBreakByCharWrapping];
+        actualsize = [text sizeWithFont:tfont constrainedToSize:size lineBreakMode:NSLineBreakByWordWrapping];
     }
 
-    [label setTextColor:COLOR_BROWN];
+    [label setTextColor:color];
     [label setFrame:CGRectMake(x, y,actualsize.width, actualsize.height)];
     [label setText:text];
 }
 
-#define CATEGORY_NAME_X (ISIPAD ? 97:60)
+#define CATEGORY_NAME_X (ISIPAD ? 87:50)
 #define CATEGORY_NAME_Y (ISIPAD ? 21:20)
-#define DESC_X (ISIPAD ? 97:60)
-#define DESC_Y (ISIPAD ? 65:47)
+#define DESC_X (ISIPAD ? 87:50)
+#define DESC_Y (ISIPAD ? 65:46)
 - (void)updateCellInfo:(PBTutorial*)pbTutorial
 {
     //实现国际化
@@ -77,16 +77,15 @@
         NSString *tutorialCategoryText = pbTutorial.categoryName;
         NSString *tutorialDescText = pbTutorial.desc;
     
-        [self setAutoWithAndHeightLabel:tutorialCategoryText WithLabel:self.tutorialSortedLabel WithX:CATEGORY_NAME_X WithY:CATEGORY_NAME_Y];
-        [self setAutoWithAndHeightLabel:tutorialDescText WithLabel:self.tutorialDescLabel WithX:DESC_X WithY:DESC_Y];
+        [self setAutoWithAndHeightLabel:tutorialCategoryText WithLabel:self.tutorialSortedLabel WithX:CATEGORY_NAME_X WithY:CATEGORY_NAME_Y Color:COLOR_BROWN];
+        [self setAutoWithAndHeightLabel:tutorialDescText WithLabel:self.tutorialDescLabel WithX:DESC_X WithY:DESC_Y Color:COLOR_BROWN];
         
         [self.tutorialDescNameLabel setFont:AD_FONT(20, 12)];
         [self.tutorialSortedNameLabel setFont:AD_FONT(20, 12)];
- 
-        [self.tutorialDescNameLabel setFrame:CGRectMake(CATEGORY_NAME_X-(ISIPAD ? 97:60), CATEGORY_NAME_Y-6, (ISIPAD ? 97:60), 30)];
-        [self.tutorialSortedNameLabel setFrame:CGRectMake(DESC_X-(ISIPAD ? 97:60), DESC_Y-6, (ISIPAD ? 97:60), 30)];
-      
+        [self.tutorialSortedNameLabel setText:@"难度"];
         
+        [self setAutoWithAndHeightLabel:@"难度" WithLabel:self.tutorialSortedNameLabel WithX:CATEGORY_NAME_X-(ISIPAD ? 70:40) WithY:CATEGORY_NAME_Y Color:COLOR_GRAY_TEXT];
+         [self setAutoWithAndHeightLabel:@"简介" WithLabel:self.tutorialDescNameLabel WithX:DESC_X-(ISIPAD ? 70:40) WithY:DESC_Y Color:COLOR_GRAY_TEXT];
     }
 }
 
@@ -130,7 +129,7 @@
         
     }
     
-    CGFloat tableviewCellHeight = labelContentHeight + textViewContentHeight+(ISIPAD ? 60:25);
+    CGFloat tableviewCellHeight = labelContentHeight + textViewContentHeight+(ISIPAD ? 70:25);
     
 //    [self setFrame:CGRectMake(0, 0, SCREEN_WIDTH, tableviewCellHeight)];
     return tableviewCellHeight;
