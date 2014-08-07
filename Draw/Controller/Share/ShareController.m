@@ -423,6 +423,18 @@ typedef enum{
     obj.layers = currentPaint.layers;
     obj.canvasSize = [currentPaint canvasSize];
     
+#ifdef DEBUG
+    //play layer
+//    DrawPlayer *pl = [DrawPlayer playerWithSingleLayer:0 RepObj:obj];
+//    [pl showInController:self];
+    
+    
+    //create image
+//    for(NSInteger i = 0; i<[obj.layers count];i++)
+//        [DrawPlayer createImageOfLayer:i RepObj:obj];
+//    return;
+#endif
+    
     DrawPlayer *player =[DrawPlayer playerWithReplayObj:obj];
     [player showInController:self];
     

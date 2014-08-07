@@ -59,6 +59,12 @@
                              begin:(NSUInteger)begin
                                end:(NSUInteger)end;
 
++ (DrawPlayer*)playerWithSingleLayer:(NSInteger)num
+                       RepObj:(ReplayObject*)obj;
+
++ (void)createImageOfLayer:(NSInteger)num
+                     RepObj:(ReplayObject*)obj;
+
 - (void)showInController:(PPViewController *)controller;
 //- (void)showGifInController:(PPViewController *)controller;
 

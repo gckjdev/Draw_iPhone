@@ -483,12 +483,12 @@ static NSMutableDictionary *colorImageDict;
 
 - (UIImage *)drawCommit
 {
-    return [UIImage imageNamed:@"draw_commit@2x"];
+    return [self fixedImageNamed:@"draw_commit_btn"];
 }
 
 - (UIImage *)drawNext
 {
-    return [UIImage imageNamed:@"draw_next@2x"];
+    return [self fixedImageNamed:@"draw_next"];
 }
 
 - (UIImage *)drawHelp
