@@ -8,7 +8,7 @@ fi
 
 echo ""
 echo $line' add files (*.xcscheme *.h *.m *.mm *.xib *.strings *.plist *.png *.jpg *.txt *.sh *.pbxproj *.proto *.zip)  '$line
-git add *.pch *.c *.pb *.xcscheme *.proto *.h *.m *.mm *.xib *.strings *.plist *.png *.jpg *.txt *.sh *.pbxproj *.zip .gitignore
+git add *.txt *.json *.pb *.pch *.c *.pb *.xcscheme *.proto *.h *.m *.mm *.xib *.strings *.plist *.png *.jpg *.txt *.sh *.pbxproj *.zip .gitignore
 echo ''
 
 echo $line' auto checkout unuse files (*xcbkptlist *xcuserstate *DS_Store)  '$line
