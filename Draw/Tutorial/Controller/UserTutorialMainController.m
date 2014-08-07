@@ -21,7 +21,7 @@
 @end
 
 
-#define HEIGHT_FOR_ROW ISIPAD ? 250.0f : 160.0f
+#define HEIGHT_FOR_ROW ISIPAD ? 250.0f : 120.0f
 @implementation UserTutorialMainController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
