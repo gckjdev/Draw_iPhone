@@ -389,24 +389,41 @@ typedef enum{
 
 - (void)performReplay
 {
-    //总是占用人家回放按钮来测试，我都不好意思了。。记得最终要还原
-
 #ifdef DEBUG
-
-//    [self gotoPeriodReplayViewBegin:1000 End:2000];
-//    [self hideActivity];
-//    [self gotoGif];
-//    return;
+    
+    [self performSelector:@selector(TestLayerImage)];
+    [self hideActivity];
+    return;
 #endif
     
     [self performLoadOpus:@selector(gotoReplayView)];
     return;
 }
 
-- (void)gotoGif
+- (void)TestGif
 {
     GifViewController *gvc = [[GifViewController alloc]init];
     [self.navigationController pushViewController:gvc animated:YES];
+}
+
+-(void)TestLayerImage
+{
+#ifdef DEBUG
+    MyPaint* currentPaint = _selectedPaint;
+    
+    BOOL isNewVersion = [PPConfigManager currentDrawDataVersion] < [currentPaint drawDataVersion];
+    
+    ReplayObject *obj = [ReplayObject obj];
+    obj.isNewVersion = isNewVersion;
+    obj.canvasSize = [currentPaint canvasSize];
+    obj.bgImage = [[MyPaintManager defaultManager] bgImageForPaint:currentPaint];
+    obj.actionList = [currentPaint drawActionList];
+    obj.layers = currentPaint.layers;
+    
+    [DrawPlayer createImageOfLayer:0
+                            RepObj:obj];
+    
+#endif
 }
 
 
@@ -423,21 +440,9 @@ typedef enum{
     obj.layers = currentPaint.layers;
     obj.canvasSize = [currentPaint canvasSize];
     
-#ifdef DEBUG
-    //play layer
-//    DrawPlayer *pl = [DrawPlayer playerWithSingleLayer:0 RepObj:obj];
-//    [pl showInController:self];
-    
-    
-    //create image
-//    for(NSInteger i = 0; i<[obj.layers count];i++)
-//        [DrawPlayer createImageOfLayer:i RepObj:obj];
-//    return;
-#endif
-    
     DrawPlayer *player =[DrawPlayer playerWithReplayObj:obj];
     [player showInController:self];
-    
+
 }
 
 
@@ -522,29 +527,40 @@ typedef enum{
 
 - (void)saveGif
 {
-#ifdef DEBUG
-    [self showActivityWithText:NSLS(@"kSaving")];
+//#ifdef DEBUG
+//    [self showActivityWithText:NSLS(@"kSaving")];
+//    
+//    //后台运行creategif,主线程显示小苹果进程。
+//    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0),
+//                   ^(void){
+//                [ShowDrawView createGIF:30
+//                              delayTime:0.25f
+//                         drawActionList:_selectedPaint.drawActionList
+//                                bgImage:[[MyPaintManager defaultManager] bgImageForPaint:_selectedPaint]
+//                                 layers:_selectedPaint.layers
+//                             canvasSize:_selectedPaint.canvasSize
+//                             outputPath: //_selectedPaint.imageFilePath
+//                        @"/Users/Linruin/Desktop/test.gif"
+//                              scaleSize:0.5];
+//                     
+//                       dispatch_async(dispatch_get_main_queue(),
+//                            ^(void){
+//                           [self hideActivity];
+//                            });
+//                   
+//                   });
+//    return;
+//#endif
     
-    //后台运行creategif,主线程显示小苹果进程。
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0),
-                   ^(void){
-                [ShowDrawView createGIF:30
-                              delayTime:0.25f
-                         drawActionList:_selectedPaint.drawActionList
-                                bgImage:[[MyPaintManager defaultManager] bgImageForPaint:_selectedPaint]
-                                 layers:_selectedPaint.layers
-                             canvasSize:_selectedPaint.canvasSize
-                             outputPath: //_selectedPaint.imageFilePath
-                        @"/Users/Linruin/Desktop/test.gif"
-                              scaleSize:0.5];
-                     
-                       dispatch_async(dispatch_get_main_queue(),
-                            ^(void){
-                           [self hideActivity];
-                            });
-                   
-                   });
+#ifdef DEBUG
+    
+//    [self showActivityWithText:NSLS(@"kSaving")];
+    
+    [self TestLayerImage];
+
+//    [self hideActivity];
     return;
+    
 #endif
 }
 

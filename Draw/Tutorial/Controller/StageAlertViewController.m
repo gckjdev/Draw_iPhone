@@ -68,6 +68,7 @@
     [superController addChildViewController:savc];
     [savc release];
 }
+
 #define DEFAUT_IMAGE "zuixiaoguanka"
 #define ISIPAD_BORDER (ISIPAD ? 5 : 1)
 #define ISIPAD_TEXT_HEIGHT (ISIPAD ? 80 : 40)
@@ -161,15 +162,15 @@
 */
 
 - (void)dealloc {
-    [_stageExampleImageView release];
-    [_stageDesc release];
-    [_bestScore release];
-    [_stageDesc release];
+    
+    PPRelease(_stageExampleImageView);
+    PPRelease(_stageDesc);
+    PPRelease(_bestScore);
     [super dealloc];
 }
+
 - (void)viewDidUnload {
     [self setStageExampleImageView:nil];
-    [self setStageDesc:nil];
     [self setBestScore:nil];
     [self setStageDesc:nil];
     [super viewDidUnload];
