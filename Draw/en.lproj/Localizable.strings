@@ -2843,7 +2843,8 @@
 "kBlankDraw" = "Blank Draw";
 "kDrawMode" = "Select Draw Mode";
 
-"kResultPageCount" = "Beat %@%% Users";
+"kResultPageDesc" = "Beated exactly";
+"kResultPageCount" = "%@ Users in this game";
 "kResultPageScore" = "Your opus score %@";
 
 "kMetroIndexButton" = "TREND";
