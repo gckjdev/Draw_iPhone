@@ -8,6 +8,8 @@
 
 #import "StageAlertViewController.h"
 #import "UserTutorialService.h"
+#import "StringUtil.h"
+
 @interface StageAlertViewController ()
 
 @property (nonatomic, retain) PBUserTutorial* pbUserTutorial;
@@ -102,14 +104,18 @@
     //自适应高度
     CGRect orgRect=self.stageDesc.frame;//获取原始UITextView的frame
     CGFloat  height;
-    if(ISIOS7){
-        height =  [stageDesc boundingRectWithSize:CGSizeMake(130, ISIPAD_TEXT_HEIGHT)
-                                        options:NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading
-                                     attributes:[NSDictionary dictionaryWithObjectsAndKeys:textFont,NSFontAttributeName, nil] context:nil].size.height;
-        
-    }else{
-    height = [stageDesc sizeWithFont:textFont constrainedToSize:CGSizeMake(130,ISIPAD_TEXT_HEIGHT) lineBreakMode:UILineBreakModeWordWrap].height;
-    }
+//    if(ISIOS7){
+//        height =  [stageDesc boundingRectWithSize:CGSizeMake(130, ISIPAD_TEXT_HEIGHT)
+//                                        options:NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading
+//                                     attributes:[NSDictionary dictionaryWithObjectsAndKeys:textFont,NSFontAttributeName, nil] context:nil].size.height;
+//        
+//    }else{
+//    height = [stageDesc sizeWithFont:textFont constrainedToSize:CGSizeMake(130,ISIPAD_TEXT_HEIGHT) lineBreakMode:UILineBreakModeWordWrap].height;
+//    }
+    height = [stageDesc sizeWithMyFont:textFont
+                     constrainedToSize:CGSizeMake(130,ISIPAD_TEXT_HEIGHT)
+                         lineBreakMode:UILineBreakModeWordWrap].height;
+    
     orgRect.size.height=height;//获取自适应文本内容高度
     self.stageDesc.frame=orgRect;//重设UITextView的frame
     
