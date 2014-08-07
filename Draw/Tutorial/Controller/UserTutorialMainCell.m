@@ -61,18 +61,20 @@
                            animated:YES];
 }
 
-#define PROGRESS_VIEW_SIZE_WIDTH (ISIPAD ? 350.0f : 200.0f)
-#define PROGRESS_VIEW_SIZE_HEIGHT (ISIPAD ? 40.0f : 30.0f)
+#define PROGRESS_VIEW_SIZE_WIDTH (ISIPAD ? 350.0f : 160.0f)
+#define PROGRESS_VIEW_SIZE_HEIGHT (ISIPAD ? 40.0f : 20.0f)
 -(void)setProgressView:(NSInteger)row WithProgress:(float)progress{
     const CGSize progressViewSize = { PROGRESS_VIEW_SIZE_WIDTH, PROGRESS_VIEW_SIZE_HEIGHT};
     //調用THprogressview
     UIView *view = self.progressAndLabelView;
     [view removeAllSubviews];
 
+    CGFloat aa = self.bounds.size.width;
     //调用LDProgressView
-     const CGFloat progressX = (self.progressAndLabelView.frame.size.width - progressViewSize.width)/2.0f;
+     const CGFloat progressX = fabsf((self.bounds.size.width - progressViewSize.width)/2);
+    const CGFloat progressY = fabsf((self.bounds.size.height - progressViewSize.height-(ISIPAD?42:20))/2);
     LDProgressView *tutorialProgressView = [[LDProgressView alloc] initWithFrame:
-                                                            CGRectMake(progressX,25.0f,progressViewSize.width-50,progressViewSize.height-10)];
+                                                            CGRectMake(progressX,progressY,progressViewSize.width,progressViewSize.height)];
     
     tutorialProgressView.color = [UIColor colorWithRed:0.99f green:0.85f blue:0.33f alpha:1.0f];
     tutorialProgressView.labelTextColor = COLOR_BROWN;
@@ -120,7 +122,7 @@
         
     }
     
-    [view addSubview:tutorialProgressView];
+    [self addSubview:tutorialProgressView];
     [tutorialProgressView release];
     
     
