@@ -2808,7 +2808,7 @@
 "kConquerAgain" = "重来";
 
 //new分享页面
-"kResultSharePage" = "最后结果";
+"kResultSharePage" = "闯关结果";
 
 //
 "kAddSuccess" = "添加成功!";
@@ -2884,7 +2884,8 @@
 //"kTutorialDescriptionLoveLifeLoveSport" = "童鞋们，一起来运动吧";
 //"kTutorialDescriptionFamousBuilding" = "你认识这些建筑吗？";
 
-"kResultPageCount" = "宇宙三次元%@%%用户";
+"kResultPageDesc" = "击败了宇宙间";
+"kResultPageCount" = "总共 %@ 位英雄";
 "kResultPageScore" = "你的闯关成绩为%@";
 
 "kMetroIndexButton" = "动态";
@@ -2895,5 +2896,5 @@
 "kBlankDraw" = "空白绘画";
 "kDrawMode" = "请选择画画模式";
 
-"kSealResultPass" = "成功";
+"kSealResultPass" = "通关";
 "kSealResultFail" = "失败";

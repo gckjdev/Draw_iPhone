@@ -69,12 +69,16 @@
     [savc release];
 }
 #define DEFAUT_IMAGE "zuixiaoguanka"
-#define ISIPAD_BORDER (ISIPAD ? 5 : 1)
+#define ISIPAD_BORDER (ISIPAD ? 5 : 2)
 #define ISIPAD_TEXT_HEIGHT (ISIPAD ? 80 : 40)
 -(void)updateTheView{
-    
+    if(self.pbUserTutorial==nil)
+    {
+        PPDebug(@"<updateTheView> but the pbUserTutorial is nil or empty");
+        return;
+    }
     NSArray *stageList = [[self.pbUserTutorial tutorial] stagesList];
-    
+    int32_t bestScore_Int = [[self.pbUserTutorial.userStagesList objectAtIndex:self.row] bestScore];
     if (stageList == nil || self.row >= [stageList count]){
         return ;
     }
@@ -82,8 +86,12 @@
     PBStage *stageWithRow = [stageList objectAtIndex:self.row];
     NSString *imagePath = stageWithRow.thumbImage;
     NSString *stageDesc = stageWithRow.cnDesc;
-    NSString *bestScore = @"100";
-    UIFont *textFont = AD_FONT(20, 10);
+    
+    NSString *bestScore = @"";
+    bestScore = [NSString stringWithFormat:@"%d",bestScore_Int];
+
+ 
+    UIFont *textFont = AD_FONT(20, 12);
     
     // stage image
     UIImage *placeHolderImage = [UIImage imageNamed:@DEFAUT_IMAGE];
@@ -110,9 +118,10 @@
     [self.stageDesc setTextColor:COLOR_BROWN];
     
     
-    
-    [self.bestScore setText:[NSString stringWithFormat:@" 最好成绩:%@",bestScore]];
-    [self.bestScore setFont:AD_FONT(20, 10)];
+    if(bestScore_Int>0){
+        [self.bestScore setText:[NSString stringWithFormat:@" 最好成绩:%@",bestScore]];
+    }
+    [self.bestScore setFont:AD_FONT(20, 11)];
     [self.bestScore setTextColor:COLOR_BROWN];
     [self.bestScore setTextAlignment:NSTextAlignmentLeft];
     
