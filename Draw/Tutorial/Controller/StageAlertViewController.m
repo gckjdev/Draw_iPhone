@@ -45,22 +45,22 @@
     
     [dialog setClickOkBlock:^(id view){
         // Conquer
-        
         [[UserTutorialService defaultService] enterConquerDraw:superController
                                                   userTutorial:pbUserTutorial
                                                        stageId:stageId
                                                     stageIndex:stageIndex];
-        
+
+        [savc removeFromParentViewController];
     }];
     
     [dialog setClickCancelBlock:^(id view){
-        //        // Practice
-            
+        // Practice
         [[UserTutorialService defaultService] enterPracticeDraw:superController
                                                    userTutorial:pbUserTutorial
                                                         stageId:stageId
                                                      stageIndex:stageIndex];
         
+        [savc removeFromParentViewController];
     }];
     
     
@@ -68,6 +68,7 @@
     [superController addChildViewController:savc];
     [savc release];
 }
+
 #define DEFAUT_IMAGE "zuixiaoguanka"
 #define ISIPAD_BORDER (ISIPAD ? 5 : 1)
 #define ISIPAD_TEXT_HEIGHT (ISIPAD ? 80 : 40)
