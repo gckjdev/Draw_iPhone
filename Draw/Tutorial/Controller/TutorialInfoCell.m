@@ -8,6 +8,7 @@
 
 #import "TutorialInfoCell.h"
 #import "PBTutorial+Extend.h"
+#import "StringUtil.h"
 
 @implementation TutorialInfoCell
 #define Task_IMAGE_HEIGHT       (ISIPAD ? 100 : 45)
