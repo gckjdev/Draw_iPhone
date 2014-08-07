@@ -503,45 +503,33 @@
 + (void) createImageOfLayer:(NSInteger)num
                      RepObj:(ReplayObject*)obj
 {
-    ReplayObject *theObj = [[[ReplayObject alloc]init]autorelease];
-    theObj.canvasSize=obj.canvasSize;
-    theObj.bgImage=obj.bgImage;
-    theObj.isNewVersion=obj.isNewVersion;
-    theObj.actionList=[NSMutableArray arrayWithCapacity:10];
     DrawLayer *singleLayer;
     singleLayer = [obj.layers objectAtIndex:num];
-    NSMutableArray *cuttedLayerList = [[[NSMutableArray alloc] init]autorelease];
+    NSMutableArray *cuttedLayerList = [[NSMutableArray alloc] init];
     [cuttedLayerList addObject:singleLayer];
-    theObj.layers = [NSArray arrayWithArray:cuttedLayerList];
+    obj.layers = cuttedLayerList;
     [cuttedLayerList release];
     
-    for(NSInteger i=0;i<[obj.actionList count];i++)
+    for(NSInteger i=0;i<[obj.actionList count];)
     {
-        if([[obj.actionList objectAtIndex:i] layerTag] == [singleLayer layerTag])
+        if([[obj.actionList objectAtIndex:i] layerTag]!= [singleLayer layerTag])
         {
-            [theObj.actionList addObject:[obj.actionList objectAtIndex:i]];
+            [obj.actionList removeObjectAtIndex:i];
         }
+        else
+            i++;
     }
 
+    //把已经分离好的obj属性赋值到player
     DrawPlayer *player = [DrawPlayer createViewWithXibIdentifier:@"DrawPlayer" ofViewIndex:ISIPAD];
-    player.replayObj = theObj;
-    
-    player.showView = [ShowDrawView showViewWithFrame:CGRectFromCGSize(theObj.canvasSize)
-                                     drawActionList:nil
-                                           delegate:player];
-    
-    [player.showView updateLayers:theObj.layers];
-    [player.showView setDrawActionList:theObj.actionList];
-    
-    if (theObj.bgImage) {
-        [player.showView setBGImage:theObj.bgImage];
-    }
-    
+    player.replayObj = obj;
+    [player updateView];
+
     NSString *path = [NSString stringWithFormat:@"/Users/Linruin/Desktop/Image_%d.png",num];
     [player.showView createImageOfLayer:num Path:path];
     
-    [theObj release];
-    [player release];
 }
+
+
 
 @end
