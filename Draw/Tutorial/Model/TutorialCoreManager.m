@@ -699,7 +699,7 @@ static TutorialCoreManager* _defaultTutorialCoreManager;
                                     @[@61,@450,@880,@1580,@1750,@2622],
                                     @[],
                                     @[@61,@344,@512,@1434,@2562],
-                                    @[@500]
+                                    @[@500,@1000]
                                     ];
     
     

@@ -72,7 +72,7 @@
     //调用LDProgressView
      const CGFloat progressX = (self.progressAndLabelView.frame.size.width - progressViewSize.width)/2.0f;
     LDProgressView *tutorialProgressView = [[LDProgressView alloc] initWithFrame:
-                                                            CGRectMake(progressX,25.0f,progressViewSize.width,progressViewSize.height)];
+                                                            CGRectMake(progressX,25.0f,progressViewSize.width-50,progressViewSize.height-10)];
     
     tutorialProgressView.color = [UIColor colorWithRed:0.99f green:0.85f blue:0.33f alpha:1.0f];
     tutorialProgressView.labelTextColor = COLOR_BROWN;
