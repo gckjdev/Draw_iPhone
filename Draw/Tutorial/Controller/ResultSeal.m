@@ -88,8 +88,8 @@
     
     //一个不透明类型的Quartz 2D绘画环境,相当于一个画布,你可以在上面任意绘画
     CGContextRef context = UIGraphicsGetCurrentContext();
-    UIColor*aColor = [UIColor colorWithRed:1.0 green:1.0 blue:1.0 alpha:1];
-    CGContextSetFillColorWithColor(context, aColor.CGColor);//填充颜色
+//    UIColor*aColor = [UIColor colorWithRed:1.0 green:1.0 blue:1.0 alpha:1];
+//    CGContextSetFillColorWithColor(context, aColor.CGColor);//填充颜色
     
     //画笔线的颜色
     CGContextSetStrokeColorWithColor(context, self.borderColor.CGColor);
@@ -97,7 +97,7 @@
     CGContextAddArc(context, (self.bounds.size.width/2), (self.bounds.size.height/2),
                     self.bounds.size.width/2-self.borderWidth, 0, 2*M_PI, 0); //添加一个圆
     //kCGPathFill填充非零绕数规则,kCGPathEOFill表示用奇偶规则,kCGPathStroke路径,kCGPathFillStroke路径填充,kCGPathEOFillStroke表示描线，不是填充
-    CGContextDrawPath(context, kCGPathFillStroke); //绘制路径加填充
+    CGContextDrawPath(context, kCGPathStroke); //绘制路径加填充
     
 }
 
