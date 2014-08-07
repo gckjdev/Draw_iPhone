@@ -2843,7 +2843,8 @@
 "kBlankDraw" = "Blank Draw";
 "kDrawMode" = "Select Draw Mode";
 
-"kResultPageCount" = "Beat %@%% Users";
+"kResultPageDesc" = "Beated exactly";
+"kResultPageCount" = "%@ Users in this game";
 "kResultPageScore" = "Your opus score %@";
 
 "kMetroIndexButton" = "TREND";
@@ -2853,3 +2854,6 @@
 
 "kSealResultPass" = "PASS";
 "kSealResultFail" = "FAIL";
+
+"kTakeNumberSucc" = "Registration is completed! Your Littlegee Number is %@.";
+"kGotoNextChapterWelcome" = "Welcome to Chapter %d. Just Replay Tutorial or View Tips above.";

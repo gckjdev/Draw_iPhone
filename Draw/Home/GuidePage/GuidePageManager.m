@@ -85,12 +85,17 @@
 //右键
 - (void)tutorialController:(ICETutorialController *)tutorialController didClickOnLeftButton:(UIButton *)sender
 {
-    [self dismissViewControllerAnimated:YES completion:nil];
+    [self showLoginDialog];
+
+    //    [self dismissViewControllerAnimated:YES completion:nil];
+    
 }
 
 - (void)tutorialController:(ICETutorialController *)tutorialController didClickOnRightButton:(UIButton *)sender
 {
-    [self dismissViewControllerAnimated:YES completion:nil];
+    [self takeNumber];
+
+    //    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (void)dealloc
@@ -177,7 +182,7 @@
     }];
 }
 
-- (IBAction)clickTakeNumber:(id)sender
+- (void)takeNumber
 {
     if ([[UserManager defaultManager] incAndCheckIsExceedMaxTakeNumber] == YES){
         POSTMSG(NSLS(@"kExceedMaxTakeNumber"));
@@ -188,7 +193,8 @@
     [[UserNumberService defaultService] getAndRegisterNumber:^(int resultCode, NSString *number) {
         [self hideActivity];
         if (resultCode == 0){
-//            [self showTakeNumberView];
+            NSString* message = [NSString stringWithFormat:NSLS(@"kTakeNumberSucc"), number];
+            [self dismissWithMessage:message];
         }
         else{
             [CommonDialog showSimpleDialog:NSLS(@"kTakeNumberFail")  inView:self.view];

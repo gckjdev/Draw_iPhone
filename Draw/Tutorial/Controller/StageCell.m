@@ -62,7 +62,7 @@
         // start button
         [self.stageListStarBtn setBackgroundImage:starButtonBgImage forState:UIControlStateNormal];
         [self.stageListStarBtn setTitleColor:COLOR_BROWN forState:UIControlStateNormal];
-        [self.stageListStarBtn.titleLabel setFont:AD_FONT(20, 14)];
+        [self.stageListStarBtn.titleLabel setFont:AD_FONT(20, 12)];
         [self.stageListStarBtn setTitle:NSLS(@"kStartStage") forState:UIControlStateNormal];
 
         // stage image

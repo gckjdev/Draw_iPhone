@@ -471,4 +471,65 @@
     return player;
 }
 
++ (DrawPlayer*)playerWithSingleLayer:(NSInteger)num
+                       RepObj:(ReplayObject*)obj
+{
+    //用户单独layer播放，暂时无用。。。
+    DrawLayer *singleLayer;
+    singleLayer = [obj.layers objectAtIndex:num];
+    NSMutableArray *cuttedLayerList = [[NSMutableArray alloc] init];
+    [cuttedLayerList addObject:singleLayer];
+    obj.layers = cuttedLayerList;
+    [cuttedLayerList release];
+    
+    for(NSInteger i=0;i<[obj.actionList count];)
+    {
+        if([[obj.actionList objectAtIndex:i] layerTag]!= [singleLayer layerTag])
+        {
+            [obj.actionList removeObjectAtIndex:i];
+        }
+        else
+            i++;
+    }
+    
+    //把已经upadate的obj属性赋值到player
+    DrawPlayer *player = [DrawPlayer createViewWithXibIdentifier:@"DrawPlayer" ofViewIndex:ISIPAD];
+    player.replayObj = obj;
+    [player updateView];
+    
+    return player;
+}
+
++ (void) createImageOfLayer:(NSInteger)num
+                     RepObj:(ReplayObject*)obj
+{
+    DrawLayer *singleLayer;
+    singleLayer = [obj.layers objectAtIndex:num];
+    NSMutableArray *cuttedLayerList = [[NSMutableArray alloc] init];
+    [cuttedLayerList addObject:singleLayer];
+    obj.layers = cuttedLayerList;
+    [cuttedLayerList release];
+    
+    for(NSInteger i=0;i<[obj.actionList count];)
+    {
+        if([[obj.actionList objectAtIndex:i] layerTag]!= [singleLayer layerTag])
+        {
+            [obj.actionList removeObjectAtIndex:i];
+        }
+        else
+            i++;
+    }
+
+    //把已经分离好的obj属性赋值到player
+    DrawPlayer *player = [DrawPlayer createViewWithXibIdentifier:@"DrawPlayer" ofViewIndex:ISIPAD];
+    player.replayObj = obj;
+    [player updateView];
+
+    NSString *path = [NSString stringWithFormat:@"/Users/Linruin/Desktop/Image_%d.png",num];
+    [player.showView createImageOfLayer:num Path:path];
+    
+}
+
+
+
 @end

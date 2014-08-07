@@ -8,7 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import "PBTutorial+Extend.h"
+
 @interface StageAlertViewController : UIViewController<CommonDialogDelegate>
+
 @property (retain, nonatomic) IBOutlet UIImageView *stageExampleImageView;
 @property (retain, nonatomic) IBOutlet UILabel *bestScore;
 @property (retain, nonatomic) IBOutlet UITextView *stageDesc;

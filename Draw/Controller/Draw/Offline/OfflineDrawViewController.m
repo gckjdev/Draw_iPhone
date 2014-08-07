@@ -698,11 +698,11 @@
     [self updateSubmitButtonForPracticeDraw];
     
     // update title view by buttons
-//    if ([self isLearnType]){
-//        CGPoint center = self.titleView.titleLabel.center;
-//        center.x -= (self.helpButton.frame.size.width*2)/2;
-//        [self.titleView.titleLabel setCenter:center];
-//    }
+    if ([self isLearnType]){
+        CGPoint center = self.titleView.titleLabel.center;
+        center.x -= (self.helpButton.frame.size.width*2)/2;
+        [self.titleView.titleLabel setCenter:center];
+    }
 }
 
 - (void)updateSubmitButtonForPracticeDraw
@@ -723,6 +723,35 @@
     }
     else{
         [self.submitButton setImage:[shareImageManager drawNext] forState:UIControlStateNormal];
+    }
+}
+
+- (void)updateTitleViewForLearnDraw
+{
+    if (self.userStageBuilder && [self isLearnType]){
+        
+        // set title
+        [self.titleView.titleLabel setTextColor:COLOR_BROWN];
+        NSString* title = nil;
+        if (targetType == TypeConquerDraw){
+            title = NSLS(@"kConquer");
+        }
+        else{
+            title = NSLS(@"kPractice");
+            
+            if ([self.stage hasMoreThanOneChapter]){
+                title = [title stringByAppendingFormat:@" (%d/%d)",
+                         self.userStageBuilder.currentChapterIndex+1,
+                         [self.stage.chapterList count]];
+            }
+        }
+        
+        //        NSString* stageName = self.stage.name;
+        //        title = [title stringByAppendingFormat:@" - %@", stageName];
+        
+        
+        [self.titleView setTitle:title];
+        [self.titleView.titleLabel setFont:AD_FONT(30, 15)];
     }
 }
 
@@ -922,31 +951,8 @@
     [self.titleView setLeftButtonImage:[shareImageManager drawBackImage]];
     [self.titleView setBgImage:nil];
     [self.titleView setBackgroundColor:[UIColor clearColor]];
-    
-    if (self.userStageBuilder && [self isLearnType]){
-        
-        // set title
-        [self.titleView.titleLabel setTextColor:COLOR_BROWN];
-        NSString* title = nil;
-        if (targetType == TypeConquerDraw){
-            title = NSLS(@"kConquer");
-        }
-        else{
-            title = NSLS(@"kPractice");
 
-            if ([self.stage hasMoreThanOneChapter]){
-                title = [title stringByAppendingFormat:@" (%d/%d)",
-                         self.userStageBuilder.currentChapterIndex+1,
-                         [self.stage.chapterList count]];
-            }
-        }
-        
-//        NSString* stageName = self.stage.name;
-//        title = [title stringByAppendingFormat:@" - %@", stageName];
-        
-        
-        [self.titleView setTitle:title];
-    }
+    [self updateTitleViewForLearnDraw];
 }
 
 
@@ -980,6 +986,11 @@
 
     [self initRecovery];
     [self setCanDragBack:NO];
+    
+    if ([self isLearnType]){
+        // save draft here to store more basic information init above
+        [self saveDraft:NO];
+    }
     
     // TODO update submit/next button status for learn draw (practice only)
     
@@ -1893,7 +1904,12 @@
     // update button image
     [self updateSubmitButtonForPracticeDraw];
     
-    // TODO post a message?
+    // update title
+    [self updateTitleViewForLearnDraw];
+    
+    // post a message
+    NSString* msg = [NSString stringWithFormat:NSLS(@"kGotoNextChapterWelcome"), nextChapterIndex+1];
+    [CommonDialog showSimpleDialog:msg inView:self.view];
 }
 
 - (void)handleSubmitForLearnDraw
@@ -2211,29 +2227,29 @@
 //    [OfflineDrawViewController practice:self.startController userStage:userStage userTutorial:userTutorial];
 }
 
-- (IBAction)clickNextChapterButton:(id)sender
-{
-    // for learn draw practice mode
-    if (targetType != TypePracticeDraw){
-        PPDebug(@"<clickNextChapterButton> NOT IN PRACTICE MODE!!!!!");
-        return;
-    }
-
-    // next chapter
-    PBUserStage* newUserStage = [[UserTutorialService defaultService] nextChapter:[self buildUserStage]];
-    if (newUserStage == nil){
-        // no new user stage, next failure!!!
-        return;
-    }
-
-    // update user stage here
-    self.userStageBuilder = [PBUserStage builderWithPrototype:newUserStage];
-    
-    // update copy view
-    [_copyView loadData:[self buildUserStage] stage:self.stage];
-    
-    // TODO update submit/next button status
-}
+//- (IBAction)clickNextChapterButton:(id)sender
+//{
+//    // for learn draw practice mode
+//    if (targetType != TypePracticeDraw){
+//        PPDebug(@"<clickNextChapterButton> NOT IN PRACTICE MODE!!!!!");
+//        return;
+//    }
+//
+//    // next chapter
+//    PBUserStage* newUserStage = [[UserTutorialService defaultService] nextChapter:[self buildUserStage]];
+//    if (newUserStage == nil){
+//        // no new user stage, next failure!!!
+//        return;
+//    }
+//
+//    // update user stage here
+//    self.userStageBuilder = [PBUserStage builderWithPrototype:newUserStage];
+//    
+//    // update copy view
+//    [_copyView loadData:[self buildUserStage] stage:self.stage];
+//    
+//    // TODO update submit/next button status
+//}
 
 - (IBAction)clickSubmitButton:(id)sender {
     [self.layerPanelPopView dismissAnimated:YES];
@@ -2399,8 +2415,17 @@
 - (void)showLearnDrawHelp
 {
     NSMutableArray* allTips = [NSMutableArray array];
+    
+    int maxChapterIndex = 0;
+    if (targetType == TypePracticeDraw){
+        maxChapterIndex = MIN(_userStageBuilder.currentChapterIndex, [self.stage.chapterList count]);
+    }
+    else{
+        maxChapterIndex = [self.stage.chapterList count];
+    }
+    
     int currentChapterTipsIndex = 0;
-    for (int i=0; i<=_userStageBuilder.currentChapterIndex && i<[self.stage.chapterList count]; i++){
+    for (int i=0; i<=maxChapterIndex; i++){
         NSArray* tipsPaths = [[UserTutorialService defaultService] getChapterTipsImagePath:_userStageBuilder.tutorialId
                                                                                      stage:self.stage
                                                                               chapterIndex:i];

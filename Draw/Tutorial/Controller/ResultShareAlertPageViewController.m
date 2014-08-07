@@ -241,7 +241,7 @@
     }
     return NSMakeRange(0, 1);
 }
-#define SEAL_POSITION_X (ISIPAD ? 380:178)
+#define SEAL_POSITION_X (ISIPAD ? 380:186)
 #define SEAL_POSITION_Y (ISIPAD ? 320:150)
 #define SEAL_POSITION_WIDTH (ISIPAD ? 150:60)
 #define SEAL_POSITION_HEIGHT (ISIPAD ? 150:60)
@@ -257,7 +257,7 @@
     ResultSeal *circleView = [[ResultSeal alloc] initWithFrame:CGRectMake(SEAL_POSITION_X, SEAL_POSITION_Y, SEAL_POSITION_WIDTH, SEAL_POSITION_HEIGHT) borderColor:COLOR_RED font:font text:text];
     circleView.backgroundColor = [UIColor clearColor];
     circleView.borderWidth = 3.0f;
-    
+    [circleView setAlpha:0.7];
     [self.view addSubview:circleView];
     [circleView release];
 }
@@ -286,8 +286,8 @@
     self.lineOneLabel.attributedText = nameMutableString;
     
     
-    //检测NSSTRING 所在的位置
-    NSString *scoreString = [NSString stringWithFormat:@"%d",self.score];
+    //检测NSSTRING 所在的位置t
+    NSString *scoreString = [NSString stringWithFormat:@" %d",self.score];
 //    NSString *sentenceOne = [NSString stringWithFormat:@"本次作品得分為%@分\n",scoreString];
     NSString *sentenceOne = [NSString stringWithFormat:NSLS(@"kResultPageScore"),scoreString];
     NSMutableAttributedString *scoreMutableString = [[[NSMutableAttributedString alloc]
@@ -305,15 +305,16 @@
     //位置
     NSString *count = [NSString stringWithFormat:@"%d%%",self.userStage.defeatCount];
 //    NSString *sentenceTwo = [NSString stringWithFormat:@"宇宙三次元%@的用户！",count];
-    NSString *sentenceTwo = [NSString stringWithFormat:NSLS(@"kResultPageCount"),count];
-
-    NSMutableAttributedString *countMutable = [[[NSMutableAttributedString alloc]initWithString:sentenceTwo]autorelease];
-    [countMutable addAttribute:NSForegroundColorAttributeName
-                               value:COLOR_RED
-                               range:[self getRangeInNsstringLong:sentenceTwo ShorterSentence:count]];
-    [countMutable addAttribute:NSFontAttributeName
-                               value:AD_FONT(30, 18)
-                               range:[self getRangeInNsstringLong:sentenceTwo ShorterSentence:count]];
+    NSString *sentenceTwo = [NSString stringWithFormat:NSLS(@"kResultPageDesc")];
+//    
+//    NSMutableAttributedString *countMutable = [[[NSMutableAttributedString alloc]initWithString:sentenceTwo]autorelease];
+//    [countMutable addAttribute:NSForegroundColorAttributeName
+//                               value:COLOR_RED
+//                               range:[self getRangeInNsstringLong:sentenceTwo ShorterSentence:count]];
+//    [countMutable addAttribute:NSFontAttributeName
+//                               value:AD_FONT(30, 18)
+//                               range:[self getRangeInNsstringLong:sentenceTwo ShorterSentence:count]];
+    self.lineThreeLabel.text = sentenceTwo;
     
     
     //闯关结果
@@ -325,33 +326,34 @@
     if (isPass == YES){
         //课程完成
         if(isTutorialComplete){
-            result = [NSString stringWithFormat:NSLS(@"kConquerResultPassComplete")];
+//            result = [NSString stringWithFormat:NSLS(@"kConquerResultPassComplete")];
             sealResult = NSLS(@"kSealResultPass");
 
         }
         //没有完成继续下一关
         else{
-             result = [NSString stringWithFormat:NSLS(@"kConquerResultPassNext")];
+//             result = [NSString stringWithFormat:NSLS(@"kConquerResultPassNext")];
              sealResult = NSLS(@"kSealResultPass");
         }
     }
     //不合格
     else{
-        result = [NSString stringWithFormat:NSLS(@"kConquerFailureResult")];
+//        result = [NSString stringWithFormat:NSLS(@"kConquerFailureResult")];
         sealResult = NSLS(@"kSealResultFail");
     }
     
+    NSString *defeatCount = [NSString stringWithFormat:@"%d",self.userStage.defeatCount];
+    NSString *sentenceFour = [NSString stringWithFormat:NSLS(@"kResultPageCount"),defeatCount];
     NSMutableAttributedString *resultMutable = [[[NSMutableAttributedString alloc]
-                                                 initWithString:[NSString stringWithFormat:@"%@！",result]]autorelease];
+                                                 initWithString:sentenceFour]autorelease];
     [resultMutable addAttribute:NSForegroundColorAttributeName
                           value:COLOR_RED
-                          range:NSMakeRange(0, [result length])];
+                          range:[self getRangeInNsstringLong:sentenceFour ShorterSentence:defeatCount]];
     [resultMutable addAttribute:NSFontAttributeName
-                          value:AD_FONT(20, 13)
-                          range:NSMakeRange(0,[result length])];
+                          value:AD_FONT(30, 18)
+                          range:[self getRangeInNsstringLong:sentenceFour ShorterSentence:defeatCount]];
     self.lineFourLabel.attributedText = resultMutable;
 
-    self.lineThreeLabel.attributedText = countMutable;
     
     [self makeSeal:sealResult];
 }
