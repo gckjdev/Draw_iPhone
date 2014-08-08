@@ -160,9 +160,6 @@
     self.avatarView.delegate = self;
     
     [self setButtonTitleBottom];
-    
-#pragma mark 调用buttonLayout
-    [self buttonLayout];
 
     [_bottomView setTranslatesAutoresizingMaskIntoConstraints:NO];
     [_mainView setTranslatesAutoresizingMaskIntoConstraints:NO];
