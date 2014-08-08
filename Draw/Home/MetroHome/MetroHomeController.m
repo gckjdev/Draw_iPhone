@@ -754,7 +754,7 @@
     [moreButton setImage:[UIImage imageNamed:@"gengduo"] forState:UIControlStateNormal];
     
     //设置按钮title
-    const CGFloat cutSize = (ISIPAD ? 30:20);
+    const CGFloat cutSize = (ISIPAD ? 32:20);
     UILabel *indexButtonTitle = [[[UILabel alloc] initWithFrame:CGRectMake(0, self.bottomView.bounds.size.height-cutSize, buttonWidth, 20)] autorelease];
     [self setBottomButtonTitleStyle:indexButtonTitle text:NSLS(@"kMetroIndexButton")];
     [indexButton addSubview:indexButtonTitle];
@@ -776,11 +776,12 @@
      self.indexBadge.frame = CGRectMake([[width objectAtIndex:3] floatValue], 0, (ISIPAD?30:20), (ISIPAD?30:20));
     
     //设置按钮图片位置
-    CGFloat imageEdge = (ISIPAD ? -25:-10);
-    indexButton.imageEdgeInsets = UIEdgeInsetsMake(imageEdge,0,0,0);
-    documentButton.imageEdgeInsets = UIEdgeInsetsMake(imageEdge,0,0,0);
-    messageButton.imageEdgeInsets = UIEdgeInsetsMake(imageEdge,0,0,0);
-    moreButton.imageEdgeInsets = UIEdgeInsetsMake(imageEdge,0,0,0);
+    //负数上升，正数下降
+    CGFloat imageTopEdge = (ISIPAD ? -30:-10);
+    indexButton.imageEdgeInsets = UIEdgeInsetsMake(imageTopEdge,0,0,0);
+    documentButton.imageEdgeInsets = UIEdgeInsetsMake(imageTopEdge,0,0,0);
+    messageButton.imageEdgeInsets = UIEdgeInsetsMake(imageTopEdge,0,0,0);
+    moreButton.imageEdgeInsets = UIEdgeInsetsMake(imageTopEdge,0,0,0);
     
     //背景颜色
     [documentButton setBackgroundColor:[UIColor clearColor]];
