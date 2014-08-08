@@ -50,34 +50,6 @@
 
 
 
-//-(void)setButtonTitleBottom{
-//    
-//    [self.indexButton.imageView setImage:[UIImage imageNamed:@"dongtai.jpg"]];
-//    
-//    if([LocaleUtils isChina]||[LocaleUtils isChinese]){
-//        [self.indexButton.titleLabel setFont:AD_BOLD_FONT(13, 10)];
-//        [self.documentButton.titleLabel setFont:AD_BOLD_FONT(13, 10)];
-//        [self.messageButton.titleLabel setFont:AD_BOLD_FONT(13, 10)];
-//        [self.moreButton.titleLabel setFont:AD_BOLD_FONT(13,10)];
-//    }else{
-//        [self.indexButton.titleLabel setFont:AD_BOLD_FONT(9, 7)];
-//        [self.documentButton.titleLabel setFont:AD_BOLD_FONT(9, 7)];
-//        [self.messageButton.titleLabel setFont:AD_BOLD_FONT(9, 7)];
-//        [self.moreButton.titleLabel setFont:AD_BOLD_FONT(9,7)];
-//    }
-//    
-//    
-//    
-//    [self.indexButton setTitle:NSLS(@"kMetroIndexButton") forState:UIControlStateNormal];
-//    [self.documentButton setTitle:NSLS(@"kMetroDocumentButton") forState:UIControlStateNormal];
-//    [self.messageButton setTitle:NSLS(@"kMetroMessageButton") forState:UIControlStateNormal];
-//    [self.moreButton setTitle:NSLS(@"kMetroMoreButton") forState:UIControlStateNormal];
-//   
-//    [self.indexButton  setTitleEdgeInsets:UIEdgeInsetsMake(BOTTOM_BUTTON_MARGIN_HEIGHT, TRENDS_BUTTON_TITLE_EDGEINSETS, 0, 0)];
-//    [self.documentButton  setTitleEdgeInsets:UIEdgeInsetsMake(BOTTOM_BUTTON_MARGIN_HEIGHT, DOCUMENT_BUTTON_TITLE_EDGEINSETS, 0, 0)];
-//    [self.messageButton  setTitleEdgeInsets:UIEdgeInsetsMake(BOTTOM_BUTTON_MARGIN_HEIGHT, MESSAGE_BUTTON_TITLE_EDGEINSET, 0, 0)];
-//    [self.moreButton  setTitleEdgeInsets:UIEdgeInsetsMake(BOTTOM_BUTTON_MARGIN_HEIGHT, MORE_BUTTON_TITLE_EDGEINSETS, 0, 0)];
-//}
 #pragma mark 使button对齐
 -(void)buttonLayout
 {
@@ -90,6 +62,7 @@
     self.indexButton.frame = tempFrame;
 //    [self.indexButton.imageView];
 }
+
 - (void)startStatisticTimer
 {
     if (self.statisTimer == nil){
@@ -166,12 +139,13 @@
     //用户头像
     [self updateAvatarView];
     self.avatarView.delegate = self;
-    
+
 //    [self setButtonTitleBottom];
 
     
 #pragma mark 调用buttonLayout
     [self buttonLayout];
+
 
     [_bottomView setTranslatesAutoresizingMaskIntoConstraints:NO];
     [_mainView setTranslatesAutoresizingMaskIntoConstraints:NO];
@@ -217,6 +191,8 @@
     
     [UIApplication sharedApplication].idleTimerDisabled = NO;
     [super viewDidAppear:animated];
+    
+//    [self updateAllBadge];
     
     if ([[UserManager defaultManager] hasXiaojiNumber] == NO){
         [self showGuidePage];
@@ -466,10 +442,11 @@
 
     [self updateBadgeTimeline:timelineCount];
     
-    int moreCount = [manager newContestCount] + [manager groupNoticeCount];
+    int moreCount = [MoreViewController totalMoreBadge];
     [self updateBadgeMore:moreCount];
     
     [self updateBulletinBadge:[manager bulletinCount]];
+
     
     //TODO the avatar Badge
     
@@ -483,6 +460,7 @@
 
 
 #endif
+
 }
 
 - (void)dealloc {

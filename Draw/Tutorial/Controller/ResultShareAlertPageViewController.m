@@ -435,7 +435,7 @@
     NSString* shareText = [NSString stringWithFormat:NSLS(@"kConquerDrawShareText"),
                            [PPConfigManager shareAppName],
                            self.score,
-                           [self defeatPercent]];
+                           self.userStage.defeatCount];
     PPDebug(@"<createShareText> text=%@", shareText);
     return shareText;
 }
