@@ -28,6 +28,7 @@
 #import "DrawRecoveryService.h"
 #import "SDWebImageManager.h"
 #import "BrickView.h"
+#import "UIImageUtil.h"
 
 @interface MetroHomeController ()
 
@@ -47,40 +48,36 @@
     return self;
 }
 
-#define TRENDS_BUTTON_TITLE_EDGEINSETS   (ISIPAD ? .0 : .0)
-#define DOCUMENT_BUTTON_TITLE_EDGEINSETS (ISIPAD ? .0:  .0)
-#define MESSAGE_BUTTON_TITLE_EDGEINSET   (ISIPAD ? .0 : .0)
-#define MORE_BUTTON_TITLE_EDGEINSETS     (ISIPAD ? .0 : .0)
-#define BOTTOM_BUTTON_MARGIN_HEIGHT (ISIPAD ? 50 : 38)
 
--(void)setButtonTitleBottom{
-    
-    [self.indexButton.imageView setImage:[UIImage imageNamed:@"dongtai.jpg"]];
-    
-    if([LocaleUtils isChina]||[LocaleUtils isChinese]){
-        [self.indexButton.titleLabel setFont:AD_BOLD_FONT(13, 10)];
-        [self.documentButton.titleLabel setFont:AD_BOLD_FONT(13, 10)];
-        [self.messageButton.titleLabel setFont:AD_BOLD_FONT(13, 10)];
-        [self.moreButton.titleLabel setFont:AD_BOLD_FONT(13,10)];
-    }else{
-        [self.indexButton.titleLabel setFont:AD_BOLD_FONT(9, 7)];
-        [self.documentButton.titleLabel setFont:AD_BOLD_FONT(9, 7)];
-        [self.messageButton.titleLabel setFont:AD_BOLD_FONT(9, 7)];
-        [self.moreButton.titleLabel setFont:AD_BOLD_FONT(9,7)];
-    }
-    
-    
-    
-    [self.indexButton setTitle:NSLS(@"kMetroIndexButton") forState:UIControlStateNormal];
-    [self.documentButton setTitle:NSLS(@"kMetroDocumentButton") forState:UIControlStateNormal];
-    [self.messageButton setTitle:NSLS(@"kMetroMessageButton") forState:UIControlStateNormal];
-    [self.moreButton setTitle:NSLS(@"kMetroMoreButton") forState:UIControlStateNormal];
-   
-    [self.indexButton  setTitleEdgeInsets:UIEdgeInsetsMake(BOTTOM_BUTTON_MARGIN_HEIGHT, TRENDS_BUTTON_TITLE_EDGEINSETS, 0, 0)];
-    [self.documentButton  setTitleEdgeInsets:UIEdgeInsetsMake(BOTTOM_BUTTON_MARGIN_HEIGHT, DOCUMENT_BUTTON_TITLE_EDGEINSETS, 0, 0)];
-    [self.messageButton  setTitleEdgeInsets:UIEdgeInsetsMake(BOTTOM_BUTTON_MARGIN_HEIGHT, MESSAGE_BUTTON_TITLE_EDGEINSET, 0, 0)];
-    [self.moreButton  setTitleEdgeInsets:UIEdgeInsetsMake(BOTTOM_BUTTON_MARGIN_HEIGHT, MORE_BUTTON_TITLE_EDGEINSETS, 0, 0)];
-}
+
+//-(void)setButtonTitleBottom{
+//    
+//    [self.indexButton.imageView setImage:[UIImage imageNamed:@"dongtai.jpg"]];
+//    
+//    if([LocaleUtils isChina]||[LocaleUtils isChinese]){
+//        [self.indexButton.titleLabel setFont:AD_BOLD_FONT(13, 10)];
+//        [self.documentButton.titleLabel setFont:AD_BOLD_FONT(13, 10)];
+//        [self.messageButton.titleLabel setFont:AD_BOLD_FONT(13, 10)];
+//        [self.moreButton.titleLabel setFont:AD_BOLD_FONT(13,10)];
+//    }else{
+//        [self.indexButton.titleLabel setFont:AD_BOLD_FONT(9, 7)];
+//        [self.documentButton.titleLabel setFont:AD_BOLD_FONT(9, 7)];
+//        [self.messageButton.titleLabel setFont:AD_BOLD_FONT(9, 7)];
+//        [self.moreButton.titleLabel setFont:AD_BOLD_FONT(9,7)];
+//    }
+//    
+//    
+//    
+//    [self.indexButton setTitle:NSLS(@"kMetroIndexButton") forState:UIControlStateNormal];
+//    [self.documentButton setTitle:NSLS(@"kMetroDocumentButton") forState:UIControlStateNormal];
+//    [self.messageButton setTitle:NSLS(@"kMetroMessageButton") forState:UIControlStateNormal];
+//    [self.moreButton setTitle:NSLS(@"kMetroMoreButton") forState:UIControlStateNormal];
+//   
+//    [self.indexButton  setTitleEdgeInsets:UIEdgeInsetsMake(BOTTOM_BUTTON_MARGIN_HEIGHT, TRENDS_BUTTON_TITLE_EDGEINSETS, 0, 0)];
+//    [self.documentButton  setTitleEdgeInsets:UIEdgeInsetsMake(BOTTOM_BUTTON_MARGIN_HEIGHT, DOCUMENT_BUTTON_TITLE_EDGEINSETS, 0, 0)];
+//    [self.messageButton  setTitleEdgeInsets:UIEdgeInsetsMake(BOTTOM_BUTTON_MARGIN_HEIGHT, MESSAGE_BUTTON_TITLE_EDGEINSET, 0, 0)];
+//    [self.moreButton  setTitleEdgeInsets:UIEdgeInsetsMake(BOTTOM_BUTTON_MARGIN_HEIGHT, MORE_BUTTON_TITLE_EDGEINSETS, 0, 0)];
+//}
 #pragma mark 使button对齐
 -(void)buttonLayout
 {
@@ -132,7 +129,7 @@
 - (void)viewDidLoad
 {
     self.view.backgroundColor = COLOR_GREEN;
-    [self.documentBadge setNumber:0];
+    [self.documentBadge setNumber:2];
     
     [super viewDidLoad];
     
@@ -170,7 +167,8 @@
     [self updateAvatarView];
     self.avatarView.delegate = self;
     
-    [self setButtonTitleBottom];
+//    [self setButtonTitleBottom];
+
     
 #pragma mark 调用buttonLayout
     [self buttonLayout];
@@ -187,6 +185,7 @@
     }else{
         [self setMainBoxView];
     }
+    [self setBottomViewButton];
     [self showGuidePage];
     
 }
@@ -476,6 +475,14 @@
     
     // TODO
     //    [self updateBadgeBBS:HomeMenuTypeDrawFriend badge:manager.fanCount];
+#ifdef DEBUG
+    [self updateBadgeChat:3];
+    [self updateBadgeTimeline:1];
+    [self updateBulletinBadge:2];
+    [self updateBadgeMore:4];
+
+
+#endif
 }
 
 - (void)dealloc {
@@ -617,6 +624,7 @@
         height = 292;
     }
     
+    //新建色块
     CGFloat bigViewHeight = height * 0.618f;
     CGFloat smallViewHeight = height - bigViewHeight;
     
@@ -632,7 +640,7 @@
     UIImage *amazingImage = [UIImage imageNamed:@"jingcaizuopin"];
     BrickView *amazingOpusView = [[[BrickView alloc] initWithFrame:self.amazingOpusView.bounds title:@"精彩作品" imageTitle:@"Gallery" image:amazingImage] autorelease];
     
-    
+    //设置色块背景颜色
     [paintingView setBackgroundColor:[UIColor colorWithRed:0.757f green:0.565f blue:0.965f alpha:1.0f]];
     [learningView setBackgroundColor:[UIColor colorWithRed:0.984f green:0.431f blue:0.588f alpha:1.0f]];
     [forumView setBackgroundColor:[UIColor colorWithRed:0.459f green:0.784f blue:0.965f alpha:1.0f]];
@@ -644,6 +652,7 @@
     [self.mainView addSubview:amazingOpusView];
     
     
+    //设置色块autolayout
     NSDictionary *views = NSDictionaryOfVariableBindings(_mainView,paintingView,learningView, forumView, amazingOpusView);
     NSMutableArray *constraints = [[NSMutableArray alloc] init];
     
@@ -687,6 +696,7 @@
     CGFloat bigViewHeight = height * 0.618f;
     CGFloat smallViewHeight = height - bigViewHeight;
     
+    //新建色块中的图片
     UIImage *paintingImage = [UIImage imageNamed:@"huahua"];
     BrickView *paintingView = [[[BrickView alloc] initWithFrame:self.paintingView.bounds title:@"画画" imageTitle:@"Painting" image:paintingImage] autorelease];
     
@@ -701,6 +711,7 @@
     
     
     
+    //建立色块颜色
     [paintingView setBackgroundColor:[UIColor colorWithRed:0.757f green:0.565f blue:0.965f alpha:1.0f]];
     [learningView setBackgroundColor:[UIColor colorWithRed:0.984f green:0.431f blue:0.588f alpha:1.0f]];
     [forumView setBackgroundColor:[UIColor colorWithRed:0.459f green:0.784f blue:0.965f alpha:1.0f]];
@@ -713,6 +724,7 @@
     [self.mainView addSubview:amazingOpusView];
     
     
+    //色块在mainView 中的autolayout
     NSDictionary *views = NSDictionaryOfVariableBindings(_mainView,paintingView,learningView, forumView, amazingOpusView);
     NSMutableArray *constraints = [[NSMutableArray alloc] init];
     
@@ -725,8 +737,6 @@
     NSString *forumAndAmazingViewHorizone = @"H:|-28-[forumView(==240)]-10-[amazingOpusView(==452)]-28-|";
     [constraints addObject:paintAndLearnViewHorizone];
     [constraints addObject:forumAndAmazingViewHorizone];
-    
-    
     
     NSString *paintAndForumViewVertical = [NSString stringWithFormat:@"V:|-10-[paintingView(==%f)]-20-[forumView(==%f)]-10-|",bigViewHeight,smallViewHeight];
     
@@ -744,15 +754,105 @@
     }
     
     [self setMainViewListening:paintingView learningView:learningView forumView:forumView amazingOpusView:amazingOpusView];
+
+}
+#define TRENDS_BUTTON_TITLE_EDGEINSETS   (ISIPAD ? .0 : -50)
+#define DOCUMENT_BUTTON_TITLE_EDGEINSETS (ISIPAD ? .0:  .0)
+#define MESSAGE_BUTTON_TITLE_EDGEINSET   (ISIPAD ? .0 : .0)
+#define MORE_BUTTON_TITLE_EDGEINSETS     (ISIPAD ? .0 : .0)
+#define BOTTOM_BUTTON_MARGIN_HEIGHT (ISIPAD ? 50 : 38)
+-(void)setBottomViewButton{
+    
+    //建立tab bar 的按钮
+    CGFloat buttonWidth = self.bottomView.bounds.size.width/4;
+    CGFloat button_X = buttonWidth;
+    NSArray *width = @[@(button_X*0.0f),@(button_X*1.0f),@(button_X*2.0f),@(button_X*3.0f)];
+    UIButton *indexButton = [[UIButton alloc] initWithFrame:CGRectMake([[width objectAtIndex:0] floatValue], 0, buttonWidth, self.bottomView.bounds.size.height)];
+    
+    UIButton *documentButton = [[UIButton alloc] initWithFrame:CGRectMake([[width objectAtIndex:1] floatValue], 0, buttonWidth, self.bottomView.bounds.size.height)];
+    
+    UIButton *messageButton = [[UIButton alloc] initWithFrame:CGRectMake([[width objectAtIndex:2] floatValue], 0, buttonWidth, self.bottomView.bounds.size.height)];
+    
+     UIButton *moreButton = [[UIButton alloc] initWithFrame:CGRectMake([[width objectAtIndex:3] floatValue], 0, buttonWidth, self.bottomView.bounds.size.height)];
+    
+    //设置按钮的icon
+    [indexButton setImage:[UIImage imageNamed:@"dongtai"] forState:UIControlStateNormal];
+    [documentButton setImage:[UIImage imageNamed:@"caogao"] forState:UIControlStateNormal];
+    [messageButton setImage:[UIImage imageNamed:@"xiaoxi"] forState:UIControlStateNormal];
+    [moreButton setImage:[UIImage imageNamed:@"gengduo"] forState:UIControlStateNormal];
+    
+    //设置按钮title
+    UILabel *indexButtonTitle = [[[UILabel alloc] initWithFrame:CGRectMake(0, self.bottomView.bounds.size.height-20, buttonWidth, 20)] autorelease];
+    [self setBottomButtonTitleStyle:indexButtonTitle text:NSLS(@"kMetroIndexButton")];
+    [indexButton addSubview:indexButtonTitle];
+     self.indexBadge.frame = CGRectMake([[width objectAtIndex:0] floatValue], 0, (ISIPAD?30:20), (ISIPAD?30:20));
+    
+    UILabel *documentButtonTitle = [[[UILabel alloc] initWithFrame:CGRectMake([[width objectAtIndex:0] floatValue], self.bottomView.bounds.size.height-20, buttonWidth, 20)] autorelease];
+    [self setBottomButtonTitleStyle:documentButtonTitle text:NSLS(@"kMetroDocumentButton")];
+    [documentButton addSubview:documentButtonTitle];
+    self.indexBadge.frame = CGRectMake([[width objectAtIndex:1] floatValue], 0, (ISIPAD?30:20), (ISIPAD?30:20));
+    
+    UILabel *messageButtonTitle = [[[UILabel alloc] initWithFrame:CGRectMake([[width objectAtIndex:0] floatValue], self.bottomView.bounds.size.height-20, buttonWidth, 20)] autorelease];
+    [self setBottomButtonTitleStyle:messageButtonTitle text:NSLS(@"kMetroMessageButton")];
+    [messageButton addSubview:messageButtonTitle];
+     self.indexBadge.frame = CGRectMake([[width objectAtIndex:2] floatValue], 0, (ISIPAD?30:20), (ISIPAD?30:20));
+    
+    UILabel *moreButtonTitle = [[[UILabel alloc] initWithFrame:CGRectMake([[width objectAtIndex:0] floatValue], self.bottomView.bounds.size.height-20, buttonWidth, 20)] autorelease];
+    [self setBottomButtonTitleStyle:moreButtonTitle text:NSLS(@"kMetroMoreButton")];
+    [moreButton addSubview:moreButtonTitle];
+     self.indexBadge.frame = CGRectMake([[width objectAtIndex:3] floatValue], 0, (ISIPAD?30:20), (ISIPAD?30:20));
+    
+    //设置按钮图片位置
+    indexButton.imageEdgeInsets = UIEdgeInsetsMake(-10,0,0,0);
+    documentButton.imageEdgeInsets = UIEdgeInsetsMake(-10,0,0,0);
+    messageButton.imageEdgeInsets = UIEdgeInsetsMake(-10,0,0,0);
+    moreButton.imageEdgeInsets = UIEdgeInsetsMake(-10,0,0,0);
+    
+    //背景颜色
+    [documentButton setBackgroundColor:[UIColor clearColor]];
+    [messageButton setBackgroundColor:[UIColor clearColor]];
+    [moreButton setBackgroundColor:[UIColor clearColor]];
+    [indexButton setBackgroundColor:[UIColor clearColor]];
+    
+    
+    
+    [self.bottomView addSubview:indexButton];
+    [self.bottomView addSubview:documentButton];
+    [self.bottomView addSubview:messageButton];
+    [self.bottomView addSubview:moreButton];
+    
+    //监听按钮
+    [self setBottomButtonListening:indexButton draft:documentButton chat:messageButton more:moreButton];
     
 }
+//设置button 的样式
+-(void)setBottomButtonTitleStyle:(UILabel *)label text:(NSString*)text{
+    
+    UIFont *font = nil;
+    if([LocaleUtils isChina]||[LocaleUtils isChinese]){
+        font = AD_FONT(10, 10);
+        
+    }else{
+        font = AD_BOLD_FONT(10,10);
+    }
+    [label setText:text];
+    [label setFont:font];
+    [label setTextAlignment:NSTextAlignmentCenter];
+    [label setTextColor:COLOR_GRAY_TEXT];
+    [label setBackgroundColor:[UIColor clearColor]];
+    
+}
+
 
 #pragma mark - Listen
 -(void)setListenInView:(UIView*)view selector:(SEL)selector{
     UITapGestureRecognizer* singleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:selector];
     [view addGestureRecognizer:singleTap];
 }
-
+-(void)setListenInButton:(UIButton*)button selector:(SEL)selector{
+    [button addTarget:self action:@selector(selector) forControlEvents:nil];
+}
+//监听色块
 -(void)setMainViewListening:(UIView*)paintingView learningView:(UIView*)learningView forumView:(UIView*)forumView amazingOpusView:(UIView*)amazingOpusView{
     
     //Listen
@@ -766,7 +866,16 @@
     [self setListenInView:forumView selector:@selector(goToBBS:)];
     [self setListenInView:amazingOpusView selector:@selector(goToOpus:)];
 }
-
+//监听按钮
+-(void)setBottomButtonListening:(UIButton*)indexButton draft:(UIButton*)draft chat:(UIButton*)chat more:(UIButton*)more{
+    
+    [self setListenInView:indexButton selector:@selector(goToIndexController:)];
+    [self setListenInView:draft selector:@selector(goToDocumentController:)];
+    [self setListenInView:chat selector:@selector(goToMessageController:)];
+    [self setListenInView:more selector:@selector(goToMoreController:)];
+    
+    
+}
 
 
 

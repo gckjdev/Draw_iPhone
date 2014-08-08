@@ -38,8 +38,11 @@
 #define IOS_VERSION_7_OR_ABOVE (([[[UIDevice currentDevice] systemVersion] floatValue] >= 7.0)? (YES):(NO))
 -(void)setAutoWithAndHeightLabel:(NSString *)text WithLabel:(UILabel *)label WithX:(CGFloat)x WithY:(CGFloat)y Color:(UIColor *)color{
     //高度和宽度
-
+    
     CGSize size =CGSizeMake(200,80);
+    if(ISIPAD){
+        size = CGSizeMake(600,100);
+    }
     UIFont * tfont = AD_FONT(18, 11);
 
     [label setFont:tfont];

@@ -6329,6 +6329,18 @@
 		D869F90E1990DFD800E6756A /* dongtai.png in Resources */ = {isa = PBXBuildFile; fileRef = D869F90C1990DFD800E6756A /* dongtai.png */; };
 		D869F90F1990DFD800E6756A /* dongtai.png in Resources */ = {isa = PBXBuildFile; fileRef = D869F90C1990DFD800E6756A /* dongtai.png */; };
 		D869F9101990DFD800E6756A /* dongtai.png in Resources */ = {isa = PBXBuildFile; fileRef = D869F90C1990DFD800E6756A /* dongtai.png */; };
+		D86D7CD31994C87B00D64C18 /* caogao.png in Resources */ = {isa = PBXBuildFile; fileRef = D86D7CD01994C87B00D64C18 /* caogao.png */; };
+		D86D7CD41994C87B00D64C18 /* caogao.png in Resources */ = {isa = PBXBuildFile; fileRef = D86D7CD01994C87B00D64C18 /* caogao.png */; };
+		D86D7CD51994C87B00D64C18 /* caogao.png in Resources */ = {isa = PBXBuildFile; fileRef = D86D7CD01994C87B00D64C18 /* caogao.png */; };
+		D86D7CD61994C87B00D64C18 /* caogao.png in Resources */ = {isa = PBXBuildFile; fileRef = D86D7CD01994C87B00D64C18 /* caogao.png */; };
+		D86D7CD71994C87B00D64C18 /* gengduo.png in Resources */ = {isa = PBXBuildFile; fileRef = D86D7CD11994C87B00D64C18 /* gengduo.png */; };
+		D86D7CD81994C87B00D64C18 /* gengduo.png in Resources */ = {isa = PBXBuildFile; fileRef = D86D7CD11994C87B00D64C18 /* gengduo.png */; };
+		D86D7CD91994C87B00D64C18 /* gengduo.png in Resources */ = {isa = PBXBuildFile; fileRef = D86D7CD11994C87B00D64C18 /* gengduo.png */; };
+		D86D7CDA1994C87B00D64C18 /* gengduo.png in Resources */ = {isa = PBXBuildFile; fileRef = D86D7CD11994C87B00D64C18 /* gengduo.png */; };
+		D86D7CDB1994C87B00D64C18 /* xiaoxi.png in Resources */ = {isa = PBXBuildFile; fileRef = D86D7CD21994C87B00D64C18 /* xiaoxi.png */; };
+		D86D7CDC1994C87B00D64C18 /* xiaoxi.png in Resources */ = {isa = PBXBuildFile; fileRef = D86D7CD21994C87B00D64C18 /* xiaoxi.png */; };
+		D86D7CDD1994C87B00D64C18 /* xiaoxi.png in Resources */ = {isa = PBXBuildFile; fileRef = D86D7CD21994C87B00D64C18 /* xiaoxi.png */; };
+		D86D7CDE1994C87B00D64C18 /* xiaoxi.png in Resources */ = {isa = PBXBuildFile; fileRef = D86D7CD21994C87B00D64C18 /* xiaoxi.png */; };
 		D89191F11963163B006B616A /* StageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D89191F01963163B006B616A /* StageCell.m */; };
 		D89191F21963163B006B616A /* StageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D89191F01963163B006B616A /* StageCell.m */; };
 		D89191F31963163B006B616A /* StageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D89191F01963163B006B616A /* StageCell.m */; };
@@ -10860,6 +10872,9 @@
 		D869F8EE19906D8A00E6756A /* iphone5-3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iphone5-3.png"; sourceTree = "<group>"; };
 		D869F9071990DF3000E6756A /* laba.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = laba.png; sourceTree = "<group>"; };
 		D869F90C1990DFD800E6756A /* dongtai.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dongtai.png; sourceTree = "<group>"; };
+		D86D7CD01994C87B00D64C18 /* caogao.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = caogao.png; sourceTree = "<group>"; };
+		D86D7CD11994C87B00D64C18 /* gengduo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = gengduo.png; sourceTree = "<group>"; };
+		D86D7CD21994C87B00D64C18 /* xiaoxi.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = xiaoxi.png; sourceTree = "<group>"; };
 		D89191EF1963163B006B616A /* StageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StageCell.h; sourceTree = "<group>"; };
 		D89191F01963163B006B616A /* StageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StageCell.m; sourceTree = "<group>"; };
 		D89191FA196316C2006B616A /* StageCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = StageCell.xib; sourceTree = "<group>"; };
@@ -18276,6 +18291,9 @@
 		D80518A5196BD12200D350B3 /* Resource */ = {
 			isa = PBXGroup;
 			children = (
+				D86D7CD01994C87B00D64C18 /* caogao.png */,
+				D86D7CD11994C87B00D64C18 /* gengduo.png */,
+				D86D7CD21994C87B00D64C18 /* xiaoxi.png */,
 				D869F90C1990DFD800E6756A /* dongtai.png */,
 				D869F9071990DF3000E6756A /* laba.png */,
 				D8B58A1E197CCEC10088E5F7 /* GuidePage */,
@@ -19110,6 +19128,7 @@
 				D8B58A45197CCEC10088E5F7 /* Default@2x.png in Resources */,
 				A461B4B2174CBAA70088B061 /* FeedCell.xib in Resources */,
 				A461B4B3174CBAA70088B061 /* FeedCell~ipad.xib in Resources */,
+				D86D7CD51994C87B00D64C18 /* caogao.png in Resources */,
 				A461B4B4174CBAA70088B061 /* UserInfoCell.xib in Resources */,
 				A461B4B5174CBAA70088B061 /* UserInfoCell~ipad.xib in Resources */,
 				A461B4B6174CBAA70088B061 /* CommentController.xib in Resources */,
@@ -19987,6 +20006,7 @@
 				EA11A4191839EA1200F73D64 /* group_footer_at@2x.png in Resources */,
 				EA11A41D1839EA1200F73D64 /* group_footer_chat@2x.png in Resources */,
 				EA11A4211839EA1200F73D64 /* group_footer_create@2x.png in Resources */,
+				D86D7CD91994C87B00D64C18 /* gengduo.png in Resources */,
 				EA11A4251839EA1200F73D64 /* group_footer_search@2x.png in Resources */,
 				EA11A4291839EA1200F73D64 /* group_footer_followed@2x.png in Resources */,
 				EA11A42D1839EA1200F73D64 /* group_footer_unfollowing@2x.png in Resources */,
@@ -20062,6 +20082,7 @@
 				EA68D4F91893B600003EB69A /* PurchaseVipController~ipad.xib in Resources */,
 				EA68D5011893C43A003EB69A /* group_footer_timeline@2x.png in Resources */,
 				CA926BAC18A8C950002C73B4 /* disable_notice_on.png in Resources */,
+				D86D7CDD1994C87B00D64C18 /* xiaoxi.png in Resources */,
 				EA68D50A1893C4A5003EB69A /* pen_show_fun1@2x.png in Resources */,
 				EA68D50E1893C4A5003EB69A /* pen_show_fun2@2x.png in Resources */,
 				EA68D5121893C4A5003EB69A /* pen_show_fun3@2x.png in Resources */,
@@ -20192,6 +20213,7 @@
 				C28A9DAA1738F04B007A819F /* RankView.xib in Resources */,
 				C28A9DAB1738F04B007A819F /* RankFirstView.xib in Resources */,
 				C28A9DAC1738F04B007A819F /* RankSecondView.xib in Resources */,
+				D86D7CD41994C87B00D64C18 /* caogao.png in Resources */,
 				C28A9DAD1738F04B007A819F /* TopPlayerView.xib in Resources */,
 				C28A9DAE1738F04B007A819F /* RankFirstView~ipad.xib in Resources */,
 				C28A9DAF1738F04B007A819F /* RankSecondView~ipad.xib in Resources */,
@@ -20311,6 +20333,7 @@
 				C28A9E5D1738F04B007A819F /* PassWordDialog~ipad.xib in Resources */,
 				C28A9E5E1738F04B007A819F /* RoomPasswordDialog.xib in Resources */,
 				C28A9E5F1738F04B007A819F /* RoomPasswordDialog~ipad.xib in Resources */,
+				D86D7CDC1994C87B00D64C18 /* xiaoxi.png in Resources */,
 				C28A9E601738F04B007A819F /* ZJHInputDialog.xib in Resources */,
 				C28A9E611738F04B007A819F /* ZJHInputDialog~ipad.xib in Resources */,
 				C28A9E621738F04B007A819F /* ZJHPassWordDialog.xib in Resources */,
@@ -20499,6 +20522,7 @@
 				CA518385179FB6340033AA95 /* ShakeNumberController.xib in Resources */,
 				CA7DE79B192BAD3200EED067 /* play1.png in Resources */,
 				A4C9E03A17A61B4200DE982F /* GuessRankCell.xib in Resources */,
+				D86D7CD81994C87B00D64C18 /* gengduo.png in Resources */,
 				CAF4897A17AA736900F015AB /* ToolPanel.xib in Resources */,
 				CAE74B7B17AF83D500E73875 /* DrawLayerPanel.xib in Resources */,
 				D89B27BE198233780035BE5F /* TipsPageViewController~ipad.xib in Resources */,
@@ -21185,6 +21209,7 @@
 				CA96E276150DE8AA00292335 /* GameBasic.proto in Resources */,
 				CA96E350150DFBFA00292335 /* GameMessage.proto in Resources */,
 				CADD7FCF1510DC530075C739 /* GameConstants.proto in Resources */,
+				D86D7CD71994C87B00D64C18 /* gengduo.png in Resources */,
 				CAB3DBDE1516DACD00E7DBC4 /* SelectWordCell.xib in Resources */,
 				CAEAB55D196164110065847C /* UserTutorialMainCell.xib in Resources */,
 				CA3221A5151F657F0039A384 /* FeedbackController.xib in Resources */,
@@ -21367,6 +21392,7 @@
 				CA1DA966167330070078B5A9 /* HomeMainMenuPanel.xib in Resources */,
 				CA1DA9681673301B0078B5A9 /* HomeMainMenu.xib in Resources */,
 				CA1DA96A167330300078B5A9 /* HomeBottomMenu.xib in Resources */,
+				D86D7CD31994C87B00D64C18 /* caogao.png in Resources */,
 				CA1DAA31167583130078B5A9 /* DrawHomeHeaderPanel~ipad.xib in Resources */,
 				CAD082F71676E0E8007B6B65 /* HomeBottomMenu~ipad.xib in Resources */,
 				CAD082F81676E0E8007B6B65 /* HomeMainMenu~ipad.xib in Resources */,
@@ -21401,6 +21427,7 @@
 				C2B538451677712300725802 /* RoomPasswordDialog.xib in Resources */,
 				C2B538461677712300725802 /* RoomPasswordDialog~ipad.xib in Resources */,
 				C2B538481677712300725802 /* ZJHInputDialog.xib in Resources */,
+				D86D7CDB1994C87B00D64C18 /* xiaoxi.png in Resources */,
 				C2B538491677712300725802 /* ZJHInputDialog~ipad.xib in Resources */,
 				C2B5384A1677712300725802 /* ZJHPassWordDialog.xib in Resources */,
 				C2B5384B1677712300725802 /* ZJHPassWordDialog~ipad.xib in Resources */,
@@ -22627,6 +22654,7 @@
 				A4DDD13817CDFD7B0029E562 /* draw_bg.zip in Resources */,
 				A4DDD13C17CDFD7B0029E562 /* frames.pb in Resources */,
 				A4DDD14017CDFD7B0029E562 /* hot_word.pb in Resources */,
+				D86D7CD61994C87B00D64C18 /* caogao.png in Resources */,
 				A4DDD14417CDFD7B0029E562 /* hot_word.txt in Resources */,
 				A4DDD14817CDFD7B0029E562 /* iap_product_513819630.pb in Resources */,
 				A4DDD14C17CDFD7B0029E562 /* iap_product_513819630_old.pb in Resources */,
@@ -22800,6 +22828,7 @@
 				A4D8FBA817DB08170085061F /* item_delete@2x.png in Resources */,
 				A4D8FBAC17DB08170085061F /* item_detail_bg@2x.png in Resources */,
 				A4D8FBB017DB08170085061F /* store_back@2x.png in Resources */,
+				D86D7CDE1994C87B00D64C18 /* xiaoxi.png in Resources */,
 				A4D8FBB417DB08170085061F /* store_bg@2x.jpg in Resources */,
 				A4D8FBB817DB08170085061F /* bubble_bg@2x.png in Resources */,
 				A4D8FBBC17DB08170085061F /* correct@2x.png in Resources */,
@@ -22853,6 +22882,7 @@
 				A4D8FD6217DB089C0085061F /* drawlayer_flag_hide@2x.png in Resources */,
 				A4D8FD6617DB089C0085061F /* drawlayer_flag_show@2x.png in Resources */,
 				A4D8FD6A17DB089C0085061F /* gradient_bg_left@2x.png in Resources */,
+				D86D7CDA1994C87B00D64C18 /* gengduo.png in Resources */,
 				A4D8FD6E17DB089C0085061F /* gradient_bg_mid@2x.png in Resources */,
 				A4D8FD7217DB089C0085061F /* gradient_bg_right@2x.png in Resources */,
 				D8B84175197E119500B6FB5C /* xiaoguanka.png in Resources */,

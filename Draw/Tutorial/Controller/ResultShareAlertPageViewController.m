@@ -241,8 +241,8 @@
     }
     return NSMakeRange(0, 1);
 }
-#define SEAL_POSITION_X (ISIPAD ? 380:186)
-#define SEAL_POSITION_Y (ISIPAD ? 320:150)
+#define SEAL_POSITION_X (ISIPAD ? 370:180)
+#define SEAL_POSITION_Y (ISIPAD ? 310:145)
 #define SEAL_POSITION_WIDTH (ISIPAD ? 150:60)
 #define SEAL_POSITION_HEIGHT (ISIPAD ? 150:60)
 -(void)makeSeal:(NSString*)text{
@@ -257,6 +257,9 @@
     ResultSeal *circleView = [[ResultSeal alloc] initWithFrame:CGRectMake(SEAL_POSITION_X, SEAL_POSITION_Y, SEAL_POSITION_WIDTH, SEAL_POSITION_HEIGHT) borderColor:COLOR_RED font:font text:text];
     circleView.backgroundColor = [UIColor clearColor];
     circleView.borderWidth = 3.0f;
+    if (ISIPAD) {
+        circleView.borderWidth = 5.0f;
+    }
     [circleView setAlpha:0.7];
     [self.view addSubview:circleView];
     [circleView release];
