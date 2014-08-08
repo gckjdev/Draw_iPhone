@@ -452,5 +452,15 @@
     [actionSheet release];
 }
 */
- 
+
+- (void)showGuidePage
+{
+    if ([[UserManager defaultManager] isOldUserWithoutXiaoji] || [[UserManager defaultManager] hasXiaojiNumber]){
+        // has user, do nothing
+        return;
+    }
+
+    [self performSelector:@selector(goToGuidePage) withObject:nil afterDelay:0.0];
+}
+
 @end

@@ -160,6 +160,7 @@
 #define METHOD_GET_OUPS_TIMES @"got"
 
 #define METHOD_GET_NEW_NUMBER           @"getNewNumber"
+#define METHOD_REGISTER_NEW_USER_NUMBER @"registerNewUserNumber"
 #define METHOD_GET_NUMBERS_FOR_USER     @"getNumbersForUser"
 #define METHOD_LOGIN_NUMBER             @"loginNumber"
 #define METHOD_LOGOUT_NUMBER            @"logoutNumber"
@@ -328,6 +329,7 @@
 #define PARA_NICKNAME @"nn"
 #define PARA_SIGNATURE @"sig"
 #define PARA_AUTO_REG @"are"
+#define PARA_RETURN_XIAOJI @"retxj"
 
 #define PARA_STROKES @"stro"
 #define PARA_DRAFT_CREATE_DATE @"dcrd"
@@ -583,6 +585,7 @@
 #define PARA_TIME_LINE_GUESS_COUNT @"tlgc"
 #define PARA_TIME_LINE_OPUS_COUNT @"tloc"
 #define PARA_GROUP_NOTICE_COUNT @"gnc"
+#define PARA_TIME_LINE_CONQUER_COUNT @"tlco"
 
 //friends operation
 #define PARA_TARGETUSERID   @"tid"

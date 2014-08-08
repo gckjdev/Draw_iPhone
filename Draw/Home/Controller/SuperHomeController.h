@@ -72,4 +72,6 @@
 - (void)enterFreeCoins;
 - (void)enterCheckIn;
 
+
+
 @end

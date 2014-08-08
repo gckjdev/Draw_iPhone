@@ -17,5 +17,8 @@
 
 
 //显示dialog
-+(void)show:(PPViewController *)superController UseTutorial:(PBUserTutorial *)pbUserTutorial Row:(NSInteger)row;
++(void)show:(PPViewController *)superController
+userTutorial:(PBUserTutorial *)pbUserTutorial
+ stageIndex:(NSInteger)stageIndex;
+
 @end

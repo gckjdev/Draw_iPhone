@@ -9,32 +9,31 @@
 #import "StageAlertViewController.h"
 #import "UserTutorialService.h"
 #import "StringUtil.h"
+#import "UIImageView+Extend.h"
 
 @interface StageAlertViewController ()
 
 @property (nonatomic, retain) PBUserTutorial* pbUserTutorial;
-@property (nonatomic, assign) NSInteger row;
+@property (nonatomic, assign) NSInteger stageIndex;
 @end
 
 @implementation StageAlertViewController
 
 
-+(void)show:(PPViewController *)superController UseTutorial:(PBUserTutorial *)pbUserTutorial Row:(NSInteger)row
++(void)show:(PPViewController *)superController userTutorial:(PBUserTutorial *)pbUserTutorial stageIndex:(NSInteger)stageIndex
 {
     NSArray *stageList = [[pbUserTutorial tutorial] stagesList];
-    if (stageList == nil || row >= [stageList count]){
+    if (stageList == nil || stageIndex >= [stageList count]){
         return ;
     }
     
-    PBStage *stageWithRow = [stageList objectAtIndex:row];
+    PBStage *stageWithRow = [stageList objectAtIndex:stageIndex];
     NSString *stageId = stageWithRow.stageId;
-    int stageIndex = row;
     
     StageAlertViewController *savc = [[StageAlertViewController alloc] init];
     
     savc.pbUserTutorial = pbUserTutorial;
-    savc.row = row;
-    
+    savc.stageIndex = stageIndex;
     
     CommonDialog *dialog = [CommonDialog
                             createDialogWithTitle:stageWithRow.name
@@ -75,31 +74,37 @@
 #define ISIPAD_BORDER (ISIPAD ? 5 : 2)
 #define ISIPAD_TEXT_HEIGHT (ISIPAD ? 80 : 40)
 -(void)updateTheView{
+
     if(self.pbUserTutorial==nil)
     {
         PPDebug(@"<updateTheView> but the pbUserTutorial is nil or empty");
         return;
     }
+    
     NSArray *stageList = [[self.pbUserTutorial tutorial] stagesList];
-    int32_t bestScore_Int = [[self.pbUserTutorial.userStagesList objectAtIndex:self.row] bestScore];
-    if (stageList == nil || self.row >= [stageList count]){
+    int bestScoreValue = 0;
+    
+    if (self.stageIndex < [self.pbUserTutorial.userStagesList count]){
+        PBUserStage* userStage = [self.pbUserTutorial.userStagesList objectAtIndex:self.stageIndex];
+        bestScoreValue = [userStage bestScore];
+    }
+    
+    if (stageList == nil || self.stageIndex >= [stageList count]){
         return ;
     }
     
-    PBStage *stageWithRow = [stageList objectAtIndex:self.row];
+    PBStage *stageWithRow = [stageList objectAtIndex:self.stageIndex];
     NSString *imagePath = stageWithRow.thumbImage;
     NSString *stageDesc = stageWithRow.cnDesc;
     
     NSString *bestScore = @"";
-    bestScore = [NSString stringWithFormat:@"%d",bestScore_Int];
+    bestScore = [NSString stringWithFormat:@"%d",bestScoreValue];
 
  
     UIFont *textFont = AD_FONT(20, 12);
     
     // stage image
     UIImage *placeHolderImage = [UIImage imageNamed:@DEFAUT_IMAGE];
-    
-   
     
     //自适应高度
     CGRect orgRect=self.stageDesc.frame;//获取原始UITextView的frame
@@ -124,10 +129,15 @@
     [self.stageDesc setFont:textFont];
     [self.stageDesc setTextColor:COLOR_BROWN];
     
-    
-    if(bestScore_Int>0){
-        [self.bestScore setText:[NSString stringWithFormat:@" 最好成绩:%@",bestScore]];
+    NSString* scoreText = nil;
+    if (bestScore > 0){
+        scoreText = bestScore;
     }
+    else{
+        scoreText = NSLS(@"kNoBestScore");
+    }
+    
+    [self.bestScore setText:[NSString stringWithFormat:NSLS(@"kBestScoreText"),scoreText]];
     [self.bestScore setFont:AD_FONT(20, 11)];
     [self.bestScore setTextColor:COLOR_BROWN];
     [self.bestScore setTextAlignment:NSTextAlignmentLeft];

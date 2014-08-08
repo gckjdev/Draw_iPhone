@@ -1017,6 +1017,19 @@ static UserService* _defaultUserService;
                            autoRegister:(BOOL)autoRegister
                             resultBlock:(AutoResgistrationResultBlock)resultBlock
 {
+    [self loginByDeviceWithViewController:homeController
+                             autoRegister:autoRegister
+                             returnXiaoji:NO
+                                postError:YES
+                              resultBlock:resultBlock];
+}
+
+- (void)loginByDeviceWithViewController:(PPViewController*)homeController
+                           autoRegister:(BOOL)autoRegister
+                           returnXiaoji:(BOOL)returnXiaoji
+                              postError:(BOOL)postError
+                            resultBlock:(AutoResgistrationResultBlock)resultBlock
+{
     NSString* appId = [PPConfigManager appId];
     NSString* gameId = [PPConfigManager gameId];
     NSString* deviceToken = [[UserManager defaultManager] deviceToken];
@@ -1031,7 +1044,8 @@ static UserService* _defaultUserService;
                                   gameId:gameId
                                 deviceId:deviceId
                              deviceToken:deviceToken
-                            autoRegister:autoRegister];
+                            autoRegister:autoRegister
+                            returnXiaoji:returnXiaoji];
         
         dispatch_async(dispatch_get_main_queue(), ^{
             
@@ -1040,7 +1054,9 @@ static UserService* _defaultUserService;
                 [self createLocalUserAccount:output.responseData appId:appId];
             }
             else if (output.resultCode == ERROR_NETWORK) {
-                POSTMSG(NSLS(@"kSystemFailure"));
+                if (postError){
+                    POSTMSG(NSLS(@"kSystemFailure"));
+                }
             }
             else if (output.resultCode == ERROR_DEVICE_NOT_BIND) {
                 // @"设备未绑定任何用户"
@@ -1049,7 +1065,9 @@ static UserService* _defaultUserService;
             }
             else {
                 // @"登录失败，稍后尝试"
-                POSTMSG(NSLS(@"kLoginFailure"));
+                if (postError){
+                    POSTMSG(NSLS(@"kLoginFailure"));
+                }
             }
             
             EXECUTE_BLOCK(resultBlock, NO, 0, [[UserManager defaultManager] pbUser]);
@@ -1334,8 +1352,8 @@ POSTMSG(NSLS(@"kLoginFailure"));
                 long bbsActionCount = [[output.jsonDataDict objectForKey:PARA_BBS_ACTION_COUNT] longValue];
                 long timeLineOpusCount = [[output.jsonDataDict objectForKey:PARA_TIME_LINE_OPUS_COUNT] longValue];
                 long timeLineGuessCount = [[output.jsonDataDict objectForKey:PARA_TIME_LINE_GUESS_COUNT] longValue];
+                long timeLineConquerCount = [[output.jsonDataDict objectForKey:PARA_TIME_LINE_CONQUER_COUNT] longValue];
                 long groupNoticeCount = [[output.jsonDataDict objectForKey:PARA_GROUP_NOTICE_COUNT] longValue];
-                
                 
                 PPDebug(@"<didGetStatistic>:feedCount = %ld, messageCount = %ld, fanCount = %ld", feedCount,messageCount,fanCount);
                 
@@ -1350,7 +1368,9 @@ POSTMSG(NSLS(@"kLoginFailure"));
                 [manager setBbsActionCount:bbsActionCount];
                 [manager setTimelineOpusCount:timeLineOpusCount];
                 [manager setTimelineGuessCount:timeLineGuessCount];
+                [manager setTimelineConquerCount:timeLineConquerCount];
                 [manager setGroupNoticeCount:groupNoticeCount];
+                
             }
             if (viewController && [viewController respondsToSelector:@selector(didSyncStatisticWithResultCode:)]) {
                 [viewController didSyncStatisticWithResultCode:output.resultCode];
@@ -1975,7 +1995,8 @@ POSTMSG(NSLS(@"kLoginFailure"));
                                       gameId:gameId
                                     deviceId:deviceId
                                  deviceToken:deviceToken
-                                autoRegister:YES];
+                                autoRegister:YES
+                                returnXiaoji:NO];
             
             dispatch_async(dispatch_get_main_queue(), ^{
                 

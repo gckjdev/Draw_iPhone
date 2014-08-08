@@ -22,6 +22,7 @@
     if (self) {
         // Initialization code
         SET_VIEW_ROUND_CORNER(self);
+        self.selectionStyle = UITableViewCellSelectionStyleNone;
     }
     return self;
 }
