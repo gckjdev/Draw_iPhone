@@ -168,18 +168,21 @@
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         </view>
                         <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="VZ6-Vt-6Fm">
-                            <rect key="frame" x="659" y="12" width="109" height="50"/>
+                            <rect key="frame" x="650" y="12" width="118" height="50"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
                                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eWd-ih-RBa">
-                                    <rect key="frame" x="39" y="7" width="35" height="35"/>
+                                    <rect key="frame" x="48" y="7" width="35" height="35"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <state key="normal" image="laba.png">
                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                     </state>
+                                    <connections>
+                                        <action selector="goToAnnounce:" destination="-1" eventType="touchUpInside" id="Aen-fn-mtQ"/>
+                                    </connections>
                                 </button>
                                 <view hidden="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="lqP-UD-IeI" userLabel="announceBadge" customClass="BadgeView">
-                                    <rect key="frame" x="51" y="0.0" width="30" height="30"/>
+                                    <rect key="frame" x="60" y="0.0" width="30" height="30"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </view>
