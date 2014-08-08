@@ -7996,6 +7996,10 @@
 		EAFA051F1880ECA700B0CF61 /* CreateContestController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAFA051D1880ECA600B0CF61 /* CreateContestController~ipad.xib */; };
 		EAFA05201880ECA700B0CF61 /* CreateContestController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAFA051D1880ECA600B0CF61 /* CreateContestController~ipad.xib */; };
 		EAFA05211880ECA700B0CF61 /* CreateContestController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAFA051D1880ECA600B0CF61 /* CreateContestController~ipad.xib */; };
+		FDDECBBC1994BF7F00BE7191 /* SMPageControl.m in Sources */ = {isa = PBXBuildFile; fileRef = FDDECBBB1994BF7F00BE7191 /* SMPageControl.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
+		FDDECBBD1994BF7F00BE7191 /* SMPageControl.m in Sources */ = {isa = PBXBuildFile; fileRef = FDDECBBB1994BF7F00BE7191 /* SMPageControl.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
+		FDDECBBE1994BF7F00BE7191 /* SMPageControl.m in Sources */ = {isa = PBXBuildFile; fileRef = FDDECBBB1994BF7F00BE7191 /* SMPageControl.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
+		FDDECBBF1994BF7F00BE7191 /* SMPageControl.m in Sources */ = {isa = PBXBuildFile; fileRef = FDDECBBB1994BF7F00BE7191 /* SMPageControl.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -11185,6 +11189,8 @@
 		EAEE551B188F7902004A0907 /* ChargeHistoryController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChargeHistoryController.h; sourceTree = "<group>"; };
 		EAEE551C188F7902004A0907 /* ChargeHistoryController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChargeHistoryController.m; sourceTree = "<group>"; };
 		EAFA051D1880ECA600B0CF61 /* CreateContestController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "CreateContestController~ipad.xib"; sourceTree = "<group>"; };
+		FDDECBBA1994BF7F00BE7191 /* SMPageControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMPageControl.h; sourceTree = "<group>"; };
+		FDDECBBB1994BF7F00BE7191 /* SMPageControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMPageControl.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -18234,6 +18240,7 @@
 		CAFEFDB316606FC100441D77 /* Component-View */ = {
 			isa = PBXGroup;
 			children = (
+				FDDECBB91994BF7F00BE7191 /* SMPageControl */,
 				D837DCA31988FAB2001686BB /* LDProgressView */,
 				D80BB5E31980C26000BFC4A7 /* THProgressView */,
 				D8B58B20197CEE090088E5F7 /* SGFocusImageFrame */,
@@ -18877,6 +18884,15 @@
 				EAE5718C16FC6ACB000AFADA /* CacheManager.m */,
 			);
 			path = Cache;
+			sourceTree = "<group>";
+		};
+		FDDECBB91994BF7F00BE7191 /* SMPageControl */ = {
+			isa = PBXGroup;
+			children = (
+				FDDECBBA1994BF7F00BE7191 /* SMPageControl.h */,
+				FDDECBBB1994BF7F00BE7191 /* SMPageControl.m */,
+			);
+			path = SMPageControl;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -23410,6 +23426,7 @@
 				A461B0AF174CBAA70088B061 /* FileUtil.m in Sources */,
 				A461B0B0174CBAA70088B061 /* FontUtils.m in Sources */,
 				A461B0B1174CBAA70088B061 /* UIFontExt.m in Sources */,
+				FDDECBBE1994BF7F00BE7191 /* SMPageControl.m in Sources */,
 				A461B0B2174CBAA70088B061 /* UIImageExt.m in Sources */,
 				A461B0B3174CBAA70088B061 /* UIImageUtil.m in Sources */,
 				A461B0B4174CBAA70088B061 /* LocaleUtils.m in Sources */,
@@ -24474,6 +24491,7 @@
 				C28A9AC71738F04B007A819F /* ContestService.m in Sources */,
 				C28A9AC81738F04B007A819F /* ContestController.m in Sources */,
 				C28A9AC91738F04B007A819F /* ContestView.m in Sources */,
+				FDDECBBD1994BF7F00BE7191 /* SMPageControl.m in Sources */,
 				C28A9ACC1738F04B007A819F /* StatementController.m in Sources */,
 				C28A9ACD1738F04B007A819F /* ContestOpusController.m in Sources */,
 				C28A9ACE1738F04B007A819F /* CommonTabController.m in Sources */,
@@ -25923,6 +25941,7 @@
 				CA5D9D81183E3C0200BD820C /* DOUAudioStreamer.m in Sources */,
 				CA5D9D85183E3C0200BD820C /* DOUAudioVisualizer.m in Sources */,
 				CA5D9D89183E3C0200BD820C /* DOUEAGL1View.m in Sources */,
+				FDDECBBC1994BF7F00BE7191 /* SMPageControl.m in Sources */,
 				CA5D9D8D183E3C0200BD820C /* DOUEAGLView.m in Sources */,
 				CA5D9D91183E3C0200BD820C /* DOUSimpleHTTPRequest.m in Sources */,
 				CA5D9D95183E3C0200BD820C /* NSData+DOUMappedFile.m in Sources */,
@@ -26643,6 +26662,7 @@
 				CA5519F917CAFA1100855225 /* CommonShareAction.m in Sources */,
 				CA51419717CB419F00883CAA /* ContestPrizeCell.m in Sources */,
 				EA433E1917CDDA2F006E6FA7 /* JudgerScoreView.m in Sources */,
+				FDDECBBF1994BF7F00BE7191 /* SMPageControl.m in Sources */,
 				EA433E2C17CDE500006E6FA7 /* DJQRateView.m in Sources */,
 				EA433E3017CDE500006E6FA7 /* DJQStartView.m in Sources */,
 				EA7100AD17D04B2C00451A38 /* CustomSlider.m in Sources */,
