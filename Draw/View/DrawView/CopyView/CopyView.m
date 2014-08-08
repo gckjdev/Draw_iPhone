@@ -33,6 +33,7 @@
 @property (nonatomic, retain) NSData *opusData;
 @property (nonatomic, assign) int opusStartIndex;
 @property (nonatomic, assign) int opusEndIndex;
+@property (nonatomic, assign) int targetType;
 @property (nonatomic, retain) Draw *draw;
 
 @property (nonatomic, retain) PBUserStage *userStage;
@@ -49,6 +50,7 @@
                      opusId:(NSString*)opusId
                   userStage:(PBUserStage*)userStage
                       stage:(PBStage*)stage
+                       type:(TargetType)type
 {
     CGRect frame = CGRectMake(point.x, point.y, COPY_VIEW_DEFAULT_WIDTH, COPY_VIEW_DEFAULT_HEIGHT);
     CopyView *copyView = [[CopyView alloc] initWithFrame:frame];
@@ -60,6 +62,7 @@
     [superView addSubview:copyView];
     copyView.superViewController = superViewController;
     copyView.delegate = copyView;
+    copyView.targetType = type;
     
     [contentView release];
     [copyView release];
@@ -349,6 +352,8 @@
     [actionSheet showInView:self.superViewController.view];
 }
 
+#define TEMP_REPLAY_IMAGE_NAME @"temp_replay_chapter_bg_image.png"
+
 - (void)play
 {
     if (self.userStage){
@@ -358,14 +363,26 @@
         }
         
         
-        UIImage* bgImage = [[UIImage alloc] initWithContentsOfFile:_opusBgImagePath];
+        UIImage* bgImage = nil; //[[UIImage alloc] initWithContentsOfFile:_opusBgImagePath];
         
-        [DrawPlayer playDrawData:&_opusData
-                            draw:&_draw
-                  viewController:self.superViewController
-                         bgImage:bgImage
-                      startIndex:_opusStartIndex
-                        endIndex:_opusEndIndex];
+        if (_targetType == TypePracticeDraw){
+            [DrawPlayer playDrawData:&_opusData
+                                draw:&_draw
+                      viewController:self.superViewController
+                             bgImage:bgImage
+                         bgImageName:TEMP_REPLAY_IMAGE_NAME
+                          startIndex:_opusStartIndex
+                            endIndex:_opusEndIndex];
+        }
+        else{
+            [DrawPlayer playDrawData:&_opusData
+                                draw:&_draw
+                      viewController:self.superViewController
+                             bgImage:bgImage
+                         bgImageName:nil
+                          startIndex:0
+                            endIndex:0];
+        }
         
         [bgImage release];
     }
