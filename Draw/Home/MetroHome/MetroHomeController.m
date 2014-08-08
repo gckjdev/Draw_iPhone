@@ -141,7 +141,8 @@
     self.avatarView.delegate = self;
 
 //    [self setButtonTitleBottom];
-
+    [self setListenInView:self.topAnnounceView selector:@selector(goToAnnounce:)];
+    [self.topAnnounceButton setUserInteractionEnabled:NO];
     
 #pragma mark 调用buttonLayout
     [self buttonLayout];
@@ -704,8 +705,8 @@
     [forumView setTranslatesAutoresizingMaskIntoConstraints:NO];
     [amazingOpusView setTranslatesAutoresizingMaskIntoConstraints:NO];
     //Horizone
-    NSString *paintAndLearnViewHorizone = @"H:|-28-[paintingView(==240)]-10-[learningView(==452)]-28-|";
-    NSString *forumAndAmazingViewHorizone = @"H:|-28-[forumView(==240)]-10-[amazingOpusView(==452)]-28-|";
+    NSString *paintAndLearnViewHorizone = @"H:|-28-[paintingView(==240)]-20-[learningView(==452)]-28-|";
+    NSString *forumAndAmazingViewHorizone = @"H:|-28-[forumView(==240)]-20-[amazingOpusView(==452)]-28-|";
     [constraints addObject:paintAndLearnViewHorizone];
     [constraints addObject:forumAndAmazingViewHorizone];
     
