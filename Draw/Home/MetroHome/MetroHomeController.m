@@ -102,7 +102,6 @@
 - (void)viewDidLoad
 {
     self.view.backgroundColor = COLOR_GREEN;
-    [self.documentBadge setNumber:2];
     
     [super viewDidLoad];
     

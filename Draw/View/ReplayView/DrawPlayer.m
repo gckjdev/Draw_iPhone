@@ -493,11 +493,6 @@
     if (begin > 0){
         // if begin from 0, means no background image needed
         img = [self.showView createImageAtIndex:begin bgColor:[UIColor clearColor]];
-        
-        // convert to make sure it's PNG file
-//        NSData* data = UIImagePNGRepresentation(img);
-//        img = [UIImage imageWithData:data];
-        
         PPDebug(@"<createBgImageByObj> image size=%@", NSStringFromCGSize(img.size));
     }
 

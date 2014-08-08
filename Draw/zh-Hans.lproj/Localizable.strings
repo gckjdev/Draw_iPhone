@@ -2855,7 +2855,7 @@
 "kConquerDrawShareSinaWeibo" = "分享到新浪微博";
 "kConquerDrawShareQQWeibo" = "分享到腾讯微博";
 
-"kConquerDrawShareText" = "我在%@中学习画画，本次闯关得分为%d分，击败了全宇宙中%d的用户，你看看喽";
+"kConquerDrawShareText" = "我在%@中学习画画，本次画画得分为%d分，击败了宇宙世界中总计%d位用户，你看看喽";
 "kCreateImageShareFail" = "无法生成分享图片，分享失败";
 
 
@@ -2884,7 +2884,7 @@
 //"kTutorialDescriptionLoveLifeLoveSport" = "童鞋们，一起来运动吧";
 //"kTutorialDescriptionFamousBuilding" = "你认识这些建筑吗？";
 
-"kResultPageDesc" = "击败了全宇宙中";
+"kResultPageDesc" = "击败了银河系中";
 "kResultPageCount" = "%@ 位小吉用户";
 "kResultPageScore" = "本次闯关成绩为 %@";
 
@@ -2899,8 +2899,10 @@
 "kSealResultPass" = "通关";
 "kSealResultFail" = "失败";
 
-"kTakeNumberSucc" = "注册完成，你的小吉号码是【%@】，请到个人资料设置昵称、密码等信息。";
-"kGotoNextChapterWelcome" = "欢迎进入第%d小节继续本关修炼\n\n点击左上角的临摹框可回放教程\n\n或点击右上角的【帮助】按钮查看提示/知识点\n";
+"kTakeNumberSucc" = "注册完成，你的小吉号码是【%@】，请到个人资料设置昵称、密码等信息。\n\n祝玩的开心！";
+"kGotoNextChapterWelcome" = "欢迎进入第%d小节继续本关修炼";
+
+// \n\n点击左上角的临摹框可回放教程\n\n或点击右上角的【帮助】按钮查看提示/知识点\n
 
 "kRegistering" = "注册中...";
 "kBestScoreText" = "最佳成绩: %@";

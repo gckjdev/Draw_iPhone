@@ -193,7 +193,7 @@
 
 //更新本页面控件
 #define DEFAULT_OPUS @"xiaoguanka"
-#define ISIPAD_BORDER (ISIPAD ? 5 : 1)
+#define ISIPAD_BORDER (ISIPAD ? 5 : 3)
 -(void)updateViewWidget{
     [self setDesc];
  
@@ -212,6 +212,7 @@
     //border
     self.opusImageView.layer.borderWidth = ISIPAD_BORDER;
     [self.opusImageView.layer setBorderColor:COLOR_YELLOW.CGColor];
+    SET_VIEW_ROUND_CORNER(self.opusImageView);
     
 //    //resultView
 //    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, self.resultView.frame.size.width, self.resultView.frame.size.height)];
