@@ -262,7 +262,7 @@ static NSDictionary* DEFAULT_MENU_SELECTOR_DICT = nil;
     
     [self updateBadgeWithType:HomeMenuTypeDrawFreeCoins badge:[[CheckInManager defaultManager] isCheckInToday] ? 0:1];
     
-    long timelineCount = manager.timelineOpusCount + manager.timelineGuessCount + manager.commentCount + manager.drawToMeCount;
+    long timelineCount = manager.timelineOpusCount + manager.timelineGuessCount + manager.commentCount + manager.drawToMeCount + manager.timelineConquerCount;
     
     [self updateBadgeWithType:HomeMenuTypeDrawTimeline badge:timelineCount];
     [self updateBadgeWithType:HomeMenuTypeDrawContest badge:[manager newContestCount]];
@@ -742,6 +742,10 @@ static NSDictionary* DEFAULT_MENU_SELECTOR_DICT = nil;
                                  @(HomeMenuTypeDrawApps) : NSLS(@"kMore_apps"),
                                  @(HomeMenuTypeDrawMore) : NSLS(@"kHomeMenuTypeDrawMore"),
                                  @(HomeMenuTypeGroup) : NSLS(@"kGroup"),
+                                 
+                                 @(SpecialTypeUserFriend) : NSLS(@"kMenuTitleFriend"),
+                                 @(SpecialTypeUser) : NSLS(@"kMenuTitleMe"),
+
                                  };
         
         [DEFAULT_MENU_TITLE_DICT retain];  // make sure you retain the dictionary here for futher usage
@@ -769,7 +773,7 @@ static NSDictionary* DEFAULT_MENU_SELECTOR_DICT = nil;
                                     @(HomeMenuTypeDrawBBS) : @"enterBBS",//@selector(enterBBS)
                                     @(HomeMenuTypeDrawBigShop) :@"enterShop", //todo
                                     @(HomeMenuTypeDrawShop) : NSLS(@"kHomeMenuTypeDrawShop"),
-                                    @(HomeMenuTypeDrawPainter) : @"enterBBS",//todo
+                                    @(HomeMenuTypeDrawPainter) : @"enterPainter",//todo
                                     @(HomeMenuTypeDrawPhoto) : @"enterBBS",//TODO
                                     @(HomeMenuTypeOpusClass) : @"enterOputClass",//@selector(enterOpusClass)
                                     @(HomeMenuTypeDrawApps) : @"enterBBS",//TODO
@@ -779,6 +783,10 @@ static NSDictionary* DEFAULT_MENU_SELECTOR_DICT = nil;
                                     @(HomeMenuTypeDrawMore) : @"enterMore",//@selector(enterMore);
                                     @(HomeMenuTypeGroup) : @"enterGroup",//@selector(enterGroup)
                                     @(HomeMenuTypeLearnDraw) : @"enterLearnDraw",
+                                    
+                                    @(SpecialTypeUserFriend) : @"enterFriend",
+                                    @(SpecialTypeUser) : @"enterUserDetail",
+
                                     };
         
         [DEFAULT_MENU_SELECTOR_DICT retain];  // make sure you retain the dictionary here for futher usage
@@ -826,6 +834,10 @@ static NSDictionary* DEFAULT_MENU_SELECTOR_DICT = nil;
                                  @(HomeMenuTypeDrawShop) : [imageManager drawHomeShop],
                                  @(HomeMenuTypeBottomTask) : [imageManager homeBottomTask],
                                  @(HomeMenuTypeGroup) : [imageManager drawHomeGroup],
+                                 
+                                 // special
+                                 @(SpecialTypeUserFriend) : [imageManager drawHomeBbs],
+                                 @(SpecialTypeUser) : [[ShareImageManager defaultManager] homeDefaultAvatarBG],
                                  };
         
         [DEFAULT_MENU_IMAGE_DICT retain];  // make sure you retain the dictionary here for futher usage
@@ -849,5 +861,7 @@ static NSDictionary* DEFAULT_MENU_SELECTOR_DICT = nil;
 {
     return OPAQUE_COLOR(0, 191, 178); // default
 }
+
+
 
 @end

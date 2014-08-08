@@ -107,7 +107,7 @@ NSString* GlobalGetServerURL()
 //    return @"http://localhost:8000/api/i?";
 //    return @"http://58.215.160.100:8002/api/i?";
 //    return @"http://192.168.1.13:8001/api/i?";
-//    return @"http://58.215.160.100:8020/api/i?";
+    return @"http://58.215.160.100:8020/api/i?";
 //    return @"http://192.168.1.198:8000/api/i?";
 //    return @"http://58.215.160.100:8888/api/i?";
 //
@@ -379,18 +379,17 @@ NSString* GlobalGetBoardServerURL()
     self.rootNavigationController.navigationBarHidden = YES;
 
     // Try Fetch User Data By Device Id
+    /* disable this from new learn draw version
     if ([[UserManager defaultManager] hasUser] == NO){
         BOOL autoRegister = [GameApp isAutoRegister];
         [[UserService defaultService] loginByDeviceWithViewController:rootController
                                                          autoRegister:autoRegister
                                                           resultBlock:nil];
     }
+    */
     
         
     self.window.rootViewController = self.rootNavigationController;
-    
-    // Init SNS service
-//    [self initSNSService];
     
     [self.window makeKeyAndVisible];
     

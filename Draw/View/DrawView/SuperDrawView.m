@@ -200,7 +200,12 @@
 
 - (UIImage*)createImage
 {
-    return [dlManager createImageWithBGImage:self.bgImage];
+    return [dlManager createImageWithBGImage:self.bgImage bgColor:[UIColor whiteColor]];
+}
+
+- (UIImage*)createImageWithBgColor:(UIColor*)bgColor
+{
+    return [dlManager createImageWithBGImage:self.bgImage bgColor:bgColor];
 }
 
 - (UIImage *)createImageWithSize:(CGSize)size

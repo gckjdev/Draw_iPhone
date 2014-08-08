@@ -604,7 +604,8 @@
                                          atPoint:drawView.frame.origin
                                           opusId:opusId
                                        userStage:[self buildUserStage]
-                                           stage:self.stage];
+                                           stage:self.stage
+                                            type:targetType];
     }
 }
 
@@ -2145,25 +2146,6 @@
     }
 }
 
-- (void)conquerAgain
-{
-    // 再来一次
-    [self.draft setDeleteFlag:@(YES)]; // delete current draft
-    [self.userStageBuilder setConquerLocalOpusId:nil];              // TODO clear local opus Id
-    PBUserStage* userStage = [self buildUserStage];
-    PBUserTutorial* userTutorial = [self buildUserTutorial];
-    
-    [self actionsBeforeQuit];
-    [self.navigationController popViewControllerAnimated:NO];
-    
-    [[UserTutorialService defaultService] enterConquerDraw:self.startController
-                                              userTutorial:userTutorial
-                                                   stageId:userStage.stageId
-                                                stageIndex:userStage.stageIndex];
-    
-//    [OfflineDrawViewController conquer:self.startController userStage:userStage userTutorial:userTutorial];
-}
-
 // 闯关模式下，尝试下一关
 - (void)tryConquerNext
 {
@@ -2210,10 +2192,12 @@
 {
     // 再来一次
     [self.draft setDeleteFlag:@(YES)]; // delete current draft
-    [self.userStageBuilder setPracticeLocalOpusId:nil];            // TODO clear local opus Id
+    [self.userStageBuilder setPracticeLocalOpusId:nil];
+    [self.userStageBuilder setCurrentChapterIndex:0];
+    
     PBUserStage* userStage = [self buildUserStage];
-    PBUserTutorial* userTutorial = [self buildUserTutorial];
-
+    PBUserTutorial* userTutorial = [[UserTutorialManager defaultManager] updateUserStage:userStage];
+    
     // quit current
     [self actionsBeforeQuit];
     [self.navigationController popViewControllerAnimated:NO];
@@ -2222,10 +2206,30 @@
     [[UserTutorialService defaultService] enterPracticeDraw:self.startController
                                                userTutorial:userTutorial
                                                     stageId:userStage.stageId
-                                                 stageIndex:userStage.stageIndex];
-    
-//    [OfflineDrawViewController practice:self.startController userStage:userStage userTutorial:userTutorial];
+                                                 stageIndex:userStage.stageIndex];    
 }
+
+// 修炼模式下，重新修炼
+- (void)conquerAgain
+{
+    // 再来一次
+    [self.draft setDeleteFlag:@(YES)]; // delete current draft
+    [self.userStageBuilder setConquerLocalOpusId:nil];
+    
+    PBUserStage* userStage = [self buildUserStage];
+    PBUserTutorial* userTutorial = [[UserTutorialManager defaultManager] updateUserStage:userStage];
+    
+    // quit current
+    [self actionsBeforeQuit];
+    [self.navigationController popViewControllerAnimated:NO];
+    
+    // start new
+    [[UserTutorialService defaultService] enterConquerDraw:self.startController
+                                               userTutorial:userTutorial
+                                                    stageId:userStage.stageId
+                                                 stageIndex:userStage.stageIndex];
+}
+
 
 //- (IBAction)clickNextChapterButton:(id)sender
 //{
@@ -2526,9 +2530,44 @@
     [dialog showInView:self.view];
 }
 
+#define TITLE_CONTINUE      NSLS(@"kContinueDraw")
+#define TITLE_QUIT          NSLS(@"kQuitDraw")
+#define TITLE_RESTART       NSLS(@"kRestartDraw")
+
+- (void)showQuitMenuForLearnDraw
+{
+    if (![self isLearnType]){
+        return;
+    }
+    
+    NSArray *titles = @[TITLE_CONTINUE,
+                        TITLE_RESTART,
+                        TITLE_QUIT];
+    
+    BBSActionSheet *sheet = [[BBSActionSheet alloc] initWithTitles:titles callback:^(NSInteger index) {
+        NSString *t = titles[index];
+        if ([t isEqualToString:TITLE_CONTINUE]) {
+            // do nothing...
+        }else if([t isEqualToString:TITLE_RESTART]){
+            if (targetType == TypeConquerDraw){
+                [self conquerAgain];
+            }
+            else{
+                [self practiceAgain];
+            }
+        }
+        else if([t isEqualToString:TITLE_QUIT]){
+            [self saveDraft:NO];
+            [self quit];
+        }
+    }];
+
+    [sheet showInView:self.view showAtPoint:self.view.center animated:YES];
+    [sheet release];
+}
+
 - (void)clickBackButton:(id)sender
 {
-    
     // 关闭弹窗
     [self.upPanelPopView dismissAnimated:YES];
     [self.layerPanelPopView dismissAnimated:YES];
@@ -2537,7 +2576,12 @@
         // 没有注册过，直接退出
         [self quit];
         return;
-    }    
+    }
+    
+    if ([self isLearnType]){
+        [self showQuitMenuForLearnDraw];
+        return;
+    }
     
     if ([self isLearnType]){
         [self saveDraft:NO];

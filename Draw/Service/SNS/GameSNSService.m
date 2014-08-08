@@ -56,41 +56,50 @@ GameSNSService* _defaultSNSService;
                                    appSecret:[GameApp sinaAppSecret]    //  @"0334252914651e8f76bad63337b3b78f"
                                  redirectUri:[GameApp sinaAppRedirectURI]]; // @"http://appgo.cn"];
         
+        PPDebug(@"end registerApp SINA Weibo");
+        
         //添加腾讯微博应用
         [ShareSDK connectTencentWeiboWithAppKey:[GameApp qqAppKey]          //@"801307650"
                                       appSecret:[GameApp qqAppSecret]       // @"ae36f4ee3946e1cbb98d6965b0b2ff5c"
                                     redirectUri:[GameApp qqAppRedirectURI]  // @"http://www.sharesdk.cn"];
                                        wbApiCls:[WeiboApi class]];
         
+        PPDebug(@"end registerApp QQ Weibo");
+
         //添加Facebook应用
         [ShareSDK connectFacebookWithAppKey:[GameApp facebookAppKey]   //@"107704292745179"
                                   appSecret:[GameApp facebookAppSecret]]; // @"38053202e1a5fe26c80c753071f0b573"];
         
+
+        PPDebug(@"end registerApp Facebook");
         
         [ShareSDK connectWeChatWithAppId:[GameApp weixinId] // @"wx6dd7a9b94f3dd72a"        //此参数为申请的微信AppID
                                wechatCls:[WXApi class]];
 
-        PPDebug(@"end registerApp 1");
+        PPDebug(@"end registerApp WeChat");
         
-//        /* rem QQ Zone
-        if ([DeviceDetection isOS6] == NO){
-            //添加QQ应用(QQ空间)
-            [ShareSDK connectQQWithQZoneAppKey:[GameApp qqSpaceAppId]                //该参数填入申请的QQ AppId
-                             qqApiInterfaceCls:[QQApiInterface class]
-                               tencentOAuthCls:[TencentOAuth class]];
-
-            //添加QQ应用(QQ空间)
-            [ShareSDK connectQZoneWithAppKey:[GameApp qqSpaceAppId]                //该参数填入申请的QQ AppId
-                                   appSecret:[GameApp qqSpaceAppKey]];
-        }
-//         */
+//        if ([DeviceDetection isOS6] == NO){
+//            //添加QQ应用(QQ空间)
+//            [ShareSDK connectQQWithQZoneAppKey:[GameApp qqSpaceAppId]                //该参数填入申请的QQ AppId
+//                             qqApiInterfaceCls:[QQApiInterface class]
+//                               tencentOAuthCls:[TencentOAuth class]];
+//
+//            //添加QQ应用(QQ空间)
+//            [ShareSDK connectQZoneWithAppKey:[GameApp qqSpaceAppId]                //该参数填入申请的QQ AppId
+//                                   appSecret:[GameApp qqSpaceAppKey]];
+//
+//            PPDebug(@"end registerApp QZone");
+//        }
         
-        PPDebug(@"end registerApp 2");
+        PPDebug(@"end registerApp all");
         
         // clear SNS local data if expired
         [self cleanSNSInfoIfExpired:ShareTypeSinaWeibo];
         [self cleanSNSInfoIfExpired:ShareTypeTencentWeibo];
         [self cleanSNSInfoIfExpired:ShareTypeFacebook];
+        
+        PPDebug(@"end clean expire all");
+        
     }
     
     return self;

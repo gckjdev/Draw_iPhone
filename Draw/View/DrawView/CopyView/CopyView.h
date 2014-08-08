@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "SPUserResizableView.h"
+#import "DrawConstants.h"
 
 @class PPViewController;
 @class PBStage;
@@ -20,7 +21,8 @@
                     atPoint:(CGPoint)point
                      opusId:(NSString*)opusId
                   userStage:(PBUserStage*)userStage
-                      stage:(PBStage*)stage;
+                      stage:(PBStage*)stage
+                       type:(TargetType)type;
 
 - (void)enableMenu;
 - (void)disableMenu;

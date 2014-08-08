@@ -13,6 +13,7 @@
 @interface MoreViewCell : UICollectionViewCell
 @property (retain, nonatomic) IBOutlet BadgeView *badgeView;
 @property (retain, nonatomic) IBOutlet UIButton *itemButton;
+@property (retain, nonatomic) IBOutlet UILabel *titleLabel;
 @property (assign, nonatomic) int currentRow;
 @property (assign, nonatomic) MoreViewController* controller;
 

@@ -14,6 +14,7 @@
 @property(nonatomic,retain) NSMutableArray *layerList;
 @property (retain, nonatomic) NSString *xiaojiNumber;
 @property (retain, nonatomic) NSString *password;
+@property (assign, nonatomic) UIViewController *superController;
 
 + (void)showGuidePage:(UIViewController*)superController;
 

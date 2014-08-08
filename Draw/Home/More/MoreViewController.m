@@ -30,11 +30,11 @@ static dispatch_once_t onceToken;
     return self;
 }
 
-
-#define COLLECTION_VIEW_CELL_HEIGHT (ISIPAD ? 170:100)
+#define COLLECTION_VIEW_CELL_HEIGHT (ISIPAD ? 190:100)
 #define COLLECTION_VIEW_CELL_WIDTH (ISIPAD ? 200:90)
 #define COLLECTION_VIEW_CELL_MINIMUM_LINE_SPACING (ISIPAD ? 40:0)
 #define TOP_LEADING (ISIPAD ? 10:0)
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -99,7 +99,8 @@ static dispatch_once_t onceToken;
     return 1;
 }
 
-#define UI_EDGE_INSERTS_MAKE (ISIPAD ? 45 : 8)
+#define UI_EDGE_INSERTS_MAKE (ISIPAD ? 35 : 10)
+
 -(UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section
 {
     return UIEdgeInsetsMake(UI_EDGE_INSERTS_MAKE, UI_EDGE_INSERTS_MAKE, UI_EDGE_INSERTS_MAKE, UI_EDGE_INSERTS_MAKE);
@@ -122,7 +123,8 @@ static dispatch_once_t onceToken;
 {
     dispatch_once(&onceToken
                   , ^{
-                      itemTypeArray = @[@(HomeMenuTypeGroup), @(HomeMenuTypeDrawContest),@(HomeMenuTypeDrawPainter),@(HomeMenuTypeDrawGame),@(HomeMenuTypeDrawGuess),@(HomeMenuTypeTask),@(HomeMenuTypeDrawFreeCoins),@(HomeMenuTypeDrawBigShop),@(HomeMenuTypeDrawMore)];
+                      itemTypeArray = @[@(SpecialTypeUser), @(SpecialTypeUserFriend),
+                                        @(HomeMenuTypeGroup), @(HomeMenuTypeDrawContest),@(HomeMenuTypeDrawPainter),@(HomeMenuTypeDrawGame),@(HomeMenuTypeDrawGuess),@(HomeMenuTypeDrawBigShop),@(HomeMenuTypeTask),@(HomeMenuTypeDrawFreeCoins),@(HomeMenuTypeDrawMore)];
                       
                       [itemTypeArray retain];
                                         });

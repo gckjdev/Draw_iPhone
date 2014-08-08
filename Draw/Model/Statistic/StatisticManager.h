@@ -21,9 +21,11 @@
 @property (assign, readonly) long newContestCount;
 @property (assign, nonatomic) long timelineOpusCount;
 @property (assign, nonatomic) long timelineGuessCount;
+@property (assign, nonatomic) long timelineConquerCount;
 @property (assign, nonatomic) long guessContestNotif;
 @property (readonly, nonatomic) long taskCount;
 @property (assign, nonatomic) long groupNoticeCount;
+
 
 + (StatisticManager *)defaultManager;
 

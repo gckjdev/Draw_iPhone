@@ -14,10 +14,16 @@
 #import "PPNetworkRequest.h"
 #import "GameNetworkConstants.h"
 
+static BOOL gIsShowGuidePage = NO;
+
 @implementation GuidePageManager
 
 + (void)showGuidePage:(UIViewController*)superController
 {
+    if (gIsShowGuidePage){
+        // avoid reenter again
+        return;
+    }
     
     ICETutorialPage *layr1 = nil;
     ICETutorialPage *layr2 = nil;
@@ -63,8 +69,10 @@
     // create guide page
     GuidePageManager *guidePage = [[[GuidePageManager alloc] initWithPages:tutorialLayers delegate:nil] autorelease];
     guidePage.delegate = guidePage;
+    guidePage.superController = superController;
 
-    [superController.navigationController presentViewController:guidePage animated:NO completion:^{
+    gIsShowGuidePage = YES;
+    [superController presentViewController:guidePage animated:NO completion:^{
         
     }];
     
@@ -100,6 +108,8 @@
 
 - (void)dealloc
 {
+    self.superController = nil;
+    
     PPRelease(_xiaojiNumber);
     PPRelease(_password);
     PPRelease(_layerList);
@@ -177,8 +187,10 @@
 
 - (IBAction)dismissWithMessage:(NSString*)message
 {
+    UIView* view = self.superController.view;
+    gIsShowGuidePage = NO;
     [self dismissViewControllerAnimated:YES completion:^{
-        [CommonDialog showSimpleDialog:message inView:self.view.superview];
+        [CommonDialog showSimpleDialog:message inView:view];
     }];
 }
 
@@ -189,8 +201,8 @@
         return;
     }
     
-    [self showActivityWithText:NSLS(@"kLoading")];
-    [[UserNumberService defaultService] getAndRegisterNumber:^(int resultCode, NSString *number) {
+    [self showActivityWithText:NSLS(@"kRegistering")];
+    [[UserNumberService defaultService] registerNewUserNumber:^(int resultCode, NSString *number) {
         [self hideActivity];
         if (resultCode == 0){
             NSString* message = [NSString stringWithFormat:NSLS(@"kTakeNumberSucc"), number];

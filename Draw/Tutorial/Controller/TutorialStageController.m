@@ -138,7 +138,9 @@
     if ([self.pbUserTutorial isStageLock:row] == NO){
 //        [self askPracticeOrPass:row];
         
-        [StageAlertViewController show:self UseTutorial:_pbUserTutorial Row:row];
+        [StageAlertViewController show:self
+                          userTutorial:self.pbUserTutorial
+                            stageIndex:row];
         
     }
     else{

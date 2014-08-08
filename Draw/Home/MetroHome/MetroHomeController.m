@@ -81,7 +81,18 @@
     [self.messageButton  setTitleEdgeInsets:UIEdgeInsetsMake(BOTTOM_BUTTON_MARGIN_HEIGHT, MESSAGE_BUTTON_TITLE_EDGEINSET, 0, 0)];
     [self.moreButton  setTitleEdgeInsets:UIEdgeInsetsMake(BOTTOM_BUTTON_MARGIN_HEIGHT, MORE_BUTTON_TITLE_EDGEINSETS, 0, 0)];
 }
-
+#pragma mark 使button对齐
+-(void)buttonLayout
+{
+    CGRect tempFrame = self.indexButton.frame;
+    
+    tempFrame.size.width = 40;
+    tempFrame.size.height = 5;
+    PPDebug(@"<imageView.Size.Width>%d",tempFrame.size.width);
+    PPDebug(@"<imageView.Size.Width>%d",tempFrame.size.height);
+    self.indexButton.frame = tempFrame;
+//    [self.indexButton.imageView];
+}
 - (void)startStatisticTimer
 {
     if (self.statisTimer == nil){
@@ -161,10 +172,14 @@
     
     [self setButtonTitleBottom];
     
+#pragma mark 调用buttonLayout
+    [self buttonLayout];
+
     [_bottomView setTranslatesAutoresizingMaskIntoConstraints:NO];
     [_mainView setTranslatesAutoresizingMaskIntoConstraints:NO];
     [_topView setTranslatesAutoresizingMaskIntoConstraints:NO];
     [_galleryView setTranslatesAutoresizingMaskIntoConstraints:NO];
+
 
     [self setAllViewConstraints];
     if(isIPad){
@@ -172,7 +187,7 @@
     }else{
         [self setMainBoxView];
     }
-    
+    [self showGuidePage];
     
 }
 
@@ -203,6 +218,10 @@
     
     [UIApplication sharedApplication].idleTimerDisabled = NO;
     [super viewDidAppear:animated];
+    
+    if ([[UserManager defaultManager] hasXiaojiNumber] == NO){
+        [self showGuidePage];
+    }
 }
 
 - (void)viewDidDisappear:(BOOL)animated
@@ -266,7 +285,9 @@
 {
     // TODO
 }
-
+-(void)updateAvatarBadge:(int)count{
+    [self.avatarBadgeView setNumber:count];
+}
 - (IBAction)goToLearning:(id)sender{
     [self enterLearnDraw];
 }
@@ -342,6 +363,7 @@
 -(IBAction)goToAnnounce:(id)sender
 {
     [self showBulletinView];
+    [self updateAllBadge];
 }
 
 -(IBAction)goToUserDetail:(id)sender
@@ -358,6 +380,7 @@
 - (void)didClickOnAvatar:(NSString *)userId
 {
     [self enterUserDetail];
+    [self updateAvatarBadge:0];
 }
 - (void)didReceiveMemoryWarning
 {
@@ -438,14 +461,18 @@
     
     long timelineCount = manager.timelineOpusCount +
                             manager.timelineGuessCount +
+                            manager.timelineConquerCount +
                             manager.commentCount +
                             manager.drawToMeCount;
+
     [self updateBadgeTimeline:timelineCount];
     
     int moreCount = [manager newContestCount] + [manager groupNoticeCount];
     [self updateBadgeMore:moreCount];
     
     [self updateBulletinBadge:[manager bulletinCount]];
+    
+    //TODO the avatar Badge
     
     // TODO
     //    [self updateBadgeBBS:HomeMenuTypeDrawFriend badge:manager.fanCount];
@@ -479,6 +506,7 @@
     [_galleryButton release];
     [_forumView release];
     [_amazingOpusView release];
+    [_avatarBadgeView release];
     [super dealloc];
 }
 - (void)viewDidUnload {
@@ -511,6 +539,7 @@
     [self setGalleryButton:nil];
     [self setForumView:nil];
     [self setAmazingOpusView:nil];
+    [self setAvatarBadgeView:nil];
     [super viewDidUnload];
 }
 
@@ -653,7 +682,7 @@
 
 -(void)setMainBoxView_iPad{
     
-    CGFloat height = 595-30;
+    CGFloat height = 595-40;
     
     CGFloat bigViewHeight = height * 0.618f;
     CGFloat smallViewHeight = height - bigViewHeight;
@@ -671,10 +700,12 @@
     BrickView *amazingOpusView = [[[BrickView alloc] initWithFrame:self.amazingOpusView.bounds title:@"精彩作品" imageTitle:@"Gallery" image:amazingImage] autorelease];
     
     
-    [paintingView setBackgroundColor:[UIColor brownColor]];
-    [learningView setBackgroundColor:[UIColor brownColor]];
-    [forumView setBackgroundColor:[UIColor brownColor]];
-    [amazingOpusView setBackgroundColor:[UIColor brownColor]];
+    
+    [paintingView setBackgroundColor:[UIColor colorWithRed:0.757f green:0.565f blue:0.965f alpha:1.0f]];
+    [learningView setBackgroundColor:[UIColor colorWithRed:0.984f green:0.431f blue:0.588f alpha:1.0f]];
+    [forumView setBackgroundColor:[UIColor colorWithRed:0.459f green:0.784f blue:0.965f alpha:1.0f]];
+    [amazingOpusView setBackgroundColor:[UIColor colorWithRed:0.553f green:0.612f blue:0.98f alpha:1.0f]];
+    
     
     [self.mainView addSubview:paintingView];
     [self.mainView addSubview:learningView];
@@ -690,16 +721,16 @@
     [forumView setTranslatesAutoresizingMaskIntoConstraints:NO];
     [amazingOpusView setTranslatesAutoresizingMaskIntoConstraints:NO];
     //Horizone
-    NSString *paintAndLearnViewHorizone = @"H:|-32-[paintingView(==240)]-10-[learningView(==452)]-32-|";
-    NSString *forumAndAmazingViewHorizone = @"H:|-32-[forumView(==240)]-10-[amazingOpusView(==452)]-32-|";
+    NSString *paintAndLearnViewHorizone = @"H:|-28-[paintingView(==240)]-10-[learningView(==452)]-28-|";
+    NSString *forumAndAmazingViewHorizone = @"H:|-28-[forumView(==240)]-10-[amazingOpusView(==452)]-28-|";
     [constraints addObject:paintAndLearnViewHorizone];
     [constraints addObject:forumAndAmazingViewHorizone];
     
     
     
-    NSString *paintAndForumViewVertical = [NSString stringWithFormat:@"V:|-10-[paintingView(==%f)]-10-[forumView(==%f)]-10-|",bigViewHeight,smallViewHeight];
+    NSString *paintAndForumViewVertical = [NSString stringWithFormat:@"V:|-10-[paintingView(==%f)]-20-[forumView(==%f)]-10-|",bigViewHeight,smallViewHeight];
     
-    NSString *learnAndAmazingViewVertical = [NSString stringWithFormat:@"V:|-10-[learningView(==%f)]-10-[amazingOpusView(==%f)]-10-|",bigViewHeight,smallViewHeight];
+    NSString *learnAndAmazingViewVertical = [NSString stringWithFormat:@"V:|-10-[learningView(==%f)]-20-[amazingOpusView(==%f)]-10-|",bigViewHeight,smallViewHeight];
     
     [constraints addObject:paintAndForumViewVertical];
     [constraints addObject:learnAndAmazingViewVertical];
@@ -734,8 +765,6 @@
     [self setListenInView:learningView selector:@selector(goToLearning:)];
     [self setListenInView:forumView selector:@selector(goToBBS:)];
     [self setListenInView:amazingOpusView selector:@selector(goToOpus:)];
-    
-    
 }
 
 

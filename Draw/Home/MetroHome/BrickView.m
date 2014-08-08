@@ -70,13 +70,15 @@
 
 #define IMAGE_HEIGHT (ISIPAD ? 60:40)
 #define IMAGE_WIDTH  (ISIPAD ? 60:40)
+#define TITLE_LABEL_X (ISIPAD ? 10:5)
+#define TITLE_LABEL_Y (ISIPAD ? 10:5)
 -(void)initComponent:(CGRect)rect{
     
     //左上角label
-    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(5, 5, self.bounds.size.width, 20)];
+    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(TITLE_LABEL_X, TITLE_LABEL_Y, self.bounds.size.width, 20)];
     [label setBackgroundColor:[UIColor clearColor]];
     [label setText:self.title];
-    [label setFont:self.titleFont];
+    [label setFont:AD_BOLD_FONT(23, 13)];
     [label setTextColor:[UIColor whiteColor]];
     
     //中间图片
@@ -90,7 +92,7 @@
     CGFloat y = imageView.frame.size.height+imageView.frame.origin.y;
     UILabel *labelDesc = [[UILabel alloc] initWithFrame:CGRectMake(x, y, IMAGE_WIDTH, IMAGE_HEIGHT/2)];
     [labelDesc setText:_imageTitle];
-    [labelDesc setFont:AD_FONT(18, 10)];
+    [labelDesc setFont:AD_BOLD_FONT(18, 10)];
     [labelDesc setTextColor:[UIColor whiteColor]];
     [labelDesc setBackgroundColor:[UIColor clearColor]];
     
@@ -128,7 +130,8 @@
     NSString *constrain = [NSString stringWithFormat:@"H:[imageView(==%f)]",imageViewHeight];
     [constraints addObject:constrain];
     
-    NSString *constrain2 = [NSString stringWithFormat:@"V:[imageView(==%f)]-2-[labelDesc(==20)]",imageViewHeight];
+    CGFloat labelDescHeight = (isIPad ? 30:15);
+    NSString *constrain2 = [NSString stringWithFormat:@"V:[imageView(==%f)]-2-[labelDesc(==%f)]",imageViewHeight,labelDescHeight];
     [constraints addObject:constrain2];
     
     

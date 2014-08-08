@@ -8,6 +8,7 @@
             <connections>
                 <outlet property="amazingOpusView" destination="yHW-lN-AUL" id="tUk-FD-6wg"/>
                 <outlet property="anounceBadge" destination="lqP-UD-IeI" id="oRY-yn-Ipi"/>
+                <outlet property="avatarBadgeView" destination="VTT-h7-iya" id="say-Zb-RYS"/>
                 <outlet property="avatarView" destination="wXd-IQ-F1C" id="hLf-YR-xy4"/>
                 <outlet property="bottomView" destination="cos-MQ-YkX" id="i1R-Th-ELp"/>
                 <outlet property="documentBadge" destination="4bq-SU-uOr" id="L5W-TU-6a6"/>
@@ -179,6 +180,13 @@
                         <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wXd-IQ-F1C" userLabel="Avatar View" customClass="AvatarView">
                             <rect key="frame" x="26" y="12" width="45" height="45"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <subviews>
+                                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="VTT-h7-iya" customClass="BadgeView">
+                                    <rect key="frame" x="28" y="-11" width="30" height="30"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                                </view>
+                            </subviews>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         </view>
                     </subviews>
