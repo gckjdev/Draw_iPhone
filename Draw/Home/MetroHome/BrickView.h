@@ -19,4 +19,7 @@
 @property (nonatomic,retain) UIFont *imageTitleFont;
 @property (nonatomic,retain) UIColor *titleColor;
 @property (nonatomic,retain) UIColor *imageTitleColor;
+
+
+- (id)initWithFrame:(CGRect)frame title:(NSString *)title imageTitle:(NSString *)imageTitle image:(UIImage*)image;
 @end

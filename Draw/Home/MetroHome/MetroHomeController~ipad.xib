@@ -6,6 +6,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MetroHomeController">
             <connections>
+                <outlet property="amazingOpusView" destination="yHW-lN-AUL" id="tUk-FD-6wg"/>
                 <outlet property="anounceBadge" destination="lqP-UD-IeI" id="oRY-yn-Ipi"/>
                 <outlet property="avatarView" destination="wXd-IQ-F1C" id="hLf-YR-xy4"/>
                 <outlet property="bottomView" destination="cos-MQ-YkX" id="i1R-Th-ELp"/>
@@ -13,18 +14,16 @@
                 <outlet property="documentButton" destination="2V5-T5-7k4" id="s1x-HX-DTy"/>
                 <outlet property="forumView" destination="bN6-Lx-G2D" id="22x-u6-6Wv"/>
                 <outlet property="galleryImageView" destination="N0J-Bo-dK4" id="VfC-fQ-wND"/>
-                <outlet property="galleryView" destination="yHW-lN-AUL" id="Jdv-hK-17l"/>
+                <outlet property="galleryView" destination="6QK-jc-Xhh" id="BgE-qi-tWf"/>
                 <outlet property="indexBadge" destination="Ief-Ho-elD" id="Min-eN-qmh"/>
                 <outlet property="indexButton" destination="jQS-qv-H8k" id="W8i-2o-Qph"/>
                 <outlet property="learningView" destination="weU-wh-Y5B" id="jAl-Pf-dMS"/>
-                <outlet property="learningViewButton" destination="3fB-im-qgf" id="vUA-6O-21e"/>
                 <outlet property="mainView" destination="GTc-Sg-gSW" id="tvU-Q8-Ckn"/>
                 <outlet property="messageBadge" destination="YEQ-a8-xmt" id="lpo-j7-PDo"/>
                 <outlet property="messageButton" destination="Trk-17-xPZ" id="LnV-zN-NQR"/>
                 <outlet property="moreBadge" destination="kUq-ur-3sk" id="j9s-PI-c0S"/>
                 <outlet property="moreButton" destination="G1p-eF-mJo" id="RpY-zI-vdG"/>
                 <outlet property="paintingView" destination="bsR-Sv-Czr" id="h9N-nZ-CLf"/>
-                <outlet property="paintingViewButton" destination="mrA-qa-UIz" id="una-aG-bmH"/>
                 <outlet property="topAnnounceButton" destination="eWd-ih-RBa" id="mmU-Ke-Oko"/>
                 <outlet property="topAnnounceView" destination="VZ6-Vt-6Fm" id="Yxb-zO-Loj"/>
                 <outlet property="topNameButton" destination="Jj4-dJ-jmS" id="KOB-3a-rDL"/>
@@ -42,7 +41,7 @@
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <subviews>
                         <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="clip" translatesAutoresizingMaskIntoConstraints="NO" id="jQS-qv-H8k" userLabel="Index Button">
-                            <rect key="frame" x="131" y="-2" width="30" height="30"/>
+                            <rect key="frame" x="131" y="0.0" width="30" height="30"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <fontDescription key="fontDescription" type="system" pointSize="11"/>
                             <state key="normal" title="动态" backgroundImage="dongtai.png">
@@ -58,7 +57,7 @@
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         </view>
                         <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="clip" translatesAutoresizingMaskIntoConstraints="NO" id="2V5-T5-7k4" userLabel="Document Button">
-                            <rect key="frame" x="290" y="-2" width="30" height="30"/>
+                            <rect key="frame" x="290" y="0.0" width="30" height="30"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="11"/>
                             <state key="normal" title="草稿" backgroundImage="caogao.png">
@@ -74,7 +73,7 @@
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         </view>
                         <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="clip" translatesAutoresizingMaskIntoConstraints="NO" id="Trk-17-xPZ" userLabel="Message Button">
-                            <rect key="frame" x="447" y="-2" width="30" height="30"/>
+                            <rect key="frame" x="447" y="0.0" width="30" height="30"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="11"/>
                             <state key="normal" title="聊天" backgroundImage="xiaoxi.png">
@@ -91,7 +90,7 @@
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         </view>
                         <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="clip" translatesAutoresizingMaskIntoConstraints="NO" id="G1p-eF-mJo" userLabel="More Button">
-                            <rect key="frame" x="607" y="-2" width="30" height="30"/>
+                            <rect key="frame" x="607" y="0.0" width="30" height="30"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="11"/>
                             <state key="normal" title="更多" backgroundImage="gengduo.png">
@@ -109,129 +108,32 @@
                         </view>
                     </subviews>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="49" id="VET-fr-pYL"/>
+                    </constraints>
                 </view>
                 <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="GTc-Sg-gSW" userLabel="Button View">
-                    <rect key="frame" x="0.0" y="324" width="768" height="578"/>
+                    <rect key="frame" x="0.0" y="325" width="768" height="625"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <subviews>
-                        <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="yHW-lN-AUL" userLabel="Gallery Button View">
-                            <rect key="frame" x="290" y="405" width="455" height="165"/>
+                        <view hidden="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="yHW-lN-AUL" userLabel="Gallery Button View">
+                            <rect key="frame" x="290" y="405" width="452" height="173"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <subviews>
-                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sKn-Hc-NzW" userLabel="Gallery - Button">
-                                    <rect key="frame" x="0.0" y="0.0" width="455" height="165"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    <inset key="contentEdgeInsets" minX="10" minY="10" maxX="0.0" maxY="0.0"/>
-                                    <state key="normal" title="精彩作品">
-                                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                    </state>
-                                    <connections>
-                                        <action selector="goToOpus:" destination="-1" eventType="touchUpInside" id="NlW-dH-5qe"/>
-                                    </connections>
-                                </button>
-                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="jingcaizuopin.png" translatesAutoresizingMaskIntoConstraints="NO" id="ELG-Fv-Pe6">
-                                    <rect key="frame" x="190" y="40" width="75" height="75"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                </imageView>
-                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Gallery" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="knJ-9v-hSF">
-                                    <rect key="frame" x="200" y="123" width="54" height="21"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                    <nil key="highlightedColor"/>
-                                </label>
-                            </subviews>
                             <color key="backgroundColor" red="0.80000007152557373" green="0.60000002384185791" blue="0.98823535442352295" alpha="1" colorSpace="deviceRGB"/>
                         </view>
-                        <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bN6-Lx-G2D" userLabel="Forum Button View">
-                            <rect key="frame" x="25" y="407" width="245" height="165"/>
+                        <view hidden="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bN6-Lx-G2D" userLabel="Forum Button View">
+                            <rect key="frame" x="30" y="407" width="240" height="171"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <subviews>
-                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VEW-Me-SAU" userLabel="Forum - Button">
-                                    <rect key="frame" x="0.0" y="0.0" width="245" height="165"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    <inset key="contentEdgeInsets" minX="10" minY="10" maxX="0.0" maxY="0.0"/>
-                                    <state key="normal" title="论坛">
-                                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                    </state>
-                                    <connections>
-                                        <action selector="goToBBS:" destination="-1" eventType="touchUpInside" id="GZP-z8-F5F"/>
-                                    </connections>
-                                </button>
-                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="luntan.png" translatesAutoresizingMaskIntoConstraints="NO" id="4Qg-Ax-NFC">
-                                    <rect key="frame" x="85" y="40" width="75" height="75"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                </imageView>
-                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Forum" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dga-Dx-PcG">
-                                    <rect key="frame" x="97" y="123" width="50" height="21"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                    <nil key="highlightedColor"/>
-                                </label>
-                            </subviews>
                             <color key="backgroundColor" red="0.458823561668396" green="0.78431379795074463" blue="0.9647059440612793" alpha="1" colorSpace="deviceRGB"/>
                         </view>
-                        <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="weU-wh-Y5B" userLabel="Learning Button View">
-                            <rect key="frame" x="290" y="20" width="455" height="365"/>
+                        <view hidden="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="weU-wh-Y5B" userLabel="Learning Button View">
+                            <rect key="frame" x="290" y="20" width="452" height="367"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                            <subviews>
-                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3fB-im-qgf" userLabel="Learning - Button">
-                                    <rect key="frame" x="0.0" y="0.0" width="455" height="365"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    <inset key="contentEdgeInsets" minX="10" minY="10" maxX="0.0" maxY="0.0"/>
-                                    <state key="normal" title="学画画">
-                                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                    </state>
-                                    <connections>
-                                        <action selector="goToLearning:" destination="-1" eventType="touchUpInside" id="ba1-Je-jes"/>
-                                    </connections>
-                                </button>
-                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="xuehuahua.png" translatesAutoresizingMaskIntoConstraints="NO" id="IXH-7m-IBU">
-                                    <rect key="frame" x="190" y="140" width="75" height="85"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                </imageView>
-                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Learning" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FyN-5G-YSu">
-                                    <rect key="frame" x="194" y="233" width="67" height="21"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                    <nil key="highlightedColor"/>
-                                </label>
-                            </subviews>
                             <color key="backgroundColor" red="0.99215686274509807" green="0.42352941176470588" blue="0.58431372549019611" alpha="1" colorSpace="deviceRGB"/>
                         </view>
-                        <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bsR-Sv-Czr" userLabel="Painting Button View">
-                            <rect key="frame" x="25" y="20" width="245" height="365"/>
+                        <view hidden="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bsR-Sv-Czr" userLabel="Painting Button View">
+                            <rect key="frame" x="30" y="20" width="240" height="365"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <subviews>
-                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mrA-qa-UIz" userLabel="Painting - Button">
-                                    <rect key="frame" x="0.0" y="0.0" width="245" height="365"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    <inset key="contentEdgeInsets" minX="10" minY="10" maxX="0.0" maxY="0.0"/>
-                                    <state key="normal" title="画画">
-                                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                    </state>
-                                    <connections>
-                                        <action selector="goToDraw:" destination="-1" eventType="touchUpInside" id="Ezx-2T-997"/>
-                                    </connections>
-                                </button>
-                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="huahua.png" translatesAutoresizingMaskIntoConstraints="NO" id="W94-tB-oeo">
-                                    <rect key="frame" x="85" y="140" width="75" height="85"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                </imageView>
-                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Painting" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lbH-u3-K1s">
-                                    <rect key="frame" x="91" y="233" width="63" height="21"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                    <nil key="highlightedColor"/>
-                                </label>
-                            </subviews>
                             <color key="backgroundColor" red="0.76078431372549016" green="0.55294117647058827" blue="0.97647058823529409" alpha="1" colorSpace="deviceRGB"/>
                         </view>
                     </subviews>
@@ -281,32 +183,35 @@
                         </view>
                     </subviews>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="60" id="dPh-Ba-DvH"/>
-                    </constraints>
                 </view>
                 <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6QK-jc-Xhh" userLabel="Gallery View">
                     <rect key="frame" x="0.0" y="60" width="768" height="265"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <subviews>
-                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="N0J-Bo-dK4">
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="N0J-Bo-dK4">
                             <rect key="frame" x="26" y="15" width="716" height="250"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         </imageView>
                     </subviews>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="top" secondItem="N0J-Bo-dK4" secondAttribute="top" constant="15" id="kAk-Bf-U70"/>
+                    </constraints>
                 </view>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" image="neironglan yu caidanlan.png" translatesAutoresizingMaskIntoConstraints="NO" id="Hs1-gF-V6b">
-                    <rect key="frame" x="0.0" y="947" width="768" height="25"/>
+                    <rect key="frame" x="0.0" y="950" width="768" height="25"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                 </imageView>
             </subviews>
             <color key="backgroundColor" red="0.94901960784313721" green="0.94901960784313721" blue="0.94901960784313721" alpha="1" colorSpace="deviceRGB"/>
             <constraints>
-                <constraint firstItem="GTc-Sg-gSW" firstAttribute="top" secondItem="6QK-jc-Xhh" secondAttribute="bottom" id="lSK-7m-xNp"/>
-                <constraint firstAttribute="bottom" secondItem="cos-MQ-YkX" secondAttribute="top" constant="49" id="qNr-T5-d7f"/>
-                <constraint firstItem="Hs1-gF-V6b" firstAttribute="top" secondItem="GTc-Sg-gSW" secondAttribute="bottom" constant="19" id="y7D-Tb-Phs"/>
+                <constraint firstItem="GTc-Sg-gSW" firstAttribute="top" secondItem="6QK-jc-Xhh" secondAttribute="bottom" id="24h-YF-2Xe"/>
+                <constraint firstItem="6QK-jc-Xhh" firstAttribute="top" secondItem="Sdz-be-ymP" secondAttribute="bottom" id="2vS-7y-WV1"/>
+                <constraint firstItem="cos-MQ-YkX" firstAttribute="top" secondItem="Hs1-gF-V6b" secondAttribute="bottom" id="Xaj-ZA-qdM"/>
+                <constraint firstItem="GTc-Sg-gSW" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="a4n-7E-59c"/>
+                <constraint firstItem="Hs1-gF-V6b" firstAttribute="top" secondItem="GTc-Sg-gSW" secondAttribute="bottom" id="eCb-hS-Xhw"/>
+                <constraint firstAttribute="trailing" secondItem="GTc-Sg-gSW" secondAttribute="trailing" id="tPr-M9-hTb"/>
             </constraints>
             <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
@@ -316,12 +221,8 @@
         <image name="caogao.png" width="32" height="32"/>
         <image name="dongtai.png" width="32" height="32"/>
         <image name="gengduo.png" width="32" height="32"/>
-        <image name="huahua.png" width="80" height="76"/>
-        <image name="jingcaizuopin.png" width="80" height="76"/>
         <image name="laba.png" width="24" height="24"/>
-        <image name="luntan.png" width="80" height="76"/>
         <image name="neironglan yu caidanlan.png" width="768" height="20"/>
         <image name="xiaoxi.png" width="32" height="32"/>
-        <image name="xuehuahua.png" width="80" height="76"/>
     </resources>
 </document>

@@ -25,6 +25,21 @@
     return self;
 }
 
+- (id)initWithFrame:(CGRect)frame title:(NSString *)title imageTitle:(NSString *)imageTitle image:(UIImage*)image
+{
+    self = [super initWithFrame:frame];
+    if (self) {
+        // Initialization code
+        self.title = title;
+        self.image = image;
+        self.imageTitle = imageTitle;
+        
+        [self setDefault];
+        [self initComponent:frame];
+    }
+    return self;
+}
+
 -(void)setDefault{
     if(self.titleFont==nil){
         self.titleFont = AD_FONT(20, 13);
@@ -62,23 +77,69 @@
     [label setBackgroundColor:[UIColor clearColor]];
     [label setText:self.title];
     [label setFont:self.titleFont];
+    [label setTextColor:[UIColor whiteColor]];
     
     //中间图片
     UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake((rect.size.width-IMAGE_WIDTH)/2, (rect.size.height-IMAGE_HEIGHT)/2, IMAGE_HEIGHT, IMAGE_WIDTH)];
     [imageView setImage:self.image];
     
+   
+    
     //图片描述
-    CGFloat x = imageView.frame.size.width+imageView.frame.origin.x;
+    CGFloat x = imageView.frame.origin.x;
     CGFloat y = imageView.frame.size.height+imageView.frame.origin.y;
-    UILabel *labelDesc = [[UILabel alloc] initWithFrame:CGRectMake(x, y+5, IMAGE_WIDTH, IMAGE_HEIGHT)];
+    UILabel *labelDesc = [[UILabel alloc] initWithFrame:CGRectMake(x, y, IMAGE_WIDTH, IMAGE_HEIGHT/2)];
     [labelDesc setText:_imageTitle];
-    [labelDesc setFont:_imageTitleFont];
+    [labelDesc setFont:AD_FONT(18, 10)];
+    [labelDesc setTextColor:[UIColor whiteColor]];
+    [labelDesc setBackgroundColor:[UIColor clearColor]];
     
     [self addSubview:label];
     [self addSubview:labelDesc];
     [self addSubview:imageView];
     
+    [labelDesc setTranslatesAutoresizingMaskIntoConstraints:NO];
+    [imageView setTranslatesAutoresizingMaskIntoConstraints:NO];
+
+    //constrain
+    NSLayoutConstraint *constrain3 = [NSLayoutConstraint constraintWithItem:self
+                                                                  attribute:NSLayoutAttributeCenterX
+                                                                  relatedBy:NSLayoutRelationEqual
+                                                                     toItem:imageView
+                                                                  attribute:NSLayoutAttributeCenterX
+                                                                 multiplier:1
+                                                                   constant:0];
+    [self addConstraint:constrain3];
     
+    NSLayoutConstraint *constrain4 = [NSLayoutConstraint constraintWithItem:self
+                                                                  attribute:NSLayoutAttributeCenterY
+                                                                  relatedBy:NSLayoutRelationEqual
+                                                                     toItem:imageView
+                                                                  attribute:NSLayoutAttributeCenterY
+                                                                 multiplier:1
+                                                                   constant:10];
+    [self addConstraint:constrain4];
+
+    
+    NSDictionary *views = NSDictionaryOfVariableBindings(label, imageView,labelDesc);
+    NSMutableArray *constraints = [[NSMutableArray alloc] init];
+    
+    CGFloat imageViewHeight = (isIPad ? 60:40);
+    NSString *constrain = [NSString stringWithFormat:@"H:[imageView(==%f)]",imageViewHeight];
+    [constraints addObject:constrain];
+    
+    NSString *constrain2 = [NSString stringWithFormat:@"V:[imageView(==%f)]-2-[labelDesc(==20)]",imageViewHeight];
+    [constraints addObject:constrain2];
+    
+    
+    // Set constraints.
+    for (NSString *string in constraints) {
+        [self addConstraints:[NSLayoutConstraint
+                              constraintsWithVisualFormat:string
+                              options:0 metrics:nil
+                              views:views]];
+    }
+
 }
 
 
