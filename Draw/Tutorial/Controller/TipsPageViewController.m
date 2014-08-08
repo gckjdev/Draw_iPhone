@@ -92,13 +92,13 @@ defaultIndex:(int)defaultIndex
         //test
         i++;
     }
-    SGFocusImageFrame *imageFrame = [[SGFocusImageFrame alloc] initWithFrameAndIntervalTime:CGRectMake(0, 0, IMAGE_FRAME_WIDTH,IMAGE_FRAME_HEIGHT)
+    
+    CGRect frame = CGRectMake(0, 0, IMAGE_FRAME_WIDTH,IMAGE_FRAME_HEIGHT);
+    SGFocusImageFrame *imageFrame = [[SGFocusImageFrame alloc] initWithFrameAndIntervalTime:frame
                                                                     delegate:self
                                                                     intervalTime:0.0f
                                                                     defaultPage:self.defaultIndex
-                                                                    hasPageControllerBackgroundColor:YES
-                                                                    focusImageItems:itemList, nil
-                                                            ];
+                                                                    focusImageItems:itemList];
     
     imageFrame.userInteractionEnabled = YES;
     [self.view addSubview:imageFrame];
