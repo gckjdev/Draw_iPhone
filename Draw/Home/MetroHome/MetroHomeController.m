@@ -27,6 +27,7 @@
 #import "WordManager.h"
 #import "DrawRecoveryService.h"
 #import "SDWebImageManager.h"
+#import "BrickView.h"
 
 @interface MetroHomeController ()
 
@@ -162,25 +163,27 @@
     
     [self setButtonTitleBottom];
     
-    //Autolayout 适配ios6 ios7
-    NSLayoutConstraint* constraint = [NSLayoutConstraint constraintWithItem:self.galleryView
-                                                                  attribute:NSLayoutAttributeTop
-                                                                  relatedBy:NSLayoutRelationEqual
-                                                                     toItem:self.topView
-                                                                  attribute:NSLayoutAttributeBottom
-                                                                 multiplier:1.0
-                                                                   constant:0];
+//    //Autolayout 适配ios6 ios7
+//    NSLayoutConstraint* constraint = [NSLayoutConstraint constraintWithItem:self.galleryView
+//                                                                  attribute:NSLayoutAttributeTop
+//                                                                  relatedBy:NSLayoutRelationEqual
+//                                                                     toItem:self.topView
+//                                                                  attribute:NSLayoutAttributeBottom
+//                                                                 multiplier:1.0
+//                                                                   constant:0];
+//    
+//    NSLayoutConstraint* constraint2 = [NSLayoutConstraint constraintWithItem:self.topView
+//                                                                  attribute:NSLayoutAttributeTop
+//                                                                  relatedBy:NSLayoutRelationEqual
+//                                                                     toItem:self.view
+//                                                                  attribute:NSLayoutAttributeTop
+//                                                                 multiplier:1.0
+//                                                                   constant:STATUSBAR_DELTA];
     
-    NSLayoutConstraint* constraint2 = [NSLayoutConstraint constraintWithItem:self.topView
-                                                                  attribute:NSLayoutAttributeTop
-                                                                  relatedBy:NSLayoutRelationEqual
-                                                                     toItem:self.view
-                                                                  attribute:NSLayoutAttributeTop
-                                                                 multiplier:1.0
-                                                                   constant:STATUSBAR_DELTA];
-    
-    [self.view addConstraint:constraint];
-    [self.view addConstraint:constraint2];
+//    [self.view addConstraint:constraint];
+//    [self.view addConstraint:constraint2];
+    [self setAllViewConstraints];
+    [self setMainBoxView];
     
 }
 
@@ -304,27 +307,27 @@
     [self.bottomBackground setBackgroundColor:[UIColor clearColor]];
     [self.bottomBackground setImage:bottomBackground];
     CGFloat mainScreenHeight = [[UIScreen mainScreen] bounds].size.height;
-    if(!ISIPAD){
-        NSLayoutConstraint* constraint = nil;
-        if(mainScreenHeight == 480){
-            constraint = [NSLayoutConstraint constraintWithItem:self.bottomBackground
-                                                      attribute:NSLayoutAttributeTop
-                                                      relatedBy:NSLayoutRelationEqual
-                                                         toItem:self.mainView
-                                                      attribute:NSLayoutAttributeBottom
-                                                     multiplier:1.0
-                                                       constant:-5];
-        }else{
-            constraint = [NSLayoutConstraint constraintWithItem:self.bottomBackground
-                                                      attribute:NSLayoutAttributeTop
-                                                      relatedBy:NSLayoutRelationEqual
-                                                         toItem:self.mainView
-                                                      attribute:NSLayoutAttributeBottom
-                                                     multiplier:1.0
-                                                       constant:-10];
-        }
-        [self.view addConstraint:constraint];
-    }
+//    if(!ISIPAD){
+//        NSLayoutConstraint* constraint = nil;
+//        if(mainScreenHeight == 480){
+//            constraint = [NSLayoutConstraint constraintWithItem:self.bottomBackground
+//                                                      attribute:NSLayoutAttributeTop
+//                                                      relatedBy:NSLayoutRelationEqual
+//                                                         toItem:self.mainView
+//                                                      attribute:NSLayoutAttributeBottom
+//                                                     multiplier:1.0
+//                                                       constant:-5];
+//        }else{
+//            constraint = [NSLayoutConstraint constraintWithItem:self.bottomBackground
+//                                                      attribute:NSLayoutAttributeTop
+//                                                      relatedBy:NSLayoutRelationEqual
+//                                                         toItem:self.mainView
+//                                                      attribute:NSLayoutAttributeBottom
+//                                                     multiplier:1.0
+//                                                       constant:-10];
+//        }
+//        [self.view addConstraint:constraint];
+//    }
 }
     
 #pragma mark click
@@ -483,6 +486,54 @@
 }
 
 
+-(void)setMainBoxView{
+    
+    BrickView *paintingView = [[[BrickView alloc] initWithFrame:self.paintingView.frame] autorelease];
+    BrickView *learningView = [[[BrickView alloc] initWithFrame:self.learningView.frame] autorelease];
+    BrickView *forumView = [[[BrickView alloc] initWithFrame:self.forumView.frame] autorelease];
+    BrickView *amazingOpusView = [[[BrickView alloc] initWithFrame:self.amazingOpusView.frame] autorelease];
+    
+    [paintingView setBackgroundColor:[UIColor blackColor]];
+    [learningView setBackgroundColor:[UIColor blackColor]];
+    [forumView setBackgroundColor:[UIColor blackColor]];
+    [amazingOpusView setBackgroundColor:[UIColor blackColor]];
+    
+    [self.mainView addSubview:paintingView];
+    [self.mainView addSubview:learningView];
+    [self.mainView addSubview:forumView];
+    [self.mainView addSubview:amazingOpusView];
+    
+    
+    NSDictionary *views = NSDictionaryOfVariableBindings(paintingView,learningView, forumView, amazingOpusView);
+    NSMutableArray *constraints = [[NSMutableArray alloc] init];
+    
+    [paintingView setTranslatesAutoresizingMaskIntoConstraints:NO];
+    [learningView setTranslatesAutoresizingMaskIntoConstraints:NO];
+    [forumView setTranslatesAutoresizingMaskIntoConstraints:NO];
+    [amazingOpusView setTranslatesAutoresizingMaskIntoConstraints:NO];
+    //Horizone
+    NSString *paintAndLearnViewHorizone = @"H:|-9.5-[paintingView(==102)]-7-[learningView(==190)]-9.5-|";
+    NSString *forumAndAmazingViewHorizone = @"H:|-9.5-[forumView(==102)]-8-[amazingOpusView(==190)]-9.5-|";
+    [constraints addObject:paintAndLearnViewHorizone];
+    [constraints addObject:forumAndAmazingViewHorizone];
+    
+    NSString *paintAndForumViewVertical = @"V:|-9-[paintingView(>=80)]-9-[forumView(>=100)]-9-|";
+    NSString *learnAndAmazingViewVertical = @"V:|-9-[learningView(>=80)]-9-[amazingOpusView(>=100)]-9-|";
+    
+    [constraints addObject:paintAndForumViewVertical];
+    [constraints addObject:learnAndAmazingViewVertical];
+    
+    // Set constraints.
+    for (NSString *string in constraints) {
+        [self.view addConstraints:[NSLayoutConstraint
+                                   constraintsWithVisualFormat:string
+                                   options:0 metrics:nil
+                                   views:views]];
+    }
+
+}
+
+
 
 - (void)dealloc {
     [_galleryView release];
@@ -510,6 +561,8 @@
     [_moreBadge release];
     [_anounceBadge release];
     [_galleryButton release];
+    [_forumView release];
+    [_amazingOpusView release];
     [super dealloc];
 }
 - (void)viewDidUnload {
@@ -540,6 +593,8 @@
     [self setMoreBadge:nil];
     [self setAnounceBadge:nil];
     [self setGalleryButton:nil];
+    [self setForumView:nil];
+    [self setAmazingOpusView:nil];
     [super viewDidUnload];
 }
 
@@ -565,12 +620,44 @@
     }];
 }
 
-//- (void)updateRecoveryDrawCount
-//{
-//    NSUInteger count = [[DrawRecoveryService defaultService] recoveryDrawCount];
-//    [self updateBadgeDraft:count];
-//    [[StatisticManager defaultManager] setRecoveryCount:count];
-//}
+-(void)setAllViewConstraints{
+    
+    
+    NSDictionary *views = NSDictionaryOfVariableBindings(_bottomView, _mainView,_topView,_galleryView);
+    NSMutableArray *constraints = [[NSMutableArray alloc] init];
+    
+    [_bottomView setTranslatesAutoresizingMaskIntoConstraints:NO];
+    [_mainView setTranslatesAutoresizingMaskIntoConstraints:NO];
+    [_topView setTranslatesAutoresizingMaskIntoConstraints:NO];
+    [_galleryView setTranslatesAutoresizingMaskIntoConstraints:NO];
+    
+    
+//    NSString *bottomViewConstraints = @"V:[mainView(>=144)]";
+    
+//    [constraints addObject:bottomViewConstraints];
+    
+    NSString *topViewConstraints = @"";
+    if(ISIOS7){
+       topViewConstraints = @"V:|-0-[_topView(==60)]-0-[_galleryView(>=140)]-20-[_mainView(>=140)]";
+    }else{
+        topViewConstraints = @"V:|-0-[_topView(==40)]-0-[_galleryView(>=140)]-20-[_mainView(>=140)]";
+    }
+    NSString *bottomViewConstrains = @"V:[_bottomView(==49)]-0-|";
+    
+    [constraints addObject:topViewConstraints];
+    [constraints addObject:bottomViewConstrains];
+    
+    // Set constraints.
+    for (NSString *string in constraints) {
+        [self.view addConstraints:[NSLayoutConstraint
+                                   constraintsWithVisualFormat:string
+                                   options:0 metrics:nil
+                                   views:views]];
+    }
+
+    
+    
+}
 
 - (void)updateBulletinBadge
 {

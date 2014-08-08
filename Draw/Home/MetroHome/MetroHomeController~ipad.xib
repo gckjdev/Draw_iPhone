@@ -11,8 +11,9 @@
                 <outlet property="bottomView" destination="cos-MQ-YkX" id="i1R-Th-ELp"/>
                 <outlet property="documentBadge" destination="4bq-SU-uOr" id="L5W-TU-6a6"/>
                 <outlet property="documentButton" destination="2V5-T5-7k4" id="s1x-HX-DTy"/>
+                <outlet property="forumView" destination="bN6-Lx-G2D" id="22x-u6-6Wv"/>
                 <outlet property="galleryImageView" destination="N0J-Bo-dK4" id="VfC-fQ-wND"/>
-                <outlet property="galleryView" destination="6QK-jc-Xhh" id="nGd-Te-57x"/>
+                <outlet property="galleryView" destination="yHW-lN-AUL" id="Jdv-hK-17l"/>
                 <outlet property="indexBadge" destination="Ief-Ho-elD" id="Min-eN-qmh"/>
                 <outlet property="indexButton" destination="jQS-qv-H8k" id="W8i-2o-Qph"/>
                 <outlet property="learningView" destination="weU-wh-Y5B" id="jAl-Pf-dMS"/>
@@ -317,7 +318,7 @@
         <image name="gengduo.png" width="32" height="32"/>
         <image name="huahua.png" width="80" height="76"/>
         <image name="jingcaizuopin.png" width="80" height="76"/>
-        <image name="laba.png" width="32" height="32"/>
+        <image name="laba.png" width="24" height="24"/>
         <image name="luntan.png" width="80" height="76"/>
         <image name="neironglan yu caidanlan.png" width="768" height="20"/>
         <image name="xiaoxi.png" width="32" height="32"/>

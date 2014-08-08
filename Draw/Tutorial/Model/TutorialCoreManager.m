@@ -538,8 +538,8 @@ static TutorialCoreManager* _defaultTutorialCoreManager;
                                             @"53cbd1b8e4b06d2c3a123cdc",
                                             @"53cbd1b8e4b06d2c3a123cdc",
                                             @"53cbd1b8e4b06d2c3a123cdc",
-                                            @"53cbd1b8e4b06d2c3a123cdc",
                                             @"53cbd1b8e4b06d2c3a123cdc"
+                                            
                                         ],
                                         @[
                                             @"53cbd889e4b06d2c3a124080"
@@ -548,9 +548,9 @@ static TutorialCoreManager* _defaultTutorialCoreManager;
                                             @"53cbd889e4b06d2c3a124080",
                                             @"53cbd889e4b06d2c3a124080",
                                             @"53cbd889e4b06d2c3a124080",
-                                            @"53cbd889e4b06d2c3a124080",
-                                            @"53cbd889e4b06d2c3a124080",
                                             @"53cbd889e4b06d2c3a124080"
+                                            
+                                            
                                         ],
                                         @[
                                             @"53c770dae4b07ab22e742bf6"
@@ -560,8 +560,8 @@ static TutorialCoreManager* _defaultTutorialCoreManager;
                                             @"53c770a7e4b07ab22e742bf4",
                                             @"53cbd889e4b06d2c3a124080",
                                             @"53cbd889e4b06d2c3a124080",
-                                            @"53cbd889e4b06d2c3a124080",
                                             @"53cbd889e4b06d2c3a124080"
+                                           
                                         ],
                                         @[
                                             @"53c770e8e4b07ab22e742bf7",
@@ -621,11 +621,11 @@ static TutorialCoreManager* _defaultTutorialCoreManager;
     
     //tutorial0 的stage
     NSArray *stage1Tips_tutorial0 = @[@[@"tips1.png"]];
-    NSArray *stage2Tips_tutorial0 = @[@[@"tips1.png"],@[@"tips2.png",@"tips3.png",@"tips4.png"],@[@"tips5.png",@"tips6.png",@"tips7.png",@"tips8.png"],@[@"tips9.png",@"tips10.png"],@[]];
+    NSArray *stage2Tips_tutorial0 = @[@[@"tips1.png"],@[@"tips2.png",@"tips3.png",@"tips4.png"],@[@"tips5.png",@"tips6.png",@"tips7.png",@"tips8.png"],@[@"tips9.png",@"tips10.png"]];
     NSArray *stage3Tips_tutorial0 = @[@[@"tips1.png"]];
-    NSArray *stage4Tips_tutorial0 = @[@[@"tips1.png"],@[@"tips2.png"],@[@"tips3.png",@"tips4.png",@"tips5.png",@"tips6.png"],@[@"tips7.png"],@[],@[]];
+    NSArray *stage4Tips_tutorial0 = @[@[@"tips1.png"],@[@"tips2.png"],@[@"tips3.png",@"tips4.png",@"tips5.png",@"tips6.png"],@[@"tips7.png"]];
     NSArray *stage5Tips_tutorial0 = @[@[@"tips1.png"]];
-    NSArray *stage6Tips_tutorial0 = @[@[@"tips1.png"],@[@"tips2.png"],@[@"tips3.png",@"tips4.png",@"tips5.png",@"tips6.png"],@[@"tips7.png"],@[]];
+    NSArray *stage6Tips_tutorial0 = @[@[@"tips1.png"],@[@"tips2.png"],@[@"tips3.png",@"tips4.png",@"tips5.png",@"tips6.png"],@[@"tips7.png"]];
     NSArray *stage7Tips_tutorial0 =@[@[@"tips1.png",@"tips2.png"],@[@"tips3.png",@"tips4.png",@"tips5.png",@"tips6.png",@"tips7.png",@"tips8.png",@"tips9.png"]];
     
     //tutorial4（运动无极限）
@@ -691,14 +691,13 @@ static TutorialCoreManager* _defaultTutorialCoreManager;
                                     @[
                                         @132,
                                         @281,
-                                        @492,
-                                        @620,
-                                        @1965
+                                        @720,
+                                        @2444
                                      ],
                                     @[],
-                                    @[@61,@450,@880,@1580,@1750,@2622],
+                                    @[@61,@430,@1827,@2622],
                                     @[],
-                                    @[@61,@344,@512,@1434,@2562],
+                                    @[@61,@360,@1500,@2563],
                                     @[@500,@1000]
                                     ];
     
