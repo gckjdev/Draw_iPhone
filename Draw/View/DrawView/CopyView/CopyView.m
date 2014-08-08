@@ -21,7 +21,7 @@
 
 @interface CopyView()
 
-@property (nonatomic, retain) PPViewController *superViewController;
+@property (nonatomic, assign) PPViewController *superViewController;
 @property (nonatomic, retain) DrawFeed *drawFeed;
 @property (nonatomic, retain) UIImage *displayImage;
 @property (nonatomic, assign) BOOL hasMenu;
@@ -113,8 +113,9 @@
     
     PPRelease(_draw);
     PPRelease(_drawFeed);
-    PPRelease(_superViewController);
     PPRelease(_displayImage);
+    
+    self.superViewController = nil;
     [super dealloc];
 }
 

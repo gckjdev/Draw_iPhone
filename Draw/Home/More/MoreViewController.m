@@ -11,6 +11,11 @@
 #import "UIViewController+BGImage.h"
 #import "HomeMenuView.h"
 #import "SuperHomeController.h"
+#import "ContestService.h"
+#import "StatisticManager.h"
+#import "UserManager.h"
+#import "UIImageUtil.h"
+#import "UIImageExt.h"
 
 static NSArray* itemTypeArray = nil;
 static dispatch_once_t onceToken;
@@ -89,7 +94,7 @@ static dispatch_once_t onceToken;
     MoreViewCell *item = [collectionView dequeueReusableCellWithReuseIdentifier:customerIdentify forIndexPath:indexPath];
     
     [item setController:self];
-    [item updateMoreCollectionCell:indexPath.row];
+    [item updateMoreCollectionCell:indexPath.row type:[MoreViewController getItemType:indexPath.row]];
     return item;
 }
 
@@ -131,6 +136,20 @@ static dispatch_once_t onceToken;
     return itemTypeArray;
 }
 
++ (int)getItemType:(NSUInteger)row
+{
+    if (row >= [[self getItemTypeArray] count]){
+        return nil;
+    }
+    
+    NSNumber* type = [[self getItemTypeArray] objectAtIndex:row];
+    if (type == nil){
+        return -1;
+    }
+    
+    return [type integerValue];
+}
+
 + (UIImage*)getItemImage:(NSUInteger)row
 {
     if (row >= [[self getItemTypeArray] count]){
@@ -140,6 +159,17 @@ static dispatch_once_t onceToken;
     NSNumber* type = [[self getItemTypeArray] objectAtIndex:row];
     if (type == nil){
         return nil;
+    }
+    
+    if ([type intValue] == SpecialTypeUser){
+        
+        UIImage* image = [[UserManager defaultManager] avatarImage];
+        if (image == nil){
+            image = [[UserManager defaultManager] defaultAvatarImage];
+        }
+        
+        image = [UIImage createRoundedRectImage:image size:image.size];
+        return image;
     }
     
     return [[SuperHomeController defaultMenuImageDictionary] objectForKey:type];
@@ -179,12 +209,46 @@ static dispatch_once_t onceToken;
     return NSSelectorFromString(name);
 }
 
-+ (NSUInteger)getItemBadge:(NSUInteger)row
++ (NSUInteger)totalMoreBadge
 {
-    // TODO set
-    return rand() % 10;
+    int userBadge = [[UserManager defaultManager] getUserBadgeCount];
+    int fanBadge = [[StatisticManager defaultManager] fanCount];
+    int contestBadge = [[StatisticManager defaultManager] newContestCount];
+    int groupBadge = [[StatisticManager defaultManager] groupNoticeCount];
+    
+    return userBadge + fanBadge + contestBadge + groupBadge;
 }
 
++ (NSUInteger)getItemBadge:(NSUInteger)row
+{
+    if (row >= [[MoreViewController getItemTypeArray] count]){
+        return nil;
+    }
+    
+    NSNumber* type = [[self getItemTypeArray] objectAtIndex:row];
+    if (type == nil){
+        return 0;
+    }
+    
+    switch ([type integerValue]) {
+        case SpecialTypeUser:
+            return [[UserManager defaultManager] getUserBadgeCount];
+
+        case SpecialTypeUserFriend:
+            return [[StatisticManager defaultManager] fanCount];
+
+        case HomeMenuTypeDrawContest:
+            return [[StatisticManager defaultManager] newContestCount];
+            
+        case HomeMenuTypeGroup:
+            return [[StatisticManager defaultManager] groupNoticeCount];
+            
+        default:
+            break;
+    }
+    
+    return 0;
+}
 
 - (void)handleClickItem:(NSUInteger)row
 {
@@ -193,6 +257,5 @@ static dispatch_once_t onceToken;
         [self performSelector:selector withObject:nil];
     }
 }
-
 
 @end
