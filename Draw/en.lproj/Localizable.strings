@@ -2866,3 +2866,6 @@
 "kQuitDraw" = "Quit";
 "kRestartDraw" = "Restart";
 
+"kMenuTitleFriend" = "Friend";
+"kMenuTitleMe" = "Me";
+

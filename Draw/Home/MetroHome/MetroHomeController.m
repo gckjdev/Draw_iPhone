@@ -396,6 +396,7 @@
 -(IBAction)goToAnnounce:(id)sender
 {
     [self showBulletinView];
+    [self updateAllBadge];
 }
 
 -(IBAction)goToUserDetail:(id)sender

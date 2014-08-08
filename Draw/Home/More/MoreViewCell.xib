@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="5056" systemVersion="13D65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="5056" systemVersion="12F45" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
     </dependencies>
@@ -14,12 +14,12 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oWj-rH-OHp">
-                        <rect key="frame" x="0.0" y="0.0" width="105" height="90"/>
+                        <rect key="frame" x="9" y="0.0" width="72" height="72"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <fontDescription key="fontDescription" type="system" pointSize="10"/>
-                        <state key="normal" title="个人中心" image="draw_fx.png">
-                            <color key="titleColor" patternImage="C48A46FF-562C-49AB-9845-C5B052880ED0" colorSpace="pattern"/>
+                        <state key="normal">
+                            <color key="titleColor" patternImage="08AF98B0-9F1E-49C7-A30B-3D08E688A990" colorSpace="pattern"/>
                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                         </state>
                         <connections>
@@ -27,10 +27,17 @@
                         </connections>
                     </button>
                     <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="aQt-X0-cYF" userLabel="Badge View" customClass="BadgeView">
-                        <rect key="frame" x="55" y="8" width="25" height="22"/>
+                        <rect key="frame" x="60" y="4" width="25" height="25"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     </view>
+                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5KE-68-ceI">
+                        <rect key="frame" x="0.0" y="72" width="90" height="20"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
                 </subviews>
                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             </view>
@@ -39,11 +46,12 @@
             <connections>
                 <outlet property="badgeView" destination="aQt-X0-cYF" id="Ha7-yD-RE3"/>
                 <outlet property="itemButton" destination="oWj-rH-OHp" id="OJf-wV-o8y"/>
+                <outlet property="titleLabel" destination="5KE-68-ceI" id="3Ar-De-kWL"/>
             </connections>
         </collectionViewCell>
     </objects>
     <resources>
-        <image name="C48A46FF-562C-49AB-9845-C5B052880ED0" width="320" height="460">
+        <image name="08AF98B0-9F1E-49C7-A30B-3D08E688A990" width="320" height="460">
             <mutableData key="keyedArchiveRepresentation">
 YnBsaXN0MDDUAQIDBAUGPj9YJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoK4HCBMU
 GR4fIyQsLzI4O1UkbnVsbNUJCgsMDQ4PEBESVk5TU2l6ZVYkY2xhc3NcTlNJbWFnZUZsYWdzVk5TUmVw
@@ -9863,9 +9871,9 @@ ohscgAWABoAJEADSIAohIl8QFE5TVElGRlJlcHJlc2VudGF0aW9ugAeACE8SAAkJNk1NACoACPwIGBga
 /xcXG/8XFxv/GRkb/xcXGv8XFxr/FxcZ/xgYG/8XFxr/GBga/xgYG/8YGBr/GRkc/xoaHP8XFxr/Fxca
 /xkZHP8ZGRz/GBgc/xgYHP8aGh3/GRkd/xoaHv8YGBz/Ghod/xsbHf8bGx7/GRkb/xkZHP8ZGRz/GRkd
 /xkZHf8aGh7/Gxsd/xkZHP8ADgEAAAMAAAABAUAAAAEBAAMAAAABAcwAAAECAAMAAAAEAAj8tgEDAAMA
-AAABAAEAAAEGAAMAAAABAAIAAAERAAQAAAAFAAj80gESAAMAAAABAAEAAAEVAAMAAAABAAQAAAEWAAMA
-AAABAGYAAAEXAAQAAAAFAAj8vgEcAAMAAAABAAEAAAFSAAMAAAABAAEAAAFTAAMAAAAEAAj85odzAAcA
-AAxIAAj87gAAAAAACAAIAAgACAAB/gAAAf4AAAH+AAAB/gAAAQQAAAAACAAB/ggAA/wIAAX6CAAH+AgA
+AAABAAEAAAEGAAMAAAABAAIAAAERAAQAAAAFAAj8vgESAAMAAAABAAEAAAEVAAMAAAABAAQAAAEWAAMA
+AAABAGYAAAEXAAQAAAAFAAj80gEcAAMAAAABAAEAAAFSAAMAAAABAAEAAAFTAAMAAAAEAAj85odzAAcA
+AAxIAAj87gAAAAAACAAIAAgACAAAAAgAAf4IAAP8CAAF+ggAB/gIAAH+AAAB/gAAAf4AAAH+AAABBAAA
 AQABAAEAAQAADEhMaW5vAhAAAG1udHJSR0IgWFlaIAfOAAIACQAGADEAAGFjc3BNU0ZUAAAAAElFQyBz
 UkdCAAAAAAAAAAAAAAAAAAD21gABAAAAANMtSFAgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 AAAAAAAAAAAAAAAAAAAAAAAAEWNwcnQAAAFQAAAAM2Rlc2MAAAGEAAAAbHd0cHQAAAHwAAAAFGJrcHQA
@@ -9930,6 +9938,5 @@ CQq/AAkKxAAJCswACQrPAAkK1AAJCtwACQrfAAkK8QAJCvQACQr5AAAAAAAABAEAAAAAAAAAQgAAAAAA
 AAAAAAAAAAAJCvs
 </mutableData>
         </image>
-        <image name="draw_fx.png" width="36" height="35"/>
     </resources>
 </document>

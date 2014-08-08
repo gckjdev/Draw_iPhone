@@ -105,6 +105,8 @@ typedef enum{
     //Group
     HomeMenuTypeGroup,
     
+    SpecialTypeUserFriend,
+    SpecialTypeUser
     
 }HomeMenuType;
 

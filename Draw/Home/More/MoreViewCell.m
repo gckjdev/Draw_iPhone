@@ -29,16 +29,24 @@
 #define BOTTOM_BUTTON_HEIGHT (ISIPAD ? 160 : 90)
 
 -(void)updateMoreCollectionCell:(NSInteger)row{
+    
     [self.itemButton setBackgroundColor:[UIColor clearColor]];
+    
     //set title
     NSString *title = [MoreViewController getItemTitle:row];
-    [self.itemButton setTitle:title forState:UIControlStateNormal];
-    [self.itemButton setTitleEdgeInsets:UIEdgeInsetsMake(BOTTOM_BUTTON_HEIGHT, BUTTON_TITLE_EDGEINSETS, 0, 0)];
-    [self.itemButton setTitleColor:COLOR_BROWN forState:UIControlStateNormal];
-    [self.itemButton.titleLabel setFont:AD_BOLD_FONT(20, 12)];
+    [self.titleLabel setText:title];
+    [self.titleLabel setFont:AD_BOLD_FONT(20, 12)];
+    [self.titleLabel setTextColor:COLOR_BROWN];
+    [self.titleLabel setBackgroundColor:[UIColor clearColor]];
+    
+//    [self.itemButton setTitle:title forState:UIControlStateNormal];
+//    [self.itemButton setTitleEdgeInsets:UIEdgeInsetsMake(BOTTOM_BUTTON_HEIGHT, BUTTON_TITLE_EDGEINSETS, 0, 0)];
+//    [self.itemButton setTitleColor:COLOR_BROWN forState:UIControlStateNormal];
+//    [self.itemButton.titleLabel setFont:AD_BOLD_FONT(20, 12)];
+
     //set image
-    UIImage *imageName = [MoreViewController getItemImage:row];
-    [self.itemButton setImage:imageName forState:UIControlStateNormal];
+    UIImage *image = [MoreViewController getItemImage:row];
+    [self.itemButton setBackgroundImage:image forState:UIControlStateNormal];
     
     [self.badgeView setNumber:5];
     
@@ -60,6 +68,7 @@
 - (void)dealloc {
     [_badgeView release];
     [_itemButton release];
+    [_titleLabel release];
     [super dealloc];
 }
 

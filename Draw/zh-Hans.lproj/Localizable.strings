@@ -2909,3 +2909,6 @@
 "kContinueDraw" = "继 续";
 "kQuitDraw" = "退 出";
 "kRestartDraw" = "重 来";
+
+"kMenuTitleFriend" = "好友";
+"kMenuTitleMe" = "我";
