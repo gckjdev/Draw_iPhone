@@ -172,7 +172,7 @@ static TutorialCoreManager* _defaultTutorialCoreManager;
     [stageBuilder setThumbImage:imageUrl];
     [stageBuilder setImage:imageUrl];
     [stageBuilder setImageName:@"image.jpg"];                 // image for compare
-    [stageBuilder setBgImageName:@"bg_image.jpg"];            // image for background
+    [stageBuilder setBgImageName:@"bg_image.png"];            // image for background
     [stageBuilder setOpusName:@"data"];                       // opus data file name
     [stageBuilder setOpusId:opusId];
     if(difficult!=-1){
@@ -252,7 +252,7 @@ static TutorialCoreManager* _defaultTutorialCoreManager;
     [pb setImage:imageUrl];
     
     [pb setImageName:@"image.jpg"];                 // image for compare
-    [pb setBgImage:@"bg_image.jpg"];                // image for background
+    [pb setBgImage:@"bg_image.png"];                // image for background
     [pb setOpusName:@"data"];                       // opus data file name
     [pb setOpusId:[chapterList objectAtIndex:0]];   // opus ID
     
