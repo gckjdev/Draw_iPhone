@@ -379,18 +379,17 @@ NSString* GlobalGetBoardServerURL()
     self.rootNavigationController.navigationBarHidden = YES;
 
     // Try Fetch User Data By Device Id
+    /* disable this from new learn draw version
     if ([[UserManager defaultManager] hasUser] == NO){
         BOOL autoRegister = [GameApp isAutoRegister];
         [[UserService defaultService] loginByDeviceWithViewController:rootController
                                                          autoRegister:autoRegister
                                                           resultBlock:nil];
     }
+    */
     
         
     self.window.rootViewController = self.rootNavigationController;
-    
-    // Init SNS service
-//    [self initSNSService];
     
     [self.window makeKeyAndVisible];
     

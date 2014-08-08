@@ -232,6 +232,10 @@
     
     [UIApplication sharedApplication].idleTimerDisabled = NO;
     [super viewDidAppear:animated];
+    
+    if ([[UserManager defaultManager] hasXiaojiNumber] == NO){
+        [self showGuidePage];
+    }
 }
 
 - (void)viewDidDisappear:(BOOL)animated

@@ -294,6 +294,10 @@ static NSDictionary* DRAW_MENU_IMAGE_DICT = nil;
     [[GuessService defaultService] getTodayGuessContestInfoWithDelegate:self];
 
     [super viewDidAppear:animated];
+    
+    if ([[UserManager defaultManager] hasXiaojiNumber] == NO){
+        [self showGuidePage];
+    }
 }
 
 - (void)viewDidDisappear:(BOOL)animated

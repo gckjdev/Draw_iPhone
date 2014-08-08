@@ -14,10 +14,16 @@
 #import "PPNetworkRequest.h"
 #import "GameNetworkConstants.h"
 
+static BOOL gIsShowGuidePage = NO;
+
 @implementation GuidePageManager
 
 + (void)showGuidePage:(UIViewController*)superController
 {
+    if (gIsShowGuidePage){
+        // avoid reenter again
+        return;
+    }
     
     ICETutorialPage *layr1 = nil;
     ICETutorialPage *layr2 = nil;
@@ -65,6 +71,7 @@
     guidePage.delegate = guidePage;
     guidePage.superController = superController;
 
+    gIsShowGuidePage = YES;
     [superController presentViewController:guidePage animated:NO completion:^{
         
     }];
@@ -181,6 +188,7 @@
 - (IBAction)dismissWithMessage:(NSString*)message
 {
     UIView* view = self.superController.view;
+    gIsShowGuidePage = NO;
     [self dismissViewControllerAnimated:YES completion:^{
         [CommonDialog showSimpleDialog:message inView:view];
     }];
