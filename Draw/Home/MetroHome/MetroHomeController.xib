@@ -219,10 +219,10 @@
         </view>
     </objects>
     <resources>
-        <image name="caogao.png" width="32" height="32"/>
-        <image name="dongtai.png" width="32" height="32"/>
-        <image name="gengduo.png" width="32" height="32"/>
+        <image name="caogao.png" width="24" height="24"/>
+        <image name="dongtai.png" width="24" height="24"/>
+        <image name="gengduo.png" width="24" height="24"/>
         <image name="laba.png" width="64" height="64"/>
-        <image name="xiaoxi.png" width="32" height="32"/>
+        <image name="xiaoxi.png" width="24" height="24"/>
     </resources>
 </document>

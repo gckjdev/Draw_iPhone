@@ -126,7 +126,7 @@
     NSDictionary *views = NSDictionaryOfVariableBindings(label, imageView,labelDesc);
     NSMutableArray *constraints = [[NSMutableArray alloc] init];
     
-    CGFloat imageViewHeight = (isIPad ? 60:40);
+    CGFloat imageViewHeight = (isIPad ? 60:30);
     NSString *constrain = [NSString stringWithFormat:@"H:[imageView(==%f)]",imageViewHeight];
     [constraints addObject:constrain];
     

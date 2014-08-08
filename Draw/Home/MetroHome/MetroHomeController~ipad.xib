@@ -38,7 +38,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cos-MQ-YkX" userLabel="Bottom View">
-                    <rect key="frame" x="0.0" y="975" width="768" height="49"/>
+                    <rect key="frame" x="0.0" y="965" width="768" height="59"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <subviews>
                         <button hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="clip" translatesAutoresizingMaskIntoConstraints="NO" id="jQS-qv-H8k" userLabel="Index Button">
@@ -110,7 +110,7 @@
                     </subviews>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="49" id="VET-fr-pYL"/>
+                        <constraint firstAttribute="height" constant="59" id="VET-fr-pYL"/>
                     </constraints>
                 </view>
                 <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="GTc-Sg-gSW" userLabel="Button View">
@@ -207,7 +207,7 @@
                     </constraints>
                 </view>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" image="neironglan yu caidanlan.png" translatesAutoresizingMaskIntoConstraints="NO" id="Hs1-gF-V6b">
-                    <rect key="frame" x="0.0" y="950" width="768" height="25"/>
+                    <rect key="frame" x="0.0" y="950" width="768" height="20"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                 </imageView>
@@ -216,7 +216,7 @@
             <constraints>
                 <constraint firstItem="GTc-Sg-gSW" firstAttribute="top" secondItem="6QK-jc-Xhh" secondAttribute="bottom" id="24h-YF-2Xe"/>
                 <constraint firstItem="6QK-jc-Xhh" firstAttribute="top" secondItem="Sdz-be-ymP" secondAttribute="bottom" id="2vS-7y-WV1"/>
-                <constraint firstItem="cos-MQ-YkX" firstAttribute="top" secondItem="Hs1-gF-V6b" secondAttribute="bottom" id="Xaj-ZA-qdM"/>
+                <constraint firstItem="cos-MQ-YkX" firstAttribute="top" secondItem="Hs1-gF-V6b" secondAttribute="bottom" constant="5" id="Xaj-ZA-qdM"/>
                 <constraint firstItem="GTc-Sg-gSW" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="a4n-7E-59c"/>
                 <constraint firstItem="Hs1-gF-V6b" firstAttribute="top" secondItem="GTc-Sg-gSW" secondAttribute="bottom" id="eCb-hS-Xhw"/>
                 <constraint firstAttribute="trailing" secondItem="GTc-Sg-gSW" secondAttribute="trailing" id="tPr-M9-hTb"/>
@@ -226,11 +226,11 @@
         </view>
     </objects>
     <resources>
-        <image name="caogao.png" width="32" height="32"/>
-        <image name="dongtai.png" width="32" height="32"/>
-        <image name="gengduo.png" width="32" height="32"/>
+        <image name="caogao.png" width="24" height="24"/>
+        <image name="dongtai.png" width="24" height="24"/>
+        <image name="gengduo.png" width="24" height="24"/>
         <image name="laba.png" width="64" height="64"/>
         <image name="neironglan yu caidanlan.png" width="768" height="20"/>
-        <image name="xiaoxi.png" width="32" height="32"/>
+        <image name="xiaoxi.png" width="24" height="24"/>
     </resources>
 </document>

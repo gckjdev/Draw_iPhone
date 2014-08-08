@@ -591,9 +591,9 @@
 
 -(void)setMainBoxView{
     
-    CGFloat height = 205;
+    CGFloat height = 220-21;
     if(ISIPHONE5){
-        height = 292;
+        height = 292-6;
     }
     
     //新建色块
@@ -640,9 +640,9 @@
     
     
     
-    NSString *paintAndForumViewVertical = [NSString stringWithFormat:@"V:|-5-[paintingView(==%f)]-5-[forumView(==%f)]-5-|",bigViewHeight,smallViewHeight];
+    NSString *paintAndForumViewVertical = [NSString stringWithFormat:@"V:|-7-[paintingView(==%f)]-7-[forumView(==%f)]-7-|",bigViewHeight,smallViewHeight];
     
-    NSString *learnAndAmazingViewVertical = [NSString stringWithFormat:@"V:|-5-[learningView(==%f)]-5-[amazingOpusView(==%f)]-5-|",bigViewHeight,smallViewHeight];
+    NSString *learnAndAmazingViewVertical = [NSString stringWithFormat:@"V:|-7-[learningView(==%f)]-7-[amazingOpusView(==%f)]-7-|",bigViewHeight,smallViewHeight];
     
     [constraints addObject:paintAndForumViewVertical];
     [constraints addObject:learnAndAmazingViewVertical];
@@ -705,14 +705,14 @@
     [forumView setTranslatesAutoresizingMaskIntoConstraints:NO];
     [amazingOpusView setTranslatesAutoresizingMaskIntoConstraints:NO];
     //Horizone
-    NSString *paintAndLearnViewHorizone = @"H:|-28-[paintingView(==240)]-20-[learningView(==452)]-28-|";
-    NSString *forumAndAmazingViewHorizone = @"H:|-28-[forumView(==240)]-20-[amazingOpusView(==452)]-28-|";
+    NSString *paintAndLearnViewHorizone = @"H:|-30-[paintingView(==240)]-25-[learningView(==452)]-30-|";
+    NSString *forumAndAmazingViewHorizone = @"H:|-30-[forumView(==240)]-25-[amazingOpusView(==452)]-30-|";
     [constraints addObject:paintAndLearnViewHorizone];
     [constraints addObject:forumAndAmazingViewHorizone];
     
-    NSString *paintAndForumViewVertical = [NSString stringWithFormat:@"V:|-10-[paintingView(==%f)]-20-[forumView(==%f)]-10-|",bigViewHeight,smallViewHeight];
+    NSString *paintAndForumViewVertical = [NSString stringWithFormat:@"V:|-7-[paintingView(==%f)]-16-[forumView(==%f)]-13-|",bigViewHeight,smallViewHeight];
     
-    NSString *learnAndAmazingViewVertical = [NSString stringWithFormat:@"V:|-10-[learningView(==%f)]-20-[amazingOpusView(==%f)]-10-|",bigViewHeight,smallViewHeight];
+    NSString *learnAndAmazingViewVertical = [NSString stringWithFormat:@"V:|-7-[learningView(==%f)]-16-[amazingOpusView(==%f)]-13-|",bigViewHeight,smallViewHeight];
     
     [constraints addObject:paintAndForumViewVertical];
     [constraints addObject:learnAndAmazingViewVertical];
@@ -754,31 +754,33 @@
     [moreButton setImage:[UIImage imageNamed:@"gengduo"] forState:UIControlStateNormal];
     
     //设置按钮title
-    UILabel *indexButtonTitle = [[[UILabel alloc] initWithFrame:CGRectMake(0, self.bottomView.bounds.size.height-20, buttonWidth, 20)] autorelease];
+    const CGFloat cutSize = (ISIPAD ? 30:20);
+    UILabel *indexButtonTitle = [[[UILabel alloc] initWithFrame:CGRectMake(0, self.bottomView.bounds.size.height-cutSize, buttonWidth, 20)] autorelease];
     [self setBottomButtonTitleStyle:indexButtonTitle text:NSLS(@"kMetroIndexButton")];
     [indexButton addSubview:indexButtonTitle];
      self.indexBadge.frame = CGRectMake([[width objectAtIndex:0] floatValue], 0, (ISIPAD?30:20), (ISIPAD?30:20));
     
-    UILabel *documentButtonTitle = [[[UILabel alloc] initWithFrame:CGRectMake([[width objectAtIndex:0] floatValue], self.bottomView.bounds.size.height-20, buttonWidth, 20)] autorelease];
+    UILabel *documentButtonTitle = [[[UILabel alloc] initWithFrame:CGRectMake([[width objectAtIndex:0] floatValue], self.bottomView.bounds.size.height-cutSize, buttonWidth, 20)] autorelease];
     [self setBottomButtonTitleStyle:documentButtonTitle text:NSLS(@"kMetroDocumentButton")];
     [documentButton addSubview:documentButtonTitle];
     self.indexBadge.frame = CGRectMake([[width objectAtIndex:1] floatValue], 0, (ISIPAD?30:20), (ISIPAD?30:20));
     
-    UILabel *messageButtonTitle = [[[UILabel alloc] initWithFrame:CGRectMake([[width objectAtIndex:0] floatValue], self.bottomView.bounds.size.height-20, buttonWidth, 20)] autorelease];
+    UILabel *messageButtonTitle = [[[UILabel alloc] initWithFrame:CGRectMake([[width objectAtIndex:0] floatValue], self.bottomView.bounds.size.height-cutSize, buttonWidth, 20)] autorelease];
     [self setBottomButtonTitleStyle:messageButtonTitle text:NSLS(@"kMetroMessageButton")];
     [messageButton addSubview:messageButtonTitle];
      self.indexBadge.frame = CGRectMake([[width objectAtIndex:2] floatValue], 0, (ISIPAD?30:20), (ISIPAD?30:20));
     
-    UILabel *moreButtonTitle = [[[UILabel alloc] initWithFrame:CGRectMake([[width objectAtIndex:0] floatValue], self.bottomView.bounds.size.height-20, buttonWidth, 20)] autorelease];
+    UILabel *moreButtonTitle = [[[UILabel alloc] initWithFrame:CGRectMake([[width objectAtIndex:0] floatValue], self.bottomView.bounds.size.height-cutSize, buttonWidth, 20)] autorelease];
     [self setBottomButtonTitleStyle:moreButtonTitle text:NSLS(@"kMetroMoreButton")];
     [moreButton addSubview:moreButtonTitle];
      self.indexBadge.frame = CGRectMake([[width objectAtIndex:3] floatValue], 0, (ISIPAD?30:20), (ISIPAD?30:20));
     
     //设置按钮图片位置
-    indexButton.imageEdgeInsets = UIEdgeInsetsMake(-10,0,0,0);
-    documentButton.imageEdgeInsets = UIEdgeInsetsMake(-10,0,0,0);
-    messageButton.imageEdgeInsets = UIEdgeInsetsMake(-10,0,0,0);
-    moreButton.imageEdgeInsets = UIEdgeInsetsMake(-10,0,0,0);
+    CGFloat imageEdge = (ISIPAD ? -25:-10);
+    indexButton.imageEdgeInsets = UIEdgeInsetsMake(imageEdge,0,0,0);
+    documentButton.imageEdgeInsets = UIEdgeInsetsMake(imageEdge,0,0,0);
+    messageButton.imageEdgeInsets = UIEdgeInsetsMake(imageEdge,0,0,0);
+    moreButton.imageEdgeInsets = UIEdgeInsetsMake(imageEdge,0,0,0);
     
     //背景颜色
     [documentButton setBackgroundColor:[UIColor clearColor]];
@@ -802,10 +804,10 @@
     
     UIFont *font = nil;
     if([LocaleUtils isChina]||[LocaleUtils isChinese]){
-        font = AD_FONT(10, 10);
+        font = AD_FONT(13, 10);
         
     }else{
-        font = AD_BOLD_FONT(10,10);
+        font = AD_BOLD_FONT(11,10);
     }
     [label setText:text];
     [label setFont:font];
