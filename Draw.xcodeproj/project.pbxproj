@@ -6305,6 +6305,10 @@
 		D865421E1980B0FA007D60E7 /* TutorialInfoController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = D865421C1980B0FA007D60E7 /* TutorialInfoController~ipad.xib */; };
 		D865421F1980B0FA007D60E7 /* TutorialInfoController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = D865421C1980B0FA007D60E7 /* TutorialInfoController~ipad.xib */; };
 		D86542201980B0FA007D60E7 /* TutorialInfoController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = D865421C1980B0FA007D60E7 /* TutorialInfoController~ipad.xib */; };
+		D8698CDD199501B20015CE21 /* defaultBillBoard.jpg in Resources */ = {isa = PBXBuildFile; fileRef = D8698CDC199501B20015CE21 /* defaultBillBoard.jpg */; };
+		D8698CDE199501B20015CE21 /* defaultBillBoard.jpg in Resources */ = {isa = PBXBuildFile; fileRef = D8698CDC199501B20015CE21 /* defaultBillBoard.jpg */; };
+		D8698CDF199501B20015CE21 /* defaultBillBoard.jpg in Resources */ = {isa = PBXBuildFile; fileRef = D8698CDC199501B20015CE21 /* defaultBillBoard.jpg */; };
+		D8698CE0199501B20015CE21 /* defaultBillBoard.jpg in Resources */ = {isa = PBXBuildFile; fileRef = D8698CDC199501B20015CE21 /* defaultBillBoard.jpg */; };
 		D869F8EF19906D8A00E6756A /* iphone5-4.png in Resources */ = {isa = PBXBuildFile; fileRef = D869F8EB19906D8A00E6756A /* iphone5-4.png */; };
 		D869F8F019906D8B00E6756A /* iphone5-4.png in Resources */ = {isa = PBXBuildFile; fileRef = D869F8EB19906D8A00E6756A /* iphone5-4.png */; };
 		D869F8F119906D8B00E6756A /* iphone5-4.png in Resources */ = {isa = PBXBuildFile; fileRef = D869F8EB19906D8A00E6756A /* iphone5-4.png */; };
@@ -10870,6 +10874,7 @@
 		D837DCB31988FAB2001686BB /* UIColor+RGBValues.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+RGBValues.m"; sourceTree = "<group>"; };
 		D86542141980A941007D60E7 /* ResultShareAlertPageViewController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "ResultShareAlertPageViewController~ipad.xib"; sourceTree = "<group>"; };
 		D865421C1980B0FA007D60E7 /* TutorialInfoController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "TutorialInfoController~ipad.xib"; sourceTree = "<group>"; };
+		D8698CDC199501B20015CE21 /* defaultBillBoard.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = defaultBillBoard.jpg; sourceTree = "<group>"; };
 		D869F8EB19906D8A00E6756A /* iphone5-4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iphone5-4.png"; sourceTree = "<group>"; };
 		D869F8EC19906D8A00E6756A /* iphone5-1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iphone5-1.png"; sourceTree = "<group>"; };
 		D869F8ED19906D8A00E6756A /* iphone5-2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iphone5-2.png"; sourceTree = "<group>"; };
@@ -18298,6 +18303,7 @@
 		D80518A5196BD12200D350B3 /* Resource */ = {
 			isa = PBXGroup;
 			children = (
+				D8698CDC199501B20015CE21 /* defaultBillBoard.jpg */,
 				D86D7CD01994C87B00D64C18 /* caogao.png */,
 				D86D7CD11994C87B00D64C18 /* gengduo.png */,
 				D86D7CD21994C87B00D64C18 /* xiaoxi.png */,
@@ -19161,6 +19167,7 @@
 				A461B4CC174CBAA70088B061 /* RankFirstView.xib in Resources */,
 				A461B4CD174CBAA70088B061 /* RankSecondView.xib in Resources */,
 				CACD6ABF18E03A29003F97C0 /* ShareSDKLocalizable.strings in Resources */,
+				D8698CDF199501B20015CE21 /* defaultBillBoard.jpg in Resources */,
 				A461B4CE174CBAA70088B061 /* TopPlayerView.xib in Resources */,
 				A461B4CF174CBAA70088B061 /* RankFirstView~ipad.xib in Resources */,
 				CA93D12E18F008FA002BB805 /* RennSDK.bundle in Resources */,
@@ -21069,6 +21076,7 @@
 				CA9AAFB918321621002DBAA5 /* sing_edit@2x.png in Resources */,
 				CA9AAFBD18321621002DBAA5 /* sing_image@2x.png in Resources */,
 				CA9AAFC118321621002DBAA5 /* sing_lyric@2x.png in Resources */,
+				D8698CDE199501B20015CE21 /* defaultBillBoard.jpg in Resources */,
 				CA9AAFC518321621002DBAA5 /* sing_pause@2x.png in Resources */,
 				CA9AAFC918321621002DBAA5 /* sing_play@2x.png in Resources */,
 				CA9AAFCD18321621002DBAA5 /* sing_record@2x.png in Resources */,
@@ -21671,6 +21679,7 @@
 				A4D8F9CD17DB08170085061F /* print_tipbig@2x.png in Resources */,
 				A4D8F9D117DB08170085061F /* reply_bg@2x.png in Resources */,
 				A4D8F9D517DB08170085061F /* round@2x.png in Resources */,
+				D8698CDD199501B20015CE21 /* defaultBillBoard.jpg in Resources */,
 				A4D8F9D917DB08170085061F /* round_mask@2x.png in Resources */,
 				A4D8F9DD17DB08170085061F /* score@2x.png in Resources */,
 				A4D8F9E117DB08170085061F /* timeset@2x.png in Resources */,
@@ -22718,6 +22727,7 @@
 				D8B58A52197CCEC10088E5F7 /* tutorial_background_02@2x.jpg in Resources */,
 				A4D8F9D817DB08170085061F /* round@2x.png in Resources */,
 				A4D8F9DC17DB08170085061F /* round_mask@2x.png in Resources */,
+				D8698CE0199501B20015CE21 /* defaultBillBoard.jpg in Resources */,
 				A4D8F9E017DB08170085061F /* score@2x.png in Resources */,
 				A4D8F9E417DB08170085061F /* timeset@2x.png in Resources */,
 				A4D8F9E817DB08170085061F /* unloadbg@2x.png in Resources */,

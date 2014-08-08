@@ -374,7 +374,7 @@
 #define IMAGE_FRAME_Y (ISIPAD ? 44:16)
 #define IMAGE_FRAME_WIDTH (ISIPAD ? 706:298)
 #define IMAGE_FRAME_HEIGHT (ISIPAD ? 250:120)
-#define DEFAULT_GALLERY_IMAGE @"daguanka"
+#define DEFAULT_GALLERY_IMAGE @"defaultBillBoard.jpg"
 
 -(void)setGalleryView{
     
