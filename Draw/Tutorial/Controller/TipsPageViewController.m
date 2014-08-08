@@ -99,6 +99,7 @@ defaultIndex:(int)defaultIndex
                                                                     hasPageControllerBackgroundColor:YES
                                                                     focusImageItems:itemList, nil
                                                             ];
+    
     imageFrame.userInteractionEnabled = YES;
     [self.view addSubview:imageFrame];
     [self.view bringSubviewToFront:imageFrame];

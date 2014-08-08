@@ -81,18 +81,7 @@
     [self.messageButton  setTitleEdgeInsets:UIEdgeInsetsMake(BOTTOM_BUTTON_MARGIN_HEIGHT, MESSAGE_BUTTON_TITLE_EDGEINSET, 0, 0)];
     [self.moreButton  setTitleEdgeInsets:UIEdgeInsetsMake(BOTTOM_BUTTON_MARGIN_HEIGHT, MORE_BUTTON_TITLE_EDGEINSETS, 0, 0)];
 }
-#pragma mark 使button对齐
--(void)buttonLayout
-{
-    CGRect tempFrame = self.indexButton.frame;
-    
-    tempFrame.size.width = 40;
-    tempFrame.size.height = 5;
-    PPDebug(@"<imageView.Size.Width>%d",tempFrame.size.width);
-    PPDebug(@"<imageView.Size.Width>%d",tempFrame.size.height);
-    self.indexButton.frame = tempFrame;
-//    [self.indexButton.imageView];
-}
+
 - (void)startStatisticTimer
 {
     if (self.statisTimer == nil){
