@@ -2905,3 +2905,7 @@
 "kRegistering" = "注册中...";
 "kBestScoreText" = "最佳成绩: %@";
 "kNoBestScore" = "暂无";
+
+"kContinueDraw" = "继 续";
+"kQuitDraw" = "退 出";
+"kRestartDraw" = "重 来";

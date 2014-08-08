@@ -2861,3 +2861,8 @@
 "kRegistering" = "Registering...";
 "kBestScoreText" = "Best Score: %@";
 "kNoBestScore" = "None";
+
+"kContinueDraw" = "Continue";
+"kQuitDraw" = "Quit";
+"kRestartDraw" = "Restart";
+
