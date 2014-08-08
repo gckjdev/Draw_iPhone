@@ -14,5 +14,7 @@
 + (NSString*)getItemTitle:(NSUInteger)row;
 + (UIImage*)getItemImage:(NSUInteger)row;
 - (void)handleClickItem:(NSUInteger)row;
++ (NSUInteger)totalMoreBadge;
++ (NSUInteger)getItemBadge:(NSUInteger)row;
 
 @end

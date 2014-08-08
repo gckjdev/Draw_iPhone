@@ -233,6 +233,8 @@
     [UIApplication sharedApplication].idleTimerDisabled = NO;
     [super viewDidAppear:animated];
     
+//    [self updateAllBadge];
+    
     if ([[UserManager defaultManager] hasXiaojiNumber] == NO){
         [self showGuidePage];
     }
@@ -496,13 +498,10 @@
 
     [self updateBadgeTimeline:timelineCount];
     
-    int moreCount = [manager newContestCount] + [manager groupNoticeCount];
+    int moreCount = [MoreViewController totalMoreBadge];
     [self updateBadgeMore:moreCount];
     
-    [self updateBulletinBadge:[manager bulletinCount]];
-    
-    // TODO
-    //    [self updateBadgeBBS:HomeMenuTypeDrawFriend badge:manager.fanCount];
+    [self updateBulletinBadge:[manager bulletinCount]];    
 }
 
 

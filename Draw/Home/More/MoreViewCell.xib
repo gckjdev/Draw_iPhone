@@ -13,13 +13,18 @@
                 <rect key="frame" x="0.0" y="0.0" width="90" height="100"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
+                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="uNN-Ld-uJf" customClass="AvatarView">
+                        <rect key="frame" x="11" y="4" width="68" height="68"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oWj-rH-OHp">
                         <rect key="frame" x="9" y="0.0" width="72" height="72"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <fontDescription key="fontDescription" type="system" pointSize="10"/>
                         <state key="normal">
-                            <color key="titleColor" patternImage="08AF98B0-9F1E-49C7-A30B-3D08E688A990" colorSpace="pattern"/>
+                            <color key="titleColor" patternImage="3425B370-EA74-43A5-A7D8-24B090D12088" colorSpace="pattern"/>
                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                         </state>
                         <connections>
@@ -44,6 +49,7 @@
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             <size key="customSize" width="120" height="111"/>
             <connections>
+                <outlet property="avatarView" destination="uNN-Ld-uJf" id="CWv-Gu-JfY"/>
                 <outlet property="badgeView" destination="aQt-X0-cYF" id="Ha7-yD-RE3"/>
                 <outlet property="itemButton" destination="oWj-rH-OHp" id="OJf-wV-o8y"/>
                 <outlet property="titleLabel" destination="5KE-68-ceI" id="3Ar-De-kWL"/>
@@ -51,7 +57,7 @@
         </collectionViewCell>
     </objects>
     <resources>
-        <image name="08AF98B0-9F1E-49C7-A30B-3D08E688A990" width="320" height="460">
+        <image name="3425B370-EA74-43A5-A7D8-24B090D12088" width="320" height="460">
             <mutableData key="keyedArchiveRepresentation">
 YnBsaXN0MDDUAQIDBAUGPj9YJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoK4HCBMU
 GR4fIyQsLzI4O1UkbnVsbNUJCgsMDQ4PEBESVk5TU2l6ZVYkY2xhc3NcTlNJbWFnZUZsYWdzVk5TUmVw
