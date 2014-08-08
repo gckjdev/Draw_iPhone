@@ -950,13 +950,13 @@
 
 
 "kCommentTimes" = "Comment(%d)";
-"kGuessTimes" = "Guessed(%d)";
-"kOpusGuessTimes" = "Guessed(%d)";
+"kGuessTimes" = "Guess(%d)";
+"kOpusGuessTimes" = "Guess(%d)";
 
 "kFlowerTimes" = "Flower(%d)";
 "kTomatoTimes" = "Tomato(%d)";
 "kReportTimes" = "Report(%d)";
-"kCollectTimes" = "Favor(%d)";
+"kCollectTimes" = "Save(%d)";
 "kListenTimes" = "Play(%d)";
 "kWatchTimes" = "Play(%d)";
 
@@ -2791,12 +2791,12 @@
 "kLoadingStageWithProgress" = "Loading...(%d%%)";
 
 "kContinue" = "continue";
-"kProgress" = "Progress";
+"kProgress" = "Progress ";
 "kStartStage" = "Start";
 "kContinueStage" = "Continue";
 
-"kConquerDraw" = "ConquerDraw";
-"kNoTimelineDraw" = "ConquerDraw";
+"kConquerDraw" = "Conquer Draw";
+"kNoTimelineDraw" = "No Data";
 
 
 "kStrokeNumberNotEnough" = "Hey buddy, draw a bit more please!";
@@ -2814,7 +2814,7 @@
 "kNoTimelineConquerDraw" = "No data";
 
 
-"kHaveNotTips" = "Sorry,the tutorial has not tips!";
+"kHaveNotTips" = "Sorry, there is no tips for this stage.";
 
 "kNoTipsForChapter" = "No tips";
 "kStartLearnTutorial" = "Open";
@@ -2825,10 +2825,10 @@
 
 "kConquerResultPassComplete" = "Congratulation,Finish the tutorial perfectly";
 "kConquerResultPassNext" = "Congratulation,Go ahead!";
-"kConquerFailureResult" = "Failure!Try again";
+"kConquerFailureResult" = "Failure! Try again";
 
 "kConquerDrawShareText" = "我在%@中学习画画，本次闯关得分为%d，击败了宇宙三次元中%d%%的用户，你看看喽";
-"kCreateImageShareFail" = "无法生成分享图片，分享失败";
+"kCreateImageShareFail" = "Unable to share due to fail to create image for sharing. ";
 
 
 "kConquerDrawShareWeixinFriend" = "WeChat Friend";
@@ -2843,17 +2843,21 @@
 "kBlankDraw" = "Blank Draw";
 "kDrawMode" = "Select Draw Mode";
 
-"kResultPageDesc" = "Beated exactly";
-"kResultPageCount" = "%@ Users in this game";
-"kResultPageScore" = "Your opus score %@";
+"kResultPageDesc" = "OMG! YOU HAVE BEAT";
+"kResultPageCount" = "%@ USERS IN THE WORLD!";
+"kResultPageScore" = "YOUR SCORE IS %@";
 
-"kMetroIndexButton" = "TREND";
-"kMetroDocumentButton" = "DOC";
-"kMetroMessageButton" = "CHAT";
-"kMetroMoreButton" = "MORE";
+"kMetroIndexButton" = "Timeline";
+"kMetroDocumentButton" = "Draft";
+"kMetroMessageButton" = "Chat";
+"kMetroMoreButton" = "More";
 
 "kSealResultPass" = "PASS";
 "kSealResultFail" = "FAIL";
 
 "kTakeNumberSucc" = "Registration is completed! Your Littlegee Number is %@.";
 "kGotoNextChapterWelcome" = "Welcome to Chapter %d. Just Replay Tutorial or View Tips above.";
+
+"kRegistering" = "Registering...";
+"kBestScoreText" = "Best Score: %@";
+"kNoBestScore" = "None";

@@ -171,6 +171,8 @@ static NSDictionary* DRAW_MENU_IMAGE_DICT = nil;
     
     
     [[GuessService defaultService] getTodayGuessContestInfoWithDelegate:self];
+    
+    [self showGuidePage];
 }
 
 - (void)didGetGuessContest:(PBGuessContest *)contest resultCode:(int)resultCode{

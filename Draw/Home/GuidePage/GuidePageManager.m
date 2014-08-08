@@ -64,7 +64,7 @@
     GuidePageManager *guidePage = [[[GuidePageManager alloc] initWithPages:tutorialLayers delegate:nil] autorelease];
     guidePage.delegate = guidePage;
 
-    [superController.navigationController presentViewController:guidePage animated:NO completion:^{
+    [superController presentViewController:guidePage animated:NO completion:^{
         
     }];
     
@@ -178,8 +178,10 @@
 - (IBAction)dismissWithMessage:(NSString*)message
 {
     [self dismissViewControllerAnimated:YES completion:^{
-        [CommonDialog showSimpleDialog:message inView:self.view.superview];
+        
     }];
+    
+    [CommonDialog showSimpleDialog:message inView:self.view.superview];
 }
 
 - (void)takeNumber
@@ -189,8 +191,8 @@
         return;
     }
     
-    [self showActivityWithText:NSLS(@"kLoading")];
-    [[UserNumberService defaultService] getAndRegisterNumber:^(int resultCode, NSString *number) {
+    [self showActivityWithText:NSLS(@"kRegistering")];
+    [[UserNumberService defaultService] registerNewUserNumber:^(int resultCode, NSString *number) {
         [self hideActivity];
         if (resultCode == 0){
             NSString* message = [NSString stringWithFormat:NSLS(@"kTakeNumberSucc"), number];

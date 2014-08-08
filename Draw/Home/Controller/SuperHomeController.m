@@ -262,7 +262,7 @@ static NSDictionary* DEFAULT_MENU_SELECTOR_DICT = nil;
     
     [self updateBadgeWithType:HomeMenuTypeDrawFreeCoins badge:[[CheckInManager defaultManager] isCheckInToday] ? 0:1];
     
-    long timelineCount = manager.timelineOpusCount + manager.timelineGuessCount + manager.commentCount + manager.drawToMeCount;
+    long timelineCount = manager.timelineOpusCount + manager.timelineGuessCount + manager.commentCount + manager.drawToMeCount + manager.timelineConquerCount;
     
     [self updateBadgeWithType:HomeMenuTypeDrawTimeline badge:timelineCount];
     [self updateBadgeWithType:HomeMenuTypeDrawContest badge:[manager newContestCount]];
@@ -849,5 +849,7 @@ static NSDictionary* DEFAULT_MENU_SELECTOR_DICT = nil;
 {
     return OPAQUE_COLOR(0, 191, 178); // default
 }
+
+
 
 @end

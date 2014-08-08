@@ -194,6 +194,9 @@
     [self.view addConstraint:constraint];
     [self.view addConstraint:constraint2];
     
+
+    [self showGuidePage];
+    
 }
 
 - (void)updateBGImageView
@@ -481,8 +484,10 @@
     
     long timelineCount = manager.timelineOpusCount +
                             manager.timelineGuessCount +
+                            manager.timelineConquerCount +
                             manager.commentCount +
                             manager.drawToMeCount;
+
     [self updateBadgeTimeline:timelineCount];
     
     int moreCount = [manager newContestCount] + [manager groupNoticeCount];

@@ -46,5 +46,6 @@
 
 
 - (void)enterOfflineDrawWithMenu;
+- (void)showGuidePage;
 
 @end
