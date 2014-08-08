@@ -63,6 +63,7 @@
     // create guide page
     GuidePageManager *guidePage = [[[GuidePageManager alloc] initWithPages:tutorialLayers delegate:nil] autorelease];
     guidePage.delegate = guidePage;
+    guidePage.superController = superController;
 
     [superController presentViewController:guidePage animated:NO completion:^{
         
@@ -100,6 +101,8 @@
 
 - (void)dealloc
 {
+    self.superController = nil;
+    
     PPRelease(_xiaojiNumber);
     PPRelease(_password);
     PPRelease(_layerList);
@@ -177,11 +180,10 @@
 
 - (IBAction)dismissWithMessage:(NSString*)message
 {
+    UIView* view = self.superController.view;
     [self dismissViewControllerAnimated:YES completion:^{
-        
+        [CommonDialog showSimpleDialog:message inView:view];
     }];
-    
-    [CommonDialog showSimpleDialog:message inView:self.view.superview];
 }
 
 - (void)takeNumber
