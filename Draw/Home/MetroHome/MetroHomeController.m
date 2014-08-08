@@ -27,6 +27,7 @@
 #import "WordManager.h"
 #import "DrawRecoveryService.h"
 #import "SDWebImageManager.h"
+#import "BrickView.h"
 
 @interface MetroHomeController ()
 
@@ -148,10 +149,8 @@
     
     // update background view
     [self registerNotificationWithName:UPDATE_HOME_BG_NOTIFICATION_KEY usingBlock:^(NSNotification *note) {
-        [self updateBGImageView];
     }];
 
-    [self updateBGImageView];
     [self startAudioManager];
     
     [self registerUIApplicationNotification];
@@ -172,36 +171,23 @@
     self.avatarView.delegate = self;
     
     [self setButtonTitleBottom];
+    
 #pragma mark 调用buttonLayout
     [self buttonLayout];
-    
-    //Autolayout 适配ios6 ios7
-    NSLayoutConstraint* constraint = [NSLayoutConstraint constraintWithItem:self.galleryView
-                                                                  attribute:NSLayoutAttributeTop
-                                                                  relatedBy:NSLayoutRelationEqual
-                                                                     toItem:self.topView
-                                                                  attribute:NSLayoutAttributeBottom
-                                                                 multiplier:1.0
-                                                                   constant:0];
-    
-    NSLayoutConstraint* constraint2 = [NSLayoutConstraint constraintWithItem:self.topView
-                                                                  attribute:NSLayoutAttributeTop
-                                                                  relatedBy:NSLayoutRelationEqual
-                                                                     toItem:self.view
-                                                                  attribute:NSLayoutAttributeTop
-                                                                 multiplier:1.0
-                                                                   constant:STATUSBAR_DELTA];
-    
-    [self.view addConstraint:constraint];
-    [self.view addConstraint:constraint2];
-    
 
+    [_bottomView setTranslatesAutoresizingMaskIntoConstraints:NO];
+    [_mainView setTranslatesAutoresizingMaskIntoConstraints:NO];
+    [_topView setTranslatesAutoresizingMaskIntoConstraints:NO];
+    [_galleryView setTranslatesAutoresizingMaskIntoConstraints:NO];
+
+
+    [self setAllViewConstraints];
+    if(isIPad){
+        [self setMainBoxView_iPad];
+    }else{
+        [self setMainBoxView];
+    }
     [self showGuidePage];
-    
-}
-
-- (void)updateBGImageView
-{
     
 }
 
@@ -301,7 +287,9 @@
 {
     // TODO
 }
-
+-(void)updateAvatarBadge:(int)count{
+    [self.avatarBadgeView setNumber:count];
+}
 - (IBAction)goToLearning:(id)sender{
     [self enterLearnDraw];
 }
@@ -325,28 +313,7 @@
     UIImage *bottomBackground = [UIImage imageNamed:@"neironglan yu caidanlan.png"];
     [self.bottomBackground setBackgroundColor:[UIColor clearColor]];
     [self.bottomBackground setImage:bottomBackground];
-    CGFloat mainScreenHeight = [[UIScreen mainScreen] bounds].size.height;
-    if(!ISIPAD){
-        NSLayoutConstraint* constraint = nil;
-        if(mainScreenHeight == 480){
-            constraint = [NSLayoutConstraint constraintWithItem:self.bottomBackground
-                                                      attribute:NSLayoutAttributeTop
-                                                      relatedBy:NSLayoutRelationEqual
-                                                         toItem:self.mainView
-                                                      attribute:NSLayoutAttributeBottom
-                                                     multiplier:1.0
-                                                       constant:-5];
-        }else{
-            constraint = [NSLayoutConstraint constraintWithItem:self.bottomBackground
-                                                      attribute:NSLayoutAttributeTop
-                                                      relatedBy:NSLayoutRelationEqual
-                                                         toItem:self.mainView
-                                                      attribute:NSLayoutAttributeBottom
-                                                     multiplier:1.0
-                                                       constant:-10];
-        }
-        [self.view addConstraint:constraint];
-    }
+
 }
     
 #pragma mark click
@@ -415,6 +382,7 @@
 - (void)didClickOnAvatar:(NSString *)userId
 {
     [self enterUserDetail];
+    [self updateAvatarBadge:0];
 }
 - (void)didReceiveMemoryWarning
 {
@@ -428,9 +396,9 @@
 #pragma mark -
 
 // 设置Gallery
-#define IMAGE_FRAME_X (ISIPAD ? 26:11)
-#define IMAGE_FRAME_Y (ISIPAD ? 24:15)
-#define IMAGE_FRAME_WIDTH (ISIPAD ? 716:298)
+#define IMAGE_FRAME_X (ISIPAD ? 31:11)
+#define IMAGE_FRAME_Y (ISIPAD ? 44:16)
+#define IMAGE_FRAME_WIDTH (ISIPAD ? 706:298)
 #define IMAGE_FRAME_HEIGHT (ISIPAD ? 250:120)
 #define DEFAULT_GALLERY_IMAGE @"daguanka"
 
@@ -439,9 +407,7 @@
     BillboardManager *bbManager = [BillboardManager defaultManager];
     self.bbList = bbManager.bbList;
 
-    //默认图片
-    UIImage *image = [UIImage imageNamed:DEFAULT_GALLERY_IMAGE];
-    [self.galleryImageView setImage:image];
+
     
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
         
@@ -449,6 +415,11 @@
         for(Billboard *bb in _bbList){
 
             UIImage *image = [bbManager getImage:bb];
+            if(image==nil){
+                //默认图片
+                image = [UIImage imageNamed:DEFAULT_GALLERY_IMAGE];
+                [self.galleryImageView setImage:image];
+            }
             
             //添加到第三方框架
             SGFocusImageItem *item = [[[SGFocusImageItem alloc] initWithTitle:@"" image:image tag:bb.index] autorelease];
@@ -501,10 +472,8 @@
     int moreCount = [MoreViewController totalMoreBadge];
     [self updateBadgeMore:moreCount];
     
-    [self updateBulletinBadge:[manager bulletinCount]];    
+    [self updateBulletinBadge:[manager bulletinCount]];
 }
-
-
 
 - (void)dealloc {
     [_galleryView release];
@@ -532,6 +501,9 @@
     [_moreBadge release];
     [_anounceBadge release];
     [_galleryButton release];
+    [_forumView release];
+    [_amazingOpusView release];
+    [_avatarBadgeView release];
     [super dealloc];
 }
 - (void)viewDidUnload {
@@ -562,6 +534,9 @@
     [self setMoreBadge:nil];
     [self setAnounceBadge:nil];
     [self setGalleryButton:nil];
+    [self setForumView:nil];
+    [self setAmazingOpusView:nil];
+    [self setAvatarBadgeView:nil];
     [super viewDidUnload];
 }
 
@@ -587,29 +562,209 @@
     }];
 }
 
-//- (void)updateRecoveryDrawCount
-//{
-//    NSUInteger count = [[DrawRecoveryService defaultService] recoveryDrawCount];
-//    [self updateBadgeDraft:count];
-//    [[StatisticManager defaultManager] setRecoveryCount:count];
-//}
-
 - (void)updateBulletinBadge
 {
     StatisticManager *manager = [StatisticManager defaultManager];
     [self updateBulletinBadge:[manager bulletinCount]];
 }
 
-- (void)enterShareFromWeixin
-{
-//    if ([self isRegistered] == NO) {
-//        [self toRegister];
-//    } else {
-//        ShareController* share = [[ShareController alloc] init ];
-//        [share setFromWeiXin:YES];
-//        [self.navigationController pushViewController:share animated:YES];
-//        [share release];
-//    }
+#pragma mark - constraint
+-(void)setAllViewConstraints{
+    
+    
+    NSDictionary *views = NSDictionaryOfVariableBindings(_bottomView, _mainView,_topView,_galleryView);
+    NSMutableArray *constraints = [[NSMutableArray alloc] init];
+    
+    [_bottomView setTranslatesAutoresizingMaskIntoConstraints:NO];
+    [_mainView setTranslatesAutoresizingMaskIntoConstraints:NO];
+    [_topView setTranslatesAutoresizingMaskIntoConstraints:NO];
+    [_galleryView setTranslatesAutoresizingMaskIntoConstraints:NO];
+
+    
+    NSString *topViewConstraints = @"V:[_galleryView(>=140)]-0-[_mainView(>=140)]";
+    NSString *bottomViewConstrains = @"V:[_bottomView(==49)]-0-|";
+    
+    
+    if(ISIOS7){
+        NSString *topView = @"V:|-20-[_topView(==40)]";
+        [constraints addObject:topView];
+    }else{
+        NSString *topView = @"V:|-0-[_topView(==40)]";
+        [constraints addObject:topView];
+    }
+//    [constraints addObject:topViewConstraints];
+    [constraints addObject:bottomViewConstrains];
+    
+    // Set constraints.
+    for (NSString *string in constraints) {
+        [self.view addConstraints:[NSLayoutConstraint
+                                   constraintsWithVisualFormat:string
+                                   options:0 metrics:nil
+                                   views:views]];
+    }
+
+    
+    
 }
+
+-(void)setMainBoxView{
+    
+    CGFloat height = 205;
+    if(ISIPHONE5){
+        height = 292;
+    }
+    
+    CGFloat bigViewHeight = height * 0.618f;
+    CGFloat smallViewHeight = height - bigViewHeight;
+    
+    UIImage *paintingImage = [UIImage imageNamed:@"huahua"];
+    BrickView *paintingView = [[[BrickView alloc] initWithFrame:self.paintingView.bounds title:@"画画" imageTitle:@"Painting" image:paintingImage] autorelease];
+    
+    UIImage *learningImage = [UIImage imageNamed:@"xuehuahua"];
+    BrickView *learningView = [[[BrickView alloc] initWithFrame:self.learningView.bounds title:@"学画画" imageTitle:@"Learning" image:learningImage] autorelease];
+    
+    UIImage *forumImage = [UIImage imageNamed:@"luntan"];
+    BrickView *forumView = [[[BrickView alloc] initWithFrame:self.forumView.bounds title:@"论坛" imageTitle:@"Forum" image:forumImage] autorelease];
+    
+    UIImage *amazingImage = [UIImage imageNamed:@"jingcaizuopin"];
+    BrickView *amazingOpusView = [[[BrickView alloc] initWithFrame:self.amazingOpusView.bounds title:@"精彩作品" imageTitle:@"Gallery" image:amazingImage] autorelease];
+    
+    
+    [paintingView setBackgroundColor:[UIColor colorWithRed:0.757f green:0.565f blue:0.965f alpha:1.0f]];
+    [learningView setBackgroundColor:[UIColor colorWithRed:0.984f green:0.431f blue:0.588f alpha:1.0f]];
+    [forumView setBackgroundColor:[UIColor colorWithRed:0.459f green:0.784f blue:0.965f alpha:1.0f]];
+    [amazingOpusView setBackgroundColor:[UIColor colorWithRed:0.553f green:0.612f blue:0.98f alpha:1.0f]];
+    
+    [self.mainView addSubview:paintingView];
+    [self.mainView addSubview:learningView];
+    [self.mainView addSubview:forumView];
+    [self.mainView addSubview:amazingOpusView];
+    
+    
+    NSDictionary *views = NSDictionaryOfVariableBindings(_mainView,paintingView,learningView, forumView, amazingOpusView);
+    NSMutableArray *constraints = [[NSMutableArray alloc] init];
+    
+    [paintingView setTranslatesAutoresizingMaskIntoConstraints:NO];
+    [learningView setTranslatesAutoresizingMaskIntoConstraints:NO];
+    [forumView setTranslatesAutoresizingMaskIntoConstraints:NO];
+    [amazingOpusView setTranslatesAutoresizingMaskIntoConstraints:NO];
+    //Horizone
+    NSString *paintAndLearnViewHorizone = @"H:|-9.5-[paintingView]-7-[learningView(==190)]-9.5-|";
+    NSString *forumAndAmazingViewHorizone = @"H:|-9.5-[forumView]-8-[amazingOpusView(==190)]-9.5-|";
+    [constraints addObject:paintAndLearnViewHorizone];
+    [constraints addObject:forumAndAmazingViewHorizone];
+    
+    
+    
+    NSString *paintAndForumViewVertical = [NSString stringWithFormat:@"V:|-5-[paintingView(==%f)]-5-[forumView(==%f)]-5-|",bigViewHeight,smallViewHeight];
+    
+    NSString *learnAndAmazingViewVertical = [NSString stringWithFormat:@"V:|-5-[learningView(==%f)]-5-[amazingOpusView(==%f)]-5-|",bigViewHeight,smallViewHeight];
+    
+    [constraints addObject:paintAndForumViewVertical];
+    [constraints addObject:learnAndAmazingViewVertical];
+    
+    // Set constraints.
+    for (NSString *string in constraints) {
+        [self.view addConstraints:[NSLayoutConstraint
+                                   constraintsWithVisualFormat:string
+                                   options:0 metrics:nil
+                                   views:views]];
+    }
+    
+   
+    [self setMainViewListening:paintingView learningView:learningView forumView:forumView amazingOpusView:amazingOpusView];
+    
+    
+}
+
+-(void)setMainBoxView_iPad{
+    
+    CGFloat height = 595-40;
+    
+    CGFloat bigViewHeight = height * 0.618f;
+    CGFloat smallViewHeight = height - bigViewHeight;
+    
+    UIImage *paintingImage = [UIImage imageNamed:@"huahua"];
+    BrickView *paintingView = [[[BrickView alloc] initWithFrame:self.paintingView.bounds title:@"画画" imageTitle:@"Painting" image:paintingImage] autorelease];
+    
+    UIImage *learningImage = [UIImage imageNamed:@"xuehuahua"];
+    BrickView *learningView = [[[BrickView alloc] initWithFrame:self.learningView.bounds title:@"学画画" imageTitle:@"Learning" image:learningImage] autorelease];
+    
+    UIImage *forumImage = [UIImage imageNamed:@"luntan"];
+    BrickView *forumView = [[[BrickView alloc] initWithFrame:self.forumView.bounds title:@"论坛" imageTitle:@"Forum" image:forumImage] autorelease];
+    
+    UIImage *amazingImage = [UIImage imageNamed:@"jingcaizuopin"];
+    BrickView *amazingOpusView = [[[BrickView alloc] initWithFrame:self.amazingOpusView.bounds title:@"精彩作品" imageTitle:@"Gallery" image:amazingImage] autorelease];
+    
+    
+    
+    [paintingView setBackgroundColor:[UIColor colorWithRed:0.757f green:0.565f blue:0.965f alpha:1.0f]];
+    [learningView setBackgroundColor:[UIColor colorWithRed:0.984f green:0.431f blue:0.588f alpha:1.0f]];
+    [forumView setBackgroundColor:[UIColor colorWithRed:0.459f green:0.784f blue:0.965f alpha:1.0f]];
+    [amazingOpusView setBackgroundColor:[UIColor colorWithRed:0.553f green:0.612f blue:0.98f alpha:1.0f]];
+    
+    
+    [self.mainView addSubview:paintingView];
+    [self.mainView addSubview:learningView];
+    [self.mainView addSubview:forumView];
+    [self.mainView addSubview:amazingOpusView];
+    
+    
+    NSDictionary *views = NSDictionaryOfVariableBindings(_mainView,paintingView,learningView, forumView, amazingOpusView);
+    NSMutableArray *constraints = [[NSMutableArray alloc] init];
+    
+    [paintingView setTranslatesAutoresizingMaskIntoConstraints:NO];
+    [learningView setTranslatesAutoresizingMaskIntoConstraints:NO];
+    [forumView setTranslatesAutoresizingMaskIntoConstraints:NO];
+    [amazingOpusView setTranslatesAutoresizingMaskIntoConstraints:NO];
+    //Horizone
+    NSString *paintAndLearnViewHorizone = @"H:|-28-[paintingView(==240)]-10-[learningView(==452)]-28-|";
+    NSString *forumAndAmazingViewHorizone = @"H:|-28-[forumView(==240)]-10-[amazingOpusView(==452)]-28-|";
+    [constraints addObject:paintAndLearnViewHorizone];
+    [constraints addObject:forumAndAmazingViewHorizone];
+    
+    
+    
+    NSString *paintAndForumViewVertical = [NSString stringWithFormat:@"V:|-10-[paintingView(==%f)]-20-[forumView(==%f)]-10-|",bigViewHeight,smallViewHeight];
+    
+    NSString *learnAndAmazingViewVertical = [NSString stringWithFormat:@"V:|-10-[learningView(==%f)]-20-[amazingOpusView(==%f)]-10-|",bigViewHeight,smallViewHeight];
+    
+    [constraints addObject:paintAndForumViewVertical];
+    [constraints addObject:learnAndAmazingViewVertical];
+    
+    // Set constraints.
+    for (NSString *string in constraints) {
+        [self.view addConstraints:[NSLayoutConstraint
+                                   constraintsWithVisualFormat:string
+                                   options:0 metrics:nil
+                                   views:views]];
+    }
+    
+    [self setMainViewListening:paintingView learningView:learningView forumView:forumView amazingOpusView:amazingOpusView];
+    
+}
+
+#pragma mark - Listen
+-(void)setListenInView:(UIView*)view selector:(SEL)selector{
+    UITapGestureRecognizer* singleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:selector];
+    [view addGestureRecognizer:singleTap];
+}
+
+-(void)setMainViewListening:(UIView*)paintingView learningView:(UIView*)learningView forumView:(UIView*)forumView amazingOpusView:(UIView*)amazingOpusView{
+    
+    //Listen
+    paintingView.userInteractionEnabled = YES;
+    learningView.userInteractionEnabled = YES;
+    forumView.userInteractionEnabled = YES;
+    amazingOpusView.userInteractionEnabled = YES;
+    
+    [self setListenInView:paintingView selector:@selector(goToDraw:)];
+    [self setListenInView:learningView selector:@selector(goToLearning:)];
+    [self setListenInView:forumView selector:@selector(goToBBS:)];
+    [self setListenInView:amazingOpusView selector:@selector(goToOpus:)];
+}
+
+
+
 
 @end

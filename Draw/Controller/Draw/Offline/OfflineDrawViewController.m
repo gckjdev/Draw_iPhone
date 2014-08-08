@@ -1092,6 +1092,9 @@
     
     // save draft before quit
     [[MyPaintManager defaultManager] save];
+    
+    self.draft.drawActionList = nil;
+    self.draft = nil;
 }
 
 // 退出方法，所有退出必须调用本方法以保证正常释放
@@ -1218,6 +1221,7 @@
     if (succ){
         if (self.draft) {
             [[MyPaintManager defaultManager] deleteMyPaint:self.draft];
+            self.draft.drawActionList = nil;
             self.draft = nil;
         }
     }    
@@ -1319,6 +1323,7 @@
             POSTMSG(NSLS(@"kSaveOpusOK"));
             if (self.draft) {
                 [[MyPaintManager defaultManager] deleteMyPaint:self.draft];
+                self.draft.drawActionList = nil;
                 self.draft = nil;
             }
             
@@ -1470,6 +1475,7 @@
     if (self.draft && [self isEmptyNewDraft]){
         MyPaintManager *pManager = [MyPaintManager defaultManager];
         [pManager deleteMyPaint:self.draft];
+        self.draft.drawActionList = nil;
         self.draft = nil;
     }
 }
@@ -2544,21 +2550,23 @@
                         TITLE_RESTART,
                         TITLE_QUIT];
     
+    __block id bself = self;
+    
     BBSActionSheet *sheet = [[BBSActionSheet alloc] initWithTitles:titles callback:^(NSInteger index) {
         NSString *t = titles[index];
         if ([t isEqualToString:TITLE_CONTINUE]) {
             // do nothing...
         }else if([t isEqualToString:TITLE_RESTART]){
             if (targetType == TypeConquerDraw){
-                [self conquerAgain];
+                [bself conquerAgain];
             }
             else{
-                [self practiceAgain];
+                [bself practiceAgain];
             }
         }
         else if([t isEqualToString:TITLE_QUIT]){
-            [self saveDraft:NO];
-            [self quit];
+            [bself saveDraft:NO];
+            [bself quit];
         }
     }];
 
