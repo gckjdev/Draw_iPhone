@@ -402,10 +402,11 @@
         
         dispatch_async(dispatch_get_main_queue(), ^{
             //新建滚动展览
-            SGFocusImageFrame *imageFrame = [[SGFocusImageFrame alloc] initWithFrame:CGRectMake(IMAGE_FRAME_X, IMAGE_FRAME_Y, IMAGE_FRAME_WIDTH ,IMAGE_FRAME_HEIGHT)
+            CGRect frame = CGRectMake(IMAGE_FRAME_X, IMAGE_FRAME_Y, IMAGE_FRAME_WIDTH ,IMAGE_FRAME_HEIGHT);
+            SGFocusImageFrame *imageFrame = [[SGFocusImageFrame alloc] initWithFrame:frame
                                                                             delegate:self
-                                                    hasPageControllerBackgroundColor:NO
-                                                                     focusImageItems:itemList, nil];
+                                                                     focusImageItems:itemList];
+            [imageFrame setAlignment:SMPageControlAlignmentRight];
             [self.galleryView addSubview:imageFrame];
             [self.galleryView bringSubviewToFront:imageFrame];
             [imageFrame release];
