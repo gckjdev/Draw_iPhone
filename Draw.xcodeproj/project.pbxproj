@@ -6229,10 +6229,6 @@
 		D80EB34D196B90DB0087EBBD /* MetroHomeController.m in Sources */ = {isa = PBXBuildFile; fileRef = D80EB34A196B90DB0087EBBD /* MetroHomeController.m */; };
 		D80EB34E196B90DB0087EBBD /* MetroHomeController.m in Sources */ = {isa = PBXBuildFile; fileRef = D80EB34A196B90DB0087EBBD /* MetroHomeController.m */; };
 		D80EB34F196B90DB0087EBBD /* MetroHomeController.m in Sources */ = {isa = PBXBuildFile; fileRef = D80EB34A196B90DB0087EBBD /* MetroHomeController.m */; };
-		D80EB350196B90DB0087EBBD /* MetroHomeController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D80EB34B196B90DB0087EBBD /* MetroHomeController.xib */; };
-		D80EB351196B90DB0087EBBD /* MetroHomeController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D80EB34B196B90DB0087EBBD /* MetroHomeController.xib */; };
-		D80EB352196B90DB0087EBBD /* MetroHomeController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D80EB34B196B90DB0087EBBD /* MetroHomeController.xib */; };
-		D80EB353196B90DB0087EBBD /* MetroHomeController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D80EB34B196B90DB0087EBBD /* MetroHomeController.xib */; };
 		D80EB355196B90FB0087EBBD /* MetroHomeController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = D80EB354196B90FB0087EBBD /* MetroHomeController~ipad.xib */; };
 		D80EB356196B90FB0087EBBD /* MetroHomeController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = D80EB354196B90FB0087EBBD /* MetroHomeController~ipad.xib */; };
 		D80EB357196B90FB0087EBBD /* MetroHomeController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = D80EB354196B90FB0087EBBD /* MetroHomeController~ipad.xib */; };
@@ -6547,6 +6543,10 @@
 		D8F70B4C19935B0800B81795 /* BrickView.m in Sources */ = {isa = PBXBuildFile; fileRef = D8F70B4A19935B0800B81795 /* BrickView.m */; };
 		D8F70B4D19935B0800B81795 /* BrickView.m in Sources */ = {isa = PBXBuildFile; fileRef = D8F70B4A19935B0800B81795 /* BrickView.m */; };
 		D8F70B4E19935B0800B81795 /* BrickView.m in Sources */ = {isa = PBXBuildFile; fileRef = D8F70B4A19935B0800B81795 /* BrickView.m */; };
+		D8F70B501993894800B81795 /* MetroHomeController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D8F70B4F1993894800B81795 /* MetroHomeController.xib */; };
+		D8F70B511993894800B81795 /* MetroHomeController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D8F70B4F1993894800B81795 /* MetroHomeController.xib */; };
+		D8F70B521993894800B81795 /* MetroHomeController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D8F70B4F1993894800B81795 /* MetroHomeController.xib */; };
+		D8F70B531993894800B81795 /* MetroHomeController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D8F70B4F1993894800B81795 /* MetroHomeController.xib */; };
 		EA038975183B06D300516952 /* GroupTopicController.m in Sources */ = {isa = PBXBuildFile; fileRef = EA038973183B06D300516952 /* GroupTopicController.m */; };
 		EA038976183B06D300516952 /* GroupTopicController.m in Sources */ = {isa = PBXBuildFile; fileRef = EA038973183B06D300516952 /* GroupTopicController.m */; };
 		EA038977183B06D300516952 /* GroupTopicController.m in Sources */ = {isa = PBXBuildFile; fileRef = EA038973183B06D300516952 /* GroupTopicController.m */; };
@@ -10831,7 +10831,6 @@
 		D80BB5E51980C26000BFC4A7 /* THProgressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THProgressView.m; sourceTree = "<group>"; };
 		D80EB349196B90DB0087EBBD /* MetroHomeController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MetroHomeController.h; sourceTree = "<group>"; };
 		D80EB34A196B90DB0087EBBD /* MetroHomeController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MetroHomeController.m; sourceTree = "<group>"; };
-		D80EB34B196B90DB0087EBBD /* MetroHomeController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MetroHomeController.xib; sourceTree = "<group>"; };
 		D80EB354196B90FB0087EBBD /* MetroHomeController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "MetroHomeController~ipad.xib"; sourceTree = "<group>"; };
 		D81962371962675600B4FBAF /* AllTutorialCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AllTutorialCell.h; sourceTree = "<group>"; };
 		D81962381962675600B4FBAF /* AllTutorialCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AllTutorialCell.m; sourceTree = "<group>"; };
@@ -10938,6 +10937,7 @@
 		D8D54F571985EC2A00E5050F /* square3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = square3.png; sourceTree = "<group>"; };
 		D8F70B4919935B0800B81795 /* BrickView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BrickView.h; sourceTree = "<group>"; };
 		D8F70B4A19935B0800B81795 /* BrickView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BrickView.m; sourceTree = "<group>"; };
+		D8F70B4F1993894800B81795 /* MetroHomeController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MetroHomeController.xib; sourceTree = "<group>"; };
 		EA038972183B06D300516952 /* GroupTopicController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GroupTopicController.h; sourceTree = "<group>"; };
 		EA038973183B06D300516952 /* GroupTopicController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GroupTopicController.m; sourceTree = "<group>"; };
 		EA038974183B06D300516952 /* GroupTopicController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GroupTopicController.xib; sourceTree = "<group>"; };
@@ -18320,10 +18320,10 @@
 			isa = PBXGroup;
 			children = (
 				D8F70B4819935AD100B81795 /* MainBox */,
-				D80EB354196B90FB0087EBBD /* MetroHomeController~ipad.xib */,
 				D80EB349196B90DB0087EBBD /* MetroHomeController.h */,
 				D80EB34A196B90DB0087EBBD /* MetroHomeController.m */,
-				D80EB34B196B90DB0087EBBD /* MetroHomeController.xib */,
+				D8F70B4F1993894800B81795 /* MetroHomeController.xib */,
+				D80EB354196B90FB0087EBBD /* MetroHomeController~ipad.xib */,
 			);
 			path = MetroHome;
 			sourceTree = "<group>";
@@ -19134,7 +19134,6 @@
 				A461B4BB174CBAA70088B061 /* MyFeedController.xib in Resources */,
 				A461B4BC174CBAA70088B061 /* UserFeedController.xib in Resources */,
 				A461B4BD174CBAA70088B061 /* UserFeedController~ipad.xib in Resources */,
-				D80EB352196B90DB0087EBBD /* MetroHomeController.xib in Resources */,
 				A461B4BF174CBAA70088B061 /* ContestController.xib in Resources */,
 				A461B4C1174CBAA70088B061 /* ContestView.xib in Resources */,
 				A461B4C5174CBAA70088B061 /* StatementController.xib in Resources */,
@@ -19812,6 +19811,7 @@
 				A4D8FFC917DB089C0085061F /* path.svg in Resources */,
 				D82C0D821976500E0088539F /* home_bb_version.txt in Resources */,
 				A4D8FFCD17DB089C0085061F /* rect.svg in Resources */,
+				D8F70B521993894800B81795 /* MetroHomeController.xib in Resources */,
 				A4D8FFD117DB089C0085061F /* zjh_home_charge@2x.png in Resources */,
 				CA926BB018A8C950002C73B4 /* disable_notice_off.png in Resources */,
 				A4D8FFD517DB089C0085061F /* zjh_home_charge_bg@2x.png in Resources */,
@@ -20416,7 +20416,6 @@
 				C28AA0811738F04B007A819F /* default_config_Draw_version.txt in Resources */,
 				C28AA0821738F04B007A819F /* default_config_Draw.pb in Resources */,
 				C28AA0861738F04B007A819F /* DrawBgCell.xib in Resources */,
-				D80EB351196B90DB0087EBBD /* MetroHomeController.xib in Resources */,
 				C28AA0871738F04B007A819F /* DrawBgCell~ipad.xib in Resources */,
 				C28AA0881738F04B007A819F /* TaoBaoController.xib in Resources */,
 				C28AA0891738F04B007A819F /* TaoBaoController~ipad.xib in Resources */,
@@ -21174,6 +21173,7 @@
 				EA68D53B1893C545003EB69A /* selected_pen_fun1@2x.png in Resources */,
 				EA68D53F1893C545003EB69A /* selected_pen_fun2@2x.png in Resources */,
 				EA68D5431893C545003EB69A /* selected_pen_fun3@2x.png in Resources */,
+				D8F70B511993894800B81795 /* MetroHomeController.xib in Resources */,
 				EA68D5471893C545003EB69A /* selected_pen_fun4@2x.png in Resources */,
 				EA68D54B1893C545003EB69A /* selected_pen_fun5@2x.png in Resources */,
 				EA68D5501894FA9A003EB69A /* user_detail_vip@2x.png in Resources */,
@@ -21447,7 +21447,6 @@
 				CA53292116A3E1E000E9E96B /* PenBox.xib in Resources */,
 				CA53292516A3E1E000E9E96B /* PenBox~ipad.xib in Resources */,
 				CA53293116A3E50E00E9E96B /* InputAlertView.xib in Resources */,
-				D80EB350196B90DB0087EBBD /* MetroHomeController.xib in Resources */,
 				CA53293616A3E51F00E9E96B /* InputAlertView~ipad.xib in Resources */,
 				CA335D5216A90DC400D3BFF2 /* bbs_reward_action_content_bg@2x.png in Resources */,
 				CACD6AC118E03A29003F97C0 /* Resource.bundle in Resources */,
@@ -22181,6 +22180,7 @@
 				EA038984183B122900516952 /* GroupDetailCell.xib in Resources */,
 				EA03899F183B151A00516952 /* GroupInfoView.xib in Resources */,
 				CA92300B183DA8C900669DE3 /* TaskCell~ipad.xib in Resources */,
+				D8F70B501993894800B81795 /* MetroHomeController.xib in Resources */,
 				CA92300F183DA8C900669DE3 /* TaskController~ipad.xib in Resources */,
 				CA923018183DC40600669DE3 /* draw_home_task@2x.png in Resources */,
 				CA92301C183DC40600669DE3 /* sing_home_task@2x.png in Resources */,
@@ -22921,7 +22921,6 @@
 				A4D8FE1E17DB089C0085061F /* draw_grid_selected@2x.png in Resources */,
 				A4D8FE2217DB089C0085061F /* draw_line@2x.png in Resources */,
 				A4D8FE2617DB089C0085061F /* draw_oil@2x.png in Resources */,
-				D80EB353196B90DB0087EBBD /* MetroHomeController.xib in Resources */,
 				A4D8FE2A17DB089C0085061F /* draw_palette@2x.png in Resources */,
 				D8B58A46197CCEC10088E5F7 /* Default@2x.png in Resources */,
 				A4D8FE2E17DB089C0085061F /* draw_palette_unbuy@2x.png in Resources */,
@@ -23184,6 +23183,7 @@
 				CA9AB00F18321621002DBAA5 /* song_category@2x.png in Resources */,
 				CA9AB01318321621002DBAA5 /* song_tag@2x.png in Resources */,
 				CA9AB02718321621002DBAA5 /* NameAndDescEditView.xib in Resources */,
+				D8F70B531993894800B81795 /* MetroHomeController.xib in Resources */,
 				CA9AB02F18321621002DBAA5 /* SingInfoCell.xib in Resources */,
 				CA9AB03318321621002DBAA5 /* SingInputDialog.xib in Resources */,
 				CA9AB03B18321621002DBAA5 /* SingPlayView.xib in Resources */,
