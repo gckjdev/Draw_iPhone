@@ -453,14 +453,6 @@
     
     // TODO
     //    [self updateBadgeBBS:HomeMenuTypeDrawFriend badge:manager.fanCount];
-#ifdef DEBUG
-    [self updateBadgeChat:3];
-    [self updateBadgeTimeline:1];
-    [self updateBulletinBadge:2];
-    [self updateBadgeMore:4];
-
-
-#endif
 
 }
 
