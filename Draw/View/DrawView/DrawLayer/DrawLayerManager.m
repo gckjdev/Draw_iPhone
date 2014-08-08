@@ -287,14 +287,18 @@
     [[NSNotificationCenter defaultCenter] postNotificationName:DRAW_INFO_NEED_UPDATE object:nil];
 }
 
-- (UIImage *)createImageWithBGImage:(UIImage *)bg
+- (UIImage *)createImageWithBGImage:(UIImage *)bg bgColor:(UIColor*)bgColor
 {
     UIImage *image;
     PPDebug(@"<createImageWithBGImage> size=%@", NSStringFromCGSize(self.view.bounds.size));
     UIGraphicsBeginImageContext(self.view.bounds.size);
     CGContextRef ctx = UIGraphicsGetCurrentContext();
-    [[UIColor whiteColor] setFill];
-    CGContextFillRect(ctx, self.view.bounds);
+
+    if (bgColor){
+        [bgColor setFill];
+        CGContextFillRect(ctx, self.view.bounds);
+    }
+    
     [bg drawAtPoint:CGPointZero];
     
     [_layerList reversEnumWithHandler:^(id object) {

@@ -56,6 +56,7 @@
 #pragma mark - util methods
 - (BOOL)isViewBlank;
 - (UIImage*)createImage;
+- (UIImage*)createImageWithBgColor:(UIColor*)bgColor;
 - (UIImage *)createImageWithSize:(CGSize)size;
 - (void)showImage:(UIImage *)image;
 - (CGContextRef)createBitmapContext;

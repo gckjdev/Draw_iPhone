@@ -87,7 +87,8 @@
     
     tempFrame.size.width = 40;
     tempFrame.size.height = 5;
-    PPDebug(@"<imageView.Size.Width>%d",self.bottomView.frame.size.width);
+    PPDebug(@"<imageView.Size.Width>%d",tempFrame.size.width);
+    PPDebug(@"<imageView.Size.Width>%d",tempFrame.size.height);
     self.indexButton.frame = tempFrame;
 //    [self.indexButton.imageView];
 }

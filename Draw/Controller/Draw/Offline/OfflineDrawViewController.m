@@ -604,7 +604,8 @@
                                          atPoint:drawView.frame.origin
                                           opusId:opusId
                                        userStage:[self buildUserStage]
-                                           stage:self.stage];
+                                           stage:self.stage
+                                            type:targetType];
     }
 }
 
