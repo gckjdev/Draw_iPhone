@@ -857,7 +857,7 @@ static TutorialCoreManager* _defaultTutorialCoreManager;
 {
 #ifdef DEBUG
     
-    NSString *stepId = @"tutorialId-3";
+    NSString *stepId = @"tutorialId-1";
     [self.stepByStepTutorialIdList addObject:stepId];
     return [self findTutorialByTutorialId:stepId];
     
