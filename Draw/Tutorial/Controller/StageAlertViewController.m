@@ -130,7 +130,7 @@
     [self.stageDesc setTextColor:COLOR_BROWN];
     
     NSString* scoreText = nil;
-    if (bestScore > 0){
+    if ([bestScore intValue]> 0){
         scoreText = bestScore;
     }
     else{

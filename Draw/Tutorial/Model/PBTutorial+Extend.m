@@ -235,14 +235,17 @@
 }
 
 -(BOOL)isFinishedTutorial:(int)stageIndex{
-    int currentTryStageCount = [self.userStagesList count];
-    if (self.currentStageIndex == (currentTryStageCount-1)){
-        PBUserStage* userStage = [self.userStagesList objectAtIndex:self.currentStageIndex];
-        if([[UserTutorialManager defaultManager] isPass:userStage.bestScore]){
-            return YES;
-        }
-    }
-    return NO;
+    
+    return (self.progress >= 100);
+//    int currentTryStageCount = [self.userStagesList count];
+//    if (self.currentStageIndex == (currentTryStageCount-1)){
+//        // already try current stage index, check if passed
+//        PBUserStage* userStage = [self.userStagesList objectAtIndex:self.currentStageIndex];
+//        if([[UserTutorialManager defaultManager] isPass:userStage.bestScore]){
+//            return YES;
+//        }
+//    }
+//    return NO;
 }
 
 @end

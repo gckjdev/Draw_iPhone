@@ -25,7 +25,7 @@
 #define MARK_VIEW_FRAME (([DeviceDetection isIPAD]) ? CGRectMake(16 * 2,18 * 2,16 * 2,18 * 2) : CGRectMake(16,18,16,18))
 
 
-#define MARK_FONT_SIZE (([DeviceDetection isIPAD]) ? 12 * 2 : 12)
+#define MARK_FONT_SIZE (([DeviceDetection isIPAD]) ? 12 * 2 : 2)
 #define TOOL_NUMBER_SIZE (([DeviceDetection isIPAD]) ? 13 * 2 : 13)
 
 #define MARK_INSET (([DeviceDetection isIPAD]) ? UIEdgeInsetsMake(0, 0, 2 * 2, 0) : UIEdgeInsetsMake(0, 0, 2 * 2, 0))
@@ -555,7 +555,10 @@
 {
     self.userInteractionEnabled = NO;
     
+
     [self.titleLabel setFont:BADGE_FONT];
+
+   
     
     [self setTitleColor:COLOR_WHITE forState:UIControlStateNormal];
     
