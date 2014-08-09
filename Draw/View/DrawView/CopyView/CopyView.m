@@ -408,6 +408,8 @@
 
 - (UIImage*)createImage
 {
+    UIImage* image = nil;
+    
     if (self.userStage){
         if (_draw == nil){
             // load opus data
@@ -426,7 +428,7 @@
         }
 
         if (_targetType == TypePracticeDraw){
-            return [DrawPlayer createImageByDrawData:&_opusData
+            image = [DrawPlayer createImageByDrawData:&_opusData
                                          draw:&_draw
                                viewController:self.superViewController
                                       bgImage:nil
@@ -436,7 +438,11 @@
         }
     }
     
-    return nil;
+    if (image == nil){
+        image = [[[UIImage alloc] initWithContentsOfFile:self.opusImagePath] autorelease];
+    }
+    
+    return image;
 }
 
 #pragma mark - UIGestureRecognizerDelegate

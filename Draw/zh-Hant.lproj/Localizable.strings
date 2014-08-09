@@ -2780,3 +2780,8 @@
 "kNoTimelineDraw" = "闖關";
 "kHaveNotTips" = "對不起，該教程暫時沒有提示消息";
 
+"kHelpViewInOfflineDrawSubmitButtonGuide" = "確認提交\n完成作品\n狂點此處\n就會進入\n下一步!";
+"kHelpViewInOfflineDrawHelpButtonGuide" = "幫助\n內含通關秘笈\n助你順利通關!";
+"kHelpViewInOfflineDrawCopyViewGuide" = "此處為臨摹框\n可以隨意放大縮小\n點擊還可以重播!";
+"kHelpViewInOfflineDrawIveKnew" = " 我懂了！";
+

@@ -741,7 +741,7 @@ static TutorialCoreManager* _defaultTutorialCoreManager;
     
     
     //小女孩
-    NSArray *stagexiaonvhai = @[ @[@"tips1.png"],@[@"tips2.png"],@[@"tips3.png"],@[@"tips4",@"tips5"]];
+    NSArray *stagexiaonvhai = @[ @[@"tips1.png"],@[@"tips2.png"],@[@"tips3.png"],@[@"tips4.png",@"tips5.png"]];
     NSArray *tutorialxiaonvhai = @[
                                    stagexiaonvhai,stagexiaonvhai,stagexiaonvhai,stagexiaonvhai,stagexiaonvhai,stagexiaonvhai,stagexiaonvhai,stagexiaonvhai,stagexiaonvhai
                                   ];

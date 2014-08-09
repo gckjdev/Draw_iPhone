@@ -460,9 +460,12 @@
     // TODO
     //    [self updateBadgeBBS:HomeMenuTypeDrawFriend badge:manager.fanCount];
     if(view!=nil){
-//        if(manager.bbsActionCount!=0L){
-            [view setBottomLabelText:[NSString stringWithFormat:@"Forum( %ld )",manager.bbsActionCount]];
-//        }
+        if (manager.bbsActionCount == 0){
+            [view setBottomLabelText:@"Forum"];
+        }
+        else{
+            [view setBottomLabelText:[NSString stringWithFormat:@"Forum (%ld)",manager.bbsActionCount]];
+        }
     }
 }
 
