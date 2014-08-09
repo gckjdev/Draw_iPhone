@@ -6203,6 +6203,10 @@
 		CAFC03C517C887C200A11DE3 /* PPPopTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = CAFC03C317C887C100A11DE3 /* PPPopTableView.m */; };
 		CAFC03C617C887C200A11DE3 /* PPPopTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = CAFC03C317C887C100A11DE3 /* PPPopTableView.m */; };
 		CAFC03C717C887C200A11DE3 /* PPPopTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = CAFC03C317C887C100A11DE3 /* PPPopTableView.m */; };
+		CAFCF2031996226B008C8854 /* draw_page_option@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CAFCF2021996226B008C8854 /* draw_page_option@2x.png */; };
+		CAFCF2041996226B008C8854 /* draw_page_option@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CAFCF2021996226B008C8854 /* draw_page_option@2x.png */; };
+		CAFCF2051996226B008C8854 /* draw_page_option@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CAFCF2021996226B008C8854 /* draw_page_option@2x.png */; };
+		CAFCF2061996226B008C8854 /* draw_page_option@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CAFCF2021996226B008C8854 /* draw_page_option@2x.png */; };
 		CAFEFE2816606FC200441D77 /* ANGifEncoder.m in Sources */ = {isa = PBXBuildFile; fileRef = CAFEFC4B16606FC100441D77 /* ANGifEncoder.m */; };
 		CAFEFE2916606FC200441D77 /* ANGifGraphicControlExt.m in Sources */ = {isa = PBXBuildFile; fileRef = CAFEFC4D16606FC100441D77 /* ANGifGraphicControlExt.m */; };
 		CAFEFE2A16606FC200441D77 /* ANGifLogicalScreenDesc.m in Sources */ = {isa = PBXBuildFile; fileRef = CAFEFC4F16606FC100441D77 /* ANGifLogicalScreenDesc.m */; };
@@ -10802,6 +10806,7 @@
 		CAFC03B517C84CC600A11DE3 /* DetailFooterView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailFooterView.m; sourceTree = "<group>"; };
 		CAFC03C217C887BF00A11DE3 /* PPPopTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PPPopTableView.h; sourceTree = "<group>"; };
 		CAFC03C317C887C100A11DE3 /* PPPopTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PPPopTableView.m; sourceTree = "<group>"; };
+		CAFCF2021996226B008C8854 /* draw_page_option@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "draw_page_option@2x.png"; sourceTree = "<group>"; };
 		CAFEFC4A16606FC100441D77 /* ANGifEncoder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ANGifEncoder.h; sourceTree = "<group>"; };
 		CAFEFC4B16606FC100441D77 /* ANGifEncoder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ANGifEncoder.m; sourceTree = "<group>"; };
 		CAFEFC4C16606FC100441D77 /* ANGifGraphicControlExt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ANGifGraphicControlExt.h; sourceTree = "<group>"; };
@@ -12826,6 +12831,7 @@
 		A4D8FC6517DB089B0085061F /* Main */ = {
 			isa = PBXGroup;
 			children = (
+				CAFCF2021996226B008C8854 /* draw_page_option@2x.png */,
 				A4D8FC6617DB089B0085061F /* draw_main_bg@2x.jpg */,
 				A4D8FC6717DB089B0085061F /* draw_page_back@2x.png */,
 				A4D8FC6817DB089B0085061F /* old_draw_bg@2x.jpg */,
@@ -19403,6 +19409,7 @@
 				A461B660174CBAA70088B061 /* DraftsView~ipad.xib in Resources */,
 				A461B667174CBAA70088B061 /* ColorBox.xib in Resources */,
 				A461B668174CBAA70088B061 /* ColorBox~ipad.xib in Resources */,
+				CAFCF2051996226B008C8854 /* draw_page_option@2x.png in Resources */,
 				A461B66C174CBAA70088B061 /* Palette.xib in Resources */,
 				A461B66D174CBAA70088B061 /* Palette~ipad.xib in Resources */,
 				A461B66E174CBAA70088B061 /* PenBox.xib in Resources */,
@@ -20495,6 +20502,7 @@
 				C28AA00A1738F04B007A819F /* DrawBgBox.xib in Resources */,
 				C28AA00B1738F04B007A819F /* DrawBgBox~ipad.xib in Resources */,
 				C28AA0121738F04B007A819F /* CustomInfoView.xib in Resources */,
+				CAFCF2041996226B008C8854 /* draw_page_option@2x.png in Resources */,
 				D8A270A0196FD432006DDF20 /* lock_new.jpg in Resources */,
 				C28AA0131738F04B007A819F /* PriceView.xib in Resources */,
 				C28AA0141738F04B007A819F /* StoreCell.xib in Resources */,
@@ -22255,6 +22263,7 @@
 				CA9AAFAC18321621002DBAA5 /* sing_home_top@2x.png in Resources */,
 				CA9AAFB018321621002DBAA5 /* full_screen@2x.png in Resources */,
 				CA9AAFB418321621002DBAA5 /* sing_bg@2x.png in Resources */,
+				CAFCF2031996226B008C8854 /* draw_page_option@2x.png in Resources */,
 				CA9AAFB818321621002DBAA5 /* sing_edit@2x.png in Resources */,
 				CA9AAFBC18321621002DBAA5 /* sing_image@2x.png in Resources */,
 				CA9AAFC018321621002DBAA5 /* sing_lyric@2x.png in Resources */,
@@ -22706,6 +22715,7 @@
 				EA411F21176066F500DA72D0 /* default_config_513819630_version.txt in Resources */,
 				EA411F22176066F500DA72D0 /* default_config_513819630.pb in Resources */,
 				EA411F50176310FA00DA72D0 /* AskPsController.xib in Resources */,
+				CAFCF2061996226B008C8854 /* draw_page_option@2x.png in Resources */,
 				EA411F551763165F00DA72D0 /* AskPsHomeController.xib in Resources */,
 				A436436A176706A4006B6946 /* Opus.proto in Resources */,
 				EA6FE5CE176B32C300AB4E56 /* AskPsListController.xib in Resources */,

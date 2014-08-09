@@ -98,7 +98,7 @@ static AccountService* _defaultAccountService;
                                                                        deviceId:deviceId];
                 
         dispatch_async(dispatch_get_main_queue(), ^{
-            if (output.resultCode == ERROR_SUCCESS) {
+            if (output.resultCode == ERROR_SUCCESS && output.responseData) {
                 DataQueryResponse *res = [DataQueryResponse parseFromData:output.responseData];
                 output.resultCode = res.resultCode;
                 PBGameUser *user = res.user;
@@ -169,7 +169,7 @@ static AccountService* _defaultAccountService;
         
         
         dispatch_async(dispatch_get_main_queue(), ^{
-            if (output.resultCode == ERROR_SUCCESS) {
+            if (output.resultCode == ERROR_SUCCESS && output.responseData) {
                 DataQueryResponse *res = [DataQueryResponse parseFromData:output.responseData];
                 output.resultCode = res.resultCode;
                 PBGameUser *user = res.user;

@@ -2869,3 +2869,7 @@
 "kMenuTitleFriend" = "Friend";
 "kMenuTitleMe" = "Me";
 
+"kCopyViewFullScreen" = "Full Screen";
+"kCopyViewDefaultScreen" = "Resume Screen";
+
+"kTitleEnterChapterTips" = "Chapter %d Tips";

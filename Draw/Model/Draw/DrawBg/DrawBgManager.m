@@ -48,6 +48,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(DrawBgManager);
 
 - (void)updateDrawBgList
 {
+    // TODO pipi check draw bg issue later
     if (_drawBgGroupList) {
         PPRelease(_drawBgGroupList);
     }

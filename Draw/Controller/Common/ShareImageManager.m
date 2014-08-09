@@ -1291,6 +1291,11 @@ static NSMutableDictionary *colorImageDict;
     return [UIImage imageNamed:@"draw_page_back@2x.png"];
 }
 
+- (UIImage *)drawOptionImage
+{
+    return [UIImage imageNamed:@"draw_page_option@2x.png"];
+}
+
 - (UIImage *)runAwayImage
 {
     return [UIImage imageNamed:@"run@2x.png"];

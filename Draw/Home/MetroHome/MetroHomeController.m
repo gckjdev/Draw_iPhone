@@ -101,7 +101,10 @@
 
 - (void)viewDidLoad
 {
-    self.view.backgroundColor = COLOR_GREEN;
+    [self.moreBadge.titleLabel setFont:AD_BOLD_FONT(12, 10)];
+    [self.indexBadge.titleLabel setFont:AD_BOLD_FONT(12, 10)];
+    [self.documentBadge.titleLabel setFont:AD_BOLD_FONT(12, 10)];
+    [self.messageBadge.titleLabel setFont:AD_BOLD_FONT(12, 10)];
     
     [super viewDidLoad];
     
@@ -225,9 +228,11 @@
 #define TEST_DATA 5
 -(void)setBadgeView{
     [self.indexBadge setNumber:TEST_DATA];
+    [self.indexBadge.titleLabel setFont:AD_BOLD_FONT(13, 10)];
     [self.documentBadge setNumber:TEST_DATA];
     [self.messageBadge setNumber:TEST_DATA];
     [self.moreBadge setNumber:TEST_DATA];
+    [self.moreBadge.titleLabel setFont:AD_BOLD_FONT(3, 2)];
     [self.anounceBadge setNumber:TEST_DATA];
 }
 
@@ -445,6 +450,7 @@
     
     int moreCount = [MoreViewController totalMoreBadge];
     [self updateBadgeMore:moreCount];
+    
     
     [self updateBulletinBadge:[manager bulletinCount]];
 
@@ -821,7 +827,7 @@
     [label setText:text];
     [label setFont:font];
     [label setTextAlignment:NSTextAlignmentCenter];
-    [label setTextColor:COLOR_GRAY_TEXT];
+    [label setTextColor:[UIColor colorWithRed:0.467 green:0.467 blue:0.467 alpha:1.0]];
     [label setBackgroundColor:[UIColor clearColor]];
     
 }

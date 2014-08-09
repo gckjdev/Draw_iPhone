@@ -2914,3 +2914,8 @@
 
 "kMenuTitleFriend" = "好友";
 "kMenuTitleMe" = "我";
+
+"kCopyViewFullScreen" = "全屏显示";
+"kCopyViewDefaultScreen" = "恢复默认";
+
+"kTitleEnterChapterTips" = "欢迎进入第%d小节";

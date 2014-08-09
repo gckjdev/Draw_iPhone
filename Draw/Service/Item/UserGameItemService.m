@@ -86,7 +86,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(UserGameItemService);
         CommonNetworkOutput* output = [GameNetworkRequest buyItem:SERVER_URL appId:[PPConfigManager appId] userId:[[UserManager defaultManager] userId] itemId:itemId count:count price:totalPrice currency:currency toUser:toUserId];
         
         dispatch_async(dispatch_get_main_queue(), ^{
-            if (output.resultCode == ERROR_SUCCESS) {
+            if (output.resultCode == ERROR_SUCCESS && output.responseData) {
                 DataQueryResponse *res = [DataQueryResponse parseFromData:output.responseData];
                 output.resultCode = res.resultCode;
                 PBGameUser *user = res.user;
@@ -215,7 +215,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(UserGameItemService);
         CommonNetworkOutput* output = [GameNetworkRequest consumeItem:SERVER_URL appId:[PPConfigManager appId] userId:[[UserManager defaultManager] userId] itemId:itemId count:count forceBuy:forceBuy price:totalPrice currency:item.priceInfo.currency];
         
         dispatch_async(dispatch_get_main_queue(), ^{
-            if (output.resultCode == ERROR_SUCCESS ) {
+            if (output.resultCode == ERROR_SUCCESS && output.responseData) {
                 DataQueryResponse *res = [DataQueryResponse parseFromData:output.responseData];
                 output.resultCode = res.resultCode;
                 PBGameUser *user = res.user;

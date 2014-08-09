@@ -438,6 +438,7 @@ typedef enum{
 - (UIImage *)drawBGImage;
 - (UIImage *)oldDrawBGImage;
 - (UIImage *)drawBackImage;
+- (UIImage *)drawOptionImage;
 - (UIImage *)runAwayImage;
 - (UIImage *)homeDefaultAvatar;
 - (UIImage *)homeDefaultAvatarBG;

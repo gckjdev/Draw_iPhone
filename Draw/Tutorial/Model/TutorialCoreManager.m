@@ -82,17 +82,26 @@ static TutorialCoreManager* _defaultTutorialCoreManager;
         NSData* data = [NSData dataWithContentsOfFile:dataPath];
         if (data != nil){
             
-            PBTutorialCore* core = [PBTutorialCore parseFromData:data];
-            if (core != nil && core.tutorialsList != nil){
+            @try {
+                PBTutorialCore* core = [PBTutorialCore parseFromData:data];
+                if (core != nil && core.tutorialsList != nil){
+                    
+                    //chaoso 2014-07-17
+                    [_stepByStepTutorialIdList removeAllObjects];
+                    [_stepByStepTutorialIdList addObjectsFromArray:core.stepByStepTutorialIdList];
+                    
+                    [_tutorialList removeAllObjects];
+                    [_tutorialList addObjectsFromArray:core.tutorialsList];
+                }
+                PPDebug(@"<readConfigData> parse config data %@ successfully, total %d added", _smartData.name, [core.tutorialsList count]);
                 
-                //chaoso 2014-07-17
-                [_stepByStepTutorialIdList removeAllObjects];
-                [_stepByStepTutorialIdList addObjectsFromArray:core.stepByStepTutorialIdList];
-                
-                [_tutorialList removeAllObjects];
-                [_tutorialList addObjectsFromArray:core.tutorialsList];
             }
-            PPDebug(@"<readConfigData> parse config data %@ successfully, total %d added", _smartData.name, [core.tutorialsList count]);
+            @catch (NSException *exception) {
+                
+            }
+            @finally {
+                
+            }
         }
         else{
             PPDebug(@"[WARN] Init config data %@ data file empty", dataPath);

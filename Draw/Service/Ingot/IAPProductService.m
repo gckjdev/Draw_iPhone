@@ -48,12 +48,22 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(IAPProductService);
 
     [_smartData checkUpdateAndDownload:^(BOOL isAlreadyExisted, NSString *dataFilePath) {
         PPDebug(@"getIngotsList successfully");
-        NSData *data = [NSData dataWithContentsOfFile:dataFilePath];
-        NSArray *products = [[PBIAPProductList parseFromData:data] productsList];
-        [[IAPProductManager defaultManager] setProductList:products];
         
-        EXECUTE_BLOCK(tempHandler, YES, products);
-        [bself.blockArray releaseBlock:tempHandler];
+        @try {
+            NSData *data = [NSData dataWithContentsOfFile:dataFilePath];
+            NSArray *products = [[PBIAPProductList parseFromData:data] productsList];
+            [[IAPProductManager defaultManager] setProductList:products];
+            
+            EXECUTE_BLOCK(tempHandler, YES, products);
+            [bself.blockArray releaseBlock:tempHandler];
+        }
+        @catch (NSException *exception) {
+            
+        }
+        @finally {
+            
+        }
+        
     } failureBlock:^(NSError *error) {
         PPDebug(@"getIngotsList failure error=%@", [error description]);
         NSData *data = [NSData dataWithContentsOfFile:bself.smartData.dataFilePath];
