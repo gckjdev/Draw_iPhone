@@ -1000,40 +1000,44 @@
     
     // TODO update submit/next button status for learn draw (practice only)
 
-    if ([self isLearnType]){
-        [self showHelpView];
+    
+    //通过判断user的属性，确定是否已读help
+    if (![[UserManager defaultManager]isReadLearnDrawHelp]){
+         if ([self isLearnType])
+             [self showHelpView];
     }
 }
 
 - (void)showHelpView
 {
-#ifdef DEBUG
-    NSMutableArray* spotHelpList = [NSMutableArray arrayWithCapacity:2];
+    NSMutableArray* spotHelpList = [NSMutableArray arrayWithCapacity:1];
     
-    UIView *dirtyview1 = [[[UIView alloc]init] autorelease];
+    UIFont* font = AD_FONT(20, 12);
+    
+    //set dirty view for adaptation of attach view which need spot lighting
+    UIView *dirtyView1 = [[[UIView alloc]init] autorelease];
     CGRect frame1 = self.submitButton.frame;
     frame1.origin.x += self.submitButton.superview.frame.origin.x;
     frame1.origin.y += self.submitButton.superview.frame.origin.y;
-    dirtyview1.frame = frame1;
-    [self.submitButton setUserInteractionEnabled:NO];
-    
-    UIFont* font = AD_FONT(20, 12);
-    SpotHelpObject *obj1=[[SpotHelpObject alloc] initWithSpotlightView:dirtyview1
-                                                                  Text:@"确认提交 \n完成作品 \n狂点此处 \n就会进入 \n下一步！ "
+    dirtyView1.frame = frame1;
+    SpotHelpObject *obj1=[[SpotHelpObject alloc] initWithSpotlightView:dirtyView1
+                                                                  Text:
+                          NSLS(@"kHelpViewInOfflineDrawSubmitButtonGuide")
                                                                    Dir:(ISIPAD? CRArrowPositionTopRight:CRArrowPositionTopRight)
                                                                   Font:font
                                                              textColor:[UIColor whiteColor]
                                                           boraderColor:[UIColor whiteColor]
                                                                bgColor:[UIColor clearColor]];
     
-    UIView *dirtyview2 = [[[UIView alloc]init] autorelease];
+    UIView *dirtyView2 = [[[UIView alloc]init] autorelease];
     CGRect frame2 = self.helpButton.frame;
     frame2.origin.x += self.helpButton.superview.frame.origin.x;
     frame2.origin.y += self.helpButton.superview.frame.origin.y;
-    dirtyview2.frame = frame2;
+    dirtyView2.frame = frame2;
     [self.helpButton setUserInteractionEnabled:NO];
-    SpotHelpObject *obj2=[[SpotHelpObject alloc] initWithSpotlightView:dirtyview2
-                                                                  Text:@"帮助\n内含通关秘籍 \n助你顺利通关!"
+    SpotHelpObject *obj2=[[SpotHelpObject alloc] initWithSpotlightView:dirtyView2
+                                                                  Text:
+                          NSLS(@"kHelpViewInOfflineDrawHelpButtonGuide")
                                                                    Dir:(ISIPAD? CRArrowPositionTopRight:CRArrowPositionTopRight)
                                                                   Font:font
                                                              textColor:[UIColor whiteColor]
@@ -1041,13 +1045,14 @@
                                                                bgColor:[UIColor clearColor]];
 
     //dirtyView FOR subview's subview
-    UIView *dirtyview = [[[UIView alloc]init] autorelease];
+    UIView *dirtyView = [[[UIView alloc]init] autorelease];
     CGRect frame = self.copyView.frame;
     frame.origin.x += self.copyView.superview.frame.origin.x;
     frame.origin.y += self.copyView.superview.frame.origin.y;
-    dirtyview.frame = frame;
-    SpotHelpObject *obj3=[[SpotHelpObject alloc] initWithSpotlightView:dirtyview
-                                                                  Text:@"此处为临摹框 \n可以随意放大缩小 \n点击还可以回放！ "
+    dirtyView.frame = frame;
+    SpotHelpObject *obj3=[[SpotHelpObject alloc] initWithSpotlightView:dirtyView
+                                                                  Text:
+                          NSLS(@"kHelpViewInOfflineDrawCopyViewGuide")
                                                                    Dir:(ISIPAD?CRArrowPositionTopLeft:CRArrowPositionTopLeft)
                                                                   Font:font
                                                              textColor:[UIColor whiteColor]
@@ -1057,15 +1062,9 @@
     [spotHelpList addObject:obj2];
     [spotHelpList addObject:obj3];
     
-//    [UIScreen mainScreen].bounds;
-//    ISIPAD
-    
     [SpotHelpView show:self.view
           spotHelpList:spotHelpList];
-    
-    return;
-    
-#endif
+
 }
 
 

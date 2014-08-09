@@ -28,7 +28,7 @@
 #import "TimeUtils.h"
 #import "LocalNotificationUtil.h"
 //#import "ZeroQianManager.h"
-
+#define KEY_LEARN_DRAW_HELP             @"KEY_LEARN_DRAW_HELP"
 #define KEY_HOME_STYLE                  @"KEY_HOME_STYLE"
 #define KEY_ENABLE_REPLAY               @"KEY_ENABLE_REPLAY"
 #define KEY_ALL_USER_PB_DATA            @"KEY_ALL_USER_PB_DATA"
@@ -2046,6 +2046,23 @@ qqAccessTokenSecret:(NSString*)accessTokenSecret
     [ud setObject:@(style) forKey:KEY_HOME_STYLE];
     [ud synchronize];
 }
+
+- (NSString*)keyLearnDrawHelp
+{
+    NSString* key = [NSString stringWithFormat:@"%@_%@", KEY_LEARN_DRAW_HELP, self.userId];
+    return key;
+}
+
+- (BOOL)isReadLearnDrawHelp
+{
+    return [UD_GET([self keyLearnDrawHelp]) boolValue];
+}
+
+- (void)setHasReadLearnDrawHelp
+{
+    UD_SET([self keyLearnDrawHelp], @(YES));
+}
+
 
 
 @end
