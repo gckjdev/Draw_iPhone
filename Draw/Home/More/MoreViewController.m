@@ -76,6 +76,12 @@ static dispatch_once_t onceToken;
     
 }
 
+- (void)viewDidAppear:(BOOL)animated
+{
+    [self.collectionView reloadData];
+    [super viewDidAppear:animated];
+}
+
 //每个section的item个数
 -(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {

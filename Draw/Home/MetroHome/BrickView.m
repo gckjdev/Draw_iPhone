@@ -100,6 +100,10 @@
     [self addSubview:labelDesc];
     [self addSubview:imageView];
     
+    [label release];
+    [labelDesc release];
+    [imageView release];
+    
     [labelDesc setTranslatesAutoresizingMaskIntoConstraints:NO];
     [imageView setTranslatesAutoresizingMaskIntoConstraints:NO];
 
@@ -143,6 +147,7 @@
                               views:views]];
     }
 
+    [constraints release];
 }
 
 

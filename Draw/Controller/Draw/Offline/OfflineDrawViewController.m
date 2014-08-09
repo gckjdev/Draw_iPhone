@@ -268,7 +268,7 @@
     else{
         
         UIImage* bgImage = [[UserTutorialService defaultService] getBgImage:userStage stage:stage type:targetType];
-        NSString* bgImageName = [ChangeBGImageAction bgImageNameForLearnDrawBgImage:tutorial.tutorialId stageId:stage.stageId];
+//        NSString* bgImageName = [ChangeBGImageAction bgImageNameForLearnDrawBgImage:tutorial.tutorialId stageId:stage.stageId];
         vc = [[OfflineDrawViewController alloc] initWithTargetType:targetType
                                                          delegate:nil
                                                   startController:startController
@@ -1834,34 +1834,39 @@
     for(DrawAction *da in drawView.drawActionList)
     {
         if ([da isPaintAction]){
-            PaintAction *pa=da;
+            PaintAction *pa = (PaintAction*)da;
             if((pa.paint.color.red!=1.0 || pa.paint.color.green!=1.0
                             || pa.paint.color.blue!=1.0)
                     && [pa pointCount] > minPointNum)
                 effetiveAction++;
         }
         if ([da isChangeBGAction]) {
-            ChangeBackAction *cba=da;
+            ChangeBackAction *cba = (ChangeBackAction*)da;
             if(cba.color.red==1.0 && cba.color.green==1.0 && cba.color.blue==1.0)
                 effetiveAction=0;
             else
                 effetiveAction++;
         }
         if ([da isShapeAction]) {
-            ShapeAction *sa=da;
+            ShapeAction *sa = (ShapeAction*)da;
             if (sa.shape.color.red == 1.0 && sa.shape.color.green == 1.0
                 && sa.shape.color.blue == 1.0);
             else
                 effetiveAction++;
-            }
+        }
+        
+        if (effetiveAction >= minStrokeNum){
+            return 0;
+        }
     }
 
     if(effetiveAction < minStrokeNum && effetiveAction){
+        PPDebug(@"too few strokes! minus points is %d", (minStrokeNum - effetiveAction));
         return (minStrokeNum - effetiveAction);
-        PPDebug(@"too few strokes!");
     }
-    else
+    else{
         return 0;
+    }
 }
 
 
@@ -1921,16 +1926,16 @@
 
 - (void)handleSubmitForLearnDraw
 {
-    //  笔画数预处理
-    NSInteger minus =
-    [self strokeLimitWithMinStrokeNum:[PPConfigManager getMinStrokeNum]
-                          MinPointNum:[PPConfigManager getMinPointNum]];
 
     if ([self isGotoNextChapter]){
         [self gotoNextChapter];
         return;
     }
     
+    //  笔画数预处理
+    NSInteger minus = [self strokeLimitWithMinStrokeNum:[PPConfigManager getMinStrokeNum]
+                                            MinPointNum:[PPConfigManager getMinPointNum]];
+
     self.submitOpusDrawData = nil;
     self.submitOpusFinalImage = nil;
     

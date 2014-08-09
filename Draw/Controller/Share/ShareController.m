@@ -389,12 +389,12 @@ typedef enum{
 
 - (void)performReplay
 {
-#ifdef DEBUG
-    
-    [self performSelector:@selector(TestLayerImage)];
-    [self hideActivity];
-    return;
-#endif
+//#ifdef DEBUG
+//    
+//    [self performSelector:@selector(TestLayerImage)];
+//    [self hideActivity];
+//    return;
+//#endif
     
     [self performLoadOpus:@selector(gotoReplayView)];
     return;

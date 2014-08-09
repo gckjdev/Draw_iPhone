@@ -76,6 +76,11 @@ static BOOL gIsShowGuidePage = NO;
         
     }];
     
+    [layr1 release];
+    [layr2 release];
+    [layr3 release];
+    [layr4 release];
+    
     return;
 }
 

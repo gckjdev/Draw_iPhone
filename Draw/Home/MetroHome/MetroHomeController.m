@@ -584,8 +584,7 @@
                                    views:views]];
     }
 
-    
-    
+    [constraints release];
 }
 
 -(void)setMainBoxView{
@@ -655,7 +654,12 @@
     }
     
    
-    [self setMainViewListening:paintingView learningView:learningView forumView:forumView amazingOpusView:amazingOpusView];
+    [self setMainViewListening:paintingView
+                  learningView:learningView
+                     forumView:forumView
+               amazingOpusView:amazingOpusView];
+    
+    [constraints release];
     
     
 }
@@ -724,7 +728,12 @@
                                    views:views]];
     }
     
-    [self setMainViewListening:paintingView learningView:learningView forumView:forumView amazingOpusView:amazingOpusView];
+    [self setMainViewListening:paintingView
+                  learningView:learningView
+                     forumView:forumView
+               amazingOpusView:amazingOpusView];
+    
+    [constraints release];
 
 }
 #define TRENDS_BUTTON_TITLE_EDGEINSETS   (ISIPAD ? .0 : -50)

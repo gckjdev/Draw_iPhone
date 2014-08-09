@@ -109,7 +109,7 @@
 {
     
     [super viewDidLoad];
-    UIImageView *iv = [[UIImageView alloc] initWithImage:[shareImageManager drawBGImage]];
+    UIImageView *iv = [[[UIImageView alloc] initWithImage:[shareImageManager drawBGImage]] autorelease];
     [self.view insertSubview:iv atIndex:0];
     iv.frame = self.view.bounds;
     iv.autoresizingMask = (2<<6) - 1;

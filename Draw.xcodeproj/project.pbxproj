@@ -4334,6 +4334,7 @@
 		CA1041F91509BC9700F60C03 /* HomeController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA1041F71509BC9700F60C03 /* HomeController.xib */; };
 		CA1042021509C06E00F60C03 /* RoomController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA1042001509C06E00F60C03 /* RoomController.m */; };
 		CA1042031509C06E00F60C03 /* RoomController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA1042011509C06E00F60C03 /* RoomController.xib */; };
+		CA10C8C71995B57800765FDD /* ICETutorialStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = D8B58B1B197CED320088E5F7 /* ICETutorialStyle.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
 		CA11625B1834A88E00FDD3A9 /* TaskController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA1162591834A88E00FDD3A9 /* TaskController.m */; };
 		CA11625C1834A88E00FDD3A9 /* TaskController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA1162591834A88E00FDD3A9 /* TaskController.m */; };
 		CA11625D1834A88E00FDD3A9 /* TaskController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA1162591834A88E00FDD3A9 /* TaskController.m */; };
@@ -6485,9 +6486,8 @@
 		D8B58B13197CE8E60088E5F7 /* ICETutorialPage.m in Sources */ = {isa = PBXBuildFile; fileRef = D8B58B00197CE8E60088E5F7 /* ICETutorialPage.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
 		D8B58B14197CE8E60088E5F7 /* ICETutorialPage.m in Sources */ = {isa = PBXBuildFile; fileRef = D8B58B00197CE8E60088E5F7 /* ICETutorialPage.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
 		D8B58B15197CE8E60088E5F7 /* ICETutorialPage.m in Sources */ = {isa = PBXBuildFile; fileRef = D8B58B00197CE8E60088E5F7 /* ICETutorialPage.m */; };
-		D8B58B1C197CED320088E5F7 /* ICETutorialStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = D8B58B1B197CED320088E5F7 /* ICETutorialStyle.m */; };
-		D8B58B1D197CED320088E5F7 /* ICETutorialStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = D8B58B1B197CED320088E5F7 /* ICETutorialStyle.m */; };
-		D8B58B1E197CED320088E5F7 /* ICETutorialStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = D8B58B1B197CED320088E5F7 /* ICETutorialStyle.m */; };
+		D8B58B1D197CED320088E5F7 /* ICETutorialStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = D8B58B1B197CED320088E5F7 /* ICETutorialStyle.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
+		D8B58B1E197CED320088E5F7 /* ICETutorialStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = D8B58B1B197CED320088E5F7 /* ICETutorialStyle.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
 		D8B58B1F197CED320088E5F7 /* ICETutorialStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = D8B58B1B197CED320088E5F7 /* ICETutorialStyle.m */; };
 		D8B58B25197CEE090088E5F7 /* SGFocusImageFrame.m in Sources */ = {isa = PBXBuildFile; fileRef = D8B58B22197CEE090088E5F7 /* SGFocusImageFrame.m */; };
 		D8B58B26197CEE090088E5F7 /* SGFocusImageFrame.m in Sources */ = {isa = PBXBuildFile; fileRef = D8B58B22197CEE090088E5F7 /* SGFocusImageFrame.m */; };
@@ -25497,6 +25497,7 @@
 				CAFEFE4216606FC200441D77 /* UIImagePixelSource.m in Sources */,
 				CAFEFE8016606FC200441D77 /* ioapi.c in Sources */,
 				CAFEFE8116606FC200441D77 /* mztools.c in Sources */,
+				CA10C8C71995B57800765FDD /* ICETutorialStyle.m in Sources */,
 				CAFEFE8216606FC200441D77 /* unzip.c in Sources */,
 				CAFEFE8316606FC200441D77 /* zip.c in Sources */,
 				CAFEFFB4166072AB00441D77 /* DrawColor.m in Sources */,
@@ -25669,7 +25670,6 @@
 				CAEFC5371700005400D799B7 /* ToolCommand.m in Sources */,
 				CAEFC5431700024300D799B7 /* AddColorCommand.m in Sources */,
 				CAEFC5491700026900D799B7 /* PaletteCommand.m in Sources */,
-				D8B58B1C197CED320088E5F7 /* ICETutorialStyle.m in Sources */,
 				CAEFC54F1700036700D799B7 /* SelectPenCommand.m in Sources */,
 				CAEFC5551700038900D799B7 /* EraserCommand.m in Sources */,
 				CAEFC55B170003A000D799B7 /* PaintBucketCommand.m in Sources */,
