@@ -720,8 +720,8 @@ static TutorialCoreManager* _defaultTutorialCoreManager;
     NSArray *stage8Tips = @[@[@"tips1.png",@"tips2.png",@"tips3.png"]];
     
     //tutorial0 的stage
-    NSArray *stage1Tips_tutorial0 = @[@[@"tips1.png"]];
-    NSArray *stage2Tips_tutorial0 = @[@[@"tips1.png"],@[@"tips2.png",@"tips3.png",@"tips4.png"],@[@"tips5.png",@"tips6.png",@"tips7.png",@"tips8.png"],@[@"tips9.png",@"tips10.png"]];
+    NSArray *stage1Tips_tutorial0 = @[@[@"tips1.png",@"tips2.png",@"tips3.png"]];
+    NSArray *stage2Tips_tutorial0 = @[@[@"tips1.png"],@[@"tips2.png",@"tips3.png",@"tips4.png"],@[@"tips5.png",@"tips6.png",@"tips7.png",@"tips8.png"],@[@"tips9.png",@"tips10.png",@"tips11.png"]];
     NSArray *stage3Tips_tutorial0 = @[@[@"tips1.png"]];
     NSArray *stage4Tips_tutorial0 = @[@[@"tips1.png"],@[@"tips2.png"],@[@"tips3.png",@"tips4.png",@"tips5.png",@"tips6.png"],@[@"tips7.png"]];
     NSArray *stage5Tips_tutorial0 = @[@[@"tips1.png"]];
