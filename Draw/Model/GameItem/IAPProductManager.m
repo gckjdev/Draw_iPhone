@@ -32,7 +32,16 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(IAPProductManager);
         NSBundle *bundle = [NSBundle mainBundle];
         NSString *path = [bundle pathForResource:[IAPProductManager IAPProductFileNameWithoutSuffix] ofType:IAP_PRODUCT_FILE_TYPE];
         NSData *data = [NSData dataWithContentsOfFile:path];
-        self.productList = [[PBIAPProductList parseFromData:data] productsList];
+        
+        @try {
+            self.productList = [[PBIAPProductList parseFromData:data] productsList];            
+        }
+        @catch (NSException *exception) {
+            
+        }
+        @finally {
+            
+        }
     }
     
     return self;

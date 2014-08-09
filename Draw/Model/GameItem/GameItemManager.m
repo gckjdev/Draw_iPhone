@@ -41,7 +41,15 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GameItemManager);
         NSBundle *bundle = [NSBundle mainBundle];
         NSString *path = [bundle pathForResource:[GameItemManager shopItemsFileNameWithoutSuffix] ofType:SHOP_ITEM_FILE_TYPE];
         NSData *data = [NSData dataWithContentsOfFile:path];
-        self.items = [[PBGameItemList parseFromData:data] itemsList];
+        @try {
+            self.items = [[PBGameItemList parseFromData:data] itemsList];
+        }
+        @catch (NSException *exception) {
+            
+        }
+        @finally {
+            
+        }
     }
     
     return self;
