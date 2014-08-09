@@ -86,6 +86,8 @@
 #import "OpusClassInfoManager.h"
 #import "UIImageExt.h"
 
+#import "SpotHelpView.h"
+
 @interface OfflineDrawViewController()
 {
     DrawView *drawView;                     // 绘画视图
@@ -993,7 +995,50 @@
     }
     
     // TODO update submit/next button status for learn draw (practice only)
+
+//    if ([self isLearnType]){
+//        [self showHelpView];
+//    }
+}
+
+- (void)showHelpView
+{
+#ifdef DEBUG
+    NSMutableArray* spotHelpList = [NSMutableArray arrayWithCapacity:2];
     
+    SpotHelpObject *obj1=[[SpotHelpObject alloc] initWithSpotlightView:self.submitButton
+                                                                  Text:@"记得第一个参数\n都必须要是view\n如果加了个不是view的\n就会找不到坐标"
+                                                                   Dir:CRArrowPositionTopRight
+                                                                  Font:[UIFont systemFontOfSize:18]
+                                                             textColor:[UIColor whiteColor]
+                                                          boraderColor:[UIColor whiteColor]
+                                                               bgColor:[UIColor clearColor]];
+    
+    SpotHelpObject *obj2=[[SpotHelpObject alloc] initWithSpotlightView:self.layerButton
+                                                                  Text:@"怎么不显示 "
+                                                                   Dir:CRArrowPositionTop
+                                                                  Font:[UIFont systemFontOfSize:18]
+                                                             textColor:[UIColor whiteColor]
+                                                          boraderColor:[UIColor whiteColor]
+                                                               bgColor:[UIColor clearColor]];
+    //
+    //    SpotHelpObject *obj3=[[SpotHelpObject alloc] initWithSpotlightView:self.copyView
+    //                                                                  Text:@"这是view，点击一下\n会有惊喜哦！"
+    //                                                                   Dir:CRArrowPositionTopRight
+    //                                                                  Font:[UIFont systemFontOfSize:18]
+    //                                                             textColor:[UIColor whiteColor]
+    //                                                          boraderColor:[UIColor whiteColor]
+    //                                                               bgColor:[UIColor clearColor]];
+    [spotHelpList addObject:obj1];
+    [spotHelpList addObject:obj2];
+    //    [spotHelpList addObject:obj3];
+    
+    [SpotHelpView show:self.view
+          spotHelpList:spotHelpList];
+    ;
+    return;
+    
+#endif
 }
 
 

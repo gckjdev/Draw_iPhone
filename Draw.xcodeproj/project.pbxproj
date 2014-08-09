@@ -1446,6 +1446,30 @@
 		A4C9E04917A61E8000DE982F /* KxMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = A4C9E04417A61B6500DE982F /* KxMenu.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
 		A4C9E05217A651C800DE982F /* PBGuessRank+Extend.m in Sources */ = {isa = PBXBuildFile; fileRef = A4C9E05117A651C800DE982F /* PBGuessRank+Extend.m */; };
 		A4CD501116F9B56400BE6694 /* BalanceNotEnoughAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = A4CD501016F9B56300BE6694 /* BalanceNotEnoughAlertView.m */; };
+		A4D29DD71994EA050005DA73 /* CRBubble.m in Sources */ = {isa = PBXBuildFile; fileRef = A4D29DCD1994EA040005DA73 /* CRBubble.m */; };
+		A4D29DD81994EA050005DA73 /* CRBubble.m in Sources */ = {isa = PBXBuildFile; fileRef = A4D29DCD1994EA040005DA73 /* CRBubble.m */; };
+		A4D29DD91994EA050005DA73 /* CRBubble.m in Sources */ = {isa = PBXBuildFile; fileRef = A4D29DCD1994EA040005DA73 /* CRBubble.m */; };
+		A4D29DDA1994EA050005DA73 /* CRBubble.m in Sources */ = {isa = PBXBuildFile; fileRef = A4D29DCD1994EA040005DA73 /* CRBubble.m */; };
+		A4D29DDB1994EA050005DA73 /* CRProductTour.m in Sources */ = {isa = PBXBuildFile; fileRef = A4D29DCF1994EA040005DA73 /* CRProductTour.m */; };
+		A4D29DDC1994EA050005DA73 /* CRProductTour.m in Sources */ = {isa = PBXBuildFile; fileRef = A4D29DCF1994EA040005DA73 /* CRProductTour.m */; };
+		A4D29DDD1994EA050005DA73 /* CRProductTour.m in Sources */ = {isa = PBXBuildFile; fileRef = A4D29DCF1994EA040005DA73 /* CRProductTour.m */; };
+		A4D29DDE1994EA050005DA73 /* CRProductTour.m in Sources */ = {isa = PBXBuildFile; fileRef = A4D29DCF1994EA040005DA73 /* CRProductTour.m */; };
+		A4D29DDF1994EA050005DA73 /* MDCFocalPointView.m in Sources */ = {isa = PBXBuildFile; fileRef = A4D29DD21994EA040005DA73 /* MDCFocalPointView.m */; };
+		A4D29DE01994EA050005DA73 /* MDCFocalPointView.m in Sources */ = {isa = PBXBuildFile; fileRef = A4D29DD21994EA040005DA73 /* MDCFocalPointView.m */; };
+		A4D29DE11994EA050005DA73 /* MDCFocalPointView.m in Sources */ = {isa = PBXBuildFile; fileRef = A4D29DD21994EA040005DA73 /* MDCFocalPointView.m */; };
+		A4D29DE21994EA050005DA73 /* MDCFocalPointView.m in Sources */ = {isa = PBXBuildFile; fileRef = A4D29DD21994EA040005DA73 /* MDCFocalPointView.m */; };
+		A4D29DE31994EA050005DA73 /* MDCFocusView.m in Sources */ = {isa = PBXBuildFile; fileRef = A4D29DD41994EA050005DA73 /* MDCFocusView.m */; };
+		A4D29DE41994EA050005DA73 /* MDCFocusView.m in Sources */ = {isa = PBXBuildFile; fileRef = A4D29DD41994EA050005DA73 /* MDCFocusView.m */; };
+		A4D29DE51994EA050005DA73 /* MDCFocusView.m in Sources */ = {isa = PBXBuildFile; fileRef = A4D29DD41994EA050005DA73 /* MDCFocusView.m */; };
+		A4D29DE61994EA050005DA73 /* MDCFocusView.m in Sources */ = {isa = PBXBuildFile; fileRef = A4D29DD41994EA050005DA73 /* MDCFocusView.m */; };
+		A4D29DE71994EA050005DA73 /* MDCSpotlightView.m in Sources */ = {isa = PBXBuildFile; fileRef = A4D29DD61994EA050005DA73 /* MDCSpotlightView.m */; };
+		A4D29DE81994EA050005DA73 /* MDCSpotlightView.m in Sources */ = {isa = PBXBuildFile; fileRef = A4D29DD61994EA050005DA73 /* MDCSpotlightView.m */; };
+		A4D29DE91994EA050005DA73 /* MDCSpotlightView.m in Sources */ = {isa = PBXBuildFile; fileRef = A4D29DD61994EA050005DA73 /* MDCSpotlightView.m */; };
+		A4D29DEA1994EA050005DA73 /* MDCSpotlightView.m in Sources */ = {isa = PBXBuildFile; fileRef = A4D29DD61994EA050005DA73 /* MDCSpotlightView.m */; };
+		A4D29DED1994EA2B0005DA73 /* SpotHelpView.m in Sources */ = {isa = PBXBuildFile; fileRef = A4D29DEC1994EA2B0005DA73 /* SpotHelpView.m */; };
+		A4D29DEE1994EA2B0005DA73 /* SpotHelpView.m in Sources */ = {isa = PBXBuildFile; fileRef = A4D29DEC1994EA2B0005DA73 /* SpotHelpView.m */; };
+		A4D29DEF1994EA2B0005DA73 /* SpotHelpView.m in Sources */ = {isa = PBXBuildFile; fileRef = A4D29DEC1994EA2B0005DA73 /* SpotHelpView.m */; };
+		A4D29DF01994EA2B0005DA73 /* SpotHelpView.m in Sources */ = {isa = PBXBuildFile; fileRef = A4D29DEC1994EA2B0005DA73 /* SpotHelpView.m */; };
 		A4D3B15B1560E4B50013C882 /* ExpressionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A4D3B1591560E4B50013C882 /* ExpressionManager.m */; };
 		A4D3B15E1560E4F80013C882 /* MessageManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A4D3B15D1560E4F80013C882 /* MessageManager.m */; };
 		A4D410C417E1945600DE07C6 /* ContestRankView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4D410C317E1945500DE07C6 /* ContestRankView~ipad.xib */; };
@@ -8446,6 +8470,18 @@
 		A4C9E05117A651C800DE982F /* PBGuessRank+Extend.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "PBGuessRank+Extend.m"; sourceTree = "<group>"; };
 		A4CD500F16F9B56200BE6694 /* BalanceNotEnoughAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BalanceNotEnoughAlertView.h; sourceTree = "<group>"; };
 		A4CD501016F9B56300BE6694 /* BalanceNotEnoughAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BalanceNotEnoughAlertView.m; sourceTree = "<group>"; };
+		A4D29DCC1994EA040005DA73 /* CRBubble.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CRBubble.h; sourceTree = "<group>"; };
+		A4D29DCD1994EA040005DA73 /* CRBubble.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CRBubble.m; sourceTree = "<group>"; };
+		A4D29DCE1994EA040005DA73 /* CRProductTour.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CRProductTour.h; sourceTree = "<group>"; };
+		A4D29DCF1994EA040005DA73 /* CRProductTour.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CRProductTour.m; sourceTree = "<group>"; };
+		A4D29DD11994EA040005DA73 /* MDCFocalPointView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MDCFocalPointView.h; sourceTree = "<group>"; };
+		A4D29DD21994EA040005DA73 /* MDCFocalPointView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MDCFocalPointView.m; sourceTree = "<group>"; };
+		A4D29DD31994EA050005DA73 /* MDCFocusView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MDCFocusView.h; sourceTree = "<group>"; };
+		A4D29DD41994EA050005DA73 /* MDCFocusView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MDCFocusView.m; sourceTree = "<group>"; };
+		A4D29DD51994EA050005DA73 /* MDCSpotlightView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MDCSpotlightView.h; sourceTree = "<group>"; };
+		A4D29DD61994EA050005DA73 /* MDCSpotlightView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MDCSpotlightView.m; sourceTree = "<group>"; };
+		A4D29DEB1994EA2B0005DA73 /* SpotHelpView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpotHelpView.h; sourceTree = "<group>"; };
+		A4D29DEC1994EA2B0005DA73 /* SpotHelpView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpotHelpView.m; sourceTree = "<group>"; };
 		A4D3B1581560E4B50013C882 /* ExpressionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExpressionManager.h; sourceTree = "<group>"; };
 		A4D3B1591560E4B50013C882 /* ExpressionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExpressionManager.m; sourceTree = "<group>"; };
 		A4D3B15C1560E4F80013C882 /* MessageManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageManager.h; sourceTree = "<group>"; };
@@ -12225,6 +12261,42 @@
 				A4C9E04417A61B6500DE982F /* KxMenu.m */,
 			);
 			path = KxMenu;
+			sourceTree = "<group>";
+		};
+		A4D29DCA1994EA040005DA73 /* SpotHelpView */ = {
+			isa = PBXGroup;
+			children = (
+				A4D29DCB1994EA040005DA73 /* BubbleView */,
+				A4D29DD01994EA040005DA73 /* SpotLightFocus */,
+				A4D29DEB1994EA2B0005DA73 /* SpotHelpView.h */,
+				A4D29DEC1994EA2B0005DA73 /* SpotHelpView.m */,
+			);
+			path = SpotHelpView;
+			sourceTree = "<group>";
+		};
+		A4D29DCB1994EA040005DA73 /* BubbleView */ = {
+			isa = PBXGroup;
+			children = (
+				A4D29DCC1994EA040005DA73 /* CRBubble.h */,
+				A4D29DCD1994EA040005DA73 /* CRBubble.m */,
+				A4D29DCE1994EA040005DA73 /* CRProductTour.h */,
+				A4D29DCF1994EA040005DA73 /* CRProductTour.m */,
+			);
+			name = BubbleView;
+			path = BubbleIntro;
+			sourceTree = "<group>";
+		};
+		A4D29DD01994EA040005DA73 /* SpotLightFocus */ = {
+			isa = PBXGroup;
+			children = (
+				A4D29DD11994EA040005DA73 /* MDCFocalPointView.h */,
+				A4D29DD21994EA040005DA73 /* MDCFocalPointView.m */,
+				A4D29DD31994EA050005DA73 /* MDCFocusView.h */,
+				A4D29DD41994EA050005DA73 /* MDCFocusView.m */,
+				A4D29DD51994EA050005DA73 /* MDCSpotlightView.h */,
+				A4D29DD61994EA050005DA73 /* MDCSpotlightView.m */,
+			);
+			path = SpotLightFocus;
 			sourceTree = "<group>";
 		};
 		A4D3B1561560E4B50013C882 /* Chat */ = {
@@ -18228,6 +18300,7 @@
 		CAFEFDB316606FC100441D77 /* Component-View */ = {
 			isa = PBXGroup;
 			children = (
+				A4D29DCA1994EA040005DA73 /* SpotHelpView */,
 				D837DCA31988FAB2001686BB /* LDProgressView */,
 				D80BB5E31980C26000BFC4A7 /* THProgressView */,
 				D8B58B20197CEE090088E5F7 /* SGFocusImageFrame */,
@@ -23620,6 +23693,7 @@
 				A461B21D174CBAA70088B061 /* FriendController.m in Sources */,
 				A461B21E174CBAA70088B061 /* PPMessageManager.m in Sources */,
 				A461B21F174CBAA70088B061 /* PPMessage.m in Sources */,
+				A4D29DE91994EA050005DA73 /* MDCSpotlightView.m in Sources */,
 				A461B220174CBAA70088B061 /* MessageStat.m in Sources */,
 				A461B222174CBAA70088B061 /* ImplicitDownloadService.m in Sources */,
 				A461B223174CBAA70088B061 /* PPResourcePackage.m in Sources */,
@@ -23700,6 +23774,7 @@
 				A461B294174CBAA70088B061 /* BBSViewManager.m in Sources */,
 				A461B295174CBAA70088B061 /* UIView+MDCShineEffect.m in Sources */,
 				A461B296174CBAA70088B061 /* PPSmartUpdateData.m in Sources */,
+				A4D29DEF1994EA2B0005DA73 /* SpotHelpView.m in Sources */,
 				A461B297174CBAA70088B061 /* PPSmartUpdateDataUtils.m in Sources */,
 				A461B298174CBAA70088B061 /* BlockUtils.m in Sources */,
 				A461B299174CBAA70088B061 /* PPSmartDataTest.m in Sources */,
@@ -23812,6 +23887,7 @@
 				A461B335174CBAA70088B061 /* StoreController.m in Sources */,
 				A461B336174CBAA70088B061 /* ColorShopCell.m in Sources */,
 				A461B337174CBAA70088B061 /* GameItemDetailView.m in Sources */,
+				A4D29DDD1994EA050005DA73 /* CRProductTour.m in Sources */,
 				A461B338174CBAA70088B061 /* LocalizableLabel.m in Sources */,
 				A461B339174CBAA70088B061 /* GameItemPriceView.m in Sources */,
 				A461B33A174CBAA70088B061 /* ChargeController.m in Sources */,
@@ -24086,6 +24162,7 @@
 				A4F04B89180654C2007274BE /* NonCyclePageScrollView.m in Sources */,
 				A4F04B8A180654CD007274BE /* PageScrollView.m in Sources */,
 				A4F04B8B1806550A007274BE /* UserDeviceService.m in Sources */,
+				A4D29DD91994EA050005DA73 /* CRBubble.m in Sources */,
 				A4F04B8C18065920007274BE /* UIImageView+Extend.m in Sources */,
 				EA8500DE1807A0430000DE3E /* ShareUIManager.m in Sources */,
 				EA0C5527180B9203008069C1 /* InfColorBarPicker.m in Sources */,
@@ -24176,6 +24253,7 @@
 				CA5D9D8B183E3C0200BD820C /* DOUEAGL1View.m in Sources */,
 				CA5D9D8F183E3C0200BD820C /* DOUEAGLView.m in Sources */,
 				CA5D9D93183E3C0200BD820C /* DOUSimpleHTTPRequest.m in Sources */,
+				A4D29DE51994EA050005DA73 /* MDCFocusView.m in Sources */,
 				CA5D9D97183E3C0200BD820C /* NSData+DOUMappedFile.m in Sources */,
 				CA9C3FCC18432AA60041F332 /* AppTask.m in Sources */,
 				CA9C3FD218432AB60041F332 /* AppTaskManager.m in Sources */,
@@ -24188,6 +24266,7 @@
 				EA2D573F1847243B00499ED4 /* SearchGroupController.m in Sources */,
 				A439D2C6184A521800F47BEF /* UIImage+GPUImageFilter.m in Sources */,
 				A439D2D6184A5BD500F47BEF /* CropAndFilterViewController.m in Sources */,
+				A4D29DE11994EA050005DA73 /* MDCFocalPointView.m in Sources */,
 				A4572D7618570B0F0076ADF7 /* UIView+Pan.m in Sources */,
 				EA5A2EA918584D6E00CABC71 /* UILabel+Touchable.m in Sources */,
 				A4EA9358185B0144004BB69D /* SingHotCell.m in Sources */,
@@ -24272,6 +24351,7 @@
 				C28A99A71738F04B007A819F /* CommonNetworkClient.m in Sources */,
 				C28A99A81738F04B007A819F /* UIAlertViewUtils.m in Sources */,
 				C28A99A91738F04B007A819F /* UIBarButtonItemExt.m in Sources */,
+				A4D29DE81994EA050005DA73 /* MDCSpotlightView.m in Sources */,
 				C28A99AA1738F04B007A819F /* UIButtonExt.m in Sources */,
 				C28A99AB1738F04B007A819F /* MapViewUtil.m in Sources */,
 				C28A99AC1738F04B007A819F /* UICustomPageControl.m in Sources */,
@@ -24309,6 +24389,7 @@
 				C28A99F81738F04B007A819F /* GameSession.m in Sources */,
 				C28A99F91738F04B007A819F /* GameSessionManager.m in Sources */,
 				C28A99FA1738F04B007A819F /* GameBasic.pb.m in Sources */,
+				A4D29DE01994EA050005DA73 /* MDCFocalPointView.m in Sources */,
 				C28A99FB1738F04B007A819F /* GameMessage.pb.m in Sources */,
 				C28A99FC1738F04B007A819F /* GameConstants.pb.m in Sources */,
 				C28A99FD1738F04B007A819F /* GameNetworkClient.m in Sources */,
@@ -24338,6 +24419,7 @@
 				C28A9A131738F04B007A819F /* ShoppingManager.m in Sources */,
 				CACD6CE718E03BCD003F97C0 /* NotificationCenterManager.m in Sources */,
 				C28A9A141738F04B007A819F /* AnimationManager.m in Sources */,
+				A4D29DE41994EA050005DA73 /* MDCFocusView.m in Sources */,
 				C28A9A151738F04B007A819F /* AccountService.m in Sources */,
 				C28A9A161738F04B007A819F /* ReportController.m in Sources */,
 				C28A9A171738F04B007A819F /* SKProduct+LocalizedPrice.m in Sources */,
@@ -24389,6 +24471,7 @@
 				C28A9A4F1738F04B007A819F /* Draw.m in Sources */,
 				C28A9A501738F04B007A819F /* ChatMessageView.m in Sources */,
 				C28A9A511738F04B007A819F /* LevelService.m in Sources */,
+				A4D29DEE1994EA2B0005DA73 /* SpotHelpView.m in Sources */,
 				C28A9A521738F04B007A819F /* CustomWordManager.m in Sources */,
 				C28A9A531738F04B007A819F /* CustomWord.m in Sources */,
 				C28A9A551738F04B007A819F /* OnlineDrawViewController.m in Sources */,
@@ -24567,6 +24650,7 @@
 				C28A9B7E1738F04B007A819F /* PPSmartUpdateData.m in Sources */,
 				C28A9B7F1738F04B007A819F /* PPSmartUpdateDataUtils.m in Sources */,
 				C28A9B801738F04B007A819F /* BlockUtils.m in Sources */,
+				A4D29DDC1994EA050005DA73 /* CRProductTour.m in Sources */,
 				C28A9B811738F04B007A819F /* PPSmartDataTest.m in Sources */,
 				C28A9B821738F04B007A819F /* BBSPopupSelectionView.m in Sources */,
 				C28A9B831738F04B007A819F /* GameConfigData.m in Sources */,
@@ -24743,6 +24827,7 @@
 				C28A9C641738F04B007A819F /* ChatCommand.m in Sources */,
 				C28A9C651738F04B007A819F /* ReflectionView.m in Sources */,
 				C28A9C661738F04B007A819F /* FeedCarousel.m in Sources */,
+				A4D29DD81994EA050005DA73 /* CRBubble.m in Sources */,
 				C28A9C671738F04B007A819F /* StrawCommand.m in Sources */,
 				C28A9C681738F04B007A819F /* GridCommand.m in Sources */,
 				C28A9C691738F04B007A819F /* CanvasRectBox.m in Sources */,
@@ -25308,6 +25393,7 @@
 				CA2A28D5195C1E3A00A97478 /* TutorialInfoController.m in Sources */,
 				CA42E3CA15F4617A00790B3C /* TableTab.m in Sources */,
 				CA42E3CB15F4617A00790B3C /* TableTabManager.m in Sources */,
+				A4D29DD71994EA050005DA73 /* CRBubble.m in Sources */,
 				CAACE19915F499E6002EB53A /* SuperDrawView.m in Sources */,
 				CA89737516071335003A95F7 /* Contest.m in Sources */,
 				CA89737816071345003A95F7 /* ContestManager.m in Sources */,
@@ -25327,6 +25413,7 @@
 				CA3F2ED21609B3360059667B /* StatementController.m in Sources */,
 				CA3F2ED81609BCFB0059667B /* ContestOpusController.m in Sources */,
 				CA3F2F1F1609BDCA0059667B /* CommonTabController.m in Sources */,
+				A4D29DED1994EA2B0005DA73 /* SpotHelpView.m in Sources */,
 				CA1656FF160C032800E433BE /* RankView.m in Sources */,
 				CAEAB553196160D10065847C /* UserTutorialMainCell.m in Sources */,
 				CA9B4EC016103726008C6A97 /* TopPlayer.m in Sources */,
@@ -25391,10 +25478,12 @@
 				CAEE45E5165F5590001E02F1 /* GameSNSService.m in Sources */,
 				CAFEFE2816606FC200441D77 /* ANGifEncoder.m in Sources */,
 				D82C0D6A19763BBF0088539F /* MoreViewCell.m in Sources */,
+				A4D29DDF1994EA050005DA73 /* MDCFocalPointView.m in Sources */,
 				CAFEFE2916606FC200441D77 /* ANGifGraphicControlExt.m in Sources */,
 				CAFEFE2A16606FC200441D77 /* ANGifLogicalScreenDesc.m in Sources */,
 				CAFEFE2B16606FC200441D77 /* ANGifAppExtension.m in Sources */,
 				CAFEFE2C16606FC200441D77 /* ANGifNetscapeAppExtension.m in Sources */,
+				A4D29DDB1994EA050005DA73 /* CRProductTour.m in Sources */,
 				CAFEFE2D16606FC200441D77 /* ANAvgColorTable.m in Sources */,
 				CAFEFE2E16606FC200441D77 /* ANColorTable.m in Sources */,
 				CAFEFE2F16606FC200441D77 /* ANCutColorTable.m in Sources */,
@@ -25743,6 +25832,7 @@
 				A4B789A8179E2F040008E21B /* DrawGuessController.m in Sources */,
 				CACD6CBA18E03BCD003F97C0 /* AlixPayResult.m in Sources */,
 				A4B789B0179E2F120008E21B /* GuessModesController.m in Sources */,
+				A4D29DE31994EA050005DA73 /* MDCFocusView.m in Sources */,
 				A4B789B2179E2F120008E21B /* GuessSelectController.m in Sources */,
 				CA51834B179F79570033AA95 /* GetNewNumberViewController.m in Sources */,
 				CA518355179F79A80033AA95 /* UserNumberService.m in Sources */,
@@ -25836,6 +25926,7 @@
 				A4B1233518279D4800A0603F /* UITextView+Extend.m in Sources */,
 				EA8CADE118288CAF003149FE /* GroupService.m in Sources */,
 				EA8CADE818288D32003149FE /* DrawError.m in Sources */,
+				A4D29DE71994EA050005DA73 /* MDCSpotlightView.m in Sources */,
 				EA8CADEE1828A646003149FE /* GroupPermission.m in Sources */,
 				EA1BD62E182DDCB1000E5364 /* GroupHomeController.m in Sources */,
 				EA1BD63C182DE6DD000E5364 /* CreateGroupController.m in Sources */,
@@ -26067,6 +26158,7 @@
 				EA4118BC176066F500DA72D0 /* FeedbackController.m in Sources */,
 				EA4118BD176066F500DA72D0 /* UserSettingController.m in Sources */,
 				EA4118BE176066F500DA72D0 /* PriceService.m in Sources */,
+				A4D29DEA1994EA050005DA73 /* MDCSpotlightView.m in Sources */,
 				EA4118BF176066F500DA72D0 /* ShoppingManager.m in Sources */,
 				EA4118C0176066F500DA72D0 /* AnimationManager.m in Sources */,
 				EA4118C1176066F500DA72D0 /* AccountService.m in Sources */,
@@ -26398,6 +26490,7 @@
 				EA411A65176066F500DA72D0 /* SuperPen.m in Sources */,
 				EA411A67176066F500DA72D0 /* ShapeBox.m in Sources */,
 				EA411A68176066F500DA72D0 /* DrawBgManager.m in Sources */,
+				A4D29DF01994EA2B0005DA73 /* SpotHelpView.m in Sources */,
 				EA411A69176066F500DA72D0 /* DrawBgBox.m in Sources */,
 				EA411A6A176066F500DA72D0 /* FeedDownloadService.m in Sources */,
 				EA411A6B176066F500DA72D0 /* JRSwizzle.m in Sources */,
@@ -26450,6 +26543,7 @@
 				EA411A9B176066F500DA72D0 /* MKBlockActionSheet.m in Sources */,
 				EA411A9C176066F500DA72D0 /* MKBlockAlertView.m in Sources */,
 				EA411A9D176066F500DA72D0 /* GCDatePickerView.m in Sources */,
+				A4D29DE21994EA050005DA73 /* MDCFocalPointView.m in Sources */,
 				EA411A9E176066F500DA72D0 /* CacheManager.m in Sources */,
 				EA411AA2176066F500DA72D0 /* ShapeInfo.m in Sources */,
 				EA411AA5176066F500DA72D0 /* SNSUtils.m in Sources */,
@@ -26641,6 +26735,7 @@
 				CACD6CE918E03BCD003F97C0 /* NotificationCenterManager.m in Sources */,
 				CA1FF89C1804F986003CEAD6 /* NSDate+TKCategory.m in Sources */,
 				CACD6CC918E03BCD003F97C0 /* SBJSON.m in Sources */,
+				A4D29DE61994EA050005DA73 /* MDCFocusView.m in Sources */,
 				EA8500DF1807A0430000DE3E /* ShareUIManager.m in Sources */,
 				EA0C5528180B9203008069C1 /* InfColorBarPicker.m in Sources */,
 				EA0C552C180B9203008069C1 /* InfColorIndicatorView.m in Sources */,
@@ -26658,6 +26753,7 @@
 				EA1BD631182DDCB1000E5364 /* GroupHomeController.m in Sources */,
 				EA1BD63F182DE6DD000E5364 /* CreateGroupController.m in Sources */,
 				EA1BD649182DEB0B000E5364 /* GroupManager.m in Sources */,
+				A4D29DDE1994EA050005DA73 /* CRProductTour.m in Sources */,
 				EA1BD650182E26A6000E5364 /* Group.pb.m in Sources */,
 				CA9AAF1318321621002DBAA5 /* SingGuessController.m in Sources */,
 				CA9AAF1F18321621002DBAA5 /* SingHomeController.m in Sources */,
@@ -26714,6 +26810,7 @@
 				D81962561962AA8700B4FBAF /* StageBasicInfoCell.m in Sources */,
 				CA5D9D60183E3C0200BD820C /* DOUAudioEventLoop.m in Sources */,
 				CA5D9D64183E3C0200BD820C /* DOUAudioFilePreprocessor.m in Sources */,
+				A4D29DDA1994EA050005DA73 /* CRBubble.m in Sources */,
 				CA5D9D68183E3C0200BD820C /* DOUAudioFileProvider.m in Sources */,
 				CA5D9D6C183E3C0200BD820C /* DOUAudioFrequencyAnalyzer.m in Sources */,
 				CA5D9D70183E3C0200BD820C /* DOUAudioLPCM.m in Sources */,
