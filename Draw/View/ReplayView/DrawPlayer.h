@@ -57,7 +57,9 @@
 + (DrawPlayer *)playerWithReplayObj:(ReplayObject *)obj;
 + (DrawPlayer*)playerWithReplayObj:(ReplayObject *)obj
                              begin:(NSUInteger)begin
-                               end:(NSUInteger)end;
+                               end:(NSUInteger)end
+                       bgImageName:(NSString*)bgImageName;
+
 + (DrawPlayer*)playerWithSingleLayer:(NSInteger)num
                        RepObj:(ReplayObject*)obj;
 
@@ -77,6 +79,7 @@
                 draw:(Draw**)retDraw
       viewController:(PPViewController*)viewController
              bgImage:(UIImage*)bgImage
+         bgImageName:(NSString*)bgImageName
           startIndex:(int)startIndex
             endIndex:(int)endIndex;
 

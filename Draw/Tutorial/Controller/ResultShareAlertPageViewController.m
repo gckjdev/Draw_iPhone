@@ -193,7 +193,7 @@
 
 //更新本页面控件
 #define DEFAULT_OPUS @"xiaoguanka"
-#define ISIPAD_BORDER (ISIPAD ? 5 : 1)
+#define ISIPAD_BORDER (ISIPAD ? 5 : 3)
 -(void)updateViewWidget{
     [self setDesc];
  
@@ -212,6 +212,7 @@
     //border
     self.opusImageView.layer.borderWidth = ISIPAD_BORDER;
     [self.opusImageView.layer setBorderColor:COLOR_YELLOW.CGColor];
+    SET_VIEW_ROUND_CORNER(self.opusImageView);
     
 //    //resultView
 //    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, self.resultView.frame.size.width, self.resultView.frame.size.height)];
@@ -241,8 +242,8 @@
     }
     return NSMakeRange(0, 1);
 }
-#define SEAL_POSITION_X (ISIPAD ? 380:200)
-#define SEAL_POSITION_Y (ISIPAD ? 320:150)
+#define SEAL_POSITION_X (ISIPAD ? 370:180)
+#define SEAL_POSITION_Y (ISIPAD ? 310:145)
 #define SEAL_POSITION_WIDTH (ISIPAD ? 150:60)
 #define SEAL_POSITION_HEIGHT (ISIPAD ? 150:60)
 -(void)makeSeal:(NSString*)text{
@@ -257,6 +258,9 @@
     ResultSeal *circleView = [[ResultSeal alloc] initWithFrame:CGRectMake(SEAL_POSITION_X, SEAL_POSITION_Y, SEAL_POSITION_WIDTH, SEAL_POSITION_HEIGHT) borderColor:COLOR_RED font:font text:text];
     circleView.backgroundColor = [UIColor clearColor];
     circleView.borderWidth = 3.0f;
+    if (ISIPAD) {
+        circleView.borderWidth = 5.0f;
+    }
     [circleView setAlpha:0.7];
     [self.view addSubview:circleView];
     [circleView release];
@@ -432,7 +436,7 @@
     NSString* shareText = [NSString stringWithFormat:NSLS(@"kConquerDrawShareText"),
                            [PPConfigManager shareAppName],
                            self.score,
-                           [self defeatPercent]];
+                           self.userStage.defeatCount];
     PPDebug(@"<createShareText> text=%@", shareText);
     return shareText;
 }

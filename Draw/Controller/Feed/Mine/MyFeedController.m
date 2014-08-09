@@ -584,6 +584,7 @@ typedef enum{
     [self setBadge:manager.timelineGuessCount onTab:MyTypeTimelineGuess];
     [self setBadge:manager.commentCount onTab:MyTypeComment];
     [self setBadge:manager.drawToMeCount onTab:MyTypeDrawToMe];
+    [self setBadge:manager.timelineConquerCount onTab:MyTypeTimeLineConquerDraw];
 
     // TODO timeline badge
 //    [self setBadge:manager.timelineConquerDraw onTab:MyTypeTimeLineConquerDraw];
@@ -598,6 +599,9 @@ typedef enum{
             break;
         case FeedListTypeTimelineGuess:
             manager.timelineGuessCount = 0;
+            break;
+        case FeedListTypeTimeLineConquerDraw:
+            manager.timelineConquerCount = 0;
             break;
         case FeedListTypeComment:
             manager.commentCount = 0;

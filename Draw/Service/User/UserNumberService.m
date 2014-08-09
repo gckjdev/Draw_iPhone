@@ -29,6 +29,56 @@ static UserNumberService* _defaultUserService;
     return _defaultUserService;
 }
 
+- (void)registerNewUserNumber:(UserNumberServiceResultBlock)block
+{
+    if ([[UserManager defaultManager] hasXiaojiNumber]){
+        PPDebug(@"<getAndRegisterNumber> user already has xiaoji number, skip");
+        EXECUTE_BLOCK(block, 0, [[UserManager defaultManager] xiaojiNumber]);
+        return;
+    }
+    
+    NSString* appId = [GameApp appId];
+    NSString* deviceToken = [[UserManager defaultManager] deviceToken];
+    NSString* deviceId = [[UIDevice currentDevice] uniqueGlobalDeviceIdentifier];
+    NSString* deviceOS = [DeviceDetection deviceOS];
+    NSString* deviceName = [UIUtils getUserDeviceName];
+    
+    dispatch_async(workingQueue, ^{
+        
+        NSDictionary* para = @{
+                               PARA_DEVICEID : deviceId,
+                               PARA_DEVICETOKEN : deviceToken ? deviceToken : @"",
+                               PARA_COUNTRYCODE : [LocaleUtils getCountryCode],
+                               PARA_DEVICEOS : deviceOS,
+                               PARA_LANGUAGE : [LocaleUtils getLanguageCode],
+                               PARA_DEVICEMODEL : [UIDevice currentDevice].model,
+                               PARA_DEVICETYPE : @(DEVICE_TYPE_IOS),
+                               PARA_NICKNAME : deviceName ? deviceName : @""
+                               };
+        
+        GameNetworkOutput* output = [PPGameNetworkRequest apiServerGetAndResponsePB:METHOD_REGISTER_NEW_USER_NUMBER
+                                                                           parameters:para];
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            
+            NSString* number = nil;
+            
+            if (output.resultCode == ERROR_SUCCESS && output.responseData != nil){
+                [[UserService defaultService] createLocalUserAccount:output.responseData appId:appId];
+                number = [[UserManager defaultManager] xiaojiNumber];
+                
+                // set default home style
+                [[UserManager defaultManager] setHomeStyle:HOME_STYLE_METRO];
+            }
+            
+            EXECUTE_BLOCK(block, output.resultCode, number);
+            
+        });
+        
+    });
+}
+
+
 - (void)getAndRegisterNumber:(UserNumberServiceResultBlock)block
 {
     if ([[UserManager defaultManager] hasXiaojiNumber]){

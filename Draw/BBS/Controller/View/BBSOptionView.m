@@ -122,7 +122,7 @@
         [self.delegate optionView:self didSelectedButtonIndex:button.tag];
     }
     EXECUTE_BLOCK(self.callback, button.tag);
-    self.callback = NULL;
+    self.callback = nil;
     [self dismiss:YES];
 }
 

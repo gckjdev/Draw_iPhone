@@ -292,6 +292,12 @@ static UserTutorialManager* _defaultManager;
         }
     }
     
+    [retList sortUsingComparator:^NSComparisonResult(id obj1, id obj2) {
+        PBUserTutorial* ut1 = obj1;
+        PBUserTutorial* ut2 = obj2;
+        return (ut2.modifyDate - ut1.modifyDate);
+    }];
+    
     PPDebug(@"<allUserTutorials> return %d items", [retList count]);
     return retList;
 }

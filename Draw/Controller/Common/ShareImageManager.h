@@ -498,5 +498,6 @@ typedef enum{
 - (UIImage *)startButtonBgImage;
 -(UIImage *)tutorialStartButtonBgImage;
 
+- (UIImage *)fixedImageNamed:(NSString *)name;
 
 @end

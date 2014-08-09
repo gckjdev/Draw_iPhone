@@ -167,7 +167,8 @@
                               gameId:(NSString*)gameId
                             deviceId:(NSString*)deviceId
                          deviceToken:(NSString*)deviceToken
-                        autoRegister:(BOOL)autoRegister;
+                        autoRegister:(BOOL)autoRegister
+                        returnXiaoji:(BOOL)returnXiaoji;
 
 + (CommonNetworkOutput*)newLoginUser:(NSString*)baseURL
                                appId:(NSString*)appId

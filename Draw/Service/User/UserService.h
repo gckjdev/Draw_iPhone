@@ -249,4 +249,6 @@ typedef void(^UploadImageResultBlock)(int resultCode, NSString* imageRemoteURL);
 
 - (void)saveSNSUserData:(PBGameUser*)pbUser;
 
+- (int)createLocalUserAccount:(NSData*)data appId:(NSString*)appId;
+
 @end

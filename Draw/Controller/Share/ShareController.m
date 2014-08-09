@@ -302,7 +302,7 @@ typedef enum{
                                  destructiveButtonTitle:NSLS(@"kReplay")
                                       otherButtonTitles:
                      NSLS(@"kDelete"), NSLS(@"kEdit"),
-                    NSLS(@"kSaveAsPhoto"),NSLS(@"kSaveAsGif"),
+                    NSLS(@"kSaveAsPhoto"), //NSLS(@"kSaveAsGif"),
                     NSLS(@"kShareSinaWeibo"),  // NSLS(@"kShareQQSpace"),
                     NSLS(@"kShareWeixinSession"), NSLS(@"kShareWeixinTimeline"),
                     NSLS(@"kShareQQWeibo"), NSLS(@"kShareFacebook"),
@@ -389,6 +389,13 @@ typedef enum{
 
 - (void)performReplay
 {
+//#ifdef DEBUG
+//    
+//    [self performSelector:@selector(TestLayerImage)];
+//    [self hideActivity];
+//    return;
+//#endif
+    
     [self performLoadOpus:@selector(gotoReplayView)];
     return;
 }
@@ -920,6 +927,7 @@ typedef enum{
 - (void)updateActionSheetIndexs
 {
     SHARE_QQ_ZONE = -1;
+    SAVE_INTO_GIF = -1;
     
     int index = 0;
     if (self.isDraftTab) {
@@ -945,7 +953,7 @@ typedef enum{
 //#endif
     
     SAVE_INTO_PHOTO = index++;
-    SAVE_INTO_GIF = index++;
+//    SAVE_INTO_GIF = index++;
     SHARE_SINA_WEIBO = index++;
 //    SHARE_QQ_ZONE = index++;
     SHARE_WEIXIN_SESSION = index++;

@@ -270,7 +270,7 @@
     else{
         
         UIImage* bgImage = [[UserTutorialService defaultService] getBgImage:userStage stage:stage type:targetType];
-        NSString* bgImageName = [ChangeBGImageAction bgImageNameForLearnDrawBgImage:tutorial.tutorialId stageId:stage.stageId];
+//        NSString* bgImageName = [ChangeBGImageAction bgImageNameForLearnDrawBgImage:tutorial.tutorialId stageId:stage.stageId];
         vc = [[OfflineDrawViewController alloc] initWithTargetType:targetType
                                                          delegate:nil
                                                   startController:startController
@@ -606,7 +606,8 @@
                                          atPoint:drawView.frame.origin
                                           opusId:opusId
                                        userStage:[self buildUserStage]
-                                           stage:self.stage];
+                                           stage:self.stage
+                                            type:targetType];
     }
 }
 
@@ -1136,6 +1137,9 @@
     
     // save draft before quit
     [[MyPaintManager defaultManager] save];
+    
+    self.draft.drawActionList = nil;
+    self.draft = nil;
 }
 
 // 退出方法，所有退出必须调用本方法以保证正常释放
@@ -1262,6 +1266,7 @@
     if (succ){
         if (self.draft) {
             [[MyPaintManager defaultManager] deleteMyPaint:self.draft];
+            self.draft.drawActionList = nil;
             self.draft = nil;
         }
     }    
@@ -1363,6 +1368,7 @@
             POSTMSG(NSLS(@"kSaveOpusOK"));
             if (self.draft) {
                 [[MyPaintManager defaultManager] deleteMyPaint:self.draft];
+                self.draft.drawActionList = nil;
                 self.draft = nil;
             }
             
@@ -1514,6 +1520,7 @@
     if (self.draft && [self isEmptyNewDraft]){
         MyPaintManager *pManager = [MyPaintManager defaultManager];
         [pManager deleteMyPaint:self.draft];
+        self.draft.drawActionList = nil;
         self.draft = nil;
     }
 }
@@ -1872,34 +1879,39 @@
     for(DrawAction *da in drawView.drawActionList)
     {
         if ([da isPaintAction]){
-            PaintAction *pa=da;
+            PaintAction *pa = (PaintAction*)da;
             if((pa.paint.color.red!=1.0 || pa.paint.color.green!=1.0
                             || pa.paint.color.blue!=1.0)
                     && [pa pointCount] > minPointNum)
                 effetiveAction++;
         }
         if ([da isChangeBGAction]) {
-            ChangeBackAction *cba=da;
+            ChangeBackAction *cba = (ChangeBackAction*)da;
             if(cba.color.red==1.0 && cba.color.green==1.0 && cba.color.blue==1.0)
                 effetiveAction=0;
             else
                 effetiveAction++;
         }
         if ([da isShapeAction]) {
-            ShapeAction *sa=da;
+            ShapeAction *sa = (ShapeAction*)da;
             if (sa.shape.color.red == 1.0 && sa.shape.color.green == 1.0
                 && sa.shape.color.blue == 1.0);
             else
                 effetiveAction++;
-            }
+        }
+        
+        if (effetiveAction >= minStrokeNum){
+            return 0;
+        }
     }
 
     if(effetiveAction < minStrokeNum && effetiveAction){
+        PPDebug(@"too few strokes! minus points is %d", (minStrokeNum - effetiveAction));
         return (minStrokeNum - effetiveAction);
-        PPDebug(@"too few strokes!");
     }
-    else
+    else{
         return 0;
+    }
 }
 
 
@@ -1959,16 +1971,16 @@
 
 - (void)handleSubmitForLearnDraw
 {
-    //  笔画数预处理
-    NSInteger minus =
-    [self strokeLimitWithMinStrokeNum:[PPConfigManager getMinStrokeNum]
-                          MinPointNum:[PPConfigManager getMinPointNum]];
 
     if ([self isGotoNextChapter]){
         [self gotoNextChapter];
         return;
     }
     
+    //  笔画数预处理
+    NSInteger minus = [self strokeLimitWithMinStrokeNum:[PPConfigManager getMinStrokeNum]
+                                            MinPointNum:[PPConfigManager getMinPointNum]];
+
     self.submitOpusDrawData = nil;
     self.submitOpusFinalImage = nil;
     
@@ -2190,25 +2202,6 @@
     }
 }
 
-- (void)conquerAgain
-{
-    // 再来一次
-    [self.draft setDeleteFlag:@(YES)]; // delete current draft
-    [self.userStageBuilder setConquerLocalOpusId:nil];              // TODO clear local opus Id
-    PBUserStage* userStage = [self buildUserStage];
-    PBUserTutorial* userTutorial = [self buildUserTutorial];
-    
-    [self actionsBeforeQuit];
-    [self.navigationController popViewControllerAnimated:NO];
-    
-    [[UserTutorialService defaultService] enterConquerDraw:self.startController
-                                              userTutorial:userTutorial
-                                                   stageId:userStage.stageId
-                                                stageIndex:userStage.stageIndex];
-    
-//    [OfflineDrawViewController conquer:self.startController userStage:userStage userTutorial:userTutorial];
-}
-
 // 闯关模式下，尝试下一关
 - (void)tryConquerNext
 {
@@ -2255,10 +2248,12 @@
 {
     // 再来一次
     [self.draft setDeleteFlag:@(YES)]; // delete current draft
-    [self.userStageBuilder setPracticeLocalOpusId:nil];            // TODO clear local opus Id
+    [self.userStageBuilder setPracticeLocalOpusId:nil];
+    [self.userStageBuilder setCurrentChapterIndex:0];
+    
     PBUserStage* userStage = [self buildUserStage];
-    PBUserTutorial* userTutorial = [self buildUserTutorial];
-
+    PBUserTutorial* userTutorial = [[UserTutorialManager defaultManager] updateUserStage:userStage];
+    
     // quit current
     [self actionsBeforeQuit];
     [self.navigationController popViewControllerAnimated:NO];
@@ -2267,10 +2262,30 @@
     [[UserTutorialService defaultService] enterPracticeDraw:self.startController
                                                userTutorial:userTutorial
                                                     stageId:userStage.stageId
-                                                 stageIndex:userStage.stageIndex];
-    
-//    [OfflineDrawViewController practice:self.startController userStage:userStage userTutorial:userTutorial];
+                                                 stageIndex:userStage.stageIndex];    
 }
+
+// 修炼模式下，重新修炼
+- (void)conquerAgain
+{
+    // 再来一次
+    [self.draft setDeleteFlag:@(YES)]; // delete current draft
+    [self.userStageBuilder setConquerLocalOpusId:nil];
+    
+    PBUserStage* userStage = [self buildUserStage];
+    PBUserTutorial* userTutorial = [[UserTutorialManager defaultManager] updateUserStage:userStage];
+    
+    // quit current
+    [self actionsBeforeQuit];
+    [self.navigationController popViewControllerAnimated:NO];
+    
+    // start new
+    [[UserTutorialService defaultService] enterConquerDraw:self.startController
+                                               userTutorial:userTutorial
+                                                    stageId:userStage.stageId
+                                                 stageIndex:userStage.stageIndex];
+}
+
 
 //- (IBAction)clickNextChapterButton:(id)sender
 //{
@@ -2571,9 +2586,46 @@
     [dialog showInView:self.view];
 }
 
+#define TITLE_CONTINUE      NSLS(@"kContinueDraw")
+#define TITLE_QUIT          NSLS(@"kQuitDraw")
+#define TITLE_RESTART       NSLS(@"kRestartDraw")
+
+- (void)showQuitMenuForLearnDraw
+{
+    if (![self isLearnType]){
+        return;
+    }
+    
+    NSArray *titles = @[TITLE_CONTINUE,
+                        TITLE_RESTART,
+                        TITLE_QUIT];
+    
+    __block id bself = self;
+    
+    BBSActionSheet *sheet = [[BBSActionSheet alloc] initWithTitles:titles callback:^(NSInteger index) {
+        NSString *t = titles[index];
+        if ([t isEqualToString:TITLE_CONTINUE]) {
+            // do nothing...
+        }else if([t isEqualToString:TITLE_RESTART]){
+            if (targetType == TypeConquerDraw){
+                [bself conquerAgain];
+            }
+            else{
+                [bself practiceAgain];
+            }
+        }
+        else if([t isEqualToString:TITLE_QUIT]){
+            [bself saveDraft:NO];
+            [bself quit];
+        }
+    }];
+
+    [sheet showInView:self.view showAtPoint:self.view.center animated:YES];
+    [sheet release];
+}
+
 - (void)clickBackButton:(id)sender
 {
-    
     // 关闭弹窗
     [self.upPanelPopView dismissAnimated:YES];
     [self.layerPanelPopView dismissAnimated:YES];
@@ -2582,7 +2634,12 @@
         // 没有注册过，直接退出
         [self quit];
         return;
-    }    
+    }
+    
+    if ([self isLearnType]){
+        [self showQuitMenuForLearnDraw];
+        return;
+    }
     
     if ([self isLearnType]){
         [self saveDraft:NO];

@@ -32,8 +32,8 @@ static BillboardManager* _defaultBillboardManager;
 {
     self = [super init];
     self.bbList = [NSMutableArray array];
-    self.imageManager = [[StorageManager alloc] initWithStoreType:StorageTypePersistent
-                                                    directoryName:BILLBOARD_IMAGE_DIR];
+    self.imageManager = [[[StorageManager alloc] initWithStoreType:StorageTypePersistent
+                                                    directoryName:BILLBOARD_IMAGE_DIR] autorelease];
     [self loadData:[BillboardManager defaultConfigFileName]];
     return self;
 }

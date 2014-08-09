@@ -11,6 +11,11 @@
 #import "UIViewController+BGImage.h"
 #import "HomeMenuView.h"
 #import "SuperHomeController.h"
+#import "ContestService.h"
+#import "StatisticManager.h"
+#import "UserManager.h"
+#import "UIImageUtil.h"
+#import "UIImageExt.h"
 
 static NSArray* itemTypeArray = nil;
 static dispatch_once_t onceToken;
@@ -30,11 +35,11 @@ static dispatch_once_t onceToken;
     return self;
 }
 
-
-#define COLLECTION_VIEW_CELL_HEIGHT (ISIPAD ? 170:100)
+#define COLLECTION_VIEW_CELL_HEIGHT (ISIPAD ? 190:100)
 #define COLLECTION_VIEW_CELL_WIDTH (ISIPAD ? 200:90)
-#define COLLECTION_VIEW_CELL_MINIMUM_LINE_SPACING (ISIPAD ? 20:0)
+#define COLLECTION_VIEW_CELL_MINIMUM_LINE_SPACING (ISIPAD ? 40:0)
 #define TOP_LEADING (ISIPAD ? 10:0)
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -42,7 +47,7 @@ static dispatch_once_t onceToken;
     // set title view
     [CommonTitleView createTitleView:self.view];
     [[CommonTitleView titleView:self.view] setTitle:NSLS(@"kMoreView")];
-    [[CommonTitleView titleView:self.view] setTarget:self];
+    [[CommonTitleView titleView:self.view] setTarget:self]; 
     [[CommonTitleView titleView:self.view] setBackButtonSelector:@selector(clickBack:)];
     
     //流布局
@@ -71,6 +76,12 @@ static dispatch_once_t onceToken;
     
 }
 
+- (void)viewDidAppear:(BOOL)animated
+{
+    [self.collectionView reloadData];
+    [super viewDidAppear:animated];
+}
+
 //每个section的item个数
 -(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
@@ -89,7 +100,7 @@ static dispatch_once_t onceToken;
     MoreViewCell *item = [collectionView dequeueReusableCellWithReuseIdentifier:customerIdentify forIndexPath:indexPath];
     
     [item setController:self];
-    [item updateMoreCollectionCell:indexPath.row];
+    [item updateMoreCollectionCell:indexPath.row type:[MoreViewController getItemType:indexPath.row]];
     return item;
 }
 
@@ -99,7 +110,8 @@ static dispatch_once_t onceToken;
     return 1;
 }
 
-#define UI_EDGE_INSERTS_MAKE (ISIPAD ? 20 : 8)
+#define UI_EDGE_INSERTS_MAKE (ISIPAD ? 35 : 10)
+
 -(UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section
 {
     return UIEdgeInsetsMake(UI_EDGE_INSERTS_MAKE, UI_EDGE_INSERTS_MAKE, UI_EDGE_INSERTS_MAKE, UI_EDGE_INSERTS_MAKE);
@@ -122,11 +134,26 @@ static dispatch_once_t onceToken;
 {
     dispatch_once(&onceToken
                   , ^{
-                      itemTypeArray = @[@(HomeMenuTypeGroup), @(HomeMenuTypeDrawContest),@(HomeMenuTypeDrawPainter),@(HomeMenuTypeDrawGame),@(HomeMenuTypeDrawGuess),@(HomeMenuTypeTask),@(HomeMenuTypeDrawFreeCoins),@(HomeMenuTypeDrawBigShop),@(HomeMenuTypeDrawMore)];
+                      itemTypeArray = @[@(SpecialTypeUser), @(SpecialTypeUserFriend),
+                                        @(HomeMenuTypeGroup), @(HomeMenuTypeDrawContest),@(HomeMenuTypeDrawPainter),@(HomeMenuTypeDrawGame),@(HomeMenuTypeDrawGuess),@(HomeMenuTypeDrawBigShop),@(HomeMenuTypeTask),@(HomeMenuTypeDrawFreeCoins),@(HomeMenuTypeDrawMore)];
                       
                       [itemTypeArray retain];
                                         });
     return itemTypeArray;
+}
+
++ (int)getItemType:(NSUInteger)row
+{
+    if (row >= [[self getItemTypeArray] count]){
+        return nil;
+    }
+    
+    NSNumber* type = [[self getItemTypeArray] objectAtIndex:row];
+    if (type == nil){
+        return -1;
+    }
+    
+    return [type integerValue];
 }
 
 + (UIImage*)getItemImage:(NSUInteger)row
@@ -138,6 +165,17 @@ static dispatch_once_t onceToken;
     NSNumber* type = [[self getItemTypeArray] objectAtIndex:row];
     if (type == nil){
         return nil;
+    }
+    
+    if ([type intValue] == SpecialTypeUser){
+        
+        UIImage* image = [[UserManager defaultManager] avatarImage];
+        if (image == nil){
+            image = [[UserManager defaultManager] defaultAvatarImage];
+        }
+        
+        image = [UIImage createRoundedRectImage:image size:image.size];
+        return image;
     }
     
     return [[SuperHomeController defaultMenuImageDictionary] objectForKey:type];
@@ -177,12 +215,46 @@ static dispatch_once_t onceToken;
     return NSSelectorFromString(name);
 }
 
-+ (NSUInteger)getItemBadge:(NSUInteger)row
++ (NSUInteger)totalMoreBadge
 {
-    // TODO set
-    return rand() % 10;
+    int userBadge = [[UserManager defaultManager] getUserBadgeCount];
+    int fanBadge = [[StatisticManager defaultManager] fanCount];
+    int contestBadge = [[StatisticManager defaultManager] newContestCount];
+    int groupBadge = [[StatisticManager defaultManager] groupNoticeCount];
+    
+    return userBadge + fanBadge + contestBadge + groupBadge;
 }
 
++ (NSUInteger)getItemBadge:(NSUInteger)row
+{
+    if (row >= [[MoreViewController getItemTypeArray] count]){
+        return nil;
+    }
+    
+    NSNumber* type = [[self getItemTypeArray] objectAtIndex:row];
+    if (type == nil){
+        return 0;
+    }
+    
+    switch ([type integerValue]) {
+        case SpecialTypeUser:
+            return [[UserManager defaultManager] getUserBadgeCount];
+
+        case SpecialTypeUserFriend:
+            return [[StatisticManager defaultManager] fanCount];
+
+        case HomeMenuTypeDrawContest:
+            return [[StatisticManager defaultManager] newContestCount];
+            
+        case HomeMenuTypeGroup:
+            return [[StatisticManager defaultManager] groupNoticeCount];
+            
+        default:
+            break;
+    }
+    
+    return 0;
+}
 
 - (void)handleClickItem:(NSUInteger)row
 {
@@ -191,6 +263,5 @@ static dispatch_once_t onceToken;
         [self performSelector:selector withObject:nil];
     }
 }
-
 
 @end

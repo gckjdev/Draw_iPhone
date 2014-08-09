@@ -22,6 +22,7 @@
     if (self) {
         // Initialization code
         SET_VIEW_ROUND_CORNER(self);
+        self.selectionStyle = UITableViewCellSelectionStyleNone;
     }
     return self;
 }
@@ -38,7 +39,7 @@
     self.backgroundColor = [UIColor clearColor];
 
     //自定义label右上角难度
-    [_difficultyLabel setFrame:CGRectMake(10, 8, (ISIPAD?200:150), 50)];
+    [_difficultyLabel setFrame:CGRectMake(5, 3, (ISIPAD?200:150),(ISIPAD?50:20))];
     [_difficultyLabel setText:ut.tutorial.categoryName];
     [_difficultyLabel setShadowColor:[UIColor whiteColor]];
     [_difficultyLabel setTextColor:COLOR_BROWN];
@@ -61,8 +62,8 @@
                            animated:YES];
 }
 
-#define PROGRESS_VIEW_SIZE_WIDTH (ISIPAD ? 350.0f : 200.0f)
-#define PROGRESS_VIEW_SIZE_HEIGHT (ISIPAD ? 40.0f : 30.0f)
+#define PROGRESS_VIEW_SIZE_WIDTH (ISIPAD ? 360.0f : 160.0f)
+#define PROGRESS_VIEW_SIZE_HEIGHT (ISIPAD ? 40.0f : 20.0f)
 -(void)setProgressView:(NSInteger)row WithProgress:(float)progress{
     const CGSize progressViewSize = { PROGRESS_VIEW_SIZE_WIDTH, PROGRESS_VIEW_SIZE_HEIGHT};
     //調用THprogressview
@@ -70,9 +71,10 @@
     [view removeAllSubviews];
 
     //调用LDProgressView
-     const CGFloat progressX = (self.progressAndLabelView.frame.size.width - progressViewSize.width)/2.0f;
+     const CGFloat progressX = fabsf((self.bounds.size.width - progressViewSize.width)/2);
+    const CGFloat progressY = fabsf((self.bounds.size.height - progressViewSize.height-(ISIPAD?42:20))/2);
     LDProgressView *tutorialProgressView = [[LDProgressView alloc] initWithFrame:
-                                                            CGRectMake(progressX,25.0f,progressViewSize.width,progressViewSize.height)];
+                                                            CGRectMake(progressX,progressY,progressViewSize.width,progressViewSize.height)];
     
     tutorialProgressView.color = [UIColor colorWithRed:0.99f green:0.85f blue:0.33f alpha:1.0f];
     tutorialProgressView.labelTextColor = COLOR_BROWN;
@@ -120,7 +122,7 @@
         
     }
     
-    [view addSubview:tutorialProgressView];
+    [self addSubview:tutorialProgressView];
     [tutorialProgressView release];
     
     

@@ -27,6 +27,8 @@
 #import "WordManager.h"
 #import "DrawRecoveryService.h"
 #import "SDWebImageManager.h"
+#import "BrickView.h"
+#import "UIImageUtil.h"
 
 @interface MetroHomeController ()
 
@@ -46,39 +48,19 @@
     return self;
 }
 
-#define TRENDS_BUTTON_TITLE_EDGEINSETS   (ISIPAD ? .0 : .0)
-#define DOCUMENT_BUTTON_TITLE_EDGEINSETS (ISIPAD ? .0:  .0)
-#define MESSAGE_BUTTON_TITLE_EDGEINSET   (ISIPAD ? .0 : .0)
-#define MORE_BUTTON_TITLE_EDGEINSETS     (ISIPAD ? .0 : .0)
-#define BOTTOM_BUTTON_MARGIN_HEIGHT (ISIPAD ? 50 : 38)
 
--(void)setButtonTitleBottom{
+
+#pragma mark 使button对齐
+-(void)buttonLayout
+{
+    CGRect tempFrame = self.indexButton.frame;
     
-    [self.indexButton.imageView setImage:[UIImage imageNamed:@"dongtai.jpg"]];
-    
-    if([LocaleUtils isChina]||[LocaleUtils isChinese]){
-        [self.indexButton.titleLabel setFont:AD_BOLD_FONT(13, 10)];
-        [self.documentButton.titleLabel setFont:AD_BOLD_FONT(13, 10)];
-        [self.messageButton.titleLabel setFont:AD_BOLD_FONT(13, 10)];
-        [self.moreButton.titleLabel setFont:AD_BOLD_FONT(13,10)];
-    }else{
-        [self.indexButton.titleLabel setFont:AD_BOLD_FONT(9, 7)];
-        [self.documentButton.titleLabel setFont:AD_BOLD_FONT(9, 7)];
-        [self.messageButton.titleLabel setFont:AD_BOLD_FONT(9, 7)];
-        [self.moreButton.titleLabel setFont:AD_BOLD_FONT(9,7)];
-    }
-    
-    
-    
-    [self.indexButton setTitle:NSLS(@"kMetroIndexButton") forState:UIControlStateNormal];
-    [self.documentButton setTitle:NSLS(@"kMetroDocumentButton") forState:UIControlStateNormal];
-    [self.messageButton setTitle:NSLS(@"kMetroMessageButton") forState:UIControlStateNormal];
-    [self.moreButton setTitle:NSLS(@"kMetroMoreButton") forState:UIControlStateNormal];
-   
-    [self.indexButton  setTitleEdgeInsets:UIEdgeInsetsMake(BOTTOM_BUTTON_MARGIN_HEIGHT, TRENDS_BUTTON_TITLE_EDGEINSETS, 0, 0)];
-    [self.documentButton  setTitleEdgeInsets:UIEdgeInsetsMake(BOTTOM_BUTTON_MARGIN_HEIGHT, DOCUMENT_BUTTON_TITLE_EDGEINSETS, 0, 0)];
-    [self.messageButton  setTitleEdgeInsets:UIEdgeInsetsMake(BOTTOM_BUTTON_MARGIN_HEIGHT, MESSAGE_BUTTON_TITLE_EDGEINSET, 0, 0)];
-    [self.moreButton  setTitleEdgeInsets:UIEdgeInsetsMake(BOTTOM_BUTTON_MARGIN_HEIGHT, MORE_BUTTON_TITLE_EDGEINSETS, 0, 0)];
+    tempFrame.size.width = 40;
+    tempFrame.size.height = 5;
+    PPDebug(@"<imageView.Size.Width>%d",tempFrame.size.width);
+    PPDebug(@"<imageView.Size.Width>%d",tempFrame.size.height);
+    self.indexButton.frame = tempFrame;
+//    [self.indexButton.imageView];
 }
 
 - (void)startStatisticTimer
@@ -120,7 +102,6 @@
 - (void)viewDidLoad
 {
     self.view.backgroundColor = COLOR_GREEN;
-    [self.documentBadge setNumber:0];
     
     [super viewDidLoad];
     
@@ -137,10 +118,8 @@
     
     // update background view
     [self registerNotificationWithName:UPDATE_HOME_BG_NOTIFICATION_KEY usingBlock:^(NSNotification *note) {
-        [self updateBGImageView];
     }];
 
-    [self updateBGImageView];
     [self startAudioManager];
     
     [self registerUIApplicationNotification];
@@ -159,33 +138,29 @@
     //用户头像
     [self updateAvatarView];
     self.avatarView.delegate = self;
-    
-    [self setButtonTitleBottom];
-    
-    //Autolayout 适配ios6 ios7
-    NSLayoutConstraint* constraint = [NSLayoutConstraint constraintWithItem:self.galleryView
-                                                                  attribute:NSLayoutAttributeTop
-                                                                  relatedBy:NSLayoutRelationEqual
-                                                                     toItem:self.topView
-                                                                  attribute:NSLayoutAttributeBottom
-                                                                 multiplier:1.0
-                                                                   constant:0];
-    
-    NSLayoutConstraint* constraint2 = [NSLayoutConstraint constraintWithItem:self.topView
-                                                                  attribute:NSLayoutAttributeTop
-                                                                  relatedBy:NSLayoutRelationEqual
-                                                                     toItem:self.view
-                                                                  attribute:NSLayoutAttributeTop
-                                                                 multiplier:1.0
-                                                                   constant:STATUSBAR_DELTA];
-    
-    [self.view addConstraint:constraint];
-    [self.view addConstraint:constraint2];
-    
-}
 
-- (void)updateBGImageView
-{
+//    [self setButtonTitleBottom];
+    [self setListenInView:self.topAnnounceView selector:@selector(goToAnnounce:)];
+    [self.topAnnounceButton setUserInteractionEnabled:NO];
+    
+#pragma mark 调用buttonLayout
+    [self buttonLayout];
+
+
+    [_bottomView setTranslatesAutoresizingMaskIntoConstraints:NO];
+    [_mainView setTranslatesAutoresizingMaskIntoConstraints:NO];
+    [_topView setTranslatesAutoresizingMaskIntoConstraints:NO];
+    [_galleryView setTranslatesAutoresizingMaskIntoConstraints:NO];
+
+
+    [self setAllViewConstraints];
+    if(isIPad){
+        [self setMainBoxView_iPad];
+    }else{
+        [self setMainBoxView];
+    }
+    [self setBottomViewButton];
+    [self showGuidePage];
     
 }
 
@@ -216,6 +191,12 @@
     
     [UIApplication sharedApplication].idleTimerDisabled = NO;
     [super viewDidAppear:animated];
+    
+//    [self updateAllBadge];
+    
+    if ([[UserManager defaultManager] hasXiaojiNumber] == NO){
+        [self showGuidePage];
+    }
 }
 
 - (void)viewDidDisappear:(BOOL)animated
@@ -279,7 +260,9 @@
 {
     // TODO
 }
-
+-(void)updateAvatarBadge:(int)count{
+    [self.avatarBadgeView setNumber:count];
+}
 - (IBAction)goToLearning:(id)sender{
     [self enterLearnDraw];
 }
@@ -303,28 +286,7 @@
     UIImage *bottomBackground = [UIImage imageNamed:@"neironglan yu caidanlan.png"];
     [self.bottomBackground setBackgroundColor:[UIColor clearColor]];
     [self.bottomBackground setImage:bottomBackground];
-    CGFloat mainScreenHeight = [[UIScreen mainScreen] bounds].size.height;
-    if(!ISIPAD){
-        NSLayoutConstraint* constraint = nil;
-        if(mainScreenHeight == 480){
-            constraint = [NSLayoutConstraint constraintWithItem:self.bottomBackground
-                                                      attribute:NSLayoutAttributeTop
-                                                      relatedBy:NSLayoutRelationEqual
-                                                         toItem:self.mainView
-                                                      attribute:NSLayoutAttributeBottom
-                                                     multiplier:1.0
-                                                       constant:-5];
-        }else{
-            constraint = [NSLayoutConstraint constraintWithItem:self.bottomBackground
-                                                      attribute:NSLayoutAttributeTop
-                                                      relatedBy:NSLayoutRelationEqual
-                                                         toItem:self.mainView
-                                                      attribute:NSLayoutAttributeBottom
-                                                     multiplier:1.0
-                                                       constant:-10];
-        }
-        [self.view addConstraint:constraint];
-    }
+
 }
     
 #pragma mark click
@@ -376,6 +338,7 @@
 -(IBAction)goToAnnounce:(id)sender
 {
     [self showBulletinView];
+    [self updateAllBadge];
 }
 
 -(IBAction)goToUserDetail:(id)sender
@@ -392,6 +355,7 @@
 - (void)didClickOnAvatar:(NSString *)userId
 {
     [self enterUserDetail];
+    [self updateAvatarBadge:0];
 }
 - (void)didReceiveMemoryWarning
 {
@@ -405,20 +369,18 @@
 #pragma mark -
 
 // 设置Gallery
-#define IMAGE_FRAME_X (ISIPAD ? 26:11)
-#define IMAGE_FRAME_Y (ISIPAD ? 24:15)
-#define IMAGE_FRAME_WIDTH (ISIPAD ? 716:298)
+#define IMAGE_FRAME_X (ISIPAD ? 31:11)
+#define IMAGE_FRAME_Y (ISIPAD ? 44:16)
+#define IMAGE_FRAME_WIDTH (ISIPAD ? 706:298)
 #define IMAGE_FRAME_HEIGHT (ISIPAD ? 250:120)
-#define DEFAULT_GALLERY_IMAGE @"daguanka"
+#define DEFAULT_GALLERY_IMAGE @"defaultBillBoard.jpg"
 
 -(void)setGalleryView{
     
     BillboardManager *bbManager = [BillboardManager defaultManager];
     self.bbList = bbManager.bbList;
 
-    //默认图片
-    UIImage *image = [UIImage imageNamed:DEFAULT_GALLERY_IMAGE];
-    [self.galleryImageView setImage:image];
+
     
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
         
@@ -426,6 +388,11 @@
         for(Billboard *bb in _bbList){
 
             UIImage *image = [bbManager getImage:bb];
+            if(image==nil){
+                //默认图片
+                image = [UIImage imageNamed:DEFAULT_GALLERY_IMAGE];
+                [self.galleryImageView setImage:image];
+            }
             
             //添加到第三方框架
             SGFocusImageItem *item = [[[SGFocusImageItem alloc] initWithTitle:@"" image:image tag:bb.index] autorelease];
@@ -435,10 +402,11 @@
         
         dispatch_async(dispatch_get_main_queue(), ^{
             //新建滚动展览
-            SGFocusImageFrame *imageFrame = [[SGFocusImageFrame alloc] initWithFrame:CGRectMake(IMAGE_FRAME_X, IMAGE_FRAME_Y, IMAGE_FRAME_WIDTH ,IMAGE_FRAME_HEIGHT)
+            CGRect frame = CGRectMake(IMAGE_FRAME_X, IMAGE_FRAME_Y, IMAGE_FRAME_WIDTH ,IMAGE_FRAME_HEIGHT);
+            SGFocusImageFrame *imageFrame = [[SGFocusImageFrame alloc] initWithFrame:frame
                                                                             delegate:self
-                                                    hasPageControllerBackgroundColor:NO
-                                                                     focusImageItems:itemList, nil];
+                                                                     focusImageItems:itemList];
+            [imageFrame setAlignment:SMPageControlAlignmentRight];
             [self.galleryView addSubview:imageFrame];
             [self.galleryView bringSubviewToFront:imageFrame];
             [imageFrame release];
@@ -469,20 +437,24 @@
     
     long timelineCount = manager.timelineOpusCount +
                             manager.timelineGuessCount +
+                            manager.timelineConquerCount +
                             manager.commentCount +
                             manager.drawToMeCount;
+
     [self updateBadgeTimeline:timelineCount];
     
-    int moreCount = [manager newContestCount] + [manager groupNoticeCount];
+    int moreCount = [MoreViewController totalMoreBadge];
     [self updateBadgeMore:moreCount];
     
     [self updateBulletinBadge:[manager bulletinCount]];
+
+    
+    //TODO the avatar Badge
     
     // TODO
     //    [self updateBadgeBBS:HomeMenuTypeDrawFriend badge:manager.fanCount];
+
 }
-
-
 
 - (void)dealloc {
     [_galleryView release];
@@ -510,6 +482,9 @@
     [_moreBadge release];
     [_anounceBadge release];
     [_galleryButton release];
+    [_forumView release];
+    [_amazingOpusView release];
+    [_avatarBadgeView release];
     [super dealloc];
 }
 - (void)viewDidUnload {
@@ -540,6 +515,9 @@
     [self setMoreBadge:nil];
     [self setAnounceBadge:nil];
     [self setGalleryButton:nil];
+    [self setForumView:nil];
+    [self setAmazingOpusView:nil];
+    [self setAvatarBadgeView:nil];
     [super viewDidUnload];
 }
 
@@ -565,29 +543,323 @@
     }];
 }
 
-//- (void)updateRecoveryDrawCount
-//{
-//    NSUInteger count = [[DrawRecoveryService defaultService] recoveryDrawCount];
-//    [self updateBadgeDraft:count];
-//    [[StatisticManager defaultManager] setRecoveryCount:count];
-//}
-
 - (void)updateBulletinBadge
 {
     StatisticManager *manager = [StatisticManager defaultManager];
     [self updateBulletinBadge:[manager bulletinCount]];
 }
 
-- (void)enterShareFromWeixin
-{
-//    if ([self isRegistered] == NO) {
-//        [self toRegister];
-//    } else {
-//        ShareController* share = [[ShareController alloc] init ];
-//        [share setFromWeiXin:YES];
-//        [self.navigationController pushViewController:share animated:YES];
-//        [share release];
-//    }
+#pragma mark - constraint
+-(void)setAllViewConstraints{
+    
+    
+    NSDictionary *views = NSDictionaryOfVariableBindings(_bottomView, _mainView,_topView,_galleryView);
+    NSMutableArray *constraints = [[NSMutableArray alloc] init];
+    
+    [_bottomView setTranslatesAutoresizingMaskIntoConstraints:NO];
+    [_mainView setTranslatesAutoresizingMaskIntoConstraints:NO];
+    [_topView setTranslatesAutoresizingMaskIntoConstraints:NO];
+    [_galleryView setTranslatesAutoresizingMaskIntoConstraints:NO];
+
+    
+    NSString *topViewConstraints = @"V:[_galleryView(>=140)]-0-[_mainView(>=140)]";
+    NSString *bottomViewConstrains = @"V:[_bottomView(==49)]-0-|";
+    
+    
+    if(ISIOS7){
+        NSString *topView = @"V:|-20-[_topView(==40)]";
+        [constraints addObject:topView];
+    }else{
+        NSString *topView = @"V:|-0-[_topView(==40)]";
+        [constraints addObject:topView];
+    }
+//    [constraints addObject:topViewConstraints];
+    [constraints addObject:bottomViewConstrains];
+    
+    // Set constraints.
+    for (NSString *string in constraints) {
+        [self.view addConstraints:[NSLayoutConstraint
+                                   constraintsWithVisualFormat:string
+                                   options:0 metrics:nil
+                                   views:views]];
+    }
+
+    [constraints release];
 }
+
+-(void)setMainBoxView{
+    
+    CGFloat height = 220-21;
+    if(ISIPHONE5){
+        height = 292-6;
+    }
+    
+    //新建色块
+    CGFloat bigViewHeight = height * 0.618f;
+    CGFloat smallViewHeight = height - bigViewHeight;
+    
+    UIImage *paintingImage = [UIImage imageNamed:@"huahua"];
+    BrickView *paintingView = [[[BrickView alloc] initWithFrame:self.paintingView.bounds title:@"画画" imageTitle:@"Painting" image:paintingImage] autorelease];
+    
+    UIImage *learningImage = [UIImage imageNamed:@"xuehuahua"];
+    BrickView *learningView = [[[BrickView alloc] initWithFrame:self.learningView.bounds title:@"学画画" imageTitle:@"Learning" image:learningImage] autorelease];
+    
+    UIImage *forumImage = [UIImage imageNamed:@"luntan"];
+    BrickView *forumView = [[[BrickView alloc] initWithFrame:self.forumView.bounds title:@"论坛" imageTitle:@"Forum" image:forumImage] autorelease];
+    
+    UIImage *amazingImage = [UIImage imageNamed:@"jingcaizuopin"];
+    BrickView *amazingOpusView = [[[BrickView alloc] initWithFrame:self.amazingOpusView.bounds title:@"精彩作品" imageTitle:@"Gallery" image:amazingImage] autorelease];
+    
+    //设置色块背景颜色
+    [paintingView setBackgroundColor:[UIColor colorWithRed:0.757f green:0.565f blue:0.965f alpha:1.0f]];
+    [learningView setBackgroundColor:[UIColor colorWithRed:0.984f green:0.431f blue:0.588f alpha:1.0f]];
+    [forumView setBackgroundColor:[UIColor colorWithRed:0.459f green:0.784f blue:0.965f alpha:1.0f]];
+    [amazingOpusView setBackgroundColor:[UIColor colorWithRed:0.553f green:0.612f blue:0.98f alpha:1.0f]];
+    
+    [self.mainView addSubview:paintingView];
+    [self.mainView addSubview:learningView];
+    [self.mainView addSubview:forumView];
+    [self.mainView addSubview:amazingOpusView];
+    
+    
+    //设置色块autolayout
+    NSDictionary *views = NSDictionaryOfVariableBindings(_mainView,paintingView,learningView, forumView, amazingOpusView);
+    NSMutableArray *constraints = [[NSMutableArray alloc] init];
+    
+    [paintingView setTranslatesAutoresizingMaskIntoConstraints:NO];
+    [learningView setTranslatesAutoresizingMaskIntoConstraints:NO];
+    [forumView setTranslatesAutoresizingMaskIntoConstraints:NO];
+    [amazingOpusView setTranslatesAutoresizingMaskIntoConstraints:NO];
+    //Horizone
+    NSString *paintAndLearnViewHorizone = @"H:|-9.5-[paintingView]-7-[learningView(==190)]-9.5-|";
+    NSString *forumAndAmazingViewHorizone = @"H:|-9.5-[forumView]-8-[amazingOpusView(==190)]-9.5-|";
+    [constraints addObject:paintAndLearnViewHorizone];
+    [constraints addObject:forumAndAmazingViewHorizone];
+    
+    
+    
+    NSString *paintAndForumViewVertical = [NSString stringWithFormat:@"V:|-7-[paintingView(==%f)]-7-[forumView(==%f)]-7-|",bigViewHeight,smallViewHeight];
+    
+    NSString *learnAndAmazingViewVertical = [NSString stringWithFormat:@"V:|-7-[learningView(==%f)]-7-[amazingOpusView(==%f)]-7-|",bigViewHeight,smallViewHeight];
+    
+    [constraints addObject:paintAndForumViewVertical];
+    [constraints addObject:learnAndAmazingViewVertical];
+    
+    // Set constraints.
+    for (NSString *string in constraints) {
+        [self.view addConstraints:[NSLayoutConstraint
+                                   constraintsWithVisualFormat:string
+                                   options:0 metrics:nil
+                                   views:views]];
+    }
+    
+   
+    [self setMainViewListening:paintingView
+                  learningView:learningView
+                     forumView:forumView
+               amazingOpusView:amazingOpusView];
+    
+    [constraints release];
+    
+    
+}
+
+-(void)setMainBoxView_iPad{
+    
+    CGFloat height = 595-40;
+    
+    CGFloat bigViewHeight = height * 0.618f;
+    CGFloat smallViewHeight = height - bigViewHeight;
+    
+    //新建色块中的图片
+    UIImage *paintingImage = [UIImage imageNamed:@"huahua"];
+    BrickView *paintingView = [[[BrickView alloc] initWithFrame:self.paintingView.bounds title:@"画画" imageTitle:@"Painting" image:paintingImage] autorelease];
+    
+    UIImage *learningImage = [UIImage imageNamed:@"xuehuahua"];
+    BrickView *learningView = [[[BrickView alloc] initWithFrame:self.learningView.bounds title:@"学画画" imageTitle:@"Learning" image:learningImage] autorelease];
+    
+    UIImage *forumImage = [UIImage imageNamed:@"luntan"];
+    BrickView *forumView = [[[BrickView alloc] initWithFrame:self.forumView.bounds title:@"论坛" imageTitle:@"Forum" image:forumImage] autorelease];
+    
+    UIImage *amazingImage = [UIImage imageNamed:@"jingcaizuopin"];
+    BrickView *amazingOpusView = [[[BrickView alloc] initWithFrame:self.amazingOpusView.bounds title:@"精彩作品" imageTitle:@"Gallery" image:amazingImage] autorelease];
+    
+    
+    
+    //建立色块颜色
+    [paintingView setBackgroundColor:[UIColor colorWithRed:0.757f green:0.565f blue:0.965f alpha:1.0f]];
+    [learningView setBackgroundColor:[UIColor colorWithRed:0.984f green:0.431f blue:0.588f alpha:1.0f]];
+    [forumView setBackgroundColor:[UIColor colorWithRed:0.459f green:0.784f blue:0.965f alpha:1.0f]];
+    [amazingOpusView setBackgroundColor:[UIColor colorWithRed:0.553f green:0.612f blue:0.98f alpha:1.0f]];
+    
+    
+    [self.mainView addSubview:paintingView];
+    [self.mainView addSubview:learningView];
+    [self.mainView addSubview:forumView];
+    [self.mainView addSubview:amazingOpusView];
+    
+    
+    //色块在mainView 中的autolayout
+    NSDictionary *views = NSDictionaryOfVariableBindings(_mainView,paintingView,learningView, forumView, amazingOpusView);
+    NSMutableArray *constraints = [[NSMutableArray alloc] init];
+    
+    [paintingView setTranslatesAutoresizingMaskIntoConstraints:NO];
+    [learningView setTranslatesAutoresizingMaskIntoConstraints:NO];
+    [forumView setTranslatesAutoresizingMaskIntoConstraints:NO];
+    [amazingOpusView setTranslatesAutoresizingMaskIntoConstraints:NO];
+    //Horizone
+    NSString *paintAndLearnViewHorizone = @"H:|-30-[paintingView(==240)]-25-[learningView(==452)]-30-|";
+    NSString *forumAndAmazingViewHorizone = @"H:|-30-[forumView(==240)]-25-[amazingOpusView(==452)]-30-|";
+    [constraints addObject:paintAndLearnViewHorizone];
+    [constraints addObject:forumAndAmazingViewHorizone];
+    
+    NSString *paintAndForumViewVertical = [NSString stringWithFormat:@"V:|-7-[paintingView(==%f)]-16-[forumView(==%f)]-13-|",bigViewHeight,smallViewHeight];
+    
+    NSString *learnAndAmazingViewVertical = [NSString stringWithFormat:@"V:|-7-[learningView(==%f)]-16-[amazingOpusView(==%f)]-13-|",bigViewHeight,smallViewHeight];
+    
+    [constraints addObject:paintAndForumViewVertical];
+    [constraints addObject:learnAndAmazingViewVertical];
+    
+    // Set constraints.
+    for (NSString *string in constraints) {
+        [self.view addConstraints:[NSLayoutConstraint
+                                   constraintsWithVisualFormat:string
+                                   options:0 metrics:nil
+                                   views:views]];
+    }
+    
+    [self setMainViewListening:paintingView
+                  learningView:learningView
+                     forumView:forumView
+               amazingOpusView:amazingOpusView];
+    
+    [constraints release];
+
+}
+#define TRENDS_BUTTON_TITLE_EDGEINSETS   (ISIPAD ? .0 : -50)
+#define DOCUMENT_BUTTON_TITLE_EDGEINSETS (ISIPAD ? .0:  .0)
+#define MESSAGE_BUTTON_TITLE_EDGEINSET   (ISIPAD ? .0 : .0)
+#define MORE_BUTTON_TITLE_EDGEINSETS     (ISIPAD ? .0 : .0)
+#define BOTTOM_BUTTON_MARGIN_HEIGHT (ISIPAD ? 50 : 38)
+-(void)setBottomViewButton{
+    
+    //建立tab bar 的按钮
+    CGFloat buttonWidth = self.bottomView.bounds.size.width/4;
+    CGFloat button_X = buttonWidth;
+    NSArray *width = @[@(button_X*0.0f),@(button_X*1.0f),@(button_X*2.0f),@(button_X*3.0f)];
+    UIButton *indexButton = [[UIButton alloc] initWithFrame:CGRectMake([[width objectAtIndex:0] floatValue], 0, buttonWidth, self.bottomView.bounds.size.height)];
+    
+    UIButton *documentButton = [[UIButton alloc] initWithFrame:CGRectMake([[width objectAtIndex:1] floatValue], 0, buttonWidth, self.bottomView.bounds.size.height)];
+    
+    UIButton *messageButton = [[UIButton alloc] initWithFrame:CGRectMake([[width objectAtIndex:2] floatValue], 0, buttonWidth, self.bottomView.bounds.size.height)];
+    
+     UIButton *moreButton = [[UIButton alloc] initWithFrame:CGRectMake([[width objectAtIndex:3] floatValue], 0, buttonWidth, self.bottomView.bounds.size.height)];
+    
+    //设置按钮的icon
+    [indexButton setImage:[UIImage imageNamed:@"dongtai"] forState:UIControlStateNormal];
+    [documentButton setImage:[UIImage imageNamed:@"caogao"] forState:UIControlStateNormal];
+    [messageButton setImage:[UIImage imageNamed:@"xiaoxi"] forState:UIControlStateNormal];
+    [moreButton setImage:[UIImage imageNamed:@"gengduo"] forState:UIControlStateNormal];
+    
+    //设置按钮title
+    const CGFloat cutSize = (ISIPAD ? 32:20);
+    UILabel *indexButtonTitle = [[[UILabel alloc] initWithFrame:CGRectMake(0, self.bottomView.bounds.size.height-cutSize, buttonWidth, 20)] autorelease];
+    [self setBottomButtonTitleStyle:indexButtonTitle text:NSLS(@"kMetroIndexButton")];
+    [indexButton addSubview:indexButtonTitle];
+     self.indexBadge.frame = CGRectMake([[width objectAtIndex:0] floatValue], 0, (ISIPAD?30:20), (ISIPAD?30:20));
+    
+    UILabel *documentButtonTitle = [[[UILabel alloc] initWithFrame:CGRectMake([[width objectAtIndex:0] floatValue], self.bottomView.bounds.size.height-cutSize, buttonWidth, 20)] autorelease];
+    [self setBottomButtonTitleStyle:documentButtonTitle text:NSLS(@"kMetroDocumentButton")];
+    [documentButton addSubview:documentButtonTitle];
+    self.indexBadge.frame = CGRectMake([[width objectAtIndex:1] floatValue], 0, (ISIPAD?30:20), (ISIPAD?30:20));
+    
+    UILabel *messageButtonTitle = [[[UILabel alloc] initWithFrame:CGRectMake([[width objectAtIndex:0] floatValue], self.bottomView.bounds.size.height-cutSize, buttonWidth, 20)] autorelease];
+    [self setBottomButtonTitleStyle:messageButtonTitle text:NSLS(@"kMetroMessageButton")];
+    [messageButton addSubview:messageButtonTitle];
+     self.indexBadge.frame = CGRectMake([[width objectAtIndex:2] floatValue], 0, (ISIPAD?30:20), (ISIPAD?30:20));
+    
+    UILabel *moreButtonTitle = [[[UILabel alloc] initWithFrame:CGRectMake([[width objectAtIndex:0] floatValue], self.bottomView.bounds.size.height-cutSize, buttonWidth, 20)] autorelease];
+    [self setBottomButtonTitleStyle:moreButtonTitle text:NSLS(@"kMetroMoreButton")];
+    [moreButton addSubview:moreButtonTitle];
+     self.indexBadge.frame = CGRectMake([[width objectAtIndex:3] floatValue], 0, (ISIPAD?30:20), (ISIPAD?30:20));
+    
+    //设置按钮图片位置
+    //负数上升，正数下降
+    CGFloat imageTopEdge = (ISIPAD ? -30:-10);
+    indexButton.imageEdgeInsets = UIEdgeInsetsMake(imageTopEdge,0,0,0);
+    documentButton.imageEdgeInsets = UIEdgeInsetsMake(imageTopEdge,0,0,0);
+    messageButton.imageEdgeInsets = UIEdgeInsetsMake(imageTopEdge,0,0,0);
+    moreButton.imageEdgeInsets = UIEdgeInsetsMake(imageTopEdge,0,0,0);
+    
+    //背景颜色
+    [documentButton setBackgroundColor:[UIColor clearColor]];
+    [messageButton setBackgroundColor:[UIColor clearColor]];
+    [moreButton setBackgroundColor:[UIColor clearColor]];
+    [indexButton setBackgroundColor:[UIColor clearColor]];
+    
+    
+    
+    [self.bottomView addSubview:indexButton];
+    [self.bottomView addSubview:documentButton];
+    [self.bottomView addSubview:messageButton];
+    [self.bottomView addSubview:moreButton];
+    
+    //监听按钮
+    [self setBottomButtonListening:indexButton draft:documentButton chat:messageButton more:moreButton];
+    
+}
+//设置button 的样式
+-(void)setBottomButtonTitleStyle:(UILabel *)label text:(NSString*)text{
+    
+    UIFont *font = nil;
+    if([LocaleUtils isChina]||[LocaleUtils isChinese]){
+        font = AD_FONT(13, 10);
+        
+    }else{
+        font = AD_BOLD_FONT(11,10);
+    }
+    [label setText:text];
+    [label setFont:font];
+    [label setTextAlignment:NSTextAlignmentCenter];
+    [label setTextColor:COLOR_GRAY_TEXT];
+    [label setBackgroundColor:[UIColor clearColor]];
+    
+}
+
+
+#pragma mark - Listen
+-(void)setListenInView:(UIView*)view selector:(SEL)selector{
+    UITapGestureRecognizer* singleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:selector];
+    [view addGestureRecognizer:singleTap];
+}
+-(void)setListenInButton:(UIButton*)button selector:(SEL)selector{
+    [button addTarget:self action:@selector(selector) forControlEvents:nil];
+}
+//监听色块
+-(void)setMainViewListening:(UIView*)paintingView learningView:(UIView*)learningView forumView:(UIView*)forumView amazingOpusView:(UIView*)amazingOpusView{
+    
+    //Listen
+    paintingView.userInteractionEnabled = YES;
+    learningView.userInteractionEnabled = YES;
+    forumView.userInteractionEnabled = YES;
+    amazingOpusView.userInteractionEnabled = YES;
+    
+    [self setListenInView:paintingView selector:@selector(goToDraw:)];
+    [self setListenInView:learningView selector:@selector(goToLearning:)];
+    [self setListenInView:forumView selector:@selector(goToBBS:)];
+    [self setListenInView:amazingOpusView selector:@selector(goToOpus:)];
+}
+//监听按钮
+-(void)setBottomButtonListening:(UIButton*)indexButton draft:(UIButton*)draft chat:(UIButton*)chat more:(UIButton*)more{
+    
+    [self setListenInView:indexButton selector:@selector(goToIndexController:)];
+    [self setListenInView:draft selector:@selector(goToDocumentController:)];
+    [self setListenInView:chat selector:@selector(goToMessageController:)];
+    [self setListenInView:more selector:@selector(goToMoreController:)];
+    
+    
+}
+
+
 
 @end

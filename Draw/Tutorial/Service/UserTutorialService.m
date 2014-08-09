@@ -725,15 +725,15 @@ static UserTutorialService* _defaultService;
 {
     PPSmartUpdateData* smartData = [self getSmartData:userTutorial.tutorial.tutorialId stageId:stageId];
 
-#ifdef DEBUG
-    
-    if ([smartData isDataExist]){
-        [self showLearnDraw:fromController userTutorial:userTutorial stageId:stageId stageIndex:stageIndex type:type];
-
-        return userTutorial;
-    }
-    
-#endif
+//#ifdef DEBUG
+//    
+//    if ([smartData isDataExist]){
+//        [self showLearnDraw:fromController userTutorial:userTutorial stageId:stageId stageIndex:stageIndex type:type];
+//
+//        return userTutorial;
+//    }
+//    
+//#endif
     
     if ([Reachability isNetworkOK] == NO){
         // network not available, try local data

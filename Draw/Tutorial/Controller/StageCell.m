@@ -46,7 +46,7 @@
     }
 
     self.stageListStarBtn.userInteractionEnabled = NO;
-
+    self.stageListStarBtn.hidden = YES;
     
     //闯关的关卡数
     if (isLockStage == NO){
@@ -73,7 +73,11 @@
                                  showLoading:YES
                                     animated:YES];
         
-        self.stageListStarBtn.hidden = NO;
+        //闯到某一关卡才显示开始闯关字样
+        if(row==pbUserTutorial.currentStageIndex){
+             self.stageListStarBtn.hidden = NO;
+        }
+       
         self.cellName.hidden = NO;
         self.stageCellImage.hidden = NO;
         self.stageListHiddenLockImageView.hidden = YES;

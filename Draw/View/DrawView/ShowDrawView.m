@@ -574,10 +574,20 @@ typedef enum {
 
 - (UIImage*)createImageAtIndex:(NSUInteger)index
 {
+//    //追寻到index位置的图，并利用createImage返回一个UIImage对象
+//    PPDebug(@"create an image at index: %d", index);
+//    [self showToIndex:index];
+//    return [self createImage];
+
+    return [self createImageAtIndex:index bgColor:[UIColor whiteColor]];
+}
+
+- (UIImage*)createImageAtIndex:(NSUInteger)index bgColor:(UIColor*)bgColor
+{
     //追寻到index位置的图，并利用createImage返回一个UIImage对象
     PPDebug(@"create an image at index: %d", index);
     [self showToIndex:index];
-    return [self createImage];
+    return [self createImageWithBgColor:bgColor];
    
 }
 

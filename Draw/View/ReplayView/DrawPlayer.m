@@ -11,6 +11,7 @@
 #import "ShowDrawView.h"
 #import "PPConfigManager.h"
 #import "Draw.h"
+#import "ChangeBGImageAction.h"
 
 @implementation ReplayObject
 
@@ -307,6 +308,7 @@
                 draw:(Draw**)retDraw
       viewController:(PPViewController*)viewController
              bgImage:(UIImage*)bgImage
+         bgImageName:(NSString*)bgImageName
           startIndex:(int)startIndex
             endIndex:(int)endIndex
 {
@@ -354,7 +356,7 @@
             obj.layers = draw.layers;
             obj.bgImage = bgImage;
             
-            DrawPlayer *player = [DrawPlayer playerWithReplayObj:obj begin:startIndex end:endIndex];
+            DrawPlayer *player = [DrawPlayer playerWithReplayObj:obj begin:startIndex end:endIndex bgImageName:bgImageName];
             [player showInController:cp];
             
             [pool drain];
@@ -370,8 +372,10 @@
 + (void)updateReplayObjectPlayIndex:(ReplayObject *)obj
                               begin:(NSUInteger)begin
                                 end:(NSUInteger)end
+                      bgImageAction:(ChangeBGImageAction*)bgImageAction
 {
     NSMutableArray* drawActionList = obj.actionList;
+    int totalDrawActionListCount = [drawActionList count];
     
     if (end <= begin)
     {
@@ -379,13 +383,13 @@
         return;
     }
     
-    if (end >= [drawActionList count] || begin >= [drawActionList count])
+    if (end >= totalDrawActionListCount || begin >= totalDrawActionListCount)
     {
         PPDebug(@"end > all action count, fail to play period!");
         return;
     }
     
-    if (begin == 0 && (end >= ([drawActionList count] - 1))){
+    if (begin == 0 && (end >= (totalDrawActionListCount - 1))){
         // begin and end is the whole list, no need to do any extra actions
         obj.actionList = drawActionList;
         return;
@@ -396,6 +400,10 @@
     NSRange range = NSMakeRange(begin, (end-begin));
     subActionList = [[NSMutableArray alloc] initWithArray:[drawActionList subarrayWithRange:range]];
     obj.actionList = subActionList;
+    if (bgImageAction){
+        [obj.actionList insertObject:bgImageAction atIndex:0];
+    }
+    
     [subActionList release];
     
 }
@@ -412,13 +420,15 @@
         return obj.bgImage;
     }
     
-    if (end >= [drawActionList count] || begin >= [drawActionList count])
+    int totalDrawActiontCount = [drawActionList count];
+    if (end >= totalDrawActiontCount || begin >= totalDrawActiontCount)
     {
-        PPDebug(@"<createBgImageByObj> end >  total action count, fail to play period!");
+        PPDebug(@"<createBgImageByObj> end(%d)/begin(%d) >  total action count(%d), fail to play period!",
+                end, begin, totalDrawActiontCount);
         return obj.bgImage;
     }
     
-    if (begin == 0 && (end >= ([drawActionList count] - 1))){
+    if (begin == 0 && (end >= (totalDrawActiontCount - 1))){
         // begin and end is the whole list, no need to do any extra actions
         return obj.bgImage;
     }
@@ -447,22 +457,78 @@
     return retImg;
 }
 
+- (ChangeBGImageAction*)createBgImageActionByObj:(ReplayObject*)obj
+                                           begin:(NSUInteger)begin
+                                             end:(NSUInteger)end
+                                     bgImageName:(NSString*)bgImageName
+{
+    NSMutableArray* drawActionList = obj.actionList;
+    
+    if ([bgImageName length] == 0){
+        PPDebug(@"<createBgImageByObj> but image name nil!");
+        return nil;
+    }
+    
+    if (end < begin)
+    {
+        PPDebug(@"<createBgImageByObj> end < begin, fail to play period!");
+        return nil;
+    }
+    
+    int totalDrawActiontCount = [drawActionList count];
+    if (end >= totalDrawActiontCount || begin >= totalDrawActiontCount)
+    {
+        PPDebug(@"<createBgImageByObj> end(%d)/begin(%d) >  total action count(%d), fail to play period!",
+                end, begin, totalDrawActiontCount);
+        return nil;
+    }
+    
+    if (begin == 0 && (end >= (totalDrawActiontCount - 1))){
+        // begin and end is the whole list, no need to do any extra actions
+        return nil;
+    }
+    
+    // update background image
+    UIImage *img = nil; // create bg image
+    if (begin > 0){
+        // if begin from 0, means no background image needed
+        img = [self.showView createImageAtIndex:begin bgColor:[UIColor clearColor]];
+        PPDebug(@"<createBgImageByObj> image size=%@", NSStringFromCGSize(img.size));
+    }
+
+    ChangeBGImageAction* action = nil;
+    if (img != nil){
+        action = [ChangeBGImageAction actionForNormalDrawBg:PBDrawBgLayerTypeDrawBgLayerForeground
+                                                    bgImage:img
+                                                bgImageName:bgImageName
+                                                   needSave:YES];
+    }
+    
+    return action;
+}
+
 + (DrawPlayer*)playerWithReplayObj:(ReplayObject *)obj
                              begin:(NSUInteger)begin
                                end:(NSUInteger)end
+                       bgImageName:(NSString*)bgImageName
 {
     PPDebug(@"<playerWithReplayObj> begin=%d, end=%d", begin, end);
 
     // create background image, using the whole replay object
-    DrawPlayer *playerForBgImage=[DrawPlayer playerWithReplayObj:obj];
-    UIImage* bgImage = [playerForBgImage createBgImageByObj:obj begin:begin end:end];
+    DrawPlayer *playerForBgImage = [DrawPlayer playerWithReplayObj:obj];
+//    UIImage* bgImage = [playerForBgImage createBgImageByObj:obj begin:begin end:end];
+    ChangeBGImageAction* action = [playerForBgImage createBgImageActionByObj:obj
+                                                                       begin:begin
+                                                                         end:end
+                                                                 bgImageName:bgImageName];
+    
     
     //赋值到obj
-    obj.bgImage = bgImage;
+//    obj.bgImage = bgImage;
     
     //using another player to update replay object
     DrawPlayer *player = [DrawPlayer createViewWithXibIdentifier:@"DrawPlayer" ofViewIndex:ISIPAD];
-    [DrawPlayer updateReplayObjectPlayIndex:obj begin:begin end:end];
+    [DrawPlayer updateReplayObjectPlayIndex:obj begin:begin end:end bgImageAction:action];
     
     //把已经upadate的obj属性赋值到player
     player.replayObj = obj;

@@ -38,6 +38,9 @@
 @property (retain, nonatomic) IBOutlet UIButton *moreButton;
 @property (retain, nonatomic) IBOutlet UIButton *topNameButton;
 @property (retain, nonatomic) IBOutlet UIImageView *bottomBackground;
+@property (retain, nonatomic) IBOutlet UIView *forumView;
+@property (retain, nonatomic) IBOutlet UIView *amazingOpusView;
+@property (retain, nonatomic) IBOutlet BadgeView *avatarBadgeView;
 
 @property (retain, nonatomic) IBOutlet BadgeView *indexBadge;
 @property (retain, nonatomic) IBOutlet BadgeView *documentBadge;
