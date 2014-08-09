@@ -42,6 +42,9 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
+        
+        self.backgroundColor = [UIColor clearColor];
+        
         if(color!=nil){
             self.borderColor = color;
         }

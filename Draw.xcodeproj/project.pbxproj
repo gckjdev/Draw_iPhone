@@ -10811,6 +10811,8 @@
 		CAFC03C217C887BF00A11DE3 /* PPPopTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PPPopTableView.h; sourceTree = "<group>"; };
 		CAFC03C317C887C100A11DE3 /* PPPopTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PPPopTableView.m; sourceTree = "<group>"; };
 		CAFCF2021996226B008C8854 /* draw_page_option@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "draw_page_option@2x.png"; sourceTree = "<group>"; };
+		CAFCF20A19965443008C8854 /* MainDataModel 20.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "MainDataModel 20.xcdatamodel"; sourceTree = "<group>"; };
+		CAFCF20B19965C45008C8854 /* MainDataModel 21.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "MainDataModel 21.xcdatamodel"; sourceTree = "<group>"; };
 		CAFEFC4A16606FC100441D77 /* ANGifEncoder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ANGifEncoder.h; sourceTree = "<group>"; };
 		CAFEFC4B16606FC100441D77 /* ANGifEncoder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ANGifEncoder.m; sourceTree = "<group>"; };
 		CAFEFC4C16606FC100441D77 /* ANGifGraphicControlExt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ANGifGraphicControlExt.h; sourceTree = "<group>"; };
@@ -28181,6 +28183,8 @@
 				CA2F9F7D199233FB00756AD7 /* MainDataModel 17.xcdatamodel */,
 				CA2F9F7E199233FB00756AD7 /* MainDataModel 18.xcdatamodel */,
 				CA2F9F7F199233FB00756AD7 /* MainDataModel 19.xcdatamodel */,
+				CAFCF20A19965443008C8854 /* MainDataModel 20.xcdatamodel */,
+				CAFCF20B19965C45008C8854 /* MainDataModel 21.xcdatamodel */,
 				CA2F9F80199233FB00756AD7 /* MainDataModel 2.xcdatamodel */,
 				CA2F9F81199233FB00756AD7 /* MainDataModel 3.xcdatamodel */,
 				CA2F9F82199233FB00756AD7 /* MainDataModel 4.xcdatamodel */,
@@ -28191,7 +28195,7 @@
 				CA2F9F87199233FB00756AD7 /* MainDataModel 9.xcdatamodel */,
 				CA2F9F88199233FB00756AD7 /* MainDataModel.xcdatamodel */,
 			);
-			currentVersion = CA2F9F7F199233FB00756AD7 /* MainDataModel 19.xcdatamodel */;
+			currentVersion = CAFCF20B19965C45008C8854 /* MainDataModel 21.xcdatamodel */;
 			path = MainDataModel.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;

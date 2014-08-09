@@ -65,6 +65,7 @@
 @dynamic totalStrokes;
 @dynamic opusSpendTime;
 @dynamic attributes;
+@dynamic hasSubmit;
 
 #define IMAGE_SUFFIX @".png"
 #define THUMB_IMAGE_SUFFIX @"_m.png"
@@ -189,6 +190,16 @@
     }
     
     return type;
+}
+
+- (BOOL)isConquerDrawSubmit
+{
+    return [self.hasSubmit boolValue];
+}
+
+- (void)setSubmit
+{
+    self.hasSubmit = @(YES);
 }
 
 @end

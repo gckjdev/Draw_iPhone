@@ -2873,3 +2873,4 @@
 "kCopyViewDefaultScreen" = "Resume Screen";
 
 "kTitleEnterChapterTips" = "Chapter %d Tips";
+"kAlreadyConquer" = "You have already submit this opus, cannot submit again. Do you want to restart?";
