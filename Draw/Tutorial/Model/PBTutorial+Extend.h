@@ -33,6 +33,7 @@
 
 - (BOOL)isStageLock:(int)stageIndex;
 - (int)progress;
+-(BOOL)isFinishedTutorial:(int)stageIndex;
 
 @end
 

@@ -75,7 +75,11 @@
         
         //闯到某一关卡才显示开始闯关字样
         if(row==pbUserTutorial.currentStageIndex){
+            //当教程没有完成时候才显示,完成了就不再显示开始闯关字样
+            if([pbUserTutorial isFinishedTutorial:row]==NO){
              self.stageListStarBtn.hidden = NO;
+            }
+            
         }
        
         self.cellName.hidden = NO;
