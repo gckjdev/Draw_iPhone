@@ -2919,3 +2919,5 @@
 "kCopyViewDefaultScreen" = "恢复默认";
 
 "kTitleEnterChapterTips" = "欢迎进入第%d小节";
+
+"kAlreadyConquer" = "本作品已经提交过了，不能重复提交。是否重新创作一个作品闯关？";
