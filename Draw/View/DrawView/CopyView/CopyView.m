@@ -278,10 +278,12 @@
     }
 }
 
-#define COPY_VIEW_SET_IMAGE NSLS(@"kCopyViewSetImage")
-#define COPY_VIEW_PLAY      NSLS(@"kPlayCopyView")
-#define COPY_VIEW_HIDE      NSLS(@"kHideCopyView")
-#define COPY_VIEW_HELP      NSLS(@"kCopyViewHelp")
+#define COPY_VIEW_SET_IMAGE         NSLS(@"kCopyViewSetImage")
+#define COPY_VIEW_PLAY              NSLS(@"kPlayCopyView")
+#define COPY_VIEW_HIDE              NSLS(@"kHideCopyView")
+#define COPY_VIEW_HELP              NSLS(@"kCopyViewHelp")
+#define COPY_VIEW_FULL_SCREEN       NSLS(@"kCopyViewFullScreen")
+#define COPY_VIEW_DEFAULT_SCREEN    NSLS(@"kCopyViewDefaultScreen")
 
 - (void)userResizableViewDidTap:(SPUserResizableView*)userResizableView
 {
@@ -300,7 +302,7 @@
                                                                        delegate:nil
                                                               cancelButtonTitle:NSLS(@"Cancel")
                                                          destructiveButtonTitle:nil //COPY_VIEW_SET_IMAGE COPY_VIEW_HIDE,
-                                                              otherButtonTitles:COPY_VIEW_PLAY, COPY_VIEW_HELP, nil];
+                                                              otherButtonTitles:COPY_VIEW_PLAY, COPY_VIEW_FULL_SCREEN, COPY_VIEW_DEFAULT_SCREEN, nil];
     
     [actionSheet setActionBlock:^(NSInteger buttonIndex){
         NSString* title = [actionSheet buttonTitleAtIndex:buttonIndex];
@@ -326,6 +328,14 @@
         else if ([title isEqualToString:COPY_VIEW_HIDE]){
             PPDebug(@"click COPY_VIEW_HIDE");
             [self setHidden:YES];
+        }
+        else if ([title isEqualToString:COPY_VIEW_FULL_SCREEN]){
+            PPDebug(@"click COPY_VIEW_FULL_SCREEN");
+            self.frame = self.superview.bounds;
+        }
+        else if ([title isEqualToString:COPY_VIEW_DEFAULT_SCREEN]){
+            PPDebug(@"click COPY_VIEW_DEFAULT_SCREEN");
+            self.frame = CGRectMake(0, 0, COPY_VIEW_DEFAULT_WIDTH, COPY_VIEW_DEFAULT_HEIGHT);
         }
         else if ([title isEqualToString:COPY_VIEW_HELP]){
             // view tips
