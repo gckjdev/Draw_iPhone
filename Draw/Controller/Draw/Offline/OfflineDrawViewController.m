@@ -1965,8 +1965,11 @@
     [self updateTitleViewForLearnDraw];
     
     // post a message
-    NSString* msg = [NSString stringWithFormat:NSLS(@"kGotoNextChapterWelcome"), nextChapterIndex+1];
-    [CommonDialog showSimpleDialog:msg inView:self.view];
+//    NSString* msg = [NSString stringWithFormat:NSLS(@"kGotoNextChapterWelcome"), nextChapterIndex+1];
+//    [CommonDialog showSimpleDialog:msg inView:self.view];
+
+    NSString* title = [NSString stringWithFormat:NSLS(@"kTitleEnterChapterTips"), nextChapterIndex+1];
+    [self showLearnDrawHelp:title];
 }
 
 - (void)handleSubmitForLearnDraw
@@ -2171,7 +2174,7 @@
         [dialog.cancelButton setTitle:NSLS(@"Back") forState:UIControlStateNormal];
         
         [dialog setClickCancelBlock:^(id view){
-            [self quit];
+//            [self quit];
         }];
         
         [dialog setClickOkBlock:^(id view){
@@ -2191,7 +2194,7 @@
         [dialog.cancelButton setTitle:NSLS(@"Back") forState:UIControlStateNormal];
         
         [dialog setClickCancelBlock:^(id view){
-            [self quit];
+//            [self quit];
         }];
         
         [dialog setClickOkBlock:^(id view){
@@ -2472,7 +2475,7 @@
     }
 }
 
-- (void)showLearnDrawHelp
+- (void)showLearnDrawHelp:(NSString*)title
 {
     NSMutableArray* allTips = [NSMutableArray array];
     
@@ -2504,8 +2507,10 @@
     if (_currentHelpIndex == 0){ // default
         _currentHelpIndex = currentChapterTipsIndex;
     }
-    
-    NSString* title = NSLS(@"kCopyViewHelp");
+
+    if (title == nil){
+        title = NSLS(@"kCopyViewHelp");
+    }
     
     if ([allTips count] > 0){
         [TipsPageViewController show:self
@@ -2523,7 +2528,7 @@
 // 点击帮助按钮
 - (IBAction)clickHelpButton:(id)sender
 {
-    [self showLearnDrawHelp];
+    [self showLearnDrawHelp:nil];
 }
 
 
