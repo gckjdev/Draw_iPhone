@@ -72,6 +72,9 @@
 #define IMAGE_WIDTH  (ISIPAD ? 60:40)
 #define TITLE_LABEL_X (ISIPAD ? 10:5)
 #define TITLE_LABEL_Y (ISIPAD ? 10:5)
+
+#define BRICK_VIEW_BOTTOM_LABEL 2014080901
+
 -(void)initComponent:(CGRect)rect{
     
     //左上角label
@@ -91,6 +94,7 @@
     CGFloat x = imageView.frame.origin.x;
     CGFloat y = imageView.frame.size.height+imageView.frame.origin.y;
     UILabel *labelDesc = [[UILabel alloc] initWithFrame:CGRectMake(x, y, IMAGE_WIDTH, IMAGE_HEIGHT/2)];
+    [labelDesc setTag:BRICK_VIEW_BOTTOM_LABEL];
     [labelDesc setText:_imageTitle];
     [labelDesc setFont:AD_BOLD_FONT(18, 10)];
     [labelDesc setTextColor:[UIColor whiteColor]];
@@ -148,6 +152,14 @@
     }
 
     [constraints release];
+}
+
+- (void)setBottomLabelText:(NSString*)text
+{
+    UIView* view = [self viewWithTag:BRICK_VIEW_BOTTOM_LABEL];
+    if ([view isKindOfClass:[UILabel class]]){
+        [((UILabel*)view) setText:text];
+    }
 }
 
 

@@ -92,7 +92,7 @@
 - (void)didSyncStatisticWithResultCode:(int)resultCode
 {
     if (resultCode == 0) {
-        [self updateAllBadge];
+        [self updateAllBadge:nil];
     }
 }
 
@@ -109,14 +109,14 @@
     [super viewDidLoad];
     
     [[BulletinService defaultService] syncBulletins:^(int resultCode) {
-        [self updateAllBadge];
+        [self updateAllBadge:nil];
     }];
     
     // update avatar view
     [self registerNotificationWithName:NOTIFCATION_USER_DATA_CHANGE usingBlock:^(NSNotification *note) {
         PPDebug(@"recv NOTIFCATION_USER_DATA_CHANGE, update header view panel");
         [self updateAvatarView];
-        [self updateAllBadge];
+        [self updateAllBadge:nil];
     }];
     
     // update background view
@@ -195,7 +195,7 @@
     [UIApplication sharedApplication].idleTimerDisabled = NO;
     [super viewDidAppear:animated];
     
-//    [self updateAllBadge];
+//    [self updateAllBadge:nil];
     
     if ([[UserManager defaultManager] hasXiaojiNumber] == NO){
         [self showGuidePage];
@@ -264,6 +264,7 @@
 - (void)updateBadgeBBS:(int)count
 {
     // TODO
+    
 }
 -(void)updateAvatarBadge:(int)count{
     [self.avatarBadgeView setNumber:count];
@@ -343,7 +344,7 @@
 -(IBAction)goToAnnounce:(id)sender
 {
     [self showBulletinView];
-    [self updateAllBadge];
+    [self updateAllBadge:nil];
 }
 
 -(IBAction)goToUserDetail:(id)sender
@@ -433,7 +434,7 @@
     [[self.bbList objectAtIndex:index] clickAction:self];
 }
 
-- (void)updateAllBadge
+- (void)updateAllBadge:(BrickView *)view
 {
     StatisticManager *manager = [StatisticManager defaultManager];
     
@@ -445,7 +446,6 @@
                             manager.timelineConquerCount +
                             manager.commentCount +
                             manager.drawToMeCount;
-
     [self updateBadgeTimeline:timelineCount];
     
     int moreCount = [MoreViewController totalMoreBadge];
@@ -459,7 +459,11 @@
     
     // TODO
     //    [self updateBadgeBBS:HomeMenuTypeDrawFriend badge:manager.fanCount];
-
+    if(view!=nil){
+//        if(manager.bbsActionCount!=0L){
+            [view setBottomLabelText:[NSString stringWithFormat:@"Forum( %ld )",manager.bbsActionCount]];
+//        }
+    }
 }
 
 - (void)dealloc {
@@ -545,7 +549,7 @@
     
     [self registerNotificationWithName:NOTIFCATION_CONTEST_DATA_CHANGE usingBlock:^(NSNotification *note) {
         PPDebug(@"recv NOTIFCATION_CONTEST_DATA_CHANGE, update header view panel");
-        [self updateAllBadge];
+        [self updateAllBadge:nil];
     }];
 }
 
@@ -554,6 +558,9 @@
     StatisticManager *manager = [StatisticManager defaultManager];
     [self updateBulletinBadge:[manager bulletinCount]];
 }
+
+
+
 
 #pragma mark - constraint
 -(void)setAllViewConstraints{
@@ -621,6 +628,17 @@
     [learningView setBackgroundColor:[UIColor colorWithRed:0.984f green:0.431f blue:0.588f alpha:1.0f]];
     [forumView setBackgroundColor:[UIColor colorWithRed:0.459f green:0.784f blue:0.965f alpha:1.0f]];
     [amazingOpusView setBackgroundColor:[UIColor colorWithRed:0.553f green:0.612f blue:0.98f alpha:1.0f]];
+//    
+//    //设置提醒图标(论坛)
+//    CGFloat badgeViewX = 60;
+//    CGFloat badgeViewY = 10;
+//    UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(badgeViewX, badgeViewY, 10, 10)];
+//    [imageView setImage:[UIImage imageNamed:@"9.png"]];
+//    
+//    [forumView addSubview:imageView];
+    
+    
+    [self updateAllBadge:forumView];
     
     [self.mainView addSubview:paintingView];
     [self.mainView addSubview:learningView];
@@ -668,6 +686,8 @@
     [constraints release];
     
     
+   
+    
 }
 
 -(void)setMainBoxView_iPad{
@@ -698,7 +718,8 @@
     [forumView setBackgroundColor:[UIColor colorWithRed:0.459f green:0.784f blue:0.965f alpha:1.0f]];
     [amazingOpusView setBackgroundColor:[UIColor colorWithRed:0.553f green:0.612f blue:0.98f alpha:1.0f]];
     
-    
+    [self updateAllBadge:forumView];
+
     [self.mainView addSubview:paintingView];
     [self.mainView addSubview:learningView];
     [self.mainView addSubview:forumView];
@@ -865,6 +886,7 @@
     
     
 }
+
 
 
 

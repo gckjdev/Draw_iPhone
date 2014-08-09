@@ -81,6 +81,7 @@
         <attribute name="drawWord" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="drawWordData" optional="YES" attributeType="Binary" syncable="YES"/>
         <attribute name="gridLineNumber" optional="YES" attributeType="Integer 32" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="hasSubmit" optional="YES" attributeType="Boolean" syncable="YES"/>
         <attribute name="image" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="isForLearn" optional="YES" attributeType="Boolean" defaultValueString="NO" indexed="YES" syncable="YES"/>
         <attribute name="isRecovery" optional="YES" attributeType="Boolean" defaultValueString="NO" syncable="YES"/>
@@ -164,7 +165,7 @@
         <element name="CustomWord" positionX="0" positionY="0" width="128" height="135"/>
         <element name="Friend" positionX="0" positionY="0" width="128" height="300"/>
         <element name="MessageTotal" positionX="0" positionY="0" width="128" height="225"/>
-        <element name="MyPaint" positionX="0" positionY="0" width="128" height="658"/>
+        <element name="MyPaint" positionX="0" positionY="0" width="128" height="675"/>
         <element name="PriceModel" positionX="0" positionY="0" width="128" height="135"/>
         <element name="RouterTrafficServer" positionX="0" positionY="0" width="128" height="165"/>
         <element name="TransactionReceipt" positionX="0" positionY="0" width="128" height="195"/>

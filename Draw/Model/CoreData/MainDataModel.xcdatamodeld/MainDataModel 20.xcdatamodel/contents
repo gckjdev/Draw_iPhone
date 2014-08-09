@@ -4,6 +4,7 @@
         <attribute name="createDate" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="drawData" optional="YES" attributeType="Binary" syncable="YES"/>
         <attribute name="from" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="hasSubmit" optional="YES" attributeType="Boolean" syncable="YES"/>
         <attribute name="latitude" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
         <attribute name="longitude" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
         <attribute name="messageId" optional="YES" attributeType="String" syncable="YES"/>
@@ -160,11 +161,11 @@
     <fetchRequest name="findPriceListByType" entity="PriceModel" predicateString="type == $TYPE"/>
     <fetchRequest name="findUserItemByType" entity="UserItem" predicateString="itemType == $ITEM_TYPE"/>
     <elements>
-        <element name="ChatMessage" positionX="0" positionY="0" width="128" height="225"/>
+        <element name="ChatMessage" positionX="0" positionY="0" width="128" height="238"/>
         <element name="CustomWord" positionX="0" positionY="0" width="128" height="135"/>
         <element name="Friend" positionX="0" positionY="0" width="128" height="300"/>
         <element name="MessageTotal" positionX="0" positionY="0" width="128" height="225"/>
-        <element name="MyPaint" positionX="0" positionY="0" width="128" height="660"/>
+        <element name="MyPaint" positionX="0" positionY="0" width="128" height="658"/>
         <element name="PriceModel" positionX="0" positionY="0" width="128" height="135"/>
         <element name="RouterTrafficServer" positionX="0" positionY="0" width="128" height="165"/>
         <element name="TransactionReceipt" positionX="0" positionY="0" width="128" height="195"/>
