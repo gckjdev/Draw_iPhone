@@ -706,6 +706,7 @@
         center.x -= (self.helpButton.frame.size.width*2)/2;
         [self.titleView.titleLabel setCenter:center];
     }
+
 }
 
 - (void)updateSubmitButtonForPracticeDraw
@@ -755,6 +756,8 @@
         
         [self.titleView setTitle:title];
         [self.titleView.titleLabel setFont:AD_FONT(30, 15)];
+        
+        [self.titleView setLeftButtonImage:[shareImageManager drawOptionImage]];
     }
 }
 
