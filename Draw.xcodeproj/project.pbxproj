@@ -1172,6 +1172,30 @@
 		A467BBCE17798E0C00455E3A /* OpusDownloadService.m in Sources */ = {isa = PBXBuildFile; fileRef = A467BBAB177844DB00455E3A /* OpusDownloadService.m */; };
 		A467BBCF17798E0F00455E3A /* OpusDownloadService.m in Sources */ = {isa = PBXBuildFile; fileRef = A467BBAB177844DB00455E3A /* OpusDownloadService.m */; };
 		A46E704916BBAA2D00F0E68C /* iCarousel.m in Sources */ = {isa = PBXBuildFile; fileRef = A46E704816BBAA2D00F0E68C /* iCarousel.m */; };
+		A47896E11995BB2400185220 /* CRBubble.m in Sources */ = {isa = PBXBuildFile; fileRef = A47896D51995BB2400185220 /* CRBubble.m */; };
+		A47896E21995BB2400185220 /* CRBubble.m in Sources */ = {isa = PBXBuildFile; fileRef = A47896D51995BB2400185220 /* CRBubble.m */; };
+		A47896E31995BB2400185220 /* CRBubble.m in Sources */ = {isa = PBXBuildFile; fileRef = A47896D51995BB2400185220 /* CRBubble.m */; };
+		A47896E41995BB2400185220 /* CRBubble.m in Sources */ = {isa = PBXBuildFile; fileRef = A47896D51995BB2400185220 /* CRBubble.m */; };
+		A47896E51995BB2400185220 /* CRProductTour.m in Sources */ = {isa = PBXBuildFile; fileRef = A47896D71995BB2400185220 /* CRProductTour.m */; };
+		A47896E61995BB2400185220 /* CRProductTour.m in Sources */ = {isa = PBXBuildFile; fileRef = A47896D71995BB2400185220 /* CRProductTour.m */; };
+		A47896E71995BB2400185220 /* CRProductTour.m in Sources */ = {isa = PBXBuildFile; fileRef = A47896D71995BB2400185220 /* CRProductTour.m */; };
+		A47896E81995BB2400185220 /* CRProductTour.m in Sources */ = {isa = PBXBuildFile; fileRef = A47896D71995BB2400185220 /* CRProductTour.m */; };
+		A47896E91995BB2400185220 /* SpotHelpView.m in Sources */ = {isa = PBXBuildFile; fileRef = A47896D91995BB2400185220 /* SpotHelpView.m */; };
+		A47896EA1995BB2400185220 /* SpotHelpView.m in Sources */ = {isa = PBXBuildFile; fileRef = A47896D91995BB2400185220 /* SpotHelpView.m */; };
+		A47896EB1995BB2400185220 /* SpotHelpView.m in Sources */ = {isa = PBXBuildFile; fileRef = A47896D91995BB2400185220 /* SpotHelpView.m */; };
+		A47896EC1995BB2400185220 /* SpotHelpView.m in Sources */ = {isa = PBXBuildFile; fileRef = A47896D91995BB2400185220 /* SpotHelpView.m */; };
+		A47896ED1995BB2400185220 /* MDCFocalPointView.m in Sources */ = {isa = PBXBuildFile; fileRef = A47896DC1995BB2400185220 /* MDCFocalPointView.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
+		A47896EE1995BB2400185220 /* MDCFocalPointView.m in Sources */ = {isa = PBXBuildFile; fileRef = A47896DC1995BB2400185220 /* MDCFocalPointView.m */; };
+		A47896EF1995BB2400185220 /* MDCFocalPointView.m in Sources */ = {isa = PBXBuildFile; fileRef = A47896DC1995BB2400185220 /* MDCFocalPointView.m */; };
+		A47896F01995BB2400185220 /* MDCFocalPointView.m in Sources */ = {isa = PBXBuildFile; fileRef = A47896DC1995BB2400185220 /* MDCFocalPointView.m */; };
+		A47896F11995BB2400185220 /* MDCFocusView.m in Sources */ = {isa = PBXBuildFile; fileRef = A47896DE1995BB2400185220 /* MDCFocusView.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
+		A47896F21995BB2400185220 /* MDCFocusView.m in Sources */ = {isa = PBXBuildFile; fileRef = A47896DE1995BB2400185220 /* MDCFocusView.m */; };
+		A47896F31995BB2400185220 /* MDCFocusView.m in Sources */ = {isa = PBXBuildFile; fileRef = A47896DE1995BB2400185220 /* MDCFocusView.m */; };
+		A47896F41995BB2400185220 /* MDCFocusView.m in Sources */ = {isa = PBXBuildFile; fileRef = A47896DE1995BB2400185220 /* MDCFocusView.m */; };
+		A47896F51995BB2400185220 /* MDCSpotlightView.m in Sources */ = {isa = PBXBuildFile; fileRef = A47896E01995BB2400185220 /* MDCSpotlightView.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
+		A47896F61995BB2400185220 /* MDCSpotlightView.m in Sources */ = {isa = PBXBuildFile; fileRef = A47896E01995BB2400185220 /* MDCSpotlightView.m */; };
+		A47896F71995BB2400185220 /* MDCSpotlightView.m in Sources */ = {isa = PBXBuildFile; fileRef = A47896E01995BB2400185220 /* MDCSpotlightView.m */; };
+		A47896F81995BB2400185220 /* MDCSpotlightView.m in Sources */ = {isa = PBXBuildFile; fileRef = A47896E01995BB2400185220 /* MDCSpotlightView.m */; };
 		A489BFE617B4F100003E5150 /* Themes.plist in Resources */ = {isa = PBXBuildFile; fileRef = A489BFE517B4F0FF003E5150 /* Themes.plist */; };
 		A489C01017B5D942003E5150 /* JDDateCountdownFlipView.m in Sources */ = {isa = PBXBuildFile; fileRef = A489C00A17B5D942003E5150 /* JDDateCountdownFlipView.m */; };
 		A489C01117B5D942003E5150 /* JDDateCountdownFlipView.m in Sources */ = {isa = PBXBuildFile; fileRef = A489C00A17B5D942003E5150 /* JDDateCountdownFlipView.m */; };
@@ -8323,6 +8347,18 @@
 		A467BBAB177844DB00455E3A /* OpusDownloadService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OpusDownloadService.m; sourceTree = "<group>"; };
 		A46E704716BBAA2D00F0E68C /* iCarousel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iCarousel.h; sourceTree = "<group>"; };
 		A46E704816BBAA2D00F0E68C /* iCarousel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = iCarousel.m; sourceTree = "<group>"; };
+		A47896D41995BB2400185220 /* CRBubble.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CRBubble.h; sourceTree = "<group>"; };
+		A47896D51995BB2400185220 /* CRBubble.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CRBubble.m; sourceTree = "<group>"; };
+		A47896D61995BB2400185220 /* CRProductTour.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CRProductTour.h; sourceTree = "<group>"; };
+		A47896D71995BB2400185220 /* CRProductTour.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CRProductTour.m; sourceTree = "<group>"; };
+		A47896D81995BB2400185220 /* SpotHelpView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpotHelpView.h; sourceTree = "<group>"; };
+		A47896D91995BB2400185220 /* SpotHelpView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpotHelpView.m; sourceTree = "<group>"; };
+		A47896DB1995BB2400185220 /* MDCFocalPointView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MDCFocalPointView.h; sourceTree = "<group>"; };
+		A47896DC1995BB2400185220 /* MDCFocalPointView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MDCFocalPointView.m; sourceTree = "<group>"; };
+		A47896DD1995BB2400185220 /* MDCFocusView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MDCFocusView.h; sourceTree = "<group>"; };
+		A47896DE1995BB2400185220 /* MDCFocusView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MDCFocusView.m; sourceTree = "<group>"; };
+		A47896DF1995BB2400185220 /* MDCSpotlightView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MDCSpotlightView.h; sourceTree = "<group>"; };
+		A47896E01995BB2400185220 /* MDCSpotlightView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MDCSpotlightView.m; sourceTree = "<group>"; };
 		A4834E0A1716AEB600190347 /* JSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSON.h; sourceTree = "<group>"; };
 		A4834E0B1716AEB600190347 /* NSObject+SBJSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+SBJSON.h"; sourceTree = "<group>"; };
 		A4834E0D1716AEB600190347 /* NSString+SBJSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+SBJSON.h"; sourceTree = "<group>"; };
@@ -12033,6 +12069,41 @@
 				A46E704816BBAA2D00F0E68C /* iCarousel.m */,
 			);
 			path = iCarousel;
+			sourceTree = "<group>";
+		};
+		A47896D21995BB2400185220 /* SpotHelpView */ = {
+			isa = PBXGroup;
+			children = (
+				A47896D31995BB2400185220 /* BubbleIntro */,
+				A47896D81995BB2400185220 /* SpotHelpView.h */,
+				A47896D91995BB2400185220 /* SpotHelpView.m */,
+				A47896DA1995BB2400185220 /* SpotLightFocus */,
+			);
+			path = SpotHelpView;
+			sourceTree = "<group>";
+		};
+		A47896D31995BB2400185220 /* BubbleIntro */ = {
+			isa = PBXGroup;
+			children = (
+				A47896D41995BB2400185220 /* CRBubble.h */,
+				A47896D51995BB2400185220 /* CRBubble.m */,
+				A47896D61995BB2400185220 /* CRProductTour.h */,
+				A47896D71995BB2400185220 /* CRProductTour.m */,
+			);
+			path = BubbleIntro;
+			sourceTree = "<group>";
+		};
+		A47896DA1995BB2400185220 /* SpotLightFocus */ = {
+			isa = PBXGroup;
+			children = (
+				A47896DB1995BB2400185220 /* MDCFocalPointView.h */,
+				A47896DC1995BB2400185220 /* MDCFocalPointView.m */,
+				A47896DD1995BB2400185220 /* MDCFocusView.h */,
+				A47896DE1995BB2400185220 /* MDCFocusView.m */,
+				A47896DF1995BB2400185220 /* MDCSpotlightView.h */,
+				A47896E01995BB2400185220 /* MDCSpotlightView.m */,
+			);
+			path = SpotLightFocus;
 			sourceTree = "<group>";
 		};
 		A4834E091716AEB600190347 /* JSON */ = {
@@ -18260,6 +18331,7 @@
 		CAFEFDB316606FC100441D77 /* Component-View */ = {
 			isa = PBXGroup;
 			children = (
+				A47896D21995BB2400185220 /* SpotHelpView */,
 				FDDECBB91994BF7F00BE7191 /* SMPageControl */,
 				D837DCA31988FAB2001686BB /* LDProgressView */,
 				D80BB5E31980C26000BFC4A7 /* THProgressView */,
@@ -23736,6 +23808,7 @@
 				A461B261174CBAA70088B061 /* ANGifLogicalScreenDesc.m in Sources */,
 				A461B262174CBAA70088B061 /* ANGifAppExtension.m in Sources */,
 				A461B263174CBAA70088B061 /* ANGifNetscapeAppExtension.m in Sources */,
+				A47896EF1995BB2400185220 /* MDCFocalPointView.m in Sources */,
 				A461B264174CBAA70088B061 /* ANAvgColorTable.m in Sources */,
 				A461B265174CBAA70088B061 /* ANColorTable.m in Sources */,
 				A461B266174CBAA70088B061 /* ANCutColorTable.m in Sources */,
@@ -23776,6 +23849,7 @@
 				A461B297174CBAA70088B061 /* PPSmartUpdateDataUtils.m in Sources */,
 				A461B298174CBAA70088B061 /* BlockUtils.m in Sources */,
 				A461B299174CBAA70088B061 /* PPSmartDataTest.m in Sources */,
+				A47896E71995BB2400185220 /* CRProductTour.m in Sources */,
 				A461B29A174CBAA70088B061 /* BBSPopupSelectionView.m in Sources */,
 				A461B29B174CBAA70088B061 /* GameConfigData.m in Sources */,
 				A461B29C174CBAA70088B061 /* GameConfigDataManager.m in Sources */,
@@ -23876,6 +23950,7 @@
 				A461B32B174CBAA70088B061 /* ShapeBox.m in Sources */,
 				A461B32D174CBAA70088B061 /* DrawBgManager.m in Sources */,
 				A461B32E174CBAA70088B061 /* DrawBgBox.m in Sources */,
+				A47896EB1995BB2400185220 /* SpotHelpView.m in Sources */,
 				A461B32F174CBAA70088B061 /* FeedDownloadService.m in Sources */,
 				A461B330174CBAA70088B061 /* JRSwizzle.m in Sources */,
 				A461B331174CBAA70088B061 /* IAPProductService.m in Sources */,
@@ -23952,6 +24027,7 @@
 				A461B37F174CBAA70088B061 /* StrawCommand.m in Sources */,
 				A461B380174CBAA70088B061 /* GridCommand.m in Sources */,
 				A461B381174CBAA70088B061 /* CanvasRectBox.m in Sources */,
+				A47896E31995BB2400185220 /* CRBubble.m in Sources */,
 				A461B382174CBAA70088B061 /* UIColor+UIColorExt.m in Sources */,
 				A461B383174CBAA70088B061 /* IAPProductManager.m in Sources */,
 				A461B384174CBAA70088B061 /* RedoCommand.m in Sources */,
@@ -24086,6 +24162,7 @@
 				A4C9E04717A61B6500DE982F /* KxMenu.m in Sources */,
 				CAF4897617AA6D4500F015AB /* DrawInfo.m in Sources */,
 				CAE74B7217AF834D00E73875 /* DrawLayerPanel.m in Sources */,
+				A47896F31995BB2400185220 /* MDCFocusView.m in Sources */,
 				CA0F236B17B15D09004247FB /* JTTableViewGestureRecognizer.m in Sources */,
 				A4E1D21B17B2236800E13728 /* GuessSelectCell.m in Sources */,
 				CAC9022217B2331C009AF8E1 /* NSArray+Ext.m in Sources */,
@@ -24179,6 +24256,7 @@
 				D8B84193197E639A00B6FB5C /* ResultShareAlertPageViewController.m in Sources */,
 				EA8CADEA18288D32003149FE /* DrawError.m in Sources */,
 				EA8CADF01828A646003149FE /* GroupPermission.m in Sources */,
+				A47896F71995BB2400185220 /* MDCSpotlightView.m in Sources */,
 				EA1BD630182DDCB1000E5364 /* GroupHomeController.m in Sources */,
 				EA1BD63E182DE6DD000E5364 /* CreateGroupController.m in Sources */,
 				EA1BD648182DEB0B000E5364 /* GroupManager.m in Sources */,
@@ -24395,6 +24473,7 @@
 				C28A9A041738F04B007A819F /* GameTurn.m in Sources */,
 				C28A9A051738F04B007A819F /* GamePlayResult.m in Sources */,
 				C28A9A061738F04B007A819F /* GameUserComment.m in Sources */,
+				A47896F21995BB2400185220 /* MDCFocusView.m in Sources */,
 				C28A9A071738F04B007A819F /* SelectWordCell.m in Sources */,
 				C28A9A081738F04B007A819F /* Account.m in Sources */,
 				C28A9A091738F04B007A819F /* Item.m in Sources */,
@@ -24491,6 +24570,7 @@
 				C28A9A6C1738F04B007A819F /* UIManager.m in Sources */,
 				C28A9A6D1738F04B007A819F /* CustomStatueBar.m in Sources */,
 				C28A9A6E1738F04B007A819F /* UserStatusService.m in Sources */,
+				A47896EE1995BB2400185220 /* MDCFocalPointView.m in Sources */,
 				C28A9A711738F04B007A819F /* Draw.pb.m in Sources */,
 				C28A9A721738F04B007A819F /* CommonGameNetworkClient.m in Sources */,
 				C28A9A731738F04B007A819F /* CommonGameNetworkService.m in Sources */,
@@ -24663,6 +24743,7 @@
 				C28A9B991738F04B007A819F /* HomeMenuView.m in Sources */,
 				C28A9BA01738F04B007A819F /* CommonImageManager.m in Sources */,
 				C28A9BA11738F04B007A819F /* CommonDialog.m in Sources */,
+				A47896E61995BB2400185220 /* CRProductTour.m in Sources */,
 				C28A9BA21738F04B007A819F /* CommonMessageCenter.m in Sources */,
 				C28A9BA31738F04B007A819F /* CommonRoundAvatarView.m in Sources */,
 				C28A9BA41738F04B007A819F /* CommonSnsInfoView.m in Sources */,
@@ -24921,6 +25002,7 @@
 				CA0FC088178EA13E00A72B79 /* JumpHandler.m in Sources */,
 				A4EC5A9C178FDF6D0085031F /* OpusImageBrower.m in Sources */,
 				CA0FC0A4178FFA6700A72B79 /* UserDeviceService.m in Sources */,
+				A47896E21995BB2400185220 /* CRBubble.m in Sources */,
 				A4EC5AC1178FFE820085031F /* UIImageView+Extend.m in Sources */,
 				CAC85C031791179100827C20 /* TextCommand.m in Sources */,
 				CAC85C1C179117B100827C20 /* FXCommand.m in Sources */,
@@ -25021,6 +25103,7 @@
 				A42151801803EA2A007F2EFD /* MBProgressHUD.m in Sources */,
 				A44D658E18043E9C00DD6B48 /* UIImageView+ProgressView.m in Sources */,
 				CA1FF89A1804F986003CEAD6 /* NSDate+TKCategory.m in Sources */,
+				A47896F61995BB2400185220 /* MDCSpotlightView.m in Sources */,
 				EA8500DD1807A0430000DE3E /* ShareUIManager.m in Sources */,
 				CA315B43195E5ECA00AB800D /* PBTutorial+Extend.m in Sources */,
 				EA0C5526180B9203008069C1 /* InfColorBarPicker.m in Sources */,
@@ -25044,6 +25127,7 @@
 				EA1BD62F182DDCB1000E5364 /* GroupHomeController.m in Sources */,
 				EA1BD63D182DE6DD000E5364 /* CreateGroupController.m in Sources */,
 				EA1BD647182DEB0B000E5364 /* GroupManager.m in Sources */,
+				A47896EA1995BB2400185220 /* SpotHelpView.m in Sources */,
 				A4158675182DF6D1007FCB16 /* StrokeLabel.m in Sources */,
 				EA1BD64E182E26A6000E5364 /* Group.pb.m in Sources */,
 				CA9AAF1118321621002DBAA5 /* SingGuessController.m in Sources */,
@@ -25229,6 +25313,7 @@
 				CA1041071509A9FF00F60C03 /* ASIDataDecompressor.m in Sources */,
 				CA1041081509A9FF00F60C03 /* ASIDownloadCache.m in Sources */,
 				CA1041091509A9FF00F60C03 /* ASIFormDataRequest.m in Sources */,
+				A47896F51995BB2400185220 /* MDCSpotlightView.m in Sources */,
 				CA10410A1509A9FF00F60C03 /* ASIHTTPRequest.m in Sources */,
 				CA10410B1509A9FF00F60C03 /* ASIInputStream.m in Sources */,
 				CA10410C1509A9FF00F60C03 /* ASINetworkQueue.m in Sources */,
@@ -25292,6 +25377,7 @@
 				CA1377EF1525A2D700B5790B /* ShareImageManager.m in Sources */,
 				C29C12E1152AE2A7009B9E5F /* ShareCell.m in Sources */,
 				CA4FF001152AEFDF00F0AC88 /* ColorGroup.m in Sources */,
+				A47896E11995BB2400185220 /* CRBubble.m in Sources */,
 				CA355F00152C03F200A14823 /* UserItem.m in Sources */,
 				CA63911A152FEA4F007564C6 /* PriceModel.m in Sources */,
 				C284E87F1531D89800DD5B77 /* AboutUsController.m in Sources */,
@@ -25332,6 +25418,7 @@
 				A3C129E51563A70E00C021A7 /* Draw.m in Sources */,
 				A461C9281565E3700076FD9C /* ChatMessageView.m in Sources */,
 				C246F3581577633B003C284F /* LevelService.m in Sources */,
+				A47896E91995BB2400185220 /* SpotHelpView.m in Sources */,
 				A3598489157C7B2700745BAB /* CustomWordManager.m in Sources */,
 				A359848C157C977100745BAB /* CustomWord.m in Sources */,
 				CA22DCD2157CAFFD009C95CB /* ResultController.m in Sources */,
@@ -25491,6 +25578,7 @@
 				CAFEFE3C16606FC200441D77 /* BitmapContextManipulator.m in Sources */,
 				CAFEFE3D16606FC200441D77 /* BitmapCropManipulator.m in Sources */,
 				CAFEFE3E16606FC200441D77 /* BitmapRotationManipulator.m in Sources */,
+				A47896ED1995BB2400185220 /* MDCFocalPointView.m in Sources */,
 				CAFEFE3F16606FC200441D77 /* BitmapScaleManipulator.m in Sources */,
 				CAFEFE4016606FC200441D77 /* GifManager.m in Sources */,
 				CAFEFE4116606FC200441D77 /* GifView.m in Sources */,
@@ -25621,6 +25709,7 @@
 				CA23514B16EB0DD200C88082 /* StoreCell.m in Sources */,
 				CA23514D16EB0DD200C88082 /* StoreController.m in Sources */,
 				CA23515816EB0DD200C88082 /* ColorShopCell.m in Sources */,
+				A47896E51995BB2400185220 /* CRProductTour.m in Sources */,
 				CA23516116EB0DD200C88082 /* GameItemDetailView.m in Sources */,
 				CA23516316EB0DD200C88082 /* LocalizableLabel.m in Sources */,
 				CA23516416EB0DD200C88082 /* GameItemPriceView.m in Sources */,
@@ -25752,6 +25841,7 @@
 				C2C18ADB1762C2C400DE933B /* UserPhotoView.m in Sources */,
 				C2C18AE21763372400DE933B /* AutocompletionTableView.m in Sources */,
 				CADE53591764285A00F35373 /* PPGameNetworkRequest.m in Sources */,
+				A47896F11995BB2400185220 /* MDCFocusView.m in Sources */,
 				CAF7DC9D17685238001596C0 /* ShapeGroup.m in Sources */,
 				EA6FE5A71769B9B800AB4E56 /* AskPs.m in Sources */,
 				C23C3355176AB0ED004BE236 /* PhotoTagManager.m in Sources */,
@@ -26296,6 +26386,7 @@
 				EA41197C176066F500DA72D0 /* PPResourceSearchService.m in Sources */,
 				D8F70B4E19935B0800B81795 /* BrickView.m in Sources */,
 				EA41197D176066F500DA72D0 /* PPResourceService.m in Sources */,
+				A47896E81995BB2400185220 /* CRProductTour.m in Sources */,
 				EA41197E176066F500DA72D0 /* PPResourceTestViewController.m in Sources */,
 				EA41197F176066F500DA72D0 /* PPResourceUtils.m in Sources */,
 				EA411980176066F500DA72D0 /* AppleOpenALSupport.c in Sources */,
@@ -26434,6 +26525,7 @@
 				EA411A21176066F500DA72D0 /* DraftCell.m in Sources */,
 				EA411A22176066F500DA72D0 /* DraftsView.m in Sources */,
 				EA411A2C176066F500DA72D0 /* RoundLineLabel.m in Sources */,
+				A47896EC1995BB2400185220 /* SpotHelpView.m in Sources */,
 				EA411A2D176066F500DA72D0 /* ColorBox.m in Sources */,
 				EA411A2E176066F500DA72D0 /* ColorPoint.m in Sources */,
 				EA411A2F176066F500DA72D0 /* DrawSlider.m in Sources */,
@@ -26444,6 +26536,7 @@
 				EA411A33176066F500DA72D0 /* InputAlertView.m in Sources */,
 				EA411A34176066F500DA72D0 /* DrawRecoveryService.m in Sources */,
 				EA411A3C176066F500DA72D0 /* SmoothCurvePen.m in Sources */,
+				A47896F01995BB2400185220 /* MDCFocalPointView.m in Sources */,
 				D8B58B09197CE8E60088E5F7 /* ICETutorialController.m in Sources */,
 				EA411A3D176066F500DA72D0 /* SmoothQuadCurvePen.m in Sources */,
 				EA411A3E176066F500DA72D0 /* CurvePen.m in Sources */,
@@ -26725,6 +26818,7 @@
 				EA0C5528180B9203008069C1 /* InfColorBarPicker.m in Sources */,
 				EA0C552C180B9203008069C1 /* InfColorIndicatorView.m in Sources */,
 				EA0C5538180B9203008069C1 /* InfColorSquarePicker.m in Sources */,
+				A47896E41995BB2400185220 /* CRBubble.m in Sources */,
 				CACD6D2618E03C40003F97C0 /* DiracAudioPlayerBase.mm in Sources */,
 				EA0C553C180B9203008069C1 /* InfHSBSupport.m in Sources */,
 				EA0C5540180B9203008069C1 /* InfSourceColorView.m in Sources */,
@@ -26747,6 +26841,7 @@
 				CA9AAF4F18321621002DBAA5 /* SongSearchController.m in Sources */,
 				CA9AAF6B18321621002DBAA5 /* SingImageManager.m in Sources */,
 				CAA024741962A0CB005F18A0 /* FeedListController.m in Sources */,
+				A47896F41995BB2400185220 /* MDCFocusView.m in Sources */,
 				CA9AAF6F18321621002DBAA5 /* SingOpusManager.m in Sources */,
 				CA9AAF7318321621002DBAA5 /* SongCategoryManager.m in Sources */,
 				CA9AAF7718321621002DBAA5 /* SongManager.m in Sources */,
@@ -26791,6 +26886,7 @@
 				CA5D9D54183E3C0200BD820C /* DOUAudioAnalyzer+Default.m in Sources */,
 				CA5D9D58183E3C0200BD820C /* DOUAudioAnalyzer.m in Sources */,
 				CA5D9D5C183E3C0200BD820C /* DOUAudioDecoder.m in Sources */,
+				A47896F81995BB2400185220 /* MDCSpotlightView.m in Sources */,
 				D81962561962AA8700B4FBAF /* StageBasicInfoCell.m in Sources */,
 				CA5D9D60183E3C0200BD820C /* DOUAudioEventLoop.m in Sources */,
 				CA5D9D64183E3C0200BD820C /* DOUAudioFilePreprocessor.m in Sources */,
