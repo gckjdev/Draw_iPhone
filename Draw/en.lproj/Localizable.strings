@@ -2877,4 +2877,6 @@
 "kHelpViewInOfflineDrawSubmitButtonGuide" = "确认提交 \n完成作品\n狂点此处\n就会进入 \n下一步!";
 "kHelpViewInOfflineDrawHelpButtonGuide" = "帮助\n内含通关秘籍\n助你顺利通关!";
 "kHelpViewInOfflineDrawCopyViewGuide" = "此处为临摹框\n可以随意放大缩小\n点击还可以回放!";
-"kHelpViewInOfflineDrawIveKnew" = " 我懂了！";
+"kHelpViewInOfflineDrawIveKnew" = " 我知道了";
+
+"kAlreadyConquer" = "You have already submit this opus, cannot submit again. Do you want to restart?";

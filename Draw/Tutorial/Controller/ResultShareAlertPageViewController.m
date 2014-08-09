@@ -250,7 +250,7 @@
     //结果页面的印章
     UIFont *font = AD_FONT(50, 20);
     if([LocaleUtils isChina]||[LocaleUtils isChinese]){
-            font = AD_FONT(50, 20);
+        font = AD_FONT(50, 20);
     }
     else{
         font = AD_FONT(36, 16);

@@ -87,6 +87,7 @@
 #import "UIImageExt.h"
 
 #import "SpotHelpView.h"
+#import "ResultSeal.h"
 
 @interface OfflineDrawViewController()
 {
@@ -118,6 +119,7 @@
 @property (retain, nonatomic) DrawToolUpPanel *drawToolUpPanel;
 @property (retain, nonatomic) CMPopTipView *layerPanelPopView;
 @property (retain, nonatomic) CMPopTipView *upPanelPopView;
+@property (retain, nonatomic) ResultSeal *scoreView;
 
 // 微博分享，图片和路径
 @property (retain, nonatomic) NSString *tempImageFilePath;
@@ -367,6 +369,7 @@
     [UIApplication sharedApplication].idleTimerDisabled = NO; // disable lock screen while in drawing
     [self stopRecovery];
     
+    PPRelease(_scoreView);
     PPRelease(_userStageBuilder);
     PPRelease(_userTutorialBuilder);
     PPRelease(_tutorial);
@@ -998,13 +1001,57 @@
         [self saveDraft:NO];
     }
     
-    // TODO update submit/next button status for learn draw (practice only)
+    if ([[self.draft hasSubmit] boolValue] && targetType == TypeConquerDraw){
+        [self showScoreView];
+    }
 
+    // show popup message here, MUST NOT CONFLICT!!!!
+    if (targetType == TypeConquerDraw && [[self.draft hasSubmit] boolValue]){
+        // 提示当前已经闯关，无法再次提交了，可以选择返回，或者重来
+        [self showAlreadySubmitDialog];
+    }
+    else if (targetType == TypePracticeDraw){
+        // 如果是当前修炼的第一小节，则弹出提示信息，并且是第一次开始草稿，尝试提示第一小节信息
+        [self showStageFirstChapterTips];
+    }
+    else{
+        //通过判断user的属性，确定是否已读help
+        if (![[UserManager defaultManager]isReadLearnDrawHelp]){
+            if ([self isLearnType])
+                [self showHelpView];
+        }
+    }
+}
+
+- (void)showAlreadySubmitDialog
+{
+    NSString* message = [NSString stringWithFormat:NSLS(@"kAlreadyConquer")];
+    CommonDialog* dialog = [CommonDialog createDialogWithTitle:NSLS(@"kMessage")
+                                                       message:message
+                                                         style:CommonDialogStyleDoubleButton];
     
-    //通过判断user的属性，确定是否已读help
-    if (![[UserManager defaultManager]isReadLearnDrawHelp]){
-         if ([self isLearnType])
-             [self showHelpView];
+    [dialog.oKButton setTitle:NSLS(@"kConquerAgain") forState:UIControlStateNormal];
+    [dialog.cancelButton setTitle:NSLS(@"Back") forState:UIControlStateNormal];
+    
+    [dialog setClickCancelBlock:^(id view){
+    }];
+    
+    [dialog setClickOkBlock:^(id view){
+        [self conquerAgain];
+    }];
+    
+    [dialog showInView:self.view];
+    
+}
+
+- (void)showStageFirstChapterTips
+{
+    if (targetType == TypePracticeDraw){
+        // 如果是当前修炼的第一小节，则弹出提示信息，并且是第一次开始草稿，尝试提示第一小节信息
+        if (self.userStageBuilder.currentChapterIndex == 0 && _isNewDraft){
+            NSString* title = [self welcomeChapterMsg:0];
+            [self showLearnDrawHelp:title noTipsWarning:NO noTipsMessage:nil];
+        }
     }
 }
 
@@ -1356,6 +1403,9 @@
     
     if (resultCode == 0){
         
+        [self.draft setSubmit];
+        [[MyPaintManager defaultManager] save];
+        
         if (userStage){
             self.userStageBuilder = [PBUserStage builderWithPrototype:userStage];
         }
@@ -1367,7 +1417,9 @@
         [self showResultOptionForConquer];
     }
     else{
-        [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kSubmitFailure") delayTime:1.5 isSuccessful:NO];
+        [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kSubmitFailure")
+                                                       delayTime:1.5
+                                                    isSuccessful:NO];
     }
 }
 
@@ -1993,8 +2045,15 @@
 //    NSString* msg = [NSString stringWithFormat:NSLS(@"kGotoNextChapterWelcome"), nextChapterIndex+1];
 //    [CommonDialog showSimpleDialog:msg inView:self.view];
 
-    NSString* title = [NSString stringWithFormat:NSLS(@"kTitleEnterChapterTips"), nextChapterIndex+1];
-    [self showLearnDrawHelp:title];
+    NSString* title = [self welcomeChapterMsg:nextChapterIndex];
+    NSString* welcomeMsg = [NSString stringWithFormat:NSLS(@"kGotoNextChapterWelcome"), nextChapterIndex+1];
+    [self showLearnDrawHelp:title noTipsWarning:YES noTipsMessage:welcomeMsg];
+}
+
+- (NSString*)welcomeChapterMsg:(int)chapterIndex
+{
+    NSString* title = [NSString stringWithFormat:NSLS(@"kTitleEnterChapterTips"), chapterIndex+1];
+    return title;
 }
 
 - (void)handleSubmitForLearnDraw
@@ -2002,6 +2061,11 @@
 
     if ([self isGotoNextChapter]){
         [self gotoNextChapter];
+        return;
+    }
+    
+    if (targetType == TypeConquerDraw && [self.draft.hasSubmit boolValue]){
+        [self showAlreadySubmitDialog];
         return;
     }
     
@@ -2092,6 +2156,43 @@
     
 }
 
+- (UIView*)drawHolderView
+{
+    return drawView.superview;
+}
+
+#define SCORE_VIEW_DEFAULT_WIDTH     (ISIPAD ? 150 : 70)
+#define SCORE_VIEW_DEFAULT_HEIGHT    (ISIPAD ? 150 : 70)
+
+
+- (void)showScoreView
+{
+    if ([self.draft.score intValue] > 0){
+        if (self.scoreView == nil){
+            NSString* scoreString = [NSString stringWithInt:[self.draft.score intValue]];
+            CGRect frame;
+            frame.size = CGSizeMake(SCORE_VIEW_DEFAULT_WIDTH, SCORE_VIEW_DEFAULT_HEIGHT);
+            frame.origin.x = drawView.bounds.size.width - frame.size.width;
+            frame.origin.y = drawView.bounds.size.height - frame.size.height;
+            self.scoreView = [[[ResultSeal alloc] initWithFrame:frame
+                                               borderColor:COLOR_RED
+                                                      font:AD_FONT(50, 22)
+                                                      text:scoreString] autorelease];
+            
+            self.scoreView.borderWidth = ISIPAD ? 5.0f : 3.0f;
+//            self.scoreView.isRotate = NO;
+            
+            [[self drawHolderView] addSubview:_scoreView];
+        }
+    }
+}
+
+- (void)hideScoreView
+{
+    [self.scoreView removeFromSuperview];
+    self.scoreView = nil;
+}
+
 - (void)showResultOptionForConquer
 {
     PBUserStage* userStage = [self buildUserStage];
@@ -2114,7 +2215,10 @@
                                        
                                    } backBlock:^{
                                        
-                                       [self quit];
+                                       // show view with score
+                                       [self showScoreView];
+                                       
+//                                       [self quit];
                                    }];
      return;
     
@@ -2501,6 +2605,8 @@
 }
 
 - (void)showLearnDrawHelp:(NSString*)title
+            noTipsWarning:(BOOL)noTipsWarning
+            noTipsMessage:(NSString*)noTipsMessage
 {
     NSMutableArray* allTips = [NSMutableArray array];
     
@@ -2545,7 +2651,14 @@
                          returnIndex:&_currentHelpIndex];
     }
     else{
-        POSTMSG(NSLS(@"kNoTipsForChapter"));
+        if (noTipsWarning){
+            if (noTipsMessage){
+                [CommonDialog showSimpleDialog:noTipsMessage inView:self.view];
+            }
+            else{
+                POSTMSG(NSLS(@"kNoTipsForChapter"));
+            }
+        }
     }
     
 }
@@ -2553,7 +2666,7 @@
 // 点击帮助按钮
 - (IBAction)clickHelpButton:(id)sender
 {
-    [self showLearnDrawHelp:nil];
+    [self showLearnDrawHelp:nil noTipsWarning:YES noTipsMessage:nil];
 }
 
 

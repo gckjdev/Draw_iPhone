@@ -2924,3 +2924,5 @@
 "kHelpViewInOfflineDrawHelpButtonGuide" = "帮助\n内含通关秘籍\n助你顺利通关!";
 "kHelpViewInOfflineDrawCopyViewGuide" = "此处为临摹框\n可以随意放大缩小\n点击还可以回放!";
 "kHelpViewInOfflineDrawIveKnew" = " 我懂了！";
+
+"kAlreadyConquer" = "本作品已经提交过了，不能重复提交。是否重新创作一个作品闯关？";

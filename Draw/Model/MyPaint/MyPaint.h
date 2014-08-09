@@ -74,9 +74,13 @@
 @property (nonatomic, retain) NSNumber *opusSpendTime;
 @property (nonatomic, retain) NSData *attributes;
 @property (nonatomic, retain) NSNumber *lastLayerTag;
+@property (nonatomic, retain) NSNumber *hasSubmit;
 
 - (int)getTargetType;
 - (void)updateDrawData;
 - (NSString *)bgImageFullPath;
+
+- (BOOL)isConquerDrawSubmit;
+- (void)setSubmit;
 
 @end
