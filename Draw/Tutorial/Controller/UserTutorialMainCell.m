@@ -31,7 +31,7 @@
 #define PROGRESS_VIEW_HEIGHT (ISIPAD ? 2:2)
 - (void)updateCellInfo:(PBUserTutorial*)ut WithRow:(NSInteger)row
 {
-    
+   
     SET_VIEW_ROUND_CORNER(self.tutorialImageView);
     SET_VIEW_ROUND_CORNER(self.labelBottomView);
     //contentView background
@@ -67,8 +67,9 @@
 -(void)setProgressView:(NSInteger)row WithProgress:(float)progress{
     const CGSize progressViewSize = { PROGRESS_VIEW_SIZE_WIDTH, PROGRESS_VIEW_SIZE_HEIGHT};
     //調用THprogressview
+    
     UIView *view = self.progressAndLabelView;
-    [view removeAllSubviews];
+     [self.progressAndLabelView removeAllSubviews];
 
     //调用LDProgressView
      const CGFloat progressX = fabsf((self.bounds.size.width - progressViewSize.width)/2);
@@ -122,7 +123,7 @@
         
     }
     
-    [self addSubview:tutorialProgressView];
+    [self.progressAndLabelView addSubview:tutorialProgressView];
     [tutorialProgressView release];
     
     
