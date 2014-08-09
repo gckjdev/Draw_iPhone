@@ -26,6 +26,7 @@
 @property (nonatomic, retain) UIImage *displayImage;
 @property (nonatomic, assign) BOOL hasMenu;
 
+@property (nonatomic, retain) NSString *opusImagePath;
 @property (nonatomic, retain) NSString *opusBgImagePath;
 @property (nonatomic, retain) NSString *opusDataPath;
 
@@ -103,6 +104,7 @@
 
 - (void)dealloc
 {
+    PPRelease(_opusImagePath);
     PPRelease(_opusBgImagePath);
     PPRelease(_opusDataPath);
     PPRelease(_opusBgImage);
@@ -224,14 +226,10 @@
     
     NSString* bgImagePath = [[UserTutorialService defaultService] getBgImagePath:userStage.tutorialId stage:stage];
     NSString* opusDataPath = [[UserTutorialService defaultService] getOpusDataPath:userStage.tutorialId stage:stage];
-
-    // set display image
-    UIImage* image = [[UIImage alloc] initWithContentsOfFile:imagePath];
-    [self setImage:image];
-    [image release];
     
     self.opusDataPath = opusDataPath;
     self.opusBgImagePath = bgImagePath;
+    self.opusImagePath = imagePath;
     
     self.userStage = userStage;
     self.stage = stage;
@@ -241,6 +239,11 @@
         self.opusStartIndex = chapter.startIndex;
         self.opusEndIndex = chapter.endIndex;
     }
+    
+    // set display image
+    UIImage* image = [self createImage];
+    [self setImage:image];
+    
 }
 
 
@@ -401,6 +404,39 @@
         [ShowFeedController replayDraw:self.drawFeed viewController:self.superViewController];
     }
     
+}
+
+- (UIImage*)createImage
+{
+    if (self.userStage){
+        if (_draw == nil){
+            // load opus data
+            self.opusData = [[[NSData alloc] initWithContentsOfFile:self.opusDataPath] autorelease];
+        }
+        
+        UIImage* bgImage = nil; //[[UIImage alloc] initWithContentsOfFile:_opusBgImagePath];
+        
+        int totalChapterCount = [self.stage.chapterList count];
+        if (_targetType == TypeConquerDraw ||
+            totalChapterCount <= 1 ||
+            (self.userStage.currentChapterIndex == (totalChapterCount-1))){
+            // use last image
+            UIImage* image = [[[UIImage alloc] initWithContentsOfFile:self.opusImagePath] autorelease];
+            return image;
+        }
+
+        if (_targetType == TypePracticeDraw){
+            return [DrawPlayer createImageByDrawData:&_opusData
+                                         draw:&_draw
+                               viewController:self.superViewController
+                                      bgImage:nil
+                                  bgImageName:TEMP_REPLAY_IMAGE_NAME
+                                   startIndex:0
+                                     endIndex:_opusEndIndex];
+        }
+    }
+    
+    return nil;
 }
 
 #pragma mark - UIGestureRecognizerDelegate

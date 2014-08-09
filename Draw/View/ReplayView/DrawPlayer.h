@@ -83,4 +83,12 @@
           startIndex:(int)startIndex
             endIndex:(int)endIndex;
 
++ (UIImage*)createImageByDrawData:(NSData**)drawData
+                             draw:(Draw**)retDraw
+                   viewController:(PPViewController*)viewController
+                          bgImage:(UIImage*)bgImage
+                      bgImageName:(NSString*)bgImageName
+                       startIndex:(int)startIndex
+                         endIndex:(int)endIndex;
+
 @end
