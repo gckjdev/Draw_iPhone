@@ -110,7 +110,7 @@
     label.text = self.context;
     label.textAlignment = NSTextAlignmentCenter;
     label.textColor = COLOR_RED;
-//    label.backgroundColor = COLOR_RED;
+    label.backgroundColor = [UIColor clearColor];
     label.font = self.textFont;
     [self addSubview:label];
     [label release];

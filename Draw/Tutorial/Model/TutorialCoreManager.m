@@ -352,9 +352,9 @@ static TutorialCoreManager* _defaultTutorialCoreManager;
 - (void)createTestData
 {
     //    NSString* root = @"/gitdata/Draw_iPhone/Draw/Tutorial/Resource/";
-    //    NSString* root = @"/Users/chaoso/Desktop/gitdata/Draw_iPhone/Draw/Tutorial/Resource/";
+    NSString* root = @"/Users/chaoso/Desktop/gitdata/Draw_iPhone/Draw/Tutorial/Resource/";
     //    NSString *root = @"/Users/Linruin/gitdata/Draw_iPhone/Draw/Tutorial/Resource/";
-    NSString *root = @"/Users/jiandan/gitdata/Draw_iPhone/Draw/Tutorial/Resource/";
+//    NSString *root = @"/Users/jiandan/gitdata/Draw_iPhone/Draw/Tutorial/Resource/";
     NSString* path = [root stringByAppendingString:[TutorialCoreManager appTaskDefaultConfigFileName]];
     
     //    NSString* versionPath = [root stringByAppendingString:[PPSmartUpdateDataUtils getVersionFileName:[TutorialCoreManager appTaskDefaultConfigFileName]]];
@@ -866,7 +866,7 @@ static TutorialCoreManager* _defaultTutorialCoreManager;
 {
 #ifdef DEBUG
     
-    NSString *stepId = @"tutorialId-3";
+    NSString *stepId = @"tutorialId-1";
     [self.stepByStepTutorialIdList addObject:stepId];
     return [self findTutorialByTutorialId:stepId];
     

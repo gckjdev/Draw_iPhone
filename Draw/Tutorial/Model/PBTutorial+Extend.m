@@ -234,6 +234,17 @@
     }
 }
 
+-(BOOL)isFinishedTutorial:(int)stageIndex{
+    int currentTryStageCount = [self.userStagesList count];
+    if (self.currentStageIndex == (currentTryStageCount-1)){
+        PBUserStage* userStage = [self.userStagesList objectAtIndex:self.currentStageIndex];
+        if([[UserTutorialManager defaultManager] isPass:userStage.bestScore]){
+            return YES;
+        }
+    }
+    return NO;
+}
+
 @end
 
 @implementation PBUserStage (Extend4)
