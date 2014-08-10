@@ -306,6 +306,10 @@ qqAccessTokenSecret:(NSString*)accessTokenSecret
 - (int)homeStyle;
 - (void)setHomeStyle:(int)style;
 
+- (BOOL)isReadLearnDrawHelp;
+- (void)setHasReadLearnDrawHelp;
+
+
 @end
 
 @interface CheckInManager : NSObject{

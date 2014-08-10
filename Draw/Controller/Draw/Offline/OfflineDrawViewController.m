@@ -1009,15 +1009,21 @@
     if (targetType == TypeConquerDraw && [[self.draft hasSubmit] boolValue]){
         // 提示当前已经闯关，无法再次提交了，可以选择返回，或者重来
         [self showAlreadySubmitDialog];
+        return;
     }
     else if (targetType == TypePracticeDraw){
         // 如果是当前修炼的第一小节，则弹出提示信息，并且是第一次开始草稿，尝试提示第一小节信息
         [self showStageFirstChapterTips];
+//        if ([self showStageFirstChapterTips] == NO){
+//            [self showHelpView];
+//        }
     }
-    
-
+//    else{
+    [self showHelpView];
+//    }
 }
 
+// 显示闯关作品已经提交过的信息
 - (void)showAlreadySubmitDialog
 {
     NSString* message = [NSString stringWithFormat:NSLS(@"kAlreadyConquer")];
@@ -1039,46 +1045,79 @@
     
 }
 
-- (void)showStageFirstChapterTips
+- (void)showAskSubmitConquerDraw
+{
+    NSString* message = [NSString stringWithFormat:NSLS(@"kConfirmSubmitConquer")];
+    CommonDialog* dialog = [CommonDialog createDialogWithTitle:NSLS(@"kMessage")
+                                                       message:message
+                                                         style:CommonDialogStyleDoubleButton];
+    
+//    [dialog.oKButton setTitle:NSLS(@"kConquerAgain") forState:UIControlStateNormal];
+//    [dialog.cancelButton setTitle:NSLS(@"Back") forState:UIControlStateNormal];
+    
+    [dialog setClickCancelBlock:^(id view){
+    }];
+    
+    [dialog setClickOkBlock:^(id view){
+        [self handleSubmitForLearnDraw];
+    }];
+    
+    [dialog showInView:self.view];
+    
+    
+}
+
+- (BOOL)showStageFirstChapterTips
 {
     if (targetType == TypePracticeDraw){
         // 如果是当前修炼的第一小节，则弹出提示信息，并且是第一次开始草稿，尝试提示第一小节信息
         if (self.userStageBuilder.currentChapterIndex == 0 && _isNewDraft){
             NSString* title = [self welcomeChapterMsg:0];
-            [self showLearnDrawHelp:title noTipsWarning:NO noTipsMessage:nil];
+            return [self showLearnDrawHelp:title noTipsWarning:NO noTipsMessage:nil];
         }
     }
+    
+    return NO;
 }
 
 - (void)showHelpView
 {
-#ifdef DEBUG
-    NSMutableArray* spotHelpList = [NSMutableArray arrayWithCapacity:2];
+    if ([self isLearnType] == NO){
+        return;
+    }
     
-    UIView *dirtyview1 = [[[UIView alloc]init] autorelease];
+    //通过判断user的属性，确定是否已读help
+    if ([[UserManager defaultManager]isReadLearnDrawHelp]){
+        return;
+    }
+    
+    NSMutableArray* spotHelpList = [NSMutableArray array];
+    
+    UIFont* font = AD_FONT(20, 12);
+    
+    //set dirty view for adaptation of attach view which need spot lighting
+    UIView *dirtyView1 = [[[UIView alloc]init] autorelease];
     CGRect frame1 = self.submitButton.frame;
     frame1.origin.x += self.submitButton.superview.frame.origin.x;
     frame1.origin.y += self.submitButton.superview.frame.origin.y;
-    dirtyview1.frame = frame1;
-    [self.submitButton setUserInteractionEnabled:NO];
-    
-    UIFont* font = AD_FONT(20, 12);
-    SpotHelpObject *obj1=[[SpotHelpObject alloc] initWithSpotlightView:dirtyview1
-                                                                  Text:@"确认提交 \n完成作品 \n狂点此处 \n就会进入 \n下一步！ "
+    dirtyView1.frame = frame1;
+    SpotHelpObject *obj1=[[SpotHelpObject alloc] initWithSpotlightView:dirtyView1
+                                                                  Text:
+                          NSLS(@"kHelpViewInOfflineDrawSubmitButtonGuide")
                                                                    Dir:(ISIPAD? CRArrowPositionTopRight:CRArrowPositionTopRight)
                                                                   Font:font
                                                              textColor:[UIColor whiteColor]
                                                           boraderColor:[UIColor whiteColor]
                                                                bgColor:[UIColor clearColor]];
     
-    UIView *dirtyview2 = [[[UIView alloc]init] autorelease];
+    UIView *dirtyView2 = [[[UIView alloc]init] autorelease];
     CGRect frame2 = self.helpButton.frame;
     frame2.origin.x += self.helpButton.superview.frame.origin.x;
     frame2.origin.y += self.helpButton.superview.frame.origin.y;
-    dirtyview2.frame = frame2;
-    [self.helpButton setUserInteractionEnabled:NO];
-    SpotHelpObject *obj2=[[SpotHelpObject alloc] initWithSpotlightView:dirtyview2
-                                                                  Text:@"帮助\n内含通关秘籍 \n助你顺利通关!"
+    dirtyView2.frame = frame2;
+    SpotHelpObject *obj2=[[SpotHelpObject alloc] initWithSpotlightView:dirtyView2
+                                                                  Text:
+                          NSLS(@"kHelpViewInOfflineDrawHelpButtonGuide")
                                                                    Dir:(ISIPAD? CRArrowPositionTopRight:CRArrowPositionTopRight)
                                                                   Font:font
                                                              textColor:[UIColor whiteColor]
@@ -1086,13 +1125,18 @@
                                                                bgColor:[UIColor clearColor]];
 
     //dirtyView FOR subview's subview
-    UIView *dirtyview = [[[UIView alloc]init] autorelease];
+    UIView *dirtyView3 = [[[UIView alloc]init] autorelease];
     CGRect frame = self.copyView.frame;
-    frame.origin.x += self.copyView.superview.frame.origin.x;
-    frame.origin.y += self.copyView.superview.frame.origin.y;
-    dirtyview.frame = frame;
-    SpotHelpObject *obj3=[[SpotHelpObject alloc] initWithSpotlightView:dirtyview
-                                                                  Text:@"此处为临摹框 \n可以随意放大缩小 \n点击还可以回放！ "
+    
+    //本来spotlight是对targetview内接圆打光，为了改成对外切圆打光，通过几何计算得出调整
+    frame.origin.x += self.copyView.superview.frame.origin.x - 0.2*self.copyView.frame.size.width;
+    frame.origin.y += self.copyView.superview.frame.origin.y - 0.2*self.copyView.frame.size.height;
+    frame.size.width += 2*0.2*self.copyView.frame.size.width;
+    frame.size.height += 2*0.2*self.copyView.frame.size.height;
+    dirtyView3.frame = frame;
+    SpotHelpObject *obj3=[[SpotHelpObject alloc] initWithSpotlightView:dirtyView3
+                                                                  Text:
+                          NSLS(@"kHelpViewInOfflineDrawCopyViewGuide")
                                                                    Dir:(ISIPAD?CRArrowPositionTopLeft:CRArrowPositionTopLeft)
                                                                   Font:font
                                                              textColor:[UIColor whiteColor]
@@ -1102,15 +1146,9 @@
     [spotHelpList addObject:obj2];
     [spotHelpList addObject:obj3];
     
-//    [UIScreen mainScreen].bounds;
-//    ISIPAD
-    
     [SpotHelpView show:self.view
           spotHelpList:spotHelpList];
-    
-    return;
-    
-#endif
+
 }
 
 
@@ -2055,19 +2093,31 @@
     return title;
 }
 
-- (void)handleSubmitForLearnDraw
+- (void)preHandleSubmitForLearnDraw
 {
-
     if ([self isGotoNextChapter]){
         [self gotoNextChapter];
         return;
     }
     
-    if (targetType == TypeConquerDraw && [self.draft.hasSubmit boolValue]){
-        [self showAlreadySubmitDialog];
-        return;
+    if (targetType == TypeConquerDraw){
+        if ([self.draft.hasSubmit boolValue]){
+            // 闯关，作品已提交，提示“已提交”信息
+            [self showAlreadySubmitDialog];
+        }
+        else{
+            // 闯关，作品未提交，询问确认
+            [self showAskSubmitConquerDraw];
+        }
+    }
+    else{
+        [self handleSubmitForLearnDraw];
     }
     
+}
+
+- (void)handleSubmitForLearnDraw
+{
     //  笔画数预处理
     NSInteger minus = [self strokeLimitWithMinStrokeNum:[PPConfigManager getMinStrokeNum]
                                             MinPointNum:[PPConfigManager getMinPointNum]];
@@ -2473,7 +2523,7 @@
     }
     else if ([self isLearnType]){
         // 学画画闯关或者修炼
-        [self handleSubmitForLearnDraw];
+        [self preHandleSubmitForLearnDraw];
     }
     else {
         if(self.contest){
@@ -2603,7 +2653,7 @@
     }
 }
 
-- (void)showLearnDrawHelp:(NSString*)title
+- (BOOL)showLearnDrawHelp:(NSString*)title
             noTipsWarning:(BOOL)noTipsWarning
             noTipsMessage:(NSString*)noTipsMessage
 {
@@ -2648,6 +2698,8 @@
                       imagePathArray:allTips
                         defaultIndex:_currentHelpIndex
                          returnIndex:&_currentHelpIndex];
+        
+        return YES;
     }
     else{
         if (noTipsWarning){
@@ -2657,6 +2709,11 @@
             else{
                 POSTMSG(NSLS(@"kNoTipsForChapter"));
             }
+            
+            return YES;
+        }
+        else{
+            return NO;
         }
     }
     

@@ -367,6 +367,78 @@
     
 }
 
++ (UIImage*)createImageByDrawData:(NSData**)drawData
+                         draw:(Draw**)retDraw
+               viewController:(PPViewController*)viewController
+                      bgImage:(UIImage*)bgImage
+                  bgImageName:(NSString*)bgImageName
+                   startIndex:(int)startIndex
+                     endIndex:(int)endIndex
+{
+//    if (*retImage != nil){
+//        return;
+//    }
+    
+//    __block PPViewController * cp = viewController;
+    
+//    [viewController registerNotificationWithName:NOTIFICATION_DATA_PARSING usingBlock:^(NSNotification *note) {
+//        float progress = [[[note userInfo] objectForKey:KEY_DATA_PARSING_PROGRESS] floatValue];
+//        NSString* progressText = @"";
+//        if (progress == 1.0f){
+//            progress = 0.99f;
+//            progressText = [NSString stringWithFormat:NSLS(@"kDisplayProgress"), progress*100];
+//        }
+//        else{
+//            progressText = [NSString stringWithFormat:NSLS(@"kParsingProgress"), progress*100];
+//        }
+//        [viewController showProgressViewWithMessage:progressText progress:progress];
+//    }];
+//    
+//    [viewController showProgressViewWithMessage:NSLS(@"kParsingProgress") progress:0.01f];
+//    dispatch_async([viewController getWorkingQueue], ^{
+        if (*retDraw == nil) {
+            *retDraw = [Draw parseDrawData:*drawData];
+            if (*retDraw != nil){
+                *drawData = nil;
+            }
+            [(*retDraw) retain];
+        }
+        
+//        dispatch_async(dispatch_get_main_queue(), ^{
+    
+            Draw* draw = (*retDraw);
+            if (draw == nil){
+//                [viewController hideActivity];
+                return nil;
+            }
+            
+//            [viewController unregisterNotificationWithName:NOTIFICATION_DATA_PARSING];
+    
+//            NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
+    
+            ReplayObject *obj = [ReplayObject obj];
+            obj.actionList = draw.drawActionList;
+            obj.isNewVersion = [draw isNewVersion];
+            obj.canvasSize = draw.canvasSize;
+            obj.layers = draw.layers;
+            obj.bgImage = bgImage;
+            
+    return [DrawPlayer createImageWithReplayObj:obj
+                                          begin:startIndex
+                                            end:endIndex
+                                    bgImageName:bgImageName
+                                        bgColor:[UIColor whiteColor]];
+//            [(*retImage) retain];
+//            
+//            [pool drain];
+    
+//            [viewController hideActivity];
+//        });
+//    });
+    
+}
+
+
 #pragma mark - Period Replay
 
 + (void)updateReplayObjectPlayIndex:(ReplayObject *)obj
@@ -505,6 +577,48 @@
     }
     
     return action;
+}
+
++ (UIImage*)createImageWithReplayObj:(ReplayObject *)obj
+                               begin:(NSUInteger)begin
+                                 end:(NSUInteger)end
+                         bgImageName:(NSString*)bgImageName
+                             bgColor:(UIColor*)bgColor
+{
+    PPDebug(@"<createImageWithReplayObj> begin=%d, end=%d", begin, end);
+    
+    DrawPlayer *playerForBgImage = [DrawPlayer playerWithReplayObj:obj];
+    
+    NSMutableArray* drawActionList = obj.actionList;
+    if (end < begin)
+    {
+        PPDebug(@"<createImageWithReplayObj> end < begin, fail to play period!");
+        return nil;
+    }
+    
+    int totalDrawActiontCount = [drawActionList count];
+    if (end >= totalDrawActiontCount || begin >= totalDrawActiontCount)
+    {
+        PPDebug(@"<createImageWithReplayObj> end(%d)/begin(%d) >  total action count(%d), fail to play period!",
+                end, begin, totalDrawActiontCount);
+        return nil;
+    }
+    
+    if (begin == 0 && (end > (totalDrawActiontCount - 1))){
+        // begin and end is the whole list, no need to do any extra actions
+        return nil;
+    }
+    
+    // update background image
+    UIImage *img = nil; // create bg image
+    if (end > 0){
+        // if begin from 0, means no background image needed
+        img = [playerForBgImage.showView createImageAtIndex:end bgColor:bgColor];
+        PPDebug(@"<createImageWithReplayObj> image size=%@", NSStringFromCGSize(img.size));
+    }
+    
+    return img;
+
 }
 
 + (DrawPlayer*)playerWithReplayObj:(ReplayObject *)obj

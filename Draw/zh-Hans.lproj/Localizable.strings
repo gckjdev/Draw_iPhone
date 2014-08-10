@@ -2899,7 +2899,7 @@
 "kSealResultPass" = "通关";
 "kSealResultFail" = "失败";
 
-"kTakeNumberSucc" = "注册完成，你的小吉号码是\n\n%@\n\n请到个人资料设置昵称、密码等信息。\n\n祝玩的开心！\n\n";
+"kTakeNumberSucc" = "注册完成，你的小吉号码是\n\n%@\n\n可点击顶部头像设置用户昵称、密码、头像等信息。\n\n祝玩的开心！\n\n";
 "kGotoNextChapterWelcome" = "欢迎进入第%d小节继续本关修炼";
 
 // \n\n点击左上角的临摹框可回放教程\n\n或点击右上角的【帮助】按钮查看提示/知识点\n
@@ -2920,4 +2920,11 @@
 
 "kTitleEnterChapterTips" = "欢迎进入第%d小节";
 
+"kHelpViewInOfflineDrawSubmitButtonGuide" = "完成作品后\n狂点此处\n提交作品\n查看打分";
+"kHelpViewInOfflineDrawHelpButtonGuide" = "帮助\n提供绘画知识点\n以及绘画技法";
+"kHelpViewInOfflineDrawCopyViewGuide" = "临摹作品框\n可回放作品绘画过程";
+"kHelpViewInOfflineDrawIveKnew" = " 我知道了";
+
 "kAlreadyConquer" = "本作品已经提交过了，不能重复提交。是否重新创作一个作品闯关？";
+"kConfirmSubmitConquer" = "确认提交本次闯关作品吗？";
+
