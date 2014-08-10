@@ -712,7 +712,7 @@
     UIImage *amazingImage = [UIImage imageNamed:@"jingcaizuopin"];
     BrickView *amazingOpusView = [[[BrickView alloc] initWithFrame:self.amazingOpusView.bounds title:@"精彩作品" imageTitle:@"Gallery" image:amazingImage] autorelease];
     
-    
+    self.bbsForumView = forumView;
     
     //建立色块颜色
     [paintingView setBackgroundColor:[UIColor colorWithRed:0.757f green:0.565f blue:0.965f alpha:1.0f]];

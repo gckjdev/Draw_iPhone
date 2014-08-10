@@ -312,6 +312,7 @@ static DrawDataService* _defaultDrawDataService = nil;
                                                                 lang:language
                                                                 data:drawData
                                                            imageData:imageData
+                                                         bgImageData:nil
                                                            targetUid:targetUid
                                                            contestId:contestId
                                                                 desc:desc

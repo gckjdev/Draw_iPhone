@@ -1151,6 +1151,10 @@
     [spotHelpList addObject:obj2];
     [spotHelpList addObject:obj3];
     
+    [obj1 release];
+    [obj2 release];
+    [obj3 release];
+    
     [SpotHelpView show:self.view
           spotHelpList:spotHelpList
               callback:callback];
