@@ -392,6 +392,7 @@
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
         
         NSMutableArray *itemList = [[[NSMutableArray alloc] init] autorelease];
+      
         for(Billboard *bb in _bbList){
 
             UIImage *image = [bbManager getImage:bb];
@@ -406,6 +407,7 @@
             
             [itemList addObject:item];            
         }
+      
         
         dispatch_async(dispatch_get_main_queue(), ^{
             //新建滚动展览
@@ -417,6 +419,15 @@
             [self.galleryView addSubview:imageFrame];
             [self.galleryView bringSubviewToFront:imageFrame];
             [imageFrame release];
+            
+            if([_bbList count]<=0){
+                UIImageView *image = [[UIImageView alloc]initWithFrame:frame];
+                [image setImage:[UIImage imageNamed:DEFAULT_GALLERY_IMAGE]];
+                [self.galleryView addSubview:image];
+                [self.galleryView bringSubviewToFront:image];
+                [image release];
+                
+            }
         });
     });
     

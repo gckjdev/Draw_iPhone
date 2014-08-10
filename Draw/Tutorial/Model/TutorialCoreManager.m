@@ -415,7 +415,7 @@ static TutorialCoreManager* _defaultTutorialCoreManager;
                                //                               @[@"美少女奈儿",@"美少女纪子",@"小妹妹",@"帅哥",@"小毛孩",@"经理",@"妇女",@"老者"],
                                @[@"放松",@"微笑",@"惊恐",@"鄙视",@"纠结",@"开心",@"奸笑",@"无奈",@"享受",@"可爱"],
                                @[@"花样滑冰",@"艺术体操",@"赛马",@"高尔夫",@"体操",@"击剑",@"滑雪",@"足球"],
-                                @[@"色彩的基本色",@"学会对颜色的区分",@"纯度的认识",@"明度的认识",@"对比色的认识",@"邻近色的认识",@"对色彩的感受",@"色彩绘制渐变画"],
+                                @[@"三原色",@"16色相环",@"明度",@"纯度",@"对比色",@"邻近色",@"冷暖对比",@"色彩渐变"],
                                @[@"射箭",@"拳击",@"铁人三项",@"跆拳道",@"射击",@"棒球",@"游泳",@"跳水",@"皮划艇",@"柔道"],
                                @[@"小辫子",@"短碎发",@"梨花头",@"森女自然长发",@"齐刘海",@"乖乖女",@"麻花辫",@"丸子头"],
                                 @[@"正方体",@"牛奶盒",@"六棱柱",@"铅笔",@"圆柱",@"纸筒", @"苹果"]
@@ -431,7 +431,7 @@ static TutorialCoreManager* _defaultTutorialCoreManager;
                                
                                @[@"没有翅膀也一样可以飞翔",@"展现身体的柔性美",@"人与动物最佳拍档",@"在运动中享受大自然的乐趣",@"干净利落的身姿",@"协调性与灵活性的考验",@"像鸟一样在雪地里飞舞",@"只为射门那一刻的欢呼"],
                                
-                               @[@"色彩的基本色",@"学会对颜色的区分",@"纯度的认识",@"明度的认识",@"对比色的认识",@"邻近色的认识",@"对色彩的感受",@"色彩绘制渐变画"],
+                               @[@"认识色彩的三种基本色",@"学会对颜色的区分",@"理解色彩从亮到暗的变化",@"学会对色彩纯度的判别",@"运用对比色，增强画面冲击力",@"运用邻近色，提升画面和谐美感",@"通过对色彩的心理感受，来体会色彩冷暖",@"试着运用色彩渐变，绘制风景画"],
                                
                                @[@"后羿射日，弓开得胜",@"一秒钟变猪头",@"游、跑、骑三部曲",@"再也不怕色狼了",@"要不要再来一发",@"米国人四大运动之一",@"旱鸭子一边去",@"森碟老爸是冠军",@"你的手臂够粗吗",@"据说是小孩子把戏"],
                               
@@ -522,12 +522,15 @@ static TutorialCoreManager* _defaultTutorialCoreManager;
                                @[
                                    @"http://58.215.160.100:8080/app_res/tutorial/image/se-8.jpg",
                                    @"http://58.215.160.100:8080/app_res/tutorial/image/se-7.jpg",
-                                   @"http://58.215.160.100:8080/app_res/tutorial/image/se-6.jpg",
+                                   
                                    @"http://58.215.160.100:8080/app_res/tutorial/image/se-5.jpg",
-                                   @"http://58.215.160.100:8080/app_res/tutorial/image/se-4.jpg",
+                                   @"http://58.215.160.100:8080/app_res/tutorial/image/se-6.jpg",
+                                   @"http://58.215.160.100:8080/app_res/tutorial/image/se-1.jpg",
+                                
                                    @"http://58.215.160.100:8080/app_res/tutorial/image/se-3.jpg",
                                    @"http://58.215.160.100:8080/app_res/tutorial/image/se-2.jpg",
-                                   @"http://58.215.160.100:8080/app_res/tutorial/image/se-1.jpg"
+                                   
+                                   @"http://58.215.160.100:8080/app_res/tutorial/image/se-4.jpg"
                                    ],
                                @[
                                    @"http://58.215.160.100:8080/app_res/tutorial/image/7-2.jpg",
@@ -751,6 +754,12 @@ static TutorialCoreManager* _defaultTutorialCoreManager;
     NSArray *tutorialxiaonvhai = @[
                                    stagexiaonvhai,stagexiaonvhai,stagexiaonvhai,stagexiaonvhai,stagexiaonvhai,stagexiaonvhai,stagexiaonvhai,stagexiaonvhai,stagexiaonvhai
                                   ];
+    //secai
+    NSArray *stage_1tips = @[@[@"tips1.png"]];
+    NSArray *stage_2tips = @[@[@"tips1.png",@"tips2.png"]];
+    NSArray *secaiTips = @[stage_1tips,stage_1tips,stage_2tips,stage_2tips,stage_1tips,stage_1tips,stage_1tips,stage_1tips];
+//    NSArray *tutorialsecaiTips = @[secaiTips,secaiTips,secaiTips,secaiTips,secaiTips,secaiTips,secaiTips,secaiTips,secaiTips
+//                                   ];
     
     
     //tutorialTipsList
@@ -762,7 +771,7 @@ static TutorialCoreManager* _defaultTutorialCoreManager;
                           //                          @[],
                           tutorial6Tips,
                           tutorial4Tips,
-                          tutorialxiaonvhai,
+                          secaiTips,
                           tutorial7Tips,
                           tutorialxiaonvhai,
                           tutorial0Tips
