@@ -99,6 +99,7 @@
 #import "OpenCVUtils.h"
 
 #import "OpenCVUtils.h"
+#import "TutorialCoreManager.h"
 
 NSString* GlobalGetServerURL()
 {
@@ -622,7 +623,7 @@ NSString* GlobalGetBoardServerURL()
     
     [[GameAdWallService defaultService] queryWallScore];
 
-    
+    [[TutorialCoreManager defaultManager] autoUpdate];
 }
 
 - (void)application:(UIApplication *)application didReceiveLocalNotification:(UILocalNotification*)notification
@@ -646,7 +647,8 @@ NSString* GlobalGetBoardServerURL()
      Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
      */
     PPDebug(@"<applicationDidBecomeActive>");
-        
+    
+    
     // Init Account Service and Sync Balance and Item
     [[AccountService defaultService] syncAccount:nil];
     

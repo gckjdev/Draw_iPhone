@@ -14,7 +14,7 @@
 #import "Tutorial.pb.h"
 #import "AllTutorialController.h"
 #import "TutorialStageController.h"
-
+#import "TutorialCoreManager.h"
 
 @interface UserTutorialMainController ()
 
@@ -73,6 +73,8 @@
     self.view.backgroundColor = COLOR_GRAY;
     [self setCanDragBack:NO];
     
+    [[TutorialCoreManager defaultManager] autoUpdate];
+
 }
 
 - (void)reloadData
