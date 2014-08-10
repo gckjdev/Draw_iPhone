@@ -68,12 +68,14 @@
     const CGSize progressViewSize = { PROGRESS_VIEW_SIZE_WIDTH, PROGRESS_VIEW_SIZE_HEIGHT};
     //調用THprogressview
     
-    UIView *view = self.progressAndLabelView;
+
      [self.progressAndLabelView removeAllSubviews];
 
+    CGSize mainSize = [UIScreen mainScreen].bounds.size;
+    
     //调用LDProgressView
-     const CGFloat progressX = fabsf((self.bounds.size.width - progressViewSize.width)/2);
-    const CGFloat progressY = fabsf((self.bounds.size.height - progressViewSize.height-(ISIPAD?42:20))/2);
+     const CGFloat progressX = fabsf((mainSize.width - progressViewSize.width)/2.0f);
+    const CGFloat progressY = fabsf((self.frame.size.height - progressViewSize.height-(ISIPAD?42:20))/2.0f);
     LDProgressView *tutorialProgressView = [[LDProgressView alloc] initWithFrame:
                                                             CGRectMake(progressX,progressY,progressViewSize.width,progressViewSize.height)];
     
@@ -122,7 +124,6 @@
         self.tutorialStartBtn.hidden = YES;
         
     }
-    
     [self.progressAndLabelView addSubview:tutorialProgressView];
     [tutorialProgressView release];
     

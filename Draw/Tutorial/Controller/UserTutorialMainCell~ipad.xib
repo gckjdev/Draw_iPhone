@@ -54,12 +54,12 @@
                             <constraint firstAttribute="trailing" secondItem="5Sf-m5-ZSF" secondAttribute="trailing" constant="20" symbolic="YES" id="xo0-C5-OJp"/>
                         </constraints>
                     </view>
-                    <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="xtu-hc-nHf" userLabel="button and label View">
-                        <rect key="frame" x="267" y="65" width="226" height="100"/>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xtu-hc-nHf" userLabel="button and label View">
+                        <rect key="frame" x="262" y="65" width="226" height="100"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vvd-1j-A8A">
-                                <rect key="frame" x="16" y="15" width="200" height="50"/>
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vvd-1j-A8A">
+                                <rect key="frame" x="13" y="15" width="200" height="50"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -68,7 +68,7 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                             </button>
-                            <label hidden="YES" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RHP-I5-sGE">
+                            <label hidden="YES" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RHP-I5-sGE">
                                 <rect key="frame" x="17" y="73" width="200" height="25"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -79,14 +79,8 @@
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="vvd-1j-A8A" firstAttribute="centerY" secondItem="xtu-hc-nHf" secondAttribute="centerY" constant="-10" id="50m-KF-3Pd"/>
-                            <constraint firstItem="RHP-I5-sGE" firstAttribute="top" secondItem="xtu-hc-nHf" secondAttribute="top" constant="73" id="5LM-4G-1jV"/>
-                            <constraint firstItem="RHP-I5-sGE" firstAttribute="centerX" secondItem="xtu-hc-nHf" secondAttribute="centerX" constant="4" id="Cc1-04-Buu"/>
-                            <constraint firstItem="vvd-1j-A8A" firstAttribute="top" secondItem="xtu-hc-nHf" secondAttribute="top" constant="15" id="N7u-LH-TpM"/>
-                            <constraint firstAttribute="bottom" secondItem="RHP-I5-sGE" secondAttribute="bottom" constant="2" id="WHb-72-OQF"/>
-                            <constraint firstItem="RHP-I5-sGE" firstAttribute="leading" secondItem="xtu-hc-nHf" secondAttribute="leading" constant="17" id="XXg-Z8-D4R"/>
-                            <constraint firstItem="vvd-1j-A8A" firstAttribute="leading" secondItem="xtu-hc-nHf" secondAttribute="leading" constant="16" id="bDt-cb-AdZ"/>
                             <constraint firstItem="RHP-I5-sGE" firstAttribute="centerX" secondItem="vvd-1j-A8A" secondAttribute="centerX" constant="1" id="gaF-v1-GY0"/>
+                            <constraint firstAttribute="centerX" secondItem="vvd-1j-A8A" secondAttribute="centerX" id="pxh-kA-NSZ"/>
                         </constraints>
                     </view>
                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KUl-fD-E3D" userLabel="difficultyLabel">
@@ -121,11 +115,13 @@
                 </subviews>
                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                 <constraints>
-                    <constraint firstItem="xtu-hc-nHf" firstAttribute="leading" secondItem="cZu-cC-HCm" secondAttribute="leading" constant="267" id="5a3-xv-9NO"/>
-                    <constraint firstItem="gtJ-OB-Z57" firstAttribute="top" secondItem="xtu-hc-nHf" secondAttribute="bottom" constant="18" id="8wL-5s-L1p"/>
+                    <constraint firstItem="gtJ-OB-Z57" firstAttribute="top" secondItem="xtu-hc-nHf" secondAttribute="bottom" constant="18" id="8UE-fa-pev"/>
                     <constraint firstItem="gtJ-OB-Z57" firstAttribute="top" secondItem="cZu-cC-HCm" secondAttribute="top" constant="183" id="CtW-Lu-nkY"/>
                     <constraint firstAttribute="bottom" secondItem="aDL-UJ-wjW" secondAttribute="bottom" constant="24" id="GNG-Yq-JkW"/>
+                    <constraint firstAttribute="trailing" secondItem="xtu-hc-nHf" secondAttribute="trailing" constant="262" id="L5u-bq-7ea"/>
                     <constraint firstAttribute="bottom" secondItem="gtJ-OB-Z57" secondAttribute="bottom" constant="25" id="WtP-um-v3C"/>
+                    <constraint firstItem="xtu-hc-nHf" firstAttribute="top" secondItem="cZu-cC-HCm" secondAttribute="top" constant="65" id="cnJ-j1-2Pi"/>
+                    <constraint firstItem="xtu-hc-nHf" firstAttribute="leading" secondItem="cZu-cC-HCm" secondAttribute="leading" constant="262" id="dwG-Tj-aXZ"/>
                     <constraint firstItem="gtJ-OB-Z57" firstAttribute="leading" secondItem="cZu-cC-HCm" secondAttribute="leading" id="ept-TO-g7N"/>
                     <constraint firstAttribute="trailing" secondItem="aDL-UJ-wjW" secondAttribute="trailing" id="g8P-u0-DiJ"/>
                     <constraint firstItem="aDL-UJ-wjW" firstAttribute="top" secondItem="cZu-cC-HCm" secondAttribute="top" id="gt2-97-S4Q"/>

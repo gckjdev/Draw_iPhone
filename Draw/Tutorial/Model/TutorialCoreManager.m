@@ -18,6 +18,12 @@
 
 static TutorialCoreManager* _defaultTutorialCoreManager;
 
+#define SE_NORMAL   PBScoreEngineTypeScoreEngineNormal       // 55:30:15
+#define SE_JIANBI   PBScoreEngineTypeScoreEngineStickPicture // 40:21:40
+#define SE_COLOR    PBScoreEngineTypeScoreEngineFillColor    // 30:21-30:20
+
+#define SE(x)       (@[@(x),@(x),@(x),@(x),@(x),@(x),@(x),@(x),@(x),@(x)])
+
 @implementation TutorialCoreManager
 
 + (TutorialCoreManager*)defaultManager
@@ -713,20 +719,20 @@ static TutorialCoreManager* _defaultTutorialCoreManager;
                                    ];
     
     
-    //tutorial6
-    NSArray *stageTips = @[@[@"tips1.png"],@[@"tips1.png"]];
-    NSArray *stage6Tips = @[@[@"tips1.png"]];
-    NSArray *stage7Tips = @[@[@"tips1.png",@"tips2.png"]];
-    NSArray *stage8Tips = @[@[@"tips1.png",@"tips2.png",@"tips3.png"]];
+    //tutorial6 xiaoji
+    NSArray *stageTips = @[@[@"tips1.png"],@[@"tips2.png"]];
+    NSArray *stage6Tips = @[@[]];
+    NSArray *stage7Tips = @[@[]];
+    NSArray *stage8Tips = @[@[]];
     
-    //tutorial0 的stage
+    //tutorial0 的stage 三次方
     NSArray *stage1Tips_tutorial0 = @[@[@"tips1.png",@"tips2.png",@"tips3.png"]];
-    NSArray *stage2Tips_tutorial0 = @[@[@"tips1.png"],@[@"tips2.png",@"tips3.png",@"tips4.png"],@[@"tips5.png",@"tips6.png",@"tips7.png",@"tips8.png"],@[@"tips9.png",@"tips10.png",@"tips11.png"]];
+    NSArray *stage2Tips_tutorial0 = @[@[@"tips1.png"],@[@"tips2.png",@"tips3.png",@"tips4.png",@"tips5.png"],@[@"tips6.png",@"tips7.png",@"tips8.png",@"tips9.png"],@[@"tips10.png",@"tips11.png"]];
     NSArray *stage3Tips_tutorial0 = @[@[@"tips1.png"]];
     NSArray *stage4Tips_tutorial0 = @[@[@"tips1.png"],@[@"tips2.png"],@[@"tips3.png",@"tips4.png",@"tips5.png",@"tips6.png"],@[@"tips7.png"]];
     NSArray *stage5Tips_tutorial0 = @[@[@"tips1.png"]];
     NSArray *stage6Tips_tutorial0 = @[@[@"tips1.png"],@[@"tips2.png"],@[@"tips3.png",@"tips4.png",@"tips5.png",@"tips6.png"],@[@"tips7.png"]];
-    NSArray *stage7Tips_tutorial0 =@[@[@"tips1.png",@"tips2.png"],@[@"tips3.png",@"tips4.png",@"tips5.png",@"tips6.png",@"tips7.png",@"tips8.png",@"tips9.png"],@[],@[]];
+    NSArray *stage7Tips_tutorial0 =@[@[@"tips1.png"],@[@"tips2.png",@"tips3.png",@"tips4.png"],@[@"tips5.png"],@[@"tips6.png",@"tips7.png",@"tips8.png",@"tips9.png"]];
     
     //tutorial4（运动无极限）
     NSArray *stage4Tips_turoial4 = @[@[@"tips1.png",@"tips2.png"]];
@@ -775,6 +781,8 @@ static TutorialCoreManager* _defaultTutorialCoreManager;
                                 @[]
                                 ];
     
+    
+    
     //画的类型
     NSArray *stageTypeList = @[
                                
@@ -787,12 +795,18 @@ static TutorialCoreManager* _defaultTutorialCoreManager;
                                
                                //                                @[],
                                
-                               @[@0,@0,@0,@0,@0,@0,@0,@0,@0,@0],
-                               @[@1,@1,@1,@1,@1,@1,@1,@1,@1,@1],
-                               @[@0,@0,@0,@0,@0,@0,@0,@0,@0,@0],
-                               @[@1,@1,@1,@1,@1,@1,@1,@1,@1,@1],
-                               @[@2,@2,@2,@2,@2,@2,@2,@2,@2,@2],
-                               @[@2,@2,@2,@2,@2,@2,@2,@2,@2,@2]
+//                               @[@0,@0,@0,@0,@0,@0,@0,@0,@0,@0],
+//                               @[@1,@1,@1,@1,@1,@1,@1,@1,@1,@1],
+//                               @[@0,@0,@0,@0,@0,@0,@0,@0,@0,@0],
+//                               @[@1,@1,@1,@1,@1,@1,@1,@1,@1,@1],
+//                               @[@2,@2,@2,@2,@2,@2,@2,@2,@2,@2],
+//                               @[@2,@2,@2,@2,@2,@2,@2,@2,@2,@2]
+                                SE(SE_NORMAL),
+                                SE(SE_JIANBI),
+                                SE(SE_COLOR),
+                                SE(SE_JIANBI),
+                                SE(SE_NORMAL),
+                                SE(SE_COLOR)
                                ];
     
     //三次元关卡stage的start Index

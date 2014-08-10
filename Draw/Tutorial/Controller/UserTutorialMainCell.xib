@@ -17,7 +17,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="290" height="105"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                     </imageView>
-                    <view alpha="0.40000000000000002" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="l6U-8P-Mme">
+                    <view alpha="0.40000000000000002" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="l6U-8P-Mme">
                         <rect key="frame" x="0.0" y="85" width="290" height="20"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
@@ -54,12 +54,12 @@
                             <constraint firstItem="AVB-UF-Fo1" firstAttribute="top" secondItem="l6U-8P-Mme" secondAttribute="top" constant="4" id="fuK-3p-a06"/>
                         </constraints>
                     </view>
-                    <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="sql-Ey-6EW" userLabel="button and label View">
-                        <rect key="frame" x="72" y="10" width="145" height="80"/>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sql-Ey-6EW" userLabel="button and label View">
+                        <rect key="frame" x="72" y="10" width="146" height="80"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LR0-YB-7ux">
-                                <rect key="frame" x="23" y="28" width="100" height="25"/>
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LR0-YB-7ux">
+                                <rect key="frame" x="24" y="28" width="100" height="25"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
@@ -73,7 +73,7 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                             </button>
-                            <label hidden="YES" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fhu-Ld-yTS">
+                            <label hidden="YES" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fhu-Ld-yTS">
                                 <rect key="frame" x="42" y="54" width="60" height="25"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -84,13 +84,8 @@
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="LR0-YB-7ux" firstAttribute="top" secondItem="sql-Ey-6EW" secondAttribute="top" constant="28" id="3fv-5p-DAc"/>
                             <constraint firstItem="LR0-YB-7ux" firstAttribute="centerX" secondItem="fhu-Ld-yTS" secondAttribute="centerX" constant="1" id="AEy-RP-fbU"/>
-                            <constraint firstItem="fhu-Ld-yTS" firstAttribute="centerX" secondItem="sql-Ey-6EW" secondAttribute="centerX" id="ZpL-sW-qHt"/>
-                            <constraint firstItem="fhu-Ld-yTS" firstAttribute="top" secondItem="sql-Ey-6EW" secondAttribute="top" constant="54" id="bXO-Ya-idY"/>
-                            <constraint firstItem="fhu-Ld-yTS" firstAttribute="leading" secondItem="sql-Ey-6EW" secondAttribute="leading" constant="42" id="g6b-Ea-aN0"/>
-                            <constraint firstItem="LR0-YB-7ux" firstAttribute="centerY" secondItem="sql-Ey-6EW" secondAttribute="centerY" constant="0.5" id="mDH-uE-8FT"/>
-                            <constraint firstAttribute="bottom" secondItem="fhu-Ld-yTS" secondAttribute="bottom" constant="1" id="wK6-lz-Ez2"/>
+                            <constraint firstAttribute="centerX" secondItem="LR0-YB-7ux" secondAttribute="centerX" id="Rgv-zk-i5p"/>
                         </constraints>
                     </view>
                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fVC-qC-yrc" userLabel="difficultyLabel">
@@ -121,13 +116,14 @@
                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                 <constraints>
                     <constraint firstItem="LWl-3k-Pwp" firstAttribute="leading" secondItem="l6U-8P-Mme" secondAttribute="leading" id="Cdi-z1-FGN"/>
-                    <constraint firstItem="l6U-8P-Mme" firstAttribute="top" secondItem="sql-Ey-6EW" secondAttribute="bottom" constant="-5" id="Dgj-WT-ebE"/>
                     <constraint firstItem="l6U-8P-Mme" firstAttribute="leading" secondItem="dB4-Ko-gd6" secondAttribute="leading" id="GG0-4r-B3D"/>
                     <constraint firstAttribute="bottom" secondItem="l6U-8P-Mme" secondAttribute="bottom" constant="14" id="H5x-51-kGS"/>
+                    <constraint firstItem="sql-Ey-6EW" firstAttribute="top" secondItem="dB4-Ko-gd6" secondAttribute="top" constant="10" id="KGU-ku-Nlv"/>
+                    <constraint firstItem="sql-Ey-6EW" firstAttribute="leading" secondItem="dB4-Ko-gd6" secondAttribute="leading" constant="72" id="KwL-ZL-6X8"/>
                     <constraint firstItem="LWl-3k-Pwp" firstAttribute="top" secondItem="dB4-Ko-gd6" secondAttribute="top" id="L5V-e1-PVy"/>
-                    <constraint firstItem="sql-Ey-6EW" firstAttribute="leading" secondItem="dB4-Ko-gd6" secondAttribute="leading" constant="72" id="R2I-8j-EhE"/>
+                    <constraint firstAttribute="bottom" secondItem="sql-Ey-6EW" secondAttribute="bottom" constant="29" id="MxM-Ij-XRy"/>
                     <constraint firstItem="l6U-8P-Mme" firstAttribute="trailing" secondItem="LWl-3k-Pwp" secondAttribute="trailing" id="bLM-PN-9Sr"/>
-                    <constraint firstItem="sql-Ey-6EW" firstAttribute="top" secondItem="dB4-Ko-gd6" secondAttribute="top" constant="10" id="d6I-GG-35q"/>
+                    <constraint firstAttribute="trailing" secondItem="sql-Ey-6EW" secondAttribute="trailing" constant="72" id="fU1-Ov-QtI"/>
                     <constraint firstAttribute="trailing" secondItem="LWl-3k-Pwp" secondAttribute="trailing" id="grl-02-Spd"/>
                     <constraint firstAttribute="bottom" secondItem="LWl-3k-Pwp" secondAttribute="bottom" constant="14" id="oVC-iS-y4Z"/>
                 </constraints>
