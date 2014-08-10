@@ -386,7 +386,7 @@ static DrawDataService* _defaultDrawDataService = nil;
     
     NSData* bgImageData = nil;
     if (draft.bgImage){
-        bgImageData = UIImagePNGRepresentation(draft.bgImage); //[draft.bgImage data];
+        bgImageData = UIImagePNGRepresentation(draft.bgImage); // make sure to upload PNG image here
     }
     
     int opusScore = [draft.score intValue];
