@@ -128,6 +128,7 @@ static BOOL gIsShowGuidePage = NO;
                                                             duration:duration];
 
     [self.layerList addObject:layer];
+    [layer release];
 }
 
 - (void)showLoginDialog

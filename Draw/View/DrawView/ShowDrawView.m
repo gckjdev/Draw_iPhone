@@ -653,6 +653,7 @@ typedef enum {
     CGImageDestinationSetProperties(destImg, (__bridge CFDictionaryRef)gifProperties);
     CGImageDestinationFinalize(destImg);
     CFRelease(destImg);
+    CFRelease(url);
     return;
 }
 
