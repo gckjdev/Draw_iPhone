@@ -29,7 +29,8 @@
 #import "GameSNSService.h"
 #import "PurchaseVipController.h"
 #import "UIImageUtil.h"
-#import "GifViewController.h"//TODO
+#import "GifViewController.h"
+#import "UIImageExt.h"
 
 #define BUTTON_INDEX_OFFSET 20120229
 #define IMAGE_WIDTH 93
@@ -534,7 +535,7 @@ typedef enum{
     ReplayObject *obj = [ReplayObject obj];
     obj.isNewVersion = isNewVersion;
     obj.canvasSize = [currentPaint canvasSize];
-    obj.bgImage = [[MyPaintManager defaultManager] bgImageForPaint:currentPaint];
+    obj.bgImage = nil; //[[MyPaintManager defaultManager] bgImageForPaint:currentPaint];
     obj.actionList = [currentPaint drawActionList];
     obj.layers = currentPaint.layers;
     
@@ -542,9 +543,13 @@ typedef enum{
                                    begin:0
                                      end:[obj.actionList count]-1
                              bgImageName:@"temp_123"
-                                                  bgColor:[UIColor clearColor]];
+                                                  bgColor:nil];
     
     if (image){
+        
+        NSData* data = UIImagePNGRepresentation(image);
+        [data writeToFile:@"/temp/123.png" atomically:YES];
+        
         UIImageWriteToSavedPhotosAlbum(image,
                                        nil,
                                        NULL,
