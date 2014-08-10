@@ -2928,3 +2928,7 @@
 "kAlreadyConquer" = "本作品已经提交过了，不能重复提交。是否重新创作一个作品闯关？";
 "kConfirmSubmitConquer" = "确认提交本次闯关作品吗？";
 
+"kMetroHomePainting" = "画画";
+"kMetroHomeLearning" = "学画画";
+"kMetroHomeForum" = "论坛";
+"kMetroHomeGallery" = "精彩作品";
