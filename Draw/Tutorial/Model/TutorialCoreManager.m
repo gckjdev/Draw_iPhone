@@ -810,12 +810,12 @@ static TutorialCoreManager* _defaultTutorialCoreManager;
 //                               @[@1,@1,@1,@1,@1,@1,@1,@1,@1,@1],
 //                               @[@2,@2,@2,@2,@2,@2,@2,@2,@2,@2],
 //                               @[@2,@2,@2,@2,@2,@2,@2,@2,@2,@2]
-                                SE(SE_NORMAL),
-                                SE(SE_JIANBI),
-                                SE(SE_COLOR),
-                                SE(SE_JIANBI),
-                                SE(SE_NORMAL),
-                                SE(SE_COLOR)
+                                SE(SE_NORMAL),//小吉
+                                SE(SE_JIANBI),//健身
+                                SE(SE_NORMAL),//色彩
+                                SE(SE_JIANBI),//奥运
+                                SE(SE_NORMAL),//女孩
+                                SE(SE_COLOR)  //三次元
                                ];
     
     //三次元关卡stage的start Index
