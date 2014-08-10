@@ -411,7 +411,7 @@
     return [self.userStage defeatPercent];
 }
 
-#define ADD_HEIGHT                  (ISIPAD ? 35 : 16)
+#define ADD_HEIGHT                  (ISIPAD ? 26 : 13)
 
 - (UIImage*)completeImage:(UIImage*)image
 {

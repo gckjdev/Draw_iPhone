@@ -91,4 +91,11 @@
                        startIndex:(int)startIndex
                          endIndex:(int)endIndex;
 
++ (UIImage*)createImageWithReplayObj:(ReplayObject *)obj
+                               begin:(NSUInteger)begin
+                                 end:(NSUInteger)end
+                         bgImageName:(NSString*)bgImageName
+                             bgColor:(UIColor*)bgColor;
+
+
 @end

@@ -525,6 +525,35 @@ typedef enum{
     return;
 }
 
+- (void)createAlphaImage
+{
+    MyPaint* currentPaint = _selectedPaint;
+    
+    BOOL isNewVersion = [PPConfigManager currentDrawDataVersion] < [currentPaint drawDataVersion];
+    
+    ReplayObject *obj = [ReplayObject obj];
+    obj.isNewVersion = isNewVersion;
+    obj.canvasSize = [currentPaint canvasSize];
+    obj.bgImage = [[MyPaintManager defaultManager] bgImageForPaint:currentPaint];
+    obj.actionList = [currentPaint drawActionList];
+    obj.layers = currentPaint.layers;
+    
+    UIImage* image = [DrawPlayer createImageWithReplayObj:obj
+                                   begin:0
+                                     end:[obj.actionList count]-1
+                             bgImageName:@"temp_123"
+                                                  bgColor:[UIColor clearColor]];
+    
+    if (image){
+        UIImageWriteToSavedPhotosAlbum(image,
+                                       nil,
+                                       NULL,
+                                       nil);
+    }
+
+    
+}
+
 - (void)saveGif
 {
 //#ifdef DEBUG
@@ -645,7 +674,12 @@ typedef enum{
         [self share:TYPE_QQ];
     }
     else if (buttonIndex == SHARE_FACEBOOK){
+
+#ifdef DEBUG
+        [self createAlphaImage];
+#else
         [self share:TYPE_FACEBOOK];
+#endif
     }
     else if (buttonIndex == DELETE_ALL){
         

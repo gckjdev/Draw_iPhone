@@ -423,7 +423,11 @@
             obj.layers = draw.layers;
             obj.bgImage = bgImage;
             
-            return [DrawPlayer createImageWithReplayObj:obj begin:startIndex end:endIndex bgImageName:bgImageName];
+    return [DrawPlayer createImageWithReplayObj:obj
+                                          begin:startIndex
+                                            end:endIndex
+                                    bgImageName:bgImageName
+                                        bgColor:[UIColor whiteColor]];
 //            [(*retImage) retain];
 //            
 //            [pool drain];
@@ -579,6 +583,7 @@
                                begin:(NSUInteger)begin
                                  end:(NSUInteger)end
                          bgImageName:(NSString*)bgImageName
+                             bgColor:(UIColor*)bgColor
 {
     PPDebug(@"<createImageWithReplayObj> begin=%d, end=%d", begin, end);
     
@@ -599,7 +604,7 @@
         return nil;
     }
     
-    if (begin == 0 && (end >= (totalDrawActiontCount - 1))){
+    if (begin == 0 && (end > (totalDrawActiontCount - 1))){
         // begin and end is the whole list, no need to do any extra actions
         return nil;
     }
@@ -608,7 +613,7 @@
     UIImage *img = nil; // create bg image
     if (end > 0){
         // if begin from 0, means no background image needed
-        img = [playerForBgImage.showView createImageAtIndex:begin bgColor:[UIColor whiteColor]];
+        img = [playerForBgImage.showView createImageAtIndex:end bgColor:bgColor];
         PPDebug(@"<createImageWithReplayObj> image size=%@", NSStringFromCGSize(img.size));
     }
     
