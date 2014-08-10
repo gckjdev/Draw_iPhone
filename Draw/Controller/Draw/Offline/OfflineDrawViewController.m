@@ -2509,7 +2509,14 @@
         return;
     }    
     
-    BOOL isBlank = ([drawView.drawActionList count] == 0);
+    BOOL isBlank = NO;
+    if ([self isLearnType]){
+        isBlank = ([drawView.drawActionList count] <= 1);
+    }
+    else{
+        isBlank = ([drawView.drawActionList count] == 0);
+    }
+    
     
     if (isBlank && targetType != TypePhoto) {
         CommonDialog *dialog = [CommonDialog createDialogWithTitle:NSLS(@"kBlankDrawTitle") message:NSLS(@"kBlankDrawMessage") style:CommonDialogStyleSingleButton];
