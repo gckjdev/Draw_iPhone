@@ -1045,6 +1045,28 @@
     
 }
 
+- (void)showAskSubmitConquerDraw
+{
+    NSString* message = [NSString stringWithFormat:NSLS(@"kConfirmSubmitConquer")];
+    CommonDialog* dialog = [CommonDialog createDialogWithTitle:NSLS(@"kMessage")
+                                                       message:message
+                                                         style:CommonDialogStyleDoubleButton];
+    
+//    [dialog.oKButton setTitle:NSLS(@"kConquerAgain") forState:UIControlStateNormal];
+//    [dialog.cancelButton setTitle:NSLS(@"Back") forState:UIControlStateNormal];
+    
+    [dialog setClickCancelBlock:^(id view){
+    }];
+    
+    [dialog setClickOkBlock:^(id view){
+        [self handleSubmitForLearnDraw];
+    }];
+    
+    [dialog showInView:self.view];
+    
+    
+}
+
 - (BOOL)showStageFirstChapterTips
 {
     if (targetType == TypePracticeDraw){
@@ -2068,19 +2090,31 @@
     return title;
 }
 
-- (void)handleSubmitForLearnDraw
+- (void)preHandleSubmitForLearnDraw
 {
-
     if ([self isGotoNextChapter]){
         [self gotoNextChapter];
         return;
     }
     
-    if (targetType == TypeConquerDraw && [self.draft.hasSubmit boolValue]){
-        [self showAlreadySubmitDialog];
-        return;
+    if (targetType == TypeConquerDraw){
+        if ([self.draft.hasSubmit boolValue]){
+            // 闯关，作品已提交，提示“已提交”信息
+            [self showAlreadySubmitDialog];
+        }
+        else{
+            // 闯关，作品未提交，询问确认
+            [self showAskSubmitConquerDraw];
+        }
+    }
+    else{
+        [self handleSubmitForLearnDraw];
     }
     
+}
+
+- (void)handleSubmitForLearnDraw
+{
     //  笔画数预处理
     NSInteger minus = [self strokeLimitWithMinStrokeNum:[PPConfigManager getMinStrokeNum]
                                             MinPointNum:[PPConfigManager getMinPointNum]];
@@ -2486,7 +2520,7 @@
     }
     else if ([self isLearnType]){
         // 学画画闯关或者修炼
-        [self handleSubmitForLearnDraw];
+        [self preHandleSubmitForLearnDraw];
     }
     else {
         if(self.contest){

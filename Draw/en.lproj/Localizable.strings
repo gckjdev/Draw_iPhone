@@ -2880,3 +2880,4 @@
 "kHelpViewInOfflineDrawIveKnew" = " 我知道了";
 
 "kAlreadyConquer" = "You have already submit this opus, cannot submit again. Do you want to restart?";
+"kConfirmSubmitConquer" = "Are you sure to submit now?";
