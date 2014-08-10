@@ -291,7 +291,13 @@
 {
     UIImage *image;
     PPDebug(@"<createImageWithBGImage> size=%@", NSStringFromCGSize(self.view.bounds.size));
-    UIGraphicsBeginImageContext(self.view.bounds.size);
+//    UIGraphicsBeginImageContext(self.view.bounds.size);
+
+    if ([[UIScreen mainScreen] respondsToSelector:@selector(scale)])
+        UIGraphicsBeginImageContextWithOptions(self.view.bounds.size, NO, [UIScreen mainScreen].scale);
+    else
+        UIGraphicsBeginImageContext(self.view.bounds.size);
+    
     CGContextRef ctx = UIGraphicsGetCurrentContext();
 
     if (bgColor){

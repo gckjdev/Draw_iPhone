@@ -1012,15 +1012,20 @@
         return;
     }
     else if (targetType == TypePracticeDraw){
-        // 如果是当前修炼的第一小节，则弹出提示信息，并且是第一次开始草稿，尝试提示第一小节信息
-        [self showStageFirstChapterTips];
-//        if ([self showStageFirstChapterTips] == NO){
-//            [self showHelpView];
-//        }
+        if ([[UserManager defaultManager] isReadLearnDrawHelp]){
+            // 如果是当前修炼的第一小节，则弹出提示信息，并且是第一次开始草稿，尝试提示第一小节信息
+            [self showStageFirstChapterTips];
+        }
+        else{
+            [self showHelpView:^{
+                // 如果是当前修炼的第一小节，则弹出提示信息，并且是第一次开始草稿，尝试提示第一小节信息
+                [self showStageFirstChapterTips];
+            }];
+        }
     }
-//    else{
-    [self showHelpView];
-//    }
+    else{
+        [self showHelpView:nil];
+    }
 }
 
 // 显示闯关作品已经提交过的信息
@@ -1080,7 +1085,7 @@
     return NO;
 }
 
-- (void)showHelpView
+- (void)showHelpView:(dispatch_block_t)callback
 {
     if ([self isLearnType] == NO){
         return;
@@ -1147,7 +1152,8 @@
     [spotHelpList addObject:obj3];
     
     [SpotHelpView show:self.view
-          spotHelpList:spotHelpList];
+          spotHelpList:spotHelpList
+              callback:callback];
 
 }
 
