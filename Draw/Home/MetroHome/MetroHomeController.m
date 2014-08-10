@@ -33,6 +33,7 @@
 @interface MetroHomeController ()
 
 @property(nonatomic, retain) NSTimer *statisTimer;
+@property(nonatomic, retain) BrickView *bbsForumView;
 
 @end
 
@@ -92,7 +93,7 @@
 - (void)didSyncStatisticWithResultCode:(int)resultCode
 {
     if (resultCode == 0) {
-        [self updateAllBadge:nil];
+        [self updateAllBadge];
     }
 }
 
@@ -109,14 +110,14 @@
     [super viewDidLoad];
     
     [[BulletinService defaultService] syncBulletins:^(int resultCode) {
-        [self updateAllBadge:nil];
+        [self updateAllBadge];
     }];
     
     // update avatar view
     [self registerNotificationWithName:NOTIFCATION_USER_DATA_CHANGE usingBlock:^(NSNotification *note) {
         PPDebug(@"recv NOTIFCATION_USER_DATA_CHANGE, update header view panel");
         [self updateAvatarView];
-        [self updateAllBadge:nil];
+        [self updateAllBadge];
     }];
     
     // update background view
@@ -344,7 +345,7 @@
 -(IBAction)goToAnnounce:(id)sender
 {
     [self showBulletinView];
-    [self updateAllBadge:nil];
+    [self updateAllBadge];
 }
 
 -(IBAction)goToUserDetail:(id)sender
@@ -445,7 +446,7 @@
     [[self.bbList objectAtIndex:index] clickAction:self];
 }
 
-- (void)updateAllBadge:(BrickView *)view
+- (void)updateAllBadge
 {
     StatisticManager *manager = [StatisticManager defaultManager];
     
@@ -464,18 +465,13 @@
     
     
     [self updateBulletinBadge:[manager bulletinCount]];
-
     
-    //TODO the avatar Badge
-    
-    // TODO
-    //    [self updateBadgeBBS:HomeMenuTypeDrawFriend badge:manager.fanCount];
-    if(view!=nil){
+    if (self.bbsForumView != nil){
         if (manager.bbsActionCount == 0){
-            [view setBottomLabelText:@"Forum"];
+            [self.bbsForumView setBottomLabelText:@"Forum"];
         }
         else{
-            [view setBottomLabelText:[NSString stringWithFormat:@"Forum (%ld)",manager.bbsActionCount]];
+            [self.bbsForumView setBottomLabelText:[NSString stringWithFormat:@"Forum (%ld)",manager.bbsActionCount]];
         }
     }
 }
@@ -563,7 +559,7 @@
     
     [self registerNotificationWithName:NOTIFCATION_CONTEST_DATA_CHANGE usingBlock:^(NSNotification *note) {
         PPDebug(@"recv NOTIFCATION_CONTEST_DATA_CHANGE, update header view panel");
-        [self updateAllBadge:nil];
+        [self updateAllBadge];
     }];
 }
 
@@ -642,6 +638,9 @@
     [learningView setBackgroundColor:[UIColor colorWithRed:0.984f green:0.431f blue:0.588f alpha:1.0f]];
     [forumView setBackgroundColor:[UIColor colorWithRed:0.459f green:0.784f blue:0.965f alpha:1.0f]];
     [amazingOpusView setBackgroundColor:[UIColor colorWithRed:0.553f green:0.612f blue:0.98f alpha:1.0f]];
+    
+    self.bbsForumView = forumView;
+    
 //    
 //    //设置提醒图标(论坛)
 //    CGFloat badgeViewX = 60;
@@ -652,7 +651,7 @@
 //    [forumView addSubview:imageView];
     
     
-    [self updateAllBadge:forumView];
+    [self updateAllBadge];
     
     [self.mainView addSubview:paintingView];
     [self.mainView addSubview:learningView];
@@ -724,7 +723,7 @@
     UIImage *amazingImage = [UIImage imageNamed:@"jingcaizuopin"];
     BrickView *amazingOpusView = [[[BrickView alloc] initWithFrame:self.amazingOpusView.bounds title:@"精彩作品" imageTitle:@"Gallery" image:amazingImage] autorelease];
     
-    
+    self.bbsForumView = forumView;
     
     //建立色块颜色
     [paintingView setBackgroundColor:[UIColor colorWithRed:0.757f green:0.565f blue:0.965f alpha:1.0f]];
@@ -732,7 +731,7 @@
     [forumView setBackgroundColor:[UIColor colorWithRed:0.459f green:0.784f blue:0.965f alpha:1.0f]];
     [amazingOpusView setBackgroundColor:[UIColor colorWithRed:0.553f green:0.612f blue:0.98f alpha:1.0f]];
     
-    [self updateAllBadge:forumView];
+    [self updateAllBadge];
 
     [self.mainView addSubview:paintingView];
     [self.mainView addSubview:learningView];
