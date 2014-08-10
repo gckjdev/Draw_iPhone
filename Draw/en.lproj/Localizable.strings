@@ -2846,12 +2846,14 @@
 "kResultPageDesc" = "OMG! YOU HAVE BEAT";
 "kResultPageCount" = "%@ USERS IN THE WORLD!";
 "kResultPageScore" = "YOUR SCORE IS %@";
+"kResultPageFinishTutorial" = "CONGRATULATION,FINISHED THE TUTORIAL!";
 
 "kMetroIndexButton" = "Timeline";
 "kMetroDocumentButton" = "Draft";
 "kMetroMessageButton" = "Chat";
 "kMetroMoreButton" = "More";
 
+"kSealResultFinish" = "FINISH";
 "kSealResultPass" = "PASS";
 "kSealResultFail" = "FAIL";
 
