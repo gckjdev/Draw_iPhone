@@ -253,7 +253,7 @@
         font = AD_FONT(50, 20);
     }
     else{
-        font = AD_FONT(36, 16);
+        font = AD_FONT(36, 13);
     }
     ResultSeal *circleView = [[ResultSeal alloc] initWithFrame:CGRectMake(SEAL_POSITION_X, SEAL_POSITION_Y, SEAL_POSITION_WIDTH, SEAL_POSITION_HEIGHT) borderColor:COLOR_RED font:font text:text];
     circleView.backgroundColor = [UIColor clearColor];
@@ -320,6 +320,8 @@
 //                               range:[self getRangeInNsstringLong:sentenceTwo ShorterSentence:count]];
     self.lineThreeLabel.text = sentenceTwo;
     
+    NSString *defeatCount = [NSString stringWithFormat:@"%d",self.userStage.defeatCount];
+    NSString *sentenceFour = [NSString stringWithFormat:NSLS(@"kResultPageCount"),defeatCount];
     
     //闯关结果
     BOOL isTutorialComplete = [[UserTutorialManager defaultManager] isLastStage:self.userStage];
@@ -331,7 +333,8 @@
         //课程完成
         if(isTutorialComplete){
 //            result = [NSString stringWithFormat:NSLS(@"kConquerResultPassComplete")];
-            sealResult = NSLS(@"kSealResultPass");
+            sealResult = NSLS(@"kSealResultFinish");
+            sentenceFour = [NSString stringWithFormat:@"%@%@",sentenceFour,NSLS(@"kResultPageFinishTutorial")];
 
         }
         //没有完成继续下一关
@@ -346,8 +349,6 @@
         sealResult = NSLS(@"kSealResultFail");
     }
     
-    NSString *defeatCount = [NSString stringWithFormat:@"%d",self.userStage.defeatCount];
-    NSString *sentenceFour = [NSString stringWithFormat:NSLS(@"kResultPageCount"),defeatCount];
     NSMutableAttributedString *resultMutable = [[[NSMutableAttributedString alloc]
                                                  initWithString:sentenceFour]autorelease];
     [resultMutable addAttribute:NSForegroundColorAttributeName
@@ -356,7 +357,10 @@
     [resultMutable addAttribute:NSFontAttributeName
                           value:AD_FONT(30, 18)
                           range:[self getRangeInNsstringLong:sentenceFour ShorterSentence:defeatCount]];
+
+    
     self.lineFourLabel.attributedText = resultMutable;
+
 
     
     [self makeSeal:sealResult];
