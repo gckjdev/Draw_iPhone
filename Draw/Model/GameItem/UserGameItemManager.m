@@ -116,12 +116,10 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(UserGameItemManager);
         return YES;
     }
 
-    // TODO don't show pen here
-    /*
+    // don't show pen here
     if ([[UserManager defaultManager] isLearning]){
         return YES;
     }
-    */
     
     if ([self isDefaultItem:itemId]) {
         return YES;
