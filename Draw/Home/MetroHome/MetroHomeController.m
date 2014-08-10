@@ -33,7 +33,7 @@
 @interface MetroHomeController ()
 
 @property(nonatomic, retain) NSTimer *statisTimer;
-@property(nonatomic, retain) BrickView *forumView;
+@property(nonatomic, retain) BrickView *bbsForumView;
 
 @end
 
@@ -454,18 +454,13 @@
     
     
     [self updateBulletinBadge:[manager bulletinCount]];
-
     
-    //TODO the avatar Badge
-    
-    // TODO
-    //    [self updateBadgeBBS:HomeMenuTypeDrawFriend badge:manager.fanCount];
-    if (self.forumView != nil){
+    if (self.bbsForumView != nil){
         if (manager.bbsActionCount == 0){
-            [self.forumView setBottomLabelText:@"Forum"];
+            [self.bbsForumView setBottomLabelText:@"Forum"];
         }
         else{
-            [self.forumView setBottomLabelText:[NSString stringWithFormat:@"Forum (%ld)",manager.bbsActionCount]];
+            [self.bbsForumView setBottomLabelText:[NSString stringWithFormat:@"Forum (%ld)",manager.bbsActionCount]];
         }
     }
 }
@@ -633,7 +628,7 @@
     [forumView setBackgroundColor:[UIColor colorWithRed:0.459f green:0.784f blue:0.965f alpha:1.0f]];
     [amazingOpusView setBackgroundColor:[UIColor colorWithRed:0.553f green:0.612f blue:0.98f alpha:1.0f]];
     
-    self.forumView = forumView;
+    self.bbsForumView = forumView;
     
 //    
 //    //设置提醒图标(论坛)
