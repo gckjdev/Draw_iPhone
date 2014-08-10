@@ -2923,7 +2923,7 @@
 "kHelpViewInOfflineDrawSubmitButtonGuide" = "完成作品后\n狂点此处\n提交作品\n查看打分";
 "kHelpViewInOfflineDrawHelpButtonGuide" = "帮助\n提供绘画知识点\n以及绘画技法";
 "kHelpViewInOfflineDrawCopyViewGuide" = "临摹作品框\n可回放作品绘画过程";
-"kHelpViewInOfflineDrawIveKnew" = " 我知道了";
+"kHelpViewInOfflineDrawIveKnew" = "不再提醒";
 
 "kAlreadyConquer" = "本作品已经提交过了，不能重复提交。是否重新创作一个作品闯关？";
 "kConfirmSubmitConquer" = "确认提交本次闯关作品吗？";
