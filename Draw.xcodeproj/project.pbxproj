@@ -6207,6 +6207,14 @@
 		CAFCF2041996226B008C8854 /* draw_page_option@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CAFCF2021996226B008C8854 /* draw_page_option@2x.png */; };
 		CAFCF2051996226B008C8854 /* draw_page_option@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CAFCF2021996226B008C8854 /* draw_page_option@2x.png */; };
 		CAFCF2061996226B008C8854 /* draw_page_option@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CAFCF2021996226B008C8854 /* draw_page_option@2x.png */; };
+		CAFCF228199792B6008C8854 /* defaultBillBoard.jpg in Resources */ = {isa = PBXBuildFile; fileRef = CAFCF22D199792B6008C8854 /* defaultBillBoard.jpg */; };
+		CAFCF229199792B6008C8854 /* defaultBillBoard.jpg in Resources */ = {isa = PBXBuildFile; fileRef = CAFCF22D199792B6008C8854 /* defaultBillBoard.jpg */; };
+		CAFCF22A199792B6008C8854 /* defaultBillBoard.jpg in Resources */ = {isa = PBXBuildFile; fileRef = CAFCF22D199792B6008C8854 /* defaultBillBoard.jpg */; };
+		CAFCF22B199792B6008C8854 /* defaultBillBoard.jpg in Resources */ = {isa = PBXBuildFile; fileRef = CAFCF22D199792B6008C8854 /* defaultBillBoard.jpg */; };
+		CAFCF22F199792CF008C8854 /* defaultBillBoard@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = CAFCF234199792CF008C8854 /* defaultBillBoard@2x.jpg */; };
+		CAFCF230199792CF008C8854 /* defaultBillBoard@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = CAFCF234199792CF008C8854 /* defaultBillBoard@2x.jpg */; };
+		CAFCF231199792CF008C8854 /* defaultBillBoard@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = CAFCF234199792CF008C8854 /* defaultBillBoard@2x.jpg */; };
+		CAFCF232199792CF008C8854 /* defaultBillBoard@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = CAFCF234199792CF008C8854 /* defaultBillBoard@2x.jpg */; };
 		CAFEFE2816606FC200441D77 /* ANGifEncoder.m in Sources */ = {isa = PBXBuildFile; fileRef = CAFEFC4B16606FC100441D77 /* ANGifEncoder.m */; };
 		CAFEFE2916606FC200441D77 /* ANGifGraphicControlExt.m in Sources */ = {isa = PBXBuildFile; fileRef = CAFEFC4D16606FC100441D77 /* ANGifGraphicControlExt.m */; };
 		CAFEFE2A16606FC200441D77 /* ANGifLogicalScreenDesc.m in Sources */ = {isa = PBXBuildFile; fileRef = CAFEFC4F16606FC100441D77 /* ANGifLogicalScreenDesc.m */; };
@@ -6338,10 +6346,6 @@
 		D865421E1980B0FA007D60E7 /* TutorialInfoController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = D865421C1980B0FA007D60E7 /* TutorialInfoController~ipad.xib */; };
 		D865421F1980B0FA007D60E7 /* TutorialInfoController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = D865421C1980B0FA007D60E7 /* TutorialInfoController~ipad.xib */; };
 		D86542201980B0FA007D60E7 /* TutorialInfoController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = D865421C1980B0FA007D60E7 /* TutorialInfoController~ipad.xib */; };
-		D8698CDD199501B20015CE21 /* defaultBillBoard.jpg in Resources */ = {isa = PBXBuildFile; fileRef = D8698CDC199501B20015CE21 /* defaultBillBoard.jpg */; };
-		D8698CDE199501B20015CE21 /* defaultBillBoard.jpg in Resources */ = {isa = PBXBuildFile; fileRef = D8698CDC199501B20015CE21 /* defaultBillBoard.jpg */; };
-		D8698CDF199501B20015CE21 /* defaultBillBoard.jpg in Resources */ = {isa = PBXBuildFile; fileRef = D8698CDC199501B20015CE21 /* defaultBillBoard.jpg */; };
-		D8698CE0199501B20015CE21 /* defaultBillBoard.jpg in Resources */ = {isa = PBXBuildFile; fileRef = D8698CDC199501B20015CE21 /* defaultBillBoard.jpg */; };
 		D869F8EF19906D8A00E6756A /* iphone5-4.png in Resources */ = {isa = PBXBuildFile; fileRef = D869F8EB19906D8A00E6756A /* iphone5-4.png */; };
 		D869F8F019906D8B00E6756A /* iphone5-4.png in Resources */ = {isa = PBXBuildFile; fileRef = D869F8EB19906D8A00E6756A /* iphone5-4.png */; };
 		D869F8F119906D8B00E6756A /* iphone5-4.png in Resources */ = {isa = PBXBuildFile; fileRef = D869F8EB19906D8A00E6756A /* iphone5-4.png */; };
@@ -10813,6 +10817,10 @@
 		CAFCF2021996226B008C8854 /* draw_page_option@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "draw_page_option@2x.png"; sourceTree = "<group>"; };
 		CAFCF20A19965443008C8854 /* MainDataModel 20.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "MainDataModel 20.xcdatamodel"; sourceTree = "<group>"; };
 		CAFCF20B19965C45008C8854 /* MainDataModel 21.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "MainDataModel 21.xcdatamodel"; sourceTree = "<group>"; };
+		CAFCF22C199792B6008C8854 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = "zh-Hans"; path = "zh-Hans.lproj/defaultBillBoard.jpg"; sourceTree = "<group>"; };
+		CAFCF233199792CF008C8854 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = "zh-Hans"; path = "zh-Hans.lproj/defaultBillBoard@2x.jpg"; sourceTree = "<group>"; };
+		CAFCF235199792D9008C8854 /* en */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = en; path = en.lproj/defaultBillBoard.jpg; sourceTree = "<group>"; };
+		CAFCF236199792DD008C8854 /* en */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = en; path = "en.lproj/defaultBillBoard@2x.jpg"; sourceTree = "<group>"; };
 		CAFEFC4A16606FC100441D77 /* ANGifEncoder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ANGifEncoder.h; sourceTree = "<group>"; };
 		CAFEFC4B16606FC100441D77 /* ANGifEncoder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ANGifEncoder.m; sourceTree = "<group>"; };
 		CAFEFC4C16606FC100441D77 /* ANGifGraphicControlExt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ANGifGraphicControlExt.h; sourceTree = "<group>"; };
@@ -10926,7 +10934,6 @@
 		D837DCB31988FAB2001686BB /* UIColor+RGBValues.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+RGBValues.m"; sourceTree = "<group>"; };
 		D86542141980A941007D60E7 /* ResultShareAlertPageViewController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "ResultShareAlertPageViewController~ipad.xib"; sourceTree = "<group>"; };
 		D865421C1980B0FA007D60E7 /* TutorialInfoController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "TutorialInfoController~ipad.xib"; sourceTree = "<group>"; };
-		D8698CDC199501B20015CE21 /* defaultBillBoard.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = defaultBillBoard.jpg; sourceTree = "<group>"; };
 		D869F8EB19906D8A00E6756A /* iphone5-4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iphone5-4.png"; sourceTree = "<group>"; };
 		D869F8EC19906D8A00E6756A /* iphone5-1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iphone5-1.png"; sourceTree = "<group>"; };
 		D869F8ED19906D8A00E6756A /* iphone5-2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iphone5-2.png"; sourceTree = "<group>"; };
@@ -18402,8 +18409,9 @@
 		D80518A5196BD12200D350B3 /* Resource */ = {
 			isa = PBXGroup;
 			children = (
+				CAFCF22D199792B6008C8854 /* defaultBillBoard.jpg */,
+				CAFCF234199792CF008C8854 /* defaultBillBoard@2x.jpg */,
 				D87129531996284300F6B757 /* 9.png */,
-				D8698CDC199501B20015CE21 /* defaultBillBoard.jpg */,
 				D86D7CD01994C87B00D64C18 /* caogao.png */,
 				D86D7CD11994C87B00D64C18 /* gengduo.png */,
 				D86D7CD21994C87B00D64C18 /* xiaoxi.png */,
@@ -19267,7 +19275,6 @@
 				A461B4CC174CBAA70088B061 /* RankFirstView.xib in Resources */,
 				A461B4CD174CBAA70088B061 /* RankSecondView.xib in Resources */,
 				CACD6ABF18E03A29003F97C0 /* ShareSDKLocalizable.strings in Resources */,
-				D8698CDF199501B20015CE21 /* defaultBillBoard.jpg in Resources */,
 				A461B4CE174CBAA70088B061 /* TopPlayerView.xib in Resources */,
 				A461B4CF174CBAA70088B061 /* RankFirstView~ipad.xib in Resources */,
 				CA93D12E18F008FA002BB805 /* RennSDK.bundle in Resources */,
@@ -19734,6 +19741,7 @@
 				A4D8FB7317DB08170085061F /* shake@2x.png in Resources */,
 				A4D8FB7717DB08170085061F /* room_seat_bg_1@2x.png in Resources */,
 				A4D8FB7B17DB08170085061F /* room_seat_bg_2@2x.png in Resources */,
+				CAFCF22A199792B6008C8854 /* defaultBillBoard.jpg in Resources */,
 				A4563E6618A885B9005DAA03 /* finish@2x.png in Resources */,
 				A4D8FB7F17DB08170085061F /* room_seat_bg_3@2x.png in Resources */,
 				A4D8FB8317DB08170085061F /* room_seat_bg_4@2x.png in Resources */,
@@ -20204,6 +20212,7 @@
 				CAD8EE4818922F840057EC30 /* vip_buy_button@2x.png in Resources */,
 				CAD8EE4C18922F840057EC30 /* vip_title_ipad@2x.png in Resources */,
 				CAD8EE5018922F840057EC30 /* vip_title_iphone@2x.png in Resources */,
+				CAFCF231199792CF008C8854 /* defaultBillBoard@2x.jpg in Resources */,
 				CAD8EE5418922F840057EC30 /* vip_v@2x.png in Resources */,
 				EA68D4F91893B600003EB69A /* PurchaseVipController~ipad.xib in Resources */,
 				EA68D5011893C43A003EB69A /* group_footer_timeline@2x.png in Resources */,
@@ -20349,6 +20358,7 @@
 				C28A9DB31738F04B007A819F /* ContestOpusController~ipad.xib in Resources */,
 				C28A9DB41738F04B007A819F /* ContestController~ipad.xib in Resources */,
 				C28A9DB51738F04B007A819F /* ContestView~ipad.xib in Resources */,
+				CAFCF229199792B6008C8854 /* defaultBillBoard.jpg in Resources */,
 				C28A9DB61738F04B007A819F /* StatementController~ipad.xib in Resources */,
 				C28A9DB81738F04B007A819F /* MyCommentCell.xib in Resources */,
 				C28A9DB91738F04B007A819F /* MyCommentCell~ipad.xib in Resources */,
@@ -20678,6 +20688,7 @@
 				A4DDD15A17CDFD7B0029E562 /* shop_item_Draw.pb in Resources */,
 				A4DDD15E17CDFD7B0029E562 /* TraditionalChineseWord.strings in Resources */,
 				A4DDD16217CDFD7B0029E562 /* CN_Words_Dict.plist in Resources */,
+				CAFCF230199792CF008C8854 /* defaultBillBoard@2x.jpg in Resources */,
 				A4DDD16617CDFD7B0029E562 /* EN_Words_Dict.plist in Resources */,
 				A4DDD16A17CDFD7B0029E562 /* words.plist in Resources */,
 				A4DDD16E17CDFD7B0029E562 /* wordbase.zip in Resources */,
@@ -21182,7 +21193,6 @@
 				CA9AAFB918321621002DBAA5 /* sing_edit@2x.png in Resources */,
 				CA9AAFBD18321621002DBAA5 /* sing_image@2x.png in Resources */,
 				CA9AAFC118321621002DBAA5 /* sing_lyric@2x.png in Resources */,
-				D8698CDE199501B20015CE21 /* defaultBillBoard.jpg in Resources */,
 				CA9AAFC518321621002DBAA5 /* sing_pause@2x.png in Resources */,
 				CA9AAFC918321621002DBAA5 /* sing_play@2x.png in Resources */,
 				CA9AAFCD18321621002DBAA5 /* sing_record@2x.png in Resources */,
@@ -21600,6 +21610,7 @@
 				CA93D12818F008FA002BB805 /* PinterestSDKResources.bundle in Resources */,
 				CADECC7D16B0DA10001D414C /* bbs_post_detail_transfer@2x.png in Resources */,
 				CADECC9C16B11EF0001D414C /* bbs_post_top_bg@2x.png in Resources */,
+				CAFCF228199792B6008C8854 /* defaultBillBoard.jpg in Resources */,
 				CA853BFC16B3830B006FC155 /* bbs_post_detail_untop@2x.png in Resources */,
 				CA853C0716B3A472006FC155 /* BoardAdminListView.xib in Resources */,
 				CA853C0C16B3A48C006FC155 /* BoardAdminListView~ipad.xib in Resources */,
@@ -21732,6 +21743,7 @@
 				A440356117C5C96B00301EDD /* GuessSelectController~ipad.xib in Resources */,
 				A440356817C5CC9800301EDD /* DrawGuessController~ipad.xib in Resources */,
 				D81962411962677B00B4FBAF /* AllTutorialCell.xib in Resources */,
+				CAFCF22F199792CF008C8854 /* defaultBillBoard@2x.jpg in Resources */,
 				A440356C17C5CC9800301EDD /* GuessRankCell~ipad.xib in Resources */,
 				A440357017C5CC9800301EDD /* GuessRankListController~ipad.xib in Resources */,
 				A440357517C5FD3000301EDD /* WordSelectCell~ipad.xib in Resources */,
@@ -21785,7 +21797,6 @@
 				A4D8F9CD17DB08170085061F /* print_tipbig@2x.png in Resources */,
 				A4D8F9D117DB08170085061F /* reply_bg@2x.png in Resources */,
 				A4D8F9D517DB08170085061F /* round@2x.png in Resources */,
-				D8698CDD199501B20015CE21 /* defaultBillBoard.jpg in Resources */,
 				A4D8F9D917DB08170085061F /* round_mask@2x.png in Resources */,
 				A4D8F9DD17DB08170085061F /* score@2x.png in Resources */,
 				A4D8F9E117DB08170085061F /* timeset@2x.png in Resources */,
@@ -22839,7 +22850,6 @@
 				A4D8F9D817DB08170085061F /* round@2x.png in Resources */,
 				A4D8F9DC17DB08170085061F /* round_mask@2x.png in Resources */,
 				D87129571996284300F6B757 /* 9.png in Resources */,
-				D8698CE0199501B20015CE21 /* defaultBillBoard.jpg in Resources */,
 				A4D8F9E017DB08170085061F /* score@2x.png in Resources */,
 				A4D8F9E417DB08170085061F /* timeset@2x.png in Resources */,
 				A4D8F9E817DB08170085061F /* unloadbg@2x.png in Resources */,
@@ -23130,6 +23140,7 @@
 				D8A1E9C9197612B200F32735 /* MoreViewCell~ipad.xib in Resources */,
 				A4D8FEEA17DB089C0085061F /* gallery@2x.png in Resources */,
 				A4D8FEEE17DB089C0085061F /* graffiti@2x.png in Resources */,
+				CAFCF22B199792B6008C8854 /* defaultBillBoard.jpg in Resources */,
 				A4D8FEFA17DB089C0085061F /* green_button@2x.png in Resources */,
 				A4D8FEFE17DB089C0085061F /* highlight_mask@2x.png in Resources */,
 				A4D8FF0217DB089C0085061F /* common_home_badge@2x.png in Resources */,
@@ -23380,6 +23391,7 @@
 				A4170C1D18613E87007DF362 /* SingHotCell~ipad.xib in Resources */,
 				CA346CC418618B280098DE00 /* user_detail_set_homebg@2x.png in Resources */,
 				CA346CCC18618DC70098DE00 /* button_rank@2x.png in Resources */,
+				CAFCF232199792CF008C8854 /* defaultBillBoard@2x.jpg in Resources */,
 				CA346CD11861A96D0098DE00 /* bottom_home_task@2x.png in Resources */,
 				A4BE227418657DEA00FE2997 /* NormalHotCell.xib in Resources */,
 				A4BE227918670D8800FE2997 /* NormalHotCell~ipad.xib in Resources */,
@@ -27161,6 +27173,24 @@
 				CACD6A2718E03A27003F97C0 /* zh-Hans */,
 			);
 			name = ShareSDKLocalizable.strings;
+			sourceTree = "<group>";
+		};
+		CAFCF22D199792B6008C8854 /* defaultBillBoard.jpg */ = {
+			isa = PBXVariantGroup;
+			children = (
+				CAFCF22C199792B6008C8854 /* zh-Hans */,
+				CAFCF235199792D9008C8854 /* en */,
+			);
+			name = defaultBillBoard.jpg;
+			sourceTree = "<group>";
+		};
+		CAFCF234199792CF008C8854 /* defaultBillBoard@2x.jpg */ = {
+			isa = PBXVariantGroup;
+			children = (
+				CAFCF233199792CF008C8854 /* zh-Hans */,
+				CAFCF236199792DD008C8854 /* en */,
+			);
+			name = "defaultBillBoard@2x.jpg";
 			sourceTree = "<group>";
 		};
 		D8B84177197E119500B6FB5C /* xiaoguanka.png */ = {
