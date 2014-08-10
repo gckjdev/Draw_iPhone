@@ -2756,32 +2756,218 @@
 "kCannotDismissGroupWhileHavingMember" = "家族內還有成員或者嘉賓的時候，不能解散家族，請先移除所有嘉賓和成員";
 "kDeleteGroupSucc" = "請求成功，家族已解散";
 
-"kEditOpusClass" = "設置作品分類/標籤";
+//"kEditOpusClass" = "設置作品分類/標籤";
+//
+//// TODO 繁体
+//"kUserTutorialMainTitle" = "學畫畫";
+//"kAddTutorial" = "添加";
+//"AllTutorial" = "添加教程";
+//
+//"kTutorialDesc" = "教程簡介";
+//"kTutorialStageList" = "關卡列表";
+//
+//"kMetroMainHome" = "首頁";
+//
+////分享頁面
+//"kResultSharePage" = "最終結果";
+////
+//"kAddSuccess" = "添加成功!";
+//"kContinue" = "繼續闖關";
+//"kProgress" = "已完成";
+//"kStartStage" = "開始闖關";
+//"kContinueStage" = "继续闖關";
+//"kConquerDraw" = "闖關";
+//"kNoTimelineDraw" = "闖關";
+//"kHaveNotTips" = "對不起，該教程暫時沒有提示消息";
+//
+//"kHelpViewInOfflineDrawSubmitButtonGuide" = "確認提交\n完成作品\n狂點此處\n就會進入\n下一步!";
+//"kHelpViewInOfflineDrawHelpButtonGuide" = "幫助\n內含通關秘笈\n助你順利通關!";
+//"kHelpViewInOfflineDrawCopyViewGuide" = "此處為臨摹框\n可以隨意放大縮小\n點擊還可以重播!";
+//"kHelpViewInOfflineDrawIveKnew" = "不再提醒";
 
-// TODO 繁体
+"kEditOpusClass" = "設置作品分類/標籤";
+"kSetCategory" = "分類";
+"kNoOpus" = "暫無作品";
+
+
 "kUserTutorialMainTitle" = "學畫畫";
 "kAddTutorial" = "添加";
-"AllTutorial" = "添加教程";
+"AllTutorial" = "教程清單";
+"kTutorialInfoTitle" = "教程詳情";
+"kLearnNow" = "開始學習";
+"kAddToLearn" = "添加課程";
+"kOpenToLearn" = "開始學習";
+
+
+"kNewHotTitle" = "精彩作品";
+"kConfigNewHot" = "篩選";
 
 "kTutorialDesc" = "教程簡介";
-"kTutorialStageList" = "關卡列表";
+"kTutorialStageList" = "關卡清單";
+
+"kMetroStyle" = "四格";
+"kClassicalStyle" = "經典";
+"kHomeStyle" = "首頁風格";
+"kSetHomeStyleSucc" = "首頁風格設置已經修改，重新開機應用才生效";
+
+"kCopyViewActionTitle" = "請選擇操作";
+"kCopyViewSetImage" = "設置作品";
+"kPlayCopyView" = "播放";
+"kHideCopyView" = "隱藏";
+"kCopyViewHelp" = "提示/知識點";
+
+"kTutorialCategoryNewer" = "新手";
+"kTutorialCategoryHigherLevel" = "進階";
+"kTutorialCategoryTopLevel" = "高級";
 
 "kMetroMainHome" = "首頁";
 
-//分享頁面
-"kResultSharePage" = "最終結果";
+"kAskPracticeOrPassTitle" = "關卡選項";
+"kAskPracticeOrPassMsg" = "先進行【修煉】還是【闖關】？";
+"kPractice" = "修煉";
+"kPass" = "闖關";
+"kConquer" = "闖關";
+
+"kMoreView" = "更多小吉";
+
+"kUserTutorialInfo" = "簡介";
+
+"kPracticeResult" = "修煉結果";
+"kPracticePass" = "本次修煉得分為【%d】，可以闖關了！";
+"kPracticeFail" = "本次修煉得分為【%d】，可能是你姿勢不對，重新修煉一次嗎？";
+"kTryConquer" = "闖關";
+"kPracticeAgain" = "重新修煉";
+
+"kConquerPass" = "本次闖關得分為【%d】，擊敗了宇宙三次元中%d%%的使用者，祝賀你成功通過本關！";
+"kConquerPassWithComplete" = "本次闖關得分為【%d】，擊敗了宇宙三次元中%d%%的使用者，祝賀你成功通過本關！這是最後一關了，你已經完美學完本教程！";
+"kConquerResult" = "闖關結果";
+"kTryConquerNext" = "下一關";
+"kConquerFail" = "本次闖關得分為【%d】，擊敗了宇宙三次元中%d%%的使用者，未能達到通關標準，再接再勵，重新來一次嗎？";
+"kConquerAgain" = "重來";
+
+
+"kResultSharePage" = "闖關結果";
+
 //
 "kAddSuccess" = "添加成功!";
 "kContinue" = "繼續闖關";
 "kProgress" = "已完成";
 "kStartStage" = "開始闖關";
-"kContinueStage" = "继续闖關";
+"kContinueStage" = "繼續闖關";
+
+
+"kDownloadTutorialFailure" = "下載教程資料失敗，請檢查網路或者稍後再試";
+"kDownloadTutorialSuccess" = "下載成功";
+"kLoadingStage" = "載入關卡中...";
+"kLoadingStageWithProgress" = "載入關卡中...(%d%%)";
+
+"kContinue" = "繼續闖關";
 "kConquerDraw" = "闖關";
 "kNoTimelineDraw" = "闖關";
-"kHaveNotTips" = "對不起，該教程暫時沒有提示消息";
 
-"kHelpViewInOfflineDrawSubmitButtonGuide" = "確認提交\n完成作品\n狂點此處\n就會進入\n下一步!";
-"kHelpViewInOfflineDrawHelpButtonGuide" = "幫助\n內含通關秘笈\n助你順利通關!";
-"kHelpViewInOfflineDrawCopyViewGuide" = "此處為臨摹框\n可以隨意放大縮小\n點擊還可以重播!";
+"kStrokeNumberNotEnough" = "客官，不夠認真哦！多畫一下下吧！";
+
+"kMenuLearnDraw" = "學畫";
+"kSetRanTypeButtonYear" = "年榜";
+"kSetRanTypeButtonWeek" = "周榜";
+
+"kNoConquerDraw" = "沒有學習闖關記錄";
+"kTimelineConquerDraw" = "闖關";
+"kNoTimelineConquerDraw" = "暫無好友闖關動態";
+
+"kHaveNotTips" = "該教程暫時沒有提示資訊";
+
+"kNoTipsForChapter" = "呃呃，暫無提示";
+"kStartLearnTutorial" = "打開";
+"kAddTutorialToLearn" = "添加";
+
+"kConquerSuccessResult" = "闖關成功";
+"kConquerFailureResult" = "闖關失敗";
+
+"kConquerResultPassComplete" = "闖關成功，完美完成本教程！";
+"kConquerResultPassNext" = "闖關成功，繼續下一關！";
+"kConquerFailureResult" = "闖關失敗！";
+
+"kConquerDrawShareWeixinFriend" = "發送給微信好友";
+"kConquerDrawSharekWeixinTimeline" = "分享到微信朋友圈";
+"kConquerDrawShareSinaWeibo" = "分享到新浪微博";
+"kConquerDrawShareQQWeibo" = "分享到騰訊微博";
+
+"kConquerDrawShareText" = "我在%@中學習畫畫，本次畫畫得分為%d分，擊敗了宇宙世界中總計%d位使用者，你看看嘍";
+"kCreateImageShareFail" = "無法生成分享圖片，分享失敗";
+
+
+"kGuidePageLogin" = "登 陸";
+"kGuidePageRegister" = "注 冊";
+
+
+"kTutorialNameCubic" = "初識三次元";
+"kTutorialNameCrazyLines" = "瘋狂的線條";
+"kTutorialNameColorFilling" = "識色配圖";
+"kTutorialNameDoggyDoggy" = "旺星人大集合";
+"kTutorialNameMoveMoveMove" = "一起動動動";
+"kTutorialNameFaceChanging" = "易容速成";
+"kTutorialNameCuteLittleGee" = "百態小吉萌翻天";
+"kTutorialNameLoveLifeLoveSport" = "愛生活愛運動";
+"kTutorialNameFamousBuilding" = "名建築大集合";
+//
+"KTutorialDescriptionCubic" = "教你怎麼把物體從二次元轉換成三次元";
+"kTutorialDescriptionCrazyLines" = "説明你更好的熟練工具";
+"kTutorialDescriptionColorFilling" = "這裡將把你打造成用色達人";
+"kTutorialDescriptionDoggyDoggy" = "屬於旺星人的趴";
+"kTutorialDescriptionMoveMoveMove" = "燃燒你的卡路里吧";
+"kTutorialDescriptionFaceChanging" = "你想易容成什麼人";
+"kTutorialDescriptionCuteLittleGee" = "小吉閃亮登場，速來圍觀";
+"kTutorialDescriptionLoveLifeLoveSport" = "童鞋們，一起來運動吧";
+"kTutorialDescriptionFamousBuilding" = "你認識這些建築嗎？";
+
+"kResultPageDesc" = "擊敗了全宇宙中";
+"kResultPageCount" = "%@ 位小吉使用者！";
+"kResultPageScore" = "本次闖關成績為 %@";
+"kResultPageFinishTutorial" = "已完成本教程！";
+
+"kMetroIndexButton" = "動態";
+"kMetroDocumentButton" = "草稿";
+"kMetroMessageButton" = "消息";
+"kMetroMoreButton" = "更多";
+
+"kBlankDraw" = "空白繪畫";
+"kDrawMode" = "請選擇畫畫模式";
+
+"kSealResultPass" = "過關";
+"kSealResultFail" = "失敗";
+"kSealResultFinish" = "過關";
+
+"kTakeNumberSucc" = "註冊完成，你的小吉號碼是\n\n%@\n\n可點擊頂部頭像設置使用者昵稱、密碼、頭像等資訊。\n\n祝玩的開心！\n\n";
+"kGotoNextChapterWelcome" = "歡迎進入第%d小節繼續本關修煉";
+
+//\n\n點擊左上角的臨摹框可重播教程\n\n或點擊右上角的【説明】按鈕查看提示/知識點\n
+
+"kRegistering" = "註冊中...";
+"kBestScoreText" = "最佳成績: %@";
+"kNoBestScore" = "暫無";
+
+"kContinueDraw" = "繼 續";
+"kQuitDraw" = "退 出";
+"kRestartDraw" = "重 來";
+
+"kMenuTitleFriend" = "好友";
+"kMenuTitleMe" = "我";
+
+"kCopyViewFullScreen" = "全屏顯示";
+"kCopyViewDefaultScreen" = "恢復預設";
+
+"kTitleEnterChapterTips" = "歡迎進入第%d小節";
+
+"kHelpViewInOfflineDrawSubmitButtonGuide" = "完成作品後\n請狂點此處\n提交作品\n查看打分";
+"kHelpViewInOfflineDrawHelpButtonGuide" = "説明\n提供繪畫知識點\n以及繪畫技法";
+"kHelpViewInOfflineDrawCopyViewGuide" = "臨摹作品框\n可重播作品繪畫過程";
 "kHelpViewInOfflineDrawIveKnew" = "不再提醒";
 
+"kAlreadyConquer" = "本作品已經提交過了，不能重複提交。是否重新創作一個作品闖關？";
+"kConfirmSubmitConquer" = "確認提交本次闖關作品嗎？";
+
+"kMetroHomePainting" = "畫畫";
+"kMetroHomeLearning" = "學畫畫";
+"kMetroHomeForum" = "論壇";
+"kMetroHomeGallery" = "精彩作品";

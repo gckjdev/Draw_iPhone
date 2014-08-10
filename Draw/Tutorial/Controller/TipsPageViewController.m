@@ -74,7 +74,7 @@ defaultIndex:(int)defaultIndex
 //#define IMAGE_FRAME_HEIGHT (ISIPAD ? 450:240)
 //#define DEFAULT_GALLERY_IMAGE @"square2"
 #define IMAGE_FRAME_HEIGHT (ISIPAD ? 500:265)
-#define DEFAULT_GALLERY_IMAGE @"daguanka"
+//#define DEFAULT_GALLERY_IMAGE @"daguanka"
 
 -(void)initTipsSGFousImage:(NSArray*)imagePathArray{
     
@@ -85,7 +85,7 @@ defaultIndex:(int)defaultIndex
         UIImage *image = [[[UIImage alloc] initWithContentsOfFile:gallerUrlString] autorelease];
 
         if(image==nil){
-            image = [UIImage imageNamed:DEFAULT_GALLERY_IMAGE] ;
+            image = [[ShareImageManager defaultManager] unloadBg];
         }
                SGFocusImageItem *item = [[[SGFocusImageItem alloc] initWithTitle:@"" image:image tag:i] autorelease];
         [itemList addObject:item];

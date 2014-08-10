@@ -1176,13 +1176,13 @@
 		A4772816199611090050851D /* littlegeehelper.png in Resources */ = {isa = PBXBuildFile; fileRef = A4772814199611090050851D /* littlegeehelper.png */; };
 		A4772817199611090050851D /* littlegeehelper.png in Resources */ = {isa = PBXBuildFile; fileRef = A4772814199611090050851D /* littlegeehelper.png */; };
 		A4772818199611090050851D /* littlegeehelper.png in Resources */ = {isa = PBXBuildFile; fileRef = A4772814199611090050851D /* littlegeehelper.png */; };
-		A47896E11995BB2400185220 /* CRBubble.m in Sources */ = {isa = PBXBuildFile; fileRef = A47896D51995BB2400185220 /* CRBubble.m */; };
-		A47896E21995BB2400185220 /* CRBubble.m in Sources */ = {isa = PBXBuildFile; fileRef = A47896D51995BB2400185220 /* CRBubble.m */; };
-		A47896E31995BB2400185220 /* CRBubble.m in Sources */ = {isa = PBXBuildFile; fileRef = A47896D51995BB2400185220 /* CRBubble.m */; };
+		A47896E11995BB2400185220 /* CRBubble.m in Sources */ = {isa = PBXBuildFile; fileRef = A47896D51995BB2400185220 /* CRBubble.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
+		A47896E21995BB2400185220 /* CRBubble.m in Sources */ = {isa = PBXBuildFile; fileRef = A47896D51995BB2400185220 /* CRBubble.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
+		A47896E31995BB2400185220 /* CRBubble.m in Sources */ = {isa = PBXBuildFile; fileRef = A47896D51995BB2400185220 /* CRBubble.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
 		A47896E41995BB2400185220 /* CRBubble.m in Sources */ = {isa = PBXBuildFile; fileRef = A47896D51995BB2400185220 /* CRBubble.m */; };
-		A47896E51995BB2400185220 /* CRProductTour.m in Sources */ = {isa = PBXBuildFile; fileRef = A47896D71995BB2400185220 /* CRProductTour.m */; };
-		A47896E61995BB2400185220 /* CRProductTour.m in Sources */ = {isa = PBXBuildFile; fileRef = A47896D71995BB2400185220 /* CRProductTour.m */; };
-		A47896E71995BB2400185220 /* CRProductTour.m in Sources */ = {isa = PBXBuildFile; fileRef = A47896D71995BB2400185220 /* CRProductTour.m */; };
+		A47896E51995BB2400185220 /* CRProductTour.m in Sources */ = {isa = PBXBuildFile; fileRef = A47896D71995BB2400185220 /* CRProductTour.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
+		A47896E61995BB2400185220 /* CRProductTour.m in Sources */ = {isa = PBXBuildFile; fileRef = A47896D71995BB2400185220 /* CRProductTour.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
+		A47896E71995BB2400185220 /* CRProductTour.m in Sources */ = {isa = PBXBuildFile; fileRef = A47896D71995BB2400185220 /* CRProductTour.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
 		A47896E81995BB2400185220 /* CRProductTour.m in Sources */ = {isa = PBXBuildFile; fileRef = A47896D71995BB2400185220 /* CRProductTour.m */; };
 		A47896E91995BB2400185220 /* SpotHelpView.m in Sources */ = {isa = PBXBuildFile; fileRef = A47896D91995BB2400185220 /* SpotHelpView.m */; };
 		A47896EA1995BB2400185220 /* SpotHelpView.m in Sources */ = {isa = PBXBuildFile; fileRef = A47896D91995BB2400185220 /* SpotHelpView.m */; };
@@ -27670,8 +27670,8 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				OTHER_LDFLAGS = "-ObjC";
-				PROVISIONING_PROFILE = "2DFA37DA-4AF3-4537-AEAE-76216B3A2502";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "2DFA37DA-4AF3-4537-AEAE-76216B3A2502";
+				PROVISIONING_PROFILE = "0B7FDC1F-AEFB-47C9-A39A-C5153ABF111D";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "0B7FDC1F-AEFB-47C9-A39A-C5153ABF111D";
 				SDKROOT = iphoneos;
 				STRIP_INSTALLED_PRODUCT = YES;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -27802,8 +27802,8 @@
 					armv6,
 					armv7,
 				);
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Lingzhe Peng (LPN7A567X3)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Lingzhe Peng (LPN7A567X3)";
 				COPY_PHASE_STRIP = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -27897,8 +27897,8 @@
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
+				PROVISIONING_PROFILE = "0B7FDC1F-AEFB-47C9-A39A-C5153ABF111D";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "0B7FDC1F-AEFB-47C9-A39A-C5153ABF111D";
 				VALIDATE_PRODUCT = YES;
 				VALID_ARCHS = "armv7s arm64 armv7";
 				WRAPPER_EXTENSION = app;

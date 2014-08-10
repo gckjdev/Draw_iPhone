@@ -8,11 +8,13 @@
 
 #import <UIKit/UIKit.h>
 #import "StableView.h"
+#import "PPViewController.h"
+
 typedef void(^ResultShareAlertPageViewResultBlock)();
 
 @class PBUserStage;
 
-@interface ResultShareAlertPageViewController : UIViewController<CommonDialogDelegate>
+@interface ResultShareAlertPageViewController : PPViewController<CommonDialogDelegate>
 @property (retain, nonatomic) IBOutlet AvatarView *resultView;
 
 @property (retain, nonatomic) IBOutlet UIImageView *opusImageView;
