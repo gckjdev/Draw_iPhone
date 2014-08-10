@@ -81,8 +81,14 @@
     UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(TITLE_LABEL_X, TITLE_LABEL_Y, self.bounds.size.width, 20)];
     [label setBackgroundColor:[UIColor clearColor]];
     [label setText:self.title];
-    [label setFont:AD_BOLD_FONT(23, 13)];
-    [label setTextColor:[UIColor whiteColor]];
+    if([LocaleUtils isChina]||[LocaleUtils isChinese]){
+        [label setFont:AD_BOLD_FONT(23, 13)];
+
+    }else{
+        [label setFont:AD_BOLD_FONT(21, 11)];
+    }
+    
+        [label setTextColor:[UIColor whiteColor]];
     
     //中间图片
     UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake((rect.size.width-IMAGE_WIDTH)/2, (rect.size.height-IMAGE_HEIGHT)/2, IMAGE_HEIGHT, IMAGE_WIDTH)];
