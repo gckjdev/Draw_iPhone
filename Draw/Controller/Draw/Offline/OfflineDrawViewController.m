@@ -1115,7 +1115,6 @@
     frame2.origin.x += self.helpButton.superview.frame.origin.x;
     frame2.origin.y += self.helpButton.superview.frame.origin.y;
     dirtyView2.frame = frame2;
-    [self.helpButton setUserInteractionEnabled:NO];
     SpotHelpObject *obj2=[[SpotHelpObject alloc] initWithSpotlightView:dirtyView2
                                                                   Text:
                           NSLS(@"kHelpViewInOfflineDrawHelpButtonGuide")
@@ -1126,12 +1125,16 @@
                                                                bgColor:[UIColor clearColor]];
 
     //dirtyView FOR subview's subview
-    UIView *dirtyView = [[[UIView alloc]init] autorelease];
+    UIView *dirtyView3 = [[[UIView alloc]init] autorelease];
     CGRect frame = self.copyView.frame;
-    frame.origin.x += self.copyView.superview.frame.origin.x;
-    frame.origin.y += self.copyView.superview.frame.origin.y;
-    dirtyView.frame = frame;
-    SpotHelpObject *obj3=[[SpotHelpObject alloc] initWithSpotlightView:dirtyView
+    
+    //本来spotlight是对targetview内接圆打光，为了改成对外切圆打光，通过几何计算得出调整
+    frame.origin.x += self.copyView.superview.frame.origin.x - 0.2*self.copyView.frame.size.width;
+    frame.origin.y += self.copyView.superview.frame.origin.y - 0.2*self.copyView.frame.size.height;
+    frame.size.width += 2*0.2*self.copyView.frame.size.width;
+    frame.size.height += 2*0.2*self.copyView.frame.size.height;
+    dirtyView3.frame = frame;
+    SpotHelpObject *obj3=[[SpotHelpObject alloc] initWithSpotlightView:dirtyView3
                                                                   Text:
                           NSLS(@"kHelpViewInOfflineDrawCopyViewGuide")
                                                                    Dir:(ISIPAD?CRArrowPositionTopLeft:CRArrowPositionTopLeft)
