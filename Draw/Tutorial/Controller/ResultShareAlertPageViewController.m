@@ -411,12 +411,51 @@
     return [self.userStage defeatPercent];
 }
 
+#define ADD_HEIGHT                  (ISIPAD ? 26 : 13)
+
+- (UIImage*)completeImage:(UIImage*)image
+{
+    if (image == nil){
+        return nil;
+    }
+    
+    // increase height by ADD_HEIGHT
+    CGSize size = image.size;
+    size.height += ADD_HEIGHT;
+    
+    CGRect bounds = CGRectMake(0, 0, size.width, size.height);
+    
+    //for retina display, change the first line into this
+    if ([[UIScreen mainScreen] respondsToSelector:@selector(scale)])
+        UIGraphicsBeginImageContextWithOptions(bounds.size, NO, [UIScreen mainScreen].scale);
+    else
+        UIGraphicsBeginImageContext(bounds.size);
+    
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    
+    // fill white background
+    UIColor *bgColor = [UIColor whiteColor];
+    [bgColor setFill];
+    CGContextFillRect(context, bounds);
+    
+    // Draw image1
+    [image drawInRect:CGRectMake(0, ADD_HEIGHT, image.size.width, image.size.height)];
+    
+    UIImage* resultImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    
+    return resultImage;
+}
+
 #define TEMP_SHARE_FILE_NAME        @"conquer_draw_share.png"
 
 - (NSString*)createShareImagePath
 {
-    UIImage* image = [self.view createSnapShotWithScale:1.0f];
-    
+    UIImage* image = [self.view createSnapShotWithScale:1.0];
+    if (image){
+        image = [self completeImage:image];
+    }
+
     NSString* path = nil;
     if (image){
         path = [[FileUtil getAppTempDir] stringByAppendingPathComponent:TEMP_SHARE_FILE_NAME];
