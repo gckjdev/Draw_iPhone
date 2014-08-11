@@ -264,7 +264,7 @@
 		A44AC48F187561F200927649 /* Group.proto in Resources */ = {isa = PBXBuildFile; fileRef = A44AC48C187561F200927649 /* Group.proto */; };
 		A44AC490187561F200927649 /* Group.proto in Resources */ = {isa = PBXBuildFile; fileRef = A44AC48C187561F200927649 /* Group.proto */; };
 		A44D658D18043E9C00DD6B48 /* UIImageView+ProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = A44D658C18043E9C00DD6B48 /* UIImageView+ProgressView.m */; };
-		A44D658E18043E9C00DD6B48 /* UIImageView+ProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = A44D658C18043E9C00DD6B48 /* UIImageView+ProgressView.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
+		A44D658E18043E9C00DD6B48 /* UIImageView+ProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = A44D658C18043E9C00DD6B48 /* UIImageView+ProgressView.m */; };
 		A44D658F18043E9C00DD6B48 /* UIImageView+ProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = A44D658C18043E9C00DD6B48 /* UIImageView+ProgressView.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
 		A44DDF4415C669E0005609F6 /* Dice.pb.m in Sources */ = {isa = PBXBuildFile; fileRef = A44DDF4315C669DF005609F6 /* Dice.pb.m */; };
 		A44E6CC5170D6E910067B647 /* TomatoItem.m in Sources */ = {isa = PBXBuildFile; fileRef = A44E6CC4170D6E910067B647 /* TomatoItem.m */; };
@@ -1189,16 +1189,16 @@
 		A47896EB1995BB2400185220 /* SpotHelpView.m in Sources */ = {isa = PBXBuildFile; fileRef = A47896D91995BB2400185220 /* SpotHelpView.m */; };
 		A47896EC1995BB2400185220 /* SpotHelpView.m in Sources */ = {isa = PBXBuildFile; fileRef = A47896D91995BB2400185220 /* SpotHelpView.m */; };
 		A47896ED1995BB2400185220 /* MDCFocalPointView.m in Sources */ = {isa = PBXBuildFile; fileRef = A47896DC1995BB2400185220 /* MDCFocalPointView.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
-		A47896EE1995BB2400185220 /* MDCFocalPointView.m in Sources */ = {isa = PBXBuildFile; fileRef = A47896DC1995BB2400185220 /* MDCFocalPointView.m */; };
-		A47896EF1995BB2400185220 /* MDCFocalPointView.m in Sources */ = {isa = PBXBuildFile; fileRef = A47896DC1995BB2400185220 /* MDCFocalPointView.m */; };
+		A47896EE1995BB2400185220 /* MDCFocalPointView.m in Sources */ = {isa = PBXBuildFile; fileRef = A47896DC1995BB2400185220 /* MDCFocalPointView.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
+		A47896EF1995BB2400185220 /* MDCFocalPointView.m in Sources */ = {isa = PBXBuildFile; fileRef = A47896DC1995BB2400185220 /* MDCFocalPointView.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
 		A47896F01995BB2400185220 /* MDCFocalPointView.m in Sources */ = {isa = PBXBuildFile; fileRef = A47896DC1995BB2400185220 /* MDCFocalPointView.m */; };
 		A47896F11995BB2400185220 /* MDCFocusView.m in Sources */ = {isa = PBXBuildFile; fileRef = A47896DE1995BB2400185220 /* MDCFocusView.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
-		A47896F21995BB2400185220 /* MDCFocusView.m in Sources */ = {isa = PBXBuildFile; fileRef = A47896DE1995BB2400185220 /* MDCFocusView.m */; };
-		A47896F31995BB2400185220 /* MDCFocusView.m in Sources */ = {isa = PBXBuildFile; fileRef = A47896DE1995BB2400185220 /* MDCFocusView.m */; };
+		A47896F21995BB2400185220 /* MDCFocusView.m in Sources */ = {isa = PBXBuildFile; fileRef = A47896DE1995BB2400185220 /* MDCFocusView.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
+		A47896F31995BB2400185220 /* MDCFocusView.m in Sources */ = {isa = PBXBuildFile; fileRef = A47896DE1995BB2400185220 /* MDCFocusView.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
 		A47896F41995BB2400185220 /* MDCFocusView.m in Sources */ = {isa = PBXBuildFile; fileRef = A47896DE1995BB2400185220 /* MDCFocusView.m */; };
 		A47896F51995BB2400185220 /* MDCSpotlightView.m in Sources */ = {isa = PBXBuildFile; fileRef = A47896E01995BB2400185220 /* MDCSpotlightView.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
-		A47896F61995BB2400185220 /* MDCSpotlightView.m in Sources */ = {isa = PBXBuildFile; fileRef = A47896E01995BB2400185220 /* MDCSpotlightView.m */; };
-		A47896F71995BB2400185220 /* MDCSpotlightView.m in Sources */ = {isa = PBXBuildFile; fileRef = A47896E01995BB2400185220 /* MDCSpotlightView.m */; };
+		A47896F61995BB2400185220 /* MDCSpotlightView.m in Sources */ = {isa = PBXBuildFile; fileRef = A47896E01995BB2400185220 /* MDCSpotlightView.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
+		A47896F71995BB2400185220 /* MDCSpotlightView.m in Sources */ = {isa = PBXBuildFile; fileRef = A47896E01995BB2400185220 /* MDCSpotlightView.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
 		A47896F81995BB2400185220 /* MDCSpotlightView.m in Sources */ = {isa = PBXBuildFile; fileRef = A47896E01995BB2400185220 /* MDCSpotlightView.m */; };
 		A489BFE617B4F100003E5150 /* Themes.plist in Resources */ = {isa = PBXBuildFile; fileRef = A489BFE517B4F0FF003E5150 /* Themes.plist */; };
 		A489C01017B5D942003E5150 /* JDDateCountdownFlipView.m in Sources */ = {isa = PBXBuildFile; fileRef = A489C00A17B5D942003E5150 /* JDDateCountdownFlipView.m */; };
@@ -4613,6 +4613,8 @@
 		CA2A28F1195C1EEA00A97478 /* UserTutorialService.m in Sources */ = {isa = PBXBuildFile; fileRef = CA2A28EF195C1EEA00A97478 /* UserTutorialService.m */; };
 		CA2A28F2195C1EEA00A97478 /* UserTutorialService.m in Sources */ = {isa = PBXBuildFile; fileRef = CA2A28EF195C1EEA00A97478 /* UserTutorialService.m */; };
 		CA2A28F3195C1EEA00A97478 /* UserTutorialService.m in Sources */ = {isa = PBXBuildFile; fileRef = CA2A28EF195C1EEA00A97478 /* UserTutorialService.m */; };
+		CA2D870419987492002B7406 /* GifViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A44F37881988F52C0022913B /* GifViewController.m */; };
+		CA2D870519987493002B7406 /* GifViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A44F37881988F52C0022913B /* GifViewController.m */; };
 		CA2F9F89199233FB00756AD7 /* MainDataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = CA2F9F75199233FB00756AD7 /* MainDataModel.xcdatamodeld */; };
 		CA2F9F8A199233FB00756AD7 /* MainDataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = CA2F9F75199233FB00756AD7 /* MainDataModel.xcdatamodeld */; };
 		CA2F9F8B199233FB00756AD7 /* MainDataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = CA2F9F75199233FB00756AD7 /* MainDataModel.xcdatamodeld */; };
@@ -4720,7 +4722,6 @@
 		CA4CA5FA197680AB00ED1534 /* OpenCVUtils.mm in Sources */ = {isa = PBXBuildFile; fileRef = CA4CA5F4197680AA00ED1534 /* OpenCVUtils.mm */; };
 		CA4CA5FB197680AB00ED1534 /* OpenCVUtils.mm in Sources */ = {isa = PBXBuildFile; fileRef = CA4CA5F4197680AA00ED1534 /* OpenCVUtils.mm */; };
 		CA4CA5FC197680AB00ED1534 /* OpenCVUtils.mm in Sources */ = {isa = PBXBuildFile; fileRef = CA4CA5F4197680AA00ED1534 /* OpenCVUtils.mm */; };
-		CA4CD8CE1840759A00BF70D9 /* LittleGeeDraw-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C28AA0C21738F0ED007A819F /* LittleGeeDraw-Info.plist */; };
 		CA4FB822179E240B00A57387 /* DrawLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = CA4FB821179E240B00A57387 /* DrawLayer.m */; };
 		CA4FB824179E240B00A57387 /* DrawLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = CA4FB821179E240B00A57387 /* DrawLayer.m */; };
 		CA4FB825179E240B00A57387 /* DrawLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = CA4FB821179E240B00A57387 /* DrawLayer.m */; };
@@ -23368,7 +23369,6 @@
 				CA92301F183DC40600669DE3 /* sing_home_task@2x.png in Resources */,
 				A4088B5F183F32DC0037861A /* user_detail_sing_to_bg@2x.png in Resources */,
 				A4088B63183F32DC0037861A /* user_detail_sing_to@2x.png in Resources */,
-				CA4CD8CE1840759A00BF70D9 /* LittleGeeDraw-Info.plist in Resources */,
 				CA9C3FEA18433E4C0041F332 /* 513819630_app_task_version.txt in Resources */,
 				CA9C3FEE18433E4C0041F332 /* 513819630_app_task.json in Resources */,
 				CA9C3FF6184341B50041F332 /* 645475970_app_task_version.txt in Resources */,
@@ -24260,6 +24260,7 @@
 				A4214DE81803AA4D007F2EFD /* SDWebImageManager.m in Sources */,
 				A4214DEB1803AA4D007F2EFD /* SDWebImagePrefetcher.m in Sources */,
 				A4214DEE1803AA4D007F2EFD /* UIButton+WebCache.m in Sources */,
+				CA2D870519987493002B7406 /* GifViewController.m in Sources */,
 				CAA581A9197BAFAE00599740 /* ImageSimilarity.mm in Sources */,
 				A4214DF11803AA4D007F2EFD /* UIImage+GIF.m in Sources */,
 				A4214DF41803AA4D007F2EFD /* UIImage+MultiFormat.m in Sources */,
@@ -24807,6 +24808,7 @@
 				C28A9BB91738F04B007A819F /* BulletinManager.m in Sources */,
 				C28A9BBB1738F04B007A819F /* DrawGameJumpHandler.m in Sources */,
 				C28A9BBD1738F04B007A819F /* PPStack.m in Sources */,
+				CA2D870419987492002B7406 /* GifViewController.m in Sources */,
 				C28A9BBF1738F04B007A819F /* CustomActionSheet.m in Sources */,
 				C28A9BC01738F04B007A819F /* UIColor+GetHSB.m in Sources */,
 				C28A9BC11738F04B007A819F /* ILColorPickerView.m in Sources */,
@@ -27499,8 +27501,8 @@
 				);
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = LittleGeeDraw;
-				PROVISIONING_PROFILE = "D6D1CE10-BBAA-4518-8FB5-C3D18CCA8043";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "D6D1CE10-BBAA-4518-8FB5-C3D18CCA8043";
+				PROVISIONING_PROFILE = "7F6DC140-F6A1-458C-8CFC-614D9E8F2355";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "7F6DC140-F6A1-458C-8CFC-614D9E8F2355";
 				VALID_ARCHS = "arm64 armv7 armv7s";
 				WRAPPER_EXTENSION = app;
 			};
@@ -27605,8 +27607,8 @@
 				);
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = LittleGeeDraw;
-				PROVISIONING_PROFILE = "A13C845E-7761-4C20-B34D-EACABFABB459";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "A13C845E-7761-4C20-B34D-EACABFABB459";
+				PROVISIONING_PROFILE = "568F7A01-DFE6-4235-9196-B259D4A157A2";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "568F7A01-DFE6-4235-9196-B259D4A157A2";
 				VALIDATE_PRODUCT = YES;
 				VALID_ARCHS = "arm64 armv7 armv7s";
 				WRAPPER_EXTENSION = app;
@@ -27792,8 +27794,8 @@
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "5635FFA9-0B8E-4BC8-AC4B-5E3BFD85D412";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "5635FFA9-0B8E-4BC8-AC4B-5E3BFD85D412";
+				PROVISIONING_PROFILE = "42E0E242-4E9B-4230-86F7-F0440220B591";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "42E0E242-4E9B-4230-86F7-F0440220B591";
 				VALID_ARCHS = "armv7s arm64 armv7";
 				WRAPPER_EXTENSION = app;
 			};
