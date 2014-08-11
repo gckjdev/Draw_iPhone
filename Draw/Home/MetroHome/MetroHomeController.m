@@ -174,7 +174,7 @@
     
     // set avatar
     [self.avatarView setAvatarUrl:[userManager avatarURL]
-                           gender:[userManager gender]
+                           gender:[userManager boolGender]
                    useDefaultLogo:NO];
     
     // set nick name
