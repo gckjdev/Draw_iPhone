@@ -88,6 +88,7 @@
 
 #import "SpotHelpView.h"
 #import "ResultSeal.h"
+#import "ImageShapeManager.h"
 
 @interface OfflineDrawViewController()
 {
@@ -532,6 +533,10 @@
         // set bg image, to be refactor
         if (targetType == TypePhoto){
             [self setDrawBGImage:_bgImage useImageRect:YES];
+            if (_bgImage){
+                // update draft size
+                [self.draft setCanvasSize:_bgImage.size];
+            }
         }
         else{
             if (self.bgImage && _isNewDraft){
@@ -967,6 +972,9 @@
 
 - (void)viewDidLoad
 {
+//    [DrawBgManager defaultManager];
+//    [ImageShapeManager defaultManager];
+    
     // 禁止自动锁屏
     [UIApplication sharedApplication].idleTimerDisabled = YES; // disable lock screen while in drawing
     

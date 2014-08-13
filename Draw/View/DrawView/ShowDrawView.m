@@ -162,8 +162,10 @@ typedef enum {
     
     [self resetView];
     
+    BOOL useLayerOpacity = (index >= [self.drawActionList count]);
+    
     NSArray *array = [_drawActionList subarrayWithRange:NSMakeRange(0, index)];
-    [dlManager arrangeActions:array];
+    [dlManager arrangeActions:array useLayerOpacity:useLayerOpacity];
     _playingActionIndex = index;
 
     
@@ -601,6 +603,7 @@ typedef enum {
         outputPath:(NSString*)outputPath
         scaleSize:(double)scaleSize
 {
+    NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
     //利用参数获取源数据image
     NSMutableArray *srcImgList = [self createImagesForGIF:frameNumber
                                            drawActionList:drawActionList
@@ -608,21 +611,15 @@ typedef enum {
                                                    layers:layers
                                                canvasSize:canvasSize
                                                 scaleSize:scaleSize];
+    [srcImgList retain];
+    [pool drain];
+    
     //图像目标
     CGImageDestinationRef destImg;
     
     //创建输出路径
     NSString *path = outputPath;
     PPDebug(@"output gif to: %@",path);
-    //创建CFURL对象
-    /*
-     CFURLCreateWithFileSystemPath(CFAllocatorRef allocator, CFStringRef filePath, CFURLPathStyle pathStyle, Boolean isDirectory)
-     
-     allocator : 分配器,通常使用kCFAllocatorDefault
-     filePath : 路径
-     pathStyle : 路径风格,我们就填写kCFURLPOSIXPathStyle 更多请打问号自己进去帮助看
-     isDirectory : 一个布尔值,用于指定是否filePath被当作一个目录路径解决时相对路径组件
-     */
     CFURLRef url = CFURLCreateWithFileSystemPath (
                                                   kCFAllocatorDefault,
                                                   (CFStringRef)path,
@@ -634,7 +631,7 @@ typedef enum {
     
     //设置gif的信息,播放间隔时间,基本数据,和delay时间
     NSDictionary *frameProperties = [NSDictionary
-                                     dictionaryWithObject:[NSMutableDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithFloat:delayTime], (NSString *)kCGImagePropertyGIFDelayTime, nil]
+                                     dictionaryWithObject:[NSMutableDictionary dictionaryWithObjectsAndKeys:@(delayTime), (NSString *)kCGImagePropertyGIFDelayTime, @(1), (NSString *)kCGImagePropertyGIFLoopCount, nil]
                                      forKey:(NSString *)kCGImagePropertyGIFDictionary];
     
     //设置gif信息
@@ -654,6 +651,8 @@ typedef enum {
     CGImageDestinationFinalize(destImg);
     CFRelease(destImg);
     CFRelease(url);
+    
+    [srcImgList release];
     return;
 }
 
@@ -676,27 +675,27 @@ typedef enum {
     }
     
     
-    NSMutableArray *cuttingList = [NSMutableArray arrayWithCapacity:frameNumber];//mark the cutting list
+//    NSMutableArray *cuttingList = [NSMutableArray arrayWithCapacity:frameNumber];//mark the cutting list
     NSMutableArray *gifFrames = [NSMutableArray arrayWithCapacity:frameNumber];//input the images
     
-    // add last frame
-    for(NSInteger i=0;i < 4;i++){
-        UIImage *lastImage = [showView createImageAtIndex:[drawActionList count]];
-        //resize the image scale according to requirement
-        lastImage = [lastImage scaleImage:lastImage toScale:scaleSize];
-        [gifFrames addObject:lastImage];
-    }
     // add several frames
     for(NSInteger i = 1;i < frameNumber;i++)
     {
-        [cuttingList addObject:@(i * [drawActionList count] / frameNumber)];
-        NSNumber* playIndex = [cuttingList objectAtIndex:(i-1)];
-        UIImage* image = [showView createImageAtIndex:[playIndex intValue]];
+        int playIndex = (i * [drawActionList count] / frameNumber - 1);
+        UIImage* image = [showView createImageAtIndex:playIndex bgColor:[UIColor whiteColor]];
         image = [image scaleImage:image toScale:scaleSize];
         [gifFrames addObject:image];
-        PPDebug(@"<createImagesForGIF> create %d frame, index=%d", i, [playIndex intValue]);
+        PPDebug(@"<createImagesForGIF> create %d frame, index=%d", i, playIndex);
     }
     
+    // last image
+    UIImage *lastImage = [showView createImageAtIndex:[drawActionList count] bgColor:[UIColor whiteColor]];
+    lastImage = [lastImage scaleImage:lastImage toScale:scaleSize];
+    if (lastImage){
+        [gifFrames addObject:lastImage];
+        [gifFrames insertObject:lastImage atIndex:0];   // insert first to make GIF readable
+    }
+
     return gifFrames;
 }
 
