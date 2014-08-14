@@ -2973,3 +2973,4 @@
 "kMetroHomeGallery" = "精彩作品";
 
 "kSaveAsGif" = "匯出作品重播過程";
+"kCreateGIFProgress" = "生成GIF動圖中...%2d%%";

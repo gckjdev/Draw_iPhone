@@ -2936,3 +2936,4 @@
 "kMetroHomeGallery" = "精彩作品";
 
 "kSaveAsGif" = "导出作品回放过程";
+"kCreateGIFProgress" = "生成GIF动图中...%2d%%";

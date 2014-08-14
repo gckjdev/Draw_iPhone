@@ -32,6 +32,7 @@
 #import "GifViewController.h"
 #import "UIImageExt.h"
 #import "StringUtil.h"
+#import "ShareService.h"
 
 #define BUTTON_INDEX_OFFSET 20120229
 #define IMAGE_WIDTH 93
@@ -525,47 +526,7 @@ typedef enum{
     
 }
 
-- (void)saveGif
-{
-    [self showActivityWithText:NSLS(@"kSaving")];
-    
-    //后台运行creategif,主线程显示小苹果进程。
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0),
-                   ^(void){
-                       
-                       NSString* tempPath = [[FileUtil getAppTempDir] stringByAppendingPathComponent:[NSString GetUUID]];
-                       
-                [ShowDrawView createGIF:30
-                              delayTime:0.25f
-                         drawActionList:_selectedPaint.drawActionList
-                                bgImage:nil //[[MyPaintManager defaultManager] bgImageForPaint:_selectedPaint]
-                                 layers:_selectedPaint.layers
-                             canvasSize:_selectedPaint.canvasSize
-                             outputPath:tempPath //_selectedPaint.imageFilePath
-                              scaleSize:0.5];
-                     
-                       // remove file after generation
-//                       [FileUtil removeFile:tempPath];
-                       
-                       dispatch_async(dispatch_get_main_queue(),
-                            ^(void){
-                           [self hideActivity];
-                            });
-                   
-                   });
-    return;
-    
-#ifdef DEBUG
-    
-//    [self showActivityWithText:NSLS(@"kSaving")];
-    
-//    [self TestLayerImage];
 
-//    [self hideActivity];
-    return;
-    
-#endif
-}
 
 - (void)share:(PPSNSType)type
 {
@@ -630,7 +591,7 @@ typedef enum{
     }
     else if (buttonIndex == SAVE_INTO_GIF)
     {
-        [self saveGif];
+        [[ShareService defaultService] saveGif:self draft:_selectedPaint];
     }
     else if (buttonIndex == SHARE_SINA_WEIBO){
         [self share:TYPE_SINA];
@@ -1127,6 +1088,12 @@ typedef enum{
     ShareController* share = [[[ShareController alloc] init ] autorelease];
     [share setFromWeiXin:YES];
     [superController.navigationController pushViewController:share animated:YES];
+}
+
+- (void)saveAlbumWithPath:(NSString*)path
+{
+    [self showActivityWithText:NSLS(@"kSaving")];
+    [[MyPaintManager defaultManager] savePhoto:path delegate:self];
 }
 
 - (void)saveAlbum

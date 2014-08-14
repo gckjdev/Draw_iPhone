@@ -20,6 +20,10 @@
 #import "RoundLineLabel.h"
 #import "WordManager.h"
 #import "Word.h"
+#import "ShowDrawView.h"
+#import "MyPaint.h"
+#import "FileUtil.h"
+#import "MyPaintManager.h"
 
 @implementation ShareService
 
@@ -257,6 +261,77 @@ static ShareService* _defaultService;
         return path;
     }
     return nil;
+}
+
+- (void)saveGif:(PPViewController*)superController
+          draft:(MyPaint*)draft
+{
+    [superController showActivityWithText:NSLS(@"kSaving")];
+    
+    [superController registerNotificationWithName:NOTIFICATION_GIF_CREATION usingBlock:^(NSNotification *note) {
+        float progress = [[[note userInfo] objectForKey:KEY_DATA_PARSING_PROGRESS] floatValue];
+        //        PPDebug(@"handle data parsing notification, progress = %f", progress);
+        NSString* progressText = @"";
+        if (progress == 1.0f){
+            progress = 0.99f;
+            progressText = [NSString stringWithFormat:NSLS(@"kCreateGIFProgress"), (int)(progress*100)];
+        }
+        else{
+            progressText = [NSString stringWithFormat:NSLS(@"kCreateGIFProgress"), (int)(progress*100)];
+        }
+        [superController showProgressViewWithMessage:progressText progress:progress];
+    }];
+    
+    int gifFrameCount = 30;
+    float delayTime = 0.25f;
+    float scaleSize = 0.5f;
+    
+    //后台运行creategif,主线程显示小苹果进程。
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0),
+                   ^(void){
+                       
+                       NSString* fileName = [NSString stringWithFormat:@"%@.gif", [NSString GetUUID]];
+                       NSString* tempPath = [[FileUtil getAppTempDir] stringByAppendingPathComponent:fileName];
+                       
+                       [ShowDrawView createGIF:gifFrameCount
+                                     delayTime:delayTime
+                                drawActionList:draft.drawActionList
+                                       bgImage:nil
+                                        layers:draft.layers
+                                    canvasSize:draft.canvasSize
+                                    outputPath:tempPath
+                                     scaleSize:scaleSize];
+                       
+                       // TODO remove file after generation
+                       //                       [FileUtil removeFile:tempPath];
+                       
+                       dispatch_async(dispatch_get_main_queue(),
+                                      ^(void){
+                                          [superController unregisterNotificationWithName:NOTIFICATION_GIF_CREATION];
+                                          [superController hideActivity];
+                                          [superController hideProgressView];
+                                          
+                                          [self saveAlbumWithPath:tempPath];
+                                      });
+                       
+                   });
+    return;
+}
+
+- (void)saveAlbumWithPath:(NSString*)path
+{
+//    [superController showActivityWithText:NSLS(@"kSaving")];
+    [[MyPaintManager defaultManager] savePhoto:path delegate:self];
+}
+
+#pragma mark - MyPaintManager delegate
+
+- (void)didSaveToAlbumSuccess:(BOOL)succ
+{
+//    [self hideActivity];
+    if (succ) {
+        POSTMSG(NSLS(@"kSaveToAlbumSuccess"));
+    }
 }
 
 @end

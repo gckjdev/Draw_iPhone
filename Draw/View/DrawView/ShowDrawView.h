@@ -9,6 +9,8 @@
 #import <UIKit/UIKit.h>
 #import "SuperDrawView.h"
 
+#define NOTIFICATION_GIF_CREATION   @"NOTIFICATION_GIF_CREATION"
+
 typedef enum{
     Stop = 0x1,
     Playing = 0x1 << 1,

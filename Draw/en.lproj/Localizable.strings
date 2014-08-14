@@ -2890,3 +2890,4 @@
 "kMetroHomeGallery" = "GALLERY";
 
 "kSaveAsGif" = "Save As GIF";
+"kCreateGIFProgress" = "Creating GIF...%2d%%";

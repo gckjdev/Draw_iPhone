@@ -593,6 +593,213 @@ typedef enum {
    
 }
 
+- (UIImage*)createImageFromLayer:(DrawLayer*)layer bgImage:(UIImage*)bgImage
+{
+    UIGraphicsBeginImageContext(self.bounds.size);
+    CGContextRef ctx = UIGraphicsGetCurrentContext();
+//    CGContextSaveGState(ctx);
+    
+    if (bgImage){
+        [bgImage drawInRect:self.bounds];
+    }
+    
+    [layer renderInContext:ctx];
+    
+//    CGContextRestoreGState(ctx);
+    UIImage* image = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return image;
+}
+
+- (NSMutableArray*)createGIF:(NSUInteger)frameNumber scaleSize:(float)scaleSize
+{
+    int startTime = time(0);
+    
+    NSArray* drawActionList = self.drawActionList;
+    
+    NSMutableArray *gifFrames = [NSMutableArray arrayWithCapacity:frameNumber];//input the images
+    
+    CGFloat progress = 0;
+
+    [self resetView];
+
+    NSArray* layerList = [dlManager layers];
+    
+
+    NSMutableDictionary *layerAlphaDict = [NSMutableDictionary dictionaryWithCapacity:[layerList count]];
+    NSMutableDictionary *prevLayerImageDict = nil;
+    
+    CGSize outputSize = CGSizeMake(self.bounds.size.width*scaleSize, self.bounds.size.height*scaleSize);
+    
+    // add several frames
+    UIImage* prevImage = nil;
+    int startIndex = 0;
+    int endIndex = 0;
+    for(NSInteger i = 1;i <= frameNumber;i++)
+    {
+        endIndex = (i * [drawActionList count] / frameNumber - 1);
+        PPDebug(@"<createImagesForGIF> create %d frame, start=%d, end=%d", i, startIndex, endIndex);
+        
+        int showLength = MAX(0, endIndex - startIndex + 1);
+        showLength = MIN(showLength, [self.drawActionList count]);
+        
+        if (i == frameNumber){
+            // last frame
+        }
+        
+        BOOL useLayerOpacity = (showLength >= [self.drawActionList count]);
+        NSArray *actions = [_drawActionList subarrayWithRange:NSMakeRange(startIndex, showLength)];
+
+        // init layer actions
+        NSMutableDictionary *dict = [NSMutableDictionary dictionaryWithCapacity:[layerList count]];
+        for (DrawLayer *layer in layerList) {
+            [dict setObject:[NSMutableArray array] forKey:@(layer.layerTag)];
+        }
+        
+        // put actions into its layer
+        for (DrawAction *action in actions) {
+            NSMutableArray *array = [dict objectForKey:@(action.layerTag)];
+            [array addObject:action];
+            
+            // set last alpha
+            if (!useLayerOpacity){
+                [layerAlphaDict setObject:@(action.layerAlpha) forKey:@(action.layerTag)];
+            }
+        }
+        
+        // draw layers
+        NSMutableDictionary *layerImageDict = [NSMutableDictionary dictionaryWithCapacity:[layerList count]];
+        for (DrawLayer *layer in layerList) {
+            PPDebug(@"<arrangeActions> layer name = %@", layer.layerName);
+            [layer reset];
+            NSMutableArray *array = [dict objectForKey:@(layer.layerTag)];
+            [layer updateWithDrawActions:array];
+            
+            // set layer alpha
+            if (!useLayerOpacity){
+                NSNumber* alpha = [layerAlphaDict objectForKey:@(layer.layerTag)];
+                if (alpha){
+                    layer.opacity = [alpha floatValue];
+                }
+            }
+            
+            [layer setNeedsDisplay];
+            
+            UIImage* prevImage = [prevLayerImageDict objectForKey:@(layer.layerTag)];
+            
+            ClipAction *clip = [layer clipAction];
+            NSInteger gridLineNumber = [[layer drawInfo] gridLineNumber];
+            UIImage* layerImage = nil;
+            if (clip != nil || gridLineNumber != 0) {
+                layer.clipAction = nil;
+                layer.drawInfo.gridLineNumber = 0;
+                [layer setNeedsDisplay];
+                
+                //                [layer renderInContext:ctx];
+                layerImage = [self createImageFromLayer:layer bgImage:prevImage];
+                
+                [layer setClipAction:clip];
+                
+                [layer.drawInfo setGridLineNumber:gridLineNumber];
+                [layer setNeedsDisplay];
+            }else{
+                //                [layer renderInContext:ctx];
+                layerImage = [self createImageFromLayer:layer bgImage:prevImage];
+            }
+            
+            if (layerImage){
+                [layerImageDict setObject:layerImage forKey:@(layer.layerTag)];
+            }
+        }
+        
+        UIImage *image;
+        PPDebug(@"<createImage> size=%@", NSStringFromCGSize(self.bounds.size));
+        
+        UIGraphicsBeginImageContext(outputSize);
+        
+        UIColor* bgColor = [UIColor whiteColor];
+        CGContextRef ctx = UIGraphicsGetCurrentContext();
+        
+//        if (prevImage){
+//            [prevImage drawAtPoint:CGPointZero];
+//        }
+//        else if (bgColor){
+            [bgColor setFill];
+            CGContextFillRect(ctx, CGRectMake(0, 0, outputSize.width, outputSize.height));
+//        }
+        
+        [layerList reversEnumWithHandler:^(id object) {
+            DrawLayer *layer = object;
+//            CGContextSaveGState(ctx);
+            
+//            ClipAction *clip = [layer clipAction];
+//            NSInteger gridLineNumber = [[layer drawInfo] gridLineNumber];
+//            UIImage* layerImage = nil;
+//            if (clip != nil || gridLineNumber != 0) {
+//                layer.clipAction = nil;
+//                layer.drawInfo.gridLineNumber = 0;
+//                [layer setNeedsDisplay];
+//                
+////                [layer renderInContext:ctx];
+//                layerImage = [self createImageFromLayer:layer];
+//                
+//                [layer setClipAction:clip];
+//                
+//                [layer.drawInfo setGridLineNumber:gridLineNumber];
+//                [layer setNeedsDisplay];
+//            }else{
+////                [layer renderInContext:ctx];
+//                layerImage = [self createImageFromLayer:layer];
+//            }
+            
+            UIImage* layerImage = [layerImageDict objectForKey:@(layer.layerTag)];
+            [layerImage drawInRect:CGRectMake(0, 0, outputSize.width, outputSize.height)];
+//            CGContextRestoreGState(ctx);
+        }];
+        
+        image = UIGraphicsGetImageFromCurrentImageContext();
+        UIGraphicsEndImageContext();
+        
+        
+        // set for next bg image
+        prevImage = image;
+        prevLayerImageDict = [[layerImageDict retain] autorelease];
+
+        // scale image
+//        image = [image scaleImage:image toScale:scaleSize];
+        if (image){
+            [gifFrames addObject:image];
+        }
+        else{
+            PPDebug(@"<createImagesForGIF> fail to create frame image");
+        }
+        progress = (i*1.0f)/(frameNumber*1.0f);
+        
+        [ShowDrawView postCreateGIFNotification:progress];
+        
+        startIndex = endIndex;
+    }
+    
+    UIImage* lastImage = [gifFrames lastObject];
+    if (lastImage){
+        [gifFrames insertObject:lastImage atIndex:0];
+    }
+    
+    // last image
+//    UIImage *lastImage = [showView createImageAtIndex:[drawActionList count] bgColor:[UIColor whiteColor]];
+//    lastImage = [lastImage scaleImage:lastImage toScale:scaleSize];
+//    if (lastImage){
+//        [gifFrames addObject:lastImage];
+//        [gifFrames insertObject:lastImage atIndex:0];   // insert first to make GIF readable
+//    }
+
+    [ShowDrawView postCreateGIFNotification:0.999f];
+    
+    PPDebug(@"create gif 2 spend time is %d seconds", time(0) - startTime);
+    
+    return gifFrames;
+}
+
 //gif的制作
 + (void) createGIF:(NSInteger)frameNumber
          delayTime:(double) delayTime
@@ -603,6 +810,9 @@ typedef enum {
         outputPath:(NSString*)outputPath
         scaleSize:(double)scaleSize
 {
+    
+    PPDebug(@"<createGIF> delay(%f) path(%@) scale(%f)", delayTime, outputPath, scaleSize);
+    
     NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
     //利用参数获取源数据image
     NSMutableArray *srcImgList = [self createImagesForGIF:frameNumber
@@ -619,7 +829,6 @@ typedef enum {
     
     //创建输出路径
     NSString *path = outputPath;
-    PPDebug(@"output gif to: %@",path);
     CFURLRef url = CFURLCreateWithFileSystemPath (
                                                   kCFAllocatorDefault,
                                                   (CFStringRef)path,
@@ -656,6 +865,14 @@ typedef enum {
     return;
 }
 
++ (void)postCreateGIFNotification:(CGFloat)progress
+{
+    dispatch_async(dispatch_get_main_queue(), ^{
+        NSDictionary* userInfo = @{ KEY_DATA_PARSING_PROGRESS : @(progress) };
+        [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_GIF_CREATION object:nil userInfo:userInfo];
+    });
+}
+
 + (NSMutableArray*)createImagesForGIF:(NSInteger)frameNumber
                        drawActionList:(NSMutableArray*)drawActionList
                               bgImage:(UIImage*)bgImage
@@ -673,19 +890,35 @@ typedef enum {
     if (bgImage) {
         [showView setBGImage:bgImage];
     }
+
+    return [showView createGIF:frameNumber scaleSize:scaleSize];
+
+    // the following is old implementation, just for backup
+    int startTime = time(0);
     
-    
-//    NSMutableArray *cuttingList = [NSMutableArray arrayWithCapacity:frameNumber];//mark the cutting list
     NSMutableArray *gifFrames = [NSMutableArray arrayWithCapacity:frameNumber];//input the images
     
+    CGFloat progress = 0;
+    
     // add several frames
+    UIImage* prevImage = nil;
+    int startIndex = 0;
+    int endIndex = 0;
     for(NSInteger i = 1;i < frameNumber;i++)
     {
-        int playIndex = (i * [drawActionList count] / frameNumber - 1);
-        UIImage* image = [showView createImageAtIndex:playIndex bgColor:[UIColor whiteColor]];
+        endIndex = (i * [drawActionList count] / frameNumber - 1);
+        PPDebug(@"<createImagesForGIF> create %d frame, start=%d, end=%d", i, startIndex, endIndex);
+        UIImage* image = [showView createImageAtIndex:endIndex bgColor:[UIColor whiteColor]];
         image = [image scaleImage:image toScale:scaleSize];
-        [gifFrames addObject:image];
-        PPDebug(@"<createImagesForGIF> create %d frame, index=%d", i, playIndex);
+        if (image){
+            [gifFrames addObject:image];
+            prevImage = image;
+        }
+        else{
+            PPDebug(@"<createImagesForGIF> fail to create frame image");
+        }
+        progress = (i*1.0f)/(frameNumber*1.0f);
+        [self postCreateGIFNotification:progress];
     }
     
     // last image
@@ -695,7 +928,11 @@ typedef enum {
         [gifFrames addObject:lastImage];
         [gifFrames insertObject:lastImage atIndex:0];   // insert first to make GIF readable
     }
-
+    
+    [self postCreateGIFNotification:0.999f];
+    
+    PPDebug(@"create gif spend time is %d seconds", time(0) - startTime);
+    
     return gifFrames;
 }
 
