@@ -632,7 +632,6 @@ typedef enum {
 //    CGSize outputSize = CGSizeMake(self.bounds.size.width*scaleSize, self.bounds.size.height*scaleSize);
     
     // add several frames
-    UIImage* prevImage = nil;
     int startIndex = 0;
     int endIndex = 0;
     int totalCount = [drawActionList count];
@@ -648,7 +647,7 @@ typedef enum {
             showLength = totalCount - startIndex;
         }
         
-        BOOL useLayerOpacity = (i >= frameNumber); //(showLength >= [self.drawActionList count]);
+        BOOL useLayerOpacity = (i >= frameNumber);
         NSArray *actions = [_drawActionList subarrayWithRange:NSMakeRange(startIndex, showLength)];
 
         // init layer actions
@@ -683,6 +682,9 @@ typedef enum {
                     layer.opacity = [alpha floatValue];
                 }
             }
+            else{
+                layer.opacity = layer.finalOpacity;
+            }
             
             [layer setNeedsDisplay];
             
@@ -692,19 +694,19 @@ typedef enum {
             NSInteger gridLineNumber = [[layer drawInfo] gridLineNumber];
             UIImage* layerImage = nil;
             if (clip != nil || gridLineNumber != 0) {
+                // clear clip info
                 layer.clipAction = nil;
                 layer.drawInfo.gridLineNumber = 0;
                 [layer setNeedsDisplay];
                 
-                //                [layer renderInContext:ctx];
+                // create layer image
                 layerImage = [self createImageFromLayer:layer bgImage:prevImage];
                 
+                // restore clip info
                 [layer setClipAction:clip];
-                
                 [layer.drawInfo setGridLineNumber:gridLineNumber];
                 [layer setNeedsDisplay];
             }else{
-                //                [layer renderInContext:ctx];
                 layerImage = [self createImageFromLayer:layer bgImage:prevImage];
             }
             
@@ -718,57 +720,30 @@ typedef enum {
         
         UIGraphicsBeginImageContext(self.bounds.size);
         
-        UIColor* bgColor = [UIColor whiteColor];
         CGContextRef ctx = UIGraphicsGetCurrentContext();
-        
-//        if (prevImage){
-//            [prevImage drawAtPoint:CGPointZero];
-//        }
-//        else if (bgColor){
-        [bgColor setFill];
-        CGContextFillRect(ctx, self.bounds);
-//            CGContextFillRect(ctx, CGRectMake(0, 0, outputSize.width, outputSize.height));
-//        }
-        
+
+        // draw background as white
+        UIColor* bgColor = [UIColor whiteColor];
+        if (bgColor){
+            [bgColor setFill];
+            CGContextFillRect(ctx, self.bounds);
+        }
+
+        // draw each layer in image context
         [layerList reversEnumWithHandler:^(id object) {
             DrawLayer *layer = object;
-//            CGContextSaveGState(ctx);
-            
-//            ClipAction *clip = [layer clipAction];
-//            NSInteger gridLineNumber = [[layer drawInfo] gridLineNumber];
-//            UIImage* layerImage = nil;
-//            if (clip != nil || gridLineNumber != 0) {
-//                layer.clipAction = nil;
-//                layer.drawInfo.gridLineNumber = 0;
-//                [layer setNeedsDisplay];
-//                
-////                [layer renderInContext:ctx];
-//                layerImage = [self createImageFromLayer:layer];
-//                
-//                [layer setClipAction:clip];
-//                
-//                [layer.drawInfo setGridLineNumber:gridLineNumber];
-//                [layer setNeedsDisplay];
-//            }else{
-////                [layer renderInContext:ctx];
-//                layerImage = [self createImageFromLayer:layer];
-//            }
-            
             UIImage* layerImage = [layerImageDict objectForKey:@(layer.layerTag)];
-//            [layerImage drawInRect:CGRectMake(0, 0, outputSize.width, outputSize.height)];
             [layerImage drawAtPoint:CGPointZero];
-//            CGContextRestoreGState(ctx);
         }];
         
+        // get image
         image = UIGraphicsGetImageFromCurrentImageContext();
         UIGraphicsEndImageContext();
         
-        
-        // set for next bg image
-        prevImage = image;
+        // save for next bg image
         prevLayerImageDict = [[layerImageDict retain] autorelease];
 
-        // scale image
+        // scale image and add image into list
         image = [image scaleImage:image toScale:scaleSize];
         if (image){
             [gifFrames addObject:image];
@@ -776,30 +751,25 @@ typedef enum {
         else{
             PPDebug(@"<createImagesForGIF> fail to create frame image");
         }
+        
+        // report progress to UI
         progress = (i*1.0f)/(frameNumber*1.0f);
-        
         [ShowDrawView postCreateGIFNotification:progress];
-        
+
+        // change start index
         startIndex = endIndex;
     }
     
+    // add last image to first for good display
     UIImage* lastImage = [gifFrames lastObject];
     if (lastImage){
         [gifFrames insertObject:lastImage atIndex:0];
     }
-    
-    // last image
-//    UIImage *lastImage = [showView createImageAtIndex:[drawActionList count] bgColor:[UIColor whiteColor]];
-//    lastImage = [lastImage scaleImage:lastImage toScale:scaleSize];
-//    if (lastImage){
-//        [gifFrames addObject:lastImage];
-//        [gifFrames insertObject:lastImage atIndex:0];   // insert first to make GIF readable
-//    }
 
+    // report final progress
     [ShowDrawView postCreateGIFNotification:0.999f];
     
     PPDebug(@"create gif 2 spend time is %d seconds", time(0) - startTime);
-    
     return gifFrames;
 }
 
