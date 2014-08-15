@@ -2891,3 +2891,12 @@
 
 "kSaveAsGif" = "Save As GIF";
 "kCreateGIFProgress" = "Creating GIF...%2d%%";
+
+"kPicSum" = "picture sum";
+"kPicScale" = "picture scale";
+
+"kShareGifDialogTitle" = "Export to GIF";
+"kScaleWarning" = "Scale size shouldn't more than 100%";
+"kGifCountWarning" = "GifFrame Count shouldn't less than 0";
+"kScaleFloatWarning" = "Scale size must a number";
+"kGifCountIntWarning" = "GifFrame Count must a number";

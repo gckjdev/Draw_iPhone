@@ -2937,3 +2937,12 @@
 
 "kSaveAsGif" = "导出作品回放过程";
 "kCreateGIFProgress" = "生成GIF动图中...%2d%%";
+
+"kPicSum" = "图片个数:";
+"kPicScale" = "图片比例:";
+
+"kShareGifDialogTitle" = "导出为GIF";
+"kScaleWarning" = "图片比例不能超过100%，或者不能少于0";
+"kGifCountWarning" = "图片个数不能少于0";
+"kScaleFloatWarning" = "图片个数必须为数字";
+"kGifCountIntWarning" = "图片比例必须为整数";

@@ -6589,6 +6589,18 @@
 		D8D81175199DB4E300CC182A /* 3.gif in Resources */ = {isa = PBXBuildFile; fileRef = D8D8116B199DB4E300CC182A /* 3.gif */; };
 		D8D81176199DB4E300CC182A /* 3.gif in Resources */ = {isa = PBXBuildFile; fileRef = D8D8116B199DB4E300CC182A /* 3.gif */; };
 		D8D81177199DB4E300CC182A /* 3.gif in Resources */ = {isa = PBXBuildFile; fileRef = D8D8116B199DB4E300CC182A /* 3.gif */; };
+		D8D8117D199DD97200CC182A /* TwoInputFieldViewStyle2.m in Sources */ = {isa = PBXBuildFile; fileRef = D8D8117C199DD97200CC182A /* TwoInputFieldViewStyle2.m */; };
+		D8D8117E199DD97200CC182A /* TwoInputFieldViewStyle2.m in Sources */ = {isa = PBXBuildFile; fileRef = D8D8117C199DD97200CC182A /* TwoInputFieldViewStyle2.m */; };
+		D8D8117F199DD97200CC182A /* TwoInputFieldViewStyle2.m in Sources */ = {isa = PBXBuildFile; fileRef = D8D8117C199DD97200CC182A /* TwoInputFieldViewStyle2.m */; };
+		D8D81180199DD97200CC182A /* TwoInputFieldViewStyle2.m in Sources */ = {isa = PBXBuildFile; fileRef = D8D8117C199DD97200CC182A /* TwoInputFieldViewStyle2.m */; };
+		D8D81183199DE66100CC182A /* TwoInputFieldViewStyle2.xib in Resources */ = {isa = PBXBuildFile; fileRef = D8D81181199DE66100CC182A /* TwoInputFieldViewStyle2.xib */; };
+		D8D81184199DE66100CC182A /* TwoInputFieldViewStyle2.xib in Resources */ = {isa = PBXBuildFile; fileRef = D8D81181199DE66100CC182A /* TwoInputFieldViewStyle2.xib */; };
+		D8D81185199DE66100CC182A /* TwoInputFieldViewStyle2.xib in Resources */ = {isa = PBXBuildFile; fileRef = D8D81181199DE66100CC182A /* TwoInputFieldViewStyle2.xib */; };
+		D8D81186199DE66100CC182A /* TwoInputFieldViewStyle2.xib in Resources */ = {isa = PBXBuildFile; fileRef = D8D81181199DE66100CC182A /* TwoInputFieldViewStyle2.xib */; };
+		D8D81187199DE66100CC182A /* TwoInputFieldViewStyle2~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = D8D81182199DE66100CC182A /* TwoInputFieldViewStyle2~ipad.xib */; };
+		D8D81188199DE66100CC182A /* TwoInputFieldViewStyle2~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = D8D81182199DE66100CC182A /* TwoInputFieldViewStyle2~ipad.xib */; };
+		D8D81189199DE66100CC182A /* TwoInputFieldViewStyle2~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = D8D81182199DE66100CC182A /* TwoInputFieldViewStyle2~ipad.xib */; };
+		D8D8118A199DE66100CC182A /* TwoInputFieldViewStyle2~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = D8D81182199DE66100CC182A /* TwoInputFieldViewStyle2~ipad.xib */; };
 		D8F70B4B19935B0800B81795 /* BrickView.m in Sources */ = {isa = PBXBuildFile; fileRef = D8F70B4A19935B0800B81795 /* BrickView.m */; };
 		D8F70B4C19935B0800B81795 /* BrickView.m in Sources */ = {isa = PBXBuildFile; fileRef = D8F70B4A19935B0800B81795 /* BrickView.m */; };
 		D8F70B4D19935B0800B81795 /* BrickView.m in Sources */ = {isa = PBXBuildFile; fileRef = D8F70B4A19935B0800B81795 /* BrickView.m */; };
@@ -10997,6 +11009,10 @@
 		D8D81169199DB4E300CC182A /* 1.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = 1.gif; sourceTree = "<group>"; };
 		D8D8116A199DB4E300CC182A /* 2.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = 2.gif; sourceTree = "<group>"; };
 		D8D8116B199DB4E300CC182A /* 3.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = 3.gif; sourceTree = "<group>"; };
+		D8D8117B199DD97200CC182A /* TwoInputFieldViewStyle2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TwoInputFieldViewStyle2.h; sourceTree = "<group>"; };
+		D8D8117C199DD97200CC182A /* TwoInputFieldViewStyle2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TwoInputFieldViewStyle2.m; sourceTree = "<group>"; };
+		D8D81181199DE66100CC182A /* TwoInputFieldViewStyle2.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TwoInputFieldViewStyle2.xib; sourceTree = "<group>"; };
+		D8D81182199DE66100CC182A /* TwoInputFieldViewStyle2~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "TwoInputFieldViewStyle2~ipad.xib"; sourceTree = "<group>"; };
 		D8F70B4919935B0800B81795 /* BrickView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BrickView.h; sourceTree = "<group>"; };
 		D8F70B4A19935B0800B81795 /* BrickView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BrickView.m; sourceTree = "<group>"; };
 		D8F70B4F1993894800B81795 /* MetroHomeController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MetroHomeController.xib; sourceTree = "<group>"; };
@@ -12277,6 +12293,10 @@
 				A467892F17BB21FD007C546A /* UISoundButton.h */,
 				A467893017BB21FE007C546A /* UISoundButton.m */,
 				A484D2FD17C45ACB008185F8 /* CommonViewConstants.h */,
+				D8D8117B199DD97200CC182A /* TwoInputFieldViewStyle2.h */,
+				D8D8117C199DD97200CC182A /* TwoInputFieldViewStyle2.m */,
+				D8D81181199DE66100CC182A /* TwoInputFieldViewStyle2.xib */,
+				D8D81182199DE66100CC182A /* TwoInputFieldViewStyle2~ipad.xib */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -19241,6 +19261,7 @@
 				A461B4B3174CBAA70088B061 /* FeedCell~ipad.xib in Resources */,
 				D86D7CD51994C87B00D64C18 /* caogao.png in Resources */,
 				A461B4B4174CBAA70088B061 /* UserInfoCell.xib in Resources */,
+				D8D81189199DE66100CC182A /* TwoInputFieldViewStyle2~ipad.xib in Resources */,
 				A461B4B5174CBAA70088B061 /* UserInfoCell~ipad.xib in Resources */,
 				A461B4B6174CBAA70088B061 /* CommentController.xib in Resources */,
 				A461B4B7174CBAA70088B061 /* CommentController~ipad.xib in Resources */,
@@ -19643,6 +19664,7 @@
 				A4D8FA5B17DB08170085061F /* draw_save_btn@2x.png in Resources */,
 				A4D8FA5F17DB08170085061F /* draw_setting_btn@2x.png in Resources */,
 				A4D8FA6317DB08170085061F /* draw_share@2x.png in Resources */,
+				D8D81185199DE66100CC182A /* TwoInputFieldViewStyle2.xib in Resources */,
 				A4D8FA6717DB08170085061F /* experience@2x.png in Resources */,
 				A4D8FA6B17DB08170085061F /* group_message@2x.png in Resources */,
 				A4D8FA6F17DB08170085061F /* message_popup@2x.png in Resources */,
@@ -20366,6 +20388,7 @@
 				C28A9DE31738F04B007A819F /* BBSPostListController.xib in Resources */,
 				C28A9DE61738F04B007A819F /* BBSPostCell.xib in Resources */,
 				C28A9DE81738F04B007A819F /* BBSPostActionCell.xib in Resources */,
+				D8D81184199DE66100CC182A /* TwoInputFieldViewStyle2.xib in Resources */,
 				C28A9DE91738F04B007A819F /* BBSPostDetailCell.xib in Resources */,
 				C28A9DEA1738F04B007A819F /* BBSPostActionHeaderView.xib in Resources */,
 				C28A9DEB1738F04B007A819F /* BBSActionListController.xib in Resources */,
@@ -20624,6 +20647,7 @@
 				A499721D1778343A00B01EBE /* ResultController~ipad.xib in Resources */,
 				A499721F1778343A00B01EBE /* ResultController.xib in Resources */,
 				A49972421778349000B01EBE /* HomeController.xib in Resources */,
+				D8D81188199DE66100CC182A /* TwoInputFieldViewStyle2~ipad.xib in Resources */,
 				A49972431778349000B01EBE /* HomeController~ipad.xib in Resources */,
 				CA3D4B0217794748000A8FC7 /* ShadowBox.xib in Resources */,
 				CA3D4B1417794748000A8FC7 /* ShadowBox~ipad.xib in Resources */,
@@ -21366,6 +21390,7 @@
 				C2B3E93C155373F500CCF52C /* ShareController~ipad.xib in Resources */,
 				C2B3E93E155373FD00CCF52C /* ShareCell~ipad.xib in Resources */,
 				A42D9048155380760023AF32 /* ColorShopView~ipad.xib in Resources */,
+				D8D81187199DE66100CC182A /* TwoInputFieldViewStyle2~ipad.xib in Resources */,
 				A454CB701558F5CE00896761 /* ChatController.xib in Resources */,
 				D8BF37211971068100ACEFCA /* neironglan.png in Resources */,
 				A454CBC5155A181500896761 /* MessageCell.xib in Resources */,
@@ -21998,6 +22023,7 @@
 				A4D8FDCB17DB089C0085061F /* selector_cancel@2x.png in Resources */,
 				A4D8FDCF17DB089C0085061F /* selector_close@2x.png in Resources */,
 				A4D8FDD317DB089C0085061F /* selector_close_bg@2x.png in Resources */,
+				D8D81183199DE66100CC182A /* TwoInputFieldViewStyle2.xib in Resources */,
 				A4D8FDD717DB089C0085061F /* selector_ellipse@2x.png in Resources */,
 				A4D8FDDB17DB089C0085061F /* selector_help@2x.png in Resources */,
 				CA3B101918F93CA2003867E3 /* DomobAdSDKBundle.bundle in Resources */,
@@ -22904,6 +22930,7 @@
 				A4D8FAEC17DB08170085061F /* little_triangle@2x.png_bak.png in Resources */,
 				A4D8FAF017DB08170085061F /* pine_tree@2x.png in Resources */,
 				A4D8FAF417DB08170085061F /* round_dot_10@2x.png in Resources */,
+				D8D81186199DE66100CC182A /* TwoInputFieldViewStyle2.xib in Resources */,
 				D80EB358196B90FB0087EBBD /* MetroHomeController~ipad.xib in Resources */,
 				A4D8FAF817DB08170085061F /* round_dot_11@2x.png in Resources */,
 				A4D8FAFC17DB08170085061F /* round_dot_12@2x.png in Resources */,
@@ -23142,6 +23169,7 @@
 				A4D8FFBA17DB089C0085061F /* learndraw_mark@2x.png in Resources */,
 				A4D8FFBE17DB089C0085061F /* learndraw_more@2x.png in Resources */,
 				A4D8FFC217DB089C0085061F /* learndraw_shop@2x.png in Resources */,
+				D8D8118A199DE66100CC182A /* TwoInputFieldViewStyle2~ipad.xib in Resources */,
 				A4D8FFC617DB089C0085061F /* line.svg in Resources */,
 				A4D8FFCA17DB089C0085061F /* path.svg in Resources */,
 				D82C0D831976500E0088539F /* home_bb_version.txt in Resources */,
@@ -23848,6 +23876,7 @@
 				A461B26F174CBAA70088B061 /* OSCommonImage.m in Sources */,
 				A461B270174CBAA70088B061 /* UIImage+ANImageBitmapRep.m in Sources */,
 				A461B271174CBAA70088B061 /* CGContextCreator.m in Sources */,
+				D8D8117F199DD97200CC182A /* TwoInputFieldViewStyle2.m in Sources */,
 				A461B272174CBAA70088B061 /* CGImageContainer.m in Sources */,
 				A461B273174CBAA70088B061 /* BitmapContextManipulator.m in Sources */,
 				A461B274174CBAA70088B061 /* BitmapCropManipulator.m in Sources */,
@@ -24406,6 +24435,7 @@
 				C28A99701738F04B007A819F /* TestPPViewController.m in Sources */,
 				C28A997D1738F04B007A819F /* ReviewRequest.m in Sources */,
 				C28A997E1738F04B007A819F /* SearchHistoryManager.m in Sources */,
+				D8D8117E199DD97200CC182A /* TwoInputFieldViewStyle2.m in Sources */,
 				C28A997F1738F04B007A819F /* UIBackgroundView.m in Sources */,
 				D8A2709B196FC07F006DDF20 /* GameConstants.pb-c.c in Sources */,
 				C28A99801738F04B007A819F /* UICustomeBackGroundView.m in Sources */,
@@ -25280,6 +25310,7 @@
 				CA103EB91509A56200F60C03 /* ReviewRequest.m in Sources */,
 				CA103EBA1509A56200F60C03 /* SearchHistoryManager.m in Sources */,
 				A44F37891988F52C0022913B /* GifViewController.m in Sources */,
+				D8D8117D199DD97200CC182A /* TwoInputFieldViewStyle2.m in Sources */,
 				CA103EBB1509A56200F60C03 /* UIBackgroundView.m in Sources */,
 				D8A2709A196FC07F006DDF20 /* GameConstants.pb-c.c in Sources */,
 				CA103EBC1509A56200F60C03 /* UICustomeBackGroundView.m in Sources */,
@@ -26761,6 +26792,7 @@
 				CA2A28BB195C135600A97478 /* Tutorial.pb.m in Sources */,
 				A467BBCF17798E0F00455E3A /* OpusDownloadService.m in Sources */,
 				EA1176AF1779B840008678AC /* DrawToolUpPanel.m in Sources */,
+				D8D81180199DD97200CC182A /* TwoInputFieldViewStyle2.m in Sources */,
 				CA13B83D177BDB57003B7368 /* Shadow.m in Sources */,
 				CA315B45195E5ECA00AB800D /* PBTutorial+Extend.m in Sources */,
 				CA13B859177BE368003B7368 /* ShadowCommand.m in Sources */,

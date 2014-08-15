@@ -2996,3 +2996,7 @@
 
 "kSaveAsGif" = "匯出作品重播過程";
 "kCreateGIFProgress" = "生成GIF動圖中...%2d%%";
+
+"kPicSum" = "圖片個數";
+"kPicScale" = "圖片比例";
+"kShareGifDialogTitle" = "導出為GIF";
