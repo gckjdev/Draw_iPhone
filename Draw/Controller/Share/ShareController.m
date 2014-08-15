@@ -591,7 +591,7 @@ typedef enum{
     }
     else if (buttonIndex == SAVE_INTO_GIF)
     {
-        [[ShareService defaultService] saveGif:self draft:_selectedPaint];
+        [[ShareService defaultService] showShareGifDialog:self draft:_selectedPaint];
     }
     else if (buttonIndex == SHARE_SINA_WEIBO){
         [self share:TYPE_SINA];

@@ -22,5 +22,8 @@
 - (void)saveGif:(PPViewController*)superController
           draft:(MyPaint*)draft;
 
+- (void)showShareGifDialog:(PPViewController*)superController
+                     draft:(MyPaint*)draft;
+
 
 @end

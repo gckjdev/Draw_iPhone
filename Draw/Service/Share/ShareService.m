@@ -263,6 +263,12 @@ static ShareService* _defaultService;
     return nil;
 }
 
+- (void)showShareGifDialog:(PPViewController*)superController
+                     draft:(MyPaint*)draft
+{
+    
+}
+
 - (void)saveGif:(PPViewController*)superController
           draft:(MyPaint*)draft
 {
