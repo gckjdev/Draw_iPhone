@@ -82,15 +82,21 @@
             if([pbUserTutorial isFinishedTutorial:row]==NO){
                 self.stageListStarBtn.hidden = NO;
             }
-            
+
+            self.maskView.alpha = 0.15f;
+            self.maskView.hidden = NO;
         }
+        else{
+            self.maskView.alpha = 1.0f;
+            self.maskView.hidden = YES;
+        }
+        
        
         self.cellName.hidden = NO;
         self.stageCellImage.hidden = NO;
         self.stageListHiddenLockImageView.hidden = YES;
         self.hiddenNumberLabel.hidden = YES;
         self.hiddenNumberHolderView.hidden = YES;
-        self.maskView.hidden = NO;
 
     }
     else{
