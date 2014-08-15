@@ -17,6 +17,11 @@
                         <rect key="frame" x="0.0" y="0.0" width="140" height="100"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                     </imageView>
+                    <view alpha="0.20000000000000001" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="aUf-za-KNv" userLabel="MaskView">
+                        <rect key="frame" x="0.0" y="0.0" width="140" height="100"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="top" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KMq-Yf-omz">
                         <rect key="frame" x="10" y="0.0" width="130" height="25"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -100,6 +105,7 @@
                 <outlet property="cellName" destination="KMq-Yf-omz" id="NyG-Uu-o4Z"/>
                 <outlet property="hiddenNumberHolderView" destination="r2U-Bx-jx7" id="id2-wp-uhD"/>
                 <outlet property="hiddenNumberLabel" destination="uPu-6J-eAt" id="Ql2-h5-ytc"/>
+                <outlet property="maskView" destination="aUf-za-KNv" id="8IV-yL-NGg"/>
                 <outlet property="stageCellImage" destination="a6K-Gs-lob" id="VTx-zc-a5b"/>
                 <outlet property="stageListHiddenLockImageView" destination="gGJ-ly-Ls2" id="bZB-VN-HQA"/>
                 <outlet property="stageListStarBtn" destination="cpc-SX-J4c" id="uyf-ga-Fde"/>

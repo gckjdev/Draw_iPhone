@@ -74,7 +74,7 @@
 #define TITLE_LABEL_Y (ISIPAD ? 10:5)
 
 #define BRICK_VIEW_BOTTOM_LABEL 2014080901
-
+#define BRICK_VIEW_CENTER_IMAGE 2014080140345
 -(void)initComponent:(CGRect)rect{
     
     //左上角label
@@ -90,10 +90,13 @@
     
         [label setTextColor:[UIColor whiteColor]];
     
+
     //中间图片
     UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake((rect.size.width-IMAGE_WIDTH)/2, (rect.size.height-IMAGE_HEIGHT)/2, IMAGE_HEIGHT, IMAGE_WIDTH)];
     [imageView setImage:self.image];
+    [imageView setTag:BRICK_VIEW_CENTER_IMAGE];
     
+
    
     
     //图片描述
@@ -160,12 +163,54 @@
     [constraints release];
 }
 
-- (void)setBottomLabelText:(NSString*)text
+- (void)setBottomLabelText:(NSString*)text color:(UIColor*)color
 {
     UIView* view = [self viewWithTag:BRICK_VIEW_BOTTOM_LABEL];
     if ([view isKindOfClass:[UILabel class]]){
         [((UILabel*)view) setText:text];
+        [((UILabel*)view) setTextColor:color];
     }
+}
+#define BRICK_VIEW_CENTER_NEW_IMAGE 201408141643
+#define NEW_IMAGE_SIZE_WIDTH (ISIPAD ? 110:50)
+#define NEW_IMAGE_SIZE_HEIGHT (ISIPAD ? 110:50)
+-(void)startAnimationOnImage:(NSArray*)imagesArray{
+    
+    UIView* imageView = [self viewWithTag:BRICK_VIEW_CENTER_IMAGE];
+    imageView.hidden = YES;
+    
+    UIView *oldImageView = [self viewWithTag:BRICK_VIEW_CENTER_NEW_IMAGE];
+    [oldImageView removeFromSuperview];
+    
+    UIImageView *newImageView = [[UIImageView alloc] init];
+    [newImageView setTag:BRICK_VIEW_CENTER_NEW_IMAGE];
+    
+    newImageView.frame = CGRectMake(imageView.frame.origin.x, imageView.frame.origin.y-NEW_IMAGE_SIZE_HEIGHT+imageView.frame.size.width, NEW_IMAGE_SIZE_WIDTH, NEW_IMAGE_SIZE_HEIGHT);
+    if ([imageView isKindOfClass:[UIImageView class]]){
+        ((UIImageView*)newImageView).animationImages =  imagesArray;
+        
+        ((UIImageView*)newImageView).animationDuration = 1.0f;
+        
+        ((UIImageView*)newImageView).animationRepeatCount = 4;
+        
+        [((UIImageView*)newImageView) startAnimating];
+        
+    }
+    [self addSubview:newImageView];
+    [newImageView release];
+}
+-(void)stopAnimationOnImage{
+    UIView* imageView = [self viewWithTag:BRICK_VIEW_CENTER_NEW_IMAGE];
+    
+    if ([imageView isKindOfClass:[UIImageView class]]){
+        [((UIImageView*)imageView) stopAnimating];
+        
+    }
+
+}
+-(void)unhiddenImage{
+    UIView* imageView = [self viewWithTag:BRICK_VIEW_CENTER_IMAGE];
+    imageView.hidden = NO;
 }
 
 

@@ -10,6 +10,7 @@
 #import "Tutorial.pb.h"
 
 @interface UserTutorialMainCell : UITableViewCell
+@property (retain, nonatomic) IBOutlet UIView *alphaView;
 
 @property (retain, nonatomic) IBOutlet UILabel *tutorialNameLabel;
 @property (retain, nonatomic) IBOutlet UIImageView *tutorialImageView;

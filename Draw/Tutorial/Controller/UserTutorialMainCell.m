@@ -33,7 +33,8 @@
 {
    
     SET_VIEW_ROUND_CORNER(self.tutorialImageView);
-    SET_VIEW_ROUND_CORNER(self.labelBottomView);
+//    SET_VIEW_ROUND_CORNER(self.labelBottomView);
+   
     //contentView background
     self.contentView.backgroundColor = [UIColor clearColor];
     self.backgroundColor = [UIColor clearColor];
@@ -50,16 +51,24 @@
     float progress = [ut progress]*1.0f/100.0f;
     [self setProgressView:row WithProgress:progress];
     
+    
     //实现国际化
     [self.tutorialNameLabel setText:ut.tutorial.name];
+    [self.tutorialNameLabel setTextColor:COLOR_BROWN];
+    [self.tutorialDateLabel setTextColor:COLOR_BROWN];
+    
     
     NSDate* createDate = [NSDate dateWithTimeIntervalSince1970:ut.modifyDate];
     self.tutorialDateLabel.text = dateToTimeLineString(createDate);
+    
+    
     UIImage *placeHolderImage = [UIImage imageNamed:DEFAUT_IMAGE_NAME];
     [_tutorialImageView setImageWithUrl:[NSURL URLWithString:ut.tutorial.image]
                    placeholderImage:placeHolderImage
                         showLoading:YES
                            animated:YES];
+    
+     [self setSomeCornerRadius];
 }
 
 #define PROGRESS_VIEW_SIZE_WIDTH (ISIPAD ? 360.0f : 160.0f)
@@ -70,11 +79,17 @@
     
 
      [self.progressAndLabelView removeAllSubviews];
-
+    
     CGSize mainSize = [UIScreen mainScreen].bounds.size;
     
     //调用LDProgressView
-     const CGFloat progressX = fabsf((mainSize.width - progressViewSize.width)/2.0f);
+    CGFloat progressX;
+    if(ISIPAD){
+        progressX = fabsf((mainSize.width - progressViewSize.width)/2.0f);
+    }
+    else{
+        progressX = fabsf((mainSize.width - progressViewSize.width-30)/2.0f);
+    }
     const CGFloat progressY = fabsf((self.frame.size.height - progressViewSize.height-(ISIPAD?42:20))/2.0f);
     LDProgressView *tutorialProgressView = [[LDProgressView alloc] initWithFrame:
                                                             CGRectMake(progressX,progressY,progressViewSize.width,progressViewSize.height)];
@@ -130,7 +145,29 @@
     
     
 }
+#define CORNER_RADII (ISIPAD ? 15:8)
+-(void)setSomeCornerRadius{
+    
+    UIBezierPath *maskPath = [UIBezierPath bezierPathWithRoundedRect:_labelBottomView.bounds byRoundingCorners:  UIRectCornerBottomRight | UIRectCornerBottomLeft cornerRadii:CGSizeMake(CORNER_RADII, CORNER_RADII)];
+    CAShapeLayer *maskLayer = [[CAShapeLayer alloc] init];
+    maskLayer.frame = _labelBottomView.bounds;
+    maskLayer.path = maskPath.CGPath;
+    
+    _labelBottomView.layer.mask = maskLayer;
+    [maskLayer release];
 
+    
+    UIBezierPath *maskPathAlphaView = [UIBezierPath bezierPathWithRoundedRect:_alphaView.bounds byRoundingCorners:UIRectCornerTopLeft | UIRectCornerTopRight cornerRadii:CGSizeMake(CORNER_RADII, CORNER_RADII)];
+    
+
+    CAShapeLayer *maskLayerAlphaView = [[CAShapeLayer alloc] init];
+    maskLayerAlphaView.frame = _alphaView.bounds;
+    maskLayerAlphaView.path = maskPathAlphaView.CGPath;
+    
+    _alphaView.layer.mask = maskLayerAlphaView;
+//    _alphaView.bounds = CGRectMake(0, 0,  self.frame.size.width, self.frame.size.height-self.labelBottomView.frame.size.height);
+    [maskLayerAlphaView release];
+}
 
 - (void)dealloc {
     [_tutorialNameLabel release];
@@ -144,6 +181,7 @@
     [_othersProgressInfoLabel release];
     [_progressAndLabelView release];
     [_difficultyLabel release];
+    [_alphaView release];
     [super dealloc];
 }
 

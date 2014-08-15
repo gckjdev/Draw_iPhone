@@ -485,12 +485,25 @@
     
     if (self.bbsForumView != nil){
         if (manager.bbsActionCount == 0){
-            [self.bbsForumView setBottomLabelText:@"Forum"];
+            [self.bbsForumView setBottomLabelText:@"Forum" color:COLOR_WHITE];
+            [self.bbsForumView stopAnimationOnImage];
         }
         else{
-            [self.bbsForumView setBottomLabelText:[NSString stringWithFormat:@"Forum (%ld)",manager.bbsActionCount]];
+            [self.bbsForumView setBottomLabelText:[NSString stringWithFormat:@"Forum (%ld)",manager.bbsActionCount] color:COLOR_WHITE];
+            
+            [self.bbsForumView startAnimationOnImage:[NSArray arrayWithObjects:
+                                                        [UIImage imageNamed:@"1.gif"],
+                                                        [UIImage imageNamed:@"2.gif"],
+                                                        [UIImage imageNamed:@"3.gif"],
+                                                        [UIImage imageNamed:@"1.gif"],
+                                                     nil]];
+            if([self.bbsForumView respondsToSelector:@selector(unhiddenImage)]){
+                [self.bbsForumView performSelector:@selector(unhiddenImage) withObject:nil afterDelay:4.0f];
+    
+            }
         }
     }
+
 }
 
 - (void)dealloc {
@@ -739,6 +752,7 @@
     
     UIImage *amazingImage = [UIImage imageNamed:@"jingcaizuopin"];
     BrickView *amazingOpusView = [[[BrickView alloc] initWithFrame:self.amazingOpusView.bounds title:NSLS(@"kMetroHomeGallery") imageTitle:@"Gallery" image:amazingImage] autorelease];
+
     
     self.bbsForumView = forumView;
     
