@@ -617,8 +617,13 @@ typedef enum {
 {
     int startTime = time(0);
     
-    if (finalImage){
+    if (finalImage && CGSizeEqualToSize(finalImage.size, self.bounds.size)){
+        // has final image and its size is the same as draw view size
         frameNumber --;
+    }
+    else{
+        // size not the same, don't use it!
+        finalImage = nil;
     }
     
     NSArray* drawActionList = self.drawActionList;
