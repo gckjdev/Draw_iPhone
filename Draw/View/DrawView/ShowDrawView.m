@@ -600,7 +600,7 @@ typedef enum {
 //    CGContextSaveGState(ctx);
     
     if (bgImage){
-        [bgImage drawInRect:self.bounds];
+        [bgImage drawAtPoint:CGPointZero];
     }
     
     [layer renderInContext:ctx];
@@ -629,25 +629,26 @@ typedef enum {
     NSMutableDictionary *layerAlphaDict = [NSMutableDictionary dictionaryWithCapacity:[layerList count]];
     NSMutableDictionary *prevLayerImageDict = nil;
     
-    CGSize outputSize = CGSizeMake(self.bounds.size.width*scaleSize, self.bounds.size.height*scaleSize);
+//    CGSize outputSize = CGSizeMake(self.bounds.size.width*scaleSize, self.bounds.size.height*scaleSize);
     
     // add several frames
     UIImage* prevImage = nil;
     int startIndex = 0;
     int endIndex = 0;
+    int totalCount = [drawActionList count];
     for(NSInteger i = 1;i <= frameNumber;i++)
     {
-        endIndex = (i * [drawActionList count] / frameNumber - 1);
+        endIndex = (i * totalCount / frameNumber - 1);
         PPDebug(@"<createImagesForGIF> create %d frame, start=%d, end=%d", i, startIndex, endIndex);
         
         int showLength = MAX(0, endIndex - startIndex + 1);
-        showLength = MIN(showLength, [self.drawActionList count]);
-        
+        showLength = MIN(showLength, totalCount);
         if (i == frameNumber){
             // last frame
+            showLength = totalCount - startIndex;
         }
         
-        BOOL useLayerOpacity = (showLength >= [self.drawActionList count]);
+        BOOL useLayerOpacity = (i >= frameNumber); //(showLength >= [self.drawActionList count]);
         NSArray *actions = [_drawActionList subarrayWithRange:NSMakeRange(startIndex, showLength)];
 
         // init layer actions
@@ -715,7 +716,7 @@ typedef enum {
         UIImage *image;
         PPDebug(@"<createImage> size=%@", NSStringFromCGSize(self.bounds.size));
         
-        UIGraphicsBeginImageContext(outputSize);
+        UIGraphicsBeginImageContext(self.bounds.size);
         
         UIColor* bgColor = [UIColor whiteColor];
         CGContextRef ctx = UIGraphicsGetCurrentContext();
@@ -724,8 +725,9 @@ typedef enum {
 //            [prevImage drawAtPoint:CGPointZero];
 //        }
 //        else if (bgColor){
-            [bgColor setFill];
-            CGContextFillRect(ctx, CGRectMake(0, 0, outputSize.width, outputSize.height));
+        [bgColor setFill];
+        CGContextFillRect(ctx, self.bounds);
+//            CGContextFillRect(ctx, CGRectMake(0, 0, outputSize.width, outputSize.height));
 //        }
         
         [layerList reversEnumWithHandler:^(id object) {
@@ -753,7 +755,8 @@ typedef enum {
 //            }
             
             UIImage* layerImage = [layerImageDict objectForKey:@(layer.layerTag)];
-            [layerImage drawInRect:CGRectMake(0, 0, outputSize.width, outputSize.height)];
+//            [layerImage drawInRect:CGRectMake(0, 0, outputSize.width, outputSize.height)];
+            [layerImage drawAtPoint:CGPointZero];
 //            CGContextRestoreGState(ctx);
         }];
         
@@ -766,7 +769,7 @@ typedef enum {
         prevLayerImageDict = [[layerImageDict retain] autorelease];
 
         // scale image
-//        image = [image scaleImage:image toScale:scaleSize];
+        image = [image scaleImage:image toScale:scaleSize];
         if (image){
             [gifFrames addObject:image];
         }
