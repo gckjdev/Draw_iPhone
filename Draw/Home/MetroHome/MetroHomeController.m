@@ -468,12 +468,25 @@
     
     if (self.bbsForumView != nil){
         if (manager.bbsActionCount == 0){
-            [self.bbsForumView setBottomLabelText:@"Forum"];
+            [self.bbsForumView setBottomLabelText:@"Forum" color:COLOR_WHITE];
+            [self.bbsForumView stopAnimationOnImage];
         }
         else{
-            [self.bbsForumView setBottomLabelText:[NSString stringWithFormat:@"Forum (%ld)",manager.bbsActionCount]];
+            [self.bbsForumView setBottomLabelText:[NSString stringWithFormat:@"Forum (%ld)",manager.bbsActionCount] color:COLOR_WHITE];
+            
+            [self.bbsForumView startAnimationOnImage:[NSArray arrayWithObjects:
+                                                        [UIImage imageNamed:@"1.gif"],
+                                                        [UIImage imageNamed:@"2.gif"],
+                                                        [UIImage imageNamed:@"3.gif"],
+                                                        [UIImage imageNamed:@"1.gif"],
+                                                     nil]];
+            if([self.bbsForumView respondsToSelector:@selector(unhiddenImage)]){
+                [self.bbsForumView performSelector:@selector(unhiddenImage) withObject:nil afterDelay:4.0f];
+    
+            }
         }
     }
+
 }
 
 - (void)dealloc {
@@ -712,16 +725,17 @@
     
     //新建色块中的图片
     UIImage *paintingImage = [UIImage imageNamed:@"huahua"];
-    BrickView *paintingView = [[[BrickView alloc] initWithFrame:self.paintingView.bounds title:@"画画" imageTitle:@"Painting" image:paintingImage] autorelease];
+    BrickView *paintingView = [[[BrickView alloc] initWithFrame:self.paintingView.bounds title:NSLS(@"kMetroHomePainting") imageTitle:@"Painting" image:paintingImage] autorelease];
     
     UIImage *learningImage = [UIImage imageNamed:@"xuehuahua"];
-    BrickView *learningView = [[[BrickView alloc] initWithFrame:self.learningView.bounds title:@"学画画" imageTitle:@"Learning" image:learningImage] autorelease];
+    BrickView *learningView = [[[BrickView alloc] initWithFrame:self.learningView.bounds title:NSLS(@"kMetroHomeLearning") imageTitle:@"Learning" image:learningImage] autorelease];
     
     UIImage *forumImage = [UIImage imageNamed:@"luntan"];
-    BrickView *forumView = [[[BrickView alloc] initWithFrame:self.forumView.bounds title:@"论坛" imageTitle:@"Forum" image:forumImage] autorelease];
+    BrickView *forumView = [[[BrickView alloc] initWithFrame:self.forumView.bounds title:NSLS(@"kMetroHomeForum") imageTitle:@"Forum" image:forumImage] autorelease];
     
     UIImage *amazingImage = [UIImage imageNamed:@"jingcaizuopin"];
-    BrickView *amazingOpusView = [[[BrickView alloc] initWithFrame:self.amazingOpusView.bounds title:@"精彩作品" imageTitle:@"Gallery" image:amazingImage] autorelease];
+    BrickView *amazingOpusView = [[[BrickView alloc] initWithFrame:self.amazingOpusView.bounds title:NSLS(@"kMetroHomeGallery") imageTitle:@"Gallery" image:amazingImage] autorelease];
+
     
     self.bbsForumView = forumView;
     

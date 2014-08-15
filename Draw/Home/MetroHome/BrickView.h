@@ -20,7 +20,11 @@
 @property (nonatomic,retain) UIColor *titleColor;
 @property (nonatomic,retain) UIColor *imageTitleColor;
 
-- (void)setBottomLabelText:(NSString*)text;
+- (void)setBottomLabelText:(NSString*)text color:(UIColor*)color;
 
 - (id)initWithFrame:(CGRect)frame title:(NSString *)title imageTitle:(NSString *)imageTitle image:(UIImage*)image;
+
+-(void)startAnimationOnImage:(NSArray*)imagesArray;
+-(void)stopAnimationOnImage;
+-(void)unhiddenImage;
 @end

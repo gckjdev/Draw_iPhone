@@ -6266,6 +6266,18 @@
 		D80EB356196B90FB0087EBBD /* MetroHomeController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = D80EB354196B90FB0087EBBD /* MetroHomeController~ipad.xib */; };
 		D80EB357196B90FB0087EBBD /* MetroHomeController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = D80EB354196B90FB0087EBBD /* MetroHomeController~ipad.xib */; };
 		D80EB358196B90FB0087EBBD /* MetroHomeController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = D80EB354196B90FB0087EBBD /* MetroHomeController~ipad.xib */; };
+		D8126282199C9F2F005F86E5 /* 1.gif in Resources */ = {isa = PBXBuildFile; fileRef = D812627F199C9F2F005F86E5 /* 1.gif */; };
+		D8126283199C9F2F005F86E5 /* 1.gif in Resources */ = {isa = PBXBuildFile; fileRef = D812627F199C9F2F005F86E5 /* 1.gif */; };
+		D8126284199C9F2F005F86E5 /* 1.gif in Resources */ = {isa = PBXBuildFile; fileRef = D812627F199C9F2F005F86E5 /* 1.gif */; };
+		D8126285199C9F2F005F86E5 /* 1.gif in Resources */ = {isa = PBXBuildFile; fileRef = D812627F199C9F2F005F86E5 /* 1.gif */; };
+		D8126286199C9F2F005F86E5 /* 2.gif in Resources */ = {isa = PBXBuildFile; fileRef = D8126280199C9F2F005F86E5 /* 2.gif */; };
+		D8126287199C9F30005F86E5 /* 2.gif in Resources */ = {isa = PBXBuildFile; fileRef = D8126280199C9F2F005F86E5 /* 2.gif */; };
+		D8126288199C9F30005F86E5 /* 2.gif in Resources */ = {isa = PBXBuildFile; fileRef = D8126280199C9F2F005F86E5 /* 2.gif */; };
+		D8126289199C9F30005F86E5 /* 2.gif in Resources */ = {isa = PBXBuildFile; fileRef = D8126280199C9F2F005F86E5 /* 2.gif */; };
+		D812628A199C9F30005F86E5 /* 3.gif in Resources */ = {isa = PBXBuildFile; fileRef = D8126281199C9F2F005F86E5 /* 3.gif */; };
+		D812628B199C9F30005F86E5 /* 3.gif in Resources */ = {isa = PBXBuildFile; fileRef = D8126281199C9F2F005F86E5 /* 3.gif */; };
+		D812628C199C9F30005F86E5 /* 3.gif in Resources */ = {isa = PBXBuildFile; fileRef = D8126281199C9F2F005F86E5 /* 3.gif */; };
+		D812628D199C9F30005F86E5 /* 3.gif in Resources */ = {isa = PBXBuildFile; fileRef = D8126281199C9F2F005F86E5 /* 3.gif */; };
 		D81962391962675600B4FBAF /* AllTutorialCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D81962381962675600B4FBAF /* AllTutorialCell.m */; };
 		D819623A1962675600B4FBAF /* AllTutorialCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D81962381962675600B4FBAF /* AllTutorialCell.m */; };
 		D819623B1962675600B4FBAF /* AllTutorialCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D81962381962675600B4FBAF /* AllTutorialCell.m */; };
@@ -10900,6 +10912,9 @@
 		D80EB349196B90DB0087EBBD /* MetroHomeController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MetroHomeController.h; sourceTree = "<group>"; };
 		D80EB34A196B90DB0087EBBD /* MetroHomeController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MetroHomeController.m; sourceTree = "<group>"; };
 		D80EB354196B90FB0087EBBD /* MetroHomeController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "MetroHomeController~ipad.xib"; sourceTree = "<group>"; };
+		D812627F199C9F2F005F86E5 /* 1.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = 1.gif; sourceTree = "<group>"; };
+		D8126280199C9F2F005F86E5 /* 2.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = 2.gif; sourceTree = "<group>"; };
+		D8126281199C9F2F005F86E5 /* 3.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = 3.gif; sourceTree = "<group>"; };
 		D81962371962675600B4FBAF /* AllTutorialCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AllTutorialCell.h; sourceTree = "<group>"; };
 		D81962381962675600B4FBAF /* AllTutorialCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AllTutorialCell.m; sourceTree = "<group>"; };
 		D81962401962677B00B4FBAF /* AllTutorialCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AllTutorialCell.xib; sourceTree = "<group>"; };
@@ -18402,6 +18417,7 @@
 		D80518A5196BD12200D350B3 /* Resource */ = {
 			isa = PBXGroup;
 			children = (
+				D812627E199C9F2F005F86E5 /* gif */,
 				D87129531996284300F6B757 /* 9.png */,
 				D8698CDC199501B20015CE21 /* defaultBillBoard.jpg */,
 				D86D7CD01994C87B00D64C18 /* caogao.png */,
@@ -18450,6 +18466,16 @@
 				D80EB354196B90FB0087EBBD /* MetroHomeController~ipad.xib */,
 			);
 			path = MetroHome;
+			sourceTree = "<group>";
+		};
+		D812627E199C9F2F005F86E5 /* gif */ = {
+			isa = PBXGroup;
+			children = (
+				D812627F199C9F2F005F86E5 /* 1.gif */,
+				D8126280199C9F2F005F86E5 /* 2.gif */,
+				D8126281199C9F2F005F86E5 /* 3.gif */,
+			);
+			path = gif;
 			sourceTree = "<group>";
 		};
 		D82C0D7219764F950088539F /* Model */ = {
@@ -19524,6 +19550,7 @@
 				A499732C17783E3F00B01EBE /* EditTagCell~ipad.xib in Resources */,
 				A499732D17783E3F00B01EBE /* PhotoEditView.xib in Resources */,
 				CAA7DA921987D3A000408FB1 /* draw_next@2x.png in Resources */,
+				D812628C199C9F30005F86E5 /* 3.gif in Resources */,
 				A499732F17783E3F00B01EBE /* UserPhotoView.xib in Resources */,
 				A499733117783E3F00B01EBE /* CommonSearchImageFilterView.xib in Resources */,
 				D8B58A49197CCEC10088E5F7 /* tutorial_background_00@2x.jpg in Resources */,
@@ -19794,6 +19821,7 @@
 				A4D8FD4117DB089C0085061F /* bulletin_accessory@2x.png in Resources */,
 				A4D8FD4517DB089C0085061F /* color_mask@2x.png in Resources */,
 				A4D8FD4917DB089C0085061F /* common_dialog_close_btn@2x.png in Resources */,
+				D8126284199C9F2F005F86E5 /* 1.gif in Resources */,
 				A4D8FD4D17DB089C0085061F /* common_dialog_close_btn@2x.png_bak.png in Resources */,
 				A4D8FD5117DB089C0085061F /* dialogue@2x.png in Resources */,
 				A4D8FD5517DB089C0085061F /* color_box_button@2x.png in Resources */,
@@ -20061,6 +20089,7 @@
 				EA1BD642182DE6DD000E5364 /* CreateGroupController.xib in Resources */,
 				CA9AAF1618321621002DBAA5 /* SingGuessController.xib in Resources */,
 				CA9AAF1A18321621002DBAA5 /* SingGuessController~ipad.xib in Resources */,
+				D8126288199C9F30005F86E5 /* 2.gif in Resources */,
 				CA9AAF2218321621002DBAA5 /* SingHomeController.xib in Resources */,
 				CA9AAF2618321621002DBAA5 /* SingHomeController~ipad.xib in Resources */,
 				CA9AAF2E18321621002DBAA5 /* SingController.xib in Resources */,
@@ -20604,6 +20633,7 @@
 				C23C3362176AFA84004BE236 /* keywords_en.txt in Resources */,
 				C23C3367176AFF6A004BE236 /* photo_tag_select@2x.png in Resources */,
 				C23C3369176AFF6A004BE236 /* photo_tag_title_bg@2x.png in Resources */,
+				D812628B199C9F30005F86E5 /* 3.gif in Resources */,
 				C23C336B176AFF6A004BE236 /* photo_tag_unselect@2x.png in Resources */,
 				C23C3372176B0803004BE236 /* EditTagCell.xib in Resources */,
 				C23C3375176B082C004BE236 /* EditTagCell~ipad.xib in Resources */,
@@ -20953,6 +20983,7 @@
 				A4D8FE4817DB089C0085061F /* draw_shape_selected@2x.png in Resources */,
 				A4D8FE4C17DB089C0085061F /* draw_straw@2x.png in Resources */,
 				A4D8FE5017DB089C0085061F /* draw_straw_seleted@2x.png in Resources */,
+				D8126287199C9F30005F86E5 /* 2.gif in Resources */,
 				A4D8FE5417DB089C0085061F /* draw_switch@2x.png in Resources */,
 				A4D8FE5817DB089C0085061F /* draw_text@2x.png in Resources */,
 				A4D8FE5C17DB089C0085061F /* draw_tool_bg@2x.png in Resources */,
@@ -20994,6 +21025,7 @@
 				A4D8FEEC17DB089C0085061F /* graffiti@2x.png in Resources */,
 				A4D8FEF817DB089C0085061F /* green_button@2x.png in Resources */,
 				A4D8FEFC17DB089C0085061F /* highlight_mask@2x.png in Resources */,
+				D8126283199C9F2F005F86E5 /* 1.gif in Resources */,
 				A4D8FF0017DB089C0085061F /* common_home_badge@2x.png in Resources */,
 				A4D8FF0417DB089C0085061F /* common_home_bbs@2x.png in Resources */,
 				A4D8FF0C17DB089C0085061F /* common_home_friend@2x.png in Resources */,
@@ -21556,6 +21588,7 @@
 				D80518B8196BD12200D350B3 /* xuehuahua.png in Resources */,
 				C2B538451677712300725802 /* RoomPasswordDialog.xib in Resources */,
 				C2B538461677712300725802 /* RoomPasswordDialog~ipad.xib in Resources */,
+				D812628A199C9F30005F86E5 /* 3.gif in Resources */,
 				C2B538481677712300725802 /* ZJHInputDialog.xib in Resources */,
 				D86D7CDB1994C87B00D64C18 /* xiaoxi.png in Resources */,
 				C2B538491677712300725802 /* ZJHInputDialog~ipad.xib in Resources */,
@@ -22057,6 +22090,7 @@
 				A4D8FE9717DB089C0085061F /* face_cry@2x.png in Resources */,
 				A4D8FE9B17DB089C0085061F /* face_embarrass@2x.png in Resources */,
 				A4D8FE9F17DB089C0085061F /* face_happy@2x.png in Resources */,
+				D8126282199C9F2F005F86E5 /* 1.gif in Resources */,
 				A4D8FEA317DB089C0085061F /* face_lovely@2x.png in Resources */,
 				D8B58A43197CCEC10088E5F7 /* Default@2x.png in Resources */,
 				A4D8FEA717DB089C0085061F /* face_proud@2x.png in Resources */,
@@ -22344,6 +22378,7 @@
 				EA7EFC7218458D370004793C /* GroupNoticeController.xib in Resources */,
 				A4DE087718595DD700A87924 /* unloadbg2@2x.png in Resources */,
 				A4EA935B185B0173004BB69D /* SingHotCell.xib in Resources */,
+				D8126286199C9F2F005F86E5 /* 2.gif in Resources */,
 				A4170C1718613E48007DF362 /* SingHotCell~ipad.xib in Resources */,
 				CA346CC118618B280098DE00 /* user_detail_set_homebg@2x.png in Resources */,
 				D8BF37201971068100ACEFCA /* neironglan yu caidanlan.png in Resources */,
@@ -22634,6 +22669,7 @@
 				EA411CCC176066F500DA72D0 /* CommonSettingView.xib in Resources */,
 				EA411CCD176066F500DA72D0 /* CommonSettingView~ipad.xib in Resources */,
 				EA411CD4176066F500DA72D0 /* BulletinCell.xib in Resources */,
+				D8126285199C9F2F005F86E5 /* 1.gif in Resources */,
 				EA411CD5176066F500DA72D0 /* BulletinCell~ipad.xib in Resources */,
 				EA411CD6176066F500DA72D0 /* BulletinView.xib in Resources */,
 				EA411CD7176066F500DA72D0 /* BulletinView~ipad.xib in Resources */,
@@ -22739,6 +22775,7 @@
 				A49972581778350000B01EBE /* OfflineGuessDrawController~ipad.xib in Resources */,
 				A499725A1778350000B01EBE /* OfflineDrawViewController.xib in Resources */,
 				A499725B1778350000B01EBE /* OfflineDrawViewController~ipad.xib in Resources */,
+				D8126289199C9F30005F86E5 /* 2.gif in Resources */,
 				A499725D1778350000B01EBE /* OnlineDrawViewController.xib in Resources */,
 				A499725E1778350000B01EBE /* OnlineDrawViewController~ipad.xib in Resources */,
 				A49972601778350000B01EBE /* OnlineGuessDrawController.xib in Resources */,
@@ -23201,6 +23238,7 @@
 				A4D8005217DB089C0085061F /* receive_message@2x.png in Resources */,
 				A4D8005617DB089C0085061F /* run@2x.png in Resources */,
 				A4D8005A17DB089C0085061F /* sent_message@2x.png in Resources */,
+				D812628D199C9F30005F86E5 /* 3.gif in Resources */,
 				A4D8005E17DB089C0085061F /* sina@2x.png in Resources */,
 				A4D8006217DB089C0085061F /* split_photo@2x.png in Resources */,
 				A4D8006617DB089C0085061F /* tool@2x.png in Resources */,

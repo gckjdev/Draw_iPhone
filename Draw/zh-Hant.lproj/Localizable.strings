@@ -2785,3 +2785,29 @@
 "kHelpViewInOfflineDrawCopyViewGuide" = "此處為臨摹框\n可以隨意放大縮小\n點擊還可以重播!";
 "kHelpViewInOfflineDrawIveKnew" = "不再提醒";
 
+"kMetroHomePainting" = "畫畫";
+"kMetroHomeLearning" = "學畫畫";
+"kMetroHomeForum" = "論壇";
+"kMetroHomeGallery" = "精彩作品";
+
+"kMetroIndexButton" = "動態";
+"kMetroDocumentButton" = "草稿";
+"kMetroMessageButton" = "消息";
+"kMetroMoreButton" = "更多";
+
+"kResultPageDesc" = "击败了银河系中";
+"kResultPageCount" = "%@ 位小吉用户。";
+"kResultPageScore" = "本次闯关成绩为 %@";
+"kResultPageFinishTutorial" = "你已完成本教程！";
+
+"kTutorialCategoryNewer" = "入門";
+"kTutorialCategoryHigherLevel" = "進階";
+"kTutorialCategoryTopLevel" = "高階";
+
+"kMenuLearnDraw" = "學畫";
+"kSetRanTypeButtonYear" = "年榜";
+"kSetRanTypeButtonWeek" = "周榜";
+"kConfigNewHot" = "篩選";
+"kNewHotTitle" = "精彩作品";
+"kTutorialDesc" = "教程簡介";
+"kUserTutorialInfo" = "簡介";

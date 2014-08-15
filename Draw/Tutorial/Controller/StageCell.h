@@ -15,6 +15,7 @@
 @property (retain, nonatomic) IBOutlet UIImageView *stageCellImage;
 @property (retain, nonatomic) IBOutlet UILabel *cellName;
 
+@property (retain, nonatomic) IBOutlet UIView *maskView;
 -(void)updateStageCellInfo:(PBUserTutorial *)pbUserTutorial withRow:(NSInteger)row;
 @property (retain, nonatomic) IBOutlet UIButton *stageListStarBtn;
 @property (retain, nonatomic) IBOutlet UIImageView *stageListHiddenLockImageView;
