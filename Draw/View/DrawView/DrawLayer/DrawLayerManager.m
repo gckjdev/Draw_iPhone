@@ -171,21 +171,38 @@
     return [[_layerList retain] autorelease];
 }
 
-- (void)arrangeActions:(NSArray *)actions
+- (void)arrangeActions:(NSArray *)actions useLayerOpacity:(BOOL)useLayerOpacity
 {
     NSMutableDictionary *dict = [NSMutableDictionary dictionaryWithCapacity:[_layerList count]];
     for (DrawLayer *layer in _layerList) {
         [dict setObject:[NSMutableArray array] forKey:@(layer.layerTag)];
     }
+    
+    NSMutableDictionary *layerAlphaDict = [NSMutableDictionary dictionaryWithCapacity:[_layerList count]];
+    
     for (DrawAction *action in actions) {
         NSMutableArray *array = [dict objectForKey:@(action.layerTag)];
         [array addObject:action];
+
+        // set last alpha
+        if (!useLayerOpacity){
+            [layerAlphaDict setObject:@(action.layerAlpha) forKey:@(action.layerTag)];
+        }
     }
     for (DrawLayer *layer in _layerList) {
         PPDebug(@"<arrangeActions> layer name = %@", layer.layerName);
         [layer reset];
         NSMutableArray *array = [dict objectForKey:@(layer.layerTag)];
         [layer updateWithDrawActions:array];
+
+        // set layer alpha
+        if (!useLayerOpacity){
+            NSNumber* alpha = [layerAlphaDict objectForKey:@(layer.layerTag)];
+            if (alpha){
+                layer.opacity = [alpha floatValue];
+            }
+        }
+        
         [layer setNeedsDisplay];
     }
 }

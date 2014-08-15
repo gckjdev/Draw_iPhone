@@ -22,7 +22,7 @@
 
 - (BOOL)isBasicShapeType:(ShapeType)type;
 - (void)cleanCache;
-- (NSArray *)imageShapeGroupList;
+- (NSArray *)pbImageShapeGroupList;
 + (id)defaultManager;
 
 #pragma mark- Test Method

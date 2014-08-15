@@ -8,8 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import "SGFocusImageFrame.h"
+#import "PPViewController.h"
 
-@interface TipsPageViewController : UIViewController<SGFocusImageFrameDelegate>
+@interface TipsPageViewController : PPViewController<SGFocusImageFrameDelegate>
 
 + (void)show:(PPViewController*)superController
        title:(NSString*)title

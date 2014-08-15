@@ -25,6 +25,7 @@
 #import "UIImageUtil.h"
 #import "StringUtil.h"
 #import "DrawBgManager.h"
+#import <AssetsLibrary/AssetsLibrary.h>
 
 #define SUFFIX_NUMBER 100
 @interface MyPaintManager()
@@ -380,16 +381,33 @@ static MyPaintManager* _defaultManager;
         queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0);
     }
     
-    dispatch_async(queue, ^{
-        UIImage* image = [[UIImage alloc] initWithContentsOfFile:filePath];
-        
-        UIImageWriteToSavedPhotosAlbum(image,
-                                       self,
-                                       @selector(image:didFinishSavingWithError:contextInfo:),
-                                       nil);
+//    dispatch_async(queue, ^{
+//        UIImage* image = [[UIImage alloc] initWithContentsOfFile:filePath];
         _savePhotoToAlbumDelegate = delegate;
-        [image release];    
-    });
+
+        
+        NSData *data = [NSData dataWithContentsOfFile:filePath];
+        if (data){
+            ALAssetsLibrary *library = [[ALAssetsLibrary alloc] init];
+            [library writeImageDataToSavedPhotosAlbum:data
+                                             metadata:nil
+                                      completionBlock:^(NSURL *assetURL, NSError *error) {
+                                          
+                                          [self image:nil didFinishSavingWithError:error contextInfo:nil];
+                                      }
+             ];
+            [library release];
+        }
+        else{
+            [self image:nil didFinishSavingWithError:[NSError errorWithDomain:@"" code:-1 userInfo:nil] contextInfo:nil];
+        }
+    
+//        UIImageWriteToSavedPhotosAlbum(image,
+//                                       self,
+//                                       @selector(image:didFinishSavingWithError:contextInfo:),
+//                                       nil);
+//        [image release];
+//    });
 }
 
 - (BOOL)save

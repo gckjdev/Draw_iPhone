@@ -506,15 +506,11 @@ static NSDictionary* DEFAULT_MENU_SELECTOR_DICT = nil;
              }];
              
          }
-         
-         // TODO Benson later
      }];
     
-    //#if DEBUG
-    //    if (YES) {
-    //#else
-    if ([[UserManager defaultManager] hasXiaojiNumber] == NO && [[UserManager defaultManager] isOldUserWithoutXiaoji] == NO) {
-        //#endif
+    /*
+    if ([[UserManager defaultManager] hasXiaojiNumber] == NO
+        && [[UserManager defaultManager] isOldUserWithoutXiaoji] == NO) {
         [mainPanel closeAnimated:NO completion:^(BOOL finished) {
             [mainPanel moveMenuTypeToBottom:[[self class] homeDefaultMenuType]
                                    Animated:NO
@@ -523,6 +519,7 @@ static NSDictionary* DEFAULT_MENU_SELECTOR_DICT = nil;
             [footer hideAnimated:NO];
         }];
     }
+    */
 }
 
 

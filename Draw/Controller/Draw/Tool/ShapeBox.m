@@ -66,7 +66,7 @@ CGPoint contentOffset;
 
 - (void)updateView
 {
-    self.dataList = [[ImageShapeManager defaultManager] imageShapeGroupList];
+    self.dataList = [[ImageShapeManager defaultManager] pbImageShapeGroupList];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     [self setBackgroundColor:[UIColor clearColor]];

@@ -14,12 +14,10 @@ typedef void (^ SelectOpusClassResultHandler) (int resultCode, NSArray *selected
 
 @interface SelectOpusClassViewController : PPViewController
 {
-
-@public
-    
-    NSMutableArray * _viewArr1; // array tags
-    NSMutableArray * _viewArr2; // array for selection
 }
+
+@property (nonatomic, retain) NSMutableArray * viewArr1; // array tags
+@property (nonatomic, retain) NSMutableArray * viewArr2; // array for selection
 
 @property (nonatomic, retain) NSArray * modelArr1;
 @property (nonatomic, retain) NSArray * modelArrayForSelect;

@@ -2884,7 +2884,10 @@
 "kAlreadyConquer" = "You have already submit this opus, cannot submit again. Do you want to restart?";
 "kConfirmSubmitConquer" = "Are you sure to submit now?";
 
-"kMetroHomePainting" = "Painting";
-"kMetroHomeLearning" = "Learning";
-"kMetroHomeForum" = "Forum";
-"kMetroHomeGallery" = "Gallery";
+"kMetroHomePainting" = "DRAW";
+"kMetroHomeLearning" = "LEARN DRAW";
+"kMetroHomeForum" = "FORUM";
+"kMetroHomeGallery" = "GALLERY";
+
+"kSaveAsGif" = "Save As GIF";
+"kCreateGIFProgress" = "Creating GIF...%2d%%";

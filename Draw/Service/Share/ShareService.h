@@ -7,9 +7,10 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "MyPaintManager.h"
 //#import "PPSNSCommonService.h"
 
-@interface ShareService : NSObject
+@interface ShareService : NSObject<MyPaintManagerDelegate>
 
 + (ShareService*)defaultService;
 
@@ -17,5 +18,12 @@
 - (UIImage*)synthesisImage:(UIImage*)srcImage waterMarkText:(NSString*)text;
 - (NSString*)synthesisImageFile:(NSString*)filePath waterMarkText:(NSString*)text;
 - (NSString*)synthesisImageWithImage:(UIImage*)sourceImage waterMarkText:(NSString*)text;
+
+- (void)saveGif:(PPViewController*)superController
+          draft:(MyPaint*)draft;
+
+- (void)showShareGifDialog:(PPViewController*)superController
+                     draft:(MyPaint*)draft;
+
 
 @end

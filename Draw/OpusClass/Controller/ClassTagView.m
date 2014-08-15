@@ -17,6 +17,11 @@
     [_moreChannelsLabel release];
     [_touchViewModel release];
     [_selectedChannelsLabel release];
+    
+    PPRelease(_viewArr11);
+    PPRelease(_viewArr22);
+    PPRelease(_array);
+    
     [super dealloc];
 }
 
@@ -95,13 +100,13 @@
             if (_array == _viewArr11) {
                 [_viewArr11 removeObject:self];
                 [_viewArr22 insertObject:self atIndex:_viewArr22.count];
-                _array = _viewArr22;
+                self.array = _viewArr22;
                 [self animationAction];
             }
             else if ( _array == _viewArr22){
                 [_viewArr22 removeObject:self];
                 [_viewArr11 insertObject:self atIndex:_viewArr11.count];
-                _array = _viewArr11;
+                self.array = _viewArr11;
                 [self animationAction];
             }
         }
@@ -155,7 +160,7 @@
                     int index = ((int)newX - KTableStartPointX)/KButtonWidth + (COLUMN_PER_ROW * (((int)newY - KTableStartPointY)/KButtonHeight));
                     [ _array removeObject:self];
                     [_viewArr11 insertObject:self atIndex:index];
-                    _array = _viewArr11;
+                    self.array = _viewArr11;
                     [self animationAction1a];
                     [self animationAction2];
                 }
@@ -163,7 +168,7 @@
                     
                     [ _array removeObject:self];
                     [_viewArr11 insertObject:self atIndex:_viewArr11.count];
-                    _array = _viewArr11;
+                    self.array = _viewArr11;
                     [self animationAction2];
                     
                 }
@@ -186,7 +191,7 @@
                     int index = ((int)newX - KTableStartPointX)/KButtonWidth + (COLUMN_PER_ROW * (((int)(newY) - KTableStartPointY)/KButtonHeight));
                     [ _array removeObject:self];
                     [_viewArr11 insertObject:self atIndex:index];
-                    _array = _viewArr11;
+                    self.array = _viewArr11;
                     
                     [self animationAction1a];
                     [self animationAction2];
@@ -201,13 +206,13 @@
                     unsigned long index = ((unsigned long)(newX) - KTableStartPointX)/KButtonWidth + (COLUMN_PER_ROW * (((int)(newY) - [self array2StartY] * KButtonHeight - KTableStartPointY)/KButtonHeight));
                     [ _array removeObject:self];
                     [_viewArr22 insertObject:self atIndex:index];
-                    _array = _viewArr22;
+                    self.array = _viewArr22;
                     [self animationAction2a];
                 }
                 else if(newY > KTableStartPointY + [self array2StartY] * KButtonHeight &&![self buttonInArrayArea2:_viewArr22 Point:point]){
                     [ _array removeObject:self];
                     [_viewArr22 insertObject:self atIndex:_viewArr22.count];
-                    _array = _viewArr22;
+                    self.array = _viewArr22;
                     [self animationAction2a];
                     
                 }

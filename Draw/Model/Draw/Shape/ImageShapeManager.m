@@ -16,19 +16,47 @@
 #import "DrawUtils.h"
 #import "UIBezierPath+Ext.h"
 #import "UserGameItemManager.h"
+#import "FileUtil.h"
 
 #define IMAGE_SHAPE_ZIP_NAME @"image_shape.zip"
 #define IMAGE_SHAPE_META_FILE @"meta.pb"
 #define SUFFIX @".svg"
 
 
+@interface ShapeSmartData : PPSmartUpdateData
+
+@end
+
+@implementation ShapeSmartData
+
+- (BOOL)isDataExist
+{
+    if ([super isDataExist] == NO){
+        return NO;
+    }
+    
+    NSString* dirPath = [PPSmartUpdateDataUtils pathBySubDir:self.localSubDir name:self.name type:self.type];
+    NSString *filePath = [dirPath stringByAppendingPathComponent:IMAGE_SHAPE_META_FILE];
+    if ([FileUtil isPathExist:filePath]){
+        return YES;
+    }
+    else{
+        return NO;
+    }
+}
+
+@end
+
 @interface ImageShapeManager()
 {
     NSMutableDictionary *_bezierPathDict;
-    PPSmartUpdateData *_smartData;
+    ShapeSmartData *_smartData;
     NSArray *_imageShapeGroupList;
     
 }
+
+@property (nonatomic, retain) NSArray* imageShapeGroupList;
+
 @end
 
 
@@ -42,7 +70,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(ImageShapeManager)
     self = [super init];
     if (self) {
         
-        _smartData = [[PPSmartUpdateData alloc] initWithName:IMAGE_SHAPE_ZIP_NAME
+        _smartData = [[ShapeSmartData alloc] initWithName:IMAGE_SHAPE_ZIP_NAME
                                                         type:SMART_UPDATE_DATA_TYPE_ZIP
                                                   bundlePath:IMAGE_SHAPE_ZIP_NAME
                                              initDataVersion:[PPConfigManager currentImageShapeVersion]];
@@ -74,18 +102,17 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(ImageShapeManager)
 
 - (void)updateImageShapeList
 {
-    if (_imageShapeGroupList) {
-        PPRelease(_imageShapeGroupList);
-    }
     NSString *filePath = [[_smartData currentDataPath] stringByAppendingPathComponent:IMAGE_SHAPE_META_FILE];
     @try {
         NSData *data = [NSData dataWithContentsOfFile:filePath];
         if (data) {
-            _imageShapeGroupList = [[[PBImageShapeGroupMeta parseFromData:data] imageShapeGroupList] retain];
+            NSArray* list = [[PBImageShapeGroupMeta parseFromData:data] imageShapeGroupList];
+            if ([list count] > 0){
+                self.imageShapeGroupList = list;
+            }
         }
     }
     @catch (NSException *exception) {
-        _imageShapeGroupList = nil;
         PPDebug(@"<updateImageShapeList>Fail to parse draw bg data");
     }
 }
@@ -98,7 +125,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(ImageShapeManager)
     return [_smartData currentDataPath];
 }
 
-- (NSArray *)imageShapeGroupList
+- (NSArray *)pbImageShapeGroupList
 {
     UserGameItemManager *ugManager = [UserGameItemManager defaultManager];
     NSArray *ret = [_imageShapeGroupList sortedArrayUsingComparator:^NSComparisonResult(id obj1, id obj2) {

@@ -174,7 +174,7 @@
     
     // set avatar
     [self.avatarView setAvatarUrl:[userManager avatarURL]
-                           gender:[userManager gender]
+                           gender:[userManager boolGender]
                    useDefaultLogo:NO];
     
     // set nick name
@@ -380,7 +380,8 @@
 #define IMAGE_FRAME_Y (ISIPAD ? 44:16)
 #define IMAGE_FRAME_WIDTH (ISIPAD ? 706:298)
 #define IMAGE_FRAME_HEIGHT (ISIPAD ? 250:120)
-#define DEFAULT_GALLERY_IMAGE @"defaultBillBoard.jpg"
+#define DEFAULT_GALLERY_IMAGE_CN @"defaultBillBoard@2x.jpg"
+#define DEFAULT_GALLERY_IMAGE_EN @"defaultBillBoard_en@2x.jpg"
 
 -(void)setGalleryView{
     
@@ -398,7 +399,13 @@
             UIImage *image = [bbManager getImage:bb];
             if(image==nil){
                 //默认图片
-                image = [UIImage imageNamed:DEFAULT_GALLERY_IMAGE];
+                if ([LocaleUtils isChinese]){
+                    image = [UIImage imageNamed:DEFAULT_GALLERY_IMAGE_CN];
+                }
+                else{
+                    image = [UIImage imageNamed:DEFAULT_GALLERY_IMAGE_EN];
+                }
+                
                 [self.galleryImageView setImage:image];
             }
             
@@ -422,7 +429,17 @@
             
             if([_bbList count]<=0){
                 UIImageView *image = [[UIImageView alloc]initWithFrame:frame];
-                [image setImage:[UIImage imageNamed:DEFAULT_GALLERY_IMAGE]];
+                
+                //默认图片
+                UIImage* defaultImage = nil;
+                if ([LocaleUtils isChinese]){
+                    defaultImage = [UIImage imageNamed:DEFAULT_GALLERY_IMAGE_CN];
+                }
+                else{
+                    defaultImage = [UIImage imageNamed:DEFAULT_GALLERY_IMAGE_EN];
+                }
+                
+                [image setImage:defaultImage];
                 [self.galleryView addSubview:image];
                 [self.galleryView bringSubviewToFront:image];
                 [image release];

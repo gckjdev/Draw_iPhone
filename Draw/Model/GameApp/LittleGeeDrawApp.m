@@ -17,10 +17,10 @@
     return PBOpusCategoryTypeDrawCategory;
 }
 
-- (PPViewController*)homeController
-{
-        return [[[HomeController alloc] init] autorelease];
-}
+//- (PPViewController*)homeController
+//{
+//        return [[[HomeController alloc] init] autorelease];
+//}
 
 - (NSString*)appId
 {

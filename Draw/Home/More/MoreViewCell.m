@@ -48,7 +48,7 @@
         [self.avatarView setHidden:NO];
         [self.avatarView setAvatarUrl:[[UserManager defaultManager] avatarURL]
                                gender:[[UserManager defaultManager] boolGender]
-                       useDefaultLogo:YES];
+                       useDefaultLogo:NO];
     }
     else{
         UIImage *image = [MoreViewController getItemImage:row];

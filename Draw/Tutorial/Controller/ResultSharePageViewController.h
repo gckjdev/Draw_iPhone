@@ -8,7 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import "StableView.h"
-@interface ResultSharePageViewController : UIViewController
+#import "PPViewController.h"
+
+@interface ResultSharePageViewController : PPViewController
 @property (retain, nonatomic) IBOutlet UIImageView *opusImageView;
 @property (retain, nonatomic) IBOutlet UIImageView *headImageView;
 @property (retain, nonatomic) IBOutlet UILabel *descLabel;

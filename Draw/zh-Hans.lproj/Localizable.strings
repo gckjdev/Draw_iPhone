@@ -2884,10 +2884,10 @@
 //"kTutorialDescriptionLoveLifeLoveSport" = "童鞋们，一起来运动吧";
 //"kTutorialDescriptionFamousBuilding" = "你认识这些建筑吗？";
 
-"kResultPageDesc" = "击败了银河系中";
-"kResultPageCount" = "%@ 位小吉用户。";
+"kResultPageDesc" = "击败了全宇宙中";
+"kResultPageCount" = "%@ 位小吉用户！";
 "kResultPageScore" = "本次闯关成绩为 %@";
-"kResultPageFinishTutorial" = "你已完成本教程！";
+"kResultPageFinishTutorial" = "已完成本教程！";
 
 "kMetroIndexButton" = "动态";
 "kMetroDocumentButton" = "草稿";
@@ -2897,9 +2897,9 @@
 "kBlankDraw" = "空白绘画";
 "kDrawMode" = "请选择画画模式";
 
-"kSealResultPass" = "通关";
+"kSealResultPass" = "过关";
 "kSealResultFail" = "失败";
-"kSealResultFinish" = "完成";
+"kSealResultFinish" = "过关";
 
 "kTakeNumberSucc" = "注册完成，你的小吉号码是\n\n%@\n\n可点击顶部头像设置用户昵称、密码、头像等信息。\n\n祝玩的开心！\n\n";
 "kGotoNextChapterWelcome" = "欢迎进入第%d小节继续本关修炼";
@@ -2922,7 +2922,7 @@
 
 "kTitleEnterChapterTips" = "欢迎进入第%d小节";
 
-"kHelpViewInOfflineDrawSubmitButtonGuide" = "完成作品后\n狂点此处\n提交作品\n查看打分";
+"kHelpViewInOfflineDrawSubmitButtonGuide" = "完成作品后\n请狂点此处\n提交作品\n查看打分";
 "kHelpViewInOfflineDrawHelpButtonGuide" = "帮助\n提供绘画知识点\n以及绘画技法";
 "kHelpViewInOfflineDrawCopyViewGuide" = "临摹作品框\n可回放作品绘画过程";
 "kHelpViewInOfflineDrawIveKnew" = "不再提醒";
@@ -2934,3 +2934,6 @@
 "kMetroHomeLearning" = "学画画";
 "kMetroHomeForum" = "论坛";
 "kMetroHomeGallery" = "精彩作品";
+
+"kSaveAsGif" = "导出作品回放过程";
+"kCreateGIFProgress" = "生成GIF动图中...%2d%%";

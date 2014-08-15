@@ -112,7 +112,7 @@
 
 - (void)show
 {
-    [dlManager arrangeActions:self.drawActionList];
+    [dlManager arrangeActions:self.drawActionList useLayerOpacity:YES];
 }
 
 - (ClipAction *)currentClip
@@ -128,7 +128,7 @@
 - (void)updateLayers:(NSArray *)layers
 {
     [dlManager updateLayers:layers];
-    [dlManager arrangeActions:self.drawActionList];
+    [dlManager arrangeActions:self.drawActionList useLayerOpacity:YES];
 }
 //start to add a new draw action
 - (void)addDrawAction:(DrawAction *)drawAction show:(BOOL)show
