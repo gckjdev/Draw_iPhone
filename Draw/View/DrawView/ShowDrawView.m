@@ -597,23 +597,29 @@ typedef enum {
 {
     UIGraphicsBeginImageContext(self.bounds.size);
     CGContextRef ctx = UIGraphicsGetCurrentContext();
+ 
 //    CGContextSaveGState(ctx);
-    
+//    CGContextSetAlpha(ctx, 1.0 - layer.opacity);
+    // draw bg image
     if (bgImage){
         [bgImage drawAtPoint:CGPointZero];
     }
-    
-    [layer renderInContext:ctx];
-    
 //    CGContextRestoreGState(ctx);
+
+    // draw layer
+    [layer renderInContext:ctx];
     UIImage* image = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
     return image;
 }
 
-- (NSMutableArray*)createGIF:(NSUInteger)frameNumber scaleSize:(float)scaleSize
+- (NSMutableArray*)createGIF:(NSUInteger)frameNumber scaleSize:(float)scaleSize finalImage:(UIImage*)finalImage
 {
     int startTime = time(0);
+    
+    if (finalImage){
+        frameNumber --;
+    }
     
     NSArray* drawActionList = self.drawActionList;
     
@@ -732,8 +738,10 @@ typedef enum {
         // draw each layer in image context
         [layerList reversEnumWithHandler:^(id object) {
             DrawLayer *layer = object;
-            UIImage* layerImage = [layerImageDict objectForKey:@(layer.layerTag)];
-            [layerImage drawAtPoint:CGPointZero];
+            if (layer.finalOpacity > 0.0){
+                UIImage* layerImage = [layerImageDict objectForKey:@(layer.layerTag)];
+                [layerImage drawAtPoint:CGPointZero];
+            }
         }];
         
         // get image
@@ -761,9 +769,18 @@ typedef enum {
     }
     
     // add last image to first for good display
-    UIImage* lastImage = [gifFrames lastObject];
-    if (lastImage){
-        [gifFrames insertObject:lastImage atIndex:0];
+    if (finalImage){
+        finalImage = [finalImage scaleImage:finalImage toScale:scaleSize];
+        if (finalImage){
+            [gifFrames insertObject:finalImage atIndex:0];
+            [gifFrames addObject:finalImage];
+        }
+    }
+    else{
+        UIImage* lastImage = [gifFrames lastObject];
+        if (lastImage){
+            [gifFrames insertObject:lastImage atIndex:0];
+        }
     }
 
     // report final progress
@@ -780,6 +797,7 @@ typedef enum {
            bgImage:(UIImage*)bgImage
             layers:(NSArray*)layers
         canvasSize:(CGSize)canvasSize
+        finalImage:(UIImage*)finalImage
         outputPath:(NSString*)outputPath
         scaleSize:(double)scaleSize
 {
@@ -793,7 +811,8 @@ typedef enum {
                                                   bgImage:bgImage
                                                    layers:layers
                                                canvasSize:canvasSize
-                                                scaleSize:scaleSize];
+                                                scaleSize:scaleSize
+                                               finalImage:finalImage];
     [srcImgList retain];
     [pool drain];
     
@@ -852,6 +871,8 @@ typedef enum {
                                layers:(NSArray*)layers
                            canvasSize:(CGSize)canvasSize
                             scaleSize:(double) scaleSize
+                           finalImage:(UIImage*)finalImage
+
 {
     //update showview
     ShowDrawView* showView = [ShowDrawView showViewWithFrame:CGRectFromCGSize(canvasSize)
@@ -864,7 +885,7 @@ typedef enum {
         [showView setBGImage:bgImage];
     }
 
-    return [showView createGIF:frameNumber scaleSize:scaleSize];
+    return [showView createGIF:frameNumber scaleSize:scaleSize finalImage:finalImage];
 
     // the following is old implementation, just for backup
     int startTime = time(0);

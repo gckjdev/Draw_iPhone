@@ -285,6 +285,7 @@ static ShareService* _defaultService;
     int gifFrameCount = 30;
     float delayTime = 0.25f;
     float scaleSize = 0.5f;
+    UIImage* finalImage = draft.paintImage;
     
     //后台运行creategif,主线程显示小苹果进程。
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0),
@@ -299,6 +300,7 @@ static ShareService* _defaultService;
                                        bgImage:nil
                                         layers:draft.layers
                                     canvasSize:draft.canvasSize
+                                    finalImage:finalImage
                                     outputPath:tempPath
                                      scaleSize:scaleSize];
                        
