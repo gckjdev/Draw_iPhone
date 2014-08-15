@@ -47,6 +47,7 @@
     [_difficultyLabel setShadowOffset:CGSizeMake(1, 1)];
     [_difficultyLabel setFont:AD_FONT(18, 12)];
     [_difficultyLabel setBackgroundColor:[UIColor clearColor]];
+//    [_difficultyLabel updateOriginX:self.tutorialDateLabel.frame.origin.x];
     
     float progress = [ut progress]*1.0f/100.0f;
     [self setProgressView:row WithProgress:progress];
@@ -58,7 +59,7 @@
     [self.tutorialDateLabel setTextColor:COLOR_BROWN];
     
     
-    NSDate* createDate = [NSDate dateWithTimeIntervalSince1970:ut.modifyDate];
+    NSDate* createDate = [NSDate dateWithTimeIntervalSince1970:(ut.modifyDate == 0) ? ut.createDate : ut.modifyDate];
     self.tutorialDateLabel.text = dateToTimeLineString(createDate);
     
     
@@ -67,6 +68,8 @@
                    placeholderImage:placeHolderImage
                         showLoading:YES
                            animated:YES];
+    
+    self.alphaView.alpha = 0.15;
     
      [self setSomeCornerRadius];
 }
@@ -155,11 +158,8 @@
     
     _labelBottomView.layer.mask = maskLayer;
     [maskLayer release];
-
     
     UIBezierPath *maskPathAlphaView = [UIBezierPath bezierPathWithRoundedRect:_alphaView.bounds byRoundingCorners:UIRectCornerTopLeft | UIRectCornerTopRight cornerRadii:CGSizeMake(CORNER_RADII, CORNER_RADII)];
-    
-
     CAShapeLayer *maskLayerAlphaView = [[CAShapeLayer alloc] init];
     maskLayerAlphaView.frame = _alphaView.bounds;
     maskLayerAlphaView.path = maskPathAlphaView.CGPath;
