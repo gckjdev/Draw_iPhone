@@ -898,6 +898,7 @@ typedef enum {
     return [showView createGIF:frameNumber scaleSize:scaleSize finalImage:finalImage];
 
     // the following is old implementation, just for backup
+    /*
     int startTime = time(0);
     
     NSMutableArray *gifFrames = [NSMutableArray arrayWithCapacity:frameNumber];//input the images
@@ -938,6 +939,7 @@ typedef enum {
     PPDebug(@"create gif spend time is %d seconds", time(0) - startTime);
     
     return gifFrames;
+     */
 }
 
 - (void) createImageOfLayer:(NSInteger)num
