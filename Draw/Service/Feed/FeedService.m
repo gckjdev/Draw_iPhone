@@ -1423,8 +1423,6 @@ static FeedService *_staticFeedService = nil;
     NSString* classListString = [FeedService opusClassStringList:opusClassInfoList];
     dispatch_async(workingQueue, ^{
         
-        NSAutoreleasePool *subPool = [[NSAutoreleasePool alloc] init];
-        
         NSDictionary* para = @{ PARA_OPUS_ID : opusId,
                                 PARA_CLASS : classListString,
                                 PARA_TYPE : @(type)
@@ -1440,9 +1438,7 @@ static FeedService *_staticFeedService = nil;
             dispatch_async(dispatch_get_main_queue(), ^{
                 EXECUTE_BLOCK(resultBlock, resultCode);
             });
-        });
-        
-        [subPool drain];
+        });        
     });
     
 }

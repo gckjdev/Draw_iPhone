@@ -73,14 +73,24 @@
                                  showLoading:YES
                                     animated:YES];
         
+        //mask view
+        SET_VIEW_ROUND_CORNER(self.maskView);
+        
         //闯到某一关卡才显示开始闯关字样
         if (row==pbUserTutorial.currentStageIndex){
             //当教程没有完成时候才显示,完成了就不再显示开始闯关字样
             if([pbUserTutorial isFinishedTutorial:row]==NO){
                 self.stageListStarBtn.hidden = NO;
             }
-            
+
+            self.maskView.alpha = 0.15f;
+            self.maskView.hidden = NO;
         }
+        else{
+            self.maskView.alpha = 1.0f;
+            self.maskView.hidden = YES;
+        }
+        
        
         self.cellName.hidden = NO;
         self.stageCellImage.hidden = NO;
@@ -94,7 +104,7 @@
         self.stageListStarBtn.hidden = YES;
         self.cellName.hidden = YES;
         self.stageCellImage.hidden = YES;
-        
+        self.maskView.hidden = YES;
         self.stageListHiddenLockImageView.hidden = NO;
         self.hiddenNumberLabel.hidden = NO;
         self.hiddenNumberHolderView.hidden = NO;
@@ -117,6 +127,7 @@
     [_stageListHiddenLockImageView release];
     [_hiddenNumberLabel release];
     [_hiddenNumberHolderView release];
+    [_maskView release];
     [super dealloc];
 }
 @end

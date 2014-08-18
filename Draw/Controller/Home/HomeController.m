@@ -167,7 +167,7 @@ static NSDictionary* DRAW_MENU_IMAGE_DICT = nil;
 
     [self registerUIApplicationNotification];
     
-    [self performSelector:@selector(updateRecoveryDrawCount) withObject:nil afterDelay:0.5f];
+//    [self performSelector:@selector(updateRecoveryDrawCount) withObject:nil afterDelay:0.5f];
     
     
     [[GuessService defaultService] getTodayGuessContestInfoWithDelegate:self];

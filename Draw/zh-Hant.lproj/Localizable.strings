@@ -2971,3 +2971,32 @@
 "kMetroHomeLearning" = "學畫畫";
 "kMetroHomeForum" = "論壇";
 "kMetroHomeGallery" = "精彩作品";
+
+//"kMetroIndexButton" = "動態";
+//"kMetroDocumentButton" = "草稿";
+//"kMetroMessageButton" = "消息";
+//"kMetroMoreButton" = "更多";
+//
+//"kResultPageDesc" = "击败了银河系中";
+//"kResultPageCount" = "%@ 位小吉用户。";
+//"kResultPageScore" = "本次闯关成绩为 %@";
+//"kResultPageFinishTutorial" = "你已完成本教程！";
+//
+//"kTutorialCategoryNewer" = "入門";
+//"kTutorialCategoryHigherLevel" = "進階";
+//"kTutorialCategoryTopLevel" = "高階";
+//
+//"kMenuLearnDraw" = "學畫";
+//"kSetRanTypeButtonYear" = "年榜";
+//"kSetRanTypeButtonWeek" = "周榜";
+//"kConfigNewHot" = "篩選";
+//"kNewHotTitle" = "精彩作品";
+//"kTutorialDesc" = "教程簡介";
+//"kUserTutorialInfo" = "簡介";
+
+"kSaveAsGif" = "匯出作品重播過程";
+"kCreateGIFProgress" = "生成GIF動圖中...%2d%%";
+
+"kPicSum" = "圖片個數";
+"kPicScale" = "圖片比例";
+"kShareGifDialogTitle" = "導出為GIF";

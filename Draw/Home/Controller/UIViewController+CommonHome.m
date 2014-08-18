@@ -388,6 +388,8 @@
 
 - (void)enterOfflineDrawWithMenu
 {
+#ifdef DEBUG
+    
     ChangeAvatar* imagePicker = [[ChangeAvatar alloc] init];
     imagePicker.autoRoundRect = NO;
     [imagePicker showSelectionView:self
@@ -418,6 +420,15 @@
         
         
     } canTakePhoto:YES userOriginalImage:YES];
+    return;
+    
+#else
+    
+    [self enterOfflineDraw];
+    return;
+    
+#endif
+    
 }
 
 /*

@@ -23,14 +23,37 @@
 #define SUFFIX                          @".jpg"
 #define THUMB_SUFFIX                    @"_m.jpg"
 
+@interface DrawBgSmartData : PPSmartUpdateData
+
+@end
+
+@implementation DrawBgSmartData
+
+- (BOOL)isDataExist
+{
+    if ([super isDataExist] == NO){
+        return NO;
+    }
+    
+    NSString* dirPath = [PPSmartUpdateDataUtils pathBySubDir:self.localSubDir name:self.name type:self.type];
+    NSString *filePath = [dirPath stringByAppendingPathComponent:DRAW_BG_META_FILE];
+    if ([FileUtil isPathExist:filePath]){
+        return YES;
+    }
+    else{
+        return NO;
+    }
+}
+
+@end
+
 @interface DrawBgManager()
 {
-    PPSmartUpdateData *_smartData;
-    NSArray *_drawBgGroupList;
+    DrawBgSmartData *_smartData;
     
 }
 
-
+@property (nonatomic, retain) NSArray *drawBgGroupList;
 
 @end
 
@@ -49,18 +72,17 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(DrawBgManager);
 - (void)updateDrawBgList
 {
     // TODO pipi check draw bg issue later
-    if (_drawBgGroupList) {
-        PPRelease(_drawBgGroupList);
-    }
     NSString *filePath = [[_smartData currentDataPath] stringByAppendingPathComponent:DRAW_BG_META_FILE];
     @try {
         NSData *data = [NSData dataWithContentsOfFile:filePath];
         if (data) {
-            _drawBgGroupList = [[[PBDrawBgMeta parseFromData:data] drawBgGroupList] retain];
+            NSArray* list = [[PBDrawBgMeta parseFromData:data] drawBgGroupList];
+            if ([list count] > 0){
+                self.drawBgGroupList = list;
+            }
         }
     }
     @catch (NSException *exception) {
-        _drawBgGroupList = nil;
         PPDebug(@"<updateDrawBgList>Fail to parse draw bg data");
     }    
 }
@@ -72,7 +94,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(DrawBgManager);
 
         _imageManager = [[StorageManager alloc] initWithStoreType:StorageTypePersistent directoryName:DRAW_NORMAL_BG_IMAGE_DIR];
         
-        _smartData = [[PPSmartUpdateData alloc] initWithName:DRAW_BG_ZIP_NAME
+        _smartData = [[DrawBgSmartData alloc] initWithName:DRAW_BG_ZIP_NAME
                                                         type:SMART_UPDATE_DATA_TYPE_ZIP
                                                   bundlePath:DRAW_BG_ZIP_NAME
                                              initDataVersion:[PPConfigManager currentDrawBgVersion]];

@@ -38,17 +38,6 @@
     self = [self initWithNibName:nil bundle:nil];
     if (self) {
         
-//        // do this to make sure that all data from selection array
-//        NSMutableArray* arr = [NSMutableArray array];
-//        for (OpusClassInfo* selected in selectedTags){
-//            for (OpusClassInfo* classInfo in arrayForSelection){
-//                if ([selected.classId isEqualToString:classInfo.classId]){
-//                    [arr addObject:classInfo];
-//                }
-//            }
-//        }
-//        self.modelArr1 = arr;
-        
         self.modelArr1 = selectedTags;
         self.modelArrayForSelect = arrayForSelection;
         self.callback = callback;
@@ -110,12 +99,12 @@
         return;
     }
     
-    [self.navigationController popViewControllerAnimated:YES];
-    
     if (self.callback){
         _callback(0, selected, self.modelArrayForSelect);
         self.callback = nil;
     }
+
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 - (NSMutableArray*)getTagsForSelection:(NSArray*)selectedArray
@@ -204,48 +193,37 @@
     for (int i = 0; i < _modelArr1.count; i++) {
         ClassTagView * touchView = [[ClassTagView alloc] initWithFrame:CGRectMake(KTableStartPointX + KButtonWidth * (i%COLUMN_PER_ROW), KTableStartPointY + KButtonHeight * (i/COLUMN_PER_ROW), KButtonWidth, KButtonHeight)];
 
-//        [touchView setBackgroundColor:[UIColor colorWithRed:210/255.0 green:210/255.0 blue:210/255.0 alpha:1.0]];
-//        [touchView setBackgroundColor:[UIColor clearColor]];
         
         [_viewArr1 addObject:touchView];
-        [touchView release];
-        touchView->_array = _viewArr1;
-//        if (i == 0) {
-//            [touchView.label setTextColor:[UIColor colorWithRed:187/255.0 green:1/255.0 blue:1/255.0 alpha:1.0]];
-//        }
-//        else{
-//            
-//            [touchView.label setTextColor:[UIColor colorWithRed:99/255.0 green:99/255.0 blue:99/255.0 alpha:1.0]];
-//        }
+        touchView.array = _viewArr1;
+        
         touchView.label.text = [[_modelArr1 objectAtIndex:i] title];
         [touchView.label setTextAlignment:NSTextAlignmentCenter];
         [touchView setMoreChannelsLabel:_titleLabel2];
         [touchView setSelectedChannelsLabel:_titleLabel];
-        touchView->_viewArr11 = _viewArr1;
-        touchView->_viewArr22 = _viewArr2;
+        touchView.viewArr11 = _viewArr1;
+        touchView.viewArr22 = _viewArr2;
         [touchView setTouchViewModel:[_modelArr1 objectAtIndex:i]];
         
         [self.view addSubview:touchView];
+        [touchView release];
+        
     }
     
     for (int i = 0; i < modelArr2.count; i++) {
         ClassTagView * touchView = [[ClassTagView alloc] initWithFrame:CGRectMake(KTableStartPointX + KButtonWidth * (i%COLUMN_PER_ROW), KTableStartPointY + array2StartY * KButtonHeight + KButtonHeight * (i/COLUMN_PER_ROW), KButtonWidth, KButtonHeight)];
         
-//        [touchView setBackgroundColor:[UIColor colorWithRed:210/255.0 green:210/255.0 blue:210/255.0 alpha:1.0]];
-
-//        [touchView setBackgroundColor:[UIColor clearColor]];
         
         [_viewArr2 addObject:touchView];
-        touchView->_array = _viewArr2;
+        touchView.array = _viewArr2;
         
         touchView.label.text = [[modelArr2 objectAtIndex:i] title];
-//        [touchView.label setTextColor:TAG_BUTTON_TEXT_COLOR];
         [touchView.label setTextAlignment:NSTextAlignmentCenter];
         [touchView setMoreChannelsLabel:_titleLabel2];
         [touchView setSelectedChannelsLabel:_titleLabel];
         
-        touchView->_viewArr11 = _viewArr1;
-        touchView->_viewArr22 = _viewArr2;
+        touchView.viewArr11 = _viewArr1;
+        touchView.viewArr22 = _viewArr2;
         [touchView setTouchViewModel:[modelArr2 objectAtIndex:i]];
         
         [self.view addSubview:touchView];
@@ -267,18 +245,20 @@
 
 - (void)dealloc{
 
-    [_backButton release];
-    [_titleArr release];
-    [_urlStringArr release];
-    [_titleLabel2 release];
-    [_titleLabel release];
-    [_viewArr1 release];
-    [_viewArr2 release];
+    PPRelease(_backButton);
+    PPRelease(_titleArr);
+    PPRelease(_urlStringArr);
+
+    PPRelease(_titleLabel2);
+    PPRelease(_titleLabel);
+    
+    PPRelease(_viewArr1);
+    PPRelease(_viewArr2);
     
     PPRelease(_modelArr1);
     PPRelease(_modelArrayForSelect);
-    self.callback = nil;
 
+    self.callback = nil;
     [super dealloc];
 }
 

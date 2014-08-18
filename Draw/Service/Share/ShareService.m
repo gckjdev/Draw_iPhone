@@ -20,6 +20,13 @@
 #import "RoundLineLabel.h"
 #import "WordManager.h"
 #import "Word.h"
+#import "ShowDrawView.h"
+#import "MyPaint.h"
+#import "FileUtil.h"
+#import "MyPaintManager.h"
+//#import "TwoInputFieldView.h"
+#import "BBSActionSheet.h"
+#import "TwoInputFieldViewStyle2.h"
 
 @implementation ShareService
 
@@ -258,5 +265,269 @@ static ShareService* _defaultService;
     }
     return nil;
 }
+
+//TODO 将它放进Util包
+//判断是否为整形：
+
+- (BOOL)isPureInt:(NSString*)string{
+    NSScanner* scan = [NSScanner scannerWithString:string];
+    int val;
+//    PPDebug(@"%d",[scan scanInt:&val]);
+//    PPDebug(@"%d",[scan isAtEnd]);
+//    BOOL bb = [scan isAtEnd];
+    return ([scan scanInt:&val]) && ([scan isAtEnd]);
+}
+
+//判断是否为浮点形：
+
+- (BOOL)isPureFloat:(NSString*)string{
+    NSScanner* scan = [NSScanner scannerWithString:string];
+    float val;
+    return[scan scanFloat:&val] && [scan isAtEnd];
+}
+
+-(BOOL)accessibilityShareGifEnter:(NSString*)gifFrameCount scaleSize:(NSString*)scaleSize{
+    if(![self isPureInt:gifFrameCount]){
+        POSTMSG(NSLS(@"kGifIntWarning"));
+        PPDebug(@"<showShareGifDialog> gifFrameCount isn't a int");
+        return NO;
+        
+    }
+    if(![self isPureFloat:scaleSize]){
+        POSTMSG(NSLS(@"kScaleFloatWarning"));
+        PPDebug(@"<showShareGifDialog> scaleSize isn't a float");
+        return NO;
+    }
+    
+   
+    if([gifFrameCount intValue]<0){
+        POSTMSG(NSLS(@"kGifCountWarning"));
+        PPDebug(@"<showShareGifDialog> gifFrameCount can't less than 0");
+        return NO;
+    }
+    if([scaleSize floatValue]>100||[scaleSize floatValue]<0){
+        POSTMSG(NSLS(@"kScaleWarning"));
+        PPDebug(@"<showShareGifDialog> scaleSize can't more than 100");
+        return NO;
+    }
+
+    
+    
+    return YES;
+}
+
+- (void)showShareGifDialog:(PPViewController*)superController
+                     draft:(MyPaint*)draft
+{
+    TwoInputFieldViewStyle2 *inputDialog =[TwoInputFieldViewStyle2 create];
+    inputDialog.textFieldTitle1.text = NSLS(@"kPicSum");
+    inputDialog.textFieldTitle2.text = NSLS(@"kPicScale");
+    inputDialog.textFieldTitle1.font = AD_FONT(20, 13);
+    inputDialog.textFieldTitle2.font = AD_FONT(20, 13);
+    
+    CommonDialog *dialog = [CommonDialog createDialogWithTitle:NSLS(@"kShareGifDialogTitle")
+                                                    customView:inputDialog
+                                                         style:CommonDialogStyleDoubleButtonWithCross];
+    
+    //导出GIF 的分享功能
+    [dialog.cancelButton setTitle:NSLS(@"kShare") forState:UIControlStateNormal];
+    [dialog showInView:superController.view];
+    
+    [dialog setClickCancelBlock:^(TwoInputFieldViewStyle2 *infoView){
+        if([self accessibilityShareGifEnter:inputDialog.textField1.text  scaleSize:inputDialog.textField2.text]){
+            [self saveGif:superController draft:draft shareOrAlbum:YES gifFrameCount:[inputDialog.textField1.text intValue] scaleSize:[inputDialog.textField2.text floatValue]/100.f];
+        }
+        
+    }];
+    
+    //导出GIF 的相册功能
+    [dialog.oKButton setTitle:NSLS(@"kAlbum") forState:UIControlStateNormal];
+    [dialog showInView:superController.view];
+    
+    [dialog setClickOkBlock:^(TwoInputFieldViewStyle2 *infoView){
+        
+        if([self accessibilityShareGifEnter:inputDialog.textField1.text  scaleSize:inputDialog.textField2.text]){
+            [self saveGif:superController draft:draft shareOrAlbum:NO gifFrameCount:[inputDialog.textField1.text intValue] scaleSize:[inputDialog.textField2.text floatValue]/100.f];
+        }
+    }];
+
+    
+}
+
+//YES为share NO为Album
+- (void)saveGif:(PPViewController*)superController
+          draft:(MyPaint*)draft shareOrAlbum:(BOOL)shareOrAlbum gifFrameCount:(int)gifFrameCount
+      scaleSize:(float)scaleSize
+{
+    [superController showActivityWithText:NSLS(@"kSaving")];
+    
+    [superController registerNotificationWithName:NOTIFICATION_GIF_CREATION usingBlock:^(NSNotification *note) {
+        float progress = [[[note userInfo] objectForKey:KEY_DATA_PARSING_PROGRESS] floatValue];
+        //        PPDebug(@"handle data parsing notification, progress = %f", progress);
+        NSString* progressText = @"";
+        if (progress == 1.0f){
+            progress = 0.99f;
+            progressText = [NSString stringWithFormat:NSLS(@"kCreateGIFProgress"), (int)(progress*100)];
+        }
+        else{
+            progressText = [NSString stringWithFormat:NSLS(@"kCreateGIFProgress"), (int)(progress*100)];
+        }
+        [superController showProgressViewWithMessage:progressText progress:progress];
+    }];
+    
+    //默认值 图片个数30 图片比例50% 时间0.25
+    int _gifFrameCount = 30;
+    if(gifFrameCount!=0){
+        _gifFrameCount = gifFrameCount;
+    }
+    float _scaleSize = 0.5f;
+    if(scaleSize!=0){
+        _scaleSize = scaleSize;
+    }
+    float delayTime = 0.25f;
+   
+    UIImage* finalImage = draft.paintImage;
+    
+    //后台运行creategif,主线程显示小苹果进程。
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0),
+                   ^(void){
+                       
+                       NSString* fileName = [NSString stringWithFormat:@"%@.gif", [NSString GetUUID]];
+                       NSString* tempPath = [[FileUtil getAppTempDir] stringByAppendingPathComponent:fileName];
+                       
+                       
+                       
+                       [ShowDrawView createGIF:_gifFrameCount
+                                     delayTime:delayTime
+                                drawActionList:draft.drawActionList
+                                       bgImage:nil
+                                        layers:draft.layers
+                                    canvasSize:draft.canvasSize
+                                    finalImage:finalImage
+                                    outputPath:tempPath
+                                     scaleSize:_scaleSize];
+                       
+                       // TODO remove file after generation
+                       //                       [FileUtil removeFile:tempPath];
+                       
+                       dispatch_async(dispatch_get_main_queue(),
+                                      ^(void){
+                                          
+                                          
+                                          [superController unregisterNotificationWithName:NOTIFICATION_GIF_CREATION];
+                                          [superController hideActivity];
+                                          [superController hideProgressView];
+                                          
+                                          if(shareOrAlbum){
+                                              [self shareSNS:superController.view imageFilePath:tempPath text:@"text"];
+                                          }
+                                          else{
+                                              [self saveAlbumWithPath:tempPath];
+                                          }
+                                         
+                                          
+                                      });
+                       
+                   });
+    return;
+}
+
+- (void)saveAlbumWithPath:(NSString*)path
+{
+//    [superController showActivityWithText:NSLS(@"kSaving")];
+    [[MyPaintManager defaultManager] savePhoto:path delegate:self];
+}
+
+#pragma mark - MyPaintManager delegate
+
+- (void)didSaveToAlbumSuccess:(BOOL)succ
+{
+//    [self hideActivity];
+    if (succ) {
+        POSTMSG(NSLS(@"kSaveToAlbumSuccess"));
+    }
+}
+
+#pragma mark - shareDialog TODO Util
+//- (NSString*)createShareText
+//{
+//    NSString* shareText = [NSString stringWithFormat:NSLS(@"kConquerDrawShareText"),
+//                           [PPConfigManager shareAppName],
+//                           self.score,
+//                           self.userStage.defeatCount];
+//    PPDebug(@"<createShareText> text=%@", shareText);
+//    return shareText;
+//}
+
+#define TITLE_SHARE_WEIXIN_FRIEND   NSLS(@"kConquerDrawShareWeixinFriend")
+#define TITLE_SHARE_WEIXIN_TIMELINE NSLS(@"kConquerDrawSharekWeixinTimeline")
+#define TITLE_SHARE_SINA_WEIBO      NSLS(@"kConquerDrawShareSinaWeibo")
+#define TITLE_SHARE_QQ_WEIBO        NSLS(@"kConquerDrawShareQQWeibo")
+#define ADD_HEIGHT                  (ISIPAD ? 26 : 13)
+- (void)shareSNS:(UIView*)superView imageFilePath:(NSString*)imageFilePath text:(NSString*)text
+{
+    NSString* _imageFilePath = imageFilePath;
+    NSString* _text = text;
+    
+//    if ([imageFilePath length] == 0){
+//        POSTMSG(NSLS(@"kCreateImageShareFail"));
+//        return;
+//    }
+    
+    NSArray *titles = @[TITLE_SHARE_WEIXIN_FRIEND,
+                        TITLE_SHARE_WEIXIN_TIMELINE,
+                        TITLE_SHARE_SINA_WEIBO,
+                        TITLE_SHARE_QQ_WEIBO];
+    
+    BBSActionSheet *sheet = [[BBSActionSheet alloc] initWithTitles:titles callback:^(NSInteger index) {
+        NSString *t = titles[index];
+        if ([t isEqualToString:TITLE_SHARE_WEIXIN_FRIEND]) {
+            
+            [[GameSNSService defaultService] publishWeibo:TYPE_WEIXIN_SESSION
+                                                     text:_text
+                                            imageFilePath:_imageFilePath
+                                                   inView:superView
+                                               awardCoins:0
+                                           successMessage:NSLS(@"kShareWeiboSucc")
+                                           failureMessage:NSLS(@"kShareWeiboFailure")];
+            
+        }else if([t isEqualToString:TITLE_SHARE_WEIXIN_TIMELINE]){
+            
+            [[GameSNSService defaultService] publishWeibo:TYPE_WEIXIN_TIMELINE
+                                                     text:_text
+                                            imageFilePath:_imageFilePath
+                                                   inView:superView
+                                               awardCoins:0
+                                           successMessage:NSLS(@"kShareWeiboSucc")
+                                           failureMessage:NSLS(@"kShareWeiboFailure")];
+            
+        }
+        else if([t isEqualToString:TITLE_SHARE_SINA_WEIBO]){
+            
+            [[GameSNSService defaultService] publishWeibo:TYPE_SINA
+                                                     text:_text
+                                            imageFilePath:_imageFilePath
+                                                   inView:superView
+                                               awardCoins:0
+                                           successMessage:NSLS(@"kShareWeiboSucc")
+                                           failureMessage:NSLS(@"kShareWeiboFailure")];
+            
+        }
+        else if([t isEqualToString:TITLE_SHARE_QQ_WEIBO]){
+            
+            [[GameSNSService defaultService] publishWeibo:TYPE_QQ
+                                                     text:_text
+                                            imageFilePath:_imageFilePath
+                                                   inView:superView
+                                               awardCoins:0
+                                           successMessage:NSLS(@"kShareWeiboSucc")
+                                           failureMessage:NSLS(@"kShareWeiboFailure")];
+            
+        }
+    }];
+    [sheet showInView:superView showAtPoint:superView.center animated:YES];
+    [sheet release];
+}
+
 
 @end

@@ -31,6 +31,8 @@
 #import "UIImageUtil.h"
 #import "GifViewController.h"
 #import "UIImageExt.h"
+#import "StringUtil.h"
+#import "ShareService.h"
 
 #define BUTTON_INDEX_OFFSET 20120229
 #define IMAGE_WIDTH 93
@@ -209,41 +211,6 @@ typedef enum{
 #define TITLE_DELETE          NSLS(@"kDelete")
 
 #define DREAM_AVATAR_TITLES  TITLE_SAVE_TO_ALBUM, TITLE_SAVE_TO_CONTACT, TITLE_DELETE, nil
-- (void)didSelectPaintInDreamAvatar
-{
-    NSString* editString = ([[self.selectedPaint isRecovery] boolValue]? TITLE_RECOVERY : TITLE_EDIT);
-    
-    UIActionSheet *sheet;
-    if (self.isDraftTab) {
-        sheet = [[UIActionSheet alloc] initWithTitle:NSLS(@"kOptions")
-                                                           delegate:self
-                                                  cancelButtonTitle:NSLS(@"kCancel")
-                                             destructiveButtonTitle:nil
-                                                  otherButtonTitles:editString, DREAM_AVATAR_TITLES];
-    } else {
-        sheet = [[UIActionSheet alloc] initWithTitle:NSLS(@"kOptions")
-                                                           delegate:self
-                                                  cancelButtonTitle:NSLS(@"kCancel")
-                                             destructiveButtonTitle:nil
-                                                  otherButtonTitles:DREAM_AVATAR_TITLES];
-    }
-
-    sheet.tag = DREAM_AVATAR_OPTION;
-    [sheet showInView:self.view];
-    [sheet release];
-}
-
-- (void)didSelectPaintInDreamLockscreen
-{    
-    UIActionSheet *sheet = [[UIActionSheet alloc] initWithTitle:NSLS(@"kOptions")
-                                                       delegate:self
-                                              cancelButtonTitle:NSLS(@"kCancel")
-                                         destructiveButtonTitle:nil
-                                              otherButtonTitles:TITLE_SAVE_TO_ALBUM, TITLE_DELETE, nil];
-    sheet.tag = DREAM_LOCKSCREEN_OPTION;
-    [sheet showInView:self.view];
-    [sheet release];
-}
 
 #pragma mark - Share Cell Delegate
 - (void)didSelectPaint:(MyPaint *)paint
@@ -290,7 +257,7 @@ typedef enum{
                                       cancelButtonTitle:NSLS(@"kCancel") 
                                  destructiveButtonTitle:editString 
                                       otherButtonTitles:NSLS(@"kReplay"), NSLS(@"kDelete"),
-                    NSLS(@"kSaveAsPhoto"),
+                    NSLS(@"kSaveAsPhoto"), NSLS(@"kSaveAsGif"),
                     NSLS(@"kShareSinaWeibo"),  // NSLS(@"kShareQQSpace"),
                     NSLS(@"kShareWeixinSession"), NSLS(@"kShareWeixinTimeline"),
                     NSLS(@"kShareQQWeibo"), NSLS(@"kShareFacebook"),
@@ -303,7 +270,7 @@ typedef enum{
                                  destructiveButtonTitle:NSLS(@"kReplay")
                                       otherButtonTitles:
                      NSLS(@"kDelete"), NSLS(@"kEdit"),
-                    NSLS(@"kSaveAsPhoto"), //NSLS(@"kSaveAsGif"),
+                    NSLS(@"kSaveAsPhoto"), NSLS(@"kSaveAsGif"),
                     NSLS(@"kShareSinaWeibo"),  // NSLS(@"kShareQQSpace"),
                     NSLS(@"kShareWeixinSession"), NSLS(@"kShareWeixinTimeline"),
                     NSLS(@"kShareQQWeibo"), NSLS(@"kShareFacebook"),
@@ -559,44 +526,7 @@ typedef enum{
     
 }
 
-- (void)saveGif
-{
-//#ifdef DEBUG
-//    [self showActivityWithText:NSLS(@"kSaving")];
-//    
-//    //后台运行creategif,主线程显示小苹果进程。
-//    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0),
-//                   ^(void){
-//                [ShowDrawView createGIF:30
-//                              delayTime:0.25f
-//                         drawActionList:_selectedPaint.drawActionList
-//                                bgImage:[[MyPaintManager defaultManager] bgImageForPaint:_selectedPaint]
-//                                 layers:_selectedPaint.layers
-//                             canvasSize:_selectedPaint.canvasSize
-//                             outputPath: //_selectedPaint.imageFilePath
-//                        @"/Users/Linruin/Desktop/test.gif"
-//                              scaleSize:0.5];
-//                     
-//                       dispatch_async(dispatch_get_main_queue(),
-//                            ^(void){
-//                           [self hideActivity];
-//                            });
-//                   
-//                   });
-//    return;
-//#endif
-    
-#ifdef DEBUG
-    
-//    [self showActivityWithText:NSLS(@"kSaving")];
-    
-    [self TestLayerImage];
 
-//    [self hideActivity];
-    return;
-    
-#endif
-}
 
 - (void)share:(PPSNSType)type
 {
@@ -661,7 +591,7 @@ typedef enum{
     }
     else if (buttonIndex == SAVE_INTO_GIF)
     {
-        [self saveGif];
+        [[ShareService defaultService] showShareGifDialog:self draft:_selectedPaint];
     }
     else if (buttonIndex == SHARE_SINA_WEIBO){
         [self share:TYPE_SINA];
@@ -722,50 +652,6 @@ typedef enum{
     }
 }
 
-- (void)dreamAvatarActionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
-{
-    NSString *buttonTitle = [actionSheet buttonTitleAtIndex:buttonIndex];
-    if ([buttonTitle isEqualToString:TITLE_RECOVERY] ||
-        [buttonTitle isEqualToString:TITLE_EDIT]) {
-        [self showActivityWithText:NSLS(@"kLoading")];
-        [self performSelector:@selector(performEdit) withObject:nil afterDelay:0.1f];
-        
-    } else if ([buttonTitle isEqualToString:TITLE_SAVE_TO_ALBUM]) {
-        [self showActivityWithText:NSLS(@"kSaving")];
-        [[MyPaintManager defaultManager] savePhoto:_selectedPaint.imageFilePath delegate:nil];
-        [self performSelector:@selector(hideActivity) withObject:nil afterDelay:1.5];
-        
-    } else if ([buttonTitle isEqualToString:TITLE_DELETE]) {
-        CommonDialog* dialog = [CommonDialog createDialogWithTitle:NSLS(@"kSure_delete")
-                                                           message:NSLS(@"kAre_you_sure")
-                                                             style:CommonDialogStyleDoubleButton
-                                                          delegate:self];
-        
-        dialog.tag = DELETE;
-        
-        [dialog showInView:self.view];
-    }
-}
-
-
-- (void)dreamLockscreenActionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
-{
-    NSString *buttonTitle = [actionSheet buttonTitleAtIndex:buttonIndex];
-    if ([buttonTitle isEqualToString:TITLE_SAVE_TO_ALBUM]) {
-        [self showActivityWithText:NSLS(@"kSaving")];
-        [[MyPaintManager defaultManager] savePhoto:_selectedPaint.imageFilePath delegate:nil];
-        [self performSelector:@selector(hideActivity) withObject:nil afterDelay:1.5];
-        
-    } else if ([buttonTitle isEqualToString:TITLE_DELETE]) {
-        CommonDialog* dialog = [CommonDialog createDialogWithTitle:NSLS(@"kSure_delete")
-                                                           message:NSLS(@"kAre_you_sure")
-                                                             style:CommonDialogStyleDoubleButton
-                                                          delegate:self];
-        
-        dialog.tag = DELETE;
-        [dialog showInView:self.view];
-    }
-}
 
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
 {
@@ -779,12 +665,6 @@ typedef enum{
     if (actionSheet.tag == IMAGE_OPTION) {
         [self imageActionSheet:actionSheet clickedButtonAtIndex:buttonIndex];
         return;
-    }
-    if (actionSheet.tag == DREAM_AVATAR_OPTION) {
-        [self dreamAvatarActionSheet:actionSheet clickedButtonAtIndex:buttonIndex];
-    }
-    if (actionSheet.tag == DREAM_LOCKSCREEN_OPTION) {
-        [self dreamLockscreenActionSheet:actionSheet clickedButtonAtIndex:buttonIndex];
     }
 }
 
@@ -992,7 +872,7 @@ typedef enum{
 //#endif
     
     SAVE_INTO_PHOTO = index++;
-//    SAVE_INTO_GIF = index++;
+    SAVE_INTO_GIF = index++;
     SHARE_SINA_WEIBO = index++;
 //    SHARE_QQ_ZONE = index++;
     SHARE_WEIXIN_SESSION = index++;
@@ -1208,6 +1088,12 @@ typedef enum{
     ShareController* share = [[[ShareController alloc] init ] autorelease];
     [share setFromWeiXin:YES];
     [superController.navigationController pushViewController:share animated:YES];
+}
+
+- (void)saveAlbumWithPath:(NSString*)path
+{
+    [self showActivityWithText:NSLS(@"kSaving")];
+    [[MyPaintManager defaultManager] savePhoto:path delegate:self];
 }
 
 - (void)saveAlbum

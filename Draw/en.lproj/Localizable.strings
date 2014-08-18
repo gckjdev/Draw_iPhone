@@ -2728,7 +2728,7 @@
 
 "kUserTutorialMainTitle" = "Tutorial";
 "kAddTutorial" = "Add";
-"AllTutorial" = "AddTurorial";
+"AllTutorial" = "All Turorials";
 "kTutorialInfoTitle" = "Tutorial Details";
 "kLearnNow" = "Learn";
 "kAddToLearn" = "Add";
@@ -2888,3 +2888,15 @@
 "kMetroHomeLearning" = "LEARN DRAW";
 "kMetroHomeForum" = "FORUM";
 "kMetroHomeGallery" = "GALLERY";
+
+"kSaveAsGif" = "Save As GIF";
+"kCreateGIFProgress" = "Creating GIF...%2d%%";
+
+"kPicSum" = "picture sum";
+"kPicScale" = "picture scale";
+
+"kShareGifDialogTitle" = "Export to GIF";
+"kScaleWarning" = "Scale size shouldn't more than 100%";
+"kGifCountWarning" = "GifFrame Count shouldn't less than 0";
+"kScaleFloatWarning" = "Scale size must a number";
+"kGifCountIntWarning" = "GifFrame Count must a number";

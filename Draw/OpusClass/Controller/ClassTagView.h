@@ -18,10 +18,12 @@
 
 @public
     
-    NSMutableArray * _array;
-    NSMutableArray * _viewArr11;
-    NSMutableArray * _viewArr22;
 }
+
+
+@property (nonatomic,retain) NSMutableArray *array;
+@property (nonatomic,retain) NSMutableArray *viewArr11;
+@property (nonatomic,retain) NSMutableArray *viewArr22;
 
 @property (nonatomic,retain) UILabel * label;
 @property (nonatomic,retain) UILabel * moreChannelsLabel;

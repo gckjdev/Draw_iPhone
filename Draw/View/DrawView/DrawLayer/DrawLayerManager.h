@@ -45,7 +45,7 @@ didChangeSelectedLayer:(DrawLayer *)selectedLayer
 
 - (NSArray *)layers;
 
-- (void)arrangeActions:(NSArray *)actions;
+- (void)arrangeActions:(NSArray *)actions useLayerOpacity:(BOOL)useLayerOpacity;
 
 - (DrawAction *)undoDrawAction:(DrawAction *)action;
 

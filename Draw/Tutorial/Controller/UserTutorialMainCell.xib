@@ -17,8 +17,13 @@
                         <rect key="frame" x="0.0" y="0.0" width="290" height="105"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                     </imageView>
-                    <view alpha="0.40000000000000002" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="l6U-8P-Mme">
-                        <rect key="frame" x="0.0" y="85" width="290" height="20"/>
+                    <view alpha="0.14999999999999999" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="RqO-gx-ArW" userLabel="AlphaView">
+                        <rect key="frame" x="0.0" y="0.0" width="290" height="85"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <view alpha="0.94999999999999996" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="l6U-8P-Mme">
+                        <rect key="frame" x="0.0" y="86" width="290" height="20"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="简笔画" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AVB-UF-Fo1">
@@ -29,7 +34,7 @@
                                     <constraint firstAttribute="width" constant="141" id="UOW-L2-aD4"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="10"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="2天前" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="e2n-cV-Vob">
@@ -40,11 +45,11 @@
                                     <constraint firstAttribute="width" constant="141" id="ivT-0s-gcM"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="10"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
-                        <color key="backgroundColor" cocoaTouchSystemColor="viewFlipsideBackgroundColor"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="bottom" secondItem="e2n-cV-Vob" secondAttribute="bottom" constant="3" id="OgG-zb-ake"/>
                             <constraint firstAttribute="trailing" secondItem="e2n-cV-Vob" secondAttribute="trailing" constant="20" id="SJ9-Bv-2CV"/>
@@ -117,7 +122,7 @@
                 <constraints>
                     <constraint firstItem="LWl-3k-Pwp" firstAttribute="leading" secondItem="l6U-8P-Mme" secondAttribute="leading" id="Cdi-z1-FGN"/>
                     <constraint firstItem="l6U-8P-Mme" firstAttribute="leading" secondItem="dB4-Ko-gd6" secondAttribute="leading" id="GG0-4r-B3D"/>
-                    <constraint firstAttribute="bottom" secondItem="l6U-8P-Mme" secondAttribute="bottom" constant="14" id="H5x-51-kGS"/>
+                    <constraint firstAttribute="bottom" secondItem="l6U-8P-Mme" secondAttribute="bottom" constant="13" id="H5x-51-kGS"/>
                     <constraint firstItem="sql-Ey-6EW" firstAttribute="top" secondItem="dB4-Ko-gd6" secondAttribute="top" constant="10" id="KGU-ku-Nlv"/>
                     <constraint firstItem="sql-Ey-6EW" firstAttribute="leading" secondItem="dB4-Ko-gd6" secondAttribute="leading" constant="72" id="KwL-ZL-6X8"/>
                     <constraint firstItem="LWl-3k-Pwp" firstAttribute="top" secondItem="dB4-Ko-gd6" secondAttribute="top" id="L5V-e1-PVy"/>
@@ -130,6 +135,7 @@
             </tableViewCellContentView>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             <connections>
+                <outlet property="alphaView" destination="RqO-gx-ArW" id="d8J-bL-U7e"/>
                 <outlet property="difficultyLabel" destination="fVC-qC-yrc" id="K2U-y2-lvE"/>
                 <outlet property="labelBottomView" destination="l6U-8P-Mme" id="p8A-de-om6"/>
                 <outlet property="othersProgressInfoLabel" destination="hpc-rY-RGp" id="tLM-eX-ny2"/>

@@ -12,6 +12,6 @@
 
 @interface ShowOpusClassListController : UIViewController
 
-@property (nonatomic, strong) THGridMenu *menuView;
+@property (nonatomic, retain) THGridMenu *menuView;
 
 @end
