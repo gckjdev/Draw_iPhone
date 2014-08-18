@@ -2997,6 +2997,14 @@
 "kSaveAsGif" = "匯出作品重播過程";
 "kCreateGIFProgress" = "生成GIF動圖中...%2d%%";
 
-"kPicSum" = "圖片個數";
-"kPicScale" = "圖片比例";
-"kShareGifDialogTitle" = "導出為GIF";
+"kPicSum" = "圖片個數:";
+"kPicScale" = "圖片比例:";
+
+"kShareGifDialogTitle" = "匯出作品重播過程為GIF圖片";
+"kScaleWarning" = "圖片比例必須為(1-100)以內的數位";
+"kGifCountWarning" = "圖片個數不能少於0";
+"kScaleFloatWarning" = "圖片個數必須為(1-50)以內的數位";
+"kGifCountIntWarning" = "圖片比例必須為(1-100)以內的數位";
+
+"kShareGIFText" = "@小吉画画 手繪作品動態重播";
+"kGIFShareSuffix" = "手繪作品GIF動態重播";

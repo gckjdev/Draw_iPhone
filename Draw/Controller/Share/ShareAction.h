@@ -34,6 +34,15 @@
                      snsType:(SnsType)type
                       opusId:(NSString*)opusId;
 
++ (NSString*)createShareText:(NSString*)word
+                        desc:(NSString*)desc
+                  opusUserId:(NSString*)opusUserId
+                  userGender:(BOOL)userGender
+                     snsType:(SnsType)type
+                      opusId:(NSString*)opusId
+                       isGIF:(BOOL)isGIF;
+
+
 + (NSString*)shareTextByDrawFeed:(DrawFeed*)feed snsType:(SnsType)type;
 + (NSString*)shareTextByOpus:(Opus*)opus snsType:(SnsType)type;
 

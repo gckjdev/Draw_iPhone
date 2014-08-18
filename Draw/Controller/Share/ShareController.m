@@ -537,7 +537,7 @@ typedef enum{
                                        opusUserId:currentPaint.drawUserId
                                        userGender:[UserManager defaultManager].pbUser.gender
                                           snsType:type
-                                           opusId:nil];
+                                           opusId:currentPaint.opusId];
     
     [[GameSNSService defaultService] publishWeibo:type
                                              text:text

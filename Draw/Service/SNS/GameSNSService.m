@@ -586,7 +586,13 @@ GameSNSService* _defaultSNSService;
         }
     }
     else{
-        mediaType = ([imagePath length] > 0) ? SSPublishContentMediaTypeImage : SSPublishContentMediaTypeText;
+        if ([[imagePath pathExtension] isEqualToString:@"gif"] ||
+            [[imagePath pathExtension] isEqualToString:@"GIF"]){
+            mediaType = SSPublishContentMediaTypeGif;
+        }
+        else{
+            mediaType = ([imagePath length] > 0) ? SSPublishContentMediaTypeImage : SSPublishContentMediaTypeText;
+        }
     }
     
     //创建分享内容

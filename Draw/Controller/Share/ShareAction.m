@@ -332,6 +332,23 @@
                      snsType:(SnsType)type
                       opusId:(NSString*)opusId
 {
+    return [self createShareText:word
+                            desc:desc
+                      opusUserId:opusUserId
+                      userGender:userGender
+                         snsType:type
+                          opusId:opusId
+                           isGIF:NO];
+}
+
++ (NSString*)createShareText:(NSString*)word
+                        desc:(NSString*)desc
+                  opusUserId:(NSString*)opusUserId
+                  userGender:(BOOL)userGender
+                     snsType:(SnsType)type
+                      opusId:(NSString*)opusId
+                       isGIF:(BOOL)isGIF
+{
     NSString* snsOfficialNick = [GameSNSService snsOfficialNick:type];
     NSString* text = @"";
     BOOL isDrawByMe = [[UserManager defaultManager] isMe:opusUserId];
@@ -364,6 +381,10 @@
         } else {
             text = [NSString stringWithFormat:[GameApp shareOtherOpusWithoutDescText],  heStr, snsOfficialNick, word, [PPConfigManager getSNSShareSubject], link];
         }
+    }
+    
+    if (isGIF){
+        text = [text stringByReplacingOccurrencesOfString:NSLS(@"kSNSSubject") withString:NSLS(@"kGIFShareSuffix")];
     }
     
     return text;

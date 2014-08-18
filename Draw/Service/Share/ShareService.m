@@ -27,6 +27,7 @@
 //#import "TwoInputFieldView.h"
 #import "BBSActionSheet.h"
 #import "TwoInputFieldViewStyle2.h"
+#import "ShareAction.h"
 
 @implementation ShareService
 
@@ -356,7 +357,9 @@ static ShareService* _defaultService;
 
 //YES为share NO为Album
 - (void)saveGif:(PPViewController*)superController
-          draft:(MyPaint*)draft shareOrAlbum:(BOOL)shareOrAlbum gifFrameCount:(int)gifFrameCount
+          draft:(MyPaint*)draft
+   shareOrAlbum:(BOOL)shareOrAlbum
+  gifFrameCount:(int)gifFrameCount
       scaleSize:(float)scaleSize
 {
     [superController showActivityWithText:NSLS(@"kSaving")];
@@ -377,11 +380,11 @@ static ShareService* _defaultService;
     
     //默认值 图片个数30 图片比例50% 时间0.25
     int _gifFrameCount = 30;
-    if(gifFrameCount!=0){
+    if (gifFrameCount!=0){
         _gifFrameCount = gifFrameCount;
     }
     float _scaleSize = 0.5f;
-    if(scaleSize!=0){
+    if (scaleSize!=0){
         _scaleSize = scaleSize;
     }
     float delayTime = 0.25f;
@@ -392,10 +395,9 @@ static ShareService* _defaultService;
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0),
                    ^(void){
                        
-                       NSString* fileName = [NSString stringWithFormat:@"%@.gif", [NSString GetUUID]];
+                       NSString* fileId = [draft.draftId length] > 0 ? draft.draftId : [NSString GetUUID];
+                       NSString* fileName = [NSString stringWithFormat:@"%@.gif", fileId];
                        NSString* tempPath = [[FileUtil getAppTempDir] stringByAppendingPathComponent:fileName];
-                       
-                       
                        
                        [ShowDrawView createGIF:_gifFrameCount
                                      delayTime:delayTime
@@ -409,7 +411,6 @@ static ShareService* _defaultService;
                        
                        // TODO remove file after generation
                        //                       [FileUtil removeFile:tempPath];
-                       
                        dispatch_async(dispatch_get_main_queue(),
                                       ^(void){
                                           
@@ -419,7 +420,10 @@ static ShareService* _defaultService;
                                           [superController hideProgressView];
                                           
                                           if(shareOrAlbum){
-                                              [self shareSNS:superController.view imageFilePath:tempPath text:@"text"];
+//                                              NSString* shareText = NSLS(@"kShareGIFText");
+                                              [self shareSNS:superController.view
+                                                       draft:draft
+                                               imageFilePath:tempPath];
                                           }
                                           else{
                                               [self saveAlbumWithPath:tempPath];
@@ -464,10 +468,12 @@ static ShareService* _defaultService;
 #define TITLE_SHARE_SINA_WEIBO      NSLS(@"kConquerDrawShareSinaWeibo")
 #define TITLE_SHARE_QQ_WEIBO        NSLS(@"kConquerDrawShareQQWeibo")
 #define ADD_HEIGHT                  (ISIPAD ? 26 : 13)
-- (void)shareSNS:(UIView*)superView imageFilePath:(NSString*)imageFilePath text:(NSString*)text
+- (void)shareSNS:(UIView*)superView
+           draft:(MyPaint*)draft
+   imageFilePath:(NSString*)imageFilePath
 {
+    
     NSString* _imageFilePath = imageFilePath;
-    NSString* _text = text;
     
 //    if ([imageFilePath length] == 0){
 //        POSTMSG(NSLS(@"kCreateImageShareFail"));
@@ -483,43 +489,76 @@ static ShareService* _defaultService;
         NSString *t = titles[index];
         if ([t isEqualToString:TITLE_SHARE_WEIXIN_FRIEND]) {
             
+            NSString* _text = [ShareAction createShareText:draft.drawWord
+                                                     desc:nil
+                                               opusUserId:draft.drawUserId
+                                               userGender:[UserManager defaultManager].pbUser.gender
+                                                  snsType:TYPE_WEIXIN_SESSION
+                                                   opusId:draft.opusId
+                                                     isGIF:YES];
+            
             [[GameSNSService defaultService] publishWeibo:TYPE_WEIXIN_SESSION
                                                      text:_text
                                             imageFilePath:_imageFilePath
                                                    inView:superView
-                                               awardCoins:0
+                                               awardCoins:[PPConfigManager getShareWeiboReward]
                                            successMessage:NSLS(@"kShareWeiboSucc")
                                            failureMessage:NSLS(@"kShareWeiboFailure")];
             
         }else if([t isEqualToString:TITLE_SHARE_WEIXIN_TIMELINE]){
             
+            NSString* _text = [ShareAction createShareText:draft.drawWord
+                                                      desc:nil
+                                                opusUserId:draft.drawUserId
+                                                userGender:[UserManager defaultManager].pbUser.gender
+                                                   snsType:TYPE_WEIXIN_TIMELINE
+                                                    opusId:draft.opusId
+                                                     isGIF:YES];
+
             [[GameSNSService defaultService] publishWeibo:TYPE_WEIXIN_TIMELINE
                                                      text:_text
                                             imageFilePath:_imageFilePath
                                                    inView:superView
-                                               awardCoins:0
+                                               awardCoins:[PPConfigManager getShareWeiboReward]
                                            successMessage:NSLS(@"kShareWeiboSucc")
                                            failureMessage:NSLS(@"kShareWeiboFailure")];
             
         }
         else if([t isEqualToString:TITLE_SHARE_SINA_WEIBO]){
             
+            NSString* _text = [ShareAction createShareText:draft.drawWord
+                                                      desc:nil
+                                                opusUserId:draft.drawUserId
+                                                userGender:[UserManager defaultManager].pbUser.gender
+                                                   snsType:TYPE_SINA
+                                                    opusId:draft.opusId
+                                                     isGIF:YES];
+
             [[GameSNSService defaultService] publishWeibo:TYPE_SINA
                                                      text:_text
                                             imageFilePath:_imageFilePath
                                                    inView:superView
-                                               awardCoins:0
+                                               awardCoins:[PPConfigManager getShareWeiboReward]
                                            successMessage:NSLS(@"kShareWeiboSucc")
                                            failureMessage:NSLS(@"kShareWeiboFailure")];
             
+            
         }
         else if([t isEqualToString:TITLE_SHARE_QQ_WEIBO]){
+            
+            NSString* _text = [ShareAction createShareText:draft.drawWord
+                                                      desc:nil
+                                                opusUserId:draft.drawUserId
+                                                userGender:[UserManager defaultManager].pbUser.gender
+                                                   snsType:TYPE_QQ
+                                                    opusId:draft.opusId
+                                                     isGIF:YES];
             
             [[GameSNSService defaultService] publishWeibo:TYPE_QQ
                                                      text:_text
                                             imageFilePath:_imageFilePath
                                                    inView:superView
-                                               awardCoins:0
+                                               awardCoins:[PPConfigManager getShareWeiboReward]
                                            successMessage:NSLS(@"kShareWeiboSucc")
                                            failureMessage:NSLS(@"kShareWeiboFailure")];
             

@@ -683,8 +683,6 @@ typedef enum {
         for (DrawLayer *layer in layerList) {
             PPDebug(@"<arrangeActions> layer name = %@", layer.layerName);
             [layer reset];
-            NSMutableArray *array = [dict objectForKey:@(layer.layerTag)];
-            [layer updateWithDrawActions:array];
             
             // set layer alpha
             if (!useLayerOpacity){
@@ -697,6 +695,13 @@ typedef enum {
                 layer.opacity = layer.finalOpacity;
             }
             
+            PPDebug(@"layer opacity is %.2f", layer.opacity);
+
+            // set layer actions
+            NSMutableArray *array = [dict objectForKey:@(layer.layerTag)];
+            [layer updateWithDrawActions:array];
+
+            // draw layer
             [layer setNeedsDisplay];
             
             UIImage* prevImage = [prevLayerImageDict objectForKey:@(layer.layerTag)];
@@ -743,7 +748,7 @@ typedef enum {
         // draw each layer in image context
         [layerList reversEnumWithHandler:^(id object) {
             DrawLayer *layer = object;
-            if (layer.finalOpacity > 0.0){
+            if (layer.opacity > 0.0){
                 UIImage* layerImage = [layerImageDict objectForKey:@(layer.layerTag)];
                 [layerImage drawAtPoint:CGPointZero];
             }

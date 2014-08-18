@@ -2892,11 +2892,15 @@
 "kSaveAsGif" = "Save As GIF";
 "kCreateGIFProgress" = "Creating GIF...%2d%%";
 
-"kPicSum" = "picture sum";
-"kPicScale" = "picture scale";
+"kPicSum" = "Frame Num";
+"kPicScale" = "Proportion";
 
-"kShareGifDialogTitle" = "Export to GIF";
-"kScaleWarning" = "Scale size shouldn't more than 100%";
-"kGifCountWarning" = "GifFrame Count shouldn't less than 0";
-"kScaleFloatWarning" = "Scale size must a number";
-"kGifCountIntWarning" = "GifFrame Count must a number";
+"kShareGifDialogTitle" = "Export";
+"kScaleWarning" = "Proportion must be a number between 1 and 100";
+"kGifCountWarning" = "Frame must be a number between 1 and 100";
+"kScaleFloatWarning" = "Proportion must be a number between 1 and 100";
+"kGifCountIntWarning" = "Frame must be a number between 1 and 100";
+
+"kShareGIFText" = "Look at this awesome drawing with GIF replay";
+"kGIFShareSuffix" = " #GIF Replay#";
+
