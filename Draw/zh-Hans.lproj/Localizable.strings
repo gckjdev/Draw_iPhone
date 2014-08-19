@@ -2942,10 +2942,12 @@
 "kPicScale" = "图片比例:";
 
 "kShareGifDialogTitle" = "分享作品回放过程";
-"kScaleWarning" = "图片比例必须为(1-100)以内的数字";
+"kScaleWarning" = "图片比例必须为1~100以内的数字";
 "kGifCountWarning" = "图片个数不能少于0";
-"kScaleFloatWarning" = "图片个数必须为(1-50)以内的数字";
-"kGifCountIntWarning" = "图片比例必须为(1-100)以内的数字";
+"kScaleFloatWarning" = "图片个数必须为1~50)的数字";
+"kGifCountIntWarning" = "图片比例必须为1~100的数字";
+"kScaleFloatPlaceholder" = "请输入1~50";
+"kGifCountIntPlaceholder" = "请输入1~100";
 
 "kShareGIFText" = "@小吉画画 手绘作品绘画过程回放";
 "kGIFShareSuffix" = "手绘作品GIF回放";
