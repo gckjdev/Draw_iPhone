@@ -1065,6 +1065,10 @@ typedef enum{
     PPRelease(_shareAction);
 }
 
+- (IBAction)clickPlayButton:(id)sender
+{
+    [self performReplay];
+}
 
 #pragma mark - comment cell delegate
 - (void)didStartToReplyToFeed:(CommentFeed *)feed
@@ -1158,10 +1162,13 @@ typedef enum{
     
     [CommonTitleView createTitleView:self.view];
     CommonTitleView* titleView = [CommonTitleView titleView:self.view];
-    [titleView setRightButtonAsRefresh];
+//    [titleView setRightButtonAsRefresh];
+    [titleView setRightButtonTitle:NSLS(@"kReplayOpus")];
     [titleView setTarget:self];
     [titleView setBackButtonSelector:@selector(clickBackButton:)];
-    [titleView setRightButtonSelector:@selector(clickRefreshButton:)];
+    [titleView setRightButtonSelector:@selector(clickPlayButton:)];
+    
+//    [titleView setRightButtonSelector:@selector(clickRefreshButton:)];
     
     [self initFooterView];
     [self initTabButtons];
@@ -1310,11 +1317,11 @@ typedef enum{
         sheet = [[MKBlockActionSheet alloc] initWithTitle:NSLS(@"kOption")
                                                  delegate:nil
                                         cancelButtonTitle:NSLS(@"kCancel")
-                                   destructiveButtonTitle:NSLS(@"kGuess")
+                                   destructiveButtonTitle:nil //NSLS(@"kGuess")
                                         otherButtonTitles:NSLS(@"kPlay"), NSLS(@"kLargeImage"), NSLS(@"分数处理"), NSLS(@"设置分类"), NSLS(@"清除分类"),  NSLS(@"kRecommend"),  NSLS(@"kUnfeature"), NSLS(@"删除作品"),
-                 NSLS(@"kShareSinaWeibo"), NSLS(@"kShareWeixinSession"), NSLS(@"kShareWeixinTimeline"), NSLS(@"kShareQQWeibo"), // NSLS(@"kShareQQSpace"),                 
+//                 NSLS(@"kShareSinaWeibo"), NSLS(@"kShareWeixinSession"), NSLS(@"kShareWeixinTimeline"), NSLS(@"kShareQQWeibo"), // NSLS(@"kShareQQSpace"),                 
                  nil];
-        indexOfGuess = index++;
+//        indexOfGuess = index++;
         indexOfPlay = index++;
         indexOfPhoto = index++;
         indexOfSetScore = index++;
@@ -1329,11 +1336,11 @@ typedef enum{
             sheet = [[MKBlockActionSheet alloc] initWithTitle:NSLS(@"kOption")
                                                      delegate:nil
                                             cancelButtonTitle:NSLS(@"kCancel")
-                                       destructiveButtonTitle:NSLS(@"kGuess")
+                                       destructiveButtonTitle:nil //NSLS(@"kGuess")
                                             otherButtonTitles:NSLS(@"kPlay"), NSLS(@"kLargeImage"), NSLS(@"kSelectOpusClassTitle"), NSLS(@"kRecommend"), NSLS(@"kUnfeature"),
-                     NSLS(@"kShareSinaWeibo"), NSLS(@"kShareWeixinSession"), NSLS(@"kShareWeixinTimeline"), NSLS(@"kShareQQWeibo"), // NSLS(@"kShareQQSpace"),
+                     //NSLS(@"kShareSinaWeibo"), NSLS(@"kShareWeixinSession"), NSLS(@"kShareWeixinTimeline"), NSLS(@"kShareQQWeibo"), // NSLS(@"kShareQQSpace"),
                      nil];
-            indexOfGuess = index++;
+//            indexOfGuess = index++;
             indexOfPlay = index++;
             indexOfPhoto = index++;
             indexOfSetClass = index++;
@@ -1341,17 +1348,22 @@ typedef enum{
             indexOfUnfeature = index++;
         }
         else{
+            [self showPhotoBrower];
+            return;
+
+            /*
             sheet = [[MKBlockActionSheet alloc] initWithTitle:NSLS(@"kOption")
                                                      delegate:nil
                                             cancelButtonTitle:NSLS(@"kCancel")
-                                       destructiveButtonTitle:NSLS(@"kGuess")
+                                       destructiveButtonTitle:nil // NSLS(@"kGuess")
                                             otherButtonTitles:NSLS(@"kPlay"),
                      NSLS(@"kLargeImage"),
-                     NSLS(@"kShareSinaWeibo"), NSLS(@"kShareWeixinSession"), NSLS(@"kShareWeixinTimeline"), NSLS(@"kShareQQWeibo"), // NSLS(@"kShareQQSpace")
+//                     NSLS(@"kShareSinaWeibo"), NSLS(@"kShareWeixinSession"), NSLS(@"kShareWeixinTimeline"), NSLS(@"kShareQQWeibo"), // NSLS(@"kShareQQSpace")
                      nil];
-            indexOfGuess = index++;
+//            indexOfGuess = index++;
             indexOfPlay = index++;
             indexOfPhoto = index++;
+             */
 
         }
     }else{
@@ -1363,28 +1375,34 @@ typedef enum{
                                                      delegate:nil
                                             cancelButtonTitle:NSLS(@"kCancel")
                                        destructiveButtonTitle:NSLS(@"kPlay") otherButtonTitles:NSLS(@"kLargeImage"),
-                     NSLS(@"kShareSinaWeibo"), NSLS(@"kShareWeixinSession"),
-                     NSLS(@"kShareWeixinTimeline"), NSLS(@"kShareQQWeibo"), // NSLS(@"kShareQQSpace"),                     
+//                     NSLS(@"kShareSinaWeibo"), NSLS(@"kShareWeixinSession"),
+//                     NSLS(@"kShareWeixinTimeline"), NSLS(@"kShareQQWeibo"), // NSLS(@"kShareQQSpace"),                     
                      NSLS(@"kRecommend"), NSLS(@"kUnfeature"), nil];
         
             indexOfFeature = index++;
             indexOfUnfeature = index++;
         }
         else{
+            
+            // the most simple case, click to view large image
+            [self showPhotoBrower];
+            return;
+            /*
             sheet = [[MKBlockActionSheet alloc] initWithTitle:NSLS(@"kOption")
                                                      delegate:nil
                                             cancelButtonTitle:NSLS(@"kCancel")
                                        destructiveButtonTitle:NSLS(@"kPlay") otherButtonTitles:NSLS(@"kLargeImage"),
-                     NSLS(@"kShareSinaWeibo"), NSLS(@"kShareWeixinSession"),
-                     NSLS(@"kShareWeixinTimeline"), NSLS(@"kShareQQWeibo"),  //NSLS(@"kShareQQSpace"),
+//                     NSLS(@"kShareSinaWeibo"), NSLS(@"kShareWeixinSession"),
+//                     NSLS(@"kShareWeixinTimeline"), NSLS(@"kShareQQWeibo"),  //NSLS(@"kShareQQSpace"),
                      nil];
+             */
         }
     }
     
-    int indexOfShareSinaWeibo = index++;
-    int indexOfShareWeixinSession = index++;
-    int indexOfShareWeixinTimeline = index++;
-    int indexOfShareQQWeibo = index++;
+    int indexOfShareSinaWeibo = -1; //index++;
+    int indexOfShareWeixinSession = -1; //index++;
+    int indexOfShareWeixinTimeline = -1; //index++;
+    int indexOfShareQQWeibo = -1; //index++;
     int indexOfShareQQSpace = -1;
     
     [sheet setActionBlock:^(NSInteger buttonIndex){

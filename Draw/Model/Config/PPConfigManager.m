@@ -1571,4 +1571,25 @@
     return GET_UMENG_STRVALUE(@"SHARE_APP_NAME", [UIUtils getAppName]);
 }
 
++ (CGFloat)getGIFDelayTime
+{
+    return GET_UMENG_INTVAL(@"GIF_DELAY", 38)*1.0f / 100.0f;
+}
+
++ (int)getGIFFrameCount
+{
+    return GET_UMENG_INTVAL(@"GIF_FRAME", 30);
+}
+
++ (int)maxGIFFrame
+{
+    return GET_UMENG_INTVAL(@"MAX_GIF_FRAME", 100);
+}
+
++ (CGFloat)getGIFScaleSize
+{
+    return GET_UMENG_INTVAL(@"GIF_SCALE", 50)*1.0f / 100.0f;
+}
+
+
 @end

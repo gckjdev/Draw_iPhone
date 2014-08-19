@@ -2889,13 +2889,13 @@
 "kMetroHomeForum" = "FORUM";
 "kMetroHomeGallery" = "GALLERY";
 
-"kSaveAsGif" = "Save As GIF";
+"kSaveAsGif" = "Share As GIF";
 "kCreateGIFProgress" = "Creating GIF...%2d%%";
 
 "kPicSum" = "Frame Num";
 "kPicScale" = "Proportion";
 
-"kShareGifDialogTitle" = "Export";
+"kShareGifDialogTitle" = "Share As GIF";
 "kScaleWarning" = "Proportion must be a number between 1 and 100";
 "kGifCountWarning" = "Frame must be a number between 1 and 100";
 "kScaleFloatWarning" = "Proportion must be a number between 1 and 100";
@@ -2903,4 +2903,12 @@
 
 "kShareGIFText" = "Look at this awesome drawing with GIF replay";
 "kGIFShareSuffix" = " #GIF Replay#";
+
+"kReplayOpus" = "Replay";
+
+"kReplayOptionShare" = "Share As GIF";
+"kReplayOptionClose" = "Quit";
+"kReplayOptionBack" = "Continue";
+
+"kCreateGIFFailure" = "Fail to create GIF file. Please try again.";
 

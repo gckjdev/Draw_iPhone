@@ -615,6 +615,16 @@ typedef enum {
 
 - (NSMutableArray*)createGIF:(NSUInteger)frameNumber scaleSize:(float)scaleSize finalImage:(UIImage*)finalImage
 {
+    if (frameNumber <= 0 || frameNumber > [PPConfigManager maxGIFFrame]){
+        PPDebug(@"<createGIF> but frameNumber (%d) out of bound", frameNumber);
+        return nil;
+    }
+    
+    if (scaleSize <=0 || scaleSize > 100){
+        PPDebug(@"<createGIF> but scaleSize (%.2f) out of bound", scaleSize);
+        return nil;
+    }
+    
     int startTime = time(0);
     
     if (finalImage && CGSizeEqualToSize(finalImage.size, self.bounds.size)){
@@ -646,6 +656,7 @@ typedef enum {
     int startIndex = 0;
     int endIndex = 0;
     int totalCount = [drawActionList count];
+    frameNumber = MIN(totalCount, frameNumber);     // avoid frame number is bigger than total action count
     for(NSInteger i = 1;i <= frameNumber;i++)
     {
         endIndex = (i * totalCount / frameNumber - 1);
@@ -659,6 +670,12 @@ typedef enum {
         }
         
         BOOL useLayerOpacity = (i >= frameNumber);
+        
+        if (startIndex < 0 || startIndex >= totalCount){
+            PPDebug(@"<createGIF> startIndex(%d) out of bound", startIndex);
+            break;
+        }
+        
         NSArray *actions = [_drawActionList subarrayWithRange:NSMakeRange(startIndex, showLength)];
 
         // init layer actions
@@ -826,6 +843,11 @@ typedef enum {
     [srcImgList retain];
     [pool drain];
     
+    if ([srcImgList count] == 0){
+        [srcImgList release];
+        return;
+    }
+    
     //图像目标
     CGImageDestinationRef destImg;
     
@@ -884,6 +906,11 @@ typedef enum {
                            finalImage:(UIImage*)finalImage
 
 {
+    if ([drawActionList count] == 0 || [layers count] == 0){
+        PPDebug(@"<createImagesForGIF> but action list count is 0 or layers count is 0");
+        return nil;
+    }
+    
     //update showview
     ShowDrawView* showView = [ShowDrawView showViewWithFrame:CGRectFromCGSize(canvasSize)
                                               drawActionList:nil

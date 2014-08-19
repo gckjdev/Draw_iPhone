@@ -12,6 +12,8 @@
 #import "PPConfigManager.h"
 #import "Draw.h"
 #import "ChangeBGImageAction.h"
+#import "BBSActionSheet.h"
+#import "ShareService.h"
 
 @implementation ReplayObject
 
@@ -34,6 +36,8 @@
 {
     BOOL superControllerCanDragBack;
 }
+
+@property (nonatomic, assign) PPViewController* superController;
 
 @end
 
@@ -109,6 +113,7 @@
 
 - (void)showInController:(PPViewController *)controller
 {
+    self.superController = controller;
     
     //    [[UIApplication sharedApplication] setStatusBarHidden:YES];
     //    self.frame = CGRectOffset([[UIScreen mainScreen] bounds], 0, -20);
@@ -142,11 +147,68 @@
     PPRelease(_replayObj);
     PPRelease(_showView);
     [_indexLabel release];
+    self.superController = nil;
     [super dealloc];
 }
 
 - (IBAction)close:(id)sender {
-//    [[UIApplication sharedApplication] setStatusBarHidden:NO];
+    [self showOption];
+}
+
+
+#define TITLE_SHARE     NSLS(@"kReplayOptionShare")
+#define TITLE_CLOSE     NSLS(@"kReplayOptionClose")
+#define TITLE_BACK      NSLS(@"kReplayOptionBack")
+
+- (void)showOption
+{
+    [self pause];
+    
+    NSArray *titles = @[TITLE_BACK,
+                        TITLE_SHARE,
+                        TITLE_CLOSE];
+    
+    BBSActionSheet *sheet = [[BBSActionSheet alloc] initWithTitles:titles callback:^(NSInteger index) {
+        NSString *t = titles[index];
+        if ([t isEqualToString:TITLE_SHARE]) {
+
+            [[ShareService defaultService] shareAsGIF:_superController
+                                            opusImage:nil
+                                               opusId:nil
+                                       drawActionList:self.replayObj.actionList
+                                               layers:self.replayObj.layers
+                                           canvasSize:self.replayObj.canvasSize
+                                             drawWord:nil
+                                             drawDesc:nil
+                                           drawUserId:nil
+                                       drawUserGender:NO
+                                        completeBlock:^{
+                                            
+                                            [self hidePanel:NO animated:NO];
+                                            
+                                        }];
+            
+            [self hidePanel:NO animated:NO];
+            
+        }else if([t isEqualToString:TITLE_CLOSE]){
+            
+            [self closeView];
+        }
+        else if([t isEqualToString:TITLE_BACK]){
+            
+            [self play];
+            
+        }
+    }];
+
+    [sheet showInView:self showAtPoint:self.center animated:YES];
+    [sheet release];
+}
+
+
+- (void)closeView
+{
+    self.superController = nil;
     [(PPViewController *)[self theViewController] setCanDragBack:superControllerCanDragBack];
     self.showView.delegate = nil;
     [self.showView stop];
@@ -155,7 +217,6 @@
     [self removeAllSubviews];
     [self removeFromSuperview];
 }
-
 
 - (void)playToIndex:(NSNumber *)index
 {

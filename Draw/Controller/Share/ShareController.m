@@ -258,9 +258,9 @@ typedef enum{
                                  destructiveButtonTitle:editString 
                                       otherButtonTitles:NSLS(@"kReplay"), NSLS(@"kDelete"),
                     NSLS(@"kSaveAsPhoto"), NSLS(@"kSaveAsGif"),
-                    NSLS(@"kShareSinaWeibo"),  // NSLS(@"kShareQQSpace"),
-                    NSLS(@"kShareWeixinSession"), NSLS(@"kShareWeixinTimeline"),
-                    NSLS(@"kShareQQWeibo"), NSLS(@"kShareFacebook"),
+                    //NSLS(@"kShareSinaWeibo"),  // NSLS(@"kShareQQSpace"),
+                    //NSLS(@"kShareWeixinSession"), NSLS(@"kShareWeixinTimeline"),
+                    //NSLS(@"kShareQQWeibo"), NSLS(@"kShareFacebook"),
                     nil];
         }else{
 //#if DEBUG
@@ -271,9 +271,9 @@ typedef enum{
                                       otherButtonTitles:
                      NSLS(@"kDelete"), NSLS(@"kEdit"),
                     NSLS(@"kSaveAsPhoto"), NSLS(@"kSaveAsGif"),
-                    NSLS(@"kShareSinaWeibo"),  // NSLS(@"kShareQQSpace"),
-                    NSLS(@"kShareWeixinSession"), NSLS(@"kShareWeixinTimeline"),
-                    NSLS(@"kShareQQWeibo"), NSLS(@"kShareFacebook"),
+                    //NSLS(@"kShareSinaWeibo"),  // NSLS(@"kShareQQSpace"),
+                    //NSLS(@"kShareWeixinSession"), NSLS(@"kShareWeixinTimeline"),
+                    //NSLS(@"kShareQQWeibo"), NSLS(@"kShareFacebook"),
 
                     nil];
             
@@ -848,6 +848,13 @@ typedef enum{
     SHARE_QQ_ZONE = -1;
     SAVE_INTO_GIF = -1;
     
+    // disable by Benson 2014-08-18
+    SHARE_SINA_WEIBO = -1;
+    SHARE_WEIXIN_SESSION = -1;
+    SHARE_WEIXIN_TIMELINE = -1;
+    SHARE_FACEBOOK = -1;
+    SHARE_QQ_WEIBO = -1;
+    
     int index = 0;
     if (self.isDraftTab) {
         EDIT  = index++;
@@ -873,12 +880,12 @@ typedef enum{
     
     SAVE_INTO_PHOTO = index++;
     SAVE_INTO_GIF = index++;
-    SHARE_SINA_WEIBO = index++;
+//    SHARE_SINA_WEIBO = index++;
 //    SHARE_QQ_ZONE = index++;
-    SHARE_WEIXIN_SESSION = index++;
-    SHARE_WEIXIN_TIMELINE = index++;
-    SHARE_QQ_WEIBO = index++;
-    SHARE_FACEBOOK = index++;
+//    SHARE_WEIXIN_SESSION = index++;
+//    SHARE_WEIXIN_TIMELINE = index++;
+//    SHARE_QQ_WEIBO = index++;
+//    SHARE_FACEBOOK = index++;
     
     DELETE_ALL = index++;
     DELETE_ALL_MINE = index++;

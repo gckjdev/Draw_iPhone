@@ -355,6 +355,97 @@ static ShareService* _defaultService;
     
 }
 
+- (void)shareAsGIF:(PPViewController*)superController
+         opusImage:(UIImage*)opusImage
+            opusId:(NSString*)opusId
+    drawActionList:(NSMutableArray*)drawActionList
+            layers:(NSArray*)layers
+        canvasSize:(CGSize)canvasSize
+          drawWord:(NSString*)drawWord
+          drawDesc:(NSString*)drawDesc
+        drawUserId:(NSString*)drawUserId
+    drawUserGender:(BOOL)drawUserGender
+     completeBlock:(dispatch_block_t)completeBlock
+{
+    [superController showActivityWithText:NSLS(@"kSaving")];
+    
+    [superController registerNotificationWithName:NOTIFICATION_GIF_CREATION usingBlock:^(NSNotification *note) {
+        float progress = [[[note userInfo] objectForKey:KEY_DATA_PARSING_PROGRESS] floatValue];
+        //        PPDebug(@"handle data parsing notification, progress = %f", progress);
+        NSString* progressText = @"";
+        if (progress == 1.0f){
+            progress = 0.99f;
+            progressText = [NSString stringWithFormat:NSLS(@"kCreateGIFProgress"), (int)(progress*100)];
+        }
+        else{
+            progressText = [NSString stringWithFormat:NSLS(@"kCreateGIFProgress"), (int)(progress*100)];
+        }
+        [superController showProgressViewWithMessage:progressText progress:progress];
+    }];
+    
+    //默认值 图片个数30 图片比例50% 时间0.25
+    int frameCount = [PPConfigManager getGIFFrameCount];
+    float scaleSize = [PPConfigManager getGIFScaleSize];;
+    float delayTime = [PPConfigManager getGIFDelayTime];
+    
+    UIImage* finalImage = opusImage;
+    
+    NSMutableArray* copyLayers = [NSMutableArray array];
+    for (DrawLayer* layer in layers){
+        DrawLayer* copyLayer = [DrawLayer layerWithLayer:layer frame:layer.frame];
+        [copyLayers addObject:copyLayer];
+    }
+    
+    NSString* shareText = NSLS(@"kShareGIFText");
+    
+    //后台运行creategif,主线程显示小苹果进程。
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0),
+                   ^(void){
+                       
+                       NSString* fileId = [opusId length] > 0 ? opusId : [NSString GetUUID];
+                       NSString* fileName = [NSString stringWithFormat:@"%@.gif", fileId];
+                       NSString* tempPath = [[FileUtil getAppTempDir] stringByAppendingPathComponent:fileName];
+                       
+                       [ShowDrawView createGIF:frameCount
+                                     delayTime:delayTime
+                                drawActionList:drawActionList
+                                       bgImage:nil
+                                        layers:copyLayers
+                                    canvasSize:canvasSize
+                                    finalImage:finalImage
+                                    outputPath:tempPath
+                                     scaleSize:scaleSize];
+                       
+                       dispatch_async(dispatch_get_main_queue(),
+                                      ^(void){
+                                          
+                                          [superController unregisterNotificationWithName:NOTIFICATION_GIF_CREATION];
+                                          [superController hideActivity];
+                                          [superController hideProgressView];
+                                          
+                                          if ([FileUtil isPathExist:tempPath]){
+                                              [self shareSNS:superController.view
+                                                    drawWord:drawWord
+                                                    drawDesc:drawDesc
+                                                  drawUserId:drawUserId
+                                                  drawOpusId:opusId
+                                              drawUserGender:drawUserGender
+                                               imageFilePath:tempPath
+                                                   shareText:shareText
+                                               completeBlock:completeBlock];
+                                          }
+                                          else{
+                                              POSTMSG(NSLS(@"kCreateGIFFailure"));
+                                              EXECUTE_BLOCK(completeBlock);
+                                          }
+                                          
+                                          
+                                      });
+                       
+                   });
+    return;
+}
+
 //YES为share NO为Album
 - (void)saveGif:(PPViewController*)superController
           draft:(MyPaint*)draft
@@ -387,7 +478,7 @@ static ShareService* _defaultService;
     if (scaleSize!=0){
         _scaleSize = scaleSize;
     }
-    float delayTime = 0.25f;
+    float delayTime = [PPConfigManager getGIFDelayTime];
    
     UIImage* finalImage = draft.paintImage;
     
@@ -409,8 +500,6 @@ static ShareService* _defaultService;
                                     outputPath:tempPath
                                      scaleSize:_scaleSize];
                        
-                       // TODO remove file after generation
-                       //                       [FileUtil removeFile:tempPath];
                        dispatch_async(dispatch_get_main_queue(),
                                       ^(void){
                                           
@@ -419,16 +508,25 @@ static ShareService* _defaultService;
                                           [superController hideActivity];
                                           [superController hideProgressView];
                                           
-                                          if(shareOrAlbum){
-//                                              NSString* shareText = NSLS(@"kShareGIFText");
-                                              [self shareSNS:superController.view
-                                                       draft:draft
-                                               imageFilePath:tempPath];
+                                          if ([FileUtil isPathExist:tempPath]){
+                                              if(shareOrAlbum){
+                                                  [self shareSNS:superController.view
+                                                        drawWord:draft.drawWord
+                                                        drawDesc:draft.opusDesc
+                                                      drawUserId:draft.drawUserId
+                                                      drawOpusId:draft.opusId
+                                                  drawUserGender:[[UserManager defaultManager] boolGender]
+                                                   imageFilePath:tempPath
+                                                       shareText:nil
+                                                   completeBlock:nil];
+                                              }
+                                              else{
+                                                  [self saveAlbumWithPath:tempPath];
+                                              }
                                           }
                                           else{
-                                              [self saveAlbumWithPath:tempPath];
+                                              POSTMSG(NSLS(@"kCreateGIFFailure"));
                                           }
-                                         
                                           
                                       });
                        
@@ -469,8 +567,14 @@ static ShareService* _defaultService;
 #define TITLE_SHARE_QQ_WEIBO        NSLS(@"kConquerDrawShareQQWeibo")
 #define ADD_HEIGHT                  (ISIPAD ? 26 : 13)
 - (void)shareSNS:(UIView*)superView
-           draft:(MyPaint*)draft
+        drawWord:(NSString*)drawWord
+        drawDesc:(NSString*)drawDesc
+      drawUserId:(NSString*)drawUserId
+      drawOpusId:(NSString*)drawOpusId
+  drawUserGender:(BOOL)drawUserGender
    imageFilePath:(NSString*)imageFilePath
+       shareText:(NSString*)shareText
+   completeBlock:(dispatch_block_t)completeBlock
 {
     
     NSString* _imageFilePath = imageFilePath;
@@ -489,13 +593,17 @@ static ShareService* _defaultService;
         NSString *t = titles[index];
         if ([t isEqualToString:TITLE_SHARE_WEIXIN_FRIEND]) {
             
-            NSString* _text = [ShareAction createShareText:draft.drawWord
-                                                     desc:nil
-                                               opusUserId:draft.drawUserId
-                                               userGender:[UserManager defaultManager].pbUser.gender
+            NSString* _text = [ShareAction createShareText:drawWord
+                                                     desc:drawDesc
+                                               opusUserId:drawUserId
+                                               userGender:drawUserGender
                                                   snsType:TYPE_WEIXIN_SESSION
-                                                   opusId:draft.opusId
+                                                   opusId:drawOpusId
                                                      isGIF:YES];
+            
+            if ([shareText length] > 0){
+                _text = shareText;
+            }
             
             [[GameSNSService defaultService] publishWeibo:TYPE_WEIXIN_SESSION
                                                      text:_text
@@ -507,14 +615,18 @@ static ShareService* _defaultService;
             
         }else if([t isEqualToString:TITLE_SHARE_WEIXIN_TIMELINE]){
             
-            NSString* _text = [ShareAction createShareText:draft.drawWord
-                                                      desc:nil
-                                                opusUserId:draft.drawUserId
-                                                userGender:[UserManager defaultManager].pbUser.gender
+            NSString* _text = [ShareAction createShareText:drawWord
+                                                      desc:drawDesc
+                                                opusUserId:drawUserId
+                                                userGender:drawUserGender
                                                    snsType:TYPE_WEIXIN_TIMELINE
-                                                    opusId:draft.opusId
+                                                    opusId:drawOpusId
                                                      isGIF:YES];
-
+            
+            if ([shareText length] > 0){
+                _text = shareText;
+            }
+            
             [[GameSNSService defaultService] publishWeibo:TYPE_WEIXIN_TIMELINE
                                                      text:_text
                                             imageFilePath:_imageFilePath
@@ -526,13 +638,17 @@ static ShareService* _defaultService;
         }
         else if([t isEqualToString:TITLE_SHARE_SINA_WEIBO]){
             
-            NSString* _text = [ShareAction createShareText:draft.drawWord
-                                                      desc:nil
-                                                opusUserId:draft.drawUserId
-                                                userGender:[UserManager defaultManager].pbUser.gender
+            NSString* _text = [ShareAction createShareText:drawWord
+                                                      desc:drawDesc
+                                                opusUserId:drawUserId
+                                                userGender:drawUserGender
                                                    snsType:TYPE_SINA
-                                                    opusId:draft.opusId
+                                                    opusId:drawOpusId
                                                      isGIF:YES];
+            
+            if ([shareText length] > 0){
+                _text = shareText;
+            }
 
             [[GameSNSService defaultService] publishWeibo:TYPE_SINA
                                                      text:_text
@@ -546,13 +662,17 @@ static ShareService* _defaultService;
         }
         else if([t isEqualToString:TITLE_SHARE_QQ_WEIBO]){
             
-            NSString* _text = [ShareAction createShareText:draft.drawWord
-                                                      desc:nil
-                                                opusUserId:draft.drawUserId
-                                                userGender:[UserManager defaultManager].pbUser.gender
+            NSString* _text = [ShareAction createShareText:drawWord
+                                                      desc:drawDesc
+                                                opusUserId:drawUserId
+                                                userGender:drawUserGender
                                                    snsType:TYPE_QQ
-                                                    opusId:draft.opusId
+                                                    opusId:drawOpusId
                                                      isGIF:YES];
+            
+            if ([shareText length] > 0){
+                _text = shareText;
+            }
             
             [[GameSNSService defaultService] publishWeibo:TYPE_QQ
                                                      text:_text
@@ -563,6 +683,8 @@ static ShareService* _defaultService;
                                            failureMessage:NSLS(@"kShareWeiboFailure")];
             
         }
+        
+        EXECUTE_BLOCK(completeBlock);
     }];
     [sheet showInView:superView showAtPoint:superView.center animated:YES];
     [sheet release];

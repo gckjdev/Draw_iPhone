@@ -56,7 +56,6 @@ AUTO_CREATE_VIEW_BY_XIB(SingPlayView);
 }
 
 - (IBAction)clickPlayButton:(id)sender {
-    
 }
 
 @end

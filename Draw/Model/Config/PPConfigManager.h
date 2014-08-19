@@ -386,5 +386,8 @@ typedef enum{
 + (NSInteger)getMinPointNum;
 
 + (NSString*)shareAppName;
-
++ (CGFloat)getGIFDelayTime;
++ (int)getGIFFrameCount;
++ (CGFloat)getGIFScaleSize;
++ (int)maxGIFFrame;
 @end
