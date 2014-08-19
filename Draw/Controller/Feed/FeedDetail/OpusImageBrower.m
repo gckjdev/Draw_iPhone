@@ -200,10 +200,13 @@
     descLabel.font = DESC_LABEL_FONT;
     descLabel.numberOfLines = 2;
 
+    BOOL showStrokes = [feed.pbFeed.userId isEqualToString:[[UserManager defaultManager] userId]];
+    PPDebug(@"showStrokes=%d", showStrokes);
+    
 #ifdef DEBUG
     if (feed.pbFeed.spendTime || feed.pbFeed.strokes){ // 注释以便未来使用，目前不使用
 #else
-    if (NO){
+    if (showStrokes && (feed.pbFeed.spendTime || feed.pbFeed.strokes)){
 #endif
         // 有时间和笔画数目，显示附加信息
         NSString* str = @"";
