@@ -2735,8 +2735,8 @@
 "kOpenToLearn" = "Play";
 
 
-"kNewHotTitle" = "Gallery";
-"kConfigNewHot" = "More";
+"kNewHotTitle" = "Top";
+"kConfigNewHot" = " ∙∙∙ ";
 
 "kTutorialDesc" = "Details";
 "kTutorialStageList" = "All Stages";
@@ -2806,8 +2806,8 @@
 "kNoTimelineDraw" = "Conquer Draw";
 
 "kMenuLearnDraw" = "Learn";
-"kSetRanTypeButtonYear" = "Yearly";
-"kSetRanTypeButtonWeek" = "Weekly";
+"kSetRanTypeButtonYear" = "All";
+"kSetRanTypeButtonWeek" = "New";
 
 "kNoConquerDraw" = "No data";
 "kTimelineConquerDraw" = "Conquer";

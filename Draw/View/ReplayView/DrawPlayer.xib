@@ -65,7 +65,7 @@
                     <color key="backgroundColor" white="0.0" alpha="0.68000000000000005" colorSpace="calibratedWhite"/>
                 </view>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="19">
-                    <rect key="frame" x="265" y="5" width="50" height="50"/>
+                    <rect key="frame" x="265" y="15" width="50" height="50"/>
                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
                     <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                     <inset key="contentEdgeInsets" minX="10" minY="5" maxX="5" maxY="10"/>

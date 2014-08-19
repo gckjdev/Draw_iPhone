@@ -111,7 +111,7 @@
 }
 
 //#define BUTTON_FONT (ISIPAD ? [UIFont boldSystemFontOfSize:28] : [UIFont boldSystemFontOfSize:14])
-#define BUTTON_FONT (ISIPAD ? [UIFont systemFontOfSize:28] : [UIFont systemFontOfSize:14])
+#define BUTTON_FONT (ISIPAD ? [UIFont systemFontOfSize:26] : [UIFont systemFontOfSize:13])
 #define SPLIT_WIDTH (ISIPAD ? 2 : 1)
 
 
