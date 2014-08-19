@@ -63,6 +63,7 @@
 #import "MKBlockActionSheet.h"
 #import "ChangeAvatar.h"
 #import "PhotoDrawSheet.h"
+#import "FeedListController.h"
 
 @implementation UIViewController (CommonHome)
 
@@ -473,5 +474,18 @@
 
     [self performSelector:@selector(goToGuidePage) withObject:nil afterDelay:0.0];
 }
+
+- (void)enterTutorialTopOpus:(NSString*)tutorialId stageId:(NSString*)stageId title:(NSString*)title
+{
+    FeedListController* vc = [[[FeedListController alloc] initWithFeedType:FeedListTypeConquerDrawStageTop
+                                                                  tutorialId:tutorialId //@"tutorialId-2"
+                                                                     stageId:stageId    //@"stageId-0-0"
+                                                                displayStyle:FEED_DISPLAY_NORMAL
+                                                         superViewController:self
+                                                                       title:title] autorelease];
+    [self.navigationController pushViewController:vc animated:YES];
+    return;
+}
+
 
 @end

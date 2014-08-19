@@ -72,8 +72,25 @@ static FeedService *_staticFeedService = nil;
     [self getFeedList:feedListType classId:nil offset:offset limit:limit delegate:delegate];
 }
 
+- (void)getFeedList:(FeedListType)feedListType
+            classId:(NSString*)classId
+             offset:(NSInteger)offset
+              limit:(NSInteger)limit
+           delegate:(id<FeedServiceDelegate>)delegate
+{
+    [self getFeedList:feedListType
+              classId:classId
+           tutorialId:nil
+              stageId:nil
+               offset:offset
+                limit:limit
+             delegate:delegate];
+}
+
 - (void)getFeedList:(FeedListType)feedListType 
             classId:(NSString*)classId
+         tutorialId:(NSString*)tutorialId
+            stageId:(NSString*)stageId
              offset:(NSInteger)offset
               limit:(NSInteger)limit 
            delegate:(id<FeedServiceDelegate>)delegate
@@ -108,6 +125,8 @@ static FeedService *_staticFeedService = nil;
                                        userId:userId 
                                        feedListType:feedListType
                                        classId:classId
+                                       tutorialId:tutorialId
+                                       stageId:stageId
                                        offset:offset
                                        limit:limit 
                                        lang:lang];

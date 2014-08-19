@@ -48,4 +48,6 @@
 - (void)enterOfflineDrawWithMenu;
 - (void)showGuidePage;
 
+- (void)enterTutorialTopOpus:(NSString*)tutorialId stageId:(NSString*)stageId title:(NSString*)title;
+
 @end

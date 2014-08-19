@@ -2371,10 +2371,31 @@
     
 }
 
++ (CommonNetworkOutput*)getFeedListWithProtocolBuffer:(NSString*)baseURL
+                                               userId:(NSString *)userId
+                                         feedListType:(NSInteger)feedListType
+                                              classId:(NSString *)classId
+                                               offset:(NSInteger)offset
+                                                limit:(NSInteger)limit
+                                                 lang:(NSInteger)lang
+{
+    return [self getFeedListWithProtocolBuffer:baseURL
+                                        userId:userId
+                                  feedListType:feedListType
+                                       classId:classId
+                                    tutorialId:nil
+                                       stageId:nil
+                                        offset:offset
+                                         limit:limit
+                                          lang:lang];
+}
+
 + (CommonNetworkOutput*)getFeedListWithProtocolBuffer:(NSString*)baseURL 
                                                userId:(NSString *)userId 
                                          feedListType:(NSInteger)feedListType
                                               classId:(NSString *)classId
+                                           tutorialId:(NSString*)tutorialId
+                                              stageId:(NSString*)stageId
                                                offset:(NSInteger)offset
                                                 limit:(NSInteger)limit 
                                                  lang:(NSInteger)lang
@@ -2398,6 +2419,14 @@
         
         if ([classId length] > 0){
             str = [str stringByAddQueryParameter:PARA_CLASS value:classId];
+        }
+
+        if ([tutorialId length] > 0){
+            str = [str stringByAddQueryParameter:PARA_TUTORIAL_ID value:tutorialId];
+        }
+
+        if ([stageId length] > 0){
+            str = [str stringByAddQueryParameter:PARA_STAGE_ID value:stageId];
         }
         
         return str;

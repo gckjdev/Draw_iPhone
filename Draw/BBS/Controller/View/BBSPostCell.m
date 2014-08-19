@@ -29,7 +29,7 @@
 //#define IMAGE_HEIGHT (ISIPAD ? (2.33 * 80) : 80)
 #define CONTENT_TEXT_LINE (ISIPAD ? (2.33 * 10) : 10)
 #define CONTENT_WIDTH (ISIPAD ? (2.33 * 206) : 206)
-#define CONTENT_MAX_HEIGHT (ISIPAD ? (45) : 45)
+#define CONTENT_MAX_HEIGHT (ISIPAD ? (70) : 70)
 //#define CONTENT_MAX_HEIGHT (ISIPAD ? (2.33 * 200) : 200)
 //#define Y_CONTENT_TEXT (ISIPAD ? (2.33 * 5) : 5)
 #define Y_CONTENT_TEXT (ISIPAD ? (2.33 * 2) : 2)

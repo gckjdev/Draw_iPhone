@@ -1019,7 +1019,7 @@
         [self showAlreadySubmitDialog];
         return;
     }
-    else if (targetType == TypePracticeDraw){
+    else if ([self isLearnType]){
         if ([[UserManager defaultManager] isReadLearnDrawHelp]){
             // 如果是当前修炼的第一小节，则弹出提示信息，并且是第一次开始草稿，尝试提示第一小节信息
             [self showStageFirstChapterTips];
@@ -1087,6 +1087,11 @@
         if (self.userStageBuilder.currentChapterIndex == 0 && _isNewDraft){
             NSString* title = [self welcomeChapterMsg:0];
             return [self showLearnDrawHelp:title noTipsWarning:NO noTipsMessage:nil];
+        }
+    }
+    else if (targetType == TypeConquerDraw){
+        if (_isNewDraft){
+            [self showLearnDrawHelp:nil noTipsWarning:NO noTipsMessage:nil];
         }
     }
     

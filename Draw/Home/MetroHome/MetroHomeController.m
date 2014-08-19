@@ -29,6 +29,7 @@
 #import "SDWebImageManager.h"
 #import "BrickView.h"
 #import "UIImageUtil.h"
+#import "FeedListController.h"
 
 @interface MetroHomeController ()
 
@@ -301,7 +302,7 @@
 }
 
 - (IBAction)goToBBS:(id)sender
-{
+{    
     [self enterBBS];
 }
 

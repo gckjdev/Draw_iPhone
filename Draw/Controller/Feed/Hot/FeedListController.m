@@ -62,6 +62,32 @@
         if (title == nil){
             self.title = @"";
         }
+        
+        self.isShowIndependent = NO;
+    }
+    return self;
+}
+
+- (id)initWithFeedType:(FeedListType)feedType
+            tutorialId:(NSString*)tutorialId
+               stageId:(NSString*)stageId
+          displayStyle:(int)displayStyle
+   superViewController:(UIViewController*)superViewController
+                 title:(NSString*)title
+{
+    self = [super init];
+    if (self){
+        self.superViewController = superViewController;
+        self.displayStyle = displayStyle;
+        self.opusClassInfo = nil;
+        self.feedType = feedType;
+        self.tutorialId = tutorialId;
+        self.stageId = stageId;
+        self.title = title;
+        self.isShowIndependent = YES;
+        if (title == nil){
+            self.title = @"";
+        }
     }
     return self;
 }
@@ -69,6 +95,8 @@
 - (void)dealloc
 {
     PPRelease(_opusClassInfo);
+    PPRelease(_stageId);
+    PPRelease(_tutorialId);
     self.superViewController = nil;
     [super dealloc];
 }
@@ -77,8 +105,26 @@
 {
     [self setPullRefreshType:PullRefreshTypeBoth];
     
-    CGFloat height = ([UIScreen mainScreen].bounds.size.height - COMMON_TAB_BUTTON_HEIGHT - COMMON_TITLE_VIEW_HEIGHT - STATUS_BAR_HEIGHT);
-    CGRect frame = CGRectMake(0, 0, self.view.bounds.size.width, height);
+    if (_isShowIndependent){
+        // set title view
+        [CommonTitleView createTitleView:self.view];
+        [[CommonTitleView titleView:self.view] setTitle:self.title];
+        [[CommonTitleView titleView:self.view] setTarget:self];
+        [[CommonTitleView titleView:self.view] setBackButtonSelector:@selector(clickBack:)];
+        [[CommonTitleView titleView:self.view] setRightButtonAsRefresh];
+        [[CommonTitleView titleView:self.view] setRightButtonSelector:@selector(clickRefreshButton:)];
+    }
+    
+    CGRect frame;
+    if (_isShowIndependent){
+        CGFloat height = ([UIScreen mainScreen].bounds.size.height - COMMON_TITLE_VIEW_HEIGHT - STATUS_BAR_HEIGHT);
+        frame = CGRectMake(0, COMMON_TITLE_VIEW_HEIGHT + STATUS_BAR_HEIGHT, self.view.bounds.size.width, height);
+    }
+    else{
+        CGFloat height = ([UIScreen mainScreen].bounds.size.height - COMMON_TAB_BUTTON_HEIGHT - COMMON_TITLE_VIEW_HEIGHT - STATUS_BAR_HEIGHT);
+        frame = CGRectMake(0, 0, self.view.bounds.size.width, height);
+    }
+    
     UITableView* tableView = [[UITableView alloc] initWithFrame:frame style:UITableViewStylePlain];
     self.dataTableView = tableView;
     [self.view addSubview:tableView];
@@ -93,6 +139,9 @@
     self.canDragBack = NO;
 
 	// Do any additional setup after loading the view.
+    if (_isShowIndependent){
+        [self firstLoadData];
+    }
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -143,7 +192,6 @@
 
 - (void)showCachedFeedList:(int)tabID
 {
-    // TODO set class ID
     NSArray *feedList = [[FeedService defaultService] getCachedFeedList:_feedType
                                                                 classId:_opusClassInfo.classId];
     self.dataList = feedList;
@@ -172,19 +220,6 @@
         default:
             return [CellManager getLastStyleCellHeightWithIndexPath:indexPath];
     }
-    
-//    switch ([[self currentTab] tabID]) {
-//            
-//        case RankTypeHistory:
-//        case RankTypeHot:
-//            return [CellManager getHotStyleCellHeightWithIndexPath:indexPath];
-//            break;
-//            
-//        case RankTypeRecommend:
-//        case RankTypeNew:
-//        default:
-//            return [CellManager getLastStyleCellHeightWithIndexPath:indexPath];
-//    }
 }
 
 - (UITableViewCell *)tableView:(UITableView *)theTableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -300,6 +335,8 @@
     TableTab *tab = [_tabManager tabForID:tabID];
     [[FeedService defaultService] getFeedList:_feedType
                                       classId:_opusClassInfo.classId
+                                   tutorialId:_tutorialId
+                                      stageId:_stageId
                                        offset:tab.offset
                                         limit:tab.limit
                                      delegate:self];

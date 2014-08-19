@@ -63,6 +63,17 @@
 {
     NSMutableArray* viewControllers = [[NSMutableArray alloc] init];
     
+//#ifdef DEBUG
+//    FeedListController* hot1 = [[FeedListController alloc] initWithFeedType:FeedListTypeConquerDrawStageTop
+//                                                                 tutorialId:@"tutorialId-2"
+//                                                                    stageId:@"stageId-0-0"
+//                                                              displayStyle:FEED_DISPLAY_NORMAL
+//                                                       superViewController:self
+//                                                                     title:NSLS(@"kRankHot")];
+//    
+//    [viewControllers addObject:hot1];
+//    [hot1 release];
+//#endif
     
     if (_currentRankType == FeedListTypeHot){
         FeedListController* hot = [[FeedListController alloc] initWithFeedType:FeedListTypeHot

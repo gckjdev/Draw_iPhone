@@ -433,8 +433,18 @@
                                                userId:(NSString *)userId 
                                          feedListType:(NSInteger)feedListType
                                               classId:(NSString *)classId
+                                           tutorialId:(NSString*)tutorialId
+                                              stageId:(NSString*)stageId
                                                offset:(NSInteger)offset
                                                 limit:(NSInteger)limit 
+                                                 lang:(NSInteger)lang;
+
++ (CommonNetworkOutput*)getFeedListWithProtocolBuffer:(NSString*)baseURL
+                                               userId:(NSString *)userId
+                                         feedListType:(NSInteger)feedListType
+                                              classId:(NSString *)classId
+                                               offset:(NSInteger)offset
+                                                limit:(NSInteger)limit
                                                  lang:(NSInteger)lang;
 
 + (CommonNetworkOutput*)getContestOpusListWithProtocolBuffer:(NSString*)baseURL

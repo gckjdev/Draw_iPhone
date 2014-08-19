@@ -141,6 +141,14 @@ typedef void (^ GetFeedListCompleteBlock)(int resultCode, NSArray* feedList);
               limit:(NSInteger)limit
            delegate:(id<FeedServiceDelegate>)delegate;
 
+- (void)getFeedList:(FeedListType)feedListType
+            classId:(NSString*)classId
+         tutorialId:(NSString*)tutorialId
+            stageId:(NSString*)stageId
+             offset:(NSInteger)offset
+              limit:(NSInteger)limit
+           delegate:(id<FeedServiceDelegate>)delegate;
+
 - (void)getFeedListByIds:(NSArray*)idList
                 delegate:(id<FeedServiceDelegate>)delegate;
 
