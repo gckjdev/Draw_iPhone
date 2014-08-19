@@ -323,8 +323,12 @@ static ShareService* _defaultService;
     TwoInputFieldViewStyle2 *inputDialog =[TwoInputFieldViewStyle2 create];
     inputDialog.textFieldTitle1.text = NSLS(@"kPicSum");
     inputDialog.textFieldTitle2.text = NSLS(@"kPicScale");
-    inputDialog.textFieldTitle1.font = AD_FONT(20, 13);
-    inputDialog.textFieldTitle2.font = AD_FONT(20, 13);
+    inputDialog.textFieldTitle1.font = AD_FONT(24, 13);
+    inputDialog.textFieldTitle2.font = AD_FONT(24, 13);
+    inputDialog.textField1.text = @"30";
+    inputDialog.textField2.text = @"50";
+    inputDialog.textField1.placeholder = NSLS(@"kScaleFloatPlaceholder");
+    inputDialog.textField2.placeholder = NSLS(@"kGifCountIntPlaceholder");
     
     CommonDialog *dialog = [CommonDialog createDialogWithTitle:NSLS(@"kShareGifDialogTitle")
                                                     customView:inputDialog

@@ -36,12 +36,15 @@ AUTO_CREATE_VIEW_BY_XIB(TwoInputFieldViewStyle2);
     
     v.textField1.delegate = v;
     v.textField2.delegate = v;
-    [v.textField1 becomeFirstResponder];
+    [v.textField2 resignFirstResponder];
+
+
     
     return v;
 }
 
-- (BOOL)textFieldShouldReturn:(UITextField *)textField;              // called when 'return' key pressed. return NO to ignore.
+- (BOOL)textFieldShouldReturn:(UITextField *)textField;
+// called when 'return' key pressed. return NO to ignore.
 {
     if (textField == _textField1) {
         [_textField2 becomeFirstResponder];
