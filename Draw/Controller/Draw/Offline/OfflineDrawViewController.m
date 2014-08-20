@@ -1735,7 +1735,8 @@
             }
             
             if ([self isLearnType]){
-                [[UserTutorialManager defaultManager] updateUserStage:[self buildUserStage]];
+                [[UserTutorialManager defaultManager] updateUserStage:[self buildUserStage]
+                                                            utLocalId:_userTutorialBuilder.localId];
             }
             
         }else{
@@ -2081,7 +2082,8 @@
     [self.userStageBuilder setCurrentChapterIndex:nextChapterIndex];
     
     // save into DB
-    PBUserTutorial* newUT = [[UserTutorialManager defaultManager] updateUserStage:[self buildUserStage]];
+    PBUserTutorial* newUT = [[UserTutorialManager defaultManager] updateUserStage:[self buildUserStage]
+                                                                        utLocalId:_userTutorialBuilder.localId];
     if (newUT == nil){
         return;
     }
@@ -2456,7 +2458,8 @@
     [self.userStageBuilder setCurrentChapterIndex:0];
     
     PBUserStage* userStage = [self buildUserStage];
-    PBUserTutorial* userTutorial = [[UserTutorialManager defaultManager] updateUserStage:userStage];
+    PBUserTutorial* userTutorial = [[UserTutorialManager defaultManager] updateUserStage:userStage
+                                                                               utLocalId:_userTutorialBuilder.localId];
     
     // quit current
     [self actionsBeforeQuit];
@@ -2477,7 +2480,8 @@
     [self.userStageBuilder setConquerLocalOpusId:nil];
     
     PBUserStage* userStage = [self buildUserStage];
-    PBUserTutorial* userTutorial = [[UserTutorialManager defaultManager] updateUserStage:userStage];
+    PBUserTutorial* userTutorial = [[UserTutorialManager defaultManager] updateUserStage:userStage
+                                                                               utLocalId:_userTutorialBuilder.localId];
     
     // quit current
     [self actionsBeforeQuit];
