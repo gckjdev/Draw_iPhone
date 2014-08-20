@@ -69,7 +69,7 @@
 + (int)homeDefaultMenuType;
 + (UIColor*)getHeaderBackgroundColor;
 - (UIColor*)getMainBackgroundColor;
-- (void)enterFreeCoins;
+//- (void)enterFreeCoins;
 - (void)enterCheckIn;
 
 

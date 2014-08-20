@@ -386,7 +386,8 @@
                              bgImage:bgImage
                          bgImageName:TEMP_REPLAY_IMAGE_NAME
                           startIndex:_opusStartIndex
-                            endIndex:_opusEndIndex];
+                            endIndex:_opusEndIndex
+                           drawImage:self.displayImage];
         }
         else{
             [DrawPlayer playDrawData:&_opusData
@@ -395,7 +396,8 @@
                              bgImage:bgImage
                          bgImageName:nil
                           startIndex:0
-                            endIndex:0];
+                            endIndex:0
+                           drawImage:self.displayImage];
         }
         
         [bgImage release];
@@ -416,7 +418,7 @@
             self.opusData = [[[NSData alloc] initWithContentsOfFile:self.opusDataPath] autorelease];
         }
         
-        UIImage* bgImage = nil; //[[UIImage alloc] initWithContentsOfFile:_opusBgImagePath];
+//        UIImage* bgImage = nil; //[[UIImage alloc] initWithContentsOfFile:_opusBgImagePath];
         
         int totalChapterCount = [self.stage.chapterList count];
         if (_targetType == TypeConquerDraw ||

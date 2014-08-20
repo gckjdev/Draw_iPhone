@@ -627,7 +627,21 @@ typedef enum {
     
     int startTime = time(0);
     
-    if (finalImage && CGSizeEqualToSize(finalImage.size, self.bounds.size)){
+    CGSize finalImageSize = finalImage ? finalImage.size : CGSizeZero;
+    BOOL sizeFit = (abs(finalImageSize.width - self.bounds.size.width) < 1.0f &&
+                    abs(finalImageSize.height - self.bounds.size.height) < 1.0f);
+    
+    if (sizeFit == NO){
+        if (finalImageSize.width > self.bounds.size.width &&
+            finalImageSize.height > self.bounds.size.height){
+            
+            // scaling finalImage to the same size
+            finalImage = [finalImage imageByScalingAndCroppingForSize:self.bounds.size];
+            sizeFit = YES;
+        }
+    }
+    
+    if (finalImage && sizeFit){
         // has final image and its size is the same as draw view size
         frameNumber --;
     }
@@ -875,6 +889,8 @@ typedef enum {
             [gifFrames insertObject:lastImage atIndex:0];
         }
     }
+    
+    [gifFrames removeLastObject];
 
     // report final progress
     [ShowDrawView postCreateGIFNotification:0.999f];
