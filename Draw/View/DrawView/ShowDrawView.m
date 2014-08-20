@@ -696,10 +696,78 @@ typedef enum {
             }
         }
         
+        UIImage *image;
+        PPDebug(@"<createImage> size=%@", NSStringFromCGSize(self.bounds.size));
+        
+        UIGraphicsBeginImageContext(self.bounds.size);
+        
+        CGContextRef ctx = UIGraphicsGetCurrentContext();
+
+        // draw background as white
+        UIColor* bgColor = [UIColor whiteColor];
+        if (bgColor){
+            [bgColor setFill];
+            CGContextFillRect(ctx, self.bounds);
+        }
+
         // draw layers
         NSMutableDictionary *layerImageDict = [NSMutableDictionary dictionaryWithCapacity:[layerList count]];
-        for (DrawLayer *layer in layerList) {
-            PPDebug(@"<arrangeActions> layer name = %@", layer.layerName);
+//        for (DrawLayer *layer in layerList) {
+//            PPDebug(@"<arrangeActions> layer name = %@", layer.layerName);
+//            [layer reset];
+//            
+//            // set layer alpha
+//            if (!useLayerOpacity){
+//                NSNumber* alpha = [layerAlphaDict objectForKey:@(layer.layerTag)];
+//                if (alpha){
+//                    layer.opacity = [alpha floatValue];
+//                }
+//            }
+//            else{
+//                layer.opacity = layer.finalOpacity;
+//            }
+//            
+//            PPDebug(@"layer opacity is %.2f", layer.opacity);
+//            
+//            // set layer actions
+//            NSMutableArray *array = [dict objectForKey:@(layer.layerTag)];
+//            [layer updateWithDrawActions:array];
+//            
+//            // draw layer
+//            [layer setNeedsDisplay];
+//            
+//            UIImage* prevImage = [prevLayerImageDict objectForKey:@(layer.layerTag)];
+//            
+//            ClipAction *clip = [layer clipAction];
+//            NSInteger gridLineNumber = [[layer drawInfo] gridLineNumber];
+//            UIImage* layerImage = nil;
+//            if (clip != nil || gridLineNumber != 0) {
+//                // clear clip info
+//                layer.clipAction = nil;
+//                layer.drawInfo.gridLineNumber = 0;
+//                [layer setNeedsDisplay];
+//                
+//                // create layer image
+//                layerImage = [self createImageFromLayer:layer bgImage:prevImage];
+//                
+//                // restore clip info
+//                [layer setClipAction:clip];
+//                [layer.drawInfo setGridLineNumber:gridLineNumber];
+//                [layer setNeedsDisplay];
+//            }else{
+//                layerImage = [self createImageFromLayer:layer bgImage:prevImage];
+//            }
+//            
+//            if (layerImage){
+//                [layerImageDict setObject:layerImage forKey:@(layer.layerTag)];
+//            }
+//        }
+        
+        // draw each layer in image context
+        [layerList reversEnumWithHandler:^(id object) {
+            DrawLayer *layer = object;
+            
+            PPDebug(@"<draw> layer name = %@", layer.layerName);
             [layer reset];
             
             // set layer alpha
@@ -714,11 +782,11 @@ typedef enum {
             }
             
             PPDebug(@"layer opacity is %.2f", layer.opacity);
-
+            
             // set layer actions
             NSMutableArray *array = [dict objectForKey:@(layer.layerTag)];
             [layer updateWithDrawActions:array];
-
+            
             // draw layer
             [layer setNeedsDisplay];
             
@@ -747,27 +815,17 @@ typedef enum {
             if (layerImage){
                 [layerImageDict setObject:layerImage forKey:@(layer.layerTag)];
             }
-        }
-        
-        UIImage *image;
-        PPDebug(@"<createImage> size=%@", NSStringFromCGSize(self.bounds.size));
-        
-        UIGraphicsBeginImageContext(self.bounds.size);
-        
-        CGContextRef ctx = UIGraphicsGetCurrentContext();
-
-        // draw background as white
-        UIColor* bgColor = [UIColor whiteColor];
-        if (bgColor){
-            [bgColor setFill];
-            CGContextFillRect(ctx, self.bounds);
-        }
-
-        // draw each layer in image context
-        [layerList reversEnumWithHandler:^(id object) {
-            DrawLayer *layer = object;
+            
             if (layer.opacity > 0.0){
-                UIImage* layerImage = [layerImageDict objectForKey:@(layer.layerTag)];
+                // draw bg image
+//                if (prevImage){
+//                    [prevImage drawAtPoint:CGPointZero];
+//                }
+                //    CGContextRestoreGState(ctx);
+                
+                // draw layer
+//                [layer renderInContext:ctx];
+//                UIImage* layerImage = [layerImageDict objectForKey:@(layer.layerTag)];
                 [layerImage drawAtPoint:CGPointZero];
             }
         }];
