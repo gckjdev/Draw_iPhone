@@ -22,6 +22,8 @@
                         tutorial:(PBTutorial*)pbTutorial
                         infoOnly:(BOOL)infoOnly;
 
++(TutorialInfoController *)createController:(PBTutorial*)pbTutorial
+                                   infoOnly:(BOOL)infoOnly;
 @end
 
 
