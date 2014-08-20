@@ -533,7 +533,7 @@ NSString* GlobalGetBoardServerURL()
     NSUserDefaults* userDefaults = [NSUserDefaults standardUserDefaults];
     [userDefaults synchronize];
     
-    [[GameAdWallService defaultService] queryWallScore];
+//    [[GameAdWallService defaultService] queryWallScore];
 
     [[TutorialCoreManager defaultManager] autoUpdate];
 }
