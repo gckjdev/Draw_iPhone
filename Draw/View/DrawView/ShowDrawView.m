@@ -659,6 +659,7 @@ typedef enum {
     frameNumber = MIN(totalCount, frameNumber);     // avoid frame number is bigger than total action count
     for(NSInteger i = 1;i <= frameNumber;i++)
     {
+        NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
         endIndex = (i * totalCount / frameNumber - 1);
         PPDebug(@"<createImagesForGIF> create %d frame, start=%d, end=%d", i, startIndex, endIndex);
         
@@ -776,7 +777,9 @@ typedef enum {
         UIGraphicsEndImageContext();
         
         // save for next bg image
-        prevLayerImageDict = [[layerImageDict retain] autorelease];
+        [prevLayerImageDict release];                   // release old
+        prevLayerImageDict = nil;
+        prevLayerImageDict = [layerImageDict retain];   // retain current
 
         // scale image and add image into list
         image = [image scaleImage:image toScale:scaleSize];
@@ -793,7 +796,12 @@ typedef enum {
 
         // change start index
         startIndex = endIndex;
+        
+        [pool drain];
     }
+    
+    [prevLayerImageDict release];                   // release old
+    prevLayerImageDict = nil;
     
     // add last image to first for good display
     if (finalImage){
