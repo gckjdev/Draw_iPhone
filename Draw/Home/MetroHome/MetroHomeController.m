@@ -491,7 +491,8 @@
         }
         else{
             [self.bbsForumView setBottomLabelText:[NSString stringWithFormat:@"Forum (%ld)",manager.bbsActionCount] color:COLOR_WHITE];
-            
+
+            /*
             [self.bbsForumView startAnimationOnImage:[NSArray arrayWithObjects:
                                                         [UIImage imageNamed:@"1.gif"],
                                                         [UIImage imageNamed:@"2.gif"],
@@ -502,6 +503,7 @@
                 [self.bbsForumView performSelector:@selector(unhiddenImage) withObject:nil afterDelay:4.0f];
     
             }
+             */
         }
     }
 

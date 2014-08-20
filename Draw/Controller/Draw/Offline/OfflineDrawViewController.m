@@ -1019,7 +1019,7 @@
         [self showAlreadySubmitDialog];
         return;
     }
-    else if ([self isLearnType]){
+    else if (targetType == TypePracticeDraw){
         if ([[UserManager defaultManager] isReadLearnDrawHelp]){
             // 如果是当前修炼的第一小节，则弹出提示信息，并且是第一次开始草稿，尝试提示第一小节信息
             [self showStageFirstChapterTips];

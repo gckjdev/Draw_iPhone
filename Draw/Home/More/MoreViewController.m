@@ -135,7 +135,9 @@ static dispatch_once_t onceToken;
     dispatch_once(&onceToken
                   , ^{
                       itemTypeArray = @[@(SpecialTypeUser), @(SpecialTypeUserFriend),
-                                        @(HomeMenuTypeGroup), @(HomeMenuTypeDrawContest),@(HomeMenuTypeDrawPainter),@(HomeMenuTypeDrawGame),@(HomeMenuTypeDrawGuess),@(HomeMenuTypeDrawBigShop),@(HomeMenuTypeTask),@(HomeMenuTypeDrawFreeCoins),@(HomeMenuTypeDrawMore)];
+                                        @(HomeMenuTypeGroup), @(HomeMenuTypeDrawContest),@(HomeMenuTypeDrawPainter),@(HomeMenuTypeDrawGame),@(HomeMenuTypeDrawGuess),@(HomeMenuTypeDrawBigShop),@(HomeMenuTypeTask),@(HomeMenuTypeDrawMore)
+                                        //@(HomeMenuTypeDrawFreeCoins),
+                                        ];
                       
                       [itemTypeArray retain];
                                         });

@@ -289,25 +289,26 @@ static ShareService* _defaultService;
 
 -(BOOL)accessibilityShareGifEnter:(NSString*)gifFrameCount scaleSize:(NSString*)scaleSize{
     if(![self isPureInt:gifFrameCount]){
-        POSTMSG(NSLS(@"kGifIntWarning"));
+        POSTMSG(NSLS(@"kGifCountIntWarning"));
         PPDebug(@"<showShareGifDialog> gifFrameCount isn't a int");
         return NO;
         
     }
+    
     if(![self isPureFloat:scaleSize]){
         POSTMSG(NSLS(@"kScaleFloatWarning"));
         PPDebug(@"<showShareGifDialog> scaleSize isn't a float");
         return NO;
     }
-    
    
     if([gifFrameCount intValue]<0){
-        POSTMSG(NSLS(@"kGifCountWarning"));
+        POSTMSG(NSLS(@"kGifCountIntWarning"));
         PPDebug(@"<showShareGifDialog> gifFrameCount can't less than 0");
         return NO;
     }
+    
     if([scaleSize floatValue]>100||[scaleSize floatValue]<0){
-        POSTMSG(NSLS(@"kScaleWarning"));
+        POSTMSG(NSLS(@"kScaleFloatWarning"));
         PPDebug(@"<showShareGifDialog> scaleSize can't more than 100");
         return NO;
     }
