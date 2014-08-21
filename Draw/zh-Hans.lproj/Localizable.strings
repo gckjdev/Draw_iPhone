@@ -175,7 +175,7 @@
 "kPainted" = "画的";
 
 "kRegisteringUser" = "发送注册请求中...";
-"kSystemFailure" = "网络错误，请检查手机是否正确连接到互联网。";
+"kSystemFailure" = "网络不给力，请检查手机是否正确连接到互联网。";
 "kUnknownRegisterFailure" = "对不起，用户注册无法完成，请联系我们的技术支持以便解决问题。";
 "kEmailUsed" = "对不起，该电子邮件已经被注册。";
 "kEmailNotValid" = "对不起，该电子邮件格式不正确，请重新输入。";
@@ -193,7 +193,7 @@
 
 "kConnectingServer" = "连接服务器中...";
 "kJoiningGame" = "正在加入游戏会话中...";
-"kNetworkFailure" = "网络错误，请检查手机是否正确连接到互联网。";
+"kNetworkFailure" = "网络不给力，请检查手机是否正确连接到互联网。";
 "kOperationFailed" = "操作失败，请稍后再试";
 "kJoinGameSucc" = "成功进入游戏房间";
 "kJoinGameFailure" = "加入游戏失败，请稍候再试";
@@ -392,8 +392,8 @@
 
 "kSaveSucc" = "保存成功！在作品页面可以查看保存的草稿";
 "kSaveFail" = "保存失败";
-"kNetworkErrorTitle" = "网络连接失效";
-"kNetworkErrorMessage" = "无法访问互联网，请检查手机是否正确连接到网络或者WIFI。";
+"kNetworkErrorTitle" = "网络不给力";
+"kNetworkErrorMessage" = "网络不给力，请检查手机是否正确连接到网络或者WIFI。";
 //4月23新增
 "kEnterPassword" = "请输入密码";
 "kEnterPasswordAgain" = "请再次输入密码";
@@ -440,11 +440,11 @@
 "kAddAsFriend" = "关注";
 "kAlreadyBeFriend" = "已关注";
 "kDidNottFindThisUser" = "未找到用户";
-"kUpdateFollowFailed" = "网络错误，更新我的关注失败，请检查网络是否可用或稍候再试";
-"kUpdateFansFailed" = "网络错误，更新我的粉丝失败，请检查网络是否可用或稍候再试";
+"kUpdateFollowFailed" = "网络不给力，更新我的关注失败，请检查网络是否可用或稍候再试";
+"kUpdateFansFailed" = "网络不给力，更新我的粉丝失败，请检查网络是否可用或稍候再试";
 "kFollowing" = "发送关注请求中...";
 "kFollowSuccessfully" = "关注成功！";
-"kFollowFailed" = "网络错误，关注用户失败，请检查网络是否可用或稍候再试";
+"kFollowFailed" = "网络不给力，关注用户失败，请检查网络是否可用或稍候再试";
 "kUnfollow" = "取消关注";
 "kRemoveFan" = "移除粉丝";
 "kUnfollowing" = "发送取消关注请求中...";
@@ -454,8 +454,8 @@
 "kRemoveFailed" = "移除粉丝失败。";
 "kEnterWords" = "搜索条件不能为空";
 "kSearchUserPlaceholder" = "昵称/小吉号码/微博/邮箱";
-"kSearchFailedTitle" = "网络错误";
-"kSearchFailed" = "网络错误，搜索用户失败，请检查网络是否可用或稍候再试";
+"kSearchFailedTitle" = "网络不给力";
+"kSearchFailed" = "网络不给力，搜索用户失败，请检查网络是否可用或稍候再试";
 "kSearching" = "搜索中...";
 "kMyself" = "我";
 
@@ -2051,7 +2051,7 @@
 "kTextTooLong" = "帖子的字数不能多于%d个字。";
 "kTextTooFrequent" = "你发帖太频繁了，时间间隔不能小于 %d 秒。";
 "kSupportTimesLimit" = "每张帖子最多只能顶 %d 次。";
-"kNetworkError" = "网络连接错误，请检查网络设置。";
+"kNetworkError" = "网络不给力，请检查网络设置。";
 
 "kWarning" = "警告";
 "kClearImageData" = "之前选择的图像将被清除，你要继续吗？";
