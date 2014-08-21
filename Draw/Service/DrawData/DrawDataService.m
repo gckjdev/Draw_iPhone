@@ -27,6 +27,8 @@
 #import "UserTutorialManager.h"
 #import "UserTutorialService.h"
 #import "UIImageUtil.h"
+#import "PPGameNetworkRequest.h"
+#import "PPConfigManager.h"
 
 static DrawDataService* _defaultDrawDataService = nil;
 
@@ -624,6 +626,8 @@ static DrawDataService* _defaultDrawDataService = nil;
     
     return result;
 }
+
+
 
 
 @end

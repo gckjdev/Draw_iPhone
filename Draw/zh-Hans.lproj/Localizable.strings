@@ -2959,3 +2959,6 @@
 "kReplayOptionBack" = "继续";
 
 "kCreateGIFFailure" = "创建GIF作品回放失败，稍后重试看看？";
+
+"kRankingList" = "榜单";
+"kAskQuestion" = "答疑";

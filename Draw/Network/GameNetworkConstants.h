@@ -609,6 +609,7 @@
 #define PARA_TUTORIAL_ID                @"tuid"
 #define PARA_REMOTE_USER_TUTORIAL_ID    @"ruti"
 #define PARA_LOCAL_USER_TUTORIAL_ID     @"luti"
+#define PARA_TUTORIAL_NAME              @"tutorialName"
 
 #define METHOD_USER_TUTORIAL_ACTION     @"userTutorialAction"
 #define PARA_USER_TUTORIAL_DEVICE_OS    @"userTutorialDeviceOs"
@@ -620,6 +621,7 @@
 #define PARA_CHAPTER_INDEX              @"chapterIndex"
 #define PARA_CHAPTER_OPUS_ID            @"chapterOpusId"
 #define PARA_STAGE_SCORE                @"stageScore"
+#define PARA_STAGE_NAME                 @"stageName"
 
 #define PARA_TOTAL_COUNT                @"total_count"
 #define PARA_TOTAL_DEFEAT               @"total_defeat"
@@ -833,6 +835,9 @@
 
 // tutorial
 #define METHOD_SYNC_USER_TUTORIAL @"METHOD_SYNC_USER_TUTORIAL"
+
+//bbs postId by tutorialId and stageId
+#define METHOD_GET_STAGE_POST_ID @"getStagePostId"
 
 #define REGISTER_TYPE_EMAIL     1
 #define REGISTER_TYPE_SINA      2

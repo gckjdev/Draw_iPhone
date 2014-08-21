@@ -23,6 +23,9 @@
 #import "DrawAction.h"
 #import "BBSPermissionManager.h"
 #import "CanvasRect.h"
+#import "UIViewController+CommonHome.h"
+#import "TutorialService.h"
+#import "BBSPostDetailController.h"
 
 BBSService *_staticBBSService;
 BBSService *_staticGroupTopicService;
@@ -1677,6 +1680,58 @@ BBSService *_staticGroupTopicService;
             EXECUTE_BLOCK(resultBlock, output.resultCode);
         });
     });
+}
+
+- (void)getStagePost:(NSString *)tutorialId
+             stageId:(NSString *)stageId
+        tutorialName:(NSString *)tutorialName
+           stageName:(NSString *)stageName
+      fromController:(UIViewController *)fromController
+{
+
+    if(tutorialId == nil){
+        PPDebug(@"<getStagePost> tutorialId is nil");
+        return;
+    }
+    
+    if(stageId == nil){
+        PPDebug(@"<getStagePost> stageId is nil");
+        return;
+    }
+    
+    NSMutableDictionary* para = [[[NSMutableDictionary alloc] init] autorelease];
+    [para setValue:tutorialId forKey:PARA_TUTORIAL_ID];
+    [para setValue:stageId forKey:PARA_STAGE_ID];
+    
+    if (tutorialName){
+        [para setObject:tutorialName forKey:PARA_TUTORIAL_NAME];
+    }
+    
+    if (stageName){
+        [para setObject:stageName forKey:PARA_STAGE_NAME];
+    }
+
+    [PPGameNetworkRequest loadPBData:workingQueue
+                             hostURL:TUTORIAL_HOST
+                              method:METHOD_GET_STAGE_POST_ID
+                          parameters:para
+                            callback:^(DataQueryResponse *response, NSError *error) {
+                                if (error == nil){
+                                    NSArray *bbsPostList = response.bbsPostList;
+                                    if ([bbsPostList count] > 0){
+                                        PBBBSPost *pbBBSPost = [bbsPostList objectAtIndex:0];
+                                        PPDebug(@"<getStagePost> postId=%@ success", pbBBSPost.postId);
+                                        [BBSPostDetailController enterPostDetailControllerWithPost:pbBBSPost
+                                                                                    fromController:fromController
+                                                                                          animated:YES];
+                                        
+                                    }
+                                }
+                                
+                                
+                            } isPostError:YES
+     ];
+
 }
 
 

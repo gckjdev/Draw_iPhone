@@ -8,6 +8,7 @@
 
 #import "TipsPageViewController.h"
 #import "SGFocusImageItem.h"
+#import "BBSService.h"
 
 @interface TipsPageViewController ()
 {
@@ -27,6 +28,11 @@
 imagePathArray:(NSArray*)imagePathArray
 defaultIndex:(int)defaultIndex
  returnIndex:(int*)returnIndex
+  tutorialId:(NSString*)tutorialId
+     stageId:(NSString *)stageId
+  tutorialName:(NSString*)tutorialName
+     stageName:(NSString *)stageName
+
 {
     TipsPageViewController *rspc = [[TipsPageViewController alloc] init];
     rspc.dialogTitle = title;
@@ -34,11 +40,27 @@ defaultIndex:(int)defaultIndex
     rspc.returnIndex = returnIndex;
     rspc.defaultIndex = defaultIndex;
     
-    CommonDialog *dialog = [CommonDialog createDialogWithTitle:title customView:rspc.view style:CommonDialogStyleSingleButton];
+    CommonDialog *dialog = [CommonDialog createDialogWithTitle:title customView:rspc.view style:CommonDialogStyleDoubleButton];
     
+
     [dialog setClickOkBlock:^(id view){
         [rspc removeFromParentViewController];
     }];
+    
+    [dialog.cancelButton setTitle:NSLS(@"kAskQuestion") forState:UIControlStateNormal];
+    
+    [dialog setClickCancelBlock:^(id view){
+        BBSService *bbsService = [BBSService defaultService];
+        if(tutorialId!=nil&&stageId!=nil){
+            [bbsService getStagePost:tutorialId
+                             stageId:stageId
+                        tutorialName:tutorialName
+                           stageName:stageName
+                      fromController:superController];
+            
+        }
+    }];
+    
     
     [dialog showInView:superController.view];
     [superController addChildViewController:rspc];

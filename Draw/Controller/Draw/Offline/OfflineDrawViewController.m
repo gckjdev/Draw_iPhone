@@ -90,6 +90,8 @@
 #import "ResultSeal.h"
 #import "ImageShapeManager.h"
 
+#import "BBSService.h"
+
 @interface OfflineDrawViewController()
 {
     DrawView *drawView;                     // 绘画视图
@@ -1048,6 +1050,7 @@
     [dialog.cancelButton setTitle:NSLS(@"Back") forState:UIControlStateNormal];
     
     [dialog setClickCancelBlock:^(id view){
+       
     }];
     
     [dialog setClickOkBlock:^(id view){
@@ -2731,7 +2734,11 @@
                                title:title
                       imagePathArray:allTips
                         defaultIndex:_currentHelpIndex
-                         returnIndex:&_currentHelpIndex];
+                         returnIndex:&_currentHelpIndex
+                          tutorialId:_userStageBuilder.tutorialId
+                             stageId:_userStageBuilder.stageId
+                        tutorialName:_tutorial.cnName
+                           stageName:_stage.cnName];
         
         return YES;
     }
@@ -2822,6 +2829,7 @@
 #define TITLE_CONTINUE      NSLS(@"kContinueDraw")
 #define TITLE_QUIT          NSLS(@"kQuitDraw")
 #define TITLE_RESTART       NSLS(@"kRestartDraw")
+#define TITLE_ASK_QUESTION  NSLS(@"kAskQuestion")
 
 - (void)showQuitMenuForLearnDraw
 {
@@ -2831,7 +2839,9 @@
     
     NSArray *titles = @[TITLE_CONTINUE,
                         TITLE_RESTART,
-                        TITLE_QUIT];
+                        TITLE_ASK_QUESTION,
+                        TITLE_QUIT,
+                        ];
     
     __block id bself = self;
     
@@ -2850,6 +2860,17 @@
         else if([t isEqualToString:TITLE_QUIT]){
             [bself saveDraft:NO];
             [bself quit];
+        }
+        else if([t isEqualToString:TITLE_ASK_QUESTION]){
+            NSString *tutorialId = _userStageBuilder.tutorialId;
+            NSString *stageId = _userStageBuilder.stageId;
+            
+            BBSService *bbsSevice = [BBSService defaultService];
+            [bbsSevice getStagePost:tutorialId
+                            stageId:stageId
+                       tutorialName:_tutorial.cnName
+                          stageName:_stage.cnName
+                     fromController:self];
         }
     }];
 
