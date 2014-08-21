@@ -34,6 +34,8 @@ typedef void(^UserNumberServiceResultBlock)(int resultCode, NSString* number);
 - (void)loginUser:(NSString*)number encodedPassword:(NSString*)password block:(UserNumberServiceResultBlock)block;
 - (void)registerNewUserNumber:(UserNumberServiceResultBlock)block;
 
+- (void)setUserXiaoji:(NSString*)userId xiaoji:(NSString*)number block:(UserNumberServiceResultBlock)block;
+
 - (void)askForLogout;
 
 @end

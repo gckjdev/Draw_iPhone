@@ -22,6 +22,7 @@ typedef enum
     SuperUserManageActionIndexCharge = 0,
     SuperUserManageActionIndexVIP,
     SuperUserManageActionIndexFeatureOpus,
+    SuperUserManageActionIndexSetXiaoji,
     SuperUserManageActionIndexResetUserPassword,
     SuperUserManageActionIndexBlackUserId,
     SuperUserManageActionIndexBlackDevice,
@@ -32,6 +33,7 @@ typedef enum
     SuperUserManageActionIndexRecoverOpus,
     SuperUserManageActionIndexExportOpusImage,
     SuperUserManageActionIndexChargeIngot,
+
 }SuperUserManageActionIndex;
 
 @implementation SuperUserManageAction
@@ -65,7 +67,7 @@ typedef enum
 
 - (void)showInController:(UIViewController*)controller
 {
-    UIActionSheet* actionSheet = [[[UIActionSheet alloc] initWithTitle:[NSString stringWithFormat:@"%@(userId:%@,金币:%d 元宝:%d)", _targetUserNickName, _targetUserId, _targetUserCurrentBalance, _targetUserCurrentIngot] delegate:self cancelButtonTitle:@"cancel" destructiveButtonTitle:@"金币充值" otherButtonTitles:@"VIP购买", @"用户作品推荐设置", @"重置用户密码", @"加入用户黑名单", @"加入设备黑名单", @"从用户黑名单解禁", @"从设备黑名单解禁", @"用户数据修复 by ID", @"用户数据修复 by 小吉", @"恢复用户作品", @"导出用户作品图片", @"元宝充值" , nil] autorelease];
+    UIActionSheet* actionSheet = [[[UIActionSheet alloc] initWithTitle:[NSString stringWithFormat:@"%@(userId:%@,金币:%d 元宝:%d)", _targetUserNickName, _targetUserId, _targetUserCurrentBalance, _targetUserCurrentIngot] delegate:self cancelButtonTitle:@"cancel" destructiveButtonTitle:@"金币充值" otherButtonTitles:@"VIP购买", @"用户作品推荐设置", @"设置小吉号码", @"重置用户密码", @"加入用户黑名单", @"加入设备黑名单", @"从用户黑名单解禁", @"从设备黑名单解禁", @"用户数据修复 by ID", @"用户数据修复 by 小吉", @"恢复用户作品", @"导出用户作品图片", @"元宝充值" , nil] autorelease];
     
     [actionSheet showInView:controller.view];
     _superController = controller;
@@ -79,6 +81,22 @@ typedef enum
         [[CommonMessageCenter defaultCenter] postMessageWithText:@"无效输入" delayTime:1];
         return NO;
     }
+    return YES;
+}
+
++ (BOOL)isInputValidXiaoji:(NSString*)inputString
+{
+    NSScanner* scan = [NSScanner scannerWithString:inputString];
+    int val;
+    if (!([scan scanInt:&val] && [scan isAtEnd])) {
+        [[CommonMessageCenter defaultCenter] postMessageWithText:@"无效输入" delayTime:1];
+        return NO;
+    }
+
+    if ([inputString length] != 9){
+        [[CommonMessageCenter defaultCenter] postMessageWithText:@"长度不对" delayTime:1];
+    }
+    
     return YES;
 }
 
@@ -132,6 +150,28 @@ typedef enum
             }];
                                     
             [dialog.inputTextField setPlaceholder:@"请输入要充值的金币数"];
+            [dialog showInView:_superController.view];
+        } break;
+
+        case SuperUserManageActionIndexSetXiaoji: {
+            
+            CommonDialog* dialog = [CommonDialog createInputFieldDialogWith:@"请输入要设置的小吉号码"];
+            [dialog setClickOkBlock:^(UITextField *tf) {
+                if ([SuperUserManageAction isInputValidXiaoji:tf.text]) {
+                    [[UserNumberService defaultService] setUserXiaoji:_targetUserId
+                                                               xiaoji:tf.text
+                                                                block:^(int resultCode, NSString *number) {
+                                                                    if (resultCode == 0){
+                                                                        POSTMSG(@"设置小吉号码成功");
+                                                                    }
+                                                                    else{
+                                                                        POSTMSG(@"设置失败");
+                                                                    }
+                                                                }];
+                }
+            }];
+            
+            [dialog.inputTextField setPlaceholder:@"请输入要设置的小吉号码"];
             [dialog showInView:_superController.view];
         } break;
             

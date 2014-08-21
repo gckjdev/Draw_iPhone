@@ -235,6 +235,34 @@ static UserNumberService* _defaultUserService;
     });
 }
 
+- (void)setUserXiaoji:(NSString*)userId xiaoji:(NSString*)number block:(UserNumberServiceResultBlock)block
+{
+    if ([number length] == 0 || [userId length] == 0){
+        EXECUTE_BLOCK(block, ERROR_XIAOJI_NUMBER_NULL, nil);
+        return;
+    }
+    
+    dispatch_async(workingQueue, ^{
+        
+        NSDictionary* para = @{ PARA_XIAOJI_NUMBER : number,
+                                PARA_USERID : userId
+                                };
+        
+        GameNetworkOutput* output = [PPGameNetworkRequest apiServerGetAndResponseJSON:METHOD_SET_USER_NUMBER
+                                                                           parameters:para
+                                                                        isReturnArray:NO];
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if (output.resultCode == 0){
+            }
+            
+            EXECUTE_BLOCK(block, output.resultCode, number);
+        });
+        
+    });
+}
+
+
 - (void)loginUser:(NSString*)number encodedPassword:(NSString*)password block:(UserNumberServiceResultBlock)block
 {
     if ([number length] == 0 || [password length] == 0){
