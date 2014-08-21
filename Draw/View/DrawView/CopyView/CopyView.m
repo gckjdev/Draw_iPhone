@@ -343,22 +343,22 @@
         else if ([title isEqualToString:COPY_VIEW_HELP]){
             // view tips
             if (self.userStage){
-                NSArray* tipsPaths = [[UserTutorialService defaultService] getChapterTipsImagePath:_userStage.tutorialId
-                                                                                             stage:self.stage
-                                                                                      chapterIndex:_userStage.currentChapterIndex];
-                NSString* title = COPY_VIEW_HELP;
-
-                
-                if ([tipsPaths count] > 0){
-                    [TipsPageViewController show:self.superViewController
-                                           title:title
-                                  imagePathArray:tipsPaths
-                                    defaultIndex:0
-                                     returnIndex:NULL];                    
-                }
-                else{
-                    POSTMSG(NSLS(@"kHaveNotTips"));
-                }
+//                NSArray* tipsPaths = [[UserTutorialService defaultService] getChapterTipsImagePath:_userStage.tutorialId
+//                                                                                             stage:self.stage
+//                                                                                      chapterIndex:_userStage.currentChapterIndex];
+//                NSString* title = COPY_VIEW_HELP;
+//
+//                
+//                if ([tipsPaths count] > 0){
+//                    [TipsPageViewController show:self.superViewController
+//                                           title:title
+//                                  imagePathArray:tipsPaths
+//                                    defaultIndex:0
+//                                     returnIndex:NULL];
+//                }
+//                else{
+//                    POSTMSG(NSLS(@"kHaveNotTips"));
+//                }
             }
         }
     }];

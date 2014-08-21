@@ -260,4 +260,10 @@ typedef void (^BBSResultHandler) (NSInteger resultCode);
 - (void)forbidUser:(NSString*)targetUserId boardId:(NSString*)boardId days:(int)days resultBlock:(BBSResultHandler)resultBlock;
 - (void)unforbidUser:(NSString*)targetUserId boardId:(NSString*)boardId days:(int)days resultBlock:(BBSResultHandler)resultBlock;
 
+- (void)getStagePost:(NSString *)tutorialId
+             stageId:(NSString *)stageId
+        tutorialName:(NSString *)tutorialName
+           stageName:(NSString *)stageName
+      fromController:(UIViewController *)fromController;
+
 @end

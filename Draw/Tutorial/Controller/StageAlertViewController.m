@@ -72,7 +72,7 @@
 
 #define DEFAUT_IMAGE "zuixiaoguanka"
 #define ISIPAD_BORDER (ISIPAD ? 5 : 2)
-#define ISIPAD_TEXT_HEIGHT (ISIPAD ? 80 : 40)
+#define ISIPAD_TEXT_HEIGHT (ISIPAD ? 80 : 45)
 -(void)updateTheView{
 
     if(self.pbUserTutorial==nil)
@@ -109,20 +109,20 @@
     //自适应高度
     CGRect orgRect=self.stageDesc.frame;//获取原始UITextView的frame
     CGFloat  height;
-//    if(ISIOS7){
-//        height =  [stageDesc boundingRectWithSize:CGSizeMake(130, ISIPAD_TEXT_HEIGHT)
-//                                        options:NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading
-//                                     attributes:[NSDictionary dictionaryWithObjectsAndKeys:textFont,NSFontAttributeName, nil] context:nil].size.height;
-//        
-//    }else{
-//    height = [stageDesc sizeWithFont:textFont constrainedToSize:CGSizeMake(130,ISIPAD_TEXT_HEIGHT) lineBreakMode:UILineBreakModeWordWrap].height;
-//    }
+
     height = [stageDesc sizeWithMyFont:textFont
                      constrainedToSize:CGSizeMake(130,ISIPAD_TEXT_HEIGHT)
                          lineBreakMode:UILineBreakModeWordWrap].height;
     
     orgRect.size.height=height;//获取自适应文本内容高度
     self.stageDesc.frame=orgRect;//重设UITextView的frame
+    
+    //榜单按钮
+    _rankingButton.frame = CGRectMake(_rankingButton.frame.origin.x, _rankingButton.frame.origin.y, 10, 10);
+    SET_BUTTON_ROUND_STYLE_ORANGE(_rankingButton);
+    [_rankingButton setTitle:NSLS(@"kRankingList") forState:UIControlStateNormal];
+    _rankingButton.titleLabel.font = AD_FONT(15, 9);
+
     
     [self.stageDesc setEditable:NO];
     [self.stageDesc setText:stageDesc];
@@ -186,11 +186,24 @@
 }
 */
 
+//click 榜單
+- (IBAction)enterRanking:(id)sender {
+    
+    NSArray *stageList = [[_pbUserTutorial tutorial] stagesList];
+    PBStage *stageWithRow = [stageList objectAtIndex:self.stageIndex];
+    NSString *stageId = stageWithRow.stageId;
+    
+    NSString *tutorialId = [[_pbUserTutorial tutorial] tutorialId];
+    [self enterTutorialTopOpus:tutorialId stageId:stageId title:NSLS(@"kRankingList")];
+}
+
+
 - (void)dealloc {
     
     PPRelease(_stageExampleImageView);
     PPRelease(_stageDesc);
     PPRelease(_bestScore);
+    [_rankingButton release];
     [super dealloc];
 }
 
@@ -198,6 +211,7 @@
     [self setStageExampleImageView:nil];
     [self setBestScore:nil];
     [self setStageDesc:nil];
+    [self setRankingButton:nil];
     [super viewDidUnload];
 }
 @end

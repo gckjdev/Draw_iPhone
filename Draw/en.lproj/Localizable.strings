@@ -2913,4 +2913,5 @@
 "kReplayOptionBack" = "Continue";
 
 "kCreateGIFFailure" = "Fail to create GIF file. Please try again.";
-
+"kRankingList" = "Rank";
+"kAskQuestion" = "Ask";

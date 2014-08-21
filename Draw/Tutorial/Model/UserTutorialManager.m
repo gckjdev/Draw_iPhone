@@ -496,9 +496,9 @@ static UserTutorialManager* _defaultManager;
         return NO;
     }
     
-//#ifdef DEBUG
-//    return YES;
-//#endif
+#ifdef DEBUG
+    return YES;
+#endif
     
     return (score >= 60);
 }
