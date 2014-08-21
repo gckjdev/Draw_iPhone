@@ -14,13 +14,22 @@
 
 + (ShareService*)defaultService;
 
-- (void)shareWithImage:(UIImage*)image drawUserId:(NSString*)drawUserId isDrawByMe:(BOOL)isDrawByMe drawWord:(NSString*)drawWord;
-- (UIImage*)synthesisImage:(UIImage*)srcImage waterMarkText:(NSString*)text;
-- (NSString*)synthesisImageFile:(NSString*)filePath waterMarkText:(NSString*)text;
-- (NSString*)synthesisImageWithImage:(UIImage*)sourceImage waterMarkText:(NSString*)text;
+- (void)shareWithImage:(UIImage*)image
+            drawUserId:(NSString*)drawUserId
+            isDrawByMe:(BOOL)isDrawByMe
+              drawWord:(NSString*)drawWord;
 
-- (void)saveGif:(PPViewController*)superController
-          draft:(MyPaint*)draft;
+- (UIImage*)synthesisImage:(UIImage*)srcImage
+             waterMarkText:(NSString*)text;
+
+- (NSString*)synthesisImageFile:(NSString*)filePath
+                  waterMarkText:(NSString*)text;
+
+- (NSString*)synthesisImageWithImage:(UIImage*)sourceImage
+                       waterMarkText:(NSString*)text;
+
+//- (void)saveGif:(PPViewController*)superController
+//          draft:(MyPaint*)draft;
 
 - (void)showShareGifDialog:(PPViewController*)superController
                      draft:(MyPaint*)draft;

@@ -2790,7 +2790,7 @@
 "kPass" = "闯关";
 "kConquer" = "闯关";
 
-"kMoreView" = "更多小吉";
+"kMoreView" = "更多小吉，更多欢乐";
 
 "kUserTutorialInfo" = "简介";
 
@@ -2935,7 +2935,7 @@
 "kMetroHomeForum" = "论坛";
 "kMetroHomeGallery" = "精彩作品";
 
-"kSaveAsGif" = "分享作品回放过程";
+"kSaveAsGif" = "分享回放过程";
 "kCreateGIFProgress" = "生成GIF动图中...%2d%%";
 
 "kPicSum" = "图片个数:";

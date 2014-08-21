@@ -210,6 +210,43 @@ static UserTutorialManager* _defaultManager;
     PBTutorial* tutorial = [[TutorialCoreManager defaultManager] findTutorialByTutorialId:userTutorial.tutorial.tutorialId];
     [builder setTutorial:tutorial];
     [builder setLocalId:localId];
+    [builder setRemoteId:remoteId];
+    
+    [builder setCurrentStageIndex:userTutorial.currentStageIndex];
+    
+    int stageIndex = userTutorial.currentStageIndex; // set to from server
+    if (userTutorial.currentStageIndex < 0){
+        stageIndex = 0; // set to first
+    }
+    else if (userTutorial.currentStageIndex >= [tutorial.stagesList count]){
+        stageIndex = [tutorial.stagesList count]-1; // set to last
+    }
+    
+    PBStage* stage = [tutorial.stagesList objectAtIndex:stageIndex];
+    NSString* stageId = stage.stageId;
+    
+    [builder setCurrentStageIndex:stageIndex];
+    [builder setCurrentStageId:stageId];
+    
+    for (int i=0; i<stageIndex+1; i++){
+        // need to add user stage and add into user tutorial
+        PBStage* stage = [tutorial.stagesList objectAtIndex:i];
+
+        int addStageIndex = i;
+        NSString* addStageId = stage.stageId;
+        
+        PBUserStage_Builder* userStageBuilder = nil;
+        userStageBuilder = [PBUserStage builder];
+        [userStageBuilder setStageId:addStageId];
+        [userStageBuilder setStageIndex:addStageIndex];
+        [userStageBuilder setTutorialId:tutorial.tutorialId];
+        [userStageBuilder setUserId:[[UserManager defaultManager] userId]];
+        
+        PBUserStage* userStage = [userStageBuilder build];
+        [builder addUserStages:userStage];
+        
+        PPDebug(@"<addNewUserTutorialFromServer> add new user stage(%d, %@)", addStageIndex, addStageId);
+    }
     
     if(userTutorial == nil){
         PPDebug(@"<syncUserTutorial> but userTutorial not found");
@@ -227,7 +264,7 @@ static UserTutorialManager* _defaultManager;
     
     [[self getDb] setObject:[utToSave data] forKey:localId];
     
-    // TODO report new localId to server????
+    // TODO report new localId to server?
 }
 
 - (void)syncUserTutorial:(NSString*)utLocalId syncStatus:(BOOL)syncStatus
@@ -439,14 +476,14 @@ static UserTutorialManager* _defaultManager;
     return newUT;
 }
 
-- (PBUserTutorial*)updateUserStage:(PBUserStage*)userStage
+- (PBUserTutorial*)updateUserStage:(PBUserStage*)userStage utLocalId:(NSString*)utLocalId
 {
     if (userStage == nil){
         PPDebug(@"<updateUserStage> but userStage is nil");
         return nil;
     }
     
-    PBUserTutorial* ut = [self findUserTutorialByTutorialId:userStage.tutorialId];
+    PBUserTutorial* ut = [self findUserTutorialByLocalId:utLocalId];
     if (ut == nil){
         PPDebug(@"<updateUserStage> but tutorialId=%@ not found for user", userStage.tutorialId);
         return nil;

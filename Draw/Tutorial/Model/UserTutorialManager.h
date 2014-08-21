@@ -35,7 +35,7 @@
                                 stageId:(NSString*)stageId
                              stageIndex:(int)stageIndex;
 
-- (PBUserTutorial*)updateUserStage:(PBUserStage*)userStage;
+- (PBUserTutorial*)updateUserStage:(PBUserStage*)userStage utLocalId:(NSString*)utLocalId;
 - (BOOL)isLastStage:(PBUserStage*)userStage;
 
 - (void)addNewUserTutorialFromServer:(PBUserTutorial *)userTutorial WithRemoteId:(NSString *)remoteId;

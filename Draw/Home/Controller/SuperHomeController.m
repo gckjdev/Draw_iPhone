@@ -775,7 +775,7 @@ static NSDictionary* DEFAULT_MENU_SELECTOR_DICT = nil;
                                     @(HomeMenuTypeOpusClass) : @"enterOputClass",//@selector(enterOpusClass)
                                     @(HomeMenuTypeDrawApps) : @"enterBBS",//TODO
                                     @(HomeMenuTypeDrawCharge) : @"enterBBS",//TODO
-                                    @(HomeMenuTypeDrawFreeCoins) : @"enterFreeCoins",//@selector(enterCheckIn),
+                                    @(HomeMenuTypeDrawFreeCoins) : @"enterCheckIn",//@selector(enterCheckIn),
                                     @(HomeMenuTypeDrawApps) :  @"enterBBS",//TODO
                                     @(HomeMenuTypeDrawMore) : @"enterMore",//@selector(enterMore);
                                     @(HomeMenuTypeGroup) : @"enterGroup",//@selector(enterGroup)

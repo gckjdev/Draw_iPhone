@@ -877,6 +877,7 @@ typedef enum{
                 obj.isNewVersion = [drawFeed.drawData isNewVersion];
                 obj.canvasSize = drawFeed.drawData.canvasSize;
                 obj.layers = drawFeed.drawData.layers;
+                obj.finalImage = [ShowFeedController getFeedImage:drawFeed];
                 
                 DrawPlayer *player = [DrawPlayer playerWithReplayObj:obj];
                 [player showInController:cp];
@@ -933,6 +934,7 @@ typedef enum{
                 obj.isNewVersion = [cp.feed.drawData isNewVersion];
                 obj.canvasSize = cp.feed.drawData.canvasSize;
                 obj.layers = cp.feed.drawData.layers;
+                obj.finalImage = [ShowFeedController getFeedImage:cp.feed];
                 
                 DrawPlayer *player = [DrawPlayer playerWithReplayObj:obj];
                 [player showInController:cp];
@@ -954,15 +956,15 @@ typedef enum{
     [cc release];
 }
 
-- (UIImage*)getFeedImage
++ (UIImage*)getFeedImage:(DrawFeed*)feed
 {
-    UIImage* image = [[SDImageCache sharedImageCache] imageFromMemoryCacheForKey:self.feed.drawImageUrl];
+    UIImage* image = [[SDImageCache sharedImageCache] imageFromMemoryCacheForKey:feed.drawImageUrl];
     if (image == nil) {
-        image = [[SDImageCache sharedImageCache] imageFromDiskCacheForKey:self.feed.drawImageUrl];
+        image = [[SDImageCache sharedImageCache] imageFromDiskCacheForKey:feed.drawImageUrl];
     }
     
     if (image == nil){
-        image = self.feed.largeImage;
+        image = feed.largeImage;
     }
 
     return image;
@@ -1001,7 +1003,7 @@ typedef enum{
         {
             CHECK_AND_LOGIN(self.view);
 
-            UIImage* image = [self getFeedImage];
+            UIImage* image = [ShowFeedController getFeedImage:_feed];
             if (_shareAction == nil) {
                 _shareAction = [[ShareAction alloc] initWithFeed:_feed
                                                            image:image];

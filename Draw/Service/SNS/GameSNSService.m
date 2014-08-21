@@ -596,9 +596,24 @@ GameSNSService* _defaultSNSService;
     }
     
     //创建分享内容
+    id<ISSCAttachment> image = nil;
+    if (mediaType == SSPublishContentMediaTypeGif &&
+        (shareType == ShareTypeWeixiSession || shareType == ShareTypeWeixiTimeline)){
+
+        mediaType = SSPublishContentMediaTypeImage;
+        image = [ShareSDK imageWithPath:imagePath];
+        
+        text = nil;
+        title = nil;
+        audioURL = nil;
+    }
+    else{
+        image = [ShareSDK imageWithPath:imagePath];
+    }
+    
     id<ISSContent> publishContent = [ShareSDK content:text
                                        defaultContent:@""
-                                                image:[ShareSDK imageWithPath:imagePath]
+                                                image:image
                                                 title:title
                                                   url:audioURL
                                           description:nil

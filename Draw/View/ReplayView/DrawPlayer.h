@@ -20,14 +20,13 @@
 
 + (id)obj;
 
-@property(nonatomic, assign) BOOL *isNewVersion;
+@property(nonatomic, assign) BOOL isNewVersion;
 @property(nonatomic, assign) CGSize canvasSize;
 
 @property(nonatomic, retain) NSMutableArray *actionList;
 @property(nonatomic, retain) UIImage *bgImage;
+@property(nonatomic, retain) UIImage *finalImage;
 @property(nonatomic, retain) NSArray *layers;
-
-
 
 @end
 
@@ -81,7 +80,8 @@
              bgImage:(UIImage*)bgImage
          bgImageName:(NSString*)bgImageName
           startIndex:(int)startIndex
-            endIndex:(int)endIndex;
+            endIndex:(int)endIndex
+           drawImage:(UIImage*)drawImage;
 
 + (UIImage*)createImageByDrawData:(NSData**)drawData
                              draw:(Draw**)retDraw

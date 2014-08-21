@@ -447,7 +447,8 @@ static DrawDataService* _defaultDrawDataService = nil;
                     [userStageBuilder setDefeatCount:defeatCount];
                     
                     newUserStage = [userStageBuilder build];
-                    PBUserTutorial* retUT = [[UserTutorialManager defaultManager] updateUserStage:newUserStage]; // update local user stage status
+                    PBUserTutorial* retUT = [[UserTutorialManager defaultManager] updateUserStage:newUserStage
+                                                                                        utLocalId:userTutorial.localId]; // update local user stage status
                     if (retUT){
                         newUserTutorial = retUT;
                     }

@@ -27,6 +27,7 @@
     PPRelease(_actionList);
     PPRelease(_bgImage);
     PPRelease(_layers);
+    PPRelease(_finalImage);
     [super dealloc];
 }
 
@@ -173,7 +174,7 @@
         if ([t isEqualToString:TITLE_SHARE]) {
 
             [[ShareService defaultService] shareAsGIF:_superController
-                                            opusImage:nil
+                                            opusImage:self.replayObj.finalImage
                                                opusId:nil
                                        drawActionList:self.replayObj.actionList
                                                layers:self.replayObj.layers
@@ -372,6 +373,7 @@
          bgImageName:(NSString*)bgImageName
           startIndex:(int)startIndex
             endIndex:(int)endIndex
+           drawImage:(UIImage*)drawImage
 {
     __block PPViewController * cp = viewController;
     
@@ -416,6 +418,7 @@
             obj.canvasSize = draw.canvasSize;
             obj.layers = draw.layers;
             obj.bgImage = bgImage;
+            obj.finalImage = drawImage;
             
             DrawPlayer *player = [DrawPlayer playerWithReplayObj:obj begin:startIndex end:endIndex bgImageName:bgImageName];
             [player showInController:cp];
