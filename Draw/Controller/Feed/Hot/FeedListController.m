@@ -215,7 +215,10 @@
 {
     switch (_displayStyle){
         case FEED_DISPLAY_BIG3:
-            return [CellManager getHotStyleCellHeightWithIndexPath:indexPath];;
+            return [CellManager getHotStyleCellHeightWithIndexPath:indexPath];
+            
+        case FEED_DISPLAY_PRIZE:
+            return [CellManager getPrizeStyleTowCellheight];
             
         default:
             return [CellManager getLastStyleCellHeightWithIndexPath:indexPath];
@@ -229,6 +232,11 @@
                                       indexPath:indexPath
                                        delegate:self
                                        dataList:self.tabDataList];
+        case FEED_DISPLAY_PRIZE:
+            return [CellManager getPrizeStyleTowCell:theTableView
+                                           indexPath:indexPath
+                                            delegate:self
+                                            dataList:self.tabDataList];
             
         default:
             return [CellManager getLastStyleCell:theTableView
@@ -245,6 +253,8 @@
         case FEED_DISPLAY_BIG3:
             return [CellManager getHotStyleCellCountWithDataCount:count
                                                        roundingUp:NO];
+        case FEED_DISPLAY_PRIZE:
+            return [CellManager getPrizeStyleTowCellCountWithDataCount:count];
             
         default:
             return [CellManager getLastStyleCellCountWithDataCount:count

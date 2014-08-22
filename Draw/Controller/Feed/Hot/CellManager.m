@@ -18,6 +18,7 @@
 #import "ContestCell.h"
 #import "ContestManager.h"
 #import "StatementCell.h"
+#import "PrizeCell.h"
 
 #define NORMAL_CELL_VIEW_NUMBER 3
 #define WHISPER_CELL_VIEW_NUMBER (ISIPAD? 3 : 2)
@@ -522,5 +523,42 @@
         return [StatementCell getCellHeightWithContent:[contest desc]];
     }
 }
+
+
+//prizeCell Style
++ (UITableViewCell *)getPrizeStyleTowCell:(UITableView *)tableView
+                                indexPath:(NSIndexPath *)indexPath
+                                 delegate:(id)delegate
+                                 dataList:(NSArray *)dataList
+                              {
+    
+    NSString *CellIdentifier = [PrizeCell getCellIdentifier];
+    PrizeCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    if (cell == nil) {
+      cell = [PrizeCell createCell:delegate];
+    }
+    cell.indexPath = indexPath;
+    cell.accessoryType = UITableViewCellAccessoryNone;
+
+    
+    NSRange range = NSMakeRange(0,[dataList count]);
+    NSArray *feeds = [dataList subarrayWithRangeSafe:range];
+    NSInteger row = indexPath.row;
+    DrawFeed *feed = [feeds objectAtIndex:row];
+    [cell setCellInfo:feed row:indexPath.row];
+
+    return cell;
+}
+
++ (int)getPrizeStyleTowCellCountWithDataCount:(int)count{
+    
+    return count;
+}
+
++ (float)getPrizeStyleTowCellheight{
+    
+    return [PrizeCell getCellHeightWithFeed];
+}
+
 
 @end

@@ -6320,6 +6320,10 @@
 		D87129551996284300F6B757 /* 9.png in Resources */ = {isa = PBXBuildFile; fileRef = D87129531996284300F6B757 /* 9.png */; };
 		D87129561996284300F6B757 /* 9.png in Resources */ = {isa = PBXBuildFile; fileRef = D87129531996284300F6B757 /* 9.png */; };
 		D87129571996284300F6B757 /* 9.png in Resources */ = {isa = PBXBuildFile; fileRef = D87129531996284300F6B757 /* 9.png */; };
+		D879C91A19A7369D003B2A29 /* PrizeCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = D879C91919A7369D003B2A29 /* PrizeCell~ipad.xib */; };
+		D879C91B19A7369D003B2A29 /* PrizeCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = D879C91919A7369D003B2A29 /* PrizeCell~ipad.xib */; };
+		D879C91C19A7369D003B2A29 /* PrizeCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = D879C91919A7369D003B2A29 /* PrizeCell~ipad.xib */; };
+		D879C91D19A7369D003B2A29 /* PrizeCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = D879C91919A7369D003B2A29 /* PrizeCell~ipad.xib */; };
 		D89191F11963163B006B616A /* StageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D89191F01963163B006B616A /* StageCell.m */; };
 		D89191F21963163B006B616A /* StageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D89191F01963163B006B616A /* StageCell.m */; };
 		D89191F31963163B006B616A /* StageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D89191F01963163B006B616A /* StageCell.m */; };
@@ -6465,6 +6469,14 @@
 		D8C784C5196A55C600323712 /* StageBasicInfoCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = D8C784C3196A55C600323712 /* StageBasicInfoCell~ipad.xib */; };
 		D8C784C6196A55C600323712 /* StageBasicInfoCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = D8C784C3196A55C600323712 /* StageBasicInfoCell~ipad.xib */; };
 		D8C784C7196A55C600323712 /* StageBasicInfoCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = D8C784C3196A55C600323712 /* StageBasicInfoCell~ipad.xib */; };
+		D8CC69D219A5EEF500E57398 /* PrizeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D8CC69D119A5EEF500E57398 /* PrizeCell.m */; };
+		D8CC69D319A5EEF500E57398 /* PrizeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D8CC69D119A5EEF500E57398 /* PrizeCell.m */; };
+		D8CC69D419A5EEF500E57398 /* PrizeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D8CC69D119A5EEF500E57398 /* PrizeCell.m */; };
+		D8CC69D519A5EEF500E57398 /* PrizeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D8CC69D119A5EEF500E57398 /* PrizeCell.m */; };
+		D8CC69DA19A5EF9D00E57398 /* PrizeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D8CC69D919A5EF9D00E57398 /* PrizeCell.xib */; };
+		D8CC69DB19A5EF9D00E57398 /* PrizeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D8CC69D919A5EF9D00E57398 /* PrizeCell.xib */; };
+		D8CC69DC19A5EF9D00E57398 /* PrizeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D8CC69D919A5EF9D00E57398 /* PrizeCell.xib */; };
+		D8CC69DD19A5EF9D00E57398 /* PrizeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D8CC69D919A5EF9D00E57398 /* PrizeCell.xib */; };
 		D8CF8AA01977981E0044E305 /* opencv2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D8CF8A9F1977981E0044E305 /* opencv2.framework */; };
 		D8CF8AA11977981E0044E305 /* opencv2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D8CF8A9F1977981E0044E305 /* opencv2.framework */; };
 		D8CF8AA21977981F0044E305 /* opencv2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D8CF8A9F1977981E0044E305 /* opencv2.framework */; };
@@ -10813,6 +10825,7 @@
 		D86D7CD11994C87B00D64C18 /* gengduo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = gengduo.png; sourceTree = "<group>"; };
 		D86D7CD21994C87B00D64C18 /* xiaoxi.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = xiaoxi.png; sourceTree = "<group>"; };
 		D87129531996284300F6B757 /* 9.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 9.png; sourceTree = "<group>"; };
+		D879C91919A7369D003B2A29 /* PrizeCell~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "PrizeCell~ipad.xib"; sourceTree = "<group>"; };
 		D89191EF1963163B006B616A /* StageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StageCell.h; sourceTree = "<group>"; };
 		D89191F01963163B006B616A /* StageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StageCell.m; sourceTree = "<group>"; };
 		D89191FA196316C2006B616A /* StageCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = StageCell.xib; sourceTree = "<group>"; };
@@ -10868,6 +10881,9 @@
 		D8C784B9196A541C00323712 /* AllTutorialCell~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "AllTutorialCell~ipad.xib"; sourceTree = "<group>"; };
 		D8C784BE196A559F00323712 /* StageCell~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "StageCell~ipad.xib"; sourceTree = "<group>"; };
 		D8C784C3196A55C600323712 /* StageBasicInfoCell~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "StageBasicInfoCell~ipad.xib"; sourceTree = "<group>"; };
+		D8CC69D019A5EEF500E57398 /* PrizeCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrizeCell.h; sourceTree = "<group>"; };
+		D8CC69D119A5EEF500E57398 /* PrizeCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PrizeCell.m; sourceTree = "<group>"; };
+		D8CC69D919A5EF9D00E57398 /* PrizeCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PrizeCell.xib; sourceTree = "<group>"; };
 		D8CF8A9F1977981E0044E305 /* opencv2.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = opencv2.framework; sourceTree = "<group>"; };
 		D8D81169199DB4E300CC182A /* 1.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = 1.gif; sourceTree = "<group>"; };
 		D8D8116A199DB4E300CC182A /* 2.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = 2.gif; sourceTree = "<group>"; };
@@ -16109,6 +16125,10 @@
 				A4BE226B18657D9700FE2997 /* NormalHotCell.m */,
 				A4BE227018657DE800FE2997 /* NormalHotCell.xib */,
 				A4BE227518670D8700FE2997 /* NormalHotCell~ipad.xib */,
+				D8CC69D019A5EEF500E57398 /* PrizeCell.h */,
+				D8CC69D119A5EEF500E57398 /* PrizeCell.m */,
+				D8CC69D919A5EF9D00E57398 /* PrizeCell.xib */,
+				D879C91919A7369D003B2A29 /* PrizeCell~ipad.xib */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -18892,6 +18912,7 @@
 				A461B403174CBAA70088B061 /* GameBasic.proto in Resources */,
 				A461B404174CBAA70088B061 /* GameMessage.proto in Resources */,
 				A461B405174CBAA70088B061 /* GameConstants.proto in Resources */,
+				D879C91C19A7369D003B2A29 /* PrizeCell~ipad.xib in Resources */,
 				A461B406174CBAA70088B061 /* SelectWordCell.xib in Resources */,
 				A461B408174CBAA70088B061 /* FeedbackController.xib in Resources */,
 				A461B409174CBAA70088B061 /* UserSettingController.xib in Resources */,
@@ -19363,6 +19384,7 @@
 				A4D8FA6717DB08170085061F /* experience@2x.png in Resources */,
 				A4D8FA6B17DB08170085061F /* group_message@2x.png in Resources */,
 				A4D8FA6F17DB08170085061F /* message_popup@2x.png in Resources */,
+				D8CC69DC19A5EF9D00E57398 /* PrizeCell.xib in Resources */,
 				A4D8FA7317DB08170085061F /* draw_room_seat_blue@2x.png in Resources */,
 				A4D8FA7717DB08170085061F /* draw_room_seat_orange@2x.png in Resources */,
 				A4D8FA7B17DB08170085061F /* draw_room_seat_pink@2x.png in Resources */,
@@ -20484,6 +20506,7 @@
 				A4D8FA8E17DB08170085061F /* face_anger@2x.png in Resources */,
 				A4D8FA9217DB08170085061F /* face_embarrass@2x.png in Resources */,
 				A4D8FA9617DB08170085061F /* face_proud@2x.png in Resources */,
+				D879C91B19A7369D003B2A29 /* PrizeCell~ipad.xib in Resources */,
 				A4D8FA9A17DB08170085061F /* guessed@2x.png in Resources */,
 				A4D8FA9E17DB08170085061F /* my_paint_tag@2x.png in Resources */,
 				A4D8FAA217DB08170085061F /* new_bulletin@2x.png in Resources */,
@@ -20688,6 +20711,7 @@
 				A4D8FE8017DB089C0085061F /* draw_up_panel_help_btn_@2x.png in Resources */,
 				A4D8FE8417DB089C0085061F /* draw_up_panel_page_bg_btn@2x.png in Resources */,
 				A4D8FE8817DB089C0085061F /* email@2x.png in Resources */,
+				D8CC69DB19A5EF9D00E57398 /* PrizeCell.xib in Resources */,
 				A4D8FE8C17DB089C0085061F /* clean_ad@2x.png in Resources */,
 				D8C784BB196A541C00323712 /* AllTutorialCell~ipad.xib in Resources */,
 				A4D8FE9017DB089C0085061F /* face_anger@2x.png in Resources */,
@@ -21534,6 +21558,7 @@
 				A4D8FA3D17DB08170085061F /* detail_replay@2x.png in Resources */,
 				A4D8FA4117DB08170085061F /* detail_report@2x.png in Resources */,
 				D8B539351991EBB700BD3337 /* ResultSharePageViewController.xib in Resources */,
+				D879C91A19A7369D003B2A29 /* PrizeCell~ipad.xib in Resources */,
 				A4D8FA4517DB08170085061F /* detail_share@2x.png in Resources */,
 				A4D8FA4917DB08170085061F /* auto_recovery@2x.png in Resources */,
 				A4D8FA4D17DB08170085061F /* draw_commit_btn@2x.png in Resources */,
@@ -21826,6 +21851,7 @@
 				D80518B1196BD12200D350B3 /* caogao@2x.png in Resources */,
 				A4D8FFDB17DB089C0085061F /* zjh_home_header_bg@2x.png in Resources */,
 				A4D8FFDF17DB089C0085061F /* zjh_home_header_foot@2x.png in Resources */,
+				D8CC69DA19A5EF9D00E57398 /* PrizeCell.xib in Resources */,
 				A4D8FFE317DB089C0085061F /* zjh_home_header_man@2x.png in Resources */,
 				A4D8FFE717DB089C0085061F /* zjh_home_help@2x.png in Resources */,
 				A4D8FFEB17DB089C0085061F /* zjh_home_normal_site@2x.png in Resources */,
@@ -22344,6 +22370,7 @@
 				EA411CD5176066F500DA72D0 /* BulletinCell~ipad.xib in Resources */,
 				EA411CD6176066F500DA72D0 /* BulletinView.xib in Resources */,
 				EA411CD7176066F500DA72D0 /* BulletinView~ipad.xib in Resources */,
+				D8CC69DD19A5EF9D00E57398 /* PrizeCell.xib in Resources */,
 				EA411D7D176066F500DA72D0 /* SelectHotWordController.xib in Resources */,
 				EA411D7E176066F500DA72D0 /* SelectHotWordController~ipad.xib in Resources */,
 				EA411D7F176066F500DA72D0 /* WordSelectCell.xib in Resources */,
@@ -22710,6 +22737,7 @@
 				A4D8FC4C17DB08180085061F /* plus_image@2x.png in Resources */,
 				A4D8FC5017DB08180085061F /* system_words_bg@2x.png in Resources */,
 				A4D8FD4217DB089C0085061F /* bulletin_accessory@2x.png in Resources */,
+				D879C91D19A7369D003B2A29 /* PrizeCell~ipad.xib in Resources */,
 				A4D8FD4617DB089C0085061F /* color_mask@2x.png in Resources */,
 				D8B5392D1991E8C400BD3337 /* StageAlertViewController~ipad.xib in Resources */,
 				A4D8FD4A17DB089C0085061F /* common_dialog_close_btn@2x.png in Resources */,
@@ -23934,6 +23962,7 @@
 				A42BB02C17D9735A007FB11B /* TwoInputFieldView.m in Sources */,
 				EAD13B8C17DECFE300764FFB /* OrangeLoadingView.m in Sources */,
 				A4AFB7F317E032D60079B165 /* GuessRankListController.m in Sources */,
+				D8CC69D419A5EEF500E57398 /* PrizeCell.m in Sources */,
 				D80BB5E81980C26000BFC4A7 /* THProgressView.m in Sources */,
 				A44F32EA17E16C3500AF9B26 /* ContestRankView.m in Sources */,
 				EA8EF66917E55F0D003F1AF8 /* DrawHomeHeaderPanel.m in Sources */,
@@ -24740,6 +24769,7 @@
 				CAA75CBA178A65020041C019 /* PolygonClipTouchHandler.m in Sources */,
 				CACEC2C9178BA7AD00D88643 /* SelectorBox.m in Sources */,
 				CAA581B1197BB0BA00599740 /* HashImageSimilarity.mm in Sources */,
+				D8CC69D319A5EEF500E57398 /* PrizeCell.m in Sources */,
 				CACEC36A178BCD1600D88643 /* SelectorCommand.m in Sources */,
 				CA0FC088178EA13E00A72B79 /* JumpHandler.m in Sources */,
 				A4EC5A9C178FDF6D0085031F /* OpusImageBrower.m in Sources */,
@@ -25615,6 +25645,7 @@
 				C206FFD8178034450033CF63 /* PSCollectionViewCell.m in Sources */,
 				CA9C11C0178135E0004372B6 /* GradientAction.m in Sources */,
 				CAA581B0197BB0BA00599740 /* HashImageSimilarity.mm in Sources */,
+				D8CC69D219A5EEF500E57398 /* PrizeCell.m in Sources */,
 				A4E64919178426310063F393 /* PBOpus+Extend.m in Sources */,
 				CA02CB6C1785581A00B6910D /* GradientSettingView.m in Sources */,
 				CA02CBA41785619300B6910D /* GradientCommand.m in Sources */,
@@ -26031,6 +26062,7 @@
 				EA4118FA176066F500DA72D0 /* DrawDataService.m in Sources */,
 				EA4118FB176066F500DA72D0 /* Draw.m in Sources */,
 				EA4118FC176066F500DA72D0 /* ChatMessageView.m in Sources */,
+				D8CC69D519A5EEF500E57398 /* PrizeCell.m in Sources */,
 				EA4118FD176066F500DA72D0 /* LevelService.m in Sources */,
 				EA4118FE176066F500DA72D0 /* CustomWordManager.m in Sources */,
 				EA4118FF176066F500DA72D0 /* CustomWord.m in Sources */,
