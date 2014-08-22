@@ -30,7 +30,7 @@
     PBStage *stageWithRow = [stageList objectAtIndex:stageIndex];
     NSString *stageId = stageWithRow.stageId;
     
-    StageAlertViewController *savc = [[StageAlertViewController alloc] init];
+    __block StageAlertViewController *savc = [[StageAlertViewController alloc] init];
     
     savc.pbUserTutorial = pbUserTutorial;
     savc.stageIndex = stageIndex;

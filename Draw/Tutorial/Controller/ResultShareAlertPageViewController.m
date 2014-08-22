@@ -45,7 +45,7 @@
   retryBlock:(ResultShareAlertPageViewResultBlock)retryBlock
    backBlock:(ResultShareAlertPageViewResultBlock)backBlock
 {
-    ResultShareAlertPageViewController *rspc = [[ResultShareAlertPageViewController alloc] init];
+    __block ResultShareAlertPageViewController *rspc = [[ResultShareAlertPageViewController alloc] init];
     rspc.nextBlock = nextBlock;
     rspc.retryBlock = retryBlock;
     rspc.backBlock = backBlock;
@@ -54,7 +54,7 @@
     rspc.resultImage = resultImage;
     
     CommonDialog *dialog = [CommonDialog
-                            createDialogWithTitle:NSLS(@"kResultSharePage")
+                                    createDialogWithTitle:NSLS(@"kResultSharePage")
                                       customView:rspc.view
                                            style:CommonDialogStyleDoubleButtonWithCross
                                         delegate:rspc];
@@ -78,10 +78,11 @@
             [dialog.oKButton setTitle:NSLS(@"Back") forState:UIControlStateNormal];
             [dialog setClickOkBlock:^(id view){
                 
-                // close dialog
-                [rspc close:dialog];
                 
                 EXECUTE_BLOCK(rspc.backBlock)
+                
+                // close dialog
+                [rspc close:dialog];
             }];
             
         }
@@ -94,10 +95,14 @@
             [dialog.oKButton setTitle:NSLS(@"kTryConquerNext") forState:UIControlStateNormal];
             [dialog setClickOkBlock:^(id view){
                 
-                // close dialog
-                [rspc close:dialog];
+
 
                 EXECUTE_BLOCK(rspc.nextBlock);
+
+                // close dialog
+                [rspc close:dialog];
+//                [rspc clearBlocks];
+                
             }];
         
         }
@@ -111,10 +116,13 @@
         [dialog.oKButton setTitle:NSLS(@"kConquerAgain") forState:UIControlStateNormal];
         [dialog setClickOkBlock:^(id view){
             
-            // close dialog
-            [rspc close:dialog];
 
             EXECUTE_BLOCK(rspc.retryBlock);
+            
+            // close dialog
+            [rspc close:dialog];
+//            [rspc clearBlocks];
+            
         }];
     }
     
@@ -128,10 +136,13 @@
 
     dialog.clickCloseBlock = ^(id infoView){
         
-        // close dialog
-        [rspc close:dialog];
         
         EXECUTE_BLOCK(rspc.backBlock);
+
+        // close dialog
+        [rspc close:dialog];
+//        [rspc clearBlocks];
+        
     };
 
     
@@ -154,6 +165,8 @@
 
 - (void)close:(CommonDialog*)dialog
 {
+    [self clearBlocks];
+    
     [dialog disappear];
     if (self.parentViewController){
         [self removeFromParentViewController];
@@ -547,6 +560,15 @@
     }];
     [sheet showInView:superView showAtPoint:superView.center animated:YES];
     [sheet release];
+}
+
+- (void)clearBlocks
+{
+    self.nextBlock = nil;
+    self.retryBlock = nil;
+    self.backBlock = nil;
+    
+    self.resultImage = nil;
 }
 
 @end
