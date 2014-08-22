@@ -1265,6 +1265,12 @@
 
 - (void)actionsBeforeQuit
 {
+    self.submitOpusFinalImage = nil;
+    self.submitOpusDrawData = nil;
+    [self.copyView removeFromSuperview];
+    self.copyView = nil;
+    [self hideScoreView];
+    
     [self deleteEmptyDraft];
     [self unregisterAllNotifications];
     [self stopRecovery];
@@ -1963,19 +1969,23 @@
             
             [self setOpusWord:subject desc:content];
 
-            // TODO need to disable for release
-//            [self commitOpus:subject desc:content share:shareSet classList:nil];
-            
             // show set opus class
-            [SelectOpusClassViewController showInViewController:self
-                                                   selectedTags:self.selectedClassList
-                                              arrayForSelection:[[OpusClassInfoManager defaultManager] defaultUserSetList]
-                                                       callback:^(int resultCode, NSArray *selectedArray, NSArray *arrayForSelection) {
-
-                                                           self.selectedClassList = selectedArray;
-                                                           [self commitOpus:subject desc:content share:shareSet classList:selectedArray];
-
-                                                       }];
+            NSArray* defaultClassList = [[OpusClassInfoManager defaultManager] defaultUserSetList];
+            if ([defaultClassList count] > 0){
+                [SelectOpusClassViewController showInViewController:self
+                                                       selectedTags:self.selectedClassList
+                                                  arrayForSelection:defaultClassList
+                                                           callback:^(int resultCode, NSArray *selectedArray, NSArray *arrayForSelection) {
+                                                               
+                                                               self.selectedClassList = selectedArray;
+                                                               [self commitOpus:subject desc:content share:shareSet classList:selectedArray];
+                                                               
+                                                           }];
+                
+            }
+            else{
+                [self commitOpus:subject desc:content share:shareSet classList:nil];
+            }
             
         }else{
             [self setOpusWord:subject desc:content];
@@ -2146,6 +2156,8 @@
 
 - (void)handleSubmitForLearnDraw
 {
+    NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
+    
     //  笔画数预处理
     NSInteger minus = [self strokeLimitWithMinStrokeNum:[PPConfigManager getMinStrokeNum]
                                             MinPointNum:[PPConfigManager getMinPointNum]];
@@ -2229,7 +2241,7 @@
         [self showResultOptionForPractice];
     }
     
-
+    [pool drain];
     
 }
 
@@ -2277,23 +2289,24 @@
     
     // invoke show result view here, pass user stage, image as parameter
     
-    [ResultShareAlertPageViewController show:self
+    __block OfflineDrawViewController* bself = self;
+    [ResultShareAlertPageViewController show:bself
                                        image:self.submitOpusFinalImage
                                    userStage:[self buildUserStage]
                                        score:score
                                    nextBlock:^{
                                        
                                        PPDebug(@"next Block");
-                                       [self tryConquerNext];
+                                       [bself tryConquerNext];
                                        
                                    } retryBlock:^{
                                        
-                                       [self conquerAgain];
+                                       [bself conquerAgain];
                                        
                                    } backBlock:^{
                                        
                                        // show view with score
-                                       [self showScoreView];
+                                       [bself showScoreView];
                                        
 //                                       [self quit];
                                    }];
@@ -2302,7 +2315,7 @@
     
     
     // the following code is just used for reference.
-    
+    /*
     // 根据评分结果跳转
     int defeatPercent = [userStage defeatPercent];
     if ([self isPassPractice:score]){
@@ -2362,10 +2375,13 @@
         
         [dialog showInView:self.view];
     }
+     */
 }
 
 - (void)showResultOptionForPractice
 {
+    __block OfflineDrawViewController* bself = self;
+
     int score = [self.draft.score intValue];
     
     // 根据评分结果跳转
@@ -2384,7 +2400,7 @@
         }];
         
         [dialog setClickOkBlock:^(id view){
-            [self tryConquer];
+            [bself tryConquer];
         }];
         
         [dialog showInView:self.view];
@@ -2404,7 +2420,7 @@
         }];
         
         [dialog setClickOkBlock:^(id view){
-            [self practiceAgain];
+            [bself practiceAgain];
         }];
         
         [dialog showInView:self.view];
