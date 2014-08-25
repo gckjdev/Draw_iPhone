@@ -79,7 +79,7 @@
 -(void)setProgressView:(NSInteger)row WithProgress:(float)progress{
     const CGSize progressViewSize = { PROGRESS_VIEW_SIZE_WIDTH, PROGRESS_VIEW_SIZE_HEIGHT};
     //調用THprogressview
-    
+    [self.progressInfoLabel setHidden:YES];
 
      [self.progressAndLabelView removeAllSubviews];
     
@@ -117,10 +117,12 @@
         self.tutorialStartBtn.hidden = NO;
         tutorialProgressView.hidden = YES;
         self.othersProgressInfoLabel.hidden = YES;
+        [self.progressInfoLabel setHidden:YES];
         //row == 0 并且progress =0
         if(progress <= 0.0f)
         {
             [self.tutorialStartBtn setTitle:NSLS(@"kStartStage") forState:UIControlStateNormal];
+            [self.progressInfoLabel setHidden:YES];
             
         }else{
             
@@ -129,7 +131,7 @@
             NSString * progressString = [NSString stringWithFormat:@"%.0f%%",progress*100];
             [self.progressInfoLabel setText:[NSLS(@"kProgress") stringByAppendingString:progressString]];
             [self.progressInfoLabel setFont:AD_FONT(18, 12)];
-            [self.progressInfoLabel setTextColor:COLOR_BROWN];
+            [self.progressInfoLabel setTextColor:COLOR_WHITE];
             
         }
         

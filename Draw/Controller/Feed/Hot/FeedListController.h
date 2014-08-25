@@ -14,7 +14,8 @@
 
 enum{
     FEED_DISPLAY_NORMAL = 0,
-    FEED_DISPLAY_BIG3 = 1
+    FEED_DISPLAY_BIG3 = 1,
+    FEED_DISPLAY_PRIZE = 2
 };
 
 @interface FeedListController : CommonTabController<FeedServiceDelegate>
@@ -41,5 +42,6 @@ enum{
                  title:(NSString*)title;
 
 - (void)cleanDataBeforeRemoveView;
+- (void)showFeed:(DrawFeed *)feed;
 
 @end

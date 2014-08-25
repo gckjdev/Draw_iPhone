@@ -480,7 +480,7 @@
     FeedListController* vc = [[[FeedListController alloc] initWithFeedType:FeedListTypeConquerDrawStageTop
                                                                   tutorialId:tutorialId //@"tutorialId-2"
                                                                      stageId:stageId    //@"stageId-0-0"
-                                                                displayStyle:FEED_DISPLAY_NORMAL
+                                                                displayStyle:FEED_DISPLAY_PRIZE
                                                          superViewController:self
                                                                        title:title] autorelease];
     [self.navigationController pushViewController:vc animated:YES];

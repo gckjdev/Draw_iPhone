@@ -80,4 +80,12 @@
 + (float)getContestRuleCellHeight:(NSIndexPath *)indexPath
                           contest:(Contest *)contest;
 
+
+
++ (UITableViewCell *)getPrizeStyleTowCell:(UITableView *)tableView
+                                indexPath:(NSIndexPath *)indexPath
+                                 delegate:(id)delegate
+                                 dataList:(NSArray *)dataList;
++ (int)getPrizeStyleTowCellCountWithDataCount:(int)count;
++ (float)getPrizeStyleTowCellheight;
 @end
