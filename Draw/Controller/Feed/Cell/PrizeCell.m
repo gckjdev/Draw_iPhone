@@ -43,7 +43,7 @@
 - (void)setCellInfo:(DrawFeed *)feed row:(NSInteger)row
 {
     self.feed = feed;
-    [self.opusImageView setImageWithUrl:[NSURL URLWithString:feed.pbFeed.opusImage]
+    [self.opusImageView setImageWithUrl:[NSURL URLWithString:feed.pbFeed.opusThumbImage]
                    placeholderImage:[UIImage imageNamed:DEFAULT_IMAGE]
                         showLoading:NO
                            animated:YES];
