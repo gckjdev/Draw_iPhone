@@ -206,6 +206,10 @@
 {
     return [MobClickUtils getIntValueByKey:@"HOT_OPUS_FETCH_LIMIT" defaultValue:18];
 }
+//排行榜的数量
++(NSInteger)getRankOpusCountOnce{
+    return [MobClickUtils getIntValueByKey:@"RANK_OPUS_FETCH_LIMIT" defaultValue:51];
+}
 
 + (NSInteger)getTimelineCountOnce
 {
