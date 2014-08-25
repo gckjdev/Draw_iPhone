@@ -1702,7 +1702,7 @@ const ProtobufCMessageDescriptor game__pblabel_info__descriptor =
   (ProtobufCMessageInit) game__pblabel_info__init,
   NULL,NULL,NULL    /* reserved[123] */
 };
-static const ProtobufCFieldDescriptor game__pbfeed__field_descriptors[58] =
+static const ProtobufCFieldDescriptor game__pbfeed__field_descriptors[59] =
 {
   {
     "feedId",
@@ -2400,6 +2400,18 @@ static const ProtobufCFieldDescriptor game__pbfeed__field_descriptors[58] =
     0,            /* packed */
     0,NULL,NULL    /* reserved1,reserved2, etc */
   },
+  {
+    "stageScore",
+    216,
+    PROTOBUF_C_LABEL_OPTIONAL,
+    PROTOBUF_C_TYPE_INT32,
+    PROTOBUF_C_OFFSETOF(Game__PBFeed, has_stagescore),
+    PROTOBUF_C_OFFSETOF(Game__PBFeed, stagescore),
+    NULL,
+    NULL,
+    0,            /* packed */
+    0,NULL,NULL    /* reserved1,reserved2, etc */
+  },
 };
 static const unsigned game__pbfeed__field_indices_by_name[] = {
   2,   /* field[2] = actionType */
@@ -2454,6 +2466,7 @@ static const unsigned game__pbfeed__field_indices_by_name[] = {
   11,   /* field[11] = signature */
   48,   /* field[48] = sing */
   20,   /* field[20] = spendTime */
+  58,   /* field[58] = stageScore */
   53,   /* field[53] = strokes */
   19,   /* field[19] = tags */
   14,   /* field[14] = targetUserId */
@@ -2475,7 +2488,7 @@ static const ProtobufCIntRange game__pbfeed__number_ranges[12 + 1] =
   { 100, 47 },
   { 200, 49 },
   { 211, 53 },
-  { 0, 58 }
+  { 0, 59 }
 };
 const ProtobufCMessageDescriptor game__pbfeed__descriptor =
 {
@@ -2485,7 +2498,7 @@ const ProtobufCMessageDescriptor game__pbfeed__descriptor =
   "Game__PBFeed",
   "game",
   sizeof(Game__PBFeed),
-  58,
+  59,
   game__pbfeed__field_descriptors,
   game__pbfeed__field_indices_by_name,
   12,  game__pbfeed__number_ranges,

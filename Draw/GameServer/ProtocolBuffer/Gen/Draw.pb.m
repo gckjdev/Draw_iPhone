@@ -2562,6 +2562,7 @@ static PBLabelInfo* defaultPBLabelInfoInstance = nil;
 @property int32_t draftCreateDate;
 @property (retain) NSMutableArray* mutableOpusClassList;
 @property (retain) NSMutableArray* mutableOpusClassIdsList;
+@property int32_t stageScore;
 @end
 
 @implementation PBFeed
@@ -2951,6 +2952,13 @@ static PBLabelInfo* defaultPBLabelInfoInstance = nil;
 @synthesize draftCreateDate;
 @synthesize mutableOpusClassList;
 @synthesize mutableOpusClassIdsList;
+- (BOOL) hasStageScore {
+  return !!hasStageScore_;
+}
+- (void) setHasStageScore:(BOOL) value {
+  hasStageScore_ = !!value;
+}
+@synthesize stageScore;
 - (void) dealloc {
   self.feedId = nil;
   self.userId = nil;
@@ -3043,6 +3051,7 @@ static PBLabelInfo* defaultPBLabelInfoInstance = nil;
     self.strokes = 0L;
     self.draftCompleteDate = 0;
     self.draftCreateDate = 0;
+    self.stageScore = 0;
   }
   return self;
 }
@@ -3325,6 +3334,9 @@ static PBFeed* defaultPBFeedInstance = nil;
   for (NSString* element in self.mutableOpusClassIdsList) {
     [output writeString:215 value:element];
   }
+  if (self.hasStageScore) {
+    [output writeInt32:216 value:self.stageScore];
+  }
   [self.unknownFields writeToCodedOutputStream:output];
 }
 - (int32_t) serializedSize {
@@ -3522,6 +3534,9 @@ static PBFeed* defaultPBFeedInstance = nil;
     }
     size += dataSize;
     size += 2 * self.mutableOpusClassIdsList.count;
+  }
+  if (self.hasStageScore) {
+    size += computeInt32Size(216, self.stageScore);
   }
   size += self.unknownFields.serializedSize;
   memoizedSerializedSize = size;
@@ -3789,6 +3804,9 @@ static PBFeed* defaultPBFeedInstance = nil;
       result.mutableOpusClassIdsList = [NSMutableArray array];
     }
     [result.mutableOpusClassIdsList addObjectsFromArray:other.mutableOpusClassIdsList];
+  }
+  if (other.hasStageScore) {
+    [self setStageScore:other.stageScore];
   }
   [self mergeUnknownFields:other.unknownFields];
   return self;
@@ -4082,6 +4100,10 @@ static PBFeed* defaultPBFeedInstance = nil;
       }
       case 1722: {
         [self addOpusClassIds:[input readString]];
+        break;
+      }
+      case 1728: {
+        [self setStageScore:[input readInt32]];
         break;
       }
     }
@@ -5181,6 +5203,22 @@ static PBFeed* defaultPBFeedInstance = nil;
 }
 - (PBFeed_Builder*) clearOpusClassIdsList {
   result.mutableOpusClassIdsList = nil;
+  return self;
+}
+- (BOOL) hasStageScore {
+  return result.hasStageScore;
+}
+- (int32_t) stageScore {
+  return result.stageScore;
+}
+- (PBFeed_Builder*) setStageScore:(int32_t) value {
+  result.hasStageScore = YES;
+  result.stageScore = value;
+  return self;
+}
+- (PBFeed_Builder*) clearStageScore {
+  result.hasStageScore = NO;
+  result.stageScore = 0;
   return self;
 }
 @end
