@@ -166,7 +166,7 @@ message PBFeed {
   optional int32 draftCreateDate = 213;             // 制作k开始时间
   repeated PBClass opusClass = 214;                 // 分类信息，一个作品可以属于一个或者多个分类
   repeated string opusClassIds = 215;               // 分类信息，仅包含ID列表
-
+  optional int32 stageScore = 216;                  // fei
   
 
 }

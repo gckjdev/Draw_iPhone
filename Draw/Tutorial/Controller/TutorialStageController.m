@@ -170,19 +170,6 @@
   
     [dialog setClickOkBlock:^(id view){
         // Conquer
-//        PBUserTutorial* newUT = [[UserTutorialService defaultService] startConquerTutorialStage:self.pbUserTutorial.localId
-//                                                                                         stageId:stageId
-//                                                                                      stageIndex:stageIndex];
-//        
-//        if (newUT){
-//            
-//            self.pbUserTutorial = newUT;
-//            PBUserStage* userStage = [_pbUserTutorial.userStagesList objectAtIndex:stageIndex];
-//            
-//            // enter offline draw view controller
-//            [OfflineDrawViewController conquer:self userStage:userStage userTutorial:newUT];
-//        }
-
         [[UserTutorialService defaultService] enterConquerDraw:self
                                                 userTutorial:_pbUserTutorial
                                                      stageId:stageId
@@ -191,19 +178,6 @@
     }];
 
     [dialog setClickCancelBlock:^(id view){
-//        // Practice
-//        PBUserTutorial* newUT = [[UserTutorialService defaultService] startPracticeTutorialStage:self.pbUserTutorial.localId
-//                                                                                         stageId:stageId
-//                                                                                      stageIndex:stageIndex];
-//
-//        if (newUT){
-//
-//            self.pbUserTutorial = newUT;
-//            PBUserStage* userStage = [_pbUserTutorial.userStagesList objectAtIndex:stageIndex];
-//            
-//            // enter offline draw view controller
-//            [OfflineDrawViewController practice:self userStage:userStage userTutorial:newUT];
-//        }
         
         [[UserTutorialService defaultService] enterPracticeDraw:self
                                                  userTutorial:_pbUserTutorial

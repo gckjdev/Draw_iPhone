@@ -557,6 +557,15 @@
     }
 }
 
+- (void)disappear
+{
+    [super disappear];
+    self.clickOkBlock = nil;
+    self.clickCancelBlock = nil;
+    self.textChangedCallback = nil;
+    self.clickCloseBlock = nil;
+}
+
 + (CGFloat)edgeWidth
 {
     return CONTENT_VIEW_INSERT;
