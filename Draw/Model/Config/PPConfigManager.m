@@ -206,6 +206,10 @@
 {
     return [MobClickUtils getIntValueByKey:@"HOT_OPUS_FETCH_LIMIT" defaultValue:18];
 }
+//排行榜的数量
++(NSInteger)getRankOpusCountOnce{
+    return [MobClickUtils getIntValueByKey:@"RANK_OPUS_FETCH_LIMIT" defaultValue:51];
+}
 
 + (NSInteger)getTimelineCountOnce
 {
@@ -1546,7 +1550,7 @@
 {
 #ifdef DEBUG
     //    return @"http://192.168.1.12:8100/api/i?";
-//    return @"http://58.215.184.18:8699/api/i?";
+    return @"http://58.215.184.18:8699/api/i?";
     //    return @"http://192.168.100.192:8100/api/i?";
 //    return @"http://localhost:8100/api/i?";
 #endif

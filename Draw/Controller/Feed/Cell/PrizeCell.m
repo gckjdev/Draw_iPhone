@@ -50,10 +50,36 @@
     [self.avatarView setUrlString:feed.pbFeed.avatar];
     [self.userNameLabel setText:feed.pbFeed.nickName];
     [self.userNameLabel setTextColor:COLOR_GREEN];
-    int32_t score = feed.pbFeed.score;
-    NSString *rankDesc = [NSString stringWithFormat:@"%d分",score];
-    [self.rankDesc setText:rankDesc];
+    int32_t score = feed.pbFeed.stageScore;
+
+    //分数用Attribute String
     [self.rankDesc setTextColor:COLOR_GREEN];
+    [self.rankDesc setFont:AD_FONT(20, 15)];
+    NSString *scoreString = [NSString stringWithFormat:@"%d",score];
+    NSString *scoreDesc = [NSString stringWithFormat:@"%d分",score];
+    
+    NSRange range = [scoreDesc rangeOfString:scoreString];
+    NSMutableAttributedString *scoreAttr = [
+                                        [[NSMutableAttributedString alloc]
+                                         initWithString:
+                                         scoreDesc
+                                         ]autorelease];
+    [scoreAttr addAttribute:NSForegroundColorAttributeName
+                  value:COLOR_RED
+                  range:range
+     ];
+    [scoreAttr addAttribute:NSFontAttributeName
+                  value:AD_FONT(40, 30)
+                  range:range
+     ];
+    
+    
+    self.rankDesc.attributedText = scoreAttr;
+   
+    
+    
+//    [self.rankDesc setText:rankDesc];
+   
     if(row%2==0){
         [self showBg:YES];
     }else{
@@ -62,7 +88,7 @@
    
     [self setPrize:row+1];
     [self setListenForNameLabelAndAvatar];
-    
+    [self setSelfViewListen ];
     
 }
 -(void)showBg:(BOOL)isShow{
@@ -86,12 +112,7 @@
     
     return @"PrizeCell";
 }
-// just replace PPTableViewCell by the new Cell Class Name
-#define BASE_BUTTON_INDEX 10
-- (IBAction)clickImageView:(id)sender {
-    
-   [ShowFeedController enterWithFeedId:self.feed.feedId fromController:delegate];
-}
+
 
 + (id)createCell:(id)delegate
 {
@@ -140,11 +161,12 @@
         UIImageView *imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:[dict objectForKey:KEY(PizeCellPrizeCustom)]]];
         imageView.frame = _rankNumber.frame;
         
-        UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 5, imageView.frame.size.width, imageView.frame.size.height/2)];
+        UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, (ISIPAD?9.0f:5.0f), imageView.frame.size.width, imageView.frame.size.height/2)];
         [label setText:[NSString stringWithFormat:@"%d",prize]];
         [label setTextAlignment:NSTextAlignmentCenter];
         [label setBackgroundColor:[UIColor clearColor]];
-        [label setFont:AD_FONT(27, 15)];
+        [label setFont:AD_FONT(29, 17)];
+        [label setTextColor:COLOR_WHITE];
         [imageView addSubview:label];
         [self.rankNumber addSubview:imageView];
         [label release];
@@ -176,7 +198,15 @@
 -(void)setListenForNameLabelAndAvatar{
     [self setListenInView:_userNameView selector:@selector(enterUserDetailController)];
     [self setListenInView:_avatarView selector:@selector(enterUserDetailController)];
-     }
+}
+// just replace PPTableViewCell by the new Cell Class Name
+#define BASE_BUTTON_INDEX 10
+- (IBAction)clickImageView:(id)sender {
+    [ShowFeedController enterWithFeedId:self.feed.feedId fromController:delegate];
+}
+-(void)setSelfViewListen{
+    [self setListenInView:self selector:@selector(clickImageView:)];
+}
 
 
 
