@@ -54,9 +54,9 @@
 
     //分数用Attribute String
     [self.rankDesc setTextColor:COLOR_GREEN];
-    [self.rankDesc setFont:AD_FONT(20, 15)];
+    [self.rankDesc setFont:AD_FONT(20, 10)];
     NSString *scoreString = [NSString stringWithFormat:@"%d",score];
-    NSString *scoreDesc = [NSString stringWithFormat:@"%d分",score];
+    NSString *scoreDesc = [NSString stringWithFormat:@"%d 分",score];
     
     NSRange range = [scoreDesc rangeOfString:scoreString];
     NSMutableAttributedString *scoreAttr = [
@@ -69,7 +69,7 @@
                   range:range
      ];
     [scoreAttr addAttribute:NSFontAttributeName
-                  value:AD_FONT(40, 30)
+                  value:AD_FONT(40, 20)
                   range:range
      ];
     
@@ -162,10 +162,10 @@
         imageView.frame = _rankNumber.frame;
         
         UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, (ISIPAD?9.0f:5.0f), imageView.frame.size.width, imageView.frame.size.height/2)];
-        [label setText:[NSString stringWithFormat:@"%d",prize]];
+        [label setText:[NSString stringWithFormat:@"%d",self.feed.pbFeed.stageRank]];
         [label setTextAlignment:NSTextAlignmentCenter];
         [label setBackgroundColor:[UIColor clearColor]];
-        [label setFont:AD_FONT(29, 17)];
+        [label setFont:AD_FONT(28, 16)];
         [label setTextColor:COLOR_WHITE];
         [imageView addSubview:label];
         [self.rankNumber addSubview:imageView];

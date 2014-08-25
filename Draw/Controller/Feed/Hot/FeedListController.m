@@ -103,7 +103,13 @@
 
 - (void)viewDidLoad
 {
-    [self setPullRefreshType:PullRefreshTypeBoth];
+    
+    if(self.feedType == FeedListTypeConquerDrawStageTop){
+        [self setPullRefreshType:PullRefreshTypeNone];
+    }else{
+        [self setPullRefreshType:PullRefreshTypeBoth];
+    }
+    
     
     if (_isShowIndependent){
         // set title view
