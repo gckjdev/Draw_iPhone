@@ -244,10 +244,12 @@ struct  _Game__PBFeed
   char **opusclassids;
   protobuf_c_boolean has_stagescore;
   int32_t stagescore;
+  protobuf_c_boolean has_stagerank;
+  int32_t stagerank;
 };
 #define GAME__PBFEED__INIT \
  { PROTOBUF_C_MESSAGE_INIT (&game__pbfeed__descriptor) \
-    , NULL, NULL, 0, 0, 0,0, NULL, NULL, 0,0, NULL, NULL, 0,0, NULL, 0,0, NULL, NULL, NULL, 0,0, NULL, NULL, 0,NULL, 0,0, NULL, 0,0, 0,0, 0,NULL, 0,0, NULL, NULL, 0,0, 0,0, 0,0, 0,0, 0,NULL, NULL, NULL, 0,0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0,0, 0,NULL, 0,0, NULL, NULL, NULL, NULL, 0,0, 0,0, 0,0, 0,0, 0,0, 0,NULL, 0,NULL, 0,0 }
+    , NULL, NULL, 0, 0, 0,0, NULL, NULL, 0,0, NULL, NULL, 0,0, NULL, 0,0, NULL, NULL, NULL, 0,0, NULL, NULL, 0,NULL, 0,0, NULL, 0,0, 0,0, 0,NULL, 0,0, NULL, NULL, 0,0, 0,0, 0,0, 0,0, 0,NULL, NULL, NULL, 0,0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0,0, 0,NULL, 0,0, NULL, NULL, NULL, NULL, 0,0, 0,0, 0,0, 0,0, 0,0, 0,NULL, 0,NULL, 0,0, 0,0 }
 
 
 struct  _Game__PBPoint
