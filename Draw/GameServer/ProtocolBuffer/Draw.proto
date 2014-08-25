@@ -163,10 +163,10 @@ message PBFeed {
 //  repeated PBClass class = 210;                 // 分类信息，一个作品可以属于一个或者多个分类，废弃，保留做兼容
   optional int64 strokes = 211;                     // 画画的笔画数目
   optional int32 draftCompleteDate = 212;           // 制作完成时间
-  optional int32 draftCreateDate = 213;             // 制作k开始时间
+  optional int32 draftCreateDate = 213;c             // 制作k开始时间
   repeated PBClass opusClass = 214;                 // 分类信息，一个作品可以属于一个或者多个分类
   repeated string opusClassIds = 215;               // 分类信息，仅包含ID列表
-
+  optional int32 stageScore = 216;                  // fei
   
 
 }
