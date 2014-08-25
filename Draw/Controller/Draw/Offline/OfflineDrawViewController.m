@@ -997,7 +997,6 @@
     [self initTitleView];
     [self initSubmitButton];
     [self setCopyViewInfo];
-
     [self updateTargetFriend];
 
 //    [self initBgImage];
@@ -1036,6 +1035,8 @@
     else{
         [self showHelpView:nil];
     }
+    
+    [self printRetainCount:@"viewDidLoad"];
 }
 
 // 显示闯关作品已经提交过的信息
@@ -1226,17 +1227,19 @@
 
 - (void)registerUIApplicationNotification
 {
+    // TODO check bself here
+    __block OfflineDrawViewController* bself = self;
     [self registerNotificationWithName:UIApplicationDidEnterBackgroundNotification usingBlock:^(NSNotification *note) {
 
-        if ([self isLearnType]){
-            [self saveDraft:NO];
+        if ([bself isLearnType]){
+            [bself saveDraft:NO];
         }
         
-        [self.designTime pause];
+        [bself.designTime pause];
     }];
     
     [self registerNotificationWithName:UIApplicationWillEnterForegroundNotification usingBlock:^(NSNotification *note) {
-        [self.designTime resume];
+        [bself.designTime resume];
     }];
 }
 
@@ -2291,11 +2294,11 @@
     
     __block OfflineDrawViewController* bself = self;
     [ResultShareAlertPageViewController show:bself
-                                       image:self.submitOpusFinalImage
-                                   userStage:[self buildUserStage]
+                                       image:bself.submitOpusFinalImage
+                                   userStage:[bself buildUserStage]
                                        score:score
                                    nextBlock:^{
-                                       
+                                                                              
                                        PPDebug(@"next Block");
                                        [bself tryConquerNext];
                                        
@@ -2430,25 +2433,25 @@
 // 闯关模式下，尝试下一关
 - (void)tryConquerNext
 {
+    
     [self.draft setDeleteFlag:@(YES)]; // delete current draft
     
     PBUserStage* userStage = [self buildUserStage];
-    
     PBUserTutorial* userTutorial = [self buildUserTutorial];
-    
     PBStage* nextStage = [self.tutorial nextStage:userStage.stageIndex];
     if (nextStage == nil){
         // no next stage, end.
         return;
     }
-    
+
     [self actionsBeforeQuit];
     [self.navigationController popViewControllerAnimated:NO];
-    
+
     [[UserTutorialService defaultService] enterConquerDraw:self.startController
                                               userTutorial:userTutorial
                                                    stageId:nextStage.stageId
                                                 stageIndex:userStage.stageIndex + 1];
+    
 }
 
 // 修炼模式下，尝试闯关
