@@ -1686,7 +1686,7 @@ BBSService *_staticGroupTopicService;
              stageId:(NSString *)stageId
         tutorialName:(NSString *)tutorialName
            stageName:(NSString *)stageName
-      fromController:(UIViewController *)fromController
+      fromController:(PPViewController *)fromController
 {
 
     if(tutorialId == nil){
@@ -1711,11 +1711,13 @@ BBSService *_staticGroupTopicService;
         [para setObject:stageName forKey:PARA_STAGE_NAME];
     }
 
+    [fromController showActivityWithText:NSLS(@"kLoading")];
     [PPGameNetworkRequest loadPBData:workingQueue
                              hostURL:TUTORIAL_HOST
                               method:METHOD_GET_STAGE_POST_ID
                           parameters:para
                             callback:^(DataQueryResponse *response, NSError *error) {
+                                [fromController hideActivity];
                                 if (error == nil){
                                     NSArray *bbsPostList = response.bbsPostList;
                                     if ([bbsPostList count] > 0){
