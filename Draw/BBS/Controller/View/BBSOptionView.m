@@ -92,9 +92,11 @@
         [UIView animateWithDuration:ANIMATION_TIME animations:^{
             self.alpha = 0.0;
         } completion:^(BOOL finished) {
+            RELEASE_BLOCK(_callback);
             [self removeFromSuperview];
         }];
     }else{
+        RELEASE_BLOCK(_callback);
         [self removeFromSuperview];
     }
 }
