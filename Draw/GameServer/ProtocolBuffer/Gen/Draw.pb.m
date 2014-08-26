@@ -2563,6 +2563,7 @@ static PBLabelInfo* defaultPBLabelInfoInstance = nil;
 @property (retain) NSMutableArray* mutableOpusClassList;
 @property (retain) NSMutableArray* mutableOpusClassIdsList;
 @property int32_t stageScore;
+@property int32_t stageRank;
 @end
 
 @implementation PBFeed
@@ -2959,6 +2960,13 @@ static PBLabelInfo* defaultPBLabelInfoInstance = nil;
   hasStageScore_ = !!value;
 }
 @synthesize stageScore;
+- (BOOL) hasStageRank {
+  return !!hasStageRank_;
+}
+- (void) setHasStageRank:(BOOL) value {
+  hasStageRank_ = !!value;
+}
+@synthesize stageRank;
 - (void) dealloc {
   self.feedId = nil;
   self.userId = nil;
@@ -3052,6 +3060,7 @@ static PBLabelInfo* defaultPBLabelInfoInstance = nil;
     self.draftCompleteDate = 0;
     self.draftCreateDate = 0;
     self.stageScore = 0;
+    self.stageRank = 0;
   }
   return self;
 }
@@ -3337,6 +3346,9 @@ static PBFeed* defaultPBFeedInstance = nil;
   if (self.hasStageScore) {
     [output writeInt32:216 value:self.stageScore];
   }
+  if (self.hasStageRank) {
+    [output writeInt32:217 value:self.stageRank];
+  }
   [self.unknownFields writeToCodedOutputStream:output];
 }
 - (int32_t) serializedSize {
@@ -3537,6 +3549,9 @@ static PBFeed* defaultPBFeedInstance = nil;
   }
   if (self.hasStageScore) {
     size += computeInt32Size(216, self.stageScore);
+  }
+  if (self.hasStageRank) {
+    size += computeInt32Size(217, self.stageRank);
   }
   size += self.unknownFields.serializedSize;
   memoizedSerializedSize = size;
@@ -3807,6 +3822,9 @@ static PBFeed* defaultPBFeedInstance = nil;
   }
   if (other.hasStageScore) {
     [self setStageScore:other.stageScore];
+  }
+  if (other.hasStageRank) {
+    [self setStageRank:other.stageRank];
   }
   [self mergeUnknownFields:other.unknownFields];
   return self;
@@ -4104,6 +4122,10 @@ static PBFeed* defaultPBFeedInstance = nil;
       }
       case 1728: {
         [self setStageScore:[input readInt32]];
+        break;
+      }
+      case 1736: {
+        [self setStageRank:[input readInt32]];
         break;
       }
     }
@@ -5219,6 +5241,22 @@ static PBFeed* defaultPBFeedInstance = nil;
 - (PBFeed_Builder*) clearStageScore {
   result.hasStageScore = NO;
   result.stageScore = 0;
+  return self;
+}
+- (BOOL) hasStageRank {
+  return result.hasStageRank;
+}
+- (int32_t) stageRank {
+  return result.stageRank;
+}
+- (PBFeed_Builder*) setStageRank:(int32_t) value {
+  result.hasStageRank = YES;
+  result.stageRank = value;
+  return self;
+}
+- (PBFeed_Builder*) clearStageRank {
+  result.hasStageRank = NO;
+  result.stageRank = 0;
   return self;
 }
 @end

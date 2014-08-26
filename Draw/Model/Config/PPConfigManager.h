@@ -75,6 +75,7 @@ typedef enum{
 
 
 + (NSInteger)getHotOpusCountOnce;
++(NSInteger)getRankOpusCountOnce;
 + (NSInteger)getTimelineCountOnce;
 + (BOOL)showOpusCount;
 

@@ -750,6 +750,7 @@
   BOOL hasDraftCompleteDate_:1;
   BOOL hasDraftCreateDate_:1;
   BOOL hasStageScore_:1;
+  BOOL hasStageRank_:1;
   BOOL hasActionType_:1;
   BOOL hasCreateDate_:1;
   BOOL hasDeviceType_:1;
@@ -758,6 +759,7 @@
   BOOL hasUserId_:1;
   BOOL hasDeviceName_:1;
   BOOL hasGameId_:1;
+  BOOL hasNickName_:1;
   BOOL hasContestId_:1;
   BOOL hasBgImageName_:1;
   BOOL hasBgImageUrl_:1;
@@ -766,17 +768,16 @@
   BOOL hasOpusImage_:1;
   BOOL hasOpusWord_:1;
   BOOL hasOpusCreatorAvatar_:1;
-  BOOL hasNickName_:1;
+  BOOL hasAvatar_:1;
   BOOL hasOpusCreatorNickName_:1;
   BOOL hasOpusCreatorUserId_:1;
-  BOOL hasDrawDataUrl_:1;
-  BOOL hasAvatar_:1;
-  BOOL hasSignature_:1;
   BOOL hasOpusId_:1;
-  BOOL hasOpusDesc_:1;
-  BOOL hasComment_:1;
-  BOOL hasTargetUserNickName_:1;
+  BOOL hasSignature_:1;
+  BOOL hasDrawDataUrl_:1;
   BOOL hasTargetUserId_:1;
+  BOOL hasOpusDesc_:1;
+  BOOL hasTargetUserNickName_:1;
+  BOOL hasComment_:1;
   BOOL hasCanvasSize_:1;
   BOOL hasDescLabelInfo_:1;
   BOOL hasSing_:1;
@@ -803,6 +804,7 @@
   int32_t draftCompleteDate;
   int32_t draftCreateDate;
   int32_t stageScore;
+  int32_t stageRank;
   int32_t actionType;
   int32_t createDate;
   int32_t deviceType;
@@ -811,6 +813,7 @@
   NSString* userId;
   NSString* deviceName;
   NSString* gameId;
+  NSString* nickName;
   NSString* contestId;
   NSString* bgImageName;
   NSString* bgImageUrl;
@@ -819,17 +822,16 @@
   NSString* opusImage;
   NSString* opusWord;
   NSString* opusCreatorAvatar;
-  NSString* nickName;
+  NSString* avatar;
   NSString* opusCreatorNickName;
   NSString* opusCreatorUserId;
-  NSString* drawDataUrl;
-  NSString* avatar;
-  NSString* signature;
   NSString* opusId;
-  NSString* opusDesc;
-  NSString* comment;
-  NSString* targetUserNickName;
+  NSString* signature;
+  NSString* drawDataUrl;
   NSString* targetUserId;
+  NSString* opusDesc;
+  NSString* targetUserNickName;
+  NSString* comment;
   PBSize* canvasSize;
   PBLabelInfo* descLabelInfo;
   PBSingOpus* sing;
@@ -841,8 +843,8 @@
   NSMutableArray* mutableOpusClassIdsList;
   NSMutableArray* mutableTagsList;
   NSMutableArray* mutableRankInfoList;
-  NSMutableArray* mutableFeedTimesList;
   NSMutableArray* mutableOpusClassList;
+  NSMutableArray* mutableFeedTimesList;
 }
 - (BOOL) hasFeedId;
 - (BOOL) hasUserId;
@@ -897,6 +899,7 @@
 - (BOOL) hasDraftCompleteDate;
 - (BOOL) hasDraftCreateDate;
 - (BOOL) hasStageScore;
+- (BOOL) hasStageRank;
 @property (readonly, retain) NSString* feedId;
 @property (readonly, retain) NSString* userId;
 @property (readonly) int32_t actionType;
@@ -950,6 +953,7 @@
 @property (readonly) int32_t draftCompleteDate;
 @property (readonly) int32_t draftCreateDate;
 @property (readonly) int32_t stageScore;
+@property (readonly) int32_t stageRank;
 - (NSArray*) tagsList;
 - (NSString*) tagsAtIndex:(int32_t) index;
 - (NSArray*) guessWordsList;
@@ -1315,6 +1319,11 @@
 - (int32_t) stageScore;
 - (PBFeed_Builder*) setStageScore:(int32_t) value;
 - (PBFeed_Builder*) clearStageScore;
+
+- (BOOL) hasStageRank;
+- (int32_t) stageRank;
+- (PBFeed_Builder*) setStageRank:(int32_t) value;
+- (PBFeed_Builder*) clearStageRank;
 @end
 
 @interface PBPoint : PBGeneratedMessage {

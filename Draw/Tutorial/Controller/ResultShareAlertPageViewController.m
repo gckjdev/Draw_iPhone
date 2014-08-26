@@ -248,6 +248,7 @@
 }
 
 
+//TODO 放进Util 包
 //longsentent 为一
 -(NSRange)getRangeInNsstringLong:(NSString*)longSentence ShorterSentence:(NSString*)shortSentence{
     if([shortSentence length]<=[longSentence length]){

@@ -2901,7 +2901,7 @@
 "kScaleFloatWarning" = "Proportion must be a number between 1 and 100";
 "kGifCountIntWarning" = "Frame must be a number between 1 and 100";
 "kScaleFloatPlaceholder" = "1~50 Integer";
-"kGifCountIntPlaceholder" = "1~100 Integer";
+"kGifCountIntPlaceholder" = "1~100% Integer";
 
 "kShareGIFText" = "Look at this awesome drawing with GIF replay";
 "kGIFShareSuffix" = " #GIF Replay#";

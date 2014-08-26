@@ -103,7 +103,13 @@
 
 - (void)viewDidLoad
 {
-    [self setPullRefreshType:PullRefreshTypeBoth];
+    
+    if(self.feedType == FeedListTypeConquerDrawStageTop){
+        [self setPullRefreshType:PullRefreshTypeNone];
+    }else{
+        [self setPullRefreshType:PullRefreshTypeBoth];
+    }
+    
     
     if (_isShowIndependent){
         // set title view
@@ -327,7 +333,12 @@
 
 - (NSInteger)fetchDataLimitForTabIndex:(NSInteger)index
 {
-    return [PPConfigManager getHotOpusCountOnce];;
+    if (self.feedType == FeedListTypeConquerDrawStageTop){
+        return [PPConfigManager getRankOpusCountOnce];
+    }
+    else{
+        return [PPConfigManager getHotOpusCountOnce];
+    }
 }
 
 - (NSInteger)tabIDforIndex:(NSInteger)index
