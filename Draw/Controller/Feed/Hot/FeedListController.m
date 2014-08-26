@@ -105,7 +105,7 @@
 {
     
     if(self.feedType == FeedListTypeConquerDrawStageTop){
-        [self setPullRefreshType:PullRefreshTypeNone];
+        [self setPullRefreshType:PullRefreshTypeHeader];
     }else{
         [self setPullRefreshType:PullRefreshTypeBoth];
     }

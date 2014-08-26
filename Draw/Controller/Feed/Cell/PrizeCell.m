@@ -43,7 +43,7 @@
 - (void)setCellInfo:(DrawFeed *)feed row:(NSInteger)row
 {
     self.feed = feed;
-    [self.opusImageView setImageWithUrl:[NSURL URLWithString:feed.pbFeed.opusThumbImage]
+    [self.opusImageView setImageWithUrl:[NSURL URLWithString:feed.pbFeed.opusImage]
                    placeholderImage:[UIImage imageNamed:DEFAULT_IMAGE]
                         showLoading:NO
                            animated:YES];
@@ -56,7 +56,7 @@
     [self.rankDesc setTextColor:COLOR_GREEN];
     [self.rankDesc setFont:AD_FONT(20, 10)];
     NSString *scoreString = [NSString stringWithFormat:@"%d",score];
-    NSString *scoreDesc = [NSString stringWithFormat:@"%d 分",score];
+    NSString *scoreDesc = [NSString stringWithFormat:@"%d分",score];
     
     NSRange range = [scoreDesc rangeOfString:scoreString];
     NSMutableAttributedString *scoreAttr = [
