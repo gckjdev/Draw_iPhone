@@ -264,6 +264,6 @@ typedef void (^BBSResultHandler) (NSInteger resultCode);
              stageId:(NSString *)stageId
         tutorialName:(NSString *)tutorialName
            stageName:(NSString *)stageName
-      fromController:(UIViewController *)fromController;
+      fromController:(PPViewController *)fromController;
 
 @end

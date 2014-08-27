@@ -2892,7 +2892,7 @@
 "kSaveAsGif" = "Share As GIF";
 "kCreateGIFProgress" = "Creating GIF...%2d%%";
 
-"kPicSum" = "Frame Num";
+"kPicSum" = "Frame";
 "kPicScale" = "Proportion";
 
 "kShareGifDialogTitle" = "Share As GIF";
@@ -2904,7 +2904,7 @@
 "kGifCountIntPlaceholder" = "1~100% Integer";
 
 "kShareGIFText" = "Look at this awesome drawing with GIF replay";
-"kGIFShareSuffix" = " #GIF Replay#";
+"kGIFShareSuffix" = "GIF Paints";
 
 "kReplayOpus" = "Replay";
 

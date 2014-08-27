@@ -80,6 +80,7 @@ static TutorialCoreManager* _defaultTutorialCoreManager;
 {
     if (_tutorialList == nil){
         _tutorialList = [[NSMutableArray alloc] init];
+        _stepByStepTutorialIdList = [[NSMutableArray alloc] init];
     }
     
     NSString* dataPath = [_smartData dataFilePath];
@@ -357,19 +358,15 @@ static TutorialCoreManager* _defaultTutorialCoreManager;
 // 创建测试数据
 - (void)createTestData
 {
-    //    NSString* root = @"/gitdata/Draw_iPhone/Draw/Tutorial/Resource/";
+    NSString* root = @"/gitdata/Draw_iPhone/Draw/Tutorial/Resource/";
 //    NSString* root = @"/Users/chaoso/Desktop/gitdata/Draw_iPhone/Draw/Tutorial/Resource/";
     //    NSString *root = @"/Users/Linruin/gitdata/Draw_iPhone/Draw/Tutorial/Resource/";
-    NSString *root = @"/Users/jiandan/gitdata/Draw_iPhone/Draw/Tutorial/Resource/";
+//    NSString *root = @"/Users/jiandan/gitdata/Draw_iPhone/Draw/Tutorial/Resource/";
     NSString* path = [root stringByAppendingString:[TutorialCoreManager appTaskDefaultConfigFileName]];
     
     //    NSString* versionPath = [root stringByAppendingString:[PPSmartUpdateDataUtils getVersionFileName:[TutorialCoreManager appTaskDefaultConfigFileName]]];
     
     PBTutorialCore_Builder* builder = [PBTutorialCore builder];
-    
-    
-    // TODO add test tutorials
-    
     
     NSArray* testTutorialName = @[
                                   /*@"疯狂的线条",@"识色配图",@"旺星人大集合",@"易容速成",*/@"百态小吉萌翻天",@"全民健身大进击",@"奇妙的色彩世界",@"爱生活爱运动",@"萌萌哒发型屋",@"初识三次元"];
@@ -764,11 +761,6 @@ static TutorialCoreManager* _defaultTutorialCoreManager;
     
     //tutorialTipsList
     NSArray *tipsList = @[
-                                                    //                          @[],
-                          //                          @[],
-                          //                          @[],
-                          //                          @[],
-                          //                          @[],
                           tutorial6Tips,
                           tutorial4Tips,
                           secaiTips,
@@ -794,22 +786,6 @@ static TutorialCoreManager* _defaultTutorialCoreManager;
     
     //画的类型
     NSArray *stageTypeList = @[
-                               
-                               
-                               //                                @[],
-                               
-                               //                                @[],
-                               
-                               //                                @[],
-                               
-                               //                                @[],
-                               
-//                               @[@0,@0,@0,@0,@0,@0,@0,@0,@0,@0],
-//                               @[@1,@1,@1,@1,@1,@1,@1,@1,@1,@1],
-//                               @[@0,@0,@0,@0,@0,@0,@0,@0,@0,@0],
-//                               @[@1,@1,@1,@1,@1,@1,@1,@1,@1,@1],
-//                               @[@2,@2,@2,@2,@2,@2,@2,@2,@2,@2],
-//                               @[@2,@2,@2,@2,@2,@2,@2,@2,@2,@2]
                                 SE(SE_NORMAL),//小吉
                                 SE(SE_JIANBI),//健身
                                 SE(SE_NORMAL),//色彩
@@ -1020,34 +996,25 @@ static TutorialCoreManager* _defaultTutorialCoreManager;
         PPDebug(@"tutorialID: %@",tutorial.tutorialId);
     }
     [builder addAllTutorials:tutorialList];
+    
+    NSString* DEFAULT_TUTORIAL_ID = @"tutorialId-2";  // color
+    [builder addStepByStepTutorialId:DEFAULT_TUTORIAL_ID];
+    
     PBTutorialCore* core = [builder build];
     NSData* data = [core data];
-    //    NSData* data = [test data];
     
     BOOL result = [data writeToFile:path atomically:YES];
     PPDebug(@"<createTestData> data file result=%d, file=%@", result, path);
-    
-    //    NSString* version = @"1.1";
-    //    NSError* error = nil;
-    //    result = [version writeToFile:versionPath atomically:YES encoding:NSUTF8StringEncoding error:&error];
-    //    PPDebug(@"<createTestData> version txt file result=%d error=%@ file=%@", result, [error description], versionPath);
 }
 
-#define GET_THE_DEFAULT_NUM 0
 -(PBTutorial*)defaultFirstTutorial
 {
-#ifdef DEBUG
-    
-    NSString *stepId = @"tutorialId-0";
-    [self.stepByStepTutorialIdList addObject:stepId];
-    return [self findTutorialByTutorialId:stepId];
-    
-#endif
-    if([self.stepByStepTutorialIdList count]>0 && self.stepByStepTutorialIdList !=nil){
-        //先取第一个元素,以后根据需求需要修改 TODO
-        NSString *stepId = [self.stepByStepTutorialIdList objectAtIndex:GET_THE_DEFAULT_NUM];
+    if ([self.stepByStepTutorialIdList count] >0){
+        //先取第一个元素,以后根据需求需要修改
+        NSString *stepId = [self.stepByStepTutorialIdList objectAtIndex:0];
         return [self findTutorialByTutorialId:stepId];
     }
+    
     PPDebug(@"<defaultFirstTutorial> but the stepByStepTutorialIdList is nil or empty");
     return nil;
 }

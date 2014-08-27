@@ -1500,6 +1500,9 @@
     [self hideActivity];
     [self hideProgressView];
     
+    NSString* opusWord = self.draft.drawWord;
+    NSString* opusComment = self.draft.opusDesc;
+    
     self.submitButton.userInteractionEnabled = YES;
     if (resultCode == 0) {
                 
@@ -1536,7 +1539,7 @@
         self.submitOpusDrawData = nil;
         
         [[LevelService defaultService] addExp:OFFLINE_DRAW_EXP delegate:self];
-        [self shareToWeibo:opusId];
+        [self shareToWeibo:opusId opusWord:opusWord opusComment:opusComment];
         
         CommonDialog *dialog = nil;
         if (self.contest) {
@@ -1838,10 +1841,14 @@
     [self showProgressViewWithMessage:progressText progress:progress];
 }
 
-- (void)shareViaSNS:(SnsType)type imagePath:(NSString*)imagePath opusId:(NSString*)opusId
+- (void)shareViaSNS:(SnsType)type
+          imagePath:(NSString*)imagePath
+             opusId:(NSString*)opusId
+           opusWord:(NSString*)opusWord
+        opusComment:(NSString*)opusComment
 {    
-    NSString* text = [ShareAction createShareText:[self opusSubject]
-                                             desc:[self getOpusComment]
+    NSString* text = [ShareAction createShareText:opusWord
+                                             desc:opusComment
                                        opusUserId:[[UserManager defaultManager] userId]
                                        userGender:[[UserManager defaultManager] isUserMale]
                                           snsType:type
@@ -1879,9 +1886,16 @@
 }
 
 - (void)shareToWeibo:(NSString*)opusId
+            opusWord:(NSString*)opusWord
+         opusComment:(NSString*)opusComment
+
 {
     for (NSNumber *value in self.shareWeiboSet) {
-        [self shareViaSNS:[value integerValue] imagePath:self.tempImageFilePath opusId:opusId];
+        [self shareViaSNS:[value integerValue]
+                imagePath:self.tempImageFilePath
+                   opusId:opusId
+                 opusWord:opusWord
+              opusComment:opusComment];
     }
     
     self.shareWeiboSet = nil;
