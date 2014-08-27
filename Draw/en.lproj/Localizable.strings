@@ -2892,7 +2892,7 @@
 "kSaveAsGif" = "Share As GIF";
 "kCreateGIFProgress" = "Creating GIF...%2d%%";
 
-"kPicSum" = "Frame";
+"kPicSum" =   "Frame     ";
 "kPicScale" = "Proportion";
 
 "kShareGifDialogTitle" = "Share As GIF";
