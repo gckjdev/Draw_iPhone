@@ -385,16 +385,16 @@
     PPRelease(_userStage);
     PPRelease(_resultImage);
     
-    [_opusImageView release];
-    [_avatarImageView release];
-    [_nameLabel release];
-    [_shareButton release];
-    [_continueButton release];
-    [_lineOneLabel release];
-    [_lineTwoLabel release];
-    [_lineThreeLabel release];
-    [_lineFourLabel release];
-    [_resultView release];
+    PPRelease(_opusImageView);
+    PPRelease(_avatarImageView);
+    PPRelease(_nameLabel);
+    PPRelease(_shareButton);
+    PPRelease(_continueButton);
+    PPRelease(_lineOneLabel);
+    PPRelease(_lineTwoLabel);
+    PPRelease(_lineThreeLabel);
+    PPRelease(_lineFourLabel);
+    PPRelease(_resultView);
     [super dealloc];
 }
 

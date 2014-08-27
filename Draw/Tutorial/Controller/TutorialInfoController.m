@@ -52,7 +52,9 @@ enum{
     return vc;
 }
 
-+ (TutorialInfoController *)show:(PPViewController*)superController tutorial:(PBTutorial*)pbTutorial infoOnly:(BOOL)infoOnly
++ (TutorialInfoController *)show:(PPViewController*)superController
+                        tutorial:(PBTutorial*)pbTutorial
+                        infoOnly:(BOOL)infoOnly
 {
     TutorialInfoController* infoController = [TutorialInfoController createController:pbTutorial infoOnly:NO];
     UserTutorialManager *um = [UserTutorialManager defaultManager];
@@ -77,14 +79,16 @@ enum{
     [dialog setClickOkBlock:^(id infoView){
         
         if([um isTutorialLearned:pbTutorial.tutorialId]){
-            // close dialog
-            [infoController close:dialog];
             
             // enter learning
             PBUserTutorial* ut = [[UserTutorialManager defaultManager] getUserTutorialByTutorialId:pbTutorial.tutorialId];
             if (ut != nil){
                 [TutorialStageController enter:superController pbTutorial:ut];
             }
+            
+            // close dialog
+            [infoController close:dialog];
+            
         }
         else{
             [[UserTutorialService defaultService] addTutorial:pbTutorial resultBlock:^(int resultCode) {
