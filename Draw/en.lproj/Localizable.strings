@@ -2892,7 +2892,7 @@
 "kSaveAsGif" = "Share As GIF";
 "kCreateGIFProgress" = "Creating GIF...%2d%%";
 
-"kPicSum" = "Frame";
+"kPicSum" =   "Frame     ";
 "kPicScale" = "Proportion";
 
 "kShareGifDialogTitle" = "Share As GIF";
@@ -2915,4 +2915,4 @@
 "kCreateGIFFailure" = "Fail to create GIF file. Please try again.";
 "kRankingList" = "Rank";
 "kAskQuestion" = "Ask";
-"kRequierDelete" = "Delete?";
+"kRequierDelete" = "Delete this tutorial?";

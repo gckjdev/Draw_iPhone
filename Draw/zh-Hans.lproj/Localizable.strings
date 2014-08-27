@@ -2938,7 +2938,7 @@
 "kSaveAsGif" = "分享回放过程";
 "kCreateGIFProgress" = "生成GIF动图中...%2d%%";
 
-"kPicSum" = "图片个数:";
+"kPicSum" =   "图片个数   :";
 "kPicScale" = "图片比例(%):";
 
 "kShareGifDialogTitle" = "分享作品回放过程";
@@ -2962,4 +2962,4 @@
 
 "kRankingList" = "榜单";
 "kAskQuestion" = "答疑";
-"kRequierDelete" = "注意，删除教程后,进度会丢失。";
+"kRequierDelete" = "删除教程？（注意，删除教程后,进度会丢失）";
