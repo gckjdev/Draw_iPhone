@@ -16,7 +16,7 @@
 #import "CanvasRect.h"
 #import "DrawHolderView.h"
 #import "ClipAction.h"
-
+#import "SDWebImageDecoder.h"
 
 #include <ImageIO/ImageIO.h>
 #include <MobileCoreServices/MobileCoreServices.h>
@@ -878,6 +878,7 @@ typedef enum {
     // add last image to first for good display
     if (finalImage){
         finalImage = [finalImage scaleImage:finalImage toScale:scaleSize];
+//        finalImage = [UIImage decodedImageWithImage:finalImage];
         if (finalImage){
             [gifFrames insertObject:finalImage atIndex:0];
             [gifFrames addObject:finalImage];
@@ -885,6 +886,7 @@ typedef enum {
     }
     else{
         UIImage* lastImage = [gifFrames lastObject];
+//        lastImage = [UIImage decodedImageWithImage:lastImage];
         if (lastImage){
             [gifFrames insertObject:lastImage atIndex:0];
         }
