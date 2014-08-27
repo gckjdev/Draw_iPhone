@@ -2915,4 +2915,4 @@
 "kCreateGIFFailure" = "Fail to create GIF file. Please try again.";
 "kRankingList" = "Rank";
 "kAskQuestion" = "Ask";
-"kRequierDelete" = "Delete?";
+"kRequierDelete" = "Delete this tutorial?";

@@ -378,23 +378,7 @@
 
 - (void)dealloc {
     
-    self.nextBlock = nil;
-    self.retryBlock = nil;
-    self.backBlock = nil;
-    
-    PPRelease(_userStage);
-    PPRelease(_resultImage);
-    
-    PPRelease(_opusImageView);
-    PPRelease(_avatarImageView);
-    PPRelease(_nameLabel);
-    PPRelease(_shareButton);
-    PPRelease(_continueButton);
-    PPRelease(_lineOneLabel);
-    PPRelease(_lineTwoLabel);
-    PPRelease(_lineThreeLabel);
-    PPRelease(_lineFourLabel);
-    PPRelease(_resultView);
+    [self clearBlocks];
     [super dealloc];
 }
 
@@ -565,7 +549,19 @@
     self.retryBlock = nil;
     self.backBlock = nil;
     
-    self.resultImage = nil;
+    PPRelease(_userStage);
+    PPRelease(_resultImage);
+    
+    PPRelease(_opusImageView);
+    PPRelease(_avatarImageView);
+    PPRelease(_nameLabel);
+    PPRelease(_shareButton);
+    PPRelease(_continueButton);
+    PPRelease(_lineOneLabel);
+    PPRelease(_lineTwoLabel);
+    PPRelease(_lineThreeLabel);
+    PPRelease(_lineFourLabel);
+    PPRelease(_resultView);
 }
 
 @end

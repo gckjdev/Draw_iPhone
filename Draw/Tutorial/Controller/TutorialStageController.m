@@ -145,6 +145,9 @@
     }
     else{
 #ifdef DEBUG
+        
+        POSTMSG(NSLS(@"Stage is LOCK but THIS IS DEBUG VERSION"));
+        
         [StageAlertViewController show:self
                           userTutorial:self.pbUserTutorial
                             stageIndex:row];
