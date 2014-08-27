@@ -108,18 +108,18 @@ enum{
 
 - (void)close:(CommonDialog*)dialog
 {
-    if (self.parentViewController){
-        [self removeFromParentViewController];
-    }
+//    if (self.parentViewController){
+//        [self removeFromParentViewController];
+//    }
     
     [dialog disappear];    
 }
 
 - (void)dealloc
 {
-    if (self.parentViewController){
-        [self removeFromParentViewController];
-    }
+//    if (self.parentViewController){
+//        [self removeFromParentViewController];
+//    }
     PPRelease(_pbTutorial);
     [super dealloc];
 }

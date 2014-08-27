@@ -125,7 +125,7 @@
     CGRect frame;
     if (_isShowIndependent){
         CGFloat height = ([UIScreen mainScreen].bounds.size.height - COMMON_TITLE_VIEW_HEIGHT - STATUS_BAR_HEIGHT);
-        frame = CGRectMake(0, COMMON_TITLE_VIEW_HEIGHT + STATUS_BAR_HEIGHT, self.view.bounds.size.width, height);
+        frame = CGRectMake(0, COMMON_TITLE_VIEW_HEIGHT, self.view.bounds.size.width, height);
     }
     else{
         CGFloat height = ([UIScreen mainScreen].bounds.size.height - COMMON_TAB_BUTTON_HEIGHT - COMMON_TITLE_VIEW_HEIGHT - STATUS_BAR_HEIGHT);

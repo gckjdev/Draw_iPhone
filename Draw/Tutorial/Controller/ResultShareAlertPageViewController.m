@@ -96,12 +96,10 @@
             [dialog setClickOkBlock:^(id view){
                 
 
-
                 EXECUTE_BLOCK(rspc.nextBlock);
 
                 // close dialog
                 [rspc close:dialog];
-//                [rspc clearBlocks];
                 
             }];
         
@@ -118,10 +116,9 @@
             
 
             EXECUTE_BLOCK(rspc.retryBlock);
-            
+
             // close dialog
             [rspc close:dialog];
-//            [rspc clearBlocks];
             
         }];
     }
@@ -136,13 +133,12 @@
 
     dialog.clickCloseBlock = ^(id infoView){
         
+        // close dialog
+        [rspc close:dialog];
         
         EXECUTE_BLOCK(rspc.backBlock);
 
-        // close dialog
-        [rspc close:dialog];
-//        [rspc clearBlocks];
-        
+        [rspc clearBlocks];
     };
 
     
@@ -165,12 +161,12 @@
 
 - (void)close:(CommonDialog*)dialog
 {
-    [self clearBlocks];
+//    if (self.parentViewController){
+//        [self removeFromParentViewController];
+//    }
     
     [dialog disappear];
-    if (self.parentViewController){
-        [self removeFromParentViewController];
-    }
+    [self clearBlocks];
 }
 
 #define COMMONTITLE_VIEW [CommonTitleView titleView:self.view]

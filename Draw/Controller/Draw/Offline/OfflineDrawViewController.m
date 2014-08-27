@@ -1228,7 +1228,7 @@
 - (void)registerUIApplicationNotification
 {
     // TODO check bself here
-    __block OfflineDrawViewController* bself = self;
+    OfflineDrawViewController* bself = self;
     [self registerNotificationWithName:UIApplicationDidEnterBackgroundNotification usingBlock:^(NSNotification *note) {
 
         if ([bself isLearnType]){
@@ -2306,7 +2306,7 @@
     
     // invoke show result view here, pass user stage, image as parameter
     
-    __block OfflineDrawViewController* bself = self;
+    OfflineDrawViewController* bself = self;
     [ResultShareAlertPageViewController show:bself
                                        image:bself.submitOpusFinalImage
                                    userStage:[bself buildUserStage]
@@ -2397,7 +2397,7 @@
 
 - (void)showResultOptionForPractice
 {
-    __block OfflineDrawViewController* bself = self;
+    OfflineDrawViewController* bself = self;
 
     int score = [self.draft.score intValue];
     
@@ -2876,7 +2876,7 @@
                         TITLE_QUIT,
                         ];
     
-    __block id bself = self;
+    id bself = self;
     
     BBSActionSheet *sheet = [[BBSActionSheet alloc] initWithTitles:titles callback:^(NSInteger index) {
         NSString *t = titles[index];

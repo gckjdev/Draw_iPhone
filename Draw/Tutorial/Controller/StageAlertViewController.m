@@ -45,23 +45,27 @@
     [dialog.cancelButton setTitle:NSLS(@"kPractice") forState:UIControlStateNormal];
     
     [dialog setClickOkBlock:^(id view){
+        
+        [savc removeFromParentViewController];
+
         // Conquer
         [[UserTutorialService defaultService] enterConquerDraw:superController
                                                   userTutorial:pbUserTutorial
                                                        stageId:stageId
                                                     stageIndex:stageIndex];
 
-        [savc removeFromParentViewController];
     }];
     
     [dialog setClickCancelBlock:^(id view){
+
+        [savc removeFromParentViewController];
+
         // Practice
         [[UserTutorialService defaultService] enterPracticeDraw:superController
                                                    userTutorial:pbUserTutorial
                                                         stageId:stageId
                                                      stageIndex:stageIndex];
         
-        [savc removeFromParentViewController];
     }];
     
     
