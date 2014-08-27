@@ -55,7 +55,7 @@
     
     
     [self.userNameLabel setTextColor:COLOR_GREEN];
-    if (feed.pbFeed.userId == [[UserManager defaultManager] userId]) {
+    if ([feed.pbFeed.userId isEqualToString:[[UserManager defaultManager] userId]]) {
         [self.userNameLabel setTextColor:COLOR_RED];
     }
     int32_t score = feed.pbFeed.stageScore;
@@ -94,7 +94,7 @@
         [self showBg:NO];
     }
 
-    [self setPrize:row+1];
+    [self setPrize:feed.pbFeed.stageRank];
     [self setListenForNameLabelAndAvatar];
     [self setSelfViewListen ];
     
@@ -154,20 +154,20 @@
                                @"contest_prize_custom@2x.png",
                            };
     [self.rankNumber removeAllSubviews];
-    int prizeStage = 2;
-    if(prize==prizeStage){
+
+    if(prize==1){
         UIImageView *imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:[dict objectForKey:KEY(PizeCellPrizeFirst)]]];
         imageView.frame = _rankNumber.frame;
         [self.rankNumber addSubview:imageView];
         [imageView release];
     }
-    else if(prize==prizeStage){
+    else if(prize==2){
         UIImageView *imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:[dict objectForKey:KEY(PizeCellPrizeSecond)]]];
         imageView.frame = _rankNumber.frame;
         [self.rankNumber addSubview:imageView];
         [imageView release];
     }
-    else if(prize==prizeStage){
+    else if(prize==3){
         UIImageView *imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:[dict objectForKey:KEY(PizeCellPrizeThird)]]];
         imageView.frame = _rankNumber.frame;
         [self.rankNumber addSubview:imageView];

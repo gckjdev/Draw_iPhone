@@ -23,7 +23,7 @@
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <view alpha="0.94999999999999996" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="l6U-8P-Mme">
-                        <rect key="frame" x="0.0" y="86" width="290" height="20"/>
+                        <rect key="frame" x="0.0" y="85" width="290" height="21"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="简笔画" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AVB-UF-Fo1">
@@ -51,19 +51,19 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="bottom" secondItem="e2n-cV-Vob" secondAttribute="bottom" constant="3" id="OgG-zb-ake"/>
-                            <constraint firstAttribute="trailing" secondItem="e2n-cV-Vob" secondAttribute="trailing" constant="20" id="SJ9-Bv-2CV"/>
+                            <constraint firstAttribute="bottom" secondItem="e2n-cV-Vob" secondAttribute="bottom" constant="4" id="OgG-zb-ake"/>
+                            <constraint firstAttribute="trailing" secondItem="e2n-cV-Vob" secondAttribute="trailing" constant="10" id="SJ9-Bv-2CV"/>
                             <constraint firstItem="AVB-UF-Fo1" firstAttribute="leading" secondItem="l6U-8P-Mme" secondAttribute="leading" constant="9" id="TaB-kV-uqM"/>
                             <constraint firstItem="e2n-cV-Vob" firstAttribute="top" secondItem="l6U-8P-Mme" secondAttribute="top" constant="2" id="XJT-da-DJi"/>
-                            <constraint firstAttribute="bottom" secondItem="AVB-UF-Fo1" secondAttribute="bottom" constant="5" id="dXr-Xf-E5u"/>
-                            <constraint firstItem="AVB-UF-Fo1" firstAttribute="top" secondItem="l6U-8P-Mme" secondAttribute="top" constant="4" id="fuK-3p-a06"/>
+                            <constraint firstAttribute="bottom" secondItem="AVB-UF-Fo1" secondAttribute="bottom" constant="6" id="dXr-Xf-E5u"/>
+                            <constraint firstItem="AVB-UF-Fo1" firstAttribute="top" secondItem="l6U-8P-Mme" secondAttribute="top" constant="2" id="fuK-3p-a06"/>
                         </constraints>
                     </view>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sql-Ey-6EW" userLabel="button and label View">
                         <rect key="frame" x="72" y="10" width="146" height="80"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LR0-YB-7ux">
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LR0-YB-7ux">
                                 <rect key="frame" x="24" y="28" width="100" height="25"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -89,8 +89,8 @@
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="LR0-YB-7ux" firstAttribute="centerX" secondItem="fhu-Ld-yTS" secondAttribute="centerX" constant="1" id="AEy-RP-fbU"/>
-                            <constraint firstAttribute="centerX" secondItem="LR0-YB-7ux" secondAttribute="centerX" id="Rgv-zk-i5p"/>
+                            <constraint firstItem="LR0-YB-7ux" firstAttribute="centerX" secondItem="fhu-Ld-yTS" secondAttribute="centerX" constant="2" id="AEy-RP-fbU"/>
+                            <constraint firstAttribute="centerX" secondItem="LR0-YB-7ux" secondAttribute="centerX" constant="-1" id="Rgv-zk-i5p"/>
                         </constraints>
                     </view>
                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fVC-qC-yrc" userLabel="difficultyLabel">

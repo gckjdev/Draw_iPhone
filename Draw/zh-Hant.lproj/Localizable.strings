@@ -3015,3 +3015,7 @@
 "kReplayOptionBack" = "繼續";
 
 "kCreateGIFFailure" = "創建GIF作品重播失敗，稍後重試看看？";
+
+"kRankingList" = "榜單";
+"kAskQuestion" = "答疑";
+"kRequierDelete" = "注意，刪除教程后，進度會丟失。";
