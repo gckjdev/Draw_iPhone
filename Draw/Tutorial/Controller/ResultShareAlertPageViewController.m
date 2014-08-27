@@ -45,7 +45,7 @@
   retryBlock:(ResultShareAlertPageViewResultBlock)retryBlock
    backBlock:(ResultShareAlertPageViewResultBlock)backBlock
 {
-    __block ResultShareAlertPageViewController *rspc = [[ResultShareAlertPageViewController alloc] init];
+    ResultShareAlertPageViewController *rspc = [[ResultShareAlertPageViewController alloc] init];
     rspc.nextBlock = nextBlock;
     rspc.retryBlock = retryBlock;
     rspc.backBlock = backBlock;

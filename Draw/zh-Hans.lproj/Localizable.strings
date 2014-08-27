@@ -2962,3 +2962,4 @@
 
 "kRankingList" = "榜单";
 "kAskQuestion" = "答疑";
+"kRequierDelete" = "注意，删除教程后,进度会丢失。";

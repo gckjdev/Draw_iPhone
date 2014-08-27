@@ -529,7 +529,7 @@
     }
     if (!_manualClose) {
         [self disappear];
-    }
+    }   
 }
 
 - (IBAction)clickCancelButton:(id)sender

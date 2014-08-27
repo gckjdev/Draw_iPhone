@@ -104,6 +104,7 @@
 - (void)viewDidLoad
 {
     
+    
     if(self.feedType == FeedListTypeConquerDrawStageTop){
         [self setPullRefreshType:PullRefreshTypeHeader];
     }else{
@@ -133,6 +134,7 @@
     
     UITableView* tableView = [[UITableView alloc] initWithFrame:frame style:UITableViewStylePlain];
     self.dataTableView = tableView;
+
     [self.view addSubview:tableView];
     [tableView release];
     
@@ -140,6 +142,10 @@
     self.dataTableView.separatorColor = [UIColor clearColor];
 
     [super viewDidLoad];
+
+    if (self.feedType == FeedListTypeConquerDrawStageTop){
+        self.dataTableView.backgroundColor = [UIColor whiteColor];
+    }
 
     
     self.canDragBack = NO;

@@ -59,7 +59,9 @@
                         <nil key="highlightedColor"/>
                     </label>
                 </subviews>
+                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             </tableViewCellContentView>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             <connections>
                 <outlet property="avatarView" destination="A5P-eK-qun" id="cOh-Mu-aXa"/>
                 <outlet property="opusImageView" destination="5wW-EN-qrv" id="Z5P-cJ-3Xj"/>

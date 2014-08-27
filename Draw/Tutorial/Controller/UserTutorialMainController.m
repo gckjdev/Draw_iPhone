@@ -178,14 +178,21 @@
 
 -(void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath{
     if(editingStyle == UITableViewCellEditingStyleDelete){
+        NSString *msg = NSLS(@"kRequierDelete");
+        CommonDialog *deleteDialog = [CommonDialog createDialogWithTitle:NSLS(@"kMessage") message:msg style:CommonDialogStyleDoubleButtonWithCross];
         
-        UserTutorialService* userTutorialService = [UserTutorialService defaultService];
-        
-        [userTutorialService deleteUserTutorial:[self getDataListAtRow:indexPath.row]
-                             resultBlock:^(int resultCode) {
-                                 
-                                 [self reloadData];
-                                }];
+        [deleteDialog setClickOkBlock:^(id infoView){
+            
+            UserTutorialService* userTutorialService = [UserTutorialService defaultService];
+            
+            [userTutorialService deleteUserTutorial:[self getDataListAtRow:indexPath.row]
+                                        resultBlock:^(int resultCode) {
+                                            
+                                            [self reloadData];
+                                        }];
+
+        }];
+        [deleteDialog showInView:self.view];
     }
 }
 

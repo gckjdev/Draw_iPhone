@@ -144,6 +144,13 @@
         
     }
     else{
+#ifdef DEBUG
+        [StageAlertViewController show:self
+                          userTutorial:self.pbUserTutorial
+                            stageIndex:row];
+
+#endif
+    
     }
     
     [collectionView deselectItemAtIndexPath:indexPath animated:YES];

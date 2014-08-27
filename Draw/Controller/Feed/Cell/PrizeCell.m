@@ -25,7 +25,10 @@
     self = [super initWithFrame:frame];
     if (self) {
         // Initialization code
+        self.backgroundColor = [UIColor whiteColor];
+        self.contentView.backgroundColor = [UIColor whiteColor];
     }
+
     return self;
 }
 
@@ -49,7 +52,12 @@
                            animated:YES];
     [self.avatarView setUrlString:feed.pbFeed.avatar];
     [self.userNameLabel setText:feed.pbFeed.nickName];
+    
+    
     [self.userNameLabel setTextColor:COLOR_GREEN];
+    if (feed.pbFeed.userId == [[UserManager defaultManager] userId]) {
+        [self.userNameLabel setTextColor:COLOR_RED];
+    }
     int32_t score = feed.pbFeed.stageScore;
 
     //分数用Attribute String
@@ -85,29 +93,37 @@
     }else{
         [self showBg:NO];
     }
-   
+
     [self setPrize:row+1];
     [self setListenForNameLabelAndAvatar];
     [self setSelfViewListen ];
     
 }
+
 -(void)showBg:(BOOL)isShow{
     
     UIView *view = [self viewWithTag:BG_TAG];
-    if (view == nil) {
-        CGRect frame = [self bounds];
-        frame = CGRectInset(frame, EDGE_SPACE, 3);
-        view = [self reuseViewWithTag:BG_TAG viewClass:[UIView class] frame:frame];
-        [view.layer setCornerRadius:4];
-        [view.layer setMasksToBounds:YES];
-        SET_VIEW_BG(view);
-        [self sendSubviewToBack:view];
+    
+    if(isShow ==YES){
+        if (view == nil) {
+            CGRect frame = [self bounds];
+            frame = CGRectInset(frame, EDGE_SPACE, 3);
+            view = (PrizeCell *)[self reuseViewWithTag:BG_TAG viewClass:[UIView class] frame:frame];
+            [view.layer setCornerRadius:4];
+            [view.layer setMasksToBounds:YES];
+            view.backgroundColor = COLOR_GRAY;
+            //            SET_VIEW_BG(view);
+            [self sendSubviewToBack:view];
+        }
+
     }
-    view.hidden = !isShow;
-    
-    
-    
+    else if(isShow==NO){
+        view.backgroundColor = [UIColor whiteColor];
+    }
+
+    view.hidden = NO;
 }
+
 +(NSString *)getCellIdentifier{
     
     return @"PrizeCell";
@@ -138,20 +154,20 @@
                                @"contest_prize_custom@2x.png",
                            };
     [self.rankNumber removeAllSubviews];
-   
-    if(prize==1){
+    int prizeStage = 2;
+    if(prize==prizeStage){
         UIImageView *imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:[dict objectForKey:KEY(PizeCellPrizeFirst)]]];
         imageView.frame = _rankNumber.frame;
         [self.rankNumber addSubview:imageView];
         [imageView release];
     }
-    else if(prize==2){
+    else if(prize==prizeStage){
         UIImageView *imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:[dict objectForKey:KEY(PizeCellPrizeSecond)]]];
         imageView.frame = _rankNumber.frame;
         [self.rankNumber addSubview:imageView];
         [imageView release];
     }
-    else if(prize==3){
+    else if(prize==prizeStage){
         UIImageView *imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:[dict objectForKey:KEY(PizeCellPrizeThird)]]];
         imageView.frame = _rankNumber.frame;
         [self.rankNumber addSubview:imageView];
@@ -173,7 +189,9 @@
         [imageView release];
     }
     
+    
 }
+
 
 - (void)enterUserDetailController
 {

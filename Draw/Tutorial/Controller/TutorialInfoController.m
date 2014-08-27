@@ -108,10 +108,11 @@ enum{
 
 - (void)close:(CommonDialog*)dialog
 {
-    [dialog disappear];
     if (self.parentViewController){
         [self removeFromParentViewController];
     }
+    
+    [dialog disappear];    
 }
 
 - (void)dealloc
