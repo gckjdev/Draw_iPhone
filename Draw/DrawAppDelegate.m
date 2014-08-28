@@ -560,6 +560,7 @@ NSString* GlobalGetBoardServerURL()
      */
     PPDebug(@"<applicationDidBecomeActive>");
     
+//    [[TutorialCoreManager defaultManager] defaultFirstTutorial];
     
     // Init Account Service and Sync Balance and Item
     [[AccountService defaultService] syncAccount:nil];

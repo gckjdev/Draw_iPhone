@@ -391,4 +391,7 @@ typedef enum{
 + (int)getGIFFrameCount;
 + (CGFloat)getGIFScaleSize;
 + (int)maxGIFFrame;
+
++ (NSString*)getDefaultTutorialId;
+
 @end

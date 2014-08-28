@@ -35,7 +35,7 @@
  { "class_id" : "4002", "cn_name":"中国风", "tcn_name":"中国风", "en_name":"Chinese", "keywords":"漫画 动漫", "sub_classes":[], "parent_class" : "" },
  { "class_id" : "4003", "cn_name":"影视", "tcn_name":"影视", "en_name":"Movie", "keywords":"漫画 动漫", "sub_classes":[], "parent_class" : "" },
  { "class_id" : "4004", "cn_name":"书法", "tcn_name":"书法", "en_name":"Writing", "keywords":"漫画 动漫", "sub_classes":[], "parent_class" : "" },
- { "class_id" : "4005", "cn_name":"动图", "tcn_name":"动图", "en_name":"Animation", "keywords":"漫画 动漫", "sub_classes":[], "parent_class" : "" },
+ { "class_id" : "4005", "cn_name":"小动画", "tcn_name":"小动画", "en_name":"Animation", "keywords":"漫画 动漫", "sub_classes":[], "parent_class" : "" },
  { "class_id" : "4006", "cn_name":"黑白", "tcn_name":"黑白", "en_name":"Black&White", "keywords":"漫画 动漫", "sub_classes":[], "parent_class" : "" },
  { "class_id" : "4007", "cn_name":"游戏", "tcn_name":"游戏", "en_name":"Game", "keywords":"漫画 动漫", "sub_classes":[], "parent_class" : "" },
  { "class_id" : "4008", "cn_name":"治愈系", "tcn_name":"治愈系", "en_name":"Healing", "keywords":"漫画 动漫", "sub_classes":[], "parent_class" : "" },
@@ -52,7 +52,7 @@
 ["2002", "2001", "3000", "2003", "1002", "1003", "1004", "1006", "3007", "3008", "8000", "2004", "2005", "2006", "9000"],
     
     "user_set_list":
-    ["9000", "8000", "1001", "1002", "1003", "1004", "1005", "1006", "2001", "2002", "2003", "2004", "2005", "2006", "2007", "2008", "2009", "3000", "3001", "3002", "3003", "3004","3005","3006","3008", "3007","3020", "4001", "4002", "4003", "4004", "4006", "4007", "4008", "4009", "4010"]
+    ["9000", "8000", "1001", "1002", "1003", "1004", "1005", "1006", "2001", "2002", "2003", "2004", "2005", "2006", "2007", "2008", "2009", "3000", "3001", "3002", "3003", "3004","3005","3006","3008", "3007","3020", "4001", "4002", "4003", "4004", "4005", "4006", "4007", "4008", "4009", "4010"]
     
 
 }
