@@ -8,6 +8,7 @@
 
 #import "TutorialCoreManager.h"
 #import "Tutorial.pb.h"
+#import "PPConfigManager.h"
 
 @interface TutorialCoreManager()
 
@@ -1009,14 +1010,24 @@ static TutorialCoreManager* _defaultTutorialCoreManager;
 
 -(PBTutorial*)defaultFirstTutorial
 {
-    if ([self.stepByStepTutorialIdList count] >0){
-        //先取第一个元素,以后根据需求需要修改
-        NSString *stepId = [self.stepByStepTutorialIdList objectAtIndex:0];
-        return [self findTutorialByTutorialId:stepId];
+    NSString* str = [PPConfigManager getDefaultTutorialId];
+    NSArray* list = [str componentsSeparatedByString:@"$$"];
+    if ([list count] == 0){
+        return nil;
     }
     
-    PPDebug(@"<defaultFirstTutorial> but the stepByStepTutorialIdList is nil or empty");
-    return nil;
+    NSString* defaultTutorialId = [list objectAtIndex:0];
+    PBTutorial* tutorial = [self findTutorialByTutorialId:defaultTutorialId];
+    return tutorial;
+    
+//    if ([self.stepByStepTutorialIdList count] >0){
+//        //先取第一个元素,以后根据需求需要修改
+//        NSString *stepId = [self.stepByStepTutorialIdList objectAtIndex:0];
+//        return [self findTutorialByTutorialId:stepId];
+//    }
+//    
+//    PPDebug(@"<defaultFirstTutorial> but the stepByStepTutorialIdList is nil or empty");
+//    return nil;
 }
 
 @end

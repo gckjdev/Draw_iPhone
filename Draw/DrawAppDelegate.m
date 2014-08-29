@@ -108,7 +108,7 @@ NSString* GlobalGetServerURL()
 //    return @"http://localhost:8000/api/i?";
 //    return @"http://58.215.160.100:8002/api/i?";
 //    return @"http://192.168.1.13:8001/api/i?";
-    return @"http://58.215.160.100:8020/api/i?";
+//    return @"http://58.215.160.100:8020/api/i?";
 //    return @"http://192.168.1.198:8000/api/i?";
 //    return @"http://58.215.160.100:8888/api/i?";
 //
@@ -560,6 +560,7 @@ NSString* GlobalGetBoardServerURL()
      */
     PPDebug(@"<applicationDidBecomeActive>");
     
+//    [[TutorialCoreManager defaultManager] defaultFirstTutorial];
     
     // Init Account Service and Sync Balance and Item
     [[AccountService defaultService] syncAccount:nil];

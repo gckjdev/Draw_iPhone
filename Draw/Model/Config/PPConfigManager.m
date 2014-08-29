@@ -1595,5 +1595,9 @@
     return GET_UMENG_INTVAL(@"GIF_SCALE", 50)*1.0f / 100.0f;
 }
 
++ (NSString*)getDefaultTutorialId
+{
+    return GET_UMENG_STRVALUE(@"DEFAULT_TUTORIAL", @"tutorialId-2$$tutorialId-1");
+}
 
 @end
