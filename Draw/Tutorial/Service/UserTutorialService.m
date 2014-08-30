@@ -445,7 +445,7 @@ static UserTutorialService* _defaultService;
     UD_SET(KEY_SYNC_USER_TUTORIAL_FROM_SERVER, @(YES));
 }
 
-#define KEY_THE_FIRST_LEARNING @"KEY_THE_FIRST_LEARNING"
+#define KEY_THE_FIRST_LEARNING ([NSString stringWithFormat:@"%@_KEY_THE_FIRST_LEARNING", [[UserManager defaultManager] userId]])
 
 - (BOOL)hasTheFirstLearningKey
 {

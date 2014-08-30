@@ -9,6 +9,15 @@
 /*
  
  {
+ "index" : 1,
+ "function" : "enterBBSWithPostId:",
+ "imageId" : "image1",
+ "image" : "http://58.215.160.100:8080/board/image/prize20140829.jpg",
+ "text" : "",
+ "parameters" : ["53feddc9e4b0ef5e9dff860a"]
+ },
+ 
+ {
  "index" : 4,
  "function" : "goToGuidePage",
  "imageId" : "image1",
