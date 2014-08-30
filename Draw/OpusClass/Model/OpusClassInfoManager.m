@@ -140,9 +140,6 @@ static OpusClassInfoManager* _defaultOpusClassInfoManager;
         if (error != nil){
             PPDebug(@"<readConfigData> but error=%@", [error description]);
         }
-        else{
-            [self.opusClassList removeAllObjects];
-        }
         
         if (data != nil){
             
@@ -151,6 +148,9 @@ static OpusClassInfoManager* _defaultOpusClassInfoManager;
             
             NSArray* jsonArray = [[data JSONValue] objectForKey:@"class_list"];
             if ([jsonArray count] > 0){
+                
+                [self.opusClassList removeAllObjects];
+                
                 for (NSDictionary* dict in jsonArray){
                     OpusClassInfo* classInfo = [OpusClassInfo objectWithDictionary:dict];
                     if (classInfo){

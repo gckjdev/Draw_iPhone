@@ -138,7 +138,7 @@
     // Do any additional setup after loading the view from its nib.
 
     
-    [self setGalleryView];
+    [self updateGalleryView];
    
     //用户头像
     [self updateAvatarView];
@@ -166,6 +166,7 @@
     }
     [self setBottomViewButton];
     [self showGuidePage];
+    
     
 }
 
@@ -202,6 +203,8 @@
     if ([[UserManager defaultManager] hasXiaojiNumber] == NO){
         [self showGuidePage];
     }
+    
+    [self loadBillboardAndUpdateView];
 }
 
 - (void)viewDidDisappear:(BOOL)animated
@@ -383,7 +386,107 @@
 #define IMAGE_FRAME_HEIGHT (ISIPAD ? 250:120)
 #define DEFAULT_GALLERY_IMAGE_CN @"defaultBillBoard@2x.jpg"
 #define DEFAULT_GALLERY_IMAGE_EN @"defaultBillBoard_en@2x.jpg"
+#define BILLBOARD_FRAME             CGRectMake(IMAGE_FRAME_X, IMAGE_FRAME_Y, IMAGE_FRAME_WIDTH ,IMAGE_FRAME_HEIGHT)
+#define VIEW_TAG_IMAGE_FRAME        2014082901
+#define VIEW_TAG_IMAGE_DEFAULT      2014082902
 
+- (UIImage*)getDefaultImage
+{
+    UIImage* defaultImage = nil;
+    if ([LocaleUtils isChinese]){
+        defaultImage = [UIImage imageNamed:DEFAULT_GALLERY_IMAGE_CN];
+    }
+    else{
+        defaultImage = [UIImage imageNamed:DEFAULT_GALLERY_IMAGE_EN];
+    }
+
+    return defaultImage;
+}
+
+- (void)clearDefaultBillboardImage
+{
+    [[self.galleryView viewWithTag:VIEW_TAG_IMAGE_DEFAULT] removeFromSuperview];
+}
+
+- (void)setDefaultBillboardImage
+{
+    [self clearDefaultBillboardImage];
+    
+    UIImageView *imageView = [[UIImageView alloc] initWithFrame:BILLBOARD_FRAME];
+    
+    //默认图片
+    [imageView setImage:[self getDefaultImage]];
+    [imageView setTag:VIEW_TAG_IMAGE_DEFAULT];
+    [self.galleryView addSubview:imageView];
+    [self.galleryView bringSubviewToFront:imageView];
+
+    [imageView release];
+}
+
+-(void)loadBillboardAndUpdateView
+{
+    [[BillboardManager defaultManager] autoUpdate:^{
+        [self updateGalleryView];
+    }];
+}
+
+-(void)updateGalleryView{
+    
+    BillboardManager *bbManager = [BillboardManager defaultManager];
+    self.bbList = bbManager.bbList;
+    if ([self.bbList count] == 0){
+        [self setDefaultBillboardImage];
+        return;
+    }
+    
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
+        
+        NSMutableArray *itemList = [[[NSMutableArray alloc] init] autorelease];
+        
+        for(Billboard *bb in _bbList){
+            UIImage *image = [bbManager getImage:bb];
+            if(image != nil){
+                //添加到第三方框架
+                SGFocusImageItem *item = [[[SGFocusImageItem alloc] initWithTitle:@""
+                                                                            image:image
+                                                                              tag:bb.index] autorelease];
+                
+                [itemList addObject:item];
+            }
+        }
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            
+            if ([itemList count] == 0){
+                [self setDefaultBillboardImage];
+                return;
+            }
+
+            // Remove old
+            [[self.galleryView viewWithTag:VIEW_TAG_IMAGE_FRAME] removeFromSuperview];
+            
+            // Create New
+            CGRect frame = CGRectMake(IMAGE_FRAME_X, IMAGE_FRAME_Y, IMAGE_FRAME_WIDTH ,IMAGE_FRAME_HEIGHT);
+            SGFocusImageFrame *imageFrame = [[SGFocusImageFrame alloc] initWithFrame:frame
+                                                                            delegate:self
+                                                                     focusImageItems:itemList];
+            [imageFrame setAlignment:SMPageControlAlignmentRight];
+            [imageFrame setTag:VIEW_TAG_IMAGE_FRAME];
+            
+            [self.galleryView addSubview:imageFrame];
+            [self.galleryView bringSubviewToFront:imageFrame];
+
+            [imageFrame release];
+            
+            // clear default
+            [self clearDefaultBillboardImage];
+        });
+    });
+    
+    
+}
+
+/*
 -(void)setGalleryView{
     
     BillboardManager *bbManager = [BillboardManager defaultManager];
@@ -451,6 +554,8 @@
     
 
 }
+*/
+ 
 -(void)foucusImageFrame:(SGFocusImageFrame *)imageFrame didSelectItem:(SGFocusImageItem *)item{
     NSLog(@"%@", item.title);
 }

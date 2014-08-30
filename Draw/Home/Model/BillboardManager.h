@@ -19,7 +19,7 @@
 @property (nonatomic, retain) NSMutableArray* bbList;
 
 + (BillboardManager*)defaultManager;
-- (void)autoUpdate;
+- (void)autoUpdate:(dispatch_block_t)block;
 - (UIImage*)getImage:(Billboard*)bb;
 
 @end

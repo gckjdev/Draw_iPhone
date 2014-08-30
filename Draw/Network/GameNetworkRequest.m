@@ -2771,6 +2771,10 @@
 {
     CommonNetworkOutput* output = [[[CommonNetworkOutput alloc] init] autorelease];
     
+    NSString* deviceId = [[UIDevice currentDevice] uniqueGlobalDeviceIdentifier];
+    NSString* deviceOS = [DeviceDetection deviceOS];
+    NSString* deviceName = [UIUtils getUserDeviceName];
+    
     ConstructURLBlock constructURLHandler = ^NSString *(NSString *baseURL) {        
         // set input parameters
         NSString* str = [NSString stringWithString:baseURL];               
@@ -2780,6 +2784,9 @@
         str = [str stringByAddQueryParameter:PARA_STATUS intValue:status];
         str = [str stringByAddQueryParameter:PARA_DEVICETYPE intValue:[DeviceDetection deviceType]];
         str = [str stringByAddQueryParameter:PARA_DEVICEMODEL value:[DeviceDetection platform]];
+        str = [str stringByAddQueryParameter:PARA_DEVICETOKEN value:[[UserManager defaultManager] deviceToken]];
+        str = [str stringByAddQueryParameter:PARA_DEVICEID value:deviceId];
+        str = [str stringByAddQueryParameter:PARA_DEVICEOS value:deviceOS];
         
         return str;
     };

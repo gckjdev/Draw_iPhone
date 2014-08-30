@@ -100,6 +100,7 @@
 
 #import "OpenCVUtils.h"
 #import "TutorialCoreManager.h"
+#import "BillboardManager.h"
 
 NSString* GlobalGetServerURL()
 {
@@ -536,6 +537,7 @@ NSString* GlobalGetBoardServerURL()
 //    [[GameAdWallService defaultService] queryWallScore];
 
     [[TutorialCoreManager defaultManager] autoUpdate];
+    [[BillboardManager defaultManager] autoUpdate:nil];
 }
 
 - (void)application:(UIApplication *)application didReceiveLocalNotification:(UILocalNotification*)notification

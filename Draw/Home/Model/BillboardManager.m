@@ -108,9 +108,6 @@ static BillboardManager* _defaultBillboardManager;
         if (error != nil){
             PPDebug(@"<readConfigData> but error=%@", [error description]);
         }
-        else{
-            [self.bbList removeAllObjects];
-        }
         
         if (data != nil){
             
@@ -118,6 +115,8 @@ static BillboardManager* _defaultBillboardManager;
             data = [data stringByReplacingOccurrencesOfString:@"\n" withString:@""];
             
             NSArray* jsonArray = [[data JSONValue] objectForKey:@"bb_list"];
+            [self.bbList removeAllObjects];
+            
             if ([jsonArray count] > 0){
                 for (NSDictionary* dict in jsonArray){
                     Billboard* bb = [Billboard objectWithDictionary:dict];
@@ -146,11 +145,12 @@ static BillboardManager* _defaultBillboardManager;
 
 
 
-- (void)autoUpdate
+- (void)autoUpdate:(dispatch_block_t)block
 {
     [_smartData checkUpdateAndDownload:^(BOOL isAlreadyExisted, NSString *dataFilePath) {
         if (!isAlreadyExisted){
             [self readConfigData];
+            EXECUTE_BLOCK(block);
         }
     } failureBlock:^(NSError *error) {
         PPDebug(@"<autoUpdate> update billboard failure due to error(%@)", [error description]);

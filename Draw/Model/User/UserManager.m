@@ -263,7 +263,12 @@ static UserManager* _defaultManager;
 
 - (NSString*)deviceToken
 {
-    return [_pbUser deviceToken];
+    if (_pbUser == nil || [_pbUser.deviceToken length] == 0){
+        return [self deviceTokenFromOldStorage];
+    }
+    else{
+        return [_pbUser deviceToken];
+    }
 }
 
 - (NSString*)deviceTokenFromOldStorage
