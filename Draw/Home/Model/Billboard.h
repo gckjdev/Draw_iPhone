@@ -67,7 +67,7 @@
  },
  {
  "index" : 8,
- "function" : "enterContestWithContestId:",
+ "function" : "enterBBSPost:",
  "imageId" : "image1",
  "image" : "http://58.215.184.18:8080/tutorial/image/GalleryImage2.jpg",
  "text" : "",
