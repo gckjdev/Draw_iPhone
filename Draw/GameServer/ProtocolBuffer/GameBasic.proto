@@ -206,8 +206,10 @@ message PBGradient {
 // internal usage, to store draw data
 message PBDrawAction {
   required int32 type = 1;                      // 0 : draw, 1 : clean draw, 2 : shape 3: change bg with color,  
-                                                //4 : change bg with draw bg
-//5 gradient action
+                                                // 4 : change bg with draw bg
+                                                // 5 : gradient action
+                                                // 6 : clip
+                                                // 7 : brush
 
   //deprecated attribute
   repeated int32 points = 2 [packed=true];      // compressed INT point (include float x,y), deprecated in new version 2
@@ -247,8 +249,12 @@ message PBDrawAction {
   optional int32 layerTag = 23;                     //layer identifier
   optional float layerAlpha = 24[default=1.0];      //层透明度
 
- //Support gradient
+ //support gradient
   optional PBGradient gradient = 30;
+  
+  //brush
+  optional int32 brushType = 40;                    //brush type
+  repeated float brushPointWidth = 41;              //brush point width (so called scale)
 }
 
 

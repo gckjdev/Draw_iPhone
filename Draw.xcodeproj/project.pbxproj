@@ -1359,6 +1359,18 @@
 		A49DF8CE187D3FA100634196 /* statement_cell_bg1@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A49DF8C7187D3FA100634196 /* statement_cell_bg1@2x.png */; };
 		A49DF8CF187D3FA100634196 /* statement_cell_bg1@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A49DF8C7187D3FA100634196 /* statement_cell_bg1@2x.png */; };
 		A4A2E7A716E71DE900445888 /* JRSwizzle.m in Sources */ = {isa = PBXBuildFile; fileRef = A4A2E7A416E71DE900445888 /* JRSwizzle.m */; };
+		A4A3BEFB19B443AE00EC4D25 /* BrushAction.m in Sources */ = {isa = PBXBuildFile; fileRef = A4A3BEFA19B443AE00EC4D25 /* BrushAction.m */; };
+		A4A3BEFC19B443AE00EC4D25 /* BrushAction.m in Sources */ = {isa = PBXBuildFile; fileRef = A4A3BEFA19B443AE00EC4D25 /* BrushAction.m */; };
+		A4A3BEFD19B443AE00EC4D25 /* BrushAction.m in Sources */ = {isa = PBXBuildFile; fileRef = A4A3BEFA19B443AE00EC4D25 /* BrushAction.m */; };
+		A4A3BEFE19B443AE00EC4D25 /* BrushAction.m in Sources */ = {isa = PBXBuildFile; fileRef = A4A3BEFA19B443AE00EC4D25 /* BrushAction.m */; };
+		A4A3BF0419B44F5D00EC4D25 /* HBrushPointList.mm in Sources */ = {isa = PBXBuildFile; fileRef = A4A3BF0319B44F5D00EC4D25 /* HBrushPointList.mm */; };
+		A4A3BF0519B44F5D00EC4D25 /* HBrushPointList.mm in Sources */ = {isa = PBXBuildFile; fileRef = A4A3BF0319B44F5D00EC4D25 /* HBrushPointList.mm */; };
+		A4A3BF0619B44F5D00EC4D25 /* HBrushPointList.mm in Sources */ = {isa = PBXBuildFile; fileRef = A4A3BF0319B44F5D00EC4D25 /* HBrushPointList.mm */; };
+		A4A3BF0719B44F5D00EC4D25 /* HBrushPointList.mm in Sources */ = {isa = PBXBuildFile; fileRef = A4A3BF0319B44F5D00EC4D25 /* HBrushPointList.mm */; };
+		A4A3BF0A19B461F700EC4D25 /* BrushStroke.m in Sources */ = {isa = PBXBuildFile; fileRef = A4A3BF0919B461F700EC4D25 /* BrushStroke.m */; };
+		A4A3BF0B19B461F700EC4D25 /* BrushStroke.m in Sources */ = {isa = PBXBuildFile; fileRef = A4A3BF0919B461F700EC4D25 /* BrushStroke.m */; };
+		A4A3BF0C19B461F700EC4D25 /* BrushStroke.m in Sources */ = {isa = PBXBuildFile; fileRef = A4A3BF0919B461F700EC4D25 /* BrushStroke.m */; };
+		A4A3BF0D19B461F700EC4D25 /* BrushStroke.m in Sources */ = {isa = PBXBuildFile; fileRef = A4A3BF0919B461F700EC4D25 /* BrushStroke.m */; };
 		A4A531BC180E39E700DE36E5 /* DrawDefault-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4A531BB180E39E700DE36E5 /* DrawDefault-568h@2x.png */; };
 		A4ADB61317B9D45400EBF418 /* SoundPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = A4ADB61217B9D45400EBF418 /* SoundPlayer.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
 		A4ADB61417B9D45400EBF418 /* SoundPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = A4ADB61217B9D45400EBF418 /* SoundPlayer.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
@@ -8355,6 +8367,12 @@
 		A4A2E7B116E7223F00445888 /* LocalizableLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocalizableLabel.m; sourceTree = "<group>"; };
 		A4A2E7B316E72B7700445888 /* GameItemPriceView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameItemPriceView.h; sourceTree = "<group>"; };
 		A4A2E7B416E72B7800445888 /* GameItemPriceView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameItemPriceView.m; sourceTree = "<group>"; };
+		A4A3BEF919B443AE00EC4D25 /* BrushAction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BrushAction.h; sourceTree = "<group>"; };
+		A4A3BEFA19B443AE00EC4D25 /* BrushAction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BrushAction.m; sourceTree = "<group>"; };
+		A4A3BF0219B44F5D00EC4D25 /* HBrushPointList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HBrushPointList.h; sourceTree = "<group>"; };
+		A4A3BF0319B44F5D00EC4D25 /* HBrushPointList.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = HBrushPointList.mm; sourceTree = "<group>"; };
+		A4A3BF0819B461F700EC4D25 /* BrushStroke.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BrushStroke.h; sourceTree = "<group>"; };
+		A4A3BF0919B461F700EC4D25 /* BrushStroke.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BrushStroke.m; sourceTree = "<group>"; };
 		A4A531BB180E39E700DE36E5 /* DrawDefault-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "DrawDefault-568h@2x.png"; sourceTree = "<group>"; };
 		A4ADB61117B9D45400EBF418 /* SoundPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SoundPlayer.h; sourceTree = "<group>"; };
 		A4ADB61217B9D45400EBF418 /* SoundPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SoundPlayer.m; sourceTree = "<group>"; };
@@ -14842,6 +14860,8 @@
 			children = (
 				CA76134317F57420007A251E /* HPointList.h */,
 				CA76134417F57420007A251E /* HPointList.mm */,
+				A4A3BF0219B44F5D00EC4D25 /* HBrushPointList.h */,
+				A4A3BF0319B44F5D00EC4D25 /* HBrushPointList.mm */,
 				CAEFC49616FD64DB00D799B7 /* Shape */,
 				CA35FF4416F867AC00D8E05D /* CanvasRect */,
 				CA35FF2016F8672100D8E05D /* DrawAction */,
@@ -14854,6 +14874,8 @@
 				CA1041EA1509B99A00F60C03 /* Paint.m */,
 				CA507F5616AF923700CCB00F /* PointNode.h */,
 				CA507F5716AF923700CCB00F /* PointNode.m */,
+				A4A3BF0819B461F700EC4D25 /* BrushStroke.h */,
+				A4A3BF0919B461F700EC4D25 /* BrushStroke.m */,
 			);
 			path = Draw;
 			sourceTree = "<group>";
@@ -15433,6 +15455,8 @@
 				CA13B82B177BDB57003B7368 /* Shadow.m */,
 				CA9C11BE178135DF004372B6 /* GradientAction.h */,
 				CA9C11BF178135E0004372B6 /* GradientAction.m */,
+				A4A3BEF919B443AE00EC4D25 /* BrushAction.h */,
+				A4A3BEFA19B443AE00EC4D25 /* BrushAction.m */,
 			);
 			path = DrawAction;
 			sourceTree = "<group>";
@@ -23378,6 +23402,7 @@
 				CA2A28E2195C1E6200A97478 /* AllTutorialController.m in Sources */,
 				A461B120174CBAA70088B061 /* Account.m in Sources */,
 				A461B121174CBAA70088B061 /* Item.m in Sources */,
+				A4A3BEFD19B443AE00EC4D25 /* BrushAction.m in Sources */,
 				A461B122174CBAA70088B061 /* GameNetworkRequest.m in Sources */,
 				A461B123174CBAA70088B061 /* UserService.m in Sources */,
 				A461B125174CBAA70088B061 /* AccountManager.m in Sources */,
@@ -23822,6 +23847,7 @@
 				A461B3BF174CBAA70088B061 /* LittleGeeImageManager.m in Sources */,
 				A461B3C0174CBAA70088B061 /* Sing.pb.m in Sources */,
 				A499EEB2174DAE70005AF334 /* SingApp.m in Sources */,
+				A4A3BF0619B44F5D00EC4D25 /* HBrushPointList.mm in Sources */,
 				CA62C7021756FB8E00C9EF56 /* BBS.pb-c.c in Sources */,
 				CA62C7031756FB8E00C9EF56 /* Config.pb-c.c in Sources */,
 				CA62C7051756FB8E00C9EF56 /* Draw.pb-c.c in Sources */,
@@ -24010,6 +24036,7 @@
 				EA8500DE1807A0430000DE3E /* ShareUIManager.m in Sources */,
 				EA0C5527180B9203008069C1 /* InfColorBarPicker.m in Sources */,
 				EA0C552B180B9203008069C1 /* InfColorIndicatorView.m in Sources */,
+				A4A3BF0C19B461F700EC4D25 /* BrushStroke.m in Sources */,
 				EA0C5537180B9203008069C1 /* InfColorSquarePicker.m in Sources */,
 				EA0C553B180B9203008069C1 /* InfHSBSupport.m in Sources */,
 				EA0C553F180B9203008069C1 /* InfSourceColorView.m in Sources */,
@@ -24215,6 +24242,7 @@
 				C28A99BB1738F04B007A819F /* ASINetworkQueue.m in Sources */,
 				C28A99BC1738F04B007A819F /* GCDAsyncSocket.m in Sources */,
 				C28A99BD1738F04B007A819F /* GCDAsyncUdpSocket.m in Sources */,
+				A4A3BF0519B44F5D00EC4D25 /* HBrushPointList.mm in Sources */,
 				C28A99BE1738F04B007A819F /* CDataScanner.m in Sources */,
 				C28A99BF1738F04B007A819F /* CDataScanner_Extensions.m in Sources */,
 				C28A99C01738F04B007A819F /* NSCharacterSet_Extensions.m in Sources */,
@@ -24286,6 +24314,7 @@
 				CA2A28B3195C12A500A97478 /* TutorialService.m in Sources */,
 				C28A9A321738F04B007A819F /* PenView.m in Sources */,
 				C28A9A331738F04B007A819F /* StableView.m in Sources */,
+				A4A3BEFC19B443AE00EC4D25 /* BrushAction.m in Sources */,
 				C28A9A341738F04B007A819F /* WidthView.m in Sources */,
 				C28A9A351738F04B007A819F /* SynthesisView.m in Sources */,
 				C28A9A361738F04B007A819F /* ColorShopView.m in Sources */,
@@ -24920,6 +24949,7 @@
 				CA9AB01D18321621002DBAA5 /* SongService.m in Sources */,
 				CA9AB02118321621002DBAA5 /* NameAndDescEditView.m in Sources */,
 				CA90052B195021F8003389FD /* OpusClassMenuItem.m in Sources */,
+				A4A3BF0B19B461F700EC4D25 /* BrushStroke.m in Sources */,
 				CA9AB02918321621002DBAA5 /* SingInfoCell.m in Sources */,
 				CA9AB03518321621002DBAA5 /* SingPlayView.m in Sources */,
 				CA9AB03D18321621002DBAA5 /* SongCategoryView.m in Sources */,
@@ -25091,6 +25121,7 @@
 				CA10410B1509A9FF00F60C03 /* ASIInputStream.m in Sources */,
 				CA10410C1509A9FF00F60C03 /* ASINetworkQueue.m in Sources */,
 				CA10410E1509A9FF00F60C03 /* GCDAsyncSocket.m in Sources */,
+				A4A3BF0419B44F5D00EC4D25 /* HBrushPointList.mm in Sources */,
 				CA10410F1509A9FF00F60C03 /* GCDAsyncUdpSocket.m in Sources */,
 				CA1041701509A9FF00F60C03 /* CDataScanner.m in Sources */,
 				D8B5393B19920B3E00BD3337 /* ResultSeal.m in Sources */,
@@ -25162,6 +25193,7 @@
 				CA051DC31546802D00D0A00A /* DrawView.m in Sources */,
 				CA051DC41546802D00D0A00A /* ShowDrawView.m in Sources */,
 				CA2A28B2195C12A400A97478 /* TutorialService.m in Sources */,
+				A4A3BEFB19B443AE00EC4D25 /* BrushAction.m in Sources */,
 				CA051DC61546802D00D0A00A /* ColorView.m in Sources */,
 				CA051DC71546802D00D0A00A /* PenView.m in Sources */,
 				CA051DC81546802D00D0A00A /* StableView.m in Sources */,
@@ -25796,6 +25828,7 @@
 				CA90052A195021F8003389FD /* OpusClassMenuItem.m in Sources */,
 				CA9AAF6818321621002DBAA5 /* SingImageManager.m in Sources */,
 				CA9AAF6C18321621002DBAA5 /* SingOpusManager.m in Sources */,
+				A4A3BF0A19B461F700EC4D25 /* BrushStroke.m in Sources */,
 				D8B5391B1991C48100BD3337 /* StageAlertViewController.m in Sources */,
 				CA9AAF7018321621002DBAA5 /* SongCategoryManager.m in Sources */,
 				CA9AAF7418321621002DBAA5 /* SongManager.m in Sources */,
@@ -25963,6 +25996,7 @@
 				EA411865176066F500DA72D0 /* ASIHTTPRequest.m in Sources */,
 				EA411866176066F500DA72D0 /* ASIInputStream.m in Sources */,
 				EA411867176066F500DA72D0 /* ASINetworkQueue.m in Sources */,
+				A4A3BEFE19B443AE00EC4D25 /* BrushAction.m in Sources */,
 				EA411868176066F500DA72D0 /* GCDAsyncSocket.m in Sources */,
 				EA411869176066F500DA72D0 /* GCDAsyncUdpSocket.m in Sources */,
 				EA41186A176066F500DA72D0 /* CDataScanner.m in Sources */,
@@ -25975,6 +26009,7 @@
 				EA411871176066F500DA72D0 /* CJSONScanner.m in Sources */,
 				EA411872176066F500DA72D0 /* CJSONSerializer.m in Sources */,
 				EA411873176066F500DA72D0 /* CSerializedJSONData.m in Sources */,
+				A4A3BF0719B44F5D00EC4D25 /* HBrushPointList.mm in Sources */,
 				EA41189F176066F500DA72D0 /* Paint.m in Sources */,
 				EA4118A2176066F500DA72D0 /* RoomController.m in Sources */,
 				EA4118A3176066F500DA72D0 /* SelectWordController.m in Sources */,
@@ -26081,6 +26116,7 @@
 				CACD6D3218E03C40003F97C0 /* EAFWrite.mm in Sources */,
 				EA411911176066F500DA72D0 /* ChatMessage.m in Sources */,
 				EA411912176066F500DA72D0 /* SelectChatFriendController.m in Sources */,
+				A4A3BF0D19B461F700EC4D25 /* BrushStroke.m in Sources */,
 				CA2A28F3195C1EEA00A97478 /* UserTutorialService.m in Sources */,
 				EA411913176066F500DA72D0 /* ChatDetailCell.m in Sources */,
 				EA411914176066F500DA72D0 /* NotificationManager.m in Sources */,

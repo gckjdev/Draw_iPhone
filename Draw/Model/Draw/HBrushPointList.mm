@@ -1,35 +1,31 @@
 //
-//  PointNode.m
+//  HBrushPointList.m
 //  Draw
 //
-//  Created by gamy on 13-1-23.
+//  Created by 黄毅超 on 14-9-1.
 //
 //
 
-#import "HPointList.h"
+#import "HBrushPointList.h"
 #import "Draw.pb.h"
 #import "DrawUtils.h"
+
 #include <vector>
 #include <list>
 
 using std::vector;
 using std::list;
 
-@interface HPointList ()
+@interface HBrushPointList()
 {
-    
-@public
     vector<float> xList;
     vector<float> yList;
-
-//    list<float> xList;
-//    list<float> yList;
-
+    vector<float> widthList;
 }
 
 @end
 
-@implementation HPointList
+@implementation HBrushPointList
 
 - (id)init
 {
@@ -42,27 +38,23 @@ using std::list;
     [super dealloc];
 }
 
-- (void)addPoint:(float)x y:(float)y
-{
-    xList.push_back(x);
-    yList.push_back(y);
-}
-
 - (float)getPointX:(int)index
 {
-//    return xList.at(index);
     return xList[index];
 }
 
 - (float)getPointY:(int)index
 {
-//    return yList.at(index);
     return yList[index];
+}
+
+- (float)getPointWidth:(int)index
+{
+    return widthList[index];
 }
 
 - (CGPoint)pointAtIndex:(int)index
 {
-//    return CGPointMake(xList.at(index), yList.at(index));
     return CGPointMake(xList[index], yList[index]);
 }
 
@@ -71,58 +63,53 @@ using std::list;
     return xList.size();
 }
 
-- (void)createPointXList:(NSMutableArray**)pointXList
-              pointYList:(NSMutableArray**)pointYList
-{
-    int size = xList.size();
-    if (size > 0) {
-        *pointXList = [[[NSMutableArray alloc] init] autorelease];
-        *pointYList = [[[NSMutableArray alloc] init] autorelease];
-        
-        for (int i=0; i<size; i++){
-            [*pointXList addObject:@(xList[i])];
-            [*pointYList addObject:@(yList[i])];
-//            [*pointXList addObject:@(xList.at(i))];
-//            [*pointYList addObject:@(yList.at(i))];
-        }
-    }    
-}
-
-- (void)createPointFloatXList:(CGFloat*)floatXList
-                   floatYList:(CGFloat*)floatYList
-{
-    int size = xList.size();
-    if (size > 0) {        
-        for (int i=0; i<size; i++){
-            floatXList[i] = xList[i];
-            floatYList[i] = yList[i];
-//            floatXList[i] = xList.at(i);
-//            floatYList[i] = yList.at(i);
-        }
-    }
-}
-
 - (CGPoint)lastPoint
 {
-//    int index = xList.size();
-//    if (index <= 0){
-//        return ILLEGAL_POINT;
-//    }
-//    return CGPointMake(xList.at(index-1), yList.at(index-1));
     return CGPointMake(xList.back(), yList.back());
 }
 
 - (void)complete
 {
-    
-    // performance vs. memory
-    
-//    vector<float> tmpX(xList);
-//    vector<float> tmpY(yList);
-//    
-//    xList.swap(tmpX);
-//    yList.swap(tmpY);
-    
 }
+
+- (void)addPoint:(float)x y:(float)y width:(float)width;
+{
+    xList.push_back(x);
+    yList.push_back(y);
+    widthList.push_back(width);
+}
+
+- (void)createPointXList:(NSMutableArray**)pointXList
+              pointYList:(NSMutableArray**)pointYList
+               widthList:(NSMutableArray**)pointWList;
+{
+    int size = xList.size();
+    if (size > 0) {
+        *pointXList = [[[NSMutableArray alloc] init] autorelease];
+        *pointYList = [[[NSMutableArray alloc] init] autorelease];
+        *pointWList = [[[NSMutableArray alloc] init] autorelease];
+        
+        for (int i=0; i<size; i++){
+            [*pointXList addObject:@(xList[i])];
+            [*pointYList addObject:@(yList[i])];
+            [*pointWList addObject:@(widthList[i])];
+        }
+    }
+}
+
+- (void)createPointFloatXList:(CGFloat*)floatXList
+                   floatYList:(CGFloat*)floatYList
+                    widthList:(CGFloat*)floatWidthList
+{
+    int size = xList.size();
+    if (size > 0) {
+        for (int i=0; i<size; i++){
+            floatXList[i] = xList[i];
+            floatYList[i] = yList[i];
+            floatWidthList[i] = widthList[i];
+        }
+    }
+}
+
 
 @end

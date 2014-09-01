@@ -26,8 +26,9 @@ typedef enum {
     DrawActionTypeChangeBack,       //Change bg with color 3
     DrawActionTypeChangeBGImage,    //Change bg with pb draw bg 4
 
-    DrawActionTypeGradient,             //Gradient 5
+    DrawActionTypeGradient,         //Gradient 5
     DrawActionTypeClip,             //Clip 6
+    DrawActionTypeBrush             //Brush
     
 } DrawActionType;
 
