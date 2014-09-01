@@ -42,45 +42,12 @@
     return;
 }
 
-//- (id)initWithCoder:(NSCoder *)aDecoder
-//{
-//    self = [super init];
-//    if (self) {
-//        self.width = [aDecoder decodeFloatForKey:@"width"];
-//        self.color = [aDecoder decodeObjectForKey:@"color"];
-//        self.pointNodeList = [aDecoder decodeObjectForKey:@"pointNodeList"];
-//        self.brushType = [aDecoder decodeFloatForKey:@"brushType"];
-//
-//        //old version save value list in "pointList"
-//        NSMutableArray *array = [aDecoder decodeObjectForKey:@"pointList"];
-//        if ([self.pointNodeList count] == 0 && [array count] != 0) {
-//            self.pointNodeList = [NSMutableArray array];
-//            for (NSValue *value in array) {
-//                CGPoint point = [value CGPointValue];
-//                PointNode *node = [PointNode pointWithCGPoint:point];
-//                [self.pointNodeList addObject:node];
-//            }
-//        }
-//    }
-//    return self;
-//}
-//
-//- (void)encodeWithCoder:(NSCoder *)aCoder
-//{
-//    [aCoder encodeObject:self.color forKey:@"color"];
-//    [aCoder encodeObject:self.pointNodeList forKey:@"pointNodeList"];
-//    [aCoder encodeFloat:self.width forKey:@"width"];
-//    [aCoder encodeFloat:self.brushType forKey:@"brushType"];
-//    [aCoder encodeObject:nil forKey:@"pointList"];
-//}
-
 - (id)initWithWidth:(CGFloat)width color:(DrawColor*)color
 {
     self = [super init];
     if (self) {
         self.width = width;
         self.color = color;
-        //        _pointNodeList = [[NSMutableArray alloc] init];
         _hPointList = [[HBrushPointList alloc] init];
     }
     return self;
@@ -153,13 +120,6 @@
     return CGRectContainsPoint(rect, point);
 }
 
-
-- (BOOL)isChangeBGPaint
-{
-    return self.width > (BACK_GROUND_WIDTH/10);
-}
-
-
 - (void)updateLastPoint:(CGPoint)point inRect:(CGRect)rect
 {
     if ([_hPointList count] <= 0){
@@ -177,7 +137,7 @@
 - (void)addPoint:(CGPoint)point inRect:(CGRect)rect
 {
     
-    if (!CGRectContainsPoint(rect, point) && ![self isChangeBGPaint]){
+    if (!CGRectContainsPoint(rect, point)){
         //add By Gamy
         //we can change point(304.1,320.4) to point(304,320)
         //this point is not incorrect, but mistake.
@@ -194,6 +154,7 @@
     
     [[self getPen] addPointIntoPath:point];
     
+    // TODO
     [_hPointList addPoint:point.x y:point.y];
 }
 
@@ -275,8 +236,7 @@
         
         [builder addAllPointsX:pointXList];
         [builder addAllPointsY:pointYList];
-        
-        // TODO
+        [builder addAllBrushPointWidth:pointWList];
         
         [pool drain];
     }
@@ -292,19 +252,19 @@
         
         pbDrawActionC->pointsx = malloc(sizeof(float)*count);
         pbDrawActionC->pointsy = malloc(sizeof(float)*count);
+        pbDrawActionC->brushpointwidth = malloc(sizeof(float)*count);
         
         pbDrawActionC->n_pointsx = count;
         pbDrawActionC->n_pointsy = count;
+        pbDrawActionC->brushpointwidth = count;
         
         [_hPointList createPointFloatXList:pbDrawActionC->pointsx
-                                floatYList:pbDrawActionC->pointsy];
+                                floatYList:pbDrawActionC->pointsy
+                                 widthList:pbDrawActionC->brushpointwidth];
         
     }
-    if (self.brushType == Eraser) {
-        pbDrawActionC->bettercolor = [[DrawColor whiteColor] toBetterCompressColor];
-    }else{
-        pbDrawActionC->bettercolor = [self.color toBetterCompressColor];
-    }
+
+    pbDrawActionC->bettercolor = [self.color toBetterCompressColor];
     pbDrawActionC->has_bettercolor = 1;
     
     pbDrawActionC->pentype = self.brushType;

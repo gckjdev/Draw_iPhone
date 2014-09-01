@@ -6,9 +6,7 @@
 //
 //
 
-#import "HPointList.h"
-
-@interface HBrushPointList : HPointList
+@interface HBrushPointList : NSObject
 
 
 - (float)getPointX:(int)index;
