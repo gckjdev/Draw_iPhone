@@ -7,7 +7,12 @@
 //
 
 #import "DrawAction.h"
+#import "BrushStroke.h"
 
 @interface BrushAction : DrawAction
+
+@property (nonatomic, retain) BrushStroke *brushStroke;
+
++ (id)brushActionWithBrushStroke:(BrushStroke *)brushStroke;
 
 @end

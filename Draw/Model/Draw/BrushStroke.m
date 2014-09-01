@@ -75,7 +75,7 @@
 }
 
 
-+ (id)paintWithWidth:(CGFloat)width
++ (id)brushStrokeWithWidth:(CGFloat)width
                color:(DrawColor *)color
              brushType:(ItemType)brushType
            pointList:(HBrushPointList*)pointList
@@ -154,7 +154,7 @@
     
     [[self getPen] addPointIntoPath:point];
     
-    // TODO
+    // TODO brush for touch begin and touch move
     [_hPointList addPoint:point.x y:point.y];
 }
 

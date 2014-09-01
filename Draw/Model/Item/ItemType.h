@@ -59,6 +59,14 @@ typedef enum
     ItemTypeFunPen4 = 1154,
     ItemTypeFunPen5 = 1155,
     
+    ItemTypeBrushBlur = 1161,
+    ItemTypeBrushCryan = 1162,
+    ItemTypeBrushPen = 1163,
+    ItemTypeBrushPen4 = 1164,
+    ItemTypeBrushPen5 = 1165,
+    ItemTypeBrushEnd = 1199,
+    
+    
     DrawBackgroundStart = 1200,
     DrawBackground1,                
     DrawBackground2,

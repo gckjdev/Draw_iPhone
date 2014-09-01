@@ -37,7 +37,7 @@
             brushType:(ItemType)brushType
           pointList:(HBrushPointList*)pointList;;
 
-+ (id)paintWithWidth:(CGFloat)width
++ (id)brushStrokeWithWidth:(CGFloat)width
                color:(DrawColor *)color
              brushType:(ItemType)brushType
            pointList:(HBrushPointList*)pointList;

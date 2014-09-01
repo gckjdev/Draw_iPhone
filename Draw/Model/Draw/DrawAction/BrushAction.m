@@ -8,34 +8,34 @@
 
 #import "BrushAction.h"
 #import "ClipAction.h"
+#import "BrushStroke.h"
 
 @implementation BrushAction
 
 - (void)setCanvasSize:(CGSize)canvasSize
 {
-//    self.paint.canvasRect = CGRectFromCGSize(canvasSize);
+    self.brushStroke.canvasRect = CGRectFromCGSize(canvasSize);
 }
 
-- (id)init // WithWithPaint:(Paint *)paint
+- (id)initWithWithBrushStroke:(BrushStroke*)brushStroke
 {
     self = [super init];
     if (self) {
         self.type = DrawActionTypeBrush;
-//        self.paint = paint;
+        self.brushStroke = brushStroke;
     }
     return self;
 }
 
-//+ (id)paintActionWithPaint:(Paint *)paint
-//{
-//    PaintAction *action = [[PaintAction alloc] initWithWithPaint:paint];
-//    return [action autorelease];
-//}
++ (id)brushActionWithBrushStroke:(BrushStroke *)brushStroke
+{
+    BrushAction *action = [[BrushAction alloc] initWithWithBrushStroke:brushStroke];
+    return [action autorelease];
+}
 
 - (void)dealloc
 {
-//    PPRelease(_paint);
-    
+    PPRelease(_brushStroke);
     [super dealloc];
 }
 
@@ -48,11 +48,11 @@
     if ([self needShowShadow]) {
         CGContextBeginTransparencyLayer(context, NULL);
         [self.shadow updateContext:context];
-//        rect1 = [self.paint drawInContext:context inRect:rect];
+        rect1 = [self.brushStroke drawInContext:context inRect:rect];
         CGContextEndTransparencyLayer(context);
         [self.shadow spanRect:&rect1];
     }else{
-//        rect1 = [self.paint drawInContext:context inRect:rect];
+        rect1 = [self.brushStroke drawInContext:context inRect:rect];
     }
     CGContextRestoreGState(context);
     return rect1;
@@ -60,8 +60,7 @@
 
 - (CGRect)redrawRectInRect:(CGRect)rect
 {
-    CGRect rect1; // dummy implementation
-//    CGRect rect1 = [self.paint redrawRectInRect:rect];
+    CGRect rect1 = [self.brushStroke redrawRectInRect:rect];
     if (self.shadow) {
         [self.shadow spanRect:&rect1];
     }
@@ -275,7 +274,7 @@
     PBDrawAction_Builder *builder = [[PBDrawAction_Builder alloc] init];
     [builder setType:DrawActionTypeBrush];
     [builder setClipTag:self.clipTag];
-//    [self.paint updatePBDrawActionBuilder:builder];
+    [self.brushStroke updatePBDrawActionBuilder:builder];
     [self.shadow updatePBDrawActionBuilder:builder];
     PBDrawAction* pbDrawAction = [builder build];
     [builder release];
@@ -286,7 +285,7 @@
 {
     [super toPBDrawActionC:pbDrawActionC];
     pbDrawActionC->type = DrawActionTypeBrush;
-//    [self.paint updatePBDrawActionC:pbDrawActionC];
+    [self.brushStroke updatePBDrawActionC:pbDrawActionC];
     if ([self needShowShadow]) {
         [self.shadow updatePBDrawActionC:pbDrawActionC];
     }
@@ -300,19 +299,18 @@
 - (void)addPoint:(CGPoint)point inRect:(CGRect)rect
 {
     [super addPoint:point inRect:rect];
-//    [self.paint addPoint:point inRect:rect];
+    [self.brushStroke addPoint:point inRect:rect];
 }
 
 - (NSUInteger)pointCount
 {
-    return 0;
-//    return [self.paint pointCount];
+    return [self.brushStroke pointCount];
 }
 
 - (void)finishAddPoint
 {
     [super finishAddPoint];
-//    [self.paint finishAddPoint];
+    [self.brushStroke finishAddPoint];
 }
 
 
