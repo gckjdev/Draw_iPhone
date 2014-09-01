@@ -3203,7 +3203,7 @@ const ProtobufCMessageDescriptor game__pbgradient__descriptor =
   NULL,NULL,NULL    /* reserved[123] */
 };
 static const float game__pbdraw_action__layer_alpha__default_value = 1;
-static const ProtobufCFieldDescriptor game__pbdraw_action__field_descriptors[21] =
+static const ProtobufCFieldDescriptor game__pbdraw_action__field_descriptors[23] =
 {
   {
     "type",
@@ -3457,9 +3457,35 @@ static const ProtobufCFieldDescriptor game__pbdraw_action__field_descriptors[21]
     0,            /* packed */
     0,NULL,NULL    /* reserved1,reserved2, etc */
   },
+  {
+    "brushType",
+    40,
+    PROTOBUF_C_LABEL_OPTIONAL,
+    PROTOBUF_C_TYPE_INT32,
+    PROTOBUF_C_OFFSETOF(Game__PBDrawAction, has_brushtype),
+    PROTOBUF_C_OFFSETOF(Game__PBDrawAction, brushtype),
+    NULL,
+    NULL,
+    0,            /* packed */
+    0,NULL,NULL    /* reserved1,reserved2, etc */
+  },
+  {
+    "brushPointWidth",
+    41,
+    PROTOBUF_C_LABEL_REPEATED,
+    PROTOBUF_C_TYPE_FLOAT,
+    PROTOBUF_C_OFFSETOF(Game__PBDrawAction, n_brushpointwidth),
+    PROTOBUF_C_OFFSETOF(Game__PBDrawAction, brushpointwidth),
+    NULL,
+    NULL,
+    0,            /* packed */
+    0,NULL,NULL    /* reserved1,reserved2, etc */
+  },
 };
 static const unsigned game__pbdraw_action__field_indices_by_name[] = {
   10,   /* field[10] = betterColor */
+  22,   /* field[22] = brushPointWidth */
+  21,   /* field[21] = brushType */
   16,   /* field[16] = clipTag */
   17,   /* field[17] = clipType */
   3,   /* field[3] = color */
@@ -3481,14 +3507,15 @@ static const unsigned game__pbdraw_action__field_indices_by_name[] = {
   0,   /* field[0] = type */
   2,   /* field[2] = width */
 };
-static const ProtobufCIntRange game__pbdraw_action__number_ranges[5 + 1] =
+static const ProtobufCIntRange game__pbdraw_action__number_ranges[6 + 1] =
 {
   { 1, 0 },
   { 11, 8 },
   { 20, 16 },
   { 23, 18 },
   { 30, 20 },
-  { 0, 21 }
+  { 40, 21 },
+  { 0, 23 }
 };
 const ProtobufCMessageDescriptor game__pbdraw_action__descriptor =
 {
@@ -3498,10 +3525,10 @@ const ProtobufCMessageDescriptor game__pbdraw_action__descriptor =
   "Game__PBDrawAction",
   "game",
   sizeof(Game__PBDrawAction),
-  21,
+  23,
   game__pbdraw_action__field_descriptors,
   game__pbdraw_action__field_indices_by_name,
-  5,  game__pbdraw_action__number_ranges,
+  6,  game__pbdraw_action__number_ranges,
   (ProtobufCMessageInit) game__pbdraw_action__init,
   NULL,NULL,NULL    /* reserved[123] */
 };

@@ -436,10 +436,14 @@ struct  _Game__PBDrawAction
   protobuf_c_boolean has_layeralpha;
   float layeralpha;
   Game__PBGradient *gradient;
+  protobuf_c_boolean has_brushtype;
+  int32_t brushtype;
+  size_t n_brushpointwidth;
+  float *brushpointwidth;
 };
 #define GAME__PBDRAW_ACTION__INIT \
  { PROTOBUF_C_MESSAGE_INIT (&game__pbdraw_action__descriptor) \
-    , 0, 0,NULL, 0,0, 0,0, 0,0, 0,0, 0,NULL, 0,0, 0,NULL, 0,NULL, 0,0, NULL, 0,0, 0,0, 0,0, 0,0, 0,0, 0,0, 0,0, 0,1, NULL }
+    , 0, 0,NULL, 0,0, 0,0, 0,0, 0,0, 0,NULL, 0,0, 0,NULL, 0,NULL, 0,0, NULL, 0,0, 0,0, 0,0, 0,0, 0,0, 0,0, 0,0, 0,1, NULL, 0,0, 0,NULL }
 
 
 struct  _Game__PBMessage

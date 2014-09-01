@@ -6565,6 +6565,8 @@ static PBGradient* defaultPBGradientInstance = nil;
 @property int32_t layerTag;
 @property Float32 layerAlpha;
 @property (retain) PBGradient* gradient;
+@property int32_t brushType;
+@property (retain) NSMutableArray* mutableBrushPointWidthList;
 @end
 
 @implementation PBDrawAction
@@ -6697,6 +6699,14 @@ static PBGradient* defaultPBGradientInstance = nil;
   hasGradient_ = !!value;
 }
 @synthesize gradient;
+- (BOOL) hasBrushType {
+  return !!hasBrushType_;
+}
+- (void) setHasBrushType:(BOOL) value {
+  hasBrushType_ = !!value;
+}
+@synthesize brushType;
+@synthesize mutableBrushPointWidthList;
 - (void) dealloc {
   self.mutablePointsList = nil;
   self.mutableRectComponentList = nil;
@@ -6704,6 +6714,7 @@ static PBGradient* defaultPBGradientInstance = nil;
   self.mutablePointsYList = nil;
   self.drawBg = nil;
   self.gradient = nil;
+  self.mutableBrushPointWidthList = nil;
   [super dealloc];
 }
 - (id) init {
@@ -6725,6 +6736,7 @@ static PBGradient* defaultPBGradientInstance = nil;
     self.layerTag = 0;
     self.layerAlpha = 1;
     self.gradient = [PBGradient defaultInstance];
+    self.brushType = 0;
   }
   return self;
 }
@@ -6766,6 +6778,13 @@ static PBDrawAction* defaultPBDrawActionInstance = nil;
 }
 - (Float32) pointsYAtIndex:(int32_t) index {
   id value = [mutablePointsYList objectAtIndex:index];
+  return [value floatValue];
+}
+- (NSArray*) brushPointWidthList {
+  return mutableBrushPointWidthList;
+}
+- (Float32) brushPointWidthAtIndex:(int32_t) index {
+  id value = [mutableBrushPointWidthList objectAtIndex:index];
   return [value floatValue];
 }
 - (BOOL) isInitialized {
@@ -6851,6 +6870,12 @@ static PBDrawAction* defaultPBDrawActionInstance = nil;
   }
   if (self.hasGradient) {
     [output writeMessage:30 value:self.gradient];
+  }
+  if (self.hasBrushType) {
+    [output writeInt32:40 value:self.brushType];
+  }
+  for (NSNumber* value in self.mutableBrushPointWidthList) {
+    [output writeFloat:41 value:[value floatValue]];
   }
   [self.unknownFields writeToCodedOutputStream:output];
 }
@@ -6941,6 +6966,15 @@ static PBDrawAction* defaultPBDrawActionInstance = nil;
   }
   if (self.hasGradient) {
     size += computeMessageSize(30, self.gradient);
+  }
+  if (self.hasBrushType) {
+    size += computeInt32Size(40, self.brushType);
+  }
+  {
+    int32_t dataSize = 0;
+    dataSize = 4 * self.mutableBrushPointWidthList.count;
+    size += dataSize;
+    size += 2 * self.mutableBrushPointWidthList.count;
   }
   size += self.unknownFields.serializedSize;
   memoizedSerializedSize = size;
@@ -7092,6 +7126,15 @@ static PBDrawAction* defaultPBDrawActionInstance = nil;
   if (other.hasGradient) {
     [self mergeGradient:other.gradient];
   }
+  if (other.hasBrushType) {
+    [self setBrushType:other.brushType];
+  }
+  if (other.mutableBrushPointWidthList.count > 0) {
+    if (result.mutableBrushPointWidthList == nil) {
+      result.mutableBrushPointWidthList = [NSMutableArray array];
+    }
+    [result.mutableBrushPointWidthList addObjectsFromArray:other.mutableBrushPointWidthList];
+  }
   [self mergeUnknownFields:other.unknownFields];
   return self;
 }
@@ -7210,6 +7253,14 @@ static PBDrawAction* defaultPBDrawActionInstance = nil;
         }
         [input readMessage:subBuilder extensionRegistry:extensionRegistry];
         [self setGradient:[subBuilder buildPartial]];
+        break;
+      }
+      case 320: {
+        [self setBrushType:[input readInt32]];
+        break;
+      }
+      case 333: {
+        [self addBrushPointWidth:[input readFloat]];
         break;
       }
     }
@@ -7637,6 +7688,53 @@ static PBDrawAction* defaultPBDrawActionInstance = nil;
 - (PBDrawAction_Builder*) clearGradient {
   result.hasGradient = NO;
   result.gradient = [PBGradient defaultInstance];
+  return self;
+}
+- (BOOL) hasBrushType {
+  return result.hasBrushType;
+}
+- (int32_t) brushType {
+  return result.brushType;
+}
+- (PBDrawAction_Builder*) setBrushType:(int32_t) value {
+  result.hasBrushType = YES;
+  result.brushType = value;
+  return self;
+}
+- (PBDrawAction_Builder*) clearBrushType {
+  result.hasBrushType = NO;
+  result.brushType = 0;
+  return self;
+}
+- (NSArray*) brushPointWidthList {
+  if (result.mutableBrushPointWidthList == nil) {
+    return [NSArray array];
+  }
+  return result.mutableBrushPointWidthList;
+}
+- (Float32) brushPointWidthAtIndex:(int32_t) index {
+  return [result brushPointWidthAtIndex:index];
+}
+- (PBDrawAction_Builder*) replaceBrushPointWidthAtIndex:(int32_t) index with:(Float32) value {
+  [result.mutableBrushPointWidthList replaceObjectAtIndex:index withObject:[NSNumber numberWithFloat:value]];
+  return self;
+}
+- (PBDrawAction_Builder*) addBrushPointWidth:(Float32) value {
+  if (result.mutableBrushPointWidthList == nil) {
+    result.mutableBrushPointWidthList = [NSMutableArray array];
+  }
+  [result.mutableBrushPointWidthList addObject:[NSNumber numberWithFloat:value]];
+  return self;
+}
+- (PBDrawAction_Builder*) addAllBrushPointWidth:(NSArray*) values {
+  if (result.mutableBrushPointWidthList == nil) {
+    result.mutableBrushPointWidthList = [NSMutableArray array];
+  }
+  [result.mutableBrushPointWidthList addObjectsFromArray:values];
+  return self;
+}
+- (PBDrawAction_Builder*) clearBrushPointWidthList {
+  result.mutableBrushPointWidthList = nil;
   return self;
 }
 @end
