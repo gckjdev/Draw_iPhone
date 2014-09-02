@@ -21,6 +21,7 @@
 @class PBDrawAction_Builder;
 @protocol DrawPenProtocol;
 
+
 @interface BrushStroke : NSObject
 {
 }

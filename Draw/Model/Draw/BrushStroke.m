@@ -16,9 +16,13 @@
 //#import "DrawPenProtocol.h"
 #import "HBrushPointList.h"
 
+@interface BrushDot : NSObject
+
+@end
+
+
 @interface BrushStroke()
 {
-    
 }
 
 @property (nonatomic, retain) HBrushPointList  *hPointList;
