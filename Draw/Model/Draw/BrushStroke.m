@@ -155,6 +155,14 @@
     [[self getPen] addPointIntoPath:point];
     
     // TODO brush for touch begin and touch move
+    BOOL isFirstPoint = ([_hPointList count] == 0);
+    if (isFirstPoint){
+        
+    }
+    else{
+        
+    }
+    
     [_hPointList addPoint:point.x y:point.y];
 }
 
@@ -184,10 +192,14 @@
     }
     CGContextSaveGState(context);
     
+    /*
     [self.drawPen updateCGContext:context paint:self];
 
     CGContextAddPath(context, [self path]);
     CGContextStrokePath(context);
+    */
+    
+    // draw by point list
     
     CGContextRestoreGState(context);
     return [self redrawRectInRect:rect];
@@ -195,6 +207,8 @@
 
 - (void)finishAddPoint
 {
+    // TODO brush touch end
+    
     [[self getPen] finishAddPoint];
     [_hPointList complete];
 }
