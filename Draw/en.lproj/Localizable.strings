@@ -618,6 +618,14 @@
 
 "kDrawDesc" = "Drew a picture: [%@].";
 "kCreateDesc" = "Create an opus: [%@].";
+"kLearnDrawDesc" = "Conquer stage: [%@], %@ score is %d";
+"kAbove90" = "";
+"kAbove80" = "";
+"kAbove70" = "";
+"kAbove60" = "";
+"kAbove50" = "";
+"kAbove40" = "";
+
 
 "kDrawDescNoWord" = "Drew a picture.";
 "kCreateDescNoName" = "Create an opus.";

@@ -647,6 +647,14 @@
 
 "kDrawDesc" = "画了一幅 [%@]";
 "kCreateDesc" = "录制了一个声音作品 [%@]";
+"kLearnDrawDesc" = "画了一副闯关作品 [%@], %@%d分";
+
+"kAbove90" = "暴砍";
+"kAbove80" = "狂砍";
+"kAbove70" = "怒砍";
+"kAbove60" = "砍下";
+"kAbove50" = "轻取";
+"kAbove40" = "拿下";
 
 "kDrawDescNoWord" = "画了一幅画";
 "kCreateDescNoName" = "录制了一个声音作品";

@@ -127,6 +127,11 @@
     || (self.feedType == FeedTypePracticeDraw) || (self.feedType == FeedTypeConquerDraw));
 }
 
+- (BOOL)isLearnDraw
+{
+    return (self.feedType == FeedTypePracticeDraw) || (self.feedType == FeedTypeConquerDraw);
+}
+
 - (BOOL)isDrawCategory
 {
     return (self.categoryType == PBOpusCategoryTypeDrawCategory);
