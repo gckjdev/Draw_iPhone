@@ -54,6 +54,11 @@
     PPRelease(dlManager);
     PPRelease(_gestureRecognizerManager);
     PPRelease(_bgImage);
+    
+    if (_brushLayer != NULL){
+        CGLayerRelease(_brushLayer);
+    }
+    
     [super dealloc];
 }
 
@@ -61,6 +66,16 @@
 {
     return [DrawUtils createCGLayerWithRect:self.bounds];
 }
+
+- (CGLayerRef)brushLayer
+{
+    if (_brushLayer == NULL){
+        _brushLayer = [DrawUtils createCGLayerWithRect:self.bounds];
+    }
+    
+    return _brushLayer;
+}
+
 - (id)initWithFrame:(CGRect)frame
 {
     PPDebug(@"init frame=%@", NSStringFromCGRect(frame));

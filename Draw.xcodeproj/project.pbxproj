@@ -3066,6 +3066,90 @@
 		A4F04B9A18068467007274BE /* beep-timber.aif in Resources */ = {isa = PBXBuildFile; fileRef = A4F04B9618068466007274BE /* beep-timber.aif */; };
 		A4F04B9B18068467007274BE /* beep-timber.aif in Resources */ = {isa = PBXBuildFile; fileRef = A4F04B9618068466007274BE /* beep-timber.aif */; };
 		A4F04B9C18068467007274BE /* beep-timber.aif in Resources */ = {isa = PBXBuildFile; fileRef = A4F04B9618068466007274BE /* beep-timber.aif */; };
+		A4F474FC19B5794100CFE2AE /* brush_dot1.png in Resources */ = {isa = PBXBuildFile; fileRef = A4F474EB19B5794000CFE2AE /* brush_dot1.png */; };
+		A4F474FD19B5794100CFE2AE /* brush_dot1.png in Resources */ = {isa = PBXBuildFile; fileRef = A4F474EB19B5794000CFE2AE /* brush_dot1.png */; };
+		A4F474FE19B5794100CFE2AE /* brush_dot1.png in Resources */ = {isa = PBXBuildFile; fileRef = A4F474EB19B5794000CFE2AE /* brush_dot1.png */; };
+		A4F474FF19B5794100CFE2AE /* brush_dot1.png in Resources */ = {isa = PBXBuildFile; fileRef = A4F474EB19B5794000CFE2AE /* brush_dot1.png */; };
+		A4F4750019B5794100CFE2AE /* brush_dot2.png in Resources */ = {isa = PBXBuildFile; fileRef = A4F474EC19B5794000CFE2AE /* brush_dot2.png */; };
+		A4F4750119B5794100CFE2AE /* brush_dot2.png in Resources */ = {isa = PBXBuildFile; fileRef = A4F474EC19B5794000CFE2AE /* brush_dot2.png */; };
+		A4F4750219B5794100CFE2AE /* brush_dot2.png in Resources */ = {isa = PBXBuildFile; fileRef = A4F474EC19B5794000CFE2AE /* brush_dot2.png */; };
+		A4F4750319B5794100CFE2AE /* brush_dot2.png in Resources */ = {isa = PBXBuildFile; fileRef = A4F474EC19B5794000CFE2AE /* brush_dot2.png */; };
+		A4F4750419B5794100CFE2AE /* brush_dot3.png in Resources */ = {isa = PBXBuildFile; fileRef = A4F474ED19B5794000CFE2AE /* brush_dot3.png */; };
+		A4F4750519B5794100CFE2AE /* brush_dot3.png in Resources */ = {isa = PBXBuildFile; fileRef = A4F474ED19B5794000CFE2AE /* brush_dot3.png */; };
+		A4F4750619B5794100CFE2AE /* brush_dot3.png in Resources */ = {isa = PBXBuildFile; fileRef = A4F474ED19B5794000CFE2AE /* brush_dot3.png */; };
+		A4F4750719B5794100CFE2AE /* brush_dot3.png in Resources */ = {isa = PBXBuildFile; fileRef = A4F474ED19B5794000CFE2AE /* brush_dot3.png */; };
+		A4F4750819B5794100CFE2AE /* brush_dot4.png in Resources */ = {isa = PBXBuildFile; fileRef = A4F474EE19B5794000CFE2AE /* brush_dot4.png */; };
+		A4F4750919B5794100CFE2AE /* brush_dot4.png in Resources */ = {isa = PBXBuildFile; fileRef = A4F474EE19B5794000CFE2AE /* brush_dot4.png */; };
+		A4F4750A19B5794100CFE2AE /* brush_dot4.png in Resources */ = {isa = PBXBuildFile; fileRef = A4F474EE19B5794000CFE2AE /* brush_dot4.png */; };
+		A4F4750B19B5794100CFE2AE /* brush_dot4.png in Resources */ = {isa = PBXBuildFile; fileRef = A4F474EE19B5794000CFE2AE /* brush_dot4.png */; };
+		A4F4750C19B5794100CFE2AE /* brush_dot5.png in Resources */ = {isa = PBXBuildFile; fileRef = A4F474EF19B5794100CFE2AE /* brush_dot5.png */; };
+		A4F4750D19B5794100CFE2AE /* brush_dot5.png in Resources */ = {isa = PBXBuildFile; fileRef = A4F474EF19B5794100CFE2AE /* brush_dot5.png */; };
+		A4F4750E19B5794100CFE2AE /* brush_dot5.png in Resources */ = {isa = PBXBuildFile; fileRef = A4F474EF19B5794100CFE2AE /* brush_dot5.png */; };
+		A4F4750F19B5794100CFE2AE /* brush_dot5.png in Resources */ = {isa = PBXBuildFile; fileRef = A4F474EF19B5794100CFE2AE /* brush_dot5.png */; };
+		A4F4751019B5794100CFE2AE /* brush_dot6.png in Resources */ = {isa = PBXBuildFile; fileRef = A4F474F019B5794100CFE2AE /* brush_dot6.png */; };
+		A4F4751119B5794100CFE2AE /* brush_dot6.png in Resources */ = {isa = PBXBuildFile; fileRef = A4F474F019B5794100CFE2AE /* brush_dot6.png */; };
+		A4F4751219B5794100CFE2AE /* brush_dot6.png in Resources */ = {isa = PBXBuildFile; fileRef = A4F474F019B5794100CFE2AE /* brush_dot6.png */; };
+		A4F4751319B5794100CFE2AE /* brush_dot6.png in Resources */ = {isa = PBXBuildFile; fileRef = A4F474F019B5794100CFE2AE /* brush_dot6.png */; };
+		A4F4751419B5794100CFE2AE /* brush_dot7.png in Resources */ = {isa = PBXBuildFile; fileRef = A4F474F119B5794100CFE2AE /* brush_dot7.png */; };
+		A4F4751519B5794100CFE2AE /* brush_dot7.png in Resources */ = {isa = PBXBuildFile; fileRef = A4F474F119B5794100CFE2AE /* brush_dot7.png */; };
+		A4F4751619B5794100CFE2AE /* brush_dot7.png in Resources */ = {isa = PBXBuildFile; fileRef = A4F474F119B5794100CFE2AE /* brush_dot7.png */; };
+		A4F4751719B5794100CFE2AE /* brush_dot7.png in Resources */ = {isa = PBXBuildFile; fileRef = A4F474F119B5794100CFE2AE /* brush_dot7.png */; };
+		A4F4751819B5794100CFE2AE /* brush_ellipse1.png in Resources */ = {isa = PBXBuildFile; fileRef = A4F474F219B5794100CFE2AE /* brush_ellipse1.png */; };
+		A4F4751919B5794100CFE2AE /* brush_ellipse1.png in Resources */ = {isa = PBXBuildFile; fileRef = A4F474F219B5794100CFE2AE /* brush_ellipse1.png */; };
+		A4F4751A19B5794100CFE2AE /* brush_ellipse1.png in Resources */ = {isa = PBXBuildFile; fileRef = A4F474F219B5794100CFE2AE /* brush_ellipse1.png */; };
+		A4F4751B19B5794100CFE2AE /* brush_ellipse1.png in Resources */ = {isa = PBXBuildFile; fileRef = A4F474F219B5794100CFE2AE /* brush_ellipse1.png */; };
+		A4F4751C19B5794100CFE2AE /* brush_ellipse2.png in Resources */ = {isa = PBXBuildFile; fileRef = A4F474F319B5794100CFE2AE /* brush_ellipse2.png */; };
+		A4F4751D19B5794100CFE2AE /* brush_ellipse2.png in Resources */ = {isa = PBXBuildFile; fileRef = A4F474F319B5794100CFE2AE /* brush_ellipse2.png */; };
+		A4F4751E19B5794100CFE2AE /* brush_ellipse2.png in Resources */ = {isa = PBXBuildFile; fileRef = A4F474F319B5794100CFE2AE /* brush_ellipse2.png */; };
+		A4F4751F19B5794100CFE2AE /* brush_ellipse2.png in Resources */ = {isa = PBXBuildFile; fileRef = A4F474F319B5794100CFE2AE /* brush_ellipse2.png */; };
+		A4F4752019B5794100CFE2AE /* brush_ellipse3.png in Resources */ = {isa = PBXBuildFile; fileRef = A4F474F419B5794100CFE2AE /* brush_ellipse3.png */; };
+		A4F4752119B5794100CFE2AE /* brush_ellipse3.png in Resources */ = {isa = PBXBuildFile; fileRef = A4F474F419B5794100CFE2AE /* brush_ellipse3.png */; };
+		A4F4752219B5794100CFE2AE /* brush_ellipse3.png in Resources */ = {isa = PBXBuildFile; fileRef = A4F474F419B5794100CFE2AE /* brush_ellipse3.png */; };
+		A4F4752319B5794100CFE2AE /* brush_ellipse3.png in Resources */ = {isa = PBXBuildFile; fileRef = A4F474F419B5794100CFE2AE /* brush_ellipse3.png */; };
+		A4F4752419B5794100CFE2AE /* brush_ellipse4.png in Resources */ = {isa = PBXBuildFile; fileRef = A4F474F519B5794100CFE2AE /* brush_ellipse4.png */; };
+		A4F4752519B5794100CFE2AE /* brush_ellipse4.png in Resources */ = {isa = PBXBuildFile; fileRef = A4F474F519B5794100CFE2AE /* brush_ellipse4.png */; };
+		A4F4752619B5794100CFE2AE /* brush_ellipse4.png in Resources */ = {isa = PBXBuildFile; fileRef = A4F474F519B5794100CFE2AE /* brush_ellipse4.png */; };
+		A4F4752719B5794100CFE2AE /* brush_ellipse4.png in Resources */ = {isa = PBXBuildFile; fileRef = A4F474F519B5794100CFE2AE /* brush_ellipse4.png */; };
+		A4F4752819B5794100CFE2AE /* brush_gradient1.png in Resources */ = {isa = PBXBuildFile; fileRef = A4F474F619B5794100CFE2AE /* brush_gradient1.png */; };
+		A4F4752919B5794100CFE2AE /* brush_gradient1.png in Resources */ = {isa = PBXBuildFile; fileRef = A4F474F619B5794100CFE2AE /* brush_gradient1.png */; };
+		A4F4752A19B5794100CFE2AE /* brush_gradient1.png in Resources */ = {isa = PBXBuildFile; fileRef = A4F474F619B5794100CFE2AE /* brush_gradient1.png */; };
+		A4F4752B19B5794100CFE2AE /* brush_gradient1.png in Resources */ = {isa = PBXBuildFile; fileRef = A4F474F619B5794100CFE2AE /* brush_gradient1.png */; };
+		A4F4752C19B5794100CFE2AE /* brush_gradient2.png in Resources */ = {isa = PBXBuildFile; fileRef = A4F474F719B5794100CFE2AE /* brush_gradient2.png */; };
+		A4F4752D19B5794100CFE2AE /* brush_gradient2.png in Resources */ = {isa = PBXBuildFile; fileRef = A4F474F719B5794100CFE2AE /* brush_gradient2.png */; };
+		A4F4752E19B5794100CFE2AE /* brush_gradient2.png in Resources */ = {isa = PBXBuildFile; fileRef = A4F474F719B5794100CFE2AE /* brush_gradient2.png */; };
+		A4F4752F19B5794100CFE2AE /* brush_gradient2.png in Resources */ = {isa = PBXBuildFile; fileRef = A4F474F719B5794100CFE2AE /* brush_gradient2.png */; };
+		A4F4753019B5794100CFE2AE /* brush_gradient3.png in Resources */ = {isa = PBXBuildFile; fileRef = A4F474F819B5794100CFE2AE /* brush_gradient3.png */; };
+		A4F4753119B5794100CFE2AE /* brush_gradient3.png in Resources */ = {isa = PBXBuildFile; fileRef = A4F474F819B5794100CFE2AE /* brush_gradient3.png */; };
+		A4F4753219B5794100CFE2AE /* brush_gradient3.png in Resources */ = {isa = PBXBuildFile; fileRef = A4F474F819B5794100CFE2AE /* brush_gradient3.png */; };
+		A4F4753319B5794100CFE2AE /* brush_gradient3.png in Resources */ = {isa = PBXBuildFile; fileRef = A4F474F819B5794100CFE2AE /* brush_gradient3.png */; };
+		A4F4753419B5794100CFE2AE /* brush_oil1.png in Resources */ = {isa = PBXBuildFile; fileRef = A4F474F919B5794100CFE2AE /* brush_oil1.png */; };
+		A4F4753519B5794100CFE2AE /* brush_oil1.png in Resources */ = {isa = PBXBuildFile; fileRef = A4F474F919B5794100CFE2AE /* brush_oil1.png */; };
+		A4F4753619B5794100CFE2AE /* brush_oil1.png in Resources */ = {isa = PBXBuildFile; fileRef = A4F474F919B5794100CFE2AE /* brush_oil1.png */; };
+		A4F4753719B5794100CFE2AE /* brush_oil1.png in Resources */ = {isa = PBXBuildFile; fileRef = A4F474F919B5794100CFE2AE /* brush_oil1.png */; };
+		A4F4753819B5794100CFE2AE /* brush_oil2.png in Resources */ = {isa = PBXBuildFile; fileRef = A4F474FA19B5794100CFE2AE /* brush_oil2.png */; };
+		A4F4753919B5794100CFE2AE /* brush_oil2.png in Resources */ = {isa = PBXBuildFile; fileRef = A4F474FA19B5794100CFE2AE /* brush_oil2.png */; };
+		A4F4753A19B5794100CFE2AE /* brush_oil2.png in Resources */ = {isa = PBXBuildFile; fileRef = A4F474FA19B5794100CFE2AE /* brush_oil2.png */; };
+		A4F4753B19B5794100CFE2AE /* brush_oil2.png in Resources */ = {isa = PBXBuildFile; fileRef = A4F474FA19B5794100CFE2AE /* brush_oil2.png */; };
+		A4F4753C19B5794100CFE2AE /* brush_shed.png in Resources */ = {isa = PBXBuildFile; fileRef = A4F474FB19B5794100CFE2AE /* brush_shed.png */; };
+		A4F4753D19B5794100CFE2AE /* brush_shed.png in Resources */ = {isa = PBXBuildFile; fileRef = A4F474FB19B5794100CFE2AE /* brush_shed.png */; };
+		A4F4753E19B5794100CFE2AE /* brush_shed.png in Resources */ = {isa = PBXBuildFile; fileRef = A4F474FB19B5794100CFE2AE /* brush_shed.png */; };
+		A4F4753F19B5794100CFE2AE /* brush_shed.png in Resources */ = {isa = PBXBuildFile; fileRef = A4F474FB19B5794100CFE2AE /* brush_shed.png */; };
+		A4F4754719B57B9D00CFE2AE /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = A4F4754219B57B9D00CFE2AE /* LICENSE */; };
+		A4F4754819B57B9D00CFE2AE /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = A4F4754219B57B9D00CFE2AE /* LICENSE */; };
+		A4F4754919B57B9D00CFE2AE /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = A4F4754219B57B9D00CFE2AE /* LICENSE */; };
+		A4F4754A19B57B9D00CFE2AE /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = A4F4754219B57B9D00CFE2AE /* LICENSE */; };
+		A4F4754B19B57B9D00CFE2AE /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = A4F4754319B57B9D00CFE2AE /* README.md */; };
+		A4F4754C19B57B9D00CFE2AE /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = A4F4754319B57B9D00CFE2AE /* README.md */; };
+		A4F4754D19B57B9D00CFE2AE /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = A4F4754319B57B9D00CFE2AE /* README.md */; };
+		A4F4754E19B57B9D00CFE2AE /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = A4F4754319B57B9D00CFE2AE /* README.md */; };
+		A4F4754F19B57B9D00CFE2AE /* UIImage+RTTint.m in Sources */ = {isa = PBXBuildFile; fileRef = A4F4754519B57B9D00CFE2AE /* UIImage+RTTint.m */; };
+		A4F4755019B57B9D00CFE2AE /* UIImage+RTTint.m in Sources */ = {isa = PBXBuildFile; fileRef = A4F4754519B57B9D00CFE2AE /* UIImage+RTTint.m */; };
+		A4F4755119B57B9D00CFE2AE /* UIImage+RTTint.m in Sources */ = {isa = PBXBuildFile; fileRef = A4F4754519B57B9D00CFE2AE /* UIImage+RTTint.m */; };
+		A4F4755219B57B9D00CFE2AE /* UIImage+RTTint.m in Sources */ = {isa = PBXBuildFile; fileRef = A4F4754519B57B9D00CFE2AE /* UIImage+RTTint.m */; };
+		A4F4755319B57B9D00CFE2AE /* UIImage+RTTint.podspec in Resources */ = {isa = PBXBuildFile; fileRef = A4F4754619B57B9D00CFE2AE /* UIImage+RTTint.podspec */; };
+		A4F4755419B57B9D00CFE2AE /* UIImage+RTTint.podspec in Resources */ = {isa = PBXBuildFile; fileRef = A4F4754619B57B9D00CFE2AE /* UIImage+RTTint.podspec */; };
+		A4F4755519B57B9D00CFE2AE /* UIImage+RTTint.podspec in Resources */ = {isa = PBXBuildFile; fileRef = A4F4754619B57B9D00CFE2AE /* UIImage+RTTint.podspec */; };
+		A4F4755619B57B9D00CFE2AE /* UIImage+RTTint.podspec in Resources */ = {isa = PBXBuildFile; fileRef = A4F4754619B57B9D00CFE2AE /* UIImage+RTTint.podspec */; };
 		C203C47716F309A50028A065 /* RoundPercentageView.m in Sources */ = {isa = PBXBuildFile; fileRef = C203C47616F309A50028A065 /* RoundPercentageView.m */; };
 		C206FFAC178032D30033CF63 /* CommonWaterFlowController.m in Sources */ = {isa = PBXBuildFile; fileRef = C206FFAB178032D20033CF63 /* CommonWaterFlowController.m */; };
 		C206FFAD178032D30033CF63 /* CommonWaterFlowController.m in Sources */ = {isa = PBXBuildFile; fileRef = C206FFAB178032D20033CF63 /* CommonWaterFlowController.m */; };
@@ -8879,6 +8963,28 @@
 		A4F04B8E180680D1007274BE /* tap-warm.aif */ = {isa = PBXFileReference; lastKnownFileType = file; path = "tap-warm.aif"; sourceTree = "<group>"; };
 		A4F04B9518068465007274BE /* beep-shinymetal.aif */ = {isa = PBXFileReference; lastKnownFileType = file; path = "beep-shinymetal.aif"; sourceTree = "<group>"; };
 		A4F04B9618068466007274BE /* beep-timber.aif */ = {isa = PBXFileReference; lastKnownFileType = file; path = "beep-timber.aif"; sourceTree = "<group>"; };
+		A4F474EB19B5794000CFE2AE /* brush_dot1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = brush_dot1.png; sourceTree = "<group>"; };
+		A4F474EC19B5794000CFE2AE /* brush_dot2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = brush_dot2.png; sourceTree = "<group>"; };
+		A4F474ED19B5794000CFE2AE /* brush_dot3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = brush_dot3.png; sourceTree = "<group>"; };
+		A4F474EE19B5794000CFE2AE /* brush_dot4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = brush_dot4.png; sourceTree = "<group>"; };
+		A4F474EF19B5794100CFE2AE /* brush_dot5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = brush_dot5.png; sourceTree = "<group>"; };
+		A4F474F019B5794100CFE2AE /* brush_dot6.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = brush_dot6.png; sourceTree = "<group>"; };
+		A4F474F119B5794100CFE2AE /* brush_dot7.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = brush_dot7.png; sourceTree = "<group>"; };
+		A4F474F219B5794100CFE2AE /* brush_ellipse1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = brush_ellipse1.png; sourceTree = "<group>"; };
+		A4F474F319B5794100CFE2AE /* brush_ellipse2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = brush_ellipse2.png; sourceTree = "<group>"; };
+		A4F474F419B5794100CFE2AE /* brush_ellipse3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = brush_ellipse3.png; sourceTree = "<group>"; };
+		A4F474F519B5794100CFE2AE /* brush_ellipse4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = brush_ellipse4.png; sourceTree = "<group>"; };
+		A4F474F619B5794100CFE2AE /* brush_gradient1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = brush_gradient1.png; sourceTree = "<group>"; };
+		A4F474F719B5794100CFE2AE /* brush_gradient2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = brush_gradient2.png; sourceTree = "<group>"; };
+		A4F474F819B5794100CFE2AE /* brush_gradient3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = brush_gradient3.png; sourceTree = "<group>"; };
+		A4F474F919B5794100CFE2AE /* brush_oil1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = brush_oil1.png; sourceTree = "<group>"; };
+		A4F474FA19B5794100CFE2AE /* brush_oil2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = brush_oil2.png; sourceTree = "<group>"; };
+		A4F474FB19B5794100CFE2AE /* brush_shed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = brush_shed.png; sourceTree = "<group>"; };
+		A4F4754219B57B9D00CFE2AE /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
+		A4F4754319B57B9D00CFE2AE /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
+		A4F4754419B57B9D00CFE2AE /* UIImage+RTTint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+RTTint.h"; sourceTree = "<group>"; };
+		A4F4754519B57B9D00CFE2AE /* UIImage+RTTint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+RTTint.m"; sourceTree = "<group>"; };
+		A4F4754619B57B9D00CFE2AE /* UIImage+RTTint.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "UIImage+RTTint.podspec"; sourceTree = "<group>"; };
 		C20030A9172F9E1D00FD6AE1 /* BBS.pb-c.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "BBS.pb-c.h"; sourceTree = "<group>"; };
 		C20030AB172F9E1D00FD6AE1 /* Config.pb-c.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Config.pb-c.h"; sourceTree = "<group>"; };
 		C20030AF172F9E1D00FD6AE1 /* Draw.pb-c.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Draw.pb-c.h"; sourceTree = "<group>"; };
@@ -12535,6 +12641,7 @@
 		A4D8FC5117DB089B0085061F /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				A4F474EA19B5794000CFE2AE /* brush */,
 				CA7DE796192BAD3200EED067 /* play_button */,
 				CA926BA818A8C94F002C73B4 /* disable_notice_on.png */,
 				CA926BA918A8C94F002C73B4 /* disable_notice_off.png */,
@@ -13055,6 +13162,50 @@
 				A4B78A8517A0464C0008E21B /* PageScrollViewFactory.m */,
 			);
 			path = PageScrollView;
+			sourceTree = "<group>";
+		};
+		A4F474EA19B5794000CFE2AE /* brush */ = {
+			isa = PBXGroup;
+			children = (
+				A4F474EB19B5794000CFE2AE /* brush_dot1.png */,
+				A4F474EC19B5794000CFE2AE /* brush_dot2.png */,
+				A4F474ED19B5794000CFE2AE /* brush_dot3.png */,
+				A4F474EE19B5794000CFE2AE /* brush_dot4.png */,
+				A4F474EF19B5794100CFE2AE /* brush_dot5.png */,
+				A4F474F019B5794100CFE2AE /* brush_dot6.png */,
+				A4F474F119B5794100CFE2AE /* brush_dot7.png */,
+				A4F474F219B5794100CFE2AE /* brush_ellipse1.png */,
+				A4F474F319B5794100CFE2AE /* brush_ellipse2.png */,
+				A4F474F419B5794100CFE2AE /* brush_ellipse3.png */,
+				A4F474F519B5794100CFE2AE /* brush_ellipse4.png */,
+				A4F474F619B5794100CFE2AE /* brush_gradient1.png */,
+				A4F474F719B5794100CFE2AE /* brush_gradient2.png */,
+				A4F474F819B5794100CFE2AE /* brush_gradient3.png */,
+				A4F474F919B5794100CFE2AE /* brush_oil1.png */,
+				A4F474FA19B5794100CFE2AE /* brush_oil2.png */,
+				A4F474FB19B5794100CFE2AE /* brush_shed.png */,
+			);
+			path = brush;
+			sourceTree = "<group>";
+		};
+		A4F4754019B57B9D00CFE2AE /* Component-Color */ = {
+			isa = PBXGroup;
+			children = (
+				A4F4754119B57B9D00CFE2AE /* UIImage-RTTint-lib */,
+			);
+			path = "Component-Color";
+			sourceTree = "<group>";
+		};
+		A4F4754119B57B9D00CFE2AE /* UIImage-RTTint-lib */ = {
+			isa = PBXGroup;
+			children = (
+				A4F4754219B57B9D00CFE2AE /* LICENSE */,
+				A4F4754319B57B9D00CFE2AE /* README.md */,
+				A4F4754419B57B9D00CFE2AE /* UIImage+RTTint.h */,
+				A4F4754519B57B9D00CFE2AE /* UIImage+RTTint.m */,
+				A4F4754619B57B9D00CFE2AE /* UIImage+RTTint.podspec */,
+			);
+			path = "UIImage-RTTint-lib";
 			sourceTree = "<group>";
 		};
 		C20030A7172F9E1D00FD6AE1 /* Gen-c */ = {
@@ -17902,6 +18053,7 @@
 		CAFEFBE816606FC100441D77 /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				A4F4754019B57B9D00CFE2AE /* Component-Color */,
 				CA52AE141828F1280066B0A0 /* PPSNSService */,
 				A4ADB60B17B9D43900EBF418 /* Component-Sound */,
 				A4B6C652176C0F4400C72E17 /* Component-Audio */,
@@ -18973,6 +19125,7 @@
 				A461B43A174CBAA70088B061 /* snow.png in Resources */,
 				A461B444174CBAA70088B061 /* MyWordsController.xib in Resources */,
 				A461B445174CBAA70088B061 /* MyWordsController~ipad.xib in Resources */,
+				A4F4753E19B5794100CFE2AE /* brush_shed.png in Resources */,
 				A461B446174CBAA70088B061 /* SelectCustomWordView.xib in Resources */,
 				A461B447174CBAA70088B061 /* SelectCustomWordView~ipad.xib in Resources */,
 				A461B448174CBAA70088B061 /* ChatCell.xib in Resources */,
@@ -19019,6 +19172,7 @@
 				A461B4CB174CBAA70088B061 /* RankView.xib in Resources */,
 				A461B4CC174CBAA70088B061 /* RankFirstView.xib in Resources */,
 				A461B4CD174CBAA70088B061 /* RankSecondView.xib in Resources */,
+				A4F4752A19B5794100CFE2AE /* brush_gradient1.png in Resources */,
 				CACD6ABF18E03A29003F97C0 /* ShareSDKLocalizable.strings in Resources */,
 				A461B4CE174CBAA70088B061 /* TopPlayerView.xib in Resources */,
 				A461B4CF174CBAA70088B061 /* RankFirstView~ipad.xib in Resources */,
@@ -19076,6 +19230,7 @@
 				A461B524174CBAA70088B061 /* bbs_post_support@2x.png in Resources */,
 				A461B525174CBAA70088B061 /* bbs_post_new@2x.png in Resources */,
 				A461B526174CBAA70088B061 /* BBSPostListController~ipad.xib in Resources */,
+				A4F4751A19B5794100CFE2AE /* brush_ellipse1.png in Resources */,
 				D89B27BF198233780035BE5F /* TipsPageViewController~ipad.xib in Resources */,
 				A461B527174CBAA70088B061 /* BBSPostCell~ipad.xib in Resources */,
 				A461B528174CBAA70088B061 /* bbs_post_rewarded@2x.png in Resources */,
@@ -19089,6 +19244,7 @@
 				A461B532174CBAA70088B061 /* bbs_option_bg@2x.png in Resources */,
 				A461B533174CBAA70088B061 /* bbs_option_bubble@2x.png in Resources */,
 				A461B535174CBAA70088B061 /* bbs_create_draw_enable@2x.png in Resources */,
+				A4F4752219B5794100CFE2AE /* brush_ellipse3.png in Resources */,
 				A461B537174CBAA70088B061 /* bbs_create_image_enable@2x.png in Resources */,
 				A461B538174CBAA70088B061 /* bbs_create_input_bg@2x.png in Resources */,
 				A461B539174CBAA70088B061 /* bbs_create_reward_bg@2x.png in Resources */,
@@ -19117,6 +19273,7 @@
 				A461B559174CBAA70088B061 /* DrawHomeHeaderPanel.xib in Resources */,
 				A461B567174CBAA70088B061 /* CommonDialog.xib in Resources */,
 				A461B568174CBAA70088B061 /* CommonDialog~ipad.xib in Resources */,
+				A4F4753619B5794100CFE2AE /* brush_oil1.png in Resources */,
 				D89191FD196316C2006B616A /* StageCell.xib in Resources */,
 				A461B569174CBAA70088B061 /* CommonDiceDialog.xib in Resources */,
 				A461B56A174CBAA70088B061 /* CommonDiceDialog~ipad.xib in Resources */,
@@ -19125,6 +19282,7 @@
 				A461B56D174CBAA70088B061 /* CommonStarryDialog.xib in Resources */,
 				A461B56E174CBAA70088B061 /* CommonStarryDialog~ipad.xib in Resources */,
 				A461B56F174CBAA70088B061 /* CommonUserInfoView.xib in Resources */,
+				A4F4755519B57B9D00CFE2AE /* UIImage+RTTint.podspec in Resources */,
 				A461B570174CBAA70088B061 /* CommonUserInfoView~ipad.xib in Resources */,
 				A461B571174CBAA70088B061 /* CommonZJHDialog.xib in Resources */,
 				D865421F1980B0FA007D60E7 /* TutorialInfoController~ipad.xib in Resources */,
@@ -19208,6 +19366,7 @@
 				A461B740174CBAA70088B061 /* StoreController~ipad.xib in Resources */,
 				A461B741174CBAA70088B061 /* StoreCell~ipad.xib in Resources */,
 				A461B742174CBAA70088B061 /* CustomInfoView~ipad.xib in Resources */,
+				A4F4752619B5794100CFE2AE /* brush_ellipse4.png in Resources */,
 				A461B743174CBAA70088B061 /* ChargeController~ipad.xib in Resources */,
 				A461B744174CBAA70088B061 /* ChargeCell~ipad.xib in Resources */,
 				A461B745174CBAA70088B061 /* PriceView~ipad.xib in Resources */,
@@ -19230,6 +19389,7 @@
 				A461B7A0174CBAA70088B061 /* default_config_Draw.pb in Resources */,
 				A461B7A4174CBAA70088B061 /* DrawBgCell.xib in Resources */,
 				A461B7A5174CBAA70088B061 /* DrawBgCell~ipad.xib in Resources */,
+				A4F4750219B5794100CFE2AE /* brush_dot2.png in Resources */,
 				A461B7A6174CBAA70088B061 /* TaoBaoController.xib in Resources */,
 				A461B7A7174CBAA70088B061 /* TaoBaoController~ipad.xib in Resources */,
 				D8B539271991D75800BD3337 /* StageAlertViewController.xib in Resources */,
@@ -19257,6 +19417,7 @@
 				A49972D41778365000B01EBE /* OnlineGuessDrawController.xib in Resources */,
 				A49972D51778365000B01EBE /* OnlineGuessDrawController~ipad.xib in Resources */,
 				A49972F917783BA200B01EBE /* ResultController~ipad.xib in Resources */,
+				A4F4753A19B5794100CFE2AE /* brush_oil2.png in Resources */,
 				A49972FB17783BA200B01EBE /* ResultController.xib in Resources */,
 				A499730F17783BF200B01EBE /* ShowFeedController.xib in Resources */,
 				A499731017783BF200B01EBE /* ShowFeedController~ipad.xib in Resources */,
@@ -19347,6 +19508,7 @@
 				A4DDD57717CDFD7B0029E562 /* ding.m4a in Resources */,
 				A4DDD57B17CDFD7B0029E562 /* dingding.mp3 in Resources */,
 				A4DDD57F17CDFD7B0029E562 /* oowrong.mp3 in Resources */,
+				A4F474FE19B5794100CFE2AE /* brush_dot1.png in Resources */,
 				A4DDD58317CDFD7B0029E562 /* pushMessage.mp3 in Resources */,
 				D8A1E9C0197612B200F32735 /* MoreViewController.xib in Resources */,
 				A4DDD58717CDFD7B0029E562 /* wrong.wav in Resources */,
@@ -19376,6 +19538,7 @@
 				A4D8F9F317DB08170085061F /* changeroom@2x.png in Resources */,
 				A4D8F9F717DB08170085061F /* chat_change_bg@2x.png in Resources */,
 				A4D8F9FB17DB08170085061F /* playagain@2x.png in Resources */,
+				A4F4750A19B5794100CFE2AE /* brush_dot4.png in Resources */,
 				D869F8F519906D8B00E6756A /* iphone5-1.png in Resources */,
 				A4D8F9FF17DB08170085061F /* contest_detail@2x.png in Resources */,
 				A4D8FA0317DB08170085061F /* contest_join@2x.png in Resources */,
@@ -19385,6 +19548,7 @@
 				A4D8FA1317DB08170085061F /* contest_prize_2@2x.png in Resources */,
 				A4D8FA1717DB08170085061F /* contest_prize_3@2x.png in Resources */,
 				A4D8FA1B17DB08170085061F /* contest_prize_special@2x.png in Resources */,
+				A4F4754919B57B9D00CFE2AE /* LICENSE in Resources */,
 				A4D8FA1F17DB08170085061F /* contest_report@2x.png in Resources */,
 				A4D8FA2317DB08170085061F /* guessed@2x.png in Resources */,
 				D8A1E9C8197612B200F32735 /* MoreViewCell~ipad.xib in Resources */,
@@ -19420,6 +19584,7 @@
 				CAA8B80A1998836800C9A99B /* beijing.png in Resources */,
 				A4D8FA8F17DB08170085061F /* face_anger@2x.png in Resources */,
 				A4D8FA9317DB08170085061F /* face_embarrass@2x.png in Resources */,
+				A4F4753219B5794100CFE2AE /* brush_gradient3.png in Resources */,
 				D81962431962677B00B4FBAF /* AllTutorialCell.xib in Resources */,
 				A4D8FA9717DB08170085061F /* face_proud@2x.png in Resources */,
 				A4D8FA9B17DB08170085061F /* guessed@2x.png in Resources */,
@@ -19441,6 +19606,7 @@
 				A4D8FACF17DB08170085061F /* guess_rank@2x.png in Resources */,
 				A4D8FAD317DB08170085061F /* guess_rank_bg@2x.jpg in Resources */,
 				A4D8FAD717DB08170085061F /* guess_rank_list@2x.png in Resources */,
+				A4F4750619B5794100CFE2AE /* brush_dot3.png in Resources */,
 				A4D8FADB17DB08170085061F /* guess_rules@2x.png in Resources */,
 				A4D8FADF17DB08170085061F /* guess_select_bg@2x.jpg in Resources */,
 				A4D8FAE317DB08170085061F /* heart@2x.png in Resources */,
@@ -19478,6 +19644,7 @@
 				A4D8FB4F17DB08170085061F /* input_alert_check@2x.png in Resources */,
 				A4D8FB5317DB08170085061F /* input_alert_uncheck@2x.png in Resources */,
 				A4D8FB5717DB08170085061F /* shop_item_alpha@2x.png in Resources */,
+				A4F4750E19B5794100CFE2AE /* brush_dot5.png in Resources */,
 				A4D8FB5B17DB08170085061F /* shop_item_paint_player@2x.png in Resources */,
 				A4D8FB5F17DB08170085061F /* shop_item_palette@2x.png in Resources */,
 				A4D8FB6317DB08170085061F /* shop_item_straw@2x.png in Resources */,
@@ -19549,6 +19716,7 @@
 				A4D8FD4117DB089C0085061F /* bulletin_accessory@2x.png in Resources */,
 				A4D8FD4517DB089C0085061F /* color_mask@2x.png in Resources */,
 				A4D8FD4917DB089C0085061F /* common_dialog_close_btn@2x.png in Resources */,
+				A4F4751219B5794100CFE2AE /* brush_dot6.png in Resources */,
 				A4D8FD4D17DB089C0085061F /* common_dialog_close_btn@2x.png_bak.png in Resources */,
 				A4D8FD5117DB089C0085061F /* dialogue@2x.png in Resources */,
 				A4D8FD5517DB089C0085061F /* color_box_button@2x.png in Resources */,
@@ -19684,6 +19852,7 @@
 				CACD6CAC18E03BCD003F97C0 /* Alixpay.bundle in Resources */,
 				A4D8FFA117DB089C0085061F /* learndraw_bg@2x.png in Resources */,
 				A4D8FFA517DB089C0085061F /* learndraw_bottom_bar@2x.png in Resources */,
+				A4F4751619B5794100CFE2AE /* brush_dot7.png in Resources */,
 				A4D8FFA917DB089C0085061F /* learndraw_bottom_split@2x.png in Resources */,
 				CAA8B8091998836800C9A99B /* xiaoxi@2x.png in Resources */,
 				A4D8FFAD17DB089C0085061F /* learndraw_bought@2x.png in Resources */,
@@ -19786,6 +19955,7 @@
 				EA8EF67917E6AB9F003F1AF8 /* draw_home_bottom_bg@2x.png in Resources */,
 				EA5FE1C717E827EF0099754C /* common_home_join_line@2x.png in Resources */,
 				EA5FE1CC17E843F60099754C /* common_home_bullitin@2x.png in Resources */,
+				A4F4751E19B5794100CFE2AE /* brush_ellipse2.png in Resources */,
 				EA5FE1D117E949C10099754C /* draw_home_avatar_bg@2x.png in Resources */,
 				EA2A7CE417F676AB00ED508D /* AccountManageController.xib in Resources */,
 				EA2A7CEE17F6958600ED508D /* AccountCell.xib in Resources */,
@@ -19855,6 +20025,7 @@
 				CA9AAFCE18321621002DBAA5 /* sing_record@2x.png in Resources */,
 				CA9AAFD218321621002DBAA5 /* sing_record_bg@2x.png in Resources */,
 				CA9AAFD618321621002DBAA5 /* sing_rerecord@2x.png in Resources */,
+				A4F4754D19B57B9D00CFE2AE /* README.md in Resources */,
 				CA9AAFDA18321621002DBAA5 /* sing_switch1@2x.png in Resources */,
 				CA9AAFDE18321621002DBAA5 /* sing_switch2@2x.png in Resources */,
 				CA9AAFE218321621002DBAA5 /* sing_voice@2x.png in Resources */,
@@ -19877,6 +20048,7 @@
 				CA9AB03A18321621002DBAA5 /* SingPlayView.xib in Resources */,
 				CA9AB04218321621002DBAA5 /* SongCategoryView.xib in Resources */,
 				CA9AB04618321621002DBAA5 /* SongCategoryView~ipad.xib in Resources */,
+				A4F4752E19B5794100CFE2AE /* brush_gradient2.png in Resources */,
 				CA9AB04E18321621002DBAA5 /* SongTagCell.xib in Resources */,
 				CAA8B8071998836800C9A99B /* neironglan yu caidanlan.png in Resources */,
 				CA9AB05218321621002DBAA5 /* SongTagCell~ipad.xib in Resources */,
@@ -19992,6 +20164,7 @@
 			files = (
 				C28A9CD31738F04B007A819F /* InfoPlist.strings in Resources */,
 				C28A9CD41738F04B007A819F /* MainWindow.xib in Resources */,
+				A4F4750519B5794100CFE2AE /* brush_dot3.png in Resources */,
 				C28A9CD51738F04B007A819F /* donedown.png in Resources */,
 				C28A9CD61738F04B007A819F /* doneup.png in Resources */,
 				C28A9CD71738F04B007A819F /* TestPPViewController.xib in Resources */,
@@ -20019,6 +20192,7 @@
 				C28A9CF31738F04B007A819F /* ColorShopView.xib in Resources */,
 				C28A9CF51738F04B007A819F /* SelectWordCell~ipad.xib in Resources */,
 				C28A9CF61738F04B007A819F /* SelectWordController~ipad.xib in Resources */,
+				A4F4753919B5794100CFE2AE /* brush_oil2.png in Resources */,
 				C28A9CF71738F04B007A819F /* RoomController~ipad.xib in Resources */,
 				C28A9CF81738F04B007A819F /* UserSettingController~ipad.xib in Resources */,
 				C28A9CFB1738F04B007A819F /* FeedbackController~ipad.xib in Resources */,
@@ -20068,9 +20242,11 @@
 				C28A9D341738F04B007A819F /* whiteArrow.png in Resources */,
 				C28A9D351738F04B007A819F /* whiteArrow@2x.png in Resources */,
 				C28A9D361738F04B007A819F /* SelectChatFriendController.xib in Resources */,
+				A4F4753D19B5794100CFE2AE /* brush_shed.png in Resources */,
 				C28A9D371738F04B007A819F /* SelectChatFriendController~ipad.xib in Resources */,
 				CACD6B1E18E03A2D003F97C0 /* ShareSDKiPhoneSimpleShareViewUI.bundle in Resources */,
 				C28A9D391738F04B007A819F /* Draw.proto in Resources */,
+				A4F4753119B5794100CFE2AE /* brush_gradient3.png in Resources */,
 				C28A9D3A1738F04B007A819F /* Dice.proto in Resources */,
 				C28A9D8B1738F04B007A819F /* CommentCell.xib in Resources */,
 				CAA8B7FE1998836700C9A99B /* dongtai@2x.png in Resources */,
@@ -20142,6 +20318,7 @@
 				C28A9DF81738F04B007A819F /* bbs_switch_down@2x.png in Resources */,
 				C28A9DF91738F04B007A819F /* bbs_switch_right@2x.png in Resources */,
 				C28A9DFA1738F04B007A819F /* bbs_back@2x.png in Resources */,
+				A4F474FD19B5794100CFE2AE /* brush_dot1.png in Resources */,
 				C28A9DFC1738F04B007A819F /* BBSBoardCell~ipad.xib in Resources */,
 				D81962581962AA8700B4FBAF /* StageBasicInfoCell.xib in Resources */,
 				C28A9DFD1738F04B007A819F /* BBSBoardSection~ipad.xib in Resources */,
@@ -20214,6 +20391,7 @@
 				C28A9E541738F04B007A819F /* DicePassWordDialog.xib in Resources */,
 				C28A9E551738F04B007A819F /* DicePassWordDialog~ipad.xib in Resources */,
 				C28A9E561738F04B007A819F /* DiceRoomPasswordDialog.xib in Resources */,
+				A4F4753519B5794100CFE2AE /* brush_oil1.png in Resources */,
 				C28A9E571738F04B007A819F /* DiceRoomPasswordDialog~ipad.xib in Resources */,
 				C28A9E581738F04B007A819F /* DrawUserInfoView.xib in Resources */,
 				C28A9E591738F04B007A819F /* DrawUserInfoView~ipad.xib in Resources */,
@@ -20332,6 +20510,7 @@
 				C2F5652B173DED2800C8E313 /* little_gee_pop_options_more@2x.png in Resources */,
 				C2F56539173DED2800C8E313 /* little_gee_pop_options_notice@2x.png in Resources */,
 				C2F56547173DED2800C8E313 /* little_gee_pop_options_search@2x.png in Resources */,
+				A4F4751919B5794100CFE2AE /* brush_ellipse1.png in Resources */,
 				C2F56555173DED2800C8E313 /* little_gee_pop_options_shop@2x.png in Resources */,
 				C216B3731742355C001DD46E /* little_gee_home_split@2x.png in Resources */,
 				C2E5834D174369A8003C1946 /* little_gee_pop_options_self@2x.png in Resources */,
@@ -20470,6 +20649,7 @@
 				CA9900C817D96E84000148E0 /* ShakeNumberController~ipad.xib in Resources */,
 				A42BB02F17D9735A007FB11B /* TwoInputFieldView.xib in Resources */,
 				A42BB03317D9735A007FB11B /* TwoInputFieldView~ipad.xib in Resources */,
+				A4F4750919B5794100CFE2AE /* brush_dot4.png in Resources */,
 				A4D8F9BA17DB08170085061F /* easy@2x.png in Resources */,
 				A4D8F9BE17DB08170085061F /* guessword_pallets@2x.png in Resources */,
 				A4D8F9C217DB08170085061F /* hard@2x.png in Resources */,
@@ -20512,6 +20692,7 @@
 				A4D8FA4E17DB08170085061F /* draw_commit_btn@2x.png in Resources */,
 				A4D8FA5217DB08170085061F /* draw_guess2@2x.png in Resources */,
 				A4D8FA5617DB08170085061F /* draw_layer_btn@2x.png in Resources */,
+				A4F4755419B57B9D00CFE2AE /* UIImage+RTTint.podspec in Resources */,
 				A4D8FA5A17DB08170085061F /* draw_save_btn@2x.png in Resources */,
 				A4D8FA5E17DB08170085061F /* draw_setting_btn@2x.png in Resources */,
 				A4D8FA6217DB08170085061F /* draw_share@2x.png in Resources */,
@@ -20627,6 +20808,7 @@
 				A4D8FC0617DB08170085061F /* user_detail_facebook@2x.png in Resources */,
 				A4D8FC0A17DB08170085061F /* user_detail_follow@2x.png in Resources */,
 				A4D8FC0E17DB08170085061F /* user_detail_follow_bg@2x.png in Resources */,
+				A4F4750D19B5794100CFE2AE /* brush_dot5.png in Resources */,
 				A4D8FC1217DB08170085061F /* user_detail_followandfan@2x.png in Resources */,
 				D87129551996284300F6B757 /* 9.png in Resources */,
 				A4D8FC1617DB08170085061F /* user_detail_gender_female@2x.png in Resources */,
@@ -20651,6 +20833,8 @@
 				A4D8FD5017DB089C0085061F /* dialogue@2x.png in Resources */,
 				A4D8FD5417DB089C0085061F /* color_box_button@2x.png in Resources */,
 				A4D8FD5817DB089C0085061F /* color_box_split@2x.png in Resources */,
+				A4F4752519B5794100CFE2AE /* brush_ellipse4.png in Resources */,
+				A4F4752919B5794100CFE2AE /* brush_gradient1.png in Resources */,
 				A4D8FD5C17DB089C0085061F /* drawlayer_delete@2x.png in Resources */,
 				A4D8FD6017DB089C0085061F /* drawlayer_flag_hide@2x.png in Resources */,
 				A4D8FD6417DB089C0085061F /* drawlayer_flag_show@2x.png in Resources */,
@@ -20661,6 +20845,7 @@
 				A4D8FD7817DB089C0085061F /* draw_main_bg@2x.jpg in Resources */,
 				A4D8FD7C17DB089C0085061F /* draw_page_back@2x.png in Resources */,
 				CACD6D1818E03C40003F97C0 /*  iOS ReadMe (or suffer).rtf in Resources */,
+				A4F4754819B57B9D00CFE2AE /* LICENSE in Resources */,
 				A4D8FD8017DB089C0085061F /* old_draw_bg@2x.jpg in Resources */,
 				A4D8FD8417DB089C0085061F /* selected_pen_brush@2x.png in Resources */,
 				A4D8FD8817DB089C0085061F /* selected_pen_feather@2x.png in Resources */,
@@ -20697,6 +20882,7 @@
 				A4D8FDF417DB089C0085061F /* draw_slider_load@2x.png in Resources */,
 				A4D8FDF817DB089C0085061F /* draw_slider_point@2x.png in Resources */,
 				A4D8FDFC17DB089C0085061F /* draw_add@2x.png in Resources */,
+				A4F4750119B5794100CFE2AE /* brush_dot2.png in Resources */,
 				A4D8FE0017DB089C0085061F /* draw_canvas_bg@2x.png in Resources */,
 				A4D8FE0417DB089C0085061F /* draw_canvas_bg_selected@2x.png in Resources */,
 				A4D8FE0817DB089C0085061F /* draw_color_bg@2x.png in Resources */,
@@ -20709,6 +20895,7 @@
 				A4D8FE2417DB089C0085061F /* draw_oil@2x.png in Resources */,
 				CA0174F519405503005E4390 /* opusclass_version.txt in Resources */,
 				A4D8FE2817DB089C0085061F /* draw_palette@2x.png in Resources */,
+				A4F4754C19B57B9D00CFE2AE /* README.md in Resources */,
 				A4D8FE2C17DB089C0085061F /* draw_palette_unbuy@2x.png in Resources */,
 				A4D8FE3017DB089C0085061F /* draw_redo_normal@2x.png in Resources */,
 				A4D8FE3417DB089C0085061F /* draw_selector@2x.png in Resources */,
@@ -20824,6 +21011,7 @@
 				A4D8003C17DB089C0085061F /* draw_player_speed_button@2x.png in Resources */,
 				A4D8004017DB089C0085061F /* point_pic3@2x.png in Resources */,
 				A4D8004417DB089C0085061F /* point_pic4@2x.png in Resources */,
+				A4F4751D19B5794100CFE2AE /* brush_ellipse2.png in Resources */,
 				A4D8004817DB089C0085061F /* purple_user_picbg@2x.png in Resources */,
 				A4D8004C17DB089C0085061F /* qq@2x.png in Resources */,
 				A4D8005017DB089C0085061F /* receive_message@2x.png in Resources */,
@@ -20838,6 +21026,7 @@
 				A4D8007017DB089C0085061F /* webview_go_back@2x.png in Resources */,
 				D8B539361991EBB700BD3337 /* ResultSharePageViewController.xib in Resources */,
 				A4D8007417DB089C0085061F /* webview_go_forward@2x.png in Resources */,
+				A4F4752D19B5794100CFE2AE /* brush_gradient2.png in Resources */,
 				A4D8007817DB089C0085061F /* webview_refresh@2x.png in Resources */,
 				A4D8007C17DB089C0085061F /* wechat@2x.png in Resources */,
 				A4D8008017DB089C0085061F /* wechat_friend@2x.png in Resources */,
@@ -20893,6 +21082,7 @@
 				A42151CC18040C5F007F2EFD /* MWPhotoBrowser.strings in Resources */,
 				CA1FF8921804F986003CEAD6 /* NSDate+TKCategory.strings in Resources */,
 				A4F04B90180680D1007274BE /* tap-mellow.aif in Resources */,
+				A4F4751519B5794100CFE2AE /* brush_dot7.png in Resources */,
 				A4F04B93180680D2007274BE /* tap-warm.aif in Resources */,
 				CACD6AC218E03A29003F97C0 /* Resource.bundle in Resources */,
 				A4F04B9818068467007274BE /* beep-shinymetal.aif in Resources */,
@@ -21025,6 +21215,7 @@
 				A4EA935C185B0173004BB69D /* SingHotCell.xib in Resources */,
 				A4170C1B18613E85007DF362 /* SingHotCell~ipad.xib in Resources */,
 				CA346CC218618B280098DE00 /* user_detail_set_homebg@2x.png in Resources */,
+				A4F4751119B5794100CFE2AE /* brush_dot6.png in Resources */,
 				CA346CCA18618DC70098DE00 /* button_rank@2x.png in Resources */,
 				CA346CCF1861A96D0098DE00 /* bottom_home_task@2x.png in Resources */,
 				A4BE227218657DEA00FE2997 /* NormalHotCell.xib in Resources */,
@@ -21066,6 +21257,7 @@
 				EA68D5111893C4A5003EB69A /* pen_show_fun3@2x.png in Resources */,
 				EA68D5151893C4A5003EB69A /* pen_show_fun4@2x.png in Resources */,
 				EA68D5191893C4A5003EB69A /* pen_show_fun5@2x.png in Resources */,
+				A4F4752119B5794100CFE2AE /* brush_ellipse3.png in Resources */,
 				D81962421962677B00B4FBAF /* AllTutorialCell.xib in Resources */,
 				D82540F919650A1C00C876C3 /* tutorial_core.pb in Resources */,
 				EA68D5221893C503003EB69A /* pen_fun1@2x.png in Resources */,
@@ -21159,6 +21351,7 @@
 				A31B5EF6157E1BE8003DDBF1 /* SelectCustomWordView.xib in Resources */,
 				A31B5EF7157E1BE8003DDBF1 /* SelectCustomWordView~ipad.xib in Resources */,
 				A30A28521580C2AE006CA3CC /* ChatCell.xib in Resources */,
+				A4F4753419B5794100CFE2AE /* brush_oil1.png in Resources */,
 				A30A28531580C2AE006CA3CC /* ChatCell~ipad.xib in Resources */,
 				A30A28551580C2AE006CA3CC /* ChatDetailController.xib in Resources */,
 				A30A28561580C2AE006CA3CC /* ChatDetailController~ipad.xib in Resources */,
@@ -21220,6 +21413,7 @@
 				EAA9E1681622B2A000E8DF1A /* UserLocationController~ipad.xib in Resources */,
 				A4E7876A16366FF8003557AD /* ZhaJinHua.proto in Resources */,
 				CA1882B11648C7EE000942D6 /* FriendController~ipad.xib in Resources */,
+				A4F4751C19B5794100CFE2AE /* brush_ellipse2.png in Resources */,
 				CA1882B21648C7EE000942D6 /* FriendController.xib in Resources */,
 				CA7AFD0B164E05A10039E07F /* PPResourceTestViewController.xib in Resources */,
 				CA415138165395E30062A638 /* BBSBoardController.xib in Resources */,
@@ -21233,6 +21427,7 @@
 				D869F9081990DF3000E6756A /* laba.png in Resources */,
 				CAE51898165CCB55006157CC /* BBSPostActionCell.xib in Resources */,
 				CA42FE0A165DCDA30097453A /* BBSPostDetailCell.xib in Resources */,
+				A4F4750819B5794100CFE2AE /* brush_dot4.png in Resources */,
 				CA42FE0C165DCDBC0097453A /* BBSPostActionHeaderView.xib in Resources */,
 				CA42FE2D165F1F0C0097453A /* BBSActionListController.xib in Resources */,
 				CA42FE4C165F2FF30097453A /* BBSUserActionCell.xib in Resources */,
@@ -21276,6 +21471,7 @@
 				CA65978E166C7C3600A239E1 /* BBSPostDetailController~ipad.xib in Resources */,
 				CA65978F166C7C3600A239E1 /* CreatePostController~ipad.xib in Resources */,
 				CA659791166C7D0300A239E1 /* BBSUserActionCell~ipad.xib in Resources */,
+				A4F474FC19B5794100CFE2AE /* brush_dot1.png in Resources */,
 				D80518B3196BD12200D350B3 /* gengduo@2x.png in Resources */,
 				CA659793166C7D2400A239E1 /* BBSPostActionCell~ipad.xib in Resources */,
 				D8BF371D1971068100ACEFCA /* caidanlan.png in Resources */,
@@ -21414,6 +21610,7 @@
 				CAF95E3F1706EE1E00B7526C /* DrawBgCell.xib in Resources */,
 				CAF95E491706EE4D00B7526C /* DrawBgCell~ipad.xib in Resources */,
 				EA49C86517093CD300843B6B /* TaoBaoController.xib in Resources */,
+				A4F4752C19B5794100CFE2AE /* brush_gradient2.png in Resources */,
 				EA49C86617093CD300843B6B /* TaoBaoController~ipad.xib in Resources */,
 				C2BD7A5A17165D9D0079B7F6 /* UserSettingCell.xib in Resources */,
 				C2BD7A6417165E250079B7F6 /* UserSettingCell~ipad.xib in Resources */,
@@ -21442,6 +21639,7 @@
 				C23C3358176AB922004BE236 /* photo_tags.txt in Resources */,
 				C23C335B176ABA38004BE236 /* keywords.txt in Resources */,
 				C23C335F176AFA84004BE236 /* photo_tags_en.txt in Resources */,
+				A4F4750019B5794100CFE2AE /* brush_dot2.png in Resources */,
 				C23C3361176AFA84004BE236 /* keywords_en.txt in Resources */,
 				C23C3366176AFF6A004BE236 /* photo_tag_select@2x.png in Resources */,
 				C23C3368176AFF6A004BE236 /* photo_tag_title_bg@2x.png in Resources */,
@@ -21449,6 +21647,7 @@
 				D8BF371F1971068100ACEFCA /* gonggaolan.png in Resources */,
 				C23C3371176B0803004BE236 /* EditTagCell.xib in Resources */,
 				C23C3374176B082C004BE236 /* EditTagCell~ipad.xib in Resources */,
+				A4F4751819B5794100CFE2AE /* brush_ellipse1.png in Resources */,
 				C27E6904176EAC1D0019F41B /* SearchPhotoController.xib in Resources */,
 				C27E690C176EACA10019F41B /* SearchPhotoController~ipad.xib in Resources */,
 				C27E6913176EAD370019F41B /* SearchPhotoResultController.xib in Resources */,
@@ -21468,6 +21667,7 @@
 				C2EAA878178270D8007E2BA4 /* CommonSearchImageFilterView~ipad.xib in Resources */,
 				CA02CB7E1785581A00B6910D /* GradientSettingView.xib in Resources */,
 				CACD6B1D18E03A2D003F97C0 /* ShareSDKiPhoneSimpleShareViewUI.bundle in Resources */,
+				A4F4750419B5794100CFE2AE /* brush_dot3.png in Resources */,
 				CA02CB901785581A00B6910D /* GradientSettingView~ipad.xib in Resources */,
 				CACEC2D4178BA7D200D88643 /* SelectorBox.xib in Resources */,
 				CA2614C41793ACD0007D5462 /* filter.txt in Resources */,
@@ -21543,6 +21743,7 @@
 				EA46AD6117D5E6E60066E914 /* ReportFeedCell.xib in Resources */,
 				CA9900C317D96E84000148E0 /* GetNewNumberViewController~ipad.xib in Resources */,
 				CA9900C717D96E84000148E0 /* ShakeNumberController~ipad.xib in Resources */,
+				A4F4753819B5794100CFE2AE /* brush_oil2.png in Resources */,
 				A42BB02E17D9735A007FB11B /* TwoInputFieldView.xib in Resources */,
 				A42BB03217D9735A007FB11B /* TwoInputFieldView~ipad.xib in Resources */,
 				A4D8F9B917DB08170085061F /* easy@2x.png in Resources */,
@@ -21556,6 +21757,7 @@
 				A4D8F9D917DB08170085061F /* round_mask@2x.png in Resources */,
 				A4D8F9DD17DB08170085061F /* score@2x.png in Resources */,
 				A4D8F9E117DB08170085061F /* timeset@2x.png in Resources */,
+				A4F4750C19B5794100CFE2AE /* brush_dot5.png in Resources */,
 				A4D8F9E517DB08170085061F /* unloadbg@2x.png in Resources */,
 				A4D8F9E917DB08170085061F /* weibo_selectedbg@2x.png in Resources */,
 				A4D8F9ED17DB08170085061F /* yes_s@2x.png in Resources */,
@@ -21577,6 +21779,7 @@
 				A4D8FA2D17DB08170085061F /* detail_flower@2x.png in Resources */,
 				D869F8EF19906D8A00E6756A /* iphone5-4.png in Resources */,
 				A4D8FA3117DB08170085061F /* detail_guess@2x.png in Resources */,
+				A4F4755319B57B9D00CFE2AE /* UIImage+RTTint.podspec in Resources */,
 				A4D8FA3517DB08170085061F /* detail_header_bg@2x.png in Resources */,
 				A4D8FA3917DB08170085061F /* detail_rate@2x.png in Resources */,
 				A4D8FA3D17DB08170085061F /* detail_replay@2x.png in Resources */,
@@ -21585,6 +21788,7 @@
 				D879C91A19A7369D003B2A29 /* PrizeCell~ipad.xib in Resources */,
 				A4D8FA4517DB08170085061F /* detail_share@2x.png in Resources */,
 				A4D8FA4917DB08170085061F /* auto_recovery@2x.png in Resources */,
+				A4F4751419B5794100CFE2AE /* brush_dot7.png in Resources */,
 				A4D8FA4D17DB08170085061F /* draw_commit_btn@2x.png in Resources */,
 				A4D8FA5117DB08170085061F /* draw_guess2@2x.png in Resources */,
 				A4D8FA5517DB08170085061F /* draw_layer_btn@2x.png in Resources */,
@@ -21603,6 +21807,7 @@
 				A4D8FA8917DB08170085061F /* room_title_bg@2x.png in Resources */,
 				A4D8FA8D17DB08170085061F /* face_anger@2x.png in Resources */,
 				A4D8FA9117DB08170085061F /* face_embarrass@2x.png in Resources */,
+				A4F4751019B5794100CFE2AE /* brush_dot6.png in Resources */,
 				A4D8FA9517DB08170085061F /* face_proud@2x.png in Resources */,
 				A4D8FA9917DB08170085061F /* guessed@2x.png in Resources */,
 				A4D8FA9D17DB08170085061F /* my_paint_tag@2x.png in Resources */,
@@ -21641,6 +21846,7 @@
 				A4D8FB0D17DB08170085061F /* round_dot_17@2x.png in Resources */,
 				A4D8FB1117DB08170085061F /* round_dot_18@2x.png in Resources */,
 				A4D8FB1517DB08170085061F /* round_dot_19@2x.png in Resources */,
+				A4F4752819B5794100CFE2AE /* brush_gradient1.png in Resources */,
 				A4D8FB1917DB08170085061F /* round_dot_1@2x.png in Resources */,
 				A4D8FB1D17DB08170085061F /* round_dot_20@2x.png in Resources */,
 				A4D8FB2117DB08170085061F /* round_dot_2@2x.png in Resources */,
@@ -21659,6 +21865,7 @@
 				D86542151980A941007D60E7 /* ResultShareAlertPageViewController~ipad.xib in Resources */,
 				A4D8FB5117DB08170085061F /* input_alert_uncheck@2x.png in Resources */,
 				A4D8FB5517DB08170085061F /* shop_item_alpha@2x.png in Resources */,
+				A4F4752419B5794100CFE2AE /* brush_ellipse4.png in Resources */,
 				A4D8FB5917DB08170085061F /* shop_item_paint_player@2x.png in Resources */,
 				A4D8FB5D17DB08170085061F /* shop_item_palette@2x.png in Resources */,
 				A4D8FB6117DB08170085061F /* shop_item_straw@2x.png in Resources */,
@@ -21687,6 +21894,7 @@
 				A4D8FBC117DB08170085061F /* flower@2x.png in Resources */,
 				A4D8FBC517DB08170085061F /* flower_result@2x.png in Resources */,
 				A4D8FBC917DB08170085061F /* item_shadow@2x.png in Resources */,
+				A4F4753019B5794100CFE2AE /* brush_gradient3.png in Resources */,
 				A4D8FBCD17DB08170085061F /* tipbag@2x.png in Resources */,
 				A4D8FBD117DB08170085061F /* tomato@2x.png in Resources */,
 				A4D8FBD517DB08170085061F /* tomato_result@2x.png in Resources */,
@@ -21743,6 +21951,7 @@
 				A4D8FD8B17DB089C0085061F /* selected_pen_ice-cream@2x.png in Resources */,
 				A4D8FD8F17DB089C0085061F /* selected_pen_mark@2x.png in Resources */,
 				D8AA042B1974CA6400083651 /* beginPlayGame(little).png in Resources */,
+				A4F4754B19B57B9D00CFE2AE /* README.md in Resources */,
 				A4D8FD9317DB089C0085061F /* selected_pen_pencil@2x.png in Resources */,
 				A4D8FD9717DB089C0085061F /* selected_pen_rubber@2x.png in Resources */,
 				A4D8FD9B17DB089C0085061F /* eraser_show@2x.png in Resources */,
@@ -21850,6 +22059,7 @@
 				A4D8FF1F17DB089C0085061F /* common_home_money@2x.png in Resources */,
 				A4D8FF2317DB089C0085061F /* common_home_more@2x.png in Resources */,
 				A4D8FF2717DB089C0085061F /* common_home_nextpage@2x.png in Resources */,
+				A4F4754719B57B9D00CFE2AE /* LICENSE in Resources */,
 				A4D8FF2B17DB089C0085061F /* common_home_setting@2x.png in Resources */,
 				A4D8FF2F17DB089C0085061F /* common_home_shop@2x.png in Resources */,
 				A4D8FF3317DB089C0085061F /* common_home_splitline@2x.png in Resources */,
@@ -22113,6 +22323,7 @@
 				A4BE227618670D8800FE2997 /* NormalHotCell~ipad.xib in Resources */,
 				EA7E4F71186ADE8F00E0B20F /* CreateGroupController~ipad.xib in Resources */,
 				EA7E4F75186ADE8F00E0B20F /* GroupDetailController~ipad.xib in Resources */,
+				A4F4753C19B5794100CFE2AE /* brush_shed.png in Resources */,
 				EA7E4F79186ADE8F00E0B20F /* GroupHomeController~ipad.xib in Resources */,
 				D8A1E9BE197612B200F32735 /* MoreViewController.xib in Resources */,
 				A4563E6418A885B1005DAA03 /* finish@2x.png in Resources */,
@@ -22124,6 +22335,7 @@
 				CA2A28A0195B095D00A97478 /* Tutorial.proto in Resources */,
 				A44AC4881875528D00927649 /* CreateContestController.xib in Resources */,
 				A44AC48D187561F200927649 /* Group.proto in Resources */,
+				A4F4752019B5794100CFE2AE /* brush_ellipse3.png in Resources */,
 				D8BF37141971053F00ACEFCA /* xiaoxi@2x.png in Resources */,
 				EA62853918768F4600478502 /* bbs_post_detail_favor@2x.png in Resources */,
 				EA62853D18768F4600478502 /* bbs_post_detail_unfavor@2x.png in Resources */,
@@ -22170,6 +22382,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A4F4753B19B5794100CFE2AE /* brush_oil2.png in Resources */,
 				EA411B4C176066F500DA72D0 /* InfoPlist.strings in Resources */,
 				EA411B4D176066F500DA72D0 /* MainWindow.xib in Resources */,
 				EA411B4E176066F500DA72D0 /* donedown.png in Resources */,
@@ -22277,6 +22490,7 @@
 				EA411C1A176066F500DA72D0 /* ContestOpusController~ipad.xib in Resources */,
 				EA411C1B176066F500DA72D0 /* ContestController~ipad.xib in Resources */,
 				EA411C1C176066F500DA72D0 /* ContestView~ipad.xib in Resources */,
+				A4F4754A19B57B9D00CFE2AE /* LICENSE in Resources */,
 				EA411C1D176066F500DA72D0 /* StatementController~ipad.xib in Resources */,
 				EA411C1F176066F500DA72D0 /* MyCommentCell.xib in Resources */,
 				EA411C20176066F500DA72D0 /* MyCommentCell~ipad.xib in Resources */,
@@ -22320,12 +22534,14 @@
 				EA411C54176066F500DA72D0 /* bbs_post_support@2x.png in Resources */,
 				EA411C55176066F500DA72D0 /* bbs_post_new@2x.png in Resources */,
 				EA411C56176066F500DA72D0 /* BBSPostListController~ipad.xib in Resources */,
+				A4F4751319B5794100CFE2AE /* brush_dot6.png in Resources */,
 				EA411C57176066F500DA72D0 /* BBSPostCell~ipad.xib in Resources */,
 				EA411C58176066F500DA72D0 /* bbs_post_rewarded@2x.png in Resources */,
 				EA411C5A176066F500DA72D0 /* bbs_detail_option_up@2x.png in Resources */,
 				EA411C5B176066F500DA72D0 /* bbs_detail_reply@2x.png in Resources */,
 				EA411C5C176066F500DA72D0 /* bbs_detail_selected_line@2x.jpg in Resources */,
 				EA411C5D176066F500DA72D0 /* bbs_detail_splitLine@2x.jpg in Resources */,
+				A4F4750719B5794100CFE2AE /* brush_dot3.png in Resources */,
 				EA411C5F176066F500DA72D0 /* bbs_detail_thumb@2x.png in Resources */,
 				EA411C60176066F500DA72D0 /* bbs_detail_toolbar@2x.jpg in Resources */,
 				EA411C61176066F500DA72D0 /* Config.proto in Resources */,
@@ -22386,6 +22602,7 @@
 				EA411CAF176066F500DA72D0 /* ZJHInputDialog~ipad.xib in Resources */,
 				EA411CB0176066F500DA72D0 /* ZJHPassWordDialog.xib in Resources */,
 				EA411CB1176066F500DA72D0 /* ZJHPassWordDialog~ipad.xib in Resources */,
+				A4F4755619B57B9D00CFE2AE /* UIImage+RTTint.podspec in Resources */,
 				EA411CB2176066F500DA72D0 /* ZJHRoomPasswordDialog.xib in Resources */,
 				EA411CB3176066F500DA72D0 /* ZJHRoomPasswordDialog~ipad.xib in Resources */,
 				EA411CCC176066F500DA72D0 /* CommonSettingView.xib in Resources */,
@@ -22512,6 +22729,7 @@
 				EA1176A61779B764008678AC /* askps_summit_button@2x.png in Resources */,
 				EA1176A71779B764008678AC /* askps_table@2x.png in Resources */,
 				EA1176A81779B764008678AC /* askps_tag_button@2x.png in Resources */,
+				A4F4752319B5794100CFE2AE /* brush_ellipse3.png in Resources */,
 				EA1176A91779B764008678AC /* askps_tag_button_selected@2x.png in Resources */,
 				CA02CB8F1785581A00B6910D /* GradientSettingView.xib in Resources */,
 				CA02CBA11785581A00B6910D /* GradientSettingView~ipad.xib in Resources */,
@@ -22524,6 +22742,7 @@
 				CABEC70117969462006F89BB /* FreeIngotController.xib in Resources */,
 				CA2A28D1195C1E1C00A97478 /* TutorialStageController.xib in Resources */,
 				CABEC70617969462006F89BB /* FreeIngotController~ipad.xib in Resources */,
+				A4F4753319B5794100CFE2AE /* brush_gradient3.png in Resources */,
 				A4B78828179E2E3C0008E21B /* Theme in Resources */,
 				CA518352179F79570033AA95 /* GetNewNumberViewController.xib in Resources */,
 				CA518387179FB6340033AA95 /* ShakeNumberController.xib in Resources */,
@@ -22560,6 +22779,7 @@
 				A4DDD16817CDFD7B0029E562 /* EN_Words_Dict.plist in Resources */,
 				A4DDD16C17CDFD7B0029E562 /* words.plist in Resources */,
 				A4DDD17017CDFD7B0029E562 /* wordbase.zip in Resources */,
+				A4F4752F19B5794100CFE2AE /* brush_gradient2.png in Resources */,
 				A4DDD19417CDFD7B0029E562 /* new_icon.png in Resources */,
 				A4DDD19817CDFD7B0029E562 /* new_icon@2x.png in Resources */,
 				D8A270A2196FD432006DDF20 /* lock_new.jpg in Resources */,
@@ -22570,7 +22790,9 @@
 				A4DDD56C17CDFD7B0029E562 /* clickWord.mp3 in Resources */,
 				A4DDD57017CDFD7B0029E562 /* congratulations.mp3 in Resources */,
 				A4DDD57417CDFD7B0029E562 /* correct.mp3 in Resources */,
+				A4F4751B19B5794100CFE2AE /* brush_ellipse1.png in Resources */,
 				A4DDD57817CDFD7B0029E562 /* ding.m4a in Resources */,
+				A4F4753F19B5794100CFE2AE /* brush_shed.png in Resources */,
 				A4DDD57C17CDFD7B0029E562 /* dingding.mp3 in Resources */,
 				A4DDD58017CDFD7B0029E562 /* oowrong.mp3 in Resources */,
 				A4DDD58417CDFD7B0029E562 /* pushMessage.mp3 in Resources */,
@@ -22613,6 +22835,7 @@
 				A4D8FA1417DB08170085061F /* contest_prize_2@2x.png in Resources */,
 				A4D8FA1817DB08170085061F /* contest_prize_3@2x.png in Resources */,
 				A4D8FA1C17DB08170085061F /* contest_prize_special@2x.png in Resources */,
+				A4F4754E19B57B9D00CFE2AE /* README.md in Resources */,
 				A4D8FA2017DB08170085061F /* contest_report@2x.png in Resources */,
 				A4D8FA2417DB08170085061F /* guessed@2x.png in Resources */,
 				A4D8FA2817DB08170085061F /* comment_reply@2x.png in Resources */,
@@ -22670,6 +22893,7 @@
 				A4D8FAEC17DB08170085061F /* little_triangle@2x.png_bak.png in Resources */,
 				A4D8FAF017DB08170085061F /* pine_tree@2x.png in Resources */,
 				A4D8FAF417DB08170085061F /* round_dot_10@2x.png in Resources */,
+				A4F474FF19B5794100CFE2AE /* brush_dot1.png in Resources */,
 				D8D81186199DE66100CC182A /* TwoInputFieldViewStyle2.xib in Resources */,
 				D80EB358196B90FB0087EBBD /* MetroHomeController~ipad.xib in Resources */,
 				A4D8FAF817DB08170085061F /* round_dot_11@2x.png in Resources */,
@@ -22740,6 +22964,7 @@
 				A4D8FBFC17DB08170085061F /* user_detail_draw_to@2x.png in Resources */,
 				A4D8FC0017DB08170085061F /* user_detail_draw_to_bg@2x.png in Resources */,
 				A4D8FC0417DB08170085061F /* user_detail_edit@2x.png in Resources */,
+				A4F4753719B5794100CFE2AE /* brush_oil1.png in Resources */,
 				A4D8FC0817DB08170085061F /* user_detail_facebook@2x.png in Resources */,
 				A4D8FC0C17DB08170085061F /* user_detail_follow@2x.png in Resources */,
 				A4D8FC1017DB08170085061F /* user_detail_follow_bg@2x.png in Resources */,
@@ -22800,6 +23025,7 @@
 				A4D8FDC617DB089C0085061F /* pen_mark@2x.png in Resources */,
 				A4D8FDCA17DB089C0085061F /* pen_pencil@2x.png in Resources */,
 				A4D8FDCE17DB089C0085061F /* selector_cancel@2x.png in Resources */,
+				A4F4750F19B5794100CFE2AE /* brush_dot5.png in Resources */,
 				A4D8FDD217DB089C0085061F /* selector_close@2x.png in Resources */,
 				A4D8FDD617DB089C0085061F /* selector_close_bg@2x.png in Resources */,
 				A4D8FDDA17DB089C0085061F /* selector_ellipse@2x.png in Resources */,
@@ -22885,6 +23111,7 @@
 				A4D8FF0617DB089C0085061F /* common_home_bbs@2x.png in Resources */,
 				A4D8FF0E17DB089C0085061F /* common_home_friend@2x.png in Resources */,
 				A4D8FF1217DB089C0085061F /* common_home_front_page@2x.png in Resources */,
+				A4F4751F19B5794100CFE2AE /* brush_ellipse2.png in Resources */,
 				A4D8FF1617DB089C0085061F /* common_home_home@2x.png in Resources */,
 				A4D8FF1A17DB089C0085061F /* common_home_me@2x.png in Resources */,
 				A4D8FF1E17DB089C0085061F /* common_home_message@2x.png in Resources */,
@@ -22911,6 +23138,7 @@
 				A4D8FFC617DB089C0085061F /* line.svg in Resources */,
 				A4D8FFCA17DB089C0085061F /* path.svg in Resources */,
 				D82C0D831976500E0088539F /* home_bb_version.txt in Resources */,
+				A4F4752719B5794100CFE2AE /* brush_ellipse4.png in Resources */,
 				A4D8FFCE17DB089C0085061F /* rect.svg in Resources */,
 				A4D8FFD217DB089C0085061F /* zjh_home_charge@2x.png in Resources */,
 				A4D8FFD617DB089C0085061F /* zjh_home_charge_bg@2x.png in Resources */,
@@ -22950,6 +23178,7 @@
 				A4D8005217DB089C0085061F /* receive_message@2x.png in Resources */,
 				A4D8005617DB089C0085061F /* run@2x.png in Resources */,
 				A4D8005A17DB089C0085061F /* sent_message@2x.png in Resources */,
+				A4F4750319B5794100CFE2AE /* brush_dot2.png in Resources */,
 				A4D8005E17DB089C0085061F /* sina@2x.png in Resources */,
 				A4D8006217DB089C0085061F /* split_photo@2x.png in Resources */,
 				A4D8006617DB089C0085061F /* tool@2x.png in Resources */,
@@ -23093,6 +23322,7 @@
 				CA9AB05318321621002DBAA5 /* SongTagCell~ipad.xib in Resources */,
 				CA9AB05B18321621002DBAA5 /* VoiceTypeSelectView.xib in Resources */,
 				CA9AB05F18321621002DBAA5 /* VoiceTypeSelectView~ipad.xib in Resources */,
+				A4F4752B19B5794100CFE2AE /* brush_gradient1.png in Resources */,
 				EA8D93C51833630500780B63 /* GroupDetailController.xib in Resources */,
 				EA8D93CA1833632800780B63 /* GroupCell.xib in Resources */,
 				CA1162621834A88F00FDD3A9 /* TaskController.xib in Resources */,
@@ -23153,7 +23383,9 @@
 				CA7DE7A5192BAD3200EED067 /* play3.png in Resources */,
 				EA2FAC15187C01E100AC7EFE /* group_footer_edit@2x.png in Resources */,
 				A49DF8C5187D311600634196 /* StatementCell.xib in Resources */,
+				A4F4751719B5794100CFE2AE /* brush_dot7.png in Resources */,
 				CACD6B0418E03A2D003F97C0 /* ShareSDKiPadDefaultShareViewUI.bundle in Resources */,
+				A4F4750B19B5794100CFE2AE /* brush_dot4.png in Resources */,
 				A49DF8CB187D3FA100634196 /* statement_cell_bg2@2x.png in Resources */,
 				A49DF8CF187D3FA100634196 /* statement_cell_bg1@2x.png in Resources */,
 				D8D81177199DB4E300CC182A /* 3.gif in Resources */,
@@ -24100,6 +24332,7 @@
 				CA11626D1834A8CA00FDD3A9 /* TaskService.m in Sources */,
 				CA1162741834A91100FDD3A9 /* TaskCell.m in Sources */,
 				CA11627E1834AE7900FDD3A9 /* GameTask.m in Sources */,
+				A4F4755119B57B9D00CFE2AE /* UIImage+RTTint.m in Sources */,
 				EA11A4411839FAA100F73D64 /* GroupUIManager.m in Sources */,
 				EA038977183B06D300516952 /* GroupTopicController.m in Sources */,
 				EA038982183B122900516952 /* GroupDetailCell.m in Sources */,
@@ -24391,6 +24624,7 @@
 				C28A9A9F1738F04B007A819F /* CommonInfoView.m in Sources */,
 				C28A9AA91738F04B007A819F /* GameApp.m in Sources */,
 				C28A9AAC1738F04B007A819F /* GCServer.m in Sources */,
+				A4F4755019B57B9D00CFE2AE /* UIImage+RTTint.m in Sources */,
 				C28A9AAE1738F04B007A819F /* TableTab.m in Sources */,
 				C28A9AAF1738F04B007A819F /* TableTabManager.m in Sources */,
 				CA2A28D6195C1E3A00A97478 /* TutorialInfoController.m in Sources */,
@@ -25270,6 +25504,7 @@
 				C25C079F15D5F11700E8DD8D /* UIImage+FiltrrCompositions.m in Sources */,
 				C25C07A015D5F11700E8DD8D /* UIImage+Scale.m in Sources */,
 				CA9C8CBD15E0D94A006E447B /* XQueryComponents.m in Sources */,
+				A4F4754F19B57B9D00CFE2AE /* UIImage+RTTint.m in Sources */,
 				C20D4B2515E1D78800074885 /* CommonInfoView.m in Sources */,
 				CA67B87D15E89FB0002050DB /* GameApp.m in Sources */,
 				C225866E15EF5AA4009D686D /* GCServer.m in Sources */,
@@ -26563,6 +26798,7 @@
 				CACEC2CD178BA7AD00D88643 /* SelectorBox.m in Sources */,
 				CACEC36E178BCD1600D88643 /* SelectorCommand.m in Sources */,
 				D8B84194197E639A00B6FB5C /* ResultShareAlertPageViewController.m in Sources */,
+				A4F4755219B57B9D00CFE2AE /* UIImage+RTTint.m in Sources */,
 				CA0FC08C178EA13E00A72B79 /* JumpHandler.m in Sources */,
 				CAC85C071791179100827C20 /* TextCommand.m in Sources */,
 				CAC85C20179117B100827C20 /* FXCommand.m in Sources */,

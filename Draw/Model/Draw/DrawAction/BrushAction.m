@@ -313,5 +313,9 @@
     [self.brushStroke finishAddPoint];
 }
 
+- (void)clearMemory
+{
+    [self.brushStroke clearMemory];
+}
 
 @end

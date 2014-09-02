@@ -29,19 +29,23 @@
 @property(nonatomic, assign)CGRect canvasRect;
 @property(nonatomic, assign)CGFloat width;
 @property(nonatomic, assign)ItemType brushType;
+@property(nonatomic, assign)CGLayerRef brushLayer;
 @property(nonatomic, retain)DrawColor* color;
 @property(nonatomic,retain)id<PenEffectProtocol> pen;
 @property(nonatomic, retain)id<DrawPenProtocol> drawPen;
+@property(nonatomic, retain) UIImage *brushImage;
 
 - (id)initWithWidth:(CGFloat)width
               color:(DrawColor *)color
             brushType:(ItemType)brushType
-          pointList:(HBrushPointList*)pointList;;
+          pointList:(HBrushPointList*)pointList
+         brushLayer:(CGLayerRef)brushLayer;
 
 + (id)brushStrokeWithWidth:(CGFloat)width
                color:(DrawColor *)color
              brushType:(ItemType)brushType
-           pointList:(HBrushPointList*)pointList;
+           pointList:(HBrushPointList*)pointList
+                brushLayer:(CGLayerRef)brushLayer;
 
 - (id)initWithGameMessage:(GameMessage *)gameMessage;
 
@@ -60,5 +64,7 @@
 
 - (void)updatePBDrawActionBuilder:(PBDrawAction_Builder *)builder;
 - (void)updatePBDrawActionC:(Game__PBDrawAction*)pbDrawActionC;
+
+- (void)clearMemory;
 
 @end

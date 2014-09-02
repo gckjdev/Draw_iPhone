@@ -15,36 +15,55 @@
 #import "DrawPenFactory.h"
 //#import "DrawPenProtocol.h"
 #import "HBrushPointList.h"
+#import "UIImage+RTTint.h"
+
+
 
 @interface BrushDot : NSObject
 
+@property (nonatomic, assign) CGFloat x;
+@property (nonatomic, assign) CGFloat y;
+@property (nonatomic, assign) CGFloat width;
+
 @end
 
+@implementation BrushDot
+
+@end
 
 @interface BrushStroke()
 {
 }
 
 @property (nonatomic, retain) HBrushPointList  *hPointList;
+@property (nonatomic, assign) BOOL hasPoint;
+
+@property (nonatomic, retain) BrushDot  *beginDot;
+@property (nonatomic, retain) BrushDot  *controlDot;
+@property (nonatomic, retain) BrushDot  *endDot;
+@property (nonatomic, assign) CGFloat tempWidth;
+
+//@property (nonatomic, retain) UIImage *finalImage;
+//@property (nonatomic, retain) NSData *finalImageData;
 
 @end
 
 @implementation BrushStroke
 
-- (id<PenEffectProtocol>)getPen
-{
-    if (self.pen != nil)
-        return self.pen;
-    
-    self.pen = [PenFactory getPen:_brushType];
-    return self.pen;
-}
+//- (id<PenEffectProtocol>)getPen
+//{
+//    if (self.pen != nil)
+//        return self.pen;
+//    
+//    self.pen = [PenFactory getPen:_brushType];
+//    return self.pen;
+//}
 
-- (void)constructPath
-{
-    [[self getPen] constructPath:_hPointList inRect:self.canvasRect];
-    return;
-}
+//- (void)constructPath
+//{
+//    [[self getPen] constructPath:_hPointList inRect:self.canvasRect];
+//    return;
+//}
 
 - (id)initWithWidth:(CGFloat)width color:(DrawColor*)color
 {
@@ -61,6 +80,7 @@
               color:(DrawColor *)color
             brushType:(ItemType)brushType
           pointList:(HBrushPointList*)pointList
+         brushLayer:(CGLayerRef)brushLayer
 {
     self = [super init];
     if (self) {
@@ -68,26 +88,47 @@
         self.color = color;
         self.brushType = brushType;
         
+        self.beginDot = [[BrushDot alloc]init];
+        self.controlDot = [[BrushDot alloc]init];
+        self.endDot = [[BrushDot alloc]init];
+        
+        //get brush image and tint it
+        self.brushImage = [UIImage imageNamed:@"brush_dot2.png"];
+        UIColor *customizedColor = [UIColor colorWithRed:self.color.red
+                                                   green:self.color.green
+                                                    blue:self.color.blue
+                                                   alpha:1.0];
+
+        UIImage *tinted = [self.brushImage
+                           rt_tintedImageWithColor:customizedColor
+                                             level:1.0f];
+        self.brushImage = tinted;
+
+        
         if (pointList == nil){
             _hPointList = [[HBrushPointList alloc] init];
         }
         else{
             self.hPointList = pointList;
         }
+        
+       
     }
     return self;
 }
 
 
 + (id)brushStrokeWithWidth:(CGFloat)width
-               color:(DrawColor *)color
-             brushType:(ItemType)brushType
-           pointList:(HBrushPointList*)pointList
+                     color:(DrawColor *)color
+                 brushType:(ItemType)brushType
+                 pointList:(HBrushPointList*)pointList
+                brushLayer:(CGLayerRef)brushLayer
 {
     return [[[BrushStroke alloc] initWithWidth:width
                                          color:color
                                      brushType:brushType
-                                     pointList:pointList] autorelease];
+                                     pointList:pointList
+                                    brushLayer:brushLayer] autorelease];
 }
 
 
@@ -114,6 +155,16 @@
     return self;
 }
 
+- (CGLayerRef)brushLayer
+{
+    if (_brushLayer == NULL){
+        _brushLayer = [DrawUtils createCGLayerWithRect:self.canvasRect];
+    }
+    
+    return _brushLayer;
+}
+
+
 #define RECT_SPAN_WIDTH 10
 - (BOOL)spanRect:(CGRect)rect ContainsPoint:(CGPoint)point
 {
@@ -133,11 +184,12 @@
     CGPoint lastPoint = [_hPointList lastPoint];
     
     if (!CGPointEqualToPoint(point, lastPoint)) {
-        [self constructPath];
+//        [self constructPath];
     }
 }
 
-
+#define INTERPOLATION 4
+#define FIXED_PEN_SIZE 32
 - (void)addPoint:(CGPoint)point inRect:(CGRect)rect
 {
     
@@ -156,29 +208,173 @@
         PPDebug(@"<addPoint> Change Point to %@", NSStringFromCGPoint(point));
     }
     
-    [[self getPen] addPointIntoPath:point];
+//    [[self getPen] addPointIntoPath:point];
     
-    // TODO brush for touch begin and touch move
-    [_hPointList addPoint:point.x y:point.y];
-}
-
-
-- (CGPathRef)path
-{
-    id<PenEffectProtocol> pen = [self getPen];
-    if (![pen hasPoint]){
-        [pen constructPath:_hPointList inRect:self.canvasRect];
+    _brushLayer = [self brushLayer];
+    CGContextRef layerContext = CGLayerGetContext(_brushLayer);
+    CGContextSaveGState(layerContext);
+    
+    if (_hasPoint == NO){
+        
+//        CGContextClearRect(layerContext, CGRectFromCGSize(CGLayerGetSize(_brushLayer)));
+        
+        _controlDot.x = point.x;
+        _controlDot.y = point.y;
+        _controlDot.width = self.width;
+        
+        _beginDot.x = point.x;
+        _beginDot.y = point.y;
+        _beginDot.width = self.width;
+        
+        _endDot.x = point.x;
+        _endDot.y = point.y;
+        _endDot.width = self.width;
+        
+        _hasPoint = YES;
+        _tempWidth = 0;
+        _beginDot.width = _tempWidth;
+        _controlDot. width = _tempWidth;
+        _endDot.width = _tempWidth;
     }
-    
-    return [pen penPath];
+    else{
+        //重采样定位第一点
+        _beginDot.x = 0.25*_beginDot.x + 0.5*_controlDot.x + 0.25*_endDot.x;
+        _beginDot.y = 0.25*_beginDot.y + 0.5*_controlDot.y + 0.25*_endDot.y;
+        _beginDot.width = 0.5*_beginDot.width + 0.5*_controlDot.width;
+        //第二点，为控制点
+        _controlDot.x = _endDot.x;
+        _controlDot.y = _endDot.y;
+        _controlDot.width = _endDot.width;
+        //第三点，为当前点
+        _endDot.x = point.x;
+        _endDot.y = point.y;
+        _endDot.width = self.width;
+        
+        double distance1 = [self distanceOfDot:_controlDot AndDot:_beginDot];
+        double distance2 = [self distanceOfDot:_endDot AndDot:_controlDot];
+        
+        double accelerate = distance2 - distance1;
+        if( accelerate / FIXED_PEN_SIZE > 0.1)
+            _tempWidth  -= (FIXED_PEN_SIZE / 4);
+        else if (accelerate / FIXED_PEN_SIZE < - 0.1)
+            _tempWidth += (FIXED_PEN_SIZE / 8);
+        
+        if(_tempWidth > FIXED_PEN_SIZE) _tempWidth = FIXED_PEN_SIZE;
+        else if (_tempWidth <= FIXED_PEN_SIZE / 2) _tempWidth = FIXED_PEN_SIZE / 2;
+        
+        _endDot.width = _tempWidth;
+        
+        float pointX=0;
+        float pointY=0;
+        float width=0;
+        
+        int dis = (distance1 + distance2) / 10 + 1;
+        
+//        PPDebug(@"<distance> %f,%d",distance,dis);
+        
+        int interpolationLength = INTERPOLATION * dis;
+        
+        for(int i = 0; i<interpolationLength/2; i++)
+        {
+            [self bezierInterpolationWithBegin:_beginDot
+                                       Control:_controlDot
+                                           End:_endDot
+                                            No:i
+                                        Length:interpolationLength
+                                        pointX:&pointX
+                                        pointY:&pointY
+                                         width:&width];
+            
+            [_hPointList addPoint:pointX y:pointY width:width];
+            
+            // draw by point list
+            CGRect rect = CGRectMake(pointX - width/2, pointY - width/2, width, width);
+            CGContextDrawImage(layerContext, rect, self.brushImage.CGImage);
+        }
+        
+        CGContextRestoreGState(layerContext);
+    }
 }
+
+-(double)distanceOfDot:(BrushDot*)dot1 AndDot:(BrushDot*)dot2
+{
+    double distance = sqrt(pow((dot2.x-dot1.x), 2)+pow((dot2.y-dot1.y), 2));
+    
+    return distance;
+}
+
+-(void)bezierInterpolationWithBegin:(BrushDot*)begin
+                            Control:(BrushDot*)control
+                                End:(BrushDot*)end
+                                 No:(NSInteger)i
+                             Length:(NSInteger)length
+                             pointX:(float*)pointX
+                             pointY:(float*)pointY
+                              width:(float*)width
+{
+    double t = 1.0*i/length;
+    
+    *pointX = (1-t)*(1-t)*begin.x + 2*t*(1-t)*control.x + t*t*end.x;
+    *pointY = (1-t)*(1-t)*begin.y + 2*t*(1-t)*control.y + t*t*end.y;
+    *width = (1-t)*begin.width+t*control.width;
+
+}
+
+//- (CGPathRef)path
+//{
+//    id<PenEffectProtocol> pen = [self getPen];
+//    if (![pen hasPoint]){
+//        [pen constructPath:_hPointList inRect:self.canvasRect];
+//    }
+//    
+//    return [pen penPath];
+//}
 
 - (CGRect)redrawRectInRect:(CGRect)rect
 {
-    CGRect r = [DrawUtils rectForPath:self.path
-                            withWidth:self.width
-                               bounds:rect];
-    return r;
+//    return self.canvasRect;
+    return [self.hPointList bounds]; //self.canvasRect;
+    
+//    CGRect r = [DrawUtils rectForPath:self.can // self.path
+//                            withWidth:self.width
+//                               bounds:rect];
+//    return r;
+}
+
+- (CGRect)drawInBrushLayer:(float)currentX y:(float)currentY width:(float)currentW;
+{
+    CGContextRef context = CGLayerGetContext(_brushLayer);
+//    CGRect rect = CGRectFromCGSize(CGLayerGetSize(_brushLayer));
+    
+    // to be removed
+    if (self.drawPen == nil) {
+        self.drawPen = [DrawPenFactory createDrawPen:self.brushType];
+    }
+    
+    CGContextSaveGState(context);
+    
+    /*
+     [self.drawPen updateCGContext:context paint:self];
+     
+     CGContextAddPath(context, [self path]);
+     CGContextStrokePath(context);
+     */
+    
+    // draw by point list
+    CGRect rect = CGRectMake(currentX - currentW/2, currentY - currentW/2, currentW, currentW);
+    CGContextDrawImage(context, rect, self.brushImage.CGImage);
+    
+    CGContextRestoreGState(context);
+    return [self redrawRectInRect:rect];
+}
+
+- (void)clearMemory
+{
+    if (_brushLayer != NULL){
+        PPDebug(@"brush stroke layer memory cleared!");
+        CGLayerRelease(_brushLayer);
+        _brushLayer = NULL;
+    }
 }
 
 - (CGRect)drawInContext:(CGContextRef)context inRect:(CGRect)rect
@@ -188,18 +384,97 @@
     }
     CGContextSaveGState(context);
     
+    /*
     [self.drawPen updateCGContext:context paint:self];
 
     CGContextAddPath(context, [self path]);
     CGContextStrokePath(context);
+    */
+    
+    // draw by point list
+    if (_brushLayer != NULL){
+        CGContextDrawLayerAtPoint(context, CGPointZero, _brushLayer);
+    }
+//    else if (_finalImageData){
+////        [_finalImage drawAtPoint:CGPointZero];
+//        UIImage* image = [UIImage imageWithData:_finalImageData];
+//        CGContextDrawImage(context, rect, image.CGImage);
+//    }
+    else{
+        _brushLayer = [self brushLayer];
+        CGContextRef layerContext = CGLayerGetContext(_brushLayer);
+        CGImageRef brushImage = self.brushImage.CGImage;
+        for(int i = 0; i<[_hPointList count];i++)
+        {
+            CGFloat currentX = [_hPointList getPointX:i];
+            CGFloat currentY = [_hPointList getPointY:i];
+            CGFloat currentW = [_hPointList getPointWidth:i];
+
+            CGRect pointRect = CGRectMake(currentX - currentW/2, currentY - currentW/2, currentW, currentW);
+            CGContextDrawImage(layerContext, pointRect, brushImage);
+//            CGContextDrawImage(context, rect, brushImage);
+        }
+        
+        CGContextDrawLayerAtPoint(context, CGPointZero, _brushLayer);
+        CGLayerRelease(_brushLayer);
+        _brushLayer = NULL;
+    }
     
     CGContextRestoreGState(context);
     return [self redrawRectInRect:rect];
 }
 
+- (UIImage*)createImageFromLayer
+{
+    NSInteger width = self.canvasRect.size.width;
+    NSInteger height = self.canvasRect.size.height;
+    
+    float *bitmap = NULL;
+    CGColorSpaceRef colorSpace =  CGColorSpaceCreateDeviceRGB();
+    CGContextRef context = CGBitmapContextCreate(
+                                                 bitmap,
+                                                 width,
+                                                 height,
+                                                 8, // 每个通道8位
+                                                 width * 4,
+                                                 colorSpace,
+                                                 kCGImageAlphaPremultipliedLast);
+    
+    if (context == NULL) {
+        PPDebug(@"<createBitmapContext> failed. context = NULL");
+        return NULL;
+    }
+    
+    // draw layer
+    CGContextDrawLayerAtPoint(context, CGPointZero, _brushLayer);
+
+    // create image
+    CGImageRef imageRef = CGBitmapContextCreateImage(context);
+//    self.finalImageData = UIImagePNGRepresentation([UIImage imageWithCGImage:imageRef]);
+//    PPDebug(@"create final image for bursh, size is %@", NSStringFromCGSize(self.finalImage.size));
+    
+    // release
+    CGImageRelease(imageRef);
+    CGContextRelease(context);
+    CGColorSpaceRelease(colorSpace);
+    if (bitmap != NULL) {
+        free(bitmap);
+    }
+    
+    return nil;
+}
+
 - (void)finishAddPoint
 {
-    [[self getPen] finishAddPoint];
+    // create final image
+//    if (_brushLayer != NULL){
+    
+//        [self createImageFromLayer];
+        
+//        CGLayerRelease(_brushLayer);
+//        _brushLayer = NULL;
+//    }
+    
     [_hPointList complete];
 }
 
@@ -218,12 +493,6 @@
     
 }
 
-
-//- (void)createPointXList:(NSMutableArray**)pointXList
-//              pointYList:(NSMutableArray**)pointYList
-//{
-//    
-//}
 
 - (void)updatePBDrawActionBuilder:(PBDrawAction_Builder *)builder
 {
@@ -260,7 +529,7 @@
         
         pbDrawActionC->n_pointsx = count;
         pbDrawActionC->n_pointsy = count;
-        pbDrawActionC->brushpointwidth = count;
+        pbDrawActionC->n_brushpointwidth = count;
         
         [_hPointList createPointFloatXList:pbDrawActionC->pointsx
                                 floatYList:pbDrawActionC->pointsy
@@ -281,10 +550,21 @@
 
 - (void)dealloc
 {
+//    PPRelease(_finalImageData);
     PPRelease(_color);
     PPRelease(_pen);
     PPRelease(_hPointList);
     PPRelease(_drawPen);
+    
+    PPRelease(_beginDot);
+    PPRelease(_controlDot);
+    PPRelease(_endDot);
+    
+    if (_brushLayer != NULL){
+        CGLayerRelease(_brushLayer);
+        _brushLayer = NULL;
+    }
+    
     [super dealloc];
 }
 @end
