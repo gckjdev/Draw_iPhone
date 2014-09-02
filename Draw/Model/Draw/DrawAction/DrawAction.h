@@ -113,7 +113,7 @@ typedef enum {
 - (void)addPoint:(CGPoint)point inRect:(CGRect)rect;
 
 - (CGRect)drawInContext:(CGContextRef)context inRect:(CGRect)rect;
-
+- (void)clearMemory;
 - (NSUInteger)pointCount;
 - (void)finishAddPoint;
 - (CGRect)redrawRectInRect:(CGRect)rect;

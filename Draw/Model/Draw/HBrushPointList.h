@@ -8,6 +8,12 @@
 
 @interface HBrushPointList : NSObject
 
+@property (assign, nonatomic) float leftTopX;
+@property (assign, nonatomic) float leftTopY;
+@property (assign, nonatomic) float bottomRightX;
+@property (assign, nonatomic) float bottomRightY;
+
+- (CGRect)bounds;
 
 - (float)getPointX:(int)index;
 - (float)getPointY:(int)index;
