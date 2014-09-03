@@ -33,6 +33,12 @@
 {
     return [self isKindOfClass:[PaintAction class]];
 }
+
+- (BOOL)isBrushAction
+{
+    return [self isKindOfClass:[BrushAction class]];
+}
+
 - (BOOL)isShapeAction
 {
     return [self isKindOfClass:[ShapeAction class]];

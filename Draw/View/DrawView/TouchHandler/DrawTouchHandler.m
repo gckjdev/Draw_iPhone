@@ -47,8 +47,7 @@
         brushStroke = [BrushStroke brushStrokeWithWidth:info.penWidth
                                                   color:info.penColor
                                               brushType:info.penType
-                                              pointList:nil
-                                             brushLayer:[self.drawView brushLayer]];
+                                              pointList:nil];
         
         action.shadow = info.shadow;
         action = [[BrushAction brushActionWithBrushStroke:brushStroke] retain];

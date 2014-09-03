@@ -219,6 +219,7 @@ message PBNoCompressDrawAction{
     optional float green = 23;
     optional float alpha = 24;
 
+    repeated float brushPointWidth = 41;              //brush point width (so called scale)
 
 
 }

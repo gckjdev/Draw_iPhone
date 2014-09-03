@@ -129,6 +129,7 @@ typedef enum {
 - (BOOL)isChangeBGAction;
 - (BOOL)isChangeImageBGAction;
 - (BOOL)needShowShadow;
+- (BOOL)isBrushAction;
 
 @end
 

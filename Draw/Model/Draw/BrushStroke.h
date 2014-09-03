@@ -34,18 +34,17 @@
 @property(nonatomic,retain)id<PenEffectProtocol> pen;
 @property(nonatomic, retain)id<DrawPenProtocol> drawPen;
 @property(nonatomic, retain) UIImage *brushImage;
+@property(nonatomic, assign) CGImageRef brushImageRef;
 
 - (id)initWithWidth:(CGFloat)width
               color:(DrawColor *)color
             brushType:(ItemType)brushType
-          pointList:(HBrushPointList*)pointList
-         brushLayer:(CGLayerRef)brushLayer;
+          pointList:(HBrushPointList*)pointList;
 
 + (id)brushStrokeWithWidth:(CGFloat)width
                color:(DrawColor *)color
              brushType:(ItemType)brushType
-           pointList:(HBrushPointList*)pointList
-                brushLayer:(CGLayerRef)brushLayer;
+           pointList:(HBrushPointList*)pointList;
 
 - (id)initWithGameMessage:(GameMessage *)gameMessage;
 

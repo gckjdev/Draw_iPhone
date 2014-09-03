@@ -9,6 +9,7 @@
 #import "BrushAction.h"
 #import "ClipAction.h"
 #import "BrushStroke.h"
+#import "HBrushPointList.h"
 
 @implementation BrushAction
 
@@ -73,47 +74,32 @@
     self = [super initWithPBDrawActionC:action];
     if (self) {
 
-        /*
-        HPointList *pointList = nil;
-        pointList = [[HPointList alloc] init];
+        HBrushPointList *pointList = nil;
+        pointList = [[HBrushPointList alloc] init];
         
         NSInteger count = action->n_pointsx;
         if (count > 0 && action->pointsx != NULL && action->pointsy != NULL) {
-            //            pointList = [NSMutableArray arrayWithCapacity:count];
             
+            float width = action->width;
+            bool hasPointWidth = (action->brushpointwidth != NULL && action->n_brushpointwidth == action->n_pointsx);
             for (NSInteger i = 0; i < count; ++ i) {
-                [pointList addPoint:action->pointsx[i] y:action->pointsy[i]];
-            }
-        }else{
-            //old point data paser
-            count = action->n_points;
-            if (count > 0 && action->points != NULL) {
-                //                pointList = [NSMutableArray arrayWithCapacity:count];
-                
-                for (int i=0; i<count; i++){
-                    CGPoint point = [DrawUtils decompressIntPoint:action->points[i]];
-                    
-                    [pointList addPoint:point.x y:point.y];
-                }
+                width = hasPointWidth ? action->brushpointwidth[i] : action->width;
+                [pointList addPoint:action->pointsx[i] y:action->pointsy[i] width:width];
             }
         }
+        
         self.type = DrawActionTypeBrush;
         
         [pointList complete];
         
-        self.paint = [Paint paintWithWidth:action->width
-                                     color:nil
-                                   penType:action->pentype
-                                 pointList:pointList];
+        DrawColor* color = [DrawColor colorWithBetterCompressColor:action->bettercolor];
+        self.brushStroke = [BrushStroke brushStrokeWithWidth:action->width
+                                                       color:color
+                                                   brushType:action->pentype
+                                                   pointList:pointList];
         
         [pointList release];
         
-        if (action->has_bettercolor) {
-            self.paint.color = [DrawColor colorWithBetterCompressColor:action->bettercolor];
-        }else{
-            self.paint.color  = [DrawUtils decompressIntDrawColor:action->color];
-        }
-         */
     }
     return self;
 }
@@ -124,103 +110,83 @@
     self = [super initWithPBDrawAction:action];
     if (self) {
         
-        /*
-        HPointList* pointList = [[HPointList alloc] init];
+        HBrushPointList* pointList = [[HBrushPointList alloc] init];
         
         NSInteger count = [action.pointsXList count];
         if (count > 0) {
             //new version draw data
-            
+            float width = action.width;
+            bool hasPointWidth = (action.brushPointWidthList != nil && [action.brushPointWidthList count] == count);
+
             for (NSInteger i = 0; i < count; ++ i) {
+                
+                width = hasPointWidth ? [[action.brushPointWidthList objectAtIndex:i] floatValue] : action.width;
+
                 CGFloat x = [[action.pointsXList objectAtIndex:i] floatValue];
                 CGFloat y = [[action.pointsYList objectAtIndex:i] floatValue];
                 
-                [pointList addPoint:x y:y];
-                
-            }
-            
-        }else{
-            //old point data paser
-            count = [action.pointsList count];
-            if (count > 0) {
-                //                pointList = [NSMutableArray arrayWithCapacity:count];
-                for (NSNumber *p in action.pointsList) {
-                    CGPoint point = [DrawUtils decompressIntPoint:[p integerValue]];
-                    
-                    [pointList addPoint:point.x y:point.y];
-                    
-                }
+                [pointList addPoint:x y:y width:width];
             }
         }
+        
         self.type = DrawActionTypeBrush;
         
         [pointList complete];
         
-        self.paint = [Paint paintWithWidth:action.width
-                                     color:nil
-                                   penType:action.penType
-                                 pointList:pointList];
-        
-        [pointList release];
-        
+        DrawColor* color;
         if ([action hasBetterColor]) {
-            self.paint.color = [DrawColor colorWithBetterCompressColor:action.betterColor];
+            color = [DrawColor colorWithBetterCompressColor:action.betterColor];
         }else{
-            self.paint.color  = [DrawUtils decompressIntDrawColor:action.color];
+            color  = [DrawUtils decompressIntDrawColor:action.color];
         }
-         
-         */
+        
+        self.brushStroke = [BrushStroke brushStrokeWithWidth:action.width
+                                                       color:color
+                                                   brushType:action.penType
+                                                   pointList:pointList];
+
+        
+        
     }
     return self;
 }
 
-// maybe useless, to be checked
-/*
 - (id)initWithPBNoCompressDrawAction:(PBNoCompressDrawAction *)action
 {
     self = [super initWithPBNoCompressDrawAction:action];
     if (self) {
         self.type = DrawActionTypeBrush;
         
-        HPointList* pointList = [[HPointList alloc] init];
+        HBrushPointList* pointList = [[HBrushPointList alloc] init];
         
-        NSInteger count = 0;
-        BOOL usePBPoint = [[action pointList] count] > 0;
-        if (usePBPoint) {
-            count = [[action pointList] count];
-            if (count > 0) {
-                for (NSInteger i = 0; i < count; ++ i) {
-                    
-                    PBPoint *pbPoint = [action.pointList objectAtIndex:i];
-                    [pointList addPoint:pbPoint.x y:pbPoint.y];
-                }
-            }
-        }else{
-            count = [[action pointXList] count];
-            if (count > 0) {
-
-                for (NSInteger i = 0; i < count; ++ i) {
-                    CGFloat x = [[action.pointXList objectAtIndex:i] floatValue];
-                    CGFloat y = [[action.pointYList objectAtIndex:i] floatValue];
-                    
-                    [pointList addPoint:x y:y];
-                    
-                }
+        NSInteger count = [action.pointXList count];
+        if (count > 0) {
+            //new version draw data
+            float width = action.width;
+            bool hasPointWidth = (action.brushPointWidthList != nil && [action.brushPointWidthList count] == count);
+            
+            for (NSInteger i = 0; i < count; ++ i) {
+                
+                width = hasPointWidth ? [[action.brushPointWidthList objectAtIndex:i] floatValue] : action.width;
+                
+                CGFloat x = [[action.pointXList objectAtIndex:i] floatValue];
+                CGFloat y = [[action.pointYList objectAtIndex:i] floatValue];
+                
+                [pointList addPoint:x y:y width:width];
             }
         }
         
         [pointList complete];
         
-        self.paint = [Paint paintWithWidth:action.width
-                                     color:[action drawColor]
-                                   penType:action.penType
-                                 pointList:pointList];
+        self.brushStroke = [BrushStroke brushStrokeWithWidth:action.width
+                                                       color:[action drawColor]
+                                                   brushType:action.penType
+                                                   pointList:pointList];
         
         [pointList release];
     }
     return self;
 }
-*/
 
 - (id)initWithPBNoCompressDrawActionC:(Game__PBNoCompressDrawAction *)action
 {
@@ -230,41 +196,31 @@
         
         self.type = DrawActionTypeBrush;
         
-        /*
-        HPointList* pointList = [[HPointList alloc] init];
+        HBrushPointList* pointList = [[HBrushPointList alloc] init];
         
         NSInteger count = 0;
-        BOOL usePBPoint = action->n_point > 0;
-        if (usePBPoint) {
-            count = action->n_point;
-            if (count > 0) {
-
-                for (NSInteger i = 0; i < count; ++ i) {
-                    Game__PBPoint* point = action->point[i];
-                    if (point != NULL){
-                        [pointList addPoint:point->x y:point->y];
-                    }
-                }
-            }
-        }else{
-            count = action->n_pointx; //[[action pointXList] count];
-            if (count > 0) {
-                for (NSInteger i = 0; i < count; ++ i) {
-                    [pointList addPoint:action->pointx[i] y:action->pointy[i]];
-                }
+        count = action->n_pointx; //[[action pointXList] count];
+        if (count > 0 && action->pointx != NULL && action->pointy != NULL) {
+            
+            float width = action->width;
+            bool hasPointWidth = (action->brushpointwidth != NULL && action->n_brushpointwidth == action->n_pointx);
+            for (NSInteger i = 0; i < count; ++ i) {
+                width = hasPointWidth ? action->brushpointwidth[i] : action->width;
+                [pointList addPoint:action->pointx[i] y:action->pointy[i] width:width];
             }
         }
         
         [pointList complete];
         
-        self.paint = [Paint paintWithWidth:action->width
-                                     color:[DrawUtils drawColorFromPBNoCompressDrawActionC:action]  //[action drawColor]
-                                   penType:action->pentype
-                                 pointList:pointList];
+        DrawColor* color = [DrawColor colorWithBetterCompressColor:action->color];
+        self.brushStroke = [BrushStroke brushStrokeWithWidth:action->width
+                                                       color:color
+                                                   brushType:action->pentype
+                                                   pointList:pointList];
         
         [pointList release];
          
-         */
+        
     }
     return self;
 }
