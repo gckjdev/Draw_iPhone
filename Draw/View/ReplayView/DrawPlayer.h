@@ -12,6 +12,7 @@
 #import "ScreenCaptureView.h"
 
 @class Draw;
+@class DrawFeed;
 
 @interface ReplayObject : NSObject
 {
@@ -27,6 +28,13 @@
 @property(nonatomic, retain) UIImage *bgImage;
 @property(nonatomic, retain) UIImage *finalImage;
 @property(nonatomic, retain) NSArray *layers;
+
+@property(nonatomic, retain) NSString *opusUserId;
+@property(nonatomic, retain) NSString *opusUserNick;
+@property(nonatomic, assign) BOOL opusUserGender;
+@property(nonatomic, retain) NSString *opusId;
+@property(nonatomic, retain) NSString *opusWord;
+@property(nonatomic, retain) NSString *opusDesc;
 
 @end
 
