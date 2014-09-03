@@ -2438,6 +2438,10 @@ static PBStage* defaultPBStageInstance = nil;
 @property int32_t createDate;
 @property int32_t modifyDate;
 @property BOOL isNew;
+@property BOOL disableScore;
+@property BOOL disablePractice;
+@property BOOL directPass;
+@property int32_t passScore;
 @property int32_t version;
 @end
 
@@ -2586,6 +2590,49 @@ static PBStage* defaultPBStageInstance = nil;
 - (void) setIsNew:(BOOL) value {
   isNew_ = !!value;
 }
+- (BOOL) hasDisableScore {
+  return !!hasDisableScore_;
+}
+- (void) setHasDisableScore:(BOOL) value {
+  hasDisableScore_ = !!value;
+}
+- (BOOL) disableScore {
+  return !!disableScore_;
+}
+- (void) setDisableScore:(BOOL) value {
+  disableScore_ = !!value;
+}
+- (BOOL) hasDisablePractice {
+  return !!hasDisablePractice_;
+}
+- (void) setHasDisablePractice:(BOOL) value {
+  hasDisablePractice_ = !!value;
+}
+- (BOOL) disablePractice {
+  return !!disablePractice_;
+}
+- (void) setDisablePractice:(BOOL) value {
+  disablePractice_ = !!value;
+}
+- (BOOL) hasDirectPass {
+  return !!hasDirectPass_;
+}
+- (void) setHasDirectPass:(BOOL) value {
+  hasDirectPass_ = !!value;
+}
+- (BOOL) directPass {
+  return !!directPass_;
+}
+- (void) setDirectPass:(BOOL) value {
+  directPass_ = !!value;
+}
+- (BOOL) hasPassScore {
+  return !!hasPassScore_;
+}
+- (void) setHasPassScore:(BOOL) value {
+  hasPassScore_ = !!value;
+}
+@synthesize passScore;
 - (BOOL) hasVersion {
   return !!hasVersion_;
 }
@@ -2628,6 +2675,10 @@ static PBStage* defaultPBStageInstance = nil;
     self.createDate = 0;
     self.modifyDate = 0;
     self.isNew = NO;
+    self.disableScore = NO;
+    self.disablePractice = NO;
+    self.directPass = NO;
+    self.passScore = 60;
     self.version = 0;
   }
   return self;
@@ -2730,6 +2781,18 @@ static PBTutorial* defaultPBTutorialInstance = nil;
   if (self.hasIsNew) {
     [output writeBool:50 value:self.isNew];
   }
+  if (self.hasDisableScore) {
+    [output writeBool:60 value:self.disableScore];
+  }
+  if (self.hasDisablePractice) {
+    [output writeBool:61 value:self.disablePractice];
+  }
+  if (self.hasDirectPass) {
+    [output writeBool:62 value:self.directPass];
+  }
+  if (self.hasPassScore) {
+    [output writeInt32:63 value:self.passScore];
+  }
   if (self.hasVersion) {
     [output writeInt32:100 value:self.version];
   }
@@ -2806,6 +2869,18 @@ static PBTutorial* defaultPBTutorialInstance = nil;
   }
   if (self.hasIsNew) {
     size += computeBoolSize(50, self.isNew);
+  }
+  if (self.hasDisableScore) {
+    size += computeBoolSize(60, self.disableScore);
+  }
+  if (self.hasDisablePractice) {
+    size += computeBoolSize(61, self.disablePractice);
+  }
+  if (self.hasDirectPass) {
+    size += computeBoolSize(62, self.directPass);
+  }
+  if (self.hasPassScore) {
+    size += computeInt32Size(63, self.passScore);
   }
   if (self.hasVersion) {
     size += computeInt32Size(100, self.version);
@@ -2951,6 +3026,18 @@ static PBTutorial* defaultPBTutorialInstance = nil;
   if (other.hasIsNew) {
     [self setIsNew:other.isNew];
   }
+  if (other.hasDisableScore) {
+    [self setDisableScore:other.disableScore];
+  }
+  if (other.hasDisablePractice) {
+    [self setDisablePractice:other.disablePractice];
+  }
+  if (other.hasDirectPass) {
+    [self setDirectPass:other.directPass];
+  }
+  if (other.hasPassScore) {
+    [self setPassScore:other.passScore];
+  }
   if (other.hasVersion) {
     [self setVersion:other.version];
   }
@@ -3055,6 +3142,22 @@ static PBTutorial* defaultPBTutorialInstance = nil;
       }
       case 400: {
         [self setIsNew:[input readBool]];
+        break;
+      }
+      case 480: {
+        [self setDisableScore:[input readBool]];
+        break;
+      }
+      case 488: {
+        [self setDisablePractice:[input readBool]];
+        break;
+      }
+      case 496: {
+        [self setDirectPass:[input readBool]];
+        break;
+      }
+      case 504: {
+        [self setPassScore:[input readInt32]];
         break;
       }
       case 800: {
@@ -3410,6 +3513,70 @@ static PBTutorial* defaultPBTutorialInstance = nil;
 - (PBTutorial_Builder*) clearIsNew {
   result.hasIsNew = NO;
   result.isNew = NO;
+  return self;
+}
+- (BOOL) hasDisableScore {
+  return result.hasDisableScore;
+}
+- (BOOL) disableScore {
+  return result.disableScore;
+}
+- (PBTutorial_Builder*) setDisableScore:(BOOL) value {
+  result.hasDisableScore = YES;
+  result.disableScore = value;
+  return self;
+}
+- (PBTutorial_Builder*) clearDisableScore {
+  result.hasDisableScore = NO;
+  result.disableScore = NO;
+  return self;
+}
+- (BOOL) hasDisablePractice {
+  return result.hasDisablePractice;
+}
+- (BOOL) disablePractice {
+  return result.disablePractice;
+}
+- (PBTutorial_Builder*) setDisablePractice:(BOOL) value {
+  result.hasDisablePractice = YES;
+  result.disablePractice = value;
+  return self;
+}
+- (PBTutorial_Builder*) clearDisablePractice {
+  result.hasDisablePractice = NO;
+  result.disablePractice = NO;
+  return self;
+}
+- (BOOL) hasDirectPass {
+  return result.hasDirectPass;
+}
+- (BOOL) directPass {
+  return result.directPass;
+}
+- (PBTutorial_Builder*) setDirectPass:(BOOL) value {
+  result.hasDirectPass = YES;
+  result.directPass = value;
+  return self;
+}
+- (PBTutorial_Builder*) clearDirectPass {
+  result.hasDirectPass = NO;
+  result.directPass = NO;
+  return self;
+}
+- (BOOL) hasPassScore {
+  return result.hasPassScore;
+}
+- (int32_t) passScore {
+  return result.passScore;
+}
+- (PBTutorial_Builder*) setPassScore:(int32_t) value {
+  result.hasPassScore = YES;
+  result.passScore = value;
+  return self;
+}
+- (PBTutorial_Builder*) clearPassScore {
+  result.hasPassScore = NO;
+  result.passScore = 60;
   return self;
 }
 - (BOOL) hasVersion {

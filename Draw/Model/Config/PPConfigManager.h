@@ -394,4 +394,7 @@ typedef enum{
 
 + (NSString*)getDefaultTutorialId;
 
++ (int)defaultHomeStyleOldUser;
++ (int)defaultHomeStyleNewUser;
+
 @end

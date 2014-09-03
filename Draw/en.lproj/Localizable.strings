@@ -619,6 +619,8 @@
 "kDrawDesc" = "Drew a picture: [%@].";
 "kCreateDesc" = "Create an opus: [%@].";
 "kLearnDrawDesc" = "Conquer stage: [%@], %@ score is %d";
+"kLearnDrawDescSimple" = "Conquer stage: [%@]";
+
 "kAbove90" = "";
 "kAbove80" = "";
 "kAbove70" = "";
