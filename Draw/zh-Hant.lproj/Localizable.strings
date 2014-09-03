@@ -2902,7 +2902,7 @@
 "kConquerDrawShareSinaWeibo" = "分享到新浪微博";
 "kConquerDrawShareQQWeibo" = "分享到騰訊微博";
 
-"kConquerDrawShareText" = "我在%@中學習畫畫，本次畫畫得分為%d分，擊敗了宇宙世界中總計%d位使用者，你看看嘍";
+"kConquerDrawShareText" = "我在 @%@ 中學習畫畫，本次畫畫得分為%d分，擊敗了宇宙世界中總計%d位使用者";
 "kCreateImageShareFail" = "無法生成分享圖片，分享失敗";
 
 

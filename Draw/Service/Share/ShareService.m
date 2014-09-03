@@ -401,7 +401,7 @@ static ShareService* _defaultService;
         [copyLayers addObject:copyLayer];
     }
     
-    NSString* shareText = NSLS(@"kShareGIFText");
+    NSString* shareText = nil; //NSLS(@"kShareGIFText");
     
     //后台运行creategif,主线程显示小苹果进程。
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0),

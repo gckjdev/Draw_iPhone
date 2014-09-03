@@ -878,6 +878,15 @@ typedef enum{
                 obj.canvasSize = drawFeed.drawData.canvasSize;
                 obj.layers = drawFeed.drawData.layers;
                 obj.finalImage = [ShowFeedController getFeedImage:drawFeed];
+
+                obj.opusUserId = drawFeed.pbFeed.userId;
+                obj.opusUserNick = drawFeed.pbFeed.nickName;
+                obj.opusUserGender = drawFeed.pbFeed.gender;
+
+                obj.opusId = drawFeed.feedId;
+                obj.opusWord = drawFeed.pbFeed.opusWord;
+                obj.opusDesc = drawFeed.pbFeed.opusDesc;
+                
                 
                 DrawPlayer *player = [DrawPlayer playerWithReplayObj:obj];
                 [player showInController:cp];
@@ -935,6 +944,14 @@ typedef enum{
                 obj.canvasSize = cp.feed.drawData.canvasSize;
                 obj.layers = cp.feed.drawData.layers;
                 obj.finalImage = [ShowFeedController getFeedImage:cp.feed];
+                
+                obj.opusUserId = cp.feed.pbFeed.userId;
+                obj.opusUserNick = cp.feed.pbFeed.nickName;
+                obj.opusUserGender = cp.feed.pbFeed.gender;
+                
+                obj.opusId = cp.feed.feedId;
+                obj.opusWord = cp.feed.pbFeed.opusWord;
+                obj.opusDesc = cp.feed.pbFeed.opusDesc;
                 
                 DrawPlayer *player = [DrawPlayer playerWithReplayObj:obj];
                 [player showInController:cp];
