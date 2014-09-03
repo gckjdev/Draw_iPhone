@@ -10,6 +10,7 @@
 #import "PenView.h"
 #import "ItemType.h"
 #import "PenEffectProtocol.h"
+#import "BrushEffectProtocol.h"
 
 @class HBrushPointList;
 
@@ -21,18 +22,26 @@
 @class PBDrawAction_Builder;
 @protocol DrawPenProtocol;
 
+@interface BrushDot : NSObject
+
+@property (nonatomic, assign) CGFloat x;
+@property (nonatomic, assign) CGFloat y;
+@property (nonatomic, assign) CGFloat width;
+
+@end
 
 @interface BrushStroke : NSObject
 {
 }
 
-@property(nonatomic, assign)CGRect canvasRect;
-@property(nonatomic, assign)CGFloat width;
-@property(nonatomic, assign)ItemType brushType;
-@property(nonatomic, assign)CGLayerRef brushLayer;
-@property(nonatomic, retain)DrawColor* color;
-@property(nonatomic,retain)id<PenEffectProtocol> pen;
-@property(nonatomic, retain)id<DrawPenProtocol> drawPen;
+@property(nonatomic, assign) CGRect canvasRect;
+@property(nonatomic, assign) CGFloat width;
+@property(nonatomic, assign) ItemType brushType;
+@property(nonatomic, assign) CGLayerRef brushLayer;
+@property(nonatomic, retain) id<BrushEffectProtocol> brush;
+@property(nonatomic, retain) DrawColor* color;
+@property(nonatomic, retain) id<PenEffectProtocol> pen;
+@property(nonatomic, retain) id<DrawPenProtocol> drawPen;
 @property(nonatomic, retain) UIImage *brushImage;
 @property(nonatomic, assign) CGImageRef brushImageRef;
 

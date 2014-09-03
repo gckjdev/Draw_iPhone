@@ -59,11 +59,13 @@ typedef enum
     ItemTypeFunPen4 = 1154,
     ItemTypeFunPen5 = 1155,
     
-    ItemTypeBrushBlur = 1161,
-    ItemTypeBrushCryan = 1162,
-    ItemTypeBrushPen = 1163,
-    ItemTypeBrushPen4 = 1164,
-    ItemTypeBrushPen5 = 1165,
+    ItemTypeBrushBegin = 1160,
+    ItemTypeBrushGouache = 1161,
+    ItemTypeBrushOil = 1162,
+    ItemTypeBrushCrayon = 1163,
+    ItemTypeBrushPen = 1164,
+    ItemTypeBrushBlur = 1165,
+    ItemTypeBrushWater = 1166,
     ItemTypeBrushEnd = 1199,
     
     

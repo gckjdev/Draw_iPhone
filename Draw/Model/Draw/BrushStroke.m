@@ -17,15 +17,9 @@
 #import "HBrushPointList.h"
 #import "UIImage+RTTint.h"
 #import "UIImageExt.h"
+#import "BrushEffectFactory.h"
 
 
-@interface BrushDot : NSObject
-
-@property (nonatomic, assign) CGFloat x;
-@property (nonatomic, assign) CGFloat y;
-@property (nonatomic, assign) CGFloat width;
-
-@end
 
 @implementation BrushDot
 
@@ -41,10 +35,7 @@
 @property (nonatomic, retain) BrushDot  *beginDot;
 @property (nonatomic, retain) BrushDot  *controlDot;
 @property (nonatomic, retain) BrushDot  *endDot;
-@property (nonatomic, assign) CGFloat tempWidth;
 
-//@property (nonatomic, retain) UIImage *finalImage;
-//@property (nonatomic, retain) NSData *finalImageData;
 
 @end
 
@@ -85,24 +76,19 @@
     if (self) {
         self.width = width;
         self.color = color;
+        
+        // set brush
         self.brushType = brushType;
+        self.brush = [[BrushEffectFactory sharedInstance] brush:brushType];
         
         self.beginDot = [[BrushDot alloc]init];
         self.controlDot = [[BrushDot alloc]init];
         self.endDot = [[BrushDot alloc]init];
         
         //get brush image and tint it
-        self.brushImage = [UIImage imageNamed:@"brush_dot2.png"];
-        UIColor *customizedColor = [UIColor colorWithRed:self.color.red
-                                                   green:self.color.green
-                                                    blue:self.color.blue
-                                                   alpha:1.0];
-
-        UIImage *tinted = [self.brushImage
-                           rt_tintedImageWithColor:customizedColor
-                                             level:1.0f];
-        self.brushImage = tinted;
-        self.brushImageRef = self.brushImage.CGImage;
+        self.brushImage = [self.brush brushImage:[self.color color]];
+        self.brushImageRef = _brushImage.CGImage;
+        
         
         if (pointList == nil){
             _hPointList = [[HBrushPointList alloc] init];
@@ -200,7 +186,7 @@
     }
 }
 
-#define INTERPOLATION 4
+
 #define FIXED_PEN_SIZE 32
 - (void)addPoint:(CGPoint)point inRect:(CGRect)rect
 {
@@ -220,8 +206,6 @@
         PPDebug(@"<addPoint> Change Point to %@", NSStringFromCGPoint(point));
     }
     
-//    [[self getPen] addPointIntoPath:point];
-    
     _brushLayer = [self brushLayer:rect];
     CGContextRef layerContext = CGLayerGetContext(_brushLayer);
     CGContextSaveGState(layerContext);
@@ -230,61 +214,58 @@
         
 //        CGContextClearRect(layerContext, CGRectFromCGSize(CGLayerGetSize(_brushLayer)));
         
+        //开始采样，记录坐标
         _controlDot.x = point.x;
         _controlDot.y = point.y;
-        _controlDot.width = self.width;
         
         _beginDot.x = point.x;
         _beginDot.y = point.y;
-        _beginDot.width = self.width;
         
         _endDot.x = point.x;
         _endDot.y = point.y;
-        _endDot.width = self.width;
         
         _hasPoint = YES;
-        _tempWidth = 0;
+
+        float _tempWidth = [_brush firstPointWidth:self.width];
+        _controlDot.width = _tempWidth;
         _beginDot.width = _tempWidth;
-        _controlDot. width = _tempWidth;
         _endDot.width = _tempWidth;
+    
+        
     }
     else{
         //重采样定位第一点
         _beginDot.x = 0.25*_beginDot.x + 0.5*_controlDot.x + 0.25*_endDot.x;
         _beginDot.y = 0.25*_beginDot.y + 0.5*_controlDot.y + 0.25*_endDot.y;
         _beginDot.width = 0.5*_beginDot.width + 0.5*_controlDot.width;
+        
         //第二点，为控制点
         _controlDot.x = _endDot.x;
         _controlDot.y = _endDot.y;
         _controlDot.width = _endDot.width;
+        
         //第三点，为当前点
         _endDot.x = point.x;
         _endDot.y = point.y;
-        _endDot.width = self.width;
+        
         
         double distance1 = [self distanceOfDot:_controlDot AndDot:_beginDot];
         double distance2 = [self distanceOfDot:_endDot AndDot:_controlDot];
         
-        double accelerate = distance2 - distance1;
-        if( accelerate / FIXED_PEN_SIZE > 0.1)
-            _tempWidth  -= (FIXED_PEN_SIZE / 4);
-        else if (accelerate / FIXED_PEN_SIZE < - 0.1)
-            _tempWidth += (FIXED_PEN_SIZE / 8);
-        
-        if(_tempWidth > FIXED_PEN_SIZE) _tempWidth = FIXED_PEN_SIZE;
-        else if (_tempWidth <= FIXED_PEN_SIZE / 2) _tempWidth = FIXED_PEN_SIZE / 2;
-        
-        _endDot.width = _tempWidth;
+        _endDot.width = [_brush calculateWidth:_beginDot
+                                        endDot:_endDot
+                                    controlDot:_controlDot
+                                     distance1:distance1
+                                     distance2:distance2
+                                  defaultWidth:self.width];
         
         float pointX=0;
         float pointY=0;
         float width=0;
         
-        int dis = (distance1 + distance2) / 10 + 1;
-        
-//        PPDebug(@"<distance> %f,%d",distance,dis);
-        
-        int interpolationLength = INTERPOLATION * dis;
+        int interpolationLength = [_brush interpolationLength:self.width
+                                                    distance1:distance1
+                                                    distance2:distance2];
         
         CGImageRef brushImageRef = [self brushImageRef];
         for(int i = 0; i<interpolationLength/2; i++)
@@ -298,10 +279,14 @@
                                         pointY:&pointY
                                          width:&width];
             
+            [_brush randomShakePointX:&pointX
+                               PointY:&pointY];
+            
             [_hPointList addPoint:pointX y:pointY width:width];
             
             // draw by point list
             CGRect rect = CGRectMake(pointX - width/2, pointY - width/2, width, width);
+            
             CGContextDrawImage(layerContext, rect, brushImageRef);
         }
         
@@ -333,15 +318,7 @@
 
 }
 
-//- (CGPathRef)path
-//{
-//    id<PenEffectProtocol> pen = [self getPen];
-//    if (![pen hasPoint]){
-//        [pen constructPath:_hPointList inRect:self.canvasRect];
-//    }
-//    
-//    return [pen penPath];
-//}
+
 
 - (CGRect)redrawRectInRect:(CGRect)rect
 {
@@ -366,12 +343,6 @@
     
     CGContextSaveGState(context);
     
-    /*
-     [self.drawPen updateCGContext:context paint:self];
-     
-     CGContextAddPath(context, [self path]);
-     CGContextStrokePath(context);
-     */
     
     // draw by point list
     CGRect rect = CGRectMake(currentX - currentW/2, currentY - currentW/2, currentW, currentW);
