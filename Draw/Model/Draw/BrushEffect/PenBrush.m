@@ -38,26 +38,31 @@ static dispatch_once_t sharedPenBrushOnceToken;
     return YES;
 }
 
-#define FIXED_PEN_SIZE 16
-- (float)calculateWidth:(BrushDot*)beginDot
-                 endDot:(BrushDot*)endDot
-             controlDot:(BrushDot*)controlDot
-              distance1:(float)distance1
-              distance2:(float)distance2
-           defaultWidth:(float)defaultWidth;
-{
-    double tempWidth;
-    double accelerate = distance2 - distance1;
-    if( accelerate / FIXED_PEN_SIZE > 0.15)
-        tempWidth  -= (FIXED_PEN_SIZE / 16);
-    else if (accelerate / FIXED_PEN_SIZE < - 0.15)
-        tempWidth += (FIXED_PEN_SIZE / 16);
 
-    if(tempWidth > FIXED_PEN_SIZE) tempWidth = FIXED_PEN_SIZE;
-    else if (tempWidth <= FIXED_PEN_SIZE / 4) tempWidth = FIXED_PEN_SIZE / 4;
+- (float)calculateWidthWithThreshold:(float)threshold
+                           distance1:(float)distance1
+                           distance2:(float)distance2
+                        currentWidth:(float)currentWidth
+{
+    double tempWidth = currentWidth;
+    
+    if(tempWidth < threshold/4) tempWidth +=threshold / 16;
+    else if(tempWidth > threshold) tempWidth = threshold;
+    else
+    {
+        double accelerate = distance2 - distance1;
+        if( accelerate / threshold > 0.1)
+            tempWidth += (threshold / 8);
+        else if (accelerate / threshold < 0.0)
+            tempWidth -= (threshold / 8);
+        
+        if(tempWidth < threshold / 4)
+            tempWidth = threshold / 4;
+    }
     
     return tempWidth;
 }
+
 
 - (float)firstPointWidth:(float)defaultWidth
 {
@@ -68,11 +73,11 @@ static dispatch_once_t sharedPenBrushOnceToken;
                  distance1:(float)distance1         // 当前BeginDot和ControlDot的距离
                  distance2:(float)distance2         // 当前EndDot和ControlDot的距离
 {
-    int disFactor = (distance1 + distance2) / 10 + 1;
+//    int disFactor = 1;
+//    
+//    double sizeFactor = 1;
     
-    double sizeFactor = 1;
-    
-    int interpolationLength = INTERPOLATION * disFactor * sizeFactor;
+    int interpolationLength = INTERPOLATION * 20;
     
     return interpolationLength;
 }

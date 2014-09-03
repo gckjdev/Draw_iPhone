@@ -25,7 +25,7 @@ static dispatch_once_t sharedCrayonBrushOnceToken;
 
 - (UIImage*)brushImage:(UIColor *)color
 {
-    UIImage* brushImage = [UIImage imageNamed:@"brush_dot7.png"];
+    UIImage* brushImage = [UIImage imageNamed:@"brush_dot6.png"];
     UIImage *tinted = [brushImage rt_tintedImageWithColor:color
                                                     level:1.0f];
     brushImage = tinted;
@@ -37,14 +37,12 @@ static dispatch_once_t sharedCrayonBrushOnceToken;
     return YES;
 }
 
-- (float)calculateWidth:(BrushDot*)beginDot
-                 endDot:(BrushDot*)endDot
-             controlDot:(BrushDot*)controlDot
-              distance1:(float)distance1
-              distance2:(float)distance2
-           defaultWidth:(float)defaultWidth;
+- (float)calculateWidthWithThreshold:(float)threshold
+                           distance1:(float)distance1
+                           distance2:(float)distance2
+                        currentWidth:(float)currentWidth
 {
-    return defaultWidth;
+    return currentWidth;
 }
 
 - (float)firstPointWidth:(float)defaultWidth
@@ -62,7 +60,7 @@ static dispatch_once_t sharedCrayonBrushOnceToken;
     
     int interpolationLength = INTERPOLATION * disFactor * sizeFactor;
     
-    PPDebug(@"<interpolationlength> %d",interpolationLength);
+//    PPDebug(@"<interpolationlength> %d",interpolationLength);
     return interpolationLength;
 }
 

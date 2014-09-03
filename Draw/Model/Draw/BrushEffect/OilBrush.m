@@ -38,7 +38,7 @@ static dispatch_once_t sharedOilBrushOnceToken;
 	size_t num_locations = 2;
 	CGFloat locations[2] = { 1.0, 0.0 };
 	CGFloat* comp = (CGFloat *)CGColorGetComponents(color.CGColor);
-	CGFloat fc = sinf(((0.5/*这个参数是硬度，暂时固定*/ / 5.0f) * M_PI ) / 2.0f);
+	CGFloat fc = sinf(((0.6/*这个参数是硬度，暂时固定*/ / 5.0f) * M_PI ) / 2.0f);
 	CGFloat colors[8] = { comp[0], comp[1], comp[2], 0.0f, comp[0], comp[1], comp[2], fc };
 	CGGradientRef gradient = CGGradientCreateWithColorComponents(colorspace, colors, locations, num_locations);
 	CGContextDrawRadialGradient(ctx, gradient, pt, 0.0f, pt, wd, 0);
@@ -57,14 +57,12 @@ static dispatch_once_t sharedOilBrushOnceToken;
     return YES;
 }
 
-- (float)calculateWidth:(BrushDot*)beginDot
-                 endDot:(BrushDot*)endDot
-             controlDot:(BrushDot*)controlDot
-              distance1:(float)distance1
-              distance2:(float)distance2
-           defaultWidth:(float)defaultWidth;
+- (float)calculateWidthWithThreshold:(float)threshold
+                           distance1:(float)distance1
+                           distance2:(float)distance2
+                        currentWidth:(float)currentWidth
 {
-    return defaultWidth;
+    return currentWidth;
 }
 
 - (float)firstPointWidth:(float)defaultWidth
