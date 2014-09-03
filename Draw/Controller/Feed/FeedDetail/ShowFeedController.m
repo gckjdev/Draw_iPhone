@@ -879,9 +879,9 @@ typedef enum{
                 obj.layers = drawFeed.drawData.layers;
                 obj.finalImage = [ShowFeedController getFeedImage:drawFeed];
 
-                obj.opusUserId = drawFeed.pbFeed.userId;
-                obj.opusUserNick = drawFeed.pbFeed.nickName;
-                obj.opusUserGender = drawFeed.pbFeed.gender;
+                obj.opusUserId = drawFeed.author.userId;
+                obj.opusUserNick = drawFeed.author.nickName;
+                obj.opusUserGender = drawFeed.author.gender;
 
                 obj.opusId = drawFeed.feedId;
                 obj.opusWord = drawFeed.pbFeed.opusWord;
@@ -945,9 +945,9 @@ typedef enum{
                 obj.layers = cp.feed.drawData.layers;
                 obj.finalImage = [ShowFeedController getFeedImage:cp.feed];
                 
-                obj.opusUserId = cp.feed.pbFeed.userId;
-                obj.opusUserNick = cp.feed.pbFeed.nickName;
-                obj.opusUserGender = cp.feed.pbFeed.gender;
+                obj.opusUserId = cp.feed.author.userId;
+                obj.opusUserNick = cp.feed.author.nickName;
+                obj.opusUserGender = cp.feed.author.gender;
                 
                 obj.opusId = cp.feed.feedId;
                 obj.opusWord = cp.feed.pbFeed.opusWord;
