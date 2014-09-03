@@ -200,7 +200,12 @@
     }
     
     if ([self isLearnDraw]){
-        self.desc = [NSString stringWithFormat:NSLS(@"kLearnDrawDesc"), self.wordText, [self getScorePrefx], self.pbFeed.stageScore];
+        if (self.pbFeed.stageScore > 0){
+            self.desc = [NSString stringWithFormat:NSLS(@"kLearnDrawDesc"), self.wordText, [self getScorePrefx], self.pbFeed.stageScore];
+        }
+        else{
+            self.desc = [NSString stringWithFormat:NSLS(@"kLearnDrawDescSimple"), self.wordText];
+        }
     }
     else if ([self isMyOpus]) {
         self.desc = [NSString stringWithFormat:kCreateDesc, self.wordText];      

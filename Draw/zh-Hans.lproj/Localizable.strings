@@ -648,6 +648,7 @@
 "kDrawDesc" = "画了一幅 [%@]";
 "kCreateDesc" = "录制了一个声音作品 [%@]";
 "kLearnDrawDesc" = "画了一副闯关作品 [%@], %@%d分";
+"kLearnDrawDescSimple" = "画了一副闯关作品 [%@]";
 
 "kAbove90" = "暴砍";
 "kAbove80" = "狂砍";

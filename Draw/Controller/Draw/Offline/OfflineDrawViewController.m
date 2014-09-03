@@ -448,7 +448,8 @@
                                    word:[Word wordWithText:@"" level:WordLeveLMedium]
                                language:ChineseType
                                 bgImage:_bgImage
-                                bgImageName:_bgImageName];
+                                bgImageName:_bgImageName
+                                deleteFlag:YES];
         
         // for delete flag so that it will not show while crash
         [self.draft setDeleteFlag:@(YES)];
@@ -1015,12 +1016,16 @@
     }
 
     // show popup message here, MUST NOT CONFLICT!!!!
+    
+    /*
     if (targetType == TypeConquerDraw && [[self.draft hasSubmit] boolValue]){
         // 提示当前已经闯关，无法再次提交了，可以选择返回，或者重来
         [self showAlreadySubmitDialog];
         return;
     }
-    else if (targetType == TypePracticeDraw){
+    else
+        */
+    if (targetType == TypePracticeDraw){
         if ([[UserManager defaultManager] isReadLearnDrawHelp]){
             // 如果是当前修炼的第一小节，则弹出提示信息，并且是第一次开始草稿，尝试提示第一小节信息
             [self showStageFirstChapterTips];
@@ -1426,6 +1431,8 @@
     [_upPanelPopView dismissAnimated:YES];
 
     _hasNewStroke = YES;
+    
+    [self hideScoreView];
 }
 
 - (void)drawView:(DrawView *)view didFinishDrawAction:(DrawAction *)action
@@ -2156,14 +2163,19 @@
     }
     
     if (targetType == TypeConquerDraw){
+        
+        [self hideScoreView];
+        
+        /*
         if ([self.draft.hasSubmit boolValue]){
             // 闯关，作品已提交，提示“已提交”信息
             [self showAlreadySubmitDialog];
         }
         else{
+         */
             // 闯关，作品未提交，询问确认
             [self showAskSubmitConquerDraw];
-        }
+//        }
     }
     else{
         [self handleSubmitForLearnDraw];

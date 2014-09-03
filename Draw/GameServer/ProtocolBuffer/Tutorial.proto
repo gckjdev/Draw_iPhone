@@ -147,6 +147,11 @@ message PBTutorial
     
     optional bool   isNew = 50;                     // 是否最近推出
     
+    optional bool   disableScore = 60;              // 是否不用打分（比如娱乐教程可不打分，本项设置为true）
+    optional bool   disablePractice = 61;           // 是否不用修炼（比如娱乐教程可不修炼，本项设置为true）
+    optional bool   directPass = 62[default=false]; // 每一关是否直接通过（比如娱乐教程可直接过关，本项设置为true）
+    optional int32  passScore = 63[default=60];     // 每一关的过关分数（默认60分过关）
+
     optional int32  version = 100;                  // 教程文件版本
 }
 
