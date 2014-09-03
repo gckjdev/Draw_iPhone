@@ -110,6 +110,7 @@
 
 + (UIImage *)seletedPenImageForType:(ItemType)type
 {
+    // pen image
     ShareImageManager* manager = [ShareImageManager defaultManager];
     switch (type) {
         case Pen:
@@ -136,6 +137,16 @@
             return [UIImage imageNamed:@"selected_pen_fun4@2x.png"];
         case ItemTypeFunPen5:
             return [UIImage imageNamed:@"selected_pen_fun5@2x.png"];
+            
+        case ItemTypeBrushGouache:
+            return manager.selectedMarkPenImage;
+        case ItemTypeBrushOil:
+            return manager.selectedBrushPenImage;
+        case ItemTypeBrushCrayon:
+            return manager.selectedIcePenImage;
+        case ItemTypeBrushPen:
+            return manager.selectedFeatherPenImage;
+
             
         default:
             return nil;
