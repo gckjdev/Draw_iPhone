@@ -359,8 +359,8 @@ static TutorialCoreManager* _defaultTutorialCoreManager;
 // 创建测试数据
 - (void)createTestData
 {
-    NSString* root = @"/gitdata/Draw_iPhone/Draw/Tutorial/Resource/";
-//    NSString* root = @"/Users/chaoso/Desktop/gitdata/Draw_iPhone/Draw/Tutorial/Resource/";
+//    NSString* root = @"/gitdata/Draw_iPhone/Draw/Tutorial/Resource/";
+    NSString* root = @"/Users/chaoso/Desktop/gitdata/Draw_iPhone/Draw/Tutorial/Resource/";
     //    NSString *root = @"/Users/Linruin/gitdata/Draw_iPhone/Draw/Tutorial/Resource/";
 //    NSString *root = @"/Users/jiandan/gitdata/Draw_iPhone/Draw/Tutorial/Resource/";
     NSString* path = [root stringByAppendingString:[TutorialCoreManager appTaskDefaultConfigFileName]];
@@ -370,9 +370,9 @@ static TutorialCoreManager* _defaultTutorialCoreManager;
     PBTutorialCore_Builder* builder = [PBTutorialCore builder];
     
     NSArray* testTutorialName = @[
-                                  /*@"疯狂的线条",@"识色配图",@"旺星人大集合",@"易容速成",*/@"百态小吉萌翻天",@"全民健身大进击",@"奇妙的色彩世界",@"爱生活爱运动",@"萌萌哒发型屋",@"初识三次元"];
+                                  /*@"疯狂的线条",@"识色配图",@"旺星人大集合",@"易容速成",*/@"百态小吉萌翻天",@"全民健身大进击",@"奇妙的色彩世界",@"爱生活爱运动",@"萌萌哒发型屋",@"初识三次元",@"新嫦娥奔月传说",@"中秋贺卡DIY"];
     
-    NSArray* testTutorialDesc = @[/*@"帮助你更好的熟练工具",@"这里将把你打造成用色达人",@"属于旺星人的趴",@"你想易容成什么人",*/@"小吉闪亮登场，速来围观",@"燃烧你的卡路里吧",@"探索与发现色彩世界的奥妙",@"童鞋们，一起来运动吧",@"你会喜欢那一款发型",@"教你怎么把物体从二次元转换成三次元"];
+    NSArray* testTutorialDesc = @[/*@"帮助你更好的熟练工具",@"这里将把你打造成用色达人",@"属于旺星人的趴",@"你想易容成什么人",*/@"小吉闪亮登场，速来围观",@"燃烧你的卡路里吧",@"探索与发现色彩世界的奥妙",@"童鞋们，一起来运动吧",@"你会喜欢那一款发型",@"教你怎么把物体从二次元转换成三次元",@"关于中秋节的神秘传说，你知道吗？",@"DIY独特的中秋贺卡，发挥你的创作才能。"];
     
     
     NSArray* tutorialImageUrl = @[
@@ -386,7 +386,10 @@ static TutorialCoreManager* _defaultTutorialCoreManager;
                                   @"http://58.215.160.100:8080/app_res/tutorial/image/se-title.png",
                                   @"http://58.215.160.100:8080/app_res/tutorial/image/title-7.png",
                                   @"http://58.215.160.100:8080/app_res/tutorial/image/nv-title.png",
-                                  @"http://58.215.160.100:8080/app_res/tutorial/image/title-0.png"
+                                  @"http://58.215.160.100:8080/app_res/tutorial/image/title-0.png",
+
+                                  @"http://58.215.160.100:8080/app_res/tutorial/image/zhongqiu-title.png",
+                                  @"http://58.215.160.100:8080/app_res/tutorial/image/DIY-title.png"
                                   ];
     NSArray* tutorialCategory =
     @[
@@ -400,7 +403,9 @@ static TutorialCoreManager* _defaultTutorialCoreManager;
       @[@(1)],
       @[@(0)],
       @[@(1)],
-      @[@(2)]
+      @[@(2)],
+      @[@(0)],
+      @[@(0)]
       ];
     
     NSArray* testStageName = @[
@@ -416,7 +421,10 @@ static TutorialCoreManager* _defaultTutorialCoreManager;
                                 @[@"三原色",@"16色相环",@"明度",@"纯度",@"对比色",@"邻近色",@"冷暖对比",@"色彩渐变"],
                                @[@"射箭",@"拳击",@"铁人三项",@"跆拳道",@"射击",@"棒球",@"游泳",@"跳水",@"皮划艇",@"柔道"],
                                @[@"小辫子",@"短碎发",@"梨花头",@"森女自然长发",@"齐刘海",@"乖乖女",@"麻花辫",@"丸子头"],
-                                @[@"正方体",@"牛奶盒",@"六棱柱",@"铅笔",@"圆柱",@"纸筒", @"苹果"]
+                                @[@"正方体",@"牛奶盒",@"六棱柱",@"铅笔",@"圆柱",@"纸筒", @"苹果"],
+                               @[@"嫦娥和后羿",@"英雄救美",@"十个太阳",@"仙人下凡",@"偷吃丹药",@"嫦娥奔月", @"后羿射日",@"中秋团圆"],
+                               
+                               @[@"中秋赏花灯",@"月饼大餐",@"月饼爱心甜点",@"中国风明信片",@"月圆之夜",@"和月亮来个拥抱"]
                                ];
     
     NSArray* testStageDesc = @[
@@ -435,7 +443,23 @@ static TutorialCoreManager* _defaultTutorialCoreManager;
                               
                                @[@"卖萌装嫩必备利器",@"别样中性帅气美",@"温婉可爱小女人",@"清新小文艺女子",@"制霸职场女精英",@"秀外惠中小女生",@"随性田园风女神",@"呆萌小萝莉"],
   
-                               @[@"初步认识传说中的五调子（亮、灰、暗、反光、投影）",@"学会了正方体，现在你可以尝试画下生活中类似的物体",@"怎样把物体画的更有立体感",@"结合前面的六棱柱，试试画一只铅笔",@"学习怎么让物体的明暗过渡的更加自然",@"运用前面学习的知识，试着画一个圆柱形纸筒", @"你是我的小呀小苹果······综合所学知识画个最流行的小苹果吧"]
+                               @[@"初步认识传说中的五调子（亮、灰、暗、反光、投影）",@"学会了正方体，现在你可以尝试画下生活中类似的物体",@"怎样把物体画的更有立体感",@"结合前面的六棱柱，试试画一只铅笔",@"学习怎么让物体的明暗过渡的更加自然",@"运用前面学习的知识，试着画一个圆柱形纸筒", @"你是我的小呀小苹果······综合所学知识画个最流行的小苹果吧"],
+                               
+                                @[@"从前有一个美丽善良的小萝莉，她叫嫦娥，她的男票名字叫后羿，是个神箭手。",
+                                  @"有一天，嫦娥在河边洗衣服，路过的河伯见嫦娥貌美如花想要强抢回家，后羿见状，拔箭射瞎河伯眼睛,英雄救美。",
+                                  @"过了一年，天空出现十个太阳，人们苦不堪言。后羿欲射日救民，可是河伯一直贪恋嫦娥美色，不断前来骚扰，后羿十分烦躁,无法专心。",
+                                  @"有一位仙人给了后羿一颗仙丹，告诉他吃了可以摆脱烦恼升入月宫，后羿把这告诉了嫦娥。",
+                                  @"河伯不断干扰后羿射日让后羿饱受煎熬，为了让河伯死心，嫦娥偷偷吃了神药。",
+                                  @"吃完后，嫦娥身子变轻，飘进了广寒宫，从小萝莉晋升为了女神，却孤独一人驻守在月宫。",
+                                  @"嫦娥升入月宫后，后羿十分伤心，于是化悲痛为力量日夜练箭，最终战胜了河伯，射掉九个太阳，拯救了人民。",
+                                  @"天帝得知后深受感动，封后羿为天将，于中秋佳节让嫦娥和后羿团圆重逢，从此两人在天上过上了幸福美满的生活。"],
+                               
+                                  @[@"根据已有背景，制作个性中秋贺卡，送给你想要祝福的人",
+                                    @"根据已有背景，制作个性中秋贺卡，送给你想要祝福的人",
+                                    @"根据已有背景，制作个性中秋贺卡，送给你想要祝福的人",
+                                    @"根据已有背景，制作个性中秋贺卡，送给你想要祝福的人",
+                                    @"根据已有背景，制作个性中秋贺卡，送给你想要祝福的人",
+                                    @"根据已有背景，制作个性中秋贺卡，送给你想要祝福的人"]
                                
                                
                                ];
@@ -561,6 +585,24 @@ static TutorialCoreManager* _defaultTutorialCoreManager;
                                    @"http://58.215.160.100:8080/app_res/tutorial/image/0-5.jpg",
                                    @"http://58.215.160.100:8080/app_res/tutorial/image/0-6.jpg",
                                    @"http://58.215.160.100:8080/app_res/tutorial/image/0-7.jpg"
+                                   ],
+                               @[
+                                   @"http://58.215.160.100:8080/app_res/tutorial/image/zhongqiu-1.jpg",
+                                   @"http://58.215.160.100:8080/app_res/tutorial/image/zhongqiu-2.jpg",
+                                   @"http://58.215.160.100:8080/app_res/tutorial/image/zhongqiu-3.jpg",
+                                   @"http://58.215.160.100:8080/app_res/tutorial/image/zhongqiu-4.jpg",
+                                   @"http://58.215.160.100:8080/app_res/tutorial/image/zhongqiu-5.jpg",
+                                   @"http://58.215.160.100:8080/app_res/tutorial/image/zhongqiu-6.jpg",
+                                   @"http://58.215.160.100:8080/app_res/tutorial/image/zhongqiu-7.jpg",
+                                   @"http://58.215.160.100:8080/app_res/tutorial/image/zhongqiu-8.jpg"
+                                   ],
+                               @[
+                                   @"http://58.215.160.100:8080/app_res/tutorial/image/DIY-1.jpg",
+                                   @"http://58.215.160.100:8080/app_res/tutorial/image/DIY-2.jpg",
+                                   @"http://58.215.160.100:8080/app_res/tutorial/image/DIY-3.jpg",
+                                   @"http://58.215.160.100:8080/app_res/tutorial/image/DIY-4.jpg",
+                                   @"http://58.215.160.100:8080/app_res/tutorial/image/DIY-5.jpg",
+                                   @"http://58.215.160.100:8080/app_res/tutorial/image/DIY-6.jpg",
                                    ],
                                
                                ];
@@ -759,7 +801,8 @@ static TutorialCoreManager* _defaultTutorialCoreManager;
 //    NSArray *tutorialsecaiTips = @[secaiTips,secaiTips,secaiTips,secaiTips,secaiTips,secaiTips,secaiTips,secaiTips,secaiTips
 //                                   ];
     
-    
+    NSArray *stage_chang_eTips = @[@[@"tips1.png"]];
+    NSArray *chang_eTips = @[stage_chang_eTips,stage_chang_eTips,stage_chang_eTips,stage_chang_eTips,stage_chang_eTips,stage_chang_eTips,stage_chang_eTips,stage_chang_eTips];
     //tutorialTipsList
     NSArray *tipsList = @[
                           tutorial6Tips,
@@ -767,8 +810,9 @@ static TutorialCoreManager* _defaultTutorialCoreManager;
                           secaiTips,
                           tutorial7Tips,
                           tutorialxiaonvhai,
-                          tutorial0Tips
-
+                          tutorial0Tips,
+                          chang_eTips,
+                          chang_eTips,
                           ];
     
     NSArray *difficultyList = @[
@@ -792,7 +836,9 @@ static TutorialCoreManager* _defaultTutorialCoreManager;
                                 SE(SE_NORMAL),//色彩
                                 SE(SE_JIANBI),//奥运
                                 SE(SE_NORMAL),//女孩
-                                SE(SE_COLOR)  //三次元
+                                SE(SE_COLOR),  //三次元
+                                SE(SE_NORMAL),
+                                SE(SE_NORMAL)
                                ];
     
     //三次元关卡stage的start Index
@@ -828,41 +874,6 @@ static TutorialCoreManager* _defaultTutorialCoreManager;
                                      ];
     
     
-    //模拟测试数据
-    //    for(int i=0;i<testTutorialName.count;i++){
-    //        NSString* ID = [NSString stringWithFormat:@"tutorialId-%d",i];
-    //        PPDebug(@"tutorial count==%d",[testTutorialName count]);
-    //
-    //      PBTutorial_Builder* tb = [self evaluateTutorialTestDataName:[testTutorialName objectAtIndex:i]
-    //                                  WithDesc:[testTutorialDesc objectAtIndex:i]
-    //                            WithTutorialId:ID
-    //                                 WithImage:[tutorialImageUrl objectAtIndex:i]
-    //                                     IsAdd:NO
-    //                               WithBuilder:nil
-    //                                WithCategory:[tutorialCategory objectAtIndex:i]];
-    //        for(int j=0;j<[[testStageName objectAtIndex:i]  count];j++){
-    //            //TODO chapter
-    //
-    //            NSString* stageID = [NSString stringWithFormat:@"stageId-%d-%d",j,j];
-    //            if(i==6){
-    //            PPDebug(@"stageList count==%d",[[testStageName objectAtIndex:i]  count]);
-    //            }
-    //            [self evaluateStageTestDataName:[[testStageName objectAtIndex:i] objectAtIndex:j]
-    //                                   WithDesc:[[testStageDesc objectAtIndex:i] objectAtIndex:j]
-    //                                   WithStageId:stageID
-    //                                   WithImage:[[stageImageUrl objectAtIndex:i]objectAtIndex:j]
-    //                                   WithTutorial:tb
-    //                                   WithIndex:i
-    //                                   WithChapterList:[chapterOpusIdList objectAtIndex:j]
-    //                                   WithChapterIndex:i
-    //                                   tipList:tipsList
-    //                                   tipsIndex:j];
-    //        }
-    //
-    //        PBTutorial* tutorial = [tb build];
-    //        [builder addTutorials:tutorial];
-    //
-    //    }
     
     NSMutableArray *tutorialList = [[NSMutableArray alloc] init];
     
@@ -967,21 +978,41 @@ static TutorialCoreManager* _defaultTutorialCoreManager;
                 
                 
             }
-            //添加stage
-            PBStage *stage = [self evaluateStageDataName:
-                              [[testStageName objectAtIndex:tutorialSum] objectAtIndex:stageSum]
-                                                WithDesc:[[testStageDesc objectAtIndex:tutorialSum] objectAtIndex:stageSum]
-                                             WithStageId:stageID
-                                               WithImage:[[stageImageUrl objectAtIndex:tutorialSum]objectAtIndex:stageSum]
-                                                 tipList:tipsList
-                                               tipsIndex:stageSum
-                                                  opusId:[[chapterOpusIdList objectAtIndex:stageSum] objectAtIndex:0]
-                                             chapterList:chapterList
-                                              difficulty:difficulty
-                                               stageType:stageType
-                              ];
+            if(tutorialSum == 6 ||tutorialSum == 7){
+                //添加stage
+                PBStage *stage = [self evaluateStageDataName:
+                                  [[testStageName objectAtIndex:tutorialSum] objectAtIndex:stageSum]
+                                                    WithDesc:[[testStageDesc objectAtIndex:tutorialSum] objectAtIndex:stageSum]
+                                                 WithStageId:stageID
+                                                   WithImage:[[stageImageUrl objectAtIndex:tutorialSum]objectAtIndex:stageSum]
+                                                     tipList:tipsList
+                                                   tipsIndex:stageSum
+                                                      opusId:[[chapterOpusIdList objectAtIndex:stageSum] objectAtIndex:0]
+                                                 chapterList:chapterList
+                                                  difficulty:0.2
+                                                   stageType:stageType
+                                  ];
+                [stageList addObject:stage];
+
+            }else{
+                //添加stage
+                PBStage *stage = [self evaluateStageDataName:
+                                  [[testStageName objectAtIndex:tutorialSum] objectAtIndex:stageSum]
+                                                    WithDesc:[[testStageDesc objectAtIndex:tutorialSum] objectAtIndex:stageSum]
+                                                 WithStageId:stageID
+                                                   WithImage:[[stageImageUrl objectAtIndex:tutorialSum]objectAtIndex:stageSum]
+                                                     tipList:tipsList
+                                                   tipsIndex:stageSum
+                                                      opusId:[[chapterOpusIdList objectAtIndex:stageSum] objectAtIndex:0]
+                                                 chapterList:chapterList
+                                                  difficulty:difficulty
+                                                   stageType:stageType
+                                  ];
+                [stageList addObject:stage];
+
+            }
             
-            [stageList addObject:stage];
+            
         }
         
         NSString* ID = [NSString stringWithFormat:@"tutorialId-%d",tutorialSum];
