@@ -376,6 +376,10 @@
             self.opusData = [[[NSData alloc] initWithContentsOfFile:self.opusDataPath] autorelease];
         }
         
+        if (_opusData == nil && _draw == nil){
+            POSTMSG(NSLS(@"kNoOpusForReplay"));
+            return;
+        }
         
         UIImage* bgImage = nil; //[[UIImage alloc] initWithContentsOfFile:_opusBgImagePath];
         

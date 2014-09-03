@@ -3028,3 +3028,5 @@
 "kRankingList" = "榜單";
 "kAskQuestion" = "答疑";
 "kRequierDelete" = "刪除教程? 注意，刪除教程后，進度會丟失。";
+
+"kNoOpusForReplay" = "當前未有作品可供播放";
