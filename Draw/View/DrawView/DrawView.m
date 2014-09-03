@@ -77,7 +77,7 @@
         [self.drawActionList addObject:drawAction];
         [super addDrawAction:drawAction show:show];
         [self clearRedoStack];
-        if (![drawAction isPaintAction]) {
+        if (![drawAction isPaintAction] && ![drawAction isBrushAction]) {
             [self callbackFinishDelegateWithAction:drawAction];
         }
     }

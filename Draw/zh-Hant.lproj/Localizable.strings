@@ -643,6 +643,8 @@
 "kDrawDesc" = "畫了一幅 [%@]";
 "kCreateDesc" = "錄製了一個聲音作品[%@]";
 "kLearnDrawDesc" = "畫了一副闖關作品[%@], %@%d分";
+"kLearnDrawDescSimple" = "畫了一副闖關作品[%@]";
+
 "kAbove90" = "暴砍";
 "kAbove80" = "狂砍";
 "kAbove70" = "努砍";
@@ -3026,3 +3028,5 @@
 "kRankingList" = "榜單";
 "kAskQuestion" = "答疑";
 "kRequierDelete" = "刪除教程? 注意，刪除教程后，進度會丟失。";
+
+"kNoOpusForReplay" = "當前未有作品可供播放";

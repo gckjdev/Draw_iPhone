@@ -402,13 +402,13 @@
         
         dispatch_async(dispatch_get_main_queue(), ^{
         
+            [viewController unregisterNotificationWithName:NOTIFICATION_DATA_PARSING];
+            
             Draw* draw = (*retDraw);
             if (draw == nil){
                 [viewController hideActivity];
                 return;
             }
-            
-            [viewController unregisterNotificationWithName:NOTIFICATION_DATA_PARSING];
             
             NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
             

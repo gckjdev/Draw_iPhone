@@ -2646,7 +2646,7 @@ const ProtobufCMessageDescriptor game__pbcolor__descriptor =
   (ProtobufCMessageInit) game__pbcolor__init,
   NULL,NULL,NULL    /* reserved[123] */
 };
-static const ProtobufCFieldDescriptor game__pbno_compress_draw_action__field_descriptors[15] =
+static const ProtobufCFieldDescriptor game__pbno_compress_draw_action__field_descriptors[16] =
 {
   {
     "type",
@@ -2828,10 +2828,23 @@ static const ProtobufCFieldDescriptor game__pbno_compress_draw_action__field_des
     0,            /* packed */
     0,NULL,NULL    /* reserved1,reserved2, etc */
   },
+  {
+    "brushPointWidth",
+    41,
+    PROTOBUF_C_LABEL_REPEATED,
+    PROTOBUF_C_TYPE_FLOAT,
+    PROTOBUF_C_OFFSETOF(Game__PBNoCompressDrawAction, n_brushpointwidth),
+    PROTOBUF_C_OFFSETOF(Game__PBNoCompressDrawAction, brushpointwidth),
+    NULL,
+    NULL,
+    0,            /* packed */
+    0,NULL,NULL    /* reserved1,reserved2, etc */
+  },
 };
 static const unsigned game__pbno_compress_draw_action__field_indices_by_name[] = {
   14,   /* field[14] = alpha */
   12,   /* field[12] = blue */
+  15,   /* field[15] = brushPointWidth */
   7,   /* field[7] = canvasSize */
   2,   /* field[2] = color */
   13,   /* field[13] = green */
@@ -2846,12 +2859,13 @@ static const unsigned game__pbno_compress_draw_action__field_indices_by_name[] =
   0,   /* field[0] = type */
   3,   /* field[3] = width */
 };
-static const ProtobufCIntRange game__pbno_compress_draw_action__number_ranges[3 + 1] =
+static const ProtobufCIntRange game__pbno_compress_draw_action__number_ranges[4 + 1] =
 {
   { 1, 0 },
   { 11, 8 },
   { 20, 10 },
-  { 0, 15 }
+  { 41, 15 },
+  { 0, 16 }
 };
 const ProtobufCMessageDescriptor game__pbno_compress_draw_action__descriptor =
 {
@@ -2861,10 +2875,10 @@ const ProtobufCMessageDescriptor game__pbno_compress_draw_action__descriptor =
   "Game__PBNoCompressDrawAction",
   "game",
   sizeof(Game__PBNoCompressDrawAction),
-  15,
+  16,
   game__pbno_compress_draw_action__field_descriptors,
   game__pbno_compress_draw_action__field_indices_by_name,
-  3,  game__pbno_compress_draw_action__number_ranges,
+  4,  game__pbno_compress_draw_action__number_ranges,
   (ProtobufCMessageInit) game__pbno_compress_draw_action__init,
   NULL,NULL,NULL    /* reserved[123] */
 };

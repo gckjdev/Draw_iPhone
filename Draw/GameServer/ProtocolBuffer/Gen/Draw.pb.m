@@ -5801,6 +5801,7 @@ static PBColor* defaultPBColorInstance = nil;
 @property Float32 blue;
 @property Float32 green;
 @property Float32 alpha;
+@property (retain) NSMutableArray* mutableBrushPointWidthList;
 @end
 
 @implementation PBNoCompressDrawAction
@@ -5886,6 +5887,7 @@ static PBColor* defaultPBColorInstance = nil;
   hasAlpha_ = !!value;
 }
 @synthesize alpha;
+@synthesize mutableBrushPointWidthList;
 - (void) dealloc {
   self.mutablePointList = nil;
   self.color = nil;
@@ -5893,6 +5895,7 @@ static PBColor* defaultPBColorInstance = nil;
   self.canvasSize = nil;
   self.mutablePointXList = nil;
   self.mutablePointYList = nil;
+  self.mutableBrushPointWidthList = nil;
   [super dealloc];
 }
 - (id) init {
@@ -5949,6 +5952,13 @@ static PBNoCompressDrawAction* defaultPBNoCompressDrawActionInstance = nil;
 }
 - (Float32) pointYAtIndex:(int32_t) index {
   id value = [mutablePointYList objectAtIndex:index];
+  return [value floatValue];
+}
+- (NSArray*) brushPointWidthList {
+  return mutableBrushPointWidthList;
+}
+- (Float32) brushPointWidthAtIndex:(int32_t) index {
+  id value = [mutableBrushPointWidthList objectAtIndex:index];
   return [value floatValue];
 }
 - (BOOL) isInitialized {
@@ -6013,6 +6023,9 @@ static PBNoCompressDrawAction* defaultPBNoCompressDrawActionInstance = nil;
   if (self.hasAlpha) {
     [output writeFloat:24 value:self.alpha];
   }
+  for (NSNumber* value in self.mutableBrushPointWidthList) {
+    [output writeFloat:41 value:[value floatValue]];
+  }
   [self.unknownFields writeToCodedOutputStream:output];
 }
 - (int32_t) serializedSize {
@@ -6075,6 +6088,12 @@ static PBNoCompressDrawAction* defaultPBNoCompressDrawActionInstance = nil;
   }
   if (self.hasAlpha) {
     size += computeFloatSize(24, self.alpha);
+  }
+  {
+    int32_t dataSize = 0;
+    dataSize = 4 * self.mutableBrushPointWidthList.count;
+    size += dataSize;
+    size += 2 * self.mutableBrushPointWidthList.count;
   }
   size += self.unknownFields.serializedSize;
   memoizedSerializedSize = size;
@@ -6208,6 +6227,12 @@ static PBNoCompressDrawAction* defaultPBNoCompressDrawActionInstance = nil;
   if (other.hasAlpha) {
     [self setAlpha:other.alpha];
   }
+  if (other.mutableBrushPointWidthList.count > 0) {
+    if (result.mutableBrushPointWidthList == nil) {
+      result.mutableBrushPointWidthList = [NSMutableArray array];
+    }
+    [result.mutableBrushPointWidthList addObjectsFromArray:other.mutableBrushPointWidthList];
+  }
   [self mergeUnknownFields:other.unknownFields];
   return self;
 }
@@ -6299,6 +6324,10 @@ static PBNoCompressDrawAction* defaultPBNoCompressDrawActionInstance = nil;
       }
       case 197: {
         [self setAlpha:[input readFloat]];
+        break;
+      }
+      case 333: {
+        [self addBrushPointWidth:[input readFloat]];
         break;
       }
     }
@@ -6628,6 +6657,37 @@ static PBNoCompressDrawAction* defaultPBNoCompressDrawActionInstance = nil;
 - (PBNoCompressDrawAction_Builder*) clearAlpha {
   result.hasAlpha = NO;
   result.alpha = 0;
+  return self;
+}
+- (NSArray*) brushPointWidthList {
+  if (result.mutableBrushPointWidthList == nil) {
+    return [NSArray array];
+  }
+  return result.mutableBrushPointWidthList;
+}
+- (Float32) brushPointWidthAtIndex:(int32_t) index {
+  return [result brushPointWidthAtIndex:index];
+}
+- (PBNoCompressDrawAction_Builder*) replaceBrushPointWidthAtIndex:(int32_t) index with:(Float32) value {
+  [result.mutableBrushPointWidthList replaceObjectAtIndex:index withObject:[NSNumber numberWithFloat:value]];
+  return self;
+}
+- (PBNoCompressDrawAction_Builder*) addBrushPointWidth:(Float32) value {
+  if (result.mutableBrushPointWidthList == nil) {
+    result.mutableBrushPointWidthList = [NSMutableArray array];
+  }
+  [result.mutableBrushPointWidthList addObject:[NSNumber numberWithFloat:value]];
+  return self;
+}
+- (PBNoCompressDrawAction_Builder*) addAllBrushPointWidth:(NSArray*) values {
+  if (result.mutableBrushPointWidthList == nil) {
+    result.mutableBrushPointWidthList = [NSMutableArray array];
+  }
+  [result.mutableBrushPointWidthList addObjectsFromArray:values];
+  return self;
+}
+- (PBNoCompressDrawAction_Builder*) clearBrushPointWidthList {
+  result.mutableBrushPointWidthList = nil;
   return self;
 }
 @end

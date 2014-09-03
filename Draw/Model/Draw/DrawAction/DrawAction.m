@@ -24,6 +24,7 @@
 #import "GradientAction.h"
 #import "ClipAction.h"
 #import "MyPaint.h"
+#import "BrushAction.h"
 
 @implementation DrawAction
 
@@ -32,6 +33,12 @@
 {
     return [self isKindOfClass:[PaintAction class]];
 }
+
+- (BOOL)isBrushAction
+{
+    return [self isKindOfClass:[BrushAction class]];
+}
+
 - (BOOL)isShapeAction
 {
     return [self isKindOfClass:[ShapeAction class]];
@@ -92,6 +99,8 @@
             return [[[GradientAction alloc] initWithPBDrawActionC:action] autorelease];
         case DrawActionTypeClip:
             return [[[ClipAction alloc] initWithPBDrawActionC:action] autorelease];
+        case DrawActionTypeBrush:
+            return [[[BrushAction alloc] initWithPBDrawActionC:action] autorelease];
             
         default:
             return nil;
@@ -112,6 +121,10 @@
                 return [[[ChangeBackAction alloc] initWithPBDrawAction:action] autorelease];
             }
             return [[[PaintAction alloc] initWithPBDrawAction:action] autorelease];
+            
+        case DrawActionTypeBrush:
+            return [[[BrushAction alloc] initWithPBDrawAction:action] autorelease];
+            
         case DrawActionTypeChangeBack:
             return [[[ChangeBackAction alloc] initWithPBDrawAction:action] autorelease];
         case DrawActionTypeChangeBGImage:
@@ -134,6 +147,10 @@
                 return [[[ChangeBackAction alloc] initWithPBNoCompressDrawActionC:action] autorelease];
             }
             return [[[PaintAction alloc] initWithPBNoCompressDrawActionC:action] autorelease];
+            
+        case DrawActionTypeBrush:
+            return [[[BrushAction alloc] initWithPBNoCompressDrawActionC:action] autorelease];
+            
         case DrawActionTypeChangeBack:
             return [[[ChangeBackAction alloc] initWithPBNoCompressDrawActionC:action] autorelease];
         case DrawActionTypeChangeBGImage:
@@ -174,6 +191,10 @@
 - (CGRect)drawInContext:(CGContextRef)context inRect:(CGRect)rect
 {
     return CGRectZero;
+}
+
+- (void)clearMemory
+{
 }
 
 - (CGRect)redrawRectInRect:(CGRect)rect

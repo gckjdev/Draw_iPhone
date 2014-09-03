@@ -1485,6 +1485,7 @@
   NSMutableArray* mutableRectComponentList;
   NSMutableArray* mutablePointXList;
   NSMutableArray* mutablePointYList;
+  NSMutableArray* mutableBrushPointWidthList;
   NSMutableArray* mutablePointList;
 }
 - (BOOL) hasType;
@@ -1517,6 +1518,8 @@
 - (Float32) pointXAtIndex:(int32_t) index;
 - (NSArray*) pointYList;
 - (Float32) pointYAtIndex:(int32_t) index;
+- (NSArray*) brushPointWidthList;
+- (Float32) brushPointWidthAtIndex:(int32_t) index;
 
 + (PBNoCompressDrawAction*) defaultInstance;
 - (PBNoCompressDrawAction*) defaultInstance;
@@ -1638,6 +1641,13 @@
 - (Float32) alpha;
 - (PBNoCompressDrawAction_Builder*) setAlpha:(Float32) value;
 - (PBNoCompressDrawAction_Builder*) clearAlpha;
+
+- (NSArray*) brushPointWidthList;
+- (Float32) brushPointWidthAtIndex:(int32_t) index;
+- (PBNoCompressDrawAction_Builder*) replaceBrushPointWidthAtIndex:(int32_t) index with:(Float32) value;
+- (PBNoCompressDrawAction_Builder*) addBrushPointWidth:(Float32) value;
+- (PBNoCompressDrawAction_Builder*) addAllBrushPointWidth:(NSArray*) values;
+- (PBNoCompressDrawAction_Builder*) clearBrushPointWidthList;
 @end
 
 @interface PBNoCompressDrawData : PBGeneratedMessage {

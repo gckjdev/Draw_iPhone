@@ -72,8 +72,34 @@ using std::list;
 {
 }
 
+- (CGRect)bounds
+{
+    if (_leftTopX == 0 && _leftTopY == 0 && _bottomRightX == 0 && _bottomRightY == 0){
+        // calculate from point list
+        int count = xList.size();
+        float x, y, width;
+        for (int i=0; i<count; i++){
+            x = xList[i];
+            y = yList[i];
+            width = widthList[i];
+            
+            _leftTopX = _leftTopX < x ? _leftTopX - width/2: x - width/2;
+            _leftTopY = _leftTopY < y ? _leftTopY - width/2: y - width/2;
+            _bottomRightX = _bottomRightX > x ? _bottomRightX + width/2: x + width/2;
+            _bottomRightY = _bottomRightY > y ? _bottomRightY + width/2: y + width/2;
+        }
+    }
+
+    return CGRectMake(_leftTopX , _leftTopY, _bottomRightX - _leftTopX, _bottomRightY - _leftTopY);
+}
+
 - (void)addPoint:(float)x y:(float)y width:(float)width;
 {
+    _leftTopX = _leftTopX < x ? _leftTopX - width/2: x - width/2;
+    _leftTopY = _leftTopY < y ? _leftTopY - width/2: y - width/2;
+    _bottomRightX = _bottomRightX > x ? _bottomRightX + width/2: x + width/2;
+    _bottomRightY = _bottomRightY > y ? _bottomRightY + width/2: y + width/2;
+    
     xList.push_back(x);
     yList.push_back(y);
     widthList.push_back(width);

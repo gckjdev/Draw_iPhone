@@ -103,7 +103,8 @@
                     word:(Word *)word
                 language:(NSInteger)language
                  bgImage:(UIImage *)bgImage
-             bgImageName:(NSString*)bgImageName;
+             bgImageName:(NSString*)bgImageName
+              deleteFlag:(BOOL)deleteFlag;
 
 
 - (MyPaint *)createDraftForRecovery:(NSString *)targetUid

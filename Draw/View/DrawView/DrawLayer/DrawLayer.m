@@ -191,6 +191,7 @@
             for(int i = _offscreen.actionCount; i < endIndex; ++ i){
                 DrawAction *drawAction = [_drawActionList objectAtIndex:i];
                 [self.offscreen drawAction:drawAction clear:NO];
+                [drawAction clearMemory];
             }
         }
     }

@@ -51,6 +51,7 @@
         
         action.shadow = info.shadow;
         action = [[BrushAction brushActionWithBrushStroke:brushStroke] retain];
+        [action setCanvasSize:self.drawView.bounds.size];
     }
     
     return action;
@@ -71,15 +72,16 @@
 
 - (BOOL)isBrush
 {
-    if (self.drawView.drawInfo.penType >= ItemTypeBrushBlur &&
+    if (self.drawView.drawInfo.penType >= ItemTypeBrushBegin &&
         self.drawView.drawInfo.penType <= ItemTypeBrushEnd){
         return YES;
     }
     else{
         
 #ifdef BRUSH
-        if (self.drawView.drawInfo.penType == WaterPen){
-            self.drawView.drawInfo.penType = ItemTypeBrushBlur;
+        if (self.drawView.drawInfo.penType >= WaterPen &&
+            self.drawView.drawInfo.penType <= PenCount){
+            self.drawView.drawInfo.penType = ItemTypeBrushBegin + 1 + self.drawView.drawInfo.penType - WaterPen;
             return YES;
         }
 #endif

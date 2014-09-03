@@ -361,5 +361,9 @@
     [self.paint finishAddPoint];
 }
 
+- (void)clearMemory
+{
+    self.paint.pen = nil;
+}
 
 @end
