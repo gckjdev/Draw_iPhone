@@ -1399,6 +1399,30 @@
 		A4B1233818279ECD00A0603F /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CAEEC19E181A5F18007FD75F /* CoreVideo.framework */; };
 		A4B1C4A617168125002C83C1 /* PBGameItem+Extend.m in Sources */ = {isa = PBXBuildFile; fileRef = A41ECB8316F2CD4300248AEA /* PBGameItem+Extend.m */; };
 		A4B1C4AB171688BE002C83C1 /* BuyItemSpecialHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = A4B1C4AA171688BE002C83C1 /* BuyItemSpecialHandler.m */; };
+		A4B60AA319B6A7D600C300D5 /* BrushEffectFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = A4B60AA219B6A7D600C300D5 /* BrushEffectFactory.m */; };
+		A4B60AA419B6A7D600C300D5 /* BrushEffectFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = A4B60AA219B6A7D600C300D5 /* BrushEffectFactory.m */; };
+		A4B60AA519B6A7D600C300D5 /* BrushEffectFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = A4B60AA219B6A7D600C300D5 /* BrushEffectFactory.m */; };
+		A4B60AA619B6A7D600C300D5 /* BrushEffectFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = A4B60AA219B6A7D600C300D5 /* BrushEffectFactory.m */; };
+		A4B60AAA19B6AA0100C300D5 /* WaterBrush.m in Sources */ = {isa = PBXBuildFile; fileRef = A4B60AA919B6AA0100C300D5 /* WaterBrush.m */; };
+		A4B60AAB19B6AA0100C300D5 /* WaterBrush.m in Sources */ = {isa = PBXBuildFile; fileRef = A4B60AA919B6AA0100C300D5 /* WaterBrush.m */; };
+		A4B60AAC19B6AA0100C300D5 /* WaterBrush.m in Sources */ = {isa = PBXBuildFile; fileRef = A4B60AA919B6AA0100C300D5 /* WaterBrush.m */; };
+		A4B60AAD19B6AA0100C300D5 /* WaterBrush.m in Sources */ = {isa = PBXBuildFile; fileRef = A4B60AA919B6AA0100C300D5 /* WaterBrush.m */; };
+		A4B60AB019B6AA9B00C300D5 /* GouacheBrush.m in Sources */ = {isa = PBXBuildFile; fileRef = A4B60AAF19B6AA9B00C300D5 /* GouacheBrush.m */; };
+		A4B60AB119B6AA9B00C300D5 /* GouacheBrush.m in Sources */ = {isa = PBXBuildFile; fileRef = A4B60AAF19B6AA9B00C300D5 /* GouacheBrush.m */; };
+		A4B60AB219B6AA9B00C300D5 /* GouacheBrush.m in Sources */ = {isa = PBXBuildFile; fileRef = A4B60AAF19B6AA9B00C300D5 /* GouacheBrush.m */; };
+		A4B60AB319B6AA9B00C300D5 /* GouacheBrush.m in Sources */ = {isa = PBXBuildFile; fileRef = A4B60AAF19B6AA9B00C300D5 /* GouacheBrush.m */; };
+		A4B60AB619B6BC1800C300D5 /* PenBrush.m in Sources */ = {isa = PBXBuildFile; fileRef = A4B60AB519B6BC1800C300D5 /* PenBrush.m */; };
+		A4B60AB719B6BC1800C300D5 /* PenBrush.m in Sources */ = {isa = PBXBuildFile; fileRef = A4B60AB519B6BC1800C300D5 /* PenBrush.m */; };
+		A4B60AB819B6BC1800C300D5 /* PenBrush.m in Sources */ = {isa = PBXBuildFile; fileRef = A4B60AB519B6BC1800C300D5 /* PenBrush.m */; };
+		A4B60AB919B6BC1800C300D5 /* PenBrush.m in Sources */ = {isa = PBXBuildFile; fileRef = A4B60AB519B6BC1800C300D5 /* PenBrush.m */; };
+		A4B60ABC19B6C21A00C300D5 /* OilBrush.m in Sources */ = {isa = PBXBuildFile; fileRef = A4B60ABB19B6C21A00C300D5 /* OilBrush.m */; };
+		A4B60ABD19B6C21A00C300D5 /* OilBrush.m in Sources */ = {isa = PBXBuildFile; fileRef = A4B60ABB19B6C21A00C300D5 /* OilBrush.m */; };
+		A4B60ABE19B6C21A00C300D5 /* OilBrush.m in Sources */ = {isa = PBXBuildFile; fileRef = A4B60ABB19B6C21A00C300D5 /* OilBrush.m */; };
+		A4B60ABF19B6C21A00C300D5 /* OilBrush.m in Sources */ = {isa = PBXBuildFile; fileRef = A4B60ABB19B6C21A00C300D5 /* OilBrush.m */; };
+		A4B60AC219B6C23600C300D5 /* CrayonBrush.m in Sources */ = {isa = PBXBuildFile; fileRef = A4B60AC119B6C23600C300D5 /* CrayonBrush.m */; };
+		A4B60AC319B6C23600C300D5 /* CrayonBrush.m in Sources */ = {isa = PBXBuildFile; fileRef = A4B60AC119B6C23600C300D5 /* CrayonBrush.m */; };
+		A4B60AC419B6C23600C300D5 /* CrayonBrush.m in Sources */ = {isa = PBXBuildFile; fileRef = A4B60AC119B6C23600C300D5 /* CrayonBrush.m */; };
+		A4B60AC519B6C23600C300D5 /* CrayonBrush.m in Sources */ = {isa = PBXBuildFile; fileRef = A4B60AC119B6C23600C300D5 /* CrayonBrush.m */; };
 		A4B6C69B176C548400C72E17 /* VoiceChanger.m in Sources */ = {isa = PBXBuildFile; fileRef = A4B6C698176C548400C72E17 /* VoiceChanger.m */; };
 		A4B6C69C176C548400C72E17 /* VoiceRecorder.m in Sources */ = {isa = PBXBuildFile; fileRef = A4B6C69A176C548400C72E17 /* VoiceRecorder.m */; };
 		A4B6C69F176C5F9E00C72E17 /* VoiceProcessor.mm in Sources */ = {isa = PBXBuildFile; fileRef = A4B6C69E176C5F9E00C72E17 /* VoiceProcessor.mm */; };
@@ -8472,6 +8496,19 @@
 		A4B1233418279D4800A0603F /* UITextView+Extend.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITextView+Extend.m"; sourceTree = "<group>"; };
 		A4B1C4A9171688BE002C83C1 /* BuyItemSpecialHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BuyItemSpecialHandler.h; sourceTree = "<group>"; };
 		A4B1C4AA171688BE002C83C1 /* BuyItemSpecialHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BuyItemSpecialHandler.m; sourceTree = "<group>"; };
+		A4B60AA119B6A7D600C300D5 /* BrushEffectFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BrushEffectFactory.h; sourceTree = "<group>"; };
+		A4B60AA219B6A7D600C300D5 /* BrushEffectFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BrushEffectFactory.m; sourceTree = "<group>"; };
+		A4B60AA719B6A7F200C300D5 /* BrushEffectProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BrushEffectProtocol.h; sourceTree = "<group>"; };
+		A4B60AA819B6AA0100C300D5 /* WaterBrush.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WaterBrush.h; sourceTree = "<group>"; };
+		A4B60AA919B6AA0100C300D5 /* WaterBrush.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WaterBrush.m; sourceTree = "<group>"; };
+		A4B60AAE19B6AA9B00C300D5 /* GouacheBrush.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GouacheBrush.h; sourceTree = "<group>"; };
+		A4B60AAF19B6AA9B00C300D5 /* GouacheBrush.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GouacheBrush.m; sourceTree = "<group>"; };
+		A4B60AB419B6BC1800C300D5 /* PenBrush.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PenBrush.h; sourceTree = "<group>"; };
+		A4B60AB519B6BC1800C300D5 /* PenBrush.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PenBrush.m; sourceTree = "<group>"; };
+		A4B60ABA19B6C21A00C300D5 /* OilBrush.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OilBrush.h; sourceTree = "<group>"; };
+		A4B60ABB19B6C21A00C300D5 /* OilBrush.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OilBrush.m; sourceTree = "<group>"; };
+		A4B60AC019B6C23600C300D5 /* CrayonBrush.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CrayonBrush.h; sourceTree = "<group>"; };
+		A4B60AC119B6C23600C300D5 /* CrayonBrush.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CrayonBrush.m; sourceTree = "<group>"; };
 		A4B6C697176C548400C72E17 /* VoiceChanger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VoiceChanger.h; sourceTree = "<group>"; };
 		A4B6C698176C548400C72E17 /* VoiceChanger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VoiceChanger.m; sourceTree = "<group>"; };
 		A4B6C699176C548400C72E17 /* VoiceRecorder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VoiceRecorder.h; sourceTree = "<group>"; };
@@ -12153,6 +12190,26 @@
 			path = "Component-Sound";
 			sourceTree = "<group>";
 		};
+		A4B60A9D19B6A7AC00C300D5 /* BrushEffect */ = {
+			isa = PBXGroup;
+			children = (
+				A4B60AA119B6A7D600C300D5 /* BrushEffectFactory.h */,
+				A4B60AA219B6A7D600C300D5 /* BrushEffectFactory.m */,
+				A4B60AA719B6A7F200C300D5 /* BrushEffectProtocol.h */,
+				A4B60AA819B6AA0100C300D5 /* WaterBrush.h */,
+				A4B60AA919B6AA0100C300D5 /* WaterBrush.m */,
+				A4B60AAE19B6AA9B00C300D5 /* GouacheBrush.h */,
+				A4B60AAF19B6AA9B00C300D5 /* GouacheBrush.m */,
+				A4B60ABA19B6C21A00C300D5 /* OilBrush.h */,
+				A4B60ABB19B6C21A00C300D5 /* OilBrush.m */,
+				A4B60AC019B6C23600C300D5 /* CrayonBrush.h */,
+				A4B60AC119B6C23600C300D5 /* CrayonBrush.m */,
+				A4B60AB419B6BC1800C300D5 /* PenBrush.h */,
+				A4B60AB519B6BC1800C300D5 /* PenBrush.m */,
+			);
+			path = BrushEffect;
+			sourceTree = "<group>";
+		};
 		A4B6C652176C0F4400C72E17 /* Component-Audio */ = {
 			isa = PBXGroup;
 			children = (
@@ -15009,6 +15066,7 @@
 		CA1041E81509B99A00F60C03 /* Draw */ = {
 			isa = PBXGroup;
 			children = (
+				A4B60A9D19B6A7AC00C300D5 /* BrushEffect */,
 				CA76134317F57420007A251E /* HPointList.h */,
 				CA76134417F57420007A251E /* HPointList.mm */,
 				A4A3BF0219B44F5D00EC4D25 /* HBrushPointList.h */,
@@ -23663,6 +23721,7 @@
 				A461B141174CBAA70088B061 /* ShareAction.m in Sources */,
 				A461B143174CBAA70088B061 /* MyPaintButton.m in Sources */,
 				A461B144174CBAA70088B061 /* StoreKitUtils.m in Sources */,
+				A4B60AB219B6AA9B00C300D5 /* GouacheBrush.m in Sources */,
 				A461B145174CBAA70088B061 /* TransactionReceiptManager.m in Sources */,
 				A461B146174CBAA70088B061 /* TransactionReceipt.m in Sources */,
 				A461B147174CBAA70088B061 /* DrawView.m in Sources */,
@@ -23984,6 +24043,7 @@
 				A461B335174CBAA70088B061 /* StoreController.m in Sources */,
 				A461B336174CBAA70088B061 /* ColorShopCell.m in Sources */,
 				A461B337174CBAA70088B061 /* GameItemDetailView.m in Sources */,
+				A4B60ABE19B6C21A00C300D5 /* OilBrush.m in Sources */,
 				A461B338174CBAA70088B061 /* LocalizableLabel.m in Sources */,
 				A461B339174CBAA70088B061 /* GameItemPriceView.m in Sources */,
 				A461B33A174CBAA70088B061 /* ChargeController.m in Sources */,
@@ -23998,6 +24058,7 @@
 				A461B344174CBAA70088B061 /* CacheService.m in Sources */,
 				A461B347174CBAA70088B061 /* GestureRecognizerManager.m in Sources */,
 				A461B348174CBAA70088B061 /* VersionUpdateView.m in Sources */,
+				A4B60AB819B6BC1800C300D5 /* PenBrush.m in Sources */,
 				A461B349174CBAA70088B061 /* DrawHolderView.m in Sources */,
 				A461B34A174CBAA70088B061 /* RoundPercentageView.m in Sources */,
 				A461B34B174CBAA70088B061 /* CommonAdWallService.m in Sources */,
@@ -24180,6 +24241,7 @@
 				A4B78A5D179F7C570008E21B /* GuessModesController.m in Sources */,
 				A4B78A61179F7C600008E21B /* GuessSelectController.m in Sources */,
 				A4B78A65179F7C680008E21B /* DrawGuessController.m in Sources */,
+				A4B60AA519B6A7D600C300D5 /* BrushEffectFactory.m in Sources */,
 				CA518382179FB6340033AA95 /* ShakeNumberController.m in Sources */,
 				CA766D5C17A15EB600D60E3D /* CPMotionRecognizingWindow.m in Sources */,
 				CA766D6417A15EB600D60E3D /* UIResponder+MotionRecognizers.m in Sources */,
@@ -24197,6 +24259,7 @@
 				A489C02517B5E46A003E5150 /* GuessManager.m in Sources */,
 				A4ADB61517B9D45400EBF418 /* SoundPlayer.m in Sources */,
 				A4ADB62417BA1E4800EBF418 /* BackgroundMusicPlayer.m in Sources */,
+				A4B60AAC19B6AA0100C300D5 /* WaterBrush.m in Sources */,
 				A467892D17BB1CEF007C546A /* UIButton+Sound.m in Sources */,
 				A467893317BB21FE007C546A /* UISoundButton.m in Sources */,
 				A467894217BC7782007C546A /* UILabel+Extend.m in Sources */,
@@ -24222,6 +24285,7 @@
 				A4AFB7F317E032D60079B165 /* GuessRankListController.m in Sources */,
 				D8CC69D419A5EEF500E57398 /* PrizeCell.m in Sources */,
 				D80BB5E81980C26000BFC4A7 /* THProgressView.m in Sources */,
+				A4B60AC419B6C23600C300D5 /* CrayonBrush.m in Sources */,
 				A44F32EA17E16C3500AF9B26 /* ContestRankView.m in Sources */,
 				EA8EF66917E55F0D003F1AF8 /* DrawHomeHeaderPanel.m in Sources */,
 				EA8EF66F17E593CA003F1AF8 /* DrawMainMenuPanel.m in Sources */,
@@ -24523,6 +24587,7 @@
 				CACD6CE718E03BCD003F97C0 /* NotificationCenterManager.m in Sources */,
 				C28A9A141738F04B007A819F /* AnimationManager.m in Sources */,
 				C28A9A151738F04B007A819F /* AccountService.m in Sources */,
+				A4B60AB119B6AA9B00C300D5 /* GouacheBrush.m in Sources */,
 				C28A9A161738F04B007A819F /* ReportController.m in Sources */,
 				C28A9A171738F04B007A819F /* SKProduct+LocalizedPrice.m in Sources */,
 				CA0174FB194055FD005E4390 /* OpusClassInfo.m in Sources */,
@@ -24552,6 +24617,7 @@
 				C28A9A351738F04B007A819F /* SynthesisView.m in Sources */,
 				C28A9A361738F04B007A819F /* ColorShopView.m in Sources */,
 				C28A9A371738F04B007A819F /* PPConfigManager.m in Sources */,
+				A4B60AA419B6A7D600C300D5 /* BrushEffectFactory.m in Sources */,
 				C28A9A381738F04B007A819F /* SuperGameViewController.m in Sources */,
 				C28A9A391738F04B007A819F /* AudioManager.m in Sources */,
 				C28A9A3A1738F04B007A819F /* Friend.m in Sources */,
@@ -24676,6 +24742,7 @@
 				C28A9B081738F04B007A819F /* MessageStat.m in Sources */,
 				C28A9B0A1738F04B007A819F /* ImplicitDownloadService.m in Sources */,
 				C28A9B0B1738F04B007A819F /* PPResourcePackage.m in Sources */,
+				A4B60AC319B6C23600C300D5 /* CrayonBrush.m in Sources */,
 				C28A9B0C1738F04B007A819F /* PPResourcePackageDownloadRequest.m in Sources */,
 				C28A9B0D1738F04B007A819F /* PPResourcePackageManager.m in Sources */,
 				D81962541962AA8700B4FBAF /* StageBasicInfoCell.m in Sources */,
@@ -24943,6 +25010,7 @@
 				C28A9C6D1738F04B007A819F /* UndoCommand.m in Sources */,
 				C28A9C6E1738F04B007A819F /* UserDetailRoundButton.m in Sources */,
 				C28A9C6F1738F04B007A819F /* TaoBaoController.m in Sources */,
+				A4B60ABD19B6C21A00C300D5 /* OilBrush.m in Sources */,
 				C28A9C701738F04B007A819F /* ChangeBGImageAction.m in Sources */,
 				C28A9C711738F04B007A819F /* TomatoItem.m in Sources */,
 				C28A9C721738F04B007A819F /* GeographyService.m in Sources */,
@@ -25148,6 +25216,7 @@
 				EA0C553E180B9203008069C1 /* InfSourceColorView.m in Sources */,
 				CA90050F194EE775003389FD /* SelectOpusClassViewController.m in Sources */,
 				EA0C5547180BECEB008069C1 /* PainterController.m in Sources */,
+				A4B60AB719B6BC1800C300D5 /* PenBrush.m in Sources */,
 				A40B59A1180E6AB800F68A81 /* ImagePlayer.m in Sources */,
 				EADC02561817CF8C0038B6A8 /* SearchPostController.m in Sources */,
 				CAEEC196181A484F007FD75F /* OpusService.m in Sources */,
@@ -25196,6 +25265,7 @@
 				CA9AB07E18321738002DBAA5 /* OpusManager.m in Sources */,
 				CA9AB07F18321738002DBAA5 /* SingOpus.m in Sources */,
 				CA9AB08018321738002DBAA5 /* PBGuessRank+Extend.m in Sources */,
+				A4B60AAB19B6AA0100C300D5 /* WaterBrush.m in Sources */,
 				CA9AB08118321738002DBAA5 /* OpusManagerFactory.m in Sources */,
 				CA1782721962D2480068883A /* DAPagesContainerTopBar.m in Sources */,
 				CA9AB08218321738002DBAA5 /* OpusDesignTime.m in Sources */,
@@ -25403,6 +25473,7 @@
 				CA41C9501520608D00013DC8 /* PriceService.m in Sources */,
 				CACD6CE618E03BCD003F97C0 /* NotificationCenterManager.m in Sources */,
 				CA41C95B15206C1100013DC8 /* ShoppingManager.m in Sources */,
+				A4B60AB019B6AA9B00C300D5 /* GouacheBrush.m in Sources */,
 				C2E5241915218E21008913CC /* AnimationManager.m in Sources */,
 				CA421601152196B900FAA008 /* AccountService.m in Sources */,
 				C2E662611521B91900487601 /* ReportController.m in Sources */,
@@ -25432,6 +25503,7 @@
 				CA051DC71546802D00D0A00A /* PenView.m in Sources */,
 				CA051DC81546802D00D0A00A /* StableView.m in Sources */,
 				CA051DC91546802D00D0A00A /* WidthView.m in Sources */,
+				A4B60AA319B6A7D600C300D5 /* BrushEffectFactory.m in Sources */,
 				CA051DCA1546802D00D0A00A /* SynthesisView.m in Sources */,
 				CA051DCE1546808500D0A00A /* ColorShopView.m in Sources */,
 				CAC13246154C28C8000A8C8F /* PPConfigManager.m in Sources */,
@@ -25556,6 +25628,7 @@
 				CA1882C31648C94B000942D6 /* PPMessage.m in Sources */,
 				CA1882C41648C94B000942D6 /* MessageStat.m in Sources */,
 				CA7AFD04164E05A10039E07F /* ImplicitDownloadService.m in Sources */,
+				A4B60AC219B6C23600C300D5 /* CrayonBrush.m in Sources */,
 				CA7AFD05164E05A10039E07F /* PPResourcePackage.m in Sources */,
 				D81962531962AA8700B4FBAF /* StageBasicInfoCell.m in Sources */,
 				CA7AFD06164E05A10039E07F /* PPResourcePackageDownloadRequest.m in Sources */,
@@ -25823,6 +25896,7 @@
 				CAF95E2717068B4000B7526C /* RedoCommand.m in Sources */,
 				CAF95E3217068C4D00B7526C /* UndoCommand.m in Sources */,
 				C2EB5D071709335F004B7CCB /* UserDetailRoundButton.m in Sources */,
+				A4B60ABC19B6C21A00C300D5 /* OilBrush.m in Sources */,
 				EA49C86417093CD300843B6B /* TaoBaoController.m in Sources */,
 				CAE4B0E31709643200B4AB90 /* ChangeBGImageAction.m in Sources */,
 				A44E6CC5170D6E910067B647 /* TomatoItem.m in Sources */,
@@ -26028,6 +26102,7 @@
 				CA90050E194EE775003389FD /* SelectOpusClassViewController.m in Sources */,
 				CA1FF8991804F986003CEAD6 /* NSDate+TKCategory.m in Sources */,
 				EA8500DC1807A0430000DE3E /* ShareUIManager.m in Sources */,
+				A4B60AB619B6BC1800C300D5 /* PenBrush.m in Sources */,
 				EA0C5525180B9203008069C1 /* InfColorBarPicker.m in Sources */,
 				EA0C5529180B9203008069C1 /* InfColorIndicatorView.m in Sources */,
 				EA0C5535180B9203008069C1 /* InfColorSquarePicker.m in Sources */,
@@ -26076,6 +26151,7 @@
 				CA9AB03C18321621002DBAA5 /* SongCategoryView.m in Sources */,
 				CA9AB04818321621002DBAA5 /* SongTagCell.m in Sources */,
 				CA9AB05418321621002DBAA5 /* VoiceTypeSelectView.m in Sources */,
+				A4B60AAA19B6AA0100C300D5 /* WaterBrush.m in Sources */,
 				CA1782711962D2480068883A /* DAPagesContainerTopBar.m in Sources */,
 				CA9AB06018321621002DBAA5 /* WordInputView.m in Sources */,
 				CA9AB06418321710002DBAA5 /* SingOpus.m in Sources */,
@@ -26166,6 +26242,7 @@
 				EA411819176066F500DA72D0 /* PPTableViewCell.m in Sources */,
 				D8B58B15197CE8E60088E5F7 /* ICETutorialPage.m in Sources */,
 				EA41181A176066F500DA72D0 /* PPTableViewController.m in Sources */,
+				A4B60AB919B6BC1800C300D5 /* PenBrush.m in Sources */,
 				EA41181B176066F500DA72D0 /* PPViewController.m in Sources */,
 				EA41181C176066F500DA72D0 /* TestPPViewController.m in Sources */,
 				EA411829176066F500DA72D0 /* ReviewRequest.m in Sources */,
@@ -26391,6 +26468,7 @@
 				EA411949176066F500DA72D0 /* DrawInfoCell.m in Sources */,
 				EA41194A176066F500DA72D0 /* FeedCell.m in Sources */,
 				EA41194B176066F500DA72D0 /* UserInfoCell.m in Sources */,
+				A4B60AA619B6A7D600C300D5 /* BrushEffectFactory.m in Sources */,
 				EA41194C176066F500DA72D0 /* CommentController.m in Sources */,
 				EA41194E176066F500DA72D0 /* HotController.m in Sources */,
 				EA41194F176066F500DA72D0 /* MyFeedController.m in Sources */,
@@ -26494,6 +26572,7 @@
 				EA4119C6176066F500DA72D0 /* UIImagePixelSource.m in Sources */,
 				EA4119D1176066F500DA72D0 /* ioapi.c in Sources */,
 				EA4119D2176066F500DA72D0 /* mztools.c in Sources */,
+				A4B60ABF19B6C21A00C300D5 /* OilBrush.m in Sources */,
 				EA4119D3176066F500DA72D0 /* unzip.c in Sources */,
 				EA4119D4176066F500DA72D0 /* zip.c in Sources */,
 				EA4119D9176066F500DA72D0 /* DrawColor.m in Sources */,
@@ -26582,6 +26661,7 @@
 				EA411A33176066F500DA72D0 /* InputAlertView.m in Sources */,
 				EA411A34176066F500DA72D0 /* DrawRecoveryService.m in Sources */,
 				EA411A3C176066F500DA72D0 /* SmoothCurvePen.m in Sources */,
+				A4B60AB319B6AA9B00C300D5 /* GouacheBrush.m in Sources */,
 				A47896F01995BB2400185220 /* MDCFocalPointView.m in Sources */,
 				D8B58B09197CE8E60088E5F7 /* ICETutorialController.m in Sources */,
 				EA411A3D176066F500DA72D0 /* SmoothQuadCurvePen.m in Sources */,
@@ -26601,6 +26681,7 @@
 				EA411A57176066F500DA72D0 /* WidthBox.m in Sources */,
 				EA411A58176066F500DA72D0 /* iCarousel.m in Sources */,
 				EA411A59176066F500DA72D0 /* SuperUserManageAction.m in Sources */,
+				A4B60AAD19B6AA0100C300D5 /* WaterBrush.m in Sources */,
 				EA411A5A176066F500DA72D0 /* CustomUITextField.m in Sources */,
 				EA411A5B176066F500DA72D0 /* DrawPenFactory.m in Sources */,
 				EA411A5C176066F500DA72D0 /* DashPen.m in Sources */,
@@ -26847,6 +26928,7 @@
 				EA433E2C17CDE500006E6FA7 /* DJQRateView.m in Sources */,
 				EA433E3017CDE500006E6FA7 /* DJQStartView.m in Sources */,
 				EA7100AD17D04B2C00451A38 /* CustomSlider.m in Sources */,
+				A4B60AC519B6C23600C300D5 /* CrayonBrush.m in Sources */,
 				EA7100B817D05FB000451A38 /* DrawPlayer.m in Sources */,
 				EA7100D317D197DA00451A38 /* MLNavigationController.m in Sources */,
 				EA46AD5A17D5E6CD0066E914 /* ReportFeedCell.m in Sources */,
