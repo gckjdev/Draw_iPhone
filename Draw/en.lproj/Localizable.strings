@@ -2926,3 +2926,5 @@
 "kRankingList" = "Rank";
 "kAskQuestion" = "Ask";
 "kRequierDelete" = "Delete this tutorial?";
+
+"kNoOpusForReplay" = "No opus for replay";

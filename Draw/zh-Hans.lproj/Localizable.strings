@@ -2848,7 +2848,7 @@
 
 "kHaveNotTips" = "该教程暂时没有提示信息";
 
-"kNoTipsForChapter" = "呃呃，暂无提示";
+"kNoTipsForChapter" = "呃呃，本节没有提示";
 "kStartLearnTutorial" = "打开";
 "kAddTutorialToLearn" = "添加";
 
@@ -2972,3 +2972,5 @@
 "kRankingList" = "榜单";
 "kAskQuestion" = "答疑";
 "kRequierDelete" = "删除教程？（注意，删除教程后,进度会丢失）";
+
+"kNoOpusForReplay" = "当前未有作品可供播放";
