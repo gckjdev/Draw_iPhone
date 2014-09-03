@@ -36,6 +36,7 @@
 @property (nonatomic, retain) BrushDot  *controlDot;
 @property (nonatomic, retain) BrushDot  *endDot;
 
+@property (nonatomic, assign) float tempWidth;
 
 @end
 
@@ -187,7 +188,6 @@
 }
 
 
-#define FIXED_PEN_SIZE 32
 - (void)addPoint:(CGPoint)point inRect:(CGRect)rect
 {
     
@@ -226,18 +226,23 @@
         
         _hasPoint = YES;
 
-        float _tempWidth = [_brush firstPointWidth:self.width];
+        _tempWidth = [_brush firstPointWidth:self.width];
         _controlDot.width = _tempWidth;
         _beginDot.width = _tempWidth;
         _endDot.width = _tempWidth;
     
         
+        // draw the first point  && add it to point list 
+        [_hPointList addPoint:_endDot.x y:_endDot.y width:_endDot.width];
+        CGRect rect = CGRectMake(_endDot.x - _endDot.width/2, _endDot.y - _endDot.width/2, _endDot.width, _endDot.width);
+        CGImageRef brushImageRef = [self brushImageRef];
+        CGContextDrawImage(layerContext, rect, brushImageRef);
     }
     else{
         //重采样定位第一点
         _beginDot.x = 0.25*_beginDot.x + 0.5*_controlDot.x + 0.25*_endDot.x;
         _beginDot.y = 0.25*_beginDot.y + 0.5*_controlDot.y + 0.25*_endDot.y;
-        _beginDot.width = 0.5*_beginDot.width + 0.5*_controlDot.width;
+        _beginDot.width = 0.25*_beginDot.width + 0.5*_controlDot.width + 0.25*_endDot.width;
         
         //第二点，为控制点
         _controlDot.x = _endDot.x;
@@ -248,17 +253,15 @@
         _endDot.x = point.x;
         _endDot.y = point.y;
         
-        
         double distance1 = [self distanceOfDot:_controlDot AndDot:_beginDot];
         double distance2 = [self distanceOfDot:_endDot AndDot:_controlDot];
         
-        _endDot.width = [_brush calculateWidth:_beginDot
-                                        endDot:_endDot
-                                    controlDot:_controlDot
-                                     distance1:distance1
-                                     distance2:distance2
-                                  defaultWidth:self.width];
-        
+        _tempWidth = [_brush calculateWidthWithThreshold:FIXED_PEN_SIZE
+                                               distance1:distance1
+                                               distance2:distance2
+                                            currentWidth:_tempWidth];
+        _endDot.width = _tempWidth;
+
         float pointX=0;
         float pointY=0;
         float width=0;
@@ -314,7 +317,7 @@
     
     *pointX = (1-t)*(1-t)*begin.x + 2*t*(1-t)*control.x + t*t*end.x;
     *pointY = (1-t)*(1-t)*begin.y + 2*t*(1-t)*control.y + t*t*end.y;
-    *width = (1-t)*begin.width+t*control.width;
+    *width = (1-t)*(1-t)*begin.width + 2*t*(1-t)*control.width + t*t*end.width;
 
 }
 

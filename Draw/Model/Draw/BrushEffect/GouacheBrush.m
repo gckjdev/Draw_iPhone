@@ -38,14 +38,12 @@ static dispatch_once_t sharedGouacheBrushOnceToken;
     return YES;
 }
 
-- (float)calculateWidth:(BrushDot*)beginDot
-                 endDot:(BrushDot*)endDot
-             controlDot:(BrushDot*)controlDot
-              distance1:(float)distance1
-              distance2:(float)distance2
-           defaultWidth:(float)defaultWidth;
+- (float)calculateWidthWithThreshold:(float)threshold
+                           distance1:(float)distance1
+                           distance2:(float)distance2
+                        currentWidth:(float)currentWidth
 {
-    return defaultWidth;
+    return currentWidth;
 }
 
 - (float)firstPointWidth:(float)defaultWidth

@@ -14,7 +14,8 @@
 
 @protocol BrushEffectProtocol <NSObject>
 
-
+#define FIXED_PEN_SIZE 24
+#define INTERPOLATION 4
 
 - (UIImage*)brushImage:(UIColor*)color;
 
@@ -22,17 +23,14 @@
 - (BOOL)isWidthFixedSize;
 
 // 返回某一个新增点(EndDot)的宽度
-- (float)calculateWidth:(BrushDot*)beginDot
-                 endDot:(BrushDot*)endDot
-             controlDot:(BrushDot*)controlDot
-              distance1:(float)distance1
-              distance2:(float)distance2
-           defaultWidth:(float)defaultWidth;
+- (float)calculateWidthWithThreshold:(float)threshold
+                           distance1:(float)distance1
+                           distance2:(float)distance2
+                        currentWidth:(float)defaultWidth;
 
 // 返回第一点的宽度
 - (float)firstPointWidth:(float)defaultWidth;
 
-#define INTERPOLATION 4
 // 返回插值的长度
 - (int)interpolationLength:(float)brushWidth        // 当前笔刷大小
                  distance1:(float)distance1         // 当前BeginDot和ControlDot的距离
