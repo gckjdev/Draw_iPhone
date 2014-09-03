@@ -2837,7 +2837,7 @@
 "kConquerResultPassNext" = "Congratulation,Go ahead!";
 "kConquerFailureResult" = "Failure! Try again";
 
-"kConquerDrawShareText" = "我在 @%@ 中学习画画，本次闯关得分为%d，击败了宇宙三次元中%d%%的用户，你看看喽";
+"kConquerDrawShareText" = "我在 @%@ 中学习画画，本次闯关得分为%d，击败了宇宙三次元中%d%%的用户";
 "kCreateImageShareFail" = "Unable to share due to fail to create image for sharing. ";
 
 
