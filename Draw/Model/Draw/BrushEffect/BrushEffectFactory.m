@@ -8,7 +8,7 @@
 
 #import "BrushEffectFactory.h"
 #import "GouacheBrush.h"
-#import "OilBrush.h"
+#import "BlurBrush.h"
 #import "CrayonBrush.h"
 #import "PenBrush.h"
 
@@ -35,8 +35,8 @@ static dispatch_once_t brushFactoryOnceToken;
         case ItemTypeBrushGouache:
             return [GouacheBrush sharedBrush];
 
-        case ItemTypeBrushOil:
-            return [OilBrush sharedBrush];
+        case ItemTypeBrushBlur:
+            return [BlurBrush sharedBrush];
             
         case ItemTypeBrushCrayon:
             return [CrayonBrush sharedBrush];

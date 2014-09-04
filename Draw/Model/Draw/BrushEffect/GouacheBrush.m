@@ -72,7 +72,7 @@ static dispatch_once_t sharedGouacheBrushOnceToken;
 
     double  factor =  10 * (distance1) / brushWidth;
     int interpolationLength = INTERPOLATION * factor;
-    PPDebug(@"<interpolation> %f, %f, %d",distance1,distance2,interpolationLength);
+
     return interpolationLength;
 }
 -(void)randomShakePointX:(float*)pointX

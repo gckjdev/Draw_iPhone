@@ -1415,10 +1415,10 @@
 		A4B60AB719B6BC1800C300D5 /* PenBrush.m in Sources */ = {isa = PBXBuildFile; fileRef = A4B60AB519B6BC1800C300D5 /* PenBrush.m */; };
 		A4B60AB819B6BC1800C300D5 /* PenBrush.m in Sources */ = {isa = PBXBuildFile; fileRef = A4B60AB519B6BC1800C300D5 /* PenBrush.m */; };
 		A4B60AB919B6BC1800C300D5 /* PenBrush.m in Sources */ = {isa = PBXBuildFile; fileRef = A4B60AB519B6BC1800C300D5 /* PenBrush.m */; };
-		A4B60ABC19B6C21A00C300D5 /* OilBrush.m in Sources */ = {isa = PBXBuildFile; fileRef = A4B60ABB19B6C21A00C300D5 /* OilBrush.m */; };
-		A4B60ABD19B6C21A00C300D5 /* OilBrush.m in Sources */ = {isa = PBXBuildFile; fileRef = A4B60ABB19B6C21A00C300D5 /* OilBrush.m */; };
-		A4B60ABE19B6C21A00C300D5 /* OilBrush.m in Sources */ = {isa = PBXBuildFile; fileRef = A4B60ABB19B6C21A00C300D5 /* OilBrush.m */; };
-		A4B60ABF19B6C21A00C300D5 /* OilBrush.m in Sources */ = {isa = PBXBuildFile; fileRef = A4B60ABB19B6C21A00C300D5 /* OilBrush.m */; };
+		A4B60ABC19B6C21A00C300D5 /* BlurBrush.m in Sources */ = {isa = PBXBuildFile; fileRef = A4B60ABB19B6C21A00C300D5 /* BlurBrush.m */; };
+		A4B60ABD19B6C21A00C300D5 /* BlurBrush.m in Sources */ = {isa = PBXBuildFile; fileRef = A4B60ABB19B6C21A00C300D5 /* BlurBrush.m */; };
+		A4B60ABE19B6C21A00C300D5 /* BlurBrush.m in Sources */ = {isa = PBXBuildFile; fileRef = A4B60ABB19B6C21A00C300D5 /* BlurBrush.m */; };
+		A4B60ABF19B6C21A00C300D5 /* BlurBrush.m in Sources */ = {isa = PBXBuildFile; fileRef = A4B60ABB19B6C21A00C300D5 /* BlurBrush.m */; };
 		A4B60AC219B6C23600C300D5 /* CrayonBrush.m in Sources */ = {isa = PBXBuildFile; fileRef = A4B60AC119B6C23600C300D5 /* CrayonBrush.m */; };
 		A4B60AC319B6C23600C300D5 /* CrayonBrush.m in Sources */ = {isa = PBXBuildFile; fileRef = A4B60AC119B6C23600C300D5 /* CrayonBrush.m */; };
 		A4B60AC419B6C23600C300D5 /* CrayonBrush.m in Sources */ = {isa = PBXBuildFile; fileRef = A4B60AC119B6C23600C300D5 /* CrayonBrush.m */; };
@@ -8505,8 +8505,8 @@
 		A4B60AAF19B6AA9B00C300D5 /* GouacheBrush.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GouacheBrush.m; sourceTree = "<group>"; };
 		A4B60AB419B6BC1800C300D5 /* PenBrush.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PenBrush.h; sourceTree = "<group>"; };
 		A4B60AB519B6BC1800C300D5 /* PenBrush.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PenBrush.m; sourceTree = "<group>"; };
-		A4B60ABA19B6C21A00C300D5 /* OilBrush.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OilBrush.h; sourceTree = "<group>"; };
-		A4B60ABB19B6C21A00C300D5 /* OilBrush.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OilBrush.m; sourceTree = "<group>"; };
+		A4B60ABA19B6C21A00C300D5 /* BlurBrush.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BlurBrush.h; sourceTree = "<group>"; };
+		A4B60ABB19B6C21A00C300D5 /* BlurBrush.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BlurBrush.m; sourceTree = "<group>"; };
 		A4B60AC019B6C23600C300D5 /* CrayonBrush.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CrayonBrush.h; sourceTree = "<group>"; };
 		A4B60AC119B6C23600C300D5 /* CrayonBrush.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CrayonBrush.m; sourceTree = "<group>"; };
 		A4B6C697176C548400C72E17 /* VoiceChanger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VoiceChanger.h; sourceTree = "<group>"; };
@@ -12200,8 +12200,8 @@
 				A4B60AA919B6AA0100C300D5 /* WaterBrush.m */,
 				A4B60AAE19B6AA9B00C300D5 /* GouacheBrush.h */,
 				A4B60AAF19B6AA9B00C300D5 /* GouacheBrush.m */,
-				A4B60ABA19B6C21A00C300D5 /* OilBrush.h */,
-				A4B60ABB19B6C21A00C300D5 /* OilBrush.m */,
+				A4B60ABA19B6C21A00C300D5 /* BlurBrush.h */,
+				A4B60ABB19B6C21A00C300D5 /* BlurBrush.m */,
 				A4B60AC019B6C23600C300D5 /* CrayonBrush.h */,
 				A4B60AC119B6C23600C300D5 /* CrayonBrush.m */,
 				A4B60AB419B6BC1800C300D5 /* PenBrush.h */,
@@ -24043,7 +24043,7 @@
 				A461B335174CBAA70088B061 /* StoreController.m in Sources */,
 				A461B336174CBAA70088B061 /* ColorShopCell.m in Sources */,
 				A461B337174CBAA70088B061 /* GameItemDetailView.m in Sources */,
-				A4B60ABE19B6C21A00C300D5 /* OilBrush.m in Sources */,
+				A4B60ABE19B6C21A00C300D5 /* BlurBrush.m in Sources */,
 				A461B338174CBAA70088B061 /* LocalizableLabel.m in Sources */,
 				A461B339174CBAA70088B061 /* GameItemPriceView.m in Sources */,
 				A461B33A174CBAA70088B061 /* ChargeController.m in Sources */,
@@ -25010,7 +25010,7 @@
 				C28A9C6D1738F04B007A819F /* UndoCommand.m in Sources */,
 				C28A9C6E1738F04B007A819F /* UserDetailRoundButton.m in Sources */,
 				C28A9C6F1738F04B007A819F /* TaoBaoController.m in Sources */,
-				A4B60ABD19B6C21A00C300D5 /* OilBrush.m in Sources */,
+				A4B60ABD19B6C21A00C300D5 /* BlurBrush.m in Sources */,
 				C28A9C701738F04B007A819F /* ChangeBGImageAction.m in Sources */,
 				C28A9C711738F04B007A819F /* TomatoItem.m in Sources */,
 				C28A9C721738F04B007A819F /* GeographyService.m in Sources */,
@@ -25896,7 +25896,7 @@
 				CAF95E2717068B4000B7526C /* RedoCommand.m in Sources */,
 				CAF95E3217068C4D00B7526C /* UndoCommand.m in Sources */,
 				C2EB5D071709335F004B7CCB /* UserDetailRoundButton.m in Sources */,
-				A4B60ABC19B6C21A00C300D5 /* OilBrush.m in Sources */,
+				A4B60ABC19B6C21A00C300D5 /* BlurBrush.m in Sources */,
 				EA49C86417093CD300843B6B /* TaoBaoController.m in Sources */,
 				CAE4B0E31709643200B4AB90 /* ChangeBGImageAction.m in Sources */,
 				A44E6CC5170D6E910067B647 /* TomatoItem.m in Sources */,
@@ -26572,7 +26572,7 @@
 				EA4119C6176066F500DA72D0 /* UIImagePixelSource.m in Sources */,
 				EA4119D1176066F500DA72D0 /* ioapi.c in Sources */,
 				EA4119D2176066F500DA72D0 /* mztools.c in Sources */,
-				A4B60ABF19B6C21A00C300D5 /* OilBrush.m in Sources */,
+				A4B60ABF19B6C21A00C300D5 /* BlurBrush.m in Sources */,
 				EA4119D3176066F500DA72D0 /* unzip.c in Sources */,
 				EA4119D4176066F500DA72D0 /* zip.c in Sources */,
 				EA4119D9176066F500DA72D0 /* DrawColor.m in Sources */,

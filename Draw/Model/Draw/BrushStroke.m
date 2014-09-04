@@ -277,7 +277,7 @@
             
             // draw by point list
             CGRect rect = CGRectMake(pointX - width/2, pointY - width/2, width, width);
-//            CGContextSetAlpha(layerContext, [self.color alpha]);
+
             CGContextDrawImage(layerContext, rect, brushImageRef);
         }
         
