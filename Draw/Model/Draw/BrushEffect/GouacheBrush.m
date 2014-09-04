@@ -26,12 +26,26 @@ static dispatch_once_t sharedGouacheBrushOnceToken;
 
 - (UIImage*)brushImage:(UIColor *)color
 {
+    //使用图片不需要管本来的颜色，只需要形状是所需要的即可，颜色由rt_tint方法搞定
     UIImage* brushImage = [UIImage imageNamed:@"brush_ellipse1.png"];
-    UIImage *tinted = [brushImage rt_tintedImageWithColor:color
+    //使用rt_tint方法需要color属性，其中color属性的alpha通道应置为1.0，否则染色效果会受底图影响
+    UIColor *colorWithRGBOnly = [UIColor colorWithRed:color.red green:color.green blue:color.blue alpha:1.0];
+
+    //染色，把所需形状染成用户所需颜色，不透明
+    UIImage *tinted = [brushImage rt_tintedImageWithColor:colorWithRGBOnly
                                                     level:1.0f];
-    brushImage = tinted;
+    
+    //考虑到插值后笔刷不断叠加，故透明度应做适当变换
+    float alpha = [color alpha] / 5;
+    
+    brushImage = [DrawUtils imageByApplyingAlpha:alpha  image: tinted];
+//    brushImage = tinted;
+    
     return brushImage;
 }
+
+
+
 
 - (BOOL)isWidthFixedSize
 {
@@ -55,15 +69,12 @@ static dispatch_once_t sharedGouacheBrushOnceToken;
                  distance1:(float)distance1         // 当前BeginDot和ControlDot的距离
                  distance2:(float)distance2         // 当前EndDot和ControlDot的距离
 {
-    int disFactor = (distance1 + distance2) / 10 + 1;
-    
-    double sizeFactor = 1;
-    
-    int interpolationLength = INTERPOLATION * disFactor * sizeFactor;
-    
+
+    double  factor =  10 * (distance1) / brushWidth;
+    int interpolationLength = INTERPOLATION * factor;
+    PPDebug(@"<interpolation> %f, %f, %d",distance1,distance2,interpolationLength);
     return interpolationLength;
 }
-
 -(void)randomShakePointX:(float*)pointX
                   PointY:(float*)pointY
 {

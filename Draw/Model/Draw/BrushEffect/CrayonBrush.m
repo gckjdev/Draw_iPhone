@@ -25,7 +25,7 @@ static dispatch_once_t sharedCrayonBrushOnceToken;
 
 - (UIImage*)brushImage:(UIColor *)color
 {
-    UIImage* brushImage = [UIImage imageNamed:@"brush_dot6.png"];
+    UIImage* brushImage = [UIImage imageNamed:@"brush_dot5.png"];
     UIImage *tinted = [brushImage rt_tintedImageWithColor:color
                                                     level:1.0f];
     brushImage = tinted;

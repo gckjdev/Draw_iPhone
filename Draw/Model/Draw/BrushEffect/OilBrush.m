@@ -74,13 +74,18 @@ static dispatch_once_t sharedOilBrushOnceToken;
                  distance1:(float)distance1         // 当前BeginDot和ControlDot的距离
                  distance2:(float)distance2         // 当前EndDot和ControlDot的距离
 {
-    int disFactor = (distance1 + distance2) / 10 + 1;
+    if(distance1 == 0 || distance2 == 0)
+        return 0;
     
-    double sizeFactor = 1;
-    
-    int interpolationLength = INTERPOLATION * disFactor * sizeFactor;
-    
-    return interpolationLength;
+    else{
+        int disFactor = (distance1 + distance2) / 10 + 1;
+        double sizeFactor = 1;
+        
+        int interpolationLength= INTERPOLATION * disFactor * sizeFactor;
+        
+        return interpolationLength;
+    }
+
 }
 
 -(void)randomShakePointX:(float*)pointX
