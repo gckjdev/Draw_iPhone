@@ -6,49 +6,6 @@
 #endif
 
 #include "Draw.pb-c.h"
-void   game__pblayer__init
-                     (Game__PBLayer         *message)
-{
-  static Game__PBLayer init_value = GAME__PBLAYER__INIT;
-  *message = init_value;
-}
-size_t game__pblayer__get_packed_size
-                     (const Game__PBLayer *message)
-{
-  PROTOBUF_C_ASSERT (message->base.descriptor == &game__pblayer__descriptor);
-  return protobuf_c_message_get_packed_size ((const ProtobufCMessage*)(message));
-}
-size_t game__pblayer__pack
-                     (const Game__PBLayer *message,
-                      uint8_t       *out)
-{
-  PROTOBUF_C_ASSERT (message->base.descriptor == &game__pblayer__descriptor);
-  return protobuf_c_message_pack ((const ProtobufCMessage*)message, out);
-}
-size_t game__pblayer__pack_to_buffer
-                     (const Game__PBLayer *message,
-                      ProtobufCBuffer *buffer)
-{
-  PROTOBUF_C_ASSERT (message->base.descriptor == &game__pblayer__descriptor);
-  return protobuf_c_message_pack_to_buffer ((const ProtobufCMessage*)message, buffer);
-}
-Game__PBLayer *
-       game__pblayer__unpack
-                     (ProtobufCAllocator  *allocator,
-                      size_t               len,
-                      const uint8_t       *data)
-{
-  return (Game__PBLayer *)
-     protobuf_c_message_unpack (&game__pblayer__descriptor,
-                                allocator, len, data);
-}
-void   game__pblayer__free_unpacked
-                     (Game__PBLayer *message,
-                      ProtobufCAllocator *allocator)
-{
-  PROTOBUF_C_ASSERT (message->base.descriptor == &game__pblayer__descriptor);
-  protobuf_c_message_free_unpacked ((ProtobufCMessage*)message, allocator);
-}
 void   game__pbdraw__init
                      (Game__PBDraw         *message)
 {
@@ -1038,84 +995,6 @@ void   game__pblayout_list__free_unpacked
   PROTOBUF_C_ASSERT (message->base.descriptor == &game__pblayout_list__descriptor);
   protobuf_c_message_free_unpacked ((ProtobufCMessage*)message, allocator);
 }
-static const float game__pblayer__alpha__default_value = 1;
-static const ProtobufCFieldDescriptor game__pblayer__field_descriptors[4] =
-{
-  {
-    "tag",
-    1,
-    PROTOBUF_C_LABEL_REQUIRED,
-    PROTOBUF_C_TYPE_INT32,
-    0,   /* quantifier_offset */
-    PROTOBUF_C_OFFSETOF(Game__PBLayer, tag),
-    NULL,
-    NULL,
-    0,            /* packed */
-    0,NULL,NULL    /* reserved1,reserved2, etc */
-  },
-  {
-    "rectComponent",
-    2,
-    PROTOBUF_C_LABEL_REPEATED,
-    PROTOBUF_C_TYPE_FLOAT,
-    PROTOBUF_C_OFFSETOF(Game__PBLayer, n_rectcomponent),
-    PROTOBUF_C_OFFSETOF(Game__PBLayer, rectcomponent),
-    NULL,
-    NULL,
-    0,            /* packed */
-    0,NULL,NULL    /* reserved1,reserved2, etc */
-  },
-  {
-    "alpha",
-    3,
-    PROTOBUF_C_LABEL_OPTIONAL,
-    PROTOBUF_C_TYPE_FLOAT,
-    PROTOBUF_C_OFFSETOF(Game__PBLayer, has_alpha),
-    PROTOBUF_C_OFFSETOF(Game__PBLayer, alpha),
-    NULL,
-    &game__pblayer__alpha__default_value,
-    0,            /* packed */
-    0,NULL,NULL    /* reserved1,reserved2, etc */
-  },
-  {
-    "name",
-    4,
-    PROTOBUF_C_LABEL_OPTIONAL,
-    PROTOBUF_C_TYPE_STRING,
-    0,   /* quantifier_offset */
-    PROTOBUF_C_OFFSETOF(Game__PBLayer, name),
-    NULL,
-    NULL,
-    0,            /* packed */
-    0,NULL,NULL    /* reserved1,reserved2, etc */
-  },
-};
-static const unsigned game__pblayer__field_indices_by_name[] = {
-  2,   /* field[2] = alpha */
-  3,   /* field[3] = name */
-  1,   /* field[1] = rectComponent */
-  0,   /* field[0] = tag */
-};
-static const ProtobufCIntRange game__pblayer__number_ranges[1 + 1] =
-{
-  { 1, 0 },
-  { 0, 4 }
-};
-const ProtobufCMessageDescriptor game__pblayer__descriptor =
-{
-  PROTOBUF_C_MESSAGE_DESCRIPTOR_MAGIC,
-  "game.PBLayer",
-  "PBLayer",
-  "Game__PBLayer",
-  "game",
-  sizeof(Game__PBLayer),
-  4,
-  game__pblayer__field_descriptors,
-  game__pblayer__field_indices_by_name,
-  1,  game__pblayer__number_ranges,
-  (ProtobufCMessageInit) game__pblayer__init,
-  NULL,NULL,NULL    /* reserved[123] */
-};
 static const int32_t game__pbdraw__version__default_value = 0;
 static const protobuf_c_boolean game__pbdraw__is_compressed__default_value = 1;
 static const ProtobufCFieldDescriptor game__pbdraw__field_descriptors[18] =
@@ -2646,7 +2525,7 @@ const ProtobufCMessageDescriptor game__pbcolor__descriptor =
   (ProtobufCMessageInit) game__pbcolor__init,
   NULL,NULL,NULL    /* reserved[123] */
 };
-static const ProtobufCFieldDescriptor game__pbno_compress_draw_action__field_descriptors[15] =
+static const ProtobufCFieldDescriptor game__pbno_compress_draw_action__field_descriptors[16] =
 {
   {
     "type",
@@ -2828,10 +2707,23 @@ static const ProtobufCFieldDescriptor game__pbno_compress_draw_action__field_des
     0,            /* packed */
     0,NULL,NULL    /* reserved1,reserved2, etc */
   },
+  {
+    "brushPointWidth",
+    41,
+    PROTOBUF_C_LABEL_REPEATED,
+    PROTOBUF_C_TYPE_FLOAT,
+    PROTOBUF_C_OFFSETOF(Game__PBNoCompressDrawAction, n_brushpointwidth),
+    PROTOBUF_C_OFFSETOF(Game__PBNoCompressDrawAction, brushpointwidth),
+    NULL,
+    NULL,
+    0,            /* packed */
+    0,NULL,NULL    /* reserved1,reserved2, etc */
+  },
 };
 static const unsigned game__pbno_compress_draw_action__field_indices_by_name[] = {
   14,   /* field[14] = alpha */
   12,   /* field[12] = blue */
+  15,   /* field[15] = brushPointWidth */
   7,   /* field[7] = canvasSize */
   2,   /* field[2] = color */
   13,   /* field[13] = green */
@@ -2846,12 +2738,13 @@ static const unsigned game__pbno_compress_draw_action__field_indices_by_name[] =
   0,   /* field[0] = type */
   3,   /* field[3] = width */
 };
-static const ProtobufCIntRange game__pbno_compress_draw_action__number_ranges[3 + 1] =
+static const ProtobufCIntRange game__pbno_compress_draw_action__number_ranges[4 + 1] =
 {
   { 1, 0 },
   { 11, 8 },
   { 20, 10 },
-  { 0, 15 }
+  { 41, 15 },
+  { 0, 16 }
 };
 const ProtobufCMessageDescriptor game__pbno_compress_draw_action__descriptor =
 {
@@ -2861,10 +2754,10 @@ const ProtobufCMessageDescriptor game__pbno_compress_draw_action__descriptor =
   "Game__PBNoCompressDrawAction",
   "game",
   sizeof(Game__PBNoCompressDrawAction),
-  15,
+  16,
   game__pbno_compress_draw_action__field_descriptors,
   game__pbno_compress_draw_action__field_indices_by_name,
-  3,  game__pbno_compress_draw_action__number_ranges,
+  4,  game__pbno_compress_draw_action__number_ranges,
   (ProtobufCMessageInit) game__pbno_compress_draw_action__init,
   NULL,NULL,NULL    /* reserved[123] */
 };

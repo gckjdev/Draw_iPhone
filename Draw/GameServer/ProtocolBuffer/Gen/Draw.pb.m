@@ -22,323 +22,6 @@ static PBExtensionRegistry* extensionRegistry = nil;
 }
 @end
 
-@interface PBLayer ()
-@property int32_t tag;
-@property (retain) NSMutableArray* mutableRectComponentList;
-@property Float32 alpha;
-@property (retain) NSString* name;
-@end
-
-@implementation PBLayer
-
-- (BOOL) hasTag {
-  return !!hasTag_;
-}
-- (void) setHasTag:(BOOL) value {
-  hasTag_ = !!value;
-}
-@synthesize tag;
-@synthesize mutableRectComponentList;
-- (BOOL) hasAlpha {
-  return !!hasAlpha_;
-}
-- (void) setHasAlpha:(BOOL) value {
-  hasAlpha_ = !!value;
-}
-@synthesize alpha;
-- (BOOL) hasName {
-  return !!hasName_;
-}
-- (void) setHasName:(BOOL) value {
-  hasName_ = !!value;
-}
-@synthesize name;
-- (void) dealloc {
-  self.mutableRectComponentList = nil;
-  self.name = nil;
-  [super dealloc];
-}
-- (id) init {
-  if ((self = [super init])) {
-    self.tag = 0;
-    self.alpha = 1;
-    self.name = @"";
-  }
-  return self;
-}
-static PBLayer* defaultPBLayerInstance = nil;
-+ (void) initialize {
-  if (self == [PBLayer class]) {
-    defaultPBLayerInstance = [[PBLayer alloc] init];
-  }
-}
-+ (PBLayer*) defaultInstance {
-  return defaultPBLayerInstance;
-}
-- (PBLayer*) defaultInstance {
-  return defaultPBLayerInstance;
-}
-- (NSArray*) rectComponentList {
-  return mutableRectComponentList;
-}
-- (Float32) rectComponentAtIndex:(int32_t) index {
-  id value = [mutableRectComponentList objectAtIndex:index];
-  return [value floatValue];
-}
-- (BOOL) isInitialized {
-  if (!self.hasTag) {
-    return NO;
-  }
-  return YES;
-}
-- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
-  if (self.hasTag) {
-    [output writeInt32:1 value:self.tag];
-  }
-  for (NSNumber* value in self.mutableRectComponentList) {
-    [output writeFloat:2 value:[value floatValue]];
-  }
-  if (self.hasAlpha) {
-    [output writeFloat:3 value:self.alpha];
-  }
-  if (self.hasName) {
-    [output writeString:4 value:self.name];
-  }
-  [self.unknownFields writeToCodedOutputStream:output];
-}
-- (int32_t) serializedSize {
-  int32_t size = memoizedSerializedSize;
-  if (size != -1) {
-    return size;
-  }
-
-  size = 0;
-  if (self.hasTag) {
-    size += computeInt32Size(1, self.tag);
-  }
-  {
-    int32_t dataSize = 0;
-    dataSize = 4 * self.mutableRectComponentList.count;
-    size += dataSize;
-    size += 1 * self.mutableRectComponentList.count;
-  }
-  if (self.hasAlpha) {
-    size += computeFloatSize(3, self.alpha);
-  }
-  if (self.hasName) {
-    size += computeStringSize(4, self.name);
-  }
-  size += self.unknownFields.serializedSize;
-  memoizedSerializedSize = size;
-  return size;
-}
-+ (PBLayer*) parseFromData:(NSData*) data {
-  return (PBLayer*)[[[PBLayer builder] mergeFromData:data] build];
-}
-+ (PBLayer*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  return (PBLayer*)[[[PBLayer builder] mergeFromData:data extensionRegistry:extensionRegistry] build];
-}
-+ (PBLayer*) parseFromInputStream:(NSInputStream*) input {
-  return (PBLayer*)[[[PBLayer builder] mergeFromInputStream:input] build];
-}
-+ (PBLayer*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  return (PBLayer*)[[[PBLayer builder] mergeFromInputStream:input extensionRegistry:extensionRegistry] build];
-}
-+ (PBLayer*) parseFromCodedInputStream:(PBCodedInputStream*) input {
-  return (PBLayer*)[[[PBLayer builder] mergeFromCodedInputStream:input] build];
-}
-+ (PBLayer*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  return (PBLayer*)[[[PBLayer builder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] build];
-}
-+ (PBLayer_Builder*) builder {
-  return [[[PBLayer_Builder alloc] init] autorelease];
-}
-+ (PBLayer_Builder*) builderWithPrototype:(PBLayer*) prototype {
-  return [[PBLayer builder] mergeFrom:prototype];
-}
-- (PBLayer_Builder*) builder {
-  return [PBLayer builder];
-}
-@end
-
-@interface PBLayer_Builder()
-@property (retain) PBLayer* result;
-@end
-
-@implementation PBLayer_Builder
-@synthesize result;
-- (void) dealloc {
-  self.result = nil;
-  [super dealloc];
-}
-- (id) init {
-  if ((self = [super init])) {
-    self.result = [[[PBLayer alloc] init] autorelease];
-  }
-  return self;
-}
-- (PBGeneratedMessage*) internalGetResult {
-  return result;
-}
-- (PBLayer_Builder*) clear {
-  self.result = [[[PBLayer alloc] init] autorelease];
-  return self;
-}
-- (PBLayer_Builder*) clone {
-  return [PBLayer builderWithPrototype:result];
-}
-- (PBLayer*) defaultInstance {
-  return [PBLayer defaultInstance];
-}
-- (PBLayer*) build {
-  [self checkInitialized];
-  return [self buildPartial];
-}
-- (PBLayer*) buildPartial {
-  PBLayer* returnMe = [[result retain] autorelease];
-  self.result = nil;
-  return returnMe;
-}
-- (PBLayer_Builder*) mergeFrom:(PBLayer*) other {
-  if (other == [PBLayer defaultInstance]) {
-    return self;
-  }
-  if (other.hasTag) {
-    [self setTag:other.tag];
-  }
-  if (other.mutableRectComponentList.count > 0) {
-    if (result.mutableRectComponentList == nil) {
-      result.mutableRectComponentList = [NSMutableArray array];
-    }
-    [result.mutableRectComponentList addObjectsFromArray:other.mutableRectComponentList];
-  }
-  if (other.hasAlpha) {
-    [self setAlpha:other.alpha];
-  }
-  if (other.hasName) {
-    [self setName:other.name];
-  }
-  [self mergeUnknownFields:other.unknownFields];
-  return self;
-}
-- (PBLayer_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input {
-  return [self mergeFromCodedInputStream:input extensionRegistry:[PBExtensionRegistry emptyRegistry]];
-}
-- (PBLayer_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  PBUnknownFieldSet_Builder* unknownFields = [PBUnknownFieldSet builderWithUnknownFields:self.unknownFields];
-  while (YES) {
-    int32_t tag = [input readTag];
-    switch (tag) {
-      case 0:
-        [self setUnknownFields:[unknownFields build]];
-        return self;
-      default: {
-        if (![self parseUnknownField:input unknownFields:unknownFields extensionRegistry:extensionRegistry tag:tag]) {
-          [self setUnknownFields:[unknownFields build]];
-          return self;
-        }
-        break;
-      }
-      case 8: {
-        [self setTag:[input readInt32]];
-        break;
-      }
-      case 21: {
-        [self addRectComponent:[input readFloat]];
-        break;
-      }
-      case 29: {
-        [self setAlpha:[input readFloat]];
-        break;
-      }
-      case 34: {
-        [self setName:[input readString]];
-        break;
-      }
-    }
-  }
-}
-- (BOOL) hasTag {
-  return result.hasTag;
-}
-- (int32_t) tag {
-  return result.tag;
-}
-- (PBLayer_Builder*) setTag:(int32_t) value {
-  result.hasTag = YES;
-  result.tag = value;
-  return self;
-}
-- (PBLayer_Builder*) clearTag {
-  result.hasTag = NO;
-  result.tag = 0;
-  return self;
-}
-- (NSArray*) rectComponentList {
-  if (result.mutableRectComponentList == nil) {
-    return [NSArray array];
-  }
-  return result.mutableRectComponentList;
-}
-- (Float32) rectComponentAtIndex:(int32_t) index {
-  return [result rectComponentAtIndex:index];
-}
-- (PBLayer_Builder*) replaceRectComponentAtIndex:(int32_t) index with:(Float32) value {
-  [result.mutableRectComponentList replaceObjectAtIndex:index withObject:[NSNumber numberWithFloat:value]];
-  return self;
-}
-- (PBLayer_Builder*) addRectComponent:(Float32) value {
-  if (result.mutableRectComponentList == nil) {
-    result.mutableRectComponentList = [NSMutableArray array];
-  }
-  [result.mutableRectComponentList addObject:[NSNumber numberWithFloat:value]];
-  return self;
-}
-- (PBLayer_Builder*) addAllRectComponent:(NSArray*) values {
-  if (result.mutableRectComponentList == nil) {
-    result.mutableRectComponentList = [NSMutableArray array];
-  }
-  [result.mutableRectComponentList addObjectsFromArray:values];
-  return self;
-}
-- (PBLayer_Builder*) clearRectComponentList {
-  result.mutableRectComponentList = nil;
-  return self;
-}
-- (BOOL) hasAlpha {
-  return result.hasAlpha;
-}
-- (Float32) alpha {
-  return result.alpha;
-}
-- (PBLayer_Builder*) setAlpha:(Float32) value {
-  result.hasAlpha = YES;
-  result.alpha = value;
-  return self;
-}
-- (PBLayer_Builder*) clearAlpha {
-  result.hasAlpha = NO;
-  result.alpha = 1;
-  return self;
-}
-- (BOOL) hasName {
-  return result.hasName;
-}
-- (NSString*) name {
-  return result.name;
-}
-- (PBLayer_Builder*) setName:(NSString*) value {
-  result.hasName = YES;
-  result.name = value;
-  return self;
-}
-- (PBLayer_Builder*) clearName {
-  result.hasName = NO;
-  result.name = @"";
-  return self;
-}
-@end
-
 @interface PBDraw ()
 @property (retain) NSString* userId;
 @property (retain) NSString* word;
@@ -5801,6 +5484,7 @@ static PBColor* defaultPBColorInstance = nil;
 @property Float32 blue;
 @property Float32 green;
 @property Float32 alpha;
+@property (retain) NSMutableArray* mutableBrushPointWidthList;
 @end
 
 @implementation PBNoCompressDrawAction
@@ -5886,6 +5570,7 @@ static PBColor* defaultPBColorInstance = nil;
   hasAlpha_ = !!value;
 }
 @synthesize alpha;
+@synthesize mutableBrushPointWidthList;
 - (void) dealloc {
   self.mutablePointList = nil;
   self.color = nil;
@@ -5893,6 +5578,7 @@ static PBColor* defaultPBColorInstance = nil;
   self.canvasSize = nil;
   self.mutablePointXList = nil;
   self.mutablePointYList = nil;
+  self.mutableBrushPointWidthList = nil;
   [super dealloc];
 }
 - (id) init {
@@ -5949,6 +5635,13 @@ static PBNoCompressDrawAction* defaultPBNoCompressDrawActionInstance = nil;
 }
 - (Float32) pointYAtIndex:(int32_t) index {
   id value = [mutablePointYList objectAtIndex:index];
+  return [value floatValue];
+}
+- (NSArray*) brushPointWidthList {
+  return mutableBrushPointWidthList;
+}
+- (Float32) brushPointWidthAtIndex:(int32_t) index {
+  id value = [mutableBrushPointWidthList objectAtIndex:index];
   return [value floatValue];
 }
 - (BOOL) isInitialized {
@@ -6013,6 +5706,9 @@ static PBNoCompressDrawAction* defaultPBNoCompressDrawActionInstance = nil;
   if (self.hasAlpha) {
     [output writeFloat:24 value:self.alpha];
   }
+  for (NSNumber* value in self.mutableBrushPointWidthList) {
+    [output writeFloat:41 value:[value floatValue]];
+  }
   [self.unknownFields writeToCodedOutputStream:output];
 }
 - (int32_t) serializedSize {
@@ -6075,6 +5771,12 @@ static PBNoCompressDrawAction* defaultPBNoCompressDrawActionInstance = nil;
   }
   if (self.hasAlpha) {
     size += computeFloatSize(24, self.alpha);
+  }
+  {
+    int32_t dataSize = 0;
+    dataSize = 4 * self.mutableBrushPointWidthList.count;
+    size += dataSize;
+    size += 2 * self.mutableBrushPointWidthList.count;
   }
   size += self.unknownFields.serializedSize;
   memoizedSerializedSize = size;
@@ -6208,6 +5910,12 @@ static PBNoCompressDrawAction* defaultPBNoCompressDrawActionInstance = nil;
   if (other.hasAlpha) {
     [self setAlpha:other.alpha];
   }
+  if (other.mutableBrushPointWidthList.count > 0) {
+    if (result.mutableBrushPointWidthList == nil) {
+      result.mutableBrushPointWidthList = [NSMutableArray array];
+    }
+    [result.mutableBrushPointWidthList addObjectsFromArray:other.mutableBrushPointWidthList];
+  }
   [self mergeUnknownFields:other.unknownFields];
   return self;
 }
@@ -6299,6 +6007,10 @@ static PBNoCompressDrawAction* defaultPBNoCompressDrawActionInstance = nil;
       }
       case 197: {
         [self setAlpha:[input readFloat]];
+        break;
+      }
+      case 333: {
+        [self addBrushPointWidth:[input readFloat]];
         break;
       }
     }
@@ -6628,6 +6340,37 @@ static PBNoCompressDrawAction* defaultPBNoCompressDrawActionInstance = nil;
 - (PBNoCompressDrawAction_Builder*) clearAlpha {
   result.hasAlpha = NO;
   result.alpha = 0;
+  return self;
+}
+- (NSArray*) brushPointWidthList {
+  if (result.mutableBrushPointWidthList == nil) {
+    return [NSArray array];
+  }
+  return result.mutableBrushPointWidthList;
+}
+- (Float32) brushPointWidthAtIndex:(int32_t) index {
+  return [result brushPointWidthAtIndex:index];
+}
+- (PBNoCompressDrawAction_Builder*) replaceBrushPointWidthAtIndex:(int32_t) index with:(Float32) value {
+  [result.mutableBrushPointWidthList replaceObjectAtIndex:index withObject:[NSNumber numberWithFloat:value]];
+  return self;
+}
+- (PBNoCompressDrawAction_Builder*) addBrushPointWidth:(Float32) value {
+  if (result.mutableBrushPointWidthList == nil) {
+    result.mutableBrushPointWidthList = [NSMutableArray array];
+  }
+  [result.mutableBrushPointWidthList addObject:[NSNumber numberWithFloat:value]];
+  return self;
+}
+- (PBNoCompressDrawAction_Builder*) addAllBrushPointWidth:(NSArray*) values {
+  if (result.mutableBrushPointWidthList == nil) {
+    result.mutableBrushPointWidthList = [NSMutableArray array];
+  }
+  [result.mutableBrushPointWidthList addObjectsFromArray:values];
+  return self;
+}
+- (PBNoCompressDrawAction_Builder*) clearBrushPointWidthList {
+  result.mutableBrushPointWidthList = nil;
   return self;
 }
 @end

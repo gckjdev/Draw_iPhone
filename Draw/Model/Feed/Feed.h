@@ -104,9 +104,11 @@ typedef enum {
 - (BOOL)isOpusType;
 - (BOOL)isGuessType;
 - (BOOL)isCommentType;
+- (BOOL)isLearnDraw;
 
 - (BOOL)isDrawCategory;
 - (BOOL)isSingCategory;
+
 
 //- (void)parseDrawData;
 

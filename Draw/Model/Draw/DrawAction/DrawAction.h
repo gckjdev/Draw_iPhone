@@ -26,8 +26,9 @@ typedef enum {
     DrawActionTypeChangeBack,       //Change bg with color 3
     DrawActionTypeChangeBGImage,    //Change bg with pb draw bg 4
 
-    DrawActionTypeGradient,             //Gradient 5
+    DrawActionTypeGradient,         //Gradient 5
     DrawActionTypeClip,             //Clip 6
+    DrawActionTypeBrush             //Brush
     
 } DrawActionType;
 
@@ -112,7 +113,7 @@ typedef enum {
 - (void)addPoint:(CGPoint)point inRect:(CGRect)rect;
 
 - (CGRect)drawInContext:(CGContextRef)context inRect:(CGRect)rect;
-
+- (void)clearMemory;
 - (NSUInteger)pointCount;
 - (void)finishAddPoint;
 - (CGRect)redrawRectInRect:(CGRect)rect;
@@ -128,6 +129,7 @@ typedef enum {
 - (BOOL)isChangeBGAction;
 - (BOOL)isChangeImageBGAction;
 - (BOOL)needShowShadow;
+- (BOOL)isBrushAction;
 
 @end
 

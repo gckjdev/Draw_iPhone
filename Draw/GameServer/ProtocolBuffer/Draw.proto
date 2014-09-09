@@ -9,12 +9,7 @@ option java_package = "com.orange.network.game.protocol.model";
 option java_outer_classname = "DrawProtos";
 
 
-message PBLayer{
-    required int32 tag = 1;
-    repeated float rectComponent = 2;
-    optional float alpha = 3 [default = 1];
-    optional string name = 4;
-}
+
 
 //// internal usage, to store draw data
 message PBDraw {
@@ -219,6 +214,7 @@ message PBNoCompressDrawAction{
     optional float green = 23;
     optional float alpha = 24;
 
+    repeated float brushPointWidth = 41;              //brush point width (so called scale)
 
 
 }

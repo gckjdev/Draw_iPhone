@@ -647,6 +647,15 @@
 
 "kDrawDesc" = "画了一幅 [%@]";
 "kCreateDesc" = "录制了一个声音作品 [%@]";
+"kLearnDrawDesc" = "画了一副闯关作品 [%@], %@%d分";
+"kLearnDrawDescSimple" = "画了一副闯关作品 [%@]";
+
+"kAbove90" = "暴砍";
+"kAbove80" = "狂砍";
+"kAbove70" = "怒砍";
+"kAbove60" = "砍下";
+"kAbove50" = "轻取";
+"kAbove40" = "拿下";
 
 "kDrawDescNoWord" = "画了一幅画";
 "kCreateDescNoName" = "录制了一个声音作品";
@@ -2596,7 +2605,7 @@
 
 "kOfficialContest" = "官方比赛";
 "kGroupContest" = "家族比赛";
-"kGoodOpus" = "精彩作品";
+"kGoodOpus" = "画榜";
 
 "kCreateContest" = "创建比赛";
 "kModifyContest" = "修改比赛";
@@ -2761,7 +2770,7 @@
 "kOpenToLearn" = "开始学习";
 
 
-"kNewHotTitle" = "精彩作品";
+"kNewHotTitle" = "画榜";
 "kConfigNewHot" = "筛选";
 
 "kTutorialDesc" = "教程简介";
@@ -2839,7 +2848,7 @@
 
 "kHaveNotTips" = "该教程暂时没有提示信息";
 
-"kNoTipsForChapter" = "呃呃，暂无提示";
+"kNoTipsForChapter" = "呃呃，本节没有提示";
 "kStartLearnTutorial" = "打开";
 "kAddTutorialToLearn" = "添加";
 
@@ -2855,7 +2864,7 @@
 "kConquerDrawShareSinaWeibo" = "分享到新浪微博";
 "kConquerDrawShareQQWeibo" = "分享到腾讯微博";
 
-"kConquerDrawShareText" = "我在%@中学习画画，本次画画得分为%d分，击败了宇宙世界中总计%d位用户，你看看喽";
+"kConquerDrawShareText" = "我在 @%@ 中学习画画，本次画画得分为%d分，击败了宇宙世界中总计%d位用户";
 "kCreateImageShareFail" = "无法生成分享图片，分享失败";
 
 
@@ -2892,7 +2901,7 @@
 "kMetroIndexButton" = "动态";
 "kMetroDocumentButton" = "草稿";
 "kMetroMessageButton" = "消息";
-"kMetroMoreButton" = "更多";
+"kMetroMoreButton" = "发现";
 
 "kBlankDraw" = "空白绘画";
 "kDrawMode" = "请选择画画模式";
@@ -2933,7 +2942,7 @@
 "kMetroHomePainting" = "画画";
 "kMetroHomeLearning" = "学画画";
 "kMetroHomeForum" = "论坛";
-"kMetroHomeGallery" = "精彩作品";
+"kMetroHomeGallery" = "画榜";
 
 "kSaveAsGif" = "分享回放过程";
 "kCreateGIFProgress" = "生成GIF动图中...%2d%%";
@@ -2963,3 +2972,5 @@
 "kRankingList" = "榜单";
 "kAskQuestion" = "答疑";
 "kRequierDelete" = "删除教程？（注意，删除教程后,进度会丢失）";
+
+"kNoOpusForReplay" = "当前未有作品可供播放";

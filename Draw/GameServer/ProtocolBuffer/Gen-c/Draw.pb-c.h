@@ -11,7 +11,6 @@ PROTOBUF_C_BEGIN_DECLS
 #include "GameConstants.pb-c.h"
 #include "Sing.pb-c.h"
 
-typedef struct _Game__PBLayer Game__PBLayer;
 typedef struct _Game__PBDraw Game__PBDraw;
 typedef struct _Game__PBFeedTimes Game__PBFeedTimes;
 typedef struct _Game__PBCommentInfo Game__PBCommentInfo;
@@ -41,21 +40,6 @@ typedef struct _Game__PBLayoutList Game__PBLayoutList;
 
 
 /* --- messages --- */
-
-struct  _Game__PBLayer
-{
-  ProtobufCMessage base;
-  int32_t tag;
-  size_t n_rectcomponent;
-  float *rectcomponent;
-  protobuf_c_boolean has_alpha;
-  float alpha;
-  char *name;
-};
-#define GAME__PBLAYER__INIT \
- { PROTOBUF_C_MESSAGE_INIT (&game__pblayer__descriptor) \
-    , 0, 0,NULL, 0,1, NULL }
-
 
 struct  _Game__PBDraw
 {
@@ -306,10 +290,12 @@ struct  _Game__PBNoCompressDrawAction
   float green;
   protobuf_c_boolean has_alpha;
   float alpha;
+  size_t n_brushpointwidth;
+  float *brushpointwidth;
 };
 #define GAME__PBNO_COMPRESS_DRAW_ACTION__INIT \
  { PROTOBUF_C_MESSAGE_INIT (&game__pbno_compress_draw_action__descriptor) \
-    , 0, 0,NULL, NULL, 0,0, 0,0, 0,0, 0,NULL, NULL, 0,NULL, 0,NULL, 0,0, 0,0, 0,0, 0,0, 0,0 }
+    , 0, 0,NULL, NULL, 0,0, 0,0, 0,0, 0,NULL, NULL, 0,NULL, 0,NULL, 0,0, 0,0, 0,0, 0,0, 0,0, 0,NULL }
 
 
 struct  _Game__PBNoCompressDrawData
@@ -515,25 +501,6 @@ struct  _Game__PBLayoutList
     , 0,NULL }
 
 
-/* Game__PBLayer methods */
-void   game__pblayer__init
-                     (Game__PBLayer         *message);
-size_t game__pblayer__get_packed_size
-                     (const Game__PBLayer   *message);
-size_t game__pblayer__pack
-                     (const Game__PBLayer   *message,
-                      uint8_t             *out);
-size_t game__pblayer__pack_to_buffer
-                     (const Game__PBLayer   *message,
-                      ProtobufCBuffer     *buffer);
-Game__PBLayer *
-       game__pblayer__unpack
-                     (ProtobufCAllocator  *allocator,
-                      size_t               len,
-                      const uint8_t       *data);
-void   game__pblayer__free_unpacked
-                     (Game__PBLayer *message,
-                      ProtobufCAllocator *allocator);
 /* Game__PBDraw methods */
 void   game__pbdraw__init
                      (Game__PBDraw         *message);
@@ -973,9 +940,6 @@ void   game__pblayout_list__free_unpacked
                       ProtobufCAllocator *allocator);
 /* --- per-message closures --- */
 
-typedef void (*Game__PBLayer_Closure)
-                 (const Game__PBLayer *message,
-                  void *closure_data);
 typedef void (*Game__PBDraw_Closure)
                  (const Game__PBDraw *message,
                   void *closure_data);
@@ -1051,7 +1015,6 @@ typedef void (*Game__PBLayoutList_Closure)
 
 /* --- descriptors --- */
 
-extern const ProtobufCMessageDescriptor game__pblayer__descriptor;
 extern const ProtobufCMessageDescriptor game__pbdraw__descriptor;
 extern const ProtobufCMessageDescriptor game__pbfeed_times__descriptor;
 extern const ProtobufCMessageDescriptor game__pbcomment_info__descriptor;

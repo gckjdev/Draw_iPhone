@@ -17,6 +17,8 @@ using std::list;
 
 @interface HPointList ()
 {
+    
+@public
     vector<float> xList;
     vector<float> yList;
 
@@ -69,7 +71,8 @@ using std::list;
     return xList.size();
 }
 
-- (void)createPointXList:(NSMutableArray**)pointXList pointYList:(NSMutableArray**)pointYList
+- (void)createPointXList:(NSMutableArray**)pointXList
+              pointYList:(NSMutableArray**)pointYList
 {
     int size = xList.size();
     if (size > 0) {
@@ -85,7 +88,8 @@ using std::list;
     }    
 }
 
-- (void)createPointFloatXList:(CGFloat*)floatXList floatYList:(CGFloat*)floatYList
+- (void)createPointFloatXList:(CGFloat*)floatXList
+                   floatYList:(CGFloat*)floatYList
 {
     int size = xList.size();
     if (size > 0) {        

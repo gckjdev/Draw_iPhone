@@ -38,6 +38,8 @@
 @class PBItemPriceInfo_Builder;
 @class PBKeyValue;
 @class PBKeyValue_Builder;
+@class PBLayer;
+@class PBLayer_Builder;
 @class PBLocalizeString;
 @class PBLocalizeString_Builder;
 @class PBMessage;
@@ -1669,6 +1671,91 @@ BOOL PBTaskIdTypeIsValidValue(PBTaskIdType value);
 - (PBGradient_Builder*) clearPointList;
 @end
 
+@interface PBLayer : PBGeneratedMessage {
+@private
+  BOOL hasHidden_:1;
+  BOOL hasAlpha_:1;
+  BOOL hasTag_:1;
+  BOOL hasName_:1;
+  BOOL hidden_:1;
+  Float32 alpha;
+  int32_t tag;
+  NSString* name;
+  NSMutableArray* mutableRectComponentList;
+}
+- (BOOL) hasTag;
+- (BOOL) hasAlpha;
+- (BOOL) hasName;
+- (BOOL) hasHidden;
+@property (readonly) int32_t tag;
+@property (readonly) Float32 alpha;
+@property (readonly, retain) NSString* name;
+- (BOOL) hidden;
+- (NSArray*) rectComponentList;
+- (Float32) rectComponentAtIndex:(int32_t) index;
+
++ (PBLayer*) defaultInstance;
+- (PBLayer*) defaultInstance;
+
+- (BOOL) isInitialized;
+- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
+- (PBLayer_Builder*) builder;
++ (PBLayer_Builder*) builder;
++ (PBLayer_Builder*) builderWithPrototype:(PBLayer*) prototype;
+
++ (PBLayer*) parseFromData:(NSData*) data;
++ (PBLayer*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
++ (PBLayer*) parseFromInputStream:(NSInputStream*) input;
++ (PBLayer*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
++ (PBLayer*) parseFromCodedInputStream:(PBCodedInputStream*) input;
++ (PBLayer*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+@end
+
+@interface PBLayer_Builder : PBGeneratedMessage_Builder {
+@private
+  PBLayer* result;
+}
+
+- (PBLayer*) defaultInstance;
+
+- (PBLayer_Builder*) clear;
+- (PBLayer_Builder*) clone;
+
+- (PBLayer*) build;
+- (PBLayer*) buildPartial;
+
+- (PBLayer_Builder*) mergeFrom:(PBLayer*) other;
+- (PBLayer_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
+- (PBLayer_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+
+- (BOOL) hasTag;
+- (int32_t) tag;
+- (PBLayer_Builder*) setTag:(int32_t) value;
+- (PBLayer_Builder*) clearTag;
+
+- (NSArray*) rectComponentList;
+- (Float32) rectComponentAtIndex:(int32_t) index;
+- (PBLayer_Builder*) replaceRectComponentAtIndex:(int32_t) index with:(Float32) value;
+- (PBLayer_Builder*) addRectComponent:(Float32) value;
+- (PBLayer_Builder*) addAllRectComponent:(NSArray*) values;
+- (PBLayer_Builder*) clearRectComponentList;
+
+- (BOOL) hasAlpha;
+- (Float32) alpha;
+- (PBLayer_Builder*) setAlpha:(Float32) value;
+- (PBLayer_Builder*) clearAlpha;
+
+- (BOOL) hasName;
+- (NSString*) name;
+- (PBLayer_Builder*) setName:(NSString*) value;
+- (PBLayer_Builder*) clearName;
+
+- (BOOL) hasHidden;
+- (BOOL) hidden;
+- (PBLayer_Builder*) setHidden:(BOOL) value;
+- (PBLayer_Builder*) clearHidden;
+@end
+
 @interface PBDrawAction : PBGeneratedMessage {
 @private
   BOOL hasShapeStroke_:1;
@@ -1677,6 +1764,7 @@ BOOL PBTaskIdTypeIsValidValue(PBTaskIdType value);
   BOOL hasShadowBlur_:1;
   BOOL hasShadowOffsetY_:1;
   BOOL hasShadowOffsetX_:1;
+  BOOL hasBrushType_:1;
   BOOL hasLayerTag_:1;
   BOOL hasClipType_:1;
   BOOL hasClipTag_:1;
@@ -1694,6 +1782,7 @@ BOOL PBTaskIdTypeIsValidValue(PBTaskIdType value);
   Float32 shadowBlur;
   Float32 shadowOffsetY;
   Float32 shadowOffsetX;
+  int32_t brushType;
   int32_t layerTag;
   int32_t clipType;
   int32_t clipTag;
@@ -1708,8 +1797,10 @@ BOOL PBTaskIdTypeIsValidValue(PBTaskIdType value);
   NSMutableArray* mutablePointsYList;
   NSMutableArray* mutablePointsXList;
   NSMutableArray* mutableRectComponentList;
+  NSMutableArray* mutableBrushPointWidthList;
   NSMutableArray* mutablePointsList;
   int32_t pointsMemoizedSerializedSize;
+  NSMutableArray* mutableChangeLayersList;
 }
 - (BOOL) hasType;
 - (BOOL) hasWidth;
@@ -1728,6 +1819,7 @@ BOOL PBTaskIdTypeIsValidValue(PBTaskIdType value);
 - (BOOL) hasLayerTag;
 - (BOOL) hasLayerAlpha;
 - (BOOL) hasGradient;
+- (BOOL) hasBrushType;
 @property (readonly) int32_t type;
 @property (readonly) Float32 width;
 @property (readonly) int32_t color;
@@ -1745,6 +1837,7 @@ BOOL PBTaskIdTypeIsValidValue(PBTaskIdType value);
 @property (readonly) int32_t layerTag;
 @property (readonly) Float32 layerAlpha;
 @property (readonly, retain) PBGradient* gradient;
+@property (readonly) int32_t brushType;
 - (NSArray*) pointsList;
 - (int32_t) pointsAtIndex:(int32_t) index;
 - (NSArray*) rectComponentList;
@@ -1753,6 +1846,10 @@ BOOL PBTaskIdTypeIsValidValue(PBTaskIdType value);
 - (Float32) pointsXAtIndex:(int32_t) index;
 - (NSArray*) pointsYList;
 - (Float32) pointsYAtIndex:(int32_t) index;
+- (NSArray*) changeLayersList;
+- (PBLayer*) changeLayersAtIndex:(int32_t) index;
+- (NSArray*) brushPointWidthList;
+- (Float32) brushPointWidthAtIndex:(int32_t) index;
 
 + (PBDrawAction*) defaultInstance;
 - (PBDrawAction*) defaultInstance;
@@ -1898,12 +1995,31 @@ BOOL PBTaskIdTypeIsValidValue(PBTaskIdType value);
 - (PBDrawAction_Builder*) setLayerAlpha:(Float32) value;
 - (PBDrawAction_Builder*) clearLayerAlpha;
 
+- (NSArray*) changeLayersList;
+- (PBLayer*) changeLayersAtIndex:(int32_t) index;
+- (PBDrawAction_Builder*) replaceChangeLayersAtIndex:(int32_t) index with:(PBLayer*) value;
+- (PBDrawAction_Builder*) addChangeLayers:(PBLayer*) value;
+- (PBDrawAction_Builder*) addAllChangeLayers:(NSArray*) values;
+- (PBDrawAction_Builder*) clearChangeLayersList;
+
 - (BOOL) hasGradient;
 - (PBGradient*) gradient;
 - (PBDrawAction_Builder*) setGradient:(PBGradient*) value;
 - (PBDrawAction_Builder*) setGradientBuilder:(PBGradient_Builder*) builderForValue;
 - (PBDrawAction_Builder*) mergeGradient:(PBGradient*) value;
 - (PBDrawAction_Builder*) clearGradient;
+
+- (BOOL) hasBrushType;
+- (int32_t) brushType;
+- (PBDrawAction_Builder*) setBrushType:(int32_t) value;
+- (PBDrawAction_Builder*) clearBrushType;
+
+- (NSArray*) brushPointWidthList;
+- (Float32) brushPointWidthAtIndex:(int32_t) index;
+- (PBDrawAction_Builder*) replaceBrushPointWidthAtIndex:(int32_t) index with:(Float32) value;
+- (PBDrawAction_Builder*) addBrushPointWidth:(Float32) value;
+- (PBDrawAction_Builder*) addAllBrushPointWidth:(NSArray*) values;
+- (PBDrawAction_Builder*) clearBrushPointWidthList;
 @end
 
 @interface PBMessage : PBGeneratedMessage {

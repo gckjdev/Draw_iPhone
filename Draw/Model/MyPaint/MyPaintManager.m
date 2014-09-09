@@ -704,6 +704,7 @@ pbNoCompressDrawData:(PBNoCompressDrawData*)pbNoCompressDrawData
                 language:(NSInteger)language
                  bgImage:(UIImage *)bgImage
              bgImageName:(NSString*)bgImageName
+              deleteFlag:(BOOL)deleteFlag
 {
     CoreDataManager* dataManager = GlobalGetCoreDataManager();
     MyPaint* newMyPaint = [dataManager insert:@"MyPaint"];
@@ -720,6 +721,7 @@ pbNoCompressDrawData:(PBNoCompressDrawData*)pbNoCompressDrawData
     [newMyPaint setContestId:contestId];
     [newMyPaint setDraft:[NSNumber numberWithBool:YES]];
     [newMyPaint setDrawWordData:[word data]];
+    [newMyPaint setDeleteFlag:@(deleteFlag)];
     PPDebug(@"<createDraft> %@", [newMyPaint description]);
     [dataManager save];
     return newMyPaint;    

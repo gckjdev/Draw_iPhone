@@ -167,6 +167,28 @@
     return self;
 }
 
+- (NSString*)getScorePrefx
+{
+    if (self.pbFeed.stageScore >= 90){
+        return NSLS(@"kAbove90");
+    }
+    else if (self.pbFeed.stageScore >=80){
+        return NSLS(@"kAbove80");
+    }
+    else if (self.pbFeed.stageScore >=70){
+        return NSLS(@"kAbove70");
+    }
+    else if (self.pbFeed.stageScore >=60){
+        return NSLS(@"kAbove60");
+    }
+    else if (self.pbFeed.stageScore >=50){
+        return NSLS(@"kAbove50");
+    }
+    else{
+        return NSLS(@"kAbove40");
+    }
+}
+
 - (void)updateDesc
 {
     NSString *kCreateDesc = NSLS(@"kDrawDesc");
@@ -177,7 +199,15 @@
         kCreateDescNoName = NSLS(@"kCreateDescNoName");
     }
     
-    if ([self isMyOpus]) {
+    if ([self isLearnDraw]){
+        if (self.pbFeed.stageScore > 0){
+            self.desc = [NSString stringWithFormat:NSLS(@"kLearnDrawDesc"), self.wordText, [self getScorePrefx], self.pbFeed.stageScore];
+        }
+        else{
+            self.desc = [NSString stringWithFormat:NSLS(@"kLearnDrawDescSimple"), self.wordText];
+        }
+    }
+    else if ([self isMyOpus]) {
         self.desc = [NSString stringWithFormat:kCreateDesc, self.wordText];      
     }else if ([self hasGuessed]) {
         self.desc = [NSString stringWithFormat:kCreateDesc, self.wordText];      

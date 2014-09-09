@@ -24,6 +24,13 @@
 
 - (void)dealloc
 {
+    PPRelease(_opusDesc);
+    PPRelease(_opusWord);
+    PPRelease(_opusId);
+
+    PPRelease(_opusUserId);
+    PPRelease(_opusUserNick);
+    
     PPRelease(_actionList);
     PPRelease(_bgImage);
     PPRelease(_layers);
@@ -175,14 +182,14 @@
 
             [[ShareService defaultService] shareAsGIF:_superController
                                             opusImage:self.replayObj.finalImage
-                                               opusId:nil
+                                               opusId:self.replayObj.opusId
                                        drawActionList:self.replayObj.actionList
                                                layers:self.replayObj.layers
                                            canvasSize:self.replayObj.canvasSize
-                                             drawWord:nil
-                                             drawDesc:nil
-                                           drawUserId:nil
-                                       drawUserGender:NO
+                                             drawWord:self.replayObj.opusWord
+                                             drawDesc:self.replayObj.opusDesc
+                                           drawUserId:self.replayObj.opusUserId
+                                       drawUserGender:self.replayObj.opusUserGender
                                         completeBlock:^{
                                             
                                             [self hidePanel:NO animated:NO];
@@ -402,13 +409,13 @@
         
         dispatch_async(dispatch_get_main_queue(), ^{
         
+            [viewController unregisterNotificationWithName:NOTIFICATION_DATA_PARSING];
+            
             Draw* draw = (*retDraw);
             if (draw == nil){
                 [viewController hideActivity];
                 return;
             }
-            
-            [viewController unregisterNotificationWithName:NOTIFICATION_DATA_PARSING];
             
             NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
             
@@ -419,6 +426,9 @@
             obj.layers = draw.layers;
             obj.bgImage = bgImage;
             obj.finalImage = drawImage;
+            obj.opusWord = draw.word.text;
+            obj.opusUserId = draw.userId;
+            obj.opusUserNick = draw.nickName;
             
             DrawPlayer *player = [DrawPlayer playerWithReplayObj:obj begin:startIndex end:endIndex bgImageName:bgImageName];
             [player showInController:cp];
@@ -486,7 +496,11 @@
             obj.canvasSize = draw.canvasSize;
             obj.layers = draw.layers;
             obj.bgImage = bgImage;
-            
+            obj.opusWord = draw.word.text;
+            obj.opusUserId = draw.userId;
+            obj.opusUserNick = draw.nickName;
+    
+    
     return [DrawPlayer createImageWithReplayObj:obj
                                           begin:startIndex
                                             end:endIndex

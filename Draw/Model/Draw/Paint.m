@@ -23,7 +23,6 @@
 
 @property (nonatomic, retain) HPointList  *hPointList;
 
-
 @end
 
 @implementation Paint

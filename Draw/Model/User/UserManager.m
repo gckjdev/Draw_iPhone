@@ -264,6 +264,7 @@ static UserManager* _defaultManager;
 - (NSString*)deviceToken
 {
     if (_pbUser == nil || [_pbUser.deviceToken length] == 0){
+        PPDebug(@"no device token found for user, try to load from NSUserDefault");
         return [self deviceTokenFromOldStorage];
     }
     else{
@@ -2033,13 +2034,12 @@ qqAccessTokenSecret:(NSString*)accessTokenSecret
     NSNumber* value = [ud objectForKey:KEY_HOME_STYLE];
     if (value == nil){
         if ([[UserManager defaultManager] hasXiaojiNumber] ||
-            [[UserManager defaultManager] isOldUserWithoutXiaoji] ||
-            isLittleGeeAPP()){
+            [[UserManager defaultManager] isOldUserWithoutXiaoji]){
             // old user will use classical style by default
-            return HOME_STYLE_CLASSICAL;
+            return [PPConfigManager defaultHomeStyleOldUser]; // HOME_STYLE_CLASSICAL;
         }
         else{
-            return HOME_STYLE_METRO;
+            return [PPConfigManager defaultHomeStyleNewUser];// HOME_STYLE_METRO;
         }
     }
     else{

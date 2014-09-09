@@ -642,6 +642,15 @@
 
 "kDrawDesc" = "畫了一幅 [%@]";
 "kCreateDesc" = "錄製了一個聲音作品[%@]";
+"kLearnDrawDesc" = "畫了一副闖關作品[%@], %@%d分";
+"kLearnDrawDescSimple" = "畫了一副闖關作品[%@]";
+
+"kAbove90" = "暴砍";
+"kAbove80" = "狂砍";
+"kAbove70" = "努砍";
+"kAbove60" = "砍下";
+"kAbove50" = "輕取";
+"kAbove40" = "拿下";
 
 "kDrawDescNoWord" = "畫了一幅畫";
 "kCreateDescNoName" = "錄製了一個聲音作品";
@@ -2610,7 +2619,7 @@
 
 "kOfficialContest" = "官方比賽";
 "kGroupContest" = "家族比賽";
-"kGoodOpus" = "精彩作品";
+"kGoodOpus" = "画榜";
 
 "kCreateContest" = "創建比賽";
 "kModifyContest" = "修改比賽";
@@ -2799,7 +2808,7 @@
 "kOpenToLearn" = "開始學習";
 
 
-"kNewHotTitle" = "精彩作品";
+"kNewHotTitle" = "画榜";
 "kConfigNewHot" = "篩選";
 
 "kTutorialDesc" = "教程簡介";
@@ -2893,7 +2902,7 @@
 "kConquerDrawShareSinaWeibo" = "分享到新浪微博";
 "kConquerDrawShareQQWeibo" = "分享到騰訊微博";
 
-"kConquerDrawShareText" = "我在%@中學習畫畫，本次畫畫得分為%d分，擊敗了宇宙世界中總計%d位使用者，你看看嘍";
+"kConquerDrawShareText" = "我在 @%@ 中學習畫畫，本次畫畫得分為%d分，擊敗了宇宙世界中總計%d位使用者";
 "kCreateImageShareFail" = "無法生成分享圖片，分享失敗";
 
 
@@ -2929,7 +2938,7 @@
 "kMetroIndexButton" = "動態";
 "kMetroDocumentButton" = "草稿";
 "kMetroMessageButton" = "消息";
-"kMetroMoreButton" = "更多";
+"kMetroMoreButton" = "发现";
 
 "kBlankDraw" = "空白繪畫";
 "kDrawMode" = "請選擇畫畫模式";
@@ -2970,7 +2979,7 @@
 "kMetroHomePainting" = "畫畫";
 "kMetroHomeLearning" = "學畫畫";
 "kMetroHomeForum" = "論壇";
-"kMetroHomeGallery" = "精彩作品";
+"kMetroHomeGallery" = "画榜";
 
 //"kMetroIndexButton" = "動態";
 //"kMetroDocumentButton" = "草稿";
@@ -3019,3 +3028,5 @@
 "kRankingList" = "榜單";
 "kAskQuestion" = "答疑";
 "kRequierDelete" = "刪除教程? 注意，刪除教程后，進度會丟失。";
+
+"kNoOpusForReplay" = "當前未有作品可供播放";

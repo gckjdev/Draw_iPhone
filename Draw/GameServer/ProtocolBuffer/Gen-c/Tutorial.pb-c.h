@@ -168,12 +168,22 @@ struct  _Game__PBTutorial
   int32_t modifydate;
   protobuf_c_boolean has_isnew;
   protobuf_c_boolean isnew;
+  protobuf_c_boolean has_disablescore;
+  protobuf_c_boolean disablescore;
+  protobuf_c_boolean has_disablepractice;
+  protobuf_c_boolean disablepractice;
+  protobuf_c_boolean has_directpass;
+  protobuf_c_boolean directpass;
+  protobuf_c_boolean has_passscore;
+  int32_t passscore;
+  protobuf_c_boolean has_topranktype;
+  int32_t topranktype;
   protobuf_c_boolean has_version;
   int32_t version;
 };
 #define GAME__PBTUTORIAL__INIT \
  { PROTOBUF_C_MESSAGE_INIT (&game__pbtutorial__descriptor) \
-    , NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0,0, 0,NULL, 0,0, NULL, NULL, NULL, 0,NULL, 0,1, 0,0, 0,0, 0,0, 0,0, 0,0, 0,0 }
+    , NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0,0, 0,NULL, 0,0, NULL, NULL, NULL, 0,NULL, 0,1, 0,0, 0,0, 0,0, 0,0, 0,0, 0,0, 0,0, 0,0, 0,60, 0,0, 0,0 }
 
 
 struct  _Game__PBTutorialCore

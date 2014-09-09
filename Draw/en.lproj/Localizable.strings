@@ -618,6 +618,16 @@
 
 "kDrawDesc" = "Drew a picture: [%@].";
 "kCreateDesc" = "Create an opus: [%@].";
+"kLearnDrawDesc" = "Conquer stage: [%@], %@ score is %d";
+"kLearnDrawDescSimple" = "Conquer stage: [%@]";
+
+"kAbove90" = "";
+"kAbove80" = "";
+"kAbove70" = "";
+"kAbove60" = "";
+"kAbove50" = "";
+"kAbove40" = "";
+
 
 "kDrawDescNoWord" = "Drew a picture.";
 "kCreateDescNoName" = "Create an opus.";
@@ -2827,7 +2837,7 @@
 "kConquerResultPassNext" = "Congratulation,Go ahead!";
 "kConquerFailureResult" = "Failure! Try again";
 
-"kConquerDrawShareText" = "我在%@中学习画画，本次闯关得分为%d，击败了宇宙三次元中%d%%的用户，你看看喽";
+"kConquerDrawShareText" = "我在 @%@ 中学习画画，本次闯关得分为%d，击败了宇宙三次元中%d%%的用户";
 "kCreateImageShareFail" = "Unable to share due to fail to create image for sharing. ";
 
 
@@ -2916,3 +2926,5 @@
 "kRankingList" = "Rank";
 "kAskQuestion" = "Ask";
 "kRequierDelete" = "Delete this tutorial?";
+
+"kNoOpusForReplay" = "No opus for replay";

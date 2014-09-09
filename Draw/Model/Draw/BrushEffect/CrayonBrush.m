@@ -1,0 +1,94 @@
+//  CrayonBrush.m
+//  Draw
+//
+//  Created by 黄毅超 on 14-9-3.
+//
+//
+
+#import "CrayonBrush.h"
+
+static CrayonBrush* sharedCrayonBrush;
+static dispatch_once_t sharedCrayonBrushOnceToken;
+
+@implementation CrayonBrush
+
++ (CrayonBrush*)sharedBrush
+{
+    if (sharedCrayonBrush == nil){
+        dispatch_once(&sharedCrayonBrushOnceToken, ^{
+            sharedCrayonBrush = [[CrayonBrush alloc] init];
+        });
+    }
+    
+    return sharedCrayonBrush;
+}
+
+- (UIImage*)brushImage:(UIColor *)color
+{
+    //使用图片不需要管本来的颜色，只需要形状是所需要的即可，颜色由rt_tint方法搞定
+    UIImage* brushImage = [UIImage imageNamed:@"brush_dot6.png"];
+
+    //使用rt_tint方法需要color属性，其中color属性的alpha通道应置为1.0，否则染色效果会受底图影响
+    UIColor *colorWithRGBOnly = [UIColor colorWithRed:color.red green:color.green blue:color.blue alpha:1.0];
+    
+    //染色，把所需形状染成用户所需颜色，不透明
+    UIImage *tinted = [brushImage rt_tintedImageWithColor:colorWithRGBOnly
+                                                    level:1.0f];
+    
+    //考虑到蜡笔不需要透明度，故不使用相关的image变换方法
+    brushImage = tinted;
+    
+    return brushImage;
+}
+
+- (BOOL)isWidthFixedSize
+{
+    return YES;
+}
+
+- (float)calculateWidthWithThreshold:(float)threshold
+                           distance1:(float)distance1
+                           distance2:(float)distance2
+                        currentWidth:(float)currentWidth
+{
+    return currentWidth;
+}
+
+- (float)firstPointWidth:(float)defaultWidth
+{
+    return defaultWidth;
+}
+
+- (int)interpolationLength:(float)brushWidth        // 当前笔刷大小
+                 distance1:(float)distance1         // 当前BeginDot和ControlDot的距离
+                 distance2:(float)distance2         // 当前EndDot和ControlDot的距离
+{
+    double  factor =  2 * (distance1) / brushWidth;
+    int interpolationLength = INTERPOLATION * factor + 1;
+    
+    return interpolationLength;
+
+}
+
+-(void)randomShakePointX:(float*)pointX
+                  PointY:(float*)pointY
+{
+    float xRandomOffset = arc4random() % 3;
+    float yRandomOffset = arc4random() % 3;
+    
+    NSInteger xShouldShake = arc4random() % 3;
+    NSInteger yShouldShake = arc4random() % 3;
+    
+    if(xShouldShake == 0)
+        *pointX+=xRandomOffset;
+    else if(xShouldShake == 1)
+        *pointX-=xRandomOffset;
+    
+    if(yShouldShake == 0)
+        *pointY+=yRandomOffset;
+    else if(yShouldShake == 1)
+        *pointY-=yRandomOffset;
+
+}
+
+@end

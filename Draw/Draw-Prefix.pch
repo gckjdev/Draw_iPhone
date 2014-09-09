@@ -32,3 +32,10 @@
     #define STATUSBAR_DELTA (ISIOS7 ? 20 : 0)
 
 #endif
+
+#ifdef  DEBUG
+
+#define BRUSH   1       // for brush test
+
+#endif
+

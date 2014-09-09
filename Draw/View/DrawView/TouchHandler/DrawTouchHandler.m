@@ -7,10 +7,13 @@
 //
 
 #import "DrawTouchHandler.h"
+#import "BrushAction.h"
+#import "BrushStroke.h"
 
 @interface DrawTouchHandler()
 {
     DrawAction *action;
+//    BrushAction *brushAction;
 }
 
 @end
@@ -23,16 +26,34 @@
         Paint *currentPaint = nil;
         if (action == nil) {
             DrawInfo *info = self.drawView.drawInfo;
-            
+
             currentPaint = [Paint paintWithWidth:info.penWidth
                                            color:info.penColor
                                          penType:info.penType
                                        pointList:nil];
 
             action.shadow = info.shadow;            
-            action = [[PaintAction paintActionWithPaint:currentPaint] retain];            
+            action = [[PaintAction paintActionWithPaint:currentPaint] retain];
         }
     }
+    return action;
+}
+
+- (DrawAction*)createBrushAction
+{
+    if (action == nil) {
+        DrawInfo *info = self.drawView.drawInfo;
+        BrushStroke* brushStroke = nil;
+        brushStroke = [BrushStroke brushStrokeWithWidth:info.penWidth
+                                                  color:info.penColor
+                                              brushType:info.penType
+                                              pointList:nil];
+        
+        action.shadow = info.shadow;
+        action = [[BrushAction brushActionWithBrushStroke:brushStroke] retain];
+        [action setCanvasSize:self.drawView.bounds.size];
+    }
+    
     return action;
 }
 
@@ -49,14 +70,40 @@
     [super dealloc];
 }
 
+- (BOOL)isBrush
+{
+    if (self.drawView.drawInfo.penType >= ItemTypeBrushBegin &&
+        self.drawView.drawInfo.penType <= ItemTypeBrushEnd){
+        return YES;
+    }
+    else{
+        
+#ifdef BRUSH
+        if (self.drawView.drawInfo.penType >= WaterPen &&
+            self.drawView.drawInfo.penType <= PenCount){
+            self.drawView.drawInfo.penType = ItemTypeBrushBegin + 1 + self.drawView.drawInfo.penType - WaterPen;
+            return YES;
+        }
+#endif
+        
+        return NO;
+    }
+}
+
 - (void)addPoint:(CGPoint)point
 {
     if (handleFailed) {
         return;
     }
-    action = [self createDrawAction];
-    [action addPoint:point inRect:self.drawView.bounds];
+    
+    if ([self isBrush]){
+        action = [self createBrushAction];
+    }
+    else{
+        action = [self createDrawAction];
+    }
 
+    [action addPoint:point inRect:self.drawView.bounds];
 }
 
 - (void)reset
@@ -68,6 +115,7 @@
 - (void)finishAddPoints
 {
     currentState = TouchStateEnd;
+    
     [action finishAddPoint];
     [self.drawView finishLastAction:action refresh:YES];
     [self reset];
@@ -122,4 +170,5 @@
 {
     return action;
 }
+
 @end

@@ -37,6 +37,7 @@
     DrawAction *_currentAction;
     
     DrawLayerManager *dlManager;
+    CGLayerRef _brushLayer;
     
     GestureRecognizerManager *_gestureRecognizerManager;
 }
@@ -47,7 +48,6 @@
 
 @property (nonatomic, assign) CGFloat minScale; //default is 1
 @property (nonatomic, assign) CGFloat maxScale; //default is 10
-
 
 - (id)initWithFrame:(CGRect)frame layers:(NSArray *)layers;
 
@@ -80,6 +80,7 @@
 ////layer
 
 - (DrawLayer *)currentLayer;
+- (CGLayerRef)brushLayer;
 @end
 
 

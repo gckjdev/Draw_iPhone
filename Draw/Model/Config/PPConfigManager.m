@@ -1455,7 +1455,7 @@
 
 + (BOOL)showOpusLinkInShare
 {
-    return GET_UMENG_BOOLVALUE(@"SHOW_OPUS_LINK_IN_SHARE", NO);
+    return GET_UMENG_BOOLVALUE(@"SHOW_OPUS_LINK_IN_SHARE", YES);
 }
 
 + (NSString*)xiaojiWeb
@@ -1551,7 +1551,7 @@
 {
 #ifdef DEBUG
     //    return @"http://192.168.1.12:8100/api/i?";
-    return @"http://58.215.184.18:8699/api/i?";
+//    return @"http://58.215.184.18:8699/api/i?";
     //    return @"http://192.168.100.192:8100/api/i?";
 //    return @"http://localhost:8100/api/i?";
 #endif
@@ -1595,6 +1595,27 @@
 {
     return GET_UMENG_INTVAL(@"GIF_SCALE", 50)*1.0f / 100.0f;
 }
+
++ (int)defaultHomeStyleOldUser
+{
+    if (isLittleGeeAPP()){
+        return GET_UMENG_INTVAL(@"HOMESTYLE_OLD", HOME_STYLE_CLASSICAL);
+    }
+    else{
+        return GET_UMENG_INTVAL(@"HOMESTYLE_OLD", HOME_STYLE_CLASSICAL);
+    }
+}
+
++ (int)defaultHomeStyleNewUser
+{
+    if (isLittleGeeAPP()){
+        return GET_UMENG_INTVAL(@"HOMESTYLE_NEW", HOME_STYLE_CLASSICAL);
+    }
+    else{
+        return GET_UMENG_INTVAL(@"HOMESTYLE_NEW", HOME_STYLE_METRO);
+    }
+}
+
 
 + (NSString*)getDefaultTutorialId
 {
