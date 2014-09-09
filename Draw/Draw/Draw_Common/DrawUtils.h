@@ -111,7 +111,7 @@
 */
 
 + (DrawColor*)drawColorFromPBNoCompressDrawActionC:(Game__PBNoCompressDrawAction*)action;
-
++ (UIImage *)imageByApplyingAlpha:(CGFloat)alpha image:(UIImage*)image;
 
 @end
 

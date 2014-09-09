@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 #import "UIImage+RTTint.h"
+#import "DrawUtils.h"
+#import "UIColor+RGBValues.h"
 
 @class BrushStroke;
 @class BrushDot;
