@@ -2034,8 +2034,7 @@ qqAccessTokenSecret:(NSString*)accessTokenSecret
     NSNumber* value = [ud objectForKey:KEY_HOME_STYLE];
     if (value == nil){
         if ([[UserManager defaultManager] hasXiaojiNumber] ||
-            [[UserManager defaultManager] isOldUserWithoutXiaoji] ||
-            isLittleGeeAPP()){
+            [[UserManager defaultManager] isOldUserWithoutXiaoji]){
             // old user will use classical style by default
             return [PPConfigManager defaultHomeStyleOldUser]; // HOME_STYLE_CLASSICAL;
         }

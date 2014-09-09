@@ -2442,6 +2442,7 @@ static PBStage* defaultPBStageInstance = nil;
 @property BOOL disablePractice;
 @property BOOL directPass;
 @property int32_t passScore;
+@property int32_t topRankType;
 @property int32_t version;
 @end
 
@@ -2633,6 +2634,13 @@ static PBStage* defaultPBStageInstance = nil;
   hasPassScore_ = !!value;
 }
 @synthesize passScore;
+- (BOOL) hasTopRankType {
+  return !!hasTopRankType_;
+}
+- (void) setHasTopRankType:(BOOL) value {
+  hasTopRankType_ = !!value;
+}
+@synthesize topRankType;
 - (BOOL) hasVersion {
   return !!hasVersion_;
 }
@@ -2679,6 +2687,7 @@ static PBStage* defaultPBStageInstance = nil;
     self.disablePractice = NO;
     self.directPass = NO;
     self.passScore = 60;
+    self.topRankType = 0;
     self.version = 0;
   }
   return self;
@@ -2793,6 +2802,9 @@ static PBTutorial* defaultPBTutorialInstance = nil;
   if (self.hasPassScore) {
     [output writeInt32:63 value:self.passScore];
   }
+  if (self.hasTopRankType) {
+    [output writeInt32:64 value:self.topRankType];
+  }
   if (self.hasVersion) {
     [output writeInt32:100 value:self.version];
   }
@@ -2881,6 +2893,9 @@ static PBTutorial* defaultPBTutorialInstance = nil;
   }
   if (self.hasPassScore) {
     size += computeInt32Size(63, self.passScore);
+  }
+  if (self.hasTopRankType) {
+    size += computeInt32Size(64, self.topRankType);
   }
   if (self.hasVersion) {
     size += computeInt32Size(100, self.version);
@@ -3038,6 +3053,9 @@ static PBTutorial* defaultPBTutorialInstance = nil;
   if (other.hasPassScore) {
     [self setPassScore:other.passScore];
   }
+  if (other.hasTopRankType) {
+    [self setTopRankType:other.topRankType];
+  }
   if (other.hasVersion) {
     [self setVersion:other.version];
   }
@@ -3158,6 +3176,10 @@ static PBTutorial* defaultPBTutorialInstance = nil;
       }
       case 504: {
         [self setPassScore:[input readInt32]];
+        break;
+      }
+      case 512: {
+        [self setTopRankType:[input readInt32]];
         break;
       }
       case 800: {
@@ -3577,6 +3599,22 @@ static PBTutorial* defaultPBTutorialInstance = nil;
 - (PBTutorial_Builder*) clearPassScore {
   result.hasPassScore = NO;
   result.passScore = 60;
+  return self;
+}
+- (BOOL) hasTopRankType {
+  return result.hasTopRankType;
+}
+- (int32_t) topRankType {
+  return result.topRankType;
+}
+- (PBTutorial_Builder*) setTopRankType:(int32_t) value {
+  result.hasTopRankType = YES;
+  result.topRankType = value;
+  return self;
+}
+- (PBTutorial_Builder*) clearTopRankType {
+  result.hasTopRankType = NO;
+  result.topRankType = 0;
   return self;
 }
 - (BOOL) hasVersion {

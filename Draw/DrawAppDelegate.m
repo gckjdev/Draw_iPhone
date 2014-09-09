@@ -145,7 +145,7 @@ NSString* GlobalGetTrafficServerURL()
 //    return @"http://192.168.1.8:8100/api/i?";
     
     
-    return @"http://58.215.184.18:8699/api/i?";
+//    return @"http://58.215.184.18:8699/api/i?";
 
 //    return @"http://58.215.184.18:8037/api/i?";
 //    return @"http://192.168.1.198:8100/api/i?";
@@ -492,6 +492,10 @@ NSString* GlobalGetBoardServerURL()
     
     PPDebug(@"<applicationDidEnterBackground>");
     
+    // store user defaults
+    NSUserDefaults* userDefaults = [NSUserDefaults standardUserDefaults];
+    [userDefaults synchronize];
+
     [[ComebackManager defaultManager] registerNotification];
     
     UIApplication* app = [UIApplication sharedApplication];
@@ -500,44 +504,41 @@ NSString* GlobalGetBoardServerURL()
         [app endBackgroundTask:bgTask];
         bgTask = UIBackgroundTaskInvalid;
     }];
+    
+        // update when enter background
+        [MobClick updateOnlineConfig];
+        
+        [[BillboardManager defaultManager] autoUpdate:nil];
+        [[TutorialCoreManager defaultManager] autoUpdate];
 
-    // upload user device info
-    [[UserDeviceService defaultService] uploadUserDeviceInfo:NO];
-    
-    // update when enter background
-    [MobClick updateOnlineConfig];
-    
-    // load config data
-    [[GameConfigDataManager defaultManager] syncData];
-    
-    [[AppTaskManager defaultManager] autoUpdate];
-    
-    // load item data
-    [[GameItemService defaultService] syncData:NULL];
-    [[IAPProductService defaultService] syncData:NULL];
-    [[SKProductService defaultService] syncDataFromIAPService];
-    
-    
-    if ([GameApp isAutoRegister]){
-        [[UserService defaultService] autoRegisteration:nil];
-    }
-    
-    [[UserStatusService defaultService] stop];
-    
-    if ([[UserManager defaultManager] hasUser]) {
-        [[GroupService defaultService] syncGroupRoles];
-        [[GroupService defaultService] syncFollowGroupIds];
-        [[GroupService defaultService] syncFollowTopicIds];
-    }
-    
-    // store user defaults
-    NSUserDefaults* userDefaults = [NSUserDefaults standardUserDefaults];
-    [userDefaults synchronize];
-    
-//    [[GameAdWallService defaultService] queryWallScore];
+        // upload user device info
+        [[UserDeviceService defaultService] uploadUserDeviceInfo:NO];
+        
+        // load config data
+        [[GameConfigDataManager defaultManager] syncData];
+        
+        [[AppTaskManager defaultManager] autoUpdate];
+        
+        // load item data
+        [[GameItemService defaultService] syncData:NULL];
+        [[IAPProductService defaultService] syncData:NULL];
+        [[SKProductService defaultService] syncDataFromIAPService];
+        
+//        if ([GameApp isAutoRegister]){
+//            [[UserService defaultService] autoRegisteration:nil];
+//        }
+        
+        [[UserStatusService defaultService] stop];
+        
+        if ([[UserManager defaultManager] hasUser]) {
+            [[GroupService defaultService] syncGroupRoles];
+            [[GroupService defaultService] syncFollowGroupIds];
+            [[GroupService defaultService] syncFollowTopicIds];
+        }
+        
+        [[GameAdWallService defaultService] queryWallScore];
+        
 
-    [[TutorialCoreManager defaultManager] autoUpdate];
-    [[BillboardManager defaultManager] autoUpdate:nil];
 }
 
 - (void)application:(UIApplication *)application didReceiveLocalNotification:(UILocalNotification*)notification
@@ -577,6 +578,7 @@ NSString* GlobalGetBoardServerURL()
     [[ComebackManager defaultManager] registerNotification];
     
     [[OpusClassInfoManager defaultManager] autoUpdate];
+    
     
 }
 

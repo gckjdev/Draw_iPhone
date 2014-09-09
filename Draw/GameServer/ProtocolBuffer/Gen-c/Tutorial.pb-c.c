@@ -1068,7 +1068,7 @@ const ProtobufCMessageDescriptor game__pbstage__descriptor =
 static const protobuf_c_boolean game__pbtutorial__is_free__default_value = 1;
 static const protobuf_c_boolean game__pbtutorial__direct_pass__default_value = 0;
 static const int32_t game__pbtutorial__pass_score__default_value = 60;
-static const ProtobufCFieldDescriptor game__pbtutorial__field_descriptors[25] =
+static const ProtobufCFieldDescriptor game__pbtutorial__field_descriptors[26] =
 {
   {
     "tutorialId",
@@ -1359,6 +1359,18 @@ static const ProtobufCFieldDescriptor game__pbtutorial__field_descriptors[25] =
     0,NULL,NULL    /* reserved1,reserved2, etc */
   },
   {
+    "topRankType",
+    64,
+    PROTOBUF_C_LABEL_OPTIONAL,
+    PROTOBUF_C_TYPE_INT32,
+    PROTOBUF_C_OFFSETOF(Game__PBTutorial, has_topranktype),
+    PROTOBUF_C_OFFSETOF(Game__PBTutorial, topranktype),
+    NULL,
+    NULL,
+    0,            /* packed */
+    0,NULL,NULL    /* reserved1,reserved2, etc */
+  },
+  {
     "version",
     100,
     PROTOBUF_C_LABEL_OPTIONAL,
@@ -1395,8 +1407,9 @@ static const unsigned game__pbtutorial__field_indices_by_name[] = {
   6,   /* field[6] = tcnDesc */
   3,   /* field[3] = tcnName */
   11,   /* field[11] = thumbImage */
+  24,   /* field[24] = topRankType */
   0,   /* field[0] = tutorialId */
-  24,   /* field[24] = version */
+  25,   /* field[25] = version */
 };
 static const ProtobufCIntRange game__pbtutorial__number_ranges[8 + 1] =
 {
@@ -1407,8 +1420,8 @@ static const ProtobufCIntRange game__pbtutorial__number_ranges[8 + 1] =
   { 40, 17 },
   { 50, 19 },
   { 60, 20 },
-  { 100, 24 },
-  { 0, 25 }
+  { 100, 25 },
+  { 0, 26 }
 };
 const ProtobufCMessageDescriptor game__pbtutorial__descriptor =
 {
@@ -1418,7 +1431,7 @@ const ProtobufCMessageDescriptor game__pbtutorial__descriptor =
   "Game__PBTutorial",
   "game",
   sizeof(Game__PBTutorial),
-  25,
+  26,
   game__pbtutorial__field_descriptors,
   game__pbtutorial__field_indices_by_name,
   8,  game__pbtutorial__number_ranges,

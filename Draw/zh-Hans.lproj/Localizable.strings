@@ -2605,7 +2605,7 @@
 
 "kOfficialContest" = "官方比赛";
 "kGroupContest" = "家族比赛";
-"kGoodOpus" = "精彩作品";
+"kGoodOpus" = "画榜";
 
 "kCreateContest" = "创建比赛";
 "kModifyContest" = "修改比赛";
@@ -2770,7 +2770,7 @@
 "kOpenToLearn" = "开始学习";
 
 
-"kNewHotTitle" = "精彩作品";
+"kNewHotTitle" = "画榜";
 "kConfigNewHot" = "筛选";
 
 "kTutorialDesc" = "教程简介";
@@ -2901,7 +2901,7 @@
 "kMetroIndexButton" = "动态";
 "kMetroDocumentButton" = "草稿";
 "kMetroMessageButton" = "消息";
-"kMetroMoreButton" = "更多";
+"kMetroMoreButton" = "发现";
 
 "kBlankDraw" = "空白绘画";
 "kDrawMode" = "请选择画画模式";
@@ -2942,7 +2942,7 @@
 "kMetroHomePainting" = "画画";
 "kMetroHomeLearning" = "学画画";
 "kMetroHomeForum" = "论坛";
-"kMetroHomeGallery" = "精彩作品";
+"kMetroHomeGallery" = "画榜";
 
 "kSaveAsGif" = "分享回放过程";
 "kCreateGIFProgress" = "生成GIF动图中...%2d%%";

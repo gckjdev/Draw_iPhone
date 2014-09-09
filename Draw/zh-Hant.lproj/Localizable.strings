@@ -2619,7 +2619,7 @@
 
 "kOfficialContest" = "官方比賽";
 "kGroupContest" = "家族比賽";
-"kGoodOpus" = "精彩作品";
+"kGoodOpus" = "画榜";
 
 "kCreateContest" = "創建比賽";
 "kModifyContest" = "修改比賽";
@@ -2808,7 +2808,7 @@
 "kOpenToLearn" = "開始學習";
 
 
-"kNewHotTitle" = "精彩作品";
+"kNewHotTitle" = "画榜";
 "kConfigNewHot" = "篩選";
 
 "kTutorialDesc" = "教程簡介";
@@ -2938,7 +2938,7 @@
 "kMetroIndexButton" = "動態";
 "kMetroDocumentButton" = "草稿";
 "kMetroMessageButton" = "消息";
-"kMetroMoreButton" = "更多";
+"kMetroMoreButton" = "发现";
 
 "kBlankDraw" = "空白繪畫";
 "kDrawMode" = "請選擇畫畫模式";
@@ -2979,7 +2979,7 @@
 "kMetroHomePainting" = "畫畫";
 "kMetroHomeLearning" = "學畫畫";
 "kMetroHomeForum" = "論壇";
-"kMetroHomeGallery" = "精彩作品";
+"kMetroHomeGallery" = "画榜";
 
 //"kMetroIndexButton" = "動態";
 //"kMetroDocumentButton" = "草稿";

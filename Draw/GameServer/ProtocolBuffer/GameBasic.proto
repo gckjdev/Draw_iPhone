@@ -203,6 +203,14 @@ message PBGradient {
     repeated float point = 3;
 }
 
+message PBLayer{
+    required int32 tag = 1;
+    repeated float rectComponent = 2;
+    optional float alpha = 3 [default = 1];
+    optional string name = 4;
+    optional bool hidden = 5;
+}
+
 // internal usage, to store draw data
 message PBDrawAction {
   required int32 type = 1;                      // 0 : draw, 1 : clean draw, 2 : shape 3: change bg with color,  
@@ -240,16 +248,15 @@ message PBDrawAction {
   optional float shadowOffsetY = 16;
   optional int32 shadowColor   = 17;
   optional float shadowBlur    = 18;
- 
- 
+
   optional int32 clipTag = 20; //the id of clip action, 0 for no clip
   optional int32 clipType = 21; //1: Rect, 2: Circle, 3: Multiple Edge Shape 4: Path
 
+  optional int32 layerTag = 23;                     //当前层的Tag
+  optional float layerAlpha = 24[default=1.0];      //当前层的透明度
+  repeated PBLayer changeLayers = 25;               //变化的图层信息（如透明度、隐藏等属性，包括自己的也包括其他的）
 
-  optional int32 layerTag = 23;                     //layer identifier
-  optional float layerAlpha = 24[default=1.0];      //层透明度
-
- //support gradient
+  //support gradient
   optional PBGradient gradient = 30;
   
   //brush

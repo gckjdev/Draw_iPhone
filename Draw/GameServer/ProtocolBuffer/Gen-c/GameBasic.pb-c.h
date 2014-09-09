@@ -21,6 +21,7 @@ typedef struct _Game__PBGameSession Game__PBGameSession;
 typedef struct _Game__PBGameSessionChanged Game__PBGameSessionChanged;
 typedef struct _Game__PBDrawBg Game__PBDrawBg;
 typedef struct _Game__PBGradient Game__PBGradient;
+typedef struct _Game__PBLayer Game__PBLayer;
 typedef struct _Game__PBDrawAction Game__PBDrawAction;
 typedef struct _Game__PBMessage Game__PBMessage;
 typedef struct _Game__PBMessageStat Game__PBMessageStat;
@@ -394,6 +395,23 @@ struct  _Game__PBGradient
     , 0, 0,NULL, 0,NULL }
 
 
+struct  _Game__PBLayer
+{
+  ProtobufCMessage base;
+  int32_t tag;
+  size_t n_rectcomponent;
+  float *rectcomponent;
+  protobuf_c_boolean has_alpha;
+  float alpha;
+  char *name;
+  protobuf_c_boolean has_hidden;
+  protobuf_c_boolean hidden;
+};
+#define GAME__PBLAYER__INIT \
+ { PROTOBUF_C_MESSAGE_INIT (&game__pblayer__descriptor) \
+    , 0, 0,NULL, 0,1, NULL, 0,0 }
+
+
 struct  _Game__PBDrawAction
 {
   ProtobufCMessage base;
@@ -435,6 +453,8 @@ struct  _Game__PBDrawAction
   int32_t layertag;
   protobuf_c_boolean has_layeralpha;
   float layeralpha;
+  size_t n_changelayers;
+  Game__PBLayer **changelayers;
   Game__PBGradient *gradient;
   protobuf_c_boolean has_brushtype;
   int32_t brushtype;
@@ -443,7 +463,7 @@ struct  _Game__PBDrawAction
 };
 #define GAME__PBDRAW_ACTION__INIT \
  { PROTOBUF_C_MESSAGE_INIT (&game__pbdraw_action__descriptor) \
-    , 0, 0,NULL, 0,0, 0,0, 0,0, 0,0, 0,NULL, 0,0, 0,NULL, 0,NULL, 0,0, NULL, 0,0, 0,0, 0,0, 0,0, 0,0, 0,0, 0,0, 0,1, NULL, 0,0, 0,NULL }
+    , 0, 0,NULL, 0,0, 0,0, 0,0, 0,0, 0,NULL, 0,0, 0,NULL, 0,NULL, 0,0, NULL, 0,0, 0,0, 0,0, 0,0, 0,0, 0,0, 0,0, 0,1, 0,NULL, NULL, 0,0, 0,NULL }
 
 
 struct  _Game__PBMessage
@@ -1027,6 +1047,25 @@ Game__PBGradient *
 void   game__pbgradient__free_unpacked
                      (Game__PBGradient *message,
                       ProtobufCAllocator *allocator);
+/* Game__PBLayer methods */
+void   game__pblayer__init
+                     (Game__PBLayer         *message);
+size_t game__pblayer__get_packed_size
+                     (const Game__PBLayer   *message);
+size_t game__pblayer__pack
+                     (const Game__PBLayer   *message,
+                      uint8_t             *out);
+size_t game__pblayer__pack_to_buffer
+                     (const Game__PBLayer   *message,
+                      ProtobufCBuffer     *buffer);
+Game__PBLayer *
+       game__pblayer__unpack
+                     (ProtobufCAllocator  *allocator,
+                      size_t               len,
+                      const uint8_t       *data);
+void   game__pblayer__free_unpacked
+                     (Game__PBLayer *message,
+                      ProtobufCAllocator *allocator);
 /* Game__PBDrawAction methods */
 void   game__pbdraw_action__init
                      (Game__PBDrawAction         *message);
@@ -1464,6 +1503,9 @@ typedef void (*Game__PBDrawBg_Closure)
 typedef void (*Game__PBGradient_Closure)
                  (const Game__PBGradient *message,
                   void *closure_data);
+typedef void (*Game__PBLayer_Closure)
+                 (const Game__PBLayer *message,
+                  void *closure_data);
 typedef void (*Game__PBDrawAction_Closure)
                  (const Game__PBDrawAction *message,
                   void *closure_data);
@@ -1557,6 +1599,7 @@ extern const ProtobufCMessageDescriptor game__pbgame_session__descriptor;
 extern const ProtobufCMessageDescriptor game__pbgame_session_changed__descriptor;
 extern const ProtobufCMessageDescriptor game__pbdraw_bg__descriptor;
 extern const ProtobufCMessageDescriptor game__pbgradient__descriptor;
+extern const ProtobufCMessageDescriptor game__pblayer__descriptor;
 extern const ProtobufCMessageDescriptor game__pbdraw_action__descriptor;
 extern const ProtobufCMessageDescriptor game__pbmessage__descriptor;
 extern const ProtobufCMessageDescriptor game__pbmessage_stat__descriptor;

@@ -849,16 +849,25 @@ static NSDictionary* DEFAULT_MENU_SELECTOR_DICT = nil;
     return HomeMenuTypeDrawDraw;
 }
 
+//+ (UIColor*)getHeaderBackgroundColor
+//{
+//    return OPAQUE_COLOR(236, 84, 46); // default
+//}
+//
+//- (UIColor*)getMainBackgroundColor
+//{
+//    return OPAQUE_COLOR(0, 191, 178); // default
+//}
+
 + (UIColor*)getHeaderBackgroundColor
 {
-    return OPAQUE_COLOR(236, 84, 46); // default
+    return OPAQUE_COLOR(250, 157, 156);
 }
 
 - (UIColor*)getMainBackgroundColor
 {
-    return OPAQUE_COLOR(0, 191, 178); // default
+    return OPAQUE_COLOR(113, 207, 213);
 }
-
 
 
 @end

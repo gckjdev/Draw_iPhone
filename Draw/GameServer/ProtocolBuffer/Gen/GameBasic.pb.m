@@ -6543,6 +6543,366 @@ static PBGradient* defaultPBGradientInstance = nil;
 }
 @end
 
+@interface PBLayer ()
+@property int32_t tag;
+@property (retain) NSMutableArray* mutableRectComponentList;
+@property Float32 alpha;
+@property (retain) NSString* name;
+@property BOOL hidden;
+@end
+
+@implementation PBLayer
+
+- (BOOL) hasTag {
+  return !!hasTag_;
+}
+- (void) setHasTag:(BOOL) value {
+  hasTag_ = !!value;
+}
+@synthesize tag;
+@synthesize mutableRectComponentList;
+- (BOOL) hasAlpha {
+  return !!hasAlpha_;
+}
+- (void) setHasAlpha:(BOOL) value {
+  hasAlpha_ = !!value;
+}
+@synthesize alpha;
+- (BOOL) hasName {
+  return !!hasName_;
+}
+- (void) setHasName:(BOOL) value {
+  hasName_ = !!value;
+}
+@synthesize name;
+- (BOOL) hasHidden {
+  return !!hasHidden_;
+}
+- (void) setHasHidden:(BOOL) value {
+  hasHidden_ = !!value;
+}
+- (BOOL) hidden {
+  return !!hidden_;
+}
+- (void) setHidden:(BOOL) value {
+  hidden_ = !!value;
+}
+- (void) dealloc {
+  self.mutableRectComponentList = nil;
+  self.name = nil;
+  [super dealloc];
+}
+- (id) init {
+  if ((self = [super init])) {
+    self.tag = 0;
+    self.alpha = 1;
+    self.name = @"";
+    self.hidden = NO;
+  }
+  return self;
+}
+static PBLayer* defaultPBLayerInstance = nil;
++ (void) initialize {
+  if (self == [PBLayer class]) {
+    defaultPBLayerInstance = [[PBLayer alloc] init];
+  }
+}
++ (PBLayer*) defaultInstance {
+  return defaultPBLayerInstance;
+}
+- (PBLayer*) defaultInstance {
+  return defaultPBLayerInstance;
+}
+- (NSArray*) rectComponentList {
+  return mutableRectComponentList;
+}
+- (Float32) rectComponentAtIndex:(int32_t) index {
+  id value = [mutableRectComponentList objectAtIndex:index];
+  return [value floatValue];
+}
+- (BOOL) isInitialized {
+  if (!self.hasTag) {
+    return NO;
+  }
+  return YES;
+}
+- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
+  if (self.hasTag) {
+    [output writeInt32:1 value:self.tag];
+  }
+  for (NSNumber* value in self.mutableRectComponentList) {
+    [output writeFloat:2 value:[value floatValue]];
+  }
+  if (self.hasAlpha) {
+    [output writeFloat:3 value:self.alpha];
+  }
+  if (self.hasName) {
+    [output writeString:4 value:self.name];
+  }
+  if (self.hasHidden) {
+    [output writeBool:5 value:self.hidden];
+  }
+  [self.unknownFields writeToCodedOutputStream:output];
+}
+- (int32_t) serializedSize {
+  int32_t size = memoizedSerializedSize;
+  if (size != -1) {
+    return size;
+  }
+
+  size = 0;
+  if (self.hasTag) {
+    size += computeInt32Size(1, self.tag);
+  }
+  {
+    int32_t dataSize = 0;
+    dataSize = 4 * self.mutableRectComponentList.count;
+    size += dataSize;
+    size += 1 * self.mutableRectComponentList.count;
+  }
+  if (self.hasAlpha) {
+    size += computeFloatSize(3, self.alpha);
+  }
+  if (self.hasName) {
+    size += computeStringSize(4, self.name);
+  }
+  if (self.hasHidden) {
+    size += computeBoolSize(5, self.hidden);
+  }
+  size += self.unknownFields.serializedSize;
+  memoizedSerializedSize = size;
+  return size;
+}
++ (PBLayer*) parseFromData:(NSData*) data {
+  return (PBLayer*)[[[PBLayer builder] mergeFromData:data] build];
+}
++ (PBLayer*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (PBLayer*)[[[PBLayer builder] mergeFromData:data extensionRegistry:extensionRegistry] build];
+}
++ (PBLayer*) parseFromInputStream:(NSInputStream*) input {
+  return (PBLayer*)[[[PBLayer builder] mergeFromInputStream:input] build];
+}
++ (PBLayer*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (PBLayer*)[[[PBLayer builder] mergeFromInputStream:input extensionRegistry:extensionRegistry] build];
+}
++ (PBLayer*) parseFromCodedInputStream:(PBCodedInputStream*) input {
+  return (PBLayer*)[[[PBLayer builder] mergeFromCodedInputStream:input] build];
+}
++ (PBLayer*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (PBLayer*)[[[PBLayer builder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] build];
+}
++ (PBLayer_Builder*) builder {
+  return [[[PBLayer_Builder alloc] init] autorelease];
+}
++ (PBLayer_Builder*) builderWithPrototype:(PBLayer*) prototype {
+  return [[PBLayer builder] mergeFrom:prototype];
+}
+- (PBLayer_Builder*) builder {
+  return [PBLayer builder];
+}
+@end
+
+@interface PBLayer_Builder()
+@property (retain) PBLayer* result;
+@end
+
+@implementation PBLayer_Builder
+@synthesize result;
+- (void) dealloc {
+  self.result = nil;
+  [super dealloc];
+}
+- (id) init {
+  if ((self = [super init])) {
+    self.result = [[[PBLayer alloc] init] autorelease];
+  }
+  return self;
+}
+- (PBGeneratedMessage*) internalGetResult {
+  return result;
+}
+- (PBLayer_Builder*) clear {
+  self.result = [[[PBLayer alloc] init] autorelease];
+  return self;
+}
+- (PBLayer_Builder*) clone {
+  return [PBLayer builderWithPrototype:result];
+}
+- (PBLayer*) defaultInstance {
+  return [PBLayer defaultInstance];
+}
+- (PBLayer*) build {
+  [self checkInitialized];
+  return [self buildPartial];
+}
+- (PBLayer*) buildPartial {
+  PBLayer* returnMe = [[result retain] autorelease];
+  self.result = nil;
+  return returnMe;
+}
+- (PBLayer_Builder*) mergeFrom:(PBLayer*) other {
+  if (other == [PBLayer defaultInstance]) {
+    return self;
+  }
+  if (other.hasTag) {
+    [self setTag:other.tag];
+  }
+  if (other.mutableRectComponentList.count > 0) {
+    if (result.mutableRectComponentList == nil) {
+      result.mutableRectComponentList = [NSMutableArray array];
+    }
+    [result.mutableRectComponentList addObjectsFromArray:other.mutableRectComponentList];
+  }
+  if (other.hasAlpha) {
+    [self setAlpha:other.alpha];
+  }
+  if (other.hasName) {
+    [self setName:other.name];
+  }
+  if (other.hasHidden) {
+    [self setHidden:other.hidden];
+  }
+  [self mergeUnknownFields:other.unknownFields];
+  return self;
+}
+- (PBLayer_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input {
+  return [self mergeFromCodedInputStream:input extensionRegistry:[PBExtensionRegistry emptyRegistry]];
+}
+- (PBLayer_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  PBUnknownFieldSet_Builder* unknownFields = [PBUnknownFieldSet builderWithUnknownFields:self.unknownFields];
+  while (YES) {
+    int32_t tag = [input readTag];
+    switch (tag) {
+      case 0:
+        [self setUnknownFields:[unknownFields build]];
+        return self;
+      default: {
+        if (![self parseUnknownField:input unknownFields:unknownFields extensionRegistry:extensionRegistry tag:tag]) {
+          [self setUnknownFields:[unknownFields build]];
+          return self;
+        }
+        break;
+      }
+      case 8: {
+        [self setTag:[input readInt32]];
+        break;
+      }
+      case 21: {
+        [self addRectComponent:[input readFloat]];
+        break;
+      }
+      case 29: {
+        [self setAlpha:[input readFloat]];
+        break;
+      }
+      case 34: {
+        [self setName:[input readString]];
+        break;
+      }
+      case 40: {
+        [self setHidden:[input readBool]];
+        break;
+      }
+    }
+  }
+}
+- (BOOL) hasTag {
+  return result.hasTag;
+}
+- (int32_t) tag {
+  return result.tag;
+}
+- (PBLayer_Builder*) setTag:(int32_t) value {
+  result.hasTag = YES;
+  result.tag = value;
+  return self;
+}
+- (PBLayer_Builder*) clearTag {
+  result.hasTag = NO;
+  result.tag = 0;
+  return self;
+}
+- (NSArray*) rectComponentList {
+  if (result.mutableRectComponentList == nil) {
+    return [NSArray array];
+  }
+  return result.mutableRectComponentList;
+}
+- (Float32) rectComponentAtIndex:(int32_t) index {
+  return [result rectComponentAtIndex:index];
+}
+- (PBLayer_Builder*) replaceRectComponentAtIndex:(int32_t) index with:(Float32) value {
+  [result.mutableRectComponentList replaceObjectAtIndex:index withObject:[NSNumber numberWithFloat:value]];
+  return self;
+}
+- (PBLayer_Builder*) addRectComponent:(Float32) value {
+  if (result.mutableRectComponentList == nil) {
+    result.mutableRectComponentList = [NSMutableArray array];
+  }
+  [result.mutableRectComponentList addObject:[NSNumber numberWithFloat:value]];
+  return self;
+}
+- (PBLayer_Builder*) addAllRectComponent:(NSArray*) values {
+  if (result.mutableRectComponentList == nil) {
+    result.mutableRectComponentList = [NSMutableArray array];
+  }
+  [result.mutableRectComponentList addObjectsFromArray:values];
+  return self;
+}
+- (PBLayer_Builder*) clearRectComponentList {
+  result.mutableRectComponentList = nil;
+  return self;
+}
+- (BOOL) hasAlpha {
+  return result.hasAlpha;
+}
+- (Float32) alpha {
+  return result.alpha;
+}
+- (PBLayer_Builder*) setAlpha:(Float32) value {
+  result.hasAlpha = YES;
+  result.alpha = value;
+  return self;
+}
+- (PBLayer_Builder*) clearAlpha {
+  result.hasAlpha = NO;
+  result.alpha = 1;
+  return self;
+}
+- (BOOL) hasName {
+  return result.hasName;
+}
+- (NSString*) name {
+  return result.name;
+}
+- (PBLayer_Builder*) setName:(NSString*) value {
+  result.hasName = YES;
+  result.name = value;
+  return self;
+}
+- (PBLayer_Builder*) clearName {
+  result.hasName = NO;
+  result.name = @"";
+  return self;
+}
+- (BOOL) hasHidden {
+  return result.hasHidden;
+}
+- (BOOL) hidden {
+  return result.hidden;
+}
+- (PBLayer_Builder*) setHidden:(BOOL) value {
+  result.hasHidden = YES;
+  result.hidden = value;
+  return self;
+}
+- (PBLayer_Builder*) clearHidden {
+  result.hasHidden = NO;
+  result.hidden = NO;
+  return self;
+}
+@end
+
 @interface PBDrawAction ()
 @property int32_t type;
 @property (retain) NSMutableArray* mutablePointsList;
@@ -6564,6 +6924,7 @@ static PBGradient* defaultPBGradientInstance = nil;
 @property int32_t clipType;
 @property int32_t layerTag;
 @property Float32 layerAlpha;
+@property (retain) NSMutableArray* mutableChangeLayersList;
 @property (retain) PBGradient* gradient;
 @property int32_t brushType;
 @property (retain) NSMutableArray* mutableBrushPointWidthList;
@@ -6692,6 +7053,7 @@ static PBGradient* defaultPBGradientInstance = nil;
   hasLayerAlpha_ = !!value;
 }
 @synthesize layerAlpha;
+@synthesize mutableChangeLayersList;
 - (BOOL) hasGradient {
   return !!hasGradient_;
 }
@@ -6713,6 +7075,7 @@ static PBGradient* defaultPBGradientInstance = nil;
   self.mutablePointsXList = nil;
   self.mutablePointsYList = nil;
   self.drawBg = nil;
+  self.mutableChangeLayersList = nil;
   self.gradient = nil;
   self.mutableBrushPointWidthList = nil;
   [super dealloc];
@@ -6780,6 +7143,13 @@ static PBDrawAction* defaultPBDrawActionInstance = nil;
   id value = [mutablePointsYList objectAtIndex:index];
   return [value floatValue];
 }
+- (NSArray*) changeLayersList {
+  return mutableChangeLayersList;
+}
+- (PBLayer*) changeLayersAtIndex:(int32_t) index {
+  id value = [mutableChangeLayersList objectAtIndex:index];
+  return value;
+}
 - (NSArray*) brushPointWidthList {
   return mutableBrushPointWidthList;
 }
@@ -6793,6 +7163,11 @@ static PBDrawAction* defaultPBDrawActionInstance = nil;
   }
   if (self.hasDrawBg) {
     if (!self.drawBg.isInitialized) {
+      return NO;
+    }
+  }
+  for (PBLayer* element in self.changeLayersList) {
+    if (!element.isInitialized) {
       return NO;
     }
   }
@@ -6867,6 +7242,9 @@ static PBDrawAction* defaultPBDrawActionInstance = nil;
   }
   if (self.hasLayerAlpha) {
     [output writeFloat:24 value:self.layerAlpha];
+  }
+  for (PBLayer* element in self.changeLayersList) {
+    [output writeMessage:25 value:element];
   }
   if (self.hasGradient) {
     [output writeMessage:30 value:self.gradient];
@@ -6963,6 +7341,9 @@ static PBDrawAction* defaultPBDrawActionInstance = nil;
   }
   if (self.hasLayerAlpha) {
     size += computeFloatSize(24, self.layerAlpha);
+  }
+  for (PBLayer* element in self.changeLayersList) {
+    size += computeMessageSize(25, element);
   }
   if (self.hasGradient) {
     size += computeMessageSize(30, self.gradient);
@@ -7123,6 +7504,12 @@ static PBDrawAction* defaultPBDrawActionInstance = nil;
   if (other.hasLayerAlpha) {
     [self setLayerAlpha:other.layerAlpha];
   }
+  if (other.mutableChangeLayersList.count > 0) {
+    if (result.mutableChangeLayersList == nil) {
+      result.mutableChangeLayersList = [NSMutableArray array];
+    }
+    [result.mutableChangeLayersList addObjectsFromArray:other.mutableChangeLayersList];
+  }
   if (other.hasGradient) {
     [self mergeGradient:other.gradient];
   }
@@ -7244,6 +7631,12 @@ static PBDrawAction* defaultPBDrawActionInstance = nil;
       }
       case 197: {
         [self setLayerAlpha:[input readFloat]];
+        break;
+      }
+      case 202: {
+        PBLayer_Builder* subBuilder = [PBLayer builder];
+        [input readMessage:subBuilder extensionRegistry:extensionRegistry];
+        [self addChangeLayers:[subBuilder buildPartial]];
         break;
       }
       case 242: {
@@ -7658,6 +8051,35 @@ static PBDrawAction* defaultPBDrawActionInstance = nil;
 - (PBDrawAction_Builder*) clearLayerAlpha {
   result.hasLayerAlpha = NO;
   result.layerAlpha = 1;
+  return self;
+}
+- (NSArray*) changeLayersList {
+  if (result.mutableChangeLayersList == nil) { return [NSArray array]; }
+  return result.mutableChangeLayersList;
+}
+- (PBLayer*) changeLayersAtIndex:(int32_t) index {
+  return [result changeLayersAtIndex:index];
+}
+- (PBDrawAction_Builder*) replaceChangeLayersAtIndex:(int32_t) index with:(PBLayer*) value {
+  [result.mutableChangeLayersList replaceObjectAtIndex:index withObject:value];
+  return self;
+}
+- (PBDrawAction_Builder*) addAllChangeLayers:(NSArray*) values {
+  if (result.mutableChangeLayersList == nil) {
+    result.mutableChangeLayersList = [NSMutableArray array];
+  }
+  [result.mutableChangeLayersList addObjectsFromArray:values];
+  return self;
+}
+- (PBDrawAction_Builder*) clearChangeLayersList {
+  result.mutableChangeLayersList = nil;
+  return self;
+}
+- (PBDrawAction_Builder*) addChangeLayers:(PBLayer*) value {
+  if (result.mutableChangeLayersList == nil) {
+    result.mutableChangeLayersList = [NSMutableArray array];
+  }
+  [result.mutableChangeLayersList addObject:value];
   return self;
 }
 - (BOOL) hasGradient {

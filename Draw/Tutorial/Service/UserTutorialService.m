@@ -735,17 +735,20 @@ static UserTutorialService* _defaultService;
 //    
 //#endif
     
-    if ([Reachability isNetworkOK] == NO){
+//    if ([Reachability isNetworkOK] == NO){
         // network not available, try local data
-        if ([smartData isDataExist]){
-            [self showLearnDraw:fromController userTutorial:userTutorial stageId:stageId stageIndex:stageIndex type:type];
-        }
-        else{
-            POSTMSG(NSLS(@"kDownloadTutorialFailure"));
-        }
-        
+    
+    if ([smartData isDataExist]){
+        [self showLearnDraw:fromController userTutorial:userTutorial stageId:stageId stageIndex:stageIndex type:type];
+        [smartData checkUpdateAndDownload:nil failureBlock:nil];
         return userTutorial;
     }
+    
+//        else{
+//            POSTMSG(NSLS(@"kDownloadTutorialFailure"));
+//        }
+    
+//    }
     
     [fromController showProgressViewWithMessage:NSLS(@"kLoadingStage")];
     [self registerNotification:smartData viewController:fromController];
