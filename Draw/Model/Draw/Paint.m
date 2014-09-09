@@ -322,15 +322,12 @@
         [_hPointList createPointFloatXList:pbDrawActionC->pointsx
                                 floatYList:pbDrawActionC->pointsy];
         
-//        int i = 0;
-//        for (PointNode *point in self.pointNodeList) {
-//            pbDrawActionC->pointsx[i] = point.point.x;
-//            pbDrawActionC->pointsy[i] = point.point.y;
-//            i++;
-//        }
     }
+    
+    // set color
     if (self.penType == Eraser) {
-        pbDrawActionC->bettercolor = [[DrawColor whiteColor] toBetterCompressColor];
+//        pbDrawActionC->bettercolor = [[DrawColor whiteColor] toBetterCompressColor];        
+        pbDrawActionC->bettercolor = [[DrawColor whiteColorWithAlpha:self.color.alpha] toBetterCompressColor];
     }else{
         pbDrawActionC->bettercolor = [self.color toBetterCompressColor];
     }
