@@ -33,6 +33,17 @@ BOOL PBTutorialLevelIsValidValue(PBTutorialLevel value) {
       return NO;
   }
 }
+BOOL PBTutorialTypeIsValidValue(PBTutorialType value) {
+  switch (value) {
+    case PBTutorialTypeTutorialTypeOther:
+    case PBTutorialTypeTutorialTypeLearn:
+    case PBTutorialTypeTutorialTypeRelaxCopy:
+    case PBTutorialTypeTutorialTypeRelaxDraw:
+      return YES;
+    default:
+      return NO;
+  }
+}
 BOOL PBTutorialCategoryIsValidValue(PBTutorialCategory value) {
   switch (value) {
     case PBTutorialCategoryTutorialCategoryNew:
@@ -2432,6 +2443,8 @@ static PBStage* defaultPBStageInstance = nil;
 @property (retain) NSString* thumbImage;
 @property (retain) NSString* dataUrl;
 @property (retain) NSMutableArray* mutableStagesList;
+@property int32_t type;
+@property int32_t drawLevel;
 @property BOOL isFree;
 @property int32_t price;
 @property int32_t priceUnit;
@@ -2443,6 +2456,9 @@ static PBStage* defaultPBStageInstance = nil;
 @property BOOL directPass;
 @property int32_t passScore;
 @property int32_t topRankType;
+@property BOOL unlockAllStage;
+@property BOOL skipReplay;
+@property BOOL skipTips;
 @property int32_t version;
 @end
 
@@ -2539,6 +2555,20 @@ static PBStage* defaultPBStageInstance = nil;
 }
 @synthesize dataUrl;
 @synthesize mutableStagesList;
+- (BOOL) hasType {
+  return !!hasType_;
+}
+- (void) setHasType:(BOOL) value {
+  hasType_ = !!value;
+}
+@synthesize type;
+- (BOOL) hasDrawLevel {
+  return !!hasDrawLevel_;
+}
+- (void) setHasDrawLevel:(BOOL) value {
+  hasDrawLevel_ = !!value;
+}
+@synthesize drawLevel;
 - (BOOL) hasIsFree {
   return !!hasIsFree_;
 }
@@ -2641,6 +2671,42 @@ static PBStage* defaultPBStageInstance = nil;
   hasTopRankType_ = !!value;
 }
 @synthesize topRankType;
+- (BOOL) hasUnlockAllStage {
+  return !!hasUnlockAllStage_;
+}
+- (void) setHasUnlockAllStage:(BOOL) value {
+  hasUnlockAllStage_ = !!value;
+}
+- (BOOL) unlockAllStage {
+  return !!unlockAllStage_;
+}
+- (void) setUnlockAllStage:(BOOL) value {
+  unlockAllStage_ = !!value;
+}
+- (BOOL) hasSkipReplay {
+  return !!hasSkipReplay_;
+}
+- (void) setHasSkipReplay:(BOOL) value {
+  hasSkipReplay_ = !!value;
+}
+- (BOOL) skipReplay {
+  return !!skipReplay_;
+}
+- (void) setSkipReplay:(BOOL) value {
+  skipReplay_ = !!value;
+}
+- (BOOL) hasSkipTips {
+  return !!hasSkipTips_;
+}
+- (void) setHasSkipTips:(BOOL) value {
+  hasSkipTips_ = !!value;
+}
+- (BOOL) skipTips {
+  return !!skipTips_;
+}
+- (void) setSkipTips:(BOOL) value {
+  skipTips_ = !!value;
+}
 - (BOOL) hasVersion {
   return !!hasVersion_;
 }
@@ -2677,6 +2743,8 @@ static PBStage* defaultPBStageInstance = nil;
     self.image = @"";
     self.thumbImage = @"";
     self.dataUrl = @"";
+    self.type = 0;
+    self.drawLevel = 1;
     self.isFree = YES;
     self.price = 0;
     self.priceUnit = 0;
@@ -2688,6 +2756,9 @@ static PBStage* defaultPBStageInstance = nil;
     self.directPass = NO;
     self.passScore = 60;
     self.topRankType = 0;
+    self.unlockAllStage = NO;
+    self.skipReplay = NO;
+    self.skipTips = NO;
     self.version = 0;
   }
   return self;
@@ -2772,6 +2843,12 @@ static PBTutorial* defaultPBTutorialInstance = nil;
   for (PBStage* element in self.stagesList) {
     [output writeMessage:26 value:element];
   }
+  if (self.hasType) {
+    [output writeInt32:27 value:self.type];
+  }
+  if (self.hasDrawLevel) {
+    [output writeInt32:28 value:self.drawLevel];
+  }
   if (self.hasIsFree) {
     [output writeBool:30 value:self.isFree];
   }
@@ -2804,6 +2881,15 @@ static PBTutorial* defaultPBTutorialInstance = nil;
   }
   if (self.hasTopRankType) {
     [output writeInt32:64 value:self.topRankType];
+  }
+  if (self.hasUnlockAllStage) {
+    [output writeBool:65 value:self.unlockAllStage];
+  }
+  if (self.hasSkipReplay) {
+    [output writeBool:66 value:self.skipReplay];
+  }
+  if (self.hasSkipTips) {
+    [output writeBool:67 value:self.skipTips];
   }
   if (self.hasVersion) {
     [output writeInt32:100 value:self.version];
@@ -2864,6 +2950,12 @@ static PBTutorial* defaultPBTutorialInstance = nil;
   for (PBStage* element in self.stagesList) {
     size += computeMessageSize(26, element);
   }
+  if (self.hasType) {
+    size += computeInt32Size(27, self.type);
+  }
+  if (self.hasDrawLevel) {
+    size += computeInt32Size(28, self.drawLevel);
+  }
   if (self.hasIsFree) {
     size += computeBoolSize(30, self.isFree);
   }
@@ -2896,6 +2988,15 @@ static PBTutorial* defaultPBTutorialInstance = nil;
   }
   if (self.hasTopRankType) {
     size += computeInt32Size(64, self.topRankType);
+  }
+  if (self.hasUnlockAllStage) {
+    size += computeBoolSize(65, self.unlockAllStage);
+  }
+  if (self.hasSkipReplay) {
+    size += computeBoolSize(66, self.skipReplay);
+  }
+  if (self.hasSkipTips) {
+    size += computeBoolSize(67, self.skipTips);
   }
   if (self.hasVersion) {
     size += computeInt32Size(100, self.version);
@@ -3023,6 +3124,12 @@ static PBTutorial* defaultPBTutorialInstance = nil;
     }
     [result.mutableStagesList addObjectsFromArray:other.mutableStagesList];
   }
+  if (other.hasType) {
+    [self setType:other.type];
+  }
+  if (other.hasDrawLevel) {
+    [self setDrawLevel:other.drawLevel];
+  }
   if (other.hasIsFree) {
     [self setIsFree:other.isFree];
   }
@@ -3055,6 +3162,15 @@ static PBTutorial* defaultPBTutorialInstance = nil;
   }
   if (other.hasTopRankType) {
     [self setTopRankType:other.topRankType];
+  }
+  if (other.hasUnlockAllStage) {
+    [self setUnlockAllStage:other.unlockAllStage];
+  }
+  if (other.hasSkipReplay) {
+    [self setSkipReplay:other.skipReplay];
+  }
+  if (other.hasSkipTips) {
+    [self setSkipTips:other.skipTips];
   }
   if (other.hasVersion) {
     [self setVersion:other.version];
@@ -3138,6 +3254,14 @@ static PBTutorial* defaultPBTutorialInstance = nil;
         [self addStages:[subBuilder buildPartial]];
         break;
       }
+      case 216: {
+        [self setType:[input readInt32]];
+        break;
+      }
+      case 224: {
+        [self setDrawLevel:[input readInt32]];
+        break;
+      }
       case 240: {
         [self setIsFree:[input readBool]];
         break;
@@ -3180,6 +3304,18 @@ static PBTutorial* defaultPBTutorialInstance = nil;
       }
       case 512: {
         [self setTopRankType:[input readInt32]];
+        break;
+      }
+      case 520: {
+        [self setUnlockAllStage:[input readBool]];
+        break;
+      }
+      case 528: {
+        [self setSkipReplay:[input readBool]];
+        break;
+      }
+      case 536: {
+        [self setSkipTips:[input readBool]];
         break;
       }
       case 800: {
@@ -3441,6 +3577,38 @@ static PBTutorial* defaultPBTutorialInstance = nil;
   [result.mutableStagesList addObject:value];
   return self;
 }
+- (BOOL) hasType {
+  return result.hasType;
+}
+- (int32_t) type {
+  return result.type;
+}
+- (PBTutorial_Builder*) setType:(int32_t) value {
+  result.hasType = YES;
+  result.type = value;
+  return self;
+}
+- (PBTutorial_Builder*) clearType {
+  result.hasType = NO;
+  result.type = 0;
+  return self;
+}
+- (BOOL) hasDrawLevel {
+  return result.hasDrawLevel;
+}
+- (int32_t) drawLevel {
+  return result.drawLevel;
+}
+- (PBTutorial_Builder*) setDrawLevel:(int32_t) value {
+  result.hasDrawLevel = YES;
+  result.drawLevel = value;
+  return self;
+}
+- (PBTutorial_Builder*) clearDrawLevel {
+  result.hasDrawLevel = NO;
+  result.drawLevel = 1;
+  return self;
+}
 - (BOOL) hasIsFree {
   return result.hasIsFree;
 }
@@ -3615,6 +3783,54 @@ static PBTutorial* defaultPBTutorialInstance = nil;
 - (PBTutorial_Builder*) clearTopRankType {
   result.hasTopRankType = NO;
   result.topRankType = 0;
+  return self;
+}
+- (BOOL) hasUnlockAllStage {
+  return result.hasUnlockAllStage;
+}
+- (BOOL) unlockAllStage {
+  return result.unlockAllStage;
+}
+- (PBTutorial_Builder*) setUnlockAllStage:(BOOL) value {
+  result.hasUnlockAllStage = YES;
+  result.unlockAllStage = value;
+  return self;
+}
+- (PBTutorial_Builder*) clearUnlockAllStage {
+  result.hasUnlockAllStage = NO;
+  result.unlockAllStage = NO;
+  return self;
+}
+- (BOOL) hasSkipReplay {
+  return result.hasSkipReplay;
+}
+- (BOOL) skipReplay {
+  return result.skipReplay;
+}
+- (PBTutorial_Builder*) setSkipReplay:(BOOL) value {
+  result.hasSkipReplay = YES;
+  result.skipReplay = value;
+  return self;
+}
+- (PBTutorial_Builder*) clearSkipReplay {
+  result.hasSkipReplay = NO;
+  result.skipReplay = NO;
+  return self;
+}
+- (BOOL) hasSkipTips {
+  return result.hasSkipTips;
+}
+- (BOOL) skipTips {
+  return result.skipTips;
+}
+- (PBTutorial_Builder*) setSkipTips:(BOOL) value {
+  result.hasSkipTips = YES;
+  result.skipTips = value;
+  return self;
+}
+- (PBTutorial_Builder*) clearSkipTips {
+  result.hasSkipTips = NO;
+  result.skipTips = NO;
   return self;
 }
 - (BOOL) hasVersion {

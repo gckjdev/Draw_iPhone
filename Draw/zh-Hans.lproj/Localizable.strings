@@ -2761,7 +2761,7 @@
 "kNoOpus" = "暂无作品";
 
 // 教程
-"kUserTutorialMainTitle" = "学画画";
+"kUserTutorialMainTitle" = "学画";
 "kAddTutorial" = "添加";
 "AllTutorial" = "教程列表";
 "kTutorialInfoTitle" = "教程详情";
@@ -2940,7 +2940,7 @@
 "kConfirmSubmitConquer" = "确认提交本次闯关作品吗？";
 
 "kMetroHomePainting" = "画画";
-"kMetroHomeLearning" = "学画画";
+"kMetroHomeLearning" = "学画";
 "kMetroHomeForum" = "论坛";
 "kMetroHomeGallery" = "画榜";
 
