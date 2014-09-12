@@ -24,15 +24,19 @@ static dispatch_once_t sharedBlurBrushOnceToken;
     return sharedBlurBrush;
 }
 
-- (UIImage*)brushImage:(UIColor *)color
+- (UIImage*)brushImage:(UIColor *)color width:(float)width
 {
-//size暂时用20，考虑传入参数 TODO
-    
     //在context上画出一个渐变园
     UIImage *brushImage;
-    UIGraphicsBeginImageContext(CGSizeMake(20, 20));
+//    UIGraphicsBeginImageContext(CGSizeMake(width, width));
+
+    if ([[UIScreen mainScreen] respondsToSelector:@selector(scale)])
+        UIGraphicsBeginImageContextWithOptions(CGSizeMake(width, width), YES, [UIScreen mainScreen].scale);
+    else
+        UIGraphicsBeginImageContext(CGSizeMake(width, width));
+    
 	CGContextRef ctx = UIGraphicsGetCurrentContext();
-	CGFloat wd = 20 / 2.0f;
+	CGFloat wd = width / 2.0f;
 	CGPoint pt = CGPointMake(wd, wd);
 	CGColorSpaceRef colorspace = CGColorSpaceCreateDeviceRGB();
 	size_t num_locations = 2;

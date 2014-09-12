@@ -76,6 +76,12 @@
 @property (nonatomic, retain) NSNumber *lastLayerTag;
 @property (nonatomic, retain) NSNumber *hasSubmit;
 
+@property (nonatomic, retain) NSNumber *lastEraserWidth;
+@property (nonatomic, retain) NSNumber *lastEraserAlpha;
+@property (nonatomic, retain) NSNumber *lastPenWidth;
+@property (nonatomic, retain) NSNumber *lastPenAlpha;
+@property (nonatomic, retain) NSNumber *gridLineNumber;
+
 - (int)getTargetType;
 - (void)updateDrawData;
 - (NSString *)bgImageFullPath;

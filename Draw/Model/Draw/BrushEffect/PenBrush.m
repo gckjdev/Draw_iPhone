@@ -24,9 +24,12 @@ static dispatch_once_t sharedPenBrushOnceToken;
     return sharedPenBrush;
 }
 
-- (UIImage*)brushImage:(UIColor *)color
+- (UIImage*)brushImage:(UIColor *)color width:(float)width
 {
-    UIImage* brushImage = [UIImage imageNamed:@"brush_ellipse1.png"];
+    UIImage* brushImage = [UIImage imageNamed:@"brush_ellipse"];
+    
+    brushImage = [brushImage imageByScalingAndCroppingForSize:CGSizeMake(width, width)];
+    
     UIImage *tinted = [brushImage rt_tintedImageWithColor:color
                                                     level:1.0f];
     brushImage = tinted;

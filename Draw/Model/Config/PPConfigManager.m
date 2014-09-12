@@ -797,7 +797,7 @@
     // version 4 : support, svg image shape
     // version 5 : support shadow, selector, gradient, input text, layers
     // version 6 : support layers
-    // version 7 : support eraser with alpha
+    // version 7 : support eraser with alpha, add brushes
     // version 8 : ???
     return 7;
 }

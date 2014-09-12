@@ -34,8 +34,9 @@
 
 - (void)updateWithColor:(DrawColor *)color
 {
-    self.drawInfo.penColor = color;
+    self.drawView.shareDrawInfo.penColor = color;
     [self.drawInfo backToLastDrawMode];
+    [self.drawView.shareDrawInfo backToLastDrawMode];
     [self updateToolPanel];
     [self.toolPanel updateRecentColorViewWithColor:color updateModel:YES];
 }

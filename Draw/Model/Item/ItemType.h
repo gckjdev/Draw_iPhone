@@ -64,7 +64,7 @@ typedef enum
     ItemTypeBrushBlur = 1162,
     ItemTypeBrushCrayon = 1163,
     ItemTypeBrushPen = 1164,
-    ItemTypeBrushOil = 1165,
+    ItemTypeBrushPencil = 1165,
     ItemTypeBrushWater = 1166,
     ItemTypeBrushEnd = 1199,
     

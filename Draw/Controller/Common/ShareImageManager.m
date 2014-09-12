@@ -431,6 +431,36 @@ static NSMutableDictionary *colorImageDict;
     return [UIImage imageNamed:@"draw_rubber.png"];
 }
 
+- (UIImage *)brushGouacheImage
+{
+    return [UIImage imageNamed:@"pen_mark@2x"];
+}
+
+- (UIImage *)brushPencilImage
+{
+    return [UIImage imageNamed:@"pen_brush@2x"];
+}
+
+- (UIImage *)brushWaterImage
+{
+    return [UIImage imageNamed:@"pen_brush@2x"];
+}
+
+- (UIImage *)brushPenImage
+{
+    return [UIImage imageNamed:@"pen_brush@2x"];
+}
+
+- (UIImage *)brushBlurImage
+{
+    return [UIImage imageNamed:@"pen_brush@2x"];
+}
+
+- (UIImage *)brushCrayonImage
+{
+    return [UIImage imageNamed:@"pen_brush@2x"];
+}
+
 - (UIImage *)selectedBrushPenImage
 {
     return [UIImage imageNamed:@"selected_pen_brush@2x"];
@@ -455,10 +485,37 @@ static NSMutableDictionary *colorImageDict;
 {
     return [UIImage imageNamed:@"selected_pen_rubber@2x"];
 }
+
+- (UIImage *)brushGouacheSelectedImage
+{
+    return [UIImage imageNamed:@"selected_pen_brush@2x"];
+}
+- (UIImage *)brushPencilSelectedImage
+{
+    return [UIImage imageNamed:@"selected_pen_feather@2x"];
+}
+- (UIImage *)brushWaterSelectedImage
+{
+    return [UIImage imageNamed:@"selected_pen_ice-cream@2x"];
+}
+- (UIImage *)brushPenSelectedImage
+{
+    return [UIImage imageNamed:@"selected_pen_mark@2x"];
+}
+- (UIImage *)brushBlurSelectedImage
+{
+    return [UIImage imageNamed:@"selected_pen_pencil@2x"];
+}
+- (UIImage *)brushCrayonSelectedImage
+{
+    return [UIImage imageNamed:@"selected_pen_pencil@2x"];
+}
+
 - (UIImage *)showEraserImage
 {
     return [UIImage imageNamed:@"eraser_show@2x"];
 }
+
 - (UIImage *)showBrushPenImage
 {
     return [UIImage imageNamed:@"pen_show_brush@2x"];
@@ -477,6 +534,35 @@ static NSMutableDictionary *colorImageDict;
     return [UIImage imageNamed:@"pen_show_mark@2x"];
 }
 - (UIImage *)showPencilPenImage
+{
+    return [UIImage imageNamed:@"pen_show_pencil@2x"];
+}
+
+
+
+
+- (UIImage *)brushPenShowImage
+{
+    return [UIImage imageNamed:@"pen_show_brush@2x"];
+}
+
+- (UIImage *)brushPencilShowImage
+{
+    return [UIImage imageNamed:@"pen_show_feather@2x"];
+}
+- (UIImage *)brushWaterShowImage
+{
+    return [UIImage imageNamed:@"pen_show_ice@2x"];
+}
+- (UIImage *)brushGouacheShowImage
+{
+    return [UIImage imageNamed:@"pen_show_mark@2x"];
+}
+- (UIImage *)brushBlurShowImage
+{
+    return [UIImage imageNamed:@"pen_show_pencil@2x"];
+}
+- (UIImage *)brushCrayonShowImage
 {
     return [UIImage imageNamed:@"pen_show_pencil@2x"];
 }

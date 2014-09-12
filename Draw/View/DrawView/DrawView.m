@@ -37,8 +37,9 @@
 }
 #pragma mark Private Helper function
 - (void)clearRedoStack;
-@property(nonatomic, retain)TouchHandler *touchHandler;
-@property(nonatomic, retain)UITouch *currentTouch;
+
+@property(nonatomic, retain) TouchHandler *touchHandler;
+@property(nonatomic, retain) UITouch *currentTouch;
 
 @end
 
@@ -62,7 +63,6 @@
         [self.delegate drawView:self didFinishDrawAction:action];
     }
 }
-
 
 #pragma mark - paint action
 
@@ -212,6 +212,7 @@
         
         _drawActionList = [[NSMutableArray alloc] init];
         _redoStack = [[PPStack alloc] init];
+        self.shareDrawInfo = [ShareDrawInfo defaultShareDrawInfo];
         
         dlManager = [[DrawLayerManager alloc] initWithView:self];
         
@@ -231,6 +232,7 @@
 
 - (void)dealloc
 {
+    PPRelease(_shareDrawInfo);
     PPRelease(_drawActionList);
     PPRelease(_redoStack);
     PPRelease(_touchHandler);
@@ -276,8 +278,43 @@
     }
 }
 
+- (void)saveShareDrawInfo:(MyPaint*)draft
+{
+    [draft setLastPenAlpha:@(_shareDrawInfo.alpha)];
+    [draft setLastPenWidth:@(_shareDrawInfo.penWidth)];
+    [draft setLastEraserAlpha:@(_shareDrawInfo.eraserAlpha)];
+    [draft setLastEraserWidth:@(_shareDrawInfo.eraserWidth)];
+    [draft setGridLineNumber:@(_shareDrawInfo.gridLineNumber)];
+}
+
+- (void)setShareDrawInfoByDraft:(MyPaint*)draft
+{
+    if ([draft.lastPenWidth floatValue] > 0){
+        [self.shareDrawInfo setPenWidth:[draft.lastPenWidth floatValue]];
+    }
+    
+    if ([draft.lastPenAlpha floatValue] > 0){
+        [self.shareDrawInfo setAlpha:[draft.lastPenAlpha floatValue]];
+    }
+    
+    if ([draft.lastEraserAlpha floatValue] > 0){
+        [self.shareDrawInfo setEraserAlpha:[draft.lastEraserAlpha floatValue]];
+    }
+    
+    if ([draft.lastEraserWidth floatValue] > 0){
+        [self.shareDrawInfo setEraserWidth:[draft.lastEraserWidth floatValue]];
+    }
+    
+    if ([draft.gridLineNumber integerValue] > 0){
+        [self.shareDrawInfo setGridLineNumber:[draft.gridLineNumber integerValue]];
+    }
+}
+
 - (void)showDraft:(MyPaint *)draft
 {
+    // set share draw info here
+    [self setShareDrawInfoByDraft:draft];
+    
     [dlManager updateLayers:draft.layers];
     self.drawActionList = draft.drawActionList;
     [self changeRect:CGRectFromCGSize(draft.canvasSize)];

@@ -113,6 +113,12 @@
 + (DrawColor*)drawColorFromPBNoCompressDrawActionC:(Game__PBNoCompressDrawAction*)action;
 + (UIImage *)imageByApplyingAlpha:(CGFloat)alpha image:(UIImage*)image;
 
++ (UIImage*)createBrushImage:(NSString*)imageName
+                       color:(UIColor*)color
+                  fixedWidth:(BOOL)fixedWidth
+                       width:(float)width;
+
+
 @end
 
 

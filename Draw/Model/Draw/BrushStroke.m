@@ -74,7 +74,7 @@
         self.endDot = [[BrushDot alloc]init];
         
         //get brush image and tint it
-        self.brushImage = [self.brush brushImage:[self.color color]];
+        self.brushImage = [self.brush brushImage:[self.color color] width:width];
         self.brushImageRef = _brushImage.CGImage;
         
         
@@ -354,6 +354,7 @@
 
 - (void)clearMemory
 {
+    [self releaseBrushLayer];
 }
 
 - (CGRect)drawInContext:(CGContextRef)context inRect:(CGRect)rect

@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "UIImage+RTTint.h"
+#import "UIImageExt.h"
 #import "DrawUtils.h"
 #import "UIColor+RGBValues.h"
 
@@ -19,7 +20,7 @@
 #define FIXED_PEN_SIZE 24
 #define INTERPOLATION 4
 
-- (UIImage*)brushImage:(UIColor*)color;
+- (UIImage*)brushImage:(UIColor*)color width:(float)width;
 
 // 笔刷宽度是否每一点可变
 - (BOOL)isWidthFixedSize;
