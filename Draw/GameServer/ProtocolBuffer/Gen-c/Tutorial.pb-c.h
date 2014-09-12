@@ -29,6 +29,12 @@ typedef enum _Game__PBTutorialLevel {
   GAME__PBTUTORIAL_LEVEL__TUTORIAL_LEVEL_NORMAL = 2,
   GAME__PBTUTORIAL_LEVEL__TUTORIAL_LEVEL_HARD = 3
 } Game__PBTutorialLevel;
+typedef enum _Game__PBTutorialType {
+  GAME__PBTUTORIAL_TYPE__TUTORIAL_TYPE_OTHER = 0,
+  GAME__PBTUTORIAL_TYPE__TUTORIAL_TYPE_LEARN = 1,
+  GAME__PBTUTORIAL_TYPE__TUTORIAL_TYPE_RELAX_COPY = 2,
+  GAME__PBTUTORIAL_TYPE__TUTORIAL_TYPE_RELAX_DRAW = 3
+} Game__PBTutorialType;
 typedef enum _Game__PBTutorialCategory {
   GAME__PBTUTORIAL_CATEGORY__TUTORIAL_CATEGORY_NEW = 0,
   GAME__PBTUTORIAL_CATEGORY__TUTORIAL_CATEGORY_MEDIUM = 1,
@@ -156,6 +162,10 @@ struct  _Game__PBTutorial
   char *dataurl;
   size_t n_stages;
   Game__PBStage **stages;
+  protobuf_c_boolean has_type;
+  int32_t type;
+  protobuf_c_boolean has_drawlevel;
+  int32_t drawlevel;
   protobuf_c_boolean has_isfree;
   protobuf_c_boolean isfree;
   protobuf_c_boolean has_price;
@@ -176,12 +186,20 @@ struct  _Game__PBTutorial
   protobuf_c_boolean directpass;
   protobuf_c_boolean has_passscore;
   int32_t passscore;
+  protobuf_c_boolean has_topranktype;
+  int32_t topranktype;
+  protobuf_c_boolean has_unlockallstage;
+  protobuf_c_boolean unlockallstage;
+  protobuf_c_boolean has_skipreplay;
+  protobuf_c_boolean skipreplay;
+  protobuf_c_boolean has_skiptips;
+  protobuf_c_boolean skiptips;
   protobuf_c_boolean has_version;
   int32_t version;
 };
 #define GAME__PBTUTORIAL__INIT \
  { PROTOBUF_C_MESSAGE_INIT (&game__pbtutorial__descriptor) \
-    , NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0,0, 0,NULL, 0,0, NULL, NULL, NULL, 0,NULL, 0,1, 0,0, 0,0, 0,0, 0,0, 0,0, 0,0, 0,0, 0,0, 0,60, 0,0 }
+    , NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0,0, 0,NULL, 0,0, NULL, NULL, NULL, 0,NULL, 0,0, 0,1, 0,1, 0,0, 0,0, 0,0, 0,0, 0,0, 0,0, 0,0, 0,0, 0,60, 0,0, 0,0, 0,0, 0,0, 0,0 }
 
 
 struct  _Game__PBTutorialCore
@@ -468,6 +486,7 @@ typedef void (*Game__PBUserTutorial_Closure)
 /* --- descriptors --- */
 
 extern const ProtobufCEnumDescriptor    game__pbtutorial_level__descriptor;
+extern const ProtobufCEnumDescriptor    game__pbtutorial_type__descriptor;
 extern const ProtobufCEnumDescriptor    game__pbtutorial_category__descriptor;
 extern const ProtobufCEnumDescriptor    game__pbtutorial_image_style__descriptor;
 extern const ProtobufCEnumDescriptor    game__pbscore_engine_type__descriptor;

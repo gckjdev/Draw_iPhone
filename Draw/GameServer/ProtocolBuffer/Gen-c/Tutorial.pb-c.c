@@ -1065,10 +1065,10 @@ const ProtobufCMessageDescriptor game__pbstage__descriptor =
   (ProtobufCMessageInit) game__pbstage__init,
   NULL,NULL,NULL    /* reserved[123] */
 };
+static const int32_t game__pbtutorial__draw_level__default_value = 1;
 static const protobuf_c_boolean game__pbtutorial__is_free__default_value = 1;
-static const protobuf_c_boolean game__pbtutorial__direct_pass__default_value = 0;
 static const int32_t game__pbtutorial__pass_score__default_value = 60;
-static const ProtobufCFieldDescriptor game__pbtutorial__field_descriptors[25] =
+static const ProtobufCFieldDescriptor game__pbtutorial__field_descriptors[31] =
 {
   {
     "tutorialId",
@@ -1239,6 +1239,30 @@ static const ProtobufCFieldDescriptor game__pbtutorial__field_descriptors[25] =
     0,NULL,NULL    /* reserved1,reserved2, etc */
   },
   {
+    "type",
+    27,
+    PROTOBUF_C_LABEL_OPTIONAL,
+    PROTOBUF_C_TYPE_INT32,
+    PROTOBUF_C_OFFSETOF(Game__PBTutorial, has_type),
+    PROTOBUF_C_OFFSETOF(Game__PBTutorial, type),
+    NULL,
+    NULL,
+    0,            /* packed */
+    0,NULL,NULL    /* reserved1,reserved2, etc */
+  },
+  {
+    "drawLevel",
+    28,
+    PROTOBUF_C_LABEL_OPTIONAL,
+    PROTOBUF_C_TYPE_INT32,
+    PROTOBUF_C_OFFSETOF(Game__PBTutorial, has_drawlevel),
+    PROTOBUF_C_OFFSETOF(Game__PBTutorial, drawlevel),
+    NULL,
+    &game__pbtutorial__draw_level__default_value,
+    0,            /* packed */
+    0,NULL,NULL    /* reserved1,reserved2, etc */
+  },
+  {
     "isFree",
     30,
     PROTOBUF_C_LABEL_OPTIONAL,
@@ -1342,7 +1366,7 @@ static const ProtobufCFieldDescriptor game__pbtutorial__field_descriptors[25] =
     PROTOBUF_C_OFFSETOF(Game__PBTutorial, has_directpass),
     PROTOBUF_C_OFFSETOF(Game__PBTutorial, directpass),
     NULL,
-    &game__pbtutorial__direct_pass__default_value,
+    NULL,
     0,            /* packed */
     0,NULL,NULL    /* reserved1,reserved2, etc */
   },
@@ -1355,6 +1379,54 @@ static const ProtobufCFieldDescriptor game__pbtutorial__field_descriptors[25] =
     PROTOBUF_C_OFFSETOF(Game__PBTutorial, passscore),
     NULL,
     &game__pbtutorial__pass_score__default_value,
+    0,            /* packed */
+    0,NULL,NULL    /* reserved1,reserved2, etc */
+  },
+  {
+    "topRankType",
+    64,
+    PROTOBUF_C_LABEL_OPTIONAL,
+    PROTOBUF_C_TYPE_INT32,
+    PROTOBUF_C_OFFSETOF(Game__PBTutorial, has_topranktype),
+    PROTOBUF_C_OFFSETOF(Game__PBTutorial, topranktype),
+    NULL,
+    NULL,
+    0,            /* packed */
+    0,NULL,NULL    /* reserved1,reserved2, etc */
+  },
+  {
+    "unlockAllStage",
+    65,
+    PROTOBUF_C_LABEL_OPTIONAL,
+    PROTOBUF_C_TYPE_BOOL,
+    PROTOBUF_C_OFFSETOF(Game__PBTutorial, has_unlockallstage),
+    PROTOBUF_C_OFFSETOF(Game__PBTutorial, unlockallstage),
+    NULL,
+    NULL,
+    0,            /* packed */
+    0,NULL,NULL    /* reserved1,reserved2, etc */
+  },
+  {
+    "skipReplay",
+    66,
+    PROTOBUF_C_LABEL_OPTIONAL,
+    PROTOBUF_C_TYPE_BOOL,
+    PROTOBUF_C_OFFSETOF(Game__PBTutorial, has_skipreplay),
+    PROTOBUF_C_OFFSETOF(Game__PBTutorial, skipreplay),
+    NULL,
+    NULL,
+    0,            /* packed */
+    0,NULL,NULL    /* reserved1,reserved2, etc */
+  },
+  {
+    "skipTips",
+    67,
+    PROTOBUF_C_LABEL_OPTIONAL,
+    PROTOBUF_C_TYPE_BOOL,
+    PROTOBUF_C_OFFSETOF(Game__PBTutorial, has_skiptips),
+    PROTOBUF_C_OFFSETOF(Game__PBTutorial, skiptips),
+    NULL,
+    NULL,
     0,            /* packed */
     0,NULL,NULL    /* reserved1,reserved2, etc */
   },
@@ -1375,40 +1447,46 @@ static const unsigned game__pbtutorial__field_indices_by_name[] = {
   8,   /* field[8] = categories */
   4,   /* field[4] = cnDesc */
   1,   /* field[1] = cnName */
-  17,   /* field[17] = createDate */
+  19,   /* field[19] = createDate */
   12,   /* field[12] = dataUrl */
-  22,   /* field[22] = directPass */
-  21,   /* field[21] = disablePractice */
-  20,   /* field[20] = disableScore */
+  24,   /* field[24] = directPass */
+  23,   /* field[23] = disablePractice */
+  22,   /* field[22] = disableScore */
+  15,   /* field[15] = drawLevel */
   5,   /* field[5] = enDesc */
   2,   /* field[2] = enName */
   10,   /* field[10] = image */
   9,   /* field[9] = isFeature */
-  14,   /* field[14] = isFree */
-  19,   /* field[19] = isNew */
+  16,   /* field[16] = isFree */
+  21,   /* field[21] = isNew */
   7,   /* field[7] = level */
-  18,   /* field[18] = modifyDate */
-  23,   /* field[23] = passScore */
-  15,   /* field[15] = price */
-  16,   /* field[16] = priceUnit */
+  20,   /* field[20] = modifyDate */
+  25,   /* field[25] = passScore */
+  17,   /* field[17] = price */
+  18,   /* field[18] = priceUnit */
+  28,   /* field[28] = skipReplay */
+  29,   /* field[29] = skipTips */
   13,   /* field[13] = stages */
   6,   /* field[6] = tcnDesc */
   3,   /* field[3] = tcnName */
   11,   /* field[11] = thumbImage */
+  26,   /* field[26] = topRankType */
   0,   /* field[0] = tutorialId */
-  24,   /* field[24] = version */
+  14,   /* field[14] = type */
+  27,   /* field[27] = unlockAllStage */
+  30,   /* field[30] = version */
 };
 static const ProtobufCIntRange game__pbtutorial__number_ranges[8 + 1] =
 {
   { 1, 0 },
   { 10, 4 },
   { 20, 7 },
-  { 30, 14 },
-  { 40, 17 },
-  { 50, 19 },
-  { 60, 20 },
-  { 100, 24 },
-  { 0, 25 }
+  { 30, 16 },
+  { 40, 19 },
+  { 50, 21 },
+  { 60, 22 },
+  { 100, 30 },
+  { 0, 31 }
 };
 const ProtobufCMessageDescriptor game__pbtutorial__descriptor =
 {
@@ -1418,7 +1496,7 @@ const ProtobufCMessageDescriptor game__pbtutorial__descriptor =
   "Game__PBTutorial",
   "game",
   sizeof(Game__PBTutorial),
-  25,
+  31,
   game__pbtutorial__field_descriptors,
   game__pbtutorial__field_indices_by_name,
   8,  game__pbtutorial__number_ranges,
@@ -2086,6 +2164,38 @@ const ProtobufCEnumDescriptor game__pbtutorial_level__descriptor =
   game__pbtutorial_level__enum_values_by_name,
   1,
   game__pbtutorial_level__value_ranges,
+  NULL,NULL,NULL,NULL   /* reserved[1234] */
+};
+const ProtobufCEnumValue game__pbtutorial_type__enum_values_by_number[4] =
+{
+  { "TUTORIAL_TYPE_OTHER", "GAME__PBTUTORIAL_TYPE__TUTORIAL_TYPE_OTHER", 0 },
+  { "TUTORIAL_TYPE_LEARN", "GAME__PBTUTORIAL_TYPE__TUTORIAL_TYPE_LEARN", 1 },
+  { "TUTORIAL_TYPE_RELAX_COPY", "GAME__PBTUTORIAL_TYPE__TUTORIAL_TYPE_RELAX_COPY", 2 },
+  { "TUTORIAL_TYPE_RELAX_DRAW", "GAME__PBTUTORIAL_TYPE__TUTORIAL_TYPE_RELAX_DRAW", 3 },
+};
+static const ProtobufCIntRange game__pbtutorial_type__value_ranges[] = {
+{0, 0},{0, 4}
+};
+const ProtobufCEnumValueIndex game__pbtutorial_type__enum_values_by_name[4] =
+{
+  { "TUTORIAL_TYPE_LEARN", 1 },
+  { "TUTORIAL_TYPE_OTHER", 0 },
+  { "TUTORIAL_TYPE_RELAX_COPY", 2 },
+  { "TUTORIAL_TYPE_RELAX_DRAW", 3 },
+};
+const ProtobufCEnumDescriptor game__pbtutorial_type__descriptor =
+{
+  PROTOBUF_C_ENUM_DESCRIPTOR_MAGIC,
+  "game.PBTutorialType",
+  "PBTutorialType",
+  "Game__PBTutorialType",
+  "game",
+  4,
+  game__pbtutorial_type__enum_values_by_number,
+  4,
+  game__pbtutorial_type__enum_values_by_name,
+  1,
+  game__pbtutorial_type__value_ranges,
   NULL,NULL,NULL,NULL   /* reserved[1234] */
 };
 const ProtobufCEnumValue game__pbtutorial_category__enum_values_by_number[3] =

@@ -60,6 +60,8 @@
 @class PBItemPriceInfo_Builder;
 @class PBKeyValue;
 @class PBKeyValue_Builder;
+@class PBLayer;
+@class PBLayer_Builder;
 @class PBLocalizeString;
 @class PBLocalizeString_Builder;
 @class PBMessage;
@@ -114,6 +116,15 @@ typedef enum {
 } PBTutorialLevel;
 
 BOOL PBTutorialLevelIsValidValue(PBTutorialLevel value);
+
+typedef enum {
+  PBTutorialTypeTutorialTypeOther = 0,
+  PBTutorialTypeTutorialTypeLearn = 1,
+  PBTutorialTypeTutorialTypeRelaxCopy = 2,
+  PBTutorialTypeTutorialTypeRelaxDraw = 3,
+} PBTutorialType;
+
+BOOL PBTutorialTypeIsValidValue(PBTutorialType value);
 
 typedef enum {
   PBTutorialCategoryTutorialCategoryNew = 0,
@@ -706,19 +717,25 @@ BOOL PBUserTutorialStatusIsValidValue(PBUserTutorialStatus value);
 
 @interface PBTutorial : PBGeneratedMessage {
 @private
+  BOOL hasSkipTips_:1;
+  BOOL hasSkipReplay_:1;
+  BOOL hasUnlockAllStage_:1;
   BOOL hasDirectPass_:1;
   BOOL hasDisablePractice_:1;
   BOOL hasDisableScore_:1;
-  BOOL hasIsNew_:1;
   BOOL hasIsFeature_:1;
+  BOOL hasIsNew_:1;
   BOOL hasIsFree_:1;
   BOOL hasVersion_:1;
+  BOOL hasTopRankType_:1;
   BOOL hasPassScore_:1;
   BOOL hasModifyDate_:1;
-  BOOL hasLevel_:1;
   BOOL hasCreateDate_:1;
   BOOL hasPriceUnit_:1;
   BOOL hasPrice_:1;
+  BOOL hasDrawLevel_:1;
+  BOOL hasType_:1;
+  BOOL hasLevel_:1;
   BOOL hasDataUrl_:1;
   BOOL hasThumbImage_:1;
   BOOL hasImage_:1;
@@ -729,19 +746,25 @@ BOOL PBUserTutorialStatusIsValidValue(PBUserTutorialStatus value);
   BOOL hasEnName_:1;
   BOOL hasCnName_:1;
   BOOL hasTutorialId_:1;
+  BOOL skipTips_:1;
+  BOOL skipReplay_:1;
+  BOOL unlockAllStage_:1;
   BOOL directPass_:1;
   BOOL disablePractice_:1;
   BOOL disableScore_:1;
-  BOOL isNew_:1;
   BOOL isFeature_:1;
+  BOOL isNew_:1;
   BOOL isFree_:1;
   int32_t version;
+  int32_t topRankType;
   int32_t passScore;
   int32_t modifyDate;
-  int32_t level;
   int32_t createDate;
   int32_t priceUnit;
   int32_t price;
+  int32_t drawLevel;
+  int32_t type;
+  int32_t level;
   NSString* dataUrl;
   NSString* thumbImage;
   NSString* image;
@@ -767,6 +790,8 @@ BOOL PBUserTutorialStatusIsValidValue(PBUserTutorialStatus value);
 - (BOOL) hasImage;
 - (BOOL) hasThumbImage;
 - (BOOL) hasDataUrl;
+- (BOOL) hasType;
+- (BOOL) hasDrawLevel;
 - (BOOL) hasIsFree;
 - (BOOL) hasPrice;
 - (BOOL) hasPriceUnit;
@@ -777,6 +802,10 @@ BOOL PBUserTutorialStatusIsValidValue(PBUserTutorialStatus value);
 - (BOOL) hasDisablePractice;
 - (BOOL) hasDirectPass;
 - (BOOL) hasPassScore;
+- (BOOL) hasTopRankType;
+- (BOOL) hasUnlockAllStage;
+- (BOOL) hasSkipReplay;
+- (BOOL) hasSkipTips;
 - (BOOL) hasVersion;
 @property (readonly, retain) NSString* tutorialId;
 @property (readonly, retain) NSString* cnName;
@@ -790,6 +819,8 @@ BOOL PBUserTutorialStatusIsValidValue(PBUserTutorialStatus value);
 @property (readonly, retain) NSString* image;
 @property (readonly, retain) NSString* thumbImage;
 @property (readonly, retain) NSString* dataUrl;
+@property (readonly) int32_t type;
+@property (readonly) int32_t drawLevel;
 - (BOOL) isFree;
 @property (readonly) int32_t price;
 @property (readonly) int32_t priceUnit;
@@ -800,6 +831,10 @@ BOOL PBUserTutorialStatusIsValidValue(PBUserTutorialStatus value);
 - (BOOL) disablePractice;
 - (BOOL) directPass;
 @property (readonly) int32_t passScore;
+@property (readonly) int32_t topRankType;
+- (BOOL) unlockAllStage;
+- (BOOL) skipReplay;
+- (BOOL) skipTips;
 @property (readonly) int32_t version;
 - (NSArray*) categoriesList;
 - (int32_t) categoriesAtIndex:(int32_t) index;
@@ -914,6 +949,16 @@ BOOL PBUserTutorialStatusIsValidValue(PBUserTutorialStatus value);
 - (PBTutorial_Builder*) addAllStages:(NSArray*) values;
 - (PBTutorial_Builder*) clearStagesList;
 
+- (BOOL) hasType;
+- (int32_t) type;
+- (PBTutorial_Builder*) setType:(int32_t) value;
+- (PBTutorial_Builder*) clearType;
+
+- (BOOL) hasDrawLevel;
+- (int32_t) drawLevel;
+- (PBTutorial_Builder*) setDrawLevel:(int32_t) value;
+- (PBTutorial_Builder*) clearDrawLevel;
+
 - (BOOL) hasIsFree;
 - (BOOL) isFree;
 - (PBTutorial_Builder*) setIsFree:(BOOL) value;
@@ -963,6 +1008,26 @@ BOOL PBUserTutorialStatusIsValidValue(PBUserTutorialStatus value);
 - (int32_t) passScore;
 - (PBTutorial_Builder*) setPassScore:(int32_t) value;
 - (PBTutorial_Builder*) clearPassScore;
+
+- (BOOL) hasTopRankType;
+- (int32_t) topRankType;
+- (PBTutorial_Builder*) setTopRankType:(int32_t) value;
+- (PBTutorial_Builder*) clearTopRankType;
+
+- (BOOL) hasUnlockAllStage;
+- (BOOL) unlockAllStage;
+- (PBTutorial_Builder*) setUnlockAllStage:(BOOL) value;
+- (PBTutorial_Builder*) clearUnlockAllStage;
+
+- (BOOL) hasSkipReplay;
+- (BOOL) skipReplay;
+- (PBTutorial_Builder*) setSkipReplay:(BOOL) value;
+- (PBTutorial_Builder*) clearSkipReplay;
+
+- (BOOL) hasSkipTips;
+- (BOOL) skipTips;
+- (PBTutorial_Builder*) setSkipTips:(BOOL) value;
+- (PBTutorial_Builder*) clearSkipTips;
 
 - (BOOL) hasVersion;
 - (int32_t) version;

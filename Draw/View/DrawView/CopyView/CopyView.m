@@ -57,7 +57,7 @@
     CopyView *copyView = [[CopyView alloc] initWithFrame:frame];
     UIImageView *contentView = [[UIImageView alloc] initWithFrame:frame];
     [contentView setBackgroundColor:[UIColor clearColor]];
-    contentView.alpha = 0.8;
+    contentView.alpha = 1.0;
     copyView.contentView = contentView;
 
     [superView addSubview:copyView];
@@ -262,12 +262,14 @@
 - (void)userResizableViewDidBeginEditing:(SPUserResizableView *)userResizableView
 {
     PPDebug(@"userResizableViewDidBeginEditing");
+    self.alpha = 0.7f;
 }
 
 // Called when the resizable view receives touchesEnded: or touchesCancelled:
 - (void)userResizableViewDidEndEditing:(SPUserResizableView *)userResizableView
 {
     PPDebug(@"userResizableViewDidEndEditing");
+    self.alpha = 1.0f;
 }
 
 - (void)updateCopyImageView:(UIImage*)image
@@ -335,10 +337,12 @@
         else if ([title isEqualToString:COPY_VIEW_FULL_SCREEN]){
             PPDebug(@"click COPY_VIEW_FULL_SCREEN");
             self.frame = self.superview.bounds;
+            self.alpha = 1.0f;
         }
         else if ([title isEqualToString:COPY_VIEW_DEFAULT_SCREEN]){
             PPDebug(@"click COPY_VIEW_DEFAULT_SCREEN");
             self.frame = CGRectMake(0, 0, COPY_VIEW_DEFAULT_WIDTH, COPY_VIEW_DEFAULT_HEIGHT);
+            self.alpha = 1.0f;
         }
         else if ([title isEqualToString:COPY_VIEW_HELP]){
             // view tips

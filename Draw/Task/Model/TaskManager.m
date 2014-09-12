@@ -202,6 +202,7 @@ static TaskManager* _defaultTaskManager;
     }
     
     if ([PPConfigManager isInReviewVersion] == NO){
+        
         [retList addObject:reviewTask];
         
         // add app task
@@ -234,6 +235,11 @@ static TaskManager* _defaultTaskManager;
                 
             }
         }
+        
+    }
+    else{
+
+        [retList removeObject:vipTask];
         
     }
 

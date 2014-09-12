@@ -15,6 +15,7 @@
 #import "AllTutorialController.h"
 #import "TutorialStageController.h"
 #import "TutorialCoreManager.h"
+#import "SpotHelpView.h"
 
 @interface UserTutorialMainController ()
 
@@ -75,6 +76,42 @@
     
     [[TutorialCoreManager defaultManager] autoUpdate];
 
+    [self showHelpView];
+}
+
+- (void)showHelpView
+{
+//    CGRect frame1 = [CommonTitleView titleView:self.view].frame;
+    //    frame1.origin.x += self.submitButton.superview.frame.origin.x;
+    //    frame1.origin.y += self.submitButton.superview.frame.origin.y;
+//    SpotHelpObject* obj1 = [SpotHelpObject objectWithRect:frame1
+//                                                     text:NSLS(@"kHelpAddTutorial")
+//                                                      dir:(ISIPAD? CRArrowPositionTopRight:CRArrowPositionTopRight)];
+//    
+//    CGRect frame2 = self.pagesContainer.topBarBackgroundColor.frame;
+    //    frame2.origin.x += self.helpButton.superview.frame.origin.x;
+    //    frame2.origin.y += self.helpButton.superview.frame.origin.y;
+//    SpotHelpObject* obj2 = [SpotHelpObject objectWithRect:frame2
+//                                                     text:NSLS(@"kHelpViewInOfflineDrawHelpButtonGuide")
+//                                                      dir:(ISIPAD? CRArrowPositionTopRight:CRArrowPositionTopRight)];
+    
+    //本来spotlight是对targetview内接圆打光，为了改成对外切圆打光，通过几何计算得出调整
+    //临摹框
+//    CGRect frame = self.copyView.frame;
+    //    frame.origin.x += self.copyView.superview.frame.origin.x - 0.2*self.copyView.frame.size.width;
+    //    frame.origin.y += self.copyView.superview.frame.origin.y - 0.2*self.copyView.frame.size.height;
+    //    frame.size.width += 2*0.2*self.copyView.frame.size.width;
+    //    frame.size.height += 2*0.2*self.copyView.frame.size.height;
+    //    SpotHelpObject* obj3 = [SpotHelpObject objectWithRect:frame
+    //                                                     text:NSLS(@"kHelpViewInOfflineDrawCopyViewGuide")
+    //                                                      dir:(ISIPAD?CRArrowPositionTopLeft:CRArrowPositionTopLeft)];
+    //
+//    [SpotHelpView show:self.view
+//          spotHelpList:@[obj1, obj2, obj3]
+//                   key:KEY_LEARN_DRAW_HELP
+//               perUser:YES
+//              callback:callback];
+    
 }
 
 - (void)reloadData

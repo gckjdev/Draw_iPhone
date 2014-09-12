@@ -202,7 +202,12 @@ typedef enum{
 //    [self.titleView setBackButtonSelector:@selector(clickBackButton:)];
     
     [self.chargeButton setTitle:NSLS(@"kCharge") forState:UIControlStateNormal];
+    
     [self.buyVipButton setTitle:NSLS(@"kBuyVip") forState:UIControlStateNormal];
+    if ([PPConfigManager isInReviewVersion]){
+        self.buyVipButton.hidden = YES;
+    }
+    
     [self updateBalance];
     [self updateItemData];
     

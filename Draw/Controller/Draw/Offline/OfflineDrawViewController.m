@@ -1026,16 +1026,22 @@
     else
         */
     if (targetType == TypePracticeDraw){
-        if ([[UserManager defaultManager] isReadLearnDrawHelp]){
+//        if ([[UserManager defaultManager] isReadLearnDrawHelp]){
+//        if ([SpotHelpView isReadHelp:KEY_LEARN_DRAW_HELP perUser:YES]){
+//            // 如果是当前修炼的第一小节，则弹出提示信息，并且是第一次开始草稿，尝试提示第一小节信息
+//            [self showStageFirstChapterTips];
+//        }
+//        else{
+//            [self showHelpView:^{
+//                // 如果是当前修炼的第一小节，则弹出提示信息，并且是第一次开始草稿，尝试提示第一小节信息
+//                [self showStageFirstChapterTips];
+//            }];
+//        }
+
+        [self showHelpView:^{
             // 如果是当前修炼的第一小节，则弹出提示信息，并且是第一次开始草稿，尝试提示第一小节信息
             [self showStageFirstChapterTips];
-        }
-        else{
-            [self showHelpView:^{
-                // 如果是当前修炼的第一小节，则弹出提示信息，并且是第一次开始草稿，尝试提示第一小节信息
-                [self showStageFirstChapterTips];
-            }];
-        }
+        }];
     }
     else{
         [self showHelpView:nil];
@@ -1107,81 +1113,123 @@
     return NO;
 }
 
+
 - (void)showHelpView:(dispatch_block_t)callback
 {
     if ([self isLearnType] == NO){
         return;
     }
     
-    //通过判断user的属性，确定是否已读help
-    if ([[UserManager defaultManager]isReadLearnDrawHelp]){
-        return;
-    }
-    
-    NSMutableArray* spotHelpList = [NSMutableArray array];
-    
-    UIFont* font = AD_FONT(20, 12);
-    
-    //set dirty view for adaptation of attach view which need spot lighting
-    UIView *dirtyView1 = [[[UIView alloc]init] autorelease];
+    //提交按钮
     CGRect frame1 = self.submitButton.frame;
     frame1.origin.x += self.submitButton.superview.frame.origin.x;
     frame1.origin.y += self.submitButton.superview.frame.origin.y;
-    dirtyView1.frame = frame1;
-    SpotHelpObject *obj1=[[SpotHelpObject alloc] initWithSpotlightView:dirtyView1
-                                                                  Text:
-                          NSLS(@"kHelpViewInOfflineDrawSubmitButtonGuide")
-                                                                   Dir:(ISIPAD? CRArrowPositionTopRight:CRArrowPositionTopRight)
-                                                                  Font:font
-                                                             textColor:[UIColor whiteColor]
-                                                          boraderColor:[UIColor whiteColor]
-                                                               bgColor:[UIColor clearColor]];
-    
-    UIView *dirtyView2 = [[[UIView alloc]init] autorelease];
+    SpotHelpObject* obj1 = [SpotHelpObject objectWithRect:frame1
+                                                     text:NSLS(@"kHelpViewInOfflineDrawSubmitButtonGuide")
+                                                      dir:(ISIPAD? CRArrowPositionTopRight:CRArrowPositionTopRight)];
+
+    //帮助按钮
     CGRect frame2 = self.helpButton.frame;
     frame2.origin.x += self.helpButton.superview.frame.origin.x;
     frame2.origin.y += self.helpButton.superview.frame.origin.y;
-    dirtyView2.frame = frame2;
-    SpotHelpObject *obj2=[[SpotHelpObject alloc] initWithSpotlightView:dirtyView2
-                                                                  Text:
-                          NSLS(@"kHelpViewInOfflineDrawHelpButtonGuide")
-                                                                   Dir:(ISIPAD? CRArrowPositionTopRight:CRArrowPositionTopRight)
-                                                                  Font:font
-                                                             textColor:[UIColor whiteColor]
-                                                          boraderColor:[UIColor whiteColor]
-                                                               bgColor:[UIColor clearColor]];
-
-    //dirtyView FOR subview's subview
-    UIView *dirtyView3 = [[[UIView alloc]init] autorelease];
-    CGRect frame = self.copyView.frame;
+    SpotHelpObject* obj2 = [SpotHelpObject objectWithRect:frame2
+                                                     text:NSLS(@"kHelpViewInOfflineDrawHelpButtonGuide")
+                                                      dir:(ISIPAD? CRArrowPositionTopRight:CRArrowPositionTopRight)];
     
     //本来spotlight是对targetview内接圆打光，为了改成对外切圆打光，通过几何计算得出调整
+    //临摹框
+    CGRect frame = self.copyView.frame;
     frame.origin.x += self.copyView.superview.frame.origin.x - 0.2*self.copyView.frame.size.width;
     frame.origin.y += self.copyView.superview.frame.origin.y - 0.2*self.copyView.frame.size.height;
     frame.size.width += 2*0.2*self.copyView.frame.size.width;
     frame.size.height += 2*0.2*self.copyView.frame.size.height;
-    dirtyView3.frame = frame;
-    SpotHelpObject *obj3=[[SpotHelpObject alloc] initWithSpotlightView:dirtyView3
-                                                                  Text:
-                          NSLS(@"kHelpViewInOfflineDrawCopyViewGuide")
-                                                                   Dir:(ISIPAD?CRArrowPositionTopLeft:CRArrowPositionTopLeft)
-                                                                  Font:font
-                                                             textColor:[UIColor whiteColor]
-                                                          boraderColor:[UIColor whiteColor]
-                                                               bgColor:[UIColor clearColor]];
-    [spotHelpList addObject:obj1];
-    [spotHelpList addObject:obj2];
-    [spotHelpList addObject:obj3];
-    
-    [obj1 release];
-    [obj2 release];
-    [obj3 release];
+    SpotHelpObject* obj3 = [SpotHelpObject objectWithRect:frame
+                                                     text:NSLS(@"kHelpViewInOfflineDrawCopyViewGuide")
+                                                      dir:(ISIPAD?CRArrowPositionTopLeft:CRArrowPositionTopLeft)];
     
     [SpotHelpView show:self.view
-          spotHelpList:spotHelpList
+          spotHelpList:@[obj1, obj2, obj3]
+                   key:KEY_LEARN_DRAW_HELP
+               perUser:YES
               callback:callback];
-
+    
 }
+
+//- (void)showHelpView:(dispatch_block_t)callback
+//{
+//    if ([self isLearnType] == NO){
+//        return;
+//    }
+//    
+//    //通过判断user的属性，确定是否已读help
+//    if ([[UserManager defaultManager]isReadLearnDrawHelp]){
+//        return;
+//    }
+//    
+//    NSMutableArray* spotHelpList = [NSMutableArray array];
+//    
+//    UIFont* font = AD_FONT(20, 12);
+//    
+//    //set dirty view for adaptation of attach view which need spot lighting
+//    UIView *dirtyView1 = [[[UIView alloc]init] autorelease];
+//    CGRect frame1 = self.submitButton.frame;
+//    frame1.origin.x += self.submitButton.superview.frame.origin.x;
+//    frame1.origin.y += self.submitButton.superview.frame.origin.y;
+//    dirtyView1.frame = frame1;
+//    SpotHelpObject *obj1=[[SpotHelpObject alloc] initWithSpotlightView:dirtyView1
+//                                                                  Text:
+//                          NSLS(@"kHelpViewInOfflineDrawSubmitButtonGuide")
+//                                                                   Dir:(ISIPAD? CRArrowPositionTopRight:CRArrowPositionTopRight)
+//                                                                  Font:font
+//                                                             textColor:[UIColor whiteColor]
+//                                                          boraderColor:[UIColor whiteColor]
+//                                                               bgColor:[UIColor clearColor]];
+//    
+//    UIView *dirtyView2 = [[[UIView alloc]init] autorelease];
+//    CGRect frame2 = self.helpButton.frame;
+//    frame2.origin.x += self.helpButton.superview.frame.origin.x;
+//    frame2.origin.y += self.helpButton.superview.frame.origin.y;
+//    dirtyView2.frame = frame2;
+//    SpotHelpObject *obj2=[[SpotHelpObject alloc] initWithSpotlightView:dirtyView2
+//                                                                  Text:
+//                          NSLS(@"kHelpViewInOfflineDrawHelpButtonGuide")
+//                                                                   Dir:(ISIPAD? CRArrowPositionTopRight:CRArrowPositionTopRight)
+//                                                                  Font:font
+//                                                             textColor:[UIColor whiteColor]
+//                                                          boraderColor:[UIColor whiteColor]
+//                                                               bgColor:[UIColor clearColor]];
+//
+//    //dirtyView FOR subview's subview
+//    UIView *dirtyView3 = [[[UIView alloc]init] autorelease];
+//    CGRect frame = self.copyView.frame;
+//    
+//    //本来spotlight是对targetview内接圆打光，为了改成对外切圆打光，通过几何计算得出调整
+//    frame.origin.x += self.copyView.superview.frame.origin.x - 0.2*self.copyView.frame.size.width;
+//    frame.origin.y += self.copyView.superview.frame.origin.y - 0.2*self.copyView.frame.size.height;
+//    frame.size.width += 2*0.2*self.copyView.frame.size.width;
+//    frame.size.height += 2*0.2*self.copyView.frame.size.height;
+//    dirtyView3.frame = frame;
+//    SpotHelpObject *obj3=[[SpotHelpObject alloc] initWithSpotlightView:dirtyView3
+//                                                                  Text:
+//                          NSLS(@"kHelpViewInOfflineDrawCopyViewGuide")
+//                                                                   Dir:(ISIPAD?CRArrowPositionTopLeft:CRArrowPositionTopLeft)
+//                                                                  Font:font
+//                                                             textColor:[UIColor whiteColor]
+//                                                          boraderColor:[UIColor whiteColor]
+//                                                               bgColor:[UIColor clearColor]];
+//    [spotHelpList addObject:obj1];
+//    [spotHelpList addObject:obj2];
+//    [spotHelpList addObject:obj3];
+//    
+//    [obj1 release];
+//    [obj2 release];
+//    [obj3 release];
+//    
+//    [SpotHelpView show:self.view
+//          spotHelpList:spotHelpList
+//              callback:callback];
+//
+//}
 
 
 - (void)setDrawBGImage:(UIImage *)image useImageRect:(BOOL)useImageRect
