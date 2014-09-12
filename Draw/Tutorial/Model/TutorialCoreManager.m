@@ -9,7 +9,7 @@
 #import "TutorialCoreManager.h"
 #import "Tutorial.pb.h"
 #import "PPConfigManager.h"
-
+#import "TutorialProtoManager.h"
 @interface TutorialCoreManager()
 
 @property (nonatomic, retain) PPSmartUpdateData* smartData;
@@ -359,6 +359,9 @@ static TutorialCoreManager* _defaultTutorialCoreManager;
 // 创建测试数据
 - (void)createTestData
 {
+    
+
+    
 //    NSString* root = @"/gitdata/Draw_iPhone/Draw/Tutorial/Resource/";
     NSString* root = @"/Users/chaoso/Desktop/gitdata/Draw_iPhone/Draw/Tutorial/Resource/";
     //    NSString *root = @"/Users/Linruin/gitdata/Draw_iPhone/Draw/Tutorial/Resource/";

@@ -6625,6 +6625,18 @@
 		D8D81188199DE66100CC182A /* TwoInputFieldViewStyle2~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = D8D81182199DE66100CC182A /* TwoInputFieldViewStyle2~ipad.xib */; };
 		D8D81189199DE66100CC182A /* TwoInputFieldViewStyle2~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = D8D81182199DE66100CC182A /* TwoInputFieldViewStyle2~ipad.xib */; };
 		D8D8118A199DE66100CC182A /* TwoInputFieldViewStyle2~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = D8D81182199DE66100CC182A /* TwoInputFieldViewStyle2~ipad.xib */; };
+		D8E63EE119C13BE500EB213E /* TutorialProtoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D8E63EE019C13BE500EB213E /* TutorialProtoModel.m */; };
+		D8E63EE219C13BE500EB213E /* TutorialProtoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D8E63EE019C13BE500EB213E /* TutorialProtoModel.m */; };
+		D8E63EE319C13BE500EB213E /* TutorialProtoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D8E63EE019C13BE500EB213E /* TutorialProtoModel.m */; };
+		D8E63EE419C13BE500EB213E /* TutorialProtoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D8E63EE019C13BE500EB213E /* TutorialProtoModel.m */; };
+		D8E63EEA19C1751A00EB213E /* TutorialProtoManager.m in Sources */ = {isa = PBXBuildFile; fileRef = D8E63EE919C1751A00EB213E /* TutorialProtoManager.m */; };
+		D8E63EEB19C1751A00EB213E /* TutorialProtoManager.m in Sources */ = {isa = PBXBuildFile; fileRef = D8E63EE919C1751A00EB213E /* TutorialProtoManager.m */; };
+		D8E63EEC19C1751A00EB213E /* TutorialProtoManager.m in Sources */ = {isa = PBXBuildFile; fileRef = D8E63EE919C1751A00EB213E /* TutorialProtoManager.m */; };
+		D8E63EED19C1751A00EB213E /* TutorialProtoManager.m in Sources */ = {isa = PBXBuildFile; fileRef = D8E63EE919C1751A00EB213E /* TutorialProtoManager.m */; };
+		D8E63EF019C176F100EB213E /* tutorialList.json in Resources */ = {isa = PBXBuildFile; fileRef = D8E63EEF19C176F100EB213E /* tutorialList.json */; };
+		D8E63EF119C176F100EB213E /* tutorialList.json in Resources */ = {isa = PBXBuildFile; fileRef = D8E63EEF19C176F100EB213E /* tutorialList.json */; };
+		D8E63EF219C176F100EB213E /* tutorialList.json in Resources */ = {isa = PBXBuildFile; fileRef = D8E63EEF19C176F100EB213E /* tutorialList.json */; };
+		D8E63EF319C176F100EB213E /* tutorialList.json in Resources */ = {isa = PBXBuildFile; fileRef = D8E63EEF19C176F100EB213E /* tutorialList.json */; };
 		D8F70B4B19935B0800B81795 /* BrickView.m in Sources */ = {isa = PBXBuildFile; fileRef = D8F70B4A19935B0800B81795 /* BrickView.m */; };
 		D8F70B4C19935B0800B81795 /* BrickView.m in Sources */ = {isa = PBXBuildFile; fileRef = D8F70B4A19935B0800B81795 /* BrickView.m */; };
 		D8F70B4D19935B0800B81795 /* BrickView.m in Sources */ = {isa = PBXBuildFile; fileRef = D8F70B4A19935B0800B81795 /* BrickView.m */; };
@@ -11053,6 +11065,11 @@
 		D8D8117C199DD97200CC182A /* TwoInputFieldViewStyle2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TwoInputFieldViewStyle2.m; sourceTree = "<group>"; };
 		D8D81181199DE66100CC182A /* TwoInputFieldViewStyle2.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TwoInputFieldViewStyle2.xib; sourceTree = "<group>"; };
 		D8D81182199DE66100CC182A /* TwoInputFieldViewStyle2~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "TwoInputFieldViewStyle2~ipad.xib"; sourceTree = "<group>"; };
+		D8E63EDF19C13BE500EB213E /* TutorialProtoModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TutorialProtoModel.h; sourceTree = "<group>"; };
+		D8E63EE019C13BE500EB213E /* TutorialProtoModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TutorialProtoModel.m; sourceTree = "<group>"; };
+		D8E63EE819C1751A00EB213E /* TutorialProtoManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TutorialProtoManager.h; sourceTree = "<group>"; };
+		D8E63EE919C1751A00EB213E /* TutorialProtoManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TutorialProtoManager.m; sourceTree = "<group>"; };
+		D8E63EEF19C176F100EB213E /* tutorialList.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = tutorialList.json; sourceTree = "<group>"; };
 		D8F70B4919935B0800B81795 /* BrickView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BrickView.h; sourceTree = "<group>"; };
 		D8F70B4A19935B0800B81795 /* BrickView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BrickView.m; sourceTree = "<group>"; };
 		D8F70B4F1993894800B81795 /* MetroHomeController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MetroHomeController.xib; sourceTree = "<group>"; };
@@ -15554,6 +15571,10 @@
 				CA2A28E9195C1EC000A97478 /* UserTutorialManager.m */,
 				CA315B40195E5EB700AB800D /* PBTutorial+Extend.h */,
 				CA315B41195E5EB700AB800D /* PBTutorial+Extend.m */,
+				D8E63EDF19C13BE500EB213E /* TutorialProtoModel.h */,
+				D8E63EE019C13BE500EB213E /* TutorialProtoModel.m */,
+				D8E63EE819C1751A00EB213E /* TutorialProtoManager.h */,
+				D8E63EE919C1751A00EB213E /* TutorialProtoManager.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -15561,6 +15582,7 @@
 		CA2A28A7195C120600A97478 /* Resource */ = {
 			isa = PBXGroup;
 			children = (
+				D8E63EEE19C176D300EB213E /* tutorialList */,
 				D8AA04251974CA6400083651 /* beginPlayGame(big).png */,
 				D8AA04261974CA6400083651 /* beginPlayGame(little).png */,
 				D8BF373519713A5900ACEFCA /* daguanka.png */,
@@ -18605,6 +18627,14 @@
 			path = gif;
 			sourceTree = "<group>";
 		};
+		D8E63EEE19C176D300EB213E /* tutorialList */ = {
+			isa = PBXGroup;
+			children = (
+				D8E63EEF19C176F100EB213E /* tutorialList.json */,
+			);
+			name = tutorialList;
+			sourceTree = "<group>";
+		};
 		D8F70B4819935AD100B81795 /* MainBox */ = {
 			isa = PBXGroup;
 			children = (
@@ -19418,6 +19448,7 @@
 				D82540F619650A1C00C876C3 /* tutorial_core_version.txt in Resources */,
 				A461B736174CBAA70088B061 /* GameItemDetailView.xib in Resources */,
 				A461B737174CBAA70088B061 /* ChargeController.xib in Resources */,
+				D8E63EF219C176F100EB213E /* tutorialList.json in Resources */,
 				A461B738174CBAA70088B061 /* ChargeCell.xib in Resources */,
 				A461B739174CBAA70088B061 /* BuyItemView.xib in Resources */,
 				A461B73A174CBAA70088B061 /* GiftDetailView.xib in Resources */,
@@ -20333,6 +20364,7 @@
 				C28A9DAA1738F04B007A819F /* RankView.xib in Resources */,
 				C28A9DAB1738F04B007A819F /* RankFirstView.xib in Resources */,
 				C28A9DAC1738F04B007A819F /* RankSecondView.xib in Resources */,
+				D8E63EF119C176F100EB213E /* tutorialList.json in Resources */,
 				D86D7CD41994C87B00D64C18 /* caogao.png in Resources */,
 				C28A9DAD1738F04B007A819F /* TopPlayerView.xib in Resources */,
 				C28A9DAE1738F04B007A819F /* RankFirstView~ipad.xib in Resources */,
@@ -21939,6 +21971,7 @@
 				A4D8FB8517DB08170085061F /* room_seat_bg_5@2x.png in Resources */,
 				A4D8FB8917DB08170085061F /* room_seat_bg_6@2x.png in Resources */,
 				A4D8FB8D17DB08170085061F /* balance_bg@2x.png in Resources */,
+				D8E63EF019C176F100EB213E /* tutorialList.json in Resources */,
 				A4D8FB9517DB08170085061F /* item_promotion_bg@2x.png in Resources */,
 				A4D8FB9917DB08170085061F /* give_item_detail_bg@2x.png in Resources */,
 				A4D8FBA117DB08170085061F /* item_add@2x.png in Resources */,
@@ -23201,6 +23234,7 @@
 				A4D8FFD217DB089C0085061F /* zjh_home_charge@2x.png in Resources */,
 				A4D8FFD617DB089C0085061F /* zjh_home_charge_bg@2x.png in Resources */,
 				D89B27C0198233780035BE5F /* TipsPageViewController~ipad.xib in Resources */,
+				D8E63EF319C176F100EB213E /* tutorialList.json in Resources */,
 				A4D8FFDA17DB089C0085061F /* zjh_home_freecoin_bg@2x.png in Resources */,
 				A4D8FFDE17DB089C0085061F /* zjh_home_header_bg@2x.png in Resources */,
 				A4D8FFE217DB089C0085061F /* zjh_home_header_foot@2x.png in Resources */,
@@ -24060,6 +24094,7 @@
 				A461B348174CBAA70088B061 /* VersionUpdateView.m in Sources */,
 				A4B60AB819B6BC1800C300D5 /* PenBrush.m in Sources */,
 				A461B349174CBAA70088B061 /* DrawHolderView.m in Sources */,
+				D8E63EE319C13BE500EB213E /* TutorialProtoModel.m in Sources */,
 				A461B34A174CBAA70088B061 /* RoundPercentageView.m in Sources */,
 				A461B34B174CBAA70088B061 /* CommonAdWallService.m in Sources */,
 				A461B34C174CBAA70088B061 /* LimeiAdWallService.m in Sources */,
@@ -24196,6 +24231,7 @@
 				A499733217783E3F00B01EBE /* SearchResultView.m in Sources */,
 				A499733317783EB600B01EBE /* GoogleCustomSearchService.m in Sources */,
 				A499733417783EB600B01EBE /* GoogleCustomSearchNetworkRequest.m in Sources */,
+				D8E63EEC19C1751A00EB213E /* TutorialProtoManager.m in Sources */,
 				A499733517783EB600B01EBE /* ImageSearchResult.m in Sources */,
 				A499733617783EC200B01EBE /* AutocompletionTableView.m in Sources */,
 				A467BBAC177844DB00455E3A /* OpusDownloadService.m in Sources */,
@@ -25234,6 +25270,7 @@
 				A47896EA1995BB2400185220 /* SpotHelpView.m in Sources */,
 				A4158675182DF6D1007FCB16 /* StrokeLabel.m in Sources */,
 				EA1BD64E182E26A6000E5364 /* Group.pb.m in Sources */,
+				D8E63EE219C13BE500EB213E /* TutorialProtoModel.m in Sources */,
 				CA9AAF1118321621002DBAA5 /* SingGuessController.m in Sources */,
 				CA9AAF1D18321621002DBAA5 /* SingHomeController.m in Sources */,
 				CA9AAF2918321621002DBAA5 /* SingController.m in Sources */,
@@ -25323,6 +25360,7 @@
 				A4EA9357185B0144004BB69D /* SingHotCell.m in Sources */,
 				CAA581C8197BF78C00599740 /* HistogramImageSimilarity.mm in Sources */,
 				EA9289B61864360F0064A1AC /* UIViewController+BGImage.m in Sources */,
+				D8E63EEB19C1751A00EB213E /* TutorialProtoManager.m in Sources */,
 				A4BE2264186550D000FE2997 /* CellManager.m in Sources */,
 				A4BE226D18657D9700FE2997 /* NormalHotCell.m in Sources */,
 				A434171F18711AFB008D0A2B /* ContestCell.m in Sources */,
@@ -26120,6 +26158,7 @@
 				EA8CADE118288CAF003149FE /* GroupService.m in Sources */,
 				EA8CADE818288D32003149FE /* DrawError.m in Sources */,
 				EA8CADEE1828A646003149FE /* GroupPermission.m in Sources */,
+				D8E63EE119C13BE500EB213E /* TutorialProtoModel.m in Sources */,
 				EA1BD62E182DDCB1000E5364 /* GroupHomeController.m in Sources */,
 				EA1BD63C182DE6DD000E5364 /* CreateGroupController.m in Sources */,
 				EA1BD646182DEB0B000E5364 /* GroupManager.m in Sources */,
@@ -26209,6 +26248,7 @@
 				A4EA9356185B0144004BB69D /* SingHotCell.m in Sources */,
 				CAA581C7197BF78B00599740 /* HistogramImageSimilarity.mm in Sources */,
 				EA9289B51864360F0064A1AC /* UIViewController+BGImage.m in Sources */,
+				D8E63EEA19C1751A00EB213E /* TutorialProtoManager.m in Sources */,
 				A4BE2263186550D000FE2997 /* CellManager.m in Sources */,
 				A4BE226C18657D9700FE2997 /* NormalHotCell.m in Sources */,
 				A434171E18711AFB008D0A2B /* ContestCell.m in Sources */,
@@ -26721,6 +26761,7 @@
 				EA411A7E176066F500DA72D0 /* TouchHandler.m in Sources */,
 				EA411A7F176066F500DA72D0 /* CacheService.m in Sources */,
 				EA411A82176066F500DA72D0 /* GestureRecognizerManager.m in Sources */,
+				D8E63EE419C13BE500EB213E /* TutorialProtoModel.m in Sources */,
 				D8B58B28197CEE090088E5F7 /* SGFocusImageFrame.m in Sources */,
 				EA411A83176066F500DA72D0 /* VersionUpdateView.m in Sources */,
 				EA411A84176066F500DA72D0 /* DrawHolderView.m in Sources */,
@@ -26849,6 +26890,7 @@
 				EA46F39B1778551500D8D349 /* GalleryController.m in Sources */,
 				EA46F39C177855B000D8D349 /* GalleryService.m in Sources */,
 				EA46F39D1778563D00D8D349 /* SearchPhotoController.m in Sources */,
+				D8E63EED19C1751A00EB213E /* TutorialProtoManager.m in Sources */,
 				EA46F39E1778567D00D8D349 /* AutocompletionTableView.m in Sources */,
 				EA46F39F177856A200D8D349 /* PhotoEditView.m in Sources */,
 				EA46F3A0177856B200D8D349 /* SearchPhotoResultController.m in Sources */,
