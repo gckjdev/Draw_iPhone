@@ -15,6 +15,20 @@ enum PBTutorialLevel{
     TUTORIAL_LEVEL_HARD = 3;
 }
 
+enum PBTutorialType{
+    TUTORIAL_TYPE_OTHER = 0;
+    TUTORIAL_TYPE_LEARN = 1;            // 教程
+    TUTORIAL_TYPE_RELAX_COPY = 2;       // 休闲临摹
+    TUTORIAL_TYPE_RELAX_DRAW = 3;       // 二次创作
+}
+
+enum PBTutorialDrawLevel{
+    TUTORIAL_DRAW_LEVEL_1 = 1;
+    TUTORIAL_DRAW_LEVEL_2 = 2;
+    TUTORIAL_DRAW_LEVEL_3 = 3;
+}
+
+
 enum PBTutorialCategory{
     TUTORIAL_CATEGORY_NEW = 0;
     TUTORIAL_CATEGORY_MEDIUM = 1;
@@ -137,6 +151,9 @@ message PBTutorial
     optional string thumbImage = 24;                // 小图片
     optional string dataUrl = 25;                   // 教程包的下载文件名
     repeated PBStage stages = 26;                   // 教程的关卡的基础信息
+    
+    optional int32  type = 27;                      // 主题包类型，参考PBTutorialType
+    optional int32  drawLevel = 28[default=1];      // 画画难度星级，取值范围从1-3
 
     optional bool   isFree = 30[default=true];
     optional int32  price = 31;
@@ -147,11 +164,14 @@ message PBTutorial
     
     optional bool   isNew = 50;                     // 是否最近推出
     
-    optional bool   disableScore = 60;              // 是否不用打分（比如娱乐教程可不打分，本项设置为true）
-    optional bool   disablePractice = 61;           // 是否不用修炼（比如娱乐教程可不修炼，本项设置为true）
-    optional bool   directPass = 62[default=false]; // 每一关是否直接通过（比如娱乐教程可直接过关，本项设置为true）
+    optional bool   disableScore = 60;              // 是否不用打分（如娱乐教程可不打分，本项设置为true）
+    optional bool   disablePractice = 61;           // 是否不用修炼（如娱乐教程可不修炼，本项设置为true）
+    optional bool   directPass = 62;                // 每一关是否直接通过（比如娱乐教程可直接过关，本项设置为true）
     optional int32  passScore = 63[default=60];     // 每一关的过关分数（默认60分过关）
-    optional int32  topRankType = 64;               // 排行榜方式：0，根据比对打分；1：根据默认画榜计分方式打分
+    optional int32  topRankType = 64;               // 排行榜方式：0，根据临摹相似度打分；1：根据人气打分
+    optional bool   unlockAllStage = 65;            // 是否可以解锁所有关卡，无需闯关
+    optional bool   skipReplay = 66;                 // 修炼时候，是否跳过回放教程（比如涂色教程，无需回放，直接进入，显示知识点即可）
+    optional bool   skipTips = 67;                   // 修炼时候，是否跳过提示
 
     optional int32  version = 100;                  // 教程文件版本
 }

@@ -2768,7 +2768,7 @@
 //"kEditOpusClass" = "設置作品分類/標籤";
 //
 //// TODO 繁体
-//"kUserTutorialMainTitle" = "學畫畫";
+//"kUserTutorialMainTitle" = "學畫";
 //"kAddTutorial" = "添加";
 //"AllTutorial" = "添加教程";
 //
@@ -2977,9 +2977,9 @@
 "kConfirmSubmitConquer" = "確認提交本次闖關作品嗎？";
 
 "kMetroHomePainting" = "畫畫";
-"kMetroHomeLearning" = "學畫畫";
+"kMetroHomeLearning" = "學畫";
 "kMetroHomeForum" = "論壇";
-"kMetroHomeGallery" = "画榜";
+"kMetroHomeGallery" = "畫榜";
 
 //"kMetroIndexButton" = "動態";
 //"kMetroDocumentButton" = "草稿";

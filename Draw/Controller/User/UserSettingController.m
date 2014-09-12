@@ -1048,15 +1048,21 @@ SET_CELL_BG_IN_CONTROLLER;
         }
         else if (row == rowOfCustomHomeBg) {
             [[self backgroundPicker]showSelectionView:self delegate:nil selectedImageBlock:^(UIImage *image) {
+                
+                [[UserManager defaultManager] setHomeStyle:HOME_STYLE_CLASSICAL];
+                
                 if ([[UserManager defaultManager] setPageBg:image forKey:HOME_BG_KEY]) {
                     [[NSNotificationCenter defaultCenter] postNotificationName:UPDATE_HOME_BG_NOTIFICATION_KEY object:nil];                    
                     POSTMSG(NSLS(@"kCustomHomeBgSucc"));
                 }
+                
             } didSetDefaultBlock:^{
+
                 if ([[UserManager defaultManager] resetPageBgforKey:HOME_BG_KEY]) {
                     [[NSNotificationCenter defaultCenter] postNotificationName:UPDATE_HOME_BG_NOTIFICATION_KEY object:nil];
                     POSTMSG(NSLS(@"kResetCustomHomeBgSucc"));
                 }
+                
             } title:NSLS(@"kCustomHomeBg") hasRemoveOption:YES canTakePhoto:YES userOriginalImage:YES];
         }
     }
