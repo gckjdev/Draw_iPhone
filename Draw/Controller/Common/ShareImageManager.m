@@ -447,6 +447,10 @@ static NSMutableDictionary *colorImageDict;
 {
     return [UIImage imageNamed:@"selected_pen_mark@2x"];
 }
+- (UIImage *)selectedWaterColorImage
+{
+    return [UIImage imageNamed:@"selected_pen_mark@2x"];
+}
 - (UIImage *)selectedPencilImage
 {
     return [UIImage imageNamed:@"selected_pen_pencil@2x"];

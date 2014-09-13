@@ -74,7 +74,7 @@
         self.endDot = [[BrushDot alloc]init];
         
         //get brush image and tint it
-        self.brushImage = [self.brush brushImage:[self.color color]];
+        self.brushImage = [self.brush brushImage:[self.color color] Width:self.width];
         self.brushImageRef = _brushImage.CGImage;
         
         
@@ -218,13 +218,8 @@
         _beginDot.width = _tempWidth;
         _endDot.width = _tempWidth;
     
-        
         // draw the first point  && add it to point list 
         [_hPointList addPoint:_endDot.x y:_endDot.y width:_endDot.width];
-        CGRect rect = CGRectMake(_endDot.x - _endDot.width/2, _endDot.y - _endDot.width/2, _endDot.width, _endDot.width);
-        CGImageRef brushImageRef = [self brushImageRef];
-//        CGContextSetAlpha(layerContext, [self.color alpha]);
-        CGContextDrawImage(layerContext, rect, brushImageRef);
     }
     else{
         //重采样定位第一点
@@ -368,7 +363,9 @@
     if (_brushLayer != NULL){
         
 //        CGContextSetAlpha(context, [self.color alpha]);
+
         CGContextDrawLayerAtPoint(context, CGPointZero, _brushLayer);
+        
     }
 //    else if (_finalImageData){
 ////        [_finalImage drawAtPoint:CGPointZero];
@@ -391,6 +388,7 @@
         }
         
         CGContextDrawLayerAtPoint(context, CGPointZero, _brushLayer);
+
 //        CGLayerRelease(_brushLayer);
 //        _brushLayer = NULL;
     }
@@ -441,14 +439,20 @@
 
 - (void)finishAddPoint
 {
-    // create final image
-//    if (_brushLayer != NULL){
-    
-//        [self createImageFromLayer];
-        
-//        CGLayerRelease(_brushLayer);
-//        _brushLayer = NULL;
-//    }
+    //特殊处理，在采样点过少（只有一两个，无法进行贝塞尔插值时),直接显示单个采样点
+    if(_hPointList.count == 1 || _hPointList.count == 2)
+    {
+        CGFloat singleDotX,singleDotY,singleDotW;
+        singleDotX = [_hPointList getPointX:0];
+        singleDotY = [_hPointList getPointY:0];
+        singleDotW = [_hPointList getPointWidth:0];
+        CGContextRef layerContext = CGLayerGetContext(_brushLayer);
+        CGRect rect = CGRectMake(singleDotX - singleDotW/2, singleDotY - singleDotW/2, singleDotW, singleDotW);
+        CGImageRef brushImageRef = [self brushImageRef];
+
+        CGContextDrawImage(layerContext, rect, brushImageRef);
+
+    }
     
     [_hPointList complete];
 }

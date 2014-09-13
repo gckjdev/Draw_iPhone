@@ -24,6 +24,7 @@ static dispatch_once_t sharedCrayonBrushOnceToken;
 }
 
 - (UIImage*)brushImage:(UIColor *)color
+                 Width:(NSInteger)width
 {
     //使用图片不需要管本来的颜色，只需要形状是所需要的即可，颜色由rt_tint方法搞定
     UIImage* brushImage = [UIImage imageNamed:@"brush_dot6.png"];
@@ -63,8 +64,8 @@ static dispatch_once_t sharedCrayonBrushOnceToken;
                  distance1:(float)distance1         // 当前BeginDot和ControlDot的距离
                  distance2:(float)distance2         // 当前EndDot和ControlDot的距离
 {
-    double  factor =  2 * (distance1) / brushWidth;
-    int interpolationLength = INTERPOLATION * factor + 1;
+    double  speedFactor = (distance1) / brushWidth;
+    int interpolationLength = INTERPOLATION * speedFactor + 1;
     
     return interpolationLength;
 

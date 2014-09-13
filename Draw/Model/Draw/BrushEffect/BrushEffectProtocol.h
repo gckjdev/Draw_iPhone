@@ -17,9 +17,10 @@
 @protocol BrushEffectProtocol <NSObject>
 
 #define FIXED_PEN_SIZE 24
-#define INTERPOLATION 4
+#define INTERPOLATION 10
 
-- (UIImage*)brushImage:(UIColor*)color;
+- (UIImage*)brushImage:(UIColor*)color
+                 Width:(NSInteger)width;
 
 // 笔刷宽度是否每一点可变
 - (BOOL)isWidthFixedSize;
