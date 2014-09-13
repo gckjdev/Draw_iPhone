@@ -555,7 +555,7 @@ CGPoint midPoint1(CGPoint p1, CGPoint p2)
 {
     
 //    UIGraphicsBeginImageContextWithOptions(image.size, NO, 0.0f);
-    UIGraphicsBeginImageContextWithOptions(image.size, YES, image.scale);
+    UIGraphicsBeginImageContextWithOptions(image.size, NO, image.scale);
     
     CGContextRef ctx = UIGraphicsGetCurrentContext();
     CGRect area = CGRectMake(0, 0, image.size.width, image.size.height);

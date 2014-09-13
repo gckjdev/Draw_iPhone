@@ -31,7 +31,7 @@ static dispatch_once_t sharedBlurBrushOnceToken;
 //    UIGraphicsBeginImageContext(CGSizeMake(width, width));
 
     if ([[UIScreen mainScreen] respondsToSelector:@selector(scale)])
-        UIGraphicsBeginImageContextWithOptions(CGSizeMake(width, width), YES, [UIScreen mainScreen].scale);
+        UIGraphicsBeginImageContextWithOptions(CGSizeMake(width, width), NO, [UIScreen mainScreen].scale);
     else
         UIGraphicsBeginImageContext(CGSizeMake(width, width));
     
@@ -54,7 +54,7 @@ static dispatch_once_t sharedBlurBrushOnceToken;
     
     //以该渐变园作为brushImage
     
-    brushImage = [DrawUtils imageByApplyingAlpha:[color alpha] image:brushImage];
+//    brushImage = [DrawUtils imageByApplyingAlpha:[color alpha] image:brushImage];
     return brushImage;
 }
 
