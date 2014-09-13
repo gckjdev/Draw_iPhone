@@ -25,6 +25,7 @@ static dispatch_once_t sharedGouacheBrushOnceToken;
 }
 
 - (UIImage*)brushImage:(UIColor *)color
+                 Width:(NSInteger)width
 {
     //使用图片不需要管本来的颜色，只需要形状是所需要的即可，颜色由rt_tint方法搞定
     UIImage* brushImage = [UIImage imageNamed:@"brush_ellipse1.png"];
@@ -70,8 +71,9 @@ static dispatch_once_t sharedGouacheBrushOnceToken;
                  distance2:(float)distance2         // 当前EndDot和ControlDot的距离
 {
 
-    double  factor =  10 * (distance1) / brushWidth;
-    int interpolationLength = INTERPOLATION * factor;
+    double speedfactor =  (distance1) / brushWidth;
+    double typeFactor = 2; // 针对各种笔刷的调节因子，经过实践所得
+    int interpolationLength = INTERPOLATION * speedfactor * typeFactor;
 
     return interpolationLength;
 }

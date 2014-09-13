@@ -11,4 +11,6 @@
 
 @interface WaterBrush : NSObject<BrushEffectProtocol>
 
++ (WaterBrush*)sharedBrush;
+
 @end
