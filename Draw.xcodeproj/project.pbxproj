@@ -4609,34 +4609,34 @@
 		CA1CC39419C43DE2006E06C7 /* selected_brush_water@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA1CC37A19C43DCE006E06C7 /* selected_brush_water@2x.png */; };
 		CA1CC39519C43DE2006E06C7 /* selected_brush_water@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA1CC37A19C43DCE006E06C7 /* selected_brush_water@2x.png */; };
 		CA1CC39619C43DE2006E06C7 /* selected_brush_water@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA1CC37A19C43DCE006E06C7 /* selected_brush_water@2x.png */; };
-		CA1CC3A119C43E04006E06C7 /* brush_blur@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA1CC39A19C43E04006E06C7 /* brush_blur@2x.png */; };
-		CA1CC3A219C43E04006E06C7 /* brush_blur@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA1CC39A19C43E04006E06C7 /* brush_blur@2x.png */; };
-		CA1CC3A319C43E04006E06C7 /* brush_blur@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA1CC39A19C43E04006E06C7 /* brush_blur@2x.png */; };
-		CA1CC3A419C43E04006E06C7 /* brush_blur@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA1CC39A19C43E04006E06C7 /* brush_blur@2x.png */; };
-		CA1CC3A519C43E04006E06C7 /* brush_crayon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA1CC39B19C43E04006E06C7 /* brush_crayon@2x.png */; };
-		CA1CC3A619C43E04006E06C7 /* brush_crayon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA1CC39B19C43E04006E06C7 /* brush_crayon@2x.png */; };
-		CA1CC3A719C43E04006E06C7 /* brush_crayon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA1CC39B19C43E04006E06C7 /* brush_crayon@2x.png */; };
-		CA1CC3A819C43E04006E06C7 /* brush_crayon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA1CC39B19C43E04006E06C7 /* brush_crayon@2x.png */; };
-		CA1CC3A919C43E04006E06C7 /* brush_gouache@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA1CC39C19C43E04006E06C7 /* brush_gouache@2x.png */; };
-		CA1CC3AA19C43E04006E06C7 /* brush_gouache@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA1CC39C19C43E04006E06C7 /* brush_gouache@2x.png */; };
-		CA1CC3AB19C43E04006E06C7 /* brush_gouache@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA1CC39C19C43E04006E06C7 /* brush_gouache@2x.png */; };
-		CA1CC3AC19C43E04006E06C7 /* brush_gouache@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA1CC39C19C43E04006E06C7 /* brush_gouache@2x.png */; };
-		CA1CC3AD19C43E04006E06C7 /* brush_mark@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA1CC39D19C43E04006E06C7 /* brush_mark@2x.png */; };
-		CA1CC3AE19C43E04006E06C7 /* brush_mark@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA1CC39D19C43E04006E06C7 /* brush_mark@2x.png */; };
-		CA1CC3AF19C43E04006E06C7 /* brush_mark@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA1CC39D19C43E04006E06C7 /* brush_mark@2x.png */; };
-		CA1CC3B019C43E04006E06C7 /* brush_mark@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA1CC39D19C43E04006E06C7 /* brush_mark@2x.png */; };
-		CA1CC3B119C43E04006E06C7 /* brush_pen@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA1CC39E19C43E04006E06C7 /* brush_pen@2x.png */; };
-		CA1CC3B219C43E04006E06C7 /* brush_pen@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA1CC39E19C43E04006E06C7 /* brush_pen@2x.png */; };
-		CA1CC3B319C43E04006E06C7 /* brush_pen@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA1CC39E19C43E04006E06C7 /* brush_pen@2x.png */; };
-		CA1CC3B419C43E04006E06C7 /* brush_pen@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA1CC39E19C43E04006E06C7 /* brush_pen@2x.png */; };
-		CA1CC3B519C43E04006E06C7 /* brush_pencil@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA1CC39F19C43E04006E06C7 /* brush_pencil@2x.png */; };
-		CA1CC3B619C43E04006E06C7 /* brush_pencil@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA1CC39F19C43E04006E06C7 /* brush_pencil@2x.png */; };
-		CA1CC3B719C43E04006E06C7 /* brush_pencil@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA1CC39F19C43E04006E06C7 /* brush_pencil@2x.png */; };
-		CA1CC3B819C43E04006E06C7 /* brush_pencil@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA1CC39F19C43E04006E06C7 /* brush_pencil@2x.png */; };
-		CA1CC3B919C43E04006E06C7 /* brush_water@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA1CC3A019C43E04006E06C7 /* brush_water@2x.png */; };
-		CA1CC3BA19C43E04006E06C7 /* brush_water@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA1CC3A019C43E04006E06C7 /* brush_water@2x.png */; };
-		CA1CC3BB19C43E04006E06C7 /* brush_water@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA1CC3A019C43E04006E06C7 /* brush_water@2x.png */; };
-		CA1CC3BC19C43E04006E06C7 /* brush_water@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA1CC3A019C43E04006E06C7 /* brush_water@2x.png */; };
+		CA1CC3A119C43E04006E06C7 /* brush_show_blur@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA1CC39A19C43E04006E06C7 /* brush_show_blur@2x.png */; };
+		CA1CC3A219C43E04006E06C7 /* brush_show_blur@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA1CC39A19C43E04006E06C7 /* brush_show_blur@2x.png */; };
+		CA1CC3A319C43E04006E06C7 /* brush_show_blur@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA1CC39A19C43E04006E06C7 /* brush_show_blur@2x.png */; };
+		CA1CC3A419C43E04006E06C7 /* brush_show_blur@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA1CC39A19C43E04006E06C7 /* brush_show_blur@2x.png */; };
+		CA1CC3A519C43E04006E06C7 /* brush_show_crayon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA1CC39B19C43E04006E06C7 /* brush_show_crayon@2x.png */; };
+		CA1CC3A619C43E04006E06C7 /* brush_show_crayon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA1CC39B19C43E04006E06C7 /* brush_show_crayon@2x.png */; };
+		CA1CC3A719C43E04006E06C7 /* brush_show_crayon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA1CC39B19C43E04006E06C7 /* brush_show_crayon@2x.png */; };
+		CA1CC3A819C43E04006E06C7 /* brush_show_crayon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA1CC39B19C43E04006E06C7 /* brush_show_crayon@2x.png */; };
+		CA1CC3A919C43E04006E06C7 /* brush_show_gouache@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA1CC39C19C43E04006E06C7 /* brush_show_gouache@2x.png */; };
+		CA1CC3AA19C43E04006E06C7 /* brush_show_gouache@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA1CC39C19C43E04006E06C7 /* brush_show_gouache@2x.png */; };
+		CA1CC3AB19C43E04006E06C7 /* brush_show_gouache@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA1CC39C19C43E04006E06C7 /* brush_show_gouache@2x.png */; };
+		CA1CC3AC19C43E04006E06C7 /* brush_show_gouache@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA1CC39C19C43E04006E06C7 /* brush_show_gouache@2x.png */; };
+		CA1CC3AD19C43E04006E06C7 /* brush_show_mark@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA1CC39D19C43E04006E06C7 /* brush_show_mark@2x.png */; };
+		CA1CC3AE19C43E04006E06C7 /* brush_show_mark@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA1CC39D19C43E04006E06C7 /* brush_show_mark@2x.png */; };
+		CA1CC3AF19C43E04006E06C7 /* brush_show_mark@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA1CC39D19C43E04006E06C7 /* brush_show_mark@2x.png */; };
+		CA1CC3B019C43E04006E06C7 /* brush_show_mark@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA1CC39D19C43E04006E06C7 /* brush_show_mark@2x.png */; };
+		CA1CC3B119C43E04006E06C7 /* brush_show_pen@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA1CC39E19C43E04006E06C7 /* brush_show_pen@2x.png */; };
+		CA1CC3B219C43E04006E06C7 /* brush_show_pen@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA1CC39E19C43E04006E06C7 /* brush_show_pen@2x.png */; };
+		CA1CC3B319C43E04006E06C7 /* brush_show_pen@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA1CC39E19C43E04006E06C7 /* brush_show_pen@2x.png */; };
+		CA1CC3B419C43E04006E06C7 /* brush_show_pen@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA1CC39E19C43E04006E06C7 /* brush_show_pen@2x.png */; };
+		CA1CC3B519C43E04006E06C7 /* brush_show_pencil@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA1CC39F19C43E04006E06C7 /* brush_show_pencil@2x.png */; };
+		CA1CC3B619C43E04006E06C7 /* brush_show_pencil@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA1CC39F19C43E04006E06C7 /* brush_show_pencil@2x.png */; };
+		CA1CC3B719C43E04006E06C7 /* brush_show_pencil@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA1CC39F19C43E04006E06C7 /* brush_show_pencil@2x.png */; };
+		CA1CC3B819C43E04006E06C7 /* brush_show_pencil@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA1CC39F19C43E04006E06C7 /* brush_show_pencil@2x.png */; };
+		CA1CC3B919C43E04006E06C7 /* brush_show_water@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA1CC3A019C43E04006E06C7 /* brush_show_water@2x.png */; };
+		CA1CC3BA19C43E04006E06C7 /* brush_show_water@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA1CC3A019C43E04006E06C7 /* brush_show_water@2x.png */; };
+		CA1CC3BB19C43E04006E06C7 /* brush_show_water@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA1CC3A019C43E04006E06C7 /* brush_show_water@2x.png */; };
+		CA1CC3BC19C43E04006E06C7 /* brush_show_water@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA1CC3A019C43E04006E06C7 /* brush_show_water@2x.png */; };
 		CA1CC3C419C43E1B006E06C7 /* brush_blur@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA1CC3BD19C43E1B006E06C7 /* brush_blur@2x.png */; };
 		CA1CC3C519C43E1B006E06C7 /* brush_blur@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA1CC3BD19C43E1B006E06C7 /* brush_blur@2x.png */; };
 		CA1CC3C619C43E1B006E06C7 /* brush_blur@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA1CC3BD19C43E1B006E06C7 /* brush_blur@2x.png */; };
@@ -9815,13 +9815,13 @@
 		CA1CC37819C43DCE006E06C7 /* selected_brush_pen@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "selected_brush_pen@2x.png"; sourceTree = "<group>"; };
 		CA1CC37919C43DCE006E06C7 /* selected_brush_pencil@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "selected_brush_pencil@2x.png"; sourceTree = "<group>"; };
 		CA1CC37A19C43DCE006E06C7 /* selected_brush_water@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "selected_brush_water@2x.png"; sourceTree = "<group>"; };
-		CA1CC39A19C43E04006E06C7 /* brush_blur@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "brush_blur@2x.png"; sourceTree = "<group>"; };
-		CA1CC39B19C43E04006E06C7 /* brush_crayon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "brush_crayon@2x.png"; sourceTree = "<group>"; };
-		CA1CC39C19C43E04006E06C7 /* brush_gouache@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "brush_gouache@2x.png"; sourceTree = "<group>"; };
-		CA1CC39D19C43E04006E06C7 /* brush_mark@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "brush_mark@2x.png"; sourceTree = "<group>"; };
-		CA1CC39E19C43E04006E06C7 /* brush_pen@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "brush_pen@2x.png"; sourceTree = "<group>"; };
-		CA1CC39F19C43E04006E06C7 /* brush_pencil@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "brush_pencil@2x.png"; sourceTree = "<group>"; };
-		CA1CC3A019C43E04006E06C7 /* brush_water@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "brush_water@2x.png"; sourceTree = "<group>"; };
+		CA1CC39A19C43E04006E06C7 /* brush_show_blur@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "brush_show_blur@2x.png"; sourceTree = "<group>"; };
+		CA1CC39B19C43E04006E06C7 /* brush_show_crayon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "brush_show_crayon@2x.png"; sourceTree = "<group>"; };
+		CA1CC39C19C43E04006E06C7 /* brush_show_gouache@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "brush_show_gouache@2x.png"; sourceTree = "<group>"; };
+		CA1CC39D19C43E04006E06C7 /* brush_show_mark@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "brush_show_mark@2x.png"; sourceTree = "<group>"; };
+		CA1CC39E19C43E04006E06C7 /* brush_show_pen@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "brush_show_pen@2x.png"; sourceTree = "<group>"; };
+		CA1CC39F19C43E04006E06C7 /* brush_show_pencil@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "brush_show_pencil@2x.png"; sourceTree = "<group>"; };
+		CA1CC3A019C43E04006E06C7 /* brush_show_water@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "brush_show_water@2x.png"; sourceTree = "<group>"; };
 		CA1CC3BD19C43E1B006E06C7 /* brush_blur@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "brush_blur@2x.png"; sourceTree = "<group>"; };
 		CA1CC3BE19C43E1B006E06C7 /* brush_crayon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "brush_crayon@2x.png"; sourceTree = "<group>"; };
 		CA1CC3BF19C43E1B006E06C7 /* brush_gouache@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "brush_gouache@2x.png"; sourceTree = "<group>"; };
@@ -12986,13 +12986,13 @@
 		A4D8FC7117DB089B0085061F /* Show */ = {
 			isa = PBXGroup;
 			children = (
-				CA1CC39A19C43E04006E06C7 /* brush_blur@2x.png */,
-				CA1CC39B19C43E04006E06C7 /* brush_crayon@2x.png */,
-				CA1CC39C19C43E04006E06C7 /* brush_gouache@2x.png */,
-				CA1CC39D19C43E04006E06C7 /* brush_mark@2x.png */,
-				CA1CC39E19C43E04006E06C7 /* brush_pen@2x.png */,
-				CA1CC39F19C43E04006E06C7 /* brush_pencil@2x.png */,
-				CA1CC3A019C43E04006E06C7 /* brush_water@2x.png */,
+				CA1CC39A19C43E04006E06C7 /* brush_show_blur@2x.png */,
+				CA1CC39B19C43E04006E06C7 /* brush_show_crayon@2x.png */,
+				CA1CC39C19C43E04006E06C7 /* brush_show_gouache@2x.png */,
+				CA1CC39D19C43E04006E06C7 /* brush_show_mark@2x.png */,
+				CA1CC39E19C43E04006E06C7 /* brush_show_pen@2x.png */,
+				CA1CC39F19C43E04006E06C7 /* brush_show_pencil@2x.png */,
+				CA1CC3A019C43E04006E06C7 /* brush_show_water@2x.png */,
 				EA68D5031893C4A5003EB69A /* pen_show_fun1@2x.png */,
 				EA68D5041893C4A5003EB69A /* pen_show_fun2@2x.png */,
 				EA68D5051893C4A5003EB69A /* pen_show_fun3@2x.png */,
@@ -19510,7 +19510,7 @@
 				D89191FD196316C2006B616A /* StageCell.xib in Resources */,
 				A461B569174CBAA70088B061 /* CommonDiceDialog.xib in Resources */,
 				A461B56A174CBAA70088B061 /* CommonDiceDialog~ipad.xib in Resources */,
-				CA1CC3B719C43E04006E06C7 /* brush_pencil@2x.png in Resources */,
+				CA1CC3B719C43E04006E06C7 /* brush_show_pencil@2x.png in Resources */,
 				A461B56B174CBAA70088B061 /* CommonMessageView.xib in Resources */,
 				A461B56C174CBAA70088B061 /* CommonMessageView~ipad.xib in Resources */,
 				A461B56D174CBAA70088B061 /* CommonStarryDialog.xib in Resources */,
@@ -19594,7 +19594,7 @@
 				A461B734174CBAA70088B061 /* ColorShopCell.xib in Resources */,
 				A461B735174CBAA70088B061 /* ColorShopCell~ipad.xib in Resources */,
 				D82540F619650A1C00C876C3 /* tutorial_core_version.txt in Resources */,
-				CA1CC3AF19C43E04006E06C7 /* brush_mark@2x.png in Resources */,
+				CA1CC3AF19C43E04006E06C7 /* brush_show_mark@2x.png in Resources */,
 				A461B736174CBAA70088B061 /* GameItemDetailView.xib in Resources */,
 				A461B737174CBAA70088B061 /* ChargeController.xib in Resources */,
 				D8E63EF219C176F100EB213E /* tutorialList.json in Resources */,
@@ -19785,7 +19785,7 @@
 				A4D8FA0B17DB08170085061F /* contest_opus@2x.png in Resources */,
 				A4D8FA0F17DB08170085061F /* contest_prize_1@2x.png in Resources */,
 				A4D8FA1317DB08170085061F /* contest_prize_2@2x.png in Resources */,
-				CA1CC3A319C43E04006E06C7 /* brush_blur@2x.png in Resources */,
+				CA1CC3A319C43E04006E06C7 /* brush_show_blur@2x.png in Resources */,
 				A4D8FA1717DB08170085061F /* contest_prize_3@2x.png in Resources */,
 				A4D8FA1B17DB08170085061F /* contest_prize_special@2x.png in Resources */,
 				A4F4754919B57B9D00CFE2AE /* LICENSE in Resources */,
@@ -19864,7 +19864,7 @@
 				A4D8FB0B17DB08170085061F /* round_dot_16@2x.png in Resources */,
 				A4D8FB0F17DB08170085061F /* round_dot_17@2x.png in Resources */,
 				A4D8FB1317DB08170085061F /* round_dot_18@2x.png in Resources */,
-				CA1CC3B319C43E04006E06C7 /* brush_pen@2x.png in Resources */,
+				CA1CC3B319C43E04006E06C7 /* brush_show_pen@2x.png in Resources */,
 				A4D8FB1717DB08170085061F /* round_dot_19@2x.png in Resources */,
 				A4D8FB1B17DB08170085061F /* round_dot_1@2x.png in Resources */,
 				A4D8FB1F17DB08170085061F /* round_dot_20@2x.png in Resources */,
@@ -20197,7 +20197,7 @@
 				EA8EF65A17E55D3B003F1AF8 /* draw_home_online_guess@2x.png in Resources */,
 				EA8EF65E17E55D3B003F1AF8 /* draw_home_top@2x.png in Resources */,
 				EA8EF66217E55D3B003F1AF8 /* draw_home_user_photo@2x.png in Resources */,
-				CA1CC3A719C43E04006E06C7 /* brush_crayon@2x.png in Resources */,
+				CA1CC3A719C43E04006E06C7 /* brush_show_crayon@2x.png in Resources */,
 				EA8EF67917E6AB9F003F1AF8 /* draw_home_bottom_bg@2x.png in Resources */,
 				EA5FE1C717E827EF0099754C /* common_home_join_line@2x.png in Resources */,
 				CA1CC3DA19C43E1B006E06C7 /* brush_pencil@2x.png in Resources */,
@@ -20255,7 +20255,7 @@
 				CA9AAF8618321621002DBAA5 /* sing_home_bbs@2x.png in Resources */,
 				CA9AAF8A18321621002DBAA5 /* sing_home_chat@2x.png in Resources */,
 				CA9AAF8E18321621002DBAA5 /* sing_home_contest@2x.png in Resources */,
-				CA1CC3BB19C43E04006E06C7 /* brush_water@2x.png in Resources */,
+				CA1CC3BB19C43E04006E06C7 /* brush_show_water@2x.png in Resources */,
 				CA9AAF9218321621002DBAA5 /* sing_home_draft@2x.png in Resources */,
 				CA9AAF9618321621002DBAA5 /* sing_home_free_coins@2x.png in Resources */,
 				CA9AAF9A18321621002DBAA5 /* sing_home_guess@2x.png in Resources */,
@@ -20336,7 +20336,7 @@
 				A4088BEB183F3B790037861A /* sing_icon_50.png in Resources */,
 				A4088BEF183F3B790037861A /* sing_icon_57.png in Resources */,
 				A4088BF3183F3B790037861A /* sing_icon_72.png in Resources */,
-				CA1CC3AB19C43E04006E06C7 /* brush_gouache@2x.png in Resources */,
+				CA1CC3AB19C43E04006E06C7 /* brush_show_gouache@2x.png in Resources */,
 				A4088BF7183F3B790037861A /* sing_icon_76.png in Resources */,
 				A4088C0018408E220037861A /* iap_product_660557448.pb in Resources */,
 				CA9C3FE918433E4C0041F332 /* 513819630_app_task_version.txt in Resources */,
@@ -20433,7 +20433,7 @@
 				C28A9CE41738F04B007A819F /* GameConstants.proto in Resources */,
 				C28A9CE51738F04B007A819F /* SelectWordCell.xib in Resources */,
 				D8C784C5196A55C600323712 /* StageBasicInfoCell~ipad.xib in Resources */,
-				CA1CC3B219C43E04006E06C7 /* brush_pen@2x.png in Resources */,
+				CA1CC3B219C43E04006E06C7 /* brush_show_pen@2x.png in Resources */,
 				C28A9CE71738F04B007A819F /* FeedbackController.xib in Resources */,
 				C28A9CE81738F04B007A819F /* UserSettingController.xib in Resources */,
 				C28A9CE91738F04B007A819F /* ReportController.xib in Resources */,
@@ -20784,7 +20784,7 @@
 				CA2488E01753452000848A5F /* shop_item_645475970.pb in Resources */,
 				CA2489081753B97300848A5F /* LittleGeeDefault-568h@2x.png in Resources */,
 				CA2489091753B97C00848A5F /* LittleGeeDefault-568h@2x.png in Resources */,
-				CA1CC3AA19C43E04006E06C7 /* brush_gouache@2x.png in Resources */,
+				CA1CC3AA19C43E04006E06C7 /* brush_show_gouache@2x.png in Resources */,
 				CA24890A1753B98600848A5F /* LittleGeeDefault@2x.png in Resources */,
 				CA24890B1753B98C00848A5F /* LittleGeeDefault@2x~ipad.png in Resources */,
 				C2C18A921760A7B400DE933B /* CommonSearchImageFilterView.xib in Resources */,
@@ -20850,7 +20850,7 @@
 				D869F9091990DF3000E6756A /* laba.png in Resources */,
 				A4B78A64179F7C660008E21B /* DrawGuessController.xib in Resources */,
 				A4B78A6E179FA6F10008E21B /* GuessRankListController.xib in Resources */,
-				CA1CC3A619C43E04006E06C7 /* brush_crayon@2x.png in Resources */,
+				CA1CC3A619C43E04006E06C7 /* brush_show_crayon@2x.png in Resources */,
 				CA518385179FB6340033AA95 /* ShakeNumberController.xib in Resources */,
 				CA7DE79B192BAD3200EED067 /* play1.png in Resources */,
 				A4C9E03A17A61B4200DE982F /* GuessRankCell.xib in Resources */,
@@ -20932,7 +20932,7 @@
 				A4D8F9FA17DB08170085061F /* playagain@2x.png in Resources */,
 				A4D8F9FE17DB08170085061F /* contest_detail@2x.png in Resources */,
 				A4D8FA0217DB08170085061F /* contest_join@2x.png in Resources */,
-				CA1CC3BA19C43E04006E06C7 /* brush_water@2x.png in Resources */,
+				CA1CC3BA19C43E04006E06C7 /* brush_show_water@2x.png in Resources */,
 				A4D8FA0617DB08170085061F /* contest_line@2x.png in Resources */,
 				A4D8FA0A17DB08170085061F /* contest_opus@2x.png in Resources */,
 				A4D8FA0E17DB08170085061F /* contest_prize_1@2x.png in Resources */,
@@ -20970,7 +20970,7 @@
 				CA926BAF18A8C950002C73B4 /* disable_notice_off.png in Resources */,
 				A4D8FA7E17DB08170085061F /* draw_room_seat_purple@2x.png in Resources */,
 				A4D8FA8217DB08170085061F /* draw_room_seat_white@2x.png in Resources */,
-				CA1CC3A219C43E04006E06C7 /* brush_blur@2x.png in Resources */,
+				CA1CC3A219C43E04006E06C7 /* brush_show_blur@2x.png in Resources */,
 				A4D8FA8617DB08170085061F /* draw_room_seat_yellow@2x.png in Resources */,
 				A4D8FA8A17DB08170085061F /* room_title_bg@2x.png in Resources */,
 				A4D8FA8E17DB08170085061F /* face_anger@2x.png in Resources */,
@@ -20981,7 +20981,7 @@
 				A4D8FA9E17DB08170085061F /* my_paint_tag@2x.png in Resources */,
 				A4D8FAA217DB08170085061F /* new_bulletin@2x.png in Resources */,
 				CAFCF23C19979605008C8854 /* defaultBillBoard_en.jpg in Resources */,
-				CA1CC3B619C43E04006E06C7 /* brush_pencil@2x.png in Resources */,
+				CA1CC3B619C43E04006E06C7 /* brush_show_pencil@2x.png in Resources */,
 				D869F8FC19906D8B00E6756A /* iphone5-3.png in Resources */,
 				A4D8FAA617DB08170085061F /* no_s@2x.png in Resources */,
 				A4D8FAAA17DB08170085061F /* wrong@2x.png in Resources */,
@@ -21329,7 +21329,7 @@
 				EA8EF63917E55D3B003F1AF8 /* draw_home_light_rope@2x.png in Resources */,
 				EA8EF63D17E55D3B003F1AF8 /* draw_home_sling@2x.png in Resources */,
 				EA8EF64117E55D3B003F1AF8 /* draw_home_contest@2x.png in Resources */,
-				CA1CC3AE19C43E04006E06C7 /* brush_mark@2x.png in Resources */,
+				CA1CC3AE19C43E04006E06C7 /* brush_show_mark@2x.png in Resources */,
 				EA8EF64517E55D3B003F1AF8 /* draw_home_default_avatar@2x.png in Resources */,
 				EA8EF64917E55D3B003F1AF8 /* draw_home_draw@2x.png in Resources */,
 				EA8EF64D17E55D3B003F1AF8 /* draw_home_free_coins@2x.png in Resources */,
@@ -21992,7 +21992,7 @@
 				A4DDD14117CDFD7B0029E562 /* hot_word.txt in Resources */,
 				A4DDD14517CDFD7B0029E562 /* iap_product_513819630.pb in Resources */,
 				A4DDD14917CDFD7B0029E562 /* iap_product_513819630_old.pb in Resources */,
-				CA1CC3B919C43E04006E06C7 /* brush_water@2x.png in Resources */,
+				CA1CC3B919C43E04006E06C7 /* brush_show_water@2x.png in Resources */,
 				CAFCF23B19979605008C8854 /* defaultBillBoard_en.jpg in Resources */,
 				CACD6CAA18E03BCD003F97C0 /* Alixpay.bundle in Resources */,
 				A4DDD14D17CDFD7B0029E562 /* iap_product_Draw.pb in Resources */,
@@ -22052,7 +22052,7 @@
 				A4D8FA0117DB08170085061F /* contest_join@2x.png in Resources */,
 				A4D8FA0517DB08170085061F /* contest_line@2x.png in Resources */,
 				A4D8FA0917DB08170085061F /* contest_opus@2x.png in Resources */,
-				CA1CC3AD19C43E04006E06C7 /* brush_mark@2x.png in Resources */,
+				CA1CC3AD19C43E04006E06C7 /* brush_show_mark@2x.png in Resources */,
 				A4D8FA0D17DB08170085061F /* contest_prize_1@2x.png in Resources */,
 				A4D8FA1117DB08170085061F /* contest_prize_2@2x.png in Resources */,
 				A4D8FA1517DB08170085061F /* contest_prize_3@2x.png in Resources */,
@@ -22078,7 +22078,7 @@
 				A4D8FA5117DB08170085061F /* draw_guess2@2x.png in Resources */,
 				A4D8FA5517DB08170085061F /* draw_layer_btn@2x.png in Resources */,
 				A4D8FA5917DB08170085061F /* draw_save_btn@2x.png in Resources */,
-				CA1CC3A919C43E04006E06C7 /* brush_gouache@2x.png in Resources */,
+				CA1CC3A919C43E04006E06C7 /* brush_show_gouache@2x.png in Resources */,
 				A4D8FA5D17DB08170085061F /* draw_setting_btn@2x.png in Resources */,
 				A4D8FA6117DB08170085061F /* draw_share@2x.png in Resources */,
 				A4D8FA6517DB08170085061F /* experience@2x.png in Resources */,
@@ -22118,7 +22118,7 @@
 				D869F8F319906D8B00E6756A /* iphone5-1.png in Resources */,
 				A4D8FAD917DB08170085061F /* guess_rules@2x.png in Resources */,
 				A4D8FADD17DB08170085061F /* guess_select_bg@2x.jpg in Resources */,
-				CA1CC3B519C43E04006E06C7 /* brush_pencil@2x.png in Resources */,
+				CA1CC3B519C43E04006E06C7 /* brush_show_pencil@2x.png in Resources */,
 				A4D8FAE117DB08170085061F /* heart@2x.png in Resources */,
 				A4D8FAE517DB08170085061F /* little_triangle@2x.png in Resources */,
 				A4D8FAE917DB08170085061F /* little_triangle@2x.png_bak.png in Resources */,
@@ -22160,7 +22160,7 @@
 				A4D8FB6917DB08170085061F /* logo@2x.png in Resources */,
 				A4D8FB6D17DB08170085061F /* pad@2x.png in Resources */,
 				A4D8FB7117DB08170085061F /* shake@2x.png in Resources */,
-				CA1CC3A119C43E04006E06C7 /* brush_blur@2x.png in Resources */,
+				CA1CC3A119C43E04006E06C7 /* brush_show_blur@2x.png in Resources */,
 				A4D8FB7517DB08170085061F /* room_seat_bg_1@2x.png in Resources */,
 				A4D8FB7917DB08170085061F /* room_seat_bg_2@2x.png in Resources */,
 				A4D8FB7D17DB08170085061F /* room_seat_bg_3@2x.png in Resources */,
@@ -22386,7 +22386,7 @@
 				A4D8FFF717DB089C0085061F /* zjh_home_vs_site@2x.png in Resources */,
 				A4D8FFFB17DB089C0085061F /* inputbg@2x.png in Resources */,
 				A4D8FFFF17DB089C0085061F /* locate@2x.png in Resources */,
-				CA1CC3A519C43E04006E06C7 /* brush_crayon@2x.png in Resources */,
+				CA1CC3A519C43E04006E06C7 /* brush_show_crayon@2x.png in Resources */,
 				A4D8000317DB089C0085061F /* maleImage.png in Resources */,
 				A4D8000F17DB089C0085061F /* messagebg@2x.png in Resources */,
 				A4D8001317DB089C0085061F /* number@2x.png in Resources */,
@@ -22490,7 +22490,7 @@
 				EA0C550E180B89A5008069C1 /* bubble_bg_yellow@2x.png in Resources */,
 				A4326D5B180BEB3D00D50F0A /* happy_logo@2x.png in Resources */,
 				D8D81170199DB4E300CC182A /* 2.gif in Resources */,
-				CA1CC3B119C43E04006E06C7 /* brush_pen@2x.png in Resources */,
+				CA1CC3B119C43E04006E06C7 /* brush_show_pen@2x.png in Resources */,
 				A4326D5E180BEB3D00D50F0A /* unhappy_logo@2x.png in Resources */,
 				CACD6B1518E03A2D003F97C0 /* ShareSDKiPhoneDefaultShareViewUI.bundle in Resources */,
 				EA0C554A180BECEB008069C1 /* PainterController.xib in Resources */,
@@ -22828,7 +22828,7 @@
 				EA411C52176066F500DA72D0 /* bbs_post_hot@2x.png in Resources */,
 				EA411C53176066F500DA72D0 /* bbs_post_reward@2x.png in Resources */,
 				EA411C54176066F500DA72D0 /* bbs_post_support@2x.png in Resources */,
-				CA1CC3A419C43E04006E06C7 /* brush_blur@2x.png in Resources */,
+				CA1CC3A419C43E04006E06C7 /* brush_show_blur@2x.png in Resources */,
 				EA411C55176066F500DA72D0 /* bbs_post_new@2x.png in Resources */,
 				EA411C56176066F500DA72D0 /* BBSPostListController~ipad.xib in Resources */,
 				A4F4751319B5794100CFE2AE /* brush_dot6@2x.png in Resources */,
@@ -22879,7 +22879,7 @@
 				EA411C99176066F500DA72D0 /* CommonMessageView~ipad.xib in Resources */,
 				EA411C9A176066F500DA72D0 /* CommonStarryDialog.xib in Resources */,
 				EA411C9B176066F500DA72D0 /* CommonStarryDialog~ipad.xib in Resources */,
-				CA1CC3BC19C43E04006E06C7 /* brush_water@2x.png in Resources */,
+				CA1CC3BC19C43E04006E06C7 /* brush_show_water@2x.png in Resources */,
 				EA411C9C176066F500DA72D0 /* CommonUserInfoView.xib in Resources */,
 				EA411C9D176066F500DA72D0 /* CommonUserInfoView~ipad.xib in Resources */,
 				EA411C9E176066F500DA72D0 /* CommonZJHDialog.xib in Resources */,
@@ -23095,7 +23095,7 @@
 				A4DDD57817CDFD7B0029E562 /* ding.m4a in Resources */,
 				A4F4753F19B5794100CFE2AE /* brush_shed@2x.png in Resources */,
 				A4DDD57C17CDFD7B0029E562 /* dingding.mp3 in Resources */,
-				CA1CC3B819C43E04006E06C7 /* brush_pencil@2x.png in Resources */,
+				CA1CC3B819C43E04006E06C7 /* brush_show_pencil@2x.png in Resources */,
 				A4DDD58017CDFD7B0029E562 /* oowrong.mp3 in Resources */,
 				A4DDD58417CDFD7B0029E562 /* pushMessage.mp3 in Resources */,
 				CA1CC38619C43DE1006E06C7 /* selected_brush_gouache@2x.png in Resources */,
@@ -23116,7 +23116,7 @@
 				A4D8F9CC17DB08170085061F /* print_tip@2x.png in Resources */,
 				D8C669D9196CE42F0002B975 /* TutorialInfoCell~ipad.xib in Resources */,
 				A4D8F9D017DB08170085061F /* print_tipbig@2x.png in Resources */,
-				CA1CC3B019C43E04006E06C7 /* brush_mark@2x.png in Resources */,
+				CA1CC3B019C43E04006E06C7 /* brush_show_mark@2x.png in Resources */,
 				A4D8F9D417DB08170085061F /* reply_bg@2x.png in Resources */,
 				A4D8F9D817DB08170085061F /* round@2x.png in Resources */,
 				A4D8F9DC17DB08170085061F /* round_mask@2x.png in Resources */,
@@ -23274,7 +23274,7 @@
 				A4D8FC0817DB08170085061F /* user_detail_facebook@2x.png in Resources */,
 				A4D8FC0C17DB08170085061F /* user_detail_follow@2x.png in Resources */,
 				A4D8FC1017DB08170085061F /* user_detail_follow_bg@2x.png in Resources */,
-				CA1CC3A819C43E04006E06C7 /* brush_crayon@2x.png in Resources */,
+				CA1CC3A819C43E04006E06C7 /* brush_show_crayon@2x.png in Resources */,
 				A4D8FC1417DB08170085061F /* user_detail_followandfan@2x.png in Resources */,
 				D81962441962677B00B4FBAF /* AllTutorialCell.xib in Resources */,
 				A4D8FC1817DB08180085061F /* user_detail_gender_female@2x.png in Resources */,
@@ -23354,7 +23354,7 @@
 				A4D8FE0A17DB089C0085061F /* draw_color_bg@2x.png in Resources */,
 				A4D8FE0E17DB089C0085061F /* draw_eraser@2x.png in Resources */,
 				A4D8FE1217DB089C0085061F /* draw_fx@2x.png in Resources */,
-				CA1CC3B419C43E04006E06C7 /* brush_pen@2x.png in Resources */,
+				CA1CC3B419C43E04006E06C7 /* brush_show_pen@2x.png in Resources */,
 				A4D8FE1617DB089C0085061F /* draw_gradient@2x.png in Resources */,
 				CA93D0EC18EFF136002BB805 /* TencentOpenApi_IOS_Bundle.bundle in Resources */,
 				A4D8FE1A17DB089C0085061F /* draw_grid@2x.png in Resources */,
@@ -23512,7 +23512,7 @@
 				A49C9CBE17DB2D0700C9F39F /* gallary_search@2x.png in Resources */,
 				A49C9CC917DB2F4600C9F39F /* gallary_filter2@2x.png in Resources */,
 				A49C9CCD17DB2F4600C9F39F /* gallary_search2@2x.png in Resources */,
-				CA1CC3AC19C43E04006E06C7 /* brush_gouache@2x.png in Resources */,
+				CA1CC3AC19C43E04006E06C7 /* brush_show_gouache@2x.png in Resources */,
 				EAD13B6A17DDAF0800764FFB /* right@2x.png in Resources */,
 				EAD13B7417DDAF4000764FFB /* contest_prize_custom@2x.png in Resources */,
 				A457BAE817DECA5A00964088 /* self_detail_balance_btn_bg@2x.png in Resources */,
