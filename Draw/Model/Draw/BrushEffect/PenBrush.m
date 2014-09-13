@@ -76,11 +76,9 @@ static dispatch_once_t sharedPenBrushOnceToken;
                  distance1:(float)distance1         // 当前BeginDot和ControlDot的距离
                  distance2:(float)distance2         // 当前EndDot和ControlDot的距离
 {
-//    int disFactor = 1;
-//    
-//    double sizeFactor = 1;
-    
-    int interpolationLength = INTERPOLATION * 20;
+
+    double typeFactor = 8;    
+    int interpolationLength = INTERPOLATION * typeFactor;
     
     return interpolationLength;
 }

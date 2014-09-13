@@ -68,7 +68,6 @@ typedef enum
     ItemTypeBrushWater = 1166,
     ItemTypeBrushEnd = 1199,
     
-    
     DrawBackgroundStart = 1200,
     DrawBackground1,                
     DrawBackground2,
