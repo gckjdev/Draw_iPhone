@@ -41,6 +41,8 @@
 
 //对于某些笔刷例如蜡笔，需要对点进行随机抖动
 -(void)randomShakePointX:(float*)pointX
-                  PointY:(float*)pointY;
+                  PointY:(float*)pointY
+                  PointW:(float*)pointW
+        WithDefaultWidth:(float)defaultWidth;
 
 @end

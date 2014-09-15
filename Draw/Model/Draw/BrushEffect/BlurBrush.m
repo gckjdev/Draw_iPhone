@@ -33,13 +33,13 @@ static dispatch_once_t sharedBlurBrushOnceToken;
     CGContextRef ctx = UIGraphicsGetCurrentContext();//this is the context
     CGFloat wd = width / 2.0f;
     CGPoint pt = CGPointMake(wd, wd);//this is start center
+    CGFloat fc = sinf((([color alpha]/5.0f)*M_PI)/2.0f);//this is hard degree
     CGColorSpaceRef colorspace = CGColorSpaceCreateDeviceRGB();
     size_t num_locations = 2;
     CGFloat locations[2] = { 0.0,  1.0 };
     CGFloat* comp = (CGFloat *)CGColorGetComponents(color.CGColor);
     
-    CGFloat colors[12] = { comp[0], comp[1], comp[2], 1.0f,//star color with RGBA
- //           comp[0], comp[1], comp[2], 0.5,
+    CGFloat colors[12] = { comp[0], comp[1], comp[2], fc,//star color with RGBA
             comp[0], comp[1], comp[2], 0.0 };//end color with RGBA
     CGGradientRef gradient = CGGradientCreateWithColorComponents(colorspace, colors, locations, num_locations);
     CGContextDrawRadialGradient(ctx, gradient, pt, 0.0f, pt, wd, 0);
@@ -50,8 +50,8 @@ static dispatch_once_t sharedBlurBrushOnceToken;
     CFRelease(colorspace);
     
     //以该渐变园作为brushImage
-    float alpha = [color alpha] ;
-    brushImage = [DrawUtils imageByApplyingAlpha: alpha image:brushImage];
+//    float alpha = [color alpha] ;
+//    brushImage = [DrawUtils imageByApplyingAlpha: alpha image:brushImage];
 //*****************************************************************************************
 //    UIImage *brushImage = [UIImage imageNamed:@"brush_gradient1@2x.png"];
 //    //使用rt_tint方法需要color属性，其中color属性的alpha通道应置为1.0，否则染色效果会受底图影响
@@ -95,15 +95,17 @@ static dispatch_once_t sharedBlurBrushOnceToken;
                  distance1:(float)distance1         // 当前BeginDot和ControlDot的距离
                  distance2:(float)distance2         // 当前EndDot和ControlDot的距离
 {
-    double speedFactor = (distance1) / brushWidth;
-    double typeFactor = 1; // 针对各种笔刷的调节因子，经过实践所得
-    int interpolationLength = INTERPOLATION * speedFactor * typeFactor;
+    double speedFactor = (distance1/2) / brushWidth;
+    double typeFactor = 2.0; // 针对各种笔刷的调节因子，经过实践所得
+    int interpolationLength = INTERPOLATION * speedFactor * typeFactor + 1;
 
     return interpolationLength;
 }
 
 -(void)randomShakePointX:(float*)pointX
                   PointY:(float*)pointY
+                  PointW:(float*)pointW
+        WithDefaultWidth:(float)defaultWidth
 {
     //do nothing
 }

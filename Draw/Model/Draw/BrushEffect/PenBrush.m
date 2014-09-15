@@ -83,6 +83,8 @@ static dispatch_once_t sharedPenBrushOnceToken;
 
 -(void)randomShakePointX:(float*)pointX
                   PointY:(float*)pointY
+                  PointW:(float*)pointW
+        WithDefaultWidth:(float)defaultWidth
 {
     //do nothing
 

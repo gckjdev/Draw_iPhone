@@ -266,7 +266,9 @@
                                          width:&width];
             
             [_brush randomShakePointX:&pointX
-                               PointY:&pointY];
+                               PointY:&pointY
+                               PointW:&width
+                     WithDefaultWidth:self.width];
             
             [_hPointList addPoint:pointX y:pointY width:width];
             
@@ -349,6 +351,7 @@
 
 - (void)clearMemory
 {
+    [self releaseBrushLayer];
 }
 
 - (CGRect)drawInContext:(CGContextRef)context inRect:(CGRect)rect
