@@ -746,7 +746,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GameItemService);
                                             type:PBDrawItemTypeDrawTool
                                            price:4
                                         currency:PBGameCurrencyIngot
-                                  promotionPrice:1/backgroundDiscount
+                                  promotionPrice:1 //backgroundDiscount
                                        startDate:[NSDate date]
                                       expireDate:[[NSDate date] dateByAddingDays:90]]];
     

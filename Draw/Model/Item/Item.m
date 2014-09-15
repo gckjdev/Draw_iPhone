@@ -214,6 +214,19 @@
             return [manager waterPenImage];
         case Pencil:
             return [manager pencilImage];
+
+//        case ItemTypeBrushWater:
+//            return [manager brush];
+//        case IcePen:
+//            return [manager iceImage];
+//        case Quill:
+//            return [manager quillImage];
+//        case WaterPen:
+//            return [manager waterPenImage];
+//        case Pencil:
+//            return [manager pencilImage];
+
+            
         case PaletteItem:
             return [manager shopItemPaletteImage];
         case ColorAlphaItem:

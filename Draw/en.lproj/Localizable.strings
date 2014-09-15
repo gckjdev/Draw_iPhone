@@ -2928,3 +2928,22 @@
 "kRequierDelete" = "Delete this tutorial?";
 
 "kNoOpusForReplay" = "No opus for replay";
+
+"kItemBrushGouache" = "Gouache";
+"kItemBrushGouacheDesc" = "Gouache Brush";
+
+"kItemBrushBlur" = "Blur";
+"kItemBrushBlurDesc" = "Blur Brush";
+
+"kItemBrushWater" = "Water";
+"kItemBrushWaterDesc" = "Water Brush";
+
+"kItemBrushPen" = "Pen";
+"kItemBrushPenDesc" = "Pen Brush";
+
+"kItemBrushPencil" = "Pencil";
+"kItemBrushPencilDesc" = "Pencil Brush";
+
+"kItemBrushCrayon" = "Crayon";
+"kItemBrushCrayonDesc" = "Crayon Brush";
+

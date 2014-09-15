@@ -2974,3 +2974,22 @@
 "kRequierDelete" = "删除教程？（注意，删除教程后,进度会丢失）";
 
 "kNoOpusForReplay" = "当前未有作品可供播放";
+
+"kItemBrushGouache" = "排笔";
+"kItemBrushGouacheDesc" = "排笔笔刷";
+
+"kItemBrushBlur" = "模糊笔";
+"kItemBrushBlurDesc" = "模糊笔，可调节硬度，提供类似喷枪效果";
+
+"kItemBrushWater" = "水彩笔";
+"kItemBrushWaterDesc" = "水彩效果，用于上色";
+
+"kItemBrushPen" = "钢笔";
+"kItemBrushPenDesc" = "钢笔当然是用来写字的了";
+
+"kItemBrushPencil" = "草稿笔";
+"kItemBrushPencilDesc" = "画出素描草稿线条的铅笔";
+
+"kItemBrushCrayon" = "蜡笔";
+"kItemBrushCrayonDesc" = "不是蜡笔小新，是蜡笔而已";
+

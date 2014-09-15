@@ -3030,3 +3030,21 @@
 "kRequierDelete" = "刪除教程? 注意，刪除教程后，進度會丟失。";
 
 "kNoOpusForReplay" = "當前未有作品可供播放";
+
+"kItemBrushGouache" = "排筆";
+"kItemBrushGouacheDesc" = "排筆筆刷";
+
+"kItemBrushBlur" = "模糊筆";
+"kItemBrushBlurDesc" = "模糊筆，可調節硬度，提供類似噴槍效果";
+
+"kItemBrushWater" = "水彩筆";
+"kItemBrushWaterDesc" = "水彩效果，用於上色";
+
+"kItemBrushPen" = "鋼筆";
+"kItemBrushPenDesc" = "鋼筆當然是用來寫字的了";
+
+"kItemBrushPencil" = "草稿筆";
+"kItemBrushPencilDesc" = "畫出素描草稿線條的鉛筆";
+
+"kItemBrushCrayon" = "蠟筆";
+"kItemBrushCrayonDesc" = "不是蠟筆小新，是蠟筆而已";
