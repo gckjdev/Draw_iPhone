@@ -213,15 +213,21 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(UserGameItemManager);
     if([[UserManager defaultManager] isVip]){
         static ItemType vipPens[] = {
             Pencil,
-            WaterPen,
-            Pen,
-            IcePen,
-            Quill,
-            ItemTypeFunPen1,
-            ItemTypeFunPen2,
-            ItemTypeFunPen3,
-            ItemTypeFunPen4,
-            ItemTypeFunPen5,
+            ItemTypeBrushGouache,
+            ItemTypeBrushBlur,
+            ItemTypeBrushCrayon,
+            ItemTypeBrushPen,
+//            ItemTypeBrushPencil,
+            ItemTypeBrushWater,
+//            WaterPen,
+//            Pen,
+//            IcePen,
+//            Quill,
+//            ItemTypeFunPen1,
+//            ItemTypeFunPen2,
+//            ItemTypeFunPen3,
+//            ItemTypeFunPen4,
+//            ItemTypeFunPen5,
             ItemTypeListEndFlag
         };
         return vipPens;

@@ -433,32 +433,32 @@ static NSMutableDictionary *colorImageDict;
 
 - (UIImage *)brushGouacheImage
 {
-    return [UIImage imageNamed:@"pen_mark@2x"];
+    return [UIImage imageNamed:@"brush_gouache@2x"];
 }
 
 - (UIImage *)brushPencilImage
 {
-    return [UIImage imageNamed:@"pen_brush@2x"];
+    return [UIImage imageNamed:@"brush_pencil@2x"];
 }
 
 - (UIImage *)brushWaterImage
 {
-    return [UIImage imageNamed:@"pen_brush@2x"];
+    return [UIImage imageNamed:@"brush_water@2x"];
 }
 
 - (UIImage *)brushPenImage
 {
-    return [UIImage imageNamed:@"pen_brush@2x"];
+    return [UIImage imageNamed:@"brush_pen@2x"];
 }
 
 - (UIImage *)brushBlurImage
 {
-    return [UIImage imageNamed:@"pen_brush@2x"];
+    return [UIImage imageNamed:@"brush_blur@2x"];
 }
 
 - (UIImage *)brushCrayonImage
 {
-    return [UIImage imageNamed:@"pen_brush@2x"];
+    return [UIImage imageNamed:@"brush_crayon@2x"];
 }
 
 - (UIImage *)selectedBrushPenImage
@@ -492,27 +492,27 @@ static NSMutableDictionary *colorImageDict;
 
 - (UIImage *)brushGouacheSelectedImage
 {
-    return [UIImage imageNamed:@"selected_pen_brush@2x"];
+    return [UIImage imageNamed:@"selected_brush_gouache@2x"];
 }
 - (UIImage *)brushPencilSelectedImage
 {
-    return [UIImage imageNamed:@"selected_pen_feather@2x"];
+    return [UIImage imageNamed:@"selected_brush_pencil@2x"];
 }
 - (UIImage *)brushWaterSelectedImage
 {
-    return [UIImage imageNamed:@"selected_pen_ice-cream@2x"];
+    return [UIImage imageNamed:@"selected_brush_water@2x"];
 }
 - (UIImage *)brushPenSelectedImage
 {
-    return [UIImage imageNamed:@"selected_pen_mark@2x"];
+    return [UIImage imageNamed:@"selected_brush_pen@2x"];
 }
 - (UIImage *)brushBlurSelectedImage
 {
-    return [UIImage imageNamed:@"selected_pen_pencil@2x"];
+    return [UIImage imageNamed:@"selected_brush_blur@2x"];
 }
 - (UIImage *)brushCrayonSelectedImage
 {
-    return [UIImage imageNamed:@"selected_pen_pencil@2x"];
+    return [UIImage imageNamed:@"selected_brush_crayon@2x"];
 }
 
 - (UIImage *)showEraserImage
@@ -547,28 +547,28 @@ static NSMutableDictionary *colorImageDict;
 
 - (UIImage *)brushPenShowImage
 {
-    return [UIImage imageNamed:@"pen_show_brush@2x"];
+    return [UIImage imageNamed:@"brush_show_pen@2x"];
 }
 
 - (UIImage *)brushPencilShowImage
 {
-    return [UIImage imageNamed:@"pen_show_feather@2x"];
+    return [UIImage imageNamed:@"brush_show_pencil@2x"];
 }
 - (UIImage *)brushWaterShowImage
 {
-    return [UIImage imageNamed:@"pen_show_ice@2x"];
+    return [UIImage imageNamed:@"brush_show_water@2x"];
 }
 - (UIImage *)brushGouacheShowImage
 {
-    return [UIImage imageNamed:@"pen_show_mark@2x"];
+    return [UIImage imageNamed:@"brush_show_gouache@2x"];
 }
 - (UIImage *)brushBlurShowImage
 {
-    return [UIImage imageNamed:@"pen_show_pencil@2x"];
+    return [UIImage imageNamed:@"brush_show_blur@2x"];
 }
 - (UIImage *)brushCrayonShowImage
 {
-    return [UIImage imageNamed:@"pen_show_pencil@2x"];
+    return [UIImage imageNamed:@"brush_show_crayon@2x"];
 }
 
 - (UIImage *)drawCommit

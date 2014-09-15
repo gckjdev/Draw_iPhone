@@ -26,7 +26,7 @@ static dispatch_once_t sharedPenBrushOnceToken;
 
 - (UIImage*)brushImage:(UIColor *)color width:(float)width
 {
-    UIImage* brushImage = [UIImage imageNamed:@"brush_ellipse"];
+    UIImage* brushImage = [UIImage imageNamed:@"brush_ellipse1"];
     
     brushImage = [brushImage imageByScalingAndCroppingForSize:CGSizeMake(width, width)];
     

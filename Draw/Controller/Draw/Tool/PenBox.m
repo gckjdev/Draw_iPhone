@@ -43,7 +43,7 @@
     return button;
 }
 
-#define NUMBER_PER_ROW 5
+#define NUMBER_PER_ROW 6
 
 #define PEN_SPACE_Y (ISIPAD?25:12)
 

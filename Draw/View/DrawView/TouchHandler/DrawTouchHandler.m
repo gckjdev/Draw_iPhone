@@ -81,13 +81,13 @@
     }
     else{
         
-#ifdef BRUSH
-        if (self.drawView.shareDrawInfo.penType >= WaterPen &&
-            self.drawView.shareDrawInfo.penType <= PenCount){
-            self.drawView.shareDrawInfo.penType = ItemTypeBrushBegin + 1 + self.drawView.shareDrawInfo.penType - WaterPen;
-            return YES;
-        }
-#endif
+//#ifdef BRUSH
+//        if (self.drawView.shareDrawInfo.penType >= WaterPen &&
+//            self.drawView.shareDrawInfo.penType <= PenCount){
+//            self.drawView.shareDrawInfo.penType = ItemTypeBrushBegin + 1 + self.drawView.shareDrawInfo.penType - WaterPen;
+//            return YES;
+//        }
+//#endif
         
         return NO;
     }
