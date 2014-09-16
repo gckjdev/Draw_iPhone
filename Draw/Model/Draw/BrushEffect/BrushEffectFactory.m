@@ -50,7 +50,7 @@ static dispatch_once_t brushFactoryOnceToken;
         case ItemTypeBrushPencil:
             // TODO brush pencil for Charlie
 //            return [PencilBrush sharedBrush];
-            POSTMSG(NSLS(@"铅笔尚未支持"));
+//            POSTMSG(NSLS(@"铅笔尚未支持"));
             break;
             
         default:

@@ -259,6 +259,17 @@
     [self.brushStroke addPoint:point inRect:rect];
 }
 
+- (void)addPoint:(CGPoint)point
+           width:(float)width
+          inRect:(CGRect)rect
+         forShow:(BOOL)forShow
+{
+    [self.brushStroke addPoint:point
+                         width:width
+                        inRect:rect
+                       forShow:forShow];
+}
+
 - (NSUInteger)pointCount
 {
     return [self.brushStroke pointCount];

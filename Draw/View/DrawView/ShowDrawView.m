@@ -413,15 +413,21 @@ typedef enum {
         
         NSInteger i = [self.tempAction pointCount];
         CGPoint p;
+        float width;
         for (; i <= _playingPointIndex; ++ i) {
             if (currentPaint){
                 p = [currentPaint pointAtIndex:i];
+                [self.tempAction addPoint:p inRect:self.bounds];
             }
             else{
                 p = [cbs pointAtIndex:i];
+                width = [cbs widthAtIndex:i];
+                [(BrushAction *)self.tempAction addPoint:p
+                                                   width:width
+                                                  inRect:self.bounds
+                                                 forShow:YES];
             }
 
-            [self.tempAction addPoint:p inRect:self.bounds];
         }
         
         if (i >= pointCount){ // [currentPaint pointCount]){

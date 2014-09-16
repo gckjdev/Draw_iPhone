@@ -226,7 +226,7 @@
         _beginDot.x = 0.25*_beginDot.x + 0.5*_controlDot.x + 0.25*_endDot.x;
         _beginDot.y = 0.25*_beginDot.y + 0.5*_controlDot.y + 0.25*_endDot.y;
         _beginDot.width = 0.25*_beginDot.width + 0.5*_controlDot.width + 0.25*_endDot.width;
-        
+         
         //第二点，为控制点
         _controlDot.x = _endDot.x;
         _controlDot.y = _endDot.y;
@@ -280,6 +280,40 @@
         
         CGContextRestoreGState(layerContext);
     }
+}
+
+- (void)addPoint:(CGPoint)point
+           width:(float)width
+          inRect:(CGRect)rect
+         forShow:(BOOL)forShow
+{
+    
+    if (!CGRectContainsPoint(rect, point)){
+        //add By Gamy
+        //we can change point(304.1,320.4) to point(304,320)
+        //this point is not incorrect, but mistake.
+        if (![self spanRect:rect ContainsPoint:point]) {
+            PPDebug(@"<addPoint> Detect Incorrect Point = %@, Skip It", NSStringFromCGPoint(point));
+            return;
+        }
+        point.x = MAX(point.x, 0);
+        point.y = MAX(point.y, 0);
+        point.x = MIN(point.x, CGRectGetWidth(rect));
+        point.y = MIN(point.y, CGRectGetHeight(rect));
+        PPDebug(@"<addPoint> Change Point to %@", NSStringFromCGPoint(point));
+    }
+    
+    _brushLayer = [self brushLayer:rect];
+    CGContextRef layerContext = CGLayerGetContext(_brushLayer);
+    CGContextSaveGState(layerContext);
+    
+    [_hPointList addPoint:point.x y:point.y width:width];
+    
+    // draw by point list
+    CGRect imageRect = CGRectMake(point.x - width/2, point.y - width/2, width, width);
+    CGImageRef brushImageRef = [self brushImageRef];
+    CGContextDrawImage(layerContext, imageRect, brushImageRef);
+    CGContextRestoreGState(layerContext);
 }
 
 -(double)distanceOfDot:(BrushDot*)dot1 AndDot:(BrushDot*)dot2
@@ -454,7 +488,6 @@
         CGImageRef brushImageRef = [self brushImageRef];
 
         CGContextDrawImage(layerContext, rect, brushImageRef);
-
     }
     
     [_hPointList complete];
@@ -473,6 +506,15 @@
     
     return [_hPointList pointAtIndex:index];
     
+}
+
+- (float)widthAtIndex:(NSInteger)index
+{
+    if (index < 0 || index >= [self pointCount]) {
+        return 0;
+    }
+    
+    return [_hPointList getPointWidth:index];    
 }
 
 
