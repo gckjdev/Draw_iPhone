@@ -64,8 +64,9 @@ static dispatch_once_t sharedCrayonBrushOnceToken;
                  distance1:(float)distance1         // 当前BeginDot和ControlDot的距离
                  distance2:(float)distance2         // 当前EndDot和ControlDot的距离
 {
-    double  speedFactor = (distance1) / brushWidth;
-    int interpolationLength = INTERPOLATION * speedFactor + 1;
+    double speedFactor = (distance1) / brushWidth;
+    double typeFactor = 1.0;
+    int interpolationLength = INTERPOLATION * speedFactor * typeFactor + 2;
     
     return interpolationLength;
 
@@ -73,22 +74,34 @@ static dispatch_once_t sharedCrayonBrushOnceToken;
 
 -(void)randomShakePointX:(float*)pointX
                   PointY:(float*)pointY
+                  PointW:(float*)pointW
+        WithDefaultWidth:(float)defaultWidth
 {
-    float xRandomOffset = arc4random() % 3;
-    float yRandomOffset = arc4random() % 3;
+    NSInteger randomFactor = defaultWidth / 8 + 2;
     
-    NSInteger xShouldShake = arc4random() % 3;
-    NSInteger yShouldShake = arc4random() % 3;
+    float xRandomOffset = arc4random() % randomFactor;
+    float yRandomOffset = arc4random() % randomFactor;
+    float wRandomOffset = arc4random() % randomFactor;
+    
+    NSInteger xShouldShake = arc4random() % 4;
+    NSInteger yShouldShake = arc4random() % 4;
+    NSInteger wShouldShake = arc4random() % 4;
     
     if(xShouldShake == 0)
-        *pointX+=xRandomOffset;
+        *pointX += xRandomOffset;
     else if(xShouldShake == 1)
-        *pointX-=xRandomOffset;
+        *pointX -= xRandomOffset;
     
     if(yShouldShake == 0)
-        *pointY+=yRandomOffset;
+        *pointY += yRandomOffset;
     else if(yShouldShake == 1)
-        *pointY-=yRandomOffset;
+        *pointY -= yRandomOffset;
+    
+
+    if(wShouldShake == 0)
+        *pointW += wRandomOffset;
+    else if (wShouldShake == 1)
+        *pointW -=wRandomOffset;
 
 }
 

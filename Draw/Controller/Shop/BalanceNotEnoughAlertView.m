@@ -11,6 +11,7 @@
 #import "FreeIngotController.h"
 #import "ChargeController.h"
 #import "PPConfigManager.h"
+#import "PurchaseVipController.h"
 
 @implementation BalanceNotEnoughAlertView
 
@@ -22,8 +23,13 @@
     [dialog setClickOkBlock:^(UILabel *label){
             
             if (![PPConfigManager isInReviewVersion]) {
-                FreeIngotController *vc = [[[FreeIngotController alloc] init] autorelease];
-                [controller.navigationController pushViewController:vc animated:YES];
+//                FreeIngotController *vc = [[[FreeIngotController alloc] init] autorelease];
+//                [controller.navigationController pushViewController:vc animated:YES];
+                
+                PurchaseVipController* vc = [[PurchaseVipController alloc] init];
+                [controller.navigationController pushViewController:vc
+                                                           animated:YES];
+                [vc release];
             }
     }];
     [dialog setClickCancelBlock:^(UILabel *label){
@@ -35,7 +41,8 @@
     if ([PPConfigManager isInReviewVersion]) {
         [dialog.oKButton setTitle:NSLS(@"kCancel") forState:UIControlStateNormal];
     }else{
-        [dialog.oKButton setTitle:NSLS(@"kFreeIngots") forState:UIControlStateNormal];
+//        [dialog.oKButton setTitle:NSLS(@"kFreeIngots") forState:UIControlStateNormal];
+        [dialog.oKButton setTitle:NSLS(@"kUpgradeVIP") forState:UIControlStateNormal];
     }
     
     [dialog.cancelButton setTitle:NSLS(@"kCharge") forState:UIControlStateNormal];
