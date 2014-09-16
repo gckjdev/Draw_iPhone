@@ -50,7 +50,7 @@
 
 - (void)updateView
 {
-    ItemType *list = [[UserGameItemManager defaultManager] boughtPenTypeList];
+    ItemType *list = [[UserGameItemManager defaultManager] defaultPenTypeList]; //boughtPenTypeList];
     NSInteger i = 0;
 
     CGFloat y = 0;

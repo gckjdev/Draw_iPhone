@@ -14,7 +14,7 @@
 
 - (BOOL)popupPenView
 {
-    int *list = [[UserGameItemManager defaultManager] boughtPenTypeList];
+    int *list = [[UserGameItemManager defaultManager] defaultPenTypeList]; //boughtPenTypeList];
     while (list != NULL && *list != ItemTypeListEndFlag) {
         if (*list != Pencil) {
             return YES;

@@ -59,7 +59,12 @@ static dispatch_once_t sharedBlurBrushOnceToken;
 {
     //在context上画出一个渐变园
     UIImage *brushImage;
-    UIGraphicsBeginImageContext(CGSizeMake(width, width));
+//    UIGraphicsBeginImageContext(CGSizeMake(width, width));
+    if ([[UIScreen mainScreen] respondsToSelector:@selector(scale)])
+        UIGraphicsBeginImageContextWithOptions(CGSizeMake(width, width), NO, [UIScreen mainScreen].scale);
+    else
+        UIGraphicsBeginImageContext(CGSizeMake(width, width));
+
     CGContextRef ctx = UIGraphicsGetCurrentContext();//this is the context
     CGFloat wd = width / 2.0f;
     CGPoint pt = CGPointMake(wd, wd);//this is start center
@@ -70,7 +75,7 @@ static dispatch_once_t sharedBlurBrushOnceToken;
     
     CGFloat colors[12] = { comp[0], comp[1], comp[2], 1.0f,//star color with RGBA
  //           comp[0], comp[1], comp[2], 0.5,
-            comp[0], comp[1], comp[2], 0.0 };//end color with RGBA
+            comp[0], comp[1], comp[2], 0.1 };//end color with RGBA
     CGGradientRef gradient = CGGradientCreateWithColorComponents(colorspace, colors, locations, num_locations);
     CGContextDrawRadialGradient(ctx, gradient, pt, 0.0f, pt, wd, 0);
     CGContextFlush(ctx);
