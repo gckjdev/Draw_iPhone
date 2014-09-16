@@ -217,7 +217,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(UserGameItemManager);
             ItemTypeBrushBlur,
             ItemTypeBrushCrayon,
             ItemTypeBrushPen,
-//            ItemTypeBrushPencil,
+            ItemTypeBrushPencil,
             ItemTypeBrushWater,
 //            WaterPen,
 //            Pen,
