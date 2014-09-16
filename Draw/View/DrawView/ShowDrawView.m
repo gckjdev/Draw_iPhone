@@ -28,7 +28,7 @@ typedef enum {
     PlaySpeedTypeNormal = 2, // x2
     PlaySpeedTypeHigh = 4, //x4
     PlaySpeedTypeSuper = 6,//x6
-    PlaySpeedTypeMax = 12,//x10
+    PlaySpeedTypeMax = 12*10,//x10
 }PlaySpeedType;
 
 
@@ -43,7 +43,9 @@ typedef enum {
     PenView *pen;
 
 }
-@property(nonatomic, assign) NSInteger speed; //default is Normal;
+@property(nonatomic, assign) NSInteger  speed; //default is Normal;
+@property(nonatomic, assign) NSUInteger totalPointCount; //default is Normal;
+
 //@property (nonatomic, retain) PaintAction *tempAction;
 @property (nonatomic, retain) DrawAction *tempAction;
 
@@ -147,6 +149,22 @@ typedef enum {
         return NO;
     }
 }
+
+//- (int)totalPointCount
+//{
+//    if (_totalPointCount == 0){
+//        for (DrawAction* drawAction in self.drawActionList){
+//            if ([drawAction pointCount] > 0){
+//                _totalPointCount += [drawAction pointCount];
+//            }
+//            else{
+//                _totalPointCount ++;
+//            }
+//        }
+//    }
+//    
+//    return _totalPointCount;
+//}
 
 - (void)play
 {
@@ -354,6 +372,7 @@ typedef enum {
     }else{
         _playingPointIndex += self.speed;
     }
+    
     if (_playingPointIndex >= [_currentAction pointCount]) {
         _playingPointIndex = 0;
 
@@ -365,7 +384,7 @@ typedef enum {
             _status = Stop;
         }
     }else{
-        _playingPointIndex = MIN([_currentAction pointCount]-1, _playingPointIndex + 1); //self.speed);
+        _playingPointIndex = MIN([_currentAction pointCount]-1, _playingPointIndex + 1);
     }
     
 }
@@ -580,7 +599,6 @@ typedef enum {
     NSInteger speed = (1-delta) * PlaySpeedTypeMax;
     speed = MAX(speed, 0);
     self.speed = speed + PlaySpeedTypeLow;
-
 }
 
 //#define LEVEL_TIMES 500
