@@ -48,8 +48,9 @@ static dispatch_once_t brushFactoryOnceToken;
             return [WaterBrush sharedBrush];
         
         case ItemTypeBrushPencil:
-            // TODO brush pencil
+            // TODO brush pencil for Charlie
 //            return [PencilBrush sharedBrush];
+            POSTMSG(NSLS(@"铅笔尚未支持"));
             break;
             
         default:

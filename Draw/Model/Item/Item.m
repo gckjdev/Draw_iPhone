@@ -179,6 +179,24 @@
         case DeprecatedEraser:            
             return manager.showEraserImage;
             
+        case ItemTypeBrushGouache:
+            return manager.brushGouacheShowImage;
+            
+        case ItemTypeBrushPencil:
+            return manager.brushPencilShowImage;
+            
+        case ItemTypeBrushCrayon:
+            return manager.brushCrayonShowImage;
+            
+        case ItemTypeBrushPen:
+            return manager.brushPenShowImage;
+            
+        case ItemTypeBrushBlur:
+            return manager.brushBlurShowImage;
+            
+        case ItemTypeBrushWater:
+            return manager.brushWaterShowImage;
+            
         case ItemTypeFunPen1:
             return [UIImage imageNamed:@"pen_show_fun1@2x.png"];
         case ItemTypeFunPen2:

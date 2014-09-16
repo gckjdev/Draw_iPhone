@@ -215,8 +215,10 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(UserGameItemManager);
         ItemTypeBrushBlur,
         ItemTypeBrushCrayon,
         ItemTypeBrushPen,
-        // ItemTypeBrushPencil,
+        ItemTypeBrushPencil,
+#ifdef DEBUG
         ItemTypeBrushWater,
+#endif
         ItemTypeListEndFlag
     };
     return defaultPens;
@@ -233,7 +235,10 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(UserGameItemManager);
             ItemTypeBrushCrayon,
             ItemTypeBrushPen,
             ItemTypeBrushPencil,
+#ifdef DEBUG
             ItemTypeBrushWater,
+#endif
+            
 //            WaterPen,
 //            Pen,
 //            IcePen,
