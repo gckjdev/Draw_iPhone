@@ -45,6 +45,12 @@
 @dynamic bgImageName;
 @dynamic lastLayerTag;
 
+@dynamic lastEraserWidth;
+@dynamic lastEraserAlpha;
+@dynamic lastPenWidth;
+@dynamic lastPenAlpha;
+@dynamic gridLineNumber;
+
 @synthesize thumbImage = _thumbImage;
 @synthesize paintImage = _paintImage;
 @synthesize drawActionList = _drawActionList;

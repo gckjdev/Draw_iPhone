@@ -24,11 +24,12 @@ static dispatch_once_t sharedGouacheBrushOnceToken;
     return sharedGouacheBrush;
 }
 
-- (UIImage*)brushImage:(UIColor *)color
-                 Width:(NSInteger)width
+- (UIImage*)brushImage:(UIColor *)color width:(float)width
 {
     //使用图片不需要管本来的颜色，只需要形状是所需要的即可，颜色由rt_tint方法搞定
-    UIImage* brushImage = [UIImage imageNamed:@"brush_ellipse1.png"];
+    UIImage* brushImage = [UIImage imageNamed:@"brush_ellipse1"];
+        brushImage = [brushImage imageByScalingAndCroppingForSize:CGSizeMake(width, width)];
+    
     //使用rt_tint方法需要color属性，其中color属性的alpha通道应置为1.0，否则染色效果会受底图影响
     UIColor *colorWithRGBOnly = [UIColor colorWithRed:color.red green:color.green blue:color.blue alpha:1.0];
 

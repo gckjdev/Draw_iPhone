@@ -14,7 +14,7 @@
 
 - (BOOL)popupPenView
 {
-    int *list = [[UserGameItemManager defaultManager] boughtPenTypeList];
+    int *list = [[UserGameItemManager defaultManager] defaultPenTypeList]; //boughtPenTypeList];
     while (list != NULL && *list != ItemTypeListEndFlag) {
         if (*list != Pencil) {
             return YES;
@@ -26,17 +26,29 @@
 
 - (BOOL)execute
 {
-    self.drawInfo.touchType = TouchActionTypeDraw;
-    [self updateToolPanel];
-    
-    if ([super execute]) {
-        [self updatePenWithPenType:self.itemType];
-        if ([self popupPenView] != 0) {
-            [self showPopTipView];
+    if (self.drawInfo.touchType == TouchActionTypeDraw &&
+        self.drawView.shareDrawInfo.penType != Eraser){
+        // 如果当前已经是画画模式并且画笔类型不是橡皮擦，则弹出画笔选择提示框
+        self.drawInfo.touchType = TouchActionTypeDraw;
+        [self updateToolPanel];
+        
+        if ([super execute]) {
+            [self updatePenWithPenType:self.itemType];
+            if ([self popupPenView] != 0) {
+                [self showPopTipView];
+            }
+            return YES;
         }
+        return NO;
+        
+    }
+    else{
+        //否则直接选中画笔
+        self.drawInfo.touchType = TouchActionTypeDraw;
+        [self updatePenWithPenType:self.drawView.shareDrawInfo.lastPenType];
         return YES;
     }
-    return NO;
+    
 }
 
 
@@ -52,7 +64,7 @@
 {
     [self hidePopTipView];
     self.itemType = type;
-    self.drawInfo.penType = type;
+    self.drawView.shareDrawInfo.penType = type;
     [self updateToolPanel];
     
 }

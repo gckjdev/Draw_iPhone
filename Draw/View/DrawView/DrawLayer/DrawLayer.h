@@ -38,7 +38,7 @@
 @property(nonatomic, assign)ClipAction *clipAction;
 
 @property(nonatomic, assign)NSUInteger layerTag;
-
+@property(nonatomic, retain)ShareDrawInfo *shareDrawInfo;
 
 //CACHED
 //supported cached

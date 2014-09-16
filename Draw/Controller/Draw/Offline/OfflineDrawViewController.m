@@ -1784,6 +1784,7 @@
             
             // clear delete flag
             [self.draft setDeleteFlag:@(NO)];
+            [drawView saveShareDrawInfo:self.draft];
 
             PPDebug(@"<saveDraft> save draft");
             NSData* data = [self newDrawDataSnapshot];

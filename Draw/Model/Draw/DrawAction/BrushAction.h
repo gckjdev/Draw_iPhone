@@ -15,4 +15,9 @@
 
 + (id)brushActionWithBrushStroke:(BrushStroke *)brushStroke;
 
+- (void)addPoint:(CGPoint)point
+           width:(float)width
+          inRect:(CGRect)rect
+         forShow:(BOOL)forShow;
+
 @end

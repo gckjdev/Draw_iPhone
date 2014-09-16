@@ -248,6 +248,10 @@
     return [DrawColor colorWithRed:0 green:0 blue:0 alpha:1];
 }
 
++ (DrawColor *)whiteColorWithAlpha:(CGFloat)alpha      // 1.0 white
+{
+    return [DrawColor colorWithRed:1 green:1 blue:1 alpha:alpha];
+}
 
 + (DrawColor *)whiteColor      // 1.0 white 
 {

@@ -439,6 +439,15 @@
             free(pbDrawActionC[i]->pointsy);
         }
         
+        if (pbDrawActionC[i]->brushpointwidth != NULL){
+            free(pbDrawActionC[i]->brushpointwidth);
+        }
+
+        // TODO for change layers
+//        if (pbDrawActionC[i]->changelayers != NULL){
+//            free(pbDrawActionC[i]->changelayers);
+//        }
+        
         if (pbDrawActionC[i]->drawbg != NULL){
             free(pbDrawActionC[i]->drawbg);
         }

@@ -480,7 +480,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GameItemService);
                                 defaultSaleCount:1]];
     
     
-    
+    ///*
     // 透明笔
     [mutableArray addObject:[self itemWithItemId:ItemTypeBrushGouache
                                             name:@"kItemBrushGouache"
@@ -534,45 +534,43 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GameItemService);
                                       expireDate:[[NSDate date] dateByAddingDays:90]]];
     
     // 透明笔
-//    [mutableArray addObject:[self itemWithItemId:ItemTypeBrushPencil
-//                                            name:@"kItemBrushPencil"
-//                                            desc:@"kItemBrushPencilDesc"
-//                                     consumeType:PBGameItemConsumeTypeNonConsumable
-//                                           image:DRAW_URL_ITEM_IMAGE(@"brush_pencil@2x.png")
-//                                            type:PBDrawItemTypeDrawTool
-//                                           price:2 //*1000
-//                                        currency:PBGameCurrencyIngot //PBGameCurrencyCoin
-//                                  promotionPrice:1 // *1000/discount
-//                                       startDate:[NSDate date]
-//                                      expireDate:[[NSDate date] dateByAddingDays:90]]];
+    [mutableArray addObject:[self itemWithItemId:ItemTypeBrushPencil
+                                            name:@"kItemBrushPencil"
+                                            desc:@"kItemBrushPencilDesc"
+                                     consumeType:PBGameItemConsumeTypeNonConsumable
+                                           image:DRAW_URL_ITEM_IMAGE(@"brush_pencil@2x.png")
+                                            type:PBDrawItemTypeDrawTool
+                                           price:2 //*1000
+                                        currency:PBGameCurrencyIngot //PBGameCurrencyCoin
+                                  promotionPrice:1 // *1000/discount
+                                       startDate:[NSDate date]
+                                      expireDate:[[NSDate date] dateByAddingDays:90]]];
     
     // 透明笔
-//    [mutableArray addObject:[self itemWithItemId:ItemTypeBrushWater
-//                                            name:@"kItemBrushWater"
-//                                            desc:@"kItemBrushWaterDesc"
-//                                     consumeType:PBGameItemConsumeTypeNonConsumable
-//                                           image:DRAW_URL_ITEM_IMAGE(@"brush_water@2x.png")
-//                                            type:PBDrawItemTypeDrawTool
-//                                           price:4 //*1000
-//                                        currency:PBGameCurrencyIngot //PBGameCurrencyCoin
-//                                  promotionPrice:2 // *1000/discount
-//                                       startDate:[NSDate date]
-//                                      expireDate:[[NSDate date] dateByAddingDays:90]]];
+    [mutableArray addObject:[self itemWithItemId:ItemTypeBrushWater
+                                            name:@"kItemBrushWater"
+                                            desc:@"kItemBrushWaterDesc"
+                                     consumeType:PBGameItemConsumeTypeNonConsumable
+                                           image:DRAW_URL_ITEM_IMAGE(@"brush_water@2x.png")
+                                            type:PBDrawItemTypeDrawTool
+                                           price:4 //*1000
+                                        currency:PBGameCurrencyIngot //PBGameCurrencyCoin
+                                  promotionPrice:2 // *1000/discount
+                                       startDate:[NSDate date]
+                                      expireDate:[[NSDate date] dateByAddingDays:90]]];
     
-//    // 透明笔
-//    [mutableArray addObject:[self itemWithItemId:ColorAlphaItem
-//                                            name:@"kColorAlphaItem"
-//                                            desc:@"kColorAlphaItemDescription"
-//                                     consumeType:PBGameItemConsumeTypeNonConsumable
-//                                           image:DRAW_URL_ITEM_IMAGE(@"shop_item_alpha@2x.png")
-//                                            type:PBDrawItemTypeDrawTool
-//                                           price:1 //*1000
-//                                        currency:PBGameCurrencyIngot //PBGameCurrencyCoin
-//                                  promotionPrice:1 // *1000/discount
-//                                       startDate:[NSDate date]
-//                                      expireDate:[[NSDate date] dateByAddingDays:90]]];
-    
-    
+    // 透明笔
+    [mutableArray addObject:[self itemWithItemId:ColorAlphaItem
+                                            name:@"kColorAlphaItem"
+                                            desc:@"kColorAlphaItemDescription"
+                                     consumeType:PBGameItemConsumeTypeNonConsumable
+                                           image:DRAW_URL_ITEM_IMAGE(@"shop_item_alpha@2x.png")
+                                            type:PBDrawItemTypeDrawTool
+                                           price:1 //*1000
+                                        currency:PBGameCurrencyIngot //PBGameCurrencyCoin
+                                  promotionPrice:1 // *1000/discount
+                                       startDate:[NSDate date]
+                                      expireDate:[[NSDate date] dateByAddingDays:90]]];
     
     // 吸管
     [mutableArray addObject:[self itemWithItemId:ColorStrawItem

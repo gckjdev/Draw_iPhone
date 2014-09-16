@@ -13,7 +13,7 @@
 - (BOOL)execute
 {
     [self showPopTipView];
-    self.drawInfo.penType = Eraser;
+    self.drawView.shareDrawInfo.penType = Eraser;
     self.drawInfo.touchType = TouchActionTypeDraw;
     [self updateToolPanel];
     [self sendAnalyticsReport];

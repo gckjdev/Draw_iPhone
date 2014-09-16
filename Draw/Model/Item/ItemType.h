@@ -64,10 +64,9 @@ typedef enum
     ItemTypeBrushBlur = 1162,
     ItemTypeBrushCrayon = 1163,
     ItemTypeBrushPen = 1164,
-    ItemTypeBrushWater = 1165,//TODO
-    ItemTypeBrushOil = 1166,//TODO
+    ItemTypeBrushPencil = 1165,
+    ItemTypeBrushWater = 1166,
     ItemTypeBrushEnd = 1199,
-    
     
     DrawBackgroundStart = 1200,
     DrawBackground1,                

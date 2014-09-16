@@ -72,6 +72,8 @@ using std::list;
 {
 }
 
+#define BRUSH_RECT_MARGIN (2)
+
 - (CGRect)bounds
 {
     if (_leftTopX == 0 && _leftTopY == 0 && _bottomRightX == 0 && _bottomRightY == 0){
@@ -90,7 +92,10 @@ using std::list;
         }
     }
 
-    return CGRectMake(_leftTopX , _leftTopY, _bottomRightX - _leftTopX, _bottomRightY - _leftTopY);
+    return CGRectMake(_leftTopX - BRUSH_RECT_MARGIN ,
+                      _leftTopY - BRUSH_RECT_MARGIN,
+                      _bottomRightX - _leftTopX + BRUSH_RECT_MARGIN,
+                      _bottomRightY - _leftTopY + BRUSH_RECT_MARGIN);
 }
 
 - (void)addPoint:(float)x y:(float)y width:(float)width;

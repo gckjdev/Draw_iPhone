@@ -24,8 +24,7 @@ static dispatch_once_t sharedPenBrushOnceToken;
     return sharedPenBrush;
 }
 
-- (UIImage*)brushImage:(UIColor *)color
-                 Width:(NSInteger)width
+- (UIImage*)brushImage:(UIColor *)color width:(float)width
 {
     //使用图片不需要管本来的颜色，只需要形状是所需要的即可，颜色由rt_tint方法搞定
     UIImage* brushImage = [UIImage imageNamed:@"brush_ellipse1.png"];
@@ -33,8 +32,8 @@ static dispatch_once_t sharedPenBrushOnceToken;
     UIColor *colorWithRGBOnly = [UIColor colorWithRed:color.red green:color.green blue:color.blue alpha:1.0];
     
     //染色，把所需形状染成用户所需颜色，不透明
-    UIImage *tinted = [brushImage rt_tintedImageWithColor:colorWithRGBOnly
-                                                    level:1.0f];
+    UIImage *tinted = [brushImage rt_tintedImageWithColor:colorWithRGBOnly];
+
     brushImage = tinted;
     
     return brushImage;

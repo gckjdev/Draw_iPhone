@@ -17,7 +17,7 @@
 {
     DrawSlider *slider = [DrawSlider sliderWithMaxValue:MAX_GRID_COUNT
                                                minValue:0
-                                           defaultValue:self.drawInfo.gridLineNumber
+                                           defaultValue:self.drawView.shareDrawInfo.gridLineNumber
                                                delegate:self];
     return slider;
 }
@@ -42,7 +42,7 @@
     UILabel *label = (id)slider.contentView;
     NSString *str = [NSString stringWithFormat:@"%.0f°",value];
     [label setText:str];
-    self.drawInfo.gridLineNumber = (NSInteger)value;
+    self.drawView.shareDrawInfo.gridLineNumber = (NSInteger)value;    
     [self.drawView.currentLayer setNeedsDisplay];
 }
 

@@ -27,7 +27,7 @@ static dispatch_once_t sharedWaterBrushOnceToken;
 }
 
 - (UIImage*)brushImage:(UIColor *)color
-                 Width:(NSInteger)width
+                 width:(float)width
 {
     //使用图片不需要管本来的颜色，只需要形状是所需要的即可，颜色由rt_tint方法搞定
     UIImage* brushImage = [UIImage imageNamed:@"brush_oil2.png"];
