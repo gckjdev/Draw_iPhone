@@ -83,7 +83,14 @@
     }
     
     [[self superScrollView] setClipsToBounds:YES];
-    [self.drawInfo setAlpha:value];
+//    if (self.drawInfo.penType == Eraser){
+//        [self.drawInfo setEraserAlpha:value];
+//    }
+//    else{
+//        [self.drawInfo setAlpha:value];
+//    }
+
+    [self.drawView.shareDrawInfo setItemAlpha:value];
     [self updateToolPanel];
     
     [drawSlider.contentView removeFromSuperview];

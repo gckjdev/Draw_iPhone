@@ -47,6 +47,8 @@
 + (DrawColor *)colorWithRed:(CGFloat)red green:(CGFloat)green blue:(CGFloat)blue alpha:(CGFloat)alpha;
 + (DrawColor *)colorWithColor:(DrawColor *)color;
 
++ (DrawColor *)whiteColorWithAlpha:(CGFloat)alpha;
+
 + (DrawColor *)blackColor;      // 0.0 white
 + (DrawColor *)grayColor;       // 0.5 white
 + (DrawColor *)whiteColor;      // 1.0 white 

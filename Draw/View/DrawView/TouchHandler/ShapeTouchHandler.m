@@ -39,12 +39,14 @@ CGPoint realStartPoint;
 {
  
     DrawInfo *info = self.drawView.drawInfo;
+    ShareDrawInfo *shareDrawInfo = self.drawView.shareDrawInfo;
+    
     action.shape.startPoint = realStartPoint;
     if ([ShapeInfo point1:action.shape.startPoint equalToPoint:action.shape.endPoint]) {
-        action.shape.endPoint = CGPointMake(action.shape.endPoint.x + info.penWidth/2,
-                                     action.shape.endPoint.y + info.penWidth/2);
-        action.shape.startPoint = CGPointMake(action.shape.startPoint.x - info.penWidth/2,
-                                            action.shape.startPoint.y - info.penWidth/2);
+        action.shape.endPoint = CGPointMake(action.shape.endPoint.x + shareDrawInfo.penWidth/2,
+                                     action.shape.endPoint.y + shareDrawInfo.penWidth/2);
+        action.shape.startPoint = CGPointMake(action.shape.startPoint.x - shareDrawInfo.penWidth/2,
+                                            action.shape.startPoint.y - shareDrawInfo.penWidth/2);
         
     }
 }
@@ -55,11 +57,12 @@ CGPoint realStartPoint;
     if (action == nil) {
  
         DrawInfo *info = self.drawView.drawInfo;
+        ShareDrawInfo *shareDrawInfo = self.drawView.shareDrawInfo;
         
         ShapeInfo *shape = [ShapeInfo shapeWithType:info.shapeType
-                                 penType:info.penType
-                                   width:info.penWidth
-                                   color:info.penColor];
+                                 penType:shareDrawInfo.penType
+                                   width:shareDrawInfo.penWidth
+                                   color:shareDrawInfo.penColor];
         [shape setStroke:info.strokeShape];
 
         action = [[ShapeAction shapeActionWithShape:shape] retain];

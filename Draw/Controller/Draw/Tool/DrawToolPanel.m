@@ -650,9 +650,11 @@ if (btn) {\
 
 - (void)updatePenWithDrawInfo:(DrawInfo *)drawInfo
 {
-    if (drawInfo.penType != Eraser) {
-        [self.pen setImage:[Item imageForItemType:drawInfo.penType] forState:UIControlStateNormal];
-        [self.pen setImage:[Item seletedPenImageForType:drawInfo.penType] forState:UIControlStateSelected];
+    ShareDrawInfo* shareDrawInfo = self.drawView.shareDrawInfo;
+    
+    if (shareDrawInfo.penType != Eraser) {
+        [self.pen setImage:[Item imageForItemType:shareDrawInfo.penType] forState:UIControlStateNormal];
+        [self.pen setImage:[Item seletedPenImageForType:shareDrawInfo.penType] forState:UIControlStateSelected];
     }
 }
 
@@ -718,6 +720,8 @@ if (btn) {\
 
 - (void)updateShowInfoWithDrawInfo:(DrawInfo *)drawInfo
 {
+    ShareDrawInfo* shareDrawInfo = _drawView.shareDrawInfo;
+    
     NSString *layerName = [[self.drawView currentLayer] layerName];
     [self updateInfo:layerName atIndex:0];
     
@@ -725,7 +729,7 @@ if (btn) {\
     [self updateInfo:[NSString stringWithFormat:@"%.0f %%", scale * 100] atIndex:1];
 
     NSString *mode = [self modeNameForType:drawInfo.touchType];
-    if (drawInfo.touchType == TouchActionTypeDraw && drawInfo.penType == Eraser) {
+    if (drawInfo.touchType == TouchActionTypeDraw && shareDrawInfo.penType == Eraser) {
         mode = NSLS(@"kEraser");
     }
     [self updateInfo:mode atIndex:2];
@@ -747,9 +751,11 @@ if (btn) {\
         [button setSelected:NO];
     }
     
+    ShareDrawInfo* shareDrawInfo = self.drawView.shareDrawInfo;
+    
     switch (drawInfo.touchType) {
         case TouchActionTypeDraw:
-            if (drawInfo.penType == Eraser) {
+            if (shareDrawInfo.penType == Eraser) {
                 self.eraser.selected = YES;
             }else{
                 self.pen.selected = YES;
@@ -772,14 +778,20 @@ if (btn) {\
     [self updateShapeWithDrawInfo:drawInfo];
     [self updateSelectorWithDrawInfo:drawInfo];
     [self updateShowInfoWithDrawInfo:drawInfo];
-    [self.alphaSlider setValue:drawInfo.alpha];
-    [self.widthSlider setValue:drawInfo.penWidth];
-
+    
+//    if (drawInfo.penType == Eraser){
+//        [self.alphaSlider setValue:drawInfo.eraserAlpha];
+//        [self.widthSlider setValue:drawInfo.eraserWidth];
+//    }
+//    else{
+//    }
+    [self.alphaSlider setValue:[shareDrawInfo itemAlpha]];
+    [self.widthSlider setValue:[shareDrawInfo itemWidth]];
 
     NSArray *array = @[KEY(TouchActionTypeClipEllipse), KEY(TouchActionTypeClipPath), KEY(TouchActionTypeClipPolygon), KEY(TouchActionTypeClipRectangle)];
     [self setCloseSelectorHidden:![_drawView.currentClip isLegal] && ![array containsObject:KEY(drawInfo.touchType)]];
     
-    DrawColor *color = [DrawColor colorWithColor:drawInfo.penColor];
+    DrawColor *color = [DrawColor colorWithColor:shareDrawInfo.penColor];
     [color setAlpha:1];
     [self updateRecentColorViewWithColor:color updateModel:NO];
 }
@@ -845,8 +857,11 @@ if (btn) {\
 {
     [self updateRecentColorViewWithColor:colorPoint.color updateModel:NO];
     DrawInfo *drawInfo = self.drawView.drawInfo;
-    drawInfo.penColor = [DrawColor colorWithColor:colorPoint.color];
+    self.drawView.shareDrawInfo.penColor = [DrawColor colorWithColor:colorPoint.color];
+    
     [drawInfo backToLastDrawMode];
+    [self.drawView.shareDrawInfo backToLastDrawMode];
+    
     [self updateWithDrawInfo:drawInfo];
     [toolCmdManager hideAllPopTipViews];
 }

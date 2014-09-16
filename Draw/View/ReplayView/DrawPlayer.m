@@ -449,71 +449,34 @@
                    startIndex:(int)startIndex
                      endIndex:(int)endIndex
 {
-//    if (*retImage != nil){
-//        return;
-//    }
-    
-//    __block PPViewController * cp = viewController;
-    
-//    [viewController registerNotificationWithName:NOTIFICATION_DATA_PARSING usingBlock:^(NSNotification *note) {
-//        float progress = [[[note userInfo] objectForKey:KEY_DATA_PARSING_PROGRESS] floatValue];
-//        NSString* progressText = @"";
-//        if (progress == 1.0f){
-//            progress = 0.99f;
-//            progressText = [NSString stringWithFormat:NSLS(@"kDisplayProgress"), progress*100];
-//        }
-//        else{
-//            progressText = [NSString stringWithFormat:NSLS(@"kParsingProgress"), progress*100];
-//        }
-//        [viewController showProgressViewWithMessage:progressText progress:progress];
-//    }];
-//    
-//    [viewController showProgressViewWithMessage:NSLS(@"kParsingProgress") progress:0.01f];
-//    dispatch_async([viewController getWorkingQueue], ^{
-        if (*retDraw == nil) {
-            *retDraw = [Draw parseDrawData:*drawData];
-            if (*retDraw != nil){
-                *drawData = nil;
-            }
-            [(*retDraw) retain];
+    if (*retDraw == nil) {
+        *retDraw = [Draw parseDrawData:*drawData];
+        if (*retDraw != nil){
+            *drawData = nil;
         }
-        
-//        dispatch_async(dispatch_get_main_queue(), ^{
+        [(*retDraw) retain];
+    }
     
-            Draw* draw = (*retDraw);
-            if (draw == nil){
-//                [viewController hideActivity];
-                return nil;
-            }
-            
-//            [viewController unregisterNotificationWithName:NOTIFICATION_DATA_PARSING];
+    Draw* draw = (*retDraw);
+    if (draw == nil){
+        return nil;
+    }
     
-//            NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
-    
-            ReplayObject *obj = [ReplayObject obj];
-            obj.actionList = draw.drawActionList;
-            obj.isNewVersion = [draw isNewVersion];
-            obj.canvasSize = draw.canvasSize;
-            obj.layers = draw.layers;
-            obj.bgImage = bgImage;
-            obj.opusWord = draw.word.text;
-            obj.opusUserId = draw.userId;
-            obj.opusUserNick = draw.nickName;
-    
+    ReplayObject *obj = [ReplayObject obj];
+    obj.actionList = draw.drawActionList;
+    obj.isNewVersion = [draw isNewVersion];
+    obj.canvasSize = draw.canvasSize;
+    obj.layers = draw.layers;
+    obj.bgImage = bgImage;
+    obj.opusWord = draw.word.text;
+    obj.opusUserId = draw.userId;
+    obj.opusUserNick = draw.nickName;
     
     return [DrawPlayer createImageWithReplayObj:obj
                                           begin:startIndex
                                             end:endIndex
                                     bgImageName:bgImageName
                                         bgColor:[UIColor whiteColor]];
-//            [(*retImage) retain];
-//            
-//            [pool drain];
-    
-//            [viewController hideActivity];
-//        });
-//    });
-    
 }
 
 
@@ -708,15 +671,11 @@
 
     // create background image, using the whole replay object
     DrawPlayer *playerForBgImage = [DrawPlayer playerWithReplayObj:obj];
-//    UIImage* bgImage = [playerForBgImage createBgImageByObj:obj begin:begin end:end];
     ChangeBGImageAction* action = [playerForBgImage createBgImageActionByObj:obj
                                                                        begin:begin
                                                                          end:end
                                                                  bgImageName:bgImageName];
     
-    
-    //赋值到obj
-//    obj.bgImage = bgImage;
     
     //using another player to update replay object
     DrawPlayer *player = [DrawPlayer createViewWithXibIdentifier:@"DrawPlayer" ofViewIndex:ISIPAD];

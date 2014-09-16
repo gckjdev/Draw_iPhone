@@ -261,11 +261,32 @@ typedef enum{
 - (UIImage *)quillImage;
 - (UIImage *)eraserImage;
 
+- (UIImage *)brushGouacheImage;
+- (UIImage *)brushPencilImage;
+- (UIImage *)brushWaterImage;
+- (UIImage *)brushPenImage;
+- (UIImage *)brushBlurImage;
+- (UIImage *)brushCrayonImage;
+
+- (UIImage *)brushPenShowImage;
+- (UIImage *)brushPencilShowImage;
+- (UIImage *)brushWaterShowImage;
+- (UIImage *)brushGouacheShowImage;
+- (UIImage *)brushBlurShowImage;
+- (UIImage *)brushCrayonShowImage;
+
 - (UIImage *)selectedBrushPenImage;
 - (UIImage *)selectedFeatherPenImage;
 - (UIImage *)selectedIcePenImage;
 - (UIImage *)selectedMarkPenImage;
 - (UIImage *)selectedPencilImage;
+
+- (UIImage *)brushGouacheSelectedImage;
+- (UIImage *)brushPencilSelectedImage;
+- (UIImage *)brushWaterSelectedImage;
+- (UIImage *)brushPenSelectedImage;
+- (UIImage *)brushBlurSelectedImage;
+- (UIImage *)brushCrayonSelectedImage;
 
 - (UIImage *)selectedEraserImage;
 - (UIImage *)showEraserImage;

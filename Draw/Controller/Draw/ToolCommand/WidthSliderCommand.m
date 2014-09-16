@@ -96,7 +96,15 @@
     [[self superScrollView] setClipsToBounds:YES];
     [drawSlider.contentView removeFromSuperview];
     [drawSlider dismissPopupView];
-    self.drawInfo.penWidth = value;
+    
+//    if (self.drawInfo.penType == Eraser){
+//        self.drawInfo.eraserWidth = value;
+//    }
+//    else{
+//        self.drawInfo.penWidth = value;
+//    }
+
+    [self.drawView.shareDrawInfo setItemWidth:value];
     [self updateToolPanel];
 }
 

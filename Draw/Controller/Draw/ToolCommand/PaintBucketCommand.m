@@ -14,7 +14,7 @@
 
 - (void)changeBG
 {
-    DrawColor *color = [DrawColor colorWithColor:self.drawInfo.penColor];
+    DrawColor *color = [DrawColor colorWithColor:self.drawView.shareDrawInfo.penColor];
     [color setAlpha:1];
     ChangeBackAction *bgAction = [ChangeBackAction actionWithColor:color];
     [self.drawView addDrawAction:bgAction show:YES];

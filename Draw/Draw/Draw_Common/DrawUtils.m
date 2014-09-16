@@ -553,7 +553,9 @@ CGPoint midPoint1(CGPoint p1, CGPoint p2)
 + (UIImage *)imageByApplyingAlpha:(CGFloat)alpha
                             image:(UIImage*)image
 {
-    UIGraphicsBeginImageContextWithOptions(image.size, NO, 0.0f);
+    
+//    UIGraphicsBeginImageContextWithOptions(image.size, NO, 0.0f);
+    UIGraphicsBeginImageContextWithOptions(image.size, NO, image.scale);
     
     CGContextRef ctx = UIGraphicsGetCurrentContext();
     CGRect area = CGRectMake(0, 0, image.size.width, image.size.height);
@@ -572,6 +574,27 @@ CGPoint midPoint1(CGPoint p1, CGPoint p2)
     UIGraphicsEndImageContext();
     
     return newImage;
+}
+
++ (UIImage*)createBrushImage:(NSString*)imageName
+                       color:(UIColor*)color
+                  fixedWidth:(BOOL)fixedWidth
+                       width:(float)width
+{
+    NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
+    UIImage* brushImage = [UIImage imageNamed:imageName];
+
+    if (fixedWidth){
+        brushImage = [brushImage imageByScalingAndCroppingForSize:CGSizeMake(width, width)];
+    }
+    
+    UIImage *tinted = [brushImage rt_tintedImageWithColor:color
+                                                    level:1.0f];
+    brushImage = tinted;
+    [brushImage retain];
+    [pool drain];
+    
+    return [brushImage autorelease];
 }
 
 @end

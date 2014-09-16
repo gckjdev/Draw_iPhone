@@ -46,7 +46,11 @@ static dispatch_once_t brushFactoryOnceToken;
             
         case ItemTypeBrushWater:
             return [WaterBrush sharedBrush];
-            
+        
+        case ItemTypeBrushPencil:
+            // TODO brush pencil
+//            return [PencilBrush sharedBrush];
+            break;
             
         default:
             break;

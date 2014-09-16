@@ -43,14 +43,14 @@
     return button;
 }
 
-#define NUMBER_PER_ROW 5
+#define NUMBER_PER_ROW 6
 
 #define PEN_SPACE_Y (ISIPAD?25:12)
 
 
 - (void)updateView
 {
-    ItemType *list = [[UserGameItemManager defaultManager] boughtPenTypeList];
+    ItemType *list = [[UserGameItemManager defaultManager] defaultPenTypeList]; //boughtPenTypeList];
     NSInteger i = 0;
 
     CGFloat y = 0;

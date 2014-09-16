@@ -298,10 +298,29 @@
 {
     DrawLayer *oldLayer = [[_selectedLayer retain] autorelease];
     _selectedLayer = selectedLayer;
+
+    [oldLayer setShareDrawInfo:nil];                        // clear old
+    [_selectedLayer setShareDrawInfo:[self shareDrawInfo]]; // set new
+
+    if ([self shareDrawInfo].gridLineNumber > 0){
+        [oldLayer setNeedsDisplay];
+        [_selectedLayer setNeedsDisplay];
+    }
+    
     [self.delegate layerManager:self
          didChangeSelectedLayer:selectedLayer
                       lastLayer:oldLayer];
     [[NSNotificationCenter defaultCenter] postNotificationName:DRAW_INFO_NEED_UPDATE object:nil];
+}
+
+- (ShareDrawInfo*)shareDrawInfo
+{
+    ShareDrawInfo* shareDrawInfo = nil;
+    if ([self.view isKindOfClass:[DrawView class]]) {
+        shareDrawInfo = [(DrawView *) self.view shareDrawInfo];
+    }
+    
+    return shareDrawInfo;
 }
 
 - (UIImage *)createImageWithBGImage:(UIImage *)bg bgColor:(UIColor*)bgColor
@@ -324,22 +343,29 @@
     
     [bg drawAtPoint:CGPointZero];
     
+    ShareDrawInfo* shareDrawInfo = nil;
+    if ([self.view isKindOfClass:[DrawView class]]) {
+        shareDrawInfo = [(DrawView *) self.view shareDrawInfo];
+    }
+    
     [_layerList reversEnumWithHandler:^(id object) {
         DrawLayer *layer= object;
         CGContextSaveGState(ctx);
 
         ClipAction *clip = [layer clipAction];
-        NSInteger gridLineNumber = [[layer drawInfo] gridLineNumber];
+        NSInteger gridLineNumber = shareDrawInfo.gridLineNumber; //[[layer drawInfo] gridLineNumber];
         if (clip != nil || gridLineNumber != 0) {
             layer.clipAction = nil;
-            layer.drawInfo.gridLineNumber = 0;
+//            layer.drawInfo.gridLineNumber = 0;
+            shareDrawInfo.gridLineNumber = 0;
             [layer setNeedsDisplay];
             
             [layer renderInContext:ctx];
             
             [layer setClipAction:clip];
             
-            [layer.drawInfo setGridLineNumber:gridLineNumber];
+//            [layer.drawInfo setGridLineNumber:gridLineNumber];
+            shareDrawInfo.gridLineNumber = gridLineNumber;
             [layer setNeedsDisplay];
         }else{
             [layer renderInContext:ctx];

@@ -74,7 +74,7 @@
         self.endDot = [[BrushDot alloc]init];
         
         //get brush image and tint it
-        self.brushImage = [self.brush brushImage:[self.color color] Width:self.width];
+        self.brushImage = [self.brush brushImage:[self.color color] width:width];
         self.brushImageRef = _brushImage.CGImage;
         
         
@@ -266,7 +266,9 @@
                                          width:&width];
             
             [_brush randomShakePointX:&pointX
-                               PointY:&pointY];
+                               PointY:&pointY
+                               PointW:&width
+                     WithDefaultWidth:self.width];
             
             [_hPointList addPoint:pointX y:pointY width:width];
             
@@ -349,6 +351,7 @@
 
 - (void)clearMemory
 {
+    [self releaseBrushLayer];
 }
 
 - (CGRect)drawInContext:(CGContextRef)context inRect:(CGRect)rect

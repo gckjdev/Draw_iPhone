@@ -81,6 +81,7 @@
     PPRelease(_drawActionList);
     PPRelease(_layerName);
     PPRelease(_drawInfo);
+    PPRelease(_shareDrawInfo);
     PPRelease(_offscreen);
     [super dealloc];
 }
@@ -107,7 +108,10 @@
 {
     [self showCleanDataInContext:ctx];
     [self.clipAction showClipInContext:ctx inRect:self.bounds];
-    [DrawLayer drawGridInContext:ctx rect:self.bounds lineNumber:self.drawInfo.gridLineNumber];
+    
+    [DrawLayer drawGridInContext:ctx
+                            rect:self.bounds
+                      lineNumber:self.shareDrawInfo.gridLineNumber];
 }
 
 
@@ -428,7 +432,11 @@
 
     BOOL cached = YES;
     
-    DrawLayer *l = [[DrawLayer alloc] initWithFrame:rect drawInfo:nil tag:layer->tag name:name suportCache:cached];
+    DrawLayer *l = [[DrawLayer alloc] initWithFrame:rect
+                                           drawInfo:nil
+                                                tag:layer->tag
+                                               name:name
+                                        suportCache:cached];
     l.opacity = layer->alpha;
     [l updateFinalOpacity:layer->alpha];
     return [l autorelease];

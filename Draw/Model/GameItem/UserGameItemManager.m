@@ -207,6 +207,21 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(UserGameItemManager);
     return NO;
 }
 
+- (ItemType *)defaultPenTypeList
+{
+    static ItemType defaultPens[] = {
+        Pencil,
+        ItemTypeBrushGouache,
+        ItemTypeBrushBlur,
+        ItemTypeBrushCrayon,
+        ItemTypeBrushPen,
+        // ItemTypeBrushPencil,
+        ItemTypeBrushWater,
+        ItemTypeListEndFlag
+    };
+    return defaultPens;
+
+}
 
 - (ItemType *)boughtPenTypeList
 {
