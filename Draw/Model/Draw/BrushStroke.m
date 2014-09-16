@@ -249,33 +249,39 @@
         float pointY=0;
         float width=0;
         
-        int interpolationLength = [_brush interpolationLength:self.width
-                                                    distance1:distance1
-                                                    distance2:distance2];
-        
         CGImageRef brushImageRef = [self brushImageRef];
-        for(int i = 0; i<interpolationLength; i++)
-        {
-            [self bezierInterpolationWithBegin:_beginDot
-                                       Control:_controlDot
-                                           End:_endDot
-                                            No:i
-                                        Length:interpolationLength
-                                        pointX:&pointX
-                                        pointY:&pointY
-                                         width:&width];
+        
+        if(distance1 != 0 && distance2 != 0){
             
-            [_brush randomShakePointX:&pointX
-                               PointY:&pointY
-                               PointW:&width
-                     WithDefaultWidth:self.width];
+            int interpolationLength = [_brush interpolationLength:self.width
+                                                        distance1:distance1
+                                                        distance2:distance2];
             
-            [_hPointList addPoint:pointX y:pointY width:width];
+//            PPDebug(@"length %d", interpolationLength);
             
-            // draw by point list
-            CGRect rect = CGRectMake(pointX - width/2, pointY - width/2, width, width);
+            for(int i = 0; i<interpolationLength; i++)
+            {
+                [self bezierInterpolationWithBegin:_beginDot
+                                           Control:_controlDot
+                                               End:_endDot
+                                                No:i
+                                            Length:interpolationLength
+                                            pointX:&pointX
+                                            pointY:&pointY
+                                             width:&width];
+                
+                [_brush randomShakePointX:&pointX
+                                   PointY:&pointY
+                                   PointW:&width
+                         WithDefaultWidth:self.width];
+                
+                [_hPointList addPoint:pointX y:pointY width:width];
+                
+                // draw by point list
+                CGRect rect = CGRectMake(pointX - width/2, pointY - width/2, width, width);
 
-            CGContextDrawImage(layerContext, rect, brushImageRef);
+                CGContextDrawImage(layerContext, rect, brushImageRef);
+            }
         }
         
         CGContextRestoreGState(layerContext);
