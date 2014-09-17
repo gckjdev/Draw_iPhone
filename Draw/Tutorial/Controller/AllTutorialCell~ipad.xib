@@ -21,14 +21,14 @@
                         </constraints>
                     </imageView>
                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rld-m9-Dw6">
-                        <rect key="frame" x="320" y="42" width="341" height="33"/>
+                        <rect key="frame" x="320" y="20" width="341" height="33"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <fontDescription key="fontDescription" type="system" pointSize="16"/>
                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="10" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="341" translatesAutoresizingMaskIntoConstraints="NO" id="bGs-lR-II4">
-                        <rect key="frame" x="320" y="80" width="341" height="27"/>
+                        <rect key="frame" x="320" y="102" width="341" height="27"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <rect key="contentStretch" x="1" y="0.0" width="1" height="1"/>
                         <constraints>
@@ -37,14 +37,26 @@
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="休闲临摹" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xqk-uL-MHb">
+                        <rect key="frame" x="320" y="64" width="360" height="21"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="360" id="HsE-jy-FSO"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                        <nil key="highlightedColor"/>
+                    </label>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="bGs-lR-II4" firstAttribute="centerY" secondItem="gql-Jj-azy" secondAttribute="centerY" constant="19" id="AMs-qF-mFu"/>
-                    <constraint firstItem="bGs-lR-II4" firstAttribute="top" secondItem="rld-m9-Dw6" secondAttribute="bottom" constant="5" id="Iff-sF-5bf"/>
+                    <constraint firstItem="bGs-lR-II4" firstAttribute="centerY" secondItem="gql-Jj-azy" secondAttribute="centerY" constant="41" id="AMs-qF-mFu"/>
+                    <constraint firstItem="xqk-uL-MHb" firstAttribute="top" secondItem="bGs-lR-II4" secondAttribute="bottom" constant="-65" id="D9Z-J9-fdn"/>
+                    <constraint firstAttribute="bottom" secondItem="xqk-uL-MHb" secondAttribute="bottom" constant="64" id="HBb-rb-bRD"/>
+                    <constraint firstItem="bGs-lR-II4" firstAttribute="top" secondItem="rld-m9-Dw6" secondAttribute="bottom" constant="49" id="Iff-sF-5bf"/>
                     <constraint firstItem="rld-m9-Dw6" firstAttribute="leading" secondItem="bGs-lR-II4" secondAttribute="leading" id="Iiu-Iz-rOw"/>
                     <constraint firstItem="cl8-Zz-zfM" firstAttribute="leading" secondItem="gql-Jj-azy" secondAttribute="leading" constant="10" id="Ivz-aa-nBE"/>
-                    <constraint firstAttribute="bottom" secondItem="bGs-lR-II4" secondAttribute="bottom" constant="42" id="Klz-MD-lcH"/>
-                    <constraint firstItem="rld-m9-Dw6" firstAttribute="top" secondItem="gql-Jj-azy" secondAttribute="top" constant="42" id="Oky-QQ-ezq"/>
+                    <constraint firstAttribute="bottom" secondItem="bGs-lR-II4" secondAttribute="bottom" constant="20" id="Klz-MD-lcH"/>
+                    <constraint firstItem="xqk-uL-MHb" firstAttribute="leading" secondItem="bGs-lR-II4" secondAttribute="leading" id="N7m-MB-g2v"/>
+                    <constraint firstItem="rld-m9-Dw6" firstAttribute="top" secondItem="gql-Jj-azy" secondAttribute="top" constant="20" id="Oky-QQ-ezq"/>
                     <constraint firstAttribute="bottom" secondItem="cl8-Zz-zfM" secondAttribute="bottom" constant="9" id="ZFy-VM-bRF"/>
                     <constraint firstAttribute="trailing" secondItem="rld-m9-Dw6" secondAttribute="trailing" constant="107" id="hWY-Ek-jfS"/>
                     <constraint firstItem="cl8-Zz-zfM" firstAttribute="top" secondItem="gql-Jj-azy" secondAttribute="top" constant="10" id="qko-rD-gK4"/>
@@ -55,6 +67,7 @@
                 <outlet property="tutorialDesc" destination="bGs-lR-II4" id="6X0-tK-3gr"/>
                 <outlet property="tutorialImage" destination="cl8-Zz-zfM" id="Dvx-2m-SZg"/>
                 <outlet property="tutorialName" destination="rld-m9-Dw6" id="Hhr-dn-7N7"/>
+                <outlet property="tutorialType" destination="xqk-uL-MHb" id="9UN-3L-4QV"/>
             </connections>
         </tableViewCell>
     </objects>

@@ -132,11 +132,15 @@ static FeedService *_staticFeedService = nil;
                                        lang:lang];
         NSArray *list = nil;
         NSInteger resultCode = output.resultCode;
+        int totalCount = 0;
         if (resultCode == ERROR_SUCCESS){
             PPDebug(@"<FeedService> getFeedList finish, start to parse data.");
             
+          
             @try {
                 DataQueryResponse *response = [DataQueryResponse parseFromData:output.responseData];
+                
+                totalCount = [response totalCount];
                 resultCode = [response resultCode];
                 NSArray *pbFeedList = [response feedList];
                 list = [FeedManager parsePbFeedList:pbFeedList];
@@ -152,9 +156,17 @@ static FeedService *_staticFeedService = nil;
             }
         }
         
+        
+        
         dispatch_async(dispatch_get_main_queue(), ^{
             if (delegate && [delegate respondsToSelector:@selector(didGetFeedList:feedListType:resultCode:)]) {
                 [delegate didGetFeedList:list feedListType:feedListType resultCode:resultCode];
+            }
+            else if(delegate && [delegate respondsToSelector:@selector(didGetFeedList:feedListType:resultCode:totalCount:)]) {
+                [delegate didGetFeedList:list
+                            feedListType:feedListType
+                              resultCode:resultCode
+                              totalCount:totalCount];
             }
             
         });

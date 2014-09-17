@@ -2929,6 +2929,15 @@
 
 "kNoOpusForReplay" = "No opus for replay";
 
+<<<<<<< HEAD
+"kProTutorialType" = "Profession";
+"kLeisureTutorialType" = "Leisure";
+"kSecCreateTutorialType" = "Second Create";
+"kIntroduceLeisureTutorial" = "Leisure tutorial,no need to pass";
+"kIntroduceProTutorial" = "Profession tutorials，after practice，60 score pass";
+
+"kRankViewDesc" = "%@,There are %d users conquer in this stage";
+=======
 "kItemBrushGouache" = "Gouache";
 "kItemBrushGouacheDesc" = "Gouache Brush";
 
@@ -2947,3 +2956,4 @@
 "kItemBrushCrayon" = "Crayon";
 "kItemBrushCrayonDesc" = "Crayon Brush";
 
+>>>>>>> b100acbd95bb33cda3bbf746525b584fb8b817f9

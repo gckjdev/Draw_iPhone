@@ -3029,7 +3029,15 @@
 "kAskQuestion" = "答疑";
 "kRequierDelete" = "刪除教程? 注意，刪除教程后，進度會丟失。";
 
+"kProTutorialType" = "专业教程";
+"kLeisureTutorialType" = "休闲临摹";
+"kSecCreateTutorialType" = "二次创作";
 "kNoOpusForReplay" = "當前未有作品可供播放";
+<<<<<<< HEAD
+"kIntroduceLeisureTutorial" = "休闲主题创作包,无需过关";
+"kIntroduceProTutorial" = "专业教程，修炼学习后，60分过关";
+"kRankViewDesc" = "%@,已有%d用户发布了神作:";
+=======
 
 "kItemBrushGouache" = "排筆";
 "kItemBrushGouacheDesc" = "排筆筆刷，給你完全不一樣的筆刷感覺";
@@ -3048,3 +3056,4 @@
 
 "kItemBrushCrayon" = "蠟筆";
 "kItemBrushCrayonDesc" = "不是蠟筆小新，是能畫出蠟筆效果的筆";
+>>>>>>> b100acbd95bb33cda3bbf746525b584fb8b817f9

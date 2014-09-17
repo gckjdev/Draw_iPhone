@@ -17,7 +17,12 @@
 #import "DrawHolderView.h"
 #import "ClipAction.h"
 #import "SDWebImageDecoder.h"
+<<<<<<< HEAD
+#import "HJImagesToVideo.h"
+
+=======
 #import "BrushAction.h"
+>>>>>>> b100acbd95bb33cda3bbf746525b584fb8b817f9
 #include <ImageIO/ImageIO.h>
 #include <MobileCoreServices/MobileCoreServices.h>
 
@@ -997,6 +1002,12 @@ typedef enum {
                                                canvasSize:canvasSize
                                                 scaleSize:scaleSize
                                                finalImage:finalImage];
+    
+    
+    
+    
+    
+    
     [srcImgList retain];
     [pool drain];
     
@@ -1004,6 +1015,23 @@ typedef enum {
         [srcImgList release];
         return;
     }
+    
+#ifdef DEBUG
+    NSString *path2 = [NSHomeDirectory() stringByAppendingPathComponent:
+                      [NSString stringWithFormat:@"Documents/movie.mp4"]];
+    
+    [[NSFileManager defaultManager] removeItemAtPath:path2 error:NULL];
+    
+    
+    [HJImagesToVideo saveVideoToPhotosWithImages:srcImgList withFPS:5 animateTransitions:YES withCallbackBlock:^(BOOL success){
+        if (success) {
+            NSLog(@"Success");
+        } else {
+            NSLog(@"Failed");
+        }
+    }];
+    
+#endif
     
     //图像目标
     CGImageDestinationRef destImg;
