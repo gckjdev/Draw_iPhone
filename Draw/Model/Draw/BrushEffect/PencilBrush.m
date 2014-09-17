@@ -38,7 +38,7 @@ static dispatch_once_t sharedPencilBrushOnceToken;
     UIImage *tinted = [brushImage rt_tintedImageWithColor:colorWithRGBOnly
                                                     level:1.0f];
     
-    //考虑到蜡笔不需要透明度，故不使用相关的image变换方法
+    //考虑
     brushImage = tinted;
     
     return brushImage;

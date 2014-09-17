@@ -34,7 +34,9 @@ static dispatch_once_t sharedPenBrushOnceToken;
     //染色，把所需形状染成用户所需颜色，不透明
     UIImage *tinted = [brushImage rt_tintedImageWithColor:colorWithRGBOnly];
 
-    brushImage = tinted;
+    CGFloat alpha = [color alpha] / 5;
+    
+    brushImage = [DrawUtils imageByApplyingAlpha:alpha image:tinted];
     
     return brushImage;
 }
