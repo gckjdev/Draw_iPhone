@@ -23,6 +23,7 @@ typedef enum{
     
 }TouchActionType;
 
+#define QUILL_PEN_WIDTH (0.5f)
 
 @class Shadow;
 @class DrawColor;

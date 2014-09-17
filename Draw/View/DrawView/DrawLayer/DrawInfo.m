@@ -106,6 +106,11 @@
     }
     else{
         [self setPenWidth:value];
+        
+//#ifdef DEBUG
+//        // test
+//        [self setPenWidth:0.5];
+//#endif
     }
     
 }

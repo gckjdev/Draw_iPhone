@@ -35,6 +35,7 @@
 
 - (BOOL)isEqual:(id)object;
 - (UIColor *)color;
+- (UIColor *)colorWithoutAlpha;
 - (CGColorRef)CGColor;
 - (NSString *)toString;
 

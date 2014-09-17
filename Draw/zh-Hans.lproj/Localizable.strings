@@ -821,7 +821,7 @@
 "kTips" = "锦囊";
 "kPen" = "毛笔";
 "kIcePen" = "雪糕笔";
-"kQuill" = "鹅毛笔";
+"kQuill" = "羽毛笔";
 "kWaterPen" = "麦克笔";
 
 
@@ -832,7 +832,7 @@
 "kTipsDescription" = "锦囊可用于猜作品时炸词，让你猜的时候更快快捷方便";
 "kBrushPenDescription" = "中国传统的毛笔，加上了一些现代色彩的设计";
 "kIcePenDescription" = "看上去像雪糕的笔，画起来更加甜蜜";
-"kQuillDescription" = "用鹅毛做的笔，画起来更加轻便";  
+"kQuillDescription" = "最细的笔，羽毛般细致";
 "kWaterPenDescription" = "麦克笔，国外进口的一种高级画笔";
 
 
@@ -2976,20 +2976,20 @@
 "kNoOpusForReplay" = "当前未有作品可供播放";
 
 "kItemBrushGouache" = "排笔";
-"kItemBrushGouacheDesc" = "排笔笔刷";
+"kItemBrushGouacheDesc" = "排笔笔刷，给你完全不一样的笔刷感觉";
 
 "kItemBrushBlur" = "模糊笔";
-"kItemBrushBlurDesc" = "模糊笔，可调节硬度，提供类似喷枪效果";
+"kItemBrushBlurDesc" = "模糊笔，可调节硬度，提供类似喷枪虚化效果";
 
 "kItemBrushWater" = "水彩笔";
 "kItemBrushWaterDesc" = "水彩效果，用于上色";
 
-"kItemBrushPen" = "钢笔";
-"kItemBrushPenDesc" = "钢笔当然是用来写字的了";
+"kItemBrushPen" = "土豪钢笔";
+"kItemBrushPenDesc" = "能画出漂亮钢笔线条的笔，同时还是传说中的土豪钢笔，买的起的绝对是个土豪";
 
 "kItemBrushPencil" = "草稿笔";
-"kItemBrushPencilDesc" = "画出素描草稿线条的铅笔";
+"kItemBrushPencilDesc" = "画出素描线条的铅笔，可用于打草稿";
 
 "kItemBrushCrayon" = "蜡笔";
-"kItemBrushCrayonDesc" = "不是蜡笔小新，是蜡笔而已";
+"kItemBrushCrayonDesc" = "不是蜡笔小新，是能画出蜡笔效果的笔";
 

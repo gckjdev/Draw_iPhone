@@ -219,6 +219,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(UserGameItemManager);
 #ifdef DEBUG
         ItemTypeBrushWater,
 #endif
+        Quill,
         ItemTypeListEndFlag
     };
     return defaultPens;
@@ -238,6 +239,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(UserGameItemManager);
 #ifdef DEBUG
             ItemTypeBrushWater,
 #endif
+            Quill,
             
 //            WaterPen,
 //            Pen,

@@ -161,4 +161,4 @@ typedef enum
     ItemTypeCustomDiceEnd = 2512
 }ItemType;
 
-
+#define IS_PEN_FIXWIDTH(penType)        (penType == Quill)
