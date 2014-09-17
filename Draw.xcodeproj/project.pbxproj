@@ -3048,6 +3048,10 @@
 		A4E59C961832208D003578CA /* WhisperStyleView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4E59C901832208D003578CA /* WhisperStyleView.xib */; };
 		A4E64919178426310063F393 /* PBOpus+Extend.m in Sources */ = {isa = PBXBuildFile; fileRef = A4E64918178426310063F393 /* PBOpus+Extend.m */; };
 		A4E7876A16366FF8003557AD /* ZhaJinHua.proto in Resources */ = {isa = PBXBuildFile; fileRef = A4E7876916366FF8003557AD /* ZhaJinHua.proto */; };
+		A4E85C2D19C89380002762CD /* PencilBrush.m in Sources */ = {isa = PBXBuildFile; fileRef = A4E85C2C19C89380002762CD /* PencilBrush.m */; };
+		A4E85C2E19C89380002762CD /* PencilBrush.m in Sources */ = {isa = PBXBuildFile; fileRef = A4E85C2C19C89380002762CD /* PencilBrush.m */; };
+		A4E85C2F19C89380002762CD /* PencilBrush.m in Sources */ = {isa = PBXBuildFile; fileRef = A4E85C2C19C89380002762CD /* PencilBrush.m */; };
+		A4E85C3019C89380002762CD /* PencilBrush.m in Sources */ = {isa = PBXBuildFile; fileRef = A4E85C2C19C89380002762CD /* PencilBrush.m */; };
 		A4EA9356185B0144004BB69D /* SingHotCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A4EA9355185B0143004BB69D /* SingHotCell.m */; };
 		A4EA9357185B0144004BB69D /* SingHotCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A4EA9355185B0143004BB69D /* SingHotCell.m */; };
 		A4EA9358185B0144004BB69D /* SingHotCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A4EA9355185B0143004BB69D /* SingHotCell.m */; };
@@ -9080,6 +9084,8 @@
 		A4E64917178426310063F393 /* PBOpus+Extend.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "PBOpus+Extend.h"; sourceTree = "<group>"; };
 		A4E64918178426310063F393 /* PBOpus+Extend.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "PBOpus+Extend.m"; sourceTree = "<group>"; };
 		A4E7876916366FF8003557AD /* ZhaJinHua.proto */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ZhaJinHua.proto; sourceTree = "<group>"; };
+		A4E85C2B19C89380002762CD /* PencilBrush.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PencilBrush.h; sourceTree = "<group>"; };
+		A4E85C2C19C89380002762CD /* PencilBrush.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PencilBrush.m; sourceTree = "<group>"; };
 		A4EA9354185B0143004BB69D /* SingHotCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SingHotCell.h; sourceTree = "<group>"; };
 		A4EA9355185B0143004BB69D /* SingHotCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SingHotCell.m; sourceTree = "<group>"; };
 		A4EA935A185B0173004BB69D /* SingHotCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SingHotCell.xib; sourceTree = "<group>"; };
@@ -12334,6 +12340,8 @@
 				A4B60AC119B6C23600C300D5 /* CrayonBrush.m */,
 				A4B60AB419B6BC1800C300D5 /* PenBrush.h */,
 				A4B60AB519B6BC1800C300D5 /* PenBrush.m */,
+				A4E85C2B19C89380002762CD /* PencilBrush.h */,
+				A4E85C2C19C89380002762CD /* PencilBrush.m */,
 			);
 			path = BrushEffect;
 			sourceTree = "<group>";
@@ -23989,6 +23997,7 @@
 				A461B149174CBAA70088B061 /* ColorView.m in Sources */,
 				A461B14A174CBAA70088B061 /* PenView.m in Sources */,
 				CA1782731962D2480068883A /* DAPagesContainerTopBar.m in Sources */,
+				A4E85C2F19C89380002762CD /* PencilBrush.m in Sources */,
 				A461B14B174CBAA70088B061 /* StableView.m in Sources */,
 				A461B14C174CBAA70088B061 /* WidthView.m in Sources */,
 				A461B14D174CBAA70088B061 /* SynthesisView.m in Sources */,
@@ -24989,6 +24998,7 @@
 				C28A9ADC1738F04B007A819F /* ContestFeed.m in Sources */,
 				C28A9AE11738F04B007A819F /* SuperHomeController.m in Sources */,
 				C28A9AE21738F04B007A819F /* UserAnnotation.m in Sources */,
+				A4E85C2E19C89380002762CD /* PencilBrush.m in Sources */,
 				C28A9AE31738F04B007A819F /* UserLocationController.m in Sources */,
 				CA2A28C0195C1DC400A97478 /* UserTutorialMainController.m in Sources */,
 				C28A9AEC1738F04B007A819F /* UseItemScene.m in Sources */,
@@ -25878,6 +25888,7 @@
 				EAAFC5471615A4AB00C72BAB /* StatisticManager.m in Sources */,
 				CA9D5F4D161700A70082E258 /* ContestFeed.m in Sources */,
 				CA42706D1620028E00C6CCAE /* SuperHomeController.m in Sources */,
+				A4E85C2D19C89380002762CD /* PencilBrush.m in Sources */,
 				CA2A28BF195C1DC400A97478 /* UserTutorialMainController.m in Sources */,
 				EA72B4C1162026480022D82D /* UserAnnotation.m in Sources */,
 				EA72B4C3162028260022D82D /* UserLocationController.m in Sources */,
@@ -26510,6 +26521,7 @@
 				CAA581C4197BC24800599740 /* ImageSimilarityEngine.mm in Sources */,
 				EA411819176066F500DA72D0 /* PPTableViewCell.m in Sources */,
 				D8B58B15197CE8E60088E5F7 /* ICETutorialPage.m in Sources */,
+				A4E85C3019C89380002762CD /* PencilBrush.m in Sources */,
 				EA41181A176066F500DA72D0 /* PPTableViewController.m in Sources */,
 				A4B60AB919B6BC1800C300D5 /* PenBrush.m in Sources */,
 				EA41181B176066F500DA72D0 /* PPViewController.m in Sources */,
