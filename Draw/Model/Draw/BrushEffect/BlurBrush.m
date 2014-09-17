@@ -68,7 +68,8 @@ static dispatch_once_t sharedBlurBrushOnceToken;
     CGContextRef ctx = UIGraphicsGetCurrentContext();//this is the context
     CGFloat wd = width / 2.0f;
     CGPoint pt = CGPointMake(wd, wd);//this is start center
-    CGFloat fc = sinf((([color alpha]/5.0f)*M_PI)/2.0f);//this is hard degree
+    CGFloat fc = [color alpha];//this is hard degree, kind of change from alpha
+    
     CGColorSpaceRef colorspace = CGColorSpaceCreateDeviceRGB();
     size_t num_locations = 2;
     CGFloat locations[2] = { 0.0,  1.0 };
@@ -84,32 +85,9 @@ static dispatch_once_t sharedBlurBrushOnceToken;
     CFRelease(gradient);
     CFRelease(colorspace);
     
-    //以该渐变园作为brushImage
-//    float alpha = [color alpha] ;
-//    brushImage = [DrawUtils imageByApplyingAlpha: alpha image:brushImage];
-//*****************************************************************************************
-//    UIImage *brushImage = [UIImage imageNamed:@"brush_gradient1"];
-//    //使用rt_tint方法需要color属性，其中color属性的alpha通道应置为1.0，否则染色效果会受底图影响
-//    UIColor *colorWithRGBOnly = [UIColor colorWithRed:color.red green:color.green blue:color.blue alpha:1.0];
-//    //染色，把所需形状染成用户所需颜色，不透明
-//    UIImage *tinted = [brushImage rt_tintedImageWithColor:colorWithRGBOnly
-//                                                    level:1.0f];
-//    
-//    float alpha = [color alpha];
-//    brushImage = [DrawUtils imageByApplyingAlpha:alpha  image: tinted];
-
-//    NSString *path=[NSString stringWithFormat:@"/Users/Linruin/Desktop/test.png"];
-//    [brushImage saveImageToFile:path];
-    
     return brushImage;
 
     
-    
-//<<<<<<< HEAD
-////    brushImage = [DrawUtils imageByApplyingAlpha:[color alpha] image:brushImage];
-//=======
-//>>>>>>> f47cf69522bd4107a9228eb31adf58e8df085f48
-//    return brushImage;
 }
 
 - (BOOL)isWidthFixedSize
@@ -134,8 +112,8 @@ static dispatch_once_t sharedBlurBrushOnceToken;
                  distance1:(float)distance1         // 当前BeginDot和ControlDot的距离
                  distance2:(float)distance2         // 当前EndDot和ControlDot的距离
 {
-    double speedFactor = (distance1/2) / brushWidth;
-    double typeFactor = 2.0; // 针对各种笔刷的调节因子，经过实践所得
+    double speedFactor = (distance1 + distance2/2) / brushWidth;
+    double typeFactor = 1.0; // 针对各种笔刷的调节因子，经过实践所得
     int interpolationLength = INTERPOLATION * speedFactor * typeFactor + 1;
 
     return interpolationLength;
