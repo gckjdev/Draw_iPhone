@@ -6693,6 +6693,14 @@
 		D8CF8AA11977981E0044E305 /* opencv2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D8CF8A9F1977981E0044E305 /* opencv2.framework */; };
 		D8CF8AA21977981F0044E305 /* opencv2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D8CF8A9F1977981E0044E305 /* opencv2.framework */; };
 		D8CF8AA31977981F0044E305 /* opencv2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D8CF8A9F1977981E0044E305 /* opencv2.framework */; };
+		D8D2806219C97CD80027E3BE /* HJImagesToVideo.m in Sources */ = {isa = PBXBuildFile; fileRef = D8D2806119C97CD80027E3BE /* HJImagesToVideo.m */; };
+		D8D2806319C97CD80027E3BE /* HJImagesToVideo.m in Sources */ = {isa = PBXBuildFile; fileRef = D8D2806119C97CD80027E3BE /* HJImagesToVideo.m */; };
+		D8D2806419C97CD80027E3BE /* HJImagesToVideo.m in Sources */ = {isa = PBXBuildFile; fileRef = D8D2806119C97CD80027E3BE /* HJImagesToVideo.m */; };
+		D8D2806519C97CD80027E3BE /* HJImagesToVideo.m in Sources */ = {isa = PBXBuildFile; fileRef = D8D2806119C97CD80027E3BE /* HJImagesToVideo.m */; };
+		D8D2806C19C97D270027E3BE /* REPagedScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = D8D2806B19C97D270027E3BE /* REPagedScrollView.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
+		D8D2806D19C97D270027E3BE /* REPagedScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = D8D2806B19C97D270027E3BE /* REPagedScrollView.m */; };
+		D8D2806E19C97D270027E3BE /* REPagedScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = D8D2806B19C97D270027E3BE /* REPagedScrollView.m */; };
+		D8D2806F19C97D270027E3BE /* REPagedScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = D8D2806B19C97D270027E3BE /* REPagedScrollView.m */; };
 		D8D8116C199DB4E300CC182A /* 1.gif in Resources */ = {isa = PBXBuildFile; fileRef = D8D81169199DB4E300CC182A /* 1.gif */; };
 		D8D8116D199DB4E300CC182A /* 1.gif in Resources */ = {isa = PBXBuildFile; fileRef = D8D81169199DB4E300CC182A /* 1.gif */; };
 		D8D8116E199DB4E300CC182A /* 1.gif in Resources */ = {isa = PBXBuildFile; fileRef = D8D81169199DB4E300CC182A /* 1.gif */; };
@@ -11175,6 +11183,10 @@
 		D8CC69D119A5EEF500E57398 /* PrizeCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PrizeCell.m; sourceTree = "<group>"; };
 		D8CC69D919A5EF9D00E57398 /* PrizeCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PrizeCell.xib; sourceTree = "<group>"; };
 		D8CF8A9F1977981E0044E305 /* opencv2.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = opencv2.framework; sourceTree = "<group>"; };
+		D8D2806019C97CD80027E3BE /* HJImagesToVideo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HJImagesToVideo.h; sourceTree = "<group>"; };
+		D8D2806119C97CD80027E3BE /* HJImagesToVideo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HJImagesToVideo.m; sourceTree = "<group>"; };
+		D8D2806A19C97D270027E3BE /* REPagedScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = REPagedScrollView.h; sourceTree = "<group>"; };
+		D8D2806B19C97D270027E3BE /* REPagedScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = REPagedScrollView.m; sourceTree = "<group>"; };
 		D8D81169199DB4E300CC182A /* 1.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = 1.gif; sourceTree = "<group>"; };
 		D8D8116A199DB4E300CC182A /* 2.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = 2.gif; sourceTree = "<group>"; };
 		D8D8116B199DB4E300CC182A /* 3.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = 3.gif; sourceTree = "<group>"; };
@@ -18300,6 +18312,7 @@
 		CAFEFC4816606FC100441D77 /* Component-Gif */ = {
 			isa = PBXGroup;
 			children = (
+				D8D2805F19C97CD80027E3BE /* HJImagesToVideo */,
 				CAFEFC4916606FC100441D77 /* ANGif */,
 				CAFEFC6A16606FC100441D77 /* ANImageBitmapRep */,
 				CAFEFC8416606FC100441D77 /* GifManager.h */,
@@ -18488,6 +18501,7 @@
 		CAFEFDB316606FC100441D77 /* Component-View */ = {
 			isa = PBXGroup;
 			children = (
+				D8D2806919C97D270027E3BE /* PageScrollView */,
 				A47896D21995BB2400185220 /* SpotHelpView */,
 				FDDECBB91994BF7F00BE7191 /* SMPageControl */,
 				D837DCA31988FAB2001686BB /* LDProgressView */,
@@ -18765,6 +18779,24 @@
 				D8B5393A19920B3E00BD3337 /* ResultSeal.m */,
 			);
 			name = ResultSharePage;
+			sourceTree = "<group>";
+		};
+		D8D2805F19C97CD80027E3BE /* HJImagesToVideo */ = {
+			isa = PBXGroup;
+			children = (
+				D8D2806019C97CD80027E3BE /* HJImagesToVideo.h */,
+				D8D2806119C97CD80027E3BE /* HJImagesToVideo.m */,
+			);
+			path = HJImagesToVideo;
+			sourceTree = "<group>";
+		};
+		D8D2806919C97D270027E3BE /* PageScrollView */ = {
+			isa = PBXGroup;
+			children = (
+				D8D2806A19C97D270027E3BE /* REPagedScrollView.h */,
+				D8D2806B19C97D270027E3BE /* REPagedScrollView.m */,
+			);
+			path = PageScrollView;
 			sourceTree = "<group>";
 		};
 		D8D81168199DB4E300CC182A /* gif */ = {
@@ -24272,6 +24304,7 @@
 				A461B304174CBAA70088B061 /* DrawRoomListCell.m in Sources */,
 				A461B305174CBAA70088B061 /* DrawRoomListController.m in Sources */,
 				A461B306174CBAA70088B061 /* BBSPostCommand.m in Sources */,
+				D8D2806419C97CD80027E3BE /* HJImagesToVideo.m in Sources */,
 				A461B307174CBAA70088B061 /* BBSPostCommandPanel.m in Sources */,
 				A461B308174CBAA70088B061 /* BBSPostCommandView.m in Sources */,
 				A461B309174CBAA70088B061 /* PointNode.m in Sources */,
@@ -24324,6 +24357,7 @@
 				A461B341174CBAA70088B061 /* ShapeTouchHandler.m in Sources */,
 				A461B342174CBAA70088B061 /* StrawTouchHandler.m in Sources */,
 				A461B343174CBAA70088B061 /* TouchHandler.m in Sources */,
+				D8D2806E19C97D270027E3BE /* REPagedScrollView.m in Sources */,
 				A461B344174CBAA70088B061 /* CacheService.m in Sources */,
 				A461B347174CBAA70088B061 /* GestureRecognizerManager.m in Sources */,
 				A461B348174CBAA70088B061 /* VersionUpdateView.m in Sources */,
@@ -25275,6 +25309,7 @@
 				C28A9C651738F04B007A819F /* ReflectionView.m in Sources */,
 				C28A9C661738F04B007A819F /* FeedCarousel.m in Sources */,
 				C28A9C671738F04B007A819F /* StrawCommand.m in Sources */,
+				D8D2806D19C97D270027E3BE /* REPagedScrollView.m in Sources */,
 				C28A9C681738F04B007A819F /* GridCommand.m in Sources */,
 				C28A9C691738F04B007A819F /* CanvasRectBox.m in Sources */,
 				C28A9C6A1738F04B007A819F /* UIColor+UIColorExt.m in Sources */,
@@ -25296,6 +25331,7 @@
 				CA2A28AD195C125500A97478 /* TutorialCoreManager.m in Sources */,
 				C28A9C931738F04B007A819F /* SKProductManager.m in Sources */,
 				C28A9C941738F04B007A819F /* PBIAPProduct+Utils.m in Sources */,
+				D8D2806319C97CD80027E3BE /* HJImagesToVideo.m in Sources */,
 				C28A9C9C1738F04B007A819F /* FeedSceneDetailGuessResult.m in Sources */,
 				C28A9C9D1738F04B007A819F /* FeedSceneFeedDetail.m in Sources */,
 				C28A9C9E1738F04B007A819F /* FeedSceneGuessResult.m in Sources */,
@@ -26165,6 +26201,7 @@
 				CAEFC5A3170005AD00D799B7 /* ChatCommand.m in Sources */,
 				A40EE820170043A9003B8FFC /* ReflectionView.m in Sources */,
 				A40EE826170053A5003B8FFC /* FeedCarousel.m in Sources */,
+				D8D2806C19C97D270027E3BE /* REPagedScrollView.m in Sources */,
 				CAF839BE1701507C00494ED6 /* StrawCommand.m in Sources */,
 				CAF839C91701520A00494ED6 /* GridCommand.m in Sources */,
 				CAF0DB5317019AED009FE646 /* CanvasRectBox.m in Sources */,
@@ -26186,6 +26223,7 @@
 				EAC81C0D172B983200ED78DE /* UIImage+fixOrientation.m in Sources */,
 				A49D82BA172BD53F00C4001F /* SKProductService.m in Sources */,
 				A49D82CA172BD58800C4001F /* SKProductManager.m in Sources */,
+				D8D2806219C97CD80027E3BE /* HJImagesToVideo.m in Sources */,
 				A49D82F6172E355700C4001F /* PBIAPProduct+Utils.m in Sources */,
 				C28A9909173561E6007A819F /* FeedSceneDetailGuessResult.m in Sources */,
 				CACD6CBE18E03BCD003F97C0 /* NSObject+SBJSON.m in Sources */,
@@ -26568,6 +26606,7 @@
 				EA411851176066F500DA72D0 /* NetworkDetector.m in Sources */,
 				EA411852176066F500DA72D0 /* Reachability.m in Sources */,
 				EA411853176066F500DA72D0 /* CommonNetworkClient.m in Sources */,
+				D8D2806519C97CD80027E3BE /* HJImagesToVideo.m in Sources */,
 				EA411854176066F500DA72D0 /* UIAlertViewUtils.m in Sources */,
 				EA411855176066F500DA72D0 /* UIBarButtonItemExt.m in Sources */,
 				EA411856176066F500DA72D0 /* UIButtonExt.m in Sources */,
@@ -27069,6 +27108,7 @@
 				EA411AC3176066F500DA72D0 /* ChangeBGImageAction.m in Sources */,
 				EA411AC4176066F500DA72D0 /* TomatoItem.m in Sources */,
 				EA411AC5176066F500DA72D0 /* GeographyService.m in Sources */,
+				D8D2806F19C97D270027E3BE /* REPagedScrollView.m in Sources */,
 				EA411AC6176066F500DA72D0 /* GoogleAddressComponent.m in Sources */,
 				EA411AC7176066F500DA72D0 /* UserSettingCell.m in Sources */,
 				EA411ACA176066F500DA72D0 /* PBGameItem+Extend.m in Sources */,

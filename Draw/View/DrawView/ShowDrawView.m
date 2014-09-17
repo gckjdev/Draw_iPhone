@@ -17,12 +17,8 @@
 #import "DrawHolderView.h"
 #import "ClipAction.h"
 #import "SDWebImageDecoder.h"
-<<<<<<< HEAD
 #import "HJImagesToVideo.h"
-
-=======
 #import "BrushAction.h"
->>>>>>> b100acbd95bb33cda3bbf746525b584fb8b817f9
 #include <ImageIO/ImageIO.h>
 #include <MobileCoreServices/MobileCoreServices.h>
 
