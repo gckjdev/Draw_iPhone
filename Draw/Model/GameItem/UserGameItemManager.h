@@ -23,5 +23,6 @@
 - (BOOL)hasEnoughItem:(int)itemId amount:(int)amount;
 
 - (ItemType *)boughtPenTypeList;
+- (ItemType *)defaultPenTypeList;
 
 @end

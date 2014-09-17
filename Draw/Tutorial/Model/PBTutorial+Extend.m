@@ -201,10 +201,21 @@
 
 - (BOOL)isStageLock:(int)stageIndex
 {
+<<<<<<< HEAD
+=======
+    if (self.tutorial && self.tutorial.unlockAllStage){
+        return NO;
+    }
+    
+>>>>>>> b100acbd95bb33cda3bbf746525b584fb8b817f9
     PBTutorial* pbTutorial = [[TutorialCoreManager defaultManager] findTutorialByTutorialId:self.tutorial.tutorialId];
     if (pbTutorial && pbTutorial.unlockAllStage){
         return NO;
     }
+<<<<<<< HEAD
+=======
+    
+>>>>>>> b100acbd95bb33cda3bbf746525b584fb8b817f9
     return (stageIndex > self.currentStageIndex);
 }
 

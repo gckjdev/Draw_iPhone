@@ -17,8 +17,12 @@
 #import "DrawHolderView.h"
 #import "ClipAction.h"
 #import "SDWebImageDecoder.h"
+<<<<<<< HEAD
 #import "HJImagesToVideo.h"
 
+=======
+#import "BrushAction.h"
+>>>>>>> b100acbd95bb33cda3bbf746525b584fb8b817f9
 #include <ImageIO/ImageIO.h>
 #include <MobileCoreServices/MobileCoreServices.h>
 
@@ -29,7 +33,7 @@ typedef enum {
     PlaySpeedTypeNormal = 2, // x2
     PlaySpeedTypeHigh = 4, //x4
     PlaySpeedTypeSuper = 6,//x6
-    PlaySpeedTypeMax = 12,//x10
+    PlaySpeedTypeMax = 12*10,//x10
 }PlaySpeedType;
 
 
@@ -44,8 +48,11 @@ typedef enum {
     PenView *pen;
 
 }
-@property(nonatomic, assign) NSInteger speed; //default is Normal;
-@property (nonatomic, retain) PaintAction *tempAction;
+@property(nonatomic, assign) NSInteger  speed; //default is Normal;
+@property(nonatomic, assign) NSUInteger totalPointCount; //default is Normal;
+
+//@property (nonatomic, retain) PaintAction *tempAction;
+@property (nonatomic, retain) DrawAction *tempAction;
 
 @end
 
@@ -95,18 +102,31 @@ typedef enum {
         [self.superview addSubview:pen];
     }
     
-    if ([_currentAction isKindOfClass:[PaintAction class]]) {
-        pen.hidden = NO;
-        PaintAction *paintAction = (PaintAction *)_currentAction;
-        
-        if (_playingPointIndex == 0 && pen.penType != paintAction.paint.penType) {
-            //reset pen type
-            ItemType penType = paintAction.paint.penType;
-            [pen setPenType:penType];
-        }
-        CGPoint point = [paintAction.paint pointAtIndex:_playingPointIndex];
+    if ([_currentAction isKindOfClass:[PaintAction class]] ||
+        [_currentAction isKindOfClass:[BrushAction class]]) {
 
-        point= [pen.superview convertPoint:point fromView:self];
+        pen.hidden = NO;
+        
+        ItemType currentPenType;
+        CGPoint point;
+        if ([_currentAction isKindOfClass:[PaintAction class]]){
+            PaintAction *paintAction = (PaintAction *)_currentAction;
+            currentPenType = paintAction.paint.penType;
+            point = [paintAction.paint pointAtIndex:_playingPointIndex];
+        }
+        else{
+            BrushAction *action = (BrushAction *)_currentAction;
+            currentPenType = action.brushStroke.brushType;
+            point = [action.brushStroke pointAtIndex:_playingPointIndex];
+        }
+        
+        if (_playingPointIndex == 0 && pen.penType != currentPenType) {
+            //reset pen type
+//            ItemType penType = paintAction.paint.penType;
+            [pen setPenType:currentPenType];
+        }
+
+        point = [pen.superview convertPoint:point fromView:self];
         if (pen.penType != Eraser && pen.penType != DeprecatedEraser) {
             pen.frame = CGRectMake(point.x, point.y-SHOWPEN_HEIGHT, SHOWPEN_WIDTH, SHOWPEN_HEIGHT);
         }else{
@@ -134,6 +154,22 @@ typedef enum {
         return NO;
     }
 }
+
+//- (int)totalPointCount
+//{
+//    if (_totalPointCount == 0){
+//        for (DrawAction* drawAction in self.drawActionList){
+//            if ([drawAction pointCount] > 0){
+//                _totalPointCount += [drawAction pointCount];
+//            }
+//            else{
+//                _totalPointCount ++;
+//            }
+//        }
+//    }
+//    
+//    return _totalPointCount;
+//}
 
 - (void)play
 {
@@ -341,6 +377,7 @@ typedef enum {
     }else{
         _playingPointIndex += self.speed;
     }
+    
     if (_playingPointIndex >= [_currentAction pointCount]) {
         _playingPointIndex = 0;
 
@@ -352,7 +389,7 @@ typedef enum {
             _status = Stop;
         }
     }else{
-        _playingPointIndex = MIN([_currentAction pointCount]-1, _playingPointIndex + 1); //self.speed);
+        _playingPointIndex = MIN([_currentAction pointCount]-1, _playingPointIndex + 1);
     }
     
 }
@@ -361,23 +398,63 @@ typedef enum {
 - (void)updateTempAction
 {
     
-    if ([_currentAction isKindOfClass:[PaintAction class]]) {
-        Paint *currentPaint = [(PaintAction *)_currentAction paint];
-        if (self.tempAction == nil) {
-            Paint *paint = [Paint paintWithWidth:currentPaint.width color:currentPaint.color penType:currentPaint.penType pointList:nil];
-            self.tempAction = [PaintAction paintActionWithPaint:paint];
-            self.tempAction.shadow = [_currentAction shadow];
-            self.tempAction.clipAction = _currentAction.clipAction;
-            self.tempAction.layerTag = _currentAction.layerTag;
-            self.tempAction.layerAlpha = _currentAction.layerAlpha;
+    if ([_currentAction isKindOfClass:[PaintAction class]] ||
+        [_currentAction isKindOfClass:[BrushAction class]]) {
+
+        NSUInteger pointCount = 0;
+        Paint* currentPaint = nil;
+        BrushStroke *cbs = nil;
+        if ([_currentAction isKindOfClass:[PaintAction class]]){
+            currentPaint = [(PaintAction *)_currentAction paint];
+            if (self.tempAction == nil) {
+                Paint *paint = [Paint paintWithWidth:currentPaint.width
+                                               color:currentPaint.color
+                                             penType:currentPaint.penType
+                                           pointList:nil];
+                self.tempAction = [PaintAction paintActionWithPaint:paint];
+            }
+            
+            pointCount = [currentPaint pointCount];
         }
-        NSInteger i = [self.tempAction pointCount];
-        for (; i <= _playingPointIndex; ++ i) {
-            CGPoint p = [currentPaint pointAtIndex:i];
-            [self.tempAction addPoint:p inRect:self.bounds];
+        else{
+            cbs = [(BrushAction *)_currentAction brushStroke];
+            if (self.tempAction == nil) {
+                BrushStroke *bs = [BrushStroke brushStrokeWithWidth:cbs.width
+                                                              color:cbs.color
+                                                          brushType:cbs.brushType
+                                                          pointList:nil];
+                
+                self.tempAction = [BrushAction brushActionWithBrushStroke:bs];
+            }
+            
+            pointCount = [cbs pointCount];
         }
         
-        if (i >= [currentPaint pointCount]){
+        self.tempAction.shadow = [_currentAction shadow];
+        self.tempAction.clipAction = _currentAction.clipAction;
+        self.tempAction.layerTag = _currentAction.layerTag;
+        self.tempAction.layerAlpha = _currentAction.layerAlpha;
+        
+        NSInteger i = [self.tempAction pointCount];
+        CGPoint p;
+        float width;
+        for (; i <= _playingPointIndex; ++ i) {
+            if (currentPaint){
+                p = [currentPaint pointAtIndex:i];
+                [self.tempAction addPoint:p inRect:self.bounds];
+            }
+            else{
+                p = [cbs pointAtIndex:i];
+                width = [cbs widthAtIndex:i];
+                [(BrushAction *)self.tempAction addPoint:p
+                                                   width:width
+                                                  inRect:self.bounds
+                                                 forShow:YES];
+            }
+
+        }
+        
+        if (i >= pointCount){ // [currentPaint pointCount]){
             [self.tempAction finishAddPoint];
         }
     }else{
@@ -473,7 +550,8 @@ typedef enum {
             [self performSelector:@selector(playNextFrame) withObject:nil afterDelay:delay];
 
         }else{
-            if (![_currentAction isPaintAction]) {
+            if (![_currentAction isPaintAction] &&
+                ![_currentAction isBrushAction]) {
                 [self addDrawAction:_currentAction show:NO];
                 [self finishLastAction:_currentAction refresh:YES];
                 [self delayShowAction:_currentAction];
@@ -526,7 +604,6 @@ typedef enum {
     NSInteger speed = (1-delta) * PlaySpeedTypeMax;
     speed = MAX(speed, 0);
     self.speed = speed + PlaySpeedTypeLow;
-
 }
 
 //#define LEVEL_TIMES 500
@@ -808,12 +885,12 @@ typedef enum {
             UIImage* prevImage = [prevLayerImageDict objectForKey:@(layer.layerTag)];
             
             ClipAction *clip = [layer clipAction];
-            NSInteger gridLineNumber = [[layer drawInfo] gridLineNumber];
+//            NSInteger gridLineNumber = [[layer drawInfo] gridLineNumber];
             UIImage* layerImage = nil;
-            if (clip != nil || gridLineNumber != 0) {
+            if (clip != nil){ // || gridLineNumber != 0) {
                 // clear clip info
                 layer.clipAction = nil;
-                layer.drawInfo.gridLineNumber = 0;
+//                layer.drawInfo.gridLineNumber = 0;
                 [layer setNeedsDisplay];
                 
                 // create layer image
@@ -821,7 +898,7 @@ typedef enum {
                 
                 // restore clip info
                 [layer setClipAction:clip];
-                [layer.drawInfo setGridLineNumber:gridLineNumber];
+//                [layer.drawInfo setGridLineNumber:gridLineNumber];
                 [layer setNeedsDisplay];
             }else{
                 layerImage = [self createImageFromLayer:layer bgImage:prevImage];

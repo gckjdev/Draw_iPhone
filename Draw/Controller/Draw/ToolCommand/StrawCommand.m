@@ -64,10 +64,11 @@
 - (void)didStrawGetColor:(DrawColor *)color
 {
     [self.toolPanel updateRecentColorViewWithColor:color updateModel:YES];
-    self.drawInfo.penColor = color;
-    self.drawInfo.alpha = 1;
+    self.drawView.shareDrawInfo.penColor = color;
+    self.drawView.shareDrawInfo.alpha = 1;
 
     [self.drawInfo backToLastDrawMode];
+    [self.drawView.shareDrawInfo backToLastDrawMode];
     
     [self hidePopTipView];
     [self updateToolPanel];

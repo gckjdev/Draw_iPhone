@@ -26,10 +26,11 @@
         Paint *currentPaint = nil;
         if (action == nil) {
             DrawInfo *info = self.drawView.drawInfo;
+            ShareDrawInfo *shareDrawInfo = self.drawView.shareDrawInfo;
 
-            currentPaint = [Paint paintWithWidth:info.penWidth
-                                           color:info.penColor
-                                         penType:info.penType
+            currentPaint = [Paint paintWithWidth:[shareDrawInfo itemWidth]
+                                           color:[shareDrawInfo itemColor]
+                                         penType:shareDrawInfo.penType
                                        pointList:nil];
 
             action.shadow = info.shadow;            
@@ -43,10 +44,12 @@
 {
     if (action == nil) {
         DrawInfo *info = self.drawView.drawInfo;
+        ShareDrawInfo *shareDrawInfo = self.drawView.shareDrawInfo;
+        
         BrushStroke* brushStroke = nil;
-        brushStroke = [BrushStroke brushStrokeWithWidth:info.penWidth
-                                                  color:info.penColor
-                                              brushType:info.penType
+        brushStroke = [BrushStroke brushStrokeWithWidth:[shareDrawInfo itemWidth]
+                                                  color:[shareDrawInfo itemColor]
+                                              brushType:shareDrawInfo.penType
                                               pointList:nil];
         
         action.shadow = info.shadow;
@@ -72,19 +75,19 @@
 
 - (BOOL)isBrush
 {
-    if (self.drawView.drawInfo.penType >= ItemTypeBrushBegin &&
-        self.drawView.drawInfo.penType <= ItemTypeBrushEnd){
+    if (self.drawView.shareDrawInfo.penType >= ItemTypeBrushBegin &&
+        self.drawView.shareDrawInfo.penType <= ItemTypeBrushEnd){
         return YES;
     }
     else{
         
-#ifdef BRUSH
-        if (self.drawView.drawInfo.penType >= WaterPen &&
-            self.drawView.drawInfo.penType <= PenCount){
-            self.drawView.drawInfo.penType = ItemTypeBrushBegin + 1 + self.drawView.drawInfo.penType - WaterPen;
-            return YES;
-        }
-#endif
+//#ifdef BRUSH
+//        if (self.drawView.shareDrawInfo.penType >= WaterPen &&
+//            self.drawView.shareDrawInfo.penType <= PenCount){
+//            self.drawView.shareDrawInfo.penType = ItemTypeBrushBegin + 1 + self.drawView.shareDrawInfo.penType - WaterPen;
+//            return YES;
+//        }
+//#endif
         
         return NO;
     }

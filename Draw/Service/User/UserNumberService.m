@@ -68,12 +68,7 @@ static UserNumberService* _defaultUserService;
                 number = [[UserManager defaultManager] xiaojiNumber];
                 
                 // set default home style
-                if (isLittleGeeAPP()){
-                    [[UserManager defaultManager] setHomeStyle:HOME_STYLE_CLASSICAL];
-                }
-                else{
-                    [[UserManager defaultManager] setHomeStyle:HOME_STYLE_METRO];
-                }
+                [[UserManager defaultManager] setHomeStyle:[PPConfigManager defaultHomeStyleNewUser]];
             }
             
             EXECUTE_BLOCK(block, output.resultCode, number);

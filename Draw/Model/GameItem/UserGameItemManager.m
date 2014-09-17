@@ -207,21 +207,49 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(UserGameItemManager);
     return NO;
 }
 
+- (ItemType *)defaultPenTypeList
+{
+    static ItemType defaultPens[] = {
+        Pencil,
+        ItemTypeBrushGouache,
+        ItemTypeBrushBlur,
+        ItemTypeBrushCrayon,
+        ItemTypeBrushPen,
+        ItemTypeBrushPencil,
+#ifdef DEBUG
+        ItemTypeBrushWater,
+#endif
+        Quill,
+        ItemTypeListEndFlag
+    };
+    return defaultPens;
+
+}
 
 - (ItemType *)boughtPenTypeList
 {
     if([[UserManager defaultManager] isVip]){
         static ItemType vipPens[] = {
             Pencil,
-            WaterPen,
-            Pen,
-            IcePen,
+            ItemTypeBrushGouache,
+            ItemTypeBrushBlur,
+            ItemTypeBrushCrayon,
+            ItemTypeBrushPen,
+            ItemTypeBrushPencil,
+#ifdef DEBUG
+            ItemTypeBrushWater,
+#endif
             Quill,
-            ItemTypeFunPen1,
-            ItemTypeFunPen2,
-            ItemTypeFunPen3,
-            ItemTypeFunPen4,
-            ItemTypeFunPen5,
+            
+//            WaterPen,
+//            Pen,
+//            IcePen,
+//            Quill,
+//            ItemTypeFunPen1,
+//            ItemTypeFunPen2,
+//            ItemTypeFunPen3,
+//            ItemTypeFunPen4,
+//            ItemTypeFunPen5,
             ItemTypeListEndFlag
         };
         return vipPens;

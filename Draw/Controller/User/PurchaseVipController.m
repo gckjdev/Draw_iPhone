@@ -128,8 +128,8 @@
     SET_VIEW_ROUND_CORNER_RADIUS(self.featureLabel9, radius);
     self.featureLabel9.backgroundColor = COLOR_BLUE;
     
-    self.featureLabel1.text = @"4种\n绝版画笔";
-    self.featureLabel2.text = @"5种\n全新画笔";
+    self.featureLabel1.text = @"模糊笔\n土豪钢笔";
+    self.featureLabel2.text = @"蜡笔、铅笔\n羽毛笔";
     self.featureLabel3.text = @"每月\n29999金币";
 
     self.featureLabel4.text = @"VIP\n专属标记";

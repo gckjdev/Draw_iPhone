@@ -24,12 +24,20 @@ static dispatch_once_t sharedPenBrushOnceToken;
     return sharedPenBrush;
 }
 
-- (UIImage*)brushImage:(UIColor *)color
+- (UIImage*)brushImage:(UIColor *)color width:(float)width
 {
+    //使用图片不需要管本来的颜色，只需要形状是所需要的即可，颜色由rt_tint方法搞定
     UIImage* brushImage = [UIImage imageNamed:@"brush_ellipse1.png"];
-    UIImage *tinted = [brushImage rt_tintedImageWithColor:color
-                                                    level:1.0f];
-    brushImage = tinted;
+    //使用rt_tint方法需要color属性，其中color属性的alpha通道应置为1.0，否则染色效果会受底图影响
+    UIColor *colorWithRGBOnly = [UIColor colorWithRed:color.red green:color.green blue:color.blue alpha:1.0];
+    
+    //染色，把所需形状染成用户所需颜色，不透明
+    UIImage *tinted = [brushImage rt_tintedImageWithColor:colorWithRGBOnly];
+
+    CGFloat alpha = [color alpha] / 5;
+    
+    brushImage = [DrawUtils imageByApplyingAlpha:alpha image:tinted];
+    
     return brushImage;
 }
 
@@ -52,9 +60,9 @@ static dispatch_once_t sharedPenBrushOnceToken;
     {
         double accelerate = distance2 - distance1;
         if( accelerate / threshold > 0.1)
-            tempWidth += (threshold / 8);
-        else if (accelerate / threshold < 0.0)
-            tempWidth -= (threshold / 8);
+            tempWidth += threshold / 4;
+        else if (accelerate / threshold < -0.1)
+            tempWidth -= threshold / 4;
         
         if(tempWidth < threshold / 4)
             tempWidth = threshold / 4;
@@ -73,17 +81,17 @@ static dispatch_once_t sharedPenBrushOnceToken;
                  distance1:(float)distance1         // 当前BeginDot和ControlDot的距离
                  distance2:(float)distance2         // 当前EndDot和ControlDot的距离
 {
-//    int disFactor = 1;
-//    
-//    double sizeFactor = 1;
-    
-    int interpolationLength = INTERPOLATION * 20;
+
+    double typeFactor = 8;    
+    int interpolationLength = INTERPOLATION * typeFactor;
     
     return interpolationLength;
 }
 
 -(void)randomShakePointX:(float*)pointX
                   PointY:(float*)pointY
+                  PointW:(float*)pointW
+        WithDefaultWidth:(float)defaultWidth
 {
     //do nothing
 

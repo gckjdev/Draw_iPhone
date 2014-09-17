@@ -74,7 +74,7 @@
         self.endDot = [[BrushDot alloc]init];
         
         //get brush image and tint it
-        self.brushImage = [self.brush brushImage:[self.color color]];
+        self.brushImage = [self.brush brushImage:[self.color color] width:width];
         self.brushImageRef = _brushImage.CGImage;
         
         
@@ -218,20 +218,15 @@
         _beginDot.width = _tempWidth;
         _endDot.width = _tempWidth;
     
-        
         // draw the first point  && add it to point list 
         [_hPointList addPoint:_endDot.x y:_endDot.y width:_endDot.width];
-        CGRect rect = CGRectMake(_endDot.x - _endDot.width/2, _endDot.y - _endDot.width/2, _endDot.width, _endDot.width);
-        CGImageRef brushImageRef = [self brushImageRef];
-//        CGContextSetAlpha(layerContext, [self.color alpha]);
-        CGContextDrawImage(layerContext, rect, brushImageRef);
     }
     else{
         //重采样定位第一点
         _beginDot.x = 0.25*_beginDot.x + 0.5*_controlDot.x + 0.25*_endDot.x;
         _beginDot.y = 0.25*_beginDot.y + 0.5*_controlDot.y + 0.25*_endDot.y;
         _beginDot.width = 0.25*_beginDot.width + 0.5*_controlDot.width + 0.25*_endDot.width;
-        
+         
         //第二点，为控制点
         _controlDot.x = _endDot.x;
         _controlDot.y = _endDot.y;
@@ -254,35 +249,77 @@
         float pointY=0;
         float width=0;
         
-        int interpolationLength = [_brush interpolationLength:self.width
-                                                    distance1:distance1
-                                                    distance2:distance2];
-        
         CGImageRef brushImageRef = [self brushImageRef];
-        for(int i = 0; i<interpolationLength; i++)
-        {
-            [self bezierInterpolationWithBegin:_beginDot
-                                       Control:_controlDot
-                                           End:_endDot
-                                            No:i
-                                        Length:interpolationLength
-                                        pointX:&pointX
-                                        pointY:&pointY
-                                         width:&width];
+        
+        if(distance1 != 0 && distance2 != 0){
             
-            [_brush randomShakePointX:&pointX
-                               PointY:&pointY];
+            int interpolationLength = [_brush interpolationLength:self.width
+                                                        distance1:distance1
+                                                        distance2:distance2];
             
-            [_hPointList addPoint:pointX y:pointY width:width];
+//            PPDebug(@"length %d", interpolationLength);
             
-            // draw by point list
-            CGRect rect = CGRectMake(pointX - width/2, pointY - width/2, width, width);
+            for(int i = 0; i<interpolationLength; i++)
+            {
+                [self bezierInterpolationWithBegin:_beginDot
+                                           Control:_controlDot
+                                               End:_endDot
+                                                No:i
+                                            Length:interpolationLength
+                                            pointX:&pointX
+                                            pointY:&pointY
+                                             width:&width];
+                
+                [_brush randomShakePointX:&pointX
+                                   PointY:&pointY
+                                   PointW:&width
+                         WithDefaultWidth:self.width];
+                
+                [_hPointList addPoint:pointX y:pointY width:width];
+                
+                // draw by point list
+                CGRect rect = CGRectMake(pointX - width/2, pointY - width/2, width, width);
 
-            CGContextDrawImage(layerContext, rect, brushImageRef);
+                CGContextDrawImage(layerContext, rect, brushImageRef);
+            }
         }
         
         CGContextRestoreGState(layerContext);
     }
+}
+
+- (void)addPoint:(CGPoint)point
+           width:(float)width
+          inRect:(CGRect)rect
+         forShow:(BOOL)forShow
+{
+    
+    if (!CGRectContainsPoint(rect, point)){
+        //add By Gamy
+        //we can change point(304.1,320.4) to point(304,320)
+        //this point is not incorrect, but mistake.
+        if (![self spanRect:rect ContainsPoint:point]) {
+            PPDebug(@"<addPoint> Detect Incorrect Point = %@, Skip It", NSStringFromCGPoint(point));
+            return;
+        }
+        point.x = MAX(point.x, 0);
+        point.y = MAX(point.y, 0);
+        point.x = MIN(point.x, CGRectGetWidth(rect));
+        point.y = MIN(point.y, CGRectGetHeight(rect));
+        PPDebug(@"<addPoint> Change Point to %@", NSStringFromCGPoint(point));
+    }
+    
+    _brushLayer = [self brushLayer:rect];
+    CGContextRef layerContext = CGLayerGetContext(_brushLayer);
+    CGContextSaveGState(layerContext);
+    
+    [_hPointList addPoint:point.x y:point.y width:width];
+    
+    // draw by point list
+    CGRect imageRect = CGRectMake(point.x - width/2, point.y - width/2, width, width);
+    CGImageRef brushImageRef = [self brushImageRef];
+    CGContextDrawImage(layerContext, imageRect, brushImageRef);
+    CGContextRestoreGState(layerContext);
 }
 
 -(double)distanceOfDot:(BrushDot*)dot1 AndDot:(BrushDot*)dot2
@@ -354,6 +391,7 @@
 
 - (void)clearMemory
 {
+    [self releaseBrushLayer];
 }
 
 - (CGRect)drawInContext:(CGContextRef)context inRect:(CGRect)rect
@@ -368,7 +406,9 @@
     if (_brushLayer != NULL){
         
 //        CGContextSetAlpha(context, [self.color alpha]);
+
         CGContextDrawLayerAtPoint(context, CGPointZero, _brushLayer);
+        
     }
 //    else if (_finalImageData){
 ////        [_finalImage drawAtPoint:CGPointZero];
@@ -391,6 +431,7 @@
         }
         
         CGContextDrawLayerAtPoint(context, CGPointZero, _brushLayer);
+
 //        CGLayerRelease(_brushLayer);
 //        _brushLayer = NULL;
     }
@@ -441,14 +482,19 @@
 
 - (void)finishAddPoint
 {
-    // create final image
-//    if (_brushLayer != NULL){
-    
-//        [self createImageFromLayer];
-        
-//        CGLayerRelease(_brushLayer);
-//        _brushLayer = NULL;
-//    }
+    //特殊处理，在采样点过少（只有一两个，无法进行贝塞尔插值时),直接显示单个采样点
+    if(_hPointList.count == 1 || _hPointList.count == 2)
+    {
+        CGFloat singleDotX,singleDotY,singleDotW;
+        singleDotX = [_hPointList getPointX:0];
+        singleDotY = [_hPointList getPointY:0];
+        singleDotW = [_hPointList getPointWidth:0];
+        CGContextRef layerContext = CGLayerGetContext(_brushLayer);
+        CGRect rect = CGRectMake(singleDotX - singleDotW/2, singleDotY - singleDotW/2, singleDotW, singleDotW);
+        CGImageRef brushImageRef = [self brushImageRef];
+
+        CGContextDrawImage(layerContext, rect, brushImageRef);
+    }
     
     [_hPointList complete];
 }
@@ -466,6 +512,15 @@
     
     return [_hPointList pointAtIndex:index];
     
+}
+
+- (float)widthAtIndex:(NSInteger)index
+{
+    if (index < 0 || index >= [self pointCount]) {
+        return 0;
+    }
+    
+    return [_hPointList getPointWidth:index];    
 }
 
 

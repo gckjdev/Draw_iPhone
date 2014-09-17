@@ -48,11 +48,14 @@
 
 @property(nonatomic, assign) id<DrawViewDelegate>delegate;
 @property(nonatomic, assign) id<DrawViewStrawDelegate>strawDelegate;
+@property(nonatomic, retain) ShareDrawInfo *shareDrawInfo;
+
 //@property(nonatomic, assign) TouchActionType touchActionType;
 
 
 
 - (void)setDrawEnabled:(BOOL)enabled;
+- (void)saveShareDrawInfo:(MyPaint*)draft;
 
 - (void)clearRedoStack;
 - (BOOL)redo;

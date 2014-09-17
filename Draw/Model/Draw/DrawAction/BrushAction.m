@@ -45,16 +45,17 @@
     CGRect rect1;
     CGContextSaveGState(context);
     [self.clipAction clipContext:context];
-    
-    if ([self needShowShadow]) {
-        CGContextBeginTransparencyLayer(context, NULL);
-        [self.shadow updateContext:context];
+
+    // no need to support shadow for brush
+//    if ([self needShowShadow]) {
+//        CGContextBeginTransparencyLayer(context, NULL);
+//        [self.shadow updateContext:context];
+//        rect1 = [self.brushStroke drawInContext:context inRect:rect];
+//        CGContextEndTransparencyLayer(context);
+//        [self.shadow spanRect:&rect1];
+//    }else{
         rect1 = [self.brushStroke drawInContext:context inRect:rect];
-        CGContextEndTransparencyLayer(context);
-        [self.shadow spanRect:&rect1];
-    }else{
-        rect1 = [self.brushStroke drawInContext:context inRect:rect];
-    }
+//    }
     CGContextRestoreGState(context);
     return rect1;
 }
@@ -256,6 +257,17 @@
 {
     [super addPoint:point inRect:rect];
     [self.brushStroke addPoint:point inRect:rect];
+}
+
+- (void)addPoint:(CGPoint)point
+           width:(float)width
+          inRect:(CGRect)rect
+         forShow:(BOOL)forShow
+{
+    [self.brushStroke addPoint:point
+                         width:width
+                        inRect:rect
+                       forShow:forShow];
 }
 
 - (NSUInteger)pointCount

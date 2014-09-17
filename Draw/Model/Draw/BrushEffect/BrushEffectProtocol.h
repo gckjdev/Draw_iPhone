@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "UIImage+RTTint.h"
+#import "UIImageExt.h"
 #import "DrawUtils.h"
 #import "UIColor+RGBValues.h"
 
@@ -17,9 +18,9 @@
 @protocol BrushEffectProtocol <NSObject>
 
 #define FIXED_PEN_SIZE 24
-#define INTERPOLATION 4
+#define INTERPOLATION 10
 
-- (UIImage*)brushImage:(UIColor*)color;
+- (UIImage*)brushImage:(UIColor*)color width:(float)width;
 
 // 笔刷宽度是否每一点可变
 - (BOOL)isWidthFixedSize;
@@ -40,6 +41,8 @@
 
 //对于某些笔刷例如蜡笔，需要对点进行随机抖动
 -(void)randomShakePointX:(float*)pointX
-                  PointY:(float*)pointY;
+                  PointY:(float*)pointY
+                  PointW:(float*)pointW
+        WithDefaultWidth:(float)defaultWidth;
 
 @end

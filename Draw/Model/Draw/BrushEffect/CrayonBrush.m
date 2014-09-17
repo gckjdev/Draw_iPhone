@@ -23,10 +23,11 @@ static dispatch_once_t sharedCrayonBrushOnceToken;
     return sharedCrayonBrush;
 }
 
-- (UIImage*)brushImage:(UIColor *)color
+- (UIImage*)brushImage:(UIColor *)color width:(float)width
 {
     //使用图片不需要管本来的颜色，只需要形状是所需要的即可，颜色由rt_tint方法搞定
-    UIImage* brushImage = [UIImage imageNamed:@"brush_dot6.png"];
+    UIImage* brushImage = [UIImage imageNamed:@"brush_dot6"];
+    brushImage = [brushImage imageByScalingAndCroppingForSize:CGSizeMake(width, width)];
 
     //使用rt_tint方法需要color属性，其中color属性的alpha通道应置为1.0，否则染色效果会受底图影响
     UIColor *colorWithRGBOnly = [UIColor colorWithRed:color.red green:color.green blue:color.blue alpha:1.0];
@@ -35,8 +36,9 @@ static dispatch_once_t sharedCrayonBrushOnceToken;
     UIImage *tinted = [brushImage rt_tintedImageWithColor:colorWithRGBOnly
                                                     level:1.0f];
     
-    //考虑到蜡笔不需要透明度，故不使用相关的image变换方法
-    brushImage = tinted;
+    //暂且当做蜡笔有透明度
+    brushImage = [DrawUtils imageByApplyingAlpha:[color alpha]  image: tinted];
+    
     
     return brushImage;
 }
@@ -63,8 +65,9 @@ static dispatch_once_t sharedCrayonBrushOnceToken;
                  distance1:(float)distance1         // 当前BeginDot和ControlDot的距离
                  distance2:(float)distance2         // 当前EndDot和ControlDot的距离
 {
-    double  factor =  2 * (distance1) / brushWidth;
-    int interpolationLength = INTERPOLATION * factor + 1;
+    double speedFactor = (distance1) / brushWidth;
+    double typeFactor = 1.5;
+    int interpolationLength = INTERPOLATION * speedFactor * typeFactor + 1;
     
     return interpolationLength;
 
@@ -72,22 +75,34 @@ static dispatch_once_t sharedCrayonBrushOnceToken;
 
 -(void)randomShakePointX:(float*)pointX
                   PointY:(float*)pointY
+                  PointW:(float*)pointW
+        WithDefaultWidth:(float)defaultWidth
 {
-    float xRandomOffset = arc4random() % 3;
-    float yRandomOffset = arc4random() % 3;
+    NSInteger randomFactor = defaultWidth / 8 + 2;
     
-    NSInteger xShouldShake = arc4random() % 3;
-    NSInteger yShouldShake = arc4random() % 3;
+    float xRandomOffset = arc4random() % randomFactor;
+    float yRandomOffset = arc4random() % randomFactor;
+    float wRandomOffset = arc4random() % randomFactor;
+    
+    NSInteger xShouldShake = arc4random() % 4;
+    NSInteger yShouldShake = arc4random() % 4;
+    NSInteger wShouldShake = arc4random() % 4;
     
     if(xShouldShake == 0)
-        *pointX+=xRandomOffset;
+        *pointX += xRandomOffset;
     else if(xShouldShake == 1)
-        *pointX-=xRandomOffset;
+        *pointX -= xRandomOffset;
     
     if(yShouldShake == 0)
-        *pointY+=yRandomOffset;
+        *pointY += yRandomOffset;
     else if(yShouldShake == 1)
-        *pointY-=yRandomOffset;
+        *pointY -= yRandomOffset;
+    
+
+    if(wShouldShake == 0)
+        *pointW += wRandomOffset;
+    else if (wShouldShake == 1)
+        *pointW -=wRandomOffset;
 
 }
 

@@ -139,14 +139,22 @@
             return [UIImage imageNamed:@"selected_pen_fun5@2x.png"];
             
         case ItemTypeBrushGouache:
-            return manager.selectedMarkPenImage;
-        case ItemTypeBrushOil:
-            return manager.selectedBrushPenImage;
+            return manager.brushGouacheSelectedImage;
+            
+        case ItemTypeBrushPencil:
+            return manager.brushPencilSelectedImage;
+            
         case ItemTypeBrushCrayon:
-            return manager.selectedIcePenImage;
+            return manager.brushCrayonSelectedImage;
+            
         case ItemTypeBrushPen:
-            return manager.selectedFeatherPenImage;
+            return manager.brushPenSelectedImage;
+            
+        case ItemTypeBrushBlur:
+            return manager.brushBlurSelectedImage;
 
+        case ItemTypeBrushWater:
+            return manager.brushWaterSelectedImage;
             
         default:
             return nil;
@@ -170,6 +178,24 @@
         case Eraser:
         case DeprecatedEraser:            
             return manager.showEraserImage;
+            
+        case ItemTypeBrushGouache:
+            return manager.brushGouacheShowImage;
+            
+        case ItemTypeBrushPencil:
+            return manager.brushPencilShowImage;
+            
+        case ItemTypeBrushCrayon:
+            return manager.brushCrayonShowImage;
+            
+        case ItemTypeBrushPen:
+            return manager.brushPenShowImage;
+            
+        case ItemTypeBrushBlur:
+            return manager.brushBlurShowImage;
+            
+        case ItemTypeBrushWater:
+            return manager.brushWaterShowImage;
             
         case ItemTypeFunPen1:
             return [UIImage imageNamed:@"pen_show_fun1@2x.png"];
@@ -214,6 +240,25 @@
             return [manager waterPenImage];
         case Pencil:
             return [manager pencilImage];
+            
+        case ItemTypeBrushGouache:
+            return manager.brushGouacheImage;
+            
+        case ItemTypeBrushPencil:
+            return manager.brushPencilImage;
+            
+        case ItemTypeBrushCrayon:
+            return manager.brushCrayonImage;
+            
+        case ItemTypeBrushPen:
+            return manager.brushPenImage;
+            
+        case ItemTypeBrushBlur:
+            return manager.brushBlurImage;
+
+        case ItemTypeBrushWater:
+            return manager.brushWaterImage;
+            
         case PaletteItem:
             return [manager shopItemPaletteImage];
         case ColorAlphaItem:

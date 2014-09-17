@@ -13,7 +13,7 @@
 - (UIView *)contentView
 {
     Palette *pallete = [Palette paletteWithDelegate:self];
-    pallete.sourceColor = self.drawInfo.penColor.color;
+    pallete.sourceColor = self.drawView.shareDrawInfo.penColor.color;
     return pallete;
 }
 
@@ -42,7 +42,7 @@
 {
     if (self.popTipView) {
         
-        [self.toolPanel updateRecentColorViewWithColor:self.drawInfo.penColor
+        [self.toolPanel updateRecentColorViewWithColor:self.drawView.shareDrawInfo.penColor
                                            updateModel:YES];
  
         [self updateToolPanel];
@@ -53,18 +53,18 @@
 
 - (void)palette:(Palette *)palette didPickColor:(DrawColor *)color
 {
-    self.drawInfo.penColor = [DrawColor colorWithColor:color];
+    self.drawView.shareDrawInfo.penColor = [DrawColor colorWithColor:color];
 }
 
 - (void)popTipViewWasDismissedByUser:(CMPopTipView *)popTipView
 {
-    [self.toolPanel updateRecentColorViewWithColor:self.drawInfo.penColor updateModel:YES];
+    [self.toolPanel updateRecentColorViewWithColor:self.drawView.shareDrawInfo.penColor updateModel:YES];
     [super popTipViewWasDismissedByUser:popTipView];
 }
 
 - (void)popTipViewWasDismissedByCallingDismissAnimatedMethod:(CMPopTipView *)popTipView
 {
-    [self.toolPanel updateRecentColorViewWithColor:self.drawInfo.penColor updateModel:YES];
+    [self.toolPanel updateRecentColorViewWithColor:self.drawView.shareDrawInfo.penColor updateModel:YES];
     [super popTipViewWasDismissedByCallingDismissAnimatedMethod:popTipView];
 }
 

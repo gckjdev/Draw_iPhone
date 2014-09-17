@@ -47,14 +47,20 @@
     [super dealloc];
 }
 
+
+
 - (CGRect)drawInContext:(CGContextRef)context inRect:(CGRect)rect
 {
     CGRect rect1;
     CGContextSaveGState(context);
     [self.clipAction clipContext:context];
     if (self.paint.penType == Eraser) {
-        CGContextSetBlendMode(context, kCGBlendModeClear);
+//        CGContextSetBlendMode(context, kCGBlendModeClear);
+        CGContextSetBlendMode(context, kCGBlendModeDestinationOut);
     }
+    else{
+        CGContextSetBlendMode(context, kCGBlendModeNormal);
+    }    
 
     if ([self needShowShadow] && self.paint.penType != Eraser && self.paint.penType != DeprecatedEraser) {
         CGContextBeginTransparencyLayer(context, NULL);
@@ -70,6 +76,12 @@
     }else{
         rect1 = [self.paint drawInContext:context inRect:rect];
     }
+    
+    // reset blend mode for eraser
+    if (self.paint.penType == Eraser) {
+        CGContextSetBlendMode(context, kCGBlendModeNormal);
+    }
+    
     CGContextRestoreGState(context);
     return rect1;
 }

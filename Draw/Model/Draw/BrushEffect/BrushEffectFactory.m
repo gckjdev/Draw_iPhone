@@ -11,7 +11,8 @@
 #import "BlurBrush.h"
 #import "CrayonBrush.h"
 #import "PenBrush.h"
-
+#import "WaterBrush.h"
+#import "PencilBrush.h"
 
 static BrushEffectFactory* sharedBrushFactory;
 static dispatch_once_t brushFactoryOnceToken;
@@ -44,6 +45,14 @@ static dispatch_once_t brushFactoryOnceToken;
         case ItemTypeBrushPen:
             return [PenBrush sharedBrush];
             
+        case ItemTypeBrushWater:
+            return [WaterBrush sharedBrush];
+        
+        case ItemTypeBrushPencil:
+            // TODO brush pencil for Charlie
+            return [PencilBrush sharedBrush];
+//            POSTMSG(NSLS(@"铅笔尚未支持"));
+            break;
             
         default:
             break;
