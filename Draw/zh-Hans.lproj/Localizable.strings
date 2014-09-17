@@ -2974,3 +2974,12 @@
 "kRequierDelete" = "删除教程？（注意，删除教程后,进度会丢失）";
 
 "kNoOpusForReplay" = "当前未有作品可供播放";
+
+"kProTutorialType" = "专业教程";
+"kLeisureTutorialType" = "休闲临摹";
+"kSecCreateTutorialType" = "二次创作";
+"kIntroduceLeisureTutorial" = "休闲主题创作包,无需过关";
+"kIntroduceProTutorial" = "专业教程，修炼学习后，60分过关";
+
+"kRankViewDesc" = "%@,已有%d用户发布了神作:";
+

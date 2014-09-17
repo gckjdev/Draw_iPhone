@@ -35,6 +35,11 @@ typedef void (^ GetFeedListCompleteBlock)(int resultCode, NSArray* feedList);
           feedListType:(FeedListType)type 
             resultCode:(NSInteger)resultCode;
 
+- (void)didGetFeedList:(NSArray *)feedList
+          feedListType:(FeedListType)type
+            resultCode:(NSInteger)resultCode
+            totalCount:(int)totalCount;
+
 - (void)didGetContestOpusList:(NSArray *)feedList 
                          type:(int)type 
                    resultCode:(NSInteger)resultCode;
