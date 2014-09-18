@@ -17,7 +17,7 @@
 
 @protocol BrushEffectProtocol <NSObject>
 
-#define FIXED_PEN_SIZE 24
+#define FIXED_PEN_SIZE 20
 #define INTERPOLATION 10
 
 - (UIImage*)brushImage:(UIColor*)color width:(float)width;
