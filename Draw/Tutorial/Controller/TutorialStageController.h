@@ -9,10 +9,12 @@
 #import <UIKit/UIKit.h>
 #import "Tutorial.pb.h"
 #import "PPViewController.h"
+#import "FeedService.h"
+#import "StableView.h"
 
 @class TutorialInfoController;
 
-@interface TutorialStageController : PPViewController<UICollectionViewDataSource,UICollectionViewDelegate>
+@interface TutorialStageController : PPViewController<UICollectionViewDataSource,UICollectionViewDelegate,FeedServiceDelegate,AvatarViewDelegate>
 
 @property (retain, nonatomic) IBOutlet UICollectionView *collectionView;
 @property (retain, nonatomic) TutorialInfoController* infoController;

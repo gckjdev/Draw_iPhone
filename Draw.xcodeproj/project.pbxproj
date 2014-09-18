@@ -6693,6 +6693,30 @@
 		D8CF8AA11977981E0044E305 /* opencv2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D8CF8A9F1977981E0044E305 /* opencv2.framework */; };
 		D8CF8AA21977981F0044E305 /* opencv2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D8CF8A9F1977981E0044E305 /* opencv2.framework */; };
 		D8CF8AA31977981F0044E305 /* opencv2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D8CF8A9F1977981E0044E305 /* opencv2.framework */; };
+		D8D2806219C97CD80027E3BE /* HJImagesToVideo.m in Sources */ = {isa = PBXBuildFile; fileRef = D8D2806119C97CD80027E3BE /* HJImagesToVideo.m */; };
+		D8D2806319C97CD80027E3BE /* HJImagesToVideo.m in Sources */ = {isa = PBXBuildFile; fileRef = D8D2806119C97CD80027E3BE /* HJImagesToVideo.m */; };
+		D8D2806419C97CD80027E3BE /* HJImagesToVideo.m in Sources */ = {isa = PBXBuildFile; fileRef = D8D2806119C97CD80027E3BE /* HJImagesToVideo.m */; };
+		D8D2806519C97CD80027E3BE /* HJImagesToVideo.m in Sources */ = {isa = PBXBuildFile; fileRef = D8D2806119C97CD80027E3BE /* HJImagesToVideo.m */; };
+		D8D2806C19C97D270027E3BE /* REPagedScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = D8D2806B19C97D270027E3BE /* REPagedScrollView.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
+		D8D2806D19C97D270027E3BE /* REPagedScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = D8D2806B19C97D270027E3BE /* REPagedScrollView.m */; };
+		D8D2806E19C97D270027E3BE /* REPagedScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = D8D2806B19C97D270027E3BE /* REPagedScrollView.m */; };
+		D8D2806F19C97D270027E3BE /* REPagedScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = D8D2806B19C97D270027E3BE /* REPagedScrollView.m */; };
+		D8D2807419C982360027E3BE /* rankEnterBtn.png in Resources */ = {isa = PBXBuildFile; fileRef = D8D2807019C982360027E3BE /* rankEnterBtn.png */; };
+		D8D2807519C982360027E3BE /* rankEnterBtn.png in Resources */ = {isa = PBXBuildFile; fileRef = D8D2807019C982360027E3BE /* rankEnterBtn.png */; };
+		D8D2807619C982360027E3BE /* rankEnterBtn.png in Resources */ = {isa = PBXBuildFile; fileRef = D8D2807019C982360027E3BE /* rankEnterBtn.png */; };
+		D8D2807719C982360027E3BE /* rankEnterBtn.png in Resources */ = {isa = PBXBuildFile; fileRef = D8D2807019C982360027E3BE /* rankEnterBtn.png */; };
+		D8D2807819C982360027E3BE /* rankEnterBtn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D8D2807119C982360027E3BE /* rankEnterBtn@2x.png */; };
+		D8D2807919C982360027E3BE /* rankEnterBtn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D8D2807119C982360027E3BE /* rankEnterBtn@2x.png */; };
+		D8D2807A19C982360027E3BE /* rankEnterBtn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D8D2807119C982360027E3BE /* rankEnterBtn@2x.png */; };
+		D8D2807B19C982360027E3BE /* rankEnterBtn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D8D2807119C982360027E3BE /* rankEnterBtn@2x.png */; };
+		D8D2807C19C982360027E3BE /* rankLeft.png in Resources */ = {isa = PBXBuildFile; fileRef = D8D2807219C982360027E3BE /* rankLeft.png */; };
+		D8D2807D19C982360027E3BE /* rankLeft.png in Resources */ = {isa = PBXBuildFile; fileRef = D8D2807219C982360027E3BE /* rankLeft.png */; };
+		D8D2807E19C982360027E3BE /* rankLeft.png in Resources */ = {isa = PBXBuildFile; fileRef = D8D2807219C982360027E3BE /* rankLeft.png */; };
+		D8D2807F19C982360027E3BE /* rankLeft.png in Resources */ = {isa = PBXBuildFile; fileRef = D8D2807219C982360027E3BE /* rankLeft.png */; };
+		D8D2808019C982360027E3BE /* rankLeft@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D8D2807319C982360027E3BE /* rankLeft@2x.png */; };
+		D8D2808119C982360027E3BE /* rankLeft@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D8D2807319C982360027E3BE /* rankLeft@2x.png */; };
+		D8D2808219C982360027E3BE /* rankLeft@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D8D2807319C982360027E3BE /* rankLeft@2x.png */; };
+		D8D2808319C982360027E3BE /* rankLeft@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D8D2807319C982360027E3BE /* rankLeft@2x.png */; };
 		D8D8116C199DB4E300CC182A /* 1.gif in Resources */ = {isa = PBXBuildFile; fileRef = D8D81169199DB4E300CC182A /* 1.gif */; };
 		D8D8116D199DB4E300CC182A /* 1.gif in Resources */ = {isa = PBXBuildFile; fileRef = D8D81169199DB4E300CC182A /* 1.gif */; };
 		D8D8116E199DB4E300CC182A /* 1.gif in Resources */ = {isa = PBXBuildFile; fileRef = D8D81169199DB4E300CC182A /* 1.gif */; };
@@ -11175,6 +11199,14 @@
 		D8CC69D119A5EEF500E57398 /* PrizeCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PrizeCell.m; sourceTree = "<group>"; };
 		D8CC69D919A5EF9D00E57398 /* PrizeCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PrizeCell.xib; sourceTree = "<group>"; };
 		D8CF8A9F1977981E0044E305 /* opencv2.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = opencv2.framework; sourceTree = "<group>"; };
+		D8D2806019C97CD80027E3BE /* HJImagesToVideo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HJImagesToVideo.h; sourceTree = "<group>"; };
+		D8D2806119C97CD80027E3BE /* HJImagesToVideo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HJImagesToVideo.m; sourceTree = "<group>"; };
+		D8D2806A19C97D270027E3BE /* REPagedScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = REPagedScrollView.h; sourceTree = "<group>"; };
+		D8D2806B19C97D270027E3BE /* REPagedScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = REPagedScrollView.m; sourceTree = "<group>"; };
+		D8D2807019C982360027E3BE /* rankEnterBtn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = rankEnterBtn.png; sourceTree = "<group>"; };
+		D8D2807119C982360027E3BE /* rankEnterBtn@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "rankEnterBtn@2x.png"; sourceTree = "<group>"; };
+		D8D2807219C982360027E3BE /* rankLeft.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = rankLeft.png; sourceTree = "<group>"; };
+		D8D2807319C982360027E3BE /* rankLeft@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "rankLeft@2x.png"; sourceTree = "<group>"; };
 		D8D81169199DB4E300CC182A /* 1.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = 1.gif; sourceTree = "<group>"; };
 		D8D8116A199DB4E300CC182A /* 2.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = 2.gif; sourceTree = "<group>"; };
 		D8D8116B199DB4E300CC182A /* 3.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = 3.gif; sourceTree = "<group>"; };
@@ -15731,6 +15763,10 @@
 		CA2A28A7195C120600A97478 /* Resource */ = {
 			isa = PBXGroup;
 			children = (
+				D8D2807019C982360027E3BE /* rankEnterBtn.png */,
+				D8D2807119C982360027E3BE /* rankEnterBtn@2x.png */,
+				D8D2807219C982360027E3BE /* rankLeft.png */,
+				D8D2807319C982360027E3BE /* rankLeft@2x.png */,
 				D8E63EEE19C176D300EB213E /* tutorialList */,
 				D8AA04251974CA6400083651 /* beginPlayGame(big).png */,
 				D8AA04261974CA6400083651 /* beginPlayGame(little).png */,
@@ -18300,6 +18336,7 @@
 		CAFEFC4816606FC100441D77 /* Component-Gif */ = {
 			isa = PBXGroup;
 			children = (
+				D8D2805F19C97CD80027E3BE /* HJImagesToVideo */,
 				CAFEFC4916606FC100441D77 /* ANGif */,
 				CAFEFC6A16606FC100441D77 /* ANImageBitmapRep */,
 				CAFEFC8416606FC100441D77 /* GifManager.h */,
@@ -18488,6 +18525,7 @@
 		CAFEFDB316606FC100441D77 /* Component-View */ = {
 			isa = PBXGroup;
 			children = (
+				D8D2806919C97D270027E3BE /* PageScrollView */,
 				A47896D21995BB2400185220 /* SpotHelpView */,
 				FDDECBB91994BF7F00BE7191 /* SMPageControl */,
 				D837DCA31988FAB2001686BB /* LDProgressView */,
@@ -18765,6 +18803,24 @@
 				D8B5393A19920B3E00BD3337 /* ResultSeal.m */,
 			);
 			name = ResultSharePage;
+			sourceTree = "<group>";
+		};
+		D8D2805F19C97CD80027E3BE /* HJImagesToVideo */ = {
+			isa = PBXGroup;
+			children = (
+				D8D2806019C97CD80027E3BE /* HJImagesToVideo.h */,
+				D8D2806119C97CD80027E3BE /* HJImagesToVideo.m */,
+			);
+			path = HJImagesToVideo;
+			sourceTree = "<group>";
+		};
+		D8D2806919C97D270027E3BE /* PageScrollView */ = {
+			isa = PBXGroup;
+			children = (
+				D8D2806A19C97D270027E3BE /* REPagedScrollView.h */,
+				D8D2806B19C97D270027E3BE /* REPagedScrollView.m */,
+			);
+			path = PageScrollView;
 			sourceTree = "<group>";
 		};
 		D8D81168199DB4E300CC182A /* gif */ = {
@@ -19833,6 +19889,7 @@
 				A4D8FA8F17DB08170085061F /* face_anger@2x.png in Resources */,
 				A4D8FA9317DB08170085061F /* face_embarrass@2x.png in Resources */,
 				A4F4753219B5794100CFE2AE /* brush_gradient3@2x.png in Resources */,
+				D8D2807A19C982360027E3BE /* rankEnterBtn@2x.png in Resources */,
 				D81962431962677B00B4FBAF /* AllTutorialCell.xib in Resources */,
 				A4D8FA9717DB08170085061F /* face_proud@2x.png in Resources */,
 				A4D8FA9B17DB08170085061F /* guessed@2x.png in Resources */,
@@ -19868,6 +19925,7 @@
 				A4D8FAFF17DB08170085061F /* round_dot_13@2x.png in Resources */,
 				CAA8B8041998836800C9A99B /* caidanlan.png in Resources */,
 				A4D8FB0317DB08170085061F /* round_dot_14@2x.png in Resources */,
+				D8D2807E19C982360027E3BE /* rankLeft.png in Resources */,
 				A4D8FB0717DB08170085061F /* round_dot_15@2x.png in Resources */,
 				A4D8FB0B17DB08170085061F /* round_dot_16@2x.png in Resources */,
 				A4D8FB0F17DB08170085061F /* round_dot_17@2x.png in Resources */,
@@ -19950,6 +20008,7 @@
 				A4D8FC1717DB08180085061F /* user_detail_gender_female@2x.png in Resources */,
 				D8C784C6196A55C600323712 /* StageBasicInfoCell~ipad.xib in Resources */,
 				A4D8FC1B17DB08180085061F /* user_detail_gender_male@2x.png in Resources */,
+				D8D2807619C982360027E3BE /* rankEnterBtn.png in Resources */,
 				A4D8FC1F17DB08180085061F /* user_detail_message@2x.png in Resources */,
 				A4D8FC2317DB08180085061F /* user_detail_message_bg@2x.png in Resources */,
 				A4D8FC2717DB08180085061F /* user_detail_more@2x.png in Resources */,
@@ -20179,6 +20238,7 @@
 				EAD13B7317DDAF4000764FFB /* contest_prize_custom@2x.png in Resources */,
 				A457BAE717DECA5A00964088 /* self_detail_balance_btn_bg@2x.png in Resources */,
 				A457BAEB17DECA5B00964088 /* self_detail_exp_btn_bg@2x.png in Resources */,
+				D8D2808219C982360027E3BE /* rankLeft@2x.png in Resources */,
 				CA1CC37D19C43DE0006E06C7 /* selected_brush_blur@2x.png in Resources */,
 				A457BAEF17DECA5B00964088 /* self_detail_ingot_btn_bg@2x.png in Resources */,
 				A457BAF317DECA5B00964088 /* user_detail_edit1@2x.png in Resources */,
@@ -20533,6 +20593,7 @@
 				C28A9D9C1738F04B007A819F /* UserFeedController~ipad.xib in Resources */,
 				CA93D0FA18EFF137002BB805 /* WeiboSDK.bundle in Resources */,
 				C28A9D9E1738F04B007A819F /* ContestController.xib in Resources */,
+				D8D2807919C982360027E3BE /* rankEnterBtn@2x.png in Resources */,
 				C28A9DA01738F04B007A819F /* ContestView.xib in Resources */,
 				C28A9DA41738F04B007A819F /* StatementController.xib in Resources */,
 				C28A9DA51738F04B007A819F /* ContestOpusController.xib in Resources */,
@@ -20784,6 +20845,7 @@
 				C2A403861744D5E3006C689F /* little_gee_icon_114.png in Resources */,
 				CA2A28CF195C1E1C00A97478 /* TutorialStageController.xib in Resources */,
 				C2A403941744D5E3006C689F /* little_gee_icon_50.png in Resources */,
+				D8D2808119C982360027E3BE /* rankLeft@2x.png in Resources */,
 				C2A403A21744D5E3006C689F /* little_gee_icon_57.png in Resources */,
 				C2A403B01744D5E3006C689F /* little_gee_icon_72.png in Resources */,
 				C2385E391753396700A6B19E /* iap_product_645475970.pb in Resources */,
@@ -21211,6 +21273,7 @@
 				A4D8FEAC17DB089C0085061F /* face_randy@2x.png in Resources */,
 				A4D8FEB017DB089C0085061F /* face_shock@2x.png in Resources */,
 				A4D8FEB417DB089C0085061F /* face_shy@2x.png in Resources */,
+				D8D2807D19C982360027E3BE /* rankLeft.png in Resources */,
 				A4D8FEB817DB089C0085061F /* face_sleep@2x.png in Resources */,
 				A4D8FEBC17DB089C0085061F /* face_smile@2x.png in Resources */,
 				A4D8FEC017DB089C0085061F /* face_wry@2x.png in Resources */,
@@ -21431,6 +21494,7 @@
 				CA9AAFF118321621002DBAA5 /* change_song@2x.png in Resources */,
 				CAA8B8031998836700C9A99B /* luntan.png in Resources */,
 				CAA8B7FC1998836700C9A99B /* beijing.png in Resources */,
+				D8D2807519C982360027E3BE /* rankEnterBtn.png in Resources */,
 				CA9AAFF518321621002DBAA5 /* custom_song@2x.png in Resources */,
 				CA9AAFF918321621002DBAA5 /* song_bg1@2x.png in Resources */,
 				CACD6B3218E03B4A003F97C0 /* .gitignore in Resources */,
@@ -22317,6 +22381,7 @@
 				A4D8FE7717DB089C0085061F /* draw_up_panel_draw_to_btn@2x.png in Resources */,
 				D8A270A4196FE1E6006DDF20 /* lock_new2.jpg in Resources */,
 				A4D8FE7B17DB089C0085061F /* draw_up_panel_edit_btn@2x.png in Resources */,
+				D8D2807819C982360027E3BE /* rankEnterBtn@2x.png in Resources */,
 				A4D8FE7F17DB089C0085061F /* draw_up_panel_help_btn_@2x.png in Resources */,
 				A4D8FE8317DB089C0085061F /* draw_up_panel_page_bg_btn@2x.png in Resources */,
 				A4D8FE8717DB089C0085061F /* email@2x.png in Resources */,
@@ -22538,6 +22603,7 @@
 				CA9AAF8818321621002DBAA5 /* sing_home_chat@2x.png in Resources */,
 				CA9AAF8C18321621002DBAA5 /* sing_home_contest@2x.png in Resources */,
 				CA9AAF9018321621002DBAA5 /* sing_home_draft@2x.png in Resources */,
+				D8D2808019C982360027E3BE /* rankLeft@2x.png in Resources */,
 				CA9AAF9418321621002DBAA5 /* sing_home_free_coins@2x.png in Resources */,
 				CA9AAF9818321621002DBAA5 /* sing_home_guess@2x.png in Resources */,
 				CA9AAF9C18321621002DBAA5 /* sing_home_setting@2x.png in Resources */,
@@ -22575,6 +22641,7 @@
 				CA9AB02418321621002DBAA5 /* NameAndDescEditView.xib in Resources */,
 				CA9AB02C18321621002DBAA5 /* SingInfoCell.xib in Resources */,
 				CA9AB03018321621002DBAA5 /* SingInputDialog.xib in Resources */,
+				D8D2807C19C982360027E3BE /* rankLeft.png in Resources */,
 				CA9AB03818321621002DBAA5 /* SingPlayView.xib in Resources */,
 				CA9AB04018321621002DBAA5 /* SongCategoryView.xib in Resources */,
 				CA9AB04418321621002DBAA5 /* SongCategoryView~ipad.xib in Resources */,
@@ -22617,6 +22684,7 @@
 				EA7EFC6418458D270004793C /* GroupNoticeCell.xib in Resources */,
 				EA7EFC7218458D370004793C /* GroupNoticeController.xib in Resources */,
 				A4DE087718595DD700A87924 /* unloadbg2@2x.png in Resources */,
+				D8D2807419C982360027E3BE /* rankEnterBtn.png in Resources */,
 				A4EA935B185B0173004BB69D /* SingHotCell.xib in Resources */,
 				A4170C1718613E48007DF362 /* SingHotCell~ipad.xib in Resources */,
 				CA346CC118618B280098DE00 /* user_detail_set_homebg@2x.png in Resources */,
@@ -22727,6 +22795,7 @@
 				EA411B7A176066F500DA72D0 /* ShareCell~ipad.xib in Resources */,
 				EA411B7D176066F500DA72D0 /* ColorShopView~ipad.xib in Resources */,
 				EA411B7E176066F500DA72D0 /* ChatController.xib in Resources */,
+				D8D2807B19C982360027E3BE /* rankEnterBtn@2x.png in Resources */,
 				EA411B80176066F500DA72D0 /* MessageCell.xib in Resources */,
 				EA411B84176066F500DA72D0 /* RoomCell.xib in Resources */,
 				EA411B86176066F500DA72D0 /* RoomCell~ipad.xib in Resources */,
@@ -22739,6 +22808,7 @@
 				EA411B92176066F500DA72D0 /* snow.png in Resources */,
 				EA411B9C176066F500DA72D0 /* MyWordsController.xib in Resources */,
 				EA411B9D176066F500DA72D0 /* MyWordsController~ipad.xib in Resources */,
+				D8D2807F19C982360027E3BE /* rankLeft.png in Resources */,
 				EA411B9E176066F500DA72D0 /* SelectCustomWordView.xib in Resources */,
 				EA411B9F176066F500DA72D0 /* SelectCustomWordView~ipad.xib in Resources */,
 				EA411BA0176066F500DA72D0 /* ChatCell.xib in Resources */,
@@ -22747,6 +22817,7 @@
 				EA411BA3176066F500DA72D0 /* ChatDetailController~ipad.xib in Resources */,
 				EA411BA4176066F500DA72D0 /* ChatListController.xib in Resources */,
 				EA411BA5176066F500DA72D0 /* ChatListController~ipad.xib in Resources */,
+				D8D2807719C982360027E3BE /* rankEnterBtn.png in Resources */,
 				EA411BA6176066F500DA72D0 /* EGORefreshTableHeaderView.strings in Resources */,
 				EA411BA7176066F500DA72D0 /* blackArrow.png in Resources */,
 				EA411BA8176066F500DA72D0 /* blackArrow@2x.png in Resources */,
@@ -23695,6 +23766,7 @@
 				EA7E4F84186ADE8F00E0B20F /* GroupTopicController~ipad.xib in Resources */,
 				EA716B98186C373F005CC0F0 /* group_add@2x.png in Resources */,
 				A434172518711AFB008D0A2B /* ContestCell.xib in Resources */,
+				D8D2808319C982360027E3BE /* rankLeft@2x.png in Resources */,
 				EA481CC5187162E000177423 /* default_group_medal@2x.png in Resources */,
 				A44AC48B1875528D00927649 /* CreateContestController.xib in Resources */,
 				A44AC490187561F200927649 /* Group.proto in Resources */,
@@ -24272,6 +24344,7 @@
 				A461B304174CBAA70088B061 /* DrawRoomListCell.m in Sources */,
 				A461B305174CBAA70088B061 /* DrawRoomListController.m in Sources */,
 				A461B306174CBAA70088B061 /* BBSPostCommand.m in Sources */,
+				D8D2806419C97CD80027E3BE /* HJImagesToVideo.m in Sources */,
 				A461B307174CBAA70088B061 /* BBSPostCommandPanel.m in Sources */,
 				A461B308174CBAA70088B061 /* BBSPostCommandView.m in Sources */,
 				A461B309174CBAA70088B061 /* PointNode.m in Sources */,
@@ -24324,6 +24397,7 @@
 				A461B341174CBAA70088B061 /* ShapeTouchHandler.m in Sources */,
 				A461B342174CBAA70088B061 /* StrawTouchHandler.m in Sources */,
 				A461B343174CBAA70088B061 /* TouchHandler.m in Sources */,
+				D8D2806E19C97D270027E3BE /* REPagedScrollView.m in Sources */,
 				A461B344174CBAA70088B061 /* CacheService.m in Sources */,
 				A461B347174CBAA70088B061 /* GestureRecognizerManager.m in Sources */,
 				A461B348174CBAA70088B061 /* VersionUpdateView.m in Sources */,
@@ -25275,6 +25349,7 @@
 				C28A9C651738F04B007A819F /* ReflectionView.m in Sources */,
 				C28A9C661738F04B007A819F /* FeedCarousel.m in Sources */,
 				C28A9C671738F04B007A819F /* StrawCommand.m in Sources */,
+				D8D2806D19C97D270027E3BE /* REPagedScrollView.m in Sources */,
 				C28A9C681738F04B007A819F /* GridCommand.m in Sources */,
 				C28A9C691738F04B007A819F /* CanvasRectBox.m in Sources */,
 				C28A9C6A1738F04B007A819F /* UIColor+UIColorExt.m in Sources */,
@@ -25296,6 +25371,7 @@
 				CA2A28AD195C125500A97478 /* TutorialCoreManager.m in Sources */,
 				C28A9C931738F04B007A819F /* SKProductManager.m in Sources */,
 				C28A9C941738F04B007A819F /* PBIAPProduct+Utils.m in Sources */,
+				D8D2806319C97CD80027E3BE /* HJImagesToVideo.m in Sources */,
 				C28A9C9C1738F04B007A819F /* FeedSceneDetailGuessResult.m in Sources */,
 				C28A9C9D1738F04B007A819F /* FeedSceneFeedDetail.m in Sources */,
 				C28A9C9E1738F04B007A819F /* FeedSceneGuessResult.m in Sources */,
@@ -26165,6 +26241,7 @@
 				CAEFC5A3170005AD00D799B7 /* ChatCommand.m in Sources */,
 				A40EE820170043A9003B8FFC /* ReflectionView.m in Sources */,
 				A40EE826170053A5003B8FFC /* FeedCarousel.m in Sources */,
+				D8D2806C19C97D270027E3BE /* REPagedScrollView.m in Sources */,
 				CAF839BE1701507C00494ED6 /* StrawCommand.m in Sources */,
 				CAF839C91701520A00494ED6 /* GridCommand.m in Sources */,
 				CAF0DB5317019AED009FE646 /* CanvasRectBox.m in Sources */,
@@ -26186,6 +26263,7 @@
 				EAC81C0D172B983200ED78DE /* UIImage+fixOrientation.m in Sources */,
 				A49D82BA172BD53F00C4001F /* SKProductService.m in Sources */,
 				A49D82CA172BD58800C4001F /* SKProductManager.m in Sources */,
+				D8D2806219C97CD80027E3BE /* HJImagesToVideo.m in Sources */,
 				A49D82F6172E355700C4001F /* PBIAPProduct+Utils.m in Sources */,
 				C28A9909173561E6007A819F /* FeedSceneDetailGuessResult.m in Sources */,
 				CACD6CBE18E03BCD003F97C0 /* NSObject+SBJSON.m in Sources */,
@@ -26568,6 +26646,7 @@
 				EA411851176066F500DA72D0 /* NetworkDetector.m in Sources */,
 				EA411852176066F500DA72D0 /* Reachability.m in Sources */,
 				EA411853176066F500DA72D0 /* CommonNetworkClient.m in Sources */,
+				D8D2806519C97CD80027E3BE /* HJImagesToVideo.m in Sources */,
 				EA411854176066F500DA72D0 /* UIAlertViewUtils.m in Sources */,
 				EA411855176066F500DA72D0 /* UIBarButtonItemExt.m in Sources */,
 				EA411856176066F500DA72D0 /* UIButtonExt.m in Sources */,
@@ -27069,6 +27148,7 @@
 				EA411AC3176066F500DA72D0 /* ChangeBGImageAction.m in Sources */,
 				EA411AC4176066F500DA72D0 /* TomatoItem.m in Sources */,
 				EA411AC5176066F500DA72D0 /* GeographyService.m in Sources */,
+				D8D2806F19C97D270027E3BE /* REPagedScrollView.m in Sources */,
 				EA411AC6176066F500DA72D0 /* GoogleAddressComponent.m in Sources */,
 				EA411AC7176066F500DA72D0 /* UserSettingCell.m in Sources */,
 				EA411ACA176066F500DA72D0 /* PBGameItem+Extend.m in Sources */,

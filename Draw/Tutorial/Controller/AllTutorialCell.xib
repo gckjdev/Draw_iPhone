@@ -21,7 +21,7 @@
                         </constraints>
                     </imageView>
                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zdm-X4-bh6">
-                        <rect key="frame" x="125" y="17" width="166" height="25"/>
+                        <rect key="frame" x="125" y="4" width="166" height="25"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="25" id="P76-9h-hue"/>
@@ -31,30 +31,44 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="10" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="166" translatesAutoresizingMaskIntoConstraints="NO" id="FMj-zN-pEO">
-                        <rect key="frame" x="125" y="37" width="166" height="27"/>
+                        <rect key="frame" x="125" y="42" width="166" height="27"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <rect key="contentStretch" x="1" y="0.0" width="1" height="1"/>
                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="休闲临摹" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OmR-ES-0Us">
+                        <rect key="frame" x="125" y="26" width="166" height="21"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="166" id="KUO-aX-eqS"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
                 </subviews>
                 <constraints>
                     <constraint firstItem="zdm-X4-bh6" firstAttribute="leading" secondItem="NGX-TM-KQ6" secondAttribute="trailing" constant="8" symbolic="YES" id="C5B-m8-gEC"/>
-                    <constraint firstAttribute="bottom" secondItem="FMj-zN-pEO" secondAttribute="bottom" constant="10" id="FP8-xG-ZT7"/>
-                    <constraint firstItem="FMj-zN-pEO" firstAttribute="top" secondItem="zdm-X4-bh6" secondAttribute="bottom" constant="-5" id="KBc-GQ-nVB"/>
+                    <constraint firstAttribute="bottom" secondItem="FMj-zN-pEO" secondAttribute="bottom" constant="5" id="FP8-xG-ZT7"/>
+                    <constraint firstItem="FMj-zN-pEO" firstAttribute="top" secondItem="zdm-X4-bh6" secondAttribute="bottom" constant="13" id="KBc-GQ-nVB"/>
                     <constraint firstItem="zdm-X4-bh6" firstAttribute="trailing" secondItem="FMj-zN-pEO" secondAttribute="trailing" id="Ngt-Hk-exp"/>
                     <constraint firstAttribute="trailing" secondItem="zdm-X4-bh6" secondAttribute="trailing" constant="9" id="QOg-co-s32"/>
                     <constraint firstAttribute="bottom" secondItem="NGX-TM-KQ6" secondAttribute="bottom" constant="5" id="TNW-v5-WU7"/>
+                    <constraint firstItem="OmR-ES-0Us" firstAttribute="bottom" secondItem="NGX-TM-KQ6" secondAttribute="bottom" constant="-22" id="WyC-XQ-KZe"/>
                     <constraint firstItem="FMj-zN-pEO" firstAttribute="leading" secondItem="NGX-TM-KQ6" secondAttribute="trailing" constant="8" symbolic="YES" id="aCt-Dr-M7I"/>
+                    <constraint firstItem="OmR-ES-0Us" firstAttribute="leading" secondItem="NGX-TM-KQ6" secondAttribute="trailing" constant="8" symbolic="YES" id="cHT-mW-t53"/>
                     <constraint firstItem="NGX-TM-KQ6" firstAttribute="leading" secondItem="wPc-mp-4aE" secondAttribute="leading" constant="5" id="jlt-PQ-UZx"/>
                     <constraint firstItem="NGX-TM-KQ6" firstAttribute="top" secondItem="wPc-mp-4aE" secondAttribute="top" constant="4" id="pTa-ko-fcn"/>
-                    <constraint firstItem="zdm-X4-bh6" firstAttribute="top" secondItem="wPc-mp-4aE" secondAttribute="top" constant="17" id="uB9-NQ-9BC"/>
+                    <constraint firstItem="OmR-ES-0Us" firstAttribute="top" secondItem="zdm-X4-bh6" secondAttribute="bottom" constant="-3" id="rUe-i8-OUj"/>
+                    <constraint firstItem="zdm-X4-bh6" firstAttribute="top" secondItem="wPc-mp-4aE" secondAttribute="top" constant="4" id="uB9-NQ-9BC"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>
                 <outlet property="tutorialDesc" destination="FMj-zN-pEO" id="R2S-JV-Dw6"/>
                 <outlet property="tutorialImage" destination="NGX-TM-KQ6" id="ePl-f3-Kpe"/>
                 <outlet property="tutorialName" destination="zdm-X4-bh6" id="sGw-wG-Meu"/>
+                <outlet property="tutorialType" destination="OmR-ES-0Us" id="QHi-Zd-UY6"/>
             </connections>
         </tableViewCell>
     </objects>

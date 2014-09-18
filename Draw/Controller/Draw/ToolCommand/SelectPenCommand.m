@@ -65,6 +65,12 @@
     [self hidePopTipView];
     self.itemType = type;
     self.drawView.shareDrawInfo.penType = type;
+    
+    if (type == Quill){
+        // fix width
+        self.drawView.shareDrawInfo.penWidth = QUILL_PEN_WIDTH;
+    }
+    
     [self updateToolPanel];
     
 }

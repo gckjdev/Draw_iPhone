@@ -165,9 +165,15 @@
     [builder release];
     return color;
 }
+
 - (UIColor *)color
 {
     return _color;
+}
+
+- (UIColor *)colorWithoutAlpha
+{
+    return [UIColor colorWithRed:_red green:_green blue:_blue alpha:1.0];
 }
 
 - (NSUInteger)hash

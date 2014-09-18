@@ -201,15 +201,16 @@
 
 - (BOOL)isStageLock:(int)stageIndex
 {
+
     if (self.tutorial && self.tutorial.unlockAllStage){
         return NO;
     }
     
+
     PBTutorial* pbTutorial = [[TutorialCoreManager defaultManager] findTutorialByTutorialId:self.tutorial.tutorialId];
     if (pbTutorial && pbTutorial.unlockAllStage){
         return NO;
     }
-    
     return (stageIndex > self.currentStageIndex);
 }
 

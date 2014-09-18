@@ -47,6 +47,8 @@
     [super dealloc];
 }
 
+
+
 - (CGRect)drawInContext:(CGContextRef)context inRect:(CGRect)rect
 {
     CGRect rect1;
@@ -58,7 +60,7 @@
     }
     else{
         CGContextSetBlendMode(context, kCGBlendModeNormal);
-    }
+    }    
 
     if ([self needShowShadow] && self.paint.penType != Eraser && self.paint.penType != DeprecatedEraser) {
         CGContextBeginTransparencyLayer(context, NULL);

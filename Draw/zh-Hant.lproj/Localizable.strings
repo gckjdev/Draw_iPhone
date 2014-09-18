@@ -836,7 +836,7 @@
 
 "kPen" = "毛筆";
 "kIcePen" = "雪糕筆";
-"kQuill" = "鵝毛筆";
+"kQuill" = "羽毛筆";
 "kWaterPen" = "麥克筆";
 
 "kFlowerDescription" = "看到好的作品就送些鮮花吧！贈人玫瑰，手有餘香。";
@@ -845,7 +845,7 @@
 "kTipsDescription" = "錦囊可用於猜作品時炸詞，讓你猜的時候更快快捷方便";
 "kBrushPenDescription" = "中國傳統的毛筆，加上了一些現代色彩的設計";
 "kIcePenDescription" = "看上去像雪糕的筆，畫起來更加甜蜜";
-"kQuillDescription" = "用鵝毛做的筆，畫起來更加輕便";
+"kQuillDescription" = "最細的筆，羽毛般細緻";
 "kWaterPenDescription" = "麥克筆，國外進口的一種高級畫筆";
 
 "kItemTypePurse" = "錢箱";
@@ -3029,22 +3029,30 @@
 "kAskQuestion" = "答疑";
 "kRequierDelete" = "刪除教程? 注意，刪除教程后，進度會丟失。";
 
+"kProTutorialType" = "专业教程";
+"kLeisureTutorialType" = "休闲临摹";
+"kSecCreateTutorialType" = "二次创作";
 "kNoOpusForReplay" = "當前未有作品可供播放";
 
+"kIntroduceLeisureTutorial" = "休闲主题创作包,无需过关";
+"kIntroduceProTutorial" = "专业教程，修炼学习后，60分过关";
+"kRankViewDesc" = "%@,已有%d用户发布了神作:";
+
+
 "kItemBrushGouache" = "排筆";
-"kItemBrushGouacheDesc" = "排筆筆刷";
+"kItemBrushGouacheDesc" = "排筆筆刷，給你完全不一樣的筆刷感覺";
 
 "kItemBrushBlur" = "模糊筆";
-"kItemBrushBlurDesc" = "模糊筆，可調節硬度，提供類似噴槍效果";
+"kItemBrushBlurDesc" = "模糊筆，可調節硬度，提供類似噴槍虛化效果";
 
 "kItemBrushWater" = "水彩筆";
 "kItemBrushWaterDesc" = "水彩效果，用於上色";
 
-"kItemBrushPen" = "鋼筆";
-"kItemBrushPenDesc" = "鋼筆當然是用來寫字的了";
+"kItemBrushPen" = "土豪鋼筆";
+"kItemBrushPenDesc" = "能畫出漂亮鋼筆線條的筆，同時還是傳說中的土豪鋼筆，買的起的絕對是個土豪";
 
 "kItemBrushPencil" = "草稿筆";
-"kItemBrushPencilDesc" = "畫出素描草稿線條的鉛筆";
+"kItemBrushPencilDesc" = "畫出素描線條的鉛筆，可用於打草稿";
 
 "kItemBrushCrayon" = "蠟筆";
-"kItemBrushCrayonDesc" = "不是蠟筆小新，是蠟筆而已";
+"kItemBrushCrayonDesc" = "不是蠟筆小新，是能畫出蠟筆效果的筆";

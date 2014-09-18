@@ -804,7 +804,7 @@
 "kTipsDescription" = "Boom away some characters and make it easier for you to guess.";
 "kBrushPenDescription" = "Mao pen from ancient China...";
 "kIcePenDescription" = "Ice cream pen to draw sweetly...";
-"kQuillDescription" = "Quill pen to draw much faster...";
+"kQuillDescription" = "The thinnest pen...";
 "kWaterPenDescription" = "Mike pen from United Kingdom...";
 
 "kItemTypePurse" = "Coins Box";
@@ -2929,6 +2929,15 @@
 
 "kNoOpusForReplay" = "No opus for replay";
 
+
+"kProTutorialType" = "Profession";
+"kLeisureTutorialType" = "Leisure";
+"kSecCreateTutorialType" = "Second Create";
+"kIntroduceLeisureTutorial" = "Leisure tutorial,no need to pass";
+"kIntroduceProTutorial" = "Profession tutorials，after practice，60 score pass";
+
+"kRankViewDesc" = "%@,There are %d users conquer in this stage";
+
 "kItemBrushGouache" = "Gouache";
 "kItemBrushGouacheDesc" = "Gouache Brush";
 
@@ -2946,4 +2955,5 @@
 
 "kItemBrushCrayon" = "Crayon";
 "kItemBrushCrayonDesc" = "Crayon Brush";
+
 

@@ -38,11 +38,19 @@
     CommonDialog *dialog = [CommonDialog
                             createDialogWithTitle:stageWithRow.name
                             customView:savc.view
-                            style:CommonDialogStyleDoubleButtonWithCross
+                            style:CommonDialogStyleSingleButtonWithCross
                             delegate:savc];
     
-    [dialog.oKButton setTitle:NSLS(@"kPass") forState:UIControlStateNormal];
-    [dialog.cancelButton setTitle:NSLS(@"kPractice") forState:UIControlStateNormal];
+    NSString *btnTitle = @"";
+    if(savc.pbUserTutorial.tutorial.type == 1 || savc.pbUserTutorial.tutorial.type == 0){
+        btnTitle = NSLS(@"kPractice");
+    }else{
+        btnTitle = NSLS(@"kPass");
+        btnTitle = NSLS(@"kPass");
+    }
+    
+    [dialog.oKButton setTitle:btnTitle forState:UIControlStateNormal];
+//    [dialog.cancelButton setTitle:NSLS(@"kPractice") forState:UIControlStateNormal];
     
     [dialog setClickOkBlock:^(id view){
         
@@ -56,17 +64,17 @@
 
     }];
     
-    [dialog setClickCancelBlock:^(id view){
-
-        [savc removeFromParentViewController];
-
-        // Practice
-        [[UserTutorialService defaultService] enterPracticeDraw:superController
-                                                   userTutorial:pbUserTutorial
-                                                        stageId:stageId
-                                                     stageIndex:stageIndex];
-        
-    }];
+//    [dialog setClickCancelBlock:^(id view){
+//
+//        [savc removeFromParentViewController];
+//
+//        // Practice
+//        [[UserTutorialService defaultService] enterPracticeDraw:superController
+//                                                   userTutorial:pbUserTutorial
+//                                                        stageId:stageId
+//                                                     stageIndex:stageIndex];
+//        
+//    }];
     
     
     [dialog showInView:superController.view];

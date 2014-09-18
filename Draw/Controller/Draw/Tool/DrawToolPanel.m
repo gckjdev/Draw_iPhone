@@ -786,7 +786,26 @@ if (btn) {\
 //    else{
 //    }
     [self.alphaSlider setValue:[shareDrawInfo itemAlpha]];
-    [self.widthSlider setValue:[shareDrawInfo itemWidth]];
+    
+    if (shareDrawInfo.penType == Quill){
+        // fix width, so disable width slider
+        self.widthSlider.enabled = NO;
+        self.penWidth.enabled = NO;
+//        [self.penWidth setTitleColor:COLOR_GRAY forState:UIControlStateNormal];
+    }
+    else{
+        self.widthSlider.enabled = YES;
+        self.penWidth.enabled = YES;
+//        [self.penWidth setTitleColor:COLOR_BROWN forState:UIControlStateNormal];
+        
+        // reset pen width if needed
+        if ([shareDrawInfo itemWidth] <= QUILL_PEN_WIDTH){
+            [shareDrawInfo setItemWidth:LINE_DEFAULT_WIDTH];
+        }
+        
+        [self.widthSlider setValue:[shareDrawInfo itemWidth]];
+    }
+    
 
     NSArray *array = @[KEY(TouchActionTypeClipEllipse), KEY(TouchActionTypeClipPath), KEY(TouchActionTypeClipPolygon), KEY(TouchActionTypeClipRectangle)];
     [self setCloseSelectorHidden:![_drawView.currentClip isLegal] && ![array containsObject:KEY(drawInfo.touchType)]];
