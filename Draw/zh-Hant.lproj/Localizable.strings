@@ -3056,3 +3056,5 @@
 
 "kItemBrushCrayon" = "蠟筆";
 "kItemBrushCrayonDesc" = "不是蠟筆小新，是能畫出蠟筆效果的筆";
+"kTutorialTypeMine" = "我的教程";
+"kTutorialTypeAll" = "所有教程";
