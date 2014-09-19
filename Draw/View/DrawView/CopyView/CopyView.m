@@ -372,7 +372,7 @@
 
 #define TEMP_REPLAY_IMAGE_NAME @"temp_replay_chapter_bg_image.png"
 
-- (void)play
+- (BOOL)play
 {
     if (self.userStage){
         if (_draw == nil){
@@ -382,7 +382,7 @@
         
         if (_opusData == nil && _draw == nil){
             POSTMSG(NSLS(@"kNoOpusForReplay"));
-            return;
+            return NO;
         }
         
         UIImage* bgImage = nil; //[[UIImage alloc] initWithContentsOfFile:_opusBgImagePath];
@@ -413,6 +413,8 @@
     else{
         [ShowFeedController replayDraw:self.drawFeed viewController:self.superViewController];
     }
+    
+    return YES;
     
 }
 

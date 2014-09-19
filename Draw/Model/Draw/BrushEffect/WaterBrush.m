@@ -39,7 +39,7 @@ static dispatch_once_t sharedWaterBrushOnceToken;
                                                     level:1.0f];
     
     //考虑到插值后笔刷不断叠加，故透明度应做适当变换
-    float alpha = [color alpha] / 5;
+    float alpha = [color alpha] / 10;
     
     brushImage = [DrawUtils imageByApplyingAlpha:alpha  image: tinted];
     //    brushImage = tinted;
@@ -72,9 +72,9 @@ static dispatch_once_t sharedWaterBrushOnceToken;
                  distance1:(float)distance1         // 当前BeginDot和ControlDot的距离
                  distance2:(float)distance2         // 当前EndDot和ControlDot的距离
 {
-    
-    double  factor =  10 * (distance1) / brushWidth;
-    int interpolationLength = INTERPOLATION * factor;
+    double speedFactor =  ((distance1 + distance2)/2)/ brushWidth;
+    double typeFactor = 5.0; // 针对各种笔刷的调节因子，经过实践所得
+    int interpolationLength = INTERPOLATION * speedFactor * typeFactor + 1;
     
     return interpolationLength;
 }
@@ -83,7 +83,31 @@ static dispatch_once_t sharedWaterBrushOnceToken;
                   PointW:(float*)pointW
         WithDefaultWidth:(float)defaultWidth
 {
-    //do nothing
+    NSInteger randomFactor = defaultWidth / 2 + 2;
+    
+    float xRandomOffset = arc4random() % randomFactor;
+    float yRandomOffset = arc4random() % randomFactor;
+    float wRandomOffset = arc4random() % randomFactor;
+    
+    NSInteger xShouldShake = arc4random() % 3;
+    NSInteger yShouldShake = arc4random() % 3;
+    NSInteger wShouldShake = arc4random() % 3;
+    
+    if(xShouldShake == 0)
+        *pointX += xRandomOffset;
+    else if(xShouldShake == 1)
+        *pointX -= xRandomOffset;
+    
+    if(yShouldShake == 0)
+        *pointY += yRandomOffset;
+    else if(yShouldShake == 1)
+        *pointY -= yRandomOffset;
+    
+    
+    if(wShouldShake == 0)
+        *pointW += wRandomOffset;
+    else if (wShouldShake == 1)
+        *pointW -=wRandomOffset;
 }
 
 @end

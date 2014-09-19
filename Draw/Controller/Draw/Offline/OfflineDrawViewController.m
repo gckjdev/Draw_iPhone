@@ -975,8 +975,6 @@
 
 - (void)viewDidLoad
 {
-//    [DrawBgManager defaultManager];
-//    [ImageShapeManager defaultManager];
     
     // 禁止自动锁屏
     [UIApplication sharedApplication].idleTimerDisabled = YES; // disable lock screen while in drawing
@@ -1015,6 +1013,28 @@
         [self showScoreView];
     }
 
+    PBUserStage* userStage = [self buildUserStage];
+    if ([self.tutorial isForStudy]
+        && [self.tutorial skipReplay] == NO         // 是否跳过作品播放
+        && [userStage hasFinishPractice] == NO){    // 是否已经完成学习（看播放、tips）
+        
+        // replay opus
+        if ([self.copyView play]){
+            return;
+        }
+        else{
+            // play failure, how to handle?
+        }
+    }
+    
+    [self showHelpView:^{
+        // 帮助页面结束，显示tips
+        if (self.tutorial.skipTips == NO){
+            [self showStageFirstChapterTips];
+        }
+    }];
+
+    
     // show popup message here, MUST NOT CONFLICT!!!!
     
     /*
@@ -1025,6 +1045,7 @@
     }
     else
         */
+    /*
     if (targetType == TypePracticeDraw){
 //        if ([[UserManager defaultManager] isReadLearnDrawHelp]){
 //        if ([SpotHelpView isReadHelp:KEY_LEARN_DRAW_HELP perUser:YES]){
@@ -1040,12 +1061,15 @@
 
         [self showHelpView:^{
             // 如果是当前修炼的第一小节，则弹出提示信息，并且是第一次开始草稿，尝试提示第一小节信息
-            [self showStageFirstChapterTips];
+            if (self.tutorial.skipTips == NO){
+                [self showStageFirstChapterTips];
+            }
         }];
     }
     else{
         [self showHelpView:nil];
     }
+    */
     
     [self printRetainCount:@"viewDidLoad"];
 }
@@ -1097,18 +1121,21 @@
 
 - (BOOL)showStageFirstChapterTips
 {
-    if (targetType == TypePracticeDraw){
-        // 如果是当前修炼的第一小节，则弹出提示信息，并且是第一次开始草稿，尝试提示第一小节信息
-        if (self.userStageBuilder.currentChapterIndex == 0 && _isNewDraft){
-            NSString* title = [self welcomeChapterMsg:0];
-            return [self showLearnDrawHelp:title noTipsWarning:NO noTipsMessage:nil];
+//    if (targetType == TypePracticeDraw){
+//        // 如果是当前修炼的第一小节，则弹出提示信息，并且是第一次开始草稿，尝试提示第一小节信息
+//        if (self.userStageBuilder.currentChapterIndex == 0 && _isNewDraft){
+//            NSString* title = [self welcomeChapterMsg:0];
+//            return [self showLearnDrawHelp:title noTipsWarning:NO noTipsMessage:nil];
+//        }
+//    }
+//    else if (targetType == TypeConquerDraw){
+        if (_isNewDraft || [self.tutorial isForStudy]){
+            [self showLearnDrawHelp:nil
+                      noTipsWarning:NO
+                      noTipsMessage:nil
+                          showForum:NO];
         }
-    }
-    else if (targetType == TypeConquerDraw){
-        if (_isNewDraft){
-            [self showLearnDrawHelp:nil noTipsWarning:NO noTipsMessage:nil];
-        }
-    }
+//    }
     
     return NO;
 }
@@ -2195,7 +2222,10 @@
 
     NSString* title = [self welcomeChapterMsg:nextChapterIndex];
     NSString* welcomeMsg = [NSString stringWithFormat:NSLS(@"kGotoNextChapterWelcome"), nextChapterIndex+1];
-    [self showLearnDrawHelp:title noTipsWarning:YES noTipsMessage:welcomeMsg];
+    [self showLearnDrawHelp:title
+              noTipsWarning:YES
+              noTipsMessage:welcomeMsg
+                  showForum:YES];
 }
 
 - (NSString*)welcomeChapterMsg:(int)chapterIndex
@@ -2784,9 +2814,15 @@
     }
 }
 
+- (BOOL)showPlayInTips
+{
+    return [self.tutorial isForStudy]; // && (self.tutorial.skipReplay == NO);
+}
+
 - (BOOL)showLearnDrawHelp:(NSString*)title
             noTipsWarning:(BOOL)noTipsWarning
             noTipsMessage:(NSString*)noTipsMessage
+                showForum:(BOOL)showForum
 {
     NSMutableArray* allTips = [NSMutableArray array];
     
@@ -2832,7 +2868,12 @@
                           tutorialId:_userStageBuilder.tutorialId
                              stageId:_userStageBuilder.stageId
                         tutorialName:_tutorial.cnName
-                           stageName:_stage.cnName];
+                           stageName:_stage.cnName
+                           showForum:showForum
+                            showPlay:[self showPlayInTips]
+                        playCallback:^{
+                            [_copyView play];
+                        }];
         
         return YES;
     }
@@ -2857,7 +2898,12 @@
 // 点击帮助按钮
 - (IBAction)clickHelpButton:(id)sender
 {
-    [self showLearnDrawHelp:nil noTipsWarning:YES noTipsMessage:nil];
+    BOOL showForum = [self.tutorial isForStudy];
+    
+    [self showLearnDrawHelp:nil
+              noTipsWarning:YES
+              noTipsMessage:nil
+                  showForum:showForum];
 }
 
 
@@ -2931,11 +2977,24 @@
         return;
     }
     
-    NSArray *titles = @[TITLE_CONTINUE,
+//    NSArray *titles1 = @[TITLE_CONTINUE,
+//                        TITLE_RESTART,
+//                        TITLE_ASK_QUESTION,
+//                        TITLE_QUIT,
+//                        ];
+
+    NSArray *titles2 = @[TITLE_CONTINUE,
                         TITLE_RESTART,
-                        TITLE_ASK_QUESTION,
                         TITLE_QUIT,
                         ];
+    
+    NSArray *titles = titles2;
+//    if ([self.tutorial isForStudy]){
+//        titles = titles1;
+//    }
+//    else{
+//        titles = titles2;
+//    }
     
     id bself = self;
     

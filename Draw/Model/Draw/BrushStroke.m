@@ -69,12 +69,12 @@
         self.brushType = brushType;
         self.brush = [[BrushEffectFactory sharedInstance] brush:brushType];
         
-        self.beginDot = [[BrushDot alloc]init];
-        self.controlDot = [[BrushDot alloc]init];
-        self.endDot = [[BrushDot alloc]init];
+        _beginDot = [[BrushDot alloc]init];
+        _controlDot = [[BrushDot alloc]init];
+        _endDot = [[BrushDot alloc]init];
         
         //get brush image and tint it
-        self.brushImage = [self.brush brushImage:[self.color color] width:width];
+        self.brushImage = [_brush brushImage:[self.color color] width:width];
         self.brushImageRef = _brushImage.CGImage;
         
         

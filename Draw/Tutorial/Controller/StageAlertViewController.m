@@ -10,6 +10,7 @@
 #import "UserTutorialService.h"
 #import "StringUtil.h"
 #import "UIImageView+Extend.h"
+#import "PBTutorial+Extend.h"
 
 @interface StageAlertViewController ()
 
@@ -20,7 +21,9 @@
 @implementation StageAlertViewController
 
 
-+(void)show:(PPViewController *)superController userTutorial:(PBUserTutorial *)pbUserTutorial stageIndex:(NSInteger)stageIndex
++(void)show:(PPViewController *)superController
+userTutorial:(PBUserTutorial *)pbUserTutorial
+ stageIndex:(NSInteger)stageIndex
 {
     NSArray *stageList = [[pbUserTutorial tutorial] stagesList];
     if (stageList == nil || stageIndex >= [stageList count]){
@@ -42,11 +45,17 @@
                             delegate:savc];
     
     NSString *btnTitle = @"";
-    if(savc.pbUserTutorial.tutorial.type == 1 || savc.pbUserTutorial.tutorial.type == 0){
-        btnTitle = NSLS(@"kPractice");
+    if([savc.pbUserTutorial isForStudy]){
+        
+        if ([savc.pbUserTutorial hasFinishPractice:stageIndex]){
+            btnTitle = NSLS(@"kContinuePracticeDraw");
+        }
+        else{
+            btnTitle = NSLS(@"kStartPracticeDraw");
+        }
+        
     }else{
-        btnTitle = NSLS(@"kPass");
-        btnTitle = NSLS(@"kPass");
+        btnTitle = NSLS(@"kStartRelaxDraw");
     }
     
     [dialog.oKButton setTitle:btnTitle forState:UIControlStateNormal];

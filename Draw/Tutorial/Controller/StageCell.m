@@ -72,12 +72,30 @@
     self.hiddenNumberLabel.hidden = NO;
     self.hiddenNumberHolderView.hidden = NO;
 }
+
+
 -(void)setupTitleBtn:(PBUserTutorial *)pbUserTutorial withRow:(NSInteger)row{
     //闯到某一关卡才显示开始闯关字样
-    if (row==pbUserTutorial.currentStageIndex){
+    if (row == pbUserTutorial.currentStageIndex){
         //当教程没有完成时候才显示,完成了就不再显示开始闯关字样
         if([pbUserTutorial isFinishedTutorial:row]==NO){
             self.stageListStarBtn.hidden = NO;
+            
+            NSString* btnTitle = nil;
+            if([pbUserTutorial isForStudy]){
+                if ([pbUserTutorial hasFinishPractice:row]){
+                    btnTitle = NSLS(@"kContinuePracticeDraw");
+                }
+                else{
+                    btnTitle = NSLS(@"kStartPracticeDraw");
+                }
+                
+            }else{
+                btnTitle = NSLS(@"kStartRelaxDraw");
+            }
+            
+            [self.stageListStarBtn setTitle:btnTitle
+                                   forState:UIControlStateNormal];
         }
         
         self.maskView.alpha = 0.15f;
