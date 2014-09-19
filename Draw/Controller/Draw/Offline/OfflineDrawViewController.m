@@ -1129,7 +1129,7 @@
 //        }
 //    }
 //    else if (targetType == TypeConquerDraw){
-        if (_isNewDraft){
+        if (_isNewDraft || [self.tutorial isForStudy]){
             [self showLearnDrawHelp:nil
                       noTipsWarning:NO
                       noTipsMessage:nil
@@ -2814,6 +2814,11 @@
     }
 }
 
+- (BOOL)showPlayInTips
+{
+    return [self.tutorial isForStudy]; // && (self.tutorial.skipReplay == NO);
+}
+
 - (BOOL)showLearnDrawHelp:(NSString*)title
             noTipsWarning:(BOOL)noTipsWarning
             noTipsMessage:(NSString*)noTipsMessage
@@ -2864,7 +2869,11 @@
                              stageId:_userStageBuilder.stageId
                         tutorialName:_tutorial.cnName
                            stageName:_stage.cnName
-                           showForum:showForum];
+                           showForum:showForum
+                            showPlay:[self showPlayInTips]
+                        playCallback:^{
+                            [self.copyView play];
+                        }];
         
         return YES;
     }
@@ -2968,24 +2977,24 @@
         return;
     }
     
-    NSArray *titles1 = @[TITLE_CONTINUE,
-                        TITLE_RESTART,
-                        TITLE_ASK_QUESTION,
-                        TITLE_QUIT,
-                        ];
+//    NSArray *titles1 = @[TITLE_CONTINUE,
+//                        TITLE_RESTART,
+//                        TITLE_ASK_QUESTION,
+//                        TITLE_QUIT,
+//                        ];
 
     NSArray *titles2 = @[TITLE_CONTINUE,
                         TITLE_RESTART,
                         TITLE_QUIT,
                         ];
     
-    NSArray *titles = nil;
-    if ([self.tutorial isForStudy]){
-        titles = titles1;
-    }
-    else{
-        titles = titles2;
-    }
+    NSArray *titles = titles2;
+//    if ([self.tutorial isForStudy]){
+//        titles = titles1;
+//    }
+//    else{
+//        titles = titles2;
+//    }
     
     id bself = self;
     

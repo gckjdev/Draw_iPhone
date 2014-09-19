@@ -21,6 +21,8 @@ tutorialId:(NSString*)tutorialId
      stageId:(NSString *)stageId
 tutorialName:(NSString*)tutorialName
    stageName:(NSString *)stageName
-   showForum:(BOOL)showForum;
+   showForum:(BOOL)showForum
+    showPlay:(BOOL)showPlay
+playCallback:(dispatch_block_t)playCallback;
 
 @end

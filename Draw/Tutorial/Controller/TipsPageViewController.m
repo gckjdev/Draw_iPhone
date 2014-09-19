@@ -33,6 +33,8 @@ defaultIndex:(int)defaultIndex
   tutorialName:(NSString*)tutorialName
      stageName:(NSString *)stageName
    showForum:(BOOL)showForum
+    showPlay:(BOOL)showPlay
+playCallback:(dispatch_block_t)playCallback
 
 {
     TipsPageViewController *rspc = [[TipsPageViewController alloc] init];
@@ -41,36 +43,44 @@ defaultIndex:(int)defaultIndex
     rspc.returnIndex = returnIndex;
     rspc.defaultIndex = defaultIndex;
     
-    int style = CommonDialogStyleDoubleButton;
-    if (showForum){
-        style = CommonDialogStyleDoubleButton;
-    }
-    else{
-        style = CommonDialogStyleSingleButton;
-    }
+    int style = CommonDialogStyleSingleButtonWithCross;
+//    if (showForum && showPlay){
+//        style = CommonDialogStyleDoubleButtonWithCross;
+//    }
+//    else{
+//        style = CommonDialogStyleSingleButtonWithCross;
+//    }
     
     CommonDialog *dialog = [CommonDialog createDialogWithTitle:title
                                                     customView:rspc.view
                                                          style:style];
     
+    if (showPlay){
+        [dialog.oKButton setTitle:NSLS(@"kPlayTutorial") forState:UIControlStateNormal];
+    }
 
     [dialog setClickOkBlock:^(id view){
-        [rspc removeFromParentViewController];
-    }];
-    
-    [dialog.cancelButton setTitle:NSLS(@"kAskQuestion") forState:UIControlStateNormal];
-    
-    [dialog setClickCancelBlock:^(id view){
-        BBSService *bbsService = [BBSService defaultService];
-        if(tutorialId!=nil&&stageId!=nil){
-            [bbsService getStagePost:tutorialId
-                             stageId:stageId
-                        tutorialName:tutorialName
-                           stageName:stageName
-                      fromController:superController];
-            
+        if (showPlay){
+            EXECUTE_BLOCK(playCallback);
+        }
+        else{
+            [rspc removeFromParentViewController];
         }
     }];
+    
+//    [dialog.cancelButton setTitle:NSLS(@"kAskQuestion") forState:UIControlStateNormal];
+//    
+//    [dialog setClickCancelBlock:^(id view){
+//        BBSService *bbsService = [BBSService defaultService];
+//        if(tutorialId!=nil&&stageId!=nil){
+//            [bbsService getStagePost:tutorialId
+//                             stageId:stageId
+//                        tutorialName:tutorialName
+//                           stageName:stageName
+//                      fromController:superController];
+//            
+//        }
+//    }];
     
     
     [dialog showInView:superController.view];

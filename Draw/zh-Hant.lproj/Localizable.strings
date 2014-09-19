@@ -1388,7 +1388,7 @@
 "kItemNormal" = "道具";
 "kItemTool" = "工具";
 "kItemPromotion" = "促銷";
-"kItemTaoBao" = "淘寶";
+"kItemTaoBao" = "电容笔";
 
 "kDownloadRewardIngotAppTips" = "下載兄弟應用(免費)，使用後可賺取元寶";
 "kDownloadRewardCoinAppTips" = "下載兄弟應用(免費)，使用後可賺取金幣";
@@ -3063,3 +3063,5 @@
 
 "kTutorialTypeMine" = "我的教程";
 "kTutorialTypeAll" = "所有教程";
+
+"kPlayTutorial" = "播放教程";
