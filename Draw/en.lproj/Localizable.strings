@@ -2956,5 +2956,11 @@
 "kItemBrushCrayon" = "Crayon";
 "kItemBrushCrayonDesc" = "Crayon Brush";
 
+"kStartRelaxDraw" = "Draw Now";
+"kStartPracticeDraw" = "Learn Now";
+"kContinuePracticeDraw" = "Continue";
+
 "kTutorialTypeMine" = "MINE";
 "kTutorialTypeAll" = "ALL";
+
+"kPlayTutorial" = "PLAY";

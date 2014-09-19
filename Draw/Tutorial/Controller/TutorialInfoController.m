@@ -142,7 +142,7 @@ enum{
 {
     self.sectionTitle = @[NSLS(@"kTutorialDesc"), NSLS(@"kTutorialStageList")];
         //加载标题
-    id titleView = [CommonTitleView titleView:self.view];
+    CommonTitleView* titleView = [CommonTitleView titleView:self.view];
     [titleView setTitle:_pbTutorial.name];
     [titleView setTarget:self];
     

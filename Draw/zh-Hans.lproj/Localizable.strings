@@ -1390,12 +1390,10 @@
 "kCleanCacheSucc" = "奋力为你清理了 %.2f MB 缓存！";
 "kCleanCache" = "清理缓存";
 
-
-
 "kItemNormal" = "道具";
 "kItemTool" = "工具";
 "kItemPromotion" = "促销";
-"kItemTaoBao" = "淘宝";
+"kItemTaoBao" = "电容笔";
 "kDownloadRewardIngotAppTips" = "下载兄弟应用(免费)，首次使用后可赚取元宝";
 "kDownloadRewardCoinAppTips" = "下载兄弟应用(免费)，首次使用后可赚取金币";
 
@@ -3002,5 +3000,11 @@
 "kItemBrushCrayon" = "蜡笔";
 "kItemBrushCrayonDesc" = "不是蜡笔小新，是能画出蜡笔效果的笔";
 
+"kStartRelaxDraw" = "开始创作";
+"kStartPracticeDraw" = "开始学习";
+"kContinuePracticeDraw" = "继续学习";
+
 "kTutorialTypeMine" = "我的教程";
 "kTutorialTypeAll" = "所有教程";
+
+"kPlayTutorial" = "播放教程";

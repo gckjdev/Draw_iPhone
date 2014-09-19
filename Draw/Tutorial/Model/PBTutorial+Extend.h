@@ -17,6 +17,8 @@
 - (PBStage*)getStageByIndex:(NSUInteger)index;
 - (PBStage*)nextStage:(NSUInteger)index;
 
+- (BOOL)isForStudy;
+
 @end
 
 
@@ -35,12 +37,16 @@
 - (int)progress;
 -(BOOL)isFinishedTutorial:(int)stageIndex;
 
+- (BOOL)isForStudy;
+- (BOOL)hasFinishPractice:(int)stageIndex;
+
 @end
 
 @interface PBUserStage (Extend4)
 
 - (NSString*)getCurrentChapterOpusId;
 - (int)defeatPercent;
+- (BOOL)hasFinishPractice;
 
 @end
 
