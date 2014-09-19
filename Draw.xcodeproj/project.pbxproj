@@ -6693,6 +6693,10 @@
 		D8CF8AA11977981E0044E305 /* opencv2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D8CF8A9F1977981E0044E305 /* opencv2.framework */; };
 		D8CF8AA21977981F0044E305 /* opencv2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D8CF8A9F1977981E0044E305 /* opencv2.framework */; };
 		D8CF8AA31977981F0044E305 /* opencv2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D8CF8A9F1977981E0044E305 /* opencv2.framework */; };
+		D8D260DA19CBE95400FF651B /* shipinEnding.jpg in Resources */ = {isa = PBXBuildFile; fileRef = D8D260D919CBE95400FF651B /* shipinEnding.jpg */; };
+		D8D260DB19CBE95400FF651B /* shipinEnding.jpg in Resources */ = {isa = PBXBuildFile; fileRef = D8D260D919CBE95400FF651B /* shipinEnding.jpg */; };
+		D8D260DC19CBE95400FF651B /* shipinEnding.jpg in Resources */ = {isa = PBXBuildFile; fileRef = D8D260D919CBE95400FF651B /* shipinEnding.jpg */; };
+		D8D260DD19CBE95400FF651B /* shipinEnding.jpg in Resources */ = {isa = PBXBuildFile; fileRef = D8D260D919CBE95400FF651B /* shipinEnding.jpg */; };
 		D8D2806219C97CD80027E3BE /* HJImagesToVideo.m in Sources */ = {isa = PBXBuildFile; fileRef = D8D2806119C97CD80027E3BE /* HJImagesToVideo.m */; };
 		D8D2806319C97CD80027E3BE /* HJImagesToVideo.m in Sources */ = {isa = PBXBuildFile; fileRef = D8D2806119C97CD80027E3BE /* HJImagesToVideo.m */; };
 		D8D2806419C97CD80027E3BE /* HJImagesToVideo.m in Sources */ = {isa = PBXBuildFile; fileRef = D8D2806119C97CD80027E3BE /* HJImagesToVideo.m */; };
@@ -11199,6 +11203,7 @@
 		D8CC69D119A5EEF500E57398 /* PrizeCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PrizeCell.m; sourceTree = "<group>"; };
 		D8CC69D919A5EF9D00E57398 /* PrizeCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PrizeCell.xib; sourceTree = "<group>"; };
 		D8CF8A9F1977981E0044E305 /* opencv2.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = opencv2.framework; sourceTree = "<group>"; };
+		D8D260D919CBE95400FF651B /* shipinEnding.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = shipinEnding.jpg; sourceTree = "<group>"; };
 		D8D2806019C97CD80027E3BE /* HJImagesToVideo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HJImagesToVideo.h; sourceTree = "<group>"; };
 		D8D2806119C97CD80027E3BE /* HJImagesToVideo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HJImagesToVideo.m; sourceTree = "<group>"; };
 		D8D2806A19C97D270027E3BE /* REPagedScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = REPagedScrollView.h; sourceTree = "<group>"; };
@@ -12866,6 +12871,7 @@
 		A4D8FC5117DB089B0085061F /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				D8D260D919CBE95400FF651B /* shipinEnding.jpg */,
 				A4F474EA19B5794000CFE2AE /* brush */,
 				CA7DE796192BAD3200EED067 /* play_button */,
 				CA926BA818A8C94F002C73B4 /* disable_notice_on.png */,
@@ -19658,6 +19664,7 @@
 				A461B734174CBAA70088B061 /* ColorShopCell.xib in Resources */,
 				A461B735174CBAA70088B061 /* ColorShopCell~ipad.xib in Resources */,
 				D82540F619650A1C00C876C3 /* tutorial_core_version.txt in Resources */,
+				D8D260DC19CBE95400FF651B /* shipinEnding.jpg in Resources */,
 				CA1CC3AF19C43E04006E06C7 /* brush_show_mark@2x.png in Resources */,
 				A461B736174CBAA70088B061 /* GameItemDetailView.xib in Resources */,
 				A461B737174CBAA70088B061 /* ChargeController.xib in Resources */,
@@ -20605,6 +20612,7 @@
 				C28A9DAD1738F04B007A819F /* TopPlayerView.xib in Resources */,
 				C28A9DAE1738F04B007A819F /* RankFirstView~ipad.xib in Resources */,
 				C28A9DAF1738F04B007A819F /* RankSecondView~ipad.xib in Resources */,
+				D8D260DB19CBE95400FF651B /* shipinEnding.jpg in Resources */,
 				C28A9DB01738F04B007A819F /* RankView~ipad.xib in Resources */,
 				C28A9DB11738F04B007A819F /* TopPlayerView~ipad.xib in Resources */,
 				C28A9DB21738F04B007A819F /* MyFeedController~ipad.xib in Resources */,
@@ -22161,6 +22169,7 @@
 				A4D8FA7917DB08170085061F /* draw_room_seat_pink@2x.png in Resources */,
 				A4D8FA7D17DB08170085061F /* draw_room_seat_purple@2x.png in Resources */,
 				A4D8FA8117DB08170085061F /* draw_room_seat_white@2x.png in Resources */,
+				D8D260DA19CBE95400FF651B /* shipinEnding.jpg in Resources */,
 				A4D8FA8517DB08170085061F /* draw_room_seat_yellow@2x.png in Resources */,
 				A4D8FA8917DB08170085061F /* room_title_bg@2x.png in Resources */,
 				A4D8FA8D17DB08170085061F /* face_anger@2x.png in Resources */,
@@ -23363,6 +23372,7 @@
 				A4D8FC2817DB08180085061F /* user_detail_more@2x.png in Resources */,
 				A4D8FC2C17DB08180085061F /* user_detail_pull_down@2x.png in Resources */,
 				A4D8FC3017DB08180085061F /* user_detail_qq@2x.png in Resources */,
+				D8D260DD19CBE95400FF651B /* shipinEnding.jpg in Resources */,
 				A4D8FC3417DB08180085061F /* user_detail_round_avatar_bg@2x.png in Resources */,
 				A4D8FC3817DB08180085061F /* user_detail_round_avatar_bg@2x.png_bak1.png in Resources */,
 				A4D8FC3C17DB08180085061F /* user_detail_sina@2x.png in Resources */,

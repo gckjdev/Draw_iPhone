@@ -132,10 +132,36 @@
 #define INTRODUCTION_CREATE_TUTORIAL NSLS(@"kIntroduceCreateTutorial")
 -(void)setIntroductionView:(CommonTitleView *)headerTitle{
     
-    NSArray *tutorialTypeDescList = @[INTRODUCTION_PRO_TUTORIAL,
-                                      INTRODUCTION_PRO_TUTORIAL,
-                                      INTRODUCTION_LEISURE_TUTORIAL,
-                                      INTRODUCTION_CREATE_TUTORIAL];
+    NSString *passScore = nil;
+    
+    if(_pbUserTutorial.tutorial.disableScore ||_pbUserTutorial.tutorial.directPass ){
+        passScore = @"无需过关";
+
+    }
+    else{
+        passScore = [NSString stringWithFormat:NSLS(@"kPassScore"),_pbUserTutorial.tutorial.passScore];
+    }
+    
+    if(_pbUserTutorial.tutorial.unlockAllStage){
+        passScore = @"已经开启所有关卡";
+    }
+
+    
+    NSDictionary *passScoreIntroduction =
+        @{
+          @"leisureScorePass" :
+          [NSString stringWithFormat:NSLS(@"kIntroduceLeisureTutorial"),passScore],
+          @"proScorePass" :
+          [NSString stringWithFormat:NSLS(@"kIntroduceProTutorial"),passScore],
+        };
+    
+    NSArray *tutorialTypeDescList = @[
+                                      [passScoreIntroduction objectForKey: @"proScorePass"],
+                                     [passScoreIntroduction objectForKey: @"proScorePass"],
+                                      [passScoreIntroduction objectForKey: @"leisureScorePass"],
+                                      [passScoreIntroduction objectForKey: @"leisureScorePass"],];
+    
+    
     
     //新建介绍view
     _introductionView = [[UIView alloc] initWithFrame:CGRectMake(0, headerTitle.bounds.size.height, headerTitle.bounds.size.width, INTRODUCTION_HEIGHT)];
@@ -156,9 +182,6 @@
     [_introductionView addSubview:label];
     [label release];
     [self.view addSubview:_introductionView];
-
-    
-    
 }
 
 

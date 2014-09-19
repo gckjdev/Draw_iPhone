@@ -2933,10 +2933,14 @@
 "kProTutorialType" = "Profession";
 "kLeisureTutorialType" = "Leisure";
 "kSecCreateTutorialType" = "Second Create";
-"kIntroduceLeisureTutorial" = "Leisure tutorial,no need to pass";
-"kIntroduceProTutorial" = "Profession tutorials，after practice，60 score pass";
+"kIntroduceLeisureTutorial" = "Leisure tutorial,%@";
+"kIntroduceProTutorial" = "Profession tutorials，after practice，%@";
+
+"kPassScore" = "%d Pass";
 
 "kRankViewDesc" = "%@,There are %d users conquer in this stage";
+
+
 
 "kItemBrushGouache" = "Gouache";
 "kItemBrushGouacheDesc" = "Gouache Brush";

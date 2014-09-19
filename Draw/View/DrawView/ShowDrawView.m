@@ -1011,21 +1011,23 @@ typedef enum {
         [srcImgList release];
         return;
     }
-    
+
 #ifdef DEBUG
+    [srcImgList addObject:[UIImage imageNamed:@"shipinEnding.jpg"]];
     NSString *path2 = [NSHomeDirectory() stringByAppendingPathComponent:
                       [NSString stringWithFormat:@"Documents/movie.mp4"]];
     
     [[NSFileManager defaultManager] removeItemAtPath:path2 error:NULL];
     
     
-    [HJImagesToVideo saveVideoToPhotosWithImages:srcImgList withFPS:5 animateTransitions:YES withCallbackBlock:^(BOOL success){
+    [HJImagesToVideo saveVideoToPhotosWithImages:srcImgList withSize:(CGSize){960, 640}  withFPS:1 animateTransitions:YES  withCallbackBlock:^(BOOL success){
         if (success) {
             NSLog(@"Success");
         } else {
             NSLog(@"Failed");
         }
     }];
+    [srcImgList removeLastObject];
     
 #endif
     

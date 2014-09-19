@@ -33,6 +33,7 @@
 #import "UIImageExt.h"
 #import "StringUtil.h"
 #import "ShareService.h"
+#import "HJImagesToVideo.h"
 
 #define BUTTON_INDEX_OFFSET 20120229
 #define IMAGE_WIDTH 93
@@ -290,6 +291,22 @@ typedef enum{
 //
 //                    nil];
 //#endif
+            
+#ifdef DEBUG
+            tips = [[UIActionSheet alloc] initWithTitle:NSLS(@"kOptions")
+                                               delegate:self
+                                      cancelButtonTitle:NSLS(@"kCancel")
+                                 destructiveButtonTitle:NSLS(@"kReplay")
+                                      otherButtonTitles:
+                    NSLS(@"kDelete"), NSLS(@"kEdit"),
+                    NSLS(@"kSaveAsPhoto"), NSLS(@"kSaveAsGif"),
+                    @"分享回放视频",
+                    //NSLS(@"kShareSinaWeibo"),  // NSLS(@"kShareQQSpace"),
+                    //NSLS(@"kShareWeixinSession"), NSLS(@"kShareWeixinTimeline"),
+                    //NSLS(@"kShareQQWeibo"), NSLS(@"kShareFacebook"),
+                    nil];
+            
+#endif
         }
 
     tips.tag = IMAGE_OPTION;
@@ -588,6 +605,8 @@ typedef enum{
         
         [dialog showInView:self.view];
     }
+
+    
     else if (buttonIndex == SAVE_INTO_PHOTO){
         [self saveAlbum];
     }

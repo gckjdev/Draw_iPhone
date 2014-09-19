@@ -30,6 +30,8 @@
 
 
 #define HEIGHT_FOR_ROW ISIPAD ? 250.0f : 120.0f
+#define LEFT_RIGHT_MARGIN 15
+#define TOP_MARGIN (ISIPAD?180+STATUSBAR_DELTA:80+STATUSBAR_DELTA)
 @implementation UserTutorialMainController
 
 - (id)initWithDefaultTabIndex:(NSInteger)index
@@ -49,11 +51,11 @@
 
 - (void)viewDidLoad
 {
+    [self setPullRefreshType:PullRefreshTypeNone];
     [super viewDidLoad];
     
     [self initTabButtons];
     [self.view setBackgroundColor:[UIColor whiteColor]];
-    
     // set title view
     [CommonTitleView createTitleView:self.view];
     [[CommonTitleView titleView:self.view] setTitle:NSLS(@"kUserTutorialMainTitle")];
@@ -69,6 +71,10 @@
     [[TutorialCoreManager defaultManager] autoUpdate];
 
     [self showHelpView];
+    
+
+    
+    
 }
 
 - (void)showHelpView
@@ -185,23 +191,18 @@
     }
     
 }
+
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-//    [self finishLoadDataForTabID:TutorialTypeMine resultList:self.dataList];
-    
     TutorialCoreManager *core = [TutorialCoreManager defaultManager];
     switch ([[self currentTab] tabID]) {
         case TutorialTypeMine:
-            tableView.frame = CGRectMake(15, 116, 290, 452);
             return [self sorterTutorialCellWithTypeTag:TutorialTypeMine WithTableView:tableView WithRow:indexPath.row];
             break;
             
         case TutorialTypeAll:
-             PPDebug(@"%f",self.dataTableView.frame.size.width);
-            tableView.frame = CGRectMake(0, 116, [[UIScreen mainScreen] bounds].size.width, 452);
-            PPDebug(@"%f",self.dataTableView.frame.size.width);
-            
+
             [core setTutorialIdIntoUserDefault:_tutorialIdList];
-            
             return [self sorterTutorialCellWithTypeTag:TutorialTypeAll WithTableView:tableView WithRow:indexPath.row];
             break;
             
@@ -357,12 +358,36 @@
     return tabTitle[index];
 }
 
+- (void)clickTab:(NSInteger)tabID
+{
+    int aaa = tabID;
+    switch (tabID) {
+        case TutorialTypeMine:
+            if(self.dataTableView.frame.size.width != [[UIScreen mainScreen] bounds].size.width-2*LEFT_RIGHT_MARGIN){
+                self.dataTableView.frame = CGRectMake(LEFT_RIGHT_MARGIN, TOP_MARGIN, [[UIScreen mainScreen] bounds].size.width-2*LEFT_RIGHT_MARGIN, [[UIScreen mainScreen] bounds].size.height-TOP_MARGIN);
+            }
+            
+            break;
+            
+        case TutorialTypeAll:
+            if(self.dataTableView.frame.size.width != [[UIScreen mainScreen] bounds].size.width){
+                self.dataTableView.frame = CGRectMake(0, TOP_MARGIN, [[UIScreen mainScreen] bounds].size.width, [[UIScreen mainScreen] bounds].size.height-TOP_MARGIN);
+                PPDebug(@"<cellForRowAtIndexPath> width = %f",self.dataTableView.frame.size.width);
+            }
+            break;
+            
+        default:
+            return;
+            break;
+    }
+    [super clickTab:tabID];
+
+}
 
 - (void)serviceLoadDataForTabID:(NSInteger)tabID
 {
     [self reloadData];
     [self finishLoadDataForTabID:tabID resultList:self.pbUserTutorialList];
-
 }
 //
 //
@@ -373,31 +398,7 @@
      _tutorialIdList = [core getTutorialNewSet];
     [self setBadge:[_tutorialIdList count] onTab:TutorialTypeAll];
 }
-//
-//- (void)clearBadge:(FeedListType)type
-//{
-//    StatisticManager * manager = [StatisticManager defaultManager];
-//    switch (type) {
-//        case FeedListTypeTimelineOpus:
-//            manager.timelineOpusCount = 0;
-//            break;
-//        case FeedListTypeTimelineGuess:
-//            manager.timelineGuessCount = 0;
-//            break;
-//        case FeedListTypeTimeLineConquerDraw:
-//            manager.timelineConquerCount = 0;
-//            break;
-//        case FeedListTypeComment:
-//            manager.commentCount = 0;
-//            break;
-//        case FeedListTypeDrawToMe:
-//            manager.drawToMeCount = 0;
-//            break;
-//        default:
-//            break;
-//    }
-//    [self updateAllBadge];
-//}
+
 
 -(UITableViewCell *)sorterTutorialCellWithTypeTag:(int)tag WithTableView:(UITableView *)tableView WithRow:(int)row{
     NSDictionary *tabDictionary = @{@(TutorialTypeMine):@"UserTutorialMainCell",
