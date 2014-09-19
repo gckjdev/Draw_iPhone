@@ -1064,5 +1064,36 @@ static TutorialCoreManager* _defaultTutorialCoreManager;
 //    return nil;
 }
 
+#define KEY_USER_SKIM @"SKIM_THROUGH_TUTORIALID1"
+-(NSMutableArray *)getTutorialNewSet{
+    NSArray *allTutorial = [[TutorialCoreManager defaultManager] allTutorials];
+    NSMutableArray *tutorialIdList = [[NSMutableArray alloc] init];
+    
+    NSUserDefaults* userDefaults = [NSUserDefaults standardUserDefaults];
+    
+    NSArray *userDefaultTutorialList = [userDefaults objectForKey:KEY_USER_SKIM];
+    
+    for(PBTutorial *pt in allTutorial){
+        if(pt.isNew){
+            if(userDefaultTutorialList==nil){
+                [tutorialIdList addObject:pt.tutorialId];
+            }
+            else{
+                if(![userDefaultTutorialList containsObject:pt.tutorialId]){
+                    [tutorialIdList addObject:pt.tutorialId];
+                }
+            }
+            
+        }
+    }
+    return tutorialIdList ;
+}
+
+-(void)setTutorialIdIntoUserDefault:(NSMutableArray *)tutorialIdList{
+    NSUserDefaults* userDefaults = [NSUserDefaults standardUserDefaults];
+    NSArray *array = [tutorialIdList copy];
+    [userDefaults setObject:array  forKey:KEY_USER_SKIM];
+    [userDefaults synchronize];
+}
 @end
 

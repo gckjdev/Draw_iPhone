@@ -8,9 +8,14 @@
 
 #import <UIKit/UIKit.h>
 #import "PPTableViewController.h"
+#import "CommonTabController.h"
 
 
-@interface UserTutorialMainController : PPTableViewController
+@interface UserTutorialMainController : CommonTabController
+typedef enum{
+    TutorialTypeMine = 100,
+    TutorialTypeAll = 101,
+}TutorialType;
 
 
 @end

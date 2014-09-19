@@ -2960,3 +2960,5 @@
 "kStartPracticeDraw" = "Learn Now";
 "kContinuePracticeDraw" = "Continue";
 
+"kTutorialTypeMine" = "MINE";
+"kTutorialTypeAll" = "ALL";

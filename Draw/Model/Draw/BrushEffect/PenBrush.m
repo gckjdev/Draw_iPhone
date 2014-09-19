@@ -43,7 +43,7 @@ static dispatch_once_t sharedPenBrushOnceToken;
 
 - (BOOL)isWidthFixedSize
 {
-    return YES;
+    return NO;
 }
 
 
@@ -54,19 +54,23 @@ static dispatch_once_t sharedPenBrushOnceToken;
 {
     double tempWidth = currentWidth;
     
-    if(tempWidth < threshold/4) tempWidth +=threshold / 16;
-    else if(tempWidth > threshold) tempWidth = threshold;
-    else
-    {
-        double accelerate = distance2 - distance1;
-        if( accelerate / threshold > 0.1)
-            tempWidth += threshold / 4;
-        else if (accelerate / threshold < -0.1)
-            tempWidth -= threshold / 4;
-        
-        if(tempWidth < threshold / 4)
-            tempWidth = threshold / 4;
+    double maxW = threshold;
+    double minW = threshold / 5;
+    double maxS = 50;
+    double minS = 0;
+    double R = (maxW - minW) / (maxS - minS);
+    double s = (distance1+distance2) / 2;
+    
+    tempWidth = minW + s * R;
+
+    if (tempWidth < minW) {
+        tempWidth = minW;
     }
+    if (tempWidth > maxW) {
+        tempWidth = maxW;
+    }
+
+    PPDebug(@"speed:%f ; width: %f", (distance1+distance2)/2, tempWidth);
     
     return tempWidth;
 }

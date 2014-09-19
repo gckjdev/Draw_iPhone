@@ -57,6 +57,18 @@
     return self;
 }
 
+-(void)setStageIndex{
+    
+    if(_pbUserTutorial.tutorial.unlockAllStage==YES){
+        stageIndex = _pbUserTutorial.tutorial.stagesList.count - 1;
+    }
+    else{
+        stageIndex = _pbUserTutorial.currentStageIndex;
+    }
+    
+    
+    
+}
 
 #define COLLECTION_CELL_WIDTH (ISIPAD ? 220 : 140)
 #define COLLECTION_CELL_HEIGHT (ISIPAD ? 200 : 100)
@@ -64,7 +76,9 @@
     
     NSString *title = [[self.pbUserTutorial tutorial] name]; // 实现 国际化
     [super viewDidLoad];
-    stageIndex = _pbUserTutorial.currentStageIndex;
+    
+    
+    [self setStageIndex];
     
     // set title view
     CommonTitleView *headerView = [CommonTitleView createTitleView:self.view];
@@ -263,12 +277,25 @@
     [self.rankView addSubview:label];
     
     //判断是否到最大或者最小值 来隐藏箭头
-    if(stageIndex >= _pbUserTutorial.currentStageIndex){
-        right.hidden = YES;
+    if(_pbUserTutorial.tutorial.unlockAllStage==YES){
+        if(stageIndex >= _pbUserTutorial.tutorial.stagesList.count-1){
+            right.hidden = YES;
+        }
+        if(stageIndex <= 0){
+            left.hidden = YES;
+        }
     }
-    if(stageIndex <= 0){
-        left.hidden = YES;
+    else{
+        if(stageIndex >= _pbUserTutorial.currentStageIndex){
+            right.hidden = YES;
+        }
+        if(stageIndex <= 0){
+            left.hidden = YES;
+        }
     }
+    
+    
+   
     
     [left release];
     [right release];
@@ -459,16 +486,34 @@
     
 }
 -(void)nextPage{
-    if(stageIndex < _pbUserTutorial.currentStageIndex){
-        stageIndex ++ ;
+    if(_pbUserTutorial.tutorial.unlockAllStage==YES){
+        if(stageIndex < _pbUserTutorial.tutorial.stagesList.count-1){
+            stageIndex ++ ;
+        }
     }
+    else{
+        
+        if(stageIndex < _pbUserTutorial.currentStageIndex){
+            stageIndex ++ ;
+        }
+        
+    }
+
+    
+    
+    
+    
+    
     [self setRankView];
     NSLog(@"page == %d",stageIndex);
 }
 -(void)prePage{
+    
     if(stageIndex > 0 ){
         stageIndex -- ;
     }
+    
+   
     [self setRankView];
         NSLog(@"page == %d",stageIndex);
 }
