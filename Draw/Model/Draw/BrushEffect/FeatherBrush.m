@@ -1,35 +1,35 @@
 //
-//  PencilBrush.m
+//  FeatherBrush.m
 //  Draw
 //
 //  Created by 黄毅超 on 14-9-16.
 //
 //
-#import "PencilBrush.h"
+#import "FeatherBrush.h"
 
-static PencilBrush* sharedPencilBrush;
-static dispatch_once_t sharedPencilBrushOnceToken;
+static FeatherBrush* sharedFeatherBrush;
+static dispatch_once_t sharedFeatherBrushOnceToken;
 
 
-#define PENCILWIDTH 10 // TODO: find a suitable number as pencil
-@implementation PencilBrush
+#define FeatherWIDTH 5 // TODO: find a suitable number as Feather
+@implementation FeatherBrush
 
-+ (PencilBrush*)sharedBrush
++ (FeatherBrush*)sharedBrush
 {
-    if (sharedPencilBrush == nil){
-        dispatch_once(&sharedPencilBrushOnceToken, ^{
-            sharedPencilBrush = [[PencilBrush alloc] init];
+    if (sharedFeatherBrush == nil){
+        dispatch_once(&sharedFeatherBrushOnceToken, ^{
+            sharedFeatherBrush = [[FeatherBrush alloc] init];
         });
     }
     
-    return sharedPencilBrush;
+    return sharedFeatherBrush;
 }
 
 - (UIImage*)brushImage:(UIColor *)color width:(float)width
 {
     //使用图片不需要管本来的颜色，只需要形状是所需要的即可，颜色由rt_tint方法搞定
-    UIImage* brushImage = [UIImage imageNamed:@"brush_dot2"];
-    brushImage = [brushImage imageByScalingAndCroppingForSize:CGSizeMake(PENCILWIDTH, PENCILWIDTH)];
+    UIImage* brushImage = [UIImage imageNamed:@"brush_dot7"];
+    brushImage = [brushImage imageByScalingAndCroppingForSize:CGSizeMake(FeatherWIDTH, FeatherWIDTH)];
     
     //使用rt_tint方法需要color属性，其中color属性的alpha通道应置为1.0，否则染色效果会受底图影响
     UIColor *colorWithRGBOnly = [UIColor colorWithRed:color.red green:color.green blue:color.blue alpha:1.0];
@@ -38,7 +38,7 @@ static dispatch_once_t sharedPencilBrushOnceToken;
     UIImage *tinted = [brushImage rt_tintedImageWithColor:colorWithRGBOnly
                                                     level:1.0f];
     
-    //考虑
+    //考虑??TODO
     brushImage = tinted;
     
     return brushImage;
@@ -54,12 +54,12 @@ static dispatch_once_t sharedPencilBrushOnceToken;
                            distance2:(float)distance2
                         currentWidth:(float)currentWidth
 {
-    return PENCILWIDTH;
+    return FeatherWIDTH;
 }
 
 - (float)firstPointWidth:(float)defaultWidth
 {
-    return PENCILWIDTH;
+    return FeatherWIDTH;
 }
 
 - (int)interpolationLength:(float)brushWidth        // 当前笔刷大小
@@ -79,7 +79,7 @@ static dispatch_once_t sharedPencilBrushOnceToken;
                   PointW:(float*)pointW
         WithDefaultWidth:(float)defaultWidth
 {
-    //do nothing, no need to shake
+    //empty method
 }
 
 @end

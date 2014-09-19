@@ -66,7 +66,7 @@ static dispatch_once_t sharedCrayonBrushOnceToken;
                  distance2:(float)distance2         // 当前EndDot和ControlDot的距离
 {
     double speedFactor = (distance1) / brushWidth;
-    double typeFactor = 1.5;
+    double typeFactor = 2.0;
     int interpolationLength = INTERPOLATION * speedFactor * typeFactor + 1;
     
     return interpolationLength;
@@ -84,9 +84,9 @@ static dispatch_once_t sharedCrayonBrushOnceToken;
     float yRandomOffset = arc4random() % randomFactor;
     float wRandomOffset = arc4random() % randomFactor;
     
-    NSInteger xShouldShake = arc4random() % 4;
-    NSInteger yShouldShake = arc4random() % 4;
-    NSInteger wShouldShake = arc4random() % 4;
+    NSInteger xShouldShake = arc4random() % 3;
+    NSInteger yShouldShake = arc4random() % 3;
+    NSInteger wShouldShake = arc4random() % 3;
     
     if(xShouldShake == 0)
         *pointX += xRandomOffset;

@@ -3073,6 +3073,10 @@
 		A4ECE9C21792A036006DD933 /* NonCyclePageScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = A4ECE9BB1792A036006DD933 /* NonCyclePageScrollView.m */; };
 		A4ECE9C31792A036006DD933 /* PageScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = A4ECE9BE1792A036006DD933 /* PageScrollView.m */; };
 		A4ECE9C41792A036006DD933 /* PageScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = A4ECE9BE1792A036006DD933 /* PageScrollView.m */; };
+		A4ED324E19CB36AF00619F1E /* FeatherBrush.m in Sources */ = {isa = PBXBuildFile; fileRef = A4ED324D19CB36AF00619F1E /* FeatherBrush.m */; };
+		A4ED324F19CB36AF00619F1E /* FeatherBrush.m in Sources */ = {isa = PBXBuildFile; fileRef = A4ED324D19CB36AF00619F1E /* FeatherBrush.m */; };
+		A4ED325019CB36AF00619F1E /* FeatherBrush.m in Sources */ = {isa = PBXBuildFile; fileRef = A4ED324D19CB36AF00619F1E /* FeatherBrush.m */; };
+		A4ED325119CB36AF00619F1E /* FeatherBrush.m in Sources */ = {isa = PBXBuildFile; fileRef = A4ED324D19CB36AF00619F1E /* FeatherBrush.m */; };
 		A4F04B84180643BD007274BE /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A42150391803E87C007F2EFD /* AssetsLibrary.framework */; };
 		A4F04B851806543C007274BE /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A42150391803E87C007F2EFD /* AssetsLibrary.framework */; };
 		A4F04B861806546F007274BE /* GuessService.m in Sources */ = {isa = PBXBuildFile; fileRef = A4E254CF1796CC5D00767506 /* GuessService.m */; };
@@ -9126,6 +9130,8 @@
 		A4ECE9BC1792A036006DD933 /* PageScrollView+Protected.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "PageScrollView+Protected.h"; sourceTree = "<group>"; };
 		A4ECE9BD1792A036006DD933 /* PageScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PageScrollView.h; sourceTree = "<group>"; };
 		A4ECE9BE1792A036006DD933 /* PageScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PageScrollView.m; sourceTree = "<group>"; };
+		A4ED324C19CB36AF00619F1E /* FeatherBrush.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FeatherBrush.h; sourceTree = "<group>"; };
+		A4ED324D19CB36AF00619F1E /* FeatherBrush.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FeatherBrush.m; sourceTree = "<group>"; };
 		A4F04B8D180680D1007274BE /* tap-mellow.aif */ = {isa = PBXFileReference; lastKnownFileType = file; path = "tap-mellow.aif"; sourceTree = "<group>"; };
 		A4F04B8E180680D1007274BE /* tap-warm.aif */ = {isa = PBXFileReference; lastKnownFileType = file; path = "tap-warm.aif"; sourceTree = "<group>"; };
 		A4F04B9518068465007274BE /* beep-shinymetal.aif */ = {isa = PBXFileReference; lastKnownFileType = file; path = "beep-shinymetal.aif"; sourceTree = "<group>"; };
@@ -12374,6 +12380,8 @@
 				A4B60AB519B6BC1800C300D5 /* PenBrush.m */,
 				A4E85C2B19C89380002762CD /* PencilBrush.h */,
 				A4E85C2C19C89380002762CD /* PencilBrush.m */,
+				A4ED324C19CB36AF00619F1E /* FeatherBrush.h */,
+				A4ED324D19CB36AF00619F1E /* FeatherBrush.m */,
 			);
 			path = BrushEffect;
 			sourceTree = "<group>";
@@ -24558,6 +24566,7 @@
 				C206FFD6178034450033CF63 /* PSCollectionView.m in Sources */,
 				C206FFE8178034450033CF63 /* PSCollectionViewCell.m in Sources */,
 				CA9C11D0178135E0004372B6 /* GradientAction.m in Sources */,
+				A4ED325019CB36AF00619F1E /* FeatherBrush.m in Sources */,
 				CA02CB7C1785581A00B6910D /* GradientSettingView.m in Sources */,
 				CA02CBB41785619300B6910D /* GradientCommand.m in Sources */,
 				CAA75C92178A57EE0041C019 /* ShapeClipTouchHandler.m in Sources */,
@@ -24886,6 +24895,7 @@
 				C28A99BC1738F04B007A819F /* GCDAsyncSocket.m in Sources */,
 				C28A99BD1738F04B007A819F /* GCDAsyncUdpSocket.m in Sources */,
 				A4A3BF0519B44F5D00EC4D25 /* HBrushPointList.mm in Sources */,
+				A4ED324F19CB36AF00619F1E /* FeatherBrush.m in Sources */,
 				C28A99BE1738F04B007A819F /* CDataScanner.m in Sources */,
 				C28A99BF1738F04B007A819F /* CDataScanner_Extensions.m in Sources */,
 				C28A99C01738F04B007A819F /* NSCharacterSet_Extensions.m in Sources */,
@@ -25778,6 +25788,7 @@
 				CA10410C1509A9FF00F60C03 /* ASINetworkQueue.m in Sources */,
 				CA10410E1509A9FF00F60C03 /* GCDAsyncSocket.m in Sources */,
 				A4A3BF0419B44F5D00EC4D25 /* HBrushPointList.mm in Sources */,
+				A4ED324E19CB36AF00619F1E /* FeatherBrush.m in Sources */,
 				CA10410F1509A9FF00F60C03 /* GCDAsyncUdpSocket.m in Sources */,
 				CA1041701509A9FF00F60C03 /* CDataScanner.m in Sources */,
 				D8B5393B19920B3E00BD3337 /* ResultSeal.m in Sources */,
@@ -27208,6 +27219,7 @@
 				A49972621778357F00B01EBE /* FeedSceneGuessResult.m in Sources */,
 				A49972631778357F00B01EBE /* ShowFeedController.m in Sources */,
 				EA46F3941778537C00D8D349 /* CommonRoomListController.m in Sources */,
+				A4ED325119CB36AF00619F1E /* FeatherBrush.m in Sources */,
 				EA46F39A177853F500D8D349 /* CommonRoomListCell.m in Sources */,
 				EA46F39B1778551500D8D349 /* GalleryController.m in Sources */,
 				EA46F39C177855B000D8D349 /* GalleryService.m in Sources */,
