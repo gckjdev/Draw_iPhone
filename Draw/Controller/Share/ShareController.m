@@ -370,7 +370,7 @@ typedef enum{
 
 - (void)TestGif
 {
-    GifViewController *gvc = [[GifViewController alloc]init];
+    GifViewController *gvc = [[[GifViewController alloc]init] autorelease];
     [self.navigationController pushViewController:gvc animated:YES];
 }
 

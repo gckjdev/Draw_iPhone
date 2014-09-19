@@ -146,7 +146,7 @@
                                                    brushType:action.penType
                                                    pointList:pointList];
 
-        
+        [pointList release];
         
     }
     return self;

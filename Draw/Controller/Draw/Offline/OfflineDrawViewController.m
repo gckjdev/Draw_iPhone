@@ -2872,7 +2872,7 @@
                            showForum:showForum
                             showPlay:[self showPlayInTips]
                         playCallback:^{
-                            [self.copyView play];
+                            [_copyView play];
                         }];
         
         return YES;

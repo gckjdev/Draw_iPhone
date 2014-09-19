@@ -11,6 +11,7 @@
 #import "DrawColor.h"
 #import "Draw.pb-c.h"
 #import "PPConfigManager.h"
+#import "UIImageExt.h"
 
 @implementation DrawUtils
 
