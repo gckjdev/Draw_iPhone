@@ -689,6 +689,7 @@ typedef enum {
 
 - (NSMutableArray*)createGIF:(NSUInteger)frameNumber scaleSize:(float)scaleSize finalImage:(UIImage*)finalImage
 {
+    
     if (frameNumber <= 0 || frameNumber > [PPConfigManager maxGIFFrame]){
         PPDebug(@"<createGIF> but frameNumber (%d) out of bound", frameNumber);
         return nil;

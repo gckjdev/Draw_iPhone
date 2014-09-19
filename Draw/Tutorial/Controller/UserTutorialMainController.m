@@ -61,8 +61,8 @@
     [[CommonTitleView titleView:self.view] setTitle:NSLS(@"kUserTutorialMainTitle")];
     [[CommonTitleView titleView:self.view] setTarget:self];
     [[CommonTitleView titleView:self.view] setBackButtonSelector:@selector(clickBack:)];
-    [[CommonTitleView titleView:self.view] setRightButtonSelector:@selector(clickAdd:)];
-    [[CommonTitleView titleView:self.view] setRightButtonTitle:NSLS(@"kAddTutorial")];
+//    [[CommonTitleView titleView:self.view] setRightButtonSelector:@selector(clickAdd:)];
+//    [[CommonTitleView titleView:self.view] setRightButtonTitle:NSLS(@"kAddTutorial")];
 
     // Do any additional setup after loading the view.
     // set background
