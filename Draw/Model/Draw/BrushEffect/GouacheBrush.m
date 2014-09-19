@@ -51,7 +51,7 @@ static dispatch_once_t sharedGouacheBrushOnceToken;
 
 - (BOOL)isWidthFixedSize
 {
-    return YES;
+    return NO;
 }
 
 - (float)calculateWidthWithThreshold:(float)threshold

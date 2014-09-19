@@ -92,7 +92,7 @@ static dispatch_once_t sharedBlurBrushOnceToken;
 
 - (BOOL)isWidthFixedSize
 {
-    return YES;
+    return NO;
 }
 
 - (float)calculateWidthWithThreshold:(float)threshold
