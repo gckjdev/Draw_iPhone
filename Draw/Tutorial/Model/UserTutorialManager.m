@@ -389,7 +389,25 @@ static UserTutorialManager* _defaultManager;
     
     PBUserTutorial_Builder* builder = [PBUserTutorial builderWithPrototype:ut];
     
-    if (stageIndex < [ut.userStagesList count]){
+    if (stageIndex >= [ut.userStagesList count]){
+        for (int i=ut.userStagesList.count; i<=stageIndex; i++){
+            // need to create new user stage and add into user tutorial
+            NSString* addStageId = [[ut.tutorial.stagesList objectAtIndex:i] stageId];
+            PBUserStage_Builder* userStageBuilder = nil;
+            userStageBuilder = [PBUserStage builder];
+            [userStageBuilder setStageId:addStageId];
+            [userStageBuilder setTutorialId:ut.tutorial.tutorialId];
+            [userStageBuilder setUserId:ut.userId];
+            [userStageBuilder setStageIndex:i];
+            
+            PBUserStage* userStage = [userStageBuilder build];
+            [builder addUserStages:userStage];
+            
+            PPDebug(@"<conquerTutorialStage> add new user stage at (%d, %@)",
+                    i, addStageId);
+        }
+    }
+    else if (stageIndex < [ut.userStagesList count]){
         // already has current user stage data
         PBUserStage* us = [ut userStagesAtIndex:stageIndex];
         if (us != nil){
