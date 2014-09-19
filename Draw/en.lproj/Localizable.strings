@@ -2956,4 +2956,5 @@
 "kItemBrushCrayon" = "Crayon";
 "kItemBrushCrayonDesc" = "Crayon Brush";
 
-
+"kTutorialTypeMine" = "MINE";
+"kTutorialTypeAll" = "ALL";

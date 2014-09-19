@@ -28,5 +28,6 @@
 
 - (PBTutorial*)defaultFirstTutorial;
 
-
+-(NSArray *)getTutorialNewSet;
+-(void)setTutorialIdIntoUserDefault:(NSMutableArray *)tutorialIdList;
 @end

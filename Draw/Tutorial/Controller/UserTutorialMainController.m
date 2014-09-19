@@ -1,4 +1,4 @@
-//
+    //
 //  UserTutorialMainController.m
 //  Draw
 //
@@ -16,14 +16,27 @@
 #import "TutorialStageController.h"
 #import "TutorialCoreManager.h"
 #import "SpotHelpView.h"
+#import "AllTutorialCell.h"
+
+#import "Tutorial.pb.h"
+#import "TutorialInfoController.h"
+
 
 @interface UserTutorialMainController ()
-
+@property (nonatomic,retain) NSArray *pbTutorialList;
+@property (nonatomic,retain) NSArray *pbUserTutorialList;
+@property (nonatomic,retain) NSMutableArray *tutorialIdList;
 @end
 
 
 #define HEIGHT_FOR_ROW ISIPAD ? 250.0f : 120.0f
 @implementation UserTutorialMainController
+
+- (id)initWithDefaultTabIndex:(NSInteger)index
+{
+    self = [super initWithDefaultTabIndex:index];
+    return self;
+}
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -38,6 +51,9 @@
 {
     [super viewDidLoad];
     
+    [self initTabButtons];
+    [self.view setBackgroundColor:[UIColor whiteColor]];
+    
     // set title view
     [CommonTitleView createTitleView:self.view];
     [[CommonTitleView titleView:self.view] setTitle:NSLS(@"kUserTutorialMainTitle")];
@@ -45,33 +61,9 @@
     [[CommonTitleView titleView:self.view] setBackButtonSelector:@selector(clickBack:)];
     [[CommonTitleView titleView:self.view] setRightButtonSelector:@selector(clickAdd:)];
     [[CommonTitleView titleView:self.view] setRightButtonTitle:NSLS(@"kAddTutorial")];
-    
-    int TOP_LEADING = (ISIPAD ? 25.0 : 15.0);
-    int LEFT_RIGHT_LEADING = (ISIPAD ? 15.0 : 15.0);
-    
-    NSLayoutConstraint* constraint = [NSLayoutConstraint constraintWithItem:self.dataTableView
-                                                                  attribute:NSLayoutAttributeTop
-                                                                  relatedBy:NSLayoutRelationEqual
-                                                                     toItem:[CommonTitleView titleView:self.view]
-                                                                  attribute:NSLayoutAttributeBottom
-                                                                 multiplier:1.0
-                                                                   constant:TOP_LEADING];
-    
-    NSLayoutConstraint* leftConstraint = [NSLayoutConstraint constraintWithItem:self.dataTableView
-                                                                  attribute:NSLayoutAttributeLeading
-                                                                  relatedBy:NSLayoutRelationEqual
-                                                                     toItem:self.view
-                                                                  attribute:NSLayoutAttributeLeft
-                                                                 multiplier:1.0
-                                                                   constant:LEFT_RIGHT_LEADING];
-    
-    [self.view addConstraint:constraint];
-    [self.view addConstraint:leftConstraint];
-    
-	// Do any additional setup after loading the view.
-    // set background
 
-    self.view.backgroundColor = COLOR_GRAY;
+    // Do any additional setup after loading the view.
+    // set background
     [self setCanDragBack:NO];
     
     [[TutorialCoreManager defaultManager] autoUpdate];
@@ -119,13 +111,19 @@
     [[UserTutorialService defaultService] getAllUserTutorials:^(int resultCode, NSArray* retList) {
         if(resultCode==0){
             PPDebug(@"<reloadData resultCode=%d>",resultCode);
+            self.pbUserTutorialList = retList;
             self.dataList = retList;
+            //返回所有教程
+            NSArray *allTutorials = [[TutorialCoreManager defaultManager] allTutorials];
+            self.pbTutorialList = allTutorials;
             [self.dataTableView reloadData];
         }else{
             PPDebug(@"<reloadData has error resultCode=%d>",resultCode);
         }
        
     }];
+    
+   
 
 }
 
@@ -134,6 +132,7 @@
 {
     [self reloadData];
     [super viewDidAppear:animated];
+    [self updateAllBadge];
 }
 
 - (void)didReceiveMemoryWarning
@@ -157,60 +156,146 @@
     else return [self.dataList objectAtIndex:row];
 }
 
--(NSInteger)getTutorialByRow:(NSInteger)row{
-    if (row >= [self.dataList count]){
+-(PBUserTutorial *)getTutorialByRow:(NSInteger)row{
+    if (row >= [self.pbUserTutorialList count]){
         return nil;
     }
-    return [self.dataList objectAtIndex:row];
+    return [self.pbUserTutorialList objectAtIndex:row];
 }
 #pragma mark -
 #pragma mark Table Data Source Methods
 
+- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    switch ([[self currentTab] tabID]) {
+        case TutorialTypeMine:
+            return ;
+            break;
+            
+        case TutorialTypeAll:
+            if (indexPath.row % 2 == 0) {
+                cell.backgroundColor = COLOR_GRAY;
+            }else{
+                cell.backgroundColor = COLOR_WHITE;
+            }            break;
+            break;
+        default:
+            return;
+            break;
+    }
+    
+}
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+//    [self finishLoadDataForTabID:TutorialTypeMine resultList:self.dataList];
     
-    static NSString *CustomCellIdentifier = @"UserTutorialMainCell";
-    UserTutorialMainCell *cell = [tableView dequeueReusableCellWithIdentifier:CustomCellIdentifier];
-    //cell
-    if (cell == nil){
-        //类名
-        UINib *nib = [UINib nibWithNibName:CustomCellIdentifier bundle:nil];
-        [tableView registerNib:nib forCellReuseIdentifier:CustomCellIdentifier];
-        cell = [tableView dequeueReusableCellWithIdentifier:CustomCellIdentifier];
+    TutorialCoreManager *core = [TutorialCoreManager defaultManager];
+    switch ([[self currentTab] tabID]) {
+        case TutorialTypeMine:
+            tableView.frame = CGRectMake(15, 116, 290, 452);
+            return [self sorterTutorialCellWithTypeTag:TutorialTypeMine WithTableView:tableView WithRow:indexPath.row];
+            break;
+            
+        case TutorialTypeAll:
+             PPDebug(@"%f",self.dataTableView.frame.size.width);
+            tableView.frame = CGRectMake(0, 116, [[UIScreen mainScreen] bounds].size.width, 452);
+            PPDebug(@"%f",self.dataTableView.frame.size.width);
+            
+            [core setTutorialIdIntoUserDefault:_tutorialIdList];
+            
+            return [self sorterTutorialCellWithTypeTag:TutorialTypeAll WithTableView:tableView WithRow:indexPath.row];
+            break;
+            
+        default:
+            return nil;
+            break;
     }
-    
-    //行数
-    NSUInteger row = [indexPath row];
-    PBUserTutorial* ut = [self getTutorialByRow:row];
-    if(ut!=nil){
-        [cell updateCellInfo:ut WithRow:indexPath.row];
-        return cell;
-
-    }
-    else{
-        return nil;
-    }
-    
 }
 
 
 
 #pragma mark 当点击cell 时候的事件
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    PBUserTutorial *pbUserTutorial = [self getTutorialByRow:indexPath.row];
-    [TutorialStageController enter:self pbTutorial:pbUserTutorial];
+    switch ([[self currentTab] tabID]) {
+        case TutorialTypeMine:
+            [tableView deselectRowAtIndexPath:indexPath animated:YES];
+            PBUserTutorial *pbUserTutorial = [self getTutorialByRow:indexPath.row];
+            [TutorialStageController enter:self pbTutorial:pbUserTutorial];
+            break;
+            
+        case TutorialTypeAll:
+            [tableView deselectRowAtIndexPath:indexPath animated:YES];
+            PBTutorial* pbTutorial = [self getAllTutorialByRow:indexPath.row];
+            if(nil!=pbTutorial){
+                
+                [TutorialInfoController show:self
+                                    tutorial:pbTutorial
+                                    infoOnly:NO];
+            }
+            break;
+            
+        default:
+            return;
+            break;
+    }
+
     
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    switch ([[self currentTab] tabID]) {
+        case TutorialTypeMine:
+            return [_pbUserTutorialList count];
+            break;
+            
+        case TutorialTypeAll:
+            return [_pbTutorialList count];
+            break;
+            
+        default:
+            return 0;
+            break;
+    }
+
+
 }
 
 #pragma mark Table Delegate Methods
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return  HEIGHT_FOR_ROW;
+    
+    switch ([[self currentTab] tabID]) {
+        case TutorialTypeMine:
+            return  HEIGHT_FOR_ROW;
+            break;
+            
+        case TutorialTypeAll:
+            return  PPSIZE(160.f, 75.0f); //  ISIPAD ? 160.0f : 75.0f;
+            break;
+            
+        default:
+            return HEIGHT_FOR_ROW;
+            break;
+    }
+
+    
 }
 
 //删除tableviewcell
 -(UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return UITableViewCellEditingStyleDelete;
+    switch ([[self currentTab] tabID]) {
+        case TutorialTypeMine:
+            return UITableViewCellEditingStyleDelete;
+            break;
+            
+        case TutorialTypeAll:
+            return nil;
+            break;
+            
+        default:
+             return nil;
+            break;
+    }
+    
 }
 
 -(void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -234,9 +319,146 @@
 }
 
 -(void)dealloc{
-   
+    PPRelease(_tutorialIdList);
+    PPRelease(_pbTutorialList);
+    PPRelease(_pbUserTutorialList);
     [super dealloc];
     
 }
+
+
+#pragma mark common tab controller
+
+- (NSInteger)tabCount
+{
+    return 2;
+}
+- (NSInteger)fetchDataLimitForTabIndex:(NSInteger)index
+{
+    return 200;
+}
+- (NSInteger)tabIDforIndex:(NSInteger)index
+{
+    NSInteger tabId[] = {TutorialTypeMine,TutorialTypeAll};
+    return tabId[index];
+}
+
+- (NSString *)tabNoDataTipsforIndex:(NSInteger)index
+{
+    NSString *tabDesc[] = {NSLS(@"kTutorialTypeMine"),NSLS(@"kTutorialTypeAll")};
+    //    NSString *tabDesc[] = {NSLS(@"kNoMyFeed"),NSLS(@"kNoTimelineGuess"),NSLS(@"kNoMyComment"),NSLS(@"kNoDrawToMe")};
+    
+    return tabDesc[index];
+}
+
+- (NSString *)tabTitleforIndex:(NSInteger)index
+{
+    NSString *tabTitle[] = {NSLS(@"kTutorialTypeMine"),NSLS(@"kTutorialTypeAll")};
+    return tabTitle[index];
+}
+
+
+- (void)serviceLoadDataForTabID:(NSInteger)tabID
+{
+    [self reloadData];
+    [self finishLoadDataForTabID:tabID resultList:self.pbUserTutorialList];
+
+}
+//
+//
+- (void)updateAllBadge
+{
+    [_tutorialIdList removeAllObjects];
+    TutorialCoreManager *core = [TutorialCoreManager defaultManager];
+     _tutorialIdList = [core getTutorialNewSet];
+    [self setBadge:[_tutorialIdList count] onTab:TutorialTypeAll];
+}
+//
+//- (void)clearBadge:(FeedListType)type
+//{
+//    StatisticManager * manager = [StatisticManager defaultManager];
+//    switch (type) {
+//        case FeedListTypeTimelineOpus:
+//            manager.timelineOpusCount = 0;
+//            break;
+//        case FeedListTypeTimelineGuess:
+//            manager.timelineGuessCount = 0;
+//            break;
+//        case FeedListTypeTimeLineConquerDraw:
+//            manager.timelineConquerCount = 0;
+//            break;
+//        case FeedListTypeComment:
+//            manager.commentCount = 0;
+//            break;
+//        case FeedListTypeDrawToMe:
+//            manager.drawToMeCount = 0;
+//            break;
+//        default:
+//            break;
+//    }
+//    [self updateAllBadge];
+//}
+
+-(UITableViewCell *)sorterTutorialCellWithTypeTag:(int)tag WithTableView:(UITableView *)tableView WithRow:(int)row{
+    NSDictionary *tabDictionary = @{@(TutorialTypeMine):@"UserTutorialMainCell",
+                                    @(TutorialTypeAll):@"AllTutorialCell"};
+   
+
+    
+    if(tag == TutorialTypeMine){
+        NSString *nibName =  [tabDictionary objectForKey:@(tag)];
+        UserTutorialMainCell *viewCell = [self getTableViewCellWithDef:nibName WithTableView:tableView];
+        PBUserTutorial* ut = [self getTutorialByRow:row];
+        if(ut==nil){
+            PPDebug(@"<sorterTutorialCellWithTypeTag> PBuserTutorial is nil");
+            return nil;
+        }
+        if(nil != ut){
+            [viewCell updateCellInfo:ut WithRow:row];
+        }
+        return viewCell;
+    }
+    if(tag == TutorialTypeAll){
+        NSString *nibName =  [tabDictionary objectForKey:@(tag)];
+        AllTutorialCell *allTutorialCell = [self getTableViewCellWithDef:nibName WithTableView:tableView];
+        
+        
+        PBTutorial* ut = [self getAllTutorialByRow:row];
+        if(ut==nil){
+            PPDebug(@"<sorterTutorialCellWithTypeTag> PBuserTutorial is nil");
+            return nil;
+        }
+        if(nil != ut){
+           [allTutorialCell updateCellInfo:ut];
+        }
+        
+        return allTutorialCell;
+    }
+    
+    
+    return nil;
+}
+-(UITableViewCell *)getTableViewCellWithDef:(NSString*)nibName WithTableView:(UITableView *)tableView {
+    
+    NSString *CustomCellIdentifier = nibName;
+    UserTutorialMainCell *cell = [tableView dequeueReusableCellWithIdentifier:CustomCellIdentifier];
+    //cell
+    if (cell == nil){
+        //类名
+        UINib *nib = [UINib nibWithNibName:CustomCellIdentifier bundle:nil];
+        [tableView registerNib:nib forCellReuseIdentifier:CustomCellIdentifier];
+        cell = [tableView dequeueReusableCellWithIdentifier:CustomCellIdentifier];
+    }
+    return cell;
+}
+
+- (PBTutorial*)getAllTutorialByRow:(NSUInteger)row
+{
+    if (row >= [self.pbTutorialList count]){
+        return nil;
+    }
+    return [self.pbTutorialList objectAtIndex:row];
+}
+
 
 @end

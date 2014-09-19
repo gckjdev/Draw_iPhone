@@ -35,6 +35,9 @@
     SET_VIEW_ROUND_CORNER(self.tutorialImageView);
 //    SET_VIEW_ROUND_CORNER(self.labelBottomView);
    
+    self.frame = CGRectMake(15, self.frame.origin.y, self.frame.size.width, self.frame.size.height);
+    
+    
     //contentView background
     self.contentView.backgroundColor = [UIColor clearColor];
     self.backgroundColor = [UIColor clearColor];
