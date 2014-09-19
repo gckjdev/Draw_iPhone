@@ -32,6 +32,7 @@ defaultIndex:(int)defaultIndex
      stageId:(NSString *)stageId
   tutorialName:(NSString*)tutorialName
      stageName:(NSString *)stageName
+   showForum:(BOOL)showForum
 
 {
     TipsPageViewController *rspc = [[TipsPageViewController alloc] init];
@@ -40,7 +41,17 @@ defaultIndex:(int)defaultIndex
     rspc.returnIndex = returnIndex;
     rspc.defaultIndex = defaultIndex;
     
-    CommonDialog *dialog = [CommonDialog createDialogWithTitle:title customView:rspc.view style:CommonDialogStyleDoubleButton];
+    int style = CommonDialogStyleDoubleButton;
+    if (showForum){
+        style = CommonDialogStyleDoubleButton;
+    }
+    else{
+        style = CommonDialogStyleSingleButton;
+    }
+    
+    CommonDialog *dialog = [CommonDialog createDialogWithTitle:title
+                                                    customView:rspc.view
+                                                         style:style];
     
 
     [dialog setClickOkBlock:^(id view){

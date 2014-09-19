@@ -20,6 +20,7 @@ defaultIndex:(int)defaultIndex              // 默认开始页
 tutorialId:(NSString*)tutorialId
      stageId:(NSString *)stageId
 tutorialName:(NSString*)tutorialName
-   stageName:(NSString *)stageName;
+   stageName:(NSString *)stageName
+   showForum:(BOOL)showForum;
 
 @end

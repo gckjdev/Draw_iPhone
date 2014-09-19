@@ -691,7 +691,9 @@ static UserTutorialService* _defaultService;
         PBUserStage* userStage = [newUT.userStagesList objectAtIndex:stageIndex];
         
         // enter offline draw view controller
-        [OfflineDrawViewController conquer:fromController userStage:userStage userTutorial:newUT];
+        [OfflineDrawViewController conquer:fromController
+                                 userStage:userStage
+                              userTutorial:newUT];
         return;
     }
     else{

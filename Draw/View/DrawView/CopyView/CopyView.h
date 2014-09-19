@@ -30,5 +30,6 @@
 - (UIImage*)imageForCompare;
 
 - (void)loadData:(PBUserStage*)userStage stage:(PBStage*)stage;
+- (BOOL)play;
 
 @end

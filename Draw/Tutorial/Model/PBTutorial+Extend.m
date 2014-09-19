@@ -106,6 +106,11 @@
     return [self getStageByIndex:nextIndex];
 }
 
+- (BOOL)isForStudy
+{
+    return (self.type == PBTutorialTypeTutorialTypeLearn);
+}
+
 @end
 
 
@@ -205,7 +210,6 @@
     if (self.tutorial && self.tutorial.unlockAllStage){
         return NO;
     }
-    
 
     PBTutorial* pbTutorial = [[TutorialCoreManager defaultManager] findTutorialByTutorialId:self.tutorial.tutorialId];
     if (pbTutorial && pbTutorial.unlockAllStage){
@@ -258,16 +262,29 @@
 //    return NO;
 }
 
+- (BOOL)isForStudy
+{
+    PBTutorial* pbTutorial = [[TutorialCoreManager defaultManager] findTutorialByTutorialId:self.tutorial.tutorialId];
+    
+    return [pbTutorial isForStudy];
+}
+
+- (BOOL)hasFinishPractice:(int)stageIndex
+{
+    if (stageIndex < 0 || stageIndex >= [self.userStagesList count]){
+        return NO;
+    }
+    
+    PBUserStage* userStage = [self.userStagesList objectAtIndex:stageIndex];
+    return [userStage hasFinishPractice];
+}
+
 @end
 
 @implementation PBUserStage (Extend4)
 
 - (NSString*)getCurrentChapterOpusId
 {
-//#ifdef DEBUG
-//    return @"53c4dc42e4b089b4ff460ed3";
-//#endif
-    
     PBTutorial* tutorial = [[TutorialCoreManager defaultManager] findTutorialByTutorialId:self.tutorialId];
     if (self.stageIndex >= [tutorial.stagesList count]){
         return nil;
@@ -296,15 +313,18 @@
     }
 }
 
+- (BOOL)hasFinishPractice
+{
+    // if user has conquer local opus draft, then means user already complete the practice
+    return ([self.conquerLocalOpusId length] > 0);
+}
+
 @end
 
 @implementation PBUserStage_Builder (Extend5)
 
 - (NSString*)getCurrentChapterOpusId
 {
-#ifdef DEBUG
-    return @"53c4dc42e4b089b4ff460ed3";
-#endif
     
     PBTutorial* tutorial = [[TutorialCoreManager defaultManager] findTutorialByTutorialId:self.tutorialId];
     if (self.stageIndex >= [tutorial.stagesList count]){
