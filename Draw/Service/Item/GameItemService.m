@@ -546,7 +546,6 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GameItemService);
                                        startDate:[NSDate date]
                                       expireDate:[[NSDate date] dateByAddingDays:90]]];
     
-    /*
     // 透明笔
     [mutableArray addObject:[self itemWithItemId:ItemTypeBrushWater
                                             name:@"kItemBrushWater"
@@ -554,12 +553,11 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GameItemService);
                                      consumeType:PBGameItemConsumeTypeNonConsumable
                                            image:DRAW_URL_ITEM_IMAGE(@"brush_water@2x.png")
                                             type:PBDrawItemTypeDrawTool
-                                           price:4 //*1000
+                                           price:10 //*1000
                                         currency:PBGameCurrencyIngot //PBGameCurrencyCoin
-                                  promotionPrice:2 // *1000/discount
+                                  promotionPrice:5 // *1000/discount
                                        startDate:[NSDate date]
                                       expireDate:[[NSDate date] dateByAddingDays:90]]];
-    */
     
     // 透明笔
     [mutableArray addObject:[self itemWithItemId:Quill
