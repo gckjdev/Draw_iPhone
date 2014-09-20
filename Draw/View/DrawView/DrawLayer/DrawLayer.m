@@ -156,6 +156,7 @@
         rect = [drawAction redrawRectInRect:self.bounds];
     }    
     if (show) {
+        PPDebug(@"<setNeedsDisplayInRect> %@", NSStringFromCGRect(rect));
         [self setNeedsDisplayInRect:rect];
     }
 

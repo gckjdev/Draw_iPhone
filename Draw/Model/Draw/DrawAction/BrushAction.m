@@ -63,9 +63,9 @@
 - (CGRect)redrawRectInRect:(CGRect)rect
 {
     CGRect rect1 = [self.brushStroke redrawRectInRect:rect];
-    if (self.shadow) {
-        [self.shadow spanRect:&rect1];
-    }
+//    if (self.shadow) {
+//        [self.shadow spanRect:&rect1];
+//    }
     
     return rect1;
 }
@@ -232,7 +232,7 @@
     [builder setType:DrawActionTypeBrush];
     [builder setClipTag:self.clipTag];
     [self.brushStroke updatePBDrawActionBuilder:builder];
-    [self.shadow updatePBDrawActionBuilder:builder];
+//    [self.shadow updatePBDrawActionBuilder:builder];
     PBDrawAction* pbDrawAction = [builder build];
     [builder release];
     return pbDrawAction;
@@ -243,9 +243,9 @@
     [super toPBDrawActionC:pbDrawActionC];
     pbDrawActionC->type = DrawActionTypeBrush;
     [self.brushStroke updatePBDrawActionC:pbDrawActionC];
-    if ([self needShowShadow]) {
-        [self.shadow updatePBDrawActionC:pbDrawActionC];
-    }
+//    if ([self needShowShadow]) {
+//        [self.shadow updatePBDrawActionC:pbDrawActionC];
+//    }
     if (self.clipAction) {
         pbDrawActionC->has_cliptag = 1;
         pbDrawActionC->cliptag = self.clipAction.clipTag;

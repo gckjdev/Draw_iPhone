@@ -82,6 +82,7 @@
 + (NSInteger)roundFloatValue:(CGFloat)value;
 
 + (CGRect)rectForPath:(CGPathRef)path withWidth:(CGFloat)width bounds:(CGRect)bounds;
++ (CGRect)rectForRect:(CGRect)rect withWidth:(CGFloat)width bounds:(CGRect)bounds;
 
 + (CGContextRef)createNewBitmapContext:(CGRect)rect;
 + (CGLayerRef)createCGLayerWithRect:(CGRect)rect;

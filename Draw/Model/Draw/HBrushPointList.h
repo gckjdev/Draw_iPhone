@@ -12,6 +12,7 @@
 @property (assign, nonatomic) float leftTopY;
 @property (assign, nonatomic) float bottomRightX;
 @property (assign, nonatomic) float bottomRightY;
+@property (assign, nonatomic) float maxWidth;
 
 - (CGRect)bounds;
 
