@@ -459,6 +459,37 @@ CGPoint midPoint1(CGPoint p1, CGPoint p2)
 //    return rect;
 //}
 
++ (CGRect)rectForRect:(CGRect)rect withWidth:(CGFloat)width bounds:(CGRect)bounds
+{
+//    float widthMargin = width * 2;
+    
+    rect.origin.x = (NSInteger)(rect.origin.x - width * 2);
+    rect.origin.y = (NSInteger)(rect.origin.y - width * 2);
+    
+    if (rect.origin.x < 0){
+        rect.origin.x = 0;
+    }
+    
+    if (rect.origin.y < 0){
+        rect.origin.y = 0;
+    }
+    
+    rect.size.width = (NSInteger)(rect.size.width + width * 4);
+    rect.size.height = (NSInteger)(rect.size.height + width * 4);
+    
+    if (rect.size.width > bounds.size.width){
+        rect.size.width = bounds.size.width;
+    }
+    
+    if (rect.size.height > bounds.size.height){
+        rect.size.height = bounds.size.height;
+    }
+    
+//    PPDebug(@"rect=%@, width=%.2f", NSStringFromCGRect(rect), width);
+    
+    return rect; //make sure all the values are integer
+}
+
 + (CGRect)rectForPath:(CGPathRef)path withWidth:(CGFloat)width bounds:(CGRect)bounds
 {
     CGRect rect = CGPathGetBoundingBox(path);

@@ -350,13 +350,10 @@
 
 - (CGRect)redrawRectInRect:(CGRect)rect
 {
-//    return self.canvasRect;
-    return [self.hPointList bounds]; //self.canvasRect;
-    
-//    CGRect r = [DrawUtils rectForPath:self.can // self.path
-//                            withWidth:self.width
-//                               bounds:rect];
-//    return r;
+    CGRect r = [DrawUtils rectForRect:[self.hPointList bounds]
+                            withWidth:[self.hPointList maxWidth]
+                               bounds:rect];
+    return r;
 }
 
 //- (CGRect)drawInBrushLayer:(float)currentX y:(float)currentY width:(float)currentW;

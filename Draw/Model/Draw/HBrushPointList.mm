@@ -25,11 +25,20 @@ using std::list;
 
 @end
 
+#define MAX_TOP     (999999)
+
 @implementation HBrushPointList
 
 - (id)init
 {
     self = [super init];
+    if (self){
+        _leftTopX = MAX_TOP;
+        _leftTopY = MAX_TOP;
+        _bottomRightX = - MAX_TOP;
+        _bottomRightY = - MAX_TOP;
+        _maxWidth = 0;
+    }
     return self;
 }
 
@@ -72,11 +81,15 @@ using std::list;
 {
 }
 
-#define BRUSH_RECT_MARGIN (2)
+#define BRUSH_RECT_MARGIN (0)
 
 - (CGRect)bounds
 {
-    if (_leftTopX == 0 && _leftTopY == 0 && _bottomRightX == 0 && _bottomRightY == 0){
+    if (_leftTopX == MAX_TOP
+        && _leftTopY == MAX_TOP
+        && _bottomRightX == -MAX_TOP
+        && _bottomRightY == -MAX_TOP){
+        
         // calculate from point list
         int count = xList.size();
         float x, y, width;
@@ -85,25 +98,29 @@ using std::list;
             y = yList[i];
             width = widthList[i];
             
-            _leftTopX = _leftTopX < x ? _leftTopX - width/2: x - width/2;
-            _leftTopY = _leftTopY < y ? _leftTopY - width/2: y - width/2;
-            _bottomRightX = _bottomRightX > x ? _bottomRightX + width/2: x + width/2;
-            _bottomRightY = _bottomRightY > y ? _bottomRightY + width/2: y + width/2;
+            _leftTopX = _leftTopX < x ? _leftTopX : x;
+            _leftTopY = _leftTopY < y ? _leftTopY : y;
+            _bottomRightX = _bottomRightX > x ? _bottomRightX : x;
+            _bottomRightY = _bottomRightY > y ? _bottomRightY : y;
+            _maxWidth = _maxWidth > width ? _maxWidth : width;
         }
     }
 
-    return CGRectMake(_leftTopX - BRUSH_RECT_MARGIN ,
-                      _leftTopY - BRUSH_RECT_MARGIN,
-                      _bottomRightX - _leftTopX + BRUSH_RECT_MARGIN,
-                      _bottomRightY - _leftTopY + BRUSH_RECT_MARGIN);
+    float widthMargin = _maxWidth * 1.5; // square of width
+    
+    return CGRectMake(_leftTopX - widthMargin - BRUSH_RECT_MARGIN ,
+                      _leftTopY - widthMargin - BRUSH_RECT_MARGIN,
+                      _bottomRightX - _leftTopX + widthMargin + BRUSH_RECT_MARGIN,
+                      _bottomRightY - _leftTopY + widthMargin + BRUSH_RECT_MARGIN);
 }
 
 - (void)addPoint:(float)x y:(float)y width:(float)width;
 {
-    _leftTopX = _leftTopX < x ? _leftTopX - width/2: x - width/2;
-    _leftTopY = _leftTopY < y ? _leftTopY - width/2: y - width/2;
-    _bottomRightX = _bottomRightX > x ? _bottomRightX + width/2: x + width/2;
-    _bottomRightY = _bottomRightY > y ? _bottomRightY + width/2: y + width/2;
+    _leftTopX = _leftTopX < x ? _leftTopX : x;
+    _leftTopY = _leftTopY < y ? _leftTopY : y;
+    _bottomRightX = _bottomRightX > x ? _bottomRightX : x;
+    _bottomRightY = _bottomRightY > y ? _bottomRightY : y;
+    _maxWidth = _maxWidth > width ? _maxWidth : width;
     
     xList.push_back(x);
     yList.push_back(y);
