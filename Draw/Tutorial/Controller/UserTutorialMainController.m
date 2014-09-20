@@ -52,29 +52,24 @@
 - (void)viewDidLoad
 {
     [self setPullRefreshType:PullRefreshTypeNone];
+    
     [super viewDidLoad];
     
     [self initTabButtons];
-    [self.view setBackgroundColor:[UIColor whiteColor]];
+    
+    
+    [self.view setBackgroundColor:COLOR_GRAY];
     // set title view
     [CommonTitleView createTitleView:self.view];
     [[CommonTitleView titleView:self.view] setTitle:NSLS(@"kUserTutorialMainTitle")];
     [[CommonTitleView titleView:self.view] setTarget:self];
     [[CommonTitleView titleView:self.view] setBackButtonSelector:@selector(clickBack:)];
-//    [[CommonTitleView titleView:self.view] setRightButtonSelector:@selector(clickAdd:)];
-//    [[CommonTitleView titleView:self.view] setRightButtonTitle:NSLS(@"kAddTutorial")];
 
     // Do any additional setup after loading the view.
     // set background
     [self setCanDragBack:NO];
-    
     [[TutorialCoreManager defaultManager] autoUpdate];
-
     [self showHelpView];
-    
-
-    
-    
 }
 
 - (void)showHelpView
@@ -194,7 +189,7 @@
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    TutorialCoreManager *core = [TutorialCoreManager defaultManager];
+
     switch ([[self currentTab] tabID]) {
         case TutorialTypeMine:
             return [self sorterTutorialCellWithTypeTag:TutorialTypeMine WithTableView:tableView WithRow:indexPath.row];
@@ -202,7 +197,6 @@
             
         case TutorialTypeAll:
 
-            [core setTutorialIdIntoUserDefault:_tutorialIdList];
             return [self sorterTutorialCellWithTypeTag:TutorialTypeAll WithTableView:tableView WithRow:indexPath.row];
             break;
             
@@ -360,9 +354,10 @@
 
 - (void)clickTab:(NSInteger)tabID
 {
-    int aaa = tabID;
+    TutorialCoreManager *core = [TutorialCoreManager defaultManager];
     switch (tabID) {
         case TutorialTypeMine:
+            [self updateAllBadge];
             if(self.dataTableView.frame.size.width != [[UIScreen mainScreen] bounds].size.width-2*LEFT_RIGHT_MARGIN){
                 self.dataTableView.frame = CGRectMake(LEFT_RIGHT_MARGIN, TOP_MARGIN, [[UIScreen mainScreen] bounds].size.width-2*LEFT_RIGHT_MARGIN, [[UIScreen mainScreen] bounds].size.height-TOP_MARGIN);
             }
@@ -374,6 +369,8 @@
                 self.dataTableView.frame = CGRectMake(0, TOP_MARGIN, [[UIScreen mainScreen] bounds].size.width, [[UIScreen mainScreen] bounds].size.height-TOP_MARGIN);
                 PPDebug(@"<cellForRowAtIndexPath> width = %f",self.dataTableView.frame.size.width);
             }
+ 
+            [core setTutorialIdIntoUserDefault:_tutorialIdList];
             break;
             
         default:
@@ -395,7 +392,7 @@
 {
     [_tutorialIdList removeAllObjects];
     TutorialCoreManager *core = [TutorialCoreManager defaultManager];
-     _tutorialIdList = [core getTutorialNewSet];
+     _tutorialIdList = [core getTutorialNewList:_pbTutorialList];
     [self setBadge:[_tutorialIdList count] onTab:TutorialTypeAll];
 }
 
@@ -408,7 +405,13 @@
     
     if(tag == TutorialTypeMine){
         NSString *nibName =  [tabDictionary objectForKey:@(tag)];
-        UserTutorialMainCell *viewCell = [self getTableViewCellWithDef:nibName WithTableView:tableView];
+        
+        UIView *view = [self getTableViewCellWithDef:nibName WithTableView:tableView];
+        UserTutorialMainCell *viewCell = nil;
+        if([view isKindOfClass:[UserTutorialMainCell class]]){
+            viewCell = (UserTutorialMainCell *)view;
+        }
+
         PBUserTutorial* ut = [self getTutorialByRow:row];
         if(ut==nil){
             PPDebug(@"<sorterTutorialCellWithTypeTag> PBuserTutorial is nil");
@@ -421,8 +424,12 @@
     }
     if(tag == TutorialTypeAll){
         NSString *nibName =  [tabDictionary objectForKey:@(tag)];
-        AllTutorialCell *allTutorialCell = [self getTableViewCellWithDef:nibName WithTableView:tableView];
         
+        UIView *view = [self getTableViewCellWithDef:nibName WithTableView:tableView];
+        AllTutorialCell *allTutorialCell = nil;
+        if([view isKindOfClass:[AllTutorialCell class]]){
+             allTutorialCell = (AllTutorialCell *)view;
+        }
         
         PBTutorial* ut = [self getAllTutorialByRow:row];
         if(ut==nil){

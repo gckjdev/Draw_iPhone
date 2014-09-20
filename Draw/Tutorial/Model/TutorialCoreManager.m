@@ -1064,16 +1064,14 @@ static TutorialCoreManager* _defaultTutorialCoreManager;
 //    return nil;
 }
 
-#define KEY_USER_SKIM @"SKIM_THROUGH_TUTORIALID1"
--(NSMutableArray *)getTutorialNewSet{
-    NSArray *allTutorial = [[TutorialCoreManager defaultManager] allTutorials];
+#define KEY_USER_SKIM @"SKIM_THROUGH_TUTORIALID2"
+-(NSMutableArray *)getTutorialNewList:(NSArray *)pbTutorialList{
     NSMutableArray *tutorialIdList = [[NSMutableArray alloc] init];
     
     NSUserDefaults* userDefaults = [NSUserDefaults standardUserDefaults];
     
     NSArray *userDefaultTutorialList = [userDefaults objectForKey:KEY_USER_SKIM];
-    
-    for(PBTutorial *pt in allTutorial){
+    for(PBTutorial *pt in pbTutorialList){
         if(pt.isNew){
             if(userDefaultTutorialList==nil){
                 [tutorialIdList addObject:pt.tutorialId];
@@ -1091,8 +1089,19 @@ static TutorialCoreManager* _defaultTutorialCoreManager;
 
 -(void)setTutorialIdIntoUserDefault:(NSMutableArray *)tutorialIdList{
     NSUserDefaults* userDefaults = [NSUserDefaults standardUserDefaults];
-    NSArray *array = [tutorialIdList copy];
-    [userDefaults setObject:array  forKey:KEY_USER_SKIM];
+    
+    NSMutableArray *tutorialUserDefaultList = [[userDefaults objectForKey:KEY_USER_SKIM]mutableCopy ];
+    for(NSString *tutorialId in tutorialIdList){
+        if(tutorialUserDefaultList == nil){
+            NSMutableArray *array = [[[NSMutableArray alloc] init] autorelease];
+            [array addObject:tutorialId];
+            tutorialUserDefaultList = array;
+        }else{
+            [tutorialUserDefaultList addObject:tutorialId];
+        }
+        
+    }
+    [userDefaults setObject:tutorialUserDefaultList  forKey:KEY_USER_SKIM];
     [userDefaults synchronize];
 }
 @end
