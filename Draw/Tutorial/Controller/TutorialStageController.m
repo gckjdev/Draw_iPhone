@@ -150,16 +150,19 @@
     NSDictionary *passScoreIntroduction =
         @{
           @"leisureScorePass" :
-          [NSString stringWithFormat:NSLS(@"kIntroduceLeisureTutorial"),passScore],
+          [NSString stringWithFormat:NSLS(@"kIntroduceLeisureTutorial"),NSLS(@"kLeisureTutorialType"),passScore],
           @"proScorePass" :
-          [NSString stringWithFormat:NSLS(@"kIntroduceProTutorial"),passScore],
+          [NSString stringWithFormat:NSLS(@"kIntroduceProTutorial"),NSLS(@"kProTutorialType"),passScore],
+          @"createScorePass" :
+              [NSString stringWithFormat:NSLS(@"kSecCreateTutorialTutorial"),NSLS(@"kSecCreateTutorialType"),passScore],
+          
         };
     
     NSArray *tutorialTypeDescList = @[
                                       [passScoreIntroduction objectForKey: @"proScorePass"],
                                      [passScoreIntroduction objectForKey: @"proScorePass"],
                                       [passScoreIntroduction objectForKey: @"leisureScorePass"],
-                                      [passScoreIntroduction objectForKey: @"leisureScorePass"],];
+                                      [passScoreIntroduction objectForKey: @"createScorePass"],];
     
     
     
