@@ -292,22 +292,7 @@ typedef enum{
 //                    nil];
 //#endif
             
-#ifdef DEBUG
-            tips = [[UIActionSheet alloc] initWithTitle:NSLS(@"kOptions")
-                                               delegate:self
-                                      cancelButtonTitle:NSLS(@"kCancel")
-                                 destructiveButtonTitle:NSLS(@"kReplay")
-                                      otherButtonTitles:
-                    NSLS(@"kDelete"), NSLS(@"kEdit"),
-                    NSLS(@"kSaveAsPhoto"), NSLS(@"kSaveAsGif"),
-                    @"分享回放视频",
-                    //NSLS(@"kShareSinaWeibo"),  // NSLS(@"kShareQQSpace"),
-                    //NSLS(@"kShareWeixinSession"), NSLS(@"kShareWeixinTimeline"),
-                    //NSLS(@"kShareQQWeibo"), NSLS(@"kShareFacebook"),
-                    nil];
-            
-#endif
-        }
+}
 
     tips.tag = IMAGE_OPTION;
     [tips showInView:self.view];
