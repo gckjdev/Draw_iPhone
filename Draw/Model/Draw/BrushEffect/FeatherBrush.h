@@ -14,3 +14,7 @@
 + (FeatherBrush*)sharedBrush;
 
 @end
+
+//temporarily unused, maybe used some other day
+//today : 2014.9.21
+//Charlie

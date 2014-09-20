@@ -86,7 +86,7 @@ static dispatch_once_t sharedPenBrushOnceToken;
                  distance2:(float)distance2         // 当前EndDot和ControlDot的距离
 {
 
-    double typeFactor = 8;    
+    double typeFactor = 8;  // 针对各种笔刷的调节因子，经过实践所得(有些笔需要更密集的插值，如钢笔；有些则相反，如蜡笔)  
     int interpolationLength = INTERPOLATION * typeFactor;
     
     return interpolationLength;

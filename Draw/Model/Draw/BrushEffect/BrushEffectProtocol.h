@@ -40,6 +40,7 @@
                  distance2:(float)distance2;        // 当前EndDot和ControlDot的距离
 
 //对于某些笔刷例如蜡笔，需要对点进行随机抖动
+#define SHAKERANDOMRANGE 100
 -(void)randomShakePointX:(float*)pointX
                   PointY:(float*)pointY
                   PointW:(float*)pointW

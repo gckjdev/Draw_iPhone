@@ -296,6 +296,10 @@
 		A4563E6518A885B9005DAA03 /* finish@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4563E6318A885B1005DAA03 /* finish@2x.png */; };
 		A4563E6618A885B9005DAA03 /* finish@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4563E6318A885B1005DAA03 /* finish@2x.png */; };
 		A4563E6718A885B9005DAA03 /* finish@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4563E6318A885B1005DAA03 /* finish@2x.png */; };
+		A456A71019CD6BE800FEB789 /* brush_dot8@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A456A70F19CD6BE700FEB789 /* brush_dot8@2x.png */; };
+		A456A71119CD6BEA00FEB789 /* brush_dot8@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A456A70F19CD6BE700FEB789 /* brush_dot8@2x.png */; };
+		A456A71219CD6BEA00FEB789 /* brush_dot8@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A456A70F19CD6BE700FEB789 /* brush_dot8@2x.png */; };
+		A456A71319CD6BEA00FEB789 /* brush_dot8@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A456A70F19CD6BE700FEB789 /* brush_dot8@2x.png */; };
 		A4572D7418570B0F0076ADF7 /* UIView+Pan.m in Sources */ = {isa = PBXBuildFile; fileRef = A4572D7318570B0F0076ADF7 /* UIView+Pan.m */; };
 		A4572D7518570B0F0076ADF7 /* UIView+Pan.m in Sources */ = {isa = PBXBuildFile; fileRef = A4572D7318570B0F0076ADF7 /* UIView+Pan.m */; };
 		A4572D7618570B0F0076ADF7 /* UIView+Pan.m in Sources */ = {isa = PBXBuildFile; fileRef = A4572D7318570B0F0076ADF7 /* UIView+Pan.m */; };
@@ -8495,6 +8499,7 @@
 		A455F8C11585D21400CA5743 /* whiteArrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = whiteArrow.png; sourceTree = "<group>"; };
 		A455F8C21585D21400CA5743 /* whiteArrow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "whiteArrow@2x.png"; sourceTree = "<group>"; };
 		A4563E6318A885B1005DAA03 /* finish@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "finish@2x.png"; sourceTree = "<group>"; };
+		A456A70F19CD6BE700FEB789 /* brush_dot8@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "brush_dot8@2x.png"; sourceTree = "<group>"; };
 		A4572D7218570B0F0076ADF7 /* UIView+Pan.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Pan.h"; sourceTree = "<group>"; };
 		A4572D7318570B0F0076ADF7 /* UIView+Pan.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Pan.m"; sourceTree = "<group>"; };
 		A457BAE017DECA4E00964088 /* self_detail_balance_btn_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "self_detail_balance_btn_bg@2x.png"; sourceTree = "<group>"; };
@@ -13434,6 +13439,7 @@
 				A4F474EF19B5794100CFE2AE /* brush_dot5@2x.png */,
 				A4F474F019B5794100CFE2AE /* brush_dot6@2x.png */,
 				A4F474F119B5794100CFE2AE /* brush_dot7@2x.png */,
+				A456A70F19CD6BE700FEB789 /* brush_dot8@2x.png */,
 				A4F474F219B5794100CFE2AE /* brush_ellipse1@2x.png */,
 				A4F474F319B5794100CFE2AE /* brush_ellipse2@2x.png */,
 				A4F474F419B5794100CFE2AE /* brush_ellipse3@2x.png */,
@@ -19567,6 +19573,7 @@
 				A461B53E174CBAA70088B061 /* BBSPostDetailController~ipad.xib in Resources */,
 				D869F90F1990DFD800E6756A /* dongtai.png in Resources */,
 				A461B53F174CBAA70088B061 /* CreatePostController~ipad.xib in Resources */,
+				A456A71219CD6BEA00FEB789 /* brush_dot8@2x.png in Resources */,
 				CACD6AC318E03A29003F97C0 /* Resource.bundle in Resources */,
 				A461B540174CBAA70088B061 /* BBSUserActionCell~ipad.xib in Resources */,
 				A461B541174CBAA70088B061 /* BBSPostActionCell~ipad.xib in Resources */,
@@ -21146,6 +21153,7 @@
 				A4D8FBBE17DB08170085061F /* question@2x.png in Resources */,
 				A4D8FBC217DB08170085061F /* flower@2x.png in Resources */,
 				A4D8FBC617DB08170085061F /* flower_result@2x.png in Resources */,
+				A456A71119CD6BEA00FEB789 /* brush_dot8@2x.png in Resources */,
 				A4D8FBCA17DB08170085061F /* item_shadow@2x.png in Resources */,
 				A4D8FBCE17DB08170085061F /* tipbag@2x.png in Resources */,
 				A4D8FBD217DB08170085061F /* tomato@2x.png in Resources */,
@@ -22432,6 +22440,7 @@
 				A4D8FEFB17DB089C0085061F /* highlight_mask@2x.png in Resources */,
 				A4D8FEFF17DB089C0085061F /* common_home_badge@2x.png in Resources */,
 				A4D8FF0317DB089C0085061F /* common_home_bbs@2x.png in Resources */,
+				A456A71019CD6BE800FEB789 /* brush_dot8@2x.png in Resources */,
 				A4D8FF0B17DB089C0085061F /* common_home_friend@2x.png in Resources */,
 				A4D8FF0F17DB089C0085061F /* common_home_front_page@2x.png in Resources */,
 				A4D8FF1317DB089C0085061F /* common_home_home@2x.png in Resources */,
@@ -23032,6 +23041,7 @@
 				EA411DB7176066F500DA72D0 /* DrawRoomListCell~ipad.xib in Resources */,
 				EA411DC6176066F500DA72D0 /* bbs_post_detail_comment@2x.png in Resources */,
 				CA1CC3C719C43E1B006E06C7 /* brush_blur@2x.png in Resources */,
+				A456A71319CD6BEA00FEB789 /* brush_dot8@2x.png in Resources */,
 				EA411DC7176066F500DA72D0 /* bbs_post_detail_delete@2x.png in Resources */,
 				EA411DC8176066F500DA72D0 /* bbs_post_detail_support@2x.png in Resources */,
 				A4772818199611090050851D /* littlegeehelper.png in Resources */,
