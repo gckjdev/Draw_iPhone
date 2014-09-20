@@ -52,7 +52,7 @@ static dispatch_once_t sharedWaterBrushOnceToken;
 
 - (BOOL)isWidthFixedSize
 {
-    return YES;
+    return NO;
 }
 
 - (float)calculateWidthWithThreshold:(float)threshold

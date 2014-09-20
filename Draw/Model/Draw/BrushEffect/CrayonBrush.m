@@ -45,7 +45,7 @@ static dispatch_once_t sharedCrayonBrushOnceToken;
 
 - (BOOL)isWidthFixedSize
 {
-    return YES;
+    return NO;
 }
 
 - (float)calculateWidthWithThreshold:(float)threshold
