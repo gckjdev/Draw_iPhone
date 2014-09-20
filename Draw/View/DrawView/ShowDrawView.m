@@ -690,16 +690,16 @@ typedef enum {
 - (NSMutableArray*)createGIF:(NSUInteger)frameNumber scaleSize:(float)scaleSize finalImage:(UIImage*)finalImage
 {
     
-    if (frameNumber <= 0 || frameNumber > [PPConfigManager maxGIFFrame]){
-        PPDebug(@"<createGIF> but frameNumber (%d) out of bound", frameNumber);
-        return nil;
-    }
-    
-    if (scaleSize <=0 || scaleSize > 100){
-        PPDebug(@"<createGIF> but scaleSize (%.2f) out of bound", scaleSize);
-        return nil;
-    }
-    
+//    if (frameNumber <= 0 || frameNumber > [PPConfigManager maxGIFFrame]){
+//        PPDebug(@"<createGIF> but frameNumber (%d) out of bound", frameNumber);
+//        return nil;
+//    }
+//    
+//    if (scaleSize <=0 || scaleSize > 100){
+//        PPDebug(@"<createGIF> but scaleSize (%.2f) out of bound", scaleSize);
+//        return nil;
+//    }
+//    
     int startTime = time(0);
     
     CGSize finalImageSize = finalImage ? finalImage.size : CGSizeZero;
@@ -1015,13 +1015,15 @@ typedef enum {
 
 #ifdef DEBUG
     [srcImgList addObject:[UIImage imageNamed:@"shipinEnding.jpg"]];
+    [srcImgList addObject:[UIImage imageNamed:@"shipinEnding.jpg"]];
+    
     NSString *path2 = [NSHomeDirectory() stringByAppendingPathComponent:
                       [NSString stringWithFormat:@"Documents/movie.mp4"]];
     
     [[NSFileManager defaultManager] removeItemAtPath:path2 error:NULL];
     
     
-    [HJImagesToVideo saveVideoToPhotosWithImages:srcImgList withSize:(CGSize){960, 640}  withFPS:1 animateTransitions:YES  withCallbackBlock:^(BOOL success){
+    [HJImagesToVideo saveVideoToPhotosWithImages:srcImgList withSize:(CGSize){960, 640}  withFPS:5 animateTransitions:YES  withCallbackBlock:^(BOOL success){
         if (success) {
             NSLog(@"Success");
         } else {
