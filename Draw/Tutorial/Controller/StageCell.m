@@ -75,31 +75,44 @@
 
 
 -(void)setupTitleBtn:(PBUserTutorial *)pbUserTutorial withRow:(NSInteger)row{
+    
     //闯到某一关卡才显示开始闯关字样
-    if (row == pbUserTutorial.currentStageIndex){
-        //当教程没有完成时候才显示,完成了就不再显示开始闯关字样
-        if([pbUserTutorial isFinishedTutorial:row]==NO){
-            self.stageListStarBtn.hidden = NO;
-            
-            NSString* btnTitle = nil;
-            if([pbUserTutorial isForStudy]){
-                if ([pbUserTutorial hasFinishPractice:row]){
-                    btnTitle = NSLS(@"kContinuePracticeDraw");
-                }
-                else{
-                    btnTitle = NSLS(@"kStartPracticeDraw");
+    if(!pbUserTutorial.tutorial.unlockAllStage){
+        // star button
+        UIImage* starButtonBgImage = [[ShareImageManager defaultManager] startButtonBgImage];
+        [self.stageListStarBtn setBackgroundImage:starButtonBgImage forState:UIControlStateNormal];
+        [self.stageListStarBtn setTitleColor:COLOR_BROWN forState:UIControlStateNormal];
+        [self.stageListStarBtn.titleLabel setFont:AD_FONT(20, 12)];
+        [self.stageListStarBtn setTitle:NSLS(@"kStartStage") forState:UIControlStateNormal];
+    
+    
+    
+        if (row == pbUserTutorial.currentStageIndex){
+            //当教程没有完成时候才显示,完成了就不再显示开始闯关字样
+            if([pbUserTutorial isFinishedTutorial:row]==NO){
+                self.stageListStarBtn.hidden = NO;
+                
+                NSString* btnTitle = nil;
+                if([pbUserTutorial isForStudy]){
+                    if ([pbUserTutorial hasFinishPractice:row]){
+                        btnTitle = NSLS(@"kContinuePracticeDraw");
+                    }
+                    else{
+                        btnTitle = NSLS(@"kStartPracticeDraw");
+                    }
+                    
+                }else{
+                    btnTitle = NSLS(@"kStartRelaxDraw");
                 }
                 
-            }else{
-                btnTitle = NSLS(@"kStartRelaxDraw");
+                [self.stageListStarBtn setTitle:btnTitle
+                                       forState:UIControlStateNormal];
             }
             
-            [self.stageListStarBtn setTitle:btnTitle
-                                   forState:UIControlStateNormal];
+            self.maskView.alpha = 0.15f;
+            self.maskView.hidden = NO;
         }
         
-        self.maskView.alpha = 0.15f;
-        self.maskView.hidden = NO;
     }
     else{
         self.maskView.alpha = 1.0f;
@@ -115,14 +128,8 @@
     [self.cellName setShadowColor:[UIColor blackColor]];
     [self.cellName setShadowOffset:CGSizeMake(1, 1)];
     
-    // star button
-    UIImage* starButtonBgImage = [[ShareImageManager defaultManager] startButtonBgImage];
     
-    // start button
-    [self.stageListStarBtn setBackgroundImage:starButtonBgImage forState:UIControlStateNormal];
-    [self.stageListStarBtn setTitleColor:COLOR_BROWN forState:UIControlStateNormal];
-    [self.stageListStarBtn.titleLabel setFont:AD_FONT(20, 12)];
-    [self.stageListStarBtn setTitle:NSLS(@"kStartStage") forState:UIControlStateNormal];
+   
     
     // stage image
     SET_VIEW_ROUND_CORNER(self.stageCellImage);
