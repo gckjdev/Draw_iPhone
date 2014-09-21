@@ -461,11 +461,11 @@ CGPoint midPoint1(CGPoint p1, CGPoint p2)
 
 + (CGRect)rectForRect:(CGRect)rect withWidth:(CGFloat)width bounds:(CGRect)bounds
 {
-//    float widthMargin = width * 2;
+    //往左上扩张半个width，因为brushImage有半个width的挪动
+    rect.origin.x = (NSInteger)(rect.origin.x - width / 2);
+    rect.origin.y = (NSInteger)(rect.origin.y - width / 2);
     
-    rect.origin.x = (NSInteger)(rect.origin.x - width * 2);
-    rect.origin.y = (NSInteger)(rect.origin.y - width * 2);
-    
+    //越界保护
     if (rect.origin.x < 0){
         rect.origin.x = 0;
     }
@@ -474,9 +474,11 @@ CGPoint midPoint1(CGPoint p1, CGPoint p2)
         rect.origin.y = 0;
     }
     
-    rect.size.width = (NSInteger)(rect.size.width + width * 4);
-    rect.size.height = (NSInteger)(rect.size.height + width * 4);
+    //往右下扩张半个width，理由同上
+    rect.size.width = (NSInteger)(rect.size.width + width);
+    rect.size.height = (NSInteger)(rect.size.height + width);
     
+    //越界保护
     if (rect.size.width > bounds.size.width){
         rect.size.width = bounds.size.width;
     }

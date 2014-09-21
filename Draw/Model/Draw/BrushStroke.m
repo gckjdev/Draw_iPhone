@@ -350,6 +350,9 @@
 
 - (CGRect)redrawRectInRect:(CGRect)rect
 {
+    //bounds返回一个rect，这个rect是一个笔画中所有点的最小外接矩形，通过计算左上，右下两个点坐标获得。
+    //maxWidth是记录当前点的宽度，用于扩大bounds所返回的rect，使得笔画不会缺少边缘部分。
+    //explained by Charlie， 2014 9 21
     CGRect r = [DrawUtils rectForRect:[self.hPointList bounds]
                             withWidth:[self.hPointList maxWidth]
                                bounds:rect];

@@ -85,6 +85,7 @@ using std::list;
 
 - (CGRect)bounds
 {
+    //若不是正在画的笔画，则进入该条件判断，计算整个list的bounds
     if (_leftTopX == MAX_TOP
         && _leftTopY == MAX_TOP
         && _bottomRightX == -MAX_TOP
@@ -102,16 +103,17 @@ using std::list;
             _leftTopY = _leftTopY < y ? _leftTopY : y;
             _bottomRightX = _bottomRightX > x ? _bottomRightX : x;
             _bottomRightY = _bottomRightY > y ? _bottomRightY : y;
-            _maxWidth = _maxWidth > width ? _maxWidth : width;
+            _maxWidth =  width;
         }
     }
-
-    float widthMargin = _maxWidth * 1.5; // square of width
     
-    return CGRectMake(_leftTopX - widthMargin - BRUSH_RECT_MARGIN ,
-                      _leftTopY - widthMargin - BRUSH_RECT_MARGIN,
-                      _bottomRightX - _leftTopX + widthMargin + BRUSH_RECT_MARGIN,
-                      _bottomRightY - _leftTopY + widthMargin + BRUSH_RECT_MARGIN);
+    //若为正在画的笔画，则由于addPoint中已经有实时计算的左上，右下两点位置，估直接得出一个rect
+    CGRect rect = CGRectMake(_leftTopX - BRUSH_RECT_MARGIN ,
+                      _leftTopY - BRUSH_RECT_MARGIN ,
+                      _bottomRightX - _leftTopX + BRUSH_RECT_MARGIN,
+                      _bottomRightY - _leftTopY + BRUSH_RECT_MARGIN);
+    
+    return rect;
 }
 
 - (void)addPoint:(float)x y:(float)y width:(float)width;
@@ -120,7 +122,9 @@ using std::list;
     _leftTopY = _leftTopY < y ? _leftTopY : y;
     _bottomRightX = _bottomRightX > x ? _bottomRightX : x;
     _bottomRightY = _bottomRightY > y ? _bottomRightY : y;
-    _maxWidth = _maxWidth > width ? _maxWidth : width;
+    _maxWidth =  width;
+    
+//    PPDebug(@"(%f,%f)(%f,%f)",_leftTopX,_leftTopY,_bottomRightX,_bottomRightY);
     
     xList.push_back(x);
     yList.push_back(y);

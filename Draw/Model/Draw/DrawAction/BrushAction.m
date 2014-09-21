@@ -62,12 +62,11 @@
 
 - (CGRect)redrawRectInRect:(CGRect)rect
 {
-    CGRect rect1 = [self.brushStroke redrawRectInRect:rect];
-//    if (self.shadow) {
-//        [self.shadow spanRect:&rect1];
-//    }
+    CGRect newRect = [self.brushStroke redrawRectInRect:rect];
+
+//    PPDebug(@"rect=%@", NSStringFromCGRect(newRect));
     
-    return rect1;
+    return newRect;
 }
 
 - (id)initWithPBDrawActionC:(Game__PBDrawAction *)action
