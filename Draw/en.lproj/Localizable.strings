@@ -2930,15 +2930,15 @@
 "kNoOpusForReplay" = "No opus for replay";
 
 
-"kProTutorialType" = "Profession";
-"kLeisureTutorialType" = "Leisure";
-"kSecCreateTutorialType" = "Second Create";
-"kIntroduceLeisureTutorial" = "Leisure tutorial,%@";
-"kIntroduceProTutorial" = "Profession tutorials，after practice，%@";
+"kProTutorialType" = "Professional";
+"kLeisureTutorialType" = "Relax";
+"kSecCreateTutorialType" = "Relax";
+"kIntroduceLeisureTutorial" = "Relax, %@";
+"kIntroduceProTutorial" = "Professional, %@";
 
-"kPassScore" = "%d Pass";
+"kPassScore" = "%d Passed";
 
-"kRankViewDesc" = "%@,There are %d users conquer in this stage";
+"kRankViewDesc" = "%@, %d users played";
 
 
 

@@ -53,6 +53,7 @@ typedef enum {
 {
     GroupTopicController *gt = [[GroupTopicController alloc] init];
     gt.group = group;
+    [gt updateGroup:group];
     [controller.navigationController pushViewController:gt animated:YES];
     return [gt autorelease];
 }

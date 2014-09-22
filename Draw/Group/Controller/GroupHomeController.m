@@ -170,7 +170,7 @@
         return;
     }
     
-    [GroupTopicController enterWithGroup:group fromController:self];
+    [GroupTopicController enterWithGroupId:group.groupId fromController:self];
 }
     
     

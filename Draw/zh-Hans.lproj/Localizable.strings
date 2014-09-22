@@ -2977,13 +2977,13 @@
 "kProTutorialType" = "专业教程";
 "kLeisureTutorialType" = "休闲临摹";
 "kSecCreateTutorialType" = "二次创作";
-"kIntroduceLeisureTutorial" = "%@创作包,%@";
-"kIntroduceProTutorial" = "%@，修炼学习后，%@";
-"kSecCreateTutorialTutorial" = "%@创作包,%@";
+"kIntroduceLeisureTutorial" = "%@创作包, %@";
+"kIntroduceProTutorial" = "%@，学习后, %@";
+"kSecCreateTutorialTutorial" = "%@创作包, %@";
 
-"kPassScore" = "%d分通关";
+"kPassScore" = "%d分过关";
 
-"kRankViewDesc" = "%@,已有%d用户发布了神作:";
+"kRankViewDesc" = "%@, 已有%d用户发表作品";
 
 "kItemBrushGouache" = "排笔";
 "kItemBrushGouacheDesc" = "排笔笔刷，给你完全不一样的笔刷感觉";
@@ -2998,7 +2998,7 @@
 "kItemBrushPenDesc" = "能画出漂亮钢笔线条的笔，同时还是传说中的土豪钢笔，买的起的绝对是个土豪";
 
 "kItemBrushPencil" = "草稿笔";
-"kItemBrushPencilDesc" = "画出素描线条的铅笔，可用于打草稿";
+"kItemBrushPencilDesc" = "能画出素描线条的铅笔，可用于打草稿";
 
 "kItemBrushCrayon" = "蜡笔";
 "kItemBrushCrayonDesc" = "不是蜡笔小新，是能画出蜡笔效果的笔";
