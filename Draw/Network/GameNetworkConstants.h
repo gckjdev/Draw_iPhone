@@ -607,6 +607,8 @@
 
 // Tutorial
 #define PARA_TUTORIAL_ID                @"tuid"
+#define PARA_TUTORIAL_TYPE              @"tutp"
+
 #define PARA_REMOTE_USER_TUTORIAL_ID    @"ruti"
 #define PARA_LOCAL_USER_TUTORIAL_ID     @"luti"
 #define PARA_TUTORIAL_NAME              @"tutorialName"

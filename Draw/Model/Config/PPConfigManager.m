@@ -1619,7 +1619,7 @@
 
 + (NSString*)getDefaultTutorialId
 {
-    return GET_UMENG_STRVALUE(@"DEFAULT_TUTORIAL", @"tutorialId-2$$tutorialId-1");
+    return GET_UMENG_STRVALUE(@"DEFAULT_TUTORIAL", @""); // @"tutorialId-2$$tutorialId-1");
 }
 
 @end
