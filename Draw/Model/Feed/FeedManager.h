@@ -47,6 +47,7 @@ typedef enum{
     //add 2014.07.25
     FeedListTypeUserConquerDraw = 42,
     FeedListTypeConquerDrawStageTop = 43,
+    FeedListTypeConquerDrawStageTopHot = 44,
     
     FeedListTypeClassHotTop = 51,
     FeedListTypeClassAlltimeTop = 52,

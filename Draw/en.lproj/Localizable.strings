@@ -1420,7 +1420,7 @@
 "kBalance" = "Balance:";
 "kWealth" = "%ld coins";
 "kBalanceNotEnoughTitle" = "Balance Not Enough";
-"kBalanceNotEnoughDesc" = "Sorry, your balance is not enough. You can charge your account by IAP purchasing or download our other free apps.";
+"kBalanceNotEnoughDesc" = "Sorry, your balance is not enough. Try the follow methods to increase your balance.";
 
 "kDetectFakeIAP" = "Fail to complete purchase. You may use jail-broken IAP";
 "kVerifyIAPFail" = "Fail to complete purchase. Please try again later.";

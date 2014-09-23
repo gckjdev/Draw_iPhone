@@ -477,7 +477,13 @@
 
 - (void)enterTutorialTopOpus:(NSString*)tutorialId stageId:(NSString*)stageId title:(NSString*)title
 {
-    FeedListController* vc = [[[FeedListController alloc] initWithFeedType:FeedListTypeConquerDrawStageTop
+    FeedListType feedListType = FeedListTypeConquerDrawStageTop;
+    PBTutorial* tutorial = [[TutorialCoreManager defaultManager] findTutorialByTutorialId:tutorialId];
+    if (tutorial && tutorial.topRankType > 0){
+        feedListType = FeedListTypeConquerDrawStageTopHot;
+    }
+    
+    FeedListController* vc = [[[FeedListController alloc] initWithFeedType:feedListType
                                                                   tutorialId:tutorialId //@"tutorialId-2"
                                                                      stageId:stageId    //@"stageId-0-0"
                                                                 displayStyle:FEED_DISPLAY_PRIZE
