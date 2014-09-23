@@ -5058,18 +5058,10 @@
 		CA5D9D82183E3C0200BD820C /* DOUAudioStreamer.m in Sources */ = {isa = PBXBuildFile; fileRef = CA5D9D45183E3C0200BD820C /* DOUAudioStreamer.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
 		CA5D9D83183E3C0200BD820C /* DOUAudioStreamer.m in Sources */ = {isa = PBXBuildFile; fileRef = CA5D9D45183E3C0200BD820C /* DOUAudioStreamer.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
 		CA5D9D84183E3C0200BD820C /* DOUAudioStreamer.m in Sources */ = {isa = PBXBuildFile; fileRef = CA5D9D45183E3C0200BD820C /* DOUAudioStreamer.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
-		CA5D9D85183E3C0200BD820C /* DOUAudioVisualizer.m in Sources */ = {isa = PBXBuildFile; fileRef = CA5D9D48183E3C0200BD820C /* DOUAudioVisualizer.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
-		CA5D9D86183E3C0200BD820C /* DOUAudioVisualizer.m in Sources */ = {isa = PBXBuildFile; fileRef = CA5D9D48183E3C0200BD820C /* DOUAudioVisualizer.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
-		CA5D9D87183E3C0200BD820C /* DOUAudioVisualizer.m in Sources */ = {isa = PBXBuildFile; fileRef = CA5D9D48183E3C0200BD820C /* DOUAudioVisualizer.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
-		CA5D9D88183E3C0200BD820C /* DOUAudioVisualizer.m in Sources */ = {isa = PBXBuildFile; fileRef = CA5D9D48183E3C0200BD820C /* DOUAudioVisualizer.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
 		CA5D9D89183E3C0200BD820C /* DOUEAGL1View.m in Sources */ = {isa = PBXBuildFile; fileRef = CA5D9D4A183E3C0200BD820C /* DOUEAGL1View.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
 		CA5D9D8A183E3C0200BD820C /* DOUEAGL1View.m in Sources */ = {isa = PBXBuildFile; fileRef = CA5D9D4A183E3C0200BD820C /* DOUEAGL1View.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
 		CA5D9D8B183E3C0200BD820C /* DOUEAGL1View.m in Sources */ = {isa = PBXBuildFile; fileRef = CA5D9D4A183E3C0200BD820C /* DOUEAGL1View.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
 		CA5D9D8C183E3C0200BD820C /* DOUEAGL1View.m in Sources */ = {isa = PBXBuildFile; fileRef = CA5D9D4A183E3C0200BD820C /* DOUEAGL1View.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
-		CA5D9D8D183E3C0200BD820C /* DOUEAGLView.m in Sources */ = {isa = PBXBuildFile; fileRef = CA5D9D4C183E3C0200BD820C /* DOUEAGLView.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
-		CA5D9D8E183E3C0200BD820C /* DOUEAGLView.m in Sources */ = {isa = PBXBuildFile; fileRef = CA5D9D4C183E3C0200BD820C /* DOUEAGLView.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
-		CA5D9D8F183E3C0200BD820C /* DOUEAGLView.m in Sources */ = {isa = PBXBuildFile; fileRef = CA5D9D4C183E3C0200BD820C /* DOUEAGLView.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
-		CA5D9D90183E3C0200BD820C /* DOUEAGLView.m in Sources */ = {isa = PBXBuildFile; fileRef = CA5D9D4C183E3C0200BD820C /* DOUEAGLView.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
 		CA5D9D91183E3C0200BD820C /* DOUSimpleHTTPRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = CA5D9D4E183E3C0200BD820C /* DOUSimpleHTTPRequest.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
 		CA5D9D92183E3C0200BD820C /* DOUSimpleHTTPRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = CA5D9D4E183E3C0200BD820C /* DOUSimpleHTTPRequest.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
 		CA5D9D93183E3C0200BD820C /* DOUSimpleHTTPRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = CA5D9D4E183E3C0200BD820C /* DOUSimpleHTTPRequest.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
@@ -7983,6 +7975,14 @@
 		EA7203B7180E9ABD00F0F1C2 /* draw_home_painter@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EA7203B5180E9ABD00F0F1C2 /* draw_home_painter@2x.png */; };
 		EA7203B8180E9ABD00F0F1C2 /* draw_home_painter@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EA7203B5180E9ABD00F0F1C2 /* draw_home_painter@2x.png */; };
 		EA7203B9180E9ABD00F0F1C2 /* draw_home_painter@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EA7203B5180E9ABD00F0F1C2 /* draw_home_painter@2x.png */; };
+		EA72201D19D13C7E008AE62B /* DOUEAGLView.m in Sources */ = {isa = PBXBuildFile; fileRef = CA5D9D4C183E3C0200BD820C /* DOUEAGLView.m */; };
+		EA72201E19D13C7F008AE62B /* DOUEAGLView.m in Sources */ = {isa = PBXBuildFile; fileRef = CA5D9D4C183E3C0200BD820C /* DOUEAGLView.m */; };
+		EA72201F19D13C81008AE62B /* DOUEAGLView.m in Sources */ = {isa = PBXBuildFile; fileRef = CA5D9D4C183E3C0200BD820C /* DOUEAGLView.m */; };
+		EA72202119D13C84008AE62B /* DOUEAGLView.m in Sources */ = {isa = PBXBuildFile; fileRef = CA5D9D4C183E3C0200BD820C /* DOUEAGLView.m */; };
+		EA72202319D14106008AE62B /* fopen_unix.c in Sources */ = {isa = PBXBuildFile; fileRef = EA72202219D14106008AE62B /* fopen_unix.c */; };
+		EA72202419D14106008AE62B /* fopen_unix.c in Sources */ = {isa = PBXBuildFile; fileRef = EA72202219D14106008AE62B /* fopen_unix.c */; };
+		EA72202519D14106008AE62B /* fopen_unix.c in Sources */ = {isa = PBXBuildFile; fileRef = EA72202219D14106008AE62B /* fopen_unix.c */; };
+		EA72202619D14106008AE62B /* fopen_unix.c in Sources */ = {isa = PBXBuildFile; fileRef = EA72202219D14106008AE62B /* fopen_unix.c */; };
 		EA72B4C1162026480022D82D /* UserAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = EA72B4C0162026480022D82D /* UserAnnotation.m */; };
 		EA72B4C3162028260022D82D /* UserLocationController.m in Sources */ = {isa = PBXBuildFile; fileRef = EA72B4C2162028260022D82D /* UserLocationController.m */; };
 		EA7E4F71186ADE8F00E0B20F /* CreateGroupController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA7E4F6C186ADE8F00E0B20F /* CreateGroupController~ipad.xib */; };
@@ -11390,6 +11390,7 @@
 		EA7100CB17D197DA00451A38 /* MLNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MLNavigationController.m; sourceTree = "<group>"; };
 		EA716B94186C373F005CC0F0 /* group_add@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "group_add@2x.png"; sourceTree = "<group>"; };
 		EA7203B5180E9ABD00F0F1C2 /* draw_home_painter@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "draw_home_painter@2x.png"; sourceTree = "<group>"; };
+		EA72202219D14106008AE62B /* fopen_unix.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = fopen_unix.c; sourceTree = "<group>"; };
 		EA72B4BF162026480022D82D /* UserAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserAnnotation.h; sourceTree = "<group>"; };
 		EA72B4C0162026480022D82D /* UserAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserAnnotation.m; sourceTree = "<group>"; };
 		EA72B4C2162028260022D82D /* UserLocationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserLocationController.m; sourceTree = "<group>"; };
@@ -14343,6 +14344,7 @@
 				CA103CD31509A56100F60C03 /* PPViewController.m */,
 				CA103CD41509A56100F60C03 /* Resource */,
 				CA103CD71509A56100F60C03 /* Test */,
+				EA72202219D14106008AE62B /* fopen_unix.c */,
 			);
 			path = "Core-Application";
 			sourceTree = "<group>";
@@ -24138,6 +24140,7 @@
 				A461B178174CBAA70088B061 /* EGORefreshTableFooterView.m in Sources */,
 				A461B179174CBAA70088B061 /* EGORefreshTableHeaderView.m in Sources */,
 				A461B17A174CBAA70088B061 /* Feed.m in Sources */,
+				EA72202519D14106008AE62B /* fopen_unix.c in Sources */,
 				CAA581C9197BF78C00599740 /* HistogramImageSimilarity.mm in Sources */,
 				D8B58B27197CEE090088E5F7 /* SGFocusImageFrame.m in Sources */,
 				A461B17B174CBAA70088B061 /* FeedManager.m in Sources */,
@@ -24188,6 +24191,7 @@
 				A461B1DB174CBAA70088B061 /* MyFeedController.m in Sources */,
 				A461B1DC174CBAA70088B061 /* UserFeedController.m in Sources */,
 				CA2A28CC195C1E1C00A97478 /* TutorialStageController.m in Sources */,
+				EA72201F19D13C81008AE62B /* DOUEAGLView.m in Sources */,
 				A461B1DF174CBAA70088B061 /* ContestService.m in Sources */,
 				A461B1E0174CBAA70088B061 /* ContestController.m in Sources */,
 				A461B1E1174CBAA70088B061 /* ContestView.m in Sources */,
@@ -24791,10 +24795,8 @@
 				CA5D9D7B183E3C0200BD820C /* DOUAudioSpatialAnalyzer.m in Sources */,
 				CA5D9D7F183E3C0200BD820C /* DOUAudioStreamer+Options.m in Sources */,
 				CA5D9D83183E3C0200BD820C /* DOUAudioStreamer.m in Sources */,
-				CA5D9D87183E3C0200BD820C /* DOUAudioVisualizer.m in Sources */,
 				D8B58B44197CF6560088E5F7 /* GuidePageManager.m in Sources */,
 				CA5D9D8B183E3C0200BD820C /* DOUEAGL1View.m in Sources */,
-				CA5D9D8F183E3C0200BD820C /* DOUEAGLView.m in Sources */,
 				CA5D9D93183E3C0200BD820C /* DOUSimpleHTTPRequest.m in Sources */,
 				CA5D9D97183E3C0200BD820C /* NSData+DOUMappedFile.m in Sources */,
 				CA9C3FCC18432AA60041F332 /* AppTask.m in Sources */,
@@ -24891,6 +24893,7 @@
 				C28A99A51738F04B007A819F /* NetworkDetector.m in Sources */,
 				C28A99A61738F04B007A819F /* Reachability.m in Sources */,
 				C28A99A71738F04B007A819F /* CommonNetworkClient.m in Sources */,
+				EA72201E19D13C7F008AE62B /* DOUEAGLView.m in Sources */,
 				C28A99A81738F04B007A819F /* UIAlertViewUtils.m in Sources */,
 				C28A99A91738F04B007A819F /* UIBarButtonItemExt.m in Sources */,
 				C28A99AA1738F04B007A819F /* UIButtonExt.m in Sources */,
@@ -25216,6 +25219,7 @@
 				C28A9B951738F04B007A819F /* HomeHeaderPanel.m in Sources */,
 				C28A9B961738F04B007A819F /* HomeMainMenuPanel.m in Sources */,
 				C28A9B971738F04B007A819F /* HomeBottomMenuPanel.m in Sources */,
+				EA72202419D14106008AE62B /* fopen_unix.c in Sources */,
 				C28A9B981738F04B007A819F /* HomeCommonView.m in Sources */,
 				C28A9B991738F04B007A819F /* HomeMenuView.m in Sources */,
 				C28A9BA01738F04B007A819F /* CommonImageManager.m in Sources */,
@@ -25683,9 +25687,7 @@
 				CA5D9D7A183E3C0200BD820C /* DOUAudioSpatialAnalyzer.m in Sources */,
 				CA5D9D7E183E3C0200BD820C /* DOUAudioStreamer+Options.m in Sources */,
 				CA5D9D82183E3C0200BD820C /* DOUAudioStreamer.m in Sources */,
-				CA5D9D86183E3C0200BD820C /* DOUAudioVisualizer.m in Sources */,
 				CA5D9D8A183E3C0200BD820C /* DOUEAGL1View.m in Sources */,
-				CA5D9D8E183E3C0200BD820C /* DOUEAGLView.m in Sources */,
 				CA5D9D92183E3C0200BD820C /* DOUSimpleHTTPRequest.m in Sources */,
 				CA5D9D96183E3C0200BD820C /* NSData+DOUMappedFile.m in Sources */,
 				CA9C3FCB18432AA60041F332 /* AppTask.m in Sources */,
@@ -25784,6 +25786,7 @@
 				CA103EEF1509A56200F60C03 /* NetworkDetector.m in Sources */,
 				CA103EF01509A56200F60C03 /* Reachability.m in Sources */,
 				CA103EF11509A56200F60C03 /* CommonNetworkClient.m in Sources */,
+				EA72201D19D13C7E008AE62B /* DOUEAGLView.m in Sources */,
 				CA103EF21509A56200F60C03 /* UIAlertViewUtils.m in Sources */,
 				CA103EF31509A56200F60C03 /* UIBarButtonItemExt.m in Sources */,
 				CA103EF41509A56200F60C03 /* UIButtonExt.m in Sources */,
@@ -26109,6 +26112,7 @@
 				CA659789166C58B900A239E1 /* BBSOptionView.m in Sources */,
 				CA1DA9081673211E0078B5A9 /* DrawFontManager.m in Sources */,
 				CA1DA90B1673213A0078B5A9 /* DrawImageManager.m in Sources */,
+				EA72202319D14106008AE62B /* fopen_unix.c in Sources */,
 				CA1DA90E167321480078B5A9 /* DrawViewManager.m in Sources */,
 				CA1DA94E16732E200078B5A9 /* HomeHeaderPanel.m in Sources */,
 				CA1DA95716732ED00078B5A9 /* HomeMainMenuPanel.m in Sources */,
@@ -26575,10 +26579,8 @@
 				CA5D9D79183E3C0200BD820C /* DOUAudioSpatialAnalyzer.m in Sources */,
 				CA5D9D7D183E3C0200BD820C /* DOUAudioStreamer+Options.m in Sources */,
 				CA5D9D81183E3C0200BD820C /* DOUAudioStreamer.m in Sources */,
-				CA5D9D85183E3C0200BD820C /* DOUAudioVisualizer.m in Sources */,
 				CA5D9D89183E3C0200BD820C /* DOUEAGL1View.m in Sources */,
 				FDDECBBC1994BF7F00BE7191 /* SMPageControl.m in Sources */,
-				CA5D9D8D183E3C0200BD820C /* DOUEAGLView.m in Sources */,
 				CA5D9D91183E3C0200BD820C /* DOUSimpleHTTPRequest.m in Sources */,
 				CA5D9D95183E3C0200BD820C /* NSData+DOUMappedFile.m in Sources */,
 				CA9C3FCA18432AA60041F332 /* AppTask.m in Sources */,
@@ -26855,6 +26857,7 @@
 				EA411944176066F500DA72D0 /* SuperDrawView.m in Sources */,
 				EA411945176066F500DA72D0 /* Contest.m in Sources */,
 				EA411946176066F500DA72D0 /* ContestManager.m in Sources */,
+				EA72202619D14106008AE62B /* fopen_unix.c in Sources */,
 				EA411947176066F500DA72D0 /* CommentCell.m in Sources */,
 				EA411948176066F500DA72D0 /* CommentHeaderView.m in Sources */,
 				EA411949176066F500DA72D0 /* DrawInfoCell.m in Sources */,
@@ -26887,6 +26890,7 @@
 				EA41196D176066F500DA72D0 /* ZhaJinHua.pb.m in Sources */,
 				CA2A28CD195C1E1C00A97478 /* TutorialStageController.m in Sources */,
 				EA411970176066F500DA72D0 /* NSMutableArray+Queue.m in Sources */,
+				EA72202119D13C84008AE62B /* DOUEAGLView.m in Sources */,
 				EA411971176066F500DA72D0 /* NSMutableArray+Stack.m in Sources */,
 				EA411972176066F500DA72D0 /* MyFriend.m in Sources */,
 				EA411973176066F500DA72D0 /* StorageManager.m in Sources */,
@@ -27426,9 +27430,7 @@
 				CA5D9D80183E3C0200BD820C /* DOUAudioStreamer+Options.m in Sources */,
 				D80EB34F196B90DB0087EBBD /* MetroHomeController.m in Sources */,
 				CA5D9D84183E3C0200BD820C /* DOUAudioStreamer.m in Sources */,
-				CA5D9D88183E3C0200BD820C /* DOUAudioVisualizer.m in Sources */,
 				CA5D9D8C183E3C0200BD820C /* DOUEAGL1View.m in Sources */,
-				CA5D9D90183E3C0200BD820C /* DOUEAGLView.m in Sources */,
 				CA5D9D94183E3C0200BD820C /* DOUSimpleHTTPRequest.m in Sources */,
 				CA5D9D98183E3C0200BD820C /* NSData+DOUMappedFile.m in Sources */,
 				CA9C3FCD18432AA60041F332 /* AppTask.m in Sources */,
