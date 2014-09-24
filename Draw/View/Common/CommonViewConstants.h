@@ -7,7 +7,7 @@
 //
 
 
-#define COMMON_TITLE_VIEW_WIDTH  (ISIPAD ? 768 : 320)
+#define COMMON_TITLE_VIEW_WIDTH  ([UIScreen mainScreen].bounds.size.width) //(ISIPAD ? 768 : 320)
 #define DELTA (ISIOS7?20:0)
 #define COMMON_TITLE_VIEW_HEIGHT ((ISIPAD ? 88 : 44) + DELTA)
 

@@ -118,7 +118,7 @@
     
     _titleLabel.backgroundColor = [UIColor clearColor];
     _titleLabel.font = TITLE_FONT;
-    _titleLabel.textAlignment = UITextAlignmentCenter;
+    _titleLabel.textAlignment = NSTextAlignmentCenter;
     _titleLabel.textColor = [UIColor whiteColor];
     _titleLabel.shadowOffset = CGSizeMake(0, 1);
     _titleLabel.shadowColor = OPAQUE_COLOR(92, 158, 140);

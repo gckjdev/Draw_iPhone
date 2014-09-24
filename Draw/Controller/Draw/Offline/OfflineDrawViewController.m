@@ -709,6 +709,8 @@
         [self.helpButton setHidden:YES];
     }
     
+    
+    
     [self updateSubmitButtonForPracticeDraw];
     
     // update title view by buttons

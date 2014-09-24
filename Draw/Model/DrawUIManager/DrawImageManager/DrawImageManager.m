@@ -44,7 +44,12 @@ static DrawImageManager * _staticDrawImageManager;
 - (NSString *)fixImageName:(NSString *)imageName
 {
     if([DeviceDetection isIPAD]){
-        return [NSString stringWithFormat:@"%@@2x",imageName];
+        if (ISIOS8){
+            return [NSString stringWithFormat:@"%@@2x",imageName];
+        }
+        else{
+            return [NSString stringWithFormat:@"%@@2x",imageName];
+        }
     }
     return imageName;
 }
@@ -66,133 +71,134 @@ static DrawImageManager * _staticDrawImageManager;
 - (UIImage *)drawHomeGroup
 {
     NSString *imageName = [self fixImageName:@"common_home_group"];
-    return [UIImage imageNamed:imageName];
+    return [UIImage imageNamedFixed:imageName];
 }
 
 - (UIImage *)drawHomeBbs
 {
     NSString *imageName = [self fixImageName:@"common_home_bbs"];
-    return [UIImage imageNamed:imageName];
+    return [UIImage imageNamedFixed:imageName];
 }
 - (UIImage *)drawHomeTask
 {
     NSString *imageName = [self fixImageName:@"draw_home_task"];
-    return [UIImage imageNamed:imageName];
+    return [UIImage imageNamedFixed:imageName];
 }
 - (UIImage *)singHomeTask
 {
     NSString *imageName = [self fixImageName:@"sing_home_task"];
-    return [UIImage imageNamed:imageName];
+    return [UIImage imageNamedFixed:imageName];
 }
 
 - (UIImage *)drawHomeHome{
     NSString *imageName = [self fixImageName:@"common_home_home"];
-    return [UIImage imageNamed:imageName];
+    return [UIImage imageNamedFixed:imageName];
 }
 - (UIImage *)drawHomeMessage{
     NSString *imageName = [self fixImageName:@"common_home_message"];
-    return [UIImage imageNamed:imageName];
+    return [UIImage imageNamedFixed:imageName];
 }
 - (UIImage *)drawHomeSetting{
     NSString *imageName = [self fixImageName:@"common_home_setting"];
-    return [UIImage imageNamed:imageName];
+    return [UIImage imageNamedFixed:imageName];
 }
 - (UIImage *)drawHomeMe
 {
     NSString *imageName = [self fixImageName:@"common_home_me"];
-    return [UIImage imageNamed:imageName];
+    return [UIImage imageNamedFixed:imageName];
 }
 - (UIImage *)drawHomeFriend
 {
     NSString *imageName = [self fixImageName:@"common_home_friend"];
-    return [UIImage imageNamed:imageName];
+    return [UIImage imageNamedFixed:imageName];
 }
 
 - (UIImage *)drawHomeShop{
     NSString *imageName = [self fixImageName:@"draw_home_shop"];
-    return [UIImage imageNamed:imageName];
+    return [UIImage imageNamedFixed:imageName];
 }
 
 - (UIImage *)homeBottomTask{
     NSString *imageName = [self fixImageName:@"bottom_home_task"];
-    return [UIImage imageNamed:imageName];
+    return [UIImage imageNamedFixed:imageName];
 }
 
 
 - (UIImage*)drawHomeBigShop
 {
     NSString *imageName = [self fixImageName:@"common_home_shop"];
-    return [UIImage imageNamed:imageName];
+    return [UIImage imageNamedFixed:imageName];
 }
 - (UIImage *)diceHomeShop{
     NSString *imageName = [self fixImageName:@"common_home_shop"];
-    return [UIImage imageNamed:imageName];
+    return [UIImage imageNamedFixed:imageName];
 }
 - (UIImage *)drawHomeMore
 {
     NSString *imageName = [self fixImageName:@"draw_home_more"];
-    return [UIImage imageNamed:imageName];
+    return [UIImage imageNamedFixed:imageName];
 }
 
 //Draw
 - (UIImage *)drawHomeContest{
     NSString *imageName = [self fixImageName:@"draw_home_contest"];
-    return [UIImage imageNamed:imageName];
+    return [UIImage imageNamedFixed:imageName];
 }
 - (UIImage *)drawHomeDraw{
     NSString *imageName = [self fixImageName:@"draw_home_draw"];
-    return [UIImage imageNamed:imageName];
+    return [UIImage imageNamedFixed:imageName];
 }
 - (UIImage *)drawHomeGuess{
     NSString *imageName = [self fixImageName:@"draw_home_guess"];
-    return [UIImage imageNamed:imageName];
+    return [UIImage imageNamedFixed:imageName];
 }
 - (UIImage *)drawHomeOnlineGuess{
     NSString *imageName = [self fixImageName:@"draw_home_online_guess"];
-    return [UIImage imageNamed:imageName];
+    return [UIImage imageNamedFixed:imageName];
 }
 - (UIImage *)drawHomeOpus{
     NSString *imageName = [self fixImageName:@"draw_home_opus"];
-    return [UIImage imageNamed:imageName];
+    return [UIImage imageNamedFixed:imageName];
 }
 
 - (UIImage *)drawHomeTimeline{
     NSString *imageName = [self fixImageName:@"draw_home_timeline"];
-    return [UIImage imageNamed:imageName];
+    return [UIImage imageNamedFixed:imageName];
 }
+
 - (UIImage *)drawHomeTop{
     NSString *imageName = [self fixImageName:@"draw_home_top"];
-    return [UIImage imageNamed:imageName];
+    return [UIImage imageNamedFixed:imageName];
 }
 
 - (UIImage *)drawAppsRecommand
 {
     NSString *imageName = [self fixImageName:@"draw_home_apps"];
-    return [UIImage imageNamed:imageName];
+    return [UIImage imageNamedFixed:imageName];
 }
 
 - (UIImage *)drawFreeCoins
 {
     NSString *imageName = [self fixImageName:@"draw_home_free_coins"];
-    return [UIImage imageNamed:imageName];
+    return [UIImage imageNamedFixed:imageName];
 }
 
 - (UIImage *)drawPlayWithFriend
 {
     NSString *imageName = [self fixImageName:@"draw_home_play_with_friend"];
-    return [UIImage imageNamed:imageName];
+    return [UIImage imageNamedFixed:imageName];
 }
 
 - (UIImage*)userPhoto
 {
     NSString *imageName = [self fixImageName:@"draw_home_user_photo"];
-    return [UIImage imageNamed:imageName];
+    return [UIImage imageNamedFixed:imageName];
 }
 
 - (UIImage*)drawHomePainter
 {
     NSString *imageName = [self fixImageName:@"draw_home_painter"];
-    return [UIImage imageNamed:imageName];
+    return [UIImage imageNamedFixed:imageName];
 }
 
 - (UIImage *)drawHomeBG
@@ -382,7 +388,7 @@ static DrawImageManager * _staticDrawImageManager;
 - (UIImage*)littleGeeMoreOptionsImage
 {
     NSString *imageName = [self fixImageName:@"little_gee_home_options"];
-    return [UIImage imageNamed:imageName];
+    return [UIImage imageNamedFixed:imageName];
 }
 
 
@@ -390,73 +396,73 @@ static DrawImageManager * _staticDrawImageManager;
 - (UIImage *)singHomeSing
 {
     NSString *imageName = [self fixImageName:@"sing_home_sing"];
-    return [UIImage imageNamed:imageName];
+    return [UIImage imageNamedFixed:imageName];
 }
 
 - (UIImage *)singHomeGuess
 {
     NSString *imageName = [self fixImageName:@"sing_home_guess"];
-    return [UIImage imageNamed:imageName];
+    return [UIImage imageNamedFixed:imageName];
 }
 
 - (UIImage *)singHomeTop
 {
     NSString *imageName = [self fixImageName:@"sing_home_top"];
-    return [UIImage imageNamed:imageName];
+    return [UIImage imageNamedFixed:imageName];
 }
 
 - (UIImage *)singHomeBBS
 {
     NSString *imageName = [self fixImageName:@"sing_home_bbs"];
-    return [UIImage imageNamed:imageName];
+    return [UIImage imageNamedFixed:imageName];
 }
 
 - (UIImage *)singHomeFreeCoins
 {
     NSString *imageName = [self fixImageName:@"sing_home_free_coins"];
-    return [UIImage imageNamed:imageName];
+    return [UIImage imageNamedFixed:imageName];
 }
 
 - (UIImage *)singHomeContest
 {
     NSString *imageName = [self fixImageName:@"sing_home_contest"];
-    return [UIImage imageNamed:imageName];
+    return [UIImage imageNamedFixed:imageName];
 }
 
 - (UIImage *)singHomeTimeline
 {
     NSString *imageName = [self fixImageName:@"sing_home_timeline"];
-    return [UIImage imageNamed:imageName];
+    return [UIImage imageNamedFixed:imageName];
 }
 
 - (UIImage *)singHomeDraft
 {
     NSString *imageName = [self fixImageName:@"sing_home_draft"];
-    return [UIImage imageNamed:imageName];
+    return [UIImage imageNamedFixed:imageName];
 }
 
 - (UIImage *)singHomeShop
 {
     NSString *imageName = [self fixImageName:@"sing_home_shop"];
-    return [UIImage imageNamed:imageName];
+    return [UIImage imageNamedFixed:imageName];
 }
 
 - (UIImage *)singHomeChat
 {
     NSString *imageName = [self fixImageName:@"sing_home_chat"];
-    return [UIImage imageNamed:imageName];
+    return [UIImage imageNamedFixed:imageName];
 }
 
 - (UIImage *)singHomeSetting
 {
     NSString *imageName = [self fixImageName:@"sing_home_setting"];
-    return [UIImage imageNamed:imageName];
+    return [UIImage imageNamedFixed:imageName];
 }
 
 - (UIImage *)singBottomBar
 {
     NSString *imageName = [self fixImageName:@"sing_bottom_bar"];
-    return [UIImage imageNamed:imageName];
+    return [UIImage imageNamedFixed:imageName];
 }
 
 @end

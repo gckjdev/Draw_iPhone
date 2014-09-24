@@ -62,7 +62,7 @@
 {
     //60 53
     //update button attribute
-    [backButton setImage:[[BBSImageManager defaultManager] bbsBackImage]
+    [backButton setBackgroundImage:[[BBSImageManager defaultManager] bbsBackImage]
                 forState:UIControlStateNormal];
     
     //update button frame

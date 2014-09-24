@@ -48,6 +48,8 @@ static BBSImageManager* _staticBBSImageManager;
 
 - (UIImage *)optionLeftBGImage
 {
+    
+    
     return [_resService stretchableImageWithImageName:@"bbs_option_bubble"
                              leftCapWidthScale:0.8
                              topCapHeightScale:0.3
@@ -67,7 +69,10 @@ static BBSImageManager* _staticBBSImageManager;
 }
 - (UIImage *)bbsBackImage
 {
-    return [_resService stretchableImageWithImageName:@"bbs_back" inResourcePackage:RESOURCE_PACKAGE_BBS];
+    return [[ShareImageManager defaultManager] fixedImageNamed:@"bbs_back"];
+
+    
+//    return [_resService stretchableImageWithImageName:@"bbs_back" inResourcePackage:RESOURCE_PACKAGE_BBS];
 }
 - (UIImage *)bbsBGImage
 {
@@ -78,21 +83,29 @@ static BBSImageManager* _staticBBSImageManager;
 
 - (UIImage *)bbsActionSheetBG
 {
-    return [_resService stretchableImageWithImageName:@"bbs_action_sheet_bg"
-                             inResourcePackage:RESOURCE_PACKAGE_BBS];
+    return [[ShareImageManager defaultManager] fixedImageNamed:@"bbs_action_sheet_bg"];
+
+//    return [_resService stretchableImageWithImageName:@"bbs_action_sheet_bg"
+//                             inResourcePackage:RESOURCE_PACKAGE_BBS];
 }
 
 - (UIImage *)bbsRefreshImage
 {
-    return [_resService stretchableImageWithImageName:@"bbs_refresh" inResourcePackage:RESOURCE_PACKAGE_BBS];
+    return [[ShareImageManager defaultManager] fixedImageNamed:@"bbs_refresh"];
+
+    
+//    return [_resService stretchableImageWithImageName:@"bbs_refresh" inResourcePackage:RESOURCE_PACKAGE_BBS];
 }
 
 //index image
 #pragma mark - Index page image
 - (UIImage *)bbsBadgeImage
 {
-     return [_resService stretchableImageWithImageName:@"bbs_badge"
-                   inResourcePackage:RESOURCE_PACKAGE_BBS];
+    return [[ShareImageManager defaultManager] fixedImageNamed:@"bbs_badge"];
+
+    
+//     return [_resService stretchableImageWithImageName:@"bbs_badge"
+//                   inResourcePackage:RESOURCE_PACKAGE_BBS];
 }
 #define BBS_BOARD_BORDER (ISIPAD?4:2)
 #define BBS_BOARD_RADIUS (ISIPAD?15:8)
@@ -117,27 +130,36 @@ static BBSImageManager* _staticBBSImageManager;
 }
 - (UIImage *)bbsBoardLineImage
 {
-     return [_resService stretchableImageWithImageName:@"bbs_board_line"
-                   inResourcePackage:RESOURCE_PACKAGE_BBS];
+    return [[ShareImageManager defaultManager] fixedImageNamed:@"bbs_board_line"];
+
+    
+//     return [_resService stretchableImageWithImageName:@"bbs_board_line"
+//                   inResourcePackage:RESOURCE_PACKAGE_BBS];
 }
 
 - (UIImage *)bbsBoardMineImage
 {
-    return [_resService stretchableImageWithImageName:@"bbs_board_mine"
-                             inResourcePackage:RESOURCE_PACKAGE_BBS];
+            return [[ShareImageManager defaultManager] fixedImageNamed:@"bbs_board_mine"];
+    
+//    return [_resService stretchableImageWithImageName:@"bbs_board_mine"
+//                             inResourcePackage:RESOURCE_PACKAGE_BBS];
 }
 
 - (UIImage *)bbsBoardSearchImage
 {
-    return [_resService stretchableImageWithImageName:@"bbs_board_search"
-                                    inResourcePackage:RESOURCE_PACKAGE_BBS];
+        return [[ShareImageManager defaultManager] fixedImageNamed:@"bbs_board_search"];
+    
+//    return [_resService stretchableImageWithImageName:@"bbs_board_search"
+//                                    inResourcePackage:RESOURCE_PACKAGE_BBS];
 }
 
 
 - (UIImage *)bbsBoardCommentImage
 {
-    return [_resService stretchableImageWithImageName:@"bbs_board_comment"
-                             inResourcePackage:RESOURCE_PACKAGE_BBS];
+    return [[ShareImageManager defaultManager] fixedImageNamed:@"bbs_board_comment"];
+    
+//    return [_resService stretchableImageWithImageName:@"bbs_board_comment"
+//                             inResourcePackage:RESOURCE_PACKAGE_BBS];
 }
 
 - (UIImage *)bbsSectionBgImage

@@ -793,9 +793,10 @@ static NSDictionary* DEFAULT_MENU_SELECTOR_DICT = nil;
     return DEFAULT_MENU_SELECTOR_DICT;
 }
 
+static dispatch_once_t defaultMenuImageOnceToken;
+
 + (NSDictionary*)defaultMenuImageDictionary
 {
-    static dispatch_once_t defaultMenuImageOnceToken;
     dispatch_once(&defaultMenuImageOnceToken, ^{
         DrawImageManager *imageManager = [DrawImageManager defaultManager];
         

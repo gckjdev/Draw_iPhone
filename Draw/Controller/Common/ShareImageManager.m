@@ -408,138 +408,138 @@ static NSMutableDictionary *colorImageDict;
 
 - (UIImage *)pencilImage
 {
-    return [UIImage imageNamed:@"pen_pencil@2x"];
+    return [UIImage imageNamedFixed:@"pen_pencil@2x"];
 }
 - (UIImage *)waterPenImage
 {
-    return [UIImage imageNamed:@"pen_mark@2x"];
+    return [UIImage imageNamedFixed:@"pen_mark@2x"];
 }
 - (UIImage *)penImage
 {
-    return [UIImage imageNamed:@"pen_brush@2x"];
+    return [UIImage imageNamedFixed:@"pen_brush@2x"];
 }
 - (UIImage *)iceImage
 {
-    return [UIImage imageNamed:@"pen_ice-cream@2x"];
+    return [UIImage imageNamedFixed:@"pen_ice-cream@2x"];
 }
 - (UIImage *)quillImage
 {
-    return [UIImage imageNamed:@"pen_feather@2x"];    
+    return [UIImage imageNamedFixed:@"pen_feather@2x"];
 }
 - (UIImage *)eraserImage
 {
-    return [UIImage imageNamed:@"draw_rubber.png"];
+    return [UIImage imageNamedFixed:@"draw_rubber.png"];
 }
 
 - (UIImage *)brushGouacheImage
 {
-    return [UIImage imageNamed:@"brush_gouache@2x"];
+    return [UIImage imageNamedFixed:@"brush_gouache@2x"];
 }
 
 - (UIImage *)brushPencilImage
 {
-    return [UIImage imageNamed:@"brush_pencil@2x"];
+    return [UIImage imageNamedFixed:@"brush_pencil@2x"];
 }
 
 - (UIImage *)brushWaterImage
 {
-    return [UIImage imageNamed:@"brush_water@2x"];
+    return [UIImage imageNamedFixed:@"brush_water@2x"];
 }
 
 - (UIImage *)brushPenImage
 {
-    return [UIImage imageNamed:@"brush_pen@2x"];
+    return [UIImage imageNamedFixed:@"brush_pen@2x"];
 }
 
 - (UIImage *)brushBlurImage
 {
-    return [UIImage imageNamed:@"brush_blur@2x"];
+    return [UIImage imageNamedFixed:@"brush_blur@2x"];
 }
 
 - (UIImage *)brushCrayonImage
 {
-    return [UIImage imageNamed:@"brush_crayon@2x"];
+    return [UIImage imageNamedFixed:@"brush_crayon@2x"];
 }
 
 - (UIImage *)selectedBrushPenImage
 {
-    return [UIImage imageNamed:@"selected_pen_brush@2x"];
+    return [UIImage imageNamedFixed:@"selected_pen_brush@2x"];
 }
 - (UIImage *)selectedFeatherPenImage
 {
-    return [UIImage imageNamed:@"selected_pen_feather@2x"];
+    return [UIImage imageNamedFixed:@"selected_pen_feather@2x"];
 }
 - (UIImage *)selectedIcePenImage
 {
-    return [UIImage imageNamed:@"selected_pen_ice-cream@2x"];
+    return [UIImage imageNamedFixed:@"selected_pen_ice-cream@2x"];
 }
 - (UIImage *)selectedMarkPenImage
 {
-    return [UIImage imageNamed:@"selected_pen_mark@2x"];
+    return [UIImage imageNamedFixed:@"selected_pen_mark@2x"];
 }
 - (UIImage *)selectedWaterColorImage
 {
-    return [UIImage imageNamed:@"selected_pen_mark@2x"];
+    return [UIImage imageNamedFixed:@"selected_pen_mark@2x"];
 }
 - (UIImage *)selectedPencilImage
 {
-    return [UIImage imageNamed:@"selected_pen_pencil@2x"];
+    return [UIImage imageNamedFixed:@"selected_pen_pencil@2x"];
 }
 - (UIImage *)selectedEraserImage
 {
-    return [UIImage imageNamed:@"selected_pen_rubber@2x"];
+    return [UIImage imageNamedFixed:@"selected_pen_rubber@2x"];
 }
 
 - (UIImage *)brushGouacheSelectedImage
 {
-    return [UIImage imageNamed:@"selected_brush_gouache@2x"];
+    return [UIImage imageNamedFixed:@"selected_brush_gouache@2x"];
 }
 - (UIImage *)brushPencilSelectedImage
 {
-    return [UIImage imageNamed:@"selected_brush_pencil@2x"];
+    return [UIImage imageNamedFixed:@"selected_brush_pencil@2x"];
 }
 - (UIImage *)brushWaterSelectedImage
 {
-    return [UIImage imageNamed:@"selected_brush_water@2x"];
+    return [UIImage imageNamedFixed:@"selected_brush_water@2x"];
 }
 - (UIImage *)brushPenSelectedImage
 {
-    return [UIImage imageNamed:@"selected_brush_pen@2x"];
+    return [UIImage imageNamedFixed:@"selected_brush_pen@2x"];
 }
 - (UIImage *)brushBlurSelectedImage
 {
-    return [UIImage imageNamed:@"selected_brush_blur@2x"];
+    return [UIImage imageNamedFixed:@"selected_brush_blur@2x"];
 }
 - (UIImage *)brushCrayonSelectedImage
 {
-    return [UIImage imageNamed:@"selected_brush_crayon@2x"];
+    return [UIImage imageNamedFixed:@"selected_brush_crayon@2x"];
 }
 
 - (UIImage *)showEraserImage
 {
-    return [UIImage imageNamed:@"eraser_show@2x"];
+    return [UIImage imageNamedFixed:@"eraser_show@2x"];
 }
 
 - (UIImage *)showBrushPenImage
 {
-    return [UIImage imageNamed:@"pen_show_brush@2x"];
+    return [UIImage imageNamedFixed:@"pen_show_brush@2x"];
 }
 
 - (UIImage *)showFeatherPenImage
 {
-    return [UIImage imageNamed:@"pen_show_feather@2x"];
+    return [UIImage imageNamedFixed:@"pen_show_feather@2x"];
 }
 - (UIImage *)showIcePenImage
 {
-    return [UIImage imageNamed:@"pen_show_ice@2x"];
+    return [UIImage imageNamedFixed:@"pen_show_ice@2x"];
 }
 - (UIImage *)showMarkPenImage
 {
-    return [UIImage imageNamed:@"pen_show_mark@2x"];
+    return [UIImage imageNamedFixed:@"pen_show_mark@2x"];
 }
 - (UIImage *)showPencilPenImage
 {
-    return [UIImage imageNamed:@"pen_show_pencil@2x"];
+    return [UIImage imageNamedFixed:@"pen_show_pencil@2x"];
 }
 
 
@@ -547,28 +547,28 @@ static NSMutableDictionary *colorImageDict;
 
 - (UIImage *)brushPenShowImage
 {
-    return [UIImage imageNamed:@"brush_show_pen@2x"];
+    return [UIImage imageNamedFixed:@"brush_show_pen@2x"];
 }
 
 - (UIImage *)brushPencilShowImage
 {
-    return [UIImage imageNamed:@"brush_show_pencil@2x"];
+    return [UIImage imageNamedFixed:@"brush_show_pencil@2x"];
 }
 - (UIImage *)brushWaterShowImage
 {
-    return [UIImage imageNamed:@"brush_show_water@2x"];
+    return [UIImage imageNamedFixed:@"brush_show_water@2x"];
 }
 - (UIImage *)brushGouacheShowImage
 {
-    return [UIImage imageNamed:@"brush_show_gouache@2x"];
+    return [UIImage imageNamedFixed:@"brush_show_gouache@2x"];
 }
 - (UIImage *)brushBlurShowImage
 {
-    return [UIImage imageNamed:@"brush_show_blur@2x"];
+    return [UIImage imageNamedFixed:@"brush_show_blur@2x"];
 }
 - (UIImage *)brushCrayonShowImage
 {
-    return [UIImage imageNamed:@"brush_show_crayon@2x"];
+    return [UIImage imageNamedFixed:@"brush_show_crayon@2x"];
 }
 
 - (UIImage *)drawCommit
@@ -696,7 +696,7 @@ static NSMutableDictionary *colorImageDict;
 
 - (UIImage *)rewardCoin
 {
-    return [UIImage imageNamed:@"coin@2x.png"];
+    return [UIImage imageNamedFixed:@"coin@2x.png"];
 }
 - (UIImage *)shopShelf
 {
@@ -708,7 +708,7 @@ static NSMutableDictionary *colorImageDict;
 }
 - (UIImage *)smallCoin
 {
-    return [UIImage imageNamed:@"coin@2x.png"];
+    return [UIImage imageNamedFixed:@"coin@2x.png"];
 }
 
 //- (UIImage*)waterPen
@@ -756,7 +756,7 @@ static NSMutableDictionary *colorImageDict;
 
 - (UIImage *)rightImage
 {
-    return [UIImage imageNamed:@"guessed@2x.png"];
+    return [UIImage imageNamedFixed:@"guessed@2x.png"];
 }
 - (UIImage *)myPaintImage
 {
@@ -870,11 +870,11 @@ static NSMutableDictionary *colorImageDict;
 
 - (UIImage *)playProgressPoint
 {
-    return [UIImage imageNamed:@"draw_player_progress_point@2x.png"];
+    return [UIImage imageNamedFixed:@"draw_player_progress_point@2x.png"];
 }
 - (UIImage *)speedProgressPoint
 {
-    return [UIImage imageNamed:@"draw_player_speed_button@2x.png"];
+    return [UIImage imageNamedFixed:@"draw_player_speed_button@2x.png"];
     
 }
 
@@ -1170,7 +1170,7 @@ static NSMutableDictionary *colorImageDict;
 - (UIImage *)autoRecoveryDraftImage
 {
 //    return [_resService imageByName:@"auto_recovery" inResourcePackage:RESOURCE_PACKAGE_DRAW];
-    return [UIImage imageNamed:@"auto_recovery@2x.png"];
+    return [UIImage imageNamedFixed:@"auto_recovery@2x.png"];
 }
 
 - (UIImage *)paintPlayerImage
@@ -1196,11 +1196,11 @@ static NSMutableDictionary *colorImageDict;
 {
     switch (currency) {
         case PBGameCurrencyCoin:
-            return [UIImage imageNamed:@"coin@2x.png"];
+            return [UIImage imageNamedFixed:@"coin@2x.png"];
             break;
             
         case PBGameCurrencyIngot:
-            return [UIImage imageNamed:@"ingot@2x.png"];
+            return [UIImage imageNamedFixed:@"ingot@2x.png"];
             break;
             
         default:
@@ -1212,11 +1212,11 @@ static NSMutableDictionary *colorImageDict;
 {
     switch (currency) {
         case PBGameCurrencyCoin:
-            return [UIImage imageNamed:@"gray_coin@2x.png"];
+            return [UIImage imageNamedFixed:@"gray_coin@2x.png"];
             break;
             
         case PBGameCurrencyIngot:
-            return [UIImage imageNamed:@"gray_ingot@2x.png"];
+            return [UIImage imageNamedFixed:@"gray_ingot@2x.png"];
             break;
             
         default:
@@ -1244,9 +1244,9 @@ static NSMutableDictionary *colorImageDict;
 - (UIImage*)userDetailGenderImage:(BOOL)isMale
 {
     if (isMale) {
-        return [UIImage imageNamed:@"user_detail_gender_male@2x.png"];
+        return [UIImage imageNamedFixed:@"user_detail_gender_male@2x.png"];
     } else {
-        return [UIImage imageNamed:@"user_detail_gender_female@2x.png"];
+        return [UIImage imageNamedFixed:@"user_detail_gender_female@2x.png"];
     }
 }
 
@@ -1314,54 +1314,54 @@ static NSMutableDictionary *colorImageDict;
 }
 - (UIImage*)navigatorRightBtnImage
 {
-    return [UIImage imageNamed:@"draw_button_normal@2x.png"];
+    return [UIImage imageNamedFixed:@"draw_button_normal@2x.png"];
 }
 
 - (UIImage *)splitPhoto
 {
-    return [UIImage imageNamed:@"split_photo@2x.png"];
+    return [UIImage imageNamedFixed:@"split_photo@2x.png"];
 }
 
 - (UIImage *)placeholderPhoto
 {
-    return [UIImage imageNamed:@"placeholder_photo@2x.png"];
+    return [UIImage imageNamedFixed:@"placeholder_photo@2x.png"];
 }
 
 - (UIImage *)commonDialogHeaderImage
 {
-    return [UIImage imageNamed:@"common_dialog_head_bg@2x.png"];
+    return [UIImage imageNamedFixed:@"common_dialog_head_bg@2x.png"];
 }
 
 - (UIImage *)drawToolUpPanelLeftArrowBg
 {
-    return [UIImage imageNamed:@"draw_up_panel_bg_left_arrow@2x.png"];
+    return [UIImage imageNamedFixed:@"draw_up_panel_bg_left_arrow@2x.png"];
 }
 - (UIImage *)drawToolUpPanelRightArrowBg
 {
-    return [UIImage imageNamed:@"draw_up_panel_bg_right_arrow@2x.png"];
+    return [UIImage imageNamedFixed:@"draw_up_panel_bg_right_arrow@2x.png"];
 }
 
 
 - (UIImage *)polygonSelectorImage
 {
-    return [UIImage imageNamed:@"selector_polygon@2x.png"];
+    return [UIImage imageNamedFixed:@"selector_polygon@2x.png"];
 }
 - (UIImage *)pathSelectorImage
 {
-    return [UIImage imageNamed:@"selector_path@2x.png"];
+    return [UIImage imageNamedFixed:@"selector_path@2x.png"];
 }
 - (UIImage *)ellipseSelectorImage
 {
-    return [UIImage imageNamed:@"selector_ellipse@2x.png"];
+    return [UIImage imageNamedFixed:@"selector_ellipse@2x.png"];
 }
 - (UIImage *)rectangeSelectorImage
 {
-    return [UIImage imageNamed:@"selector_rectangle@2x.png"];
+    return [UIImage imageNamedFixed:@"selector_rectangle@2x.png"];
 }
 
 - (UIColor *)drawBGColor
 {
-    UIImage *image = [UIImage imageNamed:@"draw_main_bg@2x.jpg"];
+    UIImage *image = [UIImage imageNamedFixed:@"draw_main_bg@2x.jpg"];
     return [UIColor colorWithPatternImage:image];
 }
 
@@ -1378,17 +1378,17 @@ static NSMutableDictionary *colorImageDict;
 
 - (UIImage *)drawBackImage
 {
-    return [UIImage imageNamed:@"draw_page_back@2x.png"];
+    return [UIImage imageNamedFixed:@"draw_page_back@2x.png"];
 }
 
 - (UIImage *)drawOptionImage
 {
-    return [UIImage imageNamed:@"draw_page_option@2x.png"];
+    return [UIImage imageNamedFixed:@"draw_page_option@2x.png"];
 }
 
 - (UIImage *)runAwayImage
 {
-    return [UIImage imageNamed:@"run@2x.png"];
+    return [UIImage imageNamedFixed:@"run@2x.png"];
 }
 
 - (UIImage *)homeDefaultAvatar
@@ -1424,17 +1424,17 @@ static NSMutableDictionary *colorImageDict;
 
 + (UIImage *)happyLogo{
     
-    return [UIImage imageNamed:@"happy_logo@2x.png"];
+    return [UIImage imageNamedFixed:@"happy_logo@2x.png"];
  
 }
 
 + (UIImage *)unhappyLogo{
-    return [UIImage imageNamed:@"unhappy_logo@2x.png"];
+    return [UIImage imageNamedFixed:@"unhappy_logo@2x.png"];
 }
 
 - (UIImage *)detailHeaderBG
 {
-    return [UIImage imageNamed:@"detail_header_bg@2x.png"];
+    return [UIImage imageNamedFixed:@"detail_header_bg@2x.png"];
 }
 
 - (UIImage *)nextPage
@@ -1478,9 +1478,9 @@ static NSMutableDictionary *colorImageDict;
     label.shadowOffset = CGSizeZero;
     
     if ([LocaleUtils isChinese]) {
-        [label setLineBreakMode:UILineBreakModeCharacterWrap];
+        [label setLineBreakMode:NSLineBreakByCharWrapping];
     } else {
-        [label setLineBreakMode:UILineBreakModeWordWrap];
+        [label setLineBreakMode:NSLineBreakByWordWrapping];
     }
 }
 
