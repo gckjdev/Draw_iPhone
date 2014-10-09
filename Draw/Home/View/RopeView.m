@@ -22,7 +22,7 @@
     if (self) {
         _ropeImage = [[UIImageView alloc] initWithFrame:IMAGE_FRAME];
         _ropeImage.contentMode = UIViewContentModeBottom;
-        _ropeImage.image = [UIImage imageNamed:ROPE_IMAGE_NAME];
+        _ropeImage.image = [UIImage imageNamedFixed:ROPE_IMAGE_NAME];
         _ropeImage.autoresizingMask = UIViewAutoresizingFlexibleTopMargin;
         [self addSubview:_ropeImage];
         self.backgroundColor = [UIColor clearColor];
