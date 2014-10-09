@@ -7,10 +7,12 @@
 //
 
 #import "PanelUtil.h"
+#import "UIImageExt.h"
+#import "UIImageUtil.h"
 
 @implementation PanelUtil
 
-#define IMAGE(x) [UIImage imageNamed:x]
+#define IMAGE(x) [UIImage imageNamedFixed:x]
 
 
 + (UIImage *)imageForType:(DrawToolType)type

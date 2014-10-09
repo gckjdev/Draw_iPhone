@@ -687,6 +687,23 @@
         [self.draftButton.titleLabel setFont:font];
     }
     
+    if (ISIPAD){
+        [self.draftButton setImage:[UIImage imageNamedFixed:@"draw_save_btn@2x.png"]
+                          forState:UIControlStateNormal];
+
+        [self.submitButton setImage:[UIImage imageNamedFixed:@"draw_commit_btn@2x.png"]
+                          forState:UIControlStateNormal];
+
+        [self.layerButton setImage:[UIImage imageNamedFixed:@"draw_layer_btn@2x.png"]
+                          forState:UIControlStateNormal];
+
+        [self.upPanelButton setImage:[UIImage imageNamedFixed:@"draw_setting_btn@2x.png"]
+                          forState:UIControlStateNormal];
+
+        [self.helpButton setImage:[UIImage imageNamedFixed:@"draw_help@2x.png"]
+                          forState:UIControlStateNormal];
+    }
+    
     if ([GameApp canSubmitDraw] == NO) {
         self.draftButton.frame = self.submitButton.frame;
         self.submitButton.hidden = YES;
