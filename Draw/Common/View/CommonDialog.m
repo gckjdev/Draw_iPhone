@@ -386,7 +386,9 @@
 - (void)setStyle:(CommonDialogStyle)style{
     
     _style = style;
-        
+    
+    [_closeButton setImage:[UIImage imageNamedFixed:@"common_dialog_close_btn@2x"] forState:UIControlStateNormal];
+    
     switch (style) {
         case CommonDialogStyleSingleButton:
             [self.oKButton updateCenterX:self.contentView.frame.size.width/2];

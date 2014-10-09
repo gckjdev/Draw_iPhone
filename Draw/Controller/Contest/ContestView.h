@@ -49,6 +49,10 @@
 @property (retain, nonatomic) IBOutlet UILabel *joinLabel;
 @property (retain, nonatomic) IBOutlet UILabel *reportLabel;
 @property (retain, nonatomic) IBOutlet UILabel *dateLeftLabel;
+@property (retain, nonatomic) IBOutlet UIButton *opusButton;
+@property (retain, nonatomic) IBOutlet UIButton *reportButton;
+@property (retain, nonatomic) IBOutlet UIButton *detailButton;
+@property (retain, nonatomic) IBOutlet UIButton *joinButton;
 
 + (id)createContestView:(id)delegate;
 + (CGFloat)getViewWidth;

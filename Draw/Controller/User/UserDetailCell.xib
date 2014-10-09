@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="4514" systemVersion="12F45" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6245" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3747"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
@@ -33,11 +33,11 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     </imageView>
                     <imageView userInteractionEnabled="NO" tag="400" contentMode="scaleToFill" id="63">
-                        <rect key="frame" x="0.0" y="667" width="320" height="4"/>
+                        <rect key="frame" x="0.0" y="667.5" width="320" height="4"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     </imageView>
                     <imageView userInteractionEnabled="NO" tag="400" contentMode="scaleToFill" id="58">
-                        <rect key="frame" x="0.0" y="738" width="320" height="4"/>
+                        <rect key="frame" x="0.0" y="738.5" width="320" height="4"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     </imageView>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="user_detail_gender_female.png" id="30">
@@ -277,7 +277,7 @@
                         </connections>
                     </button>
                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="400" contentMode="left" text="kSNSAccount" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="94" customClass="LocalizableLabel">
-                        <rect key="frame" x="120" y="659" width="80" height="20"/>
+                        <rect key="frame" x="120" y="659.5" width="80" height="20"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <fontDescription key="fontDescription" type="system" pointSize="11"/>
                         <color key="textColor" red="0.3921568627" green="0.28235294119999998" blue="0.15686274510000001" alpha="1" colorSpace="calibratedRGB"/>
@@ -299,7 +299,7 @@
                         <size key="shadowOffset" width="0.0" height="0.0"/>
                     </label>
                     <button opaque="NO" tag="400" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="64">
-                        <rect key="frame" x="80" y="692" width="27" height="27"/>
+                        <rect key="frame" x="80" y="692.5" width="27" height="27"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                         <state key="normal" backgroundImage="user_detail_sina.png">
@@ -314,7 +314,7 @@
                         </connections>
                     </button>
                     <button opaque="NO" tag="400" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="65">
-                        <rect key="frame" x="147" y="692" width="27" height="27"/>
+                        <rect key="frame" x="147" y="692.5" width="27" height="27"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                         <state key="normal" backgroundImage="user_detail_qq.png">
@@ -329,7 +329,7 @@
                         </connections>
                     </button>
                     <button opaque="NO" tag="400" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="66">
-                        <rect key="frame" x="213" y="692" width="27" height="27"/>
+                        <rect key="frame" x="213" y="692.5" width="27" height="27"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                         <state key="normal" backgroundImage="user_detail_facebook.png">
@@ -344,7 +344,7 @@
                         </connections>
                     </button>
                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="400" contentMode="left" text="kNoSNSTips" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="6" id="95" customClass="LocalizableLabel">
-                        <rect key="frame" x="-3" y="691" width="320" height="29"/>
+                        <rect key="frame" x="-3" y="691.5" width="320" height="29"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <fontDescription key="fontDescription" type="system" pointSize="11"/>
                         <color key="textColor" red="0.3921568627" green="0.28235294119999998" blue="0.15686274510000001" alpha="1" colorSpace="calibratedRGB"/>
@@ -353,7 +353,7 @@
                         <size key="shadowOffset" width="0.0" height="0.0"/>
                     </label>
                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="400" contentMode="left" text="kSpecial" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="59" customClass="LocalizableLabel">
-                        <rect key="frame" x="120" y="729" width="80" height="20"/>
+                        <rect key="frame" x="120" y="729.5" width="80" height="20"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <fontDescription key="fontDescription" type="system" pointSize="11"/>
                         <color key="textColor" red="0.3921568627" green="0.28235294119999998" blue="0.15686274510000001" alpha="1" colorSpace="calibratedRGB"/>
@@ -362,7 +362,7 @@
                         <size key="shadowOffset" width="0.0" height="0.0"/>
                     </label>
                     <button opaque="NO" tag="400" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="112">
-                        <rect key="frame" x="47" y="767" width="65" height="23"/>
+                        <rect key="frame" x="47" y="767.5" width="65" height="23"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <fontDescription key="fontDescription" type="system" pointSize="11"/>
                         <state key="normal" title="查看帖子">
@@ -377,7 +377,7 @@
                         </connections>
                     </button>
                     <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="71">
-                        <rect key="frame" x="127" y="767" width="65" height="23"/>
+                        <rect key="frame" x="127" y="767.5" width="65" height="23"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <fontDescription key="fontDescription" type="system" pointSize="11"/>
                         <state key="normal" title="管理">
@@ -392,7 +392,7 @@
                         </connections>
                     </button>
                     <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="60">
-                        <rect key="frame" x="208" y="767" width="65" height="23"/>
+                        <rect key="frame" x="208" y="767.5" width="65" height="23"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <fontDescription key="fontDescription" type="system" pointSize="11"/>
                         <state key="normal" title="加入黑名单">
@@ -554,4 +554,9 @@
         <image name="user_detail_sina.png" width="27" height="27"/>
         <image name="user_detail_vip.png" width="14" height="14"/>
     </resources>
+    <simulatedMetricsContainer key="defaultSimulatedMetrics">
+        <simulatedStatusBarMetrics key="statusBar"/>
+        <simulatedOrientationMetrics key="orientation"/>
+        <simulatedScreenMetrics key="destination" type="retina4"/>
+    </simulatedMetricsContainer>
 </document>

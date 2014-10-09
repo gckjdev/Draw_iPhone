@@ -213,6 +213,11 @@
     }
     [self updateGroupInfo];
     self.backgroundColor = COLOR_WHITE;
+    
+    [self.editButton setImage:[UIImage imageNamedFixed:@"user_detail_edit@2x"] forState:UIControlStateNormal];
+    [self.bgButton setImage:[UIImage imageNamedFixed:@"user_detail_set_homebg@2x"] forState:UIControlStateNormal];
+    [self.pullDownButton setImage:[UIImage imageNamedFixed:@"user_detail_pull_down@2x"] forState:UIControlStateNormal];
+    [self.opusShowButton setImage:[UIImage imageNamedFixed:@"user_detail_more@2x"] forState:UIControlStateNormal];
 }
 
 
@@ -359,6 +364,8 @@
     [_groupHeader release];
     [_seperator5 release];
     [_vipFlag release];
+    [_pullDownButton release];
+    [_opusShowButton release];
     [super dealloc];
 }
 

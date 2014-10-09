@@ -11,7 +11,7 @@
 //#import "PPSNSCommonService.h"
 
 @interface ShareService : NSObject<MyPaintManagerDelegate>
-
+@property (nonatomic,retain)MyPaint* draft;
 + (ShareService*)defaultService;
 
 - (void)shareWithImage:(UIImage*)image

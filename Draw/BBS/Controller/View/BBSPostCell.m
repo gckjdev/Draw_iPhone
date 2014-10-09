@@ -243,6 +243,16 @@
     [self updateCellWithBBSPost:post];
 }
 
+-(void)setButton{
+    
+    [_support setImage:[UIImage imageNamedFixed:@"bbs_post_support.png"]
+              forState:UIControlStateNormal];
+    [_comment setImage:[UIImage imageNamedFixed:@"bbs_post_support.png"]
+              forState:UIControlStateNormal];
+    
+    
+}
+
 
 - (void)dealloc {
     PPRelease(_support);

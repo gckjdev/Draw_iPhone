@@ -21,6 +21,7 @@
 #import "BrushAction.h"
 #include <ImageIO/ImageIO.h>
 #include <MobileCoreServices/MobileCoreServices.h>
+#import "ShareService.h"
 
 //#define DEFAULT_PLAY_SPEED  (0.01)
 //#define MIN_PLAY_SPEED      (0.001f)
@@ -986,6 +987,7 @@ typedef enum {
         finalImage:(UIImage*)finalImage
         outputPath:(NSString*)outputPath
         scaleSize:(double)scaleSize
+
 {
     
     PPDebug(@"<createGIF> delay(%f) path(%@) scale(%f)", delayTime, outputPath, scaleSize);
@@ -1015,9 +1017,16 @@ typedef enum {
 
 #ifdef DEBUG
     
+    
+    NSString* name = [NSString stringWithFormat:@"作者：%@",[ShareService defaultService].draft.drawUserNickName];
+    PPDebug(@"nickname is %@",name);
+    
+    UIImage* srcImage = [self markStringIntoImage:[UIImage imageNamed:@"shipinEnding.jpg"] AndText:name];
     [srcImgList addObject:[srcImgList objectAtIndex:0]];
-    [srcImgList addObject:[UIImage imageNamed:@"shipinEnding.jpg"]];
-    [srcImgList addObject:[UIImage imageNamed:@"shipinEnding.jpg"]];
+    [srcImgList addObject:[srcImgList objectAtIndex:0]];
+    [srcImgList addObject:srcImage];
+    [srcImgList addObject:srcImage];
+    [srcImgList addObject:srcImage];
     
     NSString *path2 = [NSHomeDirectory() stringByAppendingPathComponent:
                       [NSString stringWithFormat:@"Documents/movie.mp4"]];
@@ -1025,7 +1034,7 @@ typedef enum {
     [[NSFileManager defaultManager] removeItemAtPath:path2 error:NULL];
     
     
-    [HJImagesToVideo saveVideoToPhotosWithImages:srcImgList withSize:(CGSize){480, 320}  withFPS:5 animateTransitions:YES  withCallbackBlock:^(BOOL success){
+    [HJImagesToVideo saveVideoToPhotosWithImages:srcImgList withSize:(CGSize){960, 640}  withFPS:5 animateTransitions:YES  withCallbackBlock:^(BOOL success){
         if (success) {
             NSLog(@"Success");
         } else {
@@ -1033,6 +1042,7 @@ typedef enum {
         }
     }];
     [srcImgList removeLastObject];
+    
    
     
     
@@ -1079,9 +1089,9 @@ typedef enum {
     
     [srcImgList release];
     
-    
+#ifdef DEBUG
     [HJImagesToVideo addAudioToFileAtPath:@"/Users/chaoso/Desktop/temp.mp4" toPath:@"/Users/chaoso/Desktop/2.mp4"];
-    
+#endif
     
     return;
 }
@@ -1202,6 +1212,57 @@ typedef enum {
         [_gestureRecognizerManager addTapGestureReconizerToView:self];
     }
     _supportLongPress = enable;
+}
+
++(UIImage *)markStringIntoImage:(UIImage *)srcImage AndText:(NSString *)text{
+    
+    if (text == nil) {
+        return srcImage;
+    }
+    float labelHeight = srcImage.size.height*0.05;
+    int labelFontSize = (int)labelHeight;
+    
+    if (labelFontSize > 25){
+        labelFontSize = 25;
+    }
+    
+    UIColor* imageShadowColor = [UIColor colorWithRed:112/255.0 green:109/255.0 blue:109/255.0 alpha:1.0];
+    //    UIColor* labelShadowColor = [UIColor colorWithRed:108/255.0 green:107/255.0 blue:107/255.0 alpha:1.0];
+    
+    UILabel* label = [[[UILabel alloc] initWithFrame:CGRectMake(0, 0, srcImage.size.width + shadow*2, labelHeight)] autorelease];
+    [label setText:text];
+    [label setAdjustsFontSizeToFitWidth:YES];
+    [label setMinimumFontSize:3];
+    [label setTextColor:COLOR_WHITE];
+    
+    [label setFont:[UIFont boldSystemFontOfSize:labelFontSize]];
+    [label setTextAlignment:UITextAlignmentCenter];
+    
+    UIGraphicsBeginImageContext(CGSizeMake(490, srcImage.size.height + 5*3 + labelHeight+5));
+    
+    CGContextRef ref = UIGraphicsGetCurrentContext();
+    CGContextSaveGState(ref);
+    
+//    //line of left
+//    CGContextSetShadowWithColor(ref, CGSizeMake(-5, 0), 10, imageShadowColor.CGColor);
+//    //right line
+//    CGContextSetShadowWithColor(ref, CGSizeMake(5, 0), 10, imageShadowColor.CGColor);
+//    CGContextSetShadowWithColor(ref, CGSizeMake(0, 5), 10, imageShadowColor.CGColor);
+    
+    // draw image with shadow
+    CGRect rect = CGRectMake(5, 0, 490, 320);
+    [srcImage drawInRect:rect];
+    
+    CGContextRestoreGState(ref);
+    
+    // draw text
+    [label drawTextInRect:CGRectMake(0, srcImage.size.height-labelHeight, srcImage.size.width, labelHeight)];
+    
+    UIImage *resultingImage = UIGraphicsGetImageFromCurrentImageContext();
+    return resultingImage;
+
+    
+    
 }
 
 

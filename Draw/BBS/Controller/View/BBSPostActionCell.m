@@ -60,9 +60,11 @@
     self.timestamp.font = [_bbsFontManager actionDateFont];
     
     BBSImageManager *imageManager = [BBSImageManager defaultManager];
-    [self.option setImage:[imageManager bbsDetailOptionUp]];
+    [self.option setImage:[imageManager bbsDetailOptionUp]
+     ];
     
-    [self.reply setImage:[imageManager bbsDetailReply] forState:UIControlStateNormal];
+    [self.reply setImage:[imageManager bbsDetailReply]
+                forState:UIControlStateNormal];
     
     [self.supportImage setImage:[[BBSImageManager defaultManager] bbsPostSupportImage]];
     self.useContentLabel = NO;
