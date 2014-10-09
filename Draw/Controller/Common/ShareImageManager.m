@@ -610,7 +610,7 @@ static NSMutableDictionary *colorImageDict;
 - (UIImage *)fixedImageNamed:(NSString *)name
 {
     NSString *temp = [self fixImageName:name];
-    return [UIImage imageNamed:temp];
+    return [UIImage imageNamedFixed:temp];
 }
 
 - (UIImage *)fixedAndStrectchableImageNamed:(NSString *)name

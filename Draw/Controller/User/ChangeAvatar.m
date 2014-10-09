@@ -296,14 +296,24 @@
         picker.delegate = self;
         
         if ([DeviceDetection isIPAD]){
-            UIPopoverController *controller = [[UIPopoverController alloc] initWithContentViewController:picker];
-            self.popoverController = controller;
-            [controller release];
-            CGRect popoverRect = CGRectMake((768-400)/2, -140, 400, 400);
-            [_popoverController presentPopoverFromRect:popoverRect 
-                                               inView:_superViewController.view
-                             permittedArrowDirections:UIPopoverArrowDirectionUp
-                                             animated:YES];
+            if (ISIOS8){
+                picker.modalPresentationStyle = UIModalPresentationPopover;
+                UIPopoverPresentationController* popVC = picker.popoverPresentationController;
+                popVC.permittedArrowDirections = UIPopoverArrowDirectionAny;
+
+                [_superViewController showViewController:picker
+                                                  sender:_superViewController];
+            }
+            else{
+                UIPopoverController *controller = [[UIPopoverController alloc] initWithContentViewController:picker];
+                self.popoverController = controller;
+                [controller release];
+                CGRect popoverRect = CGRectMake((768-400)/2, -140, 400, 400);
+                [_popoverController presentPopoverFromRect:popoverRect 
+                                                   inView:_superViewController.view
+                                 permittedArrowDirections:UIPopoverArrowDirectionUp
+                                                 animated:YES];
+            }
             
         }else {
             [_superViewController presentModalViewController:picker animated:YES];
@@ -351,7 +361,7 @@
 
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
 {
-    [self handleSelectAvatar:buttonIndex];
+   [self handleSelectAvatar:buttonIndex];
 }
 
 

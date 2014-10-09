@@ -435,7 +435,7 @@ if (btn) {\
     
     if (ISIPAD){
         
-        [panel.switchPage setImage:[UIImage imageNamedFixed:@"draw_switch@2x.pngg"]
+        [panel.switchPage setImage:[UIImage imageNamedFixed:@"draw_switch@2x.png"]
                        forState:UIControlStateNormal];
         
         [panel.straw setImage:[UIImage imageNamedFixed:@"draw_straw@2x.png"] forState:UIControlStateNormal];

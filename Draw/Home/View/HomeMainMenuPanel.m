@@ -28,6 +28,14 @@
 {
     HomeMainMenuPanel<HomeCommonViewProtocol> *view = [self createViewWithXibIdentifier:[self getViewIdentifier]];
     view.delegate = delegate;
+    
+    if (ISIPAD){
+        [view.next setImage:[UIImage imageNamedFixed:@"common_home_nextpage.png"] forState:UIControlStateNormal];
+        
+        [view.previous setImage:[UIImage imageNamedFixed:@"common_home_front_page.png"] forState:UIControlStateNormal];
+        
+    }
+    
     [view updateView];
     return view;
 }
