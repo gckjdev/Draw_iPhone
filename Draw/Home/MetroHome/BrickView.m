@@ -69,7 +69,7 @@
 */
 
 #define IMAGE_HEIGHT (ISIPAD ? 60:40)
-#define IMAGE_WIDTH  (ISIPAD ? 60:40)
+#define IMAGE_WIDTH  (ISIPAD ? 100:100)
 #define TITLE_LABEL_X (ISIPAD ? 10:5)
 #define TITLE_LABEL_Y (ISIPAD ? 10:5)
 
@@ -107,15 +107,14 @@
     [labelDesc setText:_imageTitle];
     [labelDesc setFont:AD_BOLD_FONT(18, 10)];
     [labelDesc setTextColor:[UIColor whiteColor]];
+    [labelDesc setTextAlignment:NSTextAlignmentCenter];
     [labelDesc setBackgroundColor:[UIColor clearColor]];
     
     [self addSubview:label];
     [self addSubview:labelDesc];
     [self addSubview:imageView];
     
-    [label release];
-    [labelDesc release];
-    [imageView release];
+    
     
     [labelDesc setTranslatesAutoresizingMaskIntoConstraints:NO];
     [imageView setTranslatesAutoresizingMaskIntoConstraints:NO];
@@ -147,10 +146,16 @@
     NSString *constrain = [NSString stringWithFormat:@"H:[imageView(==%f)]",imageViewHeight];
     [constraints addObject:constrain];
     
+    
+    // 上下的間隔LabelDesc
     CGFloat labelDescHeight = (isIPad ? 30:15);
     NSString *constrain2 = [NSString stringWithFormat:@"V:[imageView(==%f)]-2-[labelDesc(==%f)]",imageViewHeight,labelDescHeight];
     [constraints addObject:constrain2];
     
+    
+    //左右的間隔LabelDesc
+    NSString *constrain10 = [NSString stringWithFormat:@"H:|-%f-[labelDesc(==%d)]",x,IMAGE_WIDTH];
+    [constraints addObject:constrain10];
     
     // Set constraints.
     for (NSString *string in constraints) {
@@ -161,6 +166,9 @@
     }
 
     [constraints release];
+    [label release];
+    [labelDesc release];
+    [imageView release];
 }
 
 - (void)setBottomLabelText:(NSString*)text color:(UIColor*)color

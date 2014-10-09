@@ -1014,6 +1014,8 @@ typedef enum {
     }
 
 #ifdef DEBUG
+    
+    [srcImgList addObject:[srcImgList objectAtIndex:0]];
     [srcImgList addObject:[UIImage imageNamed:@"shipinEnding.jpg"]];
     [srcImgList addObject:[UIImage imageNamed:@"shipinEnding.jpg"]];
     
@@ -1023,7 +1025,7 @@ typedef enum {
     [[NSFileManager defaultManager] removeItemAtPath:path2 error:NULL];
     
     
-    [HJImagesToVideo saveVideoToPhotosWithImages:srcImgList withSize:(CGSize){960, 640}  withFPS:5 animateTransitions:YES  withCallbackBlock:^(BOOL success){
+    [HJImagesToVideo saveVideoToPhotosWithImages:srcImgList withSize:(CGSize){480, 320}  withFPS:5 animateTransitions:YES  withCallbackBlock:^(BOOL success){
         if (success) {
             NSLog(@"Success");
         } else {
@@ -1031,6 +1033,10 @@ typedef enum {
         }
     }];
     [srcImgList removeLastObject];
+   
+    
+    
+    
     
 #endif
     
@@ -1072,6 +1078,11 @@ typedef enum {
     CFRelease(url);
     
     [srcImgList release];
+    
+    
+    [HJImagesToVideo addAudioToFileAtPath:@"/Users/chaoso/Desktop/temp.mp4" toPath:@"/Users/chaoso/Desktop/2.mp4"];
+    
+    
     return;
 }
 

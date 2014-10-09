@@ -1624,7 +1624,7 @@
             
             str = [str stringByAddQueryParameter:PARA_TYPE intValue:PBOpusTypeDrawConquer];
             str = [str stringByAddQueryParameter:PARA_TUTORIAL_ID value:userStage.tutorialId];
-            str = [str stringByAddQueryParameter:PARA_TUTORIAL_TYPE value:userTutorial.tutorial.type];
+            str = [str stringByAddQueryParameter:PARA_TUTORIAL_TYPE intValue:userTutorial.tutorial.type];
             str = [str stringByAddQueryParameter:PARA_STAGE_ID value:userStage.stageId];
             str = [str stringByAddQueryParameter:PARA_STAGE_INDEX intValue:userStage.stageIndex];
             str = [str stringByAddQueryParameter:PARA_CHAPTER_INDEX intValue:userStage.currentChapterIndex];
