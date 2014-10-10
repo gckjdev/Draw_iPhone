@@ -31,6 +31,7 @@
 
 @implementation ShareService
 
+
 static ShareService* _defaultService;
 
 + (ShareService*)defaultService
@@ -451,6 +452,7 @@ static ShareService* _defaultService;
     return;
 }
 
+
 //YES为share NO为Album
 - (void)saveGif:(PPViewController*)superController
           draft:(MyPaint*)draft
@@ -458,7 +460,12 @@ static ShareService* _defaultService;
   gifFrameCount:(int)gifFrameCount
       scaleSize:(float)scaleSize
 {
+    
+    self.draft = draft;
+    
     [superController showActivityWithText:NSLS(@"kSaving")];
+    
+    PPDebug(@"draw user nick name=%@", draft.drawUserNickName);
     
     [superController registerNotificationWithName:NOTIFICATION_GIF_CREATION usingBlock:^(NSNotification *note) {
         float progress = [[[note userInfo] objectForKey:KEY_DATA_PARSING_PROGRESS] floatValue];
@@ -694,6 +701,12 @@ static ShareService* _defaultService;
     [sheet showInView:superView showAtPoint:superView.center animated:YES];
     [sheet release];
 }
-
+-(void)dealloc{
+    
+    [super dealloc];
+    [_draft release];
+    
+    
+}
 
 @end

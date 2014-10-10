@@ -64,6 +64,7 @@ typedef enum{
     [_coinBalanceBgImageView release];
     [_balanceTipLabel release];
     [_tableViewBgImageView release];
+    [_backgroundImage release];
     [super dealloc];
 }
 
@@ -83,6 +84,7 @@ typedef enum{
     [self setCoinBalanceBgImageView:nil];
     [self setBalanceTipLabel:nil];
     [self setTableViewBgImageView:nil];
+    [self setBackgroundImage:nil];
     [super viewDidUnload];
 }
 
@@ -236,6 +238,7 @@ typedef enum{
     SET_VIEW_ROUND_CORNER(self.dataTableView);
     
     [self.tableViewBgImageView setBackgroundColor:COLOR_RED];
+    self.backgroundImage.image = [UIImage imageNamedFixed:@"store_bg@2x.jpg"];
 }
 
 - (void)hideTaoBaoTab

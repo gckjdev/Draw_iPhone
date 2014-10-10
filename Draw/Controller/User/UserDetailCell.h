@@ -105,6 +105,8 @@
 @property (retain, nonatomic) IBOutlet LocalizableLabel *groupHeader;
 
 @property (retain, nonatomic) IBOutlet UIImageView *seperator5;
+@property (retain, nonatomic) IBOutlet UIButton *pullDownButton;
+@property (retain, nonatomic) IBOutlet UIButton *opusShowButton;
 
 - (IBAction)inviteMember:(id)sender;
 - (IBAction)inviteGuest:(id)sender;
