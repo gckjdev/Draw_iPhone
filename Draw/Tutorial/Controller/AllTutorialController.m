@@ -33,7 +33,7 @@
 {
 
     [CommonTitleView createTitleView:self.view];
-    id titleView = [CommonTitleView titleView:self.view];
+    CommonTitleView *titleView = [CommonTitleView titleView:self.view];
     [titleView setTitle:NSLS(@"AllTutorial")];
     [titleView setTarget:self];
     [[CommonTitleView titleView:self.view] setBackButtonSelector:@selector(clickBack:)];
