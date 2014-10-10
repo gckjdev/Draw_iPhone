@@ -65,6 +65,7 @@ static BBSImageManager* _staticBBSImageManager;
 }
 - (UIImage *)optionButtonBGImage
 {
+    
     return [_resService stretchableImageWithImageName:@"bbs_option_bg" inResourcePackage:RESOURCE_PACKAGE_BBS];
 }
 - (UIImage *)bbsBackImage
@@ -83,7 +84,10 @@ static BBSImageManager* _staticBBSImageManager;
 
 - (UIImage *)bbsActionSheetBG
 {
-    return [[ShareImageManager defaultManager] fixedImageNamed:@"bbs_action_sheet_bg"];
+//    return [[ShareImageManager defaultManager] fixedImageNamed:@"bbs_action_sheet_bg"];
+    
+    
+      return [UIImage imageNamedFixed:[[ShareImageManager defaultManager] fixImageName:@"bbs_create_input_bg"]];
 
 //    return [_resService stretchableImageWithImageName:@"bbs_action_sheet_bg"
 //                             inResourcePackage:RESOURCE_PACKAGE_BBS];

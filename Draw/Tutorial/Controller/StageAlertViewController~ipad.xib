@@ -18,8 +18,8 @@
             <rect key="frame" x="0.0" y="0.0" width="480" height="250"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Dmt-J8-faL">
-                    <rect key="frame" x="5" y="5" width="240" height="240"/>
+                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Dmt-J8-faL">
+                    <rect key="frame" x="8" y="11" width="240" height="228"/>
                 </imageView>
                 <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Bh0-Wt-wWq">
                     <rect key="frame" x="253" y="22" width="207" height="100"/>
@@ -30,6 +30,10 @@
                 </textView>
                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ddd-J1-Vs3">
                     <rect key="frame" x="261" y="130" width="199" height="29"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="29" id="EgZ-Ce-AJn"/>
+                        <constraint firstAttribute="width" constant="199" id="KBs-eG-csX"/>
+                    </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <nil key="highlightedColor"/>
                 </label>
@@ -46,6 +50,14 @@
             <color key="backgroundColor" red="0.2784313725" green="0.38823529410000002" blue="0.1058823529" alpha="0.0" colorSpace="calibratedRGB"/>
             <constraints>
                 <constraint firstItem="ddd-J1-Vs3" firstAttribute="top" secondItem="Bh0-Wt-wWq" secondAttribute="bottom" constant="8" id="9pc-ED-1tU"/>
+                <constraint firstItem="Bh0-Wt-wWq" firstAttribute="leading" secondItem="Dmt-J8-faL" secondAttribute="trailing" constant="5" id="Di2-3q-gpO"/>
+                <constraint firstItem="Dmt-J8-faL" firstAttribute="top" secondItem="KS8-ko-0od" secondAttribute="top" constant="11" id="Ldd-lH-CLB"/>
+                <constraint firstItem="Bh0-Wt-wWq" firstAttribute="top" secondItem="KS8-ko-0od" secondAttribute="top" constant="22" id="Lwg-t5-aCb"/>
+                <constraint firstItem="ddd-J1-Vs3" firstAttribute="leading" secondItem="Dmt-J8-faL" secondAttribute="trailing" constant="13" id="NSi-If-Swc"/>
+                <constraint firstItem="Dmt-J8-faL" firstAttribute="leading" secondItem="KS8-ko-0od" secondAttribute="leading" constant="8" id="RLt-J5-H7r"/>
+                <constraint firstItem="Bh0-Wt-wWq" firstAttribute="trailing" secondItem="ddd-J1-Vs3" secondAttribute="trailing" id="TUq-5W-jEZ"/>
+                <constraint firstItem="Dmt-J8-faL" firstAttribute="centerY" secondItem="KS8-ko-0od" secondAttribute="centerY" id="Z1q-65-aKK"/>
+                <constraint firstAttribute="trailing" secondItem="Bh0-Wt-wWq" secondAttribute="trailing" constant="20" id="vM4-w8-Xvd"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
