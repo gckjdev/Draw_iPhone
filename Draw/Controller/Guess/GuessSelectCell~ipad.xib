@@ -14,7 +14,7 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="guess_select_bg.jpg" id="Vvu-Jx-29C">
-                        <rect key="frame" x="11" y="25" width="676" height="839.5"/>
+                        <rect key="frame" x="11" y="25" width="676" height="840"/>
                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     </imageView>
@@ -169,7 +169,7 @@
                         </connections>
                     </button>
                     <button opaque="NO" tag="114" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="tam-Ph-Hin">
-                        <rect key="frame" x="566" y="513.5" width="74" height="74"/>
+                        <rect key="frame" x="566" y="514" width="74" height="74"/>
                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                         <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                         <state key="normal" backgroundImage="round_dot_15.png">
@@ -199,7 +199,7 @@
                         </connections>
                     </button>
                     <button opaque="NO" tag="112" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="IDa-ug-fYa">
-                        <rect key="frame" x="27" y="515.5" width="74" height="74"/>
+                        <rect key="frame" x="27" y="516" width="74" height="74"/>
                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                         <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                         <state key="normal" backgroundImage="round_dot_13.png">
@@ -214,7 +214,7 @@
                         </connections>
                     </button>
                     <button opaque="NO" tag="115" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="FWn-5y-ELq">
-                        <rect key="frame" x="213" y="587.5" width="74" height="74"/>
+                        <rect key="frame" x="213" y="588" width="74" height="74"/>
                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                         <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                         <state key="normal" backgroundImage="round_dot_16.png">
@@ -229,7 +229,7 @@
                         </connections>
                     </button>
                     <button opaque="NO" tag="116" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="5XS-BK-TeV">
-                        <rect key="frame" x="483" y="659.5" width="74" height="74"/>
+                        <rect key="frame" x="483" y="660" width="74" height="74"/>
                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                         <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                         <state key="normal" backgroundImage="round_dot_17.png">
@@ -244,7 +244,7 @@
                         </connections>
                     </button>
                     <button opaque="NO" tag="117" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="vj8-pz-Hqt">
-                        <rect key="frame" x="21" y="731.5" width="74" height="74"/>
+                        <rect key="frame" x="21" y="732" width="74" height="74"/>
                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                         <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                         <state key="normal" backgroundImage="round_dot_18.png">
@@ -259,7 +259,7 @@
                         </connections>
                     </button>
                     <button opaque="NO" tag="118" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="4g8-4W-AZX">
-                        <rect key="frame" x="407" y="731.5" width="74" height="74"/>
+                        <rect key="frame" x="407" y="732" width="74" height="74"/>
                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                         <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                         <state key="normal" backgroundImage="round_dot_19.png">
@@ -274,7 +274,7 @@
                         </connections>
                     </button>
                     <button opaque="NO" tag="119" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="6cv-sD-9hY">
-                        <rect key="frame" x="261" y="806.5" width="74" height="74"/>
+                        <rect key="frame" x="261" y="807" width="74" height="74"/>
                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                         <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                         <state key="normal" backgroundImage="round_dot_20.png">
@@ -289,7 +289,7 @@
                         </connections>
                     </button>
                     <button opaque="NO" tag="113" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="nPX-F7-Z2E">
-                        <rect key="frame" x="317" y="515.5" width="74" height="74"/>
+                        <rect key="frame" x="317" y="516" width="74" height="74"/>
                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                         <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                         <state key="normal" backgroundImage="round_dot_14.png">

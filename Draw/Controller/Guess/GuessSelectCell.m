@@ -69,7 +69,7 @@
     for (; index < [_guesseds count]; index ++ ) {
         NSNumber *isGuessed = [_guesseds objectAtIndex:index];
         if (isGuessed.boolValue == YES) {
-            [[self opusButtonWithIndex:index] setImage:[UIImage imageNamed:@"shoes@2x.png"] forState:UIControlStateNormal];
+            [[self opusButtonWithIndex:index] setBackgroundImage:[UIImage imageNamedFixed:@"shoes@2x.png"] forState:UIControlStateNormal];
         }else{
             NSString *name = [NSString stringWithFormat:@"round_dot_%d@2x.png", index + 1];
             [[self opusButtonWithIndex:index] setImage:[UIImage imageNamed:name] forState:UIControlStateNormal];

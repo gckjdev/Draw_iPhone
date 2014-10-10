@@ -360,8 +360,9 @@
             [self updateAllBadge];
             if(self.dataTableView.frame.size.width != [[UIScreen mainScreen] bounds].size.width-2*LEFT_RIGHT_MARGIN){
                 self.dataTableView.frame = CGRectMake(LEFT_RIGHT_MARGIN, TOP_MARGIN, [[UIScreen mainScreen] bounds].size.width-2*LEFT_RIGHT_MARGIN, [[UIScreen mainScreen] bounds].size.height-TOP_MARGIN);
+                
             }
-            
+            [self reloadData];
             break;
             
         case TutorialTypeAll:
@@ -401,9 +402,10 @@
     NSDictionary *tabDictionary = @{@(TutorialTypeMine):@"UserTutorialMainCell",
                                     @(TutorialTypeAll):@"AllTutorialCell"};
    
-
+    
     
     if(tag == TutorialTypeMine){
+        
         NSString *nibName =  [tabDictionary objectForKey:@(tag)];
         
         UIView *view = [self getTableViewCellWithDef:nibName WithTableView:tableView];
@@ -420,6 +422,7 @@
         if(nil != ut){
             [viewCell updateCellInfo:ut WithRow:row];
         }
+
         return viewCell;
     }
     if(tag == TutorialTypeAll){
@@ -439,7 +442,6 @@
         if(nil != ut){
            [allTutorialCell updateCellInfo:ut];
         }
-        
         return allTutorialCell;
     }
     

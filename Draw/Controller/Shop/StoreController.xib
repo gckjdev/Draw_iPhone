@@ -33,7 +33,7 @@
                     <rect key="contentStretch" x="0.5" y="0.5" width="0.0" height="0.0"/>
                 </imageView>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" id="30">
-                    <rect key="frame" x="4" y="426" width="312" height="50.999999972027844"/>
+                    <rect key="frame" x="4" y="425.99999994851589" width="312" height="51"/>
                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES"/>
                 </imageView>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" id="97">
@@ -187,7 +187,7 @@
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                 </view>
                 <view contentMode="scaleToFill" id="68">
-                    <rect key="frame" x="172" y="446" width="95" height="24"/>
+                    <rect key="frame" x="172" y="446.00000077612856" width="95" height="23.999999223871431"/>
                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES"/>
                     <subviews>
                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="ingot.png" id="53">
@@ -195,11 +195,11 @@
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         </imageView>
                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" id="54">
-                            <rect key="frame" x="24" y="5" width="51" height="17"/>
+                            <rect key="frame" x="24" y="4.9999992238714306" width="51" height="17"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         </imageView>
                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="0" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="12" id="55">
-                            <rect key="frame" x="26" y="5" width="47" height="17"/>
+                            <rect key="frame" x="26" y="4.9999992238714306" width="47" height="17"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>

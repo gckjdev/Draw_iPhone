@@ -143,7 +143,7 @@ AUTO_CREATE_VIEW_BY_XIB(CustomInfoView);
     
     // set close button
     view.closeButton.hidden = !hasCloseButton;
-    
+    [view.closeButton setImage:[UIImage imageNamedFixed:@"common_dialog_close_btn@2x.png"] forState:UIControlStateNormal];
     
     CGFloat originY = TITLE_HEIGHT + SpaceVertical*2 + infoView.frame.size.height;
 
@@ -160,7 +160,7 @@ AUTO_CREATE_VIEW_BY_XIB(CustomInfoView);
 //        [button setBackgroundImage:[[GameApp getImageManager] commonDialogRightBtnImage] forState:UIControlStateNormal];
         
         button.tag = 0;
-        
+    
         [view.mainView addSubview:button];
     }
     
