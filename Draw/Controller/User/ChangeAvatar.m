@@ -295,28 +295,40 @@
         picker.allowsEditing = !self.userOriginalImage;
         picker.delegate = self;
         
-        if ([DeviceDetection isIPAD]){
-            if (ISIOS8){
-                picker.modalPresentationStyle = UIModalPresentationPopover;
-                UIPopoverPresentationController* popVC = picker.popoverPresentationController;
-                popVC.permittedArrowDirections = UIPopoverArrowDirectionAny;
+        if (ISIOS8){
+            picker.modalPresentationStyle = UIModalPresentationPopover;
+            UIPopoverPresentationController* popVC = picker.popoverPresentationController;
+            popVC.permittedArrowDirections = UIPopoverArrowDirectionUp;
+            popVC.sourceView = _superViewController.view;
+            float screenWidth = [UIScreen mainScreen].bounds.size.width;
+            float width = 400;
+            popVC.sourceRect = ISIPAD ? CGRectMake((screenWidth-width)/2, -140, width, width) : _superViewController.view.bounds;
 
-                [_superViewController showViewController:picker
-                                                  sender:_superViewController];
-            }
-            else{
-                UIPopoverController *controller = [[UIPopoverController alloc] initWithContentViewController:picker];
-                self.popoverController = controller;
-                [controller release];
-                CGRect popoverRect = CGRectMake((768-400)/2, -140, 400, 400);
-                [_popoverController presentPopoverFromRect:popoverRect 
-                                                   inView:_superViewController.view
-                                 permittedArrowDirections:UIPopoverArrowDirectionUp
-                                                 animated:YES];
-            }
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+
+                [_superViewController presentViewController:picker
+                                                   animated:NO
+                                                 completion:nil];
+
+            });
             
-        }else {
-            [_superViewController presentModalViewController:picker animated:YES];
+        }
+        else{
+            if ([DeviceDetection isIPAD]){
+                    UIPopoverController *controller = [[UIPopoverController alloc] initWithContentViewController:picker];
+                    self.popoverController = controller;
+                    [controller release];
+                    CGRect popoverRect = CGRectMake((768-400)/2, -140, 400, 400);
+                    [_popoverController presentPopoverFromRect:popoverRect 
+                                                       inView:_superViewController.view
+                                     permittedArrowDirections:UIPopoverArrowDirectionUp
+                                                     animated:YES];
+            }else {
+                
+                [_superViewController presentViewController:picker
+                                                   animated:YES
+                                                 completion:nil];
+            }
         }
         
         [picker release];
@@ -332,7 +344,20 @@
         picker.sourceType = UIImagePickerControllerSourceTypeCamera;
         picker.allowsEditing = YES;
         picker.delegate = self;
-        [_superViewController presentModalViewController:picker animated:YES];        
+        
+        if (ISIOS8){
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{                
+                [_superViewController presentViewController:picker
+                                                   animated:NO
+                                                 completion:nil];
+            });
+            
+        }
+        else{
+            [_superViewController presentViewController:picker
+                                               animated:YES
+                                             completion:nil];
+        }
         [picker release];
     }
     

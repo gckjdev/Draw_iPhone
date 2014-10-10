@@ -65,17 +65,37 @@
         picker.allowsEditing = YES;
         picker.delegate = self;
         
-        if ([DeviceDetection isIPAD]){
-            UIPopoverController *controller = [[UIPopoverController alloc] initWithContentViewController:picker];
-            self.photoPopoverController = controller;
-            [controller release];
-            CGRect popoverRect = CGRectMake((768-400)/2, -140, 400, 400);
-            [_photoPopoverController presentPopoverFromRect:popoverRect
-                                                     inView:_superViewController.view
-                                   permittedArrowDirections:UIPopoverArrowDirectionUp
-                                                   animated:YES];
-        } else {
-            [_superViewController presentModalViewController:picker animated:YES];
+        if (ISIOS8){
+            picker.modalPresentationStyle = UIModalPresentationPopover;
+            UIPopoverPresentationController* popVC = picker.popoverPresentationController;
+            popVC.permittedArrowDirections = UIPopoverArrowDirectionUp;
+            popVC.sourceView = _superViewController.view;
+            float screenWidth = [UIScreen mainScreen].bounds.size.width;
+            float width = 400;
+            popVC.sourceRect = ISIPAD ? CGRectMake((screenWidth-width)/2, -140, width, width) : _superViewController.view.bounds;
+            
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                
+                [_superViewController presentViewController:picker
+                                                   animated:NO
+                                                 completion:nil];
+                
+            });
+            
+        }
+        else{
+            if ([DeviceDetection isIPAD]){
+                UIPopoverController *controller = [[UIPopoverController alloc] initWithContentViewController:picker];
+                self.photoPopoverController = controller;
+                [controller release];
+                CGRect popoverRect = CGRectMake((768-400)/2, -140, 400, 400);
+                [_photoPopoverController presentPopoverFromRect:popoverRect
+                                                         inView:_superViewController.view
+                                       permittedArrowDirections:UIPopoverArrowDirectionUp
+                                                       animated:YES];
+            } else {
+                [_superViewController presentModalViewController:picker animated:YES];
+            }
         }
         [picker release];
     }
