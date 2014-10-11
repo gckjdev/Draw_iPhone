@@ -568,7 +568,7 @@
     OfflineDrawViewController *odc = [[OfflineDrawViewController alloc] initWithTargetType:TypeGraffiti
                                                                                   delegate:self
                                                                            startController:nil];
-    [self presentModalViewController:odc animated:YES];
+    [self presentViewController:odc animated:YES completion:nil];
     [odc release];
 }
 
@@ -753,7 +753,7 @@
            canvasSize:(CGSize)size
             drawImage:(UIImage *)drawImage
 {
-    [controller dismissModalViewControllerAnimated:YES];
+    [controller dismissViewControllerAnimated:YES completion:nil];
     [[ChatService defaultService]  sendDrawMessage:drawActionList
                                         canvasSize:size
                                       friendUserId:self.fid
@@ -763,7 +763,7 @@
 
 - (void)didController:(OfflineDrawViewController *)controller submitImage:(UIImage *)image
 {
-    [controller dismissModalViewControllerAnimated:YES];
+    [controller dismissViewControllerAnimated:YES completion:nil];
     [[ChatService defaultService]  sendImage:image
                                 friendUserId:self.fid
                                      isGroup:[self isGroup]];
@@ -1312,7 +1312,7 @@
                                                                                    bgImage:image];
 //    odc.bgImage = image;
 //    odc.bgImageName = [NSString stringWithFormat:@"%@.png", [NSString GetUUID]];
-    [self presentModalViewController:odc animated:YES];
+    [self presentViewController:odc animated:YES completion:nil];
     [odc release];
 }
 

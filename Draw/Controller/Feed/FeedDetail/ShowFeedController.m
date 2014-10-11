@@ -282,7 +282,7 @@ typedef enum{
             cell.backgroundColor = [UIColor clearColor];
         }
         if (row == 0) {
-            [cell.textLabel setTextAlignment:UITextAlignmentCenter];
+            [cell.textLabel setTextAlignment:NSTextAlignmentCenter];
             [cell.textLabel setFont:[UIFont systemFontOfSize:SPACE_CELL_FONT_SIZE]];
             TableTab *tab = [_tabManager currentTab];
             if (tab.status == TableTabStatusLoading) {
@@ -969,7 +969,7 @@ typedef enum{
 {
     [_commentHeader setSelectedType:CommentTypeContestComment];
     CommentController *cc = [[CommentController alloc] initWithFeed:self.feed forContestReport:YES];
-    [self presentModalViewController:cc animated:YES];
+    [self presentViewController:cc animated:YES completion:nil];
     [cc release];
 }
 
@@ -1010,7 +1010,7 @@ typedef enum{
             CHECK_AND_LOGIN(self.view);
             
             CommentController *cc = [[CommentController alloc] initWithFeed:self.feed forContestReport:NO];
-            [self presentModalViewController:cc animated:YES];
+            [self presentViewController:cc animated:YES completion:nil];
             [_commentHeader setSelectedType:CommentTypeComment];
             [cc release];
             break;
@@ -1095,7 +1095,7 @@ typedef enum{
     CHECK_AND_LOGIN(self.view);
     PPDebug(@"<didStartToReplyToFeed>, feed type = %d,comment = %@", feed.feedType,feed.comment);
     CommentController *replyController = [[CommentController alloc] initWithFeed:self.feed commentFeed:feed];
-    [self presentModalViewController:replyController animated:YES];
+    [self presentViewController:replyController animated:YES completion:nil];
     [replyController release];
 }
 

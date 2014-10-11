@@ -433,7 +433,7 @@ SET_CELL_BG_IN_CONTROLLER;
     [btn setTitle:NSLS(@"kON") forState:UIControlStateNormal];
     [btn setBackgroundImage:[UIImage imageNamed:@"volume_off@2x.png"] forState:UIControlStateSelected];
     [btn setTitle:NSLS(@"kOFF") forState:UIControlStateSelected];
-    [btn.titleLabel setTextAlignment:UITextAlignmentCenter];
+    [btn.titleLabel setTextAlignment:NSTextAlignmentCenter];
     [btn setTitleColor:COLOR_BROWN forState:UIControlStateNormal];
     [btn setTitleColor:COLOR_BROWN forState:UIControlStateSelected];
 }

@@ -263,7 +263,10 @@
 {
     if (dialog.tag == DIALOG_TAG_ESCAPE && dialog.style == CommonDialogStyleDoubleButton && [[AccountManager defaultManager] hasEnoughBalance:1 currency:PBGameCurrencyCoin]) {
         [drawGameService quitGame];
-        [HomeController returnRoom:self];
+//        [HomeController returnRoom:self];
+        
+        [self.navigationController popViewControllerAnimated:YES];
+        
         [[AccountService defaultService] deductCoin:[PPConfigManager getOnlineDrawFleeCoin] source:EscapeType];
         [self cleanData];
         [[LevelService defaultService] minusExp:NORMAL_EXP delegate:self];

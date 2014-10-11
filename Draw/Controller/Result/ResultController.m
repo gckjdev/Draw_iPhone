@@ -495,9 +495,11 @@
     [self initDrawImage];
     [self initScore];
     [self initResultLabel];
+    [self setButtonImageAdapteIpad ];
     [self initActionButton];
     [self initAnswer];   
     [self setCanDragBack:NO];
+
 }
 
 - (void)viewDidDisappear:(BOOL)animated
@@ -844,6 +846,17 @@
             [BalanceNotEnoughAlertView showInController:self];
         }
     }
+}
+
+-(void)setButtonImageAdapteIpad{
+    
+    if (ISIPAD){
+        [self.saveButton setImage:[UIImage imageNamedFixed:@"draw_share@2x.png"] forState:UIControlStateNormal];
+        [self.continueButton setImage:[UIImage imageNamedFixed:@"playagain@2x.png"] forState:UIControlStateNormal];
+        [self.upButton setImage:[UIImage imageNamedFixed:@"flower_result@2x.png"] forState:UIControlStateNormal];
+        [self.downButton setImage:[UIImage imageNamedFixed:@"tomato_result@2x.png"] forState:UIControlStateNormal];
+    }
+    
 }
 
 

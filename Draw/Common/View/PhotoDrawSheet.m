@@ -49,7 +49,7 @@
         picker.sourceType = UIImagePickerControllerSourceTypeCamera;
         picker.allowsEditing = YES;
         picker.delegate = self;
-        [_superViewController presentModalViewController:picker animated:YES];
+        [_superViewController presentViewController:picker animated:YES completion:nil];
         [picker release];
     }
     
@@ -99,7 +99,7 @@
                                        permittedArrowDirections:UIPopoverArrowDirectionUp
                                                        animated:YES];
             } else {
-                [_superViewController presentModalViewController:picker animated:YES];
+                [_superViewController presentViewController:picker animated:YES completion:nil];
             }
         }
         [picker release];
@@ -152,7 +152,7 @@
     if (_photoPopoverController != nil) {
         [_photoPopoverController dismissPopoverAnimated:YES];
     }else{
-        [picker dismissModalViewControllerAnimated:NO];
+        [picker dismissViewControllerAnimated:YES completion:nil];
     }
     
     if (image != nil){
@@ -228,7 +228,7 @@
     if (_photoPopoverController != nil) {
         [_photoPopoverController dismissPopoverAnimated:YES];
     }else{
-        [picker dismissModalViewControllerAnimated:YES];
+        [picker dismissViewControllerAnimated:YES completion:nil];
     }
     
     // clean to avoid memory leak    
