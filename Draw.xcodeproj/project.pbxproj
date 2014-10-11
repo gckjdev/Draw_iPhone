@@ -5737,18 +5737,10 @@
 		CAA581A8197BAFAD00599740 /* ImageSimilarity.mm in Sources */ = {isa = PBXBuildFile; fileRef = CAA581A6197BAF6700599740 /* ImageSimilarity.mm */; };
 		CAA581A9197BAFAE00599740 /* ImageSimilarity.mm in Sources */ = {isa = PBXBuildFile; fileRef = CAA581A6197BAF6700599740 /* ImageSimilarity.mm */; };
 		CAA581AA197BAFAF00599740 /* ImageSimilarity.mm in Sources */ = {isa = PBXBuildFile; fileRef = CAA581A6197BAF6700599740 /* ImageSimilarity.mm */; };
-		CAA581B0197BB0BA00599740 /* HashImageSimilarity.mm in Sources */ = {isa = PBXBuildFile; fileRef = CAA581AF197BB0BA00599740 /* HashImageSimilarity.mm */; };
-		CAA581B1197BB0BA00599740 /* HashImageSimilarity.mm in Sources */ = {isa = PBXBuildFile; fileRef = CAA581AF197BB0BA00599740 /* HashImageSimilarity.mm */; };
-		CAA581B2197BB0BA00599740 /* HashImageSimilarity.mm in Sources */ = {isa = PBXBuildFile; fileRef = CAA581AF197BB0BA00599740 /* HashImageSimilarity.mm */; };
-		CAA581B3197BB0BA00599740 /* HashImageSimilarity.mm in Sources */ = {isa = PBXBuildFile; fileRef = CAA581AF197BB0BA00599740 /* HashImageSimilarity.mm */; };
 		CAA581C1197BC24800599740 /* ImageSimilarityEngine.mm in Sources */ = {isa = PBXBuildFile; fileRef = CAA581C0197BC24800599740 /* ImageSimilarityEngine.mm */; };
 		CAA581C2197BC24800599740 /* ImageSimilarityEngine.mm in Sources */ = {isa = PBXBuildFile; fileRef = CAA581C0197BC24800599740 /* ImageSimilarityEngine.mm */; };
 		CAA581C3197BC24800599740 /* ImageSimilarityEngine.mm in Sources */ = {isa = PBXBuildFile; fileRef = CAA581C0197BC24800599740 /* ImageSimilarityEngine.mm */; };
 		CAA581C4197BC24800599740 /* ImageSimilarityEngine.mm in Sources */ = {isa = PBXBuildFile; fileRef = CAA581C0197BC24800599740 /* ImageSimilarityEngine.mm */; };
-		CAA581C7197BF78B00599740 /* HistogramImageSimilarity.mm in Sources */ = {isa = PBXBuildFile; fileRef = CAA581C6197BF78B00599740 /* HistogramImageSimilarity.mm */; };
-		CAA581C8197BF78C00599740 /* HistogramImageSimilarity.mm in Sources */ = {isa = PBXBuildFile; fileRef = CAA581C6197BF78B00599740 /* HistogramImageSimilarity.mm */; };
-		CAA581C9197BF78C00599740 /* HistogramImageSimilarity.mm in Sources */ = {isa = PBXBuildFile; fileRef = CAA581C6197BF78B00599740 /* HistogramImageSimilarity.mm */; };
-		CAA581CA197BF78C00599740 /* HistogramImageSimilarity.mm in Sources */ = {isa = PBXBuildFile; fileRef = CAA581C6197BF78B00599740 /* HistogramImageSimilarity.mm */; };
 		CAA581CD197C009B00599740 /* ShapeImageSimilarity.mm in Sources */ = {isa = PBXBuildFile; fileRef = CAA581CC197C009B00599740 /* ShapeImageSimilarity.mm */; };
 		CAA581CE197C009B00599740 /* ShapeImageSimilarity.mm in Sources */ = {isa = PBXBuildFile; fileRef = CAA581CC197C009B00599740 /* ShapeImageSimilarity.mm */; };
 		CAA581CF197C009B00599740 /* ShapeImageSimilarity.mm in Sources */ = {isa = PBXBuildFile; fileRef = CAA581CC197C009B00599740 /* ShapeImageSimilarity.mm */; };
@@ -10589,12 +10581,8 @@
 		CAA362471558C3780081D3EB /* FriendService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FriendService.m; sourceTree = "<group>"; };
 		CAA581A5197BAF6600599740 /* ImageSimilarity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageSimilarity.h; sourceTree = "<group>"; };
 		CAA581A6197BAF6700599740 /* ImageSimilarity.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ImageSimilarity.mm; sourceTree = "<group>"; };
-		CAA581AE197BB0BA00599740 /* HashImageSimilarity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HashImageSimilarity.h; sourceTree = "<group>"; };
-		CAA581AF197BB0BA00599740 /* HashImageSimilarity.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = HashImageSimilarity.mm; sourceTree = "<group>"; };
 		CAA581BF197BC24800599740 /* ImageSimilarityEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageSimilarityEngine.h; sourceTree = "<group>"; };
 		CAA581C0197BC24800599740 /* ImageSimilarityEngine.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ImageSimilarityEngine.mm; sourceTree = "<group>"; };
-		CAA581C5197BF78B00599740 /* HistogramImageSimilarity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HistogramImageSimilarity.h; sourceTree = "<group>"; };
-		CAA581C6197BF78B00599740 /* HistogramImageSimilarity.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = HistogramImageSimilarity.mm; sourceTree = "<group>"; };
 		CAA581CB197C009B00599740 /* ShapeImageSimilarity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShapeImageSimilarity.h; sourceTree = "<group>"; };
 		CAA581CC197C009B00599740 /* ShapeImageSimilarity.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ShapeImageSimilarity.mm; sourceTree = "<group>"; };
 		CAA62CC21744C54F00C376BA /* protobuf-c-private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "protobuf-c-private.h"; sourceTree = "<group>"; };
@@ -16135,10 +16123,6 @@
 				CAA581C0197BC24800599740 /* ImageSimilarityEngine.mm */,
 				CAA581A5197BAF6600599740 /* ImageSimilarity.h */,
 				CAA581A6197BAF6700599740 /* ImageSimilarity.mm */,
-				CAA581AE197BB0BA00599740 /* HashImageSimilarity.h */,
-				CAA581AF197BB0BA00599740 /* HashImageSimilarity.mm */,
-				CAA581C5197BF78B00599740 /* HistogramImageSimilarity.h */,
-				CAA581C6197BF78B00599740 /* HistogramImageSimilarity.mm */,
 				CAA581CB197C009B00599740 /* ShapeImageSimilarity.h */,
 				CAA581CC197C009B00599740 /* ShapeImageSimilarity.mm */,
 			);
@@ -24141,7 +24125,6 @@
 				A461B179174CBAA70088B061 /* EGORefreshTableHeaderView.m in Sources */,
 				A461B17A174CBAA70088B061 /* Feed.m in Sources */,
 				EA72202519D14106008AE62B /* fopen_unix.c in Sources */,
-				CAA581C9197BF78C00599740 /* HistogramImageSimilarity.mm in Sources */,
 				D8B58B27197CEE090088E5F7 /* SGFocusImageFrame.m in Sources */,
 				A461B17B174CBAA70088B061 /* FeedManager.m in Sources */,
 				A461B17C174CBAA70088B061 /* FeedService.m in Sources */,
@@ -24177,7 +24160,6 @@
 				A461B1C4174CBAA70088B061 /* GCServer.m in Sources */,
 				A461B1C6174CBAA70088B061 /* TableTab.m in Sources */,
 				A461B1C7174CBAA70088B061 /* TableTabManager.m in Sources */,
-				CAA581B2197BB0BA00599740 /* HashImageSimilarity.mm in Sources */,
 				A461B1C8174CBAA70088B061 /* SuperDrawView.m in Sources */,
 				A461B1D1174CBAA70088B061 /* Contest.m in Sources */,
 				A461B1D2174CBAA70088B061 /* ContestManager.m in Sources */,
@@ -25482,7 +25464,6 @@
 				D837DCD51988FAB2001686BB /* UIColor+RGBValues.m in Sources */,
 				CAA75CBA178A65020041C019 /* PolygonClipTouchHandler.m in Sources */,
 				CACEC2C9178BA7AD00D88643 /* SelectorBox.m in Sources */,
-				CAA581B1197BB0BA00599740 /* HashImageSimilarity.mm in Sources */,
 				D8CC69D319A5EEF500E57398 /* PrizeCell.m in Sources */,
 				CACEC36A178BCD1600D88643 /* SelectorCommand.m in Sources */,
 				CA0FC088178EA13E00A72B79 /* JumpHandler.m in Sources */,
@@ -25704,7 +25685,6 @@
 				A4572D7518570B0F0076ADF7 /* UIView+Pan.m in Sources */,
 				EA5A2EA818584D6E00CABC71 /* UILabel+Touchable.m in Sources */,
 				A4EA9357185B0144004BB69D /* SingHotCell.m in Sources */,
-				CAA581C8197BF78C00599740 /* HistogramImageSimilarity.mm in Sources */,
 				EA9289B61864360F0064A1AC /* UIViewController+BGImage.m in Sources */,
 				D8E63EEB19C1751A00EB213E /* TutorialProtoManager.m in Sources */,
 				A4BE2264186550D000FE2997 /* CellManager.m in Sources */,
@@ -26375,7 +26355,6 @@
 				D837DCD41988FAB2001686BB /* UIColor+RGBValues.m in Sources */,
 				C206FFD8178034450033CF63 /* PSCollectionViewCell.m in Sources */,
 				CA9C11C0178135E0004372B6 /* GradientAction.m in Sources */,
-				CAA581B0197BB0BA00599740 /* HashImageSimilarity.mm in Sources */,
 				D8CC69D219A5EEF500E57398 /* PrizeCell.m in Sources */,
 				A4E64919178426310063F393 /* PBOpus+Extend.m in Sources */,
 				CA02CB6C1785581A00B6910D /* GradientSettingView.m in Sources */,
@@ -26597,7 +26576,6 @@
 				A4572D7418570B0F0076ADF7 /* UIView+Pan.m in Sources */,
 				EA5A2EA718584D6E00CABC71 /* UILabel+Touchable.m in Sources */,
 				A4EA9356185B0144004BB69D /* SingHotCell.m in Sources */,
-				CAA581C7197BF78B00599740 /* HistogramImageSimilarity.mm in Sources */,
 				EA9289B51864360F0064A1AC /* UIViewController+BGImage.m in Sources */,
 				D8E63EEA19C1751A00EB213E /* TutorialProtoManager.m in Sources */,
 				A4BE2263186550D000FE2997 /* CellManager.m in Sources */,
@@ -26975,7 +26953,6 @@
 				EA4119DA176066F500DA72D0 /* DrawUtils.m in Sources */,
 				EA4119DB176066F500DA72D0 /* DrawGameAnimationManager.m in Sources */,
 				EA4119DC176066F500DA72D0 /* BBSTableViewCell.m in Sources */,
-				CAA581B3197BB0BA00599740 /* HashImageSimilarity.mm in Sources */,
 				EA4119DE176066F500DA72D0 /* BBSImageManager.m in Sources */,
 				CA900511194EE775003389FD /* SelectOpusClassViewController.m in Sources */,
 				EA4119DF176066F500DA72D0 /* BBSFontManager.m in Sources */,
@@ -27089,7 +27066,6 @@
 				EA411A62176066F500DA72D0 /* UserGameItemManager.m in Sources */,
 				EA411A63176066F500DA72D0 /* UserGameItemService.m in Sources */,
 				EA411A64176066F500DA72D0 /* DefaultPen.m in Sources */,
-				CAA581CA197BF78C00599740 /* HistogramImageSimilarity.mm in Sources */,
 				EA411A65176066F500DA72D0 /* SuperPen.m in Sources */,
 				EA411A67176066F500DA72D0 /* ShapeBox.m in Sources */,
 				EA411A68176066F500DA72D0 /* DrawBgManager.m in Sources */,
