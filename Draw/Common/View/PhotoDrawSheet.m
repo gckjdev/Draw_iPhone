@@ -66,6 +66,9 @@
         picker.delegate = self;
         
         if (ISIOS8){
+            
+#if __IPHONE_OS_VERSION_MAX_ALLOWED > __IPHONE_7_1
+            
             picker.modalPresentationStyle = UIModalPresentationPopover;
             UIPopoverPresentationController* popVC = picker.popoverPresentationController;
             popVC.permittedArrowDirections = UIPopoverArrowDirectionUp;
@@ -81,6 +84,8 @@
                                                  completion:nil];
                 
             });
+
+#endif
             
         }
         else{
