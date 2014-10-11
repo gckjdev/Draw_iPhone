@@ -23,7 +23,7 @@
     int64_t display = strokes;
     if (strokes > max){
         display = max;
-        return [NSString stringWithFormat:@"%lld+", max];
+        return [NSString stringWithFormat:@"%lld+", display];
     }
     else{
         return [NSString stringWithInt:display];
@@ -33,7 +33,7 @@
 
 + (void)testSpendTime
 {
-    NSString* str = [self spendTimeString:0];
+    NSString* str;
     str = [self spendTimeString:59];
     PPDebug(@"test spend time : %@", str);
     str = [self spendTimeString:60];
