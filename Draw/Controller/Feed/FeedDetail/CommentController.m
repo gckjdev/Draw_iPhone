@@ -125,10 +125,10 @@
         CommonDialog *dialog = [CommonDialog createDialogWithTitle:NSLS(@"kHint") message:NSLS(@"kGiveUpComment") style:CommonDialogStyleDoubleButton];
         [dialog showInView:self.view];
         [dialog setClickOkBlock:^(id infoView){
-            [self dismissModalViewControllerAnimated:YES];
+            [self dismissViewControllerAnimated:YES completion:nil];
         }];
     }else{
-        [self dismissModalViewControllerAnimated:YES];
+        [self dismissViewControllerAnimated:YES completion:nil];
     }
 }
 
@@ -219,7 +219,7 @@
         }else{
             [self.feed incTimesForType:FeedTimesTypeComment];
         }
-        [self dismissModalViewControllerAnimated:YES];
+        [self dismissViewControllerAnimated:YES completion:nil];
         
     }else{
         if (resultCode == ERROR_USER_COMMENT_OWN_OPUS_CONTEST){

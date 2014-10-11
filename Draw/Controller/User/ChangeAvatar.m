@@ -280,7 +280,7 @@
     if (_popoverController != nil) {
         [_popoverController dismissPopoverAnimated:YES];
     }else{
-        [picker dismissModalViewControllerAnimated:YES];
+        [picker dismissViewControllerAnimated:YES completion:nil];
     }
 }
 

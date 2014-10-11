@@ -37,7 +37,7 @@
         label = [[[UILabel alloc] initWithFrame:CGRectMake(0, (view.frame.size.height-LABEL_HEIGHT), width, LABEL_HEIGHT)] autorelease];
         [label setBackgroundColor:[UIColor colorWithRed:0 green:0 blue:0 alpha:0.5]];
         [label setTextColor:[UIColor whiteColor]];
-        [label setTextAlignment:UITextAlignmentCenter];
+        [label setTextAlignment:NSTextAlignmentCenter];
         [label setCenter:CGPointMake(view.frame.size.width/2, label.center.y)];
         [label setFont:[UIFont systemFontOfSize:LABEL_FONT_SIZE]];
         label.tag = LABEL_TAG;

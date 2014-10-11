@@ -161,7 +161,7 @@
                                     fromController:(UIViewController *)fromController
 {
     CreatePostController *cp = [[[CreatePostController alloc] initWithBoard:board] autorelease];
-    [fromController presentModalViewController:cp animated:YES];
+    [fromController presentViewController:cp animated:YES completion:nil];
     return cp;
 }
 
@@ -169,7 +169,7 @@
                                     fromController:(UIViewController *)fromController
 {
     CreatePostController *cp = [[CreatePostController alloc] initWithGroup:group];
-    [fromController presentModalViewController:cp animated:YES];
+    [fromController presentViewController:cp animated:YES completion:nil];
     return [cp autorelease];
 
 }
@@ -186,7 +186,7 @@
     cp.postUid = post.createUser.userId;
     cp.postText = post.content.text;
     
-    [fromController presentModalViewController:cp animated:YES];
+    [fromController presentViewController:cp animated:YES completion:nil];
     return cp;
 }
 
@@ -201,7 +201,7 @@
     cp.postText = post.content.text;
     cp.forGroup = forGroup;
     cp.forEditing = YES;
-    [fromController presentModalViewController:cp animated:YES];
+    [fromController presentViewController:cp animated:YES completion:nil];
     return cp;
 }
 
@@ -219,7 +219,7 @@
     cp.postUid = postUid;
     cp.postText = postText;
     
-    [fromController presentModalViewController:cp animated:YES];
+    [fromController presentViewController:cp animated:YES completion:nil];
     return cp;    
 }
 
@@ -432,7 +432,7 @@
         [self showQuitAlert];
         return;
     }
-    [self dismissModalViewControllerAnimated:YES];
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (IBAction)clickSubmitButton:(id)sender {
@@ -479,7 +479,7 @@
                 if ([self.delegate respondsToSelector:@selector(didController:editPost:)]) {
                     [self.delegate didController:self editPost:editedPost];
                 }
-                [self dismissModalViewControllerAnimated:YES];
+                [self dismissViewControllerAnimated:YES completion:nil];
             }
         }];
     }else{
@@ -558,7 +558,7 @@
                                        initWithTargetType:TypeGraffiti
                                        delegate:self
                                        startController:nil] autorelease];
-    [self presentModalViewController:odc animated:YES];
+    [self presentViewController:odc animated:YES completion:nil];
 }
 
 - (void)selectOpus
@@ -637,7 +637,7 @@
             [self startToSelectImage];
         }else if(theAlertView.tag == ALERT_QUIT_TAG){
             [BBSManager saveLastInputText:@""];
-            [self dismissModalViewControllerAnimated:YES];
+            [self dismissViewControllerAnimated:YES completion:nil];
         }
     }
 }
@@ -759,7 +759,7 @@
         if (self.bonus > 0) {
             [[AccountService defaultService] deductCoin:self.bonus source:BBSReward];
         }
-        [self dismissModalViewControllerAnimated:YES];
+        [self dismissViewControllerAnimated:YES completion:nil];
     }else{
         PPDebug(@"<didCreatePost>create post fail.result code = %d",resultCode);
         [self alertError:resultCode];
@@ -781,7 +781,7 @@
                               respondsToSelector:@selector(didController:CreateNewAction:)]) {
             [self.delegate didController:self CreateNewAction:action];
         }
-        [self dismissModalViewControllerAnimated:YES];
+        [self dismissViewControllerAnimated:YES completion:nil];
     }else{
         PPDebug(@"<didCreateAction>create action fail.result code = %d",resultCode);
         [self alertError:resultCode];
@@ -793,7 +793,7 @@
 
 - (void)didControllerClickBack:(OfflineDrawViewController *)controller
 {
-    [controller dismissModalViewControllerAnimated:YES];
+    [controller dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (void)didController:(OfflineDrawViewController *)controller
@@ -801,7 +801,7 @@
            canvasSize:(CGSize)size
             drawImage:(UIImage *)drawImage
 {
-    [controller dismissModalViewControllerAnimated:YES];
+    [controller dismissViewControllerAnimated:YES completion:nil];
     self.image = nil;
     self.drawImage = drawImage;
     self.drawActionList = drawActionList;

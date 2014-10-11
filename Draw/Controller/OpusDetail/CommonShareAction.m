@@ -267,7 +267,7 @@ allowClickMaskDismiss:(BOOL)allowClickMaskDismiss
         }];
     }
     else{
-        [self.superViewController presentModalViewController:compose animated:YES];
+        [self.superViewController presentViewController:compose animated:YES completion:nil];
     }
     [compose release];
 }
@@ -574,7 +574,7 @@ allowClickMaskDismiss:(BOOL)allowClickMaskDismiss
                         error:(NSError *)error
 {
     [self.superViewController hideActivity];
-	[self.superViewController dismissModalViewControllerAnimated:YES];
+	[self.superViewController dismissViewControllerAnimated:YES completion:nil];
     if (error == nil && result == MFMailComposeResultSent) {
         [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kShareByEmailSuccess") delayTime:1.5 isHappy:YES];
         [self reportActionToServer:DB_FIELD_ACTION_SHARE_EMAIL];

@@ -602,7 +602,7 @@ SET_CELL_BG_IN_CONTROLLER;
     label.font = BADGE_LABEL_FONT;
     label.backgroundColor = [UIColor clearColor];
     label.text = @"1";
-    label.textAlignment = UITextAlignmentCenter;
+    label.textAlignment = NSTextAlignmentCenter;
     [imageView addSubview:label];
     return imageView;
 }

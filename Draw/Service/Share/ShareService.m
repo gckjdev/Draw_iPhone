@@ -216,7 +216,7 @@ static ShareService* _defaultService;
     [label setTextColor:[UIColor colorWithRed:123/255.0 green:123/255.0 blue:123/255.0 alpha:1.0]];
     
     [label setFont:[UIFont boldSystemFontOfSize:labelFontSize]];
-    [label setTextAlignment:UITextAlignmentCenter];
+    [label setTextAlignment:NSTextAlignmentCenter];
     
     UIGraphicsBeginImageContext(CGSizeMake(srcImage.size.width+SHADOW_WIDTH*2, srcImage.size.height + SHADOW_WIDTH*3 + labelHeight));
 

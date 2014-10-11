@@ -102,7 +102,7 @@
     
     CustomWord *word = [dataList objectAtIndex:[indexPath row]];
     cell.textLabel.text = word.word;
-    cell.textLabel.textAlignment = UITextAlignmentCenter;
+    cell.textLabel.textAlignment = NSTextAlignmentCenter;
     
     cell.textLabel.textColor = COLOR_BROWN;
     

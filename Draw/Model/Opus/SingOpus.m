@@ -256,7 +256,7 @@ enum {
           didFinishWithResult:(MFMailComposeResult)result
                         error:(NSError *)error
 {
-    [controller.presentingViewController dismissModalViewControllerAnimated:YES];
+    [controller.presentingViewController dismissViewControllerAnimated:YES completion:nil];
     if (error == nil && result == MFMailComposeResultSent) {
         [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kShareByEmailSuccess") delayTime:1.5 isHappy:YES];
 //        [self reportActionToServer:DB_FIELD_ACTION_SHARE_EMAIL];

@@ -1236,7 +1236,7 @@ typedef enum {
     [label setTextColor:COLOR_WHITE];
     
     [label setFont:[UIFont boldSystemFontOfSize:labelFontSize]];
-    [label setTextAlignment:UITextAlignmentCenter];
+    [label setTextAlignment:NSTextAlignmentCenter];
     
     UIGraphicsBeginImageContext(CGSizeMake(490, srcImage.size.height + 5*3 + labelHeight+5));
     
