@@ -400,8 +400,8 @@
 		A461B0D1174CBAA70088B061 /* ASIHTTPRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = CA103F571509A9FD00F60C03 /* ASIHTTPRequest.m */; };
 		A461B0D2174CBAA70088B061 /* ASIInputStream.m in Sources */ = {isa = PBXBuildFile; fileRef = CA103F5B1509A9FD00F60C03 /* ASIInputStream.m */; };
 		A461B0D3174CBAA70088B061 /* ASINetworkQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = CA103F5D1509A9FD00F60C03 /* ASINetworkQueue.m */; };
-		A461B0D4174CBAA70088B061 /* GCDAsyncSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = CA103F621509A9FD00F60C03 /* GCDAsyncSocket.m */; };
-		A461B0D5174CBAA70088B061 /* GCDAsyncUdpSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = CA103F641509A9FD00F60C03 /* GCDAsyncUdpSocket.m */; };
+		A461B0D4174CBAA70088B061 /* GCDAsyncSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = CA103F621509A9FD00F60C03 /* GCDAsyncSocket.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
+		A461B0D5174CBAA70088B061 /* GCDAsyncUdpSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = CA103F641509A9FD00F60C03 /* GCDAsyncUdpSocket.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
 		A461B0D6174CBAA70088B061 /* CDataScanner.m in Sources */ = {isa = PBXBuildFile; fileRef = CA1040541509A9FD00F60C03 /* CDataScanner.m */; };
 		A461B0D7174CBAA70088B061 /* CDataScanner_Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = CA1040571509A9FD00F60C03 /* CDataScanner_Extensions.m */; };
 		A461B0D8174CBAA70088B061 /* NSCharacterSet_Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = CA1040591509A9FD00F60C03 /* NSCharacterSet_Extensions.m */; };
@@ -3379,8 +3379,8 @@
 		C28A99B91738F04B007A819F /* ASIHTTPRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = CA103F571509A9FD00F60C03 /* ASIHTTPRequest.m */; };
 		C28A99BA1738F04B007A819F /* ASIInputStream.m in Sources */ = {isa = PBXBuildFile; fileRef = CA103F5B1509A9FD00F60C03 /* ASIInputStream.m */; };
 		C28A99BB1738F04B007A819F /* ASINetworkQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = CA103F5D1509A9FD00F60C03 /* ASINetworkQueue.m */; };
-		C28A99BC1738F04B007A819F /* GCDAsyncSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = CA103F621509A9FD00F60C03 /* GCDAsyncSocket.m */; };
-		C28A99BD1738F04B007A819F /* GCDAsyncUdpSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = CA103F641509A9FD00F60C03 /* GCDAsyncUdpSocket.m */; };
+		C28A99BC1738F04B007A819F /* GCDAsyncSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = CA103F621509A9FD00F60C03 /* GCDAsyncSocket.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
+		C28A99BD1738F04B007A819F /* GCDAsyncUdpSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = CA103F641509A9FD00F60C03 /* GCDAsyncUdpSocket.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
 		C28A99BE1738F04B007A819F /* CDataScanner.m in Sources */ = {isa = PBXBuildFile; fileRef = CA1040541509A9FD00F60C03 /* CDataScanner.m */; };
 		C28A99BF1738F04B007A819F /* CDataScanner_Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = CA1040571509A9FD00F60C03 /* CDataScanner_Extensions.m */; };
 		C28A99C01738F04B007A819F /* NSCharacterSet_Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = CA1040591509A9FD00F60C03 /* NSCharacterSet_Extensions.m */; };
@@ -4474,8 +4474,8 @@
 		CA10410B1509A9FF00F60C03 /* ASIInputStream.m in Sources */ = {isa = PBXBuildFile; fileRef = CA103F5B1509A9FD00F60C03 /* ASIInputStream.m */; };
 		CA10410C1509A9FF00F60C03 /* ASINetworkQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = CA103F5D1509A9FD00F60C03 /* ASINetworkQueue.m */; };
 		CA10410D1509A9FF00F60C03 /* Documentation.html in Resources */ = {isa = PBXBuildFile; fileRef = CA103F601509A9FD00F60C03 /* Documentation.html */; };
-		CA10410E1509A9FF00F60C03 /* GCDAsyncSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = CA103F621509A9FD00F60C03 /* GCDAsyncSocket.m */; };
-		CA10410F1509A9FF00F60C03 /* GCDAsyncUdpSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = CA103F641509A9FD00F60C03 /* GCDAsyncUdpSocket.m */; };
+		CA10410E1509A9FF00F60C03 /* GCDAsyncSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = CA103F621509A9FD00F60C03 /* GCDAsyncSocket.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
+		CA10410F1509A9FF00F60C03 /* GCDAsyncUdpSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = CA103F641509A9FD00F60C03 /* GCDAsyncUdpSocket.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
 		CA10416E1509A9FF00F60C03 /* LICENSE.txt in Resources */ = {isa = PBXBuildFile; fileRef = CA1040501509A9FD00F60C03 /* LICENSE.txt */; };
 		CA10416F1509A9FF00F60C03 /* README.txt in Resources */ = {isa = PBXBuildFile; fileRef = CA1040511509A9FD00F60C03 /* README.txt */; };
 		CA1041701509A9FF00F60C03 /* CDataScanner.m in Sources */ = {isa = PBXBuildFile; fileRef = CA1040541509A9FD00F60C03 /* CDataScanner.m */; };
