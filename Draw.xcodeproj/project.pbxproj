@@ -1362,6 +1362,10 @@
 		A49DF8CD187D3FA100634196 /* statement_cell_bg1@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A49DF8C7187D3FA100634196 /* statement_cell_bg1@2x.png */; };
 		A49DF8CE187D3FA100634196 /* statement_cell_bg1@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A49DF8C7187D3FA100634196 /* statement_cell_bg1@2x.png */; };
 		A49DF8CF187D3FA100634196 /* statement_cell_bg1@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A49DF8C7187D3FA100634196 /* statement_cell_bg1@2x.png */; };
+		A49EC39619E907B000DDD20D /* FilledCalligraphyBrush.m in Sources */ = {isa = PBXBuildFile; fileRef = A49EC39519E907B000DDD20D /* FilledCalligraphyBrush.m */; };
+		A49EC39719E907B000DDD20D /* FilledCalligraphyBrush.m in Sources */ = {isa = PBXBuildFile; fileRef = A49EC39519E907B000DDD20D /* FilledCalligraphyBrush.m */; };
+		A49EC39819E907B000DDD20D /* FilledCalligraphyBrush.m in Sources */ = {isa = PBXBuildFile; fileRef = A49EC39519E907B000DDD20D /* FilledCalligraphyBrush.m */; };
+		A49EC39919E907B000DDD20D /* FilledCalligraphyBrush.m in Sources */ = {isa = PBXBuildFile; fileRef = A49EC39519E907B000DDD20D /* FilledCalligraphyBrush.m */; };
 		A4A2E7A716E71DE900445888 /* JRSwizzle.m in Sources */ = {isa = PBXBuildFile; fileRef = A4A2E7A416E71DE900445888 /* JRSwizzle.m */; };
 		A4A3BEFB19B443AE00EC4D25 /* BrushAction.m in Sources */ = {isa = PBXBuildFile; fileRef = A4A3BEFA19B443AE00EC4D25 /* BrushAction.m */; };
 		A4A3BEFC19B443AE00EC4D25 /* BrushAction.m in Sources */ = {isa = PBXBuildFile; fileRef = A4A3BEFA19B443AE00EC4D25 /* BrushAction.m */; };
@@ -2900,6 +2904,10 @@
 		A4D8FFFD17DB089C0085061F /* inputbg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4D8FD1917DB089C0085061F /* inputbg@2x.png */; };
 		A4D8FFFE17DB089C0085061F /* inputbg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4D8FD1917DB089C0085061F /* inputbg@2x.png */; };
 		A4D8FFFF17DB089C0085061F /* locate@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4D8FD1A17DB089C0085061F /* locate@2x.png */; };
+		A4DBBC3419DB127D001D5FF4 /* TextureSimilarity.mm in Sources */ = {isa = PBXBuildFile; fileRef = A4DBBC3319DB127D001D5FF4 /* TextureSimilarity.mm */; };
+		A4DBBC3519DB127D001D5FF4 /* TextureSimilarity.mm in Sources */ = {isa = PBXBuildFile; fileRef = A4DBBC3319DB127D001D5FF4 /* TextureSimilarity.mm */; };
+		A4DBBC3619DB127D001D5FF4 /* TextureSimilarity.mm in Sources */ = {isa = PBXBuildFile; fileRef = A4DBBC3319DB127D001D5FF4 /* TextureSimilarity.mm */; };
+		A4DBBC3719DB127D001D5FF4 /* TextureSimilarity.mm in Sources */ = {isa = PBXBuildFile; fileRef = A4DBBC3319DB127D001D5FF4 /* TextureSimilarity.mm */; };
 		A4DDD13517CDFD7B0029E562 /* draw_bg.zip in Resources */ = {isa = PBXBuildFile; fileRef = A4DDCFF417CDFD780029E562 /* draw_bg.zip */; };
 		A4DDD13617CDFD7B0029E562 /* draw_bg.zip in Resources */ = {isa = PBXBuildFile; fileRef = A4DDCFF417CDFD780029E562 /* draw_bg.zip */; };
 		A4DDD13717CDFD7B0029E562 /* draw_bg.zip in Resources */ = {isa = PBXBuildFile; fileRef = A4DDCFF417CDFD780029E562 /* draw_bg.zip */; };
@@ -3102,6 +3110,18 @@
 		A4F04B9A18068467007274BE /* beep-timber.aif in Resources */ = {isa = PBXBuildFile; fileRef = A4F04B9618068466007274BE /* beep-timber.aif */; };
 		A4F04B9B18068467007274BE /* beep-timber.aif in Resources */ = {isa = PBXBuildFile; fileRef = A4F04B9618068466007274BE /* beep-timber.aif */; };
 		A4F04B9C18068467007274BE /* beep-timber.aif in Resources */ = {isa = PBXBuildFile; fileRef = A4F04B9618068466007274BE /* beep-timber.aif */; };
+		A4F1AE0F19E8D9860082E9EC /* ImageSimilarity+Hash.mm in Sources */ = {isa = PBXBuildFile; fileRef = A4F1AE0919E8D9860082E9EC /* ImageSimilarity+Hash.mm */; };
+		A4F1AE1019E8D9860082E9EC /* ImageSimilarity+Hash.mm in Sources */ = {isa = PBXBuildFile; fileRef = A4F1AE0919E8D9860082E9EC /* ImageSimilarity+Hash.mm */; };
+		A4F1AE1119E8D9860082E9EC /* ImageSimilarity+Hash.mm in Sources */ = {isa = PBXBuildFile; fileRef = A4F1AE0919E8D9860082E9EC /* ImageSimilarity+Hash.mm */; };
+		A4F1AE1219E8D9860082E9EC /* ImageSimilarity+Hash.mm in Sources */ = {isa = PBXBuildFile; fileRef = A4F1AE0919E8D9860082E9EC /* ImageSimilarity+Hash.mm */; };
+		A4F1AE1319E8D9860082E9EC /* ImageSimilarity+Histogram.mm in Sources */ = {isa = PBXBuildFile; fileRef = A4F1AE0A19E8D9860082E9EC /* ImageSimilarity+Histogram.mm */; };
+		A4F1AE1419E8D9860082E9EC /* ImageSimilarity+Histogram.mm in Sources */ = {isa = PBXBuildFile; fileRef = A4F1AE0A19E8D9860082E9EC /* ImageSimilarity+Histogram.mm */; };
+		A4F1AE1519E8D9860082E9EC /* ImageSimilarity+Histogram.mm in Sources */ = {isa = PBXBuildFile; fileRef = A4F1AE0A19E8D9860082E9EC /* ImageSimilarity+Histogram.mm */; };
+		A4F1AE1619E8D9860082E9EC /* ImageSimilarity+Histogram.mm in Sources */ = {isa = PBXBuildFile; fileRef = A4F1AE0A19E8D9860082E9EC /* ImageSimilarity+Histogram.mm */; };
+		A4F1AE1719E8D9860082E9EC /* ImageSimilarity+ShapeContext.mm in Sources */ = {isa = PBXBuildFile; fileRef = A4F1AE0C19E8D9860082E9EC /* ImageSimilarity+ShapeContext.mm */; };
+		A4F1AE1819E8D9860082E9EC /* ImageSimilarity+ShapeContext.mm in Sources */ = {isa = PBXBuildFile; fileRef = A4F1AE0C19E8D9860082E9EC /* ImageSimilarity+ShapeContext.mm */; };
+		A4F1AE1919E8D9860082E9EC /* ImageSimilarity+ShapeContext.mm in Sources */ = {isa = PBXBuildFile; fileRef = A4F1AE0C19E8D9860082E9EC /* ImageSimilarity+ShapeContext.mm */; };
+		A4F1AE1A19E8D9860082E9EC /* ImageSimilarity+ShapeContext.mm in Sources */ = {isa = PBXBuildFile; fileRef = A4F1AE0C19E8D9860082E9EC /* ImageSimilarity+ShapeContext.mm */; };
 		A4F474FC19B5794100CFE2AE /* brush_dot1@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4F474EB19B5794000CFE2AE /* brush_dot1@2x.png */; };
 		A4F474FD19B5794100CFE2AE /* brush_dot1@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4F474EB19B5794000CFE2AE /* brush_dot1@2x.png */; };
 		A4F474FE19B5794100CFE2AE /* brush_dot1@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4F474EB19B5794000CFE2AE /* brush_dot1@2x.png */; };
@@ -5737,18 +5757,10 @@
 		CAA581A8197BAFAD00599740 /* ImageSimilarity.mm in Sources */ = {isa = PBXBuildFile; fileRef = CAA581A6197BAF6700599740 /* ImageSimilarity.mm */; };
 		CAA581A9197BAFAE00599740 /* ImageSimilarity.mm in Sources */ = {isa = PBXBuildFile; fileRef = CAA581A6197BAF6700599740 /* ImageSimilarity.mm */; };
 		CAA581AA197BAFAF00599740 /* ImageSimilarity.mm in Sources */ = {isa = PBXBuildFile; fileRef = CAA581A6197BAF6700599740 /* ImageSimilarity.mm */; };
-		CAA581B0197BB0BA00599740 /* HashImageSimilarity.mm in Sources */ = {isa = PBXBuildFile; fileRef = CAA581AF197BB0BA00599740 /* HashImageSimilarity.mm */; };
-		CAA581B1197BB0BA00599740 /* HashImageSimilarity.mm in Sources */ = {isa = PBXBuildFile; fileRef = CAA581AF197BB0BA00599740 /* HashImageSimilarity.mm */; };
-		CAA581B2197BB0BA00599740 /* HashImageSimilarity.mm in Sources */ = {isa = PBXBuildFile; fileRef = CAA581AF197BB0BA00599740 /* HashImageSimilarity.mm */; };
-		CAA581B3197BB0BA00599740 /* HashImageSimilarity.mm in Sources */ = {isa = PBXBuildFile; fileRef = CAA581AF197BB0BA00599740 /* HashImageSimilarity.mm */; };
 		CAA581C1197BC24800599740 /* ImageSimilarityEngine.mm in Sources */ = {isa = PBXBuildFile; fileRef = CAA581C0197BC24800599740 /* ImageSimilarityEngine.mm */; };
 		CAA581C2197BC24800599740 /* ImageSimilarityEngine.mm in Sources */ = {isa = PBXBuildFile; fileRef = CAA581C0197BC24800599740 /* ImageSimilarityEngine.mm */; };
 		CAA581C3197BC24800599740 /* ImageSimilarityEngine.mm in Sources */ = {isa = PBXBuildFile; fileRef = CAA581C0197BC24800599740 /* ImageSimilarityEngine.mm */; };
 		CAA581C4197BC24800599740 /* ImageSimilarityEngine.mm in Sources */ = {isa = PBXBuildFile; fileRef = CAA581C0197BC24800599740 /* ImageSimilarityEngine.mm */; };
-		CAA581C7197BF78B00599740 /* HistogramImageSimilarity.mm in Sources */ = {isa = PBXBuildFile; fileRef = CAA581C6197BF78B00599740 /* HistogramImageSimilarity.mm */; };
-		CAA581C8197BF78C00599740 /* HistogramImageSimilarity.mm in Sources */ = {isa = PBXBuildFile; fileRef = CAA581C6197BF78B00599740 /* HistogramImageSimilarity.mm */; };
-		CAA581C9197BF78C00599740 /* HistogramImageSimilarity.mm in Sources */ = {isa = PBXBuildFile; fileRef = CAA581C6197BF78B00599740 /* HistogramImageSimilarity.mm */; };
-		CAA581CA197BF78C00599740 /* HistogramImageSimilarity.mm in Sources */ = {isa = PBXBuildFile; fileRef = CAA581C6197BF78B00599740 /* HistogramImageSimilarity.mm */; };
 		CAA581CD197C009B00599740 /* ShapeImageSimilarity.mm in Sources */ = {isa = PBXBuildFile; fileRef = CAA581CC197C009B00599740 /* ShapeImageSimilarity.mm */; };
 		CAA581CE197C009B00599740 /* ShapeImageSimilarity.mm in Sources */ = {isa = PBXBuildFile; fileRef = CAA581CC197C009B00599740 /* ShapeImageSimilarity.mm */; };
 		CAA581CF197C009B00599740 /* ShapeImageSimilarity.mm in Sources */ = {isa = PBXBuildFile; fileRef = CAA581CC197C009B00599740 /* ShapeImageSimilarity.mm */; };
@@ -8610,6 +8622,8 @@
 		A49DF8C1187D311500634196 /* StatementCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = StatementCell.xib; sourceTree = "<group>"; };
 		A49DF8C6187D3FA100634196 /* statement_cell_bg2@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "statement_cell_bg2@2x.png"; sourceTree = "<group>"; };
 		A49DF8C7187D3FA100634196 /* statement_cell_bg1@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "statement_cell_bg1@2x.png"; sourceTree = "<group>"; };
+		A49EC39419E907B000DDD20D /* FilledCalligraphyBrush.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FilledCalligraphyBrush.h; sourceTree = "<group>"; };
+		A49EC39519E907B000DDD20D /* FilledCalligraphyBrush.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FilledCalligraphyBrush.m; sourceTree = "<group>"; };
 		A4A2E7A316E71DE900445888 /* JRSwizzle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JRSwizzle.h; sourceTree = "<group>"; };
 		A4A2E7A416E71DE900445888 /* JRSwizzle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JRSwizzle.m; sourceTree = "<group>"; };
 		A4A2E7B016E7223F00445888 /* LocalizableLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocalizableLabel.h; sourceTree = "<group>"; };
@@ -9067,6 +9081,8 @@
 		A4D8FD3C17DB089C0085061F /* wood_pallets@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "wood_pallets@2x.png"; sourceTree = "<group>"; };
 		A4D8FD3D17DB089C0085061F /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "zh-Hans"; path = "zh-Hans.lproj/clean_ad@2x.png"; sourceTree = "<group>"; };
 		A4D8FD3E17DB089C0085061F /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "zh-Hant"; path = "zh-Hant.lproj/clean_ad@2x.png"; sourceTree = "<group>"; };
+		A4DBBC3219DB127D001D5FF4 /* TextureSimilarity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextureSimilarity.h; sourceTree = "<group>"; };
+		A4DBBC3319DB127D001D5FF4 /* TextureSimilarity.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = TextureSimilarity.mm; sourceTree = "<group>"; };
 		A4DDCFF417CDFD780029E562 /* draw_bg.zip */ = {isa = PBXFileReference; lastKnownFileType = archive.zip; path = draw_bg.zip; sourceTree = "<group>"; };
 		A4DDCFF517CDFD780029E562 /* frames.pb */ = {isa = PBXFileReference; lastKnownFileType = file; path = frames.pb; sourceTree = "<group>"; };
 		A4DDCFF617CDFD780029E562 /* hot_word.pb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = hot_word.pb; sourceTree = "<group>"; };
@@ -9145,6 +9161,12 @@
 		A4F04B8E180680D1007274BE /* tap-warm.aif */ = {isa = PBXFileReference; lastKnownFileType = file; path = "tap-warm.aif"; sourceTree = "<group>"; };
 		A4F04B9518068465007274BE /* beep-shinymetal.aif */ = {isa = PBXFileReference; lastKnownFileType = file; path = "beep-shinymetal.aif"; sourceTree = "<group>"; };
 		A4F04B9618068466007274BE /* beep-timber.aif */ = {isa = PBXFileReference; lastKnownFileType = file; path = "beep-timber.aif"; sourceTree = "<group>"; };
+		A4F1AE0919E8D9860082E9EC /* ImageSimilarity+Hash.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = "ImageSimilarity+Hash.mm"; sourceTree = "<group>"; };
+		A4F1AE0A19E8D9860082E9EC /* ImageSimilarity+Histogram.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = "ImageSimilarity+Histogram.mm"; sourceTree = "<group>"; };
+		A4F1AE0B19E8D9860082E9EC /* ImageSimilarity+ShapeContext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ImageSimilarity+ShapeContext.h"; sourceTree = "<group>"; };
+		A4F1AE0C19E8D9860082E9EC /* ImageSimilarity+ShapeContext.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = "ImageSimilarity+ShapeContext.mm"; sourceTree = "<group>"; };
+		A4F1AE0D19E8D9860082E9EC /* ImageSimilarity+Hash.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ImageSimilarity+Hash.h"; sourceTree = "<group>"; };
+		A4F1AE0E19E8D9860082E9EC /* ImageSimilarity+Histogram.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ImageSimilarity+Histogram.h"; sourceTree = "<group>"; };
 		A4F474EB19B5794000CFE2AE /* brush_dot1@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "brush_dot1@2x.png"; sourceTree = "<group>"; };
 		A4F474EC19B5794000CFE2AE /* brush_dot2@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "brush_dot2@2x.png"; sourceTree = "<group>"; };
 		A4F474ED19B5794000CFE2AE /* brush_dot3@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "brush_dot3@2x.png"; sourceTree = "<group>"; };
@@ -10589,12 +10611,8 @@
 		CAA362471558C3780081D3EB /* FriendService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FriendService.m; sourceTree = "<group>"; };
 		CAA581A5197BAF6600599740 /* ImageSimilarity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageSimilarity.h; sourceTree = "<group>"; };
 		CAA581A6197BAF6700599740 /* ImageSimilarity.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ImageSimilarity.mm; sourceTree = "<group>"; };
-		CAA581AE197BB0BA00599740 /* HashImageSimilarity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HashImageSimilarity.h; sourceTree = "<group>"; };
-		CAA581AF197BB0BA00599740 /* HashImageSimilarity.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = HashImageSimilarity.mm; sourceTree = "<group>"; };
 		CAA581BF197BC24800599740 /* ImageSimilarityEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageSimilarityEngine.h; sourceTree = "<group>"; };
 		CAA581C0197BC24800599740 /* ImageSimilarityEngine.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ImageSimilarityEngine.mm; sourceTree = "<group>"; };
-		CAA581C5197BF78B00599740 /* HistogramImageSimilarity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HistogramImageSimilarity.h; sourceTree = "<group>"; };
-		CAA581C6197BF78B00599740 /* HistogramImageSimilarity.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = HistogramImageSimilarity.mm; sourceTree = "<group>"; };
 		CAA581CB197C009B00599740 /* ShapeImageSimilarity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShapeImageSimilarity.h; sourceTree = "<group>"; };
 		CAA581CC197C009B00599740 /* ShapeImageSimilarity.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ShapeImageSimilarity.mm; sourceTree = "<group>"; };
 		CAA62CC21744C54F00C376BA /* protobuf-c-private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "protobuf-c-private.h"; sourceTree = "<group>"; };
@@ -12393,6 +12411,8 @@
 				A4E85C2C19C89380002762CD /* PencilBrush.m */,
 				A4ED324C19CB36AF00619F1E /* FeatherBrush.h */,
 				A4ED324D19CB36AF00619F1E /* FeatherBrush.m */,
+				A49EC39419E907B000DDD20D /* FilledCalligraphyBrush.h */,
+				A49EC39519E907B000DDD20D /* FilledCalligraphyBrush.m */,
 			);
 			path = BrushEffect;
 			sourceTree = "<group>";
@@ -16135,12 +16155,16 @@
 				CAA581C0197BC24800599740 /* ImageSimilarityEngine.mm */,
 				CAA581A5197BAF6600599740 /* ImageSimilarity.h */,
 				CAA581A6197BAF6700599740 /* ImageSimilarity.mm */,
-				CAA581AE197BB0BA00599740 /* HashImageSimilarity.h */,
-				CAA581AF197BB0BA00599740 /* HashImageSimilarity.mm */,
-				CAA581C5197BF78B00599740 /* HistogramImageSimilarity.h */,
-				CAA581C6197BF78B00599740 /* HistogramImageSimilarity.mm */,
+				A4F1AE0D19E8D9860082E9EC /* ImageSimilarity+Hash.h */,
+				A4F1AE0919E8D9860082E9EC /* ImageSimilarity+Hash.mm */,
+				A4F1AE0E19E8D9860082E9EC /* ImageSimilarity+Histogram.h */,
+				A4F1AE0A19E8D9860082E9EC /* ImageSimilarity+Histogram.mm */,
+				A4F1AE0B19E8D9860082E9EC /* ImageSimilarity+ShapeContext.h */,
+				A4F1AE0C19E8D9860082E9EC /* ImageSimilarity+ShapeContext.mm */,
 				CAA581CB197C009B00599740 /* ShapeImageSimilarity.h */,
 				CAA581CC197C009B00599740 /* ShapeImageSimilarity.mm */,
+				A4DBBC3219DB127D001D5FF4 /* TextureSimilarity.h */,
+				A4DBBC3319DB127D001D5FF4 /* TextureSimilarity.mm */,
 			);
 			path = OpenCV;
 			sourceTree = "<group>";
@@ -24022,6 +24046,7 @@
 				A461B0CC174CBAA70088B061 /* ASIAuthenticationDialog.m in Sources */,
 				A461B0CD174CBAA70088B061 /* ASIDataCompressor.m in Sources */,
 				A461B0CE174CBAA70088B061 /* ASIDataDecompressor.m in Sources */,
+				A4F1AE1119E8D9860082E9EC /* ImageSimilarity+Hash.mm in Sources */,
 				A461B0CF174CBAA70088B061 /* ASIDownloadCache.m in Sources */,
 				A461B0D0174CBAA70088B061 /* ASIFormDataRequest.m in Sources */,
 				A461B0D1174CBAA70088B061 /* ASIHTTPRequest.m in Sources */,
@@ -24138,10 +24163,10 @@
 				A461B177174CBAA70088B061 /* ChatService.m in Sources */,
 				D819624A19629D4C00B4FBAF /* TutorialInfoCell.m in Sources */,
 				A461B178174CBAA70088B061 /* EGORefreshTableFooterView.m in Sources */,
+				A49EC39819E907B000DDD20D /* FilledCalligraphyBrush.m in Sources */,
 				A461B179174CBAA70088B061 /* EGORefreshTableHeaderView.m in Sources */,
 				A461B17A174CBAA70088B061 /* Feed.m in Sources */,
 				EA72202519D14106008AE62B /* fopen_unix.c in Sources */,
-				CAA581C9197BF78C00599740 /* HistogramImageSimilarity.mm in Sources */,
 				D8B58B27197CEE090088E5F7 /* SGFocusImageFrame.m in Sources */,
 				A461B17B174CBAA70088B061 /* FeedManager.m in Sources */,
 				A461B17C174CBAA70088B061 /* FeedService.m in Sources */,
@@ -24177,7 +24202,6 @@
 				A461B1C4174CBAA70088B061 /* GCServer.m in Sources */,
 				A461B1C6174CBAA70088B061 /* TableTab.m in Sources */,
 				A461B1C7174CBAA70088B061 /* TableTabManager.m in Sources */,
-				CAA581B2197BB0BA00599740 /* HashImageSimilarity.mm in Sources */,
 				A461B1C8174CBAA70088B061 /* SuperDrawView.m in Sources */,
 				A461B1D1174CBAA70088B061 /* Contest.m in Sources */,
 				A461B1D2174CBAA70088B061 /* ContestManager.m in Sources */,
@@ -24343,6 +24367,7 @@
 				A461B2D7174CBAA70088B061 /* CustomActionSheet.m in Sources */,
 				A461B2D8174CBAA70088B061 /* UIColor+GetHSB.m in Sources */,
 				A461B2D9174CBAA70088B061 /* ILColorPickerView.m in Sources */,
+				A4DBBC3619DB127D001D5FF4 /* TextureSimilarity.mm in Sources */,
 				A461B2DA174CBAA70088B061 /* ILHuePickerView.m in Sources */,
 				CAA581C3197BC24800599740 /* ImageSimilarityEngine.mm in Sources */,
 				A461B2DB174CBAA70088B061 /* ILSaturationBrightnessPickerView.m in Sources */,
@@ -24616,6 +24641,7 @@
 				A4B7899E179E2E890008E21B /* CommonTitleView.m in Sources */,
 				A4B789A3179E2E890008E21B /* HPThemeManager.m in Sources */,
 				CA51834D179F79570033AA95 /* GetNewNumberViewController.m in Sources */,
+				A4F1AE1919E8D9860082E9EC /* ImageSimilarity+ShapeContext.mm in Sources */,
 				CA518357179F79A80033AA95 /* UserNumberService.m in Sources */,
 				A4B78A5D179F7C570008E21B /* GuessModesController.m in Sources */,
 				A4B78A61179F7C600008E21B /* GuessSelectController.m in Sources */,
@@ -24756,6 +24782,7 @@
 				CA9AB05618321621002DBAA5 /* VoiceTypeSelectView.m in Sources */,
 				CA9AB06218321621002DBAA5 /* WordInputView.m in Sources */,
 				CA9AB06B18321719002DBAA5 /* PBOpus+Extend.m in Sources */,
+				A4F1AE1519E8D9860082E9EC /* ImageSimilarity+Histogram.mm in Sources */,
 				CA9AB06C18321719002DBAA5 /* DrawOpus.m in Sources */,
 				CA9AB06D18321719002DBAA5 /* Opus.m in Sources */,
 				CA9AB06E18321719002DBAA5 /* OpusManager.m in Sources */,
@@ -24908,6 +24935,7 @@
 				C28A99B21738F04B007A819F /* UIViewUtils.m in Sources */,
 				C28A99B31738F04B007A819F /* UIWebViewUtil.m in Sources */,
 				C28A99B41738F04B007A819F /* ASIAuthenticationDialog.m in Sources */,
+				A49EC39719E907B000DDD20D /* FilledCalligraphyBrush.m in Sources */,
 				C28A99B51738F04B007A819F /* ASIDataCompressor.m in Sources */,
 				C28A99B61738F04B007A819F /* ASIDataDecompressor.m in Sources */,
 				C28A99B71738F04B007A819F /* ASIDownloadCache.m in Sources */,
@@ -24924,6 +24952,7 @@
 				C28A99C01738F04B007A819F /* NSCharacterSet_Extensions.m in Sources */,
 				C28A99C11738F04B007A819F /* NSDictionary_JSONExtensions.m in Sources */,
 				C28A99C21738F04B007A819F /* NSScanner_Extensions.m in Sources */,
+				A4F1AE1419E8D9860082E9EC /* ImageSimilarity+Histogram.mm in Sources */,
 				C28A99C31738F04B007A819F /* CJSONDataSerializer.m in Sources */,
 				C28A99C41738F04B007A819F /* CJSONDeserializer.m in Sources */,
 				C28A99C51738F04B007A819F /* CJSONScanner.m in Sources */,
@@ -25168,6 +25197,7 @@
 				C28A9B4E1738F04B007A819F /* ANCutColorTable.m in Sources */,
 				C28A9B4F1738F04B007A819F /* ANMutableColorArray.m in Sources */,
 				C28A9B501738F04B007A819F /* ANGifDataSubblock.m in Sources */,
+				A4F1AE1819E8D9860082E9EC /* ImageSimilarity+ShapeContext.mm in Sources */,
 				CACD6CB718E03BCD003F97C0 /* AlixPayOrder.m in Sources */,
 				C28A9B511738F04B007A819F /* ANGifImageDescriptor.m in Sources */,
 				C28A9B521738F04B007A819F /* ANGifImageFrame.m in Sources */,
@@ -25482,7 +25512,6 @@
 				D837DCD51988FAB2001686BB /* UIColor+RGBValues.m in Sources */,
 				CAA75CBA178A65020041C019 /* PolygonClipTouchHandler.m in Sources */,
 				CACEC2C9178BA7AD00D88643 /* SelectorBox.m in Sources */,
-				CAA581B1197BB0BA00599740 /* HashImageSimilarity.mm in Sources */,
 				D8CC69D319A5EEF500E57398 /* PrizeCell.m in Sources */,
 				CACEC36A178BCD1600D88643 /* SelectorCommand.m in Sources */,
 				CA0FC088178EA13E00A72B79 /* JumpHandler.m in Sources */,
@@ -25547,6 +25576,7 @@
 				CAFC03C517C887C200A11DE3 /* PPPopTableView.m in Sources */,
 				CA5519F817CAFA1000855225 /* CommonShareAction.m in Sources */,
 				CA51419517CB419F00883CAA /* ContestPrizeCell.m in Sources */,
+				A4DBBC3519DB127D001D5FF4 /* TextureSimilarity.mm in Sources */,
 				EA433E1717CDDA2F006E6FA7 /* JudgerScoreView.m in Sources */,
 				EA433E2A17CDE500006E6FA7 /* DJQRateView.m in Sources */,
 				EA433E2E17CDE500006E6FA7 /* DJQStartView.m in Sources */,
@@ -25690,6 +25720,7 @@
 				CA5D9D8A183E3C0200BD820C /* DOUEAGL1View.m in Sources */,
 				CA5D9D92183E3C0200BD820C /* DOUSimpleHTTPRequest.m in Sources */,
 				CA5D9D96183E3C0200BD820C /* NSData+DOUMappedFile.m in Sources */,
+				A4F1AE1019E8D9860082E9EC /* ImageSimilarity+Hash.mm in Sources */,
 				CA9C3FCB18432AA60041F332 /* AppTask.m in Sources */,
 				CA9C3FD118432AB60041F332 /* AppTaskManager.m in Sources */,
 				CACD6CC318E03BCD003F97C0 /* NSString+SBJSON.m in Sources */,
@@ -25704,7 +25735,6 @@
 				A4572D7518570B0F0076ADF7 /* UIView+Pan.m in Sources */,
 				EA5A2EA818584D6E00CABC71 /* UILabel+Touchable.m in Sources */,
 				A4EA9357185B0144004BB69D /* SingHotCell.m in Sources */,
-				CAA581C8197BF78C00599740 /* HistogramImageSimilarity.mm in Sources */,
 				EA9289B61864360F0064A1AC /* UIViewController+BGImage.m in Sources */,
 				D8E63EEB19C1751A00EB213E /* TutorialProtoManager.m in Sources */,
 				A4BE2264186550D000FE2997 /* CellManager.m in Sources */,
@@ -25801,6 +25831,7 @@
 				CA103EFC1509A56200F60C03 /* UIViewUtils.m in Sources */,
 				CA103EFD1509A56200F60C03 /* UIWebViewUtil.m in Sources */,
 				CA1041051509A9FF00F60C03 /* ASIAuthenticationDialog.m in Sources */,
+				A49EC39619E907B000DDD20D /* FilledCalligraphyBrush.m in Sources */,
 				CA1041061509A9FF00F60C03 /* ASIDataCompressor.m in Sources */,
 				CA1041071509A9FF00F60C03 /* ASIDataDecompressor.m in Sources */,
 				CA1041081509A9FF00F60C03 /* ASIDownloadCache.m in Sources */,
@@ -25817,6 +25848,7 @@
 				D8B5393B19920B3E00BD3337 /* ResultSeal.m in Sources */,
 				CA1041711509A9FF00F60C03 /* CDataScanner_Extensions.m in Sources */,
 				CA1041721509A9FF00F60C03 /* NSCharacterSet_Extensions.m in Sources */,
+				A4F1AE1319E8D9860082E9EC /* ImageSimilarity+Histogram.mm in Sources */,
 				CA1041731509A9FF00F60C03 /* NSDictionary_JSONExtensions.m in Sources */,
 				CA1041741509A9FF00F60C03 /* NSScanner_Extensions.m in Sources */,
 				CA1041751509A9FF00F60C03 /* CJSONDataSerializer.m in Sources */,
@@ -26061,6 +26093,7 @@
 				CAFEFE2D16606FC200441D77 /* ANAvgColorTable.m in Sources */,
 				CAFEFE2E16606FC200441D77 /* ANColorTable.m in Sources */,
 				CAFEFE2F16606FC200441D77 /* ANCutColorTable.m in Sources */,
+				A4F1AE1719E8D9860082E9EC /* ImageSimilarity+ShapeContext.mm in Sources */,
 				CACD6CB618E03BCD003F97C0 /* AlixPayOrder.m in Sources */,
 				CAFEFE3016606FC200441D77 /* ANMutableColorArray.m in Sources */,
 				CAFEFE3116606FC200441D77 /* ANGifDataSubblock.m in Sources */,
@@ -26375,7 +26408,6 @@
 				D837DCD41988FAB2001686BB /* UIColor+RGBValues.m in Sources */,
 				C206FFD8178034450033CF63 /* PSCollectionViewCell.m in Sources */,
 				CA9C11C0178135E0004372B6 /* GradientAction.m in Sources */,
-				CAA581B0197BB0BA00599740 /* HashImageSimilarity.mm in Sources */,
 				D8CC69D219A5EEF500E57398 /* PrizeCell.m in Sources */,
 				A4E64919178426310063F393 /* PBOpus+Extend.m in Sources */,
 				CA02CB6C1785581A00B6910D /* GradientSettingView.m in Sources */,
@@ -26440,6 +26472,7 @@
 				A467892B17BB1CEF007C546A /* UIButton+Sound.m in Sources */,
 				A467893117BB21FE007C546A /* UISoundButton.m in Sources */,
 				A467894017BC7782007C546A /* UILabel+Extend.m in Sources */,
+				A4DBBC3419DB127D001D5FF4 /* TextureSimilarity.mm in Sources */,
 				CA8C471A17C3175C00BA6A15 /* PanelUtil.m in Sources */,
 				CAFC036D17C4CAA100A11DE3 /* ChangePageBGCommand.m in Sources */,
 				A440354D17C5A9C900301EDD /* LocalNotificationUtil.m in Sources */,
@@ -26583,6 +26616,7 @@
 				FDDECBBC1994BF7F00BE7191 /* SMPageControl.m in Sources */,
 				CA5D9D91183E3C0200BD820C /* DOUSimpleHTTPRequest.m in Sources */,
 				CA5D9D95183E3C0200BD820C /* NSData+DOUMappedFile.m in Sources */,
+				A4F1AE0F19E8D9860082E9EC /* ImageSimilarity+Hash.mm in Sources */,
 				CA9C3FCA18432AA60041F332 /* AppTask.m in Sources */,
 				CA9C3FD018432AB60041F332 /* AppTaskManager.m in Sources */,
 				CACD6CC218E03BCD003F97C0 /* NSString+SBJSON.m in Sources */,
@@ -26597,7 +26631,6 @@
 				A4572D7418570B0F0076ADF7 /* UIView+Pan.m in Sources */,
 				EA5A2EA718584D6E00CABC71 /* UILabel+Touchable.m in Sources */,
 				A4EA9356185B0144004BB69D /* SingHotCell.m in Sources */,
-				CAA581C7197BF78B00599740 /* HistogramImageSimilarity.mm in Sources */,
 				EA9289B51864360F0064A1AC /* UIViewController+BGImage.m in Sources */,
 				D8E63EEA19C1751A00EB213E /* TutorialProtoManager.m in Sources */,
 				A4BE2263186550D000FE2997 /* CellManager.m in Sources */,
@@ -26691,6 +26724,7 @@
 				EA41185C176066F500DA72D0 /* UINavigationBarExt.m in Sources */,
 				EA41185D176066F500DA72D0 /* UINavigationItemExt.m in Sources */,
 				CA2A28C2195C1DC400A97478 /* UserTutorialMainController.m in Sources */,
+				A4F1AE1219E8D9860082E9EC /* ImageSimilarity+Hash.mm in Sources */,
 				EA41185E176066F500DA72D0 /* UIViewUtils.m in Sources */,
 				EA41185F176066F500DA72D0 /* UIWebViewUtil.m in Sources */,
 				EA411860176066F500DA72D0 /* ASIAuthenticationDialog.m in Sources */,
@@ -26975,7 +27009,6 @@
 				EA4119DA176066F500DA72D0 /* DrawUtils.m in Sources */,
 				EA4119DB176066F500DA72D0 /* DrawGameAnimationManager.m in Sources */,
 				EA4119DC176066F500DA72D0 /* BBSTableViewCell.m in Sources */,
-				CAA581B3197BB0BA00599740 /* HashImageSimilarity.mm in Sources */,
 				EA4119DE176066F500DA72D0 /* BBSImageManager.m in Sources */,
 				CA900511194EE775003389FD /* SelectOpusClassViewController.m in Sources */,
 				EA4119DF176066F500DA72D0 /* BBSFontManager.m in Sources */,
@@ -27040,6 +27073,7 @@
 				EA411A1C176066F500DA72D0 /* PickToolView.m in Sources */,
 				CACD6B3C18E03B4B003F97C0 /* MobClickUtils.m in Sources */,
 				EA411A1D176066F500DA72D0 /* PickView.m in Sources */,
+				A49EC39919E907B000DDD20D /* FilledCalligraphyBrush.m in Sources */,
 				EA411A1E176066F500DA72D0 /* SelectHotWordController.m in Sources */,
 				EA411A1F176066F500DA72D0 /* WordSelectCell.m in Sources */,
 				EA411A20176066F500DA72D0 /* SelectCustomWordCell.m in Sources */,
@@ -27083,13 +27117,13 @@
 				EA411A5C176066F500DA72D0 /* DashPen.m in Sources */,
 				EA411A5D176066F500DA72D0 /* BlurPen.m in Sources */,
 				EA411A5E176066F500DA72D0 /* MarkPen.m in Sources */,
+				A4F1AE1619E8D9860082E9EC /* ImageSimilarity+Histogram.mm in Sources */,
 				EA411A5F176066F500DA72D0 /* GameItemService.m in Sources */,
 				EA411A60176066F500DA72D0 /* GameItem.m in Sources */,
 				EA411A61176066F500DA72D0 /* GameItemManager.m in Sources */,
 				EA411A62176066F500DA72D0 /* UserGameItemManager.m in Sources */,
 				EA411A63176066F500DA72D0 /* UserGameItemService.m in Sources */,
 				EA411A64176066F500DA72D0 /* DefaultPen.m in Sources */,
-				CAA581CA197BF78C00599740 /* HistogramImageSimilarity.mm in Sources */,
 				EA411A65176066F500DA72D0 /* SuperPen.m in Sources */,
 				EA411A67176066F500DA72D0 /* ShapeBox.m in Sources */,
 				EA411A68176066F500DA72D0 /* DrawBgManager.m in Sources */,
@@ -27177,6 +27211,7 @@
 				EA411ABE176066F500DA72D0 /* IAPProductManager.m in Sources */,
 				D89B27B21981FAC80035BE5F /* TipsPageViewController.m in Sources */,
 				EA411ABF176066F500DA72D0 /* RedoCommand.m in Sources */,
+				A4DBBC3719DB127D001D5FF4 /* TextureSimilarity.mm in Sources */,
 				EA411AC0176066F500DA72D0 /* UndoCommand.m in Sources */,
 				EA411AC1176066F500DA72D0 /* UserDetailRoundButton.m in Sources */,
 				EA411AC2176066F500DA72D0 /* TaoBaoController.m in Sources */,
@@ -27332,6 +27367,7 @@
 				EA7100B817D05FB000451A38 /* DrawPlayer.m in Sources */,
 				EA7100D317D197DA00451A38 /* MLNavigationController.m in Sources */,
 				EA46AD5A17D5E6CD0066E914 /* ReportFeedCell.m in Sources */,
+				A4F1AE1A19E8D9860082E9EC /* ImageSimilarity+ShapeContext.mm in Sources */,
 				A42BB02D17D9735A007FB11B /* TwoInputFieldView.m in Sources */,
 				EAD13B8D17DECFE300764FFB /* OrangeLoadingView.m in Sources */,
 				A44F32EB17E16C3500AF9B26 /* ContestRankView.m in Sources */,
