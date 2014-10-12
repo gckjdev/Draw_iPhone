@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "AccountService.h"
-#import <immobSDK/immobView.h>
+//#import <immobSDK/immobView.h>
 //#import "AderSDK.h"
 //#import "AderDelegateProtocal.h"
 //#import "AdMoGoView.h"
@@ -33,7 +33,7 @@ typedef enum
 
 @end
 
-@interface AdService : NSObject<UIAlertViewDelegate, AccountServiceDelegate, immobViewDelegate, GADBannerViewDelegate>
+@interface AdService : NSObject<UIAlertViewDelegate, AccountServiceDelegate, GADBannerViewDelegate>
 {
     BOOL _isShowAd;
 }

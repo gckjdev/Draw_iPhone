@@ -12,7 +12,6 @@
 #import "StatisticManager.h"
 #import "UserManager.h"
 #import "UserSettingController.h"
-#import "LmWallService.h"
 #import "UIUtils.h"
 #import "BulletinView.h"
 #import "AnalyticsManager.h"

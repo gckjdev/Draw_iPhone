@@ -45,6 +45,7 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
+        _defaultTabIndex = 1;
     }
     return self;
 }
@@ -70,6 +71,7 @@
     [self setCanDragBack:NO];
     [[TutorialCoreManager defaultManager] autoUpdate];
     [self showHelpView];
+    
 }
 
 - (void)showHelpView

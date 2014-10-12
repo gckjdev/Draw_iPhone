@@ -13,7 +13,7 @@
 #import "ShoppingManager.h"
 #import "PPViewController.h"
 #import "DeviceDetection.h"
-#import "LmWallService.h"
+//#import "LmWallService.h"
 //#import "AdMoGoView.h"
 #import "UserManager.h"
 #import "HomeController.h"
@@ -152,7 +152,7 @@ static AdService* _defaultService;
 
 - (void)gotoWall
 {
-    [[LmWallService defaultService] show:_viewController isForRemoveAd:YES];
+//    [[LmWallService defaultService] show:_viewController isForRemoveAd:YES];
 }
 
 #pragma mark - Account Service Delegate
@@ -193,33 +193,33 @@ static AdService* _defaultService;
     [_viewController showActivityWithText:NSLS(@"kProcessingIAP")];
 }
 
-#pragma mark - LM Ad View Delegate
-
-- (void) immobView: (immobView*) immobView didFailReceiveimmobViewWithError: (NSInteger) errorCode{
-    NSLog(@"errorCode:%i",errorCode);
-}
-- (void) onDismissScreen:(immobView *)immobView{
-    NSLog(@"onDismissScreen");
-}
-
-/**
- *email phone sms等所需要
- *返回当前添加immobView的ViewController
- */
-- (UIViewController *)immobViewController{
-    
-    return nil;
-}
-
-/**
- *根据广告的状态来决定当前广告是否展示到当前界面上 AdReady 
- *YES  当前广告可用
- *NO   当前广告不可用
- */
-- (void) immobViewDidReceiveAd:(immobView *)immobView{
-    //[adView_AdWall immobViewDisplay];
-    PPDebug(@"<immobViewDidReceiveAd>");    
-}
+//#pragma mark - LM Ad View Delegate
+//
+//- (void) immobView: (immobView*) immobView didFailReceiveimmobViewWithError: (NSInteger) errorCode{
+//    NSLog(@"errorCode:%i",errorCode);
+//}
+//- (void) onDismissScreen:(immobView *)immobView{
+//    NSLog(@"onDismissScreen");
+//}
+//
+///**
+// *email phone sms等所需要
+// *返回当前添加immobView的ViewController
+// */
+//- (UIViewController *)immobViewController{
+//    
+//    return nil;
+//}
+//
+///**
+// *根据广告的状态来决定当前广告是否展示到当前界面上 AdReady 
+// *YES  当前广告可用
+// *NO   当前广告不可用
+// */
+//- (void) immobViewDidReceiveAd:(immobView *)immobView{
+//    //[adView_AdWall immobViewDisplay];
+//    PPDebug(@"<immobViewDidReceiveAd>");    
+//}
 
 
 #pragma mark - Mango Ad View Delegate
@@ -320,9 +320,9 @@ static AdService* _defaultService;
 //            [((AdMoGoView*)adView) pauseAdRequest];
 //            ((AdMoGoView*)adView).delegate = nil;
 //        }
-        if ([adView isKindOfClass:[immobView class]]){
-            ((immobView*)adView).delegate = nil;  
-        }        
+//        if ([adView isKindOfClass:[immobView class]]){
+//            ((immobView*)adView).delegate = nil;  
+//        }        
     }
     @catch (NSException *exception) {
         PPDebug(@"<clearAdView> catch exception=%@", [exception description]);
@@ -407,29 +407,31 @@ static AdService* _defaultService;
                       frame:(CGRect)frame 
                   iPadFrame:(CGRect)iPadFrame
 {
-    if (frame.size.height == 0 && frame.size.width == 0 && [DeviceDetection isIPAD] == NO){
-        return nil;
-    }
-    
-    // Create LM Ad View
-    immobView* adView = nil;
-    adView = [[[immobView alloc] initWithAdUnitID:appId] autorelease];
-    
-    if ([DeviceDetection isIPAD]){
-        [adView setFrame:iPadFrame];
-    }
-    else{
-        [adView setFrame:frame];
-    }
-    
-    adView.backgroundColor = [UIColor clearColor];
-    adView.tag = AD_VIEW_TAG;
-    adView.delegate = self;
-    [adView immobViewRequest];
-    
-    [superView addSubview:adView];    
-    [adView immobViewDisplay];        
-    return adView;    
+//    if (frame.size.height == 0 && frame.size.width == 0 && [DeviceDetection isIPAD] == NO){
+//        return nil;
+//    }
+//    
+//    // Create LM Ad View
+//    immobView* adView = nil;
+//    adView = [[[immobView alloc] initWithAdUnitID:appId] autorelease];
+//    
+//    if ([DeviceDetection isIPAD]){
+//        [adView setFrame:iPadFrame];
+//    }
+//    else{
+//        [adView setFrame:frame];
+//    }
+//    
+//    adView.backgroundColor = [UIColor clearColor];
+//    adView.tag = AD_VIEW_TAG;
+//    adView.delegate = self;
+//    [adView immobViewRequest];
+//    
+//    [superView addSubview:adView];
+//    [adView immobViewDisplay];        
+//    return adView;    
+
+    return nil;
 }
 
 //- (UIView*)createWanpuAdInView:(UIView*)superView

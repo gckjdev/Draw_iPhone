@@ -35,7 +35,6 @@
 #import "PPConfigManager.h"
 #import "ChargeController.h"
 
-#import "LmWallService.h"
 #import "UserGameItemService.h"
 #import "GameItemService.h"
 #import "FlowerItem.h"
@@ -668,12 +667,12 @@ typedef enum{
 
 - (void)didClickOk:(CommonDialog *)dialog infoView:(id)infoView
 {
-    if ([PPConfigManager wallEnabled]) {
-        [LmWallService showWallOnController:self];
-    }else {
+//    if ([PPConfigManager wallEnabled]) {
+//        [LmWallService showWallOnController:self];
+//    }else {
         ChargeController* controller = [[[ChargeController alloc] init] autorelease];
         [self.navigationController pushViewController:controller animated:YES];
-    }
+//    }
 }
 
 - (void)setProgress:(CGFloat)progress

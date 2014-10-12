@@ -13,8 +13,8 @@
 #import "WXApi.h"
 #import "DrawHomeControllerProtocol.h"
 
-#import "DMSplashAdController.h"
-#import "DMRTSplashAdController.h"
+//#import "DMSplashAdController.h"
+//#import "DMRTSplashAdController.h"
 
 
 //#define DRAW_APP_ID      @"513819630"
@@ -26,11 +26,11 @@
 @class HomeController;
 @class CPMotionRecognizingWindow;
 
-@interface DrawAppDelegate : PPApplication <UIApplicationDelegate, CommonNetworkClientDelegate, WXApiDelegate, ReviewRequestDelegate, DMSplashAdControllerDelegate> {
+@interface DrawAppDelegate : PPApplication <UIApplicationDelegate, CommonNetworkClientDelegate, WXApiDelegate, ReviewRequestDelegate> {
 
     UIBackgroundTaskIdentifier bgTask;
-    DMSplashAdController *_splashAd;
-    DMRTSplashAdController* _rtsplashAd;
+//    DMSplashAdController *_splashAd;
+//    DMRTSplashAdController* _rtsplashAd;
     
 
 }
