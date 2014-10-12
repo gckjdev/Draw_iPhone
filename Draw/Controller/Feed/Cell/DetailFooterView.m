@@ -61,7 +61,7 @@
     KEY(FooterTypeRate): @"detail_rate@2x.png",
     };
     NSString *name = [dict objectForKey:KEY(type)];
-    return name ? [UIImage imageNamed:name] : nil;
+    return name ? [UIImage imageNamedFixed:name] : nil;
 }
 
 - (void)setButtonsWithCustomTypes:(NSArray *)types

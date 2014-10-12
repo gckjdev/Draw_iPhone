@@ -81,17 +81,18 @@
 #define PROGRESS_VIEW_SIZE_HEIGHT (ISIPAD ? 40.0f : 20.0f)
 -(void)setProgressView:(NSInteger)row WithProgress:(float)progress{
     const CGSize progressViewSize = { PROGRESS_VIEW_SIZE_WIDTH, PROGRESS_VIEW_SIZE_HEIGHT};
+    [self.progressAndLabelView removeAllSubviews];
     //調用THprogressview
     [self.progressInfoLabel setHidden:YES];
 
-     [self.progressAndLabelView removeAllSubviews];
+   
     
     CGSize mainSize = [UIScreen mainScreen].bounds.size;
     
     //调用LDProgressView
     CGFloat progressX;
     if(ISIPAD){
-        progressX = fabsf((mainSize.width - progressViewSize.width)/2.0f);
+        progressX = fabsf((self.frame.size.width - progressViewSize.width)/2.0f);
     }
     else{
         progressX = fabsf((mainSize.width - progressViewSize.width-30)/2.0f);
@@ -145,6 +146,7 @@
         tutorialProgressView.hidden = NO;
         tutorialProgressView.progress = progress;
         self.tutorialStartBtn.hidden = YES;
+        
         
     }
     [self.progressAndLabelView addSubview:tutorialProgressView];

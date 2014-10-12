@@ -16,7 +16,7 @@
 #import "OfflineDrawViewController.h"
 
 @interface CopyPaintCommand ()
-@property (retain, nonatomic) UIPopoverController* popoverController;
+//@property (retain, nonatomic) UIPopoverController* popoverController;
 @property (retain, nonatomic) ChangeAvatar* imagePicker;
 @end
 
@@ -24,7 +24,7 @@
 
 - (void)dealloc
 {
-    PPRelease(_popoverController);
+//    PPRelease(_popoverController);
     PPRelease(_imagePicker);
     [super dealloc];
 }

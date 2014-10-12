@@ -209,7 +209,7 @@
     self.title.hidden = NO;
     self.author.hidden = YES;
     self.drawFlag.hidden = YES;
-    [self.title setTextAlignment:UITextAlignmentCenter];
+    [self.title setTextAlignment:NSTextAlignmentCenter];
 }
 - (void)updateViewInfoForUserOpus
 {
@@ -218,7 +218,7 @@
         [self.title setText:self.feed.wordText];
     }
     self.author.hidden = YES;
-    [self.title setTextAlignment:UITextAlignmentCenter];
+    [self.title setTextAlignment:NSTextAlignmentCenter];
 }
 
 - (void)updateViewInfoForContestOpus:(DrawFeed*)feed

@@ -153,13 +153,13 @@
         [actionView addSubview:btn];
         
         UILabel *lbl = [[[UILabel alloc] initWithFrame:CGRectMake(0, 65, actionViewWidth, 14)] autorelease];
-        lbl.textAlignment = UITextAlignmentCenter;
+        lbl.textAlignment = NSTextAlignmentCenter;
         lbl.textColor = [UIColor colorWithRed:204/255.0
                                         green:204/255.0
                                          blue:204/255.0
                                         alpha:1.0];
         lbl.font = [UIFont systemFontOfSize:12.0f];
-        [lbl setTextAlignment:UITextAlignmentCenter];
+        [lbl setTextAlignment:NSTextAlignmentCenter];
         [lbl setTextColor:[UIColor whiteColor]];
         lbl.backgroundColor = [UIColor clearColor];
         lbl.text = (NSString*)[self.buttonTitles objectAtIndex:i];
@@ -219,7 +219,7 @@
             [actionView addSubview:btn];
             if (shouldShowTitles) {
                 UILabel *lbl = [[[UILabel alloc] initWithFrame:CGRectMake(0, actionViewWidth, actionViewWidth, actionViewHeight*0.2)] autorelease];
-                lbl.textAlignment = UITextAlignmentCenter;
+                lbl.textAlignment = NSTextAlignmentCenter;
                 lbl.textColor = [UIColor colorWithRed:204/255.0
                                                 green:204/255.0
                                                  blue:204/255.0
@@ -233,7 +233,7 @@
             int badgeCount = [self badgeCountForIndex:i];
             UIButton *badge = [[[UIButton alloc] initWithFrame:CGRectMake(actionViewWidth*0.6, 0, actionViewWidth*0.3, actionViewWidth*0.3)] autorelease];
             badge.hidden = YES;
-            badge.titleLabel.textAlignment = UITextAlignmentCenter;
+            badge.titleLabel.textAlignment = NSTextAlignmentCenter;
             badge.titleLabel.font = [UIFont systemFontOfSize:actionViewWidth/6];
             [badge setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
             [badge setUserInteractionEnabled:NO];

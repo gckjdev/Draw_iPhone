@@ -44,7 +44,7 @@ AUTO_CREATE_VIEW_BY_XIB(BulletinCell)
 {
     CGSize size = [content sizeWithMyFont:[UIFont systemFontOfSize:CONTENT_FONT_SIZE]
                                      constrainedToSize:CGSizeMake(CONTENT_LABEL_WIDTH, MAX_CONTENT_LABEL_HEIGHT)
-                                         lineBreakMode:UILineBreakModeTailTruncation];
+                                         lineBreakMode:NSLineBreakByTruncatingTail];
 
     return CGSizeMake(size.width, size.height + TOTAL_SEPERATOR);
 }

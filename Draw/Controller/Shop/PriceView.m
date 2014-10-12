@@ -48,7 +48,9 @@ AUTO_CREATE_VIEW_BY_XIB(PriceView);
 {
     CGSize withinSize = CGSizeMake(100, label.frame.size.height);
     
-    CGSize size = [text sizeWithMyFont:label.font constrainedToSize:withinSize lineBreakMode:UILineBreakModeTailTruncation];
+    CGSize size = [text sizeWithMyFont:label.font
+                     constrainedToSize:withinSize
+                         lineBreakMode:NSLineBreakByTruncatingTail];
     
     [label updateWidth:size.width];
     

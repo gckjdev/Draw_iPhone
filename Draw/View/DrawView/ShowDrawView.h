@@ -86,6 +86,7 @@ typedef enum{
 
 - (void) createImageOfLayer:(NSInteger)num
                        Path:(NSString*)path;
++(UIImage *)markStringIntoImage:(UIImage *)image AndText:(NSString *)text;
 @end
 
 

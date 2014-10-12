@@ -48,6 +48,8 @@ static BBSImageManager* _staticBBSImageManager;
 
 - (UIImage *)optionLeftBGImage
 {
+    
+    
     return [_resService stretchableImageWithImageName:@"bbs_option_bubble"
                              leftCapWidthScale:0.8
                              topCapHeightScale:0.3
@@ -63,11 +65,15 @@ static BBSImageManager* _staticBBSImageManager;
 }
 - (UIImage *)optionButtonBGImage
 {
+    
     return [_resService stretchableImageWithImageName:@"bbs_option_bg" inResourcePackage:RESOURCE_PACKAGE_BBS];
 }
 - (UIImage *)bbsBackImage
 {
-    return [_resService stretchableImageWithImageName:@"bbs_back" inResourcePackage:RESOURCE_PACKAGE_BBS];
+    return [[ShareImageManager defaultManager] fixedImageNamed:@"bbs_back"];
+
+    
+//    return [_resService stretchableImageWithImageName:@"bbs_back" inResourcePackage:RESOURCE_PACKAGE_BBS];
 }
 - (UIImage *)bbsBGImage
 {
@@ -78,21 +84,33 @@ static BBSImageManager* _staticBBSImageManager;
 
 - (UIImage *)bbsActionSheetBG
 {
-    return [_resService stretchableImageWithImageName:@"bbs_action_sheet_bg"
-                             inResourcePackage:RESOURCE_PACKAGE_BBS];
+//    return [[ShareImageManager defaultManager] fixedImageNamed:@"bbs_action_sheet_bg"];
+    
+    
+      return [UIImage imageNamedFixed:[[ShareImageManager defaultManager] fixImageName:@"bbs_create_input_bg"]];
+
+//    return [_resService stretchableImageWithImageName:@"bbs_action_sheet_bg"
+//                             inResourcePackage:RESOURCE_PACKAGE_BBS];
 }
 
 - (UIImage *)bbsRefreshImage
 {
-    return [_resService stretchableImageWithImageName:@"bbs_refresh" inResourcePackage:RESOURCE_PACKAGE_BBS];
+    return [UIImage imageNamedFixed:[[ShareImageManager defaultManager] fixImageName:@"bbs_refresh"]];
+//    return [[ShareImageManager defaultManager] fixedImageNamed:@"bbs_refresh"];
+
+    
+//    return [_resService stretchableImageWithImageName:@"bbs_refresh" inResourcePackage:RESOURCE_PACKAGE_BBS];
 }
 
 //index image
 #pragma mark - Index page image
 - (UIImage *)bbsBadgeImage
 {
-     return [_resService stretchableImageWithImageName:@"bbs_badge"
-                   inResourcePackage:RESOURCE_PACKAGE_BBS];
+//    return [[ShareImageManager defaultManager] fixedImageNamed:@"bbs_badge"];
+        return [UIImage imageNamedFixed:[[ShareImageManager defaultManager] fixImageName:@"bbs_badge"]];
+    
+//     return [_resService stretchableImageWithImageName:@"bbs_badge"
+//                   inResourcePackage:RESOURCE_PACKAGE_BBS];
 }
 #define BBS_BOARD_BORDER (ISIPAD?4:2)
 #define BBS_BOARD_RADIUS (ISIPAD?15:8)
@@ -117,41 +135,61 @@ static BBSImageManager* _staticBBSImageManager;
 }
 - (UIImage *)bbsBoardLineImage
 {
-     return [_resService stretchableImageWithImageName:@"bbs_board_line"
-                   inResourcePackage:RESOURCE_PACKAGE_BBS];
+    return [[ShareImageManager defaultManager] fixedImageNamed:@"bbs_board_line"];
+
+    
+//     return [_resService stretchableImageWithImageName:@"bbs_board_line"
+//                   inResourcePackage:RESOURCE_PACKAGE_BBS];
 }
 
 - (UIImage *)bbsBoardMineImage
 {
-    return [_resService stretchableImageWithImageName:@"bbs_board_mine"
-                             inResourcePackage:RESOURCE_PACKAGE_BBS];
+            return [[ShareImageManager defaultManager] fixedImageNamed:@"bbs_board_mine"];
+    
+//    return [_resService stretchableImageWithImageName:@"bbs_board_mine"
+//                             inResourcePackage:RESOURCE_PACKAGE_BBS];
 }
 
 - (UIImage *)bbsBoardSearchImage
 {
-    return [_resService stretchableImageWithImageName:@"bbs_board_search"
-                                    inResourcePackage:RESOURCE_PACKAGE_BBS];
+        return [[ShareImageManager defaultManager] fixedImageNamed:@"bbs_board_search"];
+    
+//    return [_resService stretchableImageWithImageName:@"bbs_board_search"
+//                                    inResourcePackage:RESOURCE_PACKAGE_BBS];
 }
 
 
 - (UIImage *)bbsBoardCommentImage
 {
-    return [_resService stretchableImageWithImageName:@"bbs_board_comment"
-                             inResourcePackage:RESOURCE_PACKAGE_BBS];
+    
+    return [[ShareImageManager defaultManager] fixedImageNamed:@"bbs_board_comment"];
+    
+//    return [_resService stretchableImageWithImageName:@"bbs_board_comment"
+//                             inResourcePackage:RESOURCE_PACKAGE_BBS];
 }
 
 - (UIImage *)bbsSectionBgImage
 {
+    if(ISIPAD){
+        return [UIImage imageNamedFixed:@"bbs_section_bg@2x"];
+    }
+    
      return [_resService stretchableImageWithImageName:@"bbs_section_bg"
                    inResourcePackage:RESOURCE_PACKAGE_BBS];
 }
 - (UIImage *)bbsSwitchBgImage
 {
+    if(ISIPAD){
+        return [UIImage imageNamedFixed:@"bbs_switch_bg@2x"];
+    }
      return [_resService stretchableImageWithImageName:@"bbs_switch_bg"
                    inResourcePackage:RESOURCE_PACKAGE_BBS];
 }
 - (UIImage *)bbsSwitchDownImage
 {
+    if(ISIPAD){
+        return [UIImage imageNamedFixed:@"bbs_switch_down@2x"];
+    }
      return [_resService stretchableImageWithImageName:@"bbs_switch_down"
                    inResourcePackage:RESOURCE_PACKAGE_BBS];
 }
@@ -180,46 +218,54 @@ static BBSImageManager* _staticBBSImageManager;
 
 - (UIImage *)bbsPostEditImage{
     NSString *imageName = [UIImage fixImageName:@"bbs_post_edit"];
-    return [_resService imageByName:imageName
-                  inResourcePackage:RESOURCE_PACKAGE_BBS];
+    return [UIImage imageNamedFixed:imageName];
+//    return [_resService imageByName:imageName
+//                  inResourcePackage:RESOURCE_PACKAGE_BBS];
 }
 - (UIImage *)bbsPostHotImage{
     NSString *imageName = [UIImage fixImageName:@"bbs_post_hot"];
-    return [_resService imageByName:imageName
-                  inResourcePackage:RESOURCE_PACKAGE_BBS];
+    return [UIImage imageNamedFixed:imageName];
+//    return [_resService imageByName:imageName
+//                  inResourcePackage:RESOURCE_PACKAGE_BBS];
 }
 - (UIImage *)bbsPostNewImage{
     NSString *imageName = [UIImage fixImageName:@"bbs_post_new"];
-    return [_resService imageByName:imageName
-                  inResourcePackage:RESOURCE_PACKAGE_BBS];
+    return [UIImage imageNamedFixed:imageName];
+//    return [_resService imageByName:imageName
+//                  inResourcePackage:RESOURCE_PACKAGE_BBS];
 }
 - (UIImage *)bbsPostMarkImage
 {
     NSString *imageName = [UIImage fixImageName:@"bbs_post_mark"];
-    return [_resService imageByName:imageName
-                  inResourcePackage:RESOURCE_PACKAGE_BBS];
+    return [UIImage imageNamedFixed:imageName];
+//    return [_resService imageByName:imageName
+//                  inResourcePackage:RESOURCE_PACKAGE_BBS];
 }
 
 - (UIImage *)bbsPostRewardImage{
     NSString *imageName = [UIImage fixImageName:@"bbs_post_reward"];
-    return [_resService imageByName:imageName
-                  inResourcePackage:RESOURCE_PACKAGE_BBS];
+    return [UIImage imageNamedFixed:imageName];
+//    return [_resService imageByName:imageName
+//                  inResourcePackage:RESOURCE_PACKAGE_BBS];
 }
 - (UIImage *)bbsPostRewardedImage{
     NSString *imageName = [UIImage fixImageName:@"bbs_post_rewarded"];
-    return [_resService imageByName:imageName
-                  inResourcePackage:RESOURCE_PACKAGE_BBS];
+    return [UIImage imageNamedFixed:imageName];
+//    return [_resService imageByName:imageName
+//                  inResourcePackage:RESOURCE_PACKAGE_BBS];
 }
 
 - (UIImage *)bbsPostSupportImage{
     NSString *imageName = [UIImage fixImageName:@"bbs_post_support"];
-    return [_resService imageByName:imageName
-                  inResourcePackage:RESOURCE_PACKAGE_BBS];
+        return [UIImage imageNamedFixed:imageName];
+//    return [_resService imageByName:imageName
+//                  inResourcePackage:RESOURCE_PACKAGE_BBS];
 }
 - (UIImage *)bbsPostCommentImage{
     NSString *imageName = [UIImage fixImageName:@"bbs_post_comment"];
-    return [_resService imageByName:imageName
-                  inResourcePackage:RESOURCE_PACKAGE_DRAW];
+        return [UIImage imageNamedFixed:imageName];
+//    return [_resService imageByName:imageName
+//                  inResourcePackage:RESOURCE_PACKAGE_DRAW];
     
 }
 
@@ -228,19 +274,22 @@ static BBSImageManager* _staticBBSImageManager;
 #pragma mark - Post Detail image
 - (UIImage*)bbsDetailOptionUp{
     NSString *imageName = [UIImage fixImageName:@"bbs_detail_option_up"];
-    return [_resService imageByName:imageName
-                  inResourcePackage:RESOURCE_PACKAGE_BBS];
+            return [UIImage imageNamedFixed:imageName];
+//    return [_resService imageByName:imageName
+//                  inResourcePackage:RESOURCE_PACKAGE_BBS];
 
 }
 - (UIImage*)bbsDetailReply{
     NSString *imageName = [UIImage fixImageName:@"bbs_detail_reply"];
-    return [_resService imageByName:imageName
-                  inResourcePackage:RESOURCE_PACKAGE_BBS];
+            return [UIImage imageNamedFixed:imageName];
+//    return [_resService imageByName:imageName
+//                  inResourcePackage:RESOURCE_PACKAGE_BBS];
 }
 - (UIImage*)bbsDetailSupport{
     NSString *imageName = [UIImage fixImageName:@"bbs_detail_support"];
-    return [_resService imageByName:imageName
-                  inResourcePackage:RESOURCE_PACKAGE_BBS];
+            return [UIImage imageNamedFixed:imageName];
+//    return [_resService imageByName:imageName
+//                  inResourcePackage:RESOURCE_PACKAGE_BBS];
 }
 
 - (UIImage*)bbsDetailOption{
@@ -267,63 +316,74 @@ static BBSImageManager* _staticBBSImageManager;
 
 - (UIImage *)bbsPostDetailComment{
     NSString *imageName = [UIImage fixImageName:@"bbs_post_detail_comment"];
-    return [_resService imageByName:imageName inResourcePackage:RESOURCE_PACKAGE_BBS];
+    return [UIImage imageNamedFixed:imageName];
+//    return [_resService imageByName:imageName inResourcePackage:RESOURCE_PACKAGE_BBS];
 }
 
 - (UIImage *)bbsPostDetailDelete{
     NSString *imageName = [UIImage fixImageName:@"bbs_post_detail_delete"];
-    return [_resService imageByName:imageName inResourcePackage:RESOURCE_PACKAGE_BBS];
+    return [UIImage imageNamedFixed:imageName];
+//    return [_resService imageByName:imageName inResourcePackage:RESOURCE_PACKAGE_BBS];
 }
 
 - (UIImage *)bbsPostDetailSupport{
     NSString *imageName = [UIImage fixImageName:@"bbs_post_detail_support"];
-    return [_resService imageByName:imageName inResourcePackage:RESOURCE_PACKAGE_BBS];
+    return [UIImage imageNamedFixed:imageName];
+//    return [_resService imageByName:imageName inResourcePackage:RESOURCE_PACKAGE_BBS];
 }
 
 - (UIImage *)bbsPostDetailToTop{
     NSString *imageName = [UIImage fixImageName:@"bbs_post_detail_totop"];
-    return [_resService imageByName:imageName inResourcePackage:RESOURCE_PACKAGE_BBS];
+    return [UIImage imageNamedFixed:imageName];
+//    return [_resService imageByName:imageName inResourcePackage:RESOURCE_PACKAGE_BBS];
 }
 
 - (UIImage *)bbsPostDetailUnTop{
     NSString *imageName = [UIImage fixImageName:@"bbs_post_detail_untop"];
-    return [_resService imageByName:imageName inResourcePackage:RESOURCE_PACKAGE_BBS];
+    return [UIImage imageNamedFixed:imageName];
+//    return [_resService imageByName:imageName inResourcePackage:RESOURCE_PACKAGE_BBS];
 }
 
 - (UIImage *)bbsPostDetailFavor
 {
     NSString *imageName = [UIImage fixImageName:@"bbs_post_detail_favor"];
-    return [_resService imageByName:imageName inResourcePackage:RESOURCE_PACKAGE_BBS];
+    return [UIImage imageNamedFixed:imageName];
+//    return [_resService imageByName:imageName inResourcePackage:RESOURCE_PACKAGE_BBS];
     
 }
 - (UIImage *)bbsPostDetailUnfavor
 {
     NSString *imageName = [UIImage fixImageName:@"bbs_post_detail_unfavor"];
-    return [_resService imageByName:imageName inResourcePackage:RESOURCE_PACKAGE_BBS];    
+    return [UIImage imageNamedFixed:imageName];
+//    return [_resService imageByName:imageName inResourcePackage:RESOURCE_PACKAGE_BBS];    
 }
 
 - (UIImage *)bbsPostDetailMark
 {
     NSString *imageName = [UIImage fixImageName:@"bbs_post_detail_mark"];
-    return [_resService imageByName:imageName inResourcePackage:RESOURCE_PACKAGE_BBS];
+    return [UIImage imageNamedFixed:imageName];
+//    return [_resService imageByName:imageName inResourcePackage:RESOURCE_PACKAGE_BBS];
     
 }
 - (UIImage *)bbsPostDetailUnmark
 {
     NSString *imageName = [UIImage fixImageName:@"bbs_post_detail_unmark"];
-    return [_resService imageByName:imageName inResourcePackage:RESOURCE_PACKAGE_BBS];
+    return [UIImage imageNamedFixed:imageName];
+//    return [_resService imageByName:imageName inResourcePackage:RESOURCE_PACKAGE_BBS];
     
 }
 
 
 - (UIImage *)bbsPostDetailTransfer{
     NSString *imageName = [UIImage fixImageName:@"bbs_post_detail_transfer"];
-    return [_resService imageByName:imageName inResourcePackage:RESOURCE_PACKAGE_BBS];
+    return [UIImage imageNamedFixed:imageName];
+//    return [_resService imageByName:imageName inResourcePackage:RESOURCE_PACKAGE_BBS];
 }
 
 - (UIImage *)bbsPostTopBg{
     NSString *imageName = [UIImage fixImageName:@"bbs_post_top_bg"];
-    return [_resService imageByName:imageName inResourcePackage:RESOURCE_PACKAGE_BBS];
+    return [UIImage imageNamedFixed:imageName];
+//    return [_resService imageByName:imageName inResourcePackage:RESOURCE_PACKAGE_BBS];
 }
 
 #pragma mark - Creation Page image
@@ -331,6 +391,8 @@ static BBSImageManager* _staticBBSImageManager;
      return [_resService stretchableImageWithImageName:@"bbs_create_draw_enable" inResourcePackage:RESOURCE_PACKAGE_BBS];
 }
 - (UIImage *)bbsCreateImageEnable{
+    
+//    return [UIImage imageNamedFixed:@"bbs_create_image_enable"];
      return [_resService stretchableImageWithImageName:@"bbs_create_image_enable" inResourcePackage:RESOURCE_PACKAGE_BBS];
 }
 - (UIImage *)bbsCreateInputBg{

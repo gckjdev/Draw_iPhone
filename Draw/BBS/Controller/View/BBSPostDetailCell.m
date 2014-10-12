@@ -126,21 +126,24 @@
 + (CGFloat)heightForContentText:(NSString *)text inTextView:(UITextView *)textView
 {
     UIFont *font = textView.font;
-    [textView updateWidth:CONTENT_WIDTH];
-    [textView updateHeight:10];
-    [textView setFont:font];
-    [textView setText:text];
+//    [textView updateWidth:CONTENT_WIDTH];
+//    [textView updateHeight:10];
+//    [textView setFont:font];
+//    [textView setText:text];
+//    [textView updateHeight:height];
     CGFloat height = 0;
     
     if (ISIOS7) {
         float fPadding = 16.0*2; // 8.0px x 2
         CGSize constraint = CGSizeMake(CONTENT_WIDTH - fPadding, CGFLOAT_MAX);
-        CGSize size = [text sizeWithMyFont:font constrainedToSize:constraint lineBreakMode:UILineBreakModeWordWrap];
+        CGSize size = [text sizeWithMyFont:font
+                         constrainedToSize:constraint
+                             lineBreakMode:NSLineBreakByWordWrapping];
         height = size.height + 20;
     }else{
         height = textView.contentSize.height;
     }
-    [textView updateHeight:height];
+//    [textView updateHeight:height];
     return height;
 /*
     CGRect rect = textView.frame;
@@ -204,6 +207,14 @@
         self.content.frame = frame;
     }else{
         [self.contentTextView setText:content.text];
+//        UIFont *font = self.contentTextView.font;
+//        [self.contentTextView updateWidth:CONTENT_WIDTH];
+//        [self.contentTextView updateHeight:10];
+//        [self.contentTextView setFont:font];
+//        [self.contentTextView setText:text];
+//        [self.contentTextView updateHeight:height];
+        
+        
         CGRect frame = self.contentTextView.frame;
         frame.size.height = [BBSPostDetailCell heightForContentText:content.text inTextView:self.contentTextView];
         self.contentTextView.frame = frame;

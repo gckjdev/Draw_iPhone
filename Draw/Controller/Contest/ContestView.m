@@ -47,6 +47,10 @@
     self.dateLeftLabel.alpha = 0.6;
     self.dateLeftLabel.textColor = COLOR_WHITE;
     self.dateLeftLabel.hidden = YES;
+    [self.opusButton setImage:[UIImage imageNamedFixed:@"contest_opus@2x"] forState:UIControlStateNormal];
+    [self.detailButton setImage:[UIImage imageNamedFixed:@"contest_detail@2x"] forState:UIControlStateNormal];
+    [self.joinButton setImage:[UIImage imageNamedFixed:@"contest_join@2x"] forState:UIControlStateNormal];
+    [self.reportButton setImage:[UIImage imageNamedFixed:@"contest_report@2x"] forState:UIControlStateNormal];
 }
 
 - (void)refreshDateLeft
@@ -112,6 +116,10 @@
     [_reportLabel release];
     [_infoHolderView release];
     [_actionHolderView release];
+    [_opusButton release];
+    [_reportButton release];
+    [_detailButton release];
+    [_joinButton release];
     [super dealloc];
 }
 

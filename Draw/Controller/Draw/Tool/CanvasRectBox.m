@@ -288,12 +288,7 @@ typedef enum {
         [tt setText:txt];
         tt.numberOfLines = 0;
         tt.textAlignment = NSTextAlignmentCenter;
-        if ([DeviceDetection isOS6]){
-            [tt setMinimumScaleFactor:0.1];
-        }
-        else{
-            [tt setMinimumFontSize:MIN_FONT_SIZE];
-        }
+        [tt setMinimumScaleFactor:0.1];
         [self addSubview:tt];
     }
     return self;

@@ -304,7 +304,7 @@ typedef enum{
 
 - (void)showViewController:(UIViewController*)controller
 {
-    [self.navigationController presentModalViewController:controller animated:YES];
+    [self.navigationController presentViewController:controller animated:YES completion:nil];
 }
 
 

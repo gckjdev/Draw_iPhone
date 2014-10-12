@@ -31,6 +31,9 @@
     if (self) {
         self.command = command;
         [self addTarget:self action:@selector(clickView:) forControlEvents:UIControlEventTouchUpInside];
+        
+
+        
         [self setImage:command.icon forState:UIControlStateNormal];
     }
     return self;

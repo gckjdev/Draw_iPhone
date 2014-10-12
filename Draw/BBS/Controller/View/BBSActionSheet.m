@@ -78,6 +78,7 @@
     [self updateFrameWithSuperView:view showAtPoint:point];
     [self updateButtons];
     [self.bgImageView setImage:[[BBSImageManager defaultManager] bbsActionSheetBG]];
+    [self.bgImageView setContentMode:UIViewContentModeScaleAspectFill];
     [self showInView:view animated:animated];
 }
 

@@ -31,7 +31,8 @@
 
 #define HEIGHT_FOR_ROW ISIPAD ? 250.0f : 120.0f
 #define LEFT_RIGHT_MARGIN 15
-#define TOP_MARGIN (ISIPAD?180+STATUSBAR_DELTA:80+STATUSBAR_DELTA)
+#define ALL_TUTORIAL_TOP_MARGIN (ISIPAD?160+STATUSBAR_DELTA:80+STATUSBAR_DELTA)
+#define MY_TUTORIAL_TOP_MARGIN (ISIPAD?170+STATUSBAR_DELTA:80+STATUSBAR_DELTA)
 @implementation UserTutorialMainController
 
 - (id)initWithDefaultTabIndex:(NSInteger)index
@@ -361,14 +362,15 @@
         case TutorialTypeMine:
             [self updateAllBadge];
             if(self.dataTableView.frame.size.width != [[UIScreen mainScreen] bounds].size.width-2*LEFT_RIGHT_MARGIN){
-                self.dataTableView.frame = CGRectMake(LEFT_RIGHT_MARGIN, TOP_MARGIN, [[UIScreen mainScreen] bounds].size.width-2*LEFT_RIGHT_MARGIN, [[UIScreen mainScreen] bounds].size.height-TOP_MARGIN);
+                self.dataTableView.frame = CGRectMake(LEFT_RIGHT_MARGIN, MY_TUTORIAL_TOP_MARGIN, [[UIScreen mainScreen] bounds].size.width-2*LEFT_RIGHT_MARGIN, [[UIScreen mainScreen] bounds].size.height-MY_TUTORIAL_TOP_MARGIN);
+                
             }
-            
+            [self reloadData];
             break;
             
         case TutorialTypeAll:
             if(self.dataTableView.frame.size.width != [[UIScreen mainScreen] bounds].size.width){
-                self.dataTableView.frame = CGRectMake(0, TOP_MARGIN, [[UIScreen mainScreen] bounds].size.width, [[UIScreen mainScreen] bounds].size.height-TOP_MARGIN);
+                self.dataTableView.frame = CGRectMake(0, ALL_TUTORIAL_TOP_MARGIN, [[UIScreen mainScreen] bounds].size.width, [[UIScreen mainScreen] bounds].size.height-ALL_TUTORIAL_TOP_MARGIN);
                 PPDebug(@"<cellForRowAtIndexPath> width = %f",self.dataTableView.frame.size.width);
             }
  
@@ -403,9 +405,10 @@
     NSDictionary *tabDictionary = @{@(TutorialTypeMine):@"UserTutorialMainCell",
                                     @(TutorialTypeAll):@"AllTutorialCell"};
    
-
+    
     
     if(tag == TutorialTypeMine){
+        
         NSString *nibName =  [tabDictionary objectForKey:@(tag)];
         
         UIView *view = [self getTableViewCellWithDef:nibName WithTableView:tableView];
@@ -422,6 +425,7 @@
         if(nil != ut){
             [viewCell updateCellInfo:ut WithRow:row];
         }
+
         return viewCell;
     }
     if(tag == TutorialTypeAll){
@@ -441,7 +445,6 @@
         if(nil != ut){
            [allTutorialCell updateCellInfo:ut];
         }
-        
         return allTutorialCell;
     }
     

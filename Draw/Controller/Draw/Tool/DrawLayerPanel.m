@@ -45,6 +45,7 @@
     tap.numberOfTapsRequired = 2;
     [self addGestureRecognizer:tap];
     
+    
     [tap release];
 }
 
@@ -53,6 +54,18 @@
     NSInteger index = (ISIPAD ? 1: 0);
     DrawLayerPanelCell* cell = [DrawLayerPanelCell createViewWithXibIdentifier:@"DrawLayerPanel" ofViewIndex:index];
     cell.delegate = delegate;
+    
+    if (ISIPAD){
+        [cell.showFlag setImage:[UIImage imageNamedFixed:@"drawlayer_flag_show@2x.png"]
+                       forState:UIControlStateNormal];
+
+        [cell.showFlag setImage:[UIImage imageNamedFixed:@"drawlayer_flag_hide@2x.png"]
+                       forState:UIControlStateSelected];
+        
+        [cell.remove setImage:[UIImage imageNamedFixed:@"drawlayer_delete@2x.png"]
+                     forState:UIControlStateNormal];
+    }
+    
     [cell updateView];
     return cell;
 }
@@ -153,6 +166,14 @@
 
 - (void)updateView
 {
+    
+    if (ISIPAD){
+        [self.add setImage:[UIImage imageNamedFixed:@"draw_add@2x"]
+                  forState:UIControlStateNormal];
+        
+        [self.help setImage:[UIImage imageNamedFixed:@"draw_up_panel_help_btn_@2x"]
+                   forState:UIControlStateNormal];
+    }
     
     self.layer.cornerRadius = (ISIPAD?8:4);
     [self.layer setMasksToBounds:YES];

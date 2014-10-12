@@ -432,6 +432,17 @@ if (btn) {\
     [panel addCloseSelectorView];
     [panel updateView];
     [panel updateWithDrawInfo:drawView.drawInfo];
+    
+    if (ISIPAD){
+        
+        [panel.switchPage setImage:[UIImage imageNamedFixed:@"draw_switch@2x.png"]
+                       forState:UIControlStateNormal];
+        
+        [panel.straw setImage:[UIImage imageNamedFixed:@"draw_straw@2x.png"] forState:UIControlStateNormal];
+        [panel.addColor setImage:[UIImage imageNamedFixed:@"draw_add@2x.png"] forState:UIControlStateNormal];
+        [panel.palette setImage:[UIImage imageNamedFixed:@"draw_palette@2x.png"] forState:UIControlStateNormal];
+    }
+    
     return panel;
 
 }

@@ -70,7 +70,7 @@ typedef enum{
     vc.isForSelectOpus = YES;
     vc.selectOpusCallback = callback;
     
-    [fromController presentModalViewController:vc animated:YES];
+    [fromController presentViewController:vc animated:YES completion:nil];
     return vc;
 }
 
@@ -148,7 +148,7 @@ typedef enum{
 - (void)clickBackButton:(id)sender
 {
     if (_isForSelectOpus){
-        [self dismissModalViewControllerAnimated:YES];
+        [self dismissViewControllerAnimated:YES completion:nil];
     }
     else{
         [super clickBackButton:sender];
@@ -840,7 +840,7 @@ typedef enum{
         EXECUTE_BLOCK(self.selectOpusCallback, 0, drawFeed.feedId, image, drawFeed.pbFeed.category);
         self.selectOpusCallback = nil;
         
-        [self dismissModalViewControllerAnimated:YES];
+        [self dismissViewControllerAnimated:YES completion:nil];
     }];
     
     [dialog setClickCancelBlock:^(id view){
@@ -849,7 +849,7 @@ typedef enum{
         EXECUTE_BLOCK(self.selectOpusCallback, -1, nil, nil, 0);
         self.selectOpusCallback = nil;
 
-        [self dismissModalViewControllerAnimated:YES];
+        [self dismissViewControllerAnimated:YES completion:nil];
     }];
 
     [dialog showInView:self.view];

@@ -28,6 +28,7 @@
 @property (retain, nonatomic) IBOutlet UIImageView *coinBalanceBgImageView;
 @property (retain, nonatomic) IBOutlet LocalizableLabel *balanceTipLabel;
 @property (retain, nonatomic) IBOutlet UIImageView *tableViewBgImageView;
+@property (retain, nonatomic) IBOutlet UIImageView *backgroundImage;
 
 - (IBAction)clickBuyVipButton:(id)sender;
 

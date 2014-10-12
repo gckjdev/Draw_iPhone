@@ -31,6 +31,7 @@
 
 @implementation ShareService
 
+
 static ShareService* _defaultService;
 
 + (ShareService*)defaultService
@@ -215,7 +216,7 @@ static ShareService* _defaultService;
     [label setTextColor:[UIColor colorWithRed:123/255.0 green:123/255.0 blue:123/255.0 alpha:1.0]];
     
     [label setFont:[UIFont boldSystemFontOfSize:labelFontSize]];
-    [label setTextAlignment:UITextAlignmentCenter];
+    [label setTextAlignment:NSTextAlignmentCenter];
     
     UIGraphicsBeginImageContext(CGSizeMake(srcImage.size.width+SHADOW_WIDTH*2, srcImage.size.height + SHADOW_WIDTH*3 + labelHeight));
 
@@ -451,6 +452,7 @@ static ShareService* _defaultService;
     return;
 }
 
+
 //YES为share NO为Album
 - (void)saveGif:(PPViewController*)superController
           draft:(MyPaint*)draft
@@ -458,7 +460,12 @@ static ShareService* _defaultService;
   gifFrameCount:(int)gifFrameCount
       scaleSize:(float)scaleSize
 {
+    
+    self.draft = draft;
+    
     [superController showActivityWithText:NSLS(@"kSaving")];
+    
+    PPDebug(@"draw user nick name=%@", draft.drawUserNickName);
     
     [superController registerNotificationWithName:NOTIFICATION_GIF_CREATION usingBlock:^(NSNotification *note) {
         float progress = [[[note userInfo] objectForKey:KEY_DATA_PARSING_PROGRESS] floatValue];
@@ -694,6 +701,12 @@ static ShareService* _defaultService;
     [sheet showInView:superView showAtPoint:superView.center animated:YES];
     [sheet release];
 }
-
+-(void)dealloc{
+    
+    [super dealloc];
+    [_draft release];
+    
+    
+}
 
 @end

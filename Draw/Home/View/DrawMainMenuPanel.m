@@ -95,7 +95,7 @@
     
     UIImage *lineImage = nil;
     if (ISIPAD) {
-        lineImage = [UIImage imageNamed:@"common_home_join_line@2x.png"];
+        lineImage = [UIImage imageNamedFixed:@"common_home_join_line@2x.png"];
     }else{
         lineImage = [UIImage imageNamed:@"common_home_join_line.png"];
     }

@@ -269,7 +269,7 @@
     pageIndicator.shadowColor = [UIColor blackColor];
     pageIndicator.shadowOffset = DESC_LABEL_SHADOW_OFFSET;
     pageIndicator.font = DESC_LABEL_FONT;
-    pageIndicator.textAlignment = UITextAlignmentRight;
+    pageIndicator.textAlignment = NSTextAlignmentRight;
     pageIndicator.text = [NSString stringWithFormat:@"[%d/%d]", index+1, [_feedList count]];
     [view addSubview:pageIndicator];
     
