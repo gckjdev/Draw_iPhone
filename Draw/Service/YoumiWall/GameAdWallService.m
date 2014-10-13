@@ -8,9 +8,9 @@
 
 #import "GameAdWallService.h"
 #import "SynthesizeSingleton.h"
-#import "LimeiAdWallService.h"
+//#import "LimeiAdWallService.h"
 //#import "WanpuAdWallService.h"
-#import "YoumiAdWallService.h"
+//#import "YoumiAdWallService.h"
 //#import "AderAdWallService.h"
 #import "UserManager.h"
 #import "PPConfigManager.h"
@@ -113,13 +113,15 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GameAdWallService)
 
 - (CommonAdWallService*)createLimeiWall
 {
-    NSString* limeiAdId = [GameApp lmwallId];
-    NSString* userId = [[UserManager defaultManager] userId];
-    
-    return [[[LimeiAdWallService alloc] initWithUserId:userId
-                                              adUnitId:limeiAdId
-                                          adUnitSecret:nil
-                                                  type:PBRewardWallTypeLimei] autorelease];
+//    NSString* limeiAdId = [GameApp lmwallId];
+//    NSString* userId = [[UserManager defaultManager] userId];
+//    
+//    return [[[LimeiAdWallService alloc] initWithUserId:userId
+//                                              adUnitId:limeiAdId
+//                                          adUnitSecret:nil
+//                                                  type:PBRewardWallTypeLimei] autorelease];
+
+    return nil;
 }
 
 //- (CommonAdWallService*)createWanpuWall
@@ -135,14 +137,16 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GameAdWallService)
 
 - (CommonAdWallService*)createYoumiWall
 {
-    NSString* adUnitId = [GameApp youmiWallId];
-    NSString* adSecret = [GameApp youmiWallSecret];
-    NSString* userId = [[UserManager defaultManager] userId];
+//    NSString* adUnitId = [GameApp youmiWallId];
+//    NSString* adSecret = [GameApp youmiWallSecret];
+//    NSString* userId = [[UserManager defaultManager] userId];
+//    
+//    return [[[YoumiAdWallService alloc] initWithUserId:userId
+//                                              adUnitId:adUnitId
+//                                          adUnitSecret:adSecret
+//                                                  type:PBRewardWallTypeYoumi] autorelease];
     
-    return [[[YoumiAdWallService alloc] initWithUserId:userId
-                                              adUnitId:adUnitId
-                                          adUnitSecret:adSecret
-                                                  type:PBRewardWallTypeYoumi] autorelease];
+    return nil;
 }
 
 /*

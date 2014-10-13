@@ -362,9 +362,9 @@
 
 + (BOOL)isInReviewVersion
 {
-#if DEBUG
-    return NO;
-#endif
+//#if DEBUG
+//    return NO;
+//#endif
     
     NSString* currentVersion = [PPApplication getAppVersion];
     NSString* inReviewVersion = [MobClickUtils getStringValueByKey:@"IN_REVIEW_VERSION" defaultValue:@""];
@@ -372,7 +372,7 @@
         return [currentVersion isEqualToString:inReviewVersion];
     }
     else{
-        return NO;
+        return YES;
     }    
 }
 
@@ -394,17 +394,20 @@
 //    return YES;
 //#endif
     
-    if ([PPConfigManager isInReviewVersion] == NO){               
-        if ([MobClickUtils getIntValueByKey:@"ENABLE_WALL" defaultValue:1] == 1){
-            return YES;
-        }            
-        else{
-            return NO;
-        }
-    }
-    else{
-        return NO;
-    }
+
+    return NO;
+    
+//    if ([PPConfigManager isInReviewVersion] == NO){               
+//        if ([MobClickUtils getIntValueByKey:@"ENABLE_WALL" defaultValue:0] == 1){
+//            return YES;
+//        }            
+//        else{
+//            return NO;
+//        }
+//    }
+//    else{
+//        return NO;
+//    }
 }
 
 + (BOOL)useLmWall

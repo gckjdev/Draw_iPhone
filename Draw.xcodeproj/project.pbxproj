@@ -506,7 +506,6 @@
 		A461B17F174CBAA70088B061 /* ChatDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A3DE093C15908AB700E2C746 /* ChatDetailCell.m */; };
 		A461B180174CBAA70088B061 /* NotificationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CAE0C8961591A2ED008CDA62 /* NotificationManager.m */; };
 		A461B181174CBAA70088B061 /* ShareService.m in Sources */ = {isa = PBXBuildFile; fileRef = CAA9C426159BF41B00398EC5 /* ShareService.m */; };
-		A461B182174CBAA70088B061 /* LmWallService.m in Sources */ = {isa = PBXBuildFile; fileRef = CAA9C434159CA97100398EC5 /* LmWallService.m */; };
 		A461B183174CBAA70088B061 /* AdService.m in Sources */ = {isa = PBXBuildFile; fileRef = CAA1AA3E159D78C200504C98 /* AdService.m */; };
 		A461B184174CBAA70088B061 /* UIManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C2C1BF4415A2A9B6001A2BFC /* UIManager.m */; };
 		A461B185174CBAA70088B061 /* CustomStatueBar.m in Sources */ = {isa = PBXBuildFile; fileRef = CA51816C15A2D79700AD5A78 /* CustomStatueBar.m */; };
@@ -763,8 +762,6 @@
 		A461B349174CBAA70088B061 /* DrawHolderView.m in Sources */ = {isa = PBXBuildFile; fileRef = CA21FD2C16F2FC49002975C8 /* DrawHolderView.m */; };
 		A461B34A174CBAA70088B061 /* RoundPercentageView.m in Sources */ = {isa = PBXBuildFile; fileRef = C203C47616F309A50028A065 /* RoundPercentageView.m */; };
 		A461B34B174CBAA70088B061 /* CommonAdWallService.m in Sources */ = {isa = PBXBuildFile; fileRef = CAADF60E16F444C20097CFA1 /* CommonAdWallService.m */; };
-		A461B34C174CBAA70088B061 /* LimeiAdWallService.m in Sources */ = {isa = PBXBuildFile; fileRef = CAADF61116F444C20097CFA1 /* LimeiAdWallService.m */; };
-		A461B34D174CBAA70088B061 /* GameAdWallService.m in Sources */ = {isa = PBXBuildFile; fileRef = CAADF62216F444D10097CFA1 /* GameAdWallService.m */; };
 		A461B34E174CBAA70088B061 /* CommonItem.m in Sources */ = {isa = PBXBuildFile; fileRef = A491A1CA16F44D02003B638F /* CommonItem.m */; };
 		A461B34F174CBAA70088B061 /* FlowerItem.m in Sources */ = {isa = PBXBuildFile; fileRef = A491A1CC16F44D02003B638F /* FlowerItem.m */; };
 		A461B350174CBAA70088B061 /* BlockArray.m in Sources */ = {isa = PBXBuildFile; fileRef = CAADF62C16F55E340097CFA1 /* BlockArray.m */; };
@@ -778,7 +775,6 @@
 		A461B358174CBAA70088B061 /* PaintAction.m in Sources */ = {isa = PBXBuildFile; fileRef = CA35FF2816F8672100D8E05D /* PaintAction.m */; };
 		A461B359174CBAA70088B061 /* ShapeAction.m in Sources */ = {isa = PBXBuildFile; fileRef = CA35FF2A16F8672100D8E05D /* ShapeAction.m */; };
 		A461B35A174CBAA70088B061 /* CanvasRect.m in Sources */ = {isa = PBXBuildFile; fileRef = CA35FF4616F867AC00D8E05D /* CanvasRect.m */; };
-		A461B35B174CBAA70088B061 /* YoumiAdWallService.m in Sources */ = {isa = PBXBuildFile; fileRef = CAADF65316F977870097CFA1 /* YoumiAdWallService.m */; };
 		A461B35D174CBAA70088B061 /* UserDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C2B97A2816F999200037B15B /* UserDetailCell.m */; };
 		A461B35E174CBAA70088B061 /* BBSController.m in Sources */ = {isa = PBXBuildFile; fileRef = CAABB89216F99C41007DCC58 /* BBSController.m */; };
 		A461B35F174CBAA70088B061 /* BalanceNotEnoughAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = A4CD501016F9B56300BE6694 /* BalanceNotEnoughAlertView.m */; };
@@ -3509,7 +3505,6 @@
 		C28A9A671738F04B007A819F /* ChatDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A3DE093C15908AB700E2C746 /* ChatDetailCell.m */; };
 		C28A9A681738F04B007A819F /* NotificationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CAE0C8961591A2ED008CDA62 /* NotificationManager.m */; };
 		C28A9A691738F04B007A819F /* ShareService.m in Sources */ = {isa = PBXBuildFile; fileRef = CAA9C426159BF41B00398EC5 /* ShareService.m */; };
-		C28A9A6A1738F04B007A819F /* LmWallService.m in Sources */ = {isa = PBXBuildFile; fileRef = CAA9C434159CA97100398EC5 /* LmWallService.m */; };
 		C28A9A6B1738F04B007A819F /* AdService.m in Sources */ = {isa = PBXBuildFile; fileRef = CAA1AA3E159D78C200504C98 /* AdService.m */; };
 		C28A9A6C1738F04B007A819F /* UIManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C2C1BF4415A2A9B6001A2BFC /* UIManager.m */; };
 		C28A9A6D1738F04B007A819F /* CustomStatueBar.m in Sources */ = {isa = PBXBuildFile; fileRef = CA51816C15A2D79700AD5A78 /* CustomStatueBar.m */; };
@@ -3767,8 +3762,6 @@
 		C28A9C311738F04B007A819F /* DrawHolderView.m in Sources */ = {isa = PBXBuildFile; fileRef = CA21FD2C16F2FC49002975C8 /* DrawHolderView.m */; };
 		C28A9C321738F04B007A819F /* RoundPercentageView.m in Sources */ = {isa = PBXBuildFile; fileRef = C203C47616F309A50028A065 /* RoundPercentageView.m */; };
 		C28A9C331738F04B007A819F /* CommonAdWallService.m in Sources */ = {isa = PBXBuildFile; fileRef = CAADF60E16F444C20097CFA1 /* CommonAdWallService.m */; };
-		C28A9C341738F04B007A819F /* LimeiAdWallService.m in Sources */ = {isa = PBXBuildFile; fileRef = CAADF61116F444C20097CFA1 /* LimeiAdWallService.m */; };
-		C28A9C351738F04B007A819F /* GameAdWallService.m in Sources */ = {isa = PBXBuildFile; fileRef = CAADF62216F444D10097CFA1 /* GameAdWallService.m */; };
 		C28A9C361738F04B007A819F /* CommonItem.m in Sources */ = {isa = PBXBuildFile; fileRef = A491A1CA16F44D02003B638F /* CommonItem.m */; };
 		C28A9C371738F04B007A819F /* FlowerItem.m in Sources */ = {isa = PBXBuildFile; fileRef = A491A1CC16F44D02003B638F /* FlowerItem.m */; };
 		C28A9C381738F04B007A819F /* BlockArray.m in Sources */ = {isa = PBXBuildFile; fileRef = CAADF62C16F55E340097CFA1 /* BlockArray.m */; };
@@ -3782,7 +3775,6 @@
 		C28A9C401738F04B007A819F /* PaintAction.m in Sources */ = {isa = PBXBuildFile; fileRef = CA35FF2816F8672100D8E05D /* PaintAction.m */; };
 		C28A9C411738F04B007A819F /* ShapeAction.m in Sources */ = {isa = PBXBuildFile; fileRef = CA35FF2A16F8672100D8E05D /* ShapeAction.m */; };
 		C28A9C421738F04B007A819F /* CanvasRect.m in Sources */ = {isa = PBXBuildFile; fileRef = CA35FF4616F867AC00D8E05D /* CanvasRect.m */; };
-		C28A9C431738F04B007A819F /* YoumiAdWallService.m in Sources */ = {isa = PBXBuildFile; fileRef = CAADF65316F977870097CFA1 /* YoumiAdWallService.m */; };
 		C28A9C451738F04B007A819F /* UserDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C2B97A2816F999200037B15B /* UserDetailCell.m */; };
 		C28A9C461738F04B007A819F /* BBSController.m in Sources */ = {isa = PBXBuildFile; fileRef = CAABB89216F99C41007DCC58 /* BBSController.m */; };
 		C28A9C471738F04B007A819F /* BalanceNotEnoughAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = A4CD501016F9B56300BE6694 /* BalanceNotEnoughAlertView.m */; };
@@ -4893,14 +4885,6 @@
 		CA35FF3B16F8672200D8E05D /* ShapeAction.m in Sources */ = {isa = PBXBuildFile; fileRef = CA35FF2A16F8672100D8E05D /* ShapeAction.m */; };
 		CA35FF4716F867AC00D8E05D /* CanvasRect.m in Sources */ = {isa = PBXBuildFile; fileRef = CA35FF4616F867AC00D8E05D /* CanvasRect.m */; };
 		CA3676D916AA4E1C00630A40 /* PenFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = CA3676D816AA4E1C00630A40 /* PenFactory.m */; };
-		CA3B101918F93CA2003867E3 /* DomobAdSDKBundle.bundle in Resources */ = {isa = PBXBuildFile; fileRef = CA3B101418F93CA2003867E3 /* DomobAdSDKBundle.bundle */; };
-		CA3B101A18F93CA2003867E3 /* DomobAdSDKBundle.bundle in Resources */ = {isa = PBXBuildFile; fileRef = CA3B101418F93CA2003867E3 /* DomobAdSDKBundle.bundle */; };
-		CA3B101B18F93CA2003867E3 /* DomobAdSDKBundle.bundle in Resources */ = {isa = PBXBuildFile; fileRef = CA3B101418F93CA2003867E3 /* DomobAdSDKBundle.bundle */; };
-		CA3B101C18F93CA2003867E3 /* DomobAdSDKBundle.bundle in Resources */ = {isa = PBXBuildFile; fileRef = CA3B101418F93CA2003867E3 /* DomobAdSDKBundle.bundle */; };
-		CA3B102118F93CA2003867E3 /* libDomobAdSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CA3B101718F93CA2003867E3 /* libDomobAdSDK.a */; };
-		CA3B102218F93CA3003867E3 /* libDomobAdSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CA3B101718F93CA2003867E3 /* libDomobAdSDK.a */; };
-		CA3B102318F93CA3003867E3 /* libDomobAdSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CA3B101718F93CA2003867E3 /* libDomobAdSDK.a */; };
-		CA3B102418F93CA3003867E3 /* libDomobAdSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CA3B101718F93CA2003867E3 /* libDomobAdSDK.a */; };
 		CA3B56DD1514C92800A93137 /* GameSessionUser.m in Sources */ = {isa = PBXBuildFile; fileRef = CA3B56DC1514C92800A93137 /* GameSessionUser.m */; };
 		CA3B56E01514C9DF00A93137 /* GameTurn.m in Sources */ = {isa = PBXBuildFile; fileRef = CA3B56DF1514C9DF00A93137 /* GameTurn.m */; };
 		CA3B56E31514CB7D00A93137 /* GamePlayResult.m in Sources */ = {isa = PBXBuildFile; fileRef = CA3B56E21514CB7D00A93137 /* GamePlayResult.m */; };
@@ -5824,14 +5808,10 @@
 		CAA8B8101998836800C9A99B /* laba@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D80518AC196BD12200D350B3 /* laba@2x.png */; };
 		CAA8B8111998836800C9A99B /* luntan.png in Resources */ = {isa = PBXBuildFile; fileRef = D80518AD196BD12200D350B3 /* luntan.png */; };
 		CAA9C427159BF41B00398EC5 /* ShareService.m in Sources */ = {isa = PBXBuildFile; fileRef = CAA9C426159BF41B00398EC5 /* ShareService.m */; };
-		CAA9C435159CA97100398EC5 /* LmWallService.m in Sources */ = {isa = PBXBuildFile; fileRef = CAA9C434159CA97100398EC5 /* LmWallService.m */; };
 		CAABB89316F99C41007DCC58 /* BBSController.m in Sources */ = {isa = PBXBuildFile; fileRef = CAABB89216F99C41007DCC58 /* BBSController.m */; };
 		CAACE19915F499E6002EB53A /* SuperDrawView.m in Sources */ = {isa = PBXBuildFile; fileRef = CAACE19815F499E6002EB53A /* SuperDrawView.m */; };
 		CAADF61516F444C20097CFA1 /* CommonAdWallService.m in Sources */ = {isa = PBXBuildFile; fileRef = CAADF60E16F444C20097CFA1 /* CommonAdWallService.m */; };
-		CAADF61916F444C20097CFA1 /* LimeiAdWallService.m in Sources */ = {isa = PBXBuildFile; fileRef = CAADF61116F444C20097CFA1 /* LimeiAdWallService.m */; };
-		CAADF62416F444D10097CFA1 /* GameAdWallService.m in Sources */ = {isa = PBXBuildFile; fileRef = CAADF62216F444D10097CFA1 /* GameAdWallService.m */; };
 		CAADF62D16F55E340097CFA1 /* BlockArray.m in Sources */ = {isa = PBXBuildFile; fileRef = CAADF62C16F55E340097CFA1 /* BlockArray.m */; };
-		CAADF65416F977870097CFA1 /* YoumiAdWallService.m in Sources */ = {isa = PBXBuildFile; fileRef = CAADF65316F977870097CFA1 /* YoumiAdWallService.m */; };
 		CAAE4A8315790F480012F6B8 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = CAAE4A8215790F480012F6B8 /* libsqlite3.dylib */; };
 		CAAFBEB5165B70DC00E5E1C0 /* PPResourceCacheService.m in Sources */ = {isa = PBXBuildFile; fileRef = CAAFBEB4165B70DB00E5E1C0 /* PPResourceCacheService.m */; };
 		CAB3DBDD1516DACD00E7DBC4 /* SelectWordCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CAB3DBDB1516DACD00E7DBC4 /* SelectWordCell.m */; };
@@ -6040,10 +6020,6 @@
 		CACD6B2218E03A2D003F97C0 /* ShareSDKiPhoneSimpleShareViewUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CACD6A4C18E03A27003F97C0 /* ShareSDKiPhoneSimpleShareViewUI.framework */; };
 		CACD6B2318E03A2D003F97C0 /* ShareSDKiPhoneSimpleShareViewUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CACD6A4C18E03A27003F97C0 /* ShareSDKiPhoneSimpleShareViewUI.framework */; };
 		CACD6B2418E03A2D003F97C0 /* ShareSDKiPhoneSimpleShareViewUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CACD6A4C18E03A27003F97C0 /* ShareSDKiPhoneSimpleShareViewUI.framework */; };
-		CACD6B2718E03A91003F97C0 /* immobSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CACD6B2618E03A91003F97C0 /* immobSDK.framework */; };
-		CACD6B2818E03A91003F97C0 /* immobSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CACD6B2618E03A91003F97C0 /* immobSDK.framework */; };
-		CACD6B2918E03A91003F97C0 /* immobSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CACD6B2618E03A91003F97C0 /* immobSDK.framework */; };
-		CACD6B2A18E03A91003F97C0 /* immobSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CACD6B2618E03A91003F97C0 /* immobSDK.framework */; };
 		CACD6B3118E03B4A003F97C0 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = CACD6B2C18E03B4A003F97C0 /* .gitignore */; };
 		CACD6B3218E03B4A003F97C0 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = CACD6B2C18E03B4A003F97C0 /* .gitignore */; };
 		CACD6B3318E03B4A003F97C0 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = CACD6B2C18E03B4A003F97C0 /* .gitignore */; };
@@ -6064,10 +6040,6 @@
 		CACD6B4E18E03B7F003F97C0 /* README.txt in Resources */ = {isa = PBXBuildFile; fileRef = CACD6B4818E03B7F003F97C0 /* README.txt */; };
 		CACD6B4F18E03B7F003F97C0 /* README.txt in Resources */ = {isa = PBXBuildFile; fileRef = CACD6B4818E03B7F003F97C0 /* README.txt */; };
 		CACD6B5018E03B7F003F97C0 /* README.txt in Resources */ = {isa = PBXBuildFile; fileRef = CACD6B4818E03B7F003F97C0 /* README.txt */; };
-		CACD6BCB18E03B9C003F97C0 /* libYouMi.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CACD6B6718E03B9B003F97C0 /* libYouMi.a */; };
-		CACD6BCC18E03B9C003F97C0 /* libYouMi.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CACD6B6718E03B9B003F97C0 /* libYouMi.a */; };
-		CACD6BCD18E03B9D003F97C0 /* libYouMi.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CACD6B6718E03B9B003F97C0 /* libYouMi.a */; };
-		CACD6BCE18E03B9D003F97C0 /* libYouMi.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CACD6B6718E03B9B003F97C0 /* libYouMi.a */; };
 		CACD6CA618E03BCC003F97C0 /* AlipayRsaLib.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CACD6C8318E03BCC003F97C0 /* AlipayRsaLib.a */; };
 		CACD6CA718E03BCC003F97C0 /* AlipayRsaLib.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CACD6C8318E03BCC003F97C0 /* AlipayRsaLib.a */; };
 		CACD6CA818E03BCD003F97C0 /* AlipayRsaLib.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CACD6C8318E03BCC003F97C0 /* AlipayRsaLib.a */; };
@@ -6406,6 +6378,10 @@
 		CAFEFE8316606FC200441D77 /* zip.c in Sources */ = {isa = PBXBuildFile; fileRef = CAFEFD2416606FC100441D77 /* zip.c */; };
 		CAFEFFB4166072AB00441D77 /* DrawColor.m in Sources */ = {isa = PBXBuildFile; fileRef = CAFEFEF8166072AB00441D77 /* DrawColor.m */; };
 		CAFEFFB5166072AB00441D77 /* DrawUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = CAFEFEFA166072AB00441D77 /* DrawUtils.m */; };
+		CAFF62D119E61FF60065D97E /* GameAdWallService.m in Sources */ = {isa = PBXBuildFile; fileRef = CAFF62CE19E61FF50065D97E /* GameAdWallService.m */; };
+		CAFF62D219E61FF60065D97E /* GameAdWallService.m in Sources */ = {isa = PBXBuildFile; fileRef = CAFF62CE19E61FF50065D97E /* GameAdWallService.m */; };
+		CAFF62D319E61FF60065D97E /* GameAdWallService.m in Sources */ = {isa = PBXBuildFile; fileRef = CAFF62CE19E61FF50065D97E /* GameAdWallService.m */; };
+		CAFF62D419E61FF60065D97E /* GameAdWallService.m in Sources */ = {isa = PBXBuildFile; fileRef = CAFF62CE19E61FF50065D97E /* GameAdWallService.m */; };
 		CAFFF5CB196CED8C000DD4E7 /* UIViewController+CommonHome.m in Sources */ = {isa = PBXBuildFile; fileRef = CAFFF5CA196CED8C000DD4E7 /* UIViewController+CommonHome.m */; };
 		CAFFF5CC196CED8C000DD4E7 /* UIViewController+CommonHome.m in Sources */ = {isa = PBXBuildFile; fileRef = CAFFF5CA196CED8C000DD4E7 /* UIViewController+CommonHome.m */; };
 		CAFFF5CD196CED8C000DD4E7 /* UIViewController+CommonHome.m in Sources */ = {isa = PBXBuildFile; fileRef = CAFFF5CA196CED8C000DD4E7 /* UIViewController+CommonHome.m */; };
@@ -7115,7 +7091,6 @@
 		EA411913176066F500DA72D0 /* ChatDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A3DE093C15908AB700E2C746 /* ChatDetailCell.m */; };
 		EA411914176066F500DA72D0 /* NotificationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CAE0C8961591A2ED008CDA62 /* NotificationManager.m */; };
 		EA411915176066F500DA72D0 /* ShareService.m in Sources */ = {isa = PBXBuildFile; fileRef = CAA9C426159BF41B00398EC5 /* ShareService.m */; };
-		EA411916176066F500DA72D0 /* LmWallService.m in Sources */ = {isa = PBXBuildFile; fileRef = CAA9C434159CA97100398EC5 /* LmWallService.m */; };
 		EA411917176066F500DA72D0 /* AdService.m in Sources */ = {isa = PBXBuildFile; fileRef = CAA1AA3E159D78C200504C98 /* AdService.m */; };
 		EA411918176066F500DA72D0 /* UIManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C2C1BF4415A2A9B6001A2BFC /* UIManager.m */; };
 		EA411919176066F500DA72D0 /* CustomStatueBar.m in Sources */ = {isa = PBXBuildFile; fileRef = CA51816C15A2D79700AD5A78 /* CustomStatueBar.m */; };
@@ -7372,8 +7347,6 @@
 		EA411A84176066F500DA72D0 /* DrawHolderView.m in Sources */ = {isa = PBXBuildFile; fileRef = CA21FD2C16F2FC49002975C8 /* DrawHolderView.m */; };
 		EA411A85176066F500DA72D0 /* RoundPercentageView.m in Sources */ = {isa = PBXBuildFile; fileRef = C203C47616F309A50028A065 /* RoundPercentageView.m */; };
 		EA411A86176066F500DA72D0 /* CommonAdWallService.m in Sources */ = {isa = PBXBuildFile; fileRef = CAADF60E16F444C20097CFA1 /* CommonAdWallService.m */; };
-		EA411A87176066F500DA72D0 /* LimeiAdWallService.m in Sources */ = {isa = PBXBuildFile; fileRef = CAADF61116F444C20097CFA1 /* LimeiAdWallService.m */; };
-		EA411A88176066F500DA72D0 /* GameAdWallService.m in Sources */ = {isa = PBXBuildFile; fileRef = CAADF62216F444D10097CFA1 /* GameAdWallService.m */; };
 		EA411A89176066F500DA72D0 /* CommonItem.m in Sources */ = {isa = PBXBuildFile; fileRef = A491A1CA16F44D02003B638F /* CommonItem.m */; };
 		EA411A8A176066F500DA72D0 /* FlowerItem.m in Sources */ = {isa = PBXBuildFile; fileRef = A491A1CC16F44D02003B638F /* FlowerItem.m */; };
 		EA411A8B176066F500DA72D0 /* BlockArray.m in Sources */ = {isa = PBXBuildFile; fileRef = CAADF62C16F55E340097CFA1 /* BlockArray.m */; };
@@ -7387,7 +7360,6 @@
 		EA411A93176066F500DA72D0 /* PaintAction.m in Sources */ = {isa = PBXBuildFile; fileRef = CA35FF2816F8672100D8E05D /* PaintAction.m */; };
 		EA411A94176066F500DA72D0 /* ShapeAction.m in Sources */ = {isa = PBXBuildFile; fileRef = CA35FF2A16F8672100D8E05D /* ShapeAction.m */; };
 		EA411A95176066F500DA72D0 /* CanvasRect.m in Sources */ = {isa = PBXBuildFile; fileRef = CA35FF4616F867AC00D8E05D /* CanvasRect.m */; };
-		EA411A96176066F500DA72D0 /* YoumiAdWallService.m in Sources */ = {isa = PBXBuildFile; fileRef = CAADF65316F977870097CFA1 /* YoumiAdWallService.m */; };
 		EA411A98176066F500DA72D0 /* UserDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C2B97A2816F999200037B15B /* UserDetailCell.m */; };
 		EA411A99176066F500DA72D0 /* BBSController.m in Sources */ = {isa = PBXBuildFile; fileRef = CAABB89216F99C41007DCC58 /* BBSController.m */; };
 		EA411A9A176066F500DA72D0 /* BalanceNotEnoughAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = A4CD501016F9B56300BE6694 /* BalanceNotEnoughAlertView.m */; };
@@ -10051,14 +10023,6 @@
 		CA35FF4616F867AC00D8E05D /* CanvasRect.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CanvasRect.m; sourceTree = "<group>"; };
 		CA3676D716AA4E1C00630A40 /* PenFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PenFactory.h; sourceTree = "<group>"; };
 		CA3676D816AA4E1C00630A40 /* PenFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PenFactory.m; sourceTree = "<group>"; };
-		CA3B100918F93CA2003867E3 /* DMAdView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DMAdView.h; sourceTree = "<group>"; };
-		CA3B100A18F93CA2003867E3 /* DMFeedsAdView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DMFeedsAdView.h; sourceTree = "<group>"; };
-		CA3B100B18F93CA2003867E3 /* DMInterstitialAdController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DMInterstitialAdController.h; sourceTree = "<group>"; };
-		CA3B100F18F93CA2003867E3 /* DMRTSplashAdController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DMRTSplashAdController.h; sourceTree = "<group>"; };
-		CA3B101018F93CA2003867E3 /* DMSplashAdController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DMSplashAdController.h; sourceTree = "<group>"; };
-		CA3B101118F93CA2003867E3 /* DMTools.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DMTools.h; sourceTree = "<group>"; };
-		CA3B101418F93CA2003867E3 /* DomobAdSDKBundle.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = DomobAdSDKBundle.bundle; sourceTree = "<group>"; };
-		CA3B101718F93CA2003867E3 /* libDomobAdSDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libDomobAdSDK.a; sourceTree = "<group>"; };
 		CA3B56DB1514C92800A93137 /* GameSessionUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameSessionUser.h; sourceTree = "<group>"; };
 		CA3B56DC1514C92800A93137 /* GameSessionUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameSessionUser.m; sourceTree = "<group>"; };
 		CA3B56DE1514C9DF00A93137 /* GameTurn.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameTurn.h; sourceTree = "<group>"; };
@@ -10639,22 +10603,14 @@
 		CAA7DA8B1987D39F00408FB1 /* draw_next@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "draw_next@2x.png"; sourceTree = "<group>"; };
 		CAA9C425159BF41B00398EC5 /* ShareService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShareService.h; sourceTree = "<group>"; };
 		CAA9C426159BF41B00398EC5 /* ShareService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShareService.m; sourceTree = "<group>"; };
-		CAA9C433159CA97100398EC5 /* LmWallService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LmWallService.h; sourceTree = "<group>"; };
-		CAA9C434159CA97100398EC5 /* LmWallService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LmWallService.m; sourceTree = "<group>"; };
 		CAABB89116F99C41007DCC58 /* BBSController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBSController.h; sourceTree = "<group>"; };
 		CAABB89216F99C41007DCC58 /* BBSController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBSController.m; sourceTree = "<group>"; };
 		CAACE19715F499E6002EB53A /* SuperDrawView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SuperDrawView.h; sourceTree = "<group>"; };
 		CAACE19815F499E6002EB53A /* SuperDrawView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SuperDrawView.m; sourceTree = "<group>"; };
 		CAADF60D16F444C20097CFA1 /* CommonAdWallService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommonAdWallService.h; sourceTree = "<group>"; };
 		CAADF60E16F444C20097CFA1 /* CommonAdWallService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommonAdWallService.m; sourceTree = "<group>"; };
-		CAADF61016F444C20097CFA1 /* LimeiAdWallService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LimeiAdWallService.h; sourceTree = "<group>"; };
-		CAADF61116F444C20097CFA1 /* LimeiAdWallService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LimeiAdWallService.m; sourceTree = "<group>"; };
-		CAADF62216F444D10097CFA1 /* GameAdWallService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameAdWallService.m; sourceTree = "<group>"; };
-		CAADF62316F444D10097CFA1 /* GameAdWallService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameAdWallService.h; sourceTree = "<group>"; };
 		CAADF62B16F55E340097CFA1 /* BlockArray.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BlockArray.h; sourceTree = "<group>"; };
 		CAADF62C16F55E340097CFA1 /* BlockArray.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BlockArray.m; sourceTree = "<group>"; };
-		CAADF65216F977870097CFA1 /* YoumiAdWallService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YoumiAdWallService.h; sourceTree = "<group>"; };
-		CAADF65316F977870097CFA1 /* YoumiAdWallService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YoumiAdWallService.m; sourceTree = "<group>"; };
 		CAAE4A8215790F480012F6B8 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
 		CAAFBEB3165B70DB00E5E1C0 /* PPResourceCacheService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PPResourceCacheService.h; sourceTree = "<group>"; };
 		CAAFBEB4165B70DB00E5E1C0 /* PPResourceCacheService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PPResourceCacheService.m; sourceTree = "<group>"; };
@@ -10784,7 +10740,6 @@
 		CACD6A4A18E03A27003F97C0 /* ShareSDKiPhoneDefaultShareViewUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ShareSDKiPhoneDefaultShareViewUI.framework; sourceTree = "<group>"; };
 		CACD6A4B18E03A27003F97C0 /* ShareSDKiPhoneSimpleShareViewUI.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = ShareSDKiPhoneSimpleShareViewUI.bundle; sourceTree = "<group>"; };
 		CACD6A4C18E03A27003F97C0 /* ShareSDKiPhoneSimpleShareViewUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ShareSDKiPhoneSimpleShareViewUI.framework; sourceTree = "<group>"; };
-		CACD6B2618E03A91003F97C0 /* immobSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = immobSDK.framework; sourceTree = "<group>"; };
 		CACD6B2C18E03B4A003F97C0 /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		CACD6B2D18E03B4A003F97C0 /* libMobClickLibrary.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libMobClickLibrary.a; sourceTree = "<group>"; };
 		CACD6B2E18E03B4A003F97C0 /* MobClick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MobClick.h; sourceTree = "<group>"; };
@@ -10801,15 +10756,6 @@
 		CACD6B4618E03B7F003F97C0 /* GADRequestError.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GADRequestError.h; sourceTree = "<group>"; };
 		CACD6B4718E03B7F003F97C0 /* libGoogleAdMobAds.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libGoogleAdMobAds.a; sourceTree = "<group>"; };
 		CACD6B4818E03B7F003F97C0 /* README.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.txt; sourceTree = "<group>"; };
-		CACD6B5F18E03B9B003F97C0 /* YouMiConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YouMiConfig.h; sourceTree = "<group>"; };
-		CACD6B6018E03B9B003F97C0 /* YouMiDelegateProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YouMiDelegateProtocol.h; sourceTree = "<group>"; };
-		CACD6B6118E03B9B003F97C0 /* YouMiSpot.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YouMiSpot.h; sourceTree = "<group>"; };
-		CACD6B6218E03B9B003F97C0 /* YouMiView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YouMiView.h; sourceTree = "<group>"; };
-		CACD6B6318E03B9B003F97C0 /* YouMiWall.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YouMiWall.h; sourceTree = "<group>"; };
-		CACD6B6418E03B9B003F97C0 /* YouMiWallAppModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YouMiWallAppModel.h; sourceTree = "<group>"; };
-		CACD6B6518E03B9B003F97C0 /* YouMiWallBanner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YouMiWallBanner.h; sourceTree = "<group>"; };
-		CACD6B6618E03B9B003F97C0 /* YouMiWallDelegateProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YouMiWallDelegateProtocol.h; sourceTree = "<group>"; };
-		CACD6B6718E03B9B003F97C0 /* libYouMi.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libYouMi.a; sourceTree = "<group>"; };
 		CACD6C8318E03BCC003F97C0 /* AlipayRsaLib.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = AlipayRsaLib.a; sourceTree = "<group>"; };
 		CACD6C8418E03BCC003F97C0 /* AlixLibService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlixLibService.h; sourceTree = "<group>"; };
 		CACD6C8518E03BCC003F97C0 /* Alixpay.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Alixpay.bundle; sourceTree = "<group>"; };
@@ -11119,6 +11065,8 @@
 		CAFEFEF8166072AB00441D77 /* DrawColor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DrawColor.m; sourceTree = "<group>"; };
 		CAFEFEF9166072AB00441D77 /* DrawUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DrawUtils.h; sourceTree = "<group>"; };
 		CAFEFEFA166072AB00441D77 /* DrawUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DrawUtils.m; sourceTree = "<group>"; };
+		CAFF62CD19E61FF50065D97E /* GameAdWallService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameAdWallService.h; sourceTree = "<group>"; };
+		CAFF62CE19E61FF50065D97E /* GameAdWallService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameAdWallService.m; sourceTree = "<group>"; };
 		CAFFF5C9196CED8C000DD4E7 /* UIViewController+CommonHome.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+CommonHome.h"; sourceTree = "<group>"; };
 		CAFFF5CA196CED8C000DD4E7 /* UIViewController+CommonHome.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+CommonHome.m"; sourceTree = "<group>"; };
 		D80518A6196BD12200D350B3 /* beijing.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = beijing.png; sourceTree = "<group>"; };
@@ -11518,7 +11466,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				CA32E63418F00ACE0076959B /* CoreMotion.framework in Frameworks */,
-				CACD6B2918E03A91003F97C0 /* immobSDK.framework in Frameworks */,
 				A461B3CF174CBAA70088B061 /* libstdc++.dylib in Frameworks */,
 				A4B1233818279ECD00A0603F /* CoreVideo.framework in Frameworks */,
 				A461B3D5174CBAA70088B061 /* ImageIO.framework in Frameworks */,
@@ -11570,9 +11517,7 @@
 				A461B3E0174CBAA70088B061 /* QuartzCore.framework in Frameworks */,
 				CACD6AB318E03A29003F97C0 /* WeChatConnection.framework in Frameworks */,
 				A461B3E1174CBAA70088B061 /* CFNetwork.framework in Frameworks */,
-				CACD6BCD18E03B9D003F97C0 /* libYouMi.a in Frameworks */,
 				A461B3E2174CBAA70088B061 /* UIKit.framework in Frameworks */,
-				CA3B102318F93CA3003867E3 /* libDomobAdSDK.a in Frameworks */,
 				A461B3E3174CBAA70088B061 /* Foundation.framework in Frameworks */,
 				A461B3E4174CBAA70088B061 /* CoreGraphics.framework in Frameworks */,
 				CACD6D3918E03C40003F97C0 /* libDIRAC_iOS4-fat.a in Frameworks */,
@@ -11602,7 +11547,6 @@
 				CA1162901836098800FDD3A9 /* Accelerate.framework in Frameworks */,
 				C28A9CAE1738F04B007A819F /* libstdc++.dylib in Frameworks */,
 				CA9AFE65181D45B100E08747 /* CoreMedia.framework in Frameworks */,
-				CA3B102218F93CA3003867E3 /* libDomobAdSDK.a in Frameworks */,
 				CA9AFE64181D434700E08747 /* CoreVideo.framework in Frameworks */,
 				C28A9CB41738F04B007A819F /* ImageIO.framework in Frameworks */,
 				A4F04B84180643BD007274BE /* AssetsLibrary.framework in Frameworks */,
@@ -11648,7 +11592,6 @@
 				C28A9CBA1738F04B007A819F /* MessageUI.framework in Frameworks */,
 				CACD6CDB18E03BCD003F97C0 /* libssl.a in Frameworks */,
 				C28A9CBB1738F04B007A819F /* MapKit.framework in Frameworks */,
-				CACD6B2818E03A91003F97C0 /* immobSDK.framework in Frameworks */,
 				C28A9CBC1738F04B007A819F /* AddressBook.framework in Frameworks */,
 				CACD6B0E18E03A2D003F97C0 /* ShareSDKiPadSimpleShareViewUI.framework in Frameworks */,
 				C28A9CBD1738F04B007A819F /* CoreData.framework in Frameworks */,
@@ -11662,7 +11605,6 @@
 				C28A9CC31738F04B007A819F /* CoreGraphics.framework in Frameworks */,
 				CACD6A9618E03A28003F97C0 /* SMSConnection.framework in Frameworks */,
 				CA62C78E1756FC5B00C9EF56 /* protolCLib.a in Frameworks */,
-				CACD6BCC18E03B9C003F97C0 /* libYouMi.a in Frameworks */,
 				CACD6AFE18E03A2D003F97C0 /* ShareSDK.framework in Frameworks */,
 				CACD6B3618E03B4B003F97C0 /* libMobClickLibrary.a in Frameworks */,
 				CACD6AB218E03A29003F97C0 /* WeChatConnection.framework in Frameworks */,
@@ -11679,7 +11621,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				CA93D13918F00994002BB805 /* CoreMotion.framework in Frameworks */,
-				CACD6B2718E03A91003F97C0 /* immobSDK.framework in Frameworks */,
 				CAA1AFC7159EAB1700504C98 /* libstdc++.dylib in Frameworks */,
 				C2A09762152ECDEA006535F7 /* ImageIO.framework in Frameworks */,
 				CAEEC19F181A5F19007FD75F /* CoreVideo.framework in Frameworks */,
@@ -11731,9 +11672,7 @@
 				CA103F281509A6C100F60C03 /* QuartzCore.framework in Frameworks */,
 				CACD6AB118E03A29003F97C0 /* WeChatConnection.framework in Frameworks */,
 				CA103F261509A6B600F60C03 /* CFNetwork.framework in Frameworks */,
-				CACD6BCB18E03B9C003F97C0 /* libYouMi.a in Frameworks */,
 				CA745D231503B1B500600024 /* UIKit.framework in Frameworks */,
-				CA3B102118F93CA2003867E3 /* libDomobAdSDK.a in Frameworks */,
 				CA745D251503B1B500600024 /* Foundation.framework in Frameworks */,
 				CA745D271503B1B500600024 /* CoreGraphics.framework in Frameworks */,
 				CACD6D3718E03C40003F97C0 /* libDIRAC_iOS4-fat.a in Frameworks */,
@@ -11764,7 +11703,6 @@
 				EA411B28176066F500DA72D0 /* libstdc++.dylib in Frameworks */,
 				EA411B17176066F500DA72D0 /* Accelerate.framework in Frameworks */,
 				EA411B18176066F500DA72D0 /* CoreMedia.framework in Frameworks */,
-				CA3B102418F93CA3003867E3 /* libDomobAdSDK.a in Frameworks */,
 				EA411B19176066F500DA72D0 /* MediaPlayer.framework in Frameworks */,
 				CACD6A8818E03A28003F97C0 /* QQConnection.framework in Frameworks */,
 				CACD6B3818E03B4B003F97C0 /* libMobClickLibrary.a in Frameworks */,
@@ -11799,7 +11737,6 @@
 				CACD6AA818E03A29003F97C0 /* TencentWeiboConnection.framework in Frameworks */,
 				CACD6B2418E03A2D003F97C0 /* ShareSDKiPhoneSimpleShareViewUI.framework in Frameworks */,
 				EA411B2C176066F500DA72D0 /* ImageIO.framework in Frameworks */,
-				CACD6BCE18E03B9D003F97C0 /* libYouMi.a in Frameworks */,
 				EA411B2E176066F500DA72D0 /* Security.framework in Frameworks */,
 				EA411B2F176066F500DA72D0 /* StoreKit.framework in Frameworks */,
 				EA411B30176066F500DA72D0 /* libProtocolBuffers.a in Frameworks */,
@@ -11826,7 +11763,6 @@
 				EA411B3B176066F500DA72D0 /* CoreGraphics.framework in Frameworks */,
 				EA411B49176066F500DA72D0 /* protolCLib.a in Frameworks */,
 				CACD6CB118E03BCD003F97C0 /* AlixPaylib.a in Frameworks */,
-				CACD6B2A18E03A91003F97C0 /* immobSDK.framework in Frameworks */,
 				CACD6CD918E03BCD003F97C0 /* libcrypto.a in Frameworks */,
 				CACD6A8C18E03A28003F97C0 /* QZoneConnection.framework in Frameworks */,
 			);
@@ -15928,29 +15864,6 @@
 			path = CanvasRect;
 			sourceTree = "<group>";
 		};
-		CA3B100818F93CA2003867E3 /* DomobAdSDK */ = {
-			isa = PBXGroup;
-			children = (
-				CA3B100918F93CA2003867E3 /* DMAdView.h */,
-				CA3B100A18F93CA2003867E3 /* DMFeedsAdView.h */,
-				CA3B100B18F93CA2003867E3 /* DMInterstitialAdController.h */,
-				CA3B100F18F93CA2003867E3 /* DMRTSplashAdController.h */,
-				CA3B101018F93CA2003867E3 /* DMSplashAdController.h */,
-				CA3B101118F93CA2003867E3 /* DMTools.h */,
-				CA3B101318F93CA2003867E3 /* DomobAdSDKBundle */,
-				CA3B101718F93CA2003867E3 /* libDomobAdSDK.a */,
-			);
-			path = DomobAdSDK;
-			sourceTree = "<group>";
-		};
-		CA3B101318F93CA2003867E3 /* DomobAdSDKBundle */ = {
-			isa = PBXGroup;
-			children = (
-				CA3B101418F93CA2003867E3 /* DomobAdSDKBundle.bundle */,
-			);
-			path = DomobAdSDKBundle;
-			sourceTree = "<group>";
-		};
 		CA3EB93A16B927B300660FE7 /* StrawView */ = {
 			isa = PBXGroup;
 			children = (
@@ -17344,8 +17257,6 @@
 			isa = PBXGroup;
 			children = (
 				CAADF60C16F444C20097CFA1 /* Common */,
-				CAADF60F16F444C20097CFA1 /* Limei */,
-				CAADF61416F444C20097CFA1 /* Youmi */,
 			);
 			path = AdWallService;
 			sourceTree = "<group>";
@@ -17359,31 +17270,11 @@
 			path = Common;
 			sourceTree = "<group>";
 		};
-		CAADF60F16F444C20097CFA1 /* Limei */ = {
-			isa = PBXGroup;
-			children = (
-				CAADF61016F444C20097CFA1 /* LimeiAdWallService.h */,
-				CAADF61116F444C20097CFA1 /* LimeiAdWallService.m */,
-			);
-			path = Limei;
-			sourceTree = "<group>";
-		};
-		CAADF61416F444C20097CFA1 /* Youmi */ = {
-			isa = PBXGroup;
-			children = (
-				CAADF65216F977870097CFA1 /* YoumiAdWallService.h */,
-				CAADF65316F977870097CFA1 /* YoumiAdWallService.m */,
-			);
-			path = Youmi;
-			sourceTree = "<group>";
-		};
 		CAAE4A891579B8180012F6B8 /* Ad */ = {
 			isa = PBXGroup;
 			children = (
-				CAADF62316F444D10097CFA1 /* GameAdWallService.h */,
-				CAADF62216F444D10097CFA1 /* GameAdWallService.m */,
-				CAA9C433159CA97100398EC5 /* LmWallService.h */,
-				CAA9C434159CA97100398EC5 /* LmWallService.m */,
+				CAFF62CD19E61FF50065D97E /* GameAdWallService.h */,
+				CAFF62CE19E61FF50065D97E /* GameAdWallService.m */,
 				CAA1AA3D159D78C200504C98 /* AdService.h */,
 				CAA1AA3E159D78C200504C98 /* AdService.m */,
 			);
@@ -17819,14 +17710,6 @@
 			path = UI;
 			sourceTree = "<group>";
 		};
-		CACD6B2518E03A91003F97C0 /* LmmobSDK */ = {
-			isa = PBXGroup;
-			children = (
-				CACD6B2618E03A91003F97C0 /* immobSDK.framework */,
-			);
-			path = LmmobSDK;
-			sourceTree = "<group>";
-		};
 		CACD6B2B18E03B4A003F97C0 /* MobClick */ = {
 			isa = PBXGroup;
 			children = (
@@ -17855,38 +17738,6 @@
 				CACD6B4818E03B7F003F97C0 /* README.txt */,
 			);
 			path = GoogleAdMobAdsSDK;
-			sourceTree = "<group>";
-		};
-		CACD6B5118E03B9B003F97C0 /* YouMiSDK */ = {
-			isa = PBXGroup;
-			children = (
-				CACD6B5D18E03B9B003F97C0 /* lib */,
-			);
-			path = YouMiSDK;
-			sourceTree = "<group>";
-		};
-		CACD6B5D18E03B9B003F97C0 /* lib */ = {
-			isa = PBXGroup;
-			children = (
-				CACD6B5E18E03B9B003F97C0 /* include */,
-				CACD6B6718E03B9B003F97C0 /* libYouMi.a */,
-			);
-			path = lib;
-			sourceTree = "<group>";
-		};
-		CACD6B5E18E03B9B003F97C0 /* include */ = {
-			isa = PBXGroup;
-			children = (
-				CACD6B5F18E03B9B003F97C0 /* YouMiConfig.h */,
-				CACD6B6018E03B9B003F97C0 /* YouMiDelegateProtocol.h */,
-				CACD6B6118E03B9B003F97C0 /* YouMiSpot.h */,
-				CACD6B6218E03B9B003F97C0 /* YouMiView.h */,
-				CACD6B6318E03B9B003F97C0 /* YouMiWall.h */,
-				CACD6B6418E03B9B003F97C0 /* YouMiWallAppModel.h */,
-				CACD6B6518E03B9B003F97C0 /* YouMiWallBanner.h */,
-				CACD6B6618E03B9B003F97C0 /* YouMiWallDelegateProtocol.h */,
-			);
-			path = include;
 			sourceTree = "<group>";
 		};
 		CACD6C8118E03BCC003F97C0 /* AliPaySDK */ = {
@@ -18350,12 +18201,9 @@
 		CAFEF86B16606E4700441D77 /* 3PP-SDK */ = {
 			isa = PBXGroup;
 			children = (
-				CA3B100818F93CA2003867E3 /* DomobAdSDK */,
 				CACD6C8118E03BCC003F97C0 /* AliPaySDK */,
-				CACD6B5118E03B9B003F97C0 /* YouMiSDK */,
 				CACD6B3D18E03B7F003F97C0 /* GoogleAdMobAdsSDK */,
 				CACD6B2B18E03B4A003F97C0 /* MobClick */,
-				CACD6B2518E03A91003F97C0 /* LmmobSDK */,
 				CACD6A0418E03A27003F97C0 /* ShareSDK */,
 			);
 			name = "3PP-SDK";
@@ -20021,7 +19869,6 @@
 				A4D8FB9717DB08170085061F /* item_promotion_bg@2x.png in Resources */,
 				A4D8FB9B17DB08170085061F /* give_item_detail_bg@2x.png in Resources */,
 				A4D8FBA317DB08170085061F /* item_add@2x.png in Resources */,
-				CA3B101B18F93CA2003867E3 /* DomobAdSDKBundle.bundle in Resources */,
 				A4D8FBA717DB08170085061F /* item_delete@2x.png in Resources */,
 				A4D8FBAB17DB08170085061F /* item_detail_bg@2x.png in Resources */,
 				CACD6B0B18E03A2D003F97C0 /* ShareSDKiPadSimpleShareViewUI.bundle in Resources */,
@@ -20995,7 +20842,6 @@
 				A4DDD14217CDFD7B0029E562 /* hot_word.txt in Resources */,
 				A4DDD14617CDFD7B0029E562 /* iap_product_513819630.pb in Resources */,
 				A4DDD14A17CDFD7B0029E562 /* iap_product_513819630_old.pb in Resources */,
-				CA3B101A18F93CA2003867E3 /* DomobAdSDKBundle.bundle in Resources */,
 				A4DDD14E17CDFD7B0029E562 /* iap_product_Draw.pb in Resources */,
 				A4DDD15217CDFD7B0029E562 /* image_shape.zip in Resources */,
 				A4DDD15617CDFD7B0029E562 /* shop_item_513819630.pb in Resources */,
@@ -22387,7 +22233,6 @@
 				D8D81183199DE66100CC182A /* TwoInputFieldViewStyle2.xib in Resources */,
 				A4D8FDD717DB089C0085061F /* selector_ellipse@2x.png in Resources */,
 				A4D8FDDB17DB089C0085061F /* selector_help@2x.png in Resources */,
-				CA3B101918F93CA2003867E3 /* DomobAdSDKBundle.bundle in Resources */,
 				A4D8FDDF17DB089C0085061F /* selector_path@2x.png in Resources */,
 				A4D8FDE317DB089C0085061F /* selector_polygon@2x.png in Resources */,
 				A4D8FDE717DB089C0085061F /* selector_rectangle@2x.png in Resources */,
@@ -23568,7 +23413,6 @@
 				CA1CC38219C43DE1006E06C7 /* selected_brush_crayon@2x.png in Resources */,
 				A4D8FF3E17DB089C0085061F /* dice_home_header_bg@2x.png in Resources */,
 				A4D8FF4217DB089C0085061F /* dice_home_header_foot@2x.png in Resources */,
-				CA3B101C18F93CA2003867E3 /* DomobAdSDKBundle.bundle in Resources */,
 				A4D8FF4617DB089C0085061F /* dice_home_header_man@2x.png in Resources */,
 				A4D8FFA217DB089C0085061F /* learndraw_bg@2x.png in Resources */,
 				A4D8FFA617DB089C0085061F /* learndraw_bottom_bar@2x.png in Resources */,
@@ -24018,6 +23862,7 @@
 				A461B0B4174CBAA70088B061 /* LocaleUtils.m in Sources */,
 				A461B0B5174CBAA70088B061 /* LogUtil.m in Sources */,
 				A461B0B6174CBAA70088B061 /* NumberUtil.m in Sources */,
+				CAFF62D319E61FF60065D97E /* GameAdWallService.m in Sources */,
 				A461B0B7174CBAA70088B061 /* ArrayOfCharacters.m in Sources */,
 				A461B0B8174CBAA70088B061 /* GroupDataAZ.m in Sources */,
 				A461B0B9174CBAA70088B061 /* pinyin.c in Sources */,
@@ -24175,7 +24020,6 @@
 				A461B17F174CBAA70088B061 /* ChatDetailCell.m in Sources */,
 				A461B180174CBAA70088B061 /* NotificationManager.m in Sources */,
 				A461B181174CBAA70088B061 /* ShareService.m in Sources */,
-				A461B182174CBAA70088B061 /* LmWallService.m in Sources */,
 				A461B183174CBAA70088B061 /* AdService.m in Sources */,
 				CA2A289619586E9800A97478 /* SPUserResizableView.m in Sources */,
 				A461B184174CBAA70088B061 /* UIManager.m in Sources */,
@@ -24463,8 +24307,6 @@
 				D8E63EE319C13BE500EB213E /* TutorialProtoModel.m in Sources */,
 				A461B34A174CBAA70088B061 /* RoundPercentageView.m in Sources */,
 				A461B34B174CBAA70088B061 /* CommonAdWallService.m in Sources */,
-				A461B34C174CBAA70088B061 /* LimeiAdWallService.m in Sources */,
-				A461B34D174CBAA70088B061 /* GameAdWallService.m in Sources */,
 				A461B34E174CBAA70088B061 /* CommonItem.m in Sources */,
 				A461B34F174CBAA70088B061 /* FlowerItem.m in Sources */,
 				A461B350174CBAA70088B061 /* BlockArray.m in Sources */,
@@ -24479,7 +24321,6 @@
 				A461B358174CBAA70088B061 /* PaintAction.m in Sources */,
 				A461B359174CBAA70088B061 /* ShapeAction.m in Sources */,
 				A461B35A174CBAA70088B061 /* CanvasRect.m in Sources */,
-				A461B35B174CBAA70088B061 /* YoumiAdWallService.m in Sources */,
 				A461B35D174CBAA70088B061 /* UserDetailCell.m in Sources */,
 				A461B35E174CBAA70088B061 /* BBSController.m in Sources */,
 				A461B35F174CBAA70088B061 /* BalanceNotEnoughAlertView.m in Sources */,
@@ -24987,6 +24828,7 @@
 				C28A9A0E1738F04B007A819F /* ItemManager.m in Sources */,
 				CACD6D2C18E03C40003F97C0 /* EAFRead.mm in Sources */,
 				C28A9A0F1738F04B007A819F /* ChangeAvatar.m in Sources */,
+				CAFF62D219E61FF60065D97E /* GameAdWallService.m in Sources */,
 				C28A9A101738F04B007A819F /* FeedbackController.m in Sources */,
 				C28A9A111738F04B007A819F /* UserSettingController.m in Sources */,
 				C28A9A121738F04B007A819F /* PriceService.m in Sources */,
@@ -25071,7 +24913,6 @@
 				C28A9A671738F04B007A819F /* ChatDetailCell.m in Sources */,
 				C28A9A681738F04B007A819F /* NotificationManager.m in Sources */,
 				C28A9A691738F04B007A819F /* ShareService.m in Sources */,
-				C28A9A6A1738F04B007A819F /* LmWallService.m in Sources */,
 				C28A9A6B1738F04B007A819F /* AdService.m in Sources */,
 				C28A9A6C1738F04B007A819F /* UIManager.m in Sources */,
 				C28A9A6D1738F04B007A819F /* CustomStatueBar.m in Sources */,
@@ -25364,8 +25205,6 @@
 				C28A9C311738F04B007A819F /* DrawHolderView.m in Sources */,
 				C28A9C321738F04B007A819F /* RoundPercentageView.m in Sources */,
 				C28A9C331738F04B007A819F /* CommonAdWallService.m in Sources */,
-				C28A9C341738F04B007A819F /* LimeiAdWallService.m in Sources */,
-				C28A9C351738F04B007A819F /* GameAdWallService.m in Sources */,
 				C28A9C361738F04B007A819F /* CommonItem.m in Sources */,
 				C28A9C371738F04B007A819F /* FlowerItem.m in Sources */,
 				C28A9C381738F04B007A819F /* BlockArray.m in Sources */,
@@ -25379,7 +25218,6 @@
 				C28A9C401738F04B007A819F /* PaintAction.m in Sources */,
 				C28A9C411738F04B007A819F /* ShapeAction.m in Sources */,
 				C28A9C421738F04B007A819F /* CanvasRect.m in Sources */,
-				C28A9C431738F04B007A819F /* YoumiAdWallService.m in Sources */,
 				CA90050B194EE775003389FD /* ClassTagView.m in Sources */,
 				C28A9C451738F04B007A819F /* UserDetailCell.m in Sources */,
 				C28A9C461738F04B007A819F /* BBSController.m in Sources */,
@@ -25883,6 +25721,7 @@
 				CA322105151B6BE60039A384 /* UserService.m in Sources */,
 				CAF10AFB151C665D008C4512 /* AccountManager.m in Sources */,
 				CACD6D2B18E03C40003F97C0 /* EAFRead.mm in Sources */,
+				CAFF62D119E61FF60065D97E /* GameAdWallService.m in Sources */,
 				CAF10AFE151C666E008C4512 /* ItemManager.m in Sources */,
 				CA32213D151DEDE10039A384 /* ChangeAvatar.m in Sources */,
 				CA3221A4151F657F0039A384 /* FeedbackController.m in Sources */,
@@ -25972,7 +25811,6 @@
 				A3DE093F15908AB700E2C746 /* ChatDetailCell.m in Sources */,
 				CAE0C8971591A2ED008CDA62 /* NotificationManager.m in Sources */,
 				CAA9C427159BF41B00398EC5 /* ShareService.m in Sources */,
-				CAA9C435159CA97100398EC5 /* LmWallService.m in Sources */,
 				CAA1AA3F159D78C200504C98 /* AdService.m in Sources */,
 				C2C1BF4515A2A9B6001A2BFC /* UIManager.m in Sources */,
 				CA51816D15A2D79700AD5A78 /* CustomStatueBar.m in Sources */,
@@ -26262,8 +26100,6 @@
 				CA21FD2D16F2FC49002975C8 /* DrawHolderView.m in Sources */,
 				C203C47716F309A50028A065 /* RoundPercentageView.m in Sources */,
 				CAADF61516F444C20097CFA1 /* CommonAdWallService.m in Sources */,
-				CAADF61916F444C20097CFA1 /* LimeiAdWallService.m in Sources */,
-				CAADF62416F444D10097CFA1 /* GameAdWallService.m in Sources */,
 				A491A1CD16F44D02003B638F /* CommonItem.m in Sources */,
 				A491A1CE16F44D02003B638F /* FlowerItem.m in Sources */,
 				CAADF62D16F55E340097CFA1 /* BlockArray.m in Sources */,
@@ -26278,7 +26114,6 @@
 				CA35FF3B16F8672200D8E05D /* ShapeAction.m in Sources */,
 				CA90050A194EE775003389FD /* ClassTagView.m in Sources */,
 				CA35FF4716F867AC00D8E05D /* CanvasRect.m in Sources */,
-				CAADF65416F977870097CFA1 /* YoumiAdWallService.m in Sources */,
 				C2B97A2B16F999200037B15B /* UserDetailCell.m in Sources */,
 				CAABB89316F99C41007DCC58 /* BBSController.m in Sources */,
 				A4CD501116F9B56400BE6694 /* BalanceNotEnoughAlertView.m in Sources */,
@@ -26861,7 +26696,6 @@
 				EA411913176066F500DA72D0 /* ChatDetailCell.m in Sources */,
 				EA411914176066F500DA72D0 /* NotificationManager.m in Sources */,
 				EA411915176066F500DA72D0 /* ShareService.m in Sources */,
-				EA411916176066F500DA72D0 /* LmWallService.m in Sources */,
 				EA411917176066F500DA72D0 /* AdService.m in Sources */,
 				EA411918176066F500DA72D0 /* UIManager.m in Sources */,
 				EA411919176066F500DA72D0 /* CustomStatueBar.m in Sources */,
@@ -27080,6 +26914,7 @@
 				EA411A21176066F500DA72D0 /* DraftCell.m in Sources */,
 				EA411A22176066F500DA72D0 /* DraftsView.m in Sources */,
 				EA411A2C176066F500DA72D0 /* RoundLineLabel.m in Sources */,
+				CAFF62D419E61FF60065D97E /* GameAdWallService.m in Sources */,
 				A47896EC1995BB2400185220 /* SpotHelpView.m in Sources */,
 				EA411A2D176066F500DA72D0 /* ColorBox.m in Sources */,
 				EA411A2E176066F500DA72D0 /* ColorPoint.m in Sources */,
@@ -27158,8 +26993,6 @@
 				EA411A85176066F500DA72D0 /* RoundPercentageView.m in Sources */,
 				CAFFF5CE196CED8C000DD4E7 /* UIViewController+CommonHome.m in Sources */,
 				EA411A86176066F500DA72D0 /* CommonAdWallService.m in Sources */,
-				EA411A87176066F500DA72D0 /* LimeiAdWallService.m in Sources */,
-				EA411A88176066F500DA72D0 /* GameAdWallService.m in Sources */,
 				EA411A89176066F500DA72D0 /* CommonItem.m in Sources */,
 				EA411A8A176066F500DA72D0 /* FlowerItem.m in Sources */,
 				EA411A8B176066F500DA72D0 /* BlockArray.m in Sources */,
@@ -27173,7 +27006,6 @@
 				EA411A93176066F500DA72D0 /* PaintAction.m in Sources */,
 				EA411A94176066F500DA72D0 /* ShapeAction.m in Sources */,
 				EA411A95176066F500DA72D0 /* CanvasRect.m in Sources */,
-				EA411A96176066F500DA72D0 /* YoumiAdWallService.m in Sources */,
 				EA411A98176066F500DA72D0 /* UserDetailCell.m in Sources */,
 				EA411A99176066F500DA72D0 /* BBSController.m in Sources */,
 				EA411A9A176066F500DA72D0 /* BalanceNotEnoughAlertView.m in Sources */,

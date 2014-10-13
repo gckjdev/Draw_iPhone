@@ -12,7 +12,6 @@
 #import "StatisticManager.h"
 #import "UserManager.h"
 #import "UserSettingController.h"
-#import "LmWallService.h"
 #import "UIUtils.h"
 #import "BulletinView.h"
 #import "AnalyticsManager.h"
@@ -298,10 +297,10 @@ static NSDictionary* DEFAULT_MENU_SELECTOR_DICT = nil;
 - (void)homeHeaderPanel:(HomeHeaderPanel *)headerPanel
  didClickFreeCoinButton:(UIButton *)button
 {
-    [[AnalyticsManager sharedAnalyticsManager] reportClickHomeElements:HOME_TOP_FREE_COINS];
-
-    [UIUtils alertWithTitle:@"免费金币获取提示" msg:@"下载免费应用即可获取金币！下载完应用一定要打开才可以获得奖励！"];
-    [[LmWallService defaultService] show:self];
+//    [[AnalyticsManager sharedAnalyticsManager] reportClickHomeElements:HOME_TOP_FREE_COINS];
+//
+//    [UIUtils alertWithTitle:@"免费金币获取提示" msg:@"下载免费应用即可获取金币！下载完应用一定要打开才可以获得奖励！"];
+//    [[LmWallService defaultService] show:self];
 
 }
 

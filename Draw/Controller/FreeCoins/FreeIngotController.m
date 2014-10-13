@@ -12,7 +12,6 @@
 #import "GameConfigDataManager.h"
 #import "ShareImageManager.h"
 #import "Config.pb.h"
-#import "LmWallService.h"
 #import "BBSBoardController.h"
 #import "GameAdWallService.h"
 #import "PPConfigManager.h"
