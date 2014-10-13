@@ -71,7 +71,7 @@
     if ([Feed isKindOfClass:[CommentFeed class]]){
         NSString *comment = [feed desc];
         UIFont *font = [ShareUIManager timelineContentFont];
-        CGSize commentSize = [comment sizeWithMyFont:font constrainedToSize:CGSizeMake(DESC_WIDTH, 10000000) lineBreakMode:UILineBreakModeCharacterWrap];
+        CGSize commentSize = [comment sizeWithMyFont:font constrainedToSize:CGSizeMake(DESC_WIDTH, 10000000) lineBreakMode:NSLineBreakByCharWrapping];
         CGFloat height = NON_DESC_HEIGHT + commentSize.height;
         if (height <= FEED_CELL_HEIGHT){
             height = FEED_CELL_HEIGHT;
@@ -114,7 +114,7 @@
     UIFont *font = [ShareUIManager timelineContentFont];
     CGSize maxSize = CGSizeMake(DESC_WIDTH, DESC_HEIGHT);
     CGSize labelSize = [feed.desc sizeWithMyFont:font constrainedToSize:maxSize 
-         lineBreakMode:UILineBreakModeCharacterWrap];
+         lineBreakMode:NSLineBreakByCharWrapping];
     CGRect rect = CGRectMake(origin.x, origin.y, DESC_WIDTH, labelSize.height);
     self.descLabel.frame = rect;
     

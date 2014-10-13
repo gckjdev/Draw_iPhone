@@ -803,7 +803,7 @@
     NSString *text = textView.text;
     CGSize size = [text sizeWithMyFont:textView.font 
                    constrainedToSize:CGSizeMake(textView.frame.size.width, TEXT_VIEW_MAX_HEIGHT) 
-                       lineBreakMode:UILineBreakModeWordWrap];
+                       lineBreakMode:NSLineBreakByWordWrapping];
     CGFloat textHeight = (size.height < TEXT_VIEW_MIN_HEIGHT) ? TEXT_VIEW_MIN_HEIGHT : (size.height);
     
     CGFloat panelHeight = textHeight + 2 * (SPACE_PANEL_BG + SPACE_BG_TEXT);

@@ -36,7 +36,7 @@
     cell.delegate = delegate;
     
     [cell.sourceButton.titleLabel setNumberOfLines:3];
-    [cell.sourceButton.titleLabel setLineBreakMode:UILineBreakModeCharacterWrap];
+    [cell.sourceButton.titleLabel setLineBreakMode:NSLineBreakByCharWrapping];
     [cell.timeLabel setTextColor:COLOR_GRAY_TEXT];
     [cell.nickNameLabel setTextColor:COLOR_BROWN];
     [cell.commentLabel setTextColor:COLOR_BROWN];
@@ -77,7 +77,7 @@
 {
     NSString *comment = [feed commentInMyComment];
     UIFont *font = [ShareUIManager commentMessageContentFont];
-    CGSize commentSize = [comment sizeWithMyFont:font constrainedToSize:CGSizeMake(COMMENT_WIDTH, 10000000) lineBreakMode:UILineBreakModeCharacterWrap];
+    CGSize commentSize = [comment sizeWithMyFont:font constrainedToSize:CGSizeMake(COMMENT_WIDTH, 10000000) lineBreakMode:NSLineBreakByCharWrapping];
     
     return CGRectMake(COMMENT_BASE_X, startY, COMMENT_WIDTH, commentSize.height + COMMENT_PAN);
 
@@ -87,7 +87,7 @@
 {
     NSString *reply = [feed replySummary];
     UIFont *font = [ShareUIManager commentMessageSourceFont];
-    CGSize commentSize = [reply sizeWithMyFont:font constrainedToSize:CGSizeMake(REPLY_WIDTH, 10000000) lineBreakMode:UILineBreakModeCharacterWrap];
+    CGSize commentSize = [reply sizeWithMyFont:font constrainedToSize:CGSizeMake(REPLY_WIDTH, 10000000) lineBreakMode:NSLineBreakByCharWrapping];
     return CGRectMake(COMMENT_BASE_X, startY, COMMENT_WIDTH, commentSize.height + REPLY_PAN);    
 }
 

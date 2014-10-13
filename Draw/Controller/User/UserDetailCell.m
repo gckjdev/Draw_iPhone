@@ -251,7 +251,7 @@
 - (void)adjustSignatureLabel:(UILabel*)label WithText:(NSString*)signatureText
 {
     [label setText:signatureText];
-    CGSize size = [signatureText sizeWithMyFont:label.font constrainedToSize:CGSizeMake(label.frame.size.width, MAX_CONSTRAIN_HEIGHT) lineBreakMode:UILineBreakModeCharacterWrap];
+    CGSize size = [signatureText sizeWithMyFont:label.font constrainedToSize:CGSizeMake(label.frame.size.width, MAX_CONSTRAIN_HEIGHT) lineBreakMode:NSLineBreakByCharWrapping];
     if (size.height < MAX_HEIGHT) {
         [label updateHeight:size.height];
     } else {

@@ -505,9 +505,13 @@
 - (void)setMessage:(NSString *)message{
     
     if ([LocaleUtils isChinese]) {
-        [self.messageLabel setLineBreakMode:UILineBreakModeCharacterWrap];
+        [self.messageLabel setLineBreakMode:NSLineBreakByCharWrapping
+//         UILineBreakModeCharacterWrap
+         ];
     }else {
-        [self.messageLabel setLineBreakMode:UILineBreakModeWordWrap];
+        [self.messageLabel setLineBreakMode:
+         NSLineBreakByWordWrapping
+         ];
     }
     
     _messageLabel.text = message;

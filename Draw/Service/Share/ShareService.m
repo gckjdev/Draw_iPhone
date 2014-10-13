@@ -212,7 +212,7 @@ static ShareService* _defaultService;
     RoundLineLabel* label = [[[RoundLineLabel alloc] initWithFrame:CGRectMake(0, 0, srcImage.size.width + shadow*2, labelHeight)] autorelease];
     [label setText:text];
     [label setAdjustsFontSizeToFitWidth:YES];
-    [label setMinimumFontSize:3];
+    [label setMinimumScaleFactor:3];
     [label setTextColor:[UIColor colorWithRed:123/255.0 green:123/255.0 blue:123/255.0 alpha:1.0]];
     
     [label setFont:[UIFont boldSystemFontOfSize:labelFontSize]];

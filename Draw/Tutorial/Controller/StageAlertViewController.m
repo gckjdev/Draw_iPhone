@@ -133,7 +133,7 @@ userTutorial:(PBUserTutorial *)pbUserTutorial
 
     height = [stageDesc sizeWithMyFont:textFont
                      constrainedToSize:CGSizeMake(130,ISIPAD_TEXT_HEIGHT)
-                         lineBreakMode:UILineBreakModeWordWrap].height;
+                         lineBreakMode:NSLineBreakByWordWrapping].height;
     
     orgRect.size.height=height;//获取自适应文本内容高度
     self.stageDesc.frame=orgRect;//重设UITextView的frame

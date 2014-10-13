@@ -610,7 +610,9 @@
 
 - (CGSize)getStringSize:(UIFont*)font string:(NSString*)string withinSize:(CGSize)withinSize
 {
-    CGSize size = [string sizeWithMyFont:font constrainedToSize:withinSize lineBreakMode:UILineBreakModeWordWrap];
+    CGSize size = [string sizeWithMyFont:font constrainedToSize:withinSize lineBreakMode:NSLineBreakByWordWrapping
+//                   UILineBreakModeWordWrap
+                   ];
     
     return size;
 }

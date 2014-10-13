@@ -1232,7 +1232,7 @@ typedef enum {
     UILabel* label = [[[UILabel alloc] initWithFrame:CGRectMake(0, 0, srcImage.size.width + shadow*2, labelHeight)] autorelease];
     [label setText:text];
     [label setAdjustsFontSizeToFitWidth:YES];
-    [label setMinimumFontSize:3];
+    [label setMinimumScaleFactor:3];
     [label setTextColor:COLOR_WHITE];
     
     [label setFont:[UIFont boldSystemFontOfSize:labelFontSize]];
