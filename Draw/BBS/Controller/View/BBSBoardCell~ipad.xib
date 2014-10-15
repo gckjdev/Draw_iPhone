@@ -14,7 +14,7 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" id="46">
-                        <rect key="frame" x="35" y="0.0" width="630" height="88.5"/>
+                        <rect key="frame" x="35" y="0.0" width="630" height="89.5"/>
                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" heightSizable="YES"/>
                     </imageView>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" id="47">
@@ -57,7 +57,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="bbs_board_line.png" id="53">
-                        <rect key="frame" x="119" y="86.5" width="534" height="2"/>
+                        <rect key="frame" x="119" y="87.5" width="534" height="2"/>
                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
                     </imageView>
                 </subviews>

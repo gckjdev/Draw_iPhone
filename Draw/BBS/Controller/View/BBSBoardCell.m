@@ -87,6 +87,7 @@
     [self.icon setImageWithURL:board.iconURL];
     
     [self.icon setImageWithURL:[NSURL URLWithString:board.icon]];
+    
     [self.name setText:board.name];
     
     self.statistic.text = [NSString stringWithFormat:@"%d", board.postCount];

@@ -238,7 +238,7 @@ typedef enum{
     
     
     
-    [self.dataTableView updateOriginY:(COMMON_TAB_BUTTON_Y + COMMON_TAB_BUTTON_HEIGHT)];
+    [self.dataTableView updateOriginDataViewTableY:(COMMON_TAB_BUTTON_Y + COMMON_TAB_BUTTON_HEIGHT)];
     
     
     SET_BUTTON_ROUND_STYLE_YELLOW(searchUserButton);

@@ -867,7 +867,7 @@ typedef enum{
             self.subTabsHolder.hidden = NO;
         }
         
-        [self.dataTableView updateOriginY:CGRectGetMaxY(self.subTabsHolder.frame)];
+        [self.dataTableView updateOriginDataViewTableY:CGRectGetMaxY(self.subTabsHolder.frame)];
         float appHeight = CGRectGetHeight([[UIScreen mainScreen] applicationFrame]);
         float subTabsHolderMaxY = CGRectGetMaxY(self.subTabsHolder.frame);
         newHeight = appHeight - subTabsHolderMaxY;

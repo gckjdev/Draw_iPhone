@@ -77,7 +77,8 @@
     //update frame
     if ([DeviceDetection isIPAD]) {
         tableView.frame = CGRectMake(34,134+STATUSBAR_DELTA,700,870);
-    }else{
+    }
+    else{
         tableView.frame = CGRectMake(10,60+STATUSBAR_DELTA,300,400);
     }
 }

@@ -1020,10 +1020,12 @@ typedef enum {
     
     NSString* name = [NSString stringWithFormat:@"作者：%@",[ShareService defaultService].draft.drawUserNickName];
     PPDebug(@"nickname is %@",name);
+    UIImage* srcImage = [self makeEndingImage:[UIImage imageNamed:@"shipinEnding.jpg"] AndText:name];
+    UIImage *beginningSrcImage = [self makeBeginningImage:[srcImgList objectAtIndex:0]];
     
-    UIImage* srcImage = [self markStringIntoImage:[UIImage imageNamed:@"shipinEnding.jpg"] AndText:name];
     [srcImgList addObject:[srcImgList objectAtIndex:0]];
     [srcImgList addObject:[srcImgList objectAtIndex:0]];
+    [srcImgList insertObject:beginningSrcImage atIndex:0];
     [srcImgList addObject:srcImage];
     [srcImgList addObject:srcImage];
     [srcImgList addObject:srcImage];
@@ -1214,7 +1216,7 @@ typedef enum {
     _supportLongPress = enable;
 }
 
-+(UIImage *)markStringIntoImage:(UIImage *)srcImage AndText:(NSString *)text{
++(UIImage *)makeEndingImage:(UIImage *)srcImage AndText:(NSString *)text{
     
     if (text == nil) {
         return srcImage;
@@ -1264,6 +1266,51 @@ typedef enum {
     
     
 }
++(UIImage *)makeBeginningImage:(UIImage *)drawImage{
+    
+    NSString* name = [NSString stringWithFormat:@"作者：%@",[ShareService defaultService].draft.drawUserNickName];
+    UIImage *srcImage = [UIImage imageNamed:@"shipinEnding.jpg"];
+    UILabel* label = [[[UILabel alloc] initWithFrame:CGRectMake(0, 0, 200,20)] autorelease];
+    [label setText:name];
+    [label setAdjustsFontSizeToFitWidth:YES];
+    [label setMinimumScaleFactor:3];
+    [label setTextColor:COLOR_WHITE];
+    
+    [label setFont:[UIFont boldSystemFontOfSize:20]];
+    [label setTextAlignment:NSTextAlignmentCenter];
+    
+    UILabel* imageTitle = [[[UILabel alloc] initWithFrame:CGRectMake(0, 0, 200,20)] autorelease];
+    NSString* drawName = [NSString stringWithFormat:@"小吉画画作品欣赏"];
+    [imageTitle setText:drawName];
+    [imageTitle setAdjustsFontSizeToFitWidth:YES];
+    [imageTitle setMinimumScaleFactor:3];
+    [imageTitle setTextColor:COLOR_WHITE];
+    
+    [imageTitle setFont:[UIFont boldSystemFontOfSize:20]];
+    [imageTitle setTextAlignment:NSTextAlignmentCenter];
+    
+    
+
+    UIGraphicsBeginImageContext(CGSizeMake(490, srcImage.size.height + 5*3));
+    CGContextRef ref = UIGraphicsGetCurrentContext();
+    CGContextSaveGState(ref);
+    CGRect rect = CGRectMake(5, 0, 490, 320);
+    [srcImage drawInRect:rect];
+    CGRect drawRect = CGRectMake(srcImage.size.width/2 - 100, srcImage.size.height/2 - 100, 200, 200);
+    if(drawImage != nil){
+        [drawImage drawInRect:drawRect];
+    }
+
+    CGContextRestoreGState(ref);
+    
+    [label drawTextInRect:CGRectMake(0, srcImage.size.height-40, srcImage.size.width, 20)];
+    [imageTitle drawTextInRect:CGRectMake(0,20, srcImage.size.width, 20)];
+    
+    UIImage *resultingImage = UIGraphicsGetImageFromCurrentImageContext();
+    return resultingImage;
+}
+
+
 
 
 
