@@ -34,6 +34,7 @@
 
 #define SEEME_FONT (ISIPAD ? 9 * 2: 9)
 
+
 @implementation BBSPostActionCell
 @synthesize reply = _reply;
 @synthesize action = _action;
@@ -97,13 +98,14 @@
     [textView setText:text];
     CGFloat height = 0;
     
-    if (ISIOS7) {
+    if (ISIOS8) {
+        height = textView.contentSize.height;
+       
+    }else{
         float fPadding = 16.0*2; // 8.0px x 2
         CGSize constraint = CGSizeMake(CONTENT_WIDTH - fPadding, CGFLOAT_MAX);
         CGSize size = [text sizeWithMyFont:font constrainedToSize:constraint lineBreakMode:NSLineBreakByWordWrapping];
         height = size.height + 20;
-    }else{
-        height = textView.contentSize.height;
     }
     [textView updateHeight:height];
     return height;    
