@@ -32,6 +32,7 @@
 - (void)updateCellInfo:(PBUserTutorial*)ut WithRow:(NSInteger)row
 {
    
+    
     SET_VIEW_ROUND_CORNER(self.tutorialImageView);
 //    SET_VIEW_ROUND_CORNER(self.labelBottomView);
    
