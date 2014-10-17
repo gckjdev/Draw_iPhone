@@ -92,10 +92,10 @@
 + (CGFloat)heightForContentText:(NSString *)text inTextView:(UITextView *)textView
 {
     UIFont *font = [[BBSFontManager defaultManager] actionContentFont];
-    [textView updateWidth:CONTENT_WIDTH];
-    [textView updateHeight:10];
-    [textView setFont:font];
-    [textView setText:text];
+//    [textView updateWidth:CONTENT_WIDTH];
+//    [textView updateHeight:10];
+//    [textView setFont:font];
+//    [textView setText:text];
     CGFloat height = 0;
     
     if (ISIOS8) {
@@ -107,8 +107,8 @@
         CGSize size = [text sizeWithMyFont:font constrainedToSize:constraint lineBreakMode:NSLineBreakByWordWrapping];
         height = size.height + 20;
     }
-    [textView updateHeight:height];
-    return height;    
+//    [textView updateHeight:height];
+    return height;
 }
 
 
@@ -243,6 +243,25 @@
     }else{
         [self updateContetWithText:text];
     }
+    
+    UIFont *font = [[BBSFontManager defaultManager] actionContentFont];
+    [self.contentTextView updateWidth:CONTENT_WIDTH];
+    [self.contentTextView updateHeight:10];
+    [self.contentTextView setFont:font];
+    [self.contentTextView setText:text];
+    CGFloat height = 0;
+    
+    if (ISIOS8) {
+        height = self.contentTextView.contentSize.height;
+        
+    }else{
+        float fPadding = 16.0*2; // 8.0px x 2
+        CGSize constraint = CGSizeMake(CONTENT_WIDTH - fPadding, CGFLOAT_MAX);
+        CGSize size = [text sizeWithMyFont:font constrainedToSize:constraint lineBreakMode:NSLineBreakByWordWrapping];
+        height = size.height + 20;
+    }
+    [self.contentTextView updateHeight:height];
+    
 //    [self.contentTextView setBackgroundColor:[UIColor redColor]];
 }
 
