@@ -73,6 +73,8 @@
     [[TutorialCoreManager defaultManager] autoUpdate];
     [self showHelpView];
     
+   
+    
 }
 
 - (void)showHelpView
@@ -192,14 +194,18 @@
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-
+    
+    
+    
+    
     switch ([[self currentTab] tabID]) {
         case TutorialTypeMine:
             return [self sorterTutorialCellWithTypeTag:TutorialTypeMine WithTableView:tableView WithRow:indexPath.row];
             break;
             
         case TutorialTypeAll:
-
+            
+            self.dataTableView.frame = CGRectMake(0, ALL_TUTORIAL_TOP_MARGIN, [[UIScreen mainScreen] bounds].size.width, [[UIScreen mainScreen] bounds].size.height-ALL_TUTORIAL_TOP_MARGIN);
             return [self sorterTutorialCellWithTypeTag:TutorialTypeAll WithTableView:tableView WithRow:indexPath.row];
             break;
             
