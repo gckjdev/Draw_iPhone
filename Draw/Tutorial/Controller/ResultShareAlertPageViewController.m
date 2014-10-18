@@ -317,7 +317,7 @@
     self.lineTwoLabel.attributedText = scoreMutableString;
     
     //位置
-    NSString *count = [NSString stringWithFormat:@"%d%%",self.userStage.defeatCount];
+//    NSString *count = [NSString stringWithFormat:@"%d%%",self.userStage.defeatCount];
 //    NSString *sentenceTwo = [NSString stringWithFormat:@"宇宙三次元%@的用户！",count];
     NSString *sentenceTwo = [NSString stringWithFormat:NSLS(@"kResultPageDesc")];
 //    
@@ -335,7 +335,7 @@
     
     //闯关结果
     BOOL isTutorialComplete = [[UserTutorialManager defaultManager] isLastStage:self.userStage];
-    NSString *result = @"";
+//    NSString *result = @"";
     NSString *sealResult = @"";
     //合格
     BOOL isPass = [[UserTutorialManager defaultManager] isPass:self.score];
