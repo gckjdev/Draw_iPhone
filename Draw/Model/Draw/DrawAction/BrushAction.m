@@ -13,10 +13,10 @@
 
 @implementation BrushAction
 
-- (void)setCanvasSize:(CGSize)canvasSize
-{
-    self.brushStroke.canvasRect = CGRectFromCGSize(canvasSize);
-}
+//- (void)setCanvasSize:(CGSize)canvasSize
+//{
+//    self.brushStroke.canvasRect = CGRectFromCGSize(canvasSize);
+//}
 
 - (id)initWithWithBrushStroke:(BrushStroke*)brushStroke
 {
