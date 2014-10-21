@@ -10,10 +10,12 @@
 #import "GouacheBrush.h"
 #import "BlurBrush.h"
 #import "CrayonBrush.h"
-#import "PenBrush.h"
 #import "PencilBrush.h"
 #import "WaterBrush.h"
 #import "FeatherBrush.h"
+#import "FilledCalligraphyBrush.h"
+#import "PenCalligraphyBrush.h"
+#import "DryCalligraphyBrush.h"
 
 static BrushEffectFactory* sharedBrushFactory;
 static dispatch_once_t brushFactoryOnceToken;
@@ -44,7 +46,7 @@ static dispatch_once_t brushFactoryOnceToken;
             return [CrayonBrush sharedBrush];
             
         case ItemTypeBrushPen:
-            return [PenBrush sharedBrush];
+            return [PenCalligraphyBrush sharedBrush];
             
         case ItemTypeBrushPencil:
             return [PencilBrush sharedBrush];
@@ -54,6 +56,12 @@ static dispatch_once_t brushFactoryOnceToken;
             
         case ItemTypeBrushFeather:
             return [FeatherBrush sharedBrush];
+            
+        case ItemTypeBrushFilledCalligraphy:
+            return [FilledCalligraphyBrush sharedBrush];
+            
+        case ItemTypeBrushDryCalligraphy:
+            return [DryCalligraphyBrush sharedBrush];
         
 
 
