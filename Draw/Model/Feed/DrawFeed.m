@@ -192,8 +192,11 @@
 - (void)updateDesc
 {
     NSString *kCreateDesc = NSLS(@"kDrawDesc");
-    NSString *kCreateDescNoName = NSLS(@"kDrawDescNoWord");
-    
+//    NSString *kCreateDescNoName = NSLS(@"kDrawDescNoWord");
+     NSString *kCreateDescNoName = self.opusDesc;
+    if([kCreateDescNoName isEqualToString:@""]){
+        kCreateDescNoName = NSLS(@"kDrawDescNoWord");
+    }
     if ([self isDrawCategory] == NO){
         kCreateDesc = NSLS(@"kCreateDesc");
         kCreateDescNoName = NSLS(@"kCreateDescNoName");

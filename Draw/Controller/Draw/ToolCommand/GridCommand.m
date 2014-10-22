@@ -15,7 +15,7 @@
 
 - (UIView *)contentView
 {
-    DrawSlider *slider = [DrawSlider sliderWithMaxValue:MAX_GRID_COUNT
+    NewGridDrawSlide *slider = [NewGridDrawSlide sliderWithMaxValue:MAX_GRID_COUNT
                                                minValue:0
                                            defaultValue:self.drawView.shareDrawInfo.gridLineNumber
                                                delegate:self];
@@ -68,6 +68,7 @@
 - (void)drawSlider:(DrawSlider *)drawSlider didFinishChangeValue:(CGFloat)value
 {
     [self updateDegreeWithValue:value slider:drawSlider];
+    
     [drawSlider dismissPopupView];
 }
 

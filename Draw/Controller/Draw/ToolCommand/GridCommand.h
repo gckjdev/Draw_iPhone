@@ -8,7 +8,7 @@
 
 #import "ToolCommand.h"
 #import "DrawSlider.h"
-
+#import "NewGridDrawSlide.h"
 @interface GridCommand : ToolCommand<DrawSliderDelegate>
 
 @end

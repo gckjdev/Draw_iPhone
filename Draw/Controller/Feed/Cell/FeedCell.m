@@ -35,7 +35,7 @@
 
 #define AVATAR_VIEW_FRAME ([DeviceDetection isIPAD] ?  CGRectMake(16, 20, 88, 88) : CGRectMake(8, 10, 36, 36))
 #define FEED_CELL_HEIGHT ([DeviceDetection isIPAD] ?  235 : 108)
-#define DESC_WIDTH ([DeviceDetection isIPAD] ?  400 : 181)
+#define DESC_WIDTH ([DeviceDetection isIPAD] ?  360 : 170)
 #define DESC_HEIGHT ([DeviceDetection isIPAD] ?  120 : 43)
 #define NON_DESC_HEIGHT (FEED_CELL_HEIGHT - DESC_HEIGHT)
 

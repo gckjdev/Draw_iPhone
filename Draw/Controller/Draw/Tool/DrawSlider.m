@@ -41,9 +41,7 @@
     UIColor *loadColor;
     CGFloat _value;
 }
-@property (retain, nonatomic) IBOutlet UIImageView *loaderImage;
-@property(nonatomic, retain) IBOutlet UIImageView *bgImage;
-@property(nonatomic, retain) IBOutlet UIImageView *pointImage;
+
 - (IBAction)changeValue:(id)sender;
 - (CGFloat)valueFromPoint:(CGPoint)point;
 - (CGPoint)pointFromValue:(CGFloat)value;
@@ -216,6 +214,9 @@
         }
  
     }
+    
+    poptipView.disableTapToDismiss = NO;
+    
     [poptipView presentPointingAtView:self inView:inView animated:NO pointDirection:PointDirectionDown];
     [poptipView setPointerSize:POP_POINT_SIZE];
 }

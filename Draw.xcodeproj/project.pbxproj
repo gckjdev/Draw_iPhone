@@ -6649,6 +6649,18 @@
 		D8BF373719713A5900ACEFCA /* daguanka.png in Resources */ = {isa = PBXBuildFile; fileRef = D8BF373519713A5900ACEFCA /* daguanka.png */; };
 		D8BF373819713A5900ACEFCA /* daguanka.png in Resources */ = {isa = PBXBuildFile; fileRef = D8BF373519713A5900ACEFCA /* daguanka.png */; };
 		D8BF373919713A5900ACEFCA /* daguanka.png in Resources */ = {isa = PBXBuildFile; fileRef = D8BF373519713A5900ACEFCA /* daguanka.png */; };
+		D8C039D719F743D400220540 /* NewGridDrawSlide.m in Sources */ = {isa = PBXBuildFile; fileRef = D8C039D619F743D400220540 /* NewGridDrawSlide.m */; };
+		D8C039D819F743D400220540 /* NewGridDrawSlide.m in Sources */ = {isa = PBXBuildFile; fileRef = D8C039D619F743D400220540 /* NewGridDrawSlide.m */; };
+		D8C039D919F743D400220540 /* NewGridDrawSlide.m in Sources */ = {isa = PBXBuildFile; fileRef = D8C039D619F743D400220540 /* NewGridDrawSlide.m */; };
+		D8C039DA19F743D400220540 /* NewGridDrawSlide.m in Sources */ = {isa = PBXBuildFile; fileRef = D8C039D619F743D400220540 /* NewGridDrawSlide.m */; };
+		D8C039DD19F74E2B00220540 /* NewGridDrawSlider.xib in Resources */ = {isa = PBXBuildFile; fileRef = D8C039DB19F74E2B00220540 /* NewGridDrawSlider.xib */; };
+		D8C039DE19F74E2B00220540 /* NewGridDrawSlider.xib in Resources */ = {isa = PBXBuildFile; fileRef = D8C039DB19F74E2B00220540 /* NewGridDrawSlider.xib */; };
+		D8C039DF19F74E2B00220540 /* NewGridDrawSlider.xib in Resources */ = {isa = PBXBuildFile; fileRef = D8C039DB19F74E2B00220540 /* NewGridDrawSlider.xib */; };
+		D8C039E019F74E2B00220540 /* NewGridDrawSlider.xib in Resources */ = {isa = PBXBuildFile; fileRef = D8C039DB19F74E2B00220540 /* NewGridDrawSlider.xib */; };
+		D8C039E119F74E2B00220540 /* NewGridDrawSlider~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = D8C039DC19F74E2B00220540 /* NewGridDrawSlider~ipad.xib */; };
+		D8C039E219F74E2B00220540 /* NewGridDrawSlider~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = D8C039DC19F74E2B00220540 /* NewGridDrawSlider~ipad.xib */; };
+		D8C039E319F74E2B00220540 /* NewGridDrawSlider~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = D8C039DC19F74E2B00220540 /* NewGridDrawSlider~ipad.xib */; };
+		D8C039E419F74E2B00220540 /* NewGridDrawSlider~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = D8C039DC19F74E2B00220540 /* NewGridDrawSlider~ipad.xib */; };
 		D8C669D6196CE42F0002B975 /* TutorialInfoCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = D8C669D5196CE42F0002B975 /* TutorialInfoCell~ipad.xib */; };
 		D8C669D7196CE42F0002B975 /* TutorialInfoCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = D8C669D5196CE42F0002B975 /* TutorialInfoCell~ipad.xib */; };
 		D8C669D8196CE42F0002B975 /* TutorialInfoCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = D8C669D5196CE42F0002B975 /* TutorialInfoCell~ipad.xib */; };
@@ -11171,6 +11183,10 @@
 		D8BF371C1971068100ACEFCA /* neironglan.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = neironglan.png; sourceTree = "<group>"; };
 		D8BF37301971387B00ACEFCA /* zuixiaoguanka.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = zuixiaoguanka.png; sourceTree = "<group>"; };
 		D8BF373519713A5900ACEFCA /* daguanka.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = daguanka.png; sourceTree = "<group>"; };
+		D8C039D519F743D400220540 /* NewGridDrawSlide.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewGridDrawSlide.h; sourceTree = "<group>"; };
+		D8C039D619F743D400220540 /* NewGridDrawSlide.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewGridDrawSlide.m; sourceTree = "<group>"; };
+		D8C039DB19F74E2B00220540 /* NewGridDrawSlider.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NewGridDrawSlider.xib; sourceTree = "<group>"; };
+		D8C039DC19F74E2B00220540 /* NewGridDrawSlider~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "NewGridDrawSlider~ipad.xib"; sourceTree = "<group>"; };
 		D8C669D5196CE42F0002B975 /* TutorialInfoCell~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "TutorialInfoCell~ipad.xib"; sourceTree = "<group>"; };
 		D8C784B1196A4E2600323712 /* UserTutorialMainCell~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "UserTutorialMainCell~ipad.xib"; sourceTree = "<group>"; };
 		D8C784B9196A541C00323712 /* AllTutorialCell~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "AllTutorialCell~ipad.xib"; sourceTree = "<group>"; };
@@ -17608,6 +17624,7 @@
 		CAC9022A17B34EEB009AF8E1 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				D8C039D419F7439700220540 /* NewGridDrawSlide */,
 				CA02CB681785581A00B6910D /* GradientSettingView.h */,
 				CA02CB691785581A00B6910D /* GradientSettingView.m */,
 				CA02CB6A1785581A00B6910D /* GradientSettingView.xib */,
@@ -18699,6 +18716,17 @@
 			name = ResultSharePage;
 			sourceTree = "<group>";
 		};
+		D8C039D419F7439700220540 /* NewGridDrawSlide */ = {
+			isa = PBXGroup;
+			children = (
+				D8C039DB19F74E2B00220540 /* NewGridDrawSlider.xib */,
+				D8C039DC19F74E2B00220540 /* NewGridDrawSlider~ipad.xib */,
+				D8C039D519F743D400220540 /* NewGridDrawSlide.h */,
+				D8C039D619F743D400220540 /* NewGridDrawSlide.m */,
+			);
+			name = NewGridDrawSlide;
+			sourceTree = "<group>";
+		};
 		D8D2805F19C97CD80027E3BE /* HJImagesToVideo */ = {
 			isa = PBXGroup;
 			children = (
@@ -19448,6 +19476,7 @@
 				D869F90F1990DFD800E6756A /* dongtai.png in Resources */,
 				A461B53F174CBAA70088B061 /* CreatePostController~ipad.xib in Resources */,
 				A456A71219CD6BEA00FEB789 /* brush_dot8@2x.png in Resources */,
+				D8C039E319F74E2B00220540 /* NewGridDrawSlider~ipad.xib in Resources */,
 				CACD6AC318E03A29003F97C0 /* Resource.bundle in Resources */,
 				A461B540174CBAA70088B061 /* BBSUserActionCell~ipad.xib in Resources */,
 				A461B541174CBAA70088B061 /* BBSPostActionCell~ipad.xib in Resources */,
@@ -19962,6 +19991,7 @@
 				A4D8FDD117DB089C0085061F /* selector_close@2x.png in Resources */,
 				A4D8FDD517DB089C0085061F /* selector_close_bg@2x.png in Resources */,
 				A4D8FDD917DB089C0085061F /* selector_ellipse@2x.png in Resources */,
+				D8C039DF19F74E2B00220540 /* NewGridDrawSlider.xib in Resources */,
 				A4D8FDDD17DB089C0085061F /* selector_help@2x.png in Resources */,
 				A4D8FDE117DB089C0085061F /* selector_path@2x.png in Resources */,
 				A4D8FDE517DB089C0085061F /* selector_polygon@2x.png in Resources */,
@@ -20461,6 +20491,7 @@
 				CA1CC39419C43DE2006E06C7 /* selected_brush_water@2x.png in Resources */,
 				C28A9D351738F04B007A819F /* whiteArrow@2x.png in Resources */,
 				C28A9D361738F04B007A819F /* SelectChatFriendController.xib in Resources */,
+				D8C039E219F74E2B00220540 /* NewGridDrawSlider~ipad.xib in Resources */,
 				A4F4753D19B5794100CFE2AE /* brush_shed@2x.png in Resources */,
 				C28A9D371738F04B007A819F /* SelectChatFriendController~ipad.xib in Resources */,
 				CACD6B1E18E03A2D003F97C0 /* ShareSDKiPhoneSimpleShareViewUI.bundle in Resources */,
@@ -20676,6 +20707,7 @@
 				C28AA00A1738F04B007A819F /* DrawBgBox.xib in Resources */,
 				C28AA00B1738F04B007A819F /* DrawBgBox~ipad.xib in Resources */,
 				C28AA0121738F04B007A819F /* CustomInfoView.xib in Resources */,
+				D8C039DE19F74E2B00220540 /* NewGridDrawSlider.xib in Resources */,
 				CAFCF2041996226B008C8854 /* draw_page_option@2x.png in Resources */,
 				D8A270A0196FD432006DDF20 /* lock_new.jpg in Resources */,
 				C28AA0131738F04B007A819F /* PriceView.xib in Resources */,
@@ -21886,6 +21918,7 @@
 				C2773FFF17699F2E00929AE3 /* search_setting_btn@2x.png in Resources */,
 				C27740021769A1D600929AE3 /* search_input_bg@2x.png in Resources */,
 				C23C3358176AB922004BE236 /* photo_tags.txt in Resources */,
+				D8C039E119F74E2B00220540 /* NewGridDrawSlider~ipad.xib in Resources */,
 				C23C335B176ABA38004BE236 /* keywords.txt in Resources */,
 				C23C335F176AFA84004BE236 /* photo_tags_en.txt in Resources */,
 				A4F4750019B5794100CFE2AE /* brush_dot2@2x.png in Resources */,
@@ -21986,6 +22019,7 @@
 				A4DDD57117CDFD7B0029E562 /* correct.mp3 in Resources */,
 				A4DDD57517CDFD7B0029E562 /* ding.m4a in Resources */,
 				A4DDD57917CDFD7B0029E562 /* dingding.mp3 in Resources */,
+				D8C039DD19F74E2B00220540 /* NewGridDrawSlider.xib in Resources */,
 				A4DDD57D17CDFD7B0029E562 /* oowrong.mp3 in Resources */,
 				A4DDD58117CDFD7B0029E562 /* pushMessage.mp3 in Resources */,
 				A4DDD58517CDFD7B0029E562 /* wrong.wav in Resources */,
@@ -23220,6 +23254,7 @@
 				A4D8FB8C17DB08170085061F /* room_seat_bg_6@2x.png in Resources */,
 				A4D8FB9017DB08170085061F /* balance_bg@2x.png in Resources */,
 				A4D8FB9817DB08170085061F /* item_promotion_bg@2x.png in Resources */,
+				D8C039E019F74E2B00220540 /* NewGridDrawSlider.xib in Resources */,
 				A4D8FB9C17DB08170085061F /* give_item_detail_bg@2x.png in Resources */,
 				D86542181980A941007D60E7 /* ResultShareAlertPageViewController~ipad.xib in Resources */,
 				A4D8FBA417DB08170085061F /* item_add@2x.png in Resources */,
@@ -23634,6 +23669,7 @@
 				CA923012183DA8C900669DE3 /* TaskController~ipad.xib in Resources */,
 				CA92301B183DC40600669DE3 /* draw_home_task@2x.png in Resources */,
 				CA92301F183DC40600669DE3 /* sing_home_task@2x.png in Resources */,
+				D8C039E419F74E2B00220540 /* NewGridDrawSlider~ipad.xib in Resources */,
 				A4088B5F183F32DC0037861A /* user_detail_sing_to_bg@2x.png in Resources */,
 				A4088B63183F32DC0037861A /* user_detail_sing_to@2x.png in Resources */,
 				CA9C3FEA18433E4C0041F332 /* 513819630_app_task_version.txt in Resources */,
@@ -24294,6 +24330,7 @@
 				A461B33C174CBAA70088B061 /* BuyItemView.m in Sources */,
 				A461B33D174CBAA70088B061 /* GiftDetailView.m in Sources */,
 				A461B33E174CBAA70088B061 /* Offscreen.m in Sources */,
+				D8C039D919F743D400220540 /* NewGridDrawSlide.m in Sources */,
 				A461B340174CBAA70088B061 /* DrawTouchHandler.m in Sources */,
 				A461B341174CBAA70088B061 /* ShapeTouchHandler.m in Sources */,
 				A461B342174CBAA70088B061 /* StrawTouchHandler.m in Sources */,
@@ -24884,6 +24921,7 @@
 				C28A9A441738F04B007A819F /* Room.m in Sources */,
 				C28A9A451738F04B007A819F /* RoomManager.m in Sources */,
 				C28A9A4B1738F04B007A819F /* ExpressionManager.m in Sources */,
+				D8C039D819F743D400220540 /* NewGridDrawSlide.m in Sources */,
 				C28A9A4C1738F04B007A819F /* MessageManager.m in Sources */,
 				C28A9A4D1738F04B007A819F /* FriendCell.m in Sources */,
 				C28A9A4E1738F04B007A819F /* DrawDataService.m in Sources */,
@@ -25777,6 +25815,7 @@
 				CAFFF5CB196CED8C000DD4E7 /* UIViewController+CommonHome.m in Sources */,
 				CA0CB759155CB064009C8EE6 /* RoomCell.m in Sources */,
 				CA0CB76A155CB773009C8EE6 /* RoomService.m in Sources */,
+				D8C039D719F743D400220540 /* NewGridDrawSlide.m in Sources */,
 				CA0CB76E155CB799009C8EE6 /* Room.m in Sources */,
 				CA0CB771155CB7A9009C8EE6 /* RoomManager.m in Sources */,
 				A4D3B15B1560E4B50013C882 /* ExpressionManager.m in Sources */,
@@ -26679,6 +26718,7 @@
 				EA411905176066F500DA72D0 /* MyWordsController.m in Sources */,
 				EA411906176066F500DA72D0 /* SelectCustomWordView.m in Sources */,
 				EA411908176066F500DA72D0 /* ChatCell.m in Sources */,
+				D8C039DA19F743D400220540 /* NewGridDrawSlide.m in Sources */,
 				EA411909176066F500DA72D0 /* ChatDetailController.m in Sources */,
 				EA41190A176066F500DA72D0 /* ChatListController.m in Sources */,
 				EA41190B176066F500DA72D0 /* ChatService.m in Sources */,

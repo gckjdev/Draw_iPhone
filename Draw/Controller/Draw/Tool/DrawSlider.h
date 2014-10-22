@@ -24,7 +24,9 @@
 {
     
 }
-
+@property (retain, nonatomic) IBOutlet UIImageView *loaderImage;
+@property(nonatomic, retain) IBOutlet UIImageView *bgImage;
+@property(nonatomic, retain) IBOutlet UIImageView *pointImage;
 
 //@property(nonatomic, assign)CGFloat value;
 @property(nonatomic, assign)CGFloat maxValue;
@@ -34,7 +36,7 @@
 
 - (CGFloat)value;
 - (void)setValue:(CGFloat)value;
-
+- (void)updateView;
 + (id)sliderWithMaxValue:(CGFloat)maxValue
                 minValue:(CGFloat)minValue
             defaultValue:(CGFloat)defaultValue
@@ -49,4 +51,5 @@
 - (void)dismissPopupView;
 - (UIView *)contentView;
 - (CMPopTipView *)popTipView;
+
 @end
