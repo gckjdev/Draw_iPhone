@@ -87,8 +87,11 @@ static BBSImageManager* _staticBBSImageManager;
 //    return [[ShareImageManager defaultManager] fixedImageNamed:@"bbs_action_sheet_bg"];
     
     
-      return [UIImage imageNamedFixed:[[ShareImageManager defaultManager] fixImageName:@"bbs_create_input_bg"]];
+    UIImage* image = [UIImage imageNamedFixed:[[ShareImageManager defaultManager] fixImageName:@"bbs_action_sheet_bg"]];
+    return [image stretchableImageWithLeftCapWidth:image.size.width * 0.5
+                                      topCapHeight:image.size.height * 0.5];
 
+//
 //    return [_resService stretchableImageWithImageName:@"bbs_action_sheet_bg"
 //                             inResourcePackage:RESOURCE_PACKAGE_BBS];
 }

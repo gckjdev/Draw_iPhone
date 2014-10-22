@@ -1,27 +1,27 @@
 //
-//  PenBrush.m
+//  PenCalligraphyBrush.m
 //  Draw
 //
 //  Created by 黄毅超 on 14-9-3.
 //
 //
 
-#import "PenBrush.h"
+#import "PenCalligraphyBrush.h"
 
-static PenBrush* sharedPenBrush;
-static dispatch_once_t sharedPenBrushOnceToken;
+static PenCalligraphyBrush* sharedPenCalligraphyBrush;
+static dispatch_once_t sharedPenCalligraphyBrushOnceToken;
 
-@implementation PenBrush
+@implementation PenCalligraphyBrush
 
-+ (PenBrush*)sharedBrush
++ (PenCalligraphyBrush*)sharedBrush
 {
-    if (sharedPenBrush == nil){
-        dispatch_once(&sharedPenBrushOnceToken, ^{
-            sharedPenBrush = [[PenBrush alloc] init];
+    if (sharedPenCalligraphyBrush == nil){
+        dispatch_once(&sharedPenCalligraphyBrushOnceToken, ^{
+            sharedPenCalligraphyBrush = [[PenCalligraphyBrush alloc] init];
         });
     }
     
-    return sharedPenBrush;
+    return sharedPenCalligraphyBrush;
 }
 
 - (UIImage*)brushImage:(UIColor *)color width:(float)width
@@ -40,12 +40,6 @@ static dispatch_once_t sharedPenBrushOnceToken;
     
     return brushImage;
 }
-
-- (BOOL)isWidthFixedSize
-{
-    return NO;
-}
-
 
 - (float)calculateWidthWithThreshold:(float)threshold
                            distance1:(float)distance1
@@ -73,32 +67,6 @@ static dispatch_once_t sharedPenBrushOnceToken;
 //    PPDebug(@"speed:%f ; width: %f", (distance1+distance2)/2, tempWidth);
     
     return tempWidth;
-}
-
-
-- (float)firstPointWidth:(float)defaultWidth
-{
-    return 0;
-}
-
-- (int)interpolationLength:(float)brushWidth        // 当前笔刷大小
-                 distance1:(float)distance1         // 当前BeginDot和ControlDot的距离
-                 distance2:(float)distance2         // 当前EndDot和ControlDot的距离
-{
-   double typeFactor = 8;  // 针对各种笔刷的调节因子，经过实践所得(有些笔需要更密集的插值，如钢笔；有些则相反，如蜡笔)
-    int interpolationLength = INTERPOLATION * typeFactor;
-    
-    return interpolationLength;
-    
-}
-
--(void)randomShakePointX:(float*)pointX
-                  PointY:(float*)pointY
-                  PointW:(float*)pointW
-        WithDefaultWidth:(float)defaultWidth
-{
-    //do nothing
-
 }
 
 @end

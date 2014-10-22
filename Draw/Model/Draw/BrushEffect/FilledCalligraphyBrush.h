@@ -8,8 +8,9 @@
 
 #import <Foundation/Foundation.h>
 #import <BrushEffectFactory.h>
+#import "SuperCalligraphyBrush.h"
 
-@interface FilledCalligraphyBrush : NSObject<BrushEffectProtocol>
+@interface FilledCalligraphyBrush : SuperCalligraphyBrush
 
 + (FilledCalligraphyBrush*)sharedBrush;
 

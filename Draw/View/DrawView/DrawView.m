@@ -314,11 +314,16 @@
 {
     // set share draw info here
     [self setShareDrawInfoByDraft:draft];
-    
+
+    NSAutoreleasePool* pool1 = [[NSAutoreleasePool alloc] init];
     [dlManager updateLayers:draft.layers];
     self.drawActionList = draft.drawActionList;
     [self changeRect:CGRectFromCGSize(draft.canvasSize)];
+    [pool1 drain];
+    
+    NSAutoreleasePool* pool2 = [[NSAutoreleasePool alloc] init];
     [self show];
+    [pool2 drain];
  
     if (draft.lastLayerTag != nil){
         PPDebug(@"<showDraft> select last layer (%d) as current", [draft.lastLayerTag intValue]);

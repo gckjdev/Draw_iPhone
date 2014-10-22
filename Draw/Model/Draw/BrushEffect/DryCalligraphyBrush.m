@@ -1,40 +1,40 @@
 //
-//  FilledCalligraphyBrush.m
+//  DryCalligraphyBrush.m
 //  Draw
 //
-//  Created by 黄毅超 on 14-10-11.
+//  Created by 黄毅超 on 14/10/21.
 //
 //
 
-#import "FilledCalligraphyBrush.h"
+#import "DryCalligraphyBrush.h"
 
-@implementation FilledCalligraphyBrush
+@implementation DryCalligraphyBrush
 
-static FilledCalligraphyBrush* sharedFilledCalligraphyBrush;
-static dispatch_once_t sharedFilledCalligraphyBrushOnceToken;
+static DryCalligraphyBrush* sharedDryCalligraphyBrush;
+static dispatch_once_t sharedDryCalligraphyBrushOnceToken;
 
-+ (FilledCalligraphyBrush*)sharedBrush
++ (DryCalligraphyBrush*)sharedBrush
 {
-    if (sharedFilledCalligraphyBrush == nil){
-        dispatch_once(&sharedFilledCalligraphyBrushOnceToken, ^{
-            sharedFilledCalligraphyBrush = [[FilledCalligraphyBrush alloc] init];
+    if (sharedDryCalligraphyBrush == nil){
+        dispatch_once(&sharedDryCalligraphyBrushOnceToken, ^{
+            sharedDryCalligraphyBrush = [[DryCalligraphyBrush alloc] init];
         });
     }
     
-    return sharedFilledCalligraphyBrush;
+    return sharedDryCalligraphyBrush;
 }
 
 - (UIImage*)brushImage:(UIColor *)color width:(float)width
 {
     //使用图片不需要管本来的颜色，只需要形状是所需要的即可，颜色由rt_tint方法搞定
-    UIImage* brushImage = [UIImage imageNamed:@"brush_ellipse7.png"];
+    UIImage* brushImage = [UIImage imageNamed:@"brush_ellipse5.png"];
     //使用rt_tint方法需要color属性，其中color属性的alpha通道应置为1.0，否则染色效果会受底图影响
     UIColor *colorWithRGBOnly = [UIColor colorWithRed:color.red green:color.green blue:color.blue alpha:1.0];
     
     //染色，把所需形状染成用户所需颜色，不透明
     UIImage *tinted = [brushImage rt_tintedImageWithColor:colorWithRGBOnly];
     
-    CGFloat alpha = [color alpha];
+    CGFloat alpha = [color alpha] / 5;
     
     brushImage = [DrawUtils imageByApplyingAlpha:alpha image:tinted];
     
@@ -58,8 +58,8 @@ static dispatch_once_t sharedFilledCalligraphyBrushOnceToken;
      Attetion:
      maybe there are some copyright problem between here and my lab's result
      I could only use the thoughts that originated from my own brain
-    */
-
+     */
+    
     
     //Time measurements are not added here due to mobile calculation capability
     //Use distance instead of speed factor
@@ -85,5 +85,7 @@ static dispatch_once_t sharedFilledCalligraphyBrushOnceToken;
     
     return tempWidth;
 }
+
+
 
 @end

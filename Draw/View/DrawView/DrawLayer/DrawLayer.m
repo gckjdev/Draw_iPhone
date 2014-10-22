@@ -90,13 +90,27 @@
 
 - (void)showCleanDataInContext:(CGContextRef)ctx
 {
-    NSUInteger count = [_drawActionList count];
+//    NSUInteger count = [_drawActionList count];
     if (self.supportCache) {
         [self.offscreen showInContext:ctx];
-        for(NSUInteger i = self.offscreen.actionCount; i < count; i++){
-            DrawAction *action = [_drawActionList objectAtIndex:i];
-            [action drawInContext:ctx inRect:self.bounds];
+        
+        int i = 0;
+        int offscreenActionCount = self.offscreen.actionCount;
+        for (DrawAction *action in _drawActionList) {
+            if (i < offscreenActionCount){
+                [action clearMemory];
+            }
+            else{
+                [action drawInContext:ctx inRect:self.bounds];
+            }
+            
+            i++;
         }
+        
+//        for(NSUInteger i = self.offscreen.actionCount; i < count; i++){
+//            DrawAction *action = [_drawActionList objectAtIndex:i];
+//            [action drawInContext:ctx inRect:self.bounds];
+//        }
     }else{
         for (DrawAction *action in _drawActionList) {
             [action drawInContext:ctx inRect:self.bounds];
@@ -191,7 +205,7 @@
     if (_supportCache) {
         int count = [_drawActionList count];
         if(count - self.offscreen.actionCount > _cachedCount * 2){
-//            PPDebug(@"<finishLastAction> action count = %d, reach cached count", count);
+            PPDebug(@"<finishLastAction> action count = %d, reach cached count", count);
             int endIndex = count - _cachedCount;
             for(int i = _offscreen.actionCount; i < endIndex; ++ i){
                 DrawAction *drawAction = [_drawActionList objectAtIndex:i];
@@ -261,6 +275,7 @@
             for(int i = _offscreen.actionCount; i < endIndex; ++ i){
                 DrawAction *drawAction = _drawActionList[i];
                 [self.offscreen drawAction:drawAction clear:NO];
+                [drawAction clearMemory];
             }
         }
 

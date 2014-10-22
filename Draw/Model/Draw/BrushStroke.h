@@ -34,7 +34,7 @@
 {
 }
 
-@property(nonatomic, assign) CGRect canvasRect;
+//@property(nonatomic, assign) CGRect canvasRect;
 @property(nonatomic, assign) CGFloat width;
 @property(nonatomic, assign) ItemType brushType;
 @property(nonatomic, assign) CGLayerRef brushLayer;

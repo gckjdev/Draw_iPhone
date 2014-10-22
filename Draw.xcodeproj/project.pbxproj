@@ -1415,10 +1415,10 @@
 		A4B60AB119B6AA9B00C300D5 /* GouacheBrush.m in Sources */ = {isa = PBXBuildFile; fileRef = A4B60AAF19B6AA9B00C300D5 /* GouacheBrush.m */; };
 		A4B60AB219B6AA9B00C300D5 /* GouacheBrush.m in Sources */ = {isa = PBXBuildFile; fileRef = A4B60AAF19B6AA9B00C300D5 /* GouacheBrush.m */; };
 		A4B60AB319B6AA9B00C300D5 /* GouacheBrush.m in Sources */ = {isa = PBXBuildFile; fileRef = A4B60AAF19B6AA9B00C300D5 /* GouacheBrush.m */; };
-		A4B60AB619B6BC1800C300D5 /* PenBrush.m in Sources */ = {isa = PBXBuildFile; fileRef = A4B60AB519B6BC1800C300D5 /* PenBrush.m */; };
-		A4B60AB719B6BC1800C300D5 /* PenBrush.m in Sources */ = {isa = PBXBuildFile; fileRef = A4B60AB519B6BC1800C300D5 /* PenBrush.m */; };
-		A4B60AB819B6BC1800C300D5 /* PenBrush.m in Sources */ = {isa = PBXBuildFile; fileRef = A4B60AB519B6BC1800C300D5 /* PenBrush.m */; };
-		A4B60AB919B6BC1800C300D5 /* PenBrush.m in Sources */ = {isa = PBXBuildFile; fileRef = A4B60AB519B6BC1800C300D5 /* PenBrush.m */; };
+		A4B60AB619B6BC1800C300D5 /* PenCalligraphyBrush.m in Sources */ = {isa = PBXBuildFile; fileRef = A4B60AB519B6BC1800C300D5 /* PenCalligraphyBrush.m */; };
+		A4B60AB719B6BC1800C300D5 /* PenCalligraphyBrush.m in Sources */ = {isa = PBXBuildFile; fileRef = A4B60AB519B6BC1800C300D5 /* PenCalligraphyBrush.m */; };
+		A4B60AB819B6BC1800C300D5 /* PenCalligraphyBrush.m in Sources */ = {isa = PBXBuildFile; fileRef = A4B60AB519B6BC1800C300D5 /* PenCalligraphyBrush.m */; };
+		A4B60AB919B6BC1800C300D5 /* PenCalligraphyBrush.m in Sources */ = {isa = PBXBuildFile; fileRef = A4B60AB519B6BC1800C300D5 /* PenCalligraphyBrush.m */; };
 		A4B60ABC19B6C21A00C300D5 /* BlurBrush.m in Sources */ = {isa = PBXBuildFile; fileRef = A4B60ABB19B6C21A00C300D5 /* BlurBrush.m */; };
 		A4B60ABD19B6C21A00C300D5 /* BlurBrush.m in Sources */ = {isa = PBXBuildFile; fileRef = A4B60ABB19B6C21A00C300D5 /* BlurBrush.m */; };
 		A4B60ABE19B6C21A00C300D5 /* BlurBrush.m in Sources */ = {isa = PBXBuildFile; fileRef = A4B60ABB19B6C21A00C300D5 /* BlurBrush.m */; };
@@ -3068,6 +3068,30 @@
 		A4EA935C185B0173004BB69D /* SingHotCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4EA935A185B0173004BB69D /* SingHotCell.xib */; };
 		A4EA935D185B0173004BB69D /* SingHotCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4EA935A185B0173004BB69D /* SingHotCell.xib */; };
 		A4EA935E185B0173004BB69D /* SingHotCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4EA935A185B0173004BB69D /* SingHotCell.xib */; };
+		A4EB5BF919F681760067ADB1 /* brush_ellipse7@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4EB5BF519F681760067ADB1 /* brush_ellipse7@2x.png */; };
+		A4EB5BFA19F681760067ADB1 /* brush_ellipse7@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4EB5BF519F681760067ADB1 /* brush_ellipse7@2x.png */; };
+		A4EB5BFB19F681760067ADB1 /* brush_ellipse7@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4EB5BF519F681760067ADB1 /* brush_ellipse7@2x.png */; };
+		A4EB5BFC19F681760067ADB1 /* brush_ellipse7@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4EB5BF519F681760067ADB1 /* brush_ellipse7@2x.png */; };
+		A4EB5BFD19F681760067ADB1 /* brush_ellipse6@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4EB5BF619F681760067ADB1 /* brush_ellipse6@2x.png */; };
+		A4EB5BFE19F681760067ADB1 /* brush_ellipse6@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4EB5BF619F681760067ADB1 /* brush_ellipse6@2x.png */; };
+		A4EB5BFF19F681760067ADB1 /* brush_ellipse6@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4EB5BF619F681760067ADB1 /* brush_ellipse6@2x.png */; };
+		A4EB5C0019F681760067ADB1 /* brush_ellipse6@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4EB5BF619F681760067ADB1 /* brush_ellipse6@2x.png */; };
+		A4EB5C0119F681760067ADB1 /* brush_ellipse5@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4EB5BF719F681760067ADB1 /* brush_ellipse5@2x.png */; };
+		A4EB5C0219F681760067ADB1 /* brush_ellipse5@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4EB5BF719F681760067ADB1 /* brush_ellipse5@2x.png */; };
+		A4EB5C0319F681760067ADB1 /* brush_ellipse5@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4EB5BF719F681760067ADB1 /* brush_ellipse5@2x.png */; };
+		A4EB5C0419F681760067ADB1 /* brush_ellipse5@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4EB5BF719F681760067ADB1 /* brush_ellipse5@2x.png */; };
+		A4EB5C0519F681760067ADB1 /* brush_dot9@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4EB5BF819F681760067ADB1 /* brush_dot9@2x.png */; };
+		A4EB5C0619F681760067ADB1 /* brush_dot9@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4EB5BF819F681760067ADB1 /* brush_dot9@2x.png */; };
+		A4EB5C0719F681760067ADB1 /* brush_dot9@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4EB5BF819F681760067ADB1 /* brush_dot9@2x.png */; };
+		A4EB5C0819F681760067ADB1 /* brush_dot9@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4EB5BF819F681760067ADB1 /* brush_dot9@2x.png */; };
+		A4EB5C0E19F689370067ADB1 /* SuperCalligraphyBrush.m in Sources */ = {isa = PBXBuildFile; fileRef = A4EB5C0D19F689370067ADB1 /* SuperCalligraphyBrush.m */; };
+		A4EB5C0F19F689370067ADB1 /* SuperCalligraphyBrush.m in Sources */ = {isa = PBXBuildFile; fileRef = A4EB5C0D19F689370067ADB1 /* SuperCalligraphyBrush.m */; };
+		A4EB5C1019F689370067ADB1 /* SuperCalligraphyBrush.m in Sources */ = {isa = PBXBuildFile; fileRef = A4EB5C0D19F689370067ADB1 /* SuperCalligraphyBrush.m */; };
+		A4EB5C1119F689370067ADB1 /* SuperCalligraphyBrush.m in Sources */ = {isa = PBXBuildFile; fileRef = A4EB5C0D19F689370067ADB1 /* SuperCalligraphyBrush.m */; };
+		A4EB5C1419F68D870067ADB1 /* DryCalligraphyBrush.m in Sources */ = {isa = PBXBuildFile; fileRef = A4EB5C1319F68D870067ADB1 /* DryCalligraphyBrush.m */; };
+		A4EB5C1519F68D870067ADB1 /* DryCalligraphyBrush.m in Sources */ = {isa = PBXBuildFile; fileRef = A4EB5C1319F68D870067ADB1 /* DryCalligraphyBrush.m */; };
+		A4EB5C1619F68D870067ADB1 /* DryCalligraphyBrush.m in Sources */ = {isa = PBXBuildFile; fileRef = A4EB5C1319F68D870067ADB1 /* DryCalligraphyBrush.m */; };
+		A4EB5C1719F68D870067ADB1 /* DryCalligraphyBrush.m in Sources */ = {isa = PBXBuildFile; fileRef = A4EB5C1319F68D870067ADB1 /* DryCalligraphyBrush.m */; };
 		A4EC5A90178FB24C0085031F /* CommonShareAction.m in Sources */ = {isa = PBXBuildFile; fileRef = A4EC5A8F178FB24C0085031F /* CommonShareAction.m */; };
 		A4EC5A91178FB24C0085031F /* CommonShareAction.m in Sources */ = {isa = PBXBuildFile; fileRef = A4EC5A8F178FB24C0085031F /* CommonShareAction.m */; };
 		A4EC5A9B178FDF6D0085031F /* OpusImageBrower.m in Sources */ = {isa = PBXBuildFile; fileRef = A4EC5A9A178FDF6D0085031F /* OpusImageBrower.m */; };
@@ -8642,8 +8666,8 @@
 		A4B60AA919B6AA0100C300D5 /* WaterBrush.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WaterBrush.m; sourceTree = "<group>"; };
 		A4B60AAE19B6AA9B00C300D5 /* GouacheBrush.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GouacheBrush.h; sourceTree = "<group>"; };
 		A4B60AAF19B6AA9B00C300D5 /* GouacheBrush.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GouacheBrush.m; sourceTree = "<group>"; };
-		A4B60AB419B6BC1800C300D5 /* PenBrush.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PenBrush.h; sourceTree = "<group>"; };
-		A4B60AB519B6BC1800C300D5 /* PenBrush.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PenBrush.m; sourceTree = "<group>"; };
+		A4B60AB419B6BC1800C300D5 /* PenCalligraphyBrush.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PenCalligraphyBrush.h; sourceTree = "<group>"; };
+		A4B60AB519B6BC1800C300D5 /* PenCalligraphyBrush.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PenCalligraphyBrush.m; sourceTree = "<group>"; };
 		A4B60ABA19B6C21A00C300D5 /* BlurBrush.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BlurBrush.h; sourceTree = "<group>"; };
 		A4B60ABB19B6C21A00C300D5 /* BlurBrush.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BlurBrush.m; sourceTree = "<group>"; };
 		A4B60AC019B6C23600C300D5 /* CrayonBrush.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CrayonBrush.h; sourceTree = "<group>"; };
@@ -9126,6 +9150,14 @@
 		A4EA9354185B0143004BB69D /* SingHotCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SingHotCell.h; sourceTree = "<group>"; };
 		A4EA9355185B0143004BB69D /* SingHotCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SingHotCell.m; sourceTree = "<group>"; };
 		A4EA935A185B0173004BB69D /* SingHotCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SingHotCell.xib; sourceTree = "<group>"; };
+		A4EB5BF519F681760067ADB1 /* brush_ellipse7@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "brush_ellipse7@2x.png"; sourceTree = "<group>"; };
+		A4EB5BF619F681760067ADB1 /* brush_ellipse6@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "brush_ellipse6@2x.png"; sourceTree = "<group>"; };
+		A4EB5BF719F681760067ADB1 /* brush_ellipse5@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "brush_ellipse5@2x.png"; sourceTree = "<group>"; };
+		A4EB5BF819F681760067ADB1 /* brush_dot9@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "brush_dot9@2x.png"; sourceTree = "<group>"; };
+		A4EB5C0C19F689370067ADB1 /* SuperCalligraphyBrush.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SuperCalligraphyBrush.h; sourceTree = "<group>"; };
+		A4EB5C0D19F689370067ADB1 /* SuperCalligraphyBrush.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SuperCalligraphyBrush.m; sourceTree = "<group>"; };
+		A4EB5C1219F68D870067ADB1 /* DryCalligraphyBrush.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DryCalligraphyBrush.h; sourceTree = "<group>"; };
+		A4EB5C1319F68D870067ADB1 /* DryCalligraphyBrush.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DryCalligraphyBrush.m; sourceTree = "<group>"; };
 		A4EC5A8E178FB24C0085031F /* CommonShareAction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommonShareAction.h; sourceTree = "<group>"; };
 		A4EC5A8F178FB24C0085031F /* CommonShareAction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommonShareAction.m; sourceTree = "<group>"; };
 		A4EC5A99178FDF6D0085031F /* OpusImageBrower.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OpusImageBrower.h; sourceTree = "<group>"; };
@@ -12357,14 +12389,18 @@
 				A4B60ABB19B6C21A00C300D5 /* BlurBrush.m */,
 				A4B60AC019B6C23600C300D5 /* CrayonBrush.h */,
 				A4B60AC119B6C23600C300D5 /* CrayonBrush.m */,
-				A4B60AB419B6BC1800C300D5 /* PenBrush.h */,
-				A4B60AB519B6BC1800C300D5 /* PenBrush.m */,
 				A4E85C2B19C89380002762CD /* PencilBrush.h */,
 				A4E85C2C19C89380002762CD /* PencilBrush.m */,
 				A4ED324C19CB36AF00619F1E /* FeatherBrush.h */,
 				A4ED324D19CB36AF00619F1E /* FeatherBrush.m */,
+				A4EB5C0C19F689370067ADB1 /* SuperCalligraphyBrush.h */,
+				A4EB5C0D19F689370067ADB1 /* SuperCalligraphyBrush.m */,
+				A4B60AB419B6BC1800C300D5 /* PenCalligraphyBrush.h */,
+				A4B60AB519B6BC1800C300D5 /* PenCalligraphyBrush.m */,
 				A49EC39419E907B000DDD20D /* FilledCalligraphyBrush.h */,
 				A49EC39519E907B000DDD20D /* FilledCalligraphyBrush.m */,
+				A4EB5C1219F68D870067ADB1 /* DryCalligraphyBrush.h */,
+				A4EB5C1319F68D870067ADB1 /* DryCalligraphyBrush.m */,
 			);
 			path = BrushEffect;
 			sourceTree = "<group>";
@@ -13405,6 +13441,10 @@
 		A4F474EA19B5794000CFE2AE /* brush */ = {
 			isa = PBXGroup;
 			children = (
+				A4EB5BF519F681760067ADB1 /* brush_ellipse7@2x.png */,
+				A4EB5BF619F681760067ADB1 /* brush_ellipse6@2x.png */,
+				A4EB5BF719F681760067ADB1 /* brush_ellipse5@2x.png */,
+				A4EB5BF819F681760067ADB1 /* brush_dot9@2x.png */,
 				A4F474EB19B5794000CFE2AE /* brush_dot1@2x.png */,
 				A4F474EC19B5794000CFE2AE /* brush_dot2@2x.png */,
 				A4F474ED19B5794000CFE2AE /* brush_dot3@2x.png */,
@@ -19596,6 +19636,7 @@
 				A4F4752619B5794100CFE2AE /* brush_ellipse4@2x.png in Resources */,
 				A461B743174CBAA70088B061 /* ChargeController~ipad.xib in Resources */,
 				A461B744174CBAA70088B061 /* ChargeCell~ipad.xib in Resources */,
+				A4EB5BFB19F681760067ADB1 /* brush_ellipse7@2x.png in Resources */,
 				A461B745174CBAA70088B061 /* PriceView~ipad.xib in Resources */,
 				A461B746174CBAA70088B061 /* GameItemDetailView~ipad.xib in Resources */,
 				A461B747174CBAA70088B061 /* BuyItemView~ipad.xib in Resources */,
@@ -19793,6 +19834,7 @@
 				A4D8FA4B17DB08170085061F /* auto_recovery@2x.png in Resources */,
 				A4D8FA4F17DB08170085061F /* draw_commit_btn@2x.png in Resources */,
 				A4D8FA5317DB08170085061F /* draw_guess2@2x.png in Resources */,
+				A4EB5C0319F681760067ADB1 /* brush_ellipse5@2x.png in Resources */,
 				A4D8FA5717DB08170085061F /* draw_layer_btn@2x.png in Resources */,
 				A4D8FA5B17DB08170085061F /* draw_save_btn@2x.png in Resources */,
 				A4D8FA5F17DB08170085061F /* draw_setting_btn@2x.png in Resources */,
@@ -19942,6 +19984,7 @@
 				A4D8FC3317DB08180085061F /* user_detail_round_avatar_bg@2x.png in Resources */,
 				A4D8FC3717DB08180085061F /* user_detail_round_avatar_bg@2x.png_bak1.png in Resources */,
 				A4D8FC3B17DB08180085061F /* user_detail_sina@2x.png in Resources */,
+				A4EB5BFF19F681760067ADB1 /* brush_ellipse6@2x.png in Resources */,
 				A4D8FC3F17DB08180085061F /* hot_words_bg@2x.png in Resources */,
 				A4D8FC4317DB08180085061F /* more_words_btn@2x.png in Resources */,
 				A4D8FC4717DB08180085061F /* my_words_bg@2x.png in Resources */,
@@ -20243,6 +20286,7 @@
 				CA2A28E6195C1E6200A97478 /* AllTutorialController.xib in Resources */,
 				CA9AAF5618321621002DBAA5 /* SongSearchController~ipad.xib in Resources */,
 				CA9AAF7A18321621002DBAA5 /* shop_item_660557448.pb in Resources */,
+				A4EB5C0719F681760067ADB1 /* brush_dot9@2x.png in Resources */,
 				CA9AAF7E18321621002DBAA5 /* songCategory.txt in Resources */,
 				CA9AAF8218321621002DBAA5 /* sing_home_badge@2x.png in Resources */,
 				CA9AAF8618321621002DBAA5 /* sing_home_bbs@2x.png in Resources */,
@@ -20457,6 +20501,7 @@
 				C28A9D131738F04B007A819F /* ChatController~ipad.xib in Resources */,
 				C28A9D141738F04B007A819F /* MessageCell~ipad.xib in Resources */,
 				C28A9D171738F04B007A819F /* fireworks1.png in Resources */,
+				A4EB5C0219F681760067ADB1 /* brush_ellipse5@2x.png in Resources */,
 				C28A9D181738F04B007A819F /* fireworks2.png in Resources */,
 				C28A9D191738F04B007A819F /* snow.png in Resources */,
 				C28A9D1B1738F04B007A819F /* OnlineDrawViewController.xib in Resources */,
@@ -20540,6 +20585,7 @@
 				C28A9DB51738F04B007A819F /* ContestView~ipad.xib in Resources */,
 				CAFCF24419979605008C8854 /* defaultBillBoard.jpg in Resources */,
 				C28A9DB61738F04B007A819F /* StatementController~ipad.xib in Resources */,
+				A4EB5BFA19F681760067ADB1 /* brush_ellipse7@2x.png in Resources */,
 				C28A9DB81738F04B007A819F /* MyCommentCell.xib in Resources */,
 				C28A9DB91738F04B007A819F /* MyCommentCell~ipad.xib in Resources */,
 				C28A9DBA1738F04B007A819F /* HotController~ipad.xib in Resources */,
@@ -20829,6 +20875,7 @@
 				CA3D4B0217794748000A8FC7 /* ShadowBox.xib in Resources */,
 				CA3D4B1417794748000A8FC7 /* ShadowBox~ipad.xib in Resources */,
 				C2C09DE317797EF3009408EB /* ToolUpPanel.xib in Resources */,
+				A4EB5BFE19F681760067ADB1 /* brush_ellipse6@2x.png in Resources */,
 				C2C09E93177BD8C8009408EB /* gallery_search_btn@2x.png in Resources */,
 				C2EAA87E178270D8007E2BA4 /* CommonSearchImageFilterView~ipad.xib in Resources */,
 				CA02CB8B1785581A00B6910D /* GradientSettingView.xib in Resources */,
@@ -21207,6 +21254,7 @@
 				A4D8FEC017DB089C0085061F /* face_wry@2x.png in Resources */,
 				A4D8FEC417DB089C0085061F /* super_face_cry@2x.png in Resources */,
 				A4D8FEC817DB089C0085061F /* super_face_smile@2x.png in Resources */,
+				A4EB5C0619F681760067ADB1 /* brush_dot9@2x.png in Resources */,
 				A4D8FECC17DB089C0085061F /* face_smile@2x.png in Resources */,
 				A4D8FED017DB089C0085061F /* face_wry@2x.png in Resources */,
 				A4D8FED417DB089C0085061F /* facebook@2x.png in Resources */,
@@ -21705,6 +21753,7 @@
 				D869F9081990DF3000E6756A /* laba.png in Resources */,
 				CAE51898165CCB55006157CC /* BBSPostActionCell.xib in Resources */,
 				CA42FE0A165DCDA30097453A /* BBSPostDetailCell.xib in Resources */,
+				A4EB5C0519F681760067ADB1 /* brush_dot9@2x.png in Resources */,
 				A4F4750819B5794100CFE2AE /* brush_dot4@2x.png in Resources */,
 				CA1CC38719C43DE1006E06C7 /* selected_brush_mark@2x.png in Resources */,
 				CA42FE0C165DCDBC0097453A /* BBSPostActionHeaderView.xib in Resources */,
@@ -21730,6 +21779,7 @@
 				D8B84196197E65C500B6FB5C /* ResultShareAlertPageViewController.xib in Resources */,
 				CAC7921316675DB8009B4053 /* BBSPostCell~ipad.xib in Resources */,
 				CAC7922C16685473009B4053 /* bbs_post_rewarded@2x.png in Resources */,
+				A4EB5C0119F681760067ADB1 /* brush_ellipse5@2x.png in Resources */,
 				CAC7924F16685D42009B4053 /* bbs_detail_option_up@2x.png in Resources */,
 				CAC7925116685D42009B4053 /* bbs_detail_reply@2x.png in Resources */,
 				CAC7925216685D42009B4053 /* bbs_detail_selected_line@2x.jpg in Resources */,
@@ -21743,6 +21793,7 @@
 				CAB5DE561669FF7600A23011 /* bbs_create_image_enable@2x.png in Resources */,
 				CAB5DE571669FF7600A23011 /* bbs_create_input_bg@2x.png in Resources */,
 				CAB5DE581669FF7600A23011 /* bbs_create_reward_bg@2x.png in Resources */,
+				A4EB5BFD19F681760067ADB1 /* brush_ellipse6@2x.png in Resources */,
 				CAB5DE591669FF7600A23011 /* bbs_create_reward_option@2x.png in Resources */,
 				CAB5DE5A1669FF7600A23011 /* bbs_create_submit_bg@2x.png in Resources */,
 				CAB5DE5C166A00B600A23011 /* bbs_action_sheet_bg@2x.png in Resources */,
@@ -21845,6 +21896,7 @@
 				CAFCF24319979605008C8854 /* defaultBillBoard.jpg in Resources */,
 				CA853BFC16B3830B006FC155 /* bbs_post_detail_untop@2x.png in Resources */,
 				CA853C0716B3A472006FC155 /* BoardAdminListView.xib in Resources */,
+				A4EB5BF919F681760067ADB1 /* brush_ellipse7@2x.png in Resources */,
 				CA853C0C16B3A48C006FC155 /* BoardAdminListView~ipad.xib in Resources */,
 				CA5B073A16BFFE30004A64C4 /* DrawSlider.xib in Resources */,
 				CA5B073F16C0106A004A64C4 /* DrawSlider~ipad.xib in Resources */,
@@ -22790,6 +22842,7 @@
 				EA411C15176066F500DA72D0 /* RankFirstView~ipad.xib in Resources */,
 				EA411C16176066F500DA72D0 /* RankSecondView~ipad.xib in Resources */,
 				EA411C17176066F500DA72D0 /* RankView~ipad.xib in Resources */,
+				A4EB5BFC19F681760067ADB1 /* brush_ellipse7@2x.png in Resources */,
 				EA411C18176066F500DA72D0 /* TopPlayerView~ipad.xib in Resources */,
 				EA411C19176066F500DA72D0 /* MyFeedController~ipad.xib in Resources */,
 				CACD6B5018E03B7F003F97C0 /* README.txt in Resources */,
@@ -23021,6 +23074,7 @@
 				A4997253177834AE00B01EBE /* ResultController~ipad.xib in Resources */,
 				A4997255177834AE00B01EBE /* ResultController.xib in Resources */,
 				A49972571778350000B01EBE /* OfflineGuessDrawController.xib in Resources */,
+				A4EB5C0819F681760067ADB1 /* brush_dot9@2x.png in Resources */,
 				A49972581778350000B01EBE /* OfflineGuessDrawController~ipad.xib in Resources */,
 				A499725A1778350000B01EBE /* OfflineDrawViewController.xib in Resources */,
 				A499725B1778350000B01EBE /* OfflineDrawViewController~ipad.xib in Resources */,
@@ -23061,6 +23115,7 @@
 				A4C9E03C17A61B4200DE982F /* GuessRankCell.xib in Resources */,
 				CAF4897C17AA736900F015AB /* ToolPanel.xib in Resources */,
 				CACD6B2018E03A2D003F97C0 /* ShareSDKiPhoneSimpleShareViewUI.bundle in Resources */,
+				A4EB5C0419F681760067ADB1 /* brush_ellipse5@2x.png in Resources */,
 				CAE74B7D17AF83D500E73875 /* DrawLayerPanel.xib in Resources */,
 				A4E1D22017B2236800E13728 /* GuessSelectCell.xib in Resources */,
 				A489C01717B5D942003E5150 /* JDFlipNumberView.bundle in Resources */,
@@ -23225,6 +23280,7 @@
 				A4D8FB2017DB08170085061F /* round_dot_20@2x.png in Resources */,
 				A4D8FB2417DB08170085061F /* round_dot_2@2x.png in Resources */,
 				A4D8FB2817DB08170085061F /* round_dot_3@2x.png in Resources */,
+				A4EB5C0019F681760067ADB1 /* brush_ellipse6@2x.png in Resources */,
 				A4D8FB2C17DB08170085061F /* round_dot_4@2x.png in Resources */,
 				A4D8FB3017DB08170085061F /* round_dot_5@2x.png in Resources */,
 				A4D8FB3417DB08170085061F /* round_dot_6@2x.png in Resources */,
@@ -24119,6 +24175,7 @@
 				A461B206174CBAA70088B061 /* ZhaJinHua.pb.m in Sources */,
 				A461B213174CBAA70088B061 /* NSMutableArray+Queue.m in Sources */,
 				A461B214174CBAA70088B061 /* NSMutableArray+Stack.m in Sources */,
+				A4EB5C1619F68D870067ADB1 /* DryCalligraphyBrush.m in Sources */,
 				A461B21B174CBAA70088B061 /* MyFriend.m in Sources */,
 				A461B21C174CBAA70088B061 /* StorageManager.m in Sources */,
 				A461B21D174CBAA70088B061 /* FriendController.m in Sources */,
@@ -24339,7 +24396,7 @@
 				A461B344174CBAA70088B061 /* CacheService.m in Sources */,
 				A461B347174CBAA70088B061 /* GestureRecognizerManager.m in Sources */,
 				A461B348174CBAA70088B061 /* VersionUpdateView.m in Sources */,
-				A4B60AB819B6BC1800C300D5 /* PenBrush.m in Sources */,
+				A4B60AB819B6BC1800C300D5 /* PenCalligraphyBrush.m in Sources */,
 				A461B349174CBAA70088B061 /* DrawHolderView.m in Sources */,
 				D8E63EE319C13BE500EB213E /* TutorialProtoModel.m in Sources */,
 				A461B34A174CBAA70088B061 /* RoundPercentageView.m in Sources */,
@@ -24571,6 +24628,7 @@
 				A4B60AC419B6C23600C300D5 /* CrayonBrush.m in Sources */,
 				A44F32EA17E16C3500AF9B26 /* ContestRankView.m in Sources */,
 				EA8EF66917E55F0D003F1AF8 /* DrawHomeHeaderPanel.m in Sources */,
+				A4EB5C1019F689370067ADB1 /* SuperCalligraphyBrush.m in Sources */,
 				EA8EF66F17E593CA003F1AF8 /* DrawMainMenuPanel.m in Sources */,
 				EA5FE1BD17E7F5050099754C /* RopeView.m in Sources */,
 				CA76134717F57420007A251E /* HPointList.mm in Sources */,
@@ -24839,6 +24897,7 @@
 				C28A99F31738F04B007A819F /* Paint.m in Sources */,
 				C28A99F61738F04B007A819F /* RoomController.m in Sources */,
 				C28A99F71738F04B007A819F /* SelectWordController.m in Sources */,
+				A4EB5C1519F68D870067ADB1 /* DryCalligraphyBrush.m in Sources */,
 				C28A99F81738F04B007A819F /* GameSession.m in Sources */,
 				C28A99F91738F04B007A819F /* GameSessionManager.m in Sources */,
 				C28A99FA1738F04B007A819F /* GameBasic.pb.m in Sources */,
@@ -25391,6 +25450,7 @@
 				D8CC69D319A5EEF500E57398 /* PrizeCell.m in Sources */,
 				CACEC36A178BCD1600D88643 /* SelectorCommand.m in Sources */,
 				CA0FC088178EA13E00A72B79 /* JumpHandler.m in Sources */,
+				A4EB5C0F19F689370067ADB1 /* SuperCalligraphyBrush.m in Sources */,
 				A4EC5A9C178FDF6D0085031F /* OpusImageBrower.m in Sources */,
 				CA0FC0A4178FFA6700A72B79 /* UserDeviceService.m in Sources */,
 				A47896E21995BB2400185220 /* CRBubble.m in Sources */,
@@ -25505,7 +25565,7 @@
 				EA0C553E180B9203008069C1 /* InfSourceColorView.m in Sources */,
 				CA90050F194EE775003389FD /* SelectOpusClassViewController.m in Sources */,
 				EA0C5547180BECEB008069C1 /* PainterController.m in Sources */,
-				A4B60AB719B6BC1800C300D5 /* PenBrush.m in Sources */,
+				A4B60AB719B6BC1800C300D5 /* PenCalligraphyBrush.m in Sources */,
 				A40B59A1180E6AB800F68A81 /* ImagePlayer.m in Sources */,
 				EADC02561817CF8C0038B6A8 /* SearchPostController.m in Sources */,
 				CAEEC196181A484F007FD75F /* OpusService.m in Sources */,
@@ -25733,6 +25793,7 @@
 				CA1041781509A9FF00F60C03 /* CJSONSerializer.m in Sources */,
 				CA1041791509A9FF00F60C03 /* CSerializedJSONData.m in Sources */,
 				CA1041EC1509B99A00F60C03 /* Paint.m in Sources */,
+				A4EB5C1419F68D870067ADB1 /* DryCalligraphyBrush.m in Sources */,
 				CA1041F81509BC9700F60C03 /* HomeController.m in Sources */,
 				CA1042021509C06E00F60C03 /* RoomController.m in Sources */,
 				CAA754BD150A02EA00B9391E /* SelectWordController.m in Sources */,
@@ -26285,6 +26346,7 @@
 				D8CC69D219A5EEF500E57398 /* PrizeCell.m in Sources */,
 				A4E64919178426310063F393 /* PBOpus+Extend.m in Sources */,
 				CA02CB6C1785581A00B6910D /* GradientSettingView.m in Sources */,
+				A4EB5C0E19F689370067ADB1 /* SuperCalligraphyBrush.m in Sources */,
 				CA02CBA41785619300B6910D /* GradientCommand.m in Sources */,
 				CAA75C83178A57EE0041C019 /* ShapeClipTouchHandler.m in Sources */,
 				CAA75C9B178A64CF0041C019 /* PathClipTouchHandler.m in Sources */,
@@ -26399,7 +26461,7 @@
 				CA90050E194EE775003389FD /* SelectOpusClassViewController.m in Sources */,
 				CA1FF8991804F986003CEAD6 /* NSDate+TKCategory.m in Sources */,
 				EA8500DC1807A0430000DE3E /* ShareUIManager.m in Sources */,
-				A4B60AB619B6BC1800C300D5 /* PenBrush.m in Sources */,
+				A4B60AB619B6BC1800C300D5 /* PenCalligraphyBrush.m in Sources */,
 				EA0C5525180B9203008069C1 /* InfColorBarPicker.m in Sources */,
 				EA0C5529180B9203008069C1 /* InfColorIndicatorView.m in Sources */,
 				EA0C5535180B9203008069C1 /* InfColorSquarePicker.m in Sources */,
@@ -26541,7 +26603,7 @@
 				D8B58B15197CE8E60088E5F7 /* ICETutorialPage.m in Sources */,
 				A4E85C3019C89380002762CD /* PencilBrush.m in Sources */,
 				EA41181A176066F500DA72D0 /* PPTableViewController.m in Sources */,
-				A4B60AB919B6BC1800C300D5 /* PenBrush.m in Sources */,
+				A4B60AB919B6BC1800C300D5 /* PenCalligraphyBrush.m in Sources */,
 				EA41181B176066F500DA72D0 /* PPViewController.m in Sources */,
 				EA41181C176066F500DA72D0 /* TestPPViewController.m in Sources */,
 				EA411829176066F500DA72D0 /* ReviewRequest.m in Sources */,
@@ -26734,6 +26796,7 @@
 				A4A3BF0D19B461F700EC4D25 /* BrushStroke.m in Sources */,
 				CA2A28F3195C1EEA00A97478 /* UserTutorialService.m in Sources */,
 				EA411913176066F500DA72D0 /* ChatDetailCell.m in Sources */,
+				A4EB5C1119F689370067ADB1 /* SuperCalligraphyBrush.m in Sources */,
 				EA411914176066F500DA72D0 /* NotificationManager.m in Sources */,
 				EA411915176066F500DA72D0 /* ShareService.m in Sources */,
 				EA411917176066F500DA72D0 /* AdService.m in Sources */,
@@ -27368,6 +27431,7 @@
 				A49DF8BD187D305F00634196 /* StatementCell.m in Sources */,
 				EAEE5511188E5E61004A0907 /* SingleTabController.m in Sources */,
 				EAEE551A188E644F004A0907 /* GroupFeedController.m in Sources */,
+				A4EB5C1719F68D870067ADB1 /* DryCalligraphyBrush.m in Sources */,
 				EAEE5520188F7902004A0907 /* ChargeHistoryController.m in Sources */,
 				CAD8EE39189222930057EC30 /* PurchaseVipController.m in Sources */,
 			);

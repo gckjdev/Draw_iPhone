@@ -129,6 +129,7 @@
 - (CGLayerRef)brushLayer:(CGRect)rect
 {
     if (_brushLayer == NULL){
+        PPDebug(@"create brush layer with rect(%@)", NSStringFromCGRect(rect));
         _brushLayer = [DrawUtils createCGLayerWithRect:rect];
     }
     
@@ -196,6 +197,11 @@
     _brushLayer = [self brushLayer:rect];
     CGContextRef layerContext = CGLayerGetContext(_brushLayer);
     CGContextSaveGState(layerContext);
+    
+    if (self.brushImageRef == NULL){
+        self.brushImage = [_brush brushImage:[self.color color] width:self.width];
+        self.brushImageRef = _brushImage.CGImage;
+    }
     
     if (_hasPoint == NO){
         
@@ -293,6 +299,7 @@
           inRect:(CGRect)rect
          forShow:(BOOL)forShow
 {
+   
     
     if (!CGRectContainsPoint(rect, point)){
         //add By Gamy
@@ -312,6 +319,11 @@
     _brushLayer = [self brushLayer:rect];
     CGContextRef layerContext = CGLayerGetContext(_brushLayer);
     CGContextSaveGState(layerContext);
+    
+    if (self.brushImageRef == NULL){
+        self.brushImage = [_brush brushImage:[self.color color] width:self.width];
+        self.brushImageRef = _brushImage.CGImage;
+    }
     
     [_hPointList addPoint:point.x y:point.y width:width];
     
@@ -359,27 +371,6 @@
     return r;
 }
 
-//- (CGRect)drawInBrushLayer:(float)currentX y:(float)currentY width:(float)currentW;
-//{
-//    CGContextRef context = CGLayerGetContext(_brushLayer);
-////    CGRect rect = CGRectFromCGSize(CGLayerGetSize(_brushLayer));
-//    
-//    // to be removed
-//    if (self.drawPen == nil) {
-//        self.drawPen = [DrawPenFactory createDrawPen:self.brushType];
-//    }
-//    
-//    CGContextSaveGState(context);
-//    
-//    
-//    // draw by point list
-//    CGRect rect = CGRectMake(currentX - currentW/2, currentY - currentW/2, currentW, currentW);
-//    CGContextDrawImage(context, rect, self.brushImage.CGImage);
-//    
-//    CGContextRestoreGState(context);
-//    return [self redrawRectInRect:rect];
-//}
-
 - (void)releaseBrushLayer
 {
     if (_brushLayer != NULL){
@@ -392,6 +383,8 @@
 - (void)clearMemory
 {
     [self releaseBrushLayer];
+    self.brushImage = nil;
+    self.brushImageRef = NULL;
 }
 
 - (CGRect)drawInContext:(CGContextRef)context inRect:(CGRect)rect
@@ -399,25 +392,22 @@
     if (self.drawPen == nil) {
         self.drawPen = [DrawPenFactory createDrawPen:self.brushType];
     }
-    CGContextSaveGState(context);
     
+    //get brush image and tint it
+    if (self.brushImageRef == NULL){
+        self.brushImage = [_brush brushImage:[self.color color] width:self.width];
+        self.brushImageRef = _brushImage.CGImage;
+    }
+
+    CGContextSaveGState(context);
     
     // draw by point list
     if (_brushLayer != NULL){
-        
-//        CGContextSetAlpha(context, [self.color alpha]);
-
         CGContextDrawLayerAtPoint(context, CGPointZero, _brushLayer);
-        
     }
-//    else if (_finalImageData){
-////        [_finalImage drawAtPoint:CGPointZero];
-//        UIImage* image = [UIImage imageWithData:_finalImageData];
-//        CGContextDrawImage(context, rect, image.CGImage);
-//    }
     else{
-        _brushLayer = [self brushLayer:rect];
-        CGContextRef layerContext = CGLayerGetContext(_brushLayer);
+//        _brushLayer = [self brushLayer:rect];
+//        CGContextRef layerContext = CGLayerGetContext(_brushLayer);
         CGImageRef brushImageRef = [self brushImageRef];
         for(int i = 0; i<[_hPointList count];i++)
         {
@@ -426,62 +416,25 @@
             CGFloat currentW = [_hPointList getPointWidth:i];
 
             CGRect pointRect = CGRectMake(currentX - currentW/2, currentY - currentW/2, currentW, currentW);
-            CGContextDrawImage(layerContext, pointRect, brushImageRef);
-//            CGContextDrawImage(context, rect, brushImage);
+//            CGContextDrawImage(layerContext, pointRect, brushImageRef);
+            CGContextDrawImage(context, pointRect, brushImageRef);
         }
         
-        CGContextDrawLayerAtPoint(context, CGPointZero, _brushLayer);
-
-//        CGLayerRelease(_brushLayer);
-//        _brushLayer = NULL;
+//        CGContextDrawLayerAtPoint(context, CGPointZero, _brushLayer);
     }
     
     CGContextRestoreGState(context);
     return [self redrawRectInRect:rect];
 }
 
-- (UIImage*)createImageFromLayer
-{
-    NSInteger width = self.canvasRect.size.width;
-    NSInteger height = self.canvasRect.size.height;
-    
-    float *bitmap = NULL;
-    CGColorSpaceRef colorSpace =  CGColorSpaceCreateDeviceRGB();
-    CGContextRef context = CGBitmapContextCreate(
-                                                 bitmap,
-                                                 width,
-                                                 height,
-                                                 8, // 每个通道8位
-                                                 width * 4,
-                                                 colorSpace,
-                                                 kCGImageAlphaPremultipliedLast);
-    
-    if (context == NULL) {
-        PPDebug(@"<createBitmapContext> failed. context = NULL");
-        return NULL;
-    }
-    
-    // draw layer
-    CGContextDrawLayerAtPoint(context, CGPointZero, _brushLayer);
-
-    // create image
-    CGImageRef imageRef = CGBitmapContextCreateImage(context);
-//    self.finalImageData = UIImagePNGRepresentation([UIImage imageWithCGImage:imageRef]);
-//    PPDebug(@"create final image for bursh, size is %@", NSStringFromCGSize(self.finalImage.size));
-    
-    // release
-    CGImageRelease(imageRef);
-    CGContextRelease(context);
-    CGColorSpaceRelease(colorSpace);
-    if (bitmap != NULL) {
-        free(bitmap);
-    }
-    
-    return nil;
-}
 
 - (void)finishAddPoint
 {
+    if (self.brushImageRef == NULL){
+        self.brushImage = [_brush brushImage:[self.color color] width:self.width];
+        self.brushImageRef = _brushImage.CGImage;
+    }
+    
     //特殊处理，在采样点过少（只有一两个，无法进行贝塞尔插值时),直接显示单个采样点
     if(_hPointList.count == 1 || _hPointList.count == 2)
     {
@@ -585,16 +538,15 @@
     PPRelease(_pen);
     PPRelease(_hPointList);
     PPRelease(_drawPen);
+    PPRelease(_brush);
     
     PPRelease(_beginDot);
     PPRelease(_controlDot);
     PPRelease(_endDot);
     
-    if (_brushLayer != NULL){
-        CGLayerRelease(_brushLayer);
-        _brushLayer = NULL;
-    }
-    
+    PPRelease(_brushImage);
+
+    [self releaseBrushLayer];
     [super dealloc];
 }
 @end
