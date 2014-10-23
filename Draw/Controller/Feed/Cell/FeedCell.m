@@ -104,6 +104,15 @@
 - (void)updateTime:(Feed *)feed
 {
     NSString *timeString = dateToTimeLineString(feed.createDate);
+    
+    if (feed.isOpusType) {
+        if(![feed.pbFeed.targetUserNickName isEqualToString:@""]){
+            timeString = [timeString stringByAppendingString:@"  "];
+            timeString = [timeString stringByAppendingFormat:NSLS(@"kDrawToUserByUser"),feed.pbFeed.targetUserNickName];
+        }
+        
+    }
+    
     [self.timeLabel setText:timeString];
 }
 

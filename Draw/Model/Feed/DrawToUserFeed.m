@@ -50,13 +50,26 @@
 {
     if ([self hasGuessed] || [self isMyOpus]) {
         if([self isDrawCategory]){
-            self.desc = [NSString stringWithFormat:NSLS(@"kDrawToUserDesc"), self.wordText,self.targetUser.nickName];
+//            self.desc = [NSString stringWithFormat:NSLS(@"kDrawToUserDesc"), self.wordText,self.targetUser.nickName];
+            
+            if([self.opusDesc isEqualToString:@""]){
+                self.desc = NSLS(@"kDrawToUserNoWordDesc");
+            }else{
+                self.desc = self.opusDesc;
+            }
+            
         }else if ([self isSingCategory]){
             self.desc = [NSString stringWithFormat:NSLS(@"kRecordToUserDesc"), self.wordText,self.targetUser.nickName];
         }
     }else{
         if([self isDrawCategory]){
-            self.desc = [NSString stringWithFormat:NSLS(@"kDrawToUserNoWordDesc"), self.targetUser.nickName];
+//            self.desc = [NSString stringWithFormat:NSLS(@"kDrawToUserNoWordDesc"), self.targetUser.nickName];
+            if([self.opusDesc isEqualToString:@""]){
+                self.desc = NSLS(@"kDrawDescNoWord");
+            }else{
+                self.desc = self.opusDesc;
+            }
+           
         }else if ([self isSingCategory]){
             self.desc = [NSString stringWithFormat:NSLS(@"kRecordToUserNoWordDesc"), self.targetUser.nickName];
         }
