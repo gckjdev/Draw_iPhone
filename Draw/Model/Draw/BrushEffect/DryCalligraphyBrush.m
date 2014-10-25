@@ -34,7 +34,7 @@ static dispatch_once_t sharedDryCalligraphyBrushOnceToken;
     //染色，把所需形状染成用户所需颜色，不透明
     UIImage *tinted = [brushImage rt_tintedImageWithColor:colorWithRGBOnly];
     
-    CGFloat alpha = [color alpha] / 5;
+    CGFloat alpha = [color alpha] / 8;
     
     brushImage = [DrawUtils imageByApplyingAlpha:alpha image:tinted];
     
@@ -65,8 +65,8 @@ static dispatch_once_t sharedDryCalligraphyBrushOnceToken;
     //Use distance instead of speed factor
     double tempWidth = currentWidth;
     
-    double maxW = threshold * 2;
-    double minW = threshold / 2;
+    double maxW = threshold;
+    double minW = threshold / 4;
     double maxS = 50;
     double minS = 0;
     double R = (maxW - minW) / (maxS - minS);
