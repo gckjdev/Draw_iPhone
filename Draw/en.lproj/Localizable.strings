@@ -2960,6 +2960,12 @@
 "kItemBrushCrayon" = "Crayon";
 "kItemBrushCrayonDesc" = "Crayon Brush";
 
+"kItemBrushDry" = "Dry Brush";
+"kItemBrushDryDesc" = "Chinese Dry Brush";
+
+"kItemBrushFilled" = "Filled Brush";
+"kItemBrushFilledDesc" = "Chinese Filled Brush";
+
 "kStartRelaxDraw" = "Draw Now";
 "kStartPracticeDraw" = "Learn Now";
 "kContinuePracticeDraw" = "Continue";

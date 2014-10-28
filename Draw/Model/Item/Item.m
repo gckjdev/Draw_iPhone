@@ -156,6 +156,12 @@
         case ItemTypeBrushWater:
             return manager.brushWaterSelectedImage;
             
+        case ItemTypeBrushDryCalligraphy:
+            return manager.brushDrySelectedImage;
+            
+        case ItemTypeBrushFilledCalligraphy:
+            return manager.brushFilledSelectedImage;
+
         default:
             return nil;
     }
@@ -196,6 +202,12 @@
             
         case ItemTypeBrushWater:
             return manager.brushWaterShowImage;
+            
+        case ItemTypeBrushDryCalligraphy:
+            return manager.brushDryShowImage;
+            
+        case ItemTypeBrushFilledCalligraphy:
+            return manager.brushFilledShowImage;
             
         case ItemTypeFunPen1:
             return [UIImage imageNamed:@"pen_show_fun1@2x.png"];
@@ -258,6 +270,12 @@
 
         case ItemTypeBrushWater:
             return manager.brushWaterImage;
+            
+        case ItemTypeBrushDryCalligraphy:
+            return manager.brushDryImage;
+            
+        case ItemTypeBrushFilledCalligraphy:
+            return manager.brushFilledImage;
             
         case PaletteItem:
             return [manager shopItemPaletteImage];

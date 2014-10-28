@@ -3057,6 +3057,12 @@
 "kItemBrushCrayon" = "蠟筆";
 "kItemBrushCrayonDesc" = "不是蠟筆小新，是能畫出蠟筆效果的筆";
 
+"kItemBrushDry" = "飛白毛筆";
+"kItemBrushDryDesc" = "傳說中古代中國的飛白毛筆，能畫出枯白效果";
+
+"kItemBrushFilled" = "至尊毛筆";
+"kItemBrushFilledDesc" = "中國歷史悠久的毛筆，九五至尊，誰能抵擋";
+
 "kStartRelaxDraw" = "开始创作";
 "kStartPracticeDraw" = "开始学习";
 "kContinuePracticeDraw" = "继续学习";

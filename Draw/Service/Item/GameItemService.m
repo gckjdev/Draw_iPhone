@@ -560,6 +560,32 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GameItemService);
                                       expireDate:[[NSDate date] dateByAddingDays:90]]];
     
     // 透明笔
+    [mutableArray addObject:[self itemWithItemId:ItemTypeBrushFilledCalligraphy
+                                            name:@"kItemBrushFilled"
+                                            desc:@"kItemBrushFilledDesc"
+                                     consumeType:PBGameItemConsumeTypeNonConsumable
+                                           image:DRAW_URL_ITEM_IMAGE(@"brush_filled@2x.png")
+                                            type:PBDrawItemTypeDrawTool
+                                           price:10 //*1000
+                                        currency:PBGameCurrencyIngot //PBGameCurrencyCoin
+                                  promotionPrice:5 // *1000/discount
+                                       startDate:[NSDate date]
+                                      expireDate:[[NSDate date] dateByAddingDays:90]]];
+    
+    // 透明笔
+    [mutableArray addObject:[self itemWithItemId:ItemTypeBrushDryCalligraphy
+                                            name:@"kItemBrushDry"
+                                            desc:@"kItemBrushDryDesc"
+                                     consumeType:PBGameItemConsumeTypeNonConsumable
+                                           image:DRAW_URL_ITEM_IMAGE(@"brush_dry@2x.png")
+                                            type:PBDrawItemTypeDrawTool
+                                           price:10 //*1000
+                                        currency:PBGameCurrencyIngot //PBGameCurrencyCoin
+                                  promotionPrice:5 // *1000/discount
+                                       startDate:[NSDate date]
+                                      expireDate:[[NSDate date] dateByAddingDays:90]]];
+    
+    // 透明笔
     [mutableArray addObject:[self itemWithItemId:Quill
                                             name:@"kQuill"
                                             desc:@"kQuillDescription"

@@ -17,7 +17,7 @@
 #define SHOP_ITEM_FILE_TYPE @"pb"
 
 // change for each item bundle file upgrade
-#define SHOP_ITEMS_FILE_VERSION @"3.8"
+#define SHOP_ITEMS_FILE_VERSION @"4.0"
 
 @interface GameItemManager()
 

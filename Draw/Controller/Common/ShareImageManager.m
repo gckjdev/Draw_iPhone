@@ -461,6 +461,16 @@ static NSMutableDictionary *colorImageDict;
     return [UIImage imageNamedFixed:@"brush_crayon@2x"];
 }
 
+- (UIImage *)brushDryImage
+{
+    return [UIImage imageNamedFixed:@"brush_dry@2x"];
+}
+
+- (UIImage *)brushFilledImage
+{
+    return [UIImage imageNamedFixed:@"brush_filled@2x"];
+}
+
 - (UIImage *)selectedBrushPenImage
 {
     return [UIImage imageNamedFixed:@"selected_pen_brush@2x"];
@@ -515,6 +525,16 @@ static NSMutableDictionary *colorImageDict;
     return [UIImage imageNamedFixed:@"selected_brush_crayon@2x"];
 }
 
+- (UIImage *)brushDrySelectedImage
+{
+    return [UIImage imageNamedFixed:@"selected_brush_dry@2x"];
+}
+
+- (UIImage *)brushFilledSelectedImage
+{
+    return [UIImage imageNamedFixed:@"selected_brush_filled@2x"];
+}
+
 - (UIImage *)showEraserImage
 {
     return [UIImage imageNamedFixed:@"eraser_show@2x"];
@@ -554,21 +574,35 @@ static NSMutableDictionary *colorImageDict;
 {
     return [UIImage imageNamedFixed:@"brush_show_pencil@2x"];
 }
+
 - (UIImage *)brushWaterShowImage
 {
     return [UIImage imageNamedFixed:@"brush_show_water@2x"];
 }
+
 - (UIImage *)brushGouacheShowImage
 {
     return [UIImage imageNamedFixed:@"brush_show_gouache@2x"];
 }
+
 - (UIImage *)brushBlurShowImage
 {
     return [UIImage imageNamedFixed:@"brush_show_blur@2x"];
 }
+
 - (UIImage *)brushCrayonShowImage
 {
     return [UIImage imageNamedFixed:@"brush_show_crayon@2x"];
+}
+
+- (UIImage *)brushDryShowImage
+{
+    return [UIImage imageNamedFixed:@"brush_show_dry@2x"];
+}
+
+- (UIImage *)brushFilledShowImage
+{
+    return [UIImage imageNamedFixed:@"brush_show_filled@2x"];
 }
 
 - (UIImage *)drawCommit

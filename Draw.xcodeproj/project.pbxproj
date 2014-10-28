@@ -4583,6 +4583,42 @@
 		CA13B855177BE368003B7368 /* ShadowCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = CA13B847177BE368003B7368 /* ShadowCommand.m */; };
 		CA13B858177BE368003B7368 /* ShadowCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = CA13B847177BE368003B7368 /* ShadowCommand.m */; };
 		CA13B859177BE368003B7368 /* ShadowCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = CA13B847177BE368003B7368 /* ShadowCommand.m */; };
+		CA13EE3219FF33040060F333 /* selected_brush_dry@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA13EE2F19FF33030060F333 /* selected_brush_dry@2x.png */; };
+		CA13EE3319FF331E0060F333 /* selected_brush_dry@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA13EE2F19FF33030060F333 /* selected_brush_dry@2x.png */; };
+		CA13EE3419FF331F0060F333 /* selected_brush_dry@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA13EE2F19FF33030060F333 /* selected_brush_dry@2x.png */; };
+		CA13EE3519FF331F0060F333 /* selected_brush_dry@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA13EE2F19FF33030060F333 /* selected_brush_dry@2x.png */; };
+		CA13EE3619FF331F0060F333 /* selected_brush_blur1@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA13EE3019FF33030060F333 /* selected_brush_blur1@2x.png */; };
+		CA13EE3719FF331F0060F333 /* selected_brush_blur1@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA13EE3019FF33030060F333 /* selected_brush_blur1@2x.png */; };
+		CA13EE3819FF331F0060F333 /* selected_brush_blur1@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA13EE3019FF33030060F333 /* selected_brush_blur1@2x.png */; };
+		CA13EE3919FF331F0060F333 /* selected_brush_blur1@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA13EE3019FF33030060F333 /* selected_brush_blur1@2x.png */; };
+		CA13EE3A19FF331F0060F333 /* selected_brush_filled@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA13EE3119FF33030060F333 /* selected_brush_filled@2x.png */; };
+		CA13EE3B19FF331F0060F333 /* selected_brush_filled@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA13EE3119FF33030060F333 /* selected_brush_filled@2x.png */; };
+		CA13EE3C19FF331F0060F333 /* selected_brush_filled@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA13EE3119FF33030060F333 /* selected_brush_filled@2x.png */; };
+		CA13EE3D19FF331F0060F333 /* selected_brush_filled@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA13EE3119FF33030060F333 /* selected_brush_filled@2x.png */; };
+		CA13EE4419FF334C0060F333 /* brush_show_blur1@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA13EE4119FF334C0060F333 /* brush_show_blur1@2x.png */; };
+		CA13EE4519FF334C0060F333 /* brush_show_blur1@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA13EE4119FF334C0060F333 /* brush_show_blur1@2x.png */; };
+		CA13EE4619FF334C0060F333 /* brush_show_blur1@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA13EE4119FF334C0060F333 /* brush_show_blur1@2x.png */; };
+		CA13EE4719FF334C0060F333 /* brush_show_blur1@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA13EE4119FF334C0060F333 /* brush_show_blur1@2x.png */; };
+		CA13EE4819FF334C0060F333 /* brush_show_dry@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA13EE4219FF334C0060F333 /* brush_show_dry@2x.png */; };
+		CA13EE4919FF334C0060F333 /* brush_show_dry@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA13EE4219FF334C0060F333 /* brush_show_dry@2x.png */; };
+		CA13EE4A19FF334C0060F333 /* brush_show_dry@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA13EE4219FF334C0060F333 /* brush_show_dry@2x.png */; };
+		CA13EE4B19FF334C0060F333 /* brush_show_dry@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA13EE4219FF334C0060F333 /* brush_show_dry@2x.png */; };
+		CA13EE4C19FF334C0060F333 /* brush_show_filled@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA13EE4319FF334C0060F333 /* brush_show_filled@2x.png */; };
+		CA13EE4D19FF334C0060F333 /* brush_show_filled@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA13EE4319FF334C0060F333 /* brush_show_filled@2x.png */; };
+		CA13EE4E19FF334C0060F333 /* brush_show_filled@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA13EE4319FF334C0060F333 /* brush_show_filled@2x.png */; };
+		CA13EE4F19FF334C0060F333 /* brush_show_filled@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA13EE4319FF334C0060F333 /* brush_show_filled@2x.png */; };
+		CA13EE5319FF33690060F333 /* brush_blur1@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA13EE5019FF33690060F333 /* brush_blur1@2x.png */; };
+		CA13EE5419FF33690060F333 /* brush_blur1@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA13EE5019FF33690060F333 /* brush_blur1@2x.png */; };
+		CA13EE5519FF33690060F333 /* brush_blur1@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA13EE5019FF33690060F333 /* brush_blur1@2x.png */; };
+		CA13EE5619FF33690060F333 /* brush_blur1@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA13EE5019FF33690060F333 /* brush_blur1@2x.png */; };
+		CA13EE5719FF33690060F333 /* brush_dry@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA13EE5119FF33690060F333 /* brush_dry@2x.png */; };
+		CA13EE5819FF33690060F333 /* brush_dry@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA13EE5119FF33690060F333 /* brush_dry@2x.png */; };
+		CA13EE5919FF33690060F333 /* brush_dry@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA13EE5119FF33690060F333 /* brush_dry@2x.png */; };
+		CA13EE5A19FF33690060F333 /* brush_dry@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA13EE5119FF33690060F333 /* brush_dry@2x.png */; };
+		CA13EE5B19FF33690060F333 /* brush_filled@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA13EE5219FF33690060F333 /* brush_filled@2x.png */; };
+		CA13EE5C19FF33690060F333 /* brush_filled@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA13EE5219FF33690060F333 /* brush_filled@2x.png */; };
+		CA13EE5D19FF33690060F333 /* brush_filled@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA13EE5219FF33690060F333 /* brush_filled@2x.png */; };
+		CA13EE5E19FF33690060F333 /* brush_filled@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA13EE5219FF33690060F333 /* brush_filled@2x.png */; };
 		CA16410F16D72452001C615F /* GameItemService.m in Sources */ = {isa = PBXBuildFile; fileRef = CA16410E16D72452001C615F /* GameItemService.m */; };
 		CA16412116D724CA001C615F /* GameItem.m in Sources */ = {isa = PBXBuildFile; fileRef = CA16412016D724CA001C615F /* GameItem.m */; };
 		CA16412716D724DF001C615F /* GameItemManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CA16412616D724DF001C615F /* GameItemManager.m */; };
@@ -9834,6 +9870,15 @@
 		CA13B82B177BDB57003B7368 /* Shadow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Shadow.m; sourceTree = "<group>"; };
 		CA13B846177BE368003B7368 /* ShadowCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShadowCommand.h; sourceTree = "<group>"; };
 		CA13B847177BE368003B7368 /* ShadowCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShadowCommand.m; sourceTree = "<group>"; };
+		CA13EE2F19FF33030060F333 /* selected_brush_dry@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "selected_brush_dry@2x.png"; sourceTree = "<group>"; };
+		CA13EE3019FF33030060F333 /* selected_brush_blur1@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "selected_brush_blur1@2x.png"; sourceTree = "<group>"; };
+		CA13EE3119FF33030060F333 /* selected_brush_filled@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "selected_brush_filled@2x.png"; sourceTree = "<group>"; };
+		CA13EE4119FF334C0060F333 /* brush_show_blur1@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "brush_show_blur1@2x.png"; sourceTree = "<group>"; };
+		CA13EE4219FF334C0060F333 /* brush_show_dry@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "brush_show_dry@2x.png"; sourceTree = "<group>"; };
+		CA13EE4319FF334C0060F333 /* brush_show_filled@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "brush_show_filled@2x.png"; sourceTree = "<group>"; };
+		CA13EE5019FF33690060F333 /* brush_blur1@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "brush_blur1@2x.png"; sourceTree = "<group>"; };
+		CA13EE5119FF33690060F333 /* brush_dry@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "brush_dry@2x.png"; sourceTree = "<group>"; };
+		CA13EE5219FF33690060F333 /* brush_filled@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "brush_filled@2x.png"; sourceTree = "<group>"; };
 		CA16410D16D72452001C615F /* GameItemService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameItemService.h; sourceTree = "<group>"; };
 		CA16410E16D72452001C615F /* GameItemService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameItemService.m; sourceTree = "<group>"; };
 		CA16411F16D724CA001C615F /* GameItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameItem.h; sourceTree = "<group>"; };
@@ -13029,6 +13074,9 @@
 		A4D8FC6A17DB089B0085061F /* Seleted */ = {
 			isa = PBXGroup;
 			children = (
+				CA13EE2F19FF33030060F333 /* selected_brush_dry@2x.png */,
+				CA13EE3019FF33030060F333 /* selected_brush_blur1@2x.png */,
+				CA13EE3119FF33030060F333 /* selected_brush_filled@2x.png */,
 				CA1CC37419C43DCE006E06C7 /* selected_brush_blur@2x.png */,
 				CA1CC37519C43DCE006E06C7 /* selected_brush_crayon@2x.png */,
 				CA1CC37619C43DCE006E06C7 /* selected_brush_gouache@2x.png */,
@@ -13054,6 +13102,9 @@
 		A4D8FC7117DB089B0085061F /* Show */ = {
 			isa = PBXGroup;
 			children = (
+				CA13EE4119FF334C0060F333 /* brush_show_blur1@2x.png */,
+				CA13EE4219FF334C0060F333 /* brush_show_dry@2x.png */,
+				CA13EE4319FF334C0060F333 /* brush_show_filled@2x.png */,
 				CA1CC39A19C43E04006E06C7 /* brush_show_blur@2x.png */,
 				CA1CC39B19C43E04006E06C7 /* brush_show_crayon@2x.png */,
 				CA1CC39C19C43E04006E06C7 /* brush_show_gouache@2x.png */,
@@ -13079,6 +13130,9 @@
 		A4D8FC7817DB089B0085061F /* Tool */ = {
 			isa = PBXGroup;
 			children = (
+				CA13EE5019FF33690060F333 /* brush_blur1@2x.png */,
+				CA13EE5119FF33690060F333 /* brush_dry@2x.png */,
+				CA13EE5219FF33690060F333 /* brush_filled@2x.png */,
 				CA1CC3BD19C43E1B006E06C7 /* brush_blur@2x.png */,
 				CA1CC3BE19C43E1B006E06C7 /* brush_crayon@2x.png */,
 				CA1CC3BF19C43E1B006E06C7 /* brush_gouache@2x.png */,
@@ -19365,6 +19419,7 @@
 				A461B421174CBAA70088B061 /* ShareController~ipad.xib in Resources */,
 				A461B422174CBAA70088B061 /* ShareCell~ipad.xib in Resources */,
 				A461B425174CBAA70088B061 /* ColorShopView~ipad.xib in Resources */,
+				CA13EE4A19FF334C0060F333 /* brush_show_dry@2x.png in Resources */,
 				CA1CC38D19C43DE2006E06C7 /* selected_brush_pen@2x.png in Resources */,
 				A461B426174CBAA70088B061 /* ChatController.xib in Resources */,
 				CA93D0EB18EFF136002BB805 /* TencentOpenApi_IOS_Bundle.bundle in Resources */,
@@ -19388,6 +19443,7 @@
 				A461B448174CBAA70088B061 /* ChatCell.xib in Resources */,
 				A461B449174CBAA70088B061 /* ChatCell~ipad.xib in Resources */,
 				A461B44A174CBAA70088B061 /* ChatDetailController.xib in Resources */,
+				CA13EE3819FF331F0060F333 /* selected_brush_blur1@2x.png in Resources */,
 				A461B44B174CBAA70088B061 /* ChatDetailController~ipad.xib in Resources */,
 				A461B44C174CBAA70088B061 /* ChatListController.xib in Resources */,
 				A461B44D174CBAA70088B061 /* ChatListController~ipad.xib in Resources */,
@@ -19450,6 +19506,7 @@
 				A461B4E2174CBAA70088B061 /* ZhaJinHua.proto in Resources */,
 				A461B4E7174CBAA70088B061 /* FriendController~ipad.xib in Resources */,
 				A461B4E8174CBAA70088B061 /* FriendController.xib in Resources */,
+				CA13EE5D19FF33690060F333 /* brush_filled@2x.png in Resources */,
 				CA1CC38119C43DE1006E06C7 /* selected_brush_crayon@2x.png in Resources */,
 				A461B4EE174CBAA70088B061 /* PPResourceTestViewController.xib in Resources */,
 				A461B4F2174CBAA70088B061 /* BBSBoardController.xib in Resources */,
@@ -19844,6 +19901,7 @@
 				A4D8FA6B17DB08170085061F /* group_message@2x.png in Resources */,
 				A4D8FA6F17DB08170085061F /* message_popup@2x.png in Resources */,
 				D8CC69DC19A5EF9D00E57398 /* PrizeCell.xib in Resources */,
+				CA13EE3C19FF331F0060F333 /* selected_brush_filled@2x.png in Resources */,
 				A4D8FA7317DB08170085061F /* draw_room_seat_blue@2x.png in Resources */,
 				A4D8FA7717DB08170085061F /* draw_room_seat_orange@2x.png in Resources */,
 				A4D8FA7B17DB08170085061F /* draw_room_seat_pink@2x.png in Resources */,
@@ -19882,6 +19940,7 @@
 				A4D8FADB17DB08170085061F /* guess_rules@2x.png in Resources */,
 				A4D8FADF17DB08170085061F /* guess_select_bg@2x.jpg in Resources */,
 				A4D8FAE317DB08170085061F /* heart@2x.png in Resources */,
+				CA13EE4619FF334C0060F333 /* brush_show_blur1@2x.png in Resources */,
 				A4D8FAE717DB08170085061F /* little_triangle@2x.png in Resources */,
 				A4D8FAEB17DB08170085061F /* little_triangle@2x.png_bak.png in Resources */,
 				A4D8FAEF17DB08170085061F /* pine_tree@2x.png in Resources */,
@@ -19916,6 +19975,7 @@
 				A4D8FB4B17DB08170085061F /* spend_time@2x.png in Resources */,
 				CA1CC3D219C43E1B006E06C7 /* brush_mark@2x.png in Resources */,
 				D8AA042D1974CA6400083651 /* beginPlayGame(little).png in Resources */,
+				CA13EE5919FF33690060F333 /* brush_dry@2x.png in Resources */,
 				A4D8FB4F17DB08170085061F /* input_alert_check@2x.png in Resources */,
 				A4D8FB5317DB08170085061F /* input_alert_uncheck@2x.png in Resources */,
 				CA1CC39519C43DE2006E06C7 /* selected_brush_water@2x.png in Resources */,
@@ -20145,6 +20205,7 @@
 				A4D8FFC517DB089C0085061F /* line.svg in Resources */,
 				A4D8FFC917DB089C0085061F /* path.svg in Resources */,
 				D82C0D821976500E0088539F /* home_bb_version.txt in Resources */,
+				CA13EE3419FF331F0060F333 /* selected_brush_dry@2x.png in Resources */,
 				A4D8FFCD17DB089C0085061F /* rect.svg in Resources */,
 				D8F70B521993894800B81795 /* MetroHomeController.xib in Resources */,
 				A4D8FFD117DB089C0085061F /* zjh_home_charge@2x.png in Resources */,
@@ -20306,6 +20367,7 @@
 				CA9AAFBA18321621002DBAA5 /* sing_edit@2x.png in Resources */,
 				CA9AAFBE18321621002DBAA5 /* sing_image@2x.png in Resources */,
 				CA9AAFC218321621002DBAA5 /* sing_lyric@2x.png in Resources */,
+				CA13EE5519FF33690060F333 /* brush_blur1@2x.png in Resources */,
 				CA9AAFC618321621002DBAA5 /* sing_pause@2x.png in Resources */,
 				CA9AAFCA18321621002DBAA5 /* sing_play@2x.png in Resources */,
 				CA9AAFCE18321621002DBAA5 /* sing_record@2x.png in Resources */,
@@ -20347,6 +20409,7 @@
 				CA1162611834A88F00FDD3A9 /* TaskController.xib in Resources */,
 				CA1162781834A91100FDD3A9 /* TaskCell.xib in Resources */,
 				EA11A4191839EA1200F73D64 /* group_footer_at@2x.png in Resources */,
+				CA13EE4E19FF334C0060F333 /* brush_show_filled@2x.png in Resources */,
 				EA11A41D1839EA1200F73D64 /* group_footer_chat@2x.png in Resources */,
 				EA11A4211839EA1200F73D64 /* group_footer_create@2x.png in Resources */,
 				D86D7CD91994C87B00D64C18 /* gengduo.png in Resources */,
@@ -20586,6 +20649,7 @@
 				CAFCF24419979605008C8854 /* defaultBillBoard.jpg in Resources */,
 				C28A9DB61738F04B007A819F /* StatementController~ipad.xib in Resources */,
 				A4EB5BFA19F681760067ADB1 /* brush_ellipse7@2x.png in Resources */,
+				CA13EE3319FF331E0060F333 /* selected_brush_dry@2x.png in Resources */,
 				C28A9DB81738F04B007A819F /* MyCommentCell.xib in Resources */,
 				C28A9DB91738F04B007A819F /* MyCommentCell~ipad.xib in Resources */,
 				C28A9DBA1738F04B007A819F /* HotController~ipad.xib in Resources */,
@@ -20649,6 +20713,7 @@
 				C28A9E191738F04B007A819F /* bbs_create_reward_option@2x.png in Resources */,
 				C28A9E1A1738F04B007A819F /* bbs_create_submit_bg@2x.png in Resources */,
 				C28A9E1B1738F04B007A819F /* bbs_action_sheet_bg@2x.png in Resources */,
+				CA13EE3719FF331F0060F333 /* selected_brush_blur1@2x.png in Resources */,
 				C28A9E1C1738F04B007A819F /* BBSActionListController~ipad.xib in Resources */,
 				C28A9E1D1738F04B007A819F /* BBSPostDetailController~ipad.xib in Resources */,
 				C28A9E1E1738F04B007A819F /* CreatePostController~ipad.xib in Resources */,
@@ -20794,6 +20859,7 @@
 				C28AA0821738F04B007A819F /* default_config_Draw.pb in Resources */,
 				C28AA0861738F04B007A819F /* DrawBgCell.xib in Resources */,
 				C28AA0871738F04B007A819F /* DrawBgCell~ipad.xib in Resources */,
+				CA13EE3B19FF331F0060F333 /* selected_brush_filled@2x.png in Resources */,
 				C28AA0881738F04B007A819F /* TaoBaoController.xib in Resources */,
 				C28AA0891738F04B007A819F /* TaoBaoController~ipad.xib in Resources */,
 				D8BF37321971387B00ACEFCA /* zuixiaoguanka.png in Resources */,
@@ -21004,6 +21070,7 @@
 				A4D8FA5E17DB08170085061F /* draw_setting_btn@2x.png in Resources */,
 				A4D8FA6217DB08170085061F /* draw_share@2x.png in Resources */,
 				A4D8FA6617DB08170085061F /* experience@2x.png in Resources */,
+				CA13EE4D19FF334C0060F333 /* brush_show_filled@2x.png in Resources */,
 				CACD6ABE18E03A29003F97C0 /* ShareSDKLocalizable.strings in Resources */,
 				A4D8FA6A17DB08170085061F /* group_message@2x.png in Resources */,
 				A4D8FA6E17DB08170085061F /* message_popup@2x.png in Resources */,
@@ -21124,6 +21191,7 @@
 				A4D8FC1217DB08170085061F /* user_detail_followandfan@2x.png in Resources */,
 				D87129551996284300F6B757 /* 9.png in Resources */,
 				A4D8FC1617DB08170085061F /* user_detail_gender_female@2x.png in Resources */,
+				CA13EE4919FF334C0060F333 /* brush_show_dry@2x.png in Resources */,
 				A4D8FC1A17DB08180085061F /* user_detail_gender_male@2x.png in Resources */,
 				A4D8FC1E17DB08180085061F /* user_detail_message@2x.png in Resources */,
 				A4D8FC2217DB08180085061F /* user_detail_message_bg@2x.png in Resources */,
@@ -21222,6 +21290,7 @@
 				A4D8FE5017DB089C0085061F /* draw_straw_seleted@2x.png in Resources */,
 				A4D8FE5417DB089C0085061F /* draw_switch@2x.png in Resources */,
 				A4D8FE5817DB089C0085061F /* draw_text@2x.png in Resources */,
+				CA13EE5C19FF33690060F333 /* brush_filled@2x.png in Resources */,
 				A4D8FE5C17DB089C0085061F /* draw_tool_bg@2x.png in Resources */,
 				A4D8FE6017DB089C0085061F /* draw_undo_normal@2x.png in Resources */,
 				A4D8FE6417DB089C0085061F /* draw_up_panel_accessory@2x.png in Resources */,
@@ -21289,6 +21358,7 @@
 				A4D8FFA817DB089C0085061F /* learndraw_bottom_split@2x.png in Resources */,
 				A4D8FFAC17DB089C0085061F /* learndraw_bought@2x.png in Resources */,
 				A4D8FFB017DB089C0085061F /* learndraw_draft@2x.png in Resources */,
+				CA13EE4519FF334C0060F333 /* brush_show_blur1@2x.png in Resources */,
 				A4D8FFB417DB089C0085061F /* learndraw_draw@2x.png in Resources */,
 				A4D8FFB817DB089C0085061F /* learndraw_mark@2x.png in Resources */,
 				A4D8FFBC17DB089C0085061F /* learndraw_more@2x.png in Resources */,
@@ -21317,6 +21387,7 @@
 				A4D8002017DB089C0085061F /* placeholder_photo@2x.png in Resources */,
 				CA1CC3C519C43E1B006E06C7 /* brush_blur@2x.png in Resources */,
 				A4D8002417DB089C0085061F /* draw_player_close@2x.png in Resources */,
+				CA13EE5419FF33690060F333 /* brush_blur1@2x.png in Resources */,
 				A4D8002817DB089C0085061F /* draw_player_minus@2x.png in Resources */,
 				A4D8002C17DB089C0085061F /* draw_player_pause@2x.png in Resources */,
 				D8B84173197E119500B6FB5C /* xiaoguanka.png in Resources */,
@@ -21403,6 +21474,7 @@
 				A4F04B93180680D2007274BE /* tap-warm.aif in Resources */,
 				CACD6AC218E03A29003F97C0 /* Resource.bundle in Resources */,
 				A4F04B9818068467007274BE /* beep-shinymetal.aif in Resources */,
+				CA13EE5819FF33690060F333 /* brush_dry@2x.png in Resources */,
 				CA1CC3D919C43E1B006E06C7 /* brush_pencil@2x.png in Resources */,
 				A4F04B9B18068467007274BE /* beep-timber.aif in Resources */,
 				EA0C550B180B89A5008069C1 /* bubble_bg_red@2x.png in Resources */,
@@ -21615,6 +21687,7 @@
 				CA10416F1509A9FF00F60C03 /* README.txt in Resources */,
 				CA10417A1509A9FF00F60C03 /* Source.zip in Resources */,
 				CA1041F91509BC9700F60C03 /* HomeController.xib in Resources */,
+				CA13EE4419FF334C0060F333 /* brush_show_blur1@2x.png in Resources */,
 				CA1042031509C06E00F60C03 /* RoomController.xib in Resources */,
 				CAA754BE150A02EA00B9391E /* SelectWordController.xib in Resources */,
 				CA96E276150DE8AA00292335 /* GameBasic.proto in Resources */,
@@ -21821,6 +21894,7 @@
 				CAD082F71676E0E8007B6B65 /* HomeBottomMenu~ipad.xib in Resources */,
 				CAFCF24B1997C832008C8854 /* Draw-Info.plist in Resources */,
 				CAD082F81676E0E8007B6B65 /* HomeMainMenu~ipad.xib in Resources */,
+				CA13EE3619FF331F0060F333 /* selected_brush_blur1@2x.png in Resources */,
 				CAD082FD1676E0F8007B6B65 /* HomeMainMenuPanel~ipad.xib in Resources */,
 				CAD083001676E124007B6B65 /* DrawHomeHeaderPanel.xib in Resources */,
 				C2B538251677712300725802 /* CommonDialog.xib in Resources */,
@@ -21887,6 +21961,7 @@
 				CACD6AC118E03A29003F97C0 /* Resource.bundle in Resources */,
 				C2F310B516AE2D090076064D /* DrawRoomListCell.xib in Resources */,
 				C2F310B716AE2D240076064D /* DrawRoomListCell~ipad.xib in Resources */,
+				CA13EE5B19FF33690060F333 /* brush_filled@2x.png in Resources */,
 				CADECC6D16B0DA10001D414C /* bbs_post_detail_comment@2x.png in Resources */,
 				CADECC7116B0DA10001D414C /* bbs_post_detail_delete@2x.png in Resources */,
 				CADECC7516B0DA10001D414C /* bbs_post_detail_support@2x.png in Resources */,
@@ -21900,7 +21975,9 @@
 				CA853C0C16B3A48C006FC155 /* BoardAdminListView~ipad.xib in Resources */,
 				CA5B073A16BFFE30004A64C4 /* DrawSlider.xib in Resources */,
 				CA5B073F16C0106A004A64C4 /* DrawSlider~ipad.xib in Resources */,
+				CA13EE4819FF334C0060F333 /* brush_show_dry@2x.png in Resources */,
 				CA9A7ECD16DC57D40089BD51 /* ShapeBox.xib in Resources */,
+				CA13EE5319FF33690060F333 /* brush_blur1@2x.png in Resources */,
 				CA9A7ED216DC57F70089BD51 /* ShapeBox~ipad.xib in Resources */,
 				CA485F5616E440E300AEE725 /* DrawBgBox.xib in Resources */,
 				CA485F5816E440E300AEE725 /* DrawBgBox~ipad.xib in Resources */,
@@ -21949,6 +22026,7 @@
 				C2BD7A6417165E250079B7F6 /* UserSettingCell~ipad.xib in Resources */,
 				CAE5AD641717EAE9009BFDC1 /* DrawOnCell.xib in Resources */,
 				D8A2709F196FD432006DDF20 /* lock_new.jpg in Resources */,
+				CA13EE5719FF33690060F333 /* brush_dry@2x.png in Resources */,
 				CAE5AD681717EB0F009BFDC1 /* DrawOnCell~ipad.xib in Resources */,
 				A461B075174CAE050088B061 /* Sing.proto in Resources */,
 				CA2488E71753562800848A5F /* default_config_513819630_version.txt in Resources */,
@@ -22416,6 +22494,7 @@
 				CA1CC3C819C43E1B006E06C7 /* brush_crayon@2x.png in Resources */,
 				D82C0D801976500E0088539F /* home_bb_version.txt in Resources */,
 				A4D8FF9F17DB089C0085061F /* learndraw_bg@2x.png in Resources */,
+				CA13EE3A19FF331F0060F333 /* selected_brush_filled@2x.png in Resources */,
 				A4D8FFA317DB089C0085061F /* learndraw_bottom_bar@2x.png in Resources */,
 				A4D8FFA717DB089C0085061F /* learndraw_bottom_split@2x.png in Resources */,
 				A4D8FFAB17DB089C0085061F /* learndraw_bought@2x.png in Resources */,
@@ -22541,6 +22620,7 @@
 				A4F04B92180680D2007274BE /* tap-warm.aif in Resources */,
 				A4F04B9718068466007274BE /* beep-shinymetal.aif in Resources */,
 				A4F04B9A18068467007274BE /* beep-timber.aif in Resources */,
+				CA13EE3219FF33040060F333 /* selected_brush_dry@2x.png in Resources */,
 				D8D8116C199DB4E300CC182A /* 1.gif in Resources */,
 				EA0C550A180B89A5008069C1 /* bubble_bg_red@2x.png in Resources */,
 				EA0C550E180B89A5008069C1 /* bubble_bg_yellow@2x.png in Resources */,
@@ -22681,6 +22761,7 @@
 				A4F4753C19B5794100CFE2AE /* brush_shed@2x.png in Resources */,
 				EA7E4F79186ADE8F00E0B20F /* GroupHomeController~ipad.xib in Resources */,
 				D8A1E9BE197612B200F32735 /* MoreViewController.xib in Resources */,
+				CA13EE4C19FF334C0060F333 /* brush_show_filled@2x.png in Resources */,
 				A4563E6418A885B1005DAA03 /* finish@2x.png in Resources */,
 				EA7E4F7D186ADE8F00E0B20F /* GroupNoticeController~ipad.xib in Resources */,
 				EA7E4F81186ADE8F00E0B20F /* GroupTopicController~ipad.xib in Resources */,
@@ -22823,6 +22904,7 @@
 				CACD6D1A18E03C40003F97C0 /*  iOS ReadMe (or suffer).rtf in Resources */,
 				EA411BFF176066F500DA72D0 /* FeedCell~ipad.xib in Resources */,
 				EA411C00176066F500DA72D0 /* UserInfoCell.xib in Resources */,
+				CA13EE4F19FF334C0060F333 /* brush_show_filled@2x.png in Resources */,
 				CACD6B0C18E03A2D003F97C0 /* ShareSDKiPadSimpleShareViewUI.bundle in Resources */,
 				EA411C01176066F500DA72D0 /* UserInfoCell~ipad.xib in Resources */,
 				EA411C02176066F500DA72D0 /* CommentController.xib in Resources */,
@@ -22855,6 +22937,7 @@
 				EA411C20176066F500DA72D0 /* MyCommentCell~ipad.xib in Resources */,
 				EA411C21176066F500DA72D0 /* HotController~ipad.xib in Resources */,
 				EA411C22176066F500DA72D0 /* UserLocationController.xib in Resources */,
+				CA13EE5E19FF33690060F333 /* brush_filled@2x.png in Resources */,
 				EA411C23176066F500DA72D0 /* UserLocationController~ipad.xib in Resources */,
 				EA411C28176066F500DA72D0 /* ZhaJinHua.proto in Resources */,
 				EA411C29176066F500DA72D0 /* FriendController~ipad.xib in Resources */,
@@ -22902,12 +22985,14 @@
 				CA1CC39619C43DE2006E06C7 /* selected_brush_water@2x.png in Resources */,
 				EA411C5C176066F500DA72D0 /* bbs_detail_selected_line@2x.jpg in Resources */,
 				EA411C5D176066F500DA72D0 /* bbs_detail_splitLine@2x.jpg in Resources */,
+				CA13EE5619FF33690060F333 /* brush_blur1@2x.png in Resources */,
 				A4F4750719B5794100CFE2AE /* brush_dot3@2x.png in Resources */,
 				EA411C5F176066F500DA72D0 /* bbs_detail_thumb@2x.png in Resources */,
 				EA411C60176066F500DA72D0 /* bbs_detail_toolbar@2x.jpg in Resources */,
 				EA411C61176066F500DA72D0 /* Config.proto in Resources */,
 				EA411C62176066F500DA72D0 /* bbs_option_bg@2x.png in Resources */,
 				EA411C63176066F500DA72D0 /* bbs_option_bubble@2x.png in Resources */,
+				CA13EE3D19FF331F0060F333 /* selected_brush_filled@2x.png in Resources */,
 				EA411C65176066F500DA72D0 /* bbs_create_draw_enable@2x.png in Resources */,
 				EA411C67176066F500DA72D0 /* bbs_create_image_enable@2x.png in Resources */,
 				EA411C68176066F500DA72D0 /* bbs_create_input_bg@2x.png in Resources */,
@@ -23003,6 +23088,7 @@
 				EA411DC7176066F500DA72D0 /* bbs_post_detail_delete@2x.png in Resources */,
 				EA411DC8176066F500DA72D0 /* bbs_post_detail_support@2x.png in Resources */,
 				A4772818199611090050851D /* littlegeehelper.png in Resources */,
+				CA13EE4B19FF334C0060F333 /* brush_show_dry@2x.png in Resources */,
 				EA411DC9176066F500DA72D0 /* bbs_post_detail_totop@2x.png in Resources */,
 				EA411DCA176066F500DA72D0 /* bbs_post_detail_transfer@2x.png in Resources */,
 				EA411DCD176066F500DA72D0 /* bbs_post_top_bg@2x.png in Resources */,
@@ -23052,6 +23138,7 @@
 				EA411EC5176066F500DA72D0 /* FeedCarousel~ipad.xib in Resources */,
 				EA411EC6176066F500DA72D0 /* default_config_Draw_version.txt in Resources */,
 				EA411EC7176066F500DA72D0 /* default_config_Draw.pb in Resources */,
+				CA13EE5A19FF33690060F333 /* brush_dry@2x.png in Resources */,
 				EA411ECB176066F500DA72D0 /* DrawBgCell.xib in Resources */,
 				EA411ECC176066F500DA72D0 /* DrawBgCell~ipad.xib in Resources */,
 				EA411ECD176066F500DA72D0 /* TaoBaoController.xib in Resources */,
@@ -23078,6 +23165,7 @@
 				A49972581778350000B01EBE /* OfflineGuessDrawController~ipad.xib in Resources */,
 				A499725A1778350000B01EBE /* OfflineDrawViewController.xib in Resources */,
 				A499725B1778350000B01EBE /* OfflineDrawViewController~ipad.xib in Resources */,
+				CA13EE3919FF331F0060F333 /* selected_brush_blur1@2x.png in Resources */,
 				A499725D1778350000B01EBE /* OnlineDrawViewController.xib in Resources */,
 				A499725E1778350000B01EBE /* OnlineDrawViewController~ipad.xib in Resources */,
 				CAFCF24219979605008C8854 /* defaultBillBoard_en@2x.jpg in Resources */,
@@ -23487,6 +23575,7 @@
 				CAFCF24619979605008C8854 /* defaultBillBoard.jpg in Resources */,
 				A4D8FEFA17DB089C0085061F /* green_button@2x.png in Resources */,
 				A4D8FEFE17DB089C0085061F /* highlight_mask@2x.png in Resources */,
+				CA13EE3519FF331F0060F333 /* selected_brush_dry@2x.png in Resources */,
 				A4D8FF0217DB089C0085061F /* common_home_badge@2x.png in Resources */,
 				A4D8FF0617DB089C0085061F /* common_home_bbs@2x.png in Resources */,
 				A4D8FF0E17DB089C0085061F /* common_home_friend@2x.png in Resources */,
@@ -23667,6 +23756,7 @@
 				CA9AAFAB18321621002DBAA5 /* sing_home_timeline@2x.png in Resources */,
 				CA9AAFAF18321621002DBAA5 /* sing_home_top@2x.png in Resources */,
 				CA9AAFB318321621002DBAA5 /* full_screen@2x.png in Resources */,
+				CA13EE4719FF334C0060F333 /* brush_show_blur1@2x.png in Resources */,
 				CA9AAFB718321621002DBAA5 /* sing_bg@2x.png in Resources */,
 				CA9AAFBB18321621002DBAA5 /* sing_edit@2x.png in Resources */,
 				CA1CC3CB19C43E1B006E06C7 /* brush_crayon@2x.png in Resources */,

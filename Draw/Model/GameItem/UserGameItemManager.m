@@ -218,6 +218,8 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(UserGameItemManager);
         ItemTypeBrushPencil,
         ItemTypeBrushWater,
         Quill,
+        ItemTypeBrushFilledCalligraphy,
+        ItemTypeBrushDryCalligraphy,
         ItemTypeListEndFlag
     };
     return defaultPens;
@@ -236,6 +238,8 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(UserGameItemManager);
             ItemTypeBrushPencil,
             ItemTypeBrushWater,
             Quill,
+            ItemTypeBrushFilledCalligraphy,
+            ItemTypeBrushDryCalligraphy,
             
 //            WaterPen,
 //            Pen,
