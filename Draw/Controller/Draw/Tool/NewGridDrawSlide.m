@@ -34,7 +34,7 @@
 -(void)touchUpBtn:(UIButton *)btn{
     PPDebug(@"<NewGridDrawSlider touch up addButton>");
     int index = 1;
-    if(btn.tag == 10000){
+    if(btn == _delButton){
         index = -1;
     }
     

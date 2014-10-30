@@ -800,9 +800,9 @@
     // version 4 : support, svg image shape
     // version 5 : support shadow, selector, gradient, input text, layers
     // version 6 : support layers
-    // version 7 : support eraser with alpha, add brushes
-    // version 8 : ???
-    return 7;
+    // version 7 : support eraser with alpha, add 6 brushes
+    // version 8 : add 2 new brush (dry and filled)
+    return 8;
 }
 
 
@@ -1601,6 +1601,10 @@
 
 + (int)defaultHomeStyleOldUser
 {
+    if ([self isInReviewVersion]){
+        return HOME_STYLE_METRO;
+    }
+
     if (isLittleGeeAPP()){
         return GET_UMENG_INTVAL(@"HOMESTYLE_OLD", HOME_STYLE_CLASSICAL);
     }
@@ -1611,6 +1615,10 @@
 
 + (int)defaultHomeStyleNewUser
 {
+    if ([self isInReviewVersion]){
+        return HOME_STYLE_METRO;
+    }
+    
     if (isLittleGeeAPP()){
         return GET_UMENG_INTVAL(@"HOMESTYLE_NEW", HOME_STYLE_CLASSICAL);
     }
