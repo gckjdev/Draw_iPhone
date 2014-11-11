@@ -93,7 +93,7 @@
 
 + (BOOL)isEnableAd
 {
-    return [MobClickUtils getBoolValueByKey:@"ENABLE_AD" defaultValue:YES];
+    return [MobClickUtils getBoolValueByKey:@"ENABLE_AD" defaultValue:NO];
 }
 
 + (BOOL)useSpeedLevel
