@@ -46,5 +46,5 @@ typedef void (^HeaderAnimationHandler)(BOOL open);
 
 - (void)updateBG;
 - (void)reloadLocalCache;
-
+- (float)cellHeight;
 @end

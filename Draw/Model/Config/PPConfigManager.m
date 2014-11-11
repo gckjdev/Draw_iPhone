@@ -93,7 +93,7 @@
 
 + (BOOL)isEnableAd
 {
-    return [MobClickUtils getBoolValueByKey:@"ENABLE_AD" defaultValue:NO];
+    return [MobClickUtils getBoolValueByKey:@"ENABLE_AD" defaultValue:YES];
 }
 
 + (BOOL)useSpeedLevel
@@ -362,9 +362,9 @@
 
 + (BOOL)isInReviewVersion
 {
-#if DEBUG
-    return NO;
-#endif
+//#if DEBUG
+//    return NO;
+//#endif
     
     NSString* currentVersion = [PPApplication getAppVersion];
     NSString* inReviewVersion = [MobClickUtils getStringValueByKey:@"IN_REVIEW_VERSION" defaultValue:@""];
@@ -1601,10 +1601,6 @@
 
 + (int)defaultHomeStyleOldUser
 {
-    if ([self isInReviewVersion]){
-        return HOME_STYLE_METRO;
-    }
-
     if (isLittleGeeAPP()){
         return GET_UMENG_INTVAL(@"HOMESTYLE_OLD", HOME_STYLE_CLASSICAL);
     }
@@ -1615,10 +1611,6 @@
 
 + (int)defaultHomeStyleNewUser
 {
-    if ([self isInReviewVersion]){
-        return HOME_STYLE_METRO;
-    }
-    
     if (isLittleGeeAPP()){
         return GET_UMENG_INTVAL(@"HOMESTYLE_NEW", HOME_STYLE_CLASSICAL);
     }

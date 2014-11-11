@@ -112,6 +112,11 @@
     [self performSelector:@selector(switchOpus) withObject:nil afterDelay:SWITH_OPUS_INTERVAL];
 }
 
+- (float)cellHeight
+{
+    return CELL_HEIGHT;
+}
+
 - (void)switchOpus
 {
     [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(switchOpus) object:nil];
