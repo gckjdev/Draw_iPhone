@@ -67,7 +67,7 @@
         
         if (ISIOS8){
             
-#if __IPHONE_OS_VERSION_MAX_ALLOWED > __IPHONE_7_1
+#if __IPHONE_OS_VERSION_MAX_ALLOWED > __IPHONE_7_0
             
             picker.modalPresentationStyle = UIModalPresentationPopover;
             UIPopoverPresentationController* popVC = picker.popoverPresentationController;
