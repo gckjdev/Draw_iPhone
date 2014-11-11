@@ -43,6 +43,7 @@
 #import "FeedListController.h"
 #import "NewHotController.h"
 #import "MetroHomeController.h"
+#import "UIViewUtils.h"
 
 
 static NSDictionary* DEFAULT_MENU_TITLE_DICT = nil;
@@ -483,29 +484,55 @@ static NSDictionary* DEFAULT_MENU_SELECTOR_DICT = nil;
 
 #pragma mark - manage rope view
 
+- (void)showAd:(CGRect)frame inView:(UIView*)holderView
+{
+    if (self.adView == nil){
+        self.adView = [[AdService defaultService] createAdmobAdInView:holderView
+                                                                frame:frame
+                                                            iPadFrame:frame];
+    }
+    self.adView.hidden = NO;
+}
+
+- (void)hideAd
+{
+    self.adView.hidden = YES;
+}
+
 - (void)updateAnimation
 {
     DrawHomeHeaderPanel *header = (id)self.homeHeaderPanel;
     DrawMainMenuPanel *mainPanel = (id)self.homeMainMenuPanel;
     HomeBottomMenuPanel *footer = (id)self.homeBottomMenuPanel;
     
+    CGRect adFrame = header.displayHolder.frame;
+    
     [header setClickRopeHandler:^(BOOL open)
      {
          if (open) {
+             
+             [self hideAd];
+             
              [mainPanel closeAnimated:YES completion:^(BOOL finished) {
                  [mainPanel moveMenuTypeToBottom:[mainPanel getMainType] Animated:YES completion:NULL];
                  [header openAnimated:YES completion:NULL];
                  [footer hideAnimated:YES];
              }];
          }else{
+             
+             
              [mainPanel centerMenu:[mainPanel getMainType] Animated:YES completion:NULL];
              [footer showAnimated:YES];
              [header closeAnimated:YES completion:^(BOOL finished) {
                  [mainPanel openAnimated:YES completion:NULL];
+                 
+                 [self showAd:adFrame inView:header.holderView];
              }];
              
          }
      }];
+    
+//    [self showAd:adFrame inView:header.holderView];
     
     /*
     if ([[UserManager defaultManager] hasXiaojiNumber] == NO

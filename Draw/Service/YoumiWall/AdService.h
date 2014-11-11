@@ -53,6 +53,10 @@ typedef enum
                 iPadFrame:(CGRect)iPadFrame
                   useLmAd:(BOOL)useLmAd;
 
+- (UIView*)createAdmobAdInView:(UIView*)superView
+                         frame:(CGRect)frame
+                     iPadFrame:(CGRect)iPadFrame;
+
 //// the following is used before, don't use them
 //- (UIView*)createAdInView:(UIView*)superView
 //           adPlatformType:(AdPlatformType)adPlatformType

@@ -262,6 +262,10 @@ static AdService* _defaultService;
 //    return YES;
 //#endif
     
+    if ([PPConfigManager isInReviewVersion]){
+        return YES;
+    }
+    
     if ([PPConfigManager isProVersion])
         return NO;
     

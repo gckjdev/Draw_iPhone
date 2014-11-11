@@ -17,7 +17,7 @@
 @property (nonatomic, retain) PBUserTutorial* pbUserTutorial;
 @property (nonatomic, assign) NSInteger stageIndex;
 @end
-
+  
 @implementation StageAlertViewController
 
 
