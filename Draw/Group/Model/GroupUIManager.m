@@ -61,7 +61,7 @@
     return [UIImage imageNamed:@"group_footer_unfollowing@2x.png"];
 }
 
-#define IMAGE_NAME(x) [UIImage imageNamed:x]
+#define IMAGE_NAME(x) [UIImage imageNamedFixed:x]
 
 + (UIImage *)imageForFooterActionType:(GroupFooterActionType)type
 {
