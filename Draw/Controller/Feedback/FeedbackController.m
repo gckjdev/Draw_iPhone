@@ -84,7 +84,8 @@
     
     int count = 0;
     if (isDrawApp()) {
-        rowOfShare = count++;
+//        rowOfShare = count++;
+        rowOfShare = -1;
         if ([LocaleUtils isChina] || [LocaleUtils isOtherChina]) {
             rowOfFollowSina = count++;
             rowOfFollowTencent = count++;
@@ -300,17 +301,18 @@ enum {
         UIActionSheet* shareOptions = [[UIActionSheet alloc] initWithTitle:NSLS(@"kShare_Options") 
                                                                   delegate:self 
                                                          cancelButtonTitle:nil 
-                                                    destructiveButtonTitle:NSLS(@"kShare_via_SMS") 
-                                                         otherButtonTitles:NSLS(@"kShare_via_Email"), 
+                                                    destructiveButtonTitle:nil//NSLS(@"kShare_via_SMS")
+                                                         otherButtonTitles:nil,//NSLS(@"kShare_via_Email"),
                                        nil];
         
-        int shareCount = 2;
+//        int shareCount = 2;
+        int shareCount = 0;
         
-        if ([[UserManager defaultManager] hasBindSinaWeibo]){
+//        if ([[UserManager defaultManager] hasBindSinaWeibo]){
             buttonIndexSinaWeibo = shareCount;
             shareCount ++;
             [shareOptions addButtonWithTitle:NSLS(@"kShare_via_Sina_weibo")];
-        }
+//        }
         
         if ([[UserManager defaultManager] hasBindQQWeibo]){
             buttonIndexQQWeibo = shareCount;
