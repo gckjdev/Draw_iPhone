@@ -173,8 +173,12 @@ static BOOL gIsShowGuidePage = NO;
         return;
     }
     
+    self.leftButton.enabled = NO;
     [self showActivityWithText:NSLS(@"kLoading")];
     [[UserNumberService defaultService] loginUser:number password:password block:^(int resultCode, NSString *number) {
+        
+        self.leftButton.enabled = YES;
+        
         [self hideActivity];
         if (resultCode == ERROR_SUCCESS){
             [self dismissWithMessage:NSLS(@"kLoginSuccess")];
@@ -207,8 +211,13 @@ static BOOL gIsShowGuidePage = NO;
         return;
     }
     
+    self.rightButton.enabled = NO;
     [self showActivityWithText:NSLS(@"kRegistering")];
+    
     [[UserNumberService defaultService] registerNewUserNumber:^(int resultCode, NSString *number) {
+        
+        self.rightButton.enabled = YES;
+        
         [self hideActivity];
         if (resultCode == 0){
             NSString* message = [NSString stringWithFormat:NSLS(@"kTakeNumberSucc"), number];

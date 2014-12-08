@@ -46,14 +46,14 @@ static UserNumberService* _defaultUserService;
     dispatch_async(workingQueue, ^{
         
         NSDictionary* para = @{
-                               PARA_DEVICEID : deviceId,
-                               PARA_DEVICETOKEN : deviceToken ? deviceToken : @"",
-                               PARA_COUNTRYCODE : [LocaleUtils getCountryCode],
-                               PARA_DEVICEOS : deviceOS,
-                               PARA_LANGUAGE : [LocaleUtils getLanguageCode],
-                               PARA_DEVICEMODEL : [UIDevice currentDevice].model,
+                               PARA_DEVICEID : SAFE_STRING(deviceId),
+                               PARA_DEVICETOKEN : SAFE_STRING(deviceToken),
+                               PARA_COUNTRYCODE : SAFE_STRING([LocaleUtils getCountryCode]),
+                               PARA_DEVICEOS : SAFE_STRING(deviceOS),
+                               PARA_LANGUAGE : SAFE_STRING([LocaleUtils getLanguageCode]),
+                               PARA_DEVICEMODEL : SAFE_STRING([UIDevice currentDevice].model),
                                PARA_DEVICETYPE : @(DEVICE_TYPE_IOS),
-                               PARA_NICKNAME : deviceName ? deviceName : @""
+                               PARA_NICKNAME : SAFE_STRING(deviceName)
                                };
         
         GameNetworkOutput* output = [PPGameNetworkRequest apiServerGetAndResponsePB:METHOD_REGISTER_NEW_USER_NUMBER
