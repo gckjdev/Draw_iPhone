@@ -214,6 +214,9 @@ enum{
 + (void)showReplyActions:(UIViewController*)superController postId:(NSString*)postId postUserId:(NSString*)postUserId sourceAction:(PBBBSAction*)sourceAction
 {
 #ifdef DEBUG
+    
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 0), dispatch_get_main_queue(), ^{
+    
 //    if ([[UserManager defaultManager] isSuperUser]){
         MKBlockActionSheet* sheet = [[MKBlockActionSheet alloc] initWithTitle:NSLS(@"回复选项")
                                                                      delegate:nil
@@ -232,27 +235,33 @@ enum{
                                      nil];
         
         [sheet setActionBlock:^(NSInteger buttonIndex){
-            NSString* title = [sheet buttonTitleAtIndex:buttonIndex];
-            int lastIndex = [sheet numberOfButtons] - 1;
-//            PPDebug(@"select button %@", title);
-            if (buttonIndex == lastIndex){
-                PPDebug(@"cancel");
-            }
-            else if (buttonIndex == 0) {
-//                PPDebug(@"normal reply");
-                [self replyPost:nil superController:superController postId:postId postUserId:postUserId sourceAction:sourceAction];
-            }
-            else{
-                [BBSManager saveLastInputText:title];
-                [self replyPost:title superController:superController postId:postId postUserId:postUserId sourceAction:sourceAction];
-            }
             
-            [sheet setActionBlock:NULL];
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 0), dispatch_get_main_queue(), ^{
+            
+            
+                NSString* title = [sheet buttonTitleAtIndex:buttonIndex];
+                int lastIndex = [sheet numberOfButtons] - 1;
+                if (buttonIndex == lastIndex){
+                    PPDebug(@"cancel");
+                }
+                else if (buttonIndex == 0) {
+                    [self replyPost:nil superController:superController postId:postId postUserId:postUserId sourceAction:sourceAction];
+                }
+                else{
+                    [BBSManager saveLastInputText:title];
+                    [self replyPost:title superController:superController postId:postId postUserId:postUserId sourceAction:sourceAction];
+                }
+                
+                [sheet setActionBlock:NULL];
+                
+            });
         }];
         
         [sheet showInView:superController.view];
 
 //    }
+    
+    });
     
     return;
 #endif

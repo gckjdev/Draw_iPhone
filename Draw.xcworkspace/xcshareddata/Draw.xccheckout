@@ -12,11 +12,11 @@
 	<dict>
 		<key>0980D040-3A23-4CE1-83AE-BFAD71FA4560</key>
 		<string>https://github.com/kishikawakatsumi/PEPhotoCropEditor.git</string>
-		<key>13195C4E-FB56-48B2-9692-9B59E7A982E9</key>
-		<string>ssh://github.com/gckjdev/Common_iPhone_20.git</string>
 		<key>40310209-B129-4B6A-8287-A72C28D9EE5E</key>
 		<string>https://github.com/mwaterfall/MWPhotoBrowser.git</string>
-		<key>40D8114B-45FC-408E-B4A4-238BDC98A311</key>
+		<key>7C74789DB1B1EAAD7497C159975198C0B6D6B2DC</key>
+		<string>ssh://github.com/gckjdev/Common_iPhone_20.git</string>
+		<key>ED5391FAADF3984CF35BFE122057B1CD0CCA5801</key>
 		<string>ssh://github.com/gckjdev/Draw_iPhone.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
@@ -25,26 +25,26 @@
 	<dict>
 		<key>0980D040-3A23-4CE1-83AE-BFAD71FA4560</key>
 		<string>../../Common_iPhone_20/Core/Core-Components-View/CropAndFilterViewController</string>
-		<key>13195C4E-FB56-48B2-9692-9B59E7A982E9</key>
-		<string>../../Common_iPhone_20</string>
 		<key>40310209-B129-4B6A-8287-A72C28D9EE5E</key>
 		<string>../../Common_iPhone_20/Components/Component-View/MWPhotoBrowser</string>
-		<key>40D8114B-45FC-408E-B4A4-238BDC98A311</key>
+		<key>7C74789DB1B1EAAD7497C159975198C0B6D6B2DC</key>
+		<string>../../Common_iPhone_20</string>
+		<key>ED5391FAADF3984CF35BFE122057B1CD0CCA5801</key>
 		<string>..</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
 	<string>ssh://github.com/gckjdev/Draw_iPhone.git</string>
 	<key>IDESourceControlProjectVersion</key>
-	<integer>110</integer>
+	<integer>111</integer>
 	<key>IDESourceControlProjectWCCIdentifier</key>
-	<string>40D8114B-45FC-408E-B4A4-238BDC98A311</string>
+	<string>ED5391FAADF3984CF35BFE122057B1CD0CCA5801</string>
 	<key>IDESourceControlProjectWCConfigurations</key>
 	<array>
 		<dict>
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.git</string>
 			<key>IDESourceControlWCCIdentifierKey</key>
-			<string>13195C4E-FB56-48B2-9692-9B59E7A982E9</string>
+			<string>7C74789DB1B1EAAD7497C159975198C0B6D6B2DC</string>
 			<key>IDESourceControlWCCName</key>
 			<string>Common_iPhone_20</string>
 		</dict>
@@ -60,7 +60,7 @@
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.git</string>
 			<key>IDESourceControlWCCIdentifierKey</key>
-			<string>40D8114B-45FC-408E-B4A4-238BDC98A311</string>
+			<string>ED5391FAADF3984CF35BFE122057B1CD0CCA5801</string>
 			<key>IDESourceControlWCCName</key>
 			<string>Draw_iPhone</string>
 		</dict>

@@ -235,6 +235,26 @@
     return [vc autorelease];
 }
 
++ (OfflineDrawViewController *)startDrawOnPhoto:(Word *)word
+                                 fromController:(UIViewController*)fromController
+                                startController:(UIViewController*)startController
+                                      targetUid:(NSString *)targetUid
+                                          photo:(UIImage *)photo
+                                       animated:(BOOL)animated
+{
+    OfflineDrawViewController *vc = [[OfflineDrawViewController alloc] initWithTargetType:TypeDrawPhoto
+                                                                                 delegate:nil
+                                                                          startController:startController
+                                                                                  Contest:nil
+                                                                             targetUserId:targetUid
+                                                                                  bgImage:photo];
+    
+    [fromController.navigationController pushViewController:vc animated:animated];
+    vc.startController = startController;
+    PPDebug(@"<StartDraw>: word = %@, targetUid = %@", word.text, targetUid);
+    return [vc autorelease];
+}
+
 - (void)setDraftTutorialInfo:(PBUserStage*)userStage targetType:(int)type
 {
     if (userStage == nil)
@@ -585,6 +605,10 @@
                     if (fillDraftMode){
                         [self.draft setLastLayerTag:@(MAIN_LAYER_TAG)];
                     }
+                    
+                    if (targetType == TypeDrawPhoto){
+                        [self.draft setCanvasSize:self.bgImage.size];
+                    }
                 }
                 
                 
@@ -714,6 +738,13 @@
         self.draftButton.hidden = YES;
         self.layerButton.hidden = YES;
         [self.upPanelButton setCenter:self.draftButton.center];
+    }
+    
+    if (targetType == TypeDrawPhoto){
+        self.submitButton.hidden = YES;
+        [self.layerButton setCenter:self.upPanelButton.center];
+        [self.upPanelButton setCenter:self.draftButton.center];
+        [self.draftButton setCenter:self.submitButton.center];
     }
     
     if ([self isLearnType]){

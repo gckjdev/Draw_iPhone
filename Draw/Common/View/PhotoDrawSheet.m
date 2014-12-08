@@ -35,9 +35,11 @@
 
 - (void)useSelectedBgImage:(UIImage *)image
 {
-    if ([_delegate respondsToSelector:@selector(didSelectImage:)]) {
-        [_delegate didSelectImage:image];
-    }
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 0), dispatch_get_main_queue(), ^{
+        if ([_delegate respondsToSelector:@selector(didSelectImage:)]) {
+            [_delegate didSelectImage:image];
+        }
+    });
 }
 
 
