@@ -103,29 +103,33 @@ typedef enum{
         [[CommonMessageCenter defaultCenter]postMessageWithText:NSLS(@"kLoadFail") delayTime:1.5 isHappy:NO];        
     }
 }
+
 - (void)enterOpusDetail:(CommentFeed *)feed
 {
     [ShowFeedController enterWithFeedId:feed.opusId fromController:self];
 }
+
 - (void)replyComment:(CommentFeed *)feed
 {
-    DrawFeed *drawFeed = [[DrawFeed alloc] init];
-    drawFeed.feedId = feed.opusId;
-    
-    FeedUser *feedUser = [[FeedUser alloc]initWithUserId:feed.opusCreator
-                                                nickName:nil
-                                                  avatar:nil
-                                                  gender:YES
-                                               signature:nil
-                                                     vip:0];
-    drawFeed.feedUser = feedUser;
-    [feedUser release];
-
-    CommentController *cc = [[CommentController alloc] initWithFeed:drawFeed commentFeed:_selectedCommentFeed];
-    [self presentModalViewController:cc animated:YES];
-    [cc release];
-    
-    [drawFeed release];
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 0), dispatch_get_main_queue(), ^{
+        DrawFeed *drawFeed = [[DrawFeed alloc] init];
+        drawFeed.feedId = feed.opusId;
+        
+        FeedUser *feedUser = [[FeedUser alloc]initWithUserId:feed.opusCreator
+                                                    nickName:nil
+                                                      avatar:nil
+                                                      gender:YES
+                                                   signature:nil
+                                                         vip:0];
+        drawFeed.feedUser = feedUser;
+        [feedUser release];
+        
+        CommentController *cc = [[CommentController alloc] initWithFeed:drawFeed commentFeed:_selectedCommentFeed];
+        [self presentViewController:cc animated:YES completion:nil];
+        [cc release];
+        
+        [drawFeed release];
+    });
 }
 
 

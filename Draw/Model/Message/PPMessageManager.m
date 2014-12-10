@@ -300,37 +300,6 @@ static PPMessageManager* globalDefaultMessageManager;
     PPDebug(@"<getMessageList> load %d message for user %@", [list count], friendUserId);
     [self printAllMessage:list];
     return list;
-
-    /*
-    NSMutableArray* list = [_friendMessageDict objectForKey:friendUserId];
-    if (list == nil){
-        PPDebug(@"<getMessageList> try to load local message for user %@", friendUserId);
-        
-        // try to load from local cache
-        NSArray* localCacheList = [PPMessageManager messageListForFriendId:friendUserId];
-        
-        // sort list
-        NSArray* sortedList = [localCacheList sortedArrayUsingComparator:^NSComparisonResult(id obj1, id obj2) {
-            PPMessage* m1 = (PPMessage*)obj1;
-            PPMessage* m2 = (PPMessage*)obj2;
-            return [m1.createDate compare:m2.createDate];
-        }];
-        
-        // make sure list is NOT null
-        if (sortedList == nil){
-            list = [NSMutableArray array];
-        }
-        else{
-            list = [NSMutableArray arrayWithArray:sortedList];
-        }
-        
-        [_friendMessageDict setObject:list forKey:friendUserId];
-    }
-    
-    PPDebug(@"<getMessageList> total %d message for user %@", [list count], friendUserId);
-    [self printAllMessage:list];
-    return list;
-     */
 }
 
 - (void)deleteMessage:(NSString*)messageId friendId:(NSString*)friendId
