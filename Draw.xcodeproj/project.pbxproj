@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		361DDF121A4D4D2F000B8530 /* PrizeCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = D879C91919A7369D003B2A29 /* PrizeCell~ipad.xib */; };
+		361DDF131A4D4D35000B8530 /* StageCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = D8C784BE196A559F00323712 /* StageCell~ipad.xib */; };
 		83E17DC016AB4A05BBF66F5E /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C73340CC5434A5894CC26E7 /* libPods.a */; };
 		8F5E9AD0400940DDB239EAC1 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C73340CC5434A5894CC26E7 /* libPods.a */; };
 		965990C8906A4D42B3A1D745 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C73340CC5434A5894CC26E7 /* libPods.a */; };
@@ -265,7 +267,6 @@
 		A44AC490187561F200927649 /* Group.proto in Resources */ = {isa = PBXBuildFile; fileRef = A44AC48C187561F200927649 /* Group.proto */; };
 		A44D658D18043E9C00DD6B48 /* UIImageView+ProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = A44D658C18043E9C00DD6B48 /* UIImageView+ProgressView.m */; };
 		A44D658E18043E9C00DD6B48 /* UIImageView+ProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = A44D658C18043E9C00DD6B48 /* UIImageView+ProgressView.m */; };
-		A44D658F18043E9C00DD6B48 /* UIImageView+ProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = A44D658C18043E9C00DD6B48 /* UIImageView+ProgressView.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
 		A44DDF4415C669E0005609F6 /* Dice.pb.m in Sources */ = {isa = PBXBuildFile; fileRef = A44DDF4315C669DF005609F6 /* Dice.pb.m */; };
 		A44E6CC5170D6E910067B647 /* TomatoItem.m in Sources */ = {isa = PBXBuildFile; fileRef = A44E6CC4170D6E910067B647 /* TomatoItem.m */; };
 		A44F32E817E16C3500AF9B26 /* ContestRankView.m in Sources */ = {isa = PBXBuildFile; fileRef = A44F32E717E16C3500AF9B26 /* ContestRankView.m */; };
@@ -6582,7 +6583,6 @@
 		D87129571996284300F6B757 /* 9.png in Resources */ = {isa = PBXBuildFile; fileRef = D87129531996284300F6B757 /* 9.png */; };
 		D879C91A19A7369D003B2A29 /* PrizeCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = D879C91919A7369D003B2A29 /* PrizeCell~ipad.xib */; };
 		D879C91B19A7369D003B2A29 /* PrizeCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = D879C91919A7369D003B2A29 /* PrizeCell~ipad.xib */; };
-		D879C91C19A7369D003B2A29 /* PrizeCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = D879C91919A7369D003B2A29 /* PrizeCell~ipad.xib */; };
 		D879C91D19A7369D003B2A29 /* PrizeCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = D879C91919A7369D003B2A29 /* PrizeCell~ipad.xib */; };
 		D89191F11963163B006B616A /* StageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D89191F01963163B006B616A /* StageCell.m */; };
 		D89191F21963163B006B616A /* StageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D89191F01963163B006B616A /* StageCell.m */; };
@@ -6735,7 +6735,6 @@
 		D8C784BD196A541C00323712 /* AllTutorialCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = D8C784B9196A541C00323712 /* AllTutorialCell~ipad.xib */; };
 		D8C784BF196A559F00323712 /* StageCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = D8C784BE196A559F00323712 /* StageCell~ipad.xib */; };
 		D8C784C0196A559F00323712 /* StageCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = D8C784BE196A559F00323712 /* StageCell~ipad.xib */; };
-		D8C784C1196A559F00323712 /* StageCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = D8C784BE196A559F00323712 /* StageCell~ipad.xib */; };
 		D8C784C2196A559F00323712 /* StageCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = D8C784BE196A559F00323712 /* StageCell~ipad.xib */; };
 		D8C784C4196A55C600323712 /* StageBasicInfoCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = D8C784C3196A55C600323712 /* StageBasicInfoCell~ipad.xib */; };
 		D8C784C5196A55C600323712 /* StageBasicInfoCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = D8C784C3196A55C600323712 /* StageBasicInfoCell~ipad.xib */; };
@@ -19383,6 +19382,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				361DDF121A4D4D2F000B8530 /* PrizeCell~ipad.xib in Resources */,
 				A461B3F4174CBAA70088B061 /* InfoPlist.strings in Resources */,
 				A461B3F5174CBAA70088B061 /* MainWindow.xib in Resources */,
 				A461B3F6174CBAA70088B061 /* donedown.png in Resources */,
@@ -19398,7 +19398,6 @@
 				A461B403174CBAA70088B061 /* GameBasic.proto in Resources */,
 				A461B404174CBAA70088B061 /* GameMessage.proto in Resources */,
 				A461B405174CBAA70088B061 /* GameConstants.proto in Resources */,
-				D879C91C19A7369D003B2A29 /* PrizeCell~ipad.xib in Resources */,
 				A461B406174CBAA70088B061 /* SelectWordCell.xib in Resources */,
 				A461B408174CBAA70088B061 /* FeedbackController.xib in Resources */,
 				A461B409174CBAA70088B061 /* UserSettingController.xib in Resources */,
@@ -19529,7 +19528,6 @@
 				A461B514174CBAA70088B061 /* bbs_board_line@2x.png in Resources */,
 				A461B517174CBAA70088B061 /* bbs_section_bg@2x.png in Resources */,
 				A461B518174CBAA70088B061 /* bbs_switch_bg@2x.png in Resources */,
-				D8C784C1196A559F00323712 /* StageCell~ipad.xib in Resources */,
 				D8BF373819713A5900ACEFCA /* daguanka.png in Resources */,
 				A461B519174CBAA70088B061 /* bbs_switch_down@2x.png in Resources */,
 				A461B51A174CBAA70088B061 /* bbs_switch_right@2x.png in Resources */,
@@ -20031,6 +20029,7 @@
 				CAA8B8101998836800C9A99B /* laba@2x.png in Resources */,
 				A4D8FC0F17DB08170085061F /* user_detail_follow_bg@2x.png in Resources */,
 				A4D8FC1317DB08170085061F /* user_detail_followandfan@2x.png in Resources */,
+				361DDF131A4D4D35000B8530 /* StageCell~ipad.xib in Resources */,
 				A4D8FC1717DB08180085061F /* user_detail_gender_female@2x.png in Resources */,
 				D8C784C6196A55C600323712 /* StageBasicInfoCell~ipad.xib in Resources */,
 				A4D8FC1B17DB08180085061F /* user_detail_gender_male@2x.png in Resources */,
@@ -24751,7 +24750,6 @@
 				A421517B1803EA2A007F2EFD /* MWZoomingScrollView.m in Sources */,
 				A421517E1803EA2A007F2EFD /* DACircularProgressView.m in Sources */,
 				A42151811803EA2A007F2EFD /* MBProgressHUD.m in Sources */,
-				A44D658F18043E9C00DD6B48 /* UIImageView+ProgressView.m in Sources */,
 				CA1FF89B1804F986003CEAD6 /* NSDate+TKCategory.m in Sources */,
 				A4F04B861806546F007274BE /* GuessService.m in Sources */,
 				A4F04B87180654B1007274BE /* PageScrollViewFactory.m in Sources */,
@@ -27773,7 +27771,7 @@
 					"${SRCROOT}/**",
 				);
 				INFOPLIST_FILE = "$(SRCROOT)/Draw/Sing-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\\\\\\\\\\\\\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/MobClick\\\\\\\\\\\\\\\"",
@@ -27881,7 +27879,7 @@
 					"${SRCROOT}/**",
 				);
 				INFOPLIST_FILE = "$(SRCROOT)/Draw/Sing-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\\\\\\\\\\\\\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/MobClick\\\\\\\\\\\\\\\"",

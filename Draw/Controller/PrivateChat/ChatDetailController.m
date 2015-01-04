@@ -568,7 +568,8 @@
     OfflineDrawViewController *odc = [[OfflineDrawViewController alloc] initWithTargetType:TypeGraffiti
                                                                                   delegate:self
                                                                            startController:nil];
-    [self presentViewController:odc animated:YES completion:nil];
+//    [self presentViewController:odc animated:YES completion:nil];
+    [self.navigationController pushViewController:odc animated:YES];
     [odc release];
 }
 
@@ -744,7 +745,8 @@
 - (void)didControllerClickBack:(OfflineDrawViewController *)controller
 {
 //    [controller dismissModalViewControllerAnimated:YES];
-    [controller dismissViewControllerAnimated:YES completion:nil];
+//    [controller dismissViewControllerAnimated:YES completion:nil];
+    [controller.navigationController popViewControllerAnimated:YES];
     
 }
 
@@ -753,7 +755,8 @@
            canvasSize:(CGSize)size
             drawImage:(UIImage *)drawImage
 {
-    [controller dismissViewControllerAnimated:YES completion:nil];
+//    [controller dismissViewControllerAnimated:YES completion:nil];
+    [controller.navigationController popViewControllerAnimated:YES];
     [[ChatService defaultService]  sendDrawMessage:drawActionList
                                         canvasSize:size
                                       friendUserId:self.fid
@@ -763,7 +766,8 @@
 
 - (void)didController:(OfflineDrawViewController *)controller submitImage:(UIImage *)image
 {
-    [controller dismissViewControllerAnimated:YES completion:nil];
+//    [controller dismissViewControllerAnimated:YES completion:nil];
+    [controller.navigationController popViewControllerAnimated:YES];
     [[ChatService defaultService]  sendImage:image
                                 friendUserId:self.fid
                                      isGroup:[self isGroup]];
@@ -1312,7 +1316,9 @@
                                                                                    bgImage:image];
 //    odc.bgImage = image;
 //    odc.bgImageName = [NSString stringWithFormat:@"%@.png", [NSString GetUUID]];
-    [self presentViewController:odc animated:YES completion:nil];
+//    [self presentModalViewController:odc animated:YES];
+
+    [self.navigationController pushViewController:odc animated:YES];
     [odc release];
 }
 
