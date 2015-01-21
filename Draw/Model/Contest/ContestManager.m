@@ -30,20 +30,24 @@ static ContestManager *_staticContestManager;
 
 - (void)dealloc
 {
-    [super dealloc];
     PPRelease(_oldContestIdList);
     PPRelease(_allContestList);
     PPRelease(_ongoingContestList);
+
+    [super dealloc];
 }
 
 - (id)init
 {
     self = [super init];
     if (self) {
+        
         NSUserDefaults* userDefault = [NSUserDefaults standardUserDefaults];
-        self.oldContestIdList = [userDefault objectForKey:OLD_CONTEST_LIST];
-        if (_oldContestIdList == nil) {
-            self.oldContestIdList  = [[[NSMutableArray alloc] init] autorelease];
+
+        self.oldContestIdList  = [[[NSMutableArray alloc] init] autorelease];
+        NSArray* saveOldList = [userDefault objectForKey:OLD_CONTEST_LIST];
+        if (saveOldList != nil) {
+            [self.oldContestIdList addObjectsFromArray:saveOldList];
         }
         
         _ongoingContestList = [[NSMutableArray alloc] init];

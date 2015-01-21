@@ -84,15 +84,16 @@ static ContestService *_staticContestService;
         GameNetworkOutput* output = [PPGameNetworkRequest trafficApiServerGetAndResponsePB:METHOD_GET_CONTEST_LIST
                                                                                 parameters:para];
         
-        NSArray *contestList = nil;
-        if (output.resultCode == 0 && output.pbResponse.contestListList){
-            contestList = [[ContestManager defaultManager] parseContestList:output.pbResponse.contestListList];
-            if (type == ContestListTypeAll) {
-                [[ContestManager defaultManager] setAllContestList:output.pbResponse.contestListList];
-            }
-        }
         
         dispatch_async(dispatch_get_main_queue(), ^{
+
+            NSArray *contestList = nil;
+            if (output.resultCode == 0 && output.pbResponse.contestListList){
+                contestList = [[ContestManager defaultManager] parseContestList:output.pbResponse.contestListList];
+                if (type == ContestListTypeAll) {
+                    [[ContestManager defaultManager] setAllContestList:output.pbResponse.contestListList];
+                }
+            }
 
             EXECUTE_BLOCK(completed, output.resultCode, type, contestList);
         });
