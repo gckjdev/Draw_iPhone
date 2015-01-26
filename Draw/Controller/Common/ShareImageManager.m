@@ -1761,7 +1761,7 @@ static NSMutableDictionary *boundImageDict = nil;
 
 + (UIImage *)statementCellBg1{
     
-    UIImage *image = [UIImage imageNamed:@"statement_cell_bg1@2x.png"];
+    UIImage *image = [UIImage imageNamedFixed:@"statement_cell_bg1@2x.png"];
     if (isIPad) {
         return [image stretchableImageWithLeftCapWidth:145 topCapHeight:85];
     }else{
@@ -1772,7 +1772,7 @@ static NSMutableDictionary *boundImageDict = nil;
 
 + (UIImage *)statementCellBg2{
         
-    UIImage *image = [UIImage imageNamed:@"statement_cell_bg2@2x.png"];
+    UIImage *image = [UIImage imageNamedFixed:@"statement_cell_bg2@2x.png"];
     if (isIPad) {
         return [image stretchableImageWithLeftCapWidth:145 topCapHeight:85];
     }else{
