@@ -449,7 +449,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GameItemService);
                                         currency:PBGameCurrencyIngot
                                   promotionPrice:1
                                        startDate:[NSDate date]
-                                      expireDate:[[NSDate date] dateByAddingDays:90]
+                                      expireDate:[[NSDate date] dateByAddingDays:360]
                                 defaultSaleCount:1]];
     
     // 广告拦截器
@@ -463,7 +463,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GameItemService);
                                         currency:PBGameCurrencyCoin //]];
                                   promotionPrice:10*1000/discount
                                        startDate:[NSDate date]
-                                      expireDate:[[NSDate date] dateByAddingDays:90]]];
+                                      expireDate:[[NSDate date] dateByAddingDays:360]]];
     
     // 钱箱
     [mutableArray addObject:[self itemWithItemId:ItemTypePurse
@@ -476,7 +476,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GameItemService);
                                         currency:PBGameCurrencyIngot
                                   promotionPrice:10
                                        startDate:[NSDate date]
-                                      expireDate:[[NSDate date] dateByAddingDays:90]
+                                      expireDate:[[NSDate date] dateByAddingDays:360]
                                 defaultSaleCount:1]];
     
     
@@ -492,7 +492,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GameItemService);
                                         currency:PBGameCurrencyIngot //PBGameCurrencyCoin
                                   promotionPrice:3 // *1000/discount
                                        startDate:[NSDate date]
-                                      expireDate:[[NSDate date] dateByAddingDays:90]]];
+                                      expireDate:[[NSDate date] dateByAddingDays:360]]];
     
     // 透明笔
     [mutableArray addObject:[self itemWithItemId:ItemTypeBrushBlur
@@ -505,7 +505,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GameItemService);
                                         currency:PBGameCurrencyIngot //PBGameCurrencyCoin
                                   promotionPrice:5 // *1000/discount
                                        startDate:[NSDate date]
-                                      expireDate:[[NSDate date] dateByAddingDays:90]]];
+                                      expireDate:[[NSDate date] dateByAddingDays:360]]];
     
     // 透明笔
     [mutableArray addObject:[self itemWithItemId:ItemTypeBrushCrayon
@@ -518,7 +518,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GameItemService);
                                         currency:PBGameCurrencyIngot //PBGameCurrencyCoin
                                   promotionPrice:3 // *1000/discount
                                        startDate:[NSDate date]
-                                      expireDate:[[NSDate date] dateByAddingDays:90]]];
+                                      expireDate:[[NSDate date] dateByAddingDays:360]]];
     
     // 透明笔
     [mutableArray addObject:[self itemWithItemId:ItemTypeBrushPen
@@ -531,7 +531,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GameItemService);
                                         currency:PBGameCurrencyCoin
                                   promotionPrice:99999 // *1000/discount
                                        startDate:[NSDate date]
-                                      expireDate:[[NSDate date] dateByAddingDays:90]]];
+                                      expireDate:[[NSDate date] dateByAddingDays:360]]];
     
     // 透明笔
     [mutableArray addObject:[self itemWithItemId:ItemTypeBrushPencil
@@ -544,7 +544,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GameItemService);
                                         currency:PBGameCurrencyIngot //PBGameCurrencyCoin
                                   promotionPrice:3 // *1000/discount
                                        startDate:[NSDate date]
-                                      expireDate:[[NSDate date] dateByAddingDays:90]]];
+                                      expireDate:[[NSDate date] dateByAddingDays:360]]];
     
     // 透明笔
     [mutableArray addObject:[self itemWithItemId:ItemTypeBrushWater
@@ -557,7 +557,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GameItemService);
                                         currency:PBGameCurrencyIngot //PBGameCurrencyCoin
                                   promotionPrice:5 // *1000/discount
                                        startDate:[NSDate date]
-                                      expireDate:[[NSDate date] dateByAddingDays:90]]];
+                                      expireDate:[[NSDate date] dateByAddingDays:360]]];
     
     // 透明笔
     [mutableArray addObject:[self itemWithItemId:ItemTypeBrushFilledCalligraphy
@@ -570,7 +570,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GameItemService);
                                         currency:PBGameCurrencyIngot //PBGameCurrencyCoin
                                   promotionPrice:5 // *1000/discount
                                        startDate:[NSDate date]
-                                      expireDate:[[NSDate date] dateByAddingDays:90]]];
+                                      expireDate:[[NSDate date] dateByAddingDays:360]]];
     
     // 透明笔
     [mutableArray addObject:[self itemWithItemId:ItemTypeBrushDryCalligraphy
@@ -583,7 +583,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GameItemService);
                                         currency:PBGameCurrencyIngot //PBGameCurrencyCoin
                                   promotionPrice:5 // *1000/discount
                                        startDate:[NSDate date]
-                                      expireDate:[[NSDate date] dateByAddingDays:90]]];
+                                      expireDate:[[NSDate date] dateByAddingDays:360]]];
     
     // 透明笔
     [mutableArray addObject:[self itemWithItemId:Quill
@@ -596,7 +596,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GameItemService);
                                         currency:PBGameCurrencyIngot //PBGameCurrencyCoin
                                   promotionPrice:5 // *1000/discount
                                        startDate:[NSDate date]
-                                      expireDate:[[NSDate date] dateByAddingDays:90]]];
+                                      expireDate:[[NSDate date] dateByAddingDays:360]]];
     
     // 透明笔
     [mutableArray addObject:[self itemWithItemId:ColorAlphaItem
@@ -609,7 +609,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GameItemService);
                                         currency:PBGameCurrencyIngot //PBGameCurrencyCoin
                                   promotionPrice:1 // *1000/discount
                                        startDate:[NSDate date]
-                                      expireDate:[[NSDate date] dateByAddingDays:90]]];
+                                      expireDate:[[NSDate date] dateByAddingDays:360]]];
     
     // 吸管
     [mutableArray addObject:[self itemWithItemId:ColorStrawItem
@@ -622,7 +622,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GameItemService);
                                         currency:PBGameCurrencyIngot //]];
                                   promotionPrice:1  //1500/discount
                                        startDate:[NSDate date]
-                                      expireDate:[[NSDate date] dateByAddingDays:90]]];
+                                      expireDate:[[NSDate date] dateByAddingDays:360]]];
     
     // 作品播放器
     [mutableArray addObject:[self itemWithItemId:PaintPlayerItem
@@ -635,7 +635,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GameItemService);
                                         currency:PBGameCurrencyIngot //]];
                                   promotionPrice:1 ///discount
                                        startDate:[NSDate date]
-                                      expireDate:[[NSDate date] dateByAddingDays:90]]];
+                                      expireDate:[[NSDate date] dateByAddingDays:360]]];
 
     
     // 调色盘
@@ -649,7 +649,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GameItemService);
                                         currency:PBGameCurrencyIngot
                                   promotionPrice:1//discount
                                        startDate:[NSDate date]
-                                      expireDate:[[NSDate date] dateByAddingDays:90]]];
+                                      expireDate:[[NSDate date] dateByAddingDays:360]]];
     
     ///*
     //阴影
@@ -663,7 +663,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GameItemService);
                                         currency:PBGameCurrencyIngot //]];
                                   promotionPrice:1 //1000/discount
                                        startDate:[NSDate date]
-                                      expireDate:[[NSDate date] dateByAddingDays:90]]];
+                                      expireDate:[[NSDate date] dateByAddingDays:360]]];
     
     //渐变
     [mutableArray addObject:[self itemWithItemId:ItemTypeGradient
@@ -676,7 +676,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GameItemService);
                                         currency:PBGameCurrencyIngot //]];
                                   promotionPrice:1 //1000/discount
                                        startDate:[NSDate date]
-                                      expireDate:[[NSDate date] dateByAddingDays:90]]];
+                                      expireDate:[[NSDate date] dateByAddingDays:360]]];
     
     //选择器
     [mutableArray addObject:[self itemWithItemId:ItemTypeSelector
@@ -689,7 +689,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GameItemService);
                                         currency:PBGameCurrencyIngot //]];
                                   promotionPrice:1 //1000/discount
                                        startDate:[NSDate date]
-                                      expireDate:[[NSDate date] dateByAddingDays:90]]];
+                                      expireDate:[[NSDate date] dateByAddingDays:360]]];
     //*/
     
     //基本形状
@@ -703,7 +703,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GameItemService);
                                         currency:PBGameCurrencyIngot
                                   promotionPrice:1//shapeDiscount
                                        startDate:[NSDate date]
-                                      expireDate:[[NSDate date] dateByAddingDays:90]]];
+                                      expireDate:[[NSDate date] dateByAddingDays:360]]];
     
 
     ///*
@@ -718,7 +718,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GameItemService);
                                         currency:PBGameCurrencyIngot //]];
                                   promotionPrice:1 //1000/discount
                                        startDate:[NSDate date]
-                                      expireDate:[[NSDate date] dateByAddingDays:90]]];
+                                      expireDate:[[NSDate date] dateByAddingDays:360]]];
     //*/
     
     
@@ -733,7 +733,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GameItemService);
                                         currency:PBGameCurrencyIngot //]];
                                   promotionPrice:1 //discount
                                        startDate:[NSDate date]
-                                      expireDate:[[NSDate date] dateByAddingDays:90]]];
+                                      expireDate:[[NSDate date] dateByAddingDays:360]]];
     
     // 背景10
     [mutableArray addObject:[self itemWithItemId:DrawBackground10
@@ -746,7 +746,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GameItemService);
                                         currency:PBGameCurrencyIngot
                                   promotionPrice:2//backgroundDiscount
                                        startDate:[NSDate date]
-                                      expireDate:[[NSDate date] dateByAddingDays:90]]];
+                                      expireDate:[[NSDate date] dateByAddingDays:360]]];
     
     // 背景11
     [mutableArray addObject:[self itemWithItemId:DrawBackground11
@@ -759,7 +759,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GameItemService);
                                         currency:PBGameCurrencyIngot
                                   promotionPrice:1//backgroundDiscount
                                        startDate:[NSDate date]
-                                      expireDate:[[NSDate date] dateByAddingDays:90]]];
+                                      expireDate:[[NSDate date] dateByAddingDays:360]]];
     
     // 背景12
     [mutableArray addObject:[self itemWithItemId:DrawBackground12
@@ -772,7 +772,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GameItemService);
                                         currency:PBGameCurrencyIngot
                                   promotionPrice:2//backgroundDiscount
                                        startDate:[NSDate date]
-                                      expireDate:[[NSDate date] dateByAddingDays:90]]];
+                                      expireDate:[[NSDate date] dateByAddingDays:360]]];
     
     // 背景13
     [mutableArray addObject:[self itemWithItemId:DrawBackground13
@@ -785,7 +785,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GameItemService);
                                         currency:PBGameCurrencyIngot
                                   promotionPrice:1 //backgroundDiscount
                                        startDate:[NSDate date]
-                                      expireDate:[[NSDate date] dateByAddingDays:90]]];
+                                      expireDate:[[NSDate date] dateByAddingDays:360]]];
     
     // 背景14
     [mutableArray addObject:[self itemWithItemId:DrawBackground14
@@ -798,7 +798,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GameItemService);
                                         currency:PBGameCurrencyIngot
                                   promotionPrice:2//backgroundDiscount
                                        startDate:[NSDate date]
-                                      expireDate:[[NSDate date] dateByAddingDays:90]]];
+                                      expireDate:[[NSDate date] dateByAddingDays:360]]];
     
     // 背景15
     [mutableArray addObject:[self itemWithItemId:DrawBackground15
@@ -811,7 +811,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GameItemService);
                                         currency:PBGameCurrencyIngot
                                   promotionPrice:1//backgroundDiscount
                                        startDate:[NSDate date]
-                                      expireDate:[[NSDate date] dateByAddingDays:90]]];
+                                      expireDate:[[NSDate date] dateByAddingDays:360]]];
     
     // 背景16
     [mutableArray addObject:[self itemWithItemId:DrawBackground16
@@ -824,7 +824,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GameItemService);
                                         currency:PBGameCurrencyIngot
                                   promotionPrice:2//backgroundDiscount
                                        startDate:[NSDate date]
-                                      expireDate:[[NSDate date] dateByAddingDays:90]]];
+                                      expireDate:[[NSDate date] dateByAddingDays:360]]];
     
     // 背景17
     [mutableArray addObject:[self itemWithItemId:DrawBackground17
@@ -837,7 +837,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GameItemService);
                                         currency:PBGameCurrencyIngot
                                   promotionPrice:2//backgroundDiscount
                                        startDate:[NSDate date]
-                                      expireDate:[[NSDate date] dateByAddingDays:90]]];
+                                      expireDate:[[NSDate date] dateByAddingDays:360]]];
     
 
     
@@ -852,7 +852,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GameItemService);
                                         currency:PBGameCurrencyIngot
                                   promotionPrice:2//backgroundDiscount
                                        startDate:[NSDate date]
-                                      expireDate:[[NSDate date] dateByAddingDays:90]]];
+                                      expireDate:[[NSDate date] dateByAddingDays:360]]];
     
     // 背景2
     [mutableArray addObject:[self itemWithItemId:DrawBackground2
@@ -865,7 +865,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GameItemService);
                                         currency:PBGameCurrencyIngot
                                   promotionPrice:2//backgroundDiscount
                                        startDate:[NSDate date]
-                                      expireDate:[[NSDate date] dateByAddingDays:90]]];
+                                      expireDate:[[NSDate date] dateByAddingDays:360]]];
     
     
     
@@ -880,7 +880,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GameItemService);
                                         currency:PBGameCurrencyIngot
                                   promotionPrice:1//backgroundDiscount
                                        startDate:[NSDate date]
-                                      expireDate:[[NSDate date] dateByAddingDays:90]]];
+                                      expireDate:[[NSDate date] dateByAddingDays:360]]];
     
     
     // 背景4
@@ -894,7 +894,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GameItemService);
                                         currency:PBGameCurrencyIngot
                                   promotionPrice:1//backgroundDiscount
                                        startDate:[NSDate date]
-                                      expireDate:[[NSDate date] dateByAddingDays:90]]];
+                                      expireDate:[[NSDate date] dateByAddingDays:360]]];
     
     // 背景5
     [mutableArray addObject:[self itemWithItemId:DrawBackground5
@@ -907,7 +907,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GameItemService);
                                         currency:PBGameCurrencyIngot
                                   promotionPrice:1//backgroundDiscount
                                        startDate:[NSDate date]
-                                      expireDate:[[NSDate date] dateByAddingDays:90]]];
+                                      expireDate:[[NSDate date] dateByAddingDays:360]]];
     
     // 背景6
     [mutableArray addObject:[self itemWithItemId:DrawBackground6
@@ -920,7 +920,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GameItemService);
                                         currency:PBGameCurrencyIngot
                                   promotionPrice:1 ///backgroundDiscount
                                        startDate:[NSDate date]
-                                      expireDate:[[NSDate date] dateByAddingDays:90]]];
+                                      expireDate:[[NSDate date] dateByAddingDays:360]]];
     
     // 背景7
     [mutableArray addObject:[self itemWithItemId:DrawBackground7
@@ -933,7 +933,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GameItemService);
                                         currency:PBGameCurrencyIngot
                                   promotionPrice:1 //4000/backgroundDiscount
                                        startDate:[NSDate date]
-                                      expireDate:[[NSDate date] dateByAddingDays:90]]];
+                                      expireDate:[[NSDate date] dateByAddingDays:360]]];
     
     // 背景8
     [mutableArray addObject:[self itemWithItemId:DrawBackground8
@@ -946,7 +946,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GameItemService);
                                         currency:PBGameCurrencyIngot
                                   promotionPrice:2 ///backgroundDiscount
                                        startDate:[NSDate date]
-                                      expireDate:[[NSDate date] dateByAddingDays:90]]];
+                                      expireDate:[[NSDate date] dateByAddingDays:360]]];
     
     // 背景9
     [mutableArray addObject:[self itemWithItemId:DrawBackground9
@@ -959,7 +959,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GameItemService);
                                         currency:PBGameCurrencyIngot
                                   promotionPrice:2 //4000/backgroundDiscount
                                        startDate:[NSDate date]
-                                      expireDate:[[NSDate date] dateByAddingDays:90]]];
+                                      expireDate:[[NSDate date] dateByAddingDays:360]]];
     
     //雨雪形状
     [mutableArray addObject:[self itemWithItemId:ImageShapeNature0
@@ -972,7 +972,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GameItemService);
                                         currency:PBGameCurrencyIngot
                                   promotionPrice:2 // 5000/shapeDiscount
                                        startDate:[NSDate date]
-                                      expireDate:[[NSDate date] dateByAddingDays:90]]];
+                                      expireDate:[[NSDate date] dateByAddingDays:360]]];
     
     //日月形状
     [mutableArray addObject:[self itemWithItemId:ImageShapeNature1
@@ -985,7 +985,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GameItemService);
                                         currency:PBGameCurrencyIngot
                                   promotionPrice:2 //5000/shapeDiscount
                                        startDate:[NSDate date]
-                                      expireDate:[[NSDate date] dateByAddingDays:90]]];
+                                      expireDate:[[NSDate date] dateByAddingDays:360]]];
     
     //飞禽形状
     [mutableArray addObject:[self itemWithItemId:ImageShapeAnimal0
@@ -998,7 +998,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GameItemService);
                                         currency:PBGameCurrencyIngot
                                   promotionPrice:2 //5000/shapeDiscount
                                        startDate:[NSDate date]
-                                      expireDate:[[NSDate date] dateByAddingDays:90]]];
+                                      expireDate:[[NSDate date] dateByAddingDays:360]]];
     
     //走兽形状
     [mutableArray addObject:[self itemWithItemId:ImageShapeAnimal1
@@ -1011,7 +1011,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GameItemService);
                                         currency:PBGameCurrencyIngot
                                   promotionPrice:2 // 5000/shapeDiscount
                                        startDate:[NSDate date]
-                                      expireDate:[[NSDate date] dateByAddingDays:90]]];
+                                      expireDate:[[NSDate date] dateByAddingDays:360]]];
     
     //棱角形状
     [mutableArray addObject:[self itemWithItemId:ImageShapeShape0
@@ -1024,7 +1024,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GameItemService);
                                         currency:PBGameCurrencyIngot
                                   promotionPrice:2 // 5000/shapeDiscount
                                        startDate:[NSDate date]
-                                      expireDate:[[NSDate date] dateByAddingDays:90]]];
+                                      expireDate:[[NSDate date] dateByAddingDays:360]]];
     
     //圆弧形状
     [mutableArray addObject:[self itemWithItemId:ImageShapeShape1
@@ -1037,7 +1037,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GameItemService);
                                         currency:PBGameCurrencyIngot
                                   promotionPrice:2 //5000/shapeDiscount
                                        startDate:[NSDate date]
-                                      expireDate:[[NSDate date] dateByAddingDays:90]]];
+                                      expireDate:[[NSDate date] dateByAddingDays:360]]];
     
     //家具形状
     [mutableArray addObject:[self itemWithItemId:ImageShapeStuff0
@@ -1050,7 +1050,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GameItemService);
                                         currency:PBGameCurrencyIngot
                                   promotionPrice:2 //5000/shapeDiscount
                                        startDate:[NSDate date]
-                                      expireDate:[[NSDate date] dateByAddingDays:90]]];
+                                      expireDate:[[NSDate date] dateByAddingDays:360]]];
     
     //出行形状
     [mutableArray addObject:[self itemWithItemId:ImageShapeStuff1
@@ -1063,7 +1063,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GameItemService);
                                         currency:PBGameCurrencyIngot
                                   promotionPrice:2 //5000/shapeDiscount
                                        startDate:[NSDate date]
-                                      expireDate:[[NSDate date] dateByAddingDays:90]]];
+                                      expireDate:[[NSDate date] dateByAddingDays:360]]];
     
     //算术形状
     [mutableArray addObject:[self itemWithItemId:ImageShapeSign0
@@ -1076,7 +1076,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GameItemService);
                                         currency:PBGameCurrencyIngot
                                   promotionPrice:2 //5000/shapeDiscount
                                        startDate:[NSDate date]
-                                      expireDate:[[NSDate date] dateByAddingDays:90]]];
+                                      expireDate:[[NSDate date] dateByAddingDays:360]]];
     
     //玄音形状
     [mutableArray addObject:[self itemWithItemId:ImageShapeSign1
@@ -1089,7 +1089,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GameItemService);
                                         currency:PBGameCurrencyIngot
                                   promotionPrice:2 // 5000/shapeDiscount
                                        startDate:[NSDate date]
-                                      expireDate:[[NSDate date] dateByAddingDays:90]]];
+                                      expireDate:[[NSDate date] dateByAddingDays:360]]];
     
     //芳草形状
     [mutableArray addObject:[self itemWithItemId:ImageShapePlant0
@@ -1102,7 +1102,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GameItemService);
                                         currency:PBGameCurrencyIngot
                                   promotionPrice:1 //5000/shapeDiscount
                                        startDate:[NSDate date]
-                                      expireDate:[[NSDate date] dateByAddingDays:90]]];
+                                      expireDate:[[NSDate date] dateByAddingDays:360]]];
     
     //落木形状
     [mutableArray addObject:[self itemWithItemId:ImageShapePlant1
@@ -1115,7 +1115,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GameItemService);
                                         currency:PBGameCurrencyIngot
                                   promotionPrice:1 //5000/shapeDiscount
                                        startDate:[NSDate date]
-                                      expireDate:[[NSDate date] dateByAddingDays:90]]];
+                                      expireDate:[[NSDate date] dateByAddingDays:360]]];
     
     //羞花形状
     [mutableArray addObject:[self itemWithItemId:ImageShapePlant2
@@ -1128,7 +1128,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GameItemService);
                                         currency:PBGameCurrencyIngot
                                   promotionPrice:1 //shapeDiscount
                                        startDate:[NSDate date]
-                                      expireDate:[[NSDate date] dateByAddingDays:90]]];
+                                      expireDate:[[NSDate date] dateByAddingDays:360]]];
 
     
     // 正方形画布（大）
@@ -1142,7 +1142,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GameItemService);
                                         currency:PBGameCurrencyIngot  //]];
                                   promotionPrice:2 // *1000 //discount
                                        startDate:[NSDate date]
-                                      expireDate:[[NSDate date] dateByAddingDays:90]]];
+                                      expireDate:[[NSDate date] dateByAddingDays:360]]];
     
     // 横版画布（小）
     [mutableArray addObject:[self itemWithItemId:CanvasRectiPadHorizontal
@@ -1155,7 +1155,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GameItemService);
                                         currency:PBGameCurrencyIngot //]];
                                   promotionPrice:2 //discount
                                        startDate:[NSDate date]
-                                      expireDate:[[NSDate date] dateByAddingDays:90]]];
+                                      expireDate:[[NSDate date] dateByAddingDays:360]]];
     
     // 横版画布（中）
     [mutableArray addObject:[self itemWithItemId:CanvasRectiPadScreenHorizontal
@@ -1168,7 +1168,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GameItemService);
                                         currency:PBGameCurrencyIngot //]];
                                   promotionPrice:2 //*1000 //discount
                                        startDate:[NSDate date]
-                                      expireDate:[[NSDate date] dateByAddingDays:90]]];
+                                      expireDate:[[NSDate date] dateByAddingDays:360]]];
     
     // 横版画布（大）
     [mutableArray addObject:[self itemWithItemId:CanvasRectiPhone5Horizontal
@@ -1181,7 +1181,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GameItemService);
                                         currency:PBGameCurrencyIngot //]];
                                   promotionPrice:2 //discount
                                        startDate:[NSDate date]
-                                      expireDate:[[NSDate date] dateByAddingDays:90]]];
+                                      expireDate:[[NSDate date] dateByAddingDays:360]]];
     
     
     // 竖版画布（小）
@@ -1195,7 +1195,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GameItemService);
                                         currency:PBGameCurrencyIngot //]];
                                   promotionPrice:2 //discount
                                        startDate:[NSDate date]
-                                      expireDate:[[NSDate date] dateByAddingDays:90]]];
+                                      expireDate:[[NSDate date] dateByAddingDays:360]]];
     
     // 竖版画布（中）
     [mutableArray addObject:[self itemWithItemId:CanvasRectiPadScreenVertical
@@ -1208,7 +1208,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GameItemService);
                                         currency:PBGameCurrencyIngot //]];
                                   promotionPrice:2 //*1000 //discount
                                        startDate:[NSDate date]
-                                      expireDate:[[NSDate date] dateByAddingDays:90]]];
+                                      expireDate:[[NSDate date] dateByAddingDays:360]]];
     
     // 竖版画布（大）
     [mutableArray addObject:[self itemWithItemId:CanvasRectiPhone5Vertical
@@ -1221,7 +1221,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GameItemService);
                                         currency:PBGameCurrencyIngot //]];
                                   promotionPrice:2 //discount
                                        startDate:[NSDate date]
-                                      expireDate:[[NSDate date] dateByAddingDays:90]]];
+                                      expireDate:[[NSDate date] dateByAddingDays:360]]];
     
     // 海报画布
     [mutableArray addObject:[self itemWithItemId:CanvasRectContestBillboard
@@ -1234,7 +1234,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GameItemService);
                                         currency:PBGameCurrencyIngot //]];
                                   promotionPrice:1 //discount
                                        startDate:[NSDate date]
-                                      expireDate:[[NSDate date] dateByAddingDays:90]]];
+                                      expireDate:[[NSDate date] dateByAddingDays:360]]];
     
     // Android标准画布（横）
     [mutableArray addObject:[self itemWithItemId:CanvasRectAndroidHorizontal
@@ -1247,7 +1247,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GameItemService);
                                         currency:PBGameCurrencyIngot //]];
                                   promotionPrice:2 //*1000/discount
                                        startDate:[NSDate date]
-                                      expireDate:[[NSDate date] dateByAddingDays:90]]];
+                                      expireDate:[[NSDate date] dateByAddingDays:360]]];
     
     // Android标准画布（竖）
     [mutableArray addObject:[self itemWithItemId:CanvasRectAndroidVertical
@@ -1260,16 +1260,30 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GameItemService);
                                         currency:PBGameCurrencyIngot //]];
                                   promotionPrice:2 //discount
                                        startDate:[NSDate date]
-                                      expireDate:[[NSDate date] dateByAddingDays:90]]];
+                                      expireDate:[[NSDate date] dateByAddingDays:360]]];
     
+//    [mutableArray addObject:[self itemWithItemId:ItemTypeTaoBao
+//                                            name:@"obb电容笔"
+//                                            desc:@"obb知名电容笔品牌,布头,可换笔头,高精度,包邮29.9元,近期促销23.92元"
+//                                           image:DRAW_URL_ITEM_IMAGE(@"shop_item_taobao_obb_pen.png")
+//                             
+//                                            type:PBDrawItemTypeDrawTaoBao
+//                                             url:@"http://re.taobao.com/eauction?e=YABvLk7cRE8jmraEDZVrLu1ZzttXXd5pAUuPt4hhrd%2BLltG5xFicOSZqewpHPyZz6sGY91fAsX0jyOUZkjv5HyzD7IzUEp4zi9vrzXXZm2WB3ujUJI0OeA%3D%3D&ptype=100010&clk1=62dcd709d651c3d38b8f0d239d401ebe&upsid=62dcd709d651c3d38b8f0d239d401ebe"]];
+
     [mutableArray addObject:[self itemWithItemId:ItemTypeTaoBao
-                                            name:@"obb电容笔"
-                                            desc:@"obb知名电容笔品牌,布头,可换笔头,高精度,包邮29.9元,近期促销23.92元"
-                                           image:DRAW_URL_ITEM_IMAGE(@"shop_item_taobao_obb_pen.png")
+                                            name:@"小吉电容笔"
+                                            desc:@"专业绘画电容笔，金属圆盘触控, 超高精细，堪比Jot Pro，49元起，多重套餐优惠"
+                                           image:DRAW_URL_ITEM_IMAGE(@"troe2.jpg")
                              
                                             type:PBDrawItemTypeDrawTaoBao
-                                             url:@"http://re.taobao.com/eauction?e=YABvLk7cRE8jmraEDZVrLu1ZzttXXd5pAUuPt4hhrd%2BLltG5xFicOSZqewpHPyZz6sGY91fAsX0jyOUZkjv5HyzD7IzUEp4zi9vrzXXZm2WB3ujUJI0OeA%3D%3D&ptype=100010&clk1=62dcd709d651c3d38b8f0d239d401ebe&upsid=62dcd709d651c3d38b8f0d239d401ebe"]];
+                                             url:@"http://a.m.taobao.com/i43743150756.htm"]];
 
+//    [mutableArray addObject:[self itemWithItemId:ItemTypeTaoBao
+//                                            name:@"小吉电容笔 + VIP包年 优惠组合套餐"
+//                                            desc:@"专业绘画电容笔，金属圆盘触控, 超高精细，+ 一年小吉VIP，138元套餐优惠"
+//                                           image:DRAW_URL_ITEM_IMAGE(@"troe2.jpg")
+//                                            type:PBDrawItemTypeDrawTaoBao
+//                                             url:@"http://a.m.taobao.com/i43743150756.htm"]];
     
     /*
     // 维锐电容笔（大）
@@ -1298,9 +1312,9 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GameItemService);
     NSString *filePath = nil;
     
     if (isLittleGeeAPP()) {
-        filePath = [@"/gitdata/Draw_iPhone/Draw/LittleGeeDraw/Resource/Config/" stringByAppendingPathComponent:[GameItemManager shopItemsFileName]];
+        filePath = [@"/Users/pipi/gitdata/Draw_iPhone/Draw/LittleGeeDraw/Resource/Config/" stringByAppendingPathComponent:[GameItemManager shopItemsFileName]];
     } else if (isDrawApp()) {
-        filePath = [@"/gitdata/Draw_iPhone/Draw/Draw/Resource/Data/" stringByAppendingPathComponent:[GameItemManager shopItemsFileName]];
+        filePath = [@"/Users/pipi/gitdata/Draw_iPhone/Draw/Draw/Resource/Data/" stringByAppendingPathComponent:[GameItemManager shopItemsFileName]];
     } 
     
     if (![[list data] writeToFile:filePath atomically:YES]) {
@@ -1394,7 +1408,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GameItemService);
                                         currency:PBGameCurrencyIngot
                                   promotionPrice:1
                                        startDate:[NSDate date]
-                                      expireDate:[[NSDate date] dateByAddingDays:90]]];
+                                      expireDate:[[NSDate date] dateByAddingDays:360]]];
     
     // 背景2
     [mutableArray addObject:[self itemWithItemId:DrawBackground2
@@ -1407,7 +1421,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GameItemService);
                                         currency:PBGameCurrencyIngot
                                   promotionPrice:1
                                        startDate:[NSDate date]
-                                      expireDate:[[NSDate date] dateByAddingDays:90]]];
+                                      expireDate:[[NSDate date] dateByAddingDays:360]]];
     
     
     
@@ -1422,7 +1436,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GameItemService);
                                         currency:PBGameCurrencyIngot
                                   promotionPrice:1
                                        startDate:[NSDate date]
-                                      expireDate:[[NSDate date] dateByAddingDays:90]]];
+                                      expireDate:[[NSDate date] dateByAddingDays:360]]];
     
     
     // 背景4
@@ -1436,7 +1450,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GameItemService);
                                         currency:PBGameCurrencyIngot
                                   promotionPrice:1
                                        startDate:[NSDate date]
-                                      expireDate:[[NSDate date] dateByAddingDays:90]]];
+                                      expireDate:[[NSDate date] dateByAddingDays:360]]];
     
     // 背景5
     [mutableArray addObject:[self itemWithItemId:DrawBackground5
@@ -1449,7 +1463,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GameItemService);
                                         currency:PBGameCurrencyIngot
                                   promotionPrice:1
                                        startDate:[NSDate date]
-                                      expireDate:[[NSDate date] dateByAddingDays:90]]];
+                                      expireDate:[[NSDate date] dateByAddingDays:360]]];
     
     // 背景6
     [mutableArray addObject:[self itemWithItemId:DrawBackground6
@@ -1462,7 +1476,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GameItemService);
                                         currency:PBGameCurrencyIngot
                                   promotionPrice:1
                                        startDate:[NSDate date]
-                                      expireDate:[[NSDate date] dateByAddingDays:90]]];
+                                      expireDate:[[NSDate date] dateByAddingDays:360]]];
     
     // 背景7
     [mutableArray addObject:[self itemWithItemId:DrawBackground7
@@ -1475,7 +1489,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GameItemService);
                                         currency:PBGameCurrencyIngot
                                   promotionPrice:1
                                        startDate:[NSDate date]
-                                      expireDate:[[NSDate date] dateByAddingDays:90]]];
+                                      expireDate:[[NSDate date] dateByAddingDays:360]]];
     
     // 背景8
     [mutableArray addObject:[self itemWithItemId:DrawBackground8
@@ -1488,7 +1502,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GameItemService);
                                         currency:PBGameCurrencyIngot
                                   promotionPrice:1
                                        startDate:[NSDate date]
-                                      expireDate:[[NSDate date] dateByAddingDays:90]]];
+                                      expireDate:[[NSDate date] dateByAddingDays:360]]];
     
     // 背景9
     [mutableArray addObject:[self itemWithItemId:DrawBackground9
@@ -1501,7 +1515,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GameItemService);
                                         currency:PBGameCurrencyIngot
                                   promotionPrice:1
                                        startDate:[NSDate date]
-                                      expireDate:[[NSDate date] dateByAddingDays:90]]];
+                                      expireDate:[[NSDate date] dateByAddingDays:360]]];
     
     // 正方形画布（大）
     [mutableArray addObject:[self itemWithItemId:CanvasRectiPadLarge

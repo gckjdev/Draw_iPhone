@@ -176,8 +176,10 @@
             [self takePhoto];
         }
         else if (buttonIndex >= otherIndexStart && buttonIndex <= otherIndexEnd){
-            EXECUTE_BLOCK(self.otherHandlerBlock, buttonIndex);
-            self.otherHandlerBlock = nil;
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                EXECUTE_BLOCK(self.otherHandlerBlock, buttonIndex);
+                self.otherHandlerBlock = nil;
+            });
         }
         else{
             PPDebug(@"<showSelectionView> cancel");
