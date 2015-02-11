@@ -80,7 +80,19 @@
 
 - (void)initRowNumber
 {
-    rowOfMoreApp = -1;  // useless now
+    rowOfMoreApp = -1;
+    rowOfShare = -1;
+    rowOfFollowSina = -1;
+    rowOfFollowTencent = -1;
+    rowOfAddWords = -1;
+    rowOfReportBug = -1;
+    rowOfFeedback = -1;
+    rowOfMoreApp = -1;
+    rowOfGiveReview = -1;
+    rowOfAbout = -1;
+    rowOfAppUpdate = -1;
+    numberOfRows = -1;
+    rowOfCleanCache = -1;
     
     int count = 0;
     if (isDrawApp()) {
