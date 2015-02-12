@@ -308,7 +308,7 @@ typedef enum{
 - (void)dismissGroup
 {
     BOOL canDismiss = [self canDismiss:[[GroupManager defaultManager] tempMemberList]];
-    int guestCount = self.group.guestSize;
+    int guestCount = [self.group.guestsList count];
     PPDebug(@"group guest count = %d", guestCount);
     
     if (canDismiss == NO || guestCount > 0){
