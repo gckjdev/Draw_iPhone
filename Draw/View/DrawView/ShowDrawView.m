@@ -1017,6 +1017,7 @@ typedef enum {
 
 #ifdef DEBUG
     
+    /*
     
     NSString* name = [NSString stringWithFormat:@"作者：%@",[ShareService defaultService].draft.drawUserNickName];
     PPDebug(@"nickname is %@",name);
@@ -1045,7 +1046,7 @@ typedef enum {
     }];
     [srcImgList removeLastObject];
     
-   
+    */
     
     
     
@@ -1092,7 +1093,7 @@ typedef enum {
     [srcImgList release];
     
 #ifdef DEBUG
-    [HJImagesToVideo addAudioToFileAtPath:@"/Users/chaoso/Desktop/temp.mp4" toPath:@"/Users/chaoso/Desktop/2.mp4"];
+//    [HJImagesToVideo addAudioToFileAtPath:@"/Users/chaoso/Desktop/temp.mp4" toPath:@"/Users/chaoso/Desktop/2.mp4"];
 #endif
     
     return;
