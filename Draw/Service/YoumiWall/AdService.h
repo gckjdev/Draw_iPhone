@@ -13,7 +13,7 @@
 //#import "AderDelegateProtocal.h"
 //#import "AdMoGoView.h"
 //#import "WapsOffer/AppConnect.h"
-#import "GADBannerViewDelegate.h"
+#import <GoogleMobileAds/GADBannerViewDelegate.h>
 
 typedef enum
 {

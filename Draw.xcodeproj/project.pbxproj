@@ -9,6 +9,88 @@
 /* Begin PBXBuildFile section */
 		361DDF121A4D4D2F000B8530 /* PrizeCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = D879C91919A7369D003B2A29 /* PrizeCell~ipad.xib */; };
 		361DDF131A4D4D35000B8530 /* StageCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = D8C784BE196A559F00323712 /* StageCell~ipad.xib */; };
+		36B4205F1AA75E2700F8A9B1 /* AlipaySDK.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 36B41FFD1AA75E2700F8A9B1 /* AlipaySDK.bundle */; };
+		36B420601AA75E2700F8A9B1 /* AlipaySDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 36B41FFE1AA75E2700F8A9B1 /* AlipaySDK.framework */; };
+		36B420611AA75E2800F8A9B1 /* libcrypto.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 36B41FFF1AA75E2700F8A9B1 /* libcrypto.a */; };
+		36B420621AA75E2800F8A9B1 /* libssl.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 36B420001AA75E2700F8A9B1 /* libssl.a */; };
+		36B420631AA75E2800F8A9B1 /* base64.m in Sources */ = {isa = PBXBuildFile; fileRef = 36B4204F1AA75E2700F8A9B1 /* base64.m */; };
+		36B420641AA75E2800F8A9B1 /* DataSigner.m in Sources */ = {isa = PBXBuildFile; fileRef = 36B420521AA75E2700F8A9B1 /* DataSigner.m */; };
+		36B420651AA75E2800F8A9B1 /* DataVerifier.m in Sources */ = {isa = PBXBuildFile; fileRef = 36B420541AA75E2700F8A9B1 /* DataVerifier.m */; };
+		36B420661AA75E2800F8A9B1 /* MD5DataSigner.m in Sources */ = {isa = PBXBuildFile; fileRef = 36B420561AA75E2700F8A9B1 /* MD5DataSigner.m */; };
+		36B420671AA75E2800F8A9B1 /* NSDataEx.m in Sources */ = {isa = PBXBuildFile; fileRef = 36B420581AA75E2700F8A9B1 /* NSDataEx.m */; };
+		36B420681AA75E2800F8A9B1 /* openssl_wrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 36B4205A1AA75E2700F8A9B1 /* openssl_wrapper.m */; };
+		36B420691AA75E2800F8A9B1 /* RSADataSigner.m in Sources */ = {isa = PBXBuildFile; fileRef = 36B4205C1AA75E2700F8A9B1 /* RSADataSigner.m */; };
+		36B4206A1AA75E2800F8A9B1 /* RSADataVerifier.m in Sources */ = {isa = PBXBuildFile; fileRef = 36B4205E1AA75E2700F8A9B1 /* RSADataVerifier.m */; };
+		36B4206C1AA762B000F8A9B1 /* GoogleMobileAds.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 36B4206B1AA762B000F8A9B1 /* GoogleMobileAds.framework */; };
+		36B4206D1AA762B000F8A9B1 /* GoogleMobileAds.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 36B4206B1AA762B000F8A9B1 /* GoogleMobileAds.framework */; };
+		36B4206E1AA762B000F8A9B1 /* GoogleMobileAds.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 36B4206B1AA762B000F8A9B1 /* GoogleMobileAds.framework */; };
+		36B4206F1AA762B000F8A9B1 /* GoogleMobileAds.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 36B4206B1AA762B000F8A9B1 /* GoogleMobileAds.framework */; };
+		36B420701AA762BE00F8A9B1 /* AlipaySDK.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 36B41FFD1AA75E2700F8A9B1 /* AlipaySDK.bundle */; };
+		36B420711AA762BF00F8A9B1 /* AlipaySDK.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 36B41FFD1AA75E2700F8A9B1 /* AlipaySDK.bundle */; };
+		36B420721AA762BF00F8A9B1 /* AlipaySDK.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 36B41FFD1AA75E2700F8A9B1 /* AlipaySDK.bundle */; };
+		36B420731AA762D900F8A9B1 /* base64.m in Sources */ = {isa = PBXBuildFile; fileRef = 36B4204F1AA75E2700F8A9B1 /* base64.m */; };
+		36B420741AA762D900F8A9B1 /* DataSigner.m in Sources */ = {isa = PBXBuildFile; fileRef = 36B420521AA75E2700F8A9B1 /* DataSigner.m */; };
+		36B420751AA762D900F8A9B1 /* DataVerifier.m in Sources */ = {isa = PBXBuildFile; fileRef = 36B420541AA75E2700F8A9B1 /* DataVerifier.m */; };
+		36B420761AA762D900F8A9B1 /* MD5DataSigner.m in Sources */ = {isa = PBXBuildFile; fileRef = 36B420561AA75E2700F8A9B1 /* MD5DataSigner.m */; };
+		36B420771AA762D900F8A9B1 /* NSDataEx.m in Sources */ = {isa = PBXBuildFile; fileRef = 36B420581AA75E2700F8A9B1 /* NSDataEx.m */; };
+		36B420781AA762D900F8A9B1 /* openssl_wrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 36B4205A1AA75E2700F8A9B1 /* openssl_wrapper.m */; };
+		36B420791AA762D900F8A9B1 /* RSADataSigner.m in Sources */ = {isa = PBXBuildFile; fileRef = 36B4205C1AA75E2700F8A9B1 /* RSADataSigner.m */; };
+		36B4207A1AA762D900F8A9B1 /* RSADataVerifier.m in Sources */ = {isa = PBXBuildFile; fileRef = 36B4205E1AA75E2700F8A9B1 /* RSADataVerifier.m */; };
+		36B4207B1AA762DA00F8A9B1 /* base64.m in Sources */ = {isa = PBXBuildFile; fileRef = 36B4204F1AA75E2700F8A9B1 /* base64.m */; };
+		36B4207C1AA762DA00F8A9B1 /* DataSigner.m in Sources */ = {isa = PBXBuildFile; fileRef = 36B420521AA75E2700F8A9B1 /* DataSigner.m */; };
+		36B4207D1AA762DA00F8A9B1 /* DataVerifier.m in Sources */ = {isa = PBXBuildFile; fileRef = 36B420541AA75E2700F8A9B1 /* DataVerifier.m */; };
+		36B4207E1AA762DA00F8A9B1 /* MD5DataSigner.m in Sources */ = {isa = PBXBuildFile; fileRef = 36B420561AA75E2700F8A9B1 /* MD5DataSigner.m */; };
+		36B4207F1AA762DA00F8A9B1 /* NSDataEx.m in Sources */ = {isa = PBXBuildFile; fileRef = 36B420581AA75E2700F8A9B1 /* NSDataEx.m */; };
+		36B420801AA762DA00F8A9B1 /* openssl_wrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 36B4205A1AA75E2700F8A9B1 /* openssl_wrapper.m */; };
+		36B420811AA762DA00F8A9B1 /* RSADataSigner.m in Sources */ = {isa = PBXBuildFile; fileRef = 36B4205C1AA75E2700F8A9B1 /* RSADataSigner.m */; };
+		36B420821AA762DA00F8A9B1 /* RSADataVerifier.m in Sources */ = {isa = PBXBuildFile; fileRef = 36B4205E1AA75E2700F8A9B1 /* RSADataVerifier.m */; };
+		36B420831AA762DB00F8A9B1 /* base64.m in Sources */ = {isa = PBXBuildFile; fileRef = 36B4204F1AA75E2700F8A9B1 /* base64.m */; };
+		36B420841AA762DB00F8A9B1 /* DataSigner.m in Sources */ = {isa = PBXBuildFile; fileRef = 36B420521AA75E2700F8A9B1 /* DataSigner.m */; };
+		36B420851AA762DB00F8A9B1 /* DataVerifier.m in Sources */ = {isa = PBXBuildFile; fileRef = 36B420541AA75E2700F8A9B1 /* DataVerifier.m */; };
+		36B420861AA762DB00F8A9B1 /* MD5DataSigner.m in Sources */ = {isa = PBXBuildFile; fileRef = 36B420561AA75E2700F8A9B1 /* MD5DataSigner.m */; };
+		36B420871AA762DB00F8A9B1 /* NSDataEx.m in Sources */ = {isa = PBXBuildFile; fileRef = 36B420581AA75E2700F8A9B1 /* NSDataEx.m */; };
+		36B420881AA762DB00F8A9B1 /* openssl_wrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 36B4205A1AA75E2700F8A9B1 /* openssl_wrapper.m */; };
+		36B420891AA762DB00F8A9B1 /* RSADataSigner.m in Sources */ = {isa = PBXBuildFile; fileRef = 36B4205C1AA75E2700F8A9B1 /* RSADataSigner.m */; };
+		36B4208A1AA762DB00F8A9B1 /* RSADataVerifier.m in Sources */ = {isa = PBXBuildFile; fileRef = 36B4205E1AA75E2700F8A9B1 /* RSADataVerifier.m */; };
+		36B4208B1AA762F500F8A9B1 /* AlipaySDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 36B41FFE1AA75E2700F8A9B1 /* AlipaySDK.framework */; };
+		36B4208C1AA762F800F8A9B1 /* AlipaySDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 36B41FFE1AA75E2700F8A9B1 /* AlipaySDK.framework */; };
+		36B4208D1AA762F900F8A9B1 /* AlipaySDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 36B41FFE1AA75E2700F8A9B1 /* AlipaySDK.framework */; };
+		36B4208E1AA762FD00F8A9B1 /* libcrypto.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 36B41FFF1AA75E2700F8A9B1 /* libcrypto.a */; };
+		36B4208F1AA762FD00F8A9B1 /* libssl.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 36B420001AA75E2700F8A9B1 /* libssl.a */; };
+		36B420901AA762FE00F8A9B1 /* libcrypto.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 36B41FFF1AA75E2700F8A9B1 /* libcrypto.a */; };
+		36B420911AA762FE00F8A9B1 /* libssl.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 36B420001AA75E2700F8A9B1 /* libssl.a */; };
+		36B420921AA762FF00F8A9B1 /* libcrypto.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 36B41FFF1AA75E2700F8A9B1 /* libcrypto.a */; };
+		36B420931AA7630000F8A9B1 /* libssl.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 36B420001AA75E2700F8A9B1 /* libssl.a */; };
+		36B420D31AA7F3A100F8A9B1 /* SingController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA9AAE8D18321621002DBAA5 /* SingController.m */; };
+		36B420D41AA7F3A200F8A9B1 /* SingController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA9AAE8D18321621002DBAA5 /* SingController.m */; };
+		36B420E31AA7F91900F8A9B1 /* NSObject+SBJSON.m in Sources */ = {isa = PBXBuildFile; fileRef = 36B420D81AA7F91900F8A9B1 /* NSObject+SBJSON.m */; };
+		36B420E41AA7F91900F8A9B1 /* NSObject+SBJSON.m in Sources */ = {isa = PBXBuildFile; fileRef = 36B420D81AA7F91900F8A9B1 /* NSObject+SBJSON.m */; };
+		36B420E51AA7F91900F8A9B1 /* NSObject+SBJSON.m in Sources */ = {isa = PBXBuildFile; fileRef = 36B420D81AA7F91900F8A9B1 /* NSObject+SBJSON.m */; };
+		36B420E61AA7F91900F8A9B1 /* NSObject+SBJSON.m in Sources */ = {isa = PBXBuildFile; fileRef = 36B420D81AA7F91900F8A9B1 /* NSObject+SBJSON.m */; };
+		36B420E71AA7F91900F8A9B1 /* NSString+SBJSON.m in Sources */ = {isa = PBXBuildFile; fileRef = 36B420DA1AA7F91900F8A9B1 /* NSString+SBJSON.m */; };
+		36B420E81AA7F91900F8A9B1 /* NSString+SBJSON.m in Sources */ = {isa = PBXBuildFile; fileRef = 36B420DA1AA7F91900F8A9B1 /* NSString+SBJSON.m */; };
+		36B420E91AA7F91900F8A9B1 /* NSString+SBJSON.m in Sources */ = {isa = PBXBuildFile; fileRef = 36B420DA1AA7F91900F8A9B1 /* NSString+SBJSON.m */; };
+		36B420EA1AA7F91900F8A9B1 /* NSString+SBJSON.m in Sources */ = {isa = PBXBuildFile; fileRef = 36B420DA1AA7F91900F8A9B1 /* NSString+SBJSON.m */; };
+		36B420EB1AA7F91900F8A9B1 /* SBJSON.m in Sources */ = {isa = PBXBuildFile; fileRef = 36B420DC1AA7F91900F8A9B1 /* SBJSON.m */; };
+		36B420EC1AA7F91900F8A9B1 /* SBJSON.m in Sources */ = {isa = PBXBuildFile; fileRef = 36B420DC1AA7F91900F8A9B1 /* SBJSON.m */; };
+		36B420ED1AA7F91900F8A9B1 /* SBJSON.m in Sources */ = {isa = PBXBuildFile; fileRef = 36B420DC1AA7F91900F8A9B1 /* SBJSON.m */; };
+		36B420EE1AA7F91900F8A9B1 /* SBJSON.m in Sources */ = {isa = PBXBuildFile; fileRef = 36B420DC1AA7F91900F8A9B1 /* SBJSON.m */; };
+		36B420EF1AA7F91900F8A9B1 /* SBJsonBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 36B420DE1AA7F91900F8A9B1 /* SBJsonBase.m */; };
+		36B420F01AA7F91900F8A9B1 /* SBJsonBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 36B420DE1AA7F91900F8A9B1 /* SBJsonBase.m */; };
+		36B420F11AA7F91900F8A9B1 /* SBJsonBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 36B420DE1AA7F91900F8A9B1 /* SBJsonBase.m */; };
+		36B420F21AA7F91900F8A9B1 /* SBJsonBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 36B420DE1AA7F91900F8A9B1 /* SBJsonBase.m */; };
+		36B420F31AA7F91900F8A9B1 /* SBJsonParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 36B420E01AA7F91900F8A9B1 /* SBJsonParser.m */; };
+		36B420F41AA7F91900F8A9B1 /* SBJsonParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 36B420E01AA7F91900F8A9B1 /* SBJsonParser.m */; };
+		36B420F51AA7F91900F8A9B1 /* SBJsonParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 36B420E01AA7F91900F8A9B1 /* SBJsonParser.m */; };
+		36B420F61AA7F91900F8A9B1 /* SBJsonParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 36B420E01AA7F91900F8A9B1 /* SBJsonParser.m */; };
+		36B420F71AA7F91900F8A9B1 /* SBJsonWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = 36B420E21AA7F91900F8A9B1 /* SBJsonWriter.m */; };
+		36B420F81AA7F91900F8A9B1 /* SBJsonWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = 36B420E21AA7F91900F8A9B1 /* SBJsonWriter.m */; };
+		36B420F91AA7F91900F8A9B1 /* SBJsonWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = 36B420E21AA7F91900F8A9B1 /* SBJsonWriter.m */; };
+		36B420FA1AA7F91900F8A9B1 /* SBJsonWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = 36B420E21AA7F91900F8A9B1 /* SBJsonWriter.m */; };
+		36B420FB1AA7FB7B00F8A9B1 /* SSZipArchive.m in Sources */ = {isa = PBXBuildFile; fileRef = CAFEFD2716606FC100441D77 /* SSZipArchive.m */; };
+		36B420FC1AA7FB7B00F8A9B1 /* SSZipArchive.m in Sources */ = {isa = PBXBuildFile; fileRef = CAFEFD2716606FC100441D77 /* SSZipArchive.m */; };
+		36B420FD1AA7FB7C00F8A9B1 /* SSZipArchive.m in Sources */ = {isa = PBXBuildFile; fileRef = CAFEFD2716606FC100441D77 /* SSZipArchive.m */; };
+		36B420FE1AA7FB7D00F8A9B1 /* SSZipArchive.m in Sources */ = {isa = PBXBuildFile; fileRef = CAFEFD2716606FC100441D77 /* SSZipArchive.m */; };
 		83E17DC016AB4A05BBF66F5E /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C73340CC5434A5894CC26E7 /* libPods.a */; };
 		8F5E9AD0400940DDB239EAC1 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C73340CC5434A5894CC26E7 /* libPods.a */; };
 		965990C8906A4D42B3A1D745 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C73340CC5434A5894CC26E7 /* libPods.a */; };
@@ -5395,8 +5477,6 @@
 		CA9AAF2518321621002DBAA5 /* SingHomeController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA9AAE8A18321620002DBAA5 /* SingHomeController~ipad.xib */; };
 		CA9AAF2618321621002DBAA5 /* SingHomeController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA9AAE8A18321620002DBAA5 /* SingHomeController~ipad.xib */; };
 		CA9AAF2718321621002DBAA5 /* SingHomeController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA9AAE8A18321620002DBAA5 /* SingHomeController~ipad.xib */; };
-		CA9AAF2818321621002DBAA5 /* SingController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA9AAE8D18321621002DBAA5 /* SingController.m */; };
-		CA9AAF2918321621002DBAA5 /* SingController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA9AAE8D18321621002DBAA5 /* SingController.m */; };
 		CA9AAF2A18321621002DBAA5 /* SingController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA9AAE8D18321621002DBAA5 /* SingController.m */; };
 		CA9AAF2B18321621002DBAA5 /* SingController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA9AAE8D18321621002DBAA5 /* SingController.m */; };
 		CA9AAF2C18321621002DBAA5 /* SingController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA9AAE8E18321621002DBAA5 /* SingController.xib */; };
@@ -5722,10 +5802,8 @@
 		CA9AB08218321738002DBAA5 /* OpusDesignTime.m in Sources */ = {isa = PBXBuildFile; fileRef = CA9AAE6D1832054B002DBAA5 /* OpusDesignTime.m */; };
 		CA9AB0C318321820002DBAA5 /* VoiceChanger.m in Sources */ = {isa = PBXBuildFile; fileRef = A4B6C698176C548400C72E17 /* VoiceChanger.m */; };
 		CA9AB0C418321820002DBAA5 /* VoiceRecorder.m in Sources */ = {isa = PBXBuildFile; fileRef = A4B6C69A176C548400C72E17 /* VoiceRecorder.m */; };
-		CA9AB0C518321820002DBAA5 /* VoiceProcessor.mm in Sources */ = {isa = PBXBuildFile; fileRef = A4B6C69E176C5F9E00C72E17 /* VoiceProcessor.mm */; };
 		CA9AB0C618321821002DBAA5 /* VoiceChanger.m in Sources */ = {isa = PBXBuildFile; fileRef = A4B6C698176C548400C72E17 /* VoiceChanger.m */; };
 		CA9AB0C718321821002DBAA5 /* VoiceRecorder.m in Sources */ = {isa = PBXBuildFile; fileRef = A4B6C69A176C548400C72E17 /* VoiceRecorder.m */; };
-		CA9AB0C818321821002DBAA5 /* VoiceProcessor.mm in Sources */ = {isa = PBXBuildFile; fileRef = A4B6C69E176C5F9E00C72E17 /* VoiceProcessor.mm */; };
 		CA9AB0C918321822002DBAA5 /* VoiceChanger.m in Sources */ = {isa = PBXBuildFile; fileRef = A4B6C698176C548400C72E17 /* VoiceChanger.m */; };
 		CA9AB0CA18321822002DBAA5 /* VoiceRecorder.m in Sources */ = {isa = PBXBuildFile; fileRef = A4B6C69A176C548400C72E17 /* VoiceRecorder.m */; };
 		CA9AB0CB18321822002DBAA5 /* VoiceProcessor.mm in Sources */ = {isa = PBXBuildFile; fileRef = A4B6C69E176C5F9E00C72E17 /* VoiceProcessor.mm */; };
@@ -6013,10 +6091,6 @@
 		CACD6A9218E03A28003F97C0 /* SinaWeiboConnection.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CACD6A1718E03A27003F97C0 /* SinaWeiboConnection.framework */; };
 		CACD6A9318E03A28003F97C0 /* SinaWeiboConnection.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CACD6A1718E03A27003F97C0 /* SinaWeiboConnection.framework */; };
 		CACD6A9418E03A28003F97C0 /* SinaWeiboConnection.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CACD6A1718E03A27003F97C0 /* SinaWeiboConnection.framework */; };
-		CACD6A9518E03A28003F97C0 /* SMSConnection.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CACD6A1818E03A27003F97C0 /* SMSConnection.framework */; };
-		CACD6A9618E03A28003F97C0 /* SMSConnection.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CACD6A1818E03A27003F97C0 /* SMSConnection.framework */; };
-		CACD6A9718E03A28003F97C0 /* SMSConnection.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CACD6A1818E03A27003F97C0 /* SMSConnection.framework */; };
-		CACD6A9818E03A28003F97C0 /* SMSConnection.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CACD6A1818E03A27003F97C0 /* SMSConnection.framework */; };
 		CACD6AA518E03A29003F97C0 /* TencentWeiboConnection.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CACD6A1C18E03A27003F97C0 /* TencentWeiboConnection.framework */; };
 		CACD6AA618E03A29003F97C0 /* TencentWeiboConnection.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CACD6A1C18E03A27003F97C0 /* TencentWeiboConnection.framework */; };
 		CACD6AA718E03A29003F97C0 /* TencentWeiboConnection.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CACD6A1C18E03A27003F97C0 /* TencentWeiboConnection.framework */; };
@@ -6081,10 +6155,6 @@
 		CACD6B2218E03A2D003F97C0 /* ShareSDKiPhoneSimpleShareViewUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CACD6A4C18E03A27003F97C0 /* ShareSDKiPhoneSimpleShareViewUI.framework */; };
 		CACD6B2318E03A2D003F97C0 /* ShareSDKiPhoneSimpleShareViewUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CACD6A4C18E03A27003F97C0 /* ShareSDKiPhoneSimpleShareViewUI.framework */; };
 		CACD6B2418E03A2D003F97C0 /* ShareSDKiPhoneSimpleShareViewUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CACD6A4C18E03A27003F97C0 /* ShareSDKiPhoneSimpleShareViewUI.framework */; };
-		CACD6B3118E03B4A003F97C0 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = CACD6B2C18E03B4A003F97C0 /* .gitignore */; };
-		CACD6B3218E03B4A003F97C0 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = CACD6B2C18E03B4A003F97C0 /* .gitignore */; };
-		CACD6B3318E03B4A003F97C0 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = CACD6B2C18E03B4A003F97C0 /* .gitignore */; };
-		CACD6B3418E03B4A003F97C0 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = CACD6B2C18E03B4A003F97C0 /* .gitignore */; };
 		CACD6B3518E03B4A003F97C0 /* libMobClickLibrary.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CACD6B2D18E03B4A003F97C0 /* libMobClickLibrary.a */; };
 		CACD6B3618E03B4B003F97C0 /* libMobClickLibrary.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CACD6B2D18E03B4A003F97C0 /* libMobClickLibrary.a */; };
 		CACD6B3718E03B4B003F97C0 /* libMobClickLibrary.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CACD6B2D18E03B4A003F97C0 /* libMobClickLibrary.a */; };
@@ -6093,66 +6163,6 @@
 		CACD6B3A18E03B4B003F97C0 /* MobClickUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = CACD6B3018E03B4A003F97C0 /* MobClickUtils.m */; };
 		CACD6B3B18E03B4B003F97C0 /* MobClickUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = CACD6B3018E03B4A003F97C0 /* MobClickUtils.m */; };
 		CACD6B3C18E03B4B003F97C0 /* MobClickUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = CACD6B3018E03B4A003F97C0 /* MobClickUtils.m */; };
-		CACD6B4918E03B7F003F97C0 /* libGoogleAdMobAds.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CACD6B4718E03B7F003F97C0 /* libGoogleAdMobAds.a */; };
-		CACD6B4A18E03B7F003F97C0 /* libGoogleAdMobAds.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CACD6B4718E03B7F003F97C0 /* libGoogleAdMobAds.a */; };
-		CACD6B4B18E03B7F003F97C0 /* libGoogleAdMobAds.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CACD6B4718E03B7F003F97C0 /* libGoogleAdMobAds.a */; };
-		CACD6B4C18E03B7F003F97C0 /* libGoogleAdMobAds.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CACD6B4718E03B7F003F97C0 /* libGoogleAdMobAds.a */; };
-		CACD6B4D18E03B7F003F97C0 /* README.txt in Resources */ = {isa = PBXBuildFile; fileRef = CACD6B4818E03B7F003F97C0 /* README.txt */; };
-		CACD6B4E18E03B7F003F97C0 /* README.txt in Resources */ = {isa = PBXBuildFile; fileRef = CACD6B4818E03B7F003F97C0 /* README.txt */; };
-		CACD6B4F18E03B7F003F97C0 /* README.txt in Resources */ = {isa = PBXBuildFile; fileRef = CACD6B4818E03B7F003F97C0 /* README.txt */; };
-		CACD6B5018E03B7F003F97C0 /* README.txt in Resources */ = {isa = PBXBuildFile; fileRef = CACD6B4818E03B7F003F97C0 /* README.txt */; };
-		CACD6CA618E03BCC003F97C0 /* AlipayRsaLib.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CACD6C8318E03BCC003F97C0 /* AlipayRsaLib.a */; };
-		CACD6CA718E03BCC003F97C0 /* AlipayRsaLib.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CACD6C8318E03BCC003F97C0 /* AlipayRsaLib.a */; };
-		CACD6CA818E03BCD003F97C0 /* AlipayRsaLib.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CACD6C8318E03BCC003F97C0 /* AlipayRsaLib.a */; };
-		CACD6CA918E03BCD003F97C0 /* AlipayRsaLib.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CACD6C8318E03BCC003F97C0 /* AlipayRsaLib.a */; };
-		CACD6CAA18E03BCD003F97C0 /* Alixpay.bundle in Resources */ = {isa = PBXBuildFile; fileRef = CACD6C8518E03BCC003F97C0 /* Alixpay.bundle */; };
-		CACD6CAB18E03BCD003F97C0 /* Alixpay.bundle in Resources */ = {isa = PBXBuildFile; fileRef = CACD6C8518E03BCC003F97C0 /* Alixpay.bundle */; };
-		CACD6CAC18E03BCD003F97C0 /* Alixpay.bundle in Resources */ = {isa = PBXBuildFile; fileRef = CACD6C8518E03BCC003F97C0 /* Alixpay.bundle */; };
-		CACD6CAD18E03BCD003F97C0 /* Alixpay.bundle in Resources */ = {isa = PBXBuildFile; fileRef = CACD6C8518E03BCC003F97C0 /* Alixpay.bundle */; };
-		CACD6CAE18E03BCD003F97C0 /* AlixPaylib.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CACD6C8618E03BCC003F97C0 /* AlixPaylib.a */; };
-		CACD6CAF18E03BCD003F97C0 /* AlixPaylib.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CACD6C8618E03BCC003F97C0 /* AlixPaylib.a */; };
-		CACD6CB018E03BCD003F97C0 /* AlixPaylib.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CACD6C8618E03BCC003F97C0 /* AlixPaylib.a */; };
-		CACD6CB118E03BCD003F97C0 /* AlixPaylib.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CACD6C8618E03BCC003F97C0 /* AlixPaylib.a */; };
-		CACD6CB618E03BCD003F97C0 /* AlixPayOrder.m in Sources */ = {isa = PBXBuildFile; fileRef = CACD6C8918E03BCC003F97C0 /* AlixPayOrder.m */; };
-		CACD6CB718E03BCD003F97C0 /* AlixPayOrder.m in Sources */ = {isa = PBXBuildFile; fileRef = CACD6C8918E03BCC003F97C0 /* AlixPayOrder.m */; };
-		CACD6CB818E03BCD003F97C0 /* AlixPayOrder.m in Sources */ = {isa = PBXBuildFile; fileRef = CACD6C8918E03BCC003F97C0 /* AlixPayOrder.m */; };
-		CACD6CB918E03BCD003F97C0 /* AlixPayOrder.m in Sources */ = {isa = PBXBuildFile; fileRef = CACD6C8918E03BCC003F97C0 /* AlixPayOrder.m */; };
-		CACD6CBA18E03BCD003F97C0 /* AlixPayResult.m in Sources */ = {isa = PBXBuildFile; fileRef = CACD6C8B18E03BCC003F97C0 /* AlixPayResult.m */; };
-		CACD6CBB18E03BCD003F97C0 /* AlixPayResult.m in Sources */ = {isa = PBXBuildFile; fileRef = CACD6C8B18E03BCC003F97C0 /* AlixPayResult.m */; };
-		CACD6CBC18E03BCD003F97C0 /* AlixPayResult.m in Sources */ = {isa = PBXBuildFile; fileRef = CACD6C8B18E03BCC003F97C0 /* AlixPayResult.m */; };
-		CACD6CBD18E03BCD003F97C0 /* AlixPayResult.m in Sources */ = {isa = PBXBuildFile; fileRef = CACD6C8B18E03BCC003F97C0 /* AlixPayResult.m */; };
-		CACD6CBE18E03BCD003F97C0 /* NSObject+SBJSON.m in Sources */ = {isa = PBXBuildFile; fileRef = CACD6C8F18E03BCC003F97C0 /* NSObject+SBJSON.m */; };
-		CACD6CBF18E03BCD003F97C0 /* NSObject+SBJSON.m in Sources */ = {isa = PBXBuildFile; fileRef = CACD6C8F18E03BCC003F97C0 /* NSObject+SBJSON.m */; };
-		CACD6CC018E03BCD003F97C0 /* NSObject+SBJSON.m in Sources */ = {isa = PBXBuildFile; fileRef = CACD6C8F18E03BCC003F97C0 /* NSObject+SBJSON.m */; };
-		CACD6CC118E03BCD003F97C0 /* NSObject+SBJSON.m in Sources */ = {isa = PBXBuildFile; fileRef = CACD6C8F18E03BCC003F97C0 /* NSObject+SBJSON.m */; };
-		CACD6CC218E03BCD003F97C0 /* NSString+SBJSON.m in Sources */ = {isa = PBXBuildFile; fileRef = CACD6C9118E03BCC003F97C0 /* NSString+SBJSON.m */; };
-		CACD6CC318E03BCD003F97C0 /* NSString+SBJSON.m in Sources */ = {isa = PBXBuildFile; fileRef = CACD6C9118E03BCC003F97C0 /* NSString+SBJSON.m */; };
-		CACD6CC418E03BCD003F97C0 /* NSString+SBJSON.m in Sources */ = {isa = PBXBuildFile; fileRef = CACD6C9118E03BCC003F97C0 /* NSString+SBJSON.m */; };
-		CACD6CC518E03BCD003F97C0 /* NSString+SBJSON.m in Sources */ = {isa = PBXBuildFile; fileRef = CACD6C9118E03BCC003F97C0 /* NSString+SBJSON.m */; };
-		CACD6CC618E03BCD003F97C0 /* SBJSON.m in Sources */ = {isa = PBXBuildFile; fileRef = CACD6C9318E03BCC003F97C0 /* SBJSON.m */; };
-		CACD6CC718E03BCD003F97C0 /* SBJSON.m in Sources */ = {isa = PBXBuildFile; fileRef = CACD6C9318E03BCC003F97C0 /* SBJSON.m */; };
-		CACD6CC818E03BCD003F97C0 /* SBJSON.m in Sources */ = {isa = PBXBuildFile; fileRef = CACD6C9318E03BCC003F97C0 /* SBJSON.m */; };
-		CACD6CC918E03BCD003F97C0 /* SBJSON.m in Sources */ = {isa = PBXBuildFile; fileRef = CACD6C9318E03BCC003F97C0 /* SBJSON.m */; };
-		CACD6CCA18E03BCD003F97C0 /* SBJsonBase.m in Sources */ = {isa = PBXBuildFile; fileRef = CACD6C9518E03BCC003F97C0 /* SBJsonBase.m */; };
-		CACD6CCB18E03BCD003F97C0 /* SBJsonBase.m in Sources */ = {isa = PBXBuildFile; fileRef = CACD6C9518E03BCC003F97C0 /* SBJsonBase.m */; };
-		CACD6CCC18E03BCD003F97C0 /* SBJsonBase.m in Sources */ = {isa = PBXBuildFile; fileRef = CACD6C9518E03BCC003F97C0 /* SBJsonBase.m */; };
-		CACD6CCD18E03BCD003F97C0 /* SBJsonBase.m in Sources */ = {isa = PBXBuildFile; fileRef = CACD6C9518E03BCC003F97C0 /* SBJsonBase.m */; };
-		CACD6CCE18E03BCD003F97C0 /* SBJsonParser.m in Sources */ = {isa = PBXBuildFile; fileRef = CACD6C9718E03BCC003F97C0 /* SBJsonParser.m */; };
-		CACD6CCF18E03BCD003F97C0 /* SBJsonParser.m in Sources */ = {isa = PBXBuildFile; fileRef = CACD6C9718E03BCC003F97C0 /* SBJsonParser.m */; };
-		CACD6CD018E03BCD003F97C0 /* SBJsonParser.m in Sources */ = {isa = PBXBuildFile; fileRef = CACD6C9718E03BCC003F97C0 /* SBJsonParser.m */; };
-		CACD6CD118E03BCD003F97C0 /* SBJsonParser.m in Sources */ = {isa = PBXBuildFile; fileRef = CACD6C9718E03BCC003F97C0 /* SBJsonParser.m */; };
-		CACD6CD218E03BCD003F97C0 /* SBJsonWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = CACD6C9918E03BCC003F97C0 /* SBJsonWriter.m */; };
-		CACD6CD318E03BCD003F97C0 /* SBJsonWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = CACD6C9918E03BCC003F97C0 /* SBJsonWriter.m */; };
-		CACD6CD418E03BCD003F97C0 /* SBJsonWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = CACD6C9918E03BCC003F97C0 /* SBJsonWriter.m */; };
-		CACD6CD518E03BCD003F97C0 /* SBJsonWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = CACD6C9918E03BCC003F97C0 /* SBJsonWriter.m */; };
-		CACD6CD618E03BCD003F97C0 /* libcrypto.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CACD6C9A18E03BCC003F97C0 /* libcrypto.a */; };
-		CACD6CD718E03BCD003F97C0 /* libcrypto.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CACD6C9A18E03BCC003F97C0 /* libcrypto.a */; };
-		CACD6CD818E03BCD003F97C0 /* libcrypto.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CACD6C9A18E03BCC003F97C0 /* libcrypto.a */; };
-		CACD6CD918E03BCD003F97C0 /* libcrypto.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CACD6C9A18E03BCC003F97C0 /* libcrypto.a */; };
-		CACD6CDA18E03BCD003F97C0 /* libssl.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CACD6C9B18E03BCC003F97C0 /* libssl.a */; };
-		CACD6CDB18E03BCD003F97C0 /* libssl.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CACD6C9B18E03BCC003F97C0 /* libssl.a */; };
-		CACD6CDC18E03BCD003F97C0 /* libssl.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CACD6C9B18E03BCC003F97C0 /* libssl.a */; };
-		CACD6CDD18E03BCD003F97C0 /* libssl.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CACD6C9B18E03BCC003F97C0 /* libssl.a */; };
 		CACD6CDE18E03BCD003F97C0 /* AliPayManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CACD6CA118E03BCC003F97C0 /* AliPayManager.m */; };
 		CACD6CDF18E03BCD003F97C0 /* AliPayManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CACD6CA118E03BCC003F97C0 /* AliPayManager.m */; };
 		CACD6CE018E03BCD003F97C0 /* AliPayManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CACD6CA118E03BCC003F97C0 /* AliPayManager.m */; };
@@ -6169,46 +6179,6 @@
 		CACD6CFC18E03C0A003F97C0 /* libleveldb.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CACD6CFA18E03C09003F97C0 /* libleveldb.a */; };
 		CACD6CFD18E03C0A003F97C0 /* libleveldb.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CACD6CFA18E03C09003F97C0 /* libleveldb.a */; };
 		CACD6CFE18E03C0A003F97C0 /* libleveldb.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CACD6CFA18E03C09003F97C0 /* libleveldb.a */; };
-		CACD6D1718E03C40003F97C0 /*  iOS ReadMe (or suffer).rtf in Resources */ = {isa = PBXBuildFile; fileRef = CACD6D0118E03C40003F97C0 /*  iOS ReadMe (or suffer).rtf */; };
-		CACD6D1818E03C40003F97C0 /*  iOS ReadMe (or suffer).rtf in Resources */ = {isa = PBXBuildFile; fileRef = CACD6D0118E03C40003F97C0 /*  iOS ReadMe (or suffer).rtf */; };
-		CACD6D1918E03C40003F97C0 /*  iOS ReadMe (or suffer).rtf in Resources */ = {isa = PBXBuildFile; fileRef = CACD6D0118E03C40003F97C0 /*  iOS ReadMe (or suffer).rtf */; };
-		CACD6D1A18E03C40003F97C0 /*  iOS ReadMe (or suffer).rtf in Resources */ = {isa = PBXBuildFile; fileRef = CACD6D0118E03C40003F97C0 /*  iOS ReadMe (or suffer).rtf */; };
-		CACD6D1B18E03C40003F97C0 /*  DiracAudioPlayer ReadMe.rtf in Resources */ = {isa = PBXBuildFile; fileRef = CACD6D0418E03C40003F97C0 /*  DiracAudioPlayer ReadMe.rtf */; };
-		CACD6D1C18E03C40003F97C0 /*  DiracAudioPlayer ReadMe.rtf in Resources */ = {isa = PBXBuildFile; fileRef = CACD6D0418E03C40003F97C0 /*  DiracAudioPlayer ReadMe.rtf */; };
-		CACD6D1D18E03C40003F97C0 /*  DiracAudioPlayer ReadMe.rtf in Resources */ = {isa = PBXBuildFile; fileRef = CACD6D0418E03C40003F97C0 /*  DiracAudioPlayer ReadMe.rtf */; };
-		CACD6D1E18E03C40003F97C0 /*  DiracAudioPlayer ReadMe.rtf in Resources */ = {isa = PBXBuildFile; fileRef = CACD6D0418E03C40003F97C0 /*  DiracAudioPlayer ReadMe.rtf */; };
-		CACD6D1F18E03C40003F97C0 /* DiracAudioPlayer.mm in Sources */ = {isa = PBXBuildFile; fileRef = CACD6D0618E03C40003F97C0 /* DiracAudioPlayer.mm */; };
-		CACD6D2018E03C40003F97C0 /* DiracAudioPlayer.mm in Sources */ = {isa = PBXBuildFile; fileRef = CACD6D0618E03C40003F97C0 /* DiracAudioPlayer.mm */; };
-		CACD6D2118E03C40003F97C0 /* DiracAudioPlayer.mm in Sources */ = {isa = PBXBuildFile; fileRef = CACD6D0618E03C40003F97C0 /* DiracAudioPlayer.mm */; };
-		CACD6D2218E03C40003F97C0 /* DiracAudioPlayer.mm in Sources */ = {isa = PBXBuildFile; fileRef = CACD6D0618E03C40003F97C0 /* DiracAudioPlayer.mm */; };
-		CACD6D2318E03C40003F97C0 /* DiracAudioPlayerBase.mm in Sources */ = {isa = PBXBuildFile; fileRef = CACD6D0818E03C40003F97C0 /* DiracAudioPlayerBase.mm */; };
-		CACD6D2418E03C40003F97C0 /* DiracAudioPlayerBase.mm in Sources */ = {isa = PBXBuildFile; fileRef = CACD6D0818E03C40003F97C0 /* DiracAudioPlayerBase.mm */; };
-		CACD6D2518E03C40003F97C0 /* DiracAudioPlayerBase.mm in Sources */ = {isa = PBXBuildFile; fileRef = CACD6D0818E03C40003F97C0 /* DiracAudioPlayerBase.mm */; };
-		CACD6D2618E03C40003F97C0 /* DiracAudioPlayerBase.mm in Sources */ = {isa = PBXBuildFile; fileRef = CACD6D0818E03C40003F97C0 /* DiracAudioPlayerBase.mm */; };
-		CACD6D2718E03C40003F97C0 /* DiracFxAudioPlayer.mm in Sources */ = {isa = PBXBuildFile; fileRef = CACD6D0A18E03C40003F97C0 /* DiracFxAudioPlayer.mm */; };
-		CACD6D2818E03C40003F97C0 /* DiracFxAudioPlayer.mm in Sources */ = {isa = PBXBuildFile; fileRef = CACD6D0A18E03C40003F97C0 /* DiracFxAudioPlayer.mm */; };
-		CACD6D2918E03C40003F97C0 /* DiracFxAudioPlayer.mm in Sources */ = {isa = PBXBuildFile; fileRef = CACD6D0A18E03C40003F97C0 /* DiracFxAudioPlayer.mm */; };
-		CACD6D2A18E03C40003F97C0 /* DiracFxAudioPlayer.mm in Sources */ = {isa = PBXBuildFile; fileRef = CACD6D0A18E03C40003F97C0 /* DiracFxAudioPlayer.mm */; };
-		CACD6D2B18E03C40003F97C0 /* EAFRead.mm in Sources */ = {isa = PBXBuildFile; fileRef = CACD6D0D18E03C40003F97C0 /* EAFRead.mm */; };
-		CACD6D2C18E03C40003F97C0 /* EAFRead.mm in Sources */ = {isa = PBXBuildFile; fileRef = CACD6D0D18E03C40003F97C0 /* EAFRead.mm */; };
-		CACD6D2D18E03C40003F97C0 /* EAFRead.mm in Sources */ = {isa = PBXBuildFile; fileRef = CACD6D0D18E03C40003F97C0 /* EAFRead.mm */; };
-		CACD6D2E18E03C40003F97C0 /* EAFRead.mm in Sources */ = {isa = PBXBuildFile; fileRef = CACD6D0D18E03C40003F97C0 /* EAFRead.mm */; };
-		CACD6D2F18E03C40003F97C0 /* EAFWrite.mm in Sources */ = {isa = PBXBuildFile; fileRef = CACD6D0F18E03C40003F97C0 /* EAFWrite.mm */; };
-		CACD6D3018E03C40003F97C0 /* EAFWrite.mm in Sources */ = {isa = PBXBuildFile; fileRef = CACD6D0F18E03C40003F97C0 /* EAFWrite.mm */; };
-		CACD6D3118E03C40003F97C0 /* EAFWrite.mm in Sources */ = {isa = PBXBuildFile; fileRef = CACD6D0F18E03C40003F97C0 /* EAFWrite.mm */; };
-		CACD6D3218E03C40003F97C0 /* EAFWrite.mm in Sources */ = {isa = PBXBuildFile; fileRef = CACD6D0F18E03C40003F97C0 /* EAFWrite.mm */; };
-		CACD6D3318E03C40003F97C0 /* libDIRAC_iOS-fat.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CACD6D1218E03C40003F97C0 /* libDIRAC_iOS-fat.a */; };
-		CACD6D3418E03C40003F97C0 /* libDIRAC_iOS-fat.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CACD6D1218E03C40003F97C0 /* libDIRAC_iOS-fat.a */; };
-		CACD6D3518E03C40003F97C0 /* libDIRAC_iOS-fat.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CACD6D1218E03C40003F97C0 /* libDIRAC_iOS-fat.a */; };
-		CACD6D3618E03C40003F97C0 /* libDIRAC_iOS-fat.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CACD6D1218E03C40003F97C0 /* libDIRAC_iOS-fat.a */; };
-		CACD6D3718E03C40003F97C0 /* libDIRAC_iOS4-fat.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CACD6D1318E03C40003F97C0 /* libDIRAC_iOS4-fat.a */; };
-		CACD6D3818E03C40003F97C0 /* libDIRAC_iOS4-fat.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CACD6D1318E03C40003F97C0 /* libDIRAC_iOS4-fat.a */; };
-		CACD6D3918E03C40003F97C0 /* libDIRAC_iOS4-fat.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CACD6D1318E03C40003F97C0 /* libDIRAC_iOS4-fat.a */; };
-		CACD6D3A18E03C40003F97C0 /* libDIRAC_iOS4-fat.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CACD6D1318E03C40003F97C0 /* libDIRAC_iOS4-fat.a */; };
-		CACD6D3B18E03C40003F97C0 /* DiracUtilities.mm in Sources */ = {isa = PBXBuildFile; fileRef = CACD6D1618E03C40003F97C0 /* DiracUtilities.mm */; };
-		CACD6D3C18E03C40003F97C0 /* DiracUtilities.mm in Sources */ = {isa = PBXBuildFile; fileRef = CACD6D1618E03C40003F97C0 /* DiracUtilities.mm */; };
-		CACD6D3D18E03C40003F97C0 /* DiracUtilities.mm in Sources */ = {isa = PBXBuildFile; fileRef = CACD6D1618E03C40003F97C0 /* DiracUtilities.mm */; };
-		CACD6D3E18E03C40003F97C0 /* DiracUtilities.mm in Sources */ = {isa = PBXBuildFile; fileRef = CACD6D1618E03C40003F97C0 /* DiracUtilities.mm */; };
 		CACD6D4418E03C86003F97C0 /* AudioFormatConverter.m in Sources */ = {isa = PBXBuildFile; fileRef = CACD6D4118E03C86003F97C0 /* AudioFormatConverter.m */; };
 		CACD6D4518E03C86003F97C0 /* AudioFormatConverter.m in Sources */ = {isa = PBXBuildFile; fileRef = CACD6D4118E03C86003F97C0 /* AudioFormatConverter.m */; };
 		CACD6D4618E03C86003F97C0 /* AudioFormatConverter.m in Sources */ = {isa = PBXBuildFile; fileRef = CACD6D4118E03C86003F97C0 /* AudioFormatConverter.m */; };
@@ -8308,6 +8278,116 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		36B41FFD1AA75E2700F8A9B1 /* AlipaySDK.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = AlipaySDK.bundle; sourceTree = "<group>"; };
+		36B41FFE1AA75E2700F8A9B1 /* AlipaySDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AlipaySDK.framework; sourceTree = "<group>"; };
+		36B41FFF1AA75E2700F8A9B1 /* libcrypto.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libcrypto.a; sourceTree = "<group>"; };
+		36B420001AA75E2700F8A9B1 /* libssl.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libssl.a; sourceTree = "<group>"; };
+		36B420021AA75E2700F8A9B1 /* aes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = aes.h; sourceTree = "<group>"; };
+		36B420031AA75E2700F8A9B1 /* asn1.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = asn1.h; sourceTree = "<group>"; };
+		36B420041AA75E2700F8A9B1 /* asn1_mac.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = asn1_mac.h; sourceTree = "<group>"; };
+		36B420051AA75E2700F8A9B1 /* asn1t.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = asn1t.h; sourceTree = "<group>"; };
+		36B420061AA75E2700F8A9B1 /* bio.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = bio.h; sourceTree = "<group>"; };
+		36B420071AA75E2700F8A9B1 /* blowfish.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = blowfish.h; sourceTree = "<group>"; };
+		36B420081AA75E2700F8A9B1 /* bn.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = bn.h; sourceTree = "<group>"; };
+		36B420091AA75E2700F8A9B1 /* buffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = buffer.h; sourceTree = "<group>"; };
+		36B4200A1AA75E2700F8A9B1 /* camellia.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = camellia.h; sourceTree = "<group>"; };
+		36B4200B1AA75E2700F8A9B1 /* cast.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cast.h; sourceTree = "<group>"; };
+		36B4200C1AA75E2700F8A9B1 /* cmac.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cmac.h; sourceTree = "<group>"; };
+		36B4200D1AA75E2700F8A9B1 /* cms.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cms.h; sourceTree = "<group>"; };
+		36B4200E1AA75E2700F8A9B1 /* comp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = comp.h; sourceTree = "<group>"; };
+		36B4200F1AA75E2700F8A9B1 /* conf.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = conf.h; sourceTree = "<group>"; };
+		36B420101AA75E2700F8A9B1 /* conf_api.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = conf_api.h; sourceTree = "<group>"; };
+		36B420111AA75E2700F8A9B1 /* crypto.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = crypto.h; sourceTree = "<group>"; };
+		36B420121AA75E2700F8A9B1 /* des.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = des.h; sourceTree = "<group>"; };
+		36B420131AA75E2700F8A9B1 /* des_old.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = des_old.h; sourceTree = "<group>"; };
+		36B420141AA75E2700F8A9B1 /* dh.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dh.h; sourceTree = "<group>"; };
+		36B420151AA75E2700F8A9B1 /* dsa.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dsa.h; sourceTree = "<group>"; };
+		36B420161AA75E2700F8A9B1 /* dso.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dso.h; sourceTree = "<group>"; };
+		36B420171AA75E2700F8A9B1 /* dtls1.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dtls1.h; sourceTree = "<group>"; };
+		36B420181AA75E2700F8A9B1 /* e_os2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = e_os2.h; sourceTree = "<group>"; };
+		36B420191AA75E2700F8A9B1 /* ebcdic.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ebcdic.h; sourceTree = "<group>"; };
+		36B4201A1AA75E2700F8A9B1 /* ec.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ec.h; sourceTree = "<group>"; };
+		36B4201B1AA75E2700F8A9B1 /* ecdh.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ecdh.h; sourceTree = "<group>"; };
+		36B4201C1AA75E2700F8A9B1 /* ecdsa.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ecdsa.h; sourceTree = "<group>"; };
+		36B4201D1AA75E2700F8A9B1 /* engine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = engine.h; sourceTree = "<group>"; };
+		36B4201E1AA75E2700F8A9B1 /* err.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = err.h; sourceTree = "<group>"; };
+		36B4201F1AA75E2700F8A9B1 /* evp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = evp.h; sourceTree = "<group>"; };
+		36B420201AA75E2700F8A9B1 /* hmac.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = hmac.h; sourceTree = "<group>"; };
+		36B420211AA75E2700F8A9B1 /* idea.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = idea.h; sourceTree = "<group>"; };
+		36B420221AA75E2700F8A9B1 /* krb5_asn.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = krb5_asn.h; sourceTree = "<group>"; };
+		36B420231AA75E2700F8A9B1 /* kssl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = kssl.h; sourceTree = "<group>"; };
+		36B420241AA75E2700F8A9B1 /* lhash.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = lhash.h; sourceTree = "<group>"; };
+		36B420251AA75E2700F8A9B1 /* md4.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = md4.h; sourceTree = "<group>"; };
+		36B420261AA75E2700F8A9B1 /* md5.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = md5.h; sourceTree = "<group>"; };
+		36B420271AA75E2700F8A9B1 /* mdc2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mdc2.h; sourceTree = "<group>"; };
+		36B420281AA75E2700F8A9B1 /* modes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = modes.h; sourceTree = "<group>"; };
+		36B420291AA75E2700F8A9B1 /* obj_mac.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = obj_mac.h; sourceTree = "<group>"; };
+		36B4202A1AA75E2700F8A9B1 /* objects.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = objects.h; sourceTree = "<group>"; };
+		36B4202B1AA75E2700F8A9B1 /* ocsp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ocsp.h; sourceTree = "<group>"; };
+		36B4202C1AA75E2700F8A9B1 /* opensslconf.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = opensslconf.h; sourceTree = "<group>"; };
+		36B4202D1AA75E2700F8A9B1 /* opensslv.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = opensslv.h; sourceTree = "<group>"; };
+		36B4202E1AA75E2700F8A9B1 /* ossl_typ.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ossl_typ.h; sourceTree = "<group>"; };
+		36B4202F1AA75E2700F8A9B1 /* pem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = pem.h; sourceTree = "<group>"; };
+		36B420301AA75E2700F8A9B1 /* pem2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = pem2.h; sourceTree = "<group>"; };
+		36B420311AA75E2700F8A9B1 /* pkcs12.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = pkcs12.h; sourceTree = "<group>"; };
+		36B420321AA75E2700F8A9B1 /* pkcs7.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = pkcs7.h; sourceTree = "<group>"; };
+		36B420331AA75E2700F8A9B1 /* pqueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = pqueue.h; sourceTree = "<group>"; };
+		36B420341AA75E2700F8A9B1 /* rand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = rand.h; sourceTree = "<group>"; };
+		36B420351AA75E2700F8A9B1 /* rc2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = rc2.h; sourceTree = "<group>"; };
+		36B420361AA75E2700F8A9B1 /* rc4.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = rc4.h; sourceTree = "<group>"; };
+		36B420371AA75E2700F8A9B1 /* ripemd.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ripemd.h; sourceTree = "<group>"; };
+		36B420381AA75E2700F8A9B1 /* rsa.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = rsa.h; sourceTree = "<group>"; };
+		36B420391AA75E2700F8A9B1 /* safestack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = safestack.h; sourceTree = "<group>"; };
+		36B4203A1AA75E2700F8A9B1 /* seed.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = seed.h; sourceTree = "<group>"; };
+		36B4203B1AA75E2700F8A9B1 /* sha.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = sha.h; sourceTree = "<group>"; };
+		36B4203C1AA75E2700F8A9B1 /* srp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = srp.h; sourceTree = "<group>"; };
+		36B4203D1AA75E2700F8A9B1 /* srtp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = srtp.h; sourceTree = "<group>"; };
+		36B4203E1AA75E2700F8A9B1 /* ssl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ssl.h; sourceTree = "<group>"; };
+		36B4203F1AA75E2700F8A9B1 /* ssl2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ssl2.h; sourceTree = "<group>"; };
+		36B420401AA75E2700F8A9B1 /* ssl23.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ssl23.h; sourceTree = "<group>"; };
+		36B420411AA75E2700F8A9B1 /* ssl3.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ssl3.h; sourceTree = "<group>"; };
+		36B420421AA75E2700F8A9B1 /* stack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = stack.h; sourceTree = "<group>"; };
+		36B420431AA75E2700F8A9B1 /* symhacks.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = symhacks.h; sourceTree = "<group>"; };
+		36B420441AA75E2700F8A9B1 /* tls1.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = tls1.h; sourceTree = "<group>"; };
+		36B420451AA75E2700F8A9B1 /* ts.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ts.h; sourceTree = "<group>"; };
+		36B420461AA75E2700F8A9B1 /* txt_db.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = txt_db.h; sourceTree = "<group>"; };
+		36B420471AA75E2700F8A9B1 /* ui.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ui.h; sourceTree = "<group>"; };
+		36B420481AA75E2700F8A9B1 /* ui_compat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ui_compat.h; sourceTree = "<group>"; };
+		36B420491AA75E2700F8A9B1 /* whrlpool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = whrlpool.h; sourceTree = "<group>"; };
+		36B4204A1AA75E2700F8A9B1 /* x509.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = x509.h; sourceTree = "<group>"; };
+		36B4204B1AA75E2700F8A9B1 /* x509_vfy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = x509_vfy.h; sourceTree = "<group>"; };
+		36B4204C1AA75E2700F8A9B1 /* x509v3.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = x509v3.h; sourceTree = "<group>"; };
+		36B4204E1AA75E2700F8A9B1 /* base64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = base64.h; sourceTree = "<group>"; };
+		36B4204F1AA75E2700F8A9B1 /* base64.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = base64.m; sourceTree = "<group>"; };
+		36B420501AA75E2700F8A9B1 /* config.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = config.h; sourceTree = "<group>"; };
+		36B420511AA75E2700F8A9B1 /* DataSigner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataSigner.h; sourceTree = "<group>"; };
+		36B420521AA75E2700F8A9B1 /* DataSigner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataSigner.m; sourceTree = "<group>"; };
+		36B420531AA75E2700F8A9B1 /* DataVerifier.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataVerifier.h; sourceTree = "<group>"; };
+		36B420541AA75E2700F8A9B1 /* DataVerifier.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataVerifier.m; sourceTree = "<group>"; };
+		36B420551AA75E2700F8A9B1 /* MD5DataSigner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MD5DataSigner.h; sourceTree = "<group>"; };
+		36B420561AA75E2700F8A9B1 /* MD5DataSigner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MD5DataSigner.m; sourceTree = "<group>"; };
+		36B420571AA75E2700F8A9B1 /* NSDataEx.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSDataEx.h; sourceTree = "<group>"; };
+		36B420581AA75E2700F8A9B1 /* NSDataEx.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSDataEx.m; sourceTree = "<group>"; };
+		36B420591AA75E2700F8A9B1 /* openssl_wrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = openssl_wrapper.h; sourceTree = "<group>"; };
+		36B4205A1AA75E2700F8A9B1 /* openssl_wrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = openssl_wrapper.m; sourceTree = "<group>"; };
+		36B4205B1AA75E2700F8A9B1 /* RSADataSigner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSADataSigner.h; sourceTree = "<group>"; };
+		36B4205C1AA75E2700F8A9B1 /* RSADataSigner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSADataSigner.m; sourceTree = "<group>"; };
+		36B4205D1AA75E2700F8A9B1 /* RSADataVerifier.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSADataVerifier.h; sourceTree = "<group>"; };
+		36B4205E1AA75E2700F8A9B1 /* RSADataVerifier.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSADataVerifier.m; sourceTree = "<group>"; };
+		36B4206B1AA762B000F8A9B1 /* GoogleMobileAds.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GoogleMobileAds.framework; sourceTree = "<group>"; };
+		36B420D61AA7F91900F8A9B1 /* JSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSON.h; sourceTree = "<group>"; };
+		36B420D71AA7F91900F8A9B1 /* NSObject+SBJSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+SBJSON.h"; sourceTree = "<group>"; };
+		36B420D81AA7F91900F8A9B1 /* NSObject+SBJSON.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+SBJSON.m"; sourceTree = "<group>"; };
+		36B420D91AA7F91900F8A9B1 /* NSString+SBJSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+SBJSON.h"; sourceTree = "<group>"; };
+		36B420DA1AA7F91900F8A9B1 /* NSString+SBJSON.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+SBJSON.m"; sourceTree = "<group>"; };
+		36B420DB1AA7F91900F8A9B1 /* SBJSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJSON.h; sourceTree = "<group>"; };
+		36B420DC1AA7F91900F8A9B1 /* SBJSON.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJSON.m; sourceTree = "<group>"; };
+		36B420DD1AA7F91900F8A9B1 /* SBJsonBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJsonBase.h; sourceTree = "<group>"; };
+		36B420DE1AA7F91900F8A9B1 /* SBJsonBase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonBase.m; sourceTree = "<group>"; };
+		36B420DF1AA7F91900F8A9B1 /* SBJsonParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJsonParser.h; sourceTree = "<group>"; };
+		36B420E01AA7F91900F8A9B1 /* SBJsonParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonParser.m; sourceTree = "<group>"; };
+		36B420E11AA7F91900F8A9B1 /* SBJsonWriter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJsonWriter.h; sourceTree = "<group>"; };
+		36B420E21AA7F91900F8A9B1 /* SBJsonWriter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonWriter.m; sourceTree = "<group>"; };
 		4C73340CC5434A5894CC26E7 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		5F5CBE3EAF724F1A9042D44B /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 		A30A28451580C2AE006CA3CC /* ChatCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatCell.h; sourceTree = "<group>"; };
@@ -10810,7 +10890,6 @@
 		CACD6A1418E03A27003F97C0 /* QQConnection.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = QQConnection.framework; sourceTree = "<group>"; };
 		CACD6A1518E03A27003F97C0 /* QZoneConnection.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = QZoneConnection.framework; sourceTree = "<group>"; };
 		CACD6A1718E03A27003F97C0 /* SinaWeiboConnection.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SinaWeiboConnection.framework; sourceTree = "<group>"; };
-		CACD6A1818E03A27003F97C0 /* SMSConnection.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SMSConnection.framework; sourceTree = "<group>"; };
 		CACD6A1C18E03A27003F97C0 /* TencentWeiboConnection.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = TencentWeiboConnection.framework; sourceTree = "<group>"; };
 		CACD6A1F18E03A27003F97C0 /* WeChatConnection.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = WeChatConnection.framework; sourceTree = "<group>"; };
 		CACD6A2218E03A27003F97C0 /* AGCommon.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AGCommon.framework; sourceTree = "<group>"; };
@@ -10828,47 +10907,10 @@
 		CACD6A4A18E03A27003F97C0 /* ShareSDKiPhoneDefaultShareViewUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ShareSDKiPhoneDefaultShareViewUI.framework; sourceTree = "<group>"; };
 		CACD6A4B18E03A27003F97C0 /* ShareSDKiPhoneSimpleShareViewUI.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = ShareSDKiPhoneSimpleShareViewUI.bundle; sourceTree = "<group>"; };
 		CACD6A4C18E03A27003F97C0 /* ShareSDKiPhoneSimpleShareViewUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ShareSDKiPhoneSimpleShareViewUI.framework; sourceTree = "<group>"; };
-		CACD6B2C18E03B4A003F97C0 /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		CACD6B2D18E03B4A003F97C0 /* libMobClickLibrary.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libMobClickLibrary.a; sourceTree = "<group>"; };
 		CACD6B2E18E03B4A003F97C0 /* MobClick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MobClick.h; sourceTree = "<group>"; };
 		CACD6B2F18E03B4A003F97C0 /* MobClickUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MobClickUtils.h; sourceTree = "<group>"; };
 		CACD6B3018E03B4A003F97C0 /* MobClickUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MobClickUtils.m; sourceTree = "<group>"; };
-		CACD6B3E18E03B7F003F97C0 /* GADAdMobExtras.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GADAdMobExtras.h; sourceTree = "<group>"; };
-		CACD6B3F18E03B7F003F97C0 /* GADAdNetworkExtras.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GADAdNetworkExtras.h; sourceTree = "<group>"; };
-		CACD6B4018E03B7F003F97C0 /* GADAdSize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GADAdSize.h; sourceTree = "<group>"; };
-		CACD6B4118E03B7F003F97C0 /* GADBannerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GADBannerView.h; sourceTree = "<group>"; };
-		CACD6B4218E03B7F003F97C0 /* GADBannerViewDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GADBannerViewDelegate.h; sourceTree = "<group>"; };
-		CACD6B4318E03B7F003F97C0 /* GADInterstitial.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GADInterstitial.h; sourceTree = "<group>"; };
-		CACD6B4418E03B7F003F97C0 /* GADInterstitialDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GADInterstitialDelegate.h; sourceTree = "<group>"; };
-		CACD6B4518E03B7F003F97C0 /* GADRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GADRequest.h; sourceTree = "<group>"; };
-		CACD6B4618E03B7F003F97C0 /* GADRequestError.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GADRequestError.h; sourceTree = "<group>"; };
-		CACD6B4718E03B7F003F97C0 /* libGoogleAdMobAds.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libGoogleAdMobAds.a; sourceTree = "<group>"; };
-		CACD6B4818E03B7F003F97C0 /* README.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.txt; sourceTree = "<group>"; };
-		CACD6C8318E03BCC003F97C0 /* AlipayRsaLib.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = AlipayRsaLib.a; sourceTree = "<group>"; };
-		CACD6C8418E03BCC003F97C0 /* AlixLibService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlixLibService.h; sourceTree = "<group>"; };
-		CACD6C8518E03BCC003F97C0 /* Alixpay.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Alixpay.bundle; sourceTree = "<group>"; };
-		CACD6C8618E03BCC003F97C0 /* AlixPaylib.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = AlixPaylib.a; sourceTree = "<group>"; };
-		CACD6C8818E03BCC003F97C0 /* AlixPayOrder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlixPayOrder.h; sourceTree = "<group>"; };
-		CACD6C8918E03BCC003F97C0 /* AlixPayOrder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AlixPayOrder.m; sourceTree = "<group>"; };
-		CACD6C8A18E03BCC003F97C0 /* AlixPayResult.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlixPayResult.h; sourceTree = "<group>"; };
-		CACD6C8B18E03BCC003F97C0 /* AlixPayResult.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AlixPayResult.m; sourceTree = "<group>"; };
-		CACD6C8D18E03BCC003F97C0 /* JSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSON.h; sourceTree = "<group>"; };
-		CACD6C8E18E03BCC003F97C0 /* NSObject+SBJSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+SBJSON.h"; sourceTree = "<group>"; };
-		CACD6C8F18E03BCC003F97C0 /* NSObject+SBJSON.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+SBJSON.m"; sourceTree = "<group>"; };
-		CACD6C9018E03BCC003F97C0 /* NSString+SBJSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+SBJSON.h"; sourceTree = "<group>"; };
-		CACD6C9118E03BCC003F97C0 /* NSString+SBJSON.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+SBJSON.m"; sourceTree = "<group>"; };
-		CACD6C9218E03BCC003F97C0 /* SBJSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJSON.h; sourceTree = "<group>"; };
-		CACD6C9318E03BCC003F97C0 /* SBJSON.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJSON.m; sourceTree = "<group>"; };
-		CACD6C9418E03BCC003F97C0 /* SBJsonBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJsonBase.h; sourceTree = "<group>"; };
-		CACD6C9518E03BCC003F97C0 /* SBJsonBase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonBase.m; sourceTree = "<group>"; };
-		CACD6C9618E03BCC003F97C0 /* SBJsonParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJsonParser.h; sourceTree = "<group>"; };
-		CACD6C9718E03BCC003F97C0 /* SBJsonParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonParser.m; sourceTree = "<group>"; };
-		CACD6C9818E03BCC003F97C0 /* SBJsonWriter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJsonWriter.h; sourceTree = "<group>"; };
-		CACD6C9918E03BCC003F97C0 /* SBJsonWriter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonWriter.m; sourceTree = "<group>"; };
-		CACD6C9A18E03BCC003F97C0 /* libcrypto.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libcrypto.a; sourceTree = "<group>"; };
-		CACD6C9B18E03BCC003F97C0 /* libssl.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libssl.a; sourceTree = "<group>"; };
-		CACD6C9D18E03BCC003F97C0 /* DataSigner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataSigner.h; sourceTree = "<group>"; };
-		CACD6C9E18E03BCC003F97C0 /* DataVerifier.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataVerifier.h; sourceTree = "<group>"; };
 		CACD6CA018E03BCC003F97C0 /* AliPayManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AliPayManager.h; sourceTree = "<group>"; };
 		CACD6CA118E03BCC003F97C0 /* AliPayManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AliPayManager.m; sourceTree = "<group>"; };
 		CACD6CA218E03BCC003F97C0 /* AlixPayOrderManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlixPayOrderManager.h; sourceTree = "<group>"; };
@@ -10889,23 +10931,6 @@
 		CACD6CF818E03C09003F97C0 /* table_builder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = table_builder.h; sourceTree = "<group>"; };
 		CACD6CF918E03C09003F97C0 /* write_batch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = write_batch.h; sourceTree = "<group>"; };
 		CACD6CFA18E03C09003F97C0 /* libleveldb.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libleveldb.a; sourceTree = "<group>"; };
-		CACD6D0118E03C40003F97C0 /*  iOS ReadMe (or suffer).rtf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.rtf; path = " iOS ReadMe (or suffer).rtf"; sourceTree = "<group>"; };
-		CACD6D0418E03C40003F97C0 /*  DiracAudioPlayer ReadMe.rtf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.rtf; path = " DiracAudioPlayer ReadMe.rtf"; sourceTree = "<group>"; };
-		CACD6D0518E03C40003F97C0 /* DiracAudioPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DiracAudioPlayer.h; sourceTree = "<group>"; };
-		CACD6D0618E03C40003F97C0 /* DiracAudioPlayer.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = DiracAudioPlayer.mm; sourceTree = "<group>"; };
-		CACD6D0718E03C40003F97C0 /* DiracAudioPlayerBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DiracAudioPlayerBase.h; sourceTree = "<group>"; };
-		CACD6D0818E03C40003F97C0 /* DiracAudioPlayerBase.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = DiracAudioPlayerBase.mm; sourceTree = "<group>"; };
-		CACD6D0918E03C40003F97C0 /* DiracFxAudioPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DiracFxAudioPlayer.h; sourceTree = "<group>"; };
-		CACD6D0A18E03C40003F97C0 /* DiracFxAudioPlayer.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = DiracFxAudioPlayer.mm; sourceTree = "<group>"; };
-		CACD6D0C18E03C40003F97C0 /* EAFRead.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EAFRead.h; sourceTree = "<group>"; };
-		CACD6D0D18E03C40003F97C0 /* EAFRead.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = EAFRead.mm; sourceTree = "<group>"; };
-		CACD6D0E18E03C40003F97C0 /* EAFWrite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EAFWrite.h; sourceTree = "<group>"; };
-		CACD6D0F18E03C40003F97C0 /* EAFWrite.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = EAFWrite.mm; sourceTree = "<group>"; };
-		CACD6D1118E03C40003F97C0 /* Dirac.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Dirac.h; sourceTree = "<group>"; };
-		CACD6D1218E03C40003F97C0 /* libDIRAC_iOS-fat.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "libDIRAC_iOS-fat.a"; sourceTree = "<group>"; };
-		CACD6D1318E03C40003F97C0 /* libDIRAC_iOS4-fat.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "libDIRAC_iOS4-fat.a"; sourceTree = "<group>"; };
-		CACD6D1518E03C40003F97C0 /* DiracUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DiracUtilities.h; sourceTree = "<group>"; };
-		CACD6D1618E03C40003F97C0 /* DiracUtilities.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = DiracUtilities.mm; sourceTree = "<group>"; };
 		CACD6D4018E03C86003F97C0 /* AudioFormatConverter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioFormatConverter.h; sourceTree = "<group>"; };
 		CACD6D4118E03C86003F97C0 /* AudioFormatConverter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AudioFormatConverter.m; sourceTree = "<group>"; };
 		CACD6D4218E03C86003F97C0 /* lame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = lame.h; sourceTree = "<group>"; };
@@ -11564,7 +11589,6 @@
 				CA93D10318EFF138002BB805 /* libWeChatSDK.a in Frameworks */,
 				A4F04B851806543C007274BE /* AssetsLibrary.framework in Frameworks */,
 				A4990773174DC624005AF334 /* Accelerate.framework in Frameworks */,
-				CACD6CD818E03BCD003F97C0 /* libcrypto.a in Frameworks */,
 				A499076C174DBB72005AF334 /* CoreMedia.framework in Frameworks */,
 				A461B3CC174CBAA70088B061 /* MediaPlayer.framework in Frameworks */,
 				A461B3D3174CBAA70088B061 /* AVFoundation.framework in Frameworks */,
@@ -11572,6 +11596,7 @@
 				CACD6CFD18E03C0A003F97C0 /* libleveldb.a in Frameworks */,
 				A4990768174DBB21005AF334 /* CoreAudio.framework in Frameworks */,
 				A461B3C3174CBAA70088B061 /* AddressBookUI.framework in Frameworks */,
+				36B4208C1AA762F800F8A9B1 /* AlipaySDK.framework in Frameworks */,
 				D8CF8AA21977981F0044E305 /* opencv2.framework in Frameworks */,
 				CACD6B1B18E03A2D003F97C0 /* ShareSDKiPhoneDefaultShareViewUI.framework in Frameworks */,
 				A461B3C4174CBAA70088B061 /* PassKit.framework in Frameworks */,
@@ -11580,13 +11605,11 @@
 				A461B3C7174CBAA70088B061 /* OpenGLES.framework in Frameworks */,
 				A461B3C8174CBAA70088B061 /* CoreImage.framework in Frameworks */,
 				A461B3C9174CBAA70088B061 /* libicucore.dylib in Frameworks */,
-				CACD6CA818E03BCD003F97C0 /* AlipayRsaLib.a in Frameworks */,
 				A461B3CA174CBAA70088B061 /* OpenAL.framework in Frameworks */,
 				A461B3CB174CBAA70088B061 /* EventKitUI.framework in Frameworks */,
 				A461B3CD174CBAA70088B061 /* EventKit.framework in Frameworks */,
 				A461B3CE174CBAA70088B061 /* CoreLocation.framework in Frameworks */,
 				CACD6D4A18E03C86003F97C0 /* libmp3lame.a in Frameworks */,
-				CACD6CDC18E03BCD003F97C0 /* libssl.a in Frameworks */,
 				A461B3D0174CBAA70088B061 /* CoreTelephony.framework in Frameworks */,
 				A461B3D1174CBAA70088B061 /* libsqlite3.dylib in Frameworks */,
 				CA93D0FF18EFF137002BB805 /* libTCWeiboSDK.a in Frameworks */,
@@ -11595,7 +11618,9 @@
 				CACD6ABB18E03A29003F97C0 /* AGCommon.framework in Frameworks */,
 				A461B3D8174CBAA70088B061 /* StoreKit.framework in Frameworks */,
 				A461B3D9174CBAA70088B061 /* libProtocolBuffers.a in Frameworks */,
-				CACD6D3518E03C40003F97C0 /* libDIRAC_iOS-fat.a in Frameworks */,
+				36B4206E1AA762B000F8A9B1 /* GoogleMobileAds.framework in Frameworks */,
+				36B420911AA762FE00F8A9B1 /* libssl.a in Frameworks */,
+				36B420901AA762FE00F8A9B1 /* libcrypto.a in Frameworks */,
 				A461B3DA174CBAA70088B061 /* libz.1.1.3.dylib in Frameworks */,
 				A461B3DB174CBAA70088B061 /* MessageUI.framework in Frameworks */,
 				A461B3DC174CBAA70088B061 /* MapKit.framework in Frameworks */,
@@ -11603,7 +11628,6 @@
 				A461B3DD174CBAA70088B061 /* AddressBook.framework in Frameworks */,
 				CACD6A8B18E03A28003F97C0 /* QZoneConnection.framework in Frameworks */,
 				A461B3DE174CBAA70088B061 /* CoreData.framework in Frameworks */,
-				CACD6B4B18E03B7F003F97C0 /* libGoogleAdMobAds.a in Frameworks */,
 				A461B3DF174CBAA70088B061 /* SystemConfiguration.framework in Frameworks */,
 				CACD6B0718E03A2D003F97C0 /* ShareSDKiPadDefaultShareViewUI.framework in Frameworks */,
 				A461B3E0174CBAA70088B061 /* QuartzCore.framework in Frameworks */,
@@ -11612,13 +11636,10 @@
 				A461B3E2174CBAA70088B061 /* UIKit.framework in Frameworks */,
 				A461B3E3174CBAA70088B061 /* Foundation.framework in Frameworks */,
 				A461B3E4174CBAA70088B061 /* CoreGraphics.framework in Frameworks */,
-				CACD6D3918E03C40003F97C0 /* libDIRAC_iOS4-fat.a in Frameworks */,
-				CACD6A9718E03A28003F97C0 /* SMSConnection.framework in Frameworks */,
 				CA93D0E718EFF136002BB805 /* TencentOpenAPI.framework in Frameworks */,
 				CACD6B0F18E03A2D003F97C0 /* ShareSDKiPadSimpleShareViewUI.framework in Frameworks */,
 				CACD6A8718E03A28003F97C0 /* QQConnection.framework in Frameworks */,
 				CACD6B1318E03A2D003F97C0 /* ShareSDKiPhoneAppRecommendShareViewUI.framework in Frameworks */,
-				CACD6CB018E03BCD003F97C0 /* AlixPaylib.a in Frameworks */,
 				CA62C7911756FC5B00C9EF56 /* protolCLib.a in Frameworks */,
 				CACD6AFF18E03A2D003F97C0 /* ShareSDK.framework in Frameworks */,
 				CACD6A5B18E03A28003F97C0 /* FacebookConnection.framework in Frameworks */,
@@ -11637,6 +11658,7 @@
 			files = (
 				CA32E63018F00AC70076959B /* CoreMotion.framework in Frameworks */,
 				CA1162901836098800FDD3A9 /* Accelerate.framework in Frameworks */,
+				36B4206D1AA762B000F8A9B1 /* GoogleMobileAds.framework in Frameworks */,
 				C28A9CAE1738F04B007A819F /* libstdc++.dylib in Frameworks */,
 				CA9AFE65181D45B100E08747 /* CoreMedia.framework in Frameworks */,
 				CA9AFE64181D434700E08747 /* CoreVideo.framework in Frameworks */,
@@ -11648,22 +11670,21 @@
 				C28A9CA41738F04B007A819F /* Social.framework in Frameworks */,
 				CACD6A8A18E03A28003F97C0 /* QZoneConnection.framework in Frameworks */,
 				C28A9CA51738F04B007A819F /* AdSupport.framework in Frameworks */,
-				CACD6CAF18E03BCD003F97C0 /* AlixPaylib.a in Frameworks */,
 				CACD6B1218E03A2D003F97C0 /* ShareSDKiPhoneAppRecommendShareViewUI.framework in Frameworks */,
 				C28A9CA61738F04B007A819F /* OpenGLES.framework in Frameworks */,
 				C28A9CA71738F04B007A819F /* CoreImage.framework in Frameworks */,
+				36B4208B1AA762F500F8A9B1 /* AlipaySDK.framework in Frameworks */,
 				C28A9CA81738F04B007A819F /* libicucore.dylib in Frameworks */,
 				C28A9CA91738F04B007A819F /* OpenAL.framework in Frameworks */,
 				C28A9CAA1738F04B007A819F /* EventKitUI.framework in Frameworks */,
 				C28A9CAB1738F04B007A819F /* MediaPlayer.framework in Frameworks */,
 				CACD6A9218E03A28003F97C0 /* SinaWeiboConnection.framework in Frameworks */,
-				CACD6B4A18E03B7F003F97C0 /* libGoogleAdMobAds.a in Frameworks */,
 				CACD6B0618E03A2D003F97C0 /* ShareSDKiPadDefaultShareViewUI.framework in Frameworks */,
-				CACD6CD718E03BCD003F97C0 /* libcrypto.a in Frameworks */,
 				C28A9CAC1738F04B007A819F /* EventKit.framework in Frameworks */,
 				C28A9CAD1738F04B007A819F /* CoreLocation.framework in Frameworks */,
 				C28A9CAF1738F04B007A819F /* CoreTelephony.framework in Frameworks */,
 				C28A9CB01738F04B007A819F /* libsqlite3.dylib in Frameworks */,
+				36B4208F1AA762FD00F8A9B1 /* libssl.a in Frameworks */,
 				CACD6D4918E03C86003F97C0 /* libmp3lame.a in Frameworks */,
 				C28A9CB11738F04B007A819F /* AudioToolbox.framework in Frameworks */,
 				C28A9CB21738F04B007A819F /* AVFoundation.framework in Frameworks */,
@@ -11675,14 +11696,11 @@
 				CACD6AA618E03A29003F97C0 /* TencentWeiboConnection.framework in Frameworks */,
 				D8CF8AA11977981E0044E305 /* opencv2.framework in Frameworks */,
 				C28A9CB81738F04B007A819F /* libProtocolBuffers.a in Frameworks */,
-				CACD6CA718E03BCC003F97C0 /* AlipayRsaLib.a in Frameworks */,
 				CA93D10218EFF138002BB805 /* libWeChatSDK.a in Frameworks */,
 				CACD6ABA18E03A29003F97C0 /* AGCommon.framework in Frameworks */,
 				C28A9CB91738F04B007A819F /* libz.1.1.3.dylib in Frameworks */,
-				CACD6D3418E03C40003F97C0 /* libDIRAC_iOS-fat.a in Frameworks */,
 				CACD6AC618E03A29003F97C0 /* ShareSDKCoreService.framework in Frameworks */,
 				C28A9CBA1738F04B007A819F /* MessageUI.framework in Frameworks */,
-				CACD6CDB18E03BCD003F97C0 /* libssl.a in Frameworks */,
 				C28A9CBB1738F04B007A819F /* MapKit.framework in Frameworks */,
 				C28A9CBC1738F04B007A819F /* AddressBook.framework in Frameworks */,
 				CACD6B0E18E03A2D003F97C0 /* ShareSDKiPadSimpleShareViewUI.framework in Frameworks */,
@@ -11693,9 +11711,9 @@
 				C28A9CC01738F04B007A819F /* CFNetwork.framework in Frameworks */,
 				CACD6CFC18E03C0A003F97C0 /* libleveldb.a in Frameworks */,
 				C28A9CC11738F04B007A819F /* UIKit.framework in Frameworks */,
+				36B4208E1AA762FD00F8A9B1 /* libcrypto.a in Frameworks */,
 				C28A9CC21738F04B007A819F /* Foundation.framework in Frameworks */,
 				C28A9CC31738F04B007A819F /* CoreGraphics.framework in Frameworks */,
-				CACD6A9618E03A28003F97C0 /* SMSConnection.framework in Frameworks */,
 				CA62C78E1756FC5B00C9EF56 /* protolCLib.a in Frameworks */,
 				CACD6AFE18E03A2D003F97C0 /* ShareSDK.framework in Frameworks */,
 				CACD6B3618E03B4B003F97C0 /* libMobClickLibrary.a in Frameworks */,
@@ -11704,7 +11722,6 @@
 				CA93D0FE18EFF137002BB805 /* libTCWeiboSDK.a in Frameworks */,
 				CACD6B2218E03A2D003F97C0 /* ShareSDKiPhoneSimpleShareViewUI.framework in Frameworks */,
 				CA93D0F618EFF137002BB805 /* libSinaWeiboSDK.a in Frameworks */,
-				CACD6D3818E03C40003F97C0 /* libDIRAC_iOS4-fat.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -11719,7 +11736,6 @@
 				CA93D10118EFF137002BB805 /* libWeChatSDK.a in Frameworks */,
 				A421503A1803E87C007F2EFD /* AssetsLibrary.framework in Frameworks */,
 				A4990770174DBC61005AF334 /* Accelerate.framework in Frameworks */,
-				CACD6CD618E03BCD003F97C0 /* libcrypto.a in Frameworks */,
 				A499076E174DBBFE005AF334 /* CoreMedia.framework in Frameworks */,
 				CA67B8A815EB2928002050DB /* MediaPlayer.framework in Frameworks */,
 				CA103F361509A71000F60C03 /* AVFoundation.framework in Frameworks */,
@@ -11727,6 +11743,7 @@
 				CACD6CFB18E03C0A003F97C0 /* libleveldb.a in Frameworks */,
 				A499076D174DBBC7005AF334 /* CoreAudio.framework in Frameworks */,
 				C28A9936173562A7007A819F /* AddressBookUI.framework in Frameworks */,
+				36B420601AA75E2700F8A9B1 /* AlipaySDK.framework in Frameworks */,
 				D8CF8AA01977981E0044E305 /* opencv2.framework in Frameworks */,
 				CACD6B1918E03A2D003F97C0 /* ShareSDKiPhoneDefaultShareViewUI.framework in Frameworks */,
 				CAD9F1B11735531600011AFA /* PassKit.framework in Frameworks */,
@@ -11735,13 +11752,11 @@
 				C28A23D2166C92C1007C9EA5 /* OpenGLES.framework in Frameworks */,
 				C2EE14601665FE9300ADBE2E /* CoreImage.framework in Frameworks */,
 				CA8815CF1657447800E29BB1 /* libicucore.dylib in Frameworks */,
-				CACD6CA618E03BCC003F97C0 /* AlipayRsaLib.a in Frameworks */,
 				C223397F164E41C900D2C123 /* OpenAL.framework in Frameworks */,
 				CA67B8AA15EB292E002050DB /* EventKitUI.framework in Frameworks */,
 				CAA1AFC5159EAA9900504C98 /* EventKit.framework in Frameworks */,
 				CA103F2A1509A6CA00F60C03 /* CoreLocation.framework in Frameworks */,
 				CACD6D4818E03C86003F97C0 /* libmp3lame.a in Frameworks */,
-				CACD6CDA18E03BCD003F97C0 /* libssl.a in Frameworks */,
 				CAA1AF8E159EA86A00504C98 /* CoreTelephony.framework in Frameworks */,
 				CAAE4A8315790F480012F6B8 /* libsqlite3.dylib in Frameworks */,
 				CA93D0FD18EFF137002BB805 /* libTCWeiboSDK.a in Frameworks */,
@@ -11750,15 +11765,16 @@
 				CACD6AB918E03A29003F97C0 /* AGCommon.framework in Frameworks */,
 				CA4216031521973A00FAA008 /* StoreKit.framework in Frameworks */,
 				CA96E363150E10D600292335 /* libProtocolBuffers.a in Frameworks */,
-				CACD6D3318E03C40003F97C0 /* libDIRAC_iOS-fat.a in Frameworks */,
+				36B4206C1AA762B000F8A9B1 /* GoogleMobileAds.framework in Frameworks */,
 				CA103F381509A71A00F60C03 /* libz.1.1.3.dylib in Frameworks */,
+				36B420621AA75E2800F8A9B1 /* libssl.a in Frameworks */,
+				36B420611AA75E2800F8A9B1 /* libcrypto.a in Frameworks */,
 				CA103F341509A70800F60C03 /* MessageUI.framework in Frameworks */,
 				CA103F321509A6EE00F60C03 /* MapKit.framework in Frameworks */,
 				CACD6B3518E03B4A003F97C0 /* libMobClickLibrary.a in Frameworks */,
 				CA103F301509A6E600F60C03 /* AddressBook.framework in Frameworks */,
 				CACD6A8918E03A28003F97C0 /* QZoneConnection.framework in Frameworks */,
 				CA103F2E1509A6DE00F60C03 /* CoreData.framework in Frameworks */,
-				CACD6B4918E03B7F003F97C0 /* libGoogleAdMobAds.a in Frameworks */,
 				CA103F2C1509A6D400F60C03 /* SystemConfiguration.framework in Frameworks */,
 				CACD6B0518E03A2D003F97C0 /* ShareSDKiPadDefaultShareViewUI.framework in Frameworks */,
 				CA103F281509A6C100F60C03 /* QuartzCore.framework in Frameworks */,
@@ -11767,13 +11783,10 @@
 				CA745D231503B1B500600024 /* UIKit.framework in Frameworks */,
 				CA745D251503B1B500600024 /* Foundation.framework in Frameworks */,
 				CA745D271503B1B500600024 /* CoreGraphics.framework in Frameworks */,
-				CACD6D3718E03C40003F97C0 /* libDIRAC_iOS4-fat.a in Frameworks */,
-				CACD6A9518E03A28003F97C0 /* SMSConnection.framework in Frameworks */,
 				CA93D0E518EFF136002BB805 /* TencentOpenAPI.framework in Frameworks */,
 				CACD6B0D18E03A2D003F97C0 /* ShareSDKiPadSimpleShareViewUI.framework in Frameworks */,
 				CACD6A8518E03A28003F97C0 /* QQConnection.framework in Frameworks */,
 				CACD6B1118E03A2D003F97C0 /* ShareSDKiPhoneAppRecommendShareViewUI.framework in Frameworks */,
-				CACD6CAE18E03BCD003F97C0 /* AlixPaylib.a in Frameworks */,
 				CA62C7811756FC5A00C9EF56 /* protolCLib.a in Frameworks */,
 				CACD6AFD18E03A2C003F97C0 /* ShareSDK.framework in Frameworks */,
 				CACD6A5918E03A28003F97C0 /* FacebookConnection.framework in Frameworks */,
@@ -11791,7 +11804,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				CACD6B1418E03A2D003F97C0 /* ShareSDKiPhoneAppRecommendShareViewUI.framework in Frameworks */,
-				CACD6B4C18E03B7F003F97C0 /* libGoogleAdMobAds.a in Frameworks */,
 				EA411B28176066F500DA72D0 /* libstdc++.dylib in Frameworks */,
 				EA411B17176066F500DA72D0 /* Accelerate.framework in Frameworks */,
 				EA411B18176066F500DA72D0 /* CoreMedia.framework in Frameworks */,
@@ -11810,8 +11822,6 @@
 				EA411B20176066F500DA72D0 /* AdSupport.framework in Frameworks */,
 				EA411B21176066F500DA72D0 /* OpenGLES.framework in Frameworks */,
 				EA411B22176066F500DA72D0 /* CoreImage.framework in Frameworks */,
-				CACD6D3A18E03C40003F97C0 /* libDIRAC_iOS4-fat.a in Frameworks */,
-				CACD6A9818E03A28003F97C0 /* SMSConnection.framework in Frameworks */,
 				EA411B23176066F500DA72D0 /* libicucore.dylib in Frameworks */,
 				EA411B24176066F500DA72D0 /* OpenAL.framework in Frameworks */,
 				CA93D0F818EFF137002BB805 /* libSinaWeiboSDK.a in Frameworks */,
@@ -11822,11 +11832,11 @@
 				EA411B27176066F500DA72D0 /* CoreLocation.framework in Frameworks */,
 				EA411B29176066F500DA72D0 /* CoreTelephony.framework in Frameworks */,
 				CA93D10418EFF138002BB805 /* libWeChatSDK.a in Frameworks */,
-				CACD6D3618E03C40003F97C0 /* libDIRAC_iOS-fat.a in Frameworks */,
 				EA411B2A176066F500DA72D0 /* libsqlite3.dylib in Frameworks */,
 				CACD6B1C18E03A2D003F97C0 /* ShareSDKiPhoneDefaultShareViewUI.framework in Frameworks */,
 				EA411B2B176066F500DA72D0 /* MobileCoreServices.framework in Frameworks */,
 				CACD6AA818E03A29003F97C0 /* TencentWeiboConnection.framework in Frameworks */,
+				36B4208D1AA762F900F8A9B1 /* AlipaySDK.framework in Frameworks */,
 				CACD6B2418E03A2D003F97C0 /* ShareSDKiPhoneSimpleShareViewUI.framework in Frameworks */,
 				EA411B2C176066F500DA72D0 /* ImageIO.framework in Frameworks */,
 				EA411B2E176066F500DA72D0 /* Security.framework in Frameworks */,
@@ -11841,21 +11851,20 @@
 				EA411B34176066F500DA72D0 /* AddressBook.framework in Frameworks */,
 				EA411B35176066F500DA72D0 /* CoreData.framework in Frameworks */,
 				EA411B36176066F500DA72D0 /* SystemConfiguration.framework in Frameworks */,
+				36B420931AA7630000F8A9B1 /* libssl.a in Frameworks */,
+				36B420921AA762FF00F8A9B1 /* libcrypto.a in Frameworks */,
 				D8CF8AA31977981F0044E305 /* opencv2.framework in Frameworks */,
 				EA411B37176066F500DA72D0 /* QuartzCore.framework in Frameworks */,
 				EA411B38176066F500DA72D0 /* CFNetwork.framework in Frameworks */,
 				CA93D10018EFF137002BB805 /* libTCWeiboSDK.a in Frameworks */,
-				CACD6CDD18E03BCD003F97C0 /* libssl.a in Frameworks */,
-				CACD6CA918E03BCD003F97C0 /* AlipayRsaLib.a in Frameworks */,
 				EA411B39176066F500DA72D0 /* UIKit.framework in Frameworks */,
 				CACD6A9418E03A28003F97C0 /* SinaWeiboConnection.framework in Frameworks */,
 				CACD6ABC18E03A29003F97C0 /* AGCommon.framework in Frameworks */,
 				CACD6B0018E03A2D003F97C0 /* ShareSDK.framework in Frameworks */,
 				EA411B3A176066F500DA72D0 /* Foundation.framework in Frameworks */,
+				36B4206F1AA762B000F8A9B1 /* GoogleMobileAds.framework in Frameworks */,
 				EA411B3B176066F500DA72D0 /* CoreGraphics.framework in Frameworks */,
 				EA411B49176066F500DA72D0 /* protolCLib.a in Frameworks */,
-				CACD6CB118E03BCD003F97C0 /* AlixPaylib.a in Frameworks */,
-				CACD6CD918E03BCD003F97C0 /* libcrypto.a in Frameworks */,
 				CACD6A8C18E03A28003F97C0 /* QZoneConnection.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -11863,6 +11872,132 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		36B420011AA75E2700F8A9B1 /* openssl */ = {
+			isa = PBXGroup;
+			children = (
+				36B420021AA75E2700F8A9B1 /* aes.h */,
+				36B420031AA75E2700F8A9B1 /* asn1.h */,
+				36B420041AA75E2700F8A9B1 /* asn1_mac.h */,
+				36B420051AA75E2700F8A9B1 /* asn1t.h */,
+				36B420061AA75E2700F8A9B1 /* bio.h */,
+				36B420071AA75E2700F8A9B1 /* blowfish.h */,
+				36B420081AA75E2700F8A9B1 /* bn.h */,
+				36B420091AA75E2700F8A9B1 /* buffer.h */,
+				36B4200A1AA75E2700F8A9B1 /* camellia.h */,
+				36B4200B1AA75E2700F8A9B1 /* cast.h */,
+				36B4200C1AA75E2700F8A9B1 /* cmac.h */,
+				36B4200D1AA75E2700F8A9B1 /* cms.h */,
+				36B4200E1AA75E2700F8A9B1 /* comp.h */,
+				36B4200F1AA75E2700F8A9B1 /* conf.h */,
+				36B420101AA75E2700F8A9B1 /* conf_api.h */,
+				36B420111AA75E2700F8A9B1 /* crypto.h */,
+				36B420121AA75E2700F8A9B1 /* des.h */,
+				36B420131AA75E2700F8A9B1 /* des_old.h */,
+				36B420141AA75E2700F8A9B1 /* dh.h */,
+				36B420151AA75E2700F8A9B1 /* dsa.h */,
+				36B420161AA75E2700F8A9B1 /* dso.h */,
+				36B420171AA75E2700F8A9B1 /* dtls1.h */,
+				36B420181AA75E2700F8A9B1 /* e_os2.h */,
+				36B420191AA75E2700F8A9B1 /* ebcdic.h */,
+				36B4201A1AA75E2700F8A9B1 /* ec.h */,
+				36B4201B1AA75E2700F8A9B1 /* ecdh.h */,
+				36B4201C1AA75E2700F8A9B1 /* ecdsa.h */,
+				36B4201D1AA75E2700F8A9B1 /* engine.h */,
+				36B4201E1AA75E2700F8A9B1 /* err.h */,
+				36B4201F1AA75E2700F8A9B1 /* evp.h */,
+				36B420201AA75E2700F8A9B1 /* hmac.h */,
+				36B420211AA75E2700F8A9B1 /* idea.h */,
+				36B420221AA75E2700F8A9B1 /* krb5_asn.h */,
+				36B420231AA75E2700F8A9B1 /* kssl.h */,
+				36B420241AA75E2700F8A9B1 /* lhash.h */,
+				36B420251AA75E2700F8A9B1 /* md4.h */,
+				36B420261AA75E2700F8A9B1 /* md5.h */,
+				36B420271AA75E2700F8A9B1 /* mdc2.h */,
+				36B420281AA75E2700F8A9B1 /* modes.h */,
+				36B420291AA75E2700F8A9B1 /* obj_mac.h */,
+				36B4202A1AA75E2700F8A9B1 /* objects.h */,
+				36B4202B1AA75E2700F8A9B1 /* ocsp.h */,
+				36B4202C1AA75E2700F8A9B1 /* opensslconf.h */,
+				36B4202D1AA75E2700F8A9B1 /* opensslv.h */,
+				36B4202E1AA75E2700F8A9B1 /* ossl_typ.h */,
+				36B4202F1AA75E2700F8A9B1 /* pem.h */,
+				36B420301AA75E2700F8A9B1 /* pem2.h */,
+				36B420311AA75E2700F8A9B1 /* pkcs12.h */,
+				36B420321AA75E2700F8A9B1 /* pkcs7.h */,
+				36B420331AA75E2700F8A9B1 /* pqueue.h */,
+				36B420341AA75E2700F8A9B1 /* rand.h */,
+				36B420351AA75E2700F8A9B1 /* rc2.h */,
+				36B420361AA75E2700F8A9B1 /* rc4.h */,
+				36B420371AA75E2700F8A9B1 /* ripemd.h */,
+				36B420381AA75E2700F8A9B1 /* rsa.h */,
+				36B420391AA75E2700F8A9B1 /* safestack.h */,
+				36B4203A1AA75E2700F8A9B1 /* seed.h */,
+				36B4203B1AA75E2700F8A9B1 /* sha.h */,
+				36B4203C1AA75E2700F8A9B1 /* srp.h */,
+				36B4203D1AA75E2700F8A9B1 /* srtp.h */,
+				36B4203E1AA75E2700F8A9B1 /* ssl.h */,
+				36B4203F1AA75E2700F8A9B1 /* ssl2.h */,
+				36B420401AA75E2700F8A9B1 /* ssl23.h */,
+				36B420411AA75E2700F8A9B1 /* ssl3.h */,
+				36B420421AA75E2700F8A9B1 /* stack.h */,
+				36B420431AA75E2700F8A9B1 /* symhacks.h */,
+				36B420441AA75E2700F8A9B1 /* tls1.h */,
+				36B420451AA75E2700F8A9B1 /* ts.h */,
+				36B420461AA75E2700F8A9B1 /* txt_db.h */,
+				36B420471AA75E2700F8A9B1 /* ui.h */,
+				36B420481AA75E2700F8A9B1 /* ui_compat.h */,
+				36B420491AA75E2700F8A9B1 /* whrlpool.h */,
+				36B4204A1AA75E2700F8A9B1 /* x509.h */,
+				36B4204B1AA75E2700F8A9B1 /* x509_vfy.h */,
+				36B4204C1AA75E2700F8A9B1 /* x509v3.h */,
+			);
+			path = openssl;
+			sourceTree = "<group>";
+		};
+		36B4204D1AA75E2700F8A9B1 /* Util */ = {
+			isa = PBXGroup;
+			children = (
+				36B4204E1AA75E2700F8A9B1 /* base64.h */,
+				36B4204F1AA75E2700F8A9B1 /* base64.m */,
+				36B420501AA75E2700F8A9B1 /* config.h */,
+				36B420511AA75E2700F8A9B1 /* DataSigner.h */,
+				36B420521AA75E2700F8A9B1 /* DataSigner.m */,
+				36B420531AA75E2700F8A9B1 /* DataVerifier.h */,
+				36B420541AA75E2700F8A9B1 /* DataVerifier.m */,
+				36B420551AA75E2700F8A9B1 /* MD5DataSigner.h */,
+				36B420561AA75E2700F8A9B1 /* MD5DataSigner.m */,
+				36B420571AA75E2700F8A9B1 /* NSDataEx.h */,
+				36B420581AA75E2700F8A9B1 /* NSDataEx.m */,
+				36B420591AA75E2700F8A9B1 /* openssl_wrapper.h */,
+				36B4205A1AA75E2700F8A9B1 /* openssl_wrapper.m */,
+				36B4205B1AA75E2700F8A9B1 /* RSADataSigner.h */,
+				36B4205C1AA75E2700F8A9B1 /* RSADataSigner.m */,
+				36B4205D1AA75E2700F8A9B1 /* RSADataVerifier.h */,
+				36B4205E1AA75E2700F8A9B1 /* RSADataVerifier.m */,
+			);
+			path = Util;
+			sourceTree = "<group>";
+		};
+		36B420D51AA7F91900F8A9B1 /* json */ = {
+			isa = PBXGroup;
+			children = (
+				36B420D61AA7F91900F8A9B1 /* JSON.h */,
+				36B420D71AA7F91900F8A9B1 /* NSObject+SBJSON.h */,
+				36B420D81AA7F91900F8A9B1 /* NSObject+SBJSON.m */,
+				36B420D91AA7F91900F8A9B1 /* NSString+SBJSON.h */,
+				36B420DA1AA7F91900F8A9B1 /* NSString+SBJSON.m */,
+				36B420DB1AA7F91900F8A9B1 /* SBJSON.h */,
+				36B420DC1AA7F91900F8A9B1 /* SBJSON.m */,
+				36B420DD1AA7F91900F8A9B1 /* SBJsonBase.h */,
+				36B420DE1AA7F91900F8A9B1 /* SBJsonBase.m */,
+				36B420DF1AA7F91900F8A9B1 /* SBJsonParser.h */,
+				36B420E01AA7F91900F8A9B1 /* SBJsonParser.m */,
+				36B420E11AA7F91900F8A9B1 /* SBJsonWriter.h */,
+				36B420E21AA7F91900F8A9B1 /* SBJsonWriter.m */,
+			);
+			path = json;
+			sourceTree = "<group>";
+		};
 		A30A28441580C2AE006CA3CC /* PrivateChat */ = {
 			isa = PBXGroup;
 			children = (
@@ -12475,7 +12610,6 @@
 		A4B6C653176C0F4400C72E17 /* AudioProcessing */ = {
 			isa = PBXGroup;
 			children = (
-				CACD6CFF18E03C40003F97C0 /* --DIRAC3LE-- */,
 			);
 			path = AudioProcessing;
 			sourceTree = "<group>";
@@ -17786,7 +17920,6 @@
 				CACD6A1418E03A27003F97C0 /* QQConnection.framework */,
 				CACD6A1518E03A27003F97C0 /* QZoneConnection.framework */,
 				CACD6A1718E03A27003F97C0 /* SinaWeiboConnection.framework */,
-				CACD6A1818E03A27003F97C0 /* SMSConnection.framework */,
 				CACD6A1C18E03A27003F97C0 /* TencentWeiboConnection.framework */,
 				CACD6A1F18E03A27003F97C0 /* WeChatConnection.framework */,
 			);
@@ -17823,7 +17956,6 @@
 		CACD6B2B18E03B4A003F97C0 /* MobClick */ = {
 			isa = PBXGroup;
 			children = (
-				CACD6B2C18E03B4A003F97C0 /* .gitignore */,
 				CACD6B2D18E03B4A003F97C0 /* libMobClickLibrary.a */,
 				CACD6B2E18E03B4A003F97C0 /* MobClick.h */,
 				CACD6B2F18E03B4A003F97C0 /* MobClickUtils.h */,
@@ -17835,17 +17967,7 @@
 		CACD6B3D18E03B7F003F97C0 /* GoogleAdMobAdsSDK */ = {
 			isa = PBXGroup;
 			children = (
-				CACD6B3E18E03B7F003F97C0 /* GADAdMobExtras.h */,
-				CACD6B3F18E03B7F003F97C0 /* GADAdNetworkExtras.h */,
-				CACD6B4018E03B7F003F97C0 /* GADAdSize.h */,
-				CACD6B4118E03B7F003F97C0 /* GADBannerView.h */,
-				CACD6B4218E03B7F003F97C0 /* GADBannerViewDelegate.h */,
-				CACD6B4318E03B7F003F97C0 /* GADInterstitial.h */,
-				CACD6B4418E03B7F003F97C0 /* GADInterstitialDelegate.h */,
-				CACD6B4518E03B7F003F97C0 /* GADRequest.h */,
-				CACD6B4618E03B7F003F97C0 /* GADRequestError.h */,
-				CACD6B4718E03B7F003F97C0 /* libGoogleAdMobAds.a */,
-				CACD6B4818E03B7F003F97C0 /* README.txt */,
+				36B4206B1AA762B000F8A9B1 /* GoogleMobileAds.framework */,
 			);
 			path = GoogleAdMobAdsSDK;
 			sourceTree = "<group>";
@@ -17862,54 +17984,20 @@
 		CACD6C8218E03BCC003F97C0 /* alipay */ = {
 			isa = PBXGroup;
 			children = (
-				CACD6C8318E03BCC003F97C0 /* AlipayRsaLib.a */,
-				CACD6C8418E03BCC003F97C0 /* AlixLibService.h */,
-				CACD6C8518E03BCC003F97C0 /* Alixpay.bundle */,
-				CACD6C8618E03BCC003F97C0 /* AlixPaylib.a */,
-				CACD6C8818E03BCC003F97C0 /* AlixPayOrder.h */,
-				CACD6C8918E03BCC003F97C0 /* AlixPayOrder.m */,
-				CACD6C8A18E03BCC003F97C0 /* AlixPayResult.h */,
-				CACD6C8B18E03BCC003F97C0 /* AlixPayResult.m */,
-				CACD6C8C18E03BCC003F97C0 /* json */,
-				CACD6C9A18E03BCC003F97C0 /* libcrypto.a */,
-				CACD6C9B18E03BCC003F97C0 /* libssl.a */,
-				CACD6C9C18E03BCC003F97C0 /* RSA */,
+				36B41FFD1AA75E2700F8A9B1 /* AlipaySDK.bundle */,
+				36B41FFE1AA75E2700F8A9B1 /* AlipaySDK.framework */,
+				36B41FFF1AA75E2700F8A9B1 /* libcrypto.a */,
+				36B420001AA75E2700F8A9B1 /* libssl.a */,
+				36B420011AA75E2700F8A9B1 /* openssl */,
+				36B4204D1AA75E2700F8A9B1 /* Util */,
 			);
 			path = alipay;
-			sourceTree = "<group>";
-		};
-		CACD6C8C18E03BCC003F97C0 /* json */ = {
-			isa = PBXGroup;
-			children = (
-				CACD6C8D18E03BCC003F97C0 /* JSON.h */,
-				CACD6C8E18E03BCC003F97C0 /* NSObject+SBJSON.h */,
-				CACD6C8F18E03BCC003F97C0 /* NSObject+SBJSON.m */,
-				CACD6C9018E03BCC003F97C0 /* NSString+SBJSON.h */,
-				CACD6C9118E03BCC003F97C0 /* NSString+SBJSON.m */,
-				CACD6C9218E03BCC003F97C0 /* SBJSON.h */,
-				CACD6C9318E03BCC003F97C0 /* SBJSON.m */,
-				CACD6C9418E03BCC003F97C0 /* SBJsonBase.h */,
-				CACD6C9518E03BCC003F97C0 /* SBJsonBase.m */,
-				CACD6C9618E03BCC003F97C0 /* SBJsonParser.h */,
-				CACD6C9718E03BCC003F97C0 /* SBJsonParser.m */,
-				CACD6C9818E03BCC003F97C0 /* SBJsonWriter.h */,
-				CACD6C9918E03BCC003F97C0 /* SBJsonWriter.m */,
-			);
-			path = json;
-			sourceTree = "<group>";
-		};
-		CACD6C9C18E03BCC003F97C0 /* RSA */ = {
-			isa = PBXGroup;
-			children = (
-				CACD6C9D18E03BCC003F97C0 /* DataSigner.h */,
-				CACD6C9E18E03BCC003F97C0 /* DataVerifier.h */,
-			);
-			path = RSA;
 			sourceTree = "<group>";
 		};
 		CACD6C9F18E03BCC003F97C0 /* AliPayManager */ = {
 			isa = PBXGroup;
 			children = (
+				36B420D51AA7F91900F8A9B1 /* json */,
 				CACD6CA018E03BCC003F97C0 /* AliPayManager.h */,
 				CACD6CA118E03BCC003F97C0 /* AliPayManager.m */,
 				CACD6CA218E03BCC003F97C0 /* AlixPayOrderManager.h */,
@@ -17955,78 +18043,6 @@
 				CACD6CF918E03C09003F97C0 /* write_batch.h */,
 			);
 			path = leveldb;
-			sourceTree = "<group>";
-		};
-		CACD6CFF18E03C40003F97C0 /* --DIRAC3LE-- */ = {
-			isa = PBXGroup;
-			children = (
-				CACD6D0018E03C40003F97C0 /* Dirac3-Mobile */,
-			);
-			path = "--DIRAC3LE--";
-			sourceTree = "<group>";
-		};
-		CACD6D0018E03C40003F97C0 /* Dirac3-Mobile */ = {
-			isa = PBXGroup;
-			children = (
-				CACD6D0118E03C40003F97C0 /*  iOS ReadMe (or suffer).rtf */,
-				CACD6D0218E03C40003F97C0 /* Common Files */,
-			);
-			path = "Dirac3-Mobile";
-			sourceTree = "<group>";
-		};
-		CACD6D0218E03C40003F97C0 /* Common Files */ = {
-			isa = PBXGroup;
-			children = (
-				CACD6D0318E03C40003F97C0 /* DiracAudioPlayer */,
-				CACD6D0B18E03C40003F97C0 /* ExtAudioFile */,
-				CACD6D1018E03C40003F97C0 /* src */,
-				CACD6D1418E03C40003F97C0 /* util */,
-			);
-			path = "Common Files";
-			sourceTree = "<group>";
-		};
-		CACD6D0318E03C40003F97C0 /* DiracAudioPlayer */ = {
-			isa = PBXGroup;
-			children = (
-				CACD6D0418E03C40003F97C0 /*  DiracAudioPlayer ReadMe.rtf */,
-				CACD6D0518E03C40003F97C0 /* DiracAudioPlayer.h */,
-				CACD6D0618E03C40003F97C0 /* DiracAudioPlayer.mm */,
-				CACD6D0718E03C40003F97C0 /* DiracAudioPlayerBase.h */,
-				CACD6D0818E03C40003F97C0 /* DiracAudioPlayerBase.mm */,
-				CACD6D0918E03C40003F97C0 /* DiracFxAudioPlayer.h */,
-				CACD6D0A18E03C40003F97C0 /* DiracFxAudioPlayer.mm */,
-			);
-			path = DiracAudioPlayer;
-			sourceTree = "<group>";
-		};
-		CACD6D0B18E03C40003F97C0 /* ExtAudioFile */ = {
-			isa = PBXGroup;
-			children = (
-				CACD6D0C18E03C40003F97C0 /* EAFRead.h */,
-				CACD6D0D18E03C40003F97C0 /* EAFRead.mm */,
-				CACD6D0E18E03C40003F97C0 /* EAFWrite.h */,
-				CACD6D0F18E03C40003F97C0 /* EAFWrite.mm */,
-			);
-			path = ExtAudioFile;
-			sourceTree = "<group>";
-		};
-		CACD6D1018E03C40003F97C0 /* src */ = {
-			isa = PBXGroup;
-			children = (
-				CACD6D1118E03C40003F97C0 /* Dirac.h */,
-				CACD6D1218E03C40003F97C0 /* libDIRAC_iOS-fat.a */,
-				CACD6D1318E03C40003F97C0 /* libDIRAC_iOS4-fat.a */,
-			);
-			path = src;
-			sourceTree = "<group>";
-		};
-		CACD6D1418E03C40003F97C0 /* util */ = {
-			isa = PBXGroup;
-			children = (
-				CACD6D1518E03C40003F97C0 /* DiracUtilities.h */,
-				CACD6D1618E03C40003F97C0 /* DiracUtilities.mm */,
-			);
-			path = util;
 			sourceTree = "<group>";
 		};
 		CACD6D3F18E03C86003F97C0 /* Core-Utils-Audio-Convert */ = {
@@ -19614,7 +19630,6 @@
 				A461B57A174CBAA70088B061 /* DrawUserInfoView~ipad.xib in Resources */,
 				A461B57D174CBAA70088B061 /* PassWordDialog.xib in Resources */,
 				A461B57E174CBAA70088B061 /* PassWordDialog~ipad.xib in Resources */,
-				CACD6D1D18E03C40003F97C0 /*  DiracAudioPlayer ReadMe.rtf in Resources */,
 				A461B57F174CBAA70088B061 /* RoomPasswordDialog.xib in Resources */,
 				A461B580174CBAA70088B061 /* RoomPasswordDialog~ipad.xib in Resources */,
 				A461B581174CBAA70088B061 /* ZJHInputDialog.xib in Resources */,
@@ -19761,7 +19776,6 @@
 				CAA7DA921987D3A000408FB1 /* draw_next@2x.png in Resources */,
 				A499732F17783E3F00B01EBE /* UserPhotoView.xib in Resources */,
 				A499733117783E3F00B01EBE /* CommonSearchImageFilterView.xib in Resources */,
-				CACD6B4F18E03B7F003F97C0 /* README.txt in Resources */,
 				CA3D4B0517794748000A8FC7 /* ShadowBox.xib in Resources */,
 				CA3D4B1717794748000A8FC7 /* ShadowBox~ipad.xib in Resources */,
 				A467BBCA17798DC900455E3A /* ToolUpPanel.xib in Resources */,
@@ -20005,7 +20019,6 @@
 				A4D8FBB317DB08170085061F /* store_bg@2x.jpg in Resources */,
 				A4D8FBB717DB08170085061F /* bubble_bg@2x.png in Resources */,
 				A4D8FBBB17DB08170085061F /* correct@2x.png in Resources */,
-				CACD6B3318E03B4A003F97C0 /* .gitignore in Resources */,
 				A4D8FBBF17DB08170085061F /* question@2x.png in Resources */,
 				A4D8FBC317DB08170085061F /* flower@2x.png in Resources */,
 				A4D8FBC717DB08170085061F /* flower_result@2x.png in Resources */,
@@ -20064,6 +20077,7 @@
 				A4D8FD6117DB089C0085061F /* drawlayer_flag_hide@2x.png in Resources */,
 				A4D8FD6517DB089C0085061F /* drawlayer_flag_show@2x.png in Resources */,
 				A4D8FD6917DB089C0085061F /* gradient_bg_left@2x.png in Resources */,
+				36B420711AA762BF00F8A9B1 /* AlipaySDK.bundle in Resources */,
 				A4D8FD6D17DB089C0085061F /* gradient_bg_mid@2x.png in Resources */,
 				A4D8FD7117DB089C0085061F /* gradient_bg_right@2x.png in Resources */,
 				A4D8FD7517DB089C0085061F /* gradient_division@2x.png in Resources */,
@@ -20187,7 +20201,6 @@
 				A4D8FF4117DB089C0085061F /* dice_home_header_foot@2x.png in Resources */,
 				A4D8FF4517DB089C0085061F /* dice_home_header_man@2x.png in Resources */,
 				D869F8FD19906D8B00E6756A /* iphone5-3.png in Resources */,
-				CACD6CAC18E03BCD003F97C0 /* Alixpay.bundle in Resources */,
 				A4D8FFA117DB089C0085061F /* learndraw_bg@2x.png in Resources */,
 				A4D8FFA517DB089C0085061F /* learndraw_bottom_bar@2x.png in Resources */,
 				A4F4751619B5794100CFE2AE /* brush_dot7@2x.png in Resources */,
@@ -20309,7 +20322,6 @@
 				A4F04B91180680D1007274BE /* tap-mellow.aif in Resources */,
 				A4F04B94180680D2007274BE /* tap-warm.aif in Resources */,
 				A4F04B9918068467007274BE /* beep-shinymetal.aif in Resources */,
-				CACD6D1918E03C40003F97C0 /*  iOS ReadMe (or suffer).rtf in Resources */,
 				A4F04B9C18068467007274BE /* beep-timber.aif in Resources */,
 				D8C784BC196A541C00323712 /* AllTutorialCell~ipad.xib in Resources */,
 				CAA8B8051998836800C9A99B /* daohanglan.png in Resources */,
@@ -20891,6 +20903,7 @@
 				CA2488D81753450B00848A5F /* default_config_645475970_version.txt in Resources */,
 				CA2488D91753450B00848A5F /* default_config_645475970.pb in Resources */,
 				CA2488E01753452000848A5F /* shop_item_645475970.pb in Resources */,
+				36B420701AA762BE00F8A9B1 /* AlipaySDK.bundle in Resources */,
 				CA2489081753B97300848A5F /* LittleGeeDefault-568h@2x.png in Resources */,
 				CA2489091753B97C00848A5F /* LittleGeeDefault-568h@2x.png in Resources */,
 				CA1CC3AA19C43E04006E06C7 /* brush_show_gouache@2x.png in Resources */,
@@ -21100,7 +21113,6 @@
 				A4D8FAB617DB08170085061F /* foot@2x.png in Resources */,
 				A4D8FABA17DB08170085061F /* guess_contest_mode@2x.png in Resources */,
 				A4D8FABE17DB08170085061F /* guess_contest_time@2x.png in Resources */,
-				CACD6CAB18E03BCD003F97C0 /* Alixpay.bundle in Resources */,
 				A4D8FAC217DB08170085061F /* guess_correct@2x.png in Resources */,
 				A4D8FAC617DB08170085061F /* guess_genius_mode@2x.png in Resources */,
 				A4D8FACA17DB08170085061F /* guess_happy_mode@2x.png in Resources */,
@@ -21223,7 +21235,6 @@
 				A4D8FD7417DB089C0085061F /* gradient_division@2x.png in Resources */,
 				A4D8FD7817DB089C0085061F /* draw_main_bg@2x.jpg in Resources */,
 				A4D8FD7C17DB089C0085061F /* draw_page_back@2x.png in Resources */,
-				CACD6D1818E03C40003F97C0 /*  iOS ReadMe (or suffer).rtf in Resources */,
 				A4F4754819B57B9D00CFE2AE /* LICENSE in Resources */,
 				A4D8FD8017DB089C0085061F /* old_draw_bg@2x.jpg in Resources */,
 				A4D8FD8417DB089C0085061F /* selected_pen_brush@2x.png in Resources */,
@@ -21249,7 +21260,6 @@
 				A4D8FDC817DB089C0085061F /* pen_pencil@2x.png in Resources */,
 				A4D8FDCC17DB089C0085061F /* selector_cancel@2x.png in Resources */,
 				A4D8FDD017DB089C0085061F /* selector_close@2x.png in Resources */,
-				CACD6D1C18E03C40003F97C0 /*  DiracAudioPlayer ReadMe.rtf in Resources */,
 				A4D8FDD417DB089C0085061F /* selector_close_bg@2x.png in Resources */,
 				A4D8FDD817DB089C0085061F /* selector_ellipse@2x.png in Resources */,
 				A4D8FDDC17DB089C0085061F /* selector_help@2x.png in Resources */,
@@ -21544,7 +21554,6 @@
 				D8D2807519C982360027E3BE /* rankEnterBtn.png in Resources */,
 				CA9AAFF518321621002DBAA5 /* custom_song@2x.png in Resources */,
 				CA9AAFF918321621002DBAA5 /* song_bg1@2x.png in Resources */,
-				CACD6B3218E03B4A003F97C0 /* .gitignore in Resources */,
 				CAFCF24C1997C83B008C8854 /* LittleGeeDraw-Info.plist in Resources */,
 				CA9AAFFD18321621002DBAA5 /* song_bg2@2x.png in Resources */,
 				CA9AB00118321621002DBAA5 /* song_bg3@2x.png in Resources */,
@@ -21570,7 +21579,6 @@
 				EA8D93C81833632800780B63 /* GroupCell.xib in Resources */,
 				CA1162601834A88F00FDD3A9 /* TaskController.xib in Resources */,
 				CA1162771834A91100FDD3A9 /* TaskCell.xib in Resources */,
-				CACD6B4E18E03B7F003F97C0 /* README.txt in Resources */,
 				EA11A4181839EA1200F73D64 /* group_footer_at@2x.png in Resources */,
 				EA11A41C1839EA1200F73D64 /* group_footer_chat@2x.png in Resources */,
 				EA11A4201839EA1200F73D64 /* group_footer_create@2x.png in Resources */,
@@ -22124,7 +22132,6 @@
 				A4DDD14917CDFD7B0029E562 /* iap_product_513819630_old.pb in Resources */,
 				CA1CC3B919C43E04006E06C7 /* brush_show_water@2x.png in Resources */,
 				CAFCF23B19979605008C8854 /* defaultBillBoard_en.jpg in Resources */,
-				CACD6CAA18E03BCD003F97C0 /* Alixpay.bundle in Resources */,
 				A4DDD14D17CDFD7B0029E562 /* iap_product_Draw.pb in Resources */,
 				A4DDD15117CDFD7B0029E562 /* image_shape.zip in Resources */,
 				A4DDD15517CDFD7B0029E562 /* shop_item_513819630.pb in Resources */,
@@ -22175,6 +22182,7 @@
 				A4F4750C19B5794100CFE2AE /* brush_dot5@2x.png in Resources */,
 				A4D8F9E517DB08170085061F /* unloadbg@2x.png in Resources */,
 				A4D8F9E917DB08170085061F /* weibo_selectedbg@2x.png in Resources */,
+				36B4205F1AA75E2700F8A9B1 /* AlipaySDK.bundle in Resources */,
 				A4D8F9ED17DB08170085061F /* yes_s@2x.png in Resources */,
 				A4D8F9F117DB08170085061F /* changeroom@2x.png in Resources */,
 				A4D8F9F517DB08170085061F /* chat_change_bg@2x.png in Resources */,
@@ -22229,7 +22237,6 @@
 				A4D8FA9517DB08170085061F /* face_proud@2x.png in Resources */,
 				A4D8FA9917DB08170085061F /* guessed@2x.png in Resources */,
 				A4D8FA9D17DB08170085061F /* my_paint_tag@2x.png in Resources */,
-				CACD6D1B18E03C40003F97C0 /*  DiracAudioPlayer ReadMe.rtf in Resources */,
 				A4D8FAA117DB08170085061F /* new_bulletin@2x.png in Resources */,
 				A4D8FAA517DB08170085061F /* no_s@2x.png in Resources */,
 				A4D8FAA917DB08170085061F /* wrong@2x.png in Resources */,
@@ -22297,7 +22304,6 @@
 				A4D8FB7917DB08170085061F /* room_seat_bg_2@2x.png in Resources */,
 				A4D8FB7D17DB08170085061F /* room_seat_bg_3@2x.png in Resources */,
 				A4D8FB8117DB08170085061F /* room_seat_bg_4@2x.png in Resources */,
-				CACD6B4D18E03B7F003F97C0 /* README.txt in Resources */,
 				CA1CC38319C43DE1006E06C7 /* selected_brush_gouache@2x.png in Resources */,
 				A4D8FB8517DB08170085061F /* room_seat_bg_5@2x.png in Resources */,
 				A4D8FB8917DB08170085061F /* room_seat_bg_6@2x.png in Resources */,
@@ -22528,7 +22534,6 @@
 				A4D8001B17DB089C0085061F /* photo@2x.png in Resources */,
 				A4D8001F17DB089C0085061F /* placeholder_photo@2x.png in Resources */,
 				A4D8002317DB089C0085061F /* draw_player_close@2x.png in Resources */,
-				CACD6B3118E03B4A003F97C0 /* .gitignore in Resources */,
 				A4D8002717DB089C0085061F /* draw_player_minus@2x.png in Resources */,
 				A4D8002B17DB089C0085061F /* draw_player_pause@2x.png in Resources */,
 				A4D8002F17DB089C0085061F /* draw_player_play@2x.png in Resources */,
@@ -22607,7 +22612,6 @@
 				A4326D9E180D23F500D50F0A /* DrawDefault@2x.png in Resources */,
 				CADB1EEE17EB49CF0048698F /* icon76.png in Resources */,
 				CADB1EEF17EB49D00048698F /* icon120.png in Resources */,
-				CACD6D1718E03C40003F97C0 /*  iOS ReadMe (or suffer).rtf in Resources */,
 				CADB1EF017EB49D00048698F /* icon152.png in Resources */,
 				EA2A7CE217F676AB00ED508D /* AccountManageController.xib in Resources */,
 				EA2A7CEC17F6958600ED508D /* AccountCell.xib in Resources */,
@@ -22900,7 +22904,6 @@
 				EA411BFC176066F500DA72D0 /* DrawInfoCell.xib in Resources */,
 				EA411BFD176066F500DA72D0 /* DrawInfoCell~ipad.xib in Resources */,
 				EA411BFE176066F500DA72D0 /* FeedCell.xib in Resources */,
-				CACD6D1A18E03C40003F97C0 /*  iOS ReadMe (or suffer).rtf in Resources */,
 				EA411BFF176066F500DA72D0 /* FeedCell~ipad.xib in Resources */,
 				EA411C00176066F500DA72D0 /* UserInfoCell.xib in Resources */,
 				CA13EE4F19FF334C0060F333 /* brush_show_filled@2x.png in Resources */,
@@ -22926,7 +22929,6 @@
 				A4EB5BFC19F681760067ADB1 /* brush_ellipse7@2x.png in Resources */,
 				EA411C18176066F500DA72D0 /* TopPlayerView~ipad.xib in Resources */,
 				EA411C19176066F500DA72D0 /* MyFeedController~ipad.xib in Resources */,
-				CACD6B5018E03B7F003F97C0 /* README.txt in Resources */,
 				EA411C1A176066F500DA72D0 /* ContestOpusController~ipad.xib in Resources */,
 				EA411C1B176066F500DA72D0 /* ContestController~ipad.xib in Resources */,
 				EA411C1C176066F500DA72D0 /* ContestView~ipad.xib in Resources */,
@@ -22942,7 +22944,6 @@
 				EA411C29176066F500DA72D0 /* FriendController~ipad.xib in Resources */,
 				EA411C2A176066F500DA72D0 /* FriendController.xib in Resources */,
 				EA411C30176066F500DA72D0 /* PPResourceTestViewController.xib in Resources */,
-				CACD6CAD18E03BCD003F97C0 /* Alixpay.bundle in Resources */,
 				EA411C31176066F500DA72D0 /* BBSBoardController.xib in Resources */,
 				EA411C32176066F500DA72D0 /* BBSBoardController~ipad.xib in Resources */,
 				EA411C33176066F500DA72D0 /* BBSBoardCell.xib in Resources */,
@@ -23528,7 +23529,6 @@
 				A4D8FE4617DB089C0085061F /* draw_shape_image@2x.png in Resources */,
 				A4D8FE4A17DB089C0085061F /* draw_shape_selected@2x.png in Resources */,
 				A4D8FE4E17DB089C0085061F /* draw_straw@2x.png in Resources */,
-				CACD6B3418E03B4A003F97C0 /* .gitignore in Resources */,
 				A4D8FE5217DB089C0085061F /* draw_straw_seleted@2x.png in Resources */,
 				A4D8FE5617DB089C0085061F /* draw_switch@2x.png in Resources */,
 				A4D8FE5A17DB089C0085061F /* draw_text@2x.png in Resources */,
@@ -23741,6 +23741,7 @@
 				CA9AAF7B18321621002DBAA5 /* shop_item_660557448.pb in Resources */,
 				CA9AAF7F18321621002DBAA5 /* songCategory.txt in Resources */,
 				CA9AAF8318321621002DBAA5 /* sing_home_badge@2x.png in Resources */,
+				36B420721AA762BF00F8A9B1 /* AlipaySDK.bundle in Resources */,
 				CA9AAF8718321621002DBAA5 /* sing_home_bbs@2x.png in Resources */,
 				CAEAB560196164110065847C /* UserTutorialMainCell.xib in Resources */,
 				CA9AAF8B18321621002DBAA5 /* sing_home_chat@2x.png in Resources */,
@@ -23767,7 +23768,6 @@
 				CA9AAFD318321621002DBAA5 /* sing_record_bg@2x.png in Resources */,
 				D8A1E9C1197612B200F32735 /* MoreViewController.xib in Resources */,
 				CA9AAFD718321621002DBAA5 /* sing_rerecord@2x.png in Resources */,
-				CACD6D1E18E03C40003F97C0 /*  DiracAudioPlayer ReadMe.rtf in Resources */,
 				CA9AAFDB18321621002DBAA5 /* sing_switch1@2x.png in Resources */,
 				CA9AAFDF18321621002DBAA5 /* sing_switch2@2x.png in Resources */,
 				CA9AAFE318321621002DBAA5 /* sing_voice@2x.png in Resources */,
@@ -24033,7 +24033,6 @@
 				A461B0AB174CBAA70088B061 /* DeviceDetection.m in Sources */,
 				A461B0AC174CBAA70088B061 /* NSString+MD5Addition.m in Sources */,
 				A461B0AD174CBAA70088B061 /* UIDevice+IdentifierAddition.m in Sources */,
-				CACD6CCC18E03BCD003F97C0 /* SBJsonBase.m in Sources */,
 				A461B0AF174CBAA70088B061 /* FileUtil.m in Sources */,
 				A461B0B0174CBAA70088B061 /* FontUtils.m in Sources */,
 				A461B0B1174CBAA70088B061 /* UIFontExt.m in Sources */,
@@ -24052,7 +24051,6 @@
 				A461B0BC174CBAA70088B061 /* NetworkUtil.m in Sources */,
 				A461B0BD174CBAA70088B061 /* NetworkDetector.m in Sources */,
 				A461B0BE174CBAA70088B061 /* Reachability.m in Sources */,
-				CACD6D2518E03C40003F97C0 /* DiracAudioPlayerBase.mm in Sources */,
 				A461B0BF174CBAA70088B061 /* CommonNetworkClient.m in Sources */,
 				A461B0C0174CBAA70088B061 /* UIAlertViewUtils.m in Sources */,
 				A461B0C1174CBAA70088B061 /* UIBarButtonItemExt.m in Sources */,
@@ -24064,6 +24062,7 @@
 				CA17826B1962D2480068883A /* DAPageIndicatorView.m in Sources */,
 				A461B0C7174CBAA70088B061 /* TextViewExt.m in Sources */,
 				A461B0C8174CBAA70088B061 /* UINavigationBarExt.m in Sources */,
+				36B420F11AA7F91900F8A9B1 /* SBJsonBase.m in Sources */,
 				A461B0C9174CBAA70088B061 /* UINavigationItemExt.m in Sources */,
 				CA315B44195E5ECA00AB800D /* PBTutorial+Extend.m in Sources */,
 				CACD6CE818E03BCD003F97C0 /* NotificationCenterManager.m in Sources */,
@@ -24100,7 +24099,6 @@
 				A461B114174CBAA70088B061 /* GameConstants.pb.m in Sources */,
 				A461B115174CBAA70088B061 /* GameNetworkClient.m in Sources */,
 				A461B116174CBAA70088B061 /* DrawGameService.m in Sources */,
-				CACD6CB818E03BCD003F97C0 /* AlixPayOrder.m in Sources */,
 				A461B117174CBAA70088B061 /* UserManager.m in Sources */,
 				A461B118174CBAA70088B061 /* UINavigationController+UINavigationControllerAdditions.m in Sources */,
 				A461B119174CBAA70088B061 /* Word.m in Sources */,
@@ -24118,6 +24116,8 @@
 				A461B123174CBAA70088B061 /* UserService.m in Sources */,
 				A461B125174CBAA70088B061 /* AccountManager.m in Sources */,
 				A461B126174CBAA70088B061 /* ItemManager.m in Sources */,
+				36B420E51AA7F91900F8A9B1 /* NSObject+SBJSON.m in Sources */,
+				36B4207B1AA762DA00F8A9B1 /* base64.m in Sources */,
 				A461B127174CBAA70088B061 /* ChangeAvatar.m in Sources */,
 				CA2A28EC195C1EC000A97478 /* UserTutorialManager.m in Sources */,
 				D8B5393D19920B3F00BD3337 /* ResultSeal.m in Sources */,
@@ -24202,6 +24202,7 @@
 				A461B180174CBAA70088B061 /* NotificationManager.m in Sources */,
 				A461B181174CBAA70088B061 /* ShareService.m in Sources */,
 				A461B183174CBAA70088B061 /* AdService.m in Sources */,
+				36B4207E1AA762DA00F8A9B1 /* MD5DataSigner.m in Sources */,
 				CA2A289619586E9800A97478 /* SPUserResizableView.m in Sources */,
 				A461B184174CBAA70088B061 /* UIManager.m in Sources */,
 				A461B185174CBAA70088B061 /* CustomStatueBar.m in Sources */,
@@ -24217,7 +24218,6 @@
 				A461B1A0174CBAA70088B061 /* GuessFeed.m in Sources */,
 				A461B1A1174CBAA70088B061 /* CommentFeed.m in Sources */,
 				A461B1A2174CBAA70088B061 /* DrawToUserFeed.m in Sources */,
-				CACD6CBC18E03BCD003F97C0 /* AlixPayResult.m in Sources */,
 				A461B1A5174CBAA70088B061 /* UIImage+Filtrr.m in Sources */,
 				A461B1A6174CBAA70088B061 /* UIImage+FiltrrCompositions.m in Sources */,
 				A461B1A7174CBAA70088B061 /* UIImage+Scale.m in Sources */,
@@ -24296,6 +24296,7 @@
 				A461B240174CBAA70088B061 /* RRSGlowLabel.m in Sources */,
 				A461B241174CBAA70088B061 /* BBSPostDetailController.m in Sources */,
 				CA900510194EE775003389FD /* SelectOpusClassViewController.m in Sources */,
+				36B420FD1AA7FB7C00F8A9B1 /* SSZipArchive.m in Sources */,
 				A461B242174CBAA70088B061 /* BBSPostListController.m in Sources */,
 				A461B243174CBAA70088B061 /* BBSPostCell.m in Sources */,
 				A461B244174CBAA70088B061 /* PPResourceCacheService.m in Sources */,
@@ -24303,7 +24304,6 @@
 				A461B246174CBAA70088B061 /* BBSPostDetailCell.m in Sources */,
 				A461B247174CBAA70088B061 /* BBSPostActionHeaderView.m in Sources */,
 				A461B248174CBAA70088B061 /* BBSModelExt.m in Sources */,
-				CACD6CC818E03BCD003F97C0 /* SBJSON.m in Sources */,
 				A461B249174CBAA70088B061 /* BBSActionListController.m in Sources */,
 				A461B24A174CBAA70088B061 /* BBSUserActionCell.m in Sources */,
 				A461B24B174CBAA70088B061 /* GameSNSService.m in Sources */,
@@ -24327,6 +24327,7 @@
 				A461B26D174CBAA70088B061 /* BitmapContextRep.m in Sources */,
 				A461B26E174CBAA70088B061 /* NSImage+ANImageBitmapRep.m in Sources */,
 				A461B26F174CBAA70088B061 /* OSCommonImage.m in Sources */,
+				36B420F51AA7F91900F8A9B1 /* SBJsonParser.m in Sources */,
 				A461B270174CBAA70088B061 /* UIImage+ANImageBitmapRep.m in Sources */,
 				A461B271174CBAA70088B061 /* CGContextCreator.m in Sources */,
 				D8D8117F199DD97200CC182A /* TwoInputFieldViewStyle2.m in Sources */,
@@ -24387,7 +24388,6 @@
 				A461B2CF174CBAA70088B061 /* Bulletin.m in Sources */,
 				A461B2D0174CBAA70088B061 /* BulletinNetwork.m in Sources */,
 				A461B2D1174CBAA70088B061 /* BulletinManager.m in Sources */,
-				CACD6CC418E03BCD003F97C0 /* NSString+SBJSON.m in Sources */,
 				A461B2D3174CBAA70088B061 /* DrawGameJumpHandler.m in Sources */,
 				A461B2D5174CBAA70088B061 /* PPStack.m in Sources */,
 				A461B2D7174CBAA70088B061 /* CustomActionSheet.m in Sources */,
@@ -24542,6 +24542,7 @@
 				A461B383174CBAA70088B061 /* IAPProductManager.m in Sources */,
 				A461B384174CBAA70088B061 /* RedoCommand.m in Sources */,
 				A461B385174CBAA70088B061 /* UndoCommand.m in Sources */,
+				36B420821AA762DA00F8A9B1 /* RSADataVerifier.m in Sources */,
 				A461B386174CBAA70088B061 /* UserDetailRoundButton.m in Sources */,
 				A461B387174CBAA70088B061 /* TaoBaoController.m in Sources */,
 				A461B388174CBAA70088B061 /* ChangeBGImageAction.m in Sources */,
@@ -24554,13 +24555,10 @@
 				CA90050C194EE775003389FD /* ClassTagView.m in Sources */,
 				A461B3A9174CBAA70088B061 /* UIImage+fixOrientation.m in Sources */,
 				A461B3AA174CBAA70088B061 /* SKProductService.m in Sources */,
-				CACD6D2D18E03C40003F97C0 /* EAFRead.mm in Sources */,
-				CACD6CD018E03BCD003F97C0 /* SBJsonParser.m in Sources */,
 				A461B3AB174CBAA70088B061 /* SKProductManager.m in Sources */,
 				A461B3AC174CBAA70088B061 /* PBIAPProduct+Utils.m in Sources */,
 				A461B3B4174CBAA70088B061 /* FeedSceneDetailGuessResult.m in Sources */,
 				A461B3B5174CBAA70088B061 /* FeedSceneFeedDetail.m in Sources */,
-				CACD6D3D18E03C40003F97C0 /* DiracUtilities.mm in Sources */,
 				A461B3B8174CBAA70088B061 /* PhotoDrawSheet.m in Sources */,
 				A461B3BF174CBAA70088B061 /* LittleGeeImageManager.m in Sources */,
 				A461B3C0174CBAA70088B061 /* Sing.pb.m in Sources */,
@@ -24628,7 +24626,6 @@
 				CA1B8A3119BC423B00B991D3 /* SpotHelpViewWrapper.m in Sources */,
 				CA3D4AF317794748000A8FC7 /* ShadowBox.m in Sources */,
 				A467BBCB17798DC900455E3A /* DrawToolUpPanel.m in Sources */,
-				CACD6CD418E03BCD003F97C0 /* SBJsonWriter.m in Sources */,
 				D80EB34E196B90DB0087EBBD /* MetroHomeController.m in Sources */,
 				C2C09E7F177A85F7009408EB /* CopyPaintCommand.m in Sources */,
 				C2C09E8A177AA71D009408EB /* ShowCopyPaintCommand.m in Sources */,
@@ -24640,6 +24637,7 @@
 				C206FFE8178034450033CF63 /* PSCollectionViewCell.m in Sources */,
 				CA9C11D0178135E0004372B6 /* GradientAction.m in Sources */,
 				A4ED325019CB36AF00619F1E /* FeatherBrush.m in Sources */,
+				36B420811AA762DA00F8A9B1 /* RSADataSigner.m in Sources */,
 				CA02CB7C1785581A00B6910D /* GradientSettingView.m in Sources */,
 				CA02CBB41785619300B6910D /* GradientCommand.m in Sources */,
 				CAA75C92178A57EE0041C019 /* ShapeClipTouchHandler.m in Sources */,
@@ -24696,13 +24694,13 @@
 				CA8C471C17C3175C00BA6A15 /* PanelUtil.m in Sources */,
 				CAFC036F17C4CAA100A11DE3 /* ChangePageBGCommand.m in Sources */,
 				A440354F17C5A9C900301EDD /* LocalNotificationUtil.m in Sources */,
+				36B4207C1AA762DA00F8A9B1 /* DataSigner.m in Sources */,
 				CAFC03B817C84CC600A11DE3 /* DetailFooterView.m in Sources */,
 				CAFC03C617C887C200A11DE3 /* PPPopTableView.m in Sources */,
 				D8B58B08197CE8E60088E5F7 /* ICETutorialController.m in Sources */,
 				CA51419617CB419F00883CAA /* ContestPrizeCell.m in Sources */,
 				EA433E1817CDDA2F006E6FA7 /* JudgerScoreView.m in Sources */,
 				EA433E2B17CDE500006E6FA7 /* DJQRateView.m in Sources */,
-				CACD6CC018E03BCD003F97C0 /* NSObject+SBJSON.m in Sources */,
 				EA433E2F17CDE500006E6FA7 /* DJQStartView.m in Sources */,
 				CA0174EC19405306005E4390 /* OpusClassInfoManager.m in Sources */,
 				EA7100AC17D04B2C00451A38 /* CustomSlider.m in Sources */,
@@ -24710,6 +24708,7 @@
 				EA7100D217D197DA00451A38 /* MLNavigationController.m in Sources */,
 				EA46AD5917D5E6CD0066E914 /* ReportFeedCell.m in Sources */,
 				A42BB02C17D9735A007FB11B /* TwoInputFieldView.m in Sources */,
+				36B420E91AA7F91900F8A9B1 /* NSString+SBJSON.m in Sources */,
 				EAD13B8C17DECFE300764FFB /* OrangeLoadingView.m in Sources */,
 				A4AFB7F317E032D60079B165 /* GuessRankListController.m in Sources */,
 				D8CC69D419A5EEF500E57398 /* PrizeCell.m in Sources */,
@@ -24720,11 +24719,13 @@
 				A4EB5C1019F689370067ADB1 /* SuperCalligraphyBrush.m in Sources */,
 				EA8EF66F17E593CA003F1AF8 /* DrawMainMenuPanel.m in Sources */,
 				EA5FE1BD17E7F5050099754C /* RopeView.m in Sources */,
+				36B420F91AA7F91900F8A9B1 /* SBJsonWriter.m in Sources */,
 				CA76134717F57420007A251E /* HPointList.mm in Sources */,
 				EA2A7CE017F676AB00ED508D /* AccountManageController.m in Sources */,
 				D82C0D7719764FC30088539F /* BillboardManager.m in Sources */,
 				A4214DD31803AA4D007F2EFD /* MKAnnotationView+WebCache.m in Sources */,
 				CACD6B3B18E03B4B003F97C0 /* MobClickUtils.m in Sources */,
+				36B420ED1AA7F91900F8A9B1 /* SBJSON.m in Sources */,
 				A4214DD61803AA4D007F2EFD /* NSData+GIF.m in Sources */,
 				A4214DD91803AA4D007F2EFD /* SDImageCache.m in Sources */,
 				A4214DDC1803AA4D007F2EFD /* SDWebImageCompat.m in Sources */,
@@ -24736,10 +24737,10 @@
 				A4214DEE1803AA4D007F2EFD /* UIButton+WebCache.m in Sources */,
 				CA2D870519987493002B7406 /* GifViewController.m in Sources */,
 				CAA581A9197BAFAE00599740 /* ImageSimilarity.mm in Sources */,
+				36B4207D1AA762DA00F8A9B1 /* DataVerifier.m in Sources */,
 				A4214DF11803AA4D007F2EFD /* UIImage+GIF.m in Sources */,
 				A4214DF41803AA4D007F2EFD /* UIImage+MultiFormat.m in Sources */,
 				A4214DF71803AA4D007F2EFD /* UIImage+WebP.m in Sources */,
-				CACD6D3118E03C40003F97C0 /* EAFWrite.mm in Sources */,
 				A4214DFA1803AA4D007F2EFD /* UIImageView+WebCache.m in Sources */,
 				A421516C1803EA2A007F2EFD /* MWCaptionView.m in Sources */,
 				A421516F1803EA2A007F2EFD /* MWPhoto.m in Sources */,
@@ -24801,6 +24802,7 @@
 				CA9AB02218321621002DBAA5 /* NameAndDescEditView.m in Sources */,
 				CA9AB02A18321621002DBAA5 /* SingInfoCell.m in Sources */,
 				CA9AB03618321621002DBAA5 /* SingPlayView.m in Sources */,
+				36B420801AA762DA00F8A9B1 /* openssl_wrapper.m in Sources */,
 				CA9AB03E18321621002DBAA5 /* SongCategoryView.m in Sources */,
 				CA9AB04A18321621002DBAA5 /* SongTagCell.m in Sources */,
 				CA9AB05618321621002DBAA5 /* VoiceTypeSelectView.m in Sources */,
@@ -24838,6 +24840,7 @@
 				CA5D9D5F183E3C0200BD820C /* DOUAudioEventLoop.m in Sources */,
 				CA5D9D63183E3C0200BD820C /* DOUAudioFilePreprocessor.m in Sources */,
 				CA5D9D67183E3C0200BD820C /* DOUAudioFileProvider.m in Sources */,
+				36B4207F1AA762DA00F8A9B1 /* NSDataEx.m in Sources */,
 				CA2A28D7195C1E3A00A97478 /* TutorialInfoController.m in Sources */,
 				CA5D9D6B183E3C0200BD820C /* DOUAudioFrequencyAnalyzer.m in Sources */,
 				CA5D9D6F183E3C0200BD820C /* DOUAudioLPCM.m in Sources */,
@@ -24869,10 +24872,8 @@
 				A4BE226E18657D9700FE2997 /* NormalHotCell.m in Sources */,
 				A434172018711AFB008D0A2B /* ContestCell.m in Sources */,
 				A44AC47C187551EA00927649 /* IQKeyBoardManager.m in Sources */,
-				CACD6D2918E03C40003F97C0 /* DiracFxAudioPlayer.mm in Sources */,
 				A44AC4861875528D00927649 /* CreateContestController.m in Sources */,
 				A40DF8821876A29200C1A307 /* ContestAwardEditController.m in Sources */,
-				CACD6D2118E03C40003F97C0 /* DiracAudioPlayer.mm in Sources */,
 				A40DF88F1876A3EF00C1A307 /* ContestAwardEditCell.m in Sources */,
 				A49DF8BC187D305F00634196 /* StatementCell.m in Sources */,
 				EAEE5510188E5E61004A0907 /* SingleTabController.m in Sources */,
@@ -24941,6 +24942,7 @@
 				C28A99A21738F04B007A819F /* StringUtil.m in Sources */,
 				C28A99A31738F04B007A819F /* UIUtils.m in Sources */,
 				C28A99A41738F04B007A819F /* NetworkUtil.m in Sources */,
+				36B420761AA762D900F8A9B1 /* MD5DataSigner.m in Sources */,
 				C28A99A51738F04B007A819F /* NetworkDetector.m in Sources */,
 				C28A99A61738F04B007A819F /* Reachability.m in Sources */,
 				C28A99A71738F04B007A819F /* CommonNetworkClient.m in Sources */,
@@ -24975,6 +24977,7 @@
 				C28A99BF1738F04B007A819F /* CDataScanner_Extensions.m in Sources */,
 				C28A99C01738F04B007A819F /* NSCharacterSet_Extensions.m in Sources */,
 				C28A99C11738F04B007A819F /* NSDictionary_JSONExtensions.m in Sources */,
+				36B420791AA762D900F8A9B1 /* RSADataSigner.m in Sources */,
 				C28A99C21738F04B007A819F /* NSScanner_Extensions.m in Sources */,
 				A4F1AE1419E8D9860082E9EC /* ImageSimilarity+Histogram.mm in Sources */,
 				C28A99C31738F04B007A819F /* CJSONDataSerializer.m in Sources */,
@@ -25010,7 +25013,6 @@
 				CA9005211950209B003389FD /* THGridMenu.m in Sources */,
 				C28A9A0D1738F04B007A819F /* AccountManager.m in Sources */,
 				C28A9A0E1738F04B007A819F /* ItemManager.m in Sources */,
-				CACD6D2C18E03C40003F97C0 /* EAFRead.mm in Sources */,
 				C28A9A0F1738F04B007A819F /* ChangeAvatar.m in Sources */,
 				CAFF62D219E61FF60065D97E /* GameAdWallService.m in Sources */,
 				C28A9A101738F04B007A819F /* FeedbackController.m in Sources */,
@@ -25020,6 +25022,7 @@
 				C28A9A131738F04B007A819F /* ShoppingManager.m in Sources */,
 				CACD6CE718E03BCD003F97C0 /* NotificationCenterManager.m in Sources */,
 				C28A9A141738F04B007A819F /* AnimationManager.m in Sources */,
+				36B420771AA762D900F8A9B1 /* NSDataEx.m in Sources */,
 				C28A9A151738F04B007A819F /* AccountService.m in Sources */,
 				A4B60AB119B6AA9B00C300D5 /* GouacheBrush.m in Sources */,
 				C28A9A161738F04B007A819F /* ReportController.m in Sources */,
@@ -25050,6 +25053,7 @@
 				C28A9A341738F04B007A819F /* WidthView.m in Sources */,
 				C28A9A351738F04B007A819F /* SynthesisView.m in Sources */,
 				C28A9A361738F04B007A819F /* ColorShopView.m in Sources */,
+				36B420E81AA7F91900F8A9B1 /* NSString+SBJSON.m in Sources */,
 				C28A9A371738F04B007A819F /* PPConfigManager.m in Sources */,
 				A4B60AA419B6A7D600C300D5 /* BrushEffectFactory.m in Sources */,
 				C28A9A381738F04B007A819F /* SuperGameViewController.m in Sources */,
@@ -25154,7 +25158,6 @@
 				CAEAB554196160D10065847C /* UserTutorialMainCell.m in Sources */,
 				C28A9AD91738F04B007A819F /* AnimationPlayer.m in Sources */,
 				CA2F9F8A199233FB00756AD7 /* MainDataModel.xcdatamodeld in Sources */,
-				CACD6CD318E03BCD003F97C0 /* SBJsonWriter.m in Sources */,
 				C28A9ADA1738F04B007A819F /* MyCommentCell.m in Sources */,
 				C28A9ADB1738F04B007A819F /* StatisticManager.m in Sources */,
 				C28A9ADC1738F04B007A819F /* ContestFeed.m in Sources */,
@@ -25188,6 +25191,7 @@
 				C28A9B121738F04B007A819F /* AppleOpenALSupport.c in Sources */,
 				C28A9B131738F04B007A819F /* CMOpenALSound.m in Sources */,
 				C28A9B141738F04B007A819F /* CMOpenALSoundManager.m in Sources */,
+				36B420D41AA7F3A200F8A9B1 /* SingController.m in Sources */,
 				C28A9B151738F04B007A819F /* DebugOutput.m in Sources */,
 				C28A9B191738F04B007A819F /* Bbs.pb.m in Sources */,
 				C28A9B1B1738F04B007A819F /* BBSManager.m in Sources */,
@@ -25222,9 +25226,9 @@
 				C28A9B4D1738F04B007A819F /* ANColorTable.m in Sources */,
 				C28A9B4E1738F04B007A819F /* ANCutColorTable.m in Sources */,
 				C28A9B4F1738F04B007A819F /* ANMutableColorArray.m in Sources */,
+				36B420E41AA7F91900F8A9B1 /* NSObject+SBJSON.m in Sources */,
 				C28A9B501738F04B007A819F /* ANGifDataSubblock.m in Sources */,
 				A4F1AE1819E8D9860082E9EC /* ImageSimilarity+ShapeContext.mm in Sources */,
-				CACD6CB718E03BCD003F97C0 /* AlixPayOrder.m in Sources */,
 				C28A9B511738F04B007A819F /* ANGifImageDescriptor.m in Sources */,
 				C28A9B521738F04B007A819F /* ANGifImageFrame.m in Sources */,
 				C28A9B531738F04B007A819F /* LZWSpoof.m in Sources */,
@@ -25250,6 +25254,7 @@
 				C28A9B741738F04B007A819F /* DrawColor.m in Sources */,
 				C28A9B751738F04B007A819F /* DrawUtils.m in Sources */,
 				C28A9B761738F04B007A819F /* DrawGameAnimationManager.m in Sources */,
+				36B420741AA762D900F8A9B1 /* DataSigner.m in Sources */,
 				C28A9B771738F04B007A819F /* BBSTableViewCell.m in Sources */,
 				C28A9B791738F04B007A819F /* BBSImageManager.m in Sources */,
 				C28A9B7A1738F04B007A819F /* BBSFontManager.m in Sources */,
@@ -25264,7 +25269,6 @@
 				C28A9B831738F04B007A819F /* GameConfigData.m in Sources */,
 				C28A9B841738F04B007A819F /* GameConfigDataManager.m in Sources */,
 				C28A9B851738F04B007A819F /* GameConfigDataUtils.m in Sources */,
-				CACD6D2818E03C40003F97C0 /* DiracFxAudioPlayer.mm in Sources */,
 				C28A9B861738F04B007A819F /* Config.pb.m in Sources */,
 				D8B5393C19920B3F00BD3337 /* ResultSeal.m in Sources */,
 				C28A9B871738F04B007A819F /* BBSActionSheet.m in Sources */,
@@ -25310,10 +25314,8 @@
 				C28A9BC71738F04B007A819F /* DrawColorManager.m in Sources */,
 				C28A9BC81738F04B007A819F /* PickToolView.m in Sources */,
 				C28A9BC91738F04B007A819F /* PickView.m in Sources */,
-				CACD6D3018E03C40003F97C0 /* EAFWrite.mm in Sources */,
 				C28A9BCA1738F04B007A819F /* SelectHotWordController.m in Sources */,
 				C28A9BCB1738F04B007A819F /* WordSelectCell.m in Sources */,
-				CACD6CCB18E03BCD003F97C0 /* SBJsonBase.m in Sources */,
 				CA17826E1962D2480068883A /* DAPagesContainer.m in Sources */,
 				C28A9BCC1738F04B007A819F /* SelectCustomWordCell.m in Sources */,
 				C28A9BCD1738F04B007A819F /* DraftCell.m in Sources */,
@@ -25353,6 +25355,7 @@
 				C28A9C091738F04B007A819F /* BlurPen.m in Sources */,
 				C28A9C0A1738F04B007A819F /* MarkPen.m in Sources */,
 				C28A9C0B1738F04B007A819F /* GameItemService.m in Sources */,
+				36B420F41AA7F91900F8A9B1 /* SBJsonParser.m in Sources */,
 				C28A9C0C1738F04B007A819F /* GameItem.m in Sources */,
 				C28A9C0D1738F04B007A819F /* GameItemManager.m in Sources */,
 				C28A9C0E1738F04B007A819F /* UserGameItemManager.m in Sources */,
@@ -25375,6 +25378,7 @@
 				C28A9C201738F04B007A819F /* LocalizableLabel.m in Sources */,
 				C28A9C211738F04B007A819F /* GameItemPriceView.m in Sources */,
 				C28A9C221738F04B007A819F /* ChargeController.m in Sources */,
+				36B420731AA762D900F8A9B1 /* base64.m in Sources */,
 				D8B5391C1991C48100BD3337 /* StageAlertViewController.m in Sources */,
 				C28A9C231738F04B007A819F /* ChargeCell.m in Sources */,
 				C28A9C241738F04B007A819F /* BuyItemView.m in Sources */,
@@ -25399,10 +25403,12 @@
 				C28A9C3C1738F04B007A819F /* SelfUserDetail.m in Sources */,
 				C28A9C3D1738F04B007A819F /* ChangeBackAction.m in Sources */,
 				C28A9C3E1738F04B007A819F /* CleanAction.m in Sources */,
+				36B420FC1AA7FB7B00F8A9B1 /* SSZipArchive.m in Sources */,
 				C28A9C3F1738F04B007A819F /* DrawAction.m in Sources */,
 				C28A9C401738F04B007A819F /* PaintAction.m in Sources */,
 				C28A9C411738F04B007A819F /* ShapeAction.m in Sources */,
 				C28A9C421738F04B007A819F /* CanvasRect.m in Sources */,
+				36B420EC1AA7F91900F8A9B1 /* SBJSON.m in Sources */,
 				CA90050B194EE775003389FD /* ClassTagView.m in Sources */,
 				C28A9C451738F04B007A819F /* UserDetailCell.m in Sources */,
 				C28A9C461738F04B007A819F /* BBSController.m in Sources */,
@@ -25462,7 +25468,6 @@
 				C28A9C9C1738F04B007A819F /* FeedSceneDetailGuessResult.m in Sources */,
 				C28A9C9D1738F04B007A819F /* FeedSceneFeedDetail.m in Sources */,
 				C28A9C9E1738F04B007A819F /* FeedSceneGuessResult.m in Sources */,
-				CACD6CBF18E03BCD003F97C0 /* NSObject+SBJSON.m in Sources */,
 				C28A9CA01738F04B007A819F /* PhotoDrawSheet.m in Sources */,
 				C28AA0E01738F406007A819F /* LittleGeeDrawApp.m in Sources */,
 				C21CD7D4173CAFA100C699C2 /* LittleGeeImageManager.m in Sources */,
@@ -25471,14 +25476,12 @@
 				CA62C7651756FBB900C9EF56 /* BBS.pb-c.c in Sources */,
 				CA62C7661756FBB900C9EF56 /* Config.pb-c.c in Sources */,
 				CA62C7681756FBB900C9EF56 /* Draw.pb-c.c in Sources */,
-				CACD6CC718E03BCD003F97C0 /* SBJSON.m in Sources */,
 				CA62C7691756FBB900C9EF56 /* GameBasic.pb-c.c in Sources */,
 				CA62C76C1756FBB900C9EF56 /* Sing.pb-c.c in Sources */,
 				CA62C7B517570AF600C9EF56 /* PocketSVG.m in Sources */,
 				C23ED5F7175A511500263FB7 /* ImageSearch.m in Sources */,
 				C23ED5F8175A511F00263FB7 /* ImageSearchResult.m in Sources */,
 				C23ED5FB175A51BA00263FB7 /* LocalSearchResult.m in Sources */,
-				CACD6D3C18E03C40003F97C0 /* DiracUtilities.mm in Sources */,
 				CA2A28CB195C1E1C00A97478 /* TutorialStageController.m in Sources */,
 				C23ED5FC175A51C100263FB7 /* LocalSearch.m in Sources */,
 				C23ED5FD175A51CA00263FB7 /* BasicSearch.m in Sources */,
@@ -25566,14 +25569,12 @@
 				CA51834C179F79570033AA95 /* GetNewNumberViewController.m in Sources */,
 				CA518356179F79A80033AA95 /* UserNumberService.m in Sources */,
 				A4B78A57179F7A2E0008E21B /* GuessModesController.m in Sources */,
-				CACD6CCF18E03BCD003F97C0 /* SBJsonParser.m in Sources */,
 				A4B78A5F179F7C5E0008E21B /* GuessSelectController.m in Sources */,
 				A4B78A63179F7C660008E21B /* DrawGuessController.m in Sources */,
 				A4B78A67179F7C6D0008E21B /* CommonGuessController.m in Sources */,
 				CA518381179FB6340033AA95 /* ShakeNumberController.m in Sources */,
 				A4B78A8717A046520008E21B /* PageScrollViewFactory.m in Sources */,
 				CA766D5B17A15EB600D60E3D /* CPMotionRecognizingWindow.m in Sources */,
-				CACD6CBB18E03BCD003F97C0 /* AlixPayResult.m in Sources */,
 				CA766D6317A15EB600D60E3D /* UIResponder+MotionRecognizers.m in Sources */,
 				A4C9E03617A61B4200DE982F /* GuessRankCell.m in Sources */,
 				A4B78A6C179FA6F10008E21B /* GuessRankListController.m in Sources */,
@@ -25635,6 +25636,7 @@
 				A4214DF91803AA4D007F2EFD /* UIImageView+WebCache.m in Sources */,
 				A421516B1803EA2A007F2EFD /* MWCaptionView.m in Sources */,
 				A421516E1803EA2A007F2EFD /* MWPhoto.m in Sources */,
+				36B420F01AA7F91900F8A9B1 /* SBJsonBase.m in Sources */,
 				A42151711803EA2A007F2EFD /* MWPhotoBrowser.m in Sources */,
 				A42151741803EA2A007F2EFD /* MWTapDetectingImageView.m in Sources */,
 				A42151771803EA2A007F2EFD /* MWTapDetectingView.m in Sources */,
@@ -25675,7 +25677,6 @@
 				D8E63EE219C13BE500EB213E /* TutorialProtoModel.m in Sources */,
 				CA9AAF1118321621002DBAA5 /* SingGuessController.m in Sources */,
 				CA9AAF1D18321621002DBAA5 /* SingHomeController.m in Sources */,
-				CA9AAF2918321621002DBAA5 /* SingController.m in Sources */,
 				CA9AAF3518321621002DBAA5 /* SingInfoEditController.m in Sources */,
 				CA9AAF4118321621002DBAA5 /* SongCell.m in Sources */,
 				CA9AAF4D18321621002DBAA5 /* SongSearchController.m in Sources */,
@@ -25687,12 +25688,12 @@
 				CACD6CE318E03BCD003F97C0 /* AlixPayOrderManager.m in Sources */,
 				CA9AB01918321621002DBAA5 /* OpusGuessRecorder.m in Sources */,
 				D819624919629D4C00B4FBAF /* TutorialInfoCell.m in Sources */,
-				CACD6D2018E03C40003F97C0 /* DiracAudioPlayer.mm in Sources */,
 				CA9AB01D18321621002DBAA5 /* SongService.m in Sources */,
 				CA9AB02118321621002DBAA5 /* NameAndDescEditView.m in Sources */,
 				CA90052B195021F8003389FD /* OpusClassMenuItem.m in Sources */,
 				A4A3BF0B19B461F700EC4D25 /* BrushStroke.m in Sources */,
 				CA9AB02918321621002DBAA5 /* SingInfoCell.m in Sources */,
+				36B420F81AA7F91900F8A9B1 /* SBJsonWriter.m in Sources */,
 				CA9AB03518321621002DBAA5 /* SingPlayView.m in Sources */,
 				CA9AB03D18321621002DBAA5 /* SongCategoryView.m in Sources */,
 				CA9AB04918321621002DBAA5 /* SongTagCell.m in Sources */,
@@ -25710,7 +25711,6 @@
 				CA9AB08218321738002DBAA5 /* OpusDesignTime.m in Sources */,
 				CA9AB0C318321820002DBAA5 /* VoiceChanger.m in Sources */,
 				CA9AB0C418321820002DBAA5 /* VoiceRecorder.m in Sources */,
-				CA9AB0C518321820002DBAA5 /* VoiceProcessor.mm in Sources */,
 				CA9AB0D218321AFE002DBAA5 /* HGQuadCurveMenu.m in Sources */,
 				CA9AB0D618321AFE002DBAA5 /* HGQuadCurveMenuItem.m in Sources */,
 				A4E59C921832208D003578CA /* WhisperStyleView.m in Sources */,
@@ -25726,7 +25726,6 @@
 				EA11A4401839FAA100F73D64 /* GroupUIManager.m in Sources */,
 				EA038976183B06D300516952 /* GroupTopicController.m in Sources */,
 				EA038981183B122900516952 /* GroupDetailCell.m in Sources */,
-				CACD6D2418E03C40003F97C0 /* DiracAudioPlayerBase.mm in Sources */,
 				EA038996183B14C200516952 /* GroupInfoView.m in Sources */,
 				CA5D9D52183E3C0200BD820C /* DOUAudioAnalyzer+Default.m in Sources */,
 				CA5D9D56183E3C0200BD820C /* DOUAudioAnalyzer.m in Sources */,
@@ -25738,6 +25737,7 @@
 				CA5D9D6E183E3C0200BD820C /* DOUAudioLPCM.m in Sources */,
 				CA5D9D72183E3C0200BD820C /* DOUAudioPlaybackItem.m in Sources */,
 				CA5D9D76183E3C0200BD820C /* DOUAudioRenderer.m in Sources */,
+				36B4207A1AA762D900F8A9B1 /* RSADataVerifier.m in Sources */,
 				CA5D9D7A183E3C0200BD820C /* DOUAudioSpatialAnalyzer.m in Sources */,
 				CA5D9D7E183E3C0200BD820C /* DOUAudioStreamer+Options.m in Sources */,
 				CA5D9D82183E3C0200BD820C /* DOUAudioStreamer.m in Sources */,
@@ -25747,10 +25747,10 @@
 				A4F1AE1019E8D9860082E9EC /* ImageSimilarity+Hash.mm in Sources */,
 				CA9C3FCB18432AA60041F332 /* AppTask.m in Sources */,
 				CA9C3FD118432AB60041F332 /* AppTaskManager.m in Sources */,
-				CACD6CC318E03BCD003F97C0 /* NSString+SBJSON.m in Sources */,
 				CA9C4007184343AF0041F332 /* JSONKit.m in Sources */,
 				EAA8D11718443CE200B3720B /* SearchController.m in Sources */,
 				EA7EFC6118458D270004793C /* GroupNoticeCell.m in Sources */,
+				36B420751AA762D900F8A9B1 /* DataVerifier.m in Sources */,
 				EA7EFC6F18458D370004793C /* GroupNoticeController.m in Sources */,
 				EA7EFC7918458D430004793C /* GroupModelExt.m in Sources */,
 				EA2D573E1847243B00499ED4 /* SearchGroupController.m in Sources */,
@@ -25773,6 +25773,7 @@
 				EAEE550F188E5E61004A0907 /* SingleTabController.m in Sources */,
 				EAEE5518188E644F004A0907 /* GroupFeedController.m in Sources */,
 				EAEE551E188F7902004A0907 /* ChargeHistoryController.m in Sources */,
+				36B420781AA762D900F8A9B1 /* openssl_wrapper.m in Sources */,
 				CAD8EE37189222930057EC30 /* PurchaseVipController.m in Sources */,
 				D82C0D7619764FC30088539F /* BillboardManager.m in Sources */,
 			);
@@ -25837,6 +25838,7 @@
 				CA103EEC1509A56200F60C03 /* StringUtil.m in Sources */,
 				CA103EED1509A56200F60C03 /* UIUtils.m in Sources */,
 				CA103EEE1509A56200F60C03 /* NetworkUtil.m in Sources */,
+				36B420661AA75E2800F8A9B1 /* MD5DataSigner.m in Sources */,
 				CA103EEF1509A56200F60C03 /* NetworkDetector.m in Sources */,
 				CA103EF01509A56200F60C03 /* Reachability.m in Sources */,
 				CA103EF11509A56200F60C03 /* CommonNetworkClient.m in Sources */,
@@ -25871,6 +25873,7 @@
 				CA1041701509A9FF00F60C03 /* CDataScanner.m in Sources */,
 				D8B5393B19920B3E00BD3337 /* ResultSeal.m in Sources */,
 				CA1041711509A9FF00F60C03 /* CDataScanner_Extensions.m in Sources */,
+				36B420691AA75E2800F8A9B1 /* RSADataSigner.m in Sources */,
 				CA1041721509A9FF00F60C03 /* NSCharacterSet_Extensions.m in Sources */,
 				A4F1AE1319E8D9860082E9EC /* ImageSimilarity+Histogram.mm in Sources */,
 				CA1041731509A9FF00F60C03 /* NSDictionary_JSONExtensions.m in Sources */,
@@ -25907,7 +25910,6 @@
 				CA9005201950209B003389FD /* THGridMenu.m in Sources */,
 				CA322105151B6BE60039A384 /* UserService.m in Sources */,
 				CAF10AFB151C665D008C4512 /* AccountManager.m in Sources */,
-				CACD6D2B18E03C40003F97C0 /* EAFRead.mm in Sources */,
 				CAFF62D119E61FF60065D97E /* GameAdWallService.m in Sources */,
 				CAF10AFE151C666E008C4512 /* ItemManager.m in Sources */,
 				CA32213D151DEDE10039A384 /* ChangeAvatar.m in Sources */,
@@ -25916,6 +25918,7 @@
 				CA90051719501FF9003389FD /* ShowOpusClassListController.m in Sources */,
 				CA41C9501520608D00013DC8 /* PriceService.m in Sources */,
 				CACD6CE618E03BCD003F97C0 /* NotificationCenterManager.m in Sources */,
+				36B420671AA75E2800F8A9B1 /* NSDataEx.m in Sources */,
 				CA41C95B15206C1100013DC8 /* ShoppingManager.m in Sources */,
 				A4B60AB019B6AA9B00C300D5 /* GouacheBrush.m in Sources */,
 				C2E5241915218E21008913CC /* AnimationManager.m in Sources */,
@@ -25946,6 +25949,7 @@
 				CA051DC61546802D00D0A00A /* ColorView.m in Sources */,
 				CA051DC71546802D00D0A00A /* PenView.m in Sources */,
 				CA051DC81546802D00D0A00A /* StableView.m in Sources */,
+				36B420E71AA7F91900F8A9B1 /* NSString+SBJSON.m in Sources */,
 				CA051DC91546802D00D0A00A /* WidthView.m in Sources */,
 				A4B60AA319B6A7D600C300D5 /* BrushEffectFactory.m in Sources */,
 				CA051DCA1546802D00D0A00A /* SynthesisView.m in Sources */,
@@ -26049,7 +26053,6 @@
 				CA1656FF160C032800E433BE /* RankView.m in Sources */,
 				CAEAB553196160D10065847C /* UserTutorialMainCell.m in Sources */,
 				CA9B4EC016103726008C6A97 /* TopPlayer.m in Sources */,
-				CACD6CD218E03BCD003F97C0 /* SBJsonWriter.m in Sources */,
 				CA0A2CAE1610473800F66400 /* TopPlayerView.m in Sources */,
 				C2A3CC1316159AD700663271 /* AnimationPlayer.m in Sources */,
 				CA65C0641615A01700EE1C1C /* MyCommentCell.m in Sources */,
@@ -26084,6 +26087,7 @@
 				CA7AFD0C164E05A10039E07F /* PPResourceUtils.m in Sources */,
 				C223396A164E3CA100D2C123 /* AppleOpenALSupport.c in Sources */,
 				C223396B164E3CA100D2C123 /* CMOpenALSound.m in Sources */,
+				36B420D31AA7F3A100F8A9B1 /* SingController.m in Sources */,
 				C223396C164E3CA100D2C123 /* CMOpenALSoundManager.m in Sources */,
 				C223396D164E3CA100D2C123 /* DebugOutput.m in Sources */,
 				CA913A521653532000B6387F /* Bbs.pb.m in Sources */,
@@ -26118,9 +26122,9 @@
 				CAFEFE2C16606FC200441D77 /* ANGifNetscapeAppExtension.m in Sources */,
 				CAFEFE2D16606FC200441D77 /* ANAvgColorTable.m in Sources */,
 				CAFEFE2E16606FC200441D77 /* ANColorTable.m in Sources */,
+				36B420E31AA7F91900F8A9B1 /* NSObject+SBJSON.m in Sources */,
 				CAFEFE2F16606FC200441D77 /* ANCutColorTable.m in Sources */,
 				A4F1AE1719E8D9860082E9EC /* ImageSimilarity+ShapeContext.mm in Sources */,
-				CACD6CB618E03BCD003F97C0 /* AlixPayOrder.m in Sources */,
 				CAFEFE3016606FC200441D77 /* ANMutableColorArray.m in Sources */,
 				CAFEFE3116606FC200441D77 /* ANGifDataSubblock.m in Sources */,
 				CAFEFE3216606FC200441D77 /* ANGifImageDescriptor.m in Sources */,
@@ -26146,6 +26150,7 @@
 				CAFEFE8116606FC200441D77 /* mztools.c in Sources */,
 				CA10C8C71995B57800765FDD /* ICETutorialStyle.m in Sources */,
 				CAFEFE8216606FC200441D77 /* unzip.c in Sources */,
+				36B420641AA75E2800F8A9B1 /* DataSigner.m in Sources */,
 				CAFEFE8316606FC200441D77 /* zip.c in Sources */,
 				CAFEFFB4166072AB00441D77 /* DrawColor.m in Sources */,
 				CAFEFFB5166072AB00441D77 /* DrawUtils.m in Sources */,
@@ -26163,7 +26168,6 @@
 				CA1250AE1668804700AFCC04 /* PPSmartDataTest.m in Sources */,
 				CAC792931668B371009B4053 /* BBSPopupSelectionView.m in Sources */,
 				CA1250C71668BB4100AFCC04 /* GameConfigData.m in Sources */,
-				CACD6D2718E03C40003F97C0 /* DiracFxAudioPlayer.mm in Sources */,
 				CA1250CA1668BB5000AFCC04 /* GameConfigDataManager.m in Sources */,
 				CA1250CD1668BB6800AFCC04 /* GameConfigDataUtils.m in Sources */,
 				CA1250D31668BD5200AFCC04 /* Config.pb.m in Sources */,
@@ -26206,10 +26210,8 @@
 				CA479468168E986400D4AF55 /* AnalyticsManager.m in Sources */,
 				A422DB931693DD0D00914A48 /* HotWordManager.m in Sources */,
 				CA50D28D1697C6ED00A7BE14 /* DrawColorManager.m in Sources */,
-				CACD6D2F18E03C40003F97C0 /* EAFWrite.mm in Sources */,
 				CA1BF4751697CB19004ABCFA /* PickToolView.m in Sources */,
 				CA1BF4781697CB19004ABCFA /* PickView.m in Sources */,
-				CACD6CCA18E03BCD003F97C0 /* SBJsonBase.m in Sources */,
 				CA17826D1962D2480068883A /* DAPagesContainer.m in Sources */,
 				A4DE142C1697DBC000841940 /* SelectHotWordController.m in Sources */,
 				A4DE142F1697DBC000841940 /* WordSelectCell.m in Sources */,
@@ -26249,6 +26251,7 @@
 				CAE9AA4816D71E61008392F9 /* DrawPenFactory.m in Sources */,
 				CAE9AA4E16D71FCD008392F9 /* DashPen.m in Sources */,
 				CAE9AA5416D71FE2008392F9 /* BlurPen.m in Sources */,
+				36B420F31AA7F91900F8A9B1 /* SBJsonParser.m in Sources */,
 				CAE9AA5A16D71FFA008392F9 /* MarkPen.m in Sources */,
 				CA16410F16D72452001C615F /* GameItemService.m in Sources */,
 				CA16412116D724CA001C615F /* GameItem.m in Sources */,
@@ -26271,6 +26274,7 @@
 				CA23515816EB0DD200C88082 /* ColorShopCell.m in Sources */,
 				A47896E51995BB2400185220 /* CRProductTour.m in Sources */,
 				CA23516116EB0DD200C88082 /* GameItemDetailView.m in Sources */,
+				36B420631AA75E2800F8A9B1 /* base64.m in Sources */,
 				CA23516316EB0DD200C88082 /* LocalizableLabel.m in Sources */,
 				CA23516416EB0DD200C88082 /* GameItemPriceView.m in Sources */,
 				CA23516516EB0DD200C88082 /* ChargeController.m in Sources */,
@@ -26295,10 +26299,12 @@
 				C250787716F710B7009B7ED2 /* UserDetailViewController.m in Sources */,
 				C25078B416F71EB6009B7ED2 /* ViewUserDetail.m in Sources */,
 				C25078BA16F71ECA009B7ED2 /* SelfUserDetail.m in Sources */,
+				36B420FB1AA7FB7B00F8A9B1 /* SSZipArchive.m in Sources */,
 				CA35FF2B16F8672100D8E05D /* ChangeBackAction.m in Sources */,
 				CA35FF2F16F8672200D8E05D /* CleanAction.m in Sources */,
 				CA35FF3316F8672200D8E05D /* DrawAction.m in Sources */,
 				CA35FF3716F8672200D8E05D /* PaintAction.m in Sources */,
+				36B420EB1AA7F91900F8A9B1 /* SBJSON.m in Sources */,
 				CA35FF3B16F8672200D8E05D /* ShapeAction.m in Sources */,
 				CA90050A194EE775003389FD /* ClassTagView.m in Sources */,
 				CA35FF4716F867AC00D8E05D /* CanvasRect.m in Sources */,
@@ -26357,7 +26363,6 @@
 				D8D2806219C97CD80027E3BE /* HJImagesToVideo.m in Sources */,
 				A49D82F6172E355700C4001F /* PBIAPProduct+Utils.m in Sources */,
 				C28A9909173561E6007A819F /* FeedSceneDetailGuessResult.m in Sources */,
-				CACD6CBE18E03BCD003F97C0 /* NSObject+SBJSON.m in Sources */,
 				C28A9916173561E6007A819F /* FeedSceneFeedDetail.m in Sources */,
 				C28A9923173561E6007A819F /* FeedSceneGuessResult.m in Sources */,
 				EABD0FFB17376A9B00A2F930 /* PhotoDrawSheet.m in Sources */,
@@ -26366,14 +26371,12 @@
 				EA59DF6D174DFF3E0039B441 /* DrawGameApp.m in Sources */,
 				CA62C6DE1756FB6200C9EF56 /* BBS.pb-c.c in Sources */,
 				CA62C6E21756FB6200C9EF56 /* Config.pb-c.c in Sources */,
-				CACD6CC618E03BCD003F97C0 /* SBJSON.m in Sources */,
 				CA62C6EA1756FB6200C9EF56 /* Draw.pb-c.c in Sources */,
 				CA62C6EE1756FB6200C9EF56 /* GameBasic.pb-c.c in Sources */,
 				CA62C6FA1756FB6200C9EF56 /* Sing.pb-c.c in Sources */,
 				CA62C7A817570AF600C9EF56 /* PocketSVG.m in Sources */,
 				C23ED5E61759A5B500263FB7 /* BasicSearch.m in Sources */,
 				C23ED5E71759A5B500263FB7 /* ImageSearch.m in Sources */,
-				CACD6D3B18E03C40003F97C0 /* DiracUtilities.mm in Sources */,
 				CA2A28CA195C1E1C00A97478 /* TutorialStageController.m in Sources */,
 				C23ED5E81759A5B500263FB7 /* ImageSearchResult.m in Sources */,
 				C23ED5E91759A5B600263FB7 /* LocalSearch.m in Sources */,
@@ -26461,14 +26464,12 @@
 				CABEC6B417968F0B006F89BB /* CommonSearchView.m in Sources */,
 				CABEC6E917969462006F89BB /* FreeIngotCell.m in Sources */,
 				CABEC6F817969462006F89BB /* FreeIngotController.m in Sources */,
-				CACD6CCE18E03BCD003F97C0 /* SBJsonParser.m in Sources */,
 				A4E254D01796CC5D00767506 /* GuessService.m in Sources */,
 				CA4FB822179E240B00A57387 /* DrawLayer.m in Sources */,
 				CA4FB829179E24A100A57387 /* DrawLayerManager.m in Sources */,
 				A4B7899B179E2E890008E21B /* CommonTitleView.m in Sources */,
 				A4B789A0179E2E890008E21B /* HPThemeManager.m in Sources */,
 				A4B789A8179E2F040008E21B /* DrawGuessController.m in Sources */,
-				CACD6CBA18E03BCD003F97C0 /* AlixPayResult.m in Sources */,
 				A4B789B0179E2F120008E21B /* GuessModesController.m in Sources */,
 				A4B789B2179E2F120008E21B /* GuessSelectController.m in Sources */,
 				CA51834B179F79570033AA95 /* GetNewNumberViewController.m in Sources */,
@@ -26531,6 +26532,7 @@
 				A4214DE31803AA4D007F2EFD /* SDWebImageDownloaderOperation.m in Sources */,
 				A4214DE61803AA4D007F2EFD /* SDWebImageManager.m in Sources */,
 				A4214DE91803AA4D007F2EFD /* SDWebImagePrefetcher.m in Sources */,
+				36B420EF1AA7F91900F8A9B1 /* SBJsonBase.m in Sources */,
 				A4214DEC1803AA4D007F2EFD /* UIButton+WebCache.m in Sources */,
 				A4214DEF1803AA4D007F2EFD /* UIImage+GIF.m in Sources */,
 				A4214DF21803AA4D007F2EFD /* UIImage+MultiFormat.m in Sources */,
@@ -26577,11 +26579,9 @@
 				CA9AAE6E1832054B002DBAA5 /* OpusDesignTime.m in Sources */,
 				CA9AAF1018321621002DBAA5 /* SingGuessController.m in Sources */,
 				CA9AAF1C18321621002DBAA5 /* SingHomeController.m in Sources */,
-				CA9AAF2818321621002DBAA5 /* SingController.m in Sources */,
 				CACD6CE218E03BCD003F97C0 /* AlixPayOrderManager.m in Sources */,
 				CA9AAF3418321621002DBAA5 /* SingInfoEditController.m in Sources */,
 				D819624819629D4C00B4FBAF /* TutorialInfoCell.m in Sources */,
-				CACD6D1F18E03C40003F97C0 /* DiracAudioPlayer.mm in Sources */,
 				CA9AAF4018321621002DBAA5 /* SongCell.m in Sources */,
 				CA9AAF4C18321621002DBAA5 /* SongSearchController.m in Sources */,
 				CA90052A195021F8003389FD /* OpusClassMenuItem.m in Sources */,
@@ -26589,6 +26589,7 @@
 				CA9AAF6C18321621002DBAA5 /* SingOpusManager.m in Sources */,
 				A4A3BF0A19B461F700EC4D25 /* BrushStroke.m in Sources */,
 				D8B5391B1991C48100BD3337 /* StageAlertViewController.m in Sources */,
+				36B420F71AA7F91900F8A9B1 /* SBJsonWriter.m in Sources */,
 				CA9AAF7018321621002DBAA5 /* SongCategoryManager.m in Sources */,
 				CA9AAF7418321621002DBAA5 /* SongManager.m in Sources */,
 				CA9AB01418321621002DBAA5 /* ItemUseRecorder.m in Sources */,
@@ -26606,7 +26607,6 @@
 				CA9AB06418321710002DBAA5 /* SingOpus.m in Sources */,
 				CA9AB0C618321821002DBAA5 /* VoiceChanger.m in Sources */,
 				CA9AB0C718321821002DBAA5 /* VoiceRecorder.m in Sources */,
-				CA9AB0C818321821002DBAA5 /* VoiceProcessor.mm in Sources */,
 				CA9AB0D118321AFE002DBAA5 /* HGQuadCurveMenu.m in Sources */,
 				CA9AB0D518321AFE002DBAA5 /* HGQuadCurveMenuItem.m in Sources */,
 				A4E59C911832208D003578CA /* WhisperStyleView.m in Sources */,
@@ -26621,7 +26621,6 @@
 				EA11A43F1839FAA100F73D64 /* GroupUIManager.m in Sources */,
 				EA038975183B06D300516952 /* GroupTopicController.m in Sources */,
 				EA038980183B122900516952 /* GroupDetailCell.m in Sources */,
-				CACD6D2318E03C40003F97C0 /* DiracAudioPlayerBase.mm in Sources */,
 				EA038995183B14C200516952 /* GroupInfoView.m in Sources */,
 				CA5D9D51183E3C0200BD820C /* DOUAudioAnalyzer+Default.m in Sources */,
 				CA5D9D55183E3C0200BD820C /* DOUAudioAnalyzer.m in Sources */,
@@ -26634,6 +26633,7 @@
 				CA5D9D71183E3C0200BD820C /* DOUAudioPlaybackItem.m in Sources */,
 				CA5D9D75183E3C0200BD820C /* DOUAudioRenderer.m in Sources */,
 				CA5D9D79183E3C0200BD820C /* DOUAudioSpatialAnalyzer.m in Sources */,
+				36B4206A1AA75E2800F8A9B1 /* RSADataVerifier.m in Sources */,
 				CA5D9D7D183E3C0200BD820C /* DOUAudioStreamer+Options.m in Sources */,
 				CA5D9D81183E3C0200BD820C /* DOUAudioStreamer.m in Sources */,
 				CA5D9D89183E3C0200BD820C /* DOUEAGL1View.m in Sources */,
@@ -26643,10 +26643,10 @@
 				A4F1AE0F19E8D9860082E9EC /* ImageSimilarity+Hash.mm in Sources */,
 				CA9C3FCA18432AA60041F332 /* AppTask.m in Sources */,
 				CA9C3FD018432AB60041F332 /* AppTaskManager.m in Sources */,
-				CACD6CC218E03BCD003F97C0 /* NSString+SBJSON.m in Sources */,
 				CA9C4006184343AF0041F332 /* JSONKit.m in Sources */,
 				EAA8D11618443CE200B3720B /* SearchController.m in Sources */,
 				EA7EFC6018458D270004793C /* GroupNoticeCell.m in Sources */,
+				36B420651AA75E2800F8A9B1 /* DataVerifier.m in Sources */,
 				EA7EFC6E18458D370004793C /* GroupNoticeController.m in Sources */,
 				EA7EFC7818458D430004793C /* GroupModelExt.m in Sources */,
 				EA2D573D1847243B00499ED4 /* SearchGroupController.m in Sources */,
@@ -26669,6 +26669,7 @@
 				EAEE550E188E5E61004A0907 /* SingleTabController.m in Sources */,
 				EAEE5517188E644F004A0907 /* GroupFeedController.m in Sources */,
 				EAEE551D188F7902004A0907 /* ChargeHistoryController.m in Sources */,
+				36B420681AA75E2800F8A9B1 /* openssl_wrapper.m in Sources */,
 				CAD8EE36189222930057EC30 /* PurchaseVipController.m in Sources */,
 				D82C0D7519764FC30088539F /* BillboardManager.m in Sources */,
 			);
@@ -26679,7 +26680,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				EA411812176066F500DA72D0 /* main.m in Sources */,
-				CACD6D2A18E03C40003F97C0 /* DiracFxAudioPlayer.mm in Sources */,
+				36B420881AA762DB00F8A9B1 /* openssl_wrapper.m in Sources */,
 				EA411813176066F500DA72D0 /* DrawAppDelegate.m in Sources */,
 				EA411814176066F500DA72D0 /* CommonService.m in Sources */,
 				EA411815176066F500DA72D0 /* EnhanceUIApplication.m in Sources */,
@@ -26743,6 +26744,7 @@
 				EA411857176066F500DA72D0 /* MapViewUtil.m in Sources */,
 				EA411858176066F500DA72D0 /* UICustomPageControl.m in Sources */,
 				EA411859176066F500DA72D0 /* UITableViewUtil.m in Sources */,
+				36B420851AA762DB00F8A9B1 /* DataVerifier.m in Sources */,
 				EA41185A176066F500DA72D0 /* UITableViewCellUtil.m in Sources */,
 				EA41185B176066F500DA72D0 /* TextViewExt.m in Sources */,
 				EA41185C176066F500DA72D0 /* UINavigationBarExt.m in Sources */,
@@ -26783,11 +26785,11 @@
 				EA4118A7176066F500DA72D0 /* GameMessage.pb.m in Sources */,
 				CA0174FD194055FD005E4390 /* OpusClassInfo.m in Sources */,
 				EA4118A8176066F500DA72D0 /* GameConstants.pb.m in Sources */,
+				36B420FE1AA7FB7D00F8A9B1 /* SSZipArchive.m in Sources */,
 				EA4118A9176066F500DA72D0 /* GameNetworkClient.m in Sources */,
 				EA4118AA176066F500DA72D0 /* DrawGameService.m in Sources */,
 				EA4118AB176066F500DA72D0 /* UserManager.m in Sources */,
 				EA4118AC176066F500DA72D0 /* UINavigationController+UINavigationControllerAdditions.m in Sources */,
-				CACD6D3E18E03C40003F97C0 /* DiracUtilities.mm in Sources */,
 				EA4118AD176066F500DA72D0 /* Word.m in Sources */,
 				EA4118AE176066F500DA72D0 /* WordManager.m in Sources */,
 				EA4118AF176066F500DA72D0 /* GameSessionUser.m in Sources */,
@@ -26827,7 +26829,6 @@
 				EA4118D5176066F500DA72D0 /* ShareAction.m in Sources */,
 				EA4118D7176066F500DA72D0 /* MyPaintButton.m in Sources */,
 				EA4118D8176066F500DA72D0 /* StoreKitUtils.m in Sources */,
-				CACD6CC118E03BCD003F97C0 /* NSObject+SBJSON.m in Sources */,
 				EA4118D9176066F500DA72D0 /* TransactionReceiptManager.m in Sources */,
 				EA4118DA176066F500DA72D0 /* TransactionReceipt.m in Sources */,
 				EA4118DB176066F500DA72D0 /* DrawView.m in Sources */,
@@ -26842,7 +26843,6 @@
 				EA4118E4176066F500DA72D0 /* SuperGameViewController.m in Sources */,
 				EA4118E5176066F500DA72D0 /* AudioManager.m in Sources */,
 				D89191F41963163B006B616A /* StageCell.m in Sources */,
-				CACD6CB918E03BCD003F97C0 /* AlixPayOrder.m in Sources */,
 				EA4118E6176066F500DA72D0 /* Friend.m in Sources */,
 				EA4118E7176066F500DA72D0 /* FriendManager.m in Sources */,
 				EA4118E8176066F500DA72D0 /* FriendService.m in Sources */,
@@ -26850,6 +26850,7 @@
 				EA4118EA176066F500DA72D0 /* SearchUserController.m in Sources */,
 				CA17826C1962D2480068883A /* DAPageIndicatorView.m in Sources */,
 				EA4118EB176066F500DA72D0 /* MessageCell.m in Sources */,
+				36B4208A1AA762DB00F8A9B1 /* RSADataVerifier.m in Sources */,
 				EA4118EE176066F500DA72D0 /* RoomCell.m in Sources */,
 				EA4118EF176066F500DA72D0 /* RoomService.m in Sources */,
 				EA4118F0176066F500DA72D0 /* Room.m in Sources */,
@@ -26866,6 +26867,7 @@
 				EA4118FE176066F500DA72D0 /* CustomWordManager.m in Sources */,
 				EA4118FF176066F500DA72D0 /* CustomWord.m in Sources */,
 				EA411905176066F500DA72D0 /* MyWordsController.m in Sources */,
+				36B420EE1AA7F91900F8A9B1 /* SBJSON.m in Sources */,
 				EA411906176066F500DA72D0 /* SelectCustomWordView.m in Sources */,
 				EA411908176066F500DA72D0 /* ChatCell.m in Sources */,
 				D8C039DA19F743D400220540 /* NewGridDrawSlide.m in Sources */,
@@ -26878,7 +26880,6 @@
 				CACD6D4718E03C86003F97C0 /* AudioFormatConverter.m in Sources */,
 				EA41190F176066F500DA72D0 /* FeedManager.m in Sources */,
 				EA411910176066F500DA72D0 /* FeedService.m in Sources */,
-				CACD6D3218E03C40003F97C0 /* EAFWrite.mm in Sources */,
 				EA411911176066F500DA72D0 /* ChatMessage.m in Sources */,
 				EA411912176066F500DA72D0 /* SelectChatFriendController.m in Sources */,
 				A4A3BF0D19B461F700EC4D25 /* BrushStroke.m in Sources */,
@@ -26929,6 +26930,7 @@
 				EA411950176066F500DA72D0 /* UserFeedController.m in Sources */,
 				EA411951176066F500DA72D0 /* ContestService.m in Sources */,
 				EA411952176066F500DA72D0 /* ContestController.m in Sources */,
+				36B420861AA762DB00F8A9B1 /* MD5DataSigner.m in Sources */,
 				EA411953176066F500DA72D0 /* ContestView.m in Sources */,
 				EA411956176066F500DA72D0 /* StatementController.m in Sources */,
 				EA411957176066F500DA72D0 /* ContestOpusController.m in Sources */,
@@ -26943,6 +26945,7 @@
 				EA41195F176066F500DA72D0 /* ContestFeed.m in Sources */,
 				EA411960176066F500DA72D0 /* SuperHomeController.m in Sources */,
 				EA411961176066F500DA72D0 /* UserAnnotation.m in Sources */,
+				36B420F21AA7F91900F8A9B1 /* SBJsonBase.m in Sources */,
 				EA411962176066F500DA72D0 /* UserLocationController.m in Sources */,
 				EA41196B176066F500DA72D0 /* UseItemScene.m in Sources */,
 				EA41196C176066F500DA72D0 /* UIPlaceholderTextView.m in Sources */,
@@ -26959,7 +26962,6 @@
 				EA411977176066F500DA72D0 /* MessageStat.m in Sources */,
 				EA411978176066F500DA72D0 /* ImplicitDownloadService.m in Sources */,
 				EA411979176066F500DA72D0 /* PPResourcePackage.m in Sources */,
-				CACD6D2E18E03C40003F97C0 /* EAFRead.mm in Sources */,
 				EA41197A176066F500DA72D0 /* PPResourcePackageDownloadRequest.m in Sources */,
 				EA41197B176066F500DA72D0 /* PPResourcePackageManager.m in Sources */,
 				EA41197C176066F500DA72D0 /* PPResourceSearchService.m in Sources */,
@@ -27040,9 +27042,9 @@
 				EA4119E0176066F500DA72D0 /* BBSColorManager.m in Sources */,
 				EA4119E1176066F500DA72D0 /* BBSViewManager.m in Sources */,
 				EA4119E2176066F500DA72D0 /* UIView+MDCShineEffect.m in Sources */,
+				36B420831AA762DB00F8A9B1 /* base64.m in Sources */,
 				EA4119E3176066F500DA72D0 /* PPSmartUpdateData.m in Sources */,
 				EA4119E4176066F500DA72D0 /* PPSmartUpdateDataUtils.m in Sources */,
-				CACD6CBD18E03BCD003F97C0 /* AlixPayResult.m in Sources */,
 				EA4119E5176066F500DA72D0 /* BlockUtils.m in Sources */,
 				EA4119E6176066F500DA72D0 /* PPSmartDataTest.m in Sources */,
 				EA4119E7176066F500DA72D0 /* BBSPopupSelectionView.m in Sources */,
@@ -27081,7 +27083,6 @@
 				EA411A0C176066F500DA72D0 /* BulletinNetwork.m in Sources */,
 				EA411A0D176066F500DA72D0 /* BulletinManager.m in Sources */,
 				EA411A0F176066F500DA72D0 /* DrawGameJumpHandler.m in Sources */,
-				CACD6CC518E03BCD003F97C0 /* NSString+SBJSON.m in Sources */,
 				EA411A11176066F500DA72D0 /* PPStack.m in Sources */,
 				D8A2709D196FC07F006DDF20 /* GameConstants.pb-c.c in Sources */,
 				EA411A13176066F500DA72D0 /* CustomActionSheet.m in Sources */,
@@ -27155,6 +27156,7 @@
 				EA411A68176066F500DA72D0 /* DrawBgManager.m in Sources */,
 				EA411A69176066F500DA72D0 /* DrawBgBox.m in Sources */,
 				EA411A6A176066F500DA72D0 /* FeedDownloadService.m in Sources */,
+				36B420891AA762DB00F8A9B1 /* RSADataSigner.m in Sources */,
 				EA411A6B176066F500DA72D0 /* JRSwizzle.m in Sources */,
 				EA411A6C176066F500DA72D0 /* IAPProductService.m in Sources */,
 				EA411A6D176066F500DA72D0 /* CustomInfoView.m in Sources */,
@@ -27233,6 +27235,7 @@
 				EA411ABD176066F500DA72D0 /* UIColor+UIColorExt.m in Sources */,
 				EA411ABE176066F500DA72D0 /* IAPProductManager.m in Sources */,
 				D89B27B21981FAC80035BE5F /* TipsPageViewController.m in Sources */,
+				36B420F61AA7F91900F8A9B1 /* SBJsonParser.m in Sources */,
 				EA411ABF176066F500DA72D0 /* RedoCommand.m in Sources */,
 				A4DBBC3719DB127D001D5FF4 /* TextureSimilarity.mm in Sources */,
 				EA411AC0176066F500DA72D0 /* UndoCommand.m in Sources */,
@@ -27262,6 +27265,7 @@
 				CA0174ED19405306005E4390 /* OpusClassInfoManager.m in Sources */,
 				EA411AF6176066F500DA72D0 /* Draw.pb-c.c in Sources */,
 				EA411AF7176066F500DA72D0 /* GameBasic.pb-c.c in Sources */,
+				36B420871AA762DB00F8A9B1 /* NSDataEx.m in Sources */,
 				EA411AFA176066F500DA72D0 /* Sing.pb-c.c in Sources */,
 				EA411AFD176066F500DA72D0 /* PocketSVG.m in Sources */,
 				EA411AFE176066F500DA72D0 /* BasicSearch.m in Sources */,
@@ -27280,7 +27284,8 @@
 				EA411F541763165F00DA72D0 /* AskPsHomeController.m in Sources */,
 				EA0FD69C17631C5100FED42E /* PolygenPen.m in Sources */,
 				CADE536A1764285A00F35373 /* PPGameNetworkRequest.m in Sources */,
-				CACD6CCD18E03BCD003F97C0 /* SBJsonBase.m in Sources */,
+				36B420841AA762DB00F8A9B1 /* DataSigner.m in Sources */,
+				36B420FA1AA7F91900F8A9B1 /* SBJsonWriter.m in Sources */,
 				D8B58B2C197CEE090088E5F7 /* SGFocusImageItem.m in Sources */,
 				C21E13B0176462A6001E083D /* Photo.pb.m in Sources */,
 				EA41242B1767137E00FC13C2 /* AskPs.m in Sources */,
@@ -27349,6 +27354,7 @@
 				CABEC6ED17969462006F89BB /* FreeIngotCell.m in Sources */,
 				CABEC6FC17969462006F89BB /* FreeIngotController.m in Sources */,
 				D8A1E9C5197612B200F32735 /* MoreViewController.m in Sources */,
+				36B420EA1AA7F91900F8A9B1 /* NSString+SBJSON.m in Sources */,
 				CA4FB826179E240B00A57387 /* DrawLayer.m in Sources */,
 				CA4FB82D179E24A100A57387 /* DrawLayerManager.m in Sources */,
 				A4B7899F179E2E890008E21B /* CommonTitleView.m in Sources */,
@@ -27402,17 +27408,14 @@
 				EA2A7CE117F676AB00ED508D /* AccountManageController.m in Sources */,
 				CACD6CE918E03BCD003F97C0 /* NotificationCenterManager.m in Sources */,
 				CA1FF89C1804F986003CEAD6 /* NSDate+TKCategory.m in Sources */,
-				CACD6CC918E03BCD003F97C0 /* SBJSON.m in Sources */,
 				EA8500DF1807A0430000DE3E /* ShareUIManager.m in Sources */,
 				EA0C5528180B9203008069C1 /* InfColorBarPicker.m in Sources */,
 				EA0C552C180B9203008069C1 /* InfColorIndicatorView.m in Sources */,
 				EA0C5538180B9203008069C1 /* InfColorSquarePicker.m in Sources */,
 				A47896E41995BB2400185220 /* CRBubble.m in Sources */,
-				CACD6D2618E03C40003F97C0 /* DiracAudioPlayerBase.mm in Sources */,
 				EA0C553C180B9203008069C1 /* InfHSBSupport.m in Sources */,
 				EA0C5540180B9203008069C1 /* InfSourceColorView.m in Sources */,
 				EA0C5549180BECEB008069C1 /* PainterController.m in Sources */,
-				CACD6CD118E03BCD003F97C0 /* SBJsonParser.m in Sources */,
 				EADC02581817CF8C0038B6A8 /* SearchPostController.m in Sources */,
 				CAEEC19D181A5DAC007FD75F /* ScreenCaptureView.m in Sources */,
 				EA8CADE418288CAF003149FE /* GroupService.m in Sources */,
@@ -27436,7 +27439,6 @@
 				CA9AAF7718321621002DBAA5 /* SongManager.m in Sources */,
 				CA9AB01718321621002DBAA5 /* ItemUseRecorder.m in Sources */,
 				CA9AB01B18321621002DBAA5 /* OpusGuessRecorder.m in Sources */,
-				CACD6D2218E03C40003F97C0 /* DiracAudioPlayer.mm in Sources */,
 				CA9AB01F18321621002DBAA5 /* SongService.m in Sources */,
 				CA9AB02318321621002DBAA5 /* NameAndDescEditView.m in Sources */,
 				CA9AB02B18321621002DBAA5 /* SingInfoCell.m in Sources */,
@@ -27447,6 +27449,7 @@
 				CA9AB06318321621002DBAA5 /* WordInputView.m in Sources */,
 				CA9AB0731832171B002DBAA5 /* PBOpus+Extend.m in Sources */,
 				CA9AB0741832171B002DBAA5 /* DrawOpus.m in Sources */,
+				36B420E61AA7F91900F8A9B1 /* NSObject+SBJSON.m in Sources */,
 				CA9AB0751832171B002DBAA5 /* Opus.m in Sources */,
 				CA9AB0761832171B002DBAA5 /* OpusManager.m in Sources */,
 				CA9AB0771832171B002DBAA5 /* SingOpus.m in Sources */,
@@ -27493,7 +27496,6 @@
 				CA5D9D94183E3C0200BD820C /* DOUSimpleHTTPRequest.m in Sources */,
 				CA5D9D98183E3C0200BD820C /* NSData+DOUMappedFile.m in Sources */,
 				CA9C3FCD18432AA60041F332 /* AppTask.m in Sources */,
-				CACD6CD518E03BCD003F97C0 /* SBJsonWriter.m in Sources */,
 				CA9C3FD318432AB60041F332 /* AppTaskManager.m in Sources */,
 				CA9C4009184343AF0041F332 /* JSONKit.m in Sources */,
 				EAA8D11918443CE200B3720B /* SearchController.m in Sources */,
@@ -27758,6 +27760,8 @@
 					"../Common_iPhone_20/3PP-SDK/LmmobSDK",
 					"../Common_iPhone_20/3PP-SDK/ShareSDK/Extend/QQConnectSDK",
 					"../Common_iPhone_20/Components/Component-Service/OpenCV",
+					"/Users/pipi/gitdata/Common_iPhone_20/3PP-SDK/GoogleAdMobAdsSDK",
+					"/Users/pipi/gitdata/Common_iPhone_20/3PP-SDK/AliPaySDK/alipay",
 				);
 				GCC_C_LANGUAGE_STANDARD = "compiler-default";
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -27812,7 +27816,8 @@
 					"../Common_iPhone_20/3PP-SDK/YouMiSDK/lib",
 					"../Common_iPhone_20/3PP-SDK/AliPaySDK/alipay",
 					"../Common_iPhone_20/Components/Component-DB/Buri/LevelDB",
-					"../Common_iPhone_20/Components/Component-Audio/AudioProcessing/--DIRAC3LE--/Dirac3-Mobile/Common\\ Files/src",
+					"../Common_iPhone_20/Components/Component-Audio/AudioProcessing/--DIRAC3LE--/Dirac3-Mobile/Common",
+					Files/src,
 					"../Common_iPhone_20/Core/Core-Utils-Audio-Convert",
 					"../Common_iPhone_20/3PP-SDK/WeixinSDK",
 					"../Common_iPhone_20/3PP-SDK/ShareSDK/Extend/SinaWeiboSDK",
@@ -27820,6 +27825,7 @@
 					"../Common_iPhone_20/3PP-SDK/ShareSDK/Extend/WeChatSDK",
 					"../Common_iPhone_20/3PP-SDK/ShareSDK/Extend/YiXinSDK",
 					"../Common_iPhone_20/3PP-SDK/DomobAdSDK",
+					"/Users/pipi/gitdata/Common_iPhone_20/3PP-SDK/AliPaySDK/alipay",
 				);
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = "-ObjC";
@@ -27867,6 +27873,8 @@
 					"../Common_iPhone_20/3PP-SDK/LmmobSDK",
 					"../Common_iPhone_20/3PP-SDK/ShareSDK/Extend/QQConnectSDK",
 					"../Common_iPhone_20/Components/Component-Service/OpenCV",
+					"/Users/pipi/gitdata/Common_iPhone_20/3PP-SDK/GoogleAdMobAdsSDK",
+					"/Users/pipi/gitdata/Common_iPhone_20/3PP-SDK/AliPaySDK/alipay",
 				);
 				GCC_C_LANGUAGE_STANDARD = "compiler-default";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -27920,7 +27928,8 @@
 					"../Common_iPhone_20/3PP-SDK/YouMiSDK/lib",
 					"../Common_iPhone_20/3PP-SDK/AliPaySDK/alipay",
 					"../Common_iPhone_20/Components/Component-DB/Buri/LevelDB",
-					"../Common_iPhone_20/Components/Component-Audio/AudioProcessing/--DIRAC3LE--/Dirac3-Mobile/Common\\ Files/src",
+					"../Common_iPhone_20/Components/Component-Audio/AudioProcessing/--DIRAC3LE--/Dirac3-Mobile/Common",
+					Files/src,
 					"../Common_iPhone_20/Core/Core-Utils-Audio-Convert",
 					"../Common_iPhone_20/3PP-SDK/WeixinSDK",
 					"../Common_iPhone_20/3PP-SDK/ShareSDK/Extend/SinaWeiboSDK",
@@ -27928,6 +27937,7 @@
 					"../Common_iPhone_20/3PP-SDK/ShareSDK/Extend/WeChatSDK",
 					"../Common_iPhone_20/3PP-SDK/ShareSDK/Extend/YiXinSDK",
 					"../Common_iPhone_20/3PP-SDK/DomobAdSDK",
+					"/Users/pipi/gitdata/Common_iPhone_20/3PP-SDK/AliPaySDK/alipay",
 				);
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = "-ObjC";
@@ -27976,6 +27986,8 @@
 					"../Common_iPhone_20/3PP-SDK/LmmobSDK",
 					"../Common_iPhone_20/3PP-SDK/ShareSDK/Extend/QQConnectSDK",
 					"../Common_iPhone_20/Components/Component-Service/OpenCV",
+					"/Users/pipi/gitdata/Common_iPhone_20/3PP-SDK/GoogleAdMobAdsSDK",
+					"/Users/pipi/gitdata/Common_iPhone_20/3PP-SDK/AliPaySDK/alipay",
 				);
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -28030,7 +28042,8 @@
 					"../Common_iPhone_20/3PP-SDK/YouMiSDK/lib",
 					"../Common_iPhone_20/3PP-SDK/AliPaySDK/alipay",
 					"../Common_iPhone_20/Components/Component-DB/Buri/LevelDB",
-					"../Common_iPhone_20/Components/Component-Audio/AudioProcessing/--DIRAC3LE--/Dirac3-Mobile/Common\\ Files/src",
+					"../Common_iPhone_20/Components/Component-Audio/AudioProcessing/--DIRAC3LE--/Dirac3-Mobile/Common",
+					Files/src,
 					"../Common_iPhone_20/Core/Core-Utils-Audio-Convert",
 					"../Common_iPhone_20/3PP-SDK/WeixinSDK",
 					"../Common_iPhone_20/3PP-SDK/ShareSDK/Extend/SinaWeiboSDK",
@@ -28038,6 +28051,7 @@
 					"../Common_iPhone_20/3PP-SDK/ShareSDK/Extend/WeChatSDK",
 					"../Common_iPhone_20/3PP-SDK/ShareSDK/Extend/YiXinSDK",
 					"../Common_iPhone_20/3PP-SDK/DomobAdSDK",
+					"/Users/pipi/gitdata/Common_iPhone_20/3PP-SDK/AliPaySDK/alipay",
 				);
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = LittleGeeDraw;
@@ -28084,6 +28098,8 @@
 					"../Common_iPhone_20/3PP-SDK/LmmobSDK",
 					"../Common_iPhone_20/3PP-SDK/ShareSDK/Extend/QQConnectSDK",
 					"../Common_iPhone_20/Components/Component-Service/OpenCV",
+					"/Users/pipi/gitdata/Common_iPhone_20/3PP-SDK/GoogleAdMobAdsSDK",
+					"/Users/pipi/gitdata/Common_iPhone_20/3PP-SDK/AliPaySDK/alipay",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Draw/Draw-Prefix.pch";
@@ -28136,7 +28152,8 @@
 					"../Common_iPhone_20/3PP-SDK/YouMiSDK/lib",
 					"../Common_iPhone_20/3PP-SDK/AliPaySDK/alipay",
 					"../Common_iPhone_20/Components/Component-DB/Buri/LevelDB",
-					"../Common_iPhone_20/Components/Component-Audio/AudioProcessing/--DIRAC3LE--/Dirac3-Mobile/Common\\ Files/src",
+					"../Common_iPhone_20/Components/Component-Audio/AudioProcessing/--DIRAC3LE--/Dirac3-Mobile/Common",
+					Files/src,
 					"../Common_iPhone_20/Core/Core-Utils-Audio-Convert",
 					"../Common_iPhone_20/3PP-SDK/WeixinSDK",
 					"../Common_iPhone_20/3PP-SDK/ShareSDK/Extend/SinaWeiboSDK",
@@ -28144,6 +28161,7 @@
 					"../Common_iPhone_20/3PP-SDK/ShareSDK/Extend/WeChatSDK",
 					"../Common_iPhone_20/3PP-SDK/ShareSDK/Extend/YiXinSDK",
 					"../Common_iPhone_20/3PP-SDK/DomobAdSDK",
+					"/Users/pipi/gitdata/Common_iPhone_20/3PP-SDK/AliPaySDK/alipay",
 				);
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = LittleGeeDraw;
@@ -28259,6 +28277,8 @@
 					"../Common_iPhone_20/3PP-SDK/LmmobSDK",
 					"../Common_iPhone_20/3PP-SDK/ShareSDK/Extend/QQConnectSDK",
 					"../Common_iPhone_20/Components/Component-Service/OpenCV",
+					"/Users/pipi/gitdata/Common_iPhone_20/3PP-SDK/AliPaySDK/alipay",
+					"/Users/pipi/gitdata/Common_iPhone_20/3PP-SDK/GoogleAdMobAdsSDK",
 				);
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -28313,7 +28333,8 @@
 					"../Common_iPhone_20/3PP-SDK/YouMiSDK/lib",
 					"../Common_iPhone_20/3PP-SDK/AliPaySDK/alipay",
 					"../Common_iPhone_20/Components/Component-DB/Buri/LevelDB",
-					"../Common_iPhone_20/Components/Component-Audio/AudioProcessing/--DIRAC3LE--/Dirac3-Mobile/Common\\ Files/src",
+					"../Common_iPhone_20/Components/Component-Audio/AudioProcessing/--DIRAC3LE--/Dirac3-Mobile/Common",
+					Files/src,
 					"../Common_iPhone_20/Core/Core-Utils-Audio-Convert",
 					"../Common_iPhone_20/3PP-SDK/WeixinSDK",
 					"../Common_iPhone_20/3PP-SDK/ShareSDK/Extend/SinaWeiboSDK",
@@ -28321,6 +28342,7 @@
 					"../Common_iPhone_20/3PP-SDK/ShareSDK/Extend/WeChatSDK",
 					"../Common_iPhone_20/3PP-SDK/ShareSDK/Extend/YiXinSDK",
 					"../Common_iPhone_20/3PP-SDK/DomobAdSDK",
+					"/Users/pipi/gitdata/Common_iPhone_20/3PP-SDK/AliPaySDK/alipay",
 				);
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = "-ObjC";
@@ -28369,6 +28391,8 @@
 					"../Common_iPhone_20/3PP-SDK/LmmobSDK",
 					"../Common_iPhone_20/3PP-SDK/ShareSDK/Extend/QQConnectSDK",
 					"../Common_iPhone_20/Components/Component-Service/OpenCV",
+					"/Users/pipi/gitdata/Common_iPhone_20/3PP-SDK/AliPaySDK/alipay",
+					"/Users/pipi/gitdata/Common_iPhone_20/3PP-SDK/GoogleAdMobAdsSDK",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Draw/Draw-Prefix.pch";
@@ -28421,7 +28445,8 @@
 					"../Common_iPhone_20/3PP-SDK/YouMiSDK/lib",
 					"../Common_iPhone_20/3PP-SDK/AliPaySDK/alipay",
 					"../Common_iPhone_20/Components/Component-DB/Buri/LevelDB",
-					"../Common_iPhone_20/Components/Component-Audio/AudioProcessing/--DIRAC3LE--/Dirac3-Mobile/Common\\ Files/src",
+					"../Common_iPhone_20/Components/Component-Audio/AudioProcessing/--DIRAC3LE--/Dirac3-Mobile/Common",
+					Files/src,
 					"../Common_iPhone_20/Core/Core-Utils-Audio-Convert",
 					"../Common_iPhone_20/3PP-SDK/WeixinSDK",
 					"../Common_iPhone_20/3PP-SDK/ShareSDK/Extend/SinaWeiboSDK",
@@ -28429,6 +28454,7 @@
 					"../Common_iPhone_20/3PP-SDK/ShareSDK/Extend/WeChatSDK",
 					"../Common_iPhone_20/3PP-SDK/ShareSDK/Extend/YiXinSDK",
 					"../Common_iPhone_20/3PP-SDK/DomobAdSDK",
+					"/Users/pipi/gitdata/Common_iPhone_20/3PP-SDK/AliPaySDK/alipay",
 				);
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = "-ObjC";
@@ -28478,6 +28504,8 @@
 					"/Users/Linruin/gitdata/Common_iPhone_20/Components/Component-Service/OpenCV",
 					"/gitdata/Common_iPhone_20/Components/Component-Service/OpenCV",
 					"/Users/chaoso/Desktop/gitdata/Common_iPhone_20/Components/Component-Service/OpenCV",
+					"/Users/pipi/gitdata/Common_iPhone_20/3PP-SDK/GoogleAdMobAdsSDK",
+					"/Users/pipi/gitdata/Common_iPhone_20/3PP-SDK/AliPaySDK/alipay",
 				);
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -28531,7 +28559,8 @@
 					"../Common_iPhone_20/3PP-SDK/YouMiSDK/lib",
 					"../Common_iPhone_20/3PP-SDK/AliPaySDK/alipay",
 					"../Common_iPhone_20/Components/Component-DB/Buri/LevelDB",
-					"../Common_iPhone_20/Components/Component-Audio/AudioProcessing/--DIRAC3LE--/Dirac3-Mobile/Common\\ Files/src",
+					"../Common_iPhone_20/Components/Component-Audio/AudioProcessing/--DIRAC3LE--/Dirac3-Mobile/Common",
+					Files/src,
 					"../Common_iPhone_20/Core/Core-Utils-Audio-Convert",
 					"../Common_iPhone_20/3PP-SDK/WeixinSDK",
 					"../Common_iPhone_20/3PP-SDK/ShareSDK/Extend/SinaWeiboSDK",
@@ -28539,6 +28568,7 @@
 					"../Common_iPhone_20/3PP-SDK/ShareSDK/Extend/WeChatSDK",
 					"../Common_iPhone_20/3PP-SDK/ShareSDK/Extend/YiXinSDK",
 					"../Common_iPhone_20/3PP-SDK/DomobAdSDK",
+					"/Users/pipi/gitdata/Common_iPhone_20/3PP-SDK/AliPaySDK/alipay",
 				);
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = AskPs;
@@ -28585,6 +28615,8 @@
 					"/Users/Linruin/gitdata/Common_iPhone_20/Components/Component-Service/OpenCV",
 					"/gitdata/Common_iPhone_20/Components/Component-Service/OpenCV",
 					"/Users/chaoso/Desktop/gitdata/Common_iPhone_20/Components/Component-Service/OpenCV",
+					"/Users/pipi/gitdata/Common_iPhone_20/3PP-SDK/GoogleAdMobAdsSDK",
+					"/Users/pipi/gitdata/Common_iPhone_20/3PP-SDK/AliPaySDK/alipay",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Draw/Draw-Prefix.pch";
@@ -28637,7 +28669,8 @@
 					"../Common_iPhone_20/3PP-SDK/YouMiSDK/lib",
 					"../Common_iPhone_20/3PP-SDK/AliPaySDK/alipay",
 					"../Common_iPhone_20/Components/Component-DB/Buri/LevelDB",
-					"../Common_iPhone_20/Components/Component-Audio/AudioProcessing/--DIRAC3LE--/Dirac3-Mobile/Common\\ Files/src",
+					"../Common_iPhone_20/Components/Component-Audio/AudioProcessing/--DIRAC3LE--/Dirac3-Mobile/Common",
+					Files/src,
 					"../Common_iPhone_20/Core/Core-Utils-Audio-Convert",
 					"../Common_iPhone_20/3PP-SDK/WeixinSDK",
 					"../Common_iPhone_20/3PP-SDK/ShareSDK/Extend/SinaWeiboSDK",
@@ -28645,6 +28678,7 @@
 					"../Common_iPhone_20/3PP-SDK/ShareSDK/Extend/WeChatSDK",
 					"../Common_iPhone_20/3PP-SDK/ShareSDK/Extend/YiXinSDK",
 					"../Common_iPhone_20/3PP-SDK/DomobAdSDK",
+					"/Users/pipi/gitdata/Common_iPhone_20/3PP-SDK/AliPaySDK/alipay",
 				);
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = AskPs;

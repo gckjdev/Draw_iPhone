@@ -8,7 +8,6 @@
 
 #import "SingController.h"
 #import "StringUtil.h"
-#import "DiracFxAudioPlayer.h"
 #import "FileUtil.h"
 #import "UIViewUtils.h"
 #import "SongManager.h"
@@ -66,7 +65,7 @@ enum{
 @property (retain, nonatomic) SingOpus *singOpus;
 @property (retain, nonatomic) VoiceRecorder *recorder;
 @property (retain, nonatomic) VoiceChanger *player;
-@property (retain, nonatomic) VoiceProcessor *processor;
+//@property (retain, nonatomic) VoiceProcessor *processor;
 @property (copy, nonatomic) UIImage *image;
 @property (retain, nonatomic) ChangeAvatar *picker;
 @property (retain, nonatomic) CMPopTipView *popTipView;
@@ -88,7 +87,7 @@ enum{
     [_singOpus release];
     [_recorder release];
     [_player release];
-    [_processor release];
+//    [_processor release];
     [_popTipView release];
     
     [_micImageView release];
@@ -545,7 +544,7 @@ enum{
 - (void)reset{
     _recorder.delegate = nil;
     _player.delegate = nil;
-    _processor.delegate = nil;
+//    _processor.delegate = nil;
     [self stopRecord];
     [self stopPlay];
 }
@@ -973,7 +972,7 @@ enum{
     [self pausePlay];
     _recorder.delegate = nil;
     _player.delegate = nil;
-    _processor.delegate = nil;
+//    _processor.delegate = nil;
     [self unregisterNotificationWithName:KEY_NOTIFICATION_SELECT_SONG];
     [self unregisterNotificationWithName:KEY_NOTIFICATION_SING_INFO_CHANGE];
     
@@ -1150,6 +1149,7 @@ enum{
         NSURL *inUrl = [self recordURL];
         NSURL *outUrl = [self finalOpusURL];
         
+        /*
         if (_processor == nil) {
             self.processor = [[[VoiceProcessor alloc] init] autorelease];
             _processor.delegate = self;
@@ -1160,11 +1160,13 @@ enum{
                         duration:_singOpus.pbOpus.sing.duration
                            pitch:_singOpus.pbOpus.sing.pitch
                          formant:_singOpus.pbOpus.sing.formant];
+         */
         
         [self showProgressViewWithMessage:NSLS(@"kSending")];
     }
 }
 
+/*
 - (void)processor:(VoiceProcessor *)processor progress:(float)progress{
     PPDebug(@"progress = %f", progress);
     
@@ -1185,6 +1187,7 @@ enum{
         POSTMSG2(msg, 2.5);
     }
 }
+*/
 
 - (void)convertWavFile:(NSString *)inputFilePath
              toMp3File:(NSString *)outputFilePath{

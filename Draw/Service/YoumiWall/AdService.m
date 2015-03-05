@@ -17,7 +17,7 @@
 //#import "AdMoGoView.h"
 #import "UserManager.h"
 #import "HomeController.h"
-#import "GADBannerView.h"
+#import <GoogleMobileAds/GoogleMobileAds.h>
 
 #import "UserGameItemManager.h"
 #import "GameItemService.h"
