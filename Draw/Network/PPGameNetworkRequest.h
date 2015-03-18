@@ -10,7 +10,6 @@
 #import "GameConstants.pb.h"
 #import "GameBasic.pb.h"
 #import "GameMessage.pb.h"
-#import "AlixPayOrder.h"
 #import "PPNetworkRequest.h"
 #import "PPGameNetworkRequest.h"
 #import "GameNetworkConstants.h"

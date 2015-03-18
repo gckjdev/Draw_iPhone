@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		361DDF121A4D4D2F000B8530 /* PrizeCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = D879C91919A7369D003B2A29 /* PrizeCell~ipad.xib */; };
 		361DDF131A4D4D35000B8530 /* StageCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = D8C784BE196A559F00323712 /* StageCell~ipad.xib */; };
+		362330331AB9156400BFCD35 /* Order.m in Sources */ = {isa = PBXBuildFile; fileRef = 362330321AB9156400BFCD35 /* Order.m */; };
+		362330341AB9156500BFCD35 /* Order.m in Sources */ = {isa = PBXBuildFile; fileRef = 362330321AB9156400BFCD35 /* Order.m */; };
+		362330351AB9156500BFCD35 /* Order.m in Sources */ = {isa = PBXBuildFile; fileRef = 362330321AB9156400BFCD35 /* Order.m */; };
 		36B4205F1AA75E2700F8A9B1 /* AlipaySDK.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 36B41FFD1AA75E2700F8A9B1 /* AlipaySDK.bundle */; };
 		36B420601AA75E2700F8A9B1 /* AlipaySDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 36B41FFE1AA75E2700F8A9B1 /* AlipaySDK.framework */; };
 		36B420611AA75E2800F8A9B1 /* libcrypto.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 36B41FFF1AA75E2700F8A9B1 /* libcrypto.a */; };
@@ -8278,6 +8281,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		362330311AB9156400BFCD35 /* Order.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Order.h; sourceTree = "<group>"; };
+		362330321AB9156400BFCD35 /* Order.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Order.m; sourceTree = "<group>"; };
 		36B41FFD1AA75E2700F8A9B1 /* AlipaySDK.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = AlipaySDK.bundle; sourceTree = "<group>"; };
 		36B41FFE1AA75E2700F8A9B1 /* AlipaySDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AlipaySDK.framework; sourceTree = "<group>"; };
 		36B41FFF1AA75E2700F8A9B1 /* libcrypto.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libcrypto.a; sourceTree = "<group>"; };
@@ -17997,6 +18002,8 @@
 		CACD6C9F18E03BCC003F97C0 /* AliPayManager */ = {
 			isa = PBXGroup;
 			children = (
+				362330311AB9156400BFCD35 /* Order.h */,
+				362330321AB9156400BFCD35 /* Order.m */,
 				36B420D51AA7F91900F8A9B1 /* json */,
 				CACD6CA018E03BCC003F97C0 /* AliPayManager.h */,
 				CACD6CA118E03BCC003F97C0 /* AliPayManager.m */,
@@ -24407,6 +24414,7 @@
 				A461B2E2174CBAA70088B061 /* SelectHotWordController.m in Sources */,
 				A461B2E3174CBAA70088B061 /* WordSelectCell.m in Sources */,
 				A461B2E4174CBAA70088B061 /* SelectCustomWordCell.m in Sources */,
+				362330351AB9156500BFCD35 /* Order.m in Sources */,
 				A461B2E5174CBAA70088B061 /* DraftCell.m in Sources */,
 				A461B2E6174CBAA70088B061 /* DraftsView.m in Sources */,
 				A461B2F0174CBAA70088B061 /* RoundLineLabel.m in Sources */,
@@ -25433,6 +25441,7 @@
 				C28A9C5D1738F04B007A819F /* WidthSliderCommand.m in Sources */,
 				C28A9C5E1738F04B007A819F /* AlphaSliderCommand.m in Sources */,
 				C28A9C5F1738F04B007A819F /* DrawBgCommand.m in Sources */,
+				362330341AB9156500BFCD35 /* Order.m in Sources */,
 				D80EB34D196B90DB0087EBBD /* MetroHomeController.m in Sources */,
 				C28A9C601738F04B007A819F /* CanvasSizeCommand.m in Sources */,
 				C28A9C611738F04B007A819F /* EditDescCommand.m in Sources */,
@@ -26329,6 +26338,7 @@
 				CAEFC5731700044E00D799B7 /* WidthPickCommand.m in Sources */,
 				CAEFC5791700047500D799B7 /* WidthSliderCommand.m in Sources */,
 				D80EB34C196B90DB0087EBBD /* MetroHomeController.m in Sources */,
+				362330331AB9156400BFCD35 /* Order.m in Sources */,
 				CAEFC57F1700049300D799B7 /* AlphaSliderCommand.m in Sources */,
 				CAEFC585170004B600D799B7 /* DrawBgCommand.m in Sources */,
 				CAEFC58B170004E600D799B7 /* CanvasSizeCommand.m in Sources */,

@@ -333,13 +333,13 @@
 }
 
 
-- (void)alipayClientPaymentForOrder:(AlixPayOrder *)order
-{
-    [[AccountService defaultService] setDelegate:self];
-    [[[AccountService defaultService] alipayManager] payWithOrder:order
-                                                        appScheme:[GameApp alipayCallBackScheme]
-                                                    rsaPrivateKey:[PPConfigManager getAlipayRSAPrivateKey]];
-}
+//- (void)alipayClientPaymentForOrder:(AlixPayOrder *)order
+//{
+//    [[AccountService defaultService] setDelegate:self];
+//    [[[AccountService defaultService] alipayManager] payWithOrder:order
+//                                                        appScheme:[GameApp alipayCallBackScheme]
+//                                                    rsaPrivateKey:[PPConfigManager getAlipayRSAPrivateKey]];
+//}
 
 
 - (void)alipayForOrder:(AlixPayOrder *)order
@@ -348,7 +348,7 @@
         [self alipayWebPaymentForOrder:order];
     }
     else{
-        [self alipayClientPaymentForOrder:order];
+//        [self alipayClientPaymentForOrder:order];
     }
     return;
     
