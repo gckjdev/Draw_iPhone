@@ -117,8 +117,8 @@ AUTO_CREATE_VIEW_BY_XIB(FreeIngotCell)
     [self.rewardCurrencyImageView setImage:[[ShareImageManager defaultManager] currencyImageWithType:pbAppReward.rewardCurrency]];
     
     
-    [self.appNameLabel setText:[self getCurrentLolalizeStringFromPbLocalizeStringList:pbAppReward.app.nameList]];
-    [self.appDescriptionLabel setText:[self getCurrentLolalizeStringFromPbLocalizeStringList:pbAppReward.app.descList]];
+    [self.appNameLabel setText:[self getCurrentLolalizeStringFromPbLocalizeStringList:pbAppReward.app.name]];
+    [self.appDescriptionLabel setText:[self getCurrentLolalizeStringFromPbLocalizeStringList:pbAppReward.app.desc]];
     [self.rewardCurrencyCountLabel setText:[NSString stringWithFormat:@"+%d", pbAppReward.rewardAmount]];
     
     [self.appDescriptionLabel setHidden:NO];
@@ -130,7 +130,7 @@ AUTO_CREATE_VIEW_BY_XIB(FreeIngotCell)
 - (void)setCellWithPBRewardWall:(PBRewardWall*)pbRewardWall
 {
     [self setAppImageWithURLStr:pbRewardWall.logo];
-    [self.appNameLabel setText:[self getCurrentLolalizeStringFromPbLocalizeStringList:pbRewardWall.nameList]];
+    [self.appNameLabel setText:[self getCurrentLolalizeStringFromPbLocalizeStringList:pbRewardWall.name]];
     [self.appNameLabel setCenter:CGPointMake(self.appNameLabel.center.x, [FreeIngotCell getCellHeight]/2)];
     
     [self.appDescriptionLabel setHidden:YES];

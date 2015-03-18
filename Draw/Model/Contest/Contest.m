@@ -13,7 +13,7 @@
 
 @interface Contest()
 
-@property (retain, nonatomic) PBContest_Builder *pbContestBuilder;
+@property (retain, nonatomic) PBContestBuilder *pbContestBuilder;
 
 @end
 
@@ -200,7 +200,7 @@
         return YES;
     }
     
-    for (PBGameUser* contestant in _pbContestBuilder.contestantsList){
+    for (PBGameUser* contestant in _pbContestBuilder.contestants){
         if ([contestant.userId isEqualToString:userId]){
             return YES;
         }
@@ -322,8 +322,8 @@
 
 - (NSArray *)awardList
 {
-    NSArray *winners = [self.pbContest winnerUsersList];
-    NSArray *awards = [self.pbContest awardUsersList];
+    NSArray *winners = [self.pbContest winnerUsers];
+    NSArray *awards = [self.pbContest awardUsers];
     NSMutableArray *was = [NSMutableArray array];
     [was addObjectsFromArray:winners];
     [was addObjectsFromArray:awards];
@@ -332,8 +332,8 @@
 
 - (NSArray *)awardOpusIdList
 {
-    NSArray *winners = [self.pbContest winnerUsersList];
-    NSArray *awards = [self.pbContest awardUsersList];
+    NSArray *winners = [self.pbContest winnerUsers];
+    NSArray *awards = [self.pbContest awardUsers];
     NSMutableArray *was = [NSMutableArray array];
     [was addObjectsFromArray:winners];
     [was addObjectsFromArray:awards];
@@ -429,7 +429,7 @@
 + (Contest *)createGroupContestWithGroupId:(NSString *)groupId{
     
     Contest *contest = [[[Contest alloc] init] autorelease];
-    contest.pbContestBuilder = [[[PBContest_Builder alloc] init] autorelease];
+    contest.pbContestBuilder = [[[PBContestBuilder alloc] init] autorelease];
     [contest.pbContestBuilder setContestId:@""];
     [contest.pbContestBuilder setStatementUrl:@""];
     [contest.pbContestBuilder setCategory:[GameApp getCategory]];
@@ -438,7 +438,7 @@
     [contest.pbContestBuilder setMaxFlowerPerContest:6000]; // by default
     
     
-    PBGroup_Builder *pbGroupBuilder = [[[PBGroup_Builder alloc] init] autorelease];
+    PBGroupBuilder *pbGroupBuilder = [[[PBGroupBuilder alloc] init] autorelease];
     [pbGroupBuilder setGroupId:groupId];
     [pbGroupBuilder setName:@""];
 
@@ -498,21 +498,21 @@
 
 - (void)setAwardRules:(NSArray *)awards{
     
-    [_pbContestBuilder clearAwardRulesList];
-    [_pbContestBuilder addAllAwardRules:awards];
+    [_pbContestBuilder clearAwardRules];
+    [_pbContestBuilder setAwardRulesArray:awards];
 }
 
-- (NSArray *)awardRules{
+- (PBArray *)awardRules{
     
-    return [_pbContestBuilder awardRulesList];
+    return [_pbContestBuilder awardRules];
 }
 
 - (NSString *)awardRulesShortDesc{
     
-    NSArray *awardRules = _pbContestBuilder.awardRulesList;
+    PBArray *awardRules = _pbContestBuilder.awardRules;
     if ([awardRules count] > 0) {
-        NSNumber *award = [awardRules objectAtIndex:0];
-        return [self descForRank:1 award:award.intValue];
+        int award = [awardRules int32AtIndex:0];
+        return [self descForRank:1 award:award];
     }else{
         return nil;
     }
@@ -525,10 +525,10 @@
 
 - (int)awardWithRank:(int)rank{
     
-    if (rank < [_pbContestBuilder.awardRulesList count]) {
+    if (rank < [_pbContestBuilder.awardRules count]) {
         
-        NSNumber *award = [_pbContestBuilder.awardRulesList objectAtIndex:rank];
-        return award.intValue;
+        int award = [_pbContestBuilder.awardRules int32AtIndex:rank];
+        return award;
     }else{
         
         return 0;
@@ -537,7 +537,7 @@
 
 - (void)setRank:(int)rank award:(int)award{
     
-    NSMutableArray *awards = [[_pbContestBuilder awardRulesList] mutableCopy];
+    NSMutableArray *awards = [[_pbContestBuilder awardRules] mutableCopy];
     
     if (rank < [awards count]) {
 //        [awards removeObjectAtIndex:rank];
@@ -547,8 +547,8 @@
         [awards insertObject:@(award) atIndex:rank];
     }
     
-    [_pbContestBuilder clearAwardRulesList];
-    [_pbContestBuilder addAllAwardRules:awards];
+    [_pbContestBuilder clearAwardRules];
+    [_pbContestBuilder setAwardRulesArray:awards];
     
     [awards release];
 }
@@ -584,12 +584,12 @@
     
     NSString *desc = @"";
     
-    if ([_pbContestBuilder.awardRulesList count] < 4){
+    if ([_pbContestBuilder.awardRules count] < 4){
         return desc;
     }
     
     for (int i = 0; i < 4; i ++) {
-        int award = ((NSNumber *)[_pbContestBuilder.awardRulesList objectAtIndex:i]).intValue;
+        int award = [_pbContestBuilder.awardRules int32AtIndex:i];
         
         if (i < 3) {
             desc = [[desc stringByAppendingString:[NSString stringWithFormat:NSLS(@"kNumberXGetAwardX"), i+1, award]] stringByAppendingString:@"\n"];
@@ -641,9 +641,12 @@
 - (int)totalAward
 {
     int total = 0;
-    for (NSNumber* award in _pbContestBuilder.awardRulesList){
-        total += [award intValue];
+//    for (NSNumber* award in _pbContestBuilder.awardRules){
+    for (int i=0; i<_pbContestBuilder.awardRules.count; i++){
+        int award = [_pbContestBuilder.awardRules int32AtIndex:i];
+        total += award;
     }
+
     PPDebug(@"total contest award is %d", total);
     return total;
 }

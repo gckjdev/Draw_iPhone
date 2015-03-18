@@ -60,7 +60,7 @@
 -(void)setStageIndex{
     
     if(_pbUserTutorial.tutorial.unlockAllStage==YES){
-        stageIndex = _pbUserTutorial.tutorial.stagesList.count - 1;
+        stageIndex = _pbUserTutorial.tutorial.stages.count - 1;
     }
     else{
         stageIndex = _pbUserTutorial.currentStageIndex;
@@ -213,7 +213,7 @@
 //拿到头像数据
 #define RANK_LIST_LIMIT 10
 -(void)getAvatarDataIntoRankView{
-    NSArray *stageList = [[_pbUserTutorial tutorial] stagesList];
+    NSArray *stageList = [[_pbUserTutorial tutorial] stages];
     PBStage *stageWithRow = [stageList objectAtIndex:stageIndex];
     NSString *stageId = stageWithRow.stageId;
     NSString *tutorialId = [[_pbUserTutorial tutorial] tutorialId];
@@ -282,7 +282,7 @@
     
     UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake((ISIPAD?20:10), (_rankView.frame.size.height-avatarSquareSide)/2.0f-LABEL_HEIGHT/2.0f-(ISIPAD?15:0), _rankView.frame.size.width, LABEL_HEIGHT)];
     
-    NSString *stageName = [[_pbUserTutorial.tutorial.stagesList objectAtIndex:stageIndex] name];
+    NSString *stageName = [[_pbUserTutorial.tutorial.stages objectAtIndex:stageIndex] name];
     [label setBackgroundColor:[UIColor clearColor]];
     [label setText:[NSString stringWithFormat:NSLS(@"kRankViewDesc"),stageName,usersTotalCount]];
     [label setTextColor:COLOR_BROWN];
@@ -304,7 +304,7 @@
     
     //判断是否到最大或者最小值 来隐藏箭头
     if(_pbUserTutorial.tutorial.unlockAllStage==YES){
-        if(stageIndex >= _pbUserTutorial.tutorial.stagesList.count-1){
+        if(stageIndex >= _pbUserTutorial.tutorial.stages.count-1){
             right.hidden = YES;
         }
         if(stageIndex <= 0){
@@ -344,7 +344,7 @@
 //每个section的item个数
 -(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
-    int count = [[[self.pbUserTutorial tutorial] stagesList] count];
+    int count = [[[self.pbUserTutorial tutorial] stages] count];
     return count;
 }
 
@@ -466,7 +466,7 @@
     
 }
 -(void)enterRankPage{
-    NSArray *stageList = [[_pbUserTutorial tutorial] stagesList];
+    NSArray *stageList = [[_pbUserTutorial tutorial] stages];
     PBStage *stageWithRow = [stageList objectAtIndex:stageIndex];
     NSString *stageId = stageWithRow.stageId;
     
@@ -513,7 +513,7 @@
 }
 -(void)nextPage{
     if(_pbUserTutorial.tutorial.unlockAllStage==YES){
-        if(stageIndex < _pbUserTutorial.tutorial.stagesList.count-1){
+        if(stageIndex < _pbUserTutorial.tutorial.stages.count-1){
             stageIndex ++ ;
         }
     }

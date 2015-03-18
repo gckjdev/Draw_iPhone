@@ -351,7 +351,7 @@ enum {
                                            heithg:height
                                       resultBlock:^(int resultCode, PBUserPhoto *photo) {
         if (resultCode == 0) {
-            PPDebug(@"<didEditPictureInfo> favor image %@(%@) ,name = %@ with tag <%@>succ !", photo.url, photo.userPhotoId, photo.name,[photo.tagsList description]);
+            PPDebug(@"<didEditPictureInfo> favor image %@(%@) ,name = %@ with tag <%@>succ !", photo.url, photo.userPhotoId, photo.name,[photo.tags description]);
             [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kAddUserPhotoSucc") delayTime:1.5];
             if (_delegate && [_delegate respondsToSelector:@selector(didAddUserPhoto:)]) {
                 [_delegate didAddUserPhoto:photo];
@@ -363,7 +363,7 @@ enum {
     }];
     
     //for create test data
-//    PBUserPhotoList_Builder* listBuilder;
+//    PBUserPhotoListBuilder* listBuilder;
 //    StorageManager* manage = [[StorageManager alloc] initWithStoreType:StorageTypeTemp directoryName:@"testPhoto"];
 //    NSData* data = [manage dataForKey:@"test2"];
 //    if (data) {
@@ -372,7 +372,7 @@ enum {
 //    } else {
 //        listBuilder = [PBUserPhotoList builder];
 //    }
-//    PBUserPhoto_Builder* builder = [PBUserPhoto builder];
+//    PBUserPhotoBuilder* builder = [PBUserPhoto builder];
 //    [builder setUrl:url];
 //    [builder setName:name];
 //    for (NSString* str in [tagSet allObjects]) {
@@ -388,7 +388,7 @@ enum {
 //    [manage saveData:newData forKey:@"test2"];
 //    PPDebug(@"<test> write image %@ succ!",url);
     
-    //    PBUserPhoto_Builder* builder = [PBUserPhoto builder];
+    //    PBUserPhotoBuilder* builder = [PBUserPhoto builder];
     
     
 }

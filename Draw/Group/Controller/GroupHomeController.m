@@ -522,7 +522,7 @@
         }
          case GroupChat:
         {
-//            PBGroup_Builder* builder = [PBGroup builder];
+//            PBGroupBuilder* builder = [PBGroup builder];
 //            [builder setGroupId:@"888800000000001234567890"];
 //            [builder setName:@"Test Group"];
             

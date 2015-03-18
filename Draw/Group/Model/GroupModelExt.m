@@ -202,13 +202,13 @@ typedef enum{
 
 - (PBGroupUsersByTitle *)adminsByTitle
 {
-    PBGroupUsersByTitle_Builder *builder = [[PBGroupUsersByTitle_Builder alloc] init];
-    PBGroupTitle_Builder *titleBuilder = [[PBGroupTitle_Builder alloc] init];
+    PBGroupUsersByTitleBuilder *builder = [[PBGroupUsersByTitleBuilder alloc] init];
+    PBGroupTitleBuilder *titleBuilder = [[PBGroupTitleBuilder alloc] init];
     [titleBuilder setTitle:NSLS(@"kAdmin")];
     [titleBuilder setTitleId:GroupRoleAdmin];
     [builder setTitle:[titleBuilder build]];
-    if ([self.adminsList count] > 0) {
-        [builder addAllUsers:self.adminsList];
+    if ([self.admins count] > 0) {
+        [builder setUsersArray:self.admins];
     }
     PBGroupUsersByTitle *adminTitles = [builder build];
     [titleBuilder release];
@@ -218,13 +218,13 @@ typedef enum{
 
 - (PBGroupUsersByTitle *)guestsByTitle
 {
-    PBGroupUsersByTitle_Builder *builder = [[PBGroupUsersByTitle_Builder alloc] init];
-    PBGroupTitle_Builder *titleBuilder = [[PBGroupTitle_Builder alloc] init];
+    PBGroupUsersByTitleBuilder *builder = [[PBGroupUsersByTitleBuilder alloc] init];
+    PBGroupTitleBuilder *titleBuilder = [[PBGroupTitleBuilder alloc] init];
     [titleBuilder setTitle:NSLS(@"kGuest")];
     [titleBuilder setTitleId:GroupRoleGuest];
     [builder setTitle:[titleBuilder build]];
-    if ([self.guestsList count] > 0) {
-        [builder addAllUsers:self.guestsList];
+    if ([self.guests count] > 0) {
+        [builder setUsersArray:self.guests];
     }
     PBGroupUsersByTitle *adminTitles = [builder build];
     [titleBuilder release];
@@ -271,7 +271,7 @@ typedef enum{
 
 - (NSString *)firstMemberNickName
 {
-    NSArray *list = self.usersList;
+    NSArray *list = self.users;
     if ([list count] > 0) {
         PBGameUser *user = list[0];
         return user.nickName;
@@ -281,7 +281,7 @@ typedef enum{
 
 - (NSString *)desc
 {
-    return [NSString stringWithFormat:NSLS(@"kGroupTitleDesc"), [self titleName], [[self usersList] count]];
+    return [NSString stringWithFormat:NSLS(@"kGroupTitleDesc"), [self titleName], [[self users] count]];
 }
 @end
 

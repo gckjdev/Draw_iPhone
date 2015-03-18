@@ -76,7 +76,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(DrawBgManager);
     @try {
         NSData *data = [NSData dataWithContentsOfFile:filePath];
         if (data) {
-            NSArray* list = [[PBDrawBgMeta parseFromData:data] drawBgGroupList];
+            NSArray* list = [[PBDrawBgMeta parseFromData:data] drawBgGroup];
             if ([list count] > 0){
                 self.drawBgGroupList = list;
             }
@@ -125,7 +125,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(DrawBgManager);
 - (PBDrawBg *)pbDrawBgWithId:(NSString *)drawBgId
 {
     for (PBDrawBgGroup *bgGroup in _drawBgGroupList) {
-        for (PBDrawBg *bg in bgGroup.drawBgsList) {
+        for (PBDrawBg *bg in bgGroup.drawBgs) {
             if ([bg.bgId isEqual:drawBgId]) {
                 return bg;
             }
@@ -163,13 +163,13 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(DrawBgManager);
     PPDebug(@"<createTestData> string = %@",string);
     NSArray *groupList = [string componentsSeparatedByString:@"\n\n"];
     
-    PBDrawBgMeta_Builder *drawBgMeta = [[[PBDrawBgMeta_Builder alloc] init] autorelease];
+    PBDrawBgMetaBuilder *drawBgMeta = [[[PBDrawBgMetaBuilder alloc] init] autorelease];
     NSInteger i = 1;
     NSInteger start = 1;
     NSMutableArray *tempList = [NSMutableArray array];
     for (NSString *group in groupList) {
 
-        PBDrawBgGroup_Builder *gb = [[[PBDrawBgGroup_Builder alloc] init] autorelease];
+        PBDrawBgGroupBuilder *gb = [[[PBDrawBgGroupBuilder alloc] init] autorelease];
 
         
         NSArray *list = [group componentsSeparatedByString:@"\n"];
@@ -182,12 +182,12 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(DrawBgManager);
         ////// name
         NSArray *names = [[list objectAtIndex:1] componentsSeparatedByString:@" "];
 
-        PBLocalizeString_Builder *loc1 = [[PBLocalizeString_Builder alloc] init];
+        PBLocalizeStringBuilder *loc1 = [[PBLocalizeStringBuilder alloc] init];
         [loc1 setLanguageCode:@"zh_Hans"];
         [loc1 setLocalizedText:[names objectAtIndex:0]];
         [gb addName:[loc1 build]];
         
-        PBLocalizeString_Builder *loc2 = [[PBLocalizeString_Builder alloc] init];
+        PBLocalizeStringBuilder *loc2 = [[PBLocalizeStringBuilder alloc] init];
         [loc2 setLanguageCode:@"en"];
         [loc2 setLocalizedText:[names objectAtIndex:1]];
         [gb addName:[loc2 build]];
@@ -202,7 +202,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(DrawBgManager);
             NSString *remoteUrl = @"http://58.215.160.100:8080/app_res/smart_data/draw_bg/";
             remoteUrl = [remoteUrl stringByAppendingPathComponent:localUrl];
 
-            PBDrawBg_Builder *builder = [[[PBDrawBg_Builder alloc] init] autorelease];
+            PBDrawBgBuilder *builder = [[[PBDrawBgBuilder alloc] init] autorelease];
             [builder setBgId:bgId];
             [builder setLocalUrl:localUrl];
             [builder setRemoteUrl:remoteUrl];
@@ -214,7 +214,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(DrawBgManager);
 
         start += 10;
     }
-    [drawBgMeta addAllDrawBgGroup:tempList];
+    [drawBgMeta setDrawBgGroupArray:tempList];
 //    NSInteger count = [tempList count];
 //    while (--count >= 0) {
 //        PBDrawBgGroup *group = [tempList objectAtIndex:count];

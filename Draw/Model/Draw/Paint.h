@@ -18,7 +18,7 @@
 @class DrawColor;
 @class GameMessage;
 @class PointNode;
-@class PBDrawAction_Builder;
+@class PBDrawActionBuilder;
 
 @protocol DrawPenProtocol;
 
@@ -70,7 +70,7 @@
 - (CGRect)redrawRectInRect:(CGRect)rect;
 
 //- (NSMutableArray *)createPointXList:(NSArray**)pointXList pointYList:(NSArray**)pointYList;
-- (void)updatePBDrawActionBuilder:(PBDrawAction_Builder *)builder;
+- (void)updatePBDrawActionBuilder:(PBDrawActionBuilder *)builder;
 - (void)updatePBDrawActionC:(Game__PBDrawAction*)pbDrawActionC;
 
 @end

@@ -40,7 +40,7 @@
     self = [super initWithPBFeed:pbFeed];
     if (self) {
         //set times info
-        [self setTimeList:pbFeed.feedTimesList];
+        [self setTimeList:pbFeed.feedTimes];
 
         if ([pbFeed hasDrawData]) {
             self.pbDrawData = [pbFeed.drawData data];
@@ -538,7 +538,7 @@
 {
     NSMutableArray* retArray = [NSMutableArray array];
     NSArray* allOpusClassList = [[OpusClassInfoManager defaultManager] opusClassList];
-    for (PBClass* opusClass in self.pbFeed.opusClassList){
+    for (PBClass* opusClass in self.pbFeed.opusClass){
         for (OpusClassInfo* info in allOpusClassList){
             if ([info.classId isEqualToString:opusClass.classId]){
                 [retArray addObject:info];

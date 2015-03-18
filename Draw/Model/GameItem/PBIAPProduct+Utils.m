@@ -45,7 +45,7 @@
 
 - (PBIAPProductPrice *)priceInCountry:(NSString *)countryCode
 {
-    for (PBIAPProductPrice *price in self.pricesList) {
+    for (PBIAPProductPrice *price in self.prices) {
         if ([price.country isEqualToString:countryCode]) {
             return price;
         }

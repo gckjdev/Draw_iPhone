@@ -95,7 +95,7 @@
 
 + (NSInteger)rowForUsersByTitle:(PBGroupUsersByTitle *)usersByTitle
 {
-    NSInteger memberCount = [usersByTitle.usersList count]; //add button
+    NSInteger memberCount = [usersByTitle.users count]; //add button
     if (![usersByTitle isAdminTitle] && [GroupManager isMeAdminOrCreatorInSharedGroup]) {
         memberCount += 1;
     }
@@ -314,7 +314,7 @@
             NSInteger index = 0;
             BOOL hasAddButton = ![self.members isAdminTitle] && [GroupManager isMeAdminOrCreatorInSharedGroup];
 
-            NSInteger count = [[_members usersList] count] + hasAddButton;
+            NSInteger count = [[_members users] count] + hasAddButton;
             
             while (index < count) {
                 y = (index / MEMBER_NUMBER_PERROW) * (MEMBER_AVATAR_SPACE + MEMBER_AVATAR_HEIGHT);
@@ -326,7 +326,7 @@
                     [addButton setFrame:frame];
                     [scrollView addSubview:addButton];
                 }else{
-                    PBGameUser *user = self.members.usersList[index];
+                    PBGameUser *user = self.members.users[index];
                     AvatarView *av = [[AvatarView alloc] initWithFrame:frame user:user];
                     [av setDelegate:self];
                     [scrollView addSubview:av];
@@ -377,7 +377,7 @@
 
 - (NSInteger)avatarCount
 {
-    return [self.members.usersList count];
+    return [self.members.users count];
 }
 
 @end

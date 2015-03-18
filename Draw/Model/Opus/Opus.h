@@ -23,7 +23,7 @@
 
 @interface Opus : NSObject
 
-@property (nonatomic, retain) PBOpus_Builder* pbOpusBuilder;
+@property (nonatomic, retain) PBOpusBuilder* pbOpusBuilder;
 @property (nonatomic, retain) OpusDesignTime* designTime;
 
 + (Opus*)opusWithCategory:(PBOpusCategoryType)category;

@@ -106,7 +106,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(ImageShapeManager)
     @try {
         NSData *data = [NSData dataWithContentsOfFile:filePath];
         if (data) {
-            NSArray* list = [[PBImageShapeGroupMeta parseFromData:data] imageShapeGroupList];
+            NSArray* list = [[PBImageShapeGroupMeta parseFromData:data] imageShapeGroup];
             if ([list count] > 0){
                 self.imageShapeGroupList = list;
             }
@@ -248,7 +248,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(ImageShapeManager)
     
     //name
     PPDebug(@"LOCALE NAME LIST = [");
-    for (PBLocalizeString *lString in group.groupNameList) {
+    for (PBLocalizeString *lString in group.groupName) {
         PPDebug(@"%@ = %@",lString.languageCode,lString.localizedText);
     }
     PPDebug(@"];\n");
@@ -256,11 +256,13 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(ImageShapeManager)
     //type list
 //    PPDebug(@"");
     NSString *string = @"";
-    for (NSNumber *type in group.shapeTypeList) {
+//    for (NSNumber *type in group.shapeType) {
+    for (int i=0; i<group.shapeType.count; i++) {
+        int type = [group.shapeType int32AtIndex:i];
         if ([string length] > 0) {
-            string = [NSString stringWithFormat:@"%@, %d",string, type.integerValue];
+            string = [NSString stringWithFormat:@"%@, %d",string, type];
         }else{
-            string = [NSString stringWithFormat:@"%d",type.integerValue];
+            string = [NSString stringWithFormat:@"%d",type];
         }
 
     }
@@ -279,7 +281,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(ImageShapeManager)
     NSData *data = [NSData dataWithContentsOfFile:@"/Users/qqn_pipi/tool/image_shape/meta.pb"];
     PBImageShapeGroupMeta *meta = [PBImageShapeGroupMeta parseFromData:data];
     
-    for (PBImageShapeGroup *group in meta.imageShapeGroupList) {
+    for (PBImageShapeGroup *group in meta.imageShapeGroup) {
         PRINT_GROUP(group);
     }
     
@@ -287,7 +289,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(ImageShapeManager)
 
 + (void)createMetaFile
 {
-    PBImageShapeGroupMeta_Builder *builder = [[[PBImageShapeGroupMeta_Builder alloc] init] autorelease];
+    PBImageShapeGroupMetaBuilder *builder = [[[PBImageShapeGroupMetaBuilder alloc] init] autorelease];
     
     BUILD_GROUP(Basic0)
     BUILD_GROUP(Nature0)

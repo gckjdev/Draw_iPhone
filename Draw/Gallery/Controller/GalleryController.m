@@ -129,7 +129,7 @@
     if (data) {
         PBUserPhotoList* list = [PBUserPhotoList parseFromData:data];
         
-        [self didFinishLoadData:list.photoListList];
+        [self didFinishLoadData:list.photoList];
     } 
 }
 
@@ -212,10 +212,10 @@ enum {
           atIndex:(int)photoIndex
 {
     [self showActivityWithText:NSLS(@"kUpdating")];
-    [[GalleryService defaultService] updateUserPhoto:photo.userPhotoId photoUrl:photo.url name:name tagSet:[NSSet setWithArray:photo.tagsList] usage:[GameApp photoUsage] protoPhoto:photo resultBlock:^(int resultCode, PBUserPhoto* photo) {
+    [[GalleryService defaultService] updateUserPhoto:photo.userPhotoId photoUrl:photo.url name:name tagSet:[NSSet setWithArray:photo.tags] usage:[GameApp photoUsage] protoPhoto:photo resultBlock:^(int resultCode, PBUserPhoto* photo) {
         [self hideActivity];
         if (resultCode == 0) {
-            PPDebug(@"<editPhoto> photo id = %@, name = %@, tags = <%@>", photo.userPhotoId, photo.name, [photo.tagsList description]);
+            PPDebug(@"<editPhoto> photo id = %@, name = %@, tags = <%@>", photo.userPhotoId, photo.name, [photo.tags description]);
             [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kEditPhotoSucc") delayTime:2];
 //            [self reloadTableViewDataSource];
             if (photoIndex < self.dataList.count) {
@@ -309,7 +309,7 @@ enum {
 {
     PBUserPhoto* tempPhoto = nil;
     if (self.tagSet) {
-        PBUserPhoto_Builder* builder = [PBUserPhoto builder];
+        PBUserPhotoBuilder* builder = [PBUserPhoto builder];
         for (NSString* tag in self.tagSet) {
             [builder addTags:tag];
         }

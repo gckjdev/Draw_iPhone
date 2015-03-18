@@ -728,7 +728,7 @@ CGRect CGRectFromCGSize(CGSize size)
 
 PBSize *CGSizeToPBSize(CGSize size)
 {
-    PBSize_Builder *builder = [[[PBSize_Builder alloc] init] autorelease];
+    PBSizeBuilder *builder = [[[PBSizeBuilder alloc] init] autorelease];
     [builder setWidth:size.width];
     [builder setHeight:size.height];
     return [builder build];

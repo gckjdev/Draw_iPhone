@@ -77,12 +77,15 @@
 - (NSString*)categoryName
 {
     NSString* retName = @"";
-    for (NSNumber* category in self.categoriesList){
-        int value = category.intValue;
+    
+//    for (NSNumber* category in self.categories){
+    for (int i=0; i<self.categories.count; i++){
+        int value = [self.categories int32AtIndex:i];
         NSString* name = [self singleCategoryName:value];
         if ([name length] > 0){
             retName = [retName stringByAppendingString:name];
-            if ([self.categoriesList lastObject] != category){
+//            if ([self.categories lastObject] != category){
+            if (i != self.categories.count-1){
                 retName = [retName stringByAppendingString:@", "];
             }
         }
@@ -93,11 +96,11 @@
 
 - (PBStage*)getStageByIndex:(NSUInteger)index
 {
-    if (index >= [self.stagesList count]){
+    if (index >= [self.stages count]){
         return nil;
     }
     
-    return [self.stagesList objectAtIndex:index];
+    return [self.stages objectAtIndex:index];
 }
 
 - (PBStage*)nextStage:(NSUInteger)index
@@ -166,21 +169,21 @@
 
 - (NSArray*)tipsImageList:(NSUInteger)chapterIndex
 {
-    if ([self.chapterList count] == 0){
+    if ([self.chapter count] == 0){
         return nil;
     }
     
-    if (chapterIndex >= [self.chapterList count]){
+    if (chapterIndex >= [self.chapter count]){
         return nil;
     }
     
-    PBChapter* chapter = [self.chapterList objectAtIndex:chapterIndex];
-    if ([chapter.tipsList count] == 0){
+    PBChapter* chapter = [self.chapter objectAtIndex:chapterIndex];
+    if ([chapter.tips count] == 0){
         return nil;
     }
     
     NSMutableArray* retList = [NSMutableArray array];
-    for (PBTip* tip in chapter.tipsList){
+    for (PBTip* tip in chapter.tips){
         if (tip.imageName){
             [retList addObject:tip.imageName];
         }
@@ -191,7 +194,7 @@
 
 - (BOOL)hasMoreThanOneChapter
 {
-    if ([self.chapterList count] > 1){
+    if ([self.chapter count] > 1){
         return YES;
     }
     else{
@@ -220,11 +223,11 @@
 
 - (int)progress
 {
-    int currentTryStageCount = [self.userStagesList count];
+    int currentTryStageCount = [self.userStages count];
     int passCount = currentTryStageCount-1;
     if (self.currentStageIndex == (currentTryStageCount-1)){
         // already try current stage index, check if passed
-        PBUserStage* userStage = [self.userStagesList objectAtIndex:self.currentStageIndex];
+        PBUserStage* userStage = [self.userStages objectAtIndex:self.currentStageIndex];
         if ([[UserTutorialManager defaultManager] isPass:userStage.bestScore] ||
             [[UserTutorialManager defaultManager] isPass:userStage.lastScore]){
             
@@ -238,7 +241,7 @@
     }
     
     PBTutorial* pbTutorial = [[TutorialCoreManager defaultManager] findTutorialByTutorialId:self.tutorial.tutorialId];
-    int totalStageCount = [pbTutorial.stagesList count];
+    int totalStageCount = [pbTutorial.stages count];
     
     if (totalStageCount > 0){
         return (((passCount)*1.0f) / (totalStageCount*1.0f))*100;
@@ -271,11 +274,11 @@
 
 - (BOOL)hasFinishPractice:(int)stageIndex
 {
-    if (stageIndex < 0 || stageIndex >= [self.userStagesList count]){
+    if (stageIndex < 0 || stageIndex >= [self.userStages count]){
         return NO;
     }
     
-    PBUserStage* userStage = [self.userStagesList objectAtIndex:stageIndex];
+    PBUserStage* userStage = [self.userStages objectAtIndex:stageIndex];
     return [userStage hasFinishPractice];
 }
 
@@ -286,20 +289,20 @@
 - (NSString*)getCurrentChapterOpusId
 {
     PBTutorial* tutorial = [[TutorialCoreManager defaultManager] findTutorialByTutorialId:self.tutorialId];
-    if (self.stageIndex >= [tutorial.stagesList count]){
+    if (self.stageIndex >= [tutorial.stages count]){
         return nil;
     }
     
-    PBStage* stage = [tutorial.stagesList objectAtIndex:self.stageIndex];
+    PBStage* stage = [tutorial.stages objectAtIndex:self.stageIndex];
     if (stage == nil){
         return nil;
     }
     
-    if (self.currentChapterIndex >= [stage.chapterList count]){
+    if (self.currentChapterIndex >= [stage.chapter count]){
         return nil;
     }
     
-    PBChapter* chapter = [stage.chapterList objectAtIndex:self.currentChapterIndex];
+    PBChapter* chapter = [stage.chapter objectAtIndex:self.currentChapterIndex];
     return chapter.opusId;
 }
 
@@ -321,26 +324,26 @@
 
 @end
 
-@implementation PBUserStage_Builder (Extend5)
+@implementation PBUserStageBuilder (Extend5)
 
 - (NSString*)getCurrentChapterOpusId
 {
     
     PBTutorial* tutorial = [[TutorialCoreManager defaultManager] findTutorialByTutorialId:self.tutorialId];
-    if (self.stageIndex >= [tutorial.stagesList count]){
+    if (self.stageIndex >= [tutorial.stages count]){
         return nil;
     }
     
-    PBStage* stage = [tutorial.stagesList objectAtIndex:self.stageIndex];
+    PBStage* stage = [tutorial.stages objectAtIndex:self.stageIndex];
     if (stage == nil){
         return nil;
     }
     
-    if (self.currentChapterIndex >= [stage.chapterList count]){
+    if (self.currentChapterIndex >= [stage.chapter count]){
         return nil;
     }
     
-    PBChapter* chapter = [stage.chapterList objectAtIndex:self.currentChapterIndex];
+    PBChapter* chapter = [stage.chapter objectAtIndex:self.currentChapterIndex];
     return chapter.opusId;
 }
 

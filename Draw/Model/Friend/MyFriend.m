@@ -38,7 +38,7 @@
 
 - (PBGameUser *)toPBUser
 {
-    PBGameUser_Builder *builder = [[PBGameUser_Builder alloc] init];
+    PBGameUserBuilder *builder = [[PBGameUserBuilder alloc] init];
     
     [builder setUserId:_friendUserId];
     [builder setGender:[self isMale]];

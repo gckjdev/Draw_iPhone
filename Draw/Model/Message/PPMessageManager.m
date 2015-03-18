@@ -124,7 +124,7 @@ static PPMessageManager* globalDefaultMessageManager;
         PBMessage *pbm = [message toPBMessage];
         [array addObject:pbm];
     }
-    DataQueryResponse_Builder *builder = [[[DataQueryResponse_Builder alloc] init] autorelease];
+    DataQueryResponseBuilder *builder = [[[DataQueryResponseBuilder alloc] init] autorelease];
     [builder setResultCode:0];
     [builder addAllMessage:array];
     return [[builder build] data];

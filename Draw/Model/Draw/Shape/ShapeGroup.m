@@ -25,14 +25,14 @@ return type##List;}
 + (NSArray *)localizeNameListWithENName:(NSString *)en CNName:(NSString *)cn
 {
     NSMutableArray *array = [NSMutableArray arrayWithCapacity:2];
-    PBLocalizeString_Builder *builder = [[[PBLocalizeString_Builder alloc] init] autorelease];
+    PBLocalizeStringBuilder *builder = [[[PBLocalizeStringBuilder alloc] init] autorelease];
     [builder setLanguageCode:@"en"];
     [builder setLocalizedText:en];
     [builder setText:en];
     [array addObject:[builder build]];
     
     
-     builder = [[[PBLocalizeString_Builder alloc] init] autorelease];
+     builder = [[[PBLocalizeStringBuilder alloc] init] autorelease];
     [builder setLanguageCode:@"zh_Hans"];
     [builder setLocalizedText:cn];
     [builder setText:en]; 
@@ -57,7 +57,7 @@ return type##List;}
 
 - (PBImageShapeGroup *)toPBShapeGroup
 {
-    PBImageShapeGroup_Builder *builder = [[[PBImageShapeGroup_Builder alloc] init] autorelease];
+    PBImageShapeGroupBuilder *builder = [[[PBImageShapeGroupBuilder alloc] init] autorelease];
     [builder setGroupId:[self groupId]];
     [builder addAllGroupName:[self shapeNameList]];
 

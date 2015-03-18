@@ -94,7 +94,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(UserGameItemService);
                 if (res.resultCode == ERROR_SUCCESS && user != nil) {
                     [[AccountManager defaultManager] updateBalance:user.coinBalance currency:PBGameCurrencyCoin];
                     [[AccountManager defaultManager] updateBalance:user.ingotBalance currency:PBGameCurrencyIngot];
-                    [[UserGameItemManager defaultManager] setUserItemList:user.itemsList];
+                    [[UserGameItemManager defaultManager] setUserItemList:user.items];
                 }
             }
             
@@ -223,7 +223,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(UserGameItemService);
                 if (res.resultCode==ERROR_SUCCESS && user != nil){
                     [[AccountManager defaultManager] updateBalance:user.coinBalance currency:PBGameCurrencyCoin];
                     [[AccountManager defaultManager] updateBalance:user.ingotBalance currency:PBGameCurrencyIngot];
-                    [[UserGameItemManager defaultManager] setUserItemList:user.itemsList];
+                    [[UserGameItemManager defaultManager] setUserItemList:user.items];
                 }else{
                     PPDebug(@"<consumeItem> response resultCode is not ERROR_SUCCESS");
                 }

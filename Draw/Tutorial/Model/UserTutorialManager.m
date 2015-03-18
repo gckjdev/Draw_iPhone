@@ -147,7 +147,7 @@ static UserTutorialManager* _defaultManager;
         return nil;
     }
     
-    PBUserTutorial_Builder* builder = [PBUserTutorial builder];
+    PBUserTutorialBuilder* builder = [PBUserTutorial builder];
     [builder setUserId:userId];
     [builder setTutorial:tutorial];
     
@@ -155,8 +155,8 @@ static UserTutorialManager* _defaultManager;
     [builder setStatus:PBUserTutorialStatusUtStatusNotStart];
     
     // set init stage info
-    if ([tutorial.stagesList count] > 0){
-        PBStage* stage = [tutorial.stagesList objectAtIndex:0];
+    if ([tutorial.stages count] > 0){
+        PBStage* stage = [tutorial.stages objectAtIndex:0];
         [builder setCurrentStageIndex:0];
         [builder setCurrentStageId:stage.stageId];
     }
@@ -184,7 +184,7 @@ static UserTutorialManager* _defaultManager;
 
 //- (PBTutorial*)createTestTutorial
 //{
-//    PBTutorial_Builder* builder = [PBTutorial builder];
+//    PBTutorialBuilder* builder = [PBTutorial builder];
 //    [builder setTutorialId:@"testId2"];
 //    [builder setCnName:@"测试教程2"];
 //    
@@ -205,7 +205,7 @@ static UserTutorialManager* _defaultManager;
     
     NSString* localId = [self createLocalId];
     
-    PBUserTutorial_Builder* builder = [PBUserTutorial builderWithPrototype:userTutorial];
+    PBUserTutorialBuilder* builder = [PBUserTutorial builderWithPrototype:userTutorial];
     
     PBTutorial* tutorial = [[TutorialCoreManager defaultManager] findTutorialByTutorialId:userTutorial.tutorial.tutorialId];
     [builder setTutorial:tutorial];
@@ -214,15 +214,15 @@ static UserTutorialManager* _defaultManager;
     
     [builder setCurrentStageIndex:userTutorial.currentStageIndex];
     
-    int stageIndex = userTutorial.currentStageIndex; // set to from server
+    NSUInteger stageIndex = userTutorial.currentStageIndex; // set to from server
     if (userTutorial.currentStageIndex < 0){
         stageIndex = 0; // set to first
     }
-    else if (userTutorial.currentStageIndex >= [tutorial.stagesList count]){
-        stageIndex = [tutorial.stagesList count]-1; // set to last
+    else if (userTutorial.currentStageIndex >= [tutorial.stages count]){
+        stageIndex = [tutorial.stages count]-1; // set to last
     }
     
-    PBStage* stage = [tutorial.stagesList objectAtIndex:stageIndex];
+    PBStage* stage = [tutorial.stages objectAtIndex:stageIndex];
     NSString* stageId = stage.stageId;
     
     [builder setCurrentStageIndex:stageIndex];
@@ -230,12 +230,12 @@ static UserTutorialManager* _defaultManager;
     
     for (int i=0; i<stageIndex+1; i++){
         // need to add user stage and add into user tutorial
-        PBStage* stage = [tutorial.stagesList objectAtIndex:i];
+        PBStage* stage = [tutorial.stages objectAtIndex:i];
 
         int addStageIndex = i;
         NSString* addStageId = stage.stageId;
         
-        PBUserStage_Builder* userStageBuilder = nil;
+        PBUserStageBuilder* userStageBuilder = nil;
         userStageBuilder = [PBUserStage builder];
         [userStageBuilder setStageId:addStageId];
         [userStageBuilder setStageIndex:addStageIndex];
@@ -285,7 +285,7 @@ static UserTutorialManager* _defaultManager;
         return;
     }
     
-    PBUserTutorial_Builder* builder = [PBUserTutorial builderWithPrototype:ut];
+    PBUserTutorialBuilder* builder = [PBUserTutorial builderWithPrototype:ut];
     [builder setSyncServer:syncStatus];
     PBUserTutorial* newUt = [builder build];
     [self save:newUt];
@@ -303,7 +303,7 @@ static UserTutorialManager* _defaultManager;
         return;
     }
     
-    PBUserTutorial_Builder* builder = [PBUserTutorial builderWithPrototype:ut];
+    PBUserTutorialBuilder* builder = [PBUserTutorial builderWithPrototype:ut];
     [builder setRemoteId:remoteId];
     PBUserTutorial* newUt = [builder build];
     [self save:newUt];
@@ -387,13 +387,13 @@ static UserTutorialManager* _defaultManager;
         return nil;
     }
     
-    PBUserTutorial_Builder* builder = [PBUserTutorial builderWithPrototype:ut];
+    PBUserTutorialBuilder* builder = [PBUserTutorial builderWithPrototype:ut];
     
-    if (stageIndex >= [ut.userStagesList count]){
-        for (int i=ut.userStagesList.count; i<=stageIndex; i++){
+    if (stageIndex >= [ut.userStages count]){
+        for (NSUInteger i=ut.userStages.count; i<=stageIndex; i++){
             // need to create new user stage and add into user tutorial
-            NSString* addStageId = [[ut.tutorial.stagesList objectAtIndex:i] stageId];
-            PBUserStage_Builder* userStageBuilder = nil;
+            NSString* addStageId = [[ut.tutorial.stages objectAtIndex:i] stageId];
+            PBUserStageBuilder* userStageBuilder = nil;
             userStageBuilder = [PBUserStage builder];
             [userStageBuilder setStageId:addStageId];
             [userStageBuilder setTutorialId:ut.tutorial.tutorialId];
@@ -407,7 +407,7 @@ static UserTutorialManager* _defaultManager;
                     i, addStageId);
         }
     }
-    else if (stageIndex < [ut.userStagesList count]){
+    else if (stageIndex < [ut.userStages count]){
         // already has current user stage data
         PBUserStage* us = [ut userStagesAtIndex:stageIndex];
         if (us != nil){
@@ -417,7 +417,7 @@ static UserTutorialManager* _defaultManager;
     }
     else{
         // need to create new user stage and add into user tutorial
-        PBUserStage_Builder* userStageBuilder = nil;
+        PBUserStageBuilder* userStageBuilder = nil;
         userStageBuilder = [PBUserStage builder];
         [userStageBuilder setStageId:stageId];
         [userStageBuilder setTutorialId:ut.tutorial.tutorialId];
@@ -461,9 +461,9 @@ static UserTutorialManager* _defaultManager;
         return nil;
     }
     
-    PBUserTutorial_Builder* builder = [PBUserTutorial builderWithPrototype:ut];
+    PBUserTutorialBuilder* builder = [PBUserTutorial builderWithPrototype:ut];
 
-    if (stageIndex < [ut.userStagesList count]){
+    if (stageIndex < [ut.userStages count]){
         // already has current user stage data
         PBUserStage* us = [ut userStagesAtIndex:stageIndex];
         if (us != nil){
@@ -474,7 +474,7 @@ static UserTutorialManager* _defaultManager;
     }
     else{
         // need to create new user stage and add into user tutorial
-        PBUserStage_Builder* userStageBuilder = nil;
+        PBUserStageBuilder* userStageBuilder = nil;
         userStageBuilder = [PBUserStage builder];
         [userStageBuilder setStageId:stageId];
         [userStageBuilder setTutorialId:ut.tutorial.tutorialId];
@@ -507,14 +507,17 @@ static UserTutorialManager* _defaultManager;
         return nil;
     }
     
-    if (userStage.stageIndex >= [ut.userStagesList count]){
+    if (userStage.stageIndex >= [ut.userStages count]){
         PPDebug(@"<updateUserStage> but stageIndex=%d out of bound for current user stage list count(%d)",
-                userStage.stageIndex, [ut.userStagesList count]);
+                userStage.stageIndex, [ut.userStages count]);
         return nil;
     }
     
-    PBUserTutorial_Builder* builder = [PBUserTutorial builderWithPrototype:ut];
-    [builder replaceUserStagesAtIndex:userStage.stageIndex with:userStage];
+    PBUserTutorialBuilder* builder = [PBUserTutorial builderWithPrototype:ut];
+    
+    [builder.userStages replaceObjectAtIndex:userStage.stageIndex withObject:userStage];
+    
+//    [builder replaceUserStagesAtIndex:userStage.stageIndex with:userStage];
     PBUserTutorial* finalUT = [builder build];
     [self save:finalUT];
     return finalUT;
@@ -534,9 +537,9 @@ static UserTutorialManager* _defaultManager;
     }
     
     PPDebug(@"<isLastStage> stageIndex=%d, tutorial stage list count(%d)",
-            userStage.stageIndex, [tutorial.stagesList count]);
+            userStage.stageIndex, [tutorial.stages count]);
 
-    if (userStage.stageIndex >= ([tutorial.stagesList count] - 1)){
+    if (userStage.stageIndex >= ([tutorial.stages count] - 1)){
         return YES;
     }
     else{
@@ -564,7 +567,7 @@ static UserTutorialManager* _defaultManager;
         return ut;
     }
     
-    PBUserTutorial_Builder* builder = [PBUserTutorial builderWithPrototype:ut];
+    PBUserTutorialBuilder* builder = [PBUserTutorial builderWithPrototype:ut];
     PBTutorial* tutorial = [[TutorialCoreManager defaultManager] findTutorialByTutorialId:ut.tutorial.tutorialId];
     if (tutorial == nil){
         return ut;;

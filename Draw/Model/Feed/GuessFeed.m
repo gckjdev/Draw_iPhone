@@ -80,7 +80,7 @@
     if (self) {
         self.correct = pbFeed.isCorrect;
         self.score = pbFeed.score;
-        self.guessWords = pbFeed.guessWordsList;
+        self.guessWords = pbFeed.guessWords;
         self.drawFeed = [[[DrawFeed alloc] 
                           initWithFeedId:pbFeed.opusId 
                           userId:pbFeed.opusCreatorUserId 
@@ -93,7 +93,7 @@
                           pbDraw:pbFeed.drawData 
                           wordText:pbFeed.opusWord
                           contestId:pbFeed.contestId
-                          timesArray:pbFeed.feedTimesList] autorelease];
+                          timesArray:pbFeed.feedTimes] autorelease];
         
         self.drawFeed.categoryType = pbFeed.category;
         self.drawFeed.pbFeed = pbFeed;

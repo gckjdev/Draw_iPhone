@@ -37,7 +37,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(SongService);
         if (resultCode == ERROR_SUCCESS) {
             resultCode = output.pbResponse.resultCode;
             if (resultCode == 0) {
-                songs = output.pbResponse.songs.songsList;
+                songs = output.pbResponse.songs.songs;
             }
         }
         
@@ -101,7 +101,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(SongService);
         if (resultCode == ERROR_SUCCESS) {
             resultCode = output.pbResponse.resultCode;
             if (resultCode == 0) {
-                songs = output.pbResponse.songs.songsList;
+                songs = output.pbResponse.songs.songs;
             }
         }
         
@@ -128,7 +128,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(SongService);
     NSString *uuid = [NSString GetUUID];
     
     
-    PBSong_Builder *builder = [[[PBSong_Builder alloc] init] autorelease];
+    PBSongBuilder *builder = [[[PBSongBuilder alloc] init] autorelease];
     [builder setSongId:uuid];
     [builder setName:name];
     [builder setAuthor:author];

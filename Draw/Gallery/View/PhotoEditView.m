@@ -49,7 +49,7 @@ AUTO_CREATE_VIEW_BY_XIB(PhotoEditView)
 {
     [self initView];
     if (photo) {
-        self.tagSet = [[[NSMutableSet alloc] initWithArray:photo.tagsList] autorelease];
+        self.tagSet = [[[NSMutableSet alloc] initWithArray:photo.tags] autorelease];
         
     }
     [self.tagTable reloadData];

@@ -88,10 +88,10 @@ static ContestService *_staticContestService;
         dispatch_async(dispatch_get_main_queue(), ^{
 
             NSArray *contestList = nil;
-            if (output.resultCode == 0 && output.pbResponse.contestListList){
-                contestList = [[ContestManager defaultManager] parseContestList:output.pbResponse.contestListList];
+            if (output.resultCode == 0 && output.pbResponse.contestList){
+                contestList = [[ContestManager defaultManager] parseContestList:output.pbResponse.contestList];
                 if (type == ContestListTypeAll) {
-                    [[ContestManager defaultManager] setAllContestList:output.pbResponse.contestListList];
+                    [[ContestManager defaultManager] setAllContestList:output.pbResponse.contestList];
                 }
             }
 
@@ -171,8 +171,8 @@ static ContestService *_staticContestService;
         
         
         NSArray *contestList = nil;
-        if (output.resultCode == 0 && output.pbResponse.contestListList){
-            contestList = [[ContestManager defaultManager] parseContestList:output.pbResponse.contestListList];
+        if (output.resultCode == 0 && output.pbResponse.contestList){
+            contestList = [[ContestManager defaultManager] parseContestList:output.pbResponse.contestList];
         }
         
         dispatch_async(dispatch_get_main_queue(), ^{
@@ -238,7 +238,7 @@ static ContestService *_staticContestService;
             
             NSArray *contestList = nil;
             if (output.resultCode == 0){
-                contestList = [[ContestManager defaultManager] parseContestList:output.pbResponse.contestListList];
+                contestList = [[ContestManager defaultManager] parseContestList:output.pbResponse.contestList];
             }
             
             EXECUTE_BLOCK(completed, output.resultCode, type, contestList);            
@@ -275,7 +275,7 @@ static ContestService *_staticContestService;
         dispatch_async(dispatch_get_main_queue(), ^{
             
             if (output.resultCode == 0){
-                [[ContestManager defaultManager] saveOngoingContestList:output.pbResponse.contestListList];
+                [[ContestManager defaultManager] saveOngoingContestList:output.pbResponse.contestList];
                 [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFCATION_CONTEST_DATA_CHANGE object:nil];
             }
             

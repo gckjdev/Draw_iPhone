@@ -51,7 +51,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GuessService);
         NSArray *opuses = nil;
         
         if (resultCode == ERROR_SUCCESS){
-            opuses = output.pbResponse.opusListList;
+            opuses = output.pbResponse.opusList;
             for (PBOpus *pbOpus in opuses) {
                 PPDebug(@"opusId : %@", pbOpus.opusId);
                 PPDebug(@"opusDesc : %@", pbOpus.desc);
@@ -221,7 +221,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GuessService);
         NSArray *rankList = nil;
         if (resultCode == ERROR_SUCCESS){
             totalCount = output.pbResponse.totalCount;
-            rankList = output.pbResponse.guessRankListList;
+            rankList = output.pbResponse.guessRankList;
         }
         
         dispatch_async(dispatch_get_main_queue(), ^{
@@ -253,7 +253,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GuessService);
         int resultCode = output.resultCode;
         NSArray *list = nil;
         if (resultCode == ERROR_SUCCESS){
-            list = output.pbResponse.guessContestListList;
+            list = output.pbResponse.guessContestList;
             
             if ([list count] > 0) {
                 bself.contest = [list objectAtIndex:0];
@@ -277,7 +277,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GuessService);
         int resultCode = output.resultCode;
         NSArray *list = nil;
         if (resultCode == ERROR_SUCCESS){
-            list = output.pbResponse.guessContestListList;
+            list = output.pbResponse.guessContestList;
         }
         
         dispatch_async(dispatch_get_main_queue(), ^{

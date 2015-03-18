@@ -580,7 +580,7 @@ static DrawGameService* _defaultService;
     [self updateOnlineUserCount:message];
     if (message.resultCode == 0){
         [self.roomList removeAllObjects];
-        [self.roomList addObjectsFromArray:message.getRoomsResponse.sessionsList];
+        [self.roomList addObjectsFromArray:message.getRoomsResponse.sessions];
     }
     [self postNotification:NOTIFICAIION_GET_ROOMS_RESPONSE message:message];
 }

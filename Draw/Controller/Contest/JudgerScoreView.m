@@ -30,13 +30,13 @@
 }
 - (void)updateRankInfoList
 {
-    NSArray *rankTypes = _contest.pbContest.rankTypesList;
+    NSArray *rankTypes = _contest.pbContest.rankTypes;
     NSMutableArray *rates = [NSMutableArray arrayWithArray:self.opus.rankInfoList];
     for (PBIntKeyValue *rankType in rankTypes) {
         PBOpusRank *ork =[self myRateWithType:rankType.key];
         if (ork && ork.value != [self currentRateForType:rankType.key]) {
             NSInteger index = [rates indexOfObject:ork];
-            PBOpusRank_Builder *builder = [PBOpusRank builderWithPrototype:ork];
+            PBOpusRankBuilder *builder = [PBOpusRank builderWithPrototype:ork];
             [builder setValue:[self currentRateForType:rankType.key]];
             PBOpusRank *nr = [builder build];
             [rates replaceObjectAtIndex:index withObject:nr];
@@ -56,7 +56,7 @@
 
 - (NSDictionary *)currentRateDict
 {
-    NSArray *rankTypes = _contest.pbContest.rankTypesList;
+    NSArray *rankTypes = _contest.pbContest.rankTypes;
     NSMutableDictionary *dict = [NSMutableDictionary dictionary];
     for (PBIntKeyValue *rankType in rankTypes) {
         [dict setObject:@([self currentRateForType:rankType.key]) forKey:@(rankType.key)];
@@ -97,7 +97,7 @@
     CGFloat space = V(30);
     CGFloat rx = V(100);
     //140 40
-    for (PBIntKeyValue *rankTypeValue in _contest.pbContest.rankTypesList) {
+    for (PBIntKeyValue *rankTypeValue in _contest.pbContest.rankTypes) {
         NSInteger type = rankTypeValue.key;
         NSString *title = rankTypeValue.value;
         NSInteger rate = [[self myRateWithType:type] value];

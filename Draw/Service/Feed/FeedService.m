@@ -142,7 +142,7 @@ static FeedService *_staticFeedService = nil;
                 
                 totalCount = [response totalCount];
                 resultCode = [response resultCode];
-                NSArray *pbFeedList = [response feedList];
+                NSArray *pbFeedList = [response feed];
                 list = [FeedManager parsePbFeedList:pbFeedList];
                 if ([list count] != 0 && offset == 0) {
                     [[FeedManager defaultManager] cacheFeedDataQueryResponse:response forKey:[self cachedKeyForFeedListType:feedListType classId:classId]];
@@ -216,10 +216,10 @@ static FeedService *_staticFeedService = nil;
         NSArray *list = nil;
         NSInteger resultCode = output.resultCode;
         DataQueryResponse* response = output.pbResponse;
-        if (resultCode == ERROR_SUCCESS && [response feedList]){
+        if (resultCode == ERROR_SUCCESS && [response feed]){
             PPDebug(@"<FeedService> getFeedListByIds finish, start to parse data.");
             resultCode = [response resultCode];
-            NSArray *pbFeedList = [response feedList];
+            NSArray *pbFeedList = [response feed];
             list = [FeedManager parsePbFeedList:pbFeedList];
         }
         
@@ -259,7 +259,7 @@ static FeedService *_staticFeedService = nil;
         
         NSArray* list = nil;
         if (output.resultCode == ERROR_SUCCESS){
-            NSArray *pbFeedList = [output.pbResponse feedList];
+            NSArray *pbFeedList = [output.pbResponse feed];
             list = [FeedManager parsePbFeedList:pbFeedList];
             if ([list count] != 0 && offset == 0) {
                 [[FeedManager defaultManager] cacheFeedDataQueryResponse:output.pbResponse
@@ -311,7 +311,7 @@ static FeedService *_staticFeedService = nil;
                 PPDebug(@"<FeedService> getFeedList finish, start to parse data.");
                 DataQueryResponse *response = [DataQueryResponse parseFromData:output.responseData];
                 resultCode = [response resultCode];
-                NSArray *pbFeedList = [response feedList];
+                NSArray *pbFeedList = [response feed];
                 list = [FeedManager parsePbFeedList:pbFeedList];            
             }
             @catch (NSException *exception) {
@@ -389,7 +389,7 @@ static FeedService *_staticFeedService = nil;
             @try{
                 DataQueryResponse *response = [DataQueryResponse parseFromData:output.responseData];
                 resultCode = [response resultCode];
-                NSArray *pbFeedList = [response feedList];
+                NSArray *pbFeedList = [response feed];
                 list = [FeedManager parsePbFeedList:pbFeedList];            
             }
             @catch (NSException *exception) {
@@ -431,7 +431,7 @@ static FeedService *_staticFeedService = nil;
         dispatch_async(dispatch_get_main_queue(), ^{
             NSInteger code = output.resultCode;
             
-            NSArray *pbFeedList = [output.pbResponse feedList];
+            NSArray *pbFeedList = [output.pbResponse feed];
             NSArray* list = [FeedManager parsePbFeedList:pbFeedList];
             EXECUTE_BLOCK(completed, code, list);
         });
@@ -465,7 +465,7 @@ static FeedService *_staticFeedService = nil;
             @try{
                 DataQueryResponse *response = [DataQueryResponse parseFromData:output.responseData];
                 resultCode = [response resultCode];
-                NSArray *pbFeedList = [response feedList];
+                NSArray *pbFeedList = [response feed];
                 list = [FeedManager parsePbFeedList:pbFeedList];
             }
             @catch (NSException *exception) {
@@ -516,7 +516,7 @@ static FeedService *_staticFeedService = nil;
             @try{
                 DataQueryResponse *response = [DataQueryResponse parseFromData:output.responseData];
                 resultCode = [response resultCode];
-                NSArray *pbFeedList = [response feedList];
+                NSArray *pbFeedList = [response feed];
                 list = [FeedManager parsePbCommentFeedList:pbFeedList];
                 PPDebug(@"<getOpusCommentList> result=%d, total %d comments", resultCode, [list count]);
             }
@@ -562,7 +562,7 @@ static FeedService *_staticFeedService = nil;
             @try {
                 DataQueryResponse *response = [DataQueryResponse parseFromData:output.responseData];
                 resultCode = [response resultCode];
-                NSArray *pbFeedList = [response feedList];
+                NSArray *pbFeedList = [response feed];
                 list = [FeedManager parsePbCommentFeedList:pbFeedList];
             }
             @catch (NSException *exception) {
@@ -612,7 +612,7 @@ static FeedService *_staticFeedService = nil;
                 resultCode = [response resultCode];
                 
                 if (resultCode == ERROR_SUCCESS) {
-                    NSArray *list = [response feedList];
+                    NSArray *list = [response feed];
                     PBFeed *pbFeed = nil;
                     pbFeed = ([list count] != 0) ? [list objectAtIndex:0] : nil;
                     
@@ -667,7 +667,7 @@ static FeedService *_staticFeedService = nil;
                 resultCode = [response resultCode];
                 
                 if (resultCode == ERROR_SUCCESS) {
-                    NSArray *list = [response feedList];
+                    NSArray *list = [response feed];
                     PBFeed *pbFeed = nil;
                     pbFeed = ([list count] != 0) ? [list objectAtIndex:0] : nil;
                     
@@ -1356,7 +1356,7 @@ static FeedService *_staticFeedService = nil;
             
             
             NSInteger resultCode = output.resultCode;
-            NSArray *pbFeedList = output.pbResponse.feedList;
+            NSArray *pbFeedList = output.pbResponse.feed;
             NSArray *list = [FeedManager parsePbFeedList:pbFeedList];
                         
             dispatch_async(dispatch_get_main_queue(), ^{

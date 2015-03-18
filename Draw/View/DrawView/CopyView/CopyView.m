@@ -234,8 +234,8 @@
     self.userStage = userStage;
     self.stage = stage;
     
-    if (userStage.currentChapterIndex < [self.stage.chapterList count]){
-        PBChapter* chapter = [self.stage.chapterList objectAtIndex:userStage.currentChapterIndex];
+    if (userStage.currentChapterIndex < [self.stage.chapter count]){
+        PBChapter* chapter = [self.stage.chapter objectAtIndex:userStage.currentChapterIndex];
         self.opusStartIndex = chapter.startIndex;
         self.opusEndIndex = chapter.endIndex;
     }
@@ -430,7 +430,7 @@
         
 //        UIImage* bgImage = nil; //[[UIImage alloc] initWithContentsOfFile:_opusBgImagePath];
         
-        int totalChapterCount = [self.stage.chapterList count];
+        int totalChapterCount = [self.stage.chapter count];
         if (_targetType == TypeConquerDraw ||
             totalChapterCount <= 1 ||
             (self.userStage.currentChapterIndex == (totalChapterCount-1))){

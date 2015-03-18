@@ -25,7 +25,7 @@
 userTutorial:(PBUserTutorial *)pbUserTutorial
  stageIndex:(NSInteger)stageIndex
 {
-    NSArray *stageList = [[pbUserTutorial tutorial] stagesList];
+    NSArray *stageList = [[pbUserTutorial tutorial] stages];
     if (stageList == nil || stageIndex >= [stageList count]){
         return ;
     }
@@ -102,11 +102,11 @@ userTutorial:(PBUserTutorial *)pbUserTutorial
         return;
     }
     
-    NSArray *stageList = [[self.pbUserTutorial tutorial] stagesList];
+    NSArray *stageList = [[self.pbUserTutorial tutorial] stages];
     int bestScoreValue = 0;
     
-    if (self.stageIndex < [self.pbUserTutorial.userStagesList count]){
-        PBUserStage* userStage = [self.pbUserTutorial.userStagesList objectAtIndex:self.stageIndex];
+    if (self.stageIndex < [self.pbUserTutorial.userStages count]){
+        PBUserStage* userStage = [self.pbUserTutorial.userStages objectAtIndex:self.stageIndex];
         bestScoreValue = [userStage bestScore];
     }
     
@@ -210,7 +210,7 @@ userTutorial:(PBUserTutorial *)pbUserTutorial
 //click 榜單
 - (IBAction)enterRanking:(id)sender {
     
-    NSArray *stageList = [[_pbUserTutorial tutorial] stagesList];
+    NSArray *stageList = [[_pbUserTutorial tutorial] stages];
     PBStage *stageWithRow = [stageList objectAtIndex:self.stageIndex];
     NSString *stageId = stageWithRow.stageId;
     

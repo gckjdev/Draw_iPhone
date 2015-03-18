@@ -46,7 +46,7 @@
     if (self) {
         self.type = DrawActionTypeChangeBGImage;
         if (action->drawbg != NULL){
-            PBDrawBg_Builder* builder = [PBDrawBg builder];
+            PBDrawBgBuilder* builder = [PBDrawBg builder];
             [builder setBgId:[NSString stringWithUTF8String:action->drawbg->bgid]];
             if (action->drawbg->localurl != NULL){
                 [builder setLocalUrl:[NSString stringWithUTF8String:action->drawbg->localurl]];
@@ -117,7 +117,7 @@
 
 - (PBDrawAction *)toPBDrawAction
 {
-    PBDrawAction_Builder *builder = [[[PBDrawAction_Builder alloc] init] autorelease];
+    PBDrawActionBuilder *builder = [[[PBDrawActionBuilder alloc] init] autorelease];
     [builder setType:DrawActionTypeChangeBGImage];
     [builder setClipTag:self.clipTag];
     if (self.drawBg) {
@@ -285,7 +285,7 @@ message PBDrawBg
         }
     }
     
-    PBDrawBg_Builder* builder = [PBDrawBg builder];
+    PBDrawBgBuilder* builder = [PBDrawBg builder];
     [builder setBgId:bgImageName];
     [builder setLocalUrl:bgImageName];
     [builder setShowStyle:ShowStyleCenter];
@@ -333,7 +333,7 @@ message PBDrawBg
         }
     }
 
-    PBDrawBg_Builder* builder = [PBDrawBg builder];
+    PBDrawBgBuilder* builder = [PBDrawBg builder];
     [builder setBgId:bgImageName];
     [builder setLocalUrl:bgImageName];
     [builder setShowStyle:ShowStyleCenter];

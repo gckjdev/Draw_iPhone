@@ -70,7 +70,7 @@
 
 - (PBDrawAction *)toPBDrawAction
 {
-    PBDrawAction_Builder *builder = [[[PBDrawAction_Builder alloc] init] autorelease];
+    PBDrawActionBuilder *builder = [[[PBDrawActionBuilder alloc] init] autorelease];
     [builder setType:DrawActionTypeClean];
     return [builder build];
 }

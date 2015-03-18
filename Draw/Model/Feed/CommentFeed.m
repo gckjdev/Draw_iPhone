@@ -136,15 +136,15 @@
                 self.comment = NSLS(@"kCorrect");            
             }else{
                 NSString *guessWords = nil;
-                NSInteger wordCount = [pbFeed.guessWordsList count];
+                NSInteger wordCount = [pbFeed.guessWords count];
                 if (wordCount != 0) {
                     NSArray *wordList = nil;
                     if (wordCount > SHOW_COMMENT_COUNT) {
-                        wordList = [pbFeed.guessWordsList objectsAtIndexes:
+                        wordList = [pbFeed.guessWords objectsAtIndexes:
                                     [NSIndexSet indexSetWithIndexesInRange:
                                      NSMakeRange(0, SHOW_COMMENT_COUNT)]];
                     }else{
-                        wordList = pbFeed.guessWordsList;
+                        wordList = pbFeed.guessWords;
                     }
                     if ([LocaleUtils isChinese]) {
                         guessWords = [wordList componentsJoinedByString:@"、"];    
@@ -187,7 +187,7 @@
                           pbDraw:pbFeed.drawData
                           wordText:pbFeed.opusWord
                           contestId:pbFeed.contestId
-                          timesArray:pbFeed.feedTimesList] autorelease];
+                          timesArray:pbFeed.feedTimes] autorelease];
         
         [self.drawFeed setFeedId:pbFeed.opusId];
         self.drawFeed.categoryType = pbFeed.category;

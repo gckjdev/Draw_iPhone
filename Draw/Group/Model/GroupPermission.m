@@ -89,7 +89,7 @@ static NSMutableArray *_roles;
 + (PBGroupUserRole *)roleForCreatorInGroup:(PBGroup *)group
 {
     PBGroupUserRole *role = nil;
-    PBGroupUserRole_Builder *roleBuilder = [[PBGroupUserRole_Builder alloc] init];
+    PBGroupUserRoleBuilder *roleBuilder = [[PBGroupUserRoleBuilder alloc] init];
     [roleBuilder setGroupId:group.groupId];
     [roleBuilder setGroupName:group.name];
     [roleBuilder setRole:GroupRoleCreator];
@@ -134,7 +134,7 @@ static NSMutableArray *_roles;
     static dispatch_once_t onceToken;
     static PBGroupUserRole * _defaultRole;
     dispatch_once(&onceToken, ^{
-        PBGroupUserRole_Builder *builder = [[PBGroupUserRole_Builder alloc] init];
+        PBGroupUserRoleBuilder *builder = [[PBGroupUserRoleBuilder alloc] init];
         [builder setGroupId:@"NONE"];
         [builder setRole:GroupRoleNone];
         [builder setPermission:GROUP_DEFAULT_PERMISSION];

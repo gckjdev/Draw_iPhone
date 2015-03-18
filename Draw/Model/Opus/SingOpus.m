@@ -24,20 +24,20 @@
 
 
 - (void)setSong:(PBSong *)song{
-    PBSingOpus_Builder *builder = [PBSingOpus builderWithPrototype:self.pbOpusBuilder.sing];
+    PBSingOpusBuilder *builder = [PBSingOpus builderWithPrototype:self.pbOpusBuilder.sing];
     [builder setSong:song];
     [self.pbOpusBuilder setSing:[builder build]];
 }
 
 - (void)setVoiceDuration:(int)fileDuration
 {
-    PBSingOpus_Builder *builder = [PBSingOpus builderWithPrototype:self.pbOpusBuilder.sing];
+    PBSingOpusBuilder *builder = [PBSingOpus builderWithPrototype:self.pbOpusBuilder.sing];
     [builder setVoiceDuration:fileDuration];
     [self.pbOpusBuilder setSing:[builder build]];    
 }
 
 - (void)setVoiceType:(PBVoiceType)voiceType{
-    PBSingOpus_Builder *builder = [PBSingOpus builderWithPrototype:self.pbOpusBuilder.sing];
+    PBSingOpusBuilder *builder = [PBSingOpus builderWithPrototype:self.pbOpusBuilder.sing];
     [builder setVoiceType:voiceType];
     
     switch (voiceType) {
@@ -136,7 +136,7 @@
 //    NSString* path = [NSString stringWithFormat:@"%@/%@_native.%@", [[self class] localDataDir], [self opusKey], extension];
 //    NSString* finalPath = [FileUtil filePathInAppDocument:path];
     
-    PBSingOpus_Builder *builder = [PBSingOpus builderWithPrototype:self.pbOpusBuilder.sing];
+    PBSingOpusBuilder *builder = [PBSingOpus builderWithPrototype:self.pbOpusBuilder.sing];
     [builder setLocalNativeDataUrl:path];
     [self.pbOpusBuilder setSing:[builder build]];
 }
@@ -168,13 +168,13 @@
 
 - (NSData *)uploadData{
     
-    PBOpus_Builder *builder = [PBOpus builderWithPrototype:self.pbOpus];
+    PBOpusBuilder *builder = [PBOpus builderWithPrototype:self.pbOpus];
     [builder clearImage];
     [builder clearLocalDataUrl];
     [builder clearLocalImageUrl];
     [builder clearLocalThumbImageUrl];
     
-    PBSingOpus_Builder *singBuilder = [PBSingOpus builderWithPrototype:builder.sing];
+    PBSingOpusBuilder *singBuilder = [PBSingOpus builderWithPrototype:builder.sing];
     [singBuilder clearLocalNativeDataUrl];
     PBSingOpus *sing = [singBuilder build];
     [builder setSing:sing];
@@ -281,10 +281,10 @@ enum {
                         style:(int)style
               textStrokeColor:(NSUInteger)textStrokeColor{
     
-    PBLabelInfo_Builder *labelInfoBuilder = [[[PBLabelInfo_Builder alloc] init] autorelease];
+    PBLabelInfoBuilder *labelInfoBuilder = [[[PBLabelInfoBuilder alloc] init] autorelease];
     
     if (!CGRectEqualToRect(frame, CGRectZero)) {
-        PBRect_Builder *rectBuilder = [[[PBRect_Builder alloc] init] autorelease];
+        PBRectBuilder *rectBuilder = [[[PBRectBuilder alloc] init] autorelease];
         [rectBuilder setX:frame.origin.x];
         [rectBuilder setY:frame.origin.y];
         [rectBuilder setWidth:frame.size.width];

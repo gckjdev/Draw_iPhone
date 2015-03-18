@@ -13,7 +13,7 @@
 
 - (int)feedTimesWithFeedTimesType:(PBFeedTimesType)feedTimesType{
 
-    for (PBFeedTimes *feedTimes in self.feedTimesList) {
+    for (PBFeedTimes *feedTimes in self.feedTimes) {
         if (feedTimes.type == feedTimesType) {
             return feedTimes.value;
         }

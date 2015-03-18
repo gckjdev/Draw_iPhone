@@ -62,22 +62,22 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(HotWordManager)
 
 + (void)createTestData
 {
-    PBHotWord_Builder *worder1 = [[[PBHotWord_Builder alloc] init] autorelease];
+    PBHotWordBuilder *worder1 = [[[PBHotWordBuilder alloc] init] autorelease];
     [worder1 setWordId:@"1"];
     [worder1 setWord:@"电脑"];
     [worder1 setCoins:2];
     
-    PBHotWord_Builder *worder2 = [[[PBHotWord_Builder alloc] init] autorelease];
+    PBHotWordBuilder *worder2 = [[[PBHotWordBuilder alloc] init] autorelease];
     [worder2 setWordId:@"2"];
     [worder2 setWord:@"二逼青年快乐多"];
     [worder2 setCoins:3];
     
-    PBHotWord_Builder *worder3 = [[[PBHotWord_Builder alloc] init] autorelease];
+    PBHotWordBuilder *worder3 = [[[PBHotWordBuilder alloc] init] autorelease];
     [worder3 setWordId:@"3"];
     [worder3 setWord:@"苹果牌"];
     [worder3 setCoins:5];
     
-    PBHotWordList_Builder *wordLister = [[[PBHotWordList_Builder alloc] init] autorelease];
+    PBHotWordListBuilder *wordLister = [[[PBHotWordListBuilder alloc] init] autorelease];
     
     [wordLister addWords:[worder1 build]];
     [wordLister addWords:[worder2 build]];
@@ -142,7 +142,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(HotWordManager)
 }
 
 - (PBHotWord *)hotWordFromString:(NSString *)word{
-    PBHotWord_Builder *builder = [[[PBHotWord_Builder alloc] init] autorelease];
+    PBHotWordBuilder *builder = [[[PBHotWordBuilder alloc] init] autorelease];
     [builder setWordId:word];
     [builder setWord:word];
     [builder setCoins:[PPConfigManager getHotWordAwardCoins]];

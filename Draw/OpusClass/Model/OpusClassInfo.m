@@ -31,7 +31,7 @@
     {
         _subClassList = [[NSMutableArray alloc] init];
         
-        _pbOpusClassBuilder = [[PBClass_Builder alloc] init];
+        _pbOpusClassBuilder = [[PBClassBuilder alloc] init];
         @try {            
             [_pbOpusClassBuilder setClassId:[dictionary objectForKey:@"class_id"]];
             [_pbOpusClassBuilder setCnName:[dictionary objectForKey:@"cn_name"]];
@@ -62,7 +62,7 @@
 
 + (PBClass*)createPBClass:(NSString*)classId
 {
-    PBClass_Builder* subClassBuilder = [[[PBClass_Builder alloc] init] autorelease];
+    PBClassBuilder* subClassBuilder = [[[PBClassBuilder alloc] init] autorelease];
     [subClassBuilder setClassId:classId];
     return [subClassBuilder build];
 }

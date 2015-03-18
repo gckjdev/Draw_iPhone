@@ -77,28 +77,28 @@ static dispatch_once_t onceToken;
                  rewardCurrency:(PBGameCurrency)rewardCurrency
 {
     // set name
-    PBLocalizeString_Builder *str1 = [PBLocalizeString builder];
+    PBLocalizeStringBuilder *str1 = [PBLocalizeString builder];
     [str1 setLanguageCode:@"zh-Hans"];
     [str1 setText:appNameCn];
     [str1 setLocalizedText:appNameCn];
     
-    PBLocalizeString_Builder *str3 = [PBLocalizeString builder];
+    PBLocalizeStringBuilder *str3 = [PBLocalizeString builder];
     [str3 setLanguageCode:@"en"];
     [str3 setText:nameEn];
     [str3 setLocalizedText:[NSString stringWithFormat:@"%@",nameEn]];
 
     // set desc
-    PBLocalizeString_Builder *str2 = [PBLocalizeString builder];
+    PBLocalizeStringBuilder *str2 = [PBLocalizeString builder];
     [str2 setLanguageCode:@"zh-Hans"];
     [str2 setText:descCn];
     [str2 setLocalizedText:descCn];
     
-    PBLocalizeString_Builder *str4 = [PBLocalizeString builder];
+    PBLocalizeStringBuilder *str4 = [PBLocalizeString builder];
     [str4 setLanguageCode:@"en"];
     [str4 setText:descEn];
     [str4 setLocalizedText:descEn];
     
-    PBApp_Builder* appBuilder = [PBApp builder];
+    PBAppBuilder* appBuilder = [PBApp builder];
     [appBuilder setAppId:appId];
     [appBuilder setDownloadUrl:[UIUtils getAppLink:appId]];
     [appBuilder setLogo:appLogoURL];
@@ -108,7 +108,7 @@ static dispatch_once_t onceToken;
     [appBuilder addDesc:[str2 build]];
     [appBuilder addDesc:[str4 build]];
     
-    PBAppReward_Builder* appRewardBuilder = [PBAppReward builder];
+    PBAppRewardBuilder* appRewardBuilder = [PBAppReward builder];
     [appRewardBuilder setApp:[appBuilder build]];
     [appRewardBuilder setRewardAmount:rewardAmount];
     [appRewardBuilder setRewardCurrency:rewardCurrency];
@@ -121,16 +121,16 @@ static dispatch_once_t onceToken;
                             type:(int)type
                             logo:(NSString*)logoUrl
 {
-    PBRewardWall_Builder* builder1 = [PBRewardWall builder];
+    PBRewardWallBuilder* builder1 = [PBRewardWall builder];
     [builder1 setType:type];
     [builder1 setLogo:logoUrl];
     
-    PBLocalizeString_Builder* lstb = [PBLocalizeString builder];
+    PBLocalizeStringBuilder* lstb = [PBLocalizeString builder];
     [lstb setLanguageCode:@"en"];
     [lstb setText:@"kName"];
     [lstb setLocalizedText:enName];
     
-    PBLocalizeString_Builder* lstb1 = [PBLocalizeString builder];
+    PBLocalizeStringBuilder* lstb1 = [PBLocalizeString builder];
     [lstb1 setLanguageCode:@"zh-Hans"];
     [lstb1 setText:@"kName"];
     [lstb1 setLocalizedText:cnName];
@@ -385,7 +385,7 @@ static dispatch_once_t onceToken;
     NSString* path = [root stringByAppendingString:[GameConfigDataManager configFileName]];
     NSString* versionPath = [root stringByAppendingString:[PPSmartUpdateDataUtils getVersionFileName:[GameConfigDataManager configFileName]]];
 
-    PBConfig_Builder* builder = [PBConfig builder];
+    PBConfigBuilder* builder = [PBConfig builder];
 
     PBAppReward* diceApp = [self diceAppWithRewardAmount:3 rewardCurrency:PBGameCurrencyIngot];
     PBAppReward* zjhApp = [self zjhAppWithRewardAmount:5 rewardCurrency:PBGameCurrencyIngot];
@@ -421,7 +421,7 @@ static dispatch_once_t onceToken;
     NSString* path = [root stringByAppendingString:[GameConfigDataManager configFileName]];
     NSString* versionPath = [root stringByAppendingString:[PPSmartUpdateDataUtils getVersionFileName:[GameConfigDataManager configFileName]]];
     
-    PBConfig_Builder* builder = [PBConfig builder];
+    PBConfigBuilder* builder = [PBConfig builder];
     
     PBAppReward* drawApp = [self drawAppWithRewardAmount:3000 rewardCurrency:PBGameCurrencyCoin];
     PBAppReward* diceApp = [self diceAppWithRewardAmount:2000 rewardCurrency:PBGameCurrencyCoin];
@@ -451,7 +451,7 @@ static dispatch_once_t onceToken;
     NSString* path = [root stringByAppendingString:[GameConfigDataManager configFileName]];
     NSString* versionPath = [root stringByAppendingString:[PPSmartUpdateDataUtils getVersionFileName:[GameConfigDataManager configFileName]]];
     
-    PBConfig_Builder* builder = [PBConfig builder];
+    PBConfigBuilder* builder = [PBConfig builder];
     
     PBAppReward* drawApp = [self drawAppWithRewardAmount:3000 rewardCurrency:PBGameCurrencyCoin];
     PBAppReward* zjhApp = [self zjhAppWithRewardAmount:2500 rewardCurrency:PBGameCurrencyCoin];
@@ -480,7 +480,7 @@ static dispatch_once_t onceToken;
     NSString* path = [root stringByAppendingString:[GameConfigDataManager configFileName]];
     NSString* versionPath = [root stringByAppendingString:[PPSmartUpdateDataUtils getVersionFileName:[GameConfigDataManager configFileName]]];
     
-    PBConfig_Builder* builder = [PBConfig builder];
+    PBConfigBuilder* builder = [PBConfig builder];
     
     PBAppReward* diceApp = [self diceAppWithRewardAmount:5 rewardCurrency:PBGameCurrencyIngot];
     PBAppReward* zjhApp = [self zjhAppWithRewardAmount:8 rewardCurrency:PBGameCurrencyIngot];
@@ -503,7 +503,7 @@ static dispatch_once_t onceToken;
     NSString* path = [root stringByAppendingString:[GameConfigDataManager configFileName]];
     NSString* versionPath = [root stringByAppendingString:[PPSmartUpdateDataUtils getVersionFileName:[GameConfigDataManager configFileName]]];
     
-    PBConfig_Builder* builder = [PBConfig builder];
+    PBConfigBuilder* builder = [PBConfig builder];
     
     PBAppReward* diceApp = [self diceAppWithRewardAmount:5 rewardCurrency:PBGameCurrencyIngot];
     PBAppReward* zjhApp = [self zjhAppWithRewardAmount:8 rewardCurrency:PBGameCurrencyIngot];
@@ -526,7 +526,7 @@ static dispatch_once_t onceToken;
     NSString* path = [root stringByAppendingString:[GameConfigDataManager configFileName]];
     NSString* versionPath = [root stringByAppendingString:[PPSmartUpdateDataUtils getVersionFileName:[GameConfigDataManager configFileName]]];
     
-    PBConfig_Builder* builder = [PBConfig builder];
+    PBConfigBuilder* builder = [PBConfig builder];
     
     PBAppReward* diceApp = [self diceAppWithRewardAmount:5 rewardCurrency:PBGameCurrencyIngot];
     PBAppReward* zjhApp = [self zjhAppWithRewardAmount:8 rewardCurrency:PBGameCurrencyIngot];

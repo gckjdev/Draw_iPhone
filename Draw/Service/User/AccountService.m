@@ -109,7 +109,7 @@ static AccountService* _defaultAccountService;
                     [_accountManager updateBalance:user.ingotBalance currency:PBGameCurrencyIngot];
                     
                     // sync user item from server
-                    [[UserGameItemManager defaultManager] setUserItemList:user.itemsList];
+                    [[UserGameItemManager defaultManager] setUserItemList:user.items];
                     
                     // sync user level and exp
                     if ([user hasLevel] && [user hasExperience]){
@@ -185,14 +185,14 @@ static AccountService* _defaultAccountService;
                     [[UserManager defaultManager] setPassword:user.password];
                     [[UserManager defaultManager] setEmailVerifyStatus:user.emailVerifyStatus];
                     [[UserManager defaultManager] setTakeCoins:user.takeCoins];
-                    [[UserManager defaultManager] setBlockDevices:user.blockDeviceIdsList];
+                    [[UserManager defaultManager] setBlockDevices:user.blockDeviceIds];
                     
                     // sync balance from server
                     [_accountManager updateBalance:user.coinBalance currency:PBGameCurrencyCoin];
                     [_accountManager updateBalance:user.ingotBalance currency:PBGameCurrencyIngot];
                     
                     // sync user item from server
-                    [[UserGameItemManager defaultManager] setUserItemList:user.itemsList];                    
+                    [[UserGameItemManager defaultManager] setUserItemList:user.items];
                     
                     // sync user VIP info
                     [[UserManager defaultManager] setVip:user.vip];
@@ -200,7 +200,7 @@ static AccountService* _defaultAccountService;
                     [[UserManager defaultManager] setVipLastPayDate:user.vipLastPayDate];
                     
                     // sync user permission
-                    [[UserManager defaultManager] setUserPermissions:user.permissionsList];
+                    [[UserManager defaultManager] setUserPermissions:user.permissions];
                     
                     // sync user weibo info
                     [[UserService defaultService] saveSNSUserData:user];
@@ -208,11 +208,11 @@ static AccountService* _defaultAccountService;
                     // post notification
                     [self postNotification:NOTIFICATION_SYNC_ACCOUNT];
                     
-                    [[UserManager defaultManager] setOffGroupIds:user.offGroupIdsList];
+                    [[UserManager defaultManager] setOffGroupIds:user.offGroupIds];
                     
-                    if ([user.blockDeviceIdsList count] > 0){
+                    if ([user.blockDeviceIds count] > 0){
                         NSString* deviceId = [[UIDevice currentDevice] uniqueGlobalDeviceIdentifier];
-                        int index = [user.blockDeviceIdsList indexOfObject:deviceId];
+                        NSUInteger index = [user.blockDeviceIds indexOfObject:deviceId];
                         if (index == NSNotFound){
                             // not found
                             PPDebug(@"deviceId not %@ in user block device list, do nothing");

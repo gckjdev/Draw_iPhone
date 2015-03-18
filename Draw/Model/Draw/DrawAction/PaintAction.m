@@ -163,29 +163,28 @@
         
         HPointList* pointList = [[HPointList alloc] init];
         
-        NSInteger count = [action.pointsXList count];
+        NSInteger count = [action.pointsX count];
         if (count > 0) {
             //new version draw data
             
 //            pointList = [NSMutableArray arrayWithCapacity:count];
+            CGFloat x,y;
             for (NSInteger i = 0; i < count; ++ i) {
-                CGFloat x = [[action.pointsXList objectAtIndex:i] floatValue];
-                CGFloat y = [[action.pointsYList objectAtIndex:i] floatValue];
+                x = [action.pointsX floatAtIndex:i];  //[[action.pointsXList objectAtIndex:i] floatValue];
+                y = [action.pointsY floatAtIndex:i];  //[[action.pointsYList objectAtIndex:i] floatValue];
                 
                 [pointList addPoint:x y:y];
-                
-//                PointNode *node = [[PointNode alloc] initPointWithX:x Y:y];
-//                [pointList addObject:node];
-//                [node release];
             }
             
         }else{
             //old point data paser
-            count = [action.pointsList count];
+            count = [action.points count];
             if (count > 0) {
 //                pointList = [NSMutableArray arrayWithCapacity:count];
-                for (NSNumber *p in action.pointsList) {
-                    CGPoint point = [DrawUtils decompressIntPoint:[p integerValue]];
+                for (NSInteger i = 0; i < count; ++ i) {
+//                for (NSNumber *p in action.pointsList) {
+//                    CGPoint point = [DrawUtils decompressIntPoint:[p integerValue]];
+                    CGPoint point = [DrawUtils decompressIntPoint:[action.points int32AtIndex:i]];
                     
                     [pointList addPoint:point.x y:point.y];
                     
@@ -221,39 +220,31 @@
     if (self) {
         self.type = DrawActionTypePaint;
         
-//        NSMutableArray *pointList = nil;
-        
         HPointList* pointList = [[HPointList alloc] init];
         
         NSInteger count = 0;
-        BOOL usePBPoint = [[action pointList] count] > 0;
+        BOOL usePBPoint = [[action point] count] > 0;
         if (usePBPoint) {
-            count = [[action pointList] count];
+            count = [[action point] count];
             if (count > 0) {
-//                pointList = [NSMutableArray arrayWithCapacity:count];
                 for (NSInteger i = 0; i < count; ++ i) {
 
-                    PBPoint *pbPoint = [action.pointList objectAtIndex:i];
+                    PBPoint *pbPoint = [action.point objectAtIndex:i];
                     [pointList addPoint:pbPoint.x y:pbPoint.y];
-                    
-//                    PointNode *node = [PointNode pointWithPBPoint:pbPoint];
-//                    [pointList addObject:node];
                 }
             }
         }else{
-            count = [[action pointXList] count];
+            count = [[action pointX] count];
+            
+            CGFloat x,y;
             if (count > 0) {
-//                pointList = [NSMutableArray arrayWithCapacity:count];
                 for (NSInteger i = 0; i < count; ++ i) {
-                    CGFloat x = [[action.pointXList objectAtIndex:i] floatValue];
-                    CGFloat y = [[action.pointYList objectAtIndex:i] floatValue];
+//                    CGFloat x = [[action.pointXList objectAtIndex:i] floatValue];
+//                    CGFloat y = [[action.pointYList objectAtIndex:i] floatValue];
+                    x = [action.pointX floatAtIndex:i];  //[[action.pointsXList objectAtIndex:i] floatValue];
+                    y = [action.pointY floatAtIndex:i];  //[[action.pointsYList objectAtIndex:i] floatValue];
 
                     [pointList addPoint:x y:y];
-                    
-                    
-//                    PointNode *node = [[PointNode alloc] initPointWithX:x Y:y];
-//                    [pointList addObject:node];
-//                    [node release];
                 }
             }
         }
@@ -331,7 +322,7 @@
 
 - (PBDrawAction *)toPBDrawAction
 {
-    PBDrawAction_Builder *builder = [[PBDrawAction_Builder alloc] init];
+    PBDrawActionBuilder *builder = [[PBDrawActionBuilder alloc] init];
     [builder setType:DrawActionTypePaint];
     [builder setClipTag:self.clipTag];    
     [self.paint updatePBDrawActionBuilder:builder];

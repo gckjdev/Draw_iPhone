@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "GameBasic.pb-c.h"
+#import "GameBasic.pb.h"
 
 @class DrawColor;
 

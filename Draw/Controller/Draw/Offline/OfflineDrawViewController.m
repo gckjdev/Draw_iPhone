@@ -136,8 +136,8 @@
 
 // 临摹框
 @property (retain, nonatomic) CopyView *copyView;
-@property (retain, nonatomic) PBUserStage_Builder *userStageBuilder;
-@property (retain, nonatomic) PBUserTutorial_Builder *userTutorialBuilder;
+@property (retain, nonatomic) PBUserStageBuilder *userStageBuilder;
+@property (retain, nonatomic) PBUserTutorialBuilder *userTutorialBuilder;
 @property (retain, nonatomic) PBTutorial *tutorial;
 @property (retain, nonatomic) PBStage *stage;
 
@@ -776,12 +776,12 @@
         return;
     }
     
-    if ([self.stage.chapterList count] <= 1){
+    if ([self.stage.chapter count] <= 1){
         // only one chapter, no "next" button
         return;
     }
     
-    int lastChapterIndex = [self.stage.chapterList count] - 1;
+    int lastChapterIndex = [self.stage.chapter count] - 1;
     if (self.userStageBuilder.currentChapterIndex >= lastChapterIndex){
         // it's last chapter, use submit button
         [self.submitButton setImage:[shareImageManager drawCommit] forState:UIControlStateNormal];
@@ -807,7 +807,7 @@
             if ([self.stage hasMoreThanOneChapter]){
                 title = [title stringByAppendingFormat:@" (%d/%d)",
                          self.userStageBuilder.currentChapterIndex+1,
-                         [self.stage.chapterList count]];
+                         [self.stage.chapter count]];
             }
         }
         
@@ -2222,12 +2222,12 @@
         return NO;
     }
     
-    if ([self.stage.chapterList count] <= 1){
+    if ([self.stage.chapter count] <= 1){
         // only one chapter, no "next" button
         return NO;
     }
     
-    int lastChapterIndex = [self.stage.chapterList count] - 1;
+    int lastChapterIndex = [self.stage.chapter count] - 1;
     if (self.userStageBuilder.currentChapterIndex >= lastChapterIndex){
         // it's last chapter, use submit button
         return NO;
@@ -2878,10 +2878,10 @@
     
     int maxChapterIndex = 0;
     if (targetType == TypePracticeDraw){
-        maxChapterIndex = MIN(_userStageBuilder.currentChapterIndex, [self.stage.chapterList count]);
+        maxChapterIndex = MIN(_userStageBuilder.currentChapterIndex, [self.stage.chapter count]);
     }
     else{
-        maxChapterIndex = [self.stage.chapterList count];
+        maxChapterIndex = [self.stage.chapter count];
     }
     
     int currentChapterTipsIndex = 0;

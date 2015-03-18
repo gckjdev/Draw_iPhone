@@ -160,7 +160,7 @@ typedef enum{
 - (void)clickQuit:(id)sender
 {
     //is guest
-    BOOL isGuest = [_group.guestsList containsObject:[[UserManager defaultManager] pbUser]];
+    BOOL isGuest = [_group.guests containsObject:[[UserManager defaultManager] pbUser]];
     
     NSLog(@"<clickQuit> is guest quit group? ans = %d",isGuest);
     
@@ -294,7 +294,7 @@ typedef enum{
 {
     NSString* myUserId = [[UserManager defaultManager] userId];
     for (PBGroupUsersByTitle* groups in list){
-        for (PBGameUser* user in groups.usersList){
+        for (PBGameUser* user in groups.users){
             if ([user.userId length] > 0 && [user.userId isEqualToString:myUserId] == NO){
                 // exist one user who is not the same as current user
                 return NO;
@@ -308,7 +308,7 @@ typedef enum{
 - (void)dismissGroup
 {
     BOOL canDismiss = [self canDismiss:[[GroupManager defaultManager] tempMemberList]];
-    int guestCount = [self.group.guestsList count];
+    int guestCount = [self.group.guests count];
     PPDebug(@"group guest count = %d", guestCount);
     
     if (canDismiss == NO || guestCount > 0){
@@ -701,7 +701,7 @@ typedef enum{
         return 1;
     }
     NSInteger count = [self.dataList count] + RowMemberStart;
-    if ([[_group guestsList] count] != 0 || [_groupPermission canManageGroup]) {
+    if ([[_group guests] count] != 0 || [_groupPermission canManageGroup]) {
         count ++;
     }
     return count;
@@ -911,7 +911,7 @@ typedef enum{
     [groupService editGroup:_group.groupId info:info callback:^(NSError *error) {
         [self hideActivity];
         if (!error) {
-            PBGroup_Builder *builder = [PBGroup builderWithPrototype:self.group];
+            PBGroupBuilder *builder = [PBGroup builderWithPrototype:self.group];
             if (info[PARA_NAME]) {
                 [builder setName:info[PARA_NAME]];
             }
@@ -1150,7 +1150,7 @@ typedef enum{
         }
     }else{
         if ([self.groupPermission canArrangeAdmin] && [title titleId] != GroupRoleGuest) {
-            if (![_group.adminsList containsObject:user]) {
+            if (![_group.admins containsObject:user]) {
                 [titles addObject:TITLE_SET_ADMIN];
             }else if(![_group.creator.userId isEqualToString:user.userId]){
                 [titles addObject:TITLE_RM_ADMIN];

@@ -119,7 +119,7 @@
     
 }
 
-- (void)updatePBDrawActionBuilder:(PBDrawAction_Builder *)builder
+- (void)updatePBDrawActionBuilder:(PBDrawActionBuilder *)builder
 {
     [builder setShadowOffsetX:self.offset.width];
     [builder setShadowOffsetY:self.offset.height];

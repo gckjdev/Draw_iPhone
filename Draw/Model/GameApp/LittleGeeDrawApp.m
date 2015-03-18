@@ -146,7 +146,7 @@
     NSString* path = [root stringByAppendingString:[GameConfigDataManager configFileName]];
     NSString* versionPath = [root stringByAppendingString:[PPSmartUpdateDataUtils getVersionFileName:[GameConfigDataManager configFileName]]];
     
-    PBConfig_Builder* builder = [PBConfig builder];
+    PBConfigBuilder* builder = [PBConfig builder];
     
 //    PBAppReward* zjhApp = [GameConfigDataManager zjhAppWithRewardAmount:3000 rewardCurrency:PBGameCurrencyCoin];
 //    PBAppReward* drawApp = [GameConfigDataManager drawAppWithRewardAmount:3000 rewardCurrency:PBGameCurrencyCoin];

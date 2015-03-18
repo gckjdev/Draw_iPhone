@@ -104,7 +104,7 @@
 
 - (void)showAdminListView
 {
-    BoardAdminListView *adminListView = [BoardAdminListView adminListViewWithBBSUserList:self.bbsBoard.adminListList controller:self boardId:self.bbsBoard.boardId];
+    BoardAdminListView *adminListView = [BoardAdminListView adminListViewWithBBSUserList:self.bbsBoard.adminList controller:self boardId:self.bbsBoard.boardId];
     CGRect frame = [adminListView frame];
     frame.origin = ADMINLISTVIEW_ORIGIN;
     adminListView.frame = frame;

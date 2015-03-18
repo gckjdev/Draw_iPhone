@@ -439,7 +439,7 @@
     NSString* path = [root stringByAppendingString:[GameConfigDataManager configFileName]];
     NSString* versionPath = [root stringByAppendingString:[PPSmartUpdateDataUtils getVersionFileName:[GameConfigDataManager configFileName]]];
     
-    PBConfig_Builder* builder = [PBConfig builder];
+    PBConfigBuilder* builder = [PBConfig builder];
     
     //    PBAppReward* diceApp = [GameConfigDataManager diceAppWithRewardAmount:3 rewardCurrency:PBGameCurrencyIngot];
     //    PBAppReward* zjhApp = [GameConfigDataManager zjhAppWithRewardAmount:5 rewardCurrency:PBGameCurrencyIngot];

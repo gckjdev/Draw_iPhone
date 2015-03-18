@@ -123,7 +123,7 @@ static UserManager* _defaultManager;
         return;        
     
     // return a PBGame User structure here
-    PBGameUser_Builder* builder = [[[PBGameUser_Builder alloc] init] autorelease];
+    PBGameUserBuilder* builder = [[[PBGameUserBuilder alloc] init] autorelease];
     [builder setUserId:[self userIdFromOldStorage]];
     [builder setNickName:[self nickNameFromOldStorage]];
     
@@ -148,7 +148,7 @@ static UserManager* _defaultManager;
     
     NSArray* snsArray = [self snsUserDataFromOldStorage];
     if (snsArray != nil)
-        [builder addAllSnsUsers:snsArray];
+        [builder setSnsUsersArray:snsArray];
 
     // set guess word language type
     [builder setGuessWordLanguage:[self getLanguageTypeFromOldStorage]];
@@ -515,7 +515,7 @@ static UserManager* _defaultManager;
     if (location == nil)
         return;
     
-    PBGameUser_Builder* builder = [PBGameUser builderWithPrototype:self.pbUser];
+    PBGameUserBuilder* builder = [PBGameUser builderWithPrototype:self.pbUser];
     [builder setLocation:location];
     self.pbUser = [builder build];
 }
@@ -528,7 +528,7 @@ static UserManager* _defaultManager;
     if (gender == nil)
         return;
     
-    PBGameUser_Builder* builder = [PBGameUser builderWithPrototype:self.pbUser];
+    PBGameUserBuilder* builder = [PBGameUser builderWithPrototype:self.pbUser];
     [builder setGender:[self isMale:gender]];
     self.pbUser = [builder build];
 }
@@ -541,7 +541,7 @@ static UserManager* _defaultManager;
     if (nickName == nil)
         return;
     
-    PBGameUser_Builder* builder = [PBGameUser builderWithPrototype:self.pbUser];
+    PBGameUserBuilder* builder = [PBGameUser builderWithPrototype:self.pbUser];
     [builder setNickName:nickName];
     self.pbUser = [builder build];
 }
@@ -551,7 +551,7 @@ static UserManager* _defaultManager;
     if (self.pbUser == nil)
         return;
     
-    PBGameUser_Builder* builder = [PBGameUser builderWithPrototype:self.pbUser];
+    PBGameUserBuilder* builder = [PBGameUser builderWithPrototype:self.pbUser];
     [builder setExperience:exp];
     self.pbUser = [builder build];
     [self storeUserData];
@@ -562,7 +562,7 @@ static UserManager* _defaultManager;
     if (self.pbUser == nil)
         return;
 
-    PBGameUser_Builder* builder = [PBGameUser builderWithPrototype:self.pbUser];
+    PBGameUserBuilder* builder = [PBGameUser builderWithPrototype:self.pbUser];
     [builder setLevel:level];
     self.pbUser = [builder build];
     [self storeUserData];
@@ -570,7 +570,7 @@ static UserManager* _defaultManager;
 
 - (void)setSingLimitTime:(int)value{
     
-    PBGameUser_Builder* builder = [PBGameUser builderWithPrototype:self.pbUser];
+    PBGameUserBuilder* builder = [PBGameUser builderWithPrototype:self.pbUser];
     [builder setSingRecordLimit:value];
     self.pbUser = [builder build];
     [self storeUserData];
@@ -585,7 +585,7 @@ static UserManager* _defaultManager;
     if (email == nil)
         return;
     
-    PBGameUser_Builder* builder = [PBGameUser builderWithPrototype:self.pbUser];
+    PBGameUserBuilder* builder = [PBGameUser builderWithPrototype:self.pbUser];
     [builder setEmail:email];
     self.pbUser = [builder build];
 }
@@ -598,7 +598,7 @@ static UserManager* _defaultManager;
     if (facetimeId == nil)
         return;
     
-    PBGameUser_Builder* builder = [PBGameUser builderWithPrototype:self.pbUser];
+    PBGameUserBuilder* builder = [PBGameUser builderWithPrototype:self.pbUser];
     [builder setFacetimeId:facetimeId];
     self.pbUser = [builder build];
 }
@@ -611,7 +611,7 @@ static UserManager* _defaultManager;
     if (birthdayString == nil)
         return;
     
-    PBGameUser_Builder* builder = [PBGameUser builderWithPrototype:self.pbUser];
+    PBGameUserBuilder* builder = [PBGameUser builderWithPrototype:self.pbUser];
     [builder setBirthday:birthdayString];
     self.pbUser = [builder build];
 
@@ -622,7 +622,7 @@ static UserManager* _defaultManager;
     if (self.pbUser == nil)
         return;    
     
-    PBGameUser_Builder* builder = [PBGameUser builderWithPrototype:self.pbUser];
+    PBGameUserBuilder* builder = [PBGameUser builderWithPrototype:self.pbUser];
     [builder setZodiac:zodiac];
     self.pbUser = [builder build];
 }
@@ -632,7 +632,7 @@ static UserManager* _defaultManager;
     if (self.pbUser == nil)
         return;
     
-    PBGameUser_Builder* builder = [PBGameUser builderWithPrototype:self.pbUser];
+    PBGameUserBuilder* builder = [PBGameUser builderWithPrototype:self.pbUser];
     [builder setFollowCount:followCount];
     self.pbUser = [builder build];
 }
@@ -642,7 +642,7 @@ static UserManager* _defaultManager;
     if (self.pbUser == nil)
         return;
 
-    PBGameUser_Builder* builder = [PBGameUser builderWithPrototype:self.pbUser];
+    PBGameUserBuilder* builder = [PBGameUser builderWithPrototype:self.pbUser];
     [builder setFanCount:fanCount];
     self.pbUser = [builder build];
 }
@@ -652,7 +652,7 @@ static UserManager* _defaultManager;
     if (self.pbUser == nil)
         return;
     
-    PBGameUser_Builder* builder = [PBGameUser builderWithPrototype:self.pbUser];
+    PBGameUserBuilder* builder = [PBGameUser builderWithPrototype:self.pbUser];
     [builder setFeatureOpus:flag];
     self.pbUser = [builder build];
 }
@@ -662,7 +662,7 @@ static UserManager* _defaultManager;
     if (self.pbUser == nil)
         return;
     
-    PBGameUser_Builder* builder = [PBGameUser builderWithPrototype:self.pbUser];
+    PBGameUserBuilder* builder = [PBGameUser builderWithPrototype:self.pbUser];
     [builder setBloodGroup:bloodGroup];
     self.pbUser = [builder build];
 }
@@ -672,7 +672,7 @@ static UserManager* _defaultManager;
     if (self.pbUser == nil)
         return;
 
-    PBGameUser_Builder* builder = [PBGameUser builderWithPrototype:self.pbUser];
+    PBGameUserBuilder* builder = [PBGameUser builderWithPrototype:self.pbUser];
     [builder setSignature:signature];
     self.pbUser = [builder build];
 }
@@ -682,7 +682,7 @@ static UserManager* _defaultManager;
     if (userId == nil)
         return;
     
-    PBGameUser_Builder* builder = nil;
+    PBGameUserBuilder* builder = nil;
     
     if (self.pbUser != nil){
         builder = [PBGameUser builderWithPrototype:self.pbUser];
@@ -711,7 +711,7 @@ static UserManager* _defaultManager;
         return;
     }
     
-    PBGameUser_Builder* builder = [PBGameUser builderWithPrototype:self.pbUser];
+    PBGameUserBuilder* builder = [PBGameUser builderWithPrototype:self.pbUser];
     [builder setDeviceToken:deviceToken];
     self.pbUser = [builder build];
     [self storeUserData];    
@@ -725,7 +725,7 @@ static UserManager* _defaultManager;
     if (password == nil)
         return;
     
-    PBGameUser_Builder* builder = [PBGameUser builderWithPrototype:self.pbUser];
+    PBGameUserBuilder* builder = [PBGameUser builderWithPrototype:self.pbUser];
     [builder setPassword:password];
     self.pbUser = [builder build];
 }
@@ -738,7 +738,7 @@ static UserManager* _defaultManager;
     if ([avatarURL length] == 0)
         return;
     
-    PBGameUser_Builder* builder = [PBGameUser builderWithPrototype:self.pbUser];
+    PBGameUserBuilder* builder = [PBGameUser builderWithPrototype:self.pbUser];
     [builder setAvatar:avatarURL];
     self.pbUser = [builder build];
         
@@ -752,7 +752,7 @@ static UserManager* _defaultManager;
     if ([url length] == 0)
         return;
     
-    PBGameUser_Builder* builder = [PBGameUser builderWithPrototype:self.pbUser];
+    PBGameUserBuilder* builder = [PBGameUser builderWithPrototype:self.pbUser];
     [builder setBackgroundUrl:url];
     self.pbUser = [builder build];
     
@@ -766,7 +766,7 @@ static UserManager* _defaultManager;
     if (deviceModel == nil)
         return;
     
-    PBGameUser_Builder* builder = [PBGameUser builderWithPrototype:self.pbUser];
+    PBGameUserBuilder* builder = [PBGameUser builderWithPrototype:self.pbUser];
     [builder setDeviceModel:deviceModel];
     self.pbUser = [builder build];
 
@@ -777,7 +777,7 @@ static UserManager* _defaultManager;
     if (self.pbUser == nil)
         return;
     
-    PBGameUser_Builder* builder = [PBGameUser builderWithPrototype:self.pbUser];
+    PBGameUserBuilder* builder = [PBGameUser builderWithPrototype:self.pbUser];
     [builder setDeviceType:[NSString stringWithFormat:@"%d", deviceType]];
     self.pbUser = [builder build];
     
@@ -791,7 +791,7 @@ static UserManager* _defaultManager;
     if (deviceId == nil)
         return;
     
-    PBGameUser_Builder* builder = [PBGameUser builderWithPrototype:self.pbUser];
+    PBGameUserBuilder* builder = [PBGameUser builderWithPrototype:self.pbUser];
     [builder setDeviceId:deviceId];
     self.pbUser = [builder build];
     
@@ -805,7 +805,7 @@ static UserManager* _defaultManager;
     if (deviceOS == nil)
         return;
     
-    PBGameUser_Builder* builder = [PBGameUser builderWithPrototype:self.pbUser];
+    PBGameUserBuilder* builder = [PBGameUser builderWithPrototype:self.pbUser];
     [builder setDeviceOs:deviceOS];
     self.pbUser = [builder build];    
 }
@@ -849,7 +849,7 @@ static UserManager* _defaultManager;
     PPDebug(@"<setSNSUserData> save SNS user, id(%@), nick(%@), token(%@), secret(%@)",
             snsId, nickName, accessToken, accessTokenSecret);
     
-    NSArray* currentData = [[[self.pbUser snsUsersList] copy] autorelease]; //[[NSUserDefaults standardUserDefaults] objectForKey:KEY_SNS_USER_DATA];
+    NSArray* currentData = [[[self.pbUser snsUsers] copy] autorelease]; //[[NSUserDefaults standardUserDefaults] objectForKey:KEY_SNS_USER_DATA];
     NSMutableArray* newData = [[NSMutableArray alloc] init];
     if (currentData != nil){
         [newData addObjectsFromArray:currentData];
@@ -868,7 +868,7 @@ static UserManager* _defaultManager;
     }
         
     // create an new user
-    PBSNSUser_Builder* builder = [[PBSNSUser_Builder alloc] init];
+    PBSNSUserBuilder* builder = [[PBSNSUserBuilder alloc] init];
     [builder setType:type];
     [builder setUserId:snsId];
     
@@ -899,9 +899,9 @@ static UserManager* _defaultManager;
     
     if (self.pbUser != nil){
         // update sns user list
-        PBGameUser_Builder* userBuilder = [PBGameUser builderWithPrototype:self.pbUser];
-        [userBuilder clearSnsUsersList];
-        [userBuilder addAllSnsUsers:newData];
+        PBGameUserBuilder* userBuilder = [PBGameUser builderWithPrototype:self.pbUser];
+        [userBuilder clearSnsUsers];
+        [userBuilder setSnsUsersArray:newData];
         self.pbUser = [userBuilder build];
         [self storeUserData];
     }
@@ -918,7 +918,7 @@ static UserManager* _defaultManager;
     
     PPDebug(@"<saveSNSCredential> save SNS user, type(%d), credential(%@)", type, credential);
     
-    NSArray* currentData = [[[self.pbUser snsCredentialsList] copy] autorelease]; //[[NSUserDefaults standardUserDefaults] objectForKey:KEY_SNS_USER_DATA];
+    NSArray* currentData = [[[self.pbUser snsCredentials] copy] autorelease]; //[[NSUserDefaults standardUserDefaults] objectForKey:KEY_SNS_USER_DATA];
     NSMutableArray* newData = [[NSMutableArray alloc] init];
     if (currentData != nil){
         [newData addObjectsFromArray:currentData];
@@ -937,7 +937,7 @@ static UserManager* _defaultManager;
     }
     
     // create an new user
-    PBSNSUserCredential_Builder* builder = [[PBSNSUserCredential_Builder alloc] init];
+    PBSNSUserCredentialBuilder* builder = [[PBSNSUserCredentialBuilder alloc] init];
     [builder setType:type];
     [builder setCredential:credential];
     
@@ -951,9 +951,9 @@ static UserManager* _defaultManager;
     
     if (self.pbUser != nil){
         // update sns user list
-        PBGameUser_Builder* userBuilder = [PBGameUser builderWithPrototype:self.pbUser];
-        [userBuilder clearSnsCredentialsList];
-        [userBuilder addAllSnsCredentials:newData];
+        PBGameUserBuilder* userBuilder = [PBGameUser builderWithPrototype:self.pbUser];
+        [userBuilder clearSnsCredentials];
+        [userBuilder setSnsCredentialsArray:newData];
         self.pbUser = [userBuilder build];
         [self storeUserData];
     }
@@ -1041,7 +1041,7 @@ qqAccessTokenSecret:(NSString*)accessTokenSecret
     if (self.pbUser == nil)
         return;
     
-    PBGameUser_Builder* builder = [PBGameUser builderWithPrototype:self.pbUser];
+    PBGameUserBuilder* builder = [PBGameUser builderWithPrototype:self.pbUser];
     [builder setGuessWordLanguage:type];
     self.pbUser = [builder build];
     
@@ -1076,10 +1076,10 @@ qqAccessTokenSecret:(NSString*)accessTokenSecret
 
 - (BOOL)hasBindSNS:(int)snsType
 {
-    if (self.pbUser.snsUsersList == nil)
+    if (self.pbUser.snsUsers == nil)
         return NO;
     
-    for (PBSNSUser* snsUser in self.pbUser.snsUsersList){
+    for (PBSNSUser* snsUser in self.pbUser.snsUsers){
         if (snsUser.type == snsType){
             return YES;
         }
@@ -1281,7 +1281,7 @@ qqAccessTokenSecret:(NSString*)accessTokenSecret
     if (number == nil)
         return;
     
-    PBGameUser_Builder* builder = [PBGameUser builderWithPrototype:self.pbUser];
+    PBGameUserBuilder* builder = [PBGameUser builderWithPrototype:self.pbUser];
     [builder setXiaojiNumber:number];
     self.pbUser = [builder build];
 }
@@ -1302,7 +1302,7 @@ qqAccessTokenSecret:(NSString*)accessTokenSecret
     if (self.pbUser == nil)
         return;            
     
-    PBGameUser_Builder* builder = [PBGameUser builderWithPrototype:self.pbUser];
+    PBGameUserBuilder* builder = [PBGameUser builderWithPrototype:self.pbUser];
     [builder setCanShakeNumber:value];
     self.pbUser = [builder build];
 }
@@ -1312,7 +1312,7 @@ qqAccessTokenSecret:(NSString*)accessTokenSecret
     if (self.pbUser == nil)
         return;
     
-    PBGameUser_Builder* builder = [PBGameUser builderWithPrototype:self.pbUser];
+    PBGameUserBuilder* builder = [PBGameUser builderWithPrototype:self.pbUser];
     [builder setShakeNumberTimes:value];
     self.pbUser = [builder build];
 }
@@ -1398,7 +1398,7 @@ qqAccessTokenSecret:(NSString*)accessTokenSecret
         return nil;
     
     // return a PBGame User structure here
-    PBGameUser_Builder* builder = [PBGameUser builderWithPrototype:self.pbUser];
+    PBGameUserBuilder* builder = [PBGameUser builderWithPrototype:self.pbUser];
     for (PBKeyValue* kValue in keyValueArray) {
         [builder addAttributes:kValue];
     }
@@ -1619,7 +1619,7 @@ qqAccessTokenSecret:(NSString*)accessTokenSecret
     if (self.pbUser == nil)
         return;
     
-    PBGameUser_Builder* builder = [PBGameUser builderWithPrototype:self.pbUser];
+    PBGameUserBuilder* builder = [PBGameUser builderWithPrototype:self.pbUser];
     [builder setEmailVerifyStatus:status];
     self.pbUser = [builder build];    
 }
@@ -1629,7 +1629,7 @@ qqAccessTokenSecret:(NSString*)accessTokenSecret
     if (self.pbUser == nil)
         return;
     
-    PBGameUser_Builder* builder = [PBGameUser builderWithPrototype:self.pbUser];
+    PBGameUserBuilder* builder = [PBGameUser builderWithPrototype:self.pbUser];
     [builder setTakeCoins:value];
     self.pbUser = [builder build];    
 }
@@ -1639,8 +1639,8 @@ qqAccessTokenSecret:(NSString*)accessTokenSecret
     if (self.pbUser == nil || [devices count] == 0)
         return;
     
-    PBGameUser_Builder* builder = [PBGameUser builderWithPrototype:self.pbUser];
-    [builder addAllBlockDeviceIds:devices];
+    PBGameUserBuilder* builder = [PBGameUser builderWithPrototype:self.pbUser];
+    [builder setBlockDeviceIdsArray:devices];
     self.pbUser = [builder build];    
 }
 
@@ -1854,7 +1854,7 @@ qqAccessTokenSecret:(NSString*)accessTokenSecret
     if (self.pbUser == nil)
         return;
     
-    PBGameUser_Builder* builder = [PBGameUser builderWithPrototype:self.pbUser];
+    PBGameUserBuilder* builder = [PBGameUser builderWithPrototype:self.pbUser];
     [builder setVip:vip];
     self.pbUser = [builder build];    
 }
@@ -1864,7 +1864,7 @@ qqAccessTokenSecret:(NSString*)accessTokenSecret
     if (self.pbUser == nil)
         return;
     
-    PBGameUser_Builder* builder = [PBGameUser builderWithPrototype:self.pbUser];
+    PBGameUserBuilder* builder = [PBGameUser builderWithPrototype:self.pbUser];
     [builder setVipExpireDate:vipExpireDate];
     self.pbUser = [builder build];
 }
@@ -1885,7 +1885,7 @@ qqAccessTokenSecret:(NSString*)accessTokenSecret
     if (self.pbUser == nil)
         return;
     
-    PBGameUser_Builder* builder = [PBGameUser builderWithPrototype:self.pbUser];
+    PBGameUserBuilder* builder = [PBGameUser builderWithPrototype:self.pbUser];
     [builder setVipLastPayDate:vipLastPayDate];
     self.pbUser = [builder build];
 }
@@ -1895,10 +1895,10 @@ qqAccessTokenSecret:(NSString*)accessTokenSecret
     if (self.pbUser == nil)
         return;
     
-    PBGameUser_Builder* builder = [PBGameUser builderWithPrototype:self.pbUser];
-    [builder clearOffGroupIdsList];
+    PBGameUserBuilder* builder = [PBGameUser builderWithPrototype:self.pbUser];
+    [builder clearOffGroupIds];
     if (offGroupIds){
-        [builder addAllOffGroupIds:offGroupIds];
+        [builder setOffGroupIdsArray:offGroupIds];
     }
     
     self.pbUser = [builder build];
@@ -1921,7 +1921,7 @@ qqAccessTokenSecret:(NSString*)accessTokenSecret
 
 - (BOOL)hasAwardApp:(NSString*)appId
 {
-    for (NSString* value in self.pbUser.awardAppsList){
+    for (NSString* value in self.pbUser.awardApps){
         if ([value isEqualToString:appId]){
             return YES;
         }
@@ -1935,11 +1935,11 @@ qqAccessTokenSecret:(NSString*)accessTokenSecret
     if (self.pbUser == nil)
         return;
     
-    PBGameUser_Builder* builder = [PBGameUser builderWithPrototype:self.pbUser];
+    PBGameUserBuilder* builder = [PBGameUser builderWithPrototype:self.pbUser];
     
     NSMutableArray* offGroupIds = [NSMutableArray array];
-    if ([builder offGroupIdsList]){
-        [offGroupIds addObjectsFromArray:[builder offGroupIdsList]];
+    if ([builder offGroupIds]){
+        [offGroupIds addObjectsFromArray:[builder offGroupIds]];
     }
     
     if (status){
@@ -1951,8 +1951,8 @@ qqAccessTokenSecret:(NSString*)accessTokenSecret
         }
     }
     
-    [builder clearOffGroupIdsList];
-    [builder addAllOffGroupIds:offGroupIds];
+    [builder clearOffGroupIds];
+    [builder setOffGroupIdsArray:offGroupIds];
     self.pbUser = [builder build];
 }
 
@@ -1962,7 +1962,7 @@ qqAccessTokenSecret:(NSString*)accessTokenSecret
         return NO;
     }
     
-    if ([self.pbUser.offGroupIdsList indexOfObject:groupId] != NSNotFound){
+    if ([self.pbUser.offGroupIds indexOfObject:groupId] != NSNotFound){
         return YES;
     }
     else{
@@ -1976,7 +1976,7 @@ qqAccessTokenSecret:(NSString*)accessTokenSecret
         return YES;
     }
     
-    return [_pbUser.permissionsList containsObject:PERMISSION_BLACK_USER];
+    return [_pbUser.permissions containsObject:PERMISSION_BLACK_USER];
 }
 
 - (void)setUserPermissions:(NSArray*)persmissions
@@ -1984,15 +1984,15 @@ qqAccessTokenSecret:(NSString*)accessTokenSecret
     if (self.pbUser == nil)
         return;
     
-    PBGameUser_Builder* builder = [PBGameUser builderWithPrototype:self.pbUser];
+    PBGameUserBuilder* builder = [PBGameUser builderWithPrototype:self.pbUser];
     
     NSMutableArray* permissions = [NSMutableArray array];
-    if ([builder permissionsList]){
-        [permissions addObjectsFromArray:[builder permissionsList]];
+    if ([builder permissions]){
+        [permissions addObjectsFromArray:[builder permissions]];
     }
     
-    [builder clearPermissionsList];
-    [builder addAllPermissions:permissions];
+    [builder clearPermissions];
+    [builder setPermissionsArray:permissions];
     self.pbUser = [builder build];
 }
 

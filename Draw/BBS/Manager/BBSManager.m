@@ -227,7 +227,7 @@ BBSManager *_staticBBSManager;
 {
     NSInteger index = [self.tempPostList indexOfObject:post];
     if (index >=0 && index < [self.tempPostList count]) {
-        PBBBSPost_Builder *builder = [PBBBSPost builderWithPrototype:post];
+        PBBBSPostBuilder *builder = [PBBBSPost builderWithPrototype:post];
         int count = post.replyCount + inc;
         [builder setReplyCount:count];
         PBBBSPost *nPost = [builder build];
@@ -242,7 +242,7 @@ BBSManager *_staticBBSManager;
 {
     NSInteger index = [self.tempPostList indexOfObject:post];
     if (index >=0 && index < [self.tempPostList count]) {
-        PBBBSPost_Builder *builder = [PBBBSPost builderWithPrototype:post];
+        PBBBSPostBuilder *builder = [PBBBSPost builderWithPrototype:post];
         int count = post.supportCount + inc;
         [builder setSupportCount:count];
         PBBBSPost *nPost = [builder build];

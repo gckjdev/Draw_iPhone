@@ -112,18 +112,19 @@
         
         HBrushPointList* pointList = [[HBrushPointList alloc] init];
         
-        NSInteger count = [action.pointsXList count];
+        NSInteger count = [action.pointsX count];
         if (count > 0) {
             //new version draw data
+            CGFloat x,y;
             float width = action.width;
-            bool hasPointWidth = (action.brushPointWidthList != nil && [action.brushPointWidthList count] == count);
+            bool hasPointWidth = (action.brushPointWidth != nil && [action.brushPointWidth count] == count);
 
             for (NSInteger i = 0; i < count; ++ i) {
                 
-                width = hasPointWidth ? [[action.brushPointWidthList objectAtIndex:i] floatValue] : action.width;
+                width = hasPointWidth ? [action.brushPointWidth floatAtIndex:i] : action.width;
 
-                CGFloat x = [[action.pointsXList objectAtIndex:i] floatValue];
-                CGFloat y = [[action.pointsYList objectAtIndex:i] floatValue];
+                x = [action.pointsX floatAtIndex:i];
+                y = [action.pointsY floatAtIndex:i];
                 
                 [pointList addPoint:x y:y width:width];
             }
@@ -159,18 +160,19 @@
         
         HBrushPointList* pointList = [[HBrushPointList alloc] init];
         
-        NSInteger count = [action.pointXList count];
+        NSInteger count = [action.pointX count];
         if (count > 0) {
             //new version draw data
+            CGFloat x,y;
             float width = action.width;
-            bool hasPointWidth = (action.brushPointWidthList != nil && [action.brushPointWidthList count] == count);
+            bool hasPointWidth = (action.brushPointWidth != nil && [action.brushPointWidth count] == count);
             
             for (NSInteger i = 0; i < count; ++ i) {
                 
-                width = hasPointWidth ? [[action.brushPointWidthList objectAtIndex:i] floatValue] : action.width;
+                width = hasPointWidth ? [action.brushPointWidth floatAtIndex:i] : action.width;
                 
-                CGFloat x = [[action.pointXList objectAtIndex:i] floatValue];
-                CGFloat y = [[action.pointYList objectAtIndex:i] floatValue];
+                x = [action.pointX floatAtIndex:i];
+                y = [action.pointY floatAtIndex:i];
                 
                 [pointList addPoint:x y:y width:width];
             }
@@ -227,7 +229,7 @@
 
 - (PBDrawAction *)toPBDrawAction
 {
-    PBDrawAction_Builder *builder = [[PBDrawAction_Builder alloc] init];
+    PBDrawActionBuilder *builder = [[PBDrawActionBuilder alloc] init];
     [builder setType:DrawActionTypeBrush];
     [builder setClipTag:self.clipTag];
     [self.brushStroke updatePBDrawActionBuilder:builder];

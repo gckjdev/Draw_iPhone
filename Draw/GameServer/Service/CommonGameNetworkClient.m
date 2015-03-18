@@ -68,7 +68,7 @@ static CommonGameNetworkClient* _defaultGameNetworkClient;
 
 #pragma mark - Build Message With MAC
 
-- (GameMessage*)build:(GameMessage_Builder*)builder
+- (GameMessage*)build:(GameMessageBuilder*)builder
 {
     [builder setTimeStamp:time(0)];
     NSString* strForEncode = [NSString stringWithFormat:@"%d%d", 
@@ -86,7 +86,7 @@ static CommonGameNetworkClient* _defaultGameNetworkClient;
                    userId:(NSString*)userId 
                 sessionId:(long)sessionId
 {
-    GameMessage_Builder *messageBuilder = [[[GameMessage_Builder alloc] init] autorelease];
+    GameMessageBuilder *messageBuilder = [[[GameMessageBuilder alloc] init] autorelease];
     [messageBuilder setCommand:command];
     [messageBuilder setMessageId:[self generateMessageId]];
     [messageBuilder setUserId:userId];
@@ -104,17 +104,17 @@ static CommonGameNetworkClient* _defaultGameNetworkClient;
 - (void)sendRegisterRoomsNotificationRequest:(NSArray*)sessionList 
                                       userId:(NSString*)userId
 {
-    GameMessage_Builder *messageBuilder = [[[GameMessage_Builder alloc] init] autorelease];
+    GameMessageBuilder *messageBuilder = [[[GameMessageBuilder alloc] init] autorelease];
     [messageBuilder setCommand:GameCommandTypeRegisterRoomsNotificationRequest];
     [messageBuilder setMessageId:[self generateMessageId]];
     [messageBuilder setUserId:userId];
 
-    RegisterRoomsNotificationRequest_Builder* request_builder = [[[RegisterRoomsNotificationRequest_Builder alloc] init] autorelease];
+    RegisterRoomsNotificationRequestBuilder* requestBuilder = [[[RegisterRoomsNotificationRequestBuilder alloc] init] autorelease];
     for (PBGameSession* session in sessionList) {
-        [request_builder addSessionIds:session.sessionId];
+        [requestBuilder addSessionIds:session.sessionId];
     }
     
-    [messageBuilder setRegisterRoomsNotificationRequest:[request_builder build]];
+    [messageBuilder setRegisterRoomsNotificationRequest:[requestBuilder build]];
     GameMessage* gameMessage = [self build:messageBuilder];
     [self sendData:[gameMessage data]];   
 }
@@ -122,17 +122,17 @@ static CommonGameNetworkClient* _defaultGameNetworkClient;
 - (void)sendUnRegisterRoomsNotificationRequest:(NSArray*)sessionList 
                                         userId:(NSString*)userId
 {
-    GameMessage_Builder *messageBuilder = [[[GameMessage_Builder alloc] init] autorelease];
+    GameMessageBuilder *messageBuilder = [[[GameMessageBuilder alloc] init] autorelease];
     [messageBuilder setCommand:GameCommandTypeUnregisterRoomsNotificationRequest];
     [messageBuilder setMessageId:[self generateMessageId]];
     [messageBuilder setUserId:userId];
     
-    UnRegisterRoomsNotificationRequest_Builder* request_builder = [[[UnRegisterRoomsNotificationRequest_Builder alloc] init] autorelease];
+    UnRegisterRoomsNotificationRequestBuilder* requestBuilder = [[[UnRegisterRoomsNotificationRequestBuilder alloc] init] autorelease];
     for (PBGameSession* session in sessionList) {
-        [request_builder addSessionIds:session.sessionId];
+        [requestBuilder addSessionIds:session.sessionId];
     }
     
-    [messageBuilder setUnRegisterRoomsNotificationRequest:[request_builder build]];
+    [messageBuilder setUnRegisterRoomsNotificationRequest:[requestBuilder build]];
     
     GameMessage* gameMessage = [self build:messageBuilder];
     [self sendData:[gameMessage data]];   
@@ -144,7 +144,7 @@ static CommonGameNetworkClient* _defaultGameNetworkClient;
                      sessionId:(int)sessionId
                         userId:(NSString *)userId
 {      
-    GameChatRequest_Builder *builder = [[[GameChatRequest_Builder alloc] init] autorelease];
+    GameChatRequestBuilder *builder = [[[GameChatRequestBuilder alloc] init] autorelease];
     
     if (content != nil && expressionId == nil) {
         [builder setContent:content];
@@ -159,7 +159,7 @@ static CommonGameNetworkClient* _defaultGameNetworkClient;
 
     GameChatRequest *chatRequest = [builder build];
     
-    GameMessage_Builder *messageBuilder = [[[GameMessage_Builder alloc] init] autorelease];
+    GameMessageBuilder *messageBuilder = [[[GameMessageBuilder alloc] init] autorelease];
     [messageBuilder setCommand:GameCommandTypeChatRequest];
     [messageBuilder setMessageId:[self generateMessageId]];
     [messageBuilder setUserId:userId];
@@ -177,7 +177,7 @@ static CommonGameNetworkClient* _defaultGameNetworkClient;
                  startIndex:(int)index 
                       count:(int)count
 {
-    GameMessage_Builder *messageBuilder = [[[GameMessage_Builder alloc] init] autorelease];
+    GameMessageBuilder *messageBuilder = [[[GameMessageBuilder alloc] init] autorelease];
     [messageBuilder setCommand:GameCommandTypeGetRoomsRequest];
     [messageBuilder setMessageId:[self generateMessageId]];
     [messageBuilder setUserId:userId];
@@ -196,7 +196,7 @@ static CommonGameNetworkClient* _defaultGameNetworkClient;
                     keyword:(NSString*)keyword 
                      gameId:(NSString*)gameId
 {
-    GameMessage_Builder *messageBuilder = [[[GameMessage_Builder alloc] init] autorelease];
+    GameMessageBuilder *messageBuilder = [[[GameMessageBuilder alloc] init] autorelease];
     [messageBuilder setCommand:GameCommandTypeGetRoomsRequest];
     [messageBuilder setMessageId:[self generateMessageId]];
     [messageBuilder setUserId:userId];
@@ -204,7 +204,7 @@ static CommonGameNetworkClient* _defaultGameNetworkClient;
     [messageBuilder setStartOffset:index];
     [messageBuilder setMaxCount:count];
     
-    GetRoomsRequest_Builder *getRoomsRequestBuilder = [[[GetRoomsRequest_Builder alloc] init] autorelease];
+    GetRoomsRequestBuilder *getRoomsRequestBuilder = [[[GetRoomsRequestBuilder alloc] init] autorelease];
     [getRoomsRequestBuilder setGameId:gameId];
     [getRoomsRequestBuilder setRoomType:type];
     [getRoomsRequestBuilder setKeyword:keyword];
@@ -219,12 +219,12 @@ static CommonGameNetworkClient* _defaultGameNetworkClient;
                        gameId:(NSString*)gameId 
                      password:(NSString *)password
 {
-    GameMessage_Builder *messageBuilder = [[[GameMessage_Builder alloc] init] autorelease];
+    GameMessageBuilder *messageBuilder = [[[GameMessageBuilder alloc] init] autorelease];
     [messageBuilder setCommand:GameCommandTypeCreateRoomRequest];
     [messageBuilder setMessageId:[self generateMessageId]];
     [messageBuilder setUserId:user.userId];
     
-    CreateRoomRequest_Builder* requestBuilder =[[[CreateRoomRequest_Builder alloc] init] autorelease]; 
+    CreateRoomRequestBuilder* requestBuilder =[[[CreateRoomRequestBuilder alloc] init] autorelease]; 
     [requestBuilder setUser:user];
     [requestBuilder setRoomName:roomName];
     [requestBuilder setGameId:gameId];
@@ -242,12 +242,12 @@ static CommonGameNetworkClient* _defaultGameNetworkClient;
                      password:(NSString *)password
                      ruleType:(int)ruleType
 {
-    GameMessage_Builder *messageBuilder = [[[GameMessage_Builder alloc] init] autorelease];
+    GameMessageBuilder *messageBuilder = [[[GameMessageBuilder alloc] init] autorelease];
     [messageBuilder setCommand:GameCommandTypeCreateRoomRequest];
     [messageBuilder setMessageId:[self generateMessageId]];
     [messageBuilder setUserId:user.userId];
     
-    CreateRoomRequest_Builder* requestBuilder =[[[CreateRoomRequest_Builder alloc] init] autorelease]; 
+    CreateRoomRequestBuilder* requestBuilder =[[[CreateRoomRequestBuilder alloc] init] autorelease]; 
     [requestBuilder setUser:user];
     [requestBuilder setRoomName:roomName];
     [requestBuilder setGameId:gameId];
@@ -267,13 +267,13 @@ static CommonGameNetworkClient* _defaultGameNetworkClient;
     
     NSString* userId = [user userId];
     
-    JoinGameRequest_Builder *requestBuilder = [[[JoinGameRequest_Builder alloc] init] autorelease];
+    JoinGameRequestBuilder *requestBuilder = [[[JoinGameRequestBuilder alloc] init] autorelease];
     [requestBuilder setUserId:userId];
     [requestBuilder setGameId:gameId];
     [requestBuilder setNickName:[user nickName]];
     [requestBuilder setUser:user];
 
-    GameMessage_Builder *messageBuilder = [[[GameMessage_Builder alloc] init] autorelease];
+    GameMessageBuilder *messageBuilder = [[[GameMessageBuilder alloc] init] autorelease];
     [messageBuilder setCommand:GameCommandTypeJoinGameRequest];
     [messageBuilder setMessageId:[self generateMessageId]];
     [messageBuilder setJoinGameRequest:[requestBuilder build]];
@@ -291,14 +291,14 @@ static CommonGameNetworkClient* _defaultGameNetworkClient;
     
     NSString* userId = [user userId];
     
-    JoinGameRequest_Builder *requestBuilder = [[[JoinGameRequest_Builder alloc] init] autorelease];
+    JoinGameRequestBuilder *requestBuilder = [[[JoinGameRequestBuilder alloc] init] autorelease];
     [requestBuilder setUserId:userId];
     [requestBuilder setGameId:gameId];
     [requestBuilder setNickName:[user nickName]];
     [requestBuilder setUser:user];
     [requestBuilder setRuleType:ruleType];
     
-    GameMessage_Builder *messageBuilder = [[[GameMessage_Builder alloc] init] autorelease];
+    GameMessageBuilder *messageBuilder = [[[GameMessageBuilder alloc] init] autorelease];
     [messageBuilder setCommand:GameCommandTypeJoinGameRequest];
     [messageBuilder setMessageId:[self generateMessageId]];
     [messageBuilder setJoinGameRequest:[requestBuilder build]];
@@ -316,13 +316,13 @@ static CommonGameNetworkClient* _defaultGameNetworkClient;
     
     NSString* userId = [user userId];
     
-    JoinGameRequest_Builder *requestBuilder = [[[JoinGameRequest_Builder alloc] init] autorelease];
+    JoinGameRequestBuilder *requestBuilder = [[[JoinGameRequestBuilder alloc] init] autorelease];
     [requestBuilder setUserId:userId];
     [requestBuilder setGameId:gameId];
     [requestBuilder setNickName:[user nickName]];
     [requestBuilder setUser:user];
     
-    GameMessage_Builder *messageBuilder = [[[GameMessage_Builder alloc] init] autorelease];
+    GameMessageBuilder *messageBuilder = [[[GameMessageBuilder alloc] init] autorelease];
     [messageBuilder setCommand:GameCommandTypeJoinGameRequest];
     [messageBuilder setMessageId:[self generateMessageId]];
     [messageBuilder setSessionId:sessionId];
@@ -342,14 +342,14 @@ static CommonGameNetworkClient* _defaultGameNetworkClient;
     
     NSString* userId = [user userId];
     
-    JoinGameRequest_Builder *requestBuilder = [[[JoinGameRequest_Builder alloc] init] autorelease];
+    JoinGameRequestBuilder *requestBuilder = [[[JoinGameRequestBuilder alloc] init] autorelease];
     [requestBuilder setUserId:userId];
     [requestBuilder setGameId:gameId];
     [requestBuilder setNickName:[user nickName]];
     [requestBuilder setUser:user];
     [requestBuilder setRuleType:ruleType];
     
-    GameMessage_Builder *messageBuilder = [[[GameMessage_Builder alloc] init] autorelease];
+    GameMessageBuilder *messageBuilder = [[[GameMessageBuilder alloc] init] autorelease];
     [messageBuilder setCommand:GameCommandTypeJoinGameRequest];
     [messageBuilder setMessageId:[self generateMessageId]];
     [messageBuilder setSessionId:sessionId];

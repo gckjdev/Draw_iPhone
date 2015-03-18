@@ -14,7 +14,7 @@
 
 @class PBGameUser;
 @class GameMessage;
-@class GameMessage_Builder;
+@class GameMessageBuilder;
 
 @interface CommonGameNetworkClient : CommonNetworkClient<CommonNetworkClientDelegate>
 {
@@ -56,7 +56,7 @@
 
 - (int)generateMessageId;
 
-- (GameMessage*)build:(GameMessage_Builder*)builder;
+- (GameMessage*)build:(GameMessageBuilder*)builder;
 
 - (void)sendSimpleMessage:(int)command
                    userId:(NSString*)userId 

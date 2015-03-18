@@ -191,15 +191,15 @@ enum{
 {
     PBGroupUsersByTitle *title = [self usersByTitleForTitleId:titleId];
     if (title) {
-        PBGroupUsersByTitle_Builder *builder = [PBGroupUsersByTitle builderWithPrototype:title];
-        NSMutableArray *userList = [NSMutableArray arrayWithArray:title.usersList];
-        [builder clearUsersList];
+        PBGroupUsersByTitleBuilder *builder = [PBGroupUsersByTitle builderWithPrototype:title];
+        NSMutableArray *userList = [NSMutableArray arrayWithArray:title.users];
+        [builder clearUsers];
         if (isRemove) {
             [userList removeObject:member];
         }else{
             [userList addObject:member];
         }
-        [builder addAllUsers:userList];
+        [builder setUsersArray:userList];
         PBGroupUsersByTitle *nt = [builder build];
         
         NSMutableArray *members = [[GroupManager defaultManager] tempMemberList];
@@ -212,7 +212,7 @@ enum{
 + (PBGroup *)didSetUser:(PBGameUser *)user
          asAdminInGroup:(PBGroup *)group
 {
-    PBGroup_Builder *builder = [PBGroup builderWithPrototype:group];
+    PBGroupBuilder *builder = [PBGroup builderWithPrototype:group];
     [builder addAdmins:user];    
     group = [builder build];
     return group;
@@ -221,13 +221,13 @@ enum{
 + (PBGroup *)didRemoveUser:(PBGameUser *)user
           fromAdminInGroup:(PBGroup *)group;
 {
-    PBGroup_Builder *builder = [PBGroup builderWithPrototype:group];
+    PBGroupBuilder *builder = [PBGroup builderWithPrototype:group];
     
     
-    NSMutableArray *admins = [NSMutableArray arrayWithArray:group.adminsList];
-    [builder clearAdminsList];
+    NSMutableArray *admins = [NSMutableArray arrayWithArray:group.admins];
+    [builder clearAdmins];
     [admins removeObject:user];
-    [builder addAllAdmins:admins];
+    [builder setAdminsArray:admins];
     
     group = [builder build];
     return group;
@@ -258,7 +258,7 @@ enum{
 + (PBGroupTitle *)titleForUser:(PBGameUser *)user
 {
     for (PBGroupUsersByTitle *usersByTitle in [[self defaultManager] tempMemberList]) {
-        if ([usersByTitle.usersList containsObject:user]) {
+        if ([usersByTitle.users containsObject:user]) {
             return usersByTitle.title;
         }
     }
@@ -269,11 +269,11 @@ enum{
 + (void)didUserQuited:(PBGameUser *)user
 {
     PBGroup *group = [[self defaultManager] sharedGroup];
-    if ([[group guestsList] containsObject:user]) {
+    if ([[group guests] containsObject:user]) {
         [self didRemoveUser:user fromTitleId:GroupRoleGuest];
         return;
     }
-    if ([[group adminsList] containsObject:user]) {
+    if ([[group admins] containsObject:user]) {
         [self didRemoveUser:user fromAdminInGroup:group];
     }else{
         PBGroupTitle *title = [self titleForUser:user];
@@ -286,7 +286,7 @@ enum{
 + (PBGroupTitle *)createGroupTitle:(NSString *)title
                            titleId:(NSInteger)titleId
 {
-    PBGroupTitle_Builder *titleBuilder = [[PBGroupTitle_Builder alloc] init];
+    PBGroupTitleBuilder *titleBuilder = [[PBGroupTitleBuilder alloc] init];
     [titleBuilder setTitle:title];
     [titleBuilder setTitleId:titleId];
     PBGroupTitle *t = [titleBuilder build];
@@ -299,7 +299,7 @@ enum{
                      title:(NSString *)title
                    titleId:(NSInteger)titleId
 {
-    PBGroupUsersByTitle_Builder *builder = [[PBGroupUsersByTitle_Builder alloc] init];
+    PBGroupUsersByTitleBuilder *builder = [[PBGroupUsersByTitleBuilder alloc] init];
 
     PBGroupTitle *t = [self createGroupTitle:title titleId:titleId];
     [builder setTitle:t];
@@ -309,13 +309,13 @@ enum{
     [[[GroupManager defaultManager] tempMemberList] addObject:ut];    
 }
 + (PBGroup *)updateGroup:(PBGroup *)group medalImageURL:(NSString *)url{
-    PBGroup_Builder *builder = [PBGroup builderWithPrototype:group];
+    PBGroupBuilder *builder = [PBGroup builderWithPrototype:group];
     [builder setMedalImage:url];
     return [builder build];
 }
 + (PBGroup *)updateGroup:(PBGroup *)group BGImageURL:(NSString *)url
 {
-    PBGroup_Builder *builder = [PBGroup builderWithPrototype:group];
+    PBGroupBuilder *builder = [PBGroup builderWithPrototype:group];
     [builder setBgImage:url];
     return [builder build];
 }
@@ -323,7 +323,7 @@ enum{
 + (PBGroup *)incGroupBalance:(PBGroup *)group amount:(NSInteger)amount
 {
     NSInteger balance = MAX(0, (group.balance + amount));
-    PBGroup_Builder *builder = [PBGroup builderWithPrototype:group];
+    PBGroupBuilder *builder = [PBGroup builderWithPrototype:group];
     [builder setBalance:balance];
     return [builder build];
 }
@@ -332,7 +332,7 @@ enum{
 {
     NSInteger amout = [GroupManager upgradeFeeFromLevel:group.level toLevel:level];
     NSInteger balance = MAX(0, (group.balance - amout));
-    PBGroup_Builder *builder = [PBGroup builderWithPrototype:group];
+    PBGroupBuilder *builder = [PBGroup builderWithPrototype:group];
     [builder setBalance:balance];
     [builder setLevel:level];
     return [builder build];
@@ -354,7 +354,7 @@ enum{
     NSMutableArray *members = [[GroupManager defaultManager] tempMemberList];
     PBGroupUsersByTitle *gt = [self usersByTitleForTitleId:titleId];
     if (gt) {
-        PBGroupUsersByTitle_Builder *builder = [PBGroupUsersByTitle builderWithPrototype:gt];
+        PBGroupUsersByTitleBuilder *builder = [PBGroupUsersByTitle builderWithPrototype:gt];
         PBGroupTitle *t = [self createGroupTitle:title titleId:titleId];
         [builder setTitle:t];
         PBGroupUsersByTitle *ngt = [builder build];
@@ -372,7 +372,7 @@ enum{
         return YES;
     }
     
-    for (PBGameUser* adminUser in group.adminsList){
+    for (PBGameUser* adminUser in group.admins){
         if ([adminUser.userId isEqualToString:user.userId]){
             return YES;
         }
@@ -429,7 +429,7 @@ enum{
 {
     NSMutableArray *list = [NSMutableArray array];
     for (PBGroupUsersByTitle *title in self.tempMemberList) {
-        if ([title.usersList count] > 0) {
+        if ([title.users count] > 0) {
             [list addObject:title];
         }
     }
@@ -528,7 +528,7 @@ enum{
     if (groupId == nil || groupName == nil)
         return nil;
 
-    PBGroup_Builder* builder = [PBGroup builder];
+    PBGroupBuilder* builder = [PBGroup builder];
     [builder setGroupId:groupId];
     [builder setName:groupName];
     PBGroup* group = [builder build];

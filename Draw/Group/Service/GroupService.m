@@ -168,7 +168,7 @@ static GroupService *_staticGroupService = nil;
     [self loadPBData:METHOD_GET_GROUPS
           parameters:paras
             callback:^(DataQueryResponse *response, NSError *error) {
-                EXECUTE_BLOCK(callback, response.groupListList, error);
+                EXECUTE_BLOCK(callback, response.groupList, error);
     }];
 
 }
@@ -184,7 +184,7 @@ static GroupService *_staticGroupService = nil;
     [self loadPBData:METHOD_SEARCH_GROUP
           parameters:paras
             callback:^(DataQueryResponse *response, NSError *error) {
-                EXECUTE_BLOCK(callback, response.groupListList, error);
+                EXECUTE_BLOCK(callback, response.groupList, error);
             }];
 }
 
@@ -269,7 +269,7 @@ static GroupService *_staticGroupService = nil;
           parameters:paras
             callback:^(DataQueryResponse *response, NSError *error )
      {
-         EXECUTE_BLOCK(callback, response.groupMemberListList, error);
+         EXECUTE_BLOCK(callback, response.groupMemberList, error);
      }];
 }
 
@@ -389,7 +389,7 @@ static GroupService *_staticGroupService = nil;
           parameters:paras
             callback:^(DataQueryResponse *response, NSError *error)
      {
-         EXECUTE_BLOCK(callback, response.userListList, error);
+         EXECUTE_BLOCK(callback, response.userList, error);
      }];
 }
 
@@ -416,8 +416,8 @@ static GroupService *_staticGroupService = nil;
             callback:^(DataQueryResponse *response, NSError *error)
      {
          if (!error) {
-             PPDebug(@"<syncFollowGroupIds> Done! follow group count = %d", [response.idListList count]);
-             [_groupManager syncFollowedGroupIds:response.idListList];
+             PPDebug(@"<syncFollowGroupIds> Done! follow group count = %d", [response.idList count]);
+             [_groupManager syncFollowedGroupIds:response.idList];
          }
      }];    
 }
@@ -433,7 +433,7 @@ static GroupService *_staticGroupService = nil;
           parameters:paras
             callback:^(DataQueryResponse *response, NSError *error)
      {
-         EXECUTE_BLOCK(callback, response.noticeListList, error);
+         EXECUTE_BLOCK(callback, response.noticeList, error);
      }];
 }
 
@@ -449,7 +449,7 @@ static GroupService *_staticGroupService = nil;
           parameters:paras
             callback:^(DataQueryResponse *response, NSError *error)
      {
-         EXECUTE_BLOCK(callback, response.noticeListList, error);
+         EXECUTE_BLOCK(callback, response.noticeList, error);
      }];
 }
 
@@ -482,7 +482,7 @@ static GroupService *_staticGroupService = nil;
 {
     [self loadPBData:METHOD_SYNC_FOLLOWED_TOPICIDS parameters:nil callback:^(DataQueryResponse *response, NSError *error) {
         if (!error) {
-            [_groupManager syncFollowedTopicIds:response.idListList];
+            [_groupManager syncFollowedTopicIds:response.idList];
         }
     }];
 }
@@ -530,7 +530,7 @@ static GroupService *_staticGroupService = nil;
           parameters:paras
             callback:^(DataQueryResponse *response, NSError *error)
      {
-         EXECUTE_BLOCK(callback, response.bbsPostList, error);
+         EXECUTE_BLOCK(callback, response.bbsPost, error);
      }];
 }
 
@@ -545,7 +545,7 @@ static GroupService *_staticGroupService = nil;
           parameters:paras
             callback:^(DataQueryResponse *response, NSError *error)
      {
-         EXECUTE_BLOCK(callback, response.bbsPostList, error);
+         EXECUTE_BLOCK(callback, response.bbsPost, error);
      }];
 }
 
@@ -559,7 +559,7 @@ static GroupService *_staticGroupService = nil;
           parameters:paras
             callback:^(DataQueryResponse *response, NSError *error)
      {
-         EXECUTE_BLOCK(callback, response.bbsPostList, error);
+         EXECUTE_BLOCK(callback, response.bbsPost, error);
      }];
 
 }
@@ -578,7 +578,7 @@ static GroupService *_staticGroupService = nil;
           parameters:dict
             callback:^(DataQueryResponse *response, NSError *error)
      {
-         EXECUTE_BLOCK(callback, response.badgesList, error);
+         EXECUTE_BLOCK(callback, response.badges, error);
      }];
 }
 
@@ -751,9 +751,9 @@ static GroupService *_staticGroupService = nil;
     [self loadPBData:METHOD_GET_USERS_BYTITLE
           parameters:info
             callback:^(DataQueryResponse *response, NSError *error) {
-                NSArray *list = response.groupMemberListList;
+                NSArray *list = response.groupMemberList;
                 if ([list count] > 1) {
-                    list = [response.groupMemberListList sortedArrayUsingComparator:^NSComparisonResult(id obj1, id obj2) {
+                    list = [response.groupMemberList sortedArrayUsingComparator:^NSComparisonResult(id obj1, id obj2) {
                         PBGroupUsersByTitle *t1 = obj1;
                         PBGroupUsersByTitle *t2 = obj2;
                         if (t1.title.titleId < t2.title.titleId) {
@@ -840,8 +840,8 @@ static GroupService *_staticGroupService = nil;
             callback:^(DataQueryResponse *response, NSError *error )
      {
          if (!error) {
-             PPDebug(@"<syncGroupRoles> roles list count = %d", [response.groupRoleList count]);
-             [GroupPermissionManager syncGroupRoles:response.groupRoleList];
+             PPDebug(@"<syncGroupRoles> roles list count = %d", [response.groupRole count]);
+             [GroupPermissionManager syncGroupRoles:response.groupRole];
          }
      }];
 }

@@ -85,15 +85,16 @@
     }
 }
 
-- (void)setPointsWithPointComponent:(NSArray *)pointComponent
+- (void)setPointsWithPointComponent:(PBArray *)pointComponent
 {
-    CGFloat startX = [[pointComponent objectAtIndex:0] floatValue];
-    CGFloat startY = [[pointComponent objectAtIndex:1] floatValue];
+    CGFloat startX = [pointComponent floatAtIndex:0];
+    CGFloat startY = [pointComponent floatAtIndex:1];
     self.startPoint = CGPointMake(startX, startY);
     
-    CGFloat endX = [[pointComponent objectAtIndex:2] floatValue];
-    CGFloat endY = [[pointComponent objectAtIndex:3] floatValue];
-    self.endPoint = CGPointMake(endX, endY);    
+    CGFloat endX = [pointComponent floatAtIndex:2];
+    CGFloat endY = [pointComponent floatAtIndex:3];
+
+    self.endPoint = CGPointMake(endX, endY);
 }
 
 - (void)setEndPoint:(CGPoint)endPoint
@@ -160,13 +161,13 @@
     return [NSArray arrayWithObjects:@(start.x), @(start.y), @(end.x), @(end.y), nil];
 }
 
-- (void)updatePBDrawActionBuilder:(PBDrawAction_Builder *)builder
+- (void)updatePBDrawActionBuilder:(PBDrawActionBuilder *)builder
 {
     [builder setBetterColor:[self.color toBetterCompressColor]];
     [builder setPenType:self.penType];
     [builder setShapeType:self.type];
     [builder setShapeStroke:_stroke];
-    [builder addAllRectComponent:self.rectComponent];
+    [builder setRectComponentArray:self.rectComponent];
     [builder setWidth:self.width];
 }
 

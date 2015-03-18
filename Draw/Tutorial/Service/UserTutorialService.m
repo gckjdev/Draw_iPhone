@@ -98,7 +98,7 @@ static UserTutorialService* _defaultService;
                           parameters:para
                             callback:^(DataQueryResponse *response, NSError *error) {
                                 
-                                NSArray* retUserTutorialList = response.userTutorialsList;
+                                NSArray* retUserTutorialList = response.userTutorials;
                                 if (error == nil){
                                     // success
                                     if(retUserTutorialList!=nil){
@@ -299,12 +299,12 @@ static UserTutorialService* _defaultService;
 {
     PPSmartUpdateData* smartData = [self getSmartData:tutorialId stageId:stage.stageId];
     NSString* imageName = nil;
-    if (currentChapterIndex >= [stage.chapterList count]){
+    if (currentChapterIndex >= [stage.chapter count]){
         // TODO use stage image name by default?
         return nil;
     }
     else{
-        PBChapter* chapter = [stage.chapterList objectAtIndex:currentChapterIndex];
+        PBChapter* chapter = [stage.chapter objectAtIndex:currentChapterIndex];
         imageName = chapter.imageName;
     }
     
@@ -564,15 +564,15 @@ static UserTutorialService* _defaultService;
         return userTutorial;
     }
 
-    PBUserTutorial_Builder* builder = [PBUserTutorial builderWithPrototype:userTutorial];
+    PBUserTutorialBuilder* builder = [PBUserTutorial builderWithPrototype:userTutorial];
     int newStageIndex = userTutorial.currentStageIndex + 1;
-    if (newStageIndex >= [tutorial.stagesList count]){
+    if (newStageIndex >= [tutorial.stages count]){
         // reach final stage, set status to COMPLETE
         [builder setStatus:PBUserTutorialStatusUtStatusComplete];
     }
     else{
         // increase stage index, and set stageId
-        PBStage* stage = [tutorial.stagesList objectAtIndex:newStageIndex];
+        PBStage* stage = [tutorial.stages objectAtIndex:newStageIndex];
         [builder setCurrentStageId:stage.stageId];
         [builder setCurrentStageIndex:newStageIndex];
     }
@@ -663,9 +663,9 @@ static UserTutorialService* _defaultService;
                                                                                      stageId:stageId
                                                                                   stageIndex:stageIndex];
     
-    if (newUT && stageIndex < [newUT.userStagesList count]){
+    if (newUT && stageIndex < [newUT.userStages count]){
         
-        PBUserStage* userStage = [newUT.userStagesList objectAtIndex:stageIndex];
+        PBUserStage* userStage = [newUT.userStages objectAtIndex:stageIndex];
         
         // enter offline draw view controller
         [OfflineDrawViewController practice:fromController userStage:userStage userTutorial:newUT];
@@ -687,8 +687,8 @@ static UserTutorialService* _defaultService;
                                                                                     stageId:stageId
                                                                                  stageIndex:stageIndex];
     
-    if (newUT && stageIndex < [newUT.userStagesList count]){
-        PBUserStage* userStage = [newUT.userStagesList objectAtIndex:stageIndex];
+    if (newUT && stageIndex < [newUT.userStages count]){
+        PBUserStage* userStage = [newUT.userStages objectAtIndex:stageIndex];
         
         // enter offline draw view controller
         [OfflineDrawViewController conquer:fromController

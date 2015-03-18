@@ -50,7 +50,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(SongManager);
     [_smartData checkUpdateAndDownload:^(BOOL isAlreadyExisted, NSString *dataFilePath) {
         PPDebug(@"getIngotsList successfully");
         NSData *data = [NSData dataWithContentsOfFile:dataFilePath];
-        NSArray *songsList = [[PBSongList parseFromData:data] songsList];
+        NSArray *songsList = [[PBSongList parseFromData:data] songs];
         [bself.songsDic removeAllObjects];
         for (PBSong *song in songsList) {
             [bself.songsDic setObject:song forKey:song.songId];
@@ -59,7 +59,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(SongManager);
     } failureBlock:^(NSError *error) {
         PPDebug(@"getIngotsList failure error=%@", [error description]);
         NSData *data = [NSData dataWithContentsOfFile:bself.smartData.dataFilePath];
-        NSArray *songsList = [[PBSongList parseFromData:data] songsList];
+        NSArray *songsList = [[PBSongList parseFromData:data] songs];
         [bself.songsDic removeAllObjects];
         for (PBSong *song in songsList) {
             [bself.songsDic setObject:song forKey:song.songId];
@@ -99,7 +99,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(SongManager);
     NSMutableArray *songs = [NSMutableArray arrayWithCapacity:count];
     for (NSString *key in [_songsDic allKeys]) {
         PBSong *song = [_songsDic objectForKey:key];
-        if ([song.tagList containsObject:tag]) {
+        if ([song.tag containsObject:tag]) {
             [songs addObject:song];
         }
     }
@@ -156,7 +156,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(SongManager);
         [self.songsDic setObject:song forKey:song.songId];
     }
     
-//    PBSongList_Builder *builer = [[[PBSongList_Builder alloc] init] autorelease];
+//    PBSongListBuilder *builer = [[[PBSongListBuilder alloc] init] autorelease];
 //    [builer addAllSongs:songs];
 //    PBSongList *list = [builer build];
 //    [[list data] writeToFile:SONGS_FILE_PATH atomically:YES];
@@ -172,12 +172,12 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(SongManager);
     static int uuid = 0;
     uuid ++;
     
-    PBSong_Builder *builder = [[[PBSong_Builder alloc] init] autorelease];
+    PBSongBuilder *builder = [[[PBSongBuilder alloc] init] autorelease];
     [builder setSongId:[NSString stringWithInt:uuid]];
     [builder setName:name];
     [builder setAuthor:author];
     [builder setLyric:lyric];
-    [builder addAllTag:tag];
+    [builder setTagArray:tag];
     return [builder build];
 }
 

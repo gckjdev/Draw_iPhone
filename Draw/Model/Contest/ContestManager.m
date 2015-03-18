@@ -68,7 +68,7 @@ static ContestManager *_staticContestManager;
     
     @try {
         PBContestList* list = [PBContestList parseFromData:data];
-        [self.ongoingContestList addObjectsFromArray:[list contestsList]];
+        [self.ongoingContestList addObjectsFromArray:[list contests]];
         PPDebug(@"<loadOngoingContestList> total %d contest loaded", [self.ongoingContestList count]);
     }
     @catch (NSException *exception) {
@@ -86,7 +86,7 @@ static ContestManager *_staticContestManager;
         [self.ongoingContestList addObjectsFromArray:newList];
     }
     
-    PBContestList_Builder* builder = [PBContestList builder];
+    PBContestListBuilder* builder = [PBContestList builder];
     for (PBContest* contest in self.ongoingContestList){
         [builder addContests:contest];
     }
@@ -155,7 +155,7 @@ static ContestManager *_staticContestManager;
 {
     for (PBContest *contest in _allContestList) {
         if ([contest.contestId isEqualToString:contestId]) {
-            for (PBGameUser *user in contest.judgesList) {
+            for (PBGameUser *user in contest.judges) {
                 if ([user.userId isEqualToString:userId]) {
                     return YES;
                 }
@@ -168,7 +168,7 @@ static ContestManager *_staticContestManager;
 {
     for (PBContest *contest in _allContestList) {
         if ([contest.contestId isEqualToString:contestId]) {
-            for (PBGameUser *user in contest.reportersList) {
+            for (PBGameUser *user in contest.reporters) {
                 if ([user.userId isEqualToString:userId]) {
                     return YES;
                 }

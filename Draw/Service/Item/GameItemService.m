@@ -98,7 +98,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GameItemService);
 + (PBItemPriceInfo *)currency:(PBGameCurrency)currency
                         price:(int)price
 {
-    PBItemPriceInfo_Builder *priceInfoBuilder = [[PBItemPriceInfo_Builder alloc] init];
+    PBItemPriceInfoBuilder *priceInfoBuilder = [[PBItemPriceInfoBuilder alloc] init];
     [priceInfoBuilder setCurrency:currency];
     [priceInfoBuilder setPrice:price];
     PBItemPriceInfo *priceInfo = [priceInfoBuilder build];
@@ -110,7 +110,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GameItemService);
                  startDate:(NSDate *)startDate
                 expireDate:(NSDate *)expireDate
 {
-    PBPromotionInfo_Builder *promotionInfoBuilder = [[PBPromotionInfo_Builder alloc] init];
+    PBPromotionInfoBuilder *promotionInfoBuilder = [[PBPromotionInfoBuilder alloc] init];
     [promotionInfoBuilder setPrice:price];
     [promotionInfoBuilder setStartDate:[startDate timeIntervalSince1970]];
     [promotionInfoBuilder setExpireDate:[expireDate  timeIntervalSince1970]];
@@ -339,7 +339,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GameItemService);
 
 
     
-    PBGameItemList_Builder* listBuilder = [[PBGameItemList_Builder alloc] init];
+    PBGameItemListBuilder* listBuilder = [[PBGameItemListBuilder alloc] init];
     [listBuilder addAllItems:mutableArray];
     PBGameItemList *list = [listBuilder build];
     
@@ -379,7 +379,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GameItemService);
                                            price:20
                                         currency:PBGameCurrencyCoin]];
     
-    PBGameItemList_Builder* listBuilder = [[PBGameItemList_Builder alloc] init];
+    PBGameItemListBuilder* listBuilder = [[PBGameItemListBuilder alloc] init];
     [listBuilder addAllItems:mutableArray];
     PBGameItemList *list = [listBuilder build];
     
@@ -1305,7 +1305,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GameItemService);
                                              url:@"http://a.m.taobao.com/i19191213826.htm"]];
      */
     
-    PBGameItemList_Builder* listBuilder = [[PBGameItemList_Builder alloc] init];
+    PBGameItemListBuilder* listBuilder = [[PBGameItemListBuilder alloc] init];
     [listBuilder addAllItems:mutableArray];
     PBGameItemList *list = [listBuilder build];
     
@@ -1607,7 +1607,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GameItemService);
      
      */
     
-    PBGameItemList_Builder* listBuilder = [[PBGameItemList_Builder alloc] init];
+    PBGameItemListBuilder* listBuilder = [[PBGameItemListBuilder alloc] init];
     [listBuilder addAllItems:mutableArray];
     PBGameItemList *list = [listBuilder build];
     
@@ -1779,7 +1779,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GameItemService);
                  usageLifeUnit:(PBGameTimeUnit)usageLifeUnit
                      usageLife:(int)usageLife;
 {
-    PBGameItem_Builder *builder = [[[PBGameItem_Builder alloc] init] autorelease];
+    PBGameItemBuilder *builder = [[[PBGameItemBuilder alloc] init] autorelease];
     [builder setItemId:itemId];
     [builder setName:name];
     [builder setDesc:desc];

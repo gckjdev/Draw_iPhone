@@ -157,7 +157,7 @@
 
 - (PBPoint *)toPBPoint
 {
-    PBPoint_Builder *builder = [[PBPoint_Builder alloc] init];
+    PBPointBuilder *builder = [[PBPointBuilder alloc] init];
 //    [builder clear];
     [builder setX:self.x];
     [builder setY:self.y];

@@ -84,7 +84,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(UserGameItemManager);
 
 - (void)save
 {
-    PBUserItemList_Builder *builder = [[[PBUserItemList_Builder alloc] init] autorelease];
+    PBUserItemListBuilder *builder = [[[PBUserItemListBuilder alloc] init] autorelease];
     if (self.itemsList != nil){
         [builder addAllUserItems:self.itemsList];
     }

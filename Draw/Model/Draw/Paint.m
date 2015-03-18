@@ -135,19 +135,30 @@
     if (self && gameMessage) {
         NSInteger intColor = [[gameMessage notification] color];
         CGFloat lineWidth = [[gameMessage notification] width];        
-        NSArray *pointList = [[gameMessage notification] pointsList];
+        PBArray *pointList = [[gameMessage notification] points];
         self.width = lineWidth;
 
         self.penType = [[gameMessage notification] penType];
         self.color = [DrawUtils decompressIntDrawColor:intColor];
-//        _pointNodeList = [[NSMutableArray alloc] init];
         _hPointList = [[HPointList alloc] init];
-        for (NSNumber *pointNumber in pointList) {
-            CGPoint point = [DrawUtils decompressIntPoint:[pointNumber integerValue]];
+        
+//        for (NSNumber *pointNumber in pointList) {
+//            CGPoint point = [DrawUtils decompressIntPoint:[pointNumber integerValue]];
+//
+//            //this may be wrong, need test.... By Gamy
+//            [self addPoint:point inRect:[CanvasRect defaultRect]];
+//        }
 
+        NSInteger pointNumber = 0;
+        for (int i=0; i<pointList.count; i++) {
+            pointNumber = [pointList int32AtIndex:i];
+            CGPoint point = [DrawUtils decompressIntPoint:pointNumber];
+            
             //this may be wrong, need test.... By Gamy
             [self addPoint:point inRect:[CanvasRect defaultRect]];
         }
+
+        
         [_hPointList complete];
     }
     return self;
@@ -289,7 +300,7 @@
     [_hPointList createPointXList:pointXList pointYList:pointYList];
 }
 
-- (void)updatePBDrawActionBuilder:(PBDrawAction_Builder *)builder
+- (void)updatePBDrawActionBuilder:(PBDrawActionBuilder *)builder
 {
     if ([self pointCount] != 0) {
         NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
@@ -297,8 +308,8 @@
         NSMutableArray *pointXList = nil;
         NSMutableArray *pointYList = nil;
         [self createPointXList:&pointXList pointYList:&pointYList];
-        [builder addAllPointsX:pointXList];
-        [builder addAllPointsY:pointYList];
+        [builder setPointsXArray:pointXList];
+        [builder setPointsYArray:pointYList];
         
         [pool drain];
     }
@@ -309,7 +320,7 @@
 
 - (void)updatePBDrawActionC:(Game__PBDrawAction*)pbDrawActionC
 {
-    int count = [self pointCount];
+    NSUInteger count = [self pointCount];
     if (count > 0) {
         
         pbDrawActionC->pointsx = malloc(sizeof(float)*count);

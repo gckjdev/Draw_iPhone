@@ -82,11 +82,11 @@
         [avatar setGender:NO];
         [avatar setHidden:YES];
     }
-    for (int i = 0; i < session.usersList.count; i ++) {
+    for (int i = 0; i < session.users.count; i ++) {
         
         AvatarView* avatar = (AvatarView*)[self viewWithTag:(i + TAG_USER_VIEW)];
 //        [avatar setAsRound];
-        PBGameUser* user = [session.usersList objectAtIndex:i];
+        PBGameUser* user = [session.users objectAtIndex:i];
         [avatar setUserId:user.userId];
         [avatar setAvatarUrl:user.avatar gender:user.gender];
         avatar.delegate = self;

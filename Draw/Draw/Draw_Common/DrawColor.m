@@ -156,7 +156,7 @@
 
 - (PBColor *)toPBColor
 {
-    PBColor_Builder *builder = [[PBColor_Builder alloc] init];
+    PBColorBuilder *builder = [[PBColorBuilder alloc] init];
     [builder setRed:self.red];
     [builder setGreen:self.green];
     [builder setBlue:self.blue];

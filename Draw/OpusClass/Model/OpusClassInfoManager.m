@@ -99,7 +99,7 @@ static OpusClassInfoManager* _defaultOpusClassInfoManager;
         [classInfo clearSubClasses];
         
         // add sub class
-        NSArray* subClasses = classInfo.pbOpusClassBuilder.subClassesList;
+        NSArray* subClasses = classInfo.pbOpusClassBuilder.subClasses;
         for (int i=0; i<subClasses.count; i++){
             PBClass* subClass = [subClasses objectAtIndex:i];
             OpusClassInfo* subClassFound = [self getOpusClassInfoById:subClass.classId inList:list];

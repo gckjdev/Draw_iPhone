@@ -51,7 +51,7 @@ typedef enum{
 
 //@class PBShapeInfo;
 @class DrawColor;
-@class PBDrawAction_Builder;
+@class PBDrawActionBuilder;
 
 @interface ShapeInfo : NSObject
 {
@@ -82,11 +82,11 @@ typedef enum{
 
 - (void)drawInContext:(CGContextRef)context;
 - (CGRect)rect;
-- (void)setPointsWithPointComponent:(NSArray *)pointComponent;
+- (void)setPointsWithPointComponent:(PBArray *)pointComponent;
 - (void)setPointsWithPointComponentC:(float*)floatList listCount:(int)listCount;
 - (NSArray *)rectComponent;
 - (CGRect)redrawRect;
-- (void)updatePBDrawActionBuilder:(PBDrawAction_Builder *)builder;
+- (void)updatePBDrawActionBuilder:(PBDrawActionBuilder *)builder;
 - (void)updatePBDrawActionC:(Game__PBDrawAction*)pbDrawActionC;
 
 - (CGPathRef)path;

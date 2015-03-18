@@ -82,7 +82,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(SongCategoryManager);
 
 
 //+ (NSArray *)createTestData{
-//    PBSongCategoryList_Builder *builder = [[[PBSongCategoryList_Builder alloc] init] autorelease];
+//    PBSongCategoryListBuilder *builder = [[[PBSongCategoryListBuilder alloc] init] autorelease];
 //    
 ////    [builder addAllCategorys:[NSArray arrayWithObjects:[self hot], [self mood], nil]];
 //    
@@ -92,7 +92,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(SongCategoryManager);
 //}
 
 //+ (PBSongCategory *)hot{
-//    PBSongCategory_Builder *builder = [[[PBSongCategory_Builder alloc] init] autorelease];
+//    PBSongCategoryBuilder *builder = [[[PBSongCategoryBuilder alloc] init] autorelease];
 //    [builder setCategoryId:1];
 //    [builder setName:@"热门"];
 //    
@@ -113,7 +113,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(SongCategoryManager);
 //}
 //
 //+ (PBSongCategory *)mood{
-//    PBSongCategory_Builder *builder = [[[PBSongCategory_Builder alloc] init] autorelease];
+//    PBSongCategoryBuilder *builder = [[[PBSongCategoryBuilder alloc] init] autorelease];
 //    [builder setCategoryId:2];
 //    [builder setName:@"心情"];
 //    
@@ -138,7 +138,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(SongCategoryManager);
 //
 //+ (PBSongTag *)songTagWithId:(int)tagId
 //                        name:(NSString *)name{
-//    PBSongTag_Builder *builder = [[[PBSongTag_Builder alloc] init] autorelease];
+//    PBSongTagBuilder *builder = [[[PBSongTagBuilder alloc] init] autorelease];
 //    [builder setTagId:tagId];
 //    [builder setTagName:name];
 //    return [builder build];

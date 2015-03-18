@@ -21,7 +21,7 @@
         self.contestScore = [pbFeed contestScore];
         self.contestId = [pbFeed contestId];
         self.wordText = NSLS(@"kContestOpus");
-        self.rankInfoList = pbFeed.rankInfoList;
+        self.rankInfoList = pbFeed.rankInfo;
     }
     return self;
 }

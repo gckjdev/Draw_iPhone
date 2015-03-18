@@ -159,7 +159,7 @@ enum{
 //    [self setDefaultBGImage];
     [super viewDidLoad];
     self.tutorialCellInfoHeight = [self insertTheCellHeight];
-    self.dataList = self.pbTutorial.stagesList;
+    self.dataList = self.pbTutorial.stages;
     
 }
 -(void)viewWillAppear:(BOOL)animated{
@@ -237,7 +237,7 @@ forRowAtIndexPath:(NSIndexPath *)indexPath
         }
         
         if(_pbTutorial!=nil){
-              NSArray* pbStageList = _pbTutorial.stagesList;
+              NSArray* pbStageList = _pbTutorial.stages;
         
         //数组越界保护
         if(pbStageList!=nil && row<[pbStageList count] && row >= 0.00){

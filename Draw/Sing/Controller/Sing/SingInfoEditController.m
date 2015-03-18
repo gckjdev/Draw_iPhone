@@ -93,8 +93,8 @@
         [self.tagsHolderView addSubview:button];
     }
     
-    for (int index = 0; index < [self.opus.pbOpus.tagsList count]; index ++) {
-        NSString *tag = [self.opus.pbOpus.tagsList objectAtIndex:index];
+    for (int index = 0; index < [self.opus.pbOpus.tags count]; index ++) {
+        NSString *tag = [self.opus.pbOpus.tags objectAtIndex:index];
         [self setTagButtonSelectWithTitle:tag];
     }
     

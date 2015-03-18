@@ -79,7 +79,7 @@
 }
 
 + (PBOpus *)createTestOpus{
-    PBOpus_Builder *builder = [[[PBOpus_Builder alloc] init] autorelease];
+    PBOpusBuilder *builder = [[[PBOpusBuilder alloc] init] autorelease];
     
     [builder setOpusId:@"512c971de4b02d50d0d20376"];
     [builder setCategory:PBOpusCategoryTypeSingCategory];
@@ -93,7 +93,7 @@
     [builder setStatus:0];
     
     
-    PBGameUser_Builder *authorBuilder = [[[PBGameUser_Builder alloc] init] autorelease];
+    PBGameUserBuilder *authorBuilder = [[[PBGameUserBuilder alloc] init] autorelease];
     [authorBuilder setUserId:@"xxx"];
     [authorBuilder setNickName:@"老老头"];
     [authorBuilder setAvatar:@"http://h.hiphotos.baidu.com/album/w%3D1280%3Bcrop%3D0%2C0%2C1280%2C800/sign=84bd2cae4e4a20a4311e38c5a862a341/728da9773912b31b77fab9958718367adbb4e1fc.jpg"];
@@ -103,7 +103,7 @@
     
     [builder addAllFeedTimes:[self feedTimesList]];
     
-    PBGameUser_Builder *toUserBuilder = [[[PBGameUser_Builder alloc] init] autorelease];
+    PBGameUserBuilder *toUserBuilder = [[[PBGameUserBuilder alloc] init] autorelease];
     [toUserBuilder setUserId:@"xxx"];
     [toUserBuilder setNickName:@"甘米"];
     [builder setTargetUser:[toUserBuilder build]];
@@ -122,7 +122,7 @@
 }
 
 + (PBFeedTimes *)feedTimesWithType:(PBFeedTimesType)type value:(int)value{
-    PBFeedTimes_Builder *builder = [[[PBFeedTimes_Builder alloc] init] autorelease];
+    PBFeedTimesBuilder *builder = [[[PBFeedTimesBuilder alloc] init] autorelease];
     [builder setType:type];
     [builder setValue:value];
 
@@ -140,7 +140,7 @@
 //}
 //
 //+ (PBActionTimes *)actionTimesWithType:(PBOpusActionType)type name:(NSString *)name value:(int)value{
-//    PBActionTimes_Builder *builder = [[[PBActionTimes_Builder alloc] init] autorelease];
+//    PBActionTimesBuilder *builder = [[[PBActionTimesBuilder alloc] init] autorelease];
 //    [builder setType:type];
 //    [builder setName:name];
 //    [builder setValue:value];
@@ -165,7 +165,7 @@
     [opus setAppId:[GameApp appId]];
     
     // set author information
-    PBGameUser_Builder* userBuilder = [[PBGameUser_Builder alloc] init];
+    PBGameUserBuilder* userBuilder = [[PBGameUserBuilder alloc] init];
     [userBuilder setUserId:[_userManager userId]];
     [userBuilder setNickName:[_userManager nickName]];
     [userBuilder setAvatar:[_userManager avatarURL]];
@@ -179,7 +179,7 @@
 - (void)setAuthorInfo:(Opus*)opus
 {
     // set author information
-    PBGameUser_Builder* userBuilder = [[PBGameUser_Builder alloc] init];
+    PBGameUserBuilder* userBuilder = [[PBGameUserBuilder alloc] init];
     [userBuilder setUserId:[_userManager userId]];
     [userBuilder setNickName:[_userManager nickName]];
     [userBuilder setAvatar:[_userManager avatarURL]];

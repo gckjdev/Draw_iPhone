@@ -81,6 +81,9 @@
 		362330B21AB91C7F00BFCD35 /* WireFormat.m in Sources */ = {isa = PBXBuildFile; fileRef = 3623306F1AB91C7F00BFCD35 /* WireFormat.m */; };
 		362330B31AB91C7F00BFCD35 /* WireFormat.m in Sources */ = {isa = PBXBuildFile; fileRef = 3623306F1AB91C7F00BFCD35 /* WireFormat.m */; };
 		362330B41AB91C7F00BFCD35 /* WireFormat.m in Sources */ = {isa = PBXBuildFile; fileRef = 3623306F1AB91C7F00BFCD35 /* WireFormat.m */; };
+		362E78E31AB943B400E5F2D5 /* GTMBase64.m in Sources */ = {isa = PBXBuildFile; fileRef = 362E78E21AB943B400E5F2D5 /* GTMBase64.m */; };
+		362E78E41AB943B400E5F2D5 /* GTMBase64.m in Sources */ = {isa = PBXBuildFile; fileRef = 362E78E21AB943B400E5F2D5 /* GTMBase64.m */; };
+		362E78E51AB943B400E5F2D5 /* GTMBase64.m in Sources */ = {isa = PBXBuildFile; fileRef = 362E78E21AB943B400E5F2D5 /* GTMBase64.m */; };
 		36B4205F1AA75E2700F8A9B1 /* AlipaySDK.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 36B41FFD1AA75E2700F8A9B1 /* AlipaySDK.bundle */; };
 		36B420601AA75E2700F8A9B1 /* AlipaySDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 36B41FFE1AA75E2700F8A9B1 /* AlipaySDK.framework */; };
 		36B420611AA75E2800F8A9B1 /* libcrypto.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 36B41FFF1AA75E2700F8A9B1 /* libcrypto.a */; };
@@ -8375,6 +8378,7 @@
 		3623306D1AB91C7F00BFCD35 /* Utilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Utilities.m; sourceTree = "<group>"; };
 		3623306E1AB91C7F00BFCD35 /* WireFormat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WireFormat.h; sourceTree = "<group>"; };
 		3623306F1AB91C7F00BFCD35 /* WireFormat.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WireFormat.m; sourceTree = "<group>"; };
+		362E78E21AB943B400E5F2D5 /* GTMBase64.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GTMBase64.m; sourceTree = "<group>"; };
 		36B41FFD1AA75E2700F8A9B1 /* AlipaySDK.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = AlipaySDK.bundle; sourceTree = "<group>"; };
 		36B41FFE1AA75E2700F8A9B1 /* AlipaySDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AlipaySDK.framework; sourceTree = "<group>"; };
 		36B41FFF1AA75E2700F8A9B1 /* libcrypto.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libcrypto.a; sourceTree = "<group>"; };
@@ -15027,6 +15031,7 @@
 		CA103D5D1509A56100F60C03 /* Encoding */ = {
 			isa = PBXGroup;
 			children = (
+				362E78E21AB943B400E5F2D5 /* GTMBase64.m */,
 				CA103D5E1509A56100F60C03 /* GTMBase64.h */,
 				CA103D601509A56100F60C03 /* GTMDefines.h */,
 			);
@@ -24245,6 +24250,7 @@
 				A461B11B174CBAA70088B061 /* GameSessionUser.m in Sources */,
 				A461B11C174CBAA70088B061 /* GameTurn.m in Sources */,
 				A461B11D174CBAA70088B061 /* GamePlayResult.m in Sources */,
+				362E78E51AB943B400E5F2D5 /* GTMBase64.m in Sources */,
 				A461B11E174CBAA70088B061 /* GameUserComment.m in Sources */,
 				A461B11F174CBAA70088B061 /* SelectWordCell.m in Sources */,
 				CA2A28E2195C1E6200A97478 /* AllTutorialController.m in Sources */,
@@ -25197,6 +25203,7 @@
 				CA0174FB194055FD005E4390 /* OpusClassInfo.m in Sources */,
 				C28A9A181738F04B007A819F /* ShareController.m in Sources */,
 				C28A9A1C1738F04B007A819F /* MyPaint.m in Sources */,
+				362E78E41AB943B400E5F2D5 /* GTMBase64.m in Sources */,
 				C28A9A1D1738F04B007A819F /* MyPaintManager.m in Sources */,
 				C28A9A1F1738F04B007A819F /* ShareImageManager.m in Sources */,
 				CAA581C2197BC24800599740 /* ImageSimilarityEngine.mm in Sources */,
@@ -26117,6 +26124,7 @@
 				C2E662611521B91900487601 /* ReportController.m in Sources */,
 				CA0174FA194055FD005E4390 /* OpusClassInfo.m in Sources */,
 				CA4216281522A0F400FAA008 /* SKProduct+LocalizedPrice.m in Sources */,
+				362E78E31AB943B400E5F2D5 /* GTMBase64.m in Sources */,
 				C2E6628215230B3F00487601 /* ShareController.m in Sources */,
 				CA13772D15245AAB00B5790B /* MyPaint.m in Sources */,
 				CA13773015245AE700B5790B /* MyPaintManager.m in Sources */,

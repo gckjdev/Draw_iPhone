@@ -210,8 +210,9 @@ CGPoint contentOffset;
 {
     if (self.delegate && [self.delegate respondsToSelector:@selector(shapeGroupCell:didSelectedShape:)]) {
         NSInteger index = sender.tag - 1;
-        NSNumber *type = [self.group.shapeTypeList objectAtIndex:index];
-        [self.delegate shapeGroupCell:self didSelectedShape:type.integerValue];
+//        NSNumber *type = [self.group.shapeType objectAtIndex:index];
+        int type = [self.group.shapeType int32AtIndex:index];
+        [self.delegate shapeGroupCell:self didSelectedShape:type];
     }
 }
 
@@ -297,8 +298,12 @@ CGPoint contentOffset;
     self.group = group;
     NSInteger i = 1;
     [self updateName:group];
-    for (NSNumber *type in group.shapeTypeList) {
+    
+//    for (NSNumber *type in group.shapeType) {
+    for (int index=0; index<group.shapeType.count; index++) {
 
+        int type = [group.shapeType int32AtIndex:index];
+        
         UIButton *button = (UIButton *)[self viewWithTag:i];
 
         for (CAShapeLayer *layer in button.layer.sublayers) {
@@ -307,7 +312,7 @@ CGPoint contentOffset;
             }
         }
         
-        UIBezierPath * path = [[ImageShapeManager defaultManager] pathWithType:type.integerValue];
+        UIBezierPath * path = [[ImageShapeManager defaultManager] pathWithType:type];
         
         CGSize shapeSize = [ImageShapeInfo defaultImageShapeSize];
         const CGAffineTransform transform = (CGAffineTransformMakeScale(CGRectGetWidth(button.bounds)/shapeSize.width, CGRectGetHeight(button.bounds)/shapeSize.height));

@@ -50,7 +50,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GalleryService)
     NSString* userId = [[UserManager defaultManager] userId];
 //    NSString* appId = [PPConfigManager appId];
     
-    PBUserPhoto_Builder* builder = [PBUserPhoto builder];    
+    PBUserPhotoBuilder* builder = [PBUserPhoto builder];    
     [builder setName:name];
     [builder setUrl:photoUrl];
     [builder setUserId:userId];
@@ -166,7 +166,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GalleryService)
     NSString* appId = [PPConfigManager appId];
 //    NSString* tagArrayString = [self tagArrayStringBySet:tagSet];
     
-    PBUserPhoto_Builder* builder = [PBUserPhoto builderWithPrototype:protoPhoto];
+    PBUserPhotoBuilder* builder = [PBUserPhoto builderWithPrototype:protoPhoto];
     
     [builder setName:name];
     [builder setUrl:photoUrl];

@@ -65,7 +65,7 @@ static DrawDataService* _defaultDrawDataService = nil;
                 }
                 
                 DataQueryResponse *travelResponse = [DataQueryResponse parseFromData:output.responseData];
-                list = [travelResponse drawDataList];
+                list = [travelResponse drawData];
             }
             if ([viewController respondsToSelector:@selector(didFindRecentDraw:result:)]){
                 [viewController didFindRecentDraw:list result:output.resultCode];
@@ -104,7 +104,7 @@ static DrawDataService* _defaultDrawDataService = nil;
 
             if (output.resultCode == ERROR_SUCCESS && [output.responseData length] > 0) {
                 DataQueryResponse *response = [DataQueryResponse parseFromData:output.responseData];
-                NSArray *list = [response feedList];
+                NSArray *list = [response feed];
                 PBFeed *pbFeed = ([list count] != 0) ? [list objectAtIndex:0] : nil;
                 if (pbFeed && (pbFeed.actionType == FeedTypeDraw || pbFeed.actionType == FeedTypeDrawToUser)) {
                     
@@ -181,7 +181,7 @@ static DrawDataService* _defaultDrawDataService = nil;
             
             if (output.resultCode == ERROR_SUCCESS && [output.responseData length] > 0) {
                 DataQueryResponse *response = [DataQueryResponse parseFromData:output.responseData];
-                NSArray *list = [response feedList];
+                NSArray *list = [response feed];
                 PBFeed *pbFeed = ([list count] > 0) ? [list objectAtIndex:0] : nil;
                 if (pbFeed != nil){
                     feed = [[[DrawFeed alloc] initWithPBFeed:pbFeed] autorelease];
@@ -219,7 +219,7 @@ static DrawDataService* _defaultDrawDataService = nil;
                   size:(CGSize)size
           isCompressed:(BOOL)isCompressed
 {
-    PBDraw_Builder* builder = [[PBDraw_Builder alloc] init];
+    PBDrawBuilder* builder = [[PBDrawBuilder alloc] init];
     [builder setUserId:userId];
     [builder setNickName:nick];
     [builder setAvatar:avatar];
@@ -438,7 +438,7 @@ static DrawDataService* _defaultDrawDataService = nil;
                 if (output.resultCode == 0){
                     
                     // update current user stage status
-                    PBUserStage_Builder* userStageBuilder = [PBUserStage builderWithPrototype:userStage];
+                    PBUserStageBuilder* userStageBuilder = [PBUserStage builderWithPrototype:userStage];
                     [userStageBuilder setLastOpusId:lastOpusId];
                     [userStageBuilder setLastScore:lastOpusScore];
                     [userStageBuilder setBestOpusId:bestOpusId];
@@ -590,7 +590,7 @@ static DrawDataService* _defaultDrawDataService = nil;
                       image:(UIImage*)image
                    delegate:(id<DrawDataServiceDelegate>)delegate
 {
-    if ([pbDraw.drawDataList count] == 0) {
+    if ([pbDraw.drawData count] == 0) {
         PPDebug(@"<savePaintWithPBDraw>:actionList has no object");
         return NO;
     }else if(image == nil){

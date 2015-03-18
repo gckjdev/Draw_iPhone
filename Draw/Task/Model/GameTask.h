@@ -13,7 +13,7 @@
 
 @interface GameTask : NSObject
 
-@property (nonatomic, retain) PBTask_Builder *taskBuilder;
+@property (nonatomic, retain) PBTaskBuilder *taskBuilder;
 
 @property (nonatomic, readonly) int taskId;
 @property (nonatomic, readonly) NSString* name;

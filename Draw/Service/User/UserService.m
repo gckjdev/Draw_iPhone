@@ -837,7 +837,7 @@ static UserService* _defaultUserService;
         facebookExpireDate = [NSDate dateWithTimeIntervalSince1970:facebookExpireTime];
     */
      
-    NSArray* snsCredentials = pbUser.snsCredentialsList;
+    NSArray* snsCredentials = pbUser.snsCredentials;
     if ([snsCredentials count] == 0){
         return;
     }
@@ -891,7 +891,7 @@ static UserService* _defaultUserService;
         [_accountManager updateBalance:user.ingotBalance currency:PBGameCurrencyIngot];
         
         // sync user item from server
-        [[UserGameItemManager defaultManager] setUserItemList:user.itemsList];
+        [[UserGameItemManager defaultManager] setUserItemList:user.items];
     }
     @catch (NSException *exception) {
     }
@@ -935,7 +935,7 @@ static UserService* _defaultUserService;
         [_accountManager updateBalance:user.ingotBalance currency:PBGameCurrencyIngot];
         
         // sync user item from server
-        [[UserGameItemManager defaultManager] setUserItemList:user.itemsList];
+        [[UserGameItemManager defaultManager] setUserItemList:user.items];
     }
     @catch (NSException *exception) {
         resultCode = ERROR_CLIENT_PARSE_DATA;
@@ -1829,7 +1829,7 @@ POSTMSG(NSLS(@"kLoginFailure"));
     NSString* appId = [PPConfigManager appId];
     NSString* userId = [[UserManager defaultManager] userId];
     
-    PBGameUser_Builder* builder = [PBGameUser builderWithPrototype:pbUser];
+    PBGameUserBuilder* builder = [PBGameUser builderWithPrototype:pbUser];
     
     // set extra info like device model, etc
     NSString* deviceToken = [[UserManager defaultManager] deviceToken];
@@ -2452,7 +2452,7 @@ POSTMSG(NSLS(@"kLoginFailure"));
         dispatch_async(dispatch_get_main_queue(), ^{
             
             if (output.resultCode == ERROR_SUCCESS && output.pbResponse.user){
-                [[UserManager defaultManager] setOffGroupIds:output.pbResponse.user.offGroupIdsList];
+                [[UserManager defaultManager] setOffGroupIds:output.pbResponse.user.offGroupIds];
             }
             
             EXECUTE_BLOCK(resultBlock, output.resultCode);

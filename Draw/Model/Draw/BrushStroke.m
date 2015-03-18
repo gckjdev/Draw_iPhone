@@ -477,7 +477,7 @@
 }
 
 
-- (void)updatePBDrawActionBuilder:(PBDrawAction_Builder *)builder
+- (void)updatePBDrawActionBuilder:(PBDrawActionBuilder *)builder
 {
     if ([self pointCount] != 0) {
         NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];

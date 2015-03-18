@@ -237,7 +237,7 @@ CGPoint boxContentOffset;
 
 - (void)updateName:(PBDrawBgGroup *)group
 {
-    NSArray *list = group.nameList;
+    NSArray *list = group.name;
     NSString *name = nil;
     if ([LocaleUtils isChinese]) {
         name = [self nameInList:list language:@"zh_Hans"];
@@ -268,7 +268,7 @@ CGPoint boxContentOffset;
     self.group = group;
     NSInteger i = 1;
     [self updateName:group];
-    for (PBDrawBg *bg in group.drawBgsList) {
+    for (PBDrawBg *bg in group.drawBgs) {
         UIImage *image = [bg localThumb];
         UIButton *button = (UIButton *)[self viewWithTag:i];
         if (image) {

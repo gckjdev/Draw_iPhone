@@ -11,7 +11,7 @@
 
 @interface OpusClassInfo : NSObject
 
-@property (nonatomic,retain) PBClass_Builder* pbOpusClassBuilder;
+@property (nonatomic,retain) PBClassBuilder* pbOpusClassBuilder;
 
 @property (nonatomic, retain) OpusClassInfo* parentClassInfo;
 @property (nonatomic, retain) NSMutableArray* subClassList;

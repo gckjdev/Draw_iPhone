@@ -108,7 +108,7 @@
 {
     self = [self init];
     if (self) {
-        PBGameUser_Builder* builder = [PBGameUser builder];
+        PBGameUserBuilder* builder = [PBGameUser builder];
         [builder setUserId:userId];
         [builder setAvatar:avatar];
         [builder setNickName:nickName];
@@ -478,7 +478,7 @@
 - (void)viewBBSPost:(PPViewController*)controller
 {
     PPDebug(@"<viewBBSPost> view user post");
-    PBBBSUser_Builder* builder = [PBBBSUser builder];
+    PBBBSUserBuilder* builder = [PBBBSUser builder];
     [builder setUserId:[[self getUser] userId]];
     [builder setNickName:[[self getUser] nickName]];
     PBBBSUser* user = [builder build];

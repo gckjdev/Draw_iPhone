@@ -108,7 +108,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(WallService);
         if (resultCode == ERROR_SUCCESS) {
             @try {
                 DataQueryResponse *response = [DataQueryResponse parseFromData:output.responseData];
-                wallList = response.wallListList;
+                wallList = response.wallList;
                 resultCode = response.resultCode;
             }
             @catch (NSException *exception) {

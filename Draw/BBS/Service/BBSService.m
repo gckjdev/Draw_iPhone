@@ -158,7 +158,7 @@ BBSService *_staticGroupTopicService;
                                  gender:(NSString*)gender
                                  avatar:(NSString*)avatar
 {
-    PBBBSUser_Builder *builder = [[PBBBSUser_Builder alloc] init];
+    PBBBSUserBuilder *builder = [[PBBBSUserBuilder alloc] init];
     [builder setUserId:userId];
     [builder setNickName:nickName];
     [builder setGender:([gender isEqualToString:@"m"] ? YES : NO)];
@@ -179,7 +179,7 @@ BBSService *_staticGroupTopicService;
                                opusCategory:(int)opusCategory
 
 {
-    PBBBSContent_Builder *builder = [[PBBBSContent_Builder alloc] init];
+    PBBBSContentBuilder *builder = [[PBBBSContentBuilder alloc] init];
     [builder setType:type];
     [builder setText:text];
     [builder setImageUrl:imageUrl];
@@ -198,7 +198,7 @@ BBSService *_staticGroupTopicService;
     if (bonus <= 0) {
         return nil;
     }
-    PBBBSReward_Builder *builder = [[PBBBSReward_Builder alloc] init];
+    PBBBSRewardBuilder *builder = [[PBBBSRewardBuilder alloc] init];
     [builder setBonus:bonus];
     [builder setStatus:RewardStatusOn];
     PBBBSReward *reward = [builder build];
@@ -224,7 +224,7 @@ BBSService *_staticGroupTopicService;
                            opusCategory:(int)opusCategory
                                   bonus:(NSInteger)bonus
 {
-    PBBBSPost_Builder *builder = [[PBBBSPost_Builder alloc] init];
+    PBBBSPostBuilder *builder = [[PBBBSPostBuilder alloc] init];
     [builder setPostId:postId];
     [builder setBoardId:boardId];
     [builder setAppId:appId];
@@ -270,7 +270,7 @@ BBSService *_staticGroupTopicService;
 //        [pbDrawActionList addObject:pbAction];
 //    }
 //    if ([pbDrawActionList count] != 0) {
-//        PBBBSDraw_Builder *builder = [[PBBBSDraw_Builder alloc] init];
+//        PBBBSDrawBuilder *builder = [[PBBBSDrawBuilder alloc] init];
 //        [builder addAllDrawActionList:pbDrawActionList];
 //        [builder setVersion:[PPConfigManager currentDrawDataVersion]];
 //        [builder setCanvasSize:CGSizeToPBSize(size)];
@@ -290,7 +290,7 @@ BBSService *_staticGroupTopicService;
                                         actionType:(BBSActionType)actionType
                                          briefText:(NSString *)briefText
 {
-    PBBBSActionSource_Builder *builder = [[PBBBSActionSource_Builder alloc] init];
+    PBBBSActionSourceBuilder *builder = [[PBBBSActionSourceBuilder alloc] init];
     builder.postId = postId;
     [builder setPostUid:postUid];
     if ([actionId length] > 0) {
@@ -332,7 +332,7 @@ BBSService *_staticGroupTopicService;
                          sourceBriefText:(NSString *)sourceBriefText
 
 {
-    PBBBSAction_Builder *builder = [[PBBBSAction_Builder alloc] init];
+    PBBBSActionBuilder *builder = [[PBBBSActionBuilder alloc] init];
     [builder setActionId:actionId];
     [builder setType:type];
     [builder setDeviceType:deviceType];
@@ -390,7 +390,7 @@ BBSService *_staticGroupTopicService;
                 if (output.resultCode == ERROR_SUCCESS && [output.responseData length] > 0) {
                     DataQueryResponse *response = [DataQueryResponse parseFromData:output.responseData];
                     resultCode = [response resultCode];
-                    list = [response bbsBoardList];
+                    list = [response bbsBoard];
                     [[BBSManager defaultManager] setBoardList:list];
                 }
             }
@@ -593,7 +593,7 @@ BBSService *_staticGroupTopicService;
             DataQueryResponse *response = [DataQueryResponse parseFromData:output.responseData];
             resultCode = [response resultCode];
             if (resultCode == ERROR_SUCCESS) {
-                NSArray *list = [response bbsPrivilegeListList];
+                NSArray *list = [response bbsPrivilegeList];
                 dispatch_async(dispatch_get_main_queue(), ^{
                     [[BBSPermissionManager defaultManager] updatePrivilegeList:list];
                 });
@@ -607,7 +607,7 @@ BBSService *_staticGroupTopicService;
 
 - (PBBBSUser *)myself
 {
-    PBBBSUser_Builder *builder = [[PBBBSUser_Builder alloc] init];
+    PBBBSUserBuilder *builder = [[PBBBSUserBuilder alloc] init];
     NSString *userId = [[UserManager defaultManager] userId];
     NSString *nickName = [[UserManager defaultManager] nickName];
     NSString *gender = [[UserManager defaultManager] gender];
@@ -650,7 +650,7 @@ BBSService *_staticGroupTopicService;
                 if (output.resultCode == ERROR_SUCCESS && [output.responseData length] > 0) {
                     DataQueryResponse *response = [DataQueryResponse parseFromData:output.responseData];
                     resultCode = [response resultCode];
-                    list = [response bbsPostList];
+                    list = [response bbsPost];
                 }
             }
             @catch (NSException *exception) {
@@ -719,7 +719,7 @@ BBSService *_staticGroupTopicService;
         
         dispatch_async(dispatch_get_main_queue(), ^{
             NSInteger resultCode = [output resultCode];
-            NSArray *list = output.pbResponse.bbsPostList;
+            NSArray *list = output.pbResponse.bbsPost;
             EXECUTE_BLOCK(handler, resultCode, list, 0);
         });
     });
@@ -754,7 +754,7 @@ BBSService *_staticGroupTopicService;
         
         dispatch_async(dispatch_get_main_queue(), ^{
             NSInteger resultCode = [output resultCode];
-            NSArray *list = output.pbResponse.bbsActionList;
+            NSArray *list = output.pbResponse.bbsAction;
             EXECUTE_BLOCK(handler, resultCode, list, 0);
         });
     });
@@ -788,7 +788,7 @@ BBSService *_staticGroupTopicService;
             NSInteger resultCode = [output resultCode];
             PBBBSPost *editedPost = post;
             if (resultCode == 0) {
-                PBBBSPost_Builder *editedPostBuilder = [PBBBSPost builderWithPrototype:post];
+                PBBBSPostBuilder *editedPostBuilder = [PBBBSPost builderWithPrototype:post];
                 editedPostBuilder.marked = YES;
                 editedPost = [editedPostBuilder build];
             }
@@ -821,7 +821,7 @@ BBSService *_staticGroupTopicService;
             NSInteger resultCode = [output resultCode];
             PBBBSPost *editedPost = post;
             if (resultCode == 0) {
-                PBBBSPost_Builder *editedPostBuilder = [PBBBSPost builderWithPrototype:post];
+                PBBBSPostBuilder *editedPostBuilder = [PBBBSPost builderWithPrototype:post];
                 editedPostBuilder.marked = NO;
                 editedPost = [editedPostBuilder build];
             }
@@ -853,7 +853,7 @@ BBSService *_staticGroupTopicService;
         
         dispatch_async(dispatch_get_main_queue(), ^{
             NSInteger resultCode = [output resultCode];
-            NSArray *list = [output.pbResponse bbsPostList];
+            NSArray *list = [output.pbResponse bbsPost];
             EXECUTE_BLOCK(handler, resultCode, list, 0);        
         });
     });
@@ -1080,7 +1080,7 @@ BBSService *_staticGroupTopicService;
             if (output.resultCode == ERROR_SUCCESS && [output.responseData length] > 0) {
                 DataQueryResponse *response = [DataQueryResponse parseFromData:output.responseData];
                 resultCode = [response resultCode];
-                list = [response bbsActionList];
+                list = [response bbsAction];
             }
         }
         @catch (NSException *exception) {
@@ -1124,7 +1124,7 @@ BBSService *_staticGroupTopicService;
             if (output.resultCode == ERROR_SUCCESS && [output.responseData length] > 0) {
                 DataQueryResponse *response = [DataQueryResponse parseFromData:output.responseData];
                 resultCode = [response resultCode];
-                list = [response bbsActionList];
+                list = [response bbsAction];
             }
         }
         @catch (NSException *exception) {
@@ -1192,7 +1192,7 @@ BBSService *_staticGroupTopicService;
             key = actionId;
         }
         PBBBSDraw *draw = [_bbsManager loadBBSDrawDataFromCacheWithKey:key];
-        if (draw != nil && [draw.drawActionListList count] > 0) {
+        if (draw != nil && [draw.drawActionList count] > 0) {
             PPDebug(@"<getBBSDrawDataWithPostId> load data from local service");
 //            NSArray *list = [draw drawActionListList];
             NSMutableArray *drawActionList = [DrawAction drawActionListFromPBBBSDraw:draw];
@@ -1282,7 +1282,7 @@ BBSService *_staticGroupTopicService;
             if (output.resultCode == ERROR_SUCCESS && [output.responseData length] > 0) {
                 DataQueryResponse *response = [DataQueryResponse parseFromData:output.responseData];
                 resultCode = [response resultCode];
-                NSArray *list = [response bbsPostList];
+                NSArray *list = [response bbsPost];
                 if ([list count] != 0) {
                     post = [response bbsPostAtIndex:0];
                 }
@@ -1388,7 +1388,7 @@ BBSService *_staticGroupTopicService;
         NSInteger resultCode = [output resultCode];
         PBBBSPost *tempPost = nil;
         if (resultCode == ERROR_SUCCESS) {
-            PBBBSPost_Builder  *builder = [PBBBSPost builderWithPrototype:post];
+            PBBBSPostBuilder  *builder = [PBBBSPost builderWithPrototype:post];
             if ([boardId length] != 0) {
                 [builder setBoardId:boardId];
             }
@@ -1435,8 +1435,8 @@ BBSService *_staticGroupTopicService;
         dispatch_async(dispatch_get_main_queue(), ^{
             PBBBSPost *retPost = nil;
             if (output.resultCode == ERROR_SUCCESS) {
-                PBBBSPost_Builder *retPostBuilder = [PBBBSPost builderWithPrototype:post];
-                PBBBSContent_Builder *contentBuilder = [PBBBSContent builderWithPrototype:post.content];
+                PBBBSPostBuilder *retPostBuilder = [PBBBSPost builderWithPrototype:post];
+                PBBBSContentBuilder *contentBuilder = [PBBBSContent builderWithPrototype:post.content];
                 [contentBuilder setText:text];
 
                 [retPostBuilder setContent:[contentBuilder build]];
@@ -1719,7 +1719,7 @@ BBSService *_staticGroupTopicService;
                             callback:^(DataQueryResponse *response, NSError *error) {
                                 [fromController hideActivity];
                                 if (error == nil){
-                                    NSArray *bbsPostList = response.bbsPostList;
+                                    NSArray *bbsPostList = response.bbsPost;
                                     if ([bbsPostList count] > 0){
                                         PBBBSPost *pbBBSPost = [bbsPostList objectAtIndex:0];
                                         PPDebug(@"<getStagePost> postId=%@ success", pbBBSPost.postId);

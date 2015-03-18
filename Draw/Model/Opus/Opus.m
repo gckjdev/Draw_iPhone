@@ -29,7 +29,7 @@
 
 - (id)init{
     if (self = [super init]) {        
-        self.pbOpusBuilder = [[[PBOpus_Builder alloc] init] autorelease];
+        self.pbOpusBuilder = [[[PBOpusBuilder alloc] init] autorelease];
     }
     
     return self;
@@ -107,7 +107,7 @@
 
 - (void)setCanvasSize:(CGSize)size{
     
-    PBSize_Builder *builder = [[[PBSize_Builder alloc] init] autorelease];
+    PBSizeBuilder *builder = [[[PBSizeBuilder alloc] init] autorelease];
     
     [builder setWidth:size.width];
     [builder setHeight:size.height];
@@ -231,8 +231,8 @@
 
 - (void)setTags:(NSArray *)tags{
     
-    [_pbOpusBuilder clearTagsList];
-    [_pbOpusBuilder addAllTags:tags];
+    [_pbOpusBuilder clearTags];
+    [_pbOpusBuilder setTagsArray:tags];
 }
 
 
@@ -327,7 +327,7 @@
 
 - (NSData *)uploadData{
     
-    PBOpus_Builder *builder = [PBOpus builderWithPrototype:self.pbOpus];
+    PBOpusBuilder *builder = [PBOpus builderWithPrototype:self.pbOpus];
     [builder clearImage];
     [builder clearLocalDataUrl];
     [builder clearLocalImageUrl];
@@ -432,7 +432,7 @@
 
 - (BOOL)hasSameTagsToTags:(NSArray *)tags{
     
-    NSArray *arr = self.pbOpus.tagsList;
+    NSArray *arr = self.pbOpus.tags;
     if ([arr count] != [tags count]) {
         return NO;
     }

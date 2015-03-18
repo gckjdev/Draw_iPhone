@@ -238,7 +238,7 @@ FeedManager *_staticFeedManager = nil;
         NSData *data = [_feedListStoreManager dataForKey:key];
         @try {
             DataQueryResponse *response = [DataQueryResponse parseFromData:data];
-            NSArray *feedList = response.feedList;
+            NSArray *feedList = response.feed;
             return [FeedManager parsePbFeedList:feedList];
         }
         @catch (NSException *exception) {

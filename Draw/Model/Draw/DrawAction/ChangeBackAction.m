@@ -107,7 +107,7 @@
 
 - (PBDrawAction *)toPBDrawAction
 {
-    PBDrawAction_Builder *builder = [[[PBDrawAction_Builder alloc] init] autorelease];
+    PBDrawActionBuilder *builder = [[[PBDrawActionBuilder alloc] init] autorelease];
     [builder setType:DrawActionTypeChangeBack];
     [builder setClipTag:self.clipTag];
     [builder setWidth:BACK_GROUND_WIDTH];

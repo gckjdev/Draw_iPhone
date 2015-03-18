@@ -107,7 +107,7 @@
                                       penType:action.penType
                                         width:action.width
                                         color:nil];
-        [self.shape setPointsWithPointComponent:action.rectComponentList];
+        [self.shape setPointsWithPointComponent:action.rectComponent];
         self.shape.stroke = action.shapeStroke;
         if ([action hasBetterColor]) {
             self.shape.color = [DrawColor colorWithBetterCompressColor:action.betterColor];
@@ -127,7 +127,7 @@
                                       penType:action.penType
                                         width:action.width
                                         color:nil];
-        [self.shape setPointsWithPointComponent:action.rectComponentList];
+        [self.shape setPointsWithPointComponent:action.rectComponent];
         self.shape.color = action.drawColor;
     }
     return self;
@@ -136,7 +136,7 @@
 
 - (PBDrawAction *)toPBDrawAction
 {
-    PBDrawAction_Builder *builder = [[[PBDrawAction_Builder alloc] init] autorelease];
+    PBDrawActionBuilder *builder = [[[PBDrawActionBuilder alloc] init] autorelease];
     [builder setType:DrawActionTypeShape];
     [builder setClipTag:self.clipTag];
     [self.shape updatePBDrawActionBuilder:builder];
@@ -158,7 +158,7 @@
     }
     return;
     
-//    PBDrawAction_Builder *builder = [[[PBDrawAction_Builder alloc] init] autorelease];
+//    PBDrawActionBuilder *builder = [[[PBDrawActionBuilder alloc] init] autorelease];
 //    [builder setType:DrawActionTypeShape];
 //    [self.shape updatePBDrawActionBuilder:builder];
 //    return [builder build];

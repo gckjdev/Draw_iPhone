@@ -240,7 +240,7 @@
 
 - (PBDrawAction *)toPBDrawAction
 {
-    PBDrawAction_Builder *builder = [[PBDrawAction_Builder alloc] init];
+    PBDrawActionBuilder *builder = [[PBDrawActionBuilder alloc] init];
     
     [builder setType:DrawActionTypeClip];
     [builder setClipTag:self.clipTag];

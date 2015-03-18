@@ -241,7 +241,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(IAPProductService);
     
     
     
-    PBIAPProductList_Builder *listBuilder = [[PBIAPProductList_Builder alloc] init];
+    PBIAPProductListBuilder *listBuilder = [[PBIAPProductListBuilder alloc] init];
     [listBuilder addAllProducts:mutableArray];
     PBIAPProductList *list = [listBuilder build];
     
@@ -310,7 +310,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(IAPProductService);
     
     
     
-    PBIAPProductList_Builder *listBuilder = [[PBIAPProductList_Builder alloc] init];
+    PBIAPProductListBuilder *listBuilder = [[PBIAPProductListBuilder alloc] init];
     [listBuilder addAllProducts:mutableArray];
     PBIAPProductList *list = [listBuilder build];
     
@@ -455,7 +455,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(IAPProductService);
 //                             ]];
     
     
-    PBIAPProductList_Builder *listBuilder = [[PBIAPProductList_Builder alloc] init];
+    PBIAPProductListBuilder *listBuilder = [[PBIAPProductListBuilder alloc] init];
     [listBuilder addAllProducts:mutableArray];
     PBIAPProductList *list = [listBuilder build];
     
@@ -563,7 +563,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(IAPProductService);
                                           taobaoUrl:nil
                                           priceList:priceList]];
     
-    PBIAPProductList_Builder *listBuilder = [[PBIAPProductList_Builder alloc] init];
+    PBIAPProductListBuilder *listBuilder = [[PBIAPProductListBuilder alloc] init];
     [listBuilder addAllProducts:mutableArray];
     PBIAPProductList *list = [listBuilder build];
     
@@ -641,7 +641,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(IAPProductService);
                                           taobaoUrl:INGOT_84_TAOBAO_URL
                                           priceList:priceList]];
     
-    PBIAPProductList_Builder *listBuilder = [[PBIAPProductList_Builder alloc] init];
+    PBIAPProductListBuilder *listBuilder = [[PBIAPProductListBuilder alloc] init];
     [listBuilder addAllProducts:mutableArray];
     PBIAPProductList *list = [listBuilder build];
     
@@ -720,7 +720,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(IAPProductService);
                                           taobaoUrl:INGOT_84_TAOBAO_URL
                                           priceList:priceList]];
     
-    PBIAPProductList_Builder *listBuilder = [[PBIAPProductList_Builder alloc] init];
+    PBIAPProductListBuilder *listBuilder = [[PBIAPProductListBuilder alloc] init];
     [listBuilder addAllProducts:mutableArray];
     PBIAPProductList *list = [listBuilder build];
     
@@ -798,7 +798,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(IAPProductService);
                                           taobaoUrl:INGOT_84_TAOBAO_URL
                                           priceList:priceList]];
     
-    PBIAPProductList_Builder *listBuilder = [[PBIAPProductList_Builder alloc] init];
+    PBIAPProductListBuilder *listBuilder = [[PBIAPProductListBuilder alloc] init];
     [listBuilder addAllProducts:mutableArray];
     PBIAPProductList *list = [listBuilder build];
     
@@ -876,7 +876,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(IAPProductService);
                                           taobaoUrl:INGOT_84_TAOBAO_URL
                                           priceList:priceList]];
     
-    PBIAPProductList_Builder *listBuilder = [[PBIAPProductList_Builder alloc] init];
+    PBIAPProductListBuilder *listBuilder = [[PBIAPProductListBuilder alloc] init];
     [listBuilder addAllProducts:mutableArray];
     PBIAPProductList *list = [listBuilder build];
     
@@ -969,7 +969,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(IAPProductService);
                                           taobaoUrl:INGOT_225_TAOBAO_URL
                                           priceList:priceList]];
     
-    PBIAPProductList_Builder *listBuilder = [[PBIAPProductList_Builder alloc] init];
+    PBIAPProductListBuilder *listBuilder = [[PBIAPProductListBuilder alloc] init];
     [listBuilder addAllProducts:mutableArray];
     PBIAPProductList *list = [listBuilder build];
     
@@ -1061,7 +1061,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(IAPProductService);
                                           taobaoUrl:INGOT_225_TAOBAO_URL
                                           priceList:priceList]];
     
-    PBIAPProductList_Builder *listBuilder = [[PBIAPProductList_Builder alloc] init];
+    PBIAPProductListBuilder *listBuilder = [[PBIAPProductListBuilder alloc] init];
     [listBuilder addAllProducts:mutableArray];
     PBIAPProductList *list = [listBuilder build];
     
@@ -1153,7 +1153,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(IAPProductService);
                                           taobaoUrl:INGOT_225_TAOBAO_URL
                                           priceList:priceList]];
     
-    PBIAPProductList_Builder *listBuilder = [[PBIAPProductList_Builder alloc] init];
+    PBIAPProductListBuilder *listBuilder = [[PBIAPProductListBuilder alloc] init];
     [listBuilder addAllProducts:mutableArray];
     PBIAPProductList *list = [listBuilder build];
     
@@ -1245,7 +1245,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(IAPProductService);
                                           taobaoUrl:INGOT_225_TAOBAO_URL
                                           priceList:priceList]];
     
-    PBIAPProductList_Builder *listBuilder = [[PBIAPProductList_Builder alloc] init];
+    PBIAPProductListBuilder *listBuilder = [[PBIAPProductListBuilder alloc] init];
     [listBuilder addAllProducts:mutableArray];
     PBIAPProductList *list = [listBuilder build];
     
@@ -1322,7 +1322,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(IAPProductService);
                                         taobaoUrl:ZJH_COIN_180000_TAOBAO_URL                                        priceList:priceList]];
 
     
-    PBIAPProductList_Builder *listBuilder = [[PBIAPProductList_Builder alloc] init];
+    PBIAPProductListBuilder *listBuilder = [[PBIAPProductListBuilder alloc] init];
     [listBuilder addAllProducts:mutableArray];
     PBIAPProductList *list = [listBuilder build];
     
@@ -1400,7 +1400,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(IAPProductService);
                                         taobaoUrl:DICE_COIN_180000_TAOBAO_URL
                                         priceList:priceList]];
 
-    PBIAPProductList_Builder *listBuilder = [[PBIAPProductList_Builder alloc] init];
+    PBIAPProductListBuilder *listBuilder = [[PBIAPProductListBuilder alloc] init];
     [listBuilder addAllProducts:mutableArray];
     PBIAPProductList *list = [listBuilder build];
     
@@ -1426,7 +1426,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(IAPProductService);
                              saving:(NSString *)saving
                           taobaoUrl:(NSString *)taobaoUrl
 {
-    PBIAPProduct_Builder *builder = [[[PBIAPProduct_Builder alloc] init] autorelease];
+    PBIAPProductBuilder *builder = [[[PBIAPProductBuilder alloc] init] autorelease];
     [builder setType:type];
     [builder setAppleProductId:appleProductId];
     [builder setAlipayProductId:alipayProductId];
@@ -1453,7 +1453,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(IAPProductService);
                           taobaoUrl:(NSString *)taobaoUrl
                           priceList:(NSArray*)priceList
 {
-    PBIAPProduct_Builder *builder = [[[PBIAPProduct_Builder alloc] init] autorelease];
+    PBIAPProductBuilder *builder = [[[PBIAPProductBuilder alloc] init] autorelease];
     [builder setType:type];
     [builder setAppleProductId:appleProductId];
     [builder setAlipayProductId:alipayProductId];
@@ -1481,7 +1481,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(IAPProductService);
                            saving:(NSString *)saving
                         taobaoUrl:(NSString *)taobaoUrl
 {
-    PBIAPProduct_Builder *builder = [[[PBIAPProduct_Builder alloc] init] autorelease];
+    PBIAPProductBuilder *builder = [[[PBIAPProductBuilder alloc] init] autorelease];
     [builder setType:type];
     [builder setAppleProductId:appleProductId];
     [builder setAlipayProductId:alipayProductId];
@@ -1508,7 +1508,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(IAPProductService);
                         taobaoUrl:(NSString *)taobaoUrl
                         priceList:(NSArray *)priceList
 {
-    PBIAPProduct_Builder *builder = [[[PBIAPProduct_Builder alloc] init] autorelease];
+    PBIAPProductBuilder *builder = [[[PBIAPProductBuilder alloc] init] autorelease];
     [builder setType:type];
     [builder setAppleProductId:appleProductId];
     [builder setAlipayProductId:alipayProductId];
@@ -1531,7 +1531,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(IAPProductService);
                     country:(NSString *)country
                      saving:(NSString *)saving
 {
-    PBIAPProductPrice_Builder *builder = [[[PBIAPProductPrice_Builder alloc] init] autorelease];
+    PBIAPProductPriceBuilder *builder = [[[PBIAPProductPriceBuilder alloc] init] autorelease];
     [builder setPrice:price];
     [builder setCurrency:currency];
     [builder setCountry:country];

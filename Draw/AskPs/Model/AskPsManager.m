@@ -16,16 +16,16 @@
 
 + (PBOpus *)createTestAskPs
 {
-    PBOpus_Builder *builer  = [[[PBOpus_Builder alloc] init] autorelease];
+    PBOpusBuilder *builer  = [[[PBOpusBuilder alloc] init] autorelease];
     [builer setOpusId:[NSString GetUUID]];
     [builer setDesc:@"this is desc"];
     [builer setImage:@"http://ts3.mm.bing.net/th?id=H.4871614937760894&pid=1.7"];
-    PBAskPs_Builder *pbAskPs_builder = [[[PBAskPs_Builder alloc] init] autorelease];
-    [pbAskPs_builder addAllRequirement:[NSArray arrayWithObjects:@"求恶搞",@"霸气一点", nil]];
-    [pbAskPs_builder setAwardCoinsMaxTotal:50];
-    [pbAskPs_builder setAwardCoinsPerUser:500];
-    [pbAskPs_builder setAwardIngotBestUser:3];
-    PBAskPs *pbAskP = [pbAskPs_builder build];
+    PBAskPsBuilder *pbAskPsBuilder = [[[PBAskPsBuilder alloc] init] autorelease];
+    [pbAskPsBuilder addAllRequirement:[NSArray arrayWithObjects:@"求恶搞",@"霸气一点", nil]];
+    [pbAskPsBuilder setAwardCoinsMaxTotal:50];
+    [pbAskPsBuilder setAwardCoinsPerUser:500];
+    [pbAskPsBuilder setAwardIngotBestUser:3];
+    PBAskPs *pbAskP = [pbAskPsBuilder build];
     [builer setAskPs:pbAskP];
     return [builer build];
 }

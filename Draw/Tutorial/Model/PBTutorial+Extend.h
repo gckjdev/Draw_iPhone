@@ -50,7 +50,7 @@
 
 @end
 
-@interface PBUserStage_Builder (Extend5)
+@interface PBUserStageBuilder (Extend5)
 
 - (NSString*)getCurrentChapterOpusId;
 

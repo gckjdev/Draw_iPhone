@@ -85,7 +85,7 @@
 {
     PPDebug(@"<oldMessageWithPBMessage> invoke");
     PPMessage *message = nil;
-    if ([[pbMessage drawDataList] count] != 0) {
+    if ([[pbMessage drawData] count] != 0) {
         message = [[[PPMessage alloc] initWithPBMessage:pbMessage] autorelease];
         message.messageType = MessageTypeDraw;
     }else{
@@ -98,7 +98,7 @@
 
 + (id)messageWithPBMessage:(PBMessage *)pbMessage
 {
-    if ([pbMessage hasType] == NO || [[pbMessage drawDataList] count] != 0) {
+    if ([pbMessage hasType] == NO || [[pbMessage drawData] count] != 0) {
         return [PPMessage oldMessageWithPBMessage:pbMessage];
     }
     else{
@@ -121,7 +121,7 @@
 {
     self = [super init];
     if (self){
-        _messageBuilder = [[PBMessage_Builder alloc] init];
+        _messageBuilder = [[PBMessageBuilder alloc] init];
 
         PPDebug(@"init empty message");        
     }
@@ -156,7 +156,7 @@
     }
     
     // for draw
-    if ([pbMessage.drawDataList count] > 0){
+    if ([pbMessage.drawData count] > 0){
         self.drawActionList = [DrawAction drawActionListFromPBMessage:pbMessage];
     }
     
@@ -397,7 +397,7 @@
         PPRelease(_drawActionList);
         _drawActionList = [drawActionList retain];
         
-        [_messageBuilder clearDrawDataList];
+        [_messageBuilder clearDrawData];
         if ([_drawActionList count] != 0) {
             for (DrawAction *action in _drawActionList) {
                 NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
@@ -430,7 +430,7 @@
     
     // TODO this may cause some performance issues, to be checked
     // create draw actions
-    [_messageBuilder clearDrawDataList];
+    [_messageBuilder clearDrawData];
     if ([self.drawActionList count] != 0) {
         for (DrawAction *action in self.drawActionList) {
             NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
