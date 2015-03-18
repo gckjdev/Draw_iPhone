@@ -86,7 +86,7 @@
     
     // add all users
     [self.userList removeAllObjects];
-    for (PBGameUser* user in [pbSession usersList]){
+    for (PBGameUser* user in [pbSession users]){
         GameSessionUser* sessionUser = [GameSessionUser fromPBUser:user];
         [self.userList addObject:sessionUser];
     }
@@ -129,7 +129,7 @@
     
     // add all users
     [session.userList removeAllObjects];
-    for (PBGameUser* user in [pbSession usersList]){
+    for (PBGameUser* user in [pbSession users]){
         GameSessionUser* sessionUser = [GameSessionUser fromPBUser:user];
         [session.userList addObject:sessionUser];
     }
@@ -167,7 +167,7 @@
                   gender:[notification userGender]
                 location:[notification location]
                userLevel:[notification userLevel]
-             snsUserData:[notification snsUsersList]];
+             snsUserData:[notification snsUsers]];
     }
     
     NSString* quitUserId = [notification quitUserId];

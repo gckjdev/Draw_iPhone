@@ -71,7 +71,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GameItemService);
 {
     @try {
         NSData *data = [NSData dataWithContentsOfFile:path];
-        NSArray *itemsList = [[PBGameItemList parseFromData:data] itemsList];
+        NSArray *itemsList = [[PBGameItemList parseFromData:data] items];
         [[GameItemManager defaultManager] setItemsList:itemsList];
     }
     @catch (NSException *exception) {
@@ -84,7 +84,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GameItemService);
 {
     @try {
         NSData *data = [NSData dataWithContentsOfFile:filePath];
-        NSArray *itemsList = [[PBGameItemList parseFromData:data] itemsList];
+        NSArray *itemsList = [[PBGameItemList parseFromData:data] items];
         return itemsList;
         
     }

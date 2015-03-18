@@ -372,7 +372,7 @@ static UserManager* _defaultManager;
 
 - (NSArray*)snsUserData
 {
-    return [_pbUser snsUsersList];
+    return [_pbUser snsUsers];
 
 }
 

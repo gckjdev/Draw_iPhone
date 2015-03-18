@@ -159,7 +159,7 @@
 
 - (BOOL)isSNSBtnVisable:(int)snsType
 {
-    return [SNSUtils hasSNSType:snsType inpbSnsUserArray:[[self getUser] snsUsersList]];
+    return [SNSUtils hasSNSType:snsType inpbSnsUserArray:[[self getUser] snsUsers]];
 }
 
 - (PBGameUser*)getUser

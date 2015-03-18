@@ -183,7 +183,7 @@ static GameNetworkClient* _defaultGameNetworkClient;
 {
     SendDrawDataRequestBuilder *requestBuilder = [[[SendDrawDataRequestBuilder alloc] init] autorelease];
     [requestBuilder setColor:color];
-    [requestBuilder addAllPoints:pointList];
+    [requestBuilder setPointsArray:pointList];
     [requestBuilder setWidth:width];
     [requestBuilder setPenType:penType];
     
@@ -259,7 +259,7 @@ static GameNetworkClient* _defaultGameNetworkClient;
         [requestBuilder setContent:content];
     }
     if (toUserList != nil){
-        [requestBuilder addAllToUserId:toUserList];
+        [requestBuilder setToUserIdArray:toUserList];
     }
     
     [requestBuilder setChatType:chatType];

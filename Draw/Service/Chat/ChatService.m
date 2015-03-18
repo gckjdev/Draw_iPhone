@@ -62,7 +62,7 @@ static ChatService *_chatService = nil;
         if (output.resultCode == ERROR_SUCCESS){
             @try{
                 DataQueryResponse *drawResponse = [DataQueryResponse parseFromData:output.responseData];
-                NSArray *stats = [drawResponse messageStatList];
+                NSArray *stats = [drawResponse messageStat];
                 messageStatList = [PPMessageManager parseMessageStatList:stats];
                 
             }@catch (NSException *exception){
@@ -114,7 +114,7 @@ static ChatService *_chatService = nil;
             
             @try{
                 DataQueryResponse *travelResponse = [DataQueryResponse parseFromData:output.responseData];
-                NSArray *mList = [travelResponse messageList];
+                NSArray *mList = [travelResponse message];
                 messageList = [PPMessageManager parseMessageList:mList];
                 
             }@catch (NSException *exception){
@@ -257,7 +257,7 @@ static ChatService *_chatService = nil;
                 
                 @try{
                     DataQueryResponse *travelResponse = [DataQueryResponse parseFromData:output.responseData];
-                    NSArray *mList = [travelResponse messageList];
+                    NSArray *mList = [travelResponse message];
                     messageList = [PPMessageManager parseMessageListAndReverse:mList];
                     
                 }@catch (NSException *exception){

@@ -37,7 +37,7 @@
     user.nickName = [pbUser nickName];
     user.userAvatar = [pbUser avatar]; 
     user.gender = [pbUser gender];
-    user.snsUserData = [pbUser snsUsersList];
+    user.snsUserData = [pbUser snsUsers];
     user.location = [pbUser location];
     user.level = [pbUser userLevel];
     return user;

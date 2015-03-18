@@ -81,7 +81,6 @@
 		362330B21AB91C7F00BFCD35 /* WireFormat.m in Sources */ = {isa = PBXBuildFile; fileRef = 3623306F1AB91C7F00BFCD35 /* WireFormat.m */; };
 		362330B31AB91C7F00BFCD35 /* WireFormat.m in Sources */ = {isa = PBXBuildFile; fileRef = 3623306F1AB91C7F00BFCD35 /* WireFormat.m */; };
 		362330B41AB91C7F00BFCD35 /* WireFormat.m in Sources */ = {isa = PBXBuildFile; fileRef = 3623306F1AB91C7F00BFCD35 /* WireFormat.m */; };
-		362E78E31AB943B400E5F2D5 /* GTMBase64.m in Sources */ = {isa = PBXBuildFile; fileRef = 362E78E21AB943B400E5F2D5 /* GTMBase64.m */; };
 		362E78E41AB943B400E5F2D5 /* GTMBase64.m in Sources */ = {isa = PBXBuildFile; fileRef = 362E78E21AB943B400E5F2D5 /* GTMBase64.m */; };
 		362E78E51AB943B400E5F2D5 /* GTMBase64.m in Sources */ = {isa = PBXBuildFile; fileRef = 362E78E21AB943B400E5F2D5 /* GTMBase64.m */; };
 		36B4205F1AA75E2700F8A9B1 /* AlipaySDK.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 36B41FFD1AA75E2700F8A9B1 /* AlipaySDK.bundle */; };
@@ -26124,7 +26123,6 @@
 				C2E662611521B91900487601 /* ReportController.m in Sources */,
 				CA0174FA194055FD005E4390 /* OpusClassInfo.m in Sources */,
 				CA4216281522A0F400FAA008 /* SKProduct+LocalizedPrice.m in Sources */,
-				362E78E31AB943B400E5F2D5 /* GTMBase64.m in Sources */,
 				C2E6628215230B3F00487601 /* ShareController.m in Sources */,
 				CA13772D15245AAB00B5790B /* MyPaint.m in Sources */,
 				CA13773015245AE700B5790B /* MyPaintManager.m in Sources */,
