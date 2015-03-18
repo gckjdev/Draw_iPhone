@@ -2,26 +2,41 @@
 
 #import "ProtocolBuffers.h"
 
+// @@protoc_insertion_point(imports)
+
 @class PBSingOpus;
-@class PBSingOpus_Builder;
+@class PBSingOpusBuilder;
 @class PBSong;
+@class PBSongBuilder;
 @class PBSongCategory;
+@class PBSongCategoryBuilder;
 @class PBSongCategoryList;
-@class PBSongCategoryList_Builder;
-@class PBSongCategory_Builder;
+@class PBSongCategoryListBuilder;
 @class PBSongList;
-@class PBSongList_Builder;
-@class PBSong_Builder;
-typedef enum {
+@class PBSongListBuilder;
+#ifndef __has_feature
+  #define __has_feature(x) 0 // Compatibility with non-clang compilers.
+#endif // __has_feature
+
+#ifndef NS_RETURNS_NOT_RETAINED
+  #if __has_feature(attribute_ns_returns_not_retained)
+    #define NS_RETURNS_NOT_RETAINED __attribute__((ns_returns_not_retained))
+  #else
+    #define NS_RETURNS_NOT_RETAINED
+  #endif
+#endif
+
+typedef NS_ENUM(SInt32, PBVoiceType) {
   PBVoiceTypeVoiceTypeOrigin = 0,
   PBVoiceTypeVoiceTypeTomCat = 1,
   PBVoiceTypeVoiceTypeMale = 2,
   PBVoiceTypeVoiceTypeFemale = 3,
   PBVoiceTypeVoiceTypeDuck = 4,
   PBVoiceTypeVoiceTypeChild = 5,
-} PBVoiceType;
+};
 
 BOOL PBVoiceTypeIsValidValue(PBVoiceType value);
+NSString *NSStringFromPBVoiceType(PBVoiceType value);
 
 
 @interface SingRoot : NSObject {
@@ -30,25 +45,26 @@ BOOL PBVoiceTypeIsValidValue(PBVoiceType value);
 + (void) registerAllExtensions:(PBMutableExtensionRegistry*) registry;
 @end
 
-@interface PBSongCategory : PBGeneratedMessage {
+@interface PBSongCategory : PBGeneratedMessage<GeneratedMessageProtocol> {
 @private
   BOOL hasName_:1;
   NSString* name;
-  NSMutableArray* mutableSongTagsList;
+  NSMutableArray * songTagsArray;
 }
 - (BOOL) hasName;
-@property (readonly, retain) NSString* name;
-- (NSArray*) songTagsList;
-- (NSString*) songTagsAtIndex:(int32_t) index;
+@property (readonly, strong) NSString* name;
+@property (readonly, strong) NSArray * songTags;
+- (NSString*)songTagsAtIndex:(NSUInteger)index;
 
-+ (PBSongCategory*) defaultInstance;
-- (PBSongCategory*) defaultInstance;
++ (instancetype) defaultInstance;
+- (instancetype) defaultInstance;
 
 - (BOOL) isInitialized;
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
-- (PBSongCategory_Builder*) builder;
-+ (PBSongCategory_Builder*) builder;
-+ (PBSongCategory_Builder*) builderWithPrototype:(PBSongCategory*) prototype;
+- (PBSongCategoryBuilder*) builder;
++ (PBSongCategoryBuilder*) builder;
++ (PBSongCategoryBuilder*) builderWithPrototype:(PBSongCategory*) prototype;
+- (PBSongCategoryBuilder*) toBuilder;
 
 + (PBSongCategory*) parseFromData:(NSData*) data;
 + (PBSongCategory*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
@@ -58,51 +74,51 @@ BOOL PBVoiceTypeIsValidValue(PBVoiceType value);
 + (PBSongCategory*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 @end
 
-@interface PBSongCategory_Builder : PBGeneratedMessage_Builder {
+@interface PBSongCategoryBuilder : PBGeneratedMessageBuilder {
 @private
-  PBSongCategory* result;
+  PBSongCategory* resultPbsongCategory;
 }
 
 - (PBSongCategory*) defaultInstance;
 
-- (PBSongCategory_Builder*) clear;
-- (PBSongCategory_Builder*) clone;
+- (PBSongCategoryBuilder*) clear;
+- (PBSongCategoryBuilder*) clone;
 
 - (PBSongCategory*) build;
 - (PBSongCategory*) buildPartial;
 
-- (PBSongCategory_Builder*) mergeFrom:(PBSongCategory*) other;
-- (PBSongCategory_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
-- (PBSongCategory_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+- (PBSongCategoryBuilder*) mergeFrom:(PBSongCategory*) other;
+- (PBSongCategoryBuilder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
+- (PBSongCategoryBuilder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 
 - (BOOL) hasName;
 - (NSString*) name;
-- (PBSongCategory_Builder*) setName:(NSString*) value;
-- (PBSongCategory_Builder*) clearName;
+- (PBSongCategoryBuilder*) setName:(NSString*) value;
+- (PBSongCategoryBuilder*) clearName;
 
-- (NSArray*) songTagsList;
-- (NSString*) songTagsAtIndex:(int32_t) index;
-- (PBSongCategory_Builder*) replaceSongTagsAtIndex:(int32_t) index with:(NSString*) value;
-- (PBSongCategory_Builder*) addSongTags:(NSString*) value;
-- (PBSongCategory_Builder*) addAllSongTags:(NSArray*) values;
-- (PBSongCategory_Builder*) clearSongTagsList;
+- (NSMutableArray *)songTags;
+- (NSString*)songTagsAtIndex:(NSUInteger)index;
+- (PBSongCategoryBuilder *)addSongTags:(NSString*)value;
+- (PBSongCategoryBuilder *)setSongTagsArray:(NSArray *)array;
+- (PBSongCategoryBuilder *)clearSongTags;
 @end
 
-@interface PBSongCategoryList : PBGeneratedMessage {
+@interface PBSongCategoryList : PBGeneratedMessage<GeneratedMessageProtocol> {
 @private
-  NSMutableArray* mutableCategorysList;
+  NSMutableArray * categorysArray;
 }
-- (NSArray*) categorysList;
-- (PBSongCategory*) categorysAtIndex:(int32_t) index;
+@property (readonly, strong) NSArray * categorys;
+- (PBSongCategory*)categorysAtIndex:(NSUInteger)index;
 
-+ (PBSongCategoryList*) defaultInstance;
-- (PBSongCategoryList*) defaultInstance;
++ (instancetype) defaultInstance;
+- (instancetype) defaultInstance;
 
 - (BOOL) isInitialized;
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
-- (PBSongCategoryList_Builder*) builder;
-+ (PBSongCategoryList_Builder*) builder;
-+ (PBSongCategoryList_Builder*) builderWithPrototype:(PBSongCategoryList*) prototype;
+- (PBSongCategoryListBuilder*) builder;
++ (PBSongCategoryListBuilder*) builder;
++ (PBSongCategoryListBuilder*) builderWithPrototype:(PBSongCategoryList*) prototype;
+- (PBSongCategoryListBuilder*) toBuilder;
 
 + (PBSongCategoryList*) parseFromData:(NSData*) data;
 + (PBSongCategoryList*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
@@ -112,32 +128,31 @@ BOOL PBVoiceTypeIsValidValue(PBVoiceType value);
 + (PBSongCategoryList*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 @end
 
-@interface PBSongCategoryList_Builder : PBGeneratedMessage_Builder {
+@interface PBSongCategoryListBuilder : PBGeneratedMessageBuilder {
 @private
-  PBSongCategoryList* result;
+  PBSongCategoryList* resultPbsongCategoryList;
 }
 
 - (PBSongCategoryList*) defaultInstance;
 
-- (PBSongCategoryList_Builder*) clear;
-- (PBSongCategoryList_Builder*) clone;
+- (PBSongCategoryListBuilder*) clear;
+- (PBSongCategoryListBuilder*) clone;
 
 - (PBSongCategoryList*) build;
 - (PBSongCategoryList*) buildPartial;
 
-- (PBSongCategoryList_Builder*) mergeFrom:(PBSongCategoryList*) other;
-- (PBSongCategoryList_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
-- (PBSongCategoryList_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+- (PBSongCategoryListBuilder*) mergeFrom:(PBSongCategoryList*) other;
+- (PBSongCategoryListBuilder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
+- (PBSongCategoryListBuilder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 
-- (NSArray*) categorysList;
-- (PBSongCategory*) categorysAtIndex:(int32_t) index;
-- (PBSongCategoryList_Builder*) replaceCategorysAtIndex:(int32_t) index with:(PBSongCategory*) value;
-- (PBSongCategoryList_Builder*) addCategorys:(PBSongCategory*) value;
-- (PBSongCategoryList_Builder*) addAllCategorys:(NSArray*) values;
-- (PBSongCategoryList_Builder*) clearCategorysList;
+- (NSMutableArray *)categorys;
+- (PBSongCategory*)categorysAtIndex:(NSUInteger)index;
+- (PBSongCategoryListBuilder *)addCategorys:(PBSongCategory*)value;
+- (PBSongCategoryListBuilder *)setCategorysArray:(NSArray *)array;
+- (PBSongCategoryListBuilder *)clearCategorys;
 @end
 
-@interface PBSong : PBGeneratedMessage {
+@interface PBSong : PBGeneratedMessage<GeneratedMessageProtocol> {
 @private
   BOOL hasSongId_:1;
   BOOL hasName_:1;
@@ -149,29 +164,30 @@ BOOL PBVoiceTypeIsValidValue(PBVoiceType value);
   NSString* author;
   NSString* lyric;
   NSString* lyricUrl;
-  NSMutableArray* mutableTagList;
+  NSMutableArray * tagArray;
 }
 - (BOOL) hasSongId;
 - (BOOL) hasName;
 - (BOOL) hasAuthor;
 - (BOOL) hasLyric;
 - (BOOL) hasLyricUrl;
-@property (readonly, retain) NSString* songId;
-@property (readonly, retain) NSString* name;
-@property (readonly, retain) NSString* author;
-@property (readonly, retain) NSString* lyric;
-@property (readonly, retain) NSString* lyricUrl;
-- (NSArray*) tagList;
-- (NSString*) tagAtIndex:(int32_t) index;
+@property (readonly, strong) NSString* songId;
+@property (readonly, strong) NSString* name;
+@property (readonly, strong) NSString* author;
+@property (readonly, strong) NSString* lyric;
+@property (readonly, strong) NSString* lyricUrl;
+@property (readonly, strong) NSArray * tag;
+- (NSString*)tagAtIndex:(NSUInteger)index;
 
-+ (PBSong*) defaultInstance;
-- (PBSong*) defaultInstance;
++ (instancetype) defaultInstance;
+- (instancetype) defaultInstance;
 
 - (BOOL) isInitialized;
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
-- (PBSong_Builder*) builder;
-+ (PBSong_Builder*) builder;
-+ (PBSong_Builder*) builderWithPrototype:(PBSong*) prototype;
+- (PBSongBuilder*) builder;
++ (PBSongBuilder*) builder;
++ (PBSongBuilder*) builderWithPrototype:(PBSong*) prototype;
+- (PBSongBuilder*) toBuilder;
 
 + (PBSong*) parseFromData:(NSData*) data;
 + (PBSong*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
@@ -181,71 +197,71 @@ BOOL PBVoiceTypeIsValidValue(PBVoiceType value);
 + (PBSong*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 @end
 
-@interface PBSong_Builder : PBGeneratedMessage_Builder {
+@interface PBSongBuilder : PBGeneratedMessageBuilder {
 @private
-  PBSong* result;
+  PBSong* resultPbsong;
 }
 
 - (PBSong*) defaultInstance;
 
-- (PBSong_Builder*) clear;
-- (PBSong_Builder*) clone;
+- (PBSongBuilder*) clear;
+- (PBSongBuilder*) clone;
 
 - (PBSong*) build;
 - (PBSong*) buildPartial;
 
-- (PBSong_Builder*) mergeFrom:(PBSong*) other;
-- (PBSong_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
-- (PBSong_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+- (PBSongBuilder*) mergeFrom:(PBSong*) other;
+- (PBSongBuilder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
+- (PBSongBuilder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 
 - (BOOL) hasSongId;
 - (NSString*) songId;
-- (PBSong_Builder*) setSongId:(NSString*) value;
-- (PBSong_Builder*) clearSongId;
+- (PBSongBuilder*) setSongId:(NSString*) value;
+- (PBSongBuilder*) clearSongId;
 
 - (BOOL) hasName;
 - (NSString*) name;
-- (PBSong_Builder*) setName:(NSString*) value;
-- (PBSong_Builder*) clearName;
+- (PBSongBuilder*) setName:(NSString*) value;
+- (PBSongBuilder*) clearName;
 
 - (BOOL) hasAuthor;
 - (NSString*) author;
-- (PBSong_Builder*) setAuthor:(NSString*) value;
-- (PBSong_Builder*) clearAuthor;
+- (PBSongBuilder*) setAuthor:(NSString*) value;
+- (PBSongBuilder*) clearAuthor;
 
 - (BOOL) hasLyric;
 - (NSString*) lyric;
-- (PBSong_Builder*) setLyric:(NSString*) value;
-- (PBSong_Builder*) clearLyric;
+- (PBSongBuilder*) setLyric:(NSString*) value;
+- (PBSongBuilder*) clearLyric;
 
 - (BOOL) hasLyricUrl;
 - (NSString*) lyricUrl;
-- (PBSong_Builder*) setLyricUrl:(NSString*) value;
-- (PBSong_Builder*) clearLyricUrl;
+- (PBSongBuilder*) setLyricUrl:(NSString*) value;
+- (PBSongBuilder*) clearLyricUrl;
 
-- (NSArray*) tagList;
-- (NSString*) tagAtIndex:(int32_t) index;
-- (PBSong_Builder*) replaceTagAtIndex:(int32_t) index with:(NSString*) value;
-- (PBSong_Builder*) addTag:(NSString*) value;
-- (PBSong_Builder*) addAllTag:(NSArray*) values;
-- (PBSong_Builder*) clearTagList;
+- (NSMutableArray *)tag;
+- (NSString*)tagAtIndex:(NSUInteger)index;
+- (PBSongBuilder *)addTag:(NSString*)value;
+- (PBSongBuilder *)setTagArray:(NSArray *)array;
+- (PBSongBuilder *)clearTag;
 @end
 
-@interface PBSongList : PBGeneratedMessage {
+@interface PBSongList : PBGeneratedMessage<GeneratedMessageProtocol> {
 @private
-  NSMutableArray* mutableSongsList;
+  NSMutableArray * songsArray;
 }
-- (NSArray*) songsList;
-- (PBSong*) songsAtIndex:(int32_t) index;
+@property (readonly, strong) NSArray * songs;
+- (PBSong*)songsAtIndex:(NSUInteger)index;
 
-+ (PBSongList*) defaultInstance;
-- (PBSongList*) defaultInstance;
++ (instancetype) defaultInstance;
+- (instancetype) defaultInstance;
 
 - (BOOL) isInitialized;
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
-- (PBSongList_Builder*) builder;
-+ (PBSongList_Builder*) builder;
-+ (PBSongList_Builder*) builderWithPrototype:(PBSongList*) prototype;
+- (PBSongListBuilder*) builder;
++ (PBSongListBuilder*) builder;
++ (PBSongListBuilder*) builderWithPrototype:(PBSongList*) prototype;
+- (PBSongListBuilder*) toBuilder;
 
 + (PBSongList*) parseFromData:(NSData*) data;
 + (PBSongList*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
@@ -255,32 +271,31 @@ BOOL PBVoiceTypeIsValidValue(PBVoiceType value);
 + (PBSongList*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 @end
 
-@interface PBSongList_Builder : PBGeneratedMessage_Builder {
+@interface PBSongListBuilder : PBGeneratedMessageBuilder {
 @private
-  PBSongList* result;
+  PBSongList* resultPbsongList;
 }
 
 - (PBSongList*) defaultInstance;
 
-- (PBSongList_Builder*) clear;
-- (PBSongList_Builder*) clone;
+- (PBSongListBuilder*) clear;
+- (PBSongListBuilder*) clone;
 
 - (PBSongList*) build;
 - (PBSongList*) buildPartial;
 
-- (PBSongList_Builder*) mergeFrom:(PBSongList*) other;
-- (PBSongList_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
-- (PBSongList_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+- (PBSongListBuilder*) mergeFrom:(PBSongList*) other;
+- (PBSongListBuilder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
+- (PBSongListBuilder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 
-- (NSArray*) songsList;
-- (PBSong*) songsAtIndex:(int32_t) index;
-- (PBSongList_Builder*) replaceSongsAtIndex:(int32_t) index with:(PBSong*) value;
-- (PBSongList_Builder*) addSongs:(PBSong*) value;
-- (PBSongList_Builder*) addAllSongs:(NSArray*) values;
-- (PBSongList_Builder*) clearSongsList;
+- (NSMutableArray *)songs;
+- (PBSong*)songsAtIndex:(NSUInteger)index;
+- (PBSongListBuilder *)addSongs:(PBSong*)value;
+- (PBSongListBuilder *)setSongsArray:(NSArray *)array;
+- (PBSongListBuilder *)clearSongs;
 @end
 
-@interface PBSingOpus : PBGeneratedMessage {
+@interface PBSingOpus : PBGeneratedMessage<GeneratedMessageProtocol> {
 @private
   BOOL hasDuration_:1;
   BOOL hasPitch_:1;
@@ -304,22 +319,23 @@ BOOL PBVoiceTypeIsValidValue(PBVoiceType value);
 - (BOOL) hasFormant;
 - (BOOL) hasVoiceDuration;
 - (BOOL) hasLocalNativeDataUrl;
-@property (readonly, retain) PBSong* song;
+@property (readonly, strong) PBSong* song;
 @property (readonly) PBVoiceType voiceType;
 @property (readonly) Float32 duration;
 @property (readonly) Float32 pitch;
 @property (readonly) Float32 formant;
 @property (readonly) Float32 voiceDuration;
-@property (readonly, retain) NSString* localNativeDataUrl;
+@property (readonly, strong) NSString* localNativeDataUrl;
 
-+ (PBSingOpus*) defaultInstance;
-- (PBSingOpus*) defaultInstance;
++ (instancetype) defaultInstance;
+- (instancetype) defaultInstance;
 
 - (BOOL) isInitialized;
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
-- (PBSingOpus_Builder*) builder;
-+ (PBSingOpus_Builder*) builder;
-+ (PBSingOpus_Builder*) builderWithPrototype:(PBSingOpus*) prototype;
+- (PBSingOpusBuilder*) builder;
++ (PBSingOpusBuilder*) builder;
++ (PBSingOpusBuilder*) builderWithPrototype:(PBSingOpus*) prototype;
+- (PBSingOpusBuilder*) toBuilder;
 
 + (PBSingOpus*) parseFromData:(NSData*) data;
 + (PBSingOpus*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
@@ -329,58 +345,60 @@ BOOL PBVoiceTypeIsValidValue(PBVoiceType value);
 + (PBSingOpus*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 @end
 
-@interface PBSingOpus_Builder : PBGeneratedMessage_Builder {
+@interface PBSingOpusBuilder : PBGeneratedMessageBuilder {
 @private
-  PBSingOpus* result;
+  PBSingOpus* resultPbsingOpus;
 }
 
 - (PBSingOpus*) defaultInstance;
 
-- (PBSingOpus_Builder*) clear;
-- (PBSingOpus_Builder*) clone;
+- (PBSingOpusBuilder*) clear;
+- (PBSingOpusBuilder*) clone;
 
 - (PBSingOpus*) build;
 - (PBSingOpus*) buildPartial;
 
-- (PBSingOpus_Builder*) mergeFrom:(PBSingOpus*) other;
-- (PBSingOpus_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
-- (PBSingOpus_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+- (PBSingOpusBuilder*) mergeFrom:(PBSingOpus*) other;
+- (PBSingOpusBuilder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
+- (PBSingOpusBuilder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 
 - (BOOL) hasSong;
 - (PBSong*) song;
-- (PBSingOpus_Builder*) setSong:(PBSong*) value;
-- (PBSingOpus_Builder*) setSongBuilder:(PBSong_Builder*) builderForValue;
-- (PBSingOpus_Builder*) mergeSong:(PBSong*) value;
-- (PBSingOpus_Builder*) clearSong;
+- (PBSingOpusBuilder*) setSong:(PBSong*) value;
+- (PBSingOpusBuilder*) setSongBuilder:(PBSongBuilder*) builderForValue;
+- (PBSingOpusBuilder*) mergeSong:(PBSong*) value;
+- (PBSingOpusBuilder*) clearSong;
 
 - (BOOL) hasVoiceType;
 - (PBVoiceType) voiceType;
-- (PBSingOpus_Builder*) setVoiceType:(PBVoiceType) value;
-- (PBSingOpus_Builder*) clearVoiceType;
+- (PBSingOpusBuilder*) setVoiceType:(PBVoiceType) value;
+- (PBSingOpusBuilder*) clearVoiceType;
 
 - (BOOL) hasDuration;
 - (Float32) duration;
-- (PBSingOpus_Builder*) setDuration:(Float32) value;
-- (PBSingOpus_Builder*) clearDuration;
+- (PBSingOpusBuilder*) setDuration:(Float32) value;
+- (PBSingOpusBuilder*) clearDuration;
 
 - (BOOL) hasPitch;
 - (Float32) pitch;
-- (PBSingOpus_Builder*) setPitch:(Float32) value;
-- (PBSingOpus_Builder*) clearPitch;
+- (PBSingOpusBuilder*) setPitch:(Float32) value;
+- (PBSingOpusBuilder*) clearPitch;
 
 - (BOOL) hasFormant;
 - (Float32) formant;
-- (PBSingOpus_Builder*) setFormant:(Float32) value;
-- (PBSingOpus_Builder*) clearFormant;
+- (PBSingOpusBuilder*) setFormant:(Float32) value;
+- (PBSingOpusBuilder*) clearFormant;
 
 - (BOOL) hasVoiceDuration;
 - (Float32) voiceDuration;
-- (PBSingOpus_Builder*) setVoiceDuration:(Float32) value;
-- (PBSingOpus_Builder*) clearVoiceDuration;
+- (PBSingOpusBuilder*) setVoiceDuration:(Float32) value;
+- (PBSingOpusBuilder*) clearVoiceDuration;
 
 - (BOOL) hasLocalNativeDataUrl;
 - (NSString*) localNativeDataUrl;
-- (PBSingOpus_Builder*) setLocalNativeDataUrl:(NSString*) value;
-- (PBSingOpus_Builder*) clearLocalNativeDataUrl;
+- (PBSingOpusBuilder*) setLocalNativeDataUrl:(NSString*) value;
+- (PBSingOpusBuilder*) clearLocalNativeDataUrl;
 @end
 
+
+// @@protoc_insertion_point(global_scope)

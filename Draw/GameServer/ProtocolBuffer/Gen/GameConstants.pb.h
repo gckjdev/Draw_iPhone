@@ -2,7 +2,21 @@
 
 #import "ProtocolBuffers.h"
 
-typedef enum {
+// @@protoc_insertion_point(imports)
+
+#ifndef __has_feature
+  #define __has_feature(x) 0 // Compatibility with non-clang compilers.
+#endif // __has_feature
+
+#ifndef NS_RETURNS_NOT_RETAINED
+  #if __has_feature(attribute_ns_returns_not_retained)
+    #define NS_RETURNS_NOT_RETAINED __attribute__((ns_returns_not_retained))
+  #else
+    #define NS_RETURNS_NOT_RETAINED
+  #endif
+#endif
+
+typedef NS_ENUM(SInt32, GameCommandType) {
   GameCommandTypeJoinGameRequest = 1,
   GameCommandTypeJoinGameResponse = 2,
   GameCommandTypeStartGameRequest = 3,
@@ -113,11 +127,12 @@ typedef enum {
   GameCommandTypeUserDiceNotification = 717,
   GameCommandTypeGameOverNotificationRequest = 731,
   GameCommandTypeGameOverNotificationResponse = 732,
-} GameCommandType;
+};
 
 BOOL GameCommandTypeIsValidValue(GameCommandType value);
+NSString *NSStringFromGameCommandType(GameCommandType value);
 
-typedef enum {
+typedef NS_ENUM(SInt32, GameResultCode) {
   GameResultCodeSuccess = 0,
   GameResultCodeErrorJoinGame = 1,
   GameResultCodeErrorUseridNull = 100,
@@ -147,82 +162,92 @@ typedef enum {
   GameResultCodeErrorAlreadyCompareCard = 458,
   GameResultCodeErrorCannotCompareCard = 459,
   GameResultCodeErrorExcessChahgeQuota = 460,
+  GameResultCodeErrorAlreadyChangeCardThisRound = 461,
   GameResultCodeErrorUnknownItem = 501,
   GameResultCodeErrorExcessTimeLimit = 502,
   GameResultCodeErrorSystemHandlerNotFound = 910,
   GameResultCodeErrorSystemException = 911,
   GameResultCodeErrorSystemSecurityCheck = 912,
-} GameResultCode;
+};
 
 BOOL GameResultCodeIsValidValue(GameResultCode value);
+NSString *NSStringFromGameResultCode(GameResultCode value);
 
-typedef enum {
+typedef NS_ENUM(SInt32, GameCompleteReason) {
   GameCompleteReasonReasonNotComplete = 0,
   GameCompleteReasonReasonAllUserGuess = 1,
   GameCompleteReasonReasonAllUserQuit = 11,
   GameCompleteReasonReasonDrawUserQuit = 12,
   GameCompleteReasonReasonOnlyOneUser = 13,
   GameCompleteReasonReasonExpired = 21,
-} GameCompleteReason;
+};
 
 BOOL GameCompleteReasonIsValidValue(GameCompleteReason value);
+NSString *NSStringFromGameCompleteReason(GameCompleteReason value);
 
-typedef enum {
+typedef NS_ENUM(SInt32, GameChatType) {
   GameChatTypeChatGroup = 0,
   GameChatTypeChatPrivate = 1,
-} GameChatType;
+};
 
 BOOL GameChatTypeIsValidValue(GameChatType value);
+NSString *NSStringFromGameChatType(GameChatType value);
 
-typedef enum {
+typedef NS_ENUM(SInt32, DiceGameRuleType) {
   DiceGameRuleTypeRuleNormal = 0,
   DiceGameRuleTypeRuleHigh = 1,
   DiceGameRuleTypeRuleSuperHigh = 2,
-} DiceGameRuleType;
+};
 
 BOOL DiceGameRuleTypeIsValidValue(DiceGameRuleType value);
+NSString *NSStringFromDiceGameRuleType(DiceGameRuleType value);
 
-typedef enum {
+typedef NS_ENUM(SInt32, PBWordType) {
   PBWordTypeSystem = 1,
   PBWordTypeCustom = 2,
   PBWordTypeHot = 3,
-} PBWordType;
+};
 
 BOOL PBWordTypeIsValidValue(PBWordType value);
+NSString *NSStringFromPBWordType(PBWordType value);
 
-typedef enum {
+typedef NS_ENUM(SInt32, PBWallType) {
   PBWallTypeOpuses = 1,
-} PBWallType;
+};
 
 BOOL PBWallTypeIsValidValue(PBWallType value);
+NSString *NSStringFromPBWallType(PBWallType value);
 
-typedef enum {
+typedef NS_ENUM(SInt32, PBMessageType) {
   PBMessageTypeText = 0,
   PBMessageTypeLocationRequest = 1,
   PBMessageTypeLocationResponse = 2,
   PBMessageTypeDraw = 4,
   PBMessageTypeImage = 5,
   PBMessageTypeVoice = 6,
-} PBMessageType;
+};
 
 BOOL PBMessageTypeIsValidValue(PBMessageType value);
+NSString *NSStringFromPBMessageType(PBMessageType value);
 
-typedef enum {
+typedef NS_ENUM(SInt32, PBContestStatus) {
   PBContestStatusPending = 1,
   PBContestStatusRunning = 2,
   PBContestStatusPassed = 3,
   PBContestStatusDeleted = 4,
-} PBContestStatus;
+};
 
 BOOL PBContestStatusIsValidValue(PBContestStatus value);
+NSString *NSStringFromPBContestStatus(PBContestStatus value);
 
-typedef enum {
+typedef NS_ENUM(SInt32, PBOpusCategoryType) {
   PBOpusCategoryTypeDrawCategory = 0,
   PBOpusCategoryTypeSingCategory = 1,
   PBOpusCategoryTypeAskPsCategory = 2,
-} PBOpusCategoryType;
+};
 
 BOOL PBOpusCategoryTypeIsValidValue(PBOpusCategoryType value);
+NSString *NSStringFromPBOpusCategoryType(PBOpusCategoryType value);
 
 
 @interface GameConstantsRoot : NSObject {
@@ -231,3 +256,5 @@ BOOL PBOpusCategoryTypeIsValidValue(PBOpusCategoryType value);
 + (void) registerAllExtensions:(PBMutableExtensionRegistry*) registry;
 @end
 
+
+// @@protoc_insertion_point(global_scope)

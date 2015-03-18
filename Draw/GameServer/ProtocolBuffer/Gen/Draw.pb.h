@@ -5,131 +5,144 @@
 #import "GameBasic.pb.h"
 #import "GameConstants.pb.h"
 #import "Sing.pb.h"
+// @@protoc_insertion_point(imports)
 
 @class PBApp;
-@class PBApp_Builder;
+@class PBAppBuilder;
 @class PBClass;
-@class PBClass_Builder;
+@class PBClassBuilder;
 @class PBColor;
-@class PBColor_Builder;
+@class PBColorBuilder;
 @class PBCommentInfo;
-@class PBCommentInfo_Builder;
+@class PBCommentInfoBuilder;
 @class PBDraw;
 @class PBDrawAction;
-@class PBDrawAction_Builder;
+@class PBDrawActionBuilder;
 @class PBDrawBg;
+@class PBDrawBgBuilder;
 @class PBDrawBgGroup;
-@class PBDrawBgGroup_Builder;
+@class PBDrawBgGroupBuilder;
 @class PBDrawBgMeta;
-@class PBDrawBgMeta_Builder;
-@class PBDrawBg_Builder;
-@class PBDraw_Builder;
+@class PBDrawBgMetaBuilder;
+@class PBDrawBuilder;
 @class PBFeed;
+@class PBFeedBuilder;
 @class PBFeedTimes;
-@class PBFeedTimes_Builder;
-@class PBFeed_Builder;
+@class PBFeedTimesBuilder;
 @class PBFrame;
+@class PBFrameBuilder;
 @class PBFrameList;
-@class PBFrameList_Builder;
-@class PBFrame_Builder;
+@class PBFrameListBuilder;
 @class PBGameItem;
+@class PBGameItemBuilder;
 @class PBGameItemList;
-@class PBGameItemList_Builder;
-@class PBGameItem_Builder;
+@class PBGameItemListBuilder;
 @class PBGameSession;
+@class PBGameSessionBuilder;
 @class PBGameSessionChanged;
-@class PBGameSessionChanged_Builder;
-@class PBGameSession_Builder;
+@class PBGameSessionChangedBuilder;
 @class PBGameUser;
-@class PBGameUser_Builder;
+@class PBGameUserBuilder;
 @class PBGradient;
-@class PBGradient_Builder;
+@class PBGradientBuilder;
 @class PBHotWord;
+@class PBHotWordBuilder;
 @class PBHotWordList;
-@class PBHotWordList_Builder;
-@class PBHotWord_Builder;
+@class PBHotWordListBuilder;
 @class PBIAPProduct;
+@class PBIAPProductBuilder;
 @class PBIAPProductList;
-@class PBIAPProductList_Builder;
+@class PBIAPProductListBuilder;
 @class PBIAPProductPrice;
-@class PBIAPProductPrice_Builder;
-@class PBIAPProduct_Builder;
+@class PBIAPProductPriceBuilder;
 @class PBImageShapeGroup;
+@class PBImageShapeGroupBuilder;
 @class PBImageShapeGroupMeta;
-@class PBImageShapeGroupMeta_Builder;
-@class PBImageShapeGroup_Builder;
+@class PBImageShapeGroupMetaBuilder;
 @class PBIntKeyIntValue;
-@class PBIntKeyIntValue_Builder;
+@class PBIntKeyIntValueBuilder;
 @class PBIntKeyValue;
-@class PBIntKeyValue_Builder;
+@class PBIntKeyValueBuilder;
 @class PBItemPriceInfo;
-@class PBItemPriceInfo_Builder;
+@class PBItemPriceInfoBuilder;
 @class PBKeyValue;
-@class PBKeyValue_Builder;
+@class PBKeyValueBuilder;
 @class PBLabelInfo;
-@class PBLabelInfo_Builder;
+@class PBLabelInfoBuilder;
 @class PBLayer;
-@class PBLayer_Builder;
+@class PBLayerBuilder;
 @class PBLayout;
+@class PBLayoutBuilder;
 @class PBLayoutList;
-@class PBLayoutList_Builder;
-@class PBLayout_Builder;
+@class PBLayoutListBuilder;
 @class PBLearnDraw;
-@class PBLearnDraw_Builder;
+@class PBLearnDrawBuilder;
 @class PBLocalizeString;
-@class PBLocalizeString_Builder;
+@class PBLocalizeStringBuilder;
 @class PBMessage;
+@class PBMessageBuilder;
 @class PBMessageStat;
-@class PBMessageStat_Builder;
-@class PBMessage_Builder;
+@class PBMessageStatBuilder;
 @class PBNoCompressDrawAction;
-@class PBNoCompressDrawAction_Builder;
+@class PBNoCompressDrawActionBuilder;
 @class PBNoCompressDrawData;
-@class PBNoCompressDrawData_Builder;
+@class PBNoCompressDrawDataBuilder;
 @class PBOpusRank;
-@class PBOpusRank_Builder;
+@class PBOpusRankBuilder;
 @class PBPoint;
-@class PBPoint_Builder;
+@class PBPointBuilder;
 @class PBPromotionInfo;
-@class PBPromotionInfo_Builder;
+@class PBPromotionInfoBuilder;
 @class PBRect;
-@class PBRect_Builder;
+@class PBRectBuilder;
 @class PBSNSUser;
+@class PBSNSUserBuilder;
 @class PBSNSUserCredential;
-@class PBSNSUserCredential_Builder;
-@class PBSNSUser_Builder;
+@class PBSNSUserCredentialBuilder;
 @class PBSimpleGroup;
-@class PBSimpleGroup_Builder;
+@class PBSimpleGroupBuilder;
 @class PBSingOpus;
-@class PBSingOpus_Builder;
+@class PBSingOpusBuilder;
 @class PBSize;
-@class PBSize_Builder;
+@class PBSizeBuilder;
 @class PBSong;
+@class PBSongBuilder;
 @class PBSongCategory;
+@class PBSongCategoryBuilder;
 @class PBSongCategoryList;
-@class PBSongCategoryList_Builder;
-@class PBSongCategory_Builder;
+@class PBSongCategoryListBuilder;
 @class PBSongList;
-@class PBSongList_Builder;
-@class PBSong_Builder;
+@class PBSongListBuilder;
 @class PBTask;
-@class PBTask_Builder;
+@class PBTaskBuilder;
 @class PBUserAward;
-@class PBUserAward_Builder;
+@class PBUserAwardBuilder;
 @class PBUserBasicInfo;
-@class PBUserBasicInfo_Builder;
+@class PBUserBasicInfoBuilder;
 @class PBUserItem;
+@class PBUserItemBuilder;
 @class PBUserItemList;
-@class PBUserItemList_Builder;
-@class PBUserItem_Builder;
+@class PBUserItemListBuilder;
 @class PBUserLevel;
-@class PBUserLevel_Builder;
+@class PBUserLevelBuilder;
 @class PBUserResult;
-@class PBUserResult_Builder;
+@class PBUserResultBuilder;
 @class PBWall;
+@class PBWallBuilder;
 @class PBWallOpus;
-@class PBWallOpus_Builder;
-@class PBWall_Builder;
+@class PBWallOpusBuilder;
+#ifndef __has_feature
+  #define __has_feature(x) 0 // Compatibility with non-clang compilers.
+#endif // __has_feature
+
+#ifndef NS_RETURNS_NOT_RETAINED
+  #if __has_feature(attribute_ns_returns_not_retained)
+    #define NS_RETURNS_NOT_RETAINED __attribute__((ns_returns_not_retained))
+  #else
+    #define NS_RETURNS_NOT_RETAINED
+  #endif
+#endif
+
 
 @interface DrawRoot : NSObject {
 }
@@ -137,42 +150,42 @@
 + (void) registerAllExtensions:(PBMutableExtensionRegistry*) registry;
 @end
 
-@interface PBDraw : PBGeneratedMessage {
+@interface PBDraw : PBGeneratedMessage<GeneratedMessageProtocol> {
 @private
-  BOOL hasIsCompressed_:1;
   BOOL hasGender_:1;
+  BOOL hasIsCompressed_:1;
   BOOL hasStrokes_:1;
-  BOOL hasCompleteDate_:1;
-  BOOL hasSpendTime_:1;
   BOOL hasLevel_:1;
   BOOL hasLanguage_:1;
   BOOL hasCreateDate_:1;
   BOOL hasVersion_:1;
   BOOL hasScore_:1;
-  BOOL hasOpusId_:1;
-  BOOL hasAvatar_:1;
-  BOOL hasNickName_:1;
-  BOOL hasWord_:1;
+  BOOL hasSpendTime_:1;
+  BOOL hasCompleteDate_:1;
   BOOL hasUserId_:1;
+  BOOL hasWord_:1;
+  BOOL hasNickName_:1;
+  BOOL hasAvatar_:1;
+  BOOL hasOpusId_:1;
   BOOL hasCanvasSize_:1;
-  BOOL isCompressed_:1;
   BOOL gender_:1;
-  int64_t strokes;
-  int32_t completeDate;
-  int32_t spendTime;
-  int32_t level;
-  int32_t language;
-  int32_t createDate;
-  int32_t version;
-  int32_t score;
-  NSString* opusId;
-  NSString* avatar;
-  NSString* nickName;
-  NSString* word;
+  BOOL isCompressed_:1;
+  SInt64 strokes;
+  SInt32 level;
+  SInt32 language;
+  SInt32 createDate;
+  SInt32 version;
+  SInt32 score;
+  SInt32 spendTime;
+  SInt32 completeDate;
   NSString* userId;
+  NSString* word;
+  NSString* nickName;
+  NSString* avatar;
+  NSString* opusId;
   PBSize* canvasSize;
-  NSMutableArray* mutableDrawDataList;
-  NSMutableArray* mutableLayerList;
+  NSMutableArray * drawDataArray;
+  NSMutableArray * layerArray;
 }
 - (BOOL) hasUserId;
 - (BOOL) hasWord;
@@ -190,35 +203,36 @@
 - (BOOL) hasStrokes;
 - (BOOL) hasSpendTime;
 - (BOOL) hasCompleteDate;
-@property (readonly, retain) NSString* userId;
-@property (readonly, retain) NSString* word;
-@property (readonly) int32_t level;
-@property (readonly) int32_t language;
-@property (readonly) int32_t createDate;
-@property (readonly, retain) NSString* nickName;
-@property (readonly, retain) NSString* avatar;
+@property (readonly, strong) NSString* userId;
+@property (readonly, strong) NSString* word;
+@property (readonly) SInt32 level;
+@property (readonly) SInt32 language;
+@property (readonly) SInt32 createDate;
+@property (readonly, strong) NSString* nickName;
+@property (readonly, strong) NSString* avatar;
 - (BOOL) gender;
-@property (readonly) int32_t version;
-@property (readonly, retain) NSString* opusId;
-@property (readonly) int32_t score;
+@property (readonly) SInt32 version;
+@property (readonly, strong) NSArray * drawData;
+@property (readonly, strong) NSString* opusId;
+@property (readonly) SInt32 score;
 - (BOOL) isCompressed;
-@property (readonly, retain) PBSize* canvasSize;
-@property (readonly) int64_t strokes;
-@property (readonly) int32_t spendTime;
-@property (readonly) int32_t completeDate;
-- (NSArray*) drawDataList;
-- (PBDrawAction*) drawDataAtIndex:(int32_t) index;
-- (NSArray*) layerList;
-- (PBLayer*) layerAtIndex:(int32_t) index;
+@property (readonly, strong) PBSize* canvasSize;
+@property (readonly, strong) NSArray * layer;
+@property (readonly) SInt64 strokes;
+@property (readonly) SInt32 spendTime;
+@property (readonly) SInt32 completeDate;
+- (PBDrawAction*)drawDataAtIndex:(NSUInteger)index;
+- (PBLayer*)layerAtIndex:(NSUInteger)index;
 
-+ (PBDraw*) defaultInstance;
-- (PBDraw*) defaultInstance;
++ (instancetype) defaultInstance;
+- (instancetype) defaultInstance;
 
 - (BOOL) isInitialized;
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
-- (PBDraw_Builder*) builder;
-+ (PBDraw_Builder*) builder;
-+ (PBDraw_Builder*) builderWithPrototype:(PBDraw*) prototype;
+- (PBDrawBuilder*) builder;
++ (PBDrawBuilder*) builder;
++ (PBDrawBuilder*) builderWithPrototype:(PBDraw*) prototype;
+- (PBDrawBuilder*) toBuilder;
 
 + (PBDraw*) parseFromData:(NSData*) data;
 + (PBDraw*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
@@ -228,140 +242,139 @@
 + (PBDraw*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 @end
 
-@interface PBDraw_Builder : PBGeneratedMessage_Builder {
+@interface PBDrawBuilder : PBGeneratedMessageBuilder {
 @private
-  PBDraw* result;
+  PBDraw* resultPbdraw;
 }
 
 - (PBDraw*) defaultInstance;
 
-- (PBDraw_Builder*) clear;
-- (PBDraw_Builder*) clone;
+- (PBDrawBuilder*) clear;
+- (PBDrawBuilder*) clone;
 
 - (PBDraw*) build;
 - (PBDraw*) buildPartial;
 
-- (PBDraw_Builder*) mergeFrom:(PBDraw*) other;
-- (PBDraw_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
-- (PBDraw_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+- (PBDrawBuilder*) mergeFrom:(PBDraw*) other;
+- (PBDrawBuilder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
+- (PBDrawBuilder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 
 - (BOOL) hasUserId;
 - (NSString*) userId;
-- (PBDraw_Builder*) setUserId:(NSString*) value;
-- (PBDraw_Builder*) clearUserId;
+- (PBDrawBuilder*) setUserId:(NSString*) value;
+- (PBDrawBuilder*) clearUserId;
 
 - (BOOL) hasWord;
 - (NSString*) word;
-- (PBDraw_Builder*) setWord:(NSString*) value;
-- (PBDraw_Builder*) clearWord;
+- (PBDrawBuilder*) setWord:(NSString*) value;
+- (PBDrawBuilder*) clearWord;
 
 - (BOOL) hasLevel;
-- (int32_t) level;
-- (PBDraw_Builder*) setLevel:(int32_t) value;
-- (PBDraw_Builder*) clearLevel;
+- (SInt32) level;
+- (PBDrawBuilder*) setLevel:(SInt32) value;
+- (PBDrawBuilder*) clearLevel;
 
 - (BOOL) hasLanguage;
-- (int32_t) language;
-- (PBDraw_Builder*) setLanguage:(int32_t) value;
-- (PBDraw_Builder*) clearLanguage;
+- (SInt32) language;
+- (PBDrawBuilder*) setLanguage:(SInt32) value;
+- (PBDrawBuilder*) clearLanguage;
 
 - (BOOL) hasCreateDate;
-- (int32_t) createDate;
-- (PBDraw_Builder*) setCreateDate:(int32_t) value;
-- (PBDraw_Builder*) clearCreateDate;
+- (SInt32) createDate;
+- (PBDrawBuilder*) setCreateDate:(SInt32) value;
+- (PBDrawBuilder*) clearCreateDate;
 
 - (BOOL) hasNickName;
 - (NSString*) nickName;
-- (PBDraw_Builder*) setNickName:(NSString*) value;
-- (PBDraw_Builder*) clearNickName;
+- (PBDrawBuilder*) setNickName:(NSString*) value;
+- (PBDrawBuilder*) clearNickName;
 
 - (BOOL) hasAvatar;
 - (NSString*) avatar;
-- (PBDraw_Builder*) setAvatar:(NSString*) value;
-- (PBDraw_Builder*) clearAvatar;
+- (PBDrawBuilder*) setAvatar:(NSString*) value;
+- (PBDrawBuilder*) clearAvatar;
 
 - (BOOL) hasGender;
 - (BOOL) gender;
-- (PBDraw_Builder*) setGender:(BOOL) value;
-- (PBDraw_Builder*) clearGender;
+- (PBDrawBuilder*) setGender:(BOOL) value;
+- (PBDrawBuilder*) clearGender;
 
 - (BOOL) hasVersion;
-- (int32_t) version;
-- (PBDraw_Builder*) setVersion:(int32_t) value;
-- (PBDraw_Builder*) clearVersion;
+- (SInt32) version;
+- (PBDrawBuilder*) setVersion:(SInt32) value;
+- (PBDrawBuilder*) clearVersion;
 
-- (NSArray*) drawDataList;
-- (PBDrawAction*) drawDataAtIndex:(int32_t) index;
-- (PBDraw_Builder*) replaceDrawDataAtIndex:(int32_t) index with:(PBDrawAction*) value;
-- (PBDraw_Builder*) addDrawData:(PBDrawAction*) value;
-- (PBDraw_Builder*) addAllDrawData:(NSArray*) values;
-- (PBDraw_Builder*) clearDrawDataList;
+- (NSMutableArray *)drawData;
+- (PBDrawAction*)drawDataAtIndex:(NSUInteger)index;
+- (PBDrawBuilder *)addDrawData:(PBDrawAction*)value;
+- (PBDrawBuilder *)setDrawDataArray:(NSArray *)array;
+- (PBDrawBuilder *)clearDrawData;
 
 - (BOOL) hasOpusId;
 - (NSString*) opusId;
-- (PBDraw_Builder*) setOpusId:(NSString*) value;
-- (PBDraw_Builder*) clearOpusId;
+- (PBDrawBuilder*) setOpusId:(NSString*) value;
+- (PBDrawBuilder*) clearOpusId;
 
 - (BOOL) hasScore;
-- (int32_t) score;
-- (PBDraw_Builder*) setScore:(int32_t) value;
-- (PBDraw_Builder*) clearScore;
+- (SInt32) score;
+- (PBDrawBuilder*) setScore:(SInt32) value;
+- (PBDrawBuilder*) clearScore;
 
 - (BOOL) hasIsCompressed;
 - (BOOL) isCompressed;
-- (PBDraw_Builder*) setIsCompressed:(BOOL) value;
-- (PBDraw_Builder*) clearIsCompressed;
+- (PBDrawBuilder*) setIsCompressed:(BOOL) value;
+- (PBDrawBuilder*) clearIsCompressed;
 
 - (BOOL) hasCanvasSize;
 - (PBSize*) canvasSize;
-- (PBDraw_Builder*) setCanvasSize:(PBSize*) value;
-- (PBDraw_Builder*) setCanvasSizeBuilder:(PBSize_Builder*) builderForValue;
-- (PBDraw_Builder*) mergeCanvasSize:(PBSize*) value;
-- (PBDraw_Builder*) clearCanvasSize;
+- (PBDrawBuilder*) setCanvasSize:(PBSize*) value;
+- (PBDrawBuilder*) setCanvasSizeBuilder:(PBSizeBuilder*) builderForValue;
+- (PBDrawBuilder*) mergeCanvasSize:(PBSize*) value;
+- (PBDrawBuilder*) clearCanvasSize;
 
-- (NSArray*) layerList;
-- (PBLayer*) layerAtIndex:(int32_t) index;
-- (PBDraw_Builder*) replaceLayerAtIndex:(int32_t) index with:(PBLayer*) value;
-- (PBDraw_Builder*) addLayer:(PBLayer*) value;
-- (PBDraw_Builder*) addAllLayer:(NSArray*) values;
-- (PBDraw_Builder*) clearLayerList;
+- (NSMutableArray *)layer;
+- (PBLayer*)layerAtIndex:(NSUInteger)index;
+- (PBDrawBuilder *)addLayer:(PBLayer*)value;
+- (PBDrawBuilder *)setLayerArray:(NSArray *)array;
+- (PBDrawBuilder *)clearLayer;
 
 - (BOOL) hasStrokes;
-- (int64_t) strokes;
-- (PBDraw_Builder*) setStrokes:(int64_t) value;
-- (PBDraw_Builder*) clearStrokes;
+- (SInt64) strokes;
+- (PBDrawBuilder*) setStrokes:(SInt64) value;
+- (PBDrawBuilder*) clearStrokes;
 
 - (BOOL) hasSpendTime;
-- (int32_t) spendTime;
-- (PBDraw_Builder*) setSpendTime:(int32_t) value;
-- (PBDraw_Builder*) clearSpendTime;
+- (SInt32) spendTime;
+- (PBDrawBuilder*) setSpendTime:(SInt32) value;
+- (PBDrawBuilder*) clearSpendTime;
 
 - (BOOL) hasCompleteDate;
-- (int32_t) completeDate;
-- (PBDraw_Builder*) setCompleteDate:(int32_t) value;
-- (PBDraw_Builder*) clearCompleteDate;
+- (SInt32) completeDate;
+- (PBDrawBuilder*) setCompleteDate:(SInt32) value;
+- (PBDrawBuilder*) clearCompleteDate;
 @end
 
-@interface PBFeedTimes : PBGeneratedMessage {
+@interface PBFeedTimes : PBGeneratedMessage<GeneratedMessageProtocol> {
 @private
   BOOL hasType_:1;
   BOOL hasValue_:1;
-  int32_t type;
-  int32_t value;
+  SInt32 type;
+  SInt32 value;
 }
 - (BOOL) hasType;
 - (BOOL) hasValue;
-@property (readonly) int32_t type;
-@property (readonly) int32_t value;
+@property (readonly) SInt32 type;
+@property (readonly) SInt32 value;
 
-+ (PBFeedTimes*) defaultInstance;
-- (PBFeedTimes*) defaultInstance;
++ (instancetype) defaultInstance;
+- (instancetype) defaultInstance;
 
 - (BOOL) isInitialized;
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
-- (PBFeedTimes_Builder*) builder;
-+ (PBFeedTimes_Builder*) builder;
-+ (PBFeedTimes_Builder*) builderWithPrototype:(PBFeedTimes*) prototype;
+- (PBFeedTimesBuilder*) builder;
++ (PBFeedTimesBuilder*) builder;
++ (PBFeedTimesBuilder*) builderWithPrototype:(PBFeedTimes*) prototype;
+- (PBFeedTimesBuilder*) toBuilder;
 
 + (PBFeedTimes*) parseFromData:(NSData*) data;
 + (PBFeedTimes*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
@@ -371,35 +384,35 @@
 + (PBFeedTimes*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 @end
 
-@interface PBFeedTimes_Builder : PBGeneratedMessage_Builder {
+@interface PBFeedTimesBuilder : PBGeneratedMessageBuilder {
 @private
-  PBFeedTimes* result;
+  PBFeedTimes* resultPbfeedTimes;
 }
 
 - (PBFeedTimes*) defaultInstance;
 
-- (PBFeedTimes_Builder*) clear;
-- (PBFeedTimes_Builder*) clone;
+- (PBFeedTimesBuilder*) clear;
+- (PBFeedTimesBuilder*) clone;
 
 - (PBFeedTimes*) build;
 - (PBFeedTimes*) buildPartial;
 
-- (PBFeedTimes_Builder*) mergeFrom:(PBFeedTimes*) other;
-- (PBFeedTimes_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
-- (PBFeedTimes_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+- (PBFeedTimesBuilder*) mergeFrom:(PBFeedTimes*) other;
+- (PBFeedTimesBuilder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
+- (PBFeedTimesBuilder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 
 - (BOOL) hasType;
-- (int32_t) type;
-- (PBFeedTimes_Builder*) setType:(int32_t) value;
-- (PBFeedTimes_Builder*) clearType;
+- (SInt32) type;
+- (PBFeedTimesBuilder*) setType:(SInt32) value;
+- (PBFeedTimesBuilder*) clearType;
 
 - (BOOL) hasValue;
-- (int32_t) value;
-- (PBFeedTimes_Builder*) setValue:(int32_t) value;
-- (PBFeedTimes_Builder*) clearValue;
+- (SInt32) value;
+- (PBFeedTimesBuilder*) setValue:(SInt32) value;
+- (PBFeedTimesBuilder*) clearValue;
 @end
 
-@interface PBCommentInfo : PBGeneratedMessage {
+@interface PBCommentInfo : PBGeneratedMessage<GeneratedMessageProtocol> {
 @private
   BOOL hasType_:1;
   BOOL hasComment_:1;
@@ -407,7 +420,7 @@
   BOOL hasActionUserId_:1;
   BOOL hasActionNickName_:1;
   BOOL hasActionSummary_:1;
-  int32_t type;
+  SInt32 type;
   NSString* comment;
   NSString* actionId;
   NSString* actionUserId;
@@ -420,21 +433,22 @@
 - (BOOL) hasActionUserId;
 - (BOOL) hasActionNickName;
 - (BOOL) hasActionSummary;
-@property (readonly) int32_t type;
-@property (readonly, retain) NSString* comment;
-@property (readonly, retain) NSString* actionId;
-@property (readonly, retain) NSString* actionUserId;
-@property (readonly, retain) NSString* actionNickName;
-@property (readonly, retain) NSString* actionSummary;
+@property (readonly) SInt32 type;
+@property (readonly, strong) NSString* comment;
+@property (readonly, strong) NSString* actionId;
+@property (readonly, strong) NSString* actionUserId;
+@property (readonly, strong) NSString* actionNickName;
+@property (readonly, strong) NSString* actionSummary;
 
-+ (PBCommentInfo*) defaultInstance;
-- (PBCommentInfo*) defaultInstance;
++ (instancetype) defaultInstance;
+- (instancetype) defaultInstance;
 
 - (BOOL) isInitialized;
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
-- (PBCommentInfo_Builder*) builder;
-+ (PBCommentInfo_Builder*) builder;
-+ (PBCommentInfo_Builder*) builderWithPrototype:(PBCommentInfo*) prototype;
+- (PBCommentInfoBuilder*) builder;
++ (PBCommentInfoBuilder*) builder;
++ (PBCommentInfoBuilder*) builderWithPrototype:(PBCommentInfo*) prototype;
+- (PBCommentInfoBuilder*) toBuilder;
 
 + (PBCommentInfo*) parseFromData:(NSData*) data;
 + (PBCommentInfo*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
@@ -444,82 +458,83 @@
 + (PBCommentInfo*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 @end
 
-@interface PBCommentInfo_Builder : PBGeneratedMessage_Builder {
+@interface PBCommentInfoBuilder : PBGeneratedMessageBuilder {
 @private
-  PBCommentInfo* result;
+  PBCommentInfo* resultPbcommentInfo;
 }
 
 - (PBCommentInfo*) defaultInstance;
 
-- (PBCommentInfo_Builder*) clear;
-- (PBCommentInfo_Builder*) clone;
+- (PBCommentInfoBuilder*) clear;
+- (PBCommentInfoBuilder*) clone;
 
 - (PBCommentInfo*) build;
 - (PBCommentInfo*) buildPartial;
 
-- (PBCommentInfo_Builder*) mergeFrom:(PBCommentInfo*) other;
-- (PBCommentInfo_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
-- (PBCommentInfo_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+- (PBCommentInfoBuilder*) mergeFrom:(PBCommentInfo*) other;
+- (PBCommentInfoBuilder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
+- (PBCommentInfoBuilder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 
 - (BOOL) hasType;
-- (int32_t) type;
-- (PBCommentInfo_Builder*) setType:(int32_t) value;
-- (PBCommentInfo_Builder*) clearType;
+- (SInt32) type;
+- (PBCommentInfoBuilder*) setType:(SInt32) value;
+- (PBCommentInfoBuilder*) clearType;
 
 - (BOOL) hasComment;
 - (NSString*) comment;
-- (PBCommentInfo_Builder*) setComment:(NSString*) value;
-- (PBCommentInfo_Builder*) clearComment;
+- (PBCommentInfoBuilder*) setComment:(NSString*) value;
+- (PBCommentInfoBuilder*) clearComment;
 
 - (BOOL) hasActionId;
 - (NSString*) actionId;
-- (PBCommentInfo_Builder*) setActionId:(NSString*) value;
-- (PBCommentInfo_Builder*) clearActionId;
+- (PBCommentInfoBuilder*) setActionId:(NSString*) value;
+- (PBCommentInfoBuilder*) clearActionId;
 
 - (BOOL) hasActionUserId;
 - (NSString*) actionUserId;
-- (PBCommentInfo_Builder*) setActionUserId:(NSString*) value;
-- (PBCommentInfo_Builder*) clearActionUserId;
+- (PBCommentInfoBuilder*) setActionUserId:(NSString*) value;
+- (PBCommentInfoBuilder*) clearActionUserId;
 
 - (BOOL) hasActionNickName;
 - (NSString*) actionNickName;
-- (PBCommentInfo_Builder*) setActionNickName:(NSString*) value;
-- (PBCommentInfo_Builder*) clearActionNickName;
+- (PBCommentInfoBuilder*) setActionNickName:(NSString*) value;
+- (PBCommentInfoBuilder*) clearActionNickName;
 
 - (BOOL) hasActionSummary;
 - (NSString*) actionSummary;
-- (PBCommentInfo_Builder*) setActionSummary:(NSString*) value;
-- (PBCommentInfo_Builder*) clearActionSummary;
+- (PBCommentInfoBuilder*) setActionSummary:(NSString*) value;
+- (PBCommentInfoBuilder*) clearActionSummary;
 @end
 
-@interface PBLearnDraw : PBGeneratedMessage {
+@interface PBLearnDraw : PBGeneratedMessage<GeneratedMessageProtocol> {
 @private
   BOOL hasType_:1;
   BOOL hasPrice_:1;
   BOOL hasBoughtCount_:1;
   BOOL hasOpusId_:1;
-  int32_t type;
-  int32_t price;
-  int32_t boughtCount;
+  SInt32 type;
+  SInt32 price;
+  SInt32 boughtCount;
   NSString* opusId;
 }
 - (BOOL) hasOpusId;
 - (BOOL) hasType;
 - (BOOL) hasPrice;
 - (BOOL) hasBoughtCount;
-@property (readonly, retain) NSString* opusId;
-@property (readonly) int32_t type;
-@property (readonly) int32_t price;
-@property (readonly) int32_t boughtCount;
+@property (readonly, strong) NSString* opusId;
+@property (readonly) SInt32 type;
+@property (readonly) SInt32 price;
+@property (readonly) SInt32 boughtCount;
 
-+ (PBLearnDraw*) defaultInstance;
-- (PBLearnDraw*) defaultInstance;
++ (instancetype) defaultInstance;
+- (instancetype) defaultInstance;
 
 - (BOOL) isInitialized;
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
-- (PBLearnDraw_Builder*) builder;
-+ (PBLearnDraw_Builder*) builder;
-+ (PBLearnDraw_Builder*) builderWithPrototype:(PBLearnDraw*) prototype;
+- (PBLearnDrawBuilder*) builder;
++ (PBLearnDrawBuilder*) builder;
++ (PBLearnDrawBuilder*) builderWithPrototype:(PBLearnDraw*) prototype;
+- (PBLearnDrawBuilder*) toBuilder;
 
 + (PBLearnDraw*) parseFromData:(NSData*) data;
 + (PBLearnDraw*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
@@ -529,45 +544,45 @@
 + (PBLearnDraw*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 @end
 
-@interface PBLearnDraw_Builder : PBGeneratedMessage_Builder {
+@interface PBLearnDrawBuilder : PBGeneratedMessageBuilder {
 @private
-  PBLearnDraw* result;
+  PBLearnDraw* resultPblearnDraw;
 }
 
 - (PBLearnDraw*) defaultInstance;
 
-- (PBLearnDraw_Builder*) clear;
-- (PBLearnDraw_Builder*) clone;
+- (PBLearnDrawBuilder*) clear;
+- (PBLearnDrawBuilder*) clone;
 
 - (PBLearnDraw*) build;
 - (PBLearnDraw*) buildPartial;
 
-- (PBLearnDraw_Builder*) mergeFrom:(PBLearnDraw*) other;
-- (PBLearnDraw_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
-- (PBLearnDraw_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+- (PBLearnDrawBuilder*) mergeFrom:(PBLearnDraw*) other;
+- (PBLearnDrawBuilder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
+- (PBLearnDrawBuilder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 
 - (BOOL) hasOpusId;
 - (NSString*) opusId;
-- (PBLearnDraw_Builder*) setOpusId:(NSString*) value;
-- (PBLearnDraw_Builder*) clearOpusId;
+- (PBLearnDrawBuilder*) setOpusId:(NSString*) value;
+- (PBLearnDrawBuilder*) clearOpusId;
 
 - (BOOL) hasType;
-- (int32_t) type;
-- (PBLearnDraw_Builder*) setType:(int32_t) value;
-- (PBLearnDraw_Builder*) clearType;
+- (SInt32) type;
+- (PBLearnDrawBuilder*) setType:(SInt32) value;
+- (PBLearnDrawBuilder*) clearType;
 
 - (BOOL) hasPrice;
-- (int32_t) price;
-- (PBLearnDraw_Builder*) setPrice:(int32_t) value;
-- (PBLearnDraw_Builder*) clearPrice;
+- (SInt32) price;
+- (PBLearnDrawBuilder*) setPrice:(SInt32) value;
+- (PBLearnDrawBuilder*) clearPrice;
 
 - (BOOL) hasBoughtCount;
-- (int32_t) boughtCount;
-- (PBLearnDraw_Builder*) setBoughtCount:(int32_t) value;
-- (PBLearnDraw_Builder*) clearBoughtCount;
+- (SInt32) boughtCount;
+- (PBLearnDrawBuilder*) setBoughtCount:(SInt32) value;
+- (PBLearnDrawBuilder*) clearBoughtCount;
 @end
 
-@interface PBLabelInfo : PBGeneratedMessage {
+@interface PBLabelInfo : PBGeneratedMessage<GeneratedMessageProtocol> {
 @private
   BOOL hasTextFont_:1;
   BOOL hasTextColor_:1;
@@ -575,9 +590,9 @@
   BOOL hasTextStrokeColor_:1;
   BOOL hasFrame_:1;
   Float32 textFont;
-  int32_t textColor;
-  int32_t style;
-  int32_t textStrokeColor;
+  SInt32 textColor;
+  SInt32 style;
+  SInt32 textStrokeColor;
   PBRect* frame;
 }
 - (BOOL) hasFrame;
@@ -585,20 +600,21 @@
 - (BOOL) hasTextFont;
 - (BOOL) hasStyle;
 - (BOOL) hasTextStrokeColor;
-@property (readonly, retain) PBRect* frame;
-@property (readonly) int32_t textColor;
+@property (readonly, strong) PBRect* frame;
+@property (readonly) SInt32 textColor;
 @property (readonly) Float32 textFont;
-@property (readonly) int32_t style;
-@property (readonly) int32_t textStrokeColor;
+@property (readonly) SInt32 style;
+@property (readonly) SInt32 textStrokeColor;
 
-+ (PBLabelInfo*) defaultInstance;
-- (PBLabelInfo*) defaultInstance;
++ (instancetype) defaultInstance;
+- (instancetype) defaultInstance;
 
 - (BOOL) isInitialized;
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
-- (PBLabelInfo_Builder*) builder;
-+ (PBLabelInfo_Builder*) builder;
-+ (PBLabelInfo_Builder*) builderWithPrototype:(PBLabelInfo*) prototype;
+- (PBLabelInfoBuilder*) builder;
++ (PBLabelInfoBuilder*) builder;
++ (PBLabelInfoBuilder*) builderWithPrototype:(PBLabelInfo*) prototype;
+- (PBLabelInfoBuilder*) toBuilder;
 
 + (PBLabelInfo*) parseFromData:(NSData*) data;
 + (PBLabelInfo*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
@@ -608,167 +624,167 @@
 + (PBLabelInfo*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 @end
 
-@interface PBLabelInfo_Builder : PBGeneratedMessage_Builder {
+@interface PBLabelInfoBuilder : PBGeneratedMessageBuilder {
 @private
-  PBLabelInfo* result;
+  PBLabelInfo* resultPblabelInfo;
 }
 
 - (PBLabelInfo*) defaultInstance;
 
-- (PBLabelInfo_Builder*) clear;
-- (PBLabelInfo_Builder*) clone;
+- (PBLabelInfoBuilder*) clear;
+- (PBLabelInfoBuilder*) clone;
 
 - (PBLabelInfo*) build;
 - (PBLabelInfo*) buildPartial;
 
-- (PBLabelInfo_Builder*) mergeFrom:(PBLabelInfo*) other;
-- (PBLabelInfo_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
-- (PBLabelInfo_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+- (PBLabelInfoBuilder*) mergeFrom:(PBLabelInfo*) other;
+- (PBLabelInfoBuilder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
+- (PBLabelInfoBuilder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 
 - (BOOL) hasFrame;
 - (PBRect*) frame;
-- (PBLabelInfo_Builder*) setFrame:(PBRect*) value;
-- (PBLabelInfo_Builder*) setFrameBuilder:(PBRect_Builder*) builderForValue;
-- (PBLabelInfo_Builder*) mergeFrame:(PBRect*) value;
-- (PBLabelInfo_Builder*) clearFrame;
+- (PBLabelInfoBuilder*) setFrame:(PBRect*) value;
+- (PBLabelInfoBuilder*) setFrameBuilder:(PBRectBuilder*) builderForValue;
+- (PBLabelInfoBuilder*) mergeFrame:(PBRect*) value;
+- (PBLabelInfoBuilder*) clearFrame;
 
 - (BOOL) hasTextColor;
-- (int32_t) textColor;
-- (PBLabelInfo_Builder*) setTextColor:(int32_t) value;
-- (PBLabelInfo_Builder*) clearTextColor;
+- (SInt32) textColor;
+- (PBLabelInfoBuilder*) setTextColor:(SInt32) value;
+- (PBLabelInfoBuilder*) clearTextColor;
 
 - (BOOL) hasTextFont;
 - (Float32) textFont;
-- (PBLabelInfo_Builder*) setTextFont:(Float32) value;
-- (PBLabelInfo_Builder*) clearTextFont;
+- (PBLabelInfoBuilder*) setTextFont:(Float32) value;
+- (PBLabelInfoBuilder*) clearTextFont;
 
 - (BOOL) hasStyle;
-- (int32_t) style;
-- (PBLabelInfo_Builder*) setStyle:(int32_t) value;
-- (PBLabelInfo_Builder*) clearStyle;
+- (SInt32) style;
+- (PBLabelInfoBuilder*) setStyle:(SInt32) value;
+- (PBLabelInfoBuilder*) clearStyle;
 
 - (BOOL) hasTextStrokeColor;
-- (int32_t) textStrokeColor;
-- (PBLabelInfo_Builder*) setTextStrokeColor:(int32_t) value;
-- (PBLabelInfo_Builder*) clearTextStrokeColor;
+- (SInt32) textStrokeColor;
+- (PBLabelInfoBuilder*) setTextStrokeColor:(SInt32) value;
+- (PBLabelInfoBuilder*) clearTextStrokeColor;
 @end
 
-@interface PBFeed : PBGeneratedMessage {
+@interface PBFeed : PBGeneratedMessage<GeneratedMessageProtocol> {
 @private
-  BOOL hasIsCorrect_:1;
   BOOL hasOpusCreatorGender_:1;
+  BOOL hasIsCorrect_:1;
   BOOL hasGender_:1;
-  BOOL hasHistoryScore_:1;
   BOOL hasContestScore_:1;
+  BOOL hasHistoryScore_:1;
   BOOL hasBgImageHeight_:1;
   BOOL hasBgImageWidth_:1;
   BOOL hasStrokes_:1;
-  BOOL hasSpendTime_:1;
-  BOOL hasScore_:1;
-  BOOL hasOpusStatus_:1;
-  BOOL hasMatchTimes_:1;
-  BOOL hasCorrectTimes_:1;
-  BOOL hasGuessTimes_:1;
-  BOOL hasCommentTimes_:1;
-  BOOL hasRankInTop_:1;
-  BOOL hasDraftCompleteDate_:1;
-  BOOL hasDraftCreateDate_:1;
-  BOOL hasStageScore_:1;
   BOOL hasStageRank_:1;
+  BOOL hasStageScore_:1;
+  BOOL hasDraftCreateDate_:1;
+  BOOL hasDraftCompleteDate_:1;
+  BOOL hasVip_:1;
+  BOOL hasGuessTimes_:1;
   BOOL hasActionType_:1;
+  BOOL hasRankInTop_:1;
   BOOL hasCreateDate_:1;
   BOOL hasDeviceType_:1;
-  BOOL hasVip_:1;
-  BOOL hasFeedId_:1;
-  BOOL hasUserId_:1;
-  BOOL hasDeviceName_:1;
-  BOOL hasGameId_:1;
-  BOOL hasNickName_:1;
-  BOOL hasContestId_:1;
-  BOOL hasBgImageName_:1;
-  BOOL hasBgImageUrl_:1;
-  BOOL hasDataUrl_:1;
-  BOOL hasOpusThumbImage_:1;
-  BOOL hasOpusImage_:1;
-  BOOL hasOpusWord_:1;
-  BOOL hasOpusCreatorAvatar_:1;
-  BOOL hasAvatar_:1;
+  BOOL hasCommentTimes_:1;
+  BOOL hasCorrectTimes_:1;
+  BOOL hasSpendTime_:1;
+  BOOL hasMatchTimes_:1;
+  BOOL hasOpusStatus_:1;
+  BOOL hasScore_:1;
   BOOL hasOpusCreatorNickName_:1;
-  BOOL hasOpusCreatorUserId_:1;
-  BOOL hasOpusId_:1;
-  BOOL hasSignature_:1;
-  BOOL hasDrawDataUrl_:1;
-  BOOL hasTargetUserId_:1;
-  BOOL hasOpusDesc_:1;
-  BOOL hasTargetUserNickName_:1;
+  BOOL hasDeviceName_:1;
   BOOL hasComment_:1;
-  BOOL hasCanvasSize_:1;
-  BOOL hasDescLabelInfo_:1;
-  BOOL hasSing_:1;
+  BOOL hasFeedId_:1;
+  BOOL hasOpusId_:1;
+  BOOL hasAvatar_:1;
+  BOOL hasNickName_:1;
+  BOOL hasDrawDataUrl_:1;
+  BOOL hasSignature_:1;
+  BOOL hasOpusCreatorUserId_:1;
+  BOOL hasUserId_:1;
+  BOOL hasOpusDesc_:1;
+  BOOL hasOpusCreatorAvatar_:1;
+  BOOL hasOpusWord_:1;
+  BOOL hasOpusImage_:1;
+  BOOL hasOpusThumbImage_:1;
+  BOOL hasDataUrl_:1;
+  BOOL hasBgImageUrl_:1;
+  BOOL hasBgImageName_:1;
+  BOOL hasContestId_:1;
+  BOOL hasGameId_:1;
+  BOOL hasTargetUserId_:1;
+  BOOL hasTargetUserNickName_:1;
   BOOL hasLearnDraw_:1;
-  BOOL hasCommentInfo_:1;
+  BOOL hasSing_:1;
+  BOOL hasDescLabelInfo_:1;
+  BOOL hasCanvasSize_:1;
   BOOL hasDrawData_:1;
+  BOOL hasCommentInfo_:1;
   BOOL hasCategory_:1;
-  BOOL isCorrect_:1;
   BOOL opusCreatorGender_:1;
+  BOOL isCorrect_:1;
   BOOL gender_:1;
-  Float64 historyScore;
   Float64 contestScore;
+  Float64 historyScore;
   Float32 bgImageHeight;
   Float32 bgImageWidth;
-  int64_t strokes;
-  int32_t spendTime;
-  int32_t score;
-  int32_t opusStatus;
-  int32_t matchTimes;
-  int32_t correctTimes;
-  int32_t guessTimes;
-  int32_t commentTimes;
-  int32_t rankInTop;
-  int32_t draftCompleteDate;
-  int32_t draftCreateDate;
-  int32_t stageScore;
-  int32_t stageRank;
-  int32_t actionType;
-  int32_t createDate;
-  int32_t deviceType;
-  int32_t vip;
-  NSString* feedId;
-  NSString* userId;
-  NSString* deviceName;
-  NSString* gameId;
-  NSString* nickName;
-  NSString* contestId;
-  NSString* bgImageName;
-  NSString* bgImageUrl;
-  NSString* dataUrl;
-  NSString* opusThumbImage;
-  NSString* opusImage;
-  NSString* opusWord;
-  NSString* opusCreatorAvatar;
-  NSString* avatar;
+  SInt64 strokes;
+  SInt32 stageRank;
+  SInt32 stageScore;
+  SInt32 draftCreateDate;
+  SInt32 draftCompleteDate;
+  SInt32 vip;
+  SInt32 guessTimes;
+  SInt32 actionType;
+  SInt32 rankInTop;
+  SInt32 createDate;
+  SInt32 deviceType;
+  SInt32 commentTimes;
+  SInt32 correctTimes;
+  SInt32 spendTime;
+  SInt32 matchTimes;
+  SInt32 opusStatus;
+  SInt32 score;
   NSString* opusCreatorNickName;
-  NSString* opusCreatorUserId;
-  NSString* opusId;
-  NSString* signature;
-  NSString* drawDataUrl;
-  NSString* targetUserId;
-  NSString* opusDesc;
-  NSString* targetUserNickName;
+  NSString* deviceName;
   NSString* comment;
-  PBSize* canvasSize;
-  PBLabelInfo* descLabelInfo;
-  PBSingOpus* sing;
+  NSString* feedId;
+  NSString* opusId;
+  NSString* avatar;
+  NSString* nickName;
+  NSString* drawDataUrl;
+  NSString* signature;
+  NSString* opusCreatorUserId;
+  NSString* userId;
+  NSString* opusDesc;
+  NSString* opusCreatorAvatar;
+  NSString* opusWord;
+  NSString* opusImage;
+  NSString* opusThumbImage;
+  NSString* dataUrl;
+  NSString* bgImageUrl;
+  NSString* bgImageName;
+  NSString* contestId;
+  NSString* gameId;
+  NSString* targetUserId;
+  NSString* targetUserNickName;
   PBLearnDraw* learnDraw;
-  PBCommentInfo* commentInfo;
+  PBSingOpus* sing;
+  PBLabelInfo* descLabelInfo;
+  PBSize* canvasSize;
   PBDraw* drawData;
+  PBCommentInfo* commentInfo;
   PBOpusCategoryType category;
-  NSMutableArray* mutableGuessWordsList;
-  NSMutableArray* mutableOpusClassIdsList;
-  NSMutableArray* mutableTagsList;
-  NSMutableArray* mutableRankInfoList;
-  NSMutableArray* mutableOpusClassList;
-  NSMutableArray* mutableFeedTimesList;
+  NSMutableArray * guessWordsArray;
+  NSMutableArray * opusClassIdsArray;
+  NSMutableArray * tagsArray;
+  NSMutableArray * rankInfoArray;
+  NSMutableArray * feedTimesArray;
+  NSMutableArray * opusClassArray;
 }
 - (BOOL) hasFeedId;
 - (BOOL) hasUserId;
@@ -824,81 +840,82 @@
 - (BOOL) hasDraftCreateDate;
 - (BOOL) hasStageScore;
 - (BOOL) hasStageRank;
-@property (readonly, retain) NSString* feedId;
-@property (readonly, retain) NSString* userId;
-@property (readonly) int32_t actionType;
-@property (readonly) int32_t createDate;
-@property (readonly) int32_t deviceType;
-@property (readonly, retain) NSString* deviceName;
-@property (readonly, retain) NSString* gameId;
+@property (readonly, strong) NSString* feedId;
+@property (readonly, strong) NSString* userId;
+@property (readonly) SInt32 actionType;
+@property (readonly) SInt32 createDate;
+@property (readonly) SInt32 deviceType;
+@property (readonly, strong) NSString* deviceName;
+@property (readonly, strong) NSString* gameId;
 @property (readonly) PBOpusCategoryType category;
-@property (readonly, retain) NSString* nickName;
-@property (readonly, retain) NSString* avatar;
+@property (readonly, strong) NSString* nickName;
+@property (readonly, strong) NSString* avatar;
 - (BOOL) gender;
-@property (readonly, retain) NSString* signature;
-@property (readonly) int32_t vip;
-@property (readonly, retain) PBDraw* drawData;
-@property (readonly, retain) NSString* targetUserId;
-@property (readonly, retain) NSString* targetUserNickName;
+@property (readonly, strong) NSString* signature;
+@property (readonly) SInt32 vip;
+@property (readonly, strong) PBDraw* drawData;
+@property (readonly, strong) NSString* targetUserId;
+@property (readonly, strong) NSString* targetUserNickName;
 @property (readonly) Float64 historyScore;
-@property (readonly, retain) NSString* opusDesc;
-@property (readonly, retain) NSString* drawDataUrl;
-@property (readonly) int32_t spendTime;
-@property (readonly, retain) NSString* opusId;
+@property (readonly, strong) NSString* opusDesc;
+@property (readonly, strong) NSString* drawDataUrl;
+@property (readonly, strong) NSArray * tags;
+@property (readonly) SInt32 spendTime;
+@property (readonly, strong) NSString* opusId;
 - (BOOL) isCorrect;
-@property (readonly) int32_t score;
-@property (readonly) int32_t opusStatus;
-@property (readonly, retain) NSString* comment;
-@property (readonly, retain) PBCommentInfo* commentInfo;
-@property (readonly) int32_t matchTimes;
-@property (readonly) int32_t correctTimes;
-@property (readonly) int32_t guessTimes;
-@property (readonly) int32_t commentTimes;
-@property (readonly, retain) NSString* opusCreatorUserId;
-@property (readonly, retain) NSString* opusCreatorNickName;
+@property (readonly) SInt32 score;
+@property (readonly, strong) NSArray * guessWords;
+@property (readonly) SInt32 opusStatus;
+@property (readonly, strong) NSString* comment;
+@property (readonly, strong) PBCommentInfo* commentInfo;
+@property (readonly) SInt32 matchTimes;
+@property (readonly) SInt32 correctTimes;
+@property (readonly) SInt32 guessTimes;
+@property (readonly) SInt32 commentTimes;
+@property (readonly, strong) NSArray * feedTimes;
+@property (readonly, strong) NSString* opusCreatorUserId;
+@property (readonly, strong) NSString* opusCreatorNickName;
 - (BOOL) opusCreatorGender;
-@property (readonly, retain) NSString* opusCreatorAvatar;
-@property (readonly, retain) NSString* opusWord;
-@property (readonly, retain) NSString* opusImage;
-@property (readonly, retain) NSString* opusThumbImage;
-@property (readonly, retain) NSString* dataUrl;
-@property (readonly, retain) NSString* bgImageUrl;
-@property (readonly, retain) NSString* bgImageName;
-@property (readonly, retain) NSString* contestId;
+@property (readonly, strong) NSString* opusCreatorAvatar;
+@property (readonly, strong) NSString* opusWord;
+@property (readonly, strong) NSString* opusImage;
+@property (readonly, strong) NSString* opusThumbImage;
+@property (readonly, strong) NSString* dataUrl;
+@property (readonly, strong) NSString* bgImageUrl;
+@property (readonly, strong) NSString* bgImageName;
+@property (readonly, strong) NSString* contestId;
 @property (readonly) Float64 contestScore;
-@property (readonly) int32_t rankInTop;
-@property (readonly, retain) PBLearnDraw* learnDraw;
-@property (readonly, retain) PBSingOpus* sing;
-@property (readonly, retain) PBLabelInfo* descLabelInfo;
-@property (readonly, retain) PBSize* canvasSize;
+@property (readonly, strong) NSArray * rankInfo;
+@property (readonly) SInt32 rankInTop;
+@property (readonly, strong) PBLearnDraw* learnDraw;
+@property (readonly, strong) PBSingOpus* sing;
+@property (readonly, strong) PBLabelInfo* descLabelInfo;
+@property (readonly, strong) PBSize* canvasSize;
 @property (readonly) Float32 bgImageWidth;
 @property (readonly) Float32 bgImageHeight;
-@property (readonly) int64_t strokes;
-@property (readonly) int32_t draftCompleteDate;
-@property (readonly) int32_t draftCreateDate;
-@property (readonly) int32_t stageScore;
-@property (readonly) int32_t stageRank;
-- (NSArray*) tagsList;
-- (NSString*) tagsAtIndex:(int32_t) index;
-- (NSArray*) guessWordsList;
-- (NSString*) guessWordsAtIndex:(int32_t) index;
-- (NSArray*) feedTimesList;
-- (PBFeedTimes*) feedTimesAtIndex:(int32_t) index;
-- (NSArray*) rankInfoList;
-- (PBOpusRank*) rankInfoAtIndex:(int32_t) index;
-- (NSArray*) opusClassList;
-- (PBClass*) opusClassAtIndex:(int32_t) index;
-- (NSArray*) opusClassIdsList;
-- (NSString*) opusClassIdsAtIndex:(int32_t) index;
+@property (readonly) SInt64 strokes;
+@property (readonly) SInt32 draftCompleteDate;
+@property (readonly) SInt32 draftCreateDate;
+@property (readonly, strong) NSArray * opusClass;
+@property (readonly, strong) NSArray * opusClassIds;
+@property (readonly) SInt32 stageScore;
+@property (readonly) SInt32 stageRank;
+- (NSString*)tagsAtIndex:(NSUInteger)index;
+- (NSString*)guessWordsAtIndex:(NSUInteger)index;
+- (PBFeedTimes*)feedTimesAtIndex:(NSUInteger)index;
+- (PBOpusRank*)rankInfoAtIndex:(NSUInteger)index;
+- (PBClass*)opusClassAtIndex:(NSUInteger)index;
+- (NSString*)opusClassIdsAtIndex:(NSUInteger)index;
 
-+ (PBFeed*) defaultInstance;
-- (PBFeed*) defaultInstance;
++ (instancetype) defaultInstance;
+- (instancetype) defaultInstance;
 
 - (BOOL) isInitialized;
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
-- (PBFeed_Builder*) builder;
-+ (PBFeed_Builder*) builder;
-+ (PBFeed_Builder*) builderWithPrototype:(PBFeed*) prototype;
+- (PBFeedBuilder*) builder;
++ (PBFeedBuilder*) builder;
++ (PBFeedBuilder*) builderWithPrototype:(PBFeed*) prototype;
+- (PBFeedBuilder*) toBuilder;
 
 + (PBFeed*) parseFromData:(NSData*) data;
 + (PBFeed*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
@@ -908,349 +925,343 @@
 + (PBFeed*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 @end
 
-@interface PBFeed_Builder : PBGeneratedMessage_Builder {
+@interface PBFeedBuilder : PBGeneratedMessageBuilder {
 @private
-  PBFeed* result;
+  PBFeed* resultPbfeed;
 }
 
 - (PBFeed*) defaultInstance;
 
-- (PBFeed_Builder*) clear;
-- (PBFeed_Builder*) clone;
+- (PBFeedBuilder*) clear;
+- (PBFeedBuilder*) clone;
 
 - (PBFeed*) build;
 - (PBFeed*) buildPartial;
 
-- (PBFeed_Builder*) mergeFrom:(PBFeed*) other;
-- (PBFeed_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
-- (PBFeed_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+- (PBFeedBuilder*) mergeFrom:(PBFeed*) other;
+- (PBFeedBuilder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
+- (PBFeedBuilder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 
 - (BOOL) hasFeedId;
 - (NSString*) feedId;
-- (PBFeed_Builder*) setFeedId:(NSString*) value;
-- (PBFeed_Builder*) clearFeedId;
+- (PBFeedBuilder*) setFeedId:(NSString*) value;
+- (PBFeedBuilder*) clearFeedId;
 
 - (BOOL) hasUserId;
 - (NSString*) userId;
-- (PBFeed_Builder*) setUserId:(NSString*) value;
-- (PBFeed_Builder*) clearUserId;
+- (PBFeedBuilder*) setUserId:(NSString*) value;
+- (PBFeedBuilder*) clearUserId;
 
 - (BOOL) hasActionType;
-- (int32_t) actionType;
-- (PBFeed_Builder*) setActionType:(int32_t) value;
-- (PBFeed_Builder*) clearActionType;
+- (SInt32) actionType;
+- (PBFeedBuilder*) setActionType:(SInt32) value;
+- (PBFeedBuilder*) clearActionType;
 
 - (BOOL) hasCreateDate;
-- (int32_t) createDate;
-- (PBFeed_Builder*) setCreateDate:(int32_t) value;
-- (PBFeed_Builder*) clearCreateDate;
+- (SInt32) createDate;
+- (PBFeedBuilder*) setCreateDate:(SInt32) value;
+- (PBFeedBuilder*) clearCreateDate;
 
 - (BOOL) hasDeviceType;
-- (int32_t) deviceType;
-- (PBFeed_Builder*) setDeviceType:(int32_t) value;
-- (PBFeed_Builder*) clearDeviceType;
+- (SInt32) deviceType;
+- (PBFeedBuilder*) setDeviceType:(SInt32) value;
+- (PBFeedBuilder*) clearDeviceType;
 
 - (BOOL) hasDeviceName;
 - (NSString*) deviceName;
-- (PBFeed_Builder*) setDeviceName:(NSString*) value;
-- (PBFeed_Builder*) clearDeviceName;
+- (PBFeedBuilder*) setDeviceName:(NSString*) value;
+- (PBFeedBuilder*) clearDeviceName;
 
 - (BOOL) hasGameId;
 - (NSString*) gameId;
-- (PBFeed_Builder*) setGameId:(NSString*) value;
-- (PBFeed_Builder*) clearGameId;
+- (PBFeedBuilder*) setGameId:(NSString*) value;
+- (PBFeedBuilder*) clearGameId;
 
 - (BOOL) hasCategory;
 - (PBOpusCategoryType) category;
-- (PBFeed_Builder*) setCategory:(PBOpusCategoryType) value;
-- (PBFeed_Builder*) clearCategory;
+- (PBFeedBuilder*) setCategory:(PBOpusCategoryType) value;
+- (PBFeedBuilder*) clearCategory;
 
 - (BOOL) hasNickName;
 - (NSString*) nickName;
-- (PBFeed_Builder*) setNickName:(NSString*) value;
-- (PBFeed_Builder*) clearNickName;
+- (PBFeedBuilder*) setNickName:(NSString*) value;
+- (PBFeedBuilder*) clearNickName;
 
 - (BOOL) hasAvatar;
 - (NSString*) avatar;
-- (PBFeed_Builder*) setAvatar:(NSString*) value;
-- (PBFeed_Builder*) clearAvatar;
+- (PBFeedBuilder*) setAvatar:(NSString*) value;
+- (PBFeedBuilder*) clearAvatar;
 
 - (BOOL) hasGender;
 - (BOOL) gender;
-- (PBFeed_Builder*) setGender:(BOOL) value;
-- (PBFeed_Builder*) clearGender;
+- (PBFeedBuilder*) setGender:(BOOL) value;
+- (PBFeedBuilder*) clearGender;
 
 - (BOOL) hasSignature;
 - (NSString*) signature;
-- (PBFeed_Builder*) setSignature:(NSString*) value;
-- (PBFeed_Builder*) clearSignature;
+- (PBFeedBuilder*) setSignature:(NSString*) value;
+- (PBFeedBuilder*) clearSignature;
 
 - (BOOL) hasVip;
-- (int32_t) vip;
-- (PBFeed_Builder*) setVip:(int32_t) value;
-- (PBFeed_Builder*) clearVip;
+- (SInt32) vip;
+- (PBFeedBuilder*) setVip:(SInt32) value;
+- (PBFeedBuilder*) clearVip;
 
 - (BOOL) hasDrawData;
 - (PBDraw*) drawData;
-- (PBFeed_Builder*) setDrawData:(PBDraw*) value;
-- (PBFeed_Builder*) setDrawDataBuilder:(PBDraw_Builder*) builderForValue;
-- (PBFeed_Builder*) mergeDrawData:(PBDraw*) value;
-- (PBFeed_Builder*) clearDrawData;
+- (PBFeedBuilder*) setDrawData:(PBDraw*) value;
+- (PBFeedBuilder*) setDrawDataBuilder:(PBDrawBuilder*) builderForValue;
+- (PBFeedBuilder*) mergeDrawData:(PBDraw*) value;
+- (PBFeedBuilder*) clearDrawData;
 
 - (BOOL) hasTargetUserId;
 - (NSString*) targetUserId;
-- (PBFeed_Builder*) setTargetUserId:(NSString*) value;
-- (PBFeed_Builder*) clearTargetUserId;
+- (PBFeedBuilder*) setTargetUserId:(NSString*) value;
+- (PBFeedBuilder*) clearTargetUserId;
 
 - (BOOL) hasTargetUserNickName;
 - (NSString*) targetUserNickName;
-- (PBFeed_Builder*) setTargetUserNickName:(NSString*) value;
-- (PBFeed_Builder*) clearTargetUserNickName;
+- (PBFeedBuilder*) setTargetUserNickName:(NSString*) value;
+- (PBFeedBuilder*) clearTargetUserNickName;
 
 - (BOOL) hasHistoryScore;
 - (Float64) historyScore;
-- (PBFeed_Builder*) setHistoryScore:(Float64) value;
-- (PBFeed_Builder*) clearHistoryScore;
+- (PBFeedBuilder*) setHistoryScore:(Float64) value;
+- (PBFeedBuilder*) clearHistoryScore;
 
 - (BOOL) hasOpusDesc;
 - (NSString*) opusDesc;
-- (PBFeed_Builder*) setOpusDesc:(NSString*) value;
-- (PBFeed_Builder*) clearOpusDesc;
+- (PBFeedBuilder*) setOpusDesc:(NSString*) value;
+- (PBFeedBuilder*) clearOpusDesc;
 
 - (BOOL) hasDrawDataUrl;
 - (NSString*) drawDataUrl;
-- (PBFeed_Builder*) setDrawDataUrl:(NSString*) value;
-- (PBFeed_Builder*) clearDrawDataUrl;
+- (PBFeedBuilder*) setDrawDataUrl:(NSString*) value;
+- (PBFeedBuilder*) clearDrawDataUrl;
 
-- (NSArray*) tagsList;
-- (NSString*) tagsAtIndex:(int32_t) index;
-- (PBFeed_Builder*) replaceTagsAtIndex:(int32_t) index with:(NSString*) value;
-- (PBFeed_Builder*) addTags:(NSString*) value;
-- (PBFeed_Builder*) addAllTags:(NSArray*) values;
-- (PBFeed_Builder*) clearTagsList;
+- (NSMutableArray *)tags;
+- (NSString*)tagsAtIndex:(NSUInteger)index;
+- (PBFeedBuilder *)addTags:(NSString*)value;
+- (PBFeedBuilder *)setTagsArray:(NSArray *)array;
+- (PBFeedBuilder *)clearTags;
 
 - (BOOL) hasSpendTime;
-- (int32_t) spendTime;
-- (PBFeed_Builder*) setSpendTime:(int32_t) value;
-- (PBFeed_Builder*) clearSpendTime;
+- (SInt32) spendTime;
+- (PBFeedBuilder*) setSpendTime:(SInt32) value;
+- (PBFeedBuilder*) clearSpendTime;
 
 - (BOOL) hasOpusId;
 - (NSString*) opusId;
-- (PBFeed_Builder*) setOpusId:(NSString*) value;
-- (PBFeed_Builder*) clearOpusId;
+- (PBFeedBuilder*) setOpusId:(NSString*) value;
+- (PBFeedBuilder*) clearOpusId;
 
 - (BOOL) hasIsCorrect;
 - (BOOL) isCorrect;
-- (PBFeed_Builder*) setIsCorrect:(BOOL) value;
-- (PBFeed_Builder*) clearIsCorrect;
+- (PBFeedBuilder*) setIsCorrect:(BOOL) value;
+- (PBFeedBuilder*) clearIsCorrect;
 
 - (BOOL) hasScore;
-- (int32_t) score;
-- (PBFeed_Builder*) setScore:(int32_t) value;
-- (PBFeed_Builder*) clearScore;
+- (SInt32) score;
+- (PBFeedBuilder*) setScore:(SInt32) value;
+- (PBFeedBuilder*) clearScore;
 
-- (NSArray*) guessWordsList;
-- (NSString*) guessWordsAtIndex:(int32_t) index;
-- (PBFeed_Builder*) replaceGuessWordsAtIndex:(int32_t) index with:(NSString*) value;
-- (PBFeed_Builder*) addGuessWords:(NSString*) value;
-- (PBFeed_Builder*) addAllGuessWords:(NSArray*) values;
-- (PBFeed_Builder*) clearGuessWordsList;
+- (NSMutableArray *)guessWords;
+- (NSString*)guessWordsAtIndex:(NSUInteger)index;
+- (PBFeedBuilder *)addGuessWords:(NSString*)value;
+- (PBFeedBuilder *)setGuessWordsArray:(NSArray *)array;
+- (PBFeedBuilder *)clearGuessWords;
 
 - (BOOL) hasOpusStatus;
-- (int32_t) opusStatus;
-- (PBFeed_Builder*) setOpusStatus:(int32_t) value;
-- (PBFeed_Builder*) clearOpusStatus;
+- (SInt32) opusStatus;
+- (PBFeedBuilder*) setOpusStatus:(SInt32) value;
+- (PBFeedBuilder*) clearOpusStatus;
 
 - (BOOL) hasComment;
 - (NSString*) comment;
-- (PBFeed_Builder*) setComment:(NSString*) value;
-- (PBFeed_Builder*) clearComment;
+- (PBFeedBuilder*) setComment:(NSString*) value;
+- (PBFeedBuilder*) clearComment;
 
 - (BOOL) hasCommentInfo;
 - (PBCommentInfo*) commentInfo;
-- (PBFeed_Builder*) setCommentInfo:(PBCommentInfo*) value;
-- (PBFeed_Builder*) setCommentInfoBuilder:(PBCommentInfo_Builder*) builderForValue;
-- (PBFeed_Builder*) mergeCommentInfo:(PBCommentInfo*) value;
-- (PBFeed_Builder*) clearCommentInfo;
+- (PBFeedBuilder*) setCommentInfo:(PBCommentInfo*) value;
+- (PBFeedBuilder*) setCommentInfoBuilder:(PBCommentInfoBuilder*) builderForValue;
+- (PBFeedBuilder*) mergeCommentInfo:(PBCommentInfo*) value;
+- (PBFeedBuilder*) clearCommentInfo;
 
 - (BOOL) hasMatchTimes;
-- (int32_t) matchTimes;
-- (PBFeed_Builder*) setMatchTimes:(int32_t) value;
-- (PBFeed_Builder*) clearMatchTimes;
+- (SInt32) matchTimes;
+- (PBFeedBuilder*) setMatchTimes:(SInt32) value;
+- (PBFeedBuilder*) clearMatchTimes;
 
 - (BOOL) hasCorrectTimes;
-- (int32_t) correctTimes;
-- (PBFeed_Builder*) setCorrectTimes:(int32_t) value;
-- (PBFeed_Builder*) clearCorrectTimes;
+- (SInt32) correctTimes;
+- (PBFeedBuilder*) setCorrectTimes:(SInt32) value;
+- (PBFeedBuilder*) clearCorrectTimes;
 
 - (BOOL) hasGuessTimes;
-- (int32_t) guessTimes;
-- (PBFeed_Builder*) setGuessTimes:(int32_t) value;
-- (PBFeed_Builder*) clearGuessTimes;
+- (SInt32) guessTimes;
+- (PBFeedBuilder*) setGuessTimes:(SInt32) value;
+- (PBFeedBuilder*) clearGuessTimes;
 
 - (BOOL) hasCommentTimes;
-- (int32_t) commentTimes;
-- (PBFeed_Builder*) setCommentTimes:(int32_t) value;
-- (PBFeed_Builder*) clearCommentTimes;
+- (SInt32) commentTimes;
+- (PBFeedBuilder*) setCommentTimes:(SInt32) value;
+- (PBFeedBuilder*) clearCommentTimes;
 
-- (NSArray*) feedTimesList;
-- (PBFeedTimes*) feedTimesAtIndex:(int32_t) index;
-- (PBFeed_Builder*) replaceFeedTimesAtIndex:(int32_t) index with:(PBFeedTimes*) value;
-- (PBFeed_Builder*) addFeedTimes:(PBFeedTimes*) value;
-- (PBFeed_Builder*) addAllFeedTimes:(NSArray*) values;
-- (PBFeed_Builder*) clearFeedTimesList;
+- (NSMutableArray *)feedTimes;
+- (PBFeedTimes*)feedTimesAtIndex:(NSUInteger)index;
+- (PBFeedBuilder *)addFeedTimes:(PBFeedTimes*)value;
+- (PBFeedBuilder *)setFeedTimesArray:(NSArray *)array;
+- (PBFeedBuilder *)clearFeedTimes;
 
 - (BOOL) hasOpusCreatorUserId;
 - (NSString*) opusCreatorUserId;
-- (PBFeed_Builder*) setOpusCreatorUserId:(NSString*) value;
-- (PBFeed_Builder*) clearOpusCreatorUserId;
+- (PBFeedBuilder*) setOpusCreatorUserId:(NSString*) value;
+- (PBFeedBuilder*) clearOpusCreatorUserId;
 
 - (BOOL) hasOpusCreatorNickName;
 - (NSString*) opusCreatorNickName;
-- (PBFeed_Builder*) setOpusCreatorNickName:(NSString*) value;
-- (PBFeed_Builder*) clearOpusCreatorNickName;
+- (PBFeedBuilder*) setOpusCreatorNickName:(NSString*) value;
+- (PBFeedBuilder*) clearOpusCreatorNickName;
 
 - (BOOL) hasOpusCreatorGender;
 - (BOOL) opusCreatorGender;
-- (PBFeed_Builder*) setOpusCreatorGender:(BOOL) value;
-- (PBFeed_Builder*) clearOpusCreatorGender;
+- (PBFeedBuilder*) setOpusCreatorGender:(BOOL) value;
+- (PBFeedBuilder*) clearOpusCreatorGender;
 
 - (BOOL) hasOpusCreatorAvatar;
 - (NSString*) opusCreatorAvatar;
-- (PBFeed_Builder*) setOpusCreatorAvatar:(NSString*) value;
-- (PBFeed_Builder*) clearOpusCreatorAvatar;
+- (PBFeedBuilder*) setOpusCreatorAvatar:(NSString*) value;
+- (PBFeedBuilder*) clearOpusCreatorAvatar;
 
 - (BOOL) hasOpusWord;
 - (NSString*) opusWord;
-- (PBFeed_Builder*) setOpusWord:(NSString*) value;
-- (PBFeed_Builder*) clearOpusWord;
+- (PBFeedBuilder*) setOpusWord:(NSString*) value;
+- (PBFeedBuilder*) clearOpusWord;
 
 - (BOOL) hasOpusImage;
 - (NSString*) opusImage;
-- (PBFeed_Builder*) setOpusImage:(NSString*) value;
-- (PBFeed_Builder*) clearOpusImage;
+- (PBFeedBuilder*) setOpusImage:(NSString*) value;
+- (PBFeedBuilder*) clearOpusImage;
 
 - (BOOL) hasOpusThumbImage;
 - (NSString*) opusThumbImage;
-- (PBFeed_Builder*) setOpusThumbImage:(NSString*) value;
-- (PBFeed_Builder*) clearOpusThumbImage;
+- (PBFeedBuilder*) setOpusThumbImage:(NSString*) value;
+- (PBFeedBuilder*) clearOpusThumbImage;
 
 - (BOOL) hasDataUrl;
 - (NSString*) dataUrl;
-- (PBFeed_Builder*) setDataUrl:(NSString*) value;
-- (PBFeed_Builder*) clearDataUrl;
+- (PBFeedBuilder*) setDataUrl:(NSString*) value;
+- (PBFeedBuilder*) clearDataUrl;
 
 - (BOOL) hasBgImageUrl;
 - (NSString*) bgImageUrl;
-- (PBFeed_Builder*) setBgImageUrl:(NSString*) value;
-- (PBFeed_Builder*) clearBgImageUrl;
+- (PBFeedBuilder*) setBgImageUrl:(NSString*) value;
+- (PBFeedBuilder*) clearBgImageUrl;
 
 - (BOOL) hasBgImageName;
 - (NSString*) bgImageName;
-- (PBFeed_Builder*) setBgImageName:(NSString*) value;
-- (PBFeed_Builder*) clearBgImageName;
+- (PBFeedBuilder*) setBgImageName:(NSString*) value;
+- (PBFeedBuilder*) clearBgImageName;
 
 - (BOOL) hasContestId;
 - (NSString*) contestId;
-- (PBFeed_Builder*) setContestId:(NSString*) value;
-- (PBFeed_Builder*) clearContestId;
+- (PBFeedBuilder*) setContestId:(NSString*) value;
+- (PBFeedBuilder*) clearContestId;
 
 - (BOOL) hasContestScore;
 - (Float64) contestScore;
-- (PBFeed_Builder*) setContestScore:(Float64) value;
-- (PBFeed_Builder*) clearContestScore;
+- (PBFeedBuilder*) setContestScore:(Float64) value;
+- (PBFeedBuilder*) clearContestScore;
 
-- (NSArray*) rankInfoList;
-- (PBOpusRank*) rankInfoAtIndex:(int32_t) index;
-- (PBFeed_Builder*) replaceRankInfoAtIndex:(int32_t) index with:(PBOpusRank*) value;
-- (PBFeed_Builder*) addRankInfo:(PBOpusRank*) value;
-- (PBFeed_Builder*) addAllRankInfo:(NSArray*) values;
-- (PBFeed_Builder*) clearRankInfoList;
+- (NSMutableArray *)rankInfo;
+- (PBOpusRank*)rankInfoAtIndex:(NSUInteger)index;
+- (PBFeedBuilder *)addRankInfo:(PBOpusRank*)value;
+- (PBFeedBuilder *)setRankInfoArray:(NSArray *)array;
+- (PBFeedBuilder *)clearRankInfo;
 
 - (BOOL) hasRankInTop;
-- (int32_t) rankInTop;
-- (PBFeed_Builder*) setRankInTop:(int32_t) value;
-- (PBFeed_Builder*) clearRankInTop;
+- (SInt32) rankInTop;
+- (PBFeedBuilder*) setRankInTop:(SInt32) value;
+- (PBFeedBuilder*) clearRankInTop;
 
 - (BOOL) hasLearnDraw;
 - (PBLearnDraw*) learnDraw;
-- (PBFeed_Builder*) setLearnDraw:(PBLearnDraw*) value;
-- (PBFeed_Builder*) setLearnDrawBuilder:(PBLearnDraw_Builder*) builderForValue;
-- (PBFeed_Builder*) mergeLearnDraw:(PBLearnDraw*) value;
-- (PBFeed_Builder*) clearLearnDraw;
+- (PBFeedBuilder*) setLearnDraw:(PBLearnDraw*) value;
+- (PBFeedBuilder*) setLearnDrawBuilder:(PBLearnDrawBuilder*) builderForValue;
+- (PBFeedBuilder*) mergeLearnDraw:(PBLearnDraw*) value;
+- (PBFeedBuilder*) clearLearnDraw;
 
 - (BOOL) hasSing;
 - (PBSingOpus*) sing;
-- (PBFeed_Builder*) setSing:(PBSingOpus*) value;
-- (PBFeed_Builder*) setSingBuilder:(PBSingOpus_Builder*) builderForValue;
-- (PBFeed_Builder*) mergeSing:(PBSingOpus*) value;
-- (PBFeed_Builder*) clearSing;
+- (PBFeedBuilder*) setSing:(PBSingOpus*) value;
+- (PBFeedBuilder*) setSingBuilder:(PBSingOpusBuilder*) builderForValue;
+- (PBFeedBuilder*) mergeSing:(PBSingOpus*) value;
+- (PBFeedBuilder*) clearSing;
 
 - (BOOL) hasDescLabelInfo;
 - (PBLabelInfo*) descLabelInfo;
-- (PBFeed_Builder*) setDescLabelInfo:(PBLabelInfo*) value;
-- (PBFeed_Builder*) setDescLabelInfoBuilder:(PBLabelInfo_Builder*) builderForValue;
-- (PBFeed_Builder*) mergeDescLabelInfo:(PBLabelInfo*) value;
-- (PBFeed_Builder*) clearDescLabelInfo;
+- (PBFeedBuilder*) setDescLabelInfo:(PBLabelInfo*) value;
+- (PBFeedBuilder*) setDescLabelInfoBuilder:(PBLabelInfoBuilder*) builderForValue;
+- (PBFeedBuilder*) mergeDescLabelInfo:(PBLabelInfo*) value;
+- (PBFeedBuilder*) clearDescLabelInfo;
 
 - (BOOL) hasCanvasSize;
 - (PBSize*) canvasSize;
-- (PBFeed_Builder*) setCanvasSize:(PBSize*) value;
-- (PBFeed_Builder*) setCanvasSizeBuilder:(PBSize_Builder*) builderForValue;
-- (PBFeed_Builder*) mergeCanvasSize:(PBSize*) value;
-- (PBFeed_Builder*) clearCanvasSize;
+- (PBFeedBuilder*) setCanvasSize:(PBSize*) value;
+- (PBFeedBuilder*) setCanvasSizeBuilder:(PBSizeBuilder*) builderForValue;
+- (PBFeedBuilder*) mergeCanvasSize:(PBSize*) value;
+- (PBFeedBuilder*) clearCanvasSize;
 
 - (BOOL) hasBgImageWidth;
 - (Float32) bgImageWidth;
-- (PBFeed_Builder*) setBgImageWidth:(Float32) value;
-- (PBFeed_Builder*) clearBgImageWidth;
+- (PBFeedBuilder*) setBgImageWidth:(Float32) value;
+- (PBFeedBuilder*) clearBgImageWidth;
 
 - (BOOL) hasBgImageHeight;
 - (Float32) bgImageHeight;
-- (PBFeed_Builder*) setBgImageHeight:(Float32) value;
-- (PBFeed_Builder*) clearBgImageHeight;
+- (PBFeedBuilder*) setBgImageHeight:(Float32) value;
+- (PBFeedBuilder*) clearBgImageHeight;
 
 - (BOOL) hasStrokes;
-- (int64_t) strokes;
-- (PBFeed_Builder*) setStrokes:(int64_t) value;
-- (PBFeed_Builder*) clearStrokes;
+- (SInt64) strokes;
+- (PBFeedBuilder*) setStrokes:(SInt64) value;
+- (PBFeedBuilder*) clearStrokes;
 
 - (BOOL) hasDraftCompleteDate;
-- (int32_t) draftCompleteDate;
-- (PBFeed_Builder*) setDraftCompleteDate:(int32_t) value;
-- (PBFeed_Builder*) clearDraftCompleteDate;
+- (SInt32) draftCompleteDate;
+- (PBFeedBuilder*) setDraftCompleteDate:(SInt32) value;
+- (PBFeedBuilder*) clearDraftCompleteDate;
 
 - (BOOL) hasDraftCreateDate;
-- (int32_t) draftCreateDate;
-- (PBFeed_Builder*) setDraftCreateDate:(int32_t) value;
-- (PBFeed_Builder*) clearDraftCreateDate;
+- (SInt32) draftCreateDate;
+- (PBFeedBuilder*) setDraftCreateDate:(SInt32) value;
+- (PBFeedBuilder*) clearDraftCreateDate;
 
-- (NSArray*) opusClassList;
-- (PBClass*) opusClassAtIndex:(int32_t) index;
-- (PBFeed_Builder*) replaceOpusClassAtIndex:(int32_t) index with:(PBClass*) value;
-- (PBFeed_Builder*) addOpusClass:(PBClass*) value;
-- (PBFeed_Builder*) addAllOpusClass:(NSArray*) values;
-- (PBFeed_Builder*) clearOpusClassList;
+- (NSMutableArray *)opusClass;
+- (PBClass*)opusClassAtIndex:(NSUInteger)index;
+- (PBFeedBuilder *)addOpusClass:(PBClass*)value;
+- (PBFeedBuilder *)setOpusClassArray:(NSArray *)array;
+- (PBFeedBuilder *)clearOpusClass;
 
-- (NSArray*) opusClassIdsList;
-- (NSString*) opusClassIdsAtIndex:(int32_t) index;
-- (PBFeed_Builder*) replaceOpusClassIdsAtIndex:(int32_t) index with:(NSString*) value;
-- (PBFeed_Builder*) addOpusClassIds:(NSString*) value;
-- (PBFeed_Builder*) addAllOpusClassIds:(NSArray*) values;
-- (PBFeed_Builder*) clearOpusClassIdsList;
+- (NSMutableArray *)opusClassIds;
+- (NSString*)opusClassIdsAtIndex:(NSUInteger)index;
+- (PBFeedBuilder *)addOpusClassIds:(NSString*)value;
+- (PBFeedBuilder *)setOpusClassIdsArray:(NSArray *)array;
+- (PBFeedBuilder *)clearOpusClassIds;
 
 - (BOOL) hasStageScore;
-- (int32_t) stageScore;
-- (PBFeed_Builder*) setStageScore:(int32_t) value;
-- (PBFeed_Builder*) clearStageScore;
+- (SInt32) stageScore;
+- (PBFeedBuilder*) setStageScore:(SInt32) value;
+- (PBFeedBuilder*) clearStageScore;
 
 - (BOOL) hasStageRank;
-- (int32_t) stageRank;
-- (PBFeed_Builder*) setStageRank:(int32_t) value;
-- (PBFeed_Builder*) clearStageRank;
+- (SInt32) stageRank;
+- (PBFeedBuilder*) setStageRank:(SInt32) value;
+- (PBFeedBuilder*) clearStageRank;
 @end
 
-@interface PBPoint : PBGeneratedMessage {
+@interface PBPoint : PBGeneratedMessage<GeneratedMessageProtocol> {
 @private
   BOOL hasX_:1;
   BOOL hasY_:1;
@@ -1262,14 +1273,15 @@
 @property (readonly) Float32 x;
 @property (readonly) Float32 y;
 
-+ (PBPoint*) defaultInstance;
-- (PBPoint*) defaultInstance;
++ (instancetype) defaultInstance;
+- (instancetype) defaultInstance;
 
 - (BOOL) isInitialized;
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
-- (PBPoint_Builder*) builder;
-+ (PBPoint_Builder*) builder;
-+ (PBPoint_Builder*) builderWithPrototype:(PBPoint*) prototype;
+- (PBPointBuilder*) builder;
++ (PBPointBuilder*) builder;
++ (PBPointBuilder*) builderWithPrototype:(PBPoint*) prototype;
+- (PBPointBuilder*) toBuilder;
 
 + (PBPoint*) parseFromData:(NSData*) data;
 + (PBPoint*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
@@ -1279,35 +1291,35 @@
 + (PBPoint*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 @end
 
-@interface PBPoint_Builder : PBGeneratedMessage_Builder {
+@interface PBPointBuilder : PBGeneratedMessageBuilder {
 @private
-  PBPoint* result;
+  PBPoint* resultPbpoint;
 }
 
 - (PBPoint*) defaultInstance;
 
-- (PBPoint_Builder*) clear;
-- (PBPoint_Builder*) clone;
+- (PBPointBuilder*) clear;
+- (PBPointBuilder*) clone;
 
 - (PBPoint*) build;
 - (PBPoint*) buildPartial;
 
-- (PBPoint_Builder*) mergeFrom:(PBPoint*) other;
-- (PBPoint_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
-- (PBPoint_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+- (PBPointBuilder*) mergeFrom:(PBPoint*) other;
+- (PBPointBuilder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
+- (PBPointBuilder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 
 - (BOOL) hasX;
 - (Float32) x;
-- (PBPoint_Builder*) setX:(Float32) value;
-- (PBPoint_Builder*) clearX;
+- (PBPointBuilder*) setX:(Float32) value;
+- (PBPointBuilder*) clearX;
 
 - (BOOL) hasY;
 - (Float32) y;
-- (PBPoint_Builder*) setY:(Float32) value;
-- (PBPoint_Builder*) clearY;
+- (PBPointBuilder*) setY:(Float32) value;
+- (PBPointBuilder*) clearY;
 @end
 
-@interface PBColor : PBGeneratedMessage {
+@interface PBColor : PBGeneratedMessage<GeneratedMessageProtocol> {
 @private
   BOOL hasRed_:1;
   BOOL hasBlue_:1;
@@ -1327,14 +1339,15 @@
 @property (readonly) Float32 green;
 @property (readonly) Float32 alpha;
 
-+ (PBColor*) defaultInstance;
-- (PBColor*) defaultInstance;
++ (instancetype) defaultInstance;
+- (instancetype) defaultInstance;
 
 - (BOOL) isInitialized;
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
-- (PBColor_Builder*) builder;
-+ (PBColor_Builder*) builder;
-+ (PBColor_Builder*) builderWithPrototype:(PBColor*) prototype;
+- (PBColorBuilder*) builder;
++ (PBColorBuilder*) builder;
++ (PBColorBuilder*) builderWithPrototype:(PBColor*) prototype;
+- (PBColorBuilder*) toBuilder;
 
 + (PBColor*) parseFromData:(NSData*) data;
 + (PBColor*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
@@ -1344,45 +1357,45 @@
 + (PBColor*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 @end
 
-@interface PBColor_Builder : PBGeneratedMessage_Builder {
+@interface PBColorBuilder : PBGeneratedMessageBuilder {
 @private
-  PBColor* result;
+  PBColor* resultPbcolor;
 }
 
 - (PBColor*) defaultInstance;
 
-- (PBColor_Builder*) clear;
-- (PBColor_Builder*) clone;
+- (PBColorBuilder*) clear;
+- (PBColorBuilder*) clone;
 
 - (PBColor*) build;
 - (PBColor*) buildPartial;
 
-- (PBColor_Builder*) mergeFrom:(PBColor*) other;
-- (PBColor_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
-- (PBColor_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+- (PBColorBuilder*) mergeFrom:(PBColor*) other;
+- (PBColorBuilder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
+- (PBColorBuilder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 
 - (BOOL) hasRed;
 - (Float32) red;
-- (PBColor_Builder*) setRed:(Float32) value;
-- (PBColor_Builder*) clearRed;
+- (PBColorBuilder*) setRed:(Float32) value;
+- (PBColorBuilder*) clearRed;
 
 - (BOOL) hasBlue;
 - (Float32) blue;
-- (PBColor_Builder*) setBlue:(Float32) value;
-- (PBColor_Builder*) clearBlue;
+- (PBColorBuilder*) setBlue:(Float32) value;
+- (PBColorBuilder*) clearBlue;
 
 - (BOOL) hasGreen;
 - (Float32) green;
-- (PBColor_Builder*) setGreen:(Float32) value;
-- (PBColor_Builder*) clearGreen;
+- (PBColorBuilder*) setGreen:(Float32) value;
+- (PBColorBuilder*) clearGreen;
 
 - (BOOL) hasAlpha;
 - (Float32) alpha;
-- (PBColor_Builder*) setAlpha:(Float32) value;
-- (PBColor_Builder*) clearAlpha;
+- (PBColorBuilder*) setAlpha:(Float32) value;
+- (PBColorBuilder*) clearAlpha;
 @end
 
-@interface PBNoCompressDrawAction : PBGeneratedMessage {
+@interface PBNoCompressDrawAction : PBGeneratedMessage<GeneratedMessageProtocol> {
 @private
   BOOL hasWidth_:1;
   BOOL hasRed_:1;
@@ -1400,17 +1413,17 @@
   Float32 blue;
   Float32 green;
   Float32 alpha;
-  int32_t type;
-  int32_t penType;
-  int32_t shapeType;
+  SInt32 type;
+  SInt32 penType;
+  SInt32 shapeType;
   PBColor* color;
   PBSize* canvasSize;
-  int32_t rgbColor;
-  NSMutableArray* mutableRectComponentList;
-  NSMutableArray* mutablePointXList;
-  NSMutableArray* mutablePointYList;
-  NSMutableArray* mutableBrushPointWidthList;
-  NSMutableArray* mutablePointList;
+  UInt32 rgbColor;
+  PBAppendableArray * rectComponentArray;
+  PBAppendableArray * pointXArray;
+  PBAppendableArray * pointYArray;
+  PBAppendableArray * brushPointWidthArray;
+  NSMutableArray * pointArray;
 }
 - (BOOL) hasType;
 - (BOOL) hasColor;
@@ -1423,36 +1436,37 @@
 - (BOOL) hasBlue;
 - (BOOL) hasGreen;
 - (BOOL) hasAlpha;
-@property (readonly) int32_t type;
-@property (readonly, retain) PBColor* color;
+@property (readonly) SInt32 type;
+@property (readonly, strong) NSArray * point;
+@property (readonly, strong) PBColor* color;
 @property (readonly) Float32 width;
-@property (readonly) int32_t penType;
-@property (readonly) int32_t shapeType;
-@property (readonly, retain) PBSize* canvasSize;
-@property (readonly) int32_t rgbColor;
+@property (readonly) SInt32 penType;
+@property (readonly) SInt32 shapeType;
+@property (readonly, strong) PBArray * rectComponent;
+@property (readonly, strong) PBSize* canvasSize;
+@property (readonly, strong) PBArray * pointX;
+@property (readonly, strong) PBArray * pointY;
+@property (readonly) UInt32 rgbColor;
 @property (readonly) Float32 red;
 @property (readonly) Float32 blue;
 @property (readonly) Float32 green;
 @property (readonly) Float32 alpha;
-- (NSArray*) pointList;
-- (PBPoint*) pointAtIndex:(int32_t) index;
-- (NSArray*) rectComponentList;
-- (Float32) rectComponentAtIndex:(int32_t) index;
-- (NSArray*) pointXList;
-- (Float32) pointXAtIndex:(int32_t) index;
-- (NSArray*) pointYList;
-- (Float32) pointYAtIndex:(int32_t) index;
-- (NSArray*) brushPointWidthList;
-- (Float32) brushPointWidthAtIndex:(int32_t) index;
+@property (readonly, strong) PBArray * brushPointWidth;
+- (PBPoint*)pointAtIndex:(NSUInteger)index;
+- (Float32)rectComponentAtIndex:(NSUInteger)index;
+- (Float32)pointXAtIndex:(NSUInteger)index;
+- (Float32)pointYAtIndex:(NSUInteger)index;
+- (Float32)brushPointWidthAtIndex:(NSUInteger)index;
 
-+ (PBNoCompressDrawAction*) defaultInstance;
-- (PBNoCompressDrawAction*) defaultInstance;
++ (instancetype) defaultInstance;
+- (instancetype) defaultInstance;
 
 - (BOOL) isInitialized;
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
-- (PBNoCompressDrawAction_Builder*) builder;
-+ (PBNoCompressDrawAction_Builder*) builder;
-+ (PBNoCompressDrawAction_Builder*) builderWithPrototype:(PBNoCompressDrawAction*) prototype;
+- (PBNoCompressDrawActionBuilder*) builder;
++ (PBNoCompressDrawActionBuilder*) builder;
++ (PBNoCompressDrawActionBuilder*) builderWithPrototype:(PBNoCompressDrawAction*) prototype;
+- (PBNoCompressDrawActionBuilder*) toBuilder;
 
 + (PBNoCompressDrawAction*) parseFromData:(NSData*) data;
 + (PBNoCompressDrawAction*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
@@ -1462,119 +1476,118 @@
 + (PBNoCompressDrawAction*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 @end
 
-@interface PBNoCompressDrawAction_Builder : PBGeneratedMessage_Builder {
+@interface PBNoCompressDrawActionBuilder : PBGeneratedMessageBuilder {
 @private
-  PBNoCompressDrawAction* result;
+  PBNoCompressDrawAction* resultPbnoCompressDrawAction;
 }
 
 - (PBNoCompressDrawAction*) defaultInstance;
 
-- (PBNoCompressDrawAction_Builder*) clear;
-- (PBNoCompressDrawAction_Builder*) clone;
+- (PBNoCompressDrawActionBuilder*) clear;
+- (PBNoCompressDrawActionBuilder*) clone;
 
 - (PBNoCompressDrawAction*) build;
 - (PBNoCompressDrawAction*) buildPartial;
 
-- (PBNoCompressDrawAction_Builder*) mergeFrom:(PBNoCompressDrawAction*) other;
-- (PBNoCompressDrawAction_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
-- (PBNoCompressDrawAction_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+- (PBNoCompressDrawActionBuilder*) mergeFrom:(PBNoCompressDrawAction*) other;
+- (PBNoCompressDrawActionBuilder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
+- (PBNoCompressDrawActionBuilder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 
 - (BOOL) hasType;
-- (int32_t) type;
-- (PBNoCompressDrawAction_Builder*) setType:(int32_t) value;
-- (PBNoCompressDrawAction_Builder*) clearType;
+- (SInt32) type;
+- (PBNoCompressDrawActionBuilder*) setType:(SInt32) value;
+- (PBNoCompressDrawActionBuilder*) clearType;
 
-- (NSArray*) pointList;
-- (PBPoint*) pointAtIndex:(int32_t) index;
-- (PBNoCompressDrawAction_Builder*) replacePointAtIndex:(int32_t) index with:(PBPoint*) value;
-- (PBNoCompressDrawAction_Builder*) addPoint:(PBPoint*) value;
-- (PBNoCompressDrawAction_Builder*) addAllPoint:(NSArray*) values;
-- (PBNoCompressDrawAction_Builder*) clearPointList;
+- (NSMutableArray *)point;
+- (PBPoint*)pointAtIndex:(NSUInteger)index;
+- (PBNoCompressDrawActionBuilder *)addPoint:(PBPoint*)value;
+- (PBNoCompressDrawActionBuilder *)setPointArray:(NSArray *)array;
+- (PBNoCompressDrawActionBuilder *)clearPoint;
 
 - (BOOL) hasColor;
 - (PBColor*) color;
-- (PBNoCompressDrawAction_Builder*) setColor:(PBColor*) value;
-- (PBNoCompressDrawAction_Builder*) setColorBuilder:(PBColor_Builder*) builderForValue;
-- (PBNoCompressDrawAction_Builder*) mergeColor:(PBColor*) value;
-- (PBNoCompressDrawAction_Builder*) clearColor;
+- (PBNoCompressDrawActionBuilder*) setColor:(PBColor*) value;
+- (PBNoCompressDrawActionBuilder*) setColorBuilder:(PBColorBuilder*) builderForValue;
+- (PBNoCompressDrawActionBuilder*) mergeColor:(PBColor*) value;
+- (PBNoCompressDrawActionBuilder*) clearColor;
 
 - (BOOL) hasWidth;
 - (Float32) width;
-- (PBNoCompressDrawAction_Builder*) setWidth:(Float32) value;
-- (PBNoCompressDrawAction_Builder*) clearWidth;
+- (PBNoCompressDrawActionBuilder*) setWidth:(Float32) value;
+- (PBNoCompressDrawActionBuilder*) clearWidth;
 
 - (BOOL) hasPenType;
-- (int32_t) penType;
-- (PBNoCompressDrawAction_Builder*) setPenType:(int32_t) value;
-- (PBNoCompressDrawAction_Builder*) clearPenType;
+- (SInt32) penType;
+- (PBNoCompressDrawActionBuilder*) setPenType:(SInt32) value;
+- (PBNoCompressDrawActionBuilder*) clearPenType;
 
 - (BOOL) hasShapeType;
-- (int32_t) shapeType;
-- (PBNoCompressDrawAction_Builder*) setShapeType:(int32_t) value;
-- (PBNoCompressDrawAction_Builder*) clearShapeType;
+- (SInt32) shapeType;
+- (PBNoCompressDrawActionBuilder*) setShapeType:(SInt32) value;
+- (PBNoCompressDrawActionBuilder*) clearShapeType;
 
-- (NSArray*) rectComponentList;
-- (Float32) rectComponentAtIndex:(int32_t) index;
-- (PBNoCompressDrawAction_Builder*) replaceRectComponentAtIndex:(int32_t) index with:(Float32) value;
-- (PBNoCompressDrawAction_Builder*) addRectComponent:(Float32) value;
-- (PBNoCompressDrawAction_Builder*) addAllRectComponent:(NSArray*) values;
-- (PBNoCompressDrawAction_Builder*) clearRectComponentList;
+- (PBAppendableArray *)rectComponent;
+- (Float32)rectComponentAtIndex:(NSUInteger)index;
+- (PBNoCompressDrawActionBuilder *)addRectComponent:(Float32)value;
+- (PBNoCompressDrawActionBuilder *)setRectComponentArray:(NSArray *)array;
+- (PBNoCompressDrawActionBuilder *)setRectComponentValues:(const Float32 *)values count:(NSUInteger)count;
+- (PBNoCompressDrawActionBuilder *)clearRectComponent;
 
 - (BOOL) hasCanvasSize;
 - (PBSize*) canvasSize;
-- (PBNoCompressDrawAction_Builder*) setCanvasSize:(PBSize*) value;
-- (PBNoCompressDrawAction_Builder*) setCanvasSizeBuilder:(PBSize_Builder*) builderForValue;
-- (PBNoCompressDrawAction_Builder*) mergeCanvasSize:(PBSize*) value;
-- (PBNoCompressDrawAction_Builder*) clearCanvasSize;
+- (PBNoCompressDrawActionBuilder*) setCanvasSize:(PBSize*) value;
+- (PBNoCompressDrawActionBuilder*) setCanvasSizeBuilder:(PBSizeBuilder*) builderForValue;
+- (PBNoCompressDrawActionBuilder*) mergeCanvasSize:(PBSize*) value;
+- (PBNoCompressDrawActionBuilder*) clearCanvasSize;
 
-- (NSArray*) pointXList;
-- (Float32) pointXAtIndex:(int32_t) index;
-- (PBNoCompressDrawAction_Builder*) replacePointXAtIndex:(int32_t) index with:(Float32) value;
-- (PBNoCompressDrawAction_Builder*) addPointX:(Float32) value;
-- (PBNoCompressDrawAction_Builder*) addAllPointX:(NSArray*) values;
-- (PBNoCompressDrawAction_Builder*) clearPointXList;
+- (PBAppendableArray *)pointX;
+- (Float32)pointXAtIndex:(NSUInteger)index;
+- (PBNoCompressDrawActionBuilder *)addPointX:(Float32)value;
+- (PBNoCompressDrawActionBuilder *)setPointXArray:(NSArray *)array;
+- (PBNoCompressDrawActionBuilder *)setPointXValues:(const Float32 *)values count:(NSUInteger)count;
+- (PBNoCompressDrawActionBuilder *)clearPointX;
 
-- (NSArray*) pointYList;
-- (Float32) pointYAtIndex:(int32_t) index;
-- (PBNoCompressDrawAction_Builder*) replacePointYAtIndex:(int32_t) index with:(Float32) value;
-- (PBNoCompressDrawAction_Builder*) addPointY:(Float32) value;
-- (PBNoCompressDrawAction_Builder*) addAllPointY:(NSArray*) values;
-- (PBNoCompressDrawAction_Builder*) clearPointYList;
+- (PBAppendableArray *)pointY;
+- (Float32)pointYAtIndex:(NSUInteger)index;
+- (PBNoCompressDrawActionBuilder *)addPointY:(Float32)value;
+- (PBNoCompressDrawActionBuilder *)setPointYArray:(NSArray *)array;
+- (PBNoCompressDrawActionBuilder *)setPointYValues:(const Float32 *)values count:(NSUInteger)count;
+- (PBNoCompressDrawActionBuilder *)clearPointY;
 
 - (BOOL) hasRgbColor;
-- (int32_t) rgbColor;
-- (PBNoCompressDrawAction_Builder*) setRgbColor:(int32_t) value;
-- (PBNoCompressDrawAction_Builder*) clearRgbColor;
+- (UInt32) rgbColor;
+- (PBNoCompressDrawActionBuilder*) setRgbColor:(UInt32) value;
+- (PBNoCompressDrawActionBuilder*) clearRgbColor;
 
 - (BOOL) hasRed;
 - (Float32) red;
-- (PBNoCompressDrawAction_Builder*) setRed:(Float32) value;
-- (PBNoCompressDrawAction_Builder*) clearRed;
+- (PBNoCompressDrawActionBuilder*) setRed:(Float32) value;
+- (PBNoCompressDrawActionBuilder*) clearRed;
 
 - (BOOL) hasBlue;
 - (Float32) blue;
-- (PBNoCompressDrawAction_Builder*) setBlue:(Float32) value;
-- (PBNoCompressDrawAction_Builder*) clearBlue;
+- (PBNoCompressDrawActionBuilder*) setBlue:(Float32) value;
+- (PBNoCompressDrawActionBuilder*) clearBlue;
 
 - (BOOL) hasGreen;
 - (Float32) green;
-- (PBNoCompressDrawAction_Builder*) setGreen:(Float32) value;
-- (PBNoCompressDrawAction_Builder*) clearGreen;
+- (PBNoCompressDrawActionBuilder*) setGreen:(Float32) value;
+- (PBNoCompressDrawActionBuilder*) clearGreen;
 
 - (BOOL) hasAlpha;
 - (Float32) alpha;
-- (PBNoCompressDrawAction_Builder*) setAlpha:(Float32) value;
-- (PBNoCompressDrawAction_Builder*) clearAlpha;
+- (PBNoCompressDrawActionBuilder*) setAlpha:(Float32) value;
+- (PBNoCompressDrawActionBuilder*) clearAlpha;
 
-- (NSArray*) brushPointWidthList;
-- (Float32) brushPointWidthAtIndex:(int32_t) index;
-- (PBNoCompressDrawAction_Builder*) replaceBrushPointWidthAtIndex:(int32_t) index with:(Float32) value;
-- (PBNoCompressDrawAction_Builder*) addBrushPointWidth:(Float32) value;
-- (PBNoCompressDrawAction_Builder*) addAllBrushPointWidth:(NSArray*) values;
-- (PBNoCompressDrawAction_Builder*) clearBrushPointWidthList;
+- (PBAppendableArray *)brushPointWidth;
+- (Float32)brushPointWidthAtIndex:(NSUInteger)index;
+- (PBNoCompressDrawActionBuilder *)addBrushPointWidth:(Float32)value;
+- (PBNoCompressDrawActionBuilder *)setBrushPointWidthArray:(NSArray *)array;
+- (PBNoCompressDrawActionBuilder *)setBrushPointWidthValues:(const Float32 *)values count:(NSUInteger)count;
+- (PBNoCompressDrawActionBuilder *)clearBrushPointWidth;
 @end
 
-@interface PBNoCompressDrawData : PBGeneratedMessage {
+@interface PBNoCompressDrawData : PBGeneratedMessage<GeneratedMessageProtocol> {
 @private
   BOOL hasStrokes_:1;
   BOOL hasVersion_:1;
@@ -1584,17 +1597,17 @@
   BOOL hasBgImageName_:1;
   BOOL hasCanvasSize_:1;
   BOOL hasDrawToUser_:1;
-  int64_t strokes;
-  int32_t version;
-  int32_t spendTime;
-  int32_t completeDate;
+  SInt64 strokes;
+  SInt32 version;
+  SInt32 spendTime;
+  SInt32 completeDate;
   NSString* opusDesc;
   NSString* bgImageName;
   PBSize* canvasSize;
   PBUserBasicInfo* drawToUser;
-  NSMutableArray* mutableDrawActionListList;
-  NSMutableArray* mutableDrawActionList2List;
-  NSMutableArray* mutableLayerList;
+  NSMutableArray * drawActionListArray;
+  NSMutableArray * drawActionList2Array;
+  NSMutableArray * layerArray;
 }
 - (BOOL) hasVersion;
 - (BOOL) hasCanvasSize;
@@ -1604,29 +1617,30 @@
 - (BOOL) hasStrokes;
 - (BOOL) hasSpendTime;
 - (BOOL) hasCompleteDate;
-@property (readonly) int32_t version;
-@property (readonly, retain) PBSize* canvasSize;
-@property (readonly, retain) PBUserBasicInfo* drawToUser;
-@property (readonly, retain) NSString* opusDesc;
-@property (readonly, retain) NSString* bgImageName;
-@property (readonly) int64_t strokes;
-@property (readonly) int32_t spendTime;
-@property (readonly) int32_t completeDate;
-- (NSArray*) drawActionListList;
-- (PBNoCompressDrawAction*) drawActionListAtIndex:(int32_t) index;
-- (NSArray*) drawActionList2List;
-- (PBDrawAction*) drawActionList2AtIndex:(int32_t) index;
-- (NSArray*) layerList;
-- (PBLayer*) layerAtIndex:(int32_t) index;
+@property (readonly, strong) NSArray * drawActionList;
+@property (readonly) SInt32 version;
+@property (readonly, strong) PBSize* canvasSize;
+@property (readonly, strong) NSArray * drawActionList2;
+@property (readonly, strong) PBUserBasicInfo* drawToUser;
+@property (readonly, strong) NSString* opusDesc;
+@property (readonly, strong) NSString* bgImageName;
+@property (readonly, strong) NSArray * layer;
+@property (readonly) SInt64 strokes;
+@property (readonly) SInt32 spendTime;
+@property (readonly) SInt32 completeDate;
+- (PBNoCompressDrawAction*)drawActionListAtIndex:(NSUInteger)index;
+- (PBDrawAction*)drawActionList2AtIndex:(NSUInteger)index;
+- (PBLayer*)layerAtIndex:(NSUInteger)index;
 
-+ (PBNoCompressDrawData*) defaultInstance;
-- (PBNoCompressDrawData*) defaultInstance;
++ (instancetype) defaultInstance;
+- (instancetype) defaultInstance;
 
 - (BOOL) isInitialized;
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
-- (PBNoCompressDrawData_Builder*) builder;
-+ (PBNoCompressDrawData_Builder*) builder;
-+ (PBNoCompressDrawData_Builder*) builderWithPrototype:(PBNoCompressDrawData*) prototype;
+- (PBNoCompressDrawDataBuilder*) builder;
++ (PBNoCompressDrawDataBuilder*) builder;
++ (PBNoCompressDrawDataBuilder*) builderWithPrototype:(PBNoCompressDrawData*) prototype;
+- (PBNoCompressDrawDataBuilder*) toBuilder;
 
 + (PBNoCompressDrawData*) parseFromData:(NSData*) data;
 + (PBNoCompressDrawData*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
@@ -1636,111 +1650,109 @@
 + (PBNoCompressDrawData*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 @end
 
-@interface PBNoCompressDrawData_Builder : PBGeneratedMessage_Builder {
+@interface PBNoCompressDrawDataBuilder : PBGeneratedMessageBuilder {
 @private
-  PBNoCompressDrawData* result;
+  PBNoCompressDrawData* resultPbnoCompressDrawData;
 }
 
 - (PBNoCompressDrawData*) defaultInstance;
 
-- (PBNoCompressDrawData_Builder*) clear;
-- (PBNoCompressDrawData_Builder*) clone;
+- (PBNoCompressDrawDataBuilder*) clear;
+- (PBNoCompressDrawDataBuilder*) clone;
 
 - (PBNoCompressDrawData*) build;
 - (PBNoCompressDrawData*) buildPartial;
 
-- (PBNoCompressDrawData_Builder*) mergeFrom:(PBNoCompressDrawData*) other;
-- (PBNoCompressDrawData_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
-- (PBNoCompressDrawData_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+- (PBNoCompressDrawDataBuilder*) mergeFrom:(PBNoCompressDrawData*) other;
+- (PBNoCompressDrawDataBuilder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
+- (PBNoCompressDrawDataBuilder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 
-- (NSArray*) drawActionListList;
-- (PBNoCompressDrawAction*) drawActionListAtIndex:(int32_t) index;
-- (PBNoCompressDrawData_Builder*) replaceDrawActionListAtIndex:(int32_t) index with:(PBNoCompressDrawAction*) value;
-- (PBNoCompressDrawData_Builder*) addDrawActionList:(PBNoCompressDrawAction*) value;
-- (PBNoCompressDrawData_Builder*) addAllDrawActionList:(NSArray*) values;
-- (PBNoCompressDrawData_Builder*) clearDrawActionListList;
+- (NSMutableArray *)drawActionList;
+- (PBNoCompressDrawAction*)drawActionListAtIndex:(NSUInteger)index;
+- (PBNoCompressDrawDataBuilder *)addDrawActionList:(PBNoCompressDrawAction*)value;
+- (PBNoCompressDrawDataBuilder *)setDrawActionListArray:(NSArray *)array;
+- (PBNoCompressDrawDataBuilder *)clearDrawActionList;
 
 - (BOOL) hasVersion;
-- (int32_t) version;
-- (PBNoCompressDrawData_Builder*) setVersion:(int32_t) value;
-- (PBNoCompressDrawData_Builder*) clearVersion;
+- (SInt32) version;
+- (PBNoCompressDrawDataBuilder*) setVersion:(SInt32) value;
+- (PBNoCompressDrawDataBuilder*) clearVersion;
 
 - (BOOL) hasCanvasSize;
 - (PBSize*) canvasSize;
-- (PBNoCompressDrawData_Builder*) setCanvasSize:(PBSize*) value;
-- (PBNoCompressDrawData_Builder*) setCanvasSizeBuilder:(PBSize_Builder*) builderForValue;
-- (PBNoCompressDrawData_Builder*) mergeCanvasSize:(PBSize*) value;
-- (PBNoCompressDrawData_Builder*) clearCanvasSize;
+- (PBNoCompressDrawDataBuilder*) setCanvasSize:(PBSize*) value;
+- (PBNoCompressDrawDataBuilder*) setCanvasSizeBuilder:(PBSizeBuilder*) builderForValue;
+- (PBNoCompressDrawDataBuilder*) mergeCanvasSize:(PBSize*) value;
+- (PBNoCompressDrawDataBuilder*) clearCanvasSize;
 
-- (NSArray*) drawActionList2List;
-- (PBDrawAction*) drawActionList2AtIndex:(int32_t) index;
-- (PBNoCompressDrawData_Builder*) replaceDrawActionList2AtIndex:(int32_t) index with:(PBDrawAction*) value;
-- (PBNoCompressDrawData_Builder*) addDrawActionList2:(PBDrawAction*) value;
-- (PBNoCompressDrawData_Builder*) addAllDrawActionList2:(NSArray*) values;
-- (PBNoCompressDrawData_Builder*) clearDrawActionList2List;
+- (NSMutableArray *)drawActionList2;
+- (PBDrawAction*)drawActionList2AtIndex:(NSUInteger)index;
+- (PBNoCompressDrawDataBuilder *)addDrawActionList2:(PBDrawAction*)value;
+- (PBNoCompressDrawDataBuilder *)setDrawActionList2Array:(NSArray *)array;
+- (PBNoCompressDrawDataBuilder *)clearDrawActionList2;
 
 - (BOOL) hasDrawToUser;
 - (PBUserBasicInfo*) drawToUser;
-- (PBNoCompressDrawData_Builder*) setDrawToUser:(PBUserBasicInfo*) value;
-- (PBNoCompressDrawData_Builder*) setDrawToUserBuilder:(PBUserBasicInfo_Builder*) builderForValue;
-- (PBNoCompressDrawData_Builder*) mergeDrawToUser:(PBUserBasicInfo*) value;
-- (PBNoCompressDrawData_Builder*) clearDrawToUser;
+- (PBNoCompressDrawDataBuilder*) setDrawToUser:(PBUserBasicInfo*) value;
+- (PBNoCompressDrawDataBuilder*) setDrawToUserBuilder:(PBUserBasicInfoBuilder*) builderForValue;
+- (PBNoCompressDrawDataBuilder*) mergeDrawToUser:(PBUserBasicInfo*) value;
+- (PBNoCompressDrawDataBuilder*) clearDrawToUser;
 
 - (BOOL) hasOpusDesc;
 - (NSString*) opusDesc;
-- (PBNoCompressDrawData_Builder*) setOpusDesc:(NSString*) value;
-- (PBNoCompressDrawData_Builder*) clearOpusDesc;
+- (PBNoCompressDrawDataBuilder*) setOpusDesc:(NSString*) value;
+- (PBNoCompressDrawDataBuilder*) clearOpusDesc;
 
 - (BOOL) hasBgImageName;
 - (NSString*) bgImageName;
-- (PBNoCompressDrawData_Builder*) setBgImageName:(NSString*) value;
-- (PBNoCompressDrawData_Builder*) clearBgImageName;
+- (PBNoCompressDrawDataBuilder*) setBgImageName:(NSString*) value;
+- (PBNoCompressDrawDataBuilder*) clearBgImageName;
 
-- (NSArray*) layerList;
-- (PBLayer*) layerAtIndex:(int32_t) index;
-- (PBNoCompressDrawData_Builder*) replaceLayerAtIndex:(int32_t) index with:(PBLayer*) value;
-- (PBNoCompressDrawData_Builder*) addLayer:(PBLayer*) value;
-- (PBNoCompressDrawData_Builder*) addAllLayer:(NSArray*) values;
-- (PBNoCompressDrawData_Builder*) clearLayerList;
+- (NSMutableArray *)layer;
+- (PBLayer*)layerAtIndex:(NSUInteger)index;
+- (PBNoCompressDrawDataBuilder *)addLayer:(PBLayer*)value;
+- (PBNoCompressDrawDataBuilder *)setLayerArray:(NSArray *)array;
+- (PBNoCompressDrawDataBuilder *)clearLayer;
 
 - (BOOL) hasStrokes;
-- (int64_t) strokes;
-- (PBNoCompressDrawData_Builder*) setStrokes:(int64_t) value;
-- (PBNoCompressDrawData_Builder*) clearStrokes;
+- (SInt64) strokes;
+- (PBNoCompressDrawDataBuilder*) setStrokes:(SInt64) value;
+- (PBNoCompressDrawDataBuilder*) clearStrokes;
 
 - (BOOL) hasSpendTime;
-- (int32_t) spendTime;
-- (PBNoCompressDrawData_Builder*) setSpendTime:(int32_t) value;
-- (PBNoCompressDrawData_Builder*) clearSpendTime;
+- (SInt32) spendTime;
+- (PBNoCompressDrawDataBuilder*) setSpendTime:(SInt32) value;
+- (PBNoCompressDrawDataBuilder*) clearSpendTime;
 
 - (BOOL) hasCompleteDate;
-- (int32_t) completeDate;
-- (PBNoCompressDrawData_Builder*) setCompleteDate:(int32_t) value;
-- (PBNoCompressDrawData_Builder*) clearCompleteDate;
+- (SInt32) completeDate;
+- (PBNoCompressDrawDataBuilder*) setCompleteDate:(SInt32) value;
+- (PBNoCompressDrawDataBuilder*) clearCompleteDate;
 @end
 
-@interface PBDrawBgGroup : PBGeneratedMessage {
+@interface PBDrawBgGroup : PBGeneratedMessage<GeneratedMessageProtocol> {
 @private
   BOOL hasGroupId_:1;
-  int32_t groupId;
-  NSMutableArray* mutableDrawBgsList;
-  NSMutableArray* mutableNameList;
+  SInt32 groupId;
+  NSMutableArray * drawBgsArray;
+  NSMutableArray * nameArray;
 }
 - (BOOL) hasGroupId;
-@property (readonly) int32_t groupId;
-- (NSArray*) drawBgsList;
-- (PBDrawBg*) drawBgsAtIndex:(int32_t) index;
-- (NSArray*) nameList;
-- (PBLocalizeString*) nameAtIndex:(int32_t) index;
+@property (readonly) SInt32 groupId;
+@property (readonly, strong) NSArray * drawBgs;
+@property (readonly, strong) NSArray * name;
+- (PBDrawBg*)drawBgsAtIndex:(NSUInteger)index;
+- (PBLocalizeString*)nameAtIndex:(NSUInteger)index;
 
-+ (PBDrawBgGroup*) defaultInstance;
-- (PBDrawBgGroup*) defaultInstance;
++ (instancetype) defaultInstance;
+- (instancetype) defaultInstance;
 
 - (BOOL) isInitialized;
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
-- (PBDrawBgGroup_Builder*) builder;
-+ (PBDrawBgGroup_Builder*) builder;
-+ (PBDrawBgGroup_Builder*) builderWithPrototype:(PBDrawBgGroup*) prototype;
+- (PBDrawBgGroupBuilder*) builder;
++ (PBDrawBgGroupBuilder*) builder;
++ (PBDrawBgGroupBuilder*) builderWithPrototype:(PBDrawBgGroup*) prototype;
+- (PBDrawBgGroupBuilder*) toBuilder;
 
 + (PBDrawBgGroup*) parseFromData:(NSData*) data;
 + (PBDrawBgGroup*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
@@ -1750,58 +1762,57 @@
 + (PBDrawBgGroup*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 @end
 
-@interface PBDrawBgGroup_Builder : PBGeneratedMessage_Builder {
+@interface PBDrawBgGroupBuilder : PBGeneratedMessageBuilder {
 @private
-  PBDrawBgGroup* result;
+  PBDrawBgGroup* resultPbdrawBgGroup;
 }
 
 - (PBDrawBgGroup*) defaultInstance;
 
-- (PBDrawBgGroup_Builder*) clear;
-- (PBDrawBgGroup_Builder*) clone;
+- (PBDrawBgGroupBuilder*) clear;
+- (PBDrawBgGroupBuilder*) clone;
 
 - (PBDrawBgGroup*) build;
 - (PBDrawBgGroup*) buildPartial;
 
-- (PBDrawBgGroup_Builder*) mergeFrom:(PBDrawBgGroup*) other;
-- (PBDrawBgGroup_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
-- (PBDrawBgGroup_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+- (PBDrawBgGroupBuilder*) mergeFrom:(PBDrawBgGroup*) other;
+- (PBDrawBgGroupBuilder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
+- (PBDrawBgGroupBuilder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 
 - (BOOL) hasGroupId;
-- (int32_t) groupId;
-- (PBDrawBgGroup_Builder*) setGroupId:(int32_t) value;
-- (PBDrawBgGroup_Builder*) clearGroupId;
+- (SInt32) groupId;
+- (PBDrawBgGroupBuilder*) setGroupId:(SInt32) value;
+- (PBDrawBgGroupBuilder*) clearGroupId;
 
-- (NSArray*) drawBgsList;
-- (PBDrawBg*) drawBgsAtIndex:(int32_t) index;
-- (PBDrawBgGroup_Builder*) replaceDrawBgsAtIndex:(int32_t) index with:(PBDrawBg*) value;
-- (PBDrawBgGroup_Builder*) addDrawBgs:(PBDrawBg*) value;
-- (PBDrawBgGroup_Builder*) addAllDrawBgs:(NSArray*) values;
-- (PBDrawBgGroup_Builder*) clearDrawBgsList;
+- (NSMutableArray *)drawBgs;
+- (PBDrawBg*)drawBgsAtIndex:(NSUInteger)index;
+- (PBDrawBgGroupBuilder *)addDrawBgs:(PBDrawBg*)value;
+- (PBDrawBgGroupBuilder *)setDrawBgsArray:(NSArray *)array;
+- (PBDrawBgGroupBuilder *)clearDrawBgs;
 
-- (NSArray*) nameList;
-- (PBLocalizeString*) nameAtIndex:(int32_t) index;
-- (PBDrawBgGroup_Builder*) replaceNameAtIndex:(int32_t) index with:(PBLocalizeString*) value;
-- (PBDrawBgGroup_Builder*) addName:(PBLocalizeString*) value;
-- (PBDrawBgGroup_Builder*) addAllName:(NSArray*) values;
-- (PBDrawBgGroup_Builder*) clearNameList;
+- (NSMutableArray *)name;
+- (PBLocalizeString*)nameAtIndex:(NSUInteger)index;
+- (PBDrawBgGroupBuilder *)addName:(PBLocalizeString*)value;
+- (PBDrawBgGroupBuilder *)setNameArray:(NSArray *)array;
+- (PBDrawBgGroupBuilder *)clearName;
 @end
 
-@interface PBDrawBgMeta : PBGeneratedMessage {
+@interface PBDrawBgMeta : PBGeneratedMessage<GeneratedMessageProtocol> {
 @private
-  NSMutableArray* mutableDrawBgGroupList;
+  NSMutableArray * drawBgGroupArray;
 }
-- (NSArray*) drawBgGroupList;
-- (PBDrawBgGroup*) drawBgGroupAtIndex:(int32_t) index;
+@property (readonly, strong) NSArray * drawBgGroup;
+- (PBDrawBgGroup*)drawBgGroupAtIndex:(NSUInteger)index;
 
-+ (PBDrawBgMeta*) defaultInstance;
-- (PBDrawBgMeta*) defaultInstance;
++ (instancetype) defaultInstance;
+- (instancetype) defaultInstance;
 
 - (BOOL) isInitialized;
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
-- (PBDrawBgMeta_Builder*) builder;
-+ (PBDrawBgMeta_Builder*) builder;
-+ (PBDrawBgMeta_Builder*) builderWithPrototype:(PBDrawBgMeta*) prototype;
+- (PBDrawBgMetaBuilder*) builder;
++ (PBDrawBgMetaBuilder*) builder;
++ (PBDrawBgMetaBuilder*) builderWithPrototype:(PBDrawBgMeta*) prototype;
+- (PBDrawBgMetaBuilder*) toBuilder;
 
 + (PBDrawBgMeta*) parseFromData:(NSData*) data;
 + (PBDrawBgMeta*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
@@ -1811,54 +1822,54 @@
 + (PBDrawBgMeta*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 @end
 
-@interface PBDrawBgMeta_Builder : PBGeneratedMessage_Builder {
+@interface PBDrawBgMetaBuilder : PBGeneratedMessageBuilder {
 @private
-  PBDrawBgMeta* result;
+  PBDrawBgMeta* resultPbdrawBgMeta;
 }
 
 - (PBDrawBgMeta*) defaultInstance;
 
-- (PBDrawBgMeta_Builder*) clear;
-- (PBDrawBgMeta_Builder*) clone;
+- (PBDrawBgMetaBuilder*) clear;
+- (PBDrawBgMetaBuilder*) clone;
 
 - (PBDrawBgMeta*) build;
 - (PBDrawBgMeta*) buildPartial;
 
-- (PBDrawBgMeta_Builder*) mergeFrom:(PBDrawBgMeta*) other;
-- (PBDrawBgMeta_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
-- (PBDrawBgMeta_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+- (PBDrawBgMetaBuilder*) mergeFrom:(PBDrawBgMeta*) other;
+- (PBDrawBgMetaBuilder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
+- (PBDrawBgMetaBuilder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 
-- (NSArray*) drawBgGroupList;
-- (PBDrawBgGroup*) drawBgGroupAtIndex:(int32_t) index;
-- (PBDrawBgMeta_Builder*) replaceDrawBgGroupAtIndex:(int32_t) index with:(PBDrawBgGroup*) value;
-- (PBDrawBgMeta_Builder*) addDrawBgGroup:(PBDrawBgGroup*) value;
-- (PBDrawBgMeta_Builder*) addAllDrawBgGroup:(NSArray*) values;
-- (PBDrawBgMeta_Builder*) clearDrawBgGroupList;
+- (NSMutableArray *)drawBgGroup;
+- (PBDrawBgGroup*)drawBgGroupAtIndex:(NSUInteger)index;
+- (PBDrawBgMetaBuilder *)addDrawBgGroup:(PBDrawBgGroup*)value;
+- (PBDrawBgMetaBuilder *)setDrawBgGroupArray:(NSArray *)array;
+- (PBDrawBgMetaBuilder *)clearDrawBgGroup;
 @end
 
-@interface PBImageShapeGroup : PBGeneratedMessage {
+@interface PBImageShapeGroup : PBGeneratedMessage<GeneratedMessageProtocol> {
 @private
   BOOL hasGroupId_:1;
-  int32_t groupId;
-  NSMutableArray* mutableShapeTypeList;
-  int32_t shapeTypeMemoizedSerializedSize;
-  NSMutableArray* mutableGroupNameList;
+  SInt32 groupId;
+  PBAppendableArray * shapeTypeArray;
+  SInt32 shapeTypeMemoizedSerializedSize;
+  NSMutableArray * groupNameArray;
 }
 - (BOOL) hasGroupId;
-@property (readonly) int32_t groupId;
-- (NSArray*) groupNameList;
-- (PBLocalizeString*) groupNameAtIndex:(int32_t) index;
-- (NSArray*) shapeTypeList;
-- (int32_t) shapeTypeAtIndex:(int32_t) index;
+@property (readonly) SInt32 groupId;
+@property (readonly, strong) NSArray * groupName;
+@property (readonly, strong) PBArray * shapeType;
+- (PBLocalizeString*)groupNameAtIndex:(NSUInteger)index;
+- (SInt32)shapeTypeAtIndex:(NSUInteger)index;
 
-+ (PBImageShapeGroup*) defaultInstance;
-- (PBImageShapeGroup*) defaultInstance;
++ (instancetype) defaultInstance;
+- (instancetype) defaultInstance;
 
 - (BOOL) isInitialized;
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
-- (PBImageShapeGroup_Builder*) builder;
-+ (PBImageShapeGroup_Builder*) builder;
-+ (PBImageShapeGroup_Builder*) builderWithPrototype:(PBImageShapeGroup*) prototype;
+- (PBImageShapeGroupBuilder*) builder;
++ (PBImageShapeGroupBuilder*) builder;
++ (PBImageShapeGroupBuilder*) builderWithPrototype:(PBImageShapeGroup*) prototype;
+- (PBImageShapeGroupBuilder*) toBuilder;
 
 + (PBImageShapeGroup*) parseFromData:(NSData*) data;
 + (PBImageShapeGroup*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
@@ -1868,58 +1879,58 @@
 + (PBImageShapeGroup*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 @end
 
-@interface PBImageShapeGroup_Builder : PBGeneratedMessage_Builder {
+@interface PBImageShapeGroupBuilder : PBGeneratedMessageBuilder {
 @private
-  PBImageShapeGroup* result;
+  PBImageShapeGroup* resultPbimageShapeGroup;
 }
 
 - (PBImageShapeGroup*) defaultInstance;
 
-- (PBImageShapeGroup_Builder*) clear;
-- (PBImageShapeGroup_Builder*) clone;
+- (PBImageShapeGroupBuilder*) clear;
+- (PBImageShapeGroupBuilder*) clone;
 
 - (PBImageShapeGroup*) build;
 - (PBImageShapeGroup*) buildPartial;
 
-- (PBImageShapeGroup_Builder*) mergeFrom:(PBImageShapeGroup*) other;
-- (PBImageShapeGroup_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
-- (PBImageShapeGroup_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+- (PBImageShapeGroupBuilder*) mergeFrom:(PBImageShapeGroup*) other;
+- (PBImageShapeGroupBuilder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
+- (PBImageShapeGroupBuilder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 
 - (BOOL) hasGroupId;
-- (int32_t) groupId;
-- (PBImageShapeGroup_Builder*) setGroupId:(int32_t) value;
-- (PBImageShapeGroup_Builder*) clearGroupId;
+- (SInt32) groupId;
+- (PBImageShapeGroupBuilder*) setGroupId:(SInt32) value;
+- (PBImageShapeGroupBuilder*) clearGroupId;
 
-- (NSArray*) groupNameList;
-- (PBLocalizeString*) groupNameAtIndex:(int32_t) index;
-- (PBImageShapeGroup_Builder*) replaceGroupNameAtIndex:(int32_t) index with:(PBLocalizeString*) value;
-- (PBImageShapeGroup_Builder*) addGroupName:(PBLocalizeString*) value;
-- (PBImageShapeGroup_Builder*) addAllGroupName:(NSArray*) values;
-- (PBImageShapeGroup_Builder*) clearGroupNameList;
+- (NSMutableArray *)groupName;
+- (PBLocalizeString*)groupNameAtIndex:(NSUInteger)index;
+- (PBImageShapeGroupBuilder *)addGroupName:(PBLocalizeString*)value;
+- (PBImageShapeGroupBuilder *)setGroupNameArray:(NSArray *)array;
+- (PBImageShapeGroupBuilder *)clearGroupName;
 
-- (NSArray*) shapeTypeList;
-- (int32_t) shapeTypeAtIndex:(int32_t) index;
-- (PBImageShapeGroup_Builder*) replaceShapeTypeAtIndex:(int32_t) index with:(int32_t) value;
-- (PBImageShapeGroup_Builder*) addShapeType:(int32_t) value;
-- (PBImageShapeGroup_Builder*) addAllShapeType:(NSArray*) values;
-- (PBImageShapeGroup_Builder*) clearShapeTypeList;
+- (PBAppendableArray *)shapeType;
+- (SInt32)shapeTypeAtIndex:(NSUInteger)index;
+- (PBImageShapeGroupBuilder *)addShapeType:(SInt32)value;
+- (PBImageShapeGroupBuilder *)setShapeTypeArray:(NSArray *)array;
+- (PBImageShapeGroupBuilder *)setShapeTypeValues:(const SInt32 *)values count:(NSUInteger)count;
+- (PBImageShapeGroupBuilder *)clearShapeType;
 @end
 
-@interface PBImageShapeGroupMeta : PBGeneratedMessage {
+@interface PBImageShapeGroupMeta : PBGeneratedMessage<GeneratedMessageProtocol> {
 @private
-  NSMutableArray* mutableImageShapeGroupList;
+  NSMutableArray * imageShapeGroupArray;
 }
-- (NSArray*) imageShapeGroupList;
-- (PBImageShapeGroup*) imageShapeGroupAtIndex:(int32_t) index;
+@property (readonly, strong) NSArray * imageShapeGroup;
+- (PBImageShapeGroup*)imageShapeGroupAtIndex:(NSUInteger)index;
 
-+ (PBImageShapeGroupMeta*) defaultInstance;
-- (PBImageShapeGroupMeta*) defaultInstance;
++ (instancetype) defaultInstance;
+- (instancetype) defaultInstance;
 
 - (BOOL) isInitialized;
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
-- (PBImageShapeGroupMeta_Builder*) builder;
-+ (PBImageShapeGroupMeta_Builder*) builder;
-+ (PBImageShapeGroupMeta_Builder*) builderWithPrototype:(PBImageShapeGroupMeta*) prototype;
+- (PBImageShapeGroupMetaBuilder*) builder;
++ (PBImageShapeGroupMetaBuilder*) builder;
++ (PBImageShapeGroupMetaBuilder*) builderWithPrototype:(PBImageShapeGroupMeta*) prototype;
+- (PBImageShapeGroupMetaBuilder*) toBuilder;
 
 + (PBImageShapeGroupMeta*) parseFromData:(NSData*) data;
 + (PBImageShapeGroupMeta*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
@@ -1929,38 +1940,37 @@
 + (PBImageShapeGroupMeta*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 @end
 
-@interface PBImageShapeGroupMeta_Builder : PBGeneratedMessage_Builder {
+@interface PBImageShapeGroupMetaBuilder : PBGeneratedMessageBuilder {
 @private
-  PBImageShapeGroupMeta* result;
+  PBImageShapeGroupMeta* resultPbimageShapeGroupMeta;
 }
 
 - (PBImageShapeGroupMeta*) defaultInstance;
 
-- (PBImageShapeGroupMeta_Builder*) clear;
-- (PBImageShapeGroupMeta_Builder*) clone;
+- (PBImageShapeGroupMetaBuilder*) clear;
+- (PBImageShapeGroupMetaBuilder*) clone;
 
 - (PBImageShapeGroupMeta*) build;
 - (PBImageShapeGroupMeta*) buildPartial;
 
-- (PBImageShapeGroupMeta_Builder*) mergeFrom:(PBImageShapeGroupMeta*) other;
-- (PBImageShapeGroupMeta_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
-- (PBImageShapeGroupMeta_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+- (PBImageShapeGroupMetaBuilder*) mergeFrom:(PBImageShapeGroupMeta*) other;
+- (PBImageShapeGroupMetaBuilder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
+- (PBImageShapeGroupMetaBuilder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 
-- (NSArray*) imageShapeGroupList;
-- (PBImageShapeGroup*) imageShapeGroupAtIndex:(int32_t) index;
-- (PBImageShapeGroupMeta_Builder*) replaceImageShapeGroupAtIndex:(int32_t) index with:(PBImageShapeGroup*) value;
-- (PBImageShapeGroupMeta_Builder*) addImageShapeGroup:(PBImageShapeGroup*) value;
-- (PBImageShapeGroupMeta_Builder*) addAllImageShapeGroup:(NSArray*) values;
-- (PBImageShapeGroupMeta_Builder*) clearImageShapeGroupList;
+- (NSMutableArray *)imageShapeGroup;
+- (PBImageShapeGroup*)imageShapeGroupAtIndex:(NSUInteger)index;
+- (PBImageShapeGroupMetaBuilder *)addImageShapeGroup:(PBImageShapeGroup*)value;
+- (PBImageShapeGroupMetaBuilder *)setImageShapeGroupArray:(NSArray *)array;
+- (PBImageShapeGroupMetaBuilder *)clearImageShapeGroup;
 @end
 
-@interface PBHotWord : PBGeneratedMessage {
+@interface PBHotWord : PBGeneratedMessage<GeneratedMessageProtocol> {
 @private
   BOOL hasCoins_:1;
   BOOL hasWordId_:1;
   BOOL hasWord_:1;
   BOOL hasSource_:1;
-  int32_t coins;
+  SInt32 coins;
   NSString* wordId;
   NSString* word;
   NSString* source;
@@ -1969,19 +1979,20 @@
 - (BOOL) hasWord;
 - (BOOL) hasCoins;
 - (BOOL) hasSource;
-@property (readonly, retain) NSString* wordId;
-@property (readonly, retain) NSString* word;
-@property (readonly) int32_t coins;
-@property (readonly, retain) NSString* source;
+@property (readonly, strong) NSString* wordId;
+@property (readonly, strong) NSString* word;
+@property (readonly) SInt32 coins;
+@property (readonly, strong) NSString* source;
 
-+ (PBHotWord*) defaultInstance;
-- (PBHotWord*) defaultInstance;
++ (instancetype) defaultInstance;
+- (instancetype) defaultInstance;
 
 - (BOOL) isInitialized;
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
-- (PBHotWord_Builder*) builder;
-+ (PBHotWord_Builder*) builder;
-+ (PBHotWord_Builder*) builderWithPrototype:(PBHotWord*) prototype;
+- (PBHotWordBuilder*) builder;
++ (PBHotWordBuilder*) builder;
++ (PBHotWordBuilder*) builderWithPrototype:(PBHotWord*) prototype;
+- (PBHotWordBuilder*) toBuilder;
 
 + (PBHotWord*) parseFromData:(NSData*) data;
 + (PBHotWord*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
@@ -1991,59 +2002,60 @@
 + (PBHotWord*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 @end
 
-@interface PBHotWord_Builder : PBGeneratedMessage_Builder {
+@interface PBHotWordBuilder : PBGeneratedMessageBuilder {
 @private
-  PBHotWord* result;
+  PBHotWord* resultPbhotWord;
 }
 
 - (PBHotWord*) defaultInstance;
 
-- (PBHotWord_Builder*) clear;
-- (PBHotWord_Builder*) clone;
+- (PBHotWordBuilder*) clear;
+- (PBHotWordBuilder*) clone;
 
 - (PBHotWord*) build;
 - (PBHotWord*) buildPartial;
 
-- (PBHotWord_Builder*) mergeFrom:(PBHotWord*) other;
-- (PBHotWord_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
-- (PBHotWord_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+- (PBHotWordBuilder*) mergeFrom:(PBHotWord*) other;
+- (PBHotWordBuilder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
+- (PBHotWordBuilder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 
 - (BOOL) hasWordId;
 - (NSString*) wordId;
-- (PBHotWord_Builder*) setWordId:(NSString*) value;
-- (PBHotWord_Builder*) clearWordId;
+- (PBHotWordBuilder*) setWordId:(NSString*) value;
+- (PBHotWordBuilder*) clearWordId;
 
 - (BOOL) hasWord;
 - (NSString*) word;
-- (PBHotWord_Builder*) setWord:(NSString*) value;
-- (PBHotWord_Builder*) clearWord;
+- (PBHotWordBuilder*) setWord:(NSString*) value;
+- (PBHotWordBuilder*) clearWord;
 
 - (BOOL) hasCoins;
-- (int32_t) coins;
-- (PBHotWord_Builder*) setCoins:(int32_t) value;
-- (PBHotWord_Builder*) clearCoins;
+- (SInt32) coins;
+- (PBHotWordBuilder*) setCoins:(SInt32) value;
+- (PBHotWordBuilder*) clearCoins;
 
 - (BOOL) hasSource;
 - (NSString*) source;
-- (PBHotWord_Builder*) setSource:(NSString*) value;
-- (PBHotWord_Builder*) clearSource;
+- (PBHotWordBuilder*) setSource:(NSString*) value;
+- (PBHotWordBuilder*) clearSource;
 @end
 
-@interface PBHotWordList : PBGeneratedMessage {
+@interface PBHotWordList : PBGeneratedMessage<GeneratedMessageProtocol> {
 @private
-  NSMutableArray* mutableWordsList;
+  NSMutableArray * wordsArray;
 }
-- (NSArray*) wordsList;
-- (PBHotWord*) wordsAtIndex:(int32_t) index;
+@property (readonly, strong) NSArray * words;
+- (PBHotWord*)wordsAtIndex:(NSUInteger)index;
 
-+ (PBHotWordList*) defaultInstance;
-- (PBHotWordList*) defaultInstance;
++ (instancetype) defaultInstance;
+- (instancetype) defaultInstance;
 
 - (BOOL) isInitialized;
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
-- (PBHotWordList_Builder*) builder;
-+ (PBHotWordList_Builder*) builder;
-+ (PBHotWordList_Builder*) builderWithPrototype:(PBHotWordList*) prototype;
+- (PBHotWordListBuilder*) builder;
++ (PBHotWordListBuilder*) builder;
++ (PBHotWordListBuilder*) builderWithPrototype:(PBHotWordList*) prototype;
+- (PBHotWordListBuilder*) toBuilder;
 
 + (PBHotWordList*) parseFromData:(NSData*) data;
 + (PBHotWordList*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
@@ -2053,55 +2065,55 @@
 + (PBHotWordList*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 @end
 
-@interface PBHotWordList_Builder : PBGeneratedMessage_Builder {
+@interface PBHotWordListBuilder : PBGeneratedMessageBuilder {
 @private
-  PBHotWordList* result;
+  PBHotWordList* resultPbhotWordList;
 }
 
 - (PBHotWordList*) defaultInstance;
 
-- (PBHotWordList_Builder*) clear;
-- (PBHotWordList_Builder*) clone;
+- (PBHotWordListBuilder*) clear;
+- (PBHotWordListBuilder*) clone;
 
 - (PBHotWordList*) build;
 - (PBHotWordList*) buildPartial;
 
-- (PBHotWordList_Builder*) mergeFrom:(PBHotWordList*) other;
-- (PBHotWordList_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
-- (PBHotWordList_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+- (PBHotWordListBuilder*) mergeFrom:(PBHotWordList*) other;
+- (PBHotWordListBuilder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
+- (PBHotWordListBuilder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 
-- (NSArray*) wordsList;
-- (PBHotWord*) wordsAtIndex:(int32_t) index;
-- (PBHotWordList_Builder*) replaceWordsAtIndex:(int32_t) index with:(PBHotWord*) value;
-- (PBHotWordList_Builder*) addWords:(PBHotWord*) value;
-- (PBHotWordList_Builder*) addAllWords:(NSArray*) values;
-- (PBHotWordList_Builder*) clearWordsList;
+- (NSMutableArray *)words;
+- (PBHotWord*)wordsAtIndex:(NSUInteger)index;
+- (PBHotWordListBuilder *)addWords:(PBHotWord*)value;
+- (PBHotWordListBuilder *)setWordsArray:(NSArray *)array;
+- (PBHotWordListBuilder *)clearWords;
 @end
 
-@interface PBWallOpus : PBGeneratedMessage {
+@interface PBWallOpus : PBGeneratedMessage<GeneratedMessageProtocol> {
 @private
   BOOL hasIdOnWall_:1;
   BOOL hasOpus_:1;
   BOOL hasFrame_:1;
-  int32_t idOnWall;
+  SInt32 idOnWall;
   PBFeed* opus;
   PBFrame* frame;
 }
 - (BOOL) hasIdOnWall;
 - (BOOL) hasOpus;
 - (BOOL) hasFrame;
-@property (readonly) int32_t idOnWall;
-@property (readonly, retain) PBFeed* opus;
-@property (readonly, retain) PBFrame* frame;
+@property (readonly) SInt32 idOnWall;
+@property (readonly, strong) PBFeed* opus;
+@property (readonly, strong) PBFrame* frame;
 
-+ (PBWallOpus*) defaultInstance;
-- (PBWallOpus*) defaultInstance;
++ (instancetype) defaultInstance;
+- (instancetype) defaultInstance;
 
 - (BOOL) isInitialized;
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
-- (PBWallOpus_Builder*) builder;
-+ (PBWallOpus_Builder*) builder;
-+ (PBWallOpus_Builder*) builderWithPrototype:(PBWallOpus*) prototype;
+- (PBWallOpusBuilder*) builder;
++ (PBWallOpusBuilder*) builder;
++ (PBWallOpusBuilder*) builderWithPrototype:(PBWallOpus*) prototype;
+- (PBWallOpusBuilder*) toBuilder;
 
 + (PBWallOpus*) parseFromData:(NSData*) data;
 + (PBWallOpus*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
@@ -2111,44 +2123,44 @@
 + (PBWallOpus*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 @end
 
-@interface PBWallOpus_Builder : PBGeneratedMessage_Builder {
+@interface PBWallOpusBuilder : PBGeneratedMessageBuilder {
 @private
-  PBWallOpus* result;
+  PBWallOpus* resultPbwallOpus;
 }
 
 - (PBWallOpus*) defaultInstance;
 
-- (PBWallOpus_Builder*) clear;
-- (PBWallOpus_Builder*) clone;
+- (PBWallOpusBuilder*) clear;
+- (PBWallOpusBuilder*) clone;
 
 - (PBWallOpus*) build;
 - (PBWallOpus*) buildPartial;
 
-- (PBWallOpus_Builder*) mergeFrom:(PBWallOpus*) other;
-- (PBWallOpus_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
-- (PBWallOpus_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+- (PBWallOpusBuilder*) mergeFrom:(PBWallOpus*) other;
+- (PBWallOpusBuilder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
+- (PBWallOpusBuilder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 
 - (BOOL) hasIdOnWall;
-- (int32_t) idOnWall;
-- (PBWallOpus_Builder*) setIdOnWall:(int32_t) value;
-- (PBWallOpus_Builder*) clearIdOnWall;
+- (SInt32) idOnWall;
+- (PBWallOpusBuilder*) setIdOnWall:(SInt32) value;
+- (PBWallOpusBuilder*) clearIdOnWall;
 
 - (BOOL) hasOpus;
 - (PBFeed*) opus;
-- (PBWallOpus_Builder*) setOpus:(PBFeed*) value;
-- (PBWallOpus_Builder*) setOpusBuilder:(PBFeed_Builder*) builderForValue;
-- (PBWallOpus_Builder*) mergeOpus:(PBFeed*) value;
-- (PBWallOpus_Builder*) clearOpus;
+- (PBWallOpusBuilder*) setOpus:(PBFeed*) value;
+- (PBWallOpusBuilder*) setOpusBuilder:(PBFeedBuilder*) builderForValue;
+- (PBWallOpusBuilder*) mergeOpus:(PBFeed*) value;
+- (PBWallOpusBuilder*) clearOpus;
 
 - (BOOL) hasFrame;
 - (PBFrame*) frame;
-- (PBWallOpus_Builder*) setFrame:(PBFrame*) value;
-- (PBWallOpus_Builder*) setFrameBuilder:(PBFrame_Builder*) builderForValue;
-- (PBWallOpus_Builder*) mergeFrame:(PBFrame*) value;
-- (PBWallOpus_Builder*) clearFrame;
+- (PBWallOpusBuilder*) setFrame:(PBFrame*) value;
+- (PBWallOpusBuilder*) setFrameBuilder:(PBFrameBuilder*) builderForValue;
+- (PBWallOpusBuilder*) mergeFrame:(PBFrame*) value;
+- (PBWallOpusBuilder*) clearFrame;
 @end
 
-@interface PBWall : PBGeneratedMessage {
+@interface PBWall : PBGeneratedMessage<GeneratedMessageProtocol> {
 @private
   BOOL hasWallId_:1;
   BOOL hasUserId_:1;
@@ -2169,21 +2181,22 @@
 - (BOOL) hasName;
 - (BOOL) hasContent;
 - (BOOL) hasMusicUrl;
-@property (readonly, retain) NSString* wallId;
+@property (readonly, strong) NSString* wallId;
 @property (readonly) PBWallType type;
-@property (readonly, retain) NSString* userId;
-@property (readonly, retain) NSString* name;
-@property (readonly, retain) PBLayout* content;
-@property (readonly, retain) NSString* musicUrl;
+@property (readonly, strong) NSString* userId;
+@property (readonly, strong) NSString* name;
+@property (readonly, strong) PBLayout* content;
+@property (readonly, strong) NSString* musicUrl;
 
-+ (PBWall*) defaultInstance;
-- (PBWall*) defaultInstance;
++ (instancetype) defaultInstance;
+- (instancetype) defaultInstance;
 
 - (BOOL) isInitialized;
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
-- (PBWall_Builder*) builder;
-+ (PBWall_Builder*) builder;
-+ (PBWall_Builder*) builderWithPrototype:(PBWall*) prototype;
+- (PBWallBuilder*) builder;
++ (PBWallBuilder*) builder;
++ (PBWallBuilder*) builderWithPrototype:(PBWall*) prototype;
+- (PBWallBuilder*) toBuilder;
 
 + (PBWall*) parseFromData:(NSData*) data;
 + (PBWall*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
@@ -2193,84 +2206,85 @@
 + (PBWall*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 @end
 
-@interface PBWall_Builder : PBGeneratedMessage_Builder {
+@interface PBWallBuilder : PBGeneratedMessageBuilder {
 @private
-  PBWall* result;
+  PBWall* resultPbwall;
 }
 
 - (PBWall*) defaultInstance;
 
-- (PBWall_Builder*) clear;
-- (PBWall_Builder*) clone;
+- (PBWallBuilder*) clear;
+- (PBWallBuilder*) clone;
 
 - (PBWall*) build;
 - (PBWall*) buildPartial;
 
-- (PBWall_Builder*) mergeFrom:(PBWall*) other;
-- (PBWall_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
-- (PBWall_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+- (PBWallBuilder*) mergeFrom:(PBWall*) other;
+- (PBWallBuilder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
+- (PBWallBuilder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 
 - (BOOL) hasWallId;
 - (NSString*) wallId;
-- (PBWall_Builder*) setWallId:(NSString*) value;
-- (PBWall_Builder*) clearWallId;
+- (PBWallBuilder*) setWallId:(NSString*) value;
+- (PBWallBuilder*) clearWallId;
 
 - (BOOL) hasType;
 - (PBWallType) type;
-- (PBWall_Builder*) setType:(PBWallType) value;
-- (PBWall_Builder*) clearType;
+- (PBWallBuilder*) setType:(PBWallType) value;
+- (PBWallBuilder*) clearType;
 
 - (BOOL) hasUserId;
 - (NSString*) userId;
-- (PBWall_Builder*) setUserId:(NSString*) value;
-- (PBWall_Builder*) clearUserId;
+- (PBWallBuilder*) setUserId:(NSString*) value;
+- (PBWallBuilder*) clearUserId;
 
 - (BOOL) hasName;
 - (NSString*) name;
-- (PBWall_Builder*) setName:(NSString*) value;
-- (PBWall_Builder*) clearName;
+- (PBWallBuilder*) setName:(NSString*) value;
+- (PBWallBuilder*) clearName;
 
 - (BOOL) hasContent;
 - (PBLayout*) content;
-- (PBWall_Builder*) setContent:(PBLayout*) value;
-- (PBWall_Builder*) setContentBuilder:(PBLayout_Builder*) builderForValue;
-- (PBWall_Builder*) mergeContent:(PBLayout*) value;
-- (PBWall_Builder*) clearContent;
+- (PBWallBuilder*) setContent:(PBLayout*) value;
+- (PBWallBuilder*) setContentBuilder:(PBLayoutBuilder*) builderForValue;
+- (PBWallBuilder*) mergeContent:(PBLayout*) value;
+- (PBWallBuilder*) clearContent;
 
 - (BOOL) hasMusicUrl;
 - (NSString*) musicUrl;
-- (PBWall_Builder*) setMusicUrl:(NSString*) value;
-- (PBWall_Builder*) clearMusicUrl;
+- (PBWallBuilder*) setMusicUrl:(NSString*) value;
+- (PBWallBuilder*) clearMusicUrl;
 @end
 
-@interface PBRect : PBGeneratedMessage {
+@interface PBRect : PBGeneratedMessage<GeneratedMessageProtocol> {
 @private
   BOOL hasX_:1;
   BOOL hasY_:1;
   BOOL hasWidth_:1;
   BOOL hasHeight_:1;
-  int32_t x;
-  int32_t y;
-  int32_t width;
-  int32_t height;
+  SInt32 x;
+  SInt32 y;
+  SInt32 width;
+  SInt32 height;
 }
 - (BOOL) hasX;
 - (BOOL) hasY;
 - (BOOL) hasWidth;
 - (BOOL) hasHeight;
-@property (readonly) int32_t x;
-@property (readonly) int32_t y;
-@property (readonly) int32_t width;
-@property (readonly) int32_t height;
+@property (readonly) SInt32 x;
+@property (readonly) SInt32 y;
+@property (readonly) SInt32 width;
+@property (readonly) SInt32 height;
 
-+ (PBRect*) defaultInstance;
-- (PBRect*) defaultInstance;
++ (instancetype) defaultInstance;
+- (instancetype) defaultInstance;
 
 - (BOOL) isInitialized;
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
-- (PBRect_Builder*) builder;
-+ (PBRect_Builder*) builder;
-+ (PBRect_Builder*) builderWithPrototype:(PBRect*) prototype;
+- (PBRectBuilder*) builder;
++ (PBRectBuilder*) builder;
++ (PBRectBuilder*) builderWithPrototype:(PBRect*) prototype;
+- (PBRectBuilder*) toBuilder;
 
 + (PBRect*) parseFromData:(NSData*) data;
 + (PBRect*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
@@ -2280,45 +2294,45 @@
 + (PBRect*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 @end
 
-@interface PBRect_Builder : PBGeneratedMessage_Builder {
+@interface PBRectBuilder : PBGeneratedMessageBuilder {
 @private
-  PBRect* result;
+  PBRect* resultPbrect;
 }
 
 - (PBRect*) defaultInstance;
 
-- (PBRect_Builder*) clear;
-- (PBRect_Builder*) clone;
+- (PBRectBuilder*) clear;
+- (PBRectBuilder*) clone;
 
 - (PBRect*) build;
 - (PBRect*) buildPartial;
 
-- (PBRect_Builder*) mergeFrom:(PBRect*) other;
-- (PBRect_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
-- (PBRect_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+- (PBRectBuilder*) mergeFrom:(PBRect*) other;
+- (PBRectBuilder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
+- (PBRectBuilder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 
 - (BOOL) hasX;
-- (int32_t) x;
-- (PBRect_Builder*) setX:(int32_t) value;
-- (PBRect_Builder*) clearX;
+- (SInt32) x;
+- (PBRectBuilder*) setX:(SInt32) value;
+- (PBRectBuilder*) clearX;
 
 - (BOOL) hasY;
-- (int32_t) y;
-- (PBRect_Builder*) setY:(int32_t) value;
-- (PBRect_Builder*) clearY;
+- (SInt32) y;
+- (PBRectBuilder*) setY:(SInt32) value;
+- (PBRectBuilder*) clearY;
 
 - (BOOL) hasWidth;
-- (int32_t) width;
-- (PBRect_Builder*) setWidth:(int32_t) value;
-- (PBRect_Builder*) clearWidth;
+- (SInt32) width;
+- (PBRectBuilder*) setWidth:(SInt32) value;
+- (PBRectBuilder*) clearWidth;
 
 - (BOOL) hasHeight;
-- (int32_t) height;
-- (PBRect_Builder*) setHeight:(int32_t) value;
-- (PBRect_Builder*) clearHeight;
+- (SInt32) height;
+- (PBRectBuilder*) setHeight:(SInt32) value;
+- (PBRectBuilder*) clearHeight;
 @end
 
-@interface PBFrame : PBGeneratedMessage {
+@interface PBFrame : PBGeneratedMessage<GeneratedMessageProtocol> {
 @private
   BOOL hasFrameId_:1;
   BOOL hasType_:1;
@@ -2326,9 +2340,9 @@
   BOOL hasImageUrl_:1;
   BOOL hasOpusIphoneRect_:1;
   BOOL hasOpusIpadRect_:1;
-  int32_t frameId;
-  int32_t type;
-  int32_t price;
+  SInt32 frameId;
+  SInt32 type;
+  SInt32 price;
   NSString* imageUrl;
   PBRect* opusIphoneRect;
   PBRect* opusIpadRect;
@@ -2339,21 +2353,22 @@
 - (BOOL) hasOpusIphoneRect;
 - (BOOL) hasOpusIpadRect;
 - (BOOL) hasPrice;
-@property (readonly) int32_t frameId;
-@property (readonly) int32_t type;
-@property (readonly, retain) NSString* imageUrl;
-@property (readonly, retain) PBRect* opusIphoneRect;
-@property (readonly, retain) PBRect* opusIpadRect;
-@property (readonly) int32_t price;
+@property (readonly) SInt32 frameId;
+@property (readonly) SInt32 type;
+@property (readonly, strong) NSString* imageUrl;
+@property (readonly, strong) PBRect* opusIphoneRect;
+@property (readonly, strong) PBRect* opusIpadRect;
+@property (readonly) SInt32 price;
 
-+ (PBFrame*) defaultInstance;
-- (PBFrame*) defaultInstance;
++ (instancetype) defaultInstance;
+- (instancetype) defaultInstance;
 
 - (BOOL) isInitialized;
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
-- (PBFrame_Builder*) builder;
-+ (PBFrame_Builder*) builder;
-+ (PBFrame_Builder*) builderWithPrototype:(PBFrame*) prototype;
+- (PBFrameBuilder*) builder;
++ (PBFrameBuilder*) builder;
++ (PBFrameBuilder*) builderWithPrototype:(PBFrame*) prototype;
+- (PBFrameBuilder*) toBuilder;
 
 + (PBFrame*) parseFromData:(NSData*) data;
 + (PBFrame*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
@@ -2363,73 +2378,74 @@
 + (PBFrame*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 @end
 
-@interface PBFrame_Builder : PBGeneratedMessage_Builder {
+@interface PBFrameBuilder : PBGeneratedMessageBuilder {
 @private
-  PBFrame* result;
+  PBFrame* resultPbframe;
 }
 
 - (PBFrame*) defaultInstance;
 
-- (PBFrame_Builder*) clear;
-- (PBFrame_Builder*) clone;
+- (PBFrameBuilder*) clear;
+- (PBFrameBuilder*) clone;
 
 - (PBFrame*) build;
 - (PBFrame*) buildPartial;
 
-- (PBFrame_Builder*) mergeFrom:(PBFrame*) other;
-- (PBFrame_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
-- (PBFrame_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+- (PBFrameBuilder*) mergeFrom:(PBFrame*) other;
+- (PBFrameBuilder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
+- (PBFrameBuilder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 
 - (BOOL) hasFrameId;
-- (int32_t) frameId;
-- (PBFrame_Builder*) setFrameId:(int32_t) value;
-- (PBFrame_Builder*) clearFrameId;
+- (SInt32) frameId;
+- (PBFrameBuilder*) setFrameId:(SInt32) value;
+- (PBFrameBuilder*) clearFrameId;
 
 - (BOOL) hasType;
-- (int32_t) type;
-- (PBFrame_Builder*) setType:(int32_t) value;
-- (PBFrame_Builder*) clearType;
+- (SInt32) type;
+- (PBFrameBuilder*) setType:(SInt32) value;
+- (PBFrameBuilder*) clearType;
 
 - (BOOL) hasImageUrl;
 - (NSString*) imageUrl;
-- (PBFrame_Builder*) setImageUrl:(NSString*) value;
-- (PBFrame_Builder*) clearImageUrl;
+- (PBFrameBuilder*) setImageUrl:(NSString*) value;
+- (PBFrameBuilder*) clearImageUrl;
 
 - (BOOL) hasOpusIphoneRect;
 - (PBRect*) opusIphoneRect;
-- (PBFrame_Builder*) setOpusIphoneRect:(PBRect*) value;
-- (PBFrame_Builder*) setOpusIphoneRectBuilder:(PBRect_Builder*) builderForValue;
-- (PBFrame_Builder*) mergeOpusIphoneRect:(PBRect*) value;
-- (PBFrame_Builder*) clearOpusIphoneRect;
+- (PBFrameBuilder*) setOpusIphoneRect:(PBRect*) value;
+- (PBFrameBuilder*) setOpusIphoneRectBuilder:(PBRectBuilder*) builderForValue;
+- (PBFrameBuilder*) mergeOpusIphoneRect:(PBRect*) value;
+- (PBFrameBuilder*) clearOpusIphoneRect;
 
 - (BOOL) hasOpusIpadRect;
 - (PBRect*) opusIpadRect;
-- (PBFrame_Builder*) setOpusIpadRect:(PBRect*) value;
-- (PBFrame_Builder*) setOpusIpadRectBuilder:(PBRect_Builder*) builderForValue;
-- (PBFrame_Builder*) mergeOpusIpadRect:(PBRect*) value;
-- (PBFrame_Builder*) clearOpusIpadRect;
+- (PBFrameBuilder*) setOpusIpadRect:(PBRect*) value;
+- (PBFrameBuilder*) setOpusIpadRectBuilder:(PBRectBuilder*) builderForValue;
+- (PBFrameBuilder*) mergeOpusIpadRect:(PBRect*) value;
+- (PBFrameBuilder*) clearOpusIpadRect;
 
 - (BOOL) hasPrice;
-- (int32_t) price;
-- (PBFrame_Builder*) setPrice:(int32_t) value;
-- (PBFrame_Builder*) clearPrice;
+- (SInt32) price;
+- (PBFrameBuilder*) setPrice:(SInt32) value;
+- (PBFrameBuilder*) clearPrice;
 @end
 
-@interface PBFrameList : PBGeneratedMessage {
+@interface PBFrameList : PBGeneratedMessage<GeneratedMessageProtocol> {
 @private
-  NSMutableArray* mutableFramesList;
+  NSMutableArray * framesArray;
 }
-- (NSArray*) framesList;
-- (PBFrame*) framesAtIndex:(int32_t) index;
+@property (readonly, strong) NSArray * frames;
+- (PBFrame*)framesAtIndex:(NSUInteger)index;
 
-+ (PBFrameList*) defaultInstance;
-- (PBFrameList*) defaultInstance;
++ (instancetype) defaultInstance;
+- (instancetype) defaultInstance;
 
 - (BOOL) isInitialized;
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
-- (PBFrameList_Builder*) builder;
-+ (PBFrameList_Builder*) builder;
-+ (PBFrameList_Builder*) builderWithPrototype:(PBFrameList*) prototype;
+- (PBFrameListBuilder*) builder;
++ (PBFrameListBuilder*) builder;
++ (PBFrameListBuilder*) builderWithPrototype:(PBFrameList*) prototype;
+- (PBFrameListBuilder*) toBuilder;
 
 + (PBFrameList*) parseFromData:(NSData*) data;
 + (PBFrameList*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
@@ -2439,66 +2455,66 @@
 + (PBFrameList*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 @end
 
-@interface PBFrameList_Builder : PBGeneratedMessage_Builder {
+@interface PBFrameListBuilder : PBGeneratedMessageBuilder {
 @private
-  PBFrameList* result;
+  PBFrameList* resultPbframeList;
 }
 
 - (PBFrameList*) defaultInstance;
 
-- (PBFrameList_Builder*) clear;
-- (PBFrameList_Builder*) clone;
+- (PBFrameListBuilder*) clear;
+- (PBFrameListBuilder*) clone;
 
 - (PBFrameList*) build;
 - (PBFrameList*) buildPartial;
 
-- (PBFrameList_Builder*) mergeFrom:(PBFrameList*) other;
-- (PBFrameList_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
-- (PBFrameList_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+- (PBFrameListBuilder*) mergeFrom:(PBFrameList*) other;
+- (PBFrameListBuilder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
+- (PBFrameListBuilder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 
-- (NSArray*) framesList;
-- (PBFrame*) framesAtIndex:(int32_t) index;
-- (PBFrameList_Builder*) replaceFramesAtIndex:(int32_t) index with:(PBFrame*) value;
-- (PBFrameList_Builder*) addFrames:(PBFrame*) value;
-- (PBFrameList_Builder*) addAllFrames:(NSArray*) values;
-- (PBFrameList_Builder*) clearFramesList;
+- (NSMutableArray *)frames;
+- (PBFrame*)framesAtIndex:(NSUInteger)index;
+- (PBFrameListBuilder *)addFrames:(PBFrame*)value;
+- (PBFrameListBuilder *)setFramesArray:(NSArray *)array;
+- (PBFrameListBuilder *)clearFrames;
 @end
 
-@interface PBLayout : PBGeneratedMessage {
+@interface PBLayout : PBGeneratedMessage<GeneratedMessageProtocol> {
 @private
   BOOL hasLayoutId_:1;
   BOOL hasDisplayMode_:1;
   BOOL hasPrice_:1;
   BOOL hasName_:1;
   BOOL hasImageUrl_:1;
-  int32_t layoutId;
-  int32_t displayMode;
-  int32_t price;
+  SInt32 layoutId;
+  SInt32 displayMode;
+  SInt32 price;
   NSString* name;
   NSString* imageUrl;
-  NSMutableArray* mutableWallOpusesList;
+  NSMutableArray * wallOpusesArray;
 }
 - (BOOL) hasLayoutId;
 - (BOOL) hasName;
 - (BOOL) hasDisplayMode;
 - (BOOL) hasImageUrl;
 - (BOOL) hasPrice;
-@property (readonly) int32_t layoutId;
-@property (readonly, retain) NSString* name;
-@property (readonly) int32_t displayMode;
-@property (readonly, retain) NSString* imageUrl;
-@property (readonly) int32_t price;
-- (NSArray*) wallOpusesList;
-- (PBWallOpus*) wallOpusesAtIndex:(int32_t) index;
+@property (readonly) SInt32 layoutId;
+@property (readonly, strong) NSString* name;
+@property (readonly) SInt32 displayMode;
+@property (readonly, strong) NSArray * wallOpuses;
+@property (readonly, strong) NSString* imageUrl;
+@property (readonly) SInt32 price;
+- (PBWallOpus*)wallOpusesAtIndex:(NSUInteger)index;
 
-+ (PBLayout*) defaultInstance;
-- (PBLayout*) defaultInstance;
++ (instancetype) defaultInstance;
+- (instancetype) defaultInstance;
 
 - (BOOL) isInitialized;
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
-- (PBLayout_Builder*) builder;
-+ (PBLayout_Builder*) builder;
-+ (PBLayout_Builder*) builderWithPrototype:(PBLayout*) prototype;
+- (PBLayoutBuilder*) builder;
++ (PBLayoutBuilder*) builder;
++ (PBLayoutBuilder*) builderWithPrototype:(PBLayout*) prototype;
+- (PBLayoutBuilder*) toBuilder;
 
 + (PBLayout*) parseFromData:(NSData*) data;
 + (PBLayout*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
@@ -2508,71 +2524,71 @@
 + (PBLayout*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 @end
 
-@interface PBLayout_Builder : PBGeneratedMessage_Builder {
+@interface PBLayoutBuilder : PBGeneratedMessageBuilder {
 @private
-  PBLayout* result;
+  PBLayout* resultPblayout;
 }
 
 - (PBLayout*) defaultInstance;
 
-- (PBLayout_Builder*) clear;
-- (PBLayout_Builder*) clone;
+- (PBLayoutBuilder*) clear;
+- (PBLayoutBuilder*) clone;
 
 - (PBLayout*) build;
 - (PBLayout*) buildPartial;
 
-- (PBLayout_Builder*) mergeFrom:(PBLayout*) other;
-- (PBLayout_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
-- (PBLayout_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+- (PBLayoutBuilder*) mergeFrom:(PBLayout*) other;
+- (PBLayoutBuilder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
+- (PBLayoutBuilder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 
 - (BOOL) hasLayoutId;
-- (int32_t) layoutId;
-- (PBLayout_Builder*) setLayoutId:(int32_t) value;
-- (PBLayout_Builder*) clearLayoutId;
+- (SInt32) layoutId;
+- (PBLayoutBuilder*) setLayoutId:(SInt32) value;
+- (PBLayoutBuilder*) clearLayoutId;
 
 - (BOOL) hasName;
 - (NSString*) name;
-- (PBLayout_Builder*) setName:(NSString*) value;
-- (PBLayout_Builder*) clearName;
+- (PBLayoutBuilder*) setName:(NSString*) value;
+- (PBLayoutBuilder*) clearName;
 
 - (BOOL) hasDisplayMode;
-- (int32_t) displayMode;
-- (PBLayout_Builder*) setDisplayMode:(int32_t) value;
-- (PBLayout_Builder*) clearDisplayMode;
+- (SInt32) displayMode;
+- (PBLayoutBuilder*) setDisplayMode:(SInt32) value;
+- (PBLayoutBuilder*) clearDisplayMode;
 
-- (NSArray*) wallOpusesList;
-- (PBWallOpus*) wallOpusesAtIndex:(int32_t) index;
-- (PBLayout_Builder*) replaceWallOpusesAtIndex:(int32_t) index with:(PBWallOpus*) value;
-- (PBLayout_Builder*) addWallOpuses:(PBWallOpus*) value;
-- (PBLayout_Builder*) addAllWallOpuses:(NSArray*) values;
-- (PBLayout_Builder*) clearWallOpusesList;
+- (NSMutableArray *)wallOpuses;
+- (PBWallOpus*)wallOpusesAtIndex:(NSUInteger)index;
+- (PBLayoutBuilder *)addWallOpuses:(PBWallOpus*)value;
+- (PBLayoutBuilder *)setWallOpusesArray:(NSArray *)array;
+- (PBLayoutBuilder *)clearWallOpuses;
 
 - (BOOL) hasImageUrl;
 - (NSString*) imageUrl;
-- (PBLayout_Builder*) setImageUrl:(NSString*) value;
-- (PBLayout_Builder*) clearImageUrl;
+- (PBLayoutBuilder*) setImageUrl:(NSString*) value;
+- (PBLayoutBuilder*) clearImageUrl;
 
 - (BOOL) hasPrice;
-- (int32_t) price;
-- (PBLayout_Builder*) setPrice:(int32_t) value;
-- (PBLayout_Builder*) clearPrice;
+- (SInt32) price;
+- (PBLayoutBuilder*) setPrice:(SInt32) value;
+- (PBLayoutBuilder*) clearPrice;
 @end
 
-@interface PBLayoutList : PBGeneratedMessage {
+@interface PBLayoutList : PBGeneratedMessage<GeneratedMessageProtocol> {
 @private
-  NSMutableArray* mutableLayoutsList;
+  NSMutableArray * layoutsArray;
 }
-- (NSArray*) layoutsList;
-- (PBLayout*) layoutsAtIndex:(int32_t) index;
+@property (readonly, strong) NSArray * layouts;
+- (PBLayout*)layoutsAtIndex:(NSUInteger)index;
 
-+ (PBLayoutList*) defaultInstance;
-- (PBLayoutList*) defaultInstance;
++ (instancetype) defaultInstance;
+- (instancetype) defaultInstance;
 
 - (BOOL) isInitialized;
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
-- (PBLayoutList_Builder*) builder;
-+ (PBLayoutList_Builder*) builder;
-+ (PBLayoutList_Builder*) builderWithPrototype:(PBLayoutList*) prototype;
+- (PBLayoutListBuilder*) builder;
++ (PBLayoutListBuilder*) builder;
++ (PBLayoutListBuilder*) builderWithPrototype:(PBLayoutList*) prototype;
+- (PBLayoutListBuilder*) toBuilder;
 
 + (PBLayoutList*) parseFromData:(NSData*) data;
 + (PBLayoutList*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
@@ -2582,28 +2598,29 @@
 + (PBLayoutList*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 @end
 
-@interface PBLayoutList_Builder : PBGeneratedMessage_Builder {
+@interface PBLayoutListBuilder : PBGeneratedMessageBuilder {
 @private
-  PBLayoutList* result;
+  PBLayoutList* resultPblayoutList;
 }
 
 - (PBLayoutList*) defaultInstance;
 
-- (PBLayoutList_Builder*) clear;
-- (PBLayoutList_Builder*) clone;
+- (PBLayoutListBuilder*) clear;
+- (PBLayoutListBuilder*) clone;
 
 - (PBLayoutList*) build;
 - (PBLayoutList*) buildPartial;
 
-- (PBLayoutList_Builder*) mergeFrom:(PBLayoutList*) other;
-- (PBLayoutList_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
-- (PBLayoutList_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+- (PBLayoutListBuilder*) mergeFrom:(PBLayoutList*) other;
+- (PBLayoutListBuilder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
+- (PBLayoutListBuilder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 
-- (NSArray*) layoutsList;
-- (PBLayout*) layoutsAtIndex:(int32_t) index;
-- (PBLayoutList_Builder*) replaceLayoutsAtIndex:(int32_t) index with:(PBLayout*) value;
-- (PBLayoutList_Builder*) addLayouts:(PBLayout*) value;
-- (PBLayoutList_Builder*) addAllLayouts:(NSArray*) values;
-- (PBLayoutList_Builder*) clearLayoutsList;
+- (NSMutableArray *)layouts;
+- (PBLayout*)layoutsAtIndex:(NSUInteger)index;
+- (PBLayoutListBuilder *)addLayouts:(PBLayout*)value;
+- (PBLayoutListBuilder *)setLayoutsArray:(NSArray *)array;
+- (PBLayoutListBuilder *)clearLayouts;
 @end
 
+
+// @@protoc_insertion_point(global_scope)

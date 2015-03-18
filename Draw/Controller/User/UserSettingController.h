@@ -84,7 +84,7 @@
 @property (retain, nonatomic) IBOutlet UIImageView *tableViewBG;
 @property (retain, nonatomic) IBOutlet UILabel *nicknameLabel;
 @property (retain, nonatomic) IBOutlet AvatarView *avatarView;
-@property (retain, nonatomic) PBGameUser_Builder *pbUserBuilder;
+@property (retain, nonatomic) PBGameUserBuilder *pbUserBuilder;
 //@property (retain, nonatomic) UIImageView *avatarImageView;
 
 - (void)updateRowIndexs;

@@ -1,32 +1,32 @@
 cd /java/ProtocolBuffers-2.1.0-Source/src
 
-#echo build Objective-C codes
+echo build Objective-C codes
 
-#protoc --proto_path=/Users/pipi/gitdata/Draw_iPhone/Draw/GameServer/ProtocolBuffer/ --objc_out=/Users/pipi/gitdata/Draw_iPhone/Draw/GameServer/ProtocolBuffer/Gen /Users/pipi/gitdata/Draw_iPhone/Draw/GameServer/ProtocolBuffer/GameBasic.proto
+protoc --proto_path=/Users/pipi/gitdata/Draw_iPhone/Draw/GameServer/ProtocolBuffer/ --objc_out=/Users/pipi/gitdata/Draw_iPhone/Draw/GameServer/ProtocolBuffer/Gen /Users/pipi/gitdata/Draw_iPhone/Draw/GameServer/ProtocolBuffer/GameBasic.proto
 
-#protoc --proto_path=/Users/pipi/gitdata/Draw_iPhone/Draw/GameServer/ProtocolBuffer/ --objc_out=/Users/pipi/gitdata/Draw_iPhone/Draw/GameServer/ProtocolBuffer/Gen /Users/pipi/gitdata/Draw_iPhone/Draw/GameServer/ProtocolBuffer/GameConstants.proto
+protoc --proto_path=/Users/pipi/gitdata/Draw_iPhone/Draw/GameServer/ProtocolBuffer/ --objc_out=/Users/pipi/gitdata/Draw_iPhone/Draw/GameServer/ProtocolBuffer/Gen /Users/pipi/gitdata/Draw_iPhone/Draw/GameServer/ProtocolBuffer/GameConstants.proto
 
-#protoc --proto_path=/Users/pipi/gitdata/Draw_iPhone/Draw/GameServer/ProtocolBuffer/ --objc_out=/Users/pipi/gitdata/Draw_iPhone/Draw/GameServer/ProtocolBuffer/Gen /Users/pipi/gitdata/Draw_iPhone/Draw/GameServer/ProtocolBuffer/GameMessage.proto
+protoc --proto_path=/Users/pipi/gitdata/Draw_iPhone/Draw/GameServer/ProtocolBuffer/ --objc_out=/Users/pipi/gitdata/Draw_iPhone/Draw/GameServer/ProtocolBuffer/Gen /Users/pipi/gitdata/Draw_iPhone/Draw/GameServer/ProtocolBuffer/GameMessage.proto
 
-#protoc --proto_path=/Users/pipi/gitdata/Draw_iPhone/Draw/GameServer/ProtocolBuffer/ --objc_out=/Users/pipi/gitdata/Draw_iPhone/Draw/GameServer/ProtocolBuffer/Gen /Users/pipi/gitdata/Draw_iPhone/Draw/GameServer/ProtocolBuffer/Tutorial.proto
+protoc --proto_path=/Users/pipi/gitdata/Draw_iPhone/Draw/GameServer/ProtocolBuffer/ --objc_out=/Users/pipi/gitdata/Draw_iPhone/Draw/GameServer/ProtocolBuffer/Gen /Users/pipi/gitdata/Draw_iPhone/Draw/GameServer/ProtocolBuffer/Tutorial.proto
 
-#protoc --proto_path=/Users/pipi/gitdata/Draw_iPhone/Draw/GameServer/ProtocolBuffer/ --objc_out=/Users/pipi/gitdata/Draw_iPhone/Draw/GameServer/ProtocolBuffer/Gen /Users/pipi/gitdata/Draw_iPhone/Draw/GameServer/ProtocolBuffer/Group.proto
+protoc --proto_path=/Users/pipi/gitdata/Draw_iPhone/Draw/GameServer/ProtocolBuffer/ --objc_out=/Users/pipi/gitdata/Draw_iPhone/Draw/GameServer/ProtocolBuffer/Gen /Users/pipi/gitdata/Draw_iPhone/Draw/GameServer/ProtocolBuffer/Group.proto
 
-#protoc --proto_path=/Users/pipi/gitdata/Draw_iPhone/Draw/GameServer/ProtocolBuffer/ --objc_out=/Users/pipi/gitdata/Draw_iPhone/Draw/GameServer/ProtocolBuffer/Gen /Users/pipi/gitdata/Draw_iPhone/Draw/GameServer/ProtocolBuffer/Draw.proto
+protoc --proto_path=/Users/pipi/gitdata/Draw_iPhone/Draw/GameServer/ProtocolBuffer/ --objc_out=/Users/pipi/gitdata/Draw_iPhone/Draw/GameServer/ProtocolBuffer/Gen /Users/pipi/gitdata/Draw_iPhone/Draw/GameServer/ProtocolBuffer/Draw.proto
 
-#protoc --proto_path=/Users/pipi/gitdata/Draw_iPhone/Draw/GameServer/ProtocolBuffer/ --objc_out=/Users/pipi/gitdata/Draw_iPhone/Draw/GameServer/ProtocolBuffer/Gen /Users/pipi/gitdata/Draw_iPhone/Draw/GameServer/ProtocolBuffer/Dice.proto
+protoc --proto_path=/Users/pipi/gitdata/Draw_iPhone/Draw/GameServer/ProtocolBuffer/ --objc_out=/Users/pipi/gitdata/Draw_iPhone/Draw/GameServer/ProtocolBuffer/Gen /Users/pipi/gitdata/Draw_iPhone/Draw/GameServer/ProtocolBuffer/Dice.proto
 
-#protoc --proto_path=/Users/pipi/gitdata/Draw_iPhone/Draw/GameServer/ProtocolBuffer/ --objc_out=/Users/pipi/gitdata/Draw_iPhone/Draw/GameServer/ProtocolBuffer/Gen /Users/pipi/gitdata/Draw_iPhone/Draw/GameServer/ProtocolBuffer/ZhaJinHua.proto
+protoc --proto_path=/Users/pipi/gitdata/Draw_iPhone/Draw/GameServer/ProtocolBuffer/ --objc_out=/Users/pipi/gitdata/Draw_iPhone/Draw/GameServer/ProtocolBuffer/Gen /Users/pipi/gitdata/Draw_iPhone/Draw/GameServer/ProtocolBuffer/ZhaJinHua.proto
 
-#protoc --proto_path=/Users/pipi/gitdata/Draw_iPhone/Draw/GameServer/ProtocolBuffer/ --objc_out=/Users/pipi/gitdata/Draw_iPhone/Draw/GameServer/ProtocolBuffer/Gen /Users/pipi/gitdata/Draw_iPhone/Draw/GameServer/ProtocolBuffer/BBS.proto
+protoc --proto_path=/Users/pipi/gitdata/Draw_iPhone/Draw/GameServer/ProtocolBuffer/ --objc_out=/Users/pipi/gitdata/Draw_iPhone/Draw/GameServer/ProtocolBuffer/Gen /Users/pipi/gitdata/Draw_iPhone/Draw/GameServer/ProtocolBuffer/BBS.proto
 
-#protoc --proto_path=/Users/pipi/gitdata/Draw_iPhone/Draw/GameServer/ProtocolBuffer/ --objc_out=/Users/pipi/gitdata/Draw_iPhone/Draw/GameServer/ProtocolBuffer/Gen /Users/pipi/gitdata/Draw_iPhone/Draw/GameServer/ProtocolBuffer/Config.proto
+protoc --proto_path=/Users/pipi/gitdata/Draw_iPhone/Draw/GameServer/ProtocolBuffer/ --objc_out=/Users/pipi/gitdata/Draw_iPhone/Draw/GameServer/ProtocolBuffer/Gen /Users/pipi/gitdata/Draw_iPhone/Draw/GameServer/ProtocolBuffer/Config.proto
 
-#protoc --proto_path=/Users/pipi/gitdata/Draw_iPhone/Draw/GameServer/ProtocolBuffer/ --objc_out=/Users/pipi/gitdata/Draw_iPhone/Draw/GameServer/ProtocolBuffer/Gen /Users/pipi/gitdata/Draw_iPhone/Draw/GameServer/ProtocolBuffer/Photo.proto
+protoc --proto_path=/Users/pipi/gitdata/Draw_iPhone/Draw/GameServer/ProtocolBuffer/ --objc_out=/Users/pipi/gitdata/Draw_iPhone/Draw/GameServer/ProtocolBuffer/Gen /Users/pipi/gitdata/Draw_iPhone/Draw/GameServer/ProtocolBuffer/Photo.proto
 
-#protoc --proto_path=/Users/pipi/gitdata/Draw_iPhone/Draw/GameServer/ProtocolBuffer/ --objc_out=/Users/pipi/gitdata/Draw_iPhone/Draw/GameServer/ProtocolBuffer/Gen /Users/pipi/gitdata/Draw_iPhone/Draw/GameServer/ProtocolBuffer/Sing.proto
+protoc --proto_path=/Users/pipi/gitdata/Draw_iPhone/Draw/GameServer/ProtocolBuffer/ --objc_out=/Users/pipi/gitdata/Draw_iPhone/Draw/GameServer/ProtocolBuffer/Gen /Users/pipi/gitdata/Draw_iPhone/Draw/GameServer/ProtocolBuffer/Sing.proto
 
-#protoc --proto_path=/Users/pipi/gitdata/Draw_iPhone/Draw/GameServer/ProtocolBuffer/ --objc_out=/Users/pipi/gitdata/Draw_iPhone/Draw/GameServer/ProtocolBuffer/Gen /Users/pipi/gitdata/Draw_iPhone/Draw/GameServer/ProtocolBuffer/Opus.proto
+protoc --proto_path=/Users/pipi/gitdata/Draw_iPhone/Draw/GameServer/ProtocolBuffer/ --objc_out=/Users/pipi/gitdata/Draw_iPhone/Draw/GameServer/ProtocolBuffer/Gen /Users/pipi/gitdata/Draw_iPhone/Draw/GameServer/ProtocolBuffer/Opus.proto
 
 echo build C codes
 

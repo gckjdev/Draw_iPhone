@@ -296,7 +296,7 @@
     }
     
     // set TO user info
-    PBGameUser_Builder* toUserBuilder = [PBGameUser builder];
+    PBGameUserBuilder* toUserBuilder = [PBGameUser builder];
     [toUserBuilder setUserId:friendId];
     [toUserBuilder setNickName:nickName];
     [_messageBuilder setToUser:[toUserBuilder build]];

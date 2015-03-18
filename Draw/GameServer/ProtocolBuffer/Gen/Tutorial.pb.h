@@ -4,158 +4,186 @@
 
 #import "GameConstants.pb.h"
 #import "GameBasic.pb.h"
-#import "Bbs.pb.h"
+#import "BBS.pb.h"
+// @@protoc_insertion_point(imports)
 
 @class PBApp;
-@class PBApp_Builder;
+@class PBAppBuilder;
 @class PBBBSAction;
+@class PBBBSActionBuilder;
 @class PBBBSActionSource;
-@class PBBBSActionSource_Builder;
-@class PBBBSAction_Builder;
+@class PBBBSActionSourceBuilder;
 @class PBBBSBoard;
-@class PBBBSBoard_Builder;
+@class PBBBSBoardBuilder;
 @class PBBBSContent;
-@class PBBBSContent_Builder;
+@class PBBBSContentBuilder;
 @class PBBBSDraw;
-@class PBBBSDraw_Builder;
+@class PBBBSDrawBuilder;
 @class PBBBSPost;
-@class PBBBSPost_Builder;
+@class PBBBSPostBuilder;
 @class PBBBSPrivilege;
-@class PBBBSPrivilege_Builder;
+@class PBBBSPrivilegeBuilder;
 @class PBBBSReward;
-@class PBBBSReward_Builder;
+@class PBBBSRewardBuilder;
 @class PBBBSUser;
-@class PBBBSUser_Builder;
+@class PBBBSUserBuilder;
 @class PBChapter;
-@class PBChapter_Builder;
+@class PBChapterBuilder;
 @class PBClass;
-@class PBClass_Builder;
+@class PBClassBuilder;
 @class PBDrawAction;
-@class PBDrawAction_Builder;
+@class PBDrawActionBuilder;
 @class PBDrawBg;
-@class PBDrawBg_Builder;
+@class PBDrawBgBuilder;
 @class PBGameItem;
+@class PBGameItemBuilder;
 @class PBGameItemList;
-@class PBGameItemList_Builder;
-@class PBGameItem_Builder;
+@class PBGameItemListBuilder;
 @class PBGameSession;
+@class PBGameSessionBuilder;
 @class PBGameSessionChanged;
-@class PBGameSessionChanged_Builder;
-@class PBGameSession_Builder;
+@class PBGameSessionChangedBuilder;
 @class PBGameUser;
-@class PBGameUser_Builder;
+@class PBGameUserBuilder;
 @class PBGradient;
-@class PBGradient_Builder;
+@class PBGradientBuilder;
 @class PBIAPProduct;
+@class PBIAPProductBuilder;
 @class PBIAPProductList;
-@class PBIAPProductList_Builder;
+@class PBIAPProductListBuilder;
 @class PBIAPProductPrice;
-@class PBIAPProductPrice_Builder;
-@class PBIAPProduct_Builder;
+@class PBIAPProductPriceBuilder;
 @class PBIntKeyIntValue;
-@class PBIntKeyIntValue_Builder;
+@class PBIntKeyIntValueBuilder;
 @class PBIntKeyValue;
-@class PBIntKeyValue_Builder;
+@class PBIntKeyValueBuilder;
 @class PBItemPriceInfo;
-@class PBItemPriceInfo_Builder;
+@class PBItemPriceInfoBuilder;
 @class PBKeyValue;
-@class PBKeyValue_Builder;
+@class PBKeyValueBuilder;
 @class PBLayer;
-@class PBLayer_Builder;
+@class PBLayerBuilder;
 @class PBLocalizeString;
-@class PBLocalizeString_Builder;
+@class PBLocalizeStringBuilder;
 @class PBMessage;
+@class PBMessageBuilder;
 @class PBMessageStat;
-@class PBMessageStat_Builder;
-@class PBMessage_Builder;
+@class PBMessageStatBuilder;
 @class PBOpusRank;
-@class PBOpusRank_Builder;
+@class PBOpusRankBuilder;
 @class PBPromotionInfo;
-@class PBPromotionInfo_Builder;
+@class PBPromotionInfoBuilder;
 @class PBSNSUser;
+@class PBSNSUserBuilder;
 @class PBSNSUserCredential;
-@class PBSNSUserCredential_Builder;
-@class PBSNSUser_Builder;
+@class PBSNSUserCredentialBuilder;
 @class PBSimpleGroup;
-@class PBSimpleGroup_Builder;
+@class PBSimpleGroupBuilder;
 @class PBSize;
-@class PBSize_Builder;
+@class PBSizeBuilder;
 @class PBStage;
-@class PBStage_Builder;
+@class PBStageBuilder;
 @class PBTask;
-@class PBTask_Builder;
+@class PBTaskBuilder;
 @class PBTip;
-@class PBTip_Builder;
+@class PBTipBuilder;
 @class PBTutorial;
+@class PBTutorialBuilder;
 @class PBTutorialCore;
-@class PBTutorialCore_Builder;
-@class PBTutorial_Builder;
+@class PBTutorialCoreBuilder;
 @class PBUserAward;
-@class PBUserAward_Builder;
+@class PBUserAwardBuilder;
 @class PBUserBasicInfo;
-@class PBUserBasicInfo_Builder;
+@class PBUserBasicInfoBuilder;
 @class PBUserItem;
+@class PBUserItemBuilder;
 @class PBUserItemList;
-@class PBUserItemList_Builder;
-@class PBUserItem_Builder;
+@class PBUserItemListBuilder;
 @class PBUserLevel;
-@class PBUserLevel_Builder;
+@class PBUserLevelBuilder;
 @class PBUserResult;
-@class PBUserResult_Builder;
+@class PBUserResultBuilder;
 @class PBUserStage;
+@class PBUserStageBuilder;
 @class PBUserStageOpus;
-@class PBUserStageOpus_Builder;
-@class PBUserStage_Builder;
+@class PBUserStageOpusBuilder;
 @class PBUserTutorial;
-@class PBUserTutorial_Builder;
-typedef enum {
+@class PBUserTutorialBuilder;
+#ifndef __has_feature
+  #define __has_feature(x) 0 // Compatibility with non-clang compilers.
+#endif // __has_feature
+
+#ifndef NS_RETURNS_NOT_RETAINED
+  #if __has_feature(attribute_ns_returns_not_retained)
+    #define NS_RETURNS_NOT_RETAINED __attribute__((ns_returns_not_retained))
+  #else
+    #define NS_RETURNS_NOT_RETAINED
+  #endif
+#endif
+
+typedef NS_ENUM(SInt32, PBTutorialLevel) {
   PBTutorialLevelTutorialLevelEntry = 0,
   PBTutorialLevelTutorialLevelEasy = 1,
   PBTutorialLevelTutorialLevelNormal = 2,
   PBTutorialLevelTutorialLevelHard = 3,
-} PBTutorialLevel;
+};
 
 BOOL PBTutorialLevelIsValidValue(PBTutorialLevel value);
+NSString *NSStringFromPBTutorialLevel(PBTutorialLevel value);
 
-typedef enum {
+typedef NS_ENUM(SInt32, PBTutorialType) {
   PBTutorialTypeTutorialTypeOther = 0,
   PBTutorialTypeTutorialTypeLearn = 1,
   PBTutorialTypeTutorialTypeRelaxCopy = 2,
   PBTutorialTypeTutorialTypeRelaxDraw = 3,
-} PBTutorialType;
+};
 
 BOOL PBTutorialTypeIsValidValue(PBTutorialType value);
+NSString *NSStringFromPBTutorialType(PBTutorialType value);
 
-typedef enum {
+typedef NS_ENUM(SInt32, PBTutorialDrawLevel) {
+  PBTutorialDrawLevelTutorialDrawLevel1 = 1,
+  PBTutorialDrawLevelTutorialDrawLevel2 = 2,
+  PBTutorialDrawLevelTutorialDrawLevel3 = 3,
+};
+
+BOOL PBTutorialDrawLevelIsValidValue(PBTutorialDrawLevel value);
+NSString *NSStringFromPBTutorialDrawLevel(PBTutorialDrawLevel value);
+
+typedef NS_ENUM(SInt32, PBTutorialCategory) {
   PBTutorialCategoryTutorialCategoryNew = 0,
   PBTutorialCategoryTutorialCategoryMedium = 1,
   PBTutorialCategoryTutorialCategoryAdvance = 2,
-} PBTutorialCategory;
+};
 
 BOOL PBTutorialCategoryIsValidValue(PBTutorialCategory value);
+NSString *NSStringFromPBTutorialCategory(PBTutorialCategory value);
 
-typedef enum {
+typedef NS_ENUM(SInt32, PBTutorialImageStyle) {
   PBTutorialImageStyleTutorialImageColor = 0,
   PBTutorialImageStyleTutorialImageBlackWhite = 1,
-} PBTutorialImageStyle;
+};
 
 BOOL PBTutorialImageStyleIsValidValue(PBTutorialImageStyle value);
+NSString *NSStringFromPBTutorialImageStyle(PBTutorialImageStyle value);
 
-typedef enum {
+typedef NS_ENUM(SInt32, PBScoreEngineType) {
   PBScoreEngineTypeScoreEngineNormal = 0,
   PBScoreEngineTypeScoreEngineStickPicture = 1,
   PBScoreEngineTypeScoreEngineFillColor = 2,
-} PBScoreEngineType;
+};
 
 BOOL PBScoreEngineTypeIsValidValue(PBScoreEngineType value);
+NSString *NSStringFromPBScoreEngineType(PBScoreEngineType value);
 
-typedef enum {
+typedef NS_ENUM(SInt32, PBUserTutorialStatus) {
   PBUserTutorialStatusUtStatusNotStart = 0,
   PBUserTutorialStatusUtStatusStart = 1,
   PBUserTutorialStatusUtStatusComplete = 2,
-} PBUserTutorialStatus;
+};
 
 BOOL PBUserTutorialStatusIsValidValue(PBUserTutorialStatus value);
+NSString *NSStringFromPBUserTutorialStatus(PBUserTutorialStatus value);
 
 
 @interface TutorialRoot : NSObject {
@@ -164,7 +192,7 @@ BOOL PBUserTutorialStatusIsValidValue(PBUserTutorialStatus value);
 + (void) registerAllExtensions:(PBMutableExtensionRegistry*) registry;
 @end
 
-@interface PBTip : PBGeneratedMessage {
+@interface PBTip : PBGeneratedMessage<GeneratedMessageProtocol> {
 @private
   BOOL hasIndex_:1;
   BOOL hasCnName_:1;
@@ -175,7 +203,7 @@ BOOL PBUserTutorialStatusIsValidValue(PBUserTutorialStatus value);
   BOOL hasTcnDesc_:1;
   BOOL hasImage_:1;
   BOOL hasImageName_:1;
-  int32_t index;
+  SInt32 index;
   NSString* cnName;
   NSString* enName;
   NSString* tcnName;
@@ -194,24 +222,25 @@ BOOL PBUserTutorialStatusIsValidValue(PBUserTutorialStatus value);
 - (BOOL) hasTcnDesc;
 - (BOOL) hasImage;
 - (BOOL) hasImageName;
-@property (readonly) int32_t index;
-@property (readonly, retain) NSString* cnName;
-@property (readonly, retain) NSString* enName;
-@property (readonly, retain) NSString* tcnName;
-@property (readonly, retain) NSString* cnDesc;
-@property (readonly, retain) NSString* enDesc;
-@property (readonly, retain) NSString* tcnDesc;
-@property (readonly, retain) NSString* image;
-@property (readonly, retain) NSString* imageName;
+@property (readonly) SInt32 index;
+@property (readonly, strong) NSString* cnName;
+@property (readonly, strong) NSString* enName;
+@property (readonly, strong) NSString* tcnName;
+@property (readonly, strong) NSString* cnDesc;
+@property (readonly, strong) NSString* enDesc;
+@property (readonly, strong) NSString* tcnDesc;
+@property (readonly, strong) NSString* image;
+@property (readonly, strong) NSString* imageName;
 
-+ (PBTip*) defaultInstance;
-- (PBTip*) defaultInstance;
++ (instancetype) defaultInstance;
+- (instancetype) defaultInstance;
 
 - (BOOL) isInitialized;
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
-- (PBTip_Builder*) builder;
-+ (PBTip_Builder*) builder;
-+ (PBTip_Builder*) builderWithPrototype:(PBTip*) prototype;
+- (PBTipBuilder*) builder;
++ (PBTipBuilder*) builder;
++ (PBTipBuilder*) builderWithPrototype:(PBTip*) prototype;
+- (PBTipBuilder*) toBuilder;
 
 + (PBTip*) parseFromData:(NSData*) data;
 + (PBTip*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
@@ -221,74 +250,75 @@ BOOL PBUserTutorialStatusIsValidValue(PBUserTutorialStatus value);
 + (PBTip*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 @end
 
-@interface PBTip_Builder : PBGeneratedMessage_Builder {
+@interface PBTipBuilder : PBGeneratedMessageBuilder {
 @private
-  PBTip* result;
+  PBTip* resultPbtip;
 }
 
 - (PBTip*) defaultInstance;
 
-- (PBTip_Builder*) clear;
-- (PBTip_Builder*) clone;
+- (PBTipBuilder*) clear;
+- (PBTipBuilder*) clone;
 
 - (PBTip*) build;
 - (PBTip*) buildPartial;
 
-- (PBTip_Builder*) mergeFrom:(PBTip*) other;
-- (PBTip_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
-- (PBTip_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+- (PBTipBuilder*) mergeFrom:(PBTip*) other;
+- (PBTipBuilder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
+- (PBTipBuilder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 
 - (BOOL) hasIndex;
-- (int32_t) index;
-- (PBTip_Builder*) setIndex:(int32_t) value;
-- (PBTip_Builder*) clearIndex;
+- (SInt32) index;
+- (PBTipBuilder*) setIndex:(SInt32) value;
+- (PBTipBuilder*) clearIndex;
 
 - (BOOL) hasCnName;
 - (NSString*) cnName;
-- (PBTip_Builder*) setCnName:(NSString*) value;
-- (PBTip_Builder*) clearCnName;
+- (PBTipBuilder*) setCnName:(NSString*) value;
+- (PBTipBuilder*) clearCnName;
 
 - (BOOL) hasEnName;
 - (NSString*) enName;
-- (PBTip_Builder*) setEnName:(NSString*) value;
-- (PBTip_Builder*) clearEnName;
+- (PBTipBuilder*) setEnName:(NSString*) value;
+- (PBTipBuilder*) clearEnName;
 
 - (BOOL) hasTcnName;
 - (NSString*) tcnName;
-- (PBTip_Builder*) setTcnName:(NSString*) value;
-- (PBTip_Builder*) clearTcnName;
+- (PBTipBuilder*) setTcnName:(NSString*) value;
+- (PBTipBuilder*) clearTcnName;
 
 - (BOOL) hasCnDesc;
 - (NSString*) cnDesc;
-- (PBTip_Builder*) setCnDesc:(NSString*) value;
-- (PBTip_Builder*) clearCnDesc;
+- (PBTipBuilder*) setCnDesc:(NSString*) value;
+- (PBTipBuilder*) clearCnDesc;
 
 - (BOOL) hasEnDesc;
 - (NSString*) enDesc;
-- (PBTip_Builder*) setEnDesc:(NSString*) value;
-- (PBTip_Builder*) clearEnDesc;
+- (PBTipBuilder*) setEnDesc:(NSString*) value;
+- (PBTipBuilder*) clearEnDesc;
 
 - (BOOL) hasTcnDesc;
 - (NSString*) tcnDesc;
-- (PBTip_Builder*) setTcnDesc:(NSString*) value;
-- (PBTip_Builder*) clearTcnDesc;
+- (PBTipBuilder*) setTcnDesc:(NSString*) value;
+- (PBTipBuilder*) clearTcnDesc;
 
 - (BOOL) hasImage;
 - (NSString*) image;
-- (PBTip_Builder*) setImage:(NSString*) value;
-- (PBTip_Builder*) clearImage;
+- (PBTipBuilder*) setImage:(NSString*) value;
+- (PBTipBuilder*) clearImage;
 
 - (BOOL) hasImageName;
 - (NSString*) imageName;
-- (PBTip_Builder*) setImageName:(NSString*) value;
-- (PBTip_Builder*) clearImageName;
+- (PBTipBuilder*) setImageName:(NSString*) value;
+- (PBTipBuilder*) clearImageName;
 @end
 
-@interface PBChapter : PBGeneratedMessage {
+@interface PBChapter : PBGeneratedMessage<GeneratedMessageProtocol> {
 @private
-  BOOL hasEndIndex_:1;
-  BOOL hasStartIndex_:1;
   BOOL hasIndex_:1;
+  BOOL hasStartIndex_:1;
+  BOOL hasEndIndex_:1;
+  BOOL hasCnName_:1;
   BOOL hasEnName_:1;
   BOOL hasTcnName_:1;
   BOOL hasCnDesc_:1;
@@ -301,10 +331,10 @@ BOOL PBUserTutorialStatusIsValidValue(PBUserTutorialStatus value);
   BOOL hasOpusName_:1;
   BOOL hasImageName_:1;
   BOOL hasBackgroundName_:1;
-  BOOL hasCnName_:1;
-  int32_t endIndex;
-  int32_t startIndex;
-  int32_t index;
+  SInt32 index;
+  SInt32 startIndex;
+  SInt32 endIndex;
+  NSString* cnName;
   NSString* enName;
   NSString* tcnName;
   NSString* cnDesc;
@@ -317,8 +347,7 @@ BOOL PBUserTutorialStatusIsValidValue(PBUserTutorialStatus value);
   NSString* opusName;
   NSString* imageName;
   NSString* backgroundName;
-  NSString* cnName;
-  NSMutableArray* mutableTipsList;
+  NSMutableArray * tipsArray;
 }
 - (BOOL) hasIndex;
 - (BOOL) hasCnName;
@@ -336,33 +365,34 @@ BOOL PBUserTutorialStatusIsValidValue(PBUserTutorialStatus value);
 - (BOOL) hasBackgroundName;
 - (BOOL) hasStartIndex;
 - (BOOL) hasEndIndex;
-@property (readonly) int32_t index;
-@property (readonly, retain) NSString* cnName;
-@property (readonly, retain) NSString* enName;
-@property (readonly, retain) NSString* tcnName;
-@property (readonly, retain) NSString* cnDesc;
-@property (readonly, retain) NSString* enDesc;
-@property (readonly, retain) NSString* tcnDesc;
-@property (readonly, retain) NSString* opusId;
-@property (readonly, retain) NSString* opusData;
-@property (readonly, retain) NSString* image;
-@property (readonly, retain) NSString* background;
-@property (readonly, retain) NSString* opusName;
-@property (readonly, retain) NSString* imageName;
-@property (readonly, retain) NSString* backgroundName;
-@property (readonly) int32_t startIndex;
-@property (readonly) int32_t endIndex;
-- (NSArray*) tipsList;
-- (PBTip*) tipsAtIndex:(int32_t) index;
+@property (readonly) SInt32 index;
+@property (readonly, strong) NSString* cnName;
+@property (readonly, strong) NSString* enName;
+@property (readonly, strong) NSString* tcnName;
+@property (readonly, strong) NSString* cnDesc;
+@property (readonly, strong) NSString* enDesc;
+@property (readonly, strong) NSString* tcnDesc;
+@property (readonly, strong) NSString* opusId;
+@property (readonly, strong) NSString* opusData;
+@property (readonly, strong) NSString* image;
+@property (readonly, strong) NSString* background;
+@property (readonly, strong) NSString* opusName;
+@property (readonly, strong) NSString* imageName;
+@property (readonly, strong) NSString* backgroundName;
+@property (readonly, strong) NSArray * tips;
+@property (readonly) SInt32 startIndex;
+@property (readonly) SInt32 endIndex;
+- (PBTip*)tipsAtIndex:(NSUInteger)index;
 
-+ (PBChapter*) defaultInstance;
-- (PBChapter*) defaultInstance;
++ (instancetype) defaultInstance;
+- (instancetype) defaultInstance;
 
 - (BOOL) isInitialized;
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
-- (PBChapter_Builder*) builder;
-+ (PBChapter_Builder*) builder;
-+ (PBChapter_Builder*) builderWithPrototype:(PBChapter*) prototype;
+- (PBChapterBuilder*) builder;
++ (PBChapterBuilder*) builder;
++ (PBChapterBuilder*) builderWithPrototype:(PBChapter*) prototype;
+- (PBChapterBuilder*) toBuilder;
 
 + (PBChapter*) parseFromData:(NSData*) data;
 + (PBChapter*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
@@ -372,156 +402,155 @@ BOOL PBUserTutorialStatusIsValidValue(PBUserTutorialStatus value);
 + (PBChapter*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 @end
 
-@interface PBChapter_Builder : PBGeneratedMessage_Builder {
+@interface PBChapterBuilder : PBGeneratedMessageBuilder {
 @private
-  PBChapter* result;
+  PBChapter* resultPbchapter;
 }
 
 - (PBChapter*) defaultInstance;
 
-- (PBChapter_Builder*) clear;
-- (PBChapter_Builder*) clone;
+- (PBChapterBuilder*) clear;
+- (PBChapterBuilder*) clone;
 
 - (PBChapter*) build;
 - (PBChapter*) buildPartial;
 
-- (PBChapter_Builder*) mergeFrom:(PBChapter*) other;
-- (PBChapter_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
-- (PBChapter_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+- (PBChapterBuilder*) mergeFrom:(PBChapter*) other;
+- (PBChapterBuilder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
+- (PBChapterBuilder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 
 - (BOOL) hasIndex;
-- (int32_t) index;
-- (PBChapter_Builder*) setIndex:(int32_t) value;
-- (PBChapter_Builder*) clearIndex;
+- (SInt32) index;
+- (PBChapterBuilder*) setIndex:(SInt32) value;
+- (PBChapterBuilder*) clearIndex;
 
 - (BOOL) hasCnName;
 - (NSString*) cnName;
-- (PBChapter_Builder*) setCnName:(NSString*) value;
-- (PBChapter_Builder*) clearCnName;
+- (PBChapterBuilder*) setCnName:(NSString*) value;
+- (PBChapterBuilder*) clearCnName;
 
 - (BOOL) hasEnName;
 - (NSString*) enName;
-- (PBChapter_Builder*) setEnName:(NSString*) value;
-- (PBChapter_Builder*) clearEnName;
+- (PBChapterBuilder*) setEnName:(NSString*) value;
+- (PBChapterBuilder*) clearEnName;
 
 - (BOOL) hasTcnName;
 - (NSString*) tcnName;
-- (PBChapter_Builder*) setTcnName:(NSString*) value;
-- (PBChapter_Builder*) clearTcnName;
+- (PBChapterBuilder*) setTcnName:(NSString*) value;
+- (PBChapterBuilder*) clearTcnName;
 
 - (BOOL) hasCnDesc;
 - (NSString*) cnDesc;
-- (PBChapter_Builder*) setCnDesc:(NSString*) value;
-- (PBChapter_Builder*) clearCnDesc;
+- (PBChapterBuilder*) setCnDesc:(NSString*) value;
+- (PBChapterBuilder*) clearCnDesc;
 
 - (BOOL) hasEnDesc;
 - (NSString*) enDesc;
-- (PBChapter_Builder*) setEnDesc:(NSString*) value;
-- (PBChapter_Builder*) clearEnDesc;
+- (PBChapterBuilder*) setEnDesc:(NSString*) value;
+- (PBChapterBuilder*) clearEnDesc;
 
 - (BOOL) hasTcnDesc;
 - (NSString*) tcnDesc;
-- (PBChapter_Builder*) setTcnDesc:(NSString*) value;
-- (PBChapter_Builder*) clearTcnDesc;
+- (PBChapterBuilder*) setTcnDesc:(NSString*) value;
+- (PBChapterBuilder*) clearTcnDesc;
 
 - (BOOL) hasOpusId;
 - (NSString*) opusId;
-- (PBChapter_Builder*) setOpusId:(NSString*) value;
-- (PBChapter_Builder*) clearOpusId;
+- (PBChapterBuilder*) setOpusId:(NSString*) value;
+- (PBChapterBuilder*) clearOpusId;
 
 - (BOOL) hasOpusData;
 - (NSString*) opusData;
-- (PBChapter_Builder*) setOpusData:(NSString*) value;
-- (PBChapter_Builder*) clearOpusData;
+- (PBChapterBuilder*) setOpusData:(NSString*) value;
+- (PBChapterBuilder*) clearOpusData;
 
 - (BOOL) hasImage;
 - (NSString*) image;
-- (PBChapter_Builder*) setImage:(NSString*) value;
-- (PBChapter_Builder*) clearImage;
+- (PBChapterBuilder*) setImage:(NSString*) value;
+- (PBChapterBuilder*) clearImage;
 
 - (BOOL) hasBackground;
 - (NSString*) background;
-- (PBChapter_Builder*) setBackground:(NSString*) value;
-- (PBChapter_Builder*) clearBackground;
+- (PBChapterBuilder*) setBackground:(NSString*) value;
+- (PBChapterBuilder*) clearBackground;
 
 - (BOOL) hasOpusName;
 - (NSString*) opusName;
-- (PBChapter_Builder*) setOpusName:(NSString*) value;
-- (PBChapter_Builder*) clearOpusName;
+- (PBChapterBuilder*) setOpusName:(NSString*) value;
+- (PBChapterBuilder*) clearOpusName;
 
 - (BOOL) hasImageName;
 - (NSString*) imageName;
-- (PBChapter_Builder*) setImageName:(NSString*) value;
-- (PBChapter_Builder*) clearImageName;
+- (PBChapterBuilder*) setImageName:(NSString*) value;
+- (PBChapterBuilder*) clearImageName;
 
 - (BOOL) hasBackgroundName;
 - (NSString*) backgroundName;
-- (PBChapter_Builder*) setBackgroundName:(NSString*) value;
-- (PBChapter_Builder*) clearBackgroundName;
+- (PBChapterBuilder*) setBackgroundName:(NSString*) value;
+- (PBChapterBuilder*) clearBackgroundName;
 
-- (NSArray*) tipsList;
-- (PBTip*) tipsAtIndex:(int32_t) index;
-- (PBChapter_Builder*) replaceTipsAtIndex:(int32_t) index with:(PBTip*) value;
-- (PBChapter_Builder*) addTips:(PBTip*) value;
-- (PBChapter_Builder*) addAllTips:(NSArray*) values;
-- (PBChapter_Builder*) clearTipsList;
+- (NSMutableArray *)tips;
+- (PBTip*)tipsAtIndex:(NSUInteger)index;
+- (PBChapterBuilder *)addTips:(PBTip*)value;
+- (PBChapterBuilder *)setTipsArray:(NSArray *)array;
+- (PBChapterBuilder *)clearTips;
 
 - (BOOL) hasStartIndex;
-- (int32_t) startIndex;
-- (PBChapter_Builder*) setStartIndex:(int32_t) value;
-- (PBChapter_Builder*) clearStartIndex;
+- (SInt32) startIndex;
+- (PBChapterBuilder*) setStartIndex:(SInt32) value;
+- (PBChapterBuilder*) clearStartIndex;
 
 - (BOOL) hasEndIndex;
-- (int32_t) endIndex;
-- (PBChapter_Builder*) setEndIndex:(int32_t) value;
-- (PBChapter_Builder*) clearEndIndex;
+- (SInt32) endIndex;
+- (PBChapterBuilder*) setEndIndex:(SInt32) value;
+- (PBChapterBuilder*) clearEndIndex;
 @end
 
-@interface PBStage : PBGeneratedMessage {
+@interface PBStage : PBGeneratedMessage<GeneratedMessageProtocol> {
 @private
-  BOOL hasUseBgForFill_:1;
   BOOL hasUseBgFromPrev_:1;
+  BOOL hasUseBgForFill_:1;
   BOOL hasDifficulty_:1;
-  BOOL hasScoreEngine_:1;
   BOOL hasImageStyle_:1;
-  BOOL hasBgImageName_:1;
-  BOOL hasOpusName_:1;
-  BOOL hasImageName_:1;
-  BOOL hasDataUrl_:1;
-  BOOL hasBgImage_:1;
-  BOOL hasOpusData_:1;
-  BOOL hasThumbImage_:1;
-  BOOL hasImage_:1;
-  BOOL hasOpusId_:1;
-  BOOL hasTcnDesc_:1;
-  BOOL hasEnDesc_:1;
-  BOOL hasCnDesc_:1;
-  BOOL hasTcnName_:1;
-  BOOL hasEnName_:1;
-  BOOL hasCnName_:1;
+  BOOL hasScoreEngine_:1;
   BOOL hasStageId_:1;
-  BOOL useBgForFill_:1;
+  BOOL hasCnName_:1;
+  BOOL hasEnName_:1;
+  BOOL hasTcnName_:1;
+  BOOL hasCnDesc_:1;
+  BOOL hasEnDesc_:1;
+  BOOL hasTcnDesc_:1;
+  BOOL hasOpusId_:1;
+  BOOL hasImage_:1;
+  BOOL hasThumbImage_:1;
+  BOOL hasOpusData_:1;
+  BOOL hasBgImage_:1;
+  BOOL hasDataUrl_:1;
+  BOOL hasImageName_:1;
+  BOOL hasOpusName_:1;
+  BOOL hasBgImageName_:1;
   BOOL useBgFromPrev_:1;
+  BOOL useBgForFill_:1;
   Float32 difficulty;
-  int32_t scoreEngine;
-  int32_t imageStyle;
-  NSString* bgImageName;
-  NSString* opusName;
-  NSString* imageName;
-  NSString* dataUrl;
-  NSString* bgImage;
-  NSString* opusData;
-  NSString* thumbImage;
-  NSString* image;
-  NSString* opusId;
-  NSString* tcnDesc;
-  NSString* enDesc;
-  NSString* cnDesc;
-  NSString* tcnName;
-  NSString* enName;
-  NSString* cnName;
+  SInt32 imageStyle;
+  SInt32 scoreEngine;
   NSString* stageId;
-  NSMutableArray* mutableChapterList;
+  NSString* cnName;
+  NSString* enName;
+  NSString* tcnName;
+  NSString* cnDesc;
+  NSString* enDesc;
+  NSString* tcnDesc;
+  NSString* opusId;
+  NSString* image;
+  NSString* thumbImage;
+  NSString* opusData;
+  NSString* bgImage;
+  NSString* dataUrl;
+  NSString* imageName;
+  NSString* opusName;
+  NSString* bgImageName;
+  NSMutableArray * chapterArray;
 }
 - (BOOL) hasStageId;
 - (BOOL) hasCnName;
@@ -544,38 +573,39 @@ BOOL PBUserTutorialStatusIsValidValue(PBUserTutorialStatus value);
 - (BOOL) hasDifficulty;
 - (BOOL) hasUseBgFromPrev;
 - (BOOL) hasUseBgForFill;
-@property (readonly, retain) NSString* stageId;
-@property (readonly, retain) NSString* cnName;
-@property (readonly, retain) NSString* enName;
-@property (readonly, retain) NSString* tcnName;
-@property (readonly, retain) NSString* cnDesc;
-@property (readonly, retain) NSString* enDesc;
-@property (readonly, retain) NSString* tcnDesc;
-@property (readonly, retain) NSString* opusId;
-@property (readonly, retain) NSString* image;
-@property (readonly, retain) NSString* thumbImage;
-@property (readonly, retain) NSString* opusData;
-@property (readonly, retain) NSString* bgImage;
-@property (readonly, retain) NSString* dataUrl;
-@property (readonly, retain) NSString* imageName;
-@property (readonly, retain) NSString* opusName;
-@property (readonly, retain) NSString* bgImageName;
-@property (readonly) int32_t imageStyle;
-@property (readonly) int32_t scoreEngine;
+@property (readonly, strong) NSString* stageId;
+@property (readonly, strong) NSString* cnName;
+@property (readonly, strong) NSString* enName;
+@property (readonly, strong) NSString* tcnName;
+@property (readonly, strong) NSString* cnDesc;
+@property (readonly, strong) NSString* enDesc;
+@property (readonly, strong) NSString* tcnDesc;
+@property (readonly, strong) NSString* opusId;
+@property (readonly, strong) NSString* image;
+@property (readonly, strong) NSString* thumbImage;
+@property (readonly, strong) NSString* opusData;
+@property (readonly, strong) NSString* bgImage;
+@property (readonly, strong) NSString* dataUrl;
+@property (readonly, strong) NSString* imageName;
+@property (readonly, strong) NSString* opusName;
+@property (readonly, strong) NSString* bgImageName;
+@property (readonly, strong) NSArray * chapter;
+@property (readonly) SInt32 imageStyle;
+@property (readonly) SInt32 scoreEngine;
 @property (readonly) Float32 difficulty;
 - (BOOL) useBgFromPrev;
 - (BOOL) useBgForFill;
-- (NSArray*) chapterList;
-- (PBChapter*) chapterAtIndex:(int32_t) index;
+- (PBChapter*)chapterAtIndex:(NSUInteger)index;
 
-+ (PBStage*) defaultInstance;
-- (PBStage*) defaultInstance;
++ (instancetype) defaultInstance;
+- (instancetype) defaultInstance;
 
 - (BOOL) isInitialized;
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
-- (PBStage_Builder*) builder;
-+ (PBStage_Builder*) builder;
-+ (PBStage_Builder*) builderWithPrototype:(PBStage*) prototype;
+- (PBStageBuilder*) builder;
++ (PBStageBuilder*) builder;
++ (PBStageBuilder*) builderWithPrototype:(PBStage*) prototype;
+- (PBStageBuilder*) toBuilder;
 
 + (PBStage*) parseFromData:(NSData*) data;
 + (PBStage*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
@@ -585,137 +615,136 @@ BOOL PBUserTutorialStatusIsValidValue(PBUserTutorialStatus value);
 + (PBStage*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 @end
 
-@interface PBStage_Builder : PBGeneratedMessage_Builder {
+@interface PBStageBuilder : PBGeneratedMessageBuilder {
 @private
-  PBStage* result;
+  PBStage* resultPbstage;
 }
 
 - (PBStage*) defaultInstance;
 
-- (PBStage_Builder*) clear;
-- (PBStage_Builder*) clone;
+- (PBStageBuilder*) clear;
+- (PBStageBuilder*) clone;
 
 - (PBStage*) build;
 - (PBStage*) buildPartial;
 
-- (PBStage_Builder*) mergeFrom:(PBStage*) other;
-- (PBStage_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
-- (PBStage_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+- (PBStageBuilder*) mergeFrom:(PBStage*) other;
+- (PBStageBuilder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
+- (PBStageBuilder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 
 - (BOOL) hasStageId;
 - (NSString*) stageId;
-- (PBStage_Builder*) setStageId:(NSString*) value;
-- (PBStage_Builder*) clearStageId;
+- (PBStageBuilder*) setStageId:(NSString*) value;
+- (PBStageBuilder*) clearStageId;
 
 - (BOOL) hasCnName;
 - (NSString*) cnName;
-- (PBStage_Builder*) setCnName:(NSString*) value;
-- (PBStage_Builder*) clearCnName;
+- (PBStageBuilder*) setCnName:(NSString*) value;
+- (PBStageBuilder*) clearCnName;
 
 - (BOOL) hasEnName;
 - (NSString*) enName;
-- (PBStage_Builder*) setEnName:(NSString*) value;
-- (PBStage_Builder*) clearEnName;
+- (PBStageBuilder*) setEnName:(NSString*) value;
+- (PBStageBuilder*) clearEnName;
 
 - (BOOL) hasTcnName;
 - (NSString*) tcnName;
-- (PBStage_Builder*) setTcnName:(NSString*) value;
-- (PBStage_Builder*) clearTcnName;
+- (PBStageBuilder*) setTcnName:(NSString*) value;
+- (PBStageBuilder*) clearTcnName;
 
 - (BOOL) hasCnDesc;
 - (NSString*) cnDesc;
-- (PBStage_Builder*) setCnDesc:(NSString*) value;
-- (PBStage_Builder*) clearCnDesc;
+- (PBStageBuilder*) setCnDesc:(NSString*) value;
+- (PBStageBuilder*) clearCnDesc;
 
 - (BOOL) hasEnDesc;
 - (NSString*) enDesc;
-- (PBStage_Builder*) setEnDesc:(NSString*) value;
-- (PBStage_Builder*) clearEnDesc;
+- (PBStageBuilder*) setEnDesc:(NSString*) value;
+- (PBStageBuilder*) clearEnDesc;
 
 - (BOOL) hasTcnDesc;
 - (NSString*) tcnDesc;
-- (PBStage_Builder*) setTcnDesc:(NSString*) value;
-- (PBStage_Builder*) clearTcnDesc;
+- (PBStageBuilder*) setTcnDesc:(NSString*) value;
+- (PBStageBuilder*) clearTcnDesc;
 
 - (BOOL) hasOpusId;
 - (NSString*) opusId;
-- (PBStage_Builder*) setOpusId:(NSString*) value;
-- (PBStage_Builder*) clearOpusId;
+- (PBStageBuilder*) setOpusId:(NSString*) value;
+- (PBStageBuilder*) clearOpusId;
 
 - (BOOL) hasImage;
 - (NSString*) image;
-- (PBStage_Builder*) setImage:(NSString*) value;
-- (PBStage_Builder*) clearImage;
+- (PBStageBuilder*) setImage:(NSString*) value;
+- (PBStageBuilder*) clearImage;
 
 - (BOOL) hasThumbImage;
 - (NSString*) thumbImage;
-- (PBStage_Builder*) setThumbImage:(NSString*) value;
-- (PBStage_Builder*) clearThumbImage;
+- (PBStageBuilder*) setThumbImage:(NSString*) value;
+- (PBStageBuilder*) clearThumbImage;
 
 - (BOOL) hasOpusData;
 - (NSString*) opusData;
-- (PBStage_Builder*) setOpusData:(NSString*) value;
-- (PBStage_Builder*) clearOpusData;
+- (PBStageBuilder*) setOpusData:(NSString*) value;
+- (PBStageBuilder*) clearOpusData;
 
 - (BOOL) hasBgImage;
 - (NSString*) bgImage;
-- (PBStage_Builder*) setBgImage:(NSString*) value;
-- (PBStage_Builder*) clearBgImage;
+- (PBStageBuilder*) setBgImage:(NSString*) value;
+- (PBStageBuilder*) clearBgImage;
 
 - (BOOL) hasDataUrl;
 - (NSString*) dataUrl;
-- (PBStage_Builder*) setDataUrl:(NSString*) value;
-- (PBStage_Builder*) clearDataUrl;
+- (PBStageBuilder*) setDataUrl:(NSString*) value;
+- (PBStageBuilder*) clearDataUrl;
 
 - (BOOL) hasImageName;
 - (NSString*) imageName;
-- (PBStage_Builder*) setImageName:(NSString*) value;
-- (PBStage_Builder*) clearImageName;
+- (PBStageBuilder*) setImageName:(NSString*) value;
+- (PBStageBuilder*) clearImageName;
 
 - (BOOL) hasOpusName;
 - (NSString*) opusName;
-- (PBStage_Builder*) setOpusName:(NSString*) value;
-- (PBStage_Builder*) clearOpusName;
+- (PBStageBuilder*) setOpusName:(NSString*) value;
+- (PBStageBuilder*) clearOpusName;
 
 - (BOOL) hasBgImageName;
 - (NSString*) bgImageName;
-- (PBStage_Builder*) setBgImageName:(NSString*) value;
-- (PBStage_Builder*) clearBgImageName;
+- (PBStageBuilder*) setBgImageName:(NSString*) value;
+- (PBStageBuilder*) clearBgImageName;
 
-- (NSArray*) chapterList;
-- (PBChapter*) chapterAtIndex:(int32_t) index;
-- (PBStage_Builder*) replaceChapterAtIndex:(int32_t) index with:(PBChapter*) value;
-- (PBStage_Builder*) addChapter:(PBChapter*) value;
-- (PBStage_Builder*) addAllChapter:(NSArray*) values;
-- (PBStage_Builder*) clearChapterList;
+- (NSMutableArray *)chapter;
+- (PBChapter*)chapterAtIndex:(NSUInteger)index;
+- (PBStageBuilder *)addChapter:(PBChapter*)value;
+- (PBStageBuilder *)setChapterArray:(NSArray *)array;
+- (PBStageBuilder *)clearChapter;
 
 - (BOOL) hasImageStyle;
-- (int32_t) imageStyle;
-- (PBStage_Builder*) setImageStyle:(int32_t) value;
-- (PBStage_Builder*) clearImageStyle;
+- (SInt32) imageStyle;
+- (PBStageBuilder*) setImageStyle:(SInt32) value;
+- (PBStageBuilder*) clearImageStyle;
 
 - (BOOL) hasScoreEngine;
-- (int32_t) scoreEngine;
-- (PBStage_Builder*) setScoreEngine:(int32_t) value;
-- (PBStage_Builder*) clearScoreEngine;
+- (SInt32) scoreEngine;
+- (PBStageBuilder*) setScoreEngine:(SInt32) value;
+- (PBStageBuilder*) clearScoreEngine;
 
 - (BOOL) hasDifficulty;
 - (Float32) difficulty;
-- (PBStage_Builder*) setDifficulty:(Float32) value;
-- (PBStage_Builder*) clearDifficulty;
+- (PBStageBuilder*) setDifficulty:(Float32) value;
+- (PBStageBuilder*) clearDifficulty;
 
 - (BOOL) hasUseBgFromPrev;
 - (BOOL) useBgFromPrev;
-- (PBStage_Builder*) setUseBgFromPrev:(BOOL) value;
-- (PBStage_Builder*) clearUseBgFromPrev;
+- (PBStageBuilder*) setUseBgFromPrev:(BOOL) value;
+- (PBStageBuilder*) clearUseBgFromPrev;
 
 - (BOOL) hasUseBgForFill;
 - (BOOL) useBgForFill;
-- (PBStage_Builder*) setUseBgForFill:(BOOL) value;
-- (PBStage_Builder*) clearUseBgForFill;
+- (PBStageBuilder*) setUseBgForFill:(BOOL) value;
+- (PBStageBuilder*) clearUseBgForFill;
 @end
 
-@interface PBTutorial : PBGeneratedMessage {
+@interface PBTutorial : PBGeneratedMessage<GeneratedMessageProtocol> {
 @private
   BOOL hasSkipTips_:1;
   BOOL hasSkipReplay_:1;
@@ -723,22 +752,22 @@ BOOL PBUserTutorialStatusIsValidValue(PBUserTutorialStatus value);
   BOOL hasDirectPass_:1;
   BOOL hasDisablePractice_:1;
   BOOL hasDisableScore_:1;
-  BOOL hasIsFeature_:1;
   BOOL hasIsNew_:1;
   BOOL hasIsFree_:1;
+  BOOL hasIsFeature_:1;
   BOOL hasVersion_:1;
-  BOOL hasTopRankType_:1;
-  BOOL hasPassScore_:1;
-  BOOL hasModifyDate_:1;
-  BOOL hasCreateDate_:1;
-  BOOL hasPriceUnit_:1;
-  BOOL hasPrice_:1;
-  BOOL hasDrawLevel_:1;
   BOOL hasType_:1;
   BOOL hasLevel_:1;
-  BOOL hasDataUrl_:1;
-  BOOL hasThumbImage_:1;
+  BOOL hasPrice_:1;
+  BOOL hasPriceUnit_:1;
+  BOOL hasCreateDate_:1;
+  BOOL hasModifyDate_:1;
+  BOOL hasPassScore_:1;
+  BOOL hasTopRankType_:1;
+  BOOL hasDrawLevel_:1;
   BOOL hasImage_:1;
+  BOOL hasThumbImage_:1;
+  BOOL hasDataUrl_:1;
   BOOL hasTcnDesc_:1;
   BOOL hasEnDesc_:1;
   BOOL hasCnDesc_:1;
@@ -752,22 +781,22 @@ BOOL PBUserTutorialStatusIsValidValue(PBUserTutorialStatus value);
   BOOL directPass_:1;
   BOOL disablePractice_:1;
   BOOL disableScore_:1;
-  BOOL isFeature_:1;
   BOOL isNew_:1;
   BOOL isFree_:1;
-  int32_t version;
-  int32_t topRankType;
-  int32_t passScore;
-  int32_t modifyDate;
-  int32_t createDate;
-  int32_t priceUnit;
-  int32_t price;
-  int32_t drawLevel;
-  int32_t type;
-  int32_t level;
-  NSString* dataUrl;
-  NSString* thumbImage;
+  BOOL isFeature_:1;
+  SInt32 version;
+  SInt32 type;
+  SInt32 level;
+  SInt32 price;
+  SInt32 priceUnit;
+  SInt32 createDate;
+  SInt32 modifyDate;
+  SInt32 passScore;
+  SInt32 topRankType;
+  SInt32 drawLevel;
   NSString* image;
+  NSString* thumbImage;
+  NSString* dataUrl;
   NSString* tcnDesc;
   NSString* enDesc;
   NSString* cnDesc;
@@ -775,8 +804,8 @@ BOOL PBUserTutorialStatusIsValidValue(PBUserTutorialStatus value);
   NSString* enName;
   NSString* cnName;
   NSString* tutorialId;
-  NSMutableArray* mutableCategoriesList;
-  NSMutableArray* mutableStagesList;
+  PBAppendableArray * categoriesArray;
+  NSMutableArray * stagesArray;
 }
 - (BOOL) hasTutorialId;
 - (BOOL) hasCnName;
@@ -807,48 +836,49 @@ BOOL PBUserTutorialStatusIsValidValue(PBUserTutorialStatus value);
 - (BOOL) hasSkipReplay;
 - (BOOL) hasSkipTips;
 - (BOOL) hasVersion;
-@property (readonly, retain) NSString* tutorialId;
-@property (readonly, retain) NSString* cnName;
-@property (readonly, retain) NSString* enName;
-@property (readonly, retain) NSString* tcnName;
-@property (readonly, retain) NSString* cnDesc;
-@property (readonly, retain) NSString* enDesc;
-@property (readonly, retain) NSString* tcnDesc;
-@property (readonly) int32_t level;
+@property (readonly, strong) NSString* tutorialId;
+@property (readonly, strong) NSString* cnName;
+@property (readonly, strong) NSString* enName;
+@property (readonly, strong) NSString* tcnName;
+@property (readonly, strong) NSString* cnDesc;
+@property (readonly, strong) NSString* enDesc;
+@property (readonly, strong) NSString* tcnDesc;
+@property (readonly) SInt32 level;
+@property (readonly, strong) PBArray * categories;
 - (BOOL) isFeature;
-@property (readonly, retain) NSString* image;
-@property (readonly, retain) NSString* thumbImage;
-@property (readonly, retain) NSString* dataUrl;
-@property (readonly) int32_t type;
-@property (readonly) int32_t drawLevel;
+@property (readonly, strong) NSString* image;
+@property (readonly, strong) NSString* thumbImage;
+@property (readonly, strong) NSString* dataUrl;
+@property (readonly, strong) NSArray * stages;
+@property (readonly) SInt32 type;
+@property (readonly) SInt32 drawLevel;
 - (BOOL) isFree;
-@property (readonly) int32_t price;
-@property (readonly) int32_t priceUnit;
-@property (readonly) int32_t createDate;
-@property (readonly) int32_t modifyDate;
+@property (readonly) SInt32 price;
+@property (readonly) SInt32 priceUnit;
+@property (readonly) SInt32 createDate;
+@property (readonly) SInt32 modifyDate;
 - (BOOL) isNew;
 - (BOOL) disableScore;
 - (BOOL) disablePractice;
 - (BOOL) directPass;
-@property (readonly) int32_t passScore;
-@property (readonly) int32_t topRankType;
+@property (readonly) SInt32 passScore;
+@property (readonly) SInt32 topRankType;
 - (BOOL) unlockAllStage;
 - (BOOL) skipReplay;
 - (BOOL) skipTips;
-@property (readonly) int32_t version;
-- (NSArray*) categoriesList;
-- (int32_t) categoriesAtIndex:(int32_t) index;
-- (NSArray*) stagesList;
-- (PBStage*) stagesAtIndex:(int32_t) index;
+@property (readonly) SInt32 version;
+- (SInt32)categoriesAtIndex:(NSUInteger)index;
+- (PBStage*)stagesAtIndex:(NSUInteger)index;
 
-+ (PBTutorial*) defaultInstance;
-- (PBTutorial*) defaultInstance;
++ (instancetype) defaultInstance;
+- (instancetype) defaultInstance;
 
 - (BOOL) isInitialized;
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
-- (PBTutorial_Builder*) builder;
-+ (PBTutorial_Builder*) builder;
-+ (PBTutorial_Builder*) builderWithPrototype:(PBTutorial*) prototype;
+- (PBTutorialBuilder*) builder;
++ (PBTutorialBuilder*) builder;
++ (PBTutorialBuilder*) builderWithPrototype:(PBTutorial*) prototype;
+- (PBTutorialBuilder*) toBuilder;
 
 + (PBTutorial*) parseFromData:(NSData*) data;
 + (PBTutorial*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
@@ -858,205 +888,205 @@ BOOL PBUserTutorialStatusIsValidValue(PBUserTutorialStatus value);
 + (PBTutorial*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 @end
 
-@interface PBTutorial_Builder : PBGeneratedMessage_Builder {
+@interface PBTutorialBuilder : PBGeneratedMessageBuilder {
 @private
-  PBTutorial* result;
+  PBTutorial* resultPbtutorial;
 }
 
 - (PBTutorial*) defaultInstance;
 
-- (PBTutorial_Builder*) clear;
-- (PBTutorial_Builder*) clone;
+- (PBTutorialBuilder*) clear;
+- (PBTutorialBuilder*) clone;
 
 - (PBTutorial*) build;
 - (PBTutorial*) buildPartial;
 
-- (PBTutorial_Builder*) mergeFrom:(PBTutorial*) other;
-- (PBTutorial_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
-- (PBTutorial_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+- (PBTutorialBuilder*) mergeFrom:(PBTutorial*) other;
+- (PBTutorialBuilder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
+- (PBTutorialBuilder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 
 - (BOOL) hasTutorialId;
 - (NSString*) tutorialId;
-- (PBTutorial_Builder*) setTutorialId:(NSString*) value;
-- (PBTutorial_Builder*) clearTutorialId;
+- (PBTutorialBuilder*) setTutorialId:(NSString*) value;
+- (PBTutorialBuilder*) clearTutorialId;
 
 - (BOOL) hasCnName;
 - (NSString*) cnName;
-- (PBTutorial_Builder*) setCnName:(NSString*) value;
-- (PBTutorial_Builder*) clearCnName;
+- (PBTutorialBuilder*) setCnName:(NSString*) value;
+- (PBTutorialBuilder*) clearCnName;
 
 - (BOOL) hasEnName;
 - (NSString*) enName;
-- (PBTutorial_Builder*) setEnName:(NSString*) value;
-- (PBTutorial_Builder*) clearEnName;
+- (PBTutorialBuilder*) setEnName:(NSString*) value;
+- (PBTutorialBuilder*) clearEnName;
 
 - (BOOL) hasTcnName;
 - (NSString*) tcnName;
-- (PBTutorial_Builder*) setTcnName:(NSString*) value;
-- (PBTutorial_Builder*) clearTcnName;
+- (PBTutorialBuilder*) setTcnName:(NSString*) value;
+- (PBTutorialBuilder*) clearTcnName;
 
 - (BOOL) hasCnDesc;
 - (NSString*) cnDesc;
-- (PBTutorial_Builder*) setCnDesc:(NSString*) value;
-- (PBTutorial_Builder*) clearCnDesc;
+- (PBTutorialBuilder*) setCnDesc:(NSString*) value;
+- (PBTutorialBuilder*) clearCnDesc;
 
 - (BOOL) hasEnDesc;
 - (NSString*) enDesc;
-- (PBTutorial_Builder*) setEnDesc:(NSString*) value;
-- (PBTutorial_Builder*) clearEnDesc;
+- (PBTutorialBuilder*) setEnDesc:(NSString*) value;
+- (PBTutorialBuilder*) clearEnDesc;
 
 - (BOOL) hasTcnDesc;
 - (NSString*) tcnDesc;
-- (PBTutorial_Builder*) setTcnDesc:(NSString*) value;
-- (PBTutorial_Builder*) clearTcnDesc;
+- (PBTutorialBuilder*) setTcnDesc:(NSString*) value;
+- (PBTutorialBuilder*) clearTcnDesc;
 
 - (BOOL) hasLevel;
-- (int32_t) level;
-- (PBTutorial_Builder*) setLevel:(int32_t) value;
-- (PBTutorial_Builder*) clearLevel;
+- (SInt32) level;
+- (PBTutorialBuilder*) setLevel:(SInt32) value;
+- (PBTutorialBuilder*) clearLevel;
 
-- (NSArray*) categoriesList;
-- (int32_t) categoriesAtIndex:(int32_t) index;
-- (PBTutorial_Builder*) replaceCategoriesAtIndex:(int32_t) index with:(int32_t) value;
-- (PBTutorial_Builder*) addCategories:(int32_t) value;
-- (PBTutorial_Builder*) addAllCategories:(NSArray*) values;
-- (PBTutorial_Builder*) clearCategoriesList;
+- (PBAppendableArray *)categories;
+- (SInt32)categoriesAtIndex:(NSUInteger)index;
+- (PBTutorialBuilder *)addCategories:(SInt32)value;
+- (PBTutorialBuilder *)setCategoriesArray:(NSArray *)array;
+- (PBTutorialBuilder *)setCategoriesValues:(const SInt32 *)values count:(NSUInteger)count;
+- (PBTutorialBuilder *)clearCategories;
 
 - (BOOL) hasIsFeature;
 - (BOOL) isFeature;
-- (PBTutorial_Builder*) setIsFeature:(BOOL) value;
-- (PBTutorial_Builder*) clearIsFeature;
+- (PBTutorialBuilder*) setIsFeature:(BOOL) value;
+- (PBTutorialBuilder*) clearIsFeature;
 
 - (BOOL) hasImage;
 - (NSString*) image;
-- (PBTutorial_Builder*) setImage:(NSString*) value;
-- (PBTutorial_Builder*) clearImage;
+- (PBTutorialBuilder*) setImage:(NSString*) value;
+- (PBTutorialBuilder*) clearImage;
 
 - (BOOL) hasThumbImage;
 - (NSString*) thumbImage;
-- (PBTutorial_Builder*) setThumbImage:(NSString*) value;
-- (PBTutorial_Builder*) clearThumbImage;
+- (PBTutorialBuilder*) setThumbImage:(NSString*) value;
+- (PBTutorialBuilder*) clearThumbImage;
 
 - (BOOL) hasDataUrl;
 - (NSString*) dataUrl;
-- (PBTutorial_Builder*) setDataUrl:(NSString*) value;
-- (PBTutorial_Builder*) clearDataUrl;
+- (PBTutorialBuilder*) setDataUrl:(NSString*) value;
+- (PBTutorialBuilder*) clearDataUrl;
 
-- (NSArray*) stagesList;
-- (PBStage*) stagesAtIndex:(int32_t) index;
-- (PBTutorial_Builder*) replaceStagesAtIndex:(int32_t) index with:(PBStage*) value;
-- (PBTutorial_Builder*) addStages:(PBStage*) value;
-- (PBTutorial_Builder*) addAllStages:(NSArray*) values;
-- (PBTutorial_Builder*) clearStagesList;
+- (NSMutableArray *)stages;
+- (PBStage*)stagesAtIndex:(NSUInteger)index;
+- (PBTutorialBuilder *)addStages:(PBStage*)value;
+- (PBTutorialBuilder *)setStagesArray:(NSArray *)array;
+- (PBTutorialBuilder *)clearStages;
 
 - (BOOL) hasType;
-- (int32_t) type;
-- (PBTutorial_Builder*) setType:(int32_t) value;
-- (PBTutorial_Builder*) clearType;
+- (SInt32) type;
+- (PBTutorialBuilder*) setType:(SInt32) value;
+- (PBTutorialBuilder*) clearType;
 
 - (BOOL) hasDrawLevel;
-- (int32_t) drawLevel;
-- (PBTutorial_Builder*) setDrawLevel:(int32_t) value;
-- (PBTutorial_Builder*) clearDrawLevel;
+- (SInt32) drawLevel;
+- (PBTutorialBuilder*) setDrawLevel:(SInt32) value;
+- (PBTutorialBuilder*) clearDrawLevel;
 
 - (BOOL) hasIsFree;
 - (BOOL) isFree;
-- (PBTutorial_Builder*) setIsFree:(BOOL) value;
-- (PBTutorial_Builder*) clearIsFree;
+- (PBTutorialBuilder*) setIsFree:(BOOL) value;
+- (PBTutorialBuilder*) clearIsFree;
 
 - (BOOL) hasPrice;
-- (int32_t) price;
-- (PBTutorial_Builder*) setPrice:(int32_t) value;
-- (PBTutorial_Builder*) clearPrice;
+- (SInt32) price;
+- (PBTutorialBuilder*) setPrice:(SInt32) value;
+- (PBTutorialBuilder*) clearPrice;
 
 - (BOOL) hasPriceUnit;
-- (int32_t) priceUnit;
-- (PBTutorial_Builder*) setPriceUnit:(int32_t) value;
-- (PBTutorial_Builder*) clearPriceUnit;
+- (SInt32) priceUnit;
+- (PBTutorialBuilder*) setPriceUnit:(SInt32) value;
+- (PBTutorialBuilder*) clearPriceUnit;
 
 - (BOOL) hasCreateDate;
-- (int32_t) createDate;
-- (PBTutorial_Builder*) setCreateDate:(int32_t) value;
-- (PBTutorial_Builder*) clearCreateDate;
+- (SInt32) createDate;
+- (PBTutorialBuilder*) setCreateDate:(SInt32) value;
+- (PBTutorialBuilder*) clearCreateDate;
 
 - (BOOL) hasModifyDate;
-- (int32_t) modifyDate;
-- (PBTutorial_Builder*) setModifyDate:(int32_t) value;
-- (PBTutorial_Builder*) clearModifyDate;
+- (SInt32) modifyDate;
+- (PBTutorialBuilder*) setModifyDate:(SInt32) value;
+- (PBTutorialBuilder*) clearModifyDate;
 
 - (BOOL) hasIsNew;
 - (BOOL) isNew;
-- (PBTutorial_Builder*) setIsNew:(BOOL) value;
-- (PBTutorial_Builder*) clearIsNew;
+- (PBTutorialBuilder*) setIsNew:(BOOL) value;
+- (PBTutorialBuilder*) clearIsNew;
 
 - (BOOL) hasDisableScore;
 - (BOOL) disableScore;
-- (PBTutorial_Builder*) setDisableScore:(BOOL) value;
-- (PBTutorial_Builder*) clearDisableScore;
+- (PBTutorialBuilder*) setDisableScore:(BOOL) value;
+- (PBTutorialBuilder*) clearDisableScore;
 
 - (BOOL) hasDisablePractice;
 - (BOOL) disablePractice;
-- (PBTutorial_Builder*) setDisablePractice:(BOOL) value;
-- (PBTutorial_Builder*) clearDisablePractice;
+- (PBTutorialBuilder*) setDisablePractice:(BOOL) value;
+- (PBTutorialBuilder*) clearDisablePractice;
 
 - (BOOL) hasDirectPass;
 - (BOOL) directPass;
-- (PBTutorial_Builder*) setDirectPass:(BOOL) value;
-- (PBTutorial_Builder*) clearDirectPass;
+- (PBTutorialBuilder*) setDirectPass:(BOOL) value;
+- (PBTutorialBuilder*) clearDirectPass;
 
 - (BOOL) hasPassScore;
-- (int32_t) passScore;
-- (PBTutorial_Builder*) setPassScore:(int32_t) value;
-- (PBTutorial_Builder*) clearPassScore;
+- (SInt32) passScore;
+- (PBTutorialBuilder*) setPassScore:(SInt32) value;
+- (PBTutorialBuilder*) clearPassScore;
 
 - (BOOL) hasTopRankType;
-- (int32_t) topRankType;
-- (PBTutorial_Builder*) setTopRankType:(int32_t) value;
-- (PBTutorial_Builder*) clearTopRankType;
+- (SInt32) topRankType;
+- (PBTutorialBuilder*) setTopRankType:(SInt32) value;
+- (PBTutorialBuilder*) clearTopRankType;
 
 - (BOOL) hasUnlockAllStage;
 - (BOOL) unlockAllStage;
-- (PBTutorial_Builder*) setUnlockAllStage:(BOOL) value;
-- (PBTutorial_Builder*) clearUnlockAllStage;
+- (PBTutorialBuilder*) setUnlockAllStage:(BOOL) value;
+- (PBTutorialBuilder*) clearUnlockAllStage;
 
 - (BOOL) hasSkipReplay;
 - (BOOL) skipReplay;
-- (PBTutorial_Builder*) setSkipReplay:(BOOL) value;
-- (PBTutorial_Builder*) clearSkipReplay;
+- (PBTutorialBuilder*) setSkipReplay:(BOOL) value;
+- (PBTutorialBuilder*) clearSkipReplay;
 
 - (BOOL) hasSkipTips;
 - (BOOL) skipTips;
-- (PBTutorial_Builder*) setSkipTips:(BOOL) value;
-- (PBTutorial_Builder*) clearSkipTips;
+- (PBTutorialBuilder*) setSkipTips:(BOOL) value;
+- (PBTutorialBuilder*) clearSkipTips;
 
 - (BOOL) hasVersion;
-- (int32_t) version;
-- (PBTutorial_Builder*) setVersion:(int32_t) value;
-- (PBTutorial_Builder*) clearVersion;
+- (SInt32) version;
+- (PBTutorialBuilder*) setVersion:(SInt32) value;
+- (PBTutorialBuilder*) clearVersion;
 @end
 
-@interface PBTutorialCore : PBGeneratedMessage {
+@interface PBTutorialCore : PBGeneratedMessage<GeneratedMessageProtocol> {
 @private
   BOOL hasVersion_:1;
-  int32_t version;
-  NSMutableArray* mutableStepByStepTutorialIdList;
-  NSMutableArray* mutableTutorialsList;
+  SInt32 version;
+  NSMutableArray * stepByStepTutorialIdArray;
+  NSMutableArray * tutorialsArray;
 }
 - (BOOL) hasVersion;
-@property (readonly) int32_t version;
-- (NSArray*) tutorialsList;
-- (PBTutorial*) tutorialsAtIndex:(int32_t) index;
-- (NSArray*) stepByStepTutorialIdList;
-- (NSString*) stepByStepTutorialIdAtIndex:(int32_t) index;
+@property (readonly, strong) NSArray * tutorials;
+@property (readonly) SInt32 version;
+@property (readonly, strong) NSArray * stepByStepTutorialId;
+- (PBTutorial*)tutorialsAtIndex:(NSUInteger)index;
+- (NSString*)stepByStepTutorialIdAtIndex:(NSUInteger)index;
 
-+ (PBTutorialCore*) defaultInstance;
-- (PBTutorialCore*) defaultInstance;
++ (instancetype) defaultInstance;
+- (instancetype) defaultInstance;
 
 - (BOOL) isInitialized;
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
-- (PBTutorialCore_Builder*) builder;
-+ (PBTutorialCore_Builder*) builder;
-+ (PBTutorialCore_Builder*) builderWithPrototype:(PBTutorialCore*) prototype;
+- (PBTutorialCoreBuilder*) builder;
++ (PBTutorialCoreBuilder*) builder;
++ (PBTutorialCoreBuilder*) builderWithPrototype:(PBTutorialCore*) prototype;
+- (PBTutorialCoreBuilder*) toBuilder;
 
 + (PBTutorialCore*) parseFromData:(NSData*) data;
 + (PBTutorialCore*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
@@ -1066,44 +1096,42 @@ BOOL PBUserTutorialStatusIsValidValue(PBUserTutorialStatus value);
 + (PBTutorialCore*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 @end
 
-@interface PBTutorialCore_Builder : PBGeneratedMessage_Builder {
+@interface PBTutorialCoreBuilder : PBGeneratedMessageBuilder {
 @private
-  PBTutorialCore* result;
+  PBTutorialCore* resultPbtutorialCore;
 }
 
 - (PBTutorialCore*) defaultInstance;
 
-- (PBTutorialCore_Builder*) clear;
-- (PBTutorialCore_Builder*) clone;
+- (PBTutorialCoreBuilder*) clear;
+- (PBTutorialCoreBuilder*) clone;
 
 - (PBTutorialCore*) build;
 - (PBTutorialCore*) buildPartial;
 
-- (PBTutorialCore_Builder*) mergeFrom:(PBTutorialCore*) other;
-- (PBTutorialCore_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
-- (PBTutorialCore_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+- (PBTutorialCoreBuilder*) mergeFrom:(PBTutorialCore*) other;
+- (PBTutorialCoreBuilder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
+- (PBTutorialCoreBuilder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 
-- (NSArray*) tutorialsList;
-- (PBTutorial*) tutorialsAtIndex:(int32_t) index;
-- (PBTutorialCore_Builder*) replaceTutorialsAtIndex:(int32_t) index with:(PBTutorial*) value;
-- (PBTutorialCore_Builder*) addTutorials:(PBTutorial*) value;
-- (PBTutorialCore_Builder*) addAllTutorials:(NSArray*) values;
-- (PBTutorialCore_Builder*) clearTutorialsList;
+- (NSMutableArray *)tutorials;
+- (PBTutorial*)tutorialsAtIndex:(NSUInteger)index;
+- (PBTutorialCoreBuilder *)addTutorials:(PBTutorial*)value;
+- (PBTutorialCoreBuilder *)setTutorialsArray:(NSArray *)array;
+- (PBTutorialCoreBuilder *)clearTutorials;
 
 - (BOOL) hasVersion;
-- (int32_t) version;
-- (PBTutorialCore_Builder*) setVersion:(int32_t) value;
-- (PBTutorialCore_Builder*) clearVersion;
+- (SInt32) version;
+- (PBTutorialCoreBuilder*) setVersion:(SInt32) value;
+- (PBTutorialCoreBuilder*) clearVersion;
 
-- (NSArray*) stepByStepTutorialIdList;
-- (NSString*) stepByStepTutorialIdAtIndex:(int32_t) index;
-- (PBTutorialCore_Builder*) replaceStepByStepTutorialIdAtIndex:(int32_t) index with:(NSString*) value;
-- (PBTutorialCore_Builder*) addStepByStepTutorialId:(NSString*) value;
-- (PBTutorialCore_Builder*) addAllStepByStepTutorialId:(NSArray*) values;
-- (PBTutorialCore_Builder*) clearStepByStepTutorialIdList;
+- (NSMutableArray *)stepByStepTutorialId;
+- (NSString*)stepByStepTutorialIdAtIndex:(NSUInteger)index;
+- (PBTutorialCoreBuilder *)addStepByStepTutorialId:(NSString*)value;
+- (PBTutorialCoreBuilder *)setStepByStepTutorialIdArray:(NSArray *)array;
+- (PBTutorialCoreBuilder *)clearStepByStepTutorialId;
 @end
 
-@interface PBUserStageOpus : PBGeneratedMessage {
+@interface PBUserStageOpus : PBGeneratedMessage<GeneratedMessageProtocol> {
 @private
   BOOL hasScore_:1;
   BOOL hasCreateDate_:1;
@@ -1111,8 +1139,8 @@ BOOL PBUserTutorialStatusIsValidValue(PBUserTutorialStatus value);
   BOOL hasRemoteOpusId_:1;
   BOOL hasLocalUrl_:1;
   BOOL hasRemoteUrl_:1;
-  int32_t score;
-  int32_t createDate;
+  SInt32 score;
+  SInt32 createDate;
   NSString* localOpusId;
   NSString* remoteOpusId;
   NSString* localUrl;
@@ -1124,21 +1152,22 @@ BOOL PBUserTutorialStatusIsValidValue(PBUserTutorialStatus value);
 - (BOOL) hasCreateDate;
 - (BOOL) hasLocalUrl;
 - (BOOL) hasRemoteUrl;
-@property (readonly, retain) NSString* localOpusId;
-@property (readonly, retain) NSString* remoteOpusId;
-@property (readonly) int32_t score;
-@property (readonly) int32_t createDate;
-@property (readonly, retain) NSString* localUrl;
-@property (readonly, retain) NSString* remoteUrl;
+@property (readonly, strong) NSString* localOpusId;
+@property (readonly, strong) NSString* remoteOpusId;
+@property (readonly) SInt32 score;
+@property (readonly) SInt32 createDate;
+@property (readonly, strong) NSString* localUrl;
+@property (readonly, strong) NSString* remoteUrl;
 
-+ (PBUserStageOpus*) defaultInstance;
-- (PBUserStageOpus*) defaultInstance;
++ (instancetype) defaultInstance;
+- (instancetype) defaultInstance;
 
 - (BOOL) isInitialized;
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
-- (PBUserStageOpus_Builder*) builder;
-+ (PBUserStageOpus_Builder*) builder;
-+ (PBUserStageOpus_Builder*) builderWithPrototype:(PBUserStageOpus*) prototype;
+- (PBUserStageOpusBuilder*) builder;
++ (PBUserStageOpusBuilder*) builder;
++ (PBUserStageOpusBuilder*) builderWithPrototype:(PBUserStageOpus*) prototype;
+- (PBUserStageOpusBuilder*) toBuilder;
 
 + (PBUserStageOpus*) parseFromData:(NSData*) data;
 + (PBUserStageOpus*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
@@ -1148,89 +1177,89 @@ BOOL PBUserTutorialStatusIsValidValue(PBUserTutorialStatus value);
 + (PBUserStageOpus*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 @end
 
-@interface PBUserStageOpus_Builder : PBGeneratedMessage_Builder {
+@interface PBUserStageOpusBuilder : PBGeneratedMessageBuilder {
 @private
-  PBUserStageOpus* result;
+  PBUserStageOpus* resultPbuserStageOpus;
 }
 
 - (PBUserStageOpus*) defaultInstance;
 
-- (PBUserStageOpus_Builder*) clear;
-- (PBUserStageOpus_Builder*) clone;
+- (PBUserStageOpusBuilder*) clear;
+- (PBUserStageOpusBuilder*) clone;
 
 - (PBUserStageOpus*) build;
 - (PBUserStageOpus*) buildPartial;
 
-- (PBUserStageOpus_Builder*) mergeFrom:(PBUserStageOpus*) other;
-- (PBUserStageOpus_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
-- (PBUserStageOpus_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+- (PBUserStageOpusBuilder*) mergeFrom:(PBUserStageOpus*) other;
+- (PBUserStageOpusBuilder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
+- (PBUserStageOpusBuilder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 
 - (BOOL) hasLocalOpusId;
 - (NSString*) localOpusId;
-- (PBUserStageOpus_Builder*) setLocalOpusId:(NSString*) value;
-- (PBUserStageOpus_Builder*) clearLocalOpusId;
+- (PBUserStageOpusBuilder*) setLocalOpusId:(NSString*) value;
+- (PBUserStageOpusBuilder*) clearLocalOpusId;
 
 - (BOOL) hasRemoteOpusId;
 - (NSString*) remoteOpusId;
-- (PBUserStageOpus_Builder*) setRemoteOpusId:(NSString*) value;
-- (PBUserStageOpus_Builder*) clearRemoteOpusId;
+- (PBUserStageOpusBuilder*) setRemoteOpusId:(NSString*) value;
+- (PBUserStageOpusBuilder*) clearRemoteOpusId;
 
 - (BOOL) hasScore;
-- (int32_t) score;
-- (PBUserStageOpus_Builder*) setScore:(int32_t) value;
-- (PBUserStageOpus_Builder*) clearScore;
+- (SInt32) score;
+- (PBUserStageOpusBuilder*) setScore:(SInt32) value;
+- (PBUserStageOpusBuilder*) clearScore;
 
 - (BOOL) hasCreateDate;
-- (int32_t) createDate;
-- (PBUserStageOpus_Builder*) setCreateDate:(int32_t) value;
-- (PBUserStageOpus_Builder*) clearCreateDate;
+- (SInt32) createDate;
+- (PBUserStageOpusBuilder*) setCreateDate:(SInt32) value;
+- (PBUserStageOpusBuilder*) clearCreateDate;
 
 - (BOOL) hasLocalUrl;
 - (NSString*) localUrl;
-- (PBUserStageOpus_Builder*) setLocalUrl:(NSString*) value;
-- (PBUserStageOpus_Builder*) clearLocalUrl;
+- (PBUserStageOpusBuilder*) setLocalUrl:(NSString*) value;
+- (PBUserStageOpusBuilder*) clearLocalUrl;
 
 - (BOOL) hasRemoteUrl;
 - (NSString*) remoteUrl;
-- (PBUserStageOpus_Builder*) setRemoteUrl:(NSString*) value;
-- (PBUserStageOpus_Builder*) clearRemoteUrl;
+- (PBUserStageOpusBuilder*) setRemoteUrl:(NSString*) value;
+- (PBUserStageOpusBuilder*) clearRemoteUrl;
 @end
 
-@interface PBUserStage : PBGeneratedMessage {
+@interface PBUserStage : PBGeneratedMessage<GeneratedMessageProtocol> {
 @private
-  BOOL hasDefeatCount_:1;
-  BOOL hasTotalCount_:1;
-  BOOL hasLastScoreDate_:1;
   BOOL hasStageIndex_:1;
-  BOOL hasLastScore_:1;
   BOOL hasCurrentChapterIndex_:1;
-  BOOL hasBestScoreDate_:1;
   BOOL hasBestScore_:1;
-  BOOL hasLastOpusId_:1;
-  BOOL hasBestOpusId_:1;
-  BOOL hasConquerLocalImage_:1;
-  BOOL hasConquerLocalOpusId_:1;
-  BOOL hasPracticeLocalOpusId_:1;
-  BOOL hasStageId_:1;
-  BOOL hasTutorialId_:1;
+  BOOL hasBestScoreDate_:1;
+  BOOL hasLastScore_:1;
+  BOOL hasLastScoreDate_:1;
+  BOOL hasTotalCount_:1;
+  BOOL hasDefeatCount_:1;
   BOOL hasUserId_:1;
-  int32_t defeatCount;
-  int32_t totalCount;
-  int32_t lastScoreDate;
-  int32_t stageIndex;
-  int32_t lastScore;
-  int32_t currentChapterIndex;
-  int32_t bestScoreDate;
-  int32_t bestScore;
-  NSString* lastOpusId;
-  NSString* bestOpusId;
-  NSString* conquerLocalImage;
-  NSString* conquerLocalOpusId;
-  NSString* practiceLocalOpusId;
-  NSString* stageId;
-  NSString* tutorialId;
+  BOOL hasTutorialId_:1;
+  BOOL hasStageId_:1;
+  BOOL hasPracticeLocalOpusId_:1;
+  BOOL hasConquerLocalOpusId_:1;
+  BOOL hasConquerLocalImage_:1;
+  BOOL hasBestOpusId_:1;
+  BOOL hasLastOpusId_:1;
+  SInt32 stageIndex;
+  SInt32 currentChapterIndex;
+  SInt32 bestScore;
+  SInt32 bestScoreDate;
+  SInt32 lastScore;
+  SInt32 lastScoreDate;
+  SInt32 totalCount;
+  SInt32 defeatCount;
   NSString* userId;
-  NSMutableArray* mutableOpusList;
+  NSString* tutorialId;
+  NSString* stageId;
+  NSString* practiceLocalOpusId;
+  NSString* conquerLocalOpusId;
+  NSString* conquerLocalImage;
+  NSString* bestOpusId;
+  NSString* lastOpusId;
+  NSMutableArray * opusArray;
 }
 - (BOOL) hasUserId;
 - (BOOL) hasTutorialId;
@@ -1248,33 +1277,34 @@ BOOL PBUserTutorialStatusIsValidValue(PBUserTutorialStatus value);
 - (BOOL) hasLastScoreDate;
 - (BOOL) hasTotalCount;
 - (BOOL) hasDefeatCount;
-@property (readonly, retain) NSString* userId;
-@property (readonly, retain) NSString* tutorialId;
-@property (readonly, retain) NSString* stageId;
-@property (readonly) int32_t stageIndex;
-@property (readonly) int32_t currentChapterIndex;
-@property (readonly, retain) NSString* practiceLocalOpusId;
-@property (readonly, retain) NSString* conquerLocalOpusId;
-@property (readonly, retain) NSString* conquerLocalImage;
-@property (readonly, retain) NSString* bestOpusId;
-@property (readonly) int32_t bestScore;
-@property (readonly) int32_t bestScoreDate;
-@property (readonly, retain) NSString* lastOpusId;
-@property (readonly) int32_t lastScore;
-@property (readonly) int32_t lastScoreDate;
-@property (readonly) int32_t totalCount;
-@property (readonly) int32_t defeatCount;
-- (NSArray*) opusList;
-- (PBUserStageOpus*) opusAtIndex:(int32_t) index;
+@property (readonly, strong) NSString* userId;
+@property (readonly, strong) NSString* tutorialId;
+@property (readonly, strong) NSString* stageId;
+@property (readonly) SInt32 stageIndex;
+@property (readonly, strong) NSArray * opus;
+@property (readonly) SInt32 currentChapterIndex;
+@property (readonly, strong) NSString* practiceLocalOpusId;
+@property (readonly, strong) NSString* conquerLocalOpusId;
+@property (readonly, strong) NSString* conquerLocalImage;
+@property (readonly, strong) NSString* bestOpusId;
+@property (readonly) SInt32 bestScore;
+@property (readonly) SInt32 bestScoreDate;
+@property (readonly, strong) NSString* lastOpusId;
+@property (readonly) SInt32 lastScore;
+@property (readonly) SInt32 lastScoreDate;
+@property (readonly) SInt32 totalCount;
+@property (readonly) SInt32 defeatCount;
+- (PBUserStageOpus*)opusAtIndex:(NSUInteger)index;
 
-+ (PBUserStage*) defaultInstance;
-- (PBUserStage*) defaultInstance;
++ (instancetype) defaultInstance;
+- (instancetype) defaultInstance;
 
 - (BOOL) isInitialized;
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
-- (PBUserStage_Builder*) builder;
-+ (PBUserStage_Builder*) builder;
-+ (PBUserStage_Builder*) builderWithPrototype:(PBUserStage*) prototype;
+- (PBUserStageBuilder*) builder;
++ (PBUserStageBuilder*) builder;
++ (PBUserStageBuilder*) builderWithPrototype:(PBUserStage*) prototype;
+- (PBUserStageBuilder*) toBuilder;
 
 + (PBUserStage*) parseFromData:(NSData*) data;
 + (PBUserStage*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
@@ -1284,112 +1314,111 @@ BOOL PBUserTutorialStatusIsValidValue(PBUserTutorialStatus value);
 + (PBUserStage*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 @end
 
-@interface PBUserStage_Builder : PBGeneratedMessage_Builder {
+@interface PBUserStageBuilder : PBGeneratedMessageBuilder {
 @private
-  PBUserStage* result;
+  PBUserStage* resultPbuserStage;
 }
 
 - (PBUserStage*) defaultInstance;
 
-- (PBUserStage_Builder*) clear;
-- (PBUserStage_Builder*) clone;
+- (PBUserStageBuilder*) clear;
+- (PBUserStageBuilder*) clone;
 
 - (PBUserStage*) build;
 - (PBUserStage*) buildPartial;
 
-- (PBUserStage_Builder*) mergeFrom:(PBUserStage*) other;
-- (PBUserStage_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
-- (PBUserStage_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+- (PBUserStageBuilder*) mergeFrom:(PBUserStage*) other;
+- (PBUserStageBuilder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
+- (PBUserStageBuilder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 
 - (BOOL) hasUserId;
 - (NSString*) userId;
-- (PBUserStage_Builder*) setUserId:(NSString*) value;
-- (PBUserStage_Builder*) clearUserId;
+- (PBUserStageBuilder*) setUserId:(NSString*) value;
+- (PBUserStageBuilder*) clearUserId;
 
 - (BOOL) hasTutorialId;
 - (NSString*) tutorialId;
-- (PBUserStage_Builder*) setTutorialId:(NSString*) value;
-- (PBUserStage_Builder*) clearTutorialId;
+- (PBUserStageBuilder*) setTutorialId:(NSString*) value;
+- (PBUserStageBuilder*) clearTutorialId;
 
 - (BOOL) hasStageId;
 - (NSString*) stageId;
-- (PBUserStage_Builder*) setStageId:(NSString*) value;
-- (PBUserStage_Builder*) clearStageId;
+- (PBUserStageBuilder*) setStageId:(NSString*) value;
+- (PBUserStageBuilder*) clearStageId;
 
 - (BOOL) hasStageIndex;
-- (int32_t) stageIndex;
-- (PBUserStage_Builder*) setStageIndex:(int32_t) value;
-- (PBUserStage_Builder*) clearStageIndex;
+- (SInt32) stageIndex;
+- (PBUserStageBuilder*) setStageIndex:(SInt32) value;
+- (PBUserStageBuilder*) clearStageIndex;
 
-- (NSArray*) opusList;
-- (PBUserStageOpus*) opusAtIndex:(int32_t) index;
-- (PBUserStage_Builder*) replaceOpusAtIndex:(int32_t) index with:(PBUserStageOpus*) value;
-- (PBUserStage_Builder*) addOpus:(PBUserStageOpus*) value;
-- (PBUserStage_Builder*) addAllOpus:(NSArray*) values;
-- (PBUserStage_Builder*) clearOpusList;
+- (NSMutableArray *)opus;
+- (PBUserStageOpus*)opusAtIndex:(NSUInteger)index;
+- (PBUserStageBuilder *)addOpus:(PBUserStageOpus*)value;
+- (PBUserStageBuilder *)setOpusArray:(NSArray *)array;
+- (PBUserStageBuilder *)clearOpus;
 
 - (BOOL) hasCurrentChapterIndex;
-- (int32_t) currentChapterIndex;
-- (PBUserStage_Builder*) setCurrentChapterIndex:(int32_t) value;
-- (PBUserStage_Builder*) clearCurrentChapterIndex;
+- (SInt32) currentChapterIndex;
+- (PBUserStageBuilder*) setCurrentChapterIndex:(SInt32) value;
+- (PBUserStageBuilder*) clearCurrentChapterIndex;
 
 - (BOOL) hasPracticeLocalOpusId;
 - (NSString*) practiceLocalOpusId;
-- (PBUserStage_Builder*) setPracticeLocalOpusId:(NSString*) value;
-- (PBUserStage_Builder*) clearPracticeLocalOpusId;
+- (PBUserStageBuilder*) setPracticeLocalOpusId:(NSString*) value;
+- (PBUserStageBuilder*) clearPracticeLocalOpusId;
 
 - (BOOL) hasConquerLocalOpusId;
 - (NSString*) conquerLocalOpusId;
-- (PBUserStage_Builder*) setConquerLocalOpusId:(NSString*) value;
-- (PBUserStage_Builder*) clearConquerLocalOpusId;
+- (PBUserStageBuilder*) setConquerLocalOpusId:(NSString*) value;
+- (PBUserStageBuilder*) clearConquerLocalOpusId;
 
 - (BOOL) hasConquerLocalImage;
 - (NSString*) conquerLocalImage;
-- (PBUserStage_Builder*) setConquerLocalImage:(NSString*) value;
-- (PBUserStage_Builder*) clearConquerLocalImage;
+- (PBUserStageBuilder*) setConquerLocalImage:(NSString*) value;
+- (PBUserStageBuilder*) clearConquerLocalImage;
 
 - (BOOL) hasBestOpusId;
 - (NSString*) bestOpusId;
-- (PBUserStage_Builder*) setBestOpusId:(NSString*) value;
-- (PBUserStage_Builder*) clearBestOpusId;
+- (PBUserStageBuilder*) setBestOpusId:(NSString*) value;
+- (PBUserStageBuilder*) clearBestOpusId;
 
 - (BOOL) hasBestScore;
-- (int32_t) bestScore;
-- (PBUserStage_Builder*) setBestScore:(int32_t) value;
-- (PBUserStage_Builder*) clearBestScore;
+- (SInt32) bestScore;
+- (PBUserStageBuilder*) setBestScore:(SInt32) value;
+- (PBUserStageBuilder*) clearBestScore;
 
 - (BOOL) hasBestScoreDate;
-- (int32_t) bestScoreDate;
-- (PBUserStage_Builder*) setBestScoreDate:(int32_t) value;
-- (PBUserStage_Builder*) clearBestScoreDate;
+- (SInt32) bestScoreDate;
+- (PBUserStageBuilder*) setBestScoreDate:(SInt32) value;
+- (PBUserStageBuilder*) clearBestScoreDate;
 
 - (BOOL) hasLastOpusId;
 - (NSString*) lastOpusId;
-- (PBUserStage_Builder*) setLastOpusId:(NSString*) value;
-- (PBUserStage_Builder*) clearLastOpusId;
+- (PBUserStageBuilder*) setLastOpusId:(NSString*) value;
+- (PBUserStageBuilder*) clearLastOpusId;
 
 - (BOOL) hasLastScore;
-- (int32_t) lastScore;
-- (PBUserStage_Builder*) setLastScore:(int32_t) value;
-- (PBUserStage_Builder*) clearLastScore;
+- (SInt32) lastScore;
+- (PBUserStageBuilder*) setLastScore:(SInt32) value;
+- (PBUserStageBuilder*) clearLastScore;
 
 - (BOOL) hasLastScoreDate;
-- (int32_t) lastScoreDate;
-- (PBUserStage_Builder*) setLastScoreDate:(int32_t) value;
-- (PBUserStage_Builder*) clearLastScoreDate;
+- (SInt32) lastScoreDate;
+- (PBUserStageBuilder*) setLastScoreDate:(SInt32) value;
+- (PBUserStageBuilder*) clearLastScoreDate;
 
 - (BOOL) hasTotalCount;
-- (int32_t) totalCount;
-- (PBUserStage_Builder*) setTotalCount:(int32_t) value;
-- (PBUserStage_Builder*) clearTotalCount;
+- (SInt32) totalCount;
+- (PBUserStageBuilder*) setTotalCount:(SInt32) value;
+- (PBUserStageBuilder*) clearTotalCount;
 
 - (BOOL) hasDefeatCount;
-- (int32_t) defeatCount;
-- (PBUserStage_Builder*) setDefeatCount:(int32_t) value;
-- (PBUserStage_Builder*) clearDefeatCount;
+- (SInt32) defeatCount;
+- (PBUserStageBuilder*) setDefeatCount:(SInt32) value;
+- (PBUserStageBuilder*) clearDefeatCount;
 @end
 
-@interface PBUserTutorial : PBGeneratedMessage {
+@interface PBUserTutorial : PBGeneratedMessage<GeneratedMessageProtocol> {
 @private
   BOOL hasIsDownload_:1;
   BOOL hasIsPurchase_:1;
@@ -1407,17 +1436,17 @@ BOOL PBUserTutorialStatusIsValidValue(PBUserTutorialStatus value);
   BOOL isDownload_:1;
   BOOL isPurchase_:1;
   BOOL syncServer_:1;
-  int32_t status;
-  int32_t createDate;
-  int32_t lastPlayDate;
-  int32_t modifyDate;
-  int32_t currentStageIndex;
+  SInt32 status;
+  SInt32 createDate;
+  SInt32 lastPlayDate;
+  SInt32 modifyDate;
+  SInt32 currentStageIndex;
   NSString* userId;
   NSString* currentStageId;
   NSString* localId;
   NSString* remoteId;
   PBTutorial* tutorial;
-  NSMutableArray* mutableUserStagesList;
+  NSMutableArray * userStagesArray;
 }
 - (BOOL) hasUserId;
 - (BOOL) hasTutorial;
@@ -1432,30 +1461,31 @@ BOOL PBUserTutorialStatusIsValidValue(PBUserTutorialStatus value);
 - (BOOL) hasSyncServer;
 - (BOOL) hasLocalId;
 - (BOOL) hasRemoteId;
-@property (readonly, retain) NSString* userId;
-@property (readonly, retain) PBTutorial* tutorial;
-@property (readonly) int32_t status;
+@property (readonly, strong) NSString* userId;
+@property (readonly, strong) PBTutorial* tutorial;
+@property (readonly) SInt32 status;
 - (BOOL) isDownload;
 - (BOOL) isPurchase;
-@property (readonly) int32_t createDate;
-@property (readonly) int32_t lastPlayDate;
-@property (readonly) int32_t modifyDate;
-@property (readonly) int32_t currentStageIndex;
-@property (readonly, retain) NSString* currentStageId;
+@property (readonly) SInt32 createDate;
+@property (readonly) SInt32 lastPlayDate;
+@property (readonly) SInt32 modifyDate;
+@property (readonly) SInt32 currentStageIndex;
+@property (readonly, strong) NSString* currentStageId;
+@property (readonly, strong) NSArray * userStages;
 - (BOOL) syncServer;
-@property (readonly, retain) NSString* localId;
-@property (readonly, retain) NSString* remoteId;
-- (NSArray*) userStagesList;
-- (PBUserStage*) userStagesAtIndex:(int32_t) index;
+@property (readonly, strong) NSString* localId;
+@property (readonly, strong) NSString* remoteId;
+- (PBUserStage*)userStagesAtIndex:(NSUInteger)index;
 
-+ (PBUserTutorial*) defaultInstance;
-- (PBUserTutorial*) defaultInstance;
++ (instancetype) defaultInstance;
+- (instancetype) defaultInstance;
 
 - (BOOL) isInitialized;
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
-- (PBUserTutorial_Builder*) builder;
-+ (PBUserTutorial_Builder*) builder;
-+ (PBUserTutorial_Builder*) builderWithPrototype:(PBUserTutorial*) prototype;
+- (PBUserTutorialBuilder*) builder;
++ (PBUserTutorialBuilder*) builder;
++ (PBUserTutorialBuilder*) builderWithPrototype:(PBUserTutorial*) prototype;
+- (PBUserTutorialBuilder*) toBuilder;
 
 + (PBUserTutorial*) parseFromData:(NSData*) data;
 + (PBUserTutorial*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
@@ -1465,95 +1495,96 @@ BOOL PBUserTutorialStatusIsValidValue(PBUserTutorialStatus value);
 + (PBUserTutorial*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 @end
 
-@interface PBUserTutorial_Builder : PBGeneratedMessage_Builder {
+@interface PBUserTutorialBuilder : PBGeneratedMessageBuilder {
 @private
-  PBUserTutorial* result;
+  PBUserTutorial* resultPbuserTutorial;
 }
 
 - (PBUserTutorial*) defaultInstance;
 
-- (PBUserTutorial_Builder*) clear;
-- (PBUserTutorial_Builder*) clone;
+- (PBUserTutorialBuilder*) clear;
+- (PBUserTutorialBuilder*) clone;
 
 - (PBUserTutorial*) build;
 - (PBUserTutorial*) buildPartial;
 
-- (PBUserTutorial_Builder*) mergeFrom:(PBUserTutorial*) other;
-- (PBUserTutorial_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
-- (PBUserTutorial_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+- (PBUserTutorialBuilder*) mergeFrom:(PBUserTutorial*) other;
+- (PBUserTutorialBuilder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
+- (PBUserTutorialBuilder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 
 - (BOOL) hasUserId;
 - (NSString*) userId;
-- (PBUserTutorial_Builder*) setUserId:(NSString*) value;
-- (PBUserTutorial_Builder*) clearUserId;
+- (PBUserTutorialBuilder*) setUserId:(NSString*) value;
+- (PBUserTutorialBuilder*) clearUserId;
 
 - (BOOL) hasTutorial;
 - (PBTutorial*) tutorial;
-- (PBUserTutorial_Builder*) setTutorial:(PBTutorial*) value;
-- (PBUserTutorial_Builder*) setTutorialBuilder:(PBTutorial_Builder*) builderForValue;
-- (PBUserTutorial_Builder*) mergeTutorial:(PBTutorial*) value;
-- (PBUserTutorial_Builder*) clearTutorial;
+- (PBUserTutorialBuilder*) setTutorial:(PBTutorial*) value;
+- (PBUserTutorialBuilder*) setTutorialBuilder:(PBTutorialBuilder*) builderForValue;
+- (PBUserTutorialBuilder*) mergeTutorial:(PBTutorial*) value;
+- (PBUserTutorialBuilder*) clearTutorial;
 
 - (BOOL) hasStatus;
-- (int32_t) status;
-- (PBUserTutorial_Builder*) setStatus:(int32_t) value;
-- (PBUserTutorial_Builder*) clearStatus;
+- (SInt32) status;
+- (PBUserTutorialBuilder*) setStatus:(SInt32) value;
+- (PBUserTutorialBuilder*) clearStatus;
 
 - (BOOL) hasIsDownload;
 - (BOOL) isDownload;
-- (PBUserTutorial_Builder*) setIsDownload:(BOOL) value;
-- (PBUserTutorial_Builder*) clearIsDownload;
+- (PBUserTutorialBuilder*) setIsDownload:(BOOL) value;
+- (PBUserTutorialBuilder*) clearIsDownload;
 
 - (BOOL) hasIsPurchase;
 - (BOOL) isPurchase;
-- (PBUserTutorial_Builder*) setIsPurchase:(BOOL) value;
-- (PBUserTutorial_Builder*) clearIsPurchase;
+- (PBUserTutorialBuilder*) setIsPurchase:(BOOL) value;
+- (PBUserTutorialBuilder*) clearIsPurchase;
 
 - (BOOL) hasCreateDate;
-- (int32_t) createDate;
-- (PBUserTutorial_Builder*) setCreateDate:(int32_t) value;
-- (PBUserTutorial_Builder*) clearCreateDate;
+- (SInt32) createDate;
+- (PBUserTutorialBuilder*) setCreateDate:(SInt32) value;
+- (PBUserTutorialBuilder*) clearCreateDate;
 
 - (BOOL) hasLastPlayDate;
-- (int32_t) lastPlayDate;
-- (PBUserTutorial_Builder*) setLastPlayDate:(int32_t) value;
-- (PBUserTutorial_Builder*) clearLastPlayDate;
+- (SInt32) lastPlayDate;
+- (PBUserTutorialBuilder*) setLastPlayDate:(SInt32) value;
+- (PBUserTutorialBuilder*) clearLastPlayDate;
 
 - (BOOL) hasModifyDate;
-- (int32_t) modifyDate;
-- (PBUserTutorial_Builder*) setModifyDate:(int32_t) value;
-- (PBUserTutorial_Builder*) clearModifyDate;
+- (SInt32) modifyDate;
+- (PBUserTutorialBuilder*) setModifyDate:(SInt32) value;
+- (PBUserTutorialBuilder*) clearModifyDate;
 
 - (BOOL) hasCurrentStageIndex;
-- (int32_t) currentStageIndex;
-- (PBUserTutorial_Builder*) setCurrentStageIndex:(int32_t) value;
-- (PBUserTutorial_Builder*) clearCurrentStageIndex;
+- (SInt32) currentStageIndex;
+- (PBUserTutorialBuilder*) setCurrentStageIndex:(SInt32) value;
+- (PBUserTutorialBuilder*) clearCurrentStageIndex;
 
 - (BOOL) hasCurrentStageId;
 - (NSString*) currentStageId;
-- (PBUserTutorial_Builder*) setCurrentStageId:(NSString*) value;
-- (PBUserTutorial_Builder*) clearCurrentStageId;
+- (PBUserTutorialBuilder*) setCurrentStageId:(NSString*) value;
+- (PBUserTutorialBuilder*) clearCurrentStageId;
 
-- (NSArray*) userStagesList;
-- (PBUserStage*) userStagesAtIndex:(int32_t) index;
-- (PBUserTutorial_Builder*) replaceUserStagesAtIndex:(int32_t) index with:(PBUserStage*) value;
-- (PBUserTutorial_Builder*) addUserStages:(PBUserStage*) value;
-- (PBUserTutorial_Builder*) addAllUserStages:(NSArray*) values;
-- (PBUserTutorial_Builder*) clearUserStagesList;
+- (NSMutableArray *)userStages;
+- (PBUserStage*)userStagesAtIndex:(NSUInteger)index;
+- (PBUserTutorialBuilder *)addUserStages:(PBUserStage*)value;
+- (PBUserTutorialBuilder *)setUserStagesArray:(NSArray *)array;
+- (PBUserTutorialBuilder *)clearUserStages;
 
 - (BOOL) hasSyncServer;
 - (BOOL) syncServer;
-- (PBUserTutorial_Builder*) setSyncServer:(BOOL) value;
-- (PBUserTutorial_Builder*) clearSyncServer;
+- (PBUserTutorialBuilder*) setSyncServer:(BOOL) value;
+- (PBUserTutorialBuilder*) clearSyncServer;
 
 - (BOOL) hasLocalId;
 - (NSString*) localId;
-- (PBUserTutorial_Builder*) setLocalId:(NSString*) value;
-- (PBUserTutorial_Builder*) clearLocalId;
+- (PBUserTutorialBuilder*) setLocalId:(NSString*) value;
+- (PBUserTutorialBuilder*) clearLocalId;
 
 - (BOOL) hasRemoteId;
 - (NSString*) remoteId;
-- (PBUserTutorial_Builder*) setRemoteId:(NSString*) value;
-- (PBUserTutorial_Builder*) clearRemoteId;
+- (PBUserTutorialBuilder*) setRemoteId:(NSString*) value;
+- (PBUserTutorialBuilder*) clearRemoteId;
 @end
 
+
+// @@protoc_insertion_point(global_scope)

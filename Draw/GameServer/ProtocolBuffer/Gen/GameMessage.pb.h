@@ -7,351 +7,365 @@
 #import "Draw.pb.h"
 #import "Dice.pb.h"
 #import "ZhaJinHua.pb.h"
-#import "Bbs.pb.h"
+#import "BBS.pb.h"
 #import "Opus.pb.h"
 #import "Photo.pb.h"
 #import "Sing.pb.h"
 #import "Group.pb.h"
 #import "Tutorial.pb.h"
+// @@protoc_insertion_point(imports)
 
 @class BetDiceRequest;
-@class BetDiceRequest_Builder;
+@class BetDiceRequestBuilder;
 @class BetDiceResponse;
-@class BetDiceResponse_Builder;
+@class BetDiceResponseBuilder;
 @class BetRequest;
-@class BetRequest_Builder;
+@class BetRequestBuilder;
 @class BetResponse;
-@class BetResponse_Builder;
+@class BetResponseBuilder;
 @class CallDiceRequest;
-@class CallDiceRequest_Builder;
+@class CallDiceRequestBuilder;
 @class CallDiceResponse;
-@class CallDiceResponse_Builder;
+@class CallDiceResponseBuilder;
 @class ChangeCardRequest;
-@class ChangeCardRequest_Builder;
+@class ChangeCardRequestBuilder;
 @class ChangeCardResponse;
-@class ChangeCardResponse_Builder;
+@class ChangeCardResponseBuilder;
 @class CheckCardRequest;
-@class CheckCardRequest_Builder;
+@class CheckCardRequestBuilder;
 @class CheckCardResponse;
-@class CheckCardResponse_Builder;
+@class CheckCardResponseBuilder;
 @class CompareCardRequest;
-@class CompareCardRequest_Builder;
+@class CompareCardRequestBuilder;
 @class CompareCardResponse;
-@class CompareCardResponse_Builder;
+@class CompareCardResponseBuilder;
 @class CreateRoomRequest;
-@class CreateRoomRequest_Builder;
+@class CreateRoomRequestBuilder;
 @class CreateRoomResponse;
-@class CreateRoomResponse_Builder;
+@class CreateRoomResponseBuilder;
 @class DataQueryResponse;
-@class DataQueryResponse_Builder;
+@class DataQueryResponseBuilder;
 @class FacetimeChatRequest;
-@class FacetimeChatRequest_Builder;
+@class FacetimeChatRequestBuilder;
 @class FacetimeChatResponse;
-@class FacetimeChatResponse_Builder;
+@class FacetimeChatResponseBuilder;
 @class FoldCardRequest;
-@class FoldCardRequest_Builder;
+@class FoldCardRequestBuilder;
 @class FoldCardResponse;
-@class FoldCardResponse_Builder;
+@class FoldCardResponseBuilder;
 @class GameChatRequest;
-@class GameChatRequest_Builder;
+@class GameChatRequestBuilder;
 @class GameChatResponse;
-@class GameChatResponse_Builder;
+@class GameChatResponseBuilder;
 @class GameMessage;
-@class GameMessage_Builder;
+@class GameMessageBuilder;
 @class GameOverNotificationRequest;
-@class GameOverNotificationRequest_Builder;
+@class GameOverNotificationRequestBuilder;
 @class GameOverNotificationResponse;
-@class GameOverNotificationResponse_Builder;
+@class GameOverNotificationResponseBuilder;
 @class GameStartNotificationRequest;
-@class GameStartNotificationRequest_Builder;
+@class GameStartNotificationRequestBuilder;
 @class GameStartNotificationResponse;
-@class GameStartNotificationResponse_Builder;
+@class GameStartNotificationResponseBuilder;
 @class GeneralNotification;
-@class GeneralNotification_Builder;
+@class GeneralNotificationBuilder;
 @class GetRoomsRequest;
-@class GetRoomsRequest_Builder;
+@class GetRoomsRequestBuilder;
 @class GetRoomsResponse;
-@class GetRoomsResponse_Builder;
+@class GetRoomsResponseBuilder;
 @class JoinGameRequest;
-@class JoinGameRequest_Builder;
+@class JoinGameRequestBuilder;
 @class JoinGameResponse;
-@class JoinGameResponse_Builder;
+@class JoinGameResponseBuilder;
 @class NextPlayerStartNotificationRequest;
-@class NextPlayerStartNotificationRequest_Builder;
+@class NextPlayerStartNotificationRequestBuilder;
 @class NextPlayerStartNotificationResponse;
-@class NextPlayerStartNotificationResponse_Builder;
+@class NextPlayerStartNotificationResponseBuilder;
 @class OpenDiceRequest;
-@class OpenDiceRequest_Builder;
+@class OpenDiceRequestBuilder;
 @class OpenDiceResponse;
-@class OpenDiceResponse_Builder;
+@class OpenDiceResponseBuilder;
 @class PBApp;
-@class PBApp_Builder;
+@class PBAppBuilder;
 @class PBAskPs;
+@class PBAskPsBuilder;
 @class PBAskPsOpus;
-@class PBAskPsOpus_Builder;
-@class PBAskPs_Builder;
+@class PBAskPsOpusBuilder;
 @class PBBBSAction;
+@class PBBBSActionBuilder;
 @class PBBBSActionSource;
-@class PBBBSActionSource_Builder;
-@class PBBBSAction_Builder;
+@class PBBBSActionSourceBuilder;
 @class PBBBSBoard;
-@class PBBBSBoard_Builder;
+@class PBBBSBoardBuilder;
 @class PBBBSContent;
-@class PBBBSContent_Builder;
+@class PBBBSContentBuilder;
 @class PBBBSDraw;
-@class PBBBSDraw_Builder;
+@class PBBBSDrawBuilder;
 @class PBBBSPost;
-@class PBBBSPost_Builder;
+@class PBBBSPostBuilder;
 @class PBBBSPrivilege;
-@class PBBBSPrivilege_Builder;
+@class PBBBSPrivilegeBuilder;
 @class PBBBSReward;
-@class PBBBSReward_Builder;
+@class PBBBSRewardBuilder;
 @class PBBBSUser;
-@class PBBBSUser_Builder;
+@class PBBBSUserBuilder;
 @class PBChapter;
-@class PBChapter_Builder;
+@class PBChapterBuilder;
 @class PBClass;
-@class PBClass_Builder;
+@class PBClassBuilder;
 @class PBColor;
-@class PBColor_Builder;
+@class PBColorBuilder;
 @class PBCommentInfo;
-@class PBCommentInfo_Builder;
+@class PBCommentInfoBuilder;
 @class PBContest;
+@class PBContestBuilder;
 @class PBContestList;
-@class PBContestList_Builder;
-@class PBContest_Builder;
+@class PBContestListBuilder;
 @class PBDice;
 @class PBDiceAction;
-@class PBDiceAction_Builder;
+@class PBDiceActionBuilder;
+@class PBDiceBuilder;
 @class PBDiceFinalCount;
-@class PBDiceFinalCount_Builder;
+@class PBDiceFinalCountBuilder;
 @class PBDiceGameResult;
-@class PBDiceGameResult_Builder;
-@class PBDice_Builder;
+@class PBDiceGameResultBuilder;
 @class PBDraw;
 @class PBDrawAction;
-@class PBDrawAction_Builder;
+@class PBDrawActionBuilder;
 @class PBDrawBg;
+@class PBDrawBgBuilder;
 @class PBDrawBgGroup;
-@class PBDrawBgGroup_Builder;
+@class PBDrawBgGroupBuilder;
 @class PBDrawBgMeta;
-@class PBDrawBgMeta_Builder;
-@class PBDrawBg_Builder;
+@class PBDrawBgMetaBuilder;
+@class PBDrawBuilder;
 @class PBDrawOpus;
-@class PBDrawOpus_Builder;
-@class PBDraw_Builder;
+@class PBDrawOpusBuilder;
 @class PBFeed;
+@class PBFeedBuilder;
 @class PBFeedTimes;
-@class PBFeedTimes_Builder;
-@class PBFeed_Builder;
+@class PBFeedTimesBuilder;
 @class PBFrame;
+@class PBFrameBuilder;
 @class PBFrameList;
-@class PBFrameList_Builder;
-@class PBFrame_Builder;
+@class PBFrameListBuilder;
 @class PBGameItem;
+@class PBGameItemBuilder;
 @class PBGameItemList;
-@class PBGameItemList_Builder;
-@class PBGameItem_Builder;
+@class PBGameItemListBuilder;
 @class PBGameSession;
+@class PBGameSessionBuilder;
 @class PBGameSessionChanged;
-@class PBGameSessionChanged_Builder;
-@class PBGameSession_Builder;
+@class PBGameSessionChangedBuilder;
 @class PBGameUser;
-@class PBGameUser_Builder;
+@class PBGameUserBuilder;
 @class PBGradient;
-@class PBGradient_Builder;
+@class PBGradientBuilder;
 @class PBGroup;
+@class PBGroupBuilder;
 @class PBGroupNotice;
-@class PBGroupNotice_Builder;
+@class PBGroupNoticeBuilder;
 @class PBGroupTitle;
-@class PBGroupTitle_Builder;
+@class PBGroupTitleBuilder;
 @class PBGroupUser;
+@class PBGroupUserBuilder;
 @class PBGroupUserRole;
-@class PBGroupUserRole_Builder;
-@class PBGroupUser_Builder;
+@class PBGroupUserRoleBuilder;
 @class PBGroupUsersByTitle;
-@class PBGroupUsersByTitle_Builder;
-@class PBGroup_Builder;
+@class PBGroupUsersByTitleBuilder;
 @class PBGuessContest;
-@class PBGuessContest_Builder;
+@class PBGuessContestBuilder;
 @class PBGuessRank;
-@class PBGuessRank_Builder;
+@class PBGuessRankBuilder;
 @class PBHotWord;
+@class PBHotWordBuilder;
 @class PBHotWordList;
-@class PBHotWordList_Builder;
-@class PBHotWord_Builder;
+@class PBHotWordListBuilder;
 @class PBIAPProduct;
+@class PBIAPProductBuilder;
 @class PBIAPProductList;
-@class PBIAPProductList_Builder;
+@class PBIAPProductListBuilder;
 @class PBIAPProductPrice;
-@class PBIAPProductPrice_Builder;
-@class PBIAPProduct_Builder;
+@class PBIAPProductPriceBuilder;
 @class PBImageShapeGroup;
+@class PBImageShapeGroupBuilder;
 @class PBImageShapeGroupMeta;
-@class PBImageShapeGroupMeta_Builder;
-@class PBImageShapeGroup_Builder;
+@class PBImageShapeGroupMetaBuilder;
 @class PBIntKeyIntValue;
-@class PBIntKeyIntValue_Builder;
+@class PBIntKeyIntValueBuilder;
 @class PBIntKeyValue;
-@class PBIntKeyValue_Builder;
+@class PBIntKeyValueBuilder;
 @class PBItemPriceInfo;
-@class PBItemPriceInfo_Builder;
+@class PBItemPriceInfoBuilder;
 @class PBKeyValue;
-@class PBKeyValue_Builder;
+@class PBKeyValueBuilder;
 @class PBLabelInfo;
-@class PBLabelInfo_Builder;
+@class PBLabelInfoBuilder;
 @class PBLayer;
-@class PBLayer_Builder;
+@class PBLayerBuilder;
 @class PBLayout;
+@class PBLayoutBuilder;
 @class PBLayoutList;
-@class PBLayoutList_Builder;
-@class PBLayout_Builder;
+@class PBLayoutListBuilder;
 @class PBLearnDraw;
-@class PBLearnDraw_Builder;
+@class PBLearnDrawBuilder;
 @class PBLocalizeString;
-@class PBLocalizeString_Builder;
+@class PBLocalizeStringBuilder;
 @class PBMessage;
+@class PBMessageBuilder;
 @class PBMessageStat;
-@class PBMessageStat_Builder;
-@class PBMessage_Builder;
+@class PBMessageStatBuilder;
 @class PBNoCompressDrawAction;
-@class PBNoCompressDrawAction_Builder;
+@class PBNoCompressDrawActionBuilder;
 @class PBNoCompressDrawData;
-@class PBNoCompressDrawData_Builder;
+@class PBNoCompressDrawDataBuilder;
 @class PBOpus;
+@class PBOpusBuilder;
 @class PBOpusGuess;
-@class PBOpusGuess_Builder;
+@class PBOpusGuessBuilder;
 @class PBOpusList;
-@class PBOpusList_Builder;
+@class PBOpusListBuilder;
 @class PBOpusRank;
-@class PBOpusRank_Builder;
-@class PBOpus_Builder;
+@class PBOpusRankBuilder;
 @class PBPoint;
-@class PBPoint_Builder;
+@class PBPointBuilder;
 @class PBPoker;
-@class PBPoker_Builder;
+@class PBPokerBuilder;
 @class PBPromotionInfo;
-@class PBPromotionInfo_Builder;
+@class PBPromotionInfoBuilder;
 @class PBRect;
-@class PBRect_Builder;
+@class PBRectBuilder;
 @class PBSNSUser;
+@class PBSNSUserBuilder;
 @class PBSNSUserCredential;
-@class PBSNSUserCredential_Builder;
-@class PBSNSUser_Builder;
+@class PBSNSUserCredentialBuilder;
 @class PBSimpleGroup;
-@class PBSimpleGroup_Builder;
+@class PBSimpleGroupBuilder;
 @class PBSingOpus;
-@class PBSingOpus_Builder;
+@class PBSingOpusBuilder;
 @class PBSize;
-@class PBSize_Builder;
+@class PBSizeBuilder;
 @class PBSong;
+@class PBSongBuilder;
 @class PBSongCategory;
+@class PBSongCategoryBuilder;
 @class PBSongCategoryList;
-@class PBSongCategoryList_Builder;
-@class PBSongCategory_Builder;
+@class PBSongCategoryListBuilder;
 @class PBSongList;
-@class PBSongList_Builder;
-@class PBSong_Builder;
+@class PBSongListBuilder;
 @class PBStage;
-@class PBStage_Builder;
+@class PBStageBuilder;
 @class PBTask;
-@class PBTask_Builder;
+@class PBTaskBuilder;
 @class PBTip;
-@class PBTip_Builder;
+@class PBTipBuilder;
 @class PBTutorial;
+@class PBTutorialBuilder;
 @class PBTutorialCore;
-@class PBTutorialCore_Builder;
-@class PBTutorial_Builder;
+@class PBTutorialCoreBuilder;
 @class PBUserAward;
-@class PBUserAward_Builder;
+@class PBUserAwardBuilder;
 @class PBUserBasicInfo;
-@class PBUserBasicInfo_Builder;
+@class PBUserBasicInfoBuilder;
 @class PBUserDice;
-@class PBUserDice_Builder;
+@class PBUserDiceBuilder;
 @class PBUserItem;
+@class PBUserItemBuilder;
 @class PBUserItemList;
-@class PBUserItemList_Builder;
-@class PBUserItem_Builder;
+@class PBUserItemListBuilder;
 @class PBUserLevel;
-@class PBUserLevel_Builder;
+@class PBUserLevelBuilder;
 @class PBUserPhoto;
+@class PBUserPhotoBuilder;
 @class PBUserPhotoList;
-@class PBUserPhotoList_Builder;
-@class PBUserPhoto_Builder;
+@class PBUserPhotoListBuilder;
 @class PBUserResult;
-@class PBUserResult_Builder;
+@class PBUserResultBuilder;
 @class PBUserStage;
+@class PBUserStageBuilder;
 @class PBUserStageOpus;
-@class PBUserStageOpus_Builder;
-@class PBUserStage_Builder;
+@class PBUserStageOpusBuilder;
 @class PBUserTutorial;
-@class PBUserTutorial_Builder;
+@class PBUserTutorialBuilder;
 @class PBWall;
+@class PBWallBuilder;
 @class PBWallOpus;
-@class PBWallOpus_Builder;
-@class PBWall_Builder;
+@class PBWallOpusBuilder;
 @class PBZJHGameResult;
-@class PBZJHGameResult_Builder;
+@class PBZJHGameResultBuilder;
 @class PBZJHGameState;
-@class PBZJHGameState_Builder;
+@class PBZJHGameStateBuilder;
 @class PBZJHPoker;
-@class PBZJHPoker_Builder;
+@class PBZJHPokerBuilder;
 @class PBZJHUserPlayInfo;
-@class PBZJHUserPlayInfo_Builder;
+@class PBZJHUserPlayInfoBuilder;
 @class PBZJHUserPoker;
-@class PBZJHUserPoker_Builder;
+@class PBZJHUserPokerBuilder;
 @class RegisterRoomsNotificationRequest;
-@class RegisterRoomsNotificationRequest_Builder;
+@class RegisterRoomsNotificationRequestBuilder;
 @class RegisterRoomsNotificationResponse;
-@class RegisterRoomsNotificationResponse_Builder;
+@class RegisterRoomsNotificationResponseBuilder;
 @class RollDiceBeginNotificationRequest;
-@class RollDiceBeginNotificationRequest_Builder;
+@class RollDiceBeginNotificationRequestBuilder;
 @class RollDiceBeginNotificationResponse;
-@class RollDiceBeginNotificationResponse_Builder;
+@class RollDiceBeginNotificationResponseBuilder;
 @class RollDiceEndNotificationRequest;
-@class RollDiceEndNotificationRequest_Builder;
+@class RollDiceEndNotificationRequestBuilder;
 @class RollDiceEndNotificationResponse;
-@class RollDiceEndNotificationResponse_Builder;
+@class RollDiceEndNotificationResponseBuilder;
 @class RoomNotificationRequest;
-@class RoomNotificationRequest_Builder;
+@class RoomNotificationRequestBuilder;
 @class RoomNotificationResponse;
-@class RoomNotificationResponse_Builder;
+@class RoomNotificationResponseBuilder;
 @class SearchRoomRequest;
-@class SearchRoomRequest_Builder;
+@class SearchRoomRequestBuilder;
 @class SearchRoomResponse;
-@class SearchRoomResponse_Builder;
+@class SearchRoomResponseBuilder;
 @class SendDrawDataRequest;
-@class SendDrawDataRequest_Builder;
+@class SendDrawDataRequestBuilder;
 @class SendDrawDataResponse;
-@class SendDrawDataResponse_Builder;
+@class SendDrawDataResponseBuilder;
 @class ShowCardRequest;
-@class ShowCardRequest_Builder;
+@class ShowCardRequestBuilder;
 @class ShowCardResponse;
-@class ShowCardResponse_Builder;
+@class ShowCardResponseBuilder;
 @class StartGameRequest;
-@class StartGameRequest_Builder;
+@class StartGameRequestBuilder;
 @class StartGameResponse;
-@class StartGameResponse_Builder;
+@class StartGameResponseBuilder;
 @class TimeoutSettingRequest;
-@class TimeoutSettingRequest_Builder;
+@class TimeoutSettingRequestBuilder;
 @class TimeoutSettingResponse;
-@class TimeoutSettingResponse_Builder;
+@class TimeoutSettingResponseBuilder;
 @class UnRegisterRoomsNotificationRequest;
-@class UnRegisterRoomsNotificationRequest_Builder;
+@class UnRegisterRoomsNotificationRequestBuilder;
 @class UnRegisterRoomsNotificationResponse;
-@class UnRegisterRoomsNotificationResponse_Builder;
+@class UnRegisterRoomsNotificationResponseBuilder;
 @class UseItemRequest;
-@class UseItemRequest_Builder;
+@class UseItemRequestBuilder;
 @class UseItemResponse;
-@class UseItemResponse_Builder;
+@class UseItemResponseBuilder;
 @class UserDiceNotification;
-@class UserDiceNotification_Builder;
-typedef enum {
+@class UserDiceNotificationBuilder;
+#ifndef __has_feature
+  #define __has_feature(x) 0 // Compatibility with non-clang compilers.
+#endif // __has_feature
+
+#ifndef NS_RETURNS_NOT_RETAINED
+  #if __has_feature(attribute_ns_returns_not_retained)
+    #define NS_RETURNS_NOT_RETAINED __attribute__((ns_returns_not_retained))
+  #else
+    #define NS_RETURNS_NOT_RETAINED
+  #endif
+#endif
+
+typedef NS_ENUM(SInt32, BetType) {
   BetTypeBetTypeCall = 1,
   BetTypeBetTypeRaise = 2,
-} BetType;
+};
 
 BOOL BetTypeIsValidValue(BetType value);
+NSString *NSStringFromBetType(BetType value);
 
 
 @interface GameMessageRoot : NSObject {
@@ -360,30 +374,31 @@ BOOL BetTypeIsValidValue(BetType value);
 + (void) registerAllExtensions:(PBMutableExtensionRegistry*) registry;
 @end
 
-@interface GetRoomsRequest : PBGeneratedMessage {
+@interface GetRoomsRequest : PBGeneratedMessage<GeneratedMessageProtocol> {
 @private
   BOOL hasRoomType_:1;
   BOOL hasGameId_:1;
   BOOL hasKeyword_:1;
-  int32_t roomType;
+  SInt32 roomType;
   NSString* gameId;
   NSString* keyword;
 }
 - (BOOL) hasGameId;
 - (BOOL) hasRoomType;
 - (BOOL) hasKeyword;
-@property (readonly, retain) NSString* gameId;
-@property (readonly) int32_t roomType;
-@property (readonly, retain) NSString* keyword;
+@property (readonly, strong) NSString* gameId;
+@property (readonly) SInt32 roomType;
+@property (readonly, strong) NSString* keyword;
 
-+ (GetRoomsRequest*) defaultInstance;
-- (GetRoomsRequest*) defaultInstance;
++ (instancetype) defaultInstance;
+- (instancetype) defaultInstance;
 
 - (BOOL) isInitialized;
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
-- (GetRoomsRequest_Builder*) builder;
-+ (GetRoomsRequest_Builder*) builder;
-+ (GetRoomsRequest_Builder*) builderWithPrototype:(GetRoomsRequest*) prototype;
+- (GetRoomsRequestBuilder*) builder;
++ (GetRoomsRequestBuilder*) builder;
++ (GetRoomsRequestBuilder*) builderWithPrototype:(GetRoomsRequest*) prototype;
+- (GetRoomsRequestBuilder*) toBuilder;
 
 + (GetRoomsRequest*) parseFromData:(NSData*) data;
 + (GetRoomsRequest*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
@@ -393,58 +408,59 @@ BOOL BetTypeIsValidValue(BetType value);
 + (GetRoomsRequest*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 @end
 
-@interface GetRoomsRequest_Builder : PBGeneratedMessage_Builder {
+@interface GetRoomsRequestBuilder : PBGeneratedMessageBuilder {
 @private
-  GetRoomsRequest* result;
+  GetRoomsRequest* resultGetRoomsRequest;
 }
 
 - (GetRoomsRequest*) defaultInstance;
 
-- (GetRoomsRequest_Builder*) clear;
-- (GetRoomsRequest_Builder*) clone;
+- (GetRoomsRequestBuilder*) clear;
+- (GetRoomsRequestBuilder*) clone;
 
 - (GetRoomsRequest*) build;
 - (GetRoomsRequest*) buildPartial;
 
-- (GetRoomsRequest_Builder*) mergeFrom:(GetRoomsRequest*) other;
-- (GetRoomsRequest_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
-- (GetRoomsRequest_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+- (GetRoomsRequestBuilder*) mergeFrom:(GetRoomsRequest*) other;
+- (GetRoomsRequestBuilder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
+- (GetRoomsRequestBuilder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 
 - (BOOL) hasGameId;
 - (NSString*) gameId;
-- (GetRoomsRequest_Builder*) setGameId:(NSString*) value;
-- (GetRoomsRequest_Builder*) clearGameId;
+- (GetRoomsRequestBuilder*) setGameId:(NSString*) value;
+- (GetRoomsRequestBuilder*) clearGameId;
 
 - (BOOL) hasRoomType;
-- (int32_t) roomType;
-- (GetRoomsRequest_Builder*) setRoomType:(int32_t) value;
-- (GetRoomsRequest_Builder*) clearRoomType;
+- (SInt32) roomType;
+- (GetRoomsRequestBuilder*) setRoomType:(SInt32) value;
+- (GetRoomsRequestBuilder*) clearRoomType;
 
 - (BOOL) hasKeyword;
 - (NSString*) keyword;
-- (GetRoomsRequest_Builder*) setKeyword:(NSString*) value;
-- (GetRoomsRequest_Builder*) clearKeyword;
+- (GetRoomsRequestBuilder*) setKeyword:(NSString*) value;
+- (GetRoomsRequestBuilder*) clearKeyword;
 @end
 
-@interface GetRoomsResponse : PBGeneratedMessage {
+@interface GetRoomsResponse : PBGeneratedMessage<GeneratedMessageProtocol> {
 @private
   BOOL hasRuleType_:1;
-  int32_t ruleType;
-  NSMutableArray* mutableSessionsList;
+  SInt32 ruleType;
+  NSMutableArray * sessionsArray;
 }
 - (BOOL) hasRuleType;
-@property (readonly) int32_t ruleType;
-- (NSArray*) sessionsList;
-- (PBGameSession*) sessionsAtIndex:(int32_t) index;
+@property (readonly, strong) NSArray * sessions;
+@property (readonly) SInt32 ruleType;
+- (PBGameSession*)sessionsAtIndex:(NSUInteger)index;
 
-+ (GetRoomsResponse*) defaultInstance;
-- (GetRoomsResponse*) defaultInstance;
++ (instancetype) defaultInstance;
+- (instancetype) defaultInstance;
 
 - (BOOL) isInitialized;
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
-- (GetRoomsResponse_Builder*) builder;
-+ (GetRoomsResponse_Builder*) builder;
-+ (GetRoomsResponse_Builder*) builderWithPrototype:(GetRoomsResponse*) prototype;
+- (GetRoomsResponseBuilder*) builder;
++ (GetRoomsResponseBuilder*) builder;
++ (GetRoomsResponseBuilder*) builderWithPrototype:(GetRoomsResponse*) prototype;
+- (GetRoomsResponseBuilder*) toBuilder;
 
 + (GetRoomsResponse*) parseFromData:(NSData*) data;
 + (GetRoomsResponse*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
@@ -454,37 +470,36 @@ BOOL BetTypeIsValidValue(BetType value);
 + (GetRoomsResponse*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 @end
 
-@interface GetRoomsResponse_Builder : PBGeneratedMessage_Builder {
+@interface GetRoomsResponseBuilder : PBGeneratedMessageBuilder {
 @private
-  GetRoomsResponse* result;
+  GetRoomsResponse* resultGetRoomsResponse;
 }
 
 - (GetRoomsResponse*) defaultInstance;
 
-- (GetRoomsResponse_Builder*) clear;
-- (GetRoomsResponse_Builder*) clone;
+- (GetRoomsResponseBuilder*) clear;
+- (GetRoomsResponseBuilder*) clone;
 
 - (GetRoomsResponse*) build;
 - (GetRoomsResponse*) buildPartial;
 
-- (GetRoomsResponse_Builder*) mergeFrom:(GetRoomsResponse*) other;
-- (GetRoomsResponse_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
-- (GetRoomsResponse_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+- (GetRoomsResponseBuilder*) mergeFrom:(GetRoomsResponse*) other;
+- (GetRoomsResponseBuilder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
+- (GetRoomsResponseBuilder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 
-- (NSArray*) sessionsList;
-- (PBGameSession*) sessionsAtIndex:(int32_t) index;
-- (GetRoomsResponse_Builder*) replaceSessionsAtIndex:(int32_t) index with:(PBGameSession*) value;
-- (GetRoomsResponse_Builder*) addSessions:(PBGameSession*) value;
-- (GetRoomsResponse_Builder*) addAllSessions:(NSArray*) values;
-- (GetRoomsResponse_Builder*) clearSessionsList;
+- (NSMutableArray *)sessions;
+- (PBGameSession*)sessionsAtIndex:(NSUInteger)index;
+- (GetRoomsResponseBuilder *)addSessions:(PBGameSession*)value;
+- (GetRoomsResponseBuilder *)setSessionsArray:(NSArray *)array;
+- (GetRoomsResponseBuilder *)clearSessions;
 
 - (BOOL) hasRuleType;
-- (int32_t) ruleType;
-- (GetRoomsResponse_Builder*) setRuleType:(int32_t) value;
-- (GetRoomsResponse_Builder*) clearRuleType;
+- (SInt32) ruleType;
+- (GetRoomsResponseBuilder*) setRuleType:(SInt32) value;
+- (GetRoomsResponseBuilder*) clearRuleType;
 @end
 
-@interface CreateRoomRequest : PBGeneratedMessage {
+@interface CreateRoomRequest : PBGeneratedMessage<GeneratedMessageProtocol> {
 @private
   BOOL hasRuleType_:1;
   BOOL hasVersion_:1;
@@ -492,8 +507,8 @@ BOOL BetTypeIsValidValue(BetType value);
   BOOL hasRoomName_:1;
   BOOL hasPassword_:1;
   BOOL hasUser_:1;
-  int32_t ruleType;
-  int32_t version;
+  SInt32 ruleType;
+  SInt32 version;
   NSString* gameId;
   NSString* roomName;
   NSString* password;
@@ -505,21 +520,22 @@ BOOL BetTypeIsValidValue(BetType value);
 - (BOOL) hasPassword;
 - (BOOL) hasRuleType;
 - (BOOL) hasVersion;
-@property (readonly, retain) NSString* gameId;
-@property (readonly, retain) PBGameUser* user;
-@property (readonly, retain) NSString* roomName;
-@property (readonly, retain) NSString* password;
-@property (readonly) int32_t ruleType;
-@property (readonly) int32_t version;
+@property (readonly, strong) NSString* gameId;
+@property (readonly, strong) PBGameUser* user;
+@property (readonly, strong) NSString* roomName;
+@property (readonly, strong) NSString* password;
+@property (readonly) SInt32 ruleType;
+@property (readonly) SInt32 version;
 
-+ (CreateRoomRequest*) defaultInstance;
-- (CreateRoomRequest*) defaultInstance;
++ (instancetype) defaultInstance;
+- (instancetype) defaultInstance;
 
 - (BOOL) isInitialized;
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
-- (CreateRoomRequest_Builder*) builder;
-+ (CreateRoomRequest_Builder*) builder;
-+ (CreateRoomRequest_Builder*) builderWithPrototype:(CreateRoomRequest*) prototype;
+- (CreateRoomRequestBuilder*) builder;
++ (CreateRoomRequestBuilder*) builder;
++ (CreateRoomRequestBuilder*) builderWithPrototype:(CreateRoomRequest*) prototype;
+- (CreateRoomRequestBuilder*) toBuilder;
 
 + (CreateRoomRequest*) parseFromData:(NSData*) data;
 + (CreateRoomRequest*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
@@ -529,72 +545,73 @@ BOOL BetTypeIsValidValue(BetType value);
 + (CreateRoomRequest*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 @end
 
-@interface CreateRoomRequest_Builder : PBGeneratedMessage_Builder {
+@interface CreateRoomRequestBuilder : PBGeneratedMessageBuilder {
 @private
-  CreateRoomRequest* result;
+  CreateRoomRequest* resultCreateRoomRequest;
 }
 
 - (CreateRoomRequest*) defaultInstance;
 
-- (CreateRoomRequest_Builder*) clear;
-- (CreateRoomRequest_Builder*) clone;
+- (CreateRoomRequestBuilder*) clear;
+- (CreateRoomRequestBuilder*) clone;
 
 - (CreateRoomRequest*) build;
 - (CreateRoomRequest*) buildPartial;
 
-- (CreateRoomRequest_Builder*) mergeFrom:(CreateRoomRequest*) other;
-- (CreateRoomRequest_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
-- (CreateRoomRequest_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+- (CreateRoomRequestBuilder*) mergeFrom:(CreateRoomRequest*) other;
+- (CreateRoomRequestBuilder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
+- (CreateRoomRequestBuilder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 
 - (BOOL) hasGameId;
 - (NSString*) gameId;
-- (CreateRoomRequest_Builder*) setGameId:(NSString*) value;
-- (CreateRoomRequest_Builder*) clearGameId;
+- (CreateRoomRequestBuilder*) setGameId:(NSString*) value;
+- (CreateRoomRequestBuilder*) clearGameId;
 
 - (BOOL) hasUser;
 - (PBGameUser*) user;
-- (CreateRoomRequest_Builder*) setUser:(PBGameUser*) value;
-- (CreateRoomRequest_Builder*) setUserBuilder:(PBGameUser_Builder*) builderForValue;
-- (CreateRoomRequest_Builder*) mergeUser:(PBGameUser*) value;
-- (CreateRoomRequest_Builder*) clearUser;
+- (CreateRoomRequestBuilder*) setUser:(PBGameUser*) value;
+- (CreateRoomRequestBuilder*) setUserBuilder:(PBGameUserBuilder*) builderForValue;
+- (CreateRoomRequestBuilder*) mergeUser:(PBGameUser*) value;
+- (CreateRoomRequestBuilder*) clearUser;
 
 - (BOOL) hasRoomName;
 - (NSString*) roomName;
-- (CreateRoomRequest_Builder*) setRoomName:(NSString*) value;
-- (CreateRoomRequest_Builder*) clearRoomName;
+- (CreateRoomRequestBuilder*) setRoomName:(NSString*) value;
+- (CreateRoomRequestBuilder*) clearRoomName;
 
 - (BOOL) hasPassword;
 - (NSString*) password;
-- (CreateRoomRequest_Builder*) setPassword:(NSString*) value;
-- (CreateRoomRequest_Builder*) clearPassword;
+- (CreateRoomRequestBuilder*) setPassword:(NSString*) value;
+- (CreateRoomRequestBuilder*) clearPassword;
 
 - (BOOL) hasRuleType;
-- (int32_t) ruleType;
-- (CreateRoomRequest_Builder*) setRuleType:(int32_t) value;
-- (CreateRoomRequest_Builder*) clearRuleType;
+- (SInt32) ruleType;
+- (CreateRoomRequestBuilder*) setRuleType:(SInt32) value;
+- (CreateRoomRequestBuilder*) clearRuleType;
 
 - (BOOL) hasVersion;
-- (int32_t) version;
-- (CreateRoomRequest_Builder*) setVersion:(int32_t) value;
-- (CreateRoomRequest_Builder*) clearVersion;
+- (SInt32) version;
+- (CreateRoomRequestBuilder*) setVersion:(SInt32) value;
+- (CreateRoomRequestBuilder*) clearVersion;
 @end
 
-@interface CreateRoomResponse : PBGeneratedMessage {
+@interface CreateRoomResponse : PBGeneratedMessage<GeneratedMessageProtocol> {
 @private
   BOOL hasGameSession_:1;
   PBGameSession* gameSession;
 }
 - (BOOL) hasGameSession;
-@property (readonly, retain) PBGameSession* gameSession;
+@property (readonly, strong) PBGameSession* gameSession;
 
-+ (CreateRoomResponse*) defaultInstance;
-- (CreateRoomResponse*) defaultInstance;
++ (instancetype) defaultInstance;
+- (instancetype) defaultInstance;
 
 - (BOOL) isInitialized;
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
-- (CreateRoomResponse_Builder*) builder;
-+ (CreateRoomResponse_Builder*) builder;
-+ (CreateRoomResponse_Builder*) builderWithPrototype:(CreateRoomResponse*) prototype;
+- (CreateRoomResponseBuilder*) builder;
++ (CreateRoomResponseBuilder*) builder;
++ (CreateRoomResponseBuilder*) builderWithPrototype:(CreateRoomResponse*) prototype;
+- (CreateRoomResponseBuilder*) toBuilder;
 
 + (CreateRoomResponse*) parseFromData:(NSData*) data;
 + (CreateRoomResponse*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
@@ -604,51 +621,52 @@ BOOL BetTypeIsValidValue(BetType value);
 + (CreateRoomResponse*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 @end
 
-@interface CreateRoomResponse_Builder : PBGeneratedMessage_Builder {
+@interface CreateRoomResponseBuilder : PBGeneratedMessageBuilder {
 @private
-  CreateRoomResponse* result;
+  CreateRoomResponse* resultCreateRoomResponse;
 }
 
 - (CreateRoomResponse*) defaultInstance;
 
-- (CreateRoomResponse_Builder*) clear;
-- (CreateRoomResponse_Builder*) clone;
+- (CreateRoomResponseBuilder*) clear;
+- (CreateRoomResponseBuilder*) clone;
 
 - (CreateRoomResponse*) build;
 - (CreateRoomResponse*) buildPartial;
 
-- (CreateRoomResponse_Builder*) mergeFrom:(CreateRoomResponse*) other;
-- (CreateRoomResponse_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
-- (CreateRoomResponse_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+- (CreateRoomResponseBuilder*) mergeFrom:(CreateRoomResponse*) other;
+- (CreateRoomResponseBuilder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
+- (CreateRoomResponseBuilder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 
 - (BOOL) hasGameSession;
 - (PBGameSession*) gameSession;
-- (CreateRoomResponse_Builder*) setGameSession:(PBGameSession*) value;
-- (CreateRoomResponse_Builder*) setGameSessionBuilder:(PBGameSession_Builder*) builderForValue;
-- (CreateRoomResponse_Builder*) mergeGameSession:(PBGameSession*) value;
-- (CreateRoomResponse_Builder*) clearGameSession;
+- (CreateRoomResponseBuilder*) setGameSession:(PBGameSession*) value;
+- (CreateRoomResponseBuilder*) setGameSessionBuilder:(PBGameSessionBuilder*) builderForValue;
+- (CreateRoomResponseBuilder*) mergeGameSession:(PBGameSession*) value;
+- (CreateRoomResponseBuilder*) clearGameSession;
 @end
 
-@interface SearchRoomRequest : PBGeneratedMessage {
+@interface SearchRoomRequest : PBGeneratedMessage<GeneratedMessageProtocol> {
 @private
   BOOL hasRangeType_:1;
   BOOL hasKeyword_:1;
-  int32_t rangeType;
+  SInt32 rangeType;
   NSString* keyword;
 }
 - (BOOL) hasKeyword;
 - (BOOL) hasRangeType;
-@property (readonly, retain) NSString* keyword;
-@property (readonly) int32_t rangeType;
+@property (readonly, strong) NSString* keyword;
+@property (readonly) SInt32 rangeType;
 
-+ (SearchRoomRequest*) defaultInstance;
-- (SearchRoomRequest*) defaultInstance;
++ (instancetype) defaultInstance;
+- (instancetype) defaultInstance;
 
 - (BOOL) isInitialized;
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
-- (SearchRoomRequest_Builder*) builder;
-+ (SearchRoomRequest_Builder*) builder;
-+ (SearchRoomRequest_Builder*) builderWithPrototype:(SearchRoomRequest*) prototype;
+- (SearchRoomRequestBuilder*) builder;
++ (SearchRoomRequestBuilder*) builder;
++ (SearchRoomRequestBuilder*) builderWithPrototype:(SearchRoomRequest*) prototype;
+- (SearchRoomRequestBuilder*) toBuilder;
 
 + (SearchRoomRequest*) parseFromData:(NSData*) data;
 + (SearchRoomRequest*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
@@ -658,49 +676,50 @@ BOOL BetTypeIsValidValue(BetType value);
 + (SearchRoomRequest*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 @end
 
-@interface SearchRoomRequest_Builder : PBGeneratedMessage_Builder {
+@interface SearchRoomRequestBuilder : PBGeneratedMessageBuilder {
 @private
-  SearchRoomRequest* result;
+  SearchRoomRequest* resultSearchRoomRequest;
 }
 
 - (SearchRoomRequest*) defaultInstance;
 
-- (SearchRoomRequest_Builder*) clear;
-- (SearchRoomRequest_Builder*) clone;
+- (SearchRoomRequestBuilder*) clear;
+- (SearchRoomRequestBuilder*) clone;
 
 - (SearchRoomRequest*) build;
 - (SearchRoomRequest*) buildPartial;
 
-- (SearchRoomRequest_Builder*) mergeFrom:(SearchRoomRequest*) other;
-- (SearchRoomRequest_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
-- (SearchRoomRequest_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+- (SearchRoomRequestBuilder*) mergeFrom:(SearchRoomRequest*) other;
+- (SearchRoomRequestBuilder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
+- (SearchRoomRequestBuilder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 
 - (BOOL) hasKeyword;
 - (NSString*) keyword;
-- (SearchRoomRequest_Builder*) setKeyword:(NSString*) value;
-- (SearchRoomRequest_Builder*) clearKeyword;
+- (SearchRoomRequestBuilder*) setKeyword:(NSString*) value;
+- (SearchRoomRequestBuilder*) clearKeyword;
 
 - (BOOL) hasRangeType;
-- (int32_t) rangeType;
-- (SearchRoomRequest_Builder*) setRangeType:(int32_t) value;
-- (SearchRoomRequest_Builder*) clearRangeType;
+- (SInt32) rangeType;
+- (SearchRoomRequestBuilder*) setRangeType:(SInt32) value;
+- (SearchRoomRequestBuilder*) clearRangeType;
 @end
 
-@interface SearchRoomResponse : PBGeneratedMessage {
+@interface SearchRoomResponse : PBGeneratedMessage<GeneratedMessageProtocol> {
 @private
-  NSMutableArray* mutableSessionsList;
+  NSMutableArray * sessionsArray;
 }
-- (NSArray*) sessionsList;
-- (PBGameSession*) sessionsAtIndex:(int32_t) index;
+@property (readonly, strong) NSArray * sessions;
+- (PBGameSession*)sessionsAtIndex:(NSUInteger)index;
 
-+ (SearchRoomResponse*) defaultInstance;
-- (SearchRoomResponse*) defaultInstance;
++ (instancetype) defaultInstance;
+- (instancetype) defaultInstance;
 
 - (BOOL) isInitialized;
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
-- (SearchRoomResponse_Builder*) builder;
-+ (SearchRoomResponse_Builder*) builder;
-+ (SearchRoomResponse_Builder*) builderWithPrototype:(SearchRoomResponse*) prototype;
+- (SearchRoomResponseBuilder*) builder;
++ (SearchRoomResponseBuilder*) builder;
++ (SearchRoomResponseBuilder*) builderWithPrototype:(SearchRoomResponse*) prototype;
+- (SearchRoomResponseBuilder*) toBuilder;
 
 + (SearchRoomResponse*) parseFromData:(NSData*) data;
 + (SearchRoomResponse*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
@@ -710,47 +729,47 @@ BOOL BetTypeIsValidValue(BetType value);
 + (SearchRoomResponse*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 @end
 
-@interface SearchRoomResponse_Builder : PBGeneratedMessage_Builder {
+@interface SearchRoomResponseBuilder : PBGeneratedMessageBuilder {
 @private
-  SearchRoomResponse* result;
+  SearchRoomResponse* resultSearchRoomResponse;
 }
 
 - (SearchRoomResponse*) defaultInstance;
 
-- (SearchRoomResponse_Builder*) clear;
-- (SearchRoomResponse_Builder*) clone;
+- (SearchRoomResponseBuilder*) clear;
+- (SearchRoomResponseBuilder*) clone;
 
 - (SearchRoomResponse*) build;
 - (SearchRoomResponse*) buildPartial;
 
-- (SearchRoomResponse_Builder*) mergeFrom:(SearchRoomResponse*) other;
-- (SearchRoomResponse_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
-- (SearchRoomResponse_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+- (SearchRoomResponseBuilder*) mergeFrom:(SearchRoomResponse*) other;
+- (SearchRoomResponseBuilder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
+- (SearchRoomResponseBuilder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 
-- (NSArray*) sessionsList;
-- (PBGameSession*) sessionsAtIndex:(int32_t) index;
-- (SearchRoomResponse_Builder*) replaceSessionsAtIndex:(int32_t) index with:(PBGameSession*) value;
-- (SearchRoomResponse_Builder*) addSessions:(PBGameSession*) value;
-- (SearchRoomResponse_Builder*) addAllSessions:(NSArray*) values;
-- (SearchRoomResponse_Builder*) clearSessionsList;
+- (NSMutableArray *)sessions;
+- (PBGameSession*)sessionsAtIndex:(NSUInteger)index;
+- (SearchRoomResponseBuilder *)addSessions:(PBGameSession*)value;
+- (SearchRoomResponseBuilder *)setSessionsArray:(NSArray *)array;
+- (SearchRoomResponseBuilder *)clearSessions;
 @end
 
-@interface RegisterRoomsNotificationRequest : PBGeneratedMessage {
+@interface RegisterRoomsNotificationRequest : PBGeneratedMessage<GeneratedMessageProtocol> {
 @private
-  NSMutableArray* mutableSessionIdsList;
-  int32_t sessionIdsMemoizedSerializedSize;
+  PBAppendableArray * sessionIdsArray;
+  SInt32 sessionIdsMemoizedSerializedSize;
 }
-- (NSArray*) sessionIdsList;
-- (int32_t) sessionIdsAtIndex:(int32_t) index;
+@property (readonly, strong) PBArray * sessionIds;
+- (SInt32)sessionIdsAtIndex:(NSUInteger)index;
 
-+ (RegisterRoomsNotificationRequest*) defaultInstance;
-- (RegisterRoomsNotificationRequest*) defaultInstance;
++ (instancetype) defaultInstance;
+- (instancetype) defaultInstance;
 
 - (BOOL) isInitialized;
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
-- (RegisterRoomsNotificationRequest_Builder*) builder;
-+ (RegisterRoomsNotificationRequest_Builder*) builder;
-+ (RegisterRoomsNotificationRequest_Builder*) builderWithPrototype:(RegisterRoomsNotificationRequest*) prototype;
+- (RegisterRoomsNotificationRequestBuilder*) builder;
++ (RegisterRoomsNotificationRequestBuilder*) builder;
++ (RegisterRoomsNotificationRequestBuilder*) builderWithPrototype:(RegisterRoomsNotificationRequest*) prototype;
+- (RegisterRoomsNotificationRequestBuilder*) toBuilder;
 
 + (RegisterRoomsNotificationRequest*) parseFromData:(NSData*) data;
 + (RegisterRoomsNotificationRequest*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
@@ -760,43 +779,44 @@ BOOL BetTypeIsValidValue(BetType value);
 + (RegisterRoomsNotificationRequest*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 @end
 
-@interface RegisterRoomsNotificationRequest_Builder : PBGeneratedMessage_Builder {
+@interface RegisterRoomsNotificationRequestBuilder : PBGeneratedMessageBuilder {
 @private
-  RegisterRoomsNotificationRequest* result;
+  RegisterRoomsNotificationRequest* resultRegisterRoomsNotificationRequest;
 }
 
 - (RegisterRoomsNotificationRequest*) defaultInstance;
 
-- (RegisterRoomsNotificationRequest_Builder*) clear;
-- (RegisterRoomsNotificationRequest_Builder*) clone;
+- (RegisterRoomsNotificationRequestBuilder*) clear;
+- (RegisterRoomsNotificationRequestBuilder*) clone;
 
 - (RegisterRoomsNotificationRequest*) build;
 - (RegisterRoomsNotificationRequest*) buildPartial;
 
-- (RegisterRoomsNotificationRequest_Builder*) mergeFrom:(RegisterRoomsNotificationRequest*) other;
-- (RegisterRoomsNotificationRequest_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
-- (RegisterRoomsNotificationRequest_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+- (RegisterRoomsNotificationRequestBuilder*) mergeFrom:(RegisterRoomsNotificationRequest*) other;
+- (RegisterRoomsNotificationRequestBuilder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
+- (RegisterRoomsNotificationRequestBuilder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 
-- (NSArray*) sessionIdsList;
-- (int32_t) sessionIdsAtIndex:(int32_t) index;
-- (RegisterRoomsNotificationRequest_Builder*) replaceSessionIdsAtIndex:(int32_t) index with:(int32_t) value;
-- (RegisterRoomsNotificationRequest_Builder*) addSessionIds:(int32_t) value;
-- (RegisterRoomsNotificationRequest_Builder*) addAllSessionIds:(NSArray*) values;
-- (RegisterRoomsNotificationRequest_Builder*) clearSessionIdsList;
+- (PBAppendableArray *)sessionIds;
+- (SInt32)sessionIdsAtIndex:(NSUInteger)index;
+- (RegisterRoomsNotificationRequestBuilder *)addSessionIds:(SInt32)value;
+- (RegisterRoomsNotificationRequestBuilder *)setSessionIdsArray:(NSArray *)array;
+- (RegisterRoomsNotificationRequestBuilder *)setSessionIdsValues:(const SInt32 *)values count:(NSUInteger)count;
+- (RegisterRoomsNotificationRequestBuilder *)clearSessionIds;
 @end
 
-@interface RegisterRoomsNotificationResponse : PBGeneratedMessage {
+@interface RegisterRoomsNotificationResponse : PBGeneratedMessage<GeneratedMessageProtocol> {
 @private
 }
 
-+ (RegisterRoomsNotificationResponse*) defaultInstance;
-- (RegisterRoomsNotificationResponse*) defaultInstance;
++ (instancetype) defaultInstance;
+- (instancetype) defaultInstance;
 
 - (BOOL) isInitialized;
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
-- (RegisterRoomsNotificationResponse_Builder*) builder;
-+ (RegisterRoomsNotificationResponse_Builder*) builder;
-+ (RegisterRoomsNotificationResponse_Builder*) builderWithPrototype:(RegisterRoomsNotificationResponse*) prototype;
+- (RegisterRoomsNotificationResponseBuilder*) builder;
++ (RegisterRoomsNotificationResponseBuilder*) builder;
++ (RegisterRoomsNotificationResponseBuilder*) builderWithPrototype:(RegisterRoomsNotificationResponse*) prototype;
+- (RegisterRoomsNotificationResponseBuilder*) toBuilder;
 
 + (RegisterRoomsNotificationResponse*) parseFromData:(NSData*) data;
 + (RegisterRoomsNotificationResponse*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
@@ -806,40 +826,41 @@ BOOL BetTypeIsValidValue(BetType value);
 + (RegisterRoomsNotificationResponse*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 @end
 
-@interface RegisterRoomsNotificationResponse_Builder : PBGeneratedMessage_Builder {
+@interface RegisterRoomsNotificationResponseBuilder : PBGeneratedMessageBuilder {
 @private
-  RegisterRoomsNotificationResponse* result;
+  RegisterRoomsNotificationResponse* resultRegisterRoomsNotificationResponse;
 }
 
 - (RegisterRoomsNotificationResponse*) defaultInstance;
 
-- (RegisterRoomsNotificationResponse_Builder*) clear;
-- (RegisterRoomsNotificationResponse_Builder*) clone;
+- (RegisterRoomsNotificationResponseBuilder*) clear;
+- (RegisterRoomsNotificationResponseBuilder*) clone;
 
 - (RegisterRoomsNotificationResponse*) build;
 - (RegisterRoomsNotificationResponse*) buildPartial;
 
-- (RegisterRoomsNotificationResponse_Builder*) mergeFrom:(RegisterRoomsNotificationResponse*) other;
-- (RegisterRoomsNotificationResponse_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
-- (RegisterRoomsNotificationResponse_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+- (RegisterRoomsNotificationResponseBuilder*) mergeFrom:(RegisterRoomsNotificationResponse*) other;
+- (RegisterRoomsNotificationResponseBuilder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
+- (RegisterRoomsNotificationResponseBuilder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 @end
 
-@interface UnRegisterRoomsNotificationRequest : PBGeneratedMessage {
+@interface UnRegisterRoomsNotificationRequest : PBGeneratedMessage<GeneratedMessageProtocol> {
 @private
-  NSMutableArray* mutableSessionIdsList;
-  int32_t sessionIdsMemoizedSerializedSize;
+  PBAppendableArray * sessionIdsArray;
+  SInt32 sessionIdsMemoizedSerializedSize;
 }
-- (NSArray*) sessionIdsList;
-- (int32_t) sessionIdsAtIndex:(int32_t) index;
+@property (readonly, strong) PBArray * sessionIds;
+- (SInt32)sessionIdsAtIndex:(NSUInteger)index;
 
-+ (UnRegisterRoomsNotificationRequest*) defaultInstance;
-- (UnRegisterRoomsNotificationRequest*) defaultInstance;
++ (instancetype) defaultInstance;
+- (instancetype) defaultInstance;
 
 - (BOOL) isInitialized;
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
-- (UnRegisterRoomsNotificationRequest_Builder*) builder;
-+ (UnRegisterRoomsNotificationRequest_Builder*) builder;
-+ (UnRegisterRoomsNotificationRequest_Builder*) builderWithPrototype:(UnRegisterRoomsNotificationRequest*) prototype;
+- (UnRegisterRoomsNotificationRequestBuilder*) builder;
++ (UnRegisterRoomsNotificationRequestBuilder*) builder;
++ (UnRegisterRoomsNotificationRequestBuilder*) builderWithPrototype:(UnRegisterRoomsNotificationRequest*) prototype;
+- (UnRegisterRoomsNotificationRequestBuilder*) toBuilder;
 
 + (UnRegisterRoomsNotificationRequest*) parseFromData:(NSData*) data;
 + (UnRegisterRoomsNotificationRequest*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
@@ -849,43 +870,44 @@ BOOL BetTypeIsValidValue(BetType value);
 + (UnRegisterRoomsNotificationRequest*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 @end
 
-@interface UnRegisterRoomsNotificationRequest_Builder : PBGeneratedMessage_Builder {
+@interface UnRegisterRoomsNotificationRequestBuilder : PBGeneratedMessageBuilder {
 @private
-  UnRegisterRoomsNotificationRequest* result;
+  UnRegisterRoomsNotificationRequest* resultUnRegisterRoomsNotificationRequest;
 }
 
 - (UnRegisterRoomsNotificationRequest*) defaultInstance;
 
-- (UnRegisterRoomsNotificationRequest_Builder*) clear;
-- (UnRegisterRoomsNotificationRequest_Builder*) clone;
+- (UnRegisterRoomsNotificationRequestBuilder*) clear;
+- (UnRegisterRoomsNotificationRequestBuilder*) clone;
 
 - (UnRegisterRoomsNotificationRequest*) build;
 - (UnRegisterRoomsNotificationRequest*) buildPartial;
 
-- (UnRegisterRoomsNotificationRequest_Builder*) mergeFrom:(UnRegisterRoomsNotificationRequest*) other;
-- (UnRegisterRoomsNotificationRequest_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
-- (UnRegisterRoomsNotificationRequest_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+- (UnRegisterRoomsNotificationRequestBuilder*) mergeFrom:(UnRegisterRoomsNotificationRequest*) other;
+- (UnRegisterRoomsNotificationRequestBuilder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
+- (UnRegisterRoomsNotificationRequestBuilder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 
-- (NSArray*) sessionIdsList;
-- (int32_t) sessionIdsAtIndex:(int32_t) index;
-- (UnRegisterRoomsNotificationRequest_Builder*) replaceSessionIdsAtIndex:(int32_t) index with:(int32_t) value;
-- (UnRegisterRoomsNotificationRequest_Builder*) addSessionIds:(int32_t) value;
-- (UnRegisterRoomsNotificationRequest_Builder*) addAllSessionIds:(NSArray*) values;
-- (UnRegisterRoomsNotificationRequest_Builder*) clearSessionIdsList;
+- (PBAppendableArray *)sessionIds;
+- (SInt32)sessionIdsAtIndex:(NSUInteger)index;
+- (UnRegisterRoomsNotificationRequestBuilder *)addSessionIds:(SInt32)value;
+- (UnRegisterRoomsNotificationRequestBuilder *)setSessionIdsArray:(NSArray *)array;
+- (UnRegisterRoomsNotificationRequestBuilder *)setSessionIdsValues:(const SInt32 *)values count:(NSUInteger)count;
+- (UnRegisterRoomsNotificationRequestBuilder *)clearSessionIds;
 @end
 
-@interface UnRegisterRoomsNotificationResponse : PBGeneratedMessage {
+@interface UnRegisterRoomsNotificationResponse : PBGeneratedMessage<GeneratedMessageProtocol> {
 @private
 }
 
-+ (UnRegisterRoomsNotificationResponse*) defaultInstance;
-- (UnRegisterRoomsNotificationResponse*) defaultInstance;
++ (instancetype) defaultInstance;
+- (instancetype) defaultInstance;
 
 - (BOOL) isInitialized;
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
-- (UnRegisterRoomsNotificationResponse_Builder*) builder;
-+ (UnRegisterRoomsNotificationResponse_Builder*) builder;
-+ (UnRegisterRoomsNotificationResponse_Builder*) builderWithPrototype:(UnRegisterRoomsNotificationResponse*) prototype;
+- (UnRegisterRoomsNotificationResponseBuilder*) builder;
++ (UnRegisterRoomsNotificationResponseBuilder*) builder;
++ (UnRegisterRoomsNotificationResponseBuilder*) builderWithPrototype:(UnRegisterRoomsNotificationResponse*) prototype;
+- (UnRegisterRoomsNotificationResponseBuilder*) toBuilder;
 
 + (UnRegisterRoomsNotificationResponse*) parseFromData:(NSData*) data;
 + (UnRegisterRoomsNotificationResponse*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
@@ -895,48 +917,49 @@ BOOL BetTypeIsValidValue(BetType value);
 + (UnRegisterRoomsNotificationResponse*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 @end
 
-@interface UnRegisterRoomsNotificationResponse_Builder : PBGeneratedMessage_Builder {
+@interface UnRegisterRoomsNotificationResponseBuilder : PBGeneratedMessageBuilder {
 @private
-  UnRegisterRoomsNotificationResponse* result;
+  UnRegisterRoomsNotificationResponse* resultUnRegisterRoomsNotificationResponse;
 }
 
 - (UnRegisterRoomsNotificationResponse*) defaultInstance;
 
-- (UnRegisterRoomsNotificationResponse_Builder*) clear;
-- (UnRegisterRoomsNotificationResponse_Builder*) clone;
+- (UnRegisterRoomsNotificationResponseBuilder*) clear;
+- (UnRegisterRoomsNotificationResponseBuilder*) clone;
 
 - (UnRegisterRoomsNotificationResponse*) build;
 - (UnRegisterRoomsNotificationResponse*) buildPartial;
 
-- (UnRegisterRoomsNotificationResponse_Builder*) mergeFrom:(UnRegisterRoomsNotificationResponse*) other;
-- (UnRegisterRoomsNotificationResponse_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
-- (UnRegisterRoomsNotificationResponse_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+- (UnRegisterRoomsNotificationResponseBuilder*) mergeFrom:(UnRegisterRoomsNotificationResponse*) other;
+- (UnRegisterRoomsNotificationResponseBuilder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
+- (UnRegisterRoomsNotificationResponseBuilder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 @end
 
-@interface CallDiceRequest : PBGeneratedMessage {
+@interface CallDiceRequest : PBGeneratedMessage<GeneratedMessageProtocol> {
 @private
   BOOL hasWilds_:1;
   BOOL hasNum_:1;
   BOOL hasDice_:1;
   BOOL wilds_:1;
-  int32_t num;
-  int32_t dice;
+  SInt32 num;
+  SInt32 dice;
 }
 - (BOOL) hasNum;
 - (BOOL) hasDice;
 - (BOOL) hasWilds;
-@property (readonly) int32_t num;
-@property (readonly) int32_t dice;
+@property (readonly) SInt32 num;
+@property (readonly) SInt32 dice;
 - (BOOL) wilds;
 
-+ (CallDiceRequest*) defaultInstance;
-- (CallDiceRequest*) defaultInstance;
++ (instancetype) defaultInstance;
+- (instancetype) defaultInstance;
 
 - (BOOL) isInitialized;
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
-- (CallDiceRequest_Builder*) builder;
-+ (CallDiceRequest_Builder*) builder;
-+ (CallDiceRequest_Builder*) builderWithPrototype:(CallDiceRequest*) prototype;
+- (CallDiceRequestBuilder*) builder;
++ (CallDiceRequestBuilder*) builder;
++ (CallDiceRequestBuilder*) builderWithPrototype:(CallDiceRequest*) prototype;
+- (CallDiceRequestBuilder*) toBuilder;
 
 + (CallDiceRequest*) parseFromData:(NSData*) data;
 + (CallDiceRequest*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
@@ -946,51 +969,52 @@ BOOL BetTypeIsValidValue(BetType value);
 + (CallDiceRequest*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 @end
 
-@interface CallDiceRequest_Builder : PBGeneratedMessage_Builder {
+@interface CallDiceRequestBuilder : PBGeneratedMessageBuilder {
 @private
-  CallDiceRequest* result;
+  CallDiceRequest* resultCallDiceRequest;
 }
 
 - (CallDiceRequest*) defaultInstance;
 
-- (CallDiceRequest_Builder*) clear;
-- (CallDiceRequest_Builder*) clone;
+- (CallDiceRequestBuilder*) clear;
+- (CallDiceRequestBuilder*) clone;
 
 - (CallDiceRequest*) build;
 - (CallDiceRequest*) buildPartial;
 
-- (CallDiceRequest_Builder*) mergeFrom:(CallDiceRequest*) other;
-- (CallDiceRequest_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
-- (CallDiceRequest_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+- (CallDiceRequestBuilder*) mergeFrom:(CallDiceRequest*) other;
+- (CallDiceRequestBuilder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
+- (CallDiceRequestBuilder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 
 - (BOOL) hasNum;
-- (int32_t) num;
-- (CallDiceRequest_Builder*) setNum:(int32_t) value;
-- (CallDiceRequest_Builder*) clearNum;
+- (SInt32) num;
+- (CallDiceRequestBuilder*) setNum:(SInt32) value;
+- (CallDiceRequestBuilder*) clearNum;
 
 - (BOOL) hasDice;
-- (int32_t) dice;
-- (CallDiceRequest_Builder*) setDice:(int32_t) value;
-- (CallDiceRequest_Builder*) clearDice;
+- (SInt32) dice;
+- (CallDiceRequestBuilder*) setDice:(SInt32) value;
+- (CallDiceRequestBuilder*) clearDice;
 
 - (BOOL) hasWilds;
 - (BOOL) wilds;
-- (CallDiceRequest_Builder*) setWilds:(BOOL) value;
-- (CallDiceRequest_Builder*) clearWilds;
+- (CallDiceRequestBuilder*) setWilds:(BOOL) value;
+- (CallDiceRequestBuilder*) clearWilds;
 @end
 
-@interface CallDiceResponse : PBGeneratedMessage {
+@interface CallDiceResponse : PBGeneratedMessage<GeneratedMessageProtocol> {
 @private
 }
 
-+ (CallDiceResponse*) defaultInstance;
-- (CallDiceResponse*) defaultInstance;
++ (instancetype) defaultInstance;
+- (instancetype) defaultInstance;
 
 - (BOOL) isInitialized;
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
-- (CallDiceResponse_Builder*) builder;
-+ (CallDiceResponse_Builder*) builder;
-+ (CallDiceResponse_Builder*) builderWithPrototype:(CallDiceResponse*) prototype;
+- (CallDiceResponseBuilder*) builder;
++ (CallDiceResponseBuilder*) builder;
++ (CallDiceResponseBuilder*) builderWithPrototype:(CallDiceResponse*) prototype;
+- (CallDiceResponseBuilder*) toBuilder;
 
 + (CallDiceResponse*) parseFromData:(NSData*) data;
 + (CallDiceResponse*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
@@ -1000,44 +1024,45 @@ BOOL BetTypeIsValidValue(BetType value);
 + (CallDiceResponse*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 @end
 
-@interface CallDiceResponse_Builder : PBGeneratedMessage_Builder {
+@interface CallDiceResponseBuilder : PBGeneratedMessageBuilder {
 @private
-  CallDiceResponse* result;
+  CallDiceResponse* resultCallDiceResponse;
 }
 
 - (CallDiceResponse*) defaultInstance;
 
-- (CallDiceResponse_Builder*) clear;
-- (CallDiceResponse_Builder*) clone;
+- (CallDiceResponseBuilder*) clear;
+- (CallDiceResponseBuilder*) clone;
 
 - (CallDiceResponse*) build;
 - (CallDiceResponse*) buildPartial;
 
-- (CallDiceResponse_Builder*) mergeFrom:(CallDiceResponse*) other;
-- (CallDiceResponse_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
-- (CallDiceResponse_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+- (CallDiceResponseBuilder*) mergeFrom:(CallDiceResponse*) other;
+- (CallDiceResponseBuilder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
+- (CallDiceResponseBuilder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 @end
 
-@interface OpenDiceRequest : PBGeneratedMessage {
+@interface OpenDiceRequest : PBGeneratedMessage<GeneratedMessageProtocol> {
 @private
   BOOL hasOpenType_:1;
   BOOL hasMultiple_:1;
-  int32_t openType;
-  int32_t multiple;
+  SInt32 openType;
+  SInt32 multiple;
 }
 - (BOOL) hasOpenType;
 - (BOOL) hasMultiple;
-@property (readonly) int32_t openType;
-@property (readonly) int32_t multiple;
+@property (readonly) SInt32 openType;
+@property (readonly) SInt32 multiple;
 
-+ (OpenDiceRequest*) defaultInstance;
-- (OpenDiceRequest*) defaultInstance;
++ (instancetype) defaultInstance;
+- (instancetype) defaultInstance;
 
 - (BOOL) isInitialized;
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
-- (OpenDiceRequest_Builder*) builder;
-+ (OpenDiceRequest_Builder*) builder;
-+ (OpenDiceRequest_Builder*) builderWithPrototype:(OpenDiceRequest*) prototype;
+- (OpenDiceRequestBuilder*) builder;
++ (OpenDiceRequestBuilder*) builder;
++ (OpenDiceRequestBuilder*) builderWithPrototype:(OpenDiceRequest*) prototype;
+- (OpenDiceRequestBuilder*) toBuilder;
 
 + (OpenDiceRequest*) parseFromData:(NSData*) data;
 + (OpenDiceRequest*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
@@ -1047,46 +1072,47 @@ BOOL BetTypeIsValidValue(BetType value);
 + (OpenDiceRequest*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 @end
 
-@interface OpenDiceRequest_Builder : PBGeneratedMessage_Builder {
+@interface OpenDiceRequestBuilder : PBGeneratedMessageBuilder {
 @private
-  OpenDiceRequest* result;
+  OpenDiceRequest* resultOpenDiceRequest;
 }
 
 - (OpenDiceRequest*) defaultInstance;
 
-- (OpenDiceRequest_Builder*) clear;
-- (OpenDiceRequest_Builder*) clone;
+- (OpenDiceRequestBuilder*) clear;
+- (OpenDiceRequestBuilder*) clone;
 
 - (OpenDiceRequest*) build;
 - (OpenDiceRequest*) buildPartial;
 
-- (OpenDiceRequest_Builder*) mergeFrom:(OpenDiceRequest*) other;
-- (OpenDiceRequest_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
-- (OpenDiceRequest_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+- (OpenDiceRequestBuilder*) mergeFrom:(OpenDiceRequest*) other;
+- (OpenDiceRequestBuilder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
+- (OpenDiceRequestBuilder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 
 - (BOOL) hasOpenType;
-- (int32_t) openType;
-- (OpenDiceRequest_Builder*) setOpenType:(int32_t) value;
-- (OpenDiceRequest_Builder*) clearOpenType;
+- (SInt32) openType;
+- (OpenDiceRequestBuilder*) setOpenType:(SInt32) value;
+- (OpenDiceRequestBuilder*) clearOpenType;
 
 - (BOOL) hasMultiple;
-- (int32_t) multiple;
-- (OpenDiceRequest_Builder*) setMultiple:(int32_t) value;
-- (OpenDiceRequest_Builder*) clearMultiple;
+- (SInt32) multiple;
+- (OpenDiceRequestBuilder*) setMultiple:(SInt32) value;
+- (OpenDiceRequestBuilder*) clearMultiple;
 @end
 
-@interface OpenDiceResponse : PBGeneratedMessage {
+@interface OpenDiceResponse : PBGeneratedMessage<GeneratedMessageProtocol> {
 @private
 }
 
-+ (OpenDiceResponse*) defaultInstance;
-- (OpenDiceResponse*) defaultInstance;
++ (instancetype) defaultInstance;
+- (instancetype) defaultInstance;
 
 - (BOOL) isInitialized;
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
-- (OpenDiceResponse_Builder*) builder;
-+ (OpenDiceResponse_Builder*) builder;
-+ (OpenDiceResponse_Builder*) builderWithPrototype:(OpenDiceResponse*) prototype;
+- (OpenDiceResponseBuilder*) builder;
++ (OpenDiceResponseBuilder*) builder;
++ (OpenDiceResponseBuilder*) builderWithPrototype:(OpenDiceResponse*) prototype;
+- (OpenDiceResponseBuilder*) toBuilder;
 
 + (OpenDiceResponse*) parseFromData:(NSData*) data;
 + (OpenDiceResponse*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
@@ -1096,25 +1122,25 @@ BOOL BetTypeIsValidValue(BetType value);
 + (OpenDiceResponse*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 @end
 
-@interface OpenDiceResponse_Builder : PBGeneratedMessage_Builder {
+@interface OpenDiceResponseBuilder : PBGeneratedMessageBuilder {
 @private
-  OpenDiceResponse* result;
+  OpenDiceResponse* resultOpenDiceResponse;
 }
 
 - (OpenDiceResponse*) defaultInstance;
 
-- (OpenDiceResponse_Builder*) clear;
-- (OpenDiceResponse_Builder*) clone;
+- (OpenDiceResponseBuilder*) clear;
+- (OpenDiceResponseBuilder*) clone;
 
 - (OpenDiceResponse*) build;
 - (OpenDiceResponse*) buildPartial;
 
-- (OpenDiceResponse_Builder*) mergeFrom:(OpenDiceResponse*) other;
-- (OpenDiceResponse_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
-- (OpenDiceResponse_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+- (OpenDiceResponseBuilder*) mergeFrom:(OpenDiceResponse*) other;
+- (OpenDiceResponseBuilder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
+- (OpenDiceResponseBuilder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 @end
 
-@interface UseItemRequest : PBGeneratedMessage {
+@interface UseItemRequest : PBGeneratedMessage<GeneratedMessageProtocol> {
 @private
   BOOL hasDecreaseTimeForNextPlayUser_:1;
   BOOL hasItemId_:1;
@@ -1122,9 +1148,9 @@ BOOL BetTypeIsValidValue(BetType value);
   BOOL hasDirection_:1;
   BOOL hasNextPlayUserId_:1;
   BOOL decreaseTimeForNextPlayUser_:1;
-  int32_t itemId;
-  int32_t extendTime;
-  int32_t direction;
+  SInt32 itemId;
+  SInt32 extendTime;
+  SInt32 direction;
   NSString* nextPlayUserId;
 }
 - (BOOL) hasItemId;
@@ -1132,20 +1158,21 @@ BOOL BetTypeIsValidValue(BetType value);
 - (BOOL) hasDirection;
 - (BOOL) hasNextPlayUserId;
 - (BOOL) hasDecreaseTimeForNextPlayUser;
-@property (readonly) int32_t itemId;
-@property (readonly) int32_t extendTime;
-@property (readonly) int32_t direction;
-@property (readonly, retain) NSString* nextPlayUserId;
+@property (readonly) SInt32 itemId;
+@property (readonly) SInt32 extendTime;
+@property (readonly) SInt32 direction;
+@property (readonly, strong) NSString* nextPlayUserId;
 - (BOOL) decreaseTimeForNextPlayUser;
 
-+ (UseItemRequest*) defaultInstance;
-- (UseItemRequest*) defaultInstance;
++ (instancetype) defaultInstance;
+- (instancetype) defaultInstance;
 
 - (BOOL) isInitialized;
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
-- (UseItemRequest_Builder*) builder;
-+ (UseItemRequest_Builder*) builder;
-+ (UseItemRequest_Builder*) builderWithPrototype:(UseItemRequest*) prototype;
+- (UseItemRequestBuilder*) builder;
++ (UseItemRequestBuilder*) builder;
++ (UseItemRequestBuilder*) builderWithPrototype:(UseItemRequest*) prototype;
+- (UseItemRequestBuilder*) toBuilder;
 
 + (UseItemRequest*) parseFromData:(NSData*) data;
 + (UseItemRequest*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
@@ -1155,50 +1182,50 @@ BOOL BetTypeIsValidValue(BetType value);
 + (UseItemRequest*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 @end
 
-@interface UseItemRequest_Builder : PBGeneratedMessage_Builder {
+@interface UseItemRequestBuilder : PBGeneratedMessageBuilder {
 @private
-  UseItemRequest* result;
+  UseItemRequest* resultUseItemRequest;
 }
 
 - (UseItemRequest*) defaultInstance;
 
-- (UseItemRequest_Builder*) clear;
-- (UseItemRequest_Builder*) clone;
+- (UseItemRequestBuilder*) clear;
+- (UseItemRequestBuilder*) clone;
 
 - (UseItemRequest*) build;
 - (UseItemRequest*) buildPartial;
 
-- (UseItemRequest_Builder*) mergeFrom:(UseItemRequest*) other;
-- (UseItemRequest_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
-- (UseItemRequest_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+- (UseItemRequestBuilder*) mergeFrom:(UseItemRequest*) other;
+- (UseItemRequestBuilder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
+- (UseItemRequestBuilder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 
 - (BOOL) hasItemId;
-- (int32_t) itemId;
-- (UseItemRequest_Builder*) setItemId:(int32_t) value;
-- (UseItemRequest_Builder*) clearItemId;
+- (SInt32) itemId;
+- (UseItemRequestBuilder*) setItemId:(SInt32) value;
+- (UseItemRequestBuilder*) clearItemId;
 
 - (BOOL) hasExtendTime;
-- (int32_t) extendTime;
-- (UseItemRequest_Builder*) setExtendTime:(int32_t) value;
-- (UseItemRequest_Builder*) clearExtendTime;
+- (SInt32) extendTime;
+- (UseItemRequestBuilder*) setExtendTime:(SInt32) value;
+- (UseItemRequestBuilder*) clearExtendTime;
 
 - (BOOL) hasDirection;
-- (int32_t) direction;
-- (UseItemRequest_Builder*) setDirection:(int32_t) value;
-- (UseItemRequest_Builder*) clearDirection;
+- (SInt32) direction;
+- (UseItemRequestBuilder*) setDirection:(SInt32) value;
+- (UseItemRequestBuilder*) clearDirection;
 
 - (BOOL) hasNextPlayUserId;
 - (NSString*) nextPlayUserId;
-- (UseItemRequest_Builder*) setNextPlayUserId:(NSString*) value;
-- (UseItemRequest_Builder*) clearNextPlayUserId;
+- (UseItemRequestBuilder*) setNextPlayUserId:(NSString*) value;
+- (UseItemRequestBuilder*) clearNextPlayUserId;
 
 - (BOOL) hasDecreaseTimeForNextPlayUser;
 - (BOOL) decreaseTimeForNextPlayUser;
-- (UseItemRequest_Builder*) setDecreaseTimeForNextPlayUser:(BOOL) value;
-- (UseItemRequest_Builder*) clearDecreaseTimeForNextPlayUser;
+- (UseItemRequestBuilder*) setDecreaseTimeForNextPlayUser:(BOOL) value;
+- (UseItemRequestBuilder*) clearDecreaseTimeForNextPlayUser;
 @end
 
-@interface UseItemResponse : PBGeneratedMessage {
+@interface UseItemResponse : PBGeneratedMessage<GeneratedMessageProtocol> {
 @private
   BOOL hasDecreaseTimeForNextPlayUser_:1;
   BOOL hasItemId_:1;
@@ -1206,33 +1233,34 @@ BOOL BetTypeIsValidValue(BetType value);
   BOOL hasNextPlayUserId_:1;
   BOOL hasAction_:1;
   BOOL decreaseTimeForNextPlayUser_:1;
-  int32_t itemId;
-  int32_t direction;
+  SInt32 itemId;
+  SInt32 direction;
   NSString* nextPlayUserId;
   PBDiceAction* action;
-  NSMutableArray* mutableDicesList;
+  NSMutableArray * dicesArray;
 }
 - (BOOL) hasItemId;
 - (BOOL) hasAction;
 - (BOOL) hasDirection;
 - (BOOL) hasNextPlayUserId;
 - (BOOL) hasDecreaseTimeForNextPlayUser;
-@property (readonly) int32_t itemId;
-@property (readonly, retain) PBDiceAction* action;
-@property (readonly) int32_t direction;
-@property (readonly, retain) NSString* nextPlayUserId;
+@property (readonly) SInt32 itemId;
+@property (readonly, strong) NSArray * dices;
+@property (readonly, strong) PBDiceAction* action;
+@property (readonly) SInt32 direction;
+@property (readonly, strong) NSString* nextPlayUserId;
 - (BOOL) decreaseTimeForNextPlayUser;
-- (NSArray*) dicesList;
-- (PBDice*) dicesAtIndex:(int32_t) index;
+- (PBDice*)dicesAtIndex:(NSUInteger)index;
 
-+ (UseItemResponse*) defaultInstance;
-- (UseItemResponse*) defaultInstance;
++ (instancetype) defaultInstance;
+- (instancetype) defaultInstance;
 
 - (BOOL) isInitialized;
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
-- (UseItemResponse_Builder*) builder;
-+ (UseItemResponse_Builder*) builder;
-+ (UseItemResponse_Builder*) builderWithPrototype:(UseItemResponse*) prototype;
+- (UseItemResponseBuilder*) builder;
++ (UseItemResponseBuilder*) builder;
++ (UseItemResponseBuilder*) builderWithPrototype:(UseItemResponse*) prototype;
+- (UseItemResponseBuilder*) toBuilder;
 
 + (UseItemResponse*) parseFromData:(NSData*) data;
 + (UseItemResponse*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
@@ -1242,81 +1270,81 @@ BOOL BetTypeIsValidValue(BetType value);
 + (UseItemResponse*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 @end
 
-@interface UseItemResponse_Builder : PBGeneratedMessage_Builder {
+@interface UseItemResponseBuilder : PBGeneratedMessageBuilder {
 @private
-  UseItemResponse* result;
+  UseItemResponse* resultUseItemResponse;
 }
 
 - (UseItemResponse*) defaultInstance;
 
-- (UseItemResponse_Builder*) clear;
-- (UseItemResponse_Builder*) clone;
+- (UseItemResponseBuilder*) clear;
+- (UseItemResponseBuilder*) clone;
 
 - (UseItemResponse*) build;
 - (UseItemResponse*) buildPartial;
 
-- (UseItemResponse_Builder*) mergeFrom:(UseItemResponse*) other;
-- (UseItemResponse_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
-- (UseItemResponse_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+- (UseItemResponseBuilder*) mergeFrom:(UseItemResponse*) other;
+- (UseItemResponseBuilder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
+- (UseItemResponseBuilder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 
 - (BOOL) hasItemId;
-- (int32_t) itemId;
-- (UseItemResponse_Builder*) setItemId:(int32_t) value;
-- (UseItemResponse_Builder*) clearItemId;
+- (SInt32) itemId;
+- (UseItemResponseBuilder*) setItemId:(SInt32) value;
+- (UseItemResponseBuilder*) clearItemId;
 
-- (NSArray*) dicesList;
-- (PBDice*) dicesAtIndex:(int32_t) index;
-- (UseItemResponse_Builder*) replaceDicesAtIndex:(int32_t) index with:(PBDice*) value;
-- (UseItemResponse_Builder*) addDices:(PBDice*) value;
-- (UseItemResponse_Builder*) addAllDices:(NSArray*) values;
-- (UseItemResponse_Builder*) clearDicesList;
+- (NSMutableArray *)dices;
+- (PBDice*)dicesAtIndex:(NSUInteger)index;
+- (UseItemResponseBuilder *)addDices:(PBDice*)value;
+- (UseItemResponseBuilder *)setDicesArray:(NSArray *)array;
+- (UseItemResponseBuilder *)clearDices;
 
 - (BOOL) hasAction;
 - (PBDiceAction*) action;
-- (UseItemResponse_Builder*) setAction:(PBDiceAction*) value;
-- (UseItemResponse_Builder*) setActionBuilder:(PBDiceAction_Builder*) builderForValue;
-- (UseItemResponse_Builder*) mergeAction:(PBDiceAction*) value;
-- (UseItemResponse_Builder*) clearAction;
+- (UseItemResponseBuilder*) setAction:(PBDiceAction*) value;
+- (UseItemResponseBuilder*) setActionBuilder:(PBDiceActionBuilder*) builderForValue;
+- (UseItemResponseBuilder*) mergeAction:(PBDiceAction*) value;
+- (UseItemResponseBuilder*) clearAction;
 
 - (BOOL) hasDirection;
-- (int32_t) direction;
-- (UseItemResponse_Builder*) setDirection:(int32_t) value;
-- (UseItemResponse_Builder*) clearDirection;
+- (SInt32) direction;
+- (UseItemResponseBuilder*) setDirection:(SInt32) value;
+- (UseItemResponseBuilder*) clearDirection;
 
 - (BOOL) hasNextPlayUserId;
 - (NSString*) nextPlayUserId;
-- (UseItemResponse_Builder*) setNextPlayUserId:(NSString*) value;
-- (UseItemResponse_Builder*) clearNextPlayUserId;
+- (UseItemResponseBuilder*) setNextPlayUserId:(NSString*) value;
+- (UseItemResponseBuilder*) clearNextPlayUserId;
 
 - (BOOL) hasDecreaseTimeForNextPlayUser;
 - (BOOL) decreaseTimeForNextPlayUser;
-- (UseItemResponse_Builder*) setDecreaseTimeForNextPlayUser:(BOOL) value;
-- (UseItemResponse_Builder*) clearDecreaseTimeForNextPlayUser;
+- (UseItemResponseBuilder*) setDecreaseTimeForNextPlayUser:(BOOL) value;
+- (UseItemResponseBuilder*) clearDecreaseTimeForNextPlayUser;
 @end
 
-@interface UserDiceNotification : PBGeneratedMessage {
+@interface UserDiceNotification : PBGeneratedMessage<GeneratedMessageProtocol> {
 @private
   BOOL hasCleanAll_:1;
   BOOL hasIsWild_:1;
   BOOL cleanAll_:1;
   BOOL isWild_:1;
-  NSMutableArray* mutableUserDiceList;
+  NSMutableArray * userDiceArray;
 }
 - (BOOL) hasCleanAll;
 - (BOOL) hasIsWild;
+@property (readonly, strong) NSArray * userDice;
 - (BOOL) cleanAll;
 - (BOOL) isWild;
-- (NSArray*) userDiceList;
-- (PBUserDice*) userDiceAtIndex:(int32_t) index;
+- (PBUserDice*)userDiceAtIndex:(NSUInteger)index;
 
-+ (UserDiceNotification*) defaultInstance;
-- (UserDiceNotification*) defaultInstance;
++ (instancetype) defaultInstance;
+- (instancetype) defaultInstance;
 
 - (BOOL) isInitialized;
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
-- (UserDiceNotification_Builder*) builder;
-+ (UserDiceNotification_Builder*) builder;
-+ (UserDiceNotification_Builder*) builderWithPrototype:(UserDiceNotification*) prototype;
+- (UserDiceNotificationBuilder*) builder;
++ (UserDiceNotificationBuilder*) builder;
++ (UserDiceNotificationBuilder*) builderWithPrototype:(UserDiceNotification*) prototype;
+- (UserDiceNotificationBuilder*) toBuilder;
 
 + (UserDiceNotification*) parseFromData:(NSData*) data;
 + (UserDiceNotification*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
@@ -1326,42 +1354,41 @@ BOOL BetTypeIsValidValue(BetType value);
 + (UserDiceNotification*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 @end
 
-@interface UserDiceNotification_Builder : PBGeneratedMessage_Builder {
+@interface UserDiceNotificationBuilder : PBGeneratedMessageBuilder {
 @private
-  UserDiceNotification* result;
+  UserDiceNotification* resultUserDiceNotification;
 }
 
 - (UserDiceNotification*) defaultInstance;
 
-- (UserDiceNotification_Builder*) clear;
-- (UserDiceNotification_Builder*) clone;
+- (UserDiceNotificationBuilder*) clear;
+- (UserDiceNotificationBuilder*) clone;
 
 - (UserDiceNotification*) build;
 - (UserDiceNotification*) buildPartial;
 
-- (UserDiceNotification_Builder*) mergeFrom:(UserDiceNotification*) other;
-- (UserDiceNotification_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
-- (UserDiceNotification_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+- (UserDiceNotificationBuilder*) mergeFrom:(UserDiceNotification*) other;
+- (UserDiceNotificationBuilder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
+- (UserDiceNotificationBuilder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 
-- (NSArray*) userDiceList;
-- (PBUserDice*) userDiceAtIndex:(int32_t) index;
-- (UserDiceNotification_Builder*) replaceUserDiceAtIndex:(int32_t) index with:(PBUserDice*) value;
-- (UserDiceNotification_Builder*) addUserDice:(PBUserDice*) value;
-- (UserDiceNotification_Builder*) addAllUserDice:(NSArray*) values;
-- (UserDiceNotification_Builder*) clearUserDiceList;
+- (NSMutableArray *)userDice;
+- (PBUserDice*)userDiceAtIndex:(NSUInteger)index;
+- (UserDiceNotificationBuilder *)addUserDice:(PBUserDice*)value;
+- (UserDiceNotificationBuilder *)setUserDiceArray:(NSArray *)array;
+- (UserDiceNotificationBuilder *)clearUserDice;
 
 - (BOOL) hasCleanAll;
 - (BOOL) cleanAll;
-- (UserDiceNotification_Builder*) setCleanAll:(BOOL) value;
-- (UserDiceNotification_Builder*) clearCleanAll;
+- (UserDiceNotificationBuilder*) setCleanAll:(BOOL) value;
+- (UserDiceNotificationBuilder*) clearCleanAll;
 
 - (BOOL) hasIsWild;
 - (BOOL) isWild;
-- (UserDiceNotification_Builder*) setIsWild:(BOOL) value;
-- (UserDiceNotification_Builder*) clearIsWild;
+- (UserDiceNotificationBuilder*) setIsWild:(BOOL) value;
+- (UserDiceNotificationBuilder*) clearIsWild;
 @end
 
-@interface TimeoutSettingRequest : PBGeneratedMessage {
+@interface TimeoutSettingRequest : PBGeneratedMessage<GeneratedMessageProtocol> {
 @private
   BOOL hasAction_:1;
   PBZJHUserAction action;
@@ -1369,14 +1396,15 @@ BOOL BetTypeIsValidValue(BetType value);
 - (BOOL) hasAction;
 @property (readonly) PBZJHUserAction action;
 
-+ (TimeoutSettingRequest*) defaultInstance;
-- (TimeoutSettingRequest*) defaultInstance;
++ (instancetype) defaultInstance;
+- (instancetype) defaultInstance;
 
 - (BOOL) isInitialized;
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
-- (TimeoutSettingRequest_Builder*) builder;
-+ (TimeoutSettingRequest_Builder*) builder;
-+ (TimeoutSettingRequest_Builder*) builderWithPrototype:(TimeoutSettingRequest*) prototype;
+- (TimeoutSettingRequestBuilder*) builder;
++ (TimeoutSettingRequestBuilder*) builder;
++ (TimeoutSettingRequestBuilder*) builderWithPrototype:(TimeoutSettingRequest*) prototype;
+- (TimeoutSettingRequestBuilder*) toBuilder;
 
 + (TimeoutSettingRequest*) parseFromData:(NSData*) data;
 + (TimeoutSettingRequest*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
@@ -1386,41 +1414,42 @@ BOOL BetTypeIsValidValue(BetType value);
 + (TimeoutSettingRequest*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 @end
 
-@interface TimeoutSettingRequest_Builder : PBGeneratedMessage_Builder {
+@interface TimeoutSettingRequestBuilder : PBGeneratedMessageBuilder {
 @private
-  TimeoutSettingRequest* result;
+  TimeoutSettingRequest* resultTimeoutSettingRequest;
 }
 
 - (TimeoutSettingRequest*) defaultInstance;
 
-- (TimeoutSettingRequest_Builder*) clear;
-- (TimeoutSettingRequest_Builder*) clone;
+- (TimeoutSettingRequestBuilder*) clear;
+- (TimeoutSettingRequestBuilder*) clone;
 
 - (TimeoutSettingRequest*) build;
 - (TimeoutSettingRequest*) buildPartial;
 
-- (TimeoutSettingRequest_Builder*) mergeFrom:(TimeoutSettingRequest*) other;
-- (TimeoutSettingRequest_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
-- (TimeoutSettingRequest_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+- (TimeoutSettingRequestBuilder*) mergeFrom:(TimeoutSettingRequest*) other;
+- (TimeoutSettingRequestBuilder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
+- (TimeoutSettingRequestBuilder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 
 - (BOOL) hasAction;
 - (PBZJHUserAction) action;
-- (TimeoutSettingRequest_Builder*) setAction:(PBZJHUserAction) value;
-- (TimeoutSettingRequest_Builder*) clearAction;
+- (TimeoutSettingRequestBuilder*) setAction:(PBZJHUserAction) value;
+- (TimeoutSettingRequestBuilder*) clearAction;
 @end
 
-@interface TimeoutSettingResponse : PBGeneratedMessage {
+@interface TimeoutSettingResponse : PBGeneratedMessage<GeneratedMessageProtocol> {
 @private
 }
 
-+ (TimeoutSettingResponse*) defaultInstance;
-- (TimeoutSettingResponse*) defaultInstance;
++ (instancetype) defaultInstance;
+- (instancetype) defaultInstance;
 
 - (BOOL) isInitialized;
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
-- (TimeoutSettingResponse_Builder*) builder;
-+ (TimeoutSettingResponse_Builder*) builder;
-+ (TimeoutSettingResponse_Builder*) builderWithPrototype:(TimeoutSettingResponse*) prototype;
+- (TimeoutSettingResponseBuilder*) builder;
++ (TimeoutSettingResponseBuilder*) builder;
++ (TimeoutSettingResponseBuilder*) builderWithPrototype:(TimeoutSettingResponse*) prototype;
+- (TimeoutSettingResponseBuilder*) toBuilder;
 
 + (TimeoutSettingResponse*) parseFromData:(NSData*) data;
 + (TimeoutSettingResponse*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
@@ -1430,48 +1459,49 @@ BOOL BetTypeIsValidValue(BetType value);
 + (TimeoutSettingResponse*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 @end
 
-@interface TimeoutSettingResponse_Builder : PBGeneratedMessage_Builder {
+@interface TimeoutSettingResponseBuilder : PBGeneratedMessageBuilder {
 @private
-  TimeoutSettingResponse* result;
+  TimeoutSettingResponse* resultTimeoutSettingResponse;
 }
 
 - (TimeoutSettingResponse*) defaultInstance;
 
-- (TimeoutSettingResponse_Builder*) clear;
-- (TimeoutSettingResponse_Builder*) clone;
+- (TimeoutSettingResponseBuilder*) clear;
+- (TimeoutSettingResponseBuilder*) clone;
 
 - (TimeoutSettingResponse*) build;
 - (TimeoutSettingResponse*) buildPartial;
 
-- (TimeoutSettingResponse_Builder*) mergeFrom:(TimeoutSettingResponse*) other;
-- (TimeoutSettingResponse_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
-- (TimeoutSettingResponse_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+- (TimeoutSettingResponseBuilder*) mergeFrom:(TimeoutSettingResponse*) other;
+- (TimeoutSettingResponseBuilder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
+- (TimeoutSettingResponseBuilder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 @end
 
-@interface BetRequest : PBGeneratedMessage {
+@interface BetRequest : PBGeneratedMessage<GeneratedMessageProtocol> {
 @private
   BOOL hasIsAutoBet_:1;
   BOOL hasSingleBet_:1;
   BOOL hasCount_:1;
   BOOL isAutoBet_:1;
-  int32_t singleBet;
-  int32_t count;
+  SInt32 singleBet;
+  SInt32 count;
 }
 - (BOOL) hasSingleBet;
 - (BOOL) hasCount;
 - (BOOL) hasIsAutoBet;
-@property (readonly) int32_t singleBet;
-@property (readonly) int32_t count;
+@property (readonly) SInt32 singleBet;
+@property (readonly) SInt32 count;
 - (BOOL) isAutoBet;
 
-+ (BetRequest*) defaultInstance;
-- (BetRequest*) defaultInstance;
++ (instancetype) defaultInstance;
+- (instancetype) defaultInstance;
 
 - (BOOL) isInitialized;
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
-- (BetRequest_Builder*) builder;
-+ (BetRequest_Builder*) builder;
-+ (BetRequest_Builder*) builderWithPrototype:(BetRequest*) prototype;
+- (BetRequestBuilder*) builder;
++ (BetRequestBuilder*) builder;
++ (BetRequestBuilder*) builderWithPrototype:(BetRequest*) prototype;
+- (BetRequestBuilder*) toBuilder;
 
 + (BetRequest*) parseFromData:(NSData*) data;
 + (BetRequest*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
@@ -1481,51 +1511,52 @@ BOOL BetTypeIsValidValue(BetType value);
 + (BetRequest*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 @end
 
-@interface BetRequest_Builder : PBGeneratedMessage_Builder {
+@interface BetRequestBuilder : PBGeneratedMessageBuilder {
 @private
-  BetRequest* result;
+  BetRequest* resultBetRequest;
 }
 
 - (BetRequest*) defaultInstance;
 
-- (BetRequest_Builder*) clear;
-- (BetRequest_Builder*) clone;
+- (BetRequestBuilder*) clear;
+- (BetRequestBuilder*) clone;
 
 - (BetRequest*) build;
 - (BetRequest*) buildPartial;
 
-- (BetRequest_Builder*) mergeFrom:(BetRequest*) other;
-- (BetRequest_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
-- (BetRequest_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+- (BetRequestBuilder*) mergeFrom:(BetRequest*) other;
+- (BetRequestBuilder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
+- (BetRequestBuilder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 
 - (BOOL) hasSingleBet;
-- (int32_t) singleBet;
-- (BetRequest_Builder*) setSingleBet:(int32_t) value;
-- (BetRequest_Builder*) clearSingleBet;
+- (SInt32) singleBet;
+- (BetRequestBuilder*) setSingleBet:(SInt32) value;
+- (BetRequestBuilder*) clearSingleBet;
 
 - (BOOL) hasCount;
-- (int32_t) count;
-- (BetRequest_Builder*) setCount:(int32_t) value;
-- (BetRequest_Builder*) clearCount;
+- (SInt32) count;
+- (BetRequestBuilder*) setCount:(SInt32) value;
+- (BetRequestBuilder*) clearCount;
 
 - (BOOL) hasIsAutoBet;
 - (BOOL) isAutoBet;
-- (BetRequest_Builder*) setIsAutoBet:(BOOL) value;
-- (BetRequest_Builder*) clearIsAutoBet;
+- (BetRequestBuilder*) setIsAutoBet:(BOOL) value;
+- (BetRequestBuilder*) clearIsAutoBet;
 @end
 
-@interface BetResponse : PBGeneratedMessage {
+@interface BetResponse : PBGeneratedMessage<GeneratedMessageProtocol> {
 @private
 }
 
-+ (BetResponse*) defaultInstance;
-- (BetResponse*) defaultInstance;
++ (instancetype) defaultInstance;
+- (instancetype) defaultInstance;
 
 - (BOOL) isInitialized;
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
-- (BetResponse_Builder*) builder;
-+ (BetResponse_Builder*) builder;
-+ (BetResponse_Builder*) builderWithPrototype:(BetResponse*) prototype;
+- (BetResponseBuilder*) builder;
++ (BetResponseBuilder*) builder;
++ (BetResponseBuilder*) builderWithPrototype:(BetResponse*) prototype;
+- (BetResponseBuilder*) toBuilder;
 
 + (BetResponse*) parseFromData:(NSData*) data;
 + (BetResponse*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
@@ -1535,36 +1566,37 @@ BOOL BetTypeIsValidValue(BetType value);
 + (BetResponse*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 @end
 
-@interface BetResponse_Builder : PBGeneratedMessage_Builder {
+@interface BetResponseBuilder : PBGeneratedMessageBuilder {
 @private
-  BetResponse* result;
+  BetResponse* resultBetResponse;
 }
 
 - (BetResponse*) defaultInstance;
 
-- (BetResponse_Builder*) clear;
-- (BetResponse_Builder*) clone;
+- (BetResponseBuilder*) clear;
+- (BetResponseBuilder*) clone;
 
 - (BetResponse*) build;
 - (BetResponse*) buildPartial;
 
-- (BetResponse_Builder*) mergeFrom:(BetResponse*) other;
-- (BetResponse_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
-- (BetResponse_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+- (BetResponseBuilder*) mergeFrom:(BetResponse*) other;
+- (BetResponseBuilder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
+- (BetResponseBuilder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 @end
 
-@interface CheckCardRequest : PBGeneratedMessage {
+@interface CheckCardRequest : PBGeneratedMessage<GeneratedMessageProtocol> {
 @private
 }
 
-+ (CheckCardRequest*) defaultInstance;
-- (CheckCardRequest*) defaultInstance;
++ (instancetype) defaultInstance;
+- (instancetype) defaultInstance;
 
 - (BOOL) isInitialized;
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
-- (CheckCardRequest_Builder*) builder;
-+ (CheckCardRequest_Builder*) builder;
-+ (CheckCardRequest_Builder*) builderWithPrototype:(CheckCardRequest*) prototype;
+- (CheckCardRequestBuilder*) builder;
++ (CheckCardRequestBuilder*) builder;
++ (CheckCardRequestBuilder*) builderWithPrototype:(CheckCardRequest*) prototype;
+- (CheckCardRequestBuilder*) toBuilder;
 
 + (CheckCardRequest*) parseFromData:(NSData*) data;
 + (CheckCardRequest*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
@@ -1574,36 +1606,37 @@ BOOL BetTypeIsValidValue(BetType value);
 + (CheckCardRequest*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 @end
 
-@interface CheckCardRequest_Builder : PBGeneratedMessage_Builder {
+@interface CheckCardRequestBuilder : PBGeneratedMessageBuilder {
 @private
-  CheckCardRequest* result;
+  CheckCardRequest* resultCheckCardRequest;
 }
 
 - (CheckCardRequest*) defaultInstance;
 
-- (CheckCardRequest_Builder*) clear;
-- (CheckCardRequest_Builder*) clone;
+- (CheckCardRequestBuilder*) clear;
+- (CheckCardRequestBuilder*) clone;
 
 - (CheckCardRequest*) build;
 - (CheckCardRequest*) buildPartial;
 
-- (CheckCardRequest_Builder*) mergeFrom:(CheckCardRequest*) other;
-- (CheckCardRequest_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
-- (CheckCardRequest_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+- (CheckCardRequestBuilder*) mergeFrom:(CheckCardRequest*) other;
+- (CheckCardRequestBuilder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
+- (CheckCardRequestBuilder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 @end
 
-@interface CheckCardResponse : PBGeneratedMessage {
+@interface CheckCardResponse : PBGeneratedMessage<GeneratedMessageProtocol> {
 @private
 }
 
-+ (CheckCardResponse*) defaultInstance;
-- (CheckCardResponse*) defaultInstance;
++ (instancetype) defaultInstance;
+- (instancetype) defaultInstance;
 
 - (BOOL) isInitialized;
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
-- (CheckCardResponse_Builder*) builder;
-+ (CheckCardResponse_Builder*) builder;
-+ (CheckCardResponse_Builder*) builderWithPrototype:(CheckCardResponse*) prototype;
+- (CheckCardResponseBuilder*) builder;
++ (CheckCardResponseBuilder*) builder;
++ (CheckCardResponseBuilder*) builderWithPrototype:(CheckCardResponse*) prototype;
+- (CheckCardResponseBuilder*) toBuilder;
 
 + (CheckCardResponse*) parseFromData:(NSData*) data;
 + (CheckCardResponse*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
@@ -1613,36 +1646,37 @@ BOOL BetTypeIsValidValue(BetType value);
 + (CheckCardResponse*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 @end
 
-@interface CheckCardResponse_Builder : PBGeneratedMessage_Builder {
+@interface CheckCardResponseBuilder : PBGeneratedMessageBuilder {
 @private
-  CheckCardResponse* result;
+  CheckCardResponse* resultCheckCardResponse;
 }
 
 - (CheckCardResponse*) defaultInstance;
 
-- (CheckCardResponse_Builder*) clear;
-- (CheckCardResponse_Builder*) clone;
+- (CheckCardResponseBuilder*) clear;
+- (CheckCardResponseBuilder*) clone;
 
 - (CheckCardResponse*) build;
 - (CheckCardResponse*) buildPartial;
 
-- (CheckCardResponse_Builder*) mergeFrom:(CheckCardResponse*) other;
-- (CheckCardResponse_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
-- (CheckCardResponse_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+- (CheckCardResponseBuilder*) mergeFrom:(CheckCardResponse*) other;
+- (CheckCardResponseBuilder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
+- (CheckCardResponseBuilder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 @end
 
-@interface FoldCardRequest : PBGeneratedMessage {
+@interface FoldCardRequest : PBGeneratedMessage<GeneratedMessageProtocol> {
 @private
 }
 
-+ (FoldCardRequest*) defaultInstance;
-- (FoldCardRequest*) defaultInstance;
++ (instancetype) defaultInstance;
+- (instancetype) defaultInstance;
 
 - (BOOL) isInitialized;
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
-- (FoldCardRequest_Builder*) builder;
-+ (FoldCardRequest_Builder*) builder;
-+ (FoldCardRequest_Builder*) builderWithPrototype:(FoldCardRequest*) prototype;
+- (FoldCardRequestBuilder*) builder;
++ (FoldCardRequestBuilder*) builder;
++ (FoldCardRequestBuilder*) builderWithPrototype:(FoldCardRequest*) prototype;
+- (FoldCardRequestBuilder*) toBuilder;
 
 + (FoldCardRequest*) parseFromData:(NSData*) data;
 + (FoldCardRequest*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
@@ -1652,36 +1686,37 @@ BOOL BetTypeIsValidValue(BetType value);
 + (FoldCardRequest*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 @end
 
-@interface FoldCardRequest_Builder : PBGeneratedMessage_Builder {
+@interface FoldCardRequestBuilder : PBGeneratedMessageBuilder {
 @private
-  FoldCardRequest* result;
+  FoldCardRequest* resultFoldCardRequest;
 }
 
 - (FoldCardRequest*) defaultInstance;
 
-- (FoldCardRequest_Builder*) clear;
-- (FoldCardRequest_Builder*) clone;
+- (FoldCardRequestBuilder*) clear;
+- (FoldCardRequestBuilder*) clone;
 
 - (FoldCardRequest*) build;
 - (FoldCardRequest*) buildPartial;
 
-- (FoldCardRequest_Builder*) mergeFrom:(FoldCardRequest*) other;
-- (FoldCardRequest_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
-- (FoldCardRequest_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+- (FoldCardRequestBuilder*) mergeFrom:(FoldCardRequest*) other;
+- (FoldCardRequestBuilder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
+- (FoldCardRequestBuilder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 @end
 
-@interface FoldCardResponse : PBGeneratedMessage {
+@interface FoldCardResponse : PBGeneratedMessage<GeneratedMessageProtocol> {
 @private
 }
 
-+ (FoldCardResponse*) defaultInstance;
-- (FoldCardResponse*) defaultInstance;
++ (instancetype) defaultInstance;
+- (instancetype) defaultInstance;
 
 - (BOOL) isInitialized;
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
-- (FoldCardResponse_Builder*) builder;
-+ (FoldCardResponse_Builder*) builder;
-+ (FoldCardResponse_Builder*) builderWithPrototype:(FoldCardResponse*) prototype;
+- (FoldCardResponseBuilder*) builder;
++ (FoldCardResponseBuilder*) builder;
++ (FoldCardResponseBuilder*) builderWithPrototype:(FoldCardResponse*) prototype;
+- (FoldCardResponseBuilder*) toBuilder;
 
 + (FoldCardResponse*) parseFromData:(NSData*) data;
 + (FoldCardResponse*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
@@ -1691,40 +1726,41 @@ BOOL BetTypeIsValidValue(BetType value);
 + (FoldCardResponse*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 @end
 
-@interface FoldCardResponse_Builder : PBGeneratedMessage_Builder {
+@interface FoldCardResponseBuilder : PBGeneratedMessageBuilder {
 @private
-  FoldCardResponse* result;
+  FoldCardResponse* resultFoldCardResponse;
 }
 
 - (FoldCardResponse*) defaultInstance;
 
-- (FoldCardResponse_Builder*) clear;
-- (FoldCardResponse_Builder*) clone;
+- (FoldCardResponseBuilder*) clear;
+- (FoldCardResponseBuilder*) clone;
 
 - (FoldCardResponse*) build;
 - (FoldCardResponse*) buildPartial;
 
-- (FoldCardResponse_Builder*) mergeFrom:(FoldCardResponse*) other;
-- (FoldCardResponse_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
-- (FoldCardResponse_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+- (FoldCardResponseBuilder*) mergeFrom:(FoldCardResponse*) other;
+- (FoldCardResponseBuilder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
+- (FoldCardResponseBuilder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 @end
 
-@interface ShowCardRequest : PBGeneratedMessage {
+@interface ShowCardRequest : PBGeneratedMessage<GeneratedMessageProtocol> {
 @private
-  NSMutableArray* mutableCardIdsList;
-  int32_t cardIdsMemoizedSerializedSize;
+  PBAppendableArray * cardIdsArray;
+  SInt32 cardIdsMemoizedSerializedSize;
 }
-- (NSArray*) cardIdsList;
-- (int32_t) cardIdsAtIndex:(int32_t) index;
+@property (readonly, strong) PBArray * cardIds;
+- (SInt32)cardIdsAtIndex:(NSUInteger)index;
 
-+ (ShowCardRequest*) defaultInstance;
-- (ShowCardRequest*) defaultInstance;
++ (instancetype) defaultInstance;
+- (instancetype) defaultInstance;
 
 - (BOOL) isInitialized;
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
-- (ShowCardRequest_Builder*) builder;
-+ (ShowCardRequest_Builder*) builder;
-+ (ShowCardRequest_Builder*) builderWithPrototype:(ShowCardRequest*) prototype;
+- (ShowCardRequestBuilder*) builder;
++ (ShowCardRequestBuilder*) builder;
++ (ShowCardRequestBuilder*) builderWithPrototype:(ShowCardRequest*) prototype;
+- (ShowCardRequestBuilder*) toBuilder;
 
 + (ShowCardRequest*) parseFromData:(NSData*) data;
 + (ShowCardRequest*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
@@ -1734,43 +1770,44 @@ BOOL BetTypeIsValidValue(BetType value);
 + (ShowCardRequest*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 @end
 
-@interface ShowCardRequest_Builder : PBGeneratedMessage_Builder {
+@interface ShowCardRequestBuilder : PBGeneratedMessageBuilder {
 @private
-  ShowCardRequest* result;
+  ShowCardRequest* resultShowCardRequest;
 }
 
 - (ShowCardRequest*) defaultInstance;
 
-- (ShowCardRequest_Builder*) clear;
-- (ShowCardRequest_Builder*) clone;
+- (ShowCardRequestBuilder*) clear;
+- (ShowCardRequestBuilder*) clone;
 
 - (ShowCardRequest*) build;
 - (ShowCardRequest*) buildPartial;
 
-- (ShowCardRequest_Builder*) mergeFrom:(ShowCardRequest*) other;
-- (ShowCardRequest_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
-- (ShowCardRequest_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+- (ShowCardRequestBuilder*) mergeFrom:(ShowCardRequest*) other;
+- (ShowCardRequestBuilder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
+- (ShowCardRequestBuilder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 
-- (NSArray*) cardIdsList;
-- (int32_t) cardIdsAtIndex:(int32_t) index;
-- (ShowCardRequest_Builder*) replaceCardIdsAtIndex:(int32_t) index with:(int32_t) value;
-- (ShowCardRequest_Builder*) addCardIds:(int32_t) value;
-- (ShowCardRequest_Builder*) addAllCardIds:(NSArray*) values;
-- (ShowCardRequest_Builder*) clearCardIdsList;
+- (PBAppendableArray *)cardIds;
+- (SInt32)cardIdsAtIndex:(NSUInteger)index;
+- (ShowCardRequestBuilder *)addCardIds:(SInt32)value;
+- (ShowCardRequestBuilder *)setCardIdsArray:(NSArray *)array;
+- (ShowCardRequestBuilder *)setCardIdsValues:(const SInt32 *)values count:(NSUInteger)count;
+- (ShowCardRequestBuilder *)clearCardIds;
 @end
 
-@interface ShowCardResponse : PBGeneratedMessage {
+@interface ShowCardResponse : PBGeneratedMessage<GeneratedMessageProtocol> {
 @private
 }
 
-+ (ShowCardResponse*) defaultInstance;
-- (ShowCardResponse*) defaultInstance;
++ (instancetype) defaultInstance;
+- (instancetype) defaultInstance;
 
 - (BOOL) isInitialized;
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
-- (ShowCardResponse_Builder*) builder;
-+ (ShowCardResponse_Builder*) builder;
-+ (ShowCardResponse_Builder*) builderWithPrototype:(ShowCardResponse*) prototype;
+- (ShowCardResponseBuilder*) builder;
++ (ShowCardResponseBuilder*) builder;
++ (ShowCardResponseBuilder*) builderWithPrototype:(ShowCardResponse*) prototype;
+- (ShowCardResponseBuilder*) toBuilder;
 
 + (ShowCardResponse*) parseFromData:(NSData*) data;
 + (ShowCardResponse*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
@@ -1780,40 +1817,41 @@ BOOL BetTypeIsValidValue(BetType value);
 + (ShowCardResponse*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 @end
 
-@interface ShowCardResponse_Builder : PBGeneratedMessage_Builder {
+@interface ShowCardResponseBuilder : PBGeneratedMessageBuilder {
 @private
-  ShowCardResponse* result;
+  ShowCardResponse* resultShowCardResponse;
 }
 
 - (ShowCardResponse*) defaultInstance;
 
-- (ShowCardResponse_Builder*) clear;
-- (ShowCardResponse_Builder*) clone;
+- (ShowCardResponseBuilder*) clear;
+- (ShowCardResponseBuilder*) clone;
 
 - (ShowCardResponse*) build;
 - (ShowCardResponse*) buildPartial;
 
-- (ShowCardResponse_Builder*) mergeFrom:(ShowCardResponse*) other;
-- (ShowCardResponse_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
-- (ShowCardResponse_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+- (ShowCardResponseBuilder*) mergeFrom:(ShowCardResponse*) other;
+- (ShowCardResponseBuilder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
+- (ShowCardResponseBuilder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 @end
 
-@interface CompareCardRequest : PBGeneratedMessage {
+@interface CompareCardRequest : PBGeneratedMessage<GeneratedMessageProtocol> {
 @private
   BOOL hasToUserId_:1;
   NSString* toUserId;
 }
 - (BOOL) hasToUserId;
-@property (readonly, retain) NSString* toUserId;
+@property (readonly, strong) NSString* toUserId;
 
-+ (CompareCardRequest*) defaultInstance;
-- (CompareCardRequest*) defaultInstance;
++ (instancetype) defaultInstance;
+- (instancetype) defaultInstance;
 
 - (BOOL) isInitialized;
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
-- (CompareCardRequest_Builder*) builder;
-+ (CompareCardRequest_Builder*) builder;
-+ (CompareCardRequest_Builder*) builderWithPrototype:(CompareCardRequest*) prototype;
+- (CompareCardRequestBuilder*) builder;
++ (CompareCardRequestBuilder*) builder;
++ (CompareCardRequestBuilder*) builderWithPrototype:(CompareCardRequest*) prototype;
+- (CompareCardRequestBuilder*) toBuilder;
 
 + (CompareCardRequest*) parseFromData:(NSData*) data;
 + (CompareCardRequest*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
@@ -1823,44 +1861,45 @@ BOOL BetTypeIsValidValue(BetType value);
 + (CompareCardRequest*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 @end
 
-@interface CompareCardRequest_Builder : PBGeneratedMessage_Builder {
+@interface CompareCardRequestBuilder : PBGeneratedMessageBuilder {
 @private
-  CompareCardRequest* result;
+  CompareCardRequest* resultCompareCardRequest;
 }
 
 - (CompareCardRequest*) defaultInstance;
 
-- (CompareCardRequest_Builder*) clear;
-- (CompareCardRequest_Builder*) clone;
+- (CompareCardRequestBuilder*) clear;
+- (CompareCardRequestBuilder*) clone;
 
 - (CompareCardRequest*) build;
 - (CompareCardRequest*) buildPartial;
 
-- (CompareCardRequest_Builder*) mergeFrom:(CompareCardRequest*) other;
-- (CompareCardRequest_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
-- (CompareCardRequest_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+- (CompareCardRequestBuilder*) mergeFrom:(CompareCardRequest*) other;
+- (CompareCardRequestBuilder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
+- (CompareCardRequestBuilder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 
 - (BOOL) hasToUserId;
 - (NSString*) toUserId;
-- (CompareCardRequest_Builder*) setToUserId:(NSString*) value;
-- (CompareCardRequest_Builder*) clearToUserId;
+- (CompareCardRequestBuilder*) setToUserId:(NSString*) value;
+- (CompareCardRequestBuilder*) clearToUserId;
 @end
 
-@interface CompareCardResponse : PBGeneratedMessage {
+@interface CompareCardResponse : PBGeneratedMessage<GeneratedMessageProtocol> {
 @private
-  NSMutableArray* mutableUserResultList;
+  NSMutableArray * userResultArray;
 }
-- (NSArray*) userResultList;
-- (PBUserResult*) userResultAtIndex:(int32_t) index;
+@property (readonly, strong) NSArray * userResult;
+- (PBUserResult*)userResultAtIndex:(NSUInteger)index;
 
-+ (CompareCardResponse*) defaultInstance;
-- (CompareCardResponse*) defaultInstance;
++ (instancetype) defaultInstance;
+- (instancetype) defaultInstance;
 
 - (BOOL) isInitialized;
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
-- (CompareCardResponse_Builder*) builder;
-+ (CompareCardResponse_Builder*) builder;
-+ (CompareCardResponse_Builder*) builderWithPrototype:(CompareCardResponse*) prototype;
+- (CompareCardResponseBuilder*) builder;
++ (CompareCardResponseBuilder*) builder;
++ (CompareCardResponseBuilder*) builderWithPrototype:(CompareCardResponse*) prototype;
+- (CompareCardResponseBuilder*) toBuilder;
 
 + (CompareCardResponse*) parseFromData:(NSData*) data;
 + (CompareCardResponse*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
@@ -1870,47 +1909,47 @@ BOOL BetTypeIsValidValue(BetType value);
 + (CompareCardResponse*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 @end
 
-@interface CompareCardResponse_Builder : PBGeneratedMessage_Builder {
+@interface CompareCardResponseBuilder : PBGeneratedMessageBuilder {
 @private
-  CompareCardResponse* result;
+  CompareCardResponse* resultCompareCardResponse;
 }
 
 - (CompareCardResponse*) defaultInstance;
 
-- (CompareCardResponse_Builder*) clear;
-- (CompareCardResponse_Builder*) clone;
+- (CompareCardResponseBuilder*) clear;
+- (CompareCardResponseBuilder*) clone;
 
 - (CompareCardResponse*) build;
 - (CompareCardResponse*) buildPartial;
 
-- (CompareCardResponse_Builder*) mergeFrom:(CompareCardResponse*) other;
-- (CompareCardResponse_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
-- (CompareCardResponse_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+- (CompareCardResponseBuilder*) mergeFrom:(CompareCardResponse*) other;
+- (CompareCardResponseBuilder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
+- (CompareCardResponseBuilder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 
-- (NSArray*) userResultList;
-- (PBUserResult*) userResultAtIndex:(int32_t) index;
-- (CompareCardResponse_Builder*) replaceUserResultAtIndex:(int32_t) index with:(PBUserResult*) value;
-- (CompareCardResponse_Builder*) addUserResult:(PBUserResult*) value;
-- (CompareCardResponse_Builder*) addAllUserResult:(NSArray*) values;
-- (CompareCardResponse_Builder*) clearUserResultList;
+- (NSMutableArray *)userResult;
+- (PBUserResult*)userResultAtIndex:(NSUInteger)index;
+- (CompareCardResponseBuilder *)addUserResult:(PBUserResult*)value;
+- (CompareCardResponseBuilder *)setUserResultArray:(NSArray *)array;
+- (CompareCardResponseBuilder *)clearUserResult;
 @end
 
-@interface ChangeCardRequest : PBGeneratedMessage {
+@interface ChangeCardRequest : PBGeneratedMessage<GeneratedMessageProtocol> {
 @private
   BOOL hasCardId_:1;
-  int32_t cardId;
+  SInt32 cardId;
 }
 - (BOOL) hasCardId;
-@property (readonly) int32_t cardId;
+@property (readonly) SInt32 cardId;
 
-+ (ChangeCardRequest*) defaultInstance;
-- (ChangeCardRequest*) defaultInstance;
++ (instancetype) defaultInstance;
+- (instancetype) defaultInstance;
 
 - (BOOL) isInitialized;
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
-- (ChangeCardRequest_Builder*) builder;
-+ (ChangeCardRequest_Builder*) builder;
-+ (ChangeCardRequest_Builder*) builderWithPrototype:(ChangeCardRequest*) prototype;
+- (ChangeCardRequestBuilder*) builder;
++ (ChangeCardRequestBuilder*) builder;
++ (ChangeCardRequestBuilder*) builderWithPrototype:(ChangeCardRequest*) prototype;
+- (ChangeCardRequestBuilder*) toBuilder;
 
 + (ChangeCardRequest*) parseFromData:(NSData*) data;
 + (ChangeCardRequest*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
@@ -1920,53 +1959,54 @@ BOOL BetTypeIsValidValue(BetType value);
 + (ChangeCardRequest*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 @end
 
-@interface ChangeCardRequest_Builder : PBGeneratedMessage_Builder {
+@interface ChangeCardRequestBuilder : PBGeneratedMessageBuilder {
 @private
-  ChangeCardRequest* result;
+  ChangeCardRequest* resultChangeCardRequest;
 }
 
 - (ChangeCardRequest*) defaultInstance;
 
-- (ChangeCardRequest_Builder*) clear;
-- (ChangeCardRequest_Builder*) clone;
+- (ChangeCardRequestBuilder*) clear;
+- (ChangeCardRequestBuilder*) clone;
 
 - (ChangeCardRequest*) build;
 - (ChangeCardRequest*) buildPartial;
 
-- (ChangeCardRequest_Builder*) mergeFrom:(ChangeCardRequest*) other;
-- (ChangeCardRequest_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
-- (ChangeCardRequest_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+- (ChangeCardRequestBuilder*) mergeFrom:(ChangeCardRequest*) other;
+- (ChangeCardRequestBuilder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
+- (ChangeCardRequestBuilder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 
 - (BOOL) hasCardId;
-- (int32_t) cardId;
-- (ChangeCardRequest_Builder*) setCardId:(int32_t) value;
-- (ChangeCardRequest_Builder*) clearCardId;
+- (SInt32) cardId;
+- (ChangeCardRequestBuilder*) setCardId:(SInt32) value;
+- (ChangeCardRequestBuilder*) clearCardId;
 @end
 
-@interface ChangeCardResponse : PBGeneratedMessage {
+@interface ChangeCardResponse : PBGeneratedMessage<GeneratedMessageProtocol> {
 @private
   BOOL hasOldCardId_:1;
   BOOL hasNewPoker_:1;
   BOOL hasCardType_:1;
-  int32_t oldCardId;
-  PBPoker* newPoker;
+  SInt32 oldCardId;
+  PBPoker* newPoker NS_RETURNS_NOT_RETAINED;
   PBZJHCardType cardType;
 }
 - (BOOL) hasOldCardId;
 - (BOOL) hasNewPoker;
 - (BOOL) hasCardType;
-@property (readonly) int32_t oldCardId;
-@property (readonly, retain) PBPoker* newPoker;
+@property (readonly) SInt32 oldCardId;
+@property (readonly, strong) NS_RETURNS_NOT_RETAINED PBPoker* newPoker;
 @property (readonly) PBZJHCardType cardType;
 
-+ (ChangeCardResponse*) defaultInstance;
-- (ChangeCardResponse*) defaultInstance;
++ (instancetype) defaultInstance;
+- (instancetype) defaultInstance;
 
 - (BOOL) isInitialized;
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
-- (ChangeCardResponse_Builder*) builder;
-+ (ChangeCardResponse_Builder*) builder;
-+ (ChangeCardResponse_Builder*) builderWithPrototype:(ChangeCardResponse*) prototype;
+- (ChangeCardResponseBuilder*) builder;
++ (ChangeCardResponseBuilder*) builder;
++ (ChangeCardResponseBuilder*) builderWithPrototype:(ChangeCardResponse*) prototype;
+- (ChangeCardResponseBuilder*) toBuilder;
 
 + (ChangeCardResponse*) parseFromData:(NSData*) data;
 + (ChangeCardResponse*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
@@ -1976,79 +2016,79 @@ BOOL BetTypeIsValidValue(BetType value);
 + (ChangeCardResponse*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 @end
 
-@interface ChangeCardResponse_Builder : PBGeneratedMessage_Builder {
+@interface ChangeCardResponseBuilder : PBGeneratedMessageBuilder {
 @private
-  ChangeCardResponse* result;
+  ChangeCardResponse* resultChangeCardResponse;
 }
 
 - (ChangeCardResponse*) defaultInstance;
 
-- (ChangeCardResponse_Builder*) clear;
-- (ChangeCardResponse_Builder*) clone;
+- (ChangeCardResponseBuilder*) clear;
+- (ChangeCardResponseBuilder*) clone;
 
 - (ChangeCardResponse*) build;
 - (ChangeCardResponse*) buildPartial;
 
-- (ChangeCardResponse_Builder*) mergeFrom:(ChangeCardResponse*) other;
-- (ChangeCardResponse_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
-- (ChangeCardResponse_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+- (ChangeCardResponseBuilder*) mergeFrom:(ChangeCardResponse*) other;
+- (ChangeCardResponseBuilder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
+- (ChangeCardResponseBuilder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 
 - (BOOL) hasOldCardId;
-- (int32_t) oldCardId;
-- (ChangeCardResponse_Builder*) setOldCardId:(int32_t) value;
-- (ChangeCardResponse_Builder*) clearOldCardId;
+- (SInt32) oldCardId;
+- (ChangeCardResponseBuilder*) setOldCardId:(SInt32) value;
+- (ChangeCardResponseBuilder*) clearOldCardId;
 
 - (BOOL) hasNewPoker;
 - (PBPoker*) newPoker;
-- (ChangeCardResponse_Builder*) setNewPoker:(PBPoker*) value;
-- (ChangeCardResponse_Builder*) setNewPokerBuilder:(PBPoker_Builder*) builderForValue;
-- (ChangeCardResponse_Builder*) mergeNewPoker:(PBPoker*) value;
-- (ChangeCardResponse_Builder*) clearNewPoker;
+- (ChangeCardResponseBuilder*) setNewPoker:(PBPoker*) value;
+- (ChangeCardResponseBuilder*) setNewPokerBuilder:(PBPokerBuilder*) builderForValue;
+- (ChangeCardResponseBuilder*) mergeNewPoker:(PBPoker*) value;
+- (ChangeCardResponseBuilder*) clearNewPoker;
 
 - (BOOL) hasCardType;
 - (PBZJHCardType) cardType;
-- (ChangeCardResponse_Builder*) setCardType:(PBZJHCardType) value;
-- (ChangeCardResponse_Builder*) clearCardType;
+- (ChangeCardResponseBuilder*) setCardType:(PBZJHCardType) value;
+- (ChangeCardResponseBuilder*) clearCardType;
 @end
 
-@interface JoinGameRequest : PBGeneratedMessage {
+@interface JoinGameRequest : PBGeneratedMessage<GeneratedMessageProtocol> {
 @private
-  BOOL hasIsRobot_:1;
   BOOL hasGender_:1;
+  BOOL hasIsRobot_:1;
   BOOL hasSessionToBeChange_:1;
-  BOOL hasVersion_:1;
-  BOOL hasRuleType_:1;
-  BOOL hasUserLevel_:1;
-  BOOL hasGuessDifficultLevel_:1;
-  BOOL hasTargetSessionId_:1;
   BOOL hasAutoNew_:1;
-  BOOL hasAvatar_:1;
+  BOOL hasTargetSessionId_:1;
+  BOOL hasGuessDifficultLevel_:1;
+  BOOL hasUserLevel_:1;
+  BOOL hasRuleType_:1;
+  BOOL hasVersion_:1;
+  BOOL hasUserId_:1;
+  BOOL hasGameId_:1;
   BOOL hasNickName_:1;
+  BOOL hasAvatar_:1;
   BOOL hasRoomId_:1;
   BOOL hasRoomName_:1;
   BOOL hasLocation_:1;
-  BOOL hasGameId_:1;
-  BOOL hasUserId_:1;
   BOOL hasUser_:1;
-  BOOL isRobot_:1;
   BOOL gender_:1;
-  int64_t sessionToBeChange;
-  int32_t version;
-  int32_t ruleType;
-  int32_t userLevel;
-  int32_t guessDifficultLevel;
-  int32_t targetSessionId;
-  int32_t autoNew;
-  NSString* avatar;
+  BOOL isRobot_:1;
+  SInt64 sessionToBeChange;
+  SInt32 autoNew;
+  SInt32 targetSessionId;
+  SInt32 guessDifficultLevel;
+  SInt32 userLevel;
+  SInt32 ruleType;
+  SInt32 version;
+  NSString* userId;
+  NSString* gameId;
   NSString* nickName;
+  NSString* avatar;
   NSString* roomId;
   NSString* roomName;
   NSString* location;
-  NSString* gameId;
-  NSString* userId;
   PBGameUser* user;
-  NSMutableArray* mutableExcludeSessionIdList;
-  NSMutableArray* mutableSnsUsersList;
+  PBAppendableArray * excludeSessionIdArray;
+  NSMutableArray * snsUsersArray;
 }
 - (BOOL) hasUserId;
 - (BOOL) hasGameId;
@@ -2067,36 +2107,37 @@ BOOL BetTypeIsValidValue(BetType value);
 - (BOOL) hasUser;
 - (BOOL) hasRuleType;
 - (BOOL) hasVersion;
-@property (readonly, retain) NSString* userId;
-@property (readonly, retain) NSString* gameId;
-@property (readonly) int32_t autoNew;
-@property (readonly, retain) NSString* nickName;
-@property (readonly, retain) NSString* avatar;
-@property (readonly) int64_t sessionToBeChange;
+@property (readonly, strong) NSString* userId;
+@property (readonly, strong) NSString* gameId;
+@property (readonly) SInt32 autoNew;
+@property (readonly, strong) NSString* nickName;
+@property (readonly, strong) NSString* avatar;
+@property (readonly, strong) PBArray * excludeSessionId;
+@property (readonly) SInt64 sessionToBeChange;
 - (BOOL) gender;
 - (BOOL) isRobot;
-@property (readonly) int32_t targetSessionId;
-@property (readonly) int32_t guessDifficultLevel;
-@property (readonly, retain) NSString* roomId;
-@property (readonly, retain) NSString* roomName;
-@property (readonly, retain) NSString* location;
-@property (readonly) int32_t userLevel;
-@property (readonly, retain) PBGameUser* user;
-@property (readonly) int32_t ruleType;
-@property (readonly) int32_t version;
-- (NSArray*) excludeSessionIdList;
-- (int64_t) excludeSessionIdAtIndex:(int32_t) index;
-- (NSArray*) snsUsersList;
-- (PBSNSUser*) snsUsersAtIndex:(int32_t) index;
+@property (readonly) SInt32 targetSessionId;
+@property (readonly) SInt32 guessDifficultLevel;
+@property (readonly, strong) NSString* roomId;
+@property (readonly, strong) NSString* roomName;
+@property (readonly, strong) NSArray * snsUsers;
+@property (readonly, strong) NSString* location;
+@property (readonly) SInt32 userLevel;
+@property (readonly, strong) PBGameUser* user;
+@property (readonly) SInt32 ruleType;
+@property (readonly) SInt32 version;
+- (SInt64)excludeSessionIdAtIndex:(NSUInteger)index;
+- (PBSNSUser*)snsUsersAtIndex:(NSUInteger)index;
 
-+ (JoinGameRequest*) defaultInstance;
-- (JoinGameRequest*) defaultInstance;
++ (instancetype) defaultInstance;
+- (instancetype) defaultInstance;
 
 - (BOOL) isInitialized;
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
-- (JoinGameRequest_Builder*) builder;
-+ (JoinGameRequest_Builder*) builder;
-+ (JoinGameRequest_Builder*) builderWithPrototype:(JoinGameRequest*) prototype;
+- (JoinGameRequestBuilder*) builder;
++ (JoinGameRequestBuilder*) builder;
++ (JoinGameRequestBuilder*) builderWithPrototype:(JoinGameRequest*) prototype;
+- (JoinGameRequestBuilder*) toBuilder;
 
 + (JoinGameRequest*) parseFromData:(NSData*) data;
 + (JoinGameRequest*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
@@ -2106,126 +2147,125 @@ BOOL BetTypeIsValidValue(BetType value);
 + (JoinGameRequest*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 @end
 
-@interface JoinGameRequest_Builder : PBGeneratedMessage_Builder {
+@interface JoinGameRequestBuilder : PBGeneratedMessageBuilder {
 @private
-  JoinGameRequest* result;
+  JoinGameRequest* resultJoinGameRequest;
 }
 
 - (JoinGameRequest*) defaultInstance;
 
-- (JoinGameRequest_Builder*) clear;
-- (JoinGameRequest_Builder*) clone;
+- (JoinGameRequestBuilder*) clear;
+- (JoinGameRequestBuilder*) clone;
 
 - (JoinGameRequest*) build;
 - (JoinGameRequest*) buildPartial;
 
-- (JoinGameRequest_Builder*) mergeFrom:(JoinGameRequest*) other;
-- (JoinGameRequest_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
-- (JoinGameRequest_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+- (JoinGameRequestBuilder*) mergeFrom:(JoinGameRequest*) other;
+- (JoinGameRequestBuilder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
+- (JoinGameRequestBuilder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 
 - (BOOL) hasUserId;
 - (NSString*) userId;
-- (JoinGameRequest_Builder*) setUserId:(NSString*) value;
-- (JoinGameRequest_Builder*) clearUserId;
+- (JoinGameRequestBuilder*) setUserId:(NSString*) value;
+- (JoinGameRequestBuilder*) clearUserId;
 
 - (BOOL) hasGameId;
 - (NSString*) gameId;
-- (JoinGameRequest_Builder*) setGameId:(NSString*) value;
-- (JoinGameRequest_Builder*) clearGameId;
+- (JoinGameRequestBuilder*) setGameId:(NSString*) value;
+- (JoinGameRequestBuilder*) clearGameId;
 
 - (BOOL) hasAutoNew;
-- (int32_t) autoNew;
-- (JoinGameRequest_Builder*) setAutoNew:(int32_t) value;
-- (JoinGameRequest_Builder*) clearAutoNew;
+- (SInt32) autoNew;
+- (JoinGameRequestBuilder*) setAutoNew:(SInt32) value;
+- (JoinGameRequestBuilder*) clearAutoNew;
 
 - (BOOL) hasNickName;
 - (NSString*) nickName;
-- (JoinGameRequest_Builder*) setNickName:(NSString*) value;
-- (JoinGameRequest_Builder*) clearNickName;
+- (JoinGameRequestBuilder*) setNickName:(NSString*) value;
+- (JoinGameRequestBuilder*) clearNickName;
 
 - (BOOL) hasAvatar;
 - (NSString*) avatar;
-- (JoinGameRequest_Builder*) setAvatar:(NSString*) value;
-- (JoinGameRequest_Builder*) clearAvatar;
+- (JoinGameRequestBuilder*) setAvatar:(NSString*) value;
+- (JoinGameRequestBuilder*) clearAvatar;
 
-- (NSArray*) excludeSessionIdList;
-- (int64_t) excludeSessionIdAtIndex:(int32_t) index;
-- (JoinGameRequest_Builder*) replaceExcludeSessionIdAtIndex:(int32_t) index with:(int64_t) value;
-- (JoinGameRequest_Builder*) addExcludeSessionId:(int64_t) value;
-- (JoinGameRequest_Builder*) addAllExcludeSessionId:(NSArray*) values;
-- (JoinGameRequest_Builder*) clearExcludeSessionIdList;
+- (PBAppendableArray *)excludeSessionId;
+- (SInt64)excludeSessionIdAtIndex:(NSUInteger)index;
+- (JoinGameRequestBuilder *)addExcludeSessionId:(SInt64)value;
+- (JoinGameRequestBuilder *)setExcludeSessionIdArray:(NSArray *)array;
+- (JoinGameRequestBuilder *)setExcludeSessionIdValues:(const SInt64 *)values count:(NSUInteger)count;
+- (JoinGameRequestBuilder *)clearExcludeSessionId;
 
 - (BOOL) hasSessionToBeChange;
-- (int64_t) sessionToBeChange;
-- (JoinGameRequest_Builder*) setSessionToBeChange:(int64_t) value;
-- (JoinGameRequest_Builder*) clearSessionToBeChange;
+- (SInt64) sessionToBeChange;
+- (JoinGameRequestBuilder*) setSessionToBeChange:(SInt64) value;
+- (JoinGameRequestBuilder*) clearSessionToBeChange;
 
 - (BOOL) hasGender;
 - (BOOL) gender;
-- (JoinGameRequest_Builder*) setGender:(BOOL) value;
-- (JoinGameRequest_Builder*) clearGender;
+- (JoinGameRequestBuilder*) setGender:(BOOL) value;
+- (JoinGameRequestBuilder*) clearGender;
 
 - (BOOL) hasIsRobot;
 - (BOOL) isRobot;
-- (JoinGameRequest_Builder*) setIsRobot:(BOOL) value;
-- (JoinGameRequest_Builder*) clearIsRobot;
+- (JoinGameRequestBuilder*) setIsRobot:(BOOL) value;
+- (JoinGameRequestBuilder*) clearIsRobot;
 
 - (BOOL) hasTargetSessionId;
-- (int32_t) targetSessionId;
-- (JoinGameRequest_Builder*) setTargetSessionId:(int32_t) value;
-- (JoinGameRequest_Builder*) clearTargetSessionId;
+- (SInt32) targetSessionId;
+- (JoinGameRequestBuilder*) setTargetSessionId:(SInt32) value;
+- (JoinGameRequestBuilder*) clearTargetSessionId;
 
 - (BOOL) hasGuessDifficultLevel;
-- (int32_t) guessDifficultLevel;
-- (JoinGameRequest_Builder*) setGuessDifficultLevel:(int32_t) value;
-- (JoinGameRequest_Builder*) clearGuessDifficultLevel;
+- (SInt32) guessDifficultLevel;
+- (JoinGameRequestBuilder*) setGuessDifficultLevel:(SInt32) value;
+- (JoinGameRequestBuilder*) clearGuessDifficultLevel;
 
 - (BOOL) hasRoomId;
 - (NSString*) roomId;
-- (JoinGameRequest_Builder*) setRoomId:(NSString*) value;
-- (JoinGameRequest_Builder*) clearRoomId;
+- (JoinGameRequestBuilder*) setRoomId:(NSString*) value;
+- (JoinGameRequestBuilder*) clearRoomId;
 
 - (BOOL) hasRoomName;
 - (NSString*) roomName;
-- (JoinGameRequest_Builder*) setRoomName:(NSString*) value;
-- (JoinGameRequest_Builder*) clearRoomName;
+- (JoinGameRequestBuilder*) setRoomName:(NSString*) value;
+- (JoinGameRequestBuilder*) clearRoomName;
 
-- (NSArray*) snsUsersList;
-- (PBSNSUser*) snsUsersAtIndex:(int32_t) index;
-- (JoinGameRequest_Builder*) replaceSnsUsersAtIndex:(int32_t) index with:(PBSNSUser*) value;
-- (JoinGameRequest_Builder*) addSnsUsers:(PBSNSUser*) value;
-- (JoinGameRequest_Builder*) addAllSnsUsers:(NSArray*) values;
-- (JoinGameRequest_Builder*) clearSnsUsersList;
+- (NSMutableArray *)snsUsers;
+- (PBSNSUser*)snsUsersAtIndex:(NSUInteger)index;
+- (JoinGameRequestBuilder *)addSnsUsers:(PBSNSUser*)value;
+- (JoinGameRequestBuilder *)setSnsUsersArray:(NSArray *)array;
+- (JoinGameRequestBuilder *)clearSnsUsers;
 
 - (BOOL) hasLocation;
 - (NSString*) location;
-- (JoinGameRequest_Builder*) setLocation:(NSString*) value;
-- (JoinGameRequest_Builder*) clearLocation;
+- (JoinGameRequestBuilder*) setLocation:(NSString*) value;
+- (JoinGameRequestBuilder*) clearLocation;
 
 - (BOOL) hasUserLevel;
-- (int32_t) userLevel;
-- (JoinGameRequest_Builder*) setUserLevel:(int32_t) value;
-- (JoinGameRequest_Builder*) clearUserLevel;
+- (SInt32) userLevel;
+- (JoinGameRequestBuilder*) setUserLevel:(SInt32) value;
+- (JoinGameRequestBuilder*) clearUserLevel;
 
 - (BOOL) hasUser;
 - (PBGameUser*) user;
-- (JoinGameRequest_Builder*) setUser:(PBGameUser*) value;
-- (JoinGameRequest_Builder*) setUserBuilder:(PBGameUser_Builder*) builderForValue;
-- (JoinGameRequest_Builder*) mergeUser:(PBGameUser*) value;
-- (JoinGameRequest_Builder*) clearUser;
+- (JoinGameRequestBuilder*) setUser:(PBGameUser*) value;
+- (JoinGameRequestBuilder*) setUserBuilder:(PBGameUserBuilder*) builderForValue;
+- (JoinGameRequestBuilder*) mergeUser:(PBGameUser*) value;
+- (JoinGameRequestBuilder*) clearUser;
 
 - (BOOL) hasRuleType;
-- (int32_t) ruleType;
-- (JoinGameRequest_Builder*) setRuleType:(int32_t) value;
-- (JoinGameRequest_Builder*) clearRuleType;
+- (SInt32) ruleType;
+- (JoinGameRequestBuilder*) setRuleType:(SInt32) value;
+- (JoinGameRequestBuilder*) clearRuleType;
 
 - (BOOL) hasVersion;
-- (int32_t) version;
-- (JoinGameRequest_Builder*) setVersion:(int32_t) value;
-- (JoinGameRequest_Builder*) clearVersion;
+- (SInt32) version;
+- (JoinGameRequestBuilder*) setVersion:(SInt32) value;
+- (JoinGameRequestBuilder*) clearVersion;
 @end
 
-@interface JoinGameResponse : PBGeneratedMessage {
+@interface JoinGameResponse : PBGeneratedMessage<GeneratedMessageProtocol> {
 @private
   BOOL hasGameSession_:1;
   BOOL hasZjhGameState_:1;
@@ -2234,17 +2274,18 @@ BOOL BetTypeIsValidValue(BetType value);
 }
 - (BOOL) hasGameSession;
 - (BOOL) hasZjhGameState;
-@property (readonly, retain) PBGameSession* gameSession;
-@property (readonly, retain) PBZJHGameState* zjhGameState;
+@property (readonly, strong) PBGameSession* gameSession;
+@property (readonly, strong) PBZJHGameState* zjhGameState;
 
-+ (JoinGameResponse*) defaultInstance;
-- (JoinGameResponse*) defaultInstance;
++ (instancetype) defaultInstance;
+- (instancetype) defaultInstance;
 
 - (BOOL) isInitialized;
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
-- (JoinGameResponse_Builder*) builder;
-+ (JoinGameResponse_Builder*) builder;
-+ (JoinGameResponse_Builder*) builderWithPrototype:(JoinGameResponse*) prototype;
+- (JoinGameResponseBuilder*) builder;
++ (JoinGameResponseBuilder*) builder;
++ (JoinGameResponseBuilder*) builderWithPrototype:(JoinGameResponse*) prototype;
+- (JoinGameResponseBuilder*) toBuilder;
 
 + (JoinGameResponse*) parseFromData:(NSData*) data;
 + (JoinGameResponse*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
@@ -2254,50 +2295,51 @@ BOOL BetTypeIsValidValue(BetType value);
 + (JoinGameResponse*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 @end
 
-@interface JoinGameResponse_Builder : PBGeneratedMessage_Builder {
+@interface JoinGameResponseBuilder : PBGeneratedMessageBuilder {
 @private
-  JoinGameResponse* result;
+  JoinGameResponse* resultJoinGameResponse;
 }
 
 - (JoinGameResponse*) defaultInstance;
 
-- (JoinGameResponse_Builder*) clear;
-- (JoinGameResponse_Builder*) clone;
+- (JoinGameResponseBuilder*) clear;
+- (JoinGameResponseBuilder*) clone;
 
 - (JoinGameResponse*) build;
 - (JoinGameResponse*) buildPartial;
 
-- (JoinGameResponse_Builder*) mergeFrom:(JoinGameResponse*) other;
-- (JoinGameResponse_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
-- (JoinGameResponse_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+- (JoinGameResponseBuilder*) mergeFrom:(JoinGameResponse*) other;
+- (JoinGameResponseBuilder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
+- (JoinGameResponseBuilder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 
 - (BOOL) hasGameSession;
 - (PBGameSession*) gameSession;
-- (JoinGameResponse_Builder*) setGameSession:(PBGameSession*) value;
-- (JoinGameResponse_Builder*) setGameSessionBuilder:(PBGameSession_Builder*) builderForValue;
-- (JoinGameResponse_Builder*) mergeGameSession:(PBGameSession*) value;
-- (JoinGameResponse_Builder*) clearGameSession;
+- (JoinGameResponseBuilder*) setGameSession:(PBGameSession*) value;
+- (JoinGameResponseBuilder*) setGameSessionBuilder:(PBGameSessionBuilder*) builderForValue;
+- (JoinGameResponseBuilder*) mergeGameSession:(PBGameSession*) value;
+- (JoinGameResponseBuilder*) clearGameSession;
 
 - (BOOL) hasZjhGameState;
 - (PBZJHGameState*) zjhGameState;
-- (JoinGameResponse_Builder*) setZjhGameState:(PBZJHGameState*) value;
-- (JoinGameResponse_Builder*) setZjhGameStateBuilder:(PBZJHGameState_Builder*) builderForValue;
-- (JoinGameResponse_Builder*) mergeZjhGameState:(PBZJHGameState*) value;
-- (JoinGameResponse_Builder*) clearZjhGameState;
+- (JoinGameResponseBuilder*) setZjhGameState:(PBZJHGameState*) value;
+- (JoinGameResponseBuilder*) setZjhGameStateBuilder:(PBZJHGameStateBuilder*) builderForValue;
+- (JoinGameResponseBuilder*) mergeZjhGameState:(PBZJHGameState*) value;
+- (JoinGameResponseBuilder*) clearZjhGameState;
 @end
 
-@interface StartGameRequest : PBGeneratedMessage {
+@interface StartGameRequest : PBGeneratedMessage<GeneratedMessageProtocol> {
 @private
 }
 
-+ (StartGameRequest*) defaultInstance;
-- (StartGameRequest*) defaultInstance;
++ (instancetype) defaultInstance;
+- (instancetype) defaultInstance;
 
 - (BOOL) isInitialized;
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
-- (StartGameRequest_Builder*) builder;
-+ (StartGameRequest_Builder*) builder;
-+ (StartGameRequest_Builder*) builderWithPrototype:(StartGameRequest*) prototype;
+- (StartGameRequestBuilder*) builder;
++ (StartGameRequestBuilder*) builder;
++ (StartGameRequestBuilder*) builderWithPrototype:(StartGameRequest*) prototype;
+- (StartGameRequestBuilder*) toBuilder;
 
 + (StartGameRequest*) parseFromData:(NSData*) data;
 + (StartGameRequest*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
@@ -2307,25 +2349,25 @@ BOOL BetTypeIsValidValue(BetType value);
 + (StartGameRequest*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 @end
 
-@interface StartGameRequest_Builder : PBGeneratedMessage_Builder {
+@interface StartGameRequestBuilder : PBGeneratedMessageBuilder {
 @private
-  StartGameRequest* result;
+  StartGameRequest* resultStartGameRequest;
 }
 
 - (StartGameRequest*) defaultInstance;
 
-- (StartGameRequest_Builder*) clear;
-- (StartGameRequest_Builder*) clone;
+- (StartGameRequestBuilder*) clear;
+- (StartGameRequestBuilder*) clone;
 
 - (StartGameRequest*) build;
 - (StartGameRequest*) buildPartial;
 
-- (StartGameRequest_Builder*) mergeFrom:(StartGameRequest*) other;
-- (StartGameRequest_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
-- (StartGameRequest_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+- (StartGameRequestBuilder*) mergeFrom:(StartGameRequest*) other;
+- (StartGameRequestBuilder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
+- (StartGameRequestBuilder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 @end
 
-@interface StartGameResponse : PBGeneratedMessage {
+@interface StartGameResponse : PBGeneratedMessage<GeneratedMessageProtocol> {
 @private
   BOOL hasCurrentPlayUserId_:1;
   BOOL hasNextPlayUserId_:1;
@@ -2334,17 +2376,18 @@ BOOL BetTypeIsValidValue(BetType value);
 }
 - (BOOL) hasCurrentPlayUserId;
 - (BOOL) hasNextPlayUserId;
-@property (readonly, retain) NSString* currentPlayUserId;
-@property (readonly, retain) NSString* nextPlayUserId;
+@property (readonly, strong) NSString* currentPlayUserId;
+@property (readonly, strong) NSString* nextPlayUserId;
 
-+ (StartGameResponse*) defaultInstance;
-- (StartGameResponse*) defaultInstance;
++ (instancetype) defaultInstance;
+- (instancetype) defaultInstance;
 
 - (BOOL) isInitialized;
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
-- (StartGameResponse_Builder*) builder;
-+ (StartGameResponse_Builder*) builder;
-+ (StartGameResponse_Builder*) builderWithPrototype:(StartGameResponse*) prototype;
+- (StartGameResponseBuilder*) builder;
++ (StartGameResponseBuilder*) builder;
++ (StartGameResponseBuilder*) builderWithPrototype:(StartGameResponse*) prototype;
+- (StartGameResponseBuilder*) toBuilder;
 
 + (StartGameResponse*) parseFromData:(NSData*) data;
 + (StartGameResponse*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
@@ -2354,55 +2397,56 @@ BOOL BetTypeIsValidValue(BetType value);
 + (StartGameResponse*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 @end
 
-@interface StartGameResponse_Builder : PBGeneratedMessage_Builder {
+@interface StartGameResponseBuilder : PBGeneratedMessageBuilder {
 @private
-  StartGameResponse* result;
+  StartGameResponse* resultStartGameResponse;
 }
 
 - (StartGameResponse*) defaultInstance;
 
-- (StartGameResponse_Builder*) clear;
-- (StartGameResponse_Builder*) clone;
+- (StartGameResponseBuilder*) clear;
+- (StartGameResponseBuilder*) clone;
 
 - (StartGameResponse*) build;
 - (StartGameResponse*) buildPartial;
 
-- (StartGameResponse_Builder*) mergeFrom:(StartGameResponse*) other;
-- (StartGameResponse_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
-- (StartGameResponse_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+- (StartGameResponseBuilder*) mergeFrom:(StartGameResponse*) other;
+- (StartGameResponseBuilder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
+- (StartGameResponseBuilder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 
 - (BOOL) hasCurrentPlayUserId;
 - (NSString*) currentPlayUserId;
-- (StartGameResponse_Builder*) setCurrentPlayUserId:(NSString*) value;
-- (StartGameResponse_Builder*) clearCurrentPlayUserId;
+- (StartGameResponseBuilder*) setCurrentPlayUserId:(NSString*) value;
+- (StartGameResponseBuilder*) clearCurrentPlayUserId;
 
 - (BOOL) hasNextPlayUserId;
 - (NSString*) nextPlayUserId;
-- (StartGameResponse_Builder*) setNextPlayUserId:(NSString*) value;
-- (StartGameResponse_Builder*) clearNextPlayUserId;
+- (StartGameResponseBuilder*) setNextPlayUserId:(NSString*) value;
+- (StartGameResponseBuilder*) clearNextPlayUserId;
 @end
 
-@interface RoomNotificationRequest : PBGeneratedMessage {
+@interface RoomNotificationRequest : PBGeneratedMessage<GeneratedMessageProtocol> {
 @private
-  NSMutableArray* mutableSessionIdsDeletedList;
-  NSMutableArray* mutableSessionsChangedList;
-  NSMutableArray* mutableSessionsAddedList;
+  PBAppendableArray * sessionIdsDeletedArray;
+  NSMutableArray * sessionsChangedArray;
+  NSMutableArray * sessionsAddedArray;
 }
-- (NSArray*) sessionsChangedList;
-- (PBGameSessionChanged*) sessionsChangedAtIndex:(int32_t) index;
-- (NSArray*) sessionsAddedList;
-- (PBGameSession*) sessionsAddedAtIndex:(int32_t) index;
-- (NSArray*) sessionIdsDeletedList;
-- (int32_t) sessionIdsDeletedAtIndex:(int32_t) index;
+@property (readonly, strong) NSArray * sessionsChanged;
+@property (readonly, strong) NSArray * sessionsAdded;
+@property (readonly, strong) PBArray * sessionIdsDeleted;
+- (PBGameSessionChanged*)sessionsChangedAtIndex:(NSUInteger)index;
+- (PBGameSession*)sessionsAddedAtIndex:(NSUInteger)index;
+- (SInt32)sessionIdsDeletedAtIndex:(NSUInteger)index;
 
-+ (RoomNotificationRequest*) defaultInstance;
-- (RoomNotificationRequest*) defaultInstance;
++ (instancetype) defaultInstance;
+- (instancetype) defaultInstance;
 
 - (BOOL) isInitialized;
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
-- (RoomNotificationRequest_Builder*) builder;
-+ (RoomNotificationRequest_Builder*) builder;
-+ (RoomNotificationRequest_Builder*) builderWithPrototype:(RoomNotificationRequest*) prototype;
+- (RoomNotificationRequestBuilder*) builder;
++ (RoomNotificationRequestBuilder*) builder;
++ (RoomNotificationRequestBuilder*) builderWithPrototype:(RoomNotificationRequest*) prototype;
+- (RoomNotificationRequestBuilder*) toBuilder;
 
 + (RoomNotificationRequest*) parseFromData:(NSData*) data;
 + (RoomNotificationRequest*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
@@ -2412,57 +2456,56 @@ BOOL BetTypeIsValidValue(BetType value);
 + (RoomNotificationRequest*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 @end
 
-@interface RoomNotificationRequest_Builder : PBGeneratedMessage_Builder {
+@interface RoomNotificationRequestBuilder : PBGeneratedMessageBuilder {
 @private
-  RoomNotificationRequest* result;
+  RoomNotificationRequest* resultRoomNotificationRequest;
 }
 
 - (RoomNotificationRequest*) defaultInstance;
 
-- (RoomNotificationRequest_Builder*) clear;
-- (RoomNotificationRequest_Builder*) clone;
+- (RoomNotificationRequestBuilder*) clear;
+- (RoomNotificationRequestBuilder*) clone;
 
 - (RoomNotificationRequest*) build;
 - (RoomNotificationRequest*) buildPartial;
 
-- (RoomNotificationRequest_Builder*) mergeFrom:(RoomNotificationRequest*) other;
-- (RoomNotificationRequest_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
-- (RoomNotificationRequest_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+- (RoomNotificationRequestBuilder*) mergeFrom:(RoomNotificationRequest*) other;
+- (RoomNotificationRequestBuilder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
+- (RoomNotificationRequestBuilder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 
-- (NSArray*) sessionsChangedList;
-- (PBGameSessionChanged*) sessionsChangedAtIndex:(int32_t) index;
-- (RoomNotificationRequest_Builder*) replaceSessionsChangedAtIndex:(int32_t) index with:(PBGameSessionChanged*) value;
-- (RoomNotificationRequest_Builder*) addSessionsChanged:(PBGameSessionChanged*) value;
-- (RoomNotificationRequest_Builder*) addAllSessionsChanged:(NSArray*) values;
-- (RoomNotificationRequest_Builder*) clearSessionsChangedList;
+- (NSMutableArray *)sessionsChanged;
+- (PBGameSessionChanged*)sessionsChangedAtIndex:(NSUInteger)index;
+- (RoomNotificationRequestBuilder *)addSessionsChanged:(PBGameSessionChanged*)value;
+- (RoomNotificationRequestBuilder *)setSessionsChangedArray:(NSArray *)array;
+- (RoomNotificationRequestBuilder *)clearSessionsChanged;
 
-- (NSArray*) sessionsAddedList;
-- (PBGameSession*) sessionsAddedAtIndex:(int32_t) index;
-- (RoomNotificationRequest_Builder*) replaceSessionsAddedAtIndex:(int32_t) index with:(PBGameSession*) value;
-- (RoomNotificationRequest_Builder*) addSessionsAdded:(PBGameSession*) value;
-- (RoomNotificationRequest_Builder*) addAllSessionsAdded:(NSArray*) values;
-- (RoomNotificationRequest_Builder*) clearSessionsAddedList;
+- (NSMutableArray *)sessionsAdded;
+- (PBGameSession*)sessionsAddedAtIndex:(NSUInteger)index;
+- (RoomNotificationRequestBuilder *)addSessionsAdded:(PBGameSession*)value;
+- (RoomNotificationRequestBuilder *)setSessionsAddedArray:(NSArray *)array;
+- (RoomNotificationRequestBuilder *)clearSessionsAdded;
 
-- (NSArray*) sessionIdsDeletedList;
-- (int32_t) sessionIdsDeletedAtIndex:(int32_t) index;
-- (RoomNotificationRequest_Builder*) replaceSessionIdsDeletedAtIndex:(int32_t) index with:(int32_t) value;
-- (RoomNotificationRequest_Builder*) addSessionIdsDeleted:(int32_t) value;
-- (RoomNotificationRequest_Builder*) addAllSessionIdsDeleted:(NSArray*) values;
-- (RoomNotificationRequest_Builder*) clearSessionIdsDeletedList;
+- (PBAppendableArray *)sessionIdsDeleted;
+- (SInt32)sessionIdsDeletedAtIndex:(NSUInteger)index;
+- (RoomNotificationRequestBuilder *)addSessionIdsDeleted:(SInt32)value;
+- (RoomNotificationRequestBuilder *)setSessionIdsDeletedArray:(NSArray *)array;
+- (RoomNotificationRequestBuilder *)setSessionIdsDeletedValues:(const SInt32 *)values count:(NSUInteger)count;
+- (RoomNotificationRequestBuilder *)clearSessionIdsDeleted;
 @end
 
-@interface RoomNotificationResponse : PBGeneratedMessage {
+@interface RoomNotificationResponse : PBGeneratedMessage<GeneratedMessageProtocol> {
 @private
 }
 
-+ (RoomNotificationResponse*) defaultInstance;
-- (RoomNotificationResponse*) defaultInstance;
++ (instancetype) defaultInstance;
+- (instancetype) defaultInstance;
 
 - (BOOL) isInitialized;
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
-- (RoomNotificationResponse_Builder*) builder;
-+ (RoomNotificationResponse_Builder*) builder;
-+ (RoomNotificationResponse_Builder*) builderWithPrototype:(RoomNotificationResponse*) prototype;
+- (RoomNotificationResponseBuilder*) builder;
++ (RoomNotificationResponseBuilder*) builder;
++ (RoomNotificationResponseBuilder*) builderWithPrototype:(RoomNotificationResponse*) prototype;
+- (RoomNotificationResponseBuilder*) toBuilder;
 
 + (RoomNotificationResponse*) parseFromData:(NSData*) data;
 + (RoomNotificationResponse*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
@@ -2472,36 +2515,37 @@ BOOL BetTypeIsValidValue(BetType value);
 + (RoomNotificationResponse*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 @end
 
-@interface RoomNotificationResponse_Builder : PBGeneratedMessage_Builder {
+@interface RoomNotificationResponseBuilder : PBGeneratedMessageBuilder {
 @private
-  RoomNotificationResponse* result;
+  RoomNotificationResponse* resultRoomNotificationResponse;
 }
 
 - (RoomNotificationResponse*) defaultInstance;
 
-- (RoomNotificationResponse_Builder*) clear;
-- (RoomNotificationResponse_Builder*) clone;
+- (RoomNotificationResponseBuilder*) clear;
+- (RoomNotificationResponseBuilder*) clone;
 
 - (RoomNotificationResponse*) build;
 - (RoomNotificationResponse*) buildPartial;
 
-- (RoomNotificationResponse_Builder*) mergeFrom:(RoomNotificationResponse*) other;
-- (RoomNotificationResponse_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
-- (RoomNotificationResponse_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+- (RoomNotificationResponseBuilder*) mergeFrom:(RoomNotificationResponse*) other;
+- (RoomNotificationResponseBuilder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
+- (RoomNotificationResponseBuilder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 @end
 
-@interface RollDiceBeginNotificationRequest : PBGeneratedMessage {
+@interface RollDiceBeginNotificationRequest : PBGeneratedMessage<GeneratedMessageProtocol> {
 @private
 }
 
-+ (RollDiceBeginNotificationRequest*) defaultInstance;
-- (RollDiceBeginNotificationRequest*) defaultInstance;
++ (instancetype) defaultInstance;
+- (instancetype) defaultInstance;
 
 - (BOOL) isInitialized;
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
-- (RollDiceBeginNotificationRequest_Builder*) builder;
-+ (RollDiceBeginNotificationRequest_Builder*) builder;
-+ (RollDiceBeginNotificationRequest_Builder*) builderWithPrototype:(RollDiceBeginNotificationRequest*) prototype;
+- (RollDiceBeginNotificationRequestBuilder*) builder;
++ (RollDiceBeginNotificationRequestBuilder*) builder;
++ (RollDiceBeginNotificationRequestBuilder*) builderWithPrototype:(RollDiceBeginNotificationRequest*) prototype;
+- (RollDiceBeginNotificationRequestBuilder*) toBuilder;
 
 + (RollDiceBeginNotificationRequest*) parseFromData:(NSData*) data;
 + (RollDiceBeginNotificationRequest*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
@@ -2511,36 +2555,37 @@ BOOL BetTypeIsValidValue(BetType value);
 + (RollDiceBeginNotificationRequest*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 @end
 
-@interface RollDiceBeginNotificationRequest_Builder : PBGeneratedMessage_Builder {
+@interface RollDiceBeginNotificationRequestBuilder : PBGeneratedMessageBuilder {
 @private
-  RollDiceBeginNotificationRequest* result;
+  RollDiceBeginNotificationRequest* resultRollDiceBeginNotificationRequest;
 }
 
 - (RollDiceBeginNotificationRequest*) defaultInstance;
 
-- (RollDiceBeginNotificationRequest_Builder*) clear;
-- (RollDiceBeginNotificationRequest_Builder*) clone;
+- (RollDiceBeginNotificationRequestBuilder*) clear;
+- (RollDiceBeginNotificationRequestBuilder*) clone;
 
 - (RollDiceBeginNotificationRequest*) build;
 - (RollDiceBeginNotificationRequest*) buildPartial;
 
-- (RollDiceBeginNotificationRequest_Builder*) mergeFrom:(RollDiceBeginNotificationRequest*) other;
-- (RollDiceBeginNotificationRequest_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
-- (RollDiceBeginNotificationRequest_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+- (RollDiceBeginNotificationRequestBuilder*) mergeFrom:(RollDiceBeginNotificationRequest*) other;
+- (RollDiceBeginNotificationRequestBuilder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
+- (RollDiceBeginNotificationRequestBuilder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 @end
 
-@interface RollDiceBeginNotificationResponse : PBGeneratedMessage {
+@interface RollDiceBeginNotificationResponse : PBGeneratedMessage<GeneratedMessageProtocol> {
 @private
 }
 
-+ (RollDiceBeginNotificationResponse*) defaultInstance;
-- (RollDiceBeginNotificationResponse*) defaultInstance;
++ (instancetype) defaultInstance;
+- (instancetype) defaultInstance;
 
 - (BOOL) isInitialized;
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
-- (RollDiceBeginNotificationResponse_Builder*) builder;
-+ (RollDiceBeginNotificationResponse_Builder*) builder;
-+ (RollDiceBeginNotificationResponse_Builder*) builderWithPrototype:(RollDiceBeginNotificationResponse*) prototype;
+- (RollDiceBeginNotificationResponseBuilder*) builder;
++ (RollDiceBeginNotificationResponseBuilder*) builder;
++ (RollDiceBeginNotificationResponseBuilder*) builderWithPrototype:(RollDiceBeginNotificationResponse*) prototype;
+- (RollDiceBeginNotificationResponseBuilder*) toBuilder;
 
 + (RollDiceBeginNotificationResponse*) parseFromData:(NSData*) data;
 + (RollDiceBeginNotificationResponse*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
@@ -2550,39 +2595,40 @@ BOOL BetTypeIsValidValue(BetType value);
 + (RollDiceBeginNotificationResponse*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 @end
 
-@interface RollDiceBeginNotificationResponse_Builder : PBGeneratedMessage_Builder {
+@interface RollDiceBeginNotificationResponseBuilder : PBGeneratedMessageBuilder {
 @private
-  RollDiceBeginNotificationResponse* result;
+  RollDiceBeginNotificationResponse* resultRollDiceBeginNotificationResponse;
 }
 
 - (RollDiceBeginNotificationResponse*) defaultInstance;
 
-- (RollDiceBeginNotificationResponse_Builder*) clear;
-- (RollDiceBeginNotificationResponse_Builder*) clone;
+- (RollDiceBeginNotificationResponseBuilder*) clear;
+- (RollDiceBeginNotificationResponseBuilder*) clone;
 
 - (RollDiceBeginNotificationResponse*) build;
 - (RollDiceBeginNotificationResponse*) buildPartial;
 
-- (RollDiceBeginNotificationResponse_Builder*) mergeFrom:(RollDiceBeginNotificationResponse*) other;
-- (RollDiceBeginNotificationResponse_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
-- (RollDiceBeginNotificationResponse_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+- (RollDiceBeginNotificationResponseBuilder*) mergeFrom:(RollDiceBeginNotificationResponse*) other;
+- (RollDiceBeginNotificationResponseBuilder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
+- (RollDiceBeginNotificationResponseBuilder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 @end
 
-@interface RollDiceEndNotificationRequest : PBGeneratedMessage {
+@interface RollDiceEndNotificationRequest : PBGeneratedMessage<GeneratedMessageProtocol> {
 @private
-  NSMutableArray* mutableUserDiceList;
+  NSMutableArray * userDiceArray;
 }
-- (NSArray*) userDiceList;
-- (PBUserDice*) userDiceAtIndex:(int32_t) index;
+@property (readonly, strong) NSArray * userDice;
+- (PBUserDice*)userDiceAtIndex:(NSUInteger)index;
 
-+ (RollDiceEndNotificationRequest*) defaultInstance;
-- (RollDiceEndNotificationRequest*) defaultInstance;
++ (instancetype) defaultInstance;
+- (instancetype) defaultInstance;
 
 - (BOOL) isInitialized;
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
-- (RollDiceEndNotificationRequest_Builder*) builder;
-+ (RollDiceEndNotificationRequest_Builder*) builder;
-+ (RollDiceEndNotificationRequest_Builder*) builderWithPrototype:(RollDiceEndNotificationRequest*) prototype;
+- (RollDiceEndNotificationRequestBuilder*) builder;
++ (RollDiceEndNotificationRequestBuilder*) builder;
++ (RollDiceEndNotificationRequestBuilder*) builderWithPrototype:(RollDiceEndNotificationRequest*) prototype;
+- (RollDiceEndNotificationRequestBuilder*) toBuilder;
 
 + (RollDiceEndNotificationRequest*) parseFromData:(NSData*) data;
 + (RollDiceEndNotificationRequest*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
@@ -2592,43 +2638,43 @@ BOOL BetTypeIsValidValue(BetType value);
 + (RollDiceEndNotificationRequest*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 @end
 
-@interface RollDiceEndNotificationRequest_Builder : PBGeneratedMessage_Builder {
+@interface RollDiceEndNotificationRequestBuilder : PBGeneratedMessageBuilder {
 @private
-  RollDiceEndNotificationRequest* result;
+  RollDiceEndNotificationRequest* resultRollDiceEndNotificationRequest;
 }
 
 - (RollDiceEndNotificationRequest*) defaultInstance;
 
-- (RollDiceEndNotificationRequest_Builder*) clear;
-- (RollDiceEndNotificationRequest_Builder*) clone;
+- (RollDiceEndNotificationRequestBuilder*) clear;
+- (RollDiceEndNotificationRequestBuilder*) clone;
 
 - (RollDiceEndNotificationRequest*) build;
 - (RollDiceEndNotificationRequest*) buildPartial;
 
-- (RollDiceEndNotificationRequest_Builder*) mergeFrom:(RollDiceEndNotificationRequest*) other;
-- (RollDiceEndNotificationRequest_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
-- (RollDiceEndNotificationRequest_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+- (RollDiceEndNotificationRequestBuilder*) mergeFrom:(RollDiceEndNotificationRequest*) other;
+- (RollDiceEndNotificationRequestBuilder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
+- (RollDiceEndNotificationRequestBuilder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 
-- (NSArray*) userDiceList;
-- (PBUserDice*) userDiceAtIndex:(int32_t) index;
-- (RollDiceEndNotificationRequest_Builder*) replaceUserDiceAtIndex:(int32_t) index with:(PBUserDice*) value;
-- (RollDiceEndNotificationRequest_Builder*) addUserDice:(PBUserDice*) value;
-- (RollDiceEndNotificationRequest_Builder*) addAllUserDice:(NSArray*) values;
-- (RollDiceEndNotificationRequest_Builder*) clearUserDiceList;
+- (NSMutableArray *)userDice;
+- (PBUserDice*)userDiceAtIndex:(NSUInteger)index;
+- (RollDiceEndNotificationRequestBuilder *)addUserDice:(PBUserDice*)value;
+- (RollDiceEndNotificationRequestBuilder *)setUserDiceArray:(NSArray *)array;
+- (RollDiceEndNotificationRequestBuilder *)clearUserDice;
 @end
 
-@interface RollDiceEndNotificationResponse : PBGeneratedMessage {
+@interface RollDiceEndNotificationResponse : PBGeneratedMessage<GeneratedMessageProtocol> {
 @private
 }
 
-+ (RollDiceEndNotificationResponse*) defaultInstance;
-- (RollDiceEndNotificationResponse*) defaultInstance;
++ (instancetype) defaultInstance;
+- (instancetype) defaultInstance;
 
 - (BOOL) isInitialized;
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
-- (RollDiceEndNotificationResponse_Builder*) builder;
-+ (RollDiceEndNotificationResponse_Builder*) builder;
-+ (RollDiceEndNotificationResponse_Builder*) builderWithPrototype:(RollDiceEndNotificationResponse*) prototype;
+- (RollDiceEndNotificationResponseBuilder*) builder;
++ (RollDiceEndNotificationResponseBuilder*) builder;
++ (RollDiceEndNotificationResponseBuilder*) builderWithPrototype:(RollDiceEndNotificationResponse*) prototype;
+- (RollDiceEndNotificationResponseBuilder*) toBuilder;
 
 + (RollDiceEndNotificationResponse*) parseFromData:(NSData*) data;
 + (RollDiceEndNotificationResponse*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
@@ -2638,32 +2684,32 @@ BOOL BetTypeIsValidValue(BetType value);
 + (RollDiceEndNotificationResponse*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 @end
 
-@interface RollDiceEndNotificationResponse_Builder : PBGeneratedMessage_Builder {
+@interface RollDiceEndNotificationResponseBuilder : PBGeneratedMessageBuilder {
 @private
-  RollDiceEndNotificationResponse* result;
+  RollDiceEndNotificationResponse* resultRollDiceEndNotificationResponse;
 }
 
 - (RollDiceEndNotificationResponse*) defaultInstance;
 
-- (RollDiceEndNotificationResponse_Builder*) clear;
-- (RollDiceEndNotificationResponse_Builder*) clone;
+- (RollDiceEndNotificationResponseBuilder*) clear;
+- (RollDiceEndNotificationResponseBuilder*) clone;
 
 - (RollDiceEndNotificationResponse*) build;
 - (RollDiceEndNotificationResponse*) buildPartial;
 
-- (RollDiceEndNotificationResponse_Builder*) mergeFrom:(RollDiceEndNotificationResponse*) other;
-- (RollDiceEndNotificationResponse_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
-- (RollDiceEndNotificationResponse_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+- (RollDiceEndNotificationResponseBuilder*) mergeFrom:(RollDiceEndNotificationResponse*) other;
+- (RollDiceEndNotificationResponseBuilder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
+- (RollDiceEndNotificationResponseBuilder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 @end
 
-@interface NextPlayerStartNotificationRequest : PBGeneratedMessage {
+@interface NextPlayerStartNotificationRequest : PBGeneratedMessage<GeneratedMessageProtocol> {
 @private
   BOOL hasExpiredTime_:1;
   BOOL hasDirection_:1;
   BOOL hasCurrentPlayUserId_:1;
   BOOL hasNextPlayUserId_:1;
-  int32_t expiredTime;
-  int32_t direction;
+  SInt32 expiredTime;
+  SInt32 direction;
   NSString* currentPlayUserId;
   NSString* nextPlayUserId;
 }
@@ -2671,19 +2717,20 @@ BOOL BetTypeIsValidValue(BetType value);
 - (BOOL) hasNextPlayUserId;
 - (BOOL) hasExpiredTime;
 - (BOOL) hasDirection;
-@property (readonly, retain) NSString* currentPlayUserId;
-@property (readonly, retain) NSString* nextPlayUserId;
-@property (readonly) int32_t expiredTime;
-@property (readonly) int32_t direction;
+@property (readonly, strong) NSString* currentPlayUserId;
+@property (readonly, strong) NSString* nextPlayUserId;
+@property (readonly) SInt32 expiredTime;
+@property (readonly) SInt32 direction;
 
-+ (NextPlayerStartNotificationRequest*) defaultInstance;
-- (NextPlayerStartNotificationRequest*) defaultInstance;
++ (instancetype) defaultInstance;
+- (instancetype) defaultInstance;
 
 - (BOOL) isInitialized;
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
-- (NextPlayerStartNotificationRequest_Builder*) builder;
-+ (NextPlayerStartNotificationRequest_Builder*) builder;
-+ (NextPlayerStartNotificationRequest_Builder*) builderWithPrototype:(NextPlayerStartNotificationRequest*) prototype;
+- (NextPlayerStartNotificationRequestBuilder*) builder;
++ (NextPlayerStartNotificationRequestBuilder*) builder;
++ (NextPlayerStartNotificationRequestBuilder*) builderWithPrototype:(NextPlayerStartNotificationRequest*) prototype;
+- (NextPlayerStartNotificationRequestBuilder*) toBuilder;
 
 + (NextPlayerStartNotificationRequest*) parseFromData:(NSData*) data;
 + (NextPlayerStartNotificationRequest*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
@@ -2693,56 +2740,57 @@ BOOL BetTypeIsValidValue(BetType value);
 + (NextPlayerStartNotificationRequest*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 @end
 
-@interface NextPlayerStartNotificationRequest_Builder : PBGeneratedMessage_Builder {
+@interface NextPlayerStartNotificationRequestBuilder : PBGeneratedMessageBuilder {
 @private
-  NextPlayerStartNotificationRequest* result;
+  NextPlayerStartNotificationRequest* resultNextPlayerStartNotificationRequest;
 }
 
 - (NextPlayerStartNotificationRequest*) defaultInstance;
 
-- (NextPlayerStartNotificationRequest_Builder*) clear;
-- (NextPlayerStartNotificationRequest_Builder*) clone;
+- (NextPlayerStartNotificationRequestBuilder*) clear;
+- (NextPlayerStartNotificationRequestBuilder*) clone;
 
 - (NextPlayerStartNotificationRequest*) build;
 - (NextPlayerStartNotificationRequest*) buildPartial;
 
-- (NextPlayerStartNotificationRequest_Builder*) mergeFrom:(NextPlayerStartNotificationRequest*) other;
-- (NextPlayerStartNotificationRequest_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
-- (NextPlayerStartNotificationRequest_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+- (NextPlayerStartNotificationRequestBuilder*) mergeFrom:(NextPlayerStartNotificationRequest*) other;
+- (NextPlayerStartNotificationRequestBuilder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
+- (NextPlayerStartNotificationRequestBuilder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 
 - (BOOL) hasCurrentPlayUserId;
 - (NSString*) currentPlayUserId;
-- (NextPlayerStartNotificationRequest_Builder*) setCurrentPlayUserId:(NSString*) value;
-- (NextPlayerStartNotificationRequest_Builder*) clearCurrentPlayUserId;
+- (NextPlayerStartNotificationRequestBuilder*) setCurrentPlayUserId:(NSString*) value;
+- (NextPlayerStartNotificationRequestBuilder*) clearCurrentPlayUserId;
 
 - (BOOL) hasNextPlayUserId;
 - (NSString*) nextPlayUserId;
-- (NextPlayerStartNotificationRequest_Builder*) setNextPlayUserId:(NSString*) value;
-- (NextPlayerStartNotificationRequest_Builder*) clearNextPlayUserId;
+- (NextPlayerStartNotificationRequestBuilder*) setNextPlayUserId:(NSString*) value;
+- (NextPlayerStartNotificationRequestBuilder*) clearNextPlayUserId;
 
 - (BOOL) hasExpiredTime;
-- (int32_t) expiredTime;
-- (NextPlayerStartNotificationRequest_Builder*) setExpiredTime:(int32_t) value;
-- (NextPlayerStartNotificationRequest_Builder*) clearExpiredTime;
+- (SInt32) expiredTime;
+- (NextPlayerStartNotificationRequestBuilder*) setExpiredTime:(SInt32) value;
+- (NextPlayerStartNotificationRequestBuilder*) clearExpiredTime;
 
 - (BOOL) hasDirection;
-- (int32_t) direction;
-- (NextPlayerStartNotificationRequest_Builder*) setDirection:(int32_t) value;
-- (NextPlayerStartNotificationRequest_Builder*) clearDirection;
+- (SInt32) direction;
+- (NextPlayerStartNotificationRequestBuilder*) setDirection:(SInt32) value;
+- (NextPlayerStartNotificationRequestBuilder*) clearDirection;
 @end
 
-@interface NextPlayerStartNotificationResponse : PBGeneratedMessage {
+@interface NextPlayerStartNotificationResponse : PBGeneratedMessage<GeneratedMessageProtocol> {
 @private
 }
 
-+ (NextPlayerStartNotificationResponse*) defaultInstance;
-- (NextPlayerStartNotificationResponse*) defaultInstance;
++ (instancetype) defaultInstance;
+- (instancetype) defaultInstance;
 
 - (BOOL) isInitialized;
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
-- (NextPlayerStartNotificationResponse_Builder*) builder;
-+ (NextPlayerStartNotificationResponse_Builder*) builder;
-+ (NextPlayerStartNotificationResponse_Builder*) builderWithPrototype:(NextPlayerStartNotificationResponse*) prototype;
+- (NextPlayerStartNotificationResponseBuilder*) builder;
++ (NextPlayerStartNotificationResponseBuilder*) builder;
++ (NextPlayerStartNotificationResponseBuilder*) builderWithPrototype:(NextPlayerStartNotificationResponse*) prototype;
+- (NextPlayerStartNotificationResponseBuilder*) toBuilder;
 
 + (NextPlayerStartNotificationResponse*) parseFromData:(NSData*) data;
 + (NextPlayerStartNotificationResponse*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
@@ -2752,48 +2800,49 @@ BOOL BetTypeIsValidValue(BetType value);
 + (NextPlayerStartNotificationResponse*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 @end
 
-@interface NextPlayerStartNotificationResponse_Builder : PBGeneratedMessage_Builder {
+@interface NextPlayerStartNotificationResponseBuilder : PBGeneratedMessageBuilder {
 @private
-  NextPlayerStartNotificationResponse* result;
+  NextPlayerStartNotificationResponse* resultNextPlayerStartNotificationResponse;
 }
 
 - (NextPlayerStartNotificationResponse*) defaultInstance;
 
-- (NextPlayerStartNotificationResponse_Builder*) clear;
-- (NextPlayerStartNotificationResponse_Builder*) clone;
+- (NextPlayerStartNotificationResponseBuilder*) clear;
+- (NextPlayerStartNotificationResponseBuilder*) clone;
 
 - (NextPlayerStartNotificationResponse*) build;
 - (NextPlayerStartNotificationResponse*) buildPartial;
 
-- (NextPlayerStartNotificationResponse_Builder*) mergeFrom:(NextPlayerStartNotificationResponse*) other;
-- (NextPlayerStartNotificationResponse_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
-- (NextPlayerStartNotificationResponse_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+- (NextPlayerStartNotificationResponseBuilder*) mergeFrom:(NextPlayerStartNotificationResponse*) other;
+- (NextPlayerStartNotificationResponseBuilder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
+- (NextPlayerStartNotificationResponseBuilder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 @end
 
-@interface BetDiceRequest : PBGeneratedMessage {
+@interface BetDiceRequest : PBGeneratedMessage<GeneratedMessageProtocol> {
 @private
   BOOL hasOdds_:1;
   BOOL hasOption_:1;
   BOOL hasAnte_:1;
   Float32 odds;
-  int32_t option;
-  int32_t ante;
+  SInt32 option;
+  SInt32 ante;
 }
 - (BOOL) hasOption;
 - (BOOL) hasAnte;
 - (BOOL) hasOdds;
-@property (readonly) int32_t option;
-@property (readonly) int32_t ante;
+@property (readonly) SInt32 option;
+@property (readonly) SInt32 ante;
 @property (readonly) Float32 odds;
 
-+ (BetDiceRequest*) defaultInstance;
-- (BetDiceRequest*) defaultInstance;
++ (instancetype) defaultInstance;
+- (instancetype) defaultInstance;
 
 - (BOOL) isInitialized;
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
-- (BetDiceRequest_Builder*) builder;
-+ (BetDiceRequest_Builder*) builder;
-+ (BetDiceRequest_Builder*) builderWithPrototype:(BetDiceRequest*) prototype;
+- (BetDiceRequestBuilder*) builder;
++ (BetDiceRequestBuilder*) builder;
++ (BetDiceRequestBuilder*) builderWithPrototype:(BetDiceRequest*) prototype;
+- (BetDiceRequestBuilder*) toBuilder;
 
 + (BetDiceRequest*) parseFromData:(NSData*) data;
 + (BetDiceRequest*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
@@ -2803,51 +2852,52 @@ BOOL BetTypeIsValidValue(BetType value);
 + (BetDiceRequest*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 @end
 
-@interface BetDiceRequest_Builder : PBGeneratedMessage_Builder {
+@interface BetDiceRequestBuilder : PBGeneratedMessageBuilder {
 @private
-  BetDiceRequest* result;
+  BetDiceRequest* resultBetDiceRequest;
 }
 
 - (BetDiceRequest*) defaultInstance;
 
-- (BetDiceRequest_Builder*) clear;
-- (BetDiceRequest_Builder*) clone;
+- (BetDiceRequestBuilder*) clear;
+- (BetDiceRequestBuilder*) clone;
 
 - (BetDiceRequest*) build;
 - (BetDiceRequest*) buildPartial;
 
-- (BetDiceRequest_Builder*) mergeFrom:(BetDiceRequest*) other;
-- (BetDiceRequest_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
-- (BetDiceRequest_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+- (BetDiceRequestBuilder*) mergeFrom:(BetDiceRequest*) other;
+- (BetDiceRequestBuilder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
+- (BetDiceRequestBuilder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 
 - (BOOL) hasOption;
-- (int32_t) option;
-- (BetDiceRequest_Builder*) setOption:(int32_t) value;
-- (BetDiceRequest_Builder*) clearOption;
+- (SInt32) option;
+- (BetDiceRequestBuilder*) setOption:(SInt32) value;
+- (BetDiceRequestBuilder*) clearOption;
 
 - (BOOL) hasAnte;
-- (int32_t) ante;
-- (BetDiceRequest_Builder*) setAnte:(int32_t) value;
-- (BetDiceRequest_Builder*) clearAnte;
+- (SInt32) ante;
+- (BetDiceRequestBuilder*) setAnte:(SInt32) value;
+- (BetDiceRequestBuilder*) clearAnte;
 
 - (BOOL) hasOdds;
 - (Float32) odds;
-- (BetDiceRequest_Builder*) setOdds:(Float32) value;
-- (BetDiceRequest_Builder*) clearOdds;
+- (BetDiceRequestBuilder*) setOdds:(Float32) value;
+- (BetDiceRequestBuilder*) clearOdds;
 @end
 
-@interface BetDiceResponse : PBGeneratedMessage {
+@interface BetDiceResponse : PBGeneratedMessage<GeneratedMessageProtocol> {
 @private
 }
 
-+ (BetDiceResponse*) defaultInstance;
-- (BetDiceResponse*) defaultInstance;
++ (instancetype) defaultInstance;
+- (instancetype) defaultInstance;
 
 - (BOOL) isInitialized;
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
-- (BetDiceResponse_Builder*) builder;
-+ (BetDiceResponse_Builder*) builder;
-+ (BetDiceResponse_Builder*) builderWithPrototype:(BetDiceResponse*) prototype;
+- (BetDiceResponseBuilder*) builder;
++ (BetDiceResponseBuilder*) builder;
++ (BetDiceResponseBuilder*) builderWithPrototype:(BetDiceResponse*) prototype;
+- (BetDiceResponseBuilder*) toBuilder;
 
 + (BetDiceResponse*) parseFromData:(NSData*) data;
 + (BetDiceResponse*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
@@ -2857,25 +2907,25 @@ BOOL BetTypeIsValidValue(BetType value);
 + (BetDiceResponse*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 @end
 
-@interface BetDiceResponse_Builder : PBGeneratedMessage_Builder {
+@interface BetDiceResponseBuilder : PBGeneratedMessageBuilder {
 @private
-  BetDiceResponse* result;
+  BetDiceResponse* resultBetDiceResponse;
 }
 
 - (BetDiceResponse*) defaultInstance;
 
-- (BetDiceResponse_Builder*) clear;
-- (BetDiceResponse_Builder*) clone;
+- (BetDiceResponseBuilder*) clear;
+- (BetDiceResponseBuilder*) clone;
 
 - (BetDiceResponse*) build;
 - (BetDiceResponse*) buildPartial;
 
-- (BetDiceResponse_Builder*) mergeFrom:(BetDiceResponse*) other;
-- (BetDiceResponse_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
-- (BetDiceResponse_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+- (BetDiceResponseBuilder*) mergeFrom:(BetDiceResponse*) other;
+- (BetDiceResponseBuilder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
+- (BetDiceResponseBuilder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 @end
 
-@interface GameOverNotificationRequest : PBGeneratedMessage {
+@interface GameOverNotificationRequest : PBGeneratedMessage<GeneratedMessageProtocol> {
 @private
   BOOL hasGameResult_:1;
   BOOL hasZjhGameResult_:1;
@@ -2884,17 +2934,18 @@ BOOL BetTypeIsValidValue(BetType value);
 }
 - (BOOL) hasGameResult;
 - (BOOL) hasZjhGameResult;
-@property (readonly, retain) PBDiceGameResult* gameResult;
-@property (readonly, retain) PBZJHGameResult* zjhGameResult;
+@property (readonly, strong) PBDiceGameResult* gameResult;
+@property (readonly, strong) PBZJHGameResult* zjhGameResult;
 
-+ (GameOverNotificationRequest*) defaultInstance;
-- (GameOverNotificationRequest*) defaultInstance;
++ (instancetype) defaultInstance;
+- (instancetype) defaultInstance;
 
 - (BOOL) isInitialized;
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
-- (GameOverNotificationRequest_Builder*) builder;
-+ (GameOverNotificationRequest_Builder*) builder;
-+ (GameOverNotificationRequest_Builder*) builderWithPrototype:(GameOverNotificationRequest*) prototype;
+- (GameOverNotificationRequestBuilder*) builder;
++ (GameOverNotificationRequestBuilder*) builder;
++ (GameOverNotificationRequestBuilder*) builderWithPrototype:(GameOverNotificationRequest*) prototype;
+- (GameOverNotificationRequestBuilder*) toBuilder;
 
 + (GameOverNotificationRequest*) parseFromData:(NSData*) data;
 + (GameOverNotificationRequest*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
@@ -2904,50 +2955,51 @@ BOOL BetTypeIsValidValue(BetType value);
 + (GameOverNotificationRequest*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 @end
 
-@interface GameOverNotificationRequest_Builder : PBGeneratedMessage_Builder {
+@interface GameOverNotificationRequestBuilder : PBGeneratedMessageBuilder {
 @private
-  GameOverNotificationRequest* result;
+  GameOverNotificationRequest* resultGameOverNotificationRequest;
 }
 
 - (GameOverNotificationRequest*) defaultInstance;
 
-- (GameOverNotificationRequest_Builder*) clear;
-- (GameOverNotificationRequest_Builder*) clone;
+- (GameOverNotificationRequestBuilder*) clear;
+- (GameOverNotificationRequestBuilder*) clone;
 
 - (GameOverNotificationRequest*) build;
 - (GameOverNotificationRequest*) buildPartial;
 
-- (GameOverNotificationRequest_Builder*) mergeFrom:(GameOverNotificationRequest*) other;
-- (GameOverNotificationRequest_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
-- (GameOverNotificationRequest_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+- (GameOverNotificationRequestBuilder*) mergeFrom:(GameOverNotificationRequest*) other;
+- (GameOverNotificationRequestBuilder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
+- (GameOverNotificationRequestBuilder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 
 - (BOOL) hasGameResult;
 - (PBDiceGameResult*) gameResult;
-- (GameOverNotificationRequest_Builder*) setGameResult:(PBDiceGameResult*) value;
-- (GameOverNotificationRequest_Builder*) setGameResultBuilder:(PBDiceGameResult_Builder*) builderForValue;
-- (GameOverNotificationRequest_Builder*) mergeGameResult:(PBDiceGameResult*) value;
-- (GameOverNotificationRequest_Builder*) clearGameResult;
+- (GameOverNotificationRequestBuilder*) setGameResult:(PBDiceGameResult*) value;
+- (GameOverNotificationRequestBuilder*) setGameResultBuilder:(PBDiceGameResultBuilder*) builderForValue;
+- (GameOverNotificationRequestBuilder*) mergeGameResult:(PBDiceGameResult*) value;
+- (GameOverNotificationRequestBuilder*) clearGameResult;
 
 - (BOOL) hasZjhGameResult;
 - (PBZJHGameResult*) zjhGameResult;
-- (GameOverNotificationRequest_Builder*) setZjhGameResult:(PBZJHGameResult*) value;
-- (GameOverNotificationRequest_Builder*) setZjhGameResultBuilder:(PBZJHGameResult_Builder*) builderForValue;
-- (GameOverNotificationRequest_Builder*) mergeZjhGameResult:(PBZJHGameResult*) value;
-- (GameOverNotificationRequest_Builder*) clearZjhGameResult;
+- (GameOverNotificationRequestBuilder*) setZjhGameResult:(PBZJHGameResult*) value;
+- (GameOverNotificationRequestBuilder*) setZjhGameResultBuilder:(PBZJHGameResultBuilder*) builderForValue;
+- (GameOverNotificationRequestBuilder*) mergeZjhGameResult:(PBZJHGameResult*) value;
+- (GameOverNotificationRequestBuilder*) clearZjhGameResult;
 @end
 
-@interface GameOverNotificationResponse : PBGeneratedMessage {
+@interface GameOverNotificationResponse : PBGeneratedMessage<GeneratedMessageProtocol> {
 @private
 }
 
-+ (GameOverNotificationResponse*) defaultInstance;
-- (GameOverNotificationResponse*) defaultInstance;
++ (instancetype) defaultInstance;
+- (instancetype) defaultInstance;
 
 - (BOOL) isInitialized;
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
-- (GameOverNotificationResponse_Builder*) builder;
-+ (GameOverNotificationResponse_Builder*) builder;
-+ (GameOverNotificationResponse_Builder*) builderWithPrototype:(GameOverNotificationResponse*) prototype;
+- (GameOverNotificationResponseBuilder*) builder;
++ (GameOverNotificationResponseBuilder*) builder;
++ (GameOverNotificationResponseBuilder*) builderWithPrototype:(GameOverNotificationResponse*) prototype;
+- (GameOverNotificationResponseBuilder*) toBuilder;
 
 + (GameOverNotificationResponse*) parseFromData:(NSData*) data;
 + (GameOverNotificationResponse*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
@@ -2957,59 +3009,60 @@ BOOL BetTypeIsValidValue(BetType value);
 + (GameOverNotificationResponse*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 @end
 
-@interface GameOverNotificationResponse_Builder : PBGeneratedMessage_Builder {
+@interface GameOverNotificationResponseBuilder : PBGeneratedMessageBuilder {
 @private
-  GameOverNotificationResponse* result;
+  GameOverNotificationResponse* resultGameOverNotificationResponse;
 }
 
 - (GameOverNotificationResponse*) defaultInstance;
 
-- (GameOverNotificationResponse_Builder*) clear;
-- (GameOverNotificationResponse_Builder*) clone;
+- (GameOverNotificationResponseBuilder*) clear;
+- (GameOverNotificationResponseBuilder*) clone;
 
 - (GameOverNotificationResponse*) build;
 - (GameOverNotificationResponse*) buildPartial;
 
-- (GameOverNotificationResponse_Builder*) mergeFrom:(GameOverNotificationResponse*) other;
-- (GameOverNotificationResponse_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
-- (GameOverNotificationResponse_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+- (GameOverNotificationResponseBuilder*) mergeFrom:(GameOverNotificationResponse*) other;
+- (GameOverNotificationResponseBuilder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
+- (GameOverNotificationResponseBuilder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 @end
 
-@interface GameChatRequest : PBGeneratedMessage {
+@interface GameChatRequest : PBGeneratedMessage<GeneratedMessageProtocol> {
 @private
   BOOL hasChatType_:1;
   BOOL hasContentType_:1;
   BOOL hasContent_:1;
   BOOL hasExpressionId_:1;
   BOOL hasContentVoiceId_:1;
-  int32_t chatType;
-  int32_t contentType;
+  SInt32 chatType;
+  SInt32 contentType;
   NSString* content;
   NSString* expressionId;
   NSString* contentVoiceId;
-  NSMutableArray* mutableToUserIdList;
+  NSMutableArray * toUserIdArray;
 }
 - (BOOL) hasContent;
 - (BOOL) hasChatType;
 - (BOOL) hasContentType;
 - (BOOL) hasExpressionId;
 - (BOOL) hasContentVoiceId;
-@property (readonly, retain) NSString* content;
-@property (readonly) int32_t chatType;
-@property (readonly) int32_t contentType;
-@property (readonly, retain) NSString* expressionId;
-@property (readonly, retain) NSString* contentVoiceId;
-- (NSArray*) toUserIdList;
-- (NSString*) toUserIdAtIndex:(int32_t) index;
+@property (readonly, strong) NSArray * toUserId;
+@property (readonly, strong) NSString* content;
+@property (readonly) SInt32 chatType;
+@property (readonly) SInt32 contentType;
+@property (readonly, strong) NSString* expressionId;
+@property (readonly, strong) NSString* contentVoiceId;
+- (NSString*)toUserIdAtIndex:(NSUInteger)index;
 
-+ (GameChatRequest*) defaultInstance;
-- (GameChatRequest*) defaultInstance;
++ (instancetype) defaultInstance;
+- (instancetype) defaultInstance;
 
 - (BOOL) isInitialized;
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
-- (GameChatRequest_Builder*) builder;
-+ (GameChatRequest_Builder*) builder;
-+ (GameChatRequest_Builder*) builderWithPrototype:(GameChatRequest*) prototype;
+- (GameChatRequestBuilder*) builder;
++ (GameChatRequestBuilder*) builder;
++ (GameChatRequestBuilder*) builderWithPrototype:(GameChatRequest*) prototype;
+- (GameChatRequestBuilder*) toBuilder;
 
 + (GameChatRequest*) parseFromData:(NSData*) data;
 + (GameChatRequest*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
@@ -3019,68 +3072,68 @@ BOOL BetTypeIsValidValue(BetType value);
 + (GameChatRequest*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 @end
 
-@interface GameChatRequest_Builder : PBGeneratedMessage_Builder {
+@interface GameChatRequestBuilder : PBGeneratedMessageBuilder {
 @private
-  GameChatRequest* result;
+  GameChatRequest* resultGameChatRequest;
 }
 
 - (GameChatRequest*) defaultInstance;
 
-- (GameChatRequest_Builder*) clear;
-- (GameChatRequest_Builder*) clone;
+- (GameChatRequestBuilder*) clear;
+- (GameChatRequestBuilder*) clone;
 
 - (GameChatRequest*) build;
 - (GameChatRequest*) buildPartial;
 
-- (GameChatRequest_Builder*) mergeFrom:(GameChatRequest*) other;
-- (GameChatRequest_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
-- (GameChatRequest_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+- (GameChatRequestBuilder*) mergeFrom:(GameChatRequest*) other;
+- (GameChatRequestBuilder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
+- (GameChatRequestBuilder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 
-- (NSArray*) toUserIdList;
-- (NSString*) toUserIdAtIndex:(int32_t) index;
-- (GameChatRequest_Builder*) replaceToUserIdAtIndex:(int32_t) index with:(NSString*) value;
-- (GameChatRequest_Builder*) addToUserId:(NSString*) value;
-- (GameChatRequest_Builder*) addAllToUserId:(NSArray*) values;
-- (GameChatRequest_Builder*) clearToUserIdList;
+- (NSMutableArray *)toUserId;
+- (NSString*)toUserIdAtIndex:(NSUInteger)index;
+- (GameChatRequestBuilder *)addToUserId:(NSString*)value;
+- (GameChatRequestBuilder *)setToUserIdArray:(NSArray *)array;
+- (GameChatRequestBuilder *)clearToUserId;
 
 - (BOOL) hasContent;
 - (NSString*) content;
-- (GameChatRequest_Builder*) setContent:(NSString*) value;
-- (GameChatRequest_Builder*) clearContent;
+- (GameChatRequestBuilder*) setContent:(NSString*) value;
+- (GameChatRequestBuilder*) clearContent;
 
 - (BOOL) hasChatType;
-- (int32_t) chatType;
-- (GameChatRequest_Builder*) setChatType:(int32_t) value;
-- (GameChatRequest_Builder*) clearChatType;
+- (SInt32) chatType;
+- (GameChatRequestBuilder*) setChatType:(SInt32) value;
+- (GameChatRequestBuilder*) clearChatType;
 
 - (BOOL) hasContentType;
-- (int32_t) contentType;
-- (GameChatRequest_Builder*) setContentType:(int32_t) value;
-- (GameChatRequest_Builder*) clearContentType;
+- (SInt32) contentType;
+- (GameChatRequestBuilder*) setContentType:(SInt32) value;
+- (GameChatRequestBuilder*) clearContentType;
 
 - (BOOL) hasExpressionId;
 - (NSString*) expressionId;
-- (GameChatRequest_Builder*) setExpressionId:(NSString*) value;
-- (GameChatRequest_Builder*) clearExpressionId;
+- (GameChatRequestBuilder*) setExpressionId:(NSString*) value;
+- (GameChatRequestBuilder*) clearExpressionId;
 
 - (BOOL) hasContentVoiceId;
 - (NSString*) contentVoiceId;
-- (GameChatRequest_Builder*) setContentVoiceId:(NSString*) value;
-- (GameChatRequest_Builder*) clearContentVoiceId;
+- (GameChatRequestBuilder*) setContentVoiceId:(NSString*) value;
+- (GameChatRequestBuilder*) clearContentVoiceId;
 @end
 
-@interface GameChatResponse : PBGeneratedMessage {
+@interface GameChatResponse : PBGeneratedMessage<GeneratedMessageProtocol> {
 @private
 }
 
-+ (GameChatResponse*) defaultInstance;
-- (GameChatResponse*) defaultInstance;
++ (instancetype) defaultInstance;
+- (instancetype) defaultInstance;
 
 - (BOOL) isInitialized;
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
-- (GameChatResponse_Builder*) builder;
-+ (GameChatResponse_Builder*) builder;
-+ (GameChatResponse_Builder*) builderWithPrototype:(GameChatResponse*) prototype;
+- (GameChatResponseBuilder*) builder;
++ (GameChatResponseBuilder*) builder;
++ (GameChatResponseBuilder*) builderWithPrototype:(GameChatResponse*) prototype;
+- (GameChatResponseBuilder*) toBuilder;
 
 + (GameChatResponse*) parseFromData:(NSData*) data;
 + (GameChatResponse*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
@@ -3090,25 +3143,25 @@ BOOL BetTypeIsValidValue(BetType value);
 + (GameChatResponse*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 @end
 
-@interface GameChatResponse_Builder : PBGeneratedMessage_Builder {
+@interface GameChatResponseBuilder : PBGeneratedMessageBuilder {
 @private
-  GameChatResponse* result;
+  GameChatResponse* resultGameChatResponse;
 }
 
 - (GameChatResponse*) defaultInstance;
 
-- (GameChatResponse_Builder*) clear;
-- (GameChatResponse_Builder*) clone;
+- (GameChatResponseBuilder*) clear;
+- (GameChatResponseBuilder*) clone;
 
 - (GameChatResponse*) build;
 - (GameChatResponse*) buildPartial;
 
-- (GameChatResponse_Builder*) mergeFrom:(GameChatResponse*) other;
-- (GameChatResponse_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
-- (GameChatResponse_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+- (GameChatResponseBuilder*) mergeFrom:(GameChatResponse*) other;
+- (GameChatResponseBuilder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
+- (GameChatResponseBuilder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 @end
 
-@interface SendDrawDataRequest : PBGeneratedMessage {
+@interface SendDrawDataRequest : PBGeneratedMessage<GeneratedMessageProtocol> {
 @private
   BOOL hasGuessCorrect_:1;
   BOOL hasWidth_:1;
@@ -3123,17 +3176,17 @@ BOOL BetTypeIsValidValue(BetType value);
   BOOL hasCanvasSize_:1;
   BOOL guessCorrect_:1;
   Float32 width;
-  int32_t level;
-  int32_t language;
-  int32_t color;
-  int32_t penType;
+  SInt32 level;
+  SInt32 language;
+  SInt32 color;
+  SInt32 penType;
   NSString* word;
   NSString* guessWord;
   NSString* guessUserId;
   PBDrawAction* drawAction;
   PBSize* canvasSize;
-  NSMutableArray* mutablePointsList;
-  int32_t pointsMemoizedSerializedSize;
+  PBAppendableArray * pointsArray;
+  SInt32 pointsMemoizedSerializedSize;
 }
 - (BOOL) hasWord;
 - (BOOL) hasLevel;
@@ -3146,28 +3199,29 @@ BOOL BetTypeIsValidValue(BetType value);
 - (BOOL) hasGuessCorrect;
 - (BOOL) hasDrawAction;
 - (BOOL) hasCanvasSize;
-@property (readonly, retain) NSString* word;
-@property (readonly) int32_t level;
-@property (readonly) int32_t language;
+@property (readonly, strong) NSString* word;
+@property (readonly) SInt32 level;
+@property (readonly) SInt32 language;
+@property (readonly, strong) PBArray * points;
 @property (readonly) Float32 width;
-@property (readonly) int32_t color;
-@property (readonly) int32_t penType;
-@property (readonly, retain) NSString* guessWord;
-@property (readonly, retain) NSString* guessUserId;
+@property (readonly) SInt32 color;
+@property (readonly) SInt32 penType;
+@property (readonly, strong) NSString* guessWord;
+@property (readonly, strong) NSString* guessUserId;
 - (BOOL) guessCorrect;
-@property (readonly, retain) PBDrawAction* drawAction;
-@property (readonly, retain) PBSize* canvasSize;
-- (NSArray*) pointsList;
-- (int32_t) pointsAtIndex:(int32_t) index;
+@property (readonly, strong) PBDrawAction* drawAction;
+@property (readonly, strong) PBSize* canvasSize;
+- (SInt32)pointsAtIndex:(NSUInteger)index;
 
-+ (SendDrawDataRequest*) defaultInstance;
-- (SendDrawDataRequest*) defaultInstance;
++ (instancetype) defaultInstance;
+- (instancetype) defaultInstance;
 
 - (BOOL) isInitialized;
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
-- (SendDrawDataRequest_Builder*) builder;
-+ (SendDrawDataRequest_Builder*) builder;
-+ (SendDrawDataRequest_Builder*) builderWithPrototype:(SendDrawDataRequest*) prototype;
+- (SendDrawDataRequestBuilder*) builder;
++ (SendDrawDataRequestBuilder*) builder;
++ (SendDrawDataRequestBuilder*) builderWithPrototype:(SendDrawDataRequest*) prototype;
+- (SendDrawDataRequestBuilder*) toBuilder;
 
 + (SendDrawDataRequest*) parseFromData:(NSData*) data;
 + (SendDrawDataRequest*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
@@ -3177,102 +3231,103 @@ BOOL BetTypeIsValidValue(BetType value);
 + (SendDrawDataRequest*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 @end
 
-@interface SendDrawDataRequest_Builder : PBGeneratedMessage_Builder {
+@interface SendDrawDataRequestBuilder : PBGeneratedMessageBuilder {
 @private
-  SendDrawDataRequest* result;
+  SendDrawDataRequest* resultSendDrawDataRequest;
 }
 
 - (SendDrawDataRequest*) defaultInstance;
 
-- (SendDrawDataRequest_Builder*) clear;
-- (SendDrawDataRequest_Builder*) clone;
+- (SendDrawDataRequestBuilder*) clear;
+- (SendDrawDataRequestBuilder*) clone;
 
 - (SendDrawDataRequest*) build;
 - (SendDrawDataRequest*) buildPartial;
 
-- (SendDrawDataRequest_Builder*) mergeFrom:(SendDrawDataRequest*) other;
-- (SendDrawDataRequest_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
-- (SendDrawDataRequest_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+- (SendDrawDataRequestBuilder*) mergeFrom:(SendDrawDataRequest*) other;
+- (SendDrawDataRequestBuilder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
+- (SendDrawDataRequestBuilder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 
 - (BOOL) hasWord;
 - (NSString*) word;
-- (SendDrawDataRequest_Builder*) setWord:(NSString*) value;
-- (SendDrawDataRequest_Builder*) clearWord;
+- (SendDrawDataRequestBuilder*) setWord:(NSString*) value;
+- (SendDrawDataRequestBuilder*) clearWord;
 
 - (BOOL) hasLevel;
-- (int32_t) level;
-- (SendDrawDataRequest_Builder*) setLevel:(int32_t) value;
-- (SendDrawDataRequest_Builder*) clearLevel;
+- (SInt32) level;
+- (SendDrawDataRequestBuilder*) setLevel:(SInt32) value;
+- (SendDrawDataRequestBuilder*) clearLevel;
 
 - (BOOL) hasLanguage;
-- (int32_t) language;
-- (SendDrawDataRequest_Builder*) setLanguage:(int32_t) value;
-- (SendDrawDataRequest_Builder*) clearLanguage;
+- (SInt32) language;
+- (SendDrawDataRequestBuilder*) setLanguage:(SInt32) value;
+- (SendDrawDataRequestBuilder*) clearLanguage;
 
-- (NSArray*) pointsList;
-- (int32_t) pointsAtIndex:(int32_t) index;
-- (SendDrawDataRequest_Builder*) replacePointsAtIndex:(int32_t) index with:(int32_t) value;
-- (SendDrawDataRequest_Builder*) addPoints:(int32_t) value;
-- (SendDrawDataRequest_Builder*) addAllPoints:(NSArray*) values;
-- (SendDrawDataRequest_Builder*) clearPointsList;
+- (PBAppendableArray *)points;
+- (SInt32)pointsAtIndex:(NSUInteger)index;
+- (SendDrawDataRequestBuilder *)addPoints:(SInt32)value;
+- (SendDrawDataRequestBuilder *)setPointsArray:(NSArray *)array;
+- (SendDrawDataRequestBuilder *)setPointsValues:(const SInt32 *)values count:(NSUInteger)count;
+- (SendDrawDataRequestBuilder *)clearPoints;
 
 - (BOOL) hasWidth;
 - (Float32) width;
-- (SendDrawDataRequest_Builder*) setWidth:(Float32) value;
-- (SendDrawDataRequest_Builder*) clearWidth;
+- (SendDrawDataRequestBuilder*) setWidth:(Float32) value;
+- (SendDrawDataRequestBuilder*) clearWidth;
 
 - (BOOL) hasColor;
-- (int32_t) color;
-- (SendDrawDataRequest_Builder*) setColor:(int32_t) value;
-- (SendDrawDataRequest_Builder*) clearColor;
+- (SInt32) color;
+- (SendDrawDataRequestBuilder*) setColor:(SInt32) value;
+- (SendDrawDataRequestBuilder*) clearColor;
 
 - (BOOL) hasPenType;
-- (int32_t) penType;
-- (SendDrawDataRequest_Builder*) setPenType:(int32_t) value;
-- (SendDrawDataRequest_Builder*) clearPenType;
+- (SInt32) penType;
+- (SendDrawDataRequestBuilder*) setPenType:(SInt32) value;
+- (SendDrawDataRequestBuilder*) clearPenType;
 
 - (BOOL) hasGuessWord;
 - (NSString*) guessWord;
-- (SendDrawDataRequest_Builder*) setGuessWord:(NSString*) value;
-- (SendDrawDataRequest_Builder*) clearGuessWord;
+- (SendDrawDataRequestBuilder*) setGuessWord:(NSString*) value;
+- (SendDrawDataRequestBuilder*) clearGuessWord;
 
 - (BOOL) hasGuessUserId;
 - (NSString*) guessUserId;
-- (SendDrawDataRequest_Builder*) setGuessUserId:(NSString*) value;
-- (SendDrawDataRequest_Builder*) clearGuessUserId;
+- (SendDrawDataRequestBuilder*) setGuessUserId:(NSString*) value;
+- (SendDrawDataRequestBuilder*) clearGuessUserId;
 
 - (BOOL) hasGuessCorrect;
 - (BOOL) guessCorrect;
-- (SendDrawDataRequest_Builder*) setGuessCorrect:(BOOL) value;
-- (SendDrawDataRequest_Builder*) clearGuessCorrect;
+- (SendDrawDataRequestBuilder*) setGuessCorrect:(BOOL) value;
+- (SendDrawDataRequestBuilder*) clearGuessCorrect;
 
 - (BOOL) hasDrawAction;
 - (PBDrawAction*) drawAction;
-- (SendDrawDataRequest_Builder*) setDrawAction:(PBDrawAction*) value;
-- (SendDrawDataRequest_Builder*) setDrawActionBuilder:(PBDrawAction_Builder*) builderForValue;
-- (SendDrawDataRequest_Builder*) mergeDrawAction:(PBDrawAction*) value;
-- (SendDrawDataRequest_Builder*) clearDrawAction;
+- (SendDrawDataRequestBuilder*) setDrawAction:(PBDrawAction*) value;
+- (SendDrawDataRequestBuilder*) setDrawActionBuilder:(PBDrawActionBuilder*) builderForValue;
+- (SendDrawDataRequestBuilder*) mergeDrawAction:(PBDrawAction*) value;
+- (SendDrawDataRequestBuilder*) clearDrawAction;
 
 - (BOOL) hasCanvasSize;
 - (PBSize*) canvasSize;
-- (SendDrawDataRequest_Builder*) setCanvasSize:(PBSize*) value;
-- (SendDrawDataRequest_Builder*) setCanvasSizeBuilder:(PBSize_Builder*) builderForValue;
-- (SendDrawDataRequest_Builder*) mergeCanvasSize:(PBSize*) value;
-- (SendDrawDataRequest_Builder*) clearCanvasSize;
+- (SendDrawDataRequestBuilder*) setCanvasSize:(PBSize*) value;
+- (SendDrawDataRequestBuilder*) setCanvasSizeBuilder:(PBSizeBuilder*) builderForValue;
+- (SendDrawDataRequestBuilder*) mergeCanvasSize:(PBSize*) value;
+- (SendDrawDataRequestBuilder*) clearCanvasSize;
 @end
 
-@interface SendDrawDataResponse : PBGeneratedMessage {
+@interface SendDrawDataResponse : PBGeneratedMessage<GeneratedMessageProtocol> {
 @private
 }
 
-+ (SendDrawDataResponse*) defaultInstance;
-- (SendDrawDataResponse*) defaultInstance;
++ (instancetype) defaultInstance;
+- (instancetype) defaultInstance;
 
 - (BOOL) isInitialized;
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
-- (SendDrawDataResponse_Builder*) builder;
-+ (SendDrawDataResponse_Builder*) builder;
-+ (SendDrawDataResponse_Builder*) builderWithPrototype:(SendDrawDataResponse*) prototype;
+- (SendDrawDataResponseBuilder*) builder;
++ (SendDrawDataResponseBuilder*) builder;
++ (SendDrawDataResponseBuilder*) builderWithPrototype:(SendDrawDataResponse*) prototype;
+- (SendDrawDataResponseBuilder*) toBuilder;
 
 + (SendDrawDataResponse*) parseFromData:(NSData*) data;
 + (SendDrawDataResponse*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
@@ -3282,40 +3337,41 @@ BOOL BetTypeIsValidValue(BetType value);
 + (SendDrawDataResponse*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 @end
 
-@interface SendDrawDataResponse_Builder : PBGeneratedMessage_Builder {
+@interface SendDrawDataResponseBuilder : PBGeneratedMessageBuilder {
 @private
-  SendDrawDataResponse* result;
+  SendDrawDataResponse* resultSendDrawDataResponse;
 }
 
 - (SendDrawDataResponse*) defaultInstance;
 
-- (SendDrawDataResponse_Builder*) clear;
-- (SendDrawDataResponse_Builder*) clone;
+- (SendDrawDataResponseBuilder*) clear;
+- (SendDrawDataResponseBuilder*) clone;
 
 - (SendDrawDataResponse*) build;
 - (SendDrawDataResponse*) buildPartial;
 
-- (SendDrawDataResponse_Builder*) mergeFrom:(SendDrawDataResponse*) other;
-- (SendDrawDataResponse_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
-- (SendDrawDataResponse_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+- (SendDrawDataResponseBuilder*) mergeFrom:(SendDrawDataResponse*) other;
+- (SendDrawDataResponseBuilder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
+- (SendDrawDataResponseBuilder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 @end
 
-@interface GameStartNotificationRequest : PBGeneratedMessage {
+@interface GameStartNotificationRequest : PBGeneratedMessage<GeneratedMessageProtocol> {
 @private
   BOOL hasZjhGameState_:1;
   PBZJHGameState* zjhGameState;
 }
 - (BOOL) hasZjhGameState;
-@property (readonly, retain) PBZJHGameState* zjhGameState;
+@property (readonly, strong) PBZJHGameState* zjhGameState;
 
-+ (GameStartNotificationRequest*) defaultInstance;
-- (GameStartNotificationRequest*) defaultInstance;
++ (instancetype) defaultInstance;
+- (instancetype) defaultInstance;
 
 - (BOOL) isInitialized;
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
-- (GameStartNotificationRequest_Builder*) builder;
-+ (GameStartNotificationRequest_Builder*) builder;
-+ (GameStartNotificationRequest_Builder*) builderWithPrototype:(GameStartNotificationRequest*) prototype;
+- (GameStartNotificationRequestBuilder*) builder;
++ (GameStartNotificationRequestBuilder*) builder;
++ (GameStartNotificationRequestBuilder*) builderWithPrototype:(GameStartNotificationRequest*) prototype;
+- (GameStartNotificationRequestBuilder*) toBuilder;
 
 + (GameStartNotificationRequest*) parseFromData:(NSData*) data;
 + (GameStartNotificationRequest*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
@@ -3325,43 +3381,44 @@ BOOL BetTypeIsValidValue(BetType value);
 + (GameStartNotificationRequest*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 @end
 
-@interface GameStartNotificationRequest_Builder : PBGeneratedMessage_Builder {
+@interface GameStartNotificationRequestBuilder : PBGeneratedMessageBuilder {
 @private
-  GameStartNotificationRequest* result;
+  GameStartNotificationRequest* resultGameStartNotificationRequest;
 }
 
 - (GameStartNotificationRequest*) defaultInstance;
 
-- (GameStartNotificationRequest_Builder*) clear;
-- (GameStartNotificationRequest_Builder*) clone;
+- (GameStartNotificationRequestBuilder*) clear;
+- (GameStartNotificationRequestBuilder*) clone;
 
 - (GameStartNotificationRequest*) build;
 - (GameStartNotificationRequest*) buildPartial;
 
-- (GameStartNotificationRequest_Builder*) mergeFrom:(GameStartNotificationRequest*) other;
-- (GameStartNotificationRequest_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
-- (GameStartNotificationRequest_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+- (GameStartNotificationRequestBuilder*) mergeFrom:(GameStartNotificationRequest*) other;
+- (GameStartNotificationRequestBuilder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
+- (GameStartNotificationRequestBuilder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 
 - (BOOL) hasZjhGameState;
 - (PBZJHGameState*) zjhGameState;
-- (GameStartNotificationRequest_Builder*) setZjhGameState:(PBZJHGameState*) value;
-- (GameStartNotificationRequest_Builder*) setZjhGameStateBuilder:(PBZJHGameState_Builder*) builderForValue;
-- (GameStartNotificationRequest_Builder*) mergeZjhGameState:(PBZJHGameState*) value;
-- (GameStartNotificationRequest_Builder*) clearZjhGameState;
+- (GameStartNotificationRequestBuilder*) setZjhGameState:(PBZJHGameState*) value;
+- (GameStartNotificationRequestBuilder*) setZjhGameStateBuilder:(PBZJHGameStateBuilder*) builderForValue;
+- (GameStartNotificationRequestBuilder*) mergeZjhGameState:(PBZJHGameState*) value;
+- (GameStartNotificationRequestBuilder*) clearZjhGameState;
 @end
 
-@interface GameStartNotificationResponse : PBGeneratedMessage {
+@interface GameStartNotificationResponse : PBGeneratedMessage<GeneratedMessageProtocol> {
 @private
 }
 
-+ (GameStartNotificationResponse*) defaultInstance;
-- (GameStartNotificationResponse*) defaultInstance;
++ (instancetype) defaultInstance;
+- (instancetype) defaultInstance;
 
 - (BOOL) isInitialized;
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
-- (GameStartNotificationResponse_Builder*) builder;
-+ (GameStartNotificationResponse_Builder*) builder;
-+ (GameStartNotificationResponse_Builder*) builderWithPrototype:(GameStartNotificationResponse*) prototype;
+- (GameStartNotificationResponseBuilder*) builder;
++ (GameStartNotificationResponseBuilder*) builder;
++ (GameStartNotificationResponseBuilder*) builderWithPrototype:(GameStartNotificationResponse*) prototype;
+- (GameStartNotificationResponseBuilder*) toBuilder;
 
 + (GameStartNotificationResponse*) parseFromData:(NSData*) data;
 + (GameStartNotificationResponse*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
@@ -3371,80 +3428,80 @@ BOOL BetTypeIsValidValue(BetType value);
 + (GameStartNotificationResponse*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 @end
 
-@interface GameStartNotificationResponse_Builder : PBGeneratedMessage_Builder {
+@interface GameStartNotificationResponseBuilder : PBGeneratedMessageBuilder {
 @private
-  GameStartNotificationResponse* result;
+  GameStartNotificationResponse* resultGameStartNotificationResponse;
 }
 
 - (GameStartNotificationResponse*) defaultInstance;
 
-- (GameStartNotificationResponse_Builder*) clear;
-- (GameStartNotificationResponse_Builder*) clone;
+- (GameStartNotificationResponseBuilder*) clear;
+- (GameStartNotificationResponseBuilder*) clone;
 
 - (GameStartNotificationResponse*) build;
 - (GameStartNotificationResponse*) buildPartial;
 
-- (GameStartNotificationResponse_Builder*) mergeFrom:(GameStartNotificationResponse*) other;
-- (GameStartNotificationResponse_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
-- (GameStartNotificationResponse_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+- (GameStartNotificationResponseBuilder*) mergeFrom:(GameStartNotificationResponse*) other;
+- (GameStartNotificationResponseBuilder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
+- (GameStartNotificationResponseBuilder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 @end
 
-@interface GeneralNotification : PBGeneratedMessage {
+@interface GeneralNotification : PBGeneratedMessage<GeneratedMessageProtocol> {
 @private
-  BOOL hasGuessCorrect_:1;
   BOOL hasUserGender_:1;
+  BOOL hasGuessCorrect_:1;
   BOOL hasWidth_:1;
-  BOOL hasTurnGainCoins_:1;
-  BOOL hasChatType_:1;
-  BOOL hasGuessGainCoins_:1;
-  BOOL hasLanguage_:1;
-  BOOL hasRound_:1;
-  BOOL hasLevel_:1;
-  BOOL hasPenType_:1;
-  BOOL hasColor_:1;
-  BOOL hasUserLevel_:1;
   BOOL hasSessionStatus_:1;
+  BOOL hasUserLevel_:1;
+  BOOL hasColor_:1;
+  BOOL hasPenType_:1;
+  BOOL hasLevel_:1;
+  BOOL hasRound_:1;
+  BOOL hasLanguage_:1;
+  BOOL hasGuessGainCoins_:1;
+  BOOL hasChatType_:1;
+  BOOL hasTurnGainCoins_:1;
   BOOL hasSessionHost_:1;
-  BOOL hasChatContent_:1;
   BOOL hasCurrentPlayUserId_:1;
   BOOL hasNextPlayUserId_:1;
-  BOOL hasGuessUserId_:1;
-  BOOL hasGuessWord_:1;
   BOOL hasNewUserId_:1;
   BOOL hasQuitUserId_:1;
   BOOL hasNickName_:1;
-  BOOL hasWord_:1;
   BOOL hasUserAvatar_:1;
   BOOL hasLocation_:1;
-  BOOL guessCorrect_:1;
+  BOOL hasWord_:1;
+  BOOL hasGuessWord_:1;
+  BOOL hasGuessUserId_:1;
+  BOOL hasChatContent_:1;
   BOOL userGender_:1;
+  BOOL guessCorrect_:1;
   Float32 width;
-  int32_t turnGainCoins;
-  int32_t chatType;
-  int32_t guessGainCoins;
-  int32_t language;
-  int32_t round;
-  int32_t level;
-  int32_t penType;
-  int32_t color;
-  int32_t userLevel;
-  int32_t sessionStatus;
+  SInt32 sessionStatus;
+  SInt32 userLevel;
+  SInt32 color;
+  SInt32 penType;
+  SInt32 level;
+  SInt32 round;
+  SInt32 language;
+  SInt32 guessGainCoins;
+  SInt32 chatType;
+  SInt32 turnGainCoins;
   NSString* sessionHost;
-  NSString* chatContent;
   NSString* currentPlayUserId;
   NSString* nextPlayUserId;
-  NSString* guessUserId;
-  NSString* guessWord;
   NSString* newUserId;
   NSString* quitUserId;
   NSString* nickName;
-  NSString* word;
   NSString* userAvatar;
   NSString* location;
-  NSMutableArray* mutablePointsList;
-  int32_t pointsMemoizedSerializedSize;
-  NSMutableArray* mutableChatToUserIdList;
-  NSMutableArray* mutableSnsUsersList;
+  NSString* word;
+  NSString* guessWord;
+  NSString* guessUserId;
+  NSString* chatContent;
+  PBAppendableArray * pointsArray;
+  SInt32 pointsMemoizedSerializedSize;
+  NSMutableArray * chatToUserIdArray;
+  NSMutableArray * snsUsersArray;
 }
 - (BOOL) hasSessionHost;
 - (BOOL) hasSessionStatus;
@@ -3471,46 +3528,47 @@ BOOL BetTypeIsValidValue(BetType value);
 - (BOOL) hasChatContent;
 - (BOOL) hasChatType;
 - (BOOL) hasTurnGainCoins;
-@property (readonly, retain) NSString* sessionHost;
-@property (readonly) int32_t sessionStatus;
-@property (readonly, retain) NSString* currentPlayUserId;
-@property (readonly, retain) NSString* nextPlayUserId;
-@property (readonly, retain) NSString* newUserId;
-@property (readonly, retain) NSString* quitUserId;
-@property (readonly, retain) NSString* nickName;
-@property (readonly, retain) NSString* userAvatar;
+@property (readonly, strong) NSString* sessionHost;
+@property (readonly) SInt32 sessionStatus;
+@property (readonly, strong) NSString* currentPlayUserId;
+@property (readonly, strong) NSString* nextPlayUserId;
+@property (readonly, strong) NS_RETURNS_NOT_RETAINED NSString* newUserId;
+@property (readonly, strong) NSString* quitUserId;
+@property (readonly, strong) NSString* nickName;
+@property (readonly, strong) NSString* userAvatar;
 - (BOOL) userGender;
-@property (readonly, retain) NSString* location;
-@property (readonly) int32_t userLevel;
+@property (readonly, strong) NSArray * snsUsers;
+@property (readonly, strong) NSString* location;
+@property (readonly) SInt32 userLevel;
+@property (readonly, strong) PBArray * points;
 @property (readonly) Float32 width;
-@property (readonly) int32_t color;
-@property (readonly) int32_t penType;
-@property (readonly, retain) NSString* word;
-@property (readonly) int32_t level;
-@property (readonly) int32_t round;
-@property (readonly) int32_t language;
-@property (readonly, retain) NSString* guessWord;
-@property (readonly, retain) NSString* guessUserId;
+@property (readonly) SInt32 color;
+@property (readonly) SInt32 penType;
+@property (readonly, strong) NSString* word;
+@property (readonly) SInt32 level;
+@property (readonly) SInt32 round;
+@property (readonly) SInt32 language;
+@property (readonly, strong) NSString* guessWord;
+@property (readonly, strong) NSString* guessUserId;
 - (BOOL) guessCorrect;
-@property (readonly) int32_t guessGainCoins;
-@property (readonly, retain) NSString* chatContent;
-@property (readonly) int32_t chatType;
-@property (readonly) int32_t turnGainCoins;
-- (NSArray*) snsUsersList;
-- (PBSNSUser*) snsUsersAtIndex:(int32_t) index;
-- (NSArray*) pointsList;
-- (int32_t) pointsAtIndex:(int32_t) index;
-- (NSArray*) chatToUserIdList;
-- (NSString*) chatToUserIdAtIndex:(int32_t) index;
+@property (readonly) SInt32 guessGainCoins;
+@property (readonly, strong) NSArray * chatToUserId;
+@property (readonly, strong) NSString* chatContent;
+@property (readonly) SInt32 chatType;
+@property (readonly) SInt32 turnGainCoins;
+- (PBSNSUser*)snsUsersAtIndex:(NSUInteger)index;
+- (SInt32)pointsAtIndex:(NSUInteger)index;
+- (NSString*)chatToUserIdAtIndex:(NSUInteger)index;
 
-+ (GeneralNotification*) defaultInstance;
-- (GeneralNotification*) defaultInstance;
++ (instancetype) defaultInstance;
+- (instancetype) defaultInstance;
 
 - (BOOL) isInitialized;
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
-- (GeneralNotification_Builder*) builder;
-+ (GeneralNotification_Builder*) builder;
-+ (GeneralNotification_Builder*) builderWithPrototype:(GeneralNotification*) prototype;
+- (GeneralNotificationBuilder*) builder;
++ (GeneralNotificationBuilder*) builder;
++ (GeneralNotificationBuilder*) builderWithPrototype:(GeneralNotification*) prototype;
+- (GeneralNotificationBuilder*) toBuilder;
 
 + (GeneralNotification*) parseFromData:(NSData*) data;
 + (GeneralNotification*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
@@ -3520,171 +3578,169 @@ BOOL BetTypeIsValidValue(BetType value);
 + (GeneralNotification*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 @end
 
-@interface GeneralNotification_Builder : PBGeneratedMessage_Builder {
+@interface GeneralNotificationBuilder : PBGeneratedMessageBuilder {
 @private
-  GeneralNotification* result;
+  GeneralNotification* resultGeneralNotification;
 }
 
 - (GeneralNotification*) defaultInstance;
 
-- (GeneralNotification_Builder*) clear;
-- (GeneralNotification_Builder*) clone;
+- (GeneralNotificationBuilder*) clear;
+- (GeneralNotificationBuilder*) clone;
 
 - (GeneralNotification*) build;
 - (GeneralNotification*) buildPartial;
 
-- (GeneralNotification_Builder*) mergeFrom:(GeneralNotification*) other;
-- (GeneralNotification_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
-- (GeneralNotification_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+- (GeneralNotificationBuilder*) mergeFrom:(GeneralNotification*) other;
+- (GeneralNotificationBuilder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
+- (GeneralNotificationBuilder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 
 - (BOOL) hasSessionHost;
 - (NSString*) sessionHost;
-- (GeneralNotification_Builder*) setSessionHost:(NSString*) value;
-- (GeneralNotification_Builder*) clearSessionHost;
+- (GeneralNotificationBuilder*) setSessionHost:(NSString*) value;
+- (GeneralNotificationBuilder*) clearSessionHost;
 
 - (BOOL) hasSessionStatus;
-- (int32_t) sessionStatus;
-- (GeneralNotification_Builder*) setSessionStatus:(int32_t) value;
-- (GeneralNotification_Builder*) clearSessionStatus;
+- (SInt32) sessionStatus;
+- (GeneralNotificationBuilder*) setSessionStatus:(SInt32) value;
+- (GeneralNotificationBuilder*) clearSessionStatus;
 
 - (BOOL) hasCurrentPlayUserId;
 - (NSString*) currentPlayUserId;
-- (GeneralNotification_Builder*) setCurrentPlayUserId:(NSString*) value;
-- (GeneralNotification_Builder*) clearCurrentPlayUserId;
+- (GeneralNotificationBuilder*) setCurrentPlayUserId:(NSString*) value;
+- (GeneralNotificationBuilder*) clearCurrentPlayUserId;
 
 - (BOOL) hasNextPlayUserId;
 - (NSString*) nextPlayUserId;
-- (GeneralNotification_Builder*) setNextPlayUserId:(NSString*) value;
-- (GeneralNotification_Builder*) clearNextPlayUserId;
+- (GeneralNotificationBuilder*) setNextPlayUserId:(NSString*) value;
+- (GeneralNotificationBuilder*) clearNextPlayUserId;
 
 - (BOOL) hasNewUserId;
-- (NSString*) newUserId;
-- (GeneralNotification_Builder*) setNewUserId:(NSString*) value;
-- (GeneralNotification_Builder*) clearNewUserId;
+- (NSString*) newUserId NS_RETURNS_NOT_RETAINED;
+- (GeneralNotificationBuilder*) setNewUserId:(NSString*) value;
+- (GeneralNotificationBuilder*) clearNewUserId;
 
 - (BOOL) hasQuitUserId;
 - (NSString*) quitUserId;
-- (GeneralNotification_Builder*) setQuitUserId:(NSString*) value;
-- (GeneralNotification_Builder*) clearQuitUserId;
+- (GeneralNotificationBuilder*) setQuitUserId:(NSString*) value;
+- (GeneralNotificationBuilder*) clearQuitUserId;
 
 - (BOOL) hasNickName;
 - (NSString*) nickName;
-- (GeneralNotification_Builder*) setNickName:(NSString*) value;
-- (GeneralNotification_Builder*) clearNickName;
+- (GeneralNotificationBuilder*) setNickName:(NSString*) value;
+- (GeneralNotificationBuilder*) clearNickName;
 
 - (BOOL) hasUserAvatar;
 - (NSString*) userAvatar;
-- (GeneralNotification_Builder*) setUserAvatar:(NSString*) value;
-- (GeneralNotification_Builder*) clearUserAvatar;
+- (GeneralNotificationBuilder*) setUserAvatar:(NSString*) value;
+- (GeneralNotificationBuilder*) clearUserAvatar;
 
 - (BOOL) hasUserGender;
 - (BOOL) userGender;
-- (GeneralNotification_Builder*) setUserGender:(BOOL) value;
-- (GeneralNotification_Builder*) clearUserGender;
+- (GeneralNotificationBuilder*) setUserGender:(BOOL) value;
+- (GeneralNotificationBuilder*) clearUserGender;
 
-- (NSArray*) snsUsersList;
-- (PBSNSUser*) snsUsersAtIndex:(int32_t) index;
-- (GeneralNotification_Builder*) replaceSnsUsersAtIndex:(int32_t) index with:(PBSNSUser*) value;
-- (GeneralNotification_Builder*) addSnsUsers:(PBSNSUser*) value;
-- (GeneralNotification_Builder*) addAllSnsUsers:(NSArray*) values;
-- (GeneralNotification_Builder*) clearSnsUsersList;
+- (NSMutableArray *)snsUsers;
+- (PBSNSUser*)snsUsersAtIndex:(NSUInteger)index;
+- (GeneralNotificationBuilder *)addSnsUsers:(PBSNSUser*)value;
+- (GeneralNotificationBuilder *)setSnsUsersArray:(NSArray *)array;
+- (GeneralNotificationBuilder *)clearSnsUsers;
 
 - (BOOL) hasLocation;
 - (NSString*) location;
-- (GeneralNotification_Builder*) setLocation:(NSString*) value;
-- (GeneralNotification_Builder*) clearLocation;
+- (GeneralNotificationBuilder*) setLocation:(NSString*) value;
+- (GeneralNotificationBuilder*) clearLocation;
 
 - (BOOL) hasUserLevel;
-- (int32_t) userLevel;
-- (GeneralNotification_Builder*) setUserLevel:(int32_t) value;
-- (GeneralNotification_Builder*) clearUserLevel;
+- (SInt32) userLevel;
+- (GeneralNotificationBuilder*) setUserLevel:(SInt32) value;
+- (GeneralNotificationBuilder*) clearUserLevel;
 
-- (NSArray*) pointsList;
-- (int32_t) pointsAtIndex:(int32_t) index;
-- (GeneralNotification_Builder*) replacePointsAtIndex:(int32_t) index with:(int32_t) value;
-- (GeneralNotification_Builder*) addPoints:(int32_t) value;
-- (GeneralNotification_Builder*) addAllPoints:(NSArray*) values;
-- (GeneralNotification_Builder*) clearPointsList;
+- (PBAppendableArray *)points;
+- (SInt32)pointsAtIndex:(NSUInteger)index;
+- (GeneralNotificationBuilder *)addPoints:(SInt32)value;
+- (GeneralNotificationBuilder *)setPointsArray:(NSArray *)array;
+- (GeneralNotificationBuilder *)setPointsValues:(const SInt32 *)values count:(NSUInteger)count;
+- (GeneralNotificationBuilder *)clearPoints;
 
 - (BOOL) hasWidth;
 - (Float32) width;
-- (GeneralNotification_Builder*) setWidth:(Float32) value;
-- (GeneralNotification_Builder*) clearWidth;
+- (GeneralNotificationBuilder*) setWidth:(Float32) value;
+- (GeneralNotificationBuilder*) clearWidth;
 
 - (BOOL) hasColor;
-- (int32_t) color;
-- (GeneralNotification_Builder*) setColor:(int32_t) value;
-- (GeneralNotification_Builder*) clearColor;
+- (SInt32) color;
+- (GeneralNotificationBuilder*) setColor:(SInt32) value;
+- (GeneralNotificationBuilder*) clearColor;
 
 - (BOOL) hasPenType;
-- (int32_t) penType;
-- (GeneralNotification_Builder*) setPenType:(int32_t) value;
-- (GeneralNotification_Builder*) clearPenType;
+- (SInt32) penType;
+- (GeneralNotificationBuilder*) setPenType:(SInt32) value;
+- (GeneralNotificationBuilder*) clearPenType;
 
 - (BOOL) hasWord;
 - (NSString*) word;
-- (GeneralNotification_Builder*) setWord:(NSString*) value;
-- (GeneralNotification_Builder*) clearWord;
+- (GeneralNotificationBuilder*) setWord:(NSString*) value;
+- (GeneralNotificationBuilder*) clearWord;
 
 - (BOOL) hasLevel;
-- (int32_t) level;
-- (GeneralNotification_Builder*) setLevel:(int32_t) value;
-- (GeneralNotification_Builder*) clearLevel;
+- (SInt32) level;
+- (GeneralNotificationBuilder*) setLevel:(SInt32) value;
+- (GeneralNotificationBuilder*) clearLevel;
 
 - (BOOL) hasRound;
-- (int32_t) round;
-- (GeneralNotification_Builder*) setRound:(int32_t) value;
-- (GeneralNotification_Builder*) clearRound;
+- (SInt32) round;
+- (GeneralNotificationBuilder*) setRound:(SInt32) value;
+- (GeneralNotificationBuilder*) clearRound;
 
 - (BOOL) hasLanguage;
-- (int32_t) language;
-- (GeneralNotification_Builder*) setLanguage:(int32_t) value;
-- (GeneralNotification_Builder*) clearLanguage;
+- (SInt32) language;
+- (GeneralNotificationBuilder*) setLanguage:(SInt32) value;
+- (GeneralNotificationBuilder*) clearLanguage;
 
 - (BOOL) hasGuessWord;
 - (NSString*) guessWord;
-- (GeneralNotification_Builder*) setGuessWord:(NSString*) value;
-- (GeneralNotification_Builder*) clearGuessWord;
+- (GeneralNotificationBuilder*) setGuessWord:(NSString*) value;
+- (GeneralNotificationBuilder*) clearGuessWord;
 
 - (BOOL) hasGuessUserId;
 - (NSString*) guessUserId;
-- (GeneralNotification_Builder*) setGuessUserId:(NSString*) value;
-- (GeneralNotification_Builder*) clearGuessUserId;
+- (GeneralNotificationBuilder*) setGuessUserId:(NSString*) value;
+- (GeneralNotificationBuilder*) clearGuessUserId;
 
 - (BOOL) hasGuessCorrect;
 - (BOOL) guessCorrect;
-- (GeneralNotification_Builder*) setGuessCorrect:(BOOL) value;
-- (GeneralNotification_Builder*) clearGuessCorrect;
+- (GeneralNotificationBuilder*) setGuessCorrect:(BOOL) value;
+- (GeneralNotificationBuilder*) clearGuessCorrect;
 
 - (BOOL) hasGuessGainCoins;
-- (int32_t) guessGainCoins;
-- (GeneralNotification_Builder*) setGuessGainCoins:(int32_t) value;
-- (GeneralNotification_Builder*) clearGuessGainCoins;
+- (SInt32) guessGainCoins;
+- (GeneralNotificationBuilder*) setGuessGainCoins:(SInt32) value;
+- (GeneralNotificationBuilder*) clearGuessGainCoins;
 
-- (NSArray*) chatToUserIdList;
-- (NSString*) chatToUserIdAtIndex:(int32_t) index;
-- (GeneralNotification_Builder*) replaceChatToUserIdAtIndex:(int32_t) index with:(NSString*) value;
-- (GeneralNotification_Builder*) addChatToUserId:(NSString*) value;
-- (GeneralNotification_Builder*) addAllChatToUserId:(NSArray*) values;
-- (GeneralNotification_Builder*) clearChatToUserIdList;
+- (NSMutableArray *)chatToUserId;
+- (NSString*)chatToUserIdAtIndex:(NSUInteger)index;
+- (GeneralNotificationBuilder *)addChatToUserId:(NSString*)value;
+- (GeneralNotificationBuilder *)setChatToUserIdArray:(NSArray *)array;
+- (GeneralNotificationBuilder *)clearChatToUserId;
 
 - (BOOL) hasChatContent;
 - (NSString*) chatContent;
-- (GeneralNotification_Builder*) setChatContent:(NSString*) value;
-- (GeneralNotification_Builder*) clearChatContent;
+- (GeneralNotificationBuilder*) setChatContent:(NSString*) value;
+- (GeneralNotificationBuilder*) clearChatContent;
 
 - (BOOL) hasChatType;
-- (int32_t) chatType;
-- (GeneralNotification_Builder*) setChatType:(int32_t) value;
-- (GeneralNotification_Builder*) clearChatType;
+- (SInt32) chatType;
+- (GeneralNotificationBuilder*) setChatType:(SInt32) value;
+- (GeneralNotificationBuilder*) clearChatType;
 
 - (BOOL) hasTurnGainCoins;
-- (int32_t) turnGainCoins;
-- (GeneralNotification_Builder*) setTurnGainCoins:(int32_t) value;
-- (GeneralNotification_Builder*) clearTurnGainCoins;
+- (SInt32) turnGainCoins;
+- (GeneralNotificationBuilder*) setTurnGainCoins:(SInt32) value;
+- (GeneralNotificationBuilder*) clearTurnGainCoins;
 @end
 
-@interface FacetimeChatRequest : PBGeneratedMessage {
+@interface FacetimeChatRequest : PBGeneratedMessage<GeneratedMessageProtocol> {
 @private
   BOOL hasChatGender_:1;
   BOOL hasUser_:1;
@@ -3693,17 +3749,18 @@ BOOL BetTypeIsValidValue(BetType value);
 }
 - (BOOL) hasUser;
 - (BOOL) hasChatGender;
-@property (readonly, retain) PBGameUser* user;
+@property (readonly, strong) PBGameUser* user;
 - (BOOL) chatGender;
 
-+ (FacetimeChatRequest*) defaultInstance;
-- (FacetimeChatRequest*) defaultInstance;
++ (instancetype) defaultInstance;
+- (instancetype) defaultInstance;
 
 - (BOOL) isInitialized;
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
-- (FacetimeChatRequest_Builder*) builder;
-+ (FacetimeChatRequest_Builder*) builder;
-+ (FacetimeChatRequest_Builder*) builderWithPrototype:(FacetimeChatRequest*) prototype;
+- (FacetimeChatRequestBuilder*) builder;
++ (FacetimeChatRequestBuilder*) builder;
++ (FacetimeChatRequestBuilder*) builderWithPrototype:(FacetimeChatRequest*) prototype;
+- (FacetimeChatRequestBuilder*) toBuilder;
 
 + (FacetimeChatRequest*) parseFromData:(NSData*) data;
 + (FacetimeChatRequest*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
@@ -3713,55 +3770,56 @@ BOOL BetTypeIsValidValue(BetType value);
 + (FacetimeChatRequest*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 @end
 
-@interface FacetimeChatRequest_Builder : PBGeneratedMessage_Builder {
+@interface FacetimeChatRequestBuilder : PBGeneratedMessageBuilder {
 @private
-  FacetimeChatRequest* result;
+  FacetimeChatRequest* resultFacetimeChatRequest;
 }
 
 - (FacetimeChatRequest*) defaultInstance;
 
-- (FacetimeChatRequest_Builder*) clear;
-- (FacetimeChatRequest_Builder*) clone;
+- (FacetimeChatRequestBuilder*) clear;
+- (FacetimeChatRequestBuilder*) clone;
 
 - (FacetimeChatRequest*) build;
 - (FacetimeChatRequest*) buildPartial;
 
-- (FacetimeChatRequest_Builder*) mergeFrom:(FacetimeChatRequest*) other;
-- (FacetimeChatRequest_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
-- (FacetimeChatRequest_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+- (FacetimeChatRequestBuilder*) mergeFrom:(FacetimeChatRequest*) other;
+- (FacetimeChatRequestBuilder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
+- (FacetimeChatRequestBuilder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 
 - (BOOL) hasUser;
 - (PBGameUser*) user;
-- (FacetimeChatRequest_Builder*) setUser:(PBGameUser*) value;
-- (FacetimeChatRequest_Builder*) setUserBuilder:(PBGameUser_Builder*) builderForValue;
-- (FacetimeChatRequest_Builder*) mergeUser:(PBGameUser*) value;
-- (FacetimeChatRequest_Builder*) clearUser;
+- (FacetimeChatRequestBuilder*) setUser:(PBGameUser*) value;
+- (FacetimeChatRequestBuilder*) setUserBuilder:(PBGameUserBuilder*) builderForValue;
+- (FacetimeChatRequestBuilder*) mergeUser:(PBGameUser*) value;
+- (FacetimeChatRequestBuilder*) clearUser;
 
 - (BOOL) hasChatGender;
 - (BOOL) chatGender;
-- (FacetimeChatRequest_Builder*) setChatGender:(BOOL) value;
-- (FacetimeChatRequest_Builder*) clearChatGender;
+- (FacetimeChatRequestBuilder*) setChatGender:(BOOL) value;
+- (FacetimeChatRequestBuilder*) clearChatGender;
 @end
 
-@interface FacetimeChatResponse : PBGeneratedMessage {
+@interface FacetimeChatResponse : PBGeneratedMessage<GeneratedMessageProtocol> {
 @private
   BOOL hasChosenToInitiate_:1;
   BOOL chosenToInitiate_:1;
-  NSMutableArray* mutableUserList;
+  NSMutableArray * userArray;
 }
 - (BOOL) hasChosenToInitiate;
+@property (readonly, strong) NSArray * user;
 - (BOOL) chosenToInitiate;
-- (NSArray*) userList;
-- (PBGameUser*) userAtIndex:(int32_t) index;
+- (PBGameUser*)userAtIndex:(NSUInteger)index;
 
-+ (FacetimeChatResponse*) defaultInstance;
-- (FacetimeChatResponse*) defaultInstance;
++ (instancetype) defaultInstance;
+- (instancetype) defaultInstance;
 
 - (BOOL) isInitialized;
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
-- (FacetimeChatResponse_Builder*) builder;
-+ (FacetimeChatResponse_Builder*) builder;
-+ (FacetimeChatResponse_Builder*) builderWithPrototype:(FacetimeChatResponse*) prototype;
+- (FacetimeChatResponseBuilder*) builder;
++ (FacetimeChatResponseBuilder*) builder;
++ (FacetimeChatResponseBuilder*) builderWithPrototype:(FacetimeChatResponse*) prototype;
+- (FacetimeChatResponseBuilder*) toBuilder;
 
 + (FacetimeChatResponse*) parseFromData:(NSData*) data;
 + (FacetimeChatResponse*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
@@ -3771,74 +3829,48 @@ BOOL BetTypeIsValidValue(BetType value);
 + (FacetimeChatResponse*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 @end
 
-@interface FacetimeChatResponse_Builder : PBGeneratedMessage_Builder {
+@interface FacetimeChatResponseBuilder : PBGeneratedMessageBuilder {
 @private
-  FacetimeChatResponse* result;
+  FacetimeChatResponse* resultFacetimeChatResponse;
 }
 
 - (FacetimeChatResponse*) defaultInstance;
 
-- (FacetimeChatResponse_Builder*) clear;
-- (FacetimeChatResponse_Builder*) clone;
+- (FacetimeChatResponseBuilder*) clear;
+- (FacetimeChatResponseBuilder*) clone;
 
 - (FacetimeChatResponse*) build;
 - (FacetimeChatResponse*) buildPartial;
 
-- (FacetimeChatResponse_Builder*) mergeFrom:(FacetimeChatResponse*) other;
-- (FacetimeChatResponse_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
-- (FacetimeChatResponse_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+- (FacetimeChatResponseBuilder*) mergeFrom:(FacetimeChatResponse*) other;
+- (FacetimeChatResponseBuilder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
+- (FacetimeChatResponseBuilder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 
-- (NSArray*) userList;
-- (PBGameUser*) userAtIndex:(int32_t) index;
-- (FacetimeChatResponse_Builder*) replaceUserAtIndex:(int32_t) index with:(PBGameUser*) value;
-- (FacetimeChatResponse_Builder*) addUser:(PBGameUser*) value;
-- (FacetimeChatResponse_Builder*) addAllUser:(NSArray*) values;
-- (FacetimeChatResponse_Builder*) clearUserList;
+- (NSMutableArray *)user;
+- (PBGameUser*)userAtIndex:(NSUInteger)index;
+- (FacetimeChatResponseBuilder *)addUser:(PBGameUser*)value;
+- (FacetimeChatResponseBuilder *)setUserArray:(NSArray *)array;
+- (FacetimeChatResponseBuilder *)clearUser;
 
 - (BOOL) hasChosenToInitiate;
 - (BOOL) chosenToInitiate;
-- (FacetimeChatResponse_Builder*) setChosenToInitiate:(BOOL) value;
-- (FacetimeChatResponse_Builder*) clearChosenToInitiate;
+- (FacetimeChatResponseBuilder*) setChosenToInitiate:(BOOL) value;
+- (FacetimeChatResponseBuilder*) clearChosenToInitiate;
 @end
 
-@interface GameMessage : PBGeneratedMessage {
+@interface GameMessage : PBGeneratedMessage<GeneratedMessageProtocol> {
 @private
   BOOL hasSessionId_:1;
-  BOOL hasStartOffset_:1;
   BOOL hasMessageId_:1;
   BOOL hasTimeStamp_:1;
   BOOL hasRound_:1;
   BOOL hasMaxCount_:1;
   BOOL hasOnlineUserCount_:1;
-  BOOL hasCurrentPlayUserId_:1;
-  BOOL hasToUserId_:1;
-  BOOL hasUserId_:1;
+  BOOL hasStartOffset_:1;
   BOOL hasMac_:1;
-  BOOL hasBetResponse_:1;
-  BOOL hasBetRequest_:1;
-  BOOL hasUseItemResponse_:1;
-  BOOL hasUseItemRequest_:1;
-  BOOL hasBetDiceResponse_:1;
-  BOOL hasBetDiceRequest_:1;
-  BOOL hasUserDiceNotification_:1;
-  BOOL hasUnRegisterRoomsNotificationResponse_:1;
-  BOOL hasUnRegisterRoomsNotificationRequest_:1;
-  BOOL hasRegisterRoomsNotificationResponse_:1;
-  BOOL hasRegisterRoomsNotificationRequest_:1;
-  BOOL hasGameOverNotificationResponse_:1;
-  BOOL hasCheckCardRequest_:1;
-  BOOL hasCheckCardResponse_:1;
-  BOOL hasFoldCardRequest_:1;
-  BOOL hasFoldCardResponse_:1;
-  BOOL hasShowCardRequest_:1;
-  BOOL hasShowCardResponse_:1;
-  BOOL hasCompareCardRequest_:1;
-  BOOL hasCompareCardResponse_:1;
-  BOOL hasChangeCardRequest_:1;
-  BOOL hasChangeCardResponse_:1;
-  BOOL hasTimeoutSettingRequest_:1;
-  BOOL hasTimeoutSettingResponse_:1;
-  BOOL hasJoinGameRequest_:1;
+  BOOL hasUserId_:1;
+  BOOL hasToUserId_:1;
+  BOOL hasCurrentPlayUserId_:1;
   BOOL hasJoinGameResponse_:1;
   BOOL hasStartGameRequest_:1;
   BOOL hasStartGameResponse_:1;
@@ -3864,45 +3896,45 @@ BOOL BetTypeIsValidValue(BetType value);
   BOOL hasOpenDiceRequest_:1;
   BOOL hasOpenDiceResponse_:1;
   BOOL hasGameOverNotificationRequest_:1;
+  BOOL hasGameOverNotificationResponse_:1;
+  BOOL hasRegisterRoomsNotificationRequest_:1;
+  BOOL hasRegisterRoomsNotificationResponse_:1;
+  BOOL hasUnRegisterRoomsNotificationRequest_:1;
+  BOOL hasUnRegisterRoomsNotificationResponse_:1;
+  BOOL hasUserDiceNotification_:1;
+  BOOL hasBetDiceRequest_:1;
+  BOOL hasBetDiceResponse_:1;
+  BOOL hasUseItemRequest_:1;
+  BOOL hasUseItemResponse_:1;
+  BOOL hasBetRequest_:1;
+  BOOL hasBetResponse_:1;
+  BOOL hasCheckCardRequest_:1;
+  BOOL hasCheckCardResponse_:1;
+  BOOL hasFoldCardRequest_:1;
+  BOOL hasFoldCardResponse_:1;
+  BOOL hasShowCardRequest_:1;
+  BOOL hasShowCardResponse_:1;
+  BOOL hasCompareCardRequest_:1;
+  BOOL hasCompareCardResponse_:1;
+  BOOL hasChangeCardRequest_:1;
+  BOOL hasChangeCardResponse_:1;
+  BOOL hasTimeoutSettingRequest_:1;
+  BOOL hasTimeoutSettingResponse_:1;
+  BOOL hasJoinGameRequest_:1;
   BOOL hasCompleteReason_:1;
   BOOL hasResultCode_:1;
   BOOL hasCommand_:1;
-  int64_t sessionId;
-  int32_t startOffset;
-  int32_t messageId;
-  int32_t timeStamp;
-  int32_t round;
-  int32_t maxCount;
-  int32_t onlineUserCount;
-  NSString* currentPlayUserId;
-  NSString* toUserId;
-  NSString* userId;
+  SInt64 sessionId;
+  SInt32 messageId;
+  SInt32 timeStamp;
+  SInt32 round;
+  SInt32 maxCount;
+  SInt32 onlineUserCount;
+  SInt32 startOffset;
   NSString* mac;
-  BetResponse* betResponse;
-  BetRequest* betRequest;
-  UseItemResponse* useItemResponse;
-  UseItemRequest* useItemRequest;
-  BetDiceResponse* betDiceResponse;
-  BetDiceRequest* betDiceRequest;
-  UserDiceNotification* userDiceNotification;
-  UnRegisterRoomsNotificationResponse* unRegisterRoomsNotificationResponse;
-  UnRegisterRoomsNotificationRequest* unRegisterRoomsNotificationRequest;
-  RegisterRoomsNotificationResponse* registerRoomsNotificationResponse;
-  RegisterRoomsNotificationRequest* registerRoomsNotificationRequest;
-  GameOverNotificationResponse* gameOverNotificationResponse;
-  CheckCardRequest* checkCardRequest;
-  CheckCardResponse* checkCardResponse;
-  FoldCardRequest* foldCardRequest;
-  FoldCardResponse* foldCardResponse;
-  ShowCardRequest* showCardRequest;
-  ShowCardResponse* showCardResponse;
-  CompareCardRequest* compareCardRequest;
-  CompareCardResponse* compareCardResponse;
-  ChangeCardRequest* changeCardRequest;
-  ChangeCardResponse* changeCardResponse;
-  TimeoutSettingRequest* timeoutSettingRequest;
-  TimeoutSettingResponse* timeoutSettingResponse;
-  JoinGameRequest* joinGameRequest;
+  NSString* userId;
+  NSString* toUserId;
+  NSString* currentPlayUserId;
   JoinGameResponse* joinGameResponse;
   StartGameRequest* startGameRequest;
   StartGameResponse* startGameResponse;
@@ -3928,6 +3960,31 @@ BOOL BetTypeIsValidValue(BetType value);
   OpenDiceRequest* openDiceRequest;
   OpenDiceResponse* openDiceResponse;
   GameOverNotificationRequest* gameOverNotificationRequest;
+  GameOverNotificationResponse* gameOverNotificationResponse;
+  RegisterRoomsNotificationRequest* registerRoomsNotificationRequest;
+  RegisterRoomsNotificationResponse* registerRoomsNotificationResponse;
+  UnRegisterRoomsNotificationRequest* unRegisterRoomsNotificationRequest;
+  UnRegisterRoomsNotificationResponse* unRegisterRoomsNotificationResponse;
+  UserDiceNotification* userDiceNotification;
+  BetDiceRequest* betDiceRequest;
+  BetDiceResponse* betDiceResponse;
+  UseItemRequest* useItemRequest;
+  UseItemResponse* useItemResponse;
+  BetRequest* betRequest;
+  BetResponse* betResponse;
+  CheckCardRequest* checkCardRequest;
+  CheckCardResponse* checkCardResponse;
+  FoldCardRequest* foldCardRequest;
+  FoldCardResponse* foldCardResponse;
+  ShowCardRequest* showCardRequest;
+  ShowCardResponse* showCardResponse;
+  CompareCardRequest* compareCardRequest;
+  CompareCardResponse* compareCardResponse;
+  ChangeCardRequest* changeCardRequest;
+  ChangeCardResponse* changeCardResponse;
+  TimeoutSettingRequest* timeoutSettingRequest;
+  TimeoutSettingResponse* timeoutSettingResponse;
+  JoinGameRequest* joinGameRequest;
   GameCompleteReason completeReason;
   GameResultCode resultCode;
   GameCommandType command;
@@ -3997,78 +4054,79 @@ BOOL BetTypeIsValidValue(BetType value);
 - (BOOL) hasTimeStamp;
 - (BOOL) hasMac;
 @property (readonly) GameCommandType command;
-@property (readonly) int32_t messageId;
+@property (readonly) SInt32 messageId;
 @property (readonly) GameResultCode resultCode;
-@property (readonly, retain) NSString* userId;
-@property (readonly) int64_t sessionId;
-@property (readonly) int32_t round;
+@property (readonly, strong) NSString* userId;
+@property (readonly) SInt64 sessionId;
+@property (readonly) SInt32 round;
 @property (readonly) GameCompleteReason completeReason;
-@property (readonly) int32_t onlineUserCount;
-@property (readonly, retain) NSString* toUserId;
-@property (readonly, retain) NSString* currentPlayUserId;
-@property (readonly, retain) JoinGameRequest* joinGameRequest;
-@property (readonly, retain) JoinGameResponse* joinGameResponse;
-@property (readonly, retain) StartGameRequest* startGameRequest;
-@property (readonly, retain) StartGameResponse* startGameResponse;
-@property (readonly, retain) GameStartNotificationRequest* gameStartNotificationRequest;
-@property (readonly, retain) GameStartNotificationResponse* gameStartNotificationResponse;
-@property (readonly, retain) SendDrawDataRequest* sendDrawDataRequest;
-@property (readonly, retain) SendDrawDataResponse* sendDrawDataResponse;
-@property (readonly, retain) GameChatRequest* chatRequest;
-@property (readonly, retain) GameChatResponse* chatResponse;
-@property (readonly, retain) FacetimeChatRequest* facetimeChatRequest;
-@property (readonly, retain) FacetimeChatResponse* facetimeChatResponse;
-@property (readonly, retain) GeneralNotification* notification;
-@property (readonly, retain) GetRoomsRequest* getRoomsRequest;
-@property (readonly, retain) GetRoomsResponse* getRoomsResponse;
-@property (readonly, retain) CreateRoomRequest* createRoomRequest;
-@property (readonly, retain) CreateRoomResponse* createRoomResponse;
-@property (readonly, retain) SearchRoomRequest* searchRoomRequest;
-@property (readonly, retain) SearchRoomResponse* searchRoomResponse;
-@property (readonly, retain) RoomNotificationRequest* roomNotificationRequest;
-@property (readonly, retain) RollDiceEndNotificationRequest* rollDiceEndNotificationRequest;
-@property (readonly, retain) CallDiceRequest* callDiceRequest;
-@property (readonly, retain) CallDiceResponse* callDiceResponse;
-@property (readonly, retain) OpenDiceRequest* openDiceRequest;
-@property (readonly, retain) OpenDiceResponse* openDiceResponse;
-@property (readonly, retain) GameOverNotificationRequest* gameOverNotificationRequest;
-@property (readonly, retain) GameOverNotificationResponse* gameOverNotificationResponse;
-@property (readonly, retain) RegisterRoomsNotificationRequest* registerRoomsNotificationRequest;
-@property (readonly, retain) RegisterRoomsNotificationResponse* registerRoomsNotificationResponse;
-@property (readonly, retain) UnRegisterRoomsNotificationRequest* unRegisterRoomsNotificationRequest;
-@property (readonly, retain) UnRegisterRoomsNotificationResponse* unRegisterRoomsNotificationResponse;
-@property (readonly, retain) UserDiceNotification* userDiceNotification;
-@property (readonly, retain) BetDiceRequest* betDiceRequest;
-@property (readonly, retain) BetDiceResponse* betDiceResponse;
-@property (readonly, retain) UseItemRequest* useItemRequest;
-@property (readonly, retain) UseItemResponse* useItemResponse;
-@property (readonly, retain) BetRequest* betRequest;
-@property (readonly, retain) BetResponse* betResponse;
-@property (readonly, retain) CheckCardRequest* checkCardRequest;
-@property (readonly, retain) CheckCardResponse* checkCardResponse;
-@property (readonly, retain) FoldCardRequest* foldCardRequest;
-@property (readonly, retain) FoldCardResponse* foldCardResponse;
-@property (readonly, retain) ShowCardRequest* showCardRequest;
-@property (readonly, retain) ShowCardResponse* showCardResponse;
-@property (readonly, retain) CompareCardRequest* compareCardRequest;
-@property (readonly, retain) CompareCardResponse* compareCardResponse;
-@property (readonly, retain) ChangeCardRequest* changeCardRequest;
-@property (readonly, retain) ChangeCardResponse* changeCardResponse;
-@property (readonly, retain) TimeoutSettingRequest* timeoutSettingRequest;
-@property (readonly, retain) TimeoutSettingResponse* timeoutSettingResponse;
-@property (readonly) int32_t startOffset;
-@property (readonly) int32_t maxCount;
-@property (readonly) int32_t timeStamp;
-@property (readonly, retain) NSString* mac;
+@property (readonly) SInt32 onlineUserCount;
+@property (readonly, strong) NSString* toUserId;
+@property (readonly, strong) NSString* currentPlayUserId;
+@property (readonly, strong) JoinGameRequest* joinGameRequest;
+@property (readonly, strong) JoinGameResponse* joinGameResponse;
+@property (readonly, strong) StartGameRequest* startGameRequest;
+@property (readonly, strong) StartGameResponse* startGameResponse;
+@property (readonly, strong) GameStartNotificationRequest* gameStartNotificationRequest;
+@property (readonly, strong) GameStartNotificationResponse* gameStartNotificationResponse;
+@property (readonly, strong) SendDrawDataRequest* sendDrawDataRequest;
+@property (readonly, strong) SendDrawDataResponse* sendDrawDataResponse;
+@property (readonly, strong) GameChatRequest* chatRequest;
+@property (readonly, strong) GameChatResponse* chatResponse;
+@property (readonly, strong) FacetimeChatRequest* facetimeChatRequest;
+@property (readonly, strong) FacetimeChatResponse* facetimeChatResponse;
+@property (readonly, strong) GeneralNotification* notification;
+@property (readonly, strong) GetRoomsRequest* getRoomsRequest;
+@property (readonly, strong) GetRoomsResponse* getRoomsResponse;
+@property (readonly, strong) CreateRoomRequest* createRoomRequest;
+@property (readonly, strong) CreateRoomResponse* createRoomResponse;
+@property (readonly, strong) SearchRoomRequest* searchRoomRequest;
+@property (readonly, strong) SearchRoomResponse* searchRoomResponse;
+@property (readonly, strong) RoomNotificationRequest* roomNotificationRequest;
+@property (readonly, strong) RollDiceEndNotificationRequest* rollDiceEndNotificationRequest;
+@property (readonly, strong) CallDiceRequest* callDiceRequest;
+@property (readonly, strong) CallDiceResponse* callDiceResponse;
+@property (readonly, strong) OpenDiceRequest* openDiceRequest;
+@property (readonly, strong) OpenDiceResponse* openDiceResponse;
+@property (readonly, strong) GameOverNotificationRequest* gameOverNotificationRequest;
+@property (readonly, strong) GameOverNotificationResponse* gameOverNotificationResponse;
+@property (readonly, strong) RegisterRoomsNotificationRequest* registerRoomsNotificationRequest;
+@property (readonly, strong) RegisterRoomsNotificationResponse* registerRoomsNotificationResponse;
+@property (readonly, strong) UnRegisterRoomsNotificationRequest* unRegisterRoomsNotificationRequest;
+@property (readonly, strong) UnRegisterRoomsNotificationResponse* unRegisterRoomsNotificationResponse;
+@property (readonly, strong) UserDiceNotification* userDiceNotification;
+@property (readonly, strong) BetDiceRequest* betDiceRequest;
+@property (readonly, strong) BetDiceResponse* betDiceResponse;
+@property (readonly, strong) UseItemRequest* useItemRequest;
+@property (readonly, strong) UseItemResponse* useItemResponse;
+@property (readonly, strong) BetRequest* betRequest;
+@property (readonly, strong) BetResponse* betResponse;
+@property (readonly, strong) CheckCardRequest* checkCardRequest;
+@property (readonly, strong) CheckCardResponse* checkCardResponse;
+@property (readonly, strong) FoldCardRequest* foldCardRequest;
+@property (readonly, strong) FoldCardResponse* foldCardResponse;
+@property (readonly, strong) ShowCardRequest* showCardRequest;
+@property (readonly, strong) ShowCardResponse* showCardResponse;
+@property (readonly, strong) CompareCardRequest* compareCardRequest;
+@property (readonly, strong) CompareCardResponse* compareCardResponse;
+@property (readonly, strong) ChangeCardRequest* changeCardRequest;
+@property (readonly, strong) ChangeCardResponse* changeCardResponse;
+@property (readonly, strong) TimeoutSettingRequest* timeoutSettingRequest;
+@property (readonly, strong) TimeoutSettingResponse* timeoutSettingResponse;
+@property (readonly) SInt32 startOffset;
+@property (readonly) SInt32 maxCount;
+@property (readonly) SInt32 timeStamp;
+@property (readonly, strong) NSString* mac;
 
-+ (GameMessage*) defaultInstance;
-- (GameMessage*) defaultInstance;
++ (instancetype) defaultInstance;
+- (instancetype) defaultInstance;
 
 - (BOOL) isInitialized;
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
-- (GameMessage_Builder*) builder;
-+ (GameMessage_Builder*) builder;
-+ (GameMessage_Builder*) builderWithPrototype:(GameMessage*) prototype;
+- (GameMessageBuilder*) builder;
++ (GameMessageBuilder*) builder;
++ (GameMessageBuilder*) builderWithPrototype:(GameMessage*) prototype;
+- (GameMessageBuilder*) toBuilder;
 
 + (GameMessage*) parseFromData:(NSData*) data;
 + (GameMessage*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
@@ -4078,501 +4136,501 @@ BOOL BetTypeIsValidValue(BetType value);
 + (GameMessage*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 @end
 
-@interface GameMessage_Builder : PBGeneratedMessage_Builder {
+@interface GameMessageBuilder : PBGeneratedMessageBuilder {
 @private
-  GameMessage* result;
+  GameMessage* resultGameMessage;
 }
 
 - (GameMessage*) defaultInstance;
 
-- (GameMessage_Builder*) clear;
-- (GameMessage_Builder*) clone;
+- (GameMessageBuilder*) clear;
+- (GameMessageBuilder*) clone;
 
 - (GameMessage*) build;
 - (GameMessage*) buildPartial;
 
-- (GameMessage_Builder*) mergeFrom:(GameMessage*) other;
-- (GameMessage_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
-- (GameMessage_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+- (GameMessageBuilder*) mergeFrom:(GameMessage*) other;
+- (GameMessageBuilder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
+- (GameMessageBuilder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 
 - (BOOL) hasCommand;
 - (GameCommandType) command;
-- (GameMessage_Builder*) setCommand:(GameCommandType) value;
-- (GameMessage_Builder*) clearCommand;
+- (GameMessageBuilder*) setCommand:(GameCommandType) value;
+- (GameMessageBuilder*) clearCommand;
 
 - (BOOL) hasMessageId;
-- (int32_t) messageId;
-- (GameMessage_Builder*) setMessageId:(int32_t) value;
-- (GameMessage_Builder*) clearMessageId;
+- (SInt32) messageId;
+- (GameMessageBuilder*) setMessageId:(SInt32) value;
+- (GameMessageBuilder*) clearMessageId;
 
 - (BOOL) hasResultCode;
 - (GameResultCode) resultCode;
-- (GameMessage_Builder*) setResultCode:(GameResultCode) value;
-- (GameMessage_Builder*) clearResultCode;
+- (GameMessageBuilder*) setResultCode:(GameResultCode) value;
+- (GameMessageBuilder*) clearResultCode;
 
 - (BOOL) hasUserId;
 - (NSString*) userId;
-- (GameMessage_Builder*) setUserId:(NSString*) value;
-- (GameMessage_Builder*) clearUserId;
+- (GameMessageBuilder*) setUserId:(NSString*) value;
+- (GameMessageBuilder*) clearUserId;
 
 - (BOOL) hasSessionId;
-- (int64_t) sessionId;
-- (GameMessage_Builder*) setSessionId:(int64_t) value;
-- (GameMessage_Builder*) clearSessionId;
+- (SInt64) sessionId;
+- (GameMessageBuilder*) setSessionId:(SInt64) value;
+- (GameMessageBuilder*) clearSessionId;
 
 - (BOOL) hasRound;
-- (int32_t) round;
-- (GameMessage_Builder*) setRound:(int32_t) value;
-- (GameMessage_Builder*) clearRound;
+- (SInt32) round;
+- (GameMessageBuilder*) setRound:(SInt32) value;
+- (GameMessageBuilder*) clearRound;
 
 - (BOOL) hasCompleteReason;
 - (GameCompleteReason) completeReason;
-- (GameMessage_Builder*) setCompleteReason:(GameCompleteReason) value;
-- (GameMessage_Builder*) clearCompleteReason;
+- (GameMessageBuilder*) setCompleteReason:(GameCompleteReason) value;
+- (GameMessageBuilder*) clearCompleteReason;
 
 - (BOOL) hasOnlineUserCount;
-- (int32_t) onlineUserCount;
-- (GameMessage_Builder*) setOnlineUserCount:(int32_t) value;
-- (GameMessage_Builder*) clearOnlineUserCount;
+- (SInt32) onlineUserCount;
+- (GameMessageBuilder*) setOnlineUserCount:(SInt32) value;
+- (GameMessageBuilder*) clearOnlineUserCount;
 
 - (BOOL) hasToUserId;
 - (NSString*) toUserId;
-- (GameMessage_Builder*) setToUserId:(NSString*) value;
-- (GameMessage_Builder*) clearToUserId;
+- (GameMessageBuilder*) setToUserId:(NSString*) value;
+- (GameMessageBuilder*) clearToUserId;
 
 - (BOOL) hasCurrentPlayUserId;
 - (NSString*) currentPlayUserId;
-- (GameMessage_Builder*) setCurrentPlayUserId:(NSString*) value;
-- (GameMessage_Builder*) clearCurrentPlayUserId;
+- (GameMessageBuilder*) setCurrentPlayUserId:(NSString*) value;
+- (GameMessageBuilder*) clearCurrentPlayUserId;
 
 - (BOOL) hasJoinGameRequest;
 - (JoinGameRequest*) joinGameRequest;
-- (GameMessage_Builder*) setJoinGameRequest:(JoinGameRequest*) value;
-- (GameMessage_Builder*) setJoinGameRequestBuilder:(JoinGameRequest_Builder*) builderForValue;
-- (GameMessage_Builder*) mergeJoinGameRequest:(JoinGameRequest*) value;
-- (GameMessage_Builder*) clearJoinGameRequest;
+- (GameMessageBuilder*) setJoinGameRequest:(JoinGameRequest*) value;
+- (GameMessageBuilder*) setJoinGameRequestBuilder:(JoinGameRequestBuilder*) builderForValue;
+- (GameMessageBuilder*) mergeJoinGameRequest:(JoinGameRequest*) value;
+- (GameMessageBuilder*) clearJoinGameRequest;
 
 - (BOOL) hasJoinGameResponse;
 - (JoinGameResponse*) joinGameResponse;
-- (GameMessage_Builder*) setJoinGameResponse:(JoinGameResponse*) value;
-- (GameMessage_Builder*) setJoinGameResponseBuilder:(JoinGameResponse_Builder*) builderForValue;
-- (GameMessage_Builder*) mergeJoinGameResponse:(JoinGameResponse*) value;
-- (GameMessage_Builder*) clearJoinGameResponse;
+- (GameMessageBuilder*) setJoinGameResponse:(JoinGameResponse*) value;
+- (GameMessageBuilder*) setJoinGameResponseBuilder:(JoinGameResponseBuilder*) builderForValue;
+- (GameMessageBuilder*) mergeJoinGameResponse:(JoinGameResponse*) value;
+- (GameMessageBuilder*) clearJoinGameResponse;
 
 - (BOOL) hasStartGameRequest;
 - (StartGameRequest*) startGameRequest;
-- (GameMessage_Builder*) setStartGameRequest:(StartGameRequest*) value;
-- (GameMessage_Builder*) setStartGameRequestBuilder:(StartGameRequest_Builder*) builderForValue;
-- (GameMessage_Builder*) mergeStartGameRequest:(StartGameRequest*) value;
-- (GameMessage_Builder*) clearStartGameRequest;
+- (GameMessageBuilder*) setStartGameRequest:(StartGameRequest*) value;
+- (GameMessageBuilder*) setStartGameRequestBuilder:(StartGameRequestBuilder*) builderForValue;
+- (GameMessageBuilder*) mergeStartGameRequest:(StartGameRequest*) value;
+- (GameMessageBuilder*) clearStartGameRequest;
 
 - (BOOL) hasStartGameResponse;
 - (StartGameResponse*) startGameResponse;
-- (GameMessage_Builder*) setStartGameResponse:(StartGameResponse*) value;
-- (GameMessage_Builder*) setStartGameResponseBuilder:(StartGameResponse_Builder*) builderForValue;
-- (GameMessage_Builder*) mergeStartGameResponse:(StartGameResponse*) value;
-- (GameMessage_Builder*) clearStartGameResponse;
+- (GameMessageBuilder*) setStartGameResponse:(StartGameResponse*) value;
+- (GameMessageBuilder*) setStartGameResponseBuilder:(StartGameResponseBuilder*) builderForValue;
+- (GameMessageBuilder*) mergeStartGameResponse:(StartGameResponse*) value;
+- (GameMessageBuilder*) clearStartGameResponse;
 
 - (BOOL) hasGameStartNotificationRequest;
 - (GameStartNotificationRequest*) gameStartNotificationRequest;
-- (GameMessage_Builder*) setGameStartNotificationRequest:(GameStartNotificationRequest*) value;
-- (GameMessage_Builder*) setGameStartNotificationRequestBuilder:(GameStartNotificationRequest_Builder*) builderForValue;
-- (GameMessage_Builder*) mergeGameStartNotificationRequest:(GameStartNotificationRequest*) value;
-- (GameMessage_Builder*) clearGameStartNotificationRequest;
+- (GameMessageBuilder*) setGameStartNotificationRequest:(GameStartNotificationRequest*) value;
+- (GameMessageBuilder*) setGameStartNotificationRequestBuilder:(GameStartNotificationRequestBuilder*) builderForValue;
+- (GameMessageBuilder*) mergeGameStartNotificationRequest:(GameStartNotificationRequest*) value;
+- (GameMessageBuilder*) clearGameStartNotificationRequest;
 
 - (BOOL) hasGameStartNotificationResponse;
 - (GameStartNotificationResponse*) gameStartNotificationResponse;
-- (GameMessage_Builder*) setGameStartNotificationResponse:(GameStartNotificationResponse*) value;
-- (GameMessage_Builder*) setGameStartNotificationResponseBuilder:(GameStartNotificationResponse_Builder*) builderForValue;
-- (GameMessage_Builder*) mergeGameStartNotificationResponse:(GameStartNotificationResponse*) value;
-- (GameMessage_Builder*) clearGameStartNotificationResponse;
+- (GameMessageBuilder*) setGameStartNotificationResponse:(GameStartNotificationResponse*) value;
+- (GameMessageBuilder*) setGameStartNotificationResponseBuilder:(GameStartNotificationResponseBuilder*) builderForValue;
+- (GameMessageBuilder*) mergeGameStartNotificationResponse:(GameStartNotificationResponse*) value;
+- (GameMessageBuilder*) clearGameStartNotificationResponse;
 
 - (BOOL) hasSendDrawDataRequest;
 - (SendDrawDataRequest*) sendDrawDataRequest;
-- (GameMessage_Builder*) setSendDrawDataRequest:(SendDrawDataRequest*) value;
-- (GameMessage_Builder*) setSendDrawDataRequestBuilder:(SendDrawDataRequest_Builder*) builderForValue;
-- (GameMessage_Builder*) mergeSendDrawDataRequest:(SendDrawDataRequest*) value;
-- (GameMessage_Builder*) clearSendDrawDataRequest;
+- (GameMessageBuilder*) setSendDrawDataRequest:(SendDrawDataRequest*) value;
+- (GameMessageBuilder*) setSendDrawDataRequestBuilder:(SendDrawDataRequestBuilder*) builderForValue;
+- (GameMessageBuilder*) mergeSendDrawDataRequest:(SendDrawDataRequest*) value;
+- (GameMessageBuilder*) clearSendDrawDataRequest;
 
 - (BOOL) hasSendDrawDataResponse;
 - (SendDrawDataResponse*) sendDrawDataResponse;
-- (GameMessage_Builder*) setSendDrawDataResponse:(SendDrawDataResponse*) value;
-- (GameMessage_Builder*) setSendDrawDataResponseBuilder:(SendDrawDataResponse_Builder*) builderForValue;
-- (GameMessage_Builder*) mergeSendDrawDataResponse:(SendDrawDataResponse*) value;
-- (GameMessage_Builder*) clearSendDrawDataResponse;
+- (GameMessageBuilder*) setSendDrawDataResponse:(SendDrawDataResponse*) value;
+- (GameMessageBuilder*) setSendDrawDataResponseBuilder:(SendDrawDataResponseBuilder*) builderForValue;
+- (GameMessageBuilder*) mergeSendDrawDataResponse:(SendDrawDataResponse*) value;
+- (GameMessageBuilder*) clearSendDrawDataResponse;
 
 - (BOOL) hasChatRequest;
 - (GameChatRequest*) chatRequest;
-- (GameMessage_Builder*) setChatRequest:(GameChatRequest*) value;
-- (GameMessage_Builder*) setChatRequestBuilder:(GameChatRequest_Builder*) builderForValue;
-- (GameMessage_Builder*) mergeChatRequest:(GameChatRequest*) value;
-- (GameMessage_Builder*) clearChatRequest;
+- (GameMessageBuilder*) setChatRequest:(GameChatRequest*) value;
+- (GameMessageBuilder*) setChatRequestBuilder:(GameChatRequestBuilder*) builderForValue;
+- (GameMessageBuilder*) mergeChatRequest:(GameChatRequest*) value;
+- (GameMessageBuilder*) clearChatRequest;
 
 - (BOOL) hasChatResponse;
 - (GameChatResponse*) chatResponse;
-- (GameMessage_Builder*) setChatResponse:(GameChatResponse*) value;
-- (GameMessage_Builder*) setChatResponseBuilder:(GameChatResponse_Builder*) builderForValue;
-- (GameMessage_Builder*) mergeChatResponse:(GameChatResponse*) value;
-- (GameMessage_Builder*) clearChatResponse;
+- (GameMessageBuilder*) setChatResponse:(GameChatResponse*) value;
+- (GameMessageBuilder*) setChatResponseBuilder:(GameChatResponseBuilder*) builderForValue;
+- (GameMessageBuilder*) mergeChatResponse:(GameChatResponse*) value;
+- (GameMessageBuilder*) clearChatResponse;
 
 - (BOOL) hasFacetimeChatRequest;
 - (FacetimeChatRequest*) facetimeChatRequest;
-- (GameMessage_Builder*) setFacetimeChatRequest:(FacetimeChatRequest*) value;
-- (GameMessage_Builder*) setFacetimeChatRequestBuilder:(FacetimeChatRequest_Builder*) builderForValue;
-- (GameMessage_Builder*) mergeFacetimeChatRequest:(FacetimeChatRequest*) value;
-- (GameMessage_Builder*) clearFacetimeChatRequest;
+- (GameMessageBuilder*) setFacetimeChatRequest:(FacetimeChatRequest*) value;
+- (GameMessageBuilder*) setFacetimeChatRequestBuilder:(FacetimeChatRequestBuilder*) builderForValue;
+- (GameMessageBuilder*) mergeFacetimeChatRequest:(FacetimeChatRequest*) value;
+- (GameMessageBuilder*) clearFacetimeChatRequest;
 
 - (BOOL) hasFacetimeChatResponse;
 - (FacetimeChatResponse*) facetimeChatResponse;
-- (GameMessage_Builder*) setFacetimeChatResponse:(FacetimeChatResponse*) value;
-- (GameMessage_Builder*) setFacetimeChatResponseBuilder:(FacetimeChatResponse_Builder*) builderForValue;
-- (GameMessage_Builder*) mergeFacetimeChatResponse:(FacetimeChatResponse*) value;
-- (GameMessage_Builder*) clearFacetimeChatResponse;
+- (GameMessageBuilder*) setFacetimeChatResponse:(FacetimeChatResponse*) value;
+- (GameMessageBuilder*) setFacetimeChatResponseBuilder:(FacetimeChatResponseBuilder*) builderForValue;
+- (GameMessageBuilder*) mergeFacetimeChatResponse:(FacetimeChatResponse*) value;
+- (GameMessageBuilder*) clearFacetimeChatResponse;
 
 - (BOOL) hasNotification;
 - (GeneralNotification*) notification;
-- (GameMessage_Builder*) setNotification:(GeneralNotification*) value;
-- (GameMessage_Builder*) setNotificationBuilder:(GeneralNotification_Builder*) builderForValue;
-- (GameMessage_Builder*) mergeNotification:(GeneralNotification*) value;
-- (GameMessage_Builder*) clearNotification;
+- (GameMessageBuilder*) setNotification:(GeneralNotification*) value;
+- (GameMessageBuilder*) setNotificationBuilder:(GeneralNotificationBuilder*) builderForValue;
+- (GameMessageBuilder*) mergeNotification:(GeneralNotification*) value;
+- (GameMessageBuilder*) clearNotification;
 
 - (BOOL) hasGetRoomsRequest;
 - (GetRoomsRequest*) getRoomsRequest;
-- (GameMessage_Builder*) setGetRoomsRequest:(GetRoomsRequest*) value;
-- (GameMessage_Builder*) setGetRoomsRequestBuilder:(GetRoomsRequest_Builder*) builderForValue;
-- (GameMessage_Builder*) mergeGetRoomsRequest:(GetRoomsRequest*) value;
-- (GameMessage_Builder*) clearGetRoomsRequest;
+- (GameMessageBuilder*) setGetRoomsRequest:(GetRoomsRequest*) value;
+- (GameMessageBuilder*) setGetRoomsRequestBuilder:(GetRoomsRequestBuilder*) builderForValue;
+- (GameMessageBuilder*) mergeGetRoomsRequest:(GetRoomsRequest*) value;
+- (GameMessageBuilder*) clearGetRoomsRequest;
 
 - (BOOL) hasGetRoomsResponse;
 - (GetRoomsResponse*) getRoomsResponse;
-- (GameMessage_Builder*) setGetRoomsResponse:(GetRoomsResponse*) value;
-- (GameMessage_Builder*) setGetRoomsResponseBuilder:(GetRoomsResponse_Builder*) builderForValue;
-- (GameMessage_Builder*) mergeGetRoomsResponse:(GetRoomsResponse*) value;
-- (GameMessage_Builder*) clearGetRoomsResponse;
+- (GameMessageBuilder*) setGetRoomsResponse:(GetRoomsResponse*) value;
+- (GameMessageBuilder*) setGetRoomsResponseBuilder:(GetRoomsResponseBuilder*) builderForValue;
+- (GameMessageBuilder*) mergeGetRoomsResponse:(GetRoomsResponse*) value;
+- (GameMessageBuilder*) clearGetRoomsResponse;
 
 - (BOOL) hasCreateRoomRequest;
 - (CreateRoomRequest*) createRoomRequest;
-- (GameMessage_Builder*) setCreateRoomRequest:(CreateRoomRequest*) value;
-- (GameMessage_Builder*) setCreateRoomRequestBuilder:(CreateRoomRequest_Builder*) builderForValue;
-- (GameMessage_Builder*) mergeCreateRoomRequest:(CreateRoomRequest*) value;
-- (GameMessage_Builder*) clearCreateRoomRequest;
+- (GameMessageBuilder*) setCreateRoomRequest:(CreateRoomRequest*) value;
+- (GameMessageBuilder*) setCreateRoomRequestBuilder:(CreateRoomRequestBuilder*) builderForValue;
+- (GameMessageBuilder*) mergeCreateRoomRequest:(CreateRoomRequest*) value;
+- (GameMessageBuilder*) clearCreateRoomRequest;
 
 - (BOOL) hasCreateRoomResponse;
 - (CreateRoomResponse*) createRoomResponse;
-- (GameMessage_Builder*) setCreateRoomResponse:(CreateRoomResponse*) value;
-- (GameMessage_Builder*) setCreateRoomResponseBuilder:(CreateRoomResponse_Builder*) builderForValue;
-- (GameMessage_Builder*) mergeCreateRoomResponse:(CreateRoomResponse*) value;
-- (GameMessage_Builder*) clearCreateRoomResponse;
+- (GameMessageBuilder*) setCreateRoomResponse:(CreateRoomResponse*) value;
+- (GameMessageBuilder*) setCreateRoomResponseBuilder:(CreateRoomResponseBuilder*) builderForValue;
+- (GameMessageBuilder*) mergeCreateRoomResponse:(CreateRoomResponse*) value;
+- (GameMessageBuilder*) clearCreateRoomResponse;
 
 - (BOOL) hasSearchRoomRequest;
 - (SearchRoomRequest*) searchRoomRequest;
-- (GameMessage_Builder*) setSearchRoomRequest:(SearchRoomRequest*) value;
-- (GameMessage_Builder*) setSearchRoomRequestBuilder:(SearchRoomRequest_Builder*) builderForValue;
-- (GameMessage_Builder*) mergeSearchRoomRequest:(SearchRoomRequest*) value;
-- (GameMessage_Builder*) clearSearchRoomRequest;
+- (GameMessageBuilder*) setSearchRoomRequest:(SearchRoomRequest*) value;
+- (GameMessageBuilder*) setSearchRoomRequestBuilder:(SearchRoomRequestBuilder*) builderForValue;
+- (GameMessageBuilder*) mergeSearchRoomRequest:(SearchRoomRequest*) value;
+- (GameMessageBuilder*) clearSearchRoomRequest;
 
 - (BOOL) hasSearchRoomResponse;
 - (SearchRoomResponse*) searchRoomResponse;
-- (GameMessage_Builder*) setSearchRoomResponse:(SearchRoomResponse*) value;
-- (GameMessage_Builder*) setSearchRoomResponseBuilder:(SearchRoomResponse_Builder*) builderForValue;
-- (GameMessage_Builder*) mergeSearchRoomResponse:(SearchRoomResponse*) value;
-- (GameMessage_Builder*) clearSearchRoomResponse;
+- (GameMessageBuilder*) setSearchRoomResponse:(SearchRoomResponse*) value;
+- (GameMessageBuilder*) setSearchRoomResponseBuilder:(SearchRoomResponseBuilder*) builderForValue;
+- (GameMessageBuilder*) mergeSearchRoomResponse:(SearchRoomResponse*) value;
+- (GameMessageBuilder*) clearSearchRoomResponse;
 
 - (BOOL) hasRoomNotificationRequest;
 - (RoomNotificationRequest*) roomNotificationRequest;
-- (GameMessage_Builder*) setRoomNotificationRequest:(RoomNotificationRequest*) value;
-- (GameMessage_Builder*) setRoomNotificationRequestBuilder:(RoomNotificationRequest_Builder*) builderForValue;
-- (GameMessage_Builder*) mergeRoomNotificationRequest:(RoomNotificationRequest*) value;
-- (GameMessage_Builder*) clearRoomNotificationRequest;
+- (GameMessageBuilder*) setRoomNotificationRequest:(RoomNotificationRequest*) value;
+- (GameMessageBuilder*) setRoomNotificationRequestBuilder:(RoomNotificationRequestBuilder*) builderForValue;
+- (GameMessageBuilder*) mergeRoomNotificationRequest:(RoomNotificationRequest*) value;
+- (GameMessageBuilder*) clearRoomNotificationRequest;
 
 - (BOOL) hasRollDiceEndNotificationRequest;
 - (RollDiceEndNotificationRequest*) rollDiceEndNotificationRequest;
-- (GameMessage_Builder*) setRollDiceEndNotificationRequest:(RollDiceEndNotificationRequest*) value;
-- (GameMessage_Builder*) setRollDiceEndNotificationRequestBuilder:(RollDiceEndNotificationRequest_Builder*) builderForValue;
-- (GameMessage_Builder*) mergeRollDiceEndNotificationRequest:(RollDiceEndNotificationRequest*) value;
-- (GameMessage_Builder*) clearRollDiceEndNotificationRequest;
+- (GameMessageBuilder*) setRollDiceEndNotificationRequest:(RollDiceEndNotificationRequest*) value;
+- (GameMessageBuilder*) setRollDiceEndNotificationRequestBuilder:(RollDiceEndNotificationRequestBuilder*) builderForValue;
+- (GameMessageBuilder*) mergeRollDiceEndNotificationRequest:(RollDiceEndNotificationRequest*) value;
+- (GameMessageBuilder*) clearRollDiceEndNotificationRequest;
 
 - (BOOL) hasCallDiceRequest;
 - (CallDiceRequest*) callDiceRequest;
-- (GameMessage_Builder*) setCallDiceRequest:(CallDiceRequest*) value;
-- (GameMessage_Builder*) setCallDiceRequestBuilder:(CallDiceRequest_Builder*) builderForValue;
-- (GameMessage_Builder*) mergeCallDiceRequest:(CallDiceRequest*) value;
-- (GameMessage_Builder*) clearCallDiceRequest;
+- (GameMessageBuilder*) setCallDiceRequest:(CallDiceRequest*) value;
+- (GameMessageBuilder*) setCallDiceRequestBuilder:(CallDiceRequestBuilder*) builderForValue;
+- (GameMessageBuilder*) mergeCallDiceRequest:(CallDiceRequest*) value;
+- (GameMessageBuilder*) clearCallDiceRequest;
 
 - (BOOL) hasCallDiceResponse;
 - (CallDiceResponse*) callDiceResponse;
-- (GameMessage_Builder*) setCallDiceResponse:(CallDiceResponse*) value;
-- (GameMessage_Builder*) setCallDiceResponseBuilder:(CallDiceResponse_Builder*) builderForValue;
-- (GameMessage_Builder*) mergeCallDiceResponse:(CallDiceResponse*) value;
-- (GameMessage_Builder*) clearCallDiceResponse;
+- (GameMessageBuilder*) setCallDiceResponse:(CallDiceResponse*) value;
+- (GameMessageBuilder*) setCallDiceResponseBuilder:(CallDiceResponseBuilder*) builderForValue;
+- (GameMessageBuilder*) mergeCallDiceResponse:(CallDiceResponse*) value;
+- (GameMessageBuilder*) clearCallDiceResponse;
 
 - (BOOL) hasOpenDiceRequest;
 - (OpenDiceRequest*) openDiceRequest;
-- (GameMessage_Builder*) setOpenDiceRequest:(OpenDiceRequest*) value;
-- (GameMessage_Builder*) setOpenDiceRequestBuilder:(OpenDiceRequest_Builder*) builderForValue;
-- (GameMessage_Builder*) mergeOpenDiceRequest:(OpenDiceRequest*) value;
-- (GameMessage_Builder*) clearOpenDiceRequest;
+- (GameMessageBuilder*) setOpenDiceRequest:(OpenDiceRequest*) value;
+- (GameMessageBuilder*) setOpenDiceRequestBuilder:(OpenDiceRequestBuilder*) builderForValue;
+- (GameMessageBuilder*) mergeOpenDiceRequest:(OpenDiceRequest*) value;
+- (GameMessageBuilder*) clearOpenDiceRequest;
 
 - (BOOL) hasOpenDiceResponse;
 - (OpenDiceResponse*) openDiceResponse;
-- (GameMessage_Builder*) setOpenDiceResponse:(OpenDiceResponse*) value;
-- (GameMessage_Builder*) setOpenDiceResponseBuilder:(OpenDiceResponse_Builder*) builderForValue;
-- (GameMessage_Builder*) mergeOpenDiceResponse:(OpenDiceResponse*) value;
-- (GameMessage_Builder*) clearOpenDiceResponse;
+- (GameMessageBuilder*) setOpenDiceResponse:(OpenDiceResponse*) value;
+- (GameMessageBuilder*) setOpenDiceResponseBuilder:(OpenDiceResponseBuilder*) builderForValue;
+- (GameMessageBuilder*) mergeOpenDiceResponse:(OpenDiceResponse*) value;
+- (GameMessageBuilder*) clearOpenDiceResponse;
 
 - (BOOL) hasGameOverNotificationRequest;
 - (GameOverNotificationRequest*) gameOverNotificationRequest;
-- (GameMessage_Builder*) setGameOverNotificationRequest:(GameOverNotificationRequest*) value;
-- (GameMessage_Builder*) setGameOverNotificationRequestBuilder:(GameOverNotificationRequest_Builder*) builderForValue;
-- (GameMessage_Builder*) mergeGameOverNotificationRequest:(GameOverNotificationRequest*) value;
-- (GameMessage_Builder*) clearGameOverNotificationRequest;
+- (GameMessageBuilder*) setGameOverNotificationRequest:(GameOverNotificationRequest*) value;
+- (GameMessageBuilder*) setGameOverNotificationRequestBuilder:(GameOverNotificationRequestBuilder*) builderForValue;
+- (GameMessageBuilder*) mergeGameOverNotificationRequest:(GameOverNotificationRequest*) value;
+- (GameMessageBuilder*) clearGameOverNotificationRequest;
 
 - (BOOL) hasGameOverNotificationResponse;
 - (GameOverNotificationResponse*) gameOverNotificationResponse;
-- (GameMessage_Builder*) setGameOverNotificationResponse:(GameOverNotificationResponse*) value;
-- (GameMessage_Builder*) setGameOverNotificationResponseBuilder:(GameOverNotificationResponse_Builder*) builderForValue;
-- (GameMessage_Builder*) mergeGameOverNotificationResponse:(GameOverNotificationResponse*) value;
-- (GameMessage_Builder*) clearGameOverNotificationResponse;
+- (GameMessageBuilder*) setGameOverNotificationResponse:(GameOverNotificationResponse*) value;
+- (GameMessageBuilder*) setGameOverNotificationResponseBuilder:(GameOverNotificationResponseBuilder*) builderForValue;
+- (GameMessageBuilder*) mergeGameOverNotificationResponse:(GameOverNotificationResponse*) value;
+- (GameMessageBuilder*) clearGameOverNotificationResponse;
 
 - (BOOL) hasRegisterRoomsNotificationRequest;
 - (RegisterRoomsNotificationRequest*) registerRoomsNotificationRequest;
-- (GameMessage_Builder*) setRegisterRoomsNotificationRequest:(RegisterRoomsNotificationRequest*) value;
-- (GameMessage_Builder*) setRegisterRoomsNotificationRequestBuilder:(RegisterRoomsNotificationRequest_Builder*) builderForValue;
-- (GameMessage_Builder*) mergeRegisterRoomsNotificationRequest:(RegisterRoomsNotificationRequest*) value;
-- (GameMessage_Builder*) clearRegisterRoomsNotificationRequest;
+- (GameMessageBuilder*) setRegisterRoomsNotificationRequest:(RegisterRoomsNotificationRequest*) value;
+- (GameMessageBuilder*) setRegisterRoomsNotificationRequestBuilder:(RegisterRoomsNotificationRequestBuilder*) builderForValue;
+- (GameMessageBuilder*) mergeRegisterRoomsNotificationRequest:(RegisterRoomsNotificationRequest*) value;
+- (GameMessageBuilder*) clearRegisterRoomsNotificationRequest;
 
 - (BOOL) hasRegisterRoomsNotificationResponse;
 - (RegisterRoomsNotificationResponse*) registerRoomsNotificationResponse;
-- (GameMessage_Builder*) setRegisterRoomsNotificationResponse:(RegisterRoomsNotificationResponse*) value;
-- (GameMessage_Builder*) setRegisterRoomsNotificationResponseBuilder:(RegisterRoomsNotificationResponse_Builder*) builderForValue;
-- (GameMessage_Builder*) mergeRegisterRoomsNotificationResponse:(RegisterRoomsNotificationResponse*) value;
-- (GameMessage_Builder*) clearRegisterRoomsNotificationResponse;
+- (GameMessageBuilder*) setRegisterRoomsNotificationResponse:(RegisterRoomsNotificationResponse*) value;
+- (GameMessageBuilder*) setRegisterRoomsNotificationResponseBuilder:(RegisterRoomsNotificationResponseBuilder*) builderForValue;
+- (GameMessageBuilder*) mergeRegisterRoomsNotificationResponse:(RegisterRoomsNotificationResponse*) value;
+- (GameMessageBuilder*) clearRegisterRoomsNotificationResponse;
 
 - (BOOL) hasUnRegisterRoomsNotificationRequest;
 - (UnRegisterRoomsNotificationRequest*) unRegisterRoomsNotificationRequest;
-- (GameMessage_Builder*) setUnRegisterRoomsNotificationRequest:(UnRegisterRoomsNotificationRequest*) value;
-- (GameMessage_Builder*) setUnRegisterRoomsNotificationRequestBuilder:(UnRegisterRoomsNotificationRequest_Builder*) builderForValue;
-- (GameMessage_Builder*) mergeUnRegisterRoomsNotificationRequest:(UnRegisterRoomsNotificationRequest*) value;
-- (GameMessage_Builder*) clearUnRegisterRoomsNotificationRequest;
+- (GameMessageBuilder*) setUnRegisterRoomsNotificationRequest:(UnRegisterRoomsNotificationRequest*) value;
+- (GameMessageBuilder*) setUnRegisterRoomsNotificationRequestBuilder:(UnRegisterRoomsNotificationRequestBuilder*) builderForValue;
+- (GameMessageBuilder*) mergeUnRegisterRoomsNotificationRequest:(UnRegisterRoomsNotificationRequest*) value;
+- (GameMessageBuilder*) clearUnRegisterRoomsNotificationRequest;
 
 - (BOOL) hasUnRegisterRoomsNotificationResponse;
 - (UnRegisterRoomsNotificationResponse*) unRegisterRoomsNotificationResponse;
-- (GameMessage_Builder*) setUnRegisterRoomsNotificationResponse:(UnRegisterRoomsNotificationResponse*) value;
-- (GameMessage_Builder*) setUnRegisterRoomsNotificationResponseBuilder:(UnRegisterRoomsNotificationResponse_Builder*) builderForValue;
-- (GameMessage_Builder*) mergeUnRegisterRoomsNotificationResponse:(UnRegisterRoomsNotificationResponse*) value;
-- (GameMessage_Builder*) clearUnRegisterRoomsNotificationResponse;
+- (GameMessageBuilder*) setUnRegisterRoomsNotificationResponse:(UnRegisterRoomsNotificationResponse*) value;
+- (GameMessageBuilder*) setUnRegisterRoomsNotificationResponseBuilder:(UnRegisterRoomsNotificationResponseBuilder*) builderForValue;
+- (GameMessageBuilder*) mergeUnRegisterRoomsNotificationResponse:(UnRegisterRoomsNotificationResponse*) value;
+- (GameMessageBuilder*) clearUnRegisterRoomsNotificationResponse;
 
 - (BOOL) hasUserDiceNotification;
 - (UserDiceNotification*) userDiceNotification;
-- (GameMessage_Builder*) setUserDiceNotification:(UserDiceNotification*) value;
-- (GameMessage_Builder*) setUserDiceNotificationBuilder:(UserDiceNotification_Builder*) builderForValue;
-- (GameMessage_Builder*) mergeUserDiceNotification:(UserDiceNotification*) value;
-- (GameMessage_Builder*) clearUserDiceNotification;
+- (GameMessageBuilder*) setUserDiceNotification:(UserDiceNotification*) value;
+- (GameMessageBuilder*) setUserDiceNotificationBuilder:(UserDiceNotificationBuilder*) builderForValue;
+- (GameMessageBuilder*) mergeUserDiceNotification:(UserDiceNotification*) value;
+- (GameMessageBuilder*) clearUserDiceNotification;
 
 - (BOOL) hasBetDiceRequest;
 - (BetDiceRequest*) betDiceRequest;
-- (GameMessage_Builder*) setBetDiceRequest:(BetDiceRequest*) value;
-- (GameMessage_Builder*) setBetDiceRequestBuilder:(BetDiceRequest_Builder*) builderForValue;
-- (GameMessage_Builder*) mergeBetDiceRequest:(BetDiceRequest*) value;
-- (GameMessage_Builder*) clearBetDiceRequest;
+- (GameMessageBuilder*) setBetDiceRequest:(BetDiceRequest*) value;
+- (GameMessageBuilder*) setBetDiceRequestBuilder:(BetDiceRequestBuilder*) builderForValue;
+- (GameMessageBuilder*) mergeBetDiceRequest:(BetDiceRequest*) value;
+- (GameMessageBuilder*) clearBetDiceRequest;
 
 - (BOOL) hasBetDiceResponse;
 - (BetDiceResponse*) betDiceResponse;
-- (GameMessage_Builder*) setBetDiceResponse:(BetDiceResponse*) value;
-- (GameMessage_Builder*) setBetDiceResponseBuilder:(BetDiceResponse_Builder*) builderForValue;
-- (GameMessage_Builder*) mergeBetDiceResponse:(BetDiceResponse*) value;
-- (GameMessage_Builder*) clearBetDiceResponse;
+- (GameMessageBuilder*) setBetDiceResponse:(BetDiceResponse*) value;
+- (GameMessageBuilder*) setBetDiceResponseBuilder:(BetDiceResponseBuilder*) builderForValue;
+- (GameMessageBuilder*) mergeBetDiceResponse:(BetDiceResponse*) value;
+- (GameMessageBuilder*) clearBetDiceResponse;
 
 - (BOOL) hasUseItemRequest;
 - (UseItemRequest*) useItemRequest;
-- (GameMessage_Builder*) setUseItemRequest:(UseItemRequest*) value;
-- (GameMessage_Builder*) setUseItemRequestBuilder:(UseItemRequest_Builder*) builderForValue;
-- (GameMessage_Builder*) mergeUseItemRequest:(UseItemRequest*) value;
-- (GameMessage_Builder*) clearUseItemRequest;
+- (GameMessageBuilder*) setUseItemRequest:(UseItemRequest*) value;
+- (GameMessageBuilder*) setUseItemRequestBuilder:(UseItemRequestBuilder*) builderForValue;
+- (GameMessageBuilder*) mergeUseItemRequest:(UseItemRequest*) value;
+- (GameMessageBuilder*) clearUseItemRequest;
 
 - (BOOL) hasUseItemResponse;
 - (UseItemResponse*) useItemResponse;
-- (GameMessage_Builder*) setUseItemResponse:(UseItemResponse*) value;
-- (GameMessage_Builder*) setUseItemResponseBuilder:(UseItemResponse_Builder*) builderForValue;
-- (GameMessage_Builder*) mergeUseItemResponse:(UseItemResponse*) value;
-- (GameMessage_Builder*) clearUseItemResponse;
+- (GameMessageBuilder*) setUseItemResponse:(UseItemResponse*) value;
+- (GameMessageBuilder*) setUseItemResponseBuilder:(UseItemResponseBuilder*) builderForValue;
+- (GameMessageBuilder*) mergeUseItemResponse:(UseItemResponse*) value;
+- (GameMessageBuilder*) clearUseItemResponse;
 
 - (BOOL) hasBetRequest;
 - (BetRequest*) betRequest;
-- (GameMessage_Builder*) setBetRequest:(BetRequest*) value;
-- (GameMessage_Builder*) setBetRequestBuilder:(BetRequest_Builder*) builderForValue;
-- (GameMessage_Builder*) mergeBetRequest:(BetRequest*) value;
-- (GameMessage_Builder*) clearBetRequest;
+- (GameMessageBuilder*) setBetRequest:(BetRequest*) value;
+- (GameMessageBuilder*) setBetRequestBuilder:(BetRequestBuilder*) builderForValue;
+- (GameMessageBuilder*) mergeBetRequest:(BetRequest*) value;
+- (GameMessageBuilder*) clearBetRequest;
 
 - (BOOL) hasBetResponse;
 - (BetResponse*) betResponse;
-- (GameMessage_Builder*) setBetResponse:(BetResponse*) value;
-- (GameMessage_Builder*) setBetResponseBuilder:(BetResponse_Builder*) builderForValue;
-- (GameMessage_Builder*) mergeBetResponse:(BetResponse*) value;
-- (GameMessage_Builder*) clearBetResponse;
+- (GameMessageBuilder*) setBetResponse:(BetResponse*) value;
+- (GameMessageBuilder*) setBetResponseBuilder:(BetResponseBuilder*) builderForValue;
+- (GameMessageBuilder*) mergeBetResponse:(BetResponse*) value;
+- (GameMessageBuilder*) clearBetResponse;
 
 - (BOOL) hasCheckCardRequest;
 - (CheckCardRequest*) checkCardRequest;
-- (GameMessage_Builder*) setCheckCardRequest:(CheckCardRequest*) value;
-- (GameMessage_Builder*) setCheckCardRequestBuilder:(CheckCardRequest_Builder*) builderForValue;
-- (GameMessage_Builder*) mergeCheckCardRequest:(CheckCardRequest*) value;
-- (GameMessage_Builder*) clearCheckCardRequest;
+- (GameMessageBuilder*) setCheckCardRequest:(CheckCardRequest*) value;
+- (GameMessageBuilder*) setCheckCardRequestBuilder:(CheckCardRequestBuilder*) builderForValue;
+- (GameMessageBuilder*) mergeCheckCardRequest:(CheckCardRequest*) value;
+- (GameMessageBuilder*) clearCheckCardRequest;
 
 - (BOOL) hasCheckCardResponse;
 - (CheckCardResponse*) checkCardResponse;
-- (GameMessage_Builder*) setCheckCardResponse:(CheckCardResponse*) value;
-- (GameMessage_Builder*) setCheckCardResponseBuilder:(CheckCardResponse_Builder*) builderForValue;
-- (GameMessage_Builder*) mergeCheckCardResponse:(CheckCardResponse*) value;
-- (GameMessage_Builder*) clearCheckCardResponse;
+- (GameMessageBuilder*) setCheckCardResponse:(CheckCardResponse*) value;
+- (GameMessageBuilder*) setCheckCardResponseBuilder:(CheckCardResponseBuilder*) builderForValue;
+- (GameMessageBuilder*) mergeCheckCardResponse:(CheckCardResponse*) value;
+- (GameMessageBuilder*) clearCheckCardResponse;
 
 - (BOOL) hasFoldCardRequest;
 - (FoldCardRequest*) foldCardRequest;
-- (GameMessage_Builder*) setFoldCardRequest:(FoldCardRequest*) value;
-- (GameMessage_Builder*) setFoldCardRequestBuilder:(FoldCardRequest_Builder*) builderForValue;
-- (GameMessage_Builder*) mergeFoldCardRequest:(FoldCardRequest*) value;
-- (GameMessage_Builder*) clearFoldCardRequest;
+- (GameMessageBuilder*) setFoldCardRequest:(FoldCardRequest*) value;
+- (GameMessageBuilder*) setFoldCardRequestBuilder:(FoldCardRequestBuilder*) builderForValue;
+- (GameMessageBuilder*) mergeFoldCardRequest:(FoldCardRequest*) value;
+- (GameMessageBuilder*) clearFoldCardRequest;
 
 - (BOOL) hasFoldCardResponse;
 - (FoldCardResponse*) foldCardResponse;
-- (GameMessage_Builder*) setFoldCardResponse:(FoldCardResponse*) value;
-- (GameMessage_Builder*) setFoldCardResponseBuilder:(FoldCardResponse_Builder*) builderForValue;
-- (GameMessage_Builder*) mergeFoldCardResponse:(FoldCardResponse*) value;
-- (GameMessage_Builder*) clearFoldCardResponse;
+- (GameMessageBuilder*) setFoldCardResponse:(FoldCardResponse*) value;
+- (GameMessageBuilder*) setFoldCardResponseBuilder:(FoldCardResponseBuilder*) builderForValue;
+- (GameMessageBuilder*) mergeFoldCardResponse:(FoldCardResponse*) value;
+- (GameMessageBuilder*) clearFoldCardResponse;
 
 - (BOOL) hasShowCardRequest;
 - (ShowCardRequest*) showCardRequest;
-- (GameMessage_Builder*) setShowCardRequest:(ShowCardRequest*) value;
-- (GameMessage_Builder*) setShowCardRequestBuilder:(ShowCardRequest_Builder*) builderForValue;
-- (GameMessage_Builder*) mergeShowCardRequest:(ShowCardRequest*) value;
-- (GameMessage_Builder*) clearShowCardRequest;
+- (GameMessageBuilder*) setShowCardRequest:(ShowCardRequest*) value;
+- (GameMessageBuilder*) setShowCardRequestBuilder:(ShowCardRequestBuilder*) builderForValue;
+- (GameMessageBuilder*) mergeShowCardRequest:(ShowCardRequest*) value;
+- (GameMessageBuilder*) clearShowCardRequest;
 
 - (BOOL) hasShowCardResponse;
 - (ShowCardResponse*) showCardResponse;
-- (GameMessage_Builder*) setShowCardResponse:(ShowCardResponse*) value;
-- (GameMessage_Builder*) setShowCardResponseBuilder:(ShowCardResponse_Builder*) builderForValue;
-- (GameMessage_Builder*) mergeShowCardResponse:(ShowCardResponse*) value;
-- (GameMessage_Builder*) clearShowCardResponse;
+- (GameMessageBuilder*) setShowCardResponse:(ShowCardResponse*) value;
+- (GameMessageBuilder*) setShowCardResponseBuilder:(ShowCardResponseBuilder*) builderForValue;
+- (GameMessageBuilder*) mergeShowCardResponse:(ShowCardResponse*) value;
+- (GameMessageBuilder*) clearShowCardResponse;
 
 - (BOOL) hasCompareCardRequest;
 - (CompareCardRequest*) compareCardRequest;
-- (GameMessage_Builder*) setCompareCardRequest:(CompareCardRequest*) value;
-- (GameMessage_Builder*) setCompareCardRequestBuilder:(CompareCardRequest_Builder*) builderForValue;
-- (GameMessage_Builder*) mergeCompareCardRequest:(CompareCardRequest*) value;
-- (GameMessage_Builder*) clearCompareCardRequest;
+- (GameMessageBuilder*) setCompareCardRequest:(CompareCardRequest*) value;
+- (GameMessageBuilder*) setCompareCardRequestBuilder:(CompareCardRequestBuilder*) builderForValue;
+- (GameMessageBuilder*) mergeCompareCardRequest:(CompareCardRequest*) value;
+- (GameMessageBuilder*) clearCompareCardRequest;
 
 - (BOOL) hasCompareCardResponse;
 - (CompareCardResponse*) compareCardResponse;
-- (GameMessage_Builder*) setCompareCardResponse:(CompareCardResponse*) value;
-- (GameMessage_Builder*) setCompareCardResponseBuilder:(CompareCardResponse_Builder*) builderForValue;
-- (GameMessage_Builder*) mergeCompareCardResponse:(CompareCardResponse*) value;
-- (GameMessage_Builder*) clearCompareCardResponse;
+- (GameMessageBuilder*) setCompareCardResponse:(CompareCardResponse*) value;
+- (GameMessageBuilder*) setCompareCardResponseBuilder:(CompareCardResponseBuilder*) builderForValue;
+- (GameMessageBuilder*) mergeCompareCardResponse:(CompareCardResponse*) value;
+- (GameMessageBuilder*) clearCompareCardResponse;
 
 - (BOOL) hasChangeCardRequest;
 - (ChangeCardRequest*) changeCardRequest;
-- (GameMessage_Builder*) setChangeCardRequest:(ChangeCardRequest*) value;
-- (GameMessage_Builder*) setChangeCardRequestBuilder:(ChangeCardRequest_Builder*) builderForValue;
-- (GameMessage_Builder*) mergeChangeCardRequest:(ChangeCardRequest*) value;
-- (GameMessage_Builder*) clearChangeCardRequest;
+- (GameMessageBuilder*) setChangeCardRequest:(ChangeCardRequest*) value;
+- (GameMessageBuilder*) setChangeCardRequestBuilder:(ChangeCardRequestBuilder*) builderForValue;
+- (GameMessageBuilder*) mergeChangeCardRequest:(ChangeCardRequest*) value;
+- (GameMessageBuilder*) clearChangeCardRequest;
 
 - (BOOL) hasChangeCardResponse;
 - (ChangeCardResponse*) changeCardResponse;
-- (GameMessage_Builder*) setChangeCardResponse:(ChangeCardResponse*) value;
-- (GameMessage_Builder*) setChangeCardResponseBuilder:(ChangeCardResponse_Builder*) builderForValue;
-- (GameMessage_Builder*) mergeChangeCardResponse:(ChangeCardResponse*) value;
-- (GameMessage_Builder*) clearChangeCardResponse;
+- (GameMessageBuilder*) setChangeCardResponse:(ChangeCardResponse*) value;
+- (GameMessageBuilder*) setChangeCardResponseBuilder:(ChangeCardResponseBuilder*) builderForValue;
+- (GameMessageBuilder*) mergeChangeCardResponse:(ChangeCardResponse*) value;
+- (GameMessageBuilder*) clearChangeCardResponse;
 
 - (BOOL) hasTimeoutSettingRequest;
 - (TimeoutSettingRequest*) timeoutSettingRequest;
-- (GameMessage_Builder*) setTimeoutSettingRequest:(TimeoutSettingRequest*) value;
-- (GameMessage_Builder*) setTimeoutSettingRequestBuilder:(TimeoutSettingRequest_Builder*) builderForValue;
-- (GameMessage_Builder*) mergeTimeoutSettingRequest:(TimeoutSettingRequest*) value;
-- (GameMessage_Builder*) clearTimeoutSettingRequest;
+- (GameMessageBuilder*) setTimeoutSettingRequest:(TimeoutSettingRequest*) value;
+- (GameMessageBuilder*) setTimeoutSettingRequestBuilder:(TimeoutSettingRequestBuilder*) builderForValue;
+- (GameMessageBuilder*) mergeTimeoutSettingRequest:(TimeoutSettingRequest*) value;
+- (GameMessageBuilder*) clearTimeoutSettingRequest;
 
 - (BOOL) hasTimeoutSettingResponse;
 - (TimeoutSettingResponse*) timeoutSettingResponse;
-- (GameMessage_Builder*) setTimeoutSettingResponse:(TimeoutSettingResponse*) value;
-- (GameMessage_Builder*) setTimeoutSettingResponseBuilder:(TimeoutSettingResponse_Builder*) builderForValue;
-- (GameMessage_Builder*) mergeTimeoutSettingResponse:(TimeoutSettingResponse*) value;
-- (GameMessage_Builder*) clearTimeoutSettingResponse;
+- (GameMessageBuilder*) setTimeoutSettingResponse:(TimeoutSettingResponse*) value;
+- (GameMessageBuilder*) setTimeoutSettingResponseBuilder:(TimeoutSettingResponseBuilder*) builderForValue;
+- (GameMessageBuilder*) mergeTimeoutSettingResponse:(TimeoutSettingResponse*) value;
+- (GameMessageBuilder*) clearTimeoutSettingResponse;
 
 - (BOOL) hasStartOffset;
-- (int32_t) startOffset;
-- (GameMessage_Builder*) setStartOffset:(int32_t) value;
-- (GameMessage_Builder*) clearStartOffset;
+- (SInt32) startOffset;
+- (GameMessageBuilder*) setStartOffset:(SInt32) value;
+- (GameMessageBuilder*) clearStartOffset;
 
 - (BOOL) hasMaxCount;
-- (int32_t) maxCount;
-- (GameMessage_Builder*) setMaxCount:(int32_t) value;
-- (GameMessage_Builder*) clearMaxCount;
+- (SInt32) maxCount;
+- (GameMessageBuilder*) setMaxCount:(SInt32) value;
+- (GameMessageBuilder*) clearMaxCount;
 
 - (BOOL) hasTimeStamp;
-- (int32_t) timeStamp;
-- (GameMessage_Builder*) setTimeStamp:(int32_t) value;
-- (GameMessage_Builder*) clearTimeStamp;
+- (SInt32) timeStamp;
+- (GameMessageBuilder*) setTimeStamp:(SInt32) value;
+- (GameMessageBuilder*) clearTimeStamp;
 
 - (BOOL) hasMac;
 - (NSString*) mac;
-- (GameMessage_Builder*) setMac:(NSString*) value;
-- (GameMessage_Builder*) clearMac;
+- (GameMessageBuilder*) setMac:(NSString*) value;
+- (GameMessageBuilder*) clearMac;
 @end
 
-@interface DataQueryResponse : PBGeneratedMessage {
+@interface DataQueryResponse : PBGeneratedMessage<GeneratedMessageProtocol> {
 @private
   BOOL hasResultCode_:1;
   BOOL hasTotalCount_:1;
   BOOL hasVersion_:1;
   BOOL hasUserRelation_:1;
   BOOL hasUrl_:1;
+  BOOL hasUserTutorial_:1;
+  BOOL hasGroup_:1;
+  BOOL hasGuessContest_:1;
+  BOOL hasGuessRank_:1;
+  BOOL hasContest_:1;
   BOOL hasSongs_:1;
   BOOL hasOpus_:1;
+  BOOL hasBbsDrawData_:1;
   BOOL hasUser_:1;
-  BOOL hasGuessRank_:1;
   BOOL hasUserPhoto_:1;
   BOOL hasWall_:1;
-  BOOL hasGuessContest_:1;
-  BOOL hasGroup_:1;
-  BOOL hasBbsDrawData_:1;
-  BOOL hasContest_:1;
-  BOOL hasUserTutorial_:1;
-  int32_t resultCode;
-  int32_t totalCount;
-  int32_t version;
-  int32_t userRelation;
+  SInt32 resultCode;
+  SInt32 totalCount;
+  SInt32 version;
+  SInt32 userRelation;
   NSString* url;
+  PBUserTutorial* userTutorial;
+  PBGroup* group;
+  PBGuessContest* guessContest;
+  PBGuessRank* guessRank;
+  PBContest* contest;
   PBSongList* songs;
   PBOpus* opus;
+  PBBBSDraw* bbsDrawData;
   PBGameUser* user;
-  PBGuessRank* guessRank;
   PBUserPhoto* userPhoto;
   PBWall* wall;
-  PBGuessContest* guessContest;
-  PBGroup* group;
-  PBBBSDraw* bbsDrawData;
-  PBContest* contest;
-  PBUserTutorial* userTutorial;
-  NSMutableArray* mutableIdListList;
-  NSMutableArray* mutableGuessContestListList;
-  NSMutableArray* mutableGroupListList;
-  NSMutableArray* mutableGroupMemberListList;
-  NSMutableArray* mutableNoticeListList;
-  NSMutableArray* mutableGuessRankListList;
-  NSMutableArray* mutableBadgesList;
-  NSMutableArray* mutableGroupRoleList;
-  NSMutableArray* mutableUserTutorialsList;
-  NSMutableArray* mutableOpusListList;
-  NSMutableArray* mutableUserListList;
-  NSMutableArray* mutableUserPhotoListList;
-  NSMutableArray* mutableWallListList;
-  NSMutableArray* mutableBbsUserListList;
-  NSMutableArray* mutableBbsPrivilegeListList;
-  NSMutableArray* mutableBbsActionList;
-  NSMutableArray* mutableBbsPostList;
-  NSMutableArray* mutableBbsBoardList;
-  NSMutableArray* mutableContestListList;
-  NSMutableArray* mutableFeedList;
-  NSMutableArray* mutableMessageStatList;
-  NSMutableArray* mutableMessageList;
-  NSMutableArray* mutableDrawDataList;
+  NSMutableArray * idListArray;
+  NSMutableArray * wallListArray;
+  NSMutableArray * userPhotoListArray;
+  NSMutableArray * userListArray;
+  NSMutableArray * bbsUserListArray;
+  NSMutableArray * bbsPrivilegeListArray;
+  NSMutableArray * bbsActionArray;
+  NSMutableArray * opusListArray;
+  NSMutableArray * bbsPostArray;
+  NSMutableArray * bbsBoardArray;
+  NSMutableArray * contestListArray;
+  NSMutableArray * guessRankListArray;
+  NSMutableArray * feedArray;
+  NSMutableArray * guessContestListArray;
+  NSMutableArray * messageStatArray;
+  NSMutableArray * groupListArray;
+  NSMutableArray * groupMemberListArray;
+  NSMutableArray * noticeListArray;
+  NSMutableArray * badgesArray;
+  NSMutableArray * messageArray;
+  NSMutableArray * groupRoleArray;
+  NSMutableArray * drawDataArray;
+  NSMutableArray * userTutorialsArray;
 }
 - (BOOL) hasResultCode;
 - (BOOL) hasTotalCount;
@@ -4590,77 +4648,78 @@ BOOL BetTypeIsValidValue(BetType value);
 - (BOOL) hasGroup;
 - (BOOL) hasUrl;
 - (BOOL) hasUserTutorial;
-@property (readonly) int32_t resultCode;
-@property (readonly) int32_t totalCount;
-@property (readonly) int32_t version;
-@property (readonly, retain) PBContest* contest;
-@property (readonly, retain) PBBBSDraw* bbsDrawData;
-@property (readonly, retain) PBWall* wall;
-@property (readonly, retain) PBUserPhoto* userPhoto;
-@property (readonly, retain) PBGameUser* user;
-@property (readonly) int32_t userRelation;
-@property (readonly, retain) PBOpus* opus;
-@property (readonly, retain) PBSongList* songs;
-@property (readonly, retain) PBGuessRank* guessRank;
-@property (readonly, retain) PBGuessContest* guessContest;
-@property (readonly, retain) PBGroup* group;
-@property (readonly, retain) NSString* url;
-@property (readonly, retain) PBUserTutorial* userTutorial;
-- (NSArray*) drawDataList;
-- (PBDraw*) drawDataAtIndex:(int32_t) index;
-- (NSArray*) messageList;
-- (PBMessage*) messageAtIndex:(int32_t) index;
-- (NSArray*) messageStatList;
-- (PBMessageStat*) messageStatAtIndex:(int32_t) index;
-- (NSArray*) feedList;
-- (PBFeed*) feedAtIndex:(int32_t) index;
-- (NSArray*) contestListList;
-- (PBContest*) contestListAtIndex:(int32_t) index;
-- (NSArray*) bbsBoardList;
-- (PBBBSBoard*) bbsBoardAtIndex:(int32_t) index;
-- (NSArray*) bbsPostList;
-- (PBBBSPost*) bbsPostAtIndex:(int32_t) index;
-- (NSArray*) bbsActionList;
-- (PBBBSAction*) bbsActionAtIndex:(int32_t) index;
-- (NSArray*) bbsPrivilegeListList;
-- (PBBBSPrivilege*) bbsPrivilegeListAtIndex:(int32_t) index;
-- (NSArray*) bbsUserListList;
-- (PBBBSUser*) bbsUserListAtIndex:(int32_t) index;
-- (NSArray*) wallListList;
-- (PBWall*) wallListAtIndex:(int32_t) index;
-- (NSArray*) userPhotoListList;
-- (PBUserPhoto*) userPhotoListAtIndex:(int32_t) index;
-- (NSArray*) userListList;
-- (PBGameUser*) userListAtIndex:(int32_t) index;
-- (NSArray*) opusListList;
-- (PBOpus*) opusListAtIndex:(int32_t) index;
-- (NSArray*) idListList;
-- (NSString*) idListAtIndex:(int32_t) index;
-- (NSArray*) guessRankListList;
-- (PBGuessRank*) guessRankListAtIndex:(int32_t) index;
-- (NSArray*) guessContestListList;
-- (PBGuessContest*) guessContestListAtIndex:(int32_t) index;
-- (NSArray*) groupListList;
-- (PBGroup*) groupListAtIndex:(int32_t) index;
-- (NSArray*) groupMemberListList;
-- (PBGroupUsersByTitle*) groupMemberListAtIndex:(int32_t) index;
-- (NSArray*) noticeListList;
-- (PBGroupNotice*) noticeListAtIndex:(int32_t) index;
-- (NSArray*) badgesList;
-- (PBIntKeyIntValue*) badgesAtIndex:(int32_t) index;
-- (NSArray*) groupRoleList;
-- (PBGroupUserRole*) groupRoleAtIndex:(int32_t) index;
-- (NSArray*) userTutorialsList;
-- (PBUserTutorial*) userTutorialsAtIndex:(int32_t) index;
+@property (readonly) SInt32 resultCode;
+@property (readonly) SInt32 totalCount;
+@property (readonly) SInt32 version;
+@property (readonly, strong) NSArray * drawData;
+@property (readonly, strong) NSArray * message;
+@property (readonly, strong) NSArray * messageStat;
+@property (readonly, strong) NSArray * feed;
+@property (readonly, strong) NSArray * contestList;
+@property (readonly, strong) PBContest* contest;
+@property (readonly, strong) NSArray * bbsBoard;
+@property (readonly, strong) NSArray * bbsPost;
+@property (readonly, strong) NSArray * bbsAction;
+@property (readonly, strong) PBBBSDraw* bbsDrawData;
+@property (readonly, strong) NSArray * bbsPrivilegeList;
+@property (readonly, strong) NSArray * bbsUserList;
+@property (readonly, strong) NSArray * wallList;
+@property (readonly, strong) PBWall* wall;
+@property (readonly, strong) PBUserPhoto* userPhoto;
+@property (readonly, strong) NSArray * userPhotoList;
+@property (readonly, strong) NSArray * userList;
+@property (readonly, strong) PBGameUser* user;
+@property (readonly) SInt32 userRelation;
+@property (readonly, strong) PBOpus* opus;
+@property (readonly, strong) NSArray * opusList;
+@property (readonly, strong) NSArray * idList;
+@property (readonly, strong) PBSongList* songs;
+@property (readonly, strong) PBGuessRank* guessRank;
+@property (readonly, strong) NSArray * guessRankList;
+@property (readonly, strong) PBGuessContest* guessContest;
+@property (readonly, strong) NSArray * guessContestList;
+@property (readonly, strong) PBGroup* group;
+@property (readonly, strong) NSArray * groupList;
+@property (readonly, strong) NSArray * groupMemberList;
+@property (readonly, strong) NSArray * noticeList;
+@property (readonly, strong) NSArray * badges;
+@property (readonly, strong) NSString* url;
+@property (readonly, strong) NSArray * groupRole;
+@property (readonly, strong) PBUserTutorial* userTutorial;
+@property (readonly, strong) NSArray * userTutorials;
+- (PBDraw*)drawDataAtIndex:(NSUInteger)index;
+- (PBMessage*)messageAtIndex:(NSUInteger)index;
+- (PBMessageStat*)messageStatAtIndex:(NSUInteger)index;
+- (PBFeed*)feedAtIndex:(NSUInteger)index;
+- (PBContest*)contestListAtIndex:(NSUInteger)index;
+- (PBBBSBoard*)bbsBoardAtIndex:(NSUInteger)index;
+- (PBBBSPost*)bbsPostAtIndex:(NSUInteger)index;
+- (PBBBSAction*)bbsActionAtIndex:(NSUInteger)index;
+- (PBBBSPrivilege*)bbsPrivilegeListAtIndex:(NSUInteger)index;
+- (PBBBSUser*)bbsUserListAtIndex:(NSUInteger)index;
+- (PBWall*)wallListAtIndex:(NSUInteger)index;
+- (PBUserPhoto*)userPhotoListAtIndex:(NSUInteger)index;
+- (PBGameUser*)userListAtIndex:(NSUInteger)index;
+- (PBOpus*)opusListAtIndex:(NSUInteger)index;
+- (NSString*)idListAtIndex:(NSUInteger)index;
+- (PBGuessRank*)guessRankListAtIndex:(NSUInteger)index;
+- (PBGuessContest*)guessContestListAtIndex:(NSUInteger)index;
+- (PBGroup*)groupListAtIndex:(NSUInteger)index;
+- (PBGroupUsersByTitle*)groupMemberListAtIndex:(NSUInteger)index;
+- (PBGroupNotice*)noticeListAtIndex:(NSUInteger)index;
+- (PBIntKeyIntValue*)badgesAtIndex:(NSUInteger)index;
+- (PBGroupUserRole*)groupRoleAtIndex:(NSUInteger)index;
+- (PBUserTutorial*)userTutorialsAtIndex:(NSUInteger)index;
 
-+ (DataQueryResponse*) defaultInstance;
-- (DataQueryResponse*) defaultInstance;
++ (instancetype) defaultInstance;
+- (instancetype) defaultInstance;
 
 - (BOOL) isInitialized;
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
-- (DataQueryResponse_Builder*) builder;
-+ (DataQueryResponse_Builder*) builder;
-+ (DataQueryResponse_Builder*) builderWithPrototype:(DataQueryResponse*) prototype;
+- (DataQueryResponseBuilder*) builder;
++ (DataQueryResponseBuilder*) builder;
++ (DataQueryResponseBuilder*) builderWithPrototype:(DataQueryResponse*) prototype;
+- (DataQueryResponseBuilder*) toBuilder;
 
 + (DataQueryResponse*) parseFromData:(NSData*) data;
 + (DataQueryResponse*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
@@ -4670,284 +4729,263 @@ BOOL BetTypeIsValidValue(BetType value);
 + (DataQueryResponse*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 @end
 
-@interface DataQueryResponse_Builder : PBGeneratedMessage_Builder {
+@interface DataQueryResponseBuilder : PBGeneratedMessageBuilder {
 @private
-  DataQueryResponse* result;
+  DataQueryResponse* resultDataQueryResponse;
 }
 
 - (DataQueryResponse*) defaultInstance;
 
-- (DataQueryResponse_Builder*) clear;
-- (DataQueryResponse_Builder*) clone;
+- (DataQueryResponseBuilder*) clear;
+- (DataQueryResponseBuilder*) clone;
 
 - (DataQueryResponse*) build;
 - (DataQueryResponse*) buildPartial;
 
-- (DataQueryResponse_Builder*) mergeFrom:(DataQueryResponse*) other;
-- (DataQueryResponse_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
-- (DataQueryResponse_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+- (DataQueryResponseBuilder*) mergeFrom:(DataQueryResponse*) other;
+- (DataQueryResponseBuilder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
+- (DataQueryResponseBuilder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 
 - (BOOL) hasResultCode;
-- (int32_t) resultCode;
-- (DataQueryResponse_Builder*) setResultCode:(int32_t) value;
-- (DataQueryResponse_Builder*) clearResultCode;
+- (SInt32) resultCode;
+- (DataQueryResponseBuilder*) setResultCode:(SInt32) value;
+- (DataQueryResponseBuilder*) clearResultCode;
 
 - (BOOL) hasTotalCount;
-- (int32_t) totalCount;
-- (DataQueryResponse_Builder*) setTotalCount:(int32_t) value;
-- (DataQueryResponse_Builder*) clearTotalCount;
+- (SInt32) totalCount;
+- (DataQueryResponseBuilder*) setTotalCount:(SInt32) value;
+- (DataQueryResponseBuilder*) clearTotalCount;
 
 - (BOOL) hasVersion;
-- (int32_t) version;
-- (DataQueryResponse_Builder*) setVersion:(int32_t) value;
-- (DataQueryResponse_Builder*) clearVersion;
+- (SInt32) version;
+- (DataQueryResponseBuilder*) setVersion:(SInt32) value;
+- (DataQueryResponseBuilder*) clearVersion;
 
-- (NSArray*) drawDataList;
-- (PBDraw*) drawDataAtIndex:(int32_t) index;
-- (DataQueryResponse_Builder*) replaceDrawDataAtIndex:(int32_t) index with:(PBDraw*) value;
-- (DataQueryResponse_Builder*) addDrawData:(PBDraw*) value;
-- (DataQueryResponse_Builder*) addAllDrawData:(NSArray*) values;
-- (DataQueryResponse_Builder*) clearDrawDataList;
+- (NSMutableArray *)drawData;
+- (PBDraw*)drawDataAtIndex:(NSUInteger)index;
+- (DataQueryResponseBuilder *)addDrawData:(PBDraw*)value;
+- (DataQueryResponseBuilder *)setDrawDataArray:(NSArray *)array;
+- (DataQueryResponseBuilder *)clearDrawData;
 
-- (NSArray*) messageList;
-- (PBMessage*) messageAtIndex:(int32_t) index;
-- (DataQueryResponse_Builder*) replaceMessageAtIndex:(int32_t) index with:(PBMessage*) value;
-- (DataQueryResponse_Builder*) addMessage:(PBMessage*) value;
-- (DataQueryResponse_Builder*) addAllMessage:(NSArray*) values;
-- (DataQueryResponse_Builder*) clearMessageList;
+- (NSMutableArray *)message;
+- (PBMessage*)messageAtIndex:(NSUInteger)index;
+- (DataQueryResponseBuilder *)addMessage:(PBMessage*)value;
+- (DataQueryResponseBuilder *)setMessageArray:(NSArray *)array;
+- (DataQueryResponseBuilder *)clearMessage;
 
-- (NSArray*) messageStatList;
-- (PBMessageStat*) messageStatAtIndex:(int32_t) index;
-- (DataQueryResponse_Builder*) replaceMessageStatAtIndex:(int32_t) index with:(PBMessageStat*) value;
-- (DataQueryResponse_Builder*) addMessageStat:(PBMessageStat*) value;
-- (DataQueryResponse_Builder*) addAllMessageStat:(NSArray*) values;
-- (DataQueryResponse_Builder*) clearMessageStatList;
+- (NSMutableArray *)messageStat;
+- (PBMessageStat*)messageStatAtIndex:(NSUInteger)index;
+- (DataQueryResponseBuilder *)addMessageStat:(PBMessageStat*)value;
+- (DataQueryResponseBuilder *)setMessageStatArray:(NSArray *)array;
+- (DataQueryResponseBuilder *)clearMessageStat;
 
-- (NSArray*) feedList;
-- (PBFeed*) feedAtIndex:(int32_t) index;
-- (DataQueryResponse_Builder*) replaceFeedAtIndex:(int32_t) index with:(PBFeed*) value;
-- (DataQueryResponse_Builder*) addFeed:(PBFeed*) value;
-- (DataQueryResponse_Builder*) addAllFeed:(NSArray*) values;
-- (DataQueryResponse_Builder*) clearFeedList;
+- (NSMutableArray *)feed;
+- (PBFeed*)feedAtIndex:(NSUInteger)index;
+- (DataQueryResponseBuilder *)addFeed:(PBFeed*)value;
+- (DataQueryResponseBuilder *)setFeedArray:(NSArray *)array;
+- (DataQueryResponseBuilder *)clearFeed;
 
-- (NSArray*) contestListList;
-- (PBContest*) contestListAtIndex:(int32_t) index;
-- (DataQueryResponse_Builder*) replaceContestListAtIndex:(int32_t) index with:(PBContest*) value;
-- (DataQueryResponse_Builder*) addContestList:(PBContest*) value;
-- (DataQueryResponse_Builder*) addAllContestList:(NSArray*) values;
-- (DataQueryResponse_Builder*) clearContestListList;
+- (NSMutableArray *)contestList;
+- (PBContest*)contestListAtIndex:(NSUInteger)index;
+- (DataQueryResponseBuilder *)addContestList:(PBContest*)value;
+- (DataQueryResponseBuilder *)setContestListArray:(NSArray *)array;
+- (DataQueryResponseBuilder *)clearContestList;
 
 - (BOOL) hasContest;
 - (PBContest*) contest;
-- (DataQueryResponse_Builder*) setContest:(PBContest*) value;
-- (DataQueryResponse_Builder*) setContestBuilder:(PBContest_Builder*) builderForValue;
-- (DataQueryResponse_Builder*) mergeContest:(PBContest*) value;
-- (DataQueryResponse_Builder*) clearContest;
+- (DataQueryResponseBuilder*) setContest:(PBContest*) value;
+- (DataQueryResponseBuilder*) setContestBuilder:(PBContestBuilder*) builderForValue;
+- (DataQueryResponseBuilder*) mergeContest:(PBContest*) value;
+- (DataQueryResponseBuilder*) clearContest;
 
-- (NSArray*) bbsBoardList;
-- (PBBBSBoard*) bbsBoardAtIndex:(int32_t) index;
-- (DataQueryResponse_Builder*) replaceBbsBoardAtIndex:(int32_t) index with:(PBBBSBoard*) value;
-- (DataQueryResponse_Builder*) addBbsBoard:(PBBBSBoard*) value;
-- (DataQueryResponse_Builder*) addAllBbsBoard:(NSArray*) values;
-- (DataQueryResponse_Builder*) clearBbsBoardList;
+- (NSMutableArray *)bbsBoard;
+- (PBBBSBoard*)bbsBoardAtIndex:(NSUInteger)index;
+- (DataQueryResponseBuilder *)addBbsBoard:(PBBBSBoard*)value;
+- (DataQueryResponseBuilder *)setBbsBoardArray:(NSArray *)array;
+- (DataQueryResponseBuilder *)clearBbsBoard;
 
-- (NSArray*) bbsPostList;
-- (PBBBSPost*) bbsPostAtIndex:(int32_t) index;
-- (DataQueryResponse_Builder*) replaceBbsPostAtIndex:(int32_t) index with:(PBBBSPost*) value;
-- (DataQueryResponse_Builder*) addBbsPost:(PBBBSPost*) value;
-- (DataQueryResponse_Builder*) addAllBbsPost:(NSArray*) values;
-- (DataQueryResponse_Builder*) clearBbsPostList;
+- (NSMutableArray *)bbsPost;
+- (PBBBSPost*)bbsPostAtIndex:(NSUInteger)index;
+- (DataQueryResponseBuilder *)addBbsPost:(PBBBSPost*)value;
+- (DataQueryResponseBuilder *)setBbsPostArray:(NSArray *)array;
+- (DataQueryResponseBuilder *)clearBbsPost;
 
-- (NSArray*) bbsActionList;
-- (PBBBSAction*) bbsActionAtIndex:(int32_t) index;
-- (DataQueryResponse_Builder*) replaceBbsActionAtIndex:(int32_t) index with:(PBBBSAction*) value;
-- (DataQueryResponse_Builder*) addBbsAction:(PBBBSAction*) value;
-- (DataQueryResponse_Builder*) addAllBbsAction:(NSArray*) values;
-- (DataQueryResponse_Builder*) clearBbsActionList;
+- (NSMutableArray *)bbsAction;
+- (PBBBSAction*)bbsActionAtIndex:(NSUInteger)index;
+- (DataQueryResponseBuilder *)addBbsAction:(PBBBSAction*)value;
+- (DataQueryResponseBuilder *)setBbsActionArray:(NSArray *)array;
+- (DataQueryResponseBuilder *)clearBbsAction;
 
 - (BOOL) hasBbsDrawData;
 - (PBBBSDraw*) bbsDrawData;
-- (DataQueryResponse_Builder*) setBbsDrawData:(PBBBSDraw*) value;
-- (DataQueryResponse_Builder*) setBbsDrawDataBuilder:(PBBBSDraw_Builder*) builderForValue;
-- (DataQueryResponse_Builder*) mergeBbsDrawData:(PBBBSDraw*) value;
-- (DataQueryResponse_Builder*) clearBbsDrawData;
+- (DataQueryResponseBuilder*) setBbsDrawData:(PBBBSDraw*) value;
+- (DataQueryResponseBuilder*) setBbsDrawDataBuilder:(PBBBSDrawBuilder*) builderForValue;
+- (DataQueryResponseBuilder*) mergeBbsDrawData:(PBBBSDraw*) value;
+- (DataQueryResponseBuilder*) clearBbsDrawData;
 
-- (NSArray*) bbsPrivilegeListList;
-- (PBBBSPrivilege*) bbsPrivilegeListAtIndex:(int32_t) index;
-- (DataQueryResponse_Builder*) replaceBbsPrivilegeListAtIndex:(int32_t) index with:(PBBBSPrivilege*) value;
-- (DataQueryResponse_Builder*) addBbsPrivilegeList:(PBBBSPrivilege*) value;
-- (DataQueryResponse_Builder*) addAllBbsPrivilegeList:(NSArray*) values;
-- (DataQueryResponse_Builder*) clearBbsPrivilegeListList;
+- (NSMutableArray *)bbsPrivilegeList;
+- (PBBBSPrivilege*)bbsPrivilegeListAtIndex:(NSUInteger)index;
+- (DataQueryResponseBuilder *)addBbsPrivilegeList:(PBBBSPrivilege*)value;
+- (DataQueryResponseBuilder *)setBbsPrivilegeListArray:(NSArray *)array;
+- (DataQueryResponseBuilder *)clearBbsPrivilegeList;
 
-- (NSArray*) bbsUserListList;
-- (PBBBSUser*) bbsUserListAtIndex:(int32_t) index;
-- (DataQueryResponse_Builder*) replaceBbsUserListAtIndex:(int32_t) index with:(PBBBSUser*) value;
-- (DataQueryResponse_Builder*) addBbsUserList:(PBBBSUser*) value;
-- (DataQueryResponse_Builder*) addAllBbsUserList:(NSArray*) values;
-- (DataQueryResponse_Builder*) clearBbsUserListList;
+- (NSMutableArray *)bbsUserList;
+- (PBBBSUser*)bbsUserListAtIndex:(NSUInteger)index;
+- (DataQueryResponseBuilder *)addBbsUserList:(PBBBSUser*)value;
+- (DataQueryResponseBuilder *)setBbsUserListArray:(NSArray *)array;
+- (DataQueryResponseBuilder *)clearBbsUserList;
 
-- (NSArray*) wallListList;
-- (PBWall*) wallListAtIndex:(int32_t) index;
-- (DataQueryResponse_Builder*) replaceWallListAtIndex:(int32_t) index with:(PBWall*) value;
-- (DataQueryResponse_Builder*) addWallList:(PBWall*) value;
-- (DataQueryResponse_Builder*) addAllWallList:(NSArray*) values;
-- (DataQueryResponse_Builder*) clearWallListList;
+- (NSMutableArray *)wallList;
+- (PBWall*)wallListAtIndex:(NSUInteger)index;
+- (DataQueryResponseBuilder *)addWallList:(PBWall*)value;
+- (DataQueryResponseBuilder *)setWallListArray:(NSArray *)array;
+- (DataQueryResponseBuilder *)clearWallList;
 
 - (BOOL) hasWall;
 - (PBWall*) wall;
-- (DataQueryResponse_Builder*) setWall:(PBWall*) value;
-- (DataQueryResponse_Builder*) setWallBuilder:(PBWall_Builder*) builderForValue;
-- (DataQueryResponse_Builder*) mergeWall:(PBWall*) value;
-- (DataQueryResponse_Builder*) clearWall;
+- (DataQueryResponseBuilder*) setWall:(PBWall*) value;
+- (DataQueryResponseBuilder*) setWallBuilder:(PBWallBuilder*) builderForValue;
+- (DataQueryResponseBuilder*) mergeWall:(PBWall*) value;
+- (DataQueryResponseBuilder*) clearWall;
 
 - (BOOL) hasUserPhoto;
 - (PBUserPhoto*) userPhoto;
-- (DataQueryResponse_Builder*) setUserPhoto:(PBUserPhoto*) value;
-- (DataQueryResponse_Builder*) setUserPhotoBuilder:(PBUserPhoto_Builder*) builderForValue;
-- (DataQueryResponse_Builder*) mergeUserPhoto:(PBUserPhoto*) value;
-- (DataQueryResponse_Builder*) clearUserPhoto;
+- (DataQueryResponseBuilder*) setUserPhoto:(PBUserPhoto*) value;
+- (DataQueryResponseBuilder*) setUserPhotoBuilder:(PBUserPhotoBuilder*) builderForValue;
+- (DataQueryResponseBuilder*) mergeUserPhoto:(PBUserPhoto*) value;
+- (DataQueryResponseBuilder*) clearUserPhoto;
 
-- (NSArray*) userPhotoListList;
-- (PBUserPhoto*) userPhotoListAtIndex:(int32_t) index;
-- (DataQueryResponse_Builder*) replaceUserPhotoListAtIndex:(int32_t) index with:(PBUserPhoto*) value;
-- (DataQueryResponse_Builder*) addUserPhotoList:(PBUserPhoto*) value;
-- (DataQueryResponse_Builder*) addAllUserPhotoList:(NSArray*) values;
-- (DataQueryResponse_Builder*) clearUserPhotoListList;
+- (NSMutableArray *)userPhotoList;
+- (PBUserPhoto*)userPhotoListAtIndex:(NSUInteger)index;
+- (DataQueryResponseBuilder *)addUserPhotoList:(PBUserPhoto*)value;
+- (DataQueryResponseBuilder *)setUserPhotoListArray:(NSArray *)array;
+- (DataQueryResponseBuilder *)clearUserPhotoList;
 
-- (NSArray*) userListList;
-- (PBGameUser*) userListAtIndex:(int32_t) index;
-- (DataQueryResponse_Builder*) replaceUserListAtIndex:(int32_t) index with:(PBGameUser*) value;
-- (DataQueryResponse_Builder*) addUserList:(PBGameUser*) value;
-- (DataQueryResponse_Builder*) addAllUserList:(NSArray*) values;
-- (DataQueryResponse_Builder*) clearUserListList;
+- (NSMutableArray *)userList;
+- (PBGameUser*)userListAtIndex:(NSUInteger)index;
+- (DataQueryResponseBuilder *)addUserList:(PBGameUser*)value;
+- (DataQueryResponseBuilder *)setUserListArray:(NSArray *)array;
+- (DataQueryResponseBuilder *)clearUserList;
 
 - (BOOL) hasUser;
 - (PBGameUser*) user;
-- (DataQueryResponse_Builder*) setUser:(PBGameUser*) value;
-- (DataQueryResponse_Builder*) setUserBuilder:(PBGameUser_Builder*) builderForValue;
-- (DataQueryResponse_Builder*) mergeUser:(PBGameUser*) value;
-- (DataQueryResponse_Builder*) clearUser;
+- (DataQueryResponseBuilder*) setUser:(PBGameUser*) value;
+- (DataQueryResponseBuilder*) setUserBuilder:(PBGameUserBuilder*) builderForValue;
+- (DataQueryResponseBuilder*) mergeUser:(PBGameUser*) value;
+- (DataQueryResponseBuilder*) clearUser;
 
 - (BOOL) hasUserRelation;
-- (int32_t) userRelation;
-- (DataQueryResponse_Builder*) setUserRelation:(int32_t) value;
-- (DataQueryResponse_Builder*) clearUserRelation;
+- (SInt32) userRelation;
+- (DataQueryResponseBuilder*) setUserRelation:(SInt32) value;
+- (DataQueryResponseBuilder*) clearUserRelation;
 
 - (BOOL) hasOpus;
 - (PBOpus*) opus;
-- (DataQueryResponse_Builder*) setOpus:(PBOpus*) value;
-- (DataQueryResponse_Builder*) setOpusBuilder:(PBOpus_Builder*) builderForValue;
-- (DataQueryResponse_Builder*) mergeOpus:(PBOpus*) value;
-- (DataQueryResponse_Builder*) clearOpus;
+- (DataQueryResponseBuilder*) setOpus:(PBOpus*) value;
+- (DataQueryResponseBuilder*) setOpusBuilder:(PBOpusBuilder*) builderForValue;
+- (DataQueryResponseBuilder*) mergeOpus:(PBOpus*) value;
+- (DataQueryResponseBuilder*) clearOpus;
 
-- (NSArray*) opusListList;
-- (PBOpus*) opusListAtIndex:(int32_t) index;
-- (DataQueryResponse_Builder*) replaceOpusListAtIndex:(int32_t) index with:(PBOpus*) value;
-- (DataQueryResponse_Builder*) addOpusList:(PBOpus*) value;
-- (DataQueryResponse_Builder*) addAllOpusList:(NSArray*) values;
-- (DataQueryResponse_Builder*) clearOpusListList;
+- (NSMutableArray *)opusList;
+- (PBOpus*)opusListAtIndex:(NSUInteger)index;
+- (DataQueryResponseBuilder *)addOpusList:(PBOpus*)value;
+- (DataQueryResponseBuilder *)setOpusListArray:(NSArray *)array;
+- (DataQueryResponseBuilder *)clearOpusList;
 
-- (NSArray*) idListList;
-- (NSString*) idListAtIndex:(int32_t) index;
-- (DataQueryResponse_Builder*) replaceIdListAtIndex:(int32_t) index with:(NSString*) value;
-- (DataQueryResponse_Builder*) addIdList:(NSString*) value;
-- (DataQueryResponse_Builder*) addAllIdList:(NSArray*) values;
-- (DataQueryResponse_Builder*) clearIdListList;
+- (NSMutableArray *)idList;
+- (NSString*)idListAtIndex:(NSUInteger)index;
+- (DataQueryResponseBuilder *)addIdList:(NSString*)value;
+- (DataQueryResponseBuilder *)setIdListArray:(NSArray *)array;
+- (DataQueryResponseBuilder *)clearIdList;
 
 - (BOOL) hasSongs;
 - (PBSongList*) songs;
-- (DataQueryResponse_Builder*) setSongs:(PBSongList*) value;
-- (DataQueryResponse_Builder*) setSongsBuilder:(PBSongList_Builder*) builderForValue;
-- (DataQueryResponse_Builder*) mergeSongs:(PBSongList*) value;
-- (DataQueryResponse_Builder*) clearSongs;
+- (DataQueryResponseBuilder*) setSongs:(PBSongList*) value;
+- (DataQueryResponseBuilder*) setSongsBuilder:(PBSongListBuilder*) builderForValue;
+- (DataQueryResponseBuilder*) mergeSongs:(PBSongList*) value;
+- (DataQueryResponseBuilder*) clearSongs;
 
 - (BOOL) hasGuessRank;
 - (PBGuessRank*) guessRank;
-- (DataQueryResponse_Builder*) setGuessRank:(PBGuessRank*) value;
-- (DataQueryResponse_Builder*) setGuessRankBuilder:(PBGuessRank_Builder*) builderForValue;
-- (DataQueryResponse_Builder*) mergeGuessRank:(PBGuessRank*) value;
-- (DataQueryResponse_Builder*) clearGuessRank;
+- (DataQueryResponseBuilder*) setGuessRank:(PBGuessRank*) value;
+- (DataQueryResponseBuilder*) setGuessRankBuilder:(PBGuessRankBuilder*) builderForValue;
+- (DataQueryResponseBuilder*) mergeGuessRank:(PBGuessRank*) value;
+- (DataQueryResponseBuilder*) clearGuessRank;
 
-- (NSArray*) guessRankListList;
-- (PBGuessRank*) guessRankListAtIndex:(int32_t) index;
-- (DataQueryResponse_Builder*) replaceGuessRankListAtIndex:(int32_t) index with:(PBGuessRank*) value;
-- (DataQueryResponse_Builder*) addGuessRankList:(PBGuessRank*) value;
-- (DataQueryResponse_Builder*) addAllGuessRankList:(NSArray*) values;
-- (DataQueryResponse_Builder*) clearGuessRankListList;
+- (NSMutableArray *)guessRankList;
+- (PBGuessRank*)guessRankListAtIndex:(NSUInteger)index;
+- (DataQueryResponseBuilder *)addGuessRankList:(PBGuessRank*)value;
+- (DataQueryResponseBuilder *)setGuessRankListArray:(NSArray *)array;
+- (DataQueryResponseBuilder *)clearGuessRankList;
 
 - (BOOL) hasGuessContest;
 - (PBGuessContest*) guessContest;
-- (DataQueryResponse_Builder*) setGuessContest:(PBGuessContest*) value;
-- (DataQueryResponse_Builder*) setGuessContestBuilder:(PBGuessContest_Builder*) builderForValue;
-- (DataQueryResponse_Builder*) mergeGuessContest:(PBGuessContest*) value;
-- (DataQueryResponse_Builder*) clearGuessContest;
+- (DataQueryResponseBuilder*) setGuessContest:(PBGuessContest*) value;
+- (DataQueryResponseBuilder*) setGuessContestBuilder:(PBGuessContestBuilder*) builderForValue;
+- (DataQueryResponseBuilder*) mergeGuessContest:(PBGuessContest*) value;
+- (DataQueryResponseBuilder*) clearGuessContest;
 
-- (NSArray*) guessContestListList;
-- (PBGuessContest*) guessContestListAtIndex:(int32_t) index;
-- (DataQueryResponse_Builder*) replaceGuessContestListAtIndex:(int32_t) index with:(PBGuessContest*) value;
-- (DataQueryResponse_Builder*) addGuessContestList:(PBGuessContest*) value;
-- (DataQueryResponse_Builder*) addAllGuessContestList:(NSArray*) values;
-- (DataQueryResponse_Builder*) clearGuessContestListList;
+- (NSMutableArray *)guessContestList;
+- (PBGuessContest*)guessContestListAtIndex:(NSUInteger)index;
+- (DataQueryResponseBuilder *)addGuessContestList:(PBGuessContest*)value;
+- (DataQueryResponseBuilder *)setGuessContestListArray:(NSArray *)array;
+- (DataQueryResponseBuilder *)clearGuessContestList;
 
 - (BOOL) hasGroup;
 - (PBGroup*) group;
-- (DataQueryResponse_Builder*) setGroup:(PBGroup*) value;
-- (DataQueryResponse_Builder*) setGroupBuilder:(PBGroup_Builder*) builderForValue;
-- (DataQueryResponse_Builder*) mergeGroup:(PBGroup*) value;
-- (DataQueryResponse_Builder*) clearGroup;
+- (DataQueryResponseBuilder*) setGroup:(PBGroup*) value;
+- (DataQueryResponseBuilder*) setGroupBuilder:(PBGroupBuilder*) builderForValue;
+- (DataQueryResponseBuilder*) mergeGroup:(PBGroup*) value;
+- (DataQueryResponseBuilder*) clearGroup;
 
-- (NSArray*) groupListList;
-- (PBGroup*) groupListAtIndex:(int32_t) index;
-- (DataQueryResponse_Builder*) replaceGroupListAtIndex:(int32_t) index with:(PBGroup*) value;
-- (DataQueryResponse_Builder*) addGroupList:(PBGroup*) value;
-- (DataQueryResponse_Builder*) addAllGroupList:(NSArray*) values;
-- (DataQueryResponse_Builder*) clearGroupListList;
+- (NSMutableArray *)groupList;
+- (PBGroup*)groupListAtIndex:(NSUInteger)index;
+- (DataQueryResponseBuilder *)addGroupList:(PBGroup*)value;
+- (DataQueryResponseBuilder *)setGroupListArray:(NSArray *)array;
+- (DataQueryResponseBuilder *)clearGroupList;
 
-- (NSArray*) groupMemberListList;
-- (PBGroupUsersByTitle*) groupMemberListAtIndex:(int32_t) index;
-- (DataQueryResponse_Builder*) replaceGroupMemberListAtIndex:(int32_t) index with:(PBGroupUsersByTitle*) value;
-- (DataQueryResponse_Builder*) addGroupMemberList:(PBGroupUsersByTitle*) value;
-- (DataQueryResponse_Builder*) addAllGroupMemberList:(NSArray*) values;
-- (DataQueryResponse_Builder*) clearGroupMemberListList;
+- (NSMutableArray *)groupMemberList;
+- (PBGroupUsersByTitle*)groupMemberListAtIndex:(NSUInteger)index;
+- (DataQueryResponseBuilder *)addGroupMemberList:(PBGroupUsersByTitle*)value;
+- (DataQueryResponseBuilder *)setGroupMemberListArray:(NSArray *)array;
+- (DataQueryResponseBuilder *)clearGroupMemberList;
 
-- (NSArray*) noticeListList;
-- (PBGroupNotice*) noticeListAtIndex:(int32_t) index;
-- (DataQueryResponse_Builder*) replaceNoticeListAtIndex:(int32_t) index with:(PBGroupNotice*) value;
-- (DataQueryResponse_Builder*) addNoticeList:(PBGroupNotice*) value;
-- (DataQueryResponse_Builder*) addAllNoticeList:(NSArray*) values;
-- (DataQueryResponse_Builder*) clearNoticeListList;
+- (NSMutableArray *)noticeList;
+- (PBGroupNotice*)noticeListAtIndex:(NSUInteger)index;
+- (DataQueryResponseBuilder *)addNoticeList:(PBGroupNotice*)value;
+- (DataQueryResponseBuilder *)setNoticeListArray:(NSArray *)array;
+- (DataQueryResponseBuilder *)clearNoticeList;
 
-- (NSArray*) badgesList;
-- (PBIntKeyIntValue*) badgesAtIndex:(int32_t) index;
-- (DataQueryResponse_Builder*) replaceBadgesAtIndex:(int32_t) index with:(PBIntKeyIntValue*) value;
-- (DataQueryResponse_Builder*) addBadges:(PBIntKeyIntValue*) value;
-- (DataQueryResponse_Builder*) addAllBadges:(NSArray*) values;
-- (DataQueryResponse_Builder*) clearBadgesList;
+- (NSMutableArray *)badges;
+- (PBIntKeyIntValue*)badgesAtIndex:(NSUInteger)index;
+- (DataQueryResponseBuilder *)addBadges:(PBIntKeyIntValue*)value;
+- (DataQueryResponseBuilder *)setBadgesArray:(NSArray *)array;
+- (DataQueryResponseBuilder *)clearBadges;
 
 - (BOOL) hasUrl;
 - (NSString*) url;
-- (DataQueryResponse_Builder*) setUrl:(NSString*) value;
-- (DataQueryResponse_Builder*) clearUrl;
+- (DataQueryResponseBuilder*) setUrl:(NSString*) value;
+- (DataQueryResponseBuilder*) clearUrl;
 
-- (NSArray*) groupRoleList;
-- (PBGroupUserRole*) groupRoleAtIndex:(int32_t) index;
-- (DataQueryResponse_Builder*) replaceGroupRoleAtIndex:(int32_t) index with:(PBGroupUserRole*) value;
-- (DataQueryResponse_Builder*) addGroupRole:(PBGroupUserRole*) value;
-- (DataQueryResponse_Builder*) addAllGroupRole:(NSArray*) values;
-- (DataQueryResponse_Builder*) clearGroupRoleList;
+- (NSMutableArray *)groupRole;
+- (PBGroupUserRole*)groupRoleAtIndex:(NSUInteger)index;
+- (DataQueryResponseBuilder *)addGroupRole:(PBGroupUserRole*)value;
+- (DataQueryResponseBuilder *)setGroupRoleArray:(NSArray *)array;
+- (DataQueryResponseBuilder *)clearGroupRole;
 
 - (BOOL) hasUserTutorial;
 - (PBUserTutorial*) userTutorial;
-- (DataQueryResponse_Builder*) setUserTutorial:(PBUserTutorial*) value;
-- (DataQueryResponse_Builder*) setUserTutorialBuilder:(PBUserTutorial_Builder*) builderForValue;
-- (DataQueryResponse_Builder*) mergeUserTutorial:(PBUserTutorial*) value;
-- (DataQueryResponse_Builder*) clearUserTutorial;
+- (DataQueryResponseBuilder*) setUserTutorial:(PBUserTutorial*) value;
+- (DataQueryResponseBuilder*) setUserTutorialBuilder:(PBUserTutorialBuilder*) builderForValue;
+- (DataQueryResponseBuilder*) mergeUserTutorial:(PBUserTutorial*) value;
+- (DataQueryResponseBuilder*) clearUserTutorial;
 
-- (NSArray*) userTutorialsList;
-- (PBUserTutorial*) userTutorialsAtIndex:(int32_t) index;
-- (DataQueryResponse_Builder*) replaceUserTutorialsAtIndex:(int32_t) index with:(PBUserTutorial*) value;
-- (DataQueryResponse_Builder*) addUserTutorials:(PBUserTutorial*) value;
-- (DataQueryResponse_Builder*) addAllUserTutorials:(NSArray*) values;
-- (DataQueryResponse_Builder*) clearUserTutorialsList;
+- (NSMutableArray *)userTutorials;
+- (PBUserTutorial*)userTutorialsAtIndex:(NSUInteger)index;
+- (DataQueryResponseBuilder *)addUserTutorials:(PBUserTutorial*)value;
+- (DataQueryResponseBuilder *)setUserTutorialsArray:(NSArray *)array;
+- (DataQueryResponseBuilder *)clearUserTutorials;
 @end
 
+
+// @@protoc_insertion_point(global_scope)

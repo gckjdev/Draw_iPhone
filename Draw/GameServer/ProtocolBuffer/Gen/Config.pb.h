@@ -4,99 +4,113 @@
 
 #import "GameBasic.pb.h"
 #import "GameConstants.pb.h"
+// @@protoc_insertion_point(imports)
 
 @class PBApp;
+@class PBAppBuilder;
 @class PBAppReward;
-@class PBAppReward_Builder;
-@class PBApp_Builder;
+@class PBAppRewardBuilder;
 @class PBClass;
-@class PBClass_Builder;
+@class PBClassBuilder;
 @class PBConfig;
-@class PBConfig_Builder;
+@class PBConfigBuilder;
 @class PBDiceConfig;
-@class PBDiceConfig_Builder;
+@class PBDiceConfigBuilder;
 @class PBDrawAction;
-@class PBDrawAction_Builder;
+@class PBDrawActionBuilder;
 @class PBDrawBg;
-@class PBDrawBg_Builder;
+@class PBDrawBgBuilder;
 @class PBDrawConfig;
-@class PBDrawConfig_Builder;
+@class PBDrawConfigBuilder;
 @class PBGameItem;
+@class PBGameItemBuilder;
 @class PBGameItemList;
-@class PBGameItemList_Builder;
-@class PBGameItem_Builder;
+@class PBGameItemListBuilder;
 @class PBGameSession;
+@class PBGameSessionBuilder;
 @class PBGameSessionChanged;
-@class PBGameSessionChanged_Builder;
-@class PBGameSession_Builder;
+@class PBGameSessionChangedBuilder;
 @class PBGameUser;
-@class PBGameUser_Builder;
+@class PBGameUserBuilder;
 @class PBGradient;
-@class PBGradient_Builder;
+@class PBGradientBuilder;
 @class PBIAPProduct;
+@class PBIAPProductBuilder;
 @class PBIAPProductList;
-@class PBIAPProductList_Builder;
+@class PBIAPProductListBuilder;
 @class PBIAPProductPrice;
-@class PBIAPProductPrice_Builder;
-@class PBIAPProduct_Builder;
+@class PBIAPProductPriceBuilder;
 @class PBIntKeyIntValue;
-@class PBIntKeyIntValue_Builder;
+@class PBIntKeyIntValueBuilder;
 @class PBIntKeyValue;
-@class PBIntKeyValue_Builder;
+@class PBIntKeyValueBuilder;
 @class PBItemPriceInfo;
-@class PBItemPriceInfo_Builder;
+@class PBItemPriceInfoBuilder;
 @class PBKeyValue;
-@class PBKeyValue_Builder;
+@class PBKeyValueBuilder;
 @class PBLayer;
-@class PBLayer_Builder;
+@class PBLayerBuilder;
 @class PBLocalizeString;
-@class PBLocalizeString_Builder;
+@class PBLocalizeStringBuilder;
 @class PBMessage;
+@class PBMessageBuilder;
 @class PBMessageStat;
-@class PBMessageStat_Builder;
-@class PBMessage_Builder;
+@class PBMessageStatBuilder;
 @class PBOpusRank;
-@class PBOpusRank_Builder;
+@class PBOpusRankBuilder;
 @class PBPrice;
-@class PBPrice_Builder;
+@class PBPriceBuilder;
 @class PBPromotionInfo;
-@class PBPromotionInfo_Builder;
+@class PBPromotionInfoBuilder;
 @class PBRewardWall;
-@class PBRewardWall_Builder;
+@class PBRewardWallBuilder;
 @class PBSNSUser;
+@class PBSNSUserBuilder;
 @class PBSNSUserCredential;
-@class PBSNSUserCredential_Builder;
-@class PBSNSUser_Builder;
+@class PBSNSUserCredentialBuilder;
 @class PBSimpleGroup;
-@class PBSimpleGroup_Builder;
+@class PBSimpleGroupBuilder;
 @class PBSize;
-@class PBSize_Builder;
+@class PBSizeBuilder;
 @class PBTask;
-@class PBTask_Builder;
+@class PBTaskBuilder;
 @class PBUserAward;
-@class PBUserAward_Builder;
+@class PBUserAwardBuilder;
 @class PBUserBasicInfo;
-@class PBUserBasicInfo_Builder;
+@class PBUserBasicInfoBuilder;
 @class PBUserItem;
+@class PBUserItemBuilder;
 @class PBUserItemList;
-@class PBUserItemList_Builder;
-@class PBUserItem_Builder;
+@class PBUserItemListBuilder;
 @class PBUserLevel;
-@class PBUserLevel_Builder;
+@class PBUserLevelBuilder;
 @class PBUserResult;
-@class PBUserResult_Builder;
+@class PBUserResultBuilder;
 @class PBZJHConfig;
-@class PBZJHConfig_Builder;
-typedef enum {
+@class PBZJHConfigBuilder;
+#ifndef __has_feature
+  #define __has_feature(x) 0 // Compatibility with non-clang compilers.
+#endif // __has_feature
+
+#ifndef NS_RETURNS_NOT_RETAINED
+  #if __has_feature(attribute_ns_returns_not_retained)
+    #define NS_RETURNS_NOT_RETAINED __attribute__((ns_returns_not_retained))
+  #else
+    #define NS_RETURNS_NOT_RETAINED
+  #endif
+#endif
+
+typedef NS_ENUM(SInt32, PBRewardWallType) {
   PBRewardWallTypeLimei = 1,
   PBRewardWallTypeWanpu = 2,
   PBRewardWallTypeAder = 3,
   PBRewardWallTypeYoumi = 4,
   PBRewardWallTypeTapjoy = 5,
   PBRewardWallTypeDomod = 6,
-} PBRewardWallType;
+};
 
 BOOL PBRewardWallTypeIsValidValue(PBRewardWallType value);
+NSString *NSStringFromPBRewardWallType(PBRewardWallType value);
 
 
 @interface ConfigRoot : NSObject {
@@ -105,7 +119,7 @@ BOOL PBRewardWallTypeIsValidValue(PBRewardWallType value);
 + (void) registerAllExtensions:(PBMutableExtensionRegistry*) registry;
 @end
 
-@interface PBPrice : PBGeneratedMessage {
+@interface PBPrice : PBGeneratedMessage<GeneratedMessageProtocol> {
 @private
   BOOL hasAmount_:1;
   BOOL hasPrice_:1;
@@ -120,19 +134,20 @@ BOOL PBRewardWallTypeIsValidValue(PBRewardWallType value);
 - (BOOL) hasPrice;
 - (BOOL) hasProductId;
 - (BOOL) hasSavePercent;
-@property (readonly, retain) NSString* amount;
-@property (readonly, retain) NSString* price;
-@property (readonly, retain) NSString* productId;
-@property (readonly, retain) NSString* savePercent;
+@property (readonly, strong) NSString* amount;
+@property (readonly, strong) NSString* price;
+@property (readonly, strong) NSString* productId;
+@property (readonly, strong) NSString* savePercent;
 
-+ (PBPrice*) defaultInstance;
-- (PBPrice*) defaultInstance;
++ (instancetype) defaultInstance;
+- (instancetype) defaultInstance;
 
 - (BOOL) isInitialized;
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
-- (PBPrice_Builder*) builder;
-+ (PBPrice_Builder*) builder;
-+ (PBPrice_Builder*) builderWithPrototype:(PBPrice*) prototype;
+- (PBPriceBuilder*) builder;
++ (PBPriceBuilder*) builder;
++ (PBPriceBuilder*) builderWithPrototype:(PBPrice*) prototype;
+- (PBPriceBuilder*) toBuilder;
 
 + (PBPrice*) parseFromData:(NSData*) data;
 + (PBPrice*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
@@ -142,45 +157,45 @@ BOOL PBRewardWallTypeIsValidValue(PBRewardWallType value);
 + (PBPrice*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 @end
 
-@interface PBPrice_Builder : PBGeneratedMessage_Builder {
+@interface PBPriceBuilder : PBGeneratedMessageBuilder {
 @private
-  PBPrice* result;
+  PBPrice* resultPbprice;
 }
 
 - (PBPrice*) defaultInstance;
 
-- (PBPrice_Builder*) clear;
-- (PBPrice_Builder*) clone;
+- (PBPriceBuilder*) clear;
+- (PBPriceBuilder*) clone;
 
 - (PBPrice*) build;
 - (PBPrice*) buildPartial;
 
-- (PBPrice_Builder*) mergeFrom:(PBPrice*) other;
-- (PBPrice_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
-- (PBPrice_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+- (PBPriceBuilder*) mergeFrom:(PBPrice*) other;
+- (PBPriceBuilder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
+- (PBPriceBuilder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 
 - (BOOL) hasAmount;
 - (NSString*) amount;
-- (PBPrice_Builder*) setAmount:(NSString*) value;
-- (PBPrice_Builder*) clearAmount;
+- (PBPriceBuilder*) setAmount:(NSString*) value;
+- (PBPriceBuilder*) clearAmount;
 
 - (BOOL) hasPrice;
 - (NSString*) price;
-- (PBPrice_Builder*) setPrice:(NSString*) value;
-- (PBPrice_Builder*) clearPrice;
+- (PBPriceBuilder*) setPrice:(NSString*) value;
+- (PBPriceBuilder*) clearPrice;
 
 - (BOOL) hasProductId;
 - (NSString*) productId;
-- (PBPrice_Builder*) setProductId:(NSString*) value;
-- (PBPrice_Builder*) clearProductId;
+- (PBPriceBuilder*) setProductId:(NSString*) value;
+- (PBPriceBuilder*) clearProductId;
 
 - (BOOL) hasSavePercent;
 - (NSString*) savePercent;
-- (PBPrice_Builder*) setSavePercent:(NSString*) value;
-- (PBPrice_Builder*) clearSavePercent;
+- (PBPriceBuilder*) setSavePercent:(NSString*) value;
+- (PBPriceBuilder*) clearSavePercent;
 @end
 
-@interface PBZJHConfig : PBGeneratedMessage {
+@interface PBZJHConfig : PBGeneratedMessage<GeneratedMessageProtocol> {
 @private
   BOOL hasLevelExp_:1;
   BOOL hasRunwayCoin_:1;
@@ -189,13 +204,13 @@ BOOL PBRewardWallTypeIsValidValue(PBRewardWallType value);
   BOOL hasTreeGainTime_:1;
   BOOL hasTreeCoinValue_:1;
   BOOL hasShareReward_:1;
-  int32_t levelExp;
-  int32_t runwayCoin;
-  int32_t maxAutoBetCount;
-  int32_t treeMatureTime;
-  int32_t treeGainTime;
-  int32_t treeCoinValue;
-  int32_t shareReward;
+  SInt32 levelExp;
+  SInt32 runwayCoin;
+  SInt32 maxAutoBetCount;
+  SInt32 treeMatureTime;
+  SInt32 treeGainTime;
+  SInt32 treeCoinValue;
+  SInt32 shareReward;
 }
 - (BOOL) hasLevelExp;
 - (BOOL) hasRunwayCoin;
@@ -204,22 +219,23 @@ BOOL PBRewardWallTypeIsValidValue(PBRewardWallType value);
 - (BOOL) hasTreeGainTime;
 - (BOOL) hasTreeCoinValue;
 - (BOOL) hasShareReward;
-@property (readonly) int32_t levelExp;
-@property (readonly) int32_t runwayCoin;
-@property (readonly) int32_t maxAutoBetCount;
-@property (readonly) int32_t treeMatureTime;
-@property (readonly) int32_t treeGainTime;
-@property (readonly) int32_t treeCoinValue;
-@property (readonly) int32_t shareReward;
+@property (readonly) SInt32 levelExp;
+@property (readonly) SInt32 runwayCoin;
+@property (readonly) SInt32 maxAutoBetCount;
+@property (readonly) SInt32 treeMatureTime;
+@property (readonly) SInt32 treeGainTime;
+@property (readonly) SInt32 treeCoinValue;
+@property (readonly) SInt32 shareReward;
 
-+ (PBZJHConfig*) defaultInstance;
-- (PBZJHConfig*) defaultInstance;
++ (instancetype) defaultInstance;
+- (instancetype) defaultInstance;
 
 - (BOOL) isInitialized;
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
-- (PBZJHConfig_Builder*) builder;
-+ (PBZJHConfig_Builder*) builder;
-+ (PBZJHConfig_Builder*) builderWithPrototype:(PBZJHConfig*) prototype;
+- (PBZJHConfigBuilder*) builder;
++ (PBZJHConfigBuilder*) builder;
++ (PBZJHConfigBuilder*) builderWithPrototype:(PBZJHConfig*) prototype;
+- (PBZJHConfigBuilder*) toBuilder;
 
 + (PBZJHConfig*) parseFromData:(NSData*) data;
 + (PBZJHConfig*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
@@ -229,60 +245,60 @@ BOOL PBRewardWallTypeIsValidValue(PBRewardWallType value);
 + (PBZJHConfig*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 @end
 
-@interface PBZJHConfig_Builder : PBGeneratedMessage_Builder {
+@interface PBZJHConfigBuilder : PBGeneratedMessageBuilder {
 @private
-  PBZJHConfig* result;
+  PBZJHConfig* resultPbzjhconfig;
 }
 
 - (PBZJHConfig*) defaultInstance;
 
-- (PBZJHConfig_Builder*) clear;
-- (PBZJHConfig_Builder*) clone;
+- (PBZJHConfigBuilder*) clear;
+- (PBZJHConfigBuilder*) clone;
 
 - (PBZJHConfig*) build;
 - (PBZJHConfig*) buildPartial;
 
-- (PBZJHConfig_Builder*) mergeFrom:(PBZJHConfig*) other;
-- (PBZJHConfig_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
-- (PBZJHConfig_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+- (PBZJHConfigBuilder*) mergeFrom:(PBZJHConfig*) other;
+- (PBZJHConfigBuilder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
+- (PBZJHConfigBuilder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 
 - (BOOL) hasLevelExp;
-- (int32_t) levelExp;
-- (PBZJHConfig_Builder*) setLevelExp:(int32_t) value;
-- (PBZJHConfig_Builder*) clearLevelExp;
+- (SInt32) levelExp;
+- (PBZJHConfigBuilder*) setLevelExp:(SInt32) value;
+- (PBZJHConfigBuilder*) clearLevelExp;
 
 - (BOOL) hasRunwayCoin;
-- (int32_t) runwayCoin;
-- (PBZJHConfig_Builder*) setRunwayCoin:(int32_t) value;
-- (PBZJHConfig_Builder*) clearRunwayCoin;
+- (SInt32) runwayCoin;
+- (PBZJHConfigBuilder*) setRunwayCoin:(SInt32) value;
+- (PBZJHConfigBuilder*) clearRunwayCoin;
 
 - (BOOL) hasMaxAutoBetCount;
-- (int32_t) maxAutoBetCount;
-- (PBZJHConfig_Builder*) setMaxAutoBetCount:(int32_t) value;
-- (PBZJHConfig_Builder*) clearMaxAutoBetCount;
+- (SInt32) maxAutoBetCount;
+- (PBZJHConfigBuilder*) setMaxAutoBetCount:(SInt32) value;
+- (PBZJHConfigBuilder*) clearMaxAutoBetCount;
 
 - (BOOL) hasTreeMatureTime;
-- (int32_t) treeMatureTime;
-- (PBZJHConfig_Builder*) setTreeMatureTime:(int32_t) value;
-- (PBZJHConfig_Builder*) clearTreeMatureTime;
+- (SInt32) treeMatureTime;
+- (PBZJHConfigBuilder*) setTreeMatureTime:(SInt32) value;
+- (PBZJHConfigBuilder*) clearTreeMatureTime;
 
 - (BOOL) hasTreeGainTime;
-- (int32_t) treeGainTime;
-- (PBZJHConfig_Builder*) setTreeGainTime:(int32_t) value;
-- (PBZJHConfig_Builder*) clearTreeGainTime;
+- (SInt32) treeGainTime;
+- (PBZJHConfigBuilder*) setTreeGainTime:(SInt32) value;
+- (PBZJHConfigBuilder*) clearTreeGainTime;
 
 - (BOOL) hasTreeCoinValue;
-- (int32_t) treeCoinValue;
-- (PBZJHConfig_Builder*) setTreeCoinValue:(int32_t) value;
-- (PBZJHConfig_Builder*) clearTreeCoinValue;
+- (SInt32) treeCoinValue;
+- (PBZJHConfigBuilder*) setTreeCoinValue:(SInt32) value;
+- (PBZJHConfigBuilder*) clearTreeCoinValue;
 
 - (BOOL) hasShareReward;
-- (int32_t) shareReward;
-- (PBZJHConfig_Builder*) setShareReward:(int32_t) value;
-- (PBZJHConfig_Builder*) clearShareReward;
+- (SInt32) shareReward;
+- (PBZJHConfigBuilder*) setShareReward:(SInt32) value;
+- (PBZJHConfigBuilder*) clearShareReward;
 @end
 
-@interface PBDiceConfig : PBGeneratedMessage {
+@interface PBDiceConfig : PBGeneratedMessage<GeneratedMessageProtocol> {
 @private
   BOOL hasShareReward_:1;
   BOOL hasFollowReward_:1;
@@ -297,19 +313,19 @@ BOOL PBRewardWallTypeIsValidValue(PBRewardWallType value);
   BOOL hasBetAnteSuperHighRoom_:1;
   BOOL hasDailyGift_:1;
   BOOL hasDailyGiftIncreament_:1;
-  int32_t shareReward;
-  int32_t followReward;
-  int32_t levelExp;
-  int32_t levelUpRewardCut;
-  int32_t runwayCoin;
-  int32_t normalRoomThreshhold;
-  int32_t highRoomThreshhold;
-  int32_t superHighRoomThreshhold;
-  int32_t betAnteNormalRoom;
-  int32_t betAnteHighRoom;
-  int32_t betAnteSuperHighRoom;
-  int32_t dailyGift;
-  int32_t dailyGiftIncreament;
+  SInt32 shareReward;
+  SInt32 followReward;
+  SInt32 levelExp;
+  SInt32 levelUpRewardCut;
+  SInt32 runwayCoin;
+  SInt32 normalRoomThreshhold;
+  SInt32 highRoomThreshhold;
+  SInt32 superHighRoomThreshhold;
+  SInt32 betAnteNormalRoom;
+  SInt32 betAnteHighRoom;
+  SInt32 betAnteSuperHighRoom;
+  SInt32 dailyGift;
+  SInt32 dailyGiftIncreament;
 }
 - (BOOL) hasShareReward;
 - (BOOL) hasFollowReward;
@@ -324,28 +340,29 @@ BOOL PBRewardWallTypeIsValidValue(PBRewardWallType value);
 - (BOOL) hasBetAnteSuperHighRoom;
 - (BOOL) hasDailyGift;
 - (BOOL) hasDailyGiftIncreament;
-@property (readonly) int32_t shareReward;
-@property (readonly) int32_t followReward;
-@property (readonly) int32_t levelExp;
-@property (readonly) int32_t levelUpRewardCut;
-@property (readonly) int32_t runwayCoin;
-@property (readonly) int32_t normalRoomThreshhold;
-@property (readonly) int32_t highRoomThreshhold;
-@property (readonly) int32_t superHighRoomThreshhold;
-@property (readonly) int32_t betAnteNormalRoom;
-@property (readonly) int32_t betAnteHighRoom;
-@property (readonly) int32_t betAnteSuperHighRoom;
-@property (readonly) int32_t dailyGift;
-@property (readonly) int32_t dailyGiftIncreament;
+@property (readonly) SInt32 shareReward;
+@property (readonly) SInt32 followReward;
+@property (readonly) SInt32 levelExp;
+@property (readonly) SInt32 levelUpRewardCut;
+@property (readonly) SInt32 runwayCoin;
+@property (readonly) SInt32 normalRoomThreshhold;
+@property (readonly) SInt32 highRoomThreshhold;
+@property (readonly) SInt32 superHighRoomThreshhold;
+@property (readonly) SInt32 betAnteNormalRoom;
+@property (readonly) SInt32 betAnteHighRoom;
+@property (readonly) SInt32 betAnteSuperHighRoom;
+@property (readonly) SInt32 dailyGift;
+@property (readonly) SInt32 dailyGiftIncreament;
 
-+ (PBDiceConfig*) defaultInstance;
-- (PBDiceConfig*) defaultInstance;
++ (instancetype) defaultInstance;
+- (instancetype) defaultInstance;
 
 - (BOOL) isInitialized;
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
-- (PBDiceConfig_Builder*) builder;
-+ (PBDiceConfig_Builder*) builder;
-+ (PBDiceConfig_Builder*) builderWithPrototype:(PBDiceConfig*) prototype;
+- (PBDiceConfigBuilder*) builder;
++ (PBDiceConfigBuilder*) builder;
++ (PBDiceConfigBuilder*) builderWithPrototype:(PBDiceConfig*) prototype;
+- (PBDiceConfigBuilder*) toBuilder;
 
 + (PBDiceConfig*) parseFromData:(NSData*) data;
 + (PBDiceConfig*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
@@ -355,127 +372,127 @@ BOOL PBRewardWallTypeIsValidValue(PBRewardWallType value);
 + (PBDiceConfig*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 @end
 
-@interface PBDiceConfig_Builder : PBGeneratedMessage_Builder {
+@interface PBDiceConfigBuilder : PBGeneratedMessageBuilder {
 @private
-  PBDiceConfig* result;
+  PBDiceConfig* resultPbdiceConfig;
 }
 
 - (PBDiceConfig*) defaultInstance;
 
-- (PBDiceConfig_Builder*) clear;
-- (PBDiceConfig_Builder*) clone;
+- (PBDiceConfigBuilder*) clear;
+- (PBDiceConfigBuilder*) clone;
 
 - (PBDiceConfig*) build;
 - (PBDiceConfig*) buildPartial;
 
-- (PBDiceConfig_Builder*) mergeFrom:(PBDiceConfig*) other;
-- (PBDiceConfig_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
-- (PBDiceConfig_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+- (PBDiceConfigBuilder*) mergeFrom:(PBDiceConfig*) other;
+- (PBDiceConfigBuilder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
+- (PBDiceConfigBuilder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 
 - (BOOL) hasShareReward;
-- (int32_t) shareReward;
-- (PBDiceConfig_Builder*) setShareReward:(int32_t) value;
-- (PBDiceConfig_Builder*) clearShareReward;
+- (SInt32) shareReward;
+- (PBDiceConfigBuilder*) setShareReward:(SInt32) value;
+- (PBDiceConfigBuilder*) clearShareReward;
 
 - (BOOL) hasFollowReward;
-- (int32_t) followReward;
-- (PBDiceConfig_Builder*) setFollowReward:(int32_t) value;
-- (PBDiceConfig_Builder*) clearFollowReward;
+- (SInt32) followReward;
+- (PBDiceConfigBuilder*) setFollowReward:(SInt32) value;
+- (PBDiceConfigBuilder*) clearFollowReward;
 
 - (BOOL) hasLevelExp;
-- (int32_t) levelExp;
-- (PBDiceConfig_Builder*) setLevelExp:(int32_t) value;
-- (PBDiceConfig_Builder*) clearLevelExp;
+- (SInt32) levelExp;
+- (PBDiceConfigBuilder*) setLevelExp:(SInt32) value;
+- (PBDiceConfigBuilder*) clearLevelExp;
 
 - (BOOL) hasLevelUpRewardCut;
-- (int32_t) levelUpRewardCut;
-- (PBDiceConfig_Builder*) setLevelUpRewardCut:(int32_t) value;
-- (PBDiceConfig_Builder*) clearLevelUpRewardCut;
+- (SInt32) levelUpRewardCut;
+- (PBDiceConfigBuilder*) setLevelUpRewardCut:(SInt32) value;
+- (PBDiceConfigBuilder*) clearLevelUpRewardCut;
 
 - (BOOL) hasRunwayCoin;
-- (int32_t) runwayCoin;
-- (PBDiceConfig_Builder*) setRunwayCoin:(int32_t) value;
-- (PBDiceConfig_Builder*) clearRunwayCoin;
+- (SInt32) runwayCoin;
+- (PBDiceConfigBuilder*) setRunwayCoin:(SInt32) value;
+- (PBDiceConfigBuilder*) clearRunwayCoin;
 
 - (BOOL) hasNormalRoomThreshhold;
-- (int32_t) normalRoomThreshhold;
-- (PBDiceConfig_Builder*) setNormalRoomThreshhold:(int32_t) value;
-- (PBDiceConfig_Builder*) clearNormalRoomThreshhold;
+- (SInt32) normalRoomThreshhold;
+- (PBDiceConfigBuilder*) setNormalRoomThreshhold:(SInt32) value;
+- (PBDiceConfigBuilder*) clearNormalRoomThreshhold;
 
 - (BOOL) hasHighRoomThreshhold;
-- (int32_t) highRoomThreshhold;
-- (PBDiceConfig_Builder*) setHighRoomThreshhold:(int32_t) value;
-- (PBDiceConfig_Builder*) clearHighRoomThreshhold;
+- (SInt32) highRoomThreshhold;
+- (PBDiceConfigBuilder*) setHighRoomThreshhold:(SInt32) value;
+- (PBDiceConfigBuilder*) clearHighRoomThreshhold;
 
 - (BOOL) hasSuperHighRoomThreshhold;
-- (int32_t) superHighRoomThreshhold;
-- (PBDiceConfig_Builder*) setSuperHighRoomThreshhold:(int32_t) value;
-- (PBDiceConfig_Builder*) clearSuperHighRoomThreshhold;
+- (SInt32) superHighRoomThreshhold;
+- (PBDiceConfigBuilder*) setSuperHighRoomThreshhold:(SInt32) value;
+- (PBDiceConfigBuilder*) clearSuperHighRoomThreshhold;
 
 - (BOOL) hasBetAnteNormalRoom;
-- (int32_t) betAnteNormalRoom;
-- (PBDiceConfig_Builder*) setBetAnteNormalRoom:(int32_t) value;
-- (PBDiceConfig_Builder*) clearBetAnteNormalRoom;
+- (SInt32) betAnteNormalRoom;
+- (PBDiceConfigBuilder*) setBetAnteNormalRoom:(SInt32) value;
+- (PBDiceConfigBuilder*) clearBetAnteNormalRoom;
 
 - (BOOL) hasBetAnteHighRoom;
-- (int32_t) betAnteHighRoom;
-- (PBDiceConfig_Builder*) setBetAnteHighRoom:(int32_t) value;
-- (PBDiceConfig_Builder*) clearBetAnteHighRoom;
+- (SInt32) betAnteHighRoom;
+- (PBDiceConfigBuilder*) setBetAnteHighRoom:(SInt32) value;
+- (PBDiceConfigBuilder*) clearBetAnteHighRoom;
 
 - (BOOL) hasBetAnteSuperHighRoom;
-- (int32_t) betAnteSuperHighRoom;
-- (PBDiceConfig_Builder*) setBetAnteSuperHighRoom:(int32_t) value;
-- (PBDiceConfig_Builder*) clearBetAnteSuperHighRoom;
+- (SInt32) betAnteSuperHighRoom;
+- (PBDiceConfigBuilder*) setBetAnteSuperHighRoom:(SInt32) value;
+- (PBDiceConfigBuilder*) clearBetAnteSuperHighRoom;
 
 - (BOOL) hasDailyGift;
-- (int32_t) dailyGift;
-- (PBDiceConfig_Builder*) setDailyGift:(int32_t) value;
-- (PBDiceConfig_Builder*) clearDailyGift;
+- (SInt32) dailyGift;
+- (PBDiceConfigBuilder*) setDailyGift:(SInt32) value;
+- (PBDiceConfigBuilder*) clearDailyGift;
 
 - (BOOL) hasDailyGiftIncreament;
-- (int32_t) dailyGiftIncreament;
-- (PBDiceConfig_Builder*) setDailyGiftIncreament:(int32_t) value;
-- (PBDiceConfig_Builder*) clearDailyGiftIncreament;
+- (SInt32) dailyGiftIncreament;
+- (PBDiceConfigBuilder*) setDailyGiftIncreament:(SInt32) value;
+- (PBDiceConfigBuilder*) clearDailyGiftIncreament;
 @end
 
-@interface PBDrawConfig : PBGeneratedMessage {
+@interface PBDrawConfig : PBGeneratedMessage<GeneratedMessageProtocol> {
 @private
-  BOOL hasMaxItemTimesOnContestOpus_:1;
-  BOOL hasMaxItemTimesOnNormalOpus_:1;
-  BOOL hasOfflineGuessExp_:1;
-  BOOL hasOfflineDrawExp_:1;
-  BOOL hasOnlineGuessExp_:1;
-  BOOL hasOnlineDrawExp_:1;
-  BOOL hasLevelUpFlower_:1;
-  BOOL hasFollowReward_:1;
-  BOOL hasShareReward_:1;
-  BOOL hasFlowerExp_:1;
-  BOOL hasFlowerReward_:1;
-  BOOL hasTomatoExp_:1;
-  BOOL hasTomatoReward_:1;
-  BOOL hasGuessReward_:1;
-  BOOL hasDefaultOnlineCnServerPort_:1;
   BOOL hasDefaultOnlineEnServerPort_:1;
-  BOOL hasDefaultOnlineCnServerAddress_:1;
+  BOOL hasDefaultOnlineCnServerPort_:1;
+  BOOL hasGuessReward_:1;
+  BOOL hasTomatoReward_:1;
+  BOOL hasTomatoExp_:1;
+  BOOL hasFlowerReward_:1;
+  BOOL hasFlowerExp_:1;
+  BOOL hasShareReward_:1;
+  BOOL hasFollowReward_:1;
+  BOOL hasLevelUpFlower_:1;
+  BOOL hasOnlineDrawExp_:1;
+  BOOL hasOnlineGuessExp_:1;
+  BOOL hasOfflineDrawExp_:1;
+  BOOL hasOfflineGuessExp_:1;
+  BOOL hasMaxItemTimesOnNormalOpus_:1;
+  BOOL hasMaxItemTimesOnContestOpus_:1;
   BOOL hasDefaultOnlineEnServerAddress_:1;
-  int32_t maxItemTimesOnContestOpus;
-  int32_t maxItemTimesOnNormalOpus;
-  int32_t offlineGuessExp;
-  int32_t offlineDrawExp;
-  int32_t onlineGuessExp;
-  int32_t onlineDrawExp;
-  int32_t levelUpFlower;
-  int32_t followReward;
-  int32_t shareReward;
-  int32_t flowerExp;
-  int32_t flowerReward;
-  int32_t tomatoExp;
-  int32_t tomatoReward;
-  int32_t guessReward;
-  int32_t defaultOnlineCnServerPort;
-  int32_t defaultOnlineEnServerPort;
-  NSString* defaultOnlineCnServerAddress;
+  BOOL hasDefaultOnlineCnServerAddress_:1;
+  SInt32 defaultOnlineEnServerPort;
+  SInt32 defaultOnlineCnServerPort;
+  SInt32 guessReward;
+  SInt32 tomatoReward;
+  SInt32 tomatoExp;
+  SInt32 flowerReward;
+  SInt32 flowerExp;
+  SInt32 shareReward;
+  SInt32 followReward;
+  SInt32 levelUpFlower;
+  SInt32 onlineDrawExp;
+  SInt32 onlineGuessExp;
+  SInt32 offlineDrawExp;
+  SInt32 offlineGuessExp;
+  SInt32 maxItemTimesOnNormalOpus;
+  SInt32 maxItemTimesOnContestOpus;
   NSString* defaultOnlineEnServerAddress;
+  NSString* defaultOnlineCnServerAddress;
 }
 - (BOOL) hasDefaultOnlineEnServerAddress;
 - (BOOL) hasDefaultOnlineEnServerPort;
@@ -495,33 +512,34 @@ BOOL PBRewardWallTypeIsValidValue(PBRewardWallType value);
 - (BOOL) hasOfflineGuessExp;
 - (BOOL) hasMaxItemTimesOnNormalOpus;
 - (BOOL) hasMaxItemTimesOnContestOpus;
-@property (readonly, retain) NSString* defaultOnlineEnServerAddress;
-@property (readonly) int32_t defaultOnlineEnServerPort;
-@property (readonly, retain) NSString* defaultOnlineCnServerAddress;
-@property (readonly) int32_t defaultOnlineCnServerPort;
-@property (readonly) int32_t guessReward;
-@property (readonly) int32_t tomatoReward;
-@property (readonly) int32_t tomatoExp;
-@property (readonly) int32_t flowerReward;
-@property (readonly) int32_t flowerExp;
-@property (readonly) int32_t shareReward;
-@property (readonly) int32_t followReward;
-@property (readonly) int32_t levelUpFlower;
-@property (readonly) int32_t onlineDrawExp;
-@property (readonly) int32_t onlineGuessExp;
-@property (readonly) int32_t offlineDrawExp;
-@property (readonly) int32_t offlineGuessExp;
-@property (readonly) int32_t maxItemTimesOnNormalOpus;
-@property (readonly) int32_t maxItemTimesOnContestOpus;
+@property (readonly, strong) NSString* defaultOnlineEnServerAddress;
+@property (readonly) SInt32 defaultOnlineEnServerPort;
+@property (readonly, strong) NSString* defaultOnlineCnServerAddress;
+@property (readonly) SInt32 defaultOnlineCnServerPort;
+@property (readonly) SInt32 guessReward;
+@property (readonly) SInt32 tomatoReward;
+@property (readonly) SInt32 tomatoExp;
+@property (readonly) SInt32 flowerReward;
+@property (readonly) SInt32 flowerExp;
+@property (readonly) SInt32 shareReward;
+@property (readonly) SInt32 followReward;
+@property (readonly) SInt32 levelUpFlower;
+@property (readonly) SInt32 onlineDrawExp;
+@property (readonly) SInt32 onlineGuessExp;
+@property (readonly) SInt32 offlineDrawExp;
+@property (readonly) SInt32 offlineGuessExp;
+@property (readonly) SInt32 maxItemTimesOnNormalOpus;
+@property (readonly) SInt32 maxItemTimesOnContestOpus;
 
-+ (PBDrawConfig*) defaultInstance;
-- (PBDrawConfig*) defaultInstance;
++ (instancetype) defaultInstance;
+- (instancetype) defaultInstance;
 
 - (BOOL) isInitialized;
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
-- (PBDrawConfig_Builder*) builder;
-+ (PBDrawConfig_Builder*) builder;
-+ (PBDrawConfig_Builder*) builderWithPrototype:(PBDrawConfig*) prototype;
+- (PBDrawConfigBuilder*) builder;
++ (PBDrawConfigBuilder*) builder;
++ (PBDrawConfigBuilder*) builderWithPrototype:(PBDrawConfig*) prototype;
+- (PBDrawConfigBuilder*) toBuilder;
 
 + (PBDrawConfig*) parseFromData:(NSData*) data;
 + (PBDrawConfig*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
@@ -531,138 +549,139 @@ BOOL PBRewardWallTypeIsValidValue(PBRewardWallType value);
 + (PBDrawConfig*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 @end
 
-@interface PBDrawConfig_Builder : PBGeneratedMessage_Builder {
+@interface PBDrawConfigBuilder : PBGeneratedMessageBuilder {
 @private
-  PBDrawConfig* result;
+  PBDrawConfig* resultPbdrawConfig;
 }
 
 - (PBDrawConfig*) defaultInstance;
 
-- (PBDrawConfig_Builder*) clear;
-- (PBDrawConfig_Builder*) clone;
+- (PBDrawConfigBuilder*) clear;
+- (PBDrawConfigBuilder*) clone;
 
 - (PBDrawConfig*) build;
 - (PBDrawConfig*) buildPartial;
 
-- (PBDrawConfig_Builder*) mergeFrom:(PBDrawConfig*) other;
-- (PBDrawConfig_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
-- (PBDrawConfig_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+- (PBDrawConfigBuilder*) mergeFrom:(PBDrawConfig*) other;
+- (PBDrawConfigBuilder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
+- (PBDrawConfigBuilder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 
 - (BOOL) hasDefaultOnlineEnServerAddress;
 - (NSString*) defaultOnlineEnServerAddress;
-- (PBDrawConfig_Builder*) setDefaultOnlineEnServerAddress:(NSString*) value;
-- (PBDrawConfig_Builder*) clearDefaultOnlineEnServerAddress;
+- (PBDrawConfigBuilder*) setDefaultOnlineEnServerAddress:(NSString*) value;
+- (PBDrawConfigBuilder*) clearDefaultOnlineEnServerAddress;
 
 - (BOOL) hasDefaultOnlineEnServerPort;
-- (int32_t) defaultOnlineEnServerPort;
-- (PBDrawConfig_Builder*) setDefaultOnlineEnServerPort:(int32_t) value;
-- (PBDrawConfig_Builder*) clearDefaultOnlineEnServerPort;
+- (SInt32) defaultOnlineEnServerPort;
+- (PBDrawConfigBuilder*) setDefaultOnlineEnServerPort:(SInt32) value;
+- (PBDrawConfigBuilder*) clearDefaultOnlineEnServerPort;
 
 - (BOOL) hasDefaultOnlineCnServerAddress;
 - (NSString*) defaultOnlineCnServerAddress;
-- (PBDrawConfig_Builder*) setDefaultOnlineCnServerAddress:(NSString*) value;
-- (PBDrawConfig_Builder*) clearDefaultOnlineCnServerAddress;
+- (PBDrawConfigBuilder*) setDefaultOnlineCnServerAddress:(NSString*) value;
+- (PBDrawConfigBuilder*) clearDefaultOnlineCnServerAddress;
 
 - (BOOL) hasDefaultOnlineCnServerPort;
-- (int32_t) defaultOnlineCnServerPort;
-- (PBDrawConfig_Builder*) setDefaultOnlineCnServerPort:(int32_t) value;
-- (PBDrawConfig_Builder*) clearDefaultOnlineCnServerPort;
+- (SInt32) defaultOnlineCnServerPort;
+- (PBDrawConfigBuilder*) setDefaultOnlineCnServerPort:(SInt32) value;
+- (PBDrawConfigBuilder*) clearDefaultOnlineCnServerPort;
 
 - (BOOL) hasGuessReward;
-- (int32_t) guessReward;
-- (PBDrawConfig_Builder*) setGuessReward:(int32_t) value;
-- (PBDrawConfig_Builder*) clearGuessReward;
+- (SInt32) guessReward;
+- (PBDrawConfigBuilder*) setGuessReward:(SInt32) value;
+- (PBDrawConfigBuilder*) clearGuessReward;
 
 - (BOOL) hasTomatoReward;
-- (int32_t) tomatoReward;
-- (PBDrawConfig_Builder*) setTomatoReward:(int32_t) value;
-- (PBDrawConfig_Builder*) clearTomatoReward;
+- (SInt32) tomatoReward;
+- (PBDrawConfigBuilder*) setTomatoReward:(SInt32) value;
+- (PBDrawConfigBuilder*) clearTomatoReward;
 
 - (BOOL) hasTomatoExp;
-- (int32_t) tomatoExp;
-- (PBDrawConfig_Builder*) setTomatoExp:(int32_t) value;
-- (PBDrawConfig_Builder*) clearTomatoExp;
+- (SInt32) tomatoExp;
+- (PBDrawConfigBuilder*) setTomatoExp:(SInt32) value;
+- (PBDrawConfigBuilder*) clearTomatoExp;
 
 - (BOOL) hasFlowerReward;
-- (int32_t) flowerReward;
-- (PBDrawConfig_Builder*) setFlowerReward:(int32_t) value;
-- (PBDrawConfig_Builder*) clearFlowerReward;
+- (SInt32) flowerReward;
+- (PBDrawConfigBuilder*) setFlowerReward:(SInt32) value;
+- (PBDrawConfigBuilder*) clearFlowerReward;
 
 - (BOOL) hasFlowerExp;
-- (int32_t) flowerExp;
-- (PBDrawConfig_Builder*) setFlowerExp:(int32_t) value;
-- (PBDrawConfig_Builder*) clearFlowerExp;
+- (SInt32) flowerExp;
+- (PBDrawConfigBuilder*) setFlowerExp:(SInt32) value;
+- (PBDrawConfigBuilder*) clearFlowerExp;
 
 - (BOOL) hasShareReward;
-- (int32_t) shareReward;
-- (PBDrawConfig_Builder*) setShareReward:(int32_t) value;
-- (PBDrawConfig_Builder*) clearShareReward;
+- (SInt32) shareReward;
+- (PBDrawConfigBuilder*) setShareReward:(SInt32) value;
+- (PBDrawConfigBuilder*) clearShareReward;
 
 - (BOOL) hasFollowReward;
-- (int32_t) followReward;
-- (PBDrawConfig_Builder*) setFollowReward:(int32_t) value;
-- (PBDrawConfig_Builder*) clearFollowReward;
+- (SInt32) followReward;
+- (PBDrawConfigBuilder*) setFollowReward:(SInt32) value;
+- (PBDrawConfigBuilder*) clearFollowReward;
 
 - (BOOL) hasLevelUpFlower;
-- (int32_t) levelUpFlower;
-- (PBDrawConfig_Builder*) setLevelUpFlower:(int32_t) value;
-- (PBDrawConfig_Builder*) clearLevelUpFlower;
+- (SInt32) levelUpFlower;
+- (PBDrawConfigBuilder*) setLevelUpFlower:(SInt32) value;
+- (PBDrawConfigBuilder*) clearLevelUpFlower;
 
 - (BOOL) hasOnlineDrawExp;
-- (int32_t) onlineDrawExp;
-- (PBDrawConfig_Builder*) setOnlineDrawExp:(int32_t) value;
-- (PBDrawConfig_Builder*) clearOnlineDrawExp;
+- (SInt32) onlineDrawExp;
+- (PBDrawConfigBuilder*) setOnlineDrawExp:(SInt32) value;
+- (PBDrawConfigBuilder*) clearOnlineDrawExp;
 
 - (BOOL) hasOnlineGuessExp;
-- (int32_t) onlineGuessExp;
-- (PBDrawConfig_Builder*) setOnlineGuessExp:(int32_t) value;
-- (PBDrawConfig_Builder*) clearOnlineGuessExp;
+- (SInt32) onlineGuessExp;
+- (PBDrawConfigBuilder*) setOnlineGuessExp:(SInt32) value;
+- (PBDrawConfigBuilder*) clearOnlineGuessExp;
 
 - (BOOL) hasOfflineDrawExp;
-- (int32_t) offlineDrawExp;
-- (PBDrawConfig_Builder*) setOfflineDrawExp:(int32_t) value;
-- (PBDrawConfig_Builder*) clearOfflineDrawExp;
+- (SInt32) offlineDrawExp;
+- (PBDrawConfigBuilder*) setOfflineDrawExp:(SInt32) value;
+- (PBDrawConfigBuilder*) clearOfflineDrawExp;
 
 - (BOOL) hasOfflineGuessExp;
-- (int32_t) offlineGuessExp;
-- (PBDrawConfig_Builder*) setOfflineGuessExp:(int32_t) value;
-- (PBDrawConfig_Builder*) clearOfflineGuessExp;
+- (SInt32) offlineGuessExp;
+- (PBDrawConfigBuilder*) setOfflineGuessExp:(SInt32) value;
+- (PBDrawConfigBuilder*) clearOfflineGuessExp;
 
 - (BOOL) hasMaxItemTimesOnNormalOpus;
-- (int32_t) maxItemTimesOnNormalOpus;
-- (PBDrawConfig_Builder*) setMaxItemTimesOnNormalOpus:(int32_t) value;
-- (PBDrawConfig_Builder*) clearMaxItemTimesOnNormalOpus;
+- (SInt32) maxItemTimesOnNormalOpus;
+- (PBDrawConfigBuilder*) setMaxItemTimesOnNormalOpus:(SInt32) value;
+- (PBDrawConfigBuilder*) clearMaxItemTimesOnNormalOpus;
 
 - (BOOL) hasMaxItemTimesOnContestOpus;
-- (int32_t) maxItemTimesOnContestOpus;
-- (PBDrawConfig_Builder*) setMaxItemTimesOnContestOpus:(int32_t) value;
-- (PBDrawConfig_Builder*) clearMaxItemTimesOnContestOpus;
+- (SInt32) maxItemTimesOnContestOpus;
+- (PBDrawConfigBuilder*) setMaxItemTimesOnContestOpus:(SInt32) value;
+- (PBDrawConfigBuilder*) clearMaxItemTimesOnContestOpus;
 @end
 
-@interface PBAppReward : PBGeneratedMessage {
+@interface PBAppReward : PBGeneratedMessage<GeneratedMessageProtocol> {
 @private
   BOOL hasRewardAmount_:1;
   BOOL hasApp_:1;
   BOOL hasRewardCurrency_:1;
-  int32_t rewardAmount;
+  SInt32 rewardAmount;
   PBApp* app;
   PBGameCurrency rewardCurrency;
 }
 - (BOOL) hasApp;
 - (BOOL) hasRewardAmount;
 - (BOOL) hasRewardCurrency;
-@property (readonly, retain) PBApp* app;
-@property (readonly) int32_t rewardAmount;
+@property (readonly, strong) PBApp* app;
+@property (readonly) SInt32 rewardAmount;
 @property (readonly) PBGameCurrency rewardCurrency;
 
-+ (PBAppReward*) defaultInstance;
-- (PBAppReward*) defaultInstance;
++ (instancetype) defaultInstance;
+- (instancetype) defaultInstance;
 
 - (BOOL) isInitialized;
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
-- (PBAppReward_Builder*) builder;
-+ (PBAppReward_Builder*) builder;
-+ (PBAppReward_Builder*) builderWithPrototype:(PBAppReward*) prototype;
+- (PBAppRewardBuilder*) builder;
++ (PBAppRewardBuilder*) builder;
++ (PBAppRewardBuilder*) builderWithPrototype:(PBAppReward*) prototype;
+- (PBAppRewardBuilder*) toBuilder;
 
 + (PBAppReward*) parseFromData:(NSData*) data;
 + (PBAppReward*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
@@ -672,64 +691,65 @@ BOOL PBRewardWallTypeIsValidValue(PBRewardWallType value);
 + (PBAppReward*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 @end
 
-@interface PBAppReward_Builder : PBGeneratedMessage_Builder {
+@interface PBAppRewardBuilder : PBGeneratedMessageBuilder {
 @private
-  PBAppReward* result;
+  PBAppReward* resultPbappReward;
 }
 
 - (PBAppReward*) defaultInstance;
 
-- (PBAppReward_Builder*) clear;
-- (PBAppReward_Builder*) clone;
+- (PBAppRewardBuilder*) clear;
+- (PBAppRewardBuilder*) clone;
 
 - (PBAppReward*) build;
 - (PBAppReward*) buildPartial;
 
-- (PBAppReward_Builder*) mergeFrom:(PBAppReward*) other;
-- (PBAppReward_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
-- (PBAppReward_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+- (PBAppRewardBuilder*) mergeFrom:(PBAppReward*) other;
+- (PBAppRewardBuilder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
+- (PBAppRewardBuilder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 
 - (BOOL) hasApp;
 - (PBApp*) app;
-- (PBAppReward_Builder*) setApp:(PBApp*) value;
-- (PBAppReward_Builder*) setAppBuilder:(PBApp_Builder*) builderForValue;
-- (PBAppReward_Builder*) mergeApp:(PBApp*) value;
-- (PBAppReward_Builder*) clearApp;
+- (PBAppRewardBuilder*) setApp:(PBApp*) value;
+- (PBAppRewardBuilder*) setAppBuilder:(PBAppBuilder*) builderForValue;
+- (PBAppRewardBuilder*) mergeApp:(PBApp*) value;
+- (PBAppRewardBuilder*) clearApp;
 
 - (BOOL) hasRewardAmount;
-- (int32_t) rewardAmount;
-- (PBAppReward_Builder*) setRewardAmount:(int32_t) value;
-- (PBAppReward_Builder*) clearRewardAmount;
+- (SInt32) rewardAmount;
+- (PBAppRewardBuilder*) setRewardAmount:(SInt32) value;
+- (PBAppRewardBuilder*) clearRewardAmount;
 
 - (BOOL) hasRewardCurrency;
 - (PBGameCurrency) rewardCurrency;
-- (PBAppReward_Builder*) setRewardCurrency:(PBGameCurrency) value;
-- (PBAppReward_Builder*) clearRewardCurrency;
+- (PBAppRewardBuilder*) setRewardCurrency:(PBGameCurrency) value;
+- (PBAppRewardBuilder*) clearRewardCurrency;
 @end
 
-@interface PBRewardWall : PBGeneratedMessage {
+@interface PBRewardWall : PBGeneratedMessage<GeneratedMessageProtocol> {
 @private
   BOOL hasType_:1;
   BOOL hasLogo_:1;
-  int32_t type;
+  SInt32 type;
   NSString* logo;
-  NSMutableArray* mutableNameList;
+  NSMutableArray * nameArray;
 }
 - (BOOL) hasType;
 - (BOOL) hasLogo;
-@property (readonly) int32_t type;
-@property (readonly, retain) NSString* logo;
-- (NSArray*) nameList;
-- (PBLocalizeString*) nameAtIndex:(int32_t) index;
+@property (readonly) SInt32 type;
+@property (readonly, strong) NSString* logo;
+@property (readonly, strong) NSArray * name;
+- (PBLocalizeString*)nameAtIndex:(NSUInteger)index;
 
-+ (PBRewardWall*) defaultInstance;
-- (PBRewardWall*) defaultInstance;
++ (instancetype) defaultInstance;
+- (instancetype) defaultInstance;
 
 - (BOOL) isInitialized;
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
-- (PBRewardWall_Builder*) builder;
-+ (PBRewardWall_Builder*) builder;
-+ (PBRewardWall_Builder*) builderWithPrototype:(PBRewardWall*) prototype;
+- (PBRewardWallBuilder*) builder;
++ (PBRewardWallBuilder*) builder;
++ (PBRewardWallBuilder*) builderWithPrototype:(PBRewardWall*) prototype;
+- (PBRewardWallBuilder*) toBuilder;
 
 + (PBRewardWall*) parseFromData:(NSData*) data;
 + (PBRewardWall*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
@@ -739,42 +759,41 @@ BOOL PBRewardWallTypeIsValidValue(PBRewardWallType value);
 + (PBRewardWall*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 @end
 
-@interface PBRewardWall_Builder : PBGeneratedMessage_Builder {
+@interface PBRewardWallBuilder : PBGeneratedMessageBuilder {
 @private
-  PBRewardWall* result;
+  PBRewardWall* resultPbrewardWall;
 }
 
 - (PBRewardWall*) defaultInstance;
 
-- (PBRewardWall_Builder*) clear;
-- (PBRewardWall_Builder*) clone;
+- (PBRewardWallBuilder*) clear;
+- (PBRewardWallBuilder*) clone;
 
 - (PBRewardWall*) build;
 - (PBRewardWall*) buildPartial;
 
-- (PBRewardWall_Builder*) mergeFrom:(PBRewardWall*) other;
-- (PBRewardWall_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
-- (PBRewardWall_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+- (PBRewardWallBuilder*) mergeFrom:(PBRewardWall*) other;
+- (PBRewardWallBuilder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
+- (PBRewardWallBuilder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 
 - (BOOL) hasType;
-- (int32_t) type;
-- (PBRewardWall_Builder*) setType:(int32_t) value;
-- (PBRewardWall_Builder*) clearType;
+- (SInt32) type;
+- (PBRewardWallBuilder*) setType:(SInt32) value;
+- (PBRewardWallBuilder*) clearType;
 
 - (BOOL) hasLogo;
 - (NSString*) logo;
-- (PBRewardWall_Builder*) setLogo:(NSString*) value;
-- (PBRewardWall_Builder*) clearLogo;
+- (PBRewardWallBuilder*) setLogo:(NSString*) value;
+- (PBRewardWallBuilder*) clearLogo;
 
-- (NSArray*) nameList;
-- (PBLocalizeString*) nameAtIndex:(int32_t) index;
-- (PBRewardWall_Builder*) replaceNameAtIndex:(int32_t) index with:(PBLocalizeString*) value;
-- (PBRewardWall_Builder*) addName:(PBLocalizeString*) value;
-- (PBRewardWall_Builder*) addAllName:(NSArray*) values;
-- (PBRewardWall_Builder*) clearNameList;
+- (NSMutableArray *)name;
+- (PBLocalizeString*)nameAtIndex:(NSUInteger)index;
+- (PBRewardWallBuilder *)addName:(PBLocalizeString*)value;
+- (PBRewardWallBuilder *)setNameArray:(NSArray *)array;
+- (PBRewardWallBuilder *)clearName;
 @end
 
-@interface PBConfig : PBGeneratedMessage {
+@interface PBConfig : PBGeneratedMessage<GeneratedMessageProtocol> {
 @private
   BOOL hasEnableReview_:1;
   BOOL hasInReview_:1;
@@ -789,28 +808,28 @@ BOOL PBRewardWallTypeIsValidValue(PBRewardWallType value);
   BOOL hasMusicHomeCnUrl_:1;
   BOOL hasMusicHomeEnUrl_:1;
   BOOL hasInReviewVersion_:1;
-  BOOL hasZjhConfig_:1;
-  BOOL hasDiceConfig_:1;
   BOOL hasDrawConfig_:1;
+  BOOL hasDiceConfig_:1;
+  BOOL hasZjhConfig_:1;
   BOOL enableReview_:1;
   BOOL inReview_:1;
   BOOL enableAd_:1;
   BOOL enableWall_:1;
-  int32_t balanceDeviation;
-  int32_t postponeTime;
-  int32_t urgeTime;
-  int32_t wallType;
+  SInt32 balanceDeviation;
+  SInt32 postponeTime;
+  SInt32 urgeTime;
+  SInt32 wallType;
   NSString* trafficApiserverUrl;
   NSString* userApiserverUrl;
   NSString* musicHomeCnUrl;
   NSString* musicHomeEnUrl;
   NSString* inReviewVersion;
-  PBZJHConfig* zjhConfig;
-  PBDiceConfig* diceConfig;
   PBDrawConfig* drawConfig;
-  NSMutableArray* mutableAppRewardsList;
-  NSMutableArray* mutableRewardWallsList;
-  NSMutableArray* mutableCoinPricesList;
+  PBDiceConfig* diceConfig;
+  PBZJHConfig* zjhConfig;
+  NSMutableArray * coinPricesArray;
+  NSMutableArray * rewardWallsArray;
+  NSMutableArray * appRewardsArray;
 }
 - (BOOL) hasBalanceDeviation;
 - (BOOL) hasTrafficApiserverUrl;
@@ -828,37 +847,38 @@ BOOL PBRewardWallTypeIsValidValue(PBRewardWallType value);
 - (BOOL) hasDrawConfig;
 - (BOOL) hasDiceConfig;
 - (BOOL) hasZjhConfig;
-@property (readonly) int32_t balanceDeviation;
-@property (readonly, retain) NSString* trafficApiserverUrl;
-@property (readonly, retain) NSString* userApiserverUrl;
-@property (readonly, retain) NSString* musicHomeCnUrl;
-@property (readonly, retain) NSString* musicHomeEnUrl;
+@property (readonly, strong) NSArray * coinPrices;
+@property (readonly) SInt32 balanceDeviation;
+@property (readonly, strong) NSString* trafficApiserverUrl;
+@property (readonly, strong) NSString* userApiserverUrl;
+@property (readonly, strong) NSString* musicHomeCnUrl;
+@property (readonly, strong) NSString* musicHomeEnUrl;
 - (BOOL) enableReview;
 - (BOOL) inReview;
-@property (readonly, retain) NSString* inReviewVersion;
-@property (readonly) int32_t postponeTime;
-@property (readonly) int32_t urgeTime;
+@property (readonly, strong) NSString* inReviewVersion;
+@property (readonly) SInt32 postponeTime;
+@property (readonly) SInt32 urgeTime;
 - (BOOL) enableAd;
 - (BOOL) enableWall;
-@property (readonly) int32_t wallType;
-@property (readonly, retain) PBDrawConfig* drawConfig;
-@property (readonly, retain) PBDiceConfig* diceConfig;
-@property (readonly, retain) PBZJHConfig* zjhConfig;
-- (NSArray*) coinPricesList;
-- (PBPrice*) coinPricesAtIndex:(int32_t) index;
-- (NSArray*) rewardWallsList;
-- (PBRewardWall*) rewardWallsAtIndex:(int32_t) index;
-- (NSArray*) appRewardsList;
-- (PBAppReward*) appRewardsAtIndex:(int32_t) index;
+@property (readonly) SInt32 wallType;
+@property (readonly, strong) NSArray * rewardWalls;
+@property (readonly, strong) NSArray * appRewards;
+@property (readonly, strong) PBDrawConfig* drawConfig;
+@property (readonly, strong) PBDiceConfig* diceConfig;
+@property (readonly, strong) PBZJHConfig* zjhConfig;
+- (PBPrice*)coinPricesAtIndex:(NSUInteger)index;
+- (PBRewardWall*)rewardWallsAtIndex:(NSUInteger)index;
+- (PBAppReward*)appRewardsAtIndex:(NSUInteger)index;
 
-+ (PBConfig*) defaultInstance;
-- (PBConfig*) defaultInstance;
++ (instancetype) defaultInstance;
+- (instancetype) defaultInstance;
 
 - (BOOL) isInitialized;
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
-- (PBConfig_Builder*) builder;
-+ (PBConfig_Builder*) builder;
-+ (PBConfig_Builder*) builderWithPrototype:(PBConfig*) prototype;
+- (PBConfigBuilder*) builder;
++ (PBConfigBuilder*) builder;
++ (PBConfigBuilder*) builderWithPrototype:(PBConfig*) prototype;
+- (PBConfigBuilder*) toBuilder;
 
 + (PBConfig*) parseFromData:(NSData*) data;
 + (PBConfig*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
@@ -868,128 +888,127 @@ BOOL PBRewardWallTypeIsValidValue(PBRewardWallType value);
 + (PBConfig*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 @end
 
-@interface PBConfig_Builder : PBGeneratedMessage_Builder {
+@interface PBConfigBuilder : PBGeneratedMessageBuilder {
 @private
-  PBConfig* result;
+  PBConfig* resultPbconfig;
 }
 
 - (PBConfig*) defaultInstance;
 
-- (PBConfig_Builder*) clear;
-- (PBConfig_Builder*) clone;
+- (PBConfigBuilder*) clear;
+- (PBConfigBuilder*) clone;
 
 - (PBConfig*) build;
 - (PBConfig*) buildPartial;
 
-- (PBConfig_Builder*) mergeFrom:(PBConfig*) other;
-- (PBConfig_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
-- (PBConfig_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+- (PBConfigBuilder*) mergeFrom:(PBConfig*) other;
+- (PBConfigBuilder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
+- (PBConfigBuilder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 
-- (NSArray*) coinPricesList;
-- (PBPrice*) coinPricesAtIndex:(int32_t) index;
-- (PBConfig_Builder*) replaceCoinPricesAtIndex:(int32_t) index with:(PBPrice*) value;
-- (PBConfig_Builder*) addCoinPrices:(PBPrice*) value;
-- (PBConfig_Builder*) addAllCoinPrices:(NSArray*) values;
-- (PBConfig_Builder*) clearCoinPricesList;
+- (NSMutableArray *)coinPrices;
+- (PBPrice*)coinPricesAtIndex:(NSUInteger)index;
+- (PBConfigBuilder *)addCoinPrices:(PBPrice*)value;
+- (PBConfigBuilder *)setCoinPricesArray:(NSArray *)array;
+- (PBConfigBuilder *)clearCoinPrices;
 
 - (BOOL) hasBalanceDeviation;
-- (int32_t) balanceDeviation;
-- (PBConfig_Builder*) setBalanceDeviation:(int32_t) value;
-- (PBConfig_Builder*) clearBalanceDeviation;
+- (SInt32) balanceDeviation;
+- (PBConfigBuilder*) setBalanceDeviation:(SInt32) value;
+- (PBConfigBuilder*) clearBalanceDeviation;
 
 - (BOOL) hasTrafficApiserverUrl;
 - (NSString*) trafficApiserverUrl;
-- (PBConfig_Builder*) setTrafficApiserverUrl:(NSString*) value;
-- (PBConfig_Builder*) clearTrafficApiserverUrl;
+- (PBConfigBuilder*) setTrafficApiserverUrl:(NSString*) value;
+- (PBConfigBuilder*) clearTrafficApiserverUrl;
 
 - (BOOL) hasUserApiserverUrl;
 - (NSString*) userApiserverUrl;
-- (PBConfig_Builder*) setUserApiserverUrl:(NSString*) value;
-- (PBConfig_Builder*) clearUserApiserverUrl;
+- (PBConfigBuilder*) setUserApiserverUrl:(NSString*) value;
+- (PBConfigBuilder*) clearUserApiserverUrl;
 
 - (BOOL) hasMusicHomeCnUrl;
 - (NSString*) musicHomeCnUrl;
-- (PBConfig_Builder*) setMusicHomeCnUrl:(NSString*) value;
-- (PBConfig_Builder*) clearMusicHomeCnUrl;
+- (PBConfigBuilder*) setMusicHomeCnUrl:(NSString*) value;
+- (PBConfigBuilder*) clearMusicHomeCnUrl;
 
 - (BOOL) hasMusicHomeEnUrl;
 - (NSString*) musicHomeEnUrl;
-- (PBConfig_Builder*) setMusicHomeEnUrl:(NSString*) value;
-- (PBConfig_Builder*) clearMusicHomeEnUrl;
+- (PBConfigBuilder*) setMusicHomeEnUrl:(NSString*) value;
+- (PBConfigBuilder*) clearMusicHomeEnUrl;
 
 - (BOOL) hasEnableReview;
 - (BOOL) enableReview;
-- (PBConfig_Builder*) setEnableReview:(BOOL) value;
-- (PBConfig_Builder*) clearEnableReview;
+- (PBConfigBuilder*) setEnableReview:(BOOL) value;
+- (PBConfigBuilder*) clearEnableReview;
 
 - (BOOL) hasInReview;
 - (BOOL) inReview;
-- (PBConfig_Builder*) setInReview:(BOOL) value;
-- (PBConfig_Builder*) clearInReview;
+- (PBConfigBuilder*) setInReview:(BOOL) value;
+- (PBConfigBuilder*) clearInReview;
 
 - (BOOL) hasInReviewVersion;
 - (NSString*) inReviewVersion;
-- (PBConfig_Builder*) setInReviewVersion:(NSString*) value;
-- (PBConfig_Builder*) clearInReviewVersion;
+- (PBConfigBuilder*) setInReviewVersion:(NSString*) value;
+- (PBConfigBuilder*) clearInReviewVersion;
 
 - (BOOL) hasPostponeTime;
-- (int32_t) postponeTime;
-- (PBConfig_Builder*) setPostponeTime:(int32_t) value;
-- (PBConfig_Builder*) clearPostponeTime;
+- (SInt32) postponeTime;
+- (PBConfigBuilder*) setPostponeTime:(SInt32) value;
+- (PBConfigBuilder*) clearPostponeTime;
 
 - (BOOL) hasUrgeTime;
-- (int32_t) urgeTime;
-- (PBConfig_Builder*) setUrgeTime:(int32_t) value;
-- (PBConfig_Builder*) clearUrgeTime;
+- (SInt32) urgeTime;
+- (PBConfigBuilder*) setUrgeTime:(SInt32) value;
+- (PBConfigBuilder*) clearUrgeTime;
 
 - (BOOL) hasEnableAd;
 - (BOOL) enableAd;
-- (PBConfig_Builder*) setEnableAd:(BOOL) value;
-- (PBConfig_Builder*) clearEnableAd;
+- (PBConfigBuilder*) setEnableAd:(BOOL) value;
+- (PBConfigBuilder*) clearEnableAd;
 
 - (BOOL) hasEnableWall;
 - (BOOL) enableWall;
-- (PBConfig_Builder*) setEnableWall:(BOOL) value;
-- (PBConfig_Builder*) clearEnableWall;
+- (PBConfigBuilder*) setEnableWall:(BOOL) value;
+- (PBConfigBuilder*) clearEnableWall;
 
 - (BOOL) hasWallType;
-- (int32_t) wallType;
-- (PBConfig_Builder*) setWallType:(int32_t) value;
-- (PBConfig_Builder*) clearWallType;
+- (SInt32) wallType;
+- (PBConfigBuilder*) setWallType:(SInt32) value;
+- (PBConfigBuilder*) clearWallType;
 
-- (NSArray*) rewardWallsList;
-- (PBRewardWall*) rewardWallsAtIndex:(int32_t) index;
-- (PBConfig_Builder*) replaceRewardWallsAtIndex:(int32_t) index with:(PBRewardWall*) value;
-- (PBConfig_Builder*) addRewardWalls:(PBRewardWall*) value;
-- (PBConfig_Builder*) addAllRewardWalls:(NSArray*) values;
-- (PBConfig_Builder*) clearRewardWallsList;
+- (NSMutableArray *)rewardWalls;
+- (PBRewardWall*)rewardWallsAtIndex:(NSUInteger)index;
+- (PBConfigBuilder *)addRewardWalls:(PBRewardWall*)value;
+- (PBConfigBuilder *)setRewardWallsArray:(NSArray *)array;
+- (PBConfigBuilder *)clearRewardWalls;
 
-- (NSArray*) appRewardsList;
-- (PBAppReward*) appRewardsAtIndex:(int32_t) index;
-- (PBConfig_Builder*) replaceAppRewardsAtIndex:(int32_t) index with:(PBAppReward*) value;
-- (PBConfig_Builder*) addAppRewards:(PBAppReward*) value;
-- (PBConfig_Builder*) addAllAppRewards:(NSArray*) values;
-- (PBConfig_Builder*) clearAppRewardsList;
+- (NSMutableArray *)appRewards;
+- (PBAppReward*)appRewardsAtIndex:(NSUInteger)index;
+- (PBConfigBuilder *)addAppRewards:(PBAppReward*)value;
+- (PBConfigBuilder *)setAppRewardsArray:(NSArray *)array;
+- (PBConfigBuilder *)clearAppRewards;
 
 - (BOOL) hasDrawConfig;
 - (PBDrawConfig*) drawConfig;
-- (PBConfig_Builder*) setDrawConfig:(PBDrawConfig*) value;
-- (PBConfig_Builder*) setDrawConfigBuilder:(PBDrawConfig_Builder*) builderForValue;
-- (PBConfig_Builder*) mergeDrawConfig:(PBDrawConfig*) value;
-- (PBConfig_Builder*) clearDrawConfig;
+- (PBConfigBuilder*) setDrawConfig:(PBDrawConfig*) value;
+- (PBConfigBuilder*) setDrawConfigBuilder:(PBDrawConfigBuilder*) builderForValue;
+- (PBConfigBuilder*) mergeDrawConfig:(PBDrawConfig*) value;
+- (PBConfigBuilder*) clearDrawConfig;
 
 - (BOOL) hasDiceConfig;
 - (PBDiceConfig*) diceConfig;
-- (PBConfig_Builder*) setDiceConfig:(PBDiceConfig*) value;
-- (PBConfig_Builder*) setDiceConfigBuilder:(PBDiceConfig_Builder*) builderForValue;
-- (PBConfig_Builder*) mergeDiceConfig:(PBDiceConfig*) value;
-- (PBConfig_Builder*) clearDiceConfig;
+- (PBConfigBuilder*) setDiceConfig:(PBDiceConfig*) value;
+- (PBConfigBuilder*) setDiceConfigBuilder:(PBDiceConfigBuilder*) builderForValue;
+- (PBConfigBuilder*) mergeDiceConfig:(PBDiceConfig*) value;
+- (PBConfigBuilder*) clearDiceConfig;
 
 - (BOOL) hasZjhConfig;
 - (PBZJHConfig*) zjhConfig;
-- (PBConfig_Builder*) setZjhConfig:(PBZJHConfig*) value;
-- (PBConfig_Builder*) setZjhConfigBuilder:(PBZJHConfig_Builder*) builderForValue;
-- (PBConfig_Builder*) mergeZjhConfig:(PBZJHConfig*) value;
-- (PBConfig_Builder*) clearZjhConfig;
+- (PBConfigBuilder*) setZjhConfig:(PBZJHConfig*) value;
+- (PBConfigBuilder*) setZjhConfigBuilder:(PBZJHConfigBuilder*) builderForValue;
+- (PBConfigBuilder*) mergeZjhConfig:(PBZJHConfig*) value;
+- (PBConfigBuilder*) clearZjhConfig;
 @end
 
+
+// @@protoc_insertion_point(global_scope)

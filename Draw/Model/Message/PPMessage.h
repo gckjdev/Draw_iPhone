@@ -45,7 +45,7 @@ typedef enum {
 - (BOOL)isMessageSentOrReceived;
 - (PBMessage *)toPBMessage;
 
-@property (nonatomic, retain) PBMessage_Builder *messageBuilder;
+@property (nonatomic, retain) PBMessageBuilder *messageBuilder;
 
 // for all, PB
 @property (nonatomic, assign) NSString * messageId;

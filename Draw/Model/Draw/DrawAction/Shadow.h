@@ -24,7 +24,7 @@
 - (void)updateContext:(CGContextRef)context;
 - (void)spanRect:(CGRect *)rect;
 - (void)updatePBDrawActionC:(Game__PBDrawAction*)pbDrawActionC;
-- (void)updatePBDrawActionBuilder:(PBDrawAction_Builder *)builder;
+- (void)updatePBDrawActionBuilder:(PBDrawActionBuilder *)builder;
 
 - (void)updateWithDegree:(CGFloat)degree distance:(CGFloat)distance;
 - (CGFloat)distance;
