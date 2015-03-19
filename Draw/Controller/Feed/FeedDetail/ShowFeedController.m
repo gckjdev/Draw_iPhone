@@ -1506,7 +1506,7 @@ typedef enum{
             [self share:TYPE_QQSPACE];
         }
         else if (buttonIndex == indexOfShareQQWeibo){
-            [self share:TYPE_QQ];
+            [self share:TYPE_QQSPACE];
         }
 
         

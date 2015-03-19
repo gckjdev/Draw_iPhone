@@ -612,7 +612,7 @@ typedef enum{
         [self share:TYPE_WEIXIN_TIMELINE];
     }
     else if (buttonIndex == SHARE_QQ_WEIBO){
-        [self share:TYPE_QQ];
+        [self share:TYPE_QQSPACE];
     }
     else if (buttonIndex == SHARE_FACEBOOK){
 

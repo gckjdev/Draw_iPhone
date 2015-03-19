@@ -32,7 +32,7 @@
 -(void)updateStageCellInfo:(PBUserTutorial *)pbUserTutorial withRow:(NSInteger)row{
    
     //数组越界保护
-    NSArray *stageList = [[pbUserTutorial tutorial] stagesList];
+    NSArray *stageList = [[pbUserTutorial tutorial] stages];
     if (stageList == nil || row >= [stageList count]){
         return ;
     }

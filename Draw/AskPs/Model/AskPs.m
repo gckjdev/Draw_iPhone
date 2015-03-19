@@ -14,7 +14,7 @@
 - (void)setRequirements:(NSArray *)requirements
 {
     PBAskPsBuilder *builder = [PBAskPs builderWithPrototype:self.pbOpusBuilder.askPs];
-    [builder addAllRequirement:requirements];
+    [builder setRequirementArray:requirements];
     [self.pbOpusBuilder setAskPs:[builder build]];
 }
 

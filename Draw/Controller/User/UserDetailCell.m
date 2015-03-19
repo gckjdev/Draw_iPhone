@@ -105,7 +105,7 @@
     [self.genderImageView setImage:[[ShareImageManager defaultManager] userDetailGenderImage:[pbUser gender]]];
     
     [detail initSNSButton:self.sinaBtn withType:TYPE_SINA];
-    [detail initSNSButton:self.qqBtn withType:TYPE_QQ];
+    [detail initSNSButton:self.qqBtn withType:TYPE_QQSPACE];
     [detail initSNSButton:self.facebookBtn withType:TYPE_FACEBOOK];
     
     for (int i = 0; i < USER_ACTION_BTN_COUNT; i ++) {

@@ -198,7 +198,7 @@ enum {
 
 - (NSArray*)shareOptionsTitleArray
 {
-    return [NSArray arrayWithObjects:NSLS(@"kShare_via_Email"), NSLS(@"kShare_via_Weixin_Timeline"), NSLS(@"kShare_via_Weixin_Friend"), NSLS(@"kShare_via_Sina_weibo"), NSLS(@"kShare_via_tencent_weibo"), NSLS(@"kShare_via_Facebook"), nil];
+    return [NSArray arrayWithObjects:NSLS(@"kShare_via_Email"), NSLS(@"kShare_via_Weixin_Timeline"), NSLS(@"kShare_via_Weixin_Friend"), NSLS(@"kShare_via_Sina_weibo"), NSLS(@"kShare_via_qq_space"), NSLS(@"kShare_via_Facebook"), nil];
 }
 
 - (void)shareViaEmailFromController:(UIViewController*)controller

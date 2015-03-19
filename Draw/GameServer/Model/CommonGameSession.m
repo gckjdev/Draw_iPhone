@@ -75,7 +75,7 @@
     // add all users
     [self.userList removeAllObjects];
     
-    for (PBGameUser* user in [pbSession usersList]){                
+    for (PBGameUser* user in [pbSession users]){
         [self.userList addObject:user];
     }
     
@@ -191,14 +191,14 @@
         [self setStatus:[changeData status]];
     }
     
-    if ([changeData usersAddedList]){
-        for (PBGameUser* user in [changeData usersAddedList]){
+    if ([changeData usersAdded]){
+        for (PBGameUser* user in [changeData usersAdded]){
             [self addNewUser:user];
         }
     }
     
-    if ([changeData userIdsDeletedList]){
-        for (NSString* userId in [changeData userIdsDeletedList]){
+    if ([changeData userIdsDeleted]){
+        for (NSString* userId in [changeData userIdsDeleted]){
             [self removeUser:userId];
         }
     }

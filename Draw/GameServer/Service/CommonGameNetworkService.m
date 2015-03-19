@@ -267,8 +267,8 @@
         PPDebug(@"<handleRoomNotificationRequest> handle room nitification");
         RoomNotificationRequest* notification = [message roomNotificationRequest];
         
-        if ([notification sessionsChangedList]){
-            for (PBGameSessionChanged* sessionChanged in [notification sessionsChangedList]){
+        if ([notification sessionsChanged]){
+            for (PBGameSessionChanged* sessionChanged in [notification sessionsChanged]){
                 int sessionId = [sessionChanged sessionId];
                 if (sessionId == _session.sessionId){
                     // current play session

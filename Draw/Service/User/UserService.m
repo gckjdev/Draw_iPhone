@@ -152,7 +152,8 @@ static UserService* _defaultUserService;
         case ShareTypeSinaWeibo:
             return REGISTER_TYPE_SINA;
         case ShareTypeTencentWeibo:
-            return REGISTER_TYPE_QQ;
+            return TYPE_QQSPACE;
+//            return REGISTER_TYPE_QQ;
         case ShareTypeFacebook:
             return REGISTER_TYPE_FACEBOOK;
         case ShareTypeQQSpace:

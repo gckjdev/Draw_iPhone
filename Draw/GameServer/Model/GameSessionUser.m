@@ -67,7 +67,7 @@
 
 - (BOOL)isBindQQ
 {
-    return [self isBindSNSByType:TYPE_QQ];    
+    return [self isBindSNSByType:TYPE_QQSPACE];
 }
 
 - (BOOL)isBindFacebook

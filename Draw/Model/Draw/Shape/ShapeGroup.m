@@ -59,7 +59,7 @@ return type##List;}
 {
     PBImageShapeGroupBuilder *builder = [[[PBImageShapeGroupBuilder alloc] init] autorelease];
     [builder setGroupId:[self groupId]];
-    [builder addAllGroupName:[self shapeNameList]];
+    [builder setGroupNameArray:[self shapeNameList]];
 
     ShapeType *type = [self shapeTypeList];
     while (type != NULL && (*type) != ShapeTypeNone) {

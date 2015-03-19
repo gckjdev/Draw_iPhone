@@ -432,10 +432,10 @@ typedef enum {
     }
     else if (buttonIndex == OPUS_ACTION_SHARE_QQ_WEIBO){
         if (opus){
-            [self shareSNS:TYPE_QQ opus:opus];
+            [self shareSNS:TYPE_QQSPACE opus:opus];
         }
         else{
-            [self shareSNS:TYPE_QQ feed:feed];
+            [self shareSNS:TYPE_QQSPACE feed:feed];
         }
     }
 }

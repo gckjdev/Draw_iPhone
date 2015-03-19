@@ -109,14 +109,17 @@
     if (self && gameMessage) {
         NSInteger intColor = [[gameMessage notification] color];
         CGFloat lineWidth = [[gameMessage notification] width];
-        NSArray *pointList = [[gameMessage notification] pointsList];
+        PBArray *pointList = [[gameMessage notification] points];
         self.width = lineWidth;
         
         self.brushType = [[gameMessage notification] penType];
         self.color = [DrawUtils decompressIntDrawColor:intColor];
         _hPointList = [[HBrushPointList alloc] init];
-        for (NSNumber *pointNumber in pointList) {
-            CGPoint point = [DrawUtils decompressIntPoint:[pointNumber integerValue]];
+//        for (NSNumber *pointNumber in pointList) {
+        int count = pointList.count;
+        for (int i =0; i<count; i++) {
+            int pointNumber = [pointList int32AtIndex:i];
+            CGPoint point = [DrawUtils decompressIntPoint:pointNumber];
             
             //this may be wrong, need test.... By Gamy
             [self addPoint:point inRect:[CanvasRect defaultRect]];
@@ -490,9 +493,14 @@
                            pointYList:&pointYList
                             widthList:&pointWList];
         
-        [builder addAllPointsX:pointXList];
-        [builder addAllPointsY:pointYList];
-        [builder addAllBrushPointWidth:pointWList];
+//        [builder addAllPointsX:pointXList];
+//        [builder addAllPointsY:pointYList];
+//        [builder addAllBrushPointWidth:pointWList];
+
+        [builder setPointsXArray:pointXList];
+        [builder setPointsYArray:pointYList];
+        [builder setBrushPointWidthArray:pointWList];
+
         
         [pool drain];
     }

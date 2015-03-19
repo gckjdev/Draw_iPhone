@@ -280,7 +280,7 @@
 }
 - (void)didclickQQ
 {
-    [self.detail clickSNSBtnType:TYPE_QQ viewController:self];
+    [self.detail clickSNSBtnType:TYPE_QQSPACE viewController:self];
     [self.dataTableView reloadData];
 }
 - (void)didclickFacebook

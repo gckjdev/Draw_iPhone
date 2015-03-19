@@ -2799,7 +2799,7 @@
                 break;
 
             case SUBMIT_TECENT:
-                snsType = TYPE_QQ;
+                snsType = TYPE_QQSPACE;
                 break;
 
             case SUBMIT_SINA:

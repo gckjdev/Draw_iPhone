@@ -248,20 +248,20 @@
 
 - (void)clickSina:(PPTableViewController*)viewController
 {
-    PBSNSUser* user = [SNSUtils snsUserWithType:TYPE_SINA inpbSnsUserArray:[[self getUser] snsUsersList]];
+    PBSNSUser* user = [SNSUtils snsUserWithType:TYPE_SINA inpbSnsUserArray:[[self getUser] snsUsers]];
     [self askFollowUserWithSnsType:TYPE_SINA snsId:user.userId nickName:user.nickName viewController:viewController];
 
     
 }
 - (void)clickQQ:(PPTableViewController*)viewController
 {
-    PBSNSUser* user = [SNSUtils snsUserWithType:TYPE_QQ inpbSnsUserArray:[[self getUser] snsUsersList]];
-    [self askFollowUserWithSnsType:TYPE_QQ snsId:user.userId nickName:user.nickName viewController:viewController];
+    PBSNSUser* user = [SNSUtils snsUserWithType:TYPE_QQSPACE inpbSnsUserArray:[[self getUser] snsUsers]];
+    [self askFollowUserWithSnsType:TYPE_QQSPACE snsId:user.userId nickName:user.nickName viewController:viewController];
 
 }
 - (void)clickFacebook:(PPTableViewController*)viewController
 {
-    PBSNSUser* user = [SNSUtils snsUserWithType:TYPE_FACEBOOK inpbSnsUserArray:[[self getUser] snsUsersList]];
+    PBSNSUser* user = [SNSUtils snsUserWithType:TYPE_FACEBOOK inpbSnsUserArray:[[self getUser] snsUsers]];
     [self askFollowUserWithSnsType:TYPE_FACEBOOK snsId:user.userId nickName:user.nickName viewController:viewController];
 }
 
@@ -273,7 +273,7 @@
         case TYPE_SINA: {
             [self clickSina:viewController];
         }break;
-        case TYPE_QQ: {
+        case TYPE_QQSPACE: {
             [self clickQQ:viewController];
         }break;
         case TYPE_FACEBOOK: {

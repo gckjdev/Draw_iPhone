@@ -1093,10 +1093,16 @@ qqAccessTokenSecret:(NSString*)accessTokenSecret
     return [self hasBindSNS:TYPE_SINA];
 
 }
-- (BOOL)hasBindQQWeibo
+//- (BOOL)hasBindQQWeibo
+//{
+//    return [self hasBindSNS:TYPE_QQ];
+//}
+
+- (BOOL)hasBindQQSpace
 {
-    return [self hasBindSNS:TYPE_QQ];
+    return [self hasBindSNS:TYPE_QQSPACE];
 }
+
 - (BOOL)hasBindFacebook
 {
     return [self hasBindSNS:TYPE_FACEBOOK];
@@ -1176,7 +1182,7 @@ qqAccessTokenSecret:(NSString*)accessTokenSecret
 
 - (void)setQQId:(NSString*)qqId nickName:(NSString*)nickName accessToken:(NSString*)accessToken accessTokenSecret:(NSString*)accessTokenSecret
 {
-    [self setSNSUserData:TYPE_QQ snsId:qqId nickName:nickName accessToken:accessToken accessTokenSecret:accessTokenSecret];
+    [self setSNSUserData:TYPE_QQSPACE snsId:qqId nickName:nickName accessToken:accessToken accessTokenSecret:accessTokenSecret];
 }
 
 - (NSString*)sinaId
@@ -1215,49 +1221,49 @@ qqAccessTokenSecret:(NSString*)accessTokenSecret
 
 - (NSString*)qqId
 {
-    PBSNSUser* user = [self snsUserByType:TYPE_QQ];
+    PBSNSUser* user = [self snsUserByType:TYPE_QQSPACE];
     return [user userId];
 }
 
 - (NSString*)qqIdFromOldStorage
 {
-    PBSNSUser* user = [self snsUserByType:TYPE_QQ];
+    PBSNSUser* user = [self snsUserByType:TYPE_QQSPACE];
     return [user userId];
 }
 
 - (NSString*)qqNickName
 {
-    PBSNSUser* user = [self snsUserByType:TYPE_QQ];
+    PBSNSUser* user = [self snsUserByType:TYPE_QQSPACE];
     return [user nickName];
 }
 
 - (NSString*)qqNickNameFromOldStorage
 {
-    PBSNSUser* user = [self snsUserByType:TYPE_QQ];
+    PBSNSUser* user = [self snsUserByType:TYPE_QQSPACE];
     return [user nickName];
 }
 
 - (NSString*)qqToken
 {
-    PBSNSUser* user = [self snsUserByType:TYPE_QQ];
+    PBSNSUser* user = [self snsUserByType:TYPE_QQSPACE];
     return [user accessToken];
 }
 
 - (NSString*)qqTokenFromOldStorage
 {
-    PBSNSUser* user = [self snsUserByType:TYPE_QQ];
+    PBSNSUser* user = [self snsUserByType:TYPE_QQSPACE];
     return [user accessToken];
 }
 
 - (NSString*)qqTokenSecret
 {
-    PBSNSUser* user = [self snsUserByType:TYPE_QQ];
+    PBSNSUser* user = [self snsUserByType:TYPE_QQSPACE];
     return [user accessTokenSecret];
 }
 
 - (NSString*)qqTokenSecretFromOldStorage
 {
-    PBSNSUser* user = [self snsUserByType:TYPE_QQ];
+    PBSNSUser* user = [self snsUserByType:TYPE_QQSPACE];
     return [user accessTokenSecret];
 }
 

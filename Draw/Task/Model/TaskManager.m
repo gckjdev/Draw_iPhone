@@ -399,7 +399,7 @@ static TaskManager* _defaultTaskManager;
 
 - (void)bindQQWeibo:(GameTask*)task
 {
-    [[GameSNSService defaultService] autheticate:TYPE_QQ];
+    [[GameSNSService defaultService] autheticate:TYPE_QQSPACE];
 }
 
 - (NSString*)getShareAppWeiboText
@@ -457,7 +457,7 @@ static TaskManager* _defaultTaskManager;
 {
     int award = (task.status == PBTaskStatusTaskStatusAward) ? 0 : [PPConfigManager getShareAppWeiboReward];
     
-    [[GameSNSService defaultService] publishWeibo:TYPE_QQ
+    [[GameSNSService defaultService] publishWeibo:TYPE_QQSPACE
                                              text:[self getShareAppWeiboText]
                                     imageFilePath:nil
                                            inView:nil
@@ -663,6 +663,9 @@ static TaskManager* _defaultTaskManager;
         taskId = PBTaskIdTypeTaskBindSina;
     }
     else if (shareType == ShareTypeTencentWeibo){
+        taskId = PBTaskIdTypeTaskBindQq;
+    }
+    else if (shareType == ShareTypeQQSpace){
         taskId = PBTaskIdTypeTaskBindQq;
     }
     else{

@@ -125,9 +125,9 @@ static ShareService* _defaultService;
                 gender = [@"m" isEqualToString:genderStr];
             }
             
-            NSString* textForQQ = [self getWeiboText:TYPE_QQ drawUserNickName:nickName drawUserSNSNick:qqId isDrawByMe:isDrawByMe drawWord:drawWord drawUserGender:gender];
+            NSString* textForQQ = [self getWeiboText:TYPE_QQSPACE drawUserNickName:nickName drawUserSNSNick:qqId isDrawByMe:isDrawByMe drawWord:drawWord drawUserGender:gender];
 
-            [[GameSNSService defaultService] publishWeiboAtBackground:TYPE_QQ
+            [[GameSNSService defaultService] publishWeiboAtBackground:TYPE_QQSPACE
                                                                  text:textForQQ
                                                         imageFilePath:imagePath
                                                            awardCoins:[PPConfigManager getShareWeiboReward]
@@ -678,7 +678,7 @@ static ShareService* _defaultService;
                                                       desc:drawDesc
                                                 opusUserId:drawUserId
                                                 userGender:drawUserGender
-                                                   snsType:TYPE_QQ
+                                                   snsType:TYPE_QQSPACE
                                                     opusId:drawOpusId
                                                      isGIF:YES];
             
@@ -686,7 +686,7 @@ static ShareService* _defaultService;
                 _text = shareText;
             }
             
-            [[GameSNSService defaultService] publishWeibo:TYPE_QQ
+            [[GameSNSService defaultService] publishWeibo:TYPE_QQSPACE
                                                      text:_text
                                             imageFilePath:_imageFilePath
                                                    inView:superView

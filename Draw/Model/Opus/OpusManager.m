@@ -101,7 +101,7 @@
     [authorBuilder setSignature:@"这是我的个人签名"];
     [builder setAuthor:[authorBuilder build]];
     
-    [builder addAllFeedTimes:[self feedTimesList]];
+    [builder setFeedTimesArray:[self feedTimesList]];
     
     PBGameUserBuilder *toUserBuilder = [[[PBGameUserBuilder alloc] init] autorelease];
     [toUserBuilder setUserId:@"xxx"];

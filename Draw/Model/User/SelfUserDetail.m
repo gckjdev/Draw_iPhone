@@ -183,9 +183,9 @@
 }
 - (void)clickQQ:(PPTableViewController*)viewController
 {
-    if ([[GameSNSService defaultService] isExpired:TYPE_QQ]){
-        [[GameSNSService defaultService] cleanSNSInfo:ShareTypeTencentWeibo];
-        [[GameSNSService defaultService] autheticate:TYPE_QQ];
+    if ([[GameSNSService defaultService] isExpired:TYPE_QQSPACE]){
+        [[GameSNSService defaultService] cleanSNSInfo:ShareTypeQQSpace];
+        [[GameSNSService defaultService] autheticate:TYPE_QQSPACE];
     }
     else{
         [[GameSNSService defaultService] askRebindQQ:viewController];
@@ -213,7 +213,7 @@
         case TYPE_SINA: {
             [self clickSina:viewController];
         }break;
-        case TYPE_QQ: {
+        case TYPE_QQSPACE: {
             [self clickQQ:viewController];
         }break;
         case TYPE_FACEBOOK: {

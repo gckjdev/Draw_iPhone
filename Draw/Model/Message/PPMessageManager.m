@@ -126,7 +126,7 @@ static PPMessageManager* globalDefaultMessageManager;
     }
     DataQueryResponseBuilder *builder = [[[DataQueryResponseBuilder alloc] init] autorelease];
     [builder setResultCode:0];
-    [builder addAllMessage:array];
+    [builder setMessageArray:array];
     return [[builder build] data];
 }
 
@@ -135,7 +135,7 @@ static PPMessageManager* globalDefaultMessageManager;
     DataQueryResponse* dqr = nil;
     @try {
        dqr = [DataQueryResponse parseFromData:data];
-        NSArray *mList = [dqr messageList];
+        NSArray *mList = [dqr message];
         return [PPMessageManager parseMessageList:mList];
 
     }

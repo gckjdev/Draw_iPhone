@@ -268,7 +268,7 @@ enum {
 
     } else if (buttonIndex == buttonIndexQQWeibo) {
         
-        [[GameSNSService defaultService] publishWeibo:TYPE_QQ
+        [[GameSNSService defaultService] publishWeibo:TYPE_QQSPACE
                                                  text:shareBody
                                                inView:self.view
                                            awardCoins:[PPConfigManager getShareFriendReward]
@@ -326,7 +326,7 @@ enum {
             [shareOptions addButtonWithTitle:NSLS(@"kShare_via_Sina_weibo")];
 //        }
         
-        if ([[UserManager defaultManager] hasBindQQWeibo]){
+        if ([[UserManager defaultManager] hasBindQQSpace]){
             buttonIndexQQWeibo = shareCount;
             shareCount ++;
             [shareOptions addButtonWithTitle:NSLS(@"kShare_via_tencent_weibo")];
@@ -355,43 +355,13 @@ enum {
     else if (indexPath.row == rowOfFollowSina){
         
         [[GameSNSService defaultService] followUser:TYPE_SINA weiboId:nil weiboName:[GameApp sinaWeiboId]];
-        
-        
-//        if ([[UserManager defaultManager] hasBindSinaWeibo]){
-//            
-//            [[[PPSNSIntegerationService defaultService] snsServiceByType:TYPE_SINA] followUser:[GameApp sinaWeiboId]
-//                                                                                        userId:nil
-//                                                                                  successBlock:^(NSDictionary *userInfo) {
-//                                                                                      
-//            POSTMSG(@"谢谢，你已经成功关注了新浪微博官方帐号");
-//
-//            } failureBlock:^(NSError *error) {
-//                if (error.code == 20506){
-//                    //already follow
-//                    POSTMSG(@"谢谢，你已经成功关注了新浪微博官方帐号");
-//                }
-//                else{
-//                    POSTMSG(@"你未绑定新浪微博或者新浪微博授权已经过期，请到个人设置页面进行新浪微博授权");
-//                }
-//            }];
-//            
-//        }
+
     }else if (indexPath.row == rowOfFollowTencent){
         
-        [[GameSNSService defaultService] followUser:TYPE_QQ weiboId:nil weiboName:[GameApp qqWeiboId]];
-
+        [[GameSNSService defaultService] followUser:TYPE_QQSPACE
+                                            weiboId:nil
+                                          weiboName:[GameApp qqWeiboId]];
         
-//        if ([[UserManager defaultManager] hasBindQQWeibo]){
-//            
-//            [[[PPSNSIntegerationService defaultService] snsServiceByType:TYPE_QQ] followUser:nil
-//                                                                                      userId:[GameApp qqWeiboId]
-//                                                                                successBlock:^(NSDictionary *userInfo) {
-//                                                                                    POSTMSG(@"谢谢，你已经成功关注了腾讯官方微博帐号");
-//                                                                                    
-//                                                                                } failureBlock:^(NSError *error) {
-//                                                                                    POSTMSG(@"你未绑定腾讯微博或者腾讯微博授权已经过期，请到个人设置页面进行腾讯微博授权");                                                                                    
-//                                                                                }];
-//        }
     }
     
     else if (indexPath.row  == rowOfReportBug) {
@@ -597,7 +567,7 @@ SET_CELL_BG_IN_CONTROLLER;
         [userDefaults synchronize];
     }
     
-    if ([[UserManager defaultManager] hasBindQQWeibo] && hasRewardFollowQQ == NO){
+    if ([[UserManager defaultManager] hasBindQQSpace] && hasRewardFollowQQ == NO){
         [[AccountService defaultService] chargeCoin:[PPConfigManager getFollowReward] source:FollowReward];        
         [userDefaults setBool:YES forKey:FOLLOW_QQ_KEY];
         [userDefaults synchronize];

@@ -741,8 +741,22 @@ SET_CELL_BG_IN_CONTROLLER;
                 
             case ROW_QQ_WEIBO:
             {
+//                [cell.customTextLabel setText:NSLS(@"kSetQQWeibo")];
+//                PPSNSType type = TYPE_QQ;
+//                if ([[GameSNSService defaultService] isAuthenticated:type]){
+//                    if ([[GameSNSService defaultService] isExpired:type]){
+//                        [cell.customDetailLabel setText:NSLS(@"kWeiboExpired")];
+//                    }
+//                    else{
+//                        [cell.customDetailLabel setText:NSLS(@"kWeiboSet")];
+//                    }
+//                }
+//                else{
+//                    [cell.customDetailLabel setText:NSLS(@"kNotSet")];
+//                }
+
                 [cell.customTextLabel setText:NSLS(@"kSetQQWeibo")];
-                PPSNSType type = TYPE_QQ;
+                PPSNSType type = TYPE_QQSPACE;
                 if ([[GameSNSService defaultService] isAuthenticated:type]){
                     if ([[GameSNSService defaultService] isExpired:type]){
                         [cell.customDetailLabel setText:NSLS(@"kWeiboExpired")];
@@ -1127,7 +1141,7 @@ SET_CELL_BG_IN_CONTROLLER;
             case ROW_QQ_WEIBO:
             {
                 
-                PPSNSType type = TYPE_QQ;
+                PPSNSType type = TYPE_QQSPACE;
                 if ([[GameSNSService defaultService] isExpired:type] == YES){
                     [[GameSNSService defaultService] autheticate:type];
                 }
@@ -1371,7 +1385,7 @@ SET_CELL_BG_IN_CONTROLLER;
 
 - (void)bindQQ
 {
-    [self bindSNS:TYPE_QQ];
+    [self bindSNS:TYPE_QQSPACE];
 }
 
 - (void)bindSina

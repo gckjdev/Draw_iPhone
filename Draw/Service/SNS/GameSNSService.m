@@ -24,7 +24,7 @@
 #import <TencentOpenAPI/TencentOAuth.h>
 #import "GTMBase64.h"
 #import <ShareSDK/ShareSDK.h>
-#import "WeiboApi.h"
+//#import "WeiboApi.h"
 #import "TaskManager.h"
 //#import "ZeroQianManager.h"
 
@@ -59,12 +59,12 @@ GameSNSService* _defaultSNSService;
         PPDebug(@"end registerApp SINA Weibo");
         
         //添加腾讯微博应用
-        [ShareSDK connectTencentWeiboWithAppKey:[GameApp qqAppKey]          //@"801307650"
-                                      appSecret:[GameApp qqAppSecret]       // @"ae36f4ee3946e1cbb98d6965b0b2ff5c"
-                                    redirectUri:[GameApp qqAppRedirectURI]  // @"http://www.sharesdk.cn"];
-                                       wbApiCls:[WeiboApi class]];
-        
-        PPDebug(@"end registerApp QQ Weibo");
+//        [ShareSDK connectTencentWeiboWithAppKey:[GameApp qqAppKey]          //@"801307650"
+//                                      appSecret:[GameApp qqAppSecret]       // @"ae36f4ee3946e1cbb98d6965b0b2ff5c"
+//                                    redirectUri:[GameApp qqAppRedirectURI]  // @"http://www.sharesdk.cn"];
+//                                       wbApiCls:[WeiboApi class]];
+//        
+//        PPDebug(@"end registerApp QQ Weibo");
 
         //添加Facebook应用
         [ShareSDK connectFacebookWithAppKey:[GameApp facebookAppKey]   //@"107704292745179"
@@ -78,18 +78,18 @@ GameSNSService* _defaultSNSService;
 
         PPDebug(@"end registerApp WeChat");
         
-//        if ([DeviceDetection isOS6] == NO){
-//            //添加QQ应用(QQ空间)
-//            [ShareSDK connectQQWithQZoneAppKey:[GameApp qqSpaceAppId]                //该参数填入申请的QQ AppId
-//                             qqApiInterfaceCls:[QQApiInterface class]
-//                               tencentOAuthCls:[TencentOAuth class]];
-//
-//            //添加QQ应用(QQ空间)
-//            [ShareSDK connectQZoneWithAppKey:[GameApp qqSpaceAppId]                //该参数填入申请的QQ AppId
-//                                   appSecret:[GameApp qqSpaceAppKey]];
-//
-//            PPDebug(@"end registerApp QZone");
-//        }
+        //添加QQ空间应用  注册网址  http://connect.qq.com/intro/login/
+        [ShareSDK connectQZoneWithAppKey:[GameApp qqSpaceAppId]
+                               appSecret:[GameApp qqSpaceAppKey]
+                       qqApiInterfaceCls:[QQApiInterface class]
+                         tencentOAuthCls:[TencentOAuth class]];
+        
+        //添加QQ应用  注册网址  http://open.qq.com/
+        [ShareSDK connectQQWithQZoneAppKey:[GameApp qqSpaceAppId]
+                         qqApiInterfaceCls:[QQApiInterface class]
+                           tencentOAuthCls:[TencentOAuth class]];
+
+        PPDebug(@"end registerApp QZone");
         
         PPDebug(@"end registerApp all");
         
@@ -97,6 +97,7 @@ GameSNSService* _defaultSNSService;
         [self cleanSNSInfoIfExpired:ShareTypeSinaWeibo];
         [self cleanSNSInfoIfExpired:ShareTypeTencentWeibo];
         [self cleanSNSInfoIfExpired:ShareTypeFacebook];
+        [self cleanSNSInfoIfExpired:ShareTypeQQSpace];
         
         PPDebug(@"end clean expire all");
         
@@ -203,14 +204,7 @@ GameSNSService* _defaultSNSService;
                                                        message:NSLS(@"kRebindQQ")
                                                          style:CommonDialogStyleDoubleButton];
      [dialog setClickOkBlock:^(UILabel *label){
-         
-         [self autheticate:TYPE_QQ];
-         
-//          [SNSUtils bindSNS:TYPE_QQ succ:^(NSDictionary *userInfo) {
-//              [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kBindQQWeibo") delayTime:1 isHappy:YES];
-//          } failure:^{
-//              //
-//          }];
+         [self autheticate:TYPE_QQSPACE];
      }];
     
     [dialog showInView:viewController.view];
@@ -223,14 +217,7 @@ GameSNSService* _defaultSNSService;
                                                        message:NSLS(@"kRebindSina")
                                                          style:CommonDialogStyleDoubleButton];
      [dialog setClickOkBlock:^(UILabel *label){
-         
          [self autheticate:TYPE_SINA];
-         
-//          [SNSUtils bindSNS:TYPE_SINA succ:^(NSDictionary *userInfo){
-//              [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kBindSinaWeibo") delayTime:1 isHappy:YES];
-//          } failure:^{
-//              //
-//          }];
      }];
     
     [dialog showInView:viewController.view];
@@ -242,14 +229,7 @@ GameSNSService* _defaultSNSService;
                                                        message:NSLS(@"kRebindFacebook")
                                                          style:CommonDialogStyleDoubleButton];
     [dialog setClickOkBlock:^(UILabel *label){
-        
         [self autheticate:TYPE_FACEBOOK];
-        
-//        [SNSUtils bindSNS:TYPE_FACEBOOK succ:^(NSDictionary *userInfo){
-//          [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kBindFacebook") delayTime:1 isHappy:YES];
-//        } failure:^{
-//          
-//        }];
     }];
     
     [dialog showInView:viewController.view];
@@ -263,8 +243,8 @@ GameSNSService* _defaultSNSService;
         case TYPE_SINA:
             return ShareTypeSinaWeibo;
 
-        case TYPE_QQ:
-            return ShareTypeTencentWeibo;
+//        case TYPE_QQSP:
+//            return ShareTypeTencentWeibo;
 
         case TYPE_FACEBOOK:
             return ShareTypeFacebook;
@@ -611,6 +591,13 @@ GameSNSService* _defaultSNSService;
         image = [ShareSDK imageWithPath:imagePath];
     }
     
+    if (shareType == ShareTypeQQSpace && mediaType == SSPublishContentMediaTypeImage){
+        // TODO for QQSpace
+    }
+    
+    PPDebug(@"<publishWeibo> image size is %d", [image.data length]);
+
+    
     id<ISSContent> publishContent = [ShareSDK content:text
                                        defaultContent:@""
                                                 image:image
@@ -824,10 +811,14 @@ GameSNSService* _defaultSNSService;
         case TYPE_SINA:
             weiboNick = [GameApp sinaWeiboId];
             break;
-        case TYPE_QQ:
-            weiboNick = [GameApp qqWeiboId];
+//        case TYPE_QQ:
+//            weiboNick = [GameApp qqWeiboId];
             break;
             
+        case TYPE_QQSPACE:
+            weiboNick = [GameApp qqWeiboId];
+            break;
+
         default:
             return [UIUtils getAppName];
     }

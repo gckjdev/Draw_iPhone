@@ -267,7 +267,7 @@ CGPoint contentOffset;
 
 - (void)updateName:(PBImageShapeGroup *)group
 {
-    NSArray *list = [group groupNameList];
+    NSArray *list = [group groupName];
     NSString *name = nil;
     if ([LocaleUtils isChinese]) {
         name = [self nameInList:list language:@"zh_Hans"];

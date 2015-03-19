@@ -15,8 +15,9 @@
 
 typedef enum {
     SINA_WEIBO = TYPE_SINA,
-    QQ_WEIBO = TYPE_QQ,
+//    QQ_WEIBO = TYPE_QQ,
     FACEBOOK = TYPE_FACEBOOK,
+    QQ_SPACE = TYPE_QQSPACE,
 }SnsType;
 
 //@class SynthesisView;

@@ -529,7 +529,7 @@
         }
         else if([t isEqualToString:TITLE_SHARE_QQ_WEIBO]){
 
-            [[GameSNSService defaultService] publishWeibo:TYPE_QQ
+            [[GameSNSService defaultService] publishWeibo:TYPE_QQSPACE
                                                      text:text
                                             imageFilePath:imageFilePath
                                                    inView:superView

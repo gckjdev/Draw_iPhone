@@ -116,7 +116,7 @@
 
 - (NSString*)qqSpaceAppSecret
 {
-    return [MobClickUtils getStringValueByKey:@"DRAW_QQ_SPACE_APP_SECRET" defaultValue:@""];
+    return [MobClickUtils getStringValueByKey:@"DRAW_QQ_SPACE_APP_SECRET" defaultValue:@"7687417d49a2a14c3dd9434d05c29662"];
 }
 
 

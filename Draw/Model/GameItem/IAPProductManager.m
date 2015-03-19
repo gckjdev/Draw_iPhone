@@ -34,7 +34,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(IAPProductManager);
         NSData *data = [NSData dataWithContentsOfFile:path];
         
         @try {
-            self.productList = [[PBIAPProductList parseFromData:data] productsList];            
+            self.productList = [[PBIAPProductList parseFromData:data] products];
         }
         @catch (NSException *exception) {
             

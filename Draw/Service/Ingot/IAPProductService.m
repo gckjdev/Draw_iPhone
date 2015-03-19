@@ -51,7 +51,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(IAPProductService);
         
         @try {
             NSData *data = [NSData dataWithContentsOfFile:dataFilePath];
-            NSArray *products = [[PBIAPProductList parseFromData:data] productsList];
+            NSArray *products = [[PBIAPProductList parseFromData:data] products];
             [[IAPProductManager defaultManager] setProductList:products];
             
             EXECUTE_BLOCK(tempHandler, YES, products);
@@ -67,7 +67,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(IAPProductService);
     } failureBlock:^(NSError *error) {
         PPDebug(@"getIngotsList failure error=%@", [error description]);
         NSData *data = [NSData dataWithContentsOfFile:bself.smartData.dataFilePath];
-        NSArray *products = [[PBIAPProductList parseFromData:data] productsList];
+        NSArray *products = [[PBIAPProductList parseFromData:data] products];
         [[IAPProductManager defaultManager] setProductList:products];
         EXECUTE_BLOCK(tempHandler, NO, products);
         [bself.blockArray releaseBlock:tempHandler];
@@ -242,7 +242,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(IAPProductService);
     
     
     PBIAPProductListBuilder *listBuilder = [[PBIAPProductListBuilder alloc] init];
-    [listBuilder addAllProducts:mutableArray];
+    [listBuilder setProductsArray:mutableArray];
     PBIAPProductList *list = [listBuilder build];
     
     //write to file
@@ -311,7 +311,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(IAPProductService);
     
     
     PBIAPProductListBuilder *listBuilder = [[PBIAPProductListBuilder alloc] init];
-    [listBuilder addAllProducts:mutableArray];
+    [listBuilder setProductsArray:mutableArray];
     PBIAPProductList *list = [listBuilder build];
     
     //write to file
@@ -456,7 +456,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(IAPProductService);
     
     
     PBIAPProductListBuilder *listBuilder = [[PBIAPProductListBuilder alloc] init];
-    [listBuilder addAllProducts:mutableArray];
+    [listBuilder setProductsArray:mutableArray];
     PBIAPProductList *list = [listBuilder build];
     
     //write to file
@@ -564,7 +564,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(IAPProductService);
                                           priceList:priceList]];
     
     PBIAPProductListBuilder *listBuilder = [[PBIAPProductListBuilder alloc] init];
-    [listBuilder addAllProducts:mutableArray];
+    [listBuilder setProductsArray:mutableArray];
     PBIAPProductList *list = [listBuilder build];
     
     //write to file
@@ -642,7 +642,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(IAPProductService);
                                           priceList:priceList]];
     
     PBIAPProductListBuilder *listBuilder = [[PBIAPProductListBuilder alloc] init];
-    [listBuilder addAllProducts:mutableArray];
+    [listBuilder setProductsArray:mutableArray];
     PBIAPProductList *list = [listBuilder build];
     
     //write to file
@@ -721,7 +721,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(IAPProductService);
                                           priceList:priceList]];
     
     PBIAPProductListBuilder *listBuilder = [[PBIAPProductListBuilder alloc] init];
-    [listBuilder addAllProducts:mutableArray];
+    [listBuilder setProductsArray:mutableArray];
     PBIAPProductList *list = [listBuilder build];
     
     //write to file
@@ -799,7 +799,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(IAPProductService);
                                           priceList:priceList]];
     
     PBIAPProductListBuilder *listBuilder = [[PBIAPProductListBuilder alloc] init];
-    [listBuilder addAllProducts:mutableArray];
+    [listBuilder setProductsArray:mutableArray];
     PBIAPProductList *list = [listBuilder build];
     
     //write to file
@@ -877,7 +877,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(IAPProductService);
                                           priceList:priceList]];
     
     PBIAPProductListBuilder *listBuilder = [[PBIAPProductListBuilder alloc] init];
-    [listBuilder addAllProducts:mutableArray];
+    [listBuilder setProductsArray:mutableArray];
     PBIAPProductList *list = [listBuilder build];
     
     //write to file
@@ -970,7 +970,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(IAPProductService);
                                           priceList:priceList]];
     
     PBIAPProductListBuilder *listBuilder = [[PBIAPProductListBuilder alloc] init];
-    [listBuilder addAllProducts:mutableArray];
+    [listBuilder setProductsArray:mutableArray];
     PBIAPProductList *list = [listBuilder build];
     
     //write to file
@@ -1062,7 +1062,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(IAPProductService);
                                           priceList:priceList]];
     
     PBIAPProductListBuilder *listBuilder = [[PBIAPProductListBuilder alloc] init];
-    [listBuilder addAllProducts:mutableArray];
+    [listBuilder setProductsArray:mutableArray];
     PBIAPProductList *list = [listBuilder build];
     
     //write to file
@@ -1154,7 +1154,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(IAPProductService);
                                           priceList:priceList]];
     
     PBIAPProductListBuilder *listBuilder = [[PBIAPProductListBuilder alloc] init];
-    [listBuilder addAllProducts:mutableArray];
+    [listBuilder setProductsArray:mutableArray];
     PBIAPProductList *list = [listBuilder build];
     
     //write to file
@@ -1246,7 +1246,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(IAPProductService);
                                           priceList:priceList]];
     
     PBIAPProductListBuilder *listBuilder = [[PBIAPProductListBuilder alloc] init];
-    [listBuilder addAllProducts:mutableArray];
+    [listBuilder setProductsArray:mutableArray];
     PBIAPProductList *list = [listBuilder build];
     
     //write to file
@@ -1323,7 +1323,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(IAPProductService);
 
     
     PBIAPProductListBuilder *listBuilder = [[PBIAPProductListBuilder alloc] init];
-    [listBuilder addAllProducts:mutableArray];
+    [listBuilder setProductsArray:mutableArray];
     PBIAPProductList *list = [listBuilder build];
     
     //write to file
@@ -1401,7 +1401,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(IAPProductService);
                                         priceList:priceList]];
 
     PBIAPProductListBuilder *listBuilder = [[PBIAPProductListBuilder alloc] init];
-    [listBuilder addAllProducts:mutableArray];
+    [listBuilder setProductsArray:mutableArray];
     PBIAPProductList *list = [listBuilder build];
     
     //write to file
@@ -1465,7 +1465,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(IAPProductService);
     [builder setCurrency:@"$"];
     [builder setCountry:@"US"];
     [builder setTaobaoUrl:taobaoUrl];
-    [builder addAllPrices:priceList];
+    [builder setPricesArray:priceList];
     
     return [builder build];
 }
@@ -1520,7 +1520,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(IAPProductService);
     [builder setCurrency:@"￥"];
     [builder setCountry:@"CN"];
     [builder setTaobaoUrl:taobaoUrl];
-    [builder addAllPrices:priceList];
+    [builder setPricesArray:priceList];
     
     return [builder build];
 }

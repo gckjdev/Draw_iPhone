@@ -447,7 +447,7 @@ allowClickMaskDismiss:(BOOL)allowClickMaskDismiss
 
 - (void)bindQQWeibo
 {
-    [self bindSNS:TYPE_QQ];
+    [self bindSNS:TYPE_QQSPACE];
 }
 
 - (void)bindFacebook
@@ -502,7 +502,7 @@ allowClickMaskDismiss:(BOOL)allowClickMaskDismiss
         [self shareViaSNS:TYPE_SINA];
     } else if (tag == ShareActionTagQQWeibo) {
         [[AnalyticsManager sharedAnalyticsManager] reportShareActionClicks:SHARE_ACTION_QQ];
-        [self shareViaSNS:TYPE_QQ];
+        [self shareViaSNS:TYPE_QQSPACE];
     } else if (tag == ShareActionTagFacebook) {
         [[AnalyticsManager sharedAnalyticsManager] reportShareActionClicks:SHARE_ACTION_FACEBOOK];
         [self shareViaSNS:TYPE_FACEBOOK];
@@ -540,7 +540,7 @@ allowClickMaskDismiss:(BOOL)allowClickMaskDismiss
         case TYPE_SINA: {
             [self reportActionToServer:DB_FIELD_ACTION_SHARE_SINA];
         } break;
-        case TYPE_QQ: {
+        case TYPE_QQSPACE: {
             [self reportActionToServer:DB_FIELD_ACTION_SHARE_QQ];
         } break;
         case TYPE_FACEBOOK: {

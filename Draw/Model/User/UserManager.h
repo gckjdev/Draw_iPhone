@@ -200,7 +200,8 @@ qqAccessTokenSecret:(NSString*)accessTokenSecret
 
 
 - (BOOL)hasBindSinaWeibo;
-- (BOOL)hasBindQQWeibo;
+//- (BOOL)hasBindQQWeibo;
+- (BOOL)hasBindQQSpace;
 - (BOOL)hasBindFacebook;
 
 - (NSInteger)roomCount;

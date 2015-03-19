@@ -546,12 +546,12 @@ static dispatch_once_t onceToken;
 
 - (NSArray*)appRewardList
 {
-    return [self.defaultConfig appRewardsList];
+    return [self.defaultConfig appRewards];
 }
 
 - (NSArray*)rewardWallList
 {
-    return [self.defaultConfig rewardWallsList];
+    return [self.defaultConfig rewardWalls];
 }
 
 - (void)syncData

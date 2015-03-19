@@ -215,7 +215,7 @@
 "kPassword" = "密碼";
 "kNickname" = "暱稱";
 "kBindSinaWeibo" = "綁定新浪微博";
-"kBindQQWeibo" = "綁定騰訊微博";
+"kBindQQWeibo" = "綁定QQ空間";
 "kBindFacebook" = "綁定Facebook";
 "kBind" = "已綁定";
 "kUnBind" = "未綁定";
@@ -271,7 +271,8 @@
 "kSave_to_album" = "保存到相冊";
 "kShare_via_Email" = "通過郵件分享";
 "kShare_via_Sina_weibo" = "通過新浪微博分享";
-"kShare_via_tencent_weibo" = "通過騰訊微博分享";
+"kShare_via_tencent_weibo" = "通過QQ空間分享";
+"kShare_via_qq_space" = "通過QQ空间分享";
 "kShare_via_Facebook" = "通過Facebook分享";
 "kShare_via_Twitter" = "通過Twitter分享";
 "kShare_via_Weixin" = "分享到微信";
@@ -759,7 +760,7 @@
 "kSetSinaWeibo" = "新浪微博";
 "kWeiboSet" = "已綁定";
 "kNotSet" = "未綁定";
-"kSetQQWeibo" = "騰訊微博";
+"kSetQQWeibo" = "QQ空间";
 "kSetFacebook" = "Facebook";
 "kInputEmail" = "請輸入電子郵件地址";
 
@@ -767,7 +768,7 @@
 "kUserBindFail" = "綁定用戶帳號失敗，請檢查網絡是否可用，稍候再試，或者聯繫我們的技術支持";
 "kWeiboExpired" = "授權已過期";
 "kSaveAndShare" = "保存分享";
-"kRebindQQ" = "你已經綁定過騰訊微博了，是否要重新嘗試綁​​定？"; 
+"kRebindQQ" = "你已經綁定過QQ空間了，是否要重新嘗試綁​​定？"; 
 "kRebindSina" = "你已經綁定了新浪微博了，是否要重新嘗試綁​​定？"; 
 "kRebindFacebook" = "你已經綁定了Facebook了，是否要重新嘗試綁​​定？"; 
 
@@ -1289,7 +1290,7 @@
 "kFavorite" = "收藏";
 "kAlbum" = "相冊";
 "kSinaWeibo" = "新浪微博";
-"kTencentWeibo" = "騰訊微博";
+"kTencentWeibo" = "QQ空间";
 "kFacebook" = "Facebook";
 
 "kSaveToAlbumSuccess" = "成功保存到相冊!";
@@ -2492,7 +2493,7 @@
 "kShareWeixinSession" = "分享給微信好友";
 "kShareWeixinTimeline" = "分享微信朋友圈";
 "kShareQQSpace" = "分享到QQ空間";
-"kShareQQWeibo" = "分享到騰訊微博";
+"kShareQQWeibo" = "分享到QQ空間";
 "kShareFacebook" = "分享到Facebook";
 "kSaveAsPhoto" = "保存到相冊";
 "kSaveAsGif" = "保存成为Gif图片";
@@ -2570,8 +2571,8 @@
 "kTaskBindSinaWeibo" = "綁定新浪微博";
 "kTaskBindSinaWeiboDesc" = "綁定新浪微博並關注官方微博，可獲得%d金幣";
 
-"kTaskBindQQWeibo" = "綁定騰訊微博";
-"kTaskBindQQWeiboDesc" = "綁定騰訊微博並關注官方微博，可獲得%d金幣";
+"kTaskBindQQWeibo" = "綁定QQ空間";
+"kTaskBindQQWeiboDesc" = "綁定QQ空間並關注官方微博，可獲得%d金幣";
 
 "kTaskShareSinaWeibo" = "分享應用到新浪微博";
 "kTaskShareSinaWeiboDesc" = "分享一條30字左右的應用使用體驗，可獲得%d金幣";
@@ -2582,7 +2583,7 @@
 "kTaskShareQQSpace" = "分享應用到QQ空間";
 "kTaskShareQQSpaceDesc" = "分享一條30字左右的應用使用體驗，可獲得%d金幣";
 
-"kTaskShareQQWeibo" = "分享應用到騰訊微博";
+"kTaskShareQQWeibo" = "分享應用到QQ空間";
 "kTaskShareQQWeiboDesc" = "分享一條30字左右的應用使用體驗，可獲得%d金幣";
 
 "kTaskCreateOpus" = "首次發表一個作品";
@@ -2729,7 +2730,7 @@
 "kTaskZeroQianDesc" = "每日簽到和分享作品，均可獲得積分，積分可以抽獎兌換實物（本服務由合作夥伴零錢提供）";
 
 "kPublishSina" = "發表至新浪微博";
-"kPublishTecent" = "發表至騰訊微博";
+"kPublishTecent" = "發表至QQ空間";
 "kPublishWeixinFriend" = "發送給微信好友";
 "kPublishWeixinTimeline" = "發至微信朋友圈";
 "kPublishXiaoji" = "發表至小吉畫榜";
@@ -2900,7 +2901,7 @@
 "kConquerDrawShareWeixinFriend" = "發送給微信好友";
 "kConquerDrawSharekWeixinTimeline" = "分享到微信朋友圈";
 "kConquerDrawShareSinaWeibo" = "分享到新浪微博";
-"kConquerDrawShareQQWeibo" = "分享到騰訊微博";
+"kConquerDrawShareQQWeibo" = "分享到QQ空间";
 
 "kConquerDrawShareText" = "我在 @%@ 中學習畫畫，本次畫畫得分為%d分，擊敗了宇宙世界中總計%d位使用者";
 "kCreateImageShareFail" = "無法生成分享圖片，分享失敗";

@@ -340,7 +340,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GameItemService);
 
     
     PBGameItemListBuilder* listBuilder = [[PBGameItemListBuilder alloc] init];
-    [listBuilder addAllItems:mutableArray];
+    [listBuilder setItemsArray:mutableArray];
     PBGameItemList *list = [listBuilder build];
     
     //write to file
@@ -380,7 +380,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GameItemService);
                                         currency:PBGameCurrencyCoin]];
     
     PBGameItemListBuilder* listBuilder = [[PBGameItemListBuilder alloc] init];
-    [listBuilder addAllItems:mutableArray];
+    [listBuilder setItemsArray:mutableArray];
     PBGameItemList *list = [listBuilder build];
     
     //write to file
@@ -1306,7 +1306,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GameItemService);
      */
     
     PBGameItemListBuilder* listBuilder = [[PBGameItemListBuilder alloc] init];
-    [listBuilder addAllItems:mutableArray];
+    [listBuilder setItemsArray:mutableArray];
     PBGameItemList *list = [listBuilder build];
     
     NSString *filePath = nil;
@@ -1608,7 +1608,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GameItemService);
      */
     
     PBGameItemListBuilder* listBuilder = [[PBGameItemListBuilder alloc] init];
-    [listBuilder addAllItems:mutableArray];
+    [listBuilder setItemsArray:mutableArray];
     PBGameItemList *list = [listBuilder build];
     
     //write to file

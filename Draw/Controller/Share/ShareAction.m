@@ -171,9 +171,9 @@
         buttonIndexSinaWeibo = buttonIndex;
     }
     
-    if ([[UserManager defaultManager] hasBindQQWeibo]){
+    if ([[UserManager defaultManager] hasBindQQSpace]){
         buttonIndex ++;
-        [shareOptions addButtonWithTitle:NSLS(@"kShare_via_tencent_weibo")];
+        [shareOptions addButtonWithTitle:NSLS(@"kShare_via_qq_space")];
         buttonIndexQQWeibo = buttonIndex;
     }
     
@@ -598,10 +598,16 @@
     [self bindSNS:TYPE_SINA];
 }
 
-- (void)bindQQWeibo
+//- (void)bindQQWeibo
+//{
+//    [self bindSNS:TYPE_QQ];
+//}
+
+- (void)bindQQSpace
 {
-    [self bindSNS:TYPE_QQ];
+    [self bindSNS:TYPE_QQSPACE];
 }
+
 
 - (void)bindFacebook
 {
@@ -677,7 +683,7 @@
         [self shareViaSNS:TYPE_SINA];
     } else if (buttonIndex == buttonIndexQQWeibo) {
         [[AnalyticsManager sharedAnalyticsManager] reportShareActionClicks:SHARE_ACTION_QQ];
-        [self shareViaSNS:TYPE_QQ];
+        [self shareViaSNS:TYPE_QQSPACE];
     } else if (buttonIndex == buttonIndexFacebook) {
         [[AnalyticsManager sharedAnalyticsManager] reportShareActionClicks:SHARE_ACTION_FACEBOOK];
         [self shareViaSNS:TYPE_FACEBOOK];
@@ -719,7 +725,7 @@
         case SINA_WEIBO: {
             [self reportActionToServer:DB_FIELD_ACTION_SHARE_SINA];
         } break;
-        case QQ_WEIBO: {
+        case QQ_SPACE: {
             [self reportActionToServer:DB_FIELD_ACTION_SHARE_QQ];
         } break;
         case FACEBOOK: {

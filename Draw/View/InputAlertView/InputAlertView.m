@@ -82,7 +82,7 @@ typedef enum {
     BOOL hasSNS = NO;
     if (showSNS) {
         hasSNS = ([LocaleUtils isChina]
-                  || [[UserManager defaultManager] hasBindQQWeibo]
+                  || [[UserManager defaultManager] hasBindQQSpace]
                   || [[UserManager defaultManager] hasBindSinaWeibo]);
     }else{
         hasSNS = NO;
@@ -293,7 +293,7 @@ AUTO_CREATE_VIEW_BY_XIB(InputAlertView);
 
 - (BOOL)canShareViaQQ
 {
-    return [[GameSNSService defaultService] isExpired:TYPE_QQ] == NO;
+    return [[GameSNSService defaultService] isExpired:TYPE_QQSPACE] == NO;
 }
 
 
@@ -331,7 +331,7 @@ AUTO_CREATE_VIEW_BY_XIB(InputAlertView);
         [set addObject:@(TYPE_SINA)];
     }
     if (self.qqCheckBox.isSelected) {
-        [set addObject:@(TYPE_QQ)];
+        [set addObject:@(TYPE_QQSPACE)];
     }
     return set;
 }
@@ -356,7 +356,7 @@ AUTO_CREATE_VIEW_BY_XIB(InputAlertView);
         if ([self canShareViaQQ]) {
             [sender setSelected:YES];
         }else{
-            [self bindSNS:TYPE_QQ sender:sender];
+            [self bindSNS:TYPE_QQSPACE sender:sender];
         }
     }
 }

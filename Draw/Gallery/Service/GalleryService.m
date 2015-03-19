@@ -131,7 +131,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GalleryService)
             if (resultCode == 0 && output.responseData != nil){
                 DataQueryResponse *response = [DataQueryResponse parseFromData:output.responseData];
                 if (response.resultCode == 0){
-                    list = [response userPhotoListList];
+                    list = [response userPhotoList];
                 }
                 else{
                     resultCode = response.resultCode;
