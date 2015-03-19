@@ -80,6 +80,22 @@
     //    return @"http://caicaihuahua.me";
 }
 
+- (NSString*)qqSpaceAppId
+{
+    return [MobClickUtils getStringValueByKey:@"DRAW_QQ_SPACE_APP_ID" defaultValue:@"1104375378"];
+}
+
+- (NSString*)qqSpaceAppKey
+{
+    return [MobClickUtils getStringValueByKey:@"DRAW_QQ_SPACE_APP_KEY" defaultValue:@"PkLldP7gzcireYvH"];
+}
+
+- (NSString*)qqSpaceAppSecret
+{
+    return [MobClickUtils getStringValueByKey:@"DRAW_QQ_SPACE_APP_SECRET" defaultValue:@"PkLldP7gzcireYvH"];
+}
+
+
 - (NSString*)facebookAppKey
 {
     return [MobClickUtils getStringValueByKey:@"LITTLE_GEE_FACEBOOK_APP_SECRET" defaultValue:@"507044062701075"];
