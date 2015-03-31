@@ -259,7 +259,7 @@
     }
 }
 
-+ (float)getCellHeight
++ (CGFloat)getCellHeight
 {
     return ([DeviceDetection isIPAD]?1770:820);
 }

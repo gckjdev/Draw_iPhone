@@ -241,6 +241,38 @@
 		36B420FC1AA7FB7B00F8A9B1 /* SSZipArchive.m in Sources */ = {isa = PBXBuildFile; fileRef = CAFEFD2716606FC100441D77 /* SSZipArchive.m */; };
 		36B420FD1AA7FB7C00F8A9B1 /* SSZipArchive.m in Sources */ = {isa = PBXBuildFile; fileRef = CAFEFD2716606FC100441D77 /* SSZipArchive.m */; };
 		36B420FE1AA7FB7D00F8A9B1 /* SSZipArchive.m in Sources */ = {isa = PBXBuildFile; fileRef = CAFEFD2716606FC100441D77 /* SSZipArchive.m */; };
+		36E65E0E1ACA97720092009D /* libprotocolc.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 36E65E0D1ACA97720092009D /* libprotocolc.a */; };
+		36E65E0F1ACA97720092009D /* libprotocolc.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 36E65E0D1ACA97720092009D /* libprotocolc.a */; };
+		36E65E101ACA97720092009D /* libprotocolc.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 36E65E0D1ACA97720092009D /* libprotocolc.a */; };
+		36E65E111ACA97720092009D /* libprotocolc.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 36E65E0D1ACA97720092009D /* libprotocolc.a */; };
+		36EBC04F1AC3BCE300227C4A /* hn_btn_close@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 36EBC0461AC3BCE300227C4A /* hn_btn_close@3x.png */; };
+		36EBC0501AC3BCE300227C4A /* hn_btn_close@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 36EBC0461AC3BCE300227C4A /* hn_btn_close@3x.png */; };
+		36EBC0511AC3BCE300227C4A /* hn_btn_close@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 36EBC0461AC3BCE300227C4A /* hn_btn_close@3x.png */; };
+		36EBC0521AC3BCE300227C4A /* hn_btn_close@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 36EBC0461AC3BCE300227C4A /* hn_btn_close@3x.png */; };
+		36EBC0531AC3BCE300227C4A /* hn_btn_sound_close.png in Resources */ = {isa = PBXBuildFile; fileRef = 36EBC0471AC3BCE300227C4A /* hn_btn_sound_close.png */; };
+		36EBC0541AC3BCE300227C4A /* hn_btn_sound_close.png in Resources */ = {isa = PBXBuildFile; fileRef = 36EBC0471AC3BCE300227C4A /* hn_btn_sound_close.png */; };
+		36EBC0551AC3BCE300227C4A /* hn_btn_sound_close.png in Resources */ = {isa = PBXBuildFile; fileRef = 36EBC0471AC3BCE300227C4A /* hn_btn_sound_close.png */; };
+		36EBC0561AC3BCE300227C4A /* hn_btn_sound_close.png in Resources */ = {isa = PBXBuildFile; fileRef = 36EBC0471AC3BCE300227C4A /* hn_btn_sound_close.png */; };
+		36EBC0571AC3BCE300227C4A /* hn_btn_sound_open.png in Resources */ = {isa = PBXBuildFile; fileRef = 36EBC0481AC3BCE300227C4A /* hn_btn_sound_open.png */; };
+		36EBC0581AC3BCE300227C4A /* hn_btn_sound_open.png in Resources */ = {isa = PBXBuildFile; fileRef = 36EBC0481AC3BCE300227C4A /* hn_btn_sound_open.png */; };
+		36EBC0591AC3BCE300227C4A /* hn_btn_sound_open.png in Resources */ = {isa = PBXBuildFile; fileRef = 36EBC0481AC3BCE300227C4A /* hn_btn_sound_open.png */; };
+		36EBC05A1AC3BCE300227C4A /* hn_btn_sound_open.png in Resources */ = {isa = PBXBuildFile; fileRef = 36EBC0481AC3BCE300227C4A /* hn_btn_sound_open.png */; };
+		36EBC05B1AC3BCE300227C4A /* hn_logo_bright.png in Resources */ = {isa = PBXBuildFile; fileRef = 36EBC0491AC3BCE300227C4A /* hn_logo_bright.png */; };
+		36EBC05C1AC3BCE300227C4A /* hn_logo_bright.png in Resources */ = {isa = PBXBuildFile; fileRef = 36EBC0491AC3BCE300227C4A /* hn_logo_bright.png */; };
+		36EBC05D1AC3BCE300227C4A /* hn_logo_bright.png in Resources */ = {isa = PBXBuildFile; fileRef = 36EBC0491AC3BCE300227C4A /* hn_logo_bright.png */; };
+		36EBC05E1AC3BCE300227C4A /* hn_logo_bright.png in Resources */ = {isa = PBXBuildFile; fileRef = 36EBC0491AC3BCE300227C4A /* hn_logo_bright.png */; };
+		36EBC05F1AC3BCE300227C4A /* hn_logo_gray.png in Resources */ = {isa = PBXBuildFile; fileRef = 36EBC04A1AC3BCE300227C4A /* hn_logo_gray.png */; };
+		36EBC0601AC3BCE300227C4A /* hn_logo_gray.png in Resources */ = {isa = PBXBuildFile; fileRef = 36EBC04A1AC3BCE300227C4A /* hn_logo_gray.png */; };
+		36EBC0611AC3BCE300227C4A /* hn_logo_gray.png in Resources */ = {isa = PBXBuildFile; fileRef = 36EBC04A1AC3BCE300227C4A /* hn_logo_gray.png */; };
+		36EBC0621AC3BCE300227C4A /* hn_logo_gray.png in Resources */ = {isa = PBXBuildFile; fileRef = 36EBC04A1AC3BCE300227C4A /* hn_logo_gray.png */; };
+		36EBC0631AC3BCE300227C4A /* huaiNanVideoSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 36EBC04C1AC3BCE300227C4A /* huaiNanVideoSDK.a */; };
+		36EBC0641AC3BCE300227C4A /* huaiNanVideoSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 36EBC04C1AC3BCE300227C4A /* huaiNanVideoSDK.a */; };
+		36EBC0651AC3BCE400227C4A /* huaiNanVideoSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 36EBC04C1AC3BCE300227C4A /* huaiNanVideoSDK.a */; };
+		36EBC0661AC3BCE400227C4A /* huaiNanVideoSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 36EBC04C1AC3BCE300227C4A /* huaiNanVideoSDK.a */; };
+		36EBC06D1AC3C21C00227C4A /* youmispot.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 36EBC06C1AC3C21C00227C4A /* youmispot.a */; };
+		36EBC06E1AC3C21C00227C4A /* youmispot.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 36EBC06C1AC3C21C00227C4A /* youmispot.a */; };
+		36EBC06F1AC3C21C00227C4A /* youmispot.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 36EBC06C1AC3C21C00227C4A /* youmispot.a */; };
+		36EBC0701AC3C21C00227C4A /* youmispot.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 36EBC06C1AC3C21C00227C4A /* youmispot.a */; };
 		83E17DC016AB4A05BBF66F5E /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C73340CC5434A5894CC26E7 /* libPods.a */; };
 		8F5E9AD0400940DDB239EAC1 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C73340CC5434A5894CC26E7 /* libPods.a */; };
 		965990C8906A4D42B3A1D745 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C73340CC5434A5894CC26E7 /* libPods.a */; };
@@ -5380,9 +5412,6 @@
 		CA62C7681756FBB900C9EF56 /* Draw.pb-c.c in Sources */ = {isa = PBXBuildFile; fileRef = CA62C6D81756FB2300C9EF56 /* Draw.pb-c.c */; };
 		CA62C7691756FBB900C9EF56 /* GameBasic.pb-c.c in Sources */ = {isa = PBXBuildFile; fileRef = CA62C6D91756FB2A00C9EF56 /* GameBasic.pb-c.c */; };
 		CA62C76C1756FBB900C9EF56 /* Sing.pb-c.c in Sources */ = {isa = PBXBuildFile; fileRef = CA62C6DC1756FB4900C9EF56 /* Sing.pb-c.c */; };
-		CA62C7811756FC5A00C9EF56 /* protolCLib.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CA62C7801756FC5A00C9EF56 /* protolCLib.a */; };
-		CA62C78E1756FC5B00C9EF56 /* protolCLib.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CA62C7801756FC5A00C9EF56 /* protolCLib.a */; };
-		CA62C7911756FC5B00C9EF56 /* protolCLib.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CA62C7801756FC5A00C9EF56 /* protolCLib.a */; };
 		CA62C7A817570AF600C9EF56 /* PocketSVG.m in Sources */ = {isa = PBXBuildFile; fileRef = CA62C7A717570AF600C9EF56 /* PocketSVG.m */; };
 		CA62C7B517570AF600C9EF56 /* PocketSVG.m in Sources */ = {isa = PBXBuildFile; fileRef = CA62C7A717570AF600C9EF56 /* PocketSVG.m */; };
 		CA62C7B817570AF600C9EF56 /* PocketSVG.m in Sources */ = {isa = PBXBuildFile; fileRef = CA62C7A717570AF600C9EF56 /* PocketSVG.m */; };
@@ -7549,7 +7578,6 @@
 		EA411B39176066F500DA72D0 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA745D221503B1B500600024 /* UIKit.framework */; };
 		EA411B3A176066F500DA72D0 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA745D241503B1B500600024 /* Foundation.framework */; };
 		EA411B3B176066F500DA72D0 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA745D261503B1B500600024 /* CoreGraphics.framework */; };
-		EA411B49176066F500DA72D0 /* protolCLib.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CA62C7801756FC5A00C9EF56 /* protolCLib.a */; };
 		EA411B4C176066F500DA72D0 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = CA745D2B1503B1B500600024 /* InfoPlist.strings */; };
 		EA411B4D176066F500DA72D0 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA745D341503B1B500600024 /* MainWindow.xib */; };
 		EA411B4E176066F500DA72D0 /* donedown.png in Resources */ = {isa = PBXBuildFile; fileRef = CA103CD51509A56100F60C03 /* donedown.png */; };
@@ -8489,6 +8517,19 @@
 		36B420E01AA7F91900F8A9B1 /* SBJsonParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonParser.m; sourceTree = "<group>"; };
 		36B420E11AA7F91900F8A9B1 /* SBJsonWriter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJsonWriter.h; sourceTree = "<group>"; };
 		36B420E21AA7F91900F8A9B1 /* SBJsonWriter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonWriter.m; sourceTree = "<group>"; };
+		36E65E0D1ACA97720092009D /* libprotocolc.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libprotocolc.a; sourceTree = "<group>"; };
+		36EBC0461AC3BCE300227C4A /* hn_btn_close@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "hn_btn_close@3x.png"; sourceTree = "<group>"; };
+		36EBC0471AC3BCE300227C4A /* hn_btn_sound_close.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = hn_btn_sound_close.png; sourceTree = "<group>"; };
+		36EBC0481AC3BCE300227C4A /* hn_btn_sound_open.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = hn_btn_sound_open.png; sourceTree = "<group>"; };
+		36EBC0491AC3BCE300227C4A /* hn_logo_bright.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = hn_logo_bright.png; sourceTree = "<group>"; };
+		36EBC04A1AC3BCE300227C4A /* hn_logo_gray.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = hn_logo_gray.png; sourceTree = "<group>"; };
+		36EBC04B1AC3BCE300227C4A /* HNHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HNHeader.h; sourceTree = "<group>"; };
+		36EBC04C1AC3BCE300227C4A /* huaiNanVideoSDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = huaiNanVideoSDK.a; sourceTree = "<group>"; };
+		36EBC04E1AC3BCE300227C4A /* CocoBVideo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CocoBVideo.h; sourceTree = "<group>"; };
+		36EBC0691AC3C21C00227C4A /* ConfigHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConfigHeader.h; sourceTree = "<group>"; };
+		36EBC06A1AC3C21C00227C4A /* symbols_spotconfuse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = symbols_spotconfuse.h; sourceTree = "<group>"; };
+		36EBC06B1AC3C21C00227C4A /* YouMiNewSpot.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YouMiNewSpot.h; sourceTree = "<group>"; };
+		36EBC06C1AC3C21C00227C4A /* youmispot.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = youmispot.a; sourceTree = "<group>"; };
 		4C73340CC5434A5894CC26E7 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		5F5CBE3EAF724F1A9042D44B /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 		A30A28451580C2AE006CA3CC /* ChatCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatCell.h; sourceTree = "<group>"; };
@@ -10481,7 +10522,6 @@
 		CA62C6D81756FB2300C9EF56 /* Draw.pb-c.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = "Draw.pb-c.c"; sourceTree = "<group>"; };
 		CA62C6D91756FB2A00C9EF56 /* GameBasic.pb-c.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = "GameBasic.pb-c.c"; sourceTree = "<group>"; };
 		CA62C6DC1756FB4900C9EF56 /* Sing.pb-c.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = "Sing.pb-c.c"; sourceTree = "<group>"; };
-		CA62C7801756FC5A00C9EF56 /* protolCLib.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = protolCLib.a; sourceTree = "<group>"; };
 		CA62C7A617570AF600C9EF56 /* PocketSVG.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PocketSVG.h; sourceTree = "<group>"; };
 		CA62C7A717570AF600C9EF56 /* PocketSVG.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PocketSVG.m; sourceTree = "<group>"; };
 		CA639118152FEA4F007564C6 /* PriceModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PriceModel.h; sourceTree = "<group>"; };
@@ -11664,6 +11704,7 @@
 				3672C2471ABA7C4600AEC29D /* ShareSDKiPhoneDefaultShareViewUI.framework in Frameworks */,
 				A461B3D3174CBAA70088B061 /* AVFoundation.framework in Frameworks */,
 				3672C2171ABA7C4400AEC29D /* WeChatConnection.framework in Frameworks */,
+				36E65E101ACA97720092009D /* libprotocolc.a in Frameworks */,
 				3672C23B1ABA7C4600AEC29D /* ShareSDKFlatShareViewUI.framework in Frameworks */,
 				A461B3D2174CBAA70088B061 /* AudioToolbox.framework in Frameworks */,
 				CACD6CFD18E03C0A003F97C0 /* libleveldb.a in Frameworks */,
@@ -11715,8 +11756,9 @@
 				3672C22C1ABA7C4500AEC29D /* libWeiboSDK.a in Frameworks */,
 				3672C2021ABA7C4400AEC29D /* CopyConnection.framework in Frameworks */,
 				A461B3E4174CBAA70088B061 /* CoreGraphics.framework in Frameworks */,
-				CA62C7911756FC5B00C9EF56 /* protolCLib.a in Frameworks */,
+				36EBC0651AC3BCE400227C4A /* huaiNanVideoSDK.a in Frameworks */,
 				83E17DC016AB4A05BBF66F5E /* libPods.a in Frameworks */,
+				36EBC06F1AC3C21C00227C4A /* youmispot.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -11727,6 +11769,7 @@
 				3672C2161ABA7C4400AEC29D /* WeChatConnection.framework in Frameworks */,
 				CA32E63018F00AC70076959B /* CoreMotion.framework in Frameworks */,
 				CA1162901836098800FDD3A9 /* Accelerate.framework in Frameworks */,
+				36EBC0641AC3BCE300227C4A /* huaiNanVideoSDK.a in Frameworks */,
 				36B4206D1AA762B000F8A9B1 /* GoogleMobileAds.framework in Frameworks */,
 				3672C22B1ABA7C4500AEC29D /* libWeiboSDK.a in Frameworks */,
 				C28A9CAE1738F04B007A819F /* libstdc++.dylib in Frameworks */,
@@ -11735,6 +11778,7 @@
 				CA9AFE64181D434700E08747 /* CoreVideo.framework in Frameworks */,
 				3672C23A1ABA7C4600AEC29D /* ShareSDKFlatShareViewUI.framework in Frameworks */,
 				C28A9CB41738F04B007A819F /* ImageIO.framework in Frameworks */,
+				36E65E0F1ACA97720092009D /* libprotocolc.a in Frameworks */,
 				A4F04B84180643BD007274BE /* AssetsLibrary.framework in Frameworks */,
 				C28A9CA21738F04B007A819F /* AddressBookUI.framework in Frameworks */,
 				C28A9CA31738F04B007A819F /* PassKit.framework in Frameworks */,
@@ -11744,6 +11788,7 @@
 				3672C2311ABA7C4500AEC29D /* libWeChatSDK.a in Frameworks */,
 				C28A9CA51738F04B007A819F /* AdSupport.framework in Frameworks */,
 				3672C2041ABA7C4400AEC29D /* FacebookConnection.framework in Frameworks */,
+				36EBC06E1AC3C21C00227C4A /* youmispot.a in Frameworks */,
 				C28A9CA61738F04B007A819F /* OpenGLES.framework in Frameworks */,
 				3672C2221ABA7C4500AEC29D /* ShareSDKCoreService.framework in Frameworks */,
 				C28A9CA71738F04B007A819F /* CoreImage.framework in Frameworks */,
@@ -11784,7 +11829,6 @@
 				36B4208E1AA762FD00F8A9B1 /* libcrypto.a in Frameworks */,
 				C28A9CC21738F04B007A819F /* Foundation.framework in Frameworks */,
 				C28A9CC31738F04B007A819F /* CoreGraphics.framework in Frameworks */,
-				CA62C78E1756FC5B00C9EF56 /* protolCLib.a in Frameworks */,
 				CACD6B3618E03B4B003F97C0 /* libMobClickLibrary.a in Frameworks */,
 				8F5E9AD0400940DDB239EAC1 /* libPods.a in Frameworks */,
 				3672C2341ABA7C4600AEC29D /* ShareSDK.framework in Frameworks */,
@@ -11809,6 +11853,7 @@
 				3672C2451ABA7C4600AEC29D /* ShareSDKiPhoneDefaultShareViewUI.framework in Frameworks */,
 				CA103F361509A71000F60C03 /* AVFoundation.framework in Frameworks */,
 				3672C2151ABA7C4400AEC29D /* WeChatConnection.framework in Frameworks */,
+				36E65E0E1ACA97720092009D /* libprotocolc.a in Frameworks */,
 				3672C2391ABA7C4600AEC29D /* ShareSDKFlatShareViewUI.framework in Frameworks */,
 				A3FAE0E215536F8E008B5827 /* AudioToolbox.framework in Frameworks */,
 				CACD6CFB18E03C0A003F97C0 /* libleveldb.a in Frameworks */,
@@ -11860,8 +11905,9 @@
 				3672C22A1ABA7C4500AEC29D /* libWeiboSDK.a in Frameworks */,
 				3672C2001ABA7C4400AEC29D /* CopyConnection.framework in Frameworks */,
 				CA745D271503B1B500600024 /* CoreGraphics.framework in Frameworks */,
-				CA62C7811756FC5A00C9EF56 /* protolCLib.a in Frameworks */,
+				36EBC0631AC3BCE300227C4A /* huaiNanVideoSDK.a in Frameworks */,
 				965990C8906A4D42B3A1D745 /* libPods.a in Frameworks */,
+				36EBC06D1AC3C21C00227C4A /* youmispot.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -11875,6 +11921,7 @@
 				EA411B19176066F500DA72D0 /* MediaPlayer.framework in Frameworks */,
 				CACD6B3818E03B4B003F97C0 /* libMobClickLibrary.a in Frameworks */,
 				CACD6D4B18E03C86003F97C0 /* libmp3lame.a in Frameworks */,
+				36EBC0661AC3BCE400227C4A /* huaiNanVideoSDK.a in Frameworks */,
 				EA411B1A176066F500DA72D0 /* AVFoundation.framework in Frameworks */,
 				EA411B1B176066F500DA72D0 /* AudioToolbox.framework in Frameworks */,
 				EA411B1C176066F500DA72D0 /* CoreAudio.framework in Frameworks */,
@@ -11887,6 +11934,7 @@
 				EA411B22176066F500DA72D0 /* CoreImage.framework in Frameworks */,
 				EA411B23176066F500DA72D0 /* libicucore.dylib in Frameworks */,
 				EA411B24176066F500DA72D0 /* OpenAL.framework in Frameworks */,
+				36E65E111ACA97720092009D /* libprotocolc.a in Frameworks */,
 				EA411B25176066F500DA72D0 /* EventKitUI.framework in Frameworks */,
 				EA411B26176066F500DA72D0 /* EventKit.framework in Frameworks */,
 				EA411B27176066F500DA72D0 /* CoreLocation.framework in Frameworks */,
@@ -11909,10 +11957,10 @@
 				EA411B37176066F500DA72D0 /* QuartzCore.framework in Frameworks */,
 				EA411B38176066F500DA72D0 /* CFNetwork.framework in Frameworks */,
 				EA411B39176066F500DA72D0 /* UIKit.framework in Frameworks */,
+				36EBC0701AC3C21C00227C4A /* youmispot.a in Frameworks */,
 				EA411B3A176066F500DA72D0 /* Foundation.framework in Frameworks */,
 				36B4206F1AA762B000F8A9B1 /* GoogleMobileAds.framework in Frameworks */,
 				EA411B3B176066F500DA72D0 /* CoreGraphics.framework in Frameworks */,
-				EA411B49176066F500DA72D0 /* protolCLib.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -12217,6 +12265,48 @@
 				36B420E21AA7F91900F8A9B1 /* SBJsonWriter.m */,
 			);
 			path = json;
+			sourceTree = "<group>";
+		};
+		36EBC0451AC3BCE200227C4A /* YoumiVideo */ = {
+			isa = PBXGroup;
+			children = (
+				36EBC0461AC3BCE300227C4A /* hn_btn_close@3x.png */,
+				36EBC0471AC3BCE300227C4A /* hn_btn_sound_close.png */,
+				36EBC0481AC3BCE300227C4A /* hn_btn_sound_open.png */,
+				36EBC0491AC3BCE300227C4A /* hn_logo_bright.png */,
+				36EBC04A1AC3BCE300227C4A /* hn_logo_gray.png */,
+				36EBC04B1AC3BCE300227C4A /* HNHeader.h */,
+				36EBC04C1AC3BCE300227C4A /* huaiNanVideoSDK.a */,
+				36EBC04D1AC3BCE300227C4A /* include */,
+			);
+			path = YoumiVideo;
+			sourceTree = "<group>";
+		};
+		36EBC04D1AC3BCE300227C4A /* include */ = {
+			isa = PBXGroup;
+			children = (
+				36EBC04E1AC3BCE300227C4A /* CocoBVideo.h */,
+			);
+			path = include;
+			sourceTree = "<group>";
+		};
+		36EBC0671AC3C21B00227C4A /* YoumiSpotAd */ = {
+			isa = PBXGroup;
+			children = (
+				36EBC0681AC3C21C00227C4A /* include */,
+				36EBC06C1AC3C21C00227C4A /* youmispot.a */,
+			);
+			path = YoumiSpotAd;
+			sourceTree = "<group>";
+		};
+		36EBC0681AC3C21C00227C4A /* include */ = {
+			isa = PBXGroup;
+			children = (
+				36EBC0691AC3C21C00227C4A /* ConfigHeader.h */,
+				36EBC06A1AC3C21C00227C4A /* symbols_spotconfuse.h */,
+				36EBC06B1AC3C21C00227C4A /* YouMiNewSpot.h */,
+			);
+			path = include;
 			sourceTree = "<group>";
 		};
 		A30A28441580C2AE006CA3CC /* PrivateChat */ = {
@@ -17599,7 +17689,7 @@
 		CAA62CC11744C54F00C376BA /* protobuf-c */ = {
 			isa = PBXGroup;
 			children = (
-				CA62C7801756FC5A00C9EF56 /* protolCLib.a */,
+				36E65E0D1ACA97720092009D /* libprotocolc.a */,
 				CAA62CC21744C54F00C376BA /* protobuf-c-private.h */,
 				CAA62CC31744C54F00C376BA /* protobuf-c.h */,
 			);
@@ -18439,6 +18529,8 @@
 		CAFEF86B16606E4700441D77 /* 3PP-SDK */ = {
 			isa = PBXGroup;
 			children = (
+				36EBC0671AC3C21B00227C4A /* YoumiSpotAd */,
+				36EBC0451AC3BCE200227C4A /* YoumiVideo */,
 				3672C1DA1ABA7C4300AEC29D /* ShareSDK */,
 				CACD6C8118E03BCC003F97C0 /* AliPaySDK */,
 				CACD6B3D18E03B7F003F97C0 /* GoogleAdMobAdsSDK */,
@@ -19583,6 +19675,7 @@
 				A461B4CC174CBAA70088B061 /* RankFirstView.xib in Resources */,
 				A461B4CD174CBAA70088B061 /* RankSecondView.xib in Resources */,
 				A4F4752A19B5794100CFE2AE /* brush_gradient1@2x.png in Resources */,
+				36EBC05D1AC3BCE300227C4A /* hn_logo_bright.png in Resources */,
 				A461B4CE174CBAA70088B061 /* TopPlayerView.xib in Resources */,
 				A461B4CF174CBAA70088B061 /* RankFirstView~ipad.xib in Resources */,
 				CAA8B8061998836800C9A99B /* gonggaolan.png in Resources */,
@@ -19818,6 +19911,7 @@
 				A4364369176706A4006B6946 /* Opus.proto in Resources */,
 				EA64193617743A3D009FCFD5 /* SingHomeHeaderPanel.xib in Resources */,
 				EA64193D17743A66009FCFD5 /* SingHomeHeaderPanel~ipad.xib in Resources */,
+				36EBC0551AC3BCE300227C4A /* hn_btn_sound_close.png in Resources */,
 				C2CA7E5717782BC30086D0FD /* CommonRoomListController.xib in Resources */,
 				C2CA7E5D17782BC30086D0FD /* CommonRoomListController~ipad.xib in Resources */,
 				D8B539371991EBB700BD3337 /* ResultSharePageViewController.xib in Resources */,
@@ -19850,6 +19944,7 @@
 				A499732817783E3F00B01EBE /* PhotoEditView~ipad.xib in Resources */,
 				A499732B17783E3F00B01EBE /* EditTagCell.xib in Resources */,
 				A499732C17783E3F00B01EBE /* EditTagCell~ipad.xib in Resources */,
+				36EBC0591AC3BCE300227C4A /* hn_btn_sound_open.png in Resources */,
 				A499732D17783E3F00B01EBE /* PhotoEditView.xib in Resources */,
 				CAA7DA921987D3A000408FB1 /* draw_next@2x.png in Resources */,
 				A499732F17783E3F00B01EBE /* UserPhotoView.xib in Resources */,
@@ -20088,6 +20183,7 @@
 				A4D8FB8717DB08170085061F /* room_seat_bg_5@2x.png in Resources */,
 				A4D8FB8B17DB08170085061F /* room_seat_bg_6@2x.png in Resources */,
 				A4D8FB8F17DB08170085061F /* balance_bg@2x.png in Resources */,
+				36EBC0511AC3BCE300227C4A /* hn_btn_close@3x.png in Resources */,
 				A4D8FB9717DB08170085061F /* item_promotion_bg@2x.png in Resources */,
 				A4D8FB9B17DB08170085061F /* give_item_detail_bg@2x.png in Resources */,
 				A4D8FBA317DB08170085061F /* item_add@2x.png in Resources */,
@@ -20592,6 +20688,7 @@
 				EA68D5231893C503003EB69A /* pen_fun1@2x.png in Resources */,
 				EA68D5271893C503003EB69A /* pen_fun2@2x.png in Resources */,
 				EA68D52B1893C503003EB69A /* pen_fun3@2x.png in Resources */,
+				36EBC0611AC3BCE300227C4A /* hn_logo_gray.png in Resources */,
 				EA68D52F1893C503003EB69A /* pen_fun4@2x.png in Resources */,
 				EA68D5331893C503003EB69A /* pen_fun5@2x.png in Resources */,
 				EA68D53C1893C545003EB69A /* selected_pen_fun1@2x.png in Resources */,
@@ -20638,6 +20735,7 @@
 				D8D81175199DB4E300CC182A /* 3.gif in Resources */,
 				C28A9CF21738F04B007A819F /* PaintButton.xib in Resources */,
 				C28A9CF31738F04B007A819F /* ColorShopView.xib in Resources */,
+				36EBC0541AC3BCE300227C4A /* hn_btn_sound_close.png in Resources */,
 				C28A9CF51738F04B007A819F /* SelectWordCell~ipad.xib in Resources */,
 				C28A9CF61738F04B007A819F /* SelectWordController~ipad.xib in Resources */,
 				A4F4753919B5794100CFE2AE /* brush_oil2@2x.png in Resources */,
@@ -20755,6 +20853,7 @@
 				C28A9DD21738F04B007A819F /* BBSBoardController~ipad.xib in Resources */,
 				C28A9DD81738F04B007A819F /* BBSBoardCell.xib in Resources */,
 				C28A9DD91738F04B007A819F /* BBSBoardSection.xib in Resources */,
+				36EBC0581AC3BCE300227C4A /* hn_btn_sound_open.png in Resources */,
 				C28A9DDA1738F04B007A819F /* CreatePostController.xib in Resources */,
 				C28A9DE21738F04B007A819F /* BBSPostDetailController.xib in Resources */,
 				C28A9DE31738F04B007A819F /* BBSPostListController.xib in Resources */,
@@ -21097,6 +21196,7 @@
 				A4DDD19617CDFD7B0029E562 /* new_icon@2x.png in Resources */,
 				A4DDD19A17CDFD7B0029E562 /* new_icon_ipad1.png in Resources */,
 				D8BF373719713A5900ACEFCA /* daguanka.png in Resources */,
+				36EBC0501AC3BCE300227C4A /* hn_btn_close@3x.png in Resources */,
 				A4DDD19E17CDFD7B0029E562 /* new_icon_ipad2.png in Resources */,
 				A4DDD56217CDFD7B0029E562 /* button_down.wav in Resources */,
 				3672C2371ABA7C4600AEC29D /* ShareSDKFlatShareViewUI.bundle in Resources */,
@@ -21315,9 +21415,11 @@
 				A4D8FD6417DB089C0085061F /* drawlayer_flag_show@2x.png in Resources */,
 				A4D8FD6817DB089C0085061F /* gradient_bg_left@2x.png in Resources */,
 				A4D8FD6C17DB089C0085061F /* gradient_bg_mid@2x.png in Resources */,
+				36EBC0601AC3BCE300227C4A /* hn_logo_gray.png in Resources */,
 				A4D8FD7017DB089C0085061F /* gradient_bg_right@2x.png in Resources */,
 				A4D8FD7417DB089C0085061F /* gradient_division@2x.png in Resources */,
 				A4D8FD7817DB089C0085061F /* draw_main_bg@2x.jpg in Resources */,
+				36EBC05C1AC3BCE300227C4A /* hn_logo_bright.png in Resources */,
 				A4D8FD7C17DB089C0085061F /* draw_page_back@2x.png in Resources */,
 				A4F4754819B57B9D00CFE2AE /* LICENSE in Resources */,
 				A4D8FD8017DB089C0085061F /* old_draw_bg@2x.jpg in Resources */,
@@ -21835,6 +21937,7 @@
 				CA1CC38B19C43DE2006E06C7 /* selected_brush_pen@2x.png in Resources */,
 				A35984B4157CCAB900745BAB /* MyWordsController~ipad.xib in Resources */,
 				A31B5EF6157E1BE8003DDBF1 /* SelectCustomWordView.xib in Resources */,
+				36EBC04F1AC3BCE300227C4A /* hn_btn_close@3x.png in Resources */,
 				A31B5EF7157E1BE8003DDBF1 /* SelectCustomWordView~ipad.xib in Resources */,
 				A30A28521580C2AE006CA3CC /* ChatCell.xib in Resources */,
 				A4F4753419B5794100CFE2AE /* brush_oil1@2x.png in Resources */,
@@ -21870,6 +21973,7 @@
 				CA8974371607230E003A95F7 /* UserInfoCell~ipad.xib in Resources */,
 				CA89743C1607230E003A95F7 /* CommentController.xib in Resources */,
 				CA89743D1607230E003A95F7 /* CommentController~ipad.xib in Resources */,
+				36EBC0531AC3BCE300227C4A /* hn_btn_sound_close.png in Resources */,
 				CA8974421607230E003A95F7 /* ShowFeedController.xib in Resources */,
 				CA8974431607230E003A95F7 /* ShowFeedController~ipad.xib in Resources */,
 				CA8974451607230E003A95F7 /* HotController.xib in Resources */,
@@ -22191,6 +22295,7 @@
 				CAF4897917AA736900F015AB /* ToolPanel.xib in Resources */,
 				CAE74B7A17AF83D500E73875 /* DrawLayerPanel.xib in Resources */,
 				A4E1D21D17B2236800E13728 /* GuessSelectCell.xib in Resources */,
+				36EBC05F1AC3BCE300227C4A /* hn_logo_gray.png in Resources */,
 				A489BFE617B4F100003E5150 /* Themes.plist in Resources */,
 				A489C01417B5D942003E5150 /* JDFlipNumberView.bundle in Resources */,
 				D80518B2196BD12200D350B3 /* dongtai@2x.png in Resources */,
@@ -22666,6 +22771,7 @@
 				EAD13B7B17DECFB700764FFB /* orange_loading_empty@2x.png in Resources */,
 				EAD13B7F17DECFB700764FFB /* orange_loading_full@2x.png in Resources */,
 				A44F32ED17E16C5000AF9B26 /* ContestRankView.xib in Resources */,
+				36EBC05B1AC3BCE300227C4A /* hn_logo_bright.png in Resources */,
 				A4D410C417E1945600DE07C6 /* ContestRankView~ipad.xib in Resources */,
 				EA8EF62017E55D3B003F1AF8 /* draw_home_bottom_split@2x.png in Resources */,
 				EA8EF62417E55D3B003F1AF8 /* draw_home_opus@2x.png in Resources */,
@@ -22719,6 +22825,7 @@
 				A4A531BC180E39E700DE36E5 /* DrawDefault-568h@2x.png in Resources */,
 				EA7203B6180E9ABD00F0F1C2 /* draw_home_painter@2x.png in Resources */,
 				EA690BE218167F7300DCACCB /* bbs_post_mark@2x.png in Resources */,
+				36EBC0571AC3BCE300227C4A /* hn_btn_sound_open.png in Resources */,
 				EA690BEB18167F8300DCACCB /* bbs_post_detail_unmark@2x.png in Resources */,
 				EA690BF0181680D000DCACCB /* bbs_post_detail_mark@2x.png in Resources */,
 				EAA4ADC1181A195100B3A5DD /* bbs_board_search@2x.png in Resources */,
@@ -22908,6 +23015,7 @@
 				EA411B4F176066F500DA72D0 /* doneup.png in Resources */,
 				EA411B50176066F500DA72D0 /* TestPPViewController.xib in Resources */,
 				EA411B51176066F500DA72D0 /* ReviewRequest.strings in Resources */,
+				36EBC0521AC3BCE300227C4A /* hn_btn_close@3x.png in Resources */,
 				EA411B52176066F500DA72D0 /* Documentation.html in Resources */,
 				EA411B53176066F500DA72D0 /* LICENSE.txt in Resources */,
 				EA411B54176066F500DA72D0 /* README.txt in Resources */,
@@ -22951,9 +23059,11 @@
 				EA411B8D176066F500DA72D0 /* MessageCell~ipad.xib in Resources */,
 				EA411B90176066F500DA72D0 /* fireworks1.png in Resources */,
 				EA411B91176066F500DA72D0 /* fireworks2.png in Resources */,
+				36EBC0621AC3BCE300227C4A /* hn_logo_gray.png in Resources */,
 				EA411B92176066F500DA72D0 /* snow.png in Resources */,
 				EA411B9C176066F500DA72D0 /* MyWordsController.xib in Resources */,
 				EA411B9D176066F500DA72D0 /* MyWordsController~ipad.xib in Resources */,
+				36EBC05E1AC3BCE300227C4A /* hn_logo_bright.png in Resources */,
 				D8D2807F19C982360027E3BE /* rankLeft.png in Resources */,
 				EA411B9E176066F500DA72D0 /* SelectCustomWordView.xib in Resources */,
 				EA411B9F176066F500DA72D0 /* SelectCustomWordView~ipad.xib in Resources */,
@@ -23638,6 +23748,7 @@
 				A4D8FECE17DB089C0085061F /* face_smile@2x.png in Resources */,
 				A4D8FED217DB089C0085061F /* face_wry@2x.png in Resources */,
 				D82C0D7119763BBF0088539F /* MoreViewCell.xib in Resources */,
+				36EBC05A1AC3BCE300227C4A /* hn_btn_sound_open.png in Resources */,
 				A4D8FED617DB089C0085061F /* facebook@2x.png in Resources */,
 				A4D8FEDA17DB089C0085061F /* favorite@2x.png in Resources */,
 				A4D8FEE617DB089C0085061F /* femaleImage.png in Resources */,
@@ -23908,6 +24019,7 @@
 				CAFCF24A19979605008C8854 /* defaultBillBoard@2x.jpg in Resources */,
 				CAFCF23E19979605008C8854 /* defaultBillBoard_en.jpg in Resources */,
 				CA346CD11861A96D0098DE00 /* bottom_home_task@2x.png in Resources */,
+				36EBC0561AC3BCE300227C4A /* hn_btn_sound_close.png in Resources */,
 				A4BE227418657DEA00FE2997 /* NormalHotCell.xib in Resources */,
 				A4BE227918670D8800FE2997 /* NormalHotCell~ipad.xib in Resources */,
 				EA7E4F74186ADE8F00E0B20F /* CreateGroupController~ipad.xib in Resources */,
@@ -27980,6 +28092,9 @@
 					"/Users/pipi/gitdata/Common_iPhone_20/3PP-SDK/AliPaySDK/alipay",
 					"/Users/pipi/gitdata/Common_iPhone_20/3PP-SDK/ShareSDK/Extend/SinaWeiboSDK",
 					"/Users/pipi/gitdata/Common_iPhone_20/3PP-SDK/ShareSDK/Extend/WeChatSDK",
+					"/Users/pipi/gitdata/Common_iPhone_20/3PP-SDK/YoumiVideo",
+					"/Users/pipi/gitdata/Common_iPhone_20/3PP-SDK/YoumiSpotAd",
+					"$(PROJECT_DIR)/Draw/GameServer/ProtocolBuffer/google/protobuf-c",
 				);
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = "-ObjC";
@@ -28099,6 +28214,9 @@
 					"/Users/pipi/gitdata/Common_iPhone_20/3PP-SDK/AliPaySDK/alipay",
 					"/Users/pipi/gitdata/Common_iPhone_20/3PP-SDK/ShareSDK/Extend/SinaWeiboSDK",
 					"/Users/pipi/gitdata/Common_iPhone_20/3PP-SDK/ShareSDK/Extend/WeChatSDK",
+					"/Users/pipi/gitdata/Common_iPhone_20/3PP-SDK/YoumiVideo",
+					"/Users/pipi/gitdata/Common_iPhone_20/3PP-SDK/YoumiSpotAd",
+					"$(PROJECT_DIR)/Draw/GameServer/ProtocolBuffer/google/protobuf-c",
 				);
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = "-ObjC";
@@ -28220,6 +28338,9 @@
 					"/Users/pipi/gitdata/Common_iPhone_20/3PP-SDK/AliPaySDK/alipay",
 					"/Users/pipi/gitdata/Common_iPhone_20/3PP-SDK/ShareSDK/Extend/SinaWeiboSDK",
 					"/Users/pipi/gitdata/Common_iPhone_20/3PP-SDK/ShareSDK/Extend/WeChatSDK",
+					"/Users/pipi/gitdata/Common_iPhone_20/3PP-SDK/YoumiVideo",
+					"/Users/pipi/gitdata/Common_iPhone_20/3PP-SDK/YoumiSpotAd",
+					"$(PROJECT_DIR)/Draw/GameServer/ProtocolBuffer/google/protobuf-c",
 				);
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = LittleGeeDraw;
@@ -28337,6 +28458,9 @@
 					"/Users/pipi/gitdata/Common_iPhone_20/3PP-SDK/AliPaySDK/alipay",
 					"/Users/pipi/gitdata/Common_iPhone_20/3PP-SDK/ShareSDK/Extend/SinaWeiboSDK",
 					"/Users/pipi/gitdata/Common_iPhone_20/3PP-SDK/ShareSDK/Extend/WeChatSDK",
+					"/Users/pipi/gitdata/Common_iPhone_20/3PP-SDK/YoumiVideo",
+					"/Users/pipi/gitdata/Common_iPhone_20/3PP-SDK/YoumiSpotAd",
+					"$(PROJECT_DIR)/Draw/GameServer/ProtocolBuffer/google/protobuf-c",
 				);
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = LittleGeeDraw;
@@ -28373,8 +28497,8 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = "-ObjC";
-				PROVISIONING_PROFILE = "42E0E242-4E9B-4230-86F7-F0440220B591";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "42E0E242-4E9B-4230-86F7-F0440220B591";
+				PROVISIONING_PROFILE = "8a5ec613-059c-4292-8d43-66f057d2d448";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "8a5ec613-059c-4292-8d43-66f057d2d448";
 				SDKROOT = iphoneos;
 				STRIP_INSTALLED_PRODUCT = YES;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -28525,12 +28649,15 @@
 					"/Users/pipi/gitdata/Common_iPhone_20/3PP-SDK/AliPaySDK/alipay",
 					"/Users/pipi/gitdata/Common_iPhone_20/3PP-SDK/ShareSDK/Extend/SinaWeiboSDK",
 					"/Users/pipi/gitdata/Common_iPhone_20/3PP-SDK/ShareSDK/Extend/WeChatSDK",
+					"/Users/pipi/gitdata/Common_iPhone_20/3PP-SDK/YoumiVideo",
+					"/Users/pipi/gitdata/Common_iPhone_20/3PP-SDK/YoumiSpotAd",
+					"$(PROJECT_DIR)/Draw/GameServer/ProtocolBuffer/google/protobuf-c",
 				);
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "2fd3faf1-1655-4ebf-8c39-5194e3cd3c50";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "2fd3faf1-1655-4ebf-8c39-5194e3cd3c50";
+				PROVISIONING_PROFILE = "8a5ec613-059c-4292-8d43-66f057d2d448";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "8a5ec613-059c-4292-8d43-66f057d2d448";
 				VALID_ARCHS = "armv7s arm64 armv7";
 				WRAPPER_EXTENSION = app;
 			};
@@ -28644,6 +28771,9 @@
 					"/Users/pipi/gitdata/Common_iPhone_20/3PP-SDK/AliPaySDK/alipay",
 					"/Users/pipi/gitdata/Common_iPhone_20/3PP-SDK/ShareSDK/Extend/SinaWeiboSDK",
 					"/Users/pipi/gitdata/Common_iPhone_20/3PP-SDK/ShareSDK/Extend/WeChatSDK",
+					"/Users/pipi/gitdata/Common_iPhone_20/3PP-SDK/YoumiVideo",
+					"/Users/pipi/gitdata/Common_iPhone_20/3PP-SDK/YoumiSpotAd",
+					"$(PROJECT_DIR)/Draw/GameServer/ProtocolBuffer/google/protobuf-c",
 				);
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = "-ObjC";
@@ -28758,6 +28888,9 @@
 					"../Common_iPhone_20/3PP-SDK/ShareSDK/Extend/YiXinSDK",
 					"../Common_iPhone_20/3PP-SDK/DomobAdSDK",
 					"/Users/pipi/gitdata/Common_iPhone_20/3PP-SDK/AliPaySDK/alipay",
+					"/Users/pipi/gitdata/Common_iPhone_20/3PP-SDK/YoumiVideo",
+					"/Users/pipi/gitdata/Common_iPhone_20/3PP-SDK/YoumiSpotAd",
+					"$(PROJECT_DIR)/Draw/GameServer/ProtocolBuffer/google/protobuf-c",
 				);
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = AskPs;
@@ -28868,6 +29001,9 @@
 					"../Common_iPhone_20/3PP-SDK/ShareSDK/Extend/YiXinSDK",
 					"../Common_iPhone_20/3PP-SDK/DomobAdSDK",
 					"/Users/pipi/gitdata/Common_iPhone_20/3PP-SDK/AliPaySDK/alipay",
+					"/Users/pipi/gitdata/Common_iPhone_20/3PP-SDK/YoumiVideo",
+					"/Users/pipi/gitdata/Common_iPhone_20/3PP-SDK/YoumiSpotAd",
+					"$(PROJECT_DIR)/Draw/GameServer/ProtocolBuffer/google/protobuf-c",
 				);
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = AskPs;

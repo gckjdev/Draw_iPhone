@@ -594,9 +594,14 @@ GameSNSService* _defaultSNSService;
     if (shareType == ShareTypeQQSpace && mediaType == SSPublishContentMediaTypeImage){
         // TODO for QQSpace
         audioURL = @"http://www.xiaoji.fm";
+        title = text;
+
+        PPDebug(@"<publishWeibo> image size is %d", [image.data length]);
+        UIImage* image = [UIImage imageWithContentsOfFile:imagePath];
+        NSData* data = UIImageJPEGRepresentation(image, 0.9);
+        [data writeToFile:imagePath atomically:YES];
     }
     
-    PPDebug(@"<publishWeibo> image size is %d", [image.data length]);
 
     
     id<ISSContent> publishContent = [ShareSDK content:text

@@ -60,6 +60,9 @@
 #import "SoundPlayer.h"
 #import "AudioManager.h"
 
+#import "CocoBVideo.h"
+#import "ConfigHeader.h"
+
 @interface ShowFeedController ()<OpusImageBrowerDelegate> {
     BOOL _didLoadDrawPicture;
     UIImageView* _throwingItem;
@@ -899,9 +902,68 @@ typedef enum{
     
 }
 
+static dispatch_once_t videoAdOnceToken;
+- (void)playVideoAd
+{
+    dispatch_once(&videoAdOnceToken, ^{
+        
+        NSString *appid = [GameApp youmiWallId];
+        NSString *secretId = [GameApp youmiWallSecret];
+        
+        [CocoBVideo cBVideoInitWithAppID:appid cBVideoAppIDSecret:secretId];
+
+        // 设置是否强制横屏，默认是强制横屏
+        [CocoBVideo cBisForceLandscape:NO];
+        
+        // 播放视频期间不显示关闭按钮
+//        [CocoBVideo cBCloseButtonHide];
+    });
+    
+//    +(void)cBIsHaveVideo:(void(^)(int isHaveVideoStatue))backCallBlock;
+    
+    
+    [CocoBVideo cBVideoPlay:self
+cBVideoPlayFinishCallBackBlock:^(BOOL isFinish){
+        if(isFinish){
+            PPDebug(@"视频播放结束");
+        }else{
+            PPDebug(@"中途退出");
+        }}
+
+cBVideoPlayConfigCallBackBlock:^(BOOL isLegal){
+            PPDebug(@"此次播放是否有效：%d",isLegal);
+    
+        }];
+}
+
+static dispatch_once_t spotAdOnceToken;
+- (void)playSpotAd
+{
+    dispatch_once(&spotAdOnceToken, ^{
+        
+        NSString *appid = [GameApp youmiWallId];
+        NSString *secretId = [GameApp youmiWallSecret];
+
+        [YouMiNewSpot initYouMiDeveloperParams:appid YM_SecretId:secretId];
+        
+        //使用前先初始化一下插屏
+        [YouMiNewSpot initYouMiDeveLoperSpot:kSPOTSpotTypePortrait];
+    });
+    
+    [YouMiNewSpot showYouMiSpotAction:^(BOOL flag){
+        if (flag) {
+            PPDebug(@"展示插屏广告成功");
+        }
+        else{
+            PPDebug(@"展示插屏广告失败");
+        }
+    }];
+}
 
 - (void)performReplayDraw
 {
+    [self playSpotAd];
+    
     __block ShowFeedController * cp = self;
 
     _isDownloadingData = YES;

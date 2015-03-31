@@ -95,7 +95,7 @@ static UserManager* _defaultManager;
 - (HotIndexType)hotControllerIndex{
     
     NSUserDefaults* ud = [NSUserDefaults standardUserDefaults];
-    int defaultType = [ud integerForKey:KEY_HOT_CONTROLLER_DEFAULT_TYPE];
+    NSInteger defaultType = [ud integerForKey:KEY_HOT_CONTROLLER_DEFAULT_TYPE];
     if (defaultType == HotUnknownIndex){
         
         if (self.pbUser.level > 1 || isDrawApp() == NO){
@@ -489,7 +489,7 @@ static UserManager* _defaultManager;
         return @"";
     }
     else{
-        int index = range.location;
+        NSUInteger index = range.location;
         return [email substringToIndex:index];
     }
 }

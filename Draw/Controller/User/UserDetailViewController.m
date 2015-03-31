@@ -86,6 +86,9 @@
         }];
     }
     self.view.backgroundColor = BG_COLOR;
+    
+    self.canDragBack = NO;
+    
 //    self.dataTableView.backgroundColor = COLOR_WHITE;
 }
 
