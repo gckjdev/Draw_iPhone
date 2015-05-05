@@ -32,9 +32,9 @@
                widthList:(NSMutableArray**)widthList
               randomList:(NSMutableArray**)randomList;
 
-- (void)createPointFloatXList:(CGFloat*)floatXList
-                   floatYList:(CGFloat*)floatYList
-                    widthList:(CGFloat*)widthList
+- (void)createPointFloatXList:(float*)floatXList
+                   floatYList:(float*)floatYList
+                    widthList:(float*)widthList
                    randomList:(int32_t*)randomList;
 
 

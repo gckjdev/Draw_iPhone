@@ -25,7 +25,7 @@ typedef enum
 }
 
 @property (copy, nonatomic) NSString *text;
-@property (assign, nonatomic) int score;
+@property (assign, nonatomic) NSInteger score;
 
 // For Default
 + (Word *)wordWithText:(NSString *)text

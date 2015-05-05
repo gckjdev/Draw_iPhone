@@ -264,7 +264,7 @@
     
     
     void *buf = NULL;
-    unsigned len = 0;
+    size_t len = 0;
     NSData* data = nil;
     
     len = game__pbdraw_action__get_packed_size (pbDrawActionC[i]);    // This is the calculated packing length
@@ -488,7 +488,7 @@
     pbBBSDrawC.version = [PPConfigManager currentDrawDataVersion];
     pbBBSDrawC.has_version = 1;
     
-    int count = [drawActionList count];
+    NSUInteger count = [drawActionList count];
     if (count > 0){
         pbBBSDrawC.drawactionlist = malloc(sizeof(Game__PBDrawAction*)*count);
         pbBBSDrawC.n_drawactionlist = count;
@@ -498,7 +498,7 @@
     [DrawAction createPBDrawActionC:pbBBSDrawC.drawactionlist drawActionList:drawActionList strokes:NULL];
     
     void *buf = NULL;
-    unsigned len = 0;
+    NSUInteger len = 0;
     NSData* data = nil;
     
     len = game__pbbbsdraw__get_packed_size (&pbBBSDrawC);    // This is the calculated packing length
@@ -566,7 +566,7 @@
     pbDrawC.has_spendtime = 1;
     
     //update layers
-    int layerNum = [layers count];
+    NSUInteger layerNum = [layers count];
     if (layerNum > 0) {
         pbDrawC.layer = malloc(sizeof(Game__PBLayer*)*layerNum);
         pbDrawC.n_layer = layerNum;
@@ -574,7 +574,7 @@
     }
 
     
-    int count = [drawActionList count];
+    NSUInteger count = [drawActionList count];
     if (count > 0){
         pbDrawC.drawdata = malloc(sizeof(Game__PBDrawAction*)*count);
         pbDrawC.n_drawdata = count;
@@ -585,7 +585,7 @@
     PPDebug(@"<buildPBDrawData> total strokes is %ld", pbDrawC.strokes);
     
     void *buf = NULL;
-    unsigned len = 0;
+    NSUInteger len = 0;
     NSData* data = nil;
     
     len = game__pbdraw__get_packed_size (&pbDrawC);    // This is the calculated packing length
@@ -631,7 +631,7 @@
 
         
         //update layers
-        int layerNum = [layers count];
+        NSUInteger layerNum = [layers count];
         if (layerNum > 0) {
             pbNoCompressDrawDataC.layer = malloc(sizeof(Game__PBLayer*)*layerNum);
             pbNoCompressDrawDataC.n_layer = layerNum;
@@ -665,7 +665,7 @@
         pbNoCompressDrawDataC.bgimagename = (char*)[bgImageFileName UTF8String];
 
         //put it last
-        int count = [drawActionList count];
+        NSUInteger count = [drawActionList count];
         if (count > 0){
             pbNoCompressDrawDataC.n_drawactionlist2 = count;
             pbNoCompressDrawDataC.drawactionlist2 = NULL;
@@ -734,7 +734,7 @@
         Game__PBBBSDraw* pbBBSDrawC = NULL;
         
         NSData* data = [bbsDraw data];
-        int dataLen = [data length];
+        NSUInteger dataLen = [data length];
         if (dataLen > 0){
             uint8_t* buf = malloc(dataLen);
             if (buf != NULL){
@@ -768,7 +768,7 @@
         Game__PBMessage *pbMessageC = NULL;
         
         NSData* data = [message data];
-        int dataLen = [data length];
+        NSUInteger dataLen = [data length];
         if (dataLen > 0){
             uint8_t* buf = malloc(dataLen);
             if (buf != NULL){

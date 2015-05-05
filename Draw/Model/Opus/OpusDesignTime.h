@@ -18,9 +18,9 @@ typedef enum {
 @interface OpusDesignTime : NSObject
 
 @property (nonatomic, assign) OpusDesignTimeState state;
-@property (nonatomic, assign) int beginTime;
-@property (nonatomic, assign) int lastPauseTime;
-@property (nonatomic, assign) int totalTime;
+@property (nonatomic, assign) time_t beginTime;
+@property (nonatomic, assign) time_t lastPauseTime;
+@property (nonatomic, assign) time_t totalTime;
 
 - (id)initWithTime:(int)time;
 - (void)start;

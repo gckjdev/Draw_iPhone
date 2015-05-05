@@ -115,8 +115,7 @@
         self.brushType = [[gameMessage notification] penType];
         self.color = [DrawUtils decompressIntDrawColor:intColor];
         _hPointList = [[HBrushPointList alloc] init];
-//        for (NSNumber *pointNumber in pointList) {
-        int count = pointList.count;
+        NSUInteger count = pointList.count;
         for (int i =0; i<count; i++) {
             int pointNumber = [pointList int32AtIndex:i];
             CGPoint point = [DrawUtils decompressIntPoint:pointNumber];
@@ -227,8 +226,9 @@
         _beginDot.width = _tempWidth;
         _endDot.width = _tempWidth;
     
-        // draw the first point  && add it to point list 
-        [_hPointList addPoint:_endDot.x y:_endDot.y width:_endDot.width];
+        // draw the first point  && add it to point list
+        // TODO for Charlie Brush Random
+        [_hPointList addPoint:_endDot.x y:_endDot.y width:_endDot.width random:0];
     }
     else{
         //重采样定位第一点
@@ -284,7 +284,8 @@
                                    PointW:&width
                          WithDefaultWidth:self.width];
                 
-                [_hPointList addPoint:pointX y:pointY width:width];
+                // TODO for Charlie Brush Random
+                [_hPointList addPoint:pointX y:pointY width:width random:0];
                 
                 // draw by point list
                 CGRect rect = CGRectMake(pointX - width/2, pointY - width/2, width, width);
@@ -328,7 +329,8 @@
         self.brushImageRef = _brushImage.CGImage;
     }
     
-    [_hPointList addPoint:point.x y:point.y width:width];
+    // TODO for Charlie Brush Random
+    [_hPointList addPoint:point.x y:point.y width:width random:0];
     
     // draw by point list
     CGRect imageRect = CGRectMake(point.x - width/2, point.y - width/2, width, width);
@@ -513,7 +515,7 @@
 
 - (void)updatePBDrawActionC:(Game__PBDrawAction*)pbDrawActionC
 {
-    int count = [self pointCount];
+    NSInteger count = [self pointCount];
     if (count > 0) {
         
         pbDrawActionC->pointsx = malloc(sizeof(float)*count);

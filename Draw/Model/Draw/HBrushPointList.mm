@@ -143,7 +143,7 @@ using std::list;
                widthList:(NSMutableArray**)pointWList
               randomList:(NSMutableArray**)randomValueList;
 {
-    int size = xList.size();
+    size_t size = xList.size();
     if (size > 0) {
         *pointXList = [[[NSMutableArray alloc] initWithCapacity:size] autorelease];
         *pointYList = [[[NSMutableArray alloc] initWithCapacity:size] autorelease];
@@ -159,12 +159,12 @@ using std::list;
     }
 }
 
-- (void)createPointFloatXList:(CGFloat*)floatXList
-                   floatYList:(CGFloat*)floatYList
-                    widthList:(CGFloat*)floatWidthList
+- (void)createPointFloatXList:(float*)floatXList
+                   floatYList:(float*)floatYList
+                    widthList:(float*)floatWidthList
                    randomList:(int32_t*)randomValueList
 {
-    int size = xList.size();
+    size_t size = xList.size();
     if (size > 0) {
         for (int i=0; i<size; i++){
             floatXList[i] = xList[i];
