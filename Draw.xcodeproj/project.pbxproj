@@ -28576,13 +28576,13 @@
 					"../Common_iPhone_20/3PP-SDK/LmmobSDK",
 					"../Common_iPhone_20/3PP-SDK/ShareSDK/Extend/QQConnectSDK",
 					"../Common_iPhone_20/Components/Component-Service/OpenCV",
-					"/Users/pipi/gitdata/Common_iPhone_20/3PP-SDK/AliPaySDK/alipay",
-					"/Users/pipi/gitdata/Common_iPhone_20/3PP-SDK/GoogleAdMobAdsSDK",
-					"/Users/pipi/gitdata/Common_iPhone_20/3PP-SDK/ShareSDK/Connection",
-					"/Users/pipi/gitdata/Common_iPhone_20/3PP-SDK/ShareSDK/Core",
-					"/Users/pipi/gitdata/Common_iPhone_20/3PP-SDK/ShareSDK/Extend/QQConnectSDK",
-					"/Users/pipi/gitdata/Common_iPhone_20/3PP-SDK/ShareSDK",
-					"/Users/pipi/gitdata/Common_iPhone_20/3PP-SDK/ShareSDK/UI",
+					"../Common_iPhone_20/3PP-SDK/AliPaySDK/alipay",
+					"../Common_iPhone_20/3PP-SDK/GoogleAdMobAdsSDK",
+					"../Common_iPhone_20/3PP-SDK/ShareSDK/Connection",
+					"../Common_iPhone_20/3PP-SDK/ShareSDK/Core",
+					"../Common_iPhone_20/3PP-SDK/ShareSDK/Extend/QQConnectSDK",
+					"../Common_iPhone_20/3PP-SDK/ShareSDK",
+					"../Common_iPhone_20/3PP-SDK/ShareSDK/UI",
 				);
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -28646,12 +28646,12 @@
 					"../Common_iPhone_20/3PP-SDK/ShareSDK/Extend/WeChatSDK",
 					"../Common_iPhone_20/3PP-SDK/ShareSDK/Extend/YiXinSDK",
 					"../Common_iPhone_20/3PP-SDK/DomobAdSDK",
-					"/Users/pipi/gitdata/Common_iPhone_20/3PP-SDK/AliPaySDK/alipay",
-					"/Users/pipi/gitdata/Common_iPhone_20/3PP-SDK/ShareSDK/Extend/SinaWeiboSDK",
-					"/Users/pipi/gitdata/Common_iPhone_20/3PP-SDK/ShareSDK/Extend/WeChatSDK",
-					"/Users/pipi/gitdata/Common_iPhone_20/3PP-SDK/YoumiVideo",
-					"/Users/pipi/gitdata/Common_iPhone_20/3PP-SDK/YoumiSpotAd",
-					"$(PROJECT_DIR)/Draw/GameServer/ProtocolBuffer/google/protobuf-c",
+					"../Common_iPhone_20/3PP-SDK/AliPaySDK/alipay",
+					"../Common_iPhone_20/3PP-SDK/ShareSDK/Extend/SinaWeiboSDK",
+					"../Common_iPhone_20/3PP-SDK/ShareSDK/Extend/WeChatSDK",
+					"../Common_iPhone_20/3PP-SDK/YoumiVideo",
+					"../Common_iPhone_20/3PP-SDK/YoumiSpotAd",
+					"./Draw/GameServer/ProtocolBuffer/google/protobuf-c",
 				);
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = "-ObjC";
@@ -28700,13 +28700,13 @@
 					"../Common_iPhone_20/3PP-SDK/LmmobSDK",
 					"../Common_iPhone_20/3PP-SDK/ShareSDK/Extend/QQConnectSDK",
 					"../Common_iPhone_20/Components/Component-Service/OpenCV",
-					"/Users/pipi/gitdata/Common_iPhone_20/3PP-SDK/AliPaySDK/alipay",
-					"/Users/pipi/gitdata/Common_iPhone_20/3PP-SDK/GoogleAdMobAdsSDK",
-					"/Users/pipi/gitdata/Common_iPhone_20/3PP-SDK/ShareSDK/Connection",
-					"/Users/pipi/gitdata/Common_iPhone_20/3PP-SDK/ShareSDK/Core",
-					"/Users/pipi/gitdata/Common_iPhone_20/3PP-SDK/ShareSDK/Extend/QQConnectSDK",
-					"/Users/pipi/gitdata/Common_iPhone_20/3PP-SDK/ShareSDK",
-					"/Users/pipi/gitdata/Common_iPhone_20/3PP-SDK/ShareSDK/UI",
+					"../Common_iPhone_20/3PP-SDK/AliPaySDK/alipay",
+					"../Common_iPhone_20/3PP-SDK/GoogleAdMobAdsSDK",
+					"../Common_iPhone_20/3PP-SDK/ShareSDK/Connection",
+					"../Common_iPhone_20/3PP-SDK/ShareSDK/Core",
+					"../Common_iPhone_20/3PP-SDK/ShareSDK/Extend/QQConnectSDK",
+					"../Common_iPhone_20/3PP-SDK/ShareSDK",
+					"../Common_iPhone_20/3PP-SDK/ShareSDK/UI",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Draw/Draw-Prefix.pch";
@@ -28768,12 +28768,12 @@
 					"../Common_iPhone_20/3PP-SDK/ShareSDK/Extend/WeChatSDK",
 					"../Common_iPhone_20/3PP-SDK/ShareSDK/Extend/YiXinSDK",
 					"../Common_iPhone_20/3PP-SDK/DomobAdSDK",
-					"/Users/pipi/gitdata/Common_iPhone_20/3PP-SDK/AliPaySDK/alipay",
-					"/Users/pipi/gitdata/Common_iPhone_20/3PP-SDK/ShareSDK/Extend/SinaWeiboSDK",
-					"/Users/pipi/gitdata/Common_iPhone_20/3PP-SDK/ShareSDK/Extend/WeChatSDK",
-					"/Users/pipi/gitdata/Common_iPhone_20/3PP-SDK/YoumiVideo",
-					"/Users/pipi/gitdata/Common_iPhone_20/3PP-SDK/YoumiSpotAd",
-					"$(PROJECT_DIR)/Draw/GameServer/ProtocolBuffer/google/protobuf-c",
+					"../Common_iPhone_20/3PP-SDK/AliPaySDK/alipay",
+					"../Common_iPhone_20/3PP-SDK/ShareSDK/Extend/SinaWeiboSDK",
+					"../Common_iPhone_20/3PP-SDK/ShareSDK/Extend/WeChatSDK",
+					"../Common_iPhone_20/3PP-SDK/YoumiVideo",
+					"../Common_iPhone_20/3PP-SDK/YoumiSpotAd",
+					"./Draw/GameServer/ProtocolBuffer/google/protobuf-c",
 				);
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = "-ObjC";
