@@ -69,7 +69,6 @@
 
 - (CGRect)redrawRectInRect:(CGRect)rect;
 
-//- (NSMutableArray *)createPointXList:(NSArray**)pointXList pointYList:(NSArray**)pointYList;
 - (void)updatePBDrawActionBuilder:(PBDrawActionBuilder *)builder;
 - (void)updatePBDrawActionC:(Game__PBDrawAction*)pbDrawActionC;
 

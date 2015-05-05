@@ -215,7 +215,7 @@ message PBNoCompressDrawAction{
     optional float alpha = 24;
 
     repeated float brushPointWidth = 41;              //brush point width (so called scale)
-
+    repeated int32 brushRandomValue = 42;             //brush random value
 
 }
 

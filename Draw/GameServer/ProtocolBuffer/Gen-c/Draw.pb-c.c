@@ -2526,7 +2526,7 @@ const ProtobufCMessageDescriptor game__pbcolor__descriptor =
   (ProtobufCMessageInit) game__pbcolor__init,
   NULL,NULL,NULL    /* reserved[123] */
 };
-static const ProtobufCFieldDescriptor game__pbno_compress_draw_action__field_descriptors[16] =
+static const ProtobufCFieldDescriptor game__pbno_compress_draw_action__field_descriptors[17] =
 {
   {
     "type",
@@ -2720,11 +2720,24 @@ static const ProtobufCFieldDescriptor game__pbno_compress_draw_action__field_des
     0,             /* flags */
     0,NULL,NULL    /* reserved1,reserved2, etc */
   },
+  {
+    "brushRandomValue",
+    42,
+    PROTOBUF_C_LABEL_REPEATED,
+    PROTOBUF_C_TYPE_INT32,
+    offsetof(Game__PBNoCompressDrawAction, n_brushrandomvalue),
+    offsetof(Game__PBNoCompressDrawAction, brushrandomvalue),
+    NULL,
+    NULL,
+    0,             /* flags */
+    0,NULL,NULL    /* reserved1,reserved2, etc */
+  },
 };
 static const unsigned game__pbno_compress_draw_action__field_indices_by_name[] = {
   14,   /* field[14] = alpha */
   12,   /* field[12] = blue */
   15,   /* field[15] = brushPointWidth */
+  16,   /* field[16] = brushRandomValue */
   7,   /* field[7] = canvasSize */
   2,   /* field[2] = color */
   13,   /* field[13] = green */
@@ -2745,7 +2758,7 @@ static const ProtobufCIntRange game__pbno_compress_draw_action__number_ranges[4 
   { 11, 8 },
   { 20, 10 },
   { 41, 15 },
-  { 0, 16 }
+  { 0, 17 }
 };
 const ProtobufCMessageDescriptor game__pbno_compress_draw_action__descriptor =
 {
@@ -2755,7 +2768,7 @@ const ProtobufCMessageDescriptor game__pbno_compress_draw_action__descriptor =
   "Game__PBNoCompressDrawAction",
   "game",
   sizeof(Game__PBNoCompressDrawAction),
-  16,
+  17,
   game__pbno_compress_draw_action__field_descriptors,
   game__pbno_compress_draw_action__field_indices_by_name,
   4,  game__pbno_compress_draw_action__number_ranges,

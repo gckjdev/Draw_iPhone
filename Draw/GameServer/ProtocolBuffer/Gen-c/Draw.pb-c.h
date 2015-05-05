@@ -576,10 +576,15 @@ struct  _Game__PBNoCompressDrawAction
    */
   size_t n_brushpointwidth;
   float *brushpointwidth;
+  /*
+   *brush random value
+   */
+  size_t n_brushrandomvalue;
+  int32_t *brushrandomvalue;
 };
 #define GAME__PBNO_COMPRESS_DRAW_ACTION__INIT \
  { PROTOBUF_C_MESSAGE_INIT (&game__pbno_compress_draw_action__descriptor) \
-    , 0, 0,NULL, NULL, 0,0, 0,0, 0,0, 0,NULL, NULL, 0,NULL, 0,NULL, 0,0, 0,0, 0,0, 0,0, 0,0, 0,NULL }
+    , 0, 0,NULL, NULL, 0,0, 0,0, 0,0, 0,NULL, NULL, 0,NULL, 0,NULL, 0,0, 0,0, 0,0, 0,0, 0,0, 0,NULL, 0,NULL }
 
 
 struct  _Game__PBNoCompressDrawData

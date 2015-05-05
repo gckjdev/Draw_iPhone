@@ -838,10 +838,15 @@ struct  _Game__PBDrawAction
    */
   size_t n_brushpointwidth;
   float *brushpointwidth;
+  /*
+   *brush random value
+   */
+  size_t n_brushrandomvalue;
+  int32_t *brushrandomvalue;
 };
 #define GAME__PBDRAW_ACTION__INIT \
  { PROTOBUF_C_MESSAGE_INIT (&game__pbdraw_action__descriptor) \
-    , 0, 0,NULL, 0,0, 0,0, 0,0, 0,0, 0,NULL, 0,0, 0,NULL, 0,NULL, 0,0, NULL, 0,0, 0,0, 0,0, 0,0, 0,0, 0,0, 0,0, 0,1, 0,NULL, NULL, 0,0, 0,NULL }
+    , 0, 0,NULL, 0,0, 0,0, 0,0, 0,0, 0,NULL, 0,0, 0,NULL, 0,NULL, 0,0, NULL, 0,0, 0,0, 0,0, 0,0, 0,0, 0,0, 0,0, 0,1, 0,NULL, NULL, 0,0, 0,NULL, 0,NULL }
 
 
 struct  _Game__PBMessage

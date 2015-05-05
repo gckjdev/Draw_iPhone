@@ -1423,6 +1423,7 @@
   PBAppendableArray * pointXArray;
   PBAppendableArray * pointYArray;
   PBAppendableArray * brushPointWidthArray;
+  PBAppendableArray * brushRandomValueArray;
   NSMutableArray * pointArray;
 }
 - (BOOL) hasType;
@@ -1452,11 +1453,13 @@
 @property (readonly) Float32 green;
 @property (readonly) Float32 alpha;
 @property (readonly, strong) PBArray * brushPointWidth;
+@property (readonly, strong) PBArray * brushRandomValue;
 - (PBPoint*)pointAtIndex:(NSUInteger)index;
 - (Float32)rectComponentAtIndex:(NSUInteger)index;
 - (Float32)pointXAtIndex:(NSUInteger)index;
 - (Float32)pointYAtIndex:(NSUInteger)index;
 - (Float32)brushPointWidthAtIndex:(NSUInteger)index;
+- (SInt32)brushRandomValueAtIndex:(NSUInteger)index;
 
 + (instancetype) defaultInstance;
 - (instancetype) defaultInstance;
@@ -1585,6 +1588,13 @@
 - (PBNoCompressDrawActionBuilder *)setBrushPointWidthArray:(NSArray *)array;
 - (PBNoCompressDrawActionBuilder *)setBrushPointWidthValues:(const Float32 *)values count:(NSUInteger)count;
 - (PBNoCompressDrawActionBuilder *)clearBrushPointWidth;
+
+- (PBAppendableArray *)brushRandomValue;
+- (SInt32)brushRandomValueAtIndex:(NSUInteger)index;
+- (PBNoCompressDrawActionBuilder *)addBrushRandomValue:(SInt32)value;
+- (PBNoCompressDrawActionBuilder *)setBrushRandomValueArray:(NSArray *)array;
+- (PBNoCompressDrawActionBuilder *)setBrushRandomValueValues:(const SInt32 *)values count:(NSUInteger)count;
+- (PBNoCompressDrawActionBuilder *)clearBrushRandomValue;
 @end
 
 @interface PBNoCompressDrawData : PBGeneratedMessage<GeneratedMessageProtocol> {

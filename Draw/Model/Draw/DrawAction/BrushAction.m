@@ -81,10 +81,13 @@
         if (count > 0 && action->pointsx != NULL && action->pointsy != NULL) {
             
             float width = action->width;
+            int random = 0;
             bool hasPointWidth = (action->brushpointwidth != NULL && action->n_brushpointwidth == action->n_pointsx);
+            bool hasRandomValue = (action->brushrandomvalue != NULL && action->n_brushrandomvalue == action->n_pointsx);
             for (NSInteger i = 0; i < count; ++ i) {
                 width = hasPointWidth ? action->brushpointwidth[i] : action->width;
-                [pointList addPoint:action->pointsx[i] y:action->pointsy[i] width:width];
+                random = hasRandomValue ? action->brushrandomvalue[i] : 0;
+                [pointList addPoint:action->pointsx[i] y:action->pointsy[i] width:width random:random];
             }
         }
         
@@ -117,16 +120,20 @@
             //new version draw data
             CGFloat x,y;
             float width = action.width;
+            float random = 0;
+            
             bool hasPointWidth = (action.brushPointWidth != nil && [action.brushPointWidth count] == count);
+            bool hasPointRandom = (action.brushRandomValue != nil && [action.brushRandomValue count] == count);
 
             for (NSInteger i = 0; i < count; ++ i) {
                 
                 width = hasPointWidth ? [action.brushPointWidth floatAtIndex:i] : action.width;
+                random = hasPointRandom ? [action.brushRandomValue int32AtIndex:i] : 0;
 
                 x = [action.pointsX floatAtIndex:i];
                 y = [action.pointsY floatAtIndex:i];
                 
-                [pointList addPoint:x y:y width:width];
+                [pointList addPoint:x y:y width:width random:random];
             }
         }
         
@@ -165,16 +172,19 @@
             //new version draw data
             CGFloat x,y;
             float width = action.width;
+            int random = 0;
             bool hasPointWidth = (action.brushPointWidth != nil && [action.brushPointWidth count] == count);
+            bool hasPointRandom = (action.brushRandomValue != nil && [action.brushRandomValue count] == count);
             
             for (NSInteger i = 0; i < count; ++ i) {
                 
                 width = hasPointWidth ? [action.brushPointWidth floatAtIndex:i] : action.width;
+                random = hasPointRandom ? [action.brushRandomValue int32AtIndex:i] : 0;
                 
                 x = [action.pointX floatAtIndex:i];
                 y = [action.pointY floatAtIndex:i];
                 
-                [pointList addPoint:x y:y width:width];
+                [pointList addPoint:x y:y width:width random:random];
             }
         }
         
@@ -204,11 +214,14 @@
         count = action->n_pointx; //[[action pointXList] count];
         if (count > 0 && action->pointx != NULL && action->pointy != NULL) {
             
+            int random;
             float width = action->width;
             bool hasPointWidth = (action->brushpointwidth != NULL && action->n_brushpointwidth == action->n_pointx);
+            bool hasRandomValue = (action->brushrandomvalue != NULL && action->n_brushrandomvalue == action->n_pointx);
             for (NSInteger i = 0; i < count; ++ i) {
                 width = hasPointWidth ? action->brushpointwidth[i] : action->width;
-                [pointList addPoint:action->pointx[i] y:action->pointy[i] width:width];
+                random = hasRandomValue ? action->brushrandomvalue[i] : 0;
+                [pointList addPoint:action->pointx[i] y:action->pointy[i] width:width random:random];
             }
         }
         

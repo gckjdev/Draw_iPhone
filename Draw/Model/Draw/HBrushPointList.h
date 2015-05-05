@@ -19,20 +19,23 @@
 - (float)getPointX:(int)index;
 - (float)getPointY:(int)index;
 - (float)getPointWidth:(int)index;
+- (float)getPointRandom:(int)index;
 - (CGPoint)lastPoint;
 - (int)count;
 - (CGPoint)pointAtIndex:(int)index;
 - (void)complete;
 
-- (void)addPoint:(float)x y:(float)y width:(float)width;
+- (void)addPoint:(float)x y:(float)y width:(float)width random:(int)random;
 
 - (void)createPointXList:(NSMutableArray**)pointXList
               pointYList:(NSMutableArray**)pointYList
-               widthList:(NSMutableArray**)widthList;
+               widthList:(NSMutableArray**)widthList
+              randomList:(NSMutableArray**)randomList;
 
 - (void)createPointFloatXList:(CGFloat*)floatXList
                    floatYList:(CGFloat*)floatYList
-                    widthList:(CGFloat*)widthList;
+                    widthList:(CGFloat*)widthList
+                   randomList:(int32_t*)randomList;
 
 
 @end

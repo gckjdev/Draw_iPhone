@@ -442,6 +442,10 @@
         if (pbDrawActionC[i]->brushpointwidth != NULL){
             free(pbDrawActionC[i]->brushpointwidth);
         }
+        
+        if (pbDrawActionC[i]->brushrandomvalue != NULL){
+            free(pbDrawActionC[i]->brushrandomvalue);
+        }
 
         // TODO for change layers
 //        if (pbDrawActionC[i]->changelayers != NULL){

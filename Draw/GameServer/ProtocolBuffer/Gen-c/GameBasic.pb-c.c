@@ -3338,7 +3338,7 @@ const ProtobufCMessageDescriptor game__pblayer__descriptor =
   NULL,NULL,NULL    /* reserved[123] */
 };
 static const float game__pbdraw_action__layer_alpha__default_value = 1;
-static const ProtobufCFieldDescriptor game__pbdraw_action__field_descriptors[24] =
+static const ProtobufCFieldDescriptor game__pbdraw_action__field_descriptors[25] =
 {
   {
     "type",
@@ -3628,10 +3628,23 @@ static const ProtobufCFieldDescriptor game__pbdraw_action__field_descriptors[24]
     0,             /* flags */
     0,NULL,NULL    /* reserved1,reserved2, etc */
   },
+  {
+    "brushRandomValue",
+    42,
+    PROTOBUF_C_LABEL_REPEATED,
+    PROTOBUF_C_TYPE_INT32,
+    offsetof(Game__PBDrawAction, n_brushrandomvalue),
+    offsetof(Game__PBDrawAction, brushrandomvalue),
+    NULL,
+    NULL,
+    0,             /* flags */
+    0,NULL,NULL    /* reserved1,reserved2, etc */
+  },
 };
 static const unsigned game__pbdraw_action__field_indices_by_name[] = {
   10,   /* field[10] = betterColor */
   23,   /* field[23] = brushPointWidth */
+  24,   /* field[24] = brushRandomValue */
   22,   /* field[22] = brushType */
   20,   /* field[20] = changeLayers */
   16,   /* field[16] = clipTag */
@@ -3663,7 +3676,7 @@ static const ProtobufCIntRange game__pbdraw_action__number_ranges[6 + 1] =
   { 23, 18 },
   { 30, 21 },
   { 40, 22 },
-  { 0, 24 }
+  { 0, 25 }
 };
 const ProtobufCMessageDescriptor game__pbdraw_action__descriptor =
 {
@@ -3673,7 +3686,7 @@ const ProtobufCMessageDescriptor game__pbdraw_action__descriptor =
   "Game__PBDrawAction",
   "game",
   sizeof(Game__PBDrawAction),
-  24,
+  25,
   game__pbdraw_action__field_descriptors,
   game__pbdraw_action__field_indices_by_name,
   6,  game__pbdraw_action__number_ranges,

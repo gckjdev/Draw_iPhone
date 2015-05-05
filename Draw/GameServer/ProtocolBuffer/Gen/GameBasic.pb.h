@@ -1826,6 +1826,7 @@ NSString *NSStringFromPBTaskIdType(PBTaskIdType value);
   PBAppendableArray * brushPointWidthArray;
   PBAppendableArray * pointsArray;
   SInt32 pointsMemoizedSerializedSize;
+  PBAppendableArray * brushRandomValueArray;
   NSMutableArray * changeLayersArray;
 }
 - (BOOL) hasType;
@@ -1870,12 +1871,14 @@ NSString *NSStringFromPBTaskIdType(PBTaskIdType value);
 @property (readonly, strong) PBGradient* gradient;
 @property (readonly) SInt32 brushType;
 @property (readonly, strong) PBArray * brushPointWidth;
+@property (readonly, strong) PBArray * brushRandomValue;
 - (SInt32)pointsAtIndex:(NSUInteger)index;
 - (Float32)rectComponentAtIndex:(NSUInteger)index;
 - (Float32)pointsXAtIndex:(NSUInteger)index;
 - (Float32)pointsYAtIndex:(NSUInteger)index;
 - (PBLayer*)changeLayersAtIndex:(NSUInteger)index;
 - (Float32)brushPointWidthAtIndex:(NSUInteger)index;
+- (SInt32)brushRandomValueAtIndex:(NSUInteger)index;
 
 + (instancetype) defaultInstance;
 - (instancetype) defaultInstance;
@@ -2046,6 +2049,13 @@ NSString *NSStringFromPBTaskIdType(PBTaskIdType value);
 - (PBDrawActionBuilder *)setBrushPointWidthArray:(NSArray *)array;
 - (PBDrawActionBuilder *)setBrushPointWidthValues:(const Float32 *)values count:(NSUInteger)count;
 - (PBDrawActionBuilder *)clearBrushPointWidth;
+
+- (PBAppendableArray *)brushRandomValue;
+- (SInt32)brushRandomValueAtIndex:(NSUInteger)index;
+- (PBDrawActionBuilder *)addBrushRandomValue:(SInt32)value;
+- (PBDrawActionBuilder *)setBrushRandomValueArray:(NSArray *)array;
+- (PBDrawActionBuilder *)setBrushRandomValueValues:(const SInt32 *)values count:(NSUInteger)count;
+- (PBDrawActionBuilder *)clearBrushRandomValue;
 @end
 
 @interface PBMessage : PBGeneratedMessage<GeneratedMessageProtocol> {

@@ -488,10 +488,12 @@
         NSMutableArray *pointXList = nil;
         NSMutableArray *pointYList = nil;
         NSMutableArray *pointWList = nil;
+        NSMutableArray *randomList = nil;
         
         [_hPointList createPointXList:&pointXList
                            pointYList:&pointYList
-                            widthList:&pointWList];
+                            widthList:&pointWList
+                           randomList:&randomList];
         
 //        [builder addAllPointsX:pointXList];
 //        [builder addAllPointsY:pointYList];
@@ -500,7 +502,7 @@
         [builder setPointsXArray:pointXList];
         [builder setPointsYArray:pointYList];
         [builder setBrushPointWidthArray:pointWList];
-
+        [builder setBrushRandomValueArray:randomList];
         
         [pool drain];
     }
@@ -517,14 +519,17 @@
         pbDrawActionC->pointsx = malloc(sizeof(float)*count);
         pbDrawActionC->pointsy = malloc(sizeof(float)*count);
         pbDrawActionC->brushpointwidth = malloc(sizeof(float)*count);
+        pbDrawActionC->brushrandomvalue = malloc(sizeof(int32_t)*count);
         
         pbDrawActionC->n_pointsx = count;
         pbDrawActionC->n_pointsy = count;
         pbDrawActionC->n_brushpointwidth = count;
+        pbDrawActionC->n_brushrandomvalue = count;
         
         [_hPointList createPointFloatXList:pbDrawActionC->pointsx
                                 floatYList:pbDrawActionC->pointsy
-                                 widthList:pbDrawActionC->brushpointwidth];
+                                 widthList:pbDrawActionC->brushpointwidth
+                                randomList:pbDrawActionC->brushrandomvalue];
         
     }
 

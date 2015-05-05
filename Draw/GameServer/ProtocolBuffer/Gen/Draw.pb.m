@@ -6351,6 +6351,7 @@ static PBColor* defaultPBColorInstance = nil;
 @property Float32 green;
 @property Float32 alpha;
 @property (strong) PBAppendableArray * brushPointWidthArray;
+@property (strong) PBAppendableArray * brushRandomValueArray;
 @end
 
 @implementation PBNoCompressDrawAction
@@ -6442,6 +6443,8 @@ static PBColor* defaultPBColorInstance = nil;
 @synthesize alpha;
 @synthesize brushPointWidthArray;
 @dynamic brushPointWidth;
+@synthesize brushRandomValueArray;
+@dynamic brushRandomValue;
 - (instancetype) init {
   if ((self = [super init])) {
     self.type = 0;
@@ -6499,6 +6502,12 @@ static PBNoCompressDrawAction* defaultPBNoCompressDrawActionInstance = nil;
 }
 - (Float32)brushPointWidthAtIndex:(NSUInteger)index {
   return [brushPointWidthArray floatAtIndex:index];
+}
+- (PBArray *)brushRandomValue {
+  return brushRandomValueArray;
+}
+- (SInt32)brushRandomValueAtIndex:(NSUInteger)index {
+  return [brushRandomValueArray int32AtIndex:index];
 }
 - (BOOL) isInitialized {
   if (!self.hasType) {
@@ -6584,6 +6593,13 @@ static PBNoCompressDrawAction* defaultPBNoCompressDrawActionInstance = nil;
       [output writeFloat:41 value:values[i]];
     }
   }
+  const NSUInteger brushRandomValueArrayCount = self.brushRandomValueArray.count;
+  if (brushRandomValueArrayCount > 0) {
+    const SInt32 *values = (const SInt32 *)self.brushRandomValueArray.data;
+    for (NSUInteger i = 0; i < brushRandomValueArrayCount; ++i) {
+      [output writeInt32:42 value:values[i]];
+    }
+  }
   [self.unknownFields writeToCodedOutputStream:output];
 }
 - (SInt32) serializedSize {
@@ -6654,6 +6670,16 @@ static PBNoCompressDrawAction* defaultPBNoCompressDrawActionInstance = nil;
     __block SInt32 dataSize = 0;
     const NSUInteger count = self.brushPointWidthArray.count;
     dataSize = (SInt32)(4 * count);
+    size_ += dataSize;
+    size_ += (SInt32)(2 * count);
+  }
+  {
+    __block SInt32 dataSize = 0;
+    const NSUInteger count = self.brushRandomValueArray.count;
+    const SInt32 *values = (const SInt32 *)self.brushRandomValueArray.data;
+    for (NSUInteger i = 0; i < count; ++i) {
+      dataSize += computeInt32SizeNoTag(values[i]);
+    }
     size_ += dataSize;
     size_ += (SInt32)(2 * count);
   }
@@ -6749,6 +6775,9 @@ static PBNoCompressDrawAction* defaultPBNoCompressDrawActionInstance = nil;
   [self.brushPointWidthArray enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
     [output appendFormat:@"%@%@: %@\n", indent, @"brushPointWidth", obj];
   }];
+  [self.brushRandomValueArray enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+    [output appendFormat:@"%@%@: %@\n", indent, @"brushRandomValue", obj];
+  }];
   [self.unknownFields writeDescriptionTo:output withIndent:indent];
 }
 - (BOOL) isEqual:(id)other {
@@ -6787,6 +6816,7 @@ static PBNoCompressDrawAction* defaultPBNoCompressDrawActionInstance = nil;
       self.hasAlpha == otherMessage.hasAlpha &&
       (!self.hasAlpha || self.alpha == otherMessage.alpha) &&
       [self.brushPointWidthArray isEqualToArray:otherMessage.brushPointWidthArray] &&
+      [self.brushRandomValueArray isEqualToArray:otherMessage.brushRandomValueArray] &&
       (self.unknownFields == otherMessage.unknownFields || (self.unknownFields != nil && [self.unknownFields isEqual:otherMessage.unknownFields]));
 }
 - (NSUInteger) hash {
@@ -6837,6 +6867,9 @@ static PBNoCompressDrawAction* defaultPBNoCompressDrawActionInstance = nil;
     hashCode = hashCode * 31 + [[NSNumber numberWithFloat:self.alpha] hash];
   }
   [self.brushPointWidthArray enumerateObjectsUsingBlock:^(NSNumber *obj, NSUInteger idx, BOOL *stop) {
+    hashCode = hashCode * 31 + [obj longValue];
+  }];
+  [self.brushRandomValueArray enumerateObjectsUsingBlock:^(NSNumber *obj, NSUInteger idx, BOOL *stop) {
     hashCode = hashCode * 31 + [obj longValue];
   }];
   hashCode = hashCode * 31 + [self.unknownFields hash];
@@ -6950,6 +6983,13 @@ static PBNoCompressDrawAction* defaultPBNoCompressDrawActionInstance = nil;
       [resultPbnoCompressDrawAction.brushPointWidthArray appendArray:other.brushPointWidthArray];
     }
   }
+  if (other.brushRandomValueArray.count > 0) {
+    if (resultPbnoCompressDrawAction.brushRandomValueArray == nil) {
+      resultPbnoCompressDrawAction.brushRandomValueArray = [other.brushRandomValueArray copy];
+    } else {
+      [resultPbnoCompressDrawAction.brushRandomValueArray appendArray:other.brushRandomValueArray];
+    }
+  }
   [self mergeUnknownFields:other.unknownFields];
   return self;
 }
@@ -7045,6 +7085,10 @@ static PBNoCompressDrawAction* defaultPBNoCompressDrawActionInstance = nil;
       }
       case 333: {
         [self addBrushPointWidth:[input readFloat]];
+        break;
+      }
+      case 336: {
+        [self addBrushRandomValue:[input readInt32]];
         break;
       }
     }
@@ -7373,6 +7417,31 @@ static PBNoCompressDrawAction* defaultPBNoCompressDrawActionInstance = nil;
 }
 - (PBNoCompressDrawActionBuilder *)clearBrushPointWidth {
   resultPbnoCompressDrawAction.brushPointWidthArray = nil;
+  return self;
+}
+- (PBAppendableArray *)brushRandomValue {
+  return resultPbnoCompressDrawAction.brushRandomValueArray;
+}
+- (SInt32)brushRandomValueAtIndex:(NSUInteger)index {
+  return [resultPbnoCompressDrawAction brushRandomValueAtIndex:index];
+}
+- (PBNoCompressDrawActionBuilder *)addBrushRandomValue:(SInt32)value {
+  if (resultPbnoCompressDrawAction.brushRandomValueArray == nil) {
+    resultPbnoCompressDrawAction.brushRandomValueArray = [PBAppendableArray arrayWithValueType:PBArrayValueTypeInt32];
+  }
+  [resultPbnoCompressDrawAction.brushRandomValueArray addInt32:value];
+  return self;
+}
+- (PBNoCompressDrawActionBuilder *)setBrushRandomValueArray:(NSArray *)array {
+  resultPbnoCompressDrawAction.brushRandomValueArray = [PBAppendableArray arrayWithArray:array valueType:PBArrayValueTypeInt32];
+  return self;
+}
+- (PBNoCompressDrawActionBuilder *)setBrushRandomValueValues:(const SInt32 *)values count:(NSUInteger)count {
+  resultPbnoCompressDrawAction.brushRandomValueArray = [PBAppendableArray arrayWithValues:values count:count valueType:PBArrayValueTypeInt32];
+  return self;
+}
+- (PBNoCompressDrawActionBuilder *)clearBrushRandomValue {
+  resultPbnoCompressDrawAction.brushRandomValueArray = nil;
   return self;
 }
 @end

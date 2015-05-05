@@ -262,6 +262,8 @@ message PBDrawAction {
   //brush
   optional int32 brushType = 40;                    //brush type
   repeated float brushPointWidth = 41;              //brush point width (so called scale)
+  repeated int32 brushRandomValue = 42;             //brush random value
+
 }
 
 
@@ -288,7 +290,7 @@ message PBMessage {
   optional double latitude = 32;
   optional string reqMessageId = 33;
   optional int32  replyResult = 34;
-  
+
   optional string imageURL = 41;                // for message type image, normal image
   optional string thumbImageURL = 42;           // for message type image, thumb image
 }

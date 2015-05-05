@@ -21,6 +21,7 @@ using std::list;
     vector<float> xList;
     vector<float> yList;
     vector<float> widthList;
+    vector<int> randomList;
 }
 
 @end
@@ -60,6 +61,11 @@ using std::list;
 - (float)getPointWidth:(int)index
 {
     return widthList[index];
+}
+
+- (float)getPointRandom:(int)index
+{
+    return randomList[index];
 }
 
 - (CGPoint)pointAtIndex:(int)index
@@ -116,7 +122,7 @@ using std::list;
     return rect;
 }
 
-- (void)addPoint:(float)x y:(float)y width:(float)width;
+- (void)addPoint:(float)x y:(float)y width:(float)width random:(int)random
 {
     _leftTopX = _leftTopX < x ? _leftTopX : x;
     _leftTopY = _leftTopY < y ? _leftTopY : y;
@@ -129,22 +135,26 @@ using std::list;
     xList.push_back(x);
     yList.push_back(y);
     widthList.push_back(width);
+    randomList.push_back(random);
 }
 
 - (void)createPointXList:(NSMutableArray**)pointXList
               pointYList:(NSMutableArray**)pointYList
-               widthList:(NSMutableArray**)pointWList;
+               widthList:(NSMutableArray**)pointWList
+              randomList:(NSMutableArray**)randomValueList;
 {
     int size = xList.size();
     if (size > 0) {
-        *pointXList = [[[NSMutableArray alloc] init] autorelease];
-        *pointYList = [[[NSMutableArray alloc] init] autorelease];
-        *pointWList = [[[NSMutableArray alloc] init] autorelease];
+        *pointXList = [[[NSMutableArray alloc] initWithCapacity:size] autorelease];
+        *pointYList = [[[NSMutableArray alloc] initWithCapacity:size] autorelease];
+        *pointWList = [[[NSMutableArray alloc] initWithCapacity:size] autorelease];
+        *randomValueList = [[[NSMutableArray alloc] initWithCapacity:size] autorelease];
         
         for (int i=0; i<size; i++){
             [*pointXList addObject:@(xList[i])];
             [*pointYList addObject:@(yList[i])];
             [*pointWList addObject:@(widthList[i])];
+            [*randomValueList addObject:@(randomList[i])];
         }
     }
 }
@@ -152,6 +162,7 @@ using std::list;
 - (void)createPointFloatXList:(CGFloat*)floatXList
                    floatYList:(CGFloat*)floatYList
                     widthList:(CGFloat*)floatWidthList
+                   randomList:(int32_t*)randomValueList
 {
     int size = xList.size();
     if (size > 0) {
@@ -159,6 +170,7 @@ using std::list;
             floatXList[i] = xList[i];
             floatYList[i] = yList[i];
             floatWidthList[i] = widthList[i];
+            randomValueList[i] = randomList[i];
         }
     }
 }
