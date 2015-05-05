@@ -905,6 +905,10 @@ typedef enum{
 static dispatch_once_t videoAdOnceToken;
 - (void)playVideoAd
 {
+    if (![self isEnableAd]){
+        return;
+    }
+    
     dispatch_once(&videoAdOnceToken, ^{
         
         NSString *appid = [GameApp youmiWallId];
@@ -936,9 +940,32 @@ cBVideoPlayConfigCallBackBlock:^(BOOL isLegal){
         }];
 }
 
+- (BOOL)isEnableAd
+{
+#ifdef DEBUG
+    if (1){
+        return YES;
+    }
+#endif
+    
+    if ([[UserManager defaultManager] isVip]){
+        return NO;
+    }
+    
+    if ([PPConfigManager isEnableAd] == NO){
+        return NO;
+    }
+    
+    return YES;
+}
+
 static dispatch_once_t spotAdOnceToken;
 - (void)playSpotAd
 {
+    if (![self isEnableAd]){
+        return;
+    }
+    
     dispatch_once(&spotAdOnceToken, ^{
         
         NSString *appid = [GameApp youmiWallId];
@@ -953,9 +980,11 @@ static dispatch_once_t spotAdOnceToken;
     [YouMiNewSpot showYouMiSpotAction:^(BOOL flag){
         if (flag) {
             PPDebug(@"展示插屏广告成功");
+            [MobClick event:@"SPOT_AD" label:@"SPOT_AD_SUCC" acc:1];
         }
         else{
             PPDebug(@"展示插屏广告失败");
+            [MobClick event:@"SPOT_AD" label:@"SPOT_AD_FAIL" acc:1];
         }
     }];
 }

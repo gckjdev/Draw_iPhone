@@ -1379,7 +1379,7 @@
     if([[UserManager defaultManager] isVip]){
         return [self getGroupMaxLevelForVIP];
     }
-    return GET_UMENG_INTVAL(@"GROUP_MAX_LEVEL", 20);
+    return GET_UMENG_INTVAL(@"GROUP_MAX_LEVEL", 5);
 }
 
 + (NSInteger)getGroupMaxLevelForVIP{

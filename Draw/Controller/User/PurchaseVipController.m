@@ -200,7 +200,7 @@
         
     }
     else{
-        msg = [NSString stringWithFormat:@"已有%d位热心用户购买会员支持小吉", [[UserManager defaultManager] buyVipUserCount]];
+        msg = [NSString stringWithFormat:@"已有%d位用户购买会员", [[UserManager defaultManager] buyVipUserCount]];
     }
     
     self.purchaseDescLabel.text = msg;}
@@ -270,14 +270,14 @@
 - (void)clickFeatureLabel1:(UITapGestureRecognizer*)tapGesture
 {
     if (tapGesture.state == UIGestureRecognizerStateEnded){
-        [self showInfo:@"我们为会员特别提供了羽毛笔、雪糕笔、马克笔等4种之前的绝版画笔，让别人观看你的作品的时候，也看到漂亮的画笔。\n\n注：画笔仅提供漂亮趣味外观"];
+        [self showInfo:@"我们为会员特别提供了羽毛笔、钢笔、蜡笔等多种画笔，让别人观看你的作品的时候，也看到漂亮的画笔。"];
     }
 }
 
 - (void)clickFeatureLabel2:(UITapGestureRecognizer*)tapGesture
 {
     if (tapGesture.state == UIGestureRecognizerStateEnded){
-        [self showInfo:@"我们为会员特别提供了钻石笔、巧克力笔、甜甜圈笔等5种全新画笔，让别人观看你的作品的时候，也看到漂亮的画笔。\n\n注：画笔仅提供漂亮趣味外观"];
+        [self showInfo:@"我们为会员特别提供了毛笔、铅笔等多种全新画笔，让别人观看你的作品的时候，也看到漂亮的画笔。"];
     }
 }
 
@@ -328,7 +328,7 @@
 - (void)clickFeatureLabel9:(UITapGestureRecognizer*)tapGesture
 {
     if (tapGesture.state == UIGestureRecognizerStateEnded){
-        [self showInfo:@"VIP会员可创建20级别以上，50级以下的家族"];
+        [self showInfo:@"VIP会员可创建5级别以上，50级以下的家族"];
     }
 }
 
@@ -494,8 +494,7 @@
     self.currentProductId = PRODUCT_ID_BUY_VIP_MONTH;
     
     int amount = [PPConfigManager getVipMonthFee];
-    NSString* nick = @""; //[[UserManager defaultManager] nickName];
-    NSString* name = [NSString stringWithFormat:@"小吉VIP会员包月（%d元/月），谢谢%@对小吉的热心支持！", amount, nick];
+    NSString* name = [NSString stringWithFormat:@"小吉VIP会员包月（%d元/月），马上成为VIP，享受更多小吉特权！", amount];
     
     AlixPayOrder* order = [self createOrder:amount
                                   productId:PRODUCT_ID_BUY_VIP_MONTH
@@ -521,8 +520,7 @@
     self.currentProductId = PRODUCT_ID_BUY_VIP_YEAR;
 
     int amount = [PPConfigManager getVipYearFee];
-    NSString* nick = @""; //[[UserManager defaultManager] nickName];
-    NSString* name = [NSString stringWithFormat:@"小吉VIP会员包年（%d元/年），谢谢%@对小吉的热心支持！", amount, nick];
+    NSString* name = [NSString stringWithFormat:@"小吉VIP会员包年（%d元/年），马上成为VIP，享受更多小吉特权！", amount];
     
     AlixPayOrder* order = [self createOrder:amount
                                   productId:PRODUCT_ID_BUY_VIP_YEAR
