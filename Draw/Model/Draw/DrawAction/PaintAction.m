@@ -109,28 +109,19 @@
         
         NSInteger count = action->n_pointsx; 
         if (count > 0 && action->pointsx != NULL && action->pointsy != NULL) {
-//            pointList = [NSMutableArray arrayWithCapacity:count];
-                        
+            
             for (NSInteger i = 0; i < count; ++ i) {
                 [pointList addPoint:action->pointsx[i] y:action->pointsy[i]];                
-//                PointNode *node = [[PointNode alloc] initPointWithX:action->pointsx[i] Y:action->pointsy[i]];
-//                [pointList addObject:node];
-//                [node release];
             }
         }else{
             //old point data paser
             count = action->n_points;
             if (count > 0 && action->points != NULL) {
-//                pointList = [NSMutableArray arrayWithCapacity:count];
                 
                 for (int i=0; i<count; i++){
+                    
                     CGPoint point = [DrawUtils decompressIntPoint:action->points[i]];
-                    
                     [pointList addPoint:point.x y:point.y];
-                    
-//                    PointNode *node = [[PointNode alloc] initPointWithX:point.x Y:point.y];
-//                    [pointList addObject:node];
-//                    [node release];
                     
                 }
             }
