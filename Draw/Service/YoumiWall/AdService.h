@@ -15,6 +15,7 @@
 //#import "WapsOffer/AppConnect.h"
 #import <GoogleMobileAds/GADBannerViewDelegate.h>
 
+
 typedef enum
 {
     AdPlatformAuto = 0,

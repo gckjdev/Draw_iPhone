@@ -122,7 +122,10 @@ using std::list;
     return rect;
 }
 
-- (void)addPoint:(float)x y:(float)y width:(float)width random:(int)random
+- (void)addPointX:(float)x
+           PointY:(float)y
+       PointWidth:(float)width
+      PointRandom:(int)random
 {
     _leftTopX = _leftTopX < x ? _leftTopX : x;
     _leftTopY = _leftTopY < y ? _leftTopY : y;

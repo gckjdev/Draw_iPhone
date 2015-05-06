@@ -25,7 +25,10 @@
 - (CGPoint)pointAtIndex:(int)index;
 - (void)complete;
 
-- (void)addPoint:(float)x y:(float)y width:(float)width random:(int)random;
+- (void)addPointX:(float)x
+           PointY:(float)y
+       PointWidth:(float)width
+      PointRandom:(int)random;
 
 - (void)createPointXList:(NSMutableArray**)pointXList
               pointYList:(NSMutableArray**)pointYList

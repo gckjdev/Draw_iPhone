@@ -243,7 +243,7 @@
 
 - (void)showCurrentIndexAtLabel:(NSInteger)index
 {
-    NSString *str=[NSString stringWithFormat:@"%d",index];
+    NSString *str=[NSString stringWithFormat:@"%ld",(long)index];
     self.indexLabel.text=str;
 
 }
