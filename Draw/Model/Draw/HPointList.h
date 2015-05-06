@@ -19,7 +19,7 @@
 - (int)count;
 - (CGPoint)pointAtIndex:(int)index;
 - (void)createPointXList:(NSMutableArray**)pointXList pointYList:(NSMutableArray**)pointYList;
-- (void)createPointFloatXList:(CGFloat*)floatXList floatYList:(CGFloat*)floatYList;
+- (void)createPointFloatXList:(float*)floatXList floatYList:(float*)floatYList;
 
 - (void)complete;
 

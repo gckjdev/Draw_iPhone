@@ -34,22 +34,13 @@
 
 - (void)updatePaintWithDrawActionC:(Game__PBDrawAction *)action
 {
-//    NSMutableArray *pointList = nil;
-    
     HPointList* pointList = [[HPointList alloc] init];
     
     NSInteger count =  action->n_pointsx;
     
     if (count > 0) {
-//        pointList = [NSMutableArray arrayWithCapacity:count];
         for (NSInteger i = 0; i < count; ++ i) {
-
             [pointList addPoint:action->pointsx[i] y:action->pointsy[i]];
-            
-//            PointNode *node = [[PointNode alloc] initPointWithX:action->pointsx[i]
-//                                                              Y:action->pointsy[i]];
-//            [pointList addObject:node];
-//            [node release];
         }
     }
     [pointList complete];

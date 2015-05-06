@@ -74,7 +74,7 @@ using std::list;
 - (void)createPointXList:(NSMutableArray**)pointXList
               pointYList:(NSMutableArray**)pointYList
 {
-    int size = xList.size();
+    size_t size = xList.size();
     if (size > 0) {
         *pointXList = [[[NSMutableArray alloc] init] autorelease];
         *pointYList = [[[NSMutableArray alloc] init] autorelease];
@@ -88,10 +88,10 @@ using std::list;
     }    
 }
 
-- (void)createPointFloatXList:(CGFloat*)floatXList
-                   floatYList:(CGFloat*)floatYList
+- (void)createPointFloatXList:(float*)floatXList
+                   floatYList:(float*)floatYList
 {
-    int size = xList.size();
+    size_t size = xList.size();
     if (size > 0) {        
         for (int i=0; i<size; i++){
             floatXList[i] = xList[i];
