@@ -24,35 +24,10 @@ static dispatch_once_t sharedBlurBrushOnceToken;
     return sharedBlurBrush;
 }
 
-//<<<<<<< HEAD
-//- (UIImage*)brushImage:(UIColor *)color width:(float)width
-//{
-//    //在context上画出一个渐变园
-//    UIImage *brushImage;
-////    UIGraphicsBeginImageContext(CGSizeMake(width, width));
-//
-//    if ([[UIScreen mainScreen] respondsToSelector:@selector(scale)])
-//        UIGraphicsBeginImageContextWithOptions(CGSizeMake(width, width), NO, [UIScreen mainScreen].scale);
-//    else
-//        UIGraphicsBeginImageContext(CGSizeMake(width, width));
-//    
-//	CGContextRef ctx = UIGraphicsGetCurrentContext();
-//	CGFloat wd = width / 2.0f;
-//	CGPoint pt = CGPointMake(wd, wd);
-//	CGColorSpaceRef colorspace = CGColorSpaceCreateDeviceRGB();
-//	size_t num_locations = 2;
-//	CGFloat locations[2] = { 1.0, 0.0 };
-//	CGFloat* comp = (CGFloat *)CGColorGetComponents(color.CGColor);
-//	CGFloat fc = sinf(((0.6/*这个参数是硬度，暂时固定*/ / 5.0f) * M_PI ) / 2.0f);
-//	CGFloat colors[8] = { comp[0], comp[1], comp[2], 0.0f, comp[0], comp[1], comp[2], fc };
-//	CGGradientRef gradient = CGGradientCreateWithColorComponents(colorspace, colors, locations, num_locations);
-//	CGContextDrawRadialGradient(ctx, gradient, pt, 0.0f, pt, wd, 0);
-//	CGContextFlush(ctx);
-//	brushImage = UIGraphicsGetImageFromCurrentImageContext();
-//	UIGraphicsEndImageContext();
-//	CFRelease(gradient);
-//	CFRelease(colorspace);
-//=======
+- (BOOL)canInterpolationOptimized
+{
+    return YES;
+}
 
 - (UIImage*)brushImage:(UIColor *)color
                  width:(float)width

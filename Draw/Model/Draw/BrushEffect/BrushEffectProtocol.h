@@ -22,6 +22,7 @@
 
 - (UIImage*)brushImage:(UIColor*)color width:(float)width;
 
+- (BOOL)canInterpolationOptimized;
 // 笔刷宽度是否每一点可变
 - (BOOL)isWidthFixedSize;
 

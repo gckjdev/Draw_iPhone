@@ -44,7 +44,8 @@
 @property(nonatomic, retain) id<DrawPenProtocol> drawPen;
 @property(nonatomic, retain) UIImage *brushImage;
 @property(nonatomic, assign) CGImageRef brushImageRef;
-@property(nonatomic, assign) BOOL isOptimized;
+@property(nonatomic, assign) BOOL isInterpolationOptimized;      // 笔刷数据是否可优化
+@property(nonatomic, assign) BOOL isOptimized;                   // 当前版本数据是否已经优化
 
 
 - (id)initWithWidth:(CGFloat)width
@@ -63,7 +64,7 @@
 
 #pragma mark- get && add point methods
 - (void)updateLastPoint:(CGPoint)point inRect:(CGRect)rect;
-//- (void)addPoint:(CGPoint)point inRect:(CGRect)rect;
+- (void)addPoint:(CGPoint)point inRect:(CGRect)rect;
 - (void)addPoint:(CGPoint)point
            width:(float)width
           inRect:(CGRect)rect

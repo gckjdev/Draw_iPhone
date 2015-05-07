@@ -16,6 +16,11 @@
     return nil;
 }
 
+- (BOOL)canInterpolationOptimized
+{
+    return YES;
+}
+
 - (float)calculateWidthWithThreshold:(float)threshold
                            distance1:(float)distance1
                            distance2:(float)distance2

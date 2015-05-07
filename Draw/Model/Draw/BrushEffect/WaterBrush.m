@@ -26,6 +26,11 @@ static dispatch_once_t sharedWaterBrushOnceToken;
     return sharedWaterBrush;
 }
 
+- (BOOL)canInterpolationOptimized
+{
+    return NO;
+}
+
 - (UIImage*)brushImage:(UIColor *)color
                  width:(float)width
 {

@@ -25,6 +25,11 @@ static dispatch_once_t sharedPencilBrushOnceToken;
     return sharedPencilBrush;
 }
 
+- (BOOL)canInterpolationOptimized
+{
+    return NO;
+}
+
 - (UIImage*)brushImage:(UIColor *)color width:(float)width
 {
     //使用图片不需要管本来的颜色，只需要形状是所需要的即可，颜色由rt_tint方法搞定
