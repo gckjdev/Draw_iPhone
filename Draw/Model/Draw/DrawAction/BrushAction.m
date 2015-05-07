@@ -103,7 +103,8 @@
         self.brushStroke = [BrushStroke brushStrokeWithWidth:action->width
                                                        color:color
                                                    brushType:action->pentype
-                                                   pointList:pointList];
+                                                   pointList:pointList
+                                                 isOptimized:action->isoptimized];
         
         [pointList release];
         
@@ -159,7 +160,8 @@
         self.brushStroke = [BrushStroke brushStrokeWithWidth:action.width
                                                        color:color
                                                    brushType:action.penType
-                                                   pointList:pointList];
+                                                   pointList:pointList
+                                                 isOptimized:action.isOptimized];
 
         [pointList release];
         
@@ -204,7 +206,8 @@
         self.brushStroke = [BrushStroke brushStrokeWithWidth:action.width
                                                        color:[action drawColor]
                                                    brushType:action.penType
-                                                   pointList:pointList];
+                                                   pointList:pointList
+                                                 isOptimized:action.isOptimized];
         
         [pointList release];
     }
@@ -246,7 +249,8 @@
         self.brushStroke = [BrushStroke brushStrokeWithWidth:action->width
                                                        color:color
                                                    brushType:action->pentype
-                                                   pointList:pointList];
+                                                   pointList:pointList
+                                                 isOptimized:action->isoptimized];
         
         [pointList release];
          

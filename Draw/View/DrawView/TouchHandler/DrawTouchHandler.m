@@ -50,7 +50,8 @@
         brushStroke = [BrushStroke brushStrokeWithWidth:[shareDrawInfo itemWidth]
                                                   color:[shareDrawInfo itemColor]
                                               brushType:shareDrawInfo.penType
-                                              pointList:nil];
+                                              pointList:nil
+                                            isOptimized:YES];
         
         action.shadow = info.shadow;
         action = [[BrushAction brushActionWithBrushStroke:brushStroke] retain];

@@ -217,6 +217,8 @@ message PBNoCompressDrawAction{
     repeated float brushPointWidth = 41;              //brush point width (so called scale)
     repeated int32 brushRandomValue = 42;             //brush random value
 
+    optional bool  isOptimized = 43;                  //是否是优化笔刷数据，比如优化笔刷无需随机补点；而未优化笔刷需要随机补点
+
 }
 
 

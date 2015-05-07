@@ -6352,6 +6352,7 @@ static PBColor* defaultPBColorInstance = nil;
 @property Float32 alpha;
 @property (strong) PBAppendableArray * brushPointWidthArray;
 @property (strong) PBAppendableArray * brushRandomValueArray;
+@property BOOL isOptimized;
 @end
 
 @implementation PBNoCompressDrawAction
@@ -6445,6 +6446,18 @@ static PBColor* defaultPBColorInstance = nil;
 @dynamic brushPointWidth;
 @synthesize brushRandomValueArray;
 @dynamic brushRandomValue;
+- (BOOL) hasIsOptimized {
+  return !!hasIsOptimized_;
+}
+- (void) setHasIsOptimized:(BOOL) _value_ {
+  hasIsOptimized_ = !!_value_;
+}
+- (BOOL) isOptimized {
+  return !!isOptimized_;
+}
+- (void) setIsOptimized:(BOOL) _value_ {
+  isOptimized_ = !!_value_;
+}
 - (instancetype) init {
   if ((self = [super init])) {
     self.type = 0;
@@ -6458,6 +6471,7 @@ static PBColor* defaultPBColorInstance = nil;
     self.blue = 0;
     self.green = 0;
     self.alpha = 0;
+    self.isOptimized = NO;
   }
   return self;
 }
@@ -6600,6 +6614,9 @@ static PBNoCompressDrawAction* defaultPBNoCompressDrawActionInstance = nil;
       [output writeInt32:42 value:values[i]];
     }
   }
+  if (self.hasIsOptimized) {
+    [output writeBool:43 value:self.isOptimized];
+  }
   [self.unknownFields writeToCodedOutputStream:output];
 }
 - (SInt32) serializedSize {
@@ -6682,6 +6699,9 @@ static PBNoCompressDrawAction* defaultPBNoCompressDrawActionInstance = nil;
     }
     size_ += dataSize;
     size_ += (SInt32)(2 * count);
+  }
+  if (self.hasIsOptimized) {
+    size_ += computeBoolSize(43, self.isOptimized);
   }
   size_ += self.unknownFields.serializedSize;
   memoizedSerializedSize = size_;
@@ -6778,6 +6798,9 @@ static PBNoCompressDrawAction* defaultPBNoCompressDrawActionInstance = nil;
   [self.brushRandomValueArray enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
     [output appendFormat:@"%@%@: %@\n", indent, @"brushRandomValue", obj];
   }];
+  if (self.hasIsOptimized) {
+    [output appendFormat:@"%@%@: %@\n", indent, @"isOptimized", [NSNumber numberWithBool:self.isOptimized]];
+  }
   [self.unknownFields writeDescriptionTo:output withIndent:indent];
 }
 - (BOOL) isEqual:(id)other {
@@ -6817,6 +6840,8 @@ static PBNoCompressDrawAction* defaultPBNoCompressDrawActionInstance = nil;
       (!self.hasAlpha || self.alpha == otherMessage.alpha) &&
       [self.brushPointWidthArray isEqualToArray:otherMessage.brushPointWidthArray] &&
       [self.brushRandomValueArray isEqualToArray:otherMessage.brushRandomValueArray] &&
+      self.hasIsOptimized == otherMessage.hasIsOptimized &&
+      (!self.hasIsOptimized || self.isOptimized == otherMessage.isOptimized) &&
       (self.unknownFields == otherMessage.unknownFields || (self.unknownFields != nil && [self.unknownFields isEqual:otherMessage.unknownFields]));
 }
 - (NSUInteger) hash {
@@ -6872,6 +6897,9 @@ static PBNoCompressDrawAction* defaultPBNoCompressDrawActionInstance = nil;
   [self.brushRandomValueArray enumerateObjectsUsingBlock:^(NSNumber *obj, NSUInteger idx, BOOL *stop) {
     hashCode = hashCode * 31 + [obj longValue];
   }];
+  if (self.hasIsOptimized) {
+    hashCode = hashCode * 31 + [[NSNumber numberWithBool:self.isOptimized] hash];
+  }
   hashCode = hashCode * 31 + [self.unknownFields hash];
   return hashCode;
 }
@@ -6990,6 +7018,9 @@ static PBNoCompressDrawAction* defaultPBNoCompressDrawActionInstance = nil;
       [resultPbnoCompressDrawAction.brushRandomValueArray appendArray:other.brushRandomValueArray];
     }
   }
+  if (other.hasIsOptimized) {
+    [self setIsOptimized:other.isOptimized];
+  }
   [self mergeUnknownFields:other.unknownFields];
   return self;
 }
@@ -7089,6 +7120,10 @@ static PBNoCompressDrawAction* defaultPBNoCompressDrawActionInstance = nil;
       }
       case 336: {
         [self addBrushRandomValue:[input readInt32]];
+        break;
+      }
+      case 344: {
+        [self setIsOptimized:[input readBool]];
         break;
       }
     }
@@ -7442,6 +7477,22 @@ static PBNoCompressDrawAction* defaultPBNoCompressDrawActionInstance = nil;
 }
 - (PBNoCompressDrawActionBuilder *)clearBrushRandomValue {
   resultPbnoCompressDrawAction.brushRandomValueArray = nil;
+  return self;
+}
+- (BOOL) hasIsOptimized {
+  return resultPbnoCompressDrawAction.hasIsOptimized;
+}
+- (BOOL) isOptimized {
+  return resultPbnoCompressDrawAction.isOptimized;
+}
+- (PBNoCompressDrawActionBuilder*) setIsOptimized:(BOOL) value {
+  resultPbnoCompressDrawAction.hasIsOptimized = YES;
+  resultPbnoCompressDrawAction.isOptimized = value;
+  return self;
+}
+- (PBNoCompressDrawActionBuilder*) clearIsOptimized {
+  resultPbnoCompressDrawAction.hasIsOptimized = NO;
+  resultPbnoCompressDrawAction.isOptimized = NO;
   return self;
 }
 @end

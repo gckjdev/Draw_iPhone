@@ -334,7 +334,8 @@ message GeneralNotification{
   optional float width = 22;
   optional int32 color = 23;
   optional int32 penType = 24;
-  
+  optional bool isOptimized = 25;                      // 是否是优化笔刷
+
   // word data
   optional string word = 31;
   optional int32 level = 32;

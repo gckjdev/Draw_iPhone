@@ -51,6 +51,7 @@
         self.width = width;
         self.color = color;
         _hPointList = [[HBrushPointList alloc] init];
+        self.isOptimized = YES;
     }
     return self;
 }
@@ -59,6 +60,7 @@
               color:(DrawColor *)color
             brushType:(ItemType)brushType
           pointList:(HBrushPointList*)pointList
+        isOptimized:(BOOL)isOptimized
 {
     self = [super init];
     if (self) {
@@ -85,7 +87,7 @@
             self.hPointList = pointList;
         }
         
-       
+        self.isOptimized = isOptimized;
     }
     return self;
 }
@@ -95,11 +97,13 @@
                      color:(DrawColor *)color
                  brushType:(ItemType)brushType
                  pointList:(HBrushPointList*)pointList
+               isOptimized:(BOOL)isOptimized
 {
     return [[[BrushStroke alloc] initWithWidth:width
                                          color:color
                                      brushType:brushType
-                                     pointList:pointList] autorelease];
+                                     pointList:pointList
+                                   isOptimized:isOptimized] autorelease];
 }
 
 
@@ -124,6 +128,8 @@
             [self addPoint:point inRect:[CanvasRect defaultRect]];
         }
         [_hPointList complete];
+        
+        self.isOptimized = [[gameMessage notification] isOptimized];
     }
     return self;
 }

@@ -581,10 +581,15 @@ struct  _Game__PBNoCompressDrawAction
    */
   size_t n_brushrandomvalue;
   int32_t *brushrandomvalue;
+  /*
+   *是否是优化笔刷数据，比如优化笔刷无需随机补点；而未优化笔刷需要随机补点
+   */
+  protobuf_c_boolean has_isoptimized;
+  protobuf_c_boolean isoptimized;
 };
 #define GAME__PBNO_COMPRESS_DRAW_ACTION__INIT \
  { PROTOBUF_C_MESSAGE_INIT (&game__pbno_compress_draw_action__descriptor) \
-    , 0, 0,NULL, NULL, 0,0, 0,0, 0,0, 0,NULL, NULL, 0,NULL, 0,NULL, 0,0, 0,0, 0,0, 0,0, 0,0, 0,NULL, 0,NULL }
+    , 0, 0,NULL, NULL, 0,0, 0,0, 0,0, 0,NULL, NULL, 0,NULL, 0,NULL, 0,0, 0,0, 0,0, 0,0, 0,0, 0,NULL, 0,NULL, 0,0 }
 
 
 struct  _Game__PBNoCompressDrawData

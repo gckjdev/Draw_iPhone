@@ -419,7 +419,8 @@ typedef enum {
                 BrushStroke *bs = [BrushStroke brushStrokeWithWidth:cbs.width
                                                               color:cbs.color
                                                           brushType:cbs.brushType
-                                                          pointList:nil];
+                                                          pointList:nil
+                                                        isOptimized:YES];
                 
                 self.tempAction = [BrushAction brushActionWithBrushStroke:bs];
             }

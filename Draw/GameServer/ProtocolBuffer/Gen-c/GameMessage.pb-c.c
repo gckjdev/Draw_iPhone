@@ -5023,7 +5023,7 @@ const ProtobufCMessageDescriptor game__game_start_notification_response__descrip
   (ProtobufCMessageInit) game__game_start_notification_response__init,
   NULL,NULL,NULL    /* reserved[123] */
 };
-static const ProtobufCFieldDescriptor game__general_notification__field_descriptors[28] =
+static const ProtobufCFieldDescriptor game__general_notification__field_descriptors[29] =
 {
   {
     "sessionHost",
@@ -5218,6 +5218,18 @@ static const ProtobufCFieldDescriptor game__general_notification__field_descript
     0,NULL,NULL    /* reserved1,reserved2, etc */
   },
   {
+    "isOptimized",
+    25,
+    PROTOBUF_C_LABEL_OPTIONAL,
+    PROTOBUF_C_TYPE_BOOL,
+    offsetof(Game__GeneralNotification, has_isoptimized),
+    offsetof(Game__GeneralNotification, isoptimized),
+    NULL,
+    NULL,
+    0,             /* flags */
+    0,NULL,NULL    /* reserved1,reserved2, etc */
+  },
+  {
     "word",
     31,
     PROTOBUF_C_LABEL_OPTIONAL,
@@ -5363,17 +5375,18 @@ static const ProtobufCFieldDescriptor game__general_notification__field_descript
   },
 };
 static const unsigned game__general_notification__field_indices_by_name[] = {
-  25,   /* field[25] = chatContent */
-  24,   /* field[24] = chatToUserId */
-  26,   /* field[26] = chatType */
+  26,   /* field[26] = chatContent */
+  25,   /* field[25] = chatToUserId */
+  27,   /* field[27] = chatType */
   14,   /* field[14] = color */
   2,   /* field[2] = currentPlayUserId */
-  22,   /* field[22] = guessCorrect */
-  23,   /* field[23] = guessGainCoins */
-  21,   /* field[21] = guessUserId */
-  20,   /* field[20] = guessWord */
-  19,   /* field[19] = language */
-  17,   /* field[17] = level */
+  23,   /* field[23] = guessCorrect */
+  24,   /* field[24] = guessGainCoins */
+  22,   /* field[22] = guessUserId */
+  21,   /* field[21] = guessWord */
+  16,   /* field[16] = isOptimized */
+  20,   /* field[20] = language */
+  18,   /* field[18] = level */
   10,   /* field[10] = location */
   4,   /* field[4] = newUserId */
   3,   /* field[3] = nextPlayUserId */
@@ -5381,26 +5394,26 @@ static const unsigned game__general_notification__field_indices_by_name[] = {
   15,   /* field[15] = penType */
   12,   /* field[12] = points */
   5,   /* field[5] = quitUserId */
-  18,   /* field[18] = round */
+  19,   /* field[19] = round */
   0,   /* field[0] = sessionHost */
   1,   /* field[1] = sessionStatus */
   9,   /* field[9] = snsUsers */
-  27,   /* field[27] = turnGainCoins */
+  28,   /* field[28] = turnGainCoins */
   7,   /* field[7] = userAvatar */
   8,   /* field[8] = userGender */
   11,   /* field[11] = userLevel */
   13,   /* field[13] = width */
-  16,   /* field[16] = word */
+  17,   /* field[17] = word */
 };
 static const ProtobufCIntRange game__general_notification__number_ranges[6 + 1] =
 {
   { 3, 0 },
   { 21, 12 },
-  { 31, 16 },
-  { 41, 20 },
-  { 51, 24 },
-  { 61, 27 },
-  { 0, 28 }
+  { 31, 17 },
+  { 41, 21 },
+  { 51, 25 },
+  { 61, 28 },
+  { 0, 29 }
 };
 const ProtobufCMessageDescriptor game__general_notification__descriptor =
 {
@@ -5410,7 +5423,7 @@ const ProtobufCMessageDescriptor game__general_notification__descriptor =
   "Game__GeneralNotification",
   "game",
   sizeof(Game__GeneralNotification),
-  28,
+  29,
   game__general_notification__field_descriptors,
   game__general_notification__field_indices_by_name,
   6,  game__general_notification__number_ranges,
