@@ -959,6 +959,11 @@ struct  _Game__GeneralNotification
   protobuf_c_boolean has_pentype;
   int32_t pentype;
   /*
+   * 是否是优化笔刷
+   */
+  protobuf_c_boolean has_isoptimized;
+  protobuf_c_boolean isoptimized;
+  /*
    * word data
    */
   char *word;
@@ -1002,7 +1007,7 @@ struct  _Game__GeneralNotification
 };
 #define GAME__GENERAL_NOTIFICATION__INIT \
  { PROTOBUF_C_MESSAGE_INIT (&game__general_notification__descriptor) \
-    , NULL, 0,0, NULL, NULL, NULL, NULL, NULL, NULL, 0,0, 0,NULL, NULL, 0,0, 0,NULL, 0,0, 0,0, 0,0, NULL, 0,0, 0,0, 0,0, NULL, NULL, 0,0, 0,0, 0,NULL, NULL, 0,0, 0,0 }
+    , NULL, 0,0, NULL, NULL, NULL, NULL, NULL, NULL, 0,0, 0,NULL, NULL, 0,0, 0,NULL, 0,0, 0,0, 0,0, 0,0, NULL, 0,0, 0,0, 0,0, NULL, NULL, 0,0, 0,0, 0,NULL, NULL, 0,0, 0,0 }
 
 
 struct  _Game__FacetimeChatRequest

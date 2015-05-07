@@ -44,16 +44,20 @@
 @property(nonatomic, retain) id<DrawPenProtocol> drawPen;
 @property(nonatomic, retain) UIImage *brushImage;
 @property(nonatomic, assign) CGImageRef brushImageRef;
+@property(nonatomic, assign) BOOL isOptimized;
+
 
 - (id)initWithWidth:(CGFloat)width
               color:(DrawColor *)color
             brushType:(ItemType)brushType
-          pointList:(HBrushPointList*)pointList;
+          pointList:(HBrushPointList*)pointList
+        isOptimized:(BOOL)isOptimized;
 
 + (id)brushStrokeWithWidth:(CGFloat)width
                color:(DrawColor *)color
              brushType:(ItemType)brushType
-           pointList:(HBrushPointList*)pointList;
+           pointList:(HBrushPointList*)pointList
+               isOptimized:(BOOL)isOptimized;
 
 - (id)initWithGameMessage:(GameMessage *)gameMessage;
 

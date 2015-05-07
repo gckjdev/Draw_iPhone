@@ -1397,6 +1397,7 @@
 
 @interface PBNoCompressDrawAction : PBGeneratedMessage<GeneratedMessageProtocol> {
 @private
+  BOOL hasIsOptimized_:1;
   BOOL hasWidth_:1;
   BOOL hasRed_:1;
   BOOL hasBlue_:1;
@@ -1408,6 +1409,7 @@
   BOOL hasColor_:1;
   BOOL hasCanvasSize_:1;
   BOOL hasRgbColor_:1;
+  BOOL isOptimized_:1;
   Float32 width;
   Float32 red;
   Float32 blue;
@@ -1437,6 +1439,7 @@
 - (BOOL) hasBlue;
 - (BOOL) hasGreen;
 - (BOOL) hasAlpha;
+- (BOOL) hasIsOptimized;
 @property (readonly) SInt32 type;
 @property (readonly, strong) NSArray * point;
 @property (readonly, strong) PBColor* color;
@@ -1454,6 +1457,7 @@
 @property (readonly) Float32 alpha;
 @property (readonly, strong) PBArray * brushPointWidth;
 @property (readonly, strong) PBArray * brushRandomValue;
+- (BOOL) isOptimized;
 - (PBPoint*)pointAtIndex:(NSUInteger)index;
 - (Float32)rectComponentAtIndex:(NSUInteger)index;
 - (Float32)pointXAtIndex:(NSUInteger)index;
@@ -1595,6 +1599,11 @@
 - (PBNoCompressDrawActionBuilder *)setBrushRandomValueArray:(NSArray *)array;
 - (PBNoCompressDrawActionBuilder *)setBrushRandomValueValues:(const SInt32 *)values count:(NSUInteger)count;
 - (PBNoCompressDrawActionBuilder *)clearBrushRandomValue;
+
+- (BOOL) hasIsOptimized;
+- (BOOL) isOptimized;
+- (PBNoCompressDrawActionBuilder*) setIsOptimized:(BOOL) value;
+- (PBNoCompressDrawActionBuilder*) clearIsOptimized;
 @end
 
 @interface PBNoCompressDrawData : PBGeneratedMessage<GeneratedMessageProtocol> {

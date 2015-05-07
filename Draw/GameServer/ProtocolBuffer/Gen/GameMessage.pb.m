@@ -13751,6 +13751,7 @@ static GameStartNotificationResponse* defaultGameStartNotificationResponseInstan
 @property Float32 width;
 @property SInt32 color;
 @property SInt32 penType;
+@property BOOL isOptimized;
 @property (strong) NSString* word;
 @property SInt32 level;
 @property SInt32 round;
@@ -13874,6 +13875,18 @@ static GameStartNotificationResponse* defaultGameStartNotificationResponseInstan
   hasPenType_ = !!_value_;
 }
 @synthesize penType;
+- (BOOL) hasIsOptimized {
+  return !!hasIsOptimized_;
+}
+- (void) setHasIsOptimized:(BOOL) _value_ {
+  hasIsOptimized_ = !!_value_;
+}
+- (BOOL) isOptimized {
+  return !!isOptimized_;
+}
+- (void) setIsOptimized:(BOOL) _value_ {
+  isOptimized_ = !!_value_;
+}
 - (BOOL) hasWord {
   return !!hasWord_;
 }
@@ -13974,6 +13987,7 @@ static GameStartNotificationResponse* defaultGameStartNotificationResponseInstan
     self.width = 0;
     self.color = 0;
     self.penType = 0;
+    self.isOptimized = NO;
     self.word = @"";
     self.level = 0;
     self.round = 0;
@@ -14084,6 +14098,9 @@ static GeneralNotification* defaultGeneralNotificationInstance = nil;
   if (self.hasPenType) {
     [output writeInt32:24 value:self.penType];
   }
+  if (self.hasIsOptimized) {
+    [output writeBool:25 value:self.isOptimized];
+  }
   if (self.hasWord) {
     [output writeString:31 value:self.word];
   }
@@ -14187,6 +14204,9 @@ static GeneralNotification* defaultGeneralNotificationInstance = nil;
   }
   if (self.hasPenType) {
     size_ += computeInt32Size(24, self.penType);
+  }
+  if (self.hasIsOptimized) {
+    size_ += computeBoolSize(25, self.isOptimized);
   }
   if (self.hasWord) {
     size_ += computeStringSize(31, self.word);
@@ -14316,6 +14336,9 @@ static GeneralNotification* defaultGeneralNotificationInstance = nil;
   if (self.hasPenType) {
     [output appendFormat:@"%@%@: %@\n", indent, @"penType", [NSNumber numberWithInteger:self.penType]];
   }
+  if (self.hasIsOptimized) {
+    [output appendFormat:@"%@%@: %@\n", indent, @"isOptimized", [NSNumber numberWithBool:self.isOptimized]];
+  }
   if (self.hasWord) {
     [output appendFormat:@"%@%@: %@\n", indent, @"word", self.word];
   }
@@ -14393,6 +14416,8 @@ static GeneralNotification* defaultGeneralNotificationInstance = nil;
       (!self.hasColor || self.color == otherMessage.color) &&
       self.hasPenType == otherMessage.hasPenType &&
       (!self.hasPenType || self.penType == otherMessage.penType) &&
+      self.hasIsOptimized == otherMessage.hasIsOptimized &&
+      (!self.hasIsOptimized || self.isOptimized == otherMessage.isOptimized) &&
       self.hasWord == otherMessage.hasWord &&
       (!self.hasWord || [self.word isEqual:otherMessage.word]) &&
       self.hasLevel == otherMessage.hasLevel &&
@@ -14467,6 +14492,9 @@ static GeneralNotification* defaultGeneralNotificationInstance = nil;
   }
   if (self.hasPenType) {
     hashCode = hashCode * 31 + [[NSNumber numberWithInteger:self.penType] hash];
+  }
+  if (self.hasIsOptimized) {
+    hashCode = hashCode * 31 + [[NSNumber numberWithBool:self.isOptimized] hash];
   }
   if (self.hasWord) {
     hashCode = hashCode * 31 + [self.word hash];
@@ -14603,6 +14631,9 @@ static GeneralNotification* defaultGeneralNotificationInstance = nil;
   if (other.hasPenType) {
     [self setPenType:other.penType];
   }
+  if (other.hasIsOptimized) {
+    [self setIsOptimized:other.isOptimized];
+  }
   if (other.hasWord) {
     [self setWord:other.word];
   }
@@ -14736,6 +14767,10 @@ static GeneralNotification* defaultGeneralNotificationInstance = nil;
       }
       case 192: {
         [self setPenType:[input readInt32]];
+        break;
+      }
+      case 200: {
+        [self setIsOptimized:[input readBool]];
         break;
       }
       case 250: {
@@ -15057,6 +15092,22 @@ static GeneralNotification* defaultGeneralNotificationInstance = nil;
 - (GeneralNotificationBuilder*) clearPenType {
   resultGeneralNotification.hasPenType = NO;
   resultGeneralNotification.penType = 0;
+  return self;
+}
+- (BOOL) hasIsOptimized {
+  return resultGeneralNotification.hasIsOptimized;
+}
+- (BOOL) isOptimized {
+  return resultGeneralNotification.isOptimized;
+}
+- (GeneralNotificationBuilder*) setIsOptimized:(BOOL) value {
+  resultGeneralNotification.hasIsOptimized = YES;
+  resultGeneralNotification.isOptimized = value;
+  return self;
+}
+- (GeneralNotificationBuilder*) clearIsOptimized {
+  resultGeneralNotification.hasIsOptimized = NO;
+  resultGeneralNotification.isOptimized = NO;
   return self;
 }
 - (BOOL) hasWord {

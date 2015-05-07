@@ -2526,7 +2526,7 @@ const ProtobufCMessageDescriptor game__pbcolor__descriptor =
   (ProtobufCMessageInit) game__pbcolor__init,
   NULL,NULL,NULL    /* reserved[123] */
 };
-static const ProtobufCFieldDescriptor game__pbno_compress_draw_action__field_descriptors[17] =
+static const ProtobufCFieldDescriptor game__pbno_compress_draw_action__field_descriptors[18] =
 {
   {
     "type",
@@ -2732,6 +2732,18 @@ static const ProtobufCFieldDescriptor game__pbno_compress_draw_action__field_des
     0,             /* flags */
     0,NULL,NULL    /* reserved1,reserved2, etc */
   },
+  {
+    "isOptimized",
+    43,
+    PROTOBUF_C_LABEL_OPTIONAL,
+    PROTOBUF_C_TYPE_BOOL,
+    offsetof(Game__PBNoCompressDrawAction, has_isoptimized),
+    offsetof(Game__PBNoCompressDrawAction, isoptimized),
+    NULL,
+    NULL,
+    0,             /* flags */
+    0,NULL,NULL    /* reserved1,reserved2, etc */
+  },
 };
 static const unsigned game__pbno_compress_draw_action__field_indices_by_name[] = {
   14,   /* field[14] = alpha */
@@ -2741,6 +2753,7 @@ static const unsigned game__pbno_compress_draw_action__field_indices_by_name[] =
   7,   /* field[7] = canvasSize */
   2,   /* field[2] = color */
   13,   /* field[13] = green */
+  17,   /* field[17] = isOptimized */
   4,   /* field[4] = penType */
   1,   /* field[1] = point */
   8,   /* field[8] = pointX */
@@ -2758,7 +2771,7 @@ static const ProtobufCIntRange game__pbno_compress_draw_action__number_ranges[4 
   { 11, 8 },
   { 20, 10 },
   { 41, 15 },
-  { 0, 17 }
+  { 0, 18 }
 };
 const ProtobufCMessageDescriptor game__pbno_compress_draw_action__descriptor =
 {
@@ -2768,7 +2781,7 @@ const ProtobufCMessageDescriptor game__pbno_compress_draw_action__descriptor =
   "Game__PBNoCompressDrawAction",
   "game",
   sizeof(Game__PBNoCompressDrawAction),
-  17,
+  18,
   game__pbno_compress_draw_action__field_descriptors,
   game__pbno_compress_draw_action__field_indices_by_name,
   4,  game__pbno_compress_draw_action__number_ranges,

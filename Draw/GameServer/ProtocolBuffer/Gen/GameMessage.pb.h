@@ -3449,6 +3449,7 @@ NSString *NSStringFromBetType(BetType value);
 @interface GeneralNotification : PBGeneratedMessage<GeneratedMessageProtocol> {
 @private
   BOOL hasUserGender_:1;
+  BOOL hasIsOptimized_:1;
   BOOL hasGuessCorrect_:1;
   BOOL hasWidth_:1;
   BOOL hasSessionStatus_:1;
@@ -3474,6 +3475,7 @@ NSString *NSStringFromBetType(BetType value);
   BOOL hasGuessUserId_:1;
   BOOL hasChatContent_:1;
   BOOL userGender_:1;
+  BOOL isOptimized_:1;
   BOOL guessCorrect_:1;
   Float32 width;
   SInt32 sessionStatus;
@@ -3517,6 +3519,7 @@ NSString *NSStringFromBetType(BetType value);
 - (BOOL) hasWidth;
 - (BOOL) hasColor;
 - (BOOL) hasPenType;
+- (BOOL) hasIsOptimized;
 - (BOOL) hasWord;
 - (BOOL) hasLevel;
 - (BOOL) hasRound;
@@ -3544,6 +3547,7 @@ NSString *NSStringFromBetType(BetType value);
 @property (readonly) Float32 width;
 @property (readonly) SInt32 color;
 @property (readonly) SInt32 penType;
+- (BOOL) isOptimized;
 @property (readonly, strong) NSString* word;
 @property (readonly) SInt32 level;
 @property (readonly) SInt32 round;
@@ -3677,6 +3681,11 @@ NSString *NSStringFromBetType(BetType value);
 - (SInt32) penType;
 - (GeneralNotificationBuilder*) setPenType:(SInt32) value;
 - (GeneralNotificationBuilder*) clearPenType;
+
+- (BOOL) hasIsOptimized;
+- (BOOL) isOptimized;
+- (GeneralNotificationBuilder*) setIsOptimized:(BOOL) value;
+- (GeneralNotificationBuilder*) clearIsOptimized;
 
 - (BOOL) hasWord;
 - (NSString*) word;
