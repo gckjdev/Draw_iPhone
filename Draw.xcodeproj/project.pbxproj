@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		36099F131AFAFC3B00522A4F /* libprotocolc_device.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 36099F121AFAFC3B00522A4F /* libprotocolc_device.a */; };
+		36099F141AFAFCD700522A4F /* libprotocolc.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 36E65E0D1ACA97720092009D /* libprotocolc.a */; };
+		36099F151AFAFCD800522A4F /* libprotocolc.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 36E65E0D1ACA97720092009D /* libprotocolc.a */; };
 		361DDF121A4D4D2F000B8530 /* PrizeCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = D879C91919A7369D003B2A29 /* PrizeCell~ipad.xib */; };
 		361DDF131A4D4D35000B8530 /* StageCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = D8C784BE196A559F00323712 /* StageCell~ipad.xib */; };
 		362330331AB9156400BFCD35 /* Order.m in Sources */ = {isa = PBXBuildFile; fileRef = 362330321AB9156400BFCD35 /* Order.m */; };
@@ -241,8 +244,6 @@
 		36B420FC1AA7FB7B00F8A9B1 /* SSZipArchive.m in Sources */ = {isa = PBXBuildFile; fileRef = CAFEFD2716606FC100441D77 /* SSZipArchive.m */; };
 		36B420FD1AA7FB7C00F8A9B1 /* SSZipArchive.m in Sources */ = {isa = PBXBuildFile; fileRef = CAFEFD2716606FC100441D77 /* SSZipArchive.m */; };
 		36B420FE1AA7FB7D00F8A9B1 /* SSZipArchive.m in Sources */ = {isa = PBXBuildFile; fileRef = CAFEFD2716606FC100441D77 /* SSZipArchive.m */; };
-		36E65E0E1ACA97720092009D /* libprotocolc.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 36E65E0D1ACA97720092009D /* libprotocolc.a */; };
-		36E65E0F1ACA97720092009D /* libprotocolc.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 36E65E0D1ACA97720092009D /* libprotocolc.a */; };
 		36E65E101ACA97720092009D /* libprotocolc.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 36E65E0D1ACA97720092009D /* libprotocolc.a */; };
 		36E65E111ACA97720092009D /* libprotocolc.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 36E65E0D1ACA97720092009D /* libprotocolc.a */; };
 		36EBC04F1AC3BCE300227C4A /* hn_btn_close@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 36EBC0461AC3BCE300227C4A /* hn_btn_close@3x.png */; };
@@ -8324,6 +8325,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		36099F121AFAFC3B00522A4F /* libprotocolc_device.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libprotocolc_device.a; sourceTree = "<group>"; };
 		362330311AB9156400BFCD35 /* Order.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Order.h; sourceTree = "<group>"; };
 		362330321AB9156400BFCD35 /* Order.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Order.m; sourceTree = "<group>"; };
 		3623303A1AB91C7F00BFCD35 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
@@ -11778,7 +11780,7 @@
 				CA9AFE64181D434700E08747 /* CoreVideo.framework in Frameworks */,
 				3672C23A1ABA7C4600AEC29D /* ShareSDKFlatShareViewUI.framework in Frameworks */,
 				C28A9CB41738F04B007A819F /* ImageIO.framework in Frameworks */,
-				36E65E0F1ACA97720092009D /* libprotocolc.a in Frameworks */,
+				36099F141AFAFCD700522A4F /* libprotocolc.a in Frameworks */,
 				A4F04B84180643BD007274BE /* AssetsLibrary.framework in Frameworks */,
 				C28A9CA21738F04B007A819F /* AddressBookUI.framework in Frameworks */,
 				C28A9CA31738F04B007A819F /* PassKit.framework in Frameworks */,
@@ -11845,6 +11847,7 @@
 				C2A09762152ECDEA006535F7 /* ImageIO.framework in Frameworks */,
 				CAEEC19F181A5F19007FD75F /* CoreVideo.framework in Frameworks */,
 				3672C2211ABA7C4500AEC29D /* ShareSDKCoreService.framework in Frameworks */,
+				36099F131AFAFC3B00522A4F /* libprotocolc_device.a in Frameworks */,
 				3672C20F1ABA7C4400AEC29D /* SinaWeiboConnection.framework in Frameworks */,
 				A421503A1803E87C007F2EFD /* AssetsLibrary.framework in Frameworks */,
 				A4990770174DBC61005AF334 /* Accelerate.framework in Frameworks */,
@@ -11853,7 +11856,6 @@
 				3672C2451ABA7C4600AEC29D /* ShareSDKiPhoneDefaultShareViewUI.framework in Frameworks */,
 				CA103F361509A71000F60C03 /* AVFoundation.framework in Frameworks */,
 				3672C2151ABA7C4400AEC29D /* WeChatConnection.framework in Frameworks */,
-				36E65E0E1ACA97720092009D /* libprotocolc.a in Frameworks */,
 				3672C2391ABA7C4600AEC29D /* ShareSDKFlatShareViewUI.framework in Frameworks */,
 				A3FAE0E215536F8E008B5827 /* AudioToolbox.framework in Frameworks */,
 				CACD6CFB18E03C0A003F97C0 /* libleveldb.a in Frameworks */,
@@ -11882,6 +11884,7 @@
 				CA4216031521973A00FAA008 /* StoreKit.framework in Frameworks */,
 				36B4206C1AA762B000F8A9B1 /* GoogleMobileAds.framework in Frameworks */,
 				3672C2091ABA7C4400AEC29D /* QQConnection.framework in Frameworks */,
+				36099F151AFAFCD800522A4F /* libprotocolc.a in Frameworks */,
 				3672C23F1ABA7C4600AEC29D /* ShareSDKiPadDefaultShareViewUI.framework in Frameworks */,
 				CA103F381509A71A00F60C03 /* libz.1.1.3.dylib in Frameworks */,
 				36B420621AA75E2800F8A9B1 /* libssl.a in Frameworks */,
@@ -17689,6 +17692,7 @@
 		CAA62CC11744C54F00C376BA /* protobuf-c */ = {
 			isa = PBXGroup;
 			children = (
+				36099F121AFAFC3B00522A4F /* libprotocolc_device.a */,
 				36E65E0D1ACA97720092009D /* libprotocolc.a */,
 				CAA62CC21744C54F00C376BA /* protobuf-c-private.h */,
 				CAA62CC31744C54F00C376BA /* protobuf-c.h */,
@@ -28344,8 +28348,8 @@
 				);
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = LittleGeeDraw;
-				PROVISIONING_PROFILE = "7F6DC140-F6A1-458C-8CFC-614D9E8F2355";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "7F6DC140-F6A1-458C-8CFC-614D9E8F2355";
+				PROVISIONING_PROFILE = "56edbd0e-8c32-4ba4-8e48-da7ffdf872eb";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "56edbd0e-8c32-4ba4-8e48-da7ffdf872eb";
 				VALID_ARCHS = "arm64 armv7 armv7s";
 				WRAPPER_EXTENSION = app;
 			};
@@ -28464,8 +28468,8 @@
 				);
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = LittleGeeDraw;
-				PROVISIONING_PROFILE = "1557dc7d-b9e2-4587-ac7a-498d1b60425a";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "1557dc7d-b9e2-4587-ac7a-498d1b60425a";
+				PROVISIONING_PROFILE = "03ddaa5f-ac26-4eac-a1b5-d20cb3beeaf3";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "03ddaa5f-ac26-4eac-a1b5-d20cb3beeaf3";
 				VALIDATE_PRODUCT = YES;
 				VALID_ARCHS = "arm64 armv7 armv7s";
 				WRAPPER_EXTENSION = app;
@@ -28529,8 +28533,8 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				OTHER_LDFLAGS = "-ObjC";
-				PROVISIONING_PROFILE = "7f2cec73-5a2d-4387-99dc-8bea3e9c6522";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "7f2cec73-5a2d-4387-99dc-8bea3e9c6522";
+				PROVISIONING_PROFILE = "e78d0776-b9f2-4758-a97d-4718b91737f9";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "e78d0776-b9f2-4758-a97d-4718b91737f9";
 				SDKROOT = iphoneos;
 				STRIP_INSTALLED_PRODUCT = YES;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -28652,6 +28656,7 @@
 					"../Common_iPhone_20/3PP-SDK/YoumiVideo",
 					"../Common_iPhone_20/3PP-SDK/YoumiSpotAd",
 					"./Draw/GameServer/ProtocolBuffer/google/protobuf-c",
+					"$(PROJECT_DIR)/Draw/GameServer/ProtocolBuffer/google/protobuf-c",
 				);
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = "-ObjC";
@@ -28774,12 +28779,13 @@
 					"../Common_iPhone_20/3PP-SDK/YoumiVideo",
 					"../Common_iPhone_20/3PP-SDK/YoumiSpotAd",
 					"./Draw/GameServer/ProtocolBuffer/google/protobuf-c",
+					"$(PROJECT_DIR)/Draw/GameServer/ProtocolBuffer/google/protobuf-c",
 				);
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "7f2cec73-5a2d-4387-99dc-8bea3e9c6522";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "7f2cec73-5a2d-4387-99dc-8bea3e9c6522";
+				PROVISIONING_PROFILE = "e78d0776-b9f2-4758-a97d-4718b91737f9";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "e78d0776-b9f2-4758-a97d-4718b91737f9";
 				VALIDATE_PRODUCT = YES;
 				VALID_ARCHS = "armv7s arm64 armv7";
 				WRAPPER_EXTENSION = app;
