@@ -1272,7 +1272,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GameItemService);
 
     [mutableArray addObject:[self itemWithItemId:ItemTypeTaoBao
                                             name:@"小吉电容笔"
-                                            desc:@"专业绘画电容笔，金属圆盘触控, 超高精细，堪比Jot Pro，49元起，多重套餐优惠"
+                                            desc:@"专业绘画电容笔，金属圆盘触控, 超高精细，堪比Jot Pro，54元起，优惠送元宝/VIP"
                                            image:DRAW_URL_ITEM_IMAGE(@"troe2.jpg")
                              
                                             type:PBDrawItemTypeDrawTaoBao

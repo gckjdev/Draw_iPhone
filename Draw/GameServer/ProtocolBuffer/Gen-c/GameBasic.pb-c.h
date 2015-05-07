@@ -843,10 +843,15 @@ struct  _Game__PBDrawAction
    */
   size_t n_brushrandomvalue;
   int32_t *brushrandomvalue;
+  /*
+   *是否是优化笔刷数据，比如优化笔刷无需随机补点；而未优化笔刷需要随机补点
+   */
+  protobuf_c_boolean has_isoptimized;
+  protobuf_c_boolean isoptimized;
 };
 #define GAME__PBDRAW_ACTION__INIT \
  { PROTOBUF_C_MESSAGE_INIT (&game__pbdraw_action__descriptor) \
-    , 0, 0,NULL, 0,0, 0,0, 0,0, 0,0, 0,NULL, 0,0, 0,NULL, 0,NULL, 0,0, NULL, 0,0, 0,0, 0,0, 0,0, 0,0, 0,0, 0,0, 0,1, 0,NULL, NULL, 0,0, 0,NULL, 0,NULL }
+    , 0, 0,NULL, 0,0, 0,0, 0,0, 0,0, 0,NULL, 0,0, 0,NULL, 0,NULL, 0,0, NULL, 0,0, 0,0, 0,0, 0,0, 0,0, 0,0, 0,0, 0,1, 0,NULL, NULL, 0,0, 0,NULL, 0,NULL, 0,0 }
 
 
 struct  _Game__PBMessage

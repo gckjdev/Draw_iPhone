@@ -1785,6 +1785,7 @@ NSString *NSStringFromPBTaskIdType(PBTaskIdType value);
 @interface PBDrawAction : PBGeneratedMessage<GeneratedMessageProtocol> {
 @private
   BOOL hasShapeStroke_:1;
+  BOOL hasIsOptimized_:1;
   BOOL hasWidth_:1;
   BOOL hasShadowOffsetX_:1;
   BOOL hasShadowOffsetY_:1;
@@ -1803,6 +1804,7 @@ NSString *NSStringFromPBTaskIdType(PBTaskIdType value);
   BOOL hasDrawBg_:1;
   BOOL hasGradient_:1;
   BOOL shapeStroke_:1;
+  BOOL isOptimized_:1;
   Float32 width;
   Float32 shadowOffsetX;
   Float32 shadowOffsetY;
@@ -1847,6 +1849,7 @@ NSString *NSStringFromPBTaskIdType(PBTaskIdType value);
 - (BOOL) hasLayerAlpha;
 - (BOOL) hasGradient;
 - (BOOL) hasBrushType;
+- (BOOL) hasIsOptimized;
 @property (readonly) SInt32 type;
 @property (readonly, strong) PBArray * points;
 @property (readonly) Float32 width;
@@ -1872,6 +1875,7 @@ NSString *NSStringFromPBTaskIdType(PBTaskIdType value);
 @property (readonly) SInt32 brushType;
 @property (readonly, strong) PBArray * brushPointWidth;
 @property (readonly, strong) PBArray * brushRandomValue;
+- (BOOL) isOptimized;
 - (SInt32)pointsAtIndex:(NSUInteger)index;
 - (Float32)rectComponentAtIndex:(NSUInteger)index;
 - (Float32)pointsXAtIndex:(NSUInteger)index;
@@ -2056,6 +2060,11 @@ NSString *NSStringFromPBTaskIdType(PBTaskIdType value);
 - (PBDrawActionBuilder *)setBrushRandomValueArray:(NSArray *)array;
 - (PBDrawActionBuilder *)setBrushRandomValueValues:(const SInt32 *)values count:(NSUInteger)count;
 - (PBDrawActionBuilder *)clearBrushRandomValue;
+
+- (BOOL) hasIsOptimized;
+- (BOOL) isOptimized;
+- (PBDrawActionBuilder*) setIsOptimized:(BOOL) value;
+- (PBDrawActionBuilder*) clearIsOptimized;
 @end
 
 @interface PBMessage : PBGeneratedMessage<GeneratedMessageProtocol> {

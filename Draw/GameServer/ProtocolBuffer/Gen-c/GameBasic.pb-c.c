@@ -3338,7 +3338,7 @@ const ProtobufCMessageDescriptor game__pblayer__descriptor =
   NULL,NULL,NULL    /* reserved[123] */
 };
 static const float game__pbdraw_action__layer_alpha__default_value = 1;
-static const ProtobufCFieldDescriptor game__pbdraw_action__field_descriptors[25] =
+static const ProtobufCFieldDescriptor game__pbdraw_action__field_descriptors[26] =
 {
   {
     "type",
@@ -3640,6 +3640,18 @@ static const ProtobufCFieldDescriptor game__pbdraw_action__field_descriptors[25]
     0,             /* flags */
     0,NULL,NULL    /* reserved1,reserved2, etc */
   },
+  {
+    "isOptimized",
+    43,
+    PROTOBUF_C_LABEL_OPTIONAL,
+    PROTOBUF_C_TYPE_BOOL,
+    offsetof(Game__PBDrawAction, has_isoptimized),
+    offsetof(Game__PBDrawAction, isoptimized),
+    NULL,
+    NULL,
+    0,             /* flags */
+    0,NULL,NULL    /* reserved1,reserved2, etc */
+  },
 };
 static const unsigned game__pbdraw_action__field_indices_by_name[] = {
   10,   /* field[10] = betterColor */
@@ -3652,6 +3664,7 @@ static const unsigned game__pbdraw_action__field_indices_by_name[] = {
   3,   /* field[3] = color */
   11,   /* field[11] = drawBg */
   21,   /* field[21] = gradient */
+  25,   /* field[25] = isOptimized */
   19,   /* field[19] = layerAlpha */
   18,   /* field[18] = layerTag */
   4,   /* field[4] = penType */
@@ -3676,7 +3689,7 @@ static const ProtobufCIntRange game__pbdraw_action__number_ranges[6 + 1] =
   { 23, 18 },
   { 30, 21 },
   { 40, 22 },
-  { 0, 25 }
+  { 0, 26 }
 };
 const ProtobufCMessageDescriptor game__pbdraw_action__descriptor =
 {
@@ -3686,7 +3699,7 @@ const ProtobufCMessageDescriptor game__pbdraw_action__descriptor =
   "Game__PBDrawAction",
   "game",
   sizeof(Game__PBDrawAction),
-  25,
+  26,
   game__pbdraw_action__field_descriptors,
   game__pbdraw_action__field_indices_by_name,
   6,  game__pbdraw_action__number_ranges,
