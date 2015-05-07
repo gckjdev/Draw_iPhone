@@ -30,7 +30,7 @@
 }
 
 @property (nonatomic, retain) HBrushPointList  *hPointList;
-@property (nonatomic, assign) BOOL hasPoint;
+@property (nonatomic, assign) BOOL hasStarted;
 
 @property (nonatomic, retain) BrushDot  *beginDot;
 @property (nonatomic, retain) BrushDot  *controlDot;
@@ -205,7 +205,7 @@
         self.brushImageRef = _brushImage.CGImage;
     }
     
-    if (_hasPoint == NO){
+    if (self.hasStarted == NO){
         
 //        CGContextClearRect(layerContext, CGRectFromCGSize(CGLayerGetSize(_brushLayer)));
         
@@ -219,7 +219,7 @@
         _endDot.x = point.x;
         _endDot.y = point.y;
         
-        _hasPoint = YES;
+        self.hasStarted = YES;
 
         _tempWidth = [_brush firstPointWidth:self.width];
         _controlDot.width = _tempWidth;
@@ -228,7 +228,10 @@
     
         // draw the first point  && add it to point list
         // TODO for Charlie Brush Random
-        [_hPointList addPoint:_endDot.x y:_endDot.y width:_endDot.width random:0];
+        [self.hPointList addPointX:_endDot.x
+                            PointY:_endDot.y
+                        PointWidth:_endDot.width
+                       PointRandom:0];
     }
     else{
         //重采样定位第一点
@@ -245,8 +248,8 @@
         _endDot.x = point.x;
         _endDot.y = point.y;
         
-        double distance1 = [self distanceOfDot:_controlDot AndDot:_beginDot];
-        double distance2 = [self distanceOfDot:_endDot AndDot:_controlDot];
+        double distance1 = [self distanceOfDot:_controlDot andDot:_beginDot];
+        double distance2 = [self distanceOfDot:_endDot andDot:_controlDot];
         
         _tempWidth = [_brush calculateWidthWithThreshold:FIXED_PEN_SIZE
                                                distance1:distance1
@@ -262,11 +265,11 @@
         
         if(distance1 != 0 && distance2 != 0){
             
+            //插值长度，与三点之间的距离有关，距离越远，插值越多。
+            //不同种类笔刷由插值系数控制。
             int interpolationLength = [_brush interpolationLength:self.width
                                                         distance1:distance1
                                                         distance2:distance2];
-            
-//            PPDebug(@"length %d", interpolationLength);
             
             for(int i = 0; i<interpolationLength; i++)
             {
@@ -285,11 +288,14 @@
                          WithDefaultWidth:self.width];
                 
                 // TODO for Charlie Brush Random
-                [_hPointList addPoint:pointX y:pointY width:width random:0];
+                [self.hPointList addPointX:pointX
+                                    PointY:pointY
+                                PointWidth:width
+                               PointRandom:0];
                 
                 // draw by point list
-                CGRect rect = CGRectMake(pointX - width/2, pointY - width/2, width, width);
-
+                CGRect rect = CGRectMake(pointX-width/2, pointY-width/2, width, width);
+                // draw in rect area
                 CGContextDrawImage(layerContext, rect, brushImageRef);
             }
         }
@@ -330,7 +336,7 @@
     }
     
     // TODO for Charlie Brush Random
-    [_hPointList addPoint:point.x y:point.y width:width random:0];
+    [self.hPointList addPointX:point.x PointY:point.y PointWidth:width PointRandom:0];
     
     // draw by point list
     CGRect imageRect = CGRectMake(point.x - width/2, point.y - width/2, width, width);
@@ -339,7 +345,7 @@
     CGContextRestoreGState(layerContext);
 }
 
--(double)distanceOfDot:(BrushDot*)dot1 AndDot:(BrushDot*)dot2
+-(double)distanceOfDot:(BrushDot*)dot1 andDot:(BrushDot*)dot2
 {
     double distance = sqrt(pow((dot2.x-dot1.x), 2)+pow((dot2.y-dot1.y), 2));
     
