@@ -59,7 +59,7 @@
 
 #pragma mark- get && add point methods
 - (void)updateLastPoint:(CGPoint)point inRect:(CGRect)rect;
-- (void)addPoint:(CGPoint)point inRect:(CGRect)rect;
+//- (void)addPoint:(CGPoint)point inRect:(CGRect)rect;
 - (void)addPoint:(CGPoint)point
            width:(float)width
           inRect:(CGRect)rect

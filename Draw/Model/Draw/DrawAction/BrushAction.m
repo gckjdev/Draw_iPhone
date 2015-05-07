@@ -167,6 +167,7 @@
     return self;
 }
 
+//not ref, could be disable?
 - (id)initWithPBNoCompressDrawAction:(PBNoCompressDrawAction *)action
 {
     self = [super initWithPBNoCompressDrawAction:action];

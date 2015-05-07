@@ -265,6 +265,12 @@
         
         if(distance1 != 0 && distance2 != 0){
             
+            [self.hPointList addPointX:point.x
+                                PointY:point.y
+                            PointWidth:self.width
+                           PointRandom:0];
+            PPDebug(@"<hpointlist count> %d",[self.hPointList count]);
+            
             //插值长度，与三点之间的距离有关，距离越远，插值越多。
             //不同种类笔刷由插值系数控制。
             int interpolationLength = [_brush interpolationLength:self.width
@@ -287,11 +293,11 @@
                                    PointW:&width
                          WithDefaultWidth:self.width];
                 
-                // TODO for Charlie Brush Random
-                [self.hPointList addPointX:pointX
-                                    PointY:pointY
-                                PointWidth:width
-                               PointRandom:0];
+//                // TODO for Charlie Brush Random
+//                [self.hPointList addPointX:pointX
+//                                    PointY:pointY
+//                                PointWidth:width
+//                               PointRandom:0];
                 
                 // draw by point list
                 CGRect rect = CGRectMake(pointX-width/2, pointY-width/2, width, width);
@@ -309,8 +315,6 @@
           inRect:(CGRect)rect
          forShow:(BOOL)forShow
 {
-   
-    
     if (!CGRectContainsPoint(rect, point)){
         //add By Gamy
         //we can change point(304.1,320.4) to point(304,320)
@@ -338,11 +342,16 @@
     // TODO for Charlie Brush Random
     [self.hPointList addPointX:point.x PointY:point.y PointWidth:width PointRandom:0];
     
+    //proc
+    // for interpolation
+    {
     // draw by point list
     CGRect imageRect = CGRectMake(point.x - width/2, point.y - width/2, width, width);
     CGImageRef brushImageRef = [self brushImageRef];
     CGContextDrawImage(layerContext, imageRect, brushImageRef);
     CGContextRestoreGState(layerContext);
+        
+    }
 }
 
 -(double)distanceOfDot:(BrushDot*)dot1 andDot:(BrushDot*)dot2
