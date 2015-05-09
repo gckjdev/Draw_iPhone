@@ -16,13 +16,13 @@
 
 - (CGRect)bounds;
 
-- (float)getPointX:(int)index;
-- (float)getPointY:(int)index;
-- (float)getPointWidth:(int)index;
-- (float)getPointRandom:(int)index;
+- (float)getPointX:(NSInteger)index;
+- (float)getPointY:(NSInteger)index;
+- (float)getPointWidth:(NSInteger)index;
+- (float)getPointRandom:(NSInteger)index;
 - (CGPoint)lastPoint;
-- (int)count;
-- (CGPoint)pointAtIndex:(int)index;
+- (NSInteger)count;
+- (CGPoint)pointAtIndex:(NSInteger)index;
 - (void)complete;
 
 - (void)addPointX:(float)x

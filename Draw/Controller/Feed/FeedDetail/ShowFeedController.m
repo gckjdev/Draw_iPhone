@@ -874,11 +874,8 @@ typedef enum{
                 
                 NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
                 
-                ReplayObject *obj = [ReplayObject obj];
-                obj.actionList = drawFeed.drawData.drawActionList;
-                obj.isNewVersion = [drawFeed.drawData isNewVersion];
-                obj.canvasSize = drawFeed.drawData.canvasSize;
-                obj.layers = drawFeed.drawData.layers;
+                ReplayObject *obj = [ReplayObject objectWithActionList:drawFeed.drawData.drawActionList isNewVersion:drawFeed.drawData.isNewVersion canvasSize:drawFeed.drawData.canvasSize layers:drawFeed.drawData.layers];
+                
                 obj.finalImage = [ShowFeedController getFeedImage:drawFeed];
 
                 obj.opusUserId = drawFeed.author.userId;
@@ -888,7 +885,6 @@ typedef enum{
                 obj.opusId = drawFeed.feedId;
                 obj.opusWord = drawFeed.pbFeed.opusWord;
                 obj.opusDesc = drawFeed.pbFeed.opusDesc;
-                
                 
                 DrawPlayer *player = [DrawPlayer playerWithReplayObj:obj];
                 [player showInController:cp];
@@ -1028,11 +1024,8 @@ static dispatch_once_t spotAdOnceToken;
 
                 NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
                 
-                ReplayObject *obj = [ReplayObject obj];
-                obj.actionList = cp.feed.drawData.drawActionList;
-                obj.isNewVersion = [cp.feed.drawData isNewVersion];
-                obj.canvasSize = cp.feed.drawData.canvasSize;
-                obj.layers = cp.feed.drawData.layers;
+                ReplayObject *obj = [ReplayObject objectWithActionList:cp.feed.drawData.drawActionList isNewVersion:cp.feed.drawData.isNewVersion canvasSize:cp.feed.drawData.canvasSize layers:cp.feed.drawData.layers];
+                
                 obj.finalImage = [ShowFeedController getFeedImage:cp.feed];
                 
                 obj.opusUserId = cp.feed.author.userId;

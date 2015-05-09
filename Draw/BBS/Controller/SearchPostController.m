@@ -172,12 +172,13 @@
 {
     [self hideActivity];
     if (resultCode == 0) {
-        BOOL isNewVersion = [PPConfigManager currentDrawDataVersion] < version;
-        ReplayObject *obj = [ReplayObject obj];
-        obj.actionList = drawActionList;
-        obj.isNewVersion = isNewVersion;
-        obj.canvasSize = canvasSize;
-        obj.layers = [DrawLayer defaultOldLayersWithFrame:CGRectFromCGSize(canvasSize)];
+        BOOL isNewVersion = [PPConfigManager currentDrawDataVersion] <= version;
+
+        ReplayObject* obj = [ReplayObject objectWithActionList:drawActionList
+                                                  isNewVersion:isNewVersion
+                                                    canvasSize:canvasSize
+                                                        layers:[DrawLayer defaultOldLayersWithFrame:CGRectFromCGSize(canvasSize)]];
+        
         DrawPlayer *player =[DrawPlayer playerWithReplayObj:obj];
         [player showInController:self];
         

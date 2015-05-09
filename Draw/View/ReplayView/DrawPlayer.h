@@ -20,6 +20,10 @@
 }
 
 + (id)obj;
++ (id)objectWithActionList:(NSMutableArray*)actionList
+              isNewVersion:(BOOL)isNewVersion
+                canvasSize:(CGSize)canvasSize
+                    layers:(NSArray*)layers;
 
 @property(nonatomic, assign) BOOL isNewVersion;
 @property(nonatomic, assign) CGSize canvasSize;
@@ -68,7 +72,7 @@
                        bgImageName:(NSString*)bgImageName;
 
 + (DrawPlayer*)playerWithSingleLayer:(NSInteger)num
-                       RepObj:(ReplayObject*)obj;
+                              RepObj:(ReplayObject*)obj;
 
 + (void) createImageOfLayer:(NSInteger)num
                      RepObj:(ReplayObject*)obj;

@@ -19,7 +19,21 @@
 
 + (id)obj
 {
-    return [[[ReplayObject alloc] init] autorelease];
+    return [[[ReplayObject alloc]init]autorelease];
+}
+
++ (id)objectWithActionList:(NSMutableArray*)actionList
+              isNewVersion:(BOOL)isNewVersion
+                canvasSize:(CGSize)canvasSize
+                    layers:(NSArray*)layers
+{
+    ReplayObject* obj = [[[ReplayObject alloc]init]autorelease];
+    obj.actionList = actionList;
+    obj.isNewVersion = isNewVersion;
+    obj.canvasSize = canvasSize;
+    obj.layers = layers;
+    
+    return obj;
 }
 
 - (void)dealloc
@@ -92,6 +106,7 @@
     self.speedSlider.pointImage = [[ShareImageManager defaultManager] speedProgressPoint];
 
     self.showView.playSpeed = [self speedWithRate:self.speedSlider.value];
+    [self.showView adjustPlaySpeedWithNewVersion:self.replayObj.isNewVersion];
     
     self.showView.maxPlaySpeed = [PPConfigManager getMaxPlayDrawSpeed];
     
@@ -261,6 +276,7 @@
 - (IBAction)changeSpeed:(CustomSlider *)sender {
     PPDebug(@"<changeSpeed> = %f", sender.value);
     self.showView.playSpeed = [self speedWithRate:self.speedSlider.value];
+    [self.showView adjustPlaySpeedWithNewVersion:self.replayObj.isNewVersion];
 }
 
 - (IBAction)clickPlayButton:(id)sender {
@@ -419,11 +435,11 @@
             
             NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
             
-            ReplayObject *obj = [ReplayObject obj];
-            obj.actionList = draw.drawActionList;
-            obj.isNewVersion = [draw isNewVersion];
-            obj.canvasSize = draw.canvasSize;
-            obj.layers = draw.layers;
+            ReplayObject *obj = [ReplayObject objectWithActionList:draw.drawActionList
+                                                      isNewVersion:draw.isNewVersion
+                                                        canvasSize:draw.canvasSize
+                                                            layers:draw.layers];
+
             obj.bgImage = bgImage;
             obj.finalImage = drawImage;
             obj.opusWord = draw.word.text;
@@ -462,11 +478,11 @@
         return nil;
     }
     
-    ReplayObject *obj = [ReplayObject obj];
-    obj.actionList = draw.drawActionList;
-    obj.isNewVersion = [draw isNewVersion];
-    obj.canvasSize = draw.canvasSize;
-    obj.layers = draw.layers;
+    ReplayObject *obj = [ReplayObject objectWithActionList:draw.drawActionList
+                                              isNewVersion:draw.isNewVersion
+                                                canvasSize:draw.canvasSize
+                                                    layers:draw.layers];
+    
     obj.bgImage = bgImage;
     obj.opusWord = draw.word.text;
     obj.opusUserId = draw.userId;

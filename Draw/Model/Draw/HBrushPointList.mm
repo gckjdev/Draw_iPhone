@@ -48,32 +48,32 @@ using std::list;
     [super dealloc];
 }
 
-- (float)getPointX:(int)index
+- (float)getPointX:(NSInteger)index
 {
     return xList[index];
 }
 
-- (float)getPointY:(int)index
+- (float)getPointY:(NSInteger)index
 {
     return yList[index];
 }
 
-- (float)getPointWidth:(int)index
+- (float)getPointWidth:(NSInteger)index
 {
     return widthList[index];
 }
 
-- (float)getPointRandom:(int)index
+- (float)getPointRandom:(NSInteger)index
 {
     return randomList[index];
 }
 
-- (CGPoint)pointAtIndex:(int)index
+- (CGPoint)pointAtIndex:(NSInteger)index
 {
     return CGPointMake(xList[index], yList[index]);
 }
 
-- (int)count
+- (NSInteger)count
 {
     return xList.size();
 }
@@ -98,9 +98,9 @@ using std::list;
         && _bottomRightY == -MAX_TOP){
         
         // calculate from point list
-        int count = xList.size();
+        NSInteger count = xList.size();
         float x, y, width;
-        for (int i=0; i<count; i++){
+        for (NSInteger i=0; i<count; i++){
             x = xList[i];
             y = yList[i];
             width = widthList[i];

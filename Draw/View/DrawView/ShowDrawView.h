@@ -59,6 +59,8 @@ typedef enum{
 
 - (void)resetFrameSize:(CGSize)size;
 
+- (void)adjustPlaySpeedWithNewVersion:(BOOL)isNewVersion;
+
 - (UIImage*)createImageAtIndex:(NSUInteger)index;
 - (UIImage*)createImageAtIndex:(NSUInteger)index bgColor:(UIColor*)bgColor;
 
@@ -86,8 +88,7 @@ typedef enum{
 
 - (void) createImageOfLayer:(NSInteger)num
                        Path:(NSString*)path;
-+(UIImage *)makeEndingImage:(UIImage *)image AndText:(NSString *)text;
-+(UIImage *)makeBeginningImage:(UIImage *)drawImage;
+
 @end
 
 

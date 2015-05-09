@@ -802,7 +802,7 @@
     // version 6 : support layers
     // version 7 : support eraser with alpha, add 6 brushes
     // version 8 : add 2 new brush (dry and filled)
-    // version 9 : add random support for brush
+    // version 9 : optimiz brush
     return 9;
 }
 

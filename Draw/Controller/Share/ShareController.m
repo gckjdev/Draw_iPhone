@@ -381,17 +381,16 @@ typedef enum{
 #ifdef DEBUG
     MyPaint* currentPaint = _selectedPaint;
     
-    BOOL isNewVersion = [PPConfigManager currentDrawDataVersion] < [currentPaint drawDataVersion];
+    BOOL isNewVersion = [PPConfigManager currentDrawDataVersion] <= [currentPaint drawDataVersion];
     
-    ReplayObject *obj = [ReplayObject obj];
-    obj.isNewVersion = isNewVersion;
-    obj.canvasSize = [currentPaint canvasSize];
+    ReplayObject *obj = [ReplayObject objectWithActionList:currentPaint.drawActionList
+                                              isNewVersion:isNewVersion
+                                                canvasSize:currentPaint.canvasSize
+                                                    layers:currentPaint.layers];
+    
     obj.bgImage = [[MyPaintManager defaultManager] bgImageForPaint:currentPaint];
-    obj.actionList = [currentPaint drawActionList];
-    obj.layers = currentPaint.layers;
     
-    [DrawPlayer createImageOfLayer:0
-                            RepObj:obj];
+    [DrawPlayer createImageOfLayer:0 RepObj:obj];
     
 #endif
 }
@@ -401,45 +400,20 @@ typedef enum{
 {    
     MyPaint* currentPaint = _selectedPaint;
     
-    BOOL isNewVersion = [PPConfigManager currentDrawDataVersion] < [currentPaint drawDataVersion];
+    BOOL isNewVersion = [PPConfigManager currentDrawDataVersion] <= [currentPaint drawDataVersion];
     
-    ReplayObject *obj = [ReplayObject obj];
-    obj.actionList = [currentPaint drawActionList];
-    obj.isNewVersion = isNewVersion;
+    ReplayObject *obj = [ReplayObject objectWithActionList:currentPaint.drawActionList
+                                              isNewVersion:isNewVersion
+                                                canvasSize:currentPaint.canvasSize
+                                                    layers:currentPaint.layers];
+    
     obj.bgImage = [[MyPaintManager defaultManager] bgImageForPaint:currentPaint];
-    obj.layers = currentPaint.layers;
-    obj.canvasSize = [currentPaint canvasSize];
     obj.finalImage = [currentPaint paintImage];
     
     DrawPlayer *player =[DrawPlayer playerWithReplayObj:obj];
     [player showInController:self];
 
 }
-
-
-//- (void)gotoPeriodReplayViewBegin:(NSInteger)begin
-//                              End:(NSInteger)end
-//{
-//    DrawPlayer *player;
-//    MyPaint* currentPaint = _selectedPaint;
-//    BOOL isNewVersion = [PPConfigManager currentDrawDataVersion] < [currentPaint drawDataVersion];
-//
-//    //记录当前的replay对象的属性
-//    ReplayObject *obj = [ReplayObject obj];
-//    obj.actionList = [currentPaint drawActionList];
-//    obj.isNewVersion = isNewVersion;
-//    obj.bgImage = [[MyPaintManager defaultManager] bgImageForPaint:currentPaint];
-//    obj.layers = currentPaint.layers;
-//    obj.canvasSize = [currentPaint canvasSize];
-//    
-//    //把带有索引begin和end的replay对象关联到播放器
-//    player = [DrawPlayer playerWithReplayObj:obj begin:begin end:end];
-//
-//    //播放
-//    [player showInController:self];
-//    
-//}
-
 
 - (void)gotoEditConroller
 {
@@ -500,20 +474,20 @@ typedef enum{
 {
     MyPaint* currentPaint = _selectedPaint;
     
-    BOOL isNewVersion = [PPConfigManager currentDrawDataVersion] < [currentPaint drawDataVersion];
+    BOOL isNewVersion = [PPConfigManager currentDrawDataVersion] <= [currentPaint drawDataVersion];
     
-    ReplayObject *obj = [ReplayObject obj];
-    obj.isNewVersion = isNewVersion;
-    obj.canvasSize = [currentPaint canvasSize];
-    obj.bgImage = nil; //[[MyPaintManager defaultManager] bgImageForPaint:currentPaint];
-    obj.actionList = [currentPaint drawActionList];
-    obj.layers = currentPaint.layers;
+    ReplayObject *obj = [ReplayObject objectWithActionList:currentPaint.drawActionList
+                                              isNewVersion:isNewVersion
+                                                canvasSize:currentPaint.canvasSize
+                                                    layers:currentPaint.layers];
+    
+    obj.bgImage = [[MyPaintManager defaultManager] bgImageForPaint:currentPaint];
     obj.finalImage = currentPaint.paintImage;
     
     UIImage* image = [DrawPlayer createImageWithReplayObj:obj
-                                   begin:0
-                                     end:[obj.actionList count]-1
-                             bgImageName:@"temp_123"
+                                                    begin:0
+                                                      end:[obj.actionList count]-1
+                                              bgImageName:@"temp_123"
                                                   bgColor:nil];
     
     if (image){

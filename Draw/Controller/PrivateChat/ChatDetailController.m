@@ -873,14 +873,13 @@
 #pragma mark enter replay controller
 - (void)enterReplayController:(PPMessage *)message
 {
-    BOOL isNewVersion = [PPConfigManager currentDrawDataVersion] < [message drawDataVersion];
+    BOOL isNewVersion = [PPConfigManager currentDrawDataVersion] <= [message drawDataVersion];
     
-    ReplayObject *obj = [ReplayObject obj];
-    obj.actionList = [message drawActionList];
-    obj.isNewVersion = isNewVersion;
-    obj.canvasSize = [message canvasSize];
-    
-    obj.layers = [DrawLayer defaultOldLayersWithFrame:CGRectFromCGSize(message.canvasSize)];
+    ReplayObject *obj = [ReplayObject objectWithActionList:[message drawActionList]
+                                              isNewVersion:isNewVersion
+                                                canvasSize:[message canvasSize]
+                                                    layers:[DrawLayer defaultOldLayersWithFrame:CGRectFromCGSize(message.canvasSize)]];
+
     DrawPlayer *player =[DrawPlayer playerWithReplayObj:obj];
     [player showInController:self];
 

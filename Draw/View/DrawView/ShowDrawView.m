@@ -30,7 +30,7 @@ typedef enum {
     PlaySpeedTypeNormal = 2, // x2
     PlaySpeedTypeHigh = 4, //x4
     PlaySpeedTypeSuper = 6,//x6
-    PlaySpeedTypeMax = 12*10,//x10
+    PlaySpeedTypeMax = 10,//x10
 }PlaySpeedType;
 
 
@@ -151,22 +151,6 @@ typedef enum {
         return NO;
     }
 }
-
-//- (int)totalPointCount
-//{
-//    if (_totalPointCount == 0){
-//        for (DrawAction* drawAction in self.drawActionList){
-//            if ([drawAction pointCount] > 0){
-//                _totalPointCount += [drawAction pointCount];
-//            }
-//            else{
-//                _totalPointCount ++;
-//            }
-//        }
-//    }
-//    
-//    return _totalPointCount;
-//}
 
 - (void)play
 {
@@ -315,8 +299,8 @@ typedef enum {
 }
 
 + (ShowDrawView *)showViewWithFrame:(CGRect)frame
-                drawActionList:(NSArray *)actionList
-                      delegate:(id<ShowDrawViewDelegate>)delegate
+                     drawActionList:(NSArray *)actionList
+                           delegate:(id<ShowDrawViewDelegate>)delegate
 {
     ShowDrawView *showView = [[[ShowDrawView alloc] initWithFrame:frame] autorelease];
     
@@ -420,7 +404,7 @@ typedef enum {
                                                               color:cbs.color
                                                           brushType:cbs.brushType
                                                           pointList:nil
-                                                        isOptimized:YES];
+                                                        isOptimized:cbs.isOptimized];
                 
                 self.tempAction = [BrushAction brushActionWithBrushStroke:bs];
             }
@@ -570,22 +554,10 @@ typedef enum {
 - (void)playNextFrame
 {
     if (Playing == self.status) {
-//        BOOL slow = ![_currentAction isKindOfClass:[PaintAction class]];
         
         [self updateNextPlayIndex];
         
-#ifdef DEBUG
-       
-#endif
-        
-        
         [self playCurrentFrame];
-        
-//        if (slow) {
-//            [self performSelector:@selector(playCurrentFrame) withObject:nil afterDelay:0.4];
-//        }else{
-//            [self playCurrentFrame];
-//        }
     }
 }
 
@@ -599,9 +571,18 @@ typedef enum {
 {
     _playSpeed = playSpeed;
     double delta = playSpeed/self.maxPlaySpeed;
-    NSInteger speed = (1-delta) * PlaySpeedTypeMax;
+    NSInteger speed = (1-delta) * PlaySpeedTypeSuper;
+    
     speed = MAX(speed, 0);
     self.speed = speed + PlaySpeedTypeLow;
+}
+
+//没经过优化的笔刷，因为储存了大量点，需要极快的播放速度
+- (void)adjustPlaySpeedWithNewVersion:(BOOL)isNewVersion
+{
+    const NSInteger acceleration = 20;
+    if(!isNewVersion)
+        self.speed *= acceleration;
 }
 
 //#define LEVEL_TIMES 500

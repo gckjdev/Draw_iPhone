@@ -343,7 +343,7 @@
                             PointY:point.y
                         PointWidth:width
                        PointRandom:0];
-         //draw by point list
+        //draw by point list
         CGRect imageRect = CGRectMake(point.x - width/2, point.y - width/2, width, width);
         CGImageRef brushImageRef = [self brushImageRef];
         CGContextDrawImage(layerContext, imageRect, brushImageRef);
@@ -539,6 +539,7 @@
     self.brushImageRef = NULL;
 }
 
+//这个draw是缓存层，在内存中把之前的先画好，再画下一笔的时候就把之前的一下载搬上来。
 - (CGRect)drawInContext:(CGContextRef)context inRect:(CGRect)rect
 {
     if (self.drawPen == nil) {
@@ -550,10 +551,10 @@
         self.brushImage = [_brush brushImage:[self.color color] width:self.width];
         self.brushImageRef = _brushImage.CGImage;
     }
-
+    
     CGContextSaveGState(context);
     
-    // draw by point list
+    // draw in memeory of all point list in one time
     if (_brushLayer != NULL){
         CGContextDrawLayerAtPoint(context, CGPointZero, _brushLayer);
     }
