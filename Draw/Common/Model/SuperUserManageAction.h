@@ -19,6 +19,8 @@
     UIViewController* _superController;
 }
 
+@property (nonatomic, retain) PBGameUser* pbUser;
+
 - (id)initWithTargetUserId:(NSString*)userId
                     nickName:(NSString*)nickName
                      balance:(int)balance;

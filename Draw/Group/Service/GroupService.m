@@ -793,6 +793,21 @@ static GroupService *_staticGroupService = nil;
             }];
 }
 
+- (void)dismissGroup:(NSString*)groupId
+              userId:(NSString*)userId
+            callback:(SimpleResultBlock)callback
+{
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    [params setObject:groupId forKey:PARA_GROUPID];
+    [params setObject:userId forKey:PARA_USERID];
+    
+    [self loadPBData:METHOD_DISMISS_GROUP
+          parameters:params
+            callback:^(DataQueryResponse *response, NSError *error) {
+                EXECUTE_BLOCK(callback, error);
+            }];
+}
+
 - (void)updateGroup:(NSString *)groupId
              method:(NSString *)method
                 key:(NSString *)key

@@ -222,6 +222,11 @@ typedef void (^ URLResultBlock) (NSURL *url, NSError *error);
 - (void)dismissGroup:(NSString *)groupId
            callback:(SimpleResultBlock)callback;
 
+
+- (void)dismissGroup:(NSString*)groupId
+              userId:(NSString*)userId
+            callback:(SimpleResultBlock)callback;
+
 - (void)syncGroupRoles;
 
 @end

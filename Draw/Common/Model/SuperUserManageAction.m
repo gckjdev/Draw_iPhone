@@ -16,6 +16,7 @@
 #import "StringUtil.h"
 #import "ChatService.h"
 #import "PPConfigManager.h"
+#import "GroupService.h"
 
 typedef enum
 {
@@ -33,6 +34,7 @@ typedef enum
     SuperUserManageActionIndexRecoverOpus,
     SuperUserManageActionIndexExportOpusImage,
     SuperUserManageActionIndexChargeIngot,
+    SuperUserManageActionIndexDismissGroup
 
 }SuperUserManageActionIndex;
 
@@ -60,14 +62,14 @@ typedef enum
         _targetUserNickName = pbUser.nickName;
         _targetUserCurrentBalance = pbUser.coinBalance;
         _targetUserCurrentIngot = pbUser.ingotBalance;
-        
+        self.pbUser = pbUser;
     }
     return self;
 }
 
 - (void)showInController:(UIViewController*)controller
 {
-    UIActionSheet* actionSheet = [[[UIActionSheet alloc] initWithTitle:[NSString stringWithFormat:@"%@(userId:%@,金币:%d 元宝:%d)", _targetUserNickName, _targetUserId, _targetUserCurrentBalance, _targetUserCurrentIngot] delegate:self cancelButtonTitle:@"cancel" destructiveButtonTitle:@"金币充值" otherButtonTitles:@"VIP购买", @"用户作品推荐设置", @"设置小吉号码", @"重置用户密码", @"加入用户黑名单", @"加入设备黑名单", @"从用户黑名单解禁", @"从设备黑名单解禁", @"用户数据修复 by ID", @"用户数据修复 by 小吉", @"恢复用户作品", @"导出用户作品图片", @"元宝充值" , nil] autorelease];
+    UIActionSheet* actionSheet = [[[UIActionSheet alloc] initWithTitle:[NSString stringWithFormat:@"%@(userId:%@,金币:%d 元宝:%d)", _targetUserNickName, _targetUserId, _targetUserCurrentBalance, _targetUserCurrentIngot] delegate:self cancelButtonTitle:@"cancel" destructiveButtonTitle:@"金币充值" otherButtonTitles:@"VIP购买", @"用户作品推荐设置", @"设置小吉号码", @"重置用户密码", @"加入用户黑名单", @"加入设备黑名单", @"从用户黑名单解禁", @"从设备黑名单解禁", @"用户数据修复 by ID", @"用户数据修复 by 小吉", @"恢复用户作品", @"导出用户作品图片", @"元宝充值", @"解散家族" , nil] autorelease];
     
     [actionSheet showInView:controller.view];
     _superController = controller;
@@ -236,6 +238,31 @@ typedef enum
                                [dialog.inputTextField setPlaceholder:@"请输入要充值的元宝数"];
                                [dialog showInView:_superController.view];
                            } break;
+                               
+                           case SuperUserManageActionIndexDismissGroup:{
+                               
+                               NSString* groupId = self.pbUser.groupInfo.groupId;
+                               if ([groupId length] == 0){
+                                   POSTMSG(@"用户不属于任何家族");
+                               }
+                               else{
+                                   NSString* msg = [NSString stringWithFormat:@"确定要解散该用户的家族[%@]吗？",
+                                                    self.pbUser.groupInfo.groupName];
+                                   CommonDialog* dialog = [CommonDialog createDialogWithTitle:nil message:msg style:CommonDialogStyleDoubleButton];
+                                   [dialog setClickOkBlock:^(UILabel *label){
+                                       [[GroupService defaultService] dismissGroup:groupId
+                                                                            userId:_targetUserId
+                                                                          callback:^(NSError *error) {
+                                                                              if (error == nil){
+                                                                                  POSTMSG(@"家族成功解散");
+                                                                              }
+                                                                          }];
+                                   }];
+                                   
+                                   [dialog showInView:_superController.view];
+                               }
+                               break;
+                           }
                                
                            case SuperUserManageActionIndexFeatureOpus:{
                                
