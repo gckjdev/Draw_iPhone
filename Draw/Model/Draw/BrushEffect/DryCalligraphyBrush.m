@@ -57,7 +57,7 @@ static dispatch_once_t sharedDryCalligraphyBrushOnceToken;
      
      Attetion:
      maybe there are some copyright problem between here and my lab's result
-     I could only use the thoughts that originated from my own brain
+     I could only use the thoughts that originated from my own
      */
     
     
@@ -80,8 +80,6 @@ static dispatch_once_t sharedDryCalligraphyBrushOnceToken;
     if (tempWidth > maxW) {
         tempWidth = maxW;
     }
-    
-    //    PPDebug(@"speed:%f ; width: %f", (distance1+distance2)/2, tempWidth);
     
     return tempWidth;
 }

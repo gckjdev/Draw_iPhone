@@ -30,7 +30,7 @@
 }
 
 @property (nonatomic, retain) HBrushPointList  *hPointList;
-@property (nonatomic, assign) BOOL hasStarted;
+@property (nonatomic, assign) BOOL isFirstPoint;
 
 @property (nonatomic, retain) BrushDot  *beginDot;
 @property (nonatomic, retain) BrushDot  *controlDot;
@@ -47,18 +47,18 @@
     return [_brush canInterpolationOptimized];
 }
 
-- (id)initWithWidth:(CGFloat)width color:(DrawColor*)color
-{
-    self = [super init];
-    if (self) {
-        self.width = width;
-        self.color = color;
-        _hPointList = [[HBrushPointList alloc] init];
-        self.isOptimized = YES;
-        self.isInterpolationOptimized = self.isOptimized && [self isBrushInterpolationOptimized];
-    }
-    return self;
-}
+//- (id)initWithWidth:(CGFloat)width color:(DrawColor*)color
+//{
+//    self = [super init];
+//    if (self) {
+//        self.width = width;
+//        self.color = color;
+//        _hPointList = [[HBrushPointList alloc] init];
+//        self.isOptimized = YES;
+//        self.isInterpolationOptimized = self.isOptimized && [self isBrushInterpolationOptimized];
+//    }
+//    return self;
+//}
 
 - (id)initWithWidth:(CGFloat)width
               color:(DrawColor *)color
@@ -78,6 +78,7 @@
         _beginDot = [[BrushDot alloc]init];
         _controlDot = [[BrushDot alloc]init];
         _endDot = [[BrushDot alloc]init];
+        self.isFirstPoint = YES;
         
         //get brush image and tint it
         self.brushImage = [_brush brushImage:[self.color color] width:width];
@@ -177,20 +178,6 @@
     return CGRectContainsPoint(rect, point);
 }
 
-- (void)updateLastPoint:(CGPoint)point inRect:(CGRect)rect
-{
-    if ([_hPointList count] <= 0){
-        return;
-    }
-    
-    CGPoint lastPoint = [_hPointList lastPoint];
-    
-    if (!CGPointEqualToPoint(point, lastPoint)) {
-//        [self constructPath];
-    }
-}
-
-
 // *******
 // 用途：在画图当中存储采样点，并且同步显示插值点效果的
 // 2015 5 7
@@ -199,9 +186,6 @@
 - (void)addPoint:(CGPoint)point inRect:(CGRect)rect
 {
     if (!CGRectContainsPoint(rect, point)){
-        //add By Gamy
-        //we can change point(304.1,320.4) to point(304,320)
-        //this point is not incorrect, but mistake.
         if (![self spanRect:rect ContainsPoint:point]) {
             PPDebug(@"<addPoint> Detect Incorrect Point = %@, Skip It", NSStringFromCGPoint(point));
             return;
@@ -215,92 +199,17 @@
     
     _brushLayer = [self brushLayer:rect];
     CGContextRef layerContext = CGLayerGetContext(_brushLayer);
-    CGContextSaveGState(layerContext);
+    CGImageRef brushImageRef = self.brushImageRef;
     
     if (self.brushImageRef == NULL){
         self.brushImage = [_brush brushImage:[self.color color] width:self.width];
         self.brushImageRef = _brushImage.CGImage;
     }
     
-    if (self.hasStarted == NO){
-        
-        // init the first point && add it to point list
-        [self initBezierKeyPointWithPoint:point];
-        [self.hPointList addPointX:_endDot.x
-                            PointY:_endDot.y
-                        PointWidth:_endDot.width
-                       PointRandom:0];
-    }
-    else{
-        [self relocateBezierKeyPoint:point];
-        
-        double distance1 = [self distanceOfDot:_controlDot andDot:_beginDot];
-        double distance2 = [self distanceOfDot:_endDot andDot:_controlDot];
-        
-        _tempWidth = [_brush calculateWidthWithThreshold:FIXED_PEN_SIZE
-                                               distance1:distance1
-                                               distance2:distance2
-                                            currentWidth:_tempWidth];
-        _endDot.width = _tempWidth;
-
-        float pointX=0;
-        float pointY=0;
-        float width=0;
-        
-        CGImageRef brushImageRef = [self brushImageRef];
-        
-        if(distance1 == 0 || distance2 == 0)
-            return;
-            
-        if(self.isInterpolationOptimized == YES)
-        {
-            [self.hPointList addPointX:point.x
-                                PointY:point.y
-                            PointWidth:self.width
-                           PointRandom:0];
-            PPDebug(@"<hpointlist count> %d",[self.hPointList count]);
-        }
-        else{
-            //如果是优化类型，例如毛笔等，直接存下采样点
-            //如果是非优化类型，例如蜡笔，铅笔，需要在下面的循环里面存下所有点
-        }
-            
-        //插值长度，与三点之间的距离有关，距离越远，插值越多。不同种类笔刷由插值系数控制。
-        int interpolationLength = [_brush interpolationLength:self.width
-                                                    distance1:distance1
-                                                    distance2:distance2];
-        
-        for(int i = 0; i<interpolationLength; i++)
-        {
-            [self bezierInterpolationWithBegin:_beginDot
-                                       Control:_controlDot
-                                           End:_endDot
-                                            No:i
-                                        Length:interpolationLength
-                                        pointX:&pointX
-                                        pointY:&pointY
-                                         width:&width];
-            
-            [_brush randomShakePointX:&pointX
-                               PointY:&pointY
-                               PointW:&width
-                     WithDefaultWidth:self.width];
-            
-//                // TODO for Charlie Brush Random
-            if(self.isInterpolationOptimized == NO){
-                [self.hPointList addPointX:pointX
-                                    PointY:pointY
-                                PointWidth:width
-                               PointRandom:0];
-                PPDebug(@"<hpointlist count> %d",[self.hPointList count]);
-            }
-            // draw by point list
-            CGRect rect = CGRectMake(pointX-width/2, pointY-width/2, width, width);
-            // draw in rect area
-            CGContextDrawImage(layerContext, rect, brushImageRef);
-        }
-        CGContextRestoreGState(layerContext);
-    }
+    [self dynamicDrawStrokeAtNewPoint:point
+                       withBrushImage:brushImageRef
+                       inLayerContext:layerContext
+                      needRecordPoint:YES];
 }
 
 // *******
@@ -314,9 +223,6 @@
          forShow:(BOOL)forShow
 {
     if (!CGRectContainsPoint(rect, point)){
-        //add By Gamy
-        //we can change point(304.1,320.4) to point(304,320)
-        //this point is not incorrect, but mistake.
         if (![self spanRect:rect ContainsPoint:point]) {
             PPDebug(@"<addPoint> Detect Incorrect Point = %@, Skip It", NSStringFromCGPoint(point));
             return;
@@ -330,79 +236,111 @@
     
     _brushLayer = [self brushLayer:rect];
     CGContextRef layerContext = CGLayerGetContext(_brushLayer);
-    CGContextSaveGState(layerContext);
+    CGImageRef brushImageRef = self.brushImageRef;
     
     if (self.brushImageRef == NULL){
         self.brushImage = [_brush brushImage:[self.color color] width:self.width];
         self.brushImageRef = _brushImage.CGImage;
     }
     
-    // TODO for Charlie Brush Random
     if(self.isInterpolationOptimized == NO){
+        //旧版本的数据没有经过插值优化，则直接画每一个储存了的点.此处为兼容代码
         [self.hPointList addPointX:point.x
                             PointY:point.y
                         PointWidth:width
                        PointRandom:0];
         //draw by point list
-        CGRect imageRect = CGRectMake(point.x - width/2, point.y - width/2, width, width);
-        CGImageRef brushImageRef = [self brushImageRef];
+        CGContextSaveGState(layerContext);
+        CGRect imageRect = CGRectMake(point.x-width/2, point.y-width/2, width, width);
         CGContextDrawImage(layerContext, imageRect, brushImageRef);
         CGContextRestoreGState(layerContext);
     }
-    else{
+    else
+    {
         // TODO for Charlie Brush Random
+        // 新版本的数据有优化，储存的只有采样点，需要把插值和抖动算法重现在replay端
         [self.hPointList addPointX:point.x
                             PointY:point.y
                         PointWidth:width
                        PointRandom:0];
         
-        if (self.hasStarted == NO){
-            [self initBezierKeyPointWithPoint:point];
-        }
-        else{
-            [self relocateBezierKeyPoint:point];
-            
-            double distance1 = [self distanceOfDot:_controlDot andDot:_beginDot];
-            double distance2 = [self distanceOfDot:_endDot andDot:_controlDot];
-            
-            _tempWidth = [_brush calculateWidthWithThreshold:FIXED_PEN_SIZE
-                                                   distance1:distance1
-                                                   distance2:distance2
-                                                currentWidth:_tempWidth];
-            _endDot.width = _tempWidth;
-            
-            float pointX=0;
-            float pointY=0;
-            float width=0;
-            
-            CGImageRef brushImageRef = [self brushImageRef];
-            
-            if(distance1 == 0 || distance2 == 0)
-                return;
-            
-            //插值长度，与三点之间的距离有关，距离越远，插值越多。不同种类笔刷由插值系数控制。
-            int interpolationLength = [_brush interpolationLength:self.width
-                                                        distance1:distance1
-                                                        distance2:distance2];
-                
-            for(int i = 0; i<interpolationLength; i++)
-            {
-                [self bezierInterpolationWithBegin:_beginDot
-                                           Control:_controlDot
-                                               End:_endDot
-                                                No:i
-                                            Length:interpolationLength
-                                            pointX:&pointX
-                                            pointY:&pointY
-                                             width:&width];
-                
-                CGRect rect = CGRectMake(pointX-width/2, pointY-width/2, width, width);
-                CGContextDrawImage(layerContext, rect, brushImageRef);
-            }
-            CGContextRestoreGState(layerContext);
-        }
+        [self dynamicDrawStrokeAtNewPoint:point
+                           withBrushImage:brushImageRef
+                           inLayerContext:layerContext
+                          needRecordPoint:NO];
     }
-    
+}
+
+- (void)dynamicDrawStrokeAtNewPoint:(CGPoint)point
+                     withBrushImage:(CGImageRef)brushImage
+                     inLayerContext:(CGContextRef)layerContext
+                    needRecordPoint:(BOOL)needRecordPoint
+{
+    CGContextSaveGState(layerContext);
+    if (self.isFirstPoint == YES){
+        [self initBezierKeyPointWithPoint:point];
+        self.isFirstPoint = NO;
+
+        //储存采样点，记录到hPointList。这种情况仅用于draw: inRect:
+        if(needRecordPoint)
+            [self.hPointList addPointX:_endDot.x
+                                PointY:_endDot.y
+                            PointWidth:_endDot.width
+                           PointRandom:0];
+    }
+    else{
+        [self relocateBezierKeyPointWithNewPoint:point];
+        
+        double distance1 = [self distanceOfDot:_controlDot andDot:_beginDot];
+        double distance2 = [self distanceOfDot:_endDot andDot:_controlDot];
+        
+        _tempWidth = [_brush calculateWidthWithThreshold:FIXED_PEN_SIZE
+                                               distance1:distance1
+                                               distance2:distance2
+                                            currentWidth:_tempWidth];
+        _endDot.width = _tempWidth;
+        
+        //储存采样点，记录到hPointList。这种情况仅用于draw: inRect:
+        if(needRecordPoint)
+            [self.hPointList addPointX:_endDot.x
+                                PointY:_endDot.y
+                            PointWidth:_endDot.width
+                           PointRandom:0];
+        
+        //如果笔停在某处，则不进行插值，也不进行画图
+        if(distance1 == 0 || distance2 == 0)
+            return;
+
+        //得到采样点后，再利用算法生成插值点和随机抖动。
+        float pointX=0,pointY=0,width=0;
+        //插值长度，与三点之间的距离有关，距离越远，插值越多。不同种类笔刷由插值系数控制。
+        int interpolationLength = [_brush interpolationLength:self.width
+                                                    distance1:distance1
+                                                    distance2:distance2];
+        for(int index = 0; index<interpolationLength; index++)
+        {
+            [self bezierInterpolationWithBegin:_beginDot
+                                       Control:_controlDot
+                                           End:_endDot
+                                         Index:index
+                                        Length:interpolationLength
+                                        pointX:&pointX
+                                        pointY:&pointY
+                                         width:&width];
+            //随机抖动，适用于部分笔刷
+            [_brush shakePointWithRandomList:[_brush randomNumberList]
+                                     atIndex:index
+                                      PointX:&pointX
+                                      PointY:&pointY
+                                      PointW:&width
+                            withDefaultWidth:self.width];
+            
+            
+            CGRect rect = CGRectMake(pointX-width/2, pointY-width/2, width, width);
+            CGContextDrawImage(layerContext, rect, brushImage);
+        }
+        CGContextRestoreGState(layerContext);
+    }
 }
 
 - (void)initBezierKeyPointWithPoint:(CGPoint)point
@@ -417,15 +355,15 @@
     _endDot.x = point.x;
     _endDot.y = point.y;
     
-    self.hasStarted = YES;
-    
     _tempWidth = [_brush firstPointWidth:self.width];
     _controlDot.width = _tempWidth;
     _beginDot.width = _tempWidth;
     _endDot.width = _tempWidth;
 }
 
-- (void)relocateBezierKeyPoint:(CGPoint)point
+
+
+- (void)relocateBezierKeyPointWithNewPoint:(CGPoint)point
 {
     //重采样定位第一点
     _beginDot.x = 0.25*_beginDot.x + 0.5*_controlDot.x + 0.25*_endDot.x;
@@ -442,50 +380,6 @@
     _endDot.y = point.y;
 }
 
-//- (void)addPoint:(CGPoint)point
-//           width:(float)width
-//          inRect:(CGRect)rect
-//         forShow:(BOOL)forShow
-//{
-//    if (!CGRectContainsPoint(rect, point)){
-//        //add By Gamy
-//        //we can change point(304.1,320.4) to point(304,320)
-//        //this point is not incorrect, but mistake.
-//        if (![self spanRect:rect ContainsPoint:point]) {
-//            PPDebug(@"<addPoint> Detect Incorrect Point = %@, Skip It", NSStringFromCGPoint(point));
-//            return;
-//        }
-//        point.x = MAX(point.x, 0);
-//        point.y = MAX(point.y, 0);
-//        point.x = MIN(point.x, CGRectGetWidth(rect));
-//        point.y = MIN(point.y, CGRectGetHeight(rect));
-//        PPDebug(@"<addPoint> Change Point to %@", NSStringFromCGPoint(point));
-//    }
-//    
-//    _brushLayer = [self brushLayer:rect];
-//    CGContextRef layerContext = CGLayerGetContext(_brushLayer);
-//    CGContextSaveGState(layerContext);
-//    
-//    if (self.brushImageRef == NULL){
-//        self.brushImage = [_brush brushImage:[self.color color] width:self.width];
-//        self.brushImageRef = _brushImage.CGImage;
-//    }
-//    
-//    // TODO for Charlie Brush Random
-//    [self.hPointList addPointX:point.x PointY:point.y PointWidth:width PointRandom:0];
-//    
-//    //proc
-//    // for interpolation
-//    {
-//        // draw by point list
-//        CGRect imageRect = CGRectMake(point.x - width/2, point.y - width/2, width, width);
-//        CGImageRef brushImageRef = [self brushImageRef];
-//        CGContextDrawImage(layerContext, imageRect, brushImageRef);
-//    }
-//    CGContextRestoreGState(layerContext);
-//}
-
-
 -(double)distanceOfDot:(BrushDot*)dot1 andDot:(BrushDot*)dot2
 {
     double distance = sqrt(pow((dot2.x-dot1.x), 2)+pow((dot2.y-dot1.y), 2));
@@ -496,13 +390,13 @@
 -(void)bezierInterpolationWithBegin:(BrushDot*)begin
                             Control:(BrushDot*)control
                                 End:(BrushDot*)end
-                                 No:(NSInteger)i
+                              Index:(NSInteger)index
                              Length:(NSInteger)length
                              pointX:(float*)pointX
                              pointY:(float*)pointY
                               width:(float*)width
 {
-    double t = 1.0*i / (length * 2);
+    double t = 1.0*index / (length * 2);
     
     *pointX = (1-t)*(1-t)*begin.x + 2*t*(1-t)*control.x + t*t*end.x;
     *pointY = (1-t)*(1-t)*begin.y + 2*t*(1-t)*control.y + t*t*end.y;
@@ -539,7 +433,7 @@
     self.brushImageRef = NULL;
 }
 
-//这个draw是缓存层，在内存中把之前的先画好，再画下一笔的时候就把之前的一下载搬上来。
+//这个draw是缓存层，在内存中把之前的先画好，再画下一笔的时候就把之前的一下子搬上来。
 - (CGRect)drawInContext:(CGContextRef)context inRect:(CGRect)rect
 {
     if (self.drawPen == nil) {
@@ -552,77 +446,43 @@
         self.brushImageRef = _brushImage.CGImage;
     }
     
-    CGContextSaveGState(context);
-    
-    // draw in memeory of all point list in one time
-    if (_brushLayer != NULL){
+    // 如果已经有一个完成了的layer，直接画到设备上，否则就新建一个layer并绘制
+    if (_brushLayer != NULL)
+    {
+        CGContextSaveGState(context);
         CGContextDrawLayerAtPoint(context, CGPointZero, _brushLayer);
+        CGContextRestoreGState(context);
+        return CGRectZero;
     }
-    else{
-        CGImageRef brushImageRef = [self brushImageRef];
-        for(int i = 0; i<[_hPointList count];i++)
+
+    //缓存层需要做的事：一次性在内存把所有点画出来，然后存到一个layer里面。
+    CGImageRef brushImageRef = [self brushImageRef];
+    for(int i = 0; i<[_hPointList count];i++)
+    {
+        CGFloat currentX = [_hPointList getPointX:i];
+        CGFloat currentY = [_hPointList getPointY:i];
+        CGFloat currentW = [_hPointList getPointWidth:i];
+        
+        self.width = currentW;
+        
+        if(self.isInterpolationOptimized == NO){
+            //旧版本数据直接画所有点，不需要实现算法插值抖动
+            CGContextSaveGState(context);
+            CGRect pointRect = CGRectMake(currentX - currentW/2, currentY - currentW/2, currentW, currentW);
+            CGContextDrawImage(context, pointRect, brushImageRef);
+            CGContextRestoreGState(context);
+        }
+        else
         {
-            CGFloat currentX = [_hPointList getPointX:i];
-            CGFloat currentY = [_hPointList getPointY:i];
-            CGFloat currentW = [_hPointList getPointWidth:i];
-            
-            self.width = currentW;
-            
-            if(self.isInterpolationOptimized == NO){
-                CGRect pointRect = CGRectMake(currentX - currentW/2, currentY - currentW/2, currentW, currentW);
-                CGContextDrawImage(context, pointRect, brushImageRef);
-            }
-            else{
-                CGPoint point = CGPointMake(currentX, currentY);
-                if (self.hasStarted == NO){
-                    [self initBezierKeyPointWithPoint:point];
-                }
-                else{
-                    [self relocateBezierKeyPoint:point];
-                    
-                    double distance1 = [self distanceOfDot:_controlDot andDot:_beginDot];
-                    double distance2 = [self distanceOfDot:_endDot andDot:_controlDot];
-                    
-                    _tempWidth = [_brush calculateWidthWithThreshold:FIXED_PEN_SIZE
-                                                           distance1:distance1
-                                                           distance2:distance2
-                                                        currentWidth:_tempWidth];
-                    _endDot.width = _tempWidth;
-                    
-                    float pointX=0;
-                    float pointY=0;
-                    float width=0;
-                    
-                    CGImageRef brushImageRef = [self brushImageRef];
-                    
-                    if(distance1 == 0 || distance2 == 0)
-                        continue;
-                    
-                    //插值长度，与三点之间的距离有关，距离越远，插值越多。不同种类笔刷由插值系数控制。
-                    int interpolationLength = [_brush interpolationLength:self.width
-                                                                distance1:distance1
-                                                                distance2:distance2];
-                    
-                    for(int i = 0; i<interpolationLength; i++)
-                    {
-                        [self bezierInterpolationWithBegin:_beginDot
-                                                   Control:_controlDot
-                                                       End:_endDot
-                                                        No:i
-                                                    Length:interpolationLength
-                                                    pointX:&pointX
-                                                    pointY:&pointY
-                                                     width:&width];
-                        
-                        CGRect rect = CGRectMake(pointX-width/2, pointY-width/2, width, width);
-                        CGContextDrawImage(context, rect, brushImageRef);
-                    }
-                }
-            }
+            CGPoint point = CGPointMake(currentX, currentY);
+            //新版本数据，需要用算法复现插值点
+            [self dynamicDrawStrokeAtNewPoint:point
+                               withBrushImage:brushImageRef
+                               inLayerContext:context
+                              needRecordPoint:NO];
         }
     }
     
-    CGContextRestoreGState(context);
     return [self redrawRectInRect:rect];
 }
 

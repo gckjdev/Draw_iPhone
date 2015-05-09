@@ -78,6 +78,14 @@ static dispatch_once_t sharedCrayonBrushOnceToken;
 
 }
 
+-(void)randomNumerList
+{
+    NSMutableArray* array = [NSMutableArray array];
+    for(NSInteger i = 0; i < 999;i++)
+        [array addObject:@(arc4random())];
+    
+    PPDebug(@"%@",array);
+}
 
 -(void)randomShakePointX:(float*)pointX
                   PointY:(float*)pointY

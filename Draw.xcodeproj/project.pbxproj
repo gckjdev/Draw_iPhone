@@ -6490,6 +6490,12 @@
 		CAFFF5CC196CED8C000DD4E7 /* UIViewController+CommonHome.m in Sources */ = {isa = PBXBuildFile; fileRef = CAFFF5CA196CED8C000DD4E7 /* UIViewController+CommonHome.m */; };
 		CAFFF5CD196CED8C000DD4E7 /* UIViewController+CommonHome.m in Sources */ = {isa = PBXBuildFile; fileRef = CAFFF5CA196CED8C000DD4E7 /* UIViewController+CommonHome.m */; };
 		CAFFF5CE196CED8C000DD4E7 /* UIViewController+CommonHome.m in Sources */ = {isa = PBXBuildFile; fileRef = CAFFF5CA196CED8C000DD4E7 /* UIViewController+CommonHome.m */; };
+		CBE5D4851AFDE6500004C93E /* NewCrayonBrush.m in Sources */ = {isa = PBXBuildFile; fileRef = CBE5D4841AFDE6500004C93E /* NewCrayonBrush.m */; };
+		CBE5D4861AFDE6500004C93E /* NewCrayonBrush.m in Sources */ = {isa = PBXBuildFile; fileRef = CBE5D4841AFDE6500004C93E /* NewCrayonBrush.m */; };
+		CBE5D48D1AFDF5720004C93E /* NewPencilBrush.m in Sources */ = {isa = PBXBuildFile; fileRef = CBE5D48C1AFDF5720004C93E /* NewPencilBrush.m */; };
+		CBE5D48E1AFDF5720004C93E /* NewPencilBrush.m in Sources */ = {isa = PBXBuildFile; fileRef = CBE5D48C1AFDF5720004C93E /* NewPencilBrush.m */; };
+		CBE5D4911AFDF6C70004C93E /* NewWaterBrush.m in Sources */ = {isa = PBXBuildFile; fileRef = CBE5D4901AFDF6C70004C93E /* NewWaterBrush.m */; };
+		CBE5D4921AFDF6C70004C93E /* NewWaterBrush.m in Sources */ = {isa = PBXBuildFile; fileRef = CBE5D4901AFDF6C70004C93E /* NewWaterBrush.m */; };
 		D80518B0196BD12200D350B3 /* beijing.png in Resources */ = {isa = PBXBuildFile; fileRef = D80518A6196BD12200D350B3 /* beijing.png */; };
 		D80518B1196BD12200D350B3 /* caogao@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D80518A7196BD12200D350B3 /* caogao@2x.png */; };
 		D80518B2196BD12200D350B3 /* dongtai@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D80518A8196BD12200D350B3 /* dongtai@2x.png */; };
@@ -11293,6 +11299,12 @@
 		CAFF62CE19E61FF50065D97E /* GameAdWallService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameAdWallService.m; sourceTree = "<group>"; };
 		CAFFF5C9196CED8C000DD4E7 /* UIViewController+CommonHome.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+CommonHome.h"; sourceTree = "<group>"; };
 		CAFFF5CA196CED8C000DD4E7 /* UIViewController+CommonHome.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+CommonHome.m"; sourceTree = "<group>"; };
+		CBE5D4831AFDE6500004C93E /* NewCrayonBrush.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewCrayonBrush.h; sourceTree = "<group>"; };
+		CBE5D4841AFDE6500004C93E /* NewCrayonBrush.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewCrayonBrush.m; sourceTree = "<group>"; };
+		CBE5D48B1AFDF5720004C93E /* NewPencilBrush.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewPencilBrush.h; sourceTree = "<group>"; };
+		CBE5D48C1AFDF5720004C93E /* NewPencilBrush.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewPencilBrush.m; sourceTree = "<group>"; };
+		CBE5D48F1AFDF6C70004C93E /* NewWaterBrush.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewWaterBrush.h; sourceTree = "<group>"; };
+		CBE5D4901AFDF6C70004C93E /* NewWaterBrush.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewWaterBrush.m; sourceTree = "<group>"; };
 		D80518A6196BD12200D350B3 /* beijing.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = beijing.png; sourceTree = "<group>"; };
 		D80518A7196BD12200D350B3 /* caogao@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "caogao@2x.png"; sourceTree = "<group>"; };
 		D80518A8196BD12200D350B3 /* dongtai@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "dongtai@2x.png"; sourceTree = "<group>"; };
@@ -12894,6 +12906,12 @@
 				A49EC39519E907B000DDD20D /* FilledCalligraphyBrush.m */,
 				A4EB5C1219F68D870067ADB1 /* DryCalligraphyBrush.h */,
 				A4EB5C1319F68D870067ADB1 /* DryCalligraphyBrush.m */,
+				CBE5D4831AFDE6500004C93E /* NewCrayonBrush.h */,
+				CBE5D4841AFDE6500004C93E /* NewCrayonBrush.m */,
+				CBE5D48B1AFDF5720004C93E /* NewPencilBrush.h */,
+				CBE5D48C1AFDF5720004C93E /* NewPencilBrush.m */,
+				CBE5D48F1AFDF6C70004C93E /* NewWaterBrush.h */,
+				CBE5D4901AFDF6C70004C93E /* NewWaterBrush.m */,
 			);
 			path = BrushEffect;
 			sourceTree = "<group>";
@@ -25191,6 +25209,7 @@
 				A4ED324F19CB36AF00619F1E /* FeatherBrush.m in Sources */,
 				C28A99BE1738F04B007A819F /* CDataScanner.m in Sources */,
 				C28A99BF1738F04B007A819F /* CDataScanner_Extensions.m in Sources */,
+				CBE5D4861AFDE6500004C93E /* NewCrayonBrush.m in Sources */,
 				C28A99C01738F04B007A819F /* NSCharacterSet_Extensions.m in Sources */,
 				C28A99C11738F04B007A819F /* NSDictionary_JSONExtensions.m in Sources */,
 				36B420791AA762D900F8A9B1 /* RSADataSigner.m in Sources */,
@@ -25682,6 +25701,7 @@
 				C28A9C6F1738F04B007A819F /* TaoBaoController.m in Sources */,
 				A4B60ABD19B6C21A00C300D5 /* BlurBrush.m in Sources */,
 				C28A9C701738F04B007A819F /* ChangeBGImageAction.m in Sources */,
+				CBE5D4921AFDF6C70004C93E /* NewWaterBrush.m in Sources */,
 				C28A9C711738F04B007A819F /* TomatoItem.m in Sources */,
 				C28A9C721738F04B007A819F /* GeographyService.m in Sources */,
 				C28A9C731738F04B007A819F /* GoogleAddressComponent.m in Sources */,
@@ -25911,6 +25931,7 @@
 				A47896EA1995BB2400185220 /* SpotHelpView.m in Sources */,
 				A4158675182DF6D1007FCB16 /* StrokeLabel.m in Sources */,
 				EA1BD64E182E26A6000E5364 /* Group.pb.m in Sources */,
+				CBE5D48E1AFDF5720004C93E /* NewPencilBrush.m in Sources */,
 				D8E63EE219C13BE500EB213E /* TutorialProtoModel.m in Sources */,
 				CA9AAF1118321621002DBAA5 /* SingGuessController.m in Sources */,
 				CA9AAF1D18321621002DBAA5 /* SingHomeController.m in Sources */,
@@ -26112,6 +26133,7 @@
 				A4ED324E19CB36AF00619F1E /* FeatherBrush.m in Sources */,
 				CA10410F1509A9FF00F60C03 /* GCDAsyncUdpSocket.m in Sources */,
 				CA1041701509A9FF00F60C03 /* CDataScanner.m in Sources */,
+				CBE5D4851AFDE6500004C93E /* NewCrayonBrush.m in Sources */,
 				D8B5393B19920B3E00BD3337 /* ResultSeal.m in Sources */,
 				CA1041711509A9FF00F60C03 /* CDataScanner_Extensions.m in Sources */,
 				36B420691AA75E2800F8A9B1 /* RSADataSigner.m in Sources */,
@@ -26603,6 +26625,7 @@
 				C2EB5D071709335F004B7CCB /* UserDetailRoundButton.m in Sources */,
 				A4B60ABC19B6C21A00C300D5 /* BlurBrush.m in Sources */,
 				EA49C86417093CD300843B6B /* TaoBaoController.m in Sources */,
+				CBE5D4911AFDF6C70004C93E /* NewWaterBrush.m in Sources */,
 				CAE4B0E31709643200B4AB90 /* ChangeBGImageAction.m in Sources */,
 				A44E6CC5170D6E910067B647 /* TomatoItem.m in Sources */,
 				C214A62A170FE8A900492393 /* GeographyService.m in Sources */,
@@ -26832,6 +26855,7 @@
 				EA8CADE118288CAF003149FE /* GroupService.m in Sources */,
 				EA8CADE818288D32003149FE /* DrawError.m in Sources */,
 				EA8CADEE1828A646003149FE /* GroupPermission.m in Sources */,
+				CBE5D48D1AFDF5720004C93E /* NewPencilBrush.m in Sources */,
 				D8E63EE119C13BE500EB213E /* TutorialProtoModel.m in Sources */,
 				EA1BD62E182DDCB1000E5364 /* GroupHomeController.m in Sources */,
 				EA1BD63C182DE6DD000E5364 /* CreateGroupController.m in Sources */,

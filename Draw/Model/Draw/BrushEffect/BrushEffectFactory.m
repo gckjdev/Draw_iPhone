@@ -17,6 +17,10 @@
 #import "PenCalligraphyBrush.h"
 #import "DryCalligraphyBrush.h"
 
+#import "NewCrayonBrush.h"
+#import "NewPencilBrush.h"
+#import "NewWaterBrush.h"
+
 static BrushEffectFactory* sharedBrushFactory;
 static dispatch_once_t brushFactoryOnceToken;
 
@@ -35,6 +39,10 @@ static dispatch_once_t brushFactoryOnceToken;
 
 - (id<BrushEffectProtocol>)brush:(ItemType)brushType
 {
+    //2015 5 8 charlie
+    //为了优化笔刷性能，做了一些优化。
+    //为了兼容，其中的蜡笔，铅笔，水笔使用了新建的类，前缀为New
+    
     switch (brushType) {
         case ItemTypeBrushGouache:
             return [GouacheBrush sharedBrush];
@@ -43,29 +51,25 @@ static dispatch_once_t brushFactoryOnceToken;
             return [BlurBrush sharedBrush];
             
         case ItemTypeBrushCrayon:
-            return [CrayonBrush sharedBrush];
+            return [NewCrayonBrush sharedBrush];
             
         case ItemTypeBrushPen:
             return [PenCalligraphyBrush sharedBrush];
             
         case ItemTypeBrushPencil:
-            return [PencilBrush sharedBrush];
+            return [NewPencilBrush sharedBrush];
             
         case ItemTypeBrushWater:
-            return [WaterBrush sharedBrush];
+            return [NewWaterBrush sharedBrush];
             
         case ItemTypeBrushFeather:
             return [FeatherBrush sharedBrush];
-            
+
         case ItemTypeBrushFilledCalligraphy:
             return [FilledCalligraphyBrush sharedBrush];
             
         case ItemTypeBrushDryCalligraphy:
             return [DryCalligraphyBrush sharedBrush];
-        
-
-
-            break;
             
         default:
             break;

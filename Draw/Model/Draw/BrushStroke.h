@@ -63,7 +63,6 @@
 - (id)initWithGameMessage:(GameMessage *)gameMessage;
 
 #pragma mark- get && add point methods
-- (void)updateLastPoint:(CGPoint)point inRect:(CGRect)rect;
 - (void)addPoint:(CGPoint)point inRect:(CGRect)rect;
 - (void)addPoint:(CGPoint)point
            width:(float)width
@@ -76,7 +75,6 @@
 - (NSInteger)pointCount;
 
 #pragma mark- path && draw methods
-//- (CGPathRef)path;
 - (CGRect)drawInContext:(CGContextRef)context inRect:(CGRect)rect;
 
 - (CGRect)redrawRectInRect:(CGRect)rect;

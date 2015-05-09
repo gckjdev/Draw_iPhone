@@ -15,14 +15,19 @@
 @class BrushStroke;
 @class BrushDot;
 
-@protocol BrushEffectProtocol <NSObject>
-
 #define FIXED_PEN_SIZE 20
 #define INTERPOLATION 10
 
+
+@protocol BrushEffectProtocol <NSObject>
+
+
+@required
 - (UIImage*)brushImage:(UIColor*)color width:(float)width;
 
+//该种笔刷是否可以通过插值优化
 - (BOOL)canInterpolationOptimized;
+
 // 笔刷宽度是否每一点可变
 - (BOOL)isWidthFixedSize;
 
@@ -40,8 +45,20 @@
                  distance1:(float)distance1         // 当前BeginDot和ControlDot的距离
                  distance2:(float)distance2;        // 当前EndDot和ControlDot的距离
 
-//对于某些笔刷例如蜡笔，需要对点进行随机抖动
+
+#define RANDOM_COUNT 10
 #define SHAKERANDOMRANGE 100
+-(NSArray*)randomNumberList;
+//version 9: 为了优化性能，从version 9开始，利用一段固定的伪随机数列作为随机数(暂定100个数字)
+-(void)shakePointWithRandomList:(NSArray*)randomList
+                        atIndex:(NSInteger)index
+                         PointX:(float*)pointX
+                         PointY:(float*)pointY
+                         PointW:(float*)pointW
+               withDefaultWidth:(float)defaultWidth;
+
+@optional
+//对于某些笔刷例如蜡笔，需要对点进行随机抖动
 -(void)randomShakePointX:(float*)pointX
                   PointY:(float*)pointY
                   PointW:(float*)pointW
