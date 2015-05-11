@@ -2076,6 +2076,10 @@ qqAccessTokenSecret:(NSString*)accessTokenSecret
     UD_SET([self keyLearnDrawHelp], @(YES));
 }
 
+- (BOOL)canDrawOnPhoto
+{
+    return [self level] >= [PPConfigManager getMinLevelDrawOnPhoto];
+}
 
 
 @end

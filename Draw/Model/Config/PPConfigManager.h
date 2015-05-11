@@ -35,6 +35,8 @@ typedef enum{
 + (int)getBalanceDeviation;
 + (int)getPreviewActionCount;
 
++ (int)getMinLevelDrawOnPhoto;
+
 + (NSArray *)getLearnDrawFeedbackEmailList;
 
 

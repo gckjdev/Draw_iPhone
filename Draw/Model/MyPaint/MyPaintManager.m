@@ -738,6 +738,7 @@ pbNoCompressDrawData:(PBNoCompressDrawData*)pbNoCompressDrawData
                             strokes:(int64_t)strokes
                           spendTime:(int)spendTime
                        completeDate:(int)completeDate
+                         targetType:(int)targetType
 
 {
     CoreDataManager* dataManager = GlobalGetCoreDataManager();
@@ -759,6 +760,7 @@ pbNoCompressDrawData:(PBNoCompressDrawData*)pbNoCompressDrawData
     [newMyPaint setOpusDesc:desc];
     [newMyPaint setOpusSpendTime:@(spendTime)];
     [newMyPaint setTotalStrokes:@(strokes)];
+    [newMyPaint setTargetType:@(targetType)];
     if (completeDate){
         [newMyPaint setOpusCompleteDate:[NSDate dateWithTimeIntervalSince1970:completeDate]];
     }

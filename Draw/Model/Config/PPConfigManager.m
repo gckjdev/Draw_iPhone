@@ -126,7 +126,6 @@
     return [MobClickUtils getIntValueByKey:@"HOME_SWITCH_OPUS_INTERVAL" defaultValue:10];
 }
 
-
 + (int)getBalanceDeviation
 {
     return [MobClickUtils getIntValueByKey:@"BALANCE_DEVIATION" defaultValue:4000];
@@ -135,6 +134,11 @@
 + (int)getPreviewActionCount
 {
     return [MobClickUtils getIntValueByKey:@"PREVIEW_ACTION_COUNT" defaultValue:200];
+}
+
++ (int)getMinLevelDrawOnPhoto
+{
+    return [MobClickUtils getIntValueByKey:@"MIN_LEVEL_DRAW_ON_PHOTO" defaultValue:5];
 }
 
 + (NSArray *)getLearnDrawFeedbackEmailList

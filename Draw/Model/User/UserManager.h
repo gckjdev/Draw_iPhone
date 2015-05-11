@@ -310,6 +310,7 @@ qqAccessTokenSecret:(NSString*)accessTokenSecret
 - (BOOL)isReadLearnDrawHelp;
 - (void)setHasReadLearnDrawHelp;
 
+- (BOOL)canDrawOnPhoto;
 
 @end
 

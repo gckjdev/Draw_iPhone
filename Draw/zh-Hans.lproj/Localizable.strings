@@ -2903,7 +2903,7 @@
 "kMetroMoreButton" = "发现";
 
 "kBlankDraw" = "空白绘画";
-"kDrawMode" = "请选择画画模式";
+"kDrawMode" = "恭喜你已经激活多种画画模式，请选择";
 
 "kSealResultPass" = "过关";
 "kSealResultFail" = "失败";

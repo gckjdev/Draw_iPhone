@@ -14,6 +14,7 @@
 #import "PPConfigManager.h"
 #import "DrawAction.h"
 #import "CoreDataUtil.h"
+#import "DrawConstants.h"
 
 @interface DrawRecoveryService()
 
@@ -77,6 +78,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(DrawRecoveryService)
     spendTime:(int)spendTime
  completeDate:(int)completeDate
        layers:(NSArray *)layers
+   targetType:(TargetType)targetType
 {
     if (_currentPaint != nil){
         [self stop];
@@ -110,7 +112,8 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(DrawRecoveryService)
                                                                     bgImageName:self.bgImageName
                                                                            desc:desc strokes:strokes
                                                                       spendTime:spendTime
-                                                                   completeDate:completeDate];
+                                                                   completeDate:completeDate
+                                                                         targetType:targetType];
 
         PPDebug(@"<start> file name=%@ size=%@", _currentPaint.dataFilePath, NSStringFromCGSize(_canvasSize));
         

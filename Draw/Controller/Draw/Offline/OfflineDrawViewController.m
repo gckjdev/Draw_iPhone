@@ -187,18 +187,25 @@
                                        animated:YES];
 }
 
-+ (OfflineDrawViewController *)startDraw:(Word *)word
-                          fromController:(UIViewController*)fromController
-                         startController:(UIViewController*)startController
-                               targetUid:(NSString *)targetUid
-                                animated:(BOOL)animated
+//+ (OfflineDrawViewController *)startDraw:(UIViewController*)fromController
+//                         startController:(UIViewController*)startController
+//                                 bgImage:(UIImage*)bgImage
+//{
+//    return [OfflineDrawViewController startDraw:nil
+//                                 fromController:fromController
+//                                startController:startController
+//                                      targetUid:nil
+//                                          photo:bgImage
+//                                       animated:YES];
+//}
+
+
++ (OfflineDrawViewController *)startDrawOnPhoto:(UIViewController*)startController
+                                        bgImage:(UIImage*)bgImage
 {
-    return [OfflineDrawViewController startDraw:word
-                                 fromController:fromController
-                                startController:startController
-                                      targetUid:targetUid
-                                          photo:nil
-                                       animated:animated];
+    return [OfflineDrawViewController startDrawOnPhoto:startController
+                                                 photo:bgImage
+                                              animated:YES];
 }
 
 + (OfflineDrawViewController *)startDraw:(Word *)word
@@ -235,10 +242,7 @@
     return [vc autorelease];
 }
 
-+ (OfflineDrawViewController *)startDrawOnPhoto:(Word *)word
-                                 fromController:(UIViewController*)fromController
-                                startController:(UIViewController*)startController
-                                      targetUid:(NSString *)targetUid
++ (OfflineDrawViewController *)startDrawOnPhoto:(UIViewController*)startController
                                           photo:(UIImage *)photo
                                        animated:(BOOL)animated
 {
@@ -246,12 +250,12 @@
                                                                                  delegate:nil
                                                                           startController:startController
                                                                                   Contest:nil
-                                                                             targetUserId:targetUid
+                                                                             targetUserId:nil
                                                                                   bgImage:photo];
     
-    [fromController.navigationController pushViewController:vc animated:animated];
+    [startController.navigationController pushViewController:vc animated:animated];
     vc.startController = startController;
-    PPDebug(@"<StartDraw>: word = %@, targetUid = %@", word.text, targetUid);
+    PPDebug(@"<startDrawOnPhoto>");
     return [vc autorelease];
 }
 
@@ -473,6 +477,7 @@
         
         // for delete flag so that it will not show while crash
         [self.draft setDeleteFlag:@(YES)];
+        [self.draft setTargetType:@(aTargetType)];
         
         self.startController = startController;
         self.delegate = aDelegate;
@@ -593,6 +598,7 @@
                 
                 }
                 else{
+                    
                     bgImageAction = [ChangeBGImageAction actionForNormalDrawBg:layerPostion
                                                                       bgImage:self.bgImage
                                                                   bgImageName:self.bgImageName
@@ -610,7 +616,6 @@
                         [self.draft setCanvasSize:self.bgImage.size];
                     }
                 }
-                
                 
                 if (bgImageAction){
                     [self.draft.drawActionList addObject:bgImageAction];
@@ -879,7 +884,7 @@
 
 - (BOOL)supportRecovery
 {
-    return (targetType == TypeDraw || targetType == TypeContest);
+    return (targetType == TypeDraw || targetType == TypeContest || targetType == TypeDrawPhoto);
 }
 
 - (void)updateDrawRecoveryService
@@ -913,7 +918,8 @@
        strokes:[self.draft.totalStrokes intValue]
      spendTime:[self.draft.opusSpendTime intValue]
   completeDate:time(0)
-        layers:[drawView layers]];
+        layers:[drawView layers]
+     targetType:[self.draft.targetType intValue]];
 }
 
 // 停止自动备份

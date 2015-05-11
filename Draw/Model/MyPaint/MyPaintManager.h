@@ -117,7 +117,8 @@
                        desc:(NSString*)desc
                     strokes:(int64_t)strokes
                   spendTime:(int)spendTime
-               completeDate:(int)completeDate;
+               completeDate:(int)completeDate
+                         targetType:(int)targetType;
 
 - (BOOL)createMyPaintWithImage:(UIImage*)image
                     pbDrawData:(NSData*)pbDrawData

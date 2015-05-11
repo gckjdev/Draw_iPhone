@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "CommonService.h"
+#import "DrawConstants.h"
 
 @class MyPaint;
 @class Word;
@@ -65,7 +66,8 @@
       strokes:(int64_t)strokes
     spendTime:(int)spendTime
  completeDate:(int)completeDate
-       layers:(NSArray *)layers;
+       layers:(NSArray *)layers
+   targetType:(TargetType)targetType;
 
 - (void)stop;
 - (int)backupInterval;

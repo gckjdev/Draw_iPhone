@@ -873,7 +873,7 @@
 #pragma mark enter replay controller
 - (void)enterReplayController:(PPMessage *)message
 {
-    BOOL isNewVersion = [PPConfigManager currentDrawDataVersion] <= [message drawDataVersion];
+    BOOL isNewVersion = [PPConfigManager currentDrawDataVersion] < [message drawDataVersion];
     
     ReplayObject *obj = [ReplayObject objectWithActionList:[message drawActionList]
                                               isNewVersion:isNewVersion

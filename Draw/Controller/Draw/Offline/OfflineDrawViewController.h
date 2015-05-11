@@ -103,6 +103,9 @@
                             userStage:(PBUserStage*)userStage
                          userTutorial:(PBUserTutorial*)userTutorial;
 
++ (OfflineDrawViewController *)startDrawOnPhoto:(UIViewController*)startController
+                                        bgImage:(UIImage*)bgImage;
+
 - (id)initWithTargetType:(TargetType)aTargetType
                 delegate:(id<OfflineDrawDelegate>)aDelegate
          startController:(UIViewController*)startController

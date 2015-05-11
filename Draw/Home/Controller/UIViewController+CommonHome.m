@@ -388,8 +388,6 @@
 
 - (void)enterOfflineDrawWithMenu
 {
-#ifdef DEBUG
-    
     ChangeAvatar* imagePicker = [[ChangeAvatar alloc] init];
     imagePicker.autoRoundRect = NO;
     [imagePicker showSelectionView:self
@@ -412,23 +410,14 @@
     } selectImageHanlder:^(UIImage *image) {
 
         // enter with bg image
-        [OfflineDrawViewController startDraw:self
-                             startController:self
-                                     bgImage:image];
+        [OfflineDrawViewController startDrawOnPhoto:self
+                                            bgImage:image];
         
         [imagePicker release];
         
         
     } canTakePhoto:YES userOriginalImage:YES];
     return;
-    
-#else
-    
-    [self enterOfflineDraw];
-    return;
-    
-#endif
-    
 }
 
 /*

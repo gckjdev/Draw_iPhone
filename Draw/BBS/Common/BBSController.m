@@ -95,7 +95,7 @@
 {
     [self hideActivity];
     if (resultCode == 0) {
-        BOOL isNewVersion = [PPConfigManager currentDrawDataVersion] <= version;
+        BOOL isNewVersion = [PPConfigManager currentDrawDataVersion] < version;
 
         ReplayObject* obj = [ReplayObject objectWithActionList:drawActionList
                                                   isNewVersion:isNewVersion
