@@ -63,6 +63,7 @@
 #import "ChangeAvatar.h"
 #import "PhotoDrawSheet.h"
 #import "FeedListController.h"
+#import "UIImageExt.h"
 
 @implementation UIViewController (CommonHome)
 
@@ -403,15 +404,69 @@
             // not used yet
         }
                                
-                               [imagePicker release];
-                               
+       [imagePicker release];
                                
                                
     } selectImageHanlder:^(UIImage *image) {
 
-        // enter with bg image
-        [OfflineDrawViewController startDrawOnPhoto:self
-                                            bgImage:image];
+        int MAX_WIDTH = 1024;
+        int MAX_HEIGHT = 1024;
+        
+        if (image.size.width >= MAX_WIDTH || image.size.height >= MAX_HEIGHT){
+            
+            NSString* msg = [NSString stringWithFormat:NSLS(@"当前图片尺寸过大（%.0fX%.0f），请选择是否使用原始尺寸，使用原始尺寸性能可能受影响"),
+                             image.size.width, image.size.height];
+            
+            // ask
+            CommonDialog* dialog = [CommonDialog createDialogWithTitle:NSLS(@"图片尺寸过大")
+                                                               message:msg
+                                                                 style:CommonDialogStyleDoubleButtonWithCross];
+            
+            [dialog.oKButton setTitle:NSLS(@"原始尺寸") forState:UIControlStateNormal];
+            [dialog.cancelButton setTitle:NSLS(@"优化尺寸") forState:UIControlStateNormal];
+            
+            [dialog setClickOkBlock:^(UIView *view){
+                
+                PPDebug(@"<startDrawOnPhoto> size big (%@)", NSStringFromCGSize(image.size));
+                
+                // enter with bg image
+                [OfflineDrawViewController startDrawOnPhoto:self
+                                                    bgImage:image];
+            }];
+            
+            [dialog setClickCancelBlock:^(UIView *view){
+                
+                CGFloat newWidth = image.size.width;
+                CGFloat newHeight = image.size.height;
+                
+                if (newWidth > MAX_WIDTH){
+                    CGFloat ratio = MAX_WIDTH / newWidth;
+                    newWidth = MAX_WIDTH;
+                    newHeight = newHeight * ratio;
+                }
+                else{
+                    CGFloat ratio = MAX_HEIGHT / newHeight;
+                    newHeight = MAX_HEIGHT;
+                    newWidth = newWidth * ratio;
+                }
+                
+                CGSize newSize = CGSizeMake(newWidth, newHeight);
+                PPDebug(@"<startDrawOnPhoto> from size (%@) to  size (%@)", NSStringFromCGSize(image.size), NSStringFromCGSize(newSize));
+                UIImage* newImage = [image imageByScalingAndCroppingForSize:newSize];
+                
+                // enter with bg image
+                [OfflineDrawViewController startDrawOnPhoto:self
+                                                    bgImage:newImage];
+            }];
+
+            [dialog showInView:self.view];
+        }
+        else{
+        
+            // enter with bg image
+            [OfflineDrawViewController startDrawOnPhoto:self
+                                                bgImage:image];
+        }
         
         [imagePicker release];
         

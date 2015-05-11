@@ -244,11 +244,10 @@ if(control){\
     [[SDWebImageManager sharedManager] downloadWithURL:URL options:SDWebImageRetryFailed progress:NULL completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, BOOL finished) {
         
         if (error == nil) {
-            image = [UIImage shrinkImage:image withRate:0.8];
+            image = [UIImage shrinkImage:image withRate:0.5];
             [cell updateIcon:image];
         }
     }];
-    
     
     [cell updateTitle:user.nickName];
     
