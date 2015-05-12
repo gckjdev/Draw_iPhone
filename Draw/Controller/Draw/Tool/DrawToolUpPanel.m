@@ -196,7 +196,6 @@ if(control){\
     command = [[[ShowCopyPaintCommand alloc] initWithControl:control itemType:ItemTypeCopyPaint] autorelease];
     [toolCmdManager registerCommand:command];
     [command setToolPanel:self];
-    
 
     [toolCmdManager updateDrawInfo:self.drawView.drawInfo];
     [toolCmdManager updateDrawView:self.drawView];

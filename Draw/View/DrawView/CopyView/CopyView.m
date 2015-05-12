@@ -15,6 +15,11 @@
 #import "UserTutorialService.h"
 #import "Draw.h"
 #import "TipsPageViewController.h"
+#import "DrawConstants.h"
+#import "ChangeAvatar.h"
+#import "OfflineDrawViewController.h"
+#import "DrawToolUpPanel.h"
+#import "TGRImageViewController.h"
 
 #define COPY_VIEW_DEFAULT_WIDTH     (ISIPAD ? 180 : 80)
 #define COPY_VIEW_DEFAULT_HEIGHT    (ISIPAD ? 180 : 80)
@@ -35,11 +40,13 @@
 @property (nonatomic, assign) int opusStartIndex;
 @property (nonatomic, assign) int opusEndIndex;
 @property (nonatomic, assign) int targetType;
+@property (nonatomic, assign) UIView* referView;
+@property (nonatomic, assign) CGPoint origPoint;
 @property (nonatomic, retain) Draw *draw;
 
 @property (nonatomic, retain) PBUserStage *userStage;
 @property (nonatomic, retain) PBStage *stage;
-
+@property (nonatomic, retain) ChangeAvatar *imagePicker;
 
 @end
 
@@ -48,6 +55,7 @@
 + (CopyView*)createCopyView:(PPViewController*)superViewController
                   superView:(UIView*)superView
                     atPoint:(CGPoint)point
+                  referView:(UIView*)referView
                      opusId:(NSString*)opusId
                   userStage:(PBUserStage*)userStage
                       stage:(PBStage*)stage
@@ -72,9 +80,46 @@
     [copyView loadOpus:opusId userStage:userStage stage:stage];
     
     copyView.hasMenu = YES;
+
+    copyView.origPoint = point;
+    copyView.referView = referView;
     
     return copyView;
 }
+
++ (CopyView*)createCopyView:(PPViewController*)superViewController
+                  superView:(UIView*)superView
+                    atPoint:(CGPoint)point
+                  referView:(UIView*)referView
+                      image:(UIImage*)image
+                       type:(TargetType)type
+{
+    CGRect frame = CGRectMake(point.x, point.y, COPY_VIEW_DEFAULT_WIDTH, COPY_VIEW_DEFAULT_HEIGHT);
+    CopyView *copyView = [[CopyView alloc] initWithFrame:frame];
+    UIImageView *contentView = [[UIImageView alloc] initWithFrame:frame];
+    [contentView setBackgroundColor:[UIColor clearColor]];
+    contentView.alpha = 1.0;
+    copyView.contentView = contentView;
+    
+    [superView addSubview:copyView];
+    copyView.superViewController = superViewController;
+    copyView.delegate = copyView;
+    copyView.targetType = type;
+    
+    [contentView release];
+    [copyView release];
+    
+    [copyView showEditingHandles];
+    
+    copyView.hasMenu = YES;
+    [copyView setImage:image];
+    
+    copyView.origPoint = point;
+    copyView.referView = referView;
+    
+    return copyView;
+}
+
 
 - (UIImage*)image
 {
@@ -104,6 +149,7 @@
 
 - (void)dealloc
 {
+    PPRelease(_imagePicker);
     PPRelease(_opusImagePath);
     PPRelease(_opusBgImagePath);
     PPRelease(_opusDataPath);
@@ -217,6 +263,7 @@
 {
     self.displayImage = image;
     UIImageView* imageView = (UIImageView*)(self.contentView);
+    imageView.contentMode = UIViewContentModeScaleAspectFit;
     [imageView setImage:image];
 }
 
@@ -290,6 +337,11 @@
 #define COPY_VIEW_FULL_SCREEN       NSLS(@"kCopyViewFullScreen")
 #define COPY_VIEW_DEFAULT_SCREEN    NSLS(@"kCopyViewDefaultScreen")
 
+#define COPY_VIEW_SELECT_IMAGE      NSLS(@"设置图片")
+#define COPY_VIEW_VIEW_SINGLE       NSLS(@"查看大图")
+#define COPY_VIEW_RESET             NSLS(@"恢复小图")
+#define COPY_VIEW_STRECTCH_SUPER    NSLS(@"铺满画板")
+
 - (void)userResizableViewDidTap:(SPUserResizableView*)userResizableView
 {
     PPDebug(@"userResizableViewDidTap");
@@ -303,11 +355,21 @@
 //    }
 //#endif
     
-    MKBlockActionSheet* actionSheet = [[MKBlockActionSheet alloc] initWithTitle:NSLS(@"kCopyViewActionTitle")
-                                                                       delegate:nil
-                                                              cancelButtonTitle:NSLS(@"Cancel")
-                                                         destructiveButtonTitle:nil //COPY_VIEW_SET_IMAGE COPY_VIEW_HIDE,
-                                                              otherButtonTitles:COPY_VIEW_PLAY, COPY_VIEW_FULL_SCREEN, COPY_VIEW_DEFAULT_SCREEN, nil];
+    MKBlockActionSheet* actionSheet = nil;
+    if (self.targetType == TypeConquerDraw || self.targetType == TypePracticeDraw){
+        actionSheet = [[MKBlockActionSheet alloc] initWithTitle:NSLS(@"kCopyViewActionTitle")
+                                                                           delegate:nil
+                                                                  cancelButtonTitle:NSLS(@"Cancel")
+                                                             destructiveButtonTitle:nil //COPY_VIEW_SET_IMAGE COPY_VIEW_HIDE,
+                                                                  otherButtonTitles:COPY_VIEW_PLAY, COPY_VIEW_FULL_SCREEN, COPY_VIEW_DEFAULT_SCREEN, nil];
+    }
+    else{
+        actionSheet = [[MKBlockActionSheet alloc] initWithTitle:NSLS(@"kCopyViewActionTitle")
+                                         delegate:nil
+                                cancelButtonTitle:NSLS(@"Cancel")
+                           destructiveButtonTitle:nil //COPY_VIEW_SET_IMAGE COPY_VIEW_HIDE,
+                                otherButtonTitles:COPY_VIEW_SELECT_IMAGE, COPY_VIEW_STRECTCH_SUPER, COPY_VIEW_VIEW_SINGLE, COPY_VIEW_RESET, COPY_VIEW_HIDE, nil];
+    }
     
     [actionSheet setActionBlock:^(NSInteger buttonIndex){
         NSString* title = [actionSheet buttonTitleAtIndex:buttonIndex];
@@ -334,15 +396,25 @@
             PPDebug(@"click COPY_VIEW_HIDE");
             [self setHidden:YES];
         }
-        else if ([title isEqualToString:COPY_VIEW_FULL_SCREEN]){
+        else if ([title isEqualToString:COPY_VIEW_FULL_SCREEN] || [title isEqualToString:COPY_VIEW_STRECTCH_SUPER]){
             PPDebug(@"click COPY_VIEW_FULL_SCREEN");
             self.frame = self.superview.bounds;
+
+//            self.frame = CGRectMake(_origPoint.x, _origPoint.y, _referView.bounds.size.width, _referView.bounds.size.height);
+            //            [self updateWidth:self.superview.bounds.size.width];
+//            [self updateHeight:self.superview.bounds.size.height];
             self.alpha = 1.0f;
         }
-        else if ([title isEqualToString:COPY_VIEW_DEFAULT_SCREEN]){
+        else if ([title isEqualToString:COPY_VIEW_DEFAULT_SCREEN] || [title isEqualToString:COPY_VIEW_RESET]){
             PPDebug(@"click COPY_VIEW_DEFAULT_SCREEN");
-            self.frame = CGRectMake(0, 0, COPY_VIEW_DEFAULT_WIDTH, COPY_VIEW_DEFAULT_HEIGHT);
+            self.frame = CGRectMake(_origPoint.x, _origPoint.y, COPY_VIEW_DEFAULT_WIDTH, COPY_VIEW_DEFAULT_HEIGHT);
             self.alpha = 1.0f;
+        }
+        else if ([title isEqualToString:COPY_VIEW_SELECT_IMAGE]){
+            [self selectImageFromAlbum];
+        }
+        else if ([title isEqualToString:COPY_VIEW_VIEW_SINGLE]){
+            [self showImage];
         }
         else if ([title isEqualToString:COPY_VIEW_HELP]){
             // view tips
@@ -482,5 +554,42 @@
     _hasMenu = NO;
 }
 
+- (void)selectImageFromAlbum
+{
+    ChangeAvatar* ca = [[ChangeAvatar alloc] init];
+    self.imagePicker = ca;
+    [self.imagePicker setAutoRoundRect:NO];
+    [self.imagePicker setImageSize:CGSizeMake(0, 0)];
+    [self.imagePicker setIsCompressImage:NO];
+    [self.imagePicker showSelectionView:self.superViewController
+                               delegate:nil
+                     selectedImageBlock:^(UIImage *image) {
+                         OfflineDrawViewController *oc = (OfflineDrawViewController *)[self superViewController];
+                         [oc saveCopyPaintImage:image];
+//                         if ([cp.toolPanel isKindOfClass:[DrawToolUpPanel class]]) {
+//                             [(DrawToolUpPanel*)cp.toolPanel updateCopyPaint:image];
+//                         }
+                     }
+                     didSetDefaultBlock:^{
+                         self.imagePicker = nil;
+                     }
+                                  title:nil
+                        hasRemoveOption:NO
+                           canTakePhoto:NO
+                      userOriginalImage:YES];
+    
+    [ca release];
+    
+    
+}
+
+- (void)showImage
+{
+    dispatch_after(0, dispatch_get_main_queue(), ^{
+        TGRImageViewController *vc = [[TGRImageViewController alloc] initWithImage:_displayImage];
+        [self.superViewController presentViewController:vc animated:YES completion:nil];
+        [vc release];
+    });
+}
 
 @end

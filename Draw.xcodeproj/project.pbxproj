@@ -86,6 +86,30 @@
 		362330B41AB91C7F00BFCD35 /* WireFormat.m in Sources */ = {isa = PBXBuildFile; fileRef = 3623306F1AB91C7F00BFCD35 /* WireFormat.m */; };
 		362E78E41AB943B400E5F2D5 /* GTMBase64.m in Sources */ = {isa = PBXBuildFile; fileRef = 362E78E21AB943B400E5F2D5 /* GTMBase64.m */; };
 		362E78E51AB943B400E5F2D5 /* GTMBase64.m in Sources */ = {isa = PBXBuildFile; fileRef = 362E78E21AB943B400E5F2D5 /* GTMBase64.m */; };
+		362EE2261B01D28C00083A70 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 362EE21C1B01D28C00083A70 /* LICENSE */; };
+		362EE2271B01D28C00083A70 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 362EE21C1B01D28C00083A70 /* LICENSE */; };
+		362EE2281B01D28C00083A70 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 362EE21C1B01D28C00083A70 /* LICENSE */; };
+		362EE2291B01D28C00083A70 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 362EE21C1B01D28C00083A70 /* LICENSE */; };
+		362EE22A1B01D28C00083A70 /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = 362EE21D1B01D28C00083A70 /* README.md */; };
+		362EE22B1B01D28C00083A70 /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = 362EE21D1B01D28C00083A70 /* README.md */; };
+		362EE22C1B01D28C00083A70 /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = 362EE21D1B01D28C00083A70 /* README.md */; };
+		362EE22D1B01D28C00083A70 /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = 362EE21D1B01D28C00083A70 /* README.md */; };
+		362EE22E1B01D28C00083A70 /* TGRImageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 362EE2201B01D28C00083A70 /* TGRImageViewController.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
+		362EE22F1B01D28C00083A70 /* TGRImageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 362EE2201B01D28C00083A70 /* TGRImageViewController.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
+		362EE2301B01D28C00083A70 /* TGRImageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 362EE2201B01D28C00083A70 /* TGRImageViewController.m */; };
+		362EE2311B01D28C00083A70 /* TGRImageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 362EE2201B01D28C00083A70 /* TGRImageViewController.m */; };
+		362EE2321B01D28C00083A70 /* TGRImageViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 362EE2211B01D28C00083A70 /* TGRImageViewController.xib */; };
+		362EE2331B01D28C00083A70 /* TGRImageViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 362EE2211B01D28C00083A70 /* TGRImageViewController.xib */; };
+		362EE2341B01D28C00083A70 /* TGRImageViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 362EE2211B01D28C00083A70 /* TGRImageViewController.xib */; };
+		362EE2351B01D28C00083A70 /* TGRImageViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 362EE2211B01D28C00083A70 /* TGRImageViewController.xib */; };
+		362EE2361B01D28C00083A70 /* TGRImageZoomAnimationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 362EE2231B01D28C00083A70 /* TGRImageZoomAnimationController.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
+		362EE2371B01D28C00083A70 /* TGRImageZoomAnimationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 362EE2231B01D28C00083A70 /* TGRImageZoomAnimationController.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
+		362EE2381B01D28C00083A70 /* TGRImageZoomAnimationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 362EE2231B01D28C00083A70 /* TGRImageZoomAnimationController.m */; };
+		362EE2391B01D28C00083A70 /* TGRImageZoomAnimationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 362EE2231B01D28C00083A70 /* TGRImageZoomAnimationController.m */; };
+		362EE23A1B01D28C00083A70 /* UIImage+AspectFit.m in Sources */ = {isa = PBXBuildFile; fileRef = 362EE2251B01D28C00083A70 /* UIImage+AspectFit.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
+		362EE23B1B01D28C00083A70 /* UIImage+AspectFit.m in Sources */ = {isa = PBXBuildFile; fileRef = 362EE2251B01D28C00083A70 /* UIImage+AspectFit.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
+		362EE23C1B01D28C00083A70 /* UIImage+AspectFit.m in Sources */ = {isa = PBXBuildFile; fileRef = 362EE2251B01D28C00083A70 /* UIImage+AspectFit.m */; };
+		362EE23D1B01D28C00083A70 /* UIImage+AspectFit.m in Sources */ = {isa = PBXBuildFile; fileRef = 362EE2251B01D28C00083A70 /* UIImage+AspectFit.m */; };
 		3672C2001ABA7C4400AEC29D /* CopyConnection.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3672C1DC1ABA7C4300AEC29D /* CopyConnection.framework */; };
 		3672C2011ABA7C4400AEC29D /* CopyConnection.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3672C1DC1ABA7C4300AEC29D /* CopyConnection.framework */; };
 		3672C2021ABA7C4400AEC29D /* CopyConnection.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3672C1DC1ABA7C4300AEC29D /* CopyConnection.framework */; };
@@ -8386,6 +8410,15 @@
 		3623306E1AB91C7F00BFCD35 /* WireFormat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WireFormat.h; sourceTree = "<group>"; };
 		3623306F1AB91C7F00BFCD35 /* WireFormat.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WireFormat.m; sourceTree = "<group>"; };
 		362E78E21AB943B400E5F2D5 /* GTMBase64.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GTMBase64.m; sourceTree = "<group>"; };
+		362EE21C1B01D28C00083A70 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
+		362EE21D1B01D28C00083A70 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		362EE21F1B01D28C00083A70 /* TGRImageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TGRImageViewController.h; sourceTree = "<group>"; };
+		362EE2201B01D28C00083A70 /* TGRImageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TGRImageViewController.m; sourceTree = "<group>"; };
+		362EE2211B01D28C00083A70 /* TGRImageViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TGRImageViewController.xib; sourceTree = "<group>"; };
+		362EE2221B01D28C00083A70 /* TGRImageZoomAnimationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TGRImageZoomAnimationController.h; sourceTree = "<group>"; };
+		362EE2231B01D28C00083A70 /* TGRImageZoomAnimationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TGRImageZoomAnimationController.m; sourceTree = "<group>"; };
+		362EE2241B01D28C00083A70 /* UIImage+AspectFit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+AspectFit.h"; sourceTree = "<group>"; };
+		362EE2251B01D28C00083A70 /* UIImage+AspectFit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+AspectFit.m"; sourceTree = "<group>"; };
 		3672C1DC1ABA7C4300AEC29D /* CopyConnection.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = CopyConnection.framework; sourceTree = "<group>"; };
 		3672C1DD1ABA7C4300AEC29D /* FacebookConnection.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FacebookConnection.framework; sourceTree = "<group>"; };
 		3672C1DE1ABA7C4300AEC29D /* MailConnection.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = MailConnection.framework; sourceTree = "<group>"; };
@@ -12063,6 +12096,30 @@
 				3623306F1AB91C7F00BFCD35 /* WireFormat.m */,
 			);
 			path = Classes;
+			sourceTree = "<group>";
+		};
+		362EE21B1B01D28C00083A70 /* Vertigo */ = {
+			isa = PBXGroup;
+			children = (
+				362EE21C1B01D28C00083A70 /* LICENSE */,
+				362EE21D1B01D28C00083A70 /* README.md */,
+				362EE21E1B01D28C00083A70 /* Vertigo */,
+			);
+			path = Vertigo;
+			sourceTree = "<group>";
+		};
+		362EE21E1B01D28C00083A70 /* Vertigo */ = {
+			isa = PBXGroup;
+			children = (
+				362EE21F1B01D28C00083A70 /* TGRImageViewController.h */,
+				362EE2201B01D28C00083A70 /* TGRImageViewController.m */,
+				362EE2211B01D28C00083A70 /* TGRImageViewController.xib */,
+				362EE2221B01D28C00083A70 /* TGRImageZoomAnimationController.h */,
+				362EE2231B01D28C00083A70 /* TGRImageZoomAnimationController.m */,
+				362EE2241B01D28C00083A70 /* UIImage+AspectFit.h */,
+				362EE2251B01D28C00083A70 /* UIImage+AspectFit.m */,
+			);
+			path = Vertigo;
 			sourceTree = "<group>";
 		};
 		3672C1DA1ABA7C4300AEC29D /* ShareSDK */ = {
@@ -18772,6 +18829,7 @@
 		CAFEFDB316606FC100441D77 /* Component-View */ = {
 			isa = PBXGroup;
 			children = (
+				362EE21B1B01D28C00083A70 /* Vertigo */,
 				D8D2806919C97D270027E3BE /* PageScrollView */,
 				A47896D21995BB2400185220 /* SpotHelpView */,
 				FDDECBB91994BF7F00BE7191 /* SMPageControl */,
@@ -19979,6 +20037,7 @@
 				C2EAA87F178270D8007E2BA4 /* CommonSearchImageFilterView~ipad.xib in Resources */,
 				CA02CB8E1785581A00B6910D /* GradientSettingView.xib in Resources */,
 				CA02CBA01785581A00B6910D /* GradientSettingView~ipad.xib in Resources */,
+				362EE2281B01D28C00083A70 /* LICENSE in Resources */,
 				CACEC2E4178BA7D300D88643 /* SelectorBox.xib in Resources */,
 				A4772817199611090050851D /* littlegeehelper.png in Resources */,
 				CA2614D31793ACD1007D5462 /* filter.txt in Resources */,
@@ -20392,6 +20451,7 @@
 				A4D8FF2917DB089C0085061F /* common_home_nextpage@2x.png in Resources */,
 				A4D8FF2D17DB089C0085061F /* common_home_setting@2x.png in Resources */,
 				A4D8FF3117DB089C0085061F /* common_home_shop@2x.png in Resources */,
+				362EE2341B01D28C00083A70 /* TGRImageViewController.xib in Resources */,
 				A4D8FF3517DB089C0085061F /* common_home_splitline@2x.png in Resources */,
 				A4D8FF3D17DB089C0085061F /* dice_home_header_bg@2x.png in Resources */,
 				A4D8FF4117DB089C0085061F /* dice_home_header_foot@2x.png in Resources */,
@@ -21126,6 +21186,7 @@
 				C2773FFA17699F2E00929AE3 /* search_bar_bg@2x.png in Resources */,
 				C2773FFC17699F2E00929AE3 /* search_btn@2x.png in Resources */,
 				C277400017699F2E00929AE3 /* search_setting_btn@2x.png in Resources */,
+				362EE2331B01D28C00083A70 /* TGRImageViewController.xib in Resources */,
 				A4563E6518A885B9005DAA03 /* finish@2x.png in Resources */,
 				C27740031769A1D600929AE3 /* search_input_bg@2x.png in Resources */,
 				C23C3359176AB922004BE236 /* photo_tags.txt in Resources */,
@@ -21228,6 +21289,7 @@
 				A4DDD57217CDFD7B0029E562 /* correct.mp3 in Resources */,
 				A4DDD57617CDFD7B0029E562 /* ding.m4a in Resources */,
 				A4DDD57A17CDFD7B0029E562 /* dingding.mp3 in Resources */,
+				362EE2271B01D28C00083A70 /* LICENSE in Resources */,
 				A4DDD57E17CDFD7B0029E562 /* oowrong.mp3 in Resources */,
 				A4DDD58217CDFD7B0029E562 /* pushMessage.mp3 in Resources */,
 				A4DDD58617CDFD7B0029E562 /* wrong.wav in Resources */,
@@ -22040,6 +22102,7 @@
 				CAA79944165A18DA00429611 /* BBSPostCell.xib in Resources */,
 				D869F9081990DF3000E6756A /* laba.png in Resources */,
 				CAE51898165CCB55006157CC /* BBSPostActionCell.xib in Resources */,
+				362EE2321B01D28C00083A70 /* TGRImageViewController.xib in Resources */,
 				CA42FE0A165DCDA30097453A /* BBSPostDetailCell.xib in Resources */,
 				A4EB5C0519F681760067ADB1 /* brush_dot9@2x.png in Resources */,
 				A4F4750819B5794100CFE2AE /* brush_dot4@2x.png in Resources */,
@@ -22510,6 +22573,7 @@
 				A4D8FB7117DB08170085061F /* shake@2x.png in Resources */,
 				CA1CC3A119C43E04006E06C7 /* brush_show_blur@2x.png in Resources */,
 				A4D8FB7517DB08170085061F /* room_seat_bg_1@2x.png in Resources */,
+				362EE2261B01D28C00083A70 /* LICENSE in Resources */,
 				A4D8FB7917DB08170085061F /* room_seat_bg_2@2x.png in Resources */,
 				A4D8FB7D17DB08170085061F /* room_seat_bg_3@2x.png in Resources */,
 				A4D8FB8117DB08170085061F /* room_seat_bg_4@2x.png in Resources */,
@@ -23827,6 +23891,7 @@
 				A4D8FFEE17DB089C0085061F /* zjh_home_normal_site@2x.png in Resources */,
 				A4D8FFF217DB089C0085061F /* zjh_home_rich_site@2x.png in Resources */,
 				A4D8FFF617DB089C0085061F /* zjh_home_start@2x.png in Resources */,
+				362EE2291B01D28C00083A70 /* LICENSE in Resources */,
 				A4D8FFFA17DB089C0085061F /* zjh_home_vs_site@2x.png in Resources */,
 				D869F8F619906D8B00E6756A /* iphone5-1.png in Resources */,
 				A4D8FFFE17DB089C0085061F /* inputbg@2x.png in Resources */,
@@ -24083,6 +24148,7 @@
 				EA68D50F1893C4A5003EB69A /* pen_show_fun2@2x.png in Resources */,
 				EA68D5131893C4A5003EB69A /* pen_show_fun3@2x.png in Resources */,
 				EA68D5171893C4A5003EB69A /* pen_show_fun4@2x.png in Resources */,
+				362EE2351B01D28C00083A70 /* TGRImageViewController.xib in Resources */,
 				EA68D51B1893C4A5003EB69A /* pen_show_fun5@2x.png in Resources */,
 				EA68D5241893C503003EB69A /* pen_fun1@2x.png in Resources */,
 				EA68D5281893C503003EB69A /* pen_fun2@2x.png in Resources */,
@@ -24252,6 +24318,7 @@
 				CAFF62D319E61FF60065D97E /* GameAdWallService.m in Sources */,
 				A461B0B7174CBAA70088B061 /* ArrayOfCharacters.m in Sources */,
 				A461B0B8174CBAA70088B061 /* GroupDataAZ.m in Sources */,
+				362EE22C1B01D28C00083A70 /* README.md in Sources */,
 				A461B0B9174CBAA70088B061 /* pinyin.c in Sources */,
 				A461B0BA174CBAA70088B061 /* StringUtil.m in Sources */,
 				A461B0BB174CBAA70088B061 /* UIUtils.m in Sources */,
@@ -24353,6 +24420,7 @@
 				A461B144174CBAA70088B061 /* StoreKitUtils.m in Sources */,
 				A4B60AB219B6AA9B00C300D5 /* GouacheBrush.m in Sources */,
 				A461B145174CBAA70088B061 /* TransactionReceiptManager.m in Sources */,
+				362EE2381B01D28C00083A70 /* TGRImageZoomAnimationController.m in Sources */,
 				A461B146174CBAA70088B061 /* TransactionReceipt.m in Sources */,
 				A461B147174CBAA70088B061 /* DrawView.m in Sources */,
 				A461B148174CBAA70088B061 /* ShowDrawView.m in Sources */,
@@ -24374,6 +24442,7 @@
 				CA90052C195021F8003389FD /* OpusClassMenuItem.m in Sources */,
 				A461B155174CBAA70088B061 /* ChatController.m in Sources */,
 				A461B156174CBAA70088B061 /* SearchUserController.m in Sources */,
+				362EE23C1B01D28C00083A70 /* UIImage+AspectFit.m in Sources */,
 				A461B157174CBAA70088B061 /* MessageCell.m in Sources */,
 				A461B15A174CBAA70088B061 /* RoomCell.m in Sources */,
 				A461B15B174CBAA70088B061 /* RoomService.m in Sources */,
@@ -24666,6 +24735,7 @@
 				CAA581CF197C009B00599740 /* ShapeImageSimilarity.mm in Sources */,
 				A461B323174CBAA70088B061 /* GameItemService.m in Sources */,
 				A461B324174CBAA70088B061 /* GameItem.m in Sources */,
+				362EE2301B01D28C00083A70 /* TGRImageViewController.m in Sources */,
 				A461B325174CBAA70088B061 /* GameItemManager.m in Sources */,
 				D8B58B1E197CED320088E5F7 /* ICETutorialStyle.m in Sources */,
 				A461B326174CBAA70088B061 /* UserGameItemManager.m in Sources */,
@@ -25214,6 +25284,7 @@
 				C28A99C11738F04B007A819F /* NSDictionary_JSONExtensions.m in Sources */,
 				36B420791AA762D900F8A9B1 /* RSADataSigner.m in Sources */,
 				C28A99C21738F04B007A819F /* NSScanner_Extensions.m in Sources */,
+				362EE22B1B01D28C00083A70 /* README.md in Sources */,
 				A4F1AE1419E8D9860082E9EC /* ImageSimilarity+Histogram.mm in Sources */,
 				C28A99C31738F04B007A819F /* CJSONDataSerializer.m in Sources */,
 				C28A99C41738F04B007A819F /* CJSONDeserializer.m in Sources */,
@@ -25708,6 +25779,7 @@
 				C28A9C741738F04B007A819F /* UserSettingCell.m in Sources */,
 				C28A9C771738F04B007A819F /* PBGameItem+Extend.m in Sources */,
 				C28A9C781738F04B007A819F /* BuyItemSpecialHandler.m in Sources */,
+				362EE23B1B01D28C00083A70 /* UIImage+AspectFit.m in Sources */,
 				C28A9C911738F04B007A819F /* UIImage+fixOrientation.m in Sources */,
 				C28A9C921738F04B007A819F /* SKProductService.m in Sources */,
 				CA2A28AD195C125500A97478 /* TutorialCoreManager.m in Sources */,
@@ -25789,6 +25861,7 @@
 				CA02CB791785581A00B6910D /* GradientSettingView.m in Sources */,
 				CA02CBB11785619300B6910D /* GradientCommand.m in Sources */,
 				CAA75C8F178A57EE0041C019 /* ShapeClipTouchHandler.m in Sources */,
+				362EE22F1B01D28C00083A70 /* TGRImageViewController.m in Sources */,
 				CAA75CA7178A64CF0041C019 /* PathClipTouchHandler.m in Sources */,
 				D837DCD51988FAB2001686BB /* UIColor+RGBValues.m in Sources */,
 				CAA75CBA178A65020041C019 /* PolygonClipTouchHandler.m in Sources */,
@@ -25931,6 +26004,7 @@
 				A47896EA1995BB2400185220 /* SpotHelpView.m in Sources */,
 				A4158675182DF6D1007FCB16 /* StrokeLabel.m in Sources */,
 				EA1BD64E182E26A6000E5364 /* Group.pb.m in Sources */,
+				362EE2371B01D28C00083A70 /* TGRImageZoomAnimationController.m in Sources */,
 				CBE5D48E1AFDF5720004C93E /* NewPencilBrush.m in Sources */,
 				D8E63EE219C13BE500EB213E /* TutorialProtoModel.m in Sources */,
 				CA9AAF1118321621002DBAA5 /* SingGuessController.m in Sources */,
@@ -26138,6 +26212,7 @@
 				CA1041711509A9FF00F60C03 /* CDataScanner_Extensions.m in Sources */,
 				36B420691AA75E2800F8A9B1 /* RSADataSigner.m in Sources */,
 				CA1041721509A9FF00F60C03 /* NSCharacterSet_Extensions.m in Sources */,
+				362EE22A1B01D28C00083A70 /* README.md in Sources */,
 				A4F1AE1319E8D9860082E9EC /* ImageSimilarity+Histogram.mm in Sources */,
 				CA1041731509A9FF00F60C03 /* NSDictionary_JSONExtensions.m in Sources */,
 				CA1041741509A9FF00F60C03 /* NSScanner_Extensions.m in Sources */,
@@ -26632,6 +26707,7 @@
 				A427459E171267CE00E43037 /* GoogleAddressComponent.m in Sources */,
 				C2BD7A5017165D790079B7F6 /* UserSettingCell.m in Sources */,
 				A4B1C4A617168125002C83C1 /* PBGameItem+Extend.m in Sources */,
+				362EE23A1B01D28C00083A70 /* UIImage+AspectFit.m in Sources */,
 				A4B1C4AB171688BE002C83C1 /* BuyItemSpecialHandler.m in Sources */,
 				CA2A28AC195C125500A97478 /* TutorialCoreManager.m in Sources */,
 				EAC81C0D172B983200ED78DE /* UIImage+fixOrientation.m in Sources */,
@@ -26713,6 +26789,7 @@
 				CA13B82C177BDB57003B7368 /* Shadow.m in Sources */,
 				CA13B848177BE368003B7368 /* ShadowCommand.m in Sources */,
 				C206FFAC178032D30033CF63 /* CommonWaterFlowController.m in Sources */,
+				362EE22E1B01D28C00083A70 /* TGRImageViewController.m in Sources */,
 				C206FFC6178034450033CF63 /* PSCollectionView.m in Sources */,
 				D837DCD41988FAB2001686BB /* UIColor+RGBValues.m in Sources */,
 				C206FFD8178034450033CF63 /* PSCollectionViewCell.m in Sources */,
@@ -26855,6 +26932,7 @@
 				EA8CADE118288CAF003149FE /* GroupService.m in Sources */,
 				EA8CADE818288D32003149FE /* DrawError.m in Sources */,
 				EA8CADEE1828A646003149FE /* GroupPermission.m in Sources */,
+				362EE2361B01D28C00083A70 /* TGRImageZoomAnimationController.m in Sources */,
 				CBE5D48D1AFDF5720004C93E /* NewPencilBrush.m in Sources */,
 				D8E63EE119C13BE500EB213E /* TutorialProtoModel.m in Sources */,
 				EA1BD62E182DDCB1000E5364 /* GroupHomeController.m in Sources */,
@@ -27413,6 +27491,7 @@
 				EA411A3F176066F500DA72D0 /* PenFactory.m in Sources */,
 				EA411A40176066F500DA72D0 /* DrawRoomListCell.m in Sources */,
 				EA411A41176066F500DA72D0 /* DrawRoomListController.m in Sources */,
+				362EE2391B01D28C00083A70 /* TGRImageZoomAnimationController.m in Sources */,
 				EA411A42176066F500DA72D0 /* BBSPostCommand.m in Sources */,
 				CA90051A19502000003389FD /* ShowOpusClassListController.m in Sources */,
 				EA411A43176066F500DA72D0 /* BBSPostCommandPanel.m in Sources */,
@@ -27448,6 +27527,7 @@
 				EA411A6C176066F500DA72D0 /* IAPProductService.m in Sources */,
 				EA411A6D176066F500DA72D0 /* CustomInfoView.m in Sources */,
 				EA411A6E176066F500DA72D0 /* PriceView.m in Sources */,
+				362EE2311B01D28C00083A70 /* TGRImageViewController.m in Sources */,
 				EA411A6F176066F500DA72D0 /* StoreCell.m in Sources */,
 				EA411A70176066F500DA72D0 /* StoreController.m in Sources */,
 				EA411A71176066F500DA72D0 /* ColorShopCell.m in Sources */,
@@ -27494,6 +27574,7 @@
 				EA411A9D176066F500DA72D0 /* GCDatePickerView.m in Sources */,
 				EA411A9E176066F500DA72D0 /* CacheManager.m in Sources */,
 				EA411AA2176066F500DA72D0 /* ShapeInfo.m in Sources */,
+				362EE22D1B01D28C00083A70 /* README.md in Sources */,
 				EA411AA5176066F500DA72D0 /* SNSUtils.m in Sources */,
 				EA411AA6176066F500DA72D0 /* CustomSegmentedControl.m in Sources */,
 				EA411AA8176066F500DA72D0 /* ToolCommand.m in Sources */,
@@ -27605,6 +27686,7 @@
 				EA46F3A1177856C200D8D349 /* UserPhotoView.m in Sources */,
 				EA46F3A21778583D00D8D349 /* CommonSearchImageFilterView.m in Sources */,
 				EA46F3A41778586200D8D349 /* EditTagCell.m in Sources */,
+				362EE23D1B01D28C00083A70 /* UIImage+AspectFit.m in Sources */,
 				EA46F3A51778587800D8D349 /* PhotoTagManager.m in Sources */,
 				EA46F3A61778588800D8D349 /* SearchResultView.m in Sources */,
 				EA46F3A7177859F000D8D349 /* TagPackage.m in Sources */,

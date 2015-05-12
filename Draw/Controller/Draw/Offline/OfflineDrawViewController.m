@@ -644,10 +644,22 @@
         self.copyView = [CopyView createCopyView:self
                                        superView:holder
                                          atPoint:drawView.frame.origin
+                                       referView:drawView
                                           opusId:opusId
                                        userStage:[self buildUserStage]
                                            stage:self.stage
                                             type:targetType];
+    }
+    else{
+        self.copyView = [CopyView createCopyView:self
+                                       superView:holder
+                                         atPoint:drawView.frame.origin
+                                       referView:drawView
+                                           image:[self getCopyPaintImage]
+                                            type:targetType];
+        
+        // not show first time
+        self.copyView.hidden = YES;
     }
 }
 
@@ -3127,8 +3139,15 @@
 
 - (void)showCopyPaint
 {
-    UIImage *image = [self getCopyPaintImage];
-    [[ImagePlayer defaultPlayer] playWithImage:image displayActionButton:YES onViewController:self];
+
+    if ([self isLearnType] == NO){
+        UIImage *image = [self getCopyPaintImage];
+//        self.copyView.image = image;
+        self.copyView.hidden = NO;
+    }
+
+//    UIImage *image = [self getCopyPaintImage];
+//    [[ImagePlayer defaultPlayer] playWithImage:image displayActionButton:YES onViewController:self];
 }
 
 #pragma mark- Copy Paint Handling
@@ -3145,6 +3164,12 @@
         return;
 
     [image saveImageToFile:[OfflineDrawViewController getCopyPaintFileName]];
+    
+    if ([self isLearnType] == NO){
+        [self.copyView setImage:image];
+        [self.copyView setHidden:NO];
+    }
+    
 }
 
 - (UIImage*)getCopyPaintImage
