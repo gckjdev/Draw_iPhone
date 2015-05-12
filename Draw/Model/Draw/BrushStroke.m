@@ -167,7 +167,6 @@
     }
 }
 
-
 #define RECT_SPAN_WIDTH 10
 - (BOOL)spanRect:(CGRect)rect ContainsPoint:(CGPoint)point
 {
@@ -206,6 +205,10 @@
         self.brushImageRef = _brushImage.CGImage;
     }
     
+    //每次进入dynamicDrawStroke..方法之前，都需要
+    //合理判断isFirstPoint的状态，否则三个控制点会乱
+    if([self.hPointList count]==0) self.isFirstPoint = YES;
+    else self.isFirstPoint = NO;
     [self dynamicDrawStrokeAtNewPoint:point
                        withBrushImage:brushImageRef
                        inLayerContext:layerContext
@@ -213,7 +216,7 @@
 }
 
 // *******
-// 用途：在回放中，或者是在草稿中，显示采样点和插值点
+// 用途：在回放中，或者是在草稿中，添加储存采样点，显示插值点
 // 2015 5 7
 // charlie
 // *******
@@ -257,17 +260,16 @@
     }
     else
     {
-        // TODO for Charlie Brush Random
         // 新版本的数据有优化，储存的只有采样点，需要把插值和抖动算法重现在replay端
-        [self.hPointList addPointX:point.x
-                            PointY:point.y
-                        PointWidth:width
-                       PointRandom:0];
         
+        //每次进入dynamicDrawStroke..方法之前，都需要
+        //合理判断isFirstPoint的状态，否则三个控制点会乱
+        if([self.hPointList count]==0) self.isFirstPoint = YES;
+        else self.isFirstPoint = NO;
         [self dynamicDrawStrokeAtNewPoint:point
                            withBrushImage:brushImageRef
                            inLayerContext:layerContext
-                          needRecordPoint:NO];
+                          needRecordPoint:YES];
     }
 }
 
@@ -277,9 +279,10 @@
                     needRecordPoint:(BOOL)needRecordPoint
 {
     CGContextSaveGState(layerContext);
+    PPDebug(@"<is first point> %d",self.isFirstPoint);
+    
     if (self.isFirstPoint == YES){
         [self initBezierKeyPointWithPoint:point];
-        self.isFirstPoint = NO;
 
         //储存采样点，记录到hPointList。这种情况仅用于draw: inRect:
         if(needRecordPoint)
@@ -433,7 +436,7 @@
     self.brushImageRef = NULL;
 }
 
-//这个draw是缓存层，在内存中把之前的先画好，再画下一笔的时候就把之前的一下子搬上来。
+
 - (CGRect)drawInContext:(CGContextRef)context inRect:(CGRect)rect
 {
     if (self.drawPen == nil) {
@@ -446,13 +449,12 @@
         self.brushImageRef = _brushImage.CGImage;
     }
     
-    // 如果已经有一个完成了的layer，直接画到设备上，否则就新建一个layer并绘制
     if (_brushLayer != NULL)
     {
         CGContextSaveGState(context);
         CGContextDrawLayerAtPoint(context, CGPointZero, _brushLayer);
         CGContextRestoreGState(context);
-        return CGRectZero;
+        return rect;
     }
 
     //缓存层需要做的事：一次性在内存把所有点画出来，然后存到一个layer里面。
@@ -474,9 +476,13 @@
         }
         else
         {
-            CGPoint point = CGPointMake(currentX, currentY);
-            //新版本数据，需要用算法复现插值点
-            [self dynamicDrawStrokeAtNewPoint:point
+            //新版本数据，需要用算法复现插值点。重构后，插值抖动算法统一用dynamicDrawStroke...
+            
+            //每次进入dynamicDrawStroke..方法之前，都需要
+            //合理判断isFirstPoint的状态，否则三个控制点会乱
+            if(i==0) self.isFirstPoint = YES;
+            else self.isFirstPoint = NO;
+            [self dynamicDrawStrokeAtNewPoint:CGPointMake(currentX, currentY)
                                withBrushImage:brushImageRef
                                inLayerContext:context
                               needRecordPoint:NO];
