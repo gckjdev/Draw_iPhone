@@ -42,27 +42,15 @@
 
 @implementation BrushStroke
 
+#pragma mark -- init groups
 - (BOOL)isBrushInterpolationOptimized
 {
     return [_brush canInterpolationOptimized];
 }
 
-//- (id)initWithWidth:(CGFloat)width color:(DrawColor*)color
-//{
-//    self = [super init];
-//    if (self) {
-//        self.width = width;
-//        self.color = color;
-//        _hPointList = [[HBrushPointList alloc] init];
-//        self.isOptimized = YES;
-//        self.isInterpolationOptimized = self.isOptimized && [self isBrushInterpolationOptimized];
-//    }
-//    return self;
-//}
-
 - (id)initWithWidth:(CGFloat)width
               color:(DrawColor *)color
-            brushType:(ItemType)brushType
+          brushType:(ItemType)brushType
           pointList:(HBrushPointList*)pointList
         isOptimized:(BOOL)isOptimized
 {
@@ -142,6 +130,7 @@
     return self;
 }
 
+
 - (CGLayerRef)brushLayer:(CGRect)rect
 {
     if (_brushLayer == NULL){
@@ -150,6 +139,15 @@
     }
     
     return _brushLayer;
+}
+
+- (void)releaseBrushLayer
+{
+    if (_brushLayer != NULL){
+        PPDebug(@"brush stroke release brush layer!");
+        CGLayerRelease(_brushLayer);
+        _brushLayer = NULL;
+    }
 }
 
 - (CGImageRef)brushImageRef:(CGSize)size
@@ -167,6 +165,26 @@
     }
 }
 
+
+- (CGRect)redrawRectInRect:(CGRect)rect
+{
+    //bounds返回一个rect，这个rect是一个笔画中所有点的最小外接矩形，通过计算左上，右下两个点坐标获得。
+    //maxWidth是记录当前点的宽度，用于扩大bounds所返回的rect，使得笔画不会缺少边缘部分。
+    //explained by Charlie， 2014 9 21
+    CGRect r = [DrawUtils rectForRect:[self.hPointList bounds]
+                            withWidth:[self.hPointList maxWidth]
+                               bounds:rect];
+    return r;
+}
+
+- (void)clearMemory
+{
+    [self releaseBrushLayer];
+    self.brushImage = nil;
+    self.brushImageRef = NULL;
+}
+
+
 #define RECT_SPAN_WIDTH 10
 - (BOOL)spanRect:(CGRect)rect ContainsPoint:(CGPoint)point
 {
@@ -177,8 +195,9 @@
     return CGRectContainsPoint(rect, point);
 }
 
+#pragma mark -- add point methods: storing new points && showing new interpolation
 // *******
-// 用途：在画图当中存储采样点，并且同步显示插值点效果的
+// 用途：在画图当中存储采样点，并且同步显示新增插值点效果的
 // 2015 5 7
 // charlie
 // *******
@@ -209,6 +228,10 @@
     //合理判断isFirstPoint的状态，否则三个控制点会乱
     if([self.hPointList count]==0) self.isFirstPoint = YES;
     else self.isFirstPoint = NO;
+    
+    // 新加入的点和新点的上一点之间需要插值，插入的点需要在addpoint的同时显示。
+    // 所以这里使用了dynamicDrawStroke...
+    // 而之前所画的点，都是在缓存中先画好，然后直接从内存载入。见drawInContext
     [self dynamicDrawStrokeAtNewPoint:point
                        withBrushImage:brushImageRef
                        inLayerContext:layerContext
@@ -216,7 +239,7 @@
 }
 
 // *******
-// 用途：在回放中，或者是在草稿中，添加储存采样点，显示插值点
+// 用途：在回放中，或者是在草稿中，添加储存采样点，显示新增插值点
 // 2015 5 7
 // charlie
 // *******
@@ -260,7 +283,9 @@
     }
     else
     {
-        // 新版本的数据有优化，储存的只有采样点，需要把插值和抖动算法重现在replay端
+        // 新版本的数据有优化，储存的只有采样点，需要把插值和抖动算法重现在replay端.
+        // 新加入的点和新点的上一点之间需要插值，插入的点需要在addpoint的同时显示
+        // 而之前所画的点，都是在缓存中先画好，然后直接从内存载入。见drawInContext
         
         //每次进入dynamicDrawStroke..方法之前，都需要
         //合理判断isFirstPoint的状态，否则三个控制点会乱
@@ -273,13 +298,62 @@
     }
 }
 
+- (void)finishAddPoint
+{
+    if (self.brushImageRef == NULL){
+        self.brushImage = [_brush brushImage:[self.color color] width:self.width];
+        self.brushImageRef = _brushImage.CGImage;
+    }
+    
+    //特殊处理，在采样点过少（只有一两个，无法进行贝塞尔插值时),直接显示单个采样点
+    if(_hPointList.count == 1 || _hPointList.count == 2)
+    {
+        CGFloat singleDotX,singleDotY,singleDotW;
+        singleDotX = [_hPointList getPointX:0];
+        singleDotY = [_hPointList getPointY:0];
+        singleDotW = [_hPointList getPointWidth:0];
+        CGContextRef layerContext = CGLayerGetContext(_brushLayer);
+        CGRect rect = CGRectMake(singleDotX - singleDotW/2, singleDotY - singleDotW/2, singleDotW, singleDotW);
+        CGImageRef brushImageRef = [self brushImageRef];
+        
+        CGContextDrawImage(layerContext, rect, brushImageRef);
+    }
+    
+    [_hPointList complete];
+}
+
+- (NSInteger)pointCount
+{
+    return [_hPointList count];
+}
+
+- (CGPoint)pointAtIndex:(NSInteger)index
+{
+    if (index < 0 || index >= [self pointCount]) {
+        return ILLEGAL_POINT;
+    }
+    
+    return [_hPointList pointAtIndex:index];
+    
+}
+
+- (float)widthAtIndex:(NSInteger)index
+{
+    if (index < 0 || index >= [self pointCount]) {
+        return 0;
+    }
+    
+    return [_hPointList getPointWidth:index];
+}
+
+
+#pragma mark -- Drawing algorithm methods with interpolation and shake
 - (void)dynamicDrawStrokeAtNewPoint:(CGPoint)point
                      withBrushImage:(CGImageRef)brushImage
                      inLayerContext:(CGContextRef)layerContext
                     needRecordPoint:(BOOL)needRecordPoint
 {
     CGContextSaveGState(layerContext);
-    PPDebug(@"<is first point> %d",self.isFirstPoint);
     
     if (self.isFirstPoint == YES){
         [self initBezierKeyPointWithPoint:point];
@@ -407,48 +481,19 @@
 
 }
 
-
-
-- (CGRect)redrawRectInRect:(CGRect)rect
-{
-    //bounds返回一个rect，这个rect是一个笔画中所有点的最小外接矩形，通过计算左上，右下两个点坐标获得。
-    //maxWidth是记录当前点的宽度，用于扩大bounds所返回的rect，使得笔画不会缺少边缘部分。
-    //explained by Charlie， 2014 9 21
-    CGRect r = [DrawUtils rectForRect:[self.hPointList bounds]
-                            withWidth:[self.hPointList maxWidth]
-                               bounds:rect];
-    return r;
-}
-
-- (void)releaseBrushLayer
-{
-    if (_brushLayer != NULL){
-        PPDebug(@"brush stroke release brush layer!");
-        CGLayerRelease(_brushLayer);
-        _brushLayer = NULL;
-    }
-}
-
-- (void)clearMemory
-{
-    [self releaseBrushLayer];
-    self.brushImage = nil;
-    self.brushImageRef = NULL;
-}
-
-
 - (CGRect)drawInContext:(CGContextRef)context inRect:(CGRect)rect
 {
     if (self.drawPen == nil) {
         self.drawPen = [DrawPenFactory createDrawPen:self.brushType];
     }
     
-    //get brush image and tint it
+    // 获取笔刷数据（形状），并进行了染色（用户可调）
     if (self.brushImageRef == NULL){
         self.brushImage = [_brush brushImage:[self.color color] width:self.width];
         self.brushImageRef = _brushImage.CGImage;
     }
     
+    // 把已经存在的缓存层画到屏幕上。正常情况下，就是除了正在画的一笔以外的所有
     if (_brushLayer != NULL)
     {
         CGContextSaveGState(context);
@@ -457,7 +502,9 @@
         return rect;
     }
 
-    //缓存层需要做的事：一次性在内存把所有点画出来，然后存到一个layer里面。
+    // 正在画的一笔，新建一个缓存层去实时刷新和储存在内存
+    // 每一个单位时间刷新屏幕的时候，都重新画这一笔，故而是一个hpointlist的遍历
+    // 点坐标数据已通过addpoint相关方法添加到hpointlist，故而这里只需要读取hpointlist即可
     CGImageRef brushImageRef = [self brushImageRef];
     for(int i = 0; i<[_hPointList count];i++)
     {
@@ -493,55 +540,7 @@
 }
 
 
-- (void)finishAddPoint
-{
-    if (self.brushImageRef == NULL){
-        self.brushImage = [_brush brushImage:[self.color color] width:self.width];
-        self.brushImageRef = _brushImage.CGImage;
-    }
-    
-    //特殊处理，在采样点过少（只有一两个，无法进行贝塞尔插值时),直接显示单个采样点
-    if(_hPointList.count == 1 || _hPointList.count == 2)
-    {
-        CGFloat singleDotX,singleDotY,singleDotW;
-        singleDotX = [_hPointList getPointX:0];
-        singleDotY = [_hPointList getPointY:0];
-        singleDotW = [_hPointList getPointWidth:0];
-        CGContextRef layerContext = CGLayerGetContext(_brushLayer);
-        CGRect rect = CGRectMake(singleDotX - singleDotW/2, singleDotY - singleDotW/2, singleDotW, singleDotW);
-        CGImageRef brushImageRef = [self brushImageRef];
-
-        CGContextDrawImage(layerContext, rect, brushImageRef);
-    }
-    
-    [_hPointList complete];
-}
-
-- (NSInteger)pointCount
-{
-    return [_hPointList count];
-}
-
-- (CGPoint)pointAtIndex:(NSInteger)index
-{
-    if (index < 0 || index >= [self pointCount]) {
-        return ILLEGAL_POINT;
-    }
-    
-    return [_hPointList pointAtIndex:index];
-    
-}
-
-- (float)widthAtIndex:(NSInteger)index
-{
-    if (index < 0 || index >= [self pointCount]) {
-        return 0;
-    }
-    
-    return [_hPointList getPointWidth:index];    
-}
-
-
+#pragma mark -- PB related: stored point list into proto
 - (void)updatePBDrawActionBuilder:(PBDrawActionBuilder *)builder
 {
     if ([self pointCount] != 0) {
@@ -556,10 +555,6 @@
                            pointYList:&pointYList
                             widthList:&pointWList
                            randomList:&randomList];
-        
-//        [builder addAllPointsX:pointXList];
-//        [builder addAllPointsY:pointYList];
-//        [builder addAllBrushPointWidth:pointWList];
 
         [builder setPointsXArray:pointXList];
         [builder setPointsYArray:pointYList];
