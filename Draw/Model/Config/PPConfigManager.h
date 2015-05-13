@@ -400,4 +400,6 @@ typedef enum{
 + (int)defaultHomeStyleOldUser;
 + (int)defaultHomeStyleNewUser;
 
++ (NSArray*)getRandomNumberList;
+
 @end

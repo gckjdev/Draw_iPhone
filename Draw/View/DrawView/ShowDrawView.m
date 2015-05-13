@@ -571,7 +571,7 @@ typedef enum {
 {
     _playSpeed = playSpeed;
     double delta = playSpeed/self.maxPlaySpeed;
-    NSInteger speed = (1-delta) * PlaySpeedTypeSuper;
+    NSInteger speed = (1-delta) * PlaySpeedTypeLow;
     
     speed = MAX(speed, 0);
     self.speed = speed + PlaySpeedTypeLow;

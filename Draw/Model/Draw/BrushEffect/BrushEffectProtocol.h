@@ -45,10 +45,8 @@
                  distance1:(float)distance1         // 当前BeginDot和ControlDot的距离
                  distance2:(float)distance2;        // 当前EndDot和ControlDot的距离
 
-
-#define RANDOM_COUNT 10
+#define RANDOM_COUNT 50
 #define SHAKERANDOMRANGE 100
--(NSArray*)randomNumberList;
 //version 9: 为了优化性能，从version 9开始，利用一段固定的伪随机数列作为随机数(暂定100个数字)
 -(void)shakePointWithRandomList:(NSArray*)randomList
                         atIndex:(NSInteger)index

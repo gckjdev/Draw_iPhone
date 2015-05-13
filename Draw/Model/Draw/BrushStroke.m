@@ -13,7 +13,7 @@
 #import "PointNode.h"
 #import "CanvasRect.h"
 #import "DrawPenFactory.h"
-//#import "DrawPenProtocol.h"
+#import "PPConfigManager.h"
 #import "HBrushPointList.h"
 #import "UIImage+RTTint.h"
 #import "UIImageExt.h"
@@ -405,7 +405,7 @@
                                         pointY:&pointY
                                          width:&width];
             //随机抖动，适用于部分笔刷
-            [_brush shakePointWithRandomList:[_brush randomNumberList]
+            [_brush shakePointWithRandomList:[PPConfigManager getRandomNumberList]
                                      atIndex:index
                                       PointX:&pointX
                                       PointY:&pointY

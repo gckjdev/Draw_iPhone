@@ -87,10 +87,6 @@ static dispatch_once_t sharedGouacheBrushOnceToken;
     return interpolationLength;
 }
 
-- (NSArray*)randomNumberList
-{
-    return nil;
-}
 
 - (void)shakePointWithRandomList:(NSArray *)randomList atIndex:(NSInteger)index PointX:(float *)pointX PointY:(float *)pointY PointW:(float *)pointW withDefaultWidth:(float)defaultWidth
 {
