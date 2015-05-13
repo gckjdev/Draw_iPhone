@@ -615,8 +615,17 @@ NSString* GlobalGetBoardServerURL()
 
 - (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url { 
     PPDebug(@"<handleURL> url=%@", url.absoluteString);
-    if ([[url absoluteString] hasPrefix:@"alipay"]){
-        return [AliPayManager parseURL:url alipayPublicKey:[PPConfigManager getAlipayAlipayPublicKey]];
+    if ([url.host isEqualToString:@"safepay"]) {
+        
+        [[AlipaySDK defaultService] processAuth_V2Result:url
+                                         standbyCallback:^(NSDictionary *resultDic) {
+                                             NSString *resultStr = resultDic[@"result"];
+                                             PPDebug(@"result = %@",resultDic);
+                                             
+                                             // TODO show message
+                                         }];
+        
+        return YES;
     }
     
     [[GameSNSService defaultService] handleOpenURL:url];

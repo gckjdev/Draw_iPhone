@@ -45,7 +45,6 @@ typedef void (^SyncAccountResultHandler)(int resultCode);
 }
 
 @property (nonatomic, retain) NSObject<AccountServiceDelegate> *delegate;
-@property (nonatomic, retain) AliPayManager *alipayManager;
 
 + (AccountService *)defaultService;
 

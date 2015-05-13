@@ -53,7 +53,6 @@ static AccountService* _defaultAccountService;
 
 - (void)dealloc
 {
-    PPRelease(_alipayManager);
     [_delegate release];
     [_blockArray releaseAllBlock];
     [super dealloc];
@@ -75,10 +74,6 @@ static AccountService* _defaultAccountService;
     _accountManager = [AccountManager defaultManager];
     
     [[SKPaymentQueue defaultQueue] addTransactionObserver:self];
-    
-    
-    self.alipayManager = [[[AliPayManager alloc] initWithPublicKey:
-                           [PPConfigManager getAlipayAlipayPublicKey]] autorelease];
     
     return self;
 }
