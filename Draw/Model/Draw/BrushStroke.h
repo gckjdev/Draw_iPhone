@@ -50,20 +50,21 @@
 
 - (id)initWithWidth:(CGFloat)width
               color:(DrawColor *)color
-            brushType:(ItemType)brushType
+          brushType:(ItemType)brushType
           pointList:(HBrushPointList*)pointList
         isOptimized:(BOOL)isOptimized;
 
 + (id)brushStrokeWithWidth:(CGFloat)width
-               color:(DrawColor *)color
-             brushType:(ItemType)brushType
-           pointList:(HBrushPointList*)pointList
+                     color:(DrawColor *)color
+                 brushType:(ItemType)brushType
+                 pointList:(HBrushPointList*)pointList
                isOptimized:(BOOL)isOptimized;
 
 - (id)initWithGameMessage:(GameMessage *)gameMessage;
 
 #pragma mark- get && add point methods
-- (void)addPoint:(CGPoint)point inRect:(CGRect)rect;
+- (void)addPoint:(CGPoint)point
+          inRect:(CGRect)rect;
 - (void)addPoint:(CGPoint)point
            width:(float)width
           inRect:(CGRect)rect
