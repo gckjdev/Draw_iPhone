@@ -1132,6 +1132,18 @@
                                  defaultValue:url];
 }
 
++ (NSString*)getAlipayAppScheme
+{
+    if (isLittleGeeAPP()){
+        return [MobClickUtils getStringValueByKey:@"ALI_PAY_APP_SCHEME"
+                                     defaultValue:@"alipayxjhh.gckj"];
+    }
+    else{
+        return [MobClickUtils getStringValueByKey:@"ALI_PAY_APP_SCHEME"
+                                     defaultValue:@"alipaycchh.gckj"];
+    }
+}
+
 + (NSString *)getLastAppVersion
 {
     return [MobClickUtils getStringValueByKey:@"APP_LAST_VERSION" defaultValue:[UIUtils getAppVersion]];

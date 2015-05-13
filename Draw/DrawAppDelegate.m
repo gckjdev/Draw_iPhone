@@ -101,6 +101,8 @@
 #import "TutorialCoreManager.h"
 #import "BillboardManager.h"
 
+#import <AlipaySDK/AlipaySDK.h>
+
 NSString* GlobalGetServerURL()
 {
 
@@ -624,9 +626,22 @@ NSString* GlobalGetBoardServerURL()
 - (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation {
 
     PPDebug(@"<handleURL> url=%@, sourceApplication=%@, annotation=%@", url.absoluteString, sourceApplication, [annotation description]);
-    if ([[url absoluteString] hasPrefix:@"alipay"]){
-        return [AliPayManager parseURL:url alipayPublicKey:[PPConfigManager getAlipayAlipayPublicKey]];
+    
+    if ([url.host isEqualToString:@"safepay"]) {
+        
+        [[AlipaySDK defaultService] processAuth_V2Result:url
+                                         standbyCallback:^(NSDictionary *resultDic) {
+                                             NSString *resultStr = resultDic[@"result"];
+                                             PPDebug(@"result = %@",resultDic);
+                                             
+                                             // TODO show message
+                                         }];
+     
+        return YES;
     }
+//    if ([[url absoluteString] hasPrefix:@"alipay"]){
+//        return [AliPayManager parseURL:url alipayPublicKey:[PPConfigManager getAlipayAlipayPublicKey]];
+//    }
     
     [[GameSNSService defaultService] handleOpenURL:url sourceApplication:sourceApplication annotation:annotation];
     return YES;

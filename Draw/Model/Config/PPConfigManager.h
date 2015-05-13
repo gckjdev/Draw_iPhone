@@ -255,6 +255,7 @@ typedef enum{
 + (NSString *)getAlipayAlipayPublicKey;
 + (NSString *)getAlipayNotifyUrl;
 + (NSString *)getAlipayWebUrl;
++ (NSString*)getAlipayAppScheme;
 
 + (NSString *)getLastAppVersion;
 + (NSString *)getLastAppVersionUpdateLog;

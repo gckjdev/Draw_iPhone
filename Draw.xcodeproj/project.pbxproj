@@ -110,6 +110,10 @@
 		362EE23B1B01D28C00083A70 /* UIImage+AspectFit.m in Sources */ = {isa = PBXBuildFile; fileRef = 362EE2251B01D28C00083A70 /* UIImage+AspectFit.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
 		362EE23C1B01D28C00083A70 /* UIImage+AspectFit.m in Sources */ = {isa = PBXBuildFile; fileRef = 362EE2251B01D28C00083A70 /* UIImage+AspectFit.m */; };
 		362EE23D1B01D28C00083A70 /* UIImage+AspectFit.m in Sources */ = {isa = PBXBuildFile; fileRef = 362EE2251B01D28C00083A70 /* UIImage+AspectFit.m */; };
+		362EE2401B031C3000083A70 /* APAuthV2Info.m in Sources */ = {isa = PBXBuildFile; fileRef = 362EE23F1B031C3000083A70 /* APAuthV2Info.m */; };
+		362EE2411B031C3000083A70 /* APAuthV2Info.m in Sources */ = {isa = PBXBuildFile; fileRef = 362EE23F1B031C3000083A70 /* APAuthV2Info.m */; };
+		362EE2421B031C3000083A70 /* APAuthV2Info.m in Sources */ = {isa = PBXBuildFile; fileRef = 362EE23F1B031C3000083A70 /* APAuthV2Info.m */; };
+		362EE2431B031C3000083A70 /* APAuthV2Info.m in Sources */ = {isa = PBXBuildFile; fileRef = 362EE23F1B031C3000083A70 /* APAuthV2Info.m */; };
 		3672C2001ABA7C4400AEC29D /* CopyConnection.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3672C1DC1ABA7C4300AEC29D /* CopyConnection.framework */; };
 		3672C2011ABA7C4400AEC29D /* CopyConnection.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3672C1DC1ABA7C4300AEC29D /* CopyConnection.framework */; };
 		3672C2021ABA7C4400AEC29D /* CopyConnection.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3672C1DC1ABA7C4300AEC29D /* CopyConnection.framework */; };
@@ -8419,6 +8423,8 @@
 		362EE2231B01D28C00083A70 /* TGRImageZoomAnimationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TGRImageZoomAnimationController.m; sourceTree = "<group>"; };
 		362EE2241B01D28C00083A70 /* UIImage+AspectFit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+AspectFit.h"; sourceTree = "<group>"; };
 		362EE2251B01D28C00083A70 /* UIImage+AspectFit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+AspectFit.m"; sourceTree = "<group>"; };
+		362EE23E1B031C3000083A70 /* APAuthV2Info.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APAuthV2Info.h; sourceTree = "<group>"; };
+		362EE23F1B031C3000083A70 /* APAuthV2Info.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = APAuthV2Info.m; sourceTree = "<group>"; };
 		3672C1DC1ABA7C4300AEC29D /* CopyConnection.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = CopyConnection.framework; sourceTree = "<group>"; };
 		3672C1DD1ABA7C4300AEC29D /* FacebookConnection.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FacebookConnection.framework; sourceTree = "<group>"; };
 		3672C1DE1ABA7C4300AEC29D /* MailConnection.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = MailConnection.framework; sourceTree = "<group>"; };
@@ -18276,6 +18282,8 @@
 		CACD6C9F18E03BCC003F97C0 /* AliPayManager */ = {
 			isa = PBXGroup;
 			children = (
+				362EE23E1B031C3000083A70 /* APAuthV2Info.h */,
+				362EE23F1B031C3000083A70 /* APAuthV2Info.m */,
 				362330311AB9156400BFCD35 /* Order.h */,
 				362330321AB9156400BFCD35 /* Order.m */,
 				36B420D51AA7F91900F8A9B1 /* json */,
@@ -24896,6 +24904,7 @@
 				A499731717783DC700B01EBE /* DrawGameApp.m in Sources */,
 				A499731917783E3F00B01EBE /* GalleryController.m in Sources */,
 				A499731B17783E3F00B01EBE /* SearchPhotoController.m in Sources */,
+				362EE2421B031C3000083A70 /* APAuthV2Info.m in Sources */,
 				A499731E17783E3F00B01EBE /* SearchPhotoResultController.m in Sources */,
 				A499732117783E3F00B01EBE /* GalleryManager.m in Sources */,
 				A499732217783E3F00B01EBE /* GalleryPicture.m in Sources */,
@@ -25350,6 +25359,7 @@
 				C28A9A271738F04B007A819F /* AboutUsController.m in Sources */,
 				C28A9A291738F04B007A819F /* ShareAction.m in Sources */,
 				C28A9A2B1738F04B007A819F /* MyPaintButton.m in Sources */,
+				362EE2411B031C3000083A70 /* APAuthV2Info.m in Sources */,
 				C28A9A2C1738F04B007A819F /* StoreKitUtils.m in Sources */,
 				C28A9A2D1738F04B007A819F /* TransactionReceiptManager.m in Sources */,
 				C28A9A2E1738F04B007A819F /* TransactionReceipt.m in Sources */,
@@ -26278,6 +26288,7 @@
 				A47896E11995BB2400185220 /* CRBubble.m in Sources */,
 				CA355F00152C03F200A14823 /* UserItem.m in Sources */,
 				CA63911A152FEA4F007564C6 /* PriceModel.m in Sources */,
+				362EE2401B031C3000083A70 /* APAuthV2Info.m in Sources */,
 				C284E87F1531D89800DD5B77 /* AboutUsController.m in Sources */,
 				CACC084E1532B02600D9F8E9 /* ShareAction.m in Sources */,
 				C2FA6E701535352200EEB530 /* MyPaintButton.m in Sources */,
@@ -27388,6 +27399,7 @@
 				EA4119C1176066F500DA72D0 /* BitmapCropManipulator.m in Sources */,
 				EA4119C2176066F500DA72D0 /* BitmapRotationManipulator.m in Sources */,
 				EA4119C3176066F500DA72D0 /* BitmapScaleManipulator.m in Sources */,
+				362EE2431B031C3000083A70 /* APAuthV2Info.m in Sources */,
 				EA4119C4176066F500DA72D0 /* GifManager.m in Sources */,
 				CA2A28B5195C12A600A97478 /* TutorialService.m in Sources */,
 				EA4119C5176066F500DA72D0 /* GifView.m in Sources */,
