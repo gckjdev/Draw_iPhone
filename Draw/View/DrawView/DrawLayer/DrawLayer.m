@@ -90,12 +90,11 @@
 
 - (void)showCleanDataInContext:(CGContextRef)ctx
 {
-//    NSUInteger count = [_drawActionList count];
     if (self.supportCache) {
         [self.offscreen showInContext:ctx];
         
-        int i = 0;
-        int offscreenActionCount = self.offscreen.actionCount;
+        NSUInteger i = 0;
+        NSUInteger offscreenActionCount = self.offscreen.actionCount;
         for (DrawAction *action in _drawActionList) {
             if (i < offscreenActionCount){
                 [action clearMemory];
@@ -103,14 +102,9 @@
             else{
                 [action drawInContext:ctx inRect:self.bounds];
             }
-            
             i++;
         }
         
-//        for(NSUInteger i = self.offscreen.actionCount; i < count; i++){
-//            DrawAction *action = [_drawActionList objectAtIndex:i];
-//            [action drawInContext:ctx inRect:self.bounds];
-//        }
     }else{
         for (DrawAction *action in _drawActionList) {
             [action drawInContext:ctx inRect:self.bounds];

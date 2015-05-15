@@ -500,7 +500,6 @@ typedef enum {
     }
 }
 
-//TODO for Charlie
 //add procession of points in replay
 - (void)playCurrentFrame
 {
