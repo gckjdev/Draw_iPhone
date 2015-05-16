@@ -332,12 +332,17 @@
                 
             case 0:
                 // pay via zhifubao
-                if ([PPConfigManager useAlipyaWeb]){
-                    [bself alipayWebPaymentForOrder:order product:product];
-                }
-                else{
-                    [bself alipayForOrder:order];
-                }
+//                if ([PPConfigManager useAlipyaWeb]){
+//                    [bself alipayWebPaymentForOrder:order product:product];
+//                }
+//                else{
+//                    [bself alipayForOrder:order];
+//                }
+
+                [[AliPayManager defaultService] pay:order.tradeNO
+                                            subject:order.productName
+                                               desc:order.productDescription
+                                              price:[order.amount floatValue]];
                 break;
 
             case 1:
