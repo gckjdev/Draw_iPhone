@@ -1125,7 +1125,7 @@
 
 + (NSString *)getAlipayNotifyUrl
 {
-    NSString* url = @"http://www.xxx.com"; //@"http://www.you100.me:9879/alipay/api?m1=notify";
+    NSString* url = @"http://www.you100.me:9879/alipay/api?m1=notify";
     url = [url encodedURLParameterString];
     
     return [MobClickUtils getStringValueByKey:@"ALI_PAY_NOTIFY_URL"

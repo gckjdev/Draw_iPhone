@@ -344,12 +344,18 @@
 
 - (void)alipayForOrder:(AlixPayOrder *)order
 {
-    if ([PPConfigManager useAlipyaWeb]){
-        [self alipayWebPaymentForOrder:order];
-    }
-    else{
-//        [self alipayClientPaymentForOrder:order];
-    }
+//    if ([PPConfigManager useAlipyaWeb]){
+//        [self alipayWebPaymentForOrder:order];
+//    }
+//    else{
+////        [self alipayClientPaymentForOrder:order];
+//    }
+
+    [[AliPayManager defaultService] pay:order.tradeNO
+                                subject:order.productName
+                                   desc:order.productDescription
+                                  price:[order.amount floatValue]];
+    
     return;
     
 }
