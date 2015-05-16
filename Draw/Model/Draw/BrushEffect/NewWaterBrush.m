@@ -72,7 +72,7 @@ static dispatch_once_t sharedNewWaterBrushOnceToken;
                  distance2:(float)distance2         // 当前EndDot和ControlDot的距离
 {
     double speedFactor =  ((distance1 + distance2)/2)/ brushWidth;
-    double typeFactor = 2.0; // 针对各种笔刷的调节因子，经过实践所得(有些笔需要更密集的插值，如钢笔；有些则相反，如蜡笔)
+    double typeFactor = 1.0; // 针对各种笔刷的调节因子，经过实践所得(有些笔需要更密集的插值，如钢笔；有些则相反，如蜡笔)
     int interpolationLength = INTERPOLATION * speedFactor * typeFactor + 1;
     
     return interpolationLength;

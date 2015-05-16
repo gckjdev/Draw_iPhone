@@ -482,6 +482,7 @@ static NSArray* sharedRandomNumberList;
         
         NSArray* randomList = [self getSharedRandomNumberList];
         CGRect rect;
+
         for(int index = 0; index<interpolationLength; index++)
         {
             [self bezierInterpolationWithBegin:_beginDot
@@ -501,6 +502,7 @@ static NSArray* sharedRandomNumberList;
                             withDefaultWidth:_width];
             
             rect = CGRectMake(pointX-width/2, pointY-width/2, width, width);
+//            PPDebug(@"<draw rect> %@",NSStringFromCGRect(rect));
             CGContextDrawImage(layerContext, rect, brushImage);
         }
     }
@@ -611,6 +613,7 @@ static NSArray* sharedRandomNumberList;
             //合理判断isFirstPoint的状态，否则三个控制点会乱
             if(i==0) self.isFirstPoint = YES;
             else self.isFirstPoint = NO;
+            
             [self dynamicDrawStrokeAtNewPoint:CGPointMake(currentX, currentY)
                                withBrushImage:brushImageRef
                                inLayerContext:context
@@ -620,8 +623,8 @@ static NSArray* sharedRandomNumberList;
     
     //TODO for charlie
     //what is the return value mean?
-//    return [self redrawRectInRect:rect];
-    return CGRectZero;
+    return [self redrawRectInRect:rect];
+//    return CGRectZero;
 }
 
 

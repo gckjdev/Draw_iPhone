@@ -51,6 +51,7 @@
         
         button.tag = i+BASE_BUTTON_INDEX;
         [cell addSubview:button];
+        cell.userInteractionEnabled = YES;
         [button addTarget:cell action:@selector(clickPaintButton:) forControlEvents:UIControlEventTouchUpInside];
     }
     return cell;
