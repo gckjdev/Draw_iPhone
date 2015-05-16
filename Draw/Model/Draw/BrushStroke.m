@@ -19,7 +19,7 @@
 #import "UIImageExt.h"
 #import "BrushEffectFactory.h"
 
-
+static NSArray* sharedRandomNumberList;
 
 @implementation BrushDot
 
@@ -38,6 +38,7 @@
 
 @property (nonatomic, assign) float tempWidth;
 
+
 @end
 
 @implementation BrushStroke
@@ -46,6 +47,88 @@
 - (BOOL)isBrushInterpolationOptimized
 {
     return [_brush canInterpolationOptimized];
+}
+
+- (NSArray*)getSharedRandomNumberList
+{
+    if (sharedRandomNumberList)
+        return sharedRandomNumberList;
+    
+    static dispatch_once_t sharedRandomNumberListOnce;
+    dispatch_once(&sharedRandomNumberListOnce, ^{
+        sharedRandomNumberList = [NSArray arrayWithObjects:
+                          @(1588378487),@(1772215198),@(987914269),
+                          @(3971455568),@(384465356),@(34139862),
+                          @(438996405),@(4058246780),@(1869106333),
+                          @(808551257),@(718728903),@(4005641480),
+                          @(469048123),@(3186885006),@(2739422078),
+                          @(423328318),@(3573519335),@(2453651805),
+                          @(1445043410),@(1745640219),@(2123644696),
+                          @(4175411392),@(1372167685),@(1977050621),
+                          @(1998079260),@(4276582290),@(2697175725),
+                          @(2576241280),@(3585897675),@(4165970056),
+                          @(62105798),@(3296063767),@(1938448109),
+                          @(2979579161),@(1776255649),@(353288533),
+                          @(412893068),@(4140810182),@(221708571),
+                          @(2719388154),@(1306814619),@(2415507135),
+                          @(1046411349),@(3579452263),@(3058110341),
+                          @(2584921463),@(2525485424),@(3610886636),
+                          @(1972999307),@(2714057043),
+                          //                2686284776,
+                          //                2183939048,
+                          //                1991858240,
+                          //                242306508,
+                          //                3009179851,
+                          //                198681006,
+                          //                2302964946,
+                          //                4294081540,
+                          //                2334889278,
+                          //                1577688823,
+                          //                2325703313,
+                          //                2095521830,
+                          //                3563292614,
+                          //                2495429203,
+                          //                2767451042,
+                          //                1519954454,
+                          //                2322414033,
+                          //                705999783,
+                          //                1939881099,
+                          //                2179468732,
+                          //                934024288,
+                          //                414050267,
+                          //                1656825682,
+                          //                1846315775,
+                          //                289739438,
+                          //                866260931,
+                          //                1439781678,
+                          //                1849644467,
+                          //                3607454409,
+                          //                1265883309,
+                          //                4109437829,
+                          //                1802246890,
+                          //                2590479792,
+                          //                444393461,
+                          //                1047260895,
+                          //                4011995700,
+                          //                3114245995,
+                          //                4004175361,
+                          //                2287601661,
+                          //                3732908522,
+                          //                88296662,
+                          //                1620036106,
+                          //                103357717,
+                          //                3540618397,
+                          //                1483449341,
+                          //                194696025,
+                          //                2236768761,
+                          //                660207190,
+                          //                2057646954,
+                          nil];
+        
+        [sharedRandomNumberList retain];
+    });
+    
+    return sharedRandomNumberList;
 }
 
 - (id)initWithWidth:(CGFloat)width
@@ -396,6 +479,9 @@
         int interpolationLength = [_brush interpolationLength:self.width
                                                     distance1:distance1
                                                     distance2:distance2];
+        
+        NSArray* randomList = [self getSharedRandomNumberList];
+        CGRect rect;
         for(int index = 0; index<interpolationLength; index++)
         {
             [self bezierInterpolationWithBegin:_beginDot
@@ -407,15 +493,14 @@
                                         pointY:&pointY
                                          width:&width];
             //随机抖动，适用于部分笔刷
-            [_brush shakePointWithRandomList:[PPConfigManager getRandomNumberList]
+            [_brush shakePointWithRandomList:randomList
                                      atIndex:index
                                       PointX:&pointX
                                       PointY:&pointY
                                       PointW:&width
-                            withDefaultWidth:self.width];
+                            withDefaultWidth:_width];
             
-            
-            CGRect rect = CGRectMake(pointX-width/2, pointY-width/2, width, width);
+            rect = CGRectMake(pointX-width/2, pointY-width/2, width, width);
             CGContextDrawImage(layerContext, rect, brushImage);
         }
     }
@@ -438,7 +523,6 @@
     _beginDot.width = _tempWidth;
     _endDot.width = _tempWidth;
 }
-
 
 
 - (void)relocateBezierKeyPointWithNewPoint:(CGPoint)point
@@ -494,7 +578,7 @@
         self.brushImageRef = _brushImage.CGImage;
     }
     
-    // 显示正在画的一笔
+    // 显示正在画的一笔。在遍历actionList的时候，如果发现这个action正在画，就是进入这个方法。
     if (_brushLayer != NULL)
     {
         CGContextSaveGState(context);
