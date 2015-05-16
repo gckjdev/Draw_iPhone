@@ -51,12 +51,14 @@
         
         button.tag = i+BASE_BUTTON_INDEX;
         [cell addSubview:button];
+//        cell.contentView.userInteractionEnabled = NO;
+//        cell.userInteractionEnabled = NO;
         [button addTarget:cell action:@selector(clickPaintButton:) forControlEvents:UIControlEventTouchUpInside];
     }
     return cell;
 }
 
-+ (float)getCellHeight
++ (CGFloat)getCellHeight
 {
     return [MyPaintButton buttonSize].height*1.05;
 }
@@ -75,7 +77,7 @@
     }
     
     
-    int count = [paints count];
+    NSUInteger count = [paints count];
     
     for (int i = 0; i < IMAGES_PER_LINE; ++i) {
         MyPaintButton *button = (MyPaintButton *)[self viewWithTag:BASE_BUTTON_INDEX + i];
@@ -93,8 +95,8 @@
 
 - (IBAction)clickPaintButton:(id)sender {
     UIButton *button = (UIButton *)sender;
-    int j = button.tag - BASE_BUTTON_INDEX;
-    if (j >=0 && j < [_paints count]) {
+    NSUInteger j = button.tag - BASE_BUTTON_INDEX;
+    if (j < [_paints count]) {
         MyPaint *paint = [_paints objectAtIndex:j];
         if (self.delegate && [self.delegate respondsToSelector:@selector(didSelectPaint:)]) {
             [self.delegate didSelectPaint:paint];

@@ -26,7 +26,8 @@ int main(int argc, char *argv[])
 
  Info Plist
  － 修改Bundle ID
- － 修改URL Scheme
+ － 修改URL 
+ Scheme
  － 修改Icon
  － 修改CFChannelID
  - 修改Launch image
