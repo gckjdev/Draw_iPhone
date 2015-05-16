@@ -13,7 +13,7 @@
 #import "PointNode.h"
 #import "CanvasRect.h"
 #import "DrawPenFactory.h"
-//#import "DrawPenProtocol.h"
+#import "PPConfigManager.h"
 #import "HBrushPointList.h"
 #import "UIImage+RTTint.h"
 #import "UIImageExt.h"
@@ -174,6 +174,7 @@
     CGRect r = [DrawUtils rectForRect:[self.hPointList bounds]
                             withWidth:[self.hPointList maxWidth]
                                bounds:rect];
+    PPDebug(@"<redraw rect> %@", [NSValue valueWithCGRect:r]);
     return r;
 }
 
@@ -286,6 +287,7 @@
         // 新版本的数据有优化，储存的只有采样点，需要把插值和抖动算法重现在replay端.
         // 新加入的点和新点的上一点之间需要插值，插入的点需要在addpoint的同时显示
         // 而之前所画的点，都是在缓存中先画好，然后直接从内存载入。见drawInContext
+        CGContextSaveGState(layerContext);
         
         //每次进入dynamicDrawStroke..方法之前，都需要
         //合理判断isFirstPoint的状态，否则三个控制点会乱
@@ -295,6 +297,8 @@
                            withBrushImage:brushImageRef
                            inLayerContext:layerContext
                           needRecordPoint:YES];
+        
+        CGContextRestoreGState(layerContext);
     }
 }
 
@@ -353,8 +357,6 @@
                      inLayerContext:(CGContextRef)layerContext
                     needRecordPoint:(BOOL)needRecordPoint
 {
-    CGContextSaveGState(layerContext);
-    
     if (self.isFirstPoint == YES){
         [self initBezierKeyPointWithPoint:point];
 
@@ -405,7 +407,7 @@
                                         pointY:&pointY
                                          width:&width];
             //随机抖动，适用于部分笔刷
-            [_brush shakePointWithRandomList:[_brush randomNumberList]
+            [_brush shakePointWithRandomList:[PPConfigManager getRandomNumberList]
                                      atIndex:index
                                       PointX:&pointX
                                       PointY:&pointY
@@ -416,7 +418,6 @@
             CGRect rect = CGRectMake(pointX-width/2, pointY-width/2, width, width);
             CGContextDrawImage(layerContext, rect, brushImage);
         }
-        CGContextRestoreGState(layerContext);
     }
 }
 
@@ -493,17 +494,16 @@
         self.brushImageRef = _brushImage.CGImage;
     }
     
-    // 把已经存在的缓存层画到屏幕上。正常情况下，就是除了正在画的一笔以外的所有
+    // 显示正在画的一笔
     if (_brushLayer != NULL)
     {
         CGContextSaveGState(context);
         CGContextDrawLayerAtPoint(context, CGPointZero, _brushLayer);
         CGContextRestoreGState(context);
-        return rect;
+        return CGRectZero;
     }
 
-    // 正在画的一笔，新建一个缓存层去实时刷新和储存在内存
-    // 每一个单位时间刷新屏幕的时候，都重新画这一笔，故而是一个hpointlist的遍历
+    // 显示已经画完的笔画，故而是一个hpointlist的遍历
     // 点坐标数据已通过addpoint相关方法添加到hpointlist，故而这里只需要读取hpointlist即可
     CGImageRef brushImageRef = [self brushImageRef];
     for(int i = 0; i<[_hPointList count];i++)
@@ -516,10 +516,8 @@
         
         if(self.isInterpolationOptimized == NO){
             //旧版本数据直接画所有点，不需要实现算法插值抖动
-            CGContextSaveGState(context);
             CGRect pointRect = CGRectMake(currentX - currentW/2, currentY - currentW/2, currentW, currentW);
             CGContextDrawImage(context, pointRect, brushImageRef);
-            CGContextRestoreGState(context);
         }
         else
         {
@@ -536,7 +534,10 @@
         }
     }
     
-    return [self redrawRectInRect:rect];
+    //TODO for charlie
+    //what is the return value mean?
+//    return [self redrawRectInRect:rect];
+    return CGRectZero;
 }
 
 

@@ -500,7 +500,6 @@ typedef enum {
     }
 }
 
-//TODO for Charlie
 //add procession of points in replay
 - (void)playCurrentFrame
 {
@@ -571,7 +570,7 @@ typedef enum {
 {
     _playSpeed = playSpeed;
     double delta = playSpeed/self.maxPlaySpeed;
-    NSInteger speed = (1-delta) * PlaySpeedTypeSuper;
+    NSInteger speed = (1-delta) * PlaySpeedTypeLow;
     
     speed = MAX(speed, 0);
     self.speed = speed + PlaySpeedTypeLow;
