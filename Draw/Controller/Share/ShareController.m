@@ -722,7 +722,7 @@ typedef enum{
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    int number = 0;
+    NSUInteger number = 0;
     if (self.paints.count % IMAGES_PER_LINE == 0){
         number = self.paints.count / IMAGES_PER_LINE;
     }
@@ -748,7 +748,7 @@ typedef enum{
 
     NSAutoreleasePool* loopPool = [[NSAutoreleasePool alloc] init];
     for (int lineIndex = 0; lineIndex < IMAGES_PER_LINE; lineIndex++) {
-        int paintIndex = indexPath.row*IMAGES_PER_LINE + lineIndex;
+        NSUInteger paintIndex = indexPath.row*IMAGES_PER_LINE + lineIndex;
         if (paintIndex < self.paints.count) {
             MyPaint* paint  = [self.paints objectAtIndex:paintIndex]; 
             [myPaintArray addObject:paint];                
@@ -764,8 +764,8 @@ typedef enum{
 
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    int row = indexPath.row;
-    int number = [self tableView:tableView numberOfRowsInSection:indexPath.section];
+    NSUInteger row = indexPath.row;
+    NSUInteger number = [self tableView:tableView numberOfRowsInSection:indexPath.section];
     if (row == number - 1) {
         TableTab *tab = self.currentTab;
         if (!isLoading && tab.hasMoreData && tab.status != TableTabStatusLoading) {
@@ -992,6 +992,8 @@ typedef enum{
 {
     [super viewDidAppear:animated];
     [self clickRefreshButton:nil];
+    
+//    [self.dataTableView setAllowsSelection:NO];
 }
 
 
