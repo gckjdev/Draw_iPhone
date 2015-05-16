@@ -257,7 +257,7 @@ static NSArray* sharedRandomNumberList;
     CGRect r = [DrawUtils rectForRect:[self.hPointList bounds]
                             withWidth:[self.hPointList maxWidth]
                                bounds:rect];
-    PPDebug(@"<redraw rect> %@", [NSValue valueWithCGRect:r]);
+//    PPDebug(@"<redraw rect> %@", NSStringFromCGRect(rect));
     return r;
 }
 
