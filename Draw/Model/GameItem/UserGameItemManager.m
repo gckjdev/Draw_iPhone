@@ -241,15 +241,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(UserGameItemManager);
             ItemTypeBrushFilledCalligraphy,
             ItemTypeBrushDryCalligraphy,
             
-//            WaterPen,
-//            Pen,
-//            IcePen,
-//            Quill,
-//            ItemTypeFunPen1,
-//            ItemTypeFunPen2,
-//            ItemTypeFunPen3,
-//            ItemTypeFunPen4,
-//            ItemTypeFunPen5,
+            
             ItemTypeListEndFlag
         };
         return vipPens;

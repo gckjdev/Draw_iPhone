@@ -126,17 +126,6 @@
         case Eraser:
         case DeprecatedEraser:
             return manager.selectedEraserImage;
-
-        case ItemTypeFunPen1:
-            return [UIImage imageNamed:@"selected_pen_fun1@2x.png"];
-        case ItemTypeFunPen2:
-            return [UIImage imageNamed:@"selected_pen_fun2@2x.png"];
-        case ItemTypeFunPen3:
-            return [UIImage imageNamed:@"selected_pen_fun3@2x.png"];
-        case ItemTypeFunPen4:
-            return [UIImage imageNamed:@"selected_pen_fun4@2x.png"];
-        case ItemTypeFunPen5:
-            return [UIImage imageNamed:@"selected_pen_fun5@2x.png"];
             
         case ItemTypeBrushGouache:
             return manager.brushGouacheSelectedImage;
@@ -185,14 +174,19 @@
         case DeprecatedEraser:            
             return manager.showEraserImage;
             
+        //brush images
         case ItemTypeBrushGouache:
             return manager.brushGouacheShowImage;
             
-        case ItemTypeBrushPencil:
-            return manager.brushPencilShowImage;
-            
-        case ItemTypeBrushCrayon:
-            return manager.brushCrayonShowImage;
+//        //deprecated, see BrushNewPencil
+//        case ItemTypeBrushPencil:
+//            return manager.brushPencilShowImage;
+//        //deprecated, see BrushNewCrayon
+//        case ItemTypeBrushCrayon:
+//            return manager.brushCrayonShowImage;
+//        //deprecated, see BrushNewWater
+//        case ItemTypeBrushWater:
+//            return manager.brushWaterShowImage;
             
         case ItemTypeBrushPen:
             return manager.brushPenShowImage;
@@ -200,25 +194,20 @@
         case ItemTypeBrushBlur:
             return manager.brushBlurShowImage;
             
-        case ItemTypeBrushWater:
-            return manager.brushWaterShowImage;
-            
         case ItemTypeBrushDryCalligraphy:
             return manager.brushDryShowImage;
             
         case ItemTypeBrushFilledCalligraphy:
             return manager.brushFilledShowImage;
+
+        case ItemTypeBrushNewCrayon:
+            return manager.brushCrayonImage;
             
-        case ItemTypeFunPen1:
-            return [UIImage imageNamed:@"pen_show_fun1@2x.png"];
-        case ItemTypeFunPen2:
-            return [UIImage imageNamed:@"pen_show_fun2@2x.png"];
-        case ItemTypeFunPen3:
-            return [UIImage imageNamed:@"pen_show_fun3@2x.png"];
-        case ItemTypeFunPen4:
-            return [UIImage imageNamed:@"pen_show_fun4@2x.png"];
-        case ItemTypeFunPen5:
-            return [UIImage imageNamed:@"pen_show_fun5@2x.png"];
+        case ItemTypeBrushNewWater:
+            return manager.brushWaterImage;
+            
+        case ItemTypeBrushNewPencil:
+            return manager.brushPencilImage;
             
         default:
             return nil;
@@ -326,16 +315,7 @@
             return [diceManager toShopImage:diceManager.greenDiamondDiceImage];
         case ItemTypeCustomDicePurpleDiamondDice:
             return [diceManager toShopImage:diceManager.purpleDiamondDiceImage];
-        case ItemTypeFunPen1:
-            return [UIImage imageNamed:@"pen_fun1@2x.png"];
-        case ItemTypeFunPen2:
-            return [UIImage imageNamed:@"pen_fun2@2x.png"];
-        case ItemTypeFunPen3:
-            return [UIImage imageNamed:@"pen_fun3@2x.png"];
-        case ItemTypeFunPen4:
-            return [UIImage imageNamed:@"pen_fun4@2x.png"];
-        case ItemTypeFunPen5:
-            return [UIImage imageNamed:@"pen_fun5@2x.png"];
+
         default:
             return nil;
     }    

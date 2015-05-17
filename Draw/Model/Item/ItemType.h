@@ -53,11 +53,11 @@ typedef enum
     ItemTypePurse = 1105,
     ItemTypePurseOneThousand = 1107,
     
-    ItemTypeFunPen1 = 1151,
-    ItemTypeFunPen2 = 1152,
-    ItemTypeFunPen3 = 1153,
-    ItemTypeFunPen4 = 1154,
-    ItemTypeFunPen5 = 1155,
+    ItemTypeFunPen1 = 1151,//deprecated
+    ItemTypeFunPen2 = 1152,//deprecated
+    ItemTypeFunPen3 = 1153,//deprecated
+    ItemTypeFunPen4 = 1154,//deprecated
+    ItemTypeFunPen5 = 1155,//deprecated
     
     ItemTypeBrushBegin = 1160,
     ItemTypeBrushGouache = 1161,
