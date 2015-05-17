@@ -14,7 +14,7 @@
 @property (assign, nonatomic) float bottomRightY;
 @property (assign, nonatomic) float maxWidth;
 
-- (CGRect)bounds;
+- (CGRect)pointListBounds;
 
 - (float)getPointX:(NSInteger)index;
 - (float)getPointY:(NSInteger)index;
@@ -26,8 +26,12 @@
 - (void)complete;
 
 //dynamic calculation of bounding rect points
-- (void)initBoundingRectPointsWithPoint:(CGPoint)point andWidth:(CGFloat)width;
-- (void)updateBoundingRectPointsWithPoint:(CGPoint)point andWidth:(CGFloat)width;
+- (void)initBoundingRectWithPointX:(CGFloat)x
+                            PointY:(CGFloat)y
+                          andWidth:(CGFloat)width;
+- (void)updateBoundingRectWithPointX:(CGFloat)x
+                              PointY:(CGFloat)y
+                            andWidth:(CGFloat)width;
 
 //add point to list for every sampling
 - (void)addPointX:(float)x

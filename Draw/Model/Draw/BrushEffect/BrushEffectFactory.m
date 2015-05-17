@@ -53,7 +53,7 @@ static dispatch_once_t brushFactoryOnceToken;
         case ItemTypeBrushPen:
             return [PenCalligraphyBrush sharedBrush];
             
-        case ItemTypeBrushFeather:
+        case ItemTypeBrushFeather://deprecated
             return [FeatherBrush sharedBrush];
 
         case ItemTypeBrushFilledCalligraphy:

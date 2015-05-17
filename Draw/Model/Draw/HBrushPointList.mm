@@ -87,55 +87,37 @@ using std::list;
 {
 }
 
-#define BRUSH_RECT_MARGIN (0)
 
-- (CGRect)bounds
+- (CGRect)pointListBounds
 {
-    //若不是正在画的笔画，则进入该条件判断，计算整个list的bounds
-    if (_leftTopX == MAX_TOP
-        && _leftTopY == MAX_TOP
-        && _bottomRightX == -MAX_TOP
-        && _bottomRightY == -MAX_TOP){
-        
-        // calculate from point list
-        NSInteger count = xList.size();
-        float x, y, width;
-        for (NSInteger i=0; i<count; i++){
-            x = xList[i];
-            y = yList[i];
-            width = widthList[i];
-            
-            _leftTopX = _leftTopX < x ? _leftTopX : x;
-            _leftTopY = _leftTopY < y ? _leftTopY : y;
-            _bottomRightX = _bottomRightX > x ? _bottomRightX : x;
-            _bottomRightY = _bottomRightY > y ? _bottomRightY : y;
-            _maxWidth =  width;
-        }
-    }
-    
-    //若为正在画的笔画，则由于addPoint中已经有实时计算的左上，右下两点位置，估直接得出一个rect
-    CGRect rect = CGRectMake(_leftTopX - BRUSH_RECT_MARGIN ,
-                      _leftTopY - BRUSH_RECT_MARGIN ,
-                      _bottomRightX - _leftTopX + BRUSH_RECT_MARGIN,
-                      _bottomRightY - _leftTopY + BRUSH_RECT_MARGIN);
+    //由于addPoint中已经有实时计算的左上，右下两点位置，故而直接得出一个rect
+    CGRect rect = CGRectMake(_leftTopX,_leftTopY,
+                             _bottomRightX-_leftTopX,
+                             _bottomRightY-_leftTopY);
     
     return rect;
 }
 
-- (void)initBoundingRectPointsWithPoint:(CGPoint)point andWidth:(CGFloat)width
+- (void)initBoundingRectWithPointX:(CGFloat)x
+                            PointY:(CGFloat)y
+                          andWidth:(CGFloat)width
 {
-    self.leftTopX = point.x-width/2;
-    self.leftTopY = point.y-width/2;
-    self.bottomRightX = point.x+width/2;
-    self.bottomRightY = point.y+width/2;
+    CGFloat width_half = width/2;
+    self.leftTopX = x-width_half;
+    self.leftTopY = y-width_half;
+    self.bottomRightX = x+width_half;
+    self.bottomRightY = y+width_half;
 }
 
-- (void)updateBoundingRectPointsWithPoint:(CGPoint)point andWidth:(CGFloat)width
+- (void)updateBoundingRectWithPointX:(CGFloat)x
+                              PointY:(CGFloat)y
+                            andWidth:(CGFloat)width
 {
-    self.leftTopX = point.x-width<self.leftTopX? point.x-width:self.leftTopX;
-    self.leftTopY = point.y-width<self.leftTopY? point.y-width:self.leftTopY;
-    self.bottomRightX = point.x+width>self.bottomRightX? point.x+width:self.bottomRightX;
-    self.bottomRightY = point.y+width>self.bottomRightY? point.y+width:self.bottomRightY;
+    CGFloat width_half = width/2;
+    self.leftTopX = x-width_half < self.leftTopX? x-width_half:self.leftTopX;
+    self.leftTopY = y-width_half < self.leftTopY? y-width_half:self.leftTopY;
+    self.bottomRightX = x+width_half > self.bottomRightX? x+width_half:self.bottomRightX;
+    self.bottomRightY = y+width_half > self.bottomRightY? y+width_half:self.bottomRightY;
 }
 
 
@@ -144,14 +126,6 @@ using std::list;
        PointWidth:(float)width
       PointRandom:(int)random
 {
-    _leftTopX = _leftTopX < x ? _leftTopX : x;
-    _leftTopY = _leftTopY < y ? _leftTopY : y;
-    _bottomRightX = _bottomRightX > x ? _bottomRightX : x;
-    _bottomRightY = _bottomRightY > y ? _bottomRightY : y;
-    _maxWidth =  width;
-    
-//    PPDebug(@"(%f,%f)(%f,%f)",_leftTopX,_leftTopY,_bottomRightX,_bottomRightY);
-    
     xList.push_back(x);
     yList.push_back(y);
     widthList.push_back(width);

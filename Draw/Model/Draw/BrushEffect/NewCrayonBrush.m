@@ -70,6 +70,10 @@ static dispatch_once_t sharedNewCrayonBrushOnceToken;
                  distance1:(float)distance1         // 当前BeginDot和ControlDot的距离
                  distance2:(float)distance2         // 当前EndDot和ControlDot的距离
 {
+    if (brushWidth <= 0.0f){
+        return 1;
+    }
+    
     double speedFactor =  ((distance1 + distance2)/2)/ brushWidth;
     double typeFactor = 0.5;// 针对各种笔刷的调节因子，经过实践所得(有些笔需要更密集的插值，如钢笔；有些则相反，如蜡笔)
     int interpolationLength = INTERPOLATION * speedFactor * typeFactor + 1;
@@ -88,7 +92,7 @@ static dispatch_once_t sharedNewCrayonBrushOnceToken;
     NSInteger randomFactor = defaultWidth / 4 + 2;
 
     NSInteger ranIndex = index;
-
+    
     //生成 0 - randomFactor 范围内的随机数，作为振动幅度
     ranIndex=(ranIndex+0)%RANDOM_COUNT;
     float xRandomOffset = [[randomList objectAtIndex:ranIndex]intValue] % randomFactor;
@@ -115,7 +119,6 @@ static dispatch_once_t sharedNewCrayonBrushOnceToken;
         *pointY += yRandomOffset;
     else if(yShouldShake >= 60)
         *pointY -= yRandomOffset;
-    
     
     if(wShouldShake < 40)
         *pointW += wRandomOffset;

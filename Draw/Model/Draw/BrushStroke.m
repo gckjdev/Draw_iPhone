@@ -218,13 +218,10 @@ static NSArray* sharedRandomNumberList;
 
 - (CGRect)redrawRectInRect:(CGRect)rect
 {
-    //bounds返回一个rect，这个rect是一个笔画中所有点的最小外接矩形，通过计算左上，右下两个点坐标获得。
-    //maxWidth是记录当前点的宽度，用于扩大bounds所返回的rect，使得笔画不会缺少边缘部分。
-    //explained by Charlie， 2014 9 21
-
-    CGRect r = [DrawUtils protectRect:[self.hPointList bounds] inBounds:rect];
-//    PPDebug(@"<redraw rect> %@", NSStringFromCGRect(rect));
-    
+    //pointListBounds返回一个rect，这个rect是一个笔画中所有点的最小外接矩形，通过计算左上，右下两个点坐标获得。
+    //explained by Charlie， 2015 5 17
+    CGRect r = [DrawUtils protectRect:[self.hPointList pointListBounds]
+                             inBounds:rect];
     return r;
 }
 
@@ -411,14 +408,17 @@ static NSArray* sharedRandomNumberList;
         [self initBezierKeyPointWithPoint:point];
 
         //储存采样点，记录到hPointList。这种情况仅用于draw: inRect:
-        if(needRecordPoint)
+        if(needRecordPoint){
             [self.hPointList addPointX:_endDot.x
                                 PointY:_endDot.y
                             PointWidth:_endDot.width
                            PointRandom:0];
-
-        [self.hPointList initBoundingRectPointsWithPoint:point
-                                                andWidth:self.width];
+        }
+        
+        [self.hPointList initBoundingRectWithPointX:point.x
+                                             PointY:point.y
+                                           andWidth:self.width];
+        
     }
     else{
         [self relocateBezierKeyPointWithNewPoint:point];
@@ -433,11 +433,12 @@ static NSArray* sharedRandomNumberList;
         _endDot.width = _tempWidth;
         
         //储存采样点，记录到hPointList。这种情况仅用于draw: inRect:
-        if(needRecordPoint)
+        if(needRecordPoint){
             [self.hPointList addPointX:_endDot.x
                                 PointY:_endDot.y
                             PointWidth:_endDot.width
                            PointRandom:0];
+        }
         
         //如果笔停在某处，则不进行插值，也不进行画图
         if(distance1 == 0 || distance2 == 0)
@@ -471,8 +472,9 @@ static NSArray* sharedRandomNumberList;
                                       PointW:&width
                             withDefaultWidth:_width];
             
-            [self.hPointList updateBoundingRectPointsWithPoint:CGPointMake(pointX, pointY)
-                                                      andWidth:width];
+            [self.hPointList updateBoundingRectWithPointX:pointX
+                                                   PointY:pointY
+                                                 andWidth:width];
             
             rect = CGRectMake(pointX-width/2, pointY-width/2, width, width);
 
@@ -536,10 +538,11 @@ static NSArray* sharedRandomNumberList;
                               width:(float*)width
 {
     double t = 1.0*index / (length * 2);
+    double s = 1-t;
     
-    *pointX = (1-t)*(1-t)*begin.x + 2*t*(1-t)*control.x + t*t*end.x;
-    *pointY = (1-t)*(1-t)*begin.y + 2*t*(1-t)*control.y + t*t*end.y;
-    *width = (1-t)*(1-t)*begin.width + 2*t*(1-t)*control.width + t*t*end.width;
+    *pointX = s*s*begin.x + 2*t*s*control.x + t*t*end.x;
+    *pointY = s*s*begin.y + 2*t*s*control.y + t*t*end.y;
+    *width = s*s*begin.width + 2*t*s*control.width + t*t*end.width;
 
 }
 
@@ -596,10 +599,7 @@ static NSArray* sharedRandomNumberList;
         }
     }
     
-    //TODO for charlie
-    //what is the return value mean?
     return [self redrawRectInRect:rect];
-//    return CGRectZero;
 }
 
 

@@ -201,13 +201,13 @@
             return manager.brushFilledShowImage;
 
         case ItemTypeBrushNewCrayon:
-            return manager.brushCrayonImage;
+            return manager.brushCrayonShowImage;
             
         case ItemTypeBrushNewWater:
-            return manager.brushWaterImage;
+            return manager.brushWaterShowImage;
             
         case ItemTypeBrushNewPencil:
-            return manager.brushPencilImage;
+            return manager.brushPencilShowImage;
             
         default:
             return nil;
