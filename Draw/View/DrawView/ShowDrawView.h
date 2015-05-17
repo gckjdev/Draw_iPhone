@@ -44,6 +44,7 @@ typedef enum{
 @property(nonatomic, assign) DrawViewStatus status;
 @property(nonatomic, assign) double playSpeed;
 @property(nonatomic, assign) double maxPlaySpeed;
+@property(nonatomic, assign) NSInteger  speed; //default is Normal;
 
 - (void)resetView;
 - (void)play;
@@ -59,7 +60,7 @@ typedef enum{
 
 - (void)resetFrameSize:(CGSize)size;
 
-- (void)adjustPlaySpeedWithNewVersion:(BOOL)isNewVersion;
+- (void)setPlaySpeedWithSliderSpeed:(double)sliderSpeed;
 
 - (UIImage*)createImageAtIndex:(NSUInteger)index;
 - (UIImage*)createImageAtIndex:(NSUInteger)index bgColor:(UIColor*)bgColor;

@@ -63,8 +63,6 @@
 - (CGRect)redrawRectInRect:(CGRect)rect
 {
     CGRect newRect = [self.brushStroke redrawRectInRect:rect];
-
-//    PPDebug(@"rect=%@", NSStringFromCGRect(newRect));
     
     return newRect;
 }

@@ -105,8 +105,12 @@
 
     self.speedSlider.pointImage = [[ShareImageManager defaultManager] speedProgressPoint];
 
-    self.showView.playSpeed = [self speedWithRate:self.speedSlider.value];
-    [self.showView adjustPlaySpeedWithNewVersion:self.replayObj.isNewVersion];
+    [self.showView setPlaySpeedWithSliderSpeed:[self speedWithRate:self.speedSlider.value]];
+    if(!self.replayObj.isNewVersion){//旧版本数据储存点多，需要较快播放速度
+        NSInteger acceleration = 20;
+        self.showView.playSpeed *= acceleration;
+        self.showView.speed *= acceleration;
+    }
     
     self.showView.maxPlaySpeed = [PPConfigManager getMaxPlayDrawSpeed];
     
@@ -275,8 +279,12 @@
 
 - (IBAction)changeSpeed:(CustomSlider *)sender {
     PPDebug(@"<changeSpeed> = %f", sender.value);
-    self.showView.playSpeed = [self speedWithRate:self.speedSlider.value];
-    [self.showView adjustPlaySpeedWithNewVersion:self.replayObj.isNewVersion];
+    [self.showView setPlaySpeedWithSliderSpeed:[self speedWithRate:self.speedSlider.value]];
+    if(!self.replayObj.isNewVersion){
+        NSInteger acceleration = 20;
+        self.showView.playSpeed *= acceleration;
+        self.showView.speed *= acceleration;
+    }
 }
 
 - (IBAction)clickPlayButton:(id)sender {

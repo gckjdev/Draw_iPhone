@@ -122,6 +122,23 @@ using std::list;
     return rect;
 }
 
+- (void)initBoundingRectPointsWithPoint:(CGPoint)point andWidth:(CGFloat)width
+{
+    self.leftTopX = point.x-width/2;
+    self.leftTopY = point.y-width/2;
+    self.bottomRightX = point.x+width/2;
+    self.bottomRightY = point.y+width/2;
+}
+
+- (void)updateBoundingRectPointsWithPoint:(CGPoint)point andWidth:(CGFloat)width
+{
+    self.leftTopX = point.x-width<self.leftTopX? point.x-width:self.leftTopX;
+    self.leftTopY = point.y-width<self.leftTopY? point.y-width:self.leftTopY;
+    self.bottomRightX = point.x+width>self.bottomRightX? point.x+width:self.bottomRightX;
+    self.bottomRightY = point.y+width>self.bottomRightY? point.y+width:self.bottomRightY;
+}
+
+
 - (void)addPointX:(float)x
            PointY:(float)y
        PointWidth:(float)width

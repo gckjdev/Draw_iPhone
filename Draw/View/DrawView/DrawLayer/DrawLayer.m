@@ -197,11 +197,11 @@
 - (void)finishLastAction:(DrawAction *)action refresh:(BOOL)refresh
 {
     if (_supportCache) {
-        int count = [_drawActionList count];
+        NSUInteger count = [_drawActionList count];
         if(count - self.offscreen.actionCount > _cachedCount * 2){
             PPDebug(@"<finishLastAction> action count = %d, reach cached count", count);
-            int endIndex = count - _cachedCount;
-            for(int i = _offscreen.actionCount; i < endIndex; ++ i){
+            NSUInteger endIndex = count - _cachedCount;
+            for(NSUInteger i = _offscreen.actionCount; i < endIndex; ++ i){
                 DrawAction *drawAction = [_drawActionList objectAtIndex:i];
                 [self.offscreen drawAction:drawAction clear:NO];
                 [drawAction clearMemory];
@@ -260,13 +260,13 @@
     
     if (_supportCache) {
         PPDebug(@"<updateWithDrawActions> start");
-        int count = [_drawActionList count];
+        NSUInteger count = [_drawActionList count];
         time_t timestamp = time(0);
         [self.offscreen clear];
         if(count - self.offscreen.actionCount >= _cachedCount * 2){
-            int endIndex = count - _cachedCount;
+            NSUInteger endIndex = count - _cachedCount;
 
-            for(int i = _offscreen.actionCount; i < endIndex; ++ i){
+            for(NSUInteger i = _offscreen.actionCount; i < endIndex; ++ i){
                 DrawAction *drawAction = _drawActionList[i];
                 [self.offscreen drawAction:drawAction clear:NO];
                 [drawAction clearMemory];

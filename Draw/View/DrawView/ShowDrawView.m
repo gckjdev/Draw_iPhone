@@ -45,7 +45,7 @@ typedef enum {
     PenView *pen;
 
 }
-@property(nonatomic, assign) NSInteger  speed; //default is Normal;
+
 @property(nonatomic, assign) NSUInteger totalPointCount; //default is Normal;
 
 //@property (nonatomic, retain) PaintAction *tempAction;
@@ -264,8 +264,10 @@ typedef enum {
         pen.userInteractionEnabled = NO;
         
         pen.penType = 0;
-        self.maxPlaySpeed = [PPConfigManager getMaxPlayDrawSpeed];
-        self.playSpeed = [PPConfigManager getDefaultPlayDrawSpeed];
+        
+        [self setMaxPlaySpeed:[PPConfigManager getMaxPlayDrawSpeed]];
+        [self setPlaySpeedWithSliderSpeed:[PPConfigManager getDefaultPlayDrawSpeed]];
+        
         [self.superview addSubview:pen];
         
     }
@@ -527,7 +529,6 @@ typedef enum {
             double delay = (CACurrentMediaTime() - _playFrameTime - self.playSpeed);
             delay = MIN(self.playSpeed, delay);
             delay = MAX(0, delay);
-            
             [self performSelector:@selector(playNextFrame) withObject:nil afterDelay:delay];
 
         }else{
@@ -566,22 +567,15 @@ typedef enum {
 }
 
 
-- (void)setPlaySpeed:(double)playSpeed
+- (void)setPlaySpeedWithSliderSpeed:(double)sliderSpeed;
 {
-    _playSpeed = playSpeed;
-    double delta = playSpeed/self.maxPlaySpeed;
-    NSInteger speed = (1-delta) * PlaySpeedTypeLow;
+    self.playSpeed = sliderSpeed;
     
+    double delta = sliderSpeed/self.maxPlaySpeed;
+    NSInteger speed = (1-delta) * PlaySpeedTypeMax;
     speed = MAX(speed, 0);
+    
     self.speed = speed + PlaySpeedTypeLow;
-}
-
-//没经过优化的笔刷，因为储存了大量点，需要极快的播放速度
-- (void)adjustPlaySpeedWithNewVersion:(BOOL)isNewVersion
-{
-    const NSInteger acceleration = 20;
-    if(!isNewVersion)
-        self.speed *= acceleration;
 }
 
 //#define LEVEL_TIMES 500

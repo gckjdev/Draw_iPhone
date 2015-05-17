@@ -34,7 +34,7 @@ static dispatch_once_t sharedDryCalligraphyBrushOnceToken;
     //染色，把所需形状染成用户所需颜色，不透明
     UIImage *tinted = [brushImage rt_tintedImageWithColor:colorWithRGBOnly];
     
-    CGFloat alpha = [color alpha] / 4;
+    CGFloat alpha = [color alpha] / 2;
     
     brushImage = [DrawUtils imageByApplyingAlpha:alpha image:tinted];
     

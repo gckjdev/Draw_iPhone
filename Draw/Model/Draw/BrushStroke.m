@@ -73,56 +73,23 @@ static NSArray* sharedRandomNumberList;
                           @(2719388154),@(1306814619),@(2415507135),
                           @(1046411349),@(3579452263),@(3058110341),
                           @(2584921463),@(2525485424),@(3610886636),
-                          @(1972999307),@(2714057043),
-                          //                2686284776,
-                          //                2183939048,
-                          //                1991858240,
-                          //                242306508,
-                          //                3009179851,
-                          //                198681006,
-                          //                2302964946,
-                          //                4294081540,
-                          //                2334889278,
-                          //                1577688823,
-                          //                2325703313,
-                          //                2095521830,
-                          //                3563292614,
-                          //                2495429203,
-                          //                2767451042,
-                          //                1519954454,
-                          //                2322414033,
-                          //                705999783,
-                          //                1939881099,
-                          //                2179468732,
-                          //                934024288,
-                          //                414050267,
-                          //                1656825682,
-                          //                1846315775,
-                          //                289739438,
-                          //                866260931,
-                          //                1439781678,
-                          //                1849644467,
-                          //                3607454409,
-                          //                1265883309,
-                          //                4109437829,
-                          //                1802246890,
-                          //                2590479792,
-                          //                444393461,
-                          //                1047260895,
-                          //                4011995700,
-                          //                3114245995,
-                          //                4004175361,
-                          //                2287601661,
-                          //                3732908522,
-                          //                88296662,
-                          //                1620036106,
-                          //                103357717,
-                          //                3540618397,
-                          //                1483449341,
-                          //                194696025,
-                          //                2236768761,
-                          //                660207190,
-                          //                2057646954,
+                          @(1972999307),@(2714057043),@(2686284776),
+                          @(2183939048),@(1991858240),@(242306508),
+                          @(3009179851),@(198681006),@(2302964946),
+                          @(4294081540),@(2334889278),@(1577688823),
+                          @(2325703313),@(2095521830),@(3563292614),
+                          @(2495429203),@(2767451042),@(1519954454),
+                          @(2322414033),@(705999783),@(1939881099),
+                          @(2179468732),@(934024288),@(414050267),
+                          @(1656825682),@(1846315775),@(289739438),
+                          @(866260931),@(1439781678),@(1849644467),
+                          @(3607454409),@(1265883309),@(4109437829),
+                          @(1802246890),@(2590479792),@(444393461),
+                          @(1047260895),@(4011995700),@(3114245995),
+                          @(4004175361),@(2287601661),@(3732908522),
+                          @(88296662),@(1620036106),@(103357717),
+                          @(3540618397),@(1483449341),@(194696025),
+                          @(2236768761),@(660207190),@(2057646954),
                           nil];
         
         [sharedRandomNumberList retain];
@@ -254,10 +221,10 @@ static NSArray* sharedRandomNumberList;
     //bounds返回一个rect，这个rect是一个笔画中所有点的最小外接矩形，通过计算左上，右下两个点坐标获得。
     //maxWidth是记录当前点的宽度，用于扩大bounds所返回的rect，使得笔画不会缺少边缘部分。
     //explained by Charlie， 2014 9 21
-    CGRect r = [DrawUtils rectForRect:[self.hPointList bounds]
-                            withWidth:[self.hPointList maxWidth]
-                               bounds:rect];
+
+    CGRect r = [DrawUtils protectRect:[self.hPointList bounds] inBounds:rect];
 //    PPDebug(@"<redraw rect> %@", NSStringFromCGRect(rect));
+    
     return r;
 }
 
@@ -449,6 +416,9 @@ static NSArray* sharedRandomNumberList;
                                 PointY:_endDot.y
                             PointWidth:_endDot.width
                            PointRandom:0];
+
+        [self.hPointList initBoundingRectPointsWithPoint:point
+                                                andWidth:self.width];
     }
     else{
         [self relocateBezierKeyPointWithNewPoint:point];
@@ -479,7 +449,7 @@ static NSArray* sharedRandomNumberList;
         int interpolationLength = [_brush interpolationLength:self.width
                                                     distance1:distance1
                                                     distance2:distance2];
-        
+
         NSArray* randomList = [self getSharedRandomNumberList];
         CGRect rect;
 
@@ -501,8 +471,11 @@ static NSArray* sharedRandomNumberList;
                                       PointW:&width
                             withDefaultWidth:_width];
             
+            [self.hPointList updateBoundingRectPointsWithPoint:CGPointMake(pointX, pointY)
+                                                      andWidth:width];
+            
             rect = CGRectMake(pointX-width/2, pointY-width/2, width, width);
-//            PPDebug(@"<draw rect> %@",NSStringFromCGRect(rect));
+
             CGContextDrawImage(layerContext, rect, brushImage);
         }
     }
@@ -543,6 +516,8 @@ static NSArray* sharedRandomNumberList;
     _endDot.x = point.x;
     _endDot.y = point.y;
 }
+
+
 
 -(double)distanceOfDot:(BrushDot*)dot1 andDot:(BrushDot*)dot2
 {

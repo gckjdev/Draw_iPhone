@@ -45,21 +45,14 @@
                  distance1:(float)distance1         // 当前BeginDot和ControlDot的距离
                  distance2:(float)distance2;        // 当前EndDot和ControlDot的距离
 
-#define RANDOM_COUNT 50
+#define RANDOM_COUNT 99
 #define SHAKERANDOMRANGE 100
-//version 9: 为了优化性能，从version 9开始，利用一段固定的伪随机数列作为随机数(暂定100个数字)
+//version 9: 为了优化性能，从version 9开始，利用一段固定的伪随机数列作为随机数(暂定50个数字)
 -(void)shakePointWithRandomList:(NSArray*)randomList
                         atIndex:(NSInteger)index
                          PointX:(float*)pointX
                          PointY:(float*)pointY
                          PointW:(float*)pointW
                withDefaultWidth:(float)defaultWidth;
-
-@optional
-//对于某些笔刷例如蜡笔，需要对点进行随机抖动
--(void)randomShakePointX:(float*)pointX
-                  PointY:(float*)pointY
-                  PointW:(float*)pointW
-        WithDefaultWidth:(float)defaultWidth;
 
 @end

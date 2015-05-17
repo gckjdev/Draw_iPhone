@@ -81,6 +81,7 @@
 
 + (NSInteger)roundFloatValue:(CGFloat)value;
 
++ (CGRect)protectRect:(CGRect)rect inBounds:(CGRect)bounds;
 + (CGRect)rectForPath:(CGPathRef)path withWidth:(CGFloat)width bounds:(CGRect)bounds;
 + (CGRect)rectForRect:(CGRect)rect withWidth:(CGFloat)width bounds:(CGRect)bounds;
 

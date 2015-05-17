@@ -69,6 +69,9 @@ typedef enum
     ItemTypeBrushFeather = 1167,
     ItemTypeBrushFilledCalligraphy = 1168,
     ItemTypeBrushDryCalligraphy = 1169,
+    ItemTypeBrushNewCrayon = 1170,
+    ItemTypeBrushNewWater = 1171,
+    ItemTypeBrushNewPencil = 1172,
     ItemTypeBrushEnd = 1199,
     
     DrawBackgroundStart = 1200,

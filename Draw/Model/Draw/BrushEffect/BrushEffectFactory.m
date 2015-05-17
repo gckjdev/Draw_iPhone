@@ -50,17 +50,8 @@ static dispatch_once_t brushFactoryOnceToken;
         case ItemTypeBrushBlur:
             return [BlurBrush sharedBrush];
             
-        case ItemTypeBrushCrayon:
-            return [NewCrayonBrush sharedBrush];
-            
         case ItemTypeBrushPen:
             return [PenCalligraphyBrush sharedBrush];
-            
-        case ItemTypeBrushPencil:
-            return [NewPencilBrush sharedBrush];
-            
-        case ItemTypeBrushWater:
-            return [NewWaterBrush sharedBrush];
             
         case ItemTypeBrushFeather:
             return [FeatherBrush sharedBrush];
@@ -70,6 +61,26 @@ static dispatch_once_t brushFactoryOnceToken;
             
         case ItemTypeBrushDryCalligraphy:
             return [DryCalligraphyBrush sharedBrush];
+            
+        //取代旧的算法，进行了性能优化。
+        case ItemTypeBrushNewCrayon:
+            return [NewCrayonBrush sharedBrush];
+            
+        case ItemTypeBrushNewWater:
+            return [NewWaterBrush sharedBrush];
+            
+        case ItemTypeBrushNewPencil:
+            return [NewPencilBrush sharedBrush];
+            
+        //已经使用新的算法代替，以下三种不再使用
+        case ItemTypeBrushCrayon:
+            return [CrayonBrush sharedBrush];
+            
+        case ItemTypeBrushWater:
+            return [WaterBrush sharedBrush];
+            
+        case ItemTypeBrushPencil:
+            return [PencilBrush sharedBrush];
             
         default:
             break;

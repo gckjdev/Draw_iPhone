@@ -436,6 +436,29 @@ CGPoint midPoint1(CGPoint p1, CGPoint p2)
 }
 
 
+//对rect这个输入进行边界保护，主要是防止rect超过屏幕边界。
++ (CGRect)protectRect:(CGRect)rect inBounds:(CGRect)bounds
+{
+    //越界保护
+    if (rect.origin.x < 0){
+        rect.origin.x = 0;
+    }
+    
+    if (rect.origin.y < 0){
+        rect.origin.y = 0;
+    }
+    
+    if (rect.origin.x + rect.size.width > bounds.size.width){
+        rect.size.width = bounds.size.width - rect.origin.x;
+    }
+    
+    if (rect.origin.y + rect.size.height > bounds.size.height){
+        rect.size.height = bounds.size.height - rect.origin.y;
+    }
+    
+    return rect; //make sure all the values are integer
+}
+
 + (CGRect)rectForRect:(CGRect)rect withWidth:(CGFloat)width bounds:(CGRect)bounds
 {
     //往左上扩张半个width，因为brushImage有半个width的挪动

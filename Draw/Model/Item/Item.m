@@ -141,10 +141,10 @@
         case ItemTypeBrushGouache:
             return manager.brushGouacheSelectedImage;
             
-        case ItemTypeBrushPencil:
+        case ItemTypeBrushNewPencil:
             return manager.brushPencilSelectedImage;
             
-        case ItemTypeBrushCrayon:
+        case ItemTypeBrushNewCrayon:
             return manager.brushCrayonSelectedImage;
             
         case ItemTypeBrushPen:
@@ -153,7 +153,7 @@
         case ItemTypeBrushBlur:
             return manager.brushBlurSelectedImage;
 
-        case ItemTypeBrushWater:
+        case ItemTypeBrushNewWater:
             return manager.brushWaterSelectedImage;
             
         case ItemTypeBrushDryCalligraphy:
@@ -256,10 +256,10 @@
         case ItemTypeBrushGouache:
             return manager.brushGouacheImage;
             
-        case ItemTypeBrushPencil:
+        case ItemTypeBrushNewPencil:
             return manager.brushPencilImage;
             
-        case ItemTypeBrushCrayon:
+        case ItemTypeBrushNewCrayon:
             return manager.brushCrayonImage;
             
         case ItemTypeBrushPen:
@@ -268,7 +268,7 @@
         case ItemTypeBrushBlur:
             return manager.brushBlurImage;
 
-        case ItemTypeBrushWater:
+        case ItemTypeBrushNewWater:
             return manager.brushWaterImage;
             
         case ItemTypeBrushDryCalligraphy:

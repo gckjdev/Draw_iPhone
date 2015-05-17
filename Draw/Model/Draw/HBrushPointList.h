@@ -25,6 +25,11 @@
 - (CGPoint)pointAtIndex:(NSInteger)index;
 - (void)complete;
 
+//dynamic calculation of bounding rect points
+- (void)initBoundingRectPointsWithPoint:(CGPoint)point andWidth:(CGFloat)width;
+- (void)updateBoundingRectPointsWithPoint:(CGPoint)point andWidth:(CGFloat)width;
+
+//add point to list for every sampling
 - (void)addPointX:(float)x
            PointY:(float)y
        PointWidth:(float)width
