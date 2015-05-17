@@ -381,7 +381,7 @@ typedef enum{
 #ifdef DEBUG
     MyPaint* currentPaint = _selectedPaint;
     
-    BOOL isNewVersion = [PPConfigManager currentDrawDataVersion] < [currentPaint drawDataVersion];
+    BOOL isNewVersion = [PPConfigManager currentDrawDataVersion] <= [currentPaint drawDataVersion];
     
     ReplayObject *obj = [ReplayObject objectWithActionList:currentPaint.drawActionList
                                               isNewVersion:isNewVersion
@@ -400,7 +400,7 @@ typedef enum{
 {    
     MyPaint* currentPaint = _selectedPaint;
     
-    BOOL isNewVersion = [PPConfigManager currentDrawDataVersion] < [currentPaint drawDataVersion];
+    BOOL isNewVersion = [PPConfigManager currentDrawDataVersion] <= [currentPaint drawDataVersion];
     
     ReplayObject *obj = [ReplayObject objectWithActionList:currentPaint.drawActionList
                                               isNewVersion:isNewVersion
@@ -474,7 +474,7 @@ typedef enum{
 {
     MyPaint* currentPaint = _selectedPaint;
     
-    BOOL isNewVersion = [PPConfigManager currentDrawDataVersion] < [currentPaint drawDataVersion];
+    BOOL isNewVersion = [PPConfigManager currentDrawDataVersion] <= [currentPaint drawDataVersion];
     
     ReplayObject *obj = [ReplayObject objectWithActionList:currentPaint.drawActionList
                                               isNewVersion:isNewVersion
