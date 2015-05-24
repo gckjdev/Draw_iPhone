@@ -1460,6 +1460,7 @@
 //"kPayViaZhiFuBao" = "使用支付寶客戶端購買";
 "kPayViaZhiFuBao" = "使用支付寶購買";
 "kPayViaZhiFuBaoWeb" = "使用支付寶網頁購買";
+"kPayViaWechatPay" = "使用微信支付購買";
 "kPayViaAppleAccount" = "使用Apple賬戶購買";
 
 "kEditOpusDesc" = "編輯作品描述";

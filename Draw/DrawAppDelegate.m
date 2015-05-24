@@ -102,6 +102,8 @@
 #import "BillboardManager.h"
 
 #import <AlipaySDK/AlipaySDK.h>
+#import "WXApi.h"
+#import "WXApiObject.h"
 
 NSString* GlobalGetServerURL()
 {
@@ -333,6 +335,10 @@ NSString* GlobalGetBoardServerURL()
     if ([PPConfigManager getGuessContestLocalNotificationEnabled]) {
 
     }
+    
+    //注册微信，用于微信支付
+    [WXApi registerApp:@"wx427a2f57bc4456d1"];
+    
     
 //    [self loadSplashAd];
     return YES;
@@ -628,6 +634,8 @@ NSString* GlobalGetBoardServerURL()
         return YES;
     }
     
+    [WXApi handleOpenURL:url delegate:self];
+    
     [[GameSNSService defaultService] handleOpenURL:url];
     return YES;
 }
@@ -651,6 +659,9 @@ NSString* GlobalGetBoardServerURL()
 //    if ([[url absoluteString] hasPrefix:@"alipay"]){
 //        return [AliPayManager parseURL:url alipayPublicKey:[PPConfigManager getAlipayAlipayPublicKey]];
 //    }
+    
+    [WXApi handleOpenURL:url delegate:self];
+    
     
     [[GameSNSService defaultService] handleOpenURL:url sourceApplication:sourceApplication annotation:annotation];
     return YES;
@@ -739,6 +750,7 @@ NSString* GlobalGetBoardServerURL()
 
 -(void) onResp:(BaseResp*)resp
 {
+    //发送信息到微信的response（分享到朋友圈之类）
     if([resp isKindOfClass:[SendMessageToWXResp class]])
     {
         if (resp.errCode == WXSuccess){
@@ -748,6 +760,31 @@ NSString* GlobalGetBoardServerURL()
             PPDebug(@"<onResp> weixin response fail");
         }
     }
+    
+    //启动微信支付的response
+    NSString *strMsg = [NSString stringWithFormat:@"errcode:%d", resp.errCode];
+    if([resp isKindOfClass:[PayResp class]]){
+        //支付返回结果，实际支付结果需要去微信服务器端查询
+        switch (resp.errCode) {
+            case 0:
+                strMsg = @"支付结果：成功！";
+                PPDebug(@"支付成功－PaySuccess，retcode = %d", resp.errCode);
+                break;
+            case -1:
+                strMsg = @"支付结果：失败！";
+                PPDebug(@"支付失败－PayFail，retcode = %d", resp.errCode);
+                break;
+            case -2:
+                strMsg = @"用户已经退出支付！";
+                PPDebug(@"支付失败－PayFail，retcode = %d", resp.errCode);
+                break;
+            default:
+                strMsg = [NSString stringWithFormat:@"支付结果：失败！retcode = %d, retstr = %@", resp.errCode,resp.errStr];
+                PPDebug(@"错误，retcode = %d, retstr = %@", resp.errCode,resp.errStr);
+                break;
+        }
+    }
+    POSTMSG2(strMsg, 3);
 }
 
 @end

@@ -1489,6 +1489,7 @@
 "kSelectPaymentWay" = "Select payment method";
 "kPayViaZhiFuBao" = "Alipay";
 "kPayViaZhiFuBaoWeb" = "Alipay Web";
+"kPayViaWechatPay" = "Wechat Pay";
 "kPayViaAppleAccount" = "Apple iTunes Account";
 
 "kChoseVoiceType" = "Voice Type";

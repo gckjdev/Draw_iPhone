@@ -26,7 +26,7 @@
 @class HomeController;
 @class CPMotionRecognizingWindow;
 
-@interface DrawAppDelegate : PPApplication <UIApplicationDelegate, CommonNetworkClientDelegate, WXApiDelegate, ReviewRequestDelegate> {
+@interface DrawAppDelegate : PPApplication <UIApplicationDelegate, CommonNetworkClientDelegate, ReviewRequestDelegate, WXApiDelegate> {
 
     UIBackgroundTaskIdentifier bgTask;
 //    DMSplashAdController *_splashAd;

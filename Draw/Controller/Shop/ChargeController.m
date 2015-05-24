@@ -26,6 +26,8 @@
 #import "CommonDialog.h"
 #import "PBIAPProduct+Utils.h"
 #import "SKProductService.h"
+#import "WechatPayManager.h"
+
 
 #define ALIPAY_EXTRA_PARAM_KEY_IAP_PRODUCT @"ALIPAY_EXTRA_PARAM_KEY_IAP_PRODUCT"
 
@@ -247,8 +249,7 @@
     [self pushTaobao:taobaoUrl];
 }
 
-#pragma mark -
-#pragma UITableViewDataSource 
+#pragma mark - UITableViewDataSource
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     return [dataList count];
@@ -267,15 +268,13 @@
     return cell;
 }
 
-#pragma mark -
-#pragma UITableViewDelegate
+#pragma mark - UITableViewDelegate
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     return [ChargeCell getCellHeight];
 }
 
-#pragma mark -
-#pragma ChargeCellDelegate method
+#pragma mark - ChargeCellDelegate method
 - (void)didClickBuyButton:(NSIndexPath *)indexPath
 {
     BOOL isChina = [LocaleUtils isChina];
@@ -291,45 +290,47 @@
 
 - (void)showBuyActionSheetWithIndex:(NSIndexPath *)indexPath
 {
-    MKBlockActionSheet *sheet = [[MKBlockActionSheet alloc] initWithTitle:NSLS(@"kSelectPaymentWay")
-                                                                 delegate:nil
-                                                        cancelButtonTitle:NSLS(@"kCancel")
-                                                   destructiveButtonTitle:nil
-                                                        otherButtonTitles:
-                                                                //NSLS(@"kPayViaZhiFuBaoWeb"),
-                                                                NSLS(@"kPayViaZhiFuBao"),
-                                                                NSLS(@"kPayViaAppleAccount"),
-                                                                nil];
+    MKBlockActionSheet *sheet =
+    [[MKBlockActionSheet alloc] initWithTitle:NSLS(@"kSelectPaymentWay")
+                                     delegate:nil
+                            cancelButtonTitle:NSLS(@"kCancel")
+                       destructiveButtonTitle:nil
+                            otherButtonTitles:
+                            //NSLS(@"kPayViaZhiFuBaoWeb"),
+                            NSLS(@"kPayViaZhiFuBao"),
+                            NSLS(@"kPayViaWechatPay"),
+                            NSLS(@"kPayViaAppleAccount"),
+                            nil];
     [sheet showInView:self.view];
     
     __block typeof (self)bself = self;
     PBIAPProduct *product = [dataList objectAtIndex:indexPath.row];
+    
+    // alipay order construction
     AlixPayOrder *order = [[[AlixPayOrder alloc] init] autorelease];
     order.partner = [PPConfigManager getAlipayPartner];
     order.seller = [PPConfigManager getAlipaySeller];
     order.tradeNO =  [AlixPayOrderManager tradeNoWithProductId:product.alipayProductId];
     order.productName = [NSString stringWithFormat:@"%d个%@", product.count, NSLS(product.name)];
     order.productDescription = [NSString stringWithFormat:@"【产品描述】%@", product.name];
-
 #ifdef DEBUG
     order.amount = @"0.01";
 #else
     order.amount = [product priceInRMB];
 #endif
-
     PPDebug(@"charge price in RMB is %@", [product priceInRMB]);
-    
     order.notifyURL = [PPConfigManager getAlipayNotifyUrl]; //回调URL
     [[AlixPayOrderManager defaultManager] addOrder:order];
     
+    
+    //微信支付所需要的参数,其中price微信需要以分为单位,所以做了简单转换 TODO for charlie 测试！
+    NSString* wxOrderName = [NSString stringWithFormat:@"%d个%@", product.count, NSLS(product.name)];
+    NSString* wxOrderPrice = [NSString stringWithFormat:@"%@00",[product priceInRMB]];
+    
+    //actions of the sheet
     [sheet setActionBlock:^(NSInteger buttonIndex){
         switch (buttonIndex) {
-
-//            case 0:
-//                // pay via zhifubao
-//                [bself alipayWebPaymentForOrder:order product:product];
-//                break;
-                
+            
             case 0:
                 // pay via zhifubao
 //                if ([PPConfigManager useAlipyaWeb]){
@@ -346,10 +347,16 @@
                 break;
 
             case 1:
+                // pay via wechat
+                [self wxPayWithOrderName:wxOrderName
+                                   price:wxOrderPrice];
+                
+                break;
+            case 2:
                 // pay via apple account
                 [bself applePayForProduct:product];
                 break;
-                
+
             default:
                 break;
         }
@@ -451,6 +458,48 @@
 
 - (IBAction)clickRestoreButton:(id)sender {
     [[AccountService defaultService] restoreIAPPurchase];
+}
+
+#pragma mark - Wechat pay
+//============================================================
+// V3&V4支付流程实现
+// 参照微信的sample改装而来的方法，传入商品名称以及价格即可
+//============================================================
+- (void)wxPayWithOrderName:(NSString*)name price:(NSString*)price
+{
+    //创建支付签名对象 && 初始化支付签名对象
+    WechatPayManager* wxpayManager = [[[WechatPayManager alloc]initWithAppID:APP_ID mchID:MCH_ID spKey:PARTNER_ID] autorelease];
+    
+    //获取到实际调起微信支付的参数后，在app端调起支付
+    //生成预支付订单，实际上就是把关键参数进行第一次加密。
+    NSString* device = [[UserManager defaultManager]userId];
+    NSMutableDictionary *dict = [wxpayManager getPrepayWithOrderName:name
+                                                               price:price
+                                                              device:device];
+    
+    if(dict == nil){
+        //错误提示
+        NSString *debug = [wxpayManager getDebugInfo];
+        PPDebug(@"%@\n\n",debug);
+        return;
+    }
+    
+    PPDebug(@"%@\n\n",[wxpayManager getDebugInfo]);
+    NSMutableString *stamp  = [dict objectForKey:@"timestamp"];
+    
+    //调起微信支付
+    PayReq* req             = [[[PayReq alloc] init]autorelease];
+    req.openID              = [dict objectForKey:@"appid"];
+    req.partnerId           = [dict objectForKey:@"partnerid"];
+    req.prepayId            = [dict objectForKey:@"prepayid"];
+    req.nonceStr            = [dict objectForKey:@"noncestr"];
+    req.timeStamp           = stamp.intValue;
+    req.package             = [dict objectForKey:@"package"];
+    req.sign                = [dict objectForKey:@"sign"];
+    
+//        BOOL flag = [WXApi sendReq:req];
+    BOOL flag = [WXApi safeSendReq:req];
+    PPDebug(@"%d",flag);
 }
 
 @end

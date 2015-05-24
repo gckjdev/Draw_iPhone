@@ -6518,6 +6518,19 @@
 		CAFFF5CC196CED8C000DD4E7 /* UIViewController+CommonHome.m in Sources */ = {isa = PBXBuildFile; fileRef = CAFFF5CA196CED8C000DD4E7 /* UIViewController+CommonHome.m */; };
 		CAFFF5CD196CED8C000DD4E7 /* UIViewController+CommonHome.m in Sources */ = {isa = PBXBuildFile; fileRef = CAFFF5CA196CED8C000DD4E7 /* UIViewController+CommonHome.m */; };
 		CAFFF5CE196CED8C000DD4E7 /* UIViewController+CommonHome.m in Sources */ = {isa = PBXBuildFile; fileRef = CAFFF5CA196CED8C000DD4E7 /* UIViewController+CommonHome.m */; };
+		CB5A2EF71B11ABAF00CD9D87 /* WechatPayManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CB5A2EF61B11ABAF00CD9D87 /* WechatPayManager.m */; };
+		CB5A2EF81B11ABAF00CD9D87 /* WechatPayManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CB5A2EF61B11ABAF00CD9D87 /* WechatPayManager.m */; };
+		CB5A2EF91B11ABB000CD9D87 /* WechatPayManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CB5A2EF61B11ABAF00CD9D87 /* WechatPayManager.m */; };
+		CB5A2EFA1B11ABB000CD9D87 /* WechatPayManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CB5A2EF61B11ABAF00CD9D87 /* WechatPayManager.m */; };
+		CB5A2EFF1B11B9A100CD9D87 /* ApiXml.mm in Sources */ = {isa = PBXBuildFile; fileRef = CB5A2EFC1B11B9A100CD9D87 /* ApiXml.mm */; };
+		CB5A2F001B11B9A100CD9D87 /* ApiXml.mm in Sources */ = {isa = PBXBuildFile; fileRef = CB5A2EFC1B11B9A100CD9D87 /* ApiXml.mm */; };
+		CB5A2F011B11B9A100CD9D87 /* ApiXml.mm in Sources */ = {isa = PBXBuildFile; fileRef = CB5A2EFC1B11B9A100CD9D87 /* ApiXml.mm */; };
+		CB5A2F021B11B9A100CD9D87 /* ApiXml.mm in Sources */ = {isa = PBXBuildFile; fileRef = CB5A2EFC1B11B9A100CD9D87 /* ApiXml.mm */; };
+		CB5A2F031B11B9A100CD9D87 /* WXUtil.mm in Sources */ = {isa = PBXBuildFile; fileRef = CB5A2EFE1B11B9A100CD9D87 /* WXUtil.mm */; };
+		CB5A2F041B11B9A100CD9D87 /* WXUtil.mm in Sources */ = {isa = PBXBuildFile; fileRef = CB5A2EFE1B11B9A100CD9D87 /* WXUtil.mm */; };
+		CB5A2F051B11B9A100CD9D87 /* WXUtil.mm in Sources */ = {isa = PBXBuildFile; fileRef = CB5A2EFE1B11B9A100CD9D87 /* WXUtil.mm */; };
+		CB5A2F061B11B9A100CD9D87 /* WXUtil.mm in Sources */ = {isa = PBXBuildFile; fileRef = CB5A2EFE1B11B9A100CD9D87 /* WXUtil.mm */; };
+		CBCEA95A1B102CD70061158D /* libsqlite3.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = CBCEA9591B102CD70061158D /* libsqlite3.0.dylib */; };
 		CBE5D4851AFDE6500004C93E /* NewCrayonBrush.m in Sources */ = {isa = PBXBuildFile; fileRef = CBE5D4841AFDE6500004C93E /* NewCrayonBrush.m */; };
 		CBE5D4861AFDE6500004C93E /* NewCrayonBrush.m in Sources */ = {isa = PBXBuildFile; fileRef = CBE5D4841AFDE6500004C93E /* NewCrayonBrush.m */; };
 		CBE5D48D1AFDF5720004C93E /* NewPencilBrush.m in Sources */ = {isa = PBXBuildFile; fileRef = CBE5D48C1AFDF5720004C93E /* NewPencilBrush.m */; };
@@ -11338,6 +11351,13 @@
 		CAFF62CE19E61FF50065D97E /* GameAdWallService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameAdWallService.m; sourceTree = "<group>"; };
 		CAFFF5C9196CED8C000DD4E7 /* UIViewController+CommonHome.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+CommonHome.h"; sourceTree = "<group>"; };
 		CAFFF5CA196CED8C000DD4E7 /* UIViewController+CommonHome.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+CommonHome.m"; sourceTree = "<group>"; };
+		CB5A2EF51B11ABAF00CD9D87 /* WechatPayManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WechatPayManager.h; sourceTree = "<group>"; };
+		CB5A2EF61B11ABAF00CD9D87 /* WechatPayManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WechatPayManager.m; sourceTree = "<group>"; };
+		CB5A2EFB1B11B9A100CD9D87 /* ApiXml.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ApiXml.h; sourceTree = "<group>"; };
+		CB5A2EFC1B11B9A100CD9D87 /* ApiXml.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ApiXml.mm; sourceTree = "<group>"; };
+		CB5A2EFD1B11B9A100CD9D87 /* WXUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXUtil.h; sourceTree = "<group>"; };
+		CB5A2EFE1B11B9A100CD9D87 /* WXUtil.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = WXUtil.mm; sourceTree = "<group>"; };
+		CBCEA9591B102CD70061158D /* libsqlite3.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.0.dylib; path = usr/lib/libsqlite3.0.dylib; sourceTree = SDKROOT; };
 		CBE5D4831AFDE6500004C93E /* NewCrayonBrush.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewCrayonBrush.h; sourceTree = "<group>"; };
 		CBE5D4841AFDE6500004C93E /* NewCrayonBrush.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewCrayonBrush.m; sourceTree = "<group>"; };
 		CBE5D48B1AFDF5720004C93E /* NewPencilBrush.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewPencilBrush.h; sourceTree = "<group>"; };
@@ -11893,6 +11913,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CBCEA95A1B102CD70061158D /* libsqlite3.0.dylib in Frameworks */,
 				CA93D13918F00994002BB805 /* CoreMotion.framework in Frameworks */,
 				CAA1AFC7159EAB1700504C98 /* libstdc++.dylib in Frameworks */,
 				C2A09762152ECDEA006535F7 /* ImageIO.framework in Frameworks */,
@@ -12198,6 +12219,7 @@
 		3672C1F31ABA7C4400AEC29D /* WeChatSDK */ = {
 			isa = PBXGroup;
 			children = (
+				CB5A2EF41B11AB6600CD9D87 /* WechatPayManager */,
 				3672C1F41ABA7C4400AEC29D /* libWeChatSDK.a */,
 				3672C1F51ABA7C4400AEC29D /* WXApi.h */,
 				3672C1F61ABA7C4400AEC29D /* WXApiObject.h */,
@@ -16892,6 +16914,7 @@
 		CA745D211503B1B500600024 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				CBCEA9591B102CD70061158D /* libsqlite3.0.dylib */,
 				CA93D13818F00994002BB805 /* CoreMotion.framework */,
 				CAEEC19E181A5F18007FD75F /* CoreVideo.framework */,
 				A42150391803E87C007F2EFD /* AssetsLibrary.framework */,
@@ -18878,6 +18901,19 @@
 				CA50D28C1697C6EC00A7BE14 /* DrawColorManager.m */,
 			);
 			path = Draw_Common;
+			sourceTree = "<group>";
+		};
+		CB5A2EF41B11AB6600CD9D87 /* WechatPayManager */ = {
+			isa = PBXGroup;
+			children = (
+				CB5A2EFB1B11B9A100CD9D87 /* ApiXml.h */,
+				CB5A2EFC1B11B9A100CD9D87 /* ApiXml.mm */,
+				CB5A2EFD1B11B9A100CD9D87 /* WXUtil.h */,
+				CB5A2EFE1B11B9A100CD9D87 /* WXUtil.mm */,
+				CB5A2EF51B11ABAF00CD9D87 /* WechatPayManager.h */,
+				CB5A2EF61B11ABAF00CD9D87 /* WechatPayManager.m */,
+			);
+			path = WechatPayManager;
 			sourceTree = "<group>";
 		};
 		D80518A5196BD12200D350B3 /* Resource */ = {
@@ -24538,6 +24574,7 @@
 				A461B1EA174CBAA70088B061 /* RankView.m in Sources */,
 				A461B1EE174CBAA70088B061 /* TopPlayer.m in Sources */,
 				362330A21AB91C7F00BFCD35 /* PBArray.m in Sources */,
+				CB5A2F011B11B9A100CD9D87 /* ApiXml.mm in Sources */,
 				A461B1F0174CBAA70088B061 /* TopPlayerView.m in Sources */,
 				A461B1F1174CBAA70088B061 /* AnimationPlayer.m in Sources */,
 				A461B1F2174CBAA70088B061 /* MyCommentCell.m in Sources */,
@@ -24761,6 +24798,7 @@
 				A461B333174CBAA70088B061 /* PriceView.m in Sources */,
 				A461B334174CBAA70088B061 /* StoreCell.m in Sources */,
 				A461B335174CBAA70088B061 /* StoreController.m in Sources */,
+				CB5A2EF91B11ABB000CD9D87 /* WechatPayManager.m in Sources */,
 				A461B336174CBAA70088B061 /* ColorShopCell.m in Sources */,
 				A461B337174CBAA70088B061 /* GameItemDetailView.m in Sources */,
 				A4B60ABE19B6C21A00C300D5 /* BlurBrush.m in Sources */,
@@ -24893,6 +24931,7 @@
 				A4997217177832EA00B01EBE /* OpusManageController.m in Sources */,
 				A499721A177832EA00B01EBE /* OpusView.m in Sources */,
 				A49972CA1778365000B01EBE /* OfflineGuessDrawController.m in Sources */,
+				CB5A2F051B11B9A100CD9D87 /* WXUtil.mm in Sources */,
 				A49972CD1778365000B01EBE /* OfflineDrawViewController.m in Sources */,
 				A49972D01778365000B01EBE /* OnlineDrawViewController.m in Sources */,
 				A49972D31778365000B01EBE /* OnlineGuessDrawController.m in Sources */,
@@ -25484,6 +25523,7 @@
 				C28A9ADA1738F04B007A819F /* MyCommentCell.m in Sources */,
 				C28A9ADB1738F04B007A819F /* StatisticManager.m in Sources */,
 				C28A9ADC1738F04B007A819F /* ContestFeed.m in Sources */,
+				CB5A2EF81B11ABAF00CD9D87 /* WechatPayManager.m in Sources */,
 				C28A9AE11738F04B007A819F /* SuperHomeController.m in Sources */,
 				C28A9AE21738F04B007A819F /* UserAnnotation.m in Sources */,
 				A4E85C2E19C89380002762CD /* PencilBrush.m in Sources */,
@@ -25588,6 +25628,7 @@
 				C28A9B7C1738F04B007A819F /* BBSViewManager.m in Sources */,
 				C28A9B7D1738F04B007A819F /* UIView+MDCShineEffect.m in Sources */,
 				C28A9B7E1738F04B007A819F /* PPSmartUpdateData.m in Sources */,
+				CB5A2F041B11B9A100CD9D87 /* WXUtil.mm in Sources */,
 				C28A9B7F1738F04B007A819F /* PPSmartUpdateDataUtils.m in Sources */,
 				C28A9B801738F04B007A819F /* BlockUtils.m in Sources */,
 				C28A9B811738F04B007A819F /* PPSmartDataTest.m in Sources */,
@@ -25952,6 +25993,7 @@
 				CA2A289C19596ACB00A97478 /* CopyView.m in Sources */,
 				CA0174EB19405306005E4390 /* OpusClassInfoManager.m in Sources */,
 				EAD13B8B17DECFE300764FFB /* OrangeLoadingView.m in Sources */,
+				CB5A2F001B11B9A100CD9D87 /* ApiXml.mm in Sources */,
 				A44F32E917E16C3500AF9B26 /* ContestRankView.m in Sources */,
 				CAA581A8197BAFAD00599740 /* ImageSimilarity.mm in Sources */,
 				EA8EF66817E55F0D003F1AF8 /* DrawHomeHeaderPanel.m in Sources */,
@@ -26413,6 +26455,7 @@
 				C2A3CC1316159AD700663271 /* AnimationPlayer.m in Sources */,
 				CA65C0641615A01700EE1C1C /* MyCommentCell.m in Sources */,
 				EAAFC5471615A4AB00C72BAB /* StatisticManager.m in Sources */,
+				CB5A2EF71B11ABAF00CD9D87 /* WechatPayManager.m in Sources */,
 				CA9D5F4D161700A70082E258 /* ContestFeed.m in Sources */,
 				CA42706D1620028E00C6CCAE /* SuperHomeController.m in Sources */,
 				A4E85C2D19C89380002762CD /* PencilBrush.m in Sources */,
@@ -26517,6 +26560,7 @@
 				CAC790FB1663194F009B4053 /* BBSTableViewCell.m in Sources */,
 				CA2F9F89199233FB00756AD7 /* MainDataModel.xcdatamodeld in Sources */,
 				CAC7915C1664AD2C009B4053 /* BBSImageManager.m in Sources */,
+				CB5A2F031B11B9A100CD9D87 /* WXUtil.mm in Sources */,
 				CAC791711664BCF3009B4053 /* BBSFontManager.m in Sources */,
 				CAC791741664BD09009B4053 /* BBSColorManager.m in Sources */,
 				CAC7919B1665AD1B009B4053 /* BBSViewManager.m in Sources */,
@@ -26881,6 +26925,7 @@
 				CA0174EA19405306005E4390 /* OpusClassInfoManager.m in Sources */,
 				EA433E2917CDE500006E6FA7 /* DJQRateView.m in Sources */,
 				EA433E2D17CDE500006E6FA7 /* DJQStartView.m in Sources */,
+				CB5A2EFF1B11B9A100CD9D87 /* ApiXml.mm in Sources */,
 				CAA581A7197BAF6A00599740 /* ImageSimilarity.mm in Sources */,
 				EA7100AA17D04B2C00451A38 /* CustomSlider.m in Sources */,
 				EA7100B517D05FB000451A38 /* DrawPlayer.m in Sources */,
@@ -27142,6 +27187,7 @@
 				EA411869176066F500DA72D0 /* GCDAsyncUdpSocket.m in Sources */,
 				EA41186A176066F500DA72D0 /* CDataScanner.m in Sources */,
 				EA41186B176066F500DA72D0 /* CDataScanner_Extensions.m in Sources */,
+				CB5A2EFA1B11ABB000CD9D87 /* WechatPayManager.m in Sources */,
 				EA41186C176066F500DA72D0 /* NSCharacterSet_Extensions.m in Sources */,
 				EA41186D176066F500DA72D0 /* NSDictionary_JSONExtensions.m in Sources */,
 				EA41186E176066F500DA72D0 /* NSScanner_Extensions.m in Sources */,
@@ -27354,6 +27400,7 @@
 				EA411985176066F500DA72D0 /* BBSManager.m in Sources */,
 				EA411986176066F500DA72D0 /* BBSService.m in Sources */,
 				EA411987176066F500DA72D0 /* BBSBoardController.m in Sources */,
+				CB5A2F021B11B9A100CD9D87 /* ApiXml.mm in Sources */,
 				EA411988176066F500DA72D0 /* BBSNetwork.m in Sources */,
 				EA411989176066F500DA72D0 /* BBSBoardCell.m in Sources */,
 				EA41198A176066F500DA72D0 /* BBSBoardSection.m in Sources */,
@@ -27533,6 +27580,7 @@
 				EA411A67176066F500DA72D0 /* ShapeBox.m in Sources */,
 				EA411A68176066F500DA72D0 /* DrawBgManager.m in Sources */,
 				EA411A69176066F500DA72D0 /* DrawBgBox.m in Sources */,
+				CB5A2F061B11B9A100CD9D87 /* WXUtil.mm in Sources */,
 				EA411A6A176066F500DA72D0 /* FeedDownloadService.m in Sources */,
 				36B420891AA762DB00F8A9B1 /* RSADataSigner.m in Sources */,
 				EA411A6B176066F500DA72D0 /* JRSwizzle.m in Sources */,
@@ -28217,6 +28265,8 @@
 					"/Users/pipi/gitdata/Common_iPhone_20/3PP-SDK/YoumiVideo",
 					"/Users/pipi/gitdata/Common_iPhone_20/3PP-SDK/YoumiSpotAd",
 					"$(PROJECT_DIR)/Draw/GameServer/ProtocolBuffer/google/protobuf-c",
+					"/Users/Charlie/gitdata/Common_iPhone_20/3PP-SDK",
+					"/Users/Charlie/gitdata/Common_iPhone_20/3PP-SDK/WechatSDK/WeChatSDK_1.5",
 				);
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = "-ObjC";
@@ -28339,6 +28389,8 @@
 					"/Users/pipi/gitdata/Common_iPhone_20/3PP-SDK/YoumiVideo",
 					"/Users/pipi/gitdata/Common_iPhone_20/3PP-SDK/YoumiSpotAd",
 					"$(PROJECT_DIR)/Draw/GameServer/ProtocolBuffer/google/protobuf-c",
+					"/Users/Charlie/gitdata/Common_iPhone_20/3PP-SDK",
+					"/Users/Charlie/gitdata/Common_iPhone_20/3PP-SDK/WechatSDK/WeChatSDK_1.5",
 				);
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = "-ObjC";
@@ -28463,6 +28515,8 @@
 					"/Users/pipi/gitdata/Common_iPhone_20/3PP-SDK/YoumiVideo",
 					"/Users/pipi/gitdata/Common_iPhone_20/3PP-SDK/YoumiSpotAd",
 					"$(PROJECT_DIR)/Draw/GameServer/ProtocolBuffer/google/protobuf-c",
+					"/Users/Charlie/gitdata/Common_iPhone_20/3PP-SDK",
+					"/Users/Charlie/gitdata/Common_iPhone_20/3PP-SDK/WechatSDK/WeChatSDK_1.5",
 				);
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = LittleGeeDraw;
@@ -28583,6 +28637,8 @@
 					"/Users/pipi/gitdata/Common_iPhone_20/3PP-SDK/YoumiVideo",
 					"/Users/pipi/gitdata/Common_iPhone_20/3PP-SDK/YoumiSpotAd",
 					"$(PROJECT_DIR)/Draw/GameServer/ProtocolBuffer/google/protobuf-c",
+					"/Users/Charlie/gitdata/Common_iPhone_20/3PP-SDK",
+					"/Users/Charlie/gitdata/Common_iPhone_20/3PP-SDK/WechatSDK/WeChatSDK_1.5",
 				);
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = LittleGeeDraw;
@@ -28775,6 +28831,7 @@
 					"../Common_iPhone_20/3PP-SDK/YoumiSpotAd",
 					"./Draw/GameServer/ProtocolBuffer/google/protobuf-c",
 					"$(PROJECT_DIR)/Draw/GameServer/ProtocolBuffer/google/protobuf-c",
+					"../Common_iPhone_20/3PP-SDK/WechatSDK/WeChatSDK_1.5",
 				);
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = "-ObjC";
@@ -28898,6 +28955,7 @@
 					"../Common_iPhone_20/3PP-SDK/YoumiSpotAd",
 					"./Draw/GameServer/ProtocolBuffer/google/protobuf-c",
 					"$(PROJECT_DIR)/Draw/GameServer/ProtocolBuffer/google/protobuf-c",
+					"../Common_iPhone_20/3PP-SDK/WechatSDK/WeChatSDK_1.5",
 				);
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = "-ObjC";
@@ -29015,6 +29073,8 @@
 					"/Users/pipi/gitdata/Common_iPhone_20/3PP-SDK/YoumiVideo",
 					"/Users/pipi/gitdata/Common_iPhone_20/3PP-SDK/YoumiSpotAd",
 					"$(PROJECT_DIR)/Draw/GameServer/ProtocolBuffer/google/protobuf-c",
+					"/Users/Charlie/gitdata/Common_iPhone_20/3PP-SDK",
+					"/Users/Charlie/gitdata/Common_iPhone_20/3PP-SDK/WechatSDK/WeChatSDK_1.5",
 				);
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = AskPs;
@@ -29128,6 +29188,8 @@
 					"/Users/pipi/gitdata/Common_iPhone_20/3PP-SDK/YoumiVideo",
 					"/Users/pipi/gitdata/Common_iPhone_20/3PP-SDK/YoumiSpotAd",
 					"$(PROJECT_DIR)/Draw/GameServer/ProtocolBuffer/google/protobuf-c",
+					"/Users/Charlie/gitdata/Common_iPhone_20/3PP-SDK",
+					"/Users/Charlie/gitdata/Common_iPhone_20/3PP-SDK/WechatSDK/WeChatSDK_1.5",
 				);
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = AskPs;
