@@ -75,7 +75,7 @@ AUTO_CREATE_VIEW_BY_XIB(BulletinCell)
     return (BulletinCell*)[BulletinCell createView];
 }
 
-+ (float)getCellHeight
++ (CGFloat)getCellHeight
 {
     return (ISIPAD ? 175 : 84);
 }

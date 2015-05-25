@@ -508,7 +508,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GameItemService);
                                       expireDate:[[NSDate date] dateByAddingDays:360]]];
     
     // 透明笔
-    [mutableArray addObject:[self itemWithItemId:ItemTypeBrushCrayon
+    [mutableArray addObject:[self itemWithItemId:ItemTypeBrushNewCrayon
                                             name:@"kItemBrushCrayon"
                                             desc:@"kItemBrushCrayonDesc"
                                      consumeType:PBGameItemConsumeTypeNonConsumable
@@ -534,7 +534,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GameItemService);
                                       expireDate:[[NSDate date] dateByAddingDays:360]]];
     
     // 透明笔
-    [mutableArray addObject:[self itemWithItemId:ItemTypeBrushPencil
+    [mutableArray addObject:[self itemWithItemId:ItemTypeBrushNewPencil
                                             name:@"kItemBrushPencil"
                                             desc:@"kItemBrushPencilDesc"
                                      consumeType:PBGameItemConsumeTypeNonConsumable
@@ -547,7 +547,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GameItemService);
                                       expireDate:[[NSDate date] dateByAddingDays:360]]];
     
     // 透明笔
-    [mutableArray addObject:[self itemWithItemId:ItemTypeBrushWater
+    [mutableArray addObject:[self itemWithItemId:ItemTypeBrushNewWater
                                             name:@"kItemBrushWater"
                                             desc:@"kItemBrushWaterDesc"
                                      consumeType:PBGameItemConsumeTypeNonConsumable
