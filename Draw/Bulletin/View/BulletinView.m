@@ -90,7 +90,7 @@ AUTO_CREATE_VIEW_BY_XIB(BulletinView);
     return [BulletinService defaultService].bulletins.count;
 }
 
-- (float)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     BulletinService* service = [BulletinService defaultService];
     Bulletin* bulletin = nil;
