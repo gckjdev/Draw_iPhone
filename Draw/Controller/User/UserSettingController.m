@@ -456,6 +456,7 @@ SET_CELL_BG_IN_CONTROLLER;
 {
     [self clearSwitchInCell:cell];
     [cell.customAccessory setHidden:YES];
+    [cell setAccessoryType:UITableViewCellAccessoryNone];
     UIButton* btn = [[UIButton alloc] initWithFrame:SW_FRAME];
     [cell.contentView addSubview:btn];
     [self initSwitcher:btn];
@@ -531,7 +532,7 @@ SET_CELL_BG_IN_CONTROLLER;
         [self clearSwitchInCell:cell];
     }
 //    [self initCell:cell withIndexPath:indexPath];
-    int rowNumber = [self tableView:self.dataTableView numberOfRowsInSection:indexPath.section];
+    NSInteger rowNumber = [self tableView:self.dataTableView numberOfRowsInSection:indexPath.section];
     [cell setCellWithRow:indexPath.row inSectionRowCount:rowNumber];
     
     [cell.customDetailLabel setText:nil];
@@ -741,20 +742,6 @@ SET_CELL_BG_IN_CONTROLLER;
                 
             case ROW_QQ_WEIBO:
             {
-//                [cell.customTextLabel setText:NSLS(@"kSetQQWeibo")];
-//                PPSNSType type = TYPE_QQ;
-//                if ([[GameSNSService defaultService] isAuthenticated:type]){
-//                    if ([[GameSNSService defaultService] isExpired:type]){
-//                        [cell.customDetailLabel setText:NSLS(@"kWeiboExpired")];
-//                    }
-//                    else{
-//                        [cell.customDetailLabel setText:NSLS(@"kWeiboSet")];
-//                    }
-//                }
-//                else{
-//                    [cell.customDetailLabel setText:NSLS(@"kNotSet")];
-//                }
-
                 [cell.customTextLabel setText:NSLS(@"kSetQQWeibo")];
                 PPSNSType type = TYPE_QQSPACE;
                 if ([[GameSNSService defaultService] isAuthenticated:type]){
@@ -1214,7 +1201,7 @@ SET_CELL_BG_IN_CONTROLLER;
             [actionSheet addButtonWithTitle:zodiacStr];
         }
     }
-    int index = [actionSheet addButtonWithTitle:NSLS(@"kCancel")];
+    NSInteger index = [actionSheet addButtonWithTitle:NSLS(@"kCancel")];
     [actionSheet setCancelButtonIndex:index];
     __block UserSettingController* bc = self;
     [actionSheet setActionBlock:^(NSInteger buttonIndex) {
@@ -1239,21 +1226,20 @@ SET_CELL_BG_IN_CONTROLLER;
 {
     __block UserSettingController* bc = self;
     NSString* defaultDateStr = [_pbUserBuilder hasBirthday]?_pbUserBuilder.birthday:@"1990-06-15";
-    GCDatePickerView* view = [GCDatePickerView DatePickerViewWithMode:UIDatePickerModeDate
-                                                          defaultDate:dateFromStringByFormat(defaultDateStr, DATE_FORMAT)
-                                                          finishBlock:^(NSDate *date) {
-                                                              
-                                                              if (date != nil){
-                                                                  
-                                                                  [_pbUserBuilder setBirthday:dateToStringByFormat(date, DATE_FORMAT)];
-                                                                  if (![_pbUserBuilder hasBirthday]) {
-                                                                      [_pbUserBuilder setZodiac:dateToZodiac(date)];
-                                                                  }
-                                                                  hasEdited = YES;
-                                                              }
-                                                              
-                                                              [bc.dataTableView reloadData];
-                                                          }];
+    GCDatePickerView* view;
+    view = [GCDatePickerView DatePickerViewWithMode:UIDatePickerModeDate
+                                        defaultDate:dateFromStringByFormat(defaultDateStr, DATE_FORMAT)
+                                        finishBlock:
+                        ^(NSDate *date) {
+                            if (date != nil){
+                                [_pbUserBuilder setBirthday:dateToStringByFormat(date, DATE_FORMAT)];
+                                if (![_pbUserBuilder hasBirthday]) {
+                                    [_pbUserBuilder setZodiac:dateToZodiac(date)];
+                                }
+                                hasEdited = YES;
+                            }
+                            [bc.dataTableView reloadData];
+                        }];
     [view.datePicker setMaximumDate:[NSDate dateWithTimeIntervalSinceNow:0]];
     [view showInView:self.view];
 }
@@ -1287,7 +1273,7 @@ SET_CELL_BG_IN_CONTROLLER;
     for (NSString* privacyTypeStr in [self getPrivacyPublicTypeNameArray]) {
         [actionSheet addButtonWithTitle:privacyTypeStr];
     }
-    int index = [actionSheet addButtonWithTitle:NSLS(@"kCancel")];
+    NSInteger index = [actionSheet addButtonWithTitle:NSLS(@"kCancel")];
     [actionSheet setCancelButtonIndex:index];
     __block UserSettingController* bc = self;
     [actionSheet setActionBlock:^(NSInteger buttonIndex) {

@@ -17,6 +17,6 @@
 @property (retain, nonatomic) IBOutlet UIImageView *customSeparatorLine;
 @property (retain, nonatomic) IBOutlet UIView *customAccessory;
 
-- (void)setCellWithRow:(int)row inSectionRowCount:(int)rowCount;
+- (void)setCellWithRow:(NSInteger)row inSectionRowCount:(NSInteger)rowCount;
 - (void)setBadge:(int)number;
 @end

@@ -463,7 +463,7 @@ SET_CELL_BG_IN_CONTROLLER;
         
     }
     [self initCell:cell withIndex:indexPath.row];
-    int rowNumber = [self tableView:self.dataTableView numberOfRowsInSection:indexPath.section];
+    NSInteger rowNumber = [self tableView:self.dataTableView numberOfRowsInSection:indexPath.section];
     [cell setCellWithRow:indexPath.row inSectionRowCount:rowNumber];
     return cell;
 }

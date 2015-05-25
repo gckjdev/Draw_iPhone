@@ -44,7 +44,7 @@ AUTO_CREATE_VIEW_BY_XIB(UserSettingCell)
     return cell;
 }
 
-+ (float)getCellHeight
++ (CGFloat)getCellHeight
 {
     return ISIPAD?88:44;
 }
@@ -56,7 +56,7 @@ AUTO_CREATE_VIEW_BY_XIB(UserSettingCell)
 
 #define Y_OFFSET (ISIPAD?12:6)
 
-- (void)setCellWithRow:(int)row inSectionRowCount:(int)rowCount
+- (void)setCellWithRow:(NSInteger)row inSectionRowCount:(NSInteger)rowCount
 {
     self.accessoryType = UITableViewCellAccessoryDisclosureIndicator;            
 }
