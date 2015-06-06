@@ -179,6 +179,10 @@
         [self handleJumpToAlipayClient:note];
     }];
     
+    [self registerNotificationWithName:NOTIFICATION_SYNC_ACCOUNT usingBlock:^(NSNotification *note) {
+        [self updateVipInfo];
+    }];
+    
     [self updateBuyVipCount];
 }
 

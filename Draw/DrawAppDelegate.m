@@ -621,14 +621,16 @@ NSString* GlobalGetBoardServerURL()
 
 - (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url { 
     PPDebug(@"<handleURL> url=%@", url.absoluteString);
-    if ([url.host isEqualToString:@"safepay"]) {
+    if ([url.absoluteString containsString:@"safepay"]) {
         
-        [[AlipaySDK defaultService] processAuth_V2Result:url
+        [[AlipaySDK defaultService] processOrderWithPaymentResult:url
                                          standbyCallback:^(NSDictionary *resultDic) {
                                              NSString *resultStr = resultDic[@"result"];
                                              PPDebug(@"result = %@",resultDic);
                                              
-                                             // TODO show message
+                                             // show message
+                                             [[AliPayManager defaultService] handlePayResult:resultDic];
+                                             
                                          }];
         
         return YES;
@@ -644,14 +646,15 @@ NSString* GlobalGetBoardServerURL()
 
     PPDebug(@"<handleURL> url=%@, sourceApplication=%@, annotation=%@", url.absoluteString, sourceApplication, [annotation description]);
     
-    if ([url.host isEqualToString:@"safepay"]) {
+    if ([url.absoluteString containsString:@"safepay"]) {
         
-        [[AlipaySDK defaultService] processAuth_V2Result:url
+        [[AlipaySDK defaultService] processOrderWithPaymentResult:url
                                          standbyCallback:^(NSDictionary *resultDic) {
                                              NSString *resultStr = resultDic[@"result"];
                                              PPDebug(@"result = %@",resultDic);
                                              
                                              // TODO show message
+                                             [[AliPayManager defaultService] handlePayResult:resultDic];
                                          }];
      
         return YES;
