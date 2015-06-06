@@ -21,11 +21,13 @@
 
 + (id)obj;
 + (id)objectWithActionList:(NSMutableArray*)actionList
-              isNewVersion:(BOOL)isNewVersion
+              drawDataVersion:(int)drawDataVersion
                 canvasSize:(CGSize)canvasSize
                     layers:(NSArray*)layers;
 
-@property(nonatomic, assign) BOOL isNewVersion;
+//@property(nonatomic, assign) BOOL isNewVersion;
+
+@property(nonatomic, assign) int drawDataVersion;
 @property(nonatomic, assign) CGSize canvasSize;
 
 @property(nonatomic, retain) NSMutableArray *actionList;
@@ -39,6 +41,9 @@
 @property(nonatomic, retain) NSString *opusId;
 @property(nonatomic, retain) NSString *opusWord;
 @property(nonatomic, retain) NSString *opusDesc;
+
+- (BOOL)isLatestDrawVersion;
+- (BOOL)isOldPlayVersion;
 
 @end
 

@@ -876,7 +876,7 @@
     BOOL isNewVersion = [PPConfigManager currentDrawDataVersion] <= [message drawDataVersion];
     
     ReplayObject *obj = [ReplayObject objectWithActionList:[message drawActionList]
-                                              isNewVersion:isNewVersion
+                                              drawDataVersion:message.drawDataVersion
                                                 canvasSize:[message canvasSize]
                                                     layers:[DrawLayer defaultOldLayersWithFrame:CGRectFromCGSize(message.canvasSize)]];
 

@@ -384,7 +384,7 @@ typedef enum{
     BOOL isNewVersion = [PPConfigManager currentDrawDataVersion] <= [currentPaint drawDataVersion];
     
     ReplayObject *obj = [ReplayObject objectWithActionList:currentPaint.drawActionList
-                                              isNewVersion:isNewVersion
+                                              drawDataVersion:currentPaint.drawDataVersion
                                                 canvasSize:currentPaint.canvasSize
                                                     layers:currentPaint.layers];
     
@@ -403,7 +403,7 @@ typedef enum{
     BOOL isNewVersion = [PPConfigManager currentDrawDataVersion] <= [currentPaint drawDataVersion];
     
     ReplayObject *obj = [ReplayObject objectWithActionList:currentPaint.drawActionList
-                                              isNewVersion:isNewVersion
+                                              drawDataVersion:[currentPaint drawDataVersion]
                                                 canvasSize:currentPaint.canvasSize
                                                     layers:currentPaint.layers];
     
@@ -477,7 +477,7 @@ typedef enum{
     BOOL isNewVersion = [PPConfigManager currentDrawDataVersion] <= [currentPaint drawDataVersion];
     
     ReplayObject *obj = [ReplayObject objectWithActionList:currentPaint.drawActionList
-                                              isNewVersion:isNewVersion
+                                              drawDataVersion:[currentPaint drawDataVersion]
                                                 canvasSize:currentPaint.canvasSize
                                                     layers:currentPaint.layers];
     

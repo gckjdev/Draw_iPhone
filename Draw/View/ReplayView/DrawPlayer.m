@@ -23,17 +23,29 @@
 }
 
 + (id)objectWithActionList:(NSMutableArray*)actionList
-              isNewVersion:(BOOL)isNewVersion
+            drawDataVersion:(int)drawDataVersion
                 canvasSize:(CGSize)canvasSize
                     layers:(NSArray*)layers
 {
     ReplayObject* obj = [[[ReplayObject alloc]init]autorelease];
     obj.actionList = actionList;
-    obj.isNewVersion = isNewVersion;
+    obj.drawDataVersion = drawDataVersion;
     obj.canvasSize = canvasSize;
     obj.layers = layers;
     
     return obj;
+}
+
+- (BOOL)isLatestDrawVersion
+{
+    return [PPConfigManager currentDrawDataVersion] < _drawDataVersion;
+}
+
+#define OLD_PLAY_VERSION 8
+
+- (BOOL)isOldPlayVersion
+{
+    return _drawDataVersion <= OLD_PLAY_VERSION;
 }
 
 - (void)dealloc
@@ -106,7 +118,7 @@
     self.speedSlider.pointImage = [[ShareImageManager defaultManager] speedProgressPoint];
 
     [self.showView setPlaySpeedWithSliderSpeed:[self speedWithRate:self.speedSlider.value]];
-    if(!self.replayObj.isNewVersion){//旧版本数据储存点多，需要较快播放速度
+    if(self.replayObj.isOldPlayVersion){//旧版本数据储存点多，需要较快播放速度
         NSInteger acceleration = 20;
         self.showView.playSpeed *= acceleration;
         self.showView.speed *= acceleration;
@@ -155,7 +167,7 @@
     [controller.view addSubview:self];
     self.frame = controller.view.bounds;
     
-    if (_replayObj.isNewVersion) {
+    if (_replayObj.isLatestDrawVersion) {
         POSTMSG(NSLS(@"kNewDrawVersionTip"));
     }
     [self start];
@@ -280,7 +292,7 @@
 - (IBAction)changeSpeed:(CustomSlider *)sender {
     PPDebug(@"<changeSpeed> = %f", sender.value);
     [self.showView setPlaySpeedWithSliderSpeed:[self speedWithRate:self.speedSlider.value]];
-    if(!self.replayObj.isNewVersion){
+    if(self.replayObj.isOldPlayVersion){
         NSInteger acceleration = 20;
         self.showView.playSpeed *= acceleration;
         self.showView.speed *= acceleration;
@@ -444,7 +456,7 @@
             NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
             
             ReplayObject *obj = [ReplayObject objectWithActionList:draw.drawActionList
-                                                      isNewVersion:draw.isNewVersion
+                                                      drawDataVersion:draw.version
                                                         canvasSize:draw.canvasSize
                                                             layers:draw.layers];
 
@@ -487,7 +499,7 @@
     }
     
     ReplayObject *obj = [ReplayObject objectWithActionList:draw.drawActionList
-                                              isNewVersion:draw.isNewVersion
+                                              drawDataVersion:draw.version
                                                 canvasSize:draw.canvasSize
                                                     layers:draw.layers];
     

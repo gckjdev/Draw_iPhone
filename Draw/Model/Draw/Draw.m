@@ -141,8 +141,10 @@
 
 - (BOOL)isNewVersion
 {
-    return [PPConfigManager currentDrawDataVersion] <= self.version;
+    return [PPConfigManager currentDrawDataVersion] < self.version;
 }
+
+
 
 + (Draw*)parseDrawData:(NSData*)pbDrawData
 {

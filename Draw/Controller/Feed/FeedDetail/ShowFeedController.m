@@ -874,7 +874,10 @@ typedef enum{
                 
                 NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
                 
-                ReplayObject *obj = [ReplayObject objectWithActionList:drawFeed.drawData.drawActionList isNewVersion:drawFeed.drawData.isNewVersion canvasSize:drawFeed.drawData.canvasSize layers:drawFeed.drawData.layers];
+                ReplayObject *obj = [ReplayObject objectWithActionList:drawFeed.drawData.drawActionList
+                                                          drawDataVersion:drawFeed.drawData.version
+                                                            canvasSize:drawFeed.drawData.canvasSize
+                                                                layers:drawFeed.drawData.layers];
                 
                 obj.finalImage = [ShowFeedController getFeedImage:drawFeed];
 
@@ -1024,7 +1027,10 @@ static dispatch_once_t spotAdOnceToken;
 
                 NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
                 
-                ReplayObject *obj = [ReplayObject objectWithActionList:cp.feed.drawData.drawActionList isNewVersion:cp.feed.drawData.isNewVersion canvasSize:cp.feed.drawData.canvasSize layers:cp.feed.drawData.layers];
+                ReplayObject *obj = [ReplayObject objectWithActionList:cp.feed.drawData.drawActionList
+                                                          drawDataVersion:cp.feed.drawData.version
+                                                            canvasSize:cp.feed.drawData.canvasSize
+                                                                layers:cp.feed.drawData.layers];
                 
                 obj.finalImage = [ShowFeedController getFeedImage:cp.feed];
                 
