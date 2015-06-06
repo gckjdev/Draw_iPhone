@@ -303,7 +303,6 @@
                             nil];
     [sheet showInView:self.view];
     
-    __block typeof (self)bself = self;
     PBIAPProduct *product = [dataList objectAtIndex:indexPath.row];
     
     // alipay order construction
@@ -311,8 +310,12 @@
     order.partner = [PPConfigManager getAlipayPartner];
     order.seller = [PPConfigManager getAlipaySeller];
     order.tradeNO =  [AlixPayOrderManager tradeNoWithProductId:product.alipayProductId];
-    order.productName = [NSString stringWithFormat:@"%d个%@", product.count, NSLS(product.name)];
+    order.productName = [NSString stringWithFormat:@"%ld个%@", product.count, NSLS(product.name)];
     order.productDescription = [NSString stringWithFormat:@"【产品描述】%@", product.name];
+
+    order.productChargeType = PRODUCT_TYPE_INGOT;
+    order.productChargeAmount = product.count;
+
 #ifdef DEBUG
     order.amount = @"0.01";
 #else
@@ -324,7 +327,7 @@
     
     
     //微信支付所需要的参数,其中price微信需要以分为单位,所以做了简单转换 TODO for charlie 测试！
-    NSString* wxOrderName = [NSString stringWithFormat:@"%d个%@", product.count, NSLS(product.name)];
+    NSString* wxOrderName = [NSString stringWithFormat:@"%ld个%@", product.count, NSLS(product.name)];
     NSString* wxOrderPrice = [NSString stringWithFormat:@"%@00",[product priceInRMB]];
     
     //actions of the sheet
@@ -354,7 +357,7 @@
                 break;
             case 2:
                 // pay via apple account
-                [bself applePayForProduct:product];
+                [self applePayForProduct:product];
                 break;
 
             default:

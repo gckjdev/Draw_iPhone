@@ -20,8 +20,8 @@
 #import "StringUtil.h"
 #import "MKBlockActionSheet.h"
 
-#define PRODUCT_ID_BUY_VIP_MONTH    @"PRODUCT_BUY_VIP_MONTH"
-#define PRODUCT_ID_BUY_VIP_YEAR     @"PRODUCT_BUY_VIP_YEAR"
+#define PRODUCT_ID_BUY_VIP_MONTH    @"VIP_MONTH"
+#define PRODUCT_ID_BUY_VIP_YEAR     @"VIP_YEAR"
 
 
 
@@ -450,6 +450,14 @@
     order.seller = [PPConfigManager getAlipaySeller];
     order.tradeNO =  [AlixPayOrderManager tradeNoWithProductId:productId];
     order.productName = productName;
+    
+    order.productChargeType = VIP_BUY_TYPE_MONTH;
+    if (type == VIP_BUY_TYPE_MONTH){
+        order.productChargeAmount = value;
+    }
+    else{
+        order.productChargeAmount = value*12;   // year
+    }
 
     NSString* amountString = [NSString stringWithFormat:@"%d", amount];
     
@@ -512,17 +520,6 @@
 
 - (IBAction)clickBuyYear:(id)sender
 {
-//    if ([[UserManager defaultManager].pbUser vip] == 0 && [[UserService defaultService] vipMonthLeft] == 0){
-//        NSDate* nextDate = [NSDate dateWithTimeInterval:7*24*3600 sinceDate:[[UserService defaultService] vipNextOpenDate]];
-//
-//        NSString* msg = [NSString stringWithFormat:@"本期包年VIP名额已经售完\n下次购买日期为\n%@（%@）",
-//                         dateToChineseString(nextDate),
-//                         chineseWeekDayFromDate(nextDate)];
-//        POSTMSG2(msg, 3);
-//        return;
-//    }
-
-    
     self.currentProductId = PRODUCT_ID_BUY_VIP_YEAR;
 
     int amount = [PPConfigManager getVipYearFee];

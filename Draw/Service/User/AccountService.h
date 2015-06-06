@@ -14,6 +14,8 @@
 #import "Order.h"
 #import "AliPayManager.h"
 
+@class AlixPayOrder;
+
 #define VIP_BUY_TYPE_MONTH 1
 #define VIP_BUY_TYPE_YEAR  2
 
