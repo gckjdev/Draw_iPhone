@@ -325,23 +325,17 @@
     order.notifyURL = [PPConfigManager getAlipayNotifyUrl]; //回调URL
     [[AlixPayOrderManager defaultManager] addOrder:order];
     
-    
     //微信支付所需要的参数,其中price微信需要以分为单位,所以做了简单转换 TODO for charlie 测试！
     NSString* wxOrderName = [NSString stringWithFormat:@"%ld个%@", product.count, NSLS(product.name)];
-    NSString* wxOrderPrice = [NSString stringWithFormat:@"%@00",[product priceInRMB]];
+    NSString* wxOrderPrice = [NSString stringWithFormat:@"%.0f", [order.amount floatValue]*100];
+    
+    PPDebug(@"WeChatPay OrderName=%@, Price=%@", wxOrderName, wxOrderPrice);
     
     //actions of the sheet
     [sheet setActionBlock:^(NSInteger buttonIndex){
         switch (buttonIndex) {
             
             case 0:
-                // pay via zhifubao
-//                if ([PPConfigManager useAlipyaWeb]){
-//                    [bself alipayWebPaymentForOrder:order product:product];
-//                }
-//                else{
-//                    [bself alipayForOrder:order];
-//                }
 
                 [[AliPayManager defaultService] pay:order.tradeNO
                                             subject:order.productName
@@ -470,6 +464,11 @@
 //============================================================
 - (void)wxPayWithOrderName:(NSString*)name price:(NSString*)price
 {
+    if ([WXApi isWXAppInstalled] == NO){
+        POSTMSG(@"未安装微信，无法进行微信支付");
+        return;
+    }
+    
     //创建支付签名对象 && 初始化支付签名对象
     WechatPayManager* wxpayManager = [[[WechatPayManager alloc]initWithAppID:APP_ID mchID:MCH_ID spKey:PARTNER_ID] autorelease];
     
@@ -500,9 +499,8 @@
     req.package             = [dict objectForKey:@"package"];
     req.sign                = [dict objectForKey:@"sign"];
     
-//        BOOL flag = [WXApi sendReq:req];
     BOOL flag = [WXApi safeSendReq:req];
-    PPDebug(@"%d",flag);
+    PPDebug(@"<wxPayWithOrderName> send request flag result=%d",flag);
 }
 
 @end

@@ -451,13 +451,8 @@
     order.tradeNO =  [AlixPayOrderManager tradeNoWithProductId:productId];
     order.productName = productName;
     
-    order.productChargeType = VIP_BUY_TYPE_MONTH;
-    if (type == VIP_BUY_TYPE_MONTH){
-        order.productChargeAmount = value;
-    }
-    else{
-        order.productChargeAmount = value*12;   // year
-    }
+    order.productChargeType = type;
+    order.productChargeAmount = 1;
 
     NSString* amountString = [NSString stringWithFormat:@"%d", amount];
     
