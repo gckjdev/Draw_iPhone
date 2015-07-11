@@ -274,6 +274,8 @@
 		36B420FE1AA7FB7D00F8A9B1 /* SSZipArchive.m in Sources */ = {isa = PBXBuildFile; fileRef = CAFEFD2716606FC100441D77 /* SSZipArchive.m */; };
 		36E65E101ACA97720092009D /* libprotocolc.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 36E65E0D1ACA97720092009D /* libprotocolc.a */; };
 		36E65E111ACA97720092009D /* libprotocolc.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 36E65E0D1ACA97720092009D /* libprotocolc.a */; };
+		36E766751B2DD03B002AD667 /* libprotocolc_device.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 36099F121AFAFC3B00522A4F /* libprotocolc_device.a */; };
+		36E766761B2DD042002AD667 /* libprotocolc_device.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 36099F121AFAFC3B00522A4F /* libprotocolc_device.a */; };
 		36EBC04F1AC3BCE300227C4A /* hn_btn_close@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 36EBC0461AC3BCE300227C4A /* hn_btn_close@3x.png */; };
 		36EBC0501AC3BCE300227C4A /* hn_btn_close@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 36EBC0461AC3BCE300227C4A /* hn_btn_close@3x.png */; };
 		36EBC0511AC3BCE300227C4A /* hn_btn_close@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 36EBC0461AC3BCE300227C4A /* hn_btn_close@3x.png */; };
@@ -11769,6 +11771,7 @@
 				A4B1233818279ECD00A0603F /* CoreVideo.framework in Frameworks */,
 				A461B3D5174CBAA70088B061 /* ImageIO.framework in Frameworks */,
 				3672C2231ABA7C4500AEC29D /* ShareSDKCoreService.framework in Frameworks */,
+				36E766761B2DD042002AD667 /* libprotocolc_device.a in Frameworks */,
 				3672C2111ABA7C4400AEC29D /* SinaWeiboConnection.framework in Frameworks */,
 				A4F04B851806543C007274BE /* AssetsLibrary.framework in Frameworks */,
 				A4990773174DC624005AF334 /* Accelerate.framework in Frameworks */,
@@ -11870,6 +11873,7 @@
 				3672C2131ABA7C4400AEC29D /* SMSConnection.framework in Frameworks */,
 				C28A9CA91738F04B007A819F /* OpenAL.framework in Frameworks */,
 				C28A9CAA1738F04B007A819F /* EventKitUI.framework in Frameworks */,
+				36E766751B2DD03B002AD667 /* libprotocolc_device.a in Frameworks */,
 				C28A9CAB1738F04B007A819F /* MediaPlayer.framework in Frameworks */,
 				3672C2191ABA7C4400AEC29D /* AGCommon.framework in Frameworks */,
 				C28A9CAC1738F04B007A819F /* EventKit.framework in Frameworks */,

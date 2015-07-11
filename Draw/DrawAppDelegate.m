@@ -104,6 +104,7 @@
 #import <AlipaySDK/AlipaySDK.h>
 #import "WXApi.h"
 #import "WXApiObject.h"
+#import "FileUtil.h"
 
 NSString* GlobalGetServerURL()
 {
@@ -204,6 +205,47 @@ NSString* GlobalGetBoardServerURL()
     [super dealloc];
 }
 
+- (BOOL)addSkipBackupAttributeToItemAtPath:(NSString *) filePathString
+{
+    NSURL* URL= [NSURL fileURLWithPath: filePathString];
+//    assert([[NSFileManager defaultManager] fileExistsAtPath: [URL path]]);
+    
+    NSError *error = nil;
+    BOOL success = [URL setResourceValue: [NSNumber numberWithBool: YES]
+                                  forKey: NSURLIsExcludedFromBackupKey error: &error];
+    if(!success){
+        PPDebug(@"Error excluding %@ from backup %@", [URL lastPathComponent], error);
+    }
+    else{
+        PPDebug(@"Success excluding %@ from backu", [URL lastPathComponent]);
+        
+    }
+    return success;
+}
+
+- (void)excludeBakcupDir
+{
+    NSMutableArray* dirs = [NSMutableArray array];
+    [dirs addObject:[FileUtil filePathInAppDocument:@"avatar"]];
+    [dirs addObject:[FileUtil filePathInAppDocument:@"PAGE_BG"]];
+    [dirs addObject:[FileUtil filePathInAppDocument:@"BBS_BG"]];
+    [dirs addObject:[FileUtil filePathInAppDocument:@"tencent_analysis_qc.db"]];
+    [dirs addObject:[FileUtil filePathInAppDocument:@"TCSdkConfig.plist"]];
+    [dirs addObject:[FileUtil filePathInAppDocument:@"TutorialImage"]];
+    [dirs addObject:[FileUtil filePathInAppDocument:@"config_data"]];
+    [dirs addObject:[FileUtil filePathInAppDocument:@"copy_paint.png"]];
+    [dirs addObject:[FileUtil filePathInAppDocument:@"AlixPay-RSAPrivateKey"]];
+    [dirs addObject:[FileUtil filePathInAppDocument:@"draw_bg_normal"]];
+//    [dirs addObject:[FileUtil filePathInAppDocument:@"AlixPay-RSAPrivateKey"]];
+//    [dirs addObject:[FileUtil filePathInAppDocument:@"AppDB.sqlite-wal"]];
+//    [dirs addObject:[FileUtil filePathInAppDocument:@"AlixPay-RSAPrivateKey"]];
+    
+    for (NSString* dir in dirs){
+        [self addSkipBackupAttributeToItemAtPath:dir];
+    }
+    
+}
+
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
 //    [DrawUtils testSpendTime];
@@ -211,6 +253,7 @@ NSString* GlobalGetBoardServerURL()
     
     
 //    [[UINavigationBar appearance] setBarTintColor:[UIColor colorWithRed:181 green:261 blue:245 alpha:1.0]];
+    [self excludeBakcupDir];
     
     [IQKeyBoardManager installKeyboardManager];
     [IQKeyBoardManager disableKeyboardManager];
@@ -636,7 +679,8 @@ NSString* GlobalGetBoardServerURL()
         return YES;
     }
     
-    [WXApi handleOpenURL:url delegate:self];
+    // TODO
+//    [WXApi handleOpenURL:url delegate:self];
     
     [[GameSNSService defaultService] handleOpenURL:url];
     return YES;
@@ -662,8 +706,9 @@ NSString* GlobalGetBoardServerURL()
 //    if ([[url absoluteString] hasPrefix:@"alipay"]){
 //        return [AliPayManager parseURL:url alipayPublicKey:[PPConfigManager getAlipayAlipayPublicKey]];
 //    }
-    
-    [WXApi handleOpenURL:url delegate:self];
+
+    // TODO
+//    [WXApi handleOpenURL:url delegate:self];
     
     
     [[GameSNSService defaultService] handleOpenURL:url sourceApplication:sourceApplication annotation:annotation];

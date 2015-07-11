@@ -298,7 +298,7 @@
                             otherButtonTitles:
                             //NSLS(@"kPayViaZhiFuBaoWeb"),
                             NSLS(@"kPayViaZhiFuBao"),
-                            NSLS(@"kPayViaWechatPay"),
+//                            NSLS(@"kPayViaWechatPay"),
                             NSLS(@"kPayViaAppleAccount"),
                             nil];
     [sheet showInView:self.view];
@@ -343,13 +343,15 @@
                                               price:[order.amount floatValue]];
                 break;
 
+//            case 1:
+//                // pay via wechat
+//                [self wxPayWithOrderName:wxOrderName
+//                                   price:wxOrderPrice];
+//                
+//                break;
+//            case 2:
+
             case 1:
-                // pay via wechat
-                [self wxPayWithOrderName:wxOrderName
-                                   price:wxOrderPrice];
-                
-                break;
-            case 2:
                 // pay via apple account
                 [self applePayForProduct:product];
                 break;
