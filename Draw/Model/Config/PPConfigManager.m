@@ -271,7 +271,7 @@
 
 + (NSInteger *)penWidthList;
 {
-    static int bList[10] = {0};
+    static NSInteger bList[10] = {0};
     NSString *bonusList = [MobClickUtils getStringValueByKey:@"PEN_WIDTH_LIST" defaultValue:@"1,6,12,20,32"];
     NSArray *list = [bonusList componentsSeparatedByString:@","];
     int i = 0;

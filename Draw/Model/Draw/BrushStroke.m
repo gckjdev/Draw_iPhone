@@ -274,8 +274,10 @@ static NSArray* sharedRandomNumberList;
     
     //每次进入dynamicDrawStroke..方法之前，都需要
     //合理判断isFirstPoint的状态，否则三个控制点会乱
-    if([self.hPointList count]==0) self.isFirstPoint = YES;
-    else self.isFirstPoint = NO;
+    if([self.hPointList count]==0)
+        self.isFirstPoint = YES;
+    else
+        self.isFirstPoint = NO;
     
     // 新加入的点和新点的上一点之间需要插值，插入的点需要在addpoint的同时显示。
     // 所以这里使用了dynamicDrawStroke...
@@ -338,8 +340,11 @@ static NSArray* sharedRandomNumberList;
         
         //每次进入dynamicDrawStroke..方法之前，都需要
         //合理判断isFirstPoint的状态，否则三个控制点会乱
-        if([self.hPointList count]==0) self.isFirstPoint = YES;
-        else self.isFirstPoint = NO;
+        if ([self.hPointList count]==0)
+            self.isFirstPoint = YES;
+        else
+            self.isFirstPoint = NO;
+        
         [self dynamicDrawStrokeAtNewPoint:point
                            withBrushImage:brushImageRef
                            inLayerContext:layerContext
@@ -350,6 +355,34 @@ static NSArray* sharedRandomNumberList;
 }
 
 - (void)finishAddPoint
+{
+//    if (self.brushImageRef == NULL){
+//        self.brushImage = [_brush brushImage:[self.color color] width:self.width];
+//        self.brushImageRef = _brushImage.CGImage;
+//    }
+//    
+//    //特殊处理，在采样点过少（只有一两个，无法进行贝塞尔插值时),直接显示单个采样点
+//    if(_hPointList.count == 1 || _hPointList.count == 2)
+//    {
+//        CGFloat singleDotX,singleDotY,singleDotW;
+//        singleDotX = [_hPointList getPointX:0];
+//        singleDotY = [_hPointList getPointY:0];
+//        singleDotW = [_hPointList getPointWidth:0];
+//        CGContextRef layerContext = CGLayerGetContext(_brushLayer);
+//        CGRect rect = CGRectMake(singleDotX - singleDotW/2, singleDotY - singleDotW/2, singleDotW, singleDotW);
+//        CGImageRef brushImageRef = [self brushImageRef];
+//        
+//        CGContextDrawImage(layerContext, rect, brushImageRef);
+//    }
+//    
+//    [_hPointList complete];
+
+    CGContextRef layerContext = CGLayerGetContext(_brushLayer);
+    [self finishAddPointInContext:layerContext];
+
+}
+
+- (void)finishAddPointInContext:(CGContextRef)context
 {
     if (self.brushImageRef == NULL){
         self.brushImage = [_brush brushImage:[self.color color] width:self.width];
@@ -363,15 +396,16 @@ static NSArray* sharedRandomNumberList;
         singleDotX = [_hPointList getPointX:0];
         singleDotY = [_hPointList getPointY:0];
         singleDotW = [_hPointList getPointWidth:0];
-        CGContextRef layerContext = CGLayerGetContext(_brushLayer);
+        CGContextRef layerContext = context;
         CGRect rect = CGRectMake(singleDotX - singleDotW/2, singleDotY - singleDotW/2, singleDotW, singleDotW);
-        CGImageRef brushImageRef = [self brushImageRef];
+        CGImageRef brushImageRef = _brushImageRef;
         
         CGContextDrawImage(layerContext, rect, brushImageRef);
     }
     
     [_hPointList complete];
 }
+
 
 - (NSInteger)pointCount
 {
@@ -566,7 +600,7 @@ static NSArray* sharedRandomNumberList;
         CGContextRestoreGState(context);
         return CGRectZero;
     }
-
+    
     // 显示已经画完的笔画，故而是一个hpointlist的遍历
     // 点坐标数据已通过addpoint相关方法添加到hpointlist，故而这里只需要读取hpointlist即可
     CGImageRef brushImageRef = [self brushImageRef];
@@ -589,8 +623,10 @@ static NSArray* sharedRandomNumberList;
             
             //每次进入dynamicDrawStroke..方法之前，都需要
             //合理判断isFirstPoint的状态，否则三个控制点会乱
-            if(i==0) self.isFirstPoint = YES;
-            else self.isFirstPoint = NO;
+            if (i == 0)
+                self.isFirstPoint = YES;
+            else
+                self.isFirstPoint = NO;
             
             [self dynamicDrawStrokeAtNewPoint:CGPointMake(currentX, currentY)
                                withBrushImage:brushImageRef
@@ -598,6 +634,9 @@ static NSArray* sharedRandomNumberList;
                               needRecordPoint:NO];
         }
     }
+    
+    // handle 1-2 points
+    [self finishAddPointInContext:context];
     
     return [self redrawRectInRect:rect];
 }
