@@ -601,6 +601,7 @@ typedef enum{
         ContestListType type = [self getContestListTypeWithTabId:tabId];
         [[ContestService defaultService] getGroupContestListWithType:type offset:self.currentTab.offset limit:self.currentTab.limit completed:^(int resultCode, ContestListType type, NSArray *contestList) {
             
+            PPDebug(@"total %d contest loaded", [contestList count]);
             [self hideActivity];
             if (resultCode == 0) {
                 [self finishLoadDataForTabID:tabId resultList:contestList];

@@ -18,9 +18,9 @@ typedef enum{
 
 @interface StatementCell : PPTableViewCell
 
-+ (float)getCellHeightWithType:(StatementCellType)type;
++ (CGFloat)getCellHeightWithType:(StatementCellType)type;
 
-+ (float)getCellHeightWithContent:(NSString *)content;
++ (CGFloat)getCellHeightWithContent:(NSString *)content;
 - (void)setCellTitle:(NSString *)title content:(NSString *)content;
 
 @end

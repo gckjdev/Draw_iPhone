@@ -95,7 +95,7 @@
             cell = [NormalHotCell createThreeRankCell:delegate];
         }
         
-        int start = indexPath.row * NORMAL_CELL_VIEW_NUMBER - NORMAL_CELL_VIEW_NUMBER;
+        NSInteger start = indexPath.row * NORMAL_CELL_VIEW_NUMBER - NORMAL_CELL_VIEW_NUMBER;
         range = NSMakeRange(start, NORMAL_CELL_VIEW_NUMBER);
     }
 
@@ -468,7 +468,7 @@
     return cell;
 }
 
-+ (int)getContestStyleCellCountWithDataCount:(int)count{
++ (NSInteger)getContestStyleCellCountWithDataCount:(NSInteger)count{
     
     return count;
 }

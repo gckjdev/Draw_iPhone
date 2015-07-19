@@ -47,6 +47,8 @@
 #define CORNER_RADIUS (ISIPAD?10:4)
 + (id)createCell:(id)delegate{
     
+    PPDebug(@"create contest cell");
+    
     ContestCell *cell = [self createViewWithXibIdentifier:[self getCellIdentifier] ofViewIndex:ISIPAD];    
     cell.bgImageView.image = [ShareImageManager bubleImage];
     [cell.contestImageView.layer setCornerRadius:CORNER_RADIUS];
@@ -61,7 +63,7 @@
     return cell;
 }
 
-+ (float)getCellHeight{
++ (CGFloat)getCellHeight{
     
     return ISIPAD?270:120;
 }

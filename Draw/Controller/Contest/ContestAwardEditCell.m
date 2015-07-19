@@ -71,7 +71,7 @@
     return @"ContestAwardEditCell";
 }
 
-+ (float)getCellHeight{
++ (CGFloat)getCellHeight{
     
     return ISIPAD?88:44;
 }

@@ -1613,6 +1613,9 @@
         str = [str stringByAddQueryParameter:PARA_DESC value:desc];
         str = [str stringByAddQueryParameter:PARA_DEVICETYPE intValue:[DeviceDetection deviceType]];
         
+        // add 2015-07-19
+        str = [str stringByAddQueryParameter:PARA_DEVICEID value:[[UIDevice currentDevice] uniqueGlobalDeviceIdentifier]];
+        
         str = [str stringByAddQueryParameter:PARA_STROKES intValue:[draft.totalStrokes intValue]];
         str = [str stringByAddQueryParameter:PARA_DRAFT_CREATE_DATE intValue:[draft.createDate timeIntervalSince1970]];
         str = [str stringByAddQueryParameter:PARA_COMPLETE_DATE intValue:[draft.opusCompleteDate timeIntervalSince1970]];

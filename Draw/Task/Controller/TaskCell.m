@@ -17,7 +17,7 @@
 
 @implementation TaskCell
 
-+ (float)getCellHeight{
++ (CGFloat)getCellHeight{
     
 //    return ISIPAD ? 153 : 70;
     return ISIPAD ? 120 : 70;

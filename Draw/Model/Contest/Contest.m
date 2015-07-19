@@ -537,20 +537,24 @@
 
 - (void)setRank:(int)rank award:(int)award{
     
-    NSMutableArray *awards = [[_pbContestBuilder awardRules] mutableCopy];
+    int32_t insertAward = (int32_t)award;
     
-    if (rank < [awards count]) {
-//        [awards removeObjectAtIndex:rank];
-//        [awards insertObject:@(award) atIndex:rank];
-        [awards replaceObjectAtIndex:rank withObject:@(award)];
+    PBAppendableArray* awards = [_pbContestBuilder awardRules];
+    
+    NSMutableArray* newAwards = [NSMutableArray array];
+    for (NSUInteger i=0; i<awards.count; i++){
+        int32_t value = [awards int32AtIndex:i];
+        [newAwards addObject:@(value)];
+    }
+    
+    if (rank < [newAwards count]) {
+        [newAwards replaceObjectAtIndex:rank withObject:@(insertAward)];
     }else{
-        [awards insertObject:@(award) atIndex:rank];
+        [newAwards insertObject:@(insertAward) atIndex:rank];
     }
     
     [_pbContestBuilder clearAwardRules];
-    [_pbContestBuilder setAwardRulesArray:awards];
-    
-    [awards release];
+    [_pbContestBuilder setAwardRulesArray:newAwards];
 }
 
 - (BOOL)isGroupContest{

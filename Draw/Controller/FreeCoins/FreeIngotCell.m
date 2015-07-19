@@ -32,7 +32,7 @@ AUTO_CREATE_VIEW_BY_XIB(FreeIngotCell)
     return @"FreeIngotCell";
 }
 
-+ (float)getCellHeight
++ (CGFloat)getCellHeight
 {
     return [DeviceDetection isIPAD]?160.0:74.0;
 }

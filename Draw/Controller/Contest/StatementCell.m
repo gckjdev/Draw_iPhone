@@ -23,7 +23,7 @@
 #define LABEL_HEIGHT_PERLINE (ISIPAD?40:22)
 
 
-+ (float)getCellHeightWithType:(StatementCellType)type
++ (CGFloat)getCellHeightWithType:(StatementCellType)type
 {
     switch (type) {
 //        case StatementCellTypeTime:
@@ -36,7 +36,7 @@
     }
 }
 
-+ (float)getCellHeightWithContent:(NSString *)content{    
++ (CGFloat)getCellHeightWithContent:(NSString *)content{    
     float height = [self getTextHeight:content];
     height = MAX(CELL_MIN_HEIGHT, height+CELL_VERTICAL_INSET);
     return height;

@@ -506,7 +506,7 @@
     NSInteger index = [_tabManager indexOfTabID:tabID];
     if (index != NSNotFound) {
         NSString *title = [self tabTitleforIndex:index];
-        title = [NSString stringWithFormat:@"%@(%d)", title, number];
+        title = [NSString stringWithFormat:@"%@(%ld)", title, number];
         UIButton *button = [self tabButtonWithTabID:tabID];
         [button setTitle:title forState:UIControlStateNormal];
         [button setTitle:title forState:UIControlStateHighlighted];

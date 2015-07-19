@@ -25,7 +25,7 @@ AUTO_CREATE_VIEW_BY_XIB(EditTagCell)
 
 #define BTN_TAG 20130608
 
-+ (float)getCellHeight
++ (CGFloat)getCellHeight
 {
     return ISIPAD?190:98;
 }

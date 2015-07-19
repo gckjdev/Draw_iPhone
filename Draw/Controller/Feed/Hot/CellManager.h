@@ -67,7 +67,7 @@
                                indexPath:(NSIndexPath *)indexPath
                                 delegate:(id)delegate
                                 dataList:(NSArray *)dataList;
-+ (int)getContestStyleCellCountWithDataCount:(int)count;
++ (NSInteger)getContestStyleCellCountWithDataCount:(NSInteger)count;
 + (float)getContestStyleCellHeight;
 
 
