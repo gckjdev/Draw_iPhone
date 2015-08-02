@@ -51,30 +51,33 @@ static ChatService *_chatService = nil;
                     limit:(int)maxCount
 {
     NSString *userId = [[UserManager defaultManager] userId];
+    NSString *serverURL = [PPConfigManager getMessageServerURL];
+    NSString *appId = [PPConfigManager appId];
     
     dispatch_async(workingQueue, ^{            
-        CommonNetworkOutput* output = [GameNetworkRequest getMessageStatList:[PPConfigManager getMessageServerURL]
-                                                                       appId:[PPConfigManager appId] 
+        CommonNetworkOutput* output = [GameNetworkRequest getMessageStatList:serverURL
+                                                                       appId:appId
                                                                       userId:userId 
                                                                       offset:starOffset 
                                                                     maxCount:maxCount];
-        NSArray *messageStatList = nil;
-        if (output.resultCode == ERROR_SUCCESS){
-            @try{
-                DataQueryResponse *drawResponse = [DataQueryResponse parseFromData:output.responseData];
-                NSArray *stats = [drawResponse messageStat];
-                messageStatList = [PPMessageManager parseMessageStatList:stats];
-                
-            }@catch (NSException *exception){
-                PPDebug (@"<ChatService>findAllMessageTotals try catch:%@%@", [exception name], [exception reason]);
-            }            
-            PPDebug(@"<ChatService>findAllMessageTotals success");
-        }else {
-            PPDebug(@"<ChatService>findAllMessageTotals failed");
-        }
         
         dispatch_async(dispatch_get_main_queue(), ^{
             
+            NSArray *messageStatList = nil;
+            if (output.resultCode == ERROR_SUCCESS){
+                @try{
+                    DataQueryResponse *drawResponse = [DataQueryResponse parseFromData:output.responseData];
+                    NSArray *stats = [drawResponse messageStat];
+                    messageStatList = [PPMessageManager parseMessageStatList:stats];
+                    
+                }@catch (NSException *exception){
+                    PPDebug (@"<ChatService>findAllMessageTotals try catch:%@%@", [exception name], [exception reason]);
+                }
+                PPDebug(@"<ChatService>findAllMessageTotals success");
+            }else {
+                PPDebug(@"<ChatService>findAllMessageTotals failed");
+            }
+
             if (delegate && [delegate respondsToSelector:@selector(didGetMessageStats:resultCode:)]){
             
                 [delegate didGetMessageStats:messageStatList resultCode:output.resultCode];

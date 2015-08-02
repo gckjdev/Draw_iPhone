@@ -109,7 +109,12 @@
         rowOfReportBug = count++;
         rowOfFeedback = count++;
         
-        rowOfAppUpdate = count++;
+        if ([PPConfigManager isInReviewVersion] == NO){
+            rowOfAppUpdate = count++;
+        }
+        else{
+            rowOfAppUpdate = -1;
+        }
         
         if ([PPConfigManager isInReviewVersion] == NO){
             rowOfGiveReview = count++;
@@ -132,9 +137,11 @@
         rowOfAppUpdate = count++;
         if ([PPConfigManager isInReviewVersion] == NO){
             rowOfGiveReview = count++;
+            rowOfAppUpdate = count++;
         }
         else{
             rowOfGiveReview = -1;
+            rowOfAppUpdate = -1;
         }
         
         rowOfCleanCache = count++;

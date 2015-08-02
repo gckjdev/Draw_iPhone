@@ -526,7 +526,7 @@ static NSDictionary* DEFAULT_MENU_SELECTOR_DICT = nil;
              [header closeAnimated:YES completion:^(BOOL finished) {
                  [mainPanel openAnimated:YES completion:NULL];
                  
-                 [self showAd:adFrame inView:header.holderView];
+//                 [self showAd:adFrame inView:header.holderView];
              }];
              
          }

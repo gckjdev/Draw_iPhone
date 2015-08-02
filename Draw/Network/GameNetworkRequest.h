@@ -406,7 +406,7 @@
 + (CommonNetworkOutput*)getMessageStatList:(NSString*)baseURL
                                      appId:(NSString*)appId
                                     userId:(NSString*)userId
-                                    offset:(NSInteger)offset
+                                    offset:(int)offset
                                   maxCount:(int)maxCount;
 
 + (CommonNetworkOutput*)sendMessage:(NSString*)baseURL

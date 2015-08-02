@@ -75,7 +75,7 @@ static PPMessageManager* globalDefaultMessageManager;
     NSMutableArray *list = [NSMutableArray arrayWithCapacity:pbMessageList.count];
     
     if (pbMessageList.count > 0){
-        for (int i=pbMessageList.count-1; i>=0; i--){
+        for (NSInteger i=pbMessageList.count-1; i>=0; i--){
             PBMessage* pbMessage = [pbMessageList objectAtIndex:i];
             PPMessage *ppm = [PPMessage messageWithPBMessage:pbMessage];
             [list addObject:ppm];
@@ -269,10 +269,10 @@ static PPMessageManager* globalDefaultMessageManager;
     
     APLevelDB* db = [self getDB:friendUserId];
     NSArray* list = [db allKeys];
-    int totalCount = [list count];
-    int index = 0;
+    NSInteger totalCount = [list count];
+    NSInteger index = 0;
     
-    int lastKeepIndex = totalCount - keepCount;
+    NSInteger lastKeepIndex = totalCount - keepCount;
     if (lastKeepIndex < 0){
         PPDebug(@"<cleanMessage> but only %d records, no need to delete any record", totalCount);
         return;

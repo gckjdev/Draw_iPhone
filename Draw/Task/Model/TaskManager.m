@@ -157,7 +157,7 @@ static TaskManager* _defaultTaskManager;
     
     
     
-    GameTask* task11 = [[[GameTask alloc] initWithId:PBTaskIdTypeTaskAppUpgrade
+    GameTask* taskAppUpgrade = [[[GameTask alloc] initWithId:PBTaskIdTypeTaskAppUpgrade
                                                name:NSLS(@"kTaskAppUpgrade")
                                                desc:[NSString stringWithFormat:NSLS(@"kTaskAppUpgradeDesc"),
                                                      [PPConfigManager getLastAppVersion]]
@@ -194,14 +194,12 @@ static TaskManager* _defaultTaskManager;
     
     [retList addObject:vipTask];
     
-    if ([UIUtils checkAppHasUpdateVersion]){
-        [retList addObject:task11];
-    }
-    else{
-        // clean local app upgrade task status        
-    }
     
     if ([PPConfigManager isInReviewVersion] == NO){
+        
+        if ([UIUtils checkAppHasUpdateVersion]){
+            [retList addObject:taskAppUpgrade];
+        }
         
         [retList addObject:reviewTask];
         

@@ -392,6 +392,8 @@ static NSArray* sharedRandomNumberList;
     //特殊处理，在采样点过少（只有一两个，无法进行贝塞尔插值时),直接显示单个采样点
     if(_hPointList.count == 1 || _hPointList.count == 2)
     {
+        PPDebug(@"<finishAddPointInContext> draw for point count %ld", _hPointList.count);
+        
         CGFloat singleDotX,singleDotY,singleDotW;
         singleDotX = [_hPointList getPointX:0];
         singleDotY = [_hPointList getPointY:0];
@@ -636,7 +638,9 @@ static NSArray* sharedRandomNumberList;
     }
     
     // handle 1-2 points
-    [self finishAddPointInContext:context];
+    if (self.isInterpolationOptimized == YES){
+        [self finishAddPointInContext:context];
+    }
     
     return [self redrawRectInRect:rect];
 }

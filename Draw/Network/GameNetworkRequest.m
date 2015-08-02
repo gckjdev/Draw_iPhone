@@ -2224,7 +2224,7 @@
 + (CommonNetworkOutput*)getMessageStatList:(NSString*)baseURL
                                  appId:(NSString*)appId
                                 userId:(NSString*)userId
-                                offset:(NSInteger)offset
+                                offset:(int)offset
                               maxCount:(int)maxCount
 {
     CommonNetworkOutput* output = [[[CommonNetworkOutput alloc] init] autorelease];
@@ -2237,12 +2237,10 @@
         str = [str stringByAddQueryParameter:METHOD value:METHOD_GETMESSAGESTATLIST];
         str = [str stringByAddQueryParameter:PARA_APPID value:appId];
         str = [str stringByAddQueryParameter:PARA_USERID value:userId];                
-        str = [str stringByAddQueryParameter:PARA_OFFSET intValue:offset];            
+        str = [str stringByAddQueryParameter:PARA_OFFSET intValue:offset];
         str = [str stringByAddQueryParameter:PARA_COUNT intValue:maxCount];
         str = [str stringByAddQueryParameter:PARA_FORMAT value:FINDDRAW_FORMAT_PROTOCOLBUFFER];
         str = [str stringByAddQueryParameter:PARA_VERSION intValue:1];
-        
-        // TOOD add other parameters
         
         return str;
     };
