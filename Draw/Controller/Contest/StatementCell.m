@@ -26,9 +26,6 @@
 + (CGFloat)getCellHeightWithType:(StatementCellType)type
 {
     switch (type) {
-//        case StatementCellTypeTime:
-//        case StatementCellTypeTitle:
-//            return LABEL_HEIGHT_PERLINE * 3;
         case StatementCellTypeAward:
             return LABEL_HEIGHT_PERLINE * 4;
         default:
@@ -37,12 +34,12 @@
 }
 
 + (CGFloat)getCellHeightWithContent:(NSString *)content{    
-    float height = [self getTextHeight:content];
+    CGFloat height = [self getTextHeight:content];
     height = MAX(CELL_MIN_HEIGHT, height+CELL_VERTICAL_INSET);
     return height;
 }
 
-+ (float)getTextHeight:(NSString *)text{
++ (CGFloat)getTextHeight:(NSString *)text{
     
     CGSize contrainedSize = CGSizeMake(LABEL_WIDTH, CGFLOAT_MAX);
     CGSize size = [text sizeWithMyFont:CELL_CONTENT_FONT constrainedToSize:contrainedSize lineBreakMode:NSLineBreakByCharWrapping];
@@ -72,32 +69,18 @@
     self.titleLabel.text = title;
     self.contestLabel.text = [content length] == 0 ? NSLS(@"kNone"): content;
     
-//    [self.contestLabel updateHeight:[StatementCell getTextHeight:content]];
-
-//    [self.bgImageView updateHeight:(CGRectGetHeight(self.contestLabel.bounds) + 5*2)];
-    
     if (self.indexPath.row % 2 == 0) {
         self.bgImageView.image = [ShareImageManager statementCellBg1];
     }else{
         self.bgImageView.image = [ShareImageManager statementCellBg2];
     }
-    
-//    [self.contestLabel updateCenterY:self.bgImageView.center.y];
 }
 
 
 - (void)layoutSubviews
 {
     [super layoutSubviews];
-//    StatementCellType type = self.indexPath.row;
     self.contestLabel.textAlignment = NSTextAlignmentCenter;
-//    if (type == StatementCellTypeDesc && ![[self.contestLabel text] isEqualToString:NSLS(@"kNone")]) {
-//        self.contestLabel.textAlignment = NSTextAlignmentLeft;
-//    }
-    
-//    if (type == StatementCellTypeTime){
-//        self.contestLabel.textAlignment = NSTextAlignmentLeft;
-//    }
 }
 
 - (void)dealloc {

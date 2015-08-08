@@ -1739,33 +1739,12 @@ static NSMutableDictionary *boundImageDict = nil;
    return [self boundImageWithType:type border:border cornerRadius:cornerRadius boundColor:color fillColor:nil];
 }
 
-
-//+ (void)setFXLabelStyle:(FXLabel *)label{
-//    label.textColor = [UIColor whiteColor];
-//    label.backgroundColor = [UIColor clearColor];
-//
-//    //demonstrate shadow
-//    label.shadowColor = nil;
-//    label.shadowOffset = CGSizeMake(0.0f, 2.0f);
-//    label.shadowColor = [UIColor colorWithWhite:0.0f alpha:0.75f];
-//    label.shadowBlur = 5.0f;
-//    
-////    //demonstrate inner shadow
-////    label.shadowColor = [UIColor colorWithWhite:1.0f alpha:0.8f];
-////    label.shadowOffset = CGSizeMake(1.0f, 1.0f);
-////    label.shadowBlur = 1.0f;
-////    label.innerShadowBlur = 2.0f;
-////    label.innerShadowColor = [UIColor colorWithWhite:0.0f alpha:0.8f];
-////    label.innerShadowOffset = CGSizeMake(1.0f, 1.0f);
-//}
-
 + (UIImage *)statementCellBg1{
     
     UIImage *image = [UIImage imageNamedFixed:@"statement_cell_bg1@2x.png"];
     if (isIPad) {
         return [image stretchableImageWithLeftCapWidth:145 topCapHeight:85];
     }else{
-        image = [image scaleImage:image toScale:0.5];
         return [image stretchableImageWithLeftCapWidth:72 topCapHeight:42];
     }
 }
@@ -1776,7 +1755,6 @@ static NSMutableDictionary *boundImageDict = nil;
     if (isIPad) {
         return [image stretchableImageWithLeftCapWidth:145 topCapHeight:85];
     }else{
-        image = [image scaleImage:image toScale:0.5];
         return [image stretchableImageWithLeftCapWidth:72 topCapHeight:42];
     }
 }

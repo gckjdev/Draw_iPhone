@@ -128,7 +128,7 @@
     
     if (roundingUp) {
         
-        cellCount = ceil(count / (float)WHISPER_CELL_VIEW_NUMBER);
+        cellCount = ceil(count / (CGFloat)WHISPER_CELL_VIEW_NUMBER);
     }else{
         
         cellCount = count / WHISPER_CELL_VIEW_NUMBER;
@@ -154,7 +154,7 @@
         count -= NORMAL_CELL_VIEW_NUMBER;
         
         if (roundingUp) {
-            count = ceil(count / (float)NORMAL_CELL_VIEW_NUMBER) + 2;
+            count = ceil(count / (CGFloat)NORMAL_CELL_VIEW_NUMBER) + 2;
         }else{
             count = count / NORMAL_CELL_VIEW_NUMBER + 2;
         }
@@ -163,7 +163,7 @@
     }
 }
 
-+ (float)getHotStyleCellHeightWithIndexPath:(NSIndexPath *)indexPath{
++ (CGFloat)getHotStyleCellHeightWithIndexPath:(NSIndexPath *)indexPath{
 
     if (isSingApp()) {
         
@@ -177,12 +177,12 @@
     }
 }
 
-+ (float)getSingHotStyleCellHeight:(NSIndexPath *)indexPath{
++ (CGFloat)getSingHotStyleCellHeight:(NSIndexPath *)indexPath{
     
     return [SingHotCell getCellHeight];
 }
 
-+ (float)getDrawHotStyleCellHeight:(NSIndexPath *)indexPath{
++ (CGFloat)getDrawHotStyleCellHeight:(NSIndexPath *)indexPath{
     
     if (indexPath.row == 0) {
         return [NormalHotCell getOneRankCellHeight];
@@ -269,7 +269,7 @@
     
     if (roundingUp) {
         
-        cellCount = ceil(count / (float)WHISPER_CELL_VIEW_NUMBER);
+        cellCount = ceil(count / (CGFloat)WHISPER_CELL_VIEW_NUMBER);
     }else{
         
         cellCount = count / WHISPER_CELL_VIEW_NUMBER;
@@ -285,7 +285,7 @@
 
     if (roundingUp) {
         
-        cellCount = ceil(count / (float)NORMAL_CELL_VIEW_NUMBER);
+        cellCount = ceil(count / (CGFloat)NORMAL_CELL_VIEW_NUMBER);
     }else{
         
         cellCount = count / NORMAL_CELL_VIEW_NUMBER;
@@ -294,7 +294,7 @@
     return cellCount;
 }
 
-+ (float)getLastStyleCellHeightWithIndexPath:(NSIndexPath *)indexPath{
++ (CGFloat)getLastStyleCellHeightWithIndexPath:(NSIndexPath *)indexPath{
     
     if (isSingApp()) {
         
@@ -308,12 +308,12 @@
     }
 }
 
-+ (float)getSingLastStyleCellHeight:(NSIndexPath *)indexPath{
++ (CGFloat)getSingLastStyleCellHeight:(NSIndexPath *)indexPath{
     
     return [SingHotCell getCellHeight];
 }
 
-+ (float)getDrawLastStyleCellHeight:(NSIndexPath *)indexPath{
++ (CGFloat)getDrawLastStyleCellHeight:(NSIndexPath *)indexPath{
     
     return [NormalHotCell getThreeRankCellHeight];
 }
@@ -344,7 +344,7 @@
     return count;
 }
 
-+ (float)getTimelineStyleCellHeight{
++ (CGFloat)getTimelineStyleCellHeight{
     
     return [FeedCell getCellHeight];
 }
@@ -369,7 +369,7 @@
     return count;
 }
 
-+ (float)getCommentStyleCellHeightWithDataList:(NSArray *)dataList
++ (CGFloat)getCommentStyleCellHeightWithDataList:(NSArray *)dataList
                                      indexPath:(NSIndexPath *)indexPath{
     
     CommentFeed * commentFeed = [dataList objectAtIndex:indexPath.row];
@@ -401,7 +401,7 @@
     return count;
 }
 
-+ (float)getReportStyleCellheightWithDataList:(NSArray *)dataList
++ (CGFloat)getReportStyleCellheightWithDataList:(NSArray *)dataList
                                     indexPath:(NSIndexPath *)indexPath{
     
     return [ReportFeedCell getCellHeightWithFeed:[dataList objectAtIndex:indexPath.row]];
@@ -447,7 +447,7 @@
     return count;
 }
 
-+ (float)getPrizeStyleCellHeight{
++ (CGFloat)getPrizeStyleCellHeight{
     
     return [ContestPrizeCell getCellHeight];
 }
@@ -473,7 +473,7 @@
     return count;
 }
 
-+ (float)getContestStyleCellHeight{
++ (CGFloat)getContestStyleCellHeight{
     
     return [ContestCell getCellHeight];
 }
@@ -510,11 +510,10 @@
 }
 
 + (int)getContestRuleCellCount{
-    
     return 4;
 }
 
-+ (float)getContestRuleCellHeight:(NSIndexPath *)indexPath
++ (CGFloat)getContestRuleCellHeight:(NSIndexPath *)indexPath
                           contest:(Contest *)contest{
     
     if(indexPath.row != StatementCellTypeDesc){
@@ -555,7 +554,7 @@
     return count;
 }
 
-+ (float)getPrizeStyleTowCellheight{
++ (CGFloat)getPrizeStyleTowCellheight{
     
     return [PrizeCell getCellHeightWithFeed];
 }

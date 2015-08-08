@@ -18,7 +18,7 @@
                             dataList:(NSArray *)dataList;
 + (int)getHotStyleCellCountWithDataCount:(int)count
                               roundingUp:(BOOL)roundingUp;
-+ (float)getHotStyleCellHeightWithIndexPath:(NSIndexPath *)indexPath;
++ (CGFloat)getHotStyleCellHeightWithIndexPath:(NSIndexPath *)indexPath;
 
 + (UITableViewCell *)getLastStyleCell:(UITableView *)tableView
                            indexPath:(NSIndexPath *)indexPath
@@ -26,21 +26,21 @@
                             dataList:(NSArray *)dataList;
 + (int)getLastStyleCellCountWithDataCount:(int)count
                                roundingUp:(BOOL)roundingUp;
-+ (float)getLastStyleCellHeightWithIndexPath:(NSIndexPath *)indexPath;
++ (CGFloat)getLastStyleCellHeightWithIndexPath:(NSIndexPath *)indexPath;
 
 + (UITableViewCell *)getTimelineStyleCell:(UITableView *)tableView
                                 indexPath:(NSIndexPath *)indexPath
                                  delegate:(id)delegate
                                  dataList:(NSArray *)dataList;
 + (int)getTimelineStyleCellCountWithDataCount:(int)count;
-+ (float)getTimelineStyleCellHeight;
++ (CGFloat)getTimelineStyleCellHeight;
 
 + (UITableViewCell *)getCommentStyleCell:(UITableView *)tableView
                                indexPath:(NSIndexPath *)indexPath
                                 delegate:(id)delegate
                                 dataList:(NSArray *)dataList;
 + (int)getCommentStyleCellCountWithDataCount:(int)count;
-+ (float)getCommentStyleCellHeightWithDataList:(NSArray *)dataList
++ (CGFloat)getCommentStyleCellHeightWithDataList:(NSArray *)dataList
                                      indexPath:(NSIndexPath *)indexPath;
 
 + (UITableViewCell *)getReportStyleCell:(UITableView *)tableView
@@ -49,7 +49,7 @@
                                dataList:(NSArray *)dataList
                                 contest:(Contest *)contest;
 + (int)getReportStyleCellCountWithDataCount:(int)count;
-+ (float)getReportStyleCellheightWithDataList:(NSArray *)dataList
++ (CGFloat)getReportStyleCellheightWithDataList:(NSArray *)dataList
                                     indexPath:(NSIndexPath *)indexPath;
 
 
@@ -60,7 +60,7 @@
                               dataList:(NSArray *)dataList
                                contest:(Contest *)contest;
 + (int)getPrizeStyleCellCountWithDataCount:(int)count;
-+ (float)getPrizeStyleCellHeight;
++ (CGFloat)getPrizeStyleCellHeight;
 
 
 + (UITableViewCell *)getContestStyleCell:(UITableView *)tableView
@@ -68,7 +68,7 @@
                                 delegate:(id)delegate
                                 dataList:(NSArray *)dataList;
 + (NSInteger)getContestStyleCellCountWithDataCount:(NSInteger)count;
-+ (float)getContestStyleCellHeight;
++ (CGFloat)getContestStyleCellHeight;
 
 
 
@@ -77,7 +77,7 @@
                                delegate:(id)delegate
                                 contest:(Contest *)contest;
 + (int)getContestRuleCellCount;
-+ (float)getContestRuleCellHeight:(NSIndexPath *)indexPath
++ (CGFloat)getContestRuleCellHeight:(NSIndexPath *)indexPath
                           contest:(Contest *)contest;
 
 
@@ -87,5 +87,5 @@
                                  delegate:(id)delegate
                                  dataList:(NSArray *)dataList;
 + (int)getPrizeStyleTowCellCountWithDataCount:(int)count;
-+ (float)getPrizeStyleTowCellheight;
++ (CGFloat)getPrizeStyleTowCellheight;
 @end

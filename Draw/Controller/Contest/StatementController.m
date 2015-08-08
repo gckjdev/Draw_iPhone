@@ -137,19 +137,10 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    
-//    return 4;
     return [CellManager getContestRuleCellCount];
 }
 
-- (float)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    
-//    if(indexPath.row != StatementCellTypeDesc){
-//        return [StatementCell getCellHeightWithType:indexPath.row];
-//    }else{
-//        return [StatementCell getCellHeightWithContent:[self.contest desc]];
-//    }
-    
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     return [CellManager getContestRuleCellHeight:indexPath contest:self.contest];
 }
 
@@ -157,28 +148,6 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     
     return [CellManager getContestRuleCell:tableView indexPath:indexPath delegate:self contest:self.contest];
-//    StatementCell *cell = [tableView dequeueReusableCellWithIdentifier:[StatementCell getCellIdentifier]];
-//    if (cell == nil) {
-//        cell = [StatementCell createCell:self];
-//    }
-//
-//    if (indexPath.row == 1){
-//        NSString *contestingTimeDesc = [NSString stringWithFormat:NSLS(@"kContestingTimeIs"), [self.contest contestingTimeDesc]];
-//        NSString *votingTimeDesc = [NSString stringWithFormat:NSLS(@"kVotingTimeIs"), [self.contest votingTimeDesc]];
-//                                 
-//        NSString *content = [[contestingTimeDesc stringByAppendingString:@"\n"] stringByAppendingString:votingTimeDesc];
-//        [cell setCellTitle:NSLS(@"kTime") content:content];
-//    }else if (indexPath.row == 0){
-//        [cell setCellTitle:NSLS(@"kSubject") content:[self.contest title]];
-//    }else if (indexPath.row == 2){
-//        [cell setCellTitle:NSLS(@"kDesc") content:[self.contest desc]];
-//    }else if (indexPath.row == 3){
-//        [cell setCellTitle:NSLS(@"kAward") content:[self.contest awardRulesDesc]];
-//    }
-//    
-//    cell.indexPath = indexPath;
-
-//    return cell;
 }
 
 @end
