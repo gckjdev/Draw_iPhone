@@ -242,7 +242,7 @@ static dispatch_once_t onceToken;
                                                            descCn:@"一款画画和你画我猜的休闲娱乐应用"
                                                            descEn:@"An awesome & fun draw game for you"
                                                             appId:DRAW_APP_ID
-                                                       appLogoURL:@"http://58.215.160.100:8080/icon/draw_512.png"
+                                                       appLogoURL:@"http://58.215.184.18:8080/icon/draw_512.png"
                                                      rewardAmount:rewardAmount
                                                    rewardCurrency:rewardCurrency];
     
@@ -256,7 +256,7 @@ static dispatch_once_t onceToken;
                                                            descCn:@"在线多人趣味大话骰子游戏"
                                                            descEn:@"Online liar dice game"
                                                             appId:DICE_APP_ID
-                                                       appLogoURL:@"http://58.215.160.100:8080/icon/dice_114.png"
+                                                       appLogoURL:@"http://58.215.184.18:8080/icon/dice_114.png"
                                                      rewardAmount:rewardAmount
                                                    rewardCurrency:rewardCurrency];
     
@@ -271,7 +271,7 @@ static dispatch_once_t onceToken;
                                                            descCn:@"专业的绘画工具"
                                                            descEn:@"Professional draw application"
                                                             appId:LITTLE_GEE_APP_ID
-                                                       appLogoURL:@"http://58.215.160.100:8080/icon/xiaojidraw_114.png"
+                                                       appLogoURL:@"http://58.215.184.18:8080/icon/xiaojidraw_114.png"
                                                      rewardAmount:rewardAmount
                                                    rewardCurrency:rewardCurrency];
     
@@ -287,7 +287,7 @@ static dispatch_once_t onceToken;
                                                           descCn:@"刺激好玩的多人在线诈金花扑克牌游戏"
                                                           descEn:@"Online three card porker game"
                                                            appId:ZJH_APP_ID
-                                                      appLogoURL:@"http://58.215.160.100:8080/icon/zjh_512.png"
+                                                      appLogoURL:@"http://58.215.184.18:8080/icon/zjh_512.png"
                                                     rewardAmount:rewardAmount
                                                   rewardCurrency:rewardCurrency];
     return zjhApp;
@@ -301,7 +301,7 @@ static dispatch_once_t onceToken;
                                                           descCn:@"有趣的声音应用，可以唱歌、说笑话、讲故事"
                                                           descEn:@"Funny voice application for sing songs"
                                                            appId:SING_APP_ID
-                                                      appLogoURL:@"http://58.215.160.100:8080/icon/song_512.png"
+                                                      appLogoURL:@"http://58.215.184.18:8080/icon/song_512.png"
                                                     rewardAmount:rewardAmount
                                                   rewardCurrency:rewardCurrency];
     return zjhApp;
@@ -314,7 +314,7 @@ static dispatch_once_t onceToken;
                                                            descCn:@"在线多人趣味大话骰子游戏"
                                                            descEn:@"Online liar dice game"
                                                             appId:OLD_DICE_APP_ID
-                                                       appLogoURL:@"http://58.215.160.100:8080/icon/dice_old.jpg"
+                                                       appLogoURL:@"http://58.215.184.18:8080/icon/dice_old.jpg"
                                                      rewardAmount:rewardAmount
                                                    rewardCurrency:rewardCurrency];
     
@@ -325,7 +325,7 @@ static dispatch_once_t onceToken;
     PBRewardWall* limei = [GameConfigDataManager creatRewardWall:@"力美 推荐应用"
                                                           enName:@"Li Mei"
                                                             type:PBRewardWallTypeLimei
-                                                            logo:@"http://58.215.160.100:8080/icon/ad_limei.png"];
+                                                            logo:@"http://58.215.184.18:8080/icon/ad_limei.png"];
     
     return limei;
 }
@@ -334,7 +334,7 @@ static dispatch_once_t onceToken;
     PBRewardWall* wanpu = [GameConfigDataManager creatRewardWall:@"万普 推荐应用"
                                                           enName:@"Wan Pu"
                                                             type:PBRewardWallTypeWanpu
-                                                            logo:@"http://58.215.160.100:8080/icon/ad_wanpu.png"];
+                                                            logo:@"http://58.215.184.18:8080/icon/ad_wanpu.png"];
     return wanpu;
 }
 
@@ -343,7 +343,7 @@ static dispatch_once_t onceToken;
     PBRewardWall* youmi = [GameConfigDataManager creatRewardWall:@"有米 推荐应用"
                                                           enName:@"You Mi"
                                                             type:PBRewardWallTypeYoumi
-                                                            logo:@"http://58.215.160.100:8080/icon/ad_youmi.png"];
+                                                            logo:@"http://58.215.184.18:8080/icon/ad_youmi.png"];
     
     return youmi;
 }
@@ -353,7 +353,7 @@ static dispatch_once_t onceToken;
     PBRewardWall* ader = [GameConfigDataManager creatRewardWall:@"人人 推荐应用"
                                                          enName:@"Ren Ren Ader"
                                                            type:PBRewardWallTypeAder
-                                                           logo:@"http://58.215.160.100:8080/icon/ad_renren.png"];
+                                                           logo:@"http://58.215.184.18:8080/icon/ad_renren.png"];
     
     return ader;
 }

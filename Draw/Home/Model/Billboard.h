@@ -12,7 +12,7 @@
  "index" : 1,
  "function" : "enterBBSWithPostId:",
  "imageId" : "image1",
- "image" : "http://58.215.160.100:8080/board/image/prize20140829.jpg",
+ "image" : "http://58.215.184.18:8080/board/image/prize20140829.jpg",
  "text" : "",
  "parameters" : ["53feddc9e4b0ef5e9dff860a"]
  },
@@ -38,7 +38,7 @@
  "index" : 2,
  "function" : "enterHotByOpusClass:",
  "imageId" : "image2",
- "image" : "http://58.215.160.100:8080/app_res/tutorial/image/title-7.png",
+ "image" : "http://58.215.184.18:8080/app_res/tutorial/image/title-7.png",
  "text" : "",
  "parameters" : ["2006"]
  },

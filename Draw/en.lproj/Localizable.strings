@@ -2935,6 +2935,8 @@
 "kProTutorialType" = "Professional";
 "kLeisureTutorialType" = "Relax";
 "kSecCreateTutorialType" = "Relax";
+"kSecCreateTutorialTutorial" = "%@ Relax, %@";
+
 "kIntroduceLeisureTutorial" = "Relax, %@";
 "kIntroduceProTutorial" = "Professional, %@";
 

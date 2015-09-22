@@ -199,7 +199,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(DrawBgManager);
         for (i = start; i < start + 5; i ++) {
             NSString *bgId = [NSString stringWithFormat:@"%d",i];
             NSString *localUrl = [NSString stringWithFormat:@"%d.jpg",i];
-            NSString *remoteUrl = @"http://58.215.160.100:8080/app_res/smart_data/draw_bg/";
+            NSString *remoteUrl = @"http://58.215.184.18:8080/app_res/smart_data/draw_bg/";
             remoteUrl = [remoteUrl stringByAppendingPathComponent:localUrl];
 
             PBDrawBgBuilder *builder = [[[PBDrawBgBuilder alloc] init] autorelease];

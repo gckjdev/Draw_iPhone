@@ -159,7 +159,7 @@
 
 + (NSString*)getAPIServerURL
 {
-    return [MobClickUtils getStringValueByKey:@"API_SERVER_URL" defaultValue:@"http://58.215.160.100:8001/api/i?"];
+    return [MobClickUtils getStringValueByKey:@"API_SERVER_URL" defaultValue:@"http://58.215.184.18:8001/api/i?"];
 }
 
 + (NSString*)getMessageServerURL

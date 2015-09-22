@@ -3034,6 +3034,8 @@
 "kProTutorialType" = "专业教程";
 "kLeisureTutorialType" = "休闲临摹";
 "kSecCreateTutorialType" = "二次创作";
+"kSecCreateTutorialTutorial" = "%@创作包, %@";
+
 "kNoOpusForReplay" = "當前未有作品可供播放";
 
 "kIntroduceLeisureTutorial" = "休闲主题创作包,%@";
