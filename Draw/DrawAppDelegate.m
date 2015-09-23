@@ -113,7 +113,7 @@ NSString* GlobalGetServerURL()
 //    return @"http://localhost:8000/api/i?";
 //    return @"http://58.215.184.18:8002/api/i?";
 //    return @"http://192.168.1.13:8001/api/i?";
-    return @"http://58.215.184.18:8001/api/i?";
+//    return @"http://58.215.184.18:8001/api/i?";
 //    return @"http://192.168.1.198:8000/api/i?";
 //    return @"http://58.215.184.18:8888/api/i?";
 //
@@ -281,7 +281,7 @@ NSString* GlobalGetBoardServerURL()
 
 
 #ifdef DEBUG
-    [[TutorialCoreManager defaultManager] createTestData];    
+    [[TutorialCoreManager defaultManager] createTestData];
     [DrawBgManager createTestData:0];
     [GameConfigDataManager createTestConfigData];
     [ImageShapeManager createMetaFile];
