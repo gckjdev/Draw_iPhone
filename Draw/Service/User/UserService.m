@@ -1504,10 +1504,11 @@ POSTMSG(NSLS(@"kLoginFailure"));
                        limit:(NSInteger)limit
                  resultBlock:(GetUserListResultBlock)block
 {
+    NSString *appId = [PPConfigManager appId];
+    NSString *gameId = [PPConfigManager gameId];
+    NSString *userId = [[UserManager defaultManager] userId];
+
     dispatch_async(workingQueue, ^{
-        NSString *appId = [PPConfigManager appId];
-        NSString *gameId = [PPConfigManager gameId];
-        NSString *userId = [[UserManager defaultManager] userId];
         
         CommonNetworkOutput* output = [GameNetworkRequest
                                        getTopPalyerList:SERVER_URL
@@ -1526,6 +1527,7 @@ POSTMSG(NSLS(@"kLoginFailure"));
                     if ([dict isKindOfClass:[NSDictionary class]]) {
                         TopPlayer *topPlayer = [[TopPlayer alloc] initWithDict:dict];
                         [topPlayerList addObject:topPlayer];
+                        [topPlayer release];
                     }
                 }
             }

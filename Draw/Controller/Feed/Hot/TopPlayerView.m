@@ -104,7 +104,8 @@
     PPRelease(_topPlayer);
     PPRelease(_avatar);
     PPRelease(_cupImage);
-    [_genderImageView release];
+    PPRelease(_genderImageView);
+//    [_genderImageView release];
     [super dealloc];
 }
 
