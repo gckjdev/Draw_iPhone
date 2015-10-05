@@ -28415,6 +28415,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer: Lingzhe Peng (9WG829Y3AG)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Lingzhe Peng (9WG829Y3AG)";
 				COPY_PHASE_STRIP = NO;
+				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\\\\\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/iFly\\\\\\\"",
@@ -28539,6 +28540,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Lingzhe Peng (LPN7A567X3)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Lingzhe Peng (LPN7A567X3)";
 				COPY_PHASE_STRIP = YES;
+				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\\\\\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/iFly\\\\\\\"",
@@ -28646,8 +28648,8 @@
 				);
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = LittleGeeDraw;
-				PROVISIONING_PROFILE = "03ddaa5f-ac26-4eac-a1b5-d20cb3beeaf3";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "03ddaa5f-ac26-4eac-a1b5-d20cb3beeaf3";
+				PROVISIONING_PROFILE = "04f97ffc-c446-43aa-b4c8-1a7cbd45edf4";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "04f97ffc-c446-43aa-b4c8-1a7cbd45edf4";
 				VALIDATE_PRODUCT = YES;
 				VALID_ARCHS = "arm64 armv7 armv7s";
 				WRAPPER_EXTENSION = app;
@@ -28727,9 +28729,10 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(ARCHS_STANDARD)";
-				CODE_SIGN_IDENTITY = "iPhone Developer: Lingzhe Peng (9WG829Y3AG)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Lingzhe Peng (9WG829Y3AG)";
 				COPY_PHASE_STRIP = YES;
+				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\\\\\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/iFly\\\\\\\"",
@@ -28840,8 +28843,8 @@
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "8a5ec613-059c-4292-8d43-66f057d2d448";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "8a5ec613-059c-4292-8d43-66f057d2d448";
+				PROVISIONING_PROFILE = "890c9a34-f8bb-4613-8ed6-ca75968551d5";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "890c9a34-f8bb-4613-8ed6-ca75968551d5";
 				VALID_ARCHS = "armv7s arm64 armv7";
 				WRAPPER_EXTENSION = app;
 			};
@@ -28853,9 +28856,10 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(ARCHS_STANDARD)";
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Lingzhe Peng (LPN7A567X3)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Lingzhe Peng (LPN7A567X3)";
 				COPY_PHASE_STRIP = YES;
+				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\\\\\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/iFly\\\\\\\"",
@@ -28964,8 +28968,8 @@
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "e78d0776-b9f2-4758-a97d-4718b91737f9";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "e78d0776-b9f2-4758-a97d-4718b91737f9";
+				PROVISIONING_PROFILE = "fe65e183-734f-4aaf-8294-0a4cbbaec33a";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "fe65e183-734f-4aaf-8294-0a4cbbaec33a";
 				VALIDATE_PRODUCT = YES;
 				VALID_ARCHS = "armv7s arm64 armv7";
 				WRAPPER_EXTENSION = app;

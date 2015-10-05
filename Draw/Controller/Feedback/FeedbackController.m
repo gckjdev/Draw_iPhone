@@ -547,10 +547,16 @@ SET_CELL_BG_IN_CONTROLLER;
 
 
 - (void)dealloc {
-    [dataTableView release];
-    [TitleLabel release];
-    [backgroundImageView release];
-    [_qqGroupLabel release];
+//    [dataTableView release];
+//    [TitleLabel release];
+//    [backgroundImageView release];
+//    [_qqGroupLabel release];
+    
+    PPRelease(dataTableView);
+    PPRelease(TitleLabel);
+    PPRelease(backgroundImageView);
+    PPRelease(_qqGroupLabel);
+    
     [super dealloc];
 }
 
