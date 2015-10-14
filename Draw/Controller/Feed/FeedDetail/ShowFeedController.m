@@ -60,8 +60,8 @@
 #import "SoundPlayer.h"
 #import "AudioManager.h"
 
-#import "CocoBVideo.h"
-#import "ConfigHeader.h"
+//#import "CocoBVideo.h"
+//#import "ConfigHeader.h"
 
 @interface ShowFeedController ()<OpusImageBrowerDelegate> {
     BOOL _didLoadDrawPicture;
@@ -901,6 +901,7 @@ typedef enum{
     
 }
 
+/*
 static dispatch_once_t videoAdOnceToken;
 - (void)playVideoAd
 {
@@ -987,10 +988,11 @@ static dispatch_once_t spotAdOnceToken;
         }
     }];
 }
+*/
 
 - (void)performReplayDraw
 {
-    [self playSpotAd];
+//    [self playSpotAd];
     
     __block ShowFeedController * cp = self;
 
