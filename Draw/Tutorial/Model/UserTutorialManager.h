@@ -17,6 +17,7 @@
 -(BOOL)deleteUserTutorial:(PBUserTutorial *)userTutorial;
 
 // 用户添加/开始学习某个教程
+- (void)addUserTutorials:(NSArray*)list;
 - (PBUserTutorial*)addTutorial:(PBTutorial*)tutorial;
 - (BOOL)isTutorialLearned:(NSString*)tutorialId;
 -(PBUserTutorial *)getUserTutorialByTutorialId:(NSString*)tutorialId;

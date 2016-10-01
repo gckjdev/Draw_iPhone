@@ -28603,8 +28603,8 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				OTHER_LDFLAGS = "-ObjC";
-				PROVISIONING_PROFILE = "e78d0776-b9f2-4758-a97d-4718b91737f9";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "e78d0776-b9f2-4758-a97d-4718b91737f9";
+				PROVISIONING_PROFILE = "fe65e183-734f-4aaf-8294-0a4cbbaec33a";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "fe65e183-734f-4aaf-8294-0a4cbbaec33a";
 				SDKROOT = iphoneos;
 				STRIP_INSTALLED_PRODUCT = YES;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -28746,7 +28746,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(ARCHS_STANDARD)";
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Lingzhe Peng (LPN7A567X3)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Lingzhe Peng (LPN7A567X3)";
 				COPY_PHASE_STRIP = YES;
 				ENABLE_BITCODE = NO;

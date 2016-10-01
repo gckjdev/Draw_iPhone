@@ -119,9 +119,11 @@
             PPDebug(@"<reloadData resultCode=%d>",resultCode);
             self.pbUserTutorialList = retList;
             self.dataList = retList;
-            //返回所有教程
+            
+            // 返回所有教程
             NSArray *allTutorials = [[TutorialCoreManager defaultManager] allTutorials];
             self.pbTutorialList = allTutorials;
+            
             [self.dataTableView reloadData];
         }else{
             PPDebug(@"<reloadData has error resultCode=%d>",resultCode);

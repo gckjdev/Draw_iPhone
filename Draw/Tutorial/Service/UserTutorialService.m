@@ -97,18 +97,7 @@ static UserTutorialService* _defaultService;
                               method:METHOD_USER_TUTORIAL_ACTION
                           parameters:para
                             callback:^(DataQueryResponse *response, NSError *error) {
-                                
                                 NSArray* retUserTutorialList = response.userTutorials;
-                                if (error == nil){
-                                    // success
-                                    if(retUserTutorialList!=nil){
-                                        for(PBUserTutorial *retUserTutorial in retUserTutorialList){
-                                            [[UserTutorialManager defaultManager] addNewUserTutorialFromServer:retUserTutorial WithRemoteId:retUserTutorial.remoteId];
-                                        }
-                                        
-                                    }
-                                }
-                                
                                 EXECUTE_BLOCK(resultBlock, 0, retUserTutorialList);
                             }
                          isPostError:NO];
@@ -463,20 +452,22 @@ static UserTutorialService* _defaultService;
 
 - (void)addDefaultTutorial
 {
-    if ([self hasTheFirstLearningKey]){
-        return;
+    @synchronized (self) {
+        if ([self hasTheFirstLearningKey]){
+            return;
+        }
+        
+        PBTutorial *pb = [[TutorialCoreManager defaultManager] defaultFirstTutorial];
+        if (pb == nil){
+            return;
+        }
+        
+        PPDebug(@"add default tutorial, tutorialId=%@", pb.tutorialId);
+        [self addTutorial:pb resultBlock:nil];
+        
+        // update flag
+        [self setTheFirstLearningKey];
     }
-    
-    PBTutorial *pb = [[TutorialCoreManager defaultManager] defaultFirstTutorial];
-    if (pb == nil){
-        return;
-    }
-    
-    PPDebug(@"add default tutorial, tutorialId=%@", pb.tutorialId);
-    [self addTutorial:pb resultBlock:nil];
-    
-    // update flag
-    [self setTheFirstLearningKey];
 }
 
 
@@ -494,13 +485,19 @@ static UserTutorialService* _defaultService;
                         PPDebug(@"<getAllUserTutorials> no data, try add default tutorial");
                         [self addDefaultTutorial];
                     }
+                    else{
+                        // success
+                        if(retList!=nil){
+                            [[UserTutorialManager defaultManager] addUserTutorials:retList];
+                        }
+                    }
 
                     // sync from server success, set the SYNC flag
                     [self setSyncFromServer];
                 }
                 
-                NSArray* list = [[UserTutorialManager defaultManager] allUserTutorials];
-                EXECUTE_BLOCK(resultBlock, 0, list);
+                NSArray* newList = [[UserTutorialManager defaultManager] allUserTutorials];
+                EXECUTE_BLOCK(resultBlock, 0, newList);
             }];
             return;
         }

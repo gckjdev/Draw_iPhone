@@ -208,6 +208,11 @@ static UserTutorialManager* _defaultManager;
     PBUserTutorialBuilder* builder = [PBUserTutorial builderWithPrototype:userTutorial];
     
     PBTutorial* tutorial = [[TutorialCoreManager defaultManager] findTutorialByTutorialId:userTutorial.tutorial.tutorialId];
+    if(tutorial == nil){
+        PPDebug(@"<syncUserTutorial> but tutorial not found");
+        return;
+    }
+
     [builder setTutorial:tutorial];
     [builder setLocalId:localId];
     [builder setRemoteId:remoteId];
@@ -309,34 +314,45 @@ static UserTutorialManager* _defaultManager;
     [self save:newUt];
 }
 
+- (void)addUserTutorials:(NSArray*)list
+{
+    @synchronized (self) {
+        for(PBUserTutorial *retUserTutorial in list){
+            [[UserTutorialManager defaultManager] addNewUserTutorialFromServer:retUserTutorial WithRemoteId:retUserTutorial.remoteId];
+        }
+    }
+}
+
 - (NSArray*)allUserTutorials
 {
-    NSArray* list = [[self getDb] allObjects];
-    if ([list count] == 0){
-        PPDebug(@"<allUserTutorials> no item");
-        return nil;
+    @synchronized (self) {
+        NSArray* list = [[self getDb] allObjects];
+        if ([list count] == 0){
+            PPDebug(@"<allUserTutorials> no item");
+            return nil;
+        }
+        
+        NSMutableArray* retList = [[[NSMutableArray alloc] initWithCapacity:[list count]] autorelease];
+        for (NSData* data in list){
+            @try {
+                PBUserTutorial* ut = [PBUserTutorial parseFromData:data];
+                [retList insertObject:ut atIndex:0]; // insert from first
+            }
+            @catch (NSException *exception) {
+            }
+            @finally {
+            }
+        }
+        
+        [retList sortUsingComparator:^NSComparisonResult(id obj1, id obj2) {
+            PBUserTutorial* ut1 = obj1;
+            PBUserTutorial* ut2 = obj2;
+            return (ut2.modifyDate - ut1.modifyDate);
+        }];
+        
+        PPDebug(@"<allUserTutorials> return %d items", [retList count]);
+        return retList;
     }
-    
-    NSMutableArray* retList = [[[NSMutableArray alloc] initWithCapacity:[list count]] autorelease];
-    for (NSData* data in list){
-        @try {
-            PBUserTutorial* ut = [PBUserTutorial parseFromData:data];
-            [retList insertObject:ut atIndex:0]; // insert from first
-        }
-        @catch (NSException *exception) {
-        }
-        @finally {
-        }
-    }
-    
-    [retList sortUsingComparator:^NSComparisonResult(id obj1, id obj2) {
-        PBUserTutorial* ut1 = obj1;
-        PBUserTutorial* ut2 = obj2;
-        return (ut2.modifyDate - ut1.modifyDate);
-    }];
-    
-    PPDebug(@"<allUserTutorials> return %d items", [retList count]);
-    return retList;
 }
 
 - (BOOL)isTutorialLearned:(NSString*)tutorialId

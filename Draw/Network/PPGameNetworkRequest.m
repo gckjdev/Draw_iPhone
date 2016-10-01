@@ -92,7 +92,10 @@
                     output = (GameNetworkOutput*)origOutput;
                 }
                 
-                if (output.resultCode == ERROR_SUCCESS && output.responseData != nil){
+                if (output.resultCode == ERROR_SUCCESS && [output.responseData length] == 0){
+                    output.resultCode = ERROR_CLIENT_PARSE_DATA;
+                }
+                else if (output.resultCode == ERROR_SUCCESS && output.responseData != nil){
                     output.pbResponse = [DataQueryResponse parseFromData:output.responseData];
                     output.resultCode = output.pbResponse.resultCode;
                 }
@@ -170,7 +173,10 @@
                     output = (GameNetworkOutput*)origOutput;
                 }
                 
-                if (output.resultCode == ERROR_SUCCESS && output.responseData != nil){
+                if (output.resultCode == ERROR_SUCCESS && [output.responseData length] == 0){
+                    output.resultCode = ERROR_CLIENT_PARSE_DATA;
+                }
+                else if (output.resultCode == ERROR_SUCCESS && output.responseData != nil){
                     output.pbResponse = [DataQueryResponse parseFromData:output.responseData];
                     output.resultCode = output.pbResponse.resultCode;
                 }
@@ -250,7 +256,10 @@
                     output = (GameNetworkOutput*)origOutput;
                 }
                 
-                if (output.resultCode == ERROR_SUCCESS && output.responseData != nil){
+                if (output.resultCode == ERROR_SUCCESS && [output.responseData length] == 0){
+                    output.resultCode = ERROR_CLIENT_PARSE_DATA;
+                }
+                else if (output.resultCode == ERROR_SUCCESS && output.responseData != nil){
                     output.pbResponse = [DataQueryResponse parseFromData:output.responseData];
                     output.resultCode = output.pbResponse.resultCode;
                 }
