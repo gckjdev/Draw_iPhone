@@ -5,11 +5,11 @@
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
 	<key>NSMicrophoneUsageDescription</key>
-	<string>我们需要调用您的麦克风，可以吗？</string>
+	<string>我们需要调用你的麦克风，可以吗？</string>
 	<key>NSCameraUsageDescription</key>
-	<string>我们需要调用您的摄像头，可以吗？</string>
+	<string>我们需要调用你的摄像头，可以吗？</string>
 	<key>NSPhotoLibraryUsageDescription</key>
-	<string>我们需要访问您的相册，可以吗？</string>
+	<string>我们需要访问你的相册，可以吗？</string>
 	<key>CFBundleDisplayName</key>
 	<string>${PRODUCT_NAME}</string>
 	<key>CFBundleExecutable</key>
