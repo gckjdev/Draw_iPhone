@@ -337,40 +337,18 @@ NSString* GlobalGetBoardServerURL()
     PPDebug(@"<AppDelegate> notification type = %d", type);
     _homeController.notificationType = type;
     
-//    if (ISIOS7 && !ISIPAD) {
-//        self.rootNavigationController = [[[UINavigationController alloc]
-//                                          initWithRootViewController:rootController]
-//                                         autorelease];
-//        self.rootNavigationController.interactivePopGestureRecognizer.enabled = YES;
-//    }else{
         self.rootNavigationController = [[[MLNavigationController alloc]
                                                         initWithRootViewController:rootController]
                                                         autorelease];
-//    }
+
     self.rootNavigationController.navigationBarHidden = YES;
 
-    // Try Fetch User Data By Device Id
-    /* disable this from new learn draw version
-    if ([[UserManager defaultManager] hasUser] == NO){
-        BOOL autoRegister = [GameApp isAutoRegister];
-        [[UserService defaultService] loginByDeviceWithViewController:rootController
-                                                         autoRegister:autoRegister
-                                                          resultBlock:nil];
-    }
-    */
-    
-        
     self.window.rootViewController = self.rootNavigationController;
     
     [self.window makeKeyAndVisible];
     
     
-    
     [[AccountService defaultService] retryVerifyReceiptAtBackground];
-    
-    // Detect Network Availability
-//    self.networkDetector = [[[NetworkDetector alloc] initWithErrorTitle:NSLS(@"kNetworkErrorTitle") ErrorMsg:NSLS(@"kNetworkErrorMessage") detectInterval:2] autorelease];
-//    [self.networkDetector start];
 
     // Show News If Exists
     [self performSelector:@selector(showNews) withObject:nil afterDelay:1.5];
@@ -387,109 +365,8 @@ NSString* GlobalGetBoardServerURL()
     //注册微信，用于微信支付
     [WXApi registerApp:@"wx427a2f57bc4456d1"];
     
-    
-//    [self loadSplashAd];
     return YES;
 }
-
-//- (void)loadSplashAd
-//{
-//    if ([PPConfigManager enableSplashAd] == NO){
-//        return;
-//    }
-//    
-//    // 设置适合的背景图片
-//    // Set background image
-//    NSString *defaultImgName = [GameApp defaultImage]; // @"DrawDefault";
-//    CGFloat offset = 0.0f;
-//    CGSize adSize;
-//    if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad) {
-//        adSize = DOMOB_AD_SIZE_768x576;
-//        defaultImgName = [GameApp defaultImageIPAD];// @"DrawDefault@2x~ipad";
-//        offset = 374.0f;
-//    } else {
-//        adSize = DOMOB_AD_SIZE_320x400;
-//        if ([UIScreen mainScreen].bounds.size.height > 480.0f) {
-//            defaultImgName = [GameApp defaultImageRetina]; //@"DrawDefault-568h";
-//            offset = 233.0f;
-//        } else {
-//            offset = 168.0f;
-//        }
-//    }
-//    
-//    BOOL isCacheSplash = [PPConfigManager enableCacheSplash]; // NO;
-//    // 选择测试缓存开屏还是实时开屏，NO为实时开屏。
-//    // Choose NO or YES for RealTimeSplashView or SplashView
-//    // 初始化开屏广告控制器，此处使用的是测试ID，请登陆多盟官网（www.domob.cn）获取新的ID
-//    // Get your ID from Domob website
-//    NSString* testPubID = [PPConfigManager splashAdPublisherId]; // @"56OJz8QIuMyvO2LjPI";
-//    NSString* testSplashPlacementID = [PPConfigManager splashAdPlacementId]; // @"16TLmCOoAcaIONUEOHEOnqoz";
-//    UIColor* bgColor = [UIColor colorWithPatternImage:[UIImage imageNamed:defaultImgName]];
-//    if (isCacheSplash) {
-//        _splashAd = [[DMSplashAdController alloc] initWithPublisherId:testPubID
-//                                                          placementId:testSplashPlacementID
-//                                                                 size:adSize
-//                                                               offset:offset
-//                                                               window:self.window
-//                                                           background:bgColor
-//                                                            animation:YES];
-//        _splashAd.delegate = self;
-//        if (_splashAd.isReady)
-//        {
-//            [_splashAd present];
-//        }
-////        _splashAd.delegate = nil;
-//        [_splashAd release];
-//        _splashAd = nil;
-//        
-//    } else {
-//        _rtsplashAd = [[DMRTSplashAdController alloc] initWithPublisherId:testPubID
-//                                                             placementId:testSplashPlacementID
-//                                                                    size:adSize
-//                                                                  offset:233.5f
-//                                                                  window:self.window
-//                                                              background:bgColor
-//                                                               animation:YES];
-//        
-//        
-//        _rtsplashAd.delegate = self;
-//        [_rtsplashAd present];
-////        _rtsplashAd.delegate = nil;
-//        [_rtsplashAd release];
-//        _rtsplashAd = nil;
-//    }
-//    
-//}
-//
-//#pragma mark -
-//#pragma makr Domob Splash Ad Delegate
-////成功加开屏广告后调用
-////This method will be used after load splash advertisement successfully
-//- (void)dmSplashAdSuccessToLoadAd:(DMSplashAdController *)dmSplashAd
-//{
-//    PPDebug(@"[Domob Splash] success to load ad.");
-//}
-//
-//// 当开屏广告加载失败后，回调该方法
-//// This method will be used after load splash advertisement faild
-//- (void)dmSplashAdFailToLoadAd:(DMSplashAdController *)dmSplashAd withError:(NSError *)err
-//{
-//    PPDebug(@"[Domob Splash] fail to load ad. error=%@", [err description]);
-//}
-//
-//// 当插屏广告要被呈现出来前，回调该方法
-//// This method will be used before the splashView will show
-//- (void)dmSplashAdWillPresentScreen:(DMSplashAdController *)dmSplashAd
-//{
-//    PPDebug(@"[Domob Splash] will appear on screen.");
-//}
-//
-//// 当插屏广告被关闭后，回调该方法
-//// This method will be used after the splashView dismiss
-//- (void)dmSplashAdDidDismissScreen:(DMSplashAdController *)dmSplashAd
-//{
-//    PPDebug(@"[Domob Splash] did disappear on screen.");
-//}
 
 - (void)scheduleLocalNotificationForGuessContest:(PBContest *)contest{
     
@@ -523,9 +400,6 @@ NSString* GlobalGetBoardServerURL()
 
 - (void)applicationWillResignActive:(UIApplication *)application
 {
-    
-    
-    
     PPDebug(@"<applicationWillResignActive>");
     
     /*
@@ -579,10 +453,6 @@ NSString* GlobalGetBoardServerURL()
         [[IAPProductService defaultService] syncData:NULL];
         [[SKProductService defaultService] syncDataFromIAPService];
         
-//        if ([GameApp isAutoRegister]){
-//            [[UserService defaultService] autoRegisteration:nil];
-//        }
-        
         [[UserStatusService defaultService] stop];
         
         if ([[UserManager defaultManager] hasUser]) {
@@ -590,9 +460,6 @@ NSString* GlobalGetBoardServerURL()
             [[GroupService defaultService] syncFollowGroupIds];
             [[GroupService defaultService] syncFollowTopicIds];
         }
-        
-//        [[GameAdWallService defaultService] queryWallScore];
-    
 
 }
 

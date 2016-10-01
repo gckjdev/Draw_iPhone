@@ -14,6 +14,8 @@
 #import "ChangeBGImageAction.h"
 #import "BBSActionSheet.h"
 #import "ShareService.h"
+#import "FileUtil.h"
+#import "UIImageUtil.h"
 
 @implementation ReplayObject
 
@@ -210,6 +212,7 @@
     BBSActionSheet *sheet = [[BBSActionSheet alloc] initWithTitles:titles callback:^(NSInteger index) {
         NSString *t = titles[index];
         if ([t isEqualToString:TITLE_SHARE]) {
+            
 
             [[ShareService defaultService] shareAsGIF:_superController
                                             opusImage:self.replayObj.finalImage

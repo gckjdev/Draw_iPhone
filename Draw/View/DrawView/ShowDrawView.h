@@ -90,6 +90,11 @@ typedef enum{
 - (void) createImageOfLayer:(NSInteger)num
                        Path:(NSString*)path;
 
++ (UIImage*)createImage:(NSMutableArray*)drawActionList
+                bgImage:(UIImage*)bgImage
+                 layers:(NSArray*)layers
+             canvasSize:(CGSize)canvasSize;
+
 @end
 
 

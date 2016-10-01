@@ -1154,6 +1154,33 @@ typedef enum {
      */
 }
 
++ (UIImage*)createImage:(NSMutableArray*)drawActionList
+                       bgImage:(UIImage*)bgImage
+                        layers:(NSArray*)layers
+                    canvasSize:(CGSize)canvasSize
+
+{
+    if ([drawActionList count] == 0 || [layers count] == 0){
+        PPDebug(@"<createImagesForGIF> but action list count is 0 or layers count is 0");
+        return nil;
+    }
+    
+    //update showview
+    ShowDrawView* showView = [ShowDrawView showViewWithFrame:CGRectFromCGSize(canvasSize)
+                                              drawActionList:nil
+                                                    delegate:nil];
+    
+    [showView updateLayers:layers];
+    [showView setDrawActionList:drawActionList];
+    if (bgImage) {
+        [showView setBGImage:bgImage];
+    }
+    
+    return [showView createImageAtIndex:[drawActionList count] bgColor:[UIColor whiteColor]];
+    
+}
+
+
 - (void) createImageOfLayer:(NSInteger)num
                        Path:(NSString*)path
 {

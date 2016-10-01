@@ -411,6 +411,17 @@ static ShareService* _defaultService;
                        NSString* fileId = [opusId length] > 0 ? opusId : [NSString GetUUID];
                        NSString* fileName = [NSString stringWithFormat:@"%@.gif", fileId];
                        NSString* tempPath = [[FileUtil getAppTempDir] stringByAppendingPathComponent:fileName];
+
+                       /* to recover image for old13
+                       NSString* jpgFileName = [NSString stringWithFormat:@"%@.jpg", fileId];
+                       NSString* jpgTempPath = [[FileUtil getAppTempDir] stringByAppendingPathComponent:jpgFileName];
+                       UIImage* createImage = [ShowDrawView createImage:drawActionList
+                                         bgImage:nil
+                                          layers:copyLayers
+                                      canvasSize:canvasSize];
+                       [createImage saveJPEGToFile:jpgTempPath compressQuality:1.0f];
+                        */
+
                        
                        [ShowDrawView createGIF:frameCount
                                      delayTime:delayTime
@@ -421,7 +432,7 @@ static ShareService* _defaultService;
                                     finalImage:finalImage
                                     outputPath:tempPath
                                      scaleSize:scaleSize];
-                       
+                                              
                        dispatch_async(dispatch_get_main_queue(),
                                       ^(void){
                                           
