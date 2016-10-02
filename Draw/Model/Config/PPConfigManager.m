@@ -572,7 +572,7 @@
 + (NSString *)currentVersion
 {
     NSDictionary *infoDict = [[NSBundle mainBundle] infoDictionary];  
-    NSString *currentVersion = [infoDict objectForKey:@"CFBundleVersion"];
+    NSString *currentVersion = [infoDict objectForKey:@"CFBundleShortVersionString"];
     return currentVersion;
 }
 
